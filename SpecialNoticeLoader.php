@@ -20,7 +20,7 @@ class SpecialNoticeLoader extends NoticePage {
 	 * 10 minutes?
 	 */
 	protected function maxAge() {
-		return 600;
+		return 0;
 	}
 	
 	function getJsOutput() {

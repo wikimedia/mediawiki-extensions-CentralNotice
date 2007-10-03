@@ -3,7 +3,8 @@
 // http://meta.wikimedia.org/wiki/Special:NoticeLoader
 $wgNoticeLoader = 'http://smorgasbord.local/trunk/index.php/Special:NoticeLoader';
 $wgNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';
-$wgNoticeEpoch = '20071003015645';
+//$wgNoticeEpoch = '20071003183510';
+$wgNoticeEpoch = gmdate( 'YmdHis', @filemtime( dirname( __FILE__ ) . '/SpecialNoticeText.php' ) );
 
 function wfCentralNotice( &$notice ) {
 	global $wgNoticeLoader;
