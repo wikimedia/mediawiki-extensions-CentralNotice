@@ -1,14 +1,14 @@
 <?php
 
 // http://meta.wikimedia.org/wiki/Special:NoticeLoader
-global $wgCentralNoticeLoader, $wgCentralNoticeText;
-$wgCentralNoticeLoader = 'http://smorgasbord.local/trunk/index.php/Special:NoticeLoader';
-$wgCentralNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';
+$wgNoticeLoader = 'http://smorgasbord.local/trunk/index.php/Special:NoticeLoader';
+$wgNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';
+$wgNoticeEpoch = '20071003015645';
 
 function wfCentralNotice( &$notice ) {
-	global $wgCentralNoticeLoader;
+	global $wgNoticeLoader;
 
-	$encNoticeLoader = htmlspecialchars( $wgCentralNoticeLoader );
+	$encNoticeLoader = htmlspecialchars( $wgNoticeLoader );
 	
 	// Throw away the classic notice, use the central loader...
 	$notice = <<<EOT
@@ -29,6 +29,9 @@ EOT;
 }
 
 $wgHooks['SiteNoticeAfter'][] = 'wfCentralNotice';
+
+$wgAutoloadClasses['NoticePage'] =
+	dirname( __FILE__ ) . '/NoticePage.php';
 
 $wgSpecialPages['NoticeLoader'] = 'SpecialNoticeLoader';
 $wgAutoloadClasses['SpecialNoticeLoader'] =
