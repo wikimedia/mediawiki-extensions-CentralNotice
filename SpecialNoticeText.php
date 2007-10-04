@@ -16,14 +16,25 @@ class SpecialNoticeText extends NoticePage {
 	}
 	
 	function getJsOutput() {
-		global $wgSiteNotice;
-		$encNotice = Xml::escapeJsString( $this->getHtmlNotice() );
-		return <<<EOT
-wgNotice = "$encNotice";
-EOT;
+		return 'wgNotice="' .
+			str_replace( '$quote',
+				'"+' . $this->getJsQuoteSelector() . '+"',
+					Xml::escapeJsString( $this->getHtmlNotice() ) )
+			. '";';
+	}
+	
+	function getJsQuoteSelector() {
+		$quotes = $this->getQuotes();
+		return
+			'function(){' .
+				'var quotes=' . Xml::encodeJsVar( $quotes ) . ';' .
+				'return quotes[Math.floor(Math.random()*quotes.length)];' .
+			'}()';
 	}
 	
 	function getHtmlNotice() {
+		$headline = $this->getHeadline();
+		$meter = $this->getMeter();
 		return <<<EOT
 <style type="text/css">
 .fundraiser-box {
@@ -58,8 +69,7 @@ EOT;
 	
 	overflow: hidden;
 }
-
-.fundraiser-bar {
+.fundraiser-meter {
 	margin-top: 5px;
 	margin-bottom: 0px;
 }
@@ -68,13 +78,13 @@ EOT;
 	<tr>
 		<td class="fundraiser-text">
 			<div class="fundraiser-headline">
-				<a href="http://fundraising.wikimedia.org/">What you didn't know about Wikipedia . . . <small>(See more)</small></a>
+				<a href="http://fundraising.wikimedia.org/">$headline</a>
 			</div>
 			<div class='fundraiser-quote'>
-				<a href="http://fundraising.wikimedia.org/">Anonymous: Well Done! Anonymous: What on earth did we do...</a>
+				<a href="http://fundraising.wikimedia.org/">\$quote</a>
 			</div>
-			<div class='fundraiser-bar'>
-				<a href="http://fundraising.wikimedia.org/"><img src="http://upload.wikimedia.org/fundraising/2007/meter.png" width='407' height='14' /></a>
+			<div class='fundraiser-meter'>
+				<a href="http://fundraising.wikimedia.org/">$meter</a>
 			</div>
 		</td>
 		<td width="109" height="75">
@@ -83,6 +93,21 @@ EOT;
 	</tr>
 </table>
 EOT;
+	}
+	
+	function getHeadline() {
+		return "What you didn't know about Wikipedia . . . <small>(See more)</small>";
+	}
+	
+	function getQuotes() {
+		return array(
+			"Anonymous: Well Done!",
+			"Anonymous: What on earth did we do...",
+		);
+	}
+	
+	function getMeter() {
+		return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
 	}
 }
 
