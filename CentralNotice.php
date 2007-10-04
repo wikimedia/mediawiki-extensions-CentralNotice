@@ -41,5 +41,3 @@ $wgAutoloadClasses['SpecialNoticeLoader'] =
 $wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
 $wgAutoloadClasses['SpecialNoticeText'] =
 	dirname( __FILE__ ) . '/SpecialNoticeText.php';
-
-?>

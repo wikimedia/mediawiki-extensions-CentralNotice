@@ -31,5 +31,3 @@ class NoticePage extends SpecialPage {
 		return "";
 	}
 }
-
-?>

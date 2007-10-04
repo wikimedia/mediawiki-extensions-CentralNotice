@@ -38,5 +38,3 @@ EOT;
 		return wfTimestamp( TS_MW, $wgNoticeEpoch );
 	}
 }
-
-?>

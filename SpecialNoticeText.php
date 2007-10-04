@@ -110,5 +110,3 @@ EOT;
 		return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
 	}
 }
-
-?>
