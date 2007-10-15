@@ -1,5 +1,8 @@
 <?php
 
+/// If true, notice only displays if 'sitenotice=yes' is in the query string
+$wgNoticeTestMode = false;
+
 // http://meta.wikimedia.org/wiki/Special:NoticeLoader
 $wgNoticeLoader = 'http://smorgasbord.local/trunk/index.php/Special:NoticeLoader';
 $wgNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';

@@ -24,12 +24,31 @@ class SpecialNoticeLoader extends NoticePage {
 	}
 	
 	function getJsOutput() {
+		global $wgNoticeTestMode;
+		$loader = $this->loaderScript();
+		if( $wgNoticeTestMode ) {
+			return $this->testCondition( $loader );
+		} else {
+			return $loader;
+		}
+	}
+	
+	function testCondition( $code ) {
+		return
+			'if(/[?&]sitenotice=yes/.test(document.location.search)){'.
+			$code .
+			'}';
+	}
+	
+	function loaderScript() {
 		global $wgNoticeText;
-		$encUrl = Xml::escapeJsString( $wgNoticeText );
-		$encEpoch = Xml::escapeJsString( $this->getEpoch() );
-		return <<<EOT
-document.writeln("<"+"script src=\"$encUrl/"+wgNoticeProject+"/"+wgNoticeLang+"?$encEpoch"+"\"><"+"/script>");
-EOT;
+		$encUrl = htmlspecialchars( $wgNoticeText );
+		$encEpoch = urlencode( $this->getEpoch() );
+		return "document.writeln(" .
+			Xml::encodeJsVar( "<script src=\"$encUrl/" ) .
+			'+wgNoticeProject+"/"+wgNoticeLang+' .
+			Xml::encodeJsVar( "?$encEpoch\"></script>" ).
+			');';
 	}
 	
 	function getEpoch() {
