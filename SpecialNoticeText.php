@@ -96,7 +96,7 @@ EOT;
 	}
 	
 	function getHeadline() {
-		return "What you didn't know about Wikipedia . . . <small>(See more)</small>";
+		return "What you didn't know about us . . . <small>(See more)</small>";
 	}
 	
 	function getQuotes() {
