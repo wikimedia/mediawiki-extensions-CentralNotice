@@ -23,7 +23,7 @@ class SpecialNoticeLoader extends NoticePage {
 		return 300;
 	}
 	
-	function getJsOutput() {
+	function getJsOutput( $par ) {
 		global $wgNoticeTestMode;
 		$loader = $this->loaderScript();
 		if( $wgNoticeTestMode ) {

@@ -9,17 +9,22 @@ $wgNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';
 //$wgNoticeEpoch = '20071003183510';
 $wgNoticeEpoch = gmdate( 'YmdHis', @filemtime( dirname( __FILE__ ) . '/SpecialNoticeText.php' ) );
 
+$wgNoticeLang = 'en';
+$wgNoticeProject = 'wikipedia';
+
 function wfCentralNotice( &$notice ) {
-	global $wgNoticeLoader;
+	global $wgNoticeLoader, $wgNoticeLang, $wgNoticeProject;
 
 	$encNoticeLoader = htmlspecialchars( $wgNoticeLoader );
+	$encProject = htmlspecialchars( $wgNoticeProject );
+	$encLang = htmlspecialchars( $wgNoticeLang );
 	
 	// Throw away the classic notice, use the central loader...
 	$notice = <<<EOT
 <script type="text/javascript">
 var wgNotice = '';
-var wgNoticeLang = 'en';
-var wgNoticeProject = 'wikipedia';
+var wgNoticeLang = '$encLang';
+var wgNoticeProject = '$encProject';
 </script>
 <script type="text/javascript" src="$encNoticeLoader"></script>
 <script type="text/javascript">

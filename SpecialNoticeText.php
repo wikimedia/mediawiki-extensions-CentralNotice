@@ -1,6 +1,9 @@
 <?php
 
 class SpecialNoticeText extends NoticePage {
+	var $project = 'wikipedia';
+	var $language = 'en';
+	
 	function __construct() {
 		parent::__construct( "NoticeText" );
 	}
@@ -15,26 +18,53 @@ class SpecialNoticeText extends NoticePage {
 		return 86400 * 7;
 	}
 	
-	function getJsOutput() {
-		return 'wgNotice="' .
-			str_replace( '$quote',
-				'"+' . $this->getJsQuoteSelector() . '+"',
-					Xml::escapeJsString( $this->getHtmlNotice() ) )
-			. '";';
+	function getJsOutput( $par ) {
+		$this->setLanguage( $par );
+		return
+			'wgNotice="' .
+			strtr(
+				Xml::escapeJsString( $this->getHtmlNotice() ),
+				array_map(
+					array( $this, 'interpolateStrings' ),
+					array(
+						'$quote' => $this->getQuotes(),
+						'$headline' => $this->getHeadlines(),
+						'$meter' => $this->getMeter(),
+					)
+				)
+			) .
+			'";';
 	}
 	
-	function getJsQuoteSelector() {
-		$quotes = $this->getQuotes();
+	private function setLanguage( $par ) {
+		$bits = explode( '/', $par );
+		if( count( $bits == 2 ) ) {
+			$this->project = $bits[0];
+			$this->language = $bits[1];
+		}
+	}
+	
+	private function interpolateStrings( $data ) {
+		if( is_array( $data ) ) {
+			return $this->interpolateRandomSelector( $data );
+		} else {
+			return Xml::escapeJsString( $data );
+		}
+	}
+	
+	private function interpolateRandomSelector( $strings ) {
+		return '"+' . $this->randomSelector( $strings ) . '+"';
+	}
+	
+	private function randomSelector( $strings ) {
 		return
 			'function(){' .
-				'var quotes=' . Xml::encodeJsVar( $quotes ) . ';' .
-				'return quotes[Math.floor(Math.random()*quotes.length)];' .
+				'var s=' . Xml::encodeJsVar( $strings ) . ';' .
+				'return s[Math.floor(Math.random()*s.length)];' .
 			'}()';
 	}
 	
 	function getHtmlNotice() {
-		$headline = $this->getHeadline();
-		$meter = $this->getMeter();
 		return <<<EOT
 <style type="text/css">
 .fundraiser-box {
@@ -78,13 +108,13 @@ class SpecialNoticeText extends NoticePage {
 	<tr>
 		<td class="fundraiser-text">
 			<div class="fundraiser-headline">
-				<a href="http://fundraising.wikimedia.org/">$headline</a>
+				<a href="http://fundraising.wikimedia.org/">\$headline</a>
 			</div>
 			<div class='fundraiser-quote'>
 				<a href="http://fundraising.wikimedia.org/">\$quote</a>
 			</div>
 			<div class='fundraiser-meter'>
-				<a href="http://fundraising.wikimedia.org/">$meter</a>
+				<a href="http://fundraising.wikimedia.org/">\$meter</a>
 			</div>
 		</td>
 		<td width="109" height="75">
@@ -95,15 +125,47 @@ class SpecialNoticeText extends NoticePage {
 EOT;
 	}
 	
-	function getHeadline() {
-		return "What you didn't know about us . . . <small>(See more)</small>";
+	private function getHeadlines() {
+		return array(
+			"What you didn't know about us . . . <small>(See more)</small>",
+		);
+		/*
+		return $this->splitListMessage( 'centralnotice-headlines' );
+		*/
 	}
 	
-	function getQuotes() {
+	private function getQuotes() {
 		return array(
 			"Anonymous: Well Done!",
 			"Anonymous: What on earth did we do...",
 		);
+		/*
+		return $this->splitListMessage( 'centralnotice-quotes' );
+		*/
+	}
+	
+	private function splitListMessage( $msg ) {
+		$text = wfMsg( $msg );
+		if( wfEmptyMsg( $msg, $text ) ) {
+			return array();
+		} else {
+			return $this->splitList( $text );
+		}
+	}
+	
+	private function splitList( $text ) {
+		return array_filter(
+			array_map(
+				array( $this, 'filterListLine' ),
+				explode( "\n", $text ) ) );
+	}
+	
+	private function filterListLine( $line ) {
+		if( substr( $line, 0, 1 ) == '#' ) {
+			return '';
+		} else {
+			return trim( ltrim( $line, '*' ) );
+		}
 	}
 	
 	function getMeter() {

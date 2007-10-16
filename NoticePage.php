@@ -5,7 +5,7 @@ class NoticePage extends SpecialPage {
 		global $wgOut;
 		$wgOut->disable();
 		$this->sendHeaders();
-		echo $this->getJsOutput();
+		echo $this->getJsOutput( $par );
 	}
 	
 	protected function sharedMaxAge() {
@@ -34,7 +34,7 @@ class NoticePage extends SpecialPage {
 		header( "Last-modified: $epoch" );
 	}
 	
-	function getJsOutput() {
+	function getJsOutput( $par ) {
 		return "";
 	}
 }
