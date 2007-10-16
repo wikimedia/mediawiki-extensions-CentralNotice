@@ -22,8 +22,15 @@ class NoticePage extends SpecialPage {
 		$maxage = $this->maxAge();
 		$epoch = wfTimestamp( TS_RFC2822, $wgNoticeEpoch );
 		
+		// Paranoia
+		$public = (session_id() == '');
+		
 		header( "Content-type: text/javascript; charset=utf-8" );
-		header( "Cache-Control: public, s-maxage=$smaxage, max-age=$maxage" );
+		if( $public ) {
+			header( "Cache-Control: public, s-maxage=$smaxage, max-age=$maxage" );
+		} else {
+			header( "Cache-Control: private, s-maxage=0, max-age=$maxage" );
+		}
 		header( "Last-modified: $epoch" );
 	}
 	
