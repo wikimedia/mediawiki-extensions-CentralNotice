@@ -17,10 +17,10 @@ class SpecialNoticeLoader extends NoticePage {
 
 	/**
 	 * Clients should recheck this fairly often, but not _constantly_.
-	 * 10 minutes?
+	 * 5 minutes?
 	 */
 	protected function maxAge() {
-		return 0;
+		return 300;
 	}
 	
 	function getJsOutput() {
