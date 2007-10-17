@@ -1,6 +1,6 @@
 <?php
 
-class NoticePage extends SpecialPage {
+class NoticePage extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgOut;
 		$wgOut->disable();
