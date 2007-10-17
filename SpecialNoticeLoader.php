@@ -20,7 +20,8 @@ class SpecialNoticeLoader extends NoticePage {
 	 * 5 minutes?
 	 */
 	protected function maxAge() {
-		return 300;
+		global $wgNoticeTimeout;
+		return $wgNoticeTimeout;
 	}
 	
 	function getJsOutput( $par ) {

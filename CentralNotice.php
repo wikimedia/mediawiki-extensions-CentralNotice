@@ -3,6 +3,11 @@
 /// If true, notice only displays if 'sitenotice=yes' is in the query string
 $wgNoticeTestMode = false;
 
+/// Client-side cache timeout for the loader JS stub.
+/// If 0, clients will (probably) rechceck it on every hit,
+/// which is good for testing.
+$wgNoticeTimeout = 0;
+
 // http://meta.wikimedia.org/wiki/Special:NoticeLoader
 $wgNoticeLoader = 'http://smorgasbord.local/trunk/index.php/Special:NoticeLoader';
 $wgNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';
