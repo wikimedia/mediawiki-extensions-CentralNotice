@@ -38,6 +38,11 @@ class SpecialNoticeText extends NoticePage {
 	}
 	
 	private function setLanguage( $par ) {
+		// Strip extra ? bits if they've gotten in. Sigh.
+		$bits = explode( '?', $par, 2 );
+		$par = $bits[0];
+		
+		// Special:NoticeText/project/language
 		$bits = explode( '/', $par );
 		if( count( $bits ) == 2 ) {
 			$this->project = $bits[0];
