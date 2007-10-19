@@ -17,10 +17,9 @@ class NoticePage extends UnlistedSpecialPage {
 	}
 	
 	private function sendHeaders() {
-		global $wgNoticeEpoch;
 		$smaxage = $this->sharedMaxAge();
 		$maxage = $this->maxAge();
-		$epoch = wfTimestamp( TS_RFC2822, $wgNoticeEpoch );
+		$epoch = wfTimestamp( TS_RFC2822, efCentralNoticeEpoch() );
 		
 		// Paranoia
 		$public = (session_id() == '');

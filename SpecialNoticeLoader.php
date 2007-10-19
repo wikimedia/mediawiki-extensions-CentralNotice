@@ -44,17 +44,11 @@ class SpecialNoticeLoader extends NoticePage {
 	function loaderScript() {
 		global $wgNoticeText;
 		$encUrl = htmlspecialchars( $wgNoticeText );
-		$encEpoch = urlencode( $this->getEpoch() );
+		$encEpoch = urlencode( efCentralNoticeEpoch() );
 		return "document.writeln(" .
 			Xml::encodeJsVar( "<script src=\"$encUrl/" ) .
 			'+wgNoticeProject+"/"+wgNoticeLang+' .
 			Xml::encodeJsVar( "?$encEpoch\"></script>" ).
 			');';
-	}
-	
-	function getEpoch() {
-		global $wgNoticeEpoch;
-		// Time when we should invalidate all notices...
-		return wfTimestamp( TS_MW, $wgNoticeEpoch );
 	}
 }

@@ -30,6 +30,7 @@ class SpecialNoticeText extends NoticePage {
 						'$quote' => $this->getQuotes(),
 						'$headline' => $this->getHeadlines(),
 						'$meter' => $this->getMeter(),
+						'$target' => $this->getTarget(),
 					)
 				)
 			) .
@@ -65,92 +66,44 @@ class SpecialNoticeText extends NoticePage {
 	}
 	
 	function getHtmlNotice() {
-		return <<<EOT
-<style type="text/css">
-.fundraiser-box {
-	margin-top: 12px;
-}
-.fundraiser-box a {
-	color: black;
-	text-effect: none;
-}
-.fundraiser-text {
-	not-width: 400px; /* 420 - 8*2 - 2*2 */
-	height: 75px;
-	padding: 0px 8px;
-	background: #fdece5;
-	border: solid 2px #f3e4dd;
-	text-align: left;
-}
-.fundraiser-headline {
-	font-size: 14px;
-	margin-top: 0px;
-	padding: 0px;
-}
-.fundraiser-quote {
-	font-family: Monaco, monospace;
-	font-size: 11px;
-	background: white;
-	
-	not-width: 387px; /* 407 - 8*2 - 2*2 */
-	height: 1.5em;
-	padding: 2px 8px;
-	border: solid 2px #efedee;
-	
-	overflow: hidden;
-}
-.fundraiser-meter {
-	margin-top: 5px;
-	margin-bottom: 0px;
-}
-</style>
-<table class="fundraiser-box" align="center">
-	<tr>
-		<td class="fundraiser-text">
-			<div class="fundraiser-headline">
-				<a href="http://fundraising.wikimedia.org/">\$headline</a>
-			</div>
-			<div class='fundraiser-quote'>
-				<a href="http://fundraising.wikimedia.org/">\$quote</a>
-			</div>
-			<div class='fundraiser-meter'>
-				<a href="http://fundraising.wikimedia.org/">\$meter</a>
-			</div>
-		</td>
-		<td width="109" height="75">
-			<a href="http://fundraising.wikimedia.org/"><img src="http://upload.wikimedia.org/wikipedia/commons/a/ab/Movie.png" alt="Video" /></a>
-		</td>
-	</tr>
-</table>
-EOT;
+		return $this->getMessage( 'centralnotice-template' );
 	}
 	
 	private function getHeadlines() {
-		return array(
-			"What you didn't know about us . . . <small>(See more)</small>",
-		);
-		/*
 		return $this->splitListMessage( 'centralnotice-headlines' );
-		*/
 	}
 	
 	private function getQuotes() {
-		return array(
-			"Anonymous: Well Done!",
-			"Anonymous: What on earth did we do...",
-		);
-		/*
 		return $this->splitListMessage( 'centralnotice-quotes' );
-		*/
+	}
+	
+	private function getMeter() {
+		return $this->getMessage( 'centralnotice-meter' );
+		return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
+	}
+	
+	private function getTarget() {
+		return $this->getMessage( 'centralnotice-target' );
 	}
 	
 	private function splitListMessage( $msg ) {
-		$text = wfMsg( $msg );
-		if( wfEmptyMsg( $msg, $text ) ) {
-			return array();
-		} else {
-			return $this->splitList( $text );
+		$text = $this->getMessage( $msg );
+		return $this->splitList( $text );
+	}
+	
+	private function getMessage( $msg ) {
+		$searchPath = array(
+			"$msg/{$this->language}/{$this->project}",
+			"$msg/{$this->language}",
+			"$msg/{$this->project}",
+			"$msg" );
+		foreach( $searchPath as $rawMsg ) {
+			$text = wfMsgForContent( $rawMsg );
+			if( !wfEmptyMsg( $rawMsg, $text ) ) {
+				return $text;
+			}
 		}
+		return false;
 	}
 	
 	private function splitList( $text ) {
@@ -166,9 +119,5 @@ EOT;
 		} else {
 			return trim( ltrim( $line, '*' ) );
 		}
-	}
-	
-	function getMeter() {
-		return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
 	}
 }
