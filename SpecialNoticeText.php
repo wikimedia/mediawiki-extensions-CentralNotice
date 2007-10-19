@@ -122,7 +122,15 @@ class SpecialNoticeText extends NoticePage {
 		if( substr( $line, 0, 1 ) == '#' ) {
 			return '';
 		} else {
-			return trim( ltrim( $line, '*' ) );
+			return $this->parse( trim( ltrim( $line, '*' ) ) );
 		}
+	}
+	
+	private function parse( $text ) {
+		global $wgOut;
+		return preg_replace(
+			'/^<p>(.*)\n?<\/p>\n?$/sU',
+			'$1',
+		 	$wgOut->parse( $text ) );
 	}
 }
