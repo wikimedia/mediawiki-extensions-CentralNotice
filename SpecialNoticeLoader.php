@@ -35,8 +35,20 @@ class SpecialNoticeLoader extends NoticePage {
 	}
 	
 	function testCondition( $code ) {
+		global $wgNoticeEnabledSites;
+		$conditions = array();
+		$conditions[] = '/[?&]sitenotice=yes/.test(document.location.search)';
+		if( $wgNoticeEnabledSites ) {
+			foreach( $wgNoticeEnabledSites as $site ) {
+				$conditions[] =
+					'(wgNoticeLang+"."+wgNoticeProject)==' .
+					Xml::encodeJsVar( $site );
+			}
+		}
 		return
-			'if(/[?&]sitenotice=yes/.test(document.location.search)){'.
+			'if((' .
+			implode( ')||(', $conditions ) .
+			')){'.
 			$code .
 			'}';
 	}

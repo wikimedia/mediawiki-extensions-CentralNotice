@@ -25,6 +25,9 @@ $wgNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';
 /// If true, notice only displays if 'sitenotice=yes' is in the query string
 $wgNoticeTestMode = false;
 
+/// Array of '$lang.$project' for exceptions to the test mode rule
+$wgNoticeEnabledSites = array();
+
 /// Client-side cache timeout for the loader JS stub.
 /// If 0, clients will (probably) rechceck it on every hit,
 /// which is good for testing.
