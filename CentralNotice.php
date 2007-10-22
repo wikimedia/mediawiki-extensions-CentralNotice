@@ -30,6 +30,8 @@ $wgNoticeTestMode = false;
 /// which is good for testing.
 $wgNoticeTimeout = 0;
 
+/// Use a god-forsaken <marquee> to scroll multiple quotes...
+$wgNoticeScroll = true;
 
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 

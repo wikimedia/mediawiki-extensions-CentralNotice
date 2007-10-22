@@ -24,13 +24,20 @@ class SpecialNoticeText extends NoticePage {
 			'wgNotice="' .
 			strtr(
 				Xml::escapeJsString( $this->getHtmlNotice() ),
-				array_map(
-					array( $this, 'interpolateStrings' ),
-					array(
-						'$quote' => $this->getQuotes(),
-						'$headline' => $this->getHeadlines(),
-						'$meter' => $this->getMeter(),
-						'$target' => $this->getTarget(),
+				array_merge(
+					array_map(
+						array( $this, 'interpolateScroller' ),
+						array(
+							'$quote' => $this->getQuotes(),
+						)
+					),
+					array_map(
+						array( $this, 'interpolateStrings' ),
+						array(
+							'$headline' => $this->getHeadlines(),
+							'$meter' => $this->getMeter(),
+							'$target' => $this->getTarget(),
+						)
 					)
 				)
 			) .
@@ -70,6 +77,29 @@ class SpecialNoticeText extends NoticePage {
 			'}()';
 	}
 	
+	private function interpolateScroller( $strings ) {
+		global $wgNoticeScroll;
+		if( $wgNoticeScroll ) {
+			return
+				Xml::escapeJsString( '<marquee scrolldelay="100" scrollamount="3">' ) .
+				'"+' .
+				$this->shuffleStrings( $strings ) .
+				'+"' .
+				Xml::escapeJsString( '</marquee>' );
+		} else {
+			return $this->interpolateStrings( $strings );
+		}
+	}
+	
+	private function shuffleStrings( $strings ) {
+		return
+			'function(){' .
+				'var s=' . Xml::encodeJsVar( $strings ) . ';' .
+				'var p=Math.floor(Math.random()*s.length);' .
+				'return s.slice(p,s.length).concat(s.slice(0,p)).join(" ");' .
+			'}()';
+	}
+	
 	function getHtmlNotice() {
 		return $this->getMessage( 'centralnotice-template' );
 	}
@@ -79,7 +109,8 @@ class SpecialNoticeText extends NoticePage {
 	}
 	
 	private function getQuotes() {
-		return $this->splitListMessage( 'centralnotice-quotes' );
+		return $this->splitListMessage( 'centralnotice-quotes',
+		 	array( $this, 'wrapQuote' ) );
 	}
 	
 	private function getMeter() {
@@ -91,19 +122,19 @@ class SpecialNoticeText extends NoticePage {
 		return $this->getMessage( 'centralnotice-target' );
 	}
 	
-	private function splitListMessage( $msg ) {
+	private function splitListMessage( $msg, $callback=false ) {
 		$text = $this->getMessage( $msg );
-		return $this->splitList( $text );
+		return $this->splitList( $text, $callback );
 	}
 	
-	private function getMessage( $msg ) {
+	private function getMessage( $msg, $params=array() ) {
 		$searchPath = array(
 			"$msg/{$this->language}/{$this->project}",
 			"$msg/{$this->language}",
 			"$msg/{$this->project}",
 			"$msg" );
 		foreach( $searchPath as $rawMsg ) {
-			$text = wfMsgForContent( $rawMsg );
+			$text = wfMsgForContent( $rawMsg, $params ? $params[0] : '' );
 			if( !wfEmptyMsg( $rawMsg, $text ) ) {
 				return $text;
 			}
@@ -111,11 +142,16 @@ class SpecialNoticeText extends NoticePage {
 		return false;
 	}
 	
-	private function splitList( $text ) {
-		return array_filter(
+	private function splitList( $text, $callback=false ) {
+		$list = array_filter(
 			array_map(
 				array( $this, 'filterListLine' ),
 				explode( "\n", $text ) ) );
+		if( is_callable( $callback ) ) {
+			return array_map( $callback, $list );
+		} else {
+			return $list;
+		}
 	}
 	
 	private function filterListLine( $line ) {
@@ -132,5 +168,13 @@ class SpecialNoticeText extends NoticePage {
 			'/^<p>(.*)\n?<\/p>\n?$/sU',
 			'$1',
 		 	$wgOut->parse( $text ) );
+	}
+	
+	function wrapQuote( $text ) {
+		return "<span class='fundquote'>" .
+			$this->getMessage(
+				'centralnotice-quotes-format',
+				array( $text ) ) .
+			"</span>";
 	}
 }
