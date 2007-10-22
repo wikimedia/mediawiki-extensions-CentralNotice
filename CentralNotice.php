@@ -119,7 +119,7 @@ function efCentralNoticePurge() {
 	global $wgNoticeLoader;
 	
 	// Update the notice epoch...
-	efCentralNoticeSetEpoch();
+	efCentralNoticeUpdateEpoch();
 	
 	// Purge the central loader URL...
 	$u = new SquidUpdate( array( $wgNoticeLoader ) );
