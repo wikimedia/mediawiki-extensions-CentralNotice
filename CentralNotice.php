@@ -145,7 +145,7 @@ function efCentralNoticeEpoch() {
  * Update the epoch.
  * @return string timestamp
  */
-function efCentralNoticeSetEpoch() {
+function efCentralNoticeUpdateEpoch() {
 	global $wgMemc;
 	$epoch = wfTimestamp( TS_MW );
 	$wgMemc->set( "centralnotice-epoch", $epoch, 86400 );
