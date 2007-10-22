@@ -95,8 +95,19 @@ class SpecialNoticeText extends NoticePage {
 		return
 			'function(){' .
 				'var s=' . Xml::encodeJsVar( $strings ) . ';' .
-				'var p=Math.floor(Math.random()*s.length);' .
-				'return s.slice(p,s.length).concat(s.slice(0,p)).join(" ");' .
+				# Get a random array of orderings... (array_index,random)
+				'var o=[];' .
+				'for(var i=0;i<s.length;i++){' .
+					'o.push([i,Math.random()]);' .
+				'}' .
+				'o.sort(function(x,y){return y[1]-x[1];});' .
+				# Reorder the array...
+				'var r=[];' .
+				'for(var i=0;i<o.length;i++){' .
+					'r.push(s[o[i][0]]);' .
+				'}' .
+				# And return a joined string
+				'return r.join(" ");' .
 			'}()';
 	}
 	
