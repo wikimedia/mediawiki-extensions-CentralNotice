@@ -81,7 +81,7 @@ class SpecialNoticeText extends NoticePage {
 		global $wgNoticeScroll;
 		if( $wgNoticeScroll ) {
 			return
-				Xml::escapeJsString( '<marquee scrolldelay="100" scrollamount="3" width="384">' ) .
+				Xml::escapeJsString( '<marquee scrolldelay="20" scrollamount="2" width="384">' ) .
 				'"+' .
 				$this->shuffleStrings( $strings ) .
 				'+"' .
