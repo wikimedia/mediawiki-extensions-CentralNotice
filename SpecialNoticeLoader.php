@@ -59,7 +59,7 @@ class SpecialNoticeLoader extends NoticePage {
 		$encEpoch = urlencode( efCentralNoticeEpoch() );
 		return "document.writeln(" .
 			Xml::encodeJsVar( "<script src=\"$encUrl/" ) .
-			'+wgNoticeProject+"/"+wgNoticeLang+' .
+			'+wgNoticeProject+"/"+wgUserLanguage+' .
 			Xml::encodeJsVar( "?$encEpoch\"></script>" ).
 			');';
 	}

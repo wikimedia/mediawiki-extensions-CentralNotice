@@ -8,6 +8,8 @@ $wgNoticeLoader = 'http://smorgasbord.local/trunk/index.php/Special:NoticeLoader
 
 /// Override these per-wiki to pass on via the loader to the text system
 /// for localization by language and project.
+/// Actual user language is used for localization; $wgNoticeLang is used
+/// for selective enabling/disabling on sites.
 $wgNoticeLang = 'en';
 $wgNoticeProject = 'wikipedia';
 
