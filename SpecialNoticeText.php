@@ -73,13 +73,19 @@ END;
 			if (!wgNoticeToggleState) {
 				if(big) big.style.display = 'block';
 				if(small) small.style.display = 'none';
-				document.cookie = "hidesnmessage=0";
+				toggleNoticeCookie("0");
 			} else {
 				if(big) big.style.display = 'none';
 				if(small) small.style.display = 'block';
-				document.cookie = "hidesnmessage=1";
+				toggleNoticeCookie("1");
 			}
 			wgNoticeToggleState = !wgNoticeToggleState;
+		}
+		function toggleNoticeCookie(state) {
+			var e = new Date();
+			e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
+			var work="hidesnmessage="+state+"; expires=" + e.toGMTString() + "; path=/";
+			document.cookie = work;
 		}
 END;
 		return $script;
