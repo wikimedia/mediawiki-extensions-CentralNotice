@@ -52,15 +52,21 @@ END;
 		$hideStyle = <<<END
 <style type="text/css">#siteNoticeBig{display:none;}</style>
 END;
+		$hideToggleStyle = <<<END
+<style type="text/css">.siteNoticeToggle{display:none;}</style>
+END;
 		$encShowStyle = Xml::encodeJsVar( $showStyle );
 		$encHideStyle = Xml::encodeJsVar( $hideStyle );
+		$encHideToggleStyle = Xml::encodeJsVar( $hideToggleStyle );
 		$script = <<<END
-		console.log(document.cookie);
 		wgNoticeToggleState = (document.cookie.indexOf("hidesnmessage=1")==-1);
 		document.writeln(
 			wgNoticeToggleState
 			? $encShowStyle
 			: $encHideStyle);
+		if(wgUserName == null) {
+			document.writeln($encHideToggleStyle);
+		}
 		function toggleNotice() {
 			var big = document.getElementById('siteNoticeBig');
 			var small = document.getElementById('siteNoticeSmall');
