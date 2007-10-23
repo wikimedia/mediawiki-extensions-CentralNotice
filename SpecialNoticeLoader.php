@@ -40,9 +40,20 @@ class SpecialNoticeLoader extends NoticePage {
 		$conditions[] = '/[?&]sitenotice=yes/.test(document.location.search)';
 		if( $wgNoticeEnabledSites ) {
 			foreach( $wgNoticeEnabledSites as $site ) {
-				$conditions[] =
-					'(wgNoticeLang+"."+wgNoticeProject)==' .
-					Xml::encodeJsVar( $site );
+				list( $lang, $project ) = explode( ".", $site );
+				if( $lang == '*' ) {
+					$conditions[] =
+						'(wgNoticeProject)==' .
+						Xml::encodeJsVar( $project );
+				} elseif( $project == '*' ) {
+					$conditions[] =
+						'(wgNoticeLang)==' .
+						Xml::encodeJsVar( $lang );
+				} else {
+					$conditions[] =
+						'(wgNoticeLang+"."+wgNoticeProject)==' .
+						Xml::encodeJsVar( $site );
+				}
 			}
 		}
 		return
