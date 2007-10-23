@@ -41,7 +41,42 @@ class SpecialNoticeText extends NoticePage {
 					)
 				)
 			) .
-			'";';
+			'";' .
+			$this->getScripts();
+	}
+	
+	function getScripts() {
+		$showStyle = <<<END
+<style type="text/css">#siteNoticeSmall{display:none;}</style>
+END;
+		$hideStyle = <<<END
+<style type="text/css">#siteNoticeBig{display:none;}</style>
+END;
+		$encShowStyle = Xml::encodeJsVar( $showStyle );
+		$encHideStyle = Xml::encodeJsVar( $hideStyle );
+		$script = <<<END
+		console.log(document.cookie);
+		wgNoticeToggleState = (document.cookie.indexOf("hidesnmessage=1")==-1);
+		document.writeln(
+			wgNoticeToggleState
+			? $encShowStyle
+			: $encHideStyle);
+		function toggleNotice() {
+			var big = document.getElementById('siteNoticeBig');
+			var small = document.getElementById('siteNoticeSmall');
+			if (!wgNoticeToggleState) {
+				if(big) big.style.display = 'block';
+				if(small) small.style.display = 'none';
+				document.cookie = "hidesnmessage=0";
+			} else {
+				if(big) big.style.display = 'none';
+				if(small) small.style.display = 'block';
+				document.cookie = "hidesnmessage=1";
+			}
+			wgNoticeToggleState = !wgNoticeToggleState;
+		}
+END;
+		return $script;
 	}
 	
 	private function setLanguage( $par ) {
