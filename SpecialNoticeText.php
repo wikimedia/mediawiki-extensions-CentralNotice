@@ -37,6 +37,7 @@ class SpecialNoticeText extends NoticePage {
 							'$headline' => $this->getHeadlines(),
 							'$meter' => $this->getMeter(),
 							'$target' => $this->getTarget(),
+							'$media' => $this->getMessage( 'centralnotice-media' ),
 							'$show' => $this->getMessage( 'centralnotice-show' ),
 							'$hide' => $this->getMessage( 'centralnotice-hide' ),
 						)
