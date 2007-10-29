@@ -189,13 +189,6 @@ END;
 	}
 	
 	private function getMessage( $msg, $params=array() ) {
-		if( !isset( $this->messages[$msg] ) ) {
-			$this->messages[$msg] = $this->getSomeMessage( $msg, $params );
-		}
-		return $this->messages[$msg];
-	}
-	
-	private function getSomeMessage( $msg, $params ) {
 		$guard = array();
 		for( $lang = $this->language; $lang; $lang = Language::getFallbackFor( $lang ) ) {
 			if( isset( $guard[$lang] ) )
