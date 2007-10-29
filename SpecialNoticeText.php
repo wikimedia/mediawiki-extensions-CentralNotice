@@ -189,13 +189,35 @@ END;
 	}
 	
 	private function getMessage( $msg, $params=array() ) {
+		if( !isset( $this->messages[$msg] ) ) {
+			$this->messages[$msg] = $this->getSomeMessage( $msg, $params );
+		}
+		return $this->messages[$msg];
+	}
+	
+	private function getSomeMessage( $msg, $params ) {
+		$guard = array();
+		for( $lang = $this->language; $lang; $lang = Language::getFallbackFor( $lang ) ) {
+			if( isset( $guard[$lang] ) )
+				break; // avoid loops...
+			$guard[$lang] = true;
+			if( $text = $this->getRawMessage( "$msg/$lang", $params ) ) {
+				return $text;
+			}
+		}
+		return $this->getRawMessage( $msg, $params );
+	}
+	
+	private function getRawMessage( $msg, $params ) {
 		$searchPath = array(
-			"$msg/{$this->language}/{$this->project}",
-			"$msg/{$this->language}",
 			"$msg/{$this->project}",
 			"$msg" );
 		foreach( $searchPath as $rawMsg ) {
-			$text = wfMsgForContent( $rawMsg, $params ? $params[0] : '' );
+			wfDebug( __METHOD__ . ": $rawMsg\n" );
+			$xparams = array_merge( array( $rawMsg ), $params );
+			wfDebug( __METHOD__ . ': ' . str_replace( "\n", " ", var_export( $xparams, true ) ) . "\n" );
+			$text = call_user_func_array( 'wfMsgForContent',
+				$xparams );
 			if( !wfEmptyMsg( $rawMsg, $text ) ) {
 				return $text;
 			}
