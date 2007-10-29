@@ -109,7 +109,11 @@ END;
 	
 	private function interpolateStrings( $data ) {
 		if( is_array( $data ) ) {
-			return $this->interpolateRandomSelector( $data );
+			if( count( $data ) == 1 ) {
+				return Xml::escapeJsString( $data[0] );
+			} else {
+				return $this->interpolateRandomSelector( $data );
+			}
 		} else {
 			return Xml::escapeJsString( $data );
 		}
