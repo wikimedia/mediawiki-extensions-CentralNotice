@@ -62,7 +62,7 @@ END;
 		$encHideStyle = Xml::encodeJsVar( $hideStyle );
 		$encHideToggleStyle = Xml::encodeJsVar( $hideToggleStyle );
 		$script = <<<END
-		wgNoticeToggleState = (document.cookie.indexOf("hidesnmessage=1")==-1);
+		var wgNoticeToggleState = (document.cookie.indexOf("hidesnmessage=1")==-1);
 		document.writeln(
 			wgNoticeToggleState
 			? $encShowStyle
