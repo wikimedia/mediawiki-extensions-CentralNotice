@@ -77,7 +77,6 @@ function efCentralNoticeLoader( &$notice ) {
 var wgNotice = "";
 var wgNoticeLang = $encLang;
 var wgNoticeProject = $encProject;
-var wgNoticeToggleState = true;
 </script>
 <script type="text/javascript" src="$encNoticeLoader"></script>
 <script type="text/javascript">
