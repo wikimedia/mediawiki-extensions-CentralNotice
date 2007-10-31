@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="622"
+   height="100"
+   id="svg2160"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docbase="/Users/brion/Documents/Wikimedia/fundraiser 2007/new notice"
+   sodipodi:docname="mockup-notice.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   class="{{{dir}}}">
+  <defs
+     id="defs2162">
+    <linearGradient
+       id="linearGradient3159">
+      <stop
+         style="stop-color:#489d6b;stop-opacity:1;"
+         offset="0"
+         id="stop3163" />
+      <stop
+         id="stop3187"
+         offset="1"
+         style="stop-color:#ffffff;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3159"
+       id="linearGradient3165"
+       x1="318.5"
+       y1="0.5"
+       x2="318.5"
+       y2="99.602219"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <defs>
+    <style type="text/css"><![CDATA[
+	/* Text properties... */
+	.rtl, .rtl text, .rtl tspan {
+		direction: rtl;
+	}
+	
+	/* Fonts: may be customized... */
+	text {
+		font-family:Gill Sans
+	}
+	tspan .you {
+		font-family:Gill Sans Ultra Bold
+	}
+
+	#donate-count-text {
+		font-size:20px;
+		text-align:end;
+		text-anchor:end;
+		fill:#ffffff;
+	}
+	#donate-count-text .number {
+		font-size:36px;
+		font-weight:bold;
+	}
+
+	#donate-headline-text {
+		fill:#000000;
+		font-size:20px;
+	}
+	#donate-headline-text .you {
+		fill:#005500;
+		font-size:36px;
+	}
+	
+	#donate-button-text {
+		fill:#ffffff;
+		font-size:18px;
+		font-weight:bold;
+		text-align:center;
+		text-anchor:middle;
+	}
+	]]></style>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="311"
+     inkscape:cy="50"
+     inkscape:document-units="px"
+     inkscape:current-layer="donate-text"
+     width="622px"
+     height="100px"
+     inkscape:window-width="1032"
+     inkscape:window-height="592"
+     inkscape:window-x="1519"
+     inkscape:window-y="57"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="horizontal"
+       position="16"
+       id="guide6155" />
+    <sodipodi:guide
+       orientation="horizontal"
+       position="54"
+       id="guide7318" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata2165">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="donate-background"
+     inkscape:label="Background"
+     inkscape:groupmode="layer"
+     style="display:inline">
+    <rect
+       style="fill:url(#linearGradient3165);fill-opacity:1;fill-rule:evenodd;stroke:#065100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="donate-box"
+       width="620"
+       height="98"
+       x="1.5"
+       y="1.5"
+       rx="12"
+       ry="12" />
+    <rect
+       style="fill:#aa1700;fill-opacity:1;stroke:none;stroke-opacity:1"
+       id="donate-button-background"
+       width="148"
+       height="24"
+       class="flip"
+       x="459"
+       y="66"
+       rx="8"
+       ry="8" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="donate-text"
+     inkscape:label="Text"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       class="flipx"
+       x="609"
+       y="46"
+       id="donate-count"><tspan
+         sodipodi:role="line"
+         id="donate-count-text"
+         x="609"
+         y="46">{{{count}}}</tspan></text>
+    <text
+       xml:space="preserve"
+       class="flipx"
+       x="28"
+       y="83.5"
+       id="donate-headline"><tspan
+         sodipodi:role="line"
+         id="donate-headline-text"
+         x="28"
+         y="83.5">{{{headline}}}</tspan></text>
+    <text
+       xml:space="preserve"
+       class="flipx"
+       x="533"
+       y="82.841797"
+       id="donate-button"><tspan
+         sodipodi:role="line"
+         id="donate-button-text"
+         x="533"
+         y="82.841797">{{{button}}}</tspan></text>
+    <image
+       class="flip"
+       x="24"
+       y="6"
+       id="image7315"
+       height="48"
+       width="244"
+       sodipodi:absref="/Users/brion/Documents/Wikimedia/fundraiser 2007/new notice/temp-people.png"
+       xlink:href="temp-people.png" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2,2;stroke-dashoffset:0"
+       d="M 267,46 L 375,46"
+       id="path7320" />
+  </g>
+</svg>
