@@ -41,6 +41,14 @@
        x2="318.5"
        y2="99.602219"
        gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       id="shadowBlur">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.86"
+         id="feGaussianBlur15392" />
+    </filter>
     <g id="little-dude">
 	    <path
 	       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
@@ -161,6 +169,7 @@
     </rdf:RDF>
   </metadata>
   <g
+     class="flip"
      id="donate-background"
      inkscape:label="Background"
      inkscape:groupmode="layer"
@@ -175,11 +184,19 @@
        rx="12"
        ry="12" />
     <rect
+       ry="8"
+       rx="8"
+       y="68"
+       x="459"
+       height="24"
+       width="148"
+       id="donate-button-shadow"
+       style="opacity:0.333;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1;filter:url(#shadowBlur)" />
+    <rect
        style="fill:#aa1700;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="donate-button-background"
        width="148"
        height="24"
-       class="flip"
        x="459"
        y="66"
        rx="8"
