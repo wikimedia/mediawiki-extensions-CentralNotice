@@ -98,6 +98,7 @@ function progressBar( $count, $max ) {
        xlink:href="#little-dude" />
 
 OUT;
+	}
 	$x = 24 + $people * $width;
 	$out .= <<<OUT
 	<use
@@ -105,7 +106,6 @@ OUT;
 	  xlink:href="#big-dude" />
 
 OUT;
-	}
 	return $out;
 }
 
