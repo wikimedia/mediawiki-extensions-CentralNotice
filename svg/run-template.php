@@ -31,7 +31,7 @@ $i18n = array(
 	),
 	'ja' => array(
 		'dir' => 'ltr',
-		'count' => '$1人寄付をたまわりました。',
+		'count' => '$1人から寄付を頂きました。',
 		'number' => '15,203',
 		'headline' => 'ウィキメディアに$1をお願いします。',
 		'you' => '寄付', // "donate", not "you" :)
@@ -81,6 +81,34 @@ function flipSvgScale( $matches ) {
 	return $matches[1] . ' transform="scale(-1 1) translate(-622 0)"';
 }
 
+function progressBar( $count, $max ) {
+	$width = 15;
+	$height = 26;
+	$barWidth = 350;
+	
+	$people = ceil( ( $count / $max ) * ( $barWidth / $width ) );
+	$out = '';
+	for( $i = 0; $i < $people - 1; $i++ ) {
+		//$x = 24 + $i * $width;
+		//$y = 26;
+		$x = $i * $width;
+		$out .= <<<OUT
+     <use
+       x="$x"
+       xlink:href="#little-dude" />
+
+OUT;
+	$x = 24 + $people * $width;
+	$out .= <<<OUT
+	<use
+	  x="$x"
+	  xlink:href="#big-dude" />
+
+OUT;
+	}
+	return $out;
+}
+
 function expandSvg( $template, $messages ) {
 	$dir = $messages->expand( 'dir' );
 	$encNumber = $messages->expand( 'number' ); //'15,203';
@@ -94,6 +122,7 @@ function expandSvg( $template, $messages ) {
 				'{{{headline}}}' => $messages->expand( 'headline',
 					"<tspan class='you'>$encYou</tspan>" ),
 				'{{{button}}}' => $messages->expand( 'button' ),
+				'{{{progress}}}' => progressBar( 15203, 23000 ),
 			)
 		)
 	);
