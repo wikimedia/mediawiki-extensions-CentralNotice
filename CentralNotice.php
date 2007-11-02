@@ -60,6 +60,11 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
 		$wgAutoloadClasses['SpecialNoticeText'] =
 			dirname( __FILE__ ) . '/SpecialNoticeText.php';
+		
+		// The new SVG stuff
+		$wgSpecialPages['NoticeRender'] = 'SpecialNoticeRender';
+		$wgAutoloadClasses['SpecialNoticeRender'] = dirname( __FILE__ ) . '/SpecialNoticeRender.php';
+		$wgAutoloadClasses['NoticeRender'] = dirname( __FILE__ ) . '/NoticeRender.php';
 	}
 }
 
