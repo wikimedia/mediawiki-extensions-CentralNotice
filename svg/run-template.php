@@ -31,7 +31,7 @@ $i18n = array(
 	),
 	'ja' => array(
 		'dir' => 'ltr',
-		'count' => '$1人から寄付を頂きました。',
+		'count' => '$1人からご寄付が！',
 		'number' => '10,549',
 		'headline' => 'ウィキメディアに$1をお願いします。',
 		'you' => '寄付', // "donate", not "you" :)
