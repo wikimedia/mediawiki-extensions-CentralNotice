@@ -21,6 +21,14 @@ $i18n = array(
 		'you' => 'You',
 		'button' => '» Donate now!'
 	),
+	'he' => array(
+		'dir' => 'rtl',
+		'count' => '$1 תרמו',
+		'number' => '10,549',
+		'headline' => '$1 יכולים לעזור לוויקיפדיה לשנות את העולם!',
+		'you' => 'אתם',
+		'button' => '» תרמו עכשיו!'
+	),
 	'eo' => array(
 		'dir' => 'ltr',
 		'count' => '$1 jam donacis.',
