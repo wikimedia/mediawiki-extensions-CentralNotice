@@ -8,7 +8,7 @@ $i18n = array(
 	'ar' => array(
 		'dir' => 'rtl',
 		'count' => '$1 شخص قد تبرعوا',
-		'number' => '15.203',
+		'number' => '10.549',
 		'headline' => 'الذي لا تعرفه عن ويكي$1', // ??
 		'you' => 'بيدي', // no idea what this mean
 		'button' => '» المزيد', // who knows dude
@@ -16,7 +16,7 @@ $i18n = array(
 	'en' => array(
 		'dir' => 'ltr',
 		'count' => '$1 have donated.',
-		'number' => '15,203',
+		'number' => '10,549',
 		'headline' => '$1 can help Wikipedia to change the world!',
 		'you' => 'You',
 		'button' => '» Donate now!'
@@ -24,7 +24,7 @@ $i18n = array(
 	'eo' => array(
 		'dir' => 'ltr',
 		'count' => '$1 jam donacis.',
-		'number' => '15 203',
+		'number' => '10 549',
 		'headline' => '$1 povas subteni al Vikipedio ŝanĝi la mondon!',
 		'you' => 'Vi',
 		'button' => '» Donacu nun!'
@@ -32,7 +32,7 @@ $i18n = array(
 	'ja' => array(
 		'dir' => 'ltr',
 		'count' => '$1人から寄付を頂きました。',
-		'number' => '15,203',
+		'number' => '10,549',
 		'headline' => 'ウィキメディアに$1をお願いします。',
 		'you' => '寄付', // "donate", not "you" :)
 		'button' => '» 寄付!',
@@ -83,29 +83,26 @@ function flipSvgScale( $matches ) {
 
 function progressBar( $count, $max ) {
 	$width = 15;
-	$height = 26;
-	$barWidth = 350;
+	$maxPeople = 20;
 	
-	$people = ceil( ( $count / $max ) * ( $barWidth / $width ) );
+	$people = ceil( ( $count / $max ) * $maxPeople );
 	$out = '';
-	for( $i = 0; $i < $people - 1; $i++ ) {
-		//$x = 24 + $i * $width;
-		//$y = 26;
-		$x = $i * $width;
+	for( $i = 0; $i < $maxPeople; $i++ ) {
+		$x = 24 + $i * $width;
+		if( $i+1 < $people ) {
+			$dude = 'little-dude';
+		} elseif( $i+1 == $people ) {
+			$dude = 'big-dude';
+		} elseif( $i+1 > $people ) {
+			$dude = 'waiting-dude';
+		}
 		$out .= <<<OUT
      <use
        x="$x"
-       xlink:href="#little-dude" />
+       xlink:href="#$dude" />
 
 OUT;
 	}
-	$x = 24 + $people * $width;
-	$out .= <<<OUT
-	<use
-	  x="$x"
-	  xlink:href="#big-dude" />
-
-OUT;
 	return $out;
 }
 
@@ -122,7 +119,7 @@ function expandSvg( $template, $messages ) {
 				'{{{headline}}}' => $messages->expand( 'headline',
 					"<tspan class='you'>$encYou</tspan>" ),
 				'{{{button}}}' => $messages->expand( 'button' ),
-				'{{{progress}}}' => progressBar( 15203, 23000 ),
+				'{{{progress}}}' => progressBar( 10549, 100000 ),
 			)
 		)
 	);

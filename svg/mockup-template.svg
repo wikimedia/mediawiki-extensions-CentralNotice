@@ -49,16 +49,17 @@
          stdDeviation="0.86"
          id="feGaussianBlur15392" />
     </filter>
-    <g id="little-dude">
+    <g
+     transform="translate(-24)"
+	 style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline"
+	 id="little-dude">
 	    <path
-	       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
 	       d="M 369.69244,544.8991 L 372.09328,534.94671 L 372.36394,529.51478 L 368.90527,533.97345 L 366.90527,532.47345 L 372.40527,524.97345 L 377.52039,524.99681 L 383.09473,532.49086 L 381.02634,533.85833 L 377.39561,529.46379 L 377.64291,535.098 L 380.40527,544.97345 L 377.40527,544.97345 L 374.90527,538.33666 L 372.8645,544.87147 L 369.69244,544.8991 z "
 	       id="path9518"
 	       sodipodi:nodetypes="cccccccccccccccc"
 	       transform="translate(-340.7842,-498.28399)"/>
 	    <path
 	       sodipodi:type="arc"
-	       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1;display:inline"
 	       id="path9520"
 	       sodipodi:cx="34.103622"
 	       sodipodi:cy="23.740511"
@@ -67,7 +68,25 @@
 	       d="M 36.377197 23.740511 A 2.2735748 2.2735748 0 1 1  31.830048,23.740511 A 2.2735748 2.2735748 0 1 1  36.377197 23.740511 z" />
     </g>
     <g
-       transform="translate(-256)"
+     transform="translate(-24)"
+	 style="fill:#000000;fill-opacity:0.075;fill-rule:evenodd;stroke:none;display:inline"
+	 id="waiting-dude">
+	    <path
+	       d="M 369.69244,544.8991 L 372.09328,534.94671 L 372.36394,529.51478 L 368.90527,533.97345 L 366.90527,532.47345 L 372.40527,524.97345 L 377.52039,524.99681 L 383.09473,532.49086 L 381.02634,533.85833 L 377.39561,529.46379 L 377.64291,535.098 L 380.40527,544.97345 L 377.40527,544.97345 L 374.90527,538.33666 L 372.8645,544.87147 L 369.69244,544.8991 z "
+	       id="path9518"
+	       sodipodi:nodetypes="cccccccccccccccc"
+	       transform="translate(-340.7842,-498.28399)"/>
+	    <path
+	       sodipodi:type="arc"
+	       id="path9520"
+	       sodipodi:cx="34.103622"
+	       sodipodi:cy="23.740511"
+	       sodipodi:rx="2.2735748"
+	       sodipodi:ry="2.2735748"
+	       d="M 36.377197 23.740511 A 2.2735748 2.2735748 0 1 1  31.830048,23.740511 A 2.2735748 2.2735748 0 1 1  36.377197 23.740511 z" />
+    </g>
+    <g
+       transform="translate(-242)"
        id="big-dude">
       <path
          sodipodi:nodetypes="cccccccccccccccccc"
@@ -179,8 +198,8 @@
        id="donate-box"
        width="620"
        height="98"
-       x="1.5"
-       y="1.5"
+       x="1"
+       y="1"
        rx="12"
        ry="12" />
     <rect
@@ -240,9 +259,5 @@
     <g
 	  class="flip"
 	  id="donate-progress">{{{progress}}}</g>
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2,2;stroke-dashoffset:0"
-       d="M 267,46 L 375,46"
-       id="path7320" />
   </g>
 </svg>
