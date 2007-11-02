@@ -51,7 +51,6 @@
     </filter>
     <g
      transform="translate(-24)"
-	 style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline"
 	 id="little-dude">
 	    <path
 	       d="M 369.69244,544.8991 L 372.09328,534.94671 L 372.36394,529.51478 L 368.90527,533.97345 L 366.90527,532.47345 L 372.40527,524.97345 L 377.52039,524.99681 L 383.09473,532.49086 L 381.02634,533.85833 L 377.39561,529.46379 L 377.64291,535.098 L 380.40527,544.97345 L 377.40527,544.97345 L 374.90527,538.33666 L 372.8645,544.87147 L 369.69244,544.8991 z "
@@ -69,7 +68,6 @@
     </g>
     <g
      transform="translate(-24)"
-	 style="fill:#000000;fill-opacity:0.075;fill-rule:evenodd;stroke:none;display:inline"
 	 id="waiting-dude">
 	    <path
 	       d="M 369.69244,544.8991 L 372.09328,534.94671 L 372.36394,529.51478 L 368.90527,533.97345 L 366.90527,532.47345 L 372.40527,524.97345 L 377.52039,524.99681 L 383.09473,532.49086 L 381.02634,533.85833 L 377.39561,529.46379 L 377.64291,535.098 L 380.40527,544.97345 L 377.40527,544.97345 L 374.90527,538.33666 L 372.8645,544.87147 L 369.69244,544.8991 z "
@@ -91,8 +89,7 @@
       <path
          sodipodi:nodetypes="cccccccccccccccccc"
          id="path13438"
-         d="M 243.27251,50.360282 L 247.44073,34.255794 L 247.44073,24.214172 L 241.56733,31.413825 L 239.29375,29.708644 L 247.25126,17.203982 L 255.96664,17.014519 L 260.13485,16.25666 L 261.84004,10.762187 L 264.30308,11.520045 L 262.78736,19.288092 L 256.72449,22.698455 L 256.72449,33.876865 L 260.89271,50.170818 L 256.34556,50.170817 L 251.79841,37.287227 L 248.19859,50.360282 L 243.27251,50.360282 z "
-         style="fill:#005500;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         d="M 243.27251,50.360282 L 247.44073,34.255794 L 247.44073,24.214172 L 241.56733,31.413825 L 239.29375,29.708644 L 247.25126,17.203982 L 255.96664,17.014519 L 260.13485,16.25666 L 261.84004,10.762187 L 264.30308,11.520045 L 262.78736,19.288092 L 256.72449,22.698455 L 256.72449,33.876865 L 260.89271,50.170818 L 256.34556,50.170817 L 251.79841,37.287227 L 248.19859,50.360282 L 243.27251,50.360282 z " />
       <path
          transform="translate(0.9473229,0.3789291)"
          d="M 255.5877 11.898974 A 4.1682205 4.1682205 0 1 1  247.25126,11.898974 A 4.1682205 4.1682205 0 1 1  255.5877 11.898974 z"
@@ -101,10 +98,44 @@
          sodipodi:cy="11.898974"
          sodipodi:cx="251.41948"
          id="path13440"
-         style="fill:#005500;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1"
          sodipodi:type="arc" />
     </g>
     <style type="text/css"><![CDATA[
+	/* Colors and fill */
+	#little-dude {
+		fill:#ffffff;
+	}
+	#waiting-dude {
+		fill:#000000;
+		fill-opacity:0.075;
+	}
+	#big-dude {
+		fill:#005500;
+	}
+	
+	#donate-box {
+		fill:url(#linearGradient3165);
+		fill-opacity:1;
+		fill-rule:evenodd;
+		stroke:#065100;
+		stroke-width:2;
+		stroke-linecap:butt;
+		stroke-linejoin:miter;
+		stroke-miterlimit:4;
+		stroke-dasharray:none;
+		stroke-opacity:1
+	}
+	#donate-button-background {
+		fill:#aa1700;
+		stroke:none;
+	}
+	#donate-button-shadow {
+		opacity:0.333;
+		fill:#000000;
+		stroke:none;
+		filter:url(#shadowBlur);
+	}
+	
 	/* Text properties... */
 	.rtl, .rtl text, .rtl tspan {
 		direction: rtl;
@@ -191,10 +222,8 @@
      class="flip"
      id="donate-background"
      inkscape:label="Background"
-     inkscape:groupmode="layer"
-     style="display:inline">
+     inkscape:groupmode="layer">
     <rect
-       style="fill:url(#linearGradient3165);fill-opacity:1;fill-rule:evenodd;stroke:#065100;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="donate-box"
        width="620"
        height="98"
@@ -209,10 +238,8 @@
        x="459"
        height="24"
        width="148"
-       id="donate-button-shadow"
-       style="opacity:0.333;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1;filter:url(#shadowBlur)" />
+       id="donate-button-shadow" />
     <rect
-       style="fill:#aa1700;fill-opacity:1;stroke:none;stroke-opacity:1"
        id="donate-button-background"
        width="148"
        height="24"
@@ -224,8 +251,7 @@
   <g
      inkscape:groupmode="layer"
      id="donate-text"
-     inkscape:label="Text"
-     style="display:inline">
+     inkscape:label="Text">
     <text
        xml:space="preserve"
        class="flipx"
