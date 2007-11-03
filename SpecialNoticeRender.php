@@ -33,12 +33,14 @@ class SpecialNoticeRender extends UnlistedSpecialPage {
 	
 	private function sendHeaders() {
 		header( "Content-type: image/svg+xml" );
+		//header( "Content-type: image/png" );
 	}
 	
 	private function getSvgOutput( $par ) {
 		$render = new NoticeRender();
 		$template = wfMsgForContentNoTrans( 'centralnotice-svg-template' );
 		$svg = $render->expandTemplate( $template );
+		$pngUrl = $render->rasterize( $svg );
 		return $svg;
 	}
 }

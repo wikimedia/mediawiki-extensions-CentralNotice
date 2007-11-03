@@ -55,6 +55,44 @@ class NoticeRender {
 		// and go!
 		return $parser->replaceVariables( $template, $params );
 	}
+	
+	function rasterize( $svg ) {
+		global $wgNoticeRenderDirectory, $wgNoticeRenderPath;
+		
+		$hash = md5( $svg );
+		$svgFile = "$wgNoticeRenderDirectory/$hash.svg";
+		$pngFile = "$wgNoticeRenderDirectory/$hash.png";
+		$pngUrl = "$wgNoticeRenderPath/$hash.png";
+		
+		if( file_exists( $pngFile ) ) {
+			wfDebug( __METHOD__ . " $pngFile already rendered.\n" );
+			return $pngUrl;
+		}
+		
+		if( !file_exists( $wgNoticeRenderDirectory ) ) {
+			wfDebug( __METHOD__ . " lazy-creating $wgNoticeRenderDirectory\n" );
+			wfMkdirParents( $wgNoticeRenderDirectory );
+		}
+		
+		file_put_contents( $svgFile, $svg );
+		
+		$command = strtr( 'inkscape -z -w $width -f $input -e $output',
+			array(
+				'$width' => 622,
+				'$input' => wfEscapeShellArg( $svgFile ),
+				'$output' => wfEscapeShellArg( $pngFile ) ) );
+		
+		$retval = 0;
+		$out = wfShellExec( $command, $retval );
+		
+		if( $retval ) {
+			// Error! error!
+			wfDebug( __METHOD__ . " returned $retval from '$command'\n" );
+			return false;
+		}
+		
+		return $pngUrl;
+	}
 }
 
 ?>

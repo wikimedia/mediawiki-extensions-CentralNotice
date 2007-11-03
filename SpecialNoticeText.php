@@ -40,6 +40,9 @@ class SpecialNoticeText extends NoticePage {
 							'$media' => $this->getMessage( 'centralnotice-media' ),
 							'$show' => $this->getMessage( 'centralnotice-show' ),
 							'$hide' => $this->getMessage( 'centralnotice-hide' ),
+							'$donate' => $this->getMessage( 'centralnotice-donate' ),
+							'$counter' => $this->getMessage( 'centralnotice-counter',
+								array( $this->formatNum( $this->getDonorCount() ) ) ),
 						)
 					)
 				)
@@ -92,6 +95,11 @@ END;
 		}
 END;
 		return $script;
+	}
+	
+	private function formatNum( $num ) {
+		$lang = Language::factory( $this->language );
+		return $lang->formatNum( $num );
 	}
 	
 	private function setLanguage( $par ) {
@@ -257,4 +265,21 @@ END;
 				array( $text ) ) .
 			"</span>";
 	}
+
+	private function getDonorCount() {
+		global $wgNoticeCounterSource, $wgMemc;
+		$count = $wgMemc->get( 'centralnotice:counter' );
+		if( !$count ) {
+			$count = @file_get_contents( $wgNoticeCounterSource );
+			if( !$count ) {
+				// nooooo
+				return 0;
+			}
+		}
+		$count = intval( $count );
+		$wgMemc->set( 'centralnotice:counter', $count, 60 );
+		return $count;
+	}
+	
+
 }

@@ -38,6 +38,13 @@ $wgNoticeTimeout = 0;
 /// Use a god-forsaken <marquee> to scroll multiple quotes...
 $wgNoticeScroll = true;
 
+/// Source for live counter information
+$wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
+
+/// Directory for SVG-to-PNG rasterizations
+$wgNoticeRenderDirectory = false; // "$wgUploadDirectory/notice"
+$wgNoticeRenderPath = false; // $wgUploadPath/notice
+
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 function efCentralNoticeSetup() {
@@ -62,9 +69,18 @@ function efCentralNoticeSetup() {
 			dirname( __FILE__ ) . '/SpecialNoticeText.php';
 		
 		// The new SVG stuff
+		/*
 		$wgSpecialPages['NoticeRender'] = 'SpecialNoticeRender';
 		$wgAutoloadClasses['SpecialNoticeRender'] = dirname( __FILE__ ) . '/SpecialNoticeRender.php';
 		$wgAutoloadClasses['NoticeRender'] = dirname( __FILE__ ) . '/NoticeRender.php';
+		
+		global $wgNoticeRenderDirectory, $wgNoticeRenderPath;
+		global $wgUploadDirectory, $wgUploadPath;
+		if( !$wgNoticeRenderDirectory )
+			$wgNoticeRenderDirectory = "$wgUploadDirectory/notice";
+		if( !$wgNoticeRenderPath )
+			$wgNoticeRenderPath = "$wgUploadPath/notice";
+		*/
 	}
 }
 
