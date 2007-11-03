@@ -47,7 +47,7 @@
          id="feGaussianBlur15392" />
     </filter>
     <g
-     transform="translate(-24)"
+     transform="translate(20, 35) scale(1.2) translate(-20, -35) translate(-24)"
      id="filled-donor-icon">
         <path
            d="M 369.69244,544.8991 L 372.09328,534.94671 L 372.36394,529.51478 L 368.90527,533.97345 L 366.90527,532.47345 L 372.40527,524.97345 L 377.52039,524.99681 L 383.09473,532.49086 L 381.02634,533.85833 L 377.39561,529.46379 L 377.64291,535.098 L 380.40527,544.97345 L 377.40527,544.97345 L 374.90527,538.33666 L 372.8645,544.87147 L 369.69244,544.8991 z "
@@ -64,7 +64,7 @@
            d="M 36.377197 23.740511 A 2.2735748 2.2735748 0 1 1  31.830048,23.740511 A 2.2735748 2.2735748 0 1 1  36.377197 23.740511 z" />
     </g>
     <g
-     transform="translate(-24)"
+     transform="translate(20, 35) scale(0.9) translate(-20, -35) translate(-24)"
      id="empty-donor-icon">
         <path
            d="M 369.69244,544.8991 L 372.09328,534.94671 L 372.36394,529.51478 L 368.90527,533.97345 L 366.90527,532.47345 L 372.40527,524.97345 L 377.52039,524.99681 L 383.09473,532.49086 L 381.02634,533.85833 L 377.39561,529.46379 L 377.64291,535.098 L 380.40527,544.97345 L 377.40527,544.97345 L 374.90527,538.33666 L 372.8645,544.87147 L 369.69244,544.8991 z "
@@ -101,27 +101,19 @@
     /* Colors and fill */
     #filled-donor-icon {
         fill:#ffffff;
+        stroke: #000000;
+        stroke-width:1;
     }
     #current-donor-icon {
-        fill:#005500;
+        fill:#339966;
+        stroke: #003300;
+        stroke-width:1;
     }
     #empty-donor-icon {
         fill:#000000;
         fill-opacity:0.075;
     }
     
-    #donate-box {
-        fill:url(#linearGradient3165);
-        fill-opacity:1;
-        fill-rule:evenodd;
-        stroke:#065100;
-        stroke-width:2;
-        stroke-linecap:butt;
-        stroke-linejoin:miter;
-        stroke-miterlimit:4;
-        stroke-dasharray:none;
-        stroke-opacity:1
-    }
     #donate-button-background {
         fill:#aa1700;
         stroke:none;
@@ -150,7 +142,7 @@
         font-size:20px;
         text-align:end;
         text-anchor:end;
-        fill:#ffffff;
+        fill:#888888;
     }
     #donate-count-text .number {
         font-size:36px;
@@ -162,7 +154,7 @@
         font-size:20px;
     }
     #donate-headline-text .you {
-        fill:#005500;
+        fill:#339966;
         font-size:36px;
     }
     
@@ -219,14 +211,6 @@
      id="donate-background"
      inkscape:label="Background"
      inkscape:groupmode="layer">
-    <rect
-       id="donate-box"
-       width="620"
-       height="98"
-       x="1"
-       y="1"
-       rx="12"
-       ry="12" />
     <rect
        ry="8"
        rx="8"
