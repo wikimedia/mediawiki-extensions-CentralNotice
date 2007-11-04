@@ -189,7 +189,7 @@ END;
 	
 	private function getMeter() {
 		return $this->getMessage( 'centralnotice-meter' );
-		return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
+		// return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
 	}
 	
 	private function getTarget() {
@@ -287,11 +287,10 @@ END;
 				// nooooo
 				return 0;
 			}
+			
+			$wgMemc->set( 'centralnotice:counter', intval($count), 60 );
 		}
-		$count = intval( $count );
-		$wgMemc->set( 'centralnotice:counter', $count, 60 );
-		return $count;
-	}
-	
 
+		return intval($count);
+	}
 }
