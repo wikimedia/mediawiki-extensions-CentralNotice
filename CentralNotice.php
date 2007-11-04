@@ -35,6 +35,11 @@ $wgNoticeEnabledSites = array();
 /// which is good for testing.
 $wgNoticeTimeout = 0;
 
+/// Server-side cache timeout for the loader JS stub.
+/// Should be big if you won't include the counter info in the text,
+/// smallish if you will. :)
+$wgNoticeServerTimeout = 0;
+
 /// Use a god-forsaken <marquee> to scroll multiple quotes...
 $wgNoticeScroll = true;
 
@@ -174,8 +179,8 @@ function efCentralNoticeEpoch() {
  * @return string timestamp
  */
 function efCentralNoticeUpdateEpoch() {
-	global $wgMemc;
+	global $wgMemc, $wgNoticeServerTimeout;
 	$epoch = wfTimestamp( TS_MW );
-	$wgMemc->set( "centralnotice-epoch", $epoch, 86400 );
+	$wgMemc->set( "centralnotice-epoch", $epoch, $wgNoticeServerTimeout );
 	return $epoch;
 }

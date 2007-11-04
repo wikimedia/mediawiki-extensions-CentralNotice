@@ -24,6 +24,11 @@ class SpecialNoticeLoader extends NoticePage {
 		return $wgNoticeTimeout;
 	}
 	
+	protected function sharedMaxAge() {
+		global $wgNoticeServerTimeout;
+		return $wgNoticeServerTimeout;
+	}
+	
 	function getJsOutput( $par ) {
 		global $wgNoticeTestMode;
 		$loader = $this->loaderScript();

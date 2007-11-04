@@ -36,6 +36,7 @@ class SpecialNoticeText extends NoticePage {
 						array(
 							'$headline' => $this->getHeadlines(),
 							'$meter' => $this->getMeter(),
+							'$progress' => $this->getMessage( 'centralnotice-progress' ),
 							'$target' => $this->getTarget(),
 							'$media' => $this->getMessage( 'centralnotice-media' ),
 							'$show' => $this->getMessage( 'centralnotice-show' ),
