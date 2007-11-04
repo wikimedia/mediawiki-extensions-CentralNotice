@@ -203,7 +203,7 @@ END;
 	
 	private function getMessage( $msg, $params=array() ) {
 		$guard = array();
-		for( $lang = $this->language; $lang; $lang = Language::getFallbackFor( $lang ) ) {
+		for( $lang = $this->language; $lang; $lang = $this->safeLangFallback( $lang ) ) {
 			if( isset( $guard[$lang] ) )
 				break; // avoid loops...
 			$guard[$lang] = true;
@@ -212,6 +212,17 @@ END;
 			}
 		}
 		return $this->getRawMessage( $msg, $params );
+	}
+	
+	private function safeLangFallback( $lang ) {
+		$fallback = Language::getFallbackFor( $lang );
+		if( $fallback == 'en' ) {
+			// We want to be able to special-case English
+			// This lets us put _regular_ English in 'blah' and special-case in 'blah/en'
+			return false;
+		} else {
+			return $fallback;
+		}
 	}
 	
 	private function getRawMessage( $msg, $params ) {
