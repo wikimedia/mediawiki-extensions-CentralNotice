@@ -280,17 +280,27 @@ END;
 
 	private function getDonorCount() {
 		global $wgNoticeCounterSource, $wgMemc;
-		$count = $wgMemc->get( 'centralnotice:counter' );
+		$count = intval( $wgMemc->get( 'centralnotice:counter' ) );
 		if( !$count ) {
-			$count = @file_get_contents( $wgNoticeCounterSource );
+			$count = intval( @file_get_contents( $wgNoticeCounterSource ) );
 			if( !$count ) {
 				// nooooo
-				return 0;
+				return $this->getFallbackDonorCount();
 			}
 			
-			$wgMemc->set( 'centralnotice:counter', intval($count), 60 );
+			$wgMemc->set( 'centralnotice:counter', $count, 60 );
+			$wgMemc->set( 'centralnotice:counter:fallback', $count ); // no expiry
 		}
 
-		return intval($count);
+		return $count;
+	}
+	
+	private function getFallbackDonorCount() {
+		global $wgMemc;
+		$count = intval( $wgMemc->get( 'centralnotice:counter:fallback' ) );
+		if( !$count ) {
+			return 16672; // number last i saw... dirty hack ;)
+		}
+		return $count;
 	}
 }
