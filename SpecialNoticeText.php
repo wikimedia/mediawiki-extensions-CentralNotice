@@ -233,7 +233,7 @@ END;
 			wfDebug( __METHOD__ . ": $rawMsg\n" );
 			$xparams = array_merge( array( $rawMsg ), $params );
 			wfDebug( __METHOD__ . ': ' . str_replace( "\n", " ", var_export( $xparams, true ) ) . "\n" );
-			$text = call_user_func_array( 'wfMsgForContent',
+			$text = call_user_func_array( 'wfMsgForContentNoTrans',
 				$xparams );
 			if( !wfEmptyMsg( $rawMsg, $text ) ) {
 				return $text;
@@ -263,11 +263,43 @@ END;
 	}
 	
 	private function parse( $text ) {
-		global $wgOut;
-		return preg_replace(
+		global $wgOut, $wgSitename;
+		
+		// A god-damned dirty hack!
+		$old = array();
+		$old['wgSitename'] = $wgSitename;
+		$wgSitename = $this->projectName();
+		
+		$out = preg_replace(
 			'/^<p>(.*)\n?<\/p>\n?$/sU',
 			'$1',
 		 	$wgOut->parse( $text ) );
+		
+		// Restore globals
+		$wgSitename = $old['wgSitename'];
+		return $out;
+	}
+	
+	private function projectName() {
+		global $wgConf, $IP;
+
+		// This is a damn dirty hack
+		if( file_exists( "$IP/InitialiseSettings.php" ) ) {
+			require_once "$IP/InitialiseSettings.php";
+		}
+
+		// Guess dbname since we don't have it atm
+		$dbname = $this->language . 
+			(($this->project == 'wikipedia') ? "wiki" : $this->project );
+		$name = $wgConf->get( 'wgSitename', $dbname, $this->project,
+			array( 'lang' => $this->language, 'site' => $this->project ) );
+		
+		if( $name ) {
+			return $name;
+		} else {
+			global $wgLang;
+			return $wgLang->ucfirst( $this->project );
+		}
 	}
 	
 	function wrapQuote( $text ) {
