@@ -288,6 +288,12 @@ END;
 			require_once "$IP/InitialiseSettings.php";
 		}
 
+		// Special cases for commons and meta who have no lang
+		if ( $this->project == 'commons' )
+			return "Commons";
+		else if ( $this->project == 'meta' )
+			return "Wikimedia";
+
 		// Guess dbname since we don't have it atm
 		$dbname = $this->language . 
 			(($this->project == 'wikipedia') ? "wiki" : $this->project );
