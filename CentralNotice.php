@@ -54,11 +54,10 @@ $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure;
+	global $wgAutoloadClasses, $wgSpecialPages;
 	$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
 	
 	if( $wgNoticeInfrastructure ) {
-		global $wgAutoloadClasses, $wgSpecialPages;
-		
 		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeSaveHook';
 		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeDeleteHook';
 
@@ -87,27 +86,47 @@ function efCentralNoticeSetup() {
 			$wgNoticeRenderPath = "$wgUploadPath/notice";
 		*/
 	}
+	
+	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalSaveHook';
+	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalDeleteHook';
+	
+	$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
+	$wgAutoloadClasses['SpecialNoticeLocal'] =
+		dirname( __FILE__ ) . '/SpecialNoticeLocal.php';
+
 }
 
 
 function efCentralNoticeLoader( &$notice ) {
+	global $wgScript, $wgUser;
 	global $wgNoticeLoader, $wgNoticeLang, $wgNoticeProject;
 
 	$encNoticeLoader = htmlspecialchars( $wgNoticeLoader );
 	$encProject = Xml::encodeJsVar( $wgNoticeProject );
 	$encLang = Xml::encodeJsVar( $wgNoticeLang );
 	
+	$anon = (is_object( $wgUser ) && $wgUser->isLoggedIn())
+		? ''
+		: '/anon';
+	$localText = "$wgScript?title=Special:NoticeLocal$anon&action=raw";
+	$encNoticeLocal = htmlspecialchars( $localText );
+	
 	// Throw away the classic notice, use the central loader...
 	$notice = <<<EOT
 <script type="text/javascript">
 var wgNotice = "";
+var wgNoticeLocal = "";
 var wgNoticeLang = $encLang;
 var wgNoticeProject = $encProject;
 </script>
 <script type="text/javascript" src="$encNoticeLoader"></script>
+<script type="text/javascript" src="$encNoticeLocal"></script>
 <script type="text/javascript">
 if (wgNotice != "") {
   document.writeln(wgNotice);
+}
+if (wgNoticeLocal != "") {
+  document.writeln(wgNoticeLocal);
 }
 </script>
 EOT;
@@ -126,11 +145,30 @@ function efCentralNoticeSaveHook( $article, $user, $text, $summary, $isMinor,
 }
 
 /**
+ * 'ArticleSaveComplete' hook
+ * Trigger a purge of the local notice when we've updated the source pages.
+ */
+function efCentralNoticeLocalSaveHook( $article, $user, $text, $summary, $isMinor,
+                                $isWatch, $section, $flags, $revision ) {
+	efCentralNoticeMaybePurgeLocal( $article->getTitle() );
+	return true; // Continue hook processing
+}
+
+/**
  * 'ArticleDeleteComplete' hook
  * Trigger a purge of the notice loader if this removed one of the source pages.
  */
 function efCentralNoticeDeleteHook( $article, $user, $reason ) {
 	efCentralNoticeMaybePurge( $article->getTitle() );
+	return true; // Continue hook processing
+}
+
+/**
+ * 'ArticleDeleteComplete' hook
+ * Trigger a purge of the local notice if this removed one of the source pages.
+ */
+function efCentralNoticeLocalDeleteHook( $article, $user, $reason ) {
+	efCentralNoticeMaybePurgeLocal( $article->getTitle() );
 	return true; // Continue hook processing
 }
 
@@ -141,6 +179,29 @@ function efCentralNoticeMaybePurge( $title ) {
 	if( $title->getNamespace() == NS_MEDIAWIKI &&
 		substr( $title->getText(), 0, 14 ) == 'Centralnotice-' ) {
 		efCentralNoticePurge();
+	}
+}
+
+/**
+ * Purge the notice loader if the given page would affect notice display.
+ */
+function efCentralNoticeMaybePurgeLocal( $title ) {
+	if( $title->getNamespace() == NS_MEDIAWIKI ) {
+		global $wgScript;
+		
+		$purge = array();
+		if( $title->getText() == 'Sitenotice' ) {
+			$purge[] = "$wgScript?title=Special:NoticeLocal&action=raw";
+		}
+		if( $title->getText() == 'Sitenotice' || $title->getText() == 'Anonnotice' ) {
+			$purge[] = "$wgScript?title=Special:NoticeLocal/anon&action=raw";
+		}
+		
+		// Purge the squiddies...
+		if( $purge ) {
+			$u = new SquidUpdate( $purge );
+			$u->doUpdate();
+		}
 	}
 }
 
