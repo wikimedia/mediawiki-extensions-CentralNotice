@@ -57,12 +57,20 @@ function efCentralNoticeSetup() {
 	global $wgAutoloadClasses, $wgSpecialPages;
 	$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
 	
+	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalSaveHook';
+	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalDeleteHook';
+	
+	$wgAutoloadClasses['NoticePage'] =
+		dirname( __FILE__ ) . '/NoticePage.php';
+	
+	$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
+	$wgAutoloadClasses['SpecialNoticeLocal'] =
+		dirname( __FILE__ ) . '/SpecialNoticeLocal.php';
+
+
 	if( $wgNoticeInfrastructure ) {
 		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeSaveHook';
 		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeDeleteHook';
-
-		$wgAutoloadClasses['NoticePage'] =
-			dirname( __FILE__ ) . '/NoticePage.php';
 
 		$wgSpecialPages['NoticeLoader'] = 'SpecialNoticeLoader';
 		$wgAutoloadClasses['SpecialNoticeLoader'] =
@@ -86,14 +94,6 @@ function efCentralNoticeSetup() {
 			$wgNoticeRenderPath = "$wgUploadPath/notice";
 		*/
 	}
-	
-	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalSaveHook';
-	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalDeleteHook';
-	
-	$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
-	$wgAutoloadClasses['SpecialNoticeLocal'] =
-		dirname( __FILE__ ) . '/SpecialNoticeLocal.php';
-
 }
 
 
