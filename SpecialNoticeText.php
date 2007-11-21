@@ -44,6 +44,7 @@ class SpecialNoticeText extends NoticePage {
 							'$donate' => $this->getMessage( 'centralnotice-donate' ),
 							'$counter' => $this->getMessage( 'centralnotice-counter',
 								array( $this->formatNum( $this->getDonorCount() ) ) ),
+							'$blog' => $this->getBlog(),
 						)
 					)
 				)
@@ -341,4 +342,50 @@ END;
 		}
 		return $count;
 	}
+	
+	private function getBlog() {
+		$url = $this->getMessage( 'centralnotice-blog-url' );
+		$entry = $this->getCachedRssEntry( $url );
+		if( $entry ) {
+			list( $link, $title ) = $entry;
+			return $this->parse(
+				$this->getMessage( 'centralnotice-blog',
+					array( $link, wfEscapeWikiText( $title ) ) ) );
+		} else {
+			return '';
+		}
+	}
+	
+	private function getCachedRssEntry( $url ) {
+		global $wgMemc;
+		$key = 'centralnotice:rss:' . md5( $url );
+		$cached = $wgMemc->get( $key );
+		if( !is_string( $cached ) ) {
+			$title = $this->getFirstRssEntry( $url );
+			if( $title ) {
+				$wgMemc->set( $key, $title, 600 ); // 10-minute
+			} else {
+				$wgMemc->set( $key, array(), 30 ); // negative cache for a little bit...
+			}
+		}
+		return $title;
+	}
+	/**
+	 * Fetch the first link and title from an RSS feed
+	 * @return array
+	 */
+	private function getFirstRssEntry( $url ) {
+		wfSuppressWarnings();
+		$feed = simplexml_load_file( $url );
+		$title = $feed->channel[0]->item[0]->title;
+		$link = $feed->channel[0]->item[0]->link;
+		wfRestoreWarnings();
+
+		if( is_object( $title ) && is_object( $link ) ) {
+			return array( (string)$link, (string)$title );
+		} else {
+			return array();
+		}
+	}
+	
 }
