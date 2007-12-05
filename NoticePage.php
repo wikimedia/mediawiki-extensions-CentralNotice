@@ -5,7 +5,14 @@ class NoticePage extends UnlistedSpecialPage {
 		global $wgOut;
 		$wgOut->disable();
 		$this->sendHeaders();
-		echo $this->getJsOutput( $par );
+		$js = $this->getJsOutput( $par );
+		
+		if( strlen( $js ) == 0 ) {
+			/* Hack for IE/Mac 0-length keepalive problem, see RawPage.php */
+			echo "/* Empty */";
+		} else {
+			echo $js;
+		}
 	}
 	
 	protected function sharedMaxAge() {
