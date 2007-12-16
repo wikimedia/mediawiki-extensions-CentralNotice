@@ -50,27 +50,19 @@ $wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
 $wgNoticeRenderDirectory = false; // "$wgUploadDirectory/notice"
 $wgNoticeRenderPath = false; // $wgUploadPath/notice
 
-$wgExtensionCredits['other'][] = array(
-	'name' => 'CentralNotice',
-	'version' => '1.1',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:CentralNotice',
-	'author' => 'Brion Vibber',
-	'description' => 'Centralised administration of sitenotice',
-);
-
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure;
 	global $wgAutoloadClasses, $wgSpecialPages;
 	$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
-
+	
 	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalSaveHook';
 	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalDeleteHook';
-
+	
 	$wgAutoloadClasses['NoticePage'] =
 		dirname( __FILE__ ) . '/NoticePage.php';
-
+	
 	$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
 	$wgAutoloadClasses['SpecialNoticeLocal'] =
 		dirname( __FILE__ ) . '/SpecialNoticeLocal.php';
@@ -87,13 +79,13 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
 		$wgAutoloadClasses['SpecialNoticeText'] =
 			dirname( __FILE__ ) . '/SpecialNoticeText.php';
-
+		
 		// The new SVG stuff
 		/*
 		$wgSpecialPages['NoticeRender'] = 'SpecialNoticeRender';
 		$wgAutoloadClasses['SpecialNoticeRender'] = dirname( __FILE__ ) . '/SpecialNoticeRender.php';
 		$wgAutoloadClasses['NoticeRender'] = dirname( __FILE__ ) . '/NoticeRender.php';
-
+		
 		global $wgNoticeRenderDirectory, $wgNoticeRenderPath;
 		global $wgUploadDirectory, $wgUploadPath;
 		if( !$wgNoticeRenderDirectory )
@@ -112,13 +104,13 @@ function efCentralNoticeLoader( &$notice ) {
 	$encNoticeLoader = htmlspecialchars( $wgNoticeLoader );
 	$encProject = Xml::encodeJsVar( $wgNoticeProject );
 	$encLang = Xml::encodeJsVar( $wgNoticeLang );
-
+	
 	$anon = (is_object( $wgUser ) && $wgUser->isLoggedIn())
 		? ''
 		: '/anon';
 	$localText = "$wgScript?title=Special:NoticeLocal$anon&action=raw";
 	$encNoticeLocal = htmlspecialchars( $localText );
-
+	
 	// Throw away the classic notice, use the central loader...
 	$notice = <<<EOT
 <script type="text/javascript">
@@ -138,7 +130,7 @@ if (wgNoticeLocal != "") {
 }
 </script>
 EOT;
-
+	
 	return true;
 }
 
@@ -196,7 +188,7 @@ function efCentralNoticeMaybePurge( $title ) {
 function efCentralNoticeMaybePurgeLocal( $title ) {
 	if( $title->getNamespace() == NS_MEDIAWIKI ) {
 		global $wgScript;
-
+		
 		$purge = array();
 		if( $title->getText() == 'Sitenotice' ) {
 			$purge[] = "$wgScript?title=Special:NoticeLocal&action=raw";
@@ -204,7 +196,7 @@ function efCentralNoticeMaybePurgeLocal( $title ) {
 		if( $title->getText() == 'Sitenotice' || $title->getText() == 'Anonnotice' ) {
 			$purge[] = "$wgScript?title=Special:NoticeLocal/anon&action=raw";
 		}
-
+		
 		// Purge the squiddies...
 		if( $purge ) {
 			$u = new SquidUpdate( $purge );
@@ -219,10 +211,10 @@ function efCentralNoticeMaybePurgeLocal( $title ) {
  */
 function efCentralNoticePurge() {
 	global $wgNoticeLoader;
-
+	
 	// Update the notice epoch...
 	efCentralNoticeUpdateEpoch();
-
+	
 	// Purge the central loader URL...
 	$u = new SquidUpdate( array( $wgNoticeLoader ) );
 	$u->doUpdate();
