@@ -46,6 +46,7 @@ class SpecialNoticeText extends NoticePage {
 								array( $this->formatNum( $this->getDonorCount() ) ) ),
 							'$blog' => $this->getBlog(),
 							'$subheading' => $this->getSubheading(),
+							'$thanks' => $this->getThanks(),
 						)
 					)
 				)
@@ -361,6 +362,12 @@ END;
 		// Sigh... hack in another one real quick
 		return $this->parse(
 			$this->getMessage( 'centralnotice-subheading' ) );
+	}
+	
+	private function getThanks() {
+		// Sigh... hack in another one real quick
+		return $this->parse(
+			$this->getMessage( 'centralnotice-thanks' ) );
 	}
 	
 	private function getCachedRssEntry( $url ) {
