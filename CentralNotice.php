@@ -19,6 +19,11 @@ $wgNoticeProject = 'wikipedia';
 /// All remaining options apply only to the infrastructure wiki.
 $wgNoticeInfrastructure = false;
 
+/// Enable the loader itself
+/// Allows to control the loader visibility, without destroying infrastructure
+/// for cached content
+$wgCentralNoticeLoader = true;
+
 /// URL prefix to the raw-text loader special.
 /// Project/language and timestamp epoch keys get appended to this
 /// via the loader stub.
@@ -55,7 +60,12 @@ $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure;
 	global $wgAutoloadClasses, $wgSpecialPages;
-	$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
+
+	global $wgCentralNoticeLoader;
+
+	if ($wgCentralNoticeLoader) {
+		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
+	}
 	
 	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalSaveHook';
 	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalDeleteHook';
