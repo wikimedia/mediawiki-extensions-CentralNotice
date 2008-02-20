@@ -17,3 +17,11 @@ $messages['en'] = array(
 $messages['de'] = array(
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
 );
+
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'centralnotice-desc' => 'Voegt een centrale sitemededeling toe',
+);
+
