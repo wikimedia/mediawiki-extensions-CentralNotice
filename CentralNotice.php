@@ -57,6 +57,15 @@ $wgNoticeRenderPath = false; // $wgUploadPath/notice
 
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
+$wgExtensionCredits['other'][] = array(
+	'name'           => 'CentralNotice',
+	'author'         => 'Brion Vibber',
+	'url'            => 'http://www.mediawiki.org/wiki/Extension:CentralNotice',
+	'description'    => 'Adds a central sitenotice',
+	'descriptionmsg' => 'centralnotice-desc',
+);
+$wgExtensionMessagesFiles['CentralNotice'] = dirname(__FILE__) . '/CentralNotice.i18n.php';
+
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure;
 	global $wgAutoloadClasses, $wgSpecialPages;
