@@ -11,6 +11,13 @@ $messages['en'] = array(
 	'centralnotice-desc' => 'Adds a central sitenotice',
 );
 
+/** فارسی (فارسی)
+ * @author Huji
+ */
+$messages['fa'] = array(
+	'centralnotice-desc' => 'یک اطلاعیه مرکزی می‌افزاید',
+);
+
 /** German (Deutsch)
  * @author Raimond Spekking
  */
