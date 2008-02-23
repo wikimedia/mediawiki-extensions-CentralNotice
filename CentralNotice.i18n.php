@@ -39,6 +39,13 @@ $messages['fa'] = array(
 	'centralnotice-desc' => 'یک اطلاعیه مرکزی می‌افزاید',
 );
 
+/** Finnish (Suomi)
+ * @author Crt
+ */
+$messages['fi'] = array(
+	'centralnotice-desc' => 'Lisää yleisen tiedotteen sivustolle.',
+);
+
 /** French (Français)
  * @author Meithal
  */
@@ -65,6 +72,20 @@ $messages['hsb'] = array(
  */
 $messages['ja'] = array(
 	'centralnotice-desc' => '中央上部に表示される、サイトからのお知らせを追加する',
+);
+
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'centralnotice-desc' => "Setzt eng zentral 'Sitenotice' derbäi",
+);
+
+/** Limburgish (Limburgs)
+ * @author Matthias
+ */
+$messages['li'] = array(
+	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
 );
 
 /** Dutch (Nederlands)
