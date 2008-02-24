@@ -11,6 +11,13 @@ $messages['en'] = array(
 	'centralnotice-desc' => 'Adds a central sitenotice',
 );
 
+/** Aragonese (Aragonés)
+ * @author Juanpabl
+ */
+$messages['an'] = array(
+	'centralnotice-desc' => 'Adibe una "sitenotice" zentral',
+);
+
 /** Arabic (العربية)
  * @author Meno25
  */
@@ -65,6 +72,13 @@ $messages['frp'] = array(
  */
 $messages['hsb'] = array(
 	'centralnotice-desc' => 'Přidawa centralnu bóčnu zdźělenku',
+);
+
+/** Italian (Italiano)
+ * @author BrokenArrow
+ */
+$messages['it'] = array(
+	'centralnotice-desc' => 'Aggiunge un avviso centralizzato a inizio pagina (sitenotice)',
 );
 
 /** Japanese (日本語)
@@ -149,5 +163,12 @@ $messages['te'] = array(
  */
 $messages['vi'] = array(
 	'centralnotice-desc' => 'Thêm thông báo ở đầu các trang tại hơn một wiki',
+);
+
+/** Volapük (Volapük)
+ * @author Smeira
+ */
+$messages['vo'] = array(
+	'centralnotice-desc' => 'Läükön sitanulod zänodik',
 );
 
