@@ -74,6 +74,13 @@ $messages['hsb'] = array(
 	'centralnotice-desc' => 'Přidawa centralnu bóčnu zdźělenku',
 );
 
+/** Indonesian (Bahasa Indonesia)
+ * @author IvanLanin
+ */
+$messages['id'] = array(
+	'centralnotice-desc' => 'Menambahkan pengumuman situs terpusat',
+);
+
 /** Italian (Italiano)
  * @author BrokenArrow
  */
