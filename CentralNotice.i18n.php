@@ -123,6 +123,13 @@ $messages['no'] = array(
 	'centralnotice-desc' => 'Legger til en sentral sidenotis',
 );
 
+/** Occitan (Occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'centralnotice-desc' => 'Ajusta un sitenotice central',
+);
+
 /** Polish (Polski)
  * @author Sp5uhe
  */
