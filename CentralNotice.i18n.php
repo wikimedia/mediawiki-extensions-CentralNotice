@@ -158,6 +158,13 @@ $messages['sk'] = array(
 	'centralnotice-desc' => 'Pridáva centrálnu Správu lokality',
 );
 
+/** Seeltersk (Seeltersk)
+ * @author Pyt
+ */
+$messages['stq'] = array(
+	'centralnotice-desc' => "Föiget ne zentroale ''sitenotice'' bietou",
+);
+
 /** Swedish (Svenska)
  * @author M.M.S.
  */
