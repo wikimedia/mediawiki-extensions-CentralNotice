@@ -25,6 +25,13 @@ $messages['ar'] = array(
 	'centralnotice-desc' => 'يضيف إعلانا مركزيا للموقع',
 );
 
+/** Bulgarian (Български)
+ * @author Borislav
+ */
+$messages['bg'] = array(
+	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
+);
+
 /** Czech (Česky)
  * @author Li-sung
  */
@@ -109,6 +116,13 @@ $messages['li'] = array(
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
 );
 
+/** Marathi (मराठी)
+ * @author Mahitgar
+ */
+$messages['mr'] = array(
+	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
@@ -177,6 +191,13 @@ $messages['sv'] = array(
  */
 $messages['te'] = array(
 	'centralnotice-desc' => 'కేంద్రీకృత సైటు నోటీసు ఒకటి పెట్టండి',
+);
+
+/** Tajik (Тоҷикӣ)
+ * @author Ibrahim
+ */
+$messages['tg'] = array(
+	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
 );
 
 /** Vietnamese (Tiếng Việt)
