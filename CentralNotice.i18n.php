@@ -151,6 +151,13 @@ $messages['pl'] = array(
 	'centralnotice-desc' => 'Dodaje główny komunikat dla serwisu',
 );
 
+/** Pashto (پښتو)
+ * @author Ahmed-Najib-Biabani-Ibrahimkhel
+ */
+$messages['ps'] = array(
+	'centralnotice-desc' => 'يو مرکزي ويبځی-يادښت ورګډول',
+);
+
 /** Portuguese (Português)
  * @author Malafaya
  */
