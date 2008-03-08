@@ -188,9 +188,10 @@ $messages['stq'] = array(
 
 /** Swedish (Svenska)
  * @author M.M.S.
+ * @author Lejonel
  */
 $messages['sv'] = array(
-	'centralnotice-desc' => 'Lägger till en central sidnotis',
+	'centralnotice-desc' => 'Lägger till en central sitenotice',
 );
 
 /** Telugu (తెలుగు)
