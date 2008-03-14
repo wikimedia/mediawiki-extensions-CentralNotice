@@ -123,6 +123,13 @@ $messages['mr'] = array(
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
 );
 
+/** Low German (Plattdüütsch)
+ * @author Slomox
+ */
+$messages['nds'] = array(
+	'centralnotice-desc' => 'Föögt en zentrale Mellen för de Websteed to',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
