@@ -46,6 +46,13 @@ $messages['de'] = array(
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
 );
 
+/** Esperanto (Esperanto)
+ * @author Yekrats
+ */
+$messages['eo'] = array(
+	'centralnotice-desc' => 'Aldonas centran retejo-noton',
+);
+
 /** فارسی (فارسی)
  * @author Huji
  */
@@ -100,6 +107,13 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'centralnotice-desc' => '中央上部に表示される、サイトからのお知らせを追加する',
+);
+
+/** Jutish (Jysk)
+ * @author Huslåke
+ */
+$messages['jut'] = array(
+	'centralnotice-desc' => "Tilføje'n sentrål sitenotice",
 );
 
 /** Luxembourgish (Lëtzebuergesch)
