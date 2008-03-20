@@ -46,6 +46,13 @@ $messages['de'] = array(
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
 );
 
+/** Greek (Ελληνικά)
+ * @author ZaDiak
+ */
+$messages['el'] = array(
+	'centralnotice-desc' => 'Προσθέτει ένα κεντρικό σημειωματάριο της διεύθυνσης',
+);
+
 /** Esperanto (Esperanto)
  * @author Yekrats
  */
