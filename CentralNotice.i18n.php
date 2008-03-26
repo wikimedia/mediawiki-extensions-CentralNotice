@@ -250,3 +250,16 @@ $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
 );
 
+/** Traditional Chinese (正體中文)
+ * @author Alex S.H. Lin
+ */
+$messages['zh-hant'] = array(
+	'centralnotice-desc' => '在頁面頂端增加統一的公告欄位',
+);
+
+/** Simplified Chinese (简化中文)
+ * @author Alex S.H. Lin
+ */
+$messages['zh-hans'] = array(
+	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
+);
