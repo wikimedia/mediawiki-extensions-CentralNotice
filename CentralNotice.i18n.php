@@ -214,6 +214,13 @@ $messages['stq'] = array(
 	'centralnotice-desc' => "Föiget ne zentroale ''sitenotice'' bietou",
 );
 
+/** Sundanese (Basa Sunda)
+ * @author Kandar
+ */
+$messages['su'] = array(
+	'centralnotice-desc' => 'Nambah émbaran puseur',
+);
+
 /** Swedish (Svenska)
  * @author M.M.S.
  * @author Lejonel
@@ -236,6 +243,13 @@ $messages['tg'] = array(
 	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
 );
 
+/** Ukrainian (Українська)
+ * @author Ahonc
+ */
+$messages['uk'] = array(
+	'centralnotice-desc' => 'Додає загальне повідомлення сайта',
+);
+
 /** Vietnamese (Tiếng Việt)
  * @author Minh Nguyen
  */
@@ -250,6 +264,13 @@ $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
 );
 
+/** Simplified Chinese (简化中文)
+ * @author Alex S.H. Lin
+ */
+$messages['zh-hans'] = array(
+	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
+);
+
 /** Traditional Chinese (正體中文)
  * @author Alex S.H. Lin
  */
@@ -257,9 +278,3 @@ $messages['zh-hant'] = array(
 	'centralnotice-desc' => '在頁面頂端增加統一的公告欄位',
 );
 
-/** Simplified Chinese (简化中文)
- * @author Alex S.H. Lin
- */
-$messages['zh-hans'] = array(
-	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
-);
