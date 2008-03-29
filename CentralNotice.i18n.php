@@ -264,6 +264,13 @@ $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
 );
 
+/** Cantonese (廣東話)
+ * @author Shinjiman
+ */
+$messages['yue'] = array(
+	'centralnotice-desc' => '加入一個中央公告欄',
+);
+
 /** Simplified Chinese (简化中文)
  * @author Alex S.H. Lin
  */
