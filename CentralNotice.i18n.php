@@ -32,6 +32,13 @@ $messages['bg'] = array(
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
 );
 
+/** Breton (Brezhoneg)
+ * @author Fulup
+ */
+$messages['br'] = array(
+	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
+);
+
 /** Czech (Česky)
  * @author Li-sung
  */
