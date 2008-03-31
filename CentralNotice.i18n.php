@@ -246,7 +246,7 @@ $messages['te'] = array(
 /** Tajik (Тоҷикӣ)
  * @author Ibrahim
  */
-$messages['tg'] = array(
+$messages['tg-cyrl'] = array(
 	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
 );
 
