@@ -95,6 +95,13 @@ $messages['frp'] = array(
 	'centralnotice-desc' => 'Apond un sitenotice centrâl.',
 );
 
+/** Hindi (हिन्दी)
+ * @author Kaustubh
+ */
+$messages['hi'] = array(
+	'centralnotice-desc' => 'सेंट्रल साईटनोटिस बढ़ायें',
+);
+
 /** Upper Sorbian (Hornjoserbsce)
  * @author Michawiki
  */
