@@ -55,9 +55,10 @@ $messages['de'] = array(
 
 /** Greek (Ελληνικά)
  * @author ZaDiak
+ * @author Badseed
  */
 $messages['el'] = array(
-	'centralnotice-desc' => 'Προσθέτει ένα κεντρικό σημειωματάριο της διεύθυνσης',
+	'centralnotice-desc' => 'Προσθέτει μια κεντρική ανακοίνωση',
 );
 
 /** Esperanto (Esperanto)
@@ -190,7 +191,7 @@ $messages['oc'] = array(
  * @author Sp5uhe
  */
 $messages['pl'] = array(
-	'centralnotice-desc' => 'Dodaje główny komunikat dla serwisu',
+	'centralnotice-desc' => 'Dodaje wspólny komunikat dla serwisów',
 );
 
 /** Pashto (پښتو)
