@@ -152,6 +152,13 @@ $messages['li'] = array(
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
 );
 
+/** Malayalam (മലയാളം)
+ * @author Shijualex
+ */
+$messages['ml'] = array(
+	'centralnotice-desc' => 'കേന്ദീകൃത സൈറ്റ്നോട്ടീസ് ചേര്‍ക്കുന്നു',
+);
+
 /** Marathi (मराठी)
  * @author Mahitgar
  */
