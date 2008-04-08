@@ -272,6 +272,13 @@ $messages['uk'] = array(
 	'centralnotice-desc' => 'Додає загальне повідомлення сайта',
 );
 
+/** Vèneto (Vèneto)
+ * @author Candalua
+ */
+$messages['vec'] = array(
+	'centralnotice-desc' => 'Zonta un aviso çentralizà in çima a la pagina (sitenotice)',
+);
+
 /** Vietnamese (Tiếng Việt)
  * @author Minh Nguyen
  */
