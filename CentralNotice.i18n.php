@@ -138,6 +138,13 @@ $messages['jut'] = array(
 	'centralnotice-desc' => "Tilføje'n sentrål sitenotice",
 );
 
+/** Javanese (Basa Jawa)
+ * @author Meursault2004
+ */
+$messages['jv'] = array(
+	'centralnotice-desc' => 'Nambahaké wara-wara situs punjer',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
