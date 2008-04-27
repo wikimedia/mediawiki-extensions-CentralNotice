@@ -229,6 +229,13 @@ $messages['ru'] = array(
 	'centralnotice-desc' => 'Добавляет общее сообщение сайта',
 );
 
+/** Yakut (Саха тыла)
+ * @author HalanTul
+ */
+$messages['sah'] = array(
+	'centralnotice-desc' => 'Саайт биллэриитин эбэр',
+);
+
 /** Slovak (Slovenčina)
  * @author Helix84
  */
