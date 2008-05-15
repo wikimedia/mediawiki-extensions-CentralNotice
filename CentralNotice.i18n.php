@@ -96,6 +96,13 @@ $messages['frp'] = array(
 	'centralnotice-desc' => 'Apond un sitenotice centrâl.',
 );
 
+/** Galician (Galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'centralnotice-desc' => 'Engade un "sitenotice" central',
+);
+
 /** Hindi (हिन्दी)
  * @author Kaustubh
  */
