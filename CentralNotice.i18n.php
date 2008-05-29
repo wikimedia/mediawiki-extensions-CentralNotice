@@ -205,7 +205,7 @@ $messages['no'] = array(
  * @author Cedric31
  */
 $messages['oc'] = array(
-	'centralnotice-desc' => 'Ajusta un sitenotice central',
+	'centralnotice-desc' => 'Apondís un sitenotice central',
 );
 
 /** Polish (Polski)
