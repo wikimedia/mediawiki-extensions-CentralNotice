@@ -152,6 +152,13 @@ $messages['jv'] = array(
 	'centralnotice-desc' => 'Nambahaké wara-wara situs punjer',
 );
 
+/** Ripoarisch (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'centralnotice-desc' => "Brengk en zentraale ''sitenotice'' en et wiki",
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
