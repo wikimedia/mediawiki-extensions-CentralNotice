@@ -103,6 +103,13 @@ $messages['gl'] = array(
 	'centralnotice-desc' => 'Engade un "sitenotice" central',
 );
 
+/** Hebrew (עברית)
+ * @author Rotem Liss
+ */
+$messages['he'] = array(
+	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
+);
+
 /** Hindi (हिन्दी)
  * @author Kaustubh
  */
