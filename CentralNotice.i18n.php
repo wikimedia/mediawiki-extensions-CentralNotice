@@ -288,9 +288,10 @@ $messages['sv'] = array(
 
 /** Telugu (తెలుగు)
  * @author Chaduvari
+ * @author Veeven
  */
 $messages['te'] = array(
-	'centralnotice-desc' => 'కేంద్రీకృత సైటు నోటీసు ఒకటి పెట్టండి',
+	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
 );
 
 /** Tajik (Тоҷикӣ)
