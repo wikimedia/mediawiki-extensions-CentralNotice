@@ -198,7 +198,7 @@ $messages['mr'] = array(
  * @author Slomox
  */
 $messages['nds'] = array(
-	'centralnotice-desc' => 'Föögt en zentrale Mellen för de Websteed to',
+	'centralnotice-desc' => 'Föögt en zentrale Naricht för de Websteed to',
 );
 
 /** Dutch (Nederlands)
