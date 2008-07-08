@@ -194,6 +194,13 @@ $messages['mr'] = array(
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Aviator
+ */
+$messages['ms'] = array(
+	'centralnotice-desc' => 'Menambah pemberitahuan pusat',
+);
+
 /** Low German (Plattdüütsch)
  * @author Slomox
  */
