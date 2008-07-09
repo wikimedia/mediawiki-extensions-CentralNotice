@@ -68,7 +68,7 @@ $messages['eo'] = array(
 	'centralnotice-desc' => 'Aldonas centran retejo-noton',
 );
 
-/** فارسی (فارسی)
+/** Persian (فارسی)
  * @author Huji
  */
 $messages['fa'] = array(
@@ -215,7 +215,7 @@ $messages['nl'] = array(
 	'centralnotice-desc' => 'Voegt een centrale sitemededeling toe',
 );
 
-/** Norwegian (‪Norsk (bokmål)‬)
+/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
  * @author Jon Harald Søby
  */
 $messages['no'] = array(
@@ -301,7 +301,7 @@ $messages['te'] = array(
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
 );
 
-/** Tajik (Тоҷикӣ)
+/** Tajik (Cyrillic) (Тоҷикӣ/tojikī (Cyrillic))
  * @author Ibrahim
  */
 $messages['tg-cyrl'] = array(
@@ -336,21 +336,21 @@ $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
 );
 
-/** Cantonese (廣東話)
+/** Yue (粵語)
  * @author Shinjiman
  */
 $messages['yue'] = array(
 	'centralnotice-desc' => '加入一個中央公告欄',
 );
 
-/** Simplified Chinese (简化中文)
+/** Simplified Chinese (‪中文(简体)‬)
  * @author Alex S.H. Lin
  */
 $messages['zh-hans'] = array(
 	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
 );
 
-/** Traditional Chinese (正體中文)
+/** Traditional Chinese (‪中文(繁體)‬)
  * @author Alex S.H. Lin
  */
 $messages['zh-hant'] = array(
