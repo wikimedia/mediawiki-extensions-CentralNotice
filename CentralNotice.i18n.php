@@ -53,6 +53,13 @@ $messages['de'] = array(
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
 );
 
+/** Lower Sorbian (Dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'centralnotice-desc' => 'Pśidawa centralnu powěźeńku do głowy boka',
+);
+
 /** Greek (Ελληνικά)
  * @author ZaDiak
  * @author Badseed
