@@ -11,6 +11,13 @@ $messages['en'] = array(
 	'centralnotice-desc' => 'Adds a central sitenotice',
 );
 
+/** Afrikaans (Afrikaans)
+ * @author Naudefj
+ */
+$messages['af'] = array(
+	'centralnotice-desc' => "Voeg 'n sentrale stelselkennisgewing by",
+);
+
 /** Aragonese (Aragonés)
  * @author Juanpabl
  */
