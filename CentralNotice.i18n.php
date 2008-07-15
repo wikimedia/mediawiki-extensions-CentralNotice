@@ -32,6 +32,13 @@ $messages['ar'] = array(
 	'centralnotice-desc' => 'يضيف إعلانا مركزيا للموقع',
 );
 
+/** Southern Balochi (بلوچی مکرانی)
+ * @author Mostafadaneshvar
+ */
+$messages['bcc'] = array(
+	'centralnotice-desc' => 'یک مرکزی اخطار سایت هور کنت',
+);
+
 /** Bulgarian (Български)
  * @author Borislav
  */
