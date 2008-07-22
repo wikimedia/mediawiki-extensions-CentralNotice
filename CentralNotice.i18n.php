@@ -145,6 +145,13 @@ $messages['hsb'] = array(
 	'centralnotice-desc' => 'Přidawa centralnu bóčnu zdźělenku',
 );
 
+/** Interlingua (Interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'centralnotice-desc' => 'Adde un notitia de sito central',
+);
+
 /** Indonesian (Bahasa Indonesia)
  * @author IvanLanin
  */
