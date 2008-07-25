@@ -299,6 +299,13 @@ $messages['sk'] = array(
 	'centralnotice-desc' => 'Pridáva centrálnu Správu lokality',
 );
 
+/** Serbian Cyrillic ekavian (ћирилица)
+ * @author Millosh
+ */
+$messages['sr-ec'] = array(
+	'centralnotice-desc' => 'Додаје централну напомену на сајт.',
+);
+
 /** Seeltersk (Seeltersk)
  * @author Pyt
  */
