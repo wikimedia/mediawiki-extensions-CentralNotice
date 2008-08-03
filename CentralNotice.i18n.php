@@ -46,6 +46,13 @@ $messages['bg'] = array(
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
 );
 
+/** Bengali (বাংলা)
+ * @author Bellayet
+ */
+$messages['bn'] = array(
+	'centralnotice-desc' => 'একটি কেন্দ্রীয় সাইটনোটিশ যোগ করো',
+);
+
 /** Breton (Brezhoneg)
  * @author Fulup
  */
