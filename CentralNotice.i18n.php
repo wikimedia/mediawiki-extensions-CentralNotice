@@ -18,6 +18,13 @@ $messages['af'] = array(
 	'centralnotice-desc' => "Voeg 'n sentrale stelselkennisgewing by",
 );
 
+/** Amharic (አማርኛ)
+ * @author Elfalem
+ */
+$messages['am'] = array(
+	'centralnotice-desc' => 'በሁሉም ገጾች ላይ የሚታይ መልዕክት ይጨምራል',
+);
+
 /** Aragonese (Aragonés)
  * @author Juanpabl
  */
@@ -30,6 +37,13 @@ $messages['an'] = array(
  */
 $messages['ar'] = array(
 	'centralnotice-desc' => 'يضيف إعلانا مركزيا للموقع',
+);
+
+/** Asturian (Asturianu)
+ * @author Esbardu
+ */
+$messages['ast'] = array(
+	'centralnotice-desc' => 'Añade una anuncia centralizada del sitiu (sitenotice)',
 );
 
 /** Southern Balochi (بلوچی مکرانی)
