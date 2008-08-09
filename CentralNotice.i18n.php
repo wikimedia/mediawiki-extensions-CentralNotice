@@ -96,8 +96,8 @@ $messages['dsb'] = array(
 );
 
 /** Greek (Ελληνικά)
- * @author ZaDiak
  * @author Badseed
+ * @author ZaDiak
  */
 $messages['el'] = array(
 	'centralnotice-desc' => 'Προσθέτει μια κεντρική ανακοίνωση',
@@ -342,8 +342,8 @@ $messages['su'] = array(
 );
 
 /** Swedish (Svenska)
- * @author M.M.S.
  * @author Lejonel
+ * @author M.M.S.
  */
 $messages['sv'] = array(
 	'centralnotice-desc' => 'Lägger till en central sitenotice',
@@ -357,7 +357,7 @@ $messages['te'] = array(
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
 );
 
-/** Tajik (Cyrillic) (Тоҷикӣ/tojikī (Cyrillic))
+/** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
  * @author Ibrahim
  */
 $messages['tg-cyrl'] = array(
