@@ -159,6 +159,13 @@ $messages['hi'] = array(
 	'centralnotice-desc' => 'सेंट्रल साईटनोटिस बढ़ायें',
 );
 
+/** Croatian (Hrvatski)
+ * @author Dalibor Bosits
+ */
+$messages['hr'] = array(
+	'centralnotice-desc' => 'Dodaje središnju obavijest za projekt',
+);
+
 /** Upper Sorbian (Hornjoserbsce)
  * @author Michawiki
  */
