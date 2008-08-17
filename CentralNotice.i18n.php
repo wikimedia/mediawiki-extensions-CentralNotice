@@ -39,6 +39,13 @@ $messages['ar'] = array(
 	'centralnotice-desc' => 'يضيف إعلانا مركزيا للموقع',
 );
 
+/** Egyptian Spoken Arabic (مصرى)
+ * @author Ramsis II
+ */
+$messages['arz'] = array(
+	'centralnotice-desc' => 'بيحط اعلان مركزي للموقع',
+);
+
 /** Asturian (Asturianu)
  * @author Esbardu
  */
