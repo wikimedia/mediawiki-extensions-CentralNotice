@@ -117,6 +117,13 @@ $messages['eo'] = array(
 	'centralnotice-desc' => 'Aldonas centran retejo-noton',
 );
 
+/** Spanish (Español)
+ * @author Muro de Aguas
+ */
+$messages['es'] = array(
+	'centralnotice-desc' => 'Añade un mensaje central común a todos los proyectos.',
+);
+
 /** Persian (فارسی)
  * @author Huji
  */
