@@ -40,10 +40,11 @@ $messages['ar'] = array(
 );
 
 /** Egyptian Spoken Arabic (مصرى)
+ * @author Meno25
  * @author Ramsis II
  */
 $messages['arz'] = array(
-	'centralnotice-desc' => 'بيحط اعلان مركزي للموقع',
+	'centralnotice-desc' => 'بيحط اعلان مركزى للموقع',
 );
 
 /** Asturian (Asturianu)
