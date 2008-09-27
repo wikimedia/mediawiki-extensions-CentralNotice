@@ -11,6 +11,13 @@ $messages['en'] = array(
 	'centralnotice-desc' => 'Adds a central sitenotice',
 );
 
+/** Message documentation (Message documentation)
+ * @author Purodha
+ */
+$messages['qqq'] = array(
+	'centralnotice-desc' => 'Short description of the Centralnotice extension, shown in [[Special:Version]]. Do not translate or change links.',
+);
+
 /** Afrikaans (Afrikaans)
  * @author Naudefj
  */
@@ -297,7 +304,7 @@ $messages['no'] = array(
  * @author Cedric31
  */
 $messages['oc'] = array(
-	'centralnotice-desc' => 'Apondís un sitenotice central',
+	'centralnotice-desc' => 'Apond un sitenotice central',
 );
 
 /** Polish (Polski)
