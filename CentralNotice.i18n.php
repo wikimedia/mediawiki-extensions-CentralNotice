@@ -258,6 +258,13 @@ $messages['li'] = array(
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
 );
 
+/** Macedonian (Македонски)
+ * @author Brest
+ */
+$messages['mk'] = array(
+	'centralnotice-desc' => 'Додава централизирано известување',
+);
+
 /** Malayalam (മലയാളം)
  * @author Shijualex
  */
