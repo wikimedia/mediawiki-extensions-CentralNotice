@@ -335,6 +335,13 @@ $messages['pt'] = array(
 	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
 );
 
+/** Romanian (Română)
+ * @author Mihai
+ */
+$messages['ro'] = array(
+	'centralnotice-desc' => 'Adaugă un anunţ central sitului',
+);
+
 /** Russian (Русский)
  * @author Александр Сигачёв
  */
