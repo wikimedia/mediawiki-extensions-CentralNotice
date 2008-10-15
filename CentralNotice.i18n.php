@@ -143,7 +143,7 @@ $messages['fa'] = array(
  * @author Crt
  */
 $messages['fi'] = array(
-	'centralnotice-desc' => 'Lisää yleisen tiedotteen sivustolle.',
+	'centralnotice-desc' => 'Mahdollistaa yleisen sivutiedotteen lisäämisen.',
 );
 
 /** French (Français)
