@@ -4,7 +4,7 @@
 /// This guy gets loaded from every page on every wiki, and is heavily cached.
 /// Its contents are small, and just load up another cached JS page, but this
 /// allows us to update everything with a single purge. Nice, eh?
-$wgNoticeLoader = 'http://smorgasbord.local/trunk/index.php/Special:NoticeLoader';
+$wgNoticeLoader = 'http://example.com/trunk/index.php/Special:NoticeLoader';
 
 /// Override these per-wiki to pass on via the loader to the text system
 /// for localization by language and project.
@@ -27,7 +27,7 @@ $wgCentralNoticeLoader = true;
 /// URL prefix to the raw-text loader special.
 /// Project/language and timestamp epoch keys get appended to this
 /// via the loader stub.
-$wgNoticeText = 'http://smorgasbord.local/trunk/index.php/Special:NoticeText';
+$wgNoticeText = 'http://example.com/trunk/index.php/Special:NoticeText';
 
 /// If true, notice only displays if 'sitenotice=yes' is in the query string
 $wgNoticeTestMode = false;
