@@ -20,47 +20,38 @@ class SpecialNoticeText extends NoticePage {
 	
 	function getJsOutput( $par ) {
 		$this->setLanguage( $par );
+		//need to return all site notices here
+		$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
+		$templateNames = array_keys( $templates );
+		
+		$templateTexts = array_map(
+			array( $this, 'getHtmlNotice' ),
+			$templateNames );
+		$weights = array_values( $templates );
 		return
-			'wgNotice="' .
-			strtr(
-				Xml::escapeJsString( $this->getHtmlNotice() ),
-				array_merge(
-					array_map(
-						array( $this, 'interpolateScroller' ),
-						array(
-							'$quote' => $this->getQuotes(),
-						)
-					),
-					array_map(
-						array( $this, 'interpolateStrings' ),
-						array(
-							'$headline' => $this->getHeadlines(),
-							'$meter' => $this->getMeter(),
-							'$progress' => $this->getMessage( 'centralnotice-progress' ),
-							'$target' => $this->getTarget(),
-							'$media' => $this->getMessage( 'centralnotice-media' ),
-							'$show' => $this->getMessage( 'centralnotice-show' ),
-							'$hide' => $this->getMessage( 'centralnotice-hide' ),
-							'$donate' => $this->getMessage( 'centralnotice-donate' ),
-							'$counter' => $this->getMessage( 'centralnotice-counter',
-								array( $this->formatNum( $this->getDonorCount() ) ) ),
-							'$blog' => $this->getBlog(),
-							'$subheading' => $this->getSubheading(),
-							'$thanks' => $this->getThanks(),
-						)
-					)
-				)
-			) .
-			'";' .
-			$this->getScripts();
+			$this->getScriptFunctions() .
+			$this->getToggleScripts() .
+			'wgNotice=pickTemplate(' .
+				Xml::encodeJsVar($templateTexts) .
+				"," .
+				Xml::encodeJsVar($weights) .
+				");\n";
 	}
 	
-	function getScripts() {
+	function getHtmlNotice( $noticeName ) {
+		$this->noticeName = $noticeName;
+		return preg_replace_callback(
+			'/{{{(.*?)}}}/',
+			array( $this, 'getNoticeField' ),
+			$this->getNoticeTemplate() );
+	}
+	
+	function getToggleScripts() {
 		$showStyle = <<<END
-<style type="text/css">#siteNoticeSmall{display:none;}</style>
+<style type="text/css">.siteNoticeSmall{display:none;}</style>
 END;
 		$hideStyle = <<<END
-<style type="text/css">#siteNoticeBig{display:none;}</style>
+<style type="text/css">.siteNoticeBig{display:none;}</style>
 END;
 		$hideToggleStyle = <<<END
 <style type="text/css">.siteNoticeToggle{display:none;}</style>
@@ -68,36 +59,63 @@ END;
 		$encShowStyle = Xml::encodeJsVar( $showStyle );
 		$encHideStyle = Xml::encodeJsVar( $hideStyle );
 		$encHideToggleStyle = Xml::encodeJsVar( $hideToggleStyle );
-		$script = <<<END
-		var wgNoticeToggleState = (document.cookie.indexOf("hidesnmessage=1")==-1);
-		document.writeln(
-			wgNoticeToggleState
-			? $encShowStyle
-			: $encHideStyle);
-		if(wgUserName == null) {
-			document.writeln($encHideToggleStyle);
+
+		$script = "
+var wgNoticeToggleState = (document.cookie.indexOf('hidesnmessage=1')==-1);
+document.writeln(
+	wgNoticeToggleState
+	? $encShowStyle
+	: $encHideStyle);
+document.writeln($encHideToggleStyle);\n\n";
+		return $script;
+	}
+	
+	function getScriptFunctions() {
+		$script = "
+function toggleNotice() {
+	var big = getElementsByClassName(document,'div','siteNoticeBig');
+	var small = getElementsByClassName(document,'div','siteNoticeSmall');
+	if (!wgNoticeToggleState) {
+		toggleNoticeStyle(big,'block');
+		toggleNoticeStyle(small,'none');
+		toggleNoticeCookie('0');
+	} else {
+		toggleNoticeStyle(big,'none');
+		toggleNoticeStyle(small,'block');
+		toggleNoticeCookie('1');
+	}
+	wgNoticeToggleState = !wgNoticeToggleState;
+}
+function toggleNoticeStyle(elems, display) {
+	if(elems)
+		for(var i=0;i<elems.length;i++)
+			elems[i].style.display = display;
+}
+function toggleNoticeCookie(state) {
+	var e = new Date();
+	e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
+	var work='hidesnmessage='+state+'; expires=' + e.toGMTString() + '; path=/';
+	document.cookie = work;
+}
+function pickTemplate(templates, weights) {
+	var weightedTemplates = new Array();
+	var currentTemplate = 0;
+	var totalWeight = 0;
+	
+	if (templates.length == 0)
+		return '';
+	
+	while (currentTemplate < templates.length) {
+		totalWeight += weights[currentTemplate];
+		for (i=0; i<weights[currentTemplate]; i++) {
+			weightedTemplates[weightedTemplates.length] = templates[currentTemplate];
 		}
-		function toggleNotice() {
-			var big = document.getElementById('siteNoticeBig');
-			var small = document.getElementById('siteNoticeSmall');
-			if (!wgNoticeToggleState) {
-				if(big) big.style.display = 'block';
-				if(small) small.style.display = 'none';
-				toggleNoticeCookie("0");
-			} else {
-				if(big) big.style.display = 'none';
-				if(small) small.style.display = 'block';
-				toggleNoticeCookie("1");
-			}
-			wgNoticeToggleState = !wgNoticeToggleState;
-		}
-		function toggleNoticeCookie(state) {
-			var e = new Date();
-			e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
-			var work="hidesnmessage="+state+"; expires=" + e.toGMTString() + "; path=/";
-			document.cookie = work;
-		}
-END;
+		currentTemplate++;
+	}
+	
+	var randomnumber=Math.floor(Math.random()*totalWeight);
+	return weightedTemplates[randomnumber];
+}\n\n";
 		return $script;
 	}
 	
@@ -113,12 +131,12 @@ END;
 		
 		// Special:NoticeText/project/language
 		$bits = explode( '/', $par );
-		if( count( $bits ) == 2 ) {
+		if( count( $bits ) >= 2 ) {
 			$this->project = $bits[0];
 			$this->language = $bits[1];
 		}
 	}
-	
+	/*
 	private function interpolateStrings( $data ) {
 		if( is_array( $data ) ) {
 			if( count( $data ) == 1 ) {
@@ -176,11 +194,42 @@ END;
 				'return r.join(" ");' .
 			'}()';
 	}
+	*/
 	
-	function getHtmlNotice() {
-		return $this->getMessage( 'centralnotice-template' );
+	function chooseTemplate ( $notice ) {
+		 $dbr = wfGetDB( DB_SLAVE );
+		 /*
+		  * This select statement is really wrong, and needs to be fixed.
+		  * What's wrong is the use of just id instead of not_id, tmp_id or asn_id
+		  */
+		 $res = $dbr->select( 'cn_assignments',
+			array( 'not_name', 'not_weight' ),
+			array( 'not_name' => $notice, 'not_id = id'),
+			__METHOD__,
+			array('ORDER BY' => 'id')
+		);
+		$templates = array();
+	  	while ( $row = $dbr->fetchObject( $res )) {
+			 push ( $templates, $row->name);
+		}
+
+	}
+	function getNoticeTemplate() {
+		return $this->getMessage( "centralnotice-template-{$this->noticeName}" );
 	}
 	
+	function getNoticeField( $matches ) {
+		$field = $matches[1];
+		$params = array();
+		if( $field == 'amount' ) {
+			$params = array( $this->formatNum( $this->getDonationAmount() ) );
+		}
+		$message = "centralnotice-{$this->noticeName}-$field";
+		$source = $this->getMessage( $message, $params );
+		return $source;
+	}
+	
+	/*
 	private function getHeadlines() {
 		return $this->splitListMessage( 'centralnotice-headlines' );
 	}
@@ -192,7 +241,7 @@ END;
 	
 	private function getMeter() {
 		return $this->getMessage( 'centralnotice-meter' );
-		// return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
+		#return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
 	}
 	
 	private function getTarget() {
@@ -203,83 +252,26 @@ END;
 		$text = $this->getMessage( $msg );
 		return $this->splitList( $text, $callback );
 	}
+	*/
 	
 	private function getMessage( $msg, $params=array() ) {
-		$guard = array();
-		for( $lang = $this->language; $lang; $lang = $this->safeLangFallback( $lang ) ) {
-			if( isset( $guard[$lang] ) )
-				break; // avoid loops...
-			$guard[$lang] = true;
-			if( $text = $this->getRawMessage( "$msg/$lang", $params ) ) {
-				return $text;
-			}
-		}
-		return $this->getRawMessage( $msg, $params );
-	}
-	
-	private function safeLangFallback( $lang ) {
-		$fallback = Language::getFallbackFor( $lang );
-		if( $fallback == 'en' ) {
-			// We want to be able to special-case English
-			// This lets us put _regular_ English in 'blah' and special-case in 'blah/en'
-			return false;
-		} else {
-			return $fallback;
-		}
-	}
-	
-	private function getRawMessage( $msg, $params ) {
-		$searchPath = array(
-			"$msg/{$this->project}",
-			"$msg" );
-		foreach( $searchPath as $rawMsg ) {
-			wfDebug( __METHOD__ . ": $rawMsg\n" );
-			$xparams = array_merge( array( $rawMsg ), $params );
-			wfDebug( __METHOD__ . ': ' . str_replace( "\n", " ", var_export( $xparams, true ) ) . "\n" );
-			$text = call_user_func_array( 'wfMsgForContentNoTrans',
-				$xparams );
-			if( !wfEmptyMsg( $rawMsg, $text ) ) {
-				return $text;
-			}
-		}
-		return false;
-	}
-	
-	private function splitList( $text, $callback=false ) {
-		$list = array_filter(
-			array_map(
-				array( $this, 'filterListLine' ),
-				explode( "\n", $text ) ) );
-		if( is_callable( $callback ) ) {
-			return array_map( $callback, $list );
-		} else {
-			return $list;
-		}
-	}
-	
-	private function filterListLine( $line ) {
-		if( substr( $line, 0, 1 ) == '#' ) {
-			return '';
-		} else {
-			return $this->parse( trim( ltrim( $line, '*' ) ) );
-		}
-	}
-	
-	private function parse( $text ) {
-		global $wgOut, $wgSitename;
-		
-		// A god-damned dirty hack!
+		// A god-damned dirty hack! :D
+		global $wgSitename;
 		$old = array();
 		$old['wgSitename'] = $wgSitename;
 		$wgSitename = $this->projectName();
 		
-		$out = preg_replace(
-			'/^<p>(.*)\n?<\/p>\n?$/sU',
-			'$1',
-		 	$wgOut->parse( $text ) );
+		$options = array(
+			'language' => $this->language,
+			'parsemag',
+		);
+		array_unshift( $params, $options );
+		array_unshift( $params, $msg );
+		$out = call_user_func_array( 'wfMsgExt', $params );
 		
 		// Restore globals
 		$wgSitename = $old['wgSitename'];
+		
 		return $out;
 	}
 	
@@ -311,6 +303,7 @@ END;
 		}
 	}
 	
+	/*
 	function wrapQuote( $text ) {
 		return "<span class='fundquote'>" .
 			$this->getMessage(
@@ -318,7 +311,8 @@ END;
 				array( $text ) ) .
 			"</span>";
 	}
-
+	*/
+	
 	private function getDonorCount() {
 		global $wgNoticeCounterSource, $wgMemc;
 		$count = intval( $wgMemc->get( 'centralnotice:counter' ) );
@@ -336,6 +330,10 @@ END;
 		return $count;
 	}
 	
+	private function getDonationAmount() {
+		return 2543454;
+	}
+
 	private function getFallbackDonorCount() {
 		global $wgMemc;
 		$count = intval( $wgMemc->get( 'centralnotice:counter:fallback' ) );
@@ -345,6 +343,7 @@ END;
 		return $count;
 	}
 	
+	/*
 	private function getBlog() {
 		$url = $this->getMessage( 'centralnotice-blog-url' );
 		$entry = $this->getCachedRssEntry( $url );
@@ -357,19 +356,7 @@ END;
 			return '';
 		}
 	}
-	
-	private function getSubheading() {
-		// Sigh... hack in another one real quick
-		return $this->parse(
-			$this->getMessage( 'centralnotice-subheading' ) );
-	}
-	
-	private function getThanks() {
-		// Sigh... hack in another one real quick
-		return $this->parse(
-			$this->getMessage( 'centralnotice-thanks' ) );
-	}
-	
+
 	private function getCachedRssEntry( $url ) {
 		global $wgMemc;
 		$key = 'centralnotice:rss:' . md5( $url );
@@ -384,10 +371,13 @@ END;
 		}
 		return $title;
 	}
+	*/
+	
 	/**
 	 * Fetch the first link and title from an RSS feed
 	 * @return array
 	 */
+	/*
 	private function getFirstRssEntry( $url ) {
 		wfSuppressWarnings();
 		$feed = simplexml_load_file( $url );
@@ -401,5 +391,6 @@ END;
 			return array();
 		}
 	}
+	*/
 	
 }

@@ -16,11 +16,11 @@ class NoticePage extends UnlistedSpecialPage {
 	}
 	
 	protected function sharedMaxAge() {
-		return 86400;
+		return 600;
 	}
 	
 	protected function maxAge() {
-		return 86400;
+		return 600;
 	}
 	
 	private function sendHeaders() {

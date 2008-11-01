@@ -8,14 +8,87 @@
 $messages = array();
 
 $messages['en'] = array(
+	'centralnotice' => 'Central notice admin',
+	'noticetemplate' => 'Central notice template',
+	'noticetranslate' => 'Central notice translate',
 	'centralnotice-desc' => 'Adds a central sitenotice',
-);
-
-/** Message documentation (Message documentation)
- * @author Purodha
- */
-$messages['qqq'] = array(
-	'centralnotice-desc' => 'Short description of the Centralnotice extension, shown in [[Special:Version]]. Do not translate or change links.',
+	'centralnotice-summary' =>'This module allows you to edit your currently setup central notices.
+It can also be used to add or remove old notices.',
+	'centralnotice-query' => 'Modify current notices',
+	'centralnotice-notice-name' => 'Notice name',
+	'centralnotice-end-date' => 'End date',
+	'centralnotice-enabled' => 'Enabled',
+	'centralnotice-modify' => 'Submit',
+	'centralnotice-preview' => 'Preview',
+	'centralnotice-add-new' => 'Add a new central notice',
+	'centralnotice-remove' => 'Remove',
+	'centralnotice-translate-heading' => 'Translation for $1',
+	'centralnotice-manage' => 'Manage central notice',
+	'centralnotice-add' => 'Add',
+	'centralnotice-add-notice' => 'Add a notice',
+	'centralnotice-add-template' => 'Add a template',
+	'centralnotice-show-notices' => 'Show notices',
+	'centralnotice-list-templates' => 'List Templates',
+	'centralnotice-translations' => 'Translations',
+	'centralnotice-translate-to' => 'Translate to',
+	'centralnotice-translate' => 'Translate',
+	'centralnotice-english' => 'English',
+	'centralnotice-template-name' => 'Template name',
+	'centralnotice-templates' => 'Templates',
+	'centralnotice-weight' => 'Weight',
+	'centralnotice-locked' => 'Locked',
+	'centralnotice-notices' => 'Notices',
+	'centralnotice-notice-exists' => 'Notice already exists.
+Not adding',
+	'centralnotice-template-exists' => 'Template already exists.
+Not adding',
+	'centralnotice-notice-doesnt-exist' => 'Notice doesnt exist.
+Nothing to remove',
+	'centralnotice-template-still-bound' => 'Template is still bound to a notice.
+Not removing.',
+	'centralnotice-template-body' => 'Template body:',
+	'centralnotice-day' => 'Day',
+	'centralnotice-year' => 'Year',
+	'centralnotice-month' => 'Month',
+	'centralnotice-hours' => 'Hour',
+	'centralnotice-min' => 'Minute',
+	'centralnotice-project-lang' => 'Project language',
+	'centralnotice-project-name' => 'Project name',
+	'centralnotice-start-date' => 'Start date',
+	'centralnotice-start-time' => 'Start time (UTC) ',
+	'centralnotice-assigned-templates' => 'Assigned templates',
+	'centralnotice-no-templates' => 'No templates found.
+Add some!',
+	'centralnotice-no-templates-assigned' => 'No templates assigned to notice.
+Add some!',
+	'centralnotice-available-templates' => 'Available templates',
+	'centralnotice-template-already-exists' => 'Template is already tied to campaing.
+Not adding',
+	'centralnotice-preview-template' => 'Preview template',
+	'centralnotice-start-hour' => 'Start time',
+	'centralnotice-change-lang' => 'Change translation language',
+	'centralnotice-weights' => 'Weights',
+	'centralnotice-notice-is-locked' => 'Notice is locked.
+Not removing',
+	'centralnotice-overlap' => 'Notice overlaps within the time of another notice.
+Not adding',
+	'centralnotice-invalid-date-range' => 'Invalid date range.
+Not updating',
+	'centralnotice-null-string' => 'Cannot add a null string.
+Not adding',
+	'centralnotice-confirm-delete' => 'Are you sure you want to delete this item?
+This action will be unrecoverable.',
+	'centralnotice-no-notices-exist' => 'No notices exist.
+Add one below',
+	'centralnotice-confirm-delete' => 'Are you sure you want to delete this item?
+This action will be unrecoverable.',
+	'centralnotice-no-templates-translate' => 'There are not any templates to edit translations for',
+	'centralnotice-no-templates' => 'There are no templates in the system.
+Create one',
+	'centralnotice-number-uses' => 'Uses',
+	'centralnotice-edit-template' => 'Edit template',
+	'centralnotice-message' => 'Message',
+	'centralnotice-message-not-set' => 'Message not set',
 );
 
 /** Afrikaans (Afrikaans)
@@ -258,13 +331,6 @@ $messages['li'] = array(
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
 );
 
-/** Macedonian (Македонски)
- * @author Brest
- */
-$messages['mk'] = array(
-	'centralnotice-desc' => 'Додава централизирано известување',
-);
-
 /** Malayalam (മലയാളം)
  * @author Shijualex
  */
@@ -311,7 +377,7 @@ $messages['no'] = array(
  * @author Cedric31
  */
 $messages['oc'] = array(
-	'centralnotice-desc' => 'Apond un sitenotice central',
+	'centralnotice-desc' => 'Apondís un sitenotice central',
 );
 
 /** Polish (Polski)

@@ -15,7 +15,7 @@ class SpecialNoticeLocal extends NoticePage {
 	
 	function getJsOutput( $par ) {
 		$text = '';
-		if( $par == 'anon' ) {
+		if( $par == 'anonnotice.js' ) {
 			$text = wfGetCachedNotice( 'anonnotice' );
 		}
 		if( !$text ) {
