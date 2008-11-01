@@ -515,7 +515,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function listNoticeDetail( $notice ) {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser;
 
 		if ( $wgRequest->wasPosted() ) {
 			// Handle removing of templates
@@ -532,6 +532,7 @@ class CentralNotice extends SpecialPage {
 				$this->updateProjectName ( $notice, $projectName );
 			}
 
+			// Handle new user language
 			$projectLang = $wgRequest->getVal( 'wpUserLanguage' );
 			if ( isset( $projectLang ) ) {
 				$this->updateProjectLanguage( $notice, $projectLang );
@@ -562,43 +563,41 @@ class CentralNotice extends SpecialPage {
 		 */
 		$this->showAll = 'Y';
 
-		$output = $this->noticeDetailForm( $notice );
+		$output_detail = $this->noticeDetailForm( $notice );
+		$output_assigned = $this->assignedTemplatesForm( $notice );
+		$output_templates = $this->addTemplatesForm( $notice );
 
 		// No notices returned
-		if ( $output == '' ) {
+		if ( $output_detail == '' ) {
 			$htmlOut .= wfMsg( 'centralnotice-no-notices-exist' );
 		} else {
-			$htmlOut .= $output;
+			$htmlOut .= $output_detail;
 		}
 
-		$output = $this->assignedTemplatesForm( $notice );
-
-		// No templates assigned returned
-		if ( $output == '' ) {
-			$htmlOut .= wfMsg( 'centralnotice-no-templates-assigned' );
-		} else {
-			$htmlOut .= $output;
-		}
-
+		// Catch for no templates so that we dont' double message
 		if( $this->editable ) {
-			$output = $this->addTemplatesForm( $notice );
-	
-			// No templates in the system
-			if ( $output == '' ) {
+			if ( $output_assigned == '' && $output_templates == '' ) {
 				$htmlOut .= wfMsg( 'centralnotice-no-templates' );
+				$htmlOut .= Xml::element( 'p' );
+				$newPage = SpecialPage::getTitleFor( 'NoticeTemplate/add' );
+				$sk = $wgUser->getSkin();
+                		$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+				$htmlOut .= Xml::element( 'p' );
+			} elseif ( $output_assigned == '' ) {
+				$htmlOut .= wfMsg( 'centralnotice-no-templates-assigned' );
+				$htmlOut .= $output_templates; 
 			} else {
-				$htmlOut .= $output;
+				$htmlOut .= $output_assigned;
+				$htmlOut .= $output_templates;				
 			}
-			
-			$htmlOut .= Xml::tags( 'tr', null,
-				Xml::tags( 'td', array( 'collspan' => 2 ),
-					Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
-				)
-			);
-			
-			$htmlOut .= Xml::closeElement( 'form' );
 		}
-
+		$htmlOut .= Xml::tags( 'tr', null,
+			Xml::tags( 'td', array( 'collspan' => 2 ),
+				Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
+			)
+		);
+			
+		$htmlOut .= Xml::closeElement( 'form' );
 		$wgOut->addHTML( $htmlOut );
 	}
 
@@ -804,7 +803,7 @@ class CentralNotice extends SpecialPage {
 				'cn_templates'
 			),
 			array(
-				'cn_templates.tmp_name',
+			 	'cn_templates.tmp_name',
 			),
 			array(
 				'cn_notices.not_name' => $notice,
@@ -827,8 +826,9 @@ class CentralNotice extends SpecialPage {
 				 wfMsg ( "centralnotice-weight" ) );
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '70%' ),
 				 wfMsg ( "centralnotice-templates" ) );
-			// Find dups
-			$templatesAssigned = $this->selectTemplatesAssigned( $notice );
+	
+                       // Find dups
+                       $templatesAssigned = $this->selectTemplatesAssigned( $notice );
 
 			// Build rows
 			while ( $row = $dbr->fetchObject( $res ) ) {

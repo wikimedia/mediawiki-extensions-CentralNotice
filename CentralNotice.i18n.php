@@ -81,8 +81,7 @@ This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No notices exist.
 Add one below',
 	'centralnotice-no-templates-translate' => 'There are not any templates to edit translations for',
-	'centralnotice-no-templates' => 'There are no templates in the system.
-Create one',
+	'centralnotice-no-templates' => 'There are no templates in the system',
 	'centralnotice-number-uses' => 'Uses',
 	'centralnotice-edit-template' => 'Edit template',
 	'centralnotice-message' => 'Message',

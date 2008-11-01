@@ -183,9 +183,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		if( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
 
-			// Show add link
-			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate/add' );
-			$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+		$htmlOut .= Xml::element( 'p' );
+		$newPage = SpecialPage::getTitleFor( 'NoticeTemplate/add' );
+		$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 		}
 
 		// Output HTML
