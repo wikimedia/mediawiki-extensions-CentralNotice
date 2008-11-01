@@ -120,18 +120,12 @@ function efCentralNoticeSetup() {
 		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
 	}
 	
-	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalSaveHook';
-	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalDeleteHook';
-	
 	$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
 	
 	$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
 	$wgAutoloadClasses['SpecialNoticeLocal'] = $dir . 'SpecialNoticeLocal.php';
 
 	if ( $wgNoticeInfrastructure ) {
-		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeSaveHook';
-		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeDeleteHook';
-		
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
@@ -194,126 +188,4 @@ if (wgNoticeLocal != "") {
 </script>
 EOT;
 	return true;
-}
-
-/**
- * 'ArticleSaveComplete' hook
- * Trigger a purge of the notice loader when we've updated the source pages.
- */
-function efCentralNoticeSaveHook( $article, $user, $text, $summary, $isMinor,
-	$isWatch, $section, $flags, $revision ) {
-	efCentralNoticeMaybePurge( $article->getTitle() );
-	
-	// Continue
-	return true;
-}
-
-/**
- * 'ArticleSaveComplete' hook
- * Trigger a purge of the local notice when we've updated the source pages.
- */
-function efCentralNoticeLocalSaveHook( $article, $user, $text, $summary, $isMinor,
-    $isWatch, $section, $flags, $revision ) {
-	efCentralNoticeMaybePurgeLocal( $article->getTitle() );
-	
-	// Continue
-	return true;
-}
-
-/**
- * 'ArticleDeleteComplete' hook
- * Trigger a purge of the notice loader if this removed one of the source pages.
- */
-function efCentralNoticeDeleteHook( $article, $user, $reason ) {
-	efCentralNoticeMaybePurge( $article->getTitle() );
-	
-	// Continue
-	return true;
-}
-
-/**
- * 'ArticleDeleteComplete' hook
- * Trigger a purge of the local notice if this removed one of the source pages.
- */
-function efCentralNoticeLocalDeleteHook( $article, $user, $reason ) {
-	efCentralNoticeMaybePurgeLocal( $article->getTitle() );
-	
-	// Continue
-	return true;
-}
-
-/**
- * Purge the notice loader if the given page would affect notice display.
- */
-function efCentralNoticeMaybePurge( $title ) {
-	if ( $title->getNamespace() == NS_MEDIAWIKI &&
-		substr( $title->getText(), 0, 14 ) == 'Centralnotice-' ) {
-		efCentralNoticePurge();
-	}
-}
-
-/**
- * Purge the notice loader if the given page would affect notice display.
- */
-function efCentralNoticeMaybePurgeLocal( $title ) {
-	if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-		global $wgScript;
-		
-		$purge = array();
-		if ( $title->getText() == 'Sitenotice' ) {
-			$purge[] = "$wgScript?title=Special:NoticeLocal&action=raw";
-		}
-		if ( $title->getText() == 'Sitenotice' || $title->getText() == 'Anonnotice' ) {
-			$purge[] = "$wgScript?title=Special:NoticeLocal/anon&action=raw";
-		}
-		
-		// Purge the squiddies...
-		if ( $purge ) {
-			$u = new SquidUpdate( $purge );
-			$u->doUpdate();
-		}
-	}
-}
-
-/**
- * Purge the notice loader, triggering a refresh in all clients
- * once $wgNoticeTimeout has expired.
- */
-function efCentralNoticePurge() {
-	global $wgNoticeLoader;
-	
-	// Update the notice epoch...
-	efCentralNoticeUpdateEpoch();
-	
-	// Purge the central loader URL...
-	$u = new SquidUpdate( array( $wgNoticeLoader ) );
-	$u->doUpdate();
-}
-
-/**
- * Return a nice little epoch that gives the last time we updated
- * something in the notice...
- * @return string timestamp
- */
-function efCentralNoticeEpoch() {
-	global $wgMemc;
-	
-	$epoch = $wgMemc->get( 'centralnotice-epoch' );
-	if ( $epoch ) {
-		return wfTimestamp( TS_MW, $epoch );
-	} else {
-		return efCentralNoticeUpdateEpoch();
-	}
-}
-
-/**
- * Update the epoch.
- * @return string timestamp
- */
-function efCentralNoticeUpdateEpoch() {
-	global $wgMemc, $wgNoticeServerTimeout;
-	
-	$epoch = wfTimestamp( TS_MW );
-	$wgMemc->set( "centralnotice-epoch", $epoch, $wgNoticeServerTimeout );
-	return $epoch;
 }
