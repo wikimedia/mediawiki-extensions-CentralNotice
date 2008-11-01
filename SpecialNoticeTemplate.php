@@ -27,10 +27,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$sk = $wgUser->getSkin();
 
 		// Check permissions
-		if ( !$wgUser->isAllowed( 'centralnotice_admin_rights' ) ) {
-			$wgOut->permissionRequired( 'centralnotice_admin_rights' );
-			return;
-		}
+		$this->editable = $wgUser->isAllowed( 'centralnotice_admin_rights' );
 
 		// Show summary
 		$wgOut->addWikiText( wfMsg( 'centralnotice-summary' ) );
@@ -38,40 +35,42 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Show header
 		CentralNotice::printHeader();
 
-		// Handle forms
-		if ( $wgRequest->wasPosted() ) {
-
-			// Handle removing
-			$toRemove = $wgRequest->getArray( 'removeTemplates' );
-			if ( isset( $toRemove ) ) {
-				// Remove templates in list
-				foreach ( $toRemove as $template ) {
-					$this->removeTemplate( $template );
+		if( $this->editable ) {
+			// Handle forms
+			if ( $wgRequest->wasPosted() ) {
+	
+				// Handle removing
+				$toRemove = $wgRequest->getArray( 'removeTemplates' );
+				if ( isset( $toRemove ) ) {
+					// Remove templates in list
+					foreach ( $toRemove as $template ) {
+						$this->removeTemplate( $template );
+					}
 				}
-			}
-
-			// Handle translation message update
-			$update = $wgRequest->getArray( 'updateText' );
-			$token  = $wgRequest->getArray( 'token' );
-			if ( isset ( $update ) ) {
-				foreach ( $update as $lang => $messages ) {
-					foreach ( $messages as $text => $translation ) {
-						// If we actually have text
-						if ( $translation ) {
-							$this->updateMessage( $text, $translation, $lang, $token );
+	
+				// Handle translation message update
+				$update = $wgRequest->getArray( 'updateText' );
+				$token  = $wgRequest->getArray( 'token' );
+				if ( isset ( $update ) ) {
+					foreach ( $update as $lang => $messages ) {
+						foreach ( $messages as $text => $translation ) {
+							// If we actually have text
+							if ( $translation ) {
+								$this->updateMessage( $text, $translation, $lang, $token );
+							}
 						}
 					}
 				}
 			}
-		}
-
-		// Handle adding
-		if ( $wgRequest->getVal( 'wpMethod' ) == 'addTemplate' ) {
-			$this->addTemplate(
-				$wgRequest->getVal( 'templateName' ),
-				$wgRequest->getVal( 'templateBody' )
-			);
-			$sub = 'view';
+	
+			// Handle adding
+			if ( $wgRequest->getVal( 'wpMethod' ) == 'addTemplate' ) {
+				$this->addTemplate(
+					$wgRequest->getVal( 'templateName' ),
+					$wgRequest->getVal( 'templateBody' )
+				);
+				$sub = 'view';
+			}
 		}
 
 		// Handle Editing
@@ -89,10 +88,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			return;
 		}
 
-		// Handle viewing a specific template
-		if ( $sub == 'add' ) {
-			$this->showAdd();
-			return;
+		if( $this->editable ) {
+			// Handle viewing a specific template
+			if ( $sub == 'add' ) {
+				$this->showAdd();
+				return;
+			}
 		}
 
 		// Show list by default
@@ -107,22 +108,28 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Templates
 		$templates = $this->queryTemplates();
 		if ( count( $templates ) > 0 ) {
-			$htmlOut = Xml::openElement( 'form',
-				array(
-					'method' => 'post',
-					'action' => ''
-				 )
-			);
+			$htmlOut = '';
+			
+			if( $this->editable ) {
+				$htmlOut .= Xml::openElement( 'form',
+					array(
+						'method' => 'post',
+						'action' => ''
+					 )
+				);
+			}
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-available-templates' ) );
 			$htmlOut .= Xml::openElement( 'table',
 				array(
 					'cellpadding' => 9,
 					'width' => '100%'
 				)
-			) ;
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-				wfMsg ( 'centralnotice-remove' )
 			);
+			if( $this->editable ) {
+				$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+					wfMsg ( 'centralnotice-remove' )
+				);
+			}
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
 				wfMsg ( 'centralnotice-template-name' )
 			);
@@ -132,15 +139,17 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate/view' );
 				$htmlOut .= Xml::openElement( 'tr' );
 
-				// Remove box
-				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					Xml::check( 'removeTemplates[]', false,
-						array(
-							'value' => $templateName,
-							'onchange' => "if(this.checked){this.checked=confirm('{$msgConfirmDelete}')}"
+				if( $this->editable ) {
+					// Remove box
+					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+						Xml::check( 'removeTemplates[]', false,
+							array(
+								'value' => $templateName,
+								'onchange' => "if(this.checked){this.checked=confirm('{$msgConfirmDelete}')}"
+							)
 						)
-					)
-			 	);
+					);
+				}
 
 				// Link and Preview
 				$render = new SpecialNoticeText();
@@ -157,11 +166,13 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
-			$htmlOut .= Xml::tags( 'tr', null,
-				Xml::tags( 'td', array( 'colspan' => 3 ),
-					Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
-				)
-			);
+			if( $this->editable ) {
+				$htmlOut .= Xml::tags( 'tr', null,
+					Xml::tags( 'td', array( 'colspan' => 3 ),
+						Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
+					)
+				);
+			}
 		} else {
 			$htmlOut = Xml::tags( 'tr', null,
 				Xml::element( 'td', null, wfMsg( 'centralnotice-no-templates' ) )
@@ -169,11 +180,13 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		$htmlOut .= Xml::closeElement( 'form' );
+		if( $this->editable ) {
+			$htmlOut .= Xml::closeElement( 'form' );
 
-		// Show add link
-		$newPage = SpecialPage::getTitleFor( 'NoticeTemplate/add' );
-		$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+			// Show add link
+			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate/add' );
+			$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+		}
 
 		// Output HTML
 		$wgOut->addHtml( $htmlOut );
@@ -212,6 +225,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode;
 
 		$sk = $wgUser->getSkin();
+		if( $this->editable ) {
+			$readonly = array();
+		} else {
+			$readonly = array( 'readonly' => 'readonly' );
+		}
 
 		// Get token
 		$token = $wgUser->editToken();
@@ -231,7 +249,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		// Build HTML
-		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+		if( $this->editable ) {
+			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+		}
 		$htmlOut .= Xml::fieldset( wfMsgHtml( 'centralnotice-translate-heading', $currentTemplate ) );
 		$htmlOut .= Xml::openElement( 'table',
 			array (
@@ -301,23 +321,27 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			$htmlOut .= Xml::tags( 'td', null,
 				Xml::input( "updateText[{$wpUserLang}][{$currentTemplate}-{$field}]", '', $foreignText,
-					array( 'style' => 'width:100%;' . ( !$foreignTextExists ? 'color:red' : '' ) )
+					wfArrayMerge( $readonly,
+						array( 'style' => 'width:100%;' . ( !$foreignTextExists ? 'color:red' : '' ) ) )
 				)
 			);
 
 			$htmlOut .= Xml::closeElement( 'tr' );
 		}
-		$htmlOut .= Xml::hidden( 'token', $token );
-		$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
-			Xml::submitButton( wfMsg( 'centralnotice-modify', array( 'name' => 'update' ) ) )
-		);
-
-		$htmlOut .= Xml::closeElement( 'tr' );
+		if( $this->editable ) {
+			$htmlOut .= Xml::hidden( 'token', $token );
+			$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
+			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
+				Xml::submitButton( wfMsg( 'centralnotice-modify', array( 'name' => 'update' ) ) )
+			);
+			$htmlOut .= Xml::closeElement( 'tr' );
+		}
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		$htmlOut .= Xml::closeElement( 'form' );
+		if( $this->editable ) {
+			$htmlOut .= Xml::closeElement( 'form' );
+		}
 
 		/*
 		 * Show language selection form
@@ -340,9 +364,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		/*
 		 * Show edit form
 		 */
-		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+		if( $this->editable ) {
+			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+			$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
+		}
 		$htmlOut .= Xml::fieldset( wfMsgHtml( 'centralnotice-edit-template' ) );
-		$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
 		$htmlOut .= Xml::openElement( 'table',
 			array(
 				'cellpadding' => 9,
@@ -350,14 +376,18 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			)
 		);
 		$htmlOut .= Xml::tags( 'tr', null,
-			Xml::tags( 'td', null, Xml::textarea( 'templateBody', $body, 60, 20 ) )
+			Xml::tags( 'td', null, Xml::textarea( 'templateBody', $body, 60, 20, $readonly ) )
 		);
-		$htmlOut .= Xml::tags( 'tr', null,
-			Xml::tags( 'td', null, Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ) ) )
-		);
+		if( $this->editable ) {
+			$htmlOut .= Xml::tags( 'tr', null,
+				Xml::tags( 'td', null, Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ) ) )
+			);
+		}
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		$htmlOut .= Xml::closeElement( 'form' );
+		if( $this->editable ) {
+			$htmlOut .= Xml::closeElement( 'form' );
+		}
 
 		// Output HTML
 		$wgOut->addHTML( $htmlOut );
