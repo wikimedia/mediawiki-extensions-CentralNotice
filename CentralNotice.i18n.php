@@ -42,8 +42,8 @@ It can also be used to add or remove old notices.',
 Not adding',
 	'centralnotice-template-exists' => 'Template already exists.
 Not adding',
-	'centralnotice-notice-doesnt-exist' => "Notice doesn't exist.
-Nothing to remove",
+	'centralnotice-notice-doesnt-exist' => 'Notice does not exist.
+Nothing to remove',
 	'centralnotice-template-still-bound' => 'Template is still bound to a notice.
 Not removing.',
 	'centralnotice-template-body' => 'Template body:',
