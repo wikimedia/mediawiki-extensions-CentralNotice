@@ -65,6 +65,11 @@ $wgNoticeLocalDirectory = false;
 // All remaining options apply only to the infrastructure wiki.
 $wgNoticeInfrastructure = true;
 
+// Enable the loader itself
+// Allows to control the loader visibility, without destroying infrastructure
+// for cached content
+$wgCentralNoticeLoader = true;
+
 // If true, notice only displays if 'sitenotice=yes' is in the query string
 $wgNoticeTestMode = false;
 
@@ -99,15 +104,6 @@ $wgExtensionCredits['other'][] = array(
 $dir = dirname( __FILE__ ) . '/';
 
 $wgExtensionMessagesFiles['CentralNotice'] = $dir . 'CentralNotice.i18n.php';
-$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
-
-$wgAvailableRights[] = 'centralnotice_admin_rights';
-$wgGroupPermissions['sysop']['centralnotice_admin_rights'] = true; // Only sysops can make change
-$wgGroupPermissions['sysop']['centralnotice_translate_rights'] = true; // Only sysops can make change
-
-$wgSpecialPages['CentralNotice'] = 'CentralNotice';
-$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
-$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
 
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
@@ -115,7 +111,9 @@ function efCentralNoticeSetup() {
 	
 	$dir = dirname( __FILE__ ) . '/';
 	
-	$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
+	if( $wgCentralNoticeLoader ) {
+		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
+	}
 	
 	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalSaveHook';
 	$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeLocalDeleteHook';
@@ -128,6 +126,15 @@ function efCentralNoticeSetup() {
 	if ( $wgNoticeInfrastructure ) {
 		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeSaveHook';
 		$wgHooks['ArticleSaveComplete'][] = 'efCentralNoticeDeleteHook';
+		
+		$wgAvailableRights[] = 'centralnotice_admin_rights';
+		$wgGroupPermissions['sysop']['centralnotice_admin_rights'] = true; // Only sysops can make change
+		$wgGroupPermissions['sysop']['centralnotice_translate_rights'] = true; // Only sysops can make change
+		
+		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
+		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
+		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
+		$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 		
 		$wgSpecialPages['NoticeLoader'] = 'SpecialNoticeLoader';
 		$wgAutoloadClasses['SpecialNoticeLoader'] = $dir . 'SpecialNoticeLoader.php';
