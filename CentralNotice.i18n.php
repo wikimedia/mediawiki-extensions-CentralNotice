@@ -42,8 +42,8 @@ It can also be used to add or remove old notices.',
 Not adding',
 	'centralnotice-template-exists' => 'Template already exists.
 Not adding',
-	'centralnotice-notice-doesnt-exist' => 'Notice doesnt exist.
-Nothing to remove',
+	'centralnotice-notice-doesnt-exist' => "Notice doesn't exist.
+Nothing to remove",
 	'centralnotice-template-still-bound' => 'Template is still bound to a notice.
 Not removing.',
 	'centralnotice-template-body' => 'Template body:',
@@ -55,7 +55,7 @@ Not removing.',
 	'centralnotice-project-lang' => 'Project language',
 	'centralnotice-project-name' => 'Project name',
 	'centralnotice-start-date' => 'Start date',
-	'centralnotice-start-time' => 'Start time (UTC) ',
+	'centralnotice-start-time' => 'Start time (UTC)',
 	'centralnotice-assigned-templates' => 'Assigned templates',
 	'centralnotice-no-templates' => 'No templates found.
 Add some!',
@@ -80,8 +80,6 @@ Not adding',
 This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No notices exist.
 Add one below',
-	'centralnotice-confirm-delete' => 'Are you sure you want to delete this item?
-This action will be unrecoverable.',
 	'centralnotice-no-templates-translate' => 'There are not any templates to edit translations for',
 	'centralnotice-no-templates' => 'There are no templates in the system.
 Create one',
@@ -244,7 +242,85 @@ $messages['gl'] = array(
  * @author Rotem Liss
  */
 $messages['he'] = array(
+	'centralnotice' => 'ניהול ההודעה המרכזית',
+	'noticetemplate' => 'תבנית ההודעה המרכזית',
+	'noticetranslate' => 'תרגום ההודעה המרכזית',
 	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
+	'centralnotice-summary' => 'מודול זה מאפשר את עריכת ההודעות המרכזיות המותקנות כעת.
+ניתן גם להשתמש בו כדי להוסיף או להסיר הודעות ישנות.',
+	'centralnotice-query' => 'שינוי ההודעות הקיימות',
+	'centralnotice-notice-name' => 'שם ההודעה',
+	'centralnotice-end-date' => 'תאריך סיום',
+	'centralnotice-enabled' => 'מופעלת',
+	'centralnotice-modify' => 'שליחה',
+	'centralnotice-preview' => 'תצוגה מקדימה',
+	'centralnotice-add-new' => 'הוספת הודעה מרכזית חדשה',
+	'centralnotice-remove' => 'הסרה',
+	'centralnotice-translate-heading' => 'תרגום של $1',
+	'centralnotice-manage' => 'ניהול ההודעה המרכזית',
+	'centralnotice-add' => 'הוספה',
+	'centralnotice-add-notice' => 'הוספת הודעה',
+	'centralnotice-add-template' => 'הוספת תבנית',
+	'centralnotice-show-notices' => 'הצגת הודעות',
+	'centralnotice-list-templates' => 'רשימת תבניות',
+	'centralnotice-translations' => 'תרגומים',
+	'centralnotice-translate-to' => 'תרגום ל',
+	'centralnotice-translate' => 'תרגום',
+	'centralnotice-english' => 'אנגלית',
+	'centralnotice-template-name' => 'שם התבנית',
+	'centralnotice-templates' => 'תבניות',
+	'centralnotice-weight' => 'משקל',
+	'centralnotice-locked' => 'נעול',
+	'centralnotice-notices' => 'הודעות',
+	'centralnotice-notice-exists' => 'ההודעה כבר קיימת.
+התוספת לא תבוצע',
+	'centralnotice-template-exists' => 'התבנית כבר קיימת.
+התוספת לא תבוצע',
+	'centralnotice-notice-doesnt-exist' => 'ההודעה אינה קיימת.
+אין מה להסיר',
+	'centralnotice-template-still-bound' => 'התבנית עדיין מקושרת להודעה.
+ההסרה לא תבוצע.',
+	'centralnotice-template-body' => 'גוף ההודעה:',
+	'centralnotice-day' => 'יום',
+	'centralnotice-year' => 'שנה',
+	'centralnotice-month' => 'חודש',
+	'centralnotice-hours' => 'שעה',
+	'centralnotice-min' => 'דקה',
+	'centralnotice-project-lang' => 'שפת המיזם',
+	'centralnotice-project-name' => 'שם המיזם',
+	'centralnotice-start-date' => 'תאריך ההתחלה',
+	'centralnotice-start-time' => 'שעת ההתחלה (UTC)',
+	'centralnotice-assigned-templates' => 'תבניות מקושרות',
+	'centralnotice-no-templates' => 'לא נמצאו תבניות.
+הוסיפו כמה!',
+	'centralnotice-no-templates-assigned' => 'אין תבניות המקושרות להודעה.
+הוסיפו כמה!',
+	'centralnotice-available-templates' => 'תבניות זמינות',
+	'centralnotice-template-already-exists' => 'התבנית כבר קשורה להודעה.
+התוספת לא תבוצע',
+	'centralnotice-preview-template' => 'תצוגה מקדימה של התבנית',
+	'centralnotice-start-hour' => 'זמן התחלה',
+	'centralnotice-change-lang' => 'שינוי שפת התרגום',
+	'centralnotice-weights' => 'משקלים',
+	'centralnotice-notice-is-locked' => 'ההודעה נעולה.
+היא לא תוסר',
+	'centralnotice-overlap' => 'ההודעה מתנגשת עם הזמן של הודעה אחרת.
+התוספת לא תבוצע',
+	'centralnotice-invalid-date-range' => 'טווח תאריכים בלתי תקין.
+העדכון לא יבוצע',
+	'centralnotice-null-string' => 'לא ניתן להוסיף מחרוזת ריקה.
+התוספת לא תבוצע',
+	'centralnotice-confirm-delete' => 'האם אתם בטוחים שברצונכם למחוק פריט זה?
+אין אפשרות לבטל פעולה זו.',
+	'centralnotice-no-notices-exist' => 'אין עדיין הודעות.
+הוסיפו אחת למטה',
+	'centralnotice-no-templates-translate' => 'אין תבניות כדי לערוך את התרגומים שלהן',
+	'centralnotice-no-templates' => 'אין תבניות במערכת.
+צרו אחת',
+	'centralnotice-number-uses' => 'משתמשת ב',
+	'centralnotice-edit-template' => 'עריכת התבנית',
+	'centralnotice-message' => 'הודעה',
+	'centralnotice-message-not-set' => 'לא הוגדרה הודעה',
 );
 
 /** Hindi (हिन्दी)
