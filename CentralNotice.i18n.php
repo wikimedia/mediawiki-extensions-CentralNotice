@@ -170,7 +170,83 @@ $messages['cs'] = array(
  * @author Raimond Spekking
  */
 $messages['de'] = array(
+	'centralnotice' => 'Administrierung der zentralen Meldungen',
+	'noticetemplate' => 'Zentrale Meldungs-Vorlagen',
+	'noticetranslate' => 'Übersetzung zentraler Meldungen',
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
+	'centralnotice-summary' => 'Diese Erweiterung erlaubt die Konfiguration zentraler Meldungen.
+Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werden.',
+	'centralnotice-query' => 'Aktuelle Meldung ändern',
+	'centralnotice-notice-name' => 'Name der Notiz',
+	'centralnotice-end-date' => 'Enddatum',
+	'centralnotice-enabled' => 'Aktiviert',
+	'centralnotice-modify' => 'Übertragen',
+	'centralnotice-preview' => 'Vorschau',
+	'centralnotice-add-new' => 'Füge eine neue zentrale Meldung hinzu',
+	'centralnotice-remove' => 'Entfernen',
+	'centralnotice-translate-heading' => 'Übersetzung für $1',
+	'centralnotice-manage' => 'Zentrale Meldungen verwalten',
+	'centralnotice-add' => 'Hinzufügen',
+	'centralnotice-add-notice' => 'Hinzufügen einer Meldung',
+	'centralnotice-add-template' => 'Hinzufügen einer Vorlage',
+	'centralnotice-show-notices' => 'Zeige Meldungen',
+	'centralnotice-list-templates' => 'Vorlagen auflisten',
+	'centralnotice-translations' => 'Übersetzungen',
+	'centralnotice-translate-to' => 'Übersetzen in',
+	'centralnotice-translate' => 'Übersetzen',
+	'centralnotice-english' => 'Englisch',
+	'centralnotice-template-name' => 'Name der Vorlage',
+	'centralnotice-templates' => 'Vorlagen',
+	'centralnotice-weight' => 'Gewicht',
+	'centralnotice-locked' => 'Gesperrt',
+	'centralnotice-notices' => 'Meldungen',
+	'centralnotice-notice-exists' => 'Meldung ist bereits vorhanden.
+Nicht hinzugefügt.',
+	'centralnotice-template-exists' => 'Vorlage ist bereits vorhanden.
+Nicht hinzugefügt.',
+	'centralnotice-notice-doesnt-exist' => 'Meldung ist nicht vorhanden.
+Entfernung nicht möglich.',
+	'centralnotice-template-still-bound' => 'Vorlage ist noch an eine Meldung gebunden.
+Entfernung nicht möglich.',
+	'centralnotice-template-body' => 'Vorlagentext:',
+	'centralnotice-day' => 'Tag',
+	'centralnotice-year' => 'Jahr',
+	'centralnotice-month' => 'Monat',
+	'centralnotice-hours' => 'Stunde',
+	'centralnotice-min' => 'Minute',
+	'centralnotice-project-lang' => 'Projektsprache',
+	'centralnotice-project-name' => 'Projektname',
+	'centralnotice-start-date' => 'Startdatum',
+	'centralnotice-start-time' => 'Startzeit (UTC)',
+	'centralnotice-assigned-templates' => 'Zugewiesene Vorlagen',
+	'centralnotice-no-templates' => 'Es sind keine Vorlagen im System vorhanden.
+Erstelle eine.',
+	'centralnotice-no-templates-assigned' => 'Es sind keine Vorlagen an Meldungen zugewiesen.
+Füge eine hinzu.',
+	'centralnotice-available-templates' => 'Verfügbare Vorlagen',
+	'centralnotice-template-already-exists' => 'Vorlage ist bereits an die Kampagne gebunden.
+Nicht hinzugefügt.',
+	'centralnotice-preview-template' => 'Vorschau Vorlage',
+	'centralnotice-start-hour' => 'Startzeit',
+	'centralnotice-change-lang' => 'Ändere Übersetzungssprache',
+	'centralnotice-weights' => 'Gewicht',
+	'centralnotice-notice-is-locked' => 'Meldung ist gesperrt.
+Entfernung nicht möglich.',
+	'centralnotice-overlap' => 'Die Meldung überschneidet sich mit dem Zeitraum einer anderen Meldung.
+Nicht hinzugefügt.',
+	'centralnotice-invalid-date-range' => 'Ungültiger Zeitraum.
+Nicht aktualisiert.',
+	'centralnotice-null-string' => 'Es kann kein Nullstring hinzugefügt werden.
+Nichts hinzugefügt.',
+	'centralnotice-confirm-delete' => 'Bist du sicher, dass du den Eintrag löschen möchtest?
+Die Aktion kann nicht rückgängig gemacht werden.',
+	'centralnotice-no-notices-exist' => 'Es sind keine Meldungen vorhanden.
+Füge eine hinzu.',
+	'centralnotice-no-templates-translate' => 'Es gibt keine Vorlagen, für die Übersetzungen zu bearbeiten wären',
+	'centralnotice-number-uses' => 'Nutzungen',
+	'centralnotice-edit-template' => 'Vorlage bearbeiten',
+	'centralnotice-message' => 'Nachricht',
+	'centralnotice-message-not-set' => 'Nachricht nicht gesetzt',
 );
 
 /** Lower Sorbian (Dolnoserbski)
@@ -204,9 +280,29 @@ $messages['es'] = array(
 
 /** Persian (فارسی)
  * @author Huji
+ * @author Komeil 4life
  */
 $messages['fa'] = array(
 	'centralnotice-desc' => 'یک اطلاعیه مرکزی می‌افزاید',
+	'centralnotice-enabled' => 'فعال',
+	'centralnotice-modify' => 'ارسال',
+	'centralnotice-preview' => 'نمایش',
+	'centralnotice-remove' => 'حذف',
+	'centralnotice-add' => 'اضافه کردن',
+	'centralnotice-add-template' => 'اضافه کردن الگو',
+	'centralnotice-list-templates' => 'فهرست الگوها',
+	'centralnotice-english' => 'انگلیسی',
+	'centralnotice-templates' => 'الگوها',
+	'centralnotice-locked' => 'قفل شده',
+	'centralnotice-template-body' => 'بدنه قالب:',
+	'centralnotice-day' => 'روز',
+	'centralnotice-year' => 'سال',
+	'centralnotice-month' => 'ماه',
+	'centralnotice-hours' => 'ساعت',
+	'centralnotice-min' => 'دقیقه',
+	'centralnotice-no-templates' => 'در این سیستم هیچ الگویی نیست، یکی بسازید.',
+	'centralnotice-preview-template' => 'الگو نمایش',
+	'centralnotice-message' => 'پیام',
 );
 
 /** Finnish (Suomi)
@@ -217,10 +313,75 @@ $messages['fi'] = array(
 );
 
 /** French (Français)
+ * @author IAlex
  * @author Meithal
  */
 $messages['fr'] = array(
+	'centralnotice' => 'Administration des avis centraux',
+	'noticetemplate' => 'Modèles des avis centraux',
+	'noticetranslate' => 'Traduction des avis centraux',
 	'centralnotice-desc' => 'Ajoute un sitenotice central',
+	'centralnotice-query' => 'Modifier les avis actuels',
+	'centralnotice-notice-name' => "Nom de l'avis",
+	'centralnotice-end-date' => 'Date de fin',
+	'centralnotice-enabled' => 'Activé',
+	'centralnotice-modify' => 'Soumettre',
+	'centralnotice-preview' => 'Prévisualisation',
+	'centralnotice-add-new' => 'Ajouter un nouvel avis central',
+	'centralnotice-remove' => 'Supprimer',
+	'centralnotice-translate-heading' => 'Traduction de $1',
+	'centralnotice-manage' => 'Gérer les avis centraux',
+	'centralnotice-add' => 'Ajouter',
+	'centralnotice-add-notice' => 'Ajouter un avis',
+	'centralnotice-add-template' => 'Ajouter un modèle',
+	'centralnotice-show-notices' => 'Afficher les avis',
+	'centralnotice-list-templates' => 'Lister les modèles',
+	'centralnotice-translations' => 'Traductions',
+	'centralnotice-translate-to' => 'Traduire en',
+	'centralnotice-translate' => 'Traduire',
+	'centralnotice-english' => 'Anglais',
+	'centralnotice-template-name' => 'Nom du modèle',
+	'centralnotice-templates' => 'Modèles',
+	'centralnotice-weight' => 'Poids',
+	'centralnotice-locked' => 'Verrouillé',
+	'centralnotice-notices' => 'Avis',
+	'centralnotice-notice-exists' => "L'avis existe déjà.
+Il n'a pas été ajouté.",
+	'centralnotice-template-exists' => "Le modèle existe déjà.
+Il n'a pas été ajouté.",
+	'centralnotice-notice-doesnt-exist' => "L'avis n'existe pas.
+Il n'y a rien à supprimer.",
+	'centralnotice-template-still-bound' => "Le modèle est encore relié à un avis.
+Il n'a pas été supprimer.",
+	'centralnotice-template-body' => 'Corps du modèle :',
+	'centralnotice-day' => 'Jour',
+	'centralnotice-year' => 'Année',
+	'centralnotice-month' => 'Mois',
+	'centralnotice-hours' => 'Heure',
+	'centralnotice-min' => 'Minute',
+	'centralnotice-project-lang' => 'Langue du projet',
+	'centralnotice-project-name' => 'Nom du projet',
+	'centralnotice-start-date' => 'Date de début',
+	'centralnotice-start-time' => 'Heure de début (UTC)',
+	'centralnotice-assigned-templates' => 'Modèles assignés',
+	'centralnotice-no-templates' => "Il n'y a pas de modèle dans le système.
+Créez-en un.",
+	'centralnotice-no-templates-assigned' => "Aucun modèle assigné à l'avis.
+Ajoutez-en un !",
+	'centralnotice-available-templates' => 'Modèles disponibles',
+	'centralnotice-preview-template' => 'Prévisualisation du modèle',
+	'centralnotice-start-hour' => 'Heure de début',
+	'centralnotice-change-lang' => 'Modifier la langue de traduction',
+	'centralnotice-weights' => 'Poids',
+	'centralnotice-notice-is-locked' => "L'avis est verrouillé.
+Il n'a pas été supprimé.",
+	'centralnotice-no-notices-exist' => 'Aucun avis existe.
+Ajoutez-en un en dessous.',
+	'centralnotice-no-templates-translate' => "Il n'y a aucun modèle à traduire",
+	'centralnotice-number-uses' => 'Utilisateurs',
+	'centralnotice-edit-template' => 'Modifier le modèle',
+	'centralnotice-message' => 'Message',
+	'centralnotice-message-not-set' => 'Message non renseigné',
 );
 
 /** Franco-Provençal (Arpetan)
@@ -397,6 +558,34 @@ $messages['ksh'] = array(
  */
 $messages['lb'] = array(
 	'centralnotice-desc' => "Setzt eng zentral 'Sitenotice' derbäi",
+	'centralnotice-preview' => 'Weisen ouni ze späicheren',
+	'centralnotice-remove' => 'Ewechhuelen',
+	'centralnotice-add' => 'Derbäisetzen',
+	'centralnotice-add-template' => 'Eng Schabloun derbäisetzen',
+	'centralnotice-list-templates' => 'Lëscht vun de Schablounen',
+	'centralnotice-translations' => 'Iwwersetzungen',
+	'centralnotice-translate-to' => 'Iwwersetzen op',
+	'centralnotice-translate' => 'Iwwersetzen',
+	'centralnotice-english' => 'Englesch',
+	'centralnotice-template-name' => 'Numm vun der Schabloun',
+	'centralnotice-templates' => 'Schablounen',
+	'centralnotice-locked' => 'Gespaart',
+	'centralnotice-template-exists' => "D'Schabloun gëtt et schonn.
+Et gouf näischt derbäigsat.",
+	'centralnotice-day' => 'Dag',
+	'centralnotice-year' => 'Joer',
+	'centralnotice-month' => 'Mount',
+	'centralnotice-hours' => 'Stonn',
+	'centralnotice-min' => 'Minutt',
+	'centralnotice-start-date' => 'Ufanksdatum',
+	'centralnotice-no-templates' => 'Et gëtt keng Schablounen am System',
+	'centralnotice-available-templates' => 'Disponibel Schablounen',
+	'centralnotice-preview-template' => 'Schabloun weisen ouni ze späicheren',
+	'centralnotice-start-hour' => 'Ufankszäit',
+	'centralnotice-change-lang' => 'Sprooch vun der Iwwersetzung änneren',
+	'centralnotice-no-templates-translate' => "Et gëtt keng Schablounen fir déi Iwwersetzungen z'ännere sinn",
+	'centralnotice-edit-template' => 'Schabloun änneren',
+	'centralnotice-message' => 'Message',
 );
 
 /** Limburgish (Limburgs)
@@ -445,7 +634,82 @@ $messages['nds'] = array(
  * @author Siebrand
  */
 $messages['nl'] = array(
+	'centralnotice' => 'Beheer centrale sitenotice',
+	'noticetemplate' => 'Sjablonen centrale sitenotice',
+	'noticetranslate' => 'Vertalen centrale sitenotice',
 	'centralnotice-desc' => 'Voegt een centrale sitemededeling toe',
+	'centralnotice-summary' => 'Met deze module kunnen centraal ingestelde sitenotices bewerkt worden.
+De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwijderen.',
+	'centralnotice-query' => 'Huidige sitenotices wijzigen',
+	'centralnotice-notice-name' => 'Sitenoticenaam',
+	'centralnotice-end-date' => 'Einddatum',
+	'centralnotice-enabled' => 'Actief',
+	'centralnotice-modify' => 'Opslaan',
+	'centralnotice-preview' => 'Bekijken',
+	'centralnotice-add-new' => 'Nieuwe centrale sitenotice toevoegen',
+	'centralnotice-remove' => 'Verwijderen',
+	'centralnotice-translate-heading' => 'Vertalen voor $1',
+	'centralnotice-manage' => 'Centrale sitenotice beheren',
+	'centralnotice-add' => 'Toevoegen',
+	'centralnotice-add-notice' => 'Sitenotice toevoegen',
+	'centralnotice-add-template' => 'Sjabloon toevoegen',
+	'centralnotice-show-notices' => 'Sitenotices weergeven',
+	'centralnotice-list-templates' => 'Sjablonen weergeven',
+	'centralnotice-translations' => 'Vertalingen',
+	'centralnotice-translate-to' => 'Vertalen naar',
+	'centralnotice-translate' => 'Vertalen',
+	'centralnotice-english' => 'Engels',
+	'centralnotice-template-name' => 'Sjabloonnaam',
+	'centralnotice-templates' => 'Sjablonen',
+	'centralnotice-weight' => 'Gewicht',
+	'centralnotice-locked' => 'Afgesloten',
+	'centralnotice-notices' => 'Sitenotices',
+	'centralnotice-notice-exists' => 'De sitenotice bestaat al.
+Deze wordt niet toegevoegd.',
+	'centralnotice-template-exists' => 'Het sjabloon bestaat al.
+Dit wordt niet toegevoegd.',
+	'centralnotice-notice-doesnt-exist' => 'De sitenotice bestaat niet.
+Er is niets te verwijderen',
+	'centralnotice-template-still-bound' => 'Het sjabloon is nog gekoppeld aan een sitenotice.
+Het wordt niet verwijderd.',
+	'centralnotice-template-body' => 'Sjablooninhoud:',
+	'centralnotice-day' => 'Dag',
+	'centralnotice-year' => 'Jaar',
+	'centralnotice-month' => 'Maand',
+	'centralnotice-hours' => 'Uur',
+	'centralnotice-min' => 'Minuut',
+	'centralnotice-project-lang' => 'Projecttaal',
+	'centralnotice-project-name' => 'Projectnaam',
+	'centralnotice-start-date' => 'Startdatum',
+	'centralnotice-start-time' => 'Starttijd (UTC)',
+	'centralnotice-assigned-templates' => 'Toegewezen sjablonen',
+	'centralnotice-no-templates' => 'Er zijn geen sjablonen beschikbaar in het systeem',
+	'centralnotice-no-templates-assigned' => 'Er zijn geen sjablonen toegewezen aan de sitenotice.
+Die moet u toevoegen.',
+	'centralnotice-available-templates' => 'Beschikbare sjablonen',
+	'centralnotice-template-already-exists' => 'Het sjabloon is al gekoppeld aan een campagne.
+Het wordt niet toegevoegd',
+	'centralnotice-preview-template' => 'Voorvertoning sjabloon',
+	'centralnotice-start-hour' => 'Starttijd',
+	'centralnotice-change-lang' => 'Te vertalen taal wijzigen',
+	'centralnotice-weights' => 'Gewichten',
+	'centralnotice-notice-is-locked' => 'De sitenotice is afgesloten.
+Deze wordt niet verwijderd',
+	'centralnotice-overlap' => 'De sitenotice overlapt met een andere sitenotice.
+Deze wordt niet toegevoegd',
+	'centralnotice-invalid-date-range' => 'Ongeldige datumreeks.
+Er wordt niet bijgewerkt',
+	'centralnotice-null-string' => 'U kunt geen leeg tekstveld toevoegen.
+Er wordt niet toegevoegd.',
+	'centralnotice-confirm-delete' => 'Weet u zeker dat u dit item wilt verwijderen?
+Deze handeling is niet terug te draaien.',
+	'centralnotice-no-notices-exist' => 'Er zijn geen sitenotices.
+U kunt er hieronder een toevoegen',
+	'centralnotice-no-templates-translate' => 'Er zijn geen sjablonen waarvoor vertalingen gemaakt kunnen worden',
+	'centralnotice-number-uses' => 'Aantal keren gebruikt',
+	'centralnotice-edit-template' => 'Sjabloon bewerken',
+	'centralnotice-message' => 'Bericht',
+	'centralnotice-message-not-set' => 'Het bericht is niet ingesteld',
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
@@ -567,6 +831,20 @@ $messages['uk'] = array(
  */
 $messages['vec'] = array(
 	'centralnotice-desc' => 'Zonta un aviso çentralizà in çima a la pagina (sitenotice)',
+	'centralnotice-modify' => 'Invia',
+	'centralnotice-preview' => 'Anteprima',
+	'centralnotice-remove' => 'Cava',
+	'centralnotice-add' => 'Zonta',
+	'centralnotice-weight' => 'Peso',
+	'centralnotice-day' => 'Zorno',
+	'centralnotice-year' => 'Ano',
+	'centralnotice-month' => 'Mese',
+	'centralnotice-hours' => 'Ora',
+	'centralnotice-min' => 'Minuto',
+	'centralnotice-project-lang' => 'Lengoa del projeto',
+	'centralnotice-project-name' => 'Nome del projeto',
+	'centralnotice-weights' => 'Pesi',
+	'centralnotice-message' => 'Messagio',
 );
 
 /** Vietnamese (Tiếng Việt)
