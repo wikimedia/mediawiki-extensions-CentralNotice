@@ -3,11 +3,11 @@
 class SpecialNoticeText extends NoticePage {
 	var $project = 'wikipedia';
 	var $language = 'en';
-	
+
 	function __construct() {
 		parent::__construct( "NoticeText" );
 	}
-	
+
 	/**
 	 * Clients can cache this as long as they like -- if it changes,
 	 * we'll be bumping things at the loader level, bringing a new URL.
@@ -17,13 +17,13 @@ class SpecialNoticeText extends NoticePage {
 	protected function maxAge() {
 		return 86400 * 7;
 	}
-	
+
 	function getJsOutput( $par ) {
 		$this->setLanguage( $par );
-		//need to return all site notices here
+		// need to return all site notices here
 		$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
 		$templateNames = array_keys( $templates );
-		
+
 		$templateTexts = array_map(
 			array( $this, 'getHtmlNotice' ),
 			$templateNames );
@@ -32,12 +32,12 @@ class SpecialNoticeText extends NoticePage {
 			$this->getScriptFunctions() .
 			$this->getToggleScripts() .
 			'wgNotice=pickTemplate(' .
-				Xml::encodeJsVar($templateTexts) .
+				Xml::encodeJsVar( $templateTexts ) .
 				"," .
-				Xml::encodeJsVar($weights) .
+				Xml::encodeJsVar( $weights ) .
 				");\n";
 	}
-	
+
 	function getHtmlNotice( $noticeName ) {
 		$this->noticeName = $noticeName;
 		return preg_replace_callback(
@@ -45,7 +45,7 @@ class SpecialNoticeText extends NoticePage {
 			array( $this, 'getNoticeField' ),
 			$this->getNoticeTemplate() );
 	}
-	
+
 	function getToggleScripts() {
 		$showStyle = <<<END
 <style type="text/css">.siteNoticeSmall{display:none;}</style>
@@ -69,7 +69,7 @@ document.writeln(
 document.writeln($encHideToggleStyle);\n\n";
 		return $script;
 	}
-	
+
 	function getScriptFunctions() {
 		$script = "
 function toggleNotice() {
@@ -101,10 +101,10 @@ function pickTemplate(templates, weights) {
 	var weightedTemplates = new Array();
 	var currentTemplate = 0;
 	var totalWeight = 0;
-	
+
 	if (templates.length == 0)
 		return '';
-	
+
 	while (currentTemplate < templates.length) {
 		totalWeight += weights[currentTemplate];
 		for (i=0; i<weights[currentTemplate]; i++) {
@@ -112,26 +112,26 @@ function pickTemplate(templates, weights) {
 		}
 		currentTemplate++;
 	}
-	
+
 	var randomnumber=Math.floor(Math.random()*totalWeight);
 	return weightedTemplates[randomnumber];
 }\n\n";
 		return $script;
 	}
-	
+
 	private function formatNum( $num ) {
 		$lang = Language::factory( $this->language );
 		return $lang->formatNum( $num );
 	}
-	
+
 	private function setLanguage( $par ) {
 		// Strip extra ? bits if they've gotten in. Sigh.
 		$bits = explode( '?', $par, 2 );
 		$par = $bits[0];
-		
+
 		// Special:NoticeText/project/language
 		$bits = explode( '/', $par );
-		if( count( $bits ) >= 2 ) {
+		if ( count( $bits ) >= 2 ) {
 			$this->project = $bits[0];
 			$this->language = $bits[1];
 		}
@@ -148,11 +148,11 @@ function pickTemplate(templates, weights) {
 			return Xml::escapeJsString( $data );
 		}
 	}
-	
+
 	private function interpolateRandomSelector( $strings ) {
 		return '"+' . $this->randomSelector( $strings ) . '+"';
 	}
-	
+
 	private function randomSelector( $strings ) {
 		return
 			'function(){' .
@@ -160,7 +160,7 @@ function pickTemplate(templates, weights) {
 				'return s[Math.floor(Math.random()*s.length)];' .
 			'}()';
 	}
-	
+
 	private function interpolateScroller( $strings ) {
 		global $wgNoticeScroll;
 		if( $wgNoticeScroll ) {
@@ -174,7 +174,7 @@ function pickTemplate(templates, weights) {
 			return $this->interpolateStrings( $strings );
 		}
 	}
-	
+
 	private function shuffleStrings( $strings ) {
 		return
 			'function(){' .
@@ -195,7 +195,7 @@ function pickTemplate(templates, weights) {
 			'}()';
 	}
 	*/
-	
+
 	function chooseTemplate ( $notice ) {
 		 $dbr = wfGetDB( DB_SLAVE );
 		 /*
@@ -204,63 +204,63 @@ function pickTemplate(templates, weights) {
 		  */
 		 $res = $dbr->select( 'cn_assignments',
 			array( 'not_name', 'not_weight' ),
-			array( 'not_name' => $notice, 'not_id = id'),
+			array( 'not_name' => $notice, 'not_id = id' ),
 			__METHOD__,
-			array('ORDER BY' => 'id')
+			array( 'ORDER BY' => 'id' )
 		);
 		$templates = array();
-	  	while ( $row = $dbr->fetchObject( $res )) {
-			 push ( $templates, $row->name);
+	  	while ( $row = $dbr->fetchObject( $res ) ) {
+			 push ( $templates, $row->name );
 		}
 
 	}
 	function getNoticeTemplate() {
 		return $this->getMessage( "centralnotice-template-{$this->noticeName}" );
 	}
-	
+
 	function getNoticeField( $matches ) {
 		$field = $matches[1];
 		$params = array();
-		if( $field == 'amount' ) {
+		if ( $field == 'amount' ) {
 			$params = array( $this->formatNum( $this->getDonationAmount() ) );
 		}
 		$message = "centralnotice-{$this->noticeName}-$field";
 		$source = $this->getMessage( $message, $params );
 		return $source;
 	}
-	
+
 	/*
 	private function getHeadlines() {
 		return $this->splitListMessage( 'centralnotice-headlines' );
 	}
-	
+
 	private function getQuotes() {
 		return $this->splitListMessage( 'centralnotice-quotes',
 		 	array( $this, 'wrapQuote' ) );
 	}
-	
+
 	private function getMeter() {
 		return $this->getMessage( 'centralnotice-meter' );
 		#return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
 	}
-	
+
 	private function getTarget() {
 		return $this->getMessage( 'centralnotice-target' );
 	}
-	
+
 	private function splitListMessage( $msg, $callback=false ) {
 		$text = $this->getMessage( $msg );
 		return $this->splitList( $text, $callback );
 	}
 	*/
-	
-	private function getMessage( $msg, $params=array() ) {
+
+	private function getMessage( $msg, $params = array() ) {
 		// A god-damned dirty hack! :D
 		global $wgSitename;
 		$old = array();
 		$old['wgSitename'] = $wgSitename;
 		$wgSitename = $this->projectName();
-		
+
 		$options = array(
 			'language' => $this->language,
 			'parsemag',
@@ -268,18 +268,18 @@ function pickTemplate(templates, weights) {
 		array_unshift( $params, $options );
 		array_unshift( $params, $msg );
 		$out = call_user_func_array( 'wfMsgExt', $params );
-		
+
 		// Restore globals
 		$wgSitename = $old['wgSitename'];
-		
+
 		return $out;
 	}
-	
+
 	private function projectName() {
 		global $wgConf, $IP;
 
 		// This is a damn dirty hack
-		if( file_exists( "$IP/InitialiseSettings.php" ) ) {
+		if ( file_exists( "$IP/InitialiseSettings.php" ) ) {
 			require_once "$IP/InitialiseSettings.php";
 		}
 
@@ -290,19 +290,19 @@ function pickTemplate(templates, weights) {
 			return "Wikimedia";
 
 		// Guess dbname since we don't have it atm
-		$dbname = $this->language . 
-			(($this->project == 'wikipedia') ? "wiki" : $this->project );
+		$dbname = $this->language .
+			( ( $this->project == 'wikipedia' ) ? "wiki" : $this->project );
 		$name = $wgConf->get( 'wgSitename', $dbname, $this->project,
 			array( 'lang' => $this->language, 'site' => $this->project ) );
-		
-		if( $name ) {
+
+		if ( $name ) {
 			return $name;
 		} else {
 			global $wgLang;
 			return $wgLang->ucfirst( $this->project );
 		}
 	}
-	
+
 	/*
 	function wrapQuote( $text ) {
 		return "<span class='fundquote'>" .
@@ -312,24 +312,24 @@ function pickTemplate(templates, weights) {
 			"</span>";
 	}
 	*/
-	
+
 	private function getDonorCount() {
 		global $wgNoticeCounterSource, $wgMemc;
 		$count = intval( $wgMemc->get( 'centralnotice:counter' ) );
-		if( !$count ) {
+		if ( !$count ) {
 			$count = intval( @file_get_contents( $wgNoticeCounterSource ) );
-			if( !$count ) {
+			if ( !$count ) {
 				// nooooo
 				return $this->getFallbackDonorCount();
 			}
-			
+
 			$wgMemc->set( 'centralnotice:counter', $count, 60 );
 			$wgMemc->set( 'centralnotice:counter:fallback', $count ); // no expiry
 		}
 
 		return $count;
 	}
-	
+
 	private function getDonationAmount() {
 		return 2543454;
 	}
@@ -337,12 +337,12 @@ function pickTemplate(templates, weights) {
 	private function getFallbackDonorCount() {
 		global $wgMemc;
 		$count = intval( $wgMemc->get( 'centralnotice:counter:fallback' ) );
-		if( !$count ) {
+		if ( !$count ) {
 			return 16672; // number last i saw... dirty hack ;)
 		}
 		return $count;
 	}
-	
+
 	/*
 	private function getBlog() {
 		$url = $this->getMessage( 'centralnotice-blog-url' );
@@ -372,7 +372,7 @@ function pickTemplate(templates, weights) {
 		return $title;
 	}
 	*/
-	
+
 	/**
 	 * Fetch the first link and title from an RSS feed
 	 * @return array
@@ -392,5 +392,5 @@ function pickTemplate(templates, weights) {
 		}
 	}
 	*/
-	
+
 }

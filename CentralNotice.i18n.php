@@ -12,7 +12,7 @@ $messages['en'] = array(
 	'noticetemplate' => 'Central notice template',
 	'noticetranslate' => 'Central notice translate',
 	'centralnotice-desc' => 'Adds a central sitenotice',
-	'centralnotice-summary' =>'This module allows you to edit your currently setup central notices.
+	'centralnotice-summary' => 'This module allows you to edit your currently setup central notices.
 It can also be used to add or remove old notices.',
 	'centralnotice-query' => 'Modify current notices',
 	'centralnotice-notice-name' => 'Notice name',
@@ -329,6 +329,13 @@ $messages['lb'] = array(
  */
 $messages['li'] = array(
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
+);
+
+/** Macedonian (Македонски)
+ * @author Brest
+ */
+$messages['mk'] = array(
+	'centralnotice-desc' => 'Додава централизирано известување',
 );
 
 /** Malayalam (മലയാളം)

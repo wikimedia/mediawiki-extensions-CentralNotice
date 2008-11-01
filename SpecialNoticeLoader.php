@@ -12,7 +12,7 @@
  */
 class SpecialNoticeLoader extends NoticePage {
 	function __construct() {
-		parent::__construct("NoticeLoader");
+		parent::__construct( "NoticeLoader" );
 	}
 
 	/**
@@ -23,34 +23,34 @@ class SpecialNoticeLoader extends NoticePage {
 		global $wgNoticeTimeout;
 		return $wgNoticeTimeout;
 	}
-	
+
 	protected function sharedMaxAge() {
 		global $wgNoticeServerTimeout;
 		return $wgNoticeServerTimeout;
 	}
-	
+
 	function getJsOutput( $par ) {
 		global $wgNoticeTestMode;
 		$loader = $this->loaderScript();
-		if( $wgNoticeTestMode ) {
+		if ( $wgNoticeTestMode ) {
 			return $this->testCondition( $loader );
 		} else {
 			return $loader;
 		}
 	}
-	
+
 	function testCondition( $code ) {
 		global $wgNoticeEnabledSites;
 		$conditions = array();
 		$conditions[] = '/[?&]sitenotice=yes/.test(document.location.search)';
-		if( $wgNoticeEnabledSites ) {
-			foreach( $wgNoticeEnabledSites as $site ) {
+		if ( $wgNoticeEnabledSites ) {
+			foreach ( $wgNoticeEnabledSites as $site ) {
 				list( $lang, $project ) = explode( ".", $site );
-				if( $lang == '*' ) {
+				if ( $lang == '*' ) {
 					$conditions[] =
 						'(wgNoticeProject)==' .
 						Xml::encodeJsVar( $project );
-				} elseif( $project == '*' ) {
+				} elseif ( $project == '*' ) {
 					$conditions[] =
 						'(wgNoticeLang)==' .
 						Xml::encodeJsVar( $lang );
@@ -64,11 +64,11 @@ class SpecialNoticeLoader extends NoticePage {
 		return
 			'if((' .
 			implode( ')||(', $conditions ) .
-			')){'.
+			')){' .
 			$code .
 			'}';
 	}
-	
+
 	function loaderScript() {
 		global $wgNoticeText;
 		$encUrl = htmlspecialchars( $wgNoticeText );
@@ -76,7 +76,7 @@ class SpecialNoticeLoader extends NoticePage {
 		return "document.writeln(" .
 			Xml::encodeJsVar( "<script src=\"$encUrl/" ) .
 			'+wgNoticeProject+"/"+wgUserLanguage+' .
-			Xml::encodeJsVar( "?$encEpoch\"></script>" ).
+			Xml::encodeJsVar( "?$encEpoch\"></script>" ) .
 			');';
 	}
 }
