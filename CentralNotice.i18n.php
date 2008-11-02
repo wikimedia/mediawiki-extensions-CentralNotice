@@ -86,6 +86,8 @@ Add one below',
 	'centralnotice-edit-template' => 'Edit template',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message not set',
+	'right-centralnotice_admin_rights' => 'Manage central notices',
+	'right-centralnotice_translate_rights' => 'Translate central notices',
 );
 
 /** Afrikaans (Afrikaans)
