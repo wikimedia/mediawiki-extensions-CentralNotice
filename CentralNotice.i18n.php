@@ -81,7 +81,6 @@ This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No notices exist.
 Add one below',
 	'centralnotice-no-templates-translate' => 'There are not any templates to edit translations for',
-	'centralnotice-no-templates' => 'There are no templates in the system',
 	'centralnotice-number-uses' => 'Uses',
 	'centralnotice-edit-template' => 'Edit template',
 	'centralnotice-message' => 'Message',
@@ -477,12 +476,12 @@ $messages['he'] = array(
 	'centralnotice-no-notices-exist' => 'אין עדיין הודעות.
 הוסיפו אחת למטה',
 	'centralnotice-no-templates-translate' => 'אין תבניות כדי לערוך את התרגומים שלהן',
-	'centralnotice-no-templates' => 'אין תבניות במערכת.
-צרו אחת',
 	'centralnotice-number-uses' => 'משתמשת ב',
 	'centralnotice-edit-template' => 'עריכת התבנית',
 	'centralnotice-message' => 'הודעה',
 	'centralnotice-message-not-set' => 'לא הוגדרה הודעה',
+	'right-centralnotice_admin_rights' => 'ניהול הודעת מרכזיות',
+	'right-centralnotice_translate_rights' => 'תרגום הודעות מרכזיות',
 );
 
 /** Hindi (हिन्दी)
