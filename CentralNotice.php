@@ -131,9 +131,6 @@ function efCentralNoticeSetup() {
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
 		$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 		
-		$wgSpecialPages['NoticeLoader'] = 'SpecialNoticeLoader';
-		$wgAutoloadClasses['SpecialNoticeLoader'] = $dir . 'SpecialNoticeLoader.php';
-		
 		$wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
 		$wgAutoloadClasses['SpecialNoticeText'] = $dir . 'SpecialNoticeText.php';
 		
