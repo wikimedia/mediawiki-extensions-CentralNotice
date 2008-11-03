@@ -117,13 +117,16 @@ function efCentralNoticeSetup() {
 	$dir = dirname( __FILE__ ) . '/';
 	
 	if( $wgCentralNoticeLoader ) {
-		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
+		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
+		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
 	}
 	
 	$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
 	
+	/*
 	$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
 	$wgAutoloadClasses['SpecialNoticeLocal'] = $dir . 'SpecialNoticeLocal.php';
+	*/
 
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
@@ -139,8 +142,8 @@ function efCentralNoticeSetup() {
 	}
 }
 
-function efCentralNoticeLoader( &$notice ) {
-	global $wgScript, $wgUser, $wgLang;
+function efCentralNoticeLoader( $out, $skin ) {
+	global $wgScript, $wgUser, $wgOut, $wgLang;
 	global $wgNoticeProject;
 	
 	global $wgNoticeCentralPath;
@@ -148,9 +151,11 @@ function efCentralNoticeLoader( &$notice ) {
 	
 	$lang = $wgLang->getCode();
 	$centralNotice = "$wgNoticeProject/$lang/centralnotice.js";
+	/*
 	$localNotice = ( is_object( $wgUser ) && $wgUser->isLoggedIn() )
 		? 'sitenotice.js'
 		: 'anonnotice.js';
+	*/
 
 	
 	if ( $wgNoticeCentralPath === false ) {
@@ -160,29 +165,28 @@ function efCentralNoticeLoader( &$notice ) {
 	}
 	$encCentralLoader = htmlspecialchars( $centralLoader );
 
+	/*
 	if ( $wgNoticeLocalPath === false ) {
 		$localLoader = SpecialPage::getTitleFor( 'NoticeLocal', $localNotice )->getLocalUrl();
 	} else {
 		$localLoader = "$wgNoticeLocalPath/$localNotice";
 	}
 	$encLocalLoader = htmlspecialchars( $localLoader );
+	*/
 
-	// Throw away the classic notice, use the central loader...
-	$notice = <<<EOT
-<script type="text/javascript">
-var wgNotice = "";
-var wgNoticeLocal = "";
-</script>
-<script type="text/javascript" src="$encCentralLoader"></script>
-<script type="text/javascript" src="$encLocalLoader"></script>
-<script type="text/javascript">
-if (wgNotice != "") {
-  document.writeln(wgNotice);
+	// Load the notice text from <head>
+	$wgOut->addInlineScript( "var wgNotice='';var wgNoticeLocal='';" );
+	$wgOut->addScriptFile( $encCentralLoader );
+	
+	return true;
 }
-if (wgNoticeLocal != "") {
-  document.writeln(wgNoticeLocal);
-}
-</script>
-EOT;
+
+function efCentralNoticeDisplay( &$notice ) {
+	// Slip in load of the data...
+	$notice =
+		"<script type='text/javascript'>" .
+		"if (wgNotice != '') document.writeln(wgNotice);" .
+		"</script>" .
+		$notice;
 	return true;
 }

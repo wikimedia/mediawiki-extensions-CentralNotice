@@ -112,6 +112,9 @@ function pickTemplate(templates, weights) {
 		}
 		currentTemplate++;
 	}
+	
+	if (totalWeight == 0)
+		return '';
 
 	var randomnumber=Math.floor(Math.random()*totalWeight);
 	return weightedTemplates[randomnumber];
