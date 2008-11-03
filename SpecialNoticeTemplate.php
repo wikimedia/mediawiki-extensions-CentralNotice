@@ -155,7 +155,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$render = new SpecialNoticeText();
 				$render->project = 'wikipedia';
 				$render->language = $wgRequest->getVal( 'wpUserLanguage' );
-				$htmlOut .= Xml::tags( 'td', null,
+				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 					$sk->makeLinkObj( $viewPage,
 						htmlspecialchars( $templateName ),
 						'template=' . urlencode( $templateName ) ) .
