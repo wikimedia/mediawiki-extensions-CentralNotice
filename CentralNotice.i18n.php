@@ -8,8 +8,8 @@
 $messages = array();
 
 $messages['en'] = array(
-	'centralnotice' => 'Central Notice Admin',
-	'noticetemplate' => 'Central Notice Template',
+	'centralnotice' => 'Central notice admin',
+	'noticetemplate' => 'Central notice template',
 	'centralnotice-desc' => 'Adds a central sitenotice',
 	'centralnotice-summary' => 'This module allows you to edit your currently setup central notices.
 It can also be used to add or remove old notices.',
