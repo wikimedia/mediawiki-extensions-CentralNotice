@@ -144,6 +144,7 @@ function efCentralNoticeSetup() {
 
 function efCentralNoticeLoader( $out, $skin ) {
 	global $wgScript, $wgUser, $wgOut, $wgLang;
+	global $wgStyleVersion, $wgJsMimeType;
 	global $wgNoticeProject;
 	
 	global $wgNoticeCentralPath;
@@ -176,7 +177,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 	// Load the notice text from <head>
 	$wgOut->addInlineScript( "var wgNotice='';var wgNoticeLocal='';" );
-	$wgOut->addScriptFile( $encCentralLoader );
+	$wgOut->addScript( "<script type=\"{$wgJsMimeType}\" src=\"$encCentralLoader?$wgStyleVersion\"></script>\n" );
 	
 	return true;
 }
