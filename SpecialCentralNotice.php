@@ -358,7 +358,12 @@ class CentralNotice extends SpecialPage {
 			);
 		}
 		$htmlOut .= Xml::fieldset( wfMsgHtml( "centralnotice-manage" ) );
-		$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
+		$htmlOut .= Xml::openElement( 'table',
+			array(
+				'cellpadding' => 9,
+				'width' => '100%'
+			)
+		);
 
 		// Headers
 		$headers = array(
