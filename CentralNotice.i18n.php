@@ -214,7 +214,6 @@ $messages['cs'] = array(
 $messages['de'] = array(
 	'centralnotice' => 'Administrierung der zentralen Meldungen',
 	'noticetemplate' => 'Zentrale Meldungs-Vorlagen',
-	'noticetranslate' => 'Übersetzung zentraler Meldungen',
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
 	'centralnotice-summary' => 'Diese Erweiterung erlaubt die Konfiguration zentraler Meldungen.
 Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werden.',
@@ -363,7 +362,6 @@ $messages['fi'] = array(
 $messages['fr'] = array(
 	'centralnotice' => 'Administration des avis centraux',
 	'noticetemplate' => 'Modèles des avis centraux',
-	'noticetranslate' => 'Traduction des avis centraux',
 	'centralnotice-desc' => 'Ajoute un sitenotice central',
 	'centralnotice-summary' => 'Ce module vous permet de modifier vos paramètrres des notifications centrales.',
 	'centralnotice-query' => 'Modifier les avis actuels',
@@ -460,7 +458,6 @@ $messages['gl'] = array(
 $messages['he'] = array(
 	'centralnotice' => 'ניהול ההודעה המרכזית',
 	'noticetemplate' => 'תבנית ההודעה המרכזית',
-	'noticetranslate' => 'תרגום ההודעה המרכזית',
 	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
 	'centralnotice-summary' => 'מודול זה מאפשר את עריכת ההודעות המרכזיות המותקנות כעת.
 ניתן גם להשתמש בו כדי להוסיף או להסיר הודעות ישנות.',
@@ -566,7 +563,6 @@ $messages['hsb'] = array(
 $messages['ia'] = array(
 	'centralnotice' => 'Administration de notas central',
 	'noticetemplate' => 'Patrono de notas central',
-	'noticetranslate' => 'Traduction de notas central',
 	'centralnotice-desc' => 'Adde un notitia de sito central',
 	'centralnotice-summary' => 'Iste modulo permitte modificar le notas central actualmente configurate.
 Illo pote tamben esser usate pro adder o remover notas ancian.',
@@ -812,7 +808,6 @@ $messages['nds'] = array(
 $messages['nl'] = array(
 	'centralnotice' => 'Beheer centrale sitenotice',
 	'noticetemplate' => 'Sjablonen centrale sitenotice',
-	'noticetranslate' => 'Vertalen centrale sitenotice',
 	'centralnotice-desc' => 'Voegt een centrale sitemededeling toe',
 	'centralnotice-summary' => 'Met deze module kunnen centraal ingestelde sitenotices bewerkt worden.
 De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwijderen.',
@@ -911,7 +906,6 @@ $messages['oc'] = array(
 $messages['pl'] = array(
 	'centralnotice' => 'Administrowanie wspólnymi komunikatami',
 	'noticetemplate' => 'Szablony wspólnych komunikatów',
-	'noticetranslate' => 'Tłumaczenie wspólnych komunikatów',
 	'centralnotice-desc' => 'Dodaje wspólny komunikat dla serwisów',
 	'centralnotice-summary' => 'Ten moduł pozwala zmieniać bieżące ustawienia wspólnych komunikatów.
 Można także dodawać i usuwać komunikaty.',
@@ -1132,7 +1126,6 @@ Zónteghene una qua soto.',
 $messages['vi'] = array(
 	'centralnotice' => 'Quản lý các thông báo chung',
 	'noticetemplate' => 'Tiêu bản thông báo chung',
-	'noticetranslate' => 'Dịch thông báo chung',
 	'centralnotice-desc' => 'Thêm thông báo ở đầu các trang tại hơn một wiki',
 	'centralnotice-summary' => 'Dùng phần này, bạn có thể sửa đổi các thông báo chung đã được thiết lập, cũng như thêm thông báo mới hoặc dời thông báo cũ.',
 	'centralnotice-query' => 'Sửa đổi các thông báo hiện hành',
