@@ -35,6 +35,7 @@ class CentralNotice extends SpecialPage {
 		// Show header
 		$this->printHeader( $sub );
 
+		$method = $wgRequest->getVal( 'method' );
 		// Handle form sumissions
 		if ( $this->editable && $wgRequest->wasPosted() ) {
 
@@ -54,30 +55,40 @@ class CentralNotice extends SpecialPage {
 			// Handle locking/unlocking
 			$lockedNotices = $wgRequest->getArray( 'locked' );
 			if ( isset( $lockedNotices ) ) {
-				// Build list of notices to lock
-				$unlockedNotices = array_diff( $this->getNoticesName(), $lockedNotices );
+ 				if ( $method == 'listNoticeDetail' ) {
+					$notice = $wgRequest->getVal ( 'notice' );
+					$this->updateLock( $notice, '1' );
+				} else {
+					// Build list of notices to lock
+					$unlockedNotices = array_diff( $this->getNoticesName(), $lockedNotices );
 
-				// Set locked/unlocked flag accordingly
-				foreach ( $lockedNotices as $notice ) {
-				     $this->updateLock( $notice, '1' );
-				}
-				foreach ( $unlockedNotices as $notice ) {
-				     $this->updateLock( $notice, '0' );
+					// Set locked/unlocked flag accordingly
+					foreach ( $lockedNotices as $notice ) {
+					     $this->updateLock( $notice, '1' );
+					}
+					foreach ( $unlockedNotices as $notice ) {
+					     $this->updateLock( $notice, '0' );
+					}
 				}
 			}
 
 			// Handle enabling/disabling
 			$enabledNotices = $wgRequest->getArray( 'enabled' );
 			if ( isset( $enabledNotices ) ) {
-				// Build list of notices to disable
-				$disabledNotices = array_diff( $this->getNoticesName(), $enabledNotices );
-
-				// Set enabled/disabled flag accordingly
-				foreach ( $enabledNotices as $notice ) {
+				if ( $method == 'listNoticeDetail' ) {
+					$notice = $wgRequest->getVal ( 'notice' );
 					$this->updateEnabled( $notice, '1' );
-				}
-				foreach ( $disabledNotices as $notice ) {
-					$this->updateEnabled( $notice, '0' );
+				} else {
+					// Build list of notices to disable
+					$disabledNotices = array_diff( $this->getNoticesName(), $enabledNotices );
+
+					// Set enabled/disabled flag accordingly
+					foreach ( $enabledNotices as $notice ) {
+						$this->updateEnabled( $notice, '1' );
+					}
+					foreach ( $disabledNotices as $notice ) {
+						$this->updateEnabled( $notice, '0' );
+					}
 				}
 			}
 
@@ -101,17 +112,27 @@ class CentralNotice extends SpecialPage {
 			}
 
 			// Handle updates if no post content came through
-			if ( !isset( $lockedNotices )  && $wgRequest->getText( 'change' ) !== 'weight' )  {
-				 $allNotices = $this->getNoticesName();
-				foreach ( $allNotices as $notice ) {
-					$this->updateLock( $notice, '0' );
+			if ( !isset( $lockedNotices ) ) {
+				if ( $method == 'listNoticeDetail' ) {
+					$notice = $wgRequest->getVal ( 'notice' );
+						$this->updateLock( $notice, 0 );
+				} else {
+					$allNotices = $this->getNoticesName();
+					foreach ( $allNotices as $notice ) {
+						$this->updateLock( $notice, '0' );
+					}
 				}
 			}
 
-			if ( !isset( $enabledNotices ) && $wgRequest->getText( 'change' ) !== 'weight' ) {
-				$allNotices = $this->getNoticesName();
-				foreach ( $allNotices as $notice ) {
-					$this->updateEnabled( $notice, '0' );
+			if ( !isset( $enabledNotices )  ) {
+				if ( $method == 'listNoticeDetail' ) {
+					$notice = $wgRequest->getVal ( 'notice' );
+						$this->updateEnabled( $notice, 0);
+				} else {
+					$allNotices = $this->getNoticesName();
+					foreach ( $allNotices as $notice ) {
+						$this->updateEnabled( $notice, '0' );
+					}
 				}
 			}
 
@@ -125,7 +146,6 @@ class CentralNotice extends SpecialPage {
 		}
 
 		// Handle adding
-		$method = $wgRequest->getVal( 'method' );
 		$this->showAll = $wgRequest->getVal( 'showAll' );
 		if ( $this->editable && $method == 'addNotice' ) {
 			$noticeName       = $wgRequest->getVal( 'noticeName' );
@@ -177,10 +197,12 @@ class CentralNotice extends SpecialPage {
 	// Update the enabled/disabled state of notice
 	private function updateEnabled( $notice, $state ) {
 		 $dbw = wfGetDB( DB_MASTER );
+	         $dbw->begin();
 		 $res = $dbw->update( 'cn_notices',
 		 	array( 'not_enabled' => $state ),
 		 	array( 'not_name' => $notice )
-		 );
+		);
+		$dbw->commit(); 
 	}
 
 	static public function printHeader() {
@@ -551,6 +573,8 @@ class CentralNotice extends SpecialPage {
 					$this->addTemplateTo( $notice, $template, $weight[$template] );
 				}
 			}
+			$wgOut->redirect( SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice") );
+			return;
 		}
 
 		$htmlOut = '';
@@ -558,7 +582,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' => ''
+					'action' => SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice")
 				)
 			);
 		}
@@ -850,9 +874,9 @@ class CentralNotice extends SpecialPage {
 						Xml::listDropDown( "weight[$row->tmp_name]",
 							$this->dropDownList( wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) ) ,
 							'',
-							0,
+							'25',
 							'',
-							16 )
+							'')
 					);
 
 					// Render preview
@@ -959,6 +983,7 @@ class CentralNotice extends SpecialPage {
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
+	                $dbw->begin();
 			$start['hour'] = substr( $start['hour'], 0 , 2 );
 			if ( $start['month'] == 12 ) {
 				$end['month'] = '01';
@@ -985,6 +1010,7 @@ class CentralNotice extends SpecialPage {
 			if ( $dbr->numRows( $res ) > 0 ) {
 				$wgOut->addHtml( wfMsg( 'centralnotice-overlap' ) );
 			} else {
+	                        $dbw->begin();
 				$res = $dbw->insert( 'cn_notices',
 					array( 'not_name' => $noticeName,
 						'not_enabled' => $enabled,
@@ -993,7 +1019,9 @@ class CentralNotice extends SpecialPage {
 						'not_project' => $project_name,
 						'not_language' => $project_language
 					)
+
 				);
+				$dbw->commit();
 			}
 			return;
 		}
@@ -1016,9 +1044,11 @@ class CentralNotice extends SpecialPage {
 			 return;
 		} else {
 			 $dbw = wfGetDB( DB_MASTER );
+	                 $dbw->begin();
 			 $noticeId = htmlspecialchars( $this->getNoticeId( $noticeName ) );
 			 $res = $dbw->delete( 'cn_assignments',  array ( 'not_id' => $noticeId ) );
 			 $res = $dbw->delete( 'cn_notices', array ( 'not_name' => $noticeName ) );
+			 $dbw->commit();
 			 return;
 		}
 	}
@@ -1041,6 +1071,7 @@ class CentralNotice extends SpecialPage {
 			$wgOut->addHTML( wfMsg( 'centralnotice-template-already-exists' ) );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
 			$noticeId = $this->getNoticeId( $eNoticeName );
 			$res = $dbw->insert( 'cn_assignments',
 				array(
@@ -1048,7 +1079,8 @@ class CentralNotice extends SpecialPage {
 					'tmp_weight' => $weight,
 					'not_id' => $noticeId
 				)
-			);
+			); 
+			$dbw->commit();
 		}
 	}
 
@@ -1088,9 +1120,11 @@ class CentralNotice extends SpecialPage {
 		global $wgOut;
 
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
 		$noticeId = $this->getNoticeId( $noticeName );
 		$templateId = $this->getTemplateId( $templateName );
 		$res = $dbw->delete( 'cn_assignments', array ( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
+		$dbw->commit();
 	}
 
 	function updateNoticeDate ( $noticeName, $start, $end ) {
@@ -1128,6 +1162,7 @@ class CentralNotice extends SpecialPage {
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
 			$res = $dbw->update( 'cn_notices',
 				array(
 					'not_start' => $start,
@@ -1135,6 +1170,7 @@ class CentralNotice extends SpecialPage {
 				),
 				array( 'not_name' => $noticeName )
 			);
+			$dbw->commit();
 		}
 	}
 
@@ -1149,15 +1185,18 @@ class CentralNotice extends SpecialPage {
 			$wgOut->addHTML( wfMsg( 'centralnotice-doesnt-exist' ) );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
 			$res = $dbw->update( 'cn_notices',
 				array( 'not_locked' => $isLocked ),
 				array( 'not_name' => $noticeName )
 			);
+			$dbw->commit();
 		}
 	}
 
 	function updateWeight ( $noticeName, $templateName, $weight ) {
 		 $dbw = wfGetDB( DB_MASTER );
+		 $dbw->begin();
 		 $noticeId = $this->getNoticeId( $noticeName );
 		 $templateId = $this->getTemplateId( $templateName );
 		 $res = $dbw->update( 'cn_assignments',
@@ -1167,6 +1206,7 @@ class CentralNotice extends SpecialPage {
 				'not_id' => $noticeId
 			)
 		);
+		$dbw->commit();
 	}
 
 	function projectDropDownList( $selected = '' ) {
@@ -1230,22 +1270,26 @@ class CentralNotice extends SpecialPage {
 
 	function updateProjectName( $notice, $projectName ) {
 		 $dbw = wfGetDB( DB_MASTER );
+		 $dbw->begin();
 		 $res = $dbw->update( 'cn_notices',
 			array ( 'not_project' => $projectName ),
 			array(
 				'not_name' => $notice
 			)
 		);
+		$dbw->commit();
 	}
 
 	function updateProjectLanguage( $notice, $language ) {
 		 $dbw = wfGetDB( DB_MASTER );
+		 $dbw->begin();
 		 $res = $dbw->update( 'cn_notices',
 			array ( 'not_language' => $language ),
 			array(
 				'not_name' => $notice
 			)
 		);
+		$dbw->commit();
 	}
 
 	function dropDownList ( $text, $values ) {

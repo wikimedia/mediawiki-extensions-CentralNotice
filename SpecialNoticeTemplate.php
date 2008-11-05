@@ -454,10 +454,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
 			$res = $dbw->delete( 'cn_templates',
 				array( 'tmp_id' => $id ),
 				__METHOD__
 			);
+			$dbw->commit();
 
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
@@ -488,10 +490,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
 			$res = $dbw->insert( 'cn_templates',
 				array( 'tmp_name' => $name ),
 				__METHOD__
 			);
+			$dbw->commit();
 
 			/*
 			 * Perhaps these should move into the db as blob
