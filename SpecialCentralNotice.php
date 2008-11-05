@@ -983,7 +983,7 @@ class CentralNotice extends SpecialPage {
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-	                $dbw->begin();
+			$dbw->begin();
 			$start['hour'] = substr( $start['hour'], 0 , 2 );
 			if ( $start['month'] == 12 ) {
 				$end['month'] = '01';
@@ -1010,7 +1010,6 @@ class CentralNotice extends SpecialPage {
 			if ( $dbr->numRows( $res ) > 0 ) {
 				$wgOut->addHtml( wfMsg( 'centralnotice-overlap' ) );
 			} else {
-	                        $dbw->begin();
 				$res = $dbw->insert( 'cn_notices',
 					array( 'not_name' => $noticeName,
 						'not_enabled' => $enabled,
@@ -1021,8 +1020,8 @@ class CentralNotice extends SpecialPage {
 					)
 
 				);
-				$dbw->commit();
 			}
+			$dbw->commit();
 			return;
 		}
 	}
