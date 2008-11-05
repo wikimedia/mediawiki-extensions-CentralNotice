@@ -134,7 +134,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 			$msgConfirmDelete = wfMsgHTML( 'centralnotice-confirm-delete' );
 			foreach ( $templates as $templateName ) {
-				$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate/view' );
+				$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 				$htmlOut .= Xml::openElement( 'tr' );
 
 				if( $this->editable ) {
@@ -176,13 +176,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				Xml::element( 'td', null, wfMsg( 'centralnotice-no-templates' ) )
 			);
 		}
+
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 		if( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
 
 		$htmlOut .= Xml::element( 'p' );
-		$newPage = SpecialPage::getTitleFor( 'NoticeTemplate/add' );
+		$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
 		$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 		}
 
