@@ -999,28 +999,15 @@ class CentralNotice extends SpecialPage {
 			$startTs = wfTimeStamp( TS_MW, "{$start['year']}:{$start['month']}:{$start['day']} {$start['hour']}:00:00" );
 			$endTs = wfTimeStamp( TS_MW, "{$end['year']}:{$end['month']}:{$start['day']} {$start['hour']}:00:00" );
 
-			$res = $dbr->select( 'cn_notices', 'not_name',
-				array (
-					'not_start >= ' . $dbr->addQuotes( $dbr->timestamp( $startTs ) ),
-					'not_end <= ' . $dbr->addQuotes( $dbr->timestamp( $endTs ) ),
-					'not_project' => $project_name,
-					'not_language' => $project_language
-				)
+			$res = $dbw->insert( 'cn_notices',
+			   array( 'not_name' => $noticeName,
+				  'not_enabled' => $enabled,
+				  'not_start' => $dbr->timestamp( $startTs ),
+				  'not_end' => $dbr->timestamp( $endTs ),
+				  'not_project' => $project_name,
+				  'not_language' => $project_language
+			    )
 			);
-			if ( $dbr->numRows( $res ) > 0 ) {
-				$wgOut->addHtml( wfMsg( 'centralnotice-overlap' ) );
-			} else {
-				$res = $dbw->insert( 'cn_notices',
-					array( 'not_name' => $noticeName,
-						'not_enabled' => $enabled,
-						'not_start' => $dbr->timestamp( $startTs ),
-						'not_end' => $dbr->timestamp( $endTs ),
-						'not_project' => $project_name,
-						'not_language' => $project_language
-					)
-
-				);
-			}
 			$dbw->commit();
 			return;
 		}
@@ -1148,29 +1135,17 @@ class CentralNotice extends SpecialPage {
 		// Overlap over a date within the same project and language
 		$startDate = $dbr->timestamp( $start );
 		$endDate = $dbr->timestamp( $end );
-		$res = $dbr->select( 'cn_notices', 'not_id',
+	     
+ 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+		$res = $dbw->update( 'cn_notices',
 			array(
-				'not_language' => $project_language,
-				'not_project' => $project_name,
-				"not_end <= {$endDate}",
-				"not_start >= {$startDate}"
-			)
+				'not_start' => $start,
+				'not_end' => $end
+			),
+			array( 'not_name' => $noticeName )
 		);
-		if ( $dbr->numRows( $res ) > 1 ) {
-			$wgOut->addHtml( wfMsg( 'centralnotice-overlap-with-existing-notice' ) );
-			return;
-		} else {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
-			$res = $dbw->update( 'cn_notices',
-				array(
-					'not_start' => $start,
-					'not_end' => $end
-				),
-				array( 'not_name' => $noticeName )
-			);
-			$dbw->commit();
-		}
+		$dbw->commit();
 	}
 
 	function updateLock ( $noticeName, $isLocked ) {
