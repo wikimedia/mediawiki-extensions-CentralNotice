@@ -71,15 +71,13 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				);
 				$sub = 'view';
 			}
-		}
-
-		// Handle Editing
-		if ( $wgRequest->getVal( 'wpMethod' ) == 'editTemplate' ) {
-			$this->editTemplate(
-				$wgRequest->getVal( 'template' ),
-				$wgRequest->getVal( 'templateBody' )
-			);
-			$sub = 'view';
+			if ( $wgRequest->getVal( 'wpMethod' ) == 'editTemplate' ) {
+				$this->editTemplate(
+					$wgRequest->getVal( 'template' ),
+					$wgRequest->getVal( 'templateBody' )
+				);
+				$sub = 'view';
+			}
 		}
 
 		// Handle viewing a specific template
