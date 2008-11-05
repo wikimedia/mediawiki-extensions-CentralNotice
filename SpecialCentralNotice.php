@@ -112,7 +112,7 @@ class CentralNotice extends SpecialPage {
 			}
 
 			// Handle updates if no post content came through
-			if ( !isset( $lockedNotices ) ) {
+			if ( !isset( $lockedNotices ) && $method !==  'addNotice' ) {
 				if ( $method == 'listNoticeDetail' ) {
 					$notice = $wgRequest->getVal ( 'notice' );
 						$this->updateLock( $notice, 0 );
@@ -124,7 +124,7 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 
-			if ( !isset( $enabledNotices )  ) {
+			if ( !isset( $enabledNotices ) && $method !== 'addNotice'  ) {
 				if ( $method == 'listNoticeDetail' ) {
 					$notice = $wgRequest->getVal ( 'notice' );
 						$this->updateEnabled( $notice, 0);
