@@ -188,7 +188,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 
 		// Output HTML
-		$wgOut->addHtml( $htmlOut );
+		$wgOut->addHTML( $htmlOut );
 	}
 
 	function showAdd() {
@@ -217,7 +217,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::closeElement( 'form' );
 
 		// Output HTML
-		$wgOut->addHtml( $htmlOut );
+		$wgOut->addHTML( $htmlOut );
 	}
 
 	private function showView() {
@@ -440,7 +440,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $egCentralNoticeTables;
 
 		if ( $name == '' ) {
-			$wgOut->addHtml( wfMsg( 'centralnotice-template-doesnt-exist' ) );
+			$wgOut->addHTML( wfMsg( 'centralnotice-template-doesnt-exist' ) );
 			return;
 		}
 
@@ -449,7 +449,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addHtml( wfMsg( 'centralnotice-template-still-bound' ) );
+			$wgOut->addHTML( wfMsg( 'centralnotice-template-still-bound' ) );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -471,7 +471,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $egCentralNoticeTables;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addHtml( wfMsg( 'centralnotice-null-string' ) );
+			$wgOut->addHTML( wfMsg( 'centralnotice-null-string' ) );
 			return;
 		}
 
@@ -511,7 +511,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $egCentralNoticeTables;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addHtml( wfMsg( 'centralnotice-null-string' ) );
+			$wgOut->addHTML( wfMsg( 'centralnotice-null-string' ) );
 			return;
 		}
 
