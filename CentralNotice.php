@@ -106,6 +106,7 @@ $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['CentralNotice'] = $dir . 'CentralNotice.i18n.php';
 
 $wgAvailableRights[] = 'centralnotice_admin_rights';
+$wgAvailableRights[] = 'centralnotice_translate_rights';
 $wgGroupPermissions['sysop']['centralnotice_admin_rights'] = true; // Only sysops can make change
 $wgGroupPermissions['sysop']['centralnotice_translate_rights'] = true; // Only sysops can make change
 
