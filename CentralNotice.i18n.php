@@ -713,6 +713,8 @@ $messages['he'] = array(
 	'centralnotice-message-not-set' => 'לא הוגדרה הודעה',
 	'right-centralnotice_admin_rights' => 'ניהול הודעת מרכזיות',
 	'right-centralnotice_translate_rights' => 'תרגום הודעות מרכזיות',
+	'action-centralnotice_admin_rights' => 'לנהל הודעות מרכזיות',
+	'action-centralnotice_translate_rights' => 'לתרגם הודעות מרכזיות',
 );
 
 /** Hindi (हिन्दी)
