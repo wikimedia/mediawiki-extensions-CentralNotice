@@ -119,6 +119,19 @@ $messages['qqq'] = array(
  */
 $messages['af'] = array(
 	'centralnotice-desc' => "Voeg 'n sentrale stelselkennisgewing by",
+	'centralnotice-translate-heading' => 'Vertaling vir $1',
+	'centralnotice-translations' => 'Vertalings',
+	'centralnotice-template-body' => 'Sjablooninhoud:',
+	'centralnotice-day' => 'Dag',
+	'centralnotice-year' => 'Jaar',
+	'centralnotice-month' => 'Maand',
+	'centralnotice-hours' => 'Uur',
+	'centralnotice-min' => 'Minuut',
+	'centralnotice-project-lang' => 'Projektaal',
+	'centralnotice-project-name' => 'Projeknaam',
+	'centralnotice-start-date' => 'Begindatum',
+	'centralnotice-start-time' => 'Begintyd (UTC)',
+	'centralnotice-assigned-templates' => 'Aangewese sjablone',
 );
 
 /** Amharic (አማርኛ)
@@ -137,9 +150,75 @@ $messages['an'] = array(
 
 /** Arabic (العربية)
  * @author Meno25
+ * @author OsamaK
  */
 $messages['ar'] = array(
+	'centralnotice' => 'مدير الإخطار المركزي',
+	'noticetemplate' => 'قالب الإخطار المركزي',
 	'centralnotice-desc' => 'يضيف إعلانا مركزيا للموقع',
+	'centralnotice-summary' => 'هذه الوحدة تسمح لك بتعديل إعدادات الإخطار المركزي الحالية.
+يمكن أن تستخدم أيضا لإضافة أو إزالة إخطارات قديمة.',
+	'centralnotice-query' => 'تعديل الإخطارات الحالية',
+	'centralnotice-notice-name' => 'اسم الإخطار',
+	'centralnotice-end-date' => 'تاريخ الانتهاء',
+	'centralnotice-enabled' => 'مُفعّل',
+	'centralnotice-modify' => 'سلّم',
+	'centralnotice-preview' => 'عاين',
+	'centralnotice-add-new' => 'أضف إخطار جديد مركزي',
+	'centralnotice-remove' => 'أزل',
+	'centralnotice-translate-heading' => 'ترجمة $1',
+	'centralnotice-manage' => 'أدر الإخطار المركزي',
+	'centralnotice-add' => 'أضف',
+	'centralnotice-add-notice' => 'إضافة إخطار',
+	'centralnotice-add-template' => 'إضافة قالب',
+	'centralnotice-show-notices' => 'إظهار الإخطارات',
+	'centralnotice-translations' => 'الترجمات',
+	'centralnotice-translate-to' => 'ترجم إلى',
+	'centralnotice-translate' => 'ترجم',
+	'centralnotice-english' => 'الإنجليزية',
+	'centralnotice-template-name' => 'اسم القالب',
+	'centralnotice-templates' => 'القوالب',
+	'centralnotice-weight' => 'الوزن',
+	'centralnotice-locked' => 'مغلق',
+	'centralnotice-notices' => 'الإخطارات',
+	'centralnotice-notice-exists' => 'الإخطار موجود بالفعل.
+لا إضافة',
+	'centralnotice-template-body' => 'جسم القالب:',
+	'centralnotice-day' => 'اليوم',
+	'centralnotice-year' => 'السنة',
+	'centralnotice-month' => 'الشهر',
+	'centralnotice-hours' => 'الساعة',
+	'centralnotice-min' => 'الدقيقة',
+	'centralnotice-project-lang' => 'لغة المشروع',
+	'centralnotice-project-name' => 'اسم المشروع',
+	'centralnotice-start-date' => 'تاريخ البدء',
+	'centralnotice-start-time' => 'وقت البدء (غرينتش)',
+	'centralnotice-no-templates' => 'لا قوالب موجود.
+أضف بعضا منها!',
+	'centralnotice-available-templates' => 'القوالب المتاحة',
+	'centralnotice-preview-template' => 'معاينة القالب',
+	'centralnotice-start-hour' => 'وقت البدء',
+	'centralnotice-change-lang' => 'تغيير لغة الترجمة',
+	'centralnotice-weights' => 'الأوزان',
+	'centralnotice-notice-is-locked' => 'الإخطار مغلق.
+لا إزالة',
+	'centralnotice-overlap' => 'الإخطار يتداخل مع وقت إخطار آخر.
+لا إضافة',
+	'centralnotice-invalid-date-range' => 'مدى تاريخ غير صحيح.
+لا تحديث',
+	'centralnotice-null-string' => 'لا يمكن إضافة نص مصفّر.
+لا إضافة',
+	'centralnotice-confirm-delete' => 'هل أنت متأكد من حذف هذا العنصر؟
+هذا الإجراء لن يكون قابلا للاسترجاع',
+	'centralnotice-no-notices-exist' => 'لا إخطارات موجودة.
+أضف واحدا أسفله',
+	'centralnotice-no-templates-translate' => 'لا يوجد أي قالب لتحرير ترجمته',
+	'centralnotice-number-uses' => 'الاستخدامات',
+	'centralnotice-edit-template' => 'حرّر قالبا',
+	'centralnotice-message' => 'الرسالة',
+	'centralnotice-message-not-set' => 'الرسالة غير مضبوطة',
+	'right-centralnotice_admin_rights' => 'أدر الإخطارات المركزية',
+	'right-centralnotice_translate_rights' => 'ترجم الإخطارات المركزية',
 );
 
 /** Egyptian Spoken Arabic (مصرى)
@@ -216,6 +295,7 @@ $messages['cs'] = array(
 );
 
 /** German (Deutsch)
+ * @author Metalhead64
  * @author Raimond Spekking
  */
 $messages['de'] = array(
@@ -228,11 +308,11 @@ Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werde
 	'centralnotice-notice-name' => 'Name der Notiz',
 	'centralnotice-end-date' => 'Enddatum',
 	'centralnotice-enabled' => 'Aktiviert',
-	'centralnotice-modify' => 'Übertragen',
+	'centralnotice-modify' => 'OK',
 	'centralnotice-preview' => 'Vorschau',
 	'centralnotice-add-new' => 'Füge eine neue zentrale Meldung hinzu',
 	'centralnotice-remove' => 'Entfernen',
-	'centralnotice-translate-heading' => 'Übersetzung für $1',
+	'centralnotice-translate-heading' => 'Übersetzung von „$1“',
 	'centralnotice-manage' => 'Zentrale Meldungen verwalten',
 	'centralnotice-add' => 'Hinzufügen',
 	'centralnotice-add-notice' => 'Hinzufügen einer Meldung',
@@ -275,7 +355,7 @@ Füge eine hinzu.',
 Nicht hinzugefügt.',
 	'centralnotice-preview-template' => 'Vorschau Vorlage',
 	'centralnotice-start-hour' => 'Startzeit',
-	'centralnotice-change-lang' => 'Ändere Übersetzungssprache',
+	'centralnotice-change-lang' => 'Übersetzungssprache ändern',
 	'centralnotice-weights' => 'Gewicht',
 	'centralnotice-notice-is-locked' => 'Meldung ist gesperrt.
 Entfernung nicht möglich.',
@@ -296,6 +376,8 @@ Füge eine hinzu.',
 	'centralnotice-message-not-set' => 'Nachricht nicht gesetzt',
 	'right-centralnotice_admin_rights' => 'Verwalten von zentralen Meldungen',
 	'right-centralnotice_translate_rights' => 'Übersetzen von zentralen Meldungen',
+	'action-centralnotice_admin_rights' => 'Zentrale Seitennotiz verwalten',
+	'action-centralnotice_translate_rights' => 'Zentrale Seitennotiz übersetzen',
 );
 
 /** Lower Sorbian (Dolnoserbski)
@@ -317,17 +399,25 @@ $messages['el'] = array(
  * @author Yekrats
  */
 $messages['eo'] = array(
-	'centralnotice-desc' => 'Aldonas centran retejo-noton',
+	'centralnotice' => 'Administranto de centrala notico',
+	'noticetemplate' => 'Ŝablono por centrala notico',
+	'centralnotice-desc' => 'Aldonas centralan noticon por la vikio',
+	'centralnotice-summary' => 'Ĉi tiu modulo permesas al vi redakti viajn aktualajn centralajn noticojn.
+Ĝi ankaŭ estas uzable por aldoni aŭ forigi malfreŝajn noticojn.',
+	'centralnotice-query' => 'Modifi nunajn noticojn',
+	'centralnotice-notice-name' => 'Notica nomo',
 	'centralnotice-end-date' => 'Fina dato',
 	'centralnotice-enabled' => 'Ŝaltita',
 	'centralnotice-modify' => 'Enigi',
 	'centralnotice-preview' => 'Antaŭrigardo',
+	'centralnotice-add-new' => 'Aldoni novan centralan noticon',
 	'centralnotice-remove' => 'Forigi',
 	'centralnotice-translate-heading' => 'Traduko por $1',
+	'centralnotice-manage' => 'Administri centralan noticon',
 	'centralnotice-add' => 'Aldoni',
-	'centralnotice-add-notice' => 'Aldoni noton',
+	'centralnotice-add-notice' => 'Aldoni noticon',
 	'centralnotice-add-template' => 'Aldoni ŝablonon',
-	'centralnotice-show-notices' => 'Montri notojn',
+	'centralnotice-show-notices' => 'Montri noticojn',
 	'centralnotice-list-templates' => 'Rigardi ŝablonojn',
 	'centralnotice-translations' => 'Tradukoj',
 	'centralnotice-translate-to' => 'Traduki al',
@@ -337,8 +427,15 @@ $messages['eo'] = array(
 	'centralnotice-templates' => 'Ŝablonoj',
 	'centralnotice-weight' => 'Graveco',
 	'centralnotice-locked' => 'Ŝlosita',
+	'centralnotice-notices' => 'Noticoj',
+	'centralnotice-notice-exists' => 'Notico jam ekzistas.
+Ne aldonante',
 	'centralnotice-template-exists' => 'Ŝablono jam ekzistas.
 Ne aldonante',
+	'centralnotice-notice-doesnt-exist' => 'Notico ne ekzistas.
+Neniu forigi',
+	'centralnotice-template-still-bound' => 'Ŝablono ankoraŭ estas ligita al notico.
+Ne forigante.',
 	'centralnotice-template-body' => 'Ŝablona korpo:',
 	'centralnotice-day' => 'Tago',
 	'centralnotice-year' => 'Jaro',
@@ -352,20 +449,28 @@ Ne aldonante',
 	'centralnotice-assigned-templates' => 'Asignitaj ŝablonoj',
 	'centralnotice-no-templates' => 'Neniuj ŝablonoj estis trovitaj.
 Aldonu iujn!',
+	'centralnotice-no-templates-assigned' => 'Neniuj ŝablonoj estas asignitaj al notico.
+Aldonu iujn!',
 	'centralnotice-available-templates' => 'Utileblaj ŝablonoj',
 	'centralnotice-preview-template' => 'Antaŭrigardi ŝablonon',
 	'centralnotice-start-hour' => 'Komenca tempo',
 	'centralnotice-change-lang' => 'Ŝanĝi traduklingvon',
 	'centralnotice-weights' => 'Pezoj',
+	'centralnotice-notice-is-locked' => 'Notico estas ŝlosita.
+Ne forigante',
 	'centralnotice-null-string' => 'Ne povas aldoni nulan signoĉenon.
 Ne aldonante.',
-	'centralnotice-no-notices-exist' => 'Neniuj notoj ekzistas.
-Afiŝu noton suben',
+	'centralnotice-confirm-delete' => 'Ĉu vi certas ke vi volas forigi ĉi tiun aĵon?
+Ĉi tiu ago ne estos malfarebla.',
+	'centralnotice-no-notices-exist' => 'Neniuj noticoj ekzistas.
+Afiŝu noticon suben',
 	'centralnotice-no-templates-translate' => 'Ne estas iuj ŝablonoj por redakti tradukojn por',
 	'centralnotice-number-uses' => 'Uzoj',
 	'centralnotice-edit-template' => 'Redakti ŝablonojn',
 	'centralnotice-message' => 'Mesaĝo',
 	'centralnotice-message-not-set' => 'Mesaĝo ne estis ŝaltita',
+	'right-centralnotice_admin_rights' => 'Administri centralajn noticojn',
+	'right-centralnotice_translate_rights' => 'Traduki centralajn noticojn',
 );
 
 /** Spanish (Español)
@@ -381,20 +486,24 @@ $messages['es'] = array(
  */
 $messages['fa'] = array(
 	'centralnotice-desc' => 'یک اطلاعیه مرکزی می‌افزاید',
+	'centralnotice-end-date' => 'تاریخ پایان',
 	'centralnotice-enabled' => 'فعال',
 	'centralnotice-modify' => 'ارسال',
 	'centralnotice-preview' => 'نمایش',
 	'centralnotice-remove' => 'حذف',
 	'centralnotice-translate-heading' => 'ترجمه از $1',
 	'centralnotice-add' => 'اضافه کردن',
+	'centralnotice-add-notice' => 'اضافه کردن خبر',
 	'centralnotice-add-template' => 'اضافه کردن الگو',
 	'centralnotice-list-templates' => 'فهرست الگوها',
 	'centralnotice-translations' => 'ترجمه‌ها',
+	'centralnotice-translate-to' => 'ترجمه به',
 	'centralnotice-translate' => 'ترجمه کردن',
 	'centralnotice-english' => 'انگلیسی',
 	'centralnotice-template-name' => 'نام الگو',
 	'centralnotice-templates' => 'الگوها',
 	'centralnotice-locked' => 'قفل شده',
+	'centralnotice-notices' => 'اعلانات',
 	'centralnotice-template-body' => 'بدنه قالب:',
 	'centralnotice-day' => 'روز',
 	'centralnotice-year' => 'سال',
@@ -407,7 +516,12 @@ $messages['fa'] = array(
 	'centralnotice-start-time' => 'زمان آغاز',
 	'centralnotice-no-templates' => 'در این سیستم هیچ الگویی نیست. 
 چندتا بسازید.',
+	'centralnotice-available-templates' => 'الگوهای موجود',
 	'centralnotice-preview-template' => 'الگو نمایش',
+	'centralnotice-start-hour' => 'زمان شروع',
+	'centralnotice-change-lang' => 'تغییر زبان ترجمه',
+	'centralnotice-confirm-delete' => 'آیا مطمئن هستید که می‌خواهید این گزینه را حذف کنید؟
+این عمل غیر قابل بازگشت خواهد بود.',
 	'centralnotice-edit-template' => 'الگو ویرایش',
 	'centralnotice-message' => 'پیام',
 );
@@ -721,6 +835,7 @@ $messages['id'] = array(
 $messages['it'] = array(
 	'centralnotice' => 'Gestione avviso centralizzato',
 	'centralnotice-desc' => 'Aggiunge un avviso centralizzato a inizio pagina (sitenotice)',
+	'centralnotice-summary' => 'Questo modulo permette di modificare gli avvisi centralizzati. Puoi essere inoltre usato per aggiungere o rimuovere vecchi avvisi.',
 	'centralnotice-query' => 'Modifica avvisi attuali',
 	'centralnotice-notice-name' => "Nome dell'avviso",
 	'centralnotice-end-date' => 'Data di fine',
@@ -755,12 +870,14 @@ $messages['it'] = array(
 	'centralnotice-project-name' => 'Nome progetto',
 	'centralnotice-start-date' => 'Data di inizio',
 	'centralnotice-start-time' => 'Ora di inizio (UTC)',
+	'centralnotice-assigned-templates' => 'Template assegnati',
 	'centralnotice-no-templates' => 'Nessun template trovato. Aggiungine qualcuno!',
 	'centralnotice-available-templates' => 'Template disponibili',
 	'centralnotice-preview-template' => 'Anteprima template',
 	'centralnotice-start-hour' => 'Ora di inizio',
 	'centralnotice-change-lang' => 'Cambia lingua della traduzione',
 	'centralnotice-notice-is-locked' => "L'avviso è bloccato. Avviso non rimosso",
+	'centralnotice-confirm-delete' => "Sei veramente sicuro di voler cancellare questo elemento? L'azione non è reversibile.",
 	'centralnotice-no-notices-exist' => 'Non esiste alcun avviso. Aggiungine uno di seguito',
 	'centralnotice-number-uses' => 'Usi',
 	'centralnotice-edit-template' => 'Modifica template',
@@ -812,6 +929,18 @@ $messages['km'] = array(
 	'centralnotice-project-lang' => 'ភាសាគំរោង',
 	'centralnotice-project-name' => 'ឈ្មោះគំរោង',
 	'centralnotice-preview-template' => 'មើលទំព័រគំរូជាមុន',
+	'centralnotice-edit-template' => 'កែប្រែទំព័រគំរូ',
+	'centralnotice-message' => 'សារ',
+);
+
+/** Korean (한국어)
+ * @author Kwj2772
+ */
+$messages['ko'] = array(
+	'centralnotice-preview' => '미리 보기',
+	'centralnotice-translate' => '번역하기',
+	'centralnotice-english' => '영어',
+	'centralnotice-start-time' => '시작 시간 (UTC)',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -859,6 +988,8 @@ Di kam_mer nit fott nämme.',
 	'centralnotice-start-date' => 'Et Annfangsdattum',
 	'centralnotice-start-time' => 'De Aanfangszick (UTC)',
 	'centralnotice-assigned-templates' => 'Zojedeilte Schablone',
+	'centralnotice-start-hour' => 'Uhrzigg fum Aanfang',
+	'centralnotice-weights' => 'Jeweeschte',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -866,6 +997,9 @@ Di kam_mer nit fott nämme.',
  */
 $messages['lb'] = array(
 	'centralnotice-desc' => "Setzt eng zentral 'Sitenotice' derbäi",
+	'centralnotice-end-date' => 'Schlussdatum',
+	'centralnotice-enabled' => 'Aktivéiert',
+	'centralnotice-modify' => 'Späicheren',
 	'centralnotice-preview' => 'Weisen ouni ze späicheren',
 	'centralnotice-remove' => 'Ewechhuelen',
 	'centralnotice-translate-heading' => 'Iwwersetzung vu(n) $1',
@@ -890,16 +1024,22 @@ Et gouf näischt derbäigsat.",
 	'centralnotice-project-lang' => 'Sprooch vum Projet',
 	'centralnotice-project-name' => 'Numm vum Projet',
 	'centralnotice-start-date' => 'Ufanksdatum',
+	'centralnotice-start-time' => 'Ufankszäit (UTC)',
 	'centralnotice-no-templates' => 'Et gëtt keng Schablounen am System',
 	'centralnotice-available-templates' => 'Disponibel Schablounen',
+	'centralnotice-template-already-exists' => "D'Schabloun ass schonn enger Campagne zougedeelt.
+Net derbäisetzen",
 	'centralnotice-preview-template' => 'Schabloun weisen ouni ze späicheren',
 	'centralnotice-start-hour' => 'Ufankszäit',
 	'centralnotice-change-lang' => 'Sprooch vun der Iwwersetzung änneren',
 	'centralnotice-weights' => 'Gewiicht',
+	'centralnotice-invalid-date-range' => 'Ongëltegen Zäitraum.
+Gëtt net aktualiséiert.',
 	'centralnotice-no-templates-translate' => "Et gëtt keng Schablounen fir déi Iwwersetzungen z'ännere sinn",
 	'centralnotice-number-uses' => 'gëtt benotzt',
 	'centralnotice-edit-template' => 'Schabloun änneren',
 	'centralnotice-message' => 'Message',
+	'centralnotice-message-not-set' => 'Message net gepäichert',
 );
 
 /** Limburgish (Limburgs)
@@ -1077,6 +1217,8 @@ U kunt er hieronder een toevoegen',
 	'centralnotice-message-not-set' => 'Het bericht is niet ingesteld',
 	'right-centralnotice_admin_rights' => 'Centrale sitenotices beheren',
 	'right-centralnotice_translate_rights' => 'Centrale sitenotices vertalen',
+	'action-centralnotice_admin_rights' => 'centrale sitenotices beheren',
+	'action-centralnotice_translate_rights' => 'centrale sitenotices vertalen',
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
@@ -1090,21 +1232,24 @@ $messages['no'] = array(
  * @author Cedric31
  */
 $messages['oc'] = array(
+	'centralnotice' => 'Administracion de las notificacions centralas',
+	'noticetemplate' => 'Modèls de las notificacions centralas',
 	'centralnotice-desc' => 'Apond un sitenotice central',
-	'centralnotice-query' => 'Modificar los avisses actuals',
-	'centralnotice-notice-name' => "Nom de l'avís",
+	'centralnotice-summary' => 'Aqueste modul vos permet de modificar vòstres paramètres de las notificacions centralas.',
+	'centralnotice-query' => 'Modificar las notificacions actualas',
+	'centralnotice-notice-name' => 'Nom de la notificacion',
 	'centralnotice-end-date' => 'Data de fin',
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Sometre',
 	'centralnotice-preview' => 'Previsualizacion',
-	'centralnotice-add-new' => 'Apondre un avís central novèl',
+	'centralnotice-add-new' => 'Apondre una notificacion centrala novèla',
 	'centralnotice-remove' => 'Suprimir',
 	'centralnotice-translate-heading' => 'Traduccion de $1',
-	'centralnotice-manage' => 'Gerir los avisses centrals',
+	'centralnotice-manage' => 'Gerir las notificacions centralas',
 	'centralnotice-add' => 'Apondre',
-	'centralnotice-add-notice' => 'Apondre un avís',
+	'centralnotice-add-notice' => 'Apondre una notificacion',
 	'centralnotice-add-template' => 'Apondre un modèl',
-	'centralnotice-show-notices' => 'Afichar los avisses',
+	'centralnotice-show-notices' => 'Afichar las notificacions',
 	'centralnotice-list-templates' => 'Listar los modèls',
 	'centralnotice-translations' => 'Traduccions',
 	'centralnotice-translate-to' => 'Traduire en',
@@ -1114,19 +1259,61 @@ $messages['oc'] = array(
 	'centralnotice-templates' => 'Modèls',
 	'centralnotice-weight' => 'Pes',
 	'centralnotice-locked' => 'Varrolhat',
-	'centralnotice-notices' => 'Avisses',
-	'centralnotice-notice-exists' => "L'avís existís ja.
-Es pas estat apondut.",
+	'centralnotice-notices' => 'Notificacions',
+	'centralnotice-notice-exists' => 'La notificacion existís ja.
+Es pas estada aponduda.',
 	'centralnotice-template-exists' => 'Lo modèl existís ja.
 Es pas estat apondut.',
-	'centralnotice-notice-doesnt-exist' => "L'avís n'existís pas.
-I a pas res de suprimir.",
-	'centralnotice-template-still-bound' => 'Lo modèl es encara religat a un avís.
+	'centralnotice-notice-doesnt-exist' => 'La notificacion existís pas.
+I a pas res de suprimir.',
+	'centralnotice-template-still-bound' => 'Lo modèl es encara religat a una notificacion.
 Es pas estat suprimit.',
+	'centralnotice-template-body' => 'Còs del modèl :',
+	'centralnotice-day' => 'Jorn',
+	'centralnotice-year' => 'Annada',
+	'centralnotice-month' => 'Mes',
+	'centralnotice-hours' => 'Ora',
+	'centralnotice-min' => 'Minuta',
+	'centralnotice-project-lang' => 'Lenga del projècte',
+	'centralnotice-project-name' => 'Nom del projècte',
+	'centralnotice-start-date' => 'Data de començament',
+	'centralnotice-start-time' => 'Ora de començament (UTC)',
+	'centralnotice-assigned-templates' => 'Modèls assignats',
+	'centralnotice-no-templates' => 'I a pas de modèl dins lo sistèma.
+Apondètz-ne un !',
+	'centralnotice-no-templates-assigned' => 'Pas cap de modèl assignat a la notificacion.
+Apondètz-ne un !',
+	'centralnotice-available-templates' => 'Modèls disponibles',
+	'centralnotice-template-already-exists' => "Lo modèl je es estacat a una campanha.
+D'apondre pas",
+	'centralnotice-preview-template' => 'Previsualizacion del modèl',
+	'centralnotice-start-hour' => 'Ora de començament',
+	'centralnotice-change-lang' => 'Modificar la lenga de traduccion',
+	'centralnotice-weights' => 'Pes',
+	'centralnotice-notice-is-locked' => 'La notificacion es varrolhada.
+Es pas estada suprimida.',
+	'centralnotice-overlap' => "Notificacion que s’imbrica dins lo temps d’una autra.
+D'apondre pas.",
+	'centralnotice-invalid-date-range' => 'Triada de data incorrècta.
+De metre pas a jorn.',
+	'centralnotice-null-string' => "Pòt pas apondre una cadena nulla.
+D'apondre pas.",
+	'centralnotice-confirm-delete' => 'Sètz segur(a) que volètz suprimir aqueste article ?
+Aquesta accion poirà pas pus èsser recuperada.',
+	'centralnotice-no-notices-exist' => 'Cap de notificacion existís pas.
+Apondètz-ne una en dejós.',
+	'centralnotice-no-templates-translate' => 'I a pas cap de modèl de traduire',
+	'centralnotice-number-uses' => 'Utilizaires',
+	'centralnotice-edit-template' => 'Modificar lo modèl',
+	'centralnotice-message' => 'Messatge',
+	'centralnotice-message-not-set' => 'Messatge pas entresenhat',
+	'right-centralnotice_admin_rights' => 'Gerís las notificacions centralas',
+	'right-centralnotice_translate_rights' => 'Traduire las notificacions centralas',
 );
 
 /** Polish (Polski)
  * @author Leinad
+ * @author Maikking
  * @author Sp5uhe
  */
 $messages['pl'] = array(
@@ -1200,6 +1387,8 @@ Dodaj nowy poniżej.',
 	'centralnotice-message-not-set' => 'Wiadomość nie jest ustawiona',
 	'right-centralnotice_admin_rights' => 'Zarządzać wspólnymi komunikatami',
 	'right-centralnotice_translate_rights' => 'Tłumaczyć wspólne komunikaty',
+	'action-centralnotice_admin_rights' => 'zarządzaj komunikatami',
+	'action-centralnotice_translate_rights' => 'przetłumacz komunikaty',
 );
 
 /** Pashto (پښتو)
@@ -1214,6 +1403,23 @@ $messages['ps'] = array(
  */
 $messages['pt'] = array(
 	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
+	'centralnotice-end-date' => 'Data fim',
+	'centralnotice-translate-heading' => 'Tradução de $1',
+	'centralnotice-add' => 'Adicionar',
+	'centralnotice-weight' => 'Peso',
+	'centralnotice-day' => 'Dia',
+	'centralnotice-year' => 'Ano',
+	'centralnotice-month' => 'Mês',
+	'centralnotice-hours' => 'Hora',
+	'centralnotice-min' => 'Minuto',
+	'centralnotice-project-lang' => 'Língua do projecto',
+	'centralnotice-project-name' => 'Nome do projecto',
+	'centralnotice-start-date' => 'Data início',
+	'centralnotice-start-time' => 'Hora início (UTC)',
+	'centralnotice-start-hour' => 'Hora início',
+	'centralnotice-weights' => 'Pesos',
+	'centralnotice-message' => 'Mensagem',
+	'centralnotice-message-not-set' => 'Mensagem não estabelecida',
 );
 
 /** Romanian (Română)
@@ -1227,7 +1433,11 @@ $messages['ro'] = array(
  * @author Александр Сигачёв
  */
 $messages['ru'] = array(
+	'centralnotice' => 'Управление централизованными уведомлениями',
+	'noticetemplate' => 'Шаблон централизованного уведомления',
 	'centralnotice-desc' => 'Добавляет общее сообщение сайта',
+	'centralnotice-summary' => 'Этот модуль позволяет вам изменять ваши текущие централизованные уведомления.
+Он также может использоваться для добавления новых и удаления старых уведомлений.',
 );
 
 /** Yakut (Саха тыла)
@@ -1241,7 +1451,38 @@ $messages['sah'] = array(
  * @author Helix84
  */
 $messages['sk'] = array(
+	'centralnotice' => 'Centrálny oznam',
+	'noticetemplate' => 'Šablóna centrálneho oznamu',
 	'centralnotice-desc' => 'Pridáva centrálnu Správu lokality',
+	'centralnotice-summary' => 'Tento modul umožňuje upravovať vaše momentálne nastavené centrálne oznamy.
+Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
+	'centralnotice-query' => 'Zmeniť súčasné oznamy',
+	'centralnotice-notice-name' => 'Názov oznamu',
+	'centralnotice-end-date' => 'Dátum ukončenia',
+	'centralnotice-enabled' => 'Zapnutá',
+	'centralnotice-modify' => 'Odoslať',
+	'centralnotice-preview' => 'Náhľad',
+	'centralnotice-add-new' => 'Pridať nový centrálny oznam',
+	'centralnotice-remove' => 'Odstrániť',
+	'centralnotice-translate-heading' => 'Preklad $1',
+	'centralnotice-manage' => 'Správa centrálnych oznamov',
+	'centralnotice-add' => 'Pridať',
+	'centralnotice-add-notice' => 'Pridať oznam',
+	'centralnotice-add-template' => 'Pridať šablónu',
+	'centralnotice-show-notices' => 'Zobraziť oznamy',
+	'centralnotice-list-templates' => 'Zoznam šablón',
+	'centralnotice-translations' => 'Preklady',
+	'centralnotice-translate-to' => 'Preložiť do jazyka',
+	'centralnotice-translate' => 'Preložiť',
+	'centralnotice-english' => 'angličtina',
+	'centralnotice-template-name' => 'Názov šablóny',
+	'centralnotice-templates' => 'Šablóny',
+	'centralnotice-weight' => 'Váha',
+	'centralnotice-locked' => 'Zamknutý',
+	'centralnotice-notices' => 'Oznamy',
+	'centralnotice-notice-exists' => 'Oznam už existuje. Nebude pridaný.',
+	'centralnotice-template-exists' => 'Šablóna už existuje. Nebude pridaná.',
+	'centralnotice-notice-doesnt-exist' => 'Oznam neexistuje. Nebude odstránený.',
 );
 
 /** Serbian Cyrillic ekavian (ћирилица)
