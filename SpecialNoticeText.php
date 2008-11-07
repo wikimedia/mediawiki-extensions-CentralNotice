@@ -28,6 +28,7 @@ class SpecialNoticeText extends NoticePage {
 			array( $this, 'getHtmlNotice' ),
 			$templateNames );
 		$weights = array_values( $templates );
+		
 		return
 			$this->getScriptFunctions() .
 			$this->getToggleScripts() .
@@ -35,7 +36,8 @@ class SpecialNoticeText extends NoticePage {
 				Xml::encodeJsVar( $templateTexts ) .
 				"," .
 				Xml::encodeJsVar( $weights ) .
-				");\n";
+				");\n" .
+			"if (wgUserName == null && wgNotice != '') wgNotice='<div class=\"anonnotice\">'+wgNotice+'</div>';\n";
 	}
 
 	function getHtmlNotice( $noticeName ) {
