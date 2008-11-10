@@ -284,6 +284,7 @@ $messages['bg'] = array(
 	'centralnotice-modify' => 'Изпращане',
 	'centralnotice-preview' => 'Преглеждане',
 	'centralnotice-remove' => 'Премахване',
+	'centralnotice-translate-heading' => 'Превод за $1',
 	'centralnotice-add' => 'Добавяне',
 	'centralnotice-add-template' => 'Добавяне на шаблон',
 	'centralnotice-translations' => 'Преводи',
@@ -670,7 +671,55 @@ $messages['frp'] = array(
  * @author Toliño
  */
 $messages['gl'] = array(
-	'centralnotice-desc' => 'Engade un "sitenotice" central',
+	'centralnotice' => 'Administración do aviso central',
+	'noticetemplate' => 'Modelo do aviso central',
+	'centralnotice-desc' => 'Engade un aviso central',
+	'centralnotice-query' => 'Modificar os avisos actuais',
+	'centralnotice-notice-name' => 'Nome do aviso',
+	'centralnotice-end-date' => 'Data da fin',
+	'centralnotice-enabled' => 'Permitido',
+	'centralnotice-modify' => 'Enviar',
+	'centralnotice-preview' => 'Vista previa',
+	'centralnotice-add-new' => 'Engadir un novo aviso central',
+	'centralnotice-remove' => 'Eliminar',
+	'centralnotice-translate-heading' => 'Traducións de "$1"',
+	'centralnotice-manage' => 'Xestionar o aviso central',
+	'centralnotice-add' => 'Engadir',
+	'centralnotice-add-notice' => 'Engadir un aviso',
+	'centralnotice-add-template' => 'Engadir un modelo',
+	'centralnotice-show-notices' => 'Amosar os avisos',
+	'centralnotice-translations' => 'Traducións',
+	'centralnotice-translate-to' => 'Traducir ao',
+	'centralnotice-translate' => 'Traducir',
+	'centralnotice-english' => 'inglés',
+	'centralnotice-template-name' => 'Nome do modelo',
+	'centralnotice-templates' => 'Modelos',
+	'centralnotice-weight' => 'Peso',
+	'centralnotice-locked' => 'Bloqueado',
+	'centralnotice-notices' => 'Avisos',
+	'centralnotice-template-body' => 'Corpo do modelo:',
+	'centralnotice-day' => 'Día',
+	'centralnotice-year' => 'Ano',
+	'centralnotice-month' => 'Mes',
+	'centralnotice-hours' => 'Hora',
+	'centralnotice-min' => 'Minuto',
+	'centralnotice-project-lang' => 'Lingua do proxecto',
+	'centralnotice-project-name' => 'Nome do proxecto',
+	'centralnotice-start-date' => 'Data de inicio',
+	'centralnotice-start-time' => 'Hora de inicio (UTC)',
+	'centralnotice-available-templates' => 'Modelos dispoñibles',
+	'centralnotice-preview-template' => 'Vista previa do modelo',
+	'centralnotice-start-hour' => 'Hora de inicio',
+	'centralnotice-change-lang' => 'Cambiar a lingua de tradución',
+	'centralnotice-weights' => 'Pesos',
+	'centralnotice-number-uses' => 'Usos',
+	'centralnotice-edit-template' => 'Editar o modelo',
+	'centralnotice-message' => 'Mensaxe',
+	'centralnotice-message-not-set' => 'Mensaxe sen fixar',
+	'right-centralnotice_admin_rights' => 'Xestionar os avisos centrais',
+	'right-centralnotice_translate_rights' => 'Traducir os avisos centrais',
+	'action-centralnotice_admin_rights' => 'xestionar os avisos centrais',
+	'action-centralnotice_translate_rights' => 'traducir os avisos centrais',
 );
 
 /** Hebrew (עברית)
@@ -1097,6 +1146,8 @@ Net derbäisetzen",
 Se kann net ewechgeholl ginn.",
 	'centralnotice-invalid-date-range' => 'Ongëltegen Zäitraum.
 Gëtt net aktualiséiert.',
+	'centralnotice-no-notices-exist' => 'Et gëtt keng Notiz.
+Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-no-templates-translate' => "Et gëtt keng Schablounen fir déi Iwwersetzungen z'ännere sinn",
 	'centralnotice-number-uses' => 'gëtt benotzt',
 	'centralnotice-edit-template' => 'Schabloun änneren',
@@ -1727,6 +1778,8 @@ Lägg till ett nedan',
 	'centralnotice-message-not-set' => 'Budskap inte satt',
 	'right-centralnotice_admin_rights' => 'Hantera centralmeddelanden',
 	'right-centralnotice_translate_rights' => 'Översätt centralmeddelanden',
+	'action-centralnotice_admin_rights' => 'hantera centralmeddelanden',
+	'action-centralnotice_translate_rights' => 'översätt centralmeddelanden',
 );
 
 /** Telugu (తెలుగు)
@@ -1875,10 +1928,14 @@ $messages['vi'] = array(
 );
 
 /** Volapük (Volapük)
+ * @author Malafaya
  * @author Smeira
  */
 $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
+	'centralnotice-translations' => 'Tradutods',
+	'centralnotice-english' => 'Linglänapük',
+	'centralnotice-day' => 'Del',
 );
 
 /** Yiddish (ייִדיש)
