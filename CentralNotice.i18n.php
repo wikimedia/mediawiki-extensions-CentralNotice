@@ -257,11 +257,19 @@ $messages['ar'] = array(
 );
 
 /** Egyptian Spoken Arabic (مصرى)
+ * @author Ghaly
  * @author Meno25
  * @author Ramsis II
  */
 $messages['arz'] = array(
 	'centralnotice-desc' => 'بيحط اعلان مركزى للموقع',
+	'centralnotice-end-date' => 'تاريخ الانتهاء',
+	'centralnotice-add' => 'ضيف',
+	'centralnotice-translate' => 'ترجم',
+	'centralnotice-english' => 'انجليزى',
+	'centralnotice-day' => 'اليوم',
+	'centralnotice-month' => 'الشهر',
+	'centralnotice-start-date' => 'تاريخ البدايه',
 );
 
 /** Asturian (Asturianu)
@@ -327,6 +335,8 @@ $messages['br'] = array(
  * @author CERminator
  */
 $messages['bs'] = array(
+	'centralnotice-remove' => 'Ukloni',
+	'centralnotice-add' => 'Dodaj',
 	'centralnotice-translations' => 'Prijevodi',
 );
 
@@ -1172,6 +1182,7 @@ Dudu panambahan',
 Dudu panambahan',
 	'centralnotice-notice-doesnt-exist' => 'Cathetan ora ana.
 Ora ana sing perlu dibusak',
+	'centralnotice-template-body' => 'Bagéyan utama cithakan',
 	'centralnotice-day' => 'Dina',
 	'centralnotice-year' => 'Taun',
 	'centralnotice-month' => 'Sasi',
