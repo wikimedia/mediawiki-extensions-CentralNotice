@@ -262,14 +262,65 @@ $messages['ar'] = array(
  * @author Ramsis II
  */
 $messages['arz'] = array(
+	'centralnotice' => 'مدير الاعلانات المركزية',
+	'noticetemplate' => 'قالب الاعلانات المركزية',
 	'centralnotice-desc' => 'بيحط اعلان مركزى للموقع',
+	'centralnotice-query' => 'تعديل الاعلانات الموجودة دلوقتي',
+	'centralnotice-notice-name' => 'اسم الاعلان',
 	'centralnotice-end-date' => 'تاريخ الانتهاء',
+	'centralnotice-enabled' => 'متشغل',
+	'centralnotice-modify' => 'قدم',
+	'centralnotice-preview' => 'اعمل بروفة',
+	'centralnotice-add-new' => 'حط اعلان مركزي جديد',
+	'centralnotice-remove' => 'شيل',
+	'centralnotice-translate-heading' => 'الترجمة بتاعة $1',
+	'centralnotice-manage' => 'ادارة الاعلانات المركزية',
 	'centralnotice-add' => 'ضيف',
+	'centralnotice-add-notice' => 'حط اعلان',
+	'centralnotice-add-template' => 'ضيف قالب',
+	'centralnotice-show-notices' => 'اظهر الاعلانات',
+	'centralnotice-list-templates' => 'لستة القوالب',
+	'centralnotice-translations' => 'الترجمات',
+	'centralnotice-translate-to' => 'ترجم لـ',
 	'centralnotice-translate' => 'ترجم',
 	'centralnotice-english' => 'انجليزى',
+	'centralnotice-template-name' => 'اسم القالب',
+	'centralnotice-templates' => 'قوالب',
+	'centralnotice-weight' => 'الوزن',
+	'centralnotice-locked' => 'مقفول',
+	'centralnotice-notices' => 'اعلانات',
+	'centralnotice-notice-exists' => 'الاعلان موجود من قبل كده.
+مافيش اصافة',
+	'centralnotice-template-exists' => 'القالب موجود من قبل كده
+مافيش اضافة',
+	'centralnotice-notice-doesnt-exist' => 'الاعلان مش موجود
+مافيش حاجة عشان تتشال',
+	'centralnotice-template-still-bound' => 'القالب لسة مربوط بالاعلان.
+ماينفعش يتشال.',
+	'centralnotice-template-body' => 'جسم القالب:',
 	'centralnotice-day' => 'اليوم',
+	'centralnotice-year' => 'السنه',
 	'centralnotice-month' => 'الشهر',
+	'centralnotice-hours' => 'الساعة',
+	'centralnotice-min' => 'الدقيقة',
+	'centralnotice-project-lang' => 'اللغة بتاعة المشروع',
+	'centralnotice-project-name' => 'الاسم بتاع المشروع',
 	'centralnotice-start-date' => 'تاريخ البدايه',
+	'centralnotice-start-time' => 'وقت البداية(يو تي سي)',
+	'centralnotice-available-templates' => 'القوالب الموجودة',
+	'centralnotice-start-hour' => 'وقت البداية',
+	'centralnotice-change-lang' => 'تغيير لغة الترجمه',
+	'centralnotice-weights' => 'الاوزان',
+	'centralnotice-notice-is-locked' => 'الاعلان مقفول.
+مافيش مسح.',
+	'centralnotice-number-uses' => 'الاستعمالات',
+	'centralnotice-edit-template' => 'عدل في القالب',
+	'centralnotice-message' => 'الرسالة',
+	'centralnotice-message-not-set' => 'الرسالة مش مظبوطة',
+	'right-centralnotice_admin_rights' => 'ادارة الاعلانات المركزيه',
+	'right-centralnotice_translate_rights' => 'ترجم الاعلانات المركزية',
+	'action-centralnotice_admin_rights' => 'ادارة الاعلانات المركزية',
+	'action-centralnotice_translate_rights' => 'ترجمة الاعلانات المركزية',
 );
 
 /** Asturian (Asturianu)
@@ -313,6 +364,7 @@ $messages['bg'] = array(
 	'centralnotice-start-date' => 'Начална дата',
 	'centralnotice-start-time' => 'начално време (UTC)',
 	'centralnotice-available-templates' => 'Налични шаблони',
+	'centralnotice-start-hour' => 'Начален час',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
 	'centralnotice-message' => 'Съобщение',
 );
@@ -949,22 +1001,84 @@ $messages['hi'] = array(
  * @author Dalibor Bosits
  */
 $messages['hr'] = array(
+	'centralnotice' => 'Administracija središnjih obavijesti',
+	'noticetemplate' => 'Predložak središnje obavijesti',
 	'centralnotice-desc' => 'Dodaje središnju obavijest za projekt',
+	'centralnotice-summary' => 'Ova stranica vam omogućava uređivanje trenutačno postavljenih središnjih obavijesti.
+Može biti korištena i za dodavanje ili uklanjanje zastarjelih obavijesti.',
+	'centralnotice-query' => 'Promijeni trenutačne obavijesti',
+	'centralnotice-notice-name' => 'Naziv obavijesti',
 	'centralnotice-end-date' => 'Završni datum',
 	'centralnotice-enabled' => 'Omogućeno',
 	'centralnotice-modify' => 'Postavi',
 	'centralnotice-preview' => 'Pregledaj',
+	'centralnotice-add-new' => 'Dodaj novu središnju obavijest',
 	'centralnotice-remove' => 'Ukloni',
+	'centralnotice-translate-heading' => 'Prijevod za $1',
+	'centralnotice-manage' => 'Uredi središnje obavijesti',
 	'centralnotice-add' => 'Dodaj',
+	'centralnotice-add-notice' => 'Dodaj obavijest',
+	'centralnotice-add-template' => 'Dodaj predložak',
+	'centralnotice-show-notices' => 'Pokaži obavijesti',
+	'centralnotice-list-templates' => 'Popis predložaka',
 	'centralnotice-translations' => 'Prijevodi',
+	'centralnotice-translate-to' => 'Prevedi na',
 	'centralnotice-translate' => 'Prevedi',
 	'centralnotice-english' => 'Engleski',
+	'centralnotice-template-name' => 'Naziv predloška',
+	'centralnotice-templates' => 'Predlošci',
 	'centralnotice-locked' => 'Zaključano',
+	'centralnotice-notices' => 'Obavijesti',
+	'centralnotice-notice-exists' => 'Obavijest već postoji.
+Nije dodano',
+	'centralnotice-template-exists' => 'Predložak već postoji.
+Nije dodano',
+	'centralnotice-notice-doesnt-exist' => 'Obavijest ne postoji.
+Ništa nije uklonjeno',
+	'centralnotice-template-still-bound' => 'Predložak je još uvijek vezan uz obavijest.
+Nije uklonjeno.',
+	'centralnotice-template-body' => 'Sadržaj predloška:',
 	'centralnotice-day' => 'Dan',
 	'centralnotice-year' => 'Godina',
 	'centralnotice-month' => 'Mjesec',
 	'centralnotice-hours' => 'Sat',
 	'centralnotice-min' => 'Minuta',
+	'centralnotice-project-lang' => 'Jezik projekta',
+	'centralnotice-project-name' => 'Naziv projekta',
+	'centralnotice-start-date' => 'Početni datum',
+	'centralnotice-start-time' => 'Početno vrijeme (UTC)',
+	'centralnotice-assigned-templates' => 'Dodijeljeni predlošci',
+	'centralnotice-no-templates' => 'Nije pronađen ni jedan predložak.
+Dodaj jedan!',
+	'centralnotice-no-templates-assigned' => 'Nijedan predložak nije dodijeljen obavijesti.
+Dodaj jedan!',
+	'centralnotice-available-templates' => 'Dostupni predlošci',
+	'centralnotice-template-already-exists' => 'Predložak je već vezan uz kampanju.
+Nije dodano',
+	'centralnotice-preview-template' => 'Pregledaj predložak',
+	'centralnotice-start-hour' => 'Početno vrijeme',
+	'centralnotice-change-lang' => 'Promijeni jezik prijevoda',
+	'centralnotice-notice-is-locked' => 'Obavijest je zaključana.
+Nije uklonjeno',
+	'centralnotice-overlap' => 'Obavijest se u vremenu preklapa s drugom obaviješću.
+Nije dodana',
+	'centralnotice-invalid-date-range' => 'Nevaljan opseg datuma.
+Nije ažurirano',
+	'centralnotice-null-string' => 'Nulta vrijednost se ne može dodati.
+Nije dodano',
+	'centralnotice-confirm-delete' => 'Jeste li sigurni da želite ovo obrisati?
+Ova akcija se neće moći poništiti.',
+	'centralnotice-no-notices-exist' => 'Ne postoji ni jedna obavijest.
+Dodajte jednu ispod',
+	'centralnotice-no-templates-translate' => 'Ne postoje predlošci za prevođenje',
+	'centralnotice-number-uses' => 'Koristi',
+	'centralnotice-edit-template' => 'Uredi predložak',
+	'centralnotice-message' => 'Poruka',
+	'centralnotice-message-not-set' => 'Poruka nije postavljena',
+	'right-centralnotice_admin_rights' => 'Uređivanje središnjih obavijesti',
+	'right-centralnotice_translate_rights' => 'Prevođenje središnjih obavijesti',
+	'action-centralnotice_admin_rights' => 'uređivanje središnjih obavijesti',
+	'action-centralnotice_translate_rights' => 'prevođenje središnjih obavijesti',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
@@ -1182,6 +1296,8 @@ Dudu panambahan',
 Dudu panambahan',
 	'centralnotice-notice-doesnt-exist' => 'Cathetan ora ana.
 Ora ana sing perlu dibusak',
+	'centralnotice-template-still-bound' => 'Cithakan isih diwatesi déning cathetan.
+Ora bisa mbusak.',
 	'centralnotice-template-body' => 'Bagéyan utama cithakan',
 	'centralnotice-day' => 'Dina',
 	'centralnotice-year' => 'Taun',
@@ -1192,14 +1308,25 @@ Ora ana sing perlu dibusak',
 	'centralnotice-project-name' => 'Jeneng proyèk',
 	'centralnotice-start-date' => 'Tanggal diwiwiti',
 	'centralnotice-start-time' => 'Wektu diwiwiti (UTC)',
+	'centralnotice-assigned-templates' => 'Cithakan-cithakan sing ditetepaké',
 	'centralnotice-no-templates' => 'Ora ana cithakan.
 Gawénen!',
 	'centralnotice-no-templates-assigned' => "Durung ana cithakan kanggo cathetan/pangumuman (''notice'').
 Gawénen!",
 	'centralnotice-available-templates' => 'Cithakan-cithakan sing ana',
+	'centralnotice-template-already-exists' => "Cithakan isih kagandhèng menyang ''campaing''.
+Ora bisa nambah",
+	'centralnotice-preview-template' => 'Tampilaké cithakan',
 	'centralnotice-start-hour' => 'Wektu diwiwiti',
 	'centralnotice-change-lang' => 'Owahi basa terjemahan',
 	'centralnotice-weights' => 'Bobot',
+	'centralnotice-notice-is-locked' => 'Cathetan dikunci.
+Ora bisa mbusak',
+	'centralnotice-overlap' => 'Cathetan sauntara tumpang tindhih karo cathetan liyané.
+Ora bisa nambah',
+	'centralnotice-invalid-date-range' => 'Jangka data ora sah.
+Ora bisa ngowahi',
+	'centralnotice-null-string' => "Ora bisa nambah ''null string''. Ora bisa nambah",
 	'centralnotice-confirm-delete' => 'Panjenengan yakin bakal mbusak item iki?
 Tumindak iki bakal ora bisa didandani manèh.',
 	'centralnotice-no-notices-exist' => 'Durung ana cathetan.
@@ -1249,6 +1376,8 @@ $messages['ko'] = array(
 	'centralnotice-preview' => '미리 보기',
 	'centralnotice-translate' => '번역하기',
 	'centralnotice-english' => '영어',
+	'centralnotice-project-lang' => '프로젝트 언어',
+	'centralnotice-project-name' => '프로젝트 이름',
 	'centralnotice-start-time' => '시작 시간 (UTC)',
 );
 
@@ -2140,10 +2269,12 @@ $messages['uk'] = array(
  * @author Candalua
  */
 $messages['vec'] = array(
+	'centralnotice' => 'Gestion notifiche sentralizade',
 	'centralnotice-desc' => 'Zonta un aviso çentralizà in çima a la pagina (sitenotice)',
 	'centralnotice-query' => 'Modìfega le notifiche corenti',
 	'centralnotice-notice-name' => 'Nome de la notifica',
 	'centralnotice-end-date' => 'Data de fine',
+	'centralnotice-enabled' => 'Ativà',
 	'centralnotice-modify' => 'Invia',
 	'centralnotice-preview' => 'Anteprima',
 	'centralnotice-add-new' => 'Zonta na notifica sentrale nova',
@@ -2155,11 +2286,21 @@ $messages['vec'] = array(
 	'centralnotice-show-notices' => 'Mostra notifiche',
 	'centralnotice-list-templates' => 'Elenca i modèi',
 	'centralnotice-translations' => 'Tradussioni',
+	'centralnotice-translate-to' => 'Tradusi con',
 	'centralnotice-translate' => 'Tradusi',
+	'centralnotice-english' => 'Inglese',
 	'centralnotice-template-name' => 'Nome del modèl',
 	'centralnotice-templates' => 'Modèi',
 	'centralnotice-weight' => 'Peso',
 	'centralnotice-notices' => 'Notifiche',
+	'centralnotice-notice-exists' => 'Notifica zà esistente. 
+Inserimento mia fato',
+	'centralnotice-template-exists' => 'Modèl zà esistente. 
+Inserimento mia fato',
+	'centralnotice-notice-doesnt-exist' => 'Notifica mia esistente. 
+Rimozion mia fata',
+	'centralnotice-template-still-bound' => 'Modèl ancora ligà a na notifica. 
+Rimozion mia fata.',
 	'centralnotice-template-body' => 'Corpo del modèl:',
 	'centralnotice-day' => 'Zorno',
 	'centralnotice-year' => 'Ano',
@@ -2176,10 +2317,16 @@ Zónteghene qualchedun!',
 	'centralnotice-no-templates-assigned' => 'Nissun modèl assegnà a la notifica
 Zónteghene qualchedun!',
 	'centralnotice-available-templates' => 'Modèi disponibili',
+	'centralnotice-template-already-exists' => 'Sto modèl el xe zà ligà a na campagna. 
+Inserimento mia fato',
 	'centralnotice-preview-template' => 'Anteprima modèl',
 	'centralnotice-start-hour' => 'Ora de scominsio',
 	'centralnotice-change-lang' => 'Cànbia lengoa de tradussion',
 	'centralnotice-weights' => 'Pesi',
+	'centralnotice-notice-is-locked' => 'Notifica blocà.
+Rimozion mia fata',
+	'centralnotice-null-string' => 'No se pol zontar na stringa voda.
+Inserimento mia fato',
 	'centralnotice-no-notices-exist' => 'No esiste nissuna notifica.
 Zónteghene una qua soto.',
 	'centralnotice-edit-template' => 'Modìfega modèl',
