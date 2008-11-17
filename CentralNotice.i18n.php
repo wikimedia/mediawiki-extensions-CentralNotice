@@ -1027,6 +1027,7 @@ Može biti korištena i za dodavanje ili uklanjanje zastarjelih obavijesti.',
 	'centralnotice-english' => 'Engleski',
 	'centralnotice-template-name' => 'Naziv predloška',
 	'centralnotice-templates' => 'Predlošci',
+	'centralnotice-weight' => 'Težina',
 	'centralnotice-locked' => 'Zaključano',
 	'centralnotice-notices' => 'Obavijesti',
 	'centralnotice-notice-exists' => 'Obavijest već postoji.
@@ -1058,6 +1059,7 @@ Nije dodano',
 	'centralnotice-preview-template' => 'Pregledaj predložak',
 	'centralnotice-start-hour' => 'Početno vrijeme',
 	'centralnotice-change-lang' => 'Promijeni jezik prijevoda',
+	'centralnotice-weights' => 'Težine',
 	'centralnotice-notice-is-locked' => 'Obavijest je zaključana.
 Nije uklonjeno',
 	'centralnotice-overlap' => 'Obavijest se u vremenu preklapa s drugom obaviješću.
