@@ -313,6 +313,12 @@ $messages['arz'] = array(
 	'centralnotice-weights' => 'الاوزان',
 	'centralnotice-notice-is-locked' => 'الاعلان مقفول.
 مافيش مسح.',
+	'centralnotice-invalid-date-range' => 'مدى تاريخ مش صحيح.
+مافيش تحديث',
+	'centralnotice-confirm-delete' => 'انت متأكد انك عايز تلغى الحتة دي؟
+الاجراء دا مش ح يترجع فيه',
+	'centralnotice-no-notices-exist' => 'مافيش اخطارات موجودة.
+ضيف واحد تحته',
 	'centralnotice-number-uses' => 'الاستعمالات',
 	'centralnotice-edit-template' => 'عدل في القالب',
 	'centralnotice-message' => 'الرسالة',
@@ -2137,9 +2143,41 @@ Túto operáciu nebude možné vrátiť.',
 
 /** Serbian Cyrillic ekavian (ћирилица)
  * @author Millosh
+ * @author Јованвб
  */
 $messages['sr-ec'] = array(
 	'centralnotice-desc' => 'Додаје централну напомену на сајт.',
+	'centralnotice-query' => 'Измени тренутна обавештења',
+	'centralnotice-notice-name' => 'Име обавештења',
+	'centralnotice-preview' => 'Прикажи',
+	'centralnotice-add-new' => 'Додај нову централну напомену',
+	'centralnotice-remove' => 'Уклони',
+	'centralnotice-translate-heading' => 'Превод за $1',
+	'centralnotice-manage' => 'Уреди централну напомену',
+	'centralnotice-add' => 'Додај',
+	'centralnotice-add-notice' => 'Додај обавештење',
+	'centralnotice-add-template' => 'Додај шаблон',
+	'centralnotice-show-notices' => 'Прикажи обавештења',
+	'centralnotice-list-templates' => 'Списак шаблона',
+	'centralnotice-translations' => 'Преводи',
+	'centralnotice-translate-to' => 'Преведи на',
+	'centralnotice-translate' => 'Преведи',
+	'centralnotice-english' => 'Енглески',
+	'centralnotice-template-name' => 'Име шаблона',
+	'centralnotice-templates' => 'Шаблони',
+	'centralnotice-notices' => 'Обавештења',
+	'centralnotice-day' => 'Дан',
+	'centralnotice-year' => 'Година',
+	'centralnotice-month' => 'Месец',
+	'centralnotice-hours' => 'Сат',
+	'centralnotice-min' => 'Минут',
+	'centralnotice-project-lang' => 'Име пројекта',
+	'centralnotice-project-name' => 'Име пројекта',
+	'centralnotice-no-templates' => 'Шаблони нису проађен.
+Додај неки!',
+	'centralnotice-preview-template' => 'Прикажи шаблон',
+	'centralnotice-edit-template' => 'Измени шаблон',
+	'centralnotice-message' => 'Порука',
 );
 
 /** Seeltersk (Seeltersk)
