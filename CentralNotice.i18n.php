@@ -265,6 +265,8 @@ $messages['arz'] = array(
 	'centralnotice' => 'مدير الاعلانات المركزية',
 	'noticetemplate' => 'قالب الاعلانات المركزية',
 	'centralnotice-desc' => 'بيحط اعلان مركزى للموقع',
+	'centralnotice-summary' => 'الوحدة دى بتسمحلك بتعديل إعدادات الإخطار المركزي الحالية.
+ممكن تستخدم كمان لإضافة أو إزالة إخطارات قديمة.',
 	'centralnotice-query' => 'تعديل الاعلانات الموجودة دلوقتي',
 	'centralnotice-notice-name' => 'اسم الاعلان',
 	'centralnotice-end-date' => 'تاريخ الانتهاء',
@@ -307,18 +309,31 @@ $messages['arz'] = array(
 	'centralnotice-project-name' => 'الاسم بتاع المشروع',
 	'centralnotice-start-date' => 'تاريخ البدايه',
 	'centralnotice-start-time' => 'وقت البداية(يو تي سي)',
+	'centralnotice-assigned-templates' => 'قالب موجود',
+	'centralnotice-no-templates' => 'مافيش قوالب.
+ضيف بعض القوالب!',
+	'centralnotice-no-templates-assigned' => ' مافيش قالب موجود.
+ضيف  قوالب',
 	'centralnotice-available-templates' => 'القوالب الموجودة',
+	'centralnotice-template-already-exists' => 'قالب موجود
+. مافيش  إضافة',
+	'centralnotice-preview-template' => 'معاينة القالب',
 	'centralnotice-start-hour' => 'وقت البداية',
 	'centralnotice-change-lang' => 'تغيير لغة الترجمه',
 	'centralnotice-weights' => 'الاوزان',
 	'centralnotice-notice-is-locked' => 'الاعلان مقفول.
 مافيش مسح.',
+	'centralnotice-overlap' => 'الإخطار يتداخل مع وقت إخطار تانى.
+مافيش إضافة',
 	'centralnotice-invalid-date-range' => 'مدى تاريخ مش صحيح.
 مافيش تحديث',
+	'centralnotice-null-string' => 'مش ممكن إضافة نص مصفّر.
+مافيش  إضافة',
 	'centralnotice-confirm-delete' => 'انت متأكد انك عايز تلغى الحتة دي؟
 الاجراء دا مش ح يترجع فيه',
 	'centralnotice-no-notices-exist' => 'مافيش اخطارات موجودة.
 ضيف واحد تحته',
+	'centralnotice-no-templates-translate' => 'مافيش أي قالب لتحرير ترجمته',
 	'centralnotice-number-uses' => 'الاستعمالات',
 	'centralnotice-edit-template' => 'عدل في القالب',
 	'centralnotice-message' => 'الرسالة',
@@ -393,9 +408,28 @@ $messages['br'] = array(
  * @author CERminator
  */
 $messages['bs'] = array(
+	'noticetemplate' => 'Šablon za središnju obavijest',
+	'centralnotice-desc' => 'Dodaje središnju obavijest na stranici',
+	'centralnotice-enabled' => 'Omogućeno',
+	'centralnotice-modify' => 'Pošalji',
 	'centralnotice-remove' => 'Ukloni',
 	'centralnotice-add' => 'Dodaj',
 	'centralnotice-translations' => 'Prijevodi',
+	'centralnotice-english' => 'engleski jezik',
+	'centralnotice-template-name' => 'Naslov šablona',
+	'centralnotice-templates' => 'Šabloni',
+	'centralnotice-template-body' => 'Tijelo šablona:',
+	'centralnotice-day' => 'dan',
+	'centralnotice-year' => 'godina',
+	'centralnotice-month' => 'mjesec',
+	'centralnotice-hours' => 'sat',
+	'centralnotice-min' => 'minut',
+	'centralnotice-project-name' => 'Naslov projekta',
+	'centralnotice-available-templates' => 'Dostupni šabloni',
+	'centralnotice-preview-template' => 'Izgled šablona',
+	'centralnotice-start-hour' => 'Vrijeme početka',
+	'centralnotice-edit-template' => 'Uredi šablon',
+	'centralnotice-message' => 'Poruka',
 );
 
 /** Czech (Česky)
@@ -1583,6 +1617,8 @@ $messages['ms'] = array(
 	'centralnotice-project-name' => 'Nama projek',
 	'centralnotice-start-date' => 'Tarikh mula',
 	'centralnotice-start-time' => 'Waktu mula (UTC)',
+	'centralnotice-no-templates' => 'Tiada templat. Sila cipta templat baru.',
+	'centralnotice-available-templates' => 'Templat yang ada',
 	'centralnotice-preview-template' => 'Pralihat templat',
 	'centralnotice-start-hour' => 'Waktu mula',
 	'centralnotice-change-lang' => 'Tukar bahasa terjemahan',
