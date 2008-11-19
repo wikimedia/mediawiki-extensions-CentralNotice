@@ -410,26 +410,46 @@ $messages['br'] = array(
 $messages['bs'] = array(
 	'noticetemplate' => 'Šablon za središnju obavijest',
 	'centralnotice-desc' => 'Dodaje središnju obavijest na stranici',
+	'centralnotice-end-date' => 'Krajnji datum',
 	'centralnotice-enabled' => 'Omogućeno',
 	'centralnotice-modify' => 'Pošalji',
+	'centralnotice-preview' => 'Izgled',
 	'centralnotice-remove' => 'Ukloni',
 	'centralnotice-add' => 'Dodaj',
+	'centralnotice-show-notices' => 'Prikaži obavještenja',
 	'centralnotice-translations' => 'Prijevodi',
+	'centralnotice-translate' => 'Prijevod',
 	'centralnotice-english' => 'engleski jezik',
 	'centralnotice-template-name' => 'Naslov šablona',
 	'centralnotice-templates' => 'Šabloni',
+	'centralnotice-locked' => 'Zaključano',
+	'centralnotice-notices' => 'Obavještenja',
 	'centralnotice-template-body' => 'Tijelo šablona:',
 	'centralnotice-day' => 'dan',
 	'centralnotice-year' => 'godina',
 	'centralnotice-month' => 'mjesec',
 	'centralnotice-hours' => 'sat',
 	'centralnotice-min' => 'minut',
+	'centralnotice-project-lang' => 'Jezik projekta',
 	'centralnotice-project-name' => 'Naslov projekta',
+	'centralnotice-start-date' => 'Početni datum',
+	'centralnotice-start-time' => 'Početno vrijeme (UTC)',
 	'centralnotice-available-templates' => 'Dostupni šabloni',
 	'centralnotice-preview-template' => 'Izgled šablona',
 	'centralnotice-start-hour' => 'Vrijeme početka',
+	'centralnotice-change-lang' => 'Promjena jezika prijevoda',
+	'centralnotice-weights' => 'Težina',
+	'centralnotice-notice-is-locked' => 'Obavještenje je zaključano.
+Ne može se ukloniti',
+	'centralnotice-overlap' => 'Obavještenje se preklapa u toku vremena sa drugim obavještenjem.
+Ne može se dodati',
+	'centralnotice-no-notices-exist' => 'Ne postoji obavijest.
+Dodaj jednu ispod',
+	'centralnotice-number-uses' => 'Upotreba',
 	'centralnotice-edit-template' => 'Uredi šablon',
 	'centralnotice-message' => 'Poruka',
+	'centralnotice-message-not-set' => 'Poruka nije postavljena',
+	'right-centralnotice_translate_rights' => 'Prevođenje središnjeg obavještenja',
 );
 
 /** Czech (Česky)
@@ -910,6 +930,7 @@ $messages['gl'] = array(
 	'centralnotice-add-notice' => 'Engadir un aviso',
 	'centralnotice-add-template' => 'Engadir un modelo',
 	'centralnotice-show-notices' => 'Amosar os avisos',
+	'centralnotice-list-templates' => 'Listar os modelos',
 	'centralnotice-translations' => 'Traducións',
 	'centralnotice-translate-to' => 'Traducir ao',
 	'centralnotice-translate' => 'Traducir',
@@ -929,6 +950,7 @@ $messages['gl'] = array(
 	'centralnotice-project-name' => 'Nome do proxecto',
 	'centralnotice-start-date' => 'Data de inicio',
 	'centralnotice-start-time' => 'Hora de inicio (UTC)',
+	'centralnotice-assigned-templates' => 'Modelos asignados',
 	'centralnotice-available-templates' => 'Modelos dispoñibles',
 	'centralnotice-preview-template' => 'Vista previa do modelo',
 	'centralnotice-start-hour' => 'Hora de inicio',
@@ -942,6 +964,13 @@ $messages['gl'] = array(
 	'right-centralnotice_translate_rights' => 'Traducir os avisos centrais',
 	'action-centralnotice_admin_rights' => 'xestionar os avisos centrais',
 	'action-centralnotice_translate_rights' => 'traducir os avisos centrais',
+);
+
+/** Ancient Greek (Ἀρχαία ἑλληνικὴ)
+ * @author Crazymadlover
+ */
+$messages['grc'] = array(
+	'centralnotice-add' => 'Προστιθέναι',
 );
 
 /** Hebrew (עברית)
