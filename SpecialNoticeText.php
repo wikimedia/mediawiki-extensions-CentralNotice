@@ -37,7 +37,12 @@ class SpecialNoticeText extends NoticePage {
 				"," .
 				Xml::encodeJsVar( $weights ) .
 				");\n" .
-			"if (wgUserName == null && wgNotice != '') wgNotice='<div class=\"anonnotice\">'+wgNotice+'</div>';\n";
+			"if (wgNotice != '')\n" .
+			"wgNotice='<div id=\"centralNotice\" class=\"' + " .
+			"(wgNoticeToggleState ? 'expanded' : 'collapsed') + " .
+			"' ' + " .
+			"(wgUserName ? 'usernotice' : 'anonnotice' ) + " .
+			"'\">' + wgNotice+'</div>';\n";
 	}
 
 	function getHtmlNotice( $noticeName ) {
@@ -50,40 +55,35 @@ class SpecialNoticeText extends NoticePage {
 
 	function getToggleScripts() {
 		$showStyle = <<<END
-<style type="text/css">.siteNoticeSmall{display:none;}</style>
-END;
-		$hideStyle = <<<END
-<style type="text/css">.siteNoticeBig{display:none;}</style>
-END;
-		$hideToggleStyle = <<<END
-<style type="text/css">.siteNoticeToggle{display:none;}</style>
+<style type="text/css">
+#centralNotice .siteNoticeSmall{display:none;}
+#centralNotice .siteNoticeSmallAnon{display:none;}
+#centralNotice .siteNoticeSmallUser{display:none;}
+#centralNotice.collapsed .siteNoticeBig{display:none;}
+#centralNotice.collapsed .siteNoticeSmall{display:block;}
+#centralNotice.collapsed .siteNoticeSmallUser{display:block;}
+#centralNotice.collapsed .siteNoticeSmallAnon{display:block;}
+#centralNotice.anonnotice .siteNoticeSmallUser{display:none !important;}
+#centralNotice.usernotice .siteNoticeSmallAnon{display:none !important;}
+</style>
 END;
 		$encShowStyle = Xml::encodeJsVar( $showStyle );
-		$encHideStyle = Xml::encodeJsVar( $hideStyle );
-		$encHideToggleStyle = Xml::encodeJsVar( $hideToggleStyle );
 
 		$script = "
 var wgNoticeToggleState = (document.cookie.indexOf('hidesnmessage=1')==-1);
-document.writeln(
-	wgNoticeToggleState
-	? $encShowStyle
-	: $encHideStyle);
-document.writeln($encHideToggleStyle);\n\n";
+document.writeln($encShowStyle);\n\n";
 		return $script;
 	}
 
 	function getScriptFunctions() {
 		$script = "
 function toggleNotice() {
-	var big = getElementsByClassName(document,'div','siteNoticeBig');
-	var small = getElementsByClassName(document,'div','siteNoticeSmall');
+	var notice = document.getElementById('centralNotice');
 	if (!wgNoticeToggleState) {
-		toggleNoticeStyle(big,'block');
-		toggleNoticeStyle(small,'none');
+		notice.className = notice.className.replace('collapsed', 'expanded');
 		toggleNoticeCookie('0');
 	} else {
-		toggleNoticeStyle(big,'none');
-		toggleNoticeStyle(small,'block');
+		notice.className = notice.className.replace('expanded', 'collapsed');
 		toggleNoticeCookie('1');
 	}
 	wgNoticeToggleState = !wgNoticeToggleState;
