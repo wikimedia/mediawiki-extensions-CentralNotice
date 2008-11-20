@@ -443,6 +443,8 @@ $messages['bs'] = array(
 Ne može se ukloniti',
 	'centralnotice-overlap' => 'Obavještenje se preklapa u toku vremena sa drugim obavještenjem.
 Ne može se dodati',
+	'centralnotice-invalid-date-range' => 'Pogrešan vremenski period.
+Ne može se ažurirati',
 	'centralnotice-no-notices-exist' => 'Ne postoji obavijest.
 Dodaj jednu ispod',
 	'centralnotice-number-uses' => 'Upotreba',
