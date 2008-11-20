@@ -141,84 +141,7 @@ function pickTemplate(templates, weights) {
 			$this->language = $bits[1];
 		}
 	}
-	/*
-	private function interpolateStrings( $data ) {
-		if( is_array( $data ) ) {
-			if( count( $data ) == 1 ) {
-				return Xml::escapeJsString( $data[0] );
-			} else {
-				return $this->interpolateRandomSelector( $data );
-			}
-		} else {
-			return Xml::escapeJsString( $data );
-		}
-	}
 
-	private function interpolateRandomSelector( $strings ) {
-		return '"+' . $this->randomSelector( $strings ) . '+"';
-	}
-
-	private function randomSelector( $strings ) {
-		return
-			'function(){' .
-				'var s=' . Xml::encodeJsVar( $strings ) . ';' .
-				'return s[Math.floor(Math.random()*s.length)];' .
-			'}()';
-	}
-
-	private function interpolateScroller( $strings ) {
-		global $wgNoticeScroll;
-		if( $wgNoticeScroll ) {
-			return
-				Xml::escapeJsString( '<marquee scrolldelay="20" scrollamount="2" width="384">' ) .
-				'"+' .
-				$this->shuffleStrings( $strings ) .
-				'+"' .
-				Xml::escapeJsString( '</marquee>' );
-		} else {
-			return $this->interpolateStrings( $strings );
-		}
-	}
-
-	private function shuffleStrings( $strings ) {
-		return
-			'function(){' .
-				'var s=' . Xml::encodeJsVar( $strings ) . ';' .
-				# Get a random array of orderings... (array_index,random)
-				'var o=[];' .
-				'for(var i=0;i<s.length;i++){' .
-					'o.push([i,Math.random()]);' .
-				'}' .
-				'o.sort(function(x,y){return y[1]-x[1];});' .
-				# Reorder the array...
-				'var r=[];' .
-				'for(var i=0;i<o.length;i++){' .
-					'r.push(s[o[i][0]]);' .
-				'}' .
-				# And return a joined string
-				'return r.join(" ");' .
-			'}()';
-	}
-	*/
-
-	function chooseTemplate ( $notice ) {
-		 $dbr = wfGetDB( DB_SLAVE );
-		 /*
-		  * This select statement is really wrong, and needs to be fixed.
-		  * What's wrong is the use of just id instead of not_id, tmp_id or asn_id
-		  */
-		 $res = $dbr->select( 'cn_assignments',
-			array( 'not_name', 'not_weight' ),
-			array( 'not_name' => $notice, 'not_id = id' ),
-			__METHOD__,
-			array( 'ORDER BY' => 'id' )
-		);
-		$templates = array();
-	  	while ( $row = $dbr->fetchObject( $res ) ) {
-			 push ( $templates, $row->name );
-		}
-
-	}
 	function getNoticeTemplate() {
 		return $this->getMessage( "centralnotice-template-{$this->noticeName}" );
 	}
@@ -233,31 +156,6 @@ function pickTemplate(templates, weights) {
 		$source = $this->getMessage( $message, $params );
 		return $source;
 	}
-
-	/*
-	private function getHeadlines() {
-		return $this->splitListMessage( 'centralnotice-headlines' );
-	}
-
-	private function getQuotes() {
-		return $this->splitListMessage( 'centralnotice-quotes',
-		 	array( $this, 'wrapQuote' ) );
-	}
-
-	private function getMeter() {
-		return $this->getMessage( 'centralnotice-meter' );
-		#return "<img src=\"http://upload.wikimedia.org/fundraising/2007/meter.png\" width='407' height='14' />";
-	}
-
-	private function getTarget() {
-		return $this->getMessage( 'centralnotice-target' );
-	}
-
-	private function splitListMessage( $msg, $callback=false ) {
-		$text = $this->getMessage( $msg );
-		return $this->splitList( $text, $callback );
-	}
-	*/
 
 	private function getMessage( $msg, $params = array() ) {
 		// A god-damned dirty hack! :D
@@ -308,16 +206,6 @@ function pickTemplate(templates, weights) {
 		}
 	}
 
-	/*
-	function wrapQuote( $text ) {
-		return "<span class='fundquote'>" .
-			$this->getMessage(
-				'centralnotice-quotes-format',
-				array( $text ) ) .
-			"</span>";
-	}
-	*/
-
 	private function getDonationAmount() {
 		global $wgNoticeCounterSource, $wgMemc;
 		$count = intval( $wgMemc->get( 'centralnotice:counter' ) );
@@ -343,55 +231,4 @@ function pickTemplate(templates, weights) {
 		}
 		return $count;
 	}
-
-	/*
-	private function getBlog() {
-		$url = $this->getMessage( 'centralnotice-blog-url' );
-		$entry = $this->getCachedRssEntry( $url );
-		if( $entry ) {
-			list( $link, $title ) = $entry;
-			return $this->parse(
-				$this->getMessage( 'centralnotice-blog',
-					array( $link, wfEscapeWikiText( $title ) ) ) );
-		} else {
-			return '';
-		}
-	}
-
-	private function getCachedRssEntry( $url ) {
-		global $wgMemc;
-		$key = 'centralnotice:rss:' . md5( $url );
-		$cached = $wgMemc->get( $key );
-		if( !is_string( $cached ) ) {
-			$title = $this->getFirstRssEntry( $url );
-			if( $title ) {
-				$wgMemc->set( $key, $title, 600 ); // 10-minute
-			} else {
-				$wgMemc->set( $key, array(), 30 ); // negative cache for a little bit...
-			}
-		}
-		return $title;
-	}
-	*/
-
-	/**
-	 * Fetch the first link and title from an RSS feed
-	 * @return array
-	 */
-	/*
-	private function getFirstRssEntry( $url ) {
-		wfSuppressWarnings();
-		$feed = simplexml_load_file( $url );
-		$title = $feed->channel[0]->item[0]->title;
-		$link = $feed->channel[0]->item[0]->link;
-		wfRestoreWarnings();
-
-		if( is_object( $title ) && is_object( $link ) ) {
-			return array( (string)$link, (string)$title );
-		} else {
-			return array();
-		}
-	}
-	*/
-
 }
