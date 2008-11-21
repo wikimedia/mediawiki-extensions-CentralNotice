@@ -942,6 +942,12 @@ $messages['gl'] = array(
 	'centralnotice-weight' => 'Peso',
 	'centralnotice-locked' => 'Bloqueado',
 	'centralnotice-notices' => 'Avisos',
+	'centralnotice-notice-exists' => 'O aviso xa existe.
+Non se engade',
+	'centralnotice-template-exists' => 'O modelo xa existe.
+Non se engade',
+	'centralnotice-notice-doesnt-exist' => 'O aviso non existe.
+Non hai nada que eliminar',
 	'centralnotice-template-body' => 'Corpo do modelo:',
 	'centralnotice-day' => 'Día',
 	'centralnotice-year' => 'Ano',
@@ -953,11 +959,23 @@ $messages['gl'] = array(
 	'centralnotice-start-date' => 'Data de inicio',
 	'centralnotice-start-time' => 'Hora de inicio (UTC)',
 	'centralnotice-assigned-templates' => 'Modelos asignados',
+	'centralnotice-no-templates' => 'Non se atopou ningún modelo.
+Engada algún!',
+	'centralnotice-no-templates-assigned' => 'Non hai modelos asignados a avisos.
+Engada algún!',
 	'centralnotice-available-templates' => 'Modelos dispoñibles',
 	'centralnotice-preview-template' => 'Vista previa do modelo',
 	'centralnotice-start-hour' => 'Hora de inicio',
 	'centralnotice-change-lang' => 'Cambiar a lingua de tradución',
 	'centralnotice-weights' => 'Pesos',
+	'centralnotice-notice-is-locked' => 'O aviso está bloqueado.
+Non se eliminará',
+	'centralnotice-invalid-date-range' => 'Rango de datos inválido.
+Non se actualizará',
+	'centralnotice-confirm-delete' => 'Está seguro de que quere eliminar este elemento?
+Esta acción non poderá ser recuperada',
+	'centralnotice-no-notices-exist' => 'Non existe ningún aviso.
+Engada algún embaixo',
 	'centralnotice-number-uses' => 'Usos',
 	'centralnotice-edit-template' => 'Editar o modelo',
 	'centralnotice-message' => 'Mensaxe',
