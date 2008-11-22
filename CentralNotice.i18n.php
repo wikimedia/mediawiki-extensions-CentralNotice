@@ -415,7 +415,9 @@ $messages['bs'] = array(
 	'centralnotice-modify' => 'Pošalji',
 	'centralnotice-preview' => 'Izgled',
 	'centralnotice-remove' => 'Ukloni',
+	'centralnotice-translate-heading' => 'Prijevod za $1',
 	'centralnotice-add' => 'Dodaj',
+	'centralnotice-add-notice' => 'Dodaj obavještenje',
 	'centralnotice-show-notices' => 'Prikaži obavještenja',
 	'centralnotice-translations' => 'Prijevodi',
 	'centralnotice-translate' => 'Prijevod',
@@ -452,6 +454,7 @@ Dodaj jednu ispod',
 	'centralnotice-message' => 'Poruka',
 	'centralnotice-message-not-set' => 'Poruka nije postavljena',
 	'right-centralnotice_translate_rights' => 'Prevođenje središnjeg obavještenja',
+	'action-centralnotice_translate_rights' => 'Prevođenje središnjeg obavještenja',
 );
 
 /** Czech (Česky)
@@ -521,11 +524,12 @@ Níže můžete vytvořit nové.',
 
 /** German (Deutsch)
  * @author Metalhead64
+ * @author Purodha
  * @author Raimond Spekking
  */
 $messages['de'] = array(
 	'centralnotice' => 'Administrierung der zentralen Meldungen',
-	'noticetemplate' => 'Zentrale Meldungs-Vorlagen',
+	'noticetemplate' => 'Zentrale Meldungs-Vorlage',
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
 	'centralnotice-summary' => 'Diese Erweiterung erlaubt die Konfiguration zentraler Meldungen.
 Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werden.',
@@ -1476,7 +1480,13 @@ $messages['ko'] = array(
  * @author Purodha
  */
 $messages['ksh'] = array(
+	'centralnotice' => 'Zentraal Nohreschte verwallde',
+	'noticetemplate' => 'Schabloon för zentraal Nohreschte',
 	'centralnotice-desc' => "Brengk en zentraale ''sitenotice'' en et wiki",
+	'centralnotice-summary' => 'Hee met kanns De de zentraal Nohreschte ändere, die jraad em Wiki opjesaz sen,
+ävver och neue dobei donn, un allde fott schmieße.',
+	'centralnotice-query' => 'Aktowälle zentraale Nohresch ändere.',
+	'centralnotice-notice-name' => 'Dä Nohresch ier Name',
 	'centralnotice-end-date' => 'Et Dattum fum Engk',
 	'centralnotice-enabled' => 'Aanjeschalldt',
 	'centralnotice-modify' => 'Loß Jonn!',
@@ -1518,9 +1528,17 @@ Di kam_mer nit fott nämme.',
 	'centralnotice-start-date' => 'Et Annfangsdattum',
 	'centralnotice-start-time' => 'De Aanfangszick (UTC)',
 	'centralnotice-assigned-templates' => 'Zojedeilte Schablone',
+	'centralnotice-no-templates' => 'Mer han kein Schablone.
+Kanns ävver welshe dobei don.',
 	'centralnotice-start-hour' => 'Uhrzigg fum Aanfang',
 	'centralnotice-weights' => 'Jeweeschte',
+	'centralnotice-no-notices-exist' => 'Mer han kein Nohreschte.
+De kanns ävver welshe dobei don.',
+	'centralnotice-number-uses' => 'Jebruch',
 	'centralnotice-edit-template' => 'Schablon beärbeide',
+	'centralnotice-message' => 'Nohresch',
+	'centralnotice-message-not-set' => 'De Nohresch es nit jesaz',
+	'right-centralnotice_admin_rights' => 'Zentraal Nohreschte verwallde',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -1582,6 +1600,8 @@ Net derbäisetzen",
 Se kann net ewechgeholl ginn.",
 	'centralnotice-invalid-date-range' => 'Ongëltegen Zäitraum.
 Gëtt net aktualiséiert.',
+	'centralnotice-confirm-delete' => 'Sidd Dir sécher datt Dir dës Säit läsche wëllt?
+Dës Aktioun kann net réckgängeg gemaach ginn.',
 	'centralnotice-no-notices-exist' => 'Et gëtt keng Notiz.
 Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-no-templates-translate' => "Et gëtt keng Schablounen fir déi Iwwersetzungen z'ännere sinn",
@@ -1933,6 +1953,16 @@ Apondètz-ne una en dejós.',
 	'right-centralnotice_translate_rights' => 'Traduire las notificacions centralas',
 	'action-centralnotice_admin_rights' => 'gerir las notificacions centralas',
 	'action-centralnotice_translate_rights' => 'traduire las notificacions centralas',
+);
+
+/** Ossetic (Иронау)
+ * @author Amikeco
+ */
+$messages['os'] = array(
+	'centralnotice-translations' => 'Тæлмацтæ',
+	'centralnotice-year' => 'Аз',
+	'centralnotice-project-lang' => 'Проекты æвзаг',
+	'centralnotice-project-name' => 'Проекты ном',
 );
 
 /** Polish (Polski)
@@ -2387,7 +2417,7 @@ $messages['tg-cyrl'] = array(
  * @author Ahonc
  */
 $messages['uk'] = array(
-	'centralnotice-desc' => 'Додає загальне повідомлення сайта',
+	'centralnotice-desc' => 'Додає загальне повідомлення сайту',
 );
 
 /** Vèneto (Vèneto)
