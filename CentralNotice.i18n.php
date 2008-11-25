@@ -341,6 +341,8 @@ $messages['arz'] = array(
 	'centralnotice-edit-template' => 'عدل في القالب',
 	'centralnotice-message' => 'الرسالة',
 	'centralnotice-message-not-set' => 'الرسالة مش مظبوطة',
+	'centralnotice-clone' => 'انسخ',
+	'centralnotice-clone-notice' => 'اعمل نسخة من القالب',
 	'right-centralnotice_admin_rights' => 'ادارة الاعلانات المركزيه',
 	'right-centralnotice_translate_rights' => 'ترجم الاعلانات المركزية',
 	'action-centralnotice_admin_rights' => 'ادارة الاعلانات المركزية',
@@ -606,6 +608,9 @@ Füge eine hinzu.',
 	'centralnotice-edit-template' => 'Vorlage bearbeiten',
 	'centralnotice-message' => 'Nachricht',
 	'centralnotice-message-not-set' => 'Nachricht nicht gesetzt',
+	'centralnotice-clone' => 'Klon erstellen',
+	'centralnotice-clone-notice' => 'Erstelle eine Kopie der Vorlage',
+	'centralnotice-preview-all-template-translations' => 'Vorschau aller verfügbaren Übersetzungen einer Vorlage',
 	'right-centralnotice_admin_rights' => 'Verwalten von zentralen Meldungen',
 	'right-centralnotice_translate_rights' => 'Übersetzen von zentralen Meldungen',
 	'action-centralnotice_admin_rights' => 'Zentrale Seitennotiz verwalten',
@@ -829,6 +834,7 @@ $messages['fi'] = array(
  * @author IAlex
  * @author McDutchie
  * @author Meithal
+ * @author Sherbrooke
  */
 $messages['fr'] = array(
 	'centralnotice' => 'Administration des avis centraux',
@@ -905,7 +911,7 @@ Ajoutez-en un en dessous.',
 	'centralnotice-edit-template' => 'Modifier le modèle',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message non renseigné',
-	'right-centralnotice_admin_rights' => 'Gère les notifications centrales',
+	'right-centralnotice_admin_rights' => 'Gérer les notifications centrales',
 	'right-centralnotice_translate_rights' => 'Traduire les notifications centrales',
 	'action-centralnotice_admin_rights' => 'gérer les avis centraux',
 	'action-centralnotice_translate_rights' => 'traduire les avis centraux',
@@ -995,9 +1001,17 @@ Engada algún embaixo',
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
  * @author Crazymadlover
+ * @author Omnipaedista
  */
 $messages['grc'] = array(
+	'centralnotice-modify' => 'Ὑποβάλλειν',
+	'centralnotice-preview' => 'Προθεωρεῖν',
+	'centralnotice-remove' => 'Άφαιρεῖν',
 	'centralnotice-add' => 'Προστιθέναι',
+	'centralnotice-weight' => 'Βάρος',
+	'centralnotice-preview-template' => 'Προθεωρεῖν πρότυπον',
+	'centralnotice-weights' => 'Βάρη',
+	'centralnotice-number-uses' => 'Χρήσεις',
 );
 
 /** Hebrew (עברית)
@@ -1603,6 +1617,8 @@ Net derbäisetzen",
 Se kann net ewechgeholl ginn.",
 	'centralnotice-invalid-date-range' => 'Ongëltegen Zäitraum.
 Gëtt net aktualiséiert.',
+	'centralnotice-null-string' => 'Et ass net méiglech näischt derbäizesetzen.
+Näischt derbäigesat',
 	'centralnotice-confirm-delete' => 'Sidd Dir sécher datt Dir dës Säit läsche wëllt?
 Dës Aktioun kann net réckgängeg gemaach ginn.',
 	'centralnotice-no-notices-exist' => 'Et gëtt keng Notiz.
@@ -1698,6 +1714,7 @@ $messages['ms'] = array(
 	'centralnotice-invalid-date-range' => 'Julat tarikh tidak sah dan tidak dikemaskinikan.',
 	'centralnotice-null-string' => 'Rentetan kosong tidak boleh ditambah.',
 	'centralnotice-confirm-delete' => 'Betul anda mahu menghapuskan item ini? Tindakan ini tidak boleh dipulihkan.',
+	'centralnotice-no-templates-translate' => 'Tiada templat untuk diterjemah',
 	'centralnotice-edit-template' => 'Sunting templat',
 	'centralnotice-message' => 'Pesanan',
 	'centralnotice-message-not-set' => 'Pesanan tidak ditetapkan',
@@ -1793,6 +1810,9 @@ U kunt er hieronder een toevoegen',
 	'centralnotice-edit-template' => 'Sjabloon bewerken',
 	'centralnotice-message' => 'Bericht',
 	'centralnotice-message-not-set' => 'Het bericht is niet ingesteld',
+	'centralnotice-clone' => 'Kopiëren',
+	'centralnotice-clone-notice' => 'Een kopie van het sjabloon maken',
+	'centralnotice-preview-all-template-translations' => 'Alle beschikbare vertalingen van het sjabloon bekijken',
 	'right-centralnotice_admin_rights' => 'Centrale sitenotices beheren',
 	'right-centralnotice_translate_rights' => 'Centrale sitenotices vertalen',
 	'action-centralnotice_admin_rights' => 'centrale sitenotices beheren',
