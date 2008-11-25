@@ -471,7 +471,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			NS_MEDIAWIKI
 		);
 		$article = new Article( $title );
-		$article->doEdit( $translation, '' );
+		$article->doEdit( $translation, '', EDIT_FORCE_BOT );
 	}
 
 	static function queryTemplates() {
@@ -573,7 +573,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-			$article->doEdit( $body, '' );
+			$article->doEdit( $body, '', EDIT_FORCE_BOT );
 			return true;
 		}
 	}
@@ -599,7 +599,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-			$article->doEdit( $body, '' );
+			$article->doEdit( $body, '', EDIT_FORCE_BOT );
 			return;
 		}
 	}
