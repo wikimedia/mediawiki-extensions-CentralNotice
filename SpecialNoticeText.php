@@ -176,7 +176,7 @@ function pickTemplate(templates, weights) {
 
 		// Restore globals
 		$GLOBALS['wgSitename'] = $old['wgSitename'];
-		$GLOBALS['wgLang'] = $wgLang;
+		$GLOBALS['wgLang'] = $old['wgLang'];
 
 		return $out;
 	}
