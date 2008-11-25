@@ -159,10 +159,12 @@ function pickTemplate(templates, weights) {
 
 	private function getMessage( $msg, $params = array() ) {
 		// A god-damned dirty hack! :D
-		global $wgSitename;
 		$old = array();
-		$old['wgSitename'] = $wgSitename;
+		$old['wgSitename'] = $GLOBALS['wgSitename'];
+		$old['wgLang'] = $GLOBALS['wgLang'];
+		
 		$wgSitename = $this->projectName();
+		$wgLang = Language::factory( $this->language ); // hack for {{int:...}}
 
 		$options = array(
 			'language' => $this->language,
@@ -173,7 +175,8 @@ function pickTemplate(templates, weights) {
 		$out = call_user_func_array( 'wfMsgExt', $params );
 
 		// Restore globals
-		$wgSitename = $old['wgSitename'];
+		$GLOBALS['wgSitename'] = $old['wgSitename'];
+		$GLOBALS['wgLang'] = $wgLang;
 
 		return $out;
 	}
