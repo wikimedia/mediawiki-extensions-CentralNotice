@@ -281,9 +281,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$languages = Language::getLanguageNames();
 		$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), $languages[$wpUserLang] );
 
-		$body = wfMsg( "Centralnotice-template-{$currentTemplate}" );
-
-		// Generate fields from parsing the body
+                // Pull text and respect any inc: markup
+                $bodyPage = Title::newFromText( "Centralnotice-template-{$currentTemplate}", NS_MEDIAWIKI );
+		$body = Revision::newFromTitle( $bodyPage )->getText();
+    
 		$fields = array();
 		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-}]+)\}\}\}/', $body, $fields );
 
