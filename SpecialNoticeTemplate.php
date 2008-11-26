@@ -440,6 +440,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
         public function showViewAvailable( $template ) {
             global $wgOut, $wgUser;
 
+            // Testing to see if bumping up the memory limit lets meta preview
+            ini_set( 'memory_limit', '120M' );
+
             $sk = $wgUser->getSkin();
 
             // Pull all available text for a template
@@ -609,6 +612,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
          * Copy all the data from one template to another
          */
         public function cloneTemplate( $source, $dest ) {
+            // Reset the timer as updates on meta take a long time
+            set_time_limit( 60 );
             // Pull all possible langs
             $langs = $this->getTranslations( $source );
             
