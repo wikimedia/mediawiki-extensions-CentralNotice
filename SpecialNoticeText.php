@@ -163,8 +163,8 @@ function pickTemplate(templates, weights) {
 		$old['wgSitename'] = $GLOBALS['wgSitename'];
 		$old['wgLang'] = $GLOBALS['wgLang'];
 		
-		$wgSitename = $this->projectName();
-		$wgLang = Language::factory( $this->language ); // hack for {{int:...}}
+		$GLOBALS['wgSitename'] = $this->projectName();
+		$GLOBALS['wgLang'] = Language::factory( $this->language ); // hack for {{int:...}}
 
 		$options = array(
 			'language' => $this->language,
