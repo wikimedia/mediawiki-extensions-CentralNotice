@@ -184,6 +184,10 @@ $messages['am'] = array(
  */
 $messages['an'] = array(
 	'centralnotice-desc' => 'Adibe una "sitenotice" zentral',
+	'centralnotice-end-date' => 'Calendata final',
+	'centralnotice-start-date' => 'Calendata de prenzipio',
+	'centralnotice-invalid-date-range' => "Rango de datos no conforme.
+No s'está adautando.",
 );
 
 /** Arabic (العربية)
@@ -354,8 +358,10 @@ $messages['bcc'] = array(
 
 /** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
  * @author EugeneZelenko
+ * @author Jim-by
  */
 $messages['be-tarask'] = array(
+	'centralnotice' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
 	'centralnotice-add' => 'Дадаць',
 );
 
@@ -915,6 +921,8 @@ $messages['gl'] = array(
 	'centralnotice' => 'Administración do aviso central',
 	'noticetemplate' => 'Modelo do aviso central',
 	'centralnotice-desc' => 'Engade un aviso central',
+	'centralnotice-summary' => 'Este módulo permite editar os parámetros dos seus avisos centrais actuais.
+Tamén pode ser usado para engadir ou eliminar avisos vellos.',
 	'centralnotice-notice-name' => 'Nome do aviso',
 	'centralnotice-end-date' => 'Data da fin',
 	'centralnotice-enabled' => 'Permitido',
@@ -937,6 +945,8 @@ Non se engade',
 Non se engade',
 	'centralnotice-notice-doesnt-exist' => 'O aviso non existe.
 Non hai nada que eliminar',
+	'centralnotice-template-still-bound' => 'O modelo aínda está ligado a un aviso.
+Non se elimina.',
 	'centralnotice-day' => 'Día',
 	'centralnotice-year' => 'Ano',
 	'centralnotice-month' => 'Mes',
@@ -952,6 +962,8 @@ Engada algún!',
 	'centralnotice-no-templates-assigned' => 'Non hai modelos asignados a avisos.
 Engada algún!',
 	'centralnotice-available-templates' => 'Modelos dispoñibles',
+	'centralnotice-template-already-exists' => 'O modelo xa está atado á campaña.
+Non se engade',
 	'centralnotice-preview-template' => 'Vista previa do modelo',
 	'centralnotice-start-hour' => 'Hora de inicio',
 	'centralnotice-change-lang' => 'Cambiar a lingua de tradución',
@@ -960,6 +972,8 @@ Engada algún!',
 Non se eliminará',
 	'centralnotice-invalid-date-range' => 'Rango de datos inválido.
 Non se actualizará',
+	'centralnotice-null-string' => 'Non se pode engadir unha corda.
+Non se engade',
 	'centralnotice-confirm-delete' => 'Está seguro de que quere eliminar este elemento?
 Esta acción non poderá ser recuperada',
 	'centralnotice-no-notices-exist' => 'Non existe ningún aviso.
@@ -1166,7 +1180,77 @@ Dodajte jednu ispod',
  * @author Michawiki
  */
 $messages['hsb'] = array(
+	'centralnotice' => 'Administrator centralnych powěsćow',
+	'noticetemplate' => 'Předłoha za centralnu powěsć',
 	'centralnotice-desc' => 'Přidawa centralnu bóčnu zdźělenku',
+	'centralnotice-summary' => 'Tutón modul ći dowola, zo by swoje aktualnu konfiguraciju centralnych powěsćow wobdźěłał.
+Hodźi so tež za přidaće abo wotstronjenje starych powěsćow wužiwać.',
+	'centralnotice-notice-name' => 'Mjeno powěsće',
+	'centralnotice-end-date' => 'Kónčny datum',
+	'centralnotice-enabled' => 'Zmóžnjeny',
+	'centralnotice-modify' => 'Wotpósłać',
+	'centralnotice-remove' => 'Wotstronić',
+	'centralnotice-translate-heading' => 'Přełožk za $1',
+	'centralnotice-manage' => 'Centralne powěsće zrjadować',
+	'centralnotice-add' => 'Přidać',
+	'centralnotice-add-notice' => 'Powěsć přidać',
+	'centralnotice-add-template' => 'Předłohu přidać',
+	'centralnotice-english' => 'Jendźelšćina',
+	'centralnotice-template-name' => 'Mjeno předłohi',
+	'centralnotice-templates' => 'Předłohi',
+	'centralnotice-weight' => 'Waha',
+	'centralnotice-locked' => 'Zawrjeny',
+	'centralnotice-notices' => 'Powěsće',
+	'centralnotice-notice-exists' => 'Powěsć hižo eksistuje.
+Njepřidawa so.',
+	'centralnotice-template-exists' => 'Předłoha hižo eksistuje.
+Njepřidawa so.',
+	'centralnotice-notice-doesnt-exist' => 'Powěsć njeeksistuje.
+Njewotstroni so ničo.',
+	'centralnotice-template-still-bound' => 'Předłoha je hišće na powěsć zwjazana.
+Njewotstronja so.',
+	'centralnotice-day' => 'Dźeń',
+	'centralnotice-year' => 'Lěto',
+	'centralnotice-month' => 'Měsac',
+	'centralnotice-hours' => 'Hodźina',
+	'centralnotice-min' => 'Mjeńšina',
+	'centralnotice-project-lang' => 'Projektowa rěč',
+	'centralnotice-project-name' => 'Projektowe mjeno',
+	'centralnotice-start-date' => 'Startowy datum',
+	'centralnotice-start-time' => 'Startowy čas (UTC)',
+	'centralnotice-assigned-templates' => 'Připokazane předłohi',
+	'centralnotice-no-templates' => 'Žane předłohi namakane.
+Přidaj někajke!',
+	'centralnotice-no-templates-assigned' => 'Žane předłohi k powěsći připokazane.
+Přidaj někajke!',
+	'centralnotice-available-templates' => 'K dispozciji stejace předłohi',
+	'centralnotice-template-already-exists' => 'Předłoha je hižo z kampanju zwjazana.
+Njepřidawa so',
+	'centralnotice-preview-template' => 'Přehlad předłohi',
+	'centralnotice-start-hour' => 'Startowy čas',
+	'centralnotice-change-lang' => 'Přełožowansku rěč změnić',
+	'centralnotice-weights' => 'Wahi',
+	'centralnotice-notice-is-locked' => 'Powěsć je zawrjena.
+Njewotstronja so',
+	'centralnotice-invalid-date-range' => 'Njepłaćiwa doba.
+Njeaktualizuje so',
+	'centralnotice-null-string' => 'Njeda so prózdny znamjěskowy slěd přidać.
+Njepřidawa so',
+	'centralnotice-confirm-delete' => 'Chceš tutón zapisk woprawdźe wušmórnyć?
+Tuta akcija njeda so cofnyć.',
+	'centralnotice-no-notices-exist' => 'Powěsće njeeksistuja.
+Přidaj někajku',
+	'centralnotice-number-uses' => 'Wužića',
+	'centralnotice-edit-template' => 'Předłohu wobdźěłać',
+	'centralnotice-message' => 'Powěsć',
+	'centralnotice-message-not-set' => 'Powěsć njepostajena',
+	'centralnotice-clone' => 'Klonować',
+	'centralnotice-clone-notice' => 'Kopiju předłohi wutworić',
+	'centralnotice-preview-all-template-translations' => 'Přehlad wšěch k dispoziciji stejacych přełožkow předłohi',
+	'right-centralnotice_admin_rights' => 'Centralne powěsće zrjadować',
+	'right-centralnotice_translate_rights' => 'Centralne powěsće přełožić',
+	'action-centralnotice_admin_rights' => 'Centralne powěsće zrjadować',
+	'action-centralnotice_translate_rights' => 'centralne powěsće přełožić',
 );
 
 /** Interlingua (Interlingua)
@@ -1178,24 +1262,16 @@ $messages['ia'] = array(
 	'centralnotice-desc' => 'Adde un aviso de sito central',
 	'centralnotice-summary' => 'Iste modulo permitte modificar le avisos central actualmente configurate.
 Illo pote tamben esser usate pro adder o remover avisos ancian.',
-	'centralnotice-query' => 'Modificar avisos actual',
 	'centralnotice-notice-name' => 'Nomine del aviso',
 	'centralnotice-end-date' => 'Data de fin',
 	'centralnotice-enabled' => 'Active',
 	'centralnotice-modify' => 'Submitter',
-	'centralnotice-preview' => 'Previsualisar',
-	'centralnotice-add-new' => 'Adder un nove aviso central',
 	'centralnotice-remove' => 'Remover',
 	'centralnotice-translate-heading' => 'Traduction de $1',
 	'centralnotice-manage' => 'Gerer aviso central',
 	'centralnotice-add' => 'Adder',
 	'centralnotice-add-notice' => 'Adder un aviso',
 	'centralnotice-add-template' => 'Adder un patrono',
-	'centralnotice-show-notices' => 'Monstrar avisos',
-	'centralnotice-list-templates' => 'Listar patronos',
-	'centralnotice-translations' => 'Traductiones',
-	'centralnotice-translate-to' => 'Traducer in',
-	'centralnotice-translate' => 'Traducer',
 	'centralnotice-english' => 'Anglese',
 	'centralnotice-template-name' => 'Nomine del patrono',
 	'centralnotice-templates' => 'Patronos',
@@ -1210,7 +1286,6 @@ Non es addite',
 Nihil a remover',
 	'centralnotice-template-still-bound' => 'Patrono es ancora ligate a un aviso.
 Non es removite.',
-	'centralnotice-template-body' => 'Corpore del patrono:',
 	'centralnotice-day' => 'Die',
 	'centralnotice-year' => 'Anno',
 	'centralnotice-month' => 'Mense',
@@ -1234,8 +1309,6 @@ Non es addite',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-notice-is-locked' => 'Aviso es serrate.
 Non es removite',
-	'centralnotice-overlap' => 'Aviso imbrica in le tempore de un altere aviso.
-Non es addite',
 	'centralnotice-invalid-date-range' => 'Intervallo incorrecte de datas.
 Non es actualisate',
 	'centralnotice-null-string' => 'Non pote adder un catena de characteres vacue.
@@ -1244,11 +1317,13 @@ Non es addite',
 Iste action essera irrecuperabile.',
 	'centralnotice-no-notices-exist' => 'Nulle aviso existe.
 Adde un infra',
-	'centralnotice-no-templates-translate' => 'Non existe alcun patrono a traducer',
 	'centralnotice-number-uses' => 'Usos',
 	'centralnotice-edit-template' => 'Modificar patrono',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message non definite',
+	'centralnotice-clone' => 'Clonar',
+	'centralnotice-clone-notice' => 'Crear un copia del patrono',
+	'centralnotice-preview-all-template-translations' => 'Previsualiar tote le traductiones disponibile del patrono',
 	'right-centralnotice_admin_rights' => 'Gerer avisos central',
 	'right-centralnotice_translate_rights' => 'Traducer avisos central',
 	'action-centralnotice_admin_rights' => 'gerer avisos central',
