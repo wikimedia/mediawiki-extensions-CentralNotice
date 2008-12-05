@@ -61,7 +61,7 @@ Add some!',
 	'centralnotice-no-templates-assigned' => 'No templates assigned to notice.
 Add some!',
 	'centralnotice-available-templates' => 'Available templates',
-	'centralnotice-template-already-exists' => 'Template is already tied to campaing.
+	'centralnotice-template-already-exists' => 'Template is already tied to campaign.
 Not adding',
 	'centralnotice-preview-template' => 'Preview template',
 	'centralnotice-start-hour' => 'Start time',
