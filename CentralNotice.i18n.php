@@ -362,7 +362,46 @@ $messages['bcc'] = array(
  */
 $messages['be-tarask'] = array(
 	'centralnotice' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
+	'noticetemplate' => 'Шаблён цэнтралізаванага паведамленьня',
+	'centralnotice-desc' => 'Дадае цэнтралізаванае паведамленьне сайту',
+	'centralnotice-summary' => 'Гэты модуль дазваляе Вам рэдагаваць Вашы бягучыя цэнтралізаваныя паведамленьні.
+Ён так сама можа выкарыстоўвацца для даданьня ць выдаленьня старых паведамленьняў.',
+	'centralnotice-notice-name' => 'Назва паведамленьня',
+	'centralnotice-end-date' => 'Дата заканчэньня',
+	'centralnotice-enabled' => 'Уключана',
+	'centralnotice-modify' => 'Захаваць',
+	'centralnotice-remove' => 'Выдаліць',
+	'centralnotice-translate-heading' => 'Пераклад для $1',
+	'centralnotice-manage' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
 	'centralnotice-add' => 'Дадаць',
+	'centralnotice-add-notice' => 'Дадаць паведамленьне',
+	'centralnotice-add-template' => 'Дадаць шаблён',
+	'centralnotice-english' => 'Ангельская',
+	'centralnotice-template-name' => 'Назва шаблёну',
+	'centralnotice-templates' => 'Шаблёны',
+	'centralnotice-weight' => 'Вага',
+	'centralnotice-locked' => 'Заблякавае',
+	'centralnotice-notices' => 'Паведамленьні',
+	'centralnotice-notice-exists' => 'Паведамленьне ўжо існуе.
+Новае не было даданае',
+	'centralnotice-template-exists' => 'Шаблён ужо існуе.
+Новы шаблён ня быў даданы',
+	'centralnotice-notice-doesnt-exist' => 'Паведамленьне не існуе.
+Няма чаго выдаляць',
+	'centralnotice-template-still-bound' => 'Шаблён па ранейшаму зьвязаны з паведамленьнем.
+Немагчыма выдаліць.',
+	'centralnotice-day' => 'Дзень',
+	'centralnotice-year' => 'Год',
+	'centralnotice-month' => 'Месяц',
+	'centralnotice-hours' => 'Гадзіна',
+	'centralnotice-min' => 'Хвіліна',
+	'centralnotice-project-lang' => 'Мова праекту',
+	'centralnotice-project-name' => 'Назва праекту',
+	'centralnotice-start-date' => 'Дата пачатку',
+	'centralnotice-start-time' => 'Час пачатку (UTC)',
+	'centralnotice-assigned-templates' => 'Прызначаныя шаблёны',
+	'centralnotice-no-templates' => 'Шаблёны ня знойдзеныя.
+Дадайце якія-небудзь!',
 );
 
 /** Bulgarian (Български)
@@ -373,14 +412,10 @@ $messages['bg'] = array(
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
 	'centralnotice-end-date' => 'Крайна дата',
 	'centralnotice-modify' => 'Изпращане',
-	'centralnotice-preview' => 'Преглеждане',
 	'centralnotice-remove' => 'Премахване',
 	'centralnotice-translate-heading' => 'Превод за $1',
 	'centralnotice-add' => 'Добавяне',
 	'centralnotice-add-template' => 'Добавяне на шаблон',
-	'centralnotice-translations' => 'Преводи',
-	'centralnotice-translate-to' => 'Превеждане на',
-	'centralnotice-translate' => 'Превеждане',
 	'centralnotice-english' => 'Английски',
 	'centralnotice-template-name' => 'Име на шаблона',
 	'centralnotice-templates' => 'Шаблони',
@@ -395,6 +430,8 @@ $messages['bg'] = array(
 	'centralnotice-start-hour' => 'Начален час',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
 	'centralnotice-message' => 'Съобщение',
+	'centralnotice-clone' => 'Клониране',
+	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
 );
 
 /** Bengali (বাংলা)
@@ -729,9 +766,11 @@ Afiŝu noticon suben',
 
 /** Spanish (Español)
  * @author Muro de Aguas
+ * @author Sanbec
  */
 $messages['es'] = array(
 	'centralnotice-desc' => 'Añade un mensaje central común a todos los proyectos.',
+	'centralnotice-english' => 'Inglés',
 );
 
 /** Persian (فارسی)
@@ -1344,25 +1383,19 @@ $messages['id'] = array(
  */
 $messages['it'] = array(
 	'centralnotice' => 'Gestione avviso centralizzato',
+	'noticetemplate' => 'Template avvisi centralizzati',
 	'centralnotice-desc' => 'Aggiunge un avviso centralizzato a inizio pagina (sitenotice)',
 	'centralnotice-summary' => 'Questo modulo permette di modificare gli avvisi centralizzati. Puoi essere inoltre usato per aggiungere o rimuovere vecchi avvisi.',
-	'centralnotice-query' => 'Modifica avvisi attuali',
 	'centralnotice-notice-name' => "Nome dell'avviso",
 	'centralnotice-end-date' => 'Data di fine',
 	'centralnotice-enabled' => 'Attivato',
 	'centralnotice-modify' => 'Invia',
-	'centralnotice-preview' => 'Anteprima',
-	'centralnotice-add-new' => 'Aggiungi un nuovo avviso centralizzato',
 	'centralnotice-remove' => 'Rimuovi',
 	'centralnotice-translate-heading' => 'Traduzione di $1',
 	'centralnotice-manage' => 'Gestione avvisi centralizzati',
 	'centralnotice-add' => 'Aggiungi',
 	'centralnotice-add-notice' => 'Aggiungi un avviso',
 	'centralnotice-add-template' => 'Aggiungi un template',
-	'centralnotice-show-notices' => 'Mostra avvisi',
-	'centralnotice-translations' => 'Traduzioni',
-	'centralnotice-translate-to' => 'Traduci in',
-	'centralnotice-translate' => 'Traduci',
 	'centralnotice-english' => 'Inglese',
 	'centralnotice-template-name' => 'Nome template',
 	'centralnotice-templates' => 'Template',
@@ -1370,7 +1403,7 @@ $messages['it'] = array(
 	'centralnotice-notices' => 'Avvisi',
 	'centralnotice-notice-exists' => "Avviso già esistente. L'avviso non è stato aggiunto",
 	'centralnotice-template-exists' => 'Template già esistente. Il template non è stato aggiunto',
-	'centralnotice-template-body' => 'Corpo del template:',
+	'centralnotice-notice-doesnt-exist' => 'Avviso non esistente. Niente da rimuovere',
 	'centralnotice-day' => 'Giorno',
 	'centralnotice-year' => 'Anno',
 	'centralnotice-month' => 'Mese',
@@ -1392,6 +1425,8 @@ $messages['it'] = array(
 	'centralnotice-number-uses' => 'Usi',
 	'centralnotice-edit-template' => 'Modifica template',
 	'centralnotice-message' => 'Messaggio',
+	'centralnotice-clone' => 'Clona',
+	'centralnotice-clone-notice' => 'Crea una copia del template',
 	'right-centralnotice_admin_rights' => 'Gestisce gli avvisi centralizzati',
 	'right-centralnotice_translate_rights' => 'Traduce avvisi centralizzati',
 	'action-centralnotice_admin_rights' => 'gestire gli avvisi centralizzati',
@@ -1569,24 +1604,16 @@ $messages['ksh'] = array(
 	'centralnotice-desc' => "Brengk en zentraale ''sitenotice'' en et wiki",
 	'centralnotice-summary' => 'Hee met kanns De de zentraal Nohreschte ändere, die jraad em Wiki opjesaz sen,
 ävver och neue dobei donn, un allde fott schmieße.',
-	'centralnotice-query' => 'Aktowälle zentraale Nohresch ändere.',
 	'centralnotice-notice-name' => 'Dä Nohresch ier Name',
 	'centralnotice-end-date' => 'Et Dattum fum Engk',
 	'centralnotice-enabled' => 'Aanjeschalldt',
 	'centralnotice-modify' => 'Loß Jonn!',
-	'centralnotice-preview' => 'Vör-Aansich zeije',
-	'centralnotice-add-new' => 'Donn en zentrale Nohresch dobei',
 	'centralnotice-remove' => 'Fottnämme',
 	'centralnotice-translate-heading' => 'Övversäzong för $1',
 	'centralnotice-manage' => 'Zentrale Nohreschte fowallde',
 	'centralnotice-add' => 'Dobeidonn',
 	'centralnotice-add-notice' => 'En zentrale Nohresch dobei donn',
 	'centralnotice-add-template' => 'En Schabloon dobei donn',
-	'centralnotice-show-notices' => 'Zentrale Nohreschte zeije',
-	'centralnotice-list-templates' => 'Schablone opleßte',
-	'centralnotice-translations' => 'Övversäzonge',
-	'centralnotice-translate-to' => 'Övversäze noh',
-	'centralnotice-translate' => 'Övversäze',
 	'centralnotice-english' => 'Englesch',
 	'centralnotice-template-name' => 'Dä Schablon iere Name',
 	'centralnotice-templates' => 'Schablone',
@@ -1601,7 +1628,6 @@ Nit dobei jedonn.',
 Kam_mer nit fott lohße.',
 	'centralnotice-template-still-bound' => 'Di Schablon deit aan ene zentrale Nohresch hange.
 Di kam_mer nit fott nämme.',
-	'centralnotice-template-body' => 'Dä Tex fun dä Schablon:',
 	'centralnotice-day' => 'Daach',
 	'centralnotice-year' => 'Johr',
 	'centralnotice-month' => 'Moohnd',
@@ -1614,15 +1640,36 @@ Di kam_mer nit fott nämme.',
 	'centralnotice-assigned-templates' => 'Zojedeilte Schablone',
 	'centralnotice-no-templates' => 'Mer han kein Schablone.
 Kanns ävver welshe dobei don.',
+	'centralnotice-no-templates-assigned' => 'Et sin kein Schablone för de zentraal Nohresch zojedeilt.
+Donn dat ens!',
+	'centralnotice-available-templates' => 'Müjjelesche Schabloone',
+	'centralnotice-template-already-exists' => 'Di Schablon weed ald förr_en Kampannje jebruch.
+Nit dobeijedonn.',
+	'centralnotice-preview-template' => 'Vör-Ansich för di Schablon',
 	'centralnotice-start-hour' => 'Uhrzigg fum Aanfang',
+	'centralnotice-change-lang' => 'Shprooch fö et Övversäze ändere',
 	'centralnotice-weights' => 'Jeweeschte',
+	'centralnotice-notice-is-locked' => 'Di zentraal Nohresch es jesperrt.
+Se blief.',
+	'centralnotice-invalid-date-range' => 'Die Zigge jidd_et nit.
+Nix jedonn.',
+	'centralnotice-null-string' => 'Et hät keine Senn, ene Täx aanzefööje, woh nix dren steiht.
+Dat maache mer nit.',
+	'centralnotice-confirm-delete' => "Bes De sescher, dat De dä Enndraach fottschmiiße well?
+Fott eß fott, dä kam_mer '''nit''' widder zeröck holle!",
 	'centralnotice-no-notices-exist' => 'Mer han kein Nohreschte.
 De kanns ävver welshe dobei don.',
 	'centralnotice-number-uses' => 'Jebruch',
 	'centralnotice-edit-template' => 'Schablon beärbeide',
 	'centralnotice-message' => 'Nohresch',
 	'centralnotice-message-not-set' => 'De Nohresch es nit jesaz',
+	'centralnotice-clone' => 'Kopi maache',
+	'centralnotice-clone-notice' => 'Maach en Kopi fun dä Schabloon',
+	'centralnotice-preview-all-template-translations' => 'Vör-Aansich fun all dä Övversäzunge fun dä Schablon',
 	'right-centralnotice_admin_rights' => 'Zentraal Nohreschte verwallde',
+	'right-centralnotice_translate_rights' => 'Zentraal Nohreschte övversäze',
+	'action-centralnotice_admin_rights' => 'zentraal Nohreschte ze verwallde',
+	'action-centralnotice_translate_rights' => 'zentraal Nohreschte ze övversäze',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -2136,6 +2183,7 @@ $messages['ro'] = array(
 );
 
 /** Russian (Русский)
+ * @author Ferrer
  * @author Александр Сигачёв
  */
 $messages['ru'] = array(
@@ -2206,8 +2254,8 @@ $messages['ru'] = array(
 	'centralnotice-clone' => 'Клонирование',
 	'centralnotice-clone-notice' => 'Создать копию шаблона',
 	'centralnotice-preview-all-template-translations' => 'Просмотреть все доступные переводы шаблона',
-	'right-centralnotice_admin_rights' => 'Управление централизованными уведомлениями',
-	'right-centralnotice_translate_rights' => 'Перевод централизованных уведомлений',
+	'right-centralnotice_admin_rights' => 'управление централизованными уведомлениями',
+	'right-centralnotice_translate_rights' => 'перевод централизованных уведомлений',
 	'action-centralnotice_admin_rights' => 'управление централизованными уведомлениями',
 	'action-centralnotice_translate_rights' => 'перевод централизованных уведомлений',
 );
