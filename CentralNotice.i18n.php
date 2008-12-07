@@ -1733,6 +1733,7 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message net gepäichert',
 	'centralnotice-clone' => 'Eng Kopie maachen',
+	'centralnotice-clone-notice' => 'Eng Kopie vun der Schabloun maachen',
 	'right-centralnotice_translate_rights' => 'Zentral Notizen iwwersetzen',
 	'action-centralnotice_translate_rights' => 'Zentral Notiz iwwersetzen',
 );
