@@ -20,8 +20,29 @@ class SpecialNoticeText extends NoticePage {
 
 	function getJsOutput( $par ) {
 		$this->setLanguage( $par );
-		// need to return all site notices here
-		$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
+
+                // Quick short circuit to be able to show preferred notices
+                $templates = array();
+                if ( $this->language == 'en' ) {
+                    // See if we have any preferred notices
+                    $notices = CentralNoticeDB::getNotices( '', 'en', '', '', 1 );
+                    if ( !$notices ) {
+                        // If there were no preferred notices do a normal lookup for enabled
+                        $notices = CentralNoticeDB::getNotices( '', 'en' );
+                        // Last ditch effort. Try to find an all match
+                        if ( !$notices ) {
+                            $notices = CentralNoticeDB::getNotices();
+                        }
+                    }
+                    // Pull the notice name
+                    $notice = array_keys( $notices );
+                    // Pull the actual templates from only the first match
+                    $templates = CentralNoticeDB::selectTemplatesAssigned( $notice[0] );
+                } else {
+                    // Continue as normal with non en notices
+		    $templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
+                }  
+
 		$templateNames = array_keys( $templates );
 
 		$templateTexts = array_map(

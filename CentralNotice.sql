@@ -4,6 +4,7 @@ CREATE TABLE `cn_notices` (
   `not_start` char(14) NOT NULL,
   `not_end` char(14) NOT NULL,
   `not_enabled` bool NOT NULL default '0',
+  `not_preferred` bool NOT NULL default false,
   `not_locked` bool NOT NULL default '0',
   `not_language` varchar(32) NOT NULL,
   `not_project` varchar(255) NOT NULL,

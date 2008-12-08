@@ -91,6 +91,28 @@ class CentralNotice extends SpecialPage {
 					}
 				}
 			}
+                        
+                        // Handle setting preferred
+                        $preferredNotices = $wgRequest->getArray( 'preferred' );
+                        if ( isset( $preferredNotices ) ) {
+                                // Set since this is a single display
+                                if ( $method == 'listNoticeDetail' ) {
+                                    $notice = $wgRequest->getVal ( 'notice' );
+			            CentralNoticeDB::updatePreferred( $notice, '1' );
+                                }
+                                else {
+                                    // Build list of notices to unset 
+                                    $unsetNotices = array_diff( $this->getNoticesName(), $preferredNotices );
+
+                                    // Set flag accordingly
+                                    foreach( $preferredNotices as $notice ) {
+                                            CentralNoticeDB::updatePreferred( $notice, '1' );
+                                    }
+                                    foreach( $unsetNotices as $notice ) {
+                                            CentralNoticeDB::updatePreferred( $notice, '0' );
+                                    }
+                                }
+                        }               
 
 			$noticeName = $wgRequest->getVal( 'notice' );
 
@@ -136,6 +158,17 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 
+			if ( !isset( $preferredNotices ) && $method !== 'addNotice'  ) {
+				if ( $method == 'listNoticeDetail' ) {
+					$notice = $wgRequest->getVal ( 'notice' );
+						CentralNoticeDB::updatePreferred( $notice, 0 );
+				} else {
+					$allNotices = $this->getNoticesName();
+					foreach ( $allNotices as $notice ) {
+						CentralNoticeDB::updatePreferred( $notice, '0' );
+					}
+				}
+			}
 			// Handle weight change
 			$updatedWeights = $wgRequest->getArray( 'weight' );
 			if ( isset( $updatedWeights ) ) {
@@ -344,6 +377,7 @@ class CentralNotice extends SpecialPage {
 					'not_start',
 					'not_end',
 					'not_enabled',
+                                        'not_preferred',
 					'not_project',
 					'not_language',
 					'not_locked'
@@ -360,6 +394,7 @@ class CentralNotice extends SpecialPage {
 					'not_start',
 					'not_end',
 					'not_enabled',
+                                        'not_preferred',
 					'not_project',
 					'not_locked'
 				),
@@ -395,6 +430,7 @@ class CentralNotice extends SpecialPage {
 			wfMsgHtml( 'centralnotice-start-date' ),
 			wfMsgHtml( 'centralnotice-end-date' ),
 			wfMsgHtml( 'centralnotice-enabled' ),
+			wfMsgHtml( 'centralnotice-preferred' ),
 			wfMsgHtml( 'centralnotice-locked' ),
 		);
 		if( $this->editable ) {
@@ -444,6 +480,11 @@ class CentralNotice extends SpecialPage {
 					wfArrayMerge( $readonly,
 						array( 'value' => $row->not_name ) ) );
 
+                                // Preferred
+                                $fields[] =
+                                        Xml::check( 'preferred[]',  ( $row->not_preferred == '1' ),
+                                        wfArrayMerge( $readonly,
+                                                array( 'value' => $row->not_name ) ) );
 				// Locked
 				$fields[] =
 					Xml::check( 'locked[]', ( $row->not_locked == '1' ),
@@ -645,6 +686,7 @@ class CentralNotice extends SpecialPage {
 				'not_start',
 				'not_end',
 				'not_enabled',
+                                'not_preferred',
 				'not_project',
 				'not_language',
 				'not_locked'
@@ -689,6 +731,13 @@ class CentralNotice extends SpecialPage {
 					Xml::check( 'enabled[]', ( $row->not_enabled == '1' ),
 						wfArrayMerge( $readonly,
 							array( 'value' => $row->not_name ) ) )
+				),
+                                // Preferred
+				array(
+					wfMsgHtml( 'centralnotice-preferred' ),
+					Xml::check( 'preferred[]', ( $row->not_preferred == '1' ),
+						wfArrayMerge( $readonly,
+							array( 'value' => $row->not_name ) ) ),
 				),
 				// Locked
 				array(

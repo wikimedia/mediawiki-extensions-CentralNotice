@@ -93,6 +93,7 @@ Add one below',
 
 	'action-centralnotice_admin_rights' => 'manage central notices',
 	'action-centralnotice_translate_rights' => 'translate central notices',
+        'centralnotice-preferred' => 'Preferred',
 );
 
 /** Message documentation (Message documentation)

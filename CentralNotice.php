@@ -140,6 +140,7 @@ function efCentralNoticeSetup() {
 		
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
+                $wgAutoloadClasses['CentralNoticeDB'] = $dir. 'CentralNotice.db.php';
 	}
 }
 
