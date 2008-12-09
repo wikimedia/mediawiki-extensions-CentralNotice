@@ -18,7 +18,7 @@ class CentralNoticeDB {
         }
 
         /*
-         * Given a project/language and date range return all active notices.
+         * Return notices in the system within given constraints
          * Optional: return both enabled and disabled notices
          */
         public function getNotices( $project = false, $language = false , $date = false , $enabled = true, $preferred = false ) {
@@ -32,10 +32,12 @@ class CentralNoticeDB {
                     $conds[] = "not_language =" . $dbr->addQuotes( $language );
                 if ( $preferred )
                     $conds[] = "not_preferred = 1";
+                if ( !date ) 
+                    $date = wfTimestamp( TS_MW );
+
+                $conds[] = ( $date ) ? "not_start <= ". $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
+                $conds[] = ( $date ) ? "not_end >= " . $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
                 $conds[] = ( $enabled ) ? "not_enabled = " . $dbr->addQuotes( $enabled ) : "not_enabled = " . $dbr->addQuotes( 1 );
-                $conds[] = ( $date ) ? "not_start <= ". $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp() );
-                $conds[] = ( $date ) ? "not_end >= " . $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp() );
-                
 
                 // Pull db data
                 $res = $dbr->select(
