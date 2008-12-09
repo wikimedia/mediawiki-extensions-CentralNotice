@@ -93,7 +93,7 @@ Add one below',
 
 	'action-centralnotice_admin_rights' => 'manage central notices',
 	'action-centralnotice_translate_rights' => 'translate central notices',
-        'centralnotice-preferred' => 'Preferred',
+	'centralnotice-preferred' => 'Preferred',
 );
 
 /** Message documentation (Message documentation)
@@ -1150,6 +1150,7 @@ $messages['he'] = array(
 	'right-centralnotice_translate_rights' => 'תרגום הודעות מרכזיות',
 	'action-centralnotice_admin_rights' => 'לנהל הודעות מרכזיות',
 	'action-centralnotice_translate_rights' => 'לתרגם הודעות מרכזיות',
+	'centralnotice-preferred' => 'מועדפת',
 );
 
 /** Hindi (हिन्दी)
