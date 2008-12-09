@@ -403,6 +403,32 @@ $messages['be-tarask'] = array(
 	'centralnotice-assigned-templates' => 'Прызначаныя шаблёны',
 	'centralnotice-no-templates' => 'Шаблёны ня знойдзеныя.
 Дадайце якія-небудзь!',
+	'centralnotice-no-templates-assigned' => 'Няма зьвязаных з паведамленьнем шаблёнаў.
+Дадайце які-небудзь!',
+	'centralnotice-available-templates' => 'Даступныя шаблёны',
+	'centralnotice-template-already-exists' => 'Шаблён ужо выкарыстоўваецца ў кампаніі.
+Ня быў даданы',
+	'centralnotice-preview-template' => 'Папярэдні прагляд шаблёну',
+	'centralnotice-start-hour' => 'Час пачатку',
+	'centralnotice-change-lang' => 'Зьмяніць мову перакладу',
+	'centralnotice-weights' => 'Вагі',
+	'centralnotice-notice-is-locked' => 'Паведамленьне заблякаванае.
+Не выдаляецца',
+	'centralnotice-invalid-date-range' => 'Няслушны дыяпазон датаў.
+Не абнаўляецца',
+	'centralnotice-null-string' => 'Немагчыма дадаць пусты радок.
+Не дадаецца',
+	'centralnotice-confirm-delete' => 'Вы ўпэўнены, што жадаеце выдаліць гэты элемэнт?
+Гэта дзеяньне немагчыма будзе адмяніць.',
+	'centralnotice-no-notices-exist' => 'Паведамленьняў няма.
+Дадайце адно ніжэй',
+	'centralnotice-number-uses' => 'Выкарыстоўвае',
+	'centralnotice-edit-template' => 'Рэдагаваць шаблён',
+	'centralnotice-message' => 'Паведамленьне',
+	'centralnotice-message-not-set' => 'Паведамленьне не ўсталяванае',
+	'centralnotice-clone' => 'Копія',
+	'centralnotice-clone-notice' => 'Стварыць копію шаблёну',
+	'centralnotice-preview-all-template-translations' => 'Праглядзець усе даступныя пераклады шаблёну',
 );
 
 /** Bulgarian (Български)
@@ -461,6 +487,7 @@ $messages['bs'] = array(
 	'centralnotice-modify' => 'Pošalji',
 	'centralnotice-remove' => 'Ukloni',
 	'centralnotice-translate-heading' => 'Prijevod za $1',
+	'centralnotice-manage' => 'Uređivanje središnje obavijesti',
 	'centralnotice-add' => 'Dodaj',
 	'centralnotice-add-notice' => 'Dodaj obavještenje',
 	'centralnotice-add-template' => 'Dodaj šablon',
@@ -763,6 +790,7 @@ Afiŝu noticon suben',
 	'right-centralnotice_translate_rights' => 'Traduki centralajn noticojn',
 	'action-centralnotice_admin_rights' => 'administri centralajn noticojn',
 	'action-centralnotice_translate_rights' => 'traduki centralajn noticojn',
+	'centralnotice-preferred' => 'Preferata',
 );
 
 /** Spanish (Español)
@@ -945,6 +973,7 @@ Ajoutez-en un en dessous.',
 	'right-centralnotice_translate_rights' => 'Traduire les notifications centrales',
 	'action-centralnotice_admin_rights' => 'gérer les avis centraux',
 	'action-centralnotice_translate_rights' => 'traduire les avis centraux',
+	'centralnotice-preferred' => 'Préféré',
 );
 
 /** Franco-Provençal (Arpetan)
@@ -1558,15 +1587,13 @@ Tambahaké ing ngisor',
 
 /** Khmer (ភាសាខ្មែរ)
  * @author Lovekhmer
+ * @author Thearith
  */
 $messages['km'] = array(
 	'centralnotice-modify' => 'ដាក់ស្នើ',
-	'centralnotice-preview' => 'មើលជាមុន',
 	'centralnotice-remove' => 'ដកចេញ',
 	'centralnotice-add' => 'ដាក់បន្ថែម',
 	'centralnotice-add-template' => 'បន្ថែមទំព័រគំរូ',
-	'centralnotice-translations' => 'ការបកប្រែ',
-	'centralnotice-translate' => 'បកប្រែ',
 	'centralnotice-english' => 'ភាសាអង់គ្លេស',
 	'centralnotice-template-name' => 'ឈ្មោះទំព័រគំរូ',
 	'centralnotice-templates' => 'ទំព័រគំរូ',
@@ -1576,8 +1603,8 @@ $messages['km'] = array(
 	'centralnotice-month' => 'ខែ',
 	'centralnotice-hours' => 'ម៉ោង',
 	'centralnotice-min' => 'នាទី',
-	'centralnotice-project-lang' => 'ភាសាគំរោង',
-	'centralnotice-project-name' => 'ឈ្មោះគំរោង',
+	'centralnotice-project-lang' => 'ភាសាគម្រោង',
+	'centralnotice-project-name' => 'ឈ្មោះគម្រោង',
 	'centralnotice-preview-template' => 'មើលទំព័រគំរូជាមុន',
 	'centralnotice-edit-template' => 'កែប្រែទំព័រគំរូ',
 	'centralnotice-message' => 'សារ',
@@ -1831,6 +1858,13 @@ $messages['nds'] = array(
 	'centralnotice-desc' => 'Föögt en zentrale Naricht för de Websteed to',
 );
 
+/** Nedersaksisch (Nedersaksisch)
+ * @author Servien
+ */
+$messages['nds-nl'] = array(
+	'centralnotice-add' => 'Toevoegen',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
@@ -1905,6 +1939,7 @@ U kunt er hieronder een toevoegen',
 	'right-centralnotice_translate_rights' => 'Centrale sitenotices vertalen',
 	'action-centralnotice_admin_rights' => 'centrale sitenotices beheren',
 	'action-centralnotice_translate_rights' => 'centrale sitenotices vertalen',
+	'centralnotice-preferred' => 'Voorkeur',
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
@@ -2139,6 +2174,7 @@ Dodaj nowy poniżej.',
 	'right-centralnotice_translate_rights' => 'Tłumaczyć wspólne komunikaty',
 	'action-centralnotice_admin_rights' => 'zarządzaj centralnymi komunikatami',
 	'action-centralnotice_translate_rights' => 'przetłumacz centralne komunikaty',
+	'centralnotice-preferred' => 'Preferowany',
 );
 
 /** Pashto (پښتو)
@@ -2466,6 +2502,7 @@ Lägg till ett nedan',
 	'right-centralnotice_translate_rights' => 'Översätt centralmeddelanden',
 	'action-centralnotice_admin_rights' => 'hantera centralmeddelanden',
 	'action-centralnotice_translate_rights' => 'översätt centralmeddelanden',
+	'centralnotice-preferred' => 'Föredragen',
 );
 
 /** Telugu (తెలుగు)
