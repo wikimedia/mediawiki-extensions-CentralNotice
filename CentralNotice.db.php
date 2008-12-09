@@ -31,11 +31,10 @@ class CentralNoticeDB {
                 if ( $language ) 
                     $conds[] = "not_language =" . $dbr->addQuotes( $language );
                 if ( $preferred )
-                    $conds[] = "not_preferred =" . $dbr->addQuotes( $preferred );
-
+                    $conds[] = "not_preferred = 1";
                 $conds[] = ( $enabled ) ? "not_enabled = " . $dbr->addQuotes( $enabled ) : "not_enabled = " . $dbr->addQuotes( 1 );
                 $conds[] = ( $date ) ? "not_start <= ". $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp() );
-                $conds[] = ( $date ) ? "not_end >= ". $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp() );
+                $conds[] = ( $date ) ? "not_end >= " . $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp() );
                 
 
                 // Pull db data
@@ -45,6 +44,8 @@ class CentralNoticeDB {
                     ),
                     array(
                             'not_name',
+                            'not_project',
+                            'not_language',
                             'not_locked',
                             'not_enabled',
                             'not_preferred',
@@ -61,6 +62,8 @@ class CentralNoticeDB {
                 // Loop through result set and return attributes
                 while ( $row = $dbr->fetchObject( $res ) ) {
                     $notice = $row->not_name;
+                    $notices[$notice]['project'] = $row->not_project;
+                    $notices[$notice]['language'] = $row->not_language;
                     $notices[$notice]['preferred'] = $row->not_preferred;
                     $notices[$notice]['locked'] = $row->not_locked;
                     $notices[$notice]['enabled'] = $row->not_enabled;
