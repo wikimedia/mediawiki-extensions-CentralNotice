@@ -341,6 +341,7 @@ $messages['arz'] = array(
 	'right-centralnotice_translate_rights' => 'ترجم الاعلانات المركزية',
 	'action-centralnotice_admin_rights' => 'ادارة الاعلانات المركزية',
 	'action-centralnotice_translate_rights' => 'ترجمة الاعلانات المركزية',
+	'centralnotice-preferred' => ' مفضله',
 );
 
 /** Asturian (Asturianu)
@@ -429,6 +430,11 @@ $messages['be-tarask'] = array(
 	'centralnotice-clone' => 'Копія',
 	'centralnotice-clone-notice' => 'Стварыць копію шаблёну',
 	'centralnotice-preview-all-template-translations' => 'Праглядзець усе даступныя пераклады шаблёну',
+	'right-centralnotice_admin_rights' => 'Кіраваньне цэнтральнымі паведамленьнямі',
+	'right-centralnotice_translate_rights' => 'пераклад цэнтралізаваных паведамленьняў',
+	'action-centralnotice_admin_rights' => 'кіраваньне цэнтралізаванымі паведамленьнямі',
+	'action-centralnotice_translate_rights' => 'пераклад цэнтральных паведамленьняў',
+	'centralnotice-preferred' => 'Пажадана',
 );
 
 /** Bulgarian (Български)
@@ -528,6 +534,7 @@ Dodaj jednu ispod',
 );
 
 /** Czech (Česky)
+ * @author Danny B.
  * @author Li-sung
  * @author Mormegil
  */
@@ -572,6 +579,7 @@ Také zde můžete přidávat nová či odstraňovat stará.',
 	'centralnotice-available-templates' => 'Dostupné šablony',
 	'centralnotice-template-already-exists' => 'Šablona už byla s kampaní svázána.
 Nebude přidána.',
+	'centralnotice-preview-template' => 'Náhled šablony',
 	'centralnotice-start-hour' => 'Čas začátku',
 	'centralnotice-change-lang' => 'Změnit překládaný jazyk',
 	'centralnotice-weights' => 'Váhy',
@@ -592,6 +600,7 @@ Níže můžete vytvořit nové.',
 	'right-centralnotice_translate_rights' => 'Překlad centralizovaných oznámení',
 	'action-centralnotice_admin_rights' => 'spravovat centralizovaná oznámení',
 	'action-centralnotice_translate_rights' => 'překládat centralizovaná oznámení',
+	'centralnotice-preferred' => 'Preferováno',
 );
 
 /** German (Deutsch)
@@ -605,24 +614,16 @@ $messages['de'] = array(
 	'centralnotice-desc' => "Fügt eine zentrale ''sitenotice'' hinzu",
 	'centralnotice-summary' => 'Diese Erweiterung erlaubt die Konfiguration zentraler Meldungen.
 Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werden.',
-	'centralnotice-query' => 'Aktuelle Meldung ändern',
 	'centralnotice-notice-name' => 'Name der Notiz',
 	'centralnotice-end-date' => 'Enddatum',
 	'centralnotice-enabled' => 'Aktiviert',
 	'centralnotice-modify' => 'OK',
-	'centralnotice-preview' => 'Vorschau',
-	'centralnotice-add-new' => 'Füge eine neue zentrale Meldung hinzu',
 	'centralnotice-remove' => 'Entfernen',
 	'centralnotice-translate-heading' => 'Übersetzung von „$1“',
 	'centralnotice-manage' => 'Zentrale Meldungen verwalten',
 	'centralnotice-add' => 'Hinzufügen',
 	'centralnotice-add-notice' => 'Hinzufügen einer Meldung',
 	'centralnotice-add-template' => 'Hinzufügen einer Vorlage',
-	'centralnotice-show-notices' => 'Zeige Meldungen',
-	'centralnotice-list-templates' => 'Vorlagen auflisten',
-	'centralnotice-translations' => 'Übersetzungen',
-	'centralnotice-translate-to' => 'Übersetzen in',
-	'centralnotice-translate' => 'Übersetzen',
 	'centralnotice-english' => 'Englisch',
 	'centralnotice-template-name' => 'Name der Vorlage',
 	'centralnotice-templates' => 'Vorlagen',
@@ -637,7 +638,6 @@ Nicht hinzugefügt.',
 Entfernung nicht möglich.',
 	'centralnotice-template-still-bound' => 'Vorlage ist noch an eine Meldung gebunden.
 Entfernung nicht möglich.',
-	'centralnotice-template-body' => 'Vorlagentext:',
 	'centralnotice-day' => 'Tag',
 	'centralnotice-year' => 'Jahr',
 	'centralnotice-month' => 'Monat',
@@ -660,8 +660,6 @@ Nicht hinzugefügt.',
 	'centralnotice-weights' => 'Gewicht',
 	'centralnotice-notice-is-locked' => 'Meldung ist gesperrt.
 Entfernung nicht möglich.',
-	'centralnotice-overlap' => 'Die Meldung überschneidet sich mit dem Zeitraum einer anderen Meldung.
-Nicht hinzugefügt.',
 	'centralnotice-invalid-date-range' => 'Ungültiger Zeitraum.
 Nicht aktualisiert.',
 	'centralnotice-null-string' => 'Es kann kein Nullstring hinzugefügt werden.
@@ -670,7 +668,6 @@ Nichts hinzugefügt.',
 Die Aktion kann nicht rückgängig gemacht werden.',
 	'centralnotice-no-notices-exist' => 'Es sind keine Meldungen vorhanden.
 Füge eine hinzu.',
-	'centralnotice-no-templates-translate' => 'Es gibt keine Vorlagen, für die Übersetzungen zu bearbeiten wären',
 	'centralnotice-number-uses' => 'Nutzungen',
 	'centralnotice-edit-template' => 'Vorlage bearbeiten',
 	'centralnotice-message' => 'Nachricht',
@@ -682,6 +679,7 @@ Füge eine hinzu.',
 	'right-centralnotice_translate_rights' => 'Übersetzen von zentralen Meldungen',
 	'action-centralnotice_admin_rights' => 'Zentrale Seitennotiz verwalten',
 	'action-centralnotice_translate_rights' => 'Zentrale Seitennotiz übersetzen',
+	'centralnotice-preferred' => 'Bevorzugt',
 );
 
 /** Lower Sorbian (Dolnoserbski)
@@ -1398,6 +1396,7 @@ Adde un infra',
 	'right-centralnotice_translate_rights' => 'Traducer avisos central',
 	'action-centralnotice_admin_rights' => 'gerer avisos central',
 	'action-centralnotice_translate_rights' => 'traducer avisos central',
+	'centralnotice-preferred' => 'Preferite',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -1699,6 +1698,7 @@ De kanns ävver welshe dobei don.',
 	'right-centralnotice_translate_rights' => 'Zentraal Nohreschte övversäze',
 	'action-centralnotice_admin_rights' => 'zentraal Nohreschte ze verwallde',
 	'action-centralnotice_translate_rights' => 'zentraal Nohreschte ze övversäze',
+	'centralnotice-preferred' => 'Förjetrocke!',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -2297,6 +2297,7 @@ $messages['ru'] = array(
 	'right-centralnotice_translate_rights' => 'перевод централизованных уведомлений',
 	'action-centralnotice_admin_rights' => 'управление централизованными уведомлениями',
 	'action-centralnotice_translate_rights' => 'перевод централизованных уведомлений',
+	'centralnotice-preferred' => 'Желательно',
 );
 
 /** Yakut (Саха тыла)
@@ -2370,6 +2371,7 @@ Túto operáciu nebude možné vrátiť.',
 	'right-centralnotice_translate_rights' => 'Prekladať centrálne oznamy',
 	'action-centralnotice_admin_rights' => 'spravovať centrálne oznamy',
 	'action-centralnotice_translate_rights' => 'prekladať centrálne oznamy',
+	'centralnotice-preferred' => 'Uprednostňované',
 );
 
 /** Serbian Cyrillic ekavian (ћирилица)
