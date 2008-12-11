@@ -32,7 +32,7 @@ class CentralNoticeDB {
                     $conds[] = "not_language =" . $dbr->addQuotes( $language );
                 if ( $preferred )
                     $conds[] = "not_preferred = 1";
-                if ( !date ) 
+                if ( !$date ) 
                     $date = wfTimestamp( TS_MW );
 
                 $conds[] = ( $date ) ? "not_start <= ". $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
