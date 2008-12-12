@@ -1082,16 +1082,24 @@ $messages['he'] = array(
 	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
 	'centralnotice-summary' => 'מודול זה מאפשר את עריכת ההודעות המרכזיות המותקנות כעת.
 ניתן גם להשתמש בו כדי להוסיף או להסיר הודעות ישנות.',
+	'centralnotice-query' => 'שינוי ההודעות הקיימות',
 	'centralnotice-notice-name' => 'שם ההודעה',
 	'centralnotice-end-date' => 'תאריך סיום',
 	'centralnotice-enabled' => 'מופעלת',
 	'centralnotice-modify' => 'שליחה',
+	'centralnotice-preview' => 'תצוגה מקדימה',
+	'centralnotice-add-new' => 'הוספת הודעה מרכזית חדשה',
 	'centralnotice-remove' => 'הסרה',
 	'centralnotice-translate-heading' => 'תרגום של $1',
 	'centralnotice-manage' => 'ניהול ההודעה המרכזית',
 	'centralnotice-add' => 'הוספה',
 	'centralnotice-add-notice' => 'הוספת הודעה',
 	'centralnotice-add-template' => 'הוספת תבנית',
+	'centralnotice-show-notices' => 'הצגת הודעות',
+	'centralnotice-list-templates' => 'רשימת תבניות',
+	'centralnotice-translations' => 'תרגומים',
+	'centralnotice-translate-to' => 'תרגום ל',
+	'centralnotice-translate' => 'תרגום',
 	'centralnotice-english' => 'אנגלית',
 	'centralnotice-template-name' => 'שם התבנית',
 	'centralnotice-templates' => 'תבניות',
@@ -1106,6 +1114,7 @@ $messages['he'] = array(
 אין מה להסיר',
 	'centralnotice-template-still-bound' => 'התבנית עדיין מקושרת להודעה.
 ההסרה לא תבוצע.',
+	'centralnotice-template-body' => 'גוף ההודעה:',
 	'centralnotice-day' => 'יום',
 	'centralnotice-year' => 'שנה',
 	'centralnotice-month' => 'חודש',
@@ -1129,6 +1138,8 @@ $messages['he'] = array(
 	'centralnotice-weights' => 'משקלים',
 	'centralnotice-notice-is-locked' => 'ההודעה נעולה.
 היא לא תוסר',
+	'centralnotice-overlap' => 'ההודעה מתנגשת עם הזמן של הודעה אחרת.
+התוספת לא תבוצע',
 	'centralnotice-invalid-date-range' => 'טווח תאריכים בלתי תקין.
 העדכון לא יבוצע',
 	'centralnotice-null-string' => 'לא ניתן להוסיף מחרוזת ריקה.
@@ -1137,6 +1148,7 @@ $messages['he'] = array(
 אין אפשרות לבטל פעולה זו.',
 	'centralnotice-no-notices-exist' => 'אין עדיין הודעות.
 הוסיפו אחת למטה',
+	'centralnotice-no-templates-translate' => 'אין תבניות כדי לערוך את התרגומים שלהן',
 	'centralnotice-number-uses' => 'משתמשת ב',
 	'centralnotice-edit-template' => 'עריכת התבנית',
 	'centralnotice-message' => 'הודעה',
