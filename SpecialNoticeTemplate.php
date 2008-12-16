@@ -27,7 +27,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$sk = $wgUser->getSkin();
 
 		// Check permissions
-		$this->editable = $wgUser->isAllowed( 'centralnotice_admin_rights' );
+		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
 
 		// Show summary
 		$wgOut->addWikiText( wfMsg( 'centralnotice-summary' ) );

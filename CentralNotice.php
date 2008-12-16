@@ -105,10 +105,10 @@ $dir = dirname( __FILE__ ) . '/';
 
 $wgExtensionMessagesFiles['CentralNotice'] = $dir . 'CentralNotice.i18n.php';
 
-$wgAvailableRights[] = 'centralnotice_admin_rights';
-$wgAvailableRights[] = 'centralnotice_translate_rights';
-$wgGroupPermissions['sysop']['centralnotice_admin_rights'] = true; // Only sysops can make change
-$wgGroupPermissions['sysop']['centralnotice_translate_rights'] = true; // Only sysops can make change
+$wgAvailableRights[] = 'centralnotice-admin';
+$wgAvailableRights[] = 'centralnotice-translate';
+$wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
+$wgGroupPermissions['sysop']['centralnotice-translate'] = true; // Only sysops can make change
 
 
 function efCentralNoticeSetup() {
@@ -124,11 +124,6 @@ function efCentralNoticeSetup() {
 	
 	$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
 	
-	/*
-	$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
-	$wgAutoloadClasses['SpecialNoticeLocal'] = $dir . 'SpecialNoticeLocal.php';
-	*/
-
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
