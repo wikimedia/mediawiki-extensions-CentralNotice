@@ -1812,12 +1812,15 @@ $messages['km'] = array(
  * @author Kwj2772
  */
 $messages['ko'] = array(
+	'centralnotice-preview' => '미리 보기',
 	'centralnotice-add' => '추가',
+	'centralnotice-translate' => '번역하기',
 	'centralnotice-english' => '영어',
 	'centralnotice-hours' => '시',
 	'centralnotice-min' => '분',
 	'centralnotice-project-lang' => '프로젝트 언어',
 	'centralnotice-project-name' => '프로젝트 이름',
+	'centralnotice-start-date' => '시작 날짜',
 	'centralnotice-start-time' => '시작 시간 (UTC)',
 );
 
@@ -3072,6 +3075,8 @@ $messages['yi'] = array(
 	'centralnotice-month' => 'מאנאט',
 	'centralnotice-hours' => 'שעה',
 	'centralnotice-min' => 'מינוט',
+	'centralnotice-project-lang' => 'פראיעקט שפראך',
+	'centralnotice-project-name' => 'פראיעקט נאמען',
 );
 
 /** Yue (粵語)
