@@ -98,6 +98,7 @@ Add one below',
 
 /** Message documentation (Message documentation)
  * @author Darth Kule
+ * @author Fryed-peach
  * @author Jon Harald Søby
  * @author Purodha
  */
@@ -106,6 +107,7 @@ $messages['qqq'] = array(
 	'noticetemplate' => 'Title of Special:NoticeTemplate',
 	'centralnotice-desc' => 'Short description of the Centralnotice extension, shown in [[Special:Version]]. Do not translate or change links.',
 	'centralnotice-summary' => 'Used in Special:CentralNotice',
+	'centralnotice-enabled' => '{{Identical/Enabled}}',
 	'centralnotice-modify' => '{{Identical|Submit}}',
 	'centralnotice-preview' => '{{Identical|Preview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
@@ -1813,9 +1815,11 @@ $messages['km'] = array(
  */
 $messages['ko'] = array(
 	'centralnotice-preview' => '미리 보기',
+	'centralnotice-translate-heading' => '$1에 대한 번역',
 	'centralnotice-add' => '추가',
 	'centralnotice-translate' => '번역하기',
 	'centralnotice-english' => '영어',
+	'centralnotice-locked' => '잠김',
 	'centralnotice-hours' => '시',
 	'centralnotice-min' => '분',
 	'centralnotice-project-lang' => '프로젝트 언어',
@@ -2469,6 +2473,21 @@ Dodaj nowy poniżej.',
  */
 $messages['ps'] = array(
 	'centralnotice-desc' => 'يو مرکزي ويبځی-يادښت ورګډول',
+	'centralnotice-translate-heading' => 'د $1 لپاره ژباړه',
+	'centralnotice-translations' => 'ژباړې',
+	'centralnotice-translate' => 'ژباړل',
+	'centralnotice-english' => 'انګرېزي',
+	'centralnotice-template-name' => 'د کينډۍ نوم',
+	'centralnotice-templates' => 'کينډۍ',
+	'centralnotice-day' => 'ورځ',
+	'centralnotice-year' => 'کال',
+	'centralnotice-month' => 'مياشت',
+	'centralnotice-hours' => 'ساعت',
+	'centralnotice-min' => 'دقيقه',
+	'centralnotice-project-lang' => 'د ژبې پروژه',
+	'centralnotice-project-name' => 'د پروژې نوم',
+	'centralnotice-start-date' => 'د پيل نېټه',
+	'centralnotice-start-time' => 'د پيل وخت (UTC)',
 );
 
 /** Portuguese (Português)
@@ -2621,6 +2640,29 @@ $messages['sah'] = array(
  * @author Gmelfi
  */
 $messages['scn'] = array(
+	'centralnotice' => 'Gistioni di avvisu cintralizzatu',
+	'noticetemplate' => "Template di l'avvisi cintralizzati",
+	'centralnotice-desc' => "Jiunci n'avvisu cintralizzatu a inìzziu pàggina",
+	'centralnotice-summary' => "Stu mòdulu pirmetti di canciari l'avvisa cintralizzati. Pò èssiri usatu pi junciri o livari avvisa vecchi.",
+	'centralnotice-query' => "Cancia l'avvisa attuali",
+	'centralnotice-notice-name' => "Nomu di l'avvisu",
+	'centralnotice-end-date' => "Data d'accapata",
+	'centralnotice-enabled' => 'Attivatu',
+	'centralnotice-modify' => 'Mànna',
+	'centralnotice-preview' => 'Antiprima',
+	'centralnotice-add-new' => "Junci n'avvisu cintralizzatu novu",
+	'centralnotice-remove' => 'Lèva',
+	'centralnotice-translate-heading' => 'Traduzzioni di $1',
+	'centralnotice-manage' => "Gistioni di l'avvisa cintralizzati",
+	'centralnotice-add' => 'Junci',
+	'centralnotice-add-notice' => "Junci n'avvisu",
+	'centralnotice-add-template' => 'Junci nu template',
+	'centralnotice-show-notices' => "Ammuscia l'avvisa",
+	'centralnotice-list-templates' => 'Li template di lista',
+	'centralnotice-translations' => 'Traduzzioni',
+	'centralnotice-translate-to' => 'Tradùci n',
+	'centralnotice-translate' => 'Traduci',
+	'centralnotice-english' => 'Ngrisi',
 	'centralnotice-template-name' => 'Nomu dû template',
 	'centralnotice-templates' => 'Template',
 	'centralnotice-weight' => 'Pisu',
@@ -2650,6 +2692,16 @@ Nun si leva.',
 	'centralnotice-template-already-exists' => 'Lu template è già liatu â campagna.
 Nun si junci',
 	'centralnotice-preview-template' => 'Antiprima dû template',
+	'centralnotice-start-hour' => "Ura d'accuminzatina",
+	'centralnotice-change-lang' => 'Cancia la lingua dâ traduzzioni',
+	'centralnotice-weights' => 'Pisa',
+	'centralnotice-notice-is-locked' => "L'avvisu è bliccatu. Avvisu nun livatu",
+	'centralnotice-overlap' => "L'avvisu si camìna ntê pèdi di n'àutru avvisu a causa dû tempu. 
+Nun junciutu",
+	'centralnotice-invalid-date-range' => 'Ntirvaddu di tempu nun vàlidu.
+Nun fu canciatu',
+	'centralnotice-null-string' => 'Nun si pò junciri na strinca nulla.
+Nun junciutu',
 );
 
 /** Slovak (Slovenčina)
