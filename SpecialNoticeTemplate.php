@@ -620,8 +620,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
             // Normalize name
 	    $dest = ereg_replace( '[^A-Za-z0-9\_]', '', $dest );
      
-            // Pull body for MEDIAWIKI Namespace
-            $template_body = wfMsg( "Centralnotice-template-{$source}");
+            // Pull text and respect any inc: markup
+            $bodyPage = Title::newFromText( "Centralnotice-template-{$source}", NS_MEDIAWIKI );
+            $template_body = Revision::newFromTitle( $bodyPage )->getText();
 
             if ( $this->addTemplate( $dest, $template_body ) ) {
 
