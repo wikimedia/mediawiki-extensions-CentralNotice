@@ -1315,6 +1315,7 @@ $messages['hi'] = array(
 
 /** Croatian (Hrvatski)
  * @author Dalibor Bosits
+ * @author Suradnik13
  */
 $messages['hr'] = array(
 	'centralnotice' => 'Administracija središnjih obavijesti',
@@ -1393,6 +1394,9 @@ Dodajte jednu ispod',
 	'centralnotice-edit-template' => 'Uredi predložak',
 	'centralnotice-message' => 'Poruka',
 	'centralnotice-message-not-set' => 'Poruka nije postavljena',
+	'centralnotice-clone' => 'Kopija',
+	'centralnotice-clone-notice' => 'Stvori kopiju predloška',
+	'centralnotice-preview-all-template-translations' => 'Vidi sve dostupne prijevode predloška',
 	'right-centralnotice-admin' => 'Uređivanje središnjih obavijesti',
 	'right-centralnotice-translate' => 'Prevođenje središnjih obavijesti',
 	'action-centralnotice-admin' => 'uređivanje središnjih obavijesti',
@@ -2077,6 +2081,7 @@ $messages['ms'] = array(
 	'centralnotice-null-string' => 'Rentetan kosong tidak boleh ditambah.',
 	'centralnotice-confirm-delete' => 'Betul anda mahu menghapuskan item ini? Tindakan ini tidak boleh dipulihkan.',
 	'centralnotice-no-templates-translate' => 'Tiada templat untuk diterjemah',
+	'centralnotice-number-uses' => 'Penggunaan',
 	'centralnotice-edit-template' => 'Sunting templat',
 	'centralnotice-message' => 'Pesanan',
 	'centralnotice-message-not-set' => 'Pesanan tidak ditetapkan',
@@ -2638,6 +2643,7 @@ $messages['sah'] = array(
 
 /** Sicilian (Sicilianu)
  * @author Gmelfi
+ * @author Santu
  */
 $messages['scn'] = array(
 	'centralnotice' => 'Gistioni di avvisu cintralizzatu',
@@ -2702,6 +2708,20 @@ Nun junciutu",
 Nun fu canciatu',
 	'centralnotice-null-string' => 'Nun si pò junciri na strinca nulla.
 Nun junciutu',
+	'centralnotice-confirm-delete' => "Si pi daveru sicuru di vuliri scancillari st'uggettu? Na vota scancillatu non si pò turnari arredi.",
+	'centralnotice-no-notices-exist' => "Nuddu avvisu c'è. Agghiunciccinni unu di sècutu.",
+	'centralnotice-number-uses' => 'Usi',
+	'centralnotice-edit-template' => 'Cancia template',
+	'centralnotice-message' => 'Missaggiu',
+	'centralnotice-message-not-set' => 'Missaggiu no mpustatu',
+	'centralnotice-clone' => 'Clona',
+	'centralnotice-clone-notice' => 'Cria na copia dû template',
+	'centralnotice-preview-all-template-translations' => "Tutti li traduzzioni dî template dispunìbbili 'n anteprima",
+	'right-centralnotice-admin' => "Gistisci l'avvisi cintralizzati",
+	'right-centralnotice-translate' => 'Traduci avvisi cintralizzati',
+	'action-centralnotice-admin' => "Guverna l'avvisi cintralizzati",
+	'action-centralnotice-translate' => 'tradùciri avvisi cintralizzati',
+	'centralnotice-preferred' => 'Prifiriti',
 );
 
 /** Slovak (Slovenčina)
@@ -3094,10 +3114,14 @@ $messages['vi'] = array(
 	'centralnotice-edit-template' => 'Sửa đổi tiêu bản',
 	'centralnotice-message' => 'Thông báo',
 	'centralnotice-message-not-set' => 'Thông báo chưa được thiết lập',
+	'centralnotice-clone' => 'Sao',
+	'centralnotice-clone-notice' => 'Tạo bản sao của tiêu bản',
+	'centralnotice-preview-all-template-translations' => 'Xem trước các bản dịch có sẵn của tiêu bản',
 	'right-centralnotice-admin' => 'Quản lý thông báo chung',
 	'right-centralnotice-translate' => 'Dịch thông báo chung',
 	'action-centralnotice-admin' => 'quản lý thông báo chung',
 	'action-centralnotice-translate' => 'dịch thông báo chung',
+	'centralnotice-preferred' => 'Nổi bật hơn',
 );
 
 /** Volapük (Volapük)
