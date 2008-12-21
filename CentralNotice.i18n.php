@@ -1401,6 +1401,7 @@ Dodajte jednu ispod',
 	'right-centralnotice-translate' => 'Prevođenje središnjih obavijesti',
 	'action-centralnotice-admin' => 'uređivanje središnjih obavijesti',
 	'action-centralnotice-translate' => 'prevođenje središnjih obavijesti',
+	'centralnotice-preferred' => 'Željeno',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
@@ -2532,10 +2533,12 @@ $messages['pt-br'] = array(
 );
 
 /** Romanian (Română)
+ * @author KlaudiuMihaila
  * @author Mihai
  */
 $messages['ro'] = array(
 	'centralnotice-desc' => 'Adaugă un anunţ central sitului',
+	'centralnotice-preview' => 'Previzualizare',
 );
 
 /** Russian (Русский)
