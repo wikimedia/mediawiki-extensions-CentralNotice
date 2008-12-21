@@ -480,10 +480,14 @@ $messages['bg'] = array(
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
 	'centralnotice-end-date' => 'Крайна дата',
 	'centralnotice-modify' => 'Изпращане',
+	'centralnotice-preview' => 'Преглеждане',
 	'centralnotice-remove' => 'Премахване',
 	'centralnotice-translate-heading' => 'Превод за $1',
 	'centralnotice-add' => 'Добавяне',
 	'centralnotice-add-template' => 'Добавяне на шаблон',
+	'centralnotice-translations' => 'Преводи',
+	'centralnotice-translate-to' => 'Превеждане на',
+	'centralnotice-translate' => 'Превеждане',
 	'centralnotice-english' => 'Английски',
 	'centralnotice-template-name' => 'Име на шаблона',
 	'centralnotice-templates' => 'Шаблони',
@@ -900,11 +904,24 @@ Afiŝu noticon suben',
 
 /** Spanish (Español)
  * @author Muro de Aguas
+ * @author Remember the dot
  * @author Sanbec
  */
 $messages['es'] = array(
 	'centralnotice-desc' => 'Añade un mensaje central común a todos los proyectos.',
+	'centralnotice-remove' => 'Quitar',
 	'centralnotice-english' => 'Inglés',
+	'centralnotice-locked' => 'Cerrada con llave',
+	'centralnotice-day' => 'Día',
+	'centralnotice-year' => 'Año',
+	'centralnotice-month' => 'Mes',
+	'centralnotice-hours' => 'Hora',
+	'centralnotice-min' => 'Minuto',
+	'centralnotice-project-lang' => 'Idioma del proyecto',
+	'centralnotice-project-name' => 'Nombre del proyecto',
+	'centralnotice-edit-template' => 'Editar plantilla',
+	'centralnotice-message' => 'Mensaje',
+	'centralnotice-clone' => 'Clonar',
 );
 
 /** Persian (فارسی)
@@ -1796,9 +1813,12 @@ Tambahaké ing ngisor',
  */
 $messages['km'] = array(
 	'centralnotice-modify' => 'ដាក់ស្នើ',
+	'centralnotice-preview' => 'មើលជាមុន',
 	'centralnotice-remove' => 'ដកចេញ',
 	'centralnotice-add' => 'ដាក់បន្ថែម',
 	'centralnotice-add-template' => 'បន្ថែមទំព័រគំរូ',
+	'centralnotice-translations' => 'ការបកប្រែ',
+	'centralnotice-translate' => 'បកប្រែ',
 	'centralnotice-english' => 'ភាសាអង់គ្លេស',
 	'centralnotice-template-name' => 'ឈ្មោះទំព័រគំរូ',
 	'centralnotice-templates' => 'ទំព័រគំរូ',
@@ -2382,6 +2402,7 @@ Apondètz-ne una en dejós.',
  * @author Amikeco
  */
 $messages['os'] = array(
+	'centralnotice-preview' => 'Разæркаст',
 	'centralnotice-translations' => 'Тæлмацтæ',
 	'centralnotice-year' => 'Аз',
 	'centralnotice-project-lang' => 'Проекты æвзаг',
@@ -2964,6 +2985,15 @@ $messages['te'] = array(
  */
 $messages['tg-cyrl'] = array(
 	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
+);
+
+/** Thai (ไทย)
+ * @author Manop
+ */
+$messages['th'] = array(
+	'centralnotice-day' => 'วัน',
+	'centralnotice-year' => 'ปี',
+	'centralnotice-month' => 'เดือน',
 );
 
 /** Ukrainian (Українська)
