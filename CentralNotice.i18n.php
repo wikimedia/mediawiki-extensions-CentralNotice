@@ -107,7 +107,7 @@ $messages['qqq'] = array(
 	'noticetemplate' => 'Title of Special:NoticeTemplate',
 	'centralnotice-desc' => 'Short description of the Centralnotice extension, shown in [[Special:Version]]. Do not translate or change links.',
 	'centralnotice-summary' => 'Used in Special:CentralNotice',
-	'centralnotice-enabled' => '{{Identical/Enabled}}',
+	'centralnotice-enabled' => '{{Identical|Enabled}}',
 	'centralnotice-modify' => '{{Identical|Submit}}',
 	'centralnotice-preview' => '{{Identical|Preview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
@@ -1017,9 +1017,93 @@ $messages['fa'] = array(
 
 /** Finnish (Suomi)
  * @author Crt
+ * @author Tarmo
  */
 $messages['fi'] = array(
-	'centralnotice-desc' => 'Mahdollistaa yleisen sivutiedotteen lisäämisen.',
+	'centralnotice' => 'Keskitettyjen tiedotteiden ylläpito',
+	'noticetemplate' => 'Keskitetyn tiedotteen malline',
+	'centralnotice-desc' => 'Mahdollistaa keskitetyn sivustotiedotteen lisäämisen.',
+	'centralnotice-summary' => 'Tämä moduuli antaa sinun muokata tällä hetkellä käytössä olevia keskitettyjä tiedotteita.
+Voit myös lisätä tai poistaa vanhoja tiedotteita.',
+	'centralnotice-query' => 'Muokkaa nykyisiä tiedotteita',
+	'centralnotice-notice-name' => 'Tiedotteen nimi',
+	'centralnotice-end-date' => 'Lopetuspäivä',
+	'centralnotice-enabled' => 'Käytössä',
+	'centralnotice-modify' => 'Lähetä',
+	'centralnotice-preview' => 'Esikatselu',
+	'centralnotice-add-new' => 'Lisää uusi keskitetty tiedote',
+	'centralnotice-remove' => 'Poista',
+	'centralnotice-translate-heading' => 'Käännös tälle: $1',
+	'centralnotice-manage' => 'Hallinnoi keskitettyä tiedotetta',
+	'centralnotice-add' => 'Lisää',
+	'centralnotice-add-notice' => 'Lisää tiedote',
+	'centralnotice-add-template' => 'Lisää malline',
+	'centralnotice-show-notices' => 'Näytä tiedotteet',
+	'centralnotice-list-templates' => 'Luettele mallineet',
+	'centralnotice-translations' => 'Käännökset',
+	'centralnotice-translate-to' => 'Käännös:',
+	'centralnotice-translate' => 'Käännä',
+	'centralnotice-english' => 'Englanniksi',
+	'centralnotice-template-name' => 'Mallineen nimi',
+	'centralnotice-templates' => 'Mallineet',
+	'centralnotice-weight' => 'Paino',
+	'centralnotice-locked' => 'Lukittu',
+	'centralnotice-notices' => 'Tiedotteet',
+	'centralnotice-notice-exists' => 'Tiedote on jo olemassa.
+Ei lisätä',
+	'centralnotice-template-exists' => 'Malline on jo olemassa.
+Ei lisätä',
+	'centralnotice-notice-doesnt-exist' => 'Tiedotetta ei ole.
+Ei mitään poistettavaa',
+	'centralnotice-template-still-bound' => 'Malline on vielä kytkettynä tiedotteeseen.
+Ei poisteta',
+	'centralnotice-template-body' => 'Mallineen runko:',
+	'centralnotice-day' => 'Päivä',
+	'centralnotice-year' => 'Vuosi',
+	'centralnotice-month' => 'Kuukausi',
+	'centralnotice-hours' => 'Tunti',
+	'centralnotice-min' => 'Minuutti',
+	'centralnotice-project-lang' => 'Projektin kieli',
+	'centralnotice-project-name' => 'Projektin nimi',
+	'centralnotice-start-date' => 'Alkamispäivä',
+	'centralnotice-start-time' => 'Alkamisaika (UTC)',
+	'centralnotice-assigned-templates' => 'Kytketyt mallineet',
+	'centralnotice-no-templates' => 'Ei löydy mallineita.
+Lisää niitä.',
+	'centralnotice-no-templates-assigned' => 'Ei tiedotteeseen kytkettyjä mallineita.
+Lisää niitä!',
+	'centralnotice-available-templates' => 'Käytettävät mallineet',
+	'centralnotice-template-already-exists' => 'Malline on jo kytketty kampanjaan.
+Ei lisätä',
+	'centralnotice-preview-template' => 'Esikatsele malline',
+	'centralnotice-start-hour' => 'Alkamisaika',
+	'centralnotice-change-lang' => 'Vaihda käännöskieli',
+	'centralnotice-weights' => 'Painot',
+	'centralnotice-notice-is-locked' => 'Tiedote on lukittu.
+Ei poisteta',
+	'centralnotice-overlap' => 'Tiedote ulottuu ajallisesti toisen tiedotteen päälle.
+Ei lisätä',
+	'centralnotice-invalid-date-range' => 'Epäkelpo aikaväli.
+Ei muuteta',
+	'centralnotice-null-string' => 'Tyhjää merkkijonoa ei voida lisätä.
+Ei lisätä',
+	'centralnotice-confirm-delete' => 'Haluatko varmasti poistaa tämän?
+Tätä tekoa ei voi perua.',
+	'centralnotice-no-notices-exist' => 'Ei tiedotteita.
+Lisää alapuolella sellainen',
+	'centralnotice-no-templates-translate' => 'Ei mallineita, joiden käännöksiä voisi muokata',
+	'centralnotice-number-uses' => 'Käyttää',
+	'centralnotice-edit-template' => 'Muokkaa mallinetta',
+	'centralnotice-message' => 'Viesti',
+	'centralnotice-message-not-set' => 'Viestiä ei ole asetettu',
+	'centralnotice-clone' => 'Kloonaa',
+	'centralnotice-clone-notice' => 'Tee kopio mallineesta',
+	'centralnotice-preview-all-template-translations' => 'Esikatsele kaikkia saatavilla olevia mallineen käännöksiä',
+	'right-centralnotice-admin' => 'Hallinnoida keskitettyjä tiedotteita',
+	'right-centralnotice-translate' => 'Kääntää keskitettyjä tiedotteita',
+	'action-centralnotice-admin' => 'hallinnoida keskitettyjä tiedotteita',
+	'action-centralnotice-translate' => 'kääntää keskitettyjä tiedotteita',
+	'centralnotice-preferred' => 'Suositeltu',
 );
 
 /** French (Français)
@@ -1675,6 +1759,7 @@ $messages['it'] = array(
 
 /** Japanese (日本語)
  * @author Aotake
+ * @author Fryed-peach
  * @author JtFuruhata
  */
 $messages['ja'] = array(
@@ -1686,6 +1771,7 @@ $messages['ja'] = array(
 	'centralnotice-add' => '追加',
 	'centralnotice-add-notice' => 'お知らせを追加',
 	'centralnotice-add-template' => 'テンプレートを追加',
+	'centralnotice-translate-to' => '翻訳先',
 	'centralnotice-english' => '英語',
 	'centralnotice-template-name' => 'テンプレート名',
 	'centralnotice-templates' => 'テンプレート',
@@ -1815,9 +1901,11 @@ $messages['km'] = array(
 	'centralnotice-modify' => 'ដាក់ស្នើ',
 	'centralnotice-preview' => 'មើលជាមុន',
 	'centralnotice-remove' => 'ដកចេញ',
+	'centralnotice-translate-heading' => 'ការប្រែសម្រួល​សម្រាប់​$1',
 	'centralnotice-add' => 'ដាក់បន្ថែម',
 	'centralnotice-add-template' => 'បន្ថែមទំព័រគំរូ',
 	'centralnotice-translations' => 'ការបកប្រែ',
+	'centralnotice-translate-to' => 'បកប្រែ​ទៅ',
 	'centralnotice-translate' => 'បកប្រែ',
 	'centralnotice-english' => 'ភាសាអង់គ្លេស',
 	'centralnotice-template-name' => 'ឈ្មោះទំព័រគំរូ',
@@ -1833,17 +1921,25 @@ $messages['km'] = array(
 	'centralnotice-preview-template' => 'មើលទំព័រគំរូជាមុន',
 	'centralnotice-edit-template' => 'កែប្រែទំព័រគំរូ',
 	'centralnotice-message' => 'សារ',
+	'centralnotice-clone' => 'ក្លូន',
 );
 
 /** Korean (한국어)
  * @author Kwj2772
  */
 $messages['ko'] = array(
+	'centralnotice-enabled' => '활성화됨',
 	'centralnotice-preview' => '미리 보기',
+	'centralnotice-remove' => '제거',
 	'centralnotice-translate-heading' => '$1에 대한 번역',
 	'centralnotice-add' => '추가',
+	'centralnotice-add-notice' => '알림을 추가하기',
+	'centralnotice-add-template' => '틀을 추가하기',
+	'centralnotice-translations' => '번역',
+	'centralnotice-translate-to' => '번역할 언어',
 	'centralnotice-translate' => '번역하기',
 	'centralnotice-english' => '영어',
+	'centralnotice-template-name' => '틀 이름',
 	'centralnotice-locked' => '잠김',
 	'centralnotice-hours' => '시',
 	'centralnotice-min' => '분',
@@ -1851,6 +1947,8 @@ $messages['ko'] = array(
 	'centralnotice-project-name' => '프로젝트 이름',
 	'centralnotice-start-date' => '시작 날짜',
 	'centralnotice-start-time' => '시작 시간 (UTC)',
+	'centralnotice-preview-template' => '틀 미리 보기',
+	'centralnotice-start-hour' => '시작 시간',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -2994,6 +3092,96 @@ $messages['th'] = array(
 	'centralnotice-day' => 'วัน',
 	'centralnotice-year' => 'ปี',
 	'centralnotice-month' => 'เดือน',
+);
+
+/** Tagalog (Tagalog)
+ * @author AnakngAraw
+ */
+$messages['tl'] = array(
+	'centralnotice' => 'Tagapangasiwa ng pangunahing pabatid',
+	'noticetemplate' => 'Suleras ng pangunahing pabatid',
+	'centralnotice-desc' => 'Nagdaragdag ng pangunahing pahayag ng sayt/sityo',
+	'centralnotice-summary' => 'Nagbibigay ang bahaging-panggampaning ito ng pahintulot na mabago mo ang iyong pangkasulukyang naitakdang mga pangunahing pahayag.  
+Maaari rin itong gamitin upang makapagdagdag o magtanggal ng mga lumang pahayag.',
+	'centralnotice-query' => 'Baguhin ang pangkasalukuyang mga pabatid',
+	'centralnotice-notice-name' => 'Pangalan ng pabatid',
+	'centralnotice-end-date' => 'Pangwakas na petsa',
+	'centralnotice-enabled' => 'Paganahin',
+	'centralnotice-modify' => 'Ipasa/ipadala',
+	'centralnotice-preview' => 'Paunang tingin',
+	'centralnotice-add-new' => 'Magdagdag ng isang bagong pangunahing pabatid',
+	'centralnotice-remove' => 'Tanggalin',
+	'centralnotice-translate-heading' => 'Salinwika para sa $1',
+	'centralnotice-manage' => 'Pamahalaan ang pangunahing pabatid',
+	'centralnotice-add' => 'Magdagdag',
+	'centralnotice-add-notice' => 'Magdagdag ng isang pabatid',
+	'centralnotice-add-template' => 'Magdagdag ng isang suleras',
+	'centralnotice-show-notices' => 'Ipagkita ang mga pabatid',
+	'centralnotice-list-templates' => 'Itala ang mga suleras',
+	'centralnotice-translations' => 'Mga salinwika',
+	'centralnotice-translate-to' => 'Isalinwika patungong',
+	'centralnotice-translate' => 'Isalinwika',
+	'centralnotice-english' => 'Ingles',
+	'centralnotice-template-name' => 'Pangalan ng suleras',
+	'centralnotice-templates' => 'Mga suleras',
+	'centralnotice-weight' => 'Timbang',
+	'centralnotice-locked' => 'Nakakandado',
+	'centralnotice-notices' => 'Mga pabatid',
+	'centralnotice-notice-exists' => 'Umiiral na ang pabatid/pahayag.
+Hindi idaragdag',
+	'centralnotice-template-exists' => 'Umiiral na ang suleras.
+Hindi idinargdag',
+	'centralnotice-notice-doesnt-exist' => 'Hindi umiiral ang pabatid/pahayag.
+Walang matatanggal',
+	'centralnotice-template-still-bound' => 'Nakadikit pa ang suleras sa isang pabatid/pahayag.
+Hindi tatanggalin.',
+	'centralnotice-template-body' => 'Katawan ng suleras:',
+	'centralnotice-day' => 'Araw',
+	'centralnotice-year' => 'Taon',
+	'centralnotice-month' => 'Buwan',
+	'centralnotice-hours' => 'Oras',
+	'centralnotice-min' => 'Minuto',
+	'centralnotice-project-lang' => 'Wika ng proyekto',
+	'centralnotice-project-name' => 'Pangalan ng proyekto',
+	'centralnotice-start-date' => 'Petsa ng pagsisimula',
+	'centralnotice-start-time' => 'Oras ng simula (UTC)',
+	'centralnotice-assigned-templates' => 'Nakatakdang mga suleras',
+	'centralnotice-no-templates' => 'Walang natagpuang mga suleras.
+Madagdag ng ilan!',
+	'centralnotice-no-templates-assigned' => 'Walang nakatakdang mga suleras para sa pabatid.
+Magdagdag ng ilan!',
+	'centralnotice-available-templates' => 'Makukuhang mga suleras',
+	'centralnotice-template-already-exists' => 'Nakabigkis na ang suleras sa kampanya.
+Hindi idaragdag',
+	'centralnotice-preview-template' => 'Paunang tingnan ang suleras',
+	'centralnotice-start-hour' => 'Oras ng pagsisimula',
+	'centralnotice-change-lang' => 'Baguhin ang wika ng pagsasalin',
+	'centralnotice-weights' => 'Mga timbang',
+	'centralnotice-notice-is-locked' => 'Nakakandado ang pabatid.
+Hindi tatanggalin',
+	'centralnotice-overlap' => 'Nakikipagsabayan ang pabatid sa loob ng oras ng isa pang pahayag.
+Hindi idaragdag',
+	'centralnotice-invalid-date-range' => 'Hindi tanggap na sakop ng petsa.
+Hindi isasapanahon',
+	'centralnotice-null-string' => 'Hindi maidaragdag ang isang hindi mabisang bagting o hanay.
+Hindi idaragdag',
+	'centralnotice-confirm-delete' => 'Nakatitiyak ka bang ibig mong burahin ang bagay na ito?
+Hindi na muling mababawi pa ang galaw na ito.',
+	'centralnotice-no-notices-exist' => 'Walang umiiral na mga pabatid.
+Magdagdag ng isa sa ibaba',
+	'centralnotice-no-templates-translate' => 'Walang mga suleras na mapagsasagawaan ng mga pagbabagong pangsalinwika',
+	'centralnotice-number-uses' => 'Mga mapaggagamitan',
+	'centralnotice-edit-template' => 'Baguhin ang suleras',
+	'centralnotice-message' => 'Mensahe',
+	'centralnotice-message-not-set' => 'Hindi nakatakda ang mensahe',
+	'centralnotice-clone' => 'Kopyang kahawig na kahawig ng pinaggayahan',
+	'centralnotice-clone-notice' => 'Lumikha ng isang sipi ng suleras',
+	'centralnotice-preview-all-template-translations' => 'Paunang tanawin ang lahat ng mga makukuhang mga salinwika ng suleras',
+	'right-centralnotice-admin' => 'Pamahalaan ang pangunahing mga pabatid',
+	'right-centralnotice-translate' => 'Isalinwika ang pangunahing mga pabatid',
+	'action-centralnotice-admin' => 'pamahalaan ang pangunahing mga pabatid',
+	'action-centralnotice-translate' => 'isalinwika ang pangunahing mga pabatid',
+	'centralnotice-preferred' => 'Mas ninanais',
 );
 
 /** Ukrainian (Українська)
