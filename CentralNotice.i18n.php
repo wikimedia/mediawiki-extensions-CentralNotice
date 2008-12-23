@@ -1017,6 +1017,7 @@ $messages['fa'] = array(
 
 /** Finnish (Suomi)
  * @author Crt
+ * @author Nike
  * @author Tarmo
  */
 $messages['fi'] = array(
@@ -1096,7 +1097,7 @@ Lisää alapuolella sellainen',
 	'centralnotice-edit-template' => 'Muokkaa mallinetta',
 	'centralnotice-message' => 'Viesti',
 	'centralnotice-message-not-set' => 'Viestiä ei ole asetettu',
-	'centralnotice-clone' => 'Kloonaa',
+	'centralnotice-clone' => 'Kahdenna',
 	'centralnotice-clone-notice' => 'Tee kopio mallineesta',
 	'centralnotice-preview-all-template-translations' => 'Esikatsele kaikkia saatavilla olevia mallineen käännöksiä',
 	'right-centralnotice-admin' => 'Hallinnoida keskitettyjä tiedotteita',
@@ -2191,14 +2192,18 @@ $messages['ms'] = array(
 	'centralnotice-start-date' => 'Tarikh mula',
 	'centralnotice-start-time' => 'Waktu mula (UTC)',
 	'centralnotice-no-templates' => 'Tiada templat. Sila cipta templat baru.',
+	'centralnotice-no-templates-assigned' => 'Tiada templat untuk pemberitahuan. Tambah templat baru!',
 	'centralnotice-available-templates' => 'Templat yang ada',
+	'centralnotice-template-already-exists' => 'Templat telah pun terikat dengan kempen, oleh itu tidak ditambah.',
 	'centralnotice-preview-template' => 'Pralihat templat',
 	'centralnotice-start-hour' => 'Waktu mula',
 	'centralnotice-change-lang' => 'Tukar bahasa terjemahan',
 	'centralnotice-notice-is-locked' => 'Pemberitahuan telah dikunci dan tidak boleh dibuang.',
+	'centralnotice-overlap' => 'Pemberitahuan tersebut bertindan waktu dengan pemberitahuan lain, oleh itu tidak ditambah.',
 	'centralnotice-invalid-date-range' => 'Julat tarikh tidak sah dan tidak dikemaskinikan.',
 	'centralnotice-null-string' => 'Rentetan kosong tidak boleh ditambah.',
 	'centralnotice-confirm-delete' => 'Betul anda mahu menghapuskan item ini? Tindakan ini tidak boleh dipulihkan.',
+	'centralnotice-no-notices-exist' => 'Tiada pemberitahuan. Anda boleh menambahnya di bawah.',
 	'centralnotice-no-templates-translate' => 'Tiada templat untuk diterjemah',
 	'centralnotice-number-uses' => 'Penggunaan',
 	'centralnotice-edit-template' => 'Sunting templat',
@@ -3259,6 +3264,7 @@ Inserimento mia fato',
 	'centralnotice-confirm-delete' => 'Vuto dal bon scancelar sto elemento? Arda che dopo no se pol più recuperarlo.',
 	'centralnotice-no-notices-exist' => 'No esiste nissuna notifica.
 Zónteghene una qua soto.',
+	'centralnotice-no-templates-translate' => 'No ghe xe nissun modèl de cui modificar la tradussion',
 	'centralnotice-number-uses' => 'Usi',
 	'centralnotice-edit-template' => 'Modìfega modèl',
 	'centralnotice-message' => 'Messagio',
