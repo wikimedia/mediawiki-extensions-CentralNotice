@@ -1597,6 +1597,96 @@ Přidaj někajku',
 	'centralnotice-preferred' => 'Preferowany',
 );
 
+/** Hungarian (Magyar)
+ * @author Dani
+ */
+$messages['hu'] = array(
+	'centralnotice' => 'Központi üzenet adminisztráció',
+	'noticetemplate' => 'Központi üzenet-sablon',
+	'centralnotice-desc' => 'Központi üzenet megjelenítése',
+	'centralnotice-summary' => 'Ez a kiegészítő lehetővé teszi, hogy szerkeszd a jelenleg beállított központi üzeneteket.
+Használhatod újak hozzáadására, vagy régiek eltávolítására is.',
+	'centralnotice-query' => 'Jelenlegi üzenetek módosítása',
+	'centralnotice-notice-name' => 'Üzenet neve',
+	'centralnotice-end-date' => 'Befejezés dátuma',
+	'centralnotice-enabled' => 'Engedélyezve',
+	'centralnotice-modify' => 'Elküldés',
+	'centralnotice-preview' => 'Előnézet',
+	'centralnotice-add-new' => 'Új központi üzenet hozzáadása',
+	'centralnotice-remove' => 'Eltávolítás',
+	'centralnotice-translate-heading' => '$1 fordítása',
+	'centralnotice-manage' => 'Központi üzenet beállítása',
+	'centralnotice-add' => 'Hozzáadás',
+	'centralnotice-add-notice' => 'Üzenet hozzáadása',
+	'centralnotice-add-template' => 'Sablon hozzáadása',
+	'centralnotice-show-notices' => 'Üzenetek megjelenítése',
+	'centralnotice-list-templates' => 'Sablonok listázása',
+	'centralnotice-translations' => 'Fordítások',
+	'centralnotice-translate-to' => 'Lefordítás',
+	'centralnotice-translate' => 'Lefordítás',
+	'centralnotice-english' => 'angol',
+	'centralnotice-template-name' => 'Sablonnév',
+	'centralnotice-templates' => 'Sablonok',
+	'centralnotice-weight' => 'Súly',
+	'centralnotice-locked' => 'Lezárva',
+	'centralnotice-notices' => 'Üzenetek',
+	'centralnotice-notice-exists' => 'Az üzenet már létezik.
+Nem történt hozzáadás.',
+	'centralnotice-template-exists' => 'A sablon már létezik.
+Nem történt hozzáadás.',
+	'centralnotice-notice-doesnt-exist' => 'Az üzenet nem létezik.
+Nincs mit eltávolítani.',
+	'centralnotice-template-still-bound' => 'A sablon nem létezik.
+Nincs mit eltávolítani.',
+	'centralnotice-template-body' => 'Sablon törzse:',
+	'centralnotice-day' => 'Nap',
+	'centralnotice-year' => 'Év',
+	'centralnotice-month' => 'Hónap',
+	'centralnotice-hours' => 'Óra',
+	'centralnotice-min' => 'Perc',
+	'centralnotice-project-lang' => 'Projekt nyelve',
+	'centralnotice-project-name' => 'Projekt neve',
+	'centralnotice-start-date' => 'Kezdési dátum',
+	'centralnotice-start-time' => 'Kezdési idő (UTC)',
+	'centralnotice-assigned-templates' => 'Hozzárendelt sablonok',
+	'centralnotice-no-templates' => 'Nem találhatóak sablonok.
+Adj hozzá néhányat.',
+	'centralnotice-no-templates-assigned' => 'Nincsenek sablonok rendelve az üzenethez.
+Adj hozzá néhányat.',
+	'centralnotice-available-templates' => 'Elérhető sablonok',
+	'centralnotice-template-already-exists' => 'A sablon már hozzá van rendelve a kampányhoz.
+Nem történt hozzáadás',
+	'centralnotice-preview-template' => 'Sablon előnézete',
+	'centralnotice-start-hour' => 'Kezdési idő',
+	'centralnotice-change-lang' => 'Fordítási nyelv megváltoztatása',
+	'centralnotice-weights' => 'Súlyok',
+	'centralnotice-notice-is-locked' => 'Az üzenet le van zárva.
+Nem történt eltávolítás.',
+	'centralnotice-overlap' => 'Az üzenet le van zárva.
+Nem történt hozzáadás.',
+	'centralnotice-invalid-date-range' => 'Érvénytelen időtartam.
+Nem történt módosítás.',
+	'centralnotice-null-string' => 'Nem adhatsz hozzá üres szöveget.
+Nem történt hozzáadás.',
+	'centralnotice-confirm-delete' => 'Biztos, hogy törölni szeretnéd ezt az elemet?
+A művelet visszavonhatatlan.',
+	'centralnotice-no-notices-exist' => 'Nincsenek üzenetek.
+Itt adhatsz hozzá újakat.',
+	'centralnotice-no-templates-translate' => 'Nincs egyetlen sablon sem, amit fordítani lehetne',
+	'centralnotice-number-uses' => 'Használatok',
+	'centralnotice-edit-template' => 'Sablon szerkesztése',
+	'centralnotice-message' => 'Üzenet',
+	'centralnotice-message-not-set' => 'Üzenet nincs beállítva',
+	'centralnotice-clone' => 'Klónozás',
+	'centralnotice-clone-notice' => 'Másolat készítése a sablonról',
+	'centralnotice-preview-all-template-translations' => 'A sablon összes fordításának megtekintése',
+	'right-centralnotice-admin' => 'központi üzenetek beállítása',
+	'right-centralnotice-translate' => 'központi üzenetek fordítása',
+	'action-centralnotice-admin' => 'központi üzenetek beállítása',
+	'action-centralnotice-translate' => 'központi üzenetek fordítása',
+	'centralnotice-preferred' => 'Előnyben részesített',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
@@ -1766,6 +1856,7 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'centralnotice-desc' => '中央管理のサイトのお知らせを追加する',
+	'centralnotice-enabled' => '有効',
 	'centralnotice-modify' => '投稿',
 	'centralnotice-remove' => '除去',
 	'centralnotice-translate-heading' => '$1の翻訳',
@@ -1774,6 +1865,7 @@ $messages['ja'] = array(
 	'centralnotice-add-notice' => 'お知らせを追加',
 	'centralnotice-add-template' => 'テンプレートを追加',
 	'centralnotice-translate-to' => '翻訳先',
+	'centralnotice-translate' => '翻訳',
 	'centralnotice-english' => '英語',
 	'centralnotice-template-name' => 'テンプレート名',
 	'centralnotice-templates' => 'テンプレート',
@@ -1784,6 +1876,7 @@ $messages['ja'] = array(
 	'centralnotice-template-exists' => '同じ名前のテンプレートがすでに存在します。追加できませんでした。',
 	'centralnotice-notice-doesnt-exist' => 'その名前のお知らせは存在しません。除去できませんでした。',
 	'centralnotice-template-still-bound' => 'そのテンプレートはまだお知らせに使用されています。除去できませんでした。',
+	'centralnotice-template-body' => '翻訳本文:',
 	'centralnotice-day' => '日',
 	'centralnotice-year' => '年',
 	'centralnotice-month' => '月',
@@ -1793,6 +1886,12 @@ $messages['ja'] = array(
 	'centralnotice-project-name' => 'プロジェクト名',
 	'centralnotice-start-date' => '開始日',
 	'centralnotice-start-time' => '開始時間 (UTC)',
+	'centralnotice-preview-template' => 'テンプレートをプレビューする',
+	'centralnotice-change-lang' => '翻訳言語を変更する',
+	'centralnotice-edit-template' => 'テンプレートを編集する',
+	'centralnotice-message' => 'メッセージ',
+	'centralnotice-clone-notice' => 'テンプレートの複製を作成する',
+	'centralnotice-preview-all-template-translations' => 'テンプレートのすべての利用可能な翻訳をプレビューする',
 	'right-centralnotice-admin' => '中央管理のお知らせの編集',
 	'right-centralnotice-translate' => '中央管理のお知らせの翻訳',
 	'action-centralnotice-admin' => '中央管理のお知らせの編集',
@@ -1951,6 +2050,7 @@ $messages['ko'] = array(
 	'centralnotice-start-time' => '시작 시간 (UTC)',
 	'centralnotice-preview-template' => '틀 미리 보기',
 	'centralnotice-start-hour' => '시작 시간',
+	'centralnotice-change-lang' => '번역할 언어 변경',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -3111,6 +3211,15 @@ Lägg till ett nedan',
  */
 $messages['te'] = array(
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
+	'centralnotice-translations' => 'అనువాదాలు',
+	'centralnotice-template-name' => 'మూస పేరు',
+	'centralnotice-templates' => 'మూసలు',
+	'centralnotice-day' => 'రోజు',
+	'centralnotice-year' => 'సంవత్సరం',
+	'centralnotice-month' => 'నెల',
+	'centralnotice-hours' => 'గంట',
+	'centralnotice-min' => 'నిమిషం',
+	'centralnotice-message' => 'సందేశం',
 );
 
 /** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
