@@ -100,6 +100,7 @@ Add one below',
  * @author Darth Kule
  * @author Fryed-peach
  * @author Jon Harald Søby
+ * @author Nike
  * @author Purodha
  */
 $messages['qqq'] = array(
@@ -111,6 +112,7 @@ $messages['qqq'] = array(
 	'centralnotice-modify' => '{{Identical|Submit}}',
 	'centralnotice-preview' => '{{Identical|Preview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
+	'centralnotice-translate-heading' => '$1 is a name of a template.',
 	'centralnotice-add' => '{{Identical|Add}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-notice-exists' => 'Errore message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
@@ -790,7 +792,90 @@ Füge eine hinzu.',
  * @author Michawiki
  */
 $messages['dsb'] = array(
+	'centralnotice' => 'Administrěrowanje centralnych powěźeńkow',
+	'noticetemplate' => 'Pśedłoga za centralne powěźeńki',
 	'centralnotice-desc' => 'Pśidawa centralnu powěźeńku do głowy boka',
+	'centralnotice-summary' => 'Toś ten modul zmóžnja wobźěłowanje tuchylu nastajenych centralnych powěźeńkow.
+Dajo se teke wužywaś, aby se pśidali nowe powěźeńki abo wótpórali stare powěźeńki.',
+	'centralnotice-query' => 'Centralne powěźeńki změniś',
+	'centralnotice-notice-name' => 'Mě powěźeńki',
+	'centralnotice-end-date' => 'Kóńcny datum',
+	'centralnotice-enabled' => 'Zmóžnjony',
+	'centralnotice-modify' => 'Wótpósłaś',
+	'centralnotice-preview' => 'Pśeglěd',
+	'centralnotice-add-new' => 'Nowu centralnu powěźeńku pśidaś',
+	'centralnotice-remove' => 'Wótwónoźeś',
+	'centralnotice-translate-heading' => 'Pśełožk za $1',
+	'centralnotice-manage' => 'Centralne powěźeńki zastojaś',
+	'centralnotice-add' => 'Pśidaś',
+	'centralnotice-add-notice' => 'Powěźeńku pśidaś',
+	'centralnotice-add-template' => 'Pśedłogu pśidaś',
+	'centralnotice-show-notices' => 'Powěźeńki pokazaś',
+	'centralnotice-list-templates' => 'Pśedłogi nalistowaś',
+	'centralnotice-translations' => 'Pśełožki',
+	'centralnotice-translate-to' => 'Pśełoźiś do',
+	'centralnotice-translate' => 'Pśełožiś',
+	'centralnotice-english' => 'Engelšćina',
+	'centralnotice-template-name' => 'Mě pśedłogi',
+	'centralnotice-templates' => 'Pśedłogi',
+	'centralnotice-weight' => 'Wažnosć',
+	'centralnotice-locked' => 'Zastajony',
+	'centralnotice-notices' => 'Powěźeńki',
+	'centralnotice-notice-exists' => 'Powěźeńka južo eksistěrujo.
+Žedne pśidaśe',
+	'centralnotice-template-exists' => 'Pśedłoga južo eksistěrujo.
+Žedne pśidaśe',
+	'centralnotice-notice-doesnt-exist' => 'Powěźeńka njeeksistěrujo.
+Žedne wótpóranje',
+	'centralnotice-template-still-bound' => 'Pśedłoga jo hyšći z powěźeńku zwězana.
+Žedne wótpóranje.',
+	'centralnotice-template-body' => 'Tekst pśedłogi:',
+	'centralnotice-day' => 'Źeń',
+	'centralnotice-year' => 'Lěto',
+	'centralnotice-month' => 'Mjasec',
+	'centralnotice-hours' => 'Góźina',
+	'centralnotice-min' => 'Minuta',
+	'centralnotice-project-lang' => 'Projektowa rěc',
+	'centralnotice-project-name' => 'Projektowe mě',
+	'centralnotice-start-date' => 'Startowy datum',
+	'centralnotice-start-time' => 'Startowy cas (UTC)',
+	'centralnotice-assigned-templates' => 'Pśipokazane pśedłogi',
+	'centralnotice-no-templates' => 'Žedne pśedłogi namakane.
+Pśidaj někotare!',
+	'centralnotice-no-templates-assigned' => 'Žedne pśedłogi powěźeńce pśipokazane.
+Pśidaj jadnu!',
+	'centralnotice-available-templates' => 'K dispoziciji stojece pśedłogi',
+	'centralnotice-template-already-exists' => 'Pśedłoga je južo z kampanju zwězana.
+Žedne pśidaśe',
+	'centralnotice-preview-template' => 'Pśeglěd pśedłogi',
+	'centralnotice-start-hour' => 'Startowy cas',
+	'centralnotice-change-lang' => 'Pśełožkowu rěc změniś',
+	'centralnotice-weights' => 'Wagi',
+	'centralnotice-notice-is-locked' => 'Powěźeńka jo zastajona.
+Žedne wótpóranje',
+	'centralnotice-overlap' => 'Powěźeńka prěcy se z casom drugeje powěźeńki.
+Žedne pśidaśe',
+	'centralnotice-invalid-date-range' => 'Njepłaśiwy cas.
+Žedna aktualizacija',
+	'centralnotice-null-string' => 'Prozny tekst njedajo se pśidaś.
+Žedne pśidaśe',
+	'centralnotice-confirm-delete' => 'Coš napšawdu toś ten zapisk wulašowaś?
+Toś ta akcija njedajo se anulěrowaś.',
+	'centralnotice-no-notices-exist' => 'Njeeksistěruju žedne powěźeńki.
+Pśidaj jadnu.',
+	'centralnotice-no-templates-translate' => 'Njejsu pśedłogi, za kótarež deje se pśełožki wobźěłaś',
+	'centralnotice-number-uses' => 'Wužyśa',
+	'centralnotice-edit-template' => 'Pśedłogu wobźěłaś',
+	'centralnotice-message' => 'Powěźeńka',
+	'centralnotice-message-not-set' => 'Powěźeńka njestajona',
+	'centralnotice-clone' => 'Klonowaś',
+	'centralnotice-clone-notice' => 'Kopiju pśedłogi napóraś',
+	'centralnotice-preview-all-template-translations' => 'Pśeglěd wšych k dispoziciji stojecych pśełožkow pśedłogi',
+	'right-centralnotice-admin' => 'Centralne powěźeńki zastojaś',
+	'right-centralnotice-translate' => 'Centralne powěźeńki pśełožiś',
+	'action-centralnotice-admin' => 'Centralne powěźeńki zastojaś',
+	'action-centralnotice-translate' => 'Centralne powěźeńki pśełožiś',
+	'centralnotice-preferred' => 'Preferěrowane',
 );
 
 /** Greek (Ελληνικά)
@@ -882,6 +967,8 @@ Ne aldonante',
 	'centralnotice-weights' => 'Pezoj',
 	'centralnotice-notice-is-locked' => 'Notico estas ŝlosita.
 Ne forigante',
+	'centralnotice-overlap' => 'Notico kolizias inter la tempo de alia notico.
+Ne aldonante',
 	'centralnotice-invalid-date-range' => 'Nevalida data intervalo.
 Ne ĝisdatigante',
 	'centralnotice-null-string' => 'Ne povas aldoni nulan signoĉenon.
@@ -1040,7 +1127,7 @@ Voit myös lisätä tai poistaa vanhoja tiedotteita.',
 	'centralnotice-preview' => 'Esikatselu',
 	'centralnotice-add-new' => 'Lisää uusi keskitetty tiedote',
 	'centralnotice-remove' => 'Poista',
-	'centralnotice-translate-heading' => 'Käännös tälle: $1',
+	'centralnotice-translate-heading' => 'Käännös mallineelle $1',
 	'centralnotice-manage' => 'Hallinnoi keskitettyä tiedotetta',
 	'centralnotice-add' => 'Lisää',
 	'centralnotice-add-notice' => 'Lisää tiedote',
@@ -2035,6 +2122,7 @@ $messages['km'] = array(
  */
 $messages['ko'] = array(
 	'centralnotice-enabled' => '활성화됨',
+	'centralnotice-modify' => '저장',
 	'centralnotice-preview' => '미리 보기',
 	'centralnotice-remove' => '제거',
 	'centralnotice-translate-heading' => '$1에 대한 번역',
@@ -2046,7 +2134,10 @@ $messages['ko'] = array(
 	'centralnotice-translate' => '번역하기',
 	'centralnotice-english' => '영어',
 	'centralnotice-template-name' => '틀 이름',
+	'centralnotice-templates' => '틀',
 	'centralnotice-locked' => '잠김',
+	'centralnotice-template-exists' => '틀이 이미 존재합니다.
+추가하지 않았습니다.',
 	'centralnotice-hours' => '시',
 	'centralnotice-min' => '분',
 	'centralnotice-project-lang' => '프로젝트 언어',
@@ -2056,6 +2147,8 @@ $messages['ko'] = array(
 	'centralnotice-preview-template' => '틀 미리 보기',
 	'centralnotice-start-hour' => '시작 시간',
 	'centralnotice-change-lang' => '번역할 언어 변경',
+	'right-centralnotice-translate' => '중앙 공지 번역',
+	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -2801,6 +2894,7 @@ $messages['ro'] = array(
 );
 
 /** Russian (Русский)
+ * @author Aleksandrit
  * @author Ferrer
  * @author Александр Сигачёв
  */
@@ -2815,7 +2909,7 @@ $messages['ru'] = array(
 	'centralnotice-end-date' => 'Дата окончания',
 	'centralnotice-enabled' => 'Включено',
 	'centralnotice-modify' => 'Отправить',
-	'centralnotice-preview' => 'Продпросмотр',
+	'centralnotice-preview' => 'Предпросмотр',
 	'centralnotice-add-new' => 'Добавить новое централизованное уведомление',
 	'centralnotice-remove' => 'Удалить',
 	'centralnotice-translate-heading' => 'Перевод для $1',
@@ -2840,8 +2934,8 @@ $messages['ru'] = array(
 Не добавляется',
 	'centralnotice-notice-doesnt-exist' => 'Уведомления не существует.
 Нечего удалять',
-	'centralnotice-template-still-bound' => 'Шаблон по-прежнему связано с уведомлением.
-Не удаляется',
+	'centralnotice-template-still-bound' => 'Шаблон по-прежнему связан с уведомлением.
+Не удаляется.',
 	'centralnotice-template-body' => 'Тело шаблона:',
 	'centralnotice-day' => 'День',
 	'centralnotice-year' => 'Год',
@@ -3335,9 +3429,93 @@ Magdagdag ng isa sa ibaba',
 
 /** Ukrainian (Українська)
  * @author Ahonc
+ * @author Aleksandrit
  */
 $messages['uk'] = array(
+	'centralnotice' => 'Управління централізованими сповіщеннями',
+	'noticetemplate' => 'Шаблон централізованого повідомлення',
 	'centralnotice-desc' => 'Додає загальне повідомлення сайту',
+	'centralnotice-summary' => 'Цей модуль дозволяє вам змінювати ваші поточні централізовані повідомлення. 
+Він також може використовуватися для додавання нових і видалення старих повідомлень.',
+	'centralnotice-query' => 'Змінити поточне повідомлення',
+	'centralnotice-notice-name' => 'Назва повідомлення',
+	'centralnotice-end-date' => 'Дата закінчення',
+	'centralnotice-enabled' => 'Включено',
+	'centralnotice-modify' => 'Відправити',
+	'centralnotice-preview' => 'Попередній перегляд',
+	'centralnotice-add-new' => 'Додати нове централізоване повідомлення',
+	'centralnotice-remove' => 'Вилучити',
+	'centralnotice-translate-heading' => 'Переклад для $1',
+	'centralnotice-manage' => 'Управління централізованими сповіщеннями',
+	'centralnotice-add' => 'Додати',
+	'centralnotice-add-notice' => 'Додати повідомлення',
+	'centralnotice-add-template' => 'Додати шаблон',
+	'centralnotice-show-notices' => 'Показати повідомлення',
+	'centralnotice-list-templates' => 'Cписок шаблонів',
+	'centralnotice-translations' => 'Переклади',
+	'centralnotice-translate-to' => 'Переклад на',
+	'centralnotice-translate' => 'Переклад',
+	'centralnotice-english' => 'англійську',
+	'centralnotice-template-name' => 'Назва шаблону',
+	'centralnotice-templates' => 'Шаблони',
+	'centralnotice-weight' => 'Ширина',
+	'centralnotice-locked' => 'Заблокований',
+	'centralnotice-notices' => 'повідомлення',
+	'centralnotice-notice-exists' => 'Повідомлення вже існує. 
+Не додається',
+	'centralnotice-template-exists' => 'Шаблон вже існує. 
+Не додається',
+	'centralnotice-notice-doesnt-exist' => 'Повідомлення не існує. 
+Нема чого видаляти',
+	'centralnotice-template-still-bound' => "Шаблон, як і раніше, пов'язаний з повідомленням. 
+Не видаляється.",
+	'centralnotice-template-body' => 'Тіло шаблону:',
+	'centralnotice-day' => 'День',
+	'centralnotice-year' => 'Рік',
+	'centralnotice-month' => 'Місяць',
+	'centralnotice-hours' => 'Час',
+	'centralnotice-min' => 'Хвилина',
+	'centralnotice-project-lang' => 'Мова проекту',
+	'centralnotice-project-name' => 'Назва проекту',
+	'centralnotice-start-date' => 'Дата початку',
+	'centralnotice-start-time' => 'Час початку (UTC)',
+	'centralnotice-assigned-templates' => 'Встановлені шаблони',
+	'centralnotice-no-templates' => 'Не знайдено шаблонів. 
+Додайте що-небудь!',
+	'centralnotice-no-templates-assigned' => "Не має пов'язаних з повідомленням шаблонів. 
+Додайте який-небудь!",
+	'centralnotice-available-templates' => 'Доступні шаблони',
+	'centralnotice-template-already-exists' => "Шаблон вже прив'язаний. 
+Не доданий",
+	'centralnotice-preview-template' => 'Попередній перегляд шаблону',
+	'centralnotice-start-hour' => 'Час початку',
+	'centralnotice-change-lang' => 'Змінити мову перекладу',
+	'centralnotice-weights' => 'Ваги',
+	'centralnotice-notice-is-locked' => 'Повідомлення заблоковано. 
+Не вилучається',
+	'centralnotice-overlap' => 'Повідомлення перекривається за часом з іншим повідомленням. 
+Не додається',
+	'centralnotice-invalid-date-range' => 'Хибний діапазон дат. 
+Не оновлюється',
+	'centralnotice-null-string' => 'Не вдається додати порожній рядок. 
+Не додається',
+	'centralnotice-confirm-delete' => 'Ви впевнені у вирішенні вилучити цей елемент? 
+Цю дію не можна буде скасувати.',
+	'centralnotice-no-notices-exist' => 'Немає повідомлень. 
+Можна додати',
+	'centralnotice-no-templates-translate' => 'Не має ні одного шаблону для редагування перекладу',
+	'centralnotice-number-uses' => 'Використовуються',
+	'centralnotice-edit-template' => 'Редагувати шаблон',
+	'centralnotice-message' => 'Повідомлення',
+	'centralnotice-message-not-set' => 'Повідомлення не встановлено',
+	'centralnotice-clone' => 'Клонування',
+	'centralnotice-clone-notice' => 'Створити копію шаблона',
+	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблону',
+	'right-centralnotice-admin' => 'Управління централізованими сповіщеннями',
+	'right-centralnotice-translate' => 'Переклад централізованих повідомлень',
+	'action-centralnotice-admin' => 'управління централізованими сповіщеннями',
+	'action-centralnotice-translate' => 'переклад централізованих повідомлень',
+	'centralnotice-preferred' => 'Бажано',
 );
 
 /** Vèneto (Vèneto)
