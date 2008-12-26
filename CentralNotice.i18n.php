@@ -197,6 +197,7 @@ No s'está adautando.",
 /** Arabic (العربية)
  * @author Meno25
  * @author OsamaK
+ * @author Ouda
  */
 $messages['ar'] = array(
 	'centralnotice' => 'مدير الإخطار المركزي',
@@ -230,6 +231,8 @@ $messages['ar'] = array(
 	'centralnotice-notices' => 'الإخطارات',
 	'centralnotice-notice-exists' => 'الإخطار موجود بالفعل.
 لا إضافة',
+	'centralnotice-template-exists' => 'القالب موجود فعلا
+لا تضيفه',
 	'centralnotice-template-body' => 'جسم القالب:',
 	'centralnotice-day' => 'اليوم',
 	'centralnotice-year' => 'السنة',
@@ -920,6 +923,8 @@ $messages['es'] = array(
 	'centralnotice-min' => 'Minuto',
 	'centralnotice-project-lang' => 'Idioma del proyecto',
 	'centralnotice-project-name' => 'Nombre del proyecto',
+	'centralnotice-available-templates' => 'Plantillas disponibles',
+	'centralnotice-change-lang' => 'Cambiar idioma de traducción',
 	'centralnotice-edit-template' => 'Editar plantilla',
 	'centralnotice-message' => 'Mensaje',
 	'centralnotice-clone' => 'Clonar',
@@ -3537,8 +3542,19 @@ $messages['zh-hans'] = array(
 
 /** Traditional Chinese (‪中文(繁體)‬)
  * @author Alex S.H. Lin
+ * @author Wrightbus
  */
 $messages['zh-hant'] = array(
 	'centralnotice-desc' => '在頁面頂端增加統一的公告欄位',
+	'centralnotice-enabled' => '已啟用',
+	'centralnotice-preview' => '預覽',
+	'centralnotice-english' => '英語',
+	'centralnotice-template-name' => '模板名稱',
+	'centralnotice-templates' => '模板',
+	'centralnotice-locked' => '已鎖定',
+	'centralnotice-project-lang' => '計劃語言',
+	'centralnotice-project-name' => '計劃名稱',
+	'centralnotice-preview-template' => '預覽模板',
+	'centralnotice-edit-template' => '編輯模板',
 );
 
