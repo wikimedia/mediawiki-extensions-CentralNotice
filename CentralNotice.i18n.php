@@ -993,6 +993,7 @@ Afiŝu noticon suben',
 );
 
 /** Spanish (Español)
+ * @author Imre
  * @author Muro de Aguas
  * @author Remember the dot
  * @author Sanbec
@@ -1000,8 +1001,14 @@ Afiŝu noticon suben',
 $messages['es'] = array(
 	'centralnotice-desc' => 'Añade un mensaje central común a todos los proyectos.',
 	'centralnotice-modify' => 'Enviar',
+	'centralnotice-preview' => 'Previsualizar',
 	'centralnotice-remove' => 'Quitar',
+	'centralnotice-add' => 'Añadir',
+	'centralnotice-translate-to' => 'Traducir al',
+	'centralnotice-translate' => 'Traducir',
 	'centralnotice-english' => 'Inglés',
+	'centralnotice-template-name' => 'Nombre de la plantilla',
+	'centralnotice-templates' => 'Plantillas',
 	'centralnotice-locked' => 'Cerrada con llave',
 	'centralnotice-day' => 'Día',
 	'centralnotice-year' => 'Año',
@@ -1015,6 +1022,7 @@ $messages['es'] = array(
 	'centralnotice-edit-template' => 'Editar plantilla',
 	'centralnotice-message' => 'Mensaje',
 	'centralnotice-clone' => 'Clonar',
+	'centralnotice-preferred' => 'Preferido',
 );
 
 /** Persian (فارسی)
@@ -2521,6 +2529,86 @@ U kunt er hieronder een toevoegen',
 	'centralnotice-preferred' => 'Voorkeur',
 );
 
+/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+ * @author Harald Khan
+ */
+$messages['nn'] = array(
+	'centralnotice' => 'Administrasjon av sentrale merknader',
+	'noticetemplate' => 'Mal for sentrale merknader',
+	'centralnotice-desc' => 'Legg til ein sentral sidemerknad',
+	'centralnotice-summary' => 'Denne modulen lèt deg endra dine noverande sentralmerknader.
+Han kan òg bli nytta til å leggja til eller fjerna gamle merknader.',
+	'centralnotice-query' => 'Endra noverande merknader',
+	'centralnotice-notice-name' => 'Merknadsnamn',
+	'centralnotice-end-date' => 'Sluttdato',
+	'centralnotice-enabled' => 'Aktivert',
+	'centralnotice-modify' => 'Utfør',
+	'centralnotice-preview' => 'Førehandsvis',
+	'centralnotice-add-new' => 'Legg til ein ny sentralmerknad',
+	'centralnotice-remove' => 'Fjern',
+	'centralnotice-translate-heading' => 'Omsetjing for $1',
+	'centralnotice-manage' => 'Handter sentralmerknader',
+	'centralnotice-add' => 'Legg til',
+	'centralnotice-add-notice' => 'Legg til ein merknad',
+	'centralnotice-add-template' => 'Legg til ein mal',
+	'centralnotice-show-notices' => 'Syn merknader',
+	'centralnotice-list-templates' => 'List opp malar',
+	'centralnotice-translations' => 'Omsetjingar',
+	'centralnotice-translate-to' => 'Omset til',
+	'centralnotice-translate' => 'Omset',
+	'centralnotice-english' => 'Engelsk',
+	'centralnotice-template-name' => 'Malnamn',
+	'centralnotice-templates' => 'Malar',
+	'centralnotice-weight' => 'Vekt',
+	'centralnotice-locked' => 'Låst',
+	'centralnotice-notices' => 'Merknader',
+	'centralnotice-notice-exists' => 'Merknaden finst frå før.
+Legg han ikkje til',
+	'centralnotice-template-exists' => 'Mal finst frå før.
+Legg han ikkje til',
+	'centralnotice-notice-doesnt-exist' => 'Merknad finst ikkje. Ingenting å fjerna',
+	'centralnotice-template-still-bound' => 'Malen er framleis kopla til ein merknad. Fjernar han ikkje',
+	'centralnotice-template-body' => 'Malinnhald:',
+	'centralnotice-day' => 'Dag',
+	'centralnotice-year' => 'År',
+	'centralnotice-month' => 'Månad',
+	'centralnotice-hours' => 'Time',
+	'centralnotice-min' => 'Minutt',
+	'centralnotice-project-lang' => 'Prosjektspråk',
+	'centralnotice-project-name' => 'Prosjektnamn',
+	'centralnotice-start-date' => 'Startdato',
+	'centralnotice-start-time' => 'Starttid (UTC)',
+	'centralnotice-assigned-templates' => 'Tildelte malar',
+	'centralnotice-no-templates' => 'Fann ingen malar. Legg til nokre!',
+	'centralnotice-no-templates-assigned' => 'Ingen malar er tildelte meldingar. Legg til nokre!',
+	'centralnotice-available-templates' => 'Tilgjengelege malar',
+	'centralnotice-template-already-exists' => 'Malen er allereie knytta til ein kampanje Legg han ikkje til',
+	'centralnotice-preview-template' => 'Førehandsvis mal',
+	'centralnotice-start-hour' => 'Starttid',
+	'centralnotice-change-lang' => 'Endra omsetjingsspråk',
+	'centralnotice-weights' => 'Vekter',
+	'centralnotice-notice-is-locked' => 'Merknad er låst. Fjernar ikkje',
+	'centralnotice-overlap' => 'Merknaden overlappar tida til ein annan merknad. Legg han ikkje til',
+	'centralnotice-invalid-date-range' => 'Ugyldig tidsrom. Oppdaterer ikkje',
+	'centralnotice-null-string' => 'Kan ikkje leggja til ein nullstreng. Legg ikkje til',
+	'centralnotice-confirm-delete' => 'Er du sikker på at du vil sletta? 
+Denne handlinga kan ikkje bli omgjort.',
+	'centralnotice-no-notices-exist' => 'Ingen merknader finst. Legg til ein under',
+	'centralnotice-no-templates-translate' => 'Det finst ingen malar å endra omsetjingar for',
+	'centralnotice-number-uses' => 'Føremon',
+	'centralnotice-edit-template' => 'Endra mal',
+	'centralnotice-message' => 'Melding',
+	'centralnotice-message-not-set' => 'Melding ikkje gjeve',
+	'centralnotice-clone' => 'Kopi',
+	'centralnotice-clone-notice' => 'Opprett ein kopi av malen',
+	'centralnotice-preview-all-template-translations' => 'Førehandsvis alle tilgjengelege omsetjingar av malen',
+	'right-centralnotice-admin' => 'Handtera sentrale merknader',
+	'right-centralnotice-translate' => 'Omsetja sentrale merknader',
+	'action-centralnotice-admin' => 'handtera sentrale merknader',
+	'action-centralnotice-translate' => 'omsetja sentrale merknader',
+	'centralnotice-preferred' => 'Føretrukke',
+);
+
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
  * @author Jon Harald Søby
  * @author Laaknor
@@ -3725,6 +3813,7 @@ $messages['zh-hans'] = array(
 $messages['zh-hant'] = array(
 	'centralnotice-desc' => '在頁面頂端增加統一的公告欄位',
 	'centralnotice-enabled' => '已啟用',
+	'centralnotice-modify' => '提交',
 	'centralnotice-preview' => '預覽',
 	'centralnotice-english' => '英語',
 	'centralnotice-template-name' => '模板名稱',
