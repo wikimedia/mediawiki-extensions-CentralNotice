@@ -1036,18 +1036,44 @@ Afiŝu noticon suben',
  * @author Sanbec
  */
 $messages['es'] = array(
+	'centralnotice' => 'Administración del aviso central',
+	'noticetemplate' => 'Plantilla del aviso central',
 	'centralnotice-desc' => 'Añade un mensaje central común a todos los proyectos.',
+	'centralnotice-summary' => 'Este módulo te permite editar los parámetros actuales de los avisos centrales.
+También puede usarse para añadir o borrar avisos antiguos.',
+	'centralnotice-query' => 'Modificar avisos actuales',
+	'centralnotice-notice-name' => 'Nombre del aviso',
 	'centralnotice-end-date' => 'Fecha de fin',
+	'centralnotice-enabled' => 'Habilitado',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-preview' => 'Previsualizar',
+	'centralnotice-add-new' => 'Añadir un nuevo aviso central',
 	'centralnotice-remove' => 'Quitar',
+	'centralnotice-translate-heading' => 'Traducción para $1',
+	'centralnotice-manage' => 'Gestionar aviso central',
 	'centralnotice-add' => 'Añadir',
+	'centralnotice-add-notice' => 'Añadir un aviso',
+	'centralnotice-add-template' => 'Añadir una plantilla',
+	'centralnotice-show-notices' => 'Mostrar avisos',
+	'centralnotice-list-templates' => 'Listar plantillas',
+	'centralnotice-translations' => 'Traducciones',
 	'centralnotice-translate-to' => 'Traducir al',
 	'centralnotice-translate' => 'Traducir',
 	'centralnotice-english' => 'Inglés',
 	'centralnotice-template-name' => 'Nombre de la plantilla',
 	'centralnotice-templates' => 'Plantillas',
+	'centralnotice-weight' => 'Peso',
 	'centralnotice-locked' => 'Cerrada con llave',
+	'centralnotice-notices' => 'Avisos',
+	'centralnotice-notice-exists' => 'El aviso ya existe.
+No se ha añadido',
+	'centralnotice-template-exists' => 'La plantilla ya exixte.
+No se ha añadido',
+	'centralnotice-notice-doesnt-exist' => 'El aviso no existe.
+No hay nada que borrar',
+	'centralnotice-template-still-bound' => 'La plantilla todavía está enlazada a un aviso.
+No se borrará.',
+	'centralnotice-template-body' => 'Cuerpo de la plantilla:',
 	'centralnotice-day' => 'Día',
 	'centralnotice-year' => 'Año',
 	'centralnotice-month' => 'Mes',
@@ -1056,13 +1082,43 @@ $messages['es'] = array(
 	'centralnotice-project-lang' => 'Idioma del proyecto',
 	'centralnotice-project-name' => 'Nombre del proyecto',
 	'centralnotice-start-date' => 'Fecha de inicio',
+	'centralnotice-start-time' => 'Hora de inicio (UTC)',
+	'centralnotice-assigned-templates' => 'Plantillas asignadas',
+	'centralnotice-no-templates' => 'No hay plantillas.
+¡Añade alguna!',
+	'centralnotice-no-templates-assigned' => 'No hay plantillas asignadas a avisos.
+¡Añade alguna!',
 	'centralnotice-available-templates' => 'Plantillas disponibles',
+	'centralnotice-template-already-exists' => 'La plantilla ya está atada a una campaña.
+No se añade',
+	'centralnotice-preview-template' => 'Previsualizar plantilla',
+	'centralnotice-start-hour' => 'Hora de inicio',
 	'centralnotice-change-lang' => 'Cambiar idioma de traducción',
-	'centralnotice-invalid-date-range' => 'Rengo de fechas no válido.
-No se cargará.',
+	'centralnotice-weights' => 'Pesos',
+	'centralnotice-notice-is-locked' => 'El aviso está cerrado con llave.
+No se borrará',
+	'centralnotice-overlap' => 'El aviso se solapa con el tiempo de otro.
+No se añade',
+	'centralnotice-invalid-date-range' => 'Rango de fechas no válido.
+No se actualizará.',
+	'centralnotice-null-string' => 'No se puede añadir una cadena vacía.
+No se añadirá',
+	'centralnotice-confirm-delete' => '¿Estás seguro de querer borrar este elemento?
+Esta acción no se podrá deshacer.',
+	'centralnotice-no-notices-exist' => 'No hay avisos.
+Añade uno debajo',
+	'centralnotice-no-templates-translate' => 'No hay plantillas de las que editar traducciones',
+	'centralnotice-number-uses' => 'Usa',
 	'centralnotice-edit-template' => 'Editar plantilla',
 	'centralnotice-message' => 'Mensaje',
+	'centralnotice-message-not-set' => 'No se ha establecido un mensaje',
 	'centralnotice-clone' => 'Clonar',
+	'centralnotice-clone-notice' => 'Crear una copia de la plantilla',
+	'centralnotice-preview-all-template-translations' => 'Previsualizar todas las traducciones disponibles de la plantilla',
+	'right-centralnotice-admin' => 'Gestionar avisos centrales',
+	'right-centralnotice-translate' => 'Traducir avisos centrales',
+	'action-centralnotice-admin' => 'gestionar avisos centrales',
+	'action-centralnotice-translate' => 'traducir avisos centrales',
 	'centralnotice-preferred' => 'Preferido',
 );
 
@@ -2555,6 +2611,7 @@ $messages['nds'] = array(
 	'centralnotice' => 'Sitenotice verwalten',
 	'noticetemplate' => 'Vörlaag för Sitenotice',
 	'centralnotice-desc' => 'Föögt en zentrale Naricht för de Websteed to',
+	'centralnotice-query' => 'Aktuelle Sitenotice ännern',
 	'centralnotice-notice-name' => 'Naam',
 	'centralnotice-end-date' => 'Datum vun’t Enn',
 	'centralnotice-enabled' => 'Aktiv',
@@ -2578,6 +2635,12 @@ $messages['nds'] = array(
 	'centralnotice-weight' => 'Gewicht',
 	'centralnotice-locked' => 'Afslaten',
 	'centralnotice-notices' => 'Sitenotices',
+	'centralnotice-notice-exists' => 'De Sitenotice gifft dat al.
+Nix toföögt.',
+	'centralnotice-template-exists' => 'De Vörlaag gifft dat al.
+Nix toföögt.',
+	'centralnotice-notice-doesnt-exist' => 'De Sitenotice gifft dat nich.
+Nix rutnahmen.',
 	'centralnotice-template-body' => 'Vörlagentext:',
 	'centralnotice-day' => 'Dag',
 	'centralnotice-year' => 'Johr',
@@ -2588,6 +2651,7 @@ $messages['nds'] = array(
 	'centralnotice-project-name' => 'Projektnaam',
 	'centralnotice-start-date' => 'Startdatum',
 	'centralnotice-start-time' => 'Starttied (UTC)',
+	'centralnotice-assigned-templates' => 'Towiest Vörlagen',
 	'centralnotice-no-templates' => 'Keen Vörlagen funnen.
 Kannst welk tofögen!',
 	'centralnotice-preview-template' => 'Vörschau för de Vörlaag',
@@ -3100,6 +3164,8 @@ $messages['pt'] = array(
 	'centralnotice-translate-heading' => 'Tradução de $1',
 	'centralnotice-add' => 'Adicionar',
 	'centralnotice-translations' => 'Traduções',
+	'centralnotice-translate-to' => 'Traduzir para',
+	'centralnotice-translate' => 'Traduzir',
 	'centralnotice-english' => 'Inglês',
 	'centralnotice-weight' => 'Peso',
 	'centralnotice-day' => 'Dia',
