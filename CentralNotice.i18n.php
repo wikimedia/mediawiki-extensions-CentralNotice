@@ -886,20 +886,57 @@ Pśidaj jadnu.',
 $messages['el'] = array(
 	'noticetemplate' => 'Πρότυπο κεντρικής ανακοίνωσης',
 	'centralnotice-desc' => 'Προσθέτει μια κεντρική ανακοίνωση',
+	'centralnotice-notice-name' => 'Όνομα σημείωσης',
 	'centralnotice-end-date' => 'Ημερομηνία λήξης',
+	'centralnotice-enabled' => 'Ενεργοποιημένο',
 	'centralnotice-modify' => 'Καταχώρηση',
 	'centralnotice-preview' => 'Προεπισκόπηση',
 	'centralnotice-add-new' => 'Προσθήκη νέας κεντρικής ανακοίνωσης',
+	'centralnotice-remove' => 'Αφαίρεση',
+	'centralnotice-translate-heading' => 'Μετάφραση για το $1',
+	'centralnotice-add' => 'Προσθήκη',
 	'centralnotice-add-notice' => 'Προσθήκη ανακοίνωσης',
 	'centralnotice-add-template' => 'Προσθήκη προτύπου',
 	'centralnotice-show-notices' => 'Εμφάνιση ανακοινώσεων',
 	'centralnotice-list-templates' => 'Κατάλογος προτύπων',
 	'centralnotice-translations' => 'Μεταφράσεις',
+	'centralnotice-translate-to' => 'Μετάφραση σε',
+	'centralnotice-translate' => 'Μετάφραση',
+	'centralnotice-english' => 'Αγγλικά',
 	'centralnotice-template-name' => 'Όνομα προτύπου',
 	'centralnotice-templates' => 'Πρότυπα',
+	'centralnotice-weight' => 'Βάρος',
+	'centralnotice-locked' => 'Κλειδωμένο',
 	'centralnotice-notices' => 'Ανακοινώσεις',
+	'centralnotice-notice-exists' => 'Η σημείωση υπάρχει ήδη.
+Δεν προστίθεται',
+	'centralnotice-template-exists' => 'Το πρότυπο υπάρχει ήδη.
+Δεν προστέθηκε',
+	'centralnotice-notice-doesnt-exist' => 'Η σημείωση δεν υπάρχει.
+Τίποτα να αφαιρεθεί',
+	'centralnotice-template-body' => 'Δομή προτύπου:',
+	'centralnotice-day' => 'Ημέρα',
+	'centralnotice-year' => 'Χρόνος',
+	'centralnotice-month' => 'Μήνας',
+	'centralnotice-hours' => 'Ώρα',
+	'centralnotice-min' => 'Λεπτό',
+	'centralnotice-project-lang' => 'Γλώσσα εγχειρήματος',
+	'centralnotice-project-name' => 'Όνομα εγχειρήματος',
+	'centralnotice-start-date' => 'Αρχική ημερομηνία',
+	'centralnotice-start-time' => 'Χρόνος εκκίνησης (UTC)',
+	'centralnotice-available-templates' => 'Διαθέσιμα πρότυπα',
+	'centralnotice-preview-template' => 'Πρότυπο προεπισκόπησης',
+	'centralnotice-start-hour' => 'Χρόνος εκκίνησης',
+	'centralnotice-change-lang' => 'Αλλαγή της γλώσσας μετάφρασης',
+	'centralnotice-weights' => 'Βάρη',
+	'centralnotice-notice-is-locked' => 'Η σημείωση είναι κλειδωμένη.
+Δεν θα αφαιρεθεί',
+	'centralnotice-number-uses' => 'Χρήσεις',
 	'centralnotice-edit-template' => 'Επεξεργασία προτύπου',
 	'centralnotice-message' => 'Μήνυμα',
+	'centralnotice-clone' => 'Κλώνος',
+	'centralnotice-clone-notice' => 'Δημιουργία ενός αντίγραφου του προτύπου',
+	'centralnotice-preferred' => 'Προτιμώμενα',
 );
 
 /** Esperanto (Esperanto)
@@ -1027,6 +1064,74 @@ No se cargará.',
 	'centralnotice-message' => 'Mensaje',
 	'centralnotice-clone' => 'Clonar',
 	'centralnotice-preferred' => 'Preferido',
+);
+
+/** Estonian (Eesti)
+ * @author Avjoska
+ */
+$messages['et'] = array(
+	'centralnotice' => 'Keskuse teate admin',
+	'noticetemplate' => 'Keskuse teate mall',
+	'centralnotice-notice-name' => 'Teate nimi',
+	'centralnotice-end-date' => 'Tähtaeg',
+	'centralnotice-enabled' => 'Luba olemas',
+	'centralnotice-modify' => 'Esita',
+	'centralnotice-preview' => 'Eelvaade',
+	'centralnotice-add-new' => 'Lisa uus keskuse teade',
+	'centralnotice-remove' => 'Eemalda',
+	'centralnotice-translate-heading' => '$1 tõlge',
+	'centralnotice-manage' => 'Muuda keskuse teadet',
+	'centralnotice-add' => 'Lisa',
+	'centralnotice-add-notice' => 'Lisa teade',
+	'centralnotice-add-template' => 'Lisa mall',
+	'centralnotice-show-notices' => 'Näita teateid',
+	'centralnotice-list-templates' => 'Mallide list',
+	'centralnotice-translations' => 'Tõlked',
+	'centralnotice-translate-to' => 'Tõlgi',
+	'centralnotice-translate' => 'Tõlgi',
+	'centralnotice-english' => 'inglise',
+	'centralnotice-template-name' => 'Malli nimi',
+	'centralnotice-templates' => 'Mallid',
+	'centralnotice-weight' => 'Kaal',
+	'centralnotice-locked' => 'Lukustatud',
+	'centralnotice-notices' => 'Teated',
+	'centralnotice-notice-exists' => 'Teade on juba olemas.
+
+Ei lisatud',
+	'centralnotice-template-exists' => 'Mall on juba olemas.
+
+Ei lisatud.',
+	'centralnotice-notice-doesnt-exist' => 'Teadet ei ole.
+
+Ei ole midagi eemaldada',
+	'centralnotice-template-body' => 'Malli sisu:',
+	'centralnotice-day' => 'Päev',
+	'centralnotice-year' => 'Aasta',
+	'centralnotice-month' => 'Kuu',
+	'centralnotice-hours' => 'Tund',
+	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Projekti keel',
+	'centralnotice-project-name' => 'Projekti nimi',
+	'centralnotice-start-date' => 'Alguse kuupäev',
+	'centralnotice-start-time' => 'Alguse kellaaeg (UTC)',
+	'centralnotice-no-templates' => 'Malle ei leitud.
+
+Lisa mõni!',
+	'centralnotice-available-templates' => 'Saadaolevad mallid',
+	'centralnotice-preview-template' => 'Malli eelvaade',
+	'centralnotice-start-hour' => 'Algusaeg',
+	'centralnotice-change-lang' => 'Muuda tõlke keelt',
+	'centralnotice-edit-template' => 'Muuda malli',
+	'centralnotice-message' => 'Sõnum',
+	'centralnotice-message-not-set' => 'Sõnumit ei ole seatud',
+	'centralnotice-clone' => 'Kloon',
+	'centralnotice-clone-notice' => 'Loo mallist koopia',
+	'centralnotice-preview-all-template-translations' => 'Malli kõigi kättesaadavate tõlgete eelvaated',
+	'right-centralnotice-admin' => 'Halda keskuse teateid',
+	'right-centralnotice-translate' => 'Tõlgi keskuse teateid',
+	'action-centralnotice-admin' => 'halda keskuse teateid',
+	'action-centralnotice-translate' => 'tõlgi keskuse teateid',
+	'centralnotice-preferred' => 'Eelistatud',
 );
 
 /** Persian (فارسی)
@@ -3229,6 +3334,7 @@ Nun fu canciatu',
 Nun junciutu',
 	'centralnotice-confirm-delete' => "Si pi daveru sicuru di vuliri scancillari st'uggettu? Na vota scancillatu non si pò turnari arredi.",
 	'centralnotice-no-notices-exist' => "Nuddu avvisu c'è. Agghiunciccinni unu di sècutu.",
+	'centralnotice-no-templates-translate' => 'Nun ci sunnu template pi mudificari li traduzzioni pi',
 	'centralnotice-number-uses' => 'Usi',
 	'centralnotice-edit-template' => 'Cancia template',
 	'centralnotice-message' => 'Missaggiu',
@@ -3484,6 +3590,22 @@ $messages['te'] = array(
 	'centralnotice-message' => 'సందేశం',
 );
 
+/** Tetum (Tetun)
+ * @author MF-Warburg
+ */
+$messages['tet'] = array(
+	'centralnotice-translations' => 'Tradusaun sira',
+	'centralnotice-translate' => 'Tradús',
+	'centralnotice-english' => 'Inglés',
+	'centralnotice-day' => 'Loron',
+	'centralnotice-year' => 'Tinan',
+	'centralnotice-month' => 'Fulan',
+	'centralnotice-min' => 'Minutu',
+	'centralnotice-project-lang' => 'Lian projetu nian',
+	'centralnotice-project-name' => 'Naran projetu nian',
+	'centralnotice-number-uses' => 'Uza',
+);
+
 /** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
  * @author Ibrahim
  */
@@ -3686,7 +3808,10 @@ $messages['uk'] = array(
  */
 $messages['vec'] = array(
 	'centralnotice' => 'Gestion notifiche sentralizade',
+	'noticetemplate' => 'Modèl de aviso sentralizà',
 	'centralnotice-desc' => 'Zonta un aviso çentralizà in çima a la pagina (sitenotice)',
+	'centralnotice-summary' => 'Sto modulo el permete de canbiar i avisi sentralixà.
+In più se pol dopararlo anca par zontar o cavar avisi veci.',
 	'centralnotice-query' => 'Modìfega le notifiche corenti',
 	'centralnotice-notice-name' => 'Nome de la notifica',
 	'centralnotice-end-date' => 'Data de fine',
@@ -3696,6 +3821,7 @@ $messages['vec'] = array(
 	'centralnotice-add-new' => 'Zonta na notifica sentrale nova',
 	'centralnotice-remove' => 'Cava',
 	'centralnotice-translate-heading' => 'Tradussion par $1',
+	'centralnotice-manage' => 'Gestion avisi sentralixà',
 	'centralnotice-add' => 'Zonta',
 	'centralnotice-add-notice' => 'Zonta na notifica',
 	'centralnotice-add-template' => 'Zonta un modèl',
@@ -3742,6 +3868,8 @@ Inserimento mia fato',
 	'centralnotice-weights' => 'Pesi',
 	'centralnotice-notice-is-locked' => 'Notifica blocà.
 Rimozion mia fata',
+	'centralnotice-overlap' => "El periodo de validità de sto aviso la se sormonta col periodo de n'antro aviso.
+Creassion de l'aviso mia fata",
 	'centralnotice-invalid-date-range' => 'Intervàl de date mia valido.
 Modìfega mia fata',
 	'centralnotice-null-string' => 'No se pol zontar na stringa voda.
@@ -3753,10 +3881,14 @@ Zónteghene una qua soto.',
 	'centralnotice-number-uses' => 'Usi',
 	'centralnotice-edit-template' => 'Modìfega modèl',
 	'centralnotice-message' => 'Messagio',
+	'centralnotice-message-not-set' => 'Messajo mia inpostà',
 	'centralnotice-clone' => 'Copia',
 	'centralnotice-clone-notice' => 'Crea na copia del modèl',
 	'centralnotice-preview-all-template-translations' => 'Anteprima de tute le tradussion disponibili del modèl',
+	'right-centralnotice-admin' => 'Gestisse i avisi sentralixà',
 	'right-centralnotice-translate' => 'Tradusi le notifiche sentrali',
+	'action-centralnotice-admin' => 'gestir i avisi sentralixà',
+	'action-centralnotice-translate' => 'tradur i avisi sentralixà',
 	'centralnotice-preferred' => 'Preferìo',
 );
 
