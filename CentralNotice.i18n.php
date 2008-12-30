@@ -179,10 +179,12 @@ $messages['af'] = array(
 );
 
 /** Amharic (አማርኛ)
+ * @author Codex Sinaiticus
  * @author Elfalem
  */
 $messages['am'] = array(
 	'centralnotice-desc' => 'በሁሉም ገጾች ላይ የሚታይ መልዕክት ይጨምራል',
+	'centralnotice-message' => 'መልእክት',
 );
 
 /** Aragonese (Aragonés)
@@ -2641,6 +2643,8 @@ Nix toföögt.',
 Nix toföögt.',
 	'centralnotice-notice-doesnt-exist' => 'De Sitenotice gifft dat nich.
 Nix rutnahmen.',
+	'centralnotice-template-still-bound' => 'Vörlaag is noch jümmer an en Sitenotice bunnen.
+Nich rutnahmen.',
 	'centralnotice-template-body' => 'Vörlagentext:',
 	'centralnotice-day' => 'Dag',
 	'centralnotice-year' => 'Johr',
@@ -2654,12 +2658,25 @@ Nix rutnahmen.',
 	'centralnotice-assigned-templates' => 'Towiest Vörlagen',
 	'centralnotice-no-templates' => 'Keen Vörlagen funnen.
 Kannst welk tofögen!',
+	'centralnotice-no-templates-assigned' => 'Dor sünd kene Vörlagen an de Sitenotice towiest.
+Föög welk to!',
+	'centralnotice-available-templates' => 'Verföögbor Vörlagen',
+	'centralnotice-template-already-exists' => 'Vörlaag is al an Kampagne bunnen.
+Nich toföögt',
 	'centralnotice-preview-template' => 'Vörschau för de Vörlaag',
 	'centralnotice-start-hour' => 'Starttied',
 	'centralnotice-change-lang' => 'Spraak för’t Översetten ännern',
 	'centralnotice-weights' => 'Gewichten',
+	'centralnotice-notice-is-locked' => 'Sitenotice is sperrt.
+Nich rutnahmen',
+	'centralnotice-overlap' => 'Sitenotice överlappt mit en annere Sitenotice.
+Nich toföögt',
 	'centralnotice-invalid-date-range' => 'Ungüllig Tied.
 Warrt nich aktuell maakt.',
+	'centralnotice-null-string' => 'Kann keen Nullstring tofögen.
+Nix toföögt',
+	'centralnotice-confirm-delete' => 'Büst du seker, dat du dissen Indrag wegdoon wullt?
+Dat geit nich wedder trüchtodreihn.',
 	'centralnotice-no-notices-exist' => 'Gifft keen Narichten.
 Kannst ünnen een tofögen',
 	'centralnotice-no-templates-translate' => 'Dat gifft keen Vörlagen, för de Översetten maakt warrn köönt',
@@ -3160,6 +3177,7 @@ $messages['pt'] = array(
 	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
 	'centralnotice-end-date' => 'Data fim',
 	'centralnotice-modify' => 'Submeter',
+	'centralnotice-preview' => 'Previsão',
 	'centralnotice-remove' => 'Remover',
 	'centralnotice-translate-heading' => 'Tradução de $1',
 	'centralnotice-add' => 'Adicionar',
@@ -3178,10 +3196,13 @@ $messages['pt'] = array(
 	'centralnotice-start-date' => 'Data início',
 	'centralnotice-start-time' => 'Hora início (UTC)',
 	'centralnotice-start-hour' => 'Hora início',
+	'centralnotice-change-lang' => 'Alterar língua de tradução',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-number-uses' => 'Utilizações',
 	'centralnotice-message' => 'Mensagem',
 	'centralnotice-message-not-set' => 'Mensagem não estabelecida',
+	'centralnotice-clone' => 'Clonar',
+	'centralnotice-preferred' => 'Preferido',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -3660,6 +3681,7 @@ $messages['te'] = array(
  * @author MF-Warburg
  */
 $messages['tet'] = array(
+	'centralnotice-add' => 'Tau tan',
 	'centralnotice-translations' => 'Tradusaun sira',
 	'centralnotice-translate' => 'Tradús',
 	'centralnotice-english' => 'Inglés',
@@ -3677,6 +3699,16 @@ $messages['tet'] = array(
  */
 $messages['tg-cyrl'] = array(
 	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
+	'centralnotice-modify' => 'Ирсол',
+	'centralnotice-preview' => 'Пешнамоиш',
+	'centralnotice-list-templates' => 'Феҳристи шаблонҳо',
+	'centralnotice-translations' => 'Тарҷумаҳо',
+	'centralnotice-translate-to' => 'Тарҷума ба',
+	'centralnotice-translate' => 'Тарҷума',
+	'centralnotice-english' => 'Англисӣ',
+	'centralnotice-template-name' => 'Унвони шаблон',
+	'centralnotice-templates' => 'Шаблонҳо',
+	'centralnotice-locked' => 'Басташуда',
 );
 
 /** Thai (ไทย)
