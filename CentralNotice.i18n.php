@@ -1192,6 +1192,29 @@ Lisa mõni!',
 	'centralnotice-preferred' => 'Eelistatud',
 );
 
+/** Basque (Euskara)
+ * @author Theklan
+ */
+$messages['eu'] = array(
+	'centralnotice-query' => 'Oraingo oharrak aldatu',
+	'centralnotice-notice-name' => 'Oharraren izena',
+	'centralnotice-end-date' => 'Bukaera data',
+	'centralnotice-enabled' => 'Gaitua',
+	'centralnotice-modify' => 'Bidali',
+	'centralnotice-preview' => 'Aurreikusi',
+	'centralnotice-add-new' => 'Mezu orokor berri bat gehitu',
+	'centralnotice-remove' => 'Ezabatu',
+	'centralnotice-translate-heading' => '$1(r)entzat itzulpena',
+	'centralnotice-manage' => 'Ohar nagusia kudeatu',
+	'centralnotice-add' => 'Gehitu',
+	'centralnotice-add-notice' => 'Gehitu ohar bat',
+	'centralnotice-add-template' => 'Txantiloi bat gehitu',
+	'centralnotice-show-notices' => 'Oharrak erakutsi',
+	'centralnotice-list-templates' => 'Txantiloiak zerrendatu',
+	'centralnotice-translations' => 'Itzulpenak',
+	'centralnotice-translate-to' => 'Hona itzuli',
+);
+
 /** Persian (فارسی)
  * @author Huji
  * @author Komeil 4life
@@ -1580,10 +1603,15 @@ $messages['grc'] = array(
 	'centralnotice-preview' => 'Προθεωρεῖν',
 	'centralnotice-remove' => 'Άφαιρεῖν',
 	'centralnotice-add' => 'Προστιθέναι',
+	'centralnotice-english' => 'Ἀγγλιστί',
 	'centralnotice-weight' => 'Βάρος',
+	'centralnotice-locked' => 'Κεκλῃσμένη',
+	'centralnotice-notices' => 'Ἀναγγελίαι',
+	'centralnotice-template-body' => 'Σῶμα προτύπου:',
 	'centralnotice-preview-template' => 'Προθεωρεῖν πρότυπον',
 	'centralnotice-weights' => 'Βάρη',
 	'centralnotice-number-uses' => 'Χρήσεις',
+	'centralnotice-preferred' => 'Προκρινομένη',
 );
 
 /** Hebrew (עברית)
@@ -3147,6 +3175,13 @@ Dodaj nowy poniżej.',
 	'centralnotice-preferred' => 'Preferowany',
 );
 
+/** Pontic (Ποντιακά)
+ * @author Omnipaedista
+ */
+$messages['pnt'] = array(
+	'centralnotice-english' => "Σ' αγγλικά",
+);
+
 /** Pashto (پښتو)
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
@@ -3698,9 +3733,25 @@ $messages['tet'] = array(
  * @author Ibrahim
  */
 $messages['tg-cyrl'] = array(
+	'centralnotice' => 'Мудири эълони мутамарказ',
+	'noticetemplate' => 'Шаблони эълони мутамарказ',
 	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
+	'centralnotice-summary' => 'Ин модул ба шумо имкони вироиги насби эълони мутамаркази кунинро пешкаш мекунад.
+Он боз метавонад барои изофа ё пок кардани эълонҳои кӯҳна истифода шавад.',
+	'centralnotice-query' => 'Тағйири эълонҳои кунунӣ',
+	'centralnotice-notice-name' => 'Унвони эълон',
+	'centralnotice-end-date' => 'Санаи охир',
+	'centralnotice-enabled' => 'Фаъол шуд',
 	'centralnotice-modify' => 'Ирсол',
 	'centralnotice-preview' => 'Пешнамоиш',
+	'centralnotice-add-new' => 'Изофаи як эълони мутамарказ',
+	'centralnotice-remove' => 'Пок кардан',
+	'centralnotice-translate-heading' => 'Тарҷума барои $1',
+	'centralnotice-manage' => 'Идоракунии эълони мутамарказ',
+	'centralnotice-add' => 'Изофа',
+	'centralnotice-add-notice' => 'Изофа кардани як хабар',
+	'centralnotice-add-template' => 'Изофаи як шаблон',
+	'centralnotice-show-notices' => 'Намоиши эълонҳо',
 	'centralnotice-list-templates' => 'Феҳристи шаблонҳо',
 	'centralnotice-translations' => 'Тарҷумаҳо',
 	'centralnotice-translate-to' => 'Тарҷума ба',
@@ -3708,7 +3759,64 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-english' => 'Англисӣ',
 	'centralnotice-template-name' => 'Унвони шаблон',
 	'centralnotice-templates' => 'Шаблонҳо',
+	'centralnotice-weight' => 'Вазн',
 	'centralnotice-locked' => 'Басташуда',
+	'centralnotice-notices' => 'Эълонҳо',
+	'centralnotice-notice-exists' => 'Эълон аллакай вуҷуд дорад.
+Изофа нашуд',
+	'centralnotice-template-exists' => 'Шаблони аллакай мавҷуд аст.
+Изофа намешавад',
+	'centralnotice-notice-doesnt-exist' => 'Эълон вуҷуд надорад.
+Чизе барои пок кардан нест',
+	'centralnotice-template-still-bound' => 'Шаблон то ҳол дар як эълоне часпида аст.
+Пок намешавад.',
+	'centralnotice-template-body' => 'Танаи Шаблон:',
+	'centralnotice-day' => 'Рӯз',
+	'centralnotice-year' => 'Сол',
+	'centralnotice-month' => 'Моҳ',
+	'centralnotice-hours' => 'Соат',
+	'centralnotice-min' => 'Дақиқа',
+	'centralnotice-project-lang' => 'Забони лоиҳа',
+	'centralnotice-project-name' => 'Номи лоиҳа',
+	'centralnotice-start-date' => 'Санаи шурӯъ',
+	'centralnotice-start-time' => 'Замони шурӯъ (UTC)',
+	'centralnotice-assigned-templates' => 'Шаблонҳои муқараршуда',
+	'centralnotice-no-templates' => 'Ҳеҷ шаблоне ёфт нашуд.
+Чанде изофа намоед!',
+	'centralnotice-no-templates-assigned' => 'Ҳеҷ шаблоне ба эълон муқарар нашудааст.
+Чанде изофа намоед!',
+	'centralnotice-available-templates' => 'Шаблонҳои дастрас',
+	'centralnotice-template-already-exists' => 'Шаблони аллакай ба эълон часпонида шудааст.
+Изофа нашуд.',
+	'centralnotice-preview-template' => 'Пешнамоиши шаблон',
+	'centralnotice-start-hour' => 'Вақти шурӯъ',
+	'centralnotice-change-lang' => 'Тағйири забони тарҷума',
+	'centralnotice-weights' => 'Вазнҳо',
+	'centralnotice-notice-is-locked' => 'Эълон баста аст.
+Пок нашуда истода аст',
+	'centralnotice-overlap' => 'Эълон бо вақту замони дигар эълон рӯи ҳам омад.
+Изофа нашуд',
+	'centralnotice-invalid-date-range' => 'Давраи санаи номӯътабар.
+Барӯз нашуд',
+	'centralnotice-null-string' => 'Риштаи холиро наметавон афзуд.
+Афзуда нашуд',
+	'centralnotice-confirm-delete' => 'Оё шумо мутмаин ҳастед, ки мехоҳед ин маводро ҳафз кунед?
+Ин амал барқарорнашавада хоҳад буд.',
+	'centralnotice-no-notices-exist' => 'Ҳеҷ эълоне вуҷуд надорад.
+Дар зер як эълоне изофа намоед',
+	'centralnotice-no-templates-translate' => 'Ҳеҷ шаблоне барои вироиши тарҷумааш нест',
+	'centralnotice-number-uses' => 'Истифодаҳо',
+	'centralnotice-edit-template' => 'Вироиши шаблон',
+	'centralnotice-message' => 'Пайғом',
+	'centralnotice-message-not-set' => 'Пайғом танзим нашудааст',
+	'centralnotice-clone' => 'Клон',
+	'centralnotice-clone-notice' => 'Эҷоди як нусхаи ин шаблон',
+	'centralnotice-preview-all-template-translations' => 'Пешнамоиши ҳамаи тарҷумаҳои дастраси шаблон',
+	'right-centralnotice-admin' => 'Идоракунии эълонҳои мутамарказ',
+	'right-centralnotice-translate' => 'Тарҷумаи эълонҳои мутамарказ',
+	'action-centralnotice-admin' => 'идоракунии эълонҳои мутамарказ',
+	'action-centralnotice-translate' => 'тарҷумаи эълонҳои мутамарказ',
+	'centralnotice-preferred' => 'Тарҷиҳи додашуда',
 );
 
 /** Thai (ไทย)
@@ -4106,9 +4214,21 @@ $messages['yue'] = array(
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Alex S.H. Lin
+ * @author Gzdavidwong
  */
 $messages['zh-hans'] = array(
 	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
+	'centralnotice-enabled' => '已启用',
+	'centralnotice-modify' => '提交',
+	'centralnotice-preview' => '预览',
+	'centralnotice-english' => '英语',
+	'centralnotice-template-name' => '模板名称',
+	'centralnotice-templates' => '模板',
+	'centralnotice-locked' => '已锁定',
+	'centralnotice-project-lang' => '计划语言',
+	'centralnotice-project-name' => '计划名称',
+	'centralnotice-preview-template' => '预览模板',
+	'centralnotice-edit-template' => '编辑模板',
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
