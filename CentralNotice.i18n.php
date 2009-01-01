@@ -237,6 +237,10 @@ $messages['ar'] = array(
 لا إضافة',
 	'centralnotice-template-exists' => 'القالب موجود فعلا
 لا تضيفه',
+	'centralnotice-notice-doesnt-exist' => 'الملاحظة غير موجودة.
+لا شيء للإزالة',
+	'centralnotice-template-still-bound' => 'القالب مازال مرتبطا بملاحظة.
+لن تتم الإزالة.',
 	'centralnotice-template-body' => 'جسم القالب:',
 	'centralnotice-day' => 'اليوم',
 	'centralnotice-year' => 'السنة',
@@ -247,9 +251,14 @@ $messages['ar'] = array(
 	'centralnotice-project-name' => 'اسم المشروع',
 	'centralnotice-start-date' => 'تاريخ البدء',
 	'centralnotice-start-time' => 'وقت البدء (غرينتش)',
+	'centralnotice-assigned-templates' => 'القوالب المرتبطة',
 	'centralnotice-no-templates' => 'لا قوالب موجود.
 أضف بعضا منها!',
+	'centralnotice-no-templates-assigned' => 'لا قوالب مرتبطة بالملاحظة.
+أضف البعض!',
 	'centralnotice-available-templates' => 'القوالب المتاحة',
+	'centralnotice-template-already-exists' => 'القالب مربوط بالفعل بالحملة.
+لن تتم الإضافة',
 	'centralnotice-preview-template' => 'معاينة القالب',
 	'centralnotice-start-hour' => 'وقت البدء',
 	'centralnotice-change-lang' => 'تغيير لغة الترجمة',
@@ -2545,7 +2554,7 @@ $messages['li'] = array(
  * @author Brest
  */
 $messages['mk'] = array(
-	'centralnotice-desc' => 'Додава централизирано известување',
+	'centralnotice-desc' => 'Централизирано известување',
 );
 
 /** Malayalam (മലയാളം)
@@ -2832,7 +2841,7 @@ Han kan òg bli nytta til å leggja til eller fjerna gamle merknader.',
 	'centralnotice-end-date' => 'Sluttdato',
 	'centralnotice-enabled' => 'Aktivert',
 	'centralnotice-modify' => 'Utfør',
-	'centralnotice-preview' => 'Førehandsvis',
+	'centralnotice-preview' => 'Førehandsvising',
 	'centralnotice-add-new' => 'Legg til ein ny sentralmerknad',
 	'centralnotice-remove' => 'Fjern',
 	'centralnotice-translate-heading' => 'Omsetjing for $1',
@@ -2884,7 +2893,7 @@ Legg han ikkje til',
 Denne handlinga kan ikkje bli omgjort.',
 	'centralnotice-no-notices-exist' => 'Ingen merknader finst. Legg til ein under',
 	'centralnotice-no-templates-translate' => 'Det finst ingen malar å endra omsetjingar for',
-	'centralnotice-number-uses' => 'Føremon',
+	'centralnotice-number-uses' => 'Gonger nytta',
 	'centralnotice-edit-template' => 'Endra mal',
 	'centralnotice-message' => 'Melding',
 	'centralnotice-message-not-set' => 'Melding ikkje gjeve',
@@ -2899,6 +2908,7 @@ Denne handlinga kan ikkje bli omgjort.',
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+ * @author Harald Khan
  * @author Jon Harald Søby
  * @author Laaknor
  */
@@ -2913,7 +2923,7 @@ Den kan også bli brukt for å legge til eller fjerne gamle meldinger.',
 	'centralnotice-end-date' => 'Sluttdato',
 	'centralnotice-enabled' => 'Aktivert',
 	'centralnotice-modify' => 'Lagre',
-	'centralnotice-preview' => 'Forhåndsvis',
+	'centralnotice-preview' => 'Forhåndsvisning',
 	'centralnotice-add-new' => 'Legg til en ny sentralmelding',
 	'centralnotice-remove' => 'Fjern',
 	'centralnotice-translate-heading' => 'Oversettelse for $1',
