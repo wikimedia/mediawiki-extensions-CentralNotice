@@ -2368,6 +2368,7 @@ $messages['ko'] = array(
 	'centralnotice-preview-template' => '틀 미리 보기',
 	'centralnotice-start-hour' => '시작 시간',
 	'centralnotice-change-lang' => '번역할 언어 변경',
+	'centralnotice-edit-template' => '틀 편집하기',
 	'right-centralnotice-translate' => '중앙 공지 번역',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 );
@@ -3231,6 +3232,7 @@ $messages['pt'] = array(
 	'centralnotice-translate' => 'Traduzir',
 	'centralnotice-english' => 'Inglês',
 	'centralnotice-weight' => 'Peso',
+	'centralnotice-locked' => 'Bloqueado',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Ano',
 	'centralnotice-month' => 'Mês',
@@ -3244,9 +3246,11 @@ $messages['pt'] = array(
 	'centralnotice-change-lang' => 'Alterar língua de tradução',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-number-uses' => 'Utilizações',
+	'centralnotice-edit-template' => 'Editar predefinição',
 	'centralnotice-message' => 'Mensagem',
 	'centralnotice-message-not-set' => 'Mensagem não estabelecida',
 	'centralnotice-clone' => 'Clonar',
+	'centralnotice-clone-notice' => 'Criar uma cópia da predefinição',
 	'centralnotice-preferred' => 'Preferido',
 );
 
@@ -4190,9 +4194,18 @@ $messages['vi'] = array(
  */
 $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
+	'centralnotice-preview' => 'Büologed',
 	'centralnotice-translations' => 'Tradutods',
+	'centralnotice-translate' => 'Tradutön',
 	'centralnotice-english' => 'Linglänapük',
 	'centralnotice-day' => 'Del',
+	'centralnotice-year' => 'Yel',
+	'centralnotice-month' => 'Mul',
+	'centralnotice-hours' => 'Düp',
+	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Proyegapük',
+	'centralnotice-project-name' => 'Proyeganem',
+	'centralnotice-number-uses' => 'Gebs',
 );
 
 /** Yiddish (ייִדיש)
