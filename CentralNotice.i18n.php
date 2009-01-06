@@ -1623,6 +1623,95 @@ $messages['grc'] = array(
 	'centralnotice-preferred' => 'Προκρινομένη',
 );
 
+/** Swiss German (Alemannisch)
+ * @author Als-Holder
+ */
+$messages['gsw'] = array(
+	'centralnotice' => 'Adminischtrierig vu dr zentrale Mäldige',
+	'noticetemplate' => 'Zentrali Mäldigs-Vorlag',
+	'centralnotice-desc' => "Fiegt e zentrali ''sitenotice'' zue",
+	'centralnotice-summary' => 'Die Erwyterig erlaubt d Konfiguration vu zentrale Mäldige.
+Si cha au zum Aalege vu neije un dr Leschig vu alte Mäldige brucht wäre.',
+	'centralnotice-query' => 'Aktuälli Mäldig ändere',
+	'centralnotice-notice-name' => 'Name vu dr Notiz',
+	'centralnotice-end-date' => 'Änddatum',
+	'centralnotice-enabled' => 'Aktiviert',
+	'centralnotice-modify' => 'In Ornig',
+	'centralnotice-preview' => 'Vorschau',
+	'centralnotice-add-new' => 'Fieg e neiji zentrali Mäldig zue',
+	'centralnotice-remove' => 'Useneh',
+	'centralnotice-translate-heading' => 'Ibersetzig vu „$1“',
+	'centralnotice-manage' => 'Zentrali Mäldige verwalte',
+	'centralnotice-add' => 'Zuefiege',
+	'centralnotice-add-notice' => 'Zuefiege vun ere Mäldig',
+	'centralnotice-add-template' => 'Zuefiege vun ere Vorlag',
+	'centralnotice-show-notices' => 'Zeig Mäldige',
+	'centralnotice-list-templates' => 'Vorlage uflischte',
+	'centralnotice-translations' => 'Ibersetzige',
+	'centralnotice-translate-to' => 'Ibersetze in',
+	'centralnotice-translate' => 'Ibersetze',
+	'centralnotice-english' => 'Änglisch',
+	'centralnotice-template-name' => 'Name vu dr Vorlag',
+	'centralnotice-templates' => 'Vorlage',
+	'centralnotice-weight' => 'Gwicht',
+	'centralnotice-locked' => 'Gsperrt',
+	'centralnotice-notices' => 'Mäldige',
+	'centralnotice-notice-exists' => 'Mäldig git s scho.
+Nyt zuegfiegt.',
+	'centralnotice-template-exists' => 'Vorlag git s scho.
+Nyt zuegfiegt.',
+	'centralnotice-notice-doesnt-exist' => 'Mäldig isch nit vorhande.
+Useneh isch nit megli.',
+	'centralnotice-template-still-bound' => 'Vorlag isch no an e Mäldig bunde.
+Useneh nit megli.',
+	'centralnotice-template-body' => 'Vorlagetäxt:',
+	'centralnotice-day' => 'Tag',
+	'centralnotice-year' => 'Johr',
+	'centralnotice-month' => 'Monet',
+	'centralnotice-hours' => 'Stund',
+	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Projäktsproch',
+	'centralnotice-project-name' => 'Projäktname',
+	'centralnotice-start-date' => 'Startdatum',
+	'centralnotice-start-time' => 'Startzyt (UTC)',
+	'centralnotice-assigned-templates' => 'Zuegwiseni Vorlage',
+	'centralnotice-no-templates' => 'S sin kei Vorlage im Syschtem vorhande.',
+	'centralnotice-no-templates-assigned' => 'S sin kei Vorlage zuegwise zue Mäldige.
+Fieg eini zue.',
+	'centralnotice-available-templates' => 'Verfiegbari Vorlage',
+	'centralnotice-template-already-exists' => 'Vorlage isch scho an d Kampagne bunde.
+Nit zuegfiegt.',
+	'centralnotice-preview-template' => 'Vorschau-Vorlag',
+	'centralnotice-start-hour' => 'Startzyt',
+	'centralnotice-change-lang' => 'Ibersetzigssproch ändere',
+	'centralnotice-weights' => 'Gwicht',
+	'centralnotice-notice-is-locked' => 'Mäldig isch gsperrt.
+Useneh nit megli.',
+	'centralnotice-overlap' => 'D Mäldig iberschnyydet si mit em Zytruum vun ere andere Mäldig.
+Nit zuegfiegt.',
+	'centralnotice-invalid-date-range' => 'Uugiltige Zytruum.
+Nit aktualisiert.',
+	'centralnotice-null-string' => 'S cha kei Nullstring zuegfiegt wäre.
+Nyt zuegfiegt.',
+	'centralnotice-confirm-delete' => 'Bisch sicher, ass Du dr Yytrag wit lesche?
+D Aktion cha nit ruckgängig gmacht wäre.',
+	'centralnotice-no-notices-exist' => 'S sin kei Mäldige vorhande.
+Fieg eini zue.',
+	'centralnotice-no-templates-translate' => 'S git kei Vorlage, wu Ibersetzige derfir z bearbeite wäre',
+	'centralnotice-number-uses' => 'Nutzige',
+	'centralnotice-edit-template' => 'Vorlag bearbeite',
+	'centralnotice-message' => 'Nochricht',
+	'centralnotice-message-not-set' => 'Nochricht nit gsetzt',
+	'centralnotice-clone' => 'Klon aalege',
+	'centralnotice-clone-notice' => 'Leg e Kopii vu dr Vorlag aa',
+	'centralnotice-preview-all-template-translations' => 'Vorschau vu allene verfiegbare Ibersetzige vun ere Vorlag',
+	'right-centralnotice-admin' => 'Zentrali Mäldige verwalte',
+	'right-centralnotice-translate' => 'Zentrali Mäldige ibersetze',
+	'action-centralnotice-admin' => 'Zentrali Sytenotize verwalte',
+	'action-centralnotice-translate' => 'Zentrali Sytenotize ibersetze',
+	'centralnotice-preferred' => 'Bevorzugt',
+);
+
 /** Hebrew (עברית)
  * @author Rotem Liss
  */
@@ -3220,19 +3309,44 @@ $messages['ps'] = array(
  * @author Malafaya
  */
 $messages['pt'] = array(
+	'centralnotice' => 'Administração de aviso centralizado',
+	'noticetemplate' => 'Modelo de aviso do sítio',
 	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
+	'centralnotice-summary' => 'Este módulo permite-lhe editar os seus avisos centralizados actualmente configurados.
+Pode também ser usado para adicionar ou remover avisos antigos.',
+	'centralnotice-query' => 'Modificar avisos actuais',
+	'centralnotice-notice-name' => 'Nome do aviso',
 	'centralnotice-end-date' => 'Data fim',
+	'centralnotice-enabled' => 'Activo',
 	'centralnotice-modify' => 'Submeter',
 	'centralnotice-preview' => 'Previsão',
+	'centralnotice-add-new' => 'Adicionar um novo aviso centralizado',
 	'centralnotice-remove' => 'Remover',
 	'centralnotice-translate-heading' => 'Tradução de $1',
+	'centralnotice-manage' => 'Gerir aviso centralizado',
 	'centralnotice-add' => 'Adicionar',
+	'centralnotice-add-notice' => 'Adicionar um aviso',
+	'centralnotice-add-template' => 'Adicionar um modelo',
+	'centralnotice-show-notices' => 'Mostrar avisos',
+	'centralnotice-list-templates' => 'Listar modelos',
 	'centralnotice-translations' => 'Traduções',
 	'centralnotice-translate-to' => 'Traduzir para',
 	'centralnotice-translate' => 'Traduzir',
 	'centralnotice-english' => 'Inglês',
+	'centralnotice-template-name' => 'Nome do modelo',
+	'centralnotice-templates' => 'Modelos',
 	'centralnotice-weight' => 'Peso',
 	'centralnotice-locked' => 'Bloqueado',
+	'centralnotice-notices' => 'Avisos',
+	'centralnotice-notice-exists' => 'O aviso já existe.
+Não adicionado',
+	'centralnotice-template-exists' => 'O modelo já existe.
+Não adicionado',
+	'centralnotice-notice-doesnt-exist' => 'O aviso não existe.
+Nada a remover',
+	'centralnotice-template-still-bound' => 'O modelo ainda está ligado a um aviso.
+Não removido.',
+	'centralnotice-template-body' => 'Conteúdo do modelo:',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Ano',
 	'centralnotice-month' => 'Mês',
@@ -3242,15 +3356,42 @@ $messages['pt'] = array(
 	'centralnotice-project-name' => 'Nome do projecto',
 	'centralnotice-start-date' => 'Data início',
 	'centralnotice-start-time' => 'Hora início (UTC)',
+	'centralnotice-assigned-templates' => 'Modelos atribuídos',
+	'centralnotice-no-templates' => 'Nenhum modelo encontrado.
+Adicione alguns!',
+	'centralnotice-no-templates-assigned' => 'Nenhum modelo atribuído a avisos.
+Adicione alguns!',
+	'centralnotice-available-templates' => 'Modelos disponíveis',
+	'centralnotice-template-already-exists' => 'O modelo já está ligado a campanha.
+Não adicionado',
+	'centralnotice-preview-template' => 'Prever modelo',
 	'centralnotice-start-hour' => 'Hora início',
 	'centralnotice-change-lang' => 'Alterar língua de tradução',
 	'centralnotice-weights' => 'Pesos',
+	'centralnotice-notice-is-locked' => 'O aviso está bloqueado.
+Não removido',
+	'centralnotice-overlap' => 'O aviso sobrepõe-se no tempo com outro aviso.
+Não adicionado',
+	'centralnotice-invalid-date-range' => 'Intervalo de datas inválido.
+Não actualizado',
+	'centralnotice-null-string' => 'Não é possível adicionar uma cadeia de caracteres nula.
+Não adicionado',
+	'centralnotice-confirm-delete' => 'Tem a certeza de que pretende eliminar este item?
+Esta acção será irreversível.',
+	'centralnotice-no-notices-exist' => 'Não existe nenhum aviso.
+Adicione um abaixo',
+	'centralnotice-no-templates-translate' => 'Não há quaisquer modelos para os quais seja possível editar traduções',
 	'centralnotice-number-uses' => 'Utilizações',
-	'centralnotice-edit-template' => 'Editar predefinição',
+	'centralnotice-edit-template' => 'Editar modelo',
 	'centralnotice-message' => 'Mensagem',
 	'centralnotice-message-not-set' => 'Mensagem não estabelecida',
 	'centralnotice-clone' => 'Clonar',
-	'centralnotice-clone-notice' => 'Criar uma cópia da predefinição',
+	'centralnotice-clone-notice' => 'Criar uma cópia do modelo',
+	'centralnotice-preview-all-template-translations' => 'Prever todas as traduções disponíveis do modelo',
+	'right-centralnotice-admin' => 'Gerir avisos centralizados',
+	'right-centralnotice-translate' => 'Traduzir avisos centralizados',
+	'action-centralnotice-admin' => 'gerir avisos centralizados',
+	'action-centralnotice-translate' => 'traduzir avisos centralizados',
 	'centralnotice-preferred' => 'Preferido',
 );
 
