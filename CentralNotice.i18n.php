@@ -1209,6 +1209,8 @@ Lisa mõni!',
 );
 
 /** Basque (Euskara)
+ * @author Kobazulo
+ * @author Pi
  * @author Theklan
  */
 $messages['eu'] = array(
@@ -1229,6 +1231,26 @@ $messages['eu'] = array(
 	'centralnotice-list-templates' => 'Txantiloiak zerrendatu',
 	'centralnotice-translations' => 'Itzulpenak',
 	'centralnotice-translate-to' => 'Hona itzuli',
+	'centralnotice-translate' => 'Itzuli',
+	'centralnotice-template-name' => 'Txantiloi izena',
+	'centralnotice-templates' => 'Txantiloiak',
+	'centralnotice-weight' => 'Pisua',
+	'centralnotice-locked' => 'Babesturik',
+	'centralnotice-notices' => 'Berriak',
+	'centralnotice-notice-exists' => 'Berria badago dagoeneko.
+Ez da gehituko',
+	'centralnotice-template-body' => 'Txantiloi gorputza:',
+	'centralnotice-day' => 'Egun',
+	'centralnotice-year' => 'Urte',
+	'centralnotice-month' => 'Hilabete',
+	'centralnotice-hours' => 'Ordu',
+	'centralnotice-min' => 'Minutu',
+	'centralnotice-project-lang' => 'Proiektuaren hizkuntza',
+	'centralnotice-project-name' => 'Proiektuaren izena',
+	'centralnotice-start-date' => 'Hasiera data',
+	'centralnotice-start-time' => 'Hasiera ordua (UTC)',
+	'centralnotice-assigned-templates' => 'Ezarritako txantiloiak',
+	'centralnotice-message' => 'Mezua',
 );
 
 /** Persian (فارسی)
@@ -2459,6 +2481,7 @@ $messages['km'] = array(
  * @author Kwj2772
  */
 $messages['ko'] = array(
+	'centralnotice-end-date' => '종료 날짜',
 	'centralnotice-enabled' => '활성화됨',
 	'centralnotice-modify' => '저장',
 	'centralnotice-preview' => '미리 보기',
@@ -4363,10 +4386,21 @@ $messages['vi'] = array(
  */
 $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
+	'centralnotice-enabled' => 'Pemögükon',
+	'centralnotice-modify' => 'Sedön',
 	'centralnotice-preview' => 'Büologed',
+	'centralnotice-remove' => 'Moükön',
+	'centralnotice-translate-heading' => 'Tradutam pro $1',
+	'centralnotice-add' => 'Läükön',
+	'centralnotice-add-template' => 'Läükön samafomoti',
+	'centralnotice-list-templates' => 'Lisedön samafomotis',
 	'centralnotice-translations' => 'Tradutods',
 	'centralnotice-translate' => 'Tradutön',
 	'centralnotice-english' => 'Linglänapük',
+	'centralnotice-template-name' => 'Nem samafomota',
+	'centralnotice-templates' => 'Samafomots',
+	'centralnotice-template-exists' => 'Samafomot ya dabinon.
+No paläükon',
 	'centralnotice-day' => 'Del',
 	'centralnotice-year' => 'Yel',
 	'centralnotice-month' => 'Mul',
@@ -4374,7 +4408,17 @@ $messages['vo'] = array(
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Proyegapük',
 	'centralnotice-project-name' => 'Proyeganem',
+	'centralnotice-no-templates' => 'Samafomots nonik petuvons.
+Läükolös anikis!',
+	'centralnotice-available-templates' => 'Samafomots gebidik',
+	'centralnotice-preview-template' => 'Büologed samafomota',
+	'centralnotice-change-lang' => 'Votükön tradutamapük',
+	'centralnotice-confirm-delete' => 'Sevol-li fümo, das vilol moükön atosi?
+Dun at obinon nesädunovik.',
 	'centralnotice-number-uses' => 'Gebs',
+	'centralnotice-edit-template' => 'Redakön samafomoti',
+	'centralnotice-clone-notice' => 'Jafön kopiedi samafomota',
+	'centralnotice-preferred' => 'Pebuüköl',
 );
 
 /** Yiddish (ייִדיש)
