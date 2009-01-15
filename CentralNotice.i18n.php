@@ -3935,6 +3935,14 @@ Föich een bietou.',
 	'centralnotice-edit-template' => 'Foarloage beoarbaidje',
 	'centralnotice-message' => 'Ättergjucht',
 	'centralnotice-message-not-set' => 'Ättergjucht nit sät.',
+	'centralnotice-clone' => 'Klon moakje',
+	'centralnotice-clone-notice' => 'Moak ne Kopie fon ju Foarloage',
+	'centralnotice-preview-all-template-translations' => 'Foarschau fon aal do ferföichboare Uursättengen fon ne Foarloage',
+	'right-centralnotice-admin' => 'Ferwaltjen fon zentroale Mäldengen',
+	'right-centralnotice-translate' => 'Uursätten fon zentroale Mäldengen',
+	'action-centralnotice-admin' => 'Zentroale Siedennotiz ferfaalen',
+	'action-centralnotice-translate' => 'Zentroale Siedennotiz uursätte',
+	'centralnotice-preferred' => 'Foarleeken',
 );
 
 /** Sundanese (Basa Sunda)
