@@ -2463,6 +2463,19 @@ Tambahaké ing ngisor',
 	'action-centralnotice-translate' => "terjemahaké cathetan pusat (''central notices'')",
 );
 
+/** Georgian (ქართული)
+ * @author Malafaya
+ */
+$messages['ka'] = array(
+	'centralnotice-add' => 'დამატება',
+	'centralnotice-english' => 'ინგლისური',
+	'centralnotice-template-name' => 'თარგების სახელი',
+	'centralnotice-templates' => 'თარგები',
+	'centralnotice-month' => 'თვე',
+	'centralnotice-project-lang' => 'პროექტის ენა',
+	'centralnotice-edit-template' => 'თარგის რედაქტირება',
+);
+
 /** Khmer (ភាសាខ្មែរ)
  * @author Lovekhmer
  * @author Thearith
@@ -2702,6 +2715,15 @@ Setzt eng hei ënnendrënner bäi.',
 	'action-centralnotice-admin' => 'Zentralnotize geréieren',
 	'action-centralnotice-translate' => 'Zentral Notiz iwwersetzen',
 	'centralnotice-preferred' => 'Am léiwsten',
+);
+
+/** Lingua Franca Nova (Lingua Franca Nova)
+ * @author Malafaya
+ */
+$messages['lfn'] = array(
+	'centralnotice-day' => 'Dia',
+	'centralnotice-year' => 'Anio',
+	'centralnotice-hours' => 'Ora',
 );
 
 /** Limburgish (Limburgs)
