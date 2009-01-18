@@ -649,6 +649,16 @@ Dodaj jednu ispod',
 	'centralnotice-preferred' => 'Preferirano',
 );
 
+/** Catalan (Català)
+ * @author Loupeter
+ */
+$messages['ca'] = array(
+	'centralnotice-end-date' => 'Data final',
+	'centralnotice-start-date' => 'Data inicial',
+	'centralnotice-invalid-date-range' => 'Interval de dates invàlid.
+No actualitzat',
+);
+
 /** Czech (Česky)
  * @author Danny B.
  * @author Li-sung
