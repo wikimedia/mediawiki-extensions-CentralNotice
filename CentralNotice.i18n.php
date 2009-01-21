@@ -2527,6 +2527,7 @@ $messages['ko'] = array(
 	'centralnotice-preview' => '미리 보기',
 	'centralnotice-remove' => '제거',
 	'centralnotice-translate-heading' => '$1에 대한 번역',
+	'centralnotice-manage' => '중앙 공지 관리',
 	'centralnotice-add' => '추가',
 	'centralnotice-add-notice' => '알림을 추가하기',
 	'centralnotice-add-template' => '틀을 추가하기',
@@ -2549,6 +2550,8 @@ $messages['ko'] = array(
 	'centralnotice-preview-template' => '틀 미리 보기',
 	'centralnotice-start-hour' => '시작 시간',
 	'centralnotice-change-lang' => '번역할 언어 변경',
+	'centralnotice-notice-is-locked' => '공지가 잠겼습니다.
+제거하지 않았습니다.',
 	'centralnotice-edit-template' => '틀 편집하기',
 	'centralnotice-message' => '메시지',
 	'centralnotice-clone-notice' => '이 틀의 사본을 만들기',
