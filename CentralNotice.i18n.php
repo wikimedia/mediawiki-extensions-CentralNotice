@@ -2522,6 +2522,7 @@ $messages['km'] = array(
  */
 $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
+	'centralnotice-notice-name' => '공지 이름',
 	'centralnotice-end-date' => '종료 날짜',
 	'centralnotice-enabled' => '활성화됨',
 	'centralnotice-modify' => '저장',
