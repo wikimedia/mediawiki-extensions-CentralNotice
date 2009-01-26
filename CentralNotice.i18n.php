@@ -2540,6 +2540,7 @@ $messages['ko'] = array(
 	'centralnotice-template-name' => '틀 이름',
 	'centralnotice-templates' => '틀',
 	'centralnotice-locked' => '잠김',
+	'centralnotice-notices' => '공지',
 	'centralnotice-template-exists' => '틀이 이미 존재합니다.
 추가하지 않았습니다.',
 	'centralnotice-month' => '월',
