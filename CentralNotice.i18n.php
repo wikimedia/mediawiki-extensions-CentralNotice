@@ -1464,6 +1464,7 @@ Lisää alapuolella sellainen',
 );
 
 /** French (Français)
+ * @author Crochet.david
  * @author Grondin
  * @author IAlex
  * @author McDutchie
@@ -1536,7 +1537,7 @@ Ne pas ajouter.',
 Ne pas mettre à jour.',
 	'centralnotice-null-string' => 'Ne peut ajouter une chaîne nulle.
 Ne pas ajouter.',
-	'centralnotice-confirm-delete' => 'Êtes vous sûr que vous voulez supprimer cet article ?
+	'centralnotice-confirm-delete' => 'Êtes-vous sûr que vous voulez supprimer cet article ?
 Cette action ne pourra plus être récupérée.',
 	'centralnotice-no-notices-exist' => 'Aucun avis existe.
 Ajoutez-en un en dessous.',
@@ -2970,6 +2971,7 @@ Kannst ünnen een tofögen',
  */
 $messages['nds-nl'] = array(
 	'centralnotice-add' => 'Toevoegen',
+	'centralnotice-add-template' => 'Mal toevoegen',
 );
 
 /** Dutch (Nederlands)
