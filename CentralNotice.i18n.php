@@ -250,7 +250,7 @@ $messages['ar'] = array(
 	'centralnotice-project-lang' => 'لغة المشروع',
 	'centralnotice-project-name' => 'اسم المشروع',
 	'centralnotice-start-date' => 'تاريخ البدء',
-	'centralnotice-start-time' => 'وقت البدء (غرينتش)',
+	'centralnotice-start-time' => 'وقت البداية (UTC)',
 	'centralnotice-assigned-templates' => 'القوالب المرتبطة',
 	'centralnotice-no-templates' => 'لا قوالب موجود.
 أضف بعضا منها!',
@@ -299,7 +299,7 @@ $messages['arz'] = array(
 	'centralnotice' => 'مدير الاعلانات المركزية',
 	'noticetemplate' => 'قالب الاعلانات المركزية',
 	'centralnotice-desc' => 'بيحط اعلان مركزى للموقع',
-	'centralnotice-summary' => 'الوحدة دى بتسمحلك بتعديل إعدادات الإخطار المركزي الحالية.
+	'centralnotice-summary' => 'الوحدة دى بتسمحلك بتعديل إعدادات الإخطار المركزى الحالية.
 ممكن تستخدم كمان لإضافة أو إزالة إخطارات قديمة.',
 	'centralnotice-query' => 'تعديل الاعلانات الموجودة دلوقتي',
 	'centralnotice-notice-name' => 'اسم الاعلان',
@@ -307,7 +307,7 @@ $messages['arz'] = array(
 	'centralnotice-enabled' => 'متشغل',
 	'centralnotice-modify' => 'قدم',
 	'centralnotice-preview' => 'اعمل بروفة',
-	'centralnotice-add-new' => 'حط اعلان مركزي جديد',
+	'centralnotice-add-new' => 'حط اعلان مركزى جديد',
 	'centralnotice-remove' => 'شيل',
 	'centralnotice-translate-heading' => 'الترجمة بتاعة $1',
 	'centralnotice-manage' => 'ادارة الاعلانات المركزية',
@@ -342,7 +342,7 @@ $messages['arz'] = array(
 	'centralnotice-project-lang' => 'اللغة بتاعة المشروع',
 	'centralnotice-project-name' => 'الاسم بتاع المشروع',
 	'centralnotice-start-date' => 'تاريخ البدايه',
-	'centralnotice-start-time' => 'وقت البداية(يو تي سي)',
+	'centralnotice-start-time' => 'وقت البداية (يو تى سى)',
 	'centralnotice-assigned-templates' => 'قالب موجود',
 	'centralnotice-no-templates' => 'مافيش قوالب.
 ضيف بعض القوالب!',
@@ -367,9 +367,9 @@ $messages['arz'] = array(
 الاجراء دا مش ح يترجع فيه',
 	'centralnotice-no-notices-exist' => 'مافيش اخطارات موجودة.
 ضيف واحد تحته',
-	'centralnotice-no-templates-translate' => 'مافيش أي قالب لتحرير ترجمته',
+	'centralnotice-no-templates-translate' => 'مافيش أى قالب لتحرير ترجمته',
 	'centralnotice-number-uses' => 'الاستعمالات',
-	'centralnotice-edit-template' => 'عدل في القالب',
+	'centralnotice-edit-template' => 'عدل فى القالب',
 	'centralnotice-message' => 'الرسالة',
 	'centralnotice-message-not-set' => 'الرسالة مش مظبوطة',
 	'centralnotice-clone' => 'انسخ',
@@ -1669,6 +1669,7 @@ $messages['grc'] = array(
 	'centralnotice-preview' => 'Προθεωρεῖν',
 	'centralnotice-remove' => 'Άφαιρεῖν',
 	'centralnotice-add' => 'Προστιθέναι',
+	'centralnotice-translate' => 'Μεταγλωττίζειν',
 	'centralnotice-english' => 'Ἀγγλιστί',
 	'centralnotice-weight' => 'Βάρος',
 	'centralnotice-locked' => 'Κεκλῃσμένη',
