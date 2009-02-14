@@ -2235,6 +2235,13 @@ $messages['id'] = array(
 	'centralnotice-desc' => 'Menambahkan pengumuman situs terpusat',
 );
 
+/** Icelandic (Íslenska)
+ * @author Spacebirdy
+ */
+$messages['is'] = array(
+	'centralnotice-modify' => 'Staðfesta',
+);
+
 /** Italian (Italiano)
  * @author BrokenArrow
  * @author Darth Kule
@@ -3681,7 +3688,11 @@ $messages['ru'] = array(
  * @author HalanTul
  */
 $messages['sah'] = array(
+	'centralnotice' => 'Кииннэммит биллэриилэри салайыы',
+	'noticetemplate' => 'Кииннэммит биллэрии халыыба',
 	'centralnotice-desc' => 'Саайт биллэриитин эбэр',
+	'centralnotice-summary' => 'Бу муодул билигин үлэлиир кииннэммит биллэриилэргитин уларытарга туһаныллар.
+Саҥа биллэриилэри эбэргэ, эргэ биллэриилэри соторго туһаныллыан эмиэ сөп.',
 	'centralnotice-query' => 'Бу биллэриини уларытыы',
 	'centralnotice-notice-name' => 'Биллэрии аата',
 	'centralnotice-end-date' => 'Түмүктэнии күнэ-дьыла',
@@ -3692,18 +3703,75 @@ $messages['sah'] = array(
 	'centralnotice-remove' => 'Сот',
 	'centralnotice-translate-heading' => '$1 тылбааһа',
 	'centralnotice-manage' => 'Кииннэммит биллэриилэри салайыы',
+	'centralnotice-add' => 'Эбэргэ',
+	'centralnotice-add-notice' => 'Биллэрии эбэргэ',
 	'centralnotice-add-template' => 'Халыып эбэргэ',
+	'centralnotice-show-notices' => 'Биллэриилэри көрдөр',
+	'centralnotice-list-templates' => 'Халыыптар тиһиктэрэ',
+	'centralnotice-translations' => 'Тылбаастар',
+	'centralnotice-translate-to' => 'Манна тылбаас',
 	'centralnotice-translate' => 'Тылбаас',
+	'centralnotice-english' => 'Аҥылычаан',
 	'centralnotice-template-name' => 'Халыып аата',
 	'centralnotice-templates' => 'Халыыптар',
 	'centralnotice-weight' => 'Кэтитэ',
 	'centralnotice-locked' => 'Хааччахтаммыт/бобуллубут',
+	'centralnotice-notices' => 'Биллэриилэр',
+	'centralnotice-notice-exists' => 'Биллэрии баар эбит.
+Кыайан эбиллибэт',
+	'centralnotice-template-exists' => 'Халыып баар эбит.
+Кыайан эбиллибэт',
+	'centralnotice-notice-doesnt-exist' => 'Биллэрии суох эбит.
+Сотуллар суох',
+	'centralnotice-template-still-bound' => 'Халыып уруккутун курдук биллэриини кытта ситимнээх.
+Кыайан сотуллубат.',
+	'centralnotice-template-body' => 'Халыып бэйэтэ:',
 	'centralnotice-day' => 'Күн (хонук)',
 	'centralnotice-year' => 'Сыл',
 	'centralnotice-month' => 'Ый',
 	'centralnotice-hours' => 'Чаас',
 	'centralnotice-min' => 'Мүнүүтэ',
+	'centralnotice-project-lang' => 'Бырайыак тыла',
 	'centralnotice-project-name' => 'Бырайыак аата',
+	'centralnotice-start-date' => 'Саҕаламмыт ыйа-күнэ',
+	'centralnotice-start-time' => 'Саҕаламмыт кэмэ (UTC)',
+	'centralnotice-assigned-templates' => 'Олордуллубут халыыптар',
+	'centralnotice-no-templates' => 'Халыыптар көстүбэтилэр.
+Эп эрэ!',
+	'centralnotice-no-templates-assigned' => 'Биллэриини кытта ситимнээх халыыптар суохтар.
+Эп эрэ!',
+	'centralnotice-available-templates' => 'Баар халыыптар',
+	'centralnotice-template-already-exists' => 'Халыып ситимнээх.
+Эбиллибэтэх',
+	'centralnotice-preview-template' => 'Халыыбы хайдах буолуоҕун көрүү',
+	'centralnotice-start-hour' => 'Саҕаламмыт кэмэ',
+	'centralnotice-change-lang' => 'Тылбаас тылын уларытыы',
+	'centralnotice-weights' => 'Ыйааһына',
+	'centralnotice-notice-is-locked' => 'Биллэрии көмүскэллээх.
+Сотуллубат',
+	'centralnotice-overlap' => 'Биллэрии атын биллэриини кытта кэминэн быһа охсуһар.
+Эбиллэр кыаҕа суох',
+	'centralnotice-invalid-date-range' => 'Күнүн-дьылын болдьоҕо сыыһа.
+Кыайан саҥардыллыбат',
+	'centralnotice-null-string' => 'Кураанах устуруоканы эбэр табыллыбат.
+Эбиллибэт',
+	'centralnotice-confirm-delete' => 'Маны сотоору гынаҕын дуо?
+Соттоххуна төннөрөр кыаҕыҥ суох буолуо.',
+	'centralnotice-no-notices-exist' => 'Биллэриилэр суохтар.
+Эбиэххэ сөп',
+	'centralnotice-no-templates-translate' => 'Тылбаастыырга аналлаах биир да халыыып суох',
+	'centralnotice-number-uses' => 'Туттуллаллар',
+	'centralnotice-edit-template' => 'Халыыбы уларытыы',
+	'centralnotice-message' => 'Сурук',
+	'centralnotice-message-not-set' => 'Сурук туруоруллубатах',
+	'centralnotice-clone' => 'Клоннааһын',
+	'centralnotice-clone-notice' => 'Халыып куопуйатын оҥоруу',
+	'centralnotice-preview-all-template-translations' => 'Халыып баар тылбаастарын барытын көрүү',
+	'right-centralnotice-admin' => 'Кииннэмит биллэриилэри салайыы',
+	'right-centralnotice-translate' => 'Кииннэммит биллэриилэри тылбаастааһын',
+	'action-centralnotice-admin' => 'кииннэммит биллэриилэри салайыы',
+	'action-centralnotice-translate' => 'кииннэммит биллэриилэри тылбаастааһын',
+	'centralnotice-preferred' => 'Бэрт буолуо этэ',
 );
 
 /** Sicilian (Sicilianu)
