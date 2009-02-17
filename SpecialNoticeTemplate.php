@@ -614,7 +614,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
          */
         public function cloneTemplate( $source, $dest ) {
             // Reset the timer as updates on meta take a long time
-            set_time_limit( 60 );
+            set_time_limit( 300 );
             // Pull all possible langs
             $langs = $this->getTranslations( $source );
             
