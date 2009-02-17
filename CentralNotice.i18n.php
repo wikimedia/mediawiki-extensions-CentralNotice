@@ -2235,6 +2235,24 @@ $messages['id'] = array(
 	'centralnotice-desc' => 'Menambahkan pengumuman situs terpusat',
 );
 
+/** Ido (Ido)
+ * @author Malafaya
+ */
+$messages['io'] = array(
+	'centralnotice-add' => 'Adjuntar',
+	'centralnotice-add-notice' => 'Adjuntar avizo',
+	'centralnotice-add-template' => 'Adjuntar shablono',
+	'centralnotice-english' => 'Angliana',
+	'centralnotice-templates' => 'Shabloni',
+	'centralnotice-weight' => 'Pezo',
+	'centralnotice-notices' => 'Avizi',
+	'centralnotice-day' => 'Dio',
+	'centralnotice-year' => 'Yaro',
+	'centralnotice-month' => 'Monato',
+	'centralnotice-hours' => 'Horo',
+	'centralnotice-min' => 'Minuto',
+);
+
 /** Icelandic (Íslenska)
  * @author Spacebirdy
  */
@@ -4814,12 +4832,14 @@ $messages['yue'] = array(
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Alex S.H. Lin
  * @author Gzdavidwong
+ * @author Wmr89502270
  */
 $messages['zh-hans'] = array(
 	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
 	'centralnotice-enabled' => '已启用',
 	'centralnotice-modify' => '提交',
 	'centralnotice-preview' => '预览',
+	'centralnotice-remove' => '移除',
 	'centralnotice-english' => '英语',
 	'centralnotice-template-name' => '模板名称',
 	'centralnotice-templates' => '模板',
