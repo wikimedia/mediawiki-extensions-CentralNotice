@@ -342,7 +342,7 @@ $messages['arz'] = array(
 	'centralnotice-project-lang' => 'اللغة بتاعة المشروع',
 	'centralnotice-project-name' => 'الاسم بتاع المشروع',
 	'centralnotice-start-date' => 'تاريخ البدايه',
-	'centralnotice-start-time' => 'وقت البداية (يو تى سى)',
+	'centralnotice-start-time' => 'وقت البداية (توقيت عالمى)',
 	'centralnotice-assigned-templates' => 'قالب موجود',
 	'centralnotice-no-templates' => 'مافيش قوالب.
 ضيف بعض القوالب!',
@@ -1470,21 +1470,23 @@ Lisää alapuolella sellainen',
  * @author McDutchie
  * @author Meithal
  * @author Sherbrooke
+ * @author Verdy p
  */
 $messages['fr'] = array(
 	'centralnotice' => 'Administration des avis centraux',
-	'noticetemplate' => 'Modèles des avis centraux',
-	'centralnotice-desc' => 'Ajoute un sitenotice central',
-	'centralnotice-summary' => 'Ce module vous permet de modifier vos paramètrres des notifications centrales.',
+	'noticetemplate' => 'Modèle des avis centraux',
+	'centralnotice-desc' => 'Ajoute un avis central du site',
+	'centralnotice-summary' => 'Ce module vous permet de modifier vos paramètres d’avis centraux.
+Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus anciens.',
 	'centralnotice-query' => 'Modifier les avis actuels',
-	'centralnotice-notice-name' => "Nom de l'avis",
+	'centralnotice-notice-name' => 'Nom de l’avis',
 	'centralnotice-end-date' => 'Date de fin',
 	'centralnotice-enabled' => 'Activé',
 	'centralnotice-modify' => 'Soumettre',
-	'centralnotice-preview' => 'Prévisualisation',
+	'centralnotice-preview' => 'Prévisualiser',
 	'centralnotice-add-new' => 'Ajouter un nouvel avis central',
 	'centralnotice-remove' => 'Supprimer',
-	'centralnotice-translate-heading' => 'Traduction de $1',
+	'centralnotice-translate-heading' => 'Traduction de l’avis « $1 »',
 	'centralnotice-manage' => 'Gérer les avis centraux',
 	'centralnotice-add' => 'Ajouter',
 	'centralnotice-add-notice' => 'Ajouter un avis',
@@ -1494,20 +1496,20 @@ $messages['fr'] = array(
 	'centralnotice-translations' => 'Traductions',
 	'centralnotice-translate-to' => 'Traduire en',
 	'centralnotice-translate' => 'Traduire',
-	'centralnotice-english' => 'Anglais',
+	'centralnotice-english' => 'anglais',
 	'centralnotice-template-name' => 'Nom du modèle',
 	'centralnotice-templates' => 'Modèles',
 	'centralnotice-weight' => 'Poids',
 	'centralnotice-locked' => 'Verrouillé',
-	'centralnotice-notices' => 'Avis',
-	'centralnotice-notice-exists' => "L'avis existe déjà.
-Il n'a pas été ajouté.",
-	'centralnotice-template-exists' => "Le modèle existe déjà.
-Il n'a pas été ajouté.",
-	'centralnotice-notice-doesnt-exist' => "L'avis n'existe pas.
-Il n'y a rien à supprimer.",
-	'centralnotice-template-still-bound' => "Le modèle est encore relié à un avis.
-Il n'a pas été supprimé.",
+	'centralnotice-notices' => 'Avis centraux',
+	'centralnotice-notice-exists' => 'L’avis existe déjà.
+Il n’a pas été ajouté.',
+	'centralnotice-template-exists' => 'Le modèle existe déjà.
+Il n’a pas été ajouté.',
+	'centralnotice-notice-doesnt-exist' => 'L’avis n’existe pas.
+Il n’y a rien à supprimer.',
+	'centralnotice-template-still-bound' => 'Le modèle est encore lié à un avis.
+Il n’a pas été supprimé.',
 	'centralnotice-template-body' => 'Corps du modèle :',
 	'centralnotice-day' => 'Jour',
 	'centralnotice-year' => 'Année',
@@ -1519,38 +1521,39 @@ Il n'a pas été supprimé.",
 	'centralnotice-start-date' => 'Date de début',
 	'centralnotice-start-time' => 'Heure de début (UTC)',
 	'centralnotice-assigned-templates' => 'Modèles assignés',
-	'centralnotice-no-templates' => 'Il n’y a pas de modèle dans le système.',
-	'centralnotice-no-templates-assigned' => "Aucun modèle assigné à l'avis.
-Ajoutez-en un !",
+	'centralnotice-no-templates' => 'Aucun modèle trouvé.
+Ajoutez-en !',
+	'centralnotice-no-templates-assigned' => 'Aucun modèle assigné à l’avis.
+Ajoutez-en !',
 	'centralnotice-available-templates' => 'Modèles disponibles',
 	'centralnotice-template-already-exists' => 'Le modèle est déjà attaché à une campagne.
-Ne pas ajouter',
-	'centralnotice-preview-template' => 'Prévisualisation du modèle',
+Il n’a pas été ajouté.',
+	'centralnotice-preview-template' => 'Prévisualiser le modèle',
 	'centralnotice-start-hour' => 'Heure de début',
 	'centralnotice-change-lang' => 'Modifier la langue de traduction',
 	'centralnotice-weights' => 'Poids',
-	'centralnotice-notice-is-locked' => "L'avis est verrouillé.
-Il n'a pas été supprimé.",
-	'centralnotice-overlap' => 'Notification s’imbriquant dans le temps d’une autre.
-Ne pas ajouter.',
-	'centralnotice-invalid-date-range' => 'Tri de date incorrecte.
-Ne pas mettre à jour.',
-	'centralnotice-null-string' => 'Ne peut ajouter une chaîne nulle.
-Ne pas ajouter.',
-	'centralnotice-confirm-delete' => 'Êtes-vous sûr que vous voulez supprimer cet article ?
-Cette action ne pourra plus être récupérée.',
-	'centralnotice-no-notices-exist' => 'Aucun avis existe.
-Ajoutez-en un en dessous.',
-	'centralnotice-no-templates-translate' => "Il n'y a aucun modèle à traduire",
-	'centralnotice-number-uses' => 'Utilisateurs',
+	'centralnotice-notice-is-locked' => 'L’avis est verrouillé.
+Il n’a pas été supprimé.',
+	'centralnotice-overlap' => 'L’avis couvre tout ou partie de la durée d’un autre avis.
+Il n’a pas été ajouté.',
+	'centralnotice-invalid-date-range' => 'Intervalle de dates incorrect pour l’avis.
+Il n’a pas été mis à jour.',
+	'centralnotice-null-string' => 'Impossible d’ajouter un avis vide.
+Il n’a pas été ajouté.',
+	'centralnotice-confirm-delete' => 'Êtes-vous sûr de vouloir supprimer cet élément ?
+Cette action ne pourra pas être récupérée.',
+	'centralnotice-no-notices-exist' => 'Aucun avis n’existe.
+Ajoutez-en ci-dessous.',
+	'centralnotice-no-templates-translate' => 'Il n’y a aucun modèle à traduire',
+	'centralnotice-number-uses' => 'Utilisations',
 	'centralnotice-edit-template' => 'Modifier le modèle',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message non renseigné',
-	'centralnotice-clone' => 'Cloner',
-	'centralnotice-clone-notice' => 'Créer une copie de ce modèle',
-	'centralnotice-preview-all-template-translations' => 'Prévisualiser toutes les traductions de ce modèle',
-	'right-centralnotice-admin' => 'Gérer les notifications centrales',
-	'right-centralnotice-translate' => 'Traduire les notifications centrales',
+	'centralnotice-clone' => 'Dupliquer',
+	'centralnotice-clone-notice' => 'Créer une copie du modèle',
+	'centralnotice-preview-all-template-translations' => 'Prévisualiser toutes les traductions disponibles du modèle',
+	'right-centralnotice-admin' => 'Gérer les avis centraux',
+	'right-centralnotice-translate' => 'Traduire les avis centraux',
 	'action-centralnotice-admin' => 'gérer les avis centraux',
 	'action-centralnotice-translate' => 'traduire les avis centraux',
 	'centralnotice-preferred' => 'Préféré',
@@ -2594,7 +2597,10 @@ $messages['ko'] = array(
 제거하지 않았습니다.',
 	'centralnotice-edit-template' => '틀 편집하기',
 	'centralnotice-message' => '메시지',
+	'centralnotice-message-not-set' => '메시지가 정의되지 않았습니다.',
+	'centralnotice-clone' => '사본',
 	'centralnotice-clone-notice' => '이 틀의 사본을 만들기',
+	'right-centralnotice-admin' => '중앙 공지 관리',
 	'right-centralnotice-translate' => '중앙 공지 번역',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 );
