@@ -2562,6 +2562,8 @@ $messages['km'] = array(
  */
 $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
+	'noticetemplate' => '중앙 공지 틀',
+	'centralnotice-desc' => '중앙에서 공지하는 사이트노티스를 추가',
 	'centralnotice-notice-name' => '공지 이름',
 	'centralnotice-end-date' => '종료 날짜',
 	'centralnotice-enabled' => '활성화됨',
@@ -4837,6 +4839,7 @@ $messages['yue'] = array(
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Alex S.H. Lin
+ * @author Chenzw
  * @author Gzdavidwong
  * @author Wmr89502270
  */
@@ -4846,6 +4849,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-modify' => '提交',
 	'centralnotice-preview' => '预览',
 	'centralnotice-remove' => '移除',
+	'centralnotice-translate' => '翻译',
 	'centralnotice-english' => '英语',
 	'centralnotice-template-name' => '模板名称',
 	'centralnotice-templates' => '模板',
