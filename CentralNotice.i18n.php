@@ -4195,16 +4195,31 @@ Lägg till ett nedan',
  * @author Veeven
  */
 $messages['te'] = array(
+	'centralnotice' => 'కేంద్రీయ గమనిక నిర్వహణ',
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
+	'centralnotice-notice-name' => 'గమనిక పేరు',
+	'centralnotice-end-date' => 'ముగింపు తేదీ',
+	'centralnotice-preview' => 'మునుజూపు',
+	'centralnotice-translate-heading' => '$1కి అనువాదం',
+	'centralnotice-add' => 'చేర్చు',
 	'centralnotice-translations' => 'అనువాదాలు',
+	'centralnotice-translate' => 'అనువదించండి',
+	'centralnotice-english' => 'ఇంగ్లీష్',
 	'centralnotice-template-name' => 'మూస పేరు',
 	'centralnotice-templates' => 'మూసలు',
+	'centralnotice-notices' => 'గమనికలు',
 	'centralnotice-day' => 'రోజు',
 	'centralnotice-year' => 'సంవత్సరం',
 	'centralnotice-month' => 'నెల',
 	'centralnotice-hours' => 'గంట',
 	'centralnotice-min' => 'నిమిషం',
+	'centralnotice-project-lang' => 'ప్రాజెక్టు భాష',
+	'centralnotice-project-name' => 'ప్రాజెక్టు పేరు',
+	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
+	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
+	'centralnotice-number-uses' => 'వాడుకరులు',
 	'centralnotice-message' => 'సందేశం',
+	'right-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనుదించండి',
 );
 
 /** Tetum (Tetun)
