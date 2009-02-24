@@ -4430,6 +4430,7 @@ Magdagdag ng isa sa ibaba',
 
 /** Turkish (Türkçe)
  * @author Joseph
+ * @author Karduelis
  */
 $messages['tr'] = array(
 	'centralnotice' => 'Merkezi uyarı yöneticisi',
@@ -4442,7 +4443,7 @@ Eski uyarıları ekleyip çıkarmak için de kullanılabilir.',
 	'centralnotice-end-date' => 'Bitiş tarihi',
 	'centralnotice-enabled' => 'Etkinleştirilmiş',
 	'centralnotice-modify' => 'Gönder',
-	'centralnotice-preview' => 'Önizleme',
+	'centralnotice-preview' => 'Ön izleme',
 	'centralnotice-add-new' => 'Yeni bir merkezi uyarı ekle',
 	'centralnotice-remove' => 'Çıkar',
 	'centralnotice-translate-heading' => '$1 için çeviri',
