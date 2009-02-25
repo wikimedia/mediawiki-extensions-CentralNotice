@@ -4330,9 +4330,11 @@ $messages['tg-cyrl'] = array(
 );
 
 /** Thai (ไทย)
+ * @author Ans
  * @author Manop
  */
 $messages['th'] = array(
+	'centralnotice-preview' => 'แสดงตัวอย่าง',
 	'centralnotice-day' => 'วัน',
 	'centralnotice-year' => 'ปี',
 	'centralnotice-month' => 'เดือน',
