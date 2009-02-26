@@ -741,6 +741,14 @@ Níže můžete vytvořit nové.',
 	'centralnotice-preferred' => 'Preferováno',
 );
 
+/** Danish (Dansk)
+ * @author Byrial
+ */
+$messages['da'] = array(
+	'action-centralnotice-admin' => 'administrere centrale beskeder',
+	'action-centralnotice-translate' => 'oversætte centrale beskeder',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  * @author Purodha
