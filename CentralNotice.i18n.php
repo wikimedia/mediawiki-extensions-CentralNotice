@@ -2577,6 +2577,7 @@ $messages['ko'] = array(
 	'centralnotice-enabled' => '활성화됨',
 	'centralnotice-modify' => '저장',
 	'centralnotice-preview' => '미리 보기',
+	'centralnotice-add-new' => '새 중앙 공지 추가',
 	'centralnotice-remove' => '제거',
 	'centralnotice-translate-heading' => '$1에 대한 번역',
 	'centralnotice-manage' => '중앙 공지 관리',
