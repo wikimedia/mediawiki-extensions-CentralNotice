@@ -2798,9 +2798,16 @@ $messages['lfn'] = array(
 
 /** Limburgish (Limburgs)
  * @author Matthias
+ * @author Ooswesthoesbes
  */
 $messages['li'] = array(
+	'noticetemplate' => 'Sjebloeaner centrale ziejsnotisie',
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
+	'centralnotice-day' => 'Daag',
+	'centralnotice-year' => 'Jaor',
+	'centralnotice-month' => 'Maondj',
+	'centralnotice-hours' => 'Oer',
+	'centralnotice-min' => 'Menuut',
 );
 
 /** Macedonian (Македонски)
