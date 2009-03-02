@@ -2275,6 +2275,7 @@ $messages['is'] = array(
  * @author BrokenArrow
  * @author Darth Kule
  * @author Melos
+ * @author Pietrodn
  */
 $messages['it'] = array(
 	'centralnotice' => 'Gestione avviso centralizzato',
@@ -2330,8 +2331,13 @@ $messages['it'] = array(
 	'centralnotice-weights' => 'Dimensioni',
 	'centralnotice-notice-is-locked' => "L'avviso è bloccato. Avviso non rimosso",
 	'centralnotice-overlap' => "L'avviso si sovrappone con il tempo di un altro avviso. Non aggiunto",
+	'centralnotice-invalid-date-range' => 'Intervallo di date non valido.
+Non aggiorno',
+	'centralnotice-null-string' => 'Impossibile aggiungere una stringa nulla.
+Non aggiorno',
 	'centralnotice-confirm-delete' => "Sei veramente sicuro di voler cancellare questo elemento? L'azione non è reversibile.",
 	'centralnotice-no-notices-exist' => 'Non esiste alcun avviso. Aggiungine uno di seguito',
+	'centralnotice-no-templates-translate' => 'Non ci sono template per cui modificare le traduzioni',
 	'centralnotice-number-uses' => 'Usi',
 	'centralnotice-edit-template' => 'Modifica template',
 	'centralnotice-message' => 'Messaggio',
@@ -2801,13 +2807,89 @@ $messages['lfn'] = array(
  * @author Ooswesthoesbes
  */
 $messages['li'] = array(
+	'centralnotice' => 'Beheer centrale sitenotice',
 	'noticetemplate' => 'Sjebloeaner centrale ziejsnotisie',
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
+	'centralnotice-summary' => 'Mit dees moduul kinne centraal ingestelde sitenotices bewerk waere.
+De module kin ouch gebroek waere om sitenotices toe te voge of aaj te wisse.',
+	'centralnotice-query' => 'Hujig sitenotices angere',
+	'centralnotice-notice-name' => 'Sitenoticenaam',
+	'centralnotice-end-date' => 'Einddatum',
+	'centralnotice-enabled' => 'Aktief',
+	'centralnotice-modify' => 'Opslaon',
+	'centralnotice-preview' => 'Bekieke',
+	'centralnotice-add-new' => 'Nuuj centrale sitenotice toevoge',
+	'centralnotice-remove' => 'Wis',
+	'centralnotice-translate-heading' => 'Vertaling veur $1',
+	'centralnotice-manage' => 'Centrale sitenotice behere',
+	'centralnotice-add' => 'Toevoge',
+	'centralnotice-add-notice' => 'Sitenotice toevoge',
+	'centralnotice-add-template' => 'Sjabloon toevoge',
+	'centralnotice-show-notices' => 'Sitenotices waergaeve',
+	'centralnotice-list-templates' => 'Sjablone waergaeve',
+	'centralnotice-translations' => 'Vertalinger',
+	'centralnotice-translate-to' => 'Vertale nao',
+	'centralnotice-translate' => 'Vertale',
+	'centralnotice-english' => 'Ingelsj',
+	'centralnotice-template-name' => 'Sjabloonnaam',
+	'centralnotice-templates' => 'Sjablone',
+	'centralnotice-weight' => 'Gewich',
+	'centralnotice-locked' => 'Aafgeslaote',
+	'centralnotice-notices' => 'Sitenotices',
+	'centralnotice-notice-exists' => 'De sitenotice besteit al.
+Deze wörd neet toegevoog.',
+	'centralnotice-template-exists' => "'t Sjabloon besteit al.
+Dit wörd neet toegevoog.",
+	'centralnotice-notice-doesnt-exist' => 'De sitenotice besteit neet.
+Nieks wörd gewis.',
+	'centralnotice-template-still-bound' => "'t Sjabloon is nag neet gekoppeld aan 'ne sitenotice.
+'t Wörd neet gewis.",
+	'centralnotice-template-body' => 'Sjablooninhoud:',
 	'centralnotice-day' => 'Daag',
 	'centralnotice-year' => 'Jaor',
 	'centralnotice-month' => 'Maondj',
 	'centralnotice-hours' => 'Oer',
 	'centralnotice-min' => 'Menuut',
+	'centralnotice-project-lang' => 'Projektaal',
+	'centralnotice-project-name' => 'Projeknaam',
+	'centralnotice-start-date' => 'Startdatum',
+	'centralnotice-start-time' => 'Starttied (UTC)',
+	'centralnotice-assigned-templates' => 'Toegeweze sjablone',
+	'centralnotice-no-templates' => "d'r Zeen gein sjablone besjikber in t systeem",
+	'centralnotice-no-templates-assigned' => 'dr Zeen gein sjablone toegeweze-n aan de sitenotice.
+Die mós se toevoge.',
+	'centralnotice-available-templates' => 'Besjikber sjablone',
+	'centralnotice-template-already-exists' => "t Sjabloon is al gekoppeld aan 'n campaggne.
+t Wörd neet drbiegedaon.",
+	'centralnotice-preview-template' => 'Veurvetoeansjabloon',
+	'centralnotice-start-hour' => 'Starttied',
+	'centralnotice-change-lang' => 'Te vertale taal wiezige',
+	'centralnotice-weights' => 'Giwich',
+	'centralnotice-notice-is-locked' => 'De sitenotice is toe.
+Deze wörd neet gewis',
+	'centralnotice-overlap' => "De sitenotice euverlep mit 'n anger sitenotice.
+Deze wörd neet drbiegedaon",
+	'centralnotice-invalid-date-range' => 'Ongeldige datumreeks.
+Nieks biegewerk.',
+	'centralnotice-null-string' => 'De kins gein laeg teksveld toevoge.
+Nieks toegevoeg',
+	'centralnotice-confirm-delete' => 'Witse zeker detse dit item wils wisse?
+Dees henjiling is neet trök te drejje.',
+	'centralnotice-no-notices-exist' => "dr Zeen gein sitenotices.
+De kins dr hiejónger 'ne toevoge",
+	'centralnotice-no-templates-translate' => 'dr Zeen gein sjablone woveur vertalinge gemaak kinne waere',
+	'centralnotice-number-uses' => 'Gebroeke',
+	'centralnotice-edit-template' => 'Sjabloon bewerke',
+	'centralnotice-message' => 'Berich',
+	'centralnotice-message-not-set' => 't Berich is neet ingesteld',
+	'centralnotice-clone' => 'Kopiere',
+	'centralnotice-clone-notice' => 'n Kopie ven t sjabloon make',
+	'centralnotice-preview-all-template-translations' => 'Alle besjikber vertalinge ven t sjabloon bekieke',
+	'right-centralnotice-admin' => 'Centrale sitenotices behieëre',
+	'right-centralnotice-translate' => 'Centrale sitenotices vertale',
+	'action-centralnotice-admin' => 'behieër centrale sitenotice',
+	'action-centralnotice-translate' => 'vertaal centrale sitenotice',
+	'centralnotice-preferred' => 'Veurkäör',
 );
 
 /** Macedonian (Македонски)
