@@ -1477,6 +1477,7 @@ Lisää alapuolella sellainen',
  * @author IAlex
  * @author McDutchie
  * @author Meithal
+ * @author PieRRoMaN
  * @author Sherbrooke
  * @author Verdy p
  */
@@ -1509,7 +1510,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-templates' => 'Modèles',
 	'centralnotice-weight' => 'Poids',
 	'centralnotice-locked' => 'Verrouillé',
-	'centralnotice-notices' => 'Avis centraux',
+	'centralnotice-notices' => 'Avis',
 	'centralnotice-notice-exists' => 'L’avis existe déjà.
 Il n’a pas été ajouté.',
 	'centralnotice-template-exists' => 'Le modèle existe déjà.
@@ -2710,6 +2711,16 @@ De kanns ävver welshe dobei don.',
 	'action-centralnotice-admin' => 'zentraal Nohreschte ze verwallde',
 	'action-centralnotice-translate' => 'zentraal Nohreschte ze övversäze',
 	'centralnotice-preferred' => 'Förjetrocke!',
+);
+
+/** Cornish (Kernewek)
+ * @author Kw-Moon
+ */
+$messages['kw'] = array(
+	'centralnotice-english' => 'Sowsnek',
+	'centralnotice-day' => 'Dydh',
+	'centralnotice-year' => 'Bledhen',
+	'centralnotice-month' => 'Mis',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
