@@ -2721,6 +2721,7 @@ $messages['kw'] = array(
 	'centralnotice-day' => 'Dydh',
 	'centralnotice-year' => 'Bledhen',
 	'centralnotice-month' => 'Mis',
+	'centralnotice-edit-template' => 'Chanjya skantlyn',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
