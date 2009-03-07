@@ -650,11 +650,18 @@ Dodaj jednu ispod',
 );
 
 /** Catalan (Català)
+ * @author Aleator
  * @author Loupeter
  */
 $messages['ca'] = array(
 	'centralnotice-end-date' => 'Data final',
+	'centralnotice-day' => 'Dia',
+	'centralnotice-year' => 'Any',
+	'centralnotice-month' => 'Mes',
+	'centralnotice-hours' => 'Hora',
+	'centralnotice-min' => 'Minut',
 	'centralnotice-start-date' => 'Data inicial',
+	'centralnotice-available-templates' => 'Plantilles disponibles',
 	'centralnotice-invalid-date-range' => 'Interval de dates invàlid.
 No actualitzat',
 );
