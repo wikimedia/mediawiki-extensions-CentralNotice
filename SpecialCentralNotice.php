@@ -986,11 +986,12 @@ class CentralNotice extends SpecialPage {
 		}
 		return $templateNames;
 	}
+
 	/**
 	 * Lookup function for active notice under a given language and project
 	 * Returns an id for the running notice
 	 */
-	function selectNoticeTemplates( $project, $language ) {
+	static function selectNoticeTemplates( $project, $language ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
 		$res = $dbr->select(
