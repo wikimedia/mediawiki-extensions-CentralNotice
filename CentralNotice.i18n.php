@@ -2608,6 +2608,7 @@ $messages['ko'] = array(
 	'centralnotice-notices' => '공지',
 	'centralnotice-template-exists' => '틀이 이미 존재합니다.
 추가하지 않았습니다.',
+	'centralnotice-year' => '연도',
 	'centralnotice-month' => '월',
 	'centralnotice-hours' => '시',
 	'centralnotice-min' => '분',
@@ -2957,6 +2958,7 @@ $messages['mr'] = array(
 
 /** Malay (Bahasa Melayu)
  * @author Aviator
+ * @author Izzudin
  */
 $messages['ms'] = array(
 	'centralnotice' => 'Pentadbiran pemberitahuan pusat',
@@ -2984,6 +2986,7 @@ $messages['ms'] = array(
 	'centralnotice-english' => 'Bahasa Inggeris',
 	'centralnotice-template-name' => 'Nama templat',
 	'centralnotice-templates' => 'Templat',
+	'centralnotice-weight' => 'Berat',
 	'centralnotice-locked' => 'Dikunci',
 	'centralnotice-notices' => 'Pemberitahuan',
 	'centralnotice-notice-exists' => 'Pemberitahuan telah pun wujud dan tidak ditambah.',
@@ -3000,6 +3003,7 @@ $messages['ms'] = array(
 	'centralnotice-project-name' => 'Nama projek',
 	'centralnotice-start-date' => 'Tarikh mula',
 	'centralnotice-start-time' => 'Waktu mula (UTC)',
+	'centralnotice-assigned-templates' => 'Templat ditugasi',
 	'centralnotice-no-templates' => 'Tiada templat. Sila cipta templat baru.',
 	'centralnotice-no-templates-assigned' => 'Tiada templat untuk pemberitahuan. Tambah templat baru!',
 	'centralnotice-available-templates' => 'Templat yang ada',
@@ -3007,6 +3011,7 @@ $messages['ms'] = array(
 	'centralnotice-preview-template' => 'Pralihat templat',
 	'centralnotice-start-hour' => 'Waktu mula',
 	'centralnotice-change-lang' => 'Tukar bahasa terjemahan',
+	'centralnotice-weights' => 'Berat',
 	'centralnotice-notice-is-locked' => 'Pemberitahuan telah dikunci dan tidak boleh dibuang.',
 	'centralnotice-overlap' => 'Pemberitahuan tersebut bertindan waktu dengan pemberitahuan lain, oleh itu tidak ditambah.',
 	'centralnotice-invalid-date-range' => 'Julat tarikh tidak sah dan tidak dikemaskinikan.',
@@ -3025,6 +3030,7 @@ $messages['ms'] = array(
 	'right-centralnotice-translate' => 'Menterjemah pemberitahuan pusat',
 	'action-centralnotice-admin' => 'mengurus pemberitahuan pusat',
 	'action-centralnotice-translate' => 'menterjemah pemberitahuan pusat',
+	'centralnotice-preferred' => 'Dipilih',
 );
 
 /** Low German (Plattdüütsch)
@@ -3693,10 +3699,94 @@ Adicione um abaixo',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
+ * @author Eduardo.mps
  * @author Heldergeovane
  */
 $messages['pt-br'] = array(
+	'centralnotice' => 'Administração de aviso centralizado',
+	'noticetemplate' => 'Modelo de aviso do sítio',
+	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
+	'centralnotice-summary' => 'Este módulo permite-lhe editar os seus avisos centralizados atualmente configurados.
+Pode também ser usado para adicionar ou remover avisos antigos.',
+	'centralnotice-query' => 'Modificar avisos atuais',
+	'centralnotice-notice-name' => 'Nome do aviso',
+	'centralnotice-end-date' => 'Data de fim',
+	'centralnotice-enabled' => 'Ativo',
+	'centralnotice-modify' => 'Enviar',
+	'centralnotice-preview' => 'Previsão',
+	'centralnotice-add-new' => 'Adicionar um novo aviso centralizado',
+	'centralnotice-remove' => 'Remover',
+	'centralnotice-translate-heading' => 'Tradução de $1',
+	'centralnotice-manage' => 'Gerenciar aviso centralizado',
+	'centralnotice-add' => 'Adicionar',
+	'centralnotice-add-notice' => 'Adicionar um aviso',
+	'centralnotice-add-template' => 'Adicionar um modelo',
+	'centralnotice-show-notices' => 'Mostrar avisos',
+	'centralnotice-list-templates' => 'Listar modelos',
+	'centralnotice-translations' => 'Traduções',
+	'centralnotice-translate-to' => 'Traduzir para',
+	'centralnotice-translate' => 'Traduzir',
+	'centralnotice-english' => 'Inglês',
+	'centralnotice-template-name' => 'Nome do modelo',
+	'centralnotice-templates' => 'Modelos',
+	'centralnotice-weight' => 'Peso',
+	'centralnotice-locked' => 'Bloqueado',
+	'centralnotice-notices' => 'Avisos',
+	'centralnotice-notice-exists' => 'O aviso já existe.
+Não adicionado',
+	'centralnotice-template-exists' => 'O modelo já existe.
+Não adicionado',
+	'centralnotice-notice-doesnt-exist' => 'O aviso não existe.
+Nada a remover',
+	'centralnotice-template-still-bound' => 'O modelo ainda está ligado a um aviso.
+Não removido.',
+	'centralnotice-template-body' => 'Conteúdo do modelo:',
+	'centralnotice-day' => 'Dia',
+	'centralnotice-year' => 'Ano',
+	'centralnotice-month' => 'Mês',
+	'centralnotice-hours' => 'Hora',
+	'centralnotice-min' => 'Minuto',
+	'centralnotice-project-lang' => 'Língua do projeto',
 	'centralnotice-project-name' => 'Nome do projeto',
+	'centralnotice-start-date' => 'Data início',
+	'centralnotice-start-time' => 'Hora início (UTC)',
+	'centralnotice-assigned-templates' => 'Modelos atribuídos',
+	'centralnotice-no-templates' => 'Nenhum modelo encontrado.
+Adicione alguns!',
+	'centralnotice-no-templates-assigned' => 'Nenhum modelo atribuído a avisos.
+Adicione alguns!',
+	'centralnotice-available-templates' => 'Modelos disponíveis',
+	'centralnotice-template-already-exists' => 'O modelo já está ligado a campanha.
+Não adicionado',
+	'centralnotice-preview-template' => 'Prever modelo',
+	'centralnotice-start-hour' => 'Hora início',
+	'centralnotice-change-lang' => 'Alterar língua de tradução',
+	'centralnotice-weights' => 'Pesos',
+	'centralnotice-notice-is-locked' => 'O aviso está bloqueado.
+Não removido',
+	'centralnotice-overlap' => 'O aviso sobrepõe-se no tempo com outro aviso.
+Não adicionado',
+	'centralnotice-invalid-date-range' => 'Intervalo de datas inválido.
+Não atualizado',
+	'centralnotice-null-string' => 'Não é possível adicionar uma cadeia de caracteres nula.
+Não adicionado',
+	'centralnotice-confirm-delete' => 'Tem a certeza de que pretende eliminar este item?
+Esta ação será irreversível.',
+	'centralnotice-no-notices-exist' => 'Não existe nenhum aviso.
+Adicione um abaixo',
+	'centralnotice-no-templates-translate' => 'Não há quaisquer modelos para os quais seja possível editar traduções',
+	'centralnotice-number-uses' => 'Utilizações',
+	'centralnotice-edit-template' => 'Editar modelo',
+	'centralnotice-message' => 'Mensagem',
+	'centralnotice-message-not-set' => 'Mensagem não estabelecida',
+	'centralnotice-clone' => 'Clonar',
+	'centralnotice-clone-notice' => 'Criar uma cópia do modelo',
+	'centralnotice-preview-all-template-translations' => 'Prever todas as traduções disponíveis do modelo',
+	'right-centralnotice-admin' => 'Gerenciar avisos centralizados',
+	'right-centralnotice-translate' => 'Traduzir avisos centralizados',
+	'action-centralnotice-admin' => 'gerenciar avisos centralizados',
+	'action-centralnotice-translate' => 'traduzir avisos centralizados',
+	'centralnotice-preferred' => 'Preferido',
 );
 
 /** Romanian (Română)
