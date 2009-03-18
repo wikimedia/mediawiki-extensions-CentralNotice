@@ -937,6 +937,13 @@ Pśidaj jadnu.',
 	'centralnotice-preferred' => 'Preferěrowane',
 );
 
+/** Ewe (Eʋegbe)
+ * @author Natsubee
+ */
+$messages['ee'] = array(
+	'centralnotice-preview' => 'Kpɔe do ŋgɔ',
+);
+
 /** Greek (Ελληνικά)
  * @author Badseed
  * @author Lou
