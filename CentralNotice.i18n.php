@@ -3796,6 +3796,94 @@ Adicione um abaixo',
 	'centralnotice-preferred' => 'Preferido',
 );
 
+/** Quechua (Runa Simi)
+ * @author AlimanRuna
+ */
+$messages['qu'] = array(
+	'centralnotice' => 'Chawpi willay kamachiy',
+	'noticetemplate' => 'Chawpi willay plantilla',
+	'centralnotice-desc' => 'Tukuy ruraykamaykunapaq chawpi willayta yapan',
+	'centralnotice-summary' => "Kay wakina tupuwanqa qampa kachkaq chawpi willayniykikunatam allinchayta atinki.
+Paywanmi mawk'a willaykunatapas yapayta icha qichuyta atinki.",
+	'centralnotice-query' => 'Kachkaq willaykunata hukchay',
+	'centralnotice-notice-name' => 'Willaypa sutin',
+	'centralnotice-end-date' => "Tukuna p'unchaw",
+	'centralnotice-enabled' => 'Saqillasqa',
+	'centralnotice-modify' => 'Kachay',
+	'centralnotice-preview' => 'Ñawpaqta qhawallay',
+	'centralnotice-add-new' => 'Musuq chawpi willayta yapay',
+	'centralnotice-remove' => 'Qichuy',
+	'centralnotice-translate-heading' => "$1-paq t'ikrasqa",
+	'centralnotice-manage' => 'Chawpi willayta kamachiy',
+	'centralnotice-add' => 'Yapay',
+	'centralnotice-add-notice' => 'Willayta yapay',
+	'centralnotice-add-template' => 'Plantillata yapay',
+	'centralnotice-show-notices' => 'Willaykunata rikuchiy',
+	'centralnotice-list-templates' => 'Plantillakunata sutisuyupi rikuchiy',
+	'centralnotice-translations' => "T'ikrasqakuna",
+	'centralnotice-translate-to' => "Kayman t'ikray:",
+	'centralnotice-translate' => "T'ikray",
+	'centralnotice-english' => 'Inlish simipi',
+	'centralnotice-template-name' => 'Plantilla suti',
+	'centralnotice-templates' => 'Plantillakuna',
+	'centralnotice-weight' => 'Llasay',
+	'centralnotice-locked' => "Llawiwan wichq'asqa",
+	'centralnotice-notices' => 'Willaykuna',
+	'centralnotice-notice-exists' => 'Willayqa kachkañam.
+Manam yapasqachu',
+	'centralnotice-template-exists' => 'Plantillaqa kachkañam.
+Manam yapasqachu',
+	'centralnotice-notice-doesnt-exist' => 'Willayqa manam kanchu.
+Manam qichunallachu',
+	'centralnotice-template-still-bound' => 'Plantillaqa willaymanraqmi watasqa.
+Manam qichusqa kanqachu.',
+	'centralnotice-template-body' => 'Plantilla kurku:',
+	'centralnotice-day' => "P'unchaw",
+	'centralnotice-year' => 'Wata',
+	'centralnotice-month' => 'Killa',
+	'centralnotice-hours' => 'Ura',
+	'centralnotice-min' => 'Minutu',
+	'centralnotice-project-lang' => 'Ruraykamaypa rimaynin',
+	'centralnotice-project-name' => 'Ruraykamaypa sutin',
+	'centralnotice-start-date' => "Qallarisqanpa p'unchawnin",
+	'centralnotice-start-time' => 'Qallarisqanpa pachan (UTC)',
+	'centralnotice-assigned-templates' => 'Haypusqa plantillakuna',
+	'centralnotice-no-templates' => 'Manam tarisqachu plantillakuna.
+Yapay!',
+	'centralnotice-no-templates-assigned' => 'Manam kanchu willayman haypusqa plantillakuna.
+Yapay!',
+	'centralnotice-available-templates' => 'Aypanalla plantillakuna',
+	'centralnotice-preview-template' => 'Plantillata ñawpaqta qhawallay',
+	'centralnotice-start-hour' => 'Qallarisqanpa pachan',
+	'centralnotice-change-lang' => "T'ikrana rimayta hukchay",
+	'centralnotice-weights' => 'Llasaykuna',
+	'centralnotice-notice-is-locked' => "Willayqa llawiwanmi wichq'asqa.
+Manam qullusqa kanqachu",
+	'centralnotice-overlap' => "Willayqa huk willaypa pachanwanmi mast'arinakunmi.
+Manam yapasqa kanqachu",
+	'centralnotice-invalid-date-range' => "P'unchawkunap mit'anqa manam allinchu.
+Manam yapasqa kanqachu",
+	'centralnotice-null-string' => "Manam atinichu ch'usaq link'uta yapayta.
+Manam yapasqa kanqachu",
+	'centralnotice-confirm-delete' => 'Allinta yachankichu, kayta qulluyta munaspayki?
+Rurarqaspaykiqa, manam kutichiyta atinkichu.',
+	'centralnotice-no-notices-exist' => 'Manam kanchu willaykuna.
+Kay qatiqpi hukta yapay',
+	'centralnotice-no-templates-translate' => "Manam kanchu plantillakuna, imapaqchus t'ikrasqa llamk'apunalla kanman",
+	'centralnotice-number-uses' => "Llamk'achin",
+	'centralnotice-edit-template' => "Plantillata llamk'apuy",
+	'centralnotice-message' => 'Willay',
+	'centralnotice-message-not-set' => 'Manam kanchu churasqa willay',
+	'centralnotice-clone' => 'Iskayllachay',
+	'centralnotice-clone-notice' => 'Plantillamanta iskaychasqanta kamariy',
+	'centralnotice-preview-all-template-translations' => "Tukuy aypanalla plantillamanta t'ikrasqakunata ñawpaqta qhawallay",
+	'right-centralnotice-admin' => 'Chawpi willaykunata kamachiy',
+	'right-centralnotice-translate' => "Chawpi willaykunata t'ikray",
+	'action-centralnotice-admin' => 'chawpi willaykunata kamachiy',
+	'action-centralnotice-translate' => "chawpi willaykunata t'ikray",
+	'centralnotice-preferred' => 'Astawan munakusqa',
+);
+
 /** Romanian (Română)
  * @author KlaudiuMihaila
  * @author Mihai
@@ -3830,6 +3918,13 @@ $messages['ro'] = array(
 	'right-centralnotice-translate' => 'Traduce anunţurile centrale',
 	'action-centralnotice-admin' => 'administrezi anunţurile centrale',
 	'action-centralnotice-translate' => 'traduci anunţurile centrale',
+);
+
+/** Tarandíne (Tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'centralnotice-enabled' => 'Abbilitate',
 );
 
 /** Russian (Русский)
