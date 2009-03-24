@@ -5148,6 +5148,7 @@ $messages['yi'] = array(
 	'centralnotice-english' => 'ענגליש',
 	'centralnotice-template-name' => 'מוסטער נאמען',
 	'centralnotice-templates' => 'מוסטערן',
+	'centralnotice-locked' => 'פֿאַרשלאסן',
 	'centralnotice-day' => 'טאג',
 	'centralnotice-year' => 'יאר',
 	'centralnotice-month' => 'מאנאט',
