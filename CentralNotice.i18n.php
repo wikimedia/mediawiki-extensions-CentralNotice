@@ -1704,6 +1704,7 @@ $messages['grc'] = array(
 	'centralnotice-preview-template' => 'Προθεωρεῖν πρότυπον',
 	'centralnotice-weights' => 'Βάρη',
 	'centralnotice-number-uses' => 'Χρήσεις',
+	'centralnotice-message' => 'Μήνυμα',
 	'centralnotice-preferred' => 'Προκρινομένη',
 );
 
