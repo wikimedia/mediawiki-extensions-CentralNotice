@@ -947,11 +947,14 @@ $messages['ee'] = array(
 /** Greek (Ελληνικά)
  * @author Badseed
  * @author Lou
+ * @author Omnipaedista
  * @author ZaDiak
  */
 $messages['el'] = array(
+	'centralnotice' => 'Διαχειριστής κεντρικών ειδοποιήσεων',
 	'noticetemplate' => 'Πρότυπο κεντρικής ανακοίνωσης',
 	'centralnotice-desc' => 'Προσθέτει μια κεντρική ανακοίνωση',
+	'centralnotice-query' => 'Τροποποίηση τρεχουσών ειδοποιήσεων',
 	'centralnotice-notice-name' => 'Όνομα σημείωσης',
 	'centralnotice-end-date' => 'Ημερομηνία λήξης',
 	'centralnotice-enabled' => 'Ενεργοποιημένο',
@@ -960,6 +963,7 @@ $messages['el'] = array(
 	'centralnotice-add-new' => 'Προσθήκη νέας κεντρικής ανακοίνωσης',
 	'centralnotice-remove' => 'Αφαίρεση',
 	'centralnotice-translate-heading' => 'Μετάφραση για το $1',
+	'centralnotice-manage' => 'Διαχείριση κεντρικής ειδοποίησης',
 	'centralnotice-add' => 'Προσθήκη',
 	'centralnotice-add-notice' => 'Προσθήκη ανακοίνωσης',
 	'centralnotice-add-template' => 'Προσθήκη προτύπου',
@@ -990,6 +994,7 @@ $messages['el'] = array(
 	'centralnotice-project-name' => 'Όνομα εγχειρήματος',
 	'centralnotice-start-date' => 'Αρχική ημερομηνία',
 	'centralnotice-start-time' => 'Χρόνος εκκίνησης (UTC)',
+	'centralnotice-assigned-templates' => 'Απονομημένα πρότυπα',
 	'centralnotice-available-templates' => 'Διαθέσιμα πρότυπα',
 	'centralnotice-preview-template' => 'Πρότυπο προεπισκόπησης',
 	'centralnotice-start-hour' => 'Χρόνος εκκίνησης',
@@ -1002,6 +1007,10 @@ $messages['el'] = array(
 	'centralnotice-message' => 'Μήνυμα',
 	'centralnotice-clone' => 'Κλώνος',
 	'centralnotice-clone-notice' => 'Δημιουργία ενός αντίγραφου του προτύπου',
+	'right-centralnotice-admin' => 'Διαχείριση κεντρικών ειδοποιήσεων',
+	'right-centralnotice-translate' => 'Μετάφραση κεντρικών ειδοποιήσεων',
+	'action-centralnotice-admin' => 'διαχείριση κεντρικών ειδοποιήσεων',
+	'action-centralnotice-translate' => 'μετάφραση κεντρικών ειδοποιήσεων',
 	'centralnotice-preferred' => 'Προτιμώμενα',
 );
 
@@ -1691,9 +1700,11 @@ Engada algún embaixo',
  * @author Omnipaedista
  */
 $messages['grc'] = array(
+	'centralnotice-query' => 'Μετατροπία τρεχόντων σημειωμάτων',
 	'centralnotice-modify' => 'Ὑποβάλλειν',
 	'centralnotice-preview' => 'Προθεωρεῖν',
 	'centralnotice-remove' => 'Άφαιρεῖν',
+	'centralnotice-manage' => 'Διαχειρίζεσθαι κεντρικὸν σημείωμα',
 	'centralnotice-add' => 'Προστιθέναι',
 	'centralnotice-translate' => 'Μεταγλωττίζειν',
 	'centralnotice-english' => 'Ἀγγλιστί',
