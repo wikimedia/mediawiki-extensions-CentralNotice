@@ -2600,6 +2600,7 @@ $messages['km'] = array(
 
 /** Korean (한국어)
  * @author Kwj2772
+ * @author Yknok29
  */
 $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
@@ -2617,6 +2618,8 @@ $messages['ko'] = array(
 	'centralnotice-add' => '추가',
 	'centralnotice-add-notice' => '알림을 추가하기',
 	'centralnotice-add-template' => '틀을 추가하기',
+	'centralnotice-show-notices' => '공지를 보세요',
+	'centralnotice-list-templates' => '틀 목록',
 	'centralnotice-translations' => '번역',
 	'centralnotice-translate-to' => '번역할 언어',
 	'centralnotice-translate' => '번역하기',
@@ -2627,6 +2630,10 @@ $messages['ko'] = array(
 	'centralnotice-notices' => '공지',
 	'centralnotice-template-exists' => '틀이 이미 존재합니다.
 추가하지 않았습니다.',
+	'centralnotice-template-still-bound' => '공지에 틀이 여전히 연결되어 있습니다.
+삭제하지 마세요.',
+	'centralnotice-template-body' => '틀 본문:',
+	'centralnotice-day' => '날',
 	'centralnotice-year' => '연도',
 	'centralnotice-month' => '월',
 	'centralnotice-hours' => '시',
@@ -2635,11 +2642,20 @@ $messages['ko'] = array(
 	'centralnotice-project-name' => '프로젝트 이름',
 	'centralnotice-start-date' => '시작 날짜',
 	'centralnotice-start-time' => '시작 시간 (UTC)',
+	'centralnotice-no-templates' => '틀을 찾을 수 없습니다.
+덧붙여주세요!',
+	'centralnotice-no-templates-assigned' => '공지에 해당하는 틀이 없습니다.
+덧붙여주세요!',
+	'centralnotice-available-templates' => '이용가능한 틀',
+	'centralnotice-template-already-exists' => '이미 공지에 틀이 배당되어 있습니다.
+덧붙이지 마세요',
 	'centralnotice-preview-template' => '틀 미리 보기',
 	'centralnotice-start-hour' => '시작 시간',
 	'centralnotice-change-lang' => '번역할 언어 변경',
 	'centralnotice-notice-is-locked' => '공지가 잠겼습니다.
 제거하지 않았습니다.',
+	'centralnotice-no-notices-exist' => '공지가 존재하지 않습니다.
+아래에 하나를 추가하세요',
 	'centralnotice-edit-template' => '틀 편집하기',
 	'centralnotice-message' => '메시지',
 	'centralnotice-message-not-set' => '메시지가 정의되지 않았습니다.',
@@ -2648,6 +2664,7 @@ $messages['ko'] = array(
 	'right-centralnotice-admin' => '중앙 공지 관리',
 	'right-centralnotice-translate' => '중앙 공지 번역',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
+	'action-centralnotice-translate' => '중앙 공지를 번역하세요',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -4653,9 +4670,13 @@ $messages['tg-cyrl'] = array(
 /** Thai (ไทย)
  * @author Ans
  * @author Manop
+ * @author Octahedron80
+ * @author Passawuth
  */
 $messages['th'] = array(
+	'centralnotice-modify' => 'ตกลง',
 	'centralnotice-preview' => 'แสดงตัวอย่าง',
+	'centralnotice-add' => 'เพิ่ม',
 	'centralnotice-day' => 'วัน',
 	'centralnotice-year' => 'ปี',
 	'centralnotice-month' => 'เดือน',
