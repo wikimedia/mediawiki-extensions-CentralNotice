@@ -114,7 +114,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	function showList() {
-		global $wgOut, $wgTitle, $wgUser, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest;
 
 		$sk = $wgUser->getSkin();
 
@@ -207,7 +207,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	function showAdd() {
-		global $wgOut, $wgTitle, $wgUser;
+		global $wgOut, $wgUser;
 
 		// Build HTML
 		$htmlOut = Xml::openElement( 'form', array( 'method' => 'post' ) );

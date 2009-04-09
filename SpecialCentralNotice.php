@@ -351,7 +351,7 @@ class CentralNotice extends SpecialPage {
 	 */
 
 	function listNotices() {
-		global $wgOut, $wgRequest, $wgTitle, $wgScript, $wgUser;
+		global $wgOut, $wgRequest, $wgScript, $wgUser;
 		global $wgNoticeProject, $wgUserLang;
 
 		// Get connection
