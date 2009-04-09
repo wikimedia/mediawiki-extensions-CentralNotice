@@ -4674,12 +4674,90 @@ $messages['tg-cyrl'] = array(
  * @author Passawuth
  */
 $messages['th'] = array(
+	'centralnotice' => 'การจัดการประกาศส่วนกลาง',
+	'noticetemplate' => 'แม่แบบประกาศของส่้วนกลาง',
+	'centralnotice-desc' => 'เพิ่มประกาศส่วนกลางของไซต์',
+	'centralnotice-summary' => 'คุณสามารถแก้ไขประกาศส่วนกลางปัจจุบันได้ โดยใช้เครื่องมือนี้
+คุณสามารถเพิ่มหรือนำประกาศเก่าออกได้เช่นกัน',
+	'centralnotice-query' => 'แก้ไขประกาศปัจจุบัน',
+	'centralnotice-notice-name' => 'หัวข้อการประกาศ',
+	'centralnotice-end-date' => 'วันหมดอายุ',
+	'centralnotice-enabled' => 'ถูกทำให้ใช้งานได้',
 	'centralnotice-modify' => 'ตกลง',
 	'centralnotice-preview' => 'แสดงตัวอย่าง',
+	'centralnotice-add-new' => 'เพิ่มประกาศของส่วนกลางใหม่',
+	'centralnotice-remove' => 'นำออก',
+	'centralnotice-translate-heading' => 'การแปลสำหรับ $1',
+	'centralnotice-manage' => 'จัดการกับประกาศส่วนกลาง',
 	'centralnotice-add' => 'เพิ่ม',
+	'centralnotice-add-notice' => 'เพิ่มประกาศ',
+	'centralnotice-add-template' => 'เพิ่มแม่แบบ',
+	'centralnotice-show-notices' => 'แสดงประกาศ',
+	'centralnotice-list-templates' => 'แสดงรายชื่อแม่แบบ',
+	'centralnotice-translations' => 'การแปล',
+	'centralnotice-translate-to' => 'แปลเป็นภาษา',
+	'centralnotice-translate' => 'แปล',
+	'centralnotice-english' => 'อังกฤษ',
+	'centralnotice-template-name' => 'ชื่อแม่แบบ',
+	'centralnotice-templates' => 'แม่แบบ',
+	'centralnotice-weight' => 'น้ำหนัก',
+	'centralnotice-locked' => 'ถูกล็อก',
+	'centralnotice-notices' => 'ประกาศ',
+	'centralnotice-notice-exists' => 'มีประกาศอยู่แล้ว
+จะไม่ทำการเพิ่ม',
+	'centralnotice-template-exists' => 'มีแม่แบบอยู่แล้ว
+จะไม่ทำการเพิ่ม',
+	'centralnotice-notice-doesnt-exist' => 'ไม่มีประกาศ
+ไม่สามารถนำออกได้',
+	'centralnotice-template-still-bound' => 'แม่แบบยังอยู่ในระยะเวลาที่ใช้ประกาศ
+จะไม่ทำการนำออก',
+	'centralnotice-template-body' => 'เนื้อหาของแม่แบบ:',
 	'centralnotice-day' => 'วัน',
 	'centralnotice-year' => 'ปี',
 	'centralnotice-month' => 'เดือน',
+	'centralnotice-hours' => 'ชั่วโมง',
+	'centralnotice-min' => 'นาที',
+	'centralnotice-project-lang' => 'ภาษาของโึครงการ',
+	'centralnotice-project-name' => 'ชื่อโครงการ',
+	'centralnotice-start-date' => 'วันที่เริ่ม',
+	'centralnotice-start-time' => 'เวลาที่เริ่ม (เวลาสากลกรีนิช UTC)',
+	'centralnotice-assigned-templates' => 'แม่แบบที่ได้รับมอบหมาย',
+	'centralnotice-no-templates' => 'ไม่พบแม่แบบใด ๆ
+กรุณาเพิ่มแม่แบบ!',
+	'centralnotice-no-templates-assigned' => 'ไม่มีแม่แบบบนประกาศ
+กรุณาเพิ่มแม่แบบ!',
+	'centralnotice-available-templates' => 'แม่แบบที่มีอยู่',
+	'centralnotice-template-already-exists' => 'แม่แบบนี้เป็นส่วนหนึ่งของการรณรงค์
+ไม่ทำการเพิ่ม',
+	'centralnotice-preview-template' => 'ดูตัวอย่างแม่แบบ',
+	'centralnotice-start-hour' => 'เวลาที่เริ่ม',
+	'centralnotice-change-lang' => 'เปลี่ยนภาษาที่ใช้ในการแปล',
+	'centralnotice-weights' => 'น้ำหนัก',
+	'centralnotice-notice-is-locked' => 'ประกาศถูกล็อกอยู่
+ไม่นำออก',
+	'centralnotice-overlap' => 'ประกาศนี้ทับซ้อนกับเวลาของอีกประกาศหนึ่ง
+จะำไม่ทำการเพิ่ม',
+	'centralnotice-invalid-date-range' => 'ช่วงเวลาดังกล่าวเป็นช่วงเวลาที่ไม่สามารถเป็นไปได้
+จะไม่ทำการอัปเดต',
+	'centralnotice-null-string' => 'ไม่สามารถเพิ่มประกาศที่มีข้อความว่้างได้
+จะไม่ทำการเพิ่ม',
+	'centralnotice-confirm-delete' => 'คุณแน่ใจหรือว่าต้องการลบรายการนี้ทิ้ง
+เมื่อลบทิ้งแล้ว จะไม่สามารถกู้คืนมาได้อีกเลย',
+	'centralnotice-no-notices-exist' => 'ไม่มีประกาศ
+เพิ่มประกาศด้านล่าง',
+	'centralnotice-no-templates-translate' => 'ไม่มีแม่แบบใด ๆ ที่จะแก้ไขการแปล',
+	'centralnotice-number-uses' => 'การใช้งาน',
+	'centralnotice-edit-template' => 'แก้ไขแม่แบบ',
+	'centralnotice-message' => 'ข้อความ',
+	'centralnotice-message-not-set' => 'ข้อความยังไม่ได้ถูกตั้งค่า',
+	'centralnotice-clone' => 'สำเนา',
+	'centralnotice-clone-notice' => 'สร้างสำเนาของแม่แบบ',
+	'centralnotice-preview-all-template-translations' => 'ดูการแปลในทุก ๆ ภาษาของแม่แบบ',
+	'right-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
+	'right-centralnotice-translate' => 'แปลประกาศส่วนกลาง',
+	'action-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
+	'action-centralnotice-translate' => 'แปลประกาศส่วนกลาง',
+	'centralnotice-preferred' => 'แบบที่เลือก',
 );
 
 /** Tagalog (Tagalog)
