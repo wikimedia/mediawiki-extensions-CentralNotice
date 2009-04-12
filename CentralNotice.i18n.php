@@ -2609,7 +2609,7 @@ $messages['ko'] = array(
 	'centralnotice-notice-name' => '공지 이름',
 	'centralnotice-end-date' => '종료 날짜',
 	'centralnotice-enabled' => '활성화됨',
-	'centralnotice-modify' => '저장',
+	'centralnotice-modify' => '변경',
 	'centralnotice-preview' => '미리 보기',
 	'centralnotice-add-new' => '새 중앙 공지 추가',
 	'centralnotice-remove' => '제거',
@@ -2642,6 +2642,7 @@ $messages['ko'] = array(
 	'centralnotice-project-name' => '프로젝트 이름',
 	'centralnotice-start-date' => '시작 날짜',
 	'centralnotice-start-time' => '시작 시간 (UTC)',
+	'centralnotice-assigned-templates' => '배당된 틀',
 	'centralnotice-no-templates' => '틀을 찾을 수 없습니다.
 덧붙여주세요!',
 	'centralnotice-no-templates-assigned' => '공지에 해당하는 틀이 없습니다.
@@ -2664,7 +2665,7 @@ $messages['ko'] = array(
 	'right-centralnotice-admin' => '중앙 공지 관리',
 	'right-centralnotice-translate' => '중앙 공지 번역',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
-	'action-centralnotice-translate' => '중앙 공지를 번역하세요',
+	'action-centralnotice-translate' => '중앙 공지를 번역할',
 );
 
 /** Ripoarisch (Ripoarisch)
