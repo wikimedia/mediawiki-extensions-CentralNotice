@@ -946,6 +946,7 @@ $messages['ee'] = array(
 
 /** Greek (Ελληνικά)
  * @author Badseed
+ * @author K sal 15
  * @author Lou
  * @author Omnipaedista
  * @author ZaDiak
@@ -995,6 +996,8 @@ $messages['el'] = array(
 	'centralnotice-start-date' => 'Αρχική ημερομηνία',
 	'centralnotice-start-time' => 'Χρόνος εκκίνησης (UTC)',
 	'centralnotice-assigned-templates' => 'Απονομημένα πρότυπα',
+	'centralnotice-no-templates' => 'Δεν βρέθηκαν πρότυπα.
+Προσθέστε μερικά!',
 	'centralnotice-available-templates' => 'Διαθέσιμα πρότυπα',
 	'centralnotice-preview-template' => 'Πρότυπο προεπισκόπησης',
 	'centralnotice-start-hour' => 'Χρόνος εκκίνησης',
@@ -1005,6 +1008,7 @@ $messages['el'] = array(
 	'centralnotice-number-uses' => 'Χρήσεις',
 	'centralnotice-edit-template' => 'Επεξεργασία προτύπου',
 	'centralnotice-message' => 'Μήνυμα',
+	'centralnotice-message-not-set' => 'Μη ρυθμισμένο μήνυμα',
 	'centralnotice-clone' => 'Κλώνος',
 	'centralnotice-clone-notice' => 'Δημιουργία ενός αντίγραφου του προτύπου',
 	'right-centralnotice-admin' => 'Διαχείριση κεντρικών ειδοποιήσεων',
