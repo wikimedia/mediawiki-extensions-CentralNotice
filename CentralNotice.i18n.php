@@ -652,9 +652,11 @@ Dodaj jednu ispod',
 /** Catalan (Català)
  * @author Aleator
  * @author Loupeter
+ * @author SMP
  */
 $messages['ca'] = array(
 	'centralnotice-end-date' => 'Data final',
+	'centralnotice-english' => 'Anglès',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Any',
 	'centralnotice-month' => 'Mes',
@@ -1005,6 +1007,8 @@ $messages['el'] = array(
 	'centralnotice-weights' => 'Βάρη',
 	'centralnotice-notice-is-locked' => 'Η σημείωση είναι κλειδωμένη.
 Δεν θα αφαιρεθεί',
+	'centralnotice-no-notices-exist' => 'Δεν υπάρχουν σημειώσεις.
+Προσθέστε μια παρακάτω.',
 	'centralnotice-number-uses' => 'Χρήσεις',
 	'centralnotice-edit-template' => 'Επεξεργασία προτύπου',
 	'centralnotice-message' => 'Μήνυμα',
@@ -3072,6 +3076,25 @@ $messages['ms'] = array(
 	'action-centralnotice-admin' => 'mengurus pemberitahuan pusat',
 	'action-centralnotice-translate' => 'menterjemah pemberitahuan pusat',
 	'centralnotice-preferred' => 'Dipilih',
+);
+
+/** Erzya (Эрзянь)
+ * @author Botuzhaleny-sodamo
+ */
+$messages['myv'] = array(
+	'centralnotice-add' => 'Поладомс',
+	'centralnotice-add-template' => 'Поладомс лопа парцун',
+	'centralnotice-template-name' => 'Лопа парцунонь лем',
+	'centralnotice-templates' => 'Лопа парцунт',
+	'centralnotice-weight' => 'Сталмо',
+	'centralnotice-template-body' => 'Лопа парцунонть рунгозо:',
+	'centralnotice-day' => 'Чи',
+	'centralnotice-year' => 'Ие',
+	'centralnotice-month' => 'Ков',
+	'centralnotice-hours' => 'Цяс',
+	'centralnotice-min' => 'Минут',
+	'centralnotice-available-templates' => 'Кедь маласо лопа парцунт',
+	'centralnotice-edit-template' => 'Лопа парцунонть витнеме-петнеме',
 );
 
 /** Low German (Plattdüütsch)
