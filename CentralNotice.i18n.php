@@ -1007,6 +1007,8 @@ $messages['el'] = array(
 	'centralnotice-weights' => 'Βάρη',
 	'centralnotice-notice-is-locked' => 'Η σημείωση είναι κλειδωμένη.
 Δεν θα αφαιρεθεί',
+	'centralnotice-null-string' => 'Αδύνατη η προσθήκη κενού ορμαθού.
+Δεν έχει προστεθεί',
 	'centralnotice-no-notices-exist' => 'Δεν υπάρχουν σημειώσεις.
 Προσθέστε μια παρακάτω.',
 	'centralnotice-number-uses' => 'Χρήσεις',
@@ -2814,6 +2816,8 @@ Si konnt net derbäigesat ginn.",
 Et gouf näischt derbäigsat.",
 	'centralnotice-notice-doesnt-exist' => "D'notiz gëtt et net.
 Et gëtt näischt fir ewechzehuelen.",
+	'centralnotice-template-still-bound' => "D'Schabloun ass nach ëmmer mat enger Notiz verbonn.
+Si kann net ewechegeholl ginn",
 	'centralnotice-template-body' => 'Text vun der Schabloun:',
 	'centralnotice-day' => 'Dag',
 	'centralnotice-year' => 'Joer',
@@ -4331,11 +4335,15 @@ Túto operáciu nebude možné vrátiť.',
 /** Serbian Cyrillic ekavian (ћирилица)
  * @author Millosh
  * @author Јованвб
+ * @author Михајло Анђелковић
  */
 $messages['sr-ec'] = array(
 	'centralnotice-desc' => 'Додаје централну напомену на сајт.',
 	'centralnotice-query' => 'Измени тренутна обавештења',
 	'centralnotice-notice-name' => 'Име обавештења',
+	'centralnotice-end-date' => 'Завршни датум',
+	'centralnotice-enabled' => 'Омогућено',
+	'centralnotice-modify' => 'Пошаљи',
 	'centralnotice-preview' => 'Прикажи',
 	'centralnotice-add-new' => 'Додај нову централну напомену',
 	'centralnotice-remove' => 'Уклони',
@@ -4352,7 +4360,18 @@ $messages['sr-ec'] = array(
 	'centralnotice-english' => 'Енглески',
 	'centralnotice-template-name' => 'Име шаблона',
 	'centralnotice-templates' => 'Шаблони',
+	'centralnotice-weight' => 'Тежина',
+	'centralnotice-locked' => 'Закључано',
 	'centralnotice-notices' => 'Обавештења',
+	'centralnotice-notice-exists' => 'Напомена већ постоји.
+Неће бити додата',
+	'centralnotice-template-exists' => 'Шаблон већ постоји.
+Неће бити додат',
+	'centralnotice-notice-doesnt-exist' => 'Напомена не постоји.
+Нема шта да се обрише',
+	'centralnotice-template-still-bound' => 'Шаблон је још увек придружен напомени.
+Неће бити обрисан.',
+	'centralnotice-template-body' => 'Тело шаблона:',
 	'centralnotice-day' => 'Дан',
 	'centralnotice-year' => 'Година',
 	'centralnotice-month' => 'Месец',
@@ -4360,11 +4379,30 @@ $messages['sr-ec'] = array(
 	'centralnotice-min' => 'Минут',
 	'centralnotice-project-lang' => 'Име пројекта',
 	'centralnotice-project-name' => 'Име пројекта',
+	'centralnotice-start-date' => 'Почетни датум',
+	'centralnotice-start-time' => 'Почетно време (UTC)',
 	'centralnotice-no-templates' => 'Шаблони нису проађен.
 Додај неки!',
+	'centralnotice-available-templates' => 'Расположиви шаблони',
 	'centralnotice-preview-template' => 'Прикажи шаблон',
+	'centralnotice-start-hour' => 'Почетно време',
+	'centralnotice-change-lang' => 'Измени језик транслитерације',
+	'centralnotice-weights' => 'Тежине',
+	'centralnotice-notice-is-locked' => 'Напомена је закључана.
+Није била обрисана',
+	'centralnotice-invalid-date-range' => 'Неисправан опсег података.
+Ажурирање није извршено',
+	'centralnotice-null-string' => 'Није могуће додавање празног стринга.
+Није додат',
+	'centralnotice-confirm-delete' => 'Да ли сте сигурни да желите да обришете ову ставку?
+Ова акција се не може вратити.',
+	'centralnotice-no-notices-exist' => 'Нема напомена.
+Додајте једну испод.',
+	'centralnotice-number-uses' => 'Коришћење',
 	'centralnotice-edit-template' => 'Измени шаблон',
 	'centralnotice-message' => 'Порука',
+	'centralnotice-message-not-set' => 'Порука није подешена',
+	'centralnotice-clone' => 'Клонирај',
 );
 
 /** Seeltersk (Seeltersk)
