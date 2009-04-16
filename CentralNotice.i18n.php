@@ -2783,23 +2783,25 @@ $messages['kw'] = array(
  * @author Robby
  */
 $messages['lb'] = array(
-	'centralnotice' => 'Administratioun vun der zenraler Notiz',
-	'noticetemplate' => 'Schabloun vun der zentraler Notiz',
-	'centralnotice-desc' => "Setzt eng zentral 'Sitenotice' derbäi",
-	'centralnotice-query' => 'Déi aktuell Notizen änneren',
-	'centralnotice-notice-name' => 'Numm vun der Notiz',
+	'centralnotice' => 'Administratioun vun den zenrale Matdeelungen',
+	'noticetemplate' => 'Schabloun vun den zentrale Matdeelungen',
+	'centralnotice-desc' => 'Setzt eng zentral Matdeelung iwwert de Site derbäi',
+	'centralnotice-summary' => "Dës Erweiderung erlaabt et Är aktuell Parameter vun den zentrale Matdeelungen z'änneren.
+Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen.",
+	'centralnotice-query' => 'Déi aktuell Matdeelungen änneren',
+	'centralnotice-notice-name' => 'Numm vun der Matdeelung',
 	'centralnotice-end-date' => 'Schlussdatum',
 	'centralnotice-enabled' => 'Aktivéiert',
 	'centralnotice-modify' => 'Späicheren',
 	'centralnotice-preview' => 'Weisen ouni ze späicheren',
-	'centralnotice-add-new' => 'Eng nei zentral Notiz derbäisetzen',
+	'centralnotice-add-new' => 'Eng nei zentral Matdeelung derbäisetzen',
 	'centralnotice-remove' => 'Ewechhuelen',
 	'centralnotice-translate-heading' => 'Iwwersetzung vu(n) $1',
-	'centralnotice-manage' => 'Zentralnotiz geréieren',
+	'centralnotice-manage' => 'Zentralmatdeelunge geréieren',
 	'centralnotice-add' => 'Derbäisetzen',
-	'centralnotice-add-notice' => 'Eng Notiz derbäisetzen',
+	'centralnotice-add-notice' => 'Eng Matdeelung derbäisetzen',
 	'centralnotice-add-template' => 'Eng Schabloun derbäisetzen',
-	'centralnotice-show-notices' => 'Notize weisen',
+	'centralnotice-show-notices' => 'Matdeelunge weisen',
 	'centralnotice-list-templates' => 'Lëscht vun de Schablounen',
 	'centralnotice-translations' => 'Iwwersetzungen',
 	'centralnotice-translate-to' => 'Iwwersetzen op',
@@ -2809,12 +2811,12 @@ $messages['lb'] = array(
 	'centralnotice-templates' => 'Schablounen',
 	'centralnotice-weight' => 'Gewiicht',
 	'centralnotice-locked' => 'Gespaart',
-	'centralnotice-notices' => 'Notizen',
-	'centralnotice-notice-exists' => "D'Notiz gëtt et schonn.
+	'centralnotice-notices' => 'Matdeelungen',
+	'centralnotice-notice-exists' => "D'Matdeelung gëtt et schonn.
 Si konnt net derbäigesat ginn.",
 	'centralnotice-template-exists' => "D'Schabloun gëtt et schonn.
 Et gouf näischt derbäigsat.",
-	'centralnotice-notice-doesnt-exist' => "D'notiz gëtt et net.
+	'centralnotice-notice-doesnt-exist' => "D'Matdeelung gëtt et net.
 Et gëtt näischt fir ewechzehuelen.",
 	'centralnotice-template-still-bound' => "D'Schabloun ass nach ëmmer mat enger Notiz verbonn.
 Si kann net ewechegeholl ginn",
@@ -2837,7 +2839,7 @@ Net derbäisetzen",
 	'centralnotice-start-hour' => 'Ufankszäit',
 	'centralnotice-change-lang' => 'Sprooch vun der Iwwersetzung änneren',
 	'centralnotice-weights' => 'Gewiicht',
-	'centralnotice-notice-is-locked' => "D'Notiz ass gespaart.
+	'centralnotice-notice-is-locked' => "D'Matdeelung ass gespaart.
 Se kann net ewechgeholl ginn.",
 	'centralnotice-invalid-date-range' => 'Ongëltegen Zäitraum.
 Gëtt net aktualiséiert.',
@@ -2845,7 +2847,7 @@ Gëtt net aktualiséiert.',
 Näischt derbäigesat',
 	'centralnotice-confirm-delete' => 'Sidd Dir sécher datt Dir dës Säit läsche wëllt?
 Dës Aktioun kann net réckgängeg gemaach ginn.',
-	'centralnotice-no-notices-exist' => 'Et gëtt keng Notiz.
+	'centralnotice-no-notices-exist' => 'Et gëtt keng Matdeelung.
 Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-no-templates-translate' => "Et gëtt keng Schablounen fir déi Iwwersetzungen z'ännere sinn",
 	'centralnotice-number-uses' => 'gëtt benotzt',
@@ -2855,10 +2857,10 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-clone' => 'Eng Kopie maachen',
 	'centralnotice-clone-notice' => 'Eng Kopie vun der Schabloun maachen',
 	'centralnotice-preview-all-template-translations' => 'All disponibel Iwwersetzunge vun der Schabloun weisen ouni ofzespäicheren',
-	'right-centralnotice-admin' => 'Zentralnotize geréieren',
-	'right-centralnotice-translate' => 'Zentral Notizen iwwersetzen',
-	'action-centralnotice-admin' => 'Zentralnotize geréieren',
-	'action-centralnotice-translate' => 'Zentral Notiz iwwersetzen',
+	'right-centralnotice-admin' => 'Zentralmatdeelunge geréieren',
+	'right-centralnotice-translate' => 'Zentralmatdeelungen iwwersetzen',
+	'action-centralnotice-admin' => 'Zentralmatdeelungen ze geréieren',
+	'action-centralnotice-translate' => "Zentralmatdeelungen z'iwwersetzen",
 	'centralnotice-preferred' => 'Am léiwsten',
 );
 
@@ -3195,8 +3197,11 @@ Kannst ünnen een tofögen',
  * @author Servien
  */
 $messages['nds-nl'] = array(
+	'centralnotice-translate-heading' => 'Vertaling veur $1',
 	'centralnotice-add' => 'Toevoegen',
 	'centralnotice-add-template' => 'Mal toevoegen',
+	'centralnotice-translations' => 'Vertalingen',
+	'centralnotice-change-lang' => 'Taal dee-j vertalen willen wiezigen',
 );
 
 /** Dutch (Nederlands)
