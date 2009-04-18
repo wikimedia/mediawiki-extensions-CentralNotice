@@ -78,7 +78,7 @@ Not adding',
 	'centralnotice-confirm-delete' => 'Are you sure you want to delete this item?
 This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No notices exist.
-Add one below',
+Add one below.',
 	'centralnotice-no-templates-translate' => 'There are not any templates to edit translations for',
 	'centralnotice-number-uses' => 'Uses',
 	'centralnotice-edit-template' => 'Edit template',
