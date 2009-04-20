@@ -2665,6 +2665,8 @@ $messages['ko'] = array(
 	'centralnotice-change-lang' => '번역할 언어 변경',
 	'centralnotice-notice-is-locked' => '공지가 잠겼습니다.
 제거하지 않았습니다.',
+	'centralnotice-confirm-delete' => '정말 이 항목을 삭제하시겠습니까?
+한 번 삭제하면 복구할 수 없습니다.',
 	'centralnotice-no-notices-exist' => '공지가 존재하지 않습니다.
 아래에 하나를 추가하세요',
 	'centralnotice-edit-template' => '틀 편집하기',
@@ -2832,6 +2834,8 @@ Si kann net ewechegeholl ginn",
 	'centralnotice-start-time' => 'Ufankszäit (UTC)',
 	'centralnotice-assigned-templates' => 'Zougewise Schablounen',
 	'centralnotice-no-templates' => 'Et gëtt keng Schablounen am System',
+	'centralnotice-no-templates-assigned' => 'Keng Schabloune matt der Meldung verbonn.
+Setzt der derbäi!',
 	'centralnotice-available-templates' => 'Disponibel Schablounen',
 	'centralnotice-template-already-exists' => "D'Schabloun ass schonn enger Campagne zougedeelt.
 Net derbäisetzen",
@@ -2841,6 +2845,8 @@ Net derbäisetzen",
 	'centralnotice-weights' => 'Gewiicht',
 	'centralnotice-notice-is-locked' => "D'Matdeelung ass gespaart.
 Se kann net ewechgeholl ginn.",
+	'centralnotice-overlap' => "D'Meldung iwwerschneid sech mat der Zäit vun enger anerer Meldung.
+Net derbäigesat.",
 	'centralnotice-invalid-date-range' => 'Ongëltegen Zäitraum.
 Gëtt net aktualiséiert.',
 	'centralnotice-null-string' => 'Et ass net méiglech näischt derbäizesetzen.
