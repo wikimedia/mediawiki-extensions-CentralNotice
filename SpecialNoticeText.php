@@ -49,7 +49,7 @@ class SpecialNoticeText extends NoticePage {
 			array( $this, 'getHtmlNotice' ),
 			$templateNames );
 
-        if ( preg_grep( "/&lt;centralnotice-template-\w*&gt;\z/", $templateTexts ) ) {
+        if ( preg_grep( "/&lt;centralnotice-template-\w{1,}&gt;\z/", $templateTexts ) ) {
            return false; // Bailing out if we have a failed cache lookup
         }
 
