@@ -48,6 +48,11 @@ class SpecialNoticeText extends NoticePage {
 		$templateTexts = array_map(
 			array( $this, 'getHtmlNotice' ),
 			$templateNames );
+
+        if ( preg_grep( "/&lt;centralnotice-template-\w*&gt;\z/", $templateTexts ) ) {
+           return false; // Bailing out if we have a failed cache lookup
+        }
+
 		$weights = array_values( $templates );
 		
 		return
