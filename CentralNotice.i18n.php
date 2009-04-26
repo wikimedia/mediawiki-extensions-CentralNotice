@@ -656,6 +656,7 @@ Dodaj jednu ispod',
  */
 $messages['ca'] = array(
 	'centralnotice-end-date' => 'Data final',
+	'centralnotice-modify' => 'Tramet',
 	'centralnotice-english' => 'Anglès',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Any',
