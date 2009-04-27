@@ -92,6 +92,7 @@ $wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 $wgExtensionCredits['other'][] = array(
+	'path'           => __FILE__,
 	'name'           => 'CentralNotice',
 	'author'         => 'Brion Vibber',
 	'url'            => 'http://www.mediawiki.org/wiki/Extension:CentralNotice',
