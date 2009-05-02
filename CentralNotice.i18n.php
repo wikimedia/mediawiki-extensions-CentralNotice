@@ -2617,6 +2617,7 @@ $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
 	'noticetemplate' => '중앙 공지 틀',
 	'centralnotice-desc' => '중앙에서 공지하는 사이트노티스를 추가',
+	'centralnotice-query' => '현재 공지 수정하기',
 	'centralnotice-notice-name' => '공지 이름',
 	'centralnotice-end-date' => '종료 날짜',
 	'centralnotice-enabled' => '활성화됨',
