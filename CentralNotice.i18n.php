@@ -1010,14 +1010,18 @@ $messages['el'] = array(
 Δεν θα αφαιρεθεί',
 	'centralnotice-null-string' => 'Αδύνατη η προσθήκη κενού ορμαθού.
 Δεν έχει προστεθεί',
+	'centralnotice-confirm-delete' => 'Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το αντικείμενο;
+Αυτή η ενέργεια θα είναι μη αναστρέψιμη.',
 	'centralnotice-no-notices-exist' => 'Δεν υπάρχουν σημειώσεις.
 Προσθέστε μια παρακάτω.',
+	'centralnotice-no-templates-translate' => 'Δεν υπάρχουν πολλά πρότυπα για να γίνει επεξεργασία των μεταφράσεων',
 	'centralnotice-number-uses' => 'Χρήσεις',
 	'centralnotice-edit-template' => 'Επεξεργασία προτύπου',
 	'centralnotice-message' => 'Μήνυμα',
 	'centralnotice-message-not-set' => 'Μη ρυθμισμένο μήνυμα',
 	'centralnotice-clone' => 'Κλώνος',
 	'centralnotice-clone-notice' => 'Δημιουργία ενός αντίγραφου του προτύπου',
+	'centralnotice-preview-all-template-translations' => 'Προεπισκόπηση όλων των διαθέσιμων μεταφράσεων του προτύπου',
 	'right-centralnotice-admin' => 'Διαχείριση κεντρικών ειδοποιήσεων',
 	'right-centralnotice-translate' => 'Μετάφραση κεντρικών ειδοποιήσεων',
 	'action-centralnotice-admin' => 'διαχείριση κεντρικών ειδοποιήσεων',
