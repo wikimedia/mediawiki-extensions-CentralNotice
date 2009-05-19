@@ -653,10 +653,12 @@ Dodaj jednu ispod',
  * @author Aleator
  * @author Loupeter
  * @author SMP
+ * @author Solde
  */
 $messages['ca'] = array(
 	'centralnotice-end-date' => 'Data final',
 	'centralnotice-modify' => 'Tramet',
+	'centralnotice-remove' => 'Elimina',
 	'centralnotice-english' => 'Anglès',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Any',
@@ -958,6 +960,8 @@ $messages['el'] = array(
 	'centralnotice' => 'Διαχειριστής κεντρικών ειδοποιήσεων',
 	'noticetemplate' => 'Πρότυπο κεντρικής ανακοίνωσης',
 	'centralnotice-desc' => 'Προσθέτει μια κεντρική ανακοίνωση',
+	'centralnotice-summary' => 'Αυτή η φόρμουλα σου επιτρέπει να επεξεργαστείς τις τωρινές ρυθμίσεις των κεντρικών σημειώσεών σου.
+Μπορεί επίσης να χρησιμοποιηθεί για να προσθέσει ή να αφαιρέσει παλιές σημειώσεις.',
 	'centralnotice-query' => 'Τροποποίηση τρεχουσών ειδοποιήσεων',
 	'centralnotice-notice-name' => 'Όνομα σημείωσης',
 	'centralnotice-end-date' => 'Ημερομηνία λήξης',
@@ -988,6 +992,8 @@ $messages['el'] = array(
 Δεν προστέθηκε',
 	'centralnotice-notice-doesnt-exist' => 'Η σημείωση δεν υπάρχει.
 Τίποτα να αφαιρεθεί',
+	'centralnotice-template-still-bound' => 'Το πρότυπο είναι ακόμη συνδεδεμένο με ένα σημείωμα.
+Δεν έχει αφαιρεθεί.',
 	'centralnotice-template-body' => 'Δομή προτύπου:',
 	'centralnotice-day' => 'Ημέρα',
 	'centralnotice-year' => 'Χρόνος',
@@ -1001,13 +1007,21 @@ $messages['el'] = array(
 	'centralnotice-assigned-templates' => 'Απονομημένα πρότυπα',
 	'centralnotice-no-templates' => 'Δεν βρέθηκαν πρότυπα.
 Προσθέστε μερικά!',
+	'centralnotice-no-templates-assigned' => 'Κανένα πρότυπο δεν έχει ανατεθεί σε σημείωση.
+Προσθέστε κάποια!',
 	'centralnotice-available-templates' => 'Διαθέσιμα πρότυπα',
+	'centralnotice-template-already-exists' => 'Το πρότυπο είναι ακόμη συνδεδεμένο με μία καμπάνια. 
+Δεν έχει προστεθεί',
 	'centralnotice-preview-template' => 'Πρότυπο προεπισκόπησης',
 	'centralnotice-start-hour' => 'Χρόνος εκκίνησης',
 	'centralnotice-change-lang' => 'Αλλαγή της γλώσσας μετάφρασης',
 	'centralnotice-weights' => 'Βάρη',
 	'centralnotice-notice-is-locked' => 'Η σημείωση είναι κλειδωμένη.
 Δεν θα αφαιρεθεί',
+	'centralnotice-overlap' => 'Το σημείωμα επικαλύπτεται με τον χρόνο ενός άλλου σημειώματος. 
+Δεν έχει προστεθεί',
+	'centralnotice-invalid-date-range' => 'Άκυρο εύρος ημερομηνιών.
+Δεν είναι ενημερωμένο',
 	'centralnotice-null-string' => 'Αδύνατη η προσθήκη κενού ορμαθού.
 Δεν έχει προστεθεί',
 	'centralnotice-confirm-delete' => 'Είστε σίγουρος ότι θέλετε να διαγράψετε αυτό το αντικείμενο;
