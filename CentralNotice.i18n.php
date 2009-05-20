@@ -2989,6 +2989,68 @@ De kins dr hiejónger 'ne toevoge",
 	'centralnotice-preferred' => 'Veurkäör',
 );
 
+/** Malagasy (Malagasy)
+ * @author Jagwar
+ */
+$messages['mg'] = array(
+	'centralnotice' => "Fandrindàn'ny toerana fampandrenesana",
+	'noticetemplate' => "Endrin'ny toerana fampandrenesana",
+	'centralnotice-desc' => "Manampy toerana fampandrenesana amin'ilay tranonkala",
+	'centralnotice-end-date' => 'Daty fijanonana',
+	'centralnotice-enabled' => 'Mande',
+	'centralnotice-modify' => 'Alefaso',
+	'centralnotice-preview' => 'Asehoy aloha',
+	'centralnotice-remove' => 'Esorina',
+	'centralnotice-translate-heading' => 'Dika ny fampandrenesana « $1 »',
+	'centralnotice-manage' => 'Hikojakoja ny toerana fampandrenesana',
+	'centralnotice-add' => 'Hanampy',
+	'centralnotice-add-notice' => 'Hanampy hafatra',
+	'centralnotice-add-template' => 'Hanampy endrika',
+	'centralnotice-show-notices' => 'Ampiseho ny hafatra',
+	'centralnotice-list-templates' => 'Ataovy lisitra ny endrika',
+	'centralnotice-translations' => 'Dikan-teny',
+	'centralnotice-translate-to' => "Dikao amin'ny",
+	'centralnotice-translate' => 'Dikao',
+	'centralnotice-english' => 'Anglisy',
+	'centralnotice-template-name' => "Anaran'ilay endrika",
+	'centralnotice-templates' => 'Endrika',
+	'centralnotice-weight' => 'Lanja',
+	'centralnotice-locked' => 'Voaaro/voasakana',
+	'centralnotice-notices' => 'Fampandrenesana/Hafatra',
+	'centralnotice-notice-exists' => 'Efa misy io hafatra fampandrenesana io.
+Tsy nampiana ilay izy',
+	'centralnotice-day' => 'Andro',
+	'centralnotice-year' => 'Taona',
+	'centralnotice-month' => 'Volana',
+	'centralnotice-hours' => 'Ora',
+	'centralnotice-min' => 'Minìtra',
+	'centralnotice-project-lang' => "Fiteny ampiasain'ilay tetikasa",
+	'centralnotice-project-name' => "anaran'ilay tetikasa",
+	'centralnotice-start-date' => 'Daty fanombohany',
+	'centralnotice-start-time' => 'Ora fanombohany (UTC)',
+	'centralnotice-assigned-templates' => 'Endrika ampiasainy',
+	'centralnotice-no-templates' => 'Tsy nisy endrika hita.
+Ampio!',
+	'centralnotice-no-templates-assigned' => "Tsy misy endrika ampiasaina hoan'ilay hafatra.
+Ampio!",
+	'centralnotice-available-templates' => 'Endrika afaka ampiasaina',
+	'centralnotice-preview-template' => 'Asehoy aloha io endrika',
+	'centralnotice-start-hour' => 'Ora fanombohany',
+	'centralnotice-change-lang' => "Ampio ny fiteny miasa amin'ny fandikàna-teny",
+	'centralnotice-weights' => 'Lanja',
+	'centralnotice-notice-is-locked' => 'Voaaro ilay hafatra.
+Tsy nifafàna ilay izy',
+	'centralnotice-number-uses' => 'Fampiasàna',
+	'centralnotice-edit-template' => 'Ovay ny endrika',
+	'centralnotice-message' => 'Hafatra',
+	'centralnotice-clone' => 'Avereno dikao',
+	'centralnotice-clone-notice' => "Angala-tahaka n'ilay endrika",
+	'right-centralnotice-translate' => 'dikao teny ny hafatra',
+	'action-centralnotice-admin' => "mikojakoja n'io hafatra io",
+	'action-centralnotice-translate' => 'dikao teny ny fampandrenesana',
+	'centralnotice-preferred' => 'Ny tiako/ny tianao/Ny tiny',
+);
+
 /** Macedonian (Македонски)
  * @author Brest
  */
