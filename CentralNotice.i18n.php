@@ -2635,6 +2635,8 @@ $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
 	'noticetemplate' => '중앙 공지 틀',
 	'centralnotice-desc' => '중앙에서 공지하는 사이트노티스를 추가',
+	'centralnotice-summary' => '이 모듈은 사용자께서 지금 중앙 공지의 설정을 편집하실 수 있도록 합니다.
+또한 오래된 공지를 삭제하거나 새로운 공지를 추가하실 수 있습니다.',
 	'centralnotice-query' => '현재 공지 수정하기',
 	'centralnotice-notice-name' => '공지 이름',
 	'centralnotice-end-date' => '종료 날짜',
@@ -2656,10 +2658,15 @@ $messages['ko'] = array(
 	'centralnotice-english' => '영어',
 	'centralnotice-template-name' => '틀 이름',
 	'centralnotice-templates' => '틀',
+	'centralnotice-weight' => '중요',
 	'centralnotice-locked' => '잠김',
 	'centralnotice-notices' => '공지',
+	'centralnotice-notice-exists' => '공지가 이미 있습니다.
+추가하지 마세요.',
 	'centralnotice-template-exists' => '틀이 이미 존재합니다.
 추가하지 않았습니다.',
+	'centralnotice-notice-doesnt-exist' => '공지가 없습니다.
+삭제할 것이 없습니다.',
 	'centralnotice-template-still-bound' => '공지에 틀이 여전히 연결되어 있습니다.
 삭제하지 마세요.',
 	'centralnotice-template-body' => '틀 본문:',
@@ -2683,21 +2690,32 @@ $messages['ko'] = array(
 	'centralnotice-preview-template' => '틀 미리 보기',
 	'centralnotice-start-hour' => '시작 시간',
 	'centralnotice-change-lang' => '번역할 언어 변경',
+	'centralnotice-weights' => '중요',
 	'centralnotice-notice-is-locked' => '공지가 잠겼습니다.
 제거하지 않았습니다.',
+	'centralnotice-overlap' => '공지가 다른 공지의 게시 기간과 겹칩니다.
+추가하지 마세요.',
+	'centralnotice-invalid-date-range' => '무효 날짜 범위
+업데이트 안됨',
+	'centralnotice-null-string' => '무효 문자열을 추가할 수 없습니다.
+추가하지 마세요.',
 	'centralnotice-confirm-delete' => '정말 이 항목을 삭제하시겠습니까?
 한 번 삭제하면 복구할 수 없습니다.',
 	'centralnotice-no-notices-exist' => '공지가 존재하지 않습니다.
 아래에 하나를 추가하세요',
+	'centralnotice-no-templates-translate' => '번역할 틀이 없습니다.',
+	'centralnotice-number-uses' => '사용',
 	'centralnotice-edit-template' => '틀 편집하기',
 	'centralnotice-message' => '메시지',
 	'centralnotice-message-not-set' => '메시지가 정의되지 않았습니다.',
 	'centralnotice-clone' => '사본',
 	'centralnotice-clone-notice' => '이 틀의 사본을 만들기',
+	'centralnotice-preview-all-template-translations' => '틀의 모든 가능한 번역 미리보기',
 	'right-centralnotice-admin' => '중앙 공지 관리',
 	'right-centralnotice-translate' => '중앙 공지 번역',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 	'action-centralnotice-translate' => '중앙 공지를 번역할',
+	'centralnotice-preferred' => '우선',
 );
 
 /** Ripoarisch (Ripoarisch)
