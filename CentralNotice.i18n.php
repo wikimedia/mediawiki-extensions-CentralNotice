@@ -3190,6 +3190,16 @@ $messages['ms'] = array(
 	'centralnotice-preferred' => 'Dipilih',
 );
 
+/** Maltese (Malti)
+ * @author Chrisportelli
+ */
+$messages['mt'] = array(
+	'centralnotice-add-template' => 'Żid mudell',
+	'centralnotice-template-name' => 'Isem tal-mudell',
+	'centralnotice-number-uses' => 'Użi',
+	'centralnotice-message' => 'Messaġġ',
+);
+
 /** Erzya (Эрзянь)
  * @author Botuzhaleny-sodamo
  */
