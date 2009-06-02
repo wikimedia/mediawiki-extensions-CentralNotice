@@ -210,10 +210,7 @@ function pickTemplate(templates, weights) {
 	private function projectName() {
 		global $wgConf, $IP;
 
-		// This is a damn dirty hack
-		if ( file_exists( "$IP/InitialiseSettings.php" ) ) {
-			require_once "$IP/InitialiseSettings.php";
-		}
+		$wgConf->loadFullData();
 
 		// Special cases for commons and meta who have no lang
 		if ( $this->project == 'commons' )
