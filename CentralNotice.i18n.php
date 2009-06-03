@@ -2415,7 +2415,7 @@ Non aggiorno',
  * @author JtFuruhata
  */
 $messages['ja'] = array(
-	'centralnotice' => '中央管理通知管理者',
+	'centralnotice' => '中央管理通知の管理',
 	'noticetemplate' => '中央管理通知テンプレート',
 	'centralnotice-desc' => '中央管理のサイト通知を追加する',
 	'centralnotice-summary' => 'このモジュールにより現在設定されている中央管理通知を編集することができます。通知の追加や除去も行えます。',
