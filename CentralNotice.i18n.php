@@ -4375,6 +4375,13 @@ Nun junciutu',
 	'centralnotice-preferred' => 'Prifiriti',
 );
 
+/** Serbo-Croatian (Srpskohrvatski / Српскохрватски)
+ * @author OC Ripper
+ */
+$messages['sh'] = array(
+	'centralnotice-modify' => 'Unesi',
+);
+
 /** Slovak (Slovenčina)
  * @author Helix84
  */
