@@ -1531,6 +1531,7 @@ Lisää alapuolella sellainen',
  * @author Meithal
  * @author PieRRoMaN
  * @author Sherbrooke
+ * @author Urhixidur
  * @author Verdy p
  */
 $messages['fr'] = array(
@@ -1601,7 +1602,7 @@ Il n’a pas été ajouté.',
 Il n’a pas été mis à jour.',
 	'centralnotice-null-string' => 'Impossible d’ajouter un avis vide.
 Il n’a pas été ajouté.',
-	'centralnotice-confirm-delete' => 'Êtes-vous sûr de vouloir supprimer cet élément ?
+	'centralnotice-confirm-delete' => 'Êtes-vous sûr{{GENDER:||e|}} de vouloir supprimer cet élément ?
 Cette action ne pourra pas être récupérée.',
 	'centralnotice-no-notices-exist' => 'Aucun avis n’existe.
 Ajoutez-en ci-dessous.',
@@ -3679,6 +3680,20 @@ $messages['os'] = array(
 	'centralnotice-year' => 'Аз',
 	'centralnotice-project-lang' => 'Проекты æвзаг',
 	'centralnotice-project-name' => 'Проекты ном',
+);
+
+/** Deitsch (Deitsch)
+ * @author Xqt
+ */
+$messages['pdc'] = array(
+	'centralnotice-translations' => 'Iwwersetzunge',
+	'centralnotice-translate-to' => 'Iwwersetze in',
+	'centralnotice-translate' => 'Iwwersetze',
+	'centralnotice-english' => 'Englisch',
+	'centralnotice-day' => 'Daag',
+	'centralnotice-year' => 'Yaahr',
+	'centralnotice-month' => 'Munet',
+	'centralnotice-hours' => 'Schtund',
 );
 
 /** Polish (Polski)
