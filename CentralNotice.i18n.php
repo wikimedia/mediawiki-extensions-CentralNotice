@@ -2298,9 +2298,93 @@ Adde un infra',
 
 /** Indonesian (Bahasa Indonesia)
  * @author IvanLanin
+ * @author Rex
  */
 $messages['id'] = array(
-	'centralnotice-desc' => 'Menambahkan pengumuman situs terpusat',
+	'centralnotice' => 'Administrasi pengumuman sentral',
+	'noticetemplate' => 'Templat pengumuman sentral',
+	'centralnotice-desc' => 'Menambahkan suatu pengumuman sentral',
+	'centralnotice-summary' => 'Dengan modul ini, Anda dapat menyunting pengaturan pengumuman sentral saat ini.
+Modul ini juga dapat digunakan untuk menambahkan atau menghapus pengumuman lama.',
+	'centralnotice-query' => 'Ubah pengumuman saat ini',
+	'centralnotice-notice-name' => 'Judul pengumuman',
+	'centralnotice-end-date' => 'Tanggal akhir',
+	'centralnotice-enabled' => 'Aktif',
+	'centralnotice-modify' => 'Kirim',
+	'centralnotice-preview' => 'Pratayang',
+	'centralnotice-add-new' => 'Buat pengumuman sentral baru',
+	'centralnotice-remove' => 'Hapus',
+	'centralnotice-translate-heading' => 'Terjemahan untuk $1',
+	'centralnotice-manage' => 'Pengaturan pengumuman sentral',
+	'centralnotice-add' => 'Tambah',
+	'centralnotice-add-notice' => 'Tambah pengumuman',
+	'centralnotice-add-template' => 'Tambah templat',
+	'centralnotice-show-notices' => 'Tampilkan pengumuman',
+	'centralnotice-list-templates' => 'Daftar templat',
+	'centralnotice-translations' => 'Terjemahan',
+	'centralnotice-translate-to' => 'Terjemahkan ke',
+	'centralnotice-translate' => 'Terjemahkan',
+	'centralnotice-english' => 'Bahasa Inggris',
+	'centralnotice-template-name' => 'Nama templat',
+	'centralnotice-templates' => 'Templat',
+	'centralnotice-weight' => 'Bobot',
+	'centralnotice-locked' => 'Terkunci',
+	'centralnotice-notices' => 'Pengumuman',
+	'centralnotice-notice-exists' => 'Pengumuman sudah ada.
+Batal menambahkan',
+	'centralnotice-template-exists' => 'Templat sudah ada.
+Batal menambahkan',
+	'centralnotice-notice-doesnt-exist' => 'Pengumuman tidak ditemukan.
+Batal menghapus',
+	'centralnotice-template-still-bound' => 'Templat masih digunakan dalam suatu pengumuman.
+Batal menghapus',
+	'centralnotice-template-body' => 'Isi templat:',
+	'centralnotice-day' => 'Hari',
+	'centralnotice-year' => 'Tahun',
+	'centralnotice-month' => 'Bulan',
+	'centralnotice-hours' => 'Jam',
+	'centralnotice-min' => 'Menit',
+	'centralnotice-project-lang' => 'Bahasa proyek',
+	'centralnotice-project-name' => 'Nama proyek',
+	'centralnotice-start-date' => 'Tanggal mulai',
+	'centralnotice-start-time' => 'Waktu mulai (UTC)',
+	'centralnotice-assigned-templates' => 'Tempat yang digunakan',
+	'centralnotice-no-templates' => 'Tidak ada templat yang ditemukan.
+Tambahkan!',
+	'centralnotice-no-templates-assigned' => 'Tidak ada templat yang digunakan dalam pengumuman.
+Tambahkan!',
+	'centralnotice-available-templates' => 'Templat yang tersedia',
+	'centralnotice-template-already-exists' => 'Templat sudah digunakan dalam kampanye.
+Batal menambahkan',
+	'centralnotice-preview-template' => 'Lihat pratayang templat',
+	'centralnotice-start-hour' => 'Waktu mulai',
+	'centralnotice-change-lang' => 'Ubah bahasa terjemahan',
+	'centralnotice-weights' => 'Bobot',
+	'centralnotice-notice-is-locked' => 'Pengumuman terkunci.
+Batal menghapus',
+	'centralnotice-overlap' => 'Pengumuman bertumpang tindih dengan waktu pengumuman lainnya.
+Batal menambahkan',
+	'centralnotice-invalid-date-range' => 'Jangka waktu tidak valid.
+Batal memperbarui',
+	'centralnotice-null-string' => 'Tidak dapat menambahkan string kosong.
+Batal menambahkan',
+	'centralnotice-confirm-delete' => 'Apakah Anda yakin untuk menghapus?
+Tindakan ini tidak dapat dibatalkan.',
+	'centralnotice-no-notices-exist' => 'Tidak ada pengumuman ditemukan.
+Tambahkan di bawah ini.',
+	'centralnotice-no-templates-translate' => 'Tidak ada templat yang dapat diterjemahkan',
+	'centralnotice-number-uses' => 'Menggunakan',
+	'centralnotice-edit-template' => 'Sunting templat',
+	'centralnotice-message' => 'Pesan',
+	'centralnotice-message-not-set' => 'Pengaturan pesan tidak dilakukan',
+	'centralnotice-clone' => 'Duplikat',
+	'centralnotice-clone-notice' => 'Buat duplikat templat ini',
+	'centralnotice-preview-all-template-translations' => 'Lihat pratayang semua terjemahan templat yang tersedia',
+	'right-centralnotice-admin' => 'Mengatur pengumuman sentral',
+	'right-centralnotice-translate' => 'Menerjemahkan pengumuman sentral',
+	'action-centralnotice-admin' => 'mengatur pengumuman sentral',
+	'action-centralnotice-translate' => 'menerjemahkan pengumuman sentral',
+	'centralnotice-preferred' => 'Preferensi',
 );
 
 /** Ido (Ido)
@@ -3015,6 +3099,8 @@ $messages['mg'] = array(
 	'centralnotice' => "Fandrindàn'ny toerana fampandrenesana",
 	'noticetemplate' => "Endrin'ny toerana fampandrenesana",
 	'centralnotice-desc' => "Manampy toerana fampandrenesana amin'ilay tranonkala",
+	'centralnotice-query' => 'Ovay ny fampandrenesana misy ankehitriny',
+	'centralnotice-notice-name' => "Anaran'ilay fampandrenesana",
 	'centralnotice-end-date' => 'Daty fijanonana',
 	'centralnotice-enabled' => 'Mande',
 	'centralnotice-modify' => 'Alefaso',
