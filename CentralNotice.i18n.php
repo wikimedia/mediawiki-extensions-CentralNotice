@@ -2297,6 +2297,7 @@ Adde un infra',
 );
 
 /** Indonesian (Bahasa Indonesia)
+ * @author Bennylin
  * @author IvanLanin
  * @author Rex
  */
@@ -2316,7 +2317,7 @@ Modul ini juga dapat digunakan untuk menambahkan atau menghapus pengumuman lama.
 	'centralnotice-remove' => 'Hapus',
 	'centralnotice-translate-heading' => 'Terjemahan untuk $1',
 	'centralnotice-manage' => 'Pengaturan pengumuman sentral',
-	'centralnotice-add' => 'Tambah',
+	'centralnotice-add' => 'Tambahkan',
 	'centralnotice-add-notice' => 'Tambah pengumuman',
 	'centralnotice-add-template' => 'Tambah templat',
 	'centralnotice-show-notices' => 'Tampilkan pengumuman',
