@@ -97,6 +97,7 @@ Add one below.',
 );
 
 /** Message documentation (Message documentation)
+ * @author Bennylin
  * @author Darth Kule
  * @author Fryed-peach
  * @author Jon Harald Søby
@@ -121,6 +122,7 @@ $messages['qqq'] = array(
 	'centralnotice-start-time' => 'Used in Special:CentralNotice',
 	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
 	'centralnotice-notice-is-locked' => 'Errore message displayed in Special:CentralNotice when trying to delete a locked notice',
+	'centralnotice-invalid-date-range' => '{{Identical/Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
 	'centralnotice-message' => '{{Identical|Message}}',
 	'right-centralnotice-admin' => '{{doc-right}}',
@@ -2310,7 +2312,7 @@ Modul ini juga dapat digunakan untuk menambahkan atau menghapus pengumuman lama.
 	'centralnotice-query' => 'Ubah pengumuman saat ini',
 	'centralnotice-notice-name' => 'Judul pengumuman',
 	'centralnotice-end-date' => 'Tanggal akhir',
-	'centralnotice-enabled' => 'Aktif',
+	'centralnotice-enabled' => 'Diaktifkan',
 	'centralnotice-modify' => 'Kirim',
 	'centralnotice-preview' => 'Pratayang',
 	'centralnotice-add-new' => 'Buat pengumuman sentral baru',
