@@ -4171,6 +4171,7 @@ Kay qatiqpi hukta yapay',
 );
 
 /** Romanian (Română)
+ * @author Firilacroco
  * @author KlaudiuMihaila
  * @author Mihai
  */
@@ -4206,8 +4207,8 @@ $messages['ro'] = array(
 	'centralnotice-message' => 'Mesaj',
 	'centralnotice-clone-notice' => 'Creează o copie a formatului',
 	'right-centralnotice-translate' => 'Traduce anunţurile centrale',
-	'action-centralnotice-admin' => 'administrezi anunţurile centrale',
-	'action-centralnotice-translate' => 'traduci anunţurile centrale',
+	'action-centralnotice-admin' => 'administraţi anunţurile centrale',
+	'action-centralnotice-translate' => 'traduceţi anunţurile centrale',
 );
 
 /** Tarandíne (Tarandíne)
