@@ -1137,6 +1137,7 @@ Afiŝu noticon suben',
 
 /** Spanish (Español)
  * @author Imre
+ * @author Locos epraix
  * @author Muro de Aguas
  * @author Remember the dot
  * @author Sanbec
@@ -1144,7 +1145,7 @@ Afiŝu noticon suben',
 $messages['es'] = array(
 	'centralnotice' => 'Administración del aviso central',
 	'noticetemplate' => 'Plantilla del aviso central',
-	'centralnotice-desc' => 'Añade un mensaje central común a todos los proyectos.',
+	'centralnotice-desc' => 'Añade un mensaje central',
 	'centralnotice-summary' => 'Este módulo te permite editar los parámetros actuales de los avisos centrales.
 También puede usarse para añadir o borrar avisos antiguos.',
 	'centralnotice-query' => 'Modificar avisos actuales',
