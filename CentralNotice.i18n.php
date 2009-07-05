@@ -757,8 +757,10 @@ Níže můžete vytvořit nové.',
 
 /** Danish (Dansk)
  * @author Byrial
+ * @author Masz
  */
 $messages['da'] = array(
+	'right-centralnotice-admin' => 'Administrere centrale meddelelser',
 	'action-centralnotice-admin' => 'administrere centrale beskeder',
 	'action-centralnotice-translate' => 'oversætte centrale beskeder',
 );
