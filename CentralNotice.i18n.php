@@ -2676,13 +2676,17 @@ Tambahaké ing ngisor',
 
 /** Georgian (ქართული)
  * @author Malafaya
+ * @author გიორგიმელა
  */
 $messages['ka'] = array(
 	'centralnotice-add' => 'დამატება',
 	'centralnotice-english' => 'ინგლისური',
 	'centralnotice-template-name' => 'თარგების სახელი',
 	'centralnotice-templates' => 'თარგები',
+	'centralnotice-day' => 'დღე',
+	'centralnotice-year' => 'წელი',
 	'centralnotice-month' => 'თვე',
+	'centralnotice-hours' => 'საათი',
 	'centralnotice-project-lang' => 'პროექტის ენა',
 	'centralnotice-edit-template' => 'თარგის რედაქტირება',
 );
