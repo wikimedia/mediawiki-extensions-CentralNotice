@@ -3102,6 +3102,31 @@ De kins dr hiejónger 'ne toevoge",
 	'centralnotice-preferred' => 'Veurkäör',
 );
 
+/** Lithuanian (Lietuvių)
+ * @author Matasg
+ */
+$messages['lt'] = array(
+	'centralnotice-day' => 'Diena',
+	'centralnotice-year' => 'Metai',
+	'centralnotice-month' => 'Mėnuo',
+	'centralnotice-hours' => 'Valanda',
+	'centralnotice-min' => 'Minutė',
+	'centralnotice-project-lang' => 'Projekto kalba',
+	'centralnotice-project-name' => 'Projekto pavadinimas',
+	'centralnotice-start-date' => 'Pradžios data',
+	'centralnotice-start-time' => 'Pradžios laikas (UTC)',
+	'centralnotice-no-templates' => 'Nerasta šablonų.
+Pridėkite!',
+	'centralnotice-available-templates' => 'Galimi šablonai',
+	'centralnotice-preview-template' => 'Peržiūrėti šabloną',
+	'centralnotice-start-hour' => 'Pradžios laikas',
+	'centralnotice-edit-template' => 'Redaguoti šabloną',
+	'centralnotice-message' => 'Pranešimas',
+	'centralnotice-message-not-set' => 'Pranešimas nenustatytas',
+	'centralnotice-clone' => 'Klonuoti',
+	'centralnotice-clone-notice' => 'Sukurti šablono kopiją',
+);
+
 /** Malagasy (Malagasy)
  * @author Jagwar
  */
