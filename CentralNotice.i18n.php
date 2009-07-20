@@ -3807,7 +3807,7 @@ $messages['os'] = array(
  * @author Xqt
  */
 $messages['pdc'] = array(
-	'centralnotice-translations' => 'Iwwersetzunge',
+	'centralnotice-translations' => 'Iwwersetzinge',
 	'centralnotice-translate-to' => 'Iwwersetze in',
 	'centralnotice-translate' => 'Iwwersetze',
 	'centralnotice-english' => 'Englisch',
