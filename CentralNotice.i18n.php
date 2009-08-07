@@ -1234,6 +1234,7 @@ Añade uno debajo',
 
 /** Estonian (Eesti)
  * @author Avjoska
+ * @author Pikne
  */
 $messages['et'] = array(
 	'centralnotice' => 'Keskuse teate admin',
@@ -1293,8 +1294,8 @@ Lisa mõni!',
 	'centralnotice-clone' => 'Kloon',
 	'centralnotice-clone-notice' => 'Loo mallist koopia',
 	'centralnotice-preview-all-template-translations' => 'Malli kõigi kättesaadavate tõlgete eelvaated',
-	'right-centralnotice-admin' => 'Halda keskuse teateid',
-	'right-centralnotice-translate' => 'Tõlgi keskuse teateid',
+	'right-centralnotice-admin' => 'Keskuse teateid hallata',
+	'right-centralnotice-translate' => 'Tõlkida keskuse teateid',
 	'action-centralnotice-admin' => 'halda keskuse teateid',
 	'action-centralnotice-translate' => 'tõlgi keskuse teateid',
 	'centralnotice-preferred' => 'Eelistatud',
@@ -3016,10 +3017,11 @@ $messages['lfn'] = array(
 /** Limburgish (Limburgs)
  * @author Matthias
  * @author Ooswesthoesbes
+ * @author Pahles
  */
 $messages['li'] = array(
 	'centralnotice' => 'Beheer centrale sitenotice',
-	'noticetemplate' => 'Sjebloeaner centrale ziejsnotisie',
+	'noticetemplate' => 'Sjablone centrale citenotice',
 	'centralnotice-desc' => "Voegt 'n centrale sitemededeling toe",
 	'centralnotice-summary' => 'Mit dees moduul kinne centraal ingestelde sitenotices bewerk waere.
 De module kin ouch gebroek waere om sitenotices toe te voge of aaj te wisse.',
