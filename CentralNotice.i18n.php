@@ -1239,6 +1239,7 @@ Añade uno debajo',
 $messages['et'] = array(
 	'centralnotice' => 'Keskuse teate admin',
 	'noticetemplate' => 'Keskuse teate mall',
+	'centralnotice-desc' => 'Lisab keskse võrgukohateatesüsteemi',
 	'centralnotice-notice-name' => 'Teate nimi',
 	'centralnotice-end-date' => 'Tähtaeg',
 	'centralnotice-enabled' => 'Luba olemas',
@@ -2725,6 +2726,7 @@ $messages['km'] = array(
 );
 
 /** Korean (한국어)
+ * @author Klutzy
  * @author Kwj2772
  * @author Yknok29
  */
@@ -2732,8 +2734,7 @@ $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
 	'noticetemplate' => '중앙 공지 틀',
 	'centralnotice-desc' => '중앙에서 공지하는 사이트노티스를 추가',
-	'centralnotice-summary' => '이 모듈은 사용자께서 지금 중앙 공지의 설정을 편집하실 수 있도록 합니다.
-또한 오래된 공지를 삭제하거나 새로운 공지를 추가하실 수 있습니다.',
+	'centralnotice-summary' => '전체 공지 기능을 추가합니다. 현재의 공지 편집 기능과 공지의 추가/삭제 기능을 제공합니다.',
 	'centralnotice-query' => '현재 공지 수정하기',
 	'centralnotice-notice-name' => '공지 이름',
 	'centralnotice-end-date' => '종료 날짜',
@@ -2747,27 +2748,24 @@ $messages['ko'] = array(
 	'centralnotice-add' => '추가',
 	'centralnotice-add-notice' => '알림을 추가하기',
 	'centralnotice-add-template' => '틀을 추가하기',
-	'centralnotice-show-notices' => '공지를 보세요',
-	'centralnotice-list-templates' => '틀 목록',
+	'centralnotice-show-notices' => '공지 표시하기',
+	'centralnotice-list-templates' => '템플릿 목록 표시하기',
 	'centralnotice-translations' => '번역',
 	'centralnotice-translate-to' => '번역할 언어',
 	'centralnotice-translate' => '번역하기',
 	'centralnotice-english' => '영어',
 	'centralnotice-template-name' => '틀 이름',
 	'centralnotice-templates' => '틀',
-	'centralnotice-weight' => '중요',
+	'centralnotice-weight' => '중요도',
 	'centralnotice-locked' => '잠김',
 	'centralnotice-notices' => '공지',
-	'centralnotice-notice-exists' => '공지가 이미 있습니다.
-추가하지 마세요.',
+	'centralnotice-notice-exists' => '이미 공지가 존재합니다. 공지를 추가할 수 없습니다.',
 	'centralnotice-template-exists' => '틀이 이미 존재합니다.
 추가하지 않았습니다.',
-	'centralnotice-notice-doesnt-exist' => '공지가 없습니다.
-삭제할 것이 없습니다.',
-	'centralnotice-template-still-bound' => '공지에 틀이 여전히 연결되어 있습니다.
-삭제하지 마세요.',
-	'centralnotice-template-body' => '틀 본문:',
-	'centralnotice-day' => '날',
+	'centralnotice-notice-doesnt-exist' => '공지가 없습니다. 삭제할 수 없습니다.',
+	'centralnotice-template-still-bound' => '템플릿이 공지에 사용되고 있습니다. 삭제할 수 없습니다.',
+	'centralnotice-template-body' => '템플릿 내용:',
+	'centralnotice-day' => '일',
 	'centralnotice-year' => '연도',
 	'centralnotice-month' => '월',
 	'centralnotice-hours' => '시',
@@ -2777,42 +2775,35 @@ $messages['ko'] = array(
 	'centralnotice-start-date' => '시작 날짜',
 	'centralnotice-start-time' => '시작 시간 (UTC)',
 	'centralnotice-assigned-templates' => '배당된 틀',
-	'centralnotice-no-templates' => '틀을 찾을 수 없습니다.
-덧붙여주세요!',
-	'centralnotice-no-templates-assigned' => '공지에 해당하는 틀이 없습니다.
-덧붙여주세요!',
-	'centralnotice-available-templates' => '이용가능한 틀',
-	'centralnotice-template-already-exists' => '이미 공지에 틀이 배당되어 있습니다.
-덧붙이지 마세요',
+	'centralnotice-no-templates' => '사용 가능한 템플릿이 없습니다. 템플릿을 추가해주세요!',
+	'centralnotice-no-templates-assigned' => '해당 공지에 사용가능한 템플릿이 없습니다. 템플릿을 추가해주세요!',
+	'centralnotice-available-templates' => '사용 가능한 템플릿 목록',
+	'centralnotice-template-already-exists' => '템플릿이 이미 설정되어 있습니다. 추가할 수 없습니다.',
 	'centralnotice-preview-template' => '틀 미리 보기',
 	'centralnotice-start-hour' => '시작 시간',
 	'centralnotice-change-lang' => '번역할 언어 변경',
-	'centralnotice-weights' => '중요',
+	'centralnotice-weights' => '중요도',
 	'centralnotice-notice-is-locked' => '공지가 잠겼습니다.
 제거하지 않았습니다.',
-	'centralnotice-overlap' => '공지가 다른 공지의 게시 기간과 겹칩니다.
-추가하지 마세요.',
-	'centralnotice-invalid-date-range' => '무효 날짜 범위
-업데이트 안됨',
-	'centralnotice-null-string' => '무효 문자열을 추가할 수 없습니다.
-추가하지 마세요.',
+	'centralnotice-overlap' => '다른 공지와 시간이 중복됩니다. 추가할 수 없습니다.',
+	'centralnotice-invalid-date-range' => '날짜 형식이 잘못되었습니다. 추가할 수 없습니다.',
+	'centralnotice-null-string' => '공지 내용이 비었습니다. 추가할 수 없습니다.',
 	'centralnotice-confirm-delete' => '정말 이 항목을 삭제하시겠습니까?
 한 번 삭제하면 복구할 수 없습니다.',
-	'centralnotice-no-notices-exist' => '공지가 존재하지 않습니다.
-아래에 하나를 추가하세요',
-	'centralnotice-no-templates-translate' => '번역할 틀이 없습니다.',
+	'centralnotice-no-notices-exist' => '공지가 존재하지 않습니다. 공지를 추가해주세요.',
+	'centralnotice-no-templates-translate' => '번역해야 할 템플릿이 없습니다.',
 	'centralnotice-number-uses' => '사용',
 	'centralnotice-edit-template' => '틀 편집하기',
 	'centralnotice-message' => '메시지',
 	'centralnotice-message-not-set' => '메시지가 정의되지 않았습니다.',
 	'centralnotice-clone' => '사본',
 	'centralnotice-clone-notice' => '이 틀의 사본을 만들기',
-	'centralnotice-preview-all-template-translations' => '틀의 모든 가능한 번역 미리보기',
+	'centralnotice-preview-all-template-translations' => '템플렛의 모든 번역 미리 보기',
 	'right-centralnotice-admin' => '중앙 공지 관리',
 	'right-centralnotice-translate' => '중앙 공지 번역',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 	'action-centralnotice-translate' => '중앙 공지를 번역할',
-	'centralnotice-preferred' => '우선',
+	'centralnotice-preferred' => '우선적으로',
 );
 
 /** Ripoarisch (Ripoarisch)
