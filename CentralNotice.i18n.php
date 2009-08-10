@@ -4668,6 +4668,77 @@ $messages['sr-ec'] = array(
 	'centralnotice-clone' => 'Клонирај',
 );
 
+/** latinica (latinica)
+ * @author Michaello
+ */
+$messages['sr-el'] = array(
+	'centralnotice-desc' => 'Dodaje centralnu napomenu na sajt.',
+	'centralnotice-query' => 'Izmeni trenutna obaveštenja',
+	'centralnotice-notice-name' => 'Ime obaveštenja',
+	'centralnotice-end-date' => 'Završni datum',
+	'centralnotice-enabled' => 'Omogućeno',
+	'centralnotice-modify' => 'Pošalji',
+	'centralnotice-preview' => 'Prikaži',
+	'centralnotice-add-new' => 'Dodaj novu centralnu napomenu',
+	'centralnotice-remove' => 'Ukloni',
+	'centralnotice-translate-heading' => 'Prevod za $1',
+	'centralnotice-manage' => 'Uredi centralnu napomenu',
+	'centralnotice-add' => 'Dodaj',
+	'centralnotice-add-notice' => 'Dodaj obaveštenje',
+	'centralnotice-add-template' => 'Dodaj šablon',
+	'centralnotice-show-notices' => 'Prikaži obaveštenja',
+	'centralnotice-list-templates' => 'Spisak šablona',
+	'centralnotice-translations' => 'Prevodi',
+	'centralnotice-translate-to' => 'Prevedi na',
+	'centralnotice-translate' => 'Prevedi',
+	'centralnotice-english' => 'Engleski',
+	'centralnotice-template-name' => 'Ime šablona',
+	'centralnotice-templates' => 'Šabloni',
+	'centralnotice-weight' => 'Težina',
+	'centralnotice-locked' => 'Zaključano',
+	'centralnotice-notices' => 'Obaveštenja',
+	'centralnotice-notice-exists' => 'Napomena već postoji.
+Neće biti dodata',
+	'centralnotice-template-exists' => 'Šablon već postoji.
+Neće biti dodat',
+	'centralnotice-notice-doesnt-exist' => 'Napomena ne postoji.
+Nema šta da se obriše',
+	'centralnotice-template-still-bound' => 'Šablon je još uvek pridružen napomeni.
+Neće biti obrisan.',
+	'centralnotice-template-body' => 'Telo šablona:',
+	'centralnotice-day' => 'Dan',
+	'centralnotice-year' => 'Godina',
+	'centralnotice-month' => 'Mesec',
+	'centralnotice-hours' => 'Sat',
+	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Ime projekta',
+	'centralnotice-project-name' => 'Ime projekta',
+	'centralnotice-start-date' => 'Početni datum',
+	'centralnotice-start-time' => 'Početno vreme (UTC)',
+	'centralnotice-no-templates' => 'Šabloni nisu proađen.
+Dodaj neki!',
+	'centralnotice-available-templates' => 'Raspoloživi šabloni',
+	'centralnotice-preview-template' => 'Prikaži šablon',
+	'centralnotice-start-hour' => 'Početno vreme',
+	'centralnotice-change-lang' => 'Izmeni jezik transliteracije',
+	'centralnotice-weights' => 'Težine',
+	'centralnotice-notice-is-locked' => 'Napomena je zaključana.
+Nije bila obrisana',
+	'centralnotice-invalid-date-range' => 'Neispravan opseg podataka.
+Ažuriranje nije izvršeno',
+	'centralnotice-null-string' => 'Nije moguće dodavanje praznog stringa.
+Nije dodat',
+	'centralnotice-confirm-delete' => 'Da li ste sigurni da želite da obrišete ovu stavku?
+Ova akcija se ne može vratiti.',
+	'centralnotice-no-notices-exist' => 'Nema napomena.
+Dodajte jednu ispod.',
+	'centralnotice-number-uses' => 'Korišćenje',
+	'centralnotice-edit-template' => 'Izmeni šablon',
+	'centralnotice-message' => 'Poruka',
+	'centralnotice-message-not-set' => 'Poruka nije podešena',
+	'centralnotice-clone' => 'Kloniraj',
+);
+
 /** Seeltersk (Seeltersk)
  * @author Pyt
  */
