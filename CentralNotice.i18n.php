@@ -552,6 +552,33 @@ $messages['bg'] = array(
  */
 $messages['bn'] = array(
 	'centralnotice-desc' => 'একটি কেন্দ্রীয় সাইটনোটিশ যোগ করো',
+	'centralnotice-notice-name' => 'নোটিশের নাম',
+	'centralnotice-end-date' => 'শেষের তারিখ',
+	'centralnotice-enabled' => 'সক্রিয়',
+	'centralnotice-modify' => 'জমা দাও',
+	'centralnotice-preview' => 'প্রাকদর্শন',
+	'centralnotice-add-new' => 'একটি নতুন কেন্দ্রীয় নোটিশ যোগ করো',
+	'centralnotice-remove' => 'অপসারণ',
+	'centralnotice-add' => 'যোগ',
+	'centralnotice-add-notice' => 'নোটিশ যোগ',
+	'centralnotice-add-template' => 'টেম্পলেট যোগ',
+	'centralnotice-show-notices' => 'নোটিশ দেখাও',
+	'centralnotice-list-templates' => 'টেম্পলেটের তালিকা',
+	'centralnotice-english' => 'ইংরেজি',
+	'centralnotice-template-name' => 'টেম্পলেটের নাম',
+	'centralnotice-notices' => 'নোটিশ',
+	'centralnotice-day' => 'দিন',
+	'centralnotice-year' => 'বছর',
+	'centralnotice-month' => 'মাস',
+	'centralnotice-hours' => 'ঘন্টা',
+	'centralnotice-min' => 'মিনিট',
+	'centralnotice-project-lang' => 'প্রকল্পের ভাষা',
+	'centralnotice-project-name' => 'প্রকল্পের নাম',
+	'centralnotice-start-date' => 'শুরুর তারিখ',
+	'centralnotice-start-time' => 'শুরুর সময় (UTC)',
+	'centralnotice-start-hour' => 'শুরুর সময়',
+	'centralnotice-edit-template' => 'টেম্পলেট সম্পাদনা',
+	'centralnotice-message' => 'বার্তা',
 );
 
 /** Breton (Brezhoneg)
@@ -3186,10 +3213,12 @@ Tsy nifafàna ilay izy',
 );
 
 /** Macedonian (Македонски)
+ * @author Bjankuloski06
  * @author Brest
  */
 $messages['mk'] = array(
 	'centralnotice-desc' => 'Централизирано известување',
+	'centralnotice-remove' => 'Тргни',
 	'centralnotice-templates' => 'Шаблони',
 	'centralnotice-weight' => 'Тежина',
 	'centralnotice-locked' => 'Заклучено',
