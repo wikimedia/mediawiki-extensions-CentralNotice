@@ -2724,8 +2724,10 @@ $messages['ka'] = array(
 /** Khmer (ភាសាខ្មែរ)
  * @author Lovekhmer
  * @author Thearith
+ * @author វ័ណថារិទ្ធ
  */
 $messages['km'] = array(
+	'centralnotice-end-date' => 'កាលបរិច្ឆេទបញ្ចប់',
 	'centralnotice-modify' => 'ដាក់ស្នើ',
 	'centralnotice-preview' => 'មើលជាមុន',
 	'centralnotice-remove' => 'ដកចេញ',
@@ -2738,6 +2740,7 @@ $messages['km'] = array(
 	'centralnotice-english' => 'ភាសាអង់គ្លេស',
 	'centralnotice-template-name' => 'ឈ្មោះទំព័រគំរូ',
 	'centralnotice-templates' => 'ទំព័រគំរូ',
+	'centralnotice-weight' => 'ទម្ងន់​',
 	'centralnotice-locked' => 'បានចាក់សោ',
 	'centralnotice-day' => 'ថ្ងៃ',
 	'centralnotice-year' => 'ឆ្នាំ',
@@ -2746,7 +2749,9 @@ $messages['km'] = array(
 	'centralnotice-min' => 'នាទី',
 	'centralnotice-project-lang' => 'ភាសាគម្រោង',
 	'centralnotice-project-name' => 'ឈ្មោះគម្រោង',
+	'centralnotice-start-time' => 'ម៉ោង​ចាប់ផ្តើម (UTC)',
 	'centralnotice-preview-template' => 'មើលទំព័រគំរូជាមុន',
+	'centralnotice-start-hour' => 'ពេលចាប់ផ្តើម',
 	'centralnotice-edit-template' => 'កែប្រែទំព័រគំរូ',
 	'centralnotice-message' => 'សារ',
 	'centralnotice-clone' => 'ក្លូន',
