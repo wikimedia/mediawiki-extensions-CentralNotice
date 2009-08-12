@@ -686,14 +686,25 @@ Dodaj jednu ispod',
  * @author Solde
  */
 $messages['ca'] = array(
-	'centralnotice-end-date' => 'Data final',
+	'centralnotice' => "Administrador d'avisos centrals",
+	'noticetemplate' => "Plantilla d'avís central",
+	'centralnotice-desc' => "Afegeix un lloc central d'avisos",
+	'centralnotice-summary' => "Aquesta extensió us permet editar el vostre lloc central d'avisos.
+També pot ser usat per afegir o eliminar avisos.",
+	'centralnotice-query' => 'Modifica avisos actuals',
+	'centralnotice-notice-name' => "Nom de l'avís",
+	'centralnotice-end-date' => 'Data de finalització',
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Tramet',
 	'centralnotice-preview' => 'Previsualitza',
+	'centralnotice-add-new' => "Afegeix una nova central d'avisos",
 	'centralnotice-remove' => 'Elimina',
 	'centralnotice-translate-heading' => 'Traducció de $1',
+	'centralnotice-manage' => "Gestiona la central d'avisos",
 	'centralnotice-add' => 'Afegeix',
+	'centralnotice-add-notice' => 'Afegeix un avís',
 	'centralnotice-add-template' => 'Afegeix una plantilla',
+	'centralnotice-show-notices' => 'Mostra avisos',
 	'centralnotice-list-templates' => 'Llista les plantilles',
 	'centralnotice-translations' => 'Traduccions',
 	'centralnotice-translate-to' => 'Tradueix a',
@@ -701,9 +712,17 @@ $messages['ca'] = array(
 	'centralnotice-english' => 'Anglès',
 	'centralnotice-template-name' => 'Nom de la plantilla',
 	'centralnotice-templates' => 'Plantilles',
+	'centralnotice-weight' => 'Pes',
 	'centralnotice-locked' => 'Bloquejat',
+	'centralnotice-notices' => 'Avisos',
+	'centralnotice-notice-exists' => "L'avís ja existeix.
+No s'afegirà",
 	'centralnotice-template-exists' => "La plantilla ja existeix.
 No s'afegirà.",
+	'centralnotice-notice-doesnt-exist' => "L'avís no existeix.
+No s'ha eliminat res",
+	'centralnotice-template-still-bound' => "La plantilla encara s'usa en un avís.
+No s'ha pogut eliminar.",
 	'centralnotice-template-body' => 'Cos de la plantilla:',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Any',
@@ -717,21 +736,38 @@ No s'afegirà.",
 	'centralnotice-assigned-templates' => 'Plantilles assignades',
 	'centralnotice-no-templates' => 'No hi ha plantilles.
 Afegiu-ne!',
-	'centralnotice-no-templates-assigned' => 'No hi ha plantilles assignades a la notícia.
-Afegiu-ne!',
+	'centralnotice-no-templates-assigned' => "No hi ha plantilles assignades a l'avís.
+Afegiu-ne!",
 	'centralnotice-available-templates' => 'Plantilles disponibles',
+	'centralnotice-template-already-exists' => "La plantilla ja s'està usant a la campanya.
+No s'afegirà",
 	'centralnotice-preview-template' => 'Previsualitza la plantilla',
 	'centralnotice-start-hour' => "Hora d'inici",
 	'centralnotice-change-lang' => 'Canvia la llengua de la traducció',
+	'centralnotice-weights' => 'Pesos',
+	'centralnotice-notice-is-locked' => "L'avís està bloquejat.
+No s'ha eliminat",
+	'centralnotice-overlap' => "L'avís se superposa en el temps amb un altre avís.
+No s'ha afegit",
 	'centralnotice-invalid-date-range' => 'Interval de dates invàlid.
 No actualitzat',
+	'centralnotice-null-string' => "No s'ha pogut afegir una cadena nul·la.",
+	'centralnotice-confirm-delete' => 'Estau segur que voleu eliminar aquest ítem?
+Aquesta acció serà irreversible.',
+	'centralnotice-no-notices-exist' => 'No hi ha cap avís.
+Afegiu-ne un a continuació.',
 	'centralnotice-no-templates-translate' => 'No hi ha cap plantilla per editar les traduccions per',
 	'centralnotice-number-uses' => 'Usos',
 	'centralnotice-edit-template' => 'Edita la plantilla',
 	'centralnotice-message' => 'Missatge',
+	'centralnotice-message-not-set' => 'Missatge no fixat',
 	'centralnotice-clone' => 'Duplica',
 	'centralnotice-clone-notice' => 'Crea una còpia de la plantilla',
 	'centralnotice-preview-all-template-translations' => 'Previsualitza totes les traduccions disponibles de plantilles',
+	'right-centralnotice-admin' => 'Gestionau els avisos centrals',
+	'right-centralnotice-translate' => 'Traduïu els avisos centrals',
+	'action-centralnotice-admin' => 'Gestionau els avisos centrals',
+	'action-centralnotice-translate' => 'Traduïu els avisos centrals',
 	'centralnotice-preferred' => 'Preferit',
 );
 
@@ -4298,6 +4334,8 @@ $messages['ro'] = array(
 	'centralnotice-month' => 'Lună',
 	'centralnotice-hours' => 'Oră',
 	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Limba proiectului',
+	'centralnotice-project-name' => 'Numele proiectului',
 	'centralnotice-available-templates' => 'Formate disponibile',
 	'centralnotice-edit-template' => 'Modifică format',
 	'centralnotice-message' => 'Mesaj',
