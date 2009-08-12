@@ -681,23 +681,58 @@ Dodaj jednu ispod',
 /** Catalan (Català)
  * @author Aleator
  * @author Loupeter
+ * @author Paucabot
  * @author SMP
  * @author Solde
  */
 $messages['ca'] = array(
 	'centralnotice-end-date' => 'Data final',
+	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Tramet',
+	'centralnotice-preview' => 'Previsualitza',
 	'centralnotice-remove' => 'Elimina',
+	'centralnotice-translate-heading' => 'Traducció de $1',
+	'centralnotice-add' => 'Afegeix',
+	'centralnotice-add-template' => 'Afegeix una plantilla',
+	'centralnotice-list-templates' => 'Llista les plantilles',
+	'centralnotice-translations' => 'Traduccions',
+	'centralnotice-translate-to' => 'Tradueix a',
+	'centralnotice-translate' => 'Tradueix',
 	'centralnotice-english' => 'Anglès',
+	'centralnotice-template-name' => 'Nom de la plantilla',
+	'centralnotice-templates' => 'Plantilles',
+	'centralnotice-locked' => 'Bloquejat',
+	'centralnotice-template-exists' => "La plantilla ja existeix.
+No s'afegirà.",
+	'centralnotice-template-body' => 'Cos de la plantilla:',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Any',
 	'centralnotice-month' => 'Mes',
 	'centralnotice-hours' => 'Hora',
 	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Llengua del projecte',
+	'centralnotice-project-name' => 'Nom del projecte',
 	'centralnotice-start-date' => 'Data inicial',
+	'centralnotice-start-time' => "Hora d'inici (UTC)",
+	'centralnotice-assigned-templates' => 'Plantilles assignades',
+	'centralnotice-no-templates' => 'No hi ha plantilles.
+Afegiu-ne!',
+	'centralnotice-no-templates-assigned' => 'No hi ha plantilles assignades a la notícia.
+Afegiu-ne!',
 	'centralnotice-available-templates' => 'Plantilles disponibles',
+	'centralnotice-preview-template' => 'Previsualitza la plantilla',
+	'centralnotice-start-hour' => "Hora d'inici",
+	'centralnotice-change-lang' => 'Canvia la llengua de la traducció',
 	'centralnotice-invalid-date-range' => 'Interval de dates invàlid.
 No actualitzat',
+	'centralnotice-no-templates-translate' => 'No hi ha cap plantilla per editar les traduccions per',
+	'centralnotice-number-uses' => 'Usos',
+	'centralnotice-edit-template' => 'Edita la plantilla',
+	'centralnotice-message' => 'Missatge',
+	'centralnotice-clone' => 'Duplica',
+	'centralnotice-clone-notice' => 'Crea una còpia de la plantilla',
+	'centralnotice-preview-all-template-translations' => 'Previsualitza totes les traduccions disponibles de plantilles',
+	'centralnotice-preferred' => 'Preferit',
 );
 
 /** Czech (Česky)
@@ -1324,8 +1359,8 @@ Lisa mõni!',
 	'centralnotice-preview-all-template-translations' => 'Malli kõigi kättesaadavate tõlgete eelvaated',
 	'right-centralnotice-admin' => 'Keskuse teateid hallata',
 	'right-centralnotice-translate' => 'Tõlkida keskuse teateid',
-	'action-centralnotice-admin' => 'halda keskuse teateid',
-	'action-centralnotice-translate' => 'tõlgi keskuse teateid',
+	'action-centralnotice-admin' => 'keskuse teateid hallata',
+	'action-centralnotice-translate' => 'keskuse teateid tõlkida',
 	'centralnotice-preferred' => 'Eelistatud',
 );
 
@@ -1781,6 +1816,7 @@ $messages['grc'] = array(
 	'centralnotice-weights' => 'Βάρη',
 	'centralnotice-number-uses' => 'Χρήσεις',
 	'centralnotice-message' => 'Μήνυμα',
+	'centralnotice-clone' => 'Κλών',
 	'centralnotice-preferred' => 'Προκρινομένη',
 );
 
@@ -3246,7 +3282,7 @@ $messages['mk'] = array(
 	'centralnotice-start-time' => 'Почетен датум (UTC)',
 	'centralnotice-assigned-templates' => 'Придружени шаблони',
 	'centralnotice-no-templates' => 'Нема шаблони.
-Додади некој!',
+Додај некој!',
 );
 
 /** Malayalam (മലയാളം)
