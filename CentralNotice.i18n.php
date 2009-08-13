@@ -954,6 +954,14 @@ Füge eine hinzu.',
 	'centralnotice-preferred' => 'Bevorzugt',
 );
 
+/** German (formal address) (Deutsch (Sie-Form))
+ * @author Imre
+ */
+$messages['de-formal'] = array(
+	'centralnotice-confirm-delete' => 'Sind Sie sicher, dass Sie den Eintrag löschen möchten?
+Die Aktion kann nicht rückgängig gemacht werden.',
+);
+
 /** Lower Sorbian (Dolnoserbski)
  * @author Michawiki
  */
