@@ -2789,10 +2789,18 @@ Tambahaké ing ngisor',
  * @author გიორგიმელა
  */
 $messages['ka'] = array(
+	'noticetemplate' => 'გლობალური შეტყობინების თარგი',
+	'centralnotice-query' => 'მოქმედი შეტყობინების შეცვლა',
+	'centralnotice-end-date' => 'დასრულების თარიღი',
+	'centralnotice-modify' => 'გაგზავნა',
+	'centralnotice-remove' => 'წაშლა',
+	'centralnotice-translate-heading' => 'თარგმანი $1-თვის',
 	'centralnotice-add' => 'დამატება',
+	'centralnotice-show-notices' => 'შეტყობინებების ჩვენება',
 	'centralnotice-english' => 'ინგლისური',
 	'centralnotice-template-name' => 'თარგების სახელი',
 	'centralnotice-templates' => 'თარგები',
+	'centralnotice-locked' => 'დაბლოკილი',
 	'centralnotice-day' => 'დღე',
 	'centralnotice-year' => 'წელი',
 	'centralnotice-month' => 'თვე',
