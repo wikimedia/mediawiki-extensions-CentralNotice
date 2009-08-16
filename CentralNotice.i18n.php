@@ -2657,7 +2657,7 @@ $messages['ja'] = array(
 	'centralnotice-project-lang' => 'プロジェクト言語',
 	'centralnotice-project-name' => 'プロジェクト名',
 	'centralnotice-start-date' => '開始日',
-	'centralnotice-start-time' => '開始時間 (UTC)',
+	'centralnotice-start-time' => '開始時間 （UTC）',
 	'centralnotice-assigned-templates' => '使用テンプレート',
 	'centralnotice-no-templates' => 'テンプレートがみつかりませんでした。なにか追加してください！',
 	'centralnotice-no-templates-assigned' => '通知にテンプレートが使われていません。なにか追加してください！',
@@ -3310,8 +3310,31 @@ Tsy nifafàna ilay izy',
  * @author Brest
  */
 $messages['mk'] = array(
+	'centralnotice' => 'Администратор на централни известувања',
+	'noticetemplate' => 'Шаблон за централни известувања',
 	'centralnotice-desc' => 'Централизирано известување',
+	'centralnotice-summary' => 'Овој модул ви овозможува да ги уредувате вашите моментално поставени централни известувања.
+Може да се користи и за додавање или отстранување на стари известувања.',
+	'centralnotice-query' => 'Измени моментални известувања',
+	'centralnotice-notice-name' => 'Назив на известувањето',
+	'centralnotice-end-date' => 'Истекува',
+	'centralnotice-enabled' => 'Овозможено',
+	'centralnotice-modify' => 'Испрати',
+	'centralnotice-preview' => 'Преглед',
+	'centralnotice-add-new' => 'Додај ново централно известување',
 	'centralnotice-remove' => 'Тргни',
+	'centralnotice-translate-heading' => 'Превод на $1',
+	'centralnotice-manage' => 'Раководење со централното известување',
+	'centralnotice-add' => 'Додај',
+	'centralnotice-add-notice' => 'Додај известување',
+	'centralnotice-add-template' => 'Додај шаблон',
+	'centralnotice-show-notices' => 'Прикажи известувања',
+	'centralnotice-list-templates' => 'Наведи шаблони',
+	'centralnotice-translations' => 'Преводи',
+	'centralnotice-translate-to' => 'Преведи на',
+	'centralnotice-translate' => 'Преведи',
+	'centralnotice-english' => 'англиски',
+	'centralnotice-template-name' => 'Назив на шаблонот',
 	'centralnotice-templates' => 'Шаблони',
 	'centralnotice-weight' => 'Тежина',
 	'centralnotice-locked' => 'Заклучено',
@@ -3322,6 +3345,8 @@ $messages['mk'] = array(
 Не е додаден',
 	'centralnotice-notice-doesnt-exist' => 'Известувањето не постои.
 Нема ништо за бришење',
+	'centralnotice-template-still-bound' => 'Шаблонот сè уште е врзан за известување.
+Нема да биде отстранет.',
 	'centralnotice-template-body' => 'Тело на шаблонот:',
 	'centralnotice-day' => 'Ден',
 	'centralnotice-year' => 'Година',
@@ -3335,6 +3360,40 @@ $messages['mk'] = array(
 	'centralnotice-assigned-templates' => 'Придружени шаблони',
 	'centralnotice-no-templates' => 'Нема шаблони.
 Додај некој!',
+	'centralnotice-no-templates-assigned' => 'Нема шаблони назначени за известување.
+Додајте некои!',
+	'centralnotice-available-templates' => 'Шаблони на располагање',
+	'centralnotice-template-already-exists' => 'Шаблонот е веќе врзан за кампањата.
+Нема да биде додаден',
+	'centralnotice-preview-template' => 'Преглед на шаблонот',
+	'centralnotice-start-hour' => 'Започнува',
+	'centralnotice-change-lang' => 'Смени јазик на превод',
+	'centralnotice-weights' => 'Тегови',
+	'centralnotice-notice-is-locked' => 'Известувањето е заклучено.
+Нема да биде отстрането',
+	'centralnotice-overlap' => 'Известувањето временски се преклопува со друго известување.
+Нема да биде додадено',
+	'centralnotice-invalid-date-range' => 'Погрешен временски опсег.
+Не се обновува',
+	'centralnotice-null-string' => 'Не можете да додадете нулта низа.
+Нема да биде додадено',
+	'centralnotice-confirm-delete' => 'Дали сте сигурни дека сакате да ја избришење оваа ставка?
+Ова ќе биде неповратно.',
+	'centralnotice-no-notices-exist' => 'Нема никакви известувања.
+Додајте известување подолу.',
+	'centralnotice-no-templates-translate' => 'Нема шаблони за кои можете да уредите преведувања',
+	'centralnotice-number-uses' => 'Користи',
+	'centralnotice-edit-template' => 'Уреди шаблон',
+	'centralnotice-message' => 'Порака',
+	'centralnotice-message-not-set' => 'Порката не е поставена',
+	'centralnotice-clone' => 'Клонирај',
+	'centralnotice-clone-notice' => 'Создај копија на шаблонот',
+	'centralnotice-preview-all-template-translations' => 'Преглед на сите расположиви преводи на шаблонот',
+	'right-centralnotice-admin' => 'Раководење со централни известувања',
+	'right-centralnotice-translate' => 'Преведување на централни известувања',
+	'action-centralnotice-admin' => 'раководење со централни известувања',
+	'action-centralnotice-translate' => 'преведување на цетрални известувања',
+	'centralnotice-preferred' => 'Претпочитано',
 );
 
 /** Malayalam (മലയാളം)
