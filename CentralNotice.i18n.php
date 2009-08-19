@@ -5865,23 +5865,94 @@ $messages['yue'] = array(
  * @author Alex S.H. Lin
  * @author Chenzw
  * @author Gzdavidwong
+ * @author Liangent
  * @author Wmr89502270
  */
 $messages['zh-hans'] = array(
+	'centralnotice' => '中央通告管理',
+	'noticetemplate' => '中央通告模板',
 	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
+	'centralnotice-summary' => '这个模块允许你编辑你当前设置的中央通告。
+它也可以用于添加或删除旧的通告。',
+	'centralnotice-query' => '修改当前的通告',
+	'centralnotice-notice-name' => '通告名称',
+	'centralnotice-end-date' => '结束日期',
 	'centralnotice-enabled' => '已启用',
 	'centralnotice-modify' => '提交',
 	'centralnotice-preview' => '预览',
+	'centralnotice-add-new' => '添加一个新的中央通告',
 	'centralnotice-remove' => '移除',
+	'centralnotice-translate-heading' => '$1的翻译',
+	'centralnotice-manage' => '管理中央通告',
+	'centralnotice-add' => '添加',
+	'centralnotice-add-notice' => '添加一个通告',
+	'centralnotice-add-template' => '添加一个模板',
+	'centralnotice-show-notices' => '显示通告',
+	'centralnotice-list-templates' => '列出模板',
+	'centralnotice-translations' => '翻译',
+	'centralnotice-translate-to' => '翻译到',
 	'centralnotice-translate' => '翻译',
 	'centralnotice-english' => '英语',
 	'centralnotice-template-name' => '模板名称',
 	'centralnotice-templates' => '模板',
+	'centralnotice-weight' => '权重',
 	'centralnotice-locked' => '已锁定',
+	'centralnotice-notices' => '通告',
+	'centralnotice-notice-exists' => '通告已经存在。
+没有添加',
+	'centralnotice-template-exists' => '模板已经存在。
+没有添加',
+	'centralnotice-notice-doesnt-exist' => '通告不存在。
+没有东西移除',
+	'centralnotice-template-still-bound' => '模板不存在。
+没有东西移除。',
+	'centralnotice-template-body' => '模板体：',
+	'centralnotice-day' => '日',
+	'centralnotice-year' => '年',
+	'centralnotice-month' => '月',
+	'centralnotice-hours' => '时',
+	'centralnotice-min' => '分',
 	'centralnotice-project-lang' => '计划语言',
 	'centralnotice-project-name' => '计划名称',
+	'centralnotice-start-date' => '开始日期',
+	'centralnotice-start-time' => '开始时间（UTC）',
+	'centralnotice-assigned-templates' => '已分配的模板',
+	'centralnotice-no-templates' => '没有找到模板。
+添加一些！',
+	'centralnotice-no-templates-assigned' => '没有模板分配到通告。
+添加一些！',
+	'centralnotice-available-templates' => '可用模板',
+	'centralnotice-template-already-exists' => '模板已经绑定到营销。
+没有添加',
 	'centralnotice-preview-template' => '预览模板',
+	'centralnotice-start-hour' => '开始时间',
+	'centralnotice-change-lang' => '改变翻译语言',
+	'centralnotice-weights' => '权重',
+	'centralnotice-notice-is-locked' => '通告已经锁定。
+没有移除',
+	'centralnotice-overlap' => '通告在另一个通告的时间内重叠。
+没有添加',
+	'centralnotice-invalid-date-range' => '无效日期范围。
+没有更新',
+	'centralnotice-null-string' => '不能添加一个空字符串。
+没有添加',
+	'centralnotice-confirm-delete' => '你确定要删除这个项目？
+这个动作是不可恢复的。',
+	'centralnotice-no-notices-exist' => '不存在通告。
+在下面添加一个。',
+	'centralnotice-no-templates-translate' => '没有任何可以编辑翻译的模板',
+	'centralnotice-number-uses' => '使用',
 	'centralnotice-edit-template' => '编辑模板',
+	'centralnotice-message' => '消息',
+	'centralnotice-message-not-set' => '没有设置消息',
+	'centralnotice-clone' => '建立副本',
+	'centralnotice-clone-notice' => '创建一个模板的副本',
+	'centralnotice-preview-all-template-translations' => '预览模板的所有可用翻译',
+	'right-centralnotice-admin' => '管理中央通告',
+	'right-centralnotice-translate' => '翻译中央通告',
+	'action-centralnotice-admin' => '管理中央通告',
+	'action-centralnotice-translate' => '翻译中央通告',
+	'centralnotice-preferred' => '偏好的',
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
