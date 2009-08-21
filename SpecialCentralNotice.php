@@ -1195,8 +1195,8 @@ class CentralNotice extends SpecialPage {
 		$dbw->begin();
 		$res = $dbw->update( 'cn_notices',
 			array(
-				'not_start' => $start,
-				'not_end' => $end
+				'not_start' => $startDate,
+				'not_end' => $endDate
 			),
 			array( 'not_name' => $noticeName )
 		);
