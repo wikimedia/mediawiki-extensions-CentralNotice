@@ -33,7 +33,7 @@ class CentralNoticeDB {
 		if ( $preferred )
 			$conds[] = "not_preferred = 1";
 		if ( !$date )
-			$date = wfTimestamp( TS_MW );
+			$date = $dbr->timestamp();
 
 		$conds[] = ( $date ) ? "not_start <= ". $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
 		$conds[] = ( $date ) ? "not_end >= " . $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
