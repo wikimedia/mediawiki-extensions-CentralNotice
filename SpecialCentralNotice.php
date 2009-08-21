@@ -457,13 +457,13 @@ class CentralNotice extends SpecialPage {
 				}
 
 				// Date and time calculations
-				$start_timestamp = $row->not_start;
+				$start_timestamp = wfTimestamp( TS_MW, $row->not_start );
 				$start_year = substr( $start_timestamp, 0 , 4 );
 				$start_month = substr( $start_timestamp, 4, 2 );
 				$start_day = substr( $start_timestamp, 6, 2 );
 				$start_hour = substr( $start_timestamp, 8, 2 );
 				$start_min = substr( $start_timestamp, 10, 2 );
-				$end_timestamp = $row->not_end;
+				$end_timestamp = wfTimestamp( TS_MW, $row->not_end );
 				$end_year = substr( $end_timestamp, 0 , 4 );
 				$end_month = substr( $end_timestamp, 4, 2 );
 				$end_day = substr( $end_timestamp, 6, 2 );
