@@ -119,6 +119,7 @@ function efCentralNoticeSetup() {
 	if( $wgCentralNoticeLoader ) {
 		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
 		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
+		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
 	}
 
 	$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
@@ -171,9 +172,16 @@ function efCentralNoticeLoader( $out, $skin ) {
 	*/
 
 	// Load the notice text from <head>
-	$wgOut->addInlineScript( "var wgNotice='';var wgNoticeLocal='';" );
 	$wgOut->addScript( "<script type=\"{$wgJsMimeType}\" src=\"$encCentralLoader?$wgStyleVersion\"></script>\n" );
 
+	return true;
+}
+
+function efCentralNoticeDefaults( &$vars ) {
+	// Initialize these variables to empty, so if the notice script fails
+	// we don't have any surprises.
+	$vars['wgNotice'] = '';
+	$vars['wgNoticeLocal'] = '';
 	return true;
 }
 
