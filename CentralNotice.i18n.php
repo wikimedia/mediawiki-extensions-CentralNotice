@@ -172,6 +172,8 @@ $messages['af'] = array(
 	'centralnotice-start-hour' => 'Begintyd',
 	'centralnotice-change-lang' => 'Verander taal vir vertaling',
 	'centralnotice-weights' => 'Gewigte',
+	'centralnotice-invalid-date-range' => 'Ongeldige datumreeks.
+Word nie bygewerk nie',
 	'centralnotice-number-uses' => 'Aantal kere gebruik',
 	'centralnotice-edit-template' => 'Wysig sjabloon',
 	'centralnotice-message' => 'Boodskap',
@@ -851,6 +853,21 @@ Níže můžete vytvořit nové.',
 	'action-centralnotice-admin' => 'spravovat centralizovaná oznámení',
 	'action-centralnotice-translate' => 'překládat centralizovaná oznámení',
 	'centralnotice-preferred' => 'Preferováno',
+);
+
+/** Welsh (Cymraeg)
+ * @author Lloffiwr
+ */
+$messages['cy'] = array(
+	'centralnotice-day' => 'Dydd',
+	'centralnotice-year' => 'Blwyddyn',
+	'centralnotice-month' => 'Mis',
+	'centralnotice-hours' => 'Awr',
+	'centralnotice-min' => 'Munud',
+	'centralnotice-project-lang' => 'Iaith y prosiect',
+	'centralnotice-project-name' => "Enw'r prosiect",
+	'centralnotice-start-date' => 'Dyddiad cychwyn',
+	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
 );
 
 /** Danish (Dansk)
@@ -4778,7 +4795,7 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-preferred' => 'Uprednostňované',
 );
 
-/** Serbian Cyrillic ekavian (ћирилица)
+/** Serbian Cyrillic ekavian (Српски (ћирилица))
  * @author Millosh
  * @author Јованвб
  * @author Михајло Анђелковић
@@ -4851,7 +4868,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-clone' => 'Клонирај',
 );
 
-/** latinica (latinica)
+/** Serbian Latin ekavian (Srpski (latinica))
  * @author Michaello
  */
 $messages['sr-el'] = array(
