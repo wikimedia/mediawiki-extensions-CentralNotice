@@ -5989,5 +5989,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-project-name' => '計劃名稱',
 	'centralnotice-preview-template' => '預覽模板',
 	'centralnotice-edit-template' => '編輯模板',
+	'right-centralnotice-admin' => '管理中央通告',
+	'right-centralnotice-translate' => '翻譯中央通告',
 );
 
