@@ -3033,7 +3033,8 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-preferred' => 'Förjetrocke!',
 );
 
-/** Cornish (Kernewek)
+/** Cornish (Kernowek)
+ * @author Kernoweger
  * @author Kw-Moon
  */
 $messages['kw'] = array(
@@ -3041,7 +3042,7 @@ $messages['kw'] = array(
 	'centralnotice-day' => 'Dydh',
 	'centralnotice-year' => 'Bledhen',
 	'centralnotice-month' => 'Mis',
-	'centralnotice-edit-template' => 'Chanjya skantlyn',
+	'centralnotice-edit-template' => 'Chanjya scantlyn',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
