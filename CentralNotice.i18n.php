@@ -109,6 +109,7 @@ $messages['qqq'] = array(
 	'noticetemplate' => 'Title of Special:NoticeTemplate',
 	'centralnotice-desc' => 'Short description of the Centralnotice extension, shown in [[Special:Version]]. Do not translate or change links.',
 	'centralnotice-summary' => 'Used in Special:CentralNotice',
+	'centralnotice-end-date' => '{{Identical|End date}}',
 	'centralnotice-enabled' => '{{Identical|Enabled}}',
 	'centralnotice-modify' => '{{Identical|Submit}}',
 	'centralnotice-preview' => '{{Identical|Preview}}',
@@ -118,7 +119,9 @@ $messages['qqq'] = array(
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-notice-exists' => 'Errore message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
 	'centralnotice-template-exists' => 'Errore message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
-	'centralnotice-start-date' => 'Used in Special:CentralNotice',
+	'centralnotice-start-date' => 'Used in Special:CentralNotice.
+
+{{Identical|Start date}}',
 	'centralnotice-start-time' => 'Used in Special:CentralNotice',
 	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
 	'centralnotice-notice-is-locked' => 'Errore message displayed in Special:CentralNotice when trying to delete a locked notice',
@@ -1426,6 +1429,7 @@ Lisa mõni!',
 );
 
 /** Basque (Euskara)
+ * @author An13sa
  * @author Kobazulo
  * @author Pi
  * @author Theklan
@@ -1468,6 +1472,8 @@ Ez da gehituko',
 	'centralnotice-start-date' => 'Hasiera data',
 	'centralnotice-start-time' => 'Hasiera ordua (UTC)',
 	'centralnotice-assigned-templates' => 'Ezarritako txantiloiak',
+	'centralnotice-preview-template' => 'Txantiloia aurreikusi',
+	'centralnotice-edit-template' => 'Txantiloia aldatu',
 	'centralnotice-message' => 'Mezua',
 );
 
