@@ -2935,7 +2935,7 @@ $messages['ko'] = array(
 한 번 삭제하면 복구할 수 없습니다.',
 	'centralnotice-no-notices-exist' => '공지가 존재하지 않습니다. 공지를 추가해주세요.',
 	'centralnotice-no-templates-translate' => '번역해야 할 템플릿이 없습니다.',
-	'centralnotice-number-uses' => '사용',
+	'centralnotice-number-uses' => '사용 횟수',
 	'centralnotice-edit-template' => '틀 편집하기',
 	'centralnotice-message' => '메시지',
 	'centralnotice-message-not-set' => '메시지가 정의되지 않았습니다.',
@@ -2946,7 +2946,7 @@ $messages['ko'] = array(
 	'right-centralnotice-translate' => '중앙 공지 번역',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 	'action-centralnotice-translate' => '중앙 공지를 번역할',
-	'centralnotice-preferred' => '우선적으로',
+	'centralnotice-preferred' => '우선 사용',
 );
 
 /** Ripoarisch (Ripoarisch)
