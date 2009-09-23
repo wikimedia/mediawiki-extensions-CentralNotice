@@ -4116,6 +4116,7 @@ $messages['ps'] = array(
 	'centralnotice-desc' => 'يو مرکزي ويبځی-يادښت ورګډول',
 	'centralnotice-translate-heading' => 'د $1 لپاره ژباړه',
 	'centralnotice-add' => 'ورګډول',
+	'centralnotice-add-template' => 'يوه کينډۍ ورګډول',
 	'centralnotice-translations' => 'ژباړې',
 	'centralnotice-translate' => 'ژباړل',
 	'centralnotice-english' => 'انګرېزي',
@@ -4130,6 +4131,10 @@ $messages['ps'] = array(
 	'centralnotice-project-name' => 'د پروژې نوم',
 	'centralnotice-start-date' => 'د پيل نېټه',
 	'centralnotice-start-time' => 'د پيل وخت (UTC)',
+	'centralnotice-available-templates' => 'شته کينډۍ',
+	'centralnotice-start-hour' => 'د پيل وخت',
+	'centralnotice-change-lang' => 'د ژباړې ژبه بدلول',
+	'centralnotice-message' => 'پيغام',
 );
 
 /** Portuguese (Português)
