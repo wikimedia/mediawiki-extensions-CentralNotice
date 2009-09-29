@@ -2447,7 +2447,7 @@ $messages['id'] = array(
 Modul ini juga dapat digunakan untuk menambahkan atau menghapus pengumuman lama.',
 	'centralnotice-query' => 'Ubah pengumuman saat ini',
 	'centralnotice-notice-name' => 'Judul pengumuman',
-	'centralnotice-end-date' => 'Tanggal akhir',
+	'centralnotice-end-date' => 'Tanggal selesai',
 	'centralnotice-enabled' => 'Diaktifkan',
 	'centralnotice-modify' => 'Kirim',
 	'centralnotice-preview' => 'Pratayang',
