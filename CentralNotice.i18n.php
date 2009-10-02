@@ -887,6 +887,7 @@ $messages['da'] = array(
  * @author Metalhead64
  * @author Purodha
  * @author Raimond Spekking
+ * @author Umherirrender
  */
 $messages['de'] = array(
 	'centralnotice' => 'Administrierung der zentralen Meldungen',
@@ -967,8 +968,8 @@ Füge eine hinzu.',
 	'centralnotice-clone' => 'Klon erstellen',
 	'centralnotice-clone-notice' => 'Erstelle eine Kopie der Vorlage',
 	'centralnotice-preview-all-template-translations' => 'Vorschau aller verfügbaren Übersetzungen einer Vorlage',
-	'right-centralnotice-admin' => 'Verwalten von zentralen Meldungen',
-	'right-centralnotice-translate' => 'Übersetzen von zentralen Meldungen',
+	'right-centralnotice-admin' => 'Zentrale Meldungen verwalten',
+	'right-centralnotice-translate' => 'Zentrale Meldungen übersetzen',
 	'action-centralnotice-admin' => 'Zentrale Seitennotiz verwalten',
 	'action-centralnotice-translate' => 'Zentrale Seitennotiz übersetzen',
 	'centralnotice-preferred' => 'Bevorzugt',
