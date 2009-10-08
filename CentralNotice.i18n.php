@@ -2809,6 +2809,7 @@ Tambahaké ing ngisor',
 );
 
 /** Georgian (ქართული)
+ * @author BRUTE
  * @author Malafaya
  * @author გიორგიმელა
  */
@@ -2829,7 +2830,9 @@ $messages['ka'] = array(
 	'centralnotice-year' => 'წელი',
 	'centralnotice-month' => 'თვე',
 	'centralnotice-hours' => 'საათი',
+	'centralnotice-min' => 'წუთი',
 	'centralnotice-project-lang' => 'პროექტის ენა',
+	'centralnotice-preview-template' => 'წინა თარგი',
 	'centralnotice-edit-template' => 'თარგის რედაქტირება',
 );
 
