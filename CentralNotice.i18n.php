@@ -2818,6 +2818,7 @@ $messages['ka'] = array(
 	'centralnotice-query' => 'მოქმედი შეტყობინების შეცვლა',
 	'centralnotice-end-date' => 'დასრულების თარიღი',
 	'centralnotice-modify' => 'გაგზავნა',
+	'centralnotice-preview' => 'წინა',
 	'centralnotice-remove' => 'წაშლა',
 	'centralnotice-translate-heading' => 'თარგმანი $1-თვის',
 	'centralnotice-add' => 'დამატება',
@@ -2834,6 +2835,8 @@ $messages['ka'] = array(
 	'centralnotice-project-lang' => 'პროექტის ენა',
 	'centralnotice-preview-template' => 'წინა თარგი',
 	'centralnotice-edit-template' => 'თარგის რედაქტირება',
+	'centralnotice-message' => 'შეტყობინება',
+	'centralnotice-clone-notice' => 'თარგის ასლის შექმნა',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -3426,10 +3429,69 @@ $messages['mk'] = array(
 );
 
 /** Malayalam (മലയാളം)
+ * @author Praveenp
  * @author Shijualex
  */
 $messages['ml'] = array(
+	'centralnotice' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
+	'noticetemplate' => 'കേന്ദ്രീകൃത അറിയിപ്പ് ഫലകം',
 	'centralnotice-desc' => 'കേന്ദീകൃത സൈറ്റ്നോട്ടീസ് ചേര്‍ക്കുന്നു',
+	'centralnotice-summary' => 'തയ്യാറാക്കപ്പെട്ട കേന്ദ്രീകൃത അറിയിപ്പുകൾ തിരുത്താൻ ഈ ഘടകം താങ്കളെ പ്രാപ്തമാക്കുന്നു.
+പഴയ അറിയിപ്പുകൾ കൂട്ടിച്ചേർക്കാനോ നീക്കം ചെയ്യാനോ വേണ്ടിയും ഇതുപയോഗിക്കാവുന്നതാണ്.',
+	'centralnotice-query' => 'ഇപ്പോഴുള്ള അറിയിപ്പുകളിൽ മാറ്റം വരുത്തുക',
+	'centralnotice-notice-name' => 'അറിയിപ്പിന്റെ പേര്',
+	'centralnotice-end-date' => 'അവസാനിക്കുന്ന തീയ്യതി',
+	'centralnotice-enabled' => 'സജ്ജമാക്കിയിരിക്കുന്നു',
+	'centralnotice-modify' => 'സമർപ്പിക്കുക',
+	'centralnotice-preview' => 'പ്രിവ്യൂ',
+	'centralnotice-add-new' => 'പുതിയൊരു കേന്ദ്രീകൃത അറിയിപ്പ് ചേർക്കുക',
+	'centralnotice-remove' => 'നീക്കംചെയ്യുക',
+	'centralnotice-translate-heading' => '$1 എന്നതിനുള്ള തർജ്ജമ',
+	'centralnotice-manage' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കൈകാര്യം ചെയ്യുക',
+	'centralnotice-add' => 'കൂട്ടിച്ചേർക്കുക',
+	'centralnotice-add-notice' => 'ഒരു അറിയിപ്പ് കൂട്ടിച്ചേർക്കുക',
+	'centralnotice-add-template' => 'ഫലകം കൂട്ടിച്ചേർക്കുക',
+	'centralnotice-show-notices' => 'അറിയിപ്പുകൾ പ്രദർശിപ്പിക്കുക',
+	'centralnotice-list-templates' => 'ഫലകങ്ങൾ പട്ടികവത്കരിക്കുക',
+	'centralnotice-translations' => 'തർജ്ജമകൾ',
+	'centralnotice-translate-to' => 'ഇതിലേയ്ക്ക് തർജ്ജമ ചെയ്യുക',
+	'centralnotice-translate' => 'തർജ്ജമ ചെയ്യുക',
+	'centralnotice-english' => 'ഇംഗ്ലീഷ്',
+	'centralnotice-template-name' => 'ഫലകത്തിന്റെ പേര്',
+	'centralnotice-templates' => 'ഫലകങ്ങൾ',
+	'centralnotice-notices' => 'അറിയിപ്പുകൾ',
+	'centralnotice-notice-exists' => 'അറിയിപ്പ് ഇപ്പോൾ തന്നെ ഉണ്ട്.
+കൂട്ടിച്ചേർക്കുന്നില്ല',
+	'centralnotice-notice-doesnt-exist' => 'അറിയിപ്പ് നിലനിൽപ്പില്ല.
+നീക്കംചെയ്യാനൊന്നുമില്ല',
+	'centralnotice-template-body' => 'ഫലകത്തിന്റെ ഉള്ളടക്കം:',
+	'centralnotice-day' => 'ദിവസം',
+	'centralnotice-year' => 'വർഷം',
+	'centralnotice-month' => 'മാസം',
+	'centralnotice-hours' => 'മണിക്കൂർ',
+	'centralnotice-min' => 'മിനിട്ട്',
+	'centralnotice-project-lang' => 'പദ്ധതിയുടെ ഭാഷ',
+	'centralnotice-project-name' => 'പദ്ധതിയുടെ പേര്',
+	'centralnotice-start-date' => 'ആരംഭിക്കുന്ന തീയതി',
+	'centralnotice-start-time' => 'ആരംഭിക്കുന്ന സമയം (UTC)',
+	'centralnotice-no-templates' => 'ഫലകങ്ങൾ ഒന്നും കണ്ടെത്താനായില്ല.
+ഏതാനം ചേർക്കുക!',
+	'centralnotice-no-templates-assigned' => 'അറിയിപ്പിനായി ഫലകങ്ങൾ ഒന്നും മാറ്റിവെച്ചിട്ടില്ല.
+ഏതാനം ചേർക്കുക!',
+	'centralnotice-available-templates' => 'ലഭ്യമായ ഫലകങ്ങൾ',
+	'centralnotice-start-hour' => 'ആരംഭിക്കുന്ന സമയം',
+	'centralnotice-change-lang' => 'തർജ്ജമയുടെ ഭാഷ മാറ്റുക',
+	'centralnotice-no-notices-exist' => 'അറിയിപ്പുകൾ നിലനിൽപ്പില്ല.
+താഴെ ഒരെണ്ണം കൂട്ടിച്ചേർക്കുക',
+	'centralnotice-no-templates-translate' => 'ഇതിന്റെ തർജ്ജമകൾ തിരുത്താനായി ഒരു ഫലകവും ഇപ്പോഴില്ല',
+	'centralnotice-edit-template' => 'ഫലകം തിരുത്തുക',
+	'centralnotice-message' => 'സന്ദേശം',
+	'centralnotice-clone-notice' => 'ഫലകത്തിന്റെ പകർപ്പ് സൃഷ്ടിക്കുക',
+	'centralnotice-preview-all-template-translations' => 'ഫലകത്തിന്റെ ലഭ്യമായ എല്ലാ തർജ്ജമകളുടേയും പ്രിവ്യൂ കാണുക',
+	'right-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
+	'right-centralnotice-translate' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ തർജ്ജമ ചെയ്യുക',
+	'action-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
+	'action-centralnotice-translate' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ തർജ്ജമ ചെയ്യുക',
 );
 
 /** Marathi (मराठी)
@@ -5173,6 +5235,7 @@ $messages['te'] = array(
 	'centralnotice-project-name' => 'ప్రాజెక్టు పేరు',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
+	'centralnotice-start-hour' => 'ప్రారంభ సమయం',
 	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
 	'centralnotice-weights' => 'భారాలు',
 	'centralnotice-number-uses' => 'వాడుకరులు',
