@@ -556,7 +556,12 @@ $messages['bg'] = array(
  * @author Bellayet
  */
 $messages['bn'] = array(
+	'centralnotice' => 'কেন্দ্রীয় নোটিশ প্রশাসক',
+	'noticetemplate' => 'কেন্দ্রীয় নোটিশ টেম্পলেট',
 	'centralnotice-desc' => 'একটি কেন্দ্রীয় সাইটনোটিশ যোগ করো',
+	'centralnotice-summary' => 'এই মডিউলটি বর্তমান সেটআপ করা সাইট নোটিশ সম্পাদনা করার সুযোগ দিবে।
+পুরাতন নোটিশ যোগ বা অপসারণের কাজেও এটি ব্যবহার করা যাবে।',
+	'centralnotice-query' => 'বর্তমান নোটিশ পরিবর্তন',
 	'centralnotice-notice-name' => 'নোটিশের নাম',
 	'centralnotice-end-date' => 'শেষের তারিখ',
 	'centralnotice-enabled' => 'সক্রিয়',
@@ -564,14 +569,21 @@ $messages['bn'] = array(
 	'centralnotice-preview' => 'প্রাকদর্শন',
 	'centralnotice-add-new' => 'একটি নতুন কেন্দ্রীয় নোটিশ যোগ করো',
 	'centralnotice-remove' => 'অপসারণ',
+	'centralnotice-translate-heading' => '$1 এর জন্য অনুবাদ',
+	'centralnotice-manage' => 'কেন্দ্রীয় নোটশ ব্যবস্থাপনা',
 	'centralnotice-add' => 'যোগ',
 	'centralnotice-add-notice' => 'নোটিশ যোগ',
 	'centralnotice-add-template' => 'টেম্পলেট যোগ',
 	'centralnotice-show-notices' => 'নোটিশ দেখাও',
 	'centralnotice-list-templates' => 'টেম্পলেটের তালিকা',
+	'centralnotice-translations' => 'অনুবাদসমূহ',
+	'centralnotice-translate-to' => 'যে ভাষায় অনুবাদ করা হচ্ছে তা হল',
+	'centralnotice-translate' => 'অনুবাদ',
 	'centralnotice-english' => 'ইংরেজি',
 	'centralnotice-template-name' => 'টেম্পলেটের নাম',
+	'centralnotice-templates' => 'টেম্পলেট',
 	'centralnotice-notices' => 'নোটিশ',
+	'centralnotice-template-body' => 'টেম্পলেট বডি:',
 	'centralnotice-day' => 'দিন',
 	'centralnotice-year' => 'বছর',
 	'centralnotice-month' => 'মাস',
@@ -581,9 +593,15 @@ $messages['bn'] = array(
 	'centralnotice-project-name' => 'প্রকল্পের নাম',
 	'centralnotice-start-date' => 'শুরুর তারিখ',
 	'centralnotice-start-time' => 'শুরুর সময় (UTC)',
+	'centralnotice-available-templates' => 'বিদ্যমান টেম্পলেট',
+	'centralnotice-preview-template' => 'টেম্পলেট প্রাকদর্শন',
 	'centralnotice-start-hour' => 'শুরুর সময়',
+	'centralnotice-number-uses' => 'ব্যবহার',
 	'centralnotice-edit-template' => 'টেম্পলেট সম্পাদনা',
 	'centralnotice-message' => 'বার্তা',
+	'right-centralnotice-translate' => 'কেন্দ্রীয় নোটিশ অনুবাদ করুন',
+	'action-centralnotice-admin' => 'কেন্দ্রীয় নোটিশ ব্যবস্থাপনা করুন',
+	'action-centralnotice-translate' => 'কেন্দ্রীয় নোটিশ অনুবাদ করুন',
 );
 
 /** Breton (Brezhoneg)
@@ -3462,6 +3480,8 @@ $messages['ml'] = array(
 	'centralnotice-notices' => 'അറിയിപ്പുകൾ',
 	'centralnotice-notice-exists' => 'അറിയിപ്പ് ഇപ്പോൾ തന്നെ ഉണ്ട്.
 കൂട്ടിച്ചേർക്കുന്നില്ല',
+	'centralnotice-template-exists' => 'ഫലകം നിലവിലുണ്ട്.
+കൂട്ടിച്ചേർക്കുന്നില്ല',
 	'centralnotice-notice-doesnt-exist' => 'അറിയിപ്പ് നിലനിൽപ്പില്ല.
 നീക്കംചെയ്യാനൊന്നുമില്ല',
 	'centralnotice-template-body' => 'ഫലകത്തിന്റെ ഉള്ളടക്കം:',
@@ -3479,11 +3499,17 @@ $messages['ml'] = array(
 	'centralnotice-no-templates-assigned' => 'അറിയിപ്പിനായി ഫലകങ്ങൾ ഒന്നും മാറ്റിവെച്ചിട്ടില്ല.
 ഏതാനം ചേർക്കുക!',
 	'centralnotice-available-templates' => 'ലഭ്യമായ ഫലകങ്ങൾ',
+	'centralnotice-preview-template' => 'ഫലകത്തിന്റെ പ്രിവ്യൂ കാണുക',
 	'centralnotice-start-hour' => 'ആരംഭിക്കുന്ന സമയം',
 	'centralnotice-change-lang' => 'തർജ്ജമയുടെ ഭാഷ മാറ്റുക',
+	'centralnotice-notice-is-locked' => 'അറിയിപ്പ് പൂട്ടപ്പെട്ടിരിക്കുന്നു.
+നീക്കം ചെയ്യുന്നില്ല',
+	'centralnotice-overlap' => 'മറ്റൊരു അറിയിപ്പിന്റെ സമയക്രമത്തെ ഈ അറിയിപ്പ് അതിലംഘിക്കുന്നു.
+കൂട്ടിച്ചേർക്കുന്നില്ല',
 	'centralnotice-no-notices-exist' => 'അറിയിപ്പുകൾ നിലനിൽപ്പില്ല.
 താഴെ ഒരെണ്ണം കൂട്ടിച്ചേർക്കുക',
 	'centralnotice-no-templates-translate' => 'ഇതിന്റെ തർജ്ജമകൾ തിരുത്താനായി ഒരു ഫലകവും ഇപ്പോഴില്ല',
+	'centralnotice-number-uses' => 'ഉപയോഗങ്ങൾ',
 	'centralnotice-edit-template' => 'ഫലകം തിരുത്തുക',
 	'centralnotice-message' => 'സന്ദേശം',
 	'centralnotice-clone-notice' => 'ഫലകത്തിന്റെ പകർപ്പ് സൃഷ്ടിക്കുക',
