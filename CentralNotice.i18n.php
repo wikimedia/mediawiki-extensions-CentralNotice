@@ -3512,6 +3512,7 @@ $messages['ml'] = array(
 	'centralnotice-number-uses' => 'ഉപയോഗങ്ങൾ',
 	'centralnotice-edit-template' => 'ഫലകം തിരുത്തുക',
 	'centralnotice-message' => 'സന്ദേശം',
+	'centralnotice-message-not-set' => 'സന്ദേശം നിശ്ചിതപ്പെടുത്തിയില്ല.',
 	'centralnotice-clone-notice' => 'ഫലകത്തിന്റെ പകർപ്പ് സൃഷ്ടിക്കുക',
 	'centralnotice-preview-all-template-translations' => 'ഫലകത്തിന്റെ ലഭ്യമായ എല്ലാ തർജ്ജമകളുടേയും പ്രിവ്യൂ കാണുക',
 	'right-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
