@@ -1001,6 +1001,94 @@ $messages['de-formal'] = array(
 Die Aktion kann nicht rückgängig gemacht werden.',
 );
 
+/** Zazaki (Zazaki)
+ * @author Xoser
+ */
+$messages['diq'] = array(
+	'centralnotice' => 'Noticeyê adminê merkezî',
+	'noticetemplate' => 'Templatê adminê merkezî',
+	'centralnotice-desc' => 'Yew sitenoticeyê merkezî de keno',
+	'centralnotice-query' => 'Îkazê peniyî bivurne',
+	'centralnotice-notice-name' => 'Nameyê îkazî',
+	'centralnotice-end-date' => 'Tarixê qediyayîşî',
+	'centralnotice-enabled' => 'A biya',
+	'centralnotice-modify' => 'Qeyd bike',
+	'centralnotice-preview' => 'Verqeyd',
+	'centralnotice-add-new' => 'Yew îkazê merkezi ye newî de bike',
+	'centralnotice-remove' => 'Biwedar',
+	'centralnotice-translate-heading' => 'Qe $1 çarnayîşî',
+	'centralnotice-manage' => 'Yew îkazê merkezî îdare bike',
+	'centralnotice-add' => 'De bike',
+	'centralnotice-add-notice' => 'Yew îkazê de bike',
+	'centralnotice-add-template' => 'Yew template de bike',
+	'centralnotice-show-notices' => 'Îkazan bimucne',
+	'centralnotice-list-templates' => 'Templeteyan liste bike',
+	'centralnotice-translations' => 'Çarnayişan',
+	'centralnotice-translate-to' => 'Ci ra çarnayîş bike',
+	'centralnotice-translate' => 'Çarnayiş',
+	'centralnotice-english' => 'Ingilizkî',
+	'centralnotice-template-name' => 'Nameyê templateyî',
+	'centralnotice-templates' => 'Templetan',
+	'centralnotice-weight' => 'Ebat',
+	'centralnotice-locked' => 'Kafilnaye',
+	'centralnotice-notices' => 'Îkazan',
+	'centralnotice-notice-exists' => 'Îkazê verînî hama esto.
+De nikeno',
+	'centralnotice-template-exists' => 'Templateyanê verînî hama esto.
+De nikeno',
+	'centralnotice-notice-doesnt-exist' => 'Îkazê verînî hama niesto.
+De nikeno',
+	'centralnotice-template-still-bound' => 'Templateyê verînî hama gani bihebito.
+Niwedarneno',
+	'centralnotice-template-body' => 'Bedenê templateyî:',
+	'centralnotice-day' => 'Roc',
+	'centralnotice-year' => 'Serre',
+	'centralnotice-month' => 'Aşme',
+	'centralnotice-hours' => 'Seet',
+	'centralnotice-min' => 'Dekika',
+	'centralnotice-project-lang' => 'Ziwanê proceyî',
+	'centralnotice-project-name' => 'Nameyê proceyî',
+	'centralnotice-start-date' => 'Wextê başli kerdişî',
+	'centralnotice-start-time' => 'Seetê başli kerdişî  (UTC)',
+	'centralnotice-assigned-templates' => 'Templatan ke assign biyo',
+	'centralnotice-no-templates' => 'Templateyan nidiyo
+Tay de bike!',
+	'centralnotice-no-templates-assigned' => 'Qe îkazî, templateyan assign nibiyo.
+Tay de bike!',
+	'centralnotice-available-templates' => 'Templatan ke esto',
+	'centralnotice-template-already-exists' => 'Template hama hebitiyeno.
+De nikeno',
+	'centralnotice-preview-template' => 'Template verqeyd bike',
+	'centralnotice-start-hour' => 'Seetê başli kerdişî',
+	'centralnotice-change-lang' => 'Ziwanê translasyonî bivurne',
+	'centralnotice-weights' => 'Ebatan',
+	'centralnotice-notice-is-locked' => 'îkaz kefiniyo.
+Niwedarano',
+	'centralnotice-overlap' => 'Zerrê wextê îkazanî de overlapanê rê dikat bike.
+De nikeno',
+	'centralnotice-invalid-date-range' => 'Menzilê wextî raşt niyo.
+Rocaniye nikeno',
+	'centralnotice-null-string' => 'Yew stringê nullyî nieşkeno de bike.
+De nikeno',
+	'centralnotice-confirm-delete' => 'Ti raştî wazeno ena item biwedare?
+Ena hereket reyna nieşkeno biyar.',
+	'centralnotice-no-notices-exist' => 'Yew  îkaz zi çin o.
+Yew de bike',
+	'centralnotice-no-templates-translate' => 'Hin templeteyan çino ke ti biçarne',
+	'centralnotice-number-uses' => 'Ça de kar keno',
+	'centralnotice-edit-template' => 'Template bivurne',
+	'centralnotice-message' => 'Mesaj',
+	'centralnotice-message-not-set' => 'Mesaj nişiravt',
+	'centralnotice-clone' => 'Kopye bike',
+	'centralnotice-clone-notice' => 'Ye kopyayê templateyî viraze',
+	'centralnotice-preview-all-template-translations' => 'Çarnayîşê template yê hemî bivîne',
+	'right-centralnotice-admin' => 'Îkazanê merkezî îdare bike',
+	'right-centralnotice-translate' => 'Çarnayîşê merkezî îdare bike',
+	'action-centralnotice-admin' => 'îkazanê merkezî îdare bike',
+	'action-centralnotice-translate' => 'çarnayîşê merkezî îdare bike',
+	'centralnotice-preferred' => 'Tercih biyo',
+);
+
 /** Lower Sorbian (Dolnoserbski)
  * @author Michawiki
  */
@@ -5965,6 +6053,7 @@ Dun at obinon nesädunovik.',
  */
 $messages['yi'] = array(
 	'centralnotice-translate-heading' => 'פֿאַרטייטשונג פֿאַר ִ$1',
+	'centralnotice-add' => 'צולייגן',
 	'centralnotice-translations' => 'פֿאַרטייטשונגען',
 	'centralnotice-translate-to' => 'פֿאַרטייטשן אויף',
 	'centralnotice-translate' => 'פֿאַרטייטשן',
@@ -5972,6 +6061,7 @@ $messages['yi'] = array(
 	'centralnotice-template-name' => 'מוסטער נאמען',
 	'centralnotice-templates' => 'מוסטערן',
 	'centralnotice-locked' => 'פֿאַרשלאסן',
+	'centralnotice-notices' => 'נאטיצן',
 	'centralnotice-day' => 'טאג',
 	'centralnotice-year' => 'יאר',
 	'centralnotice-month' => 'מאנאט',
