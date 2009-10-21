@@ -4188,10 +4188,12 @@ $messages['os'] = array(
  * @author Xqt
  */
 $messages['pdc'] = array(
+	'centralnotice-list-templates' => 'Lischt vun Moddle',
 	'centralnotice-translations' => 'Iwwersetzinge',
 	'centralnotice-translate-to' => 'Iwwersetze in',
 	'centralnotice-translate' => 'Iwwersetze',
 	'centralnotice-english' => 'Englisch',
+	'centralnotice-templates' => 'Moddle',
 	'centralnotice-day' => 'Daag',
 	'centralnotice-year' => 'Yaahr',
 	'centralnotice-month' => 'Munet',
