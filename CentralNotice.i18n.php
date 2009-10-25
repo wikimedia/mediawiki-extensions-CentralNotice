@@ -1008,6 +1008,8 @@ $messages['diq'] = array(
 	'centralnotice' => 'Noticeyê adminê merkezî',
 	'noticetemplate' => 'Templatê adminê merkezî',
 	'centralnotice-desc' => 'Yew sitenoticeyê merkezî de keno',
+	'centralnotice-summary' => 'Ena panel ti ra yardim keno ke ti eşkeno îkazanê merkezî bivurne.
+Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
 	'centralnotice-query' => 'Îkazê peniyî bivurne',
 	'centralnotice-notice-name' => 'Nameyê îkazî',
 	'centralnotice-end-date' => 'Tarixê qediyayîşî',
