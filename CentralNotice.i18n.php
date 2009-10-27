@@ -3822,6 +3822,7 @@ Kannst ünnen een tofögen',
  * @author Servien
  */
 $messages['nds-nl'] = array(
+	'centralnotice-desc' => 'Voeg een centrale mededeling an de webstee toe',
 	'centralnotice-translate-heading' => 'Vertaling veur $1',
 	'centralnotice-add' => 'Toevoegen',
 	'centralnotice-add-template' => 'Mal toevoegen',
