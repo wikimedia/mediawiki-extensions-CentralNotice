@@ -609,6 +609,15 @@ $messages['bn'] = array(
  */
 $messages['br'] = array(
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
+	'centralnotice-add' => 'Ouzhpennañ',
+	'centralnotice-day' => 'Deiz',
+	'centralnotice-year' => 'Bloaz',
+	'centralnotice-month' => 'Miz',
+	'centralnotice-hours' => 'Eur',
+	'centralnotice-min' => 'Munutenn',
+	'centralnotice-project-lang' => 'Yezh ar raktres',
+	'centralnotice-project-name' => 'Anv ar raktres',
+	'centralnotice-start-date' => 'Deiziad kregiñ',
 );
 
 /** Bosnian (Bosanski)
