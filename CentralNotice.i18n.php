@@ -606,10 +606,14 @@ $messages['bn'] = array(
 
 /** Breton (Brezhoneg)
  * @author Fulup
+ * @author Y-M D
  */
 $messages['br'] = array(
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
 	'centralnotice-add' => 'Ouzhpennañ',
+	'centralnotice-english' => 'Saozneg',
+	'centralnotice-template-name' => 'Anv ar patrom',
+	'centralnotice-templates' => 'Patromoù',
 	'centralnotice-day' => 'Deiz',
 	'centralnotice-year' => 'Bloaz',
 	'centralnotice-month' => 'Miz',
@@ -618,6 +622,7 @@ $messages['br'] = array(
 	'centralnotice-project-lang' => 'Yezh ar raktres',
 	'centralnotice-project-name' => 'Anv ar raktres',
 	'centralnotice-start-date' => 'Deiziad kregiñ',
+	'centralnotice-number-uses' => 'Implijoù',
 );
 
 /** Bosnian (Bosanski)
@@ -5349,15 +5354,19 @@ $messages['te'] = array(
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
 	'centralnotice-notice-name' => 'గమనిక పేరు',
 	'centralnotice-end-date' => 'ముగింపు తేదీ',
+	'centralnotice-enabled' => 'చేతనమైంది',
+	'centralnotice-modify' => 'దాఖలుచేయి',
 	'centralnotice-preview' => 'మునుజూపు',
 	'centralnotice-remove' => 'తొలగించు',
 	'centralnotice-translate-heading' => '$1కి అనువాదం',
 	'centralnotice-add' => 'చేర్చు',
+	'centralnotice-list-templates' => 'మూసలను చూపించు',
 	'centralnotice-translations' => 'అనువాదాలు',
 	'centralnotice-translate' => 'అనువదించండి',
 	'centralnotice-english' => 'ఇంగ్లీష్',
 	'centralnotice-template-name' => 'మూస పేరు',
 	'centralnotice-templates' => 'మూసలు',
+	'centralnotice-weight' => 'భారం',
 	'centralnotice-notices' => 'గమనికలు',
 	'centralnotice-day' => 'రోజు',
 	'centralnotice-year' => 'సంవత్సరం',
@@ -5368,6 +5377,7 @@ $messages['te'] = array(
 	'centralnotice-project-name' => 'ప్రాజెక్టు పేరు',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
+	'centralnotice-available-templates' => 'అందుబాటులో ఉన్న మూసలు',
 	'centralnotice-start-hour' => 'ప్రారంభ సమయం',
 	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
 	'centralnotice-weights' => 'భారాలు',
