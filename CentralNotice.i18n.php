@@ -3581,6 +3581,8 @@ $messages['ml'] = array(
 	'centralnotice-english' => 'ഇംഗ്ലീഷ്',
 	'centralnotice-template-name' => 'ഫലകത്തിന്റെ പേര്',
 	'centralnotice-templates' => 'ഫലകങ്ങൾ',
+	'centralnotice-weight' => 'ഘനം',
+	'centralnotice-locked' => 'പൂട്ടിയിരിക്കുന്നു',
 	'centralnotice-notices' => 'അറിയിപ്പുകൾ',
 	'centralnotice-notice-exists' => 'അറിയിപ്പ് ഇപ്പോൾ തന്നെ ഉണ്ട്.
 കൂട്ടിച്ചേർക്കുന്നില്ല',
@@ -3598,6 +3600,7 @@ $messages['ml'] = array(
 	'centralnotice-project-name' => 'പദ്ധതിയുടെ പേര്',
 	'centralnotice-start-date' => 'ആരംഭിക്കുന്ന തീയതി',
 	'centralnotice-start-time' => 'ആരംഭിക്കുന്ന സമയം (UTC)',
+	'centralnotice-assigned-templates' => 'ചുമതലപ്പെടുത്തിയിരിക്കുന്ന ഫലകങ്ങൾ',
 	'centralnotice-no-templates' => 'ഫലകങ്ങൾ ഒന്നും കണ്ടെത്താനായില്ല.
 ഏതാനം ചേർക്കുക!',
 	'centralnotice-no-templates-assigned' => 'അറിയിപ്പിനായി ഫലകങ്ങൾ ഒന്നും മാറ്റിവെച്ചിട്ടില്ല.
@@ -3606,6 +3609,7 @@ $messages['ml'] = array(
 	'centralnotice-preview-template' => 'ഫലകത്തിന്റെ പ്രിവ്യൂ കാണുക',
 	'centralnotice-start-hour' => 'ആരംഭിക്കുന്ന സമയം',
 	'centralnotice-change-lang' => 'തർജ്ജമയുടെ ഭാഷ മാറ്റുക',
+	'centralnotice-weights' => 'ഘനങ്ങൾ',
 	'centralnotice-notice-is-locked' => 'അറിയിപ്പ് പൂട്ടപ്പെട്ടിരിക്കുന്നു.
 നീക്കം ചെയ്യുന്നില്ല',
 	'centralnotice-overlap' => 'മറ്റൊരു അറിയിപ്പിന്റെ സമയക്രമത്തെ ഈ അറിയിപ്പ് അതിലംഘിക്കുന്നു.
@@ -3627,6 +3631,7 @@ $messages['ml'] = array(
 	'right-centralnotice-translate' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ തർജ്ജമ ചെയ്യുക',
 	'action-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
 	'action-centralnotice-translate' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ തർജ്ജമ ചെയ്യുക',
+	'centralnotice-preferred' => 'അഭിലഷണീയമായുള്ളത്',
 );
 
 /** Marathi (मराठी)
