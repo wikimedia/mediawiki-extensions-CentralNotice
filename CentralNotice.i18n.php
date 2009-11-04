@@ -605,15 +605,19 @@ $messages['bn'] = array(
 );
 
 /** Breton (Brezhoneg)
+ * @author Fohanno
  * @author Fulup
  * @author Y-M D
  */
 $messages['br'] = array(
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
+	'centralnotice-enabled' => 'Gweredekaet',
+	'centralnotice-translate-heading' => 'Troidigezh eus $1',
 	'centralnotice-add' => 'Ouzhpennañ',
 	'centralnotice-english' => 'Saozneg',
 	'centralnotice-template-name' => 'Anv ar patrom',
 	'centralnotice-templates' => 'Patromoù',
+	'centralnotice-weight' => 'Pouez',
 	'centralnotice-day' => 'Deiz',
 	'centralnotice-year' => 'Bloaz',
 	'centralnotice-month' => 'Miz',
@@ -622,6 +626,7 @@ $messages['br'] = array(
 	'centralnotice-project-lang' => 'Yezh ar raktres',
 	'centralnotice-project-name' => 'Anv ar raktres',
 	'centralnotice-start-date' => 'Deiziad kregiñ',
+	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-number-uses' => 'Implijoù',
 );
 
@@ -6085,6 +6090,7 @@ Dun at obinon nesädunovik.',
  * @author פוילישער
  */
 $messages['yi'] = array(
+	'centralnotice-preview' => 'פֿאראויסשטעלונג',
 	'centralnotice-translate-heading' => 'פֿאַרטייטשונג פֿאַר ִ$1',
 	'centralnotice-add' => 'צולייגן',
 	'centralnotice-translations' => 'פֿאַרטייטשונגען',
