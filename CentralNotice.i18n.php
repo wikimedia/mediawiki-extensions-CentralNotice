@@ -612,12 +612,14 @@ $messages['bn'] = array(
 $messages['br'] = array(
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
 	'centralnotice-enabled' => 'Gweredekaet',
+	'centralnotice-remove' => 'Dilemel',
 	'centralnotice-translate-heading' => 'Troidigezh eus $1',
 	'centralnotice-add' => 'Ouzhpennañ',
 	'centralnotice-english' => 'Saozneg',
 	'centralnotice-template-name' => 'Anv ar patrom',
 	'centralnotice-templates' => 'Patromoù',
 	'centralnotice-weight' => 'Pouez',
+	'centralnotice-locked' => 'Prennet',
 	'centralnotice-day' => 'Deiz',
 	'centralnotice-year' => 'Bloaz',
 	'centralnotice-month' => 'Miz',
@@ -628,6 +630,7 @@ $messages['br'] = array(
 	'centralnotice-start-date' => 'Deiziad kregiñ',
 	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-number-uses' => 'Implijoù',
+	'centralnotice-message' => 'Kemennadenn',
 );
 
 /** Bosnian (Bosanski)
