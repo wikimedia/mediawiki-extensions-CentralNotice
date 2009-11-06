@@ -3598,6 +3598,8 @@ $messages['ml'] = array(
 കൂട്ടിച്ചേർക്കുന്നില്ല',
 	'centralnotice-notice-doesnt-exist' => 'അറിയിപ്പ് നിലനിൽപ്പില്ല.
 നീക്കംചെയ്യാനൊന്നുമില്ല',
+	'centralnotice-template-still-bound' => 'ഫലകം ഇപ്പോഴും ഒരു അറിയിപ്പുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു.
+നീക്കം ചെയ്യുന്നില്ല.',
 	'centralnotice-template-body' => 'ഫലകത്തിന്റെ ഉള്ളടക്കം:',
 	'centralnotice-day' => 'ദിവസം',
 	'centralnotice-year' => 'വർഷം',
