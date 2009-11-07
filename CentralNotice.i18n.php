@@ -582,7 +582,15 @@ $messages['bn'] = array(
 	'centralnotice-english' => 'ইংরেজি',
 	'centralnotice-template-name' => 'টেম্পলেটের নাম',
 	'centralnotice-templates' => 'টেম্পলেট',
+	'centralnotice-weight' => 'ওজন',
+	'centralnotice-locked' => 'অবরুদ্ধ',
 	'centralnotice-notices' => 'নোটিশ',
+	'centralnotice-notice-exists' => 'সাইট নোটশ ইতিমধ্যে রয়েছে।
+যোগ হয়নি',
+	'centralnotice-template-exists' => 'টেম্পলেট ইতিমধ্যে রয়েছে।
+যোগ হয়নি',
+	'centralnotice-notice-doesnt-exist' => 'নোটিশ নেই।
+অপসারণ করার মত কিছু নেই',
 	'centralnotice-template-body' => 'টেম্পলেট বডি:',
 	'centralnotice-day' => 'দিন',
 	'centralnotice-year' => 'বছর',
@@ -593,15 +601,41 @@ $messages['bn'] = array(
 	'centralnotice-project-name' => 'প্রকল্পের নাম',
 	'centralnotice-start-date' => 'শুরুর তারিখ',
 	'centralnotice-start-time' => 'শুরুর সময় (UTC)',
+	'centralnotice-assigned-templates' => 'নিয়োজিত টেম্পলেট',
+	'centralnotice-no-templates' => 'কোনো টেম্পলেট পাওয়া যায়নি।
+যোগ করুন!',
+	'centralnotice-no-templates-assigned' => 'নোটিশে কোনো টেম্পলেট নিয়োগ হয় নাই।
+যোগ করুন!',
 	'centralnotice-available-templates' => 'বিদ্যমান টেম্পলেট',
 	'centralnotice-preview-template' => 'টেম্পলেট প্রাকদর্শন',
 	'centralnotice-start-hour' => 'শুরুর সময়',
+	'centralnotice-change-lang' => 'অনুবাদের ভাষা পরিবর্তন',
+	'centralnotice-weights' => 'ওজন',
+	'centralnotice-notice-is-locked' => 'নোটিশটি অবরুদ্ধ।
+অপসারণ হয়নি',
+	'centralnotice-overlap' => 'অন্য নোটিশের সময়ের মধ্যে অধিক্রমন (ওভারল্যাপ) করে।
+যোগ হয়নি',
+	'centralnotice-invalid-date-range' => 'ভুল তারিখ পরিসীমা।
+হালনাগাদ হয়নি',
+	'centralnotice-null-string' => 'খালি স্ট্রিং যোগ করা যাবে না।
+যোগ হয়নি',
+	'centralnotice-confirm-delete' => 'আপনি কি নিশ্চিত ভাবে এই আইটেমটি মুছে ফেলতে চান?
+এই কাজটির পুনরুদ্ধার সম্ভব হবে না।',
+	'centralnotice-no-notices-exist' => 'কোনো নোটিশ নেই।
+নিচে একটি যোগ করুন।',
+	'centralnotice-no-templates-translate' => 'অনুবাদ সম্পাদনার জন্য কোনো টেম্পলেট নেই',
 	'centralnotice-number-uses' => 'ব্যবহার',
 	'centralnotice-edit-template' => 'টেম্পলেট সম্পাদনা',
 	'centralnotice-message' => 'বার্তা',
+	'centralnotice-message-not-set' => 'বার্তা সেট হয়নি',
+	'centralnotice-clone' => 'হুবুহু অনুলিপি',
+	'centralnotice-clone-notice' => 'টেম্পলেটের অনুলিপি তৈরি করো',
+	'centralnotice-preview-all-template-translations' => 'টেম্পলেটের বিদ্যমান সকল অনুবাদের প্রাকদর্শন দেখাও',
+	'right-centralnotice-admin' => 'কেন্দ্রীয় নোটিশ ব্যবস্থাপনা',
 	'right-centralnotice-translate' => 'কেন্দ্রীয় নোটিশ অনুবাদ করুন',
 	'action-centralnotice-admin' => 'কেন্দ্রীয় নোটিশ ব্যবস্থাপনা করুন',
 	'action-centralnotice-translate' => 'কেন্দ্রীয় নোটিশ অনুবাদ করুন',
+	'centralnotice-preferred' => 'পছন্দনীয়',
 );
 
 /** Breton (Brezhoneg)
@@ -4358,6 +4392,7 @@ $messages['ps'] = array(
 );
 
 /** Portuguese (Português)
+ * @author Hamilton Abreu
  * @author Malafaya
  */
 $messages['pt'] = array(
@@ -4371,7 +4406,7 @@ Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-end-date' => 'Data fim',
 	'centralnotice-enabled' => 'Activo',
 	'centralnotice-modify' => 'Submeter',
-	'centralnotice-preview' => 'Previsão',
+	'centralnotice-preview' => 'Antever',
 	'centralnotice-add-new' => 'Adicionar um novo aviso centralizado',
 	'centralnotice-remove' => 'Remover',
 	'centralnotice-translate-heading' => 'Tradução de $1',
@@ -4416,7 +4451,7 @@ Adicione alguns!',
 	'centralnotice-available-templates' => 'Modelos disponíveis',
 	'centralnotice-template-already-exists' => 'O modelo já está ligado a campanha.
 Não adicionado',
-	'centralnotice-preview-template' => 'Prever modelo',
+	'centralnotice-preview-template' => 'Antever modelo',
 	'centralnotice-start-hour' => 'Hora início',
 	'centralnotice-change-lang' => 'Alterar língua de tradução',
 	'centralnotice-weights' => 'Pesos',
@@ -4439,7 +4474,7 @@ Adicione um abaixo',
 	'centralnotice-message-not-set' => 'Mensagem não estabelecida',
 	'centralnotice-clone' => 'Clonar',
 	'centralnotice-clone-notice' => 'Criar uma cópia do modelo',
-	'centralnotice-preview-all-template-translations' => 'Prever todas as traduções disponíveis do modelo',
+	'centralnotice-preview-all-template-translations' => 'Antever todas as traduções disponíveis do modelo',
 	'right-centralnotice-admin' => 'Gerir avisos centralizados',
 	'right-centralnotice-translate' => 'Traduzir avisos centralizados',
 	'action-centralnotice-admin' => 'gerir avisos centralizados',
