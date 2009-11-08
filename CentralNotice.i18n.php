@@ -3650,6 +3650,8 @@ $messages['ml'] = array(
 	'centralnotice-no-templates-assigned' => 'അറിയിപ്പിനായി ഫലകങ്ങൾ ഒന്നും മാറ്റിവെച്ചിട്ടില്ല.
 ഏതാനം ചേർക്കുക!',
 	'centralnotice-available-templates' => 'ലഭ്യമായ ഫലകങ്ങൾ',
+	'centralnotice-template-already-exists' => 'ഫലകം പ്രചരണപ്രവർത്തനവുമായി ബന്ധിച്ചിരിക്കുന്നു.
+കൂട്ടിച്ചേർക്കുന്നില്ല',
 	'centralnotice-preview-template' => 'ഫലകത്തിന്റെ പ്രിവ്യൂ കാണുക',
 	'centralnotice-start-hour' => 'ആരംഭിക്കുന്ന സമയം',
 	'centralnotice-change-lang' => 'തർജ്ജമയുടെ ഭാഷ മാറ്റുക',
@@ -3660,6 +3662,8 @@ $messages['ml'] = array(
 കൂട്ടിച്ചേർക്കുന്നില്ല',
 	'centralnotice-invalid-date-range' => 'തീയതിയുടെ പരിധി അസാധുവാണ്.
 പുതുക്കുന്നില്ല.',
+	'centralnotice-null-string' => 'ശൂന്യമായ പദം ചേർക്കാൻ കഴിയില്ല.
+കൂട്ടിച്ചേർക്കുന്നില്ല',
 	'centralnotice-confirm-delete' => 'ഇത് മായ്ച്ചുകളയണമെന്നതിനു താങ്കൾക്കുറപ്പുണ്ടോ?
 ഈ പ്രവൃത്തി തിരികെ ചെയ്യാവുന്നതല്ല.',
 	'centralnotice-no-notices-exist' => 'അറിയിപ്പുകൾ നിലനിൽപ്പില്ല.
@@ -3669,6 +3673,7 @@ $messages['ml'] = array(
 	'centralnotice-edit-template' => 'ഫലകം തിരുത്തുക',
 	'centralnotice-message' => 'സന്ദേശം',
 	'centralnotice-message-not-set' => 'സന്ദേശം നിശ്ചിതപ്പെടുത്തിയില്ല.',
+	'centralnotice-clone' => 'സമപ്പകർപ്പ്',
 	'centralnotice-clone-notice' => 'ഫലകത്തിന്റെ പകർപ്പ് സൃഷ്ടിക്കുക',
 	'centralnotice-preview-all-template-translations' => 'ഫലകത്തിന്റെ ലഭ്യമായ എല്ലാ തർജ്ജമകളുടേയും പ്രിവ്യൂ കാണുക',
 	'right-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
@@ -4258,6 +4263,7 @@ $messages['os'] = array(
  * @author Xqt
  */
 $messages['pdc'] = array(
+	'centralnotice-add' => 'Dezu duh',
 	'centralnotice-list-templates' => 'Lischt vun Moddle',
 	'centralnotice-translations' => 'Iwwersetzinge',
 	'centralnotice-translate-to' => 'Iwwersetze in',
