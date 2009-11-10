@@ -297,6 +297,21 @@ $messages['ar'] = array(
 	'centralnotice-preferred' => 'مفضل',
 );
 
+/** Aramaic (ܐܪܡܝܐ)
+ * @author Basharh
+ */
+$messages['arc'] = array(
+	'centralnotice-add' => 'ܐܘܣܦ',
+	'centralnotice-add-template' => 'ܐܘܣܦ ܩܠܒܐ',
+	'centralnotice-translate' => 'ܬܪܓܡ',
+	'centralnotice-day' => 'ܝܘܡܐ',
+	'centralnotice-year' => 'ܫܢܬܐ',
+	'centralnotice-month' => 'ܝܪܚܐ',
+	'centralnotice-hours' => 'ܫܥܬܐ',
+	'centralnotice-min' => 'ܩܛܝܢܬܐ',
+	'centralnotice-message' => 'ܐܓܪܬܐ',
+);
+
 /** Egyptian Spoken Arabic (مصرى)
  * @author Ghaly
  * @author Meno25
