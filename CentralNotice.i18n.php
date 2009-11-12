@@ -1545,7 +1545,7 @@ Añade uno debajo',
 $messages['et'] = array(
 	'centralnotice' => 'Keskuse teate admin',
 	'noticetemplate' => 'Keskuse teate mall',
-	'centralnotice-desc' => 'Lisab keskse võrgukohateatesüsteemi',
+	'centralnotice-desc' => 'Lisab keskse võrgukohateatesüsteemi.',
 	'centralnotice-notice-name' => 'Teate nimi',
 	'centralnotice-end-date' => 'Tähtaeg',
 	'centralnotice-enabled' => 'Luba olemas',
