@@ -309,6 +309,7 @@ $messages['arc'] = array(
 	'centralnotice-month' => 'ܝܪܚܐ',
 	'centralnotice-hours' => 'ܫܥܬܐ',
 	'centralnotice-min' => 'ܩܛܝܢܬܐ',
+	'centralnotice-edit-template' => 'ܫܚܠܦ ܩܠܒܐ',
 	'centralnotice-message' => 'ܐܓܪܬܐ',
 );
 
