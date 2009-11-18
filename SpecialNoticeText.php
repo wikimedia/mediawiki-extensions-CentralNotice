@@ -23,7 +23,7 @@ class SpecialNoticeText extends NoticePage {
 
                 // Quick short circuit to be able to show preferred notices
                 $templates = array();
-                
+
                 if ( $this->language == 'en' && $this->project != null ) {
                     // See if we have any preferred notices for all of en
                     $notices = CentralNoticeDB::getNotices( '', 'en', '', '', 1 );
@@ -39,9 +39,25 @@ class SpecialNoticeText extends NoticePage {
                         }
                     }
                 }
+
+		if ( !$templates ) {
+			if ( $this->project == 'wikipedia' ) {
+				$notices = CentralNoticeDB::getNotices( 'wikipedia', '', '', '', 1 );
+				foreach( $notices as $notice => $val ) {
+					if ( $val['language'] == '' || 
+					     $val['language'] == $this->language ) {
+						$templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
+						break;
+					}
+				}
+			
+			}
+		}
+
                 // Didn't find any preferred matches so do an old style lookup
-                if ( !$templates ) 
+		if ( !$templates )  {
                     $templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
+		}
 
 		$templateNames = array_keys( $templates );
 
