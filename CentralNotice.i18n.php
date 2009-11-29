@@ -685,7 +685,9 @@ $messages['br'] = array(
 	'centralnotice-start-date' => 'Deiziad kregiñ',
 	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-number-uses' => 'Implijoù',
+	'centralnotice-edit-template' => 'Kemmañ ar patrom',
 	'centralnotice-message' => 'Kemennadenn',
+	'centralnotice-clone-notice' => 'Krouiñ un eiladenn eus ar patrom',
 );
 
 /** Bosnian (Bosanski)
