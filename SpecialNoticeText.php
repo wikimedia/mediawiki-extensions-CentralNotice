@@ -167,6 +167,13 @@ function pickTemplate(templates, weights) {
 	}
 
 	private function formatNum( $num ) {
+		// Reduce to millions
+		$num *= 0.000001;
+		// Grab the fractional part
+		$fraction = ( round( $num - 0.0455555, 1, PHP_ROUND_HALF_DOWN ) - floor( $num ) ) * 10;
+		// Only append the fractional part if it's more than 0
+		$num = floatval( floor( $num ) . ( $fraction ? '.' . $fraction : '' ) );
+		// Internationalize
 		$lang = Language::factory( $this->language );
 		return $lang->formatNum( $num );
 	}
