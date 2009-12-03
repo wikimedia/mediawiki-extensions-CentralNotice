@@ -2721,6 +2721,7 @@ Tambahkan di bawah ini.',
  * @author Malafaya
  */
 $messages['io'] = array(
+	'centralnotice-modify' => 'Sendez',
 	'centralnotice-add' => 'Adjuntar',
 	'centralnotice-add-notice' => 'Adjuntar avizo',
 	'centralnotice-add-template' => 'Adjuntar shablono',
