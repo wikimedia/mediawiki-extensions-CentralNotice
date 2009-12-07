@@ -661,6 +661,7 @@ $messages['bn'] = array(
  */
 $messages['br'] = array(
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
+	'centralnotice-end-date' => 'Deiziad termen',
 	'centralnotice-enabled' => 'Gweredekaet',
 	'centralnotice-modify' => 'Kas',
 	'centralnotice-preview' => 'Rakwelet',
@@ -678,6 +679,9 @@ $messages['br'] = array(
 	'centralnotice-weight' => 'Pouez',
 	'centralnotice-locked' => 'Prennet',
 	'centralnotice-notices' => 'Kemennoù',
+	'centralnotice-template-exists' => "Bez ez eus dija eus ar patrom-se.
+N'eo ket bet ouzhpennet.",
+	'centralnotice-template-body' => 'Korf ar patrom :',
 	'centralnotice-day' => 'Deiz',
 	'centralnotice-year' => 'Bloaz',
 	'centralnotice-month' => 'Miz',
@@ -686,10 +690,13 @@ $messages['br'] = array(
 	'centralnotice-project-lang' => 'Yezh ar raktres',
 	'centralnotice-project-name' => 'Anv ar raktres',
 	'centralnotice-start-date' => 'Deiziad kregiñ',
+	'centralnotice-no-templates' => "N'eo bet kavet patrom ebet.
+Ouzhpennit patromoù !",
 	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-number-uses' => 'Implijoù',
 	'centralnotice-edit-template' => 'Kemmañ ar patrom',
 	'centralnotice-message' => 'Kemennadenn',
+	'centralnotice-clone' => 'Eilañ',
 	'centralnotice-clone-notice' => 'Krouiñ un eiladenn eus ar patrom',
 );
 
@@ -3634,7 +3641,7 @@ $messages['ml'] = array(
 	'centralnotice-end-date' => 'അവസാനിക്കുന്ന തീയ്യതി',
 	'centralnotice-enabled' => 'സജ്ജമാക്കിയിരിക്കുന്നു',
 	'centralnotice-modify' => 'സമർപ്പിക്കുക',
-	'centralnotice-preview' => 'പ്രിവ്യൂ',
+	'centralnotice-preview' => 'എങ്ങിനെയുണ്ടെന്നു കാണുക',
 	'centralnotice-add-new' => 'പുതിയൊരു കേന്ദ്രീകൃത അറിയിപ്പ് ചേർക്കുക',
 	'centralnotice-remove' => 'നീക്കംചെയ്യുക',
 	'centralnotice-translate-heading' => '$1 എന്നതിനുള്ള തർജ്ജമ',
