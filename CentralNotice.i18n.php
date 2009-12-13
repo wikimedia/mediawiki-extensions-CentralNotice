@@ -5483,6 +5483,7 @@ $messages['te'] = array(
 	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
 	'centralnotice-weights' => 'భారాలు',
 	'centralnotice-number-uses' => 'వాడుకరులు',
+	'centralnotice-edit-template' => 'మూసని మార్చు',
 	'centralnotice-message' => 'సందేశం',
 	'right-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనుదించండి',
 );
