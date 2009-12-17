@@ -692,6 +692,7 @@ N'eo ket bet ouzhpennet.",
 	'centralnotice-start-date' => 'Deiziad kregiñ',
 	'centralnotice-no-templates' => "N'eo bet kavet patrom ebet.
 Ouzhpennit patromoù !",
+	'centralnotice-available-templates' => 'Patromoù zo da gaout',
 	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-number-uses' => 'Implijoù',
 	'centralnotice-edit-template' => 'Kemmañ ar patrom',
