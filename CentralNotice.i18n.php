@@ -661,6 +661,8 @@ $messages['bn'] = array(
  */
 $messages['br'] = array(
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
+	'centralnotice-query' => 'Kemmañ an alioù a-vremañ',
+	'centralnotice-notice-name' => 'Anv an ali',
 	'centralnotice-end-date' => 'Deiziad termen',
 	'centralnotice-enabled' => 'Gweredekaet',
 	'centralnotice-modify' => 'Kas',
@@ -670,6 +672,8 @@ $messages['br'] = array(
 	'centralnotice-add' => 'Ouzhpennañ',
 	'centralnotice-add-notice' => "Ouhzpennañ ur c'hemenn",
 	'centralnotice-add-template' => 'Ouzhpennañ ur patrom',
+	'centralnotice-show-notices' => 'Diskouez an alioù',
+	'centralnotice-list-templates' => 'Listennañ ar patromoù',
 	'centralnotice-translations' => 'Troidigezhioù',
 	'centralnotice-translate-to' => 'Treiñ e',
 	'centralnotice-translate' => 'Treiñ',
@@ -700,6 +704,7 @@ Ouzhpennit patromoù !",
 	'centralnotice-number-uses' => 'Implijoù',
 	'centralnotice-edit-template' => 'Kemmañ ar patrom',
 	'centralnotice-message' => 'Kemennadenn',
+	'centralnotice-message-not-set' => "N'eo ket bet kaset ar gemenadenn",
 	'centralnotice-clone' => 'Eilañ',
 	'centralnotice-clone-notice' => 'Krouiñ un eiladenn eus ar patrom',
 );
