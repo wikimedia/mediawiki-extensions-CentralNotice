@@ -161,6 +161,7 @@ $messages['af'] = array(
 	'centralnotice-templates' => 'Sjablone',
 	'centralnotice-weight' => 'Gewig',
 	'centralnotice-locked' => 'Gesluit',
+	'centralnotice-notices' => 'Kennisgewings',
 	'centralnotice-template-body' => 'Sjablooninhoud:',
 	'centralnotice-day' => 'Dag',
 	'centralnotice-year' => 'Jaar',
@@ -978,6 +979,19 @@ Níže můžete vytvořit nové.',
  * @author Lloffiwr
  */
 $messages['cy'] = array(
+	'centralnotice' => "Gweinyddu'r hysbysiad canolog",
+	'centralnotice-desc' => 'Yn ychwanegu hysbysiad canolog',
+	'centralnotice-notice-name' => "Enw'r hysbysiad",
+	'centralnotice-end-date' => 'Dyddiad y daw i ben',
+	'centralnotice-modify' => 'Gosoder',
+	'centralnotice-preview' => 'Rhagolwg',
+	'centralnotice-remove' => 'Diddymu',
+	'centralnotice-add' => 'Ychwanegu',
+	'centralnotice-add-notice' => 'Ychwanegu hysbysiad',
+	'centralnotice-translations' => 'Cyfieithiadau',
+	'centralnotice-translate' => 'Cyfieithu',
+	'centralnotice-english' => 'Saesneg',
+	'centralnotice-notices' => 'Hysbysiadau',
 	'centralnotice-day' => 'Dydd',
 	'centralnotice-year' => 'Blwyddyn',
 	'centralnotice-month' => 'Mis',
@@ -987,6 +1001,12 @@ $messages['cy'] = array(
 	'centralnotice-project-name' => "Enw'r prosiect",
 	'centralnotice-start-date' => 'Dyddiad cychwyn',
 	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
+	'centralnotice-start-hour' => 'Amser dechrau',
+	'centralnotice-message' => 'Neges',
+	'right-centralnotice-admin' => 'Gweinyddu hysbysiadau canolog',
+	'right-centralnotice-translate' => 'Cyfieithu hysbysiadau canolog',
+	'action-centralnotice-admin' => 'gweinyddu hysbysiadau canolog',
+	'action-centralnotice-translate' => 'cyfieithu hysbysiadau canolog',
 );
 
 /** Danish (Dansk)
@@ -1680,8 +1700,11 @@ Ez da gehituko',
 	'centralnotice-start-time' => 'Hasiera ordua (UTC)',
 	'centralnotice-assigned-templates' => 'Ezarritako txantiloiak',
 	'centralnotice-preview-template' => 'Txantiloia aurreikusi',
+	'centralnotice-start-hour' => 'Hasiera ordua',
+	'centralnotice-change-lang' => 'Aldatu itzulpen hizkuntza',
 	'centralnotice-edit-template' => 'Txantiloia aldatu',
 	'centralnotice-message' => 'Mezua',
+	'centralnotice-clone-notice' => 'Txantiloia honen kopia sortu',
 );
 
 /** Persian (فارسی)
@@ -4724,6 +4747,7 @@ Kay qatiqpi hukta yapay',
  * @author Firilacroco
  * @author KlaudiuMihaila
  * @author Mihai
+ * @author Stelistcristi
  */
 $messages['ro'] = array(
 	'centralnotice-desc' => 'Adaugă un anunţ central sitului',
@@ -4755,8 +4779,12 @@ $messages['ro'] = array(
 	'centralnotice-project-lang' => 'Limba proiectului',
 	'centralnotice-project-name' => 'Numele proiectului',
 	'centralnotice-available-templates' => 'Formate disponibile',
+	'centralnotice-preview-template' => 'Previzualizare formate',
+	'centralnotice-change-lang' => 'Schimbă limba de traducere',
+	'centralnotice-weights' => 'Greutăţi',
 	'centralnotice-edit-template' => 'Modifică format',
 	'centralnotice-message' => 'Mesaj',
+	'centralnotice-clone' => 'Clonaţi',
 	'centralnotice-clone-notice' => 'Creează o copie a formatului',
 	'right-centralnotice-translate' => 'Traduce anunţurile centrale',
 	'action-centralnotice-admin' => 'administraţi anunţurile centrale',
@@ -5478,6 +5506,10 @@ $messages['te'] = array(
 	'centralnotice-templates' => 'మూసలు',
 	'centralnotice-weight' => 'భారం',
 	'centralnotice-notices' => 'గమనికలు',
+	'centralnotice-notice-exists' => 'గమనిక ఇప్పటికే ఉంది.
+చేర్చట్లేదు',
+	'centralnotice-template-exists' => 'మూస ఇప్పటికే ఉంది.
+చేర్చట్లేదు',
 	'centralnotice-day' => 'రోజు',
 	'centralnotice-year' => 'సంవత్సరం',
 	'centralnotice-month' => 'నెల',
@@ -5488,6 +5520,7 @@ $messages['te'] = array(
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
 	'centralnotice-available-templates' => 'అందుబాటులో ఉన్న మూసలు',
+	'centralnotice-preview-template' => 'మూస మునుజూపు',
 	'centralnotice-start-hour' => 'ప్రారంభ సమయం',
 	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
 	'centralnotice-weights' => 'భారాలు',
@@ -5695,6 +5728,29 @@ $messages['th'] = array(
 	'action-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
 	'action-centralnotice-translate' => 'แปลประกาศส่วนกลาง',
 	'centralnotice-preferred' => 'แบบที่เลือก',
+);
+
+/** Turkmen (Türkmençe)
+ * @author Hanberke
+ */
+$messages['tk'] = array(
+	'centralnotice-add-template' => 'Şablon goş',
+	'centralnotice-list-templates' => 'Şablonlaryň sanawyny görkez',
+	'centralnotice-translations' => 'Terjimeler',
+	'centralnotice-translate-to' => 'Şu dile terjime et:',
+	'centralnotice-translate' => 'Terjime et',
+	'centralnotice-english' => 'iňlisçe',
+	'centralnotice-template-name' => 'Şablon ady',
+	'centralnotice-templates' => 'Şablonlar',
+	'centralnotice-day' => 'Gün',
+	'centralnotice-year' => 'Ýyl',
+	'centralnotice-month' => 'Aý',
+	'centralnotice-hours' => 'Sagat',
+	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Taslama dili',
+	'centralnotice-project-name' => 'Taslama ady',
+	'centralnotice-edit-template' => 'Şablony redaktirle',
+	'centralnotice-message' => 'Habarlaşyk',
 );
 
 /** Tagalog (Tagalog)
