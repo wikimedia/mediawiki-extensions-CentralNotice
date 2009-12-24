@@ -4769,6 +4769,7 @@ $messages['ro'] = array(
 	'centralnotice-english' => 'engleză',
 	'centralnotice-template-name' => 'Numele formatului',
 	'centralnotice-templates' => 'Formate',
+	'centralnotice-weight' => 'Greutate',
 	'centralnotice-locked' => 'Blocat',
 	'centralnotice-notices' => 'Notificări',
 	'centralnotice-day' => 'Zi',
@@ -5488,12 +5489,14 @@ Lägg till ett nedan',
  */
 $messages['te'] = array(
 	'centralnotice' => 'కేంద్రీయ గమనిక నిర్వహణ',
+	'noticetemplate' => 'కేంద్రీయ గమనిక మూస',
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
 	'centralnotice-notice-name' => 'గమనిక పేరు',
 	'centralnotice-end-date' => 'ముగింపు తేదీ',
 	'centralnotice-enabled' => 'చేతనమైంది',
 	'centralnotice-modify' => 'దాఖలుచేయి',
 	'centralnotice-preview' => 'మునుజూపు',
+	'centralnotice-add-new' => 'కొత్త కేంద్రీయ గమనికని చేర్చు',
 	'centralnotice-remove' => 'తొలగించు',
 	'centralnotice-translate-heading' => '$1కి అనువాదం',
 	'centralnotice-add' => 'చేర్చు',
@@ -5510,6 +5513,9 @@ $messages['te'] = array(
 చేర్చట్లేదు',
 	'centralnotice-template-exists' => 'మూస ఇప్పటికే ఉంది.
 చేర్చట్లేదు',
+	'centralnotice-notice-doesnt-exist' => 'గమనిక లేనే లేదు.
+ఏమీ తొలగించలేదు',
+	'centralnotice-template-body' => 'మూస వివరణ:',
 	'centralnotice-day' => 'రోజు',
 	'centralnotice-year' => 'సంవత్సరం',
 	'centralnotice-month' => 'నెల',
@@ -5519,15 +5525,21 @@ $messages['te'] = array(
 	'centralnotice-project-name' => 'ప్రాజెక్టు పేరు',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
+	'centralnotice-no-templates' => 'మూసలు ఏమీ లేవు.
+కొన్నింటిని చేర్చండి!',
 	'centralnotice-available-templates' => 'అందుబాటులో ఉన్న మూసలు',
 	'centralnotice-preview-template' => 'మూస మునుజూపు',
 	'centralnotice-start-hour' => 'ప్రారంభ సమయం',
 	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
 	'centralnotice-weights' => 'భారాలు',
+	'centralnotice-no-notices-exist' => 'గమనికలు ఏమీ లేవు.
+క్రింద చేర్చండి.',
 	'centralnotice-number-uses' => 'వాడుకరులు',
 	'centralnotice-edit-template' => 'మూసని మార్చు',
 	'centralnotice-message' => 'సందేశం',
+	'right-centralnotice-admin' => 'కేంద్రీయ గమనికలని నిర్వహించగలగడం',
 	'right-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనుదించండి',
+	'action-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనువదించగలగడం',
 );
 
 /** Tetum (Tetun)
@@ -5734,6 +5746,9 @@ $messages['th'] = array(
  * @author Hanberke
  */
 $messages['tk'] = array(
+	'centralnotice-modify' => 'Tabşyr',
+	'centralnotice-remove' => 'Aýyr',
+	'centralnotice-add' => 'Goş',
 	'centralnotice-add-template' => 'Şablon goş',
 	'centralnotice-list-templates' => 'Şablonlaryň sanawyny görkez',
 	'centralnotice-translations' => 'Terjimeler',
@@ -5742,6 +5757,7 @@ $messages['tk'] = array(
 	'centralnotice-english' => 'iňlisçe',
 	'centralnotice-template-name' => 'Şablon ady',
 	'centralnotice-templates' => 'Şablonlar',
+	'centralnotice-locked' => 'Gulply',
 	'centralnotice-day' => 'Gün',
 	'centralnotice-year' => 'Ýyl',
 	'centralnotice-month' => 'Aý',
@@ -5749,8 +5765,15 @@ $messages['tk'] = array(
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Taslama dili',
 	'centralnotice-project-name' => 'Taslama ady',
+	'centralnotice-start-date' => 'Başlangyç senesi',
+	'centralnotice-start-time' => 'Başlangyç wagty (UTC)',
+	'centralnotice-preview-template' => 'Şablony deslapky synla',
+	'centralnotice-start-hour' => 'Başlangyç wagty',
 	'centralnotice-edit-template' => 'Şablony redaktirle',
 	'centralnotice-message' => 'Habarlaşyk',
+	'centralnotice-clone-notice' => 'Şablonyň nusgasyny döret',
+	'centralnotice-preview-all-template-translations' => 'Şablonyň bar bolan ähli terjimelerini deslapky synla',
+	'centralnotice-preferred' => 'Ileri tutulýan',
 );
 
 /** Tagalog (Tagalog)
