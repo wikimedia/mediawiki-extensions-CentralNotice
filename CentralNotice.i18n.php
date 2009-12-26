@@ -538,6 +538,7 @@ $messages['be-tarask'] = array(
 /** Bulgarian (Български)
  * @author Borislav
  * @author DCLXVI
+ * @author Turin
  */
 $messages['bg'] = array(
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
@@ -562,6 +563,7 @@ $messages['bg'] = array(
 	'centralnotice-start-date' => 'Начална дата',
 	'centralnotice-start-time' => 'начално време (UTC)',
 	'centralnotice-available-templates' => 'Налични шаблони',
+	'centralnotice-preview-template' => 'Преглед на шаблона',
 	'centralnotice-start-hour' => 'Начален час',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
 	'centralnotice-message' => 'Съобщение',
@@ -3115,6 +3117,21 @@ $messages['km'] = array(
 	'centralnotice-clone' => 'ក្លូន',
 );
 
+/** Kannada (ಕನ್ನಡ)
+ * @author Nayvik
+ */
+$messages['kn'] = array(
+	'centralnotice-preview' => 'ಮುನ್ನೋಟ',
+	'centralnotice-day' => 'ದಿನ',
+	'centralnotice-year' => 'ವರ್ಷ',
+	'centralnotice-month' => 'ತಿಂಗಳು',
+	'centralnotice-hours' => 'ಘಂಟೆ',
+	'centralnotice-min' => 'ನಿಮಿಷ',
+	'centralnotice-project-lang' => 'ಪ್ರಾಜೆಕ್ಟ್ ಭಾಷೆ',
+	'centralnotice-project-name' => 'ಪ್ರಾಜೆಕ್ಟ್ ಹೆಸರು',
+	'centralnotice-message' => 'ಸಂದೇಶ',
+);
+
 /** Korean (한국어)
  * @author Klutzy
  * @author Kwj2772
@@ -4753,16 +4770,19 @@ $messages['ro'] = array(
 	'centralnotice-desc' => 'Adaugă un anunţ central sitului',
 	'centralnotice-query' => 'Modifică anunţurile curente',
 	'centralnotice-notice-name' => 'Numele anunţului',
+	'centralnotice-end-date' => 'Dată de încheiere',
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Trimite',
 	'centralnotice-preview' => 'Previzualizare',
 	'centralnotice-add-new' => 'Adaugă un anunţ central nou',
 	'centralnotice-remove' => 'Şterge',
 	'centralnotice-translate-heading' => 'Traducere pentru $1',
+	'centralnotice-manage' => 'Gestionaţi anunţ central',
 	'centralnotice-add' => 'Adaugă',
 	'centralnotice-add-notice' => 'Adaugă un anunţ',
 	'centralnotice-add-template' => 'Adaugă un format',
 	'centralnotice-show-notices' => 'Arată anunţurile',
+	'centralnotice-list-templates' => 'Lista de formate',
 	'centralnotice-translations' => 'Traduceri',
 	'centralnotice-translate-to' => 'Tradu în',
 	'centralnotice-translate' => 'Tradu',
@@ -4779,8 +4799,11 @@ $messages['ro'] = array(
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Limba proiectului',
 	'centralnotice-project-name' => 'Numele proiectului',
+	'centralnotice-start-date' => 'Data de începere',
+	'centralnotice-start-time' => 'Data de începere (UTC)',
 	'centralnotice-available-templates' => 'Formate disponibile',
 	'centralnotice-preview-template' => 'Previzualizare formate',
+	'centralnotice-start-hour' => 'Ora de început',
 	'centralnotice-change-lang' => 'Schimbă limba de traducere',
 	'centralnotice-weights' => 'Greutăţi',
 	'centralnotice-edit-template' => 'Modifică format',
@@ -5746,10 +5769,22 @@ $messages['th'] = array(
  * @author Hanberke
  */
 $messages['tk'] = array(
+	'centralnotice' => 'Merkezi uwedomleniýe admini',
+	'noticetemplate' => 'Merkezi uwedomleniýe şablony',
+	'centralnotice-desc' => 'Merkezi uwedomleniýe goşýar',
+	'centralnotice-query' => 'Häzirki uwedomleniýeleri üýtget',
+	'centralnotice-notice-name' => 'Uwedomleniýe ady',
+	'centralnotice-end-date' => 'Gutaryş senesi',
+	'centralnotice-enabled' => 'Açyk',
 	'centralnotice-modify' => 'Tabşyr',
+	'centralnotice-preview' => 'Deslapky syn',
+	'centralnotice-add-new' => 'Täze merkezi uwedomleniýe goş',
 	'centralnotice-remove' => 'Aýyr',
+	'centralnotice-manage' => 'Merkezi uwedomleniýäni dolandyr',
 	'centralnotice-add' => 'Goş',
+	'centralnotice-add-notice' => 'Uwedomleniýe goş',
 	'centralnotice-add-template' => 'Şablon goş',
+	'centralnotice-show-notices' => 'Uwedomleniýeleri görkez',
 	'centralnotice-list-templates' => 'Şablonlaryň sanawyny görkez',
 	'centralnotice-translations' => 'Terjimeler',
 	'centralnotice-translate-to' => 'Şu dile terjime et:',
@@ -5758,6 +5793,13 @@ $messages['tk'] = array(
 	'centralnotice-template-name' => 'Şablon ady',
 	'centralnotice-templates' => 'Şablonlar',
 	'centralnotice-locked' => 'Gulply',
+	'centralnotice-notices' => 'Uwedomleniýeler',
+	'centralnotice-notice-exists' => 'Uwedomleniýe eýýäm bar.
+Goşulmaýar',
+	'centralnotice-template-exists' => 'Şablon eýýäm bar.
+Goşulmaýar',
+	'centralnotice-notice-doesnt-exist' => 'Uwedomleniýe ýok.
+Aýyrmaga zat ýok',
 	'centralnotice-day' => 'Gün',
 	'centralnotice-year' => 'Ýyl',
 	'centralnotice-month' => 'Aý',
@@ -5767,12 +5809,22 @@ $messages['tk'] = array(
 	'centralnotice-project-name' => 'Taslama ady',
 	'centralnotice-start-date' => 'Başlangyç senesi',
 	'centralnotice-start-time' => 'Başlangyç wagty (UTC)',
+	'centralnotice-available-templates' => 'Bar bolan şablonlar',
 	'centralnotice-preview-template' => 'Şablony deslapky synla',
 	'centralnotice-start-hour' => 'Başlangyç wagty',
+	'centralnotice-change-lang' => 'Terjime dilini üýtget',
+	'centralnotice-notice-is-locked' => 'Uwedomleniýe gulply.
+Aýyrylmaýar',
+	'centralnotice-no-notices-exist' => 'Hiç hili uwedomleniýe ýok.
+Aşak birini goşuň.',
 	'centralnotice-edit-template' => 'Şablony redaktirle',
 	'centralnotice-message' => 'Habarlaşyk',
 	'centralnotice-clone-notice' => 'Şablonyň nusgasyny döret',
 	'centralnotice-preview-all-template-translations' => 'Şablonyň bar bolan ähli terjimelerini deslapky synla',
+	'right-centralnotice-admin' => 'Merkezi uwedomleniýeleri dolandyr',
+	'right-centralnotice-translate' => 'Merkezi uwedomleniýeleri terjime et',
+	'action-centralnotice-admin' => 'merkezi uwedomleniýeleri dolandyr',
+	'action-centralnotice-translate' => 'merkezi uwedomleniýeleri terjime et',
 	'centralnotice-preferred' => 'Ileri tutulýan',
 );
 
@@ -6393,22 +6445,93 @@ $messages['zh-hans'] = array(
 
 /** Traditional Chinese (‪中文(繁體)‬)
  * @author Alex S.H. Lin
+ * @author Liangent
  * @author Wrightbus
  */
 $messages['zh-hant'] = array(
+	'centralnotice' => '中央通告管理',
+	'noticetemplate' => '中央通告模板',
 	'centralnotice-desc' => '在頁面頂端增加統一的公告欄位',
+	'centralnotice-summary' => '這個模塊允許你編輯你當前設置的中央通告。
+它也可以用於添加或刪除舊的通告。',
+	'centralnotice-query' => '修改當前的通告',
+	'centralnotice-notice-name' => '通告名稱',
+	'centralnotice-end-date' => '結束日期',
 	'centralnotice-enabled' => '已啟用',
 	'centralnotice-modify' => '提交',
 	'centralnotice-preview' => '預覽',
+	'centralnotice-add-new' => '添加一個新的中央通告',
+	'centralnotice-remove' => '移除',
+	'centralnotice-translate-heading' => '$1的翻譯',
+	'centralnotice-manage' => '管理中央通告',
+	'centralnotice-add' => '添加',
+	'centralnotice-add-notice' => '添加一個通告',
+	'centralnotice-add-template' => '添加一個模板',
+	'centralnotice-show-notices' => '顯示通告',
+	'centralnotice-list-templates' => '列出模板',
+	'centralnotice-translations' => '翻譯',
+	'centralnotice-translate-to' => '翻譯到',
+	'centralnotice-translate' => '翻譯',
 	'centralnotice-english' => '英語',
 	'centralnotice-template-name' => '模板名稱',
 	'centralnotice-templates' => '模板',
+	'centralnotice-weight' => '權重',
 	'centralnotice-locked' => '已鎖定',
+	'centralnotice-notices' => '通告',
+	'centralnotice-notice-exists' => '通告已經存在。
+沒有添加',
+	'centralnotice-template-exists' => '模板已經存在。
+沒有添加',
+	'centralnotice-notice-doesnt-exist' => '通告不存在。
+沒有東西移除',
+	'centralnotice-template-still-bound' => '模板不存在。
+沒有東西移除。',
+	'centralnotice-template-body' => '模板體：',
+	'centralnotice-day' => '日',
+	'centralnotice-year' => '年',
+	'centralnotice-month' => '月',
+	'centralnotice-hours' => '時',
+	'centralnotice-min' => '分',
 	'centralnotice-project-lang' => '計劃語言',
 	'centralnotice-project-name' => '計劃名稱',
+	'centralnotice-start-date' => '開始日期',
+	'centralnotice-start-time' => '開始時間（UTC）',
+	'centralnotice-assigned-templates' => '已分配的模板',
+	'centralnotice-no-templates' => '沒有找到模板。
+添加一些！',
+	'centralnotice-no-templates-assigned' => '沒有模板分配到通告。
+添加一些！',
+	'centralnotice-available-templates' => '可用模板',
+	'centralnotice-template-already-exists' => '模板已經綁定到營銷。
+沒有添加',
 	'centralnotice-preview-template' => '預覽模板',
+	'centralnotice-start-hour' => '開始時間',
+	'centralnotice-change-lang' => '改變翻譯語言',
+	'centralnotice-weights' => '權重',
+	'centralnotice-notice-is-locked' => '通告已經鎖定。
+沒有移除',
+	'centralnotice-overlap' => '通告在另一個通告的時間內重疊。
+沒有添加',
+	'centralnotice-invalid-date-range' => '無效日期範圍。
+沒有更新',
+	'centralnotice-null-string' => '不能添加一個空字符串。
+沒有添加',
+	'centralnotice-confirm-delete' => '你確定要刪除這個項目？
+這個動作是不可恢復的。',
+	'centralnotice-no-notices-exist' => '不存在通告。
+在下面添加一個。',
+	'centralnotice-no-templates-translate' => '沒有任何可以編輯翻譯的模板',
+	'centralnotice-number-uses' => '使用',
 	'centralnotice-edit-template' => '編輯模板',
+	'centralnotice-message' => '消息',
+	'centralnotice-message-not-set' => '沒有設置消息',
+	'centralnotice-clone' => '建立副本',
+	'centralnotice-clone-notice' => '創建一個模板的副本',
+	'centralnotice-preview-all-template-translations' => '預覽模板的所有可用翻譯',
 	'right-centralnotice-admin' => '管理中央通告',
 	'right-centralnotice-translate' => '翻譯中央通告',
+	'action-centralnotice-admin' => '管理中央通告',
+	'action-centralnotice-translate' => '翻譯中央通告',
+	'centralnotice-preferred' => '偏好的',
 );
 
