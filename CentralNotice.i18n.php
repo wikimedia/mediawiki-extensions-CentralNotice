@@ -543,23 +543,30 @@ $messages['be-tarask'] = array(
 $messages['bg'] = array(
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
 	'centralnotice-end-date' => 'Крайна дата',
+	'centralnotice-enabled' => 'Включено',
 	'centralnotice-modify' => 'Изпращане',
 	'centralnotice-preview' => 'Преглеждане',
 	'centralnotice-remove' => 'Премахване',
 	'centralnotice-translate-heading' => 'Превод за $1',
 	'centralnotice-add' => 'Добавяне',
 	'centralnotice-add-template' => 'Добавяне на шаблон',
+	'centralnotice-list-templates' => 'Списък на шаблоните',
 	'centralnotice-translations' => 'Преводи',
 	'centralnotice-translate-to' => 'Превеждане на',
 	'centralnotice-translate' => 'Превеждане',
 	'centralnotice-english' => 'Английски',
 	'centralnotice-template-name' => 'Име на шаблона',
 	'centralnotice-templates' => 'Шаблони',
+	'centralnotice-weight' => 'Тежест',
+	'centralnotice-locked' => 'Заключено',
+	'centralnotice-template-body' => 'Тяло на шаблона:',
 	'centralnotice-day' => 'Ден',
 	'centralnotice-year' => 'Година',
 	'centralnotice-month' => 'Месец',
 	'centralnotice-hours' => 'Час',
 	'centralnotice-min' => 'Минута',
+	'centralnotice-project-lang' => 'Език на проекта',
+	'centralnotice-project-name' => 'Име на проекта',
 	'centralnotice-start-date' => 'Начална дата',
 	'centralnotice-start-time' => 'начално време (UTC)',
 	'centralnotice-available-templates' => 'Налични шаблони',
@@ -567,6 +574,7 @@ $messages['bg'] = array(
 	'centralnotice-start-hour' => 'Начален час',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
 	'centralnotice-message' => 'Съобщение',
+	'centralnotice-message-not-set' => 'Съобщението не е зададено',
 	'centralnotice-clone' => 'Клониране',
 	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
 );
@@ -4455,6 +4463,13 @@ Dodaj nowy poniżej.',
 	'centralnotice-preferred' => 'Preferowany',
 );
 
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'centralnotice' => 'Aministrassion neuva sentral',
+);
+
 /** Pontic (Ποντιακά)
  * @author Omnipaedista
  */
@@ -5672,6 +5687,96 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-preferred' => 'Тарҷиҳи додашуда',
 );
 
+/** Tajik (Latin) (Тоҷикӣ (Latin))
+ * @author Liangent
+ */
+$messages['tg-latn'] = array(
+	'centralnotice' => "Mudiri e'loni mutamarkaz",
+	'noticetemplate' => "Şabloni e'loni mutamarkaz",
+	'centralnotice-desc' => 'Jak ittilooti markazi ilova mekunad',
+	'centralnotice-summary' => "In modul ba şumo imkoni viroigi nasbi e'loni mutamarkazi kuninro peşkaş mekunad.
+On boz metavonad baroi izofa jo pok kardani e'lonhoi kūhna istifoda şavad.",
+	'centralnotice-query' => "Taƣjiri e'lonhoi kununī",
+	'centralnotice-notice-name' => "Unvoni e'lon",
+	'centralnotice-end-date' => 'Sanai oxir',
+	'centralnotice-enabled' => "Fa'ol şud",
+	'centralnotice-modify' => 'Irsol',
+	'centralnotice-preview' => 'Peşnamoiş',
+	'centralnotice-add-new' => "Izofai jak e'loni mutamarkaz",
+	'centralnotice-remove' => 'Pok kardan',
+	'centralnotice-translate-heading' => 'Tarçuma baroi $1',
+	'centralnotice-manage' => "Idorakuniji e'loni mutamarkaz",
+	'centralnotice-add' => 'Izofa',
+	'centralnotice-add-notice' => 'Izofa kardani jak xabar',
+	'centralnotice-add-template' => 'Izofai jak şablon',
+	'centralnotice-show-notices' => "Namoişi e'lonho",
+	'centralnotice-list-templates' => 'Fehristi şablonho',
+	'centralnotice-translations' => 'Tarçumaho',
+	'centralnotice-translate-to' => 'Tarçuma ba',
+	'centralnotice-translate' => 'Tarçuma',
+	'centralnotice-english' => 'Anglisī',
+	'centralnotice-template-name' => 'Unvoni şablon',
+	'centralnotice-templates' => 'Şablonho',
+	'centralnotice-weight' => 'Vazn',
+	'centralnotice-locked' => 'Bastaşuda',
+	'centralnotice-notices' => "E'lonho",
+	'centralnotice-notice-exists' => "E'lon allakaj vuçud dorad.
+Izofa naşud",
+	'centralnotice-template-exists' => 'Şabloni allakaj mavçud ast.
+Izofa nameşavad',
+	'centralnotice-notice-doesnt-exist' => "E'lon vuçud nadorad.
+Cize baroi pok kardan nest",
+	'centralnotice-template-still-bound' => "Şablon to hol dar jak e'lone caspida ast.
+Pok nameşavad.",
+	'centralnotice-template-body' => 'Tanai Şablon:',
+	'centralnotice-day' => 'Rūz',
+	'centralnotice-year' => 'Sol',
+	'centralnotice-month' => 'Moh',
+	'centralnotice-hours' => 'Soat',
+	'centralnotice-min' => 'Daqiqa',
+	'centralnotice-project-lang' => 'Zaboni loiha',
+	'centralnotice-project-name' => 'Nomi loiha',
+	'centralnotice-start-date' => "Sanai şurū'",
+	'centralnotice-start-time' => "Zamoni şurū' (UTC)",
+	'centralnotice-assigned-templates' => 'Şablonhoi muqararşuda',
+	'centralnotice-no-templates' => 'Heç şablone joft naşud.
+Cande izofa namoed!',
+	'centralnotice-no-templates-assigned' => "Heç şablone ba e'lon muqarar naşudaast.
+Cande izofa namoed!",
+	'centralnotice-available-templates' => 'Şablonhoi dastras',
+	'centralnotice-template-already-exists' => "Şabloni allakaj ba e'lon casponida şudaast.
+Izofa naşud.",
+	'centralnotice-preview-template' => 'Peşnamoişi şablon',
+	'centralnotice-start-hour' => "Vaqti şurū'",
+	'centralnotice-change-lang' => 'Taƣjiri zaboni tarçuma',
+	'centralnotice-weights' => 'Vaznho',
+	'centralnotice-notice-is-locked' => "E'lon basta ast.
+Pok naşuda istoda ast",
+	'centralnotice-overlap' => "E'lon bo vaqtu zamoni digar e'lon rūi ham omad.
+Izofa naşud",
+	'centralnotice-invalid-date-range' => "Davrai sanai nomū'tabar.
+Barūz naşud",
+	'centralnotice-null-string' => 'Riştai xoliro nametavon afzud.
+Afzuda naşud',
+	'centralnotice-confirm-delete' => 'Ojo şumo mutmain hasted, ki mexohed in mavodro hafz kuned?
+In amal barqarornaşavada xohad bud.',
+	'centralnotice-no-notices-exist' => "Heç e'lone vuçud nadorad.
+Dar zer jak e'lone izofa namoed",
+	'centralnotice-no-templates-translate' => 'Heç şablone baroi viroişi tarçumaaş nest',
+	'centralnotice-number-uses' => 'Istifodaho',
+	'centralnotice-edit-template' => 'Viroişi şablon',
+	'centralnotice-message' => 'Pajƣom',
+	'centralnotice-message-not-set' => 'Pajƣom tanzim naşudaast',
+	'centralnotice-clone' => 'Klon',
+	'centralnotice-clone-notice' => 'Eçodi jak nusxai in şablon',
+	'centralnotice-preview-all-template-translations' => 'Peşnamoişi hamai tarçumahoi dastrasi şablon',
+	'right-centralnotice-admin' => "Idorakuniji e'lonhoi mutamarkaz",
+	'right-centralnotice-translate' => "Tarçumai e'lonhoi mutamarkaz",
+	'action-centralnotice-admin' => "idorakuniji e'lonhoi mutamarkaz",
+	'action-centralnotice-translate' => "tarçumai e'lonhoi mutamarkaz",
+	'centralnotice-preferred' => 'Tarçihi dodaşuda',
+);
+
 /** Thai (ไทย)
  * @author Ans
  * @author Manop
@@ -5817,6 +5922,7 @@ Aýyrmaga zat ýok',
 Aýyrylmaýar',
 	'centralnotice-no-notices-exist' => 'Hiç hili uwedomleniýe ýok.
 Aşak birini goşuň.',
+	'centralnotice-number-uses' => 'Ulanyşlar',
 	'centralnotice-edit-template' => 'Şablony redaktirle',
 	'centralnotice-message' => 'Habarlaşyk',
 	'centralnotice-clone-notice' => 'Şablonyň nusgasyny döret',
