@@ -141,6 +141,8 @@ $messages['af'] = array(
 	'centralnotice' => 'Bestuur sentrale kennisgewings',
 	'noticetemplate' => 'Sjabloon vir sentrale kennisgewing',
 	'centralnotice-desc' => "Voeg 'n sentrale stelselkennisgewing by",
+	'centralnotice-query' => 'Verander huidige kennisgewings',
+	'centralnotice-notice-name' => 'Kennisgewing-naam',
 	'centralnotice-end-date' => 'Einddatum',
 	'centralnotice-enabled' => 'Aktief',
 	'centralnotice-modify' => 'Dien in',
@@ -150,6 +152,7 @@ $messages['af'] = array(
 	'centralnotice-translate-heading' => 'Vertaling vir $1',
 	'centralnotice-manage' => 'Beheer sentrale kennisgewings',
 	'centralnotice-add' => 'Byvoeg',
+	'centralnotice-add-notice' => "Voeg 'n kennisgewing by",
 	'centralnotice-add-template' => 'Voeg sjabloon by',
 	'centralnotice-show-notices' => 'Wys kennisgewings',
 	'centralnotice-list-templates' => 'Lys sjablone',
@@ -162,6 +165,14 @@ $messages['af'] = array(
 	'centralnotice-weight' => 'Gewig',
 	'centralnotice-locked' => 'Gesluit',
 	'centralnotice-notices' => 'Kennisgewings',
+	'centralnotice-notice-exists' => 'Die kennisgewing bestaan reeds.
+Hierdie word nie bygevoeg nie.',
+	'centralnotice-template-exists' => 'Die sjabloon bestaan reeds.
+Dit word nie bygevoeg nie.',
+	'centralnotice-notice-doesnt-exist' => 'Die kennisgewing bestaan nie.
+Daar is niks om te verwyder nie',
+	'centralnotice-template-still-bound' => "Die sjabloon is nog aan 'n kennisgewing gekoppel.
+Word nie verwyder nie.",
 	'centralnotice-template-body' => 'Sjablooninhoud:',
 	'centralnotice-day' => 'Dag',
 	'centralnotice-year' => 'Jaar',
@@ -173,17 +184,42 @@ $messages['af'] = array(
 	'centralnotice-start-date' => 'Begindatum',
 	'centralnotice-start-time' => 'Begintyd (UTC)',
 	'centralnotice-assigned-templates' => 'Aangewese sjablone',
+	'centralnotice-no-templates' => "Daar is geen sjablone op die stelsel beskikbaar nie.
+Voeg 'n paar by!",
+	'centralnotice-no-templates-assigned' => "Daar is geen sjablone aan die kennisgewing toegewys nie.
+Voeg 'n paar by!",
+	'centralnotice-available-templates' => 'Beskikbare sjablone',
+	'centralnotice-template-already-exists' => 'Die sjabloon is reeds aan \'n "campaign" gekoppel.
+Word nie bygevoeg nie',
+	'centralnotice-preview-template' => 'Voorskou sjabloon',
 	'centralnotice-start-hour' => 'Begintyd',
 	'centralnotice-change-lang' => 'Verander taal vir vertaling',
 	'centralnotice-weights' => 'Gewigte',
+	'centralnotice-notice-is-locked' => 'Kennisgewing is gesluit.
+Word nie verwyder nie',
+	'centralnotice-overlap' => "Die kennisgewing oorvleuel met 'n ander kennisgewing.
+Nie bygevoeg nie",
 	'centralnotice-invalid-date-range' => 'Ongeldige datumreeks.
 Word nie bygewerk nie',
+	'centralnotice-null-string' => "Kan nie 'n leë teksveld bysit nie.
+Word nie bygevoeg nie",
+	'centralnotice-confirm-delete' => 'Is u seker u wil hierdie item verwyder?
+Hierdie aksie kan nie teruggerol word nie.',
+	'centralnotice-no-notices-exist' => 'Daar bestaan geen kennisgewings nie.
+U kan een hieronder byvoeg',
+	'centralnotice-no-templates-translate' => 'Daar is geen sjablone waarvoor vertalings gemaak kan word nie',
 	'centralnotice-number-uses' => 'Aantal kere gebruik',
 	'centralnotice-edit-template' => 'Wysig sjabloon',
 	'centralnotice-message' => 'Boodskap',
+	'centralnotice-message-not-set' => 'Boodskap nie ingestel nie',
+	'centralnotice-clone' => 'Kopieer',
+	'centralnotice-clone-notice' => "Maak 'n kopie van die sjabloon",
+	'centralnotice-preview-all-template-translations' => 'Voorskou al die beskikbare vertalings van die sjabloon',
 	'right-centralnotice-admin' => 'Bestuur sentrale kennisgewings',
+	'right-centralnotice-translate' => 'Vertaal sentrale kennisgewings',
 	'action-centralnotice-admin' => 'bestuur sentrale kennisgewings',
 	'action-centralnotice-translate' => 'vertaal sentrale kennisgewings',
+	'centralnotice-preferred' => 'Voorkeur',
 );
 
 /** Amharic (አማርኛ)
@@ -671,6 +707,8 @@ $messages['bn'] = array(
  * @author Y-M D
  */
 $messages['br'] = array(
+	'centralnotice' => 'Melestradurezh an alioù kreiz',
+	'noticetemplate' => 'Patrom an alioù kreiz',
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
 	'centralnotice-query' => 'Kemmañ an alioù a-vremañ',
 	'centralnotice-notice-name' => 'Anv an ali',
@@ -678,8 +716,10 @@ $messages['br'] = array(
 	'centralnotice-enabled' => 'Gweredekaet',
 	'centralnotice-modify' => 'Kas',
 	'centralnotice-preview' => 'Rakwelet',
+	'centralnotice-add-new' => 'Ouzhpennañ un ali kreiz nevez',
 	'centralnotice-remove' => 'Dilemel',
 	'centralnotice-translate-heading' => 'Troidigezh eus $1',
+	'centralnotice-manage' => 'Merañ an alioù kreiz',
 	'centralnotice-add' => 'Ouzhpennañ',
 	'centralnotice-add-notice' => "Ouhzpennañ ur c'hemenn",
 	'centralnotice-add-template' => 'Ouzhpennañ ur patrom',
@@ -694,8 +734,14 @@ $messages['br'] = array(
 	'centralnotice-weight' => 'Pouez',
 	'centralnotice-locked' => 'Prennet',
 	'centralnotice-notices' => 'Kemennoù',
+	'centralnotice-notice-exists' => "Bez ez eus dija eus an ali-se.
+N'eo ket bet ouzhpennet neuze",
 	'centralnotice-template-exists' => "Bez ez eus dija eus ar patrom-se.
 N'eo ket bet ouzhpennet.",
+	'centralnotice-notice-doesnt-exist' => "N'eus ket seus an ali-mañ.
+N'eus netra da zilemel",
+	'centralnotice-template-still-bound' => "Liammet eo c'hoazh ar patrom gant un ali.
+N'eo ket bet dilammet.",
 	'centralnotice-template-body' => 'Korf ar patrom :',
 	'centralnotice-day' => 'Deiz',
 	'centralnotice-year' => 'Bloaz',
@@ -706,18 +752,37 @@ N'eo ket bet ouzhpennet.",
 	'centralnotice-project-name' => 'Anv ar raktres',
 	'centralnotice-start-date' => 'Deiziad kregiñ',
 	'centralnotice-start-time' => 'Eurvezh kregiñ (UTC)',
+	'centralnotice-assigned-templates' => 'Patromoù deverket',
 	'centralnotice-no-templates' => "N'eo bet kavet patrom ebet.
 Ouzhpennit patromoù !",
+	'centralnotice-no-templates-assigned' => "N'eus patrom ebet deverket gant an ali.
+Ouzhpennit unan !",
 	'centralnotice-available-templates' => 'Patromoù zo da gaout',
+	'centralnotice-template-already-exists' => "Liammet eo c'hoazh ar patrom gant ur c'houlzad.
+N'eo ket bet ouzhpennet.",
 	'centralnotice-preview-template' => 'Rakwelet ar patrom',
+	'centralnotice-start-hour' => 'Eurvezh kregiñ',
 	'centralnotice-change-lang' => 'Kemmañ yezh an droidigezh',
 	'centralnotice-weights' => 'Pouezioù',
+	'centralnotice-notice-is-locked' => "Prenet eo an ali.
+N'eo ket bet dilammet.",
+	'centralnotice-confirm-delete' => "Ha sur oc'h ho peus c'hoant dilemmel an elfenn-mañ ?
+Ne vo ket tu adtapout anezhi.",
+	'centralnotice-no-notices-exist' => "N'eus ali ebet.
+Ouzhpennit unan da heul.",
+	'centralnotice-no-templates-translate' => "N'eus patrom ebet da dreiñ",
 	'centralnotice-number-uses' => 'Implijoù',
 	'centralnotice-edit-template' => 'Kemmañ ar patrom',
 	'centralnotice-message' => 'Kemennadenn',
 	'centralnotice-message-not-set' => "N'eo ket bet kaset ar gemenadenn",
 	'centralnotice-clone' => 'Eilañ',
 	'centralnotice-clone-notice' => 'Krouiñ un eiladenn eus ar patrom',
+	'centralnotice-preview-all-template-translations' => 'Rakwellit an holl droidigezhioù a zo evit ar patrom-mañ',
+	'right-centralnotice-admin' => 'Merañ an alioù kreiz',
+	'right-centralnotice-translate' => 'Treiñ an alioù kreiz',
+	'action-centralnotice-admin' => 'merañ an alioù kreiz',
+	'action-centralnotice-translate' => 'treiñ an alioù kreiz',
+	'centralnotice-preferred' => "Kavet gwelloc'h",
 );
 
 /** Bosnian (Bosanski)
@@ -1600,7 +1665,7 @@ Añade uno debajo',
  * @author Pikne
  */
 $messages['et'] = array(
-	'centralnotice' => 'Keskuse teate admin',
+	'centralnotice' => 'Keskuse teadete haldamine',
 	'noticetemplate' => 'Keskuse teate mall',
 	'centralnotice-desc' => 'Lisab keskse võrgukohateatesüsteemi.',
 	'centralnotice-notice-name' => 'Teate nimi',
@@ -1611,7 +1676,7 @@ $messages['et'] = array(
 	'centralnotice-add-new' => 'Lisa uus keskuse teade',
 	'centralnotice-remove' => 'Eemalda',
 	'centralnotice-translate-heading' => '$1 tõlge',
-	'centralnotice-manage' => 'Muuda keskuse teadet',
+	'centralnotice-manage' => 'Keskuse teate muutmine',
 	'centralnotice-add' => 'Lisa',
 	'centralnotice-add-notice' => 'Lisa teade',
 	'centralnotice-add-template' => 'Lisa mall',
@@ -1652,6 +1717,7 @@ Lisa mõni!',
 	'centralnotice-preview-template' => 'Malli eelvaade',
 	'centralnotice-start-hour' => 'Algusaeg',
 	'centralnotice-change-lang' => 'Muuda tõlke keelt',
+	'centralnotice-number-uses' => 'Kasutab',
 	'centralnotice-edit-template' => 'Muuda malli',
 	'centralnotice-message' => 'Sõnum',
 	'centralnotice-message-not-set' => 'Sõnumit ei ole seatud',
@@ -4464,10 +4530,11 @@ Dodaj nowy poniżej.',
 );
 
 /** Piedmontese (Piemontèis)
+ * @author Borichèt
  * @author Dragonòt
  */
 $messages['pms'] = array(
-	'centralnotice' => 'Aministrassion neuva sentral',
+	'centralnotice' => 'Aministrassion sentral ëd le neuve',
 );
 
 /** Pontic (Ποντιακά)
@@ -4835,6 +4902,9 @@ $messages['ro'] = array(
  */
 $messages['roa-tara'] = array(
 	'centralnotice-enabled' => 'Abbilitate',
+	'centralnotice-preview' => 'Andeprime',
+	'centralnotice-remove' => 'Live',
+	'centralnotice-add' => 'Aggiunge',
 );
 
 /** Russian (Русский)
