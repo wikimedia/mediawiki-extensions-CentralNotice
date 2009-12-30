@@ -613,6 +613,7 @@ $messages['bg'] = array(
 	'centralnotice-message-not-set' => 'Съобщението не е зададено',
 	'centralnotice-clone' => 'Клониране',
 	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
+	'centralnotice-preferred' => 'Предпочитано',
 );
 
 /** Bengali (বাংলা)
@@ -1717,7 +1718,8 @@ Lisa mõni!',
 	'centralnotice-preview-template' => 'Malli eelvaade',
 	'centralnotice-start-hour' => 'Algusaeg',
 	'centralnotice-change-lang' => 'Muuda tõlke keelt',
-	'centralnotice-number-uses' => 'Kasutab',
+	'centralnotice-weights' => 'Raskused',
+	'centralnotice-number-uses' => 'Kasutusi',
 	'centralnotice-edit-template' => 'Muuda malli',
 	'centralnotice-message' => 'Sõnum',
 	'centralnotice-message-not-set' => 'Sõnumit ei ole seatud',
@@ -2068,7 +2070,52 @@ Ajoutez-en ci-dessous.',
  * @author ChrisPtDe
  */
 $messages['frp'] = array(
+	'centralnotice' => 'Administracion des avis centrâls',
+	'noticetemplate' => 'Modèlo des avis centrâls',
 	'centralnotice-desc' => 'Apond un sitenotice centrâl.',
+	'centralnotice-query' => 'Changiér los avis d’ora',
+	'centralnotice-notice-name' => 'Nom de l’avis',
+	'centralnotice-end-date' => 'Dâta de fin',
+	'centralnotice-enabled' => 'Activâ',
+	'centralnotice-modify' => 'Sometre',
+	'centralnotice-preview' => 'Prèvisualisacion',
+	'centralnotice-add-new' => 'Apondre un novél avis centrâl',
+	'centralnotice-remove' => 'Suprimar',
+	'centralnotice-translate-heading' => 'Traduccion de l’avis « $1 »',
+	'centralnotice-manage' => 'Administrar los avis centrâls',
+	'centralnotice-add' => 'Apondre',
+	'centralnotice-add-notice' => 'Apondre un avis',
+	'centralnotice-add-template' => 'Apondre un modèlo',
+	'centralnotice-show-notices' => 'Fâre vêre los avis',
+	'centralnotice-list-templates' => 'Listar los modèlos',
+	'centralnotice-translations' => 'Traduccions',
+	'centralnotice-translate-to' => 'Traduire en',
+	'centralnotice-translate' => 'Traduire',
+	'centralnotice-english' => 'Anglès',
+	'centralnotice-template-name' => 'Nom du modèlo',
+	'centralnotice-templates' => 'Modèlos',
+	'centralnotice-weight' => 'Pêds',
+	'centralnotice-locked' => 'Vèrrolyê',
+	'centralnotice-notices' => 'Avis',
+	'centralnotice-notice-exists' => 'L’avis ègziste ja.
+Il at pas étâ apondu.',
+	'centralnotice-template-exists' => 'Lo modèlo ègziste ja.
+Il at pas étâ apondu.',
+	'centralnotice-notice-doesnt-exist' => 'L’avis ègziste pas.
+Y at ren a suprimar.',
+	'centralnotice-template-still-bound' => 'Lo modèlo est adés liyê a un avis.
+Il at pas étâ suprimâ.',
+	'centralnotice-template-body' => 'Côrp du modèlo :',
+	'centralnotice-day' => 'Jorn',
+	'centralnotice-year' => 'An',
+	'centralnotice-month' => 'Mês',
+	'centralnotice-hours' => 'Hora',
+	'centralnotice-min' => 'Menuta',
+	'centralnotice-project-lang' => 'Lengoua du projèt',
+	'centralnotice-project-name' => 'Nom du projèt',
+	'centralnotice-start-date' => 'Dâta de comencement',
+	'centralnotice-start-time' => 'Hora de comencement (UTC)',
+	'centralnotice-assigned-templates' => 'Modèlos assignês',
 );
 
 /** Irish (Gaeilge)
@@ -3134,6 +3181,8 @@ $messages['ka'] = array(
 	'centralnotice-templates' => 'თარგები',
 	'centralnotice-locked' => 'დაბლოკილი',
 	'centralnotice-template-exists' => 'თარგი უკვე არსებობს. არ დაამატოთ',
+	'centralnotice-notice-doesnt-exist' => 'შეტყობინება არ არსებობს.
+არაფერია წასაშლელი.',
 	'centralnotice-template-body' => 'თარგის სხეული:',
 	'centralnotice-day' => 'დღე',
 	'centralnotice-year' => 'წელი',
