@@ -2116,6 +2116,42 @@ Il at pas étâ suprimâ.',
 	'centralnotice-start-date' => 'Dâta de comencement',
 	'centralnotice-start-time' => 'Hora de comencement (UTC)',
 	'centralnotice-assigned-templates' => 'Modèlos assignês',
+	'centralnotice-no-templates' => 'Gins de modèlo trovâ.
+Apondéd-nen !',
+	'centralnotice-no-templates-assigned' => 'Gins de modèlo assignê a l’avis.
+Apondéd-nen !',
+	'centralnotice-available-templates' => 'Modèlos disponiblos',
+	'centralnotice-template-already-exists' => 'Lo modèlo est ja atachiê a una propaganda.
+Il at pas étâ apondu.',
+	'centralnotice-preview-template' => 'Prèvisualisacion du modèlo',
+	'centralnotice-start-hour' => 'Hora de comencement',
+	'centralnotice-change-lang' => 'Changiér la lengoua de traduccion',
+	'centralnotice-weights' => 'Pêds',
+	'centralnotice-notice-is-locked' => 'L’avis est vèrrolyê.
+Il at pas étâ suprimâ.',
+	'centralnotice-overlap' => 'L’avis côvre tot ou ben partia du temps d’un ôtro avis.
+Il at pas étâ apondu.',
+	'centralnotice-invalid-date-range' => 'Entèrvalo de dâtes fôx por l’avis.
+Il at pas étâ betâ a jorn.',
+	'centralnotice-null-string' => 'Empossiblo d’apondre un avis vouedo.
+Il at pas étâ apondu.',
+	'centralnotice-confirm-delete' => 'Éte-vos de sûr de volêr suprimar ceti èlèment ?
+Cela accion porrat pas étre rècupèrâ.',
+	'centralnotice-no-notices-exist' => 'Nion avis ègziste.
+Apondéd-nen ce-desot.',
+	'centralnotice-no-templates-translate' => 'Y at gins de modèlo a traduire',
+	'centralnotice-number-uses' => 'Usâjos',
+	'centralnotice-edit-template' => 'Changiér lo modèlo',
+	'centralnotice-message' => 'Mèssâjo',
+	'centralnotice-message-not-set' => 'Mèssâjo pas rensègnê',
+	'centralnotice-clone' => 'Copiyér',
+	'centralnotice-clone-notice' => 'Fâre una copia du modèlo',
+	'centralnotice-preview-all-template-translations' => 'Prèvisualisar totes les traduccions disponibles du modèlo',
+	'right-centralnotice-admin' => 'Administrar los avis centrâls',
+	'right-centralnotice-translate' => 'Traduire los avis centrâls',
+	'action-centralnotice-admin' => 'administrar los avis centrâls',
+	'action-centralnotice-translate' => 'traduire los avis centrâls',
+	'centralnotice-preferred' => 'Prèferâ',
 );
 
 /** Irish (Gaeilge)
@@ -5996,6 +6032,8 @@ $messages['tk'] = array(
 	'centralnotice' => 'Merkezi uwedomleniýe admini',
 	'noticetemplate' => 'Merkezi uwedomleniýe şablony',
 	'centralnotice-desc' => 'Merkezi uwedomleniýe goşýar',
+	'centralnotice-summary' => 'Bu modul size bar bolan gurulgy merkezi uwedomleniýeleri üýtgetmäge rugsat berýär. 
+Ony köne uwedomleniýeleri goşmak ýa-da aýyrmak üçin hem ulanmak bolýar.',
 	'centralnotice-query' => 'Häzirki uwedomleniýeleri üýtget',
 	'centralnotice-notice-name' => 'Uwedomleniýe ady',
 	'centralnotice-end-date' => 'Gutaryş senesi',
@@ -6004,6 +6042,7 @@ $messages['tk'] = array(
 	'centralnotice-preview' => 'Deslapky syn',
 	'centralnotice-add-new' => 'Täze merkezi uwedomleniýe goş',
 	'centralnotice-remove' => 'Aýyr',
+	'centralnotice-translate-heading' => '$1 üçin terjime',
 	'centralnotice-manage' => 'Merkezi uwedomleniýäni dolandyr',
 	'centralnotice-add' => 'Goş',
 	'centralnotice-add-notice' => 'Uwedomleniýe goş',
@@ -6016,6 +6055,7 @@ $messages['tk'] = array(
 	'centralnotice-english' => 'iňlisçe',
 	'centralnotice-template-name' => 'Şablon ady',
 	'centralnotice-templates' => 'Şablonlar',
+	'centralnotice-weight' => 'Agram',
 	'centralnotice-locked' => 'Gulply',
 	'centralnotice-notices' => 'Uwedomleniýeler',
 	'centralnotice-notice-exists' => 'Uwedomleniýe eýýäm bar.
@@ -6024,6 +6064,9 @@ Goşulmaýar',
 Goşulmaýar',
 	'centralnotice-notice-doesnt-exist' => 'Uwedomleniýe ýok.
 Aýyrmaga zat ýok',
+	'centralnotice-template-still-bound' => 'Şablon henizem bir uwedomleniýä bagly.
+Aýrylmaýar.',
+	'centralnotice-template-body' => 'Şablon göwresi:',
 	'centralnotice-day' => 'Gün',
 	'centralnotice-year' => 'Ýyl',
 	'centralnotice-month' => 'Aý',
@@ -6033,17 +6076,35 @@ Aýyrmaga zat ýok',
 	'centralnotice-project-name' => 'Taslama ady',
 	'centralnotice-start-date' => 'Başlangyç senesi',
 	'centralnotice-start-time' => 'Başlangyç wagty (UTC)',
+	'centralnotice-assigned-templates' => 'Bellenilen şablonlar',
+	'centralnotice-no-templates' => 'Hiç hili şablon tapylmady.
+Biraz goşuň!',
+	'centralnotice-no-templates-assigned' => 'Bu uwedomleniýä hiç hili şablon bellenilmändir.
+Biraz goşuň!',
 	'centralnotice-available-templates' => 'Bar bolan şablonlar',
+	'centralnotice-template-already-exists' => 'Şablon eýýäç kampaniýa baglanypdyr.
+Goşulmaýar',
 	'centralnotice-preview-template' => 'Şablony deslapky synla',
 	'centralnotice-start-hour' => 'Başlangyç wagty',
 	'centralnotice-change-lang' => 'Terjime dilini üýtget',
+	'centralnotice-weights' => 'Agramlar',
 	'centralnotice-notice-is-locked' => 'Uwedomleniýe gulply.
 Aýyrylmaýar',
+	'centralnotice-overlap' => 'Uwedomleniýe başga bir uwedomleniýäniň wagty bilen çakyşýar.',
+	'centralnotice-invalid-date-range' => 'Nädogry sene aralygy.
+Täzelenmeýär',
+	'centralnotice-null-string' => 'Boş setir goşup bolmaýar.
+Goşulmaýar',
+	'centralnotice-confirm-delete' => 'Bu elementi hakykatdan-da öçürjekmisiňiz?
+Bu hereketi yzyna alyp bolýan däldir.',
 	'centralnotice-no-notices-exist' => 'Hiç hili uwedomleniýe ýok.
 Aşak birini goşuň.',
+	'centralnotice-no-templates-translate' => 'Terjimeleri redaktirlemek üçin hiç hili şablon ýok.',
 	'centralnotice-number-uses' => 'Ulanyşlar',
 	'centralnotice-edit-template' => 'Şablony redaktirle',
 	'centralnotice-message' => 'Habarlaşyk',
+	'centralnotice-message-not-set' => 'Habarlaşyk bellenilmändir',
+	'centralnotice-clone' => 'Klonirle',
 	'centralnotice-clone-notice' => 'Şablonyň nusgasyny döret',
 	'centralnotice-preview-all-template-translations' => 'Şablonyň bar bolan ähli terjimelerini deslapky synla',
 	'right-centralnotice-admin' => 'Merkezi uwedomleniýeleri dolandyr',
