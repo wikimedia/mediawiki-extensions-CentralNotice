@@ -4620,6 +4620,89 @@ Dodaj nowy poniżej.',
  */
 $messages['pms'] = array(
 	'centralnotice' => 'Aministrassion sentral ëd le neuve',
+	'noticetemplate' => 'Stamp dle neuve sentraj',
+	'centralnotice-desc' => 'A gionta na Neuva Sentral dël sit',
+	'centralnotice-summary' => 'Sto mòdol-sì a-j përmët ëd modifiché soe Neuve Sentraj ampostà al moment.
+A peul ëdcò esse dovrà për gionté o gavé notissie veje.',
+	'centralnotice-query' => 'Modìfica le neuve corente',
+	'centralnotice-notice-name' => 'Nòm ëd la neuva',
+	'centralnotice-end-date' => 'Data fin',
+	'centralnotice-enabled' => 'Abilità',
+	'centralnotice-modify' => 'Spediss',
+	'centralnotice-preview' => 'Previsualisassion',
+	'centralnotice-add-new' => 'Gionta na Neuva Sentral neuva',
+	'centralnotice-remove' => 'Gava',
+	'centralnotice-translate-heading' => 'Tradussion për $1',
+	'centralnotice-manage' => 'Gestiss neuva sentral',
+	'centralnotice-add' => 'Gionta',
+	'centralnotice-add-notice' => 'Gionta na neuva',
+	'centralnotice-add-template' => 'Gionta në stamp',
+	'centralnotice-show-notices' => 'Mostra neuva',
+	'centralnotice-list-templates' => 'Lista stamp',
+	'centralnotice-translations' => 'Tradussion',
+	'centralnotice-translate-to' => 'Volté an',
+	'centralnotice-translate' => 'Volté',
+	'centralnotice-english' => 'Anglèis',
+	'centralnotice-template-name' => 'Nòm ëd lë stamp',
+	'centralnotice-templates' => 'Stamp',
+	'centralnotice-weight' => 'Pèis',
+	'centralnotice-locked' => 'Blocà',
+	'centralnotice-notices' => 'Neuve',
+	'centralnotice-notice-exists' => 'La neuva a esist già.
+Pa giontà',
+	'centralnotice-template-exists' => 'Lë stamp a esist già.
+Pa giontà',
+	'centralnotice-notice-doesnt-exist' => 'La neuva a esist pa.
+A-i é gnente da gavé',
+	'centralnotice-template-still-bound' => "Lë stamp a l'é ancó gropà a na neuva.
+Pa gavà.",
+	'centralnotice-template-body' => 'Còrp ëd lë stamp:',
+	'centralnotice-day' => 'Di',
+	'centralnotice-year' => 'Ann',
+	'centralnotice-month' => 'Mèis',
+	'centralnotice-hours' => 'Ora',
+	'centralnotice-min' => 'Minuta',
+	'centralnotice-project-lang' => 'Lenga dël proget',
+	'centralnotice-project-name' => 'Nòm dël proget',
+	'centralnotice-start-date' => "Data d'inissi",
+	'centralnotice-start-time' => "Ora d'inissi (UTC)",
+	'centralnotice-assigned-templates' => 'Stamp assignà',
+	'centralnotice-no-templates' => 'Pa gnun stamp trovà.
+Giontne un!',
+	'centralnotice-no-templates-assigned' => 'Pa gnun stamp assignà a la neuva.
+Giontne un!',
+	'centralnotice-available-templates' => 'Stamp disponìbij',
+	'centralnotice-template-already-exists' => "Lë stamp a l'é già gropà a na campagna.
+Pa giontà",
+	'centralnotice-preview-template' => 'Previsualisassion stamp',
+	'centralnotice-start-hour' => "Ora d'inissi",
+	'centralnotice-change-lang' => 'Cangé lenga ëd tradussion',
+	'centralnotice-weights' => 'Pèis',
+	'centralnotice-notice-is-locked' => 'Neuva blocà.
+Pa gavà',
+	'centralnotice-overlap' => "La neuva a coata la durà ëd n'àutra neuva.
+Pa giontà",
+	'centralnotice-invalid-date-range' => 'Antërval ëd date pa bon.
+Pa modificà',
+	'centralnotice-null-string' => 'A peul pa gionté na stringa veuida.
+Pa giontà',
+	'centralnotice-confirm-delete' => "É-lo sigur ëd vorèj scancelé sto element-sì?
+St'assion a podrà pa esse arcuperà.",
+	'centralnotice-no-notices-exist' => "A-i son gnun-e neuve.
+Ch'a na gionta un-a sì-sota.",
+	'centralnotice-no-templates-translate' => 'A-i é gnun ëstamp dont modifiché la tradussion',
+	'centralnotice-number-uses' => 'Usagi',
+	'centralnotice-edit-template' => 'Modìfica stamp',
+	'centralnotice-message' => 'Mëssagi',
+	'centralnotice-message-not-set' => 'Mëssagi pa ampostà',
+	'centralnotice-clone' => 'Clon-a',
+	'centralnotice-clone-notice' => 'Crea na còpia ëd lë stamp',
+	'centralnotice-preview-all-template-translations' => 'Previsualisa tute le tradussion disponìbij ëd lë stamp',
+	'right-centralnotice-admin' => 'Gestì le neuve sentraj',
+	'right-centralnotice-translate' => 'Volté le neuve sentraj',
+	'action-centralnotice-admin' => 'gestì le neuve sentraj',
+	'action-centralnotice-translate' => 'volté le neuve sentraj',
+	'centralnotice-preferred' => 'Mè gust',
 );
 
 /** Pontic (Ποντιακά)
