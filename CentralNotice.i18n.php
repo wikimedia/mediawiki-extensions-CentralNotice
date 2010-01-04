@@ -574,18 +574,29 @@ $messages['be-tarask'] = array(
 /** Bulgarian (Български)
  * @author Borislav
  * @author DCLXVI
+ * @author Spiritia
  * @author Turin
  */
 $messages['bg'] = array(
+	'centralnotice' => 'Администратор на централизираните съобщения',
+	'noticetemplate' => 'Шаблон за централизирани съобщения',
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
+	'centralnotice-summary' => 'Този интерфейс позволява да редактирате текущо съществуващите централизирани съобщения.
+Той може да се използва и за прибавяне на нови и премахване на стари съобщения.',
+	'centralnotice-query' => 'Промяна на текущите съобщения',
+	'centralnotice-notice-name' => 'Име на съобщението',
 	'centralnotice-end-date' => 'Крайна дата',
 	'centralnotice-enabled' => 'Включено',
 	'centralnotice-modify' => 'Изпращане',
 	'centralnotice-preview' => 'Преглеждане',
+	'centralnotice-add-new' => 'Добавяне на ново централизирано съобщение',
 	'centralnotice-remove' => 'Премахване',
 	'centralnotice-translate-heading' => 'Превод за $1',
+	'centralnotice-manage' => 'Управление на централизираното съобщение',
 	'centralnotice-add' => 'Добавяне',
+	'centralnotice-add-notice' => 'Добавяне на съобщение',
 	'centralnotice-add-template' => 'Добавяне на шаблон',
+	'centralnotice-show-notices' => 'Показване на съобщенията',
 	'centralnotice-list-templates' => 'Списък на шаблоните',
 	'centralnotice-translations' => 'Преводи',
 	'centralnotice-translate-to' => 'Превеждане на',
@@ -595,6 +606,7 @@ $messages['bg'] = array(
 	'centralnotice-templates' => 'Шаблони',
 	'centralnotice-weight' => 'Тежест',
 	'centralnotice-locked' => 'Заключено',
+	'centralnotice-notices' => 'Съобщения',
 	'centralnotice-template-body' => 'Тяло на шаблона:',
 	'centralnotice-day' => 'Ден',
 	'centralnotice-year' => 'Година',
@@ -608,11 +620,15 @@ $messages['bg'] = array(
 	'centralnotice-available-templates' => 'Налични шаблони',
 	'centralnotice-preview-template' => 'Преглед на шаблона',
 	'centralnotice-start-hour' => 'Начален час',
+	'centralnotice-no-templates-translate' => 'Няма шаблони, за които да се редактират преводите',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
 	'centralnotice-message' => 'Съобщение',
 	'centralnotice-message-not-set' => 'Съобщението не е зададено',
 	'centralnotice-clone' => 'Клониране',
 	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
+	'centralnotice-preview-all-template-translations' => 'Преглед на всички налични преводи на шаблона',
+	'right-centralnotice-admin' => 'Управление на централизираните съобщения',
+	'right-centralnotice-translate' => 'Превод на централизираните съобщения',
 	'centralnotice-preferred' => 'Предпочитано',
 );
 
