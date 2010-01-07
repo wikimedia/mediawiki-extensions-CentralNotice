@@ -40,18 +40,17 @@ class SpecialNoticeText extends NoticePage {
                     }
                 }
 
-		if ( !$templates ) {
-			if ( $this->project == 'wikipedia' ) {
+		if ( !$templates && $this->project == 'wikipedia' ) {
 				$notices = CentralNoticeDB::getNotices( 'wikipedia', '', '', '', 1 );
-				foreach( $notices as $notice => $val ) {
-					if ( $val['language'] == '' || 
-					     $val['language'] == $this->language ) {
-						$templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
-						break;
+				if ( $notices ) {
+					foreach( $notices as $notice => $val ) {
+						if ( $val['language'] == '' || 
+						     $val['language'] == $this->language ) {
+							$templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
+							break;
+						}
 					}
 				}
-			
-			}
 		}
 
                 // Didn't find any preferred matches so do an old style lookup
