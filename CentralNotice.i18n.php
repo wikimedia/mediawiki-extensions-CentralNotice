@@ -4749,6 +4749,8 @@ $messages['pnt'] = array(
  */
 $messages['ps'] = array(
 	'centralnotice-desc' => 'يو مرکزي ويبځی-يادښت ورګډول',
+	'centralnotice-end-date' => 'د پای نېټه',
+	'centralnotice-preview' => 'مخکتنه',
 	'centralnotice-translate-heading' => 'د $1 لپاره ژباړه',
 	'centralnotice-add' => 'ورګډول',
 	'centralnotice-add-template' => 'يوه کينډۍ ورګډول',
