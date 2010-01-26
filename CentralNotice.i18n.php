@@ -783,6 +783,8 @@ N'eo ket bet ouzhpennet.",
 	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-notice-is-locked' => "Prenet eo an ali.
 N'eo ket bet dilammet.",
+	'centralnotice-null-string' => "Ne c'haller ket ouzhpennañ un neudennad c'houllo.
+N'eo ket bet ouzhpennet",
 	'centralnotice-confirm-delete' => "Ha sur oc'h ho peus c'hoant dilemmel an elfenn-mañ ?
 Ne vo ket tu adtapout anezhi.",
 	'centralnotice-no-notices-exist' => "N'eus ali ebet.
