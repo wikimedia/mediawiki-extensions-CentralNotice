@@ -3502,10 +3502,10 @@ De kanns ävver welshe dobei don.',
  */
 $messages['kw'] = array(
 	'centralnotice-english' => 'Sowsnek',
-	'centralnotice-day' => 'Dedh',
+	'centralnotice-day' => 'Dydh',
 	'centralnotice-year' => 'Bledhen',
 	'centralnotice-month' => 'Mis',
-	'centralnotice-edit-template' => 'Chanjya scantlyn',
+	'centralnotice-edit-template' => 'Chanjya skantlyn',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
