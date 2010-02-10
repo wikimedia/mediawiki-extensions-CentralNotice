@@ -42,7 +42,7 @@ class SpecialNoticeText extends NoticePage {
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
 				$notices = CentralNoticeDB::getNotices( 'wikipedia', '', '', '', 1 );
-				if ( $notices ) {
+				if ( $notices && is_array($notices) ) {
 					foreach( $notices as $notice => $val ) {
 						if ( $val['language'] == '' || 
 						     $val['language'] == $this->language ) {
