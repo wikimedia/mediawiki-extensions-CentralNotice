@@ -96,7 +96,6 @@ $wgExtensionCredits['other'][] = array(
 	'name'           => 'CentralNotice',
 	'author'         => 'Brion Vibber',
 	'url'            => 'http://www.mediawiki.org/wiki/Extension:CentralNotice',
-	'description'    => 'Adds a central sitenotice',
 	'descriptionmsg' => 'centralnotice-desc',
 );
 
