@@ -1604,6 +1604,7 @@ Afiŝu noticon suben',
 /** Spanish (Español)
  * @author Imre
  * @author Locos epraix
+ * @author McDutchie
  * @author Muro de Aguas
  * @author Remember the dot
  * @author Sanbec
@@ -1681,7 +1682,7 @@ Esta acción no se podrá deshacer.',
 	'centralnotice-no-notices-exist' => 'No hay avisos.
 Añade uno debajo',
 	'centralnotice-no-templates-translate' => 'No hay plantillas de las que editar traducciones',
-	'centralnotice-number-uses' => 'Usa',
+	'centralnotice-number-uses' => 'Usos',
 	'centralnotice-edit-template' => 'Editar plantilla',
 	'centralnotice-message' => 'Mensaje',
 	'centralnotice-message-not-set' => 'No se ha establecido un mensaje',
