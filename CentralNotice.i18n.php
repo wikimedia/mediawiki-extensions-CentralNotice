@@ -753,7 +753,7 @@ $messages['br'] = array(
 	'centralnotice-notices' => 'Kemennoù',
 	'centralnotice-notice-exists' => "Bez ez eus dija eus an ali-se.
 N'eo ket bet ouzhpennet neuze",
-	'centralnotice-template-exists' => "Bez ez eus dija eus ar patrom-se.
+	'centralnotice-template-exists' => "Bez' ez eus ar patrom-mañ c'hoazh.
 N'eo ket bet ouzhpennet.",
 	'centralnotice-notice-doesnt-exist' => "N'eus ket seus an ali-mañ.
 N'eus netra da zilemel",
@@ -770,8 +770,8 @@ N'eo ket bet dilammet.",
 	'centralnotice-start-date' => 'Deiziad kregiñ',
 	'centralnotice-start-time' => 'Eurvezh kregiñ (UTC)',
 	'centralnotice-assigned-templates' => 'Patromoù deverket',
-	'centralnotice-no-templates' => "N'eo bet kavet patrom ebet.
-Ouzhpennit patromoù !",
+	'centralnotice-no-templates' => "N'eus bet kavet patrom ebet.
+Ouzhpennit un nebeud re !",
 	'centralnotice-no-templates-assigned' => "N'eus patrom ebet deverket gant an ali.
 Ouzhpennit unan !",
 	'centralnotice-available-templates' => 'Patromoù zo da gaout',
