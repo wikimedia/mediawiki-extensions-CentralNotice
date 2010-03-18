@@ -900,6 +900,7 @@ Dodaj jednu ispod',
  * @author Paucabot
  * @author SMP
  * @author Solde
+ * @author Vriullop
  */
 $messages['ca'] = array(
 	'centralnotice' => "Administrador d'avisos centrals",
@@ -974,7 +975,7 @@ Aquesta acció serà irreversible.',
 Afegiu-ne un a continuació.',
 	'centralnotice-no-templates-translate' => 'No hi ha cap plantilla per editar les traduccions per',
 	'centralnotice-number-uses' => 'Usos',
-	'centralnotice-edit-template' => 'Edita la plantilla',
+	'centralnotice-edit-template' => 'Modifica la plantilla',
 	'centralnotice-message' => 'Missatge',
 	'centralnotice-message-not-set' => 'Missatge no fixat',
 	'centralnotice-clone' => 'Duplica',
@@ -1353,13 +1354,13 @@ Dajo se teke wužywaś, aby se pśidali nowe powěźeńki abo wótpórali stare 
 	'centralnotice-locked' => 'Zastajony',
 	'centralnotice-notices' => 'Powěźeńki',
 	'centralnotice-notice-exists' => 'Powěźeńka južo eksistěrujo.
-Žedne pśidaśe',
+Žedno pśidaśe',
 	'centralnotice-template-exists' => 'Pśedłoga južo eksistěrujo.
-Žedne pśidaśe',
+Žedno pśidaśe',
 	'centralnotice-notice-doesnt-exist' => 'Powěźeńka njeeksistěrujo.
-Žedne wótpóranje',
+Žedno wótpóranje',
 	'centralnotice-template-still-bound' => 'Pśedłoga jo hyšći z powěźeńku zwězana.
-Žedne wótpóranje.',
+Žedno wótpóranje.',
 	'centralnotice-template-body' => 'Tekst pśedłogi:',
 	'centralnotice-day' => 'Źeń',
 	'centralnotice-year' => 'Lěto',
@@ -1376,20 +1377,20 @@ Pśidaj někotare!',
 	'centralnotice-no-templates-assigned' => 'Žedne pśedłogi powěźeńce pśipokazane.
 Pśidaj jadnu!',
 	'centralnotice-available-templates' => 'K dispoziciji stojece pśedłogi',
-	'centralnotice-template-already-exists' => 'Pśedłoga je južo z kampanju zwězana.
-Žedne pśidaśe',
+	'centralnotice-template-already-exists' => 'Pśedłoga jo južo z kampanju zwězana.
+Žedno pśidaśe',
 	'centralnotice-preview-template' => 'Pśeglěd pśedłogi',
 	'centralnotice-start-hour' => 'Startowy cas',
 	'centralnotice-change-lang' => 'Pśełožkowu rěc změniś',
 	'centralnotice-weights' => 'Wagi',
 	'centralnotice-notice-is-locked' => 'Powěźeńka jo zastajona.
-Žedne wótpóranje',
+Žedno wótpóranje',
 	'centralnotice-overlap' => 'Powěźeńka prěcy se z casom drugeje powěźeńki.
-Žedne pśidaśe',
+Žedno pśidaśe',
 	'centralnotice-invalid-date-range' => 'Njepłaśiwy cas.
 Žedna aktualizacija',
 	'centralnotice-null-string' => 'Prozny tekst njedajo se pśidaś.
-Žedne pśidaśe',
+Žedno pśidaśe',
 	'centralnotice-confirm-delete' => 'Coš napšawdu toś ten zapisk wulašowaś?
 Toś ta akcija njedajo se anulěrowaś.',
 	'centralnotice-no-notices-exist' => 'Njeeksistěruju žedne powěźeńki.
