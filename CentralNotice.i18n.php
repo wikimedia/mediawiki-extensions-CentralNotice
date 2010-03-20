@@ -1123,8 +1123,25 @@ Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.
 /** Danish (Dansk)
  * @author Byrial
  * @author Masz
+ * @author Sarrus
  */
 $messages['da'] = array(
+	'centralnotice-end-date' => 'Slutdato',
+	'centralnotice-preview' => 'Forhåndsvisning',
+	'centralnotice-add' => 'Tilføj',
+	'centralnotice-english' => 'Engelsk',
+	'centralnotice-template-name' => 'Skabelonnavn',
+	'centralnotice-templates' => 'Skabeloner',
+	'centralnotice-locked' => 'Låst',
+	'centralnotice-day' => 'Dag',
+	'centralnotice-year' => 'År',
+	'centralnotice-month' => 'Måned',
+	'centralnotice-hours' => 'Time',
+	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => 'Projektsprog',
+	'centralnotice-project-name' => 'Projektnavn',
+	'centralnotice-start-date' => 'Startdato',
+	'centralnotice-start-time' => 'Starttid (UTC)',
 	'right-centralnotice-admin' => 'Administrere centrale meddelelser',
 	'action-centralnotice-admin' => 'administrere centrale beskeder',
 	'action-centralnotice-translate' => 'oversætte centrale beskeder',
