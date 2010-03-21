@@ -900,6 +900,7 @@ Dodaj jednu ispod',
  * @author Paucabot
  * @author SMP
  * @author Solde
+ * @author Ssola
  * @author Vriullop
  */
 $messages['ca'] = array(
@@ -973,7 +974,7 @@ No actualitzat',
 Aquesta acció serà irreversible.',
 	'centralnotice-no-notices-exist' => 'No hi ha cap avís.
 Afegiu-ne un a continuació.',
-	'centralnotice-no-templates-translate' => 'No hi ha cap plantilla per editar les traduccions per',
+	'centralnotice-no-templates-translate' => 'No hi ha cap plantilla per modificar les traduccions per',
 	'centralnotice-number-uses' => 'Usos',
 	'centralnotice-edit-template' => 'Modifica la plantilla',
 	'centralnotice-message' => 'Missatge',
