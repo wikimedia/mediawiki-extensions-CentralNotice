@@ -4677,8 +4677,8 @@ Dodaj nowy poniżej.',
 	'centralnotice-clone' => 'Kopia',
 	'centralnotice-clone-notice' => 'Utwórz kopię szablonu',
 	'centralnotice-preview-all-template-translations' => 'Zobacz wszystkie dostępne tłumaczenia szablonu',
-	'right-centralnotice-admin' => 'Zarządzać wspólnymi komunikatami',
-	'right-centralnotice-translate' => 'Tłumaczyć wspólne komunikaty',
+	'right-centralnotice-admin' => 'Zarządzanie wspólnymi komunikatami',
+	'right-centralnotice-translate' => 'Tłumaczenie wspólnych dla projektów ogłoszeń',
 	'action-centralnotice-admin' => 'zarządzaj centralnymi komunikatami',
 	'action-centralnotice-translate' => 'przetłumacz centralne komunikaty',
 	'centralnotice-preferred' => 'Preferowany',
@@ -4818,8 +4818,8 @@ $messages['ps'] = array(
  */
 $messages['pt'] = array(
 	'centralnotice' => 'Administração de aviso centralizado',
-	'noticetemplate' => 'Modelo de aviso do sítio',
-	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
+	'noticetemplate' => 'Modelo de aviso do site',
+	'centralnotice-desc' => 'Adiciona um aviso do site centralizado',
 	'centralnotice-summary' => 'Este módulo permite-lhe editar os seus avisos centralizados actualmente configurados.
 Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-query' => 'Modificar avisos actuais',
