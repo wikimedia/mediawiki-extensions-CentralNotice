@@ -1089,6 +1089,7 @@ Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.
 	'centralnotice-add-new' => 'Ychwanegu hysbysiad canolog newydd',
 	'centralnotice-remove' => 'Diddymu',
 	'centralnotice-translate-heading' => 'Cyfieithiad ar gyfer $1',
+	'centralnotice-manage' => 'Gweinyddu hysbysiad canolog',
 	'centralnotice-add' => 'Ychwanegu',
 	'centralnotice-add-notice' => 'Ychwanegu hysbysiad',
 	'centralnotice-add-template' => 'Ychwanegu nodyn',
@@ -1098,10 +1099,15 @@ Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.
 	'centralnotice-translate-to' => "Cyfieithu i'r",
 	'centralnotice-translate' => 'Cyfieithu',
 	'centralnotice-english' => 'Saesneg',
+	'centralnotice-template-name' => "Enw'r nodyn",
 	'centralnotice-templates' => 'Nodiadau',
 	'centralnotice-weight' => 'Pwys',
 	'centralnotice-locked' => 'Ar glo',
 	'centralnotice-notices' => 'Hysbysiadau',
+	'centralnotice-notice-exists' => "Mae'r hysbysiad eisoes ar gael. 
+Ni chaiff ei ychwanegu",
+	'centralnotice-notice-doesnt-exist' => "Nid yw'r hysbysiad ar gael.
+Dim i gael gwared ohono",
 	'centralnotice-day' => 'Dydd',
 	'centralnotice-year' => 'Blwyddyn',
 	'centralnotice-month' => 'Mis',
@@ -1113,6 +1119,10 @@ Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.
 	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
 	'centralnotice-start-hour' => 'Amser dechrau',
 	'centralnotice-weights' => 'Pwysau',
+	'centralnotice-notice-is-locked' => "Mae'r hysbysiad wedi ei gloi. 
+Ni chaiff ei dynnu i ffwrdd",
+	'centralnotice-no-notices-exist' => 'Does dim hysbysiadau i gael.
+Gallwch ychwanegu un isod.',
 	'centralnotice-edit-template' => "Golygu'r nodyn",
 	'centralnotice-message' => 'Neges',
 	'right-centralnotice-admin' => 'Gweinyddu hysbysiadau canolog',
