@@ -4403,6 +4403,7 @@ Denne handlinga kan ikkje bli omgjort.',
  * @author Harald Khan
  * @author Jon Harald Søby
  * @author Laaknor
+ * @author Nghtwlkr
  */
 $messages['no'] = array(
 	'centralnotice' => 'Administrasjon av sentrale beskjeder',
@@ -4479,7 +4480,7 @@ Legg til en under',
 	'centralnotice-no-templates-translate' => 'Det finnes ingen maler å redigere oversettelser for',
 	'centralnotice-number-uses' => 'Anvendelser',
 	'centralnotice-edit-template' => 'Rediger mal',
-	'centralnotice-message' => 'Beskjed',
+	'centralnotice-message' => 'Melding',
 	'centralnotice-message-not-set' => 'Melding ikke satt',
 	'centralnotice-clone' => 'Klon',
 	'centralnotice-clone-notice' => 'Lag en kopi av malen',
