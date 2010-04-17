@@ -30,7 +30,7 @@ class SpecialNoticeText extends NoticePage {
 
                     if ( $notices ) {
                         // Pull out values
-                        foreach( $notices as $notice => $val ) {
+                        foreach ( $notices as $notice => $val ) {
                             // Either match against ALL project or a specific project 
                             if ( $val['project'] == '' || $val['project'] == $this->project ) {
                                 $templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
@@ -42,9 +42,9 @@ class SpecialNoticeText extends NoticePage {
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
 				$notices = CentralNoticeDB::getNotices( 'wikipedia', '', '', '', 1 );
-				if ( $notices && is_array($notices) ) {
-					foreach( $notices as $notice => $val ) {
-						if ( $val['language'] == '' || 
+				if ( $notices && is_array( $notices ) ) {
+					foreach ( $notices as $notice => $val ) {
+						if ( $val['language'] == '' ||
 						     $val['language'] == $this->language ) {
 							$templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
 							break;
@@ -166,9 +166,9 @@ function pickTemplate(templates, weights) {
 	}
 
 	private function formatNum( $num ) {
-		$num = sprintf("%.1f", $num/1e6);
-		if ( substr( $num, -2 ) == '.0' ) {
-    		$num = substr( $num, 0, -2 );
+		$num = sprintf( "%.1f", $num / 1e6 );
+		if ( substr( $num, - 2 ) == '.0' ) {
+    		$num = substr( $num, 0, - 2 );
 		}
 		$lang = Language::factory( $this->language );
 		return $lang->formatNum( $num );

@@ -26,7 +26,7 @@ class NoticePage extends UnlistedSpecialPage {
 	private function sendHeaders() {
 		$smaxage = $this->sharedMaxAge();
 		$maxage = $this->maxAge();
-		//$epoch = wfTimestamp( TS_RFC2822, efCentralNoticeEpoch() );
+		// $epoch = wfTimestamp( TS_RFC2822, efCentralNoticeEpoch() );
 
 		// Paranoia
 		$public = ( session_id() == '' );
@@ -37,7 +37,7 @@ class NoticePage extends UnlistedSpecialPage {
 		} else {
 			header( "Cache-Control: private, s-maxage=0, max-age=$maxage" );
 		}
-		//header( "Last-modified: $epoch" );
+		// header( "Last-modified: $epoch" );
 	}
 
 	function getJsOutput( $par ) {

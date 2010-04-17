@@ -35,7 +35,7 @@ class CentralNoticeDB {
 		if ( !$date )
 			$date = $dbr->timestamp();
 
-		$conds[] = ( $date ) ? "not_start <= ". $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
+		$conds[] = ( $date ) ? "not_start <= " . $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
 		$conds[] = ( $date ) ? "not_end >= " . $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
 		$conds[] = ( $enabled ) ? "not_enabled = " . $dbr->addQuotes( $enabled ) : "not_enabled = " . $dbr->addQuotes( 1 );
 
@@ -76,7 +76,7 @@ class CentralNoticeDB {
 
 	/*
 	 * Given a notice return all templates bound to it
-	 */ 
+	 */
 	public function selectTemplatesAssigned( $notice ) {
 		$dbr = wfGetDB( DB_SLAVE );
 

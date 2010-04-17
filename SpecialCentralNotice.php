@@ -105,10 +105,10 @@ class CentralNotice extends SpecialPage {
 					$unsetNotices = array_diff( $this->getNoticesName(), $preferredNotices );
 
 					// Set flag accordingly
-					foreach( $preferredNotices as $notice ) {
+					foreach ( $preferredNotices as $notice ) {
 						CentralNoticeDB::updatePreferred( $notice, '1' );
 					}
-					foreach( $unsetNotices as $notice ) {
+					foreach ( $unsetNotices as $notice ) {
 						CentralNoticeDB::updatePreferred( $notice, '0' );
 					}
 				}
@@ -149,7 +149,7 @@ class CentralNotice extends SpecialPage {
 			if ( !isset( $enabledNotices ) && $method !== 'addNotice' ) {
 				if ( $method == 'listNoticeDetail' ) {
 					$notice = $wgRequest->getVal ( 'notice' );
-						$this->updateEnabled( $notice, 0);
+						$this->updateEnabled( $notice, 0 );
 				} else {
 					$allNotices = $this->getNoticesName();
 					foreach ( $allNotices as $notice ) {
@@ -235,7 +235,7 @@ class CentralNotice extends SpecialPage {
 			array( 'not_enabled' => $state ),
 			array( 'not_name' => $notice )
 		);
-		$dbw->commit(); 
+		$dbw->commit();
 	}
 
 	static public function printHeader() {
@@ -285,7 +285,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function dateSelector( $prefix, $timestamp = null ) {
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			// Default ranges...
 			$years = range( 2007, 2012 );
 			$months = range( 1, 12 );
@@ -310,7 +310,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function timeSelector( $prefix, $timestamp = null ) {
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			// Default ranges...
 			$minutes = range( 0, 59 ); // formerly in 15-minute increments
 			$minutes = array_map( array( $this, 'addZero' ), $minutes );
@@ -357,7 +357,7 @@ class CentralNotice extends SpecialPage {
 		// Get connection
 		$dbr = wfGetDB( DB_SLAVE );
 		$sk = $wgUser->getSkin();
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$readonly = array();
 		} else {
 			$readonly = array( 'disabled' => 'disabled' );
@@ -406,7 +406,7 @@ class CentralNotice extends SpecialPage {
 
 		// Build HTML
 		$htmlOut = '';
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
@@ -433,7 +433,7 @@ class CentralNotice extends SpecialPage {
 			wfMsgHtml( 'centralnotice-preferred' ),
 			wfMsgHtml( 'centralnotice-locked' ),
 		);
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$headers[] = wfMsgHtml( 'centralnotice-remove' );
 		}
 		$htmlOut .= $this->tableRow( $headers, 'th' );
@@ -492,7 +492,7 @@ class CentralNotice extends SpecialPage {
 					wfArrayMerge( $readonly,
 						array( 'value' => $row->not_name ) ) );
 
-				if( $this->editable ) {
+				if ( $this->editable ) {
 					// Remove
 					$fields[] = Xml::check( 'removeNotices[]', false,
 						array( 'value' => $row->not_name ) );
@@ -500,7 +500,7 @@ class CentralNotice extends SpecialPage {
 
 				$htmlOut .= $this->tableRow( $fields );
 			}
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				$htmlOut .= $this->tableRow(
 					array(
 						Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ),
@@ -515,7 +515,7 @@ class CentralNotice extends SpecialPage {
 
 			$htmlOut .= Xml::closeElement( 'table' );
 			$htmlOut .= Xml::closeElement( 'fieldset' );
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				$htmlOut .= Xml::closeElement( 'form' );
 			}
 
@@ -525,7 +525,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut = wfMsg( 'centralnotice-no-notices-exist' );
 		}
 
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			// Notice Adding
 			$htmlOut .= Xml::openElement( 'form',
 				array(
@@ -615,16 +615,16 @@ class CentralNotice extends SpecialPage {
 					$this->addTemplateTo( $notice, $template, $weight[$template] );
 				}
 			}
-			$wgOut->redirect( SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice") );
+			$wgOut->redirect( SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
 			return;
 		}
 
 		$htmlOut = '';
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' => SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice")
+					'action' => SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice" )
 				)
 			);
 		}
@@ -655,17 +655,17 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::element( 'p' );
 		} elseif ( $output_assigned == '' ) {
 			$htmlOut .= wfMsg( 'centralnotice-no-templates-assigned' );
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				$htmlOut .= $output_templates;
 			}
 		} else {
 			$htmlOut .= $output_assigned;
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				$htmlOut .= $output_templates;
-			}			
+			}
 		}
 
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'tr', null,
 				Xml::tags( 'td', array( 'collspan' => 2 ),
 					Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
@@ -677,7 +677,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function noticeDetailForm( $notice ) {
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$readonly = array();
 		} else {
 			$readonly = array( 'disabled' => 'disabled' );
@@ -752,7 +752,7 @@ class CentralNotice extends SpecialPage {
 							array( 'value' => $row->not_name ) ) ),
 				),
 			);
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				// Remove
 				$table[] = array(
 					wfMsgHtml( 'centralnotice-remove' ),
@@ -810,7 +810,7 @@ class CentralNotice extends SpecialPage {
 				'width' => '100%'
 			)
 		);
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				 wfMsg ( "centralnotice-remove" ) );
 		}
@@ -824,7 +824,7 @@ class CentralNotice extends SpecialPage {
 
 			$htmlOut .= Xml::openElement( 'tr' );
 
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				// Remove
 				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 					Xml::check( 'removeTemplates[]', false, array( 'value' => $row->tmp_name ) )
@@ -859,7 +859,7 @@ class CentralNotice extends SpecialPage {
 	}
 	
 	function weightDropDown( $name, $selected ) {
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			return Xml::listDropDown( $name,
 				$this->dropDownList( wfMsg( 'centralnotice-weight' ),
 				range ( 0, 100, 5 ) ),
@@ -930,7 +930,7 @@ class CentralNotice extends SpecialPage {
 							'',
 							'25',
 							'',
-							'')
+							'' )
 					);
 
 					// Render preview
@@ -1120,7 +1120,7 @@ class CentralNotice extends SpecialPage {
 					'tmp_weight' => $weight,
 					'not_id' => $noticeId
 				)
-			); 
+			);
 			$dbw->commit();
 		}
 	}
@@ -1241,7 +1241,7 @@ class CentralNotice extends SpecialPage {
 	function projectDropDownList( $selected = '' ) {
 		global $wgNoticeProjects;
 		
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut = Xml::openElement( 'select', array( 'name' => 'project_name' ) );
 			$htmlOut .= Xml::option( 'All projects', '', ( $selected == '' ) );
 			foreach ( $wgNoticeProjects as $value ) {
@@ -1250,7 +1250,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'select' );
 			return $htmlOut;
 		} else {
-			if( $selected == '' ) {
+			if ( $selected == '' ) {
 				return 'All projects';
 			} else {
 				return htmlspecialchars( $selected );
@@ -1262,7 +1262,7 @@ class CentralNotice extends SpecialPage {
 		// Language
 		list( $lsLabel, $lsSelect ) = Xml::languageSelector( $selected );
 
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			/*
 			 * Dirty hack to add our very own "All" option
 			 */
@@ -1282,7 +1282,7 @@ class CentralNotice extends SpecialPage {
 	
 			return array( $lsLabel, $lsSelect );
 		} else {
-			if( $selected == '' ) {
+			if ( $selected == '' ) {
 				$lang = 'All languages';
 			} else {
 				global $wgLang;

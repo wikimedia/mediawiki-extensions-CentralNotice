@@ -35,7 +35,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Show header
 		CentralNotice::printHeader();
 
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			// Handle forms
 			if ( $wgRequest->wasPosted() ) {
 	
@@ -93,7 +93,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			return;
 		}
 
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			// Handle viewing a specific template
 			if ( $sub == 'add' ) {
 				$this->showAdd();
@@ -102,7 +102,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
                         if ( $sub == 'clone' ) {
                             $oldTemplate = $wgRequest->getVal( 'oldTemplate' );
                             $newTemplate =  $wgRequest->getVal( 'newTemplate' );
-                            //We use the returned name in case any special characters had to be removed
+                            // We use the returned name in case any special characters had to be removed
                             $template = $this->cloneTemplate( $oldTemplate, $newTemplate );
                             $wgOut->redirect( SpecialPage::getTitleFor( 'NoticeTemplate', 'view' )->getLocalUrl( "template=$template" ) );
                             return;
@@ -123,7 +123,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		if ( count( $templates ) > 0 ) {
 			$htmlOut = '';
 			
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form',
 					array(
 						'method' => 'post',
@@ -138,7 +138,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					'width' => '100%'
 				)
 			);
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 					wfMsg ( 'centralnotice-remove' )
 				);
@@ -152,7 +152,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 				$htmlOut .= Xml::openElement( 'tr' );
 
-				if( $this->editable ) {
+				if ( $this->editable ) {
 					// Remove box
 					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 						Xml::check( 'removeTemplates[]', false,
@@ -179,7 +179,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
-			if( $this->editable ) {
+			if ( $this->editable ) {
 				$htmlOut .= Xml::tags( 'tr', null,
 					Xml::tags( 'td', array( 'colspan' => 3 ),
 						Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
@@ -194,7 +194,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
 
 		$htmlOut .= Xml::element( 'p' );
@@ -239,7 +239,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode;
 
 		$sk = $wgUser->getSkin();
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$readonly = array();
 		} else {
 			$readonly = array( 'readonly' => 'readonly' );
@@ -263,7 +263,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		// Build HTML
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 		}
 		$htmlOut .= Xml::fieldset( wfMsgHtml( 'centralnotice-translate-heading', $currentTemplate ) );
@@ -343,7 +343,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			);
 			$htmlOut .= Xml::closeElement( 'tr' );
 		}
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::hidden( 'token', $token );
 			$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -354,7 +354,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
 
@@ -374,7 +374,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			Xml::tags( 'td', array( 'colspan' => 2 ),
 				Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ) )
 			)
-                ); 
+                );
                 $htmlOut .= Xml::tags( 'tr', null,
                     Xml::tags( 'td', null, '' ) .
                     Xml::tags( 'td', null, $sk->makeLinkObj( $newPage, wfMsg( 'centralnotice-preview-all-template-translations' ), "template=$currentTemplate&wpUserLanguage=all" ) )
@@ -386,7 +386,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		/*
 		 * Show edit form
 		 */
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
 		}
@@ -400,22 +400,22 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::tags( 'tr', null,
 			Xml::tags( 'td', null, Xml::textarea( 'templateBody', $body, 60, 20, $readonly ) )
 		);
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'tr', null,
 				Xml::tags( 'td', null, Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ) ) )
 			);
 		}
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		if( $this->editable ) {
+		if ( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
 
 		/*
 		 * Show Clone form
 		 */
-		if ( $this->editable ) { 
-			$htmlOut .= Xml::openElement ( 'form', 
+		if ( $this->editable ) {
+			$htmlOut .= Xml::openElement ( 'form',
 				array(
 					'method' => 'post',
 					'action' => SpecialPage::getTitleFor( 'NoticeTemplate', 'clone' )->getLocalUrl()
@@ -425,7 +425,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-clone-notice' ) );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::inputLabel( 'Name:', 'newTemplate', 'newTemplate, 25');
+			$htmlOut .= Xml::inputLabel( 'Name:', 'newTemplate', 'newTemplate, 25' );
 			$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-clone' ), array ( 'id' => 'clone' ) );
 			$htmlOut .= Xml::hidden( 'oldTemplate', $currentTemplate );
 
@@ -451,7 +451,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$langs = array_keys( $this->getTranslations( $template ) );
 		$htmlOut = '';
     
-		foreach( $langs as $lang ) {
+		foreach ( $langs as $lang ) {
 			// Link and Preview all available translations
 			$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 			$render = new SpecialNoticeText();
@@ -460,7 +460,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$sk->makeLinkObj( $viewPage,
 					$lang,
-					'template=' . urlencode( $template ) . "&wpUserLanguage=$lang") . 
+					'template=' . urlencode( $template ) . "&wpUserLanguage=$lang" ) .
 				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
 					$render->getHtmlNotice( $template )
 				)
@@ -629,8 +629,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
             if ( $this->addTemplate( $dest, $template_body ) ) {
 
                 // Populate the fields
-                foreach($langs as $lang => $fields ) {
-                    foreach( $fields as $field => $text ) {
+                foreach ( $langs as $lang => $fields ) {
+                    foreach ( $fields as $field => $text ) {
                          $this->updateMessage( "$dest-$field", $text, $lang );
                     }
                 }
@@ -651,7 +651,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
     
                 // Remove duplicates
                 $filteredFields = array();
-                foreach ( $fields[1] as $field ) { 
+                foreach ( $fields[1] as $field ) {
                         $filteredFields[$field] = array_key_exists( $field, $filteredFields ) ? $filteredFields[$field] + 1 :
 1;
                 }
@@ -677,7 +677,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
                     // Put all fields together for a lookup
                     $message = ( $lang == 'en' ) ? "Centralnotice-{$template}-{$field}" : "Centralnotice-{$template}-{$field}/{$lang}";
                     if ( Title::newFromText( $message,  NS_MEDIAWIKI )->exists() ) {
-                        $translations[$lang][$field] = wfMsgExt( "Centralnotice-{$template}-{$field}", 
+                        $translations[$lang][$field] = wfMsgExt( "Centralnotice-{$template}-{$field}",
                                                 array( 'language' => $lang )
                         );
                     }

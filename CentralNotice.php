@@ -2,7 +2,7 @@
 
 // Override this URL to point to the central notice text loader...
 // This guy gets loaded from every page on every wiki, so caching helps!
-///
+// /
 // Can be set to a directory where static files will be made --
 // match that up with $wgNoticeStaticDirectory and use rebuildTemplates.php
 // to fill out the directory tree.
@@ -115,7 +115,7 @@ function efCentralNoticeSetup() {
 
 	$dir = dirname( __FILE__ ) . '/';
 
-	if( $wgCentralNoticeLoader ) {
+	if ( $wgCentralNoticeLoader ) {
 		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
 		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
 		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
@@ -133,7 +133,7 @@ function efCentralNoticeSetup() {
 
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
-		$wgAutoloadClasses['CentralNoticeDB'] = $dir. 'CentralNotice.db.php';
+		$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 	}
 }
 
