@@ -186,7 +186,7 @@ class CentralNotice extends SpecialPage {
 			$project_name     = $wgRequest->getVal( 'project_name' );
 			$project_language = $wgRequest->getVal( 'wpUserLanguage' );
 			if ( $noticeName == '' ) {
-				$wgOut->addWikiwfMsg ( 'centralnotice-null-string' );
+				$wgOut->addWikiMsg ( 'centralnotice-null-string' );
 			}
 			else {
 				$this->addNotice( $noticeName, '0', $start, $project_name, $project_language );
