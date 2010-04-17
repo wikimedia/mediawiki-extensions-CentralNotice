@@ -30,7 +30,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
 
 		// Show summary
-		$wgOut->addWikiText( wfMsg( 'centralnotice-summary' ) );
+		$wgOut->addWikiMsg( 'centralnotice-summary' );
 
 		// Show header
 		CentralNotice::printHeader();
@@ -64,6 +64,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 	
 			// Handle adding
+			// FIXME: getText()? weak comparison
 			if ( $wgRequest->getVal( 'wpMethod' ) == 'addTemplate' ) {
 				$this->addTemplate(
 					$wgRequest->getVal( 'templateName' ),
@@ -266,7 +267,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 		}
-		$htmlOut .= Xml::fieldset( wfMsgHtml( 'centralnotice-translate-heading', $currentTemplate ) );
+		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-translate-heading', $currentTemplate ) );
 		$htmlOut .= Xml::openElement( 'table',
 			array (
 				'cellpadding' => 9,
@@ -348,7 +349,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
-				Xml::submitButton( wfMsg( 'centralnotice-modify', array( 'name' => 'update' ) ) )
+				Xml::submitButton( wfMsg( 'centralnotice-modify' ), array( 'name' => 'update' ) )
 			);
 			$htmlOut .= Xml::closeElement( 'tr' );
 		}
@@ -362,7 +363,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		 * Show language selection form
 		 */
 		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
-		$htmlOut .= Xml::fieldset( wfMsgHtml( 'centralnotice-change-lang' ) );
+		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-change-lang' ) );
 		$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
 		list( $lsLabel, $lsSelect ) = Xml::languageSelector( $wpUserLang );
 
@@ -377,7 +378,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
                 );
                 $htmlOut .= Xml::tags( 'tr', null,
                     Xml::tags( 'td', null, '' ) .
-                    Xml::tags( 'td', null, $sk->makeLinkObj( $newPage, wfMsg( 'centralnotice-preview-all-template-translations' ), "template=$currentTemplate&wpUserLanguage=all" ) )
+                    Xml::tags( 'td', null, $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-preview-all-template-translations' ), "template=$currentTemplate&wpUserLanguage=all" ) )
 		);
 		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
@@ -390,7 +391,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
 		}
-		$htmlOut .= Xml::fieldset( wfMsgHtml( 'centralnotice-edit-template' ) );
+		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-edit-template' ) );
 		$htmlOut .= Xml::openElement( 'table',
 			array(
 				'cellpadding' => 9,
@@ -402,7 +403,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'tr', null,
-				Xml::tags( 'td', null, Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ) ) )
+				Xml::tags( 'td', null, Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) )
 			);
 		}
 		$htmlOut .= Xml::closeElement( 'table' );
@@ -425,6 +426,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-clone-notice' ) );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 			$htmlOut .= Xml::openElement( 'tr' );
+			// FIXME: hardcoded text?
 			$htmlOut .= Xml::inputLabel( 'Name:', 'newTemplate', 'newTemplate, 25' );
 			$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-clone' ), array ( 'id' => 'clone' ) );
 			$htmlOut .= Xml::hidden( 'oldTemplate', $currentTemplate );
@@ -516,7 +518,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	private function removeTemplate ( $name ) {
 		global $wgOut, $egCentralNoticeTables;
 
+		// FIXME: weak comparison
 		if ( $name == '' ) {
+			// FIXME: message not defined?
 			$wgOut->addHTML( wfMsg( 'centralnotice-template-doesnt-exist' ) );
 			return;
 		}
@@ -526,7 +530,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-template-still-bound' ) );
+			$wgOut->addWikiMsg( 'centralnotice-template-still-bound' );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -548,7 +552,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $egCentralNoticeTables;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-null-string' ) );
+			$wgOut->addWikiMsg( 'centralnotice-null-string' );
 			return;
 		}
 
@@ -562,7 +566,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-template-exists' ) );
+			$wgOut->addWikiMsg( 'centralnotice-template-exists' );
 			return false;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -588,7 +592,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $egCentralNoticeTables;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-null-string' ) );
+			$wgOut->addWikiMsg( 'centralnotice-null-string' );
 			return;
 		}
 
