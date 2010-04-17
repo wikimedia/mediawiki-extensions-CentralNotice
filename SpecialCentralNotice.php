@@ -186,7 +186,7 @@ class CentralNotice extends SpecialPage {
 			$project_name     = $wgRequest->getVal( 'project_name' );
 			$project_language = $wgRequest->getVal( 'wpUserLanguage' );
 			if ( $noticeName == '' ) {
-				$wgOut->addHTML( wfMsg ( 'centralnotice-null-string' ) );
+				$wgOut->addWikiwfMsg ( 'centralnotice-null-string' );
 			}
 			else {
 				$this->addNotice( $noticeName, '0', $start, $project_name, $project_language );
@@ -414,7 +414,7 @@ class CentralNotice extends SpecialPage {
 				 )
 			);
 		}
-		$htmlOut .= Xml::fieldset( wfMsgHtml( "centralnotice-manage" ) );
+		$htmlOut .= Xml::fieldset( wfMsg( "centralnotice-manage" ) );
 		$htmlOut .= Xml::openElement( 'table',
 			array(
 				'cellpadding' => 9,
@@ -503,7 +503,7 @@ class CentralNotice extends SpecialPage {
 			if ( $this->editable ) {
 				$htmlOut .= $this->tableRow(
 					array(
-						Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ),
+						Xml::submitButton( wfMsg( 'centralnotice-modify' ),
 							array(
 								'id' => 'centralnoticesubmit',
 								'name' => 'centralnoticesubmit'
@@ -1034,7 +1034,7 @@ class CentralNotice extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-notice-exists' ) );
+			$wgOut->addWikiMsg( 'centralnotice-notice-exists' );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -1076,12 +1076,12 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $noticeName )
 		);
 		if ( $dbr->numRows( $res ) < 1 ) {
-			 $wgOut->addHTML( wfMsg( 'centralnotice-notice-doesnt-exist' ) );
+			 $wgOut->addWikiMsg( 'centralnotice-notice-doesnt-exist' );
 			 return;
 		}
 		$row = $dbr->fetchObject( $res );
 		if ( $row->not_locked == '1' ) {
-			 $wgOut->addHTML( wfMsg( 'centralnotice-notice-is-locked' ) );
+			 $wgOut->addWikiMsg( 'centralnotice-notice-is-locked' );
 			 return;
 		} else {
 			 $dbw = wfGetDB( DB_MASTER );
@@ -1109,7 +1109,7 @@ class CentralNotice extends SpecialPage {
 			)
 		);
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-template-already-exists' ) );
+			$wgOut->addWikiMsg( 'centralnotice-template-already-exists' );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
@@ -1177,14 +1177,14 @@ class CentralNotice extends SpecialPage {
 
 		// Start / end dont line up
 		if ( $start > $end || $end < $start ) {
-			 $wgOut->addHTML( wfMsg( 'centralnotice-invalid-date-range3' ) );
+			 $wgOut->addWikiMsg( 'centralnotice-invalid-date-range3' );
 			 return;
 		}
 
 		// Invalid notice name
 		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
 		if ( $dbr->numRows( $res ) < 1 ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-doesnt-exist' ) );
+			$wgOut->addWikiMsg( 'centralnotice-doesnt-exist' );
 		}
 
 		// Overlap over a date within the same project and language
@@ -1211,7 +1211,7 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $noticeName )
 		);
 		if ( $dbr->numRows( $res ) < 1 ) {
-			$wgOut->addHTML( wfMsg( 'centralnotice-doesnt-exist' ) );
+			$wgOut->addWikiMsg( 'centralnotice-doesnt-exist' );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();

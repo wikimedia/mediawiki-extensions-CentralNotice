@@ -373,7 +373,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			Xml::tags( 'td', null, $lsLabel ) .
 			Xml::tags( 'td', null, $lsSelect ) .
 			Xml::tags( 'td', array( 'colspan' => 2 ),
-				Xml::submitButton( wfMsgHtml( 'centralnotice-modify' ) )
+				Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
 			)
                 );
                 $htmlOut .= Xml::tags( 'tr', null,
@@ -521,7 +521,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// FIXME: weak comparison
 		if ( $name == '' ) {
 			// FIXME: message not defined?
-			$wgOut->addHTML( wfMsg( 'centralnotice-template-doesnt-exist' ) );
+			$wgOut->addWikiMsg( 'centralnotice-template-doesnt-exist' );
 			return;
 		}
 
