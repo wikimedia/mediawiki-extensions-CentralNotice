@@ -6461,6 +6461,13 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-preferred' => 'Tercih edilen',
 );
 
+/** Udmurt (Удмурт)
+ * @author Kaganer
+ */
+$messages['udm'] = array(
+	'centralnotice-message' => 'Ивортон',
+);
+
 /** Ukrainian (Українська)
  * @author Ahonc
  * @author Aleksandrit
