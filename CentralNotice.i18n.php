@@ -101,6 +101,7 @@ Add one below.',
  * @author Darth Kule
  * @author Fryed-peach
  * @author Jon Harald Søby
+ * @author Lloffiwr
  * @author Nike
  * @author Purodha
  */
@@ -114,7 +115,7 @@ $messages['qqq'] = array(
 	'centralnotice-modify' => '{{Identical|Submit}}',
 	'centralnotice-preview' => '{{Identical|Preview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
-	'centralnotice-translate-heading' => '$1 is a name of a template.',
+	'centralnotice-translate-heading' => 'Fieldset label. $1 is a name of a template.',
 	'centralnotice-add' => '{{Identical|Add}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-notice-exists' => 'Errore message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
@@ -127,6 +128,11 @@ $messages['qqq'] = array(
 	'centralnotice-notice-is-locked' => 'Errore message displayed in Special:CentralNotice when trying to delete a locked notice',
 	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
+	'centralnotice-number-uses' => 'Column header in table with sitenotice campaign information.
+
+Translate as a plural noun.
+
+Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-message' => '{{Identical|Message}}',
 	'right-centralnotice-admin' => '{{doc-right}}',
 	'right-centralnotice-translate' => '{{doc-right}}',
@@ -3454,7 +3460,7 @@ $messages['ko'] = array(
 	'centralnotice-preferred' => '우선 사용',
 );
 
-/** Ripoarisch (Ripoarisch)
+/** Colognian (Ripoarisch)
  * @author Purodha
  */
 $messages['ksh'] = array(
@@ -3544,7 +3550,7 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-preferred' => 'Förjetrocke!',
 );
 
-/** Cornish (Kernowek)
+/** Cornish (Kernewek)
  * @author Kernoweger
  * @author Kw-Moon
  */
@@ -6815,7 +6821,7 @@ $messages['yo'] = array(
 	'centralnotice-min' => 'Ìṣẹ́jú',
 );
 
-/** Yue (粵語)
+/** Cantonese (粵語)
  * @author Shinjiman
  */
 $messages['yue'] = array(
