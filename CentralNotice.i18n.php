@@ -240,6 +240,7 @@ $messages['an'] = array(
 	'centralnotice-start-date' => 'Calendata de prenzipio',
 	'centralnotice-invalid-date-range' => "Rango de datos no conforme.
 No s'está adautando.",
+	'centralnotice-message' => 'Mensache',
 );
 
 /** Arabic (العربية)
@@ -727,8 +728,8 @@ $messages['br'] = array(
 	'centralnotice' => 'Melestradurezh an alioù kreiz',
 	'noticetemplate' => 'Patrom an alioù kreiz',
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
-	'centralnotice-query' => 'Kemmañ an alioù a-vremañ',
-	'centralnotice-notice-name' => 'Anv an ali',
+	'centralnotice-query' => 'Kemmañ ar menegoù red',
+	'centralnotice-notice-name' => 'Anv ar meneg',
 	'centralnotice-end-date' => 'Deiziad termen',
 	'centralnotice-enabled' => 'Gweredekaet',
 	'centralnotice-modify' => 'Kas',
@@ -740,8 +741,8 @@ $messages['br'] = array(
 	'centralnotice-add' => 'Ouzhpennañ',
 	'centralnotice-add-notice' => "Ouhzpennañ ur c'hemenn",
 	'centralnotice-add-template' => 'Ouzhpennañ ur patrom',
-	'centralnotice-show-notices' => 'Diskouez an alioù',
-	'centralnotice-list-templates' => 'Listennañ ar patromoù',
+	'centralnotice-show-notices' => 'Diskouez ar menegoù',
+	'centralnotice-list-templates' => 'Rollañ ar patromoù',
 	'centralnotice-translations' => 'Troidigezhioù',
 	'centralnotice-translate-to' => 'Treiñ e',
 	'centralnotice-translate' => 'Treiñ',
@@ -793,7 +794,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-number-uses' => 'Implijoù',
 	'centralnotice-edit-template' => 'Kemmañ ar patrom',
 	'centralnotice-message' => 'Kemennadenn',
-	'centralnotice-message-not-set' => "N'eo ket bet kaset ar gemenadenn",
+	'centralnotice-message-not-set' => "N'eo ket bet savet ar gemennadenn",
 	'centralnotice-clone' => 'Eilañ',
 	'centralnotice-clone-notice' => 'Krouiñ un eiladenn eus ar patrom',
 	'centralnotice-preview-all-template-translations' => 'Rakwellit an holl droidigezhioù a zo evit ar patrom-mañ',
@@ -3361,6 +3362,7 @@ $messages['km'] = array(
  */
 $messages['kn'] = array(
 	'centralnotice-preview' => 'ಮುನ್ನೋಟ',
+	'centralnotice-english' => 'ಆಂಗ್ಲ',
 	'centralnotice-day' => 'ದಿನ',
 	'centralnotice-year' => 'ವರ್ಷ',
 	'centralnotice-month' => 'ತಿಂಗಳು',
@@ -6799,6 +6801,18 @@ $messages['yi'] = array(
 	'centralnotice-min' => 'מינוט',
 	'centralnotice-project-lang' => 'פראיעקט שפראך',
 	'centralnotice-project-name' => 'פראיעקט נאמען',
+);
+
+/** Yoruba (Yorùbá)
+ * @author Demmy
+ */
+$messages['yo'] = array(
+	'centralnotice-english' => 'Gẹ̀ẹ́sì',
+	'centralnotice-day' => 'Ọjọ́',
+	'centralnotice-year' => 'Ọdún',
+	'centralnotice-month' => 'Osù',
+	'centralnotice-hours' => 'Wákàtí',
+	'centralnotice-min' => 'Ìṣẹ́jú',
 );
 
 /** Yue (粵語)
