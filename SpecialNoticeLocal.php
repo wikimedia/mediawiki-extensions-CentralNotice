@@ -1,7 +1,6 @@
 <?php
 
 class SpecialNoticeLocal extends NoticePage {
-
 	function __construct() {
 		parent::__construct( "NoticeLocal" );
 	}

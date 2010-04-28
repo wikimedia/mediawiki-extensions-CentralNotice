@@ -102,12 +102,12 @@ $wgExtensionCredits['other'][] = array(
 $dir = dirname( __FILE__ ) . '/';
 
 $wgExtensionMessagesFiles['CentralNotice'] = $dir . 'CentralNotice.i18n.php';
+$wgExtensionAliasesFiles['CentralNotice'] = $dir . 'CentralNotice.alias.php';
 
 $wgAvailableRights[] = 'centralnotice-admin';
 $wgAvailableRights[] = 'centralnotice-translate';
 $wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
 $wgGroupPermissions['sysop']['centralnotice-translate'] = true; // Only sysops can make change
-
 
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;

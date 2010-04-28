@@ -16,14 +16,14 @@ if ( isset( $options['help'] ) ) {
 	// Hack for parser to avoid barfing from no $wgTitle
 	$wgTitle = Title::newFromText( wfMsg( 'mainpage' ) );
 
-        if ( isset( $options['n'] ) ) {
-           $notice = explode( "/", $args[0] );
-           $projects = array( $notice[0] );
-           $langs = array( $notice[1] );
-        } else {
-	    $projects = $wgNoticeProjects;
-	    $langs = array_keys( Language::getLanguageNames() );
-        }
+	if ( isset( $options['n'] ) ) {
+		$notice = explode( "/", $args[0] );
+		$projects = array( $notice[0] );
+		$langs = array( $notice[1] );
+	} else {
+		$projects = $wgNoticeProjects;
+		$langs = array_keys( Language::getLanguageNames() );
+	}
 	foreach ( $projects as $project ) {
 		foreach ( $langs as $lang ) {
 			$key = "$project/$lang";
@@ -32,20 +32,20 @@ if ( isset( $options['help'] ) ) {
 			$builder = new SpecialNoticeText();
 			$js = $builder->getJsOutput( $key );
 
-                        if ( isset( $options['o'] ) ) {
-			    $outputDir = "$wgNoticeCentralDirectory/$project/$lang";
-                            if ( wfMkDirParents( $outputDir ) ) {
-                                    $outputFile = "$outputDir/centralnotice.js";
-                                    $ok = file_put_contents( $outputFile, $js );
-                                    if ( !$ok ) {
-                                            echo "FAILED to write $outputFile!\n";
-                                    }
-                            } else {
-                                    echo "FAILED to create $outputDir!\n";
-                            }
-                        } else {
-                            echo $js;
-                        }
+			if ( isset( $options['o'] ) ) {
+				$outputDir = "$wgNoticeCentralDirectory/$project/$lang";
+				if ( wfMkDirParents( $outputDir ) ) {
+					$outputFile = "$outputDir/centralnotice.js";
+					$ok = file_put_contents( $outputFile, $js );
+					if ( !$ok ) {
+						echo "FAILED to write $outputFile!\n";
+					}
+				} else {
+					echo "FAILED to create $outputDir!\n";
+				}
+			} else {
+				echo $js;
+			}
 		}
 	}
 }

@@ -21,24 +21,24 @@ class SpecialNoticeText extends NoticePage {
 	function getJsOutput( $par ) {
 		$this->setLanguage( $par );
 
-                // Quick short circuit to be able to show preferred notices
-                $templates = array();
+		// Quick short circuit to be able to show preferred notices
+		$templates = array();
 
-                if ( $this->language == 'en' && $this->project != null ) {
-                    // See if we have any preferred notices for all of en
-                    $notices = CentralNoticeDB::getNotices( '', 'en', '', '', 1 );
+		if ( $this->language == 'en' && $this->project != null ) {
+			// See if we have any preferred notices for all of en
+			$notices = CentralNoticeDB::getNotices( '', 'en', '', '', 1 );
 
-                    if ( $notices ) {
-                        // Pull out values
-                        foreach ( $notices as $notice => $val ) {
-                            // Either match against ALL project or a specific project 
-                            if ( $val['project'] == '' || $val['project'] == $this->project ) {
-                                $templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
-                                break;
-                            }
-                        }
-                    }
-                }
+			if ( $notices ) {
+				// Pull out values
+				foreach ( $notices as $notice => $val ) {
+					// Either match against ALL project or a specific project
+					if ( $val['project'] == '' || $val['project'] == $this->project ) {
+						$templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
+						break;
+					}
+				}
+			}
+		}
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
 				$notices = CentralNoticeDB::getNotices( 'wikipedia', '', '', '', 1 );
@@ -53,9 +53,9 @@ class SpecialNoticeText extends NoticePage {
 				}
 		}
 
-                // Didn't find any preferred matches so do an old style lookup
+		// Didn't find any preferred matches so do an old style lookup
 		if ( !$templates )  {
-                    $templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
+			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
 		}
 
 		$templateNames = array_keys( $templates );
@@ -64,12 +64,12 @@ class SpecialNoticeText extends NoticePage {
 			array( $this, 'getHtmlNotice' ),
 			$templateNames );
 
-        if ( preg_grep( "/&lt;centralnotice-template-\w{1,}&gt;\z/", $templateTexts ) ) {
-           return false; // Bailing out if we have a failed cache lookup
-        }
+		if ( preg_grep( "/&lt;centralnotice-template-\w{1,}&gt;\z/", $templateTexts ) ) {
+			return false; // Bailing out if we have a failed cache lookup
+		}
 
 		$weights = array_values( $templates );
-		
+
 		return
 			$this->getScriptFunctions() .
 			$this->getToggleScripts() .
@@ -155,7 +155,7 @@ function pickTemplate(templates, weights) {
 		}
 		currentTemplate++;
 	}
-	
+
 	if (totalWeight == 0)
 		return '';
 
@@ -168,7 +168,7 @@ function pickTemplate(templates, weights) {
 	private function formatNum( $num ) {
 		$num = sprintf( "%.1f", $num / 1e6 );
 		if ( substr( $num, - 2 ) == '.0' ) {
-    		$num = substr( $num, 0, - 2 );
+		$num = substr( $num, 0, - 2 );
 		}
 		$lang = Language::factory( $this->language );
 		return $lang->formatNum( $num );
@@ -207,7 +207,7 @@ function pickTemplate(templates, weights) {
 		$old = array();
 		$old['wgSitename'] = $GLOBALS['wgSitename'];
 		$old['wgLang'] = $GLOBALS['wgLang'];
-		
+
 		$GLOBALS['wgSitename'] = $this->projectName();
 		$GLOBALS['wgLang'] = Language::factory( $this->language ); // hack for {{int:...}}
 
