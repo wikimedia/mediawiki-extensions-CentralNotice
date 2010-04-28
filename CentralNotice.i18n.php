@@ -4134,6 +4134,7 @@ $messages['myv'] = array(
 	'centralnotice-min' => 'Минут',
 	'centralnotice-available-templates' => 'Кедь маласо лопа парцунт',
 	'centralnotice-edit-template' => 'Лопа парцунонть витнеме-петнеме',
+	'centralnotice-message' => 'Пачтамнэ',
 );
 
 /** Low German (Plattdüütsch)
