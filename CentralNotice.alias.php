@@ -10,3 +10,4 @@ $aliases['en'] = array(
 	'NoticeText' => array( 'NoticeText' ),
 	'NoticeTemplate' => array( 'NoticeTemplate' ),
 );
+
