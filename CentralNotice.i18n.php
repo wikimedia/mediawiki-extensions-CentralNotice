@@ -4838,9 +4838,9 @@ $messages['ps'] = array(
  * @author Malafaya
  */
 $messages['pt'] = array(
-	'centralnotice' => 'Administração de aviso centralizado',
+	'centralnotice' => 'Administração de avisos centralizados',
 	'noticetemplate' => 'Modelo de aviso do site',
-	'centralnotice-desc' => 'Adiciona um aviso do site centralizado',
+	'centralnotice-desc' => 'Adiciona um aviso centralizado',
 	'centralnotice-summary' => 'Este módulo permite-lhe editar os seus avisos centralizados actualmente configurados.
 Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-query' => 'Modificar avisos actuais',
@@ -4848,7 +4848,7 @@ Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-end-date' => 'Data fim',
 	'centralnotice-enabled' => 'Activo',
 	'centralnotice-modify' => 'Submeter',
-	'centralnotice-preview' => 'Antever',
+	'centralnotice-preview' => 'Antevisão',
 	'centralnotice-add-new' => 'Adicionar um novo aviso centralizado',
 	'centralnotice-remove' => 'Remover',
 	'centralnotice-translate-heading' => 'Tradução para $1',
@@ -4891,7 +4891,7 @@ Adicione alguns!',
 	'centralnotice-no-templates-assigned' => 'Nenhum modelo atribuído a avisos.
 Adicione alguns!',
 	'centralnotice-available-templates' => 'Modelos disponíveis',
-	'centralnotice-template-already-exists' => 'O modelo já está ligado a campanha.
+	'centralnotice-template-already-exists' => 'O modelo já está ligado a uma campanha.
 Não adicionado',
 	'centralnotice-preview-template' => 'Antever modelo',
 	'centralnotice-start-hour' => 'Hora início',
@@ -4903,7 +4903,7 @@ Não removido',
 Não adicionado',
 	'centralnotice-invalid-date-range' => 'Intervalo de datas inválido.
 Não actualizado',
-	'centralnotice-null-string' => 'Não é possível adicionar uma cadeia de caracteres nula.
+	'centralnotice-null-string' => 'Não é possível adicionar um texto vazio.
 Não adicionado',
 	'centralnotice-confirm-delete' => 'Tem a certeza de que pretende eliminar este item?
 Esta acção será irreversível.',
