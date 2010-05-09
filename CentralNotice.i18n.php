@@ -6571,6 +6571,7 @@ $messages['uk'] = array(
 
 /** Vèneto (Vèneto)
  * @author Candalua
+ * @author Vajotwo
  */
 $messages['vec'] = array(
 	'centralnotice' => 'Gestion notifiche sentralizade',
@@ -6597,7 +6598,7 @@ In più se pol dopararlo anca par zontar o cavar avisi veci.',
 	'centralnotice-translate-to' => 'Tradusi con',
 	'centralnotice-translate' => 'Tradusi',
 	'centralnotice-english' => 'Inglese',
-	'centralnotice-template-name' => 'Nome del modèl',
+	'centralnotice-template-name' => 'Nome modeło',
 	'centralnotice-templates' => 'Modèi',
 	'centralnotice-weight' => 'Peso',
 	'centralnotice-locked' => 'Blocà',
