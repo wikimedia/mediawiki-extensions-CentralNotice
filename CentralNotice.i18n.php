@@ -734,6 +734,8 @@ $messages['br'] = array(
 	'centralnotice' => 'Melestradurezh an alioù kreiz',
 	'noticetemplate' => 'Patrom an alioù kreiz',
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
+	'centralnotice-summary' => "Talvezout a ra ar vodulenn-mañ da zegas kemmoù en arventennoù ar pennkemennoù.
+Implijet e c'hall bezañ evit ouzhpennañ kemennoù pe tennañ kuit re gozh ivez .",
 	'centralnotice-query' => 'Kemmañ ar menegoù red',
 	'centralnotice-notice-name' => 'Anv ar meneg',
 	'centralnotice-end-date' => 'Deiziad termen',
@@ -790,6 +792,10 @@ N'eo ket bet ouzhpennet.",
 	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-notice-is-locked' => "Prenet eo an ali.
 N'eo ket bet dilammet.",
+	'centralnotice-overlap' => "Goleiñ a ra ar c'hemenn ur c'hemenn all, evit darn pe da vat.
+N'eo ket bet ouhzpennet",
+	'centralnotice-invalid-date-range' => "Frapad deiziadoù direizh.
+N'eo ket bet hizivaet",
 	'centralnotice-null-string' => "Ne c'haller ket ouzhpennañ un neudennad c'houllo.
 N'eo ket bet ouzhpennet",
 	'centralnotice-confirm-delete' => "Ha sur oc'h ho peus c'hoant dilemmel an elfenn-mañ ?
