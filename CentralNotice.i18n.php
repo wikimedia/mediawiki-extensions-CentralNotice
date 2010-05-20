@@ -228,6 +228,43 @@ U kan een hieronder byvoeg',
 	'centralnotice-preferred' => 'Voorkeur',
 );
 
+/** Gheg Albanian (Gegë)
+ * @author Mdupont
+ */
+$messages['aln'] = array(
+	'centralnotice' => 'admin Qendrore njoftim',
+	'noticetemplate' => 'njoftim Qendrore template',
+	'centralnotice-desc' => 'Shton një sitenotice qendrore',
+	'centralnotice-summary' => 'Ky modul ju lejon që të redaktoj setup aktualisht qendrore njoftimeve tuaj. Ajo mund të përdoret gjithashtu për të shtuar ose hequr njoftimeve të vjetër.',
+	'centralnotice-query' => 'Njoftime Modifiko e tanishme',
+	'centralnotice-notice-name' => 'Emri i Autorit',
+	'centralnotice-end-date' => 'Data Fundi',
+	'centralnotice-enabled' => 'Aktivizuar',
+	'centralnotice-modify' => 'Submit',
+	'centralnotice-preview' => 'Preview',
+	'centralnotice-add-new' => 'Shto një njoftim të ri qendror',
+	'centralnotice-remove' => 'Heq',
+	'centralnotice-translate-heading' => 'Perkthime për $1',
+	'centralnotice-manage' => 'njoftim Manage qendrore',
+	'centralnotice-add' => 'Shtoj',
+	'centralnotice-add-notice' => 'Shto një njoftim',
+	'centralnotice-add-template' => 'Shto një template',
+	'centralnotice-show-notices' => 'Shfaq njoftimet',
+	'centralnotice-list-templates' => 'Lista e templates',
+	'centralnotice-translations' => 'Përkthime',
+	'centralnotice-translate-to' => 'Translate në',
+	'centralnotice-translate' => 'Përkthej',
+	'centralnotice-english' => 'Anglisht',
+	'centralnotice-template-name' => 'Emri Template',
+	'centralnotice-templates' => 'Templates',
+	'centralnotice-weight' => 'Peshë',
+	'centralnotice-locked' => 'I bllokuar',
+	'centralnotice-notices' => 'Njoftime',
+	'centralnotice-notice-exists' => 'Njoftim ekziston. Jo duke shtuar',
+	'centralnotice-template-exists' => 'Template ekziston. Jo duke shtuar',
+	'centralnotice-notice-doesnt-exist' => 'Njoftim nuk ekziston. Asgjë për të hequr',
+);
+
 /** Amharic (አማርኛ)
  * @author Codex Sinaiticus
  * @author Elfalem
