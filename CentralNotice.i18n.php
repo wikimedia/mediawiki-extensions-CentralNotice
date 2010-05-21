@@ -3045,6 +3045,11 @@ Tambahkan di bawah ini.',
 	'centralnotice-preferred' => 'Preferensi',
 );
 
+/** Igbo (Igbo) */
+$messages['ig'] = array(
+	'centralnotice-message' => 'Ozi',
+);
+
 /** Ido (Ido)
  * @author Malafaya
  */
