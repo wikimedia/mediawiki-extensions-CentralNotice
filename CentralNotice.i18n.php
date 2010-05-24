@@ -3352,12 +3352,15 @@ $messages['ka'] = array(
 	'centralnotice-show-notices' => 'შეტყობინებების ჩვენება',
 	'centralnotice-list-templates' => 'თარგების სია',
 	'centralnotice-translations' => 'თარგმანები',
+	'centralnotice-translate-to' => 'გადათარგმნა',
 	'centralnotice-translate' => 'თარგმნა',
 	'centralnotice-english' => 'ინგლისური',
 	'centralnotice-template-name' => 'თარგების სახელი',
 	'centralnotice-templates' => 'თარგები',
 	'centralnotice-weight' => 'სიგანე',
 	'centralnotice-locked' => 'დაბლოკილი',
+	'centralnotice-notice-exists' => 'შენიშვნა უკვე არსებობს.
+არ დაამატოთ',
 	'centralnotice-template-exists' => 'თარგი უკვე არსებობს. არ დაამატოთ',
 	'centralnotice-notice-doesnt-exist' => 'შეტყობინება არ არსებობს.
 არაფერია წასაშლელი.',
@@ -3376,6 +3379,7 @@ $messages['ka'] = array(
 	'centralnotice-start-hour' => 'დაწყების დრო',
 	'centralnotice-change-lang' => 'თარგმანის ენის შეცვლა',
 	'centralnotice-confirm-delete' => 'დარწმუნებული ხართ, რომ გინდათ ამ ელემენტის წაშლა? ეს მოქმედება ვეღარ გაუქმნდება.',
+	'centralnotice-number-uses' => 'გამოიყენება',
 	'centralnotice-edit-template' => 'თარგის რედაქტირება',
 	'centralnotice-message' => 'შეტყობინება',
 	'centralnotice-clone' => 'კლონირება',
