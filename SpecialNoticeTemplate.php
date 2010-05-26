@@ -11,9 +11,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	function __construct() {
 		// Initialize special page
 		parent::__construct( 'NoticeTemplate' );
-
-		// Internationalization
-		wfLoadExtensionMessages( 'CentralNotice' );
 	}
 
 	function execute( $sub ) {

@@ -12,9 +12,6 @@ class CentralNoticeDB {
 	function CentralNoticeDB() {
 		// Register special page
 		SpecialPage::SpecialPage( 'CentralNotice' );
-
-		// Internationalization
-		wfLoadExtensionMessages( 'CentralNotice' );
 	}
 
 	/*
