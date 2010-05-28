@@ -3382,6 +3382,7 @@ $messages['ka'] = array(
 	'centralnotice-number-uses' => 'გამოიყენება',
 	'centralnotice-edit-template' => 'თარგის რედაქტირება',
 	'centralnotice-message' => 'შეტყობინება',
+	'centralnotice-message-not-set' => 'შეტყობინება არ არის',
 	'centralnotice-clone' => 'კლონირება',
 	'centralnotice-clone-notice' => 'თარგის ასლის შექმნა',
 );
