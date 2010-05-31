@@ -3359,6 +3359,7 @@ $messages['ka'] = array(
 	'centralnotice-templates' => 'თარგები',
 	'centralnotice-weight' => 'სიგანე',
 	'centralnotice-locked' => 'დაბლოკილი',
+	'centralnotice-notices' => 'შეტყობინებები',
 	'centralnotice-notice-exists' => 'შენიშვნა უკვე არსებობს.
 არ დაამატოთ',
 	'centralnotice-template-exists' => 'თარგი უკვე არსებობს. არ დაამატოთ',
