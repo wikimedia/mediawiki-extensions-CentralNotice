@@ -280,6 +280,7 @@ $messages['am'] = array(
 $messages['an'] = array(
 	'centralnotice-desc' => 'Adibe una "sitenotice" zentral',
 	'centralnotice-end-date' => 'Calendata final',
+	'centralnotice-modify' => 'Ninviar',
 	'centralnotice-start-date' => 'Calendata de prenzipio',
 	'centralnotice-invalid-date-range' => "Rango de datos no conforme.
 No s'está adautando.",
@@ -6364,7 +6365,7 @@ Maaari rin itong gamitin upang makapagdagdag o magtanggal ng mga lumang pahayag.
 	'centralnotice-notice-name' => 'Pangalan ng pabatid',
 	'centralnotice-end-date' => 'Pangwakas na petsa',
 	'centralnotice-enabled' => 'Paganahin',
-	'centralnotice-modify' => 'Ipasa/ipadala',
+	'centralnotice-modify' => 'Ipasa',
 	'centralnotice-preview' => 'Paunang tingin',
 	'centralnotice-add-new' => 'Magdagdag ng isang bagong pangunahing pabatid',
 	'centralnotice-remove' => 'Tanggalin',
