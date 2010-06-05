@@ -1969,7 +1969,7 @@ $messages['fa'] = array(
 	'centralnotice-start-date' => 'تاریخ آغاز',
 	'centralnotice-start-time' => 'زمان آغاز',
 	'centralnotice-assigned-templates' => 'الگوهای متصل شده',
-	'centralnotice-no-templates' => 'در این سیستم هیچ الگویی نیست.
+	'centralnotice-no-templates' => 'هیچ الگویی پیدا نشد.
 چندتا بسازید.',
 	'centralnotice-no-templates-assigned' => 'الگویی به این اعلان متصل نیست.
 اضافه کنید!',
