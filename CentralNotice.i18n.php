@@ -2,8 +2,7 @@
 /**
  * Internationalisation file for CentralNotice extension.
  *
- * @file
- * @ingroup Extensions
+ * @addtogroup Extensions
  */
 
 $messages = array();
