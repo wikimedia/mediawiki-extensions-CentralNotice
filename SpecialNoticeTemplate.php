@@ -6,12 +6,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class SpecialNoticeTemplate extends UnlistedSpecialPage {
-	private $mLimitsShown = array( 20, 50, 100 );
-	private $mDefaultLimit = 20;
+	public $limitsShown = array( 20, 50, 100 );
+	public $defaultLimit = 20;
 	public $mOffset, $mLimit;
-	protected $mIndexField = 'tmp_id';
-	protected $mOrderType;
-	private $mDb;
+	protected $indexField = 'tmp_id';
+	protected $mDb;
 
 	/* Functions */
 	
@@ -32,21 +31,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$this->mLimit = $limit;
 		
 		$this->mDb = wfGetDB( DB_SLAVE );
-		
-		$index = $this->mIndexField;
-		$order = $this->mRequest->getVal( 'order' );
-		if( is_array( $index ) && isset( $index[$order] ) ) {
-			$this->mOrderType = $order;
-			$this->mIndexField = $index[$order];
-		} elseif( is_array( $index ) ) {
-			# First element is the default
-			reset( $index );
-			list( $this->mOrderType, $this->mIndexField ) = each( $index );
-		} else {
-			# $index is not an array
-			$this->mOrderType = null;
-			$this->mIndexField = $index;
-		}
 		
 		parent::__construct( 'NoticeTemplate' );
 
@@ -163,13 +147,13 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		if ( $wgRequest->getVal( 'limit' ) ) {
 			$limit = $wgRequest->getVal( 'limit' );
 		} else {
-			$limit = $this->mDefaultLimit;
+			$limit = $this->defaultLimit;
 		}
 			
 		$templates = $this->queryTemplates($offset, $limit);
+		$htmlOut = '';
 		if ( count( $templates ) > 0 ) {
-			$htmlOut = '';
-
+		
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form',
 					array(
@@ -179,6 +163,18 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				);
 			}
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-available-templates' ) );
+			
+			$opts = array( 'parsemag', 'escapenoentities' );
+			$linkTexts = array(
+				'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
+				'next' => wfMsgExt( 'nextn', $opts, $wgLang->formatNum($this->mLimit ) ),
+				'first' => wfMsgExt( 'page_first', $opts ),
+				'last' => wfMsgExt( 'page_last', $opts )
+			);
+			$pagingLinks = $this->getPagingLinks( $linkTexts, $offset, $limit );
+			$limitLinks = $this->getLimitLinks();
+			$limits = $wgLang->pipeList( $limitLinks );
+			$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
 			
 			$htmlOut .= Xml::openElement( 'table',
 				array(
@@ -196,20 +192,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			);
 
 			$msgConfirmDelete = wfMsgHTML( 'centralnotice-confirm-delete' );
-			
-			$opts = array( 'parsemag', 'escapenoentities' );
-			$linkTexts = array(
-				'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
-				'next' => wfMsgExt( 'nextn', $opts, $wgLang->formatNum($this->mLimit ) ),
-				'first' => wfMsgExt( 'page_first', $opts ),
-				'last' => wfMsgExt( 'page_last', $opts )
-			);
-	
-			$pagingLinks = $this->getPagingLinks( $linkTexts, $offset, $limit );
-			$limitLinks = $this->getLimitLinks();
-			$limits = $wgLang->pipeList( $limitLinks );
-
-			$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
 			
 			foreach ( $templates as $templateName ) {
 				$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
@@ -249,20 +231,22 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					)
 				);
 			}
+			
+			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			$htmlOut .= Xml::closeElement( 'fieldset' );
+			if ( $this->editable ) {
+				$htmlOut .= Xml::closeElement( 'form' );
+			}
+			
 		} else {
-			$htmlOut = Xml::tags( 'tr', null,
-				Xml::element( 'td', null, wfMsg( 'centralnotice-no-templates' ) )
-			);
+			$htmlOut .= Xml::element( 'p', null, wfMsg( 'centralnotice-no-templates' ) );
 		}
-
-		$htmlOut .= Xml::closeElement( 'table' );
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+	
 		if ( $this->editable ) {
-			$htmlOut .= Xml::closeElement( 'form' );
-
-		$htmlOut .= Xml::element( 'p' );
-		$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
-		$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+			$htmlOut .= Xml::element( 'p' );
+			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
+			$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 		}
 
 		// Output HTML
@@ -549,11 +533,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	function queryTemplates($offset, $limit) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
-		$options['ORDER BY'] = $this->mIndexField . ' DESC';
+		$options['ORDER BY'] = $this->indexField . ' DESC';
 		$options['LIMIT'] = intval( $limit );
 		$operator = '<';
 		if ( $offset ) {
-			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
+			$conds[] = $this->indexField . $operator . $this->mDb->addQuotes( $offset );
 			$res = $dbr->select( 'cn_templates',
 				array( 'tmp_name', 'tmp_id' ),
 				$conds,
@@ -771,20 +755,20 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		return $translations;
 	}
 	
-	/* Begin methods copied from Pager.php */
+	/* Begin methods copied (and modified) from Pager class */
 	
 	/**
 	 * Get a URL query array for the prev and next links.
 	 */
-	function getPagingQueries($offset, $limit) {
+	function getPagingQueries( $offset, $limit ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		if ( $offset ) {
 			// prev
 			$templates = array();
 			$conds = array();
-			$options['ORDER BY'] = $this->mIndexField . ' ASC';
+			$options['ORDER BY'] = $this->indexField . ' ASC';
 			$options['LIMIT'] = intval( $limit + 1);
-			$conds[] = $this->mIndexField . '>=' . $this->mDb->addQuotes( $offset );
+			$conds[] = $this->indexField . '>=' . $this->mDb->addQuotes( $offset );
 			$res = $dbr->select( 'cn_templates',
 				array( 'tmp_name', 'tmp_id' ),
 				$conds,
@@ -796,14 +780,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			if ( count( $templates ) == $limit + 1 ) {
 				$prev = array( 'offset' => end( $templates ), 'limit' => $limit );
-			} else {
+			} else { 
 				$prev = array( 'offset' => '0', 'limit' => $limit );
 			}
 			// next
 			$templates = array();
 			$conds = array();
-			$conds[] = $this->mIndexField . '<' . $this->mDb->addQuotes( $offset );
-			$options['ORDER BY'] = $this->mIndexField . ' DESC';
+			$conds[] = $this->indexField . '<' . $this->mDb->addQuotes( $offset );
+			$options['ORDER BY'] = $this->indexField . ' DESC';
 			$options['LIMIT'] = intval( $limit ) + 1;
 			$res = $dbr->select( 'cn_templates',
 				array( 'tmp_name', 'tmp_id' ),
@@ -824,7 +808,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$prev = false;
 			// next
 			$templates = array();
-			$options['ORDER BY'] = $this->mIndexField . ' DESC';
+			$options['ORDER BY'] = $this->indexField . ' DESC';
 			$options['LIMIT'] = intval( $limit ) + 1;
 			$res = $dbr->select( 'cn_templates',
 				array( 'tmp_name', 'tmp_id' ),
@@ -866,11 +850,15 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		return $links;
 	}
 	
+	/**
+	 * Get limit links, i.e. the links that change the query limit. This list
+	 * is based on the limitsShown array.
+	 */
 	function getLimitLinks() {
 		global $wgLang;
 		$links = array();
 		$offset = $this->mOffset;
-		foreach ( $this->mLimitsShown as $limit ) {
+		foreach ( $this->limitsShown as $limit ) {
 			$links[] = $this->makeLink(
 					$wgLang->formatNum( $limit ),
 					array( 'offset' => $offset, 'limit' => $limit ),
@@ -940,7 +928,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		return $this->mDefaultQuery;
 	}
 	
-	/* End methods copied from Pager.php */
+	/* End methods copied from Pager class */
 	
 }
 ?>
