@@ -26,8 +26,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		# Set the limit, default to 20, ignore User default
 		$limit = $this->mRequest->getInt( 'limit', 0 );
-		if( $limit <= 0 ) $limit = 20;
-		if( $limit > 5000 ) $limit = 5000; # We have *some* limits...
+		if ( $limit <= 0 ) {
+			$limit = 20;
+		}
+		if ( $limit > 5000 ) {
+			$limit = 5000; # We have *some* limits...
+		}
 		$this->mLimit = $limit;
 		
 		$this->mDb = wfGetDB( DB_SLAVE );
@@ -164,6 +168,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-available-templates' ) );
 			
+			//Show pagination links
 			$opts = array( 'parsemag', 'escapenoentities' );
 			$linkTexts = array(
 				'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
@@ -231,9 +236,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					)
 				);
 			}
-			
 			$htmlOut .= Xml::closeElement( 'table' );
+			
+			//Show pagination links
 			$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 			if ( $this->editable ) {
 				$htmlOut .= Xml::closeElement( 'form' );
@@ -553,7 +560,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			);
 		}
 		$templates = array();
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			array_push( $templates, $row->tmp_name );
 		}
 
@@ -775,7 +782,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				__METHOD__,
 				$options
 			);
-			while ( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				array_push( $templates, $row->tmp_name );
 			}
 			if ( count( $templates ) == $limit + 1 ) {
@@ -795,7 +802,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				__METHOD__,
 				$options
 			);
-			while ( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				array_push( $templates, $row->tmp_name );
 			}
 			if ( count( $templates ) == $limit + 1 ) {
@@ -931,4 +938,3 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	/* End methods copied from Pager class */
 	
 }
-?>
