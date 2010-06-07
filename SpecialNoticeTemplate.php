@@ -42,7 +42,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		wfLoadExtensionMessages( 'CentralNotice' );
 	}
 	
-	// Handle different types of page requests
+	/*
+	 * Handle different types of page requests.
+	 */
 	function execute( $sub ) {
 		global $wgOut, $wgUser, $wgRequest;
 
@@ -141,6 +143,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$this->showList();
 	}
 	
+	/*
+	 * Show a list of available templates. Newer templates are shown first.
+	 */
 	function showList() {
 		global $wgOut, $wgUser, $wgRequest, $wgLang;
 
@@ -537,7 +542,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$article->doEdit( $translation, '', EDIT_FORCE_BOT );
 	}
 	
-	function queryTemplates($offset, $limit) {
+	/*
+	 * Return an array of templates constrained by offset and limit parameters.
+	 */
+	function queryTemplates( $offset, $limit ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 		$options['ORDER BY'] = $this->indexField . ' DESC';
@@ -563,7 +571,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		foreach ( $res as $row ) {
 			array_push( $templates, $row->tmp_name );
 		}
-
 		return $templates;
 	}
 	
@@ -770,7 +777,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	function getPagingQueries( $offset, $limit ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		if ( $offset ) {
-			// prev
+			// Build previous link
 			$templates = array();
 			$conds = array();
 			$options['ORDER BY'] = $this->indexField . ' ASC';
@@ -783,14 +790,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$options
 			);
 			foreach ( $res as $row ) {
-				array_push( $templates, $row->tmp_name );
+				array_push( $templates, $row->tmp_id );
 			}
 			if ( count( $templates ) == $limit + 1 ) {
 				$prev = array( 'offset' => end( $templates ), 'limit' => $limit );
 			} else { 
 				$prev = array( 'offset' => '0', 'limit' => $limit );
 			}
-			// next
+			// Build next link
 			$templates = array();
 			$conds = array();
 			$conds[] = $this->indexField . '<' . $this->mDb->addQuotes( $offset );
@@ -803,7 +810,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$options
 			);
 			foreach ( $res as $row ) {
-				array_push( $templates, $row->tmp_name );
+				array_push( $templates, $row->tmp_id );
 			}
 			if ( count( $templates ) == $limit + 1 ) {
 				end( $templates );
@@ -812,8 +819,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$next = false;
 			}
 		} else {
+			// No previous link needed
 			$prev = false;
-			// next
+			// Build next link
 			$templates = array();
 			$options['ORDER BY'] = $this->indexField . ' DESC';
 			$options['LIMIT'] = intval( $limit ) + 1;
@@ -824,7 +832,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$options
 			);
 			while ( $row = $dbr->fetchObject( $res ) ) {
-				array_push( $templates, $row->tmp_name );
+				array_push( $templates, $row->tmp_id );
 			}
 			if ( count( $templates ) == $limit + 1 ) {
 				end( $templates );
@@ -843,7 +851,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * of HTML.
 	 */
 	function getPagingLinks( $linkTexts, $offset, $limit, $disabledTexts = array() ) {
-		$queries = $this->getPagingQueries($offset, $limit);
+		$queries = $this->getPagingQueries( $offset, $limit );
 		$links = array();
 		foreach ( $queries as $type => $query ) {
 			if ( $query !== false ) {
