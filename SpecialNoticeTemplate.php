@@ -172,8 +172,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				);
 			}
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-available-templates' ) );
-			
-			if ( $this->getTemplateCount() > $limit ) {
+			$totalTemplateCount = $this->getTemplateCount();
+			if ( $totalTemplateCount > count( $templates ) || $totalTemplateCount > 20 ) {
 				//Show pagination links
 				$opts = array( 'parsemag', 'escapenoentities' );
 				$linkTexts = array(
@@ -245,7 +245,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			$htmlOut .= Xml::closeElement( 'table' );
 			
-			if ( $this->getTemplateCount() > $limit ) {
+			if ( $totalTemplateCount > count( $templates ) || $totalTemplateCount > 20 ) {
 				//Show pagination links
 				$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
 			}
