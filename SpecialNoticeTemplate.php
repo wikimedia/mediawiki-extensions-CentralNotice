@@ -173,18 +173,20 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-available-templates' ) );
 			
-			//Show pagination links
-			$opts = array( 'parsemag', 'escapenoentities' );
-			$linkTexts = array(
-				'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
-				'next' => wfMsgExt( 'nextn', $opts, $wgLang->formatNum($this->mLimit ) ),
-				'first' => wfMsgExt( 'page_first', $opts ),
-				'last' => wfMsgExt( 'page_last', $opts )
-			);
-			$pagingLinks = $this->getPagingLinks( $linkTexts, $offset, $limit );
-			$limitLinks = $this->getLimitLinks();
-			$limits = $wgLang->pipeList( $limitLinks );
-			$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			if ( $this->getTemplateCount() > $limit ) {
+				//Show pagination links
+				$opts = array( 'parsemag', 'escapenoentities' );
+				$linkTexts = array(
+					'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
+					'next' => wfMsgExt( 'nextn', $opts, $wgLang->formatNum($this->mLimit ) ),
+					'first' => wfMsgExt( 'page_first', $opts ),
+					'last' => wfMsgExt( 'page_last', $opts )
+				);
+				$pagingLinks = $this->getPagingLinks( $linkTexts, $offset, $limit );
+				$limitLinks = $this->getLimitLinks();
+				$limits = $wgLang->pipeList( $limitLinks );
+				$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			}
 			
 			$htmlOut .= Xml::openElement( 'table',
 				array(
@@ -243,8 +245,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			$htmlOut .= Xml::closeElement( 'table' );
 			
-			//Show pagination links
-			$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			if ( $this->getTemplateCount() > $limit ) {
+				//Show pagination links
+				$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			}
 			
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 			if ( $this->editable ) {
@@ -572,6 +576,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			array_push( $templates, $row->tmp_name );
 		}
 		return $templates;
+	}
+	
+	/*
+	 * Return the total number of templates in the database.
+	 */
+	function getTemplateCount() {
+		$dbr = wfGetDB( DB_SLAVE );
+		return $dbr->selectField( 'cn_templates', 'COUNT(*)', array(), __METHOD__ );
 	}
 	
 	private function getTemplateId ( $templateName ) {
