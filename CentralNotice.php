@@ -138,8 +138,9 @@ function efCentralNoticeSetup() {
 }
 
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgScript, $wgUser, $wgOut, $wgLang;
-	global $wgStyleVersion, $wgJsMimeType;
+	global $wgOut, $wgLang;
+	//global $wgUser;
+
 	global $wgNoticeProject;
 
 	global $wgNoticeCentralPath;
@@ -159,7 +160,6 @@ function efCentralNoticeLoader( $out, $skin ) {
 	} else {
 		$centralLoader = "$wgNoticeCentralPath/$centralNotice";
 	}
-	$encCentralLoader = htmlspecialchars( $centralLoader );
 
 	/*
 	if ( $wgNoticeLocalPath === false ) {
@@ -171,7 +171,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 	*/
 
 	// Load the notice text from <head>
-	$wgOut->addScript( "<script type=\"{$wgJsMimeType}\" src=\"$encCentralLoader?$wgStyleVersion\"></script>\n" );
+	$wgOut->addScriptFile( $centralLoader );
 
 	return true;
 }
@@ -187,9 +187,7 @@ function efCentralNoticeDefaults( &$vars ) {
 function efCentralNoticeDisplay( &$notice ) {
 	// Slip in load of the data...
 	$notice =
-		"<script type='text/javascript'>" .
-		"if (wgNotice != '') document.writeln(wgNotice);" .
-		"</script>" .
+		Html::inlineScript( "if (wgNotice != '') document.writeln(wgNotice);" ) .
 		$notice;
 	return true;
 }
