@@ -326,127 +326,132 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		// Build HTML
-		if ( $this->editable ) {
-			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
-		}
-		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-translate-heading', $currentTemplate ) );
-		$htmlOut .= Xml::openElement( 'table',
-			array (
-				'cellpadding' => 9,
-				'width' => '100%'
-			)
-		);
-
-		// Headers
-		$htmlOut .= Xml::element( 'th', array( 'width' => '15%' ), wfMsg( 'centralnotice-message' ) );
-		$htmlOut .= Xml::element( 'th', array( 'width' => '5%' ), wfMsg ( 'centralnotice-number-uses' )  );
-		$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), wfMsg ( 'centralnotice-english' ) );
-		$languages = Language::getLanguageNames();
-		$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), $languages[$wpUserLang] );
-
+		
 		// Pull text and respect any inc: markup
 		$bodyPage = Title::newFromText( "Centralnotice-template-{$currentTemplate}", NS_MEDIAWIKI );
 		$curRev = Revision::newFromTitle( $bodyPage );
 		$body = $curRev ? $curRev->getText() : '';
-
+		
+		// Extract message fields from the template body
 		$fields = array();
-		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-}]+)\}\}\}/', $body, $fields );
-
-		// Remove duplicates
-		$filteredFields = array();
-		foreach ( $fields[1] as $field ) {
-			$filteredFields[$field] = array_key_exists( $field, $filteredFields ) ? $filteredFields[$field] + 1 : 1;
-		}
-
-		// Rows
-		foreach ( $filteredFields as $field => $count ) {
-			// Message
-			$message = ( $wpUserLang == 'en' ) ? "Centralnotice-{$currentTemplate}-{$field}" : "Centralnotice-{$currentTemplate}-{$field}/{$wpUserLang}";
-
-			// English value
-			$htmlOut .= Xml::openElement( 'tr' );
-
-			$title = Title::newFromText( "MediaWiki:{$message}" );
-			$htmlOut .= Xml::tags( 'td', null,
-				$sk->makeLinkObj( $title, htmlspecialchars( $field ) )
-			);
-
-			$htmlOut .= Xml::element( 'td', null, $count );
-
-			// English text
-			$englishText = wfMsg( 'centralnotice-message-not-set' );
-			$englishTextExists = false;
-			if ( Title::newFromText( "Centralnotice-{$currentTemplate}-{$field}", NS_MEDIAWIKI )->exists() ) {
-				$englishText = wfMsgExt( "Centralnotice-{$currentTemplate}-{$field}",
-					array( 'language' => 'en' )
-				);
-				$englishTextExists = true;
+		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{00FF}]+)\}\}\}/u', $body, $fields );
+			
+		// If there are any messages in the template, display translation tools.
+		if ( count( $fields[0] ) > 0 ) {
+			if ( $this->editable ) {
+				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			}
-			$htmlOut .= Xml::tags( 'td', null,
-				Xml::element( 'span',
-					array( 'style' => 'font-style:italic;' . ( !$englishTextExists ? 'color:silver' : '' ) ),
-					$englishText
+			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-translate-heading', $currentTemplate ) );
+			$htmlOut .= Xml::openElement( 'table',
+				array (
+					'cellpadding' => 9,
+					'width' => '100%'
 				)
 			);
-
-			// Foreign text input
-			$foreignText = '';
-			$foreignTextExists = false;
-			if ( Title::newFromText( $message, NS_MEDIAWIKI )->exists() ) {
-				$foreignText = wfMsgExt( "Centralnotice-{$currentTemplate}-{$field}",
-					array( 'language' => $wpUserLang )
-				);
-				$foreignTextExists = true;
+	
+			// Headers
+			$htmlOut .= Xml::element( 'th', array( 'width' => '15%' ), wfMsg( 'centralnotice-message' ) );
+			$htmlOut .= Xml::element( 'th', array( 'width' => '5%' ), wfMsg ( 'centralnotice-number-uses' )  );
+			$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), wfMsg ( 'centralnotice-english' ) );
+			$languages = Language::getLanguageNames();
+			$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), $languages[$wpUserLang] );
+			
+			// Remove duplicate message fields
+			$filteredFields = array();
+			foreach ( $fields[1] as $field ) {
+				$filteredFields[$field] = array_key_exists( $field, $filteredFields ) ? $filteredFields[$field] + 1 : 1;
 			}
-			$htmlOut .= Xml::tags( 'td', null,
-				Xml::input( "updateText[{$wpUserLang}][{$currentTemplate}-{$field}]", '', $foreignText,
-					wfArrayMerge( $readonly,
-						array( 'style' => 'width:100%;' . ( !$foreignTextExists ? 'color:red' : '' ) ) )
+	
+			// Rows
+			foreach ( $filteredFields as $field => $count ) {
+				// Message
+				$message = ( $wpUserLang == 'en' ) ? "Centralnotice-{$currentTemplate}-{$field}" : "Centralnotice-{$currentTemplate}-{$field}/{$wpUserLang}";
+	
+				// English value
+				$htmlOut .= Xml::openElement( 'tr' );
+	
+				$title = Title::newFromText( "MediaWiki:{$message}" );
+				$htmlOut .= Xml::tags( 'td', null,
+					$sk->makeLinkObj( $title, htmlspecialchars( $field ) )
+				);
+	
+				$htmlOut .= Xml::element( 'td', null, $count );
+	
+				// English text
+				$englishText = wfMsg( 'centralnotice-message-not-set' );
+				$englishTextExists = false;
+				if ( Title::newFromText( "Centralnotice-{$currentTemplate}-{$field}", NS_MEDIAWIKI )->exists() ) {
+					$englishText = wfMsgExt( "Centralnotice-{$currentTemplate}-{$field}",
+						array( 'language' => 'en' )
+					);
+					$englishTextExists = true;
+				}
+				$htmlOut .= Xml::tags( 'td', null,
+					Xml::element( 'span',
+						array( 'style' => 'font-style:italic;' . ( !$englishTextExists ? 'color:silver' : '' ) ),
+						$englishText
+					)
+				);
+	
+				// Foreign text input
+				$foreignText = '';
+				$foreignTextExists = false;
+				if ( Title::newFromText( $message, NS_MEDIAWIKI )->exists() ) {
+					$foreignText = wfMsgExt( "Centralnotice-{$currentTemplate}-{$field}",
+						array( 'language' => $wpUserLang )
+					);
+					$foreignTextExists = true;
+				}
+				$htmlOut .= Xml::tags( 'td', null,
+					Xml::input( "updateText[{$wpUserLang}][{$currentTemplate}-{$field}]", '', $foreignText,
+						wfArrayMerge( $readonly,
+							array( 'style' => 'width:100%;' . ( !$foreignTextExists ? 'color:red' : '' ) ) )
+					)
+				);
+				$htmlOut .= Xml::closeElement( 'tr' );
+			}
+			if ( $this->editable ) {
+				$htmlOut .= Xml::hidden( 'token', $token );
+				$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
+				$htmlOut .= Xml::openElement( 'tr' );
+				$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
+					Xml::submitButton( wfMsg( 'centralnotice-modify' ), array( 'name' => 'update' ) )
+				);
+				$htmlOut .= Xml::closeElement( 'tr' );
+			}
+	
+			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Xml::closeElement( 'fieldset' );
+	
+			if ( $this->editable ) {
+				$htmlOut .= Xml::closeElement( 'form' );
+			}
+	
+			/*
+			 * Show language selection form
+			 */
+		 	$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-change-lang' ) );
+			$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
+			list( $lsLabel, $lsSelect ) = Xml::languageSelector( $wpUserLang );
+	
+			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
+	
+			$htmlOut .= Xml::tags( 'tr', null,
+				Xml::tags( 'td', null, $lsLabel ) .
+				Xml::tags( 'td', null, $lsSelect ) .
+				Xml::tags( 'td', array( 'colspan' => 2 ),
+					Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
 				)
 			);
-			$htmlOut .= Xml::closeElement( 'tr' );
-		}
-		if ( $this->editable ) {
-			$htmlOut .= Xml::hidden( 'token', $token );
-			$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
-				Xml::submitButton( wfMsg( 'centralnotice-modify' ), array( 'name' => 'update' ) )
+			$htmlOut .= Xml::tags( 'tr', null,
+				Xml::tags( 'td', null, '' ) .
+				Xml::tags( 'td', null, $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-preview-all-template-translations' ), "template=$currentTemplate&wpUserLanguage=all" ) )
 			);
-			$htmlOut .= Xml::closeElement( 'tr' );
-		}
-
-		$htmlOut .= Xml::closeElement( 'table' );
-		$htmlOut .= Xml::closeElement( 'fieldset' );
-
-		if ( $this->editable ) {
+			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Xml::closeElement( 'fieldset' );
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
-
-		/*
-		 * Show language selection form
-		 */
-		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
-		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-change-lang' ) );
-		$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
-		list( $lsLabel, $lsSelect ) = Xml::languageSelector( $wpUserLang );
-
-		$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
-
-		$htmlOut .= Xml::tags( 'tr', null,
-			Xml::tags( 'td', null, $lsLabel ) .
-			Xml::tags( 'td', null, $lsSelect ) .
-			Xml::tags( 'td', array( 'colspan' => 2 ),
-				Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
-			)
-		);
-		$htmlOut .= Xml::tags( 'tr', null,
-			Xml::tags( 'td', null, '' ) .
-			Xml::tags( 'td', null, $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-preview-all-template-translations' ), "template=$currentTemplate&wpUserLanguage=all" ) )
-		);
-		$htmlOut .= Xml::closeElement( 'table' );
-		$htmlOut .= Xml::closeElement( 'fieldset' );
-		$htmlOut .= Xml::closeElement( 'form' );
 
 		/*
 		 * Show edit form
@@ -456,6 +461,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
 		}
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-edit-template' ) );
+		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
 		$htmlOut .= Xml::openElement( 'table',
 			array(
 				'cellpadding' => 9,

@@ -9,43 +9,43 @@ $messages = array();
 
 $messages['en'] = array(
 	'centralnotice' => 'Central notice admin',
-	'noticetemplate' => 'Central notice template',
+	'noticetemplate' => 'Central notice banner',
 	'centralnotice-desc' => 'Adds a central sitenotice',
 	'centralnotice-summary' => 'This module allows you to edit your currently setup central notices.
 It can also be used to add or remove old notices.',
-	'centralnotice-query' => 'Modify current notices',
-	'centralnotice-notice-name' => 'Notice name',
+	'centralnotice-query' => 'Modify current campaigns',
+	'centralnotice-notice-name' => 'Campaign name',
 	'centralnotice-end-date' => 'End date',
 	'centralnotice-enabled' => 'Enabled',
 	'centralnotice-modify' => 'Submit',
 	'centralnotice-preview' => 'Preview',
-	'centralnotice-add-new' => 'Add a new central notice',
+	'centralnotice-add-new' => 'Add a new campaign',
 	'centralnotice-remove' => 'Remove',
 	'centralnotice-translate-heading' => 'Translation for $1',
-	'centralnotice-manage' => 'Manage central notice',
+	'centralnotice-manage' => 'Manage campaigns',
 	'centralnotice-add' => 'Add',
-	'centralnotice-add-notice' => 'Add a notice',
-	'centralnotice-add-template' => 'Add a template',
-	'centralnotice-show-notices' => 'Show notices',
-	'centralnotice-list-templates' => 'List templates',
+	'centralnotice-add-notice' => 'Add a campaign',
+	'centralnotice-add-template' => 'Add a banner',
+	'centralnotice-show-notices' => 'Show campaigns',
+	'centralnotice-list-templates' => 'List banners',
 	'centralnotice-translations' => 'Translations',
 	'centralnotice-translate-to' => 'Translate to',
 	'centralnotice-translate' => 'Translate',
 	'centralnotice-english' => 'English',
-	'centralnotice-template-name' => 'Template name',
-	'centralnotice-templates' => 'Templates',
+	'centralnotice-template-name' => 'Banner name',
+	'centralnotice-templates' => 'Banners',
 	'centralnotice-weight' => 'Weight',
 	'centralnotice-locked' => 'Locked',
-	'centralnotice-notices' => 'Notices',
-	'centralnotice-notice-exists' => 'Notice already exists.
+	'centralnotice-notices' => 'Campaigns',
+	'centralnotice-notice-exists' => 'Campaign already exists.
 Not adding',
-	'centralnotice-template-exists' => 'Template already exists.
+	'centralnotice-template-exists' => 'Banner already exists.
 Not adding',
-	'centralnotice-notice-doesnt-exist' => 'Notice does not exist.
+	'centralnotice-notice-doesnt-exist' => 'Campaign does not exist.
 Nothing to remove',
-	'centralnotice-template-still-bound' => 'Template is still bound to a notice.
+	'centralnotice-template-still-bound' => 'Banner is still bound to a campaign.
 Not removing.',
-	'centralnotice-template-body' => 'Template body:',
+	'centralnotice-template-body' => 'Banner body:',
 	'centralnotice-day' => 'Day',
 	'centralnotice-year' => 'Year',
 	'centralnotice-month' => 'Month',
@@ -55,21 +55,21 @@ Not removing.',
 	'centralnotice-project-name' => 'Project name',
 	'centralnotice-start-date' => 'Start date',
 	'centralnotice-start-time' => 'Start time (UTC)',
-	'centralnotice-assigned-templates' => 'Assigned templates',
-	'centralnotice-no-templates' => 'No templates found.
+	'centralnotice-assigned-templates' => 'Assigned banners',
+	'centralnotice-no-templates' => 'No banners found.
 Add some!',
-	'centralnotice-no-templates-assigned' => 'No templates assigned to notice.
+	'centralnotice-no-templates-assigned' => 'No banners assigned to campaign.
 Add some!',
-	'centralnotice-available-templates' => 'Available templates',
-	'centralnotice-template-already-exists' => 'Template is already tied to campaign.
+	'centralnotice-available-templates' => 'Available banners',
+	'centralnotice-template-already-exists' => 'Banner is already tied to campaign.
 Not adding',
-	'centralnotice-preview-template' => 'Preview template',
+	'centralnotice-preview-template' => 'Preview banner',
 	'centralnotice-start-hour' => 'Start time',
 	'centralnotice-change-lang' => 'Change translation language',
 	'centralnotice-weights' => 'Weights',
-	'centralnotice-notice-is-locked' => 'Notice is locked.
+	'centralnotice-notice-is-locked' => 'Campaign is locked.
 Not removing',
-	'centralnotice-overlap' => 'Notice overlaps within the time of another notice.
+	'centralnotice-overlap' => 'Campaign overlaps within the time of another campaign.
 Not adding',
 	'centralnotice-invalid-date-range' => 'Invalid date range.
 Not updating',
@@ -77,16 +77,17 @@ Not updating',
 Not adding',
 	'centralnotice-confirm-delete' => 'Are you sure you want to delete this item?
 This action will be unrecoverable.',
-	'centralnotice-no-notices-exist' => 'No notices exist.
+	'centralnotice-no-notices-exist' => 'No campaigns exist.
 Add one below.',
-	'centralnotice-no-templates-translate' => 'There are not any templates to edit translations for',
+	'centralnotice-no-templates-translate' => 'There are not any banners to edit translations for',
 	'centralnotice-number-uses' => 'Uses',
-	'centralnotice-edit-template' => 'Edit template',
+	'centralnotice-edit-template' => 'Edit banner',
+	'centralnotice-edit-template-summary' => 'To create a localizable message, enclose a hyphenated string in three curly brackets, e.g. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message not set',
 	'centralnotice-clone' => 'Clone',
-	'centralnotice-clone-notice' => 'Create a copy of the template',
-	'centralnotice-preview-all-template-translations' => 'Preview all available translations of template',
+	'centralnotice-clone-notice' => 'Create a copy of the banner',
+	'centralnotice-preview-all-template-translations' => 'Preview all available translations of banner',
 
 	'right-centralnotice-admin' => 'Manage central notices',
 	'right-centralnotice-translate' => 'Translate central notices',
@@ -118,14 +119,14 @@ $messages['qqq'] = array(
 	'centralnotice-translate-heading' => 'Fieldset label. $1 is a name of a template.',
 	'centralnotice-add' => '{{Identical|Add}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
-	'centralnotice-notice-exists' => 'Errore message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
-	'centralnotice-template-exists' => 'Errore message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
+	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
+	'centralnotice-template-exists' => 'Error message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
 	'centralnotice-start-date' => 'Used in Special:CentralNotice.
 
 {{Identical|Start date}}',
 	'centralnotice-start-time' => 'Used in Special:CentralNotice',
 	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
-	'centralnotice-notice-is-locked' => 'Errore message displayed in Special:CentralNotice when trying to delete a locked notice',
+	'centralnotice-notice-is-locked' => 'Error message displayed in Special:CentralNotice when trying to delete a locked notice',
 	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
 	'centralnotice-number-uses' => 'Column header in table with sitenotice campaign information.
