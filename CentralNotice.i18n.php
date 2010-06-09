@@ -529,6 +529,7 @@ $messages['bcc'] = array(
  * @author EugeneZelenko
  * @author Jim-by
  * @author Red Winged Duck
+ * @author Wizardist
  */
 $messages['be-tarask'] = array(
 	'centralnotice' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
@@ -605,6 +606,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-no-templates-translate' => 'Няма шаблёнаў для рэдагаваньня перакладаў для',
 	'centralnotice-number-uses' => 'Выкарыстоўвае',
 	'centralnotice-edit-template' => 'Рэдагаваць шаблён',
+	'centralnotice-edit-template-summary' => 'Каб стварыць лякалізуемае паведамленьне, атачыце дэфісны радок у тры фігурныя дужкі, напрыклад, {{{цытата-джымба}}}.',
 	'centralnotice-message' => 'Паведамленьне',
 	'centralnotice-message-not-set' => 'Паведамленьне не ўсталяванае',
 	'centralnotice-clone' => 'Копія',
@@ -1214,6 +1216,7 @@ $messages['da'] = array(
  * @author Metalhead64
  * @author Purodha
  * @author Raimond Spekking
+ * @author The Evil IP address
  * @author Umherirrender
  */
 $messages['de'] = array(
@@ -1290,6 +1293,7 @@ Füge eine hinzu.',
 	'centralnotice-no-templates-translate' => 'Es gibt keine Vorlagen, für die Übersetzungen zu bearbeiten wären',
 	'centralnotice-number-uses' => 'Nutzungen',
 	'centralnotice-edit-template' => 'Vorlage bearbeiten',
+	'centralnotice-edit-template-summary' => 'Um eine lokalisierbare Nachricht zu erstellen, füge einen String mit Bindestrich in drei geschweiften Klammern ein, z.B. {{{jimbo-zitat}}}.',
 	'centralnotice-message' => 'Nachricht',
 	'centralnotice-message-not-set' => 'Nachricht nicht gesetzt',
 	'centralnotice-clone' => 'Klon erstellen',
@@ -1683,6 +1687,7 @@ Afiŝu noticon suben',
 );
 
 /** Spanish (Español)
+ * @author Crazymadlover
  * @author Imre
  * @author Locos epraix
  * @author McDutchie
@@ -1765,6 +1770,7 @@ Añade uno debajo',
 	'centralnotice-no-templates-translate' => 'No hay plantillas de las que editar traducciones',
 	'centralnotice-number-uses' => 'Usos',
 	'centralnotice-edit-template' => 'Editar plantilla',
+	'centralnotice-edit-template-summary' => 'Para crear un mensaje localizable, encierre una cadena con guión dentro de tres llaves, por ejemplo {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Mensaje',
 	'centralnotice-message-not-set' => 'No se ha establecido un mensaje',
 	'centralnotice-clone' => 'Clonar',
@@ -2104,6 +2110,7 @@ Lisää alapuolella sellainen',
  * @author Crochet.david
  * @author Grondin
  * @author IAlex
+ * @author Jean-Frédéric
  * @author McDutchie
  * @author Meithal
  * @author PieRRoMaN
@@ -2186,6 +2193,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-no-templates-translate' => 'Il n’y a aucun modèle à traduire',
 	'centralnotice-number-uses' => 'Utilisations',
 	'centralnotice-edit-template' => 'Modifier le modèle',
+	'centralnotice-edit-template-summary' => 'Pour créer un message localisable, entourez une chaîne à trait d’union de trois accolades, par exemple {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message non renseigné',
 	'centralnotice-clone' => 'Dupliquer',
@@ -2485,6 +2493,7 @@ Fieg eini zue.',
 	'centralnotice-no-templates-translate' => 'S git kei Vorlage, wu Ibersetzige derfir z bearbeite wäre',
 	'centralnotice-number-uses' => 'Nutzige',
 	'centralnotice-edit-template' => 'Vorlag bearbeite',
+	'centralnotice-edit-template-summary' => 'Go ne lokalisierbari Nochricht aalege, lueg ass es e Bindestrich het in drej gschwerifte Chlammere, z. B. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Nochricht',
 	'centralnotice-message-not-set' => 'Nochricht nit gsetzt',
 	'centralnotice-clone' => 'Klon aalege',
@@ -4379,6 +4388,7 @@ U kunt er hieronder een toevoegen',
 	'centralnotice-no-templates-translate' => 'Er zijn geen sjablonen waarvoor vertalingen gemaakt kunnen worden',
 	'centralnotice-number-uses' => 'Keren gebruikt',
 	'centralnotice-edit-template' => 'Sjabloon bewerken',
+	'centralnotice-edit-template-summary' => 'Sluit een stuk tekst in met drie accolades, bijvoorbeeld {{{jimo-quote}}}, om de tekst vertaalbaar te maken.',
 	'centralnotice-message' => 'Bericht',
 	'centralnotice-message-not-set' => 'Het bericht is niet ingesteld',
 	'centralnotice-clone' => 'Kopiëren',
@@ -5234,6 +5244,7 @@ $messages['roa-tara'] = array(
 /** Russian (Русский)
  * @author Aleksandrit
  * @author Ferrer
+ * @author G0rn
  * @author Александр Сигачёв
  */
 $messages['ru'] = array(
@@ -5311,6 +5322,7 @@ $messages['ru'] = array(
 	'centralnotice-no-templates-translate' => 'Нет ни одного шаблона для правки перевода',
 	'centralnotice-number-uses' => 'Используются',
 	'centralnotice-edit-template' => 'Править шаблон',
+	'centralnotice-edit-template-summary' => 'Чтобы создать локализуемое сообщение, заключите дефисную строку в три фигурные скобки, например {{{цитата-джимбо}}}.',
 	'centralnotice-message' => 'Сообщение',
 	'centralnotice-message-not-set' => 'Сообщение не установлено',
 	'centralnotice-clone' => 'Клонирование',
