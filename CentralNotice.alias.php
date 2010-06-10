@@ -9,6 +9,7 @@ $aliases['en'] = array(
 	'CentralNotice' => array( 'CentralNotice' ),
 	'NoticeText' => array( 'NoticeText' ),
 	'NoticeTemplate' => array( 'NoticeTemplate' ),
+	'NoticeLocal' => array( 'NoticeLocal' ),
 );
 
 /** Arabic (العربية) */
