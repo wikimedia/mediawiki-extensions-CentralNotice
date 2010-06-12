@@ -97,15 +97,16 @@ class SpecialNoticeText extends NoticePage {
 	function getToggleScripts() {
 		$showStyle = <<<END
 <style type="text/css">
-#centralNotice .siteNoticeSmall{display:none;}
-#centralNotice .siteNoticeSmallAnon{display:none;}
-#centralNotice .siteNoticeSmallUser{display:none;}
-#centralNotice.collapsed .siteNoticeBig{display:none;}
-#centralNotice.collapsed .siteNoticeSmall{display:block;}
-#centralNotice.collapsed .siteNoticeSmallUser{display:block;}
-#centralNotice.collapsed .siteNoticeSmallAnon{display:block;}
-#centralNotice.anonnotice .siteNoticeSmallUser{display:none !important;}
-#centralNotice.usernotice .siteNoticeSmallAnon{display:none !important;}
+#centralNotice {margin-bottom: 1em;}
+#centralNotice .siteNoticeSmall {display:none;}
+#centralNotice .siteNoticeSmallAnon {display:none;}
+#centralNotice .siteNoticeSmallUser {display:none;}
+#centralNotice.collapsed .siteNoticeBig {display:none;}
+#centralNotice.collapsed .siteNoticeSmall {display:block;}
+#centralNotice.collapsed .siteNoticeSmallUser {display:block;}
+#centralNotice.collapsed .siteNoticeSmallAnon {display:block;}
+#centralNotice.anonnotice .siteNoticeSmallUser {display:none !important;}
+#centralNotice.usernotice .siteNoticeSmallAnon {display:none !important;}
 </style>
 END;
 		$encShowStyle = Xml::encodeJsVar( $showStyle );
