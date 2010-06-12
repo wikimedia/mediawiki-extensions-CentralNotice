@@ -4332,7 +4332,7 @@ De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwij
 	'centralnotice-end-date' => 'Einddatum',
 	'centralnotice-enabled' => 'Actief',
 	'centralnotice-modify' => 'Opslaan',
-	'centralnotice-preview' => 'Bekijken',
+	'centralnotice-preview' => 'Voorvertoning',
 	'centralnotice-add-new' => 'Nieuwe centrale sitenotice toevoegen',
 	'centralnotice-remove' => 'Verwijderen',
 	'centralnotice-translate-heading' => 'Vertaling voor $1',
