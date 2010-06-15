@@ -4090,6 +4090,7 @@ $messages['ml'] = array(
 	'centralnotice-no-templates-translate' => 'ഇതിന്റെ തർജ്ജമകൾ തിരുത്താനായി ഒരു ഫലകവും ഇപ്പോഴില്ല',
 	'centralnotice-number-uses' => 'ഉപയോഗങ്ങൾ',
 	'centralnotice-edit-template' => 'ഫലകം തിരുത്തുക',
+	'centralnotice-edit-template-summary' => 'പ്രാദേശീകരിക്കാവുന്ന സന്ദേശം സൃഷ്ടിക്കാൻ, മൂന്ന് വളയൻ കോഷ്ഠകങ്ങൾക്കുള്ളിൽ ഹൈഫൻ ഉപയോഗിച്ച് ചേർത്ത പദങ്ങൾ നൽകുക, ഉദാ: {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'സന്ദേശം',
 	'centralnotice-message-not-set' => 'സന്ദേശം നിശ്ചിതപ്പെടുത്തിയില്ല.',
 	'centralnotice-clone' => 'സമപ്പകർപ്പ്',
@@ -4772,6 +4773,7 @@ Dodaj nowy poniżej.',
 	'centralnotice-no-templates-translate' => 'Nie ma żadnych szablonów do zmiany tłumaczeń dla',
 	'centralnotice-number-uses' => 'Zastosowania',
 	'centralnotice-edit-template' => 'Edycja szablonu',
+	'centralnotice-edit-template-summary' => 'Lokalizowalny komunikat należy tworzyć poprzez zapisanie ciągu znaków rozdzielanych znakiem odejmowania w trzech nawiasach klamrowych, np {{{cytat-jimbo}}}.',
 	'centralnotice-message' => 'Wiadomość',
 	'centralnotice-message-not-set' => 'Wiadomość nie jest ustawiona',
 	'centralnotice-clone' => 'Kopia',
@@ -6458,6 +6460,7 @@ Magdagdag ng isa sa ibaba',
 	'centralnotice-no-templates-translate' => 'Walang mga suleras na mapagsasagawaan ng mga pagbabagong pangsalinwika',
 	'centralnotice-number-uses' => 'Mga mapaggagamitan',
 	'centralnotice-edit-template' => 'Baguhin ang suleras',
+	'centralnotice-edit-template-summary' => 'Upang makalikha ng isang maisakakatubong mensahe, maglakip ng isang ginitlingang bagting sa loob ng tatlong kulot na mga braket, halimbawa na ang {{{jimbo-sipi}}}.',
 	'centralnotice-message' => 'Mensahe',
 	'centralnotice-message-not-set' => 'Hindi nakatakda ang mensahe',
 	'centralnotice-clone' => 'Kopyang kahawig na kahawig ng pinaggayahan',
@@ -6915,9 +6918,11 @@ $messages['yo'] = array(
 );
 
 /** Cantonese (粵語)
+ * @author Horacewai2
  * @author Shinjiman
  */
 $messages['yue'] = array(
+	'centralnotice' => '統一通告管理',
 	'centralnotice-desc' => '加入一個中央公告欄',
 );
 
