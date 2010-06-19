@@ -3241,6 +3241,7 @@ $messages['ja'] = array(
 	'centralnotice-no-templates-translate' => '翻訳すべきテンプレートはありません。',
 	'centralnotice-number-uses' => '使用目的',
 	'centralnotice-edit-template' => 'テンプレートを編集する',
+	'centralnotice-edit-template-summary' => 'ローカライズ可能なメッセージを作成するには、ハイフンで結合した文字列を3つの波括弧で囲います。例: {{{jimbo-quote}}}。',
 	'centralnotice-message' => 'メッセージ',
 	'centralnotice-message-not-set' => 'メッセージ未指定',
 	'centralnotice-clone' => '複製',
@@ -3403,6 +3404,7 @@ $messages['ka'] = array(
 	'centralnotice-message-not-set' => 'შეტყობინება არ არის',
 	'centralnotice-clone' => 'კლონირება',
 	'centralnotice-clone-notice' => 'თარგის ასლის შექმნა',
+	'right-centralnotice-translate' => 'ცენტრალური შეტყობინებების თარგმანი',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -3717,6 +3719,7 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-no-templates-translate' => "Et gëtt keng Schablounen fir déi Iwwersetzungen z'ännere sinn",
 	'centralnotice-number-uses' => 'gëtt benotzt',
 	'centralnotice-edit-template' => 'Schabloun änneren',
+	'centralnotice-edit-template-summary' => 'Fir e lokaliséierbare Message unzeleeën, setzt eng Zeecheketten tëschent dräi geschweefte Klameren  dran, z. Bsp. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message net gepäichert',
 	'centralnotice-clone' => 'Eng Kopie maachen',
