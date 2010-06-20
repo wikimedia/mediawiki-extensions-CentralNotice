@@ -5354,6 +5354,35 @@ $messages['ru'] = array(
 	'centralnotice-preferred' => 'Желательно',
 );
 
+/** Rusyn (русиньскый язык)
+ * @author Gazeb
+ */
+$messages['rue'] = array(
+	'centralnotice-translations' => 'Переклады',
+	'centralnotice-translate-to' => 'Переклад до',
+	'centralnotice-translate' => 'Переложыти',
+	'centralnotice-english' => 'анґліцькы',
+	'centralnotice-template-name' => 'Назва шаблоны',
+	'centralnotice-templates' => 'Шаблоны',
+	'centralnotice-weight' => 'Вага',
+	'centralnotice-locked' => 'Замкнуто',
+	'centralnotice-day' => 'День',
+	'centralnotice-year' => 'Рік',
+	'centralnotice-month' => 'Місяць',
+	'centralnotice-hours' => 'Годины',
+	'centralnotice-min' => 'Мінуты',
+	'centralnotice-project-lang' => 'Язык проєкту',
+	'centralnotice-project-name' => 'Назва проєкту',
+	'centralnotice-start-date' => 'Датум початку',
+	'centralnotice-start-time' => 'Час початку (UTC)',
+	'centralnotice-available-templates' => 'Доступны шаблоны',
+	'centralnotice-start-hour' => 'Час початку',
+	'centralnotice-change-lang' => 'Змінити язык перекладу',
+	'centralnotice-weights' => 'Вагы',
+	'centralnotice-number-uses' => 'Хоснує',
+	'centralnotice-message' => 'Ознам',
+);
+
 /** Yakut (Саха тыла)
  * @author HalanTul
  */
