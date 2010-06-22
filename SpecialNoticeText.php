@@ -97,7 +97,6 @@ class SpecialNoticeText extends NoticePage {
 	function getToggleScripts() {
 		$showStyle = <<<END
 <style type="text/css">
-#centralNotice {margin-bottom: 1em;}
 #centralNotice .siteNoticeSmall {display:none;}
 #centralNotice .siteNoticeSmallAnon {display:none;}
 #centralNotice .siteNoticeSmallUser {display:none;}
