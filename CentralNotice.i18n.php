@@ -4108,9 +4108,35 @@ $messages['ml'] = array(
 
 /** Marathi (मराठी)
  * @author Mahitgar
+ * @author V.narsikar
  */
 $messages['mr'] = array(
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
+	'centralnotice-end-date' => 'अंतिम तारीख',
+	'centralnotice-add-new' => 'नव्या मोहीमेची सुरूवात करा',
+	'centralnotice-translate-heading' => '$1 चे भाषांतर',
+	'centralnotice-manage' => 'मोहीम हाताळा',
+	'centralnotice-add-notice' => 'नव्या मोहीमेची भर घाला',
+	'centralnotice-add-template' => 'नविन मथळा लावा',
+	'centralnotice-translations' => 'भाषांतरे',
+	'centralnotice-translate-to' => '(Language name) या भाषेत भाषांतर करा',
+	'centralnotice-template-name' => 'मथळ्याचे नाव',
+	'centralnotice-day' => 'दिनांक',
+	'centralnotice-hours' => 'तास',
+	'centralnotice-project-lang' => 'प्रकल्प भाषा',
+	'centralnotice-project-name' => 'प्रकल्पाचे नाव',
+	'centralnotice-start-date' => 'सुरू केल्याचा दिनांक',
+	'centralnotice-start-time' => 'सुरू केल्याची वेळ (युटीसी)',
+	'centralnotice-no-templates' => 'मथळे सापडले नाहीत.काहींची भर घाला',
+	'centralnotice-available-templates' => 'उपलब्ध मथळे',
+	'centralnotice-template-already-exists' => 'मोहीमेस मथळा पूर्वीच दिलेला आहे. आता जोडू नका.',
+	'centralnotice-preview-template' => 'मथळ्याची झलक पाहा.',
+	'centralnotice-change-lang' => 'भाषांतरासाठी भाषेत बदल करा',
+	'centralnotice-notice-is-locked' => 'मथळ्यास ताळा लावला आहे. काढु नका.',
+	'centralnotice-confirm-delete' => 'आपणास हा मजकुर नक्की गाळावयाचा आहे काय? 
+ही कृती परतविता येणार नाही.',
+	'centralnotice-no-notices-exist' => 'मथळा अस्तित्वात नाही.
+एक मथळा खाली जोडा.',
 );
 
 /** Malay (Bahasa Melayu)
