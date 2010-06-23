@@ -334,7 +334,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		// Extract message fields from the template body
 		$fields = array();
-		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-\x{00C0}-\x{00D6}\x{00D8}-\x{00F6}\x{00F8}-\x{00FF}]+)\}\}\}/u', $body, $fields );
+		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-\x{00C0}-\x{017F}]+)\}\}\}/u', $body, $fields );
 			
 		// If there are any messages in the template, display translation tools.
 		if ( count( $fields[0] ) > 0 ) {
