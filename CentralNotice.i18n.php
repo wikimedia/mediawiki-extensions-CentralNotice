@@ -5222,6 +5222,7 @@ Kay qatiqpi hukta yapay',
 );
 
 /** Romanian (Română)
+ * @author Cin
  * @author Firilacroco
  * @author KlaudiuMihaila
  * @author Mihai
@@ -5251,7 +5252,7 @@ $messages['ro'] = array(
 	'centralnotice-template-name' => 'Numele formatului',
 	'centralnotice-templates' => 'Formate',
 	'centralnotice-weight' => 'Greutate',
-	'centralnotice-locked' => 'Blocat',
+	'centralnotice-locked' => 'Încuiat',
 	'centralnotice-notices' => 'Notificări',
 	'centralnotice-day' => 'Zi',
 	'centralnotice-year' => 'An',
@@ -5262,15 +5263,15 @@ $messages['ro'] = array(
 	'centralnotice-project-name' => 'Numele proiectului',
 	'centralnotice-start-date' => 'Data de începere',
 	'centralnotice-start-time' => 'Data de începere (UTC)',
-	'centralnotice-available-templates' => 'Formate disponibile',
-	'centralnotice-preview-template' => 'Previzualizare formate',
+	'centralnotice-available-templates' => 'Bannere disponibile',
+	'centralnotice-preview-template' => 'Previzualizare banner',
 	'centralnotice-start-hour' => 'Ora de început',
 	'centralnotice-change-lang' => 'Schimbă limba de traducere',
 	'centralnotice-weights' => 'Greutăți',
-	'centralnotice-edit-template' => 'Modifică format',
+	'centralnotice-edit-template' => 'Editează banner',
 	'centralnotice-message' => 'Mesaj',
-	'centralnotice-clone' => 'Clonați',
-	'centralnotice-clone-notice' => 'Creează o copie a formatului',
+	'centralnotice-clone' => 'Clonează',
+	'centralnotice-clone-notice' => 'Creează o copie a bannerului',
 	'right-centralnotice-translate' => 'Traduce anunțurile centrale',
 	'action-centralnotice-admin' => 'administrați anunțurile centrale',
 	'action-centralnotice-translate' => 'traduceți anunțurile centrale',
