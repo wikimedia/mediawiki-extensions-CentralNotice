@@ -2971,6 +2971,7 @@ Adde un infra',
 
 /** Indonesian (Bahasa Indonesia)
  * @author Bennylin
+ * @author Irwangatot
  * @author IvanLanin
  * @author Rex
  */
@@ -3049,6 +3050,7 @@ Tambahkan di bawah ini.',
 	'centralnotice-no-templates-translate' => 'Tidak ada templat yang dapat diterjemahkan',
 	'centralnotice-number-uses' => 'Menggunakan',
 	'centralnotice-edit-template' => 'Sunting templat',
+	'centralnotice-edit-template-summary' => 'Untuk membuat dilokalisasi pesan, sertakan string ditulis dengan tanda penghubung di tiga kurung, misalnya {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Pesan',
 	'centralnotice-message-not-set' => 'Pengaturan pesan tidak dilakukan',
 	'centralnotice-clone' => 'Duplikat',
@@ -4137,6 +4139,20 @@ $messages['mr'] = array(
 ही कृती परतविता येणार नाही.',
 	'centralnotice-no-notices-exist' => 'मथळा अस्तित्वात नाही.
 एक मथळा खाली जोडा.',
+	'centralnotice-no-templates-translate' => '↓ भाषांतरे संपादीत करण्याकरिता कोणतेही मुखशीर्षक (बॅनर) उपलब्ध नाही',
+	'centralnotice-number-uses' => '↓ उपयोग',
+	'centralnotice-edit-template' => '↓ मुखशीर्षक (बॅनर) संपादीत करा',
+	'centralnotice-edit-template-summary' => '↓ स्थानिकीकरण संदेश तयार करण्याकरिता, तीहेरी महिरपीकंस  संयोगचिन्ह(-) असलेले सूत्राने (स्ट्रींग)भरा, उदाहरणार्थ. {{{jimbo-quote}}}.',
+	'centralnotice-message' => '↓ संदेश',
+	'centralnotice-message-not-set' => '↓ संदेश स्थापित केलेला नाही',
+	'centralnotice-clone' => '↓ कृत्तक (क्लोन)',
+	'centralnotice-clone-notice' => '↓ मुखशीर्षकाची(बॅनरची प्रत बनवा)',
+	'centralnotice-preview-all-template-translations' => '↓ मुखशीर्षकांच्या सर्व उपलब्ध भाषांतराची झलक पहा',
+	'right-centralnotice-admin' => '↓ मध्यवर्ती सूचनांचे प्रबंधन करा',
+	'right-centralnotice-translate' => '↓ मध्यवर्ती सूचनांचे भाषांतरकरा',
+	'action-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
+	'action-centralnotice-translate' => 'मध्यवर्ती सूचनांचे भाषांतरकरा',
+	'centralnotice-preferred' => 'प्राधान्य',
 );
 
 /** Malay (Bahasa Melayu)
@@ -5226,6 +5242,7 @@ Kay qatiqpi hukta yapay',
  * @author Firilacroco
  * @author KlaudiuMihaila
  * @author Mihai
+ * @author Minisarm
  * @author Stelistcristi
  */
 $messages['ro'] = array(
@@ -5252,7 +5269,7 @@ $messages['ro'] = array(
 	'centralnotice-template-name' => 'Numele formatului',
 	'centralnotice-templates' => 'Formate',
 	'centralnotice-weight' => 'Greutate',
-	'centralnotice-locked' => 'Încuiat',
+	'centralnotice-locked' => 'Blocat',
 	'centralnotice-notices' => 'Notificări',
 	'centralnotice-day' => 'Zi',
 	'centralnotice-year' => 'An',
@@ -5263,12 +5280,12 @@ $messages['ro'] = array(
 	'centralnotice-project-name' => 'Numele proiectului',
 	'centralnotice-start-date' => 'Data de începere',
 	'centralnotice-start-time' => 'Data de începere (UTC)',
-	'centralnotice-available-templates' => 'Bannere disponibile',
-	'centralnotice-preview-template' => 'Previzualizare banner',
+	'centralnotice-available-templates' => 'Formate disponibile',
+	'centralnotice-preview-template' => 'Previzualizare format',
 	'centralnotice-start-hour' => 'Ora de început',
 	'centralnotice-change-lang' => 'Schimbă limba de traducere',
 	'centralnotice-weights' => 'Greutăți',
-	'centralnotice-edit-template' => 'Editează banner',
+	'centralnotice-edit-template' => 'Modifică format',
 	'centralnotice-message' => 'Mesaj',
 	'centralnotice-clone' => 'Clonează',
 	'centralnotice-clone-notice' => 'Creează o copie a bannerului',
@@ -7161,6 +7178,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-no-templates-translate' => '沒有任何可以編輯翻譯的模板',
 	'centralnotice-number-uses' => '使用',
 	'centralnotice-edit-template' => '編輯模板',
+	'centralnotice-edit-template-summary' => '要創建一個可本地化的消息，使用三個{，例如{{{jimbo-quote}}}。',
 	'centralnotice-message' => '消息',
 	'centralnotice-message-not-set' => '沒有設置消息',
 	'centralnotice-clone' => '建立副本',
