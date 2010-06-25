@@ -1294,24 +1294,24 @@ class CentralNotice extends SpecialPage {
 			$options .= Xml::option( "$code - $name", $code, in_array( $code, $selected ) ) . "\n";
 		}
 		$htmlOut = "
-<script type=\"text/javascript\">\n
-function selectLanguages(selectAll) {\n
-	var selectBox = document.getElementById(\"project_languages[]\");\n
-	var firstSelect = selectBox.options.length - 1;\n
-	for (var i = firstSelect; i >= 0; i--) {\n
-		selectBox.options[i].selected = selectAll;\n
-	}\n
-}\n
-function top10Languages() {\n
-	var selectBox = document.getElementById(\"project_languages[]\");\n
-	var top10 = new Array('en','de','fr','it','pt','ja','es','pl','ru','nl');\n
-	for (var i = 0; i < selectBox.options.length; i++) {\n
-		var lang = selectBox.options[i].value;\n
-		if (top10.toString().indexOf(lang)!==-1) {\n
-			selectBox.options[i].selected = true;\n
-		}\n
-	}\n
-}\n
+<script type=\"text/javascript\">
+function selectLanguages(selectAll) {
+	var selectBox = document.getElementById(\"project_languages[]\");
+	var firstSelect = selectBox.options.length - 1;
+	for (var i = firstSelect; i >= 0; i--) {
+		selectBox.options[i].selected = selectAll;
+	}
+}
+function top10Languages() {
+	var selectBox = document.getElementById(\"project_languages[]\");
+	var top10 = new Array('en','de','fr','it','pt','ja','es','pl','ru','nl');
+	for (var i = 0; i < selectBox.options.length; i++) {
+		var lang = selectBox.options[i].value;
+		if (top10.toString().indexOf(lang)!==-1) {
+			selectBox.options[i].selected = true;
+		}
+	}
+}
 </script>";
 		$htmlOut .=
 			Xml::tags( 'select',
