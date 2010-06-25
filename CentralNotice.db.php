@@ -21,19 +21,29 @@ class CentralNoticeDB {
 	 * Return notices in the system within given constraints
 	 * Optional: return both enabled and disabled notices
 	 */
-	public function getNotices( $project = false, $language = false , $date = false , $enabled = true, $preferred = false ) {
+	public function getNotices( $project = false, $language = false, $date = false, $enabled = true, $preferred = false ) {
 		// Database setup
 		$dbr = wfGetDB( DB_SLAVE );
+		
+		$tables[] = "cn_notices";
+		if ( $language ) {
+			$tables[] = "cn_notice_languages";
+		}
 
 		// Use whatever conditional arguments got passed in
-		if ( $project )
+		if ( $project ) {
 			$conds[] = "not_project =" . $dbr->addQuotes( $project );
-		if ( $language )
-			$conds[] = "not_language =" . $dbr->addQuotes( $language );
-		if ( $preferred )
+		}
+		if ( $language ) {
+			$conds[] = "cn_notice_languages.not_id = cn_notices.not_id";
+			$conds[] = "cn_notice_languages.not_language =" . $dbr->addQuotes( $language );
+		}
+		if ( $preferred ) {
 			$conds[] = "not_preferred = 1";
-		if ( !$date )
+		}
+		if ( !$date ) {
 			$date = $dbr->timestamp();
+		}
 
 		$conds[] = ( $date ) ? "not_start <= " . $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
 		$conds[] = ( $date ) ? "not_end >= " . $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
@@ -41,21 +51,19 @@ class CentralNoticeDB {
 
 		// Pull db data
 		$res = $dbr->select(
-			array(
-				'cn_notices',
-			),
+			$tables,
 			array(
 				'not_name',
 				'not_project',
-				'not_language',
 				'not_locked',
 				'not_enabled',
-				'not_preferred',
+				'not_preferred'
 			),
 			$conds,
 			__METHOD__
 		);
 
+		// If no matching notices, return NULL
 		if ( $dbr->numRows( $res ) < 1 ) {
 			return;
 		}
@@ -65,7 +73,6 @@ class CentralNoticeDB {
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$notice = $row->not_name;
 			$notices[$notice]['project'] = $row->not_project;
-			$notices[$notice]['language'] = $row->not_language;
 			$notices[$notice]['preferred'] = $row->not_preferred;
 			$notices[$notice]['locked'] = $row->not_locked;
 			$notices[$notice]['enabled'] = $row->not_enabled;
