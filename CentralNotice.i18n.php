@@ -7085,6 +7085,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-no-templates-translate' => '没有任何可以编辑翻译的模板',
 	'centralnotice-number-uses' => '使用',
 	'centralnotice-edit-template' => '编辑模板',
+	'centralnotice-edit-template-summary' => '要创建一个可本地化的消息，使用三个{，例如{{{jimbo-quote}}}。',
 	'centralnotice-message' => '消息',
 	'centralnotice-message-not-set' => '没有设置消息',
 	'centralnotice-clone' => '建立副本',
