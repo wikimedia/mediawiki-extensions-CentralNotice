@@ -2017,6 +2017,7 @@ $messages['fa'] = array(
 );
 
 /** Finnish (Suomi)
+ * @author Centerlink
  * @author Crt
  * @author Nike
  * @author Tarmo
@@ -2096,6 +2097,7 @@ Lisää alapuolella sellainen',
 	'centralnotice-no-templates-translate' => 'Ei mallineita, joiden käännöksiä voisi muokata',
 	'centralnotice-number-uses' => 'Käyttää',
 	'centralnotice-edit-template' => 'Muokkaa mallinetta',
+	'centralnotice-edit-template-summary' => 'Paikallistetun viestin luomiseksi sisällytä tavutettu merkkijono kolmen aaltosulkeen sisään, esim. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Viesti',
 	'centralnotice-message-not-set' => 'Viestiä ei ole asetettu',
 	'centralnotice-clone' => 'Kahdenna',
@@ -4958,6 +4960,7 @@ $messages['ps'] = array(
 	'centralnotice-available-templates' => 'شته کينډۍ',
 	'centralnotice-start-hour' => 'د پيل وخت',
 	'centralnotice-change-lang' => 'د ژباړې ژبه بدلول',
+	'centralnotice-number-uses' => 'کاروي',
 	'centralnotice-message' => 'پيغام',
 );
 
