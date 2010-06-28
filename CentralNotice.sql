@@ -24,3 +24,11 @@ CREATE TABLE `cn_templates` (
   `tmp_name` varchar(255) default NULL,
   PRIMARY KEY  (`tmp_id`)
 ) /*$wgDBTableOptions*/;
+
+CREATE TABLE `cn_notice_languages` (
+  `id` int unsigned NOT NULL auto_increment,
+  `not_id` int unsigned NOT NULL,
+  `not_language` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `not_id_not_language` (`not_id`,`not_language`)
+) /*$wgDBTableOptions*/;
