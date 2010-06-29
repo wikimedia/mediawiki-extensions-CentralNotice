@@ -454,10 +454,12 @@ class CentralNotice extends SpecialPage {
 				$project_langs = array();
 				$project_langs = $this->getNoticeLanguages( $row->not_name );
 				$language_count = count( $project_langs );
-				if ( $language_count > 1 ) {
+				if ( $language_count > 3 ) {
 					$languageList = "multiple ($language_count)";
+				} elseif ( $language_count > 0 ) {
+					$languageList = implode(', ',$project_langs);
 				} else {
-					$languageList = $project_langs[0];
+					$languageList = '';
 				}
 				$fields[] = $languageList;
 
