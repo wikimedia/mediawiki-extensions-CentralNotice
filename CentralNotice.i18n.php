@@ -5689,6 +5689,16 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-preferred' => 'Uprednostňované',
 );
 
+/** Slovenian (Slovenščina)
+ * @author Dbc334
+ */
+$messages['sl'] = array(
+	'centralnotice-message' => 'Sporočilo',
+	'centralnotice-message-not-set' => 'Sporočilo ni določeno',
+	'centralnotice-clone' => 'Kloniraj',
+	'centralnotice-clone-notice' => 'Ustvarite kopijo pasice',
+);
+
 /** Serbian Cyrillic ekavian (Српски (ћирилица))
  * @author Millosh
  * @author Јованвб
