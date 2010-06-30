@@ -1,4 +1,4 @@
-CREATE TABLE `cn_notices` (
+CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notices (
   `not_id` int NOT NULL auto_increment,
   `not_name` varchar(255) NOT NULL,
   `not_start` char(14) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `cn_notices` (
   PRIMARY KEY  (`not_id`)
 ) /*$wgDBTableOptions*/;
 
-CREATE TABLE `cn_assignments` (
+CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_assignments (
   `asn_id` int NOT NULL auto_increment,
   `not_id` int NOT NULL,
   `tmp_id` int NOT NULL,
@@ -19,13 +19,13 @@ CREATE TABLE `cn_assignments` (
   PRIMARY KEY  (`asn_id`)
 ) /*$wgDBTableOptions*/;
 
-CREATE TABLE `cn_templates` (
+CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_templates (
   `tmp_id` int NOT NULL auto_increment,
   `tmp_name` varchar(255) default NULL,
   PRIMARY KEY  (`tmp_id`)
 ) /*$wgDBTableOptions*/;
 
-CREATE TABLE `cn_notice_languages` (
+CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_languages (
   `id` int unsigned NOT NULL auto_increment,
   `not_id` int unsigned NOT NULL,
   `not_language` varchar(32) NOT NULL,

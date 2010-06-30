@@ -119,6 +119,7 @@ function efCentralNoticeSetup() {
 	$dir = dirname( __FILE__ ) . '/';
 
 	if ( $wgCentralNoticeLoader ) {
+		$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
 		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
 		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
 
@@ -145,6 +146,17 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
 		$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 	}
+}
+
+function efCentralNoticeSchema() {
+	global $wgDBtype, $wgExtNewTables;
+	
+	$base = dirname( __FILE__ );
+	if ( $wgDBtype == 'mysql' ) {
+		$wgExtNewTables[] = array( 'cn_notices', $base . '/CentralNotice.sql' );
+		$wgExtNewTables[] = array( 'cn_notice_languages', $base . '/patches/patch-notice_languages.sql' );
+	}
+	return true;
 }
 
 function efCentralNoticeLoader( $out, $skin ) {
