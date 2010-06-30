@@ -3464,6 +3464,7 @@ $messages['kn'] = array(
 );
 
 /** Korean (한국어)
+ * @author Gapo
  * @author Klutzy
  * @author Kwj2772
  * @author Yknok29
@@ -3532,6 +3533,7 @@ $messages['ko'] = array(
 	'centralnotice-no-templates-translate' => '번역해야 할 템플릿이 없습니다.',
 	'centralnotice-number-uses' => '사용 횟수',
 	'centralnotice-edit-template' => '틀 편집하기',
+	'centralnotice-edit-template-summary' => '번역이 가능한 메세지를 만드려면, {{{jimbo-quote}}}와 같이 중괄호로 세 번 감싸주면 됩니다.',
 	'centralnotice-message' => '메시지',
 	'centralnotice-message-not-set' => '메시지가 정의되지 않았습니다.',
 	'centralnotice-clone' => '사본',
