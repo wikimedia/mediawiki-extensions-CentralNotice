@@ -641,6 +641,11 @@ class NoticeTemplatePager extends ReverseChronologicalPager {
 		$this->special = $special;
 		$this->editable = $special->editable;
 		parent::__construct();
+		
+		// Override paging defaults
+		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
+		$this->mLimitsShown = array( 20, 50, 100 );
+		
 		$msg = Xml::encodeJsVar( wfMsg( 'centralnotice-confirm-delete' ) );
 		$this->onRemoveChange = "if( this.checked ) { this.checked = confirm( $msg ) }";
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
