@@ -6,36 +6,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class SpecialNoticeTemplate extends UnlistedSpecialPage {
-	public $limitsShown = array( 20, 50, 100 );
-	public $defaultLimit = 20;
-	public $mOffset, $mLimit;
-	protected $indexField = 'tmp_id';
-	protected $mDb;
+	var $editable;
 
-	/* Functions */
-	
 	function __construct() {
-		// Initialize special page
-		global $wgRequest;
-		$this->mRequest = $wgRequest;
-		
-		# NB: the offset is quoted, not validated. It is treated as an
-		# arbitrary string to support the widest variety of index types. Be
-		# careful outputting it into HTML!
-		$this->mOffset = $this->mRequest->getText( 'offset' );
-		
-		# Set the limit, default to 20, ignore User default
-		$limit = $this->mRequest->getInt( 'limit', 0 );
-		if ( $limit <= 0 ) {
-			$limit = 20;
-		}
-		if ( $limit > 5000 ) {
-			$limit = 5000; # We have *some* limits...
-		}
-		$this->mLimit = $limit;
-		
-		$this->mDb = wfGetDB( DB_SLAVE );
-		
 		parent::__construct( 'NoticeTemplate' );
 
 		// Internationalization
@@ -50,9 +23,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		// Begin output
 		$this->setHeaders();
-
-		// Get current skin
-		$sk = $wgUser->getSkin();
 
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
@@ -109,7 +79,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 		}
 
-		// Handle viewiing of a template in all languages
+		// Handle viewing of a template in all languages
 		if ( $sub == 'view' && $wgRequest->getVal( 'wpUserLanguage' ) == 'all' ) {
 			$template =  $wgRequest->getVal( 'template' );
 			$this->showViewAvailable( $template );
@@ -147,22 +117,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show a list of available templates. Newer templates are shown first.
 	 */
 	function showList() {
-		global $wgOut, $wgUser, $wgRequest, $wgLang;
+		global $wgOut, $wgUser;
 
 		$sk = $wgUser->getSkin();
-
-		// Templates
-		$offset = $wgRequest->getVal( 'offset' );
-		if ( $wgRequest->getVal( 'limit' ) ) {
-			$limit = $wgRequest->getVal( 'limit' );
+		$pager = new NoticeTemplatePager( $this );
+		if ( !$pager->getNumRows() ) {
+			$htmlOut = Xml::element( 'p', null, wfMsg( 'centralnotice-no-templates' ) );
 		} else {
-			$limit = $this->defaultLimit;
-		}
-			
-		$templates = $this->queryTemplates($offset, $limit);
-		$htmlOut = '';
-		if ( count( $templates ) > 0 ) {
-		
+			$htmlOut = '';		
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form',
 					array(
@@ -171,104 +133,27 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					 )
 				);
 			}
+
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-available-templates' ) );
-			$totalTemplateCount = $this->getTemplateCount();
-			if ( $totalTemplateCount > count( $templates ) || $totalTemplateCount > 20 ) {
-				//Show pagination links
-				$opts = array( 'parsemag', 'escapenoentities' );
-				$linkTexts = array(
-					'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
-					'next' => wfMsgExt( 'nextn', $opts, $wgLang->formatNum($this->mLimit ) ),
-					'first' => wfMsgExt( 'page_first', $opts ),
-					'last' => wfMsgExt( 'page_last', $opts )
-				);
-				$pagingLinks = $this->getPagingLinks( $linkTexts, $offset, $limit );
-				$limitLinks = $this->getLimitLinks();
-				$limits = $wgLang->pipeList( $limitLinks );
-				$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
-			}
-			
-			$htmlOut .= Xml::openElement( 'table',
-				array(
-					'cellpadding' => 9,
-					'width' => '100%'
-				)
-			);
-			if ( $this->editable ) {
-				$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-					wfMsg ( 'centralnotice-remove' )
-				);
-			}
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
-				wfMsg ( 'centralnotice-template-name' )
-			);
+			$htmlOut .= $pager->getNavigationBar() .
+				$pager->getBody() .
+				$pager->getNavigationBar();
 
-			$msgConfirmDelete = wfMsgHTML( 'centralnotice-confirm-delete' );
-			
-			foreach ( $templates as $templateName ) {
-				$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
-				$htmlOut .= Xml::openElement( 'tr' );
-
-				if ( $this->editable ) {
-					// Remove box
-					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-						Xml::check( 'removeTemplates[]', false,
-							array(
-								'value' => $templateName,
-								'onchange' => "if(this.checked){this.checked=confirm('{$msgConfirmDelete}')}"
-							)
-						)
-					);
-				}
-
-				// Link and Preview
-				$render = new SpecialNoticeText();
-				$render->project = 'wikipedia';
-				$render->language = $wgRequest->getVal( 'wpUserLanguage' );
-				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					$sk->makeLinkObj( $viewPage,
-						htmlspecialchars( $templateName ),
-						'template=' . urlencode( $templateName ) ) .
-					Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-						$render->getHtmlNotice( $templateName )
-					)
-				);
-
-				$htmlOut .= Xml::closeElement( 'tr' );
-			}
-			if ( $this->editable ) {
-				$htmlOut .= Xml::tags( 'tr', null,
-					Xml::tags( 'td', array( 'colspan' => 3 ),
-						Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
-					)
-				);
-			}
-			$htmlOut .= Xml::closeElement( 'table' );
-			
-			if ( $totalTemplateCount > count( $templates ) || $totalTemplateCount > 20 ) {
-				//Show pagination links
-				$htmlOut .= wfMsgHTML( 'viewprevnext', $pagingLinks['prev'], $pagingLinks['next'], $limits );
-			}
-			
-			$htmlOut .= Xml::closeElement( 'fieldset' );
+			$htmlOut .= Xml::closeElement( 'fieldset' );		
 			if ( $this->editable ) {
 				$htmlOut .= Xml::closeElement( 'form' );
 			}
-			
-		} else {
-			$htmlOut .= Xml::element( 'p', null, wfMsg( 'centralnotice-no-templates' ) );
 		}
-	
+
 		if ( $this->editable ) {
 			$htmlOut .= Xml::element( 'p' );
 			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
 			$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
-		}
+		}		
 
-		// Output HTML
 		$wgOut->addHTML( $htmlOut );
 	}
-	
+
 	function showAdd() {
 		global $wgOut, $wgUser;
 
@@ -552,46 +437,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$article->doEdit( $translation, '', EDIT_FORCE_BOT );
 	}
 	
-	/*
-	 * Return an array of templates constrained by offset and limit parameters.
-	 */
-	function queryTemplates( $offset, $limit ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$conds = array();
-		$options['ORDER BY'] = $this->indexField . ' DESC';
-		$options['LIMIT'] = intval( $limit );
-		$operator = '<';
-		if ( $offset ) {
-			$conds[] = $this->indexField . $operator . $this->mDb->addQuotes( $offset );
-			$res = $dbr->select( 'cn_templates',
-				array( 'tmp_name', 'tmp_id' ),
-				$conds,
-				__METHOD__,
-				$options
-			);
-		} else {
-			$res = $dbr->select( 'cn_templates',
-				array( 'tmp_name', 'tmp_id' ),
-				'',
-				__METHOD__,
-				$options
-			);
-		}
-		$templates = array();
-		foreach ( $res as $row ) {
-			array_push( $templates, $row->tmp_name );
-		}
-		return $templates;
-	}
-	
-	/*
-	 * Return the total number of templates in the database.
-	 */
-	function getTemplateCount() {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'cn_templates', 'COUNT(*)', array(), __METHOD__ );
-	}
-	
 	private function getTemplateId ( $templateName ) {
 		global $wgOut, $egCentralNoticeTables;
 
@@ -650,7 +495,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 
 		// Format name so there are only letters, numbers, and underscores
-		$name = ereg_replace( '[^A-Za-z0-9\_]', '', $name );
+		$name = preg_replace( '/[^A-Za-z0-9_]/', '', $name );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
@@ -786,181 +631,95 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 		return $translations;
 	}
-	
-	/* Begin methods copied (and modified) from Pager class */
-	
-	/**
-	 * Get a URL query array for the prev and next links.
-	 */
-	function getPagingQueries( $offset, $limit ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		if ( $offset ) {
-			// Build previous link
-			$templates = array();
-			$conds = array();
-			$options['ORDER BY'] = $this->indexField . ' ASC';
-			$options['LIMIT'] = intval( $limit + 1);
-			$conds[] = $this->indexField . '>=' . $this->mDb->addQuotes( $offset );
-			$res = $dbr->select( 'cn_templates',
-				array( 'tmp_name', 'tmp_id' ),
-				$conds,
-				__METHOD__,
-				$options
-			);
-			foreach ( $res as $row ) {
-				array_push( $templates, $row->tmp_id );
-			}
-			if ( count( $templates ) == $limit + 1 ) {
-				$prev = array( 'offset' => end( $templates ), 'limit' => $limit );
-			} else { 
-				$prev = array( 'offset' => '0', 'limit' => $limit );
-			}
-			// Build next link
-			$templates = array();
-			$conds = array();
-			$conds[] = $this->indexField . '<' . $this->mDb->addQuotes( $offset );
-			$options['ORDER BY'] = $this->indexField . ' DESC';
-			$options['LIMIT'] = intval( $limit ) + 1;
-			$res = $dbr->select( 'cn_templates',
-				array( 'tmp_name', 'tmp_id' ),
-				$conds,
-				__METHOD__,
-				$options
-			);
-			foreach ( $res as $row ) {
-				array_push( $templates, $row->tmp_id );
-			}
-			if ( count( $templates ) == $limit + 1 ) {
-				end( $templates );
-				$next = array( 'offset' => prev( $templates ), 'limit' => $limit );
-			} else {
-				$next = false;
-			}
-		} else {
-			// No previous link needed
-			$prev = false;
-			// Build next link
-			$templates = array();
-			$options['ORDER BY'] = $this->indexField . ' DESC';
-			$options['LIMIT'] = intval( $limit ) + 1;
-			$res = $dbr->select( 'cn_templates',
-				array( 'tmp_name', 'tmp_id' ),
-				'',
-				__METHOD__,
-				$options
-			);
-			while ( $row = $dbr->fetchObject( $res ) ) {
-				array_push( $templates, $row->tmp_id );
-			}
-			if ( count( $templates ) == $limit + 1 ) {
-				end( $templates );
-				$next = array( 'offset' => prev( $templates ), 'limit' => $limit );
-			} else {
-				$next = false;
-			}
-		}
-		return array( 'prev' => $prev, 'next' => $next );
+}
+
+class NoticeTemplatePager extends ReverseChronologicalPager {
+	var $onRemoveChange, $viewPage, $special;
+	var $editable, $msgPreview;
+
+	function __construct( $special ) {
+		$this->special = $special;
+		$this->editable = $special->editable;
+		parent::__construct();
+		$msg = Xml::encodeJsVar( wfMsg( 'centralnotice-confirm-delete' ) );
+		$this->onRemoveChange = "if( this.checked ) { this.checked = confirm( $msg ) }";
+		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
+		$this->msgPreview = wfMsg( 'centralnotice-preview' );
 	}
-	
-	/**
-	 * Get paging links. If a link is disabled, the item from $disabledTexts
-	 * will be used. If there is no such item, the unlinked text from
-	 * $linkTexts will be used. Both $linkTexts and $disabledTexts are arrays
-	 * of HTML.
-	 */
-	function getPagingLinks( $linkTexts, $offset, $limit, $disabledTexts = array() ) {
-		$queries = $this->getPagingQueries( $offset, $limit );
-		$links = array();
-		foreach ( $queries as $type => $query ) {
-			if ( $query !== false ) {
-				$links[$type] = $this->makeLink( $linkTexts[$type], $queries[$type], $type );
-			} elseif ( isset( $disabledTexts[$type] ) ) {
-				$links[$type] = $disabledTexts[$type];
-			} else {
-				$links[$type] = $linkTexts[$type];
-			}
-		}
-		return $links;
+
+	function getQueryInfo() {
+		return array(
+			'tables' => 'cn_templates',
+			'fields' => array( 'tmp_name', 'tmp_id' ),
+		);
 	}
-	
-	/**
-	 * Get limit links, i.e. the links that change the query limit. This list
-	 * is based on the limitsShown array.
-	 */
-	function getLimitLinks() {
-		global $wgLang;
-		$links = array();
-		$offset = $this->mOffset;
-		foreach ( $this->limitsShown as $limit ) {
-			$links[] = $this->makeLink(
-					$wgLang->formatNum( $limit ),
-					array( 'offset' => $offset, 'limit' => $limit ),
-					'num'
+
+	function getIndexField() {
+		return 'tmp_id';
+	}
+
+	function formatRow( $row ) {
+		$htmlOut = Xml::openElement( 'tr' );
+
+		if ( $this->editable ) {
+			// Remove box
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				Xml::check( 'removeTemplates[]', false,
+					array(
+						'value' => $row->tmp_name,
+						'onchange' => $this->onRemoveChange
+					)
+				)
 			);
-		}
-		return $links;
-	}
-	
-	/**
-	 * Make a self-link
-	 */
-	function makeLink($text, $query = null, $type=null) {
-		if ( $query === null ) {
-			return $text;
 		}
 
-		$attrs = array();
-		if( in_array( $type, array( 'first', 'prev', 'next', 'last' ) ) ) {
-			# HTML5 rel attributes
-			$attrs['rel'] = $type;
-		}
+		// Link and Preview
+		$render = new SpecialNoticeText();
+		$render->project = 'wikipedia';
+		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$this->getSkin()->makeLinkObj( $this->viewPage,
+				htmlspecialchars( $row->tmp_name ),
+				'template=' . urlencode( $row->tmp_name ) ) .
+			Xml::fieldset( $this->msgPreview,
+				$render->getHtmlNotice( $row->tmp_name )
+			)
+		);
 
-		if( $type ) {
-			$attrs['class'] = "mw-{$type}link";
+		$htmlOut .= Xml::closeElement( 'tr' );
+		return $htmlOut;
+	}
+
+	function getStartBody() {
+		$htmlOut = '';
+				
+		$htmlOut .= Xml::openElement( 'table',
+			array(
+				'cellpadding' => 9,
+				'width' => '100%'
+			)
+		);
+		if ( $this->editable ) {
+			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+				wfMsg ( 'centralnotice-remove' )
+			);
 		}
-		return $this->getSkin()->link( $this->getTitle(), $text,
-			$attrs, $query + $this->getDefaultQuery(), array('noclasses','known') );
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+			wfMsg ( 'centralnotice-template-name' )
+		);
+		return $htmlOut;
 	}
-	
-	/**
-	 * Set the offset from an other source than $wgRequest
-	 */
-	function setOffset( $offset ) {
-		$this->mOffset = $offset;
-	}
-	/**
-	 * Set the limit from an other source than $wgRequest
-	 */
-	function setLimit( $limit ) {
-		$this->mLimit = $limit;
-	}
-	
-	/**
-	 * Get the current skin. This can be overridden if necessary.
-	 */
-	function getSkin() {
-		if ( !isset( $this->mSkin ) ) {
-			global $wgUser;
-			$this->mSkin = $wgUser->getSkin();
+
+	function getEndBody() {
+		$htmlOut = '';
+		if ( $this->editable ) {
+			$htmlOut .= Xml::tags( 'tr', null,
+				Xml::tags( 'td', array( 'colspan' => 3 ),
+					Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
+				)
+			);
 		}
-		return $this->mSkin;
+		$htmlOut .= Xml::closeElement( 'table' );
+		return $htmlOut;
 	}
-	
-	/**
-	 * Get an array of query parameters that should be put into self-links.
-	 * By default, all parameters passed in the URL are used, except for a
-	 * short blacklist.
-	 */
-	function getDefaultQuery() {
-		if ( !isset( $this->mDefaultQuery ) ) {
-			$this->mDefaultQuery = $_GET;
-			unset( $this->mDefaultQuery['title'] );
-			unset( $this->mDefaultQuery['offset'] );
-			unset( $this->mDefaultQuery['limit'] );
-		}
-		return $this->mDefaultQuery;
-	}
-	
-	/* End methods copied from Pager class */
-	
 }
