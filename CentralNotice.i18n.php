@@ -846,6 +846,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-no-templates-translate' => "N'eus patrom ebet da dreiñ",
 	'centralnotice-number-uses' => 'Implijoù',
 	'centralnotice-edit-template' => 'Kemmañ ar patrom',
+	'centralnotice-edit-template-summary' => "Da grouiñ ur gemennadenn da vezañ lec'helaet, enklozañ un neudennad gant ur varrennig-stagañ etre teir briataenn, da skouer {{{jimbo-quote}}}.",
 	'centralnotice-message' => 'Kemennadenn',
 	'centralnotice-message-not-set' => "N'eo ket bet savet ar gemennadenn",
 	'centralnotice-clone' => 'Eilañ',
@@ -6567,6 +6568,7 @@ Magdagdag ng isa sa ibaba',
 /** Turkish (Türkçe)
  * @author Joseph
  * @author Karduelis
+ * @author Srhat
  */
 $messages['tr'] = array(
 	'centralnotice' => 'Merkezi uyarı yöneticisi',
@@ -6643,6 +6645,7 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-no-templates-translate' => 'Çevirileri değiştirmek için hiç şablon yok',
 	'centralnotice-number-uses' => 'Kullanımlar',
 	'centralnotice-edit-template' => 'Şablonu değiştir',
+	'centralnotice-edit-template-summary' => 'Yerelleştirilebilir bir mesaj oluşturmak için, tireli bir metni üç köşeli parantez arasına yazın, örnek {{{jimbo-quote}}}',
 	'centralnotice-message' => 'Mesaj',
 	'centralnotice-message-not-set' => 'Mesaj ayarlanmadı',
 	'centralnotice-clone' => 'Klonla',
