@@ -1129,6 +1129,7 @@ Níže můžete vytvořit nové.',
 
 /** Welsh (Cymraeg)
  * @author Lloffiwr
+ * @author Xxglennxx
  */
 $messages['cy'] = array(
 	'centralnotice' => "Gweinyddu'r hysbysiad canolog",
@@ -1162,8 +1163,13 @@ Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.
 	'centralnotice-notices' => 'Hysbysiadau',
 	'centralnotice-notice-exists' => "Mae'r hysbysiad eisoes ar gael.
 Ni chaiff ei ychwanegu",
+	'centralnotice-template-exists' => "Mae'r faner yn bodoli'n barod.
+Ddim yn ychwanegu",
 	'centralnotice-notice-doesnt-exist' => "Nid yw'r hysbysiad ar gael.
 Dim i gael gwared ohono",
+	'centralnotice-template-still-bound' => "Mae'r faner yn perthyn i ymgyrch o hyd.
+Ddim yn tynnu.",
+	'centralnotice-template-body' => 'Corff y faner:',
 	'centralnotice-day' => 'Dydd',
 	'centralnotice-year' => 'Blwyddyn',
 	'centralnotice-month' => 'Mis',
@@ -1173,6 +1179,8 @@ Dim i gael gwared ohono",
 	'centralnotice-project-name' => "Enw'r prosiect",
 	'centralnotice-start-date' => 'Dyddiad cychwyn',
 	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
+	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner. 
+Ychwanegu rhai!',
 	'centralnotice-start-hour' => 'Amser dechrau',
 	'centralnotice-weights' => 'Pwysau',
 	'centralnotice-notice-is-locked' => "Mae'r hysbysiad wedi ei gloi.
