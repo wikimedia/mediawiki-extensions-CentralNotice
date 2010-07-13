@@ -100,6 +100,7 @@ Add one below.',
 /** Message documentation (Message documentation)
  * @author Bennylin
  * @author Darth Kule
+ * @author EugeneZelenko
  * @author Fryed-peach
  * @author Jon Harald Søby
  * @author Lloffiwr
@@ -121,6 +122,7 @@ $messages['qqq'] = array(
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
 	'centralnotice-template-exists' => 'Error message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
+	'centralnotice-day' => '{{Identical|Day}}',
 	'centralnotice-start-date' => 'Used in Special:CentralNotice.
 
 {{Identical|Start date}}',
