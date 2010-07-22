@@ -1897,7 +1897,7 @@ $messages['eu'] = array(
 	'centralnotice-end-date' => 'Bukaera data',
 	'centralnotice-enabled' => 'Gaitua',
 	'centralnotice-modify' => 'Bidali',
-	'centralnotice-preview' => 'Aurreikusi',
+	'centralnotice-preview' => 'Aurrikusi',
 	'centralnotice-add-new' => 'Mezu orokor berri bat gehitu',
 	'centralnotice-remove' => 'Ezabatu',
 	'centralnotice-translate-heading' => '$1(r)entzat itzulpena',
@@ -1910,7 +1910,7 @@ $messages['eu'] = array(
 	'centralnotice-translations' => 'Itzulpenak',
 	'centralnotice-translate-to' => 'Hona itzuli',
 	'centralnotice-translate' => 'Itzuli',
-	'centralnotice-english' => 'Ingelera',
+	'centralnotice-english' => 'Ingelesa',
 	'centralnotice-template-name' => 'Txantiloi izena',
 	'centralnotice-templates' => 'Txantiloiak',
 	'centralnotice-weight' => 'Pisua',
@@ -7130,6 +7130,7 @@ $messages['zh-hans'] = array(
 
 /** Traditional Chinese (‪中文(繁體)‬)
  * @author Alex S.H. Lin
+ * @author Frankou
  * @author Horacewai2
  * @author Liangent
  * @author Wrightbus
@@ -7209,7 +7210,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-no-templates-translate' => '沒有任何可以編輯翻譯的模板',
 	'centralnotice-number-uses' => '使用',
 	'centralnotice-edit-template' => '編輯模板',
-	'centralnotice-edit-template-summary' => '要創建一個可本地化的消息，使用三個{，例如{{{jimbo-quote}}}。',
+	'centralnotice-edit-template-summary' => '要創建一個可本地化的消息，使用三個大括號，例如{{{jimbo-quote}}}。',
 	'centralnotice-message' => '消息',
 	'centralnotice-message-not-set' => '沒有設置消息',
 	'centralnotice-clone' => '建立副本',
