@@ -351,8 +351,7 @@ class CentralNotice extends SpecialPage {
 	 */
 
 	function listNotices() {
-		global $wgOut, $wgRequest, $wgScript, $wgUser;
-		global $wgNoticeProject, $wgUserLang;
+		global $wgOut, $wgUser, $wgUserLang;
 
 		// Get connection
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1173,8 +1172,6 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function removeTemplateFor( $noticeName, $templateName ) {
-		global $wgOut;
-
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 		$noticeId = $this->getNoticeId( $noticeName );

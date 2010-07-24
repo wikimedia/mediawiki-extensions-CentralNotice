@@ -226,7 +226,7 @@ function pickTemplate(templates, weights) {
 	}
 
 	private function projectName() {
-		global $wgConf, $IP;
+		global $wgConf;
 
 		$wgConf->loadFullData();
 

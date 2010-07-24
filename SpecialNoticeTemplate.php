@@ -155,7 +155,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	function showAdd() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		// Build HTML
 		$htmlOut = Xml::openElement( 'form', array( 'method' => 'post' ) );
@@ -427,8 +427,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	private function updateMessage( $text, $translation, $lang, $token = false ) {
-		global $wgUser;
-
 		$title = Title::newFromText(
 			( $lang == 'en' ) ? "Centralnotice-{$text}" : "Centralnotice-{$text}/{$lang}",
 			NS_MEDIAWIKI
@@ -438,8 +436,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 	
 	private function getTemplateId ( $templateName ) {
-		global $wgOut, $egCentralNoticeTables;
-
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_id',
 			array( 'tmp_name' => $templateName ),
@@ -454,7 +450,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	private function removeTemplate ( $name ) {
-		global $wgOut, $egCentralNoticeTables;
+		global $wgOut;
 
 		// FIXME: weak comparison
 		if ( $name == '' ) {
@@ -487,7 +483,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	private function addTemplate ( $name, $body ) {
-		global $wgOut, $egCentralNoticeTables;
+		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
 			$wgOut->addWikiMsg( 'centralnotice-null-string' );
@@ -530,7 +526,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	private function editTemplate ( $name, $body ) {
-		global $wgOut, $egCentralNoticeTables;
+		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
 			$wgOut->addWikiMsg( 'centralnotice-null-string' );
