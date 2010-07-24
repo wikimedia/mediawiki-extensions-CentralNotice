@@ -23,9 +23,6 @@ class CentralNotice extends SpecialPage {
 		// Begin output
 		$this->setHeaders();
 
-		// Get current skin
-		$sk = $wgUser->getSkin();
-
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
 
