@@ -899,7 +899,6 @@ class CentralNotice extends SpecialPage {
 			$htmlOut  = Xml::fieldset( wfMsg( "centralnotice-available-templates" ) );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 
-
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				 wfMsg ( "centralnotice-add" ) );
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
@@ -1173,7 +1172,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->begin();
 		$noticeId = $this->getNoticeId( $noticeName );
 		$templateId = $this->getTemplateId( $templateName );
-		$res = $dbw->delete( 'cn_assignments', array ( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
+		$dbw->delete( 'cn_assignments', array ( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
 		$dbw->commit();
 	}
 
@@ -1235,7 +1234,7 @@ class CentralNotice extends SpecialPage {
 		 $dbw->begin();
 		 $noticeId = $this->getNoticeId( $noticeName );
 		 $templateId = $this->getTemplateId( $templateName );
-		 $res = $dbw->update( 'cn_assignments',
+		 $dbw->update( 'cn_assignments',
 		 	array ( 'tmp_weight' => $weight ),
 		 	array(
 				'tmp_id' => $templateId,

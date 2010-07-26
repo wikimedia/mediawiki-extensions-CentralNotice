@@ -11,7 +11,7 @@ class CentralNoticeDB {
 
 	function CentralNoticeDB() {
 		// Register special page
-		parent::SpecialPage( 'CentralNotice' );
+		SpecialPage::SpecialPage( 'CentralNotice' );
 
 		// Internationalization
 		wfLoadExtensionMessages( 'CentralNotice' );
