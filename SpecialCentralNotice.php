@@ -6,7 +6,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class CentralNotice extends SpecialPage {
-
+	var $centralNoticeDB;
 	/* Functions */
 
 	function CentralNotice() {
@@ -15,6 +15,8 @@ class CentralNotice extends SpecialPage {
 
 		// Internationalization
 		wfLoadExtensionMessages( 'CentralNotice' );
+
+		$this->centralNoticeDB = new CentralNoticeDB();
 	}
 
 	function execute( $sub ) {
@@ -95,7 +97,7 @@ class CentralNotice extends SpecialPage {
 				// Set since this is a single display
 				if ( $method == 'listNoticeDetail' ) {
 					$notice = $wgRequest->getVal ( 'notice' );
-					CentralNoticeDB::updatePreferred( $notice, '1' );
+					$this->centralNoticeDB->updatePreferred( $notice, '1' );
 				}
 				else {
 					// Build list of notices to unset 
@@ -103,10 +105,10 @@ class CentralNotice extends SpecialPage {
 
 					// Set flag accordingly
 					foreach ( $preferredNotices as $notice ) {
-						CentralNoticeDB::updatePreferred( $notice, '1' );
+						$this->centralNoticeDB->updatePreferred( $notice, '1' );
 					}
 					foreach ( $unsetNotices as $notice ) {
-						CentralNoticeDB::updatePreferred( $notice, '0' );
+						$this->centralNoticeDB->updatePreferred( $notice, '0' );
 					}
 				}
 			}
@@ -158,11 +160,11 @@ class CentralNotice extends SpecialPage {
 			if ( !isset( $preferredNotices ) && $method !== 'addNotice' ) {
 				if ( $method == 'listNoticeDetail' ) {
 					$notice = $wgRequest->getVal ( 'notice' );
-						CentralNoticeDB::updatePreferred( $notice, 0 );
+						$this->centralNoticeDB->updatePreferred( $notice, 0 );
 				} else {
 					$allNotices = $this->getNoticesName();
 					foreach ( $allNotices as $notice ) {
-						CentralNoticeDB::updatePreferred( $notice, '0' );
+						$this->centralNoticeDB->updatePreferred( $notice, '0' );
 					}
 				}
 			}

@@ -3,9 +3,12 @@
 class SpecialNoticeText extends NoticePage {
 	var $project = 'wikipedia';
 	var $language = 'en';
+	var $centralNoticeDB;
 
 	function __construct() {
 		parent::__construct( "NoticeText" );
+
+		$this->centralNoticeDB = new CentralNoticeDB();
 	}
 
 	/**
@@ -28,14 +31,14 @@ class SpecialNoticeText extends NoticePage {
 
 		if ( $this->language == 'en' && $this->project != null ) {
 			// See if we have any preferred notices for all of en
-			$notices = CentralNoticeDB::getNotices( '', 'en', '', '', 1 );
+			$notices = $this->centralNoticeDB->getNotices( '', 'en', '', '', 1 );
 
 			if ( $notices ) {
 				// Pull out values
 				foreach ( $notices as $notice => $val ) {
 					// Either match against ALL project or a specific project
 					if ( $val['project'] == '' || $val['project'] == $this->project ) {
-						$templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
+						$templates = $this->centralNoticeDB->selectTemplatesAssigned( $notice );
 						break;
 					}
 				}
@@ -43,10 +46,10 @@ class SpecialNoticeText extends NoticePage {
 		}
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
-			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, '', '', 1 );
+			$notices = $this->centralNoticeDB->getNotices( 'wikipedia', $this->language, '', '', 1 );
 			if ( $notices && is_array( $notices ) ) {
 				foreach ( $notices as $notice => $val ) {
-					$templates = CentralNoticeDB::selectTemplatesAssigned( $notice );
+					$templates = $this->centralNoticeDB->selectTemplatesAssigned( $notice );
 					break;
 				}
 			}
