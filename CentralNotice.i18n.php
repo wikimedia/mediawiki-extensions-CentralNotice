@@ -3077,8 +3077,16 @@ Tambahkan di bawah ini.',
 	'centralnotice-preferred' => 'Preferensi',
 );
 
-/** Igbo (Igbo) */
+/** Igbo (Igbo)
+ * @author Ukabia
+ */
 $messages['ig'] = array(
+	'centralnotice-remove' => 'Wéfu',
+	'centralnotice-add' => 'Tinyé',
+	'centralnotice-english' => 'Inglish',
+	'centralnotice-day' => 'Úbọchi',
+	'centralnotice-year' => 'Afọr',
+	'centralnotice-month' => 'Önwa',
 	'centralnotice-message' => 'Ozi',
 );
 
@@ -6680,6 +6688,7 @@ $messages['udm'] = array(
 /** Ukrainian (Українська)
  * @author Ahonc
  * @author Aleksandrit
+ * @author Ytsukeng Fyvaprol
  */
 $messages['uk'] = array(
 	'centralnotice' => 'Управління централізованими сповіщеннями',
@@ -6756,6 +6765,7 @@ $messages['uk'] = array(
 	'centralnotice-no-templates-translate' => 'Не має ні одного шаблону для редагування перекладу',
 	'centralnotice-number-uses' => 'Використовуються',
 	'centralnotice-edit-template' => 'Редагувати шаблон',
+	'centralnotice-edit-template-summary' => 'Щоб створити повідомлення, яке можна локалізувати, укладіть рядок з дефісом в три фігурні дужки, наприклад {{{цитата-джимбо}}}.',
 	'centralnotice-message' => 'Повідомлення',
 	'centralnotice-message-not-set' => 'Повідомлення не встановлено',
 	'centralnotice-clone' => 'Клонування',
