@@ -38,11 +38,11 @@ It can also be used to add or remove old notices.',
 	'centralnotice-locked' => 'Locked',
 	'centralnotice-notices' => 'Campaigns',
 	'centralnotice-notice-exists' => 'Campaign already exists.
-Not adding',
+Not adding.',
 	'centralnotice-template-exists' => 'Banner already exists.
-Not adding',
+Not adding.',
 	'centralnotice-notice-doesnt-exist' => 'Campaign does not exist.
-Nothing to remove',
+Nothing to remove.',
 	'centralnotice-template-still-bound' => 'Banner is still bound to a campaign.
 Not removing.',
 	'centralnotice-template-body' => 'Banner body:',
@@ -62,24 +62,25 @@ Add some!',
 Add some!',
 	'centralnotice-available-templates' => 'Available banners',
 	'centralnotice-template-already-exists' => 'Banner is already tied to campaign.
-Not adding',
+Not adding.',
 	'centralnotice-preview-template' => 'Preview banner',
 	'centralnotice-start-hour' => 'Start time',
 	'centralnotice-change-lang' => 'Change translation language',
 	'centralnotice-weights' => 'Weights',
 	'centralnotice-notice-is-locked' => 'Campaign is locked.
-Not removing',
+Not removing.',
 	'centralnotice-overlap' => 'Campaign overlaps within the time of another campaign.
-Not adding',
+Not adding.',
 	'centralnotice-invalid-date-range' => 'Invalid date range.
-Not updating',
+Not updating.',
 	'centralnotice-null-string' => 'Cannot add a null string.
-Not adding',
+Not adding.',
 	'centralnotice-confirm-delete' => 'Are you sure you want to delete this item?
 This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No campaigns exist.
 Add one below.',
-	'centralnotice-no-templates-translate' => 'There are not any banners to edit translations for',
+	'centralnotice-no-notice' => 'Campaign not found.',
+	'centralnotice-no-templates-translate' => 'There are not any banners to edit translations for.',
 	'centralnotice-number-uses' => 'Uses',
 	'centralnotice-edit-template' => 'Edit banner',
 	'centralnotice-edit-template-summary' => 'To create a localizable message, enclose a hyphenated string in three curly brackets, e.g. {{{jimbo-quote}}}.',
