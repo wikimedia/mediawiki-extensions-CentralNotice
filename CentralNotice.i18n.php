@@ -569,7 +569,8 @@ $messages['be-tarask'] = array(
 Новае не было дададзенае',
 	'centralnotice-template-exists' => 'Шаблён ужо існуе.
 Новы шаблён ня быў дададзены',
-	'centralnotice-notice-doesnt-exist' => 'Паведамленьне не існуе.
+	'centralnotice-notice-doesnt-exist' => 'Кампанія не існуе.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Кампанія не існуе.
 Няма чаго выдаляць',
 	'centralnotice-template-still-bound' => 'Шаблён па-ранейшаму зьвязаны з паведамленьнем.
 Не выдаляецца.',
@@ -1071,6 +1072,7 @@ Také zde můžete přidávat nová či odstraňovat stará.',
 	'centralnotice-manage' => 'Spravovat centralizovaná oznámení',
 	'centralnotice-add' => 'Přidat',
 	'centralnotice-add-notice' => 'Přidat oznámení',
+	'centralnotice-edit-notice' => 'Upravit kampaň',
 	'centralnotice-add-template' => 'Přidat šablonu',
 	'centralnotice-show-notices' => 'Zobrazit oznámení',
 	'centralnotice-list-templates' => 'Seznam šablon',
@@ -1085,7 +1087,9 @@ Také zde můžete přidávat nová či odstraňovat stará.',
 	'centralnotice-notices' => 'Oznámení',
 	'centralnotice-notice-exists' => 'Oznámení už existuje. Nepřidáno.',
 	'centralnotice-template-exists' => 'Šablona už existuje. Nepřidána.',
-	'centralnotice-notice-doesnt-exist' => 'Oznámení neexistuje. Není co odstranit.',
+	'centralnotice-notice-doesnt-exist' => 'Kampaň neexistuje.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Kampaň neexistuje.
+Není co odstranit.',
 	'centralnotice-template-still-bound' => 'Šablona je stále navázána na oznámení. Nebude odstraněna.',
 	'centralnotice-template-body' => 'Tělo šablony:',
 	'centralnotice-day' => 'Den',
@@ -1227,6 +1231,7 @@ $messages['da'] = array(
 );
 
 /** German (Deutsch)
+ * @author Kghbln
  * @author Metalhead64
  * @author Purodha
  * @author Raimond Spekking
@@ -1251,6 +1256,7 @@ Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werde
 	'centralnotice-manage' => 'Zentrale Meldungen verwalten',
 	'centralnotice-add' => 'Hinzufügen',
 	'centralnotice-add-notice' => 'Hinzufügen einer Meldung',
+	'centralnotice-edit-notice' => 'Kampagne bearbeiten',
 	'centralnotice-add-template' => 'Hinzufügen einer Vorlage',
 	'centralnotice-show-notices' => 'Zeige Meldungen',
 	'centralnotice-list-templates' => 'Vorlagen auflisten',
@@ -1267,8 +1273,9 @@ Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werde
 Nicht hinzugefügt.',
 	'centralnotice-template-exists' => 'Vorlage ist bereits vorhanden.
 Nicht hinzugefügt.',
-	'centralnotice-notice-doesnt-exist' => 'Meldung ist nicht vorhanden.
-Entfernung nicht möglich.',
+	'centralnotice-notice-doesnt-exist' => 'Kampagne ist nicht vorhanden.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Die Kampagne ist nicht vorhanden. 
+Entfernen nicht möglich.',
 	'centralnotice-template-still-bound' => 'Vorlage ist noch an eine Meldung gebunden.
 Entfernung nicht möglich.',
 	'centralnotice-template-body' => 'Vorlagentext:',
@@ -2131,6 +2138,7 @@ Lisää alapuolella sellainen',
  * @author Jean-Frédéric
  * @author McDutchie
  * @author Meithal
+ * @author Peter17
  * @author PieRRoMaN
  * @author Sherbrooke
  * @author Urhixidur
@@ -2154,6 +2162,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-manage' => 'Gérer les avis centraux',
 	'centralnotice-add' => 'Ajouter',
 	'centralnotice-add-notice' => 'Ajouter un avis',
+	'centralnotice-edit-notice' => 'Modifier la campagne',
 	'centralnotice-add-template' => 'Ajouter un modèle',
 	'centralnotice-show-notices' => 'Afficher les avis',
 	'centralnotice-list-templates' => 'Lister les modèles',
@@ -2170,8 +2179,9 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 Il n’a pas été ajouté.',
 	'centralnotice-template-exists' => 'Le modèle existe déjà.
 Il n’a pas été ajouté.',
-	'centralnotice-notice-doesnt-exist' => 'L’avis n’existe pas.
-Il n’y a rien à supprimer.',
+	'centralnotice-notice-doesnt-exist' => 'La campagne n’existe pas.',
+	'centralnotice-remove-notice-doesnt-exist' => 'La campagne n’existe pas.
+Rien à supprimer.',
 	'centralnotice-template-still-bound' => 'Le modèle est encore lié à un avis.
 Il n’a pas été supprimé.',
 	'centralnotice-template-body' => 'Corps du modèle :',
@@ -2734,6 +2744,7 @@ Hodźi so tež za přidaće abo wotstronjenje starych powěsćow wužiwać.',
 	'centralnotice-manage' => 'Centralne powěsće zrjadować',
 	'centralnotice-add' => 'Přidać',
 	'centralnotice-add-notice' => 'Powěsć přidać',
+	'centralnotice-edit-notice' => 'Kampanju wobdźěłać',
 	'centralnotice-add-template' => 'Předłohu přidać',
 	'centralnotice-show-notices' => 'Zdźělenki pokazać',
 	'centralnotice-list-templates' => 'Předłohi nalistować',
@@ -2750,7 +2761,8 @@ Hodźi so tež za přidaće abo wotstronjenje starych powěsćow wužiwać.',
 Njepřidawa so.',
 	'centralnotice-template-exists' => 'Předłoha hižo eksistuje.
 Njepřidawa so.',
-	'centralnotice-notice-doesnt-exist' => 'Powěsć njeeksistuje.
+	'centralnotice-notice-doesnt-exist' => 'Kampanja njeeksistuje.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Kampanja njeeksistuje.
 Njewotstroni so ničo.',
 	'centralnotice-template-still-bound' => 'Předłoha je hišće na powěsć zwjazana.
 Njewotstronja so.',
@@ -3972,6 +3984,7 @@ $messages['mk'] = array(
 	'centralnotice-manage' => 'Раководење со централното известување',
 	'centralnotice-add' => 'Додај',
 	'centralnotice-add-notice' => 'Додај известување',
+	'centralnotice-edit-notice' => 'Уреди кампања',
 	'centralnotice-add-template' => 'Додај шаблон',
 	'centralnotice-show-notices' => 'Прикажи известувања',
 	'centralnotice-list-templates' => 'Наведи шаблони',
@@ -3988,8 +4001,9 @@ $messages['mk'] = array(
 Не е додадено',
 	'centralnotice-template-exists' => 'Шаблонот веќе постои.
 Не е додаден',
-	'centralnotice-notice-doesnt-exist' => 'Известувањето не постои.
-Нема ништо за бришење',
+	'centralnotice-notice-doesnt-exist' => 'Кампањата не постои.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Кампањата не постои.
+Нема што да се отстранува.',
 	'centralnotice-template-still-bound' => 'Шаблонот сè уште е врзан за известување.
 Нема да биде отстранет.',
 	'centralnotice-template-body' => 'Тело на шаблонот:',
@@ -4411,6 +4425,7 @@ De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwij
 	'centralnotice-manage' => 'Centrale sitenotice beheren',
 	'centralnotice-add' => 'Toevoegen',
 	'centralnotice-add-notice' => 'Sitenotice toevoegen',
+	'centralnotice-edit-notice' => 'Campagne bewerken',
 	'centralnotice-add-template' => 'Sjabloon toevoegen',
 	'centralnotice-show-notices' => 'Sitenotices weergeven',
 	'centralnotice-list-templates' => 'Sjablonen weergeven',
@@ -4427,7 +4442,8 @@ De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwij
 Deze wordt niet toegevoegd.',
 	'centralnotice-template-exists' => 'Het sjabloon bestaat al.
 Dit wordt niet toegevoegd.',
-	'centralnotice-notice-doesnt-exist' => 'De sitenotice bestaat niet.
+	'centralnotice-notice-doesnt-exist' => 'De campagne bestaat niet.',
+	'centralnotice-remove-notice-doesnt-exist' => 'De campagne bestaat niet.
 Er is niets te verwijderen',
 	'centralnotice-template-still-bound' => 'Het sjabloon is nog gekoppeld aan een sitenotice.
 Het wordt niet verwijderd.',
@@ -4447,23 +4463,23 @@ Het wordt niet verwijderd.',
 Die moet u toevoegen.',
 	'centralnotice-available-templates' => 'Beschikbare sjablonen',
 	'centralnotice-template-already-exists' => 'Het sjabloon is al gekoppeld aan een campagne.
-Het wordt niet toegevoegd',
+Het wordt niet toegevoegd.',
 	'centralnotice-preview-template' => 'Voorvertoning sjabloon',
 	'centralnotice-start-hour' => 'Starttijd',
 	'centralnotice-change-lang' => 'Te vertalen taal wijzigen',
 	'centralnotice-weights' => 'Gewichten',
 	'centralnotice-notice-is-locked' => 'De sitenotice is afgesloten.
-Deze wordt niet verwijderd',
+Deze wordt niet verwijderd.',
 	'centralnotice-overlap' => 'De sitenotice overlapt met een andere sitenotice.
-Deze wordt niet toegevoegd',
+Deze wordt niet toegevoegd.',
 	'centralnotice-invalid-date-range' => 'Ongeldige datumreeks.
-Er wordt niet bijgewerkt',
+Er wordt niet bijgewerkt.',
 	'centralnotice-null-string' => 'U kunt geen leeg tekstveld toevoegen.
 Er wordt niet toegevoegd.',
 	'centralnotice-confirm-delete' => 'Weet u zeker dat u dit item wilt verwijderen?
 Deze handeling is niet terug te draaien.',
 	'centralnotice-no-notices-exist' => 'Er zijn geen sitenotices.
-U kunt er hieronder een toevoegen',
+U kunt er hieronder een toevoegen.',
 	'centralnotice-no-templates-translate' => 'Er zijn geen sjablonen waarvoor vertalingen gemaakt kunnen worden',
 	'centralnotice-number-uses' => 'Keren gebruikt',
 	'centralnotice-edit-template' => 'Sjabloon bewerken',
@@ -4796,6 +4812,7 @@ Można także dodawać i usuwać komunikaty.',
 	'centralnotice-manage' => 'Zarządzaj wspólnymi komunikatami',
 	'centralnotice-add' => 'Dodaj',
 	'centralnotice-add-notice' => 'Dodaj komunikat',
+	'centralnotice-edit-notice' => 'Edycja kampanii',
 	'centralnotice-add-template' => 'Dodaj szablon',
 	'centralnotice-show-notices' => 'Pokaż komunikaty',
 	'centralnotice-list-templates' => 'Lista szablonów',
@@ -4810,7 +4827,9 @@ Można także dodawać i usuwać komunikaty.',
 	'centralnotice-notices' => 'Komunikaty',
 	'centralnotice-notice-exists' => 'Komunikat o podanej nazwie już istnieje. Nowy komunikat nie został dodany.',
 	'centralnotice-template-exists' => 'Szablon o podanej nazwie już istnieje. Nowy szablon nie został dodany.',
-	'centralnotice-notice-doesnt-exist' => 'Komunikat nie istnieje. Nie ma czego usunąć.',
+	'centralnotice-notice-doesnt-exist' => 'Kampania nie istnieje.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Kampania nie istnieje. 
+Usunięcie jest niemożliwe.',
 	'centralnotice-template-still-bound' => 'Szablon nie może zostać usunięty. Jest ciągle używany przez komunikat.',
 	'centralnotice-template-body' => 'Treść szablonu:',
 	'centralnotice-day' => 'Dzień',
@@ -4880,6 +4899,7 @@ A peul ëdcò esse dovrà për gionté o gavé notissie veje.',
 	'centralnotice-manage' => 'Gestiss neuva sentral',
 	'centralnotice-add' => 'Gionta',
 	'centralnotice-add-notice' => 'Gionta na neuva',
+	'centralnotice-edit-notice' => 'Modìfica campagna',
 	'centralnotice-add-template' => 'Gionta në stamp',
 	'centralnotice-show-notices' => 'Mostra neuva',
 	'centralnotice-list-templates' => 'Lista stamp',
@@ -4896,8 +4916,9 @@ A peul ëdcò esse dovrà për gionté o gavé notissie veje.',
 Pa giontà',
 	'centralnotice-template-exists' => 'Lë stamp a esist già.
 Pa giontà',
-	'centralnotice-notice-doesnt-exist' => 'La neuva a esist pa.
-A-i é gnente da gavé',
+	'centralnotice-notice-doesnt-exist' => 'La campagna a esist pa.',
+	'centralnotice-remove-notice-doesnt-exist' => 'La campagna a esist pa.
+Pa gnente da gavé.',
 	'centralnotice-template-still-bound' => "Lë stamp a l'é ancó gropà a na neuva.
 Pa gavà.",
 	'centralnotice-template-body' => 'Còrp ëd lë stamp:',
@@ -5047,8 +5068,8 @@ Adicione alguns!',
 	'centralnotice-no-templates-assigned' => 'Nenhum modelo atribuído a avisos.
 Adicione alguns!',
 	'centralnotice-available-templates' => 'Modelos disponíveis',
-	'centralnotice-template-already-exists' => 'O modelo já está ligado a uma campanha.
-Não adicionado',
+	'centralnotice-template-already-exists' => 'O modelo já está ligado a um aviso.
+Não adicionado.',
 	'centralnotice-preview-template' => 'Antever modelo',
 	'centralnotice-start-hour' => 'Hora início',
 	'centralnotice-change-lang' => 'Alterar língua de tradução',
@@ -5336,6 +5357,7 @@ $messages['roa-tara'] = array(
  * @author Aleksandrit
  * @author Ferrer
  * @author G0rn
+ * @author Rubin
  * @author Александр Сигачёв
  */
 $messages['ru'] = array(
@@ -5356,6 +5378,7 @@ $messages['ru'] = array(
 	'centralnotice-manage' => 'Управление централизованными уведомлениями',
 	'centralnotice-add' => 'Добавить',
 	'centralnotice-add-notice' => 'Добавить уведомление',
+	'centralnotice-edit-notice' => 'Изменить кампанию',
 	'centralnotice-add-template' => 'Добавить шаблон',
 	'centralnotice-show-notices' => 'Показать уведомления',
 	'centralnotice-list-templates' => 'Вывести список шаблонов',
@@ -5372,8 +5395,9 @@ $messages['ru'] = array(
 Не добавляется',
 	'centralnotice-template-exists' => 'Шаблон уже существует.
 Не добавляется',
-	'centralnotice-notice-doesnt-exist' => 'Уведомления не существует.
-Нечего удалять',
+	'centralnotice-notice-doesnt-exist' => 'Кампания не существует.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Кампания не существует.
+Нечего удалять.',
 	'centralnotice-template-still-bound' => 'Шаблон по-прежнему связан с уведомлением.
 Не удаляется.',
 	'centralnotice-template-body' => 'Тело шаблона:',
