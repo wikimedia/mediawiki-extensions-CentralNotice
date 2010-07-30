@@ -41,7 +41,8 @@ It can also be used to add or remove old notices.',
 Not adding.',
 	'centralnotice-template-exists' => 'Banner already exists.
 Not adding.',
-	'centralnotice-notice-doesnt-exist' => 'Campaign does not exist.
+	'centralnotice-notice-doesnt-exist' => 'Campaign does not exist.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Campaign does not exist.
 Nothing to remove.',
 	'centralnotice-template-still-bound' => 'Banner is still bound to a campaign.
 Not removing.',
@@ -79,7 +80,6 @@ Not adding.',
 This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No campaigns exist.
 Add one below.',
-	'centralnotice-no-notice' => 'Campaign not found.',
 	'centralnotice-no-templates-translate' => 'There are not any banners to edit translations for.',
 	'centralnotice-number-uses' => 'Uses',
 	'centralnotice-edit-template' => 'Edit banner',
