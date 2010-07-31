@@ -20,11 +20,14 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest, $wgScriptPath;
 
 		// Begin output
 		$this->setHeaders();
-
+		
+		// Add style file to the output headers
+		$wgOut->addExtensionStyle( "$wgScriptPath/extensions/CentralNotice/centralnotice.css" );
+		
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
 
@@ -33,7 +36,10 @@ class CentralNotice extends SpecialPage {
 
 		// Show header
 		$this->printHeader( $sub );
-
+		
+		// Begin Campaigns tab content
+		$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
+		
 		$method = $wgRequest->getVal( 'method' );
 		// Handle form sumissions
 		if ( $this->editable && $wgRequest->wasPosted() ) {
@@ -185,7 +191,8 @@ class CentralNotice extends SpecialPage {
 			$project_name      = $wgRequest->getVal( 'project_name' );
 			$project_languages = $wgRequest->getArray( 'project_languages' );
 			if ( $noticeName == '' ) {
-				$wgOut->addWikiMsg ( 'centralnotice-null-string' );
+				//$wgOut->addWikiMsg ( 'centralnotice-null-string' );
+				$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-null-string' ) ) );
 			}
 			else {
 				$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
@@ -205,6 +212,7 @@ class CentralNotice extends SpecialPage {
 			$templateWeight = $wgRequest->getVal ( 'weight' );
 			$this->addTemplateTo( $noticeName, $templateName, $weight );
 			$this->listNoticeDetail( $noticeName );
+			$wgOut->addHTML( Xml::closeElement( 'div' ) );
 			return;
 		}
 
@@ -219,11 +227,15 @@ class CentralNotice extends SpecialPage {
 		if ( $method == 'listNoticeDetail' ) {
 			$notice = $wgRequest->getVal ( 'notice' );
 			$this->listNoticeDetail( $notice );
+			$wgOut->addHTML( Xml::closeElement( 'div' ) );
 			return;
 		}
 
 		// Show list of notices
 		$this->listNotices();
+		
+		// End Campaigns tab content
+		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 
 	// Update the enabled/disabled state of notice
@@ -245,22 +257,18 @@ class CentralNotice extends SpecialPage {
 			'CentralNotice' => wfMsg( 'centralnotice-notices' ),
 			'NoticeTemplate' => wfMsg ( 'centralnotice-templates' )
 		);
-		$htmlOut = Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut = Xml::openElement( 'ul', array( 'id' => 'preftoc' ) );
 		foreach ( $pages as $page => $msg ) {
 			$title = SpecialPage::getTitleFor( $page );
-
-			$style = array( 'style' => 'border-bottom:solid 1px silver;' );
-			if ( $page == $wgTitle->getText() ) {
-				$style = array( 'style' => 'border-bottom:solid 1px black;' );
+			$attribs = array();
+			if ( $wgTitle == $title ) {
+				$attribs['class'] = 'selected';
 			}
-
-			$htmlOut .= Xml::tags( 'td', $style,
+			$htmlOut .= Xml::tags( 'li', $attribs,
 				$sk->makeLinkObj( $title, htmlspecialchars( $msg ) )
 			);
 		}
-		$htmlOut .= Xml::closeElement( 'tr' );
-		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Xml::closeElement( 'ul' );
 
 		$wgOut->addHTML( $htmlOut );
 	}
@@ -400,43 +408,50 @@ class CentralNotice extends SpecialPage {
 				array( 'ORDER BY' => 'not_id' )
 			);
 		}
-
-		// Build HTML
+		
+		// Begin building HTML
 		$htmlOut = '';
-		if ( $this->editable ) {
-			$htmlOut .= Xml::openElement( 'form',
-				array(
-					'method' => 'post',
-					'action' => SpecialPage::getTitleFor( 'CentralNotice' )->getFullUrl()
-				 )
-			);
-		}
-		$htmlOut .= Xml::fieldset( wfMsg( "centralnotice-manage" ) );
-		$htmlOut .= Xml::openElement( 'table',
-			array(
-				'cellpadding' => 9,
-				'width' => '100%'
-			)
-		);
-
-		// Headers
-		$headers = array(
-			wfMsgHtml( 'centralnotice-notice-name' ),
-			wfMsgHtml( 'centralnotice-project-name' ),
-			wfMsgHtml( 'centralnotice-project-lang' ),
-			wfMsgHtml( 'centralnotice-start-date' ),
-			wfMsgHtml( 'centralnotice-end-date' ),
-			wfMsgHtml( 'centralnotice-enabled' ),
-			wfMsgHtml( 'centralnotice-preferred' ),
-			wfMsgHtml( 'centralnotice-locked' ),
-		);
-		if ( $this->editable ) {
-			$headers[] = wfMsgHtml( 'centralnotice-remove' );
-		}
-		$htmlOut .= $this->tableRow( $headers, 'th' );
-
-		// Rows
+		
+		// Begin Manage campaigns fieldset
+		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		
+		// If there are notices to show...
 		if ( $dbr->numRows( $res ) >= 1 ) {
+			if ( $this->editable ) {
+				$htmlOut .= Xml::openElement( 'form',
+					array(
+						'method' => 'post',
+						'action' => SpecialPage::getTitleFor( 'CentralNotice' )->getFullUrl()
+					 )
+				);
+			}
+			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-manage' ) );
+			
+			$htmlOut .= Xml::openElement( 'table',
+				array(
+					'cellpadding' => 9,
+					'width' => '100%',
+					'class' => 'wikitable sortable'
+				)
+			);
+	
+			// Headers
+			$headers = array(
+				wfMsgHtml( 'centralnotice-notice-name' ),
+				wfMsgHtml( 'centralnotice-project-name' ),
+				wfMsgHtml( 'centralnotice-project-lang' ),
+				wfMsgHtml( 'centralnotice-start-date' ),
+				wfMsgHtml( 'centralnotice-end-date' ),
+				wfMsgHtml( 'centralnotice-enabled' ),
+				wfMsgHtml( 'centralnotice-preferred' ),
+				wfMsgHtml( 'centralnotice-locked' ),
+			);
+			if ( $this->editable ) {
+				$headers[] = wfMsgHtml( 'centralnotice-remove' );
+			}
+			$htmlOut .= $this->tableRow( $headers, 'th' );
+	
+			// Rows
 			while ( $row = $dbr->fetchObject( $res ) ) {
 				$fields = array();
 
@@ -504,32 +519,32 @@ class CentralNotice extends SpecialPage {
 
 				$htmlOut .= $this->tableRow( $fields );
 			}
+			$htmlOut .= Xml::closeElement( 'table' );
 			if ( $this->editable ) {
-				$htmlOut .= $this->tableRow(
+				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons' ) );
+				$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-modify' ),
 					array(
-						Xml::submitButton( wfMsg( 'centralnotice-modify' ),
-							array(
-								'id' => 'centralnoticesubmit',
-								'name' => 'centralnoticesubmit'
-							)
-						)
+						'id' => 'centralnoticesubmit',
+						'name' => 'centralnoticesubmit'
 					)
 				);
-			}
-
-			$htmlOut .= Xml::closeElement( 'table' );
-			$htmlOut .= Xml::closeElement( 'fieldset' );
-			if ( $this->editable ) {
+				$htmlOut .= Xml::closeElement( 'div' );
 				$htmlOut .= Xml::closeElement( 'form' );
 			}
 
-
 		// No notices to show
 		} else {
-			$htmlOut = wfMsg( 'centralnotice-no-notices-exist' );
+			$htmlOut .= wfMsg( 'centralnotice-no-notices-exist' );
 		}
+		
+		// End Manage Campaigns fieldset
+		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		if ( $this->editable ) {
+		
+			// Begin Add a campaign fieldset
+			$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		
 			// Notice Adding
 			$htmlOut .= Xml::openElement( 'form',
 				array(
@@ -537,8 +552,7 @@ class CentralNotice extends SpecialPage {
 					'action' =>  SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl()
 				)
 			);
-			$htmlOut .= Xml::openElement( 'fieldset' );
-			$htmlOut .= Xml::element( 'legend', null, wfMsg( 'centralnotice-add-notice' ) );
+			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-notice' ) );
 			$htmlOut .= Xml::hidden( 'title', $this->getTitle()->getPrefixedText() );
 			$htmlOut .= Xml::hidden( 'method', 'addNotice' );
 	
@@ -569,15 +583,19 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'yourlanguage' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->languageMultiSelector() );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			// Submit
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array( 'colspan' => '2' ), Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
-	
 			$htmlOut .= Xml::closeElement( 'table' );
 			$htmlOut .= Xml::hidden( 'change', 'weight' );
-			$htmlOut .= Xml::closeElement( 'fieldset' );
+			
+			// Submit button
+			$htmlOut .= Xml::tags( 'div', 
+				array( 'class' => 'cn-buttons' ), 
+				Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
+			);
+			
 			$htmlOut .= Xml::closeElement( 'form' );
+			
+			// End Add a campaign fieldset
+			$htmlOut .= Xml::closeElement( 'fieldset' );
 		}
 		
 		// Output HTML
@@ -620,6 +638,10 @@ class CentralNotice extends SpecialPage {
 		}
 
 		$htmlOut = '';
+		
+		// Begin Campaign detail fieldset
+		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		
 		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
@@ -638,41 +660,46 @@ class CentralNotice extends SpecialPage {
 		$output_assigned = $this->assignedTemplatesForm( $notice );
 		$output_templates = $this->addTemplatesForm( $notice );
 
-		// No notices returned
 		if ( $output_detail == '' ) {
-			$htmlOut .= wfMsg( 'centralnotice-no-notices-exist' );
+			// Notice not found
+			$htmlOut .= Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-notice-doesnt-exist' ) );
 		} else {
 			$htmlOut .= $output_detail;
-		}
-
-		// Catch for no templates so that we dont' double message
-		if ( $output_assigned == '' && $output_templates == '' ) {
-			$htmlOut .= wfMsg( 'centralnotice-no-templates' );
-			$htmlOut .= Xml::element( 'p' );
-			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
-			$sk = $wgUser->getSkin();
-			$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
-			$htmlOut .= Xml::element( 'p' );
-		} elseif ( $output_assigned == '' ) {
-			$htmlOut .= wfMsg( 'centralnotice-no-templates-assigned' );
-			if ( $this->editable ) {
-				$htmlOut .= $output_templates;
+		
+			// Catch for no templates so that we don't double message
+			if ( $output_assigned == '' && $output_templates == '' ) {
+				$htmlOut .= wfMsg( 'centralnotice-no-templates' );
+				$htmlOut .= Xml::element( 'p' );
+				$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
+				$sk = $wgUser->getSkin();
+				$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+				$htmlOut .= Xml::element( 'p' );
+			} elseif ( $output_assigned == '' ) {
+				$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-assigned-templates' ) );
+				$htmlOut .= wfMsg( 'centralnotice-no-templates-assigned' );
+				$htmlOut .= Xml::closeElement( 'fieldset' );
+				if ( $this->editable ) {
+					$htmlOut .= $output_templates;
+				}
+			} else {
+				$htmlOut .= $output_assigned;
+				if ( $this->editable ) {
+					$htmlOut .= $output_templates;
+				}
 			}
-		} else {
-			$htmlOut .= $output_assigned;
 			if ( $this->editable ) {
-				$htmlOut .= $output_templates;
+				// Submit button
+				$htmlOut .= Xml::tags( 'div', 
+					array( 'class' => 'cn-buttons' ), 
+					Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
+				);
 			}
 		}
 
 		if ( $this->editable ) {
-			$htmlOut .= Xml::tags( 'tr', null,
-				Xml::tags( 'td', array( 'collspan' => 2 ),
-					Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
-				)
-			);
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
+		$htmlOut .= Xml::closeElement( 'fieldset' );
 		$wgOut->addHTML( $htmlOut );
 	}
 
@@ -710,7 +737,7 @@ class CentralNotice extends SpecialPage {
 
 		if ( $row ) {
 			// Build Html
-			$htmlOut  = Xml::fieldset( $notice );
+			$htmlOut .= Xml::tags( 'h2', null, wfMsg( 'centralnotice-notice' ) . ': ' . $notice );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 
 			// Rows
@@ -762,7 +789,6 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			$htmlOut .= Xml::closeElement( 'table' );
-			$htmlOut .= Xml::closeElement( 'fieldset' ) ;
 			return $htmlOut;
 		} else {
 			return '';
@@ -844,7 +870,8 @@ class CentralNotice extends SpecialPage {
 					htmlspecialchars( $row->tmp_name ),
 					'template=' . urlencode( $row->tmp_name ) ) .
 				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-					$render->getHtmlNotice( $row->tmp_name )
+					$render->getHtmlNotice( $row->tmp_name ),
+					array( 'class' => 'cn-bannerpreview')
 				)
 			);
 
@@ -941,7 +968,8 @@ class CentralNotice extends SpecialPage {
 							htmlspecialchars( $row->tmp_name ),
 							'template=' . urlencode( $row->tmp_name ) ) .
 						Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-							$render->getHtmlNotice( $row->tmp_name )
+							$render->getHtmlNotice( $row->tmp_name ),
+							array( 'class' => 'cn-bannerpreview')
 						)
 					);
 
@@ -1033,7 +1061,7 @@ class CentralNotice extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addWikiMsg( 'centralnotice-notice-exists' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-notice-exists' ) ) );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -1082,12 +1110,12 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $noticeName )
 		);
 		if ( $dbr->numRows( $res ) < 1 ) {
-			 $wgOut->addWikiMsg( 'centralnotice-notice-doesnt-exist' );
+			 $wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-remove-notice-doesnt-exist' ) ) );
 			 return;
 		}
 		$row = $dbr->fetchObject( $res );
 		if ( $row->not_locked == '1' ) {
-			 $wgOut->addWikiMsg( 'centralnotice-notice-is-locked' );
+			 $wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-notice-is-locked' ) ) );
 			 return;
 		} else {
 			 $dbw = wfGetDB( DB_MASTER );
@@ -1116,7 +1144,7 @@ class CentralNotice extends SpecialPage {
 			)
 		);
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addWikiMsg( 'centralnotice-template-already-exists' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-template-already-exists' ) ) );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
@@ -1184,14 +1212,14 @@ class CentralNotice extends SpecialPage {
 
 		// Start / end dont line up
 		if ( $start > $end || $end < $start ) {
-			 $wgOut->addWikiMsg( 'centralnotice-invalid-date-range3' );
+			 $wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-invalid-date-range3' ) ) );
 			 return;
 		}
 
 		// Invalid notice name
 		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
 		if ( $dbr->numRows( $res ) < 1 ) {
-			$wgOut->addWikiMsg( 'centralnotice-doesnt-exist' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-notice-doesnt-exist' ) ) );
 		}
 
 		// Overlap over a date within the same project and language
@@ -1218,7 +1246,7 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $noticeName )
 		);
 		if ( $dbr->numRows( $res ) < 1 ) {
-			$wgOut->addWikiMsg( 'centralnotice-doesnt-exist' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-doesnt-exist' ) ) );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
@@ -1309,15 +1337,21 @@ function top10Languages() {
 	}
 }
 </script>";
-		$htmlOut .=
-			Xml::tags( 'select',
+		if ( $this->editable ) {
+			$htmlOut .= Xml::tags( 'select',
 				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'project_languages[]', 'name' => 'project_languages[]' ),
 				$options
-			).
-			Xml::tags( 'div',
+			);
+			$htmlOut .= Xml::tags( 'div',
 				array( 'style' => 'margin-top: 0.2em;' ),
 				'<img src="'.$scriptPath.'/arrow.png" style="vertical-align:baseline;"/>Select: <a href="#" onclick="selectLanguages(true);return false;">All</a>, <a href="#" onclick="selectLanguages(false);return false;">None</a>, <a href="#" onclick="top10Languages();return false;">Top 10 Languages</a>'
 			);
+		} else {
+			$htmlOut .= Xml::tags( 'select',
+				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'project_languages[]', 'name' => 'project_languages[]', 'disabled' => 'disabled' ),
+				$options
+			);
+		}
 		return $htmlOut;
 	}
 	
