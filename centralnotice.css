@@ -1,0 +1,56 @@
+/* Stylesheet for the CentralNotice extension.
+ *
+ * @file
+ * @ingroup Extensions
+ * @author Ryan Kaldari <rkaldari@wikimedia.org>
+ * @copyright © 2010 by Ryan Kaldari
+ * @licence GNU General Public Licence 2.0 or later
+ */
+
+#preferences fieldset.prefsection {
+	margin:0;
+	padding: 1em;
+	border-top: 1px solid;
+}
+#preferences fieldset.prefsection:first-child {
+	border-top: none;
+}
+#preferences fieldset.prefsection h2 {
+	border:none;
+}
+#preferences div.cn-error {
+	color:#AA0000;
+	margin:1em;
+}
+#preferences fieldset.prefsection div.cn-error {
+	margin:0;
+}
+#preferences div.cn-buttons {
+	padding:1em;
+}
+#preferences fieldset.prefsection div.cn-buttons {
+	padding:0;
+}
+#preferences div.cn-buttons input {
+	margin-right:0.25em;
+}
+#preferences input#clone {
+	margin-left:0.25em;
+}
+#preferences fieldset.prefsection fieldset.cn-bannerpreview {
+	border-style: solid;
+	border-width: 1px;
+}
+
+/* Vector-specific definitions */
+body.skin-vector #preferences fieldset.prefsection {
+	border-color:#CCCCCC;
+}
+body.skin-vector #preferences fieldset.prefsection fieldset.cn-bannerpreview {
+	border-color:#CCCCCC;
+}
+
+/* Monobook-specific definitions */
+body.skin-monobook #preferences fieldset.prefsection {
+	border-color:#AAAAAA;
+}
