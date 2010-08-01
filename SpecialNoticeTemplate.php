@@ -263,7 +263,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			}
-			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-translate-heading', $currentTemplate ) );
+			$htmlOut .= Xml::fieldset(
+				wfMsg( 'centralnotice-translate-heading', $currentTemplate ),
+				false,
+				array( 'id' => 'mw-centralnotice-translations-for' )
+			);
 			$htmlOut .= Xml::openElement( 'table',
 				array (
 					'cellpadding' => 9,
