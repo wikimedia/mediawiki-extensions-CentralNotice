@@ -152,9 +152,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				);
 			}
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-manage-templates' ) );
-			$htmlOut .= $pager->getNavigationBar() .
-				$pager->getBody() .
-				$pager->getNavigationBar();
+			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
+			$htmlOut .= $pager->getBody();
+			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
 		
 			if ( $this->editable ) {
 				$htmlOut .= Xml::closeElement( 'form' );
@@ -333,17 +333,17 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				);
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
+			$htmlOut .= Xml::closeElement( 'table' );
+			
 			if ( $this->editable ) {
 				$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
-				$htmlOut .= Xml::openElement( 'tr' );
-				$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
-					Xml::submitButton( wfMsg( 'centralnotice-modify' ), array( 'name' => 'update' ) )
+				$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+				$htmlOut .= Xml::tags( 'div', 
+					array( 'class' => 'cn-buttons' ), 
+					Xml::submitButton( wfMsg( 'centralnotice-modify' ), array( 'name' => 'update' ) ) 
 				);
-				$htmlOut .= Xml::closeElement( 'tr' );
 			}
-	
-			$htmlOut .= Xml::closeElement( 'table' );
-			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+			
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 	
 			if ( $this->editable ) {
@@ -395,13 +395,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::tags( 'tr', null,
 			Xml::tags( 'td', null, Xml::textarea( 'templateBody', $body, 60, 20, $readonly ) )
 		);
+		$htmlOut .= Xml::closeElement( 'table' );
 		if ( $this->editable ) {
-			$htmlOut .= Xml::tags( 'tr', null,
-				Xml::tags( 'td', null, Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) )
+			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+			$htmlOut .= Xml::tags( 'div', 
+				array( 'class' => 'cn-buttons' ), 
+				Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
 			);
 		}
-		$htmlOut .= Xml::closeElement( 'table' );
-		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
@@ -767,15 +768,14 @@ class NoticeTemplatePager extends ReverseChronologicalPager {
 	function getEndBody() {
 		global $wgUser;
 		$htmlOut = '';
+		$htmlOut .= Xml::closeElement( 'table' );
 		if ( $this->editable ) {
-			$htmlOut .= Xml::tags( 'tr', null,
-				Xml::tags( 'td', array( 'colspan' => 3 ),
-					Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
-				)
+			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+			$htmlOut .= Xml::tags( 'div', 
+				array( 'class' => 'cn-buttons' ), 
+				Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
 			);
 		}
-		$htmlOut .= Xml::closeElement( 'table' );
-		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		return $htmlOut;
 	}
 }

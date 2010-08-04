@@ -18,6 +18,9 @@
 #preferences fieldset.prefsection h2 {
 	border:none;
 }
+#preferences div.cn-pager {
+	margin:1em 0;
+}
 #preferences div.cn-error {
 	color:#AA0000;
 	margin:1em;
