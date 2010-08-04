@@ -113,7 +113,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$newTemplate =  $wgRequest->getVal( 'newTemplate' );
 				// We use the returned name in case any special characters had to be removed
 				$template = $this->cloneTemplate( $oldTemplate, $newTemplate );
-				$wgOut->redirect( SpecialPage::getTitleFor( 'NoticeTemplate', 'view' )->getLocalUrl( "template=$template" ) );
+				$wgOut->redirect( $this->getTitle( 'view' )->getLocalUrl( "template=$template" ) );
 				return;
 			}
 		}
@@ -163,7 +163,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		if ( $this->editable ) {
 			$htmlOut .= Xml::element( 'p' );
-			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
+			$newPage = $this->getTitle( 'add' );
 			$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 		}
 		
@@ -358,7 +358,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
 			list( $lsLabel, $lsSelect ) = Xml::languageSelector( $wpUserLang );
 	
-			$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
+			$newPage = $this->getTitle( 'view' );
 	
 			$htmlOut .= Xml::tags( 'tr', null,
 				Xml::tags( 'td', null, $lsLabel ) .
@@ -414,7 +414,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement ( 'form',
 				array(
 					'method' => 'post',
-					'action' => SpecialPage::getTitleFor( 'NoticeTemplate', 'clone' )->getLocalUrl()
+					'action' => $this->getTitle( 'clone' )->getLocalUrl()
 				)
 			);
 
@@ -458,7 +458,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		foreach ( $langs as $lang ) {
 			// Link and Preview all available translations
-			$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
+			$viewPage = $this->getTitle( 'view' );
 			$render = new SpecialNoticeText();
 			$render->project = 'wikipedia';
 			$render->language = $lang;

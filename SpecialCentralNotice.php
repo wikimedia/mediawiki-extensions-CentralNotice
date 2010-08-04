@@ -419,7 +419,7 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= Xml::openElement( 'form',
 					array(
 						'method' => 'post',
-						'action' => SpecialPage::getTitleFor( 'CentralNotice' )->getFullUrl()
+						'action' => $this->getTitle()->getFullUrl()
 					 )
 				);
 			}
@@ -548,7 +548,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' =>  SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl()
+					'action' =>  $this->getTitle()->getLocalUrl()
 				)
 			);
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-notice' ) );
@@ -634,7 +634,7 @@ class CentralNotice extends SpecialPage {
 					$this->addTemplateTo( $notice, $template, $weight[$template] );
 				}
 			}
-			$wgOut->redirect( SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
+			$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
 			return;
 		}
 
@@ -647,7 +647,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' => SpecialPage::getTitleFor( 'CentralNotice' )->getLocalUrl( "method=listNoticeDetail&notice=$notice" )
+					'action' => $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" )
 				)
 			);
 		}
@@ -671,7 +671,7 @@ class CentralNotice extends SpecialPage {
 			if ( $output_assigned == '' && $output_templates == '' ) {
 				$htmlOut .= wfMsg( 'centralnotice-no-templates' );
 				$htmlOut .= Xml::element( 'p' );
-				$newPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'add' );
+				$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
 				$sk = $wgUser->getSkin();
 				$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 				$htmlOut .= Xml::element( 'p' );
@@ -863,7 +863,7 @@ class CentralNotice extends SpecialPage {
 				$this->weightDropDown( "weight[$row->tmp_name]", $row->tmp_weight )
 			);
 
-			$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate/view' );
+			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
 			$render = new SpecialNoticeText();
 			$render->project = 'wikipedia';
 			global $wgRequest;
@@ -961,7 +961,7 @@ class CentralNotice extends SpecialPage {
 					);
 
 					// Render preview
-					$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate/view' );
+					$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
 					$render = new SpecialNoticeText();
 					$render->project = 'wikipedia';
 					global $wgRequest;
