@@ -54,13 +54,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 				// Handle translation message update
 				$update = $wgRequest->getArray( 'updateText' );
-				$token  = $wgRequest->getArray( 'token' );
 				if ( isset ( $update ) ) {
 					foreach ( $update as $lang => $messages ) {
 						foreach ( $messages as $text => $translation ) {
 							// If we actually have text
 							if ( $translation ) {
-								$this->updateMessage( $text, $translation, $lang, $token );
+								$this->updateMessage( $text, $translation, $lang );
 							}
 						}
 					}
@@ -216,9 +215,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$readonly = array( 'readonly' => 'readonly' );
 		}
 
-		// Get token
-		$token = $wgUser->editToken();
-
 		// Get user's language
 		$wpUserLang = $wgRequest->getVal( 'wpUserLanguage' ) ? $wgRequest->getVal( 'wpUserLanguage' ) : $wgContLanguageCode;
 
@@ -335,7 +331,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			if ( $this->editable ) {
-				$htmlOut .= Xml::hidden( 'token', $token );
 				$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
 				$htmlOut .= Xml::openElement( 'tr' );
 				$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
@@ -481,7 +476,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		return $wgOut->addHtml( $htmlOut );
 	}
 
-	private function updateMessage( $text, $translation, $lang, $token = false ) {
+	private function updateMessage( $text, $translation, $lang ) {
 		$title = Title::newFromText(
 			( $lang == 'en' ) ? "Centralnotice-{$text}" : "Centralnotice-{$text}/{$lang}",
 			NS_MEDIAWIKI
