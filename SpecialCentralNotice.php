@@ -18,7 +18,10 @@ class CentralNotice extends SpecialPage {
 
 		$this->centralNoticeDB = new CentralNoticeDB();
 	}
-
+	
+	/**
+	 * Handle different types of page requests
+	 */
 	function execute( $sub ) {
 		global $wgOut, $wgUser, $wgRequest, $wgScriptPath;
 
@@ -44,27 +47,27 @@ class CentralNotice extends SpecialPage {
 		// Handle form sumissions
 		 if ( $this->editable && $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			
-			// Handle removing
+			// Handle removing campaigns
 			$toRemove = $wgRequest->getArray( 'removeNotices' );
 			if ( isset( $toRemove ) ) {
-				// Remove notices in list
-				foreach ( $toRemove as $template ) {
-					$this->removeNotice( $template );
+				// Remove campaigns in list
+				foreach ( $toRemove as $notice ) {
+					$this->removeNotice( $notice );
 				}
 
-				// Show list of notices
+				// Show list of campaigns
 				$this->listNotices();
 				return;
 			}
 
-			// Handle locking/unlocking
+			// Handle locking/unlocking campaigns
 			$lockedNotices = $wgRequest->getArray( 'locked' );
 			if ( isset( $lockedNotices ) ) {
  				if ( $method == 'listNoticeDetail' ) {
 					$notice = $wgRequest->getVal ( 'notice' );
 					$this->updateLock( $notice, '1' );
 				} else {
-					// Build list of notices to lock
+					// Build list of campaigns to lock
 					$unlockedNotices = array_diff( $this->getNoticesName(), $lockedNotices );
 
 					// Set locked/unlocked flag accordingly
@@ -77,14 +80,14 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 
-			// Handle enabling/disabling
+			// Handle enabling/disabling campaigns
 			$enabledNotices = $wgRequest->getArray( 'enabled' );
 			if ( isset( $enabledNotices ) ) {
 				if ( $method == 'listNoticeDetail' ) {
 					$notice = $wgRequest->getVal ( 'notice' );
 					$this->updateEnabled( $notice, '1' );
 				} else {
-					// Build list of notices to disable
+					// Build list of campaigns to disable
 					$disabledNotices = array_diff( $this->getNoticesName(), $enabledNotices );
 
 					// Set enabled/disabled flag accordingly
@@ -97,7 +100,7 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 
-			// Handle setting preferred
+			// Handle setting preferred campaigns
 			$preferredNotices = $wgRequest->getArray( 'preferred' );
 			if ( isset( $preferredNotices ) ) {
 				// Set since this is a single display
@@ -106,7 +109,7 @@ class CentralNotice extends SpecialPage {
 					$this->centralNoticeDB->updatePreferred( $notice, '1' );
 				}
 				else {
-					// Build list of notices to unset 
+					// Build list of campaigns to unset 
 					$unsetNotices = array_diff( $this->getNoticesName(), $preferredNotices );
 
 					// Set flag accordingly
@@ -174,6 +177,7 @@ class CentralNotice extends SpecialPage {
 					}
 				}
 			}
+			
 			// Handle weight change
 			$updatedWeights = $wgRequest->getArray( 'weight' );
 			if ( isset( $updatedWeights ) ) {
@@ -183,7 +187,7 @@ class CentralNotice extends SpecialPage {
 			}
 		}
 
-		// Handle adding of notice
+		// Handle adding of campaign
 		$this->showAll = $wgRequest->getVal( 'showAll' );
 		if ( $this->editable && $method == 'addNotice' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName        = $wgRequest->getVal( 'noticeName' );
@@ -197,13 +201,13 @@ class CentralNotice extends SpecialPage {
 			}
 		}
 
-		// Handle removing of notice
+		// Handle removing of campaign
 		if ( $this->editable && $method == 'removeNotice' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName = $wgRequest->getVal ( 'noticeName' );
 			$this->removeNotice ( $noticeName );
 		}
 
-		// Handle adding of template
+		// Handle adding a banner to a campaign
 		if ( $this->editable && $method == 'addTemplateTo' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName = $wgRequest->getVal( 'noticeName' );
 			$templateName = $wgRequest->getVal( 'templateName' );
@@ -214,14 +218,14 @@ class CentralNotice extends SpecialPage {
 			return;
 		}
 
-		// Handle removing of template
+		// Handle removing a banner from a campaign
 		if ( $this->editable && $method == 'removeTemplateFor' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName = $wgRequest->getVal ( 'noticeName' );
 			$templateName = $wgRequest->getVal ( 'templateName ' );
 			$this->removeTemplateFor( $noticeName , $templateName );
 		}
 
-		// Handle showing detail
+		// Handle showing campaign detail
 		if ( $method == 'listNoticeDetail' ) {
 			$notice = $wgRequest->getVal ( 'notice' );
 			$this->listNoticeDetail( $notice );
@@ -229,14 +233,16 @@ class CentralNotice extends SpecialPage {
 			return;
 		}
 
-		// Show list of notices
+		// Show list of campaigns
 		$this->listNotices();
 		
 		// End Campaigns tab content
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 
-	// Update the enabled/disabled state of notice
+	/**
+	 * Update the enabled/disabled state of a campaign
+	 */
 	private function updateEnabled( $notice, $state ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -349,12 +355,9 @@ class CentralNotice extends SpecialPage {
 		return $out;
 	}
 
-	/*
-	 * listNotices
-	 *
+	/**
 	 * Print out all campaigns found in db
 	 */
-
 	function listNotices() {
 		global $wgOut, $wgUser, $wgUserLang;
 
@@ -367,14 +370,12 @@ class CentralNotice extends SpecialPage {
 			$readonly = array( 'disabled' => 'disabled' );
 		}
 
-		/*
-		 * This is temporarily hard-coded
-		 */
+		// This is temporarily hard-coded
 		$this->showAll = 'Y';
 
 		// If all languages should be shown
 		if ( isset( $this->showAll ) ) {
-			// Get notices for all languages
+			// Get campaigns for all languages
 			$res = $dbr->select( 'cn_notices',
 				array(
 					'not_name',
@@ -390,7 +391,7 @@ class CentralNotice extends SpecialPage {
 				array( 'ORDER BY' => 'not_id' )
 			);
 		} else {
-			// Get only notices for this language
+			// Get only campaigns for this language
 			$res = $dbr->select( 'cn_notices',
 				array(
 					'not_name',
@@ -413,7 +414,7 @@ class CentralNotice extends SpecialPage {
 		// Begin Manage campaigns fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		// If there are notices to show...
+		// If there are campaigns to show...
 		if ( $dbr->numRows( $res ) >= 1 ) {
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form',
@@ -425,6 +426,7 @@ class CentralNotice extends SpecialPage {
 			}
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-manage' ) );
 			
+			// Begin table of campaigns
 			$htmlOut .= Xml::openElement( 'table',
 				array(
 					'cellpadding' => 9,
@@ -433,7 +435,7 @@ class CentralNotice extends SpecialPage {
 				)
 			);
 	
-			// Headers
+			// Table headers
 			$headers = array(
 				wfMsgHtml( 'centralnotice-notice-name' ),
 				wfMsgHtml( 'centralnotice-project-name' ),
@@ -449,7 +451,7 @@ class CentralNotice extends SpecialPage {
 			}
 			$htmlOut .= $this->tableRow( $headers, 'th' );
 	
-			// Rows
+			// Table rows
 			while ( $row = $dbr->fetchObject( $res ) ) {
 				$fields = array();
 
@@ -517,9 +519,11 @@ class CentralNotice extends SpecialPage {
 
 				$htmlOut .= $this->tableRow( $fields );
 			}
+			// End table of campaigns
 			$htmlOut .= Xml::closeElement( 'table' );
-			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+			
 			if ( $this->editable ) {
+				$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons' ) );
 				$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-modify' ),
 					array(
@@ -531,7 +535,7 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= Xml::closeElement( 'form' );
 			}
 
-		// No notices to show
+		// No campaigns to show
 		} else {
 			$htmlOut .= wfMsg( 'centralnotice-no-notices-exist' );
 		}
@@ -544,7 +548,7 @@ class CentralNotice extends SpecialPage {
 			// Begin Add a campaign fieldset
 			$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-			// Notice Adding
+			// Form for adding a campaign
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
@@ -606,7 +610,7 @@ class CentralNotice extends SpecialPage {
 		global $wgOut, $wgRequest, $wgUser;
 		if ( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 		
-			// Handle removing of templates
+			// Handle removing of banners from the campaign
 			$templateToRemove = $wgRequest->getArray( 'removeTemplates' );
 			if ( isset( $templateToRemove ) ) {
 				foreach ( $templateToRemove as $template ) {
@@ -626,7 +630,7 @@ class CentralNotice extends SpecialPage {
 				$this->updateProjectLanguages( $notice, $projectLangs );
 			}
 
-			// Handle adding of templates
+			// Handle adding of banners to the campaign
 			$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
 			if ( isset( $templatesToAdd ) ) {
 				$weight = $wgRequest->getArray( 'weight' );
@@ -652,9 +656,7 @@ class CentralNotice extends SpecialPage {
 			);
 		}
 
-		/*
-		 * Temporarily hard coded
-		 */
+		// Temporarily hard coded
 		$this->showAll = 'Y';
 
 		$output_detail = $this->noticeDetailForm( $notice );
@@ -662,12 +664,12 @@ class CentralNotice extends SpecialPage {
 		$output_templates = $this->addTemplatesForm( $notice );
 
 		if ( $output_detail == '' ) {
-			// Notice not found
+			// Campaign not found
 			$htmlOut .= Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-notice-doesnt-exist' ) );
 		} else {
 			$htmlOut .= $output_detail;
 		
-			// Catch for no templates so that we don't double message
+			// Catch for no banners so that we don't double message
 			if ( $output_assigned == '' && $output_templates == '' ) {
 				$htmlOut .= wfMsg( 'centralnotice-no-templates' );
 				$htmlOut .= Xml::element( 'p' );
@@ -705,7 +707,10 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 		$wgOut->addHTML( $htmlOut );
 	}
-
+	
+	/**
+	 * Create form for managing campaign settings (start date, end date, languages, etc.)
+	 */
 	function noticeDetailForm( $notice ) {
 		if ( $this->editable ) {
 			$readonly = array();
@@ -798,7 +803,9 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-
+	/**
+	 * Create form for managing banners assigned to a campaign
+	 */
 	function assignedTemplatesForm( $notice ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
@@ -823,12 +830,12 @@ class CentralNotice extends SpecialPage {
 			array( 'ORDER BY' => 'cn_notices.not_id' )
 		);
 
-		// No templates found
+		// No banners found
 		if ( $dbr->numRows( $res ) < 1 ) {
 			return;
 		}
 
-		// Build Assigned Template HTML
+		// Build Assigned banners HTML
 		$htmlOut  = Xml::hidden( 'change', 'weight' );
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-assigned-templates' ) );
 		$htmlOut .= Xml::openElement( 'table',
@@ -846,7 +853,7 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '70%' ),
 			 wfMsg ( "centralnotice-templates" ) );
 
-		// Rows
+		// Table rows
 		while ( $row = $dbr->fetchObject( $res ) ) {
 
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -900,7 +907,9 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-
+	/**
+	 * Create form for adding banners to a campaign
+	 */
 	function addTemplatesForm( $notice ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
@@ -989,7 +998,9 @@ class CentralNotice extends SpecialPage {
 		return $htmlOut;
 	}
 
-
+	/**
+	 * Build a list of all the banners assigned to a campaign
+	 */
 	function selectTemplatesAssigned ( $notice ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
@@ -1017,8 +1028,8 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Lookup function for active notice under a given language and project
-	 * Returns an array of running template names with associated weights
+	 * Lookup function for active campaigns under a given language and project
+	 * @return An array of running campaign names with associated banner weights
 	 */
 	static function selectNoticeTemplates( $project, $language ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1213,13 +1224,13 @@ class CentralNotice extends SpecialPage {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		// Start / end dont line up
+		// Start/end don't line up
 		if ( $start > $end || $end < $start ) {
 			 $wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-invalid-date-range3' ) ) );
 			 return;
 		}
 
-		// Invalid notice name
+		// Invalid campaign name
 		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
 		if ( $dbr->numRows( $res ) < 1 ) {
 			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-notice-doesnt-exist' ) ) );
@@ -1306,10 +1317,7 @@ class CentralNotice extends SpecialPage {
 		global $wgContLanguageCode;
 		global $wgScriptPath;
 		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
-		/**
-		 * Make sure the site language is in the list; a custom language code
-		 * might not have a defined name...
-		 */
+		// Make sure the site language is in the list; a custom language code might not have a defined name...
 		$languages = Language::getLanguageNames( $customisedOnly );
 		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
 			$languages[$wgContLanguageCode] = $wgContLanguageCode;

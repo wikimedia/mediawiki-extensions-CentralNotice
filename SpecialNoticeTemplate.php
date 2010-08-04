@@ -15,8 +15,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		wfLoadExtensionMessages( 'CentralNotice' );
 	}
 	
-	/*
-	 * Handle different types of page requests.
+	/**
+	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
 		global $wgOut, $wgUser, $wgRequest, $wgScriptPath;
@@ -43,10 +43,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Handle forms
 			if ( $wgRequest->wasPosted() ) {
 
-				// Handle removing
+				// Handle removing banners
 				$toRemove = $wgRequest->getArray( 'removeTemplates' );
 				if ( isset( $toRemove ) ) {
-					// Remove templates in list
+					// Remove banners in list
 					foreach ( $toRemove as $template ) {
 						$this->removeTemplate( $template );
 					}
@@ -66,7 +66,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				}
 			}
 
-			// Handle adding
+			// Handle adding banner
 			// FIXME: getText()? weak comparison
 			if ( $wgRequest->getVal( 'wpMethod' ) == 'addTemplate' ) {
 				$this->addTemplate(
@@ -84,7 +84,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 		}
 
-		// Handle viewing of a template in all languages
+		// Handle viewing of a banner in all languages
 		if ( $sub == 'view' && $wgRequest->getVal( 'wpUserLanguage' ) == 'all' ) {
 			$template =  $wgRequest->getVal( 'template' );
 			$this->showViewAvailable( $template );
@@ -92,7 +92,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			return;
 		}
 
-		// Handle viewing a specific template
+		// Handle viewing a specific banner
 		if ( $sub == 'view' && $wgRequest->getText( 'template' ) != '' ) {
 			$this->showView();
 			$wgOut->addHTML( Xml::closeElement( 'div' ) );
@@ -107,7 +107,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				return;
 			}
 			
-			// Handle cloning a specific template
+			// Handle cloning a specific banner
 			if ( $sub == 'clone' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 				$oldTemplate = $wgRequest->getVal( 'oldTemplate' );
 				$newTemplate =  $wgRequest->getVal( 'newTemplate' );
@@ -118,15 +118,15 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 		}
 
-		// Show list by default
+		// Show list of banners by default
 		$this->showList();
 		
 		// End Banners tab content
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 	
-	/*
-	 * Show a list of available templates. Newer templates are shown first.
+	/**
+	 * Show a list of available banners. Newer banners are shown first.
 	 */
 	function showList() {
 		global $wgOut, $wgUser;
@@ -152,6 +152,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				);
 			}
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-manage-templates' ) );
+			
+			// Show paginated list of banners
 			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
 			$htmlOut .= $pager->getBody();
 			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
@@ -172,7 +174,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		$wgOut->addHTML( $htmlOut );
 	}
-
+	
+	/**
+	 * Show "Add a banner" interface
+	 */
 	function showAdd() {
 		global $wgOut, $wgUser;
 
@@ -207,7 +212,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Output HTML
 		$wgOut->addHTML( $htmlOut );
 	}
-
+	
+	/**
+	 * View or edit an individual banner
+	 */
 	private function showView() {
 		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode;
 
@@ -221,7 +229,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Get user's language
 		$wpUserLang = $wgRequest->getVal( 'wpUserLanguage' ) ? $wgRequest->getVal( 'wpUserLanguage' ) : $wgContLanguageCode;
 
-		// Get current template
+		// Get current banner
 		$currentTemplate = $wgRequest->getText( 'template' );
 		
 		// Begin building HTML
@@ -232,7 +240,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-template' ) . ': ' . $currentTemplate );
 
-		// Show preview
+		// Show preview of banner
 		$render = new SpecialNoticeText();
 		$render->project = 'wikipedia';
 		$render->language = $wgRequest->getVal( 'wpUserLanguage' );
@@ -246,16 +254,16 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			);
 		}
 
-		// Pull text and respect any inc: markup
+		// Pull banner text and respect any inc: markup
 		$bodyPage = Title::newFromText( "Centralnotice-template-{$currentTemplate}", NS_MEDIAWIKI );
 		$curRev = Revision::newFromTitle( $bodyPage );
 		$body = $curRev ? $curRev->getText() : '';
 		
-		// Extract message fields from the template body
+		// Extract message fields from the banner body
 		$fields = array();
 		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-\x{00C0}-\x{017F}]+)\}\}\}/u', $body, $fields );
 			
-		// If there are any messages in the template, display translation tools.
+		// If there are any message fields in the banner, display translation tools.
 		if ( count( $fields[0] ) > 0 ) {
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
@@ -272,7 +280,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				)
 			);
 	
-			// Headers
+			// Table headers
 			$htmlOut .= Xml::element( 'th', array( 'width' => '15%' ), wfMsg( 'centralnotice-message' ) );
 			$htmlOut .= Xml::element( 'th', array( 'width' => '5%' ), wfMsg ( 'centralnotice-number-uses' )  );
 			$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), wfMsg ( 'centralnotice-english' ) );
@@ -285,7 +293,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$filteredFields[$field] = array_key_exists( $field, $filteredFields ) ? $filteredFields[$field] + 1 : 1;
 			}
 	
-			// Rows
+			// Table rows
 			foreach ( $filteredFields as $field => $count ) {
 				// Message
 				$message = ( $wpUserLang == 'en' ) ? "Centralnotice-{$currentTemplate}-{$field}" : "Centralnotice-{$currentTemplate}-{$field}/{$wpUserLang}";
@@ -350,9 +358,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::closeElement( 'form' );
 			}
 	
-			/*
-			 * Show language selection form
-			 */
+			// Show language selection form
 		 	$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-change-lang' ) );
 			$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
@@ -377,9 +383,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
 
-		/*
-		 * Show edit form
-		 */
+		// Show edit form
 		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
@@ -408,9 +412,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
 
-		/*
-		 * Show Clone form
-		 */
+		// Show clone form
 		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement ( 'form',
 				array(
@@ -439,7 +441,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Output HTML
 		$wgOut->addHTML( $htmlOut );
 	}
-
+	
+	/**
+	 * Preview all available translations of a banner
+	 */
 	public function showViewAvailable( $template ) {
 		global $wgOut, $wgUser;
 
@@ -448,7 +453,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		$sk = $wgUser->getSkin();
 
-		// Pull all available text for a template
+		// Pull all available text for a banner
 		$langs = array_keys( $this->getTranslations( $template ) );
 		$htmlOut = '';
 		
@@ -479,7 +484,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		return $wgOut->addHtml( $htmlOut );
 	}
-
+	
+	/**
+	 * Add or update a message
+	 */
 	private function updateMessage( $text, $translation, $lang ) {
 		$title = Title::newFromText(
 			( $lang == 'en' ) ? "Centralnotice-{$text}" : "Centralnotice-{$text}/{$lang}",
@@ -536,6 +544,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 	}
 
+	/**
+	 * Create a new banner
+	 */
 	private function addTemplate ( $name, $body ) {
 		global $wgOut;
 
@@ -568,9 +579,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			);
 			$dbw->commit();
 
-			/*
-			 * Perhaps these should move into the db as blob
-			 */
+			// Perhaps these should move into the db as blob
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
@@ -579,6 +588,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 	}
 
+	/**
+	 * Update a banner
+	 */
 	private function editTemplate ( $name, $body ) {
 		global $wgOut;
 
@@ -594,9 +606,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			/*
-			 * Perhaps these should move into the db as blob
-			 */
+			// Perhaps these should move into the db as blob
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
@@ -605,8 +615,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 	}
 
-	/*
-	 * Copy all the data from one template to another
+	/**
+	 * Copy all the data from one banner to another
 	 */
 	public function cloneTemplate( $source, $dest ) {
 		// Reset the timer as updates on meta take a long time
@@ -633,16 +643,16 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 	}
 
-	/*
-	 * Find all fields set for a template
+	/**
+	 * Find all message fields set for a banner
 	 */
 	private function findFields( $template ) {
 		$messages = array();
 		$body = wfMsg( "Centralnotice-template-{$template}" );
 
-		// Generate fields from parsing the body
+		// Generate list of message fields from parsing the body
 		$fields = array();
-		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-}]+)\}\}\}/', $body, $fields );
+		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-\x{00C0}-\x{017F}]+)\}\}\}/u', $body, $fields );
 
 		// Remove duplicates
 		$filteredFields = array();
@@ -653,8 +663,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		return $filteredFields;
 	}
 
-	/*
-	 * Given a template return a list of every set field in every language
+	/**
+	 * Get all the translations of all the messages for a banner
+	 * @return a 2D array of every set message in every language for one banner
 	 */
 	public function getTranslations( $template ) {
 		$translations = array();
@@ -662,14 +673,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Pull all language codes to enumerate
 		$allLangs = array_keys( Language::getLanguageNames() );
 
-		// Lookup all the possible fields for a template
+		// Lookup all the message fields for a banner
 		$fields = $this->findFields( $template );
 
 		// Iterate through all possible languages to find matches
 		foreach ( $allLangs as $lang ) {
-			// Iterate through all possible fields
+			// Iterate through all possible message fields
 			foreach ( $fields as $field => $count ) {
-				// Put all fields together for a lookup
+				// Put all message fields together for a lookup
 				$message = ( $lang == 'en' ) ? "Centralnotice-{$template}-{$field}" : "Centralnotice-{$template}-{$field}/{$lang}";
 				if ( Title::newFromText( $message,  NS_MEDIAWIKI )->exists() ) {
 					$translations[$lang][$field] = wfMsgExt(
