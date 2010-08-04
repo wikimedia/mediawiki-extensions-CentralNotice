@@ -42,8 +42,8 @@ class CentralNotice extends SpecialPage {
 		
 		$method = $wgRequest->getVal( 'method' );
 		// Handle form sumissions
-		if ( $this->editable && $wgRequest->wasPosted() ) {
-
+		 if ( $this->editable && $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+			
 			// Handle removing
 			$toRemove = $wgRequest->getArray( 'removeNotices' );
 			if ( isset( $toRemove ) ) {
@@ -185,28 +185,26 @@ class CentralNotice extends SpecialPage {
 
 		// Handle adding of notice
 		$this->showAll = $wgRequest->getVal( 'showAll' );
-		if ( $this->editable && $method == 'addNotice' ) {
+		if ( $this->editable && $method == 'addNotice' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName        = $wgRequest->getVal( 'noticeName' );
 			$start             = $wgRequest->getArray( 'start' );
 			$project_name      = $wgRequest->getVal( 'project_name' );
 			$project_languages = $wgRequest->getArray( 'project_languages' );
 			if ( $noticeName == '' ) {
-				//$wgOut->addWikiMsg ( 'centralnotice-null-string' );
 				$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-null-string' ) ) );
-			}
-			else {
+			} else {
 				$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
 			}
 		}
 
 		// Handle removing of notice
-		if ( $this->editable && $method == 'removeNotice' ) {
+		if ( $this->editable && $method == 'removeNotice' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName = $wgRequest->getVal ( 'noticeName' );
 			$this->removeNotice ( $noticeName );
 		}
 
 		// Handle adding of template
-		if ( $this->editable && $method == 'addTemplateTo' ) {
+		if ( $this->editable && $method == 'addTemplateTo' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName = $wgRequest->getVal( 'noticeName' );
 			$templateName = $wgRequest->getVal( 'templateName' );
 			$templateWeight = $wgRequest->getVal ( 'weight' );
@@ -217,7 +215,7 @@ class CentralNotice extends SpecialPage {
 		}
 
 		// Handle removing of template
-		if ( $this->editable && $method == 'removeTemplateFor' ) {
+		if ( $this->editable && $method == 'removeTemplateFor' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName = $wgRequest->getVal ( 'noticeName' );
 			$templateName = $wgRequest->getVal ( 'templateName ' );
 			$this->removeTemplateFor( $noticeName , $templateName );
@@ -520,6 +518,7 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= $this->tableRow( $fields );
 			}
 			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons' ) );
 				$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-modify' ),
@@ -585,6 +584,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::closeElement( 'table' );
 			$htmlOut .= Xml::hidden( 'change', 'weight' );
+			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			
 			// Submit button
 			$htmlOut .= Xml::tags( 'div', 
@@ -604,7 +604,8 @@ class CentralNotice extends SpecialPage {
 
 	function listNoticeDetail( $notice ) {
 		global $wgOut, $wgRequest, $wgUser;
-		if ( $wgRequest->wasPosted() ) {
+		if ( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+		
 			// Handle removing of templates
 			$templateToRemove = $wgRequest->getArray( 'removeTemplates' );
 			if ( isset( $templateToRemove ) ) {
@@ -688,6 +689,8 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 			if ( $this->editable ) {
+				 $htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+				
 				// Submit button
 				$htmlOut .= Xml::tags( 'div', 
 					array( 'class' => 'cn-buttons' ), 

@@ -39,7 +39,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Begin Banners tab content
 		$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
 		
-		if ( $this->editable ) {
+		if ( $this->editable && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			// Handle forms
 			if ( $wgRequest->wasPosted() ) {
 
@@ -85,42 +85,39 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 		}
 
-		switch ( $sub ) {
-		
-			// Handle viewing or editing a specific banner
-			case 'view':
-				if ( $wgRequest->getVal( 'wpUserLanguage' ) == 'all' ) {
-					// Handle viewing a banner in all languages
-					$template =  $wgRequest->getVal( 'template' );
-					$this->showViewAvailable( $template );
-				} elseif ( $wgRequest->getText( 'template' ) != '' ) {
-					$this->showView();
-				}
-				break;
-				
-			// Handle adding a banner
-			case 'add':
-				if ( $this->editable ) {
-					$this->showAdd();
-				}
-				break;
-				
-			// Handle cloning a banner
-			case 'clone':
-				if ( $this->editable ) {
-					$oldTemplate = $wgRequest->getVal( 'oldTemplate' );
-					$newTemplate =  $wgRequest->getVal( 'newTemplate' );
-					// We use the returned name in case any special characters had to be removed
-					$template = $this->cloneTemplate( $oldTemplate, $newTemplate );
-					$wgOut->redirect( SpecialPage::getTitleFor( 'NoticeTemplate', 'view' )->getLocalUrl( "template=$template" ) );
-				}
-				break;
-				
-			// Show list of banners by default
-			default:
-				$this->showList();
-				
+		// Handle viewing of a template in all languages
+		if ( $sub == 'view' && $wgRequest->getVal( 'wpUserLanguage' ) == 'all' ) {
+			$template =  $wgRequest->getVal( 'template' );
+			$this->showViewAvailable( $template );
+			return;
 		}
+
+		// Handle viewing a specific template
+		if ( $sub == 'view' && $wgRequest->getText( 'template' ) != '' ) {
+			$this->showView();
+			return;
+		}
+
+		if ( $this->editable ) {
+			// Handle "Add a banner" link
+			if ( $sub == 'add' ) {
+				$this->showAdd();
+				return;
+			}
+			
+			// Handle cloning a specific template
+			if ( $sub == 'clone' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+				$oldTemplate = $wgRequest->getVal( 'oldTemplate' );
+				$newTemplate =  $wgRequest->getVal( 'newTemplate' );
+				// We use the returned name in case any special characters had to be removed
+				$template = $this->cloneTemplate( $oldTemplate, $newTemplate );
+				$wgOut->redirect( SpecialPage::getTitleFor( 'NoticeTemplate', 'view' )->getLocalUrl( "template=$template" ) );
+				return;
+			}
+		}
+
+		// Show list by default
+		$this->showList();
 		
 		// End Banners tab content
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
@@ -175,7 +172,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	function showAdd() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		// Build HTML
 		$htmlOut = '';
@@ -194,6 +191,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::tags( 'p', null,
 			Xml::textarea( 'templateBody', '', 60, 20 )
 		);
+		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		
 		// Submit button
 		$htmlOut .= Xml::tags( 'div', 
@@ -337,7 +335,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			if ( $this->editable ) {
-				$htmlOut .= Xml::hidden( 'token', $token );
+				$htmlOut .= Xml::hidden( 'authtoken', $token );
 				$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
 				$htmlOut .= Xml::openElement( 'tr' );
 				$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
@@ -347,6 +345,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 	
 			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 	
 			if ( $this->editable ) {
@@ -375,6 +374,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				Xml::tags( 'td', null, $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-preview-all-template-translations' ), "template=$currentTemplate&wpUserLanguage=all" ) )
 			);
 			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
@@ -403,6 +403,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			);
 		}
 		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
@@ -428,6 +429,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
@@ -539,7 +541,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addWikiMsg( 'centralnotice-null-string' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-null-string' ) ) );
 			return;
 		}
 
@@ -555,7 +557,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addWikiMsg( 'centralnotice-template-exists' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-template-exists' ) ) );
 			return false;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -582,7 +584,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addWikiMsg( 'centralnotice-null-string' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-null-string' ) ) );
 			return;
 		}
 
@@ -765,6 +767,7 @@ class NoticeTemplatePager extends ReverseChronologicalPager {
 	}
 
 	function getEndBody() {
+		global $wgUser;
 		$htmlOut = '';
 		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'tr', null,
@@ -774,6 +777,7 @@ class NoticeTemplatePager extends ReverseChronologicalPager {
 			);
 		}
 		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		return $htmlOut;
 	}
 }
