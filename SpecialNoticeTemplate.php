@@ -335,7 +335,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			if ( $this->editable ) {
-				$htmlOut .= Xml::hidden( 'authtoken', $token );
+				$htmlOut .= Xml::hidden( 'token', $token );
 				$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
 				$htmlOut .= Xml::openElement( 'tr' );
 				$htmlOut .= Xml::tags( 'td', array( 'colspan' => 4 ),
