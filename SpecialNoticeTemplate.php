@@ -88,12 +88,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		if ( $sub == 'view' && $wgRequest->getVal( 'wpUserLanguage' ) == 'all' ) {
 			$template =  $wgRequest->getVal( 'template' );
 			$this->showViewAvailable( $template );
+			$wgOut->addHTML( Xml::closeElement( 'div' ) );
 			return;
 		}
 
 		// Handle viewing a specific template
 		if ( $sub == 'view' && $wgRequest->getText( 'template' ) != '' ) {
 			$this->showView();
+			$wgOut->addHTML( Xml::closeElement( 'div' ) );
 			return;
 		}
 
@@ -101,6 +103,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Handle "Add a banner" link
 			if ( $sub == 'add' ) {
 				$this->showAdd();
+				$wgOut->addHTML( Xml::closeElement( 'div' ) );
 				return;
 			}
 			
