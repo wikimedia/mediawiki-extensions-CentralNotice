@@ -189,21 +189,23 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::hidden( 'wpMethod', 'addTemplate' );
 		$htmlOut .= Xml::tags( 'p', null,
 			Xml::inputLabel(
-				wfMsg( 'centralnotice-template-name' ),
+				wfMsg( 'centralnotice-template-name' ) . ":",
 				'templateName',
 				'templateName',
 				25
 			)
 		);
+		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-template' ) );
 		$htmlOut .= Xml::tags( 'p', null,
 			Xml::textarea( 'templateBody', '', 60, 20 )
 		);
+		$htmlOut .= Xml::closeElement( 'fieldset' );
 		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		
 		// Submit button
 		$htmlOut .= Xml::tags( 'div', 
 			array( 'class' => 'cn-buttons' ), 
-			Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
+			Xml::submitButton( wfMsg( 'centralnotice-save-banner' ) ) 
 		);
 		
 		$htmlOut .= Xml::closeElement( 'form' );
