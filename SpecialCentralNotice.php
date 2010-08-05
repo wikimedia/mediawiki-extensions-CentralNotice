@@ -1355,7 +1355,7 @@ function top10Languages() {
 			);
 			$htmlOut .= Xml::tags( 'div',
 				array( 'style' => 'margin-top: 0.2em;' ),
-				'<img src="'.$scriptPath.'/arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select' ) . ': <a href="#" onclick="selectLanguages(true);return false;">All</a>, <a href="#" onclick="selectLanguages(false);return false;">None</a>, <a href="#" onclick="top10Languages();return false;">Top 10 Languages</a>'
+				'<img src="'.$scriptPath.'/arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select' ) . ': <a href="#" onclick="selectLanguages(true);return false;">' . wfMsg( 'powersearch-toggleall' ) . '</a>, <a href="#" onclick="selectLanguages(false);return false;">' . wfMsg( 'powersearch-togglenone' ) . '</a>, <a href="#" onclick="top10Languages();return false;">' . wfMsg( 'centralnotice-top-ten-languages' ) . '</a>'
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
