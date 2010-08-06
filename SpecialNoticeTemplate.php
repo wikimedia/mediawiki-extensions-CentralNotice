@@ -26,6 +26,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		// Add style file to the output headers
 		$wgOut->addExtensionStyle( "$wgScriptPath/extensions/CentralNotice/centralnotice.css" );
+		
+		// Add script file to the output headers
+		$wgOut->addScriptFile( "$wgScriptPath/extensions/CentralNotice/centralnotice.js" );
 
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
@@ -179,7 +182,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show "Add a banner" interface
 	 */
 	function showAdd() {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgScriptPath;
+		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
 
 		// Build HTML
 		$htmlOut = '';
@@ -188,17 +192,15 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-template' ) );
 		$htmlOut .= Xml::hidden( 'wpMethod', 'addTemplate' );
 		$htmlOut .= Xml::tags( 'p', null,
-			Xml::inputLabel(
-				wfMsg( 'centralnotice-template-name' ) . ":",
-				'templateName',
-				'templateName',
-				25
-			)
+			Xml::inputLabel( wfMsg( 'centralnotice-template-name' ) . ":", 'templateName', 'templateName', 25 )
 		);
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-template' ) );
-		$htmlOut .= Xml::tags( 'p', null,
-			Xml::textarea( 'templateBody', '', 60, 20 )
+		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
+		$htmlOut .= Xml::tags( 'div',
+			array( 'style' => 'margin-bottom: 0.2em;' ),
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ': <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
 		);
+		$htmlOut .= Xml::textarea( 'templateBody', '', 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		

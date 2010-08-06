@@ -28,6 +28,9 @@
 #preferences fieldset.prefsection div.cn-error {
 	margin:0;
 }
+#preferences table tr.cn-active-campaign {
+	background-color: #ddffdd;
+}
 #preferences div.cn-buttons {
 	padding:1em;
 }

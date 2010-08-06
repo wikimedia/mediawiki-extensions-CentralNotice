@@ -31,6 +31,9 @@ class CentralNotice extends SpecialPage {
 		// Add style file to the output headers
 		$wgOut->addExtensionStyle( "$wgScriptPath/extensions/CentralNotice/centralnotice.css" );
 		
+		// Add script file to the output headers
+		$wgOut->addScriptFile( "$wgScriptPath/extensions/CentralNotice/centralnotice.js" );
+		
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
 
@@ -287,12 +290,15 @@ class CentralNotice extends SpecialPage {
 		return $notices;
 	}
 
-	function tableRow( $fields, $element = 'td' ) {
+	/**
+	 * Build a table row. Needed since Xml::buildTableRow escapes all HTML.
+	 */
+	function tableRow( $fields, $element = 'td', $attribs = array() ) {
 		$cells = array();
 		foreach ( $fields as $field ) {
 			$cells[] = Xml::tags( $element, array(), $field );
 		}
-		return Xml::tags( 'tr', array(), implode( "\n", $cells ) ) . "\n";
+		return Xml::tags( 'tr', $attribs, implode( "\n", $cells ) ) . "\n";
 	}
 
 	function dateSelector( $prefix, $timestamp = null ) {
@@ -516,8 +522,14 @@ class CentralNotice extends SpecialPage {
 					$fields[] = Xml::check( 'removeNotices[]', false,
 						array( 'value' => $row->not_name ) );
 				}
-
-				$htmlOut .= $this->tableRow( $fields );
+				
+				// If campaign is currently active, set special class on table row.
+				$attribs = array();
+				if ( wfTimestamp() > wfTimestamp( TS_UNIX , $row->not_start ) && wfTimestamp() < wfTimestamp( TS_UNIX , $row->not_end ) && $row->not_enabled == '1' ) {
+					$attribs = array( 'class' => 'cn-active-campaign' );
+				}
+				
+				$htmlOut .= $this->tableRow( $fields, 'td', $attribs );
 			}
 			// End table of campaigns
 			$htmlOut .= Xml::closeElement( 'table' );
@@ -1328,26 +1340,7 @@ class CentralNotice extends SpecialPage {
 		foreach( $languages as $code => $name ) {
 			$options .= Xml::option( "$code - $name", $code, in_array( $code, $selected ) ) . "\n";
 		}
-		$htmlOut = "
-<script type=\"text/javascript\">
-function selectLanguages(selectAll) {
-	var selectBox = document.getElementById(\"project_languages[]\");
-	var firstSelect = selectBox.options.length - 1;
-	for (var i = firstSelect; i >= 0; i--) {
-		selectBox.options[i].selected = selectAll;
-	}
-}
-function top10Languages() {
-	var selectBox = document.getElementById(\"project_languages[]\");
-	var top10 = new Array('en','de','fr','it','pt','ja','es','pl','ru','nl');
-	for (var i = 0; i < selectBox.options.length; i++) {
-		var lang = selectBox.options[i].value;
-		if (top10.toString().indexOf(lang)!==-1) {
-			selectBox.options[i].selected = true;
-		}
-	}
-}
-</script>";
+		$htmlOut = '';
 		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'select',
 				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'project_languages[]', 'name' => 'project_languages[]' ),
@@ -1355,7 +1348,7 @@ function top10Languages() {
 			);
 			$htmlOut .= Xml::tags( 'div',
 				array( 'style' => 'margin-top: 0.2em;' ),
-				'<img src="'.$scriptPath.'/arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select' ) . ': <a href="#" onclick="selectLanguages(true);return false;">' . wfMsg( 'powersearch-toggleall' ) . '</a>, <a href="#" onclick="selectLanguages(false);return false;">' . wfMsg( 'powersearch-togglenone' ) . '</a>, <a href="#" onclick="top10Languages();return false;">' . wfMsg( 'centralnotice-top-ten-languages' ) . '</a>'
+				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select' ) . ': <a href="#" onclick="selectLanguages(true);return false;">' . wfMsg( 'powersearch-toggleall' ) . '</a>, <a href="#" onclick="selectLanguages(false);return false;">' . wfMsg( 'powersearch-togglenone' ) . '</a>, <a href="#" onclick="top10Languages();return false;">' . wfMsg( 'centralnotice-top-ten-languages' ) . '</a>'
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
