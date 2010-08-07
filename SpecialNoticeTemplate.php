@@ -221,9 +221,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode;
-
+		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode, $wgScriptPath;
+		
+		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
 		$sk = $wgUser->getSkin();
+		
 		if ( $this->editable ) {
 			$readonly = array();
 		} else {
@@ -394,16 +396,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-edit-template' ) );
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
-		$htmlOut .= Xml::openElement( 'table',
-			array(
-				'cellpadding' => 9,
-				'width' => '100%'
-			)
+		$htmlOut .= Xml::tags( 'div',
+			array( 'style' => 'margin-bottom: 0.2em;' ),
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ': <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
 		);
-		$htmlOut .= Xml::tags( 'tr', null,
-			Xml::tags( 'td', null, Xml::textarea( 'templateBody', $body, 60, 20, $readonly ) )
-		);
-		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			$htmlOut .= Xml::tags( 'div', 

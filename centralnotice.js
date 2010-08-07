@@ -40,4 +40,5 @@ function insertButton( buttonType ) {
 	} else {
 		bannerField.value += buttonValue;
 	}
+	bannerField.focus();
 }
