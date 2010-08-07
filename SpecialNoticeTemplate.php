@@ -198,7 +198,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ': <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ' <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
 		);
 		$htmlOut .= Xml::textarea( 'templateBody', '', 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
@@ -244,7 +244,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Begin View Banner fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-banner' ) . ': ' . $currentTemplate );
+		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-banner-heading', $currentTemplate ) );
 
 		// Show preview of banner
 		$render = new SpecialNoticeText();
@@ -398,7 +398,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ': <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ' <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
 		);
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
 		if ( $this->editable ) {
@@ -425,7 +425,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-clone-notice' ) );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::inputLabel( wfMsg( 'centralnotice-clone-name' ) . ':', 'newTemplate', 'newTemplate', '25' );
+			$htmlOut .= Xml::inputLabel( wfMsg( 'centralnotice-clone-name' ), 'newTemplate', 'newTemplate', '25' );
 			$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-clone' ), array ( 'id' => 'clone' ) );
 			$htmlOut .= Xml::hidden( 'oldTemplate', $currentTemplate );
 
@@ -461,7 +461,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Begin View Banner fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-banner' ) . ': ' . $template );
+		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-banner-heading', $template ) );
 
 		foreach ( $langs as $lang ) {
 			// Link and Preview all available translations
