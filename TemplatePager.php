@@ -82,7 +82,7 @@ class TemplatePager extends ReverseChronologicalPager {
 			);
 		}
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
-			wfMsg ( 'centralnotice-template-name' )
+			wfMsg ( 'centralnotice-banner-name' )
 		);
 		return $htmlOut;
 	}
