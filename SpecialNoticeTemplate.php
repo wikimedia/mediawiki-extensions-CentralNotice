@@ -7,7 +7,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	var $editable;
-
+	
 	function __construct() {
 		parent::__construct( 'NoticeTemplate' );
 
@@ -135,7 +135,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut, $wgUser;
 
 		$sk = $wgUser->getSkin();
-		$pager = new NoticeTemplatePager( $this );
+		$pager = new TemplatePager( $this );
 		
 		// Begin building HTML
 		$htmlOut = '';
@@ -192,9 +192,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-template' ) );
 		$htmlOut .= Xml::hidden( 'wpMethod', 'addTemplate' );
 		$htmlOut .= Xml::tags( 'p', null,
-			Xml::inputLabel( wfMsg( 'centralnotice-template-name' ) . ":", 'templateName', 'templateName', 25 )
+			Xml::inputLabel( wfMsg( 'centralnotice-banner-name' ) . ":", 'templateName', 'templateName', 25 )
 		);
-		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-template' ) );
+		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-banner' ) );
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
@@ -242,7 +242,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Begin View Banner fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-template' ) . ': ' . $currentTemplate );
+		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-banner' ) . ': ' . $currentTemplate );
 
 		// Show preview of banner
 		$render = new SpecialNoticeText();
@@ -464,7 +464,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Begin View Banner fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-template' ) . ': ' . $template );
+		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-banner' ) . ': ' . $template );
 
 		foreach ( $langs as $lang ) {
 			// Link and Preview all available translations
@@ -695,102 +695,5 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 		}
 		return $translations;
-	}
-}
-
-class NoticeTemplatePager extends ReverseChronologicalPager {
-	var $onRemoveChange, $viewPage, $special;
-	var $editable;
-
-	function __construct( $special ) {
-		$this->special = $special;
-		$this->editable = $special->editable;
-		parent::__construct();
-		
-		// Override paging defaults
-		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
-		$this->mLimitsShown = array( 20, 50, 100 );
-		
-		$msg = Xml::encodeJsVar( wfMsg( 'centralnotice-confirm-delete' ) );
-		$this->onRemoveChange = "if( this.checked ) { this.checked = confirm( $msg ) }";
-		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
-	}
-
-	function getQueryInfo() {
-		return array(
-			'tables' => 'cn_templates',
-			'fields' => array( 'tmp_name', 'tmp_id' ),
-		);
-	}
-
-	function getIndexField() {
-		return 'tmp_id';
-	}
-
-	function formatRow( $row ) {
-		$htmlOut = Xml::openElement( 'tr' );
-
-		if ( $this->editable ) {
-			// Remove box
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				Xml::check( 'removeTemplates[]', false,
-					array(
-						'value' => $row->tmp_name,
-						'onchange' => $this->onRemoveChange
-					)
-				)
-			);
-		}
-
-		// Link and Preview
-		$render = new SpecialNoticeText();
-		$render->project = 'wikipedia';
-		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			$this->getSkin()->makeLinkObj( $this->viewPage,
-				htmlspecialchars( $row->tmp_name ),
-				'template=' . urlencode( $row->tmp_name ) ) .
-			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-				$render->getHtmlNotice( $row->tmp_name ),
-				array( 'class' => 'cn-bannerpreview')
-			)
-		);
-
-		$htmlOut .= Xml::closeElement( 'tr' );
-		return $htmlOut;
-	}
-
-	function getStartBody() {
-		$htmlOut = '';
-				
-		$htmlOut .= Xml::openElement( 'table',
-			array(
-				'cellpadding' => 9,
-				'width' => '100%'
-			)
-		);
-		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-				wfMsg ( 'centralnotice-remove' )
-			);
-		}
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
-			wfMsg ( 'centralnotice-template-name' )
-		);
-		return $htmlOut;
-	}
-
-	function getEndBody() {
-		global $wgUser;
-		$htmlOut = '';
-		$htmlOut .= Xml::closeElement( 'table' );
-		if ( $this->editable ) {
-			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
-			$htmlOut .= Xml::tags( 'div', 
-				array( 'class' => 'cn-buttons' ), 
-				Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
-			);
-		}
-		return $htmlOut;
 	}
 }
