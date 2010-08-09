@@ -196,9 +196,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-banner' ) );
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
+		$buttons = array();
+		$buttons[] = '<a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>';
+		$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>';
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ' <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', Language::commaList( $buttons ) )
 		);
 		$htmlOut .= Xml::textarea( 'templateBody', '', 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
@@ -396,9 +399,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-edit-template' ) );
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
+		$buttons = array();
+		$buttons[] = '<a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>';
+		$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>';
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert' ) . ' <a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>, <a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>'
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', Language::commaList( $buttons ) )
 		);
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
 		if ( $this->editable ) {

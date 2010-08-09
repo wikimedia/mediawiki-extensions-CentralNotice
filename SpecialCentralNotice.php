@@ -1346,9 +1346,13 @@ class CentralNotice extends SpecialPage {
 				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'project_languages[]', 'name' => 'project_languages[]' ),
 				$options
 			);
+			$buttons = array();
+			$buttons[] = '<a href="#" onclick="selectLanguages(true);return false;">' . wfMsg( 'powersearch-toggleall' ) . '</a>';
+			$buttons[] = '<a href="#" onclick="selectLanguages(false);return false;">' . wfMsg( 'powersearch-togglenone' ) . '</a>';
+			$buttons[] = '<a href="#" onclick="top10Languages();return false;">' . wfMsg( 'centralnotice-top-ten-languages' ) . '</a>';
 			$htmlOut .= Xml::tags( 'div',
 				array( 'style' => 'margin-top: 0.2em;' ),
-				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select' ) . ' <a href="#" onclick="selectLanguages(true);return false;">' . wfMsg( 'powersearch-toggleall' ) . '</a>, <a href="#" onclick="selectLanguages(false);return false;">' . wfMsg( 'powersearch-togglenone' ) . '</a>, <a href="#" onclick="top10Languages();return false;">' . wfMsg( 'centralnotice-top-ten-languages' ) . '</a>'
+				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select', Language::commaList( $buttons ) )
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
