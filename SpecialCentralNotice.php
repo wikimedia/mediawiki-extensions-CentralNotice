@@ -478,7 +478,7 @@ class CentralNotice extends SpecialPage {
 				if ( $language_count > 3 ) {
 					$languageList = wfMsg ( 'centralnotice-multiple_languages', $language_count );
 				} elseif ( $language_count > 0 ) {
-					$languageList = implode(', ',$project_langs);
+					$languageList = Language::commaList( $project_langs );
 				}
 				$fields[] = $languageList;
 
