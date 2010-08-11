@@ -60,6 +60,7 @@ class CentralNotice extends SpecialPage {
 
 				// Show list of campaigns
 				$this->listNotices();
+				$wgOut->addHTML( Xml::closeElement( 'div' ) );
 				return;
 			}
 
@@ -475,7 +476,7 @@ class CentralNotice extends SpecialPage {
 				$language_count = count( $project_langs );
 				$languageList = '';
 				if ( $language_count > 3 ) {
-					$languageList = "multiple ($language_count)";
+					$languageList = wfMsg ( 'centralnotice-multiple_languages', $language_count );
 				} elseif ( $language_count > 0 ) {
 					$languageList = implode(', ',$project_langs);
 				}
@@ -576,7 +577,7 @@ class CentralNotice extends SpecialPage {
 			// Name
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-notice-name' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::inputLabel( '', 'noticeName',  'noticeName', 25 ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::input( 'noticeName', 25 ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -585,7 +586,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) . "(GMT)" );
+			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start' ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
@@ -1062,7 +1063,7 @@ class CentralNotice extends SpecialPage {
 				"not_end >= $encTimestamp",
 				"not_enabled = 1",
 				'cn_notice_languages.not_id = cn_notices.not_id',
-				"cn_notice_languages.not_language = '$language'",
+				'cn_notice_languages.not_language' => $language,
 				"not_project" => array( '', $project ),
 				'cn_notices.not_id=cn_assignments.not_id',
 				'cn_assignments.tmp_id=cn_templates.tmp_id'
@@ -1088,6 +1089,9 @@ class CentralNotice extends SpecialPage {
 		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
 		if ( $dbr->numRows( $res ) > 0 ) {
 			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-notice-exists' ) ) );
+			return;
+		} elseif ( empty( $project_languages ) ) {
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-no-language' ) ) );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -1338,7 +1342,11 @@ class CentralNotice extends SpecialPage {
 
 		$options = "\n";
 		foreach( $languages as $code => $name ) {
-			$options .= Xml::option( "$code - $name", $code, in_array( $code, $selected ) ) . "\n";
+			$options .= Xml::option(
+				wfMsg( 'centralnotice-language-listing', $code, $name ),
+				$code,
+				in_array( $code, $selected )
+			) . "\n";
 		}
 		$htmlOut = '';
 		if ( $this->editable ) {
@@ -1391,15 +1399,15 @@ class CentralNotice extends SpecialPage {
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
 		
 		// Add newly assigned languages
-		$addLanguages = array_diff($newLanguages, $oldLanguages);
+		$addLanguages = array_diff( $newLanguages, $oldLanguages );
+		$insertArray = array();
 		foreach( $addLanguages as $code ) {
-			$res = $dbw->insert( 'cn_notice_languages',
-				array( 'not_id' => $row->not_id, 'not_language' => $code )
-			);
+			$insertArray[] = array( 'not_id' => $row->not_id, 'not_language' => $code );
 		}
+		$res = $dbw->insert( 'cn_notice_languages', $insertArray );
 		
 		// Remove disassociated languages
-		$removeLanguages = array_diff($oldLanguages, $newLanguages);
+		$removeLanguages = array_diff( $oldLanguages, $newLanguages );
 		foreach( $removeLanguages as $code ) {
 			$res = $dbw->delete( 'cn_notice_languages',
 				array( 'not_id' => $row->not_id, 'not_language' => $code )
