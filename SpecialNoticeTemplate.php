@@ -72,48 +72,16 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Handle adding banner
 			// FIXME: getText()? weak comparison
 			if ( $wgRequest->getVal( 'wpMethod' ) == 'addTemplate' ) {
-			
-				// Handle "Display to anonymous users" checkbox
-				$displayAnon = 0;
-				if ( $wgRequest->getVal( 'displayAnon' ) ) {
-					$displayAnon = $wgRequest->getVal( 'displayAnon' );
-				}
-				
-				// Handle "Display to logged in users" checkbox
-				$displayAccount = 0;
-				if ( $wgRequest->getVal( 'displayAccount' ) ) {
-					$displayAccount = $wgRequest->getVal( 'displayAccount' );
-				}
-				
 				$this->addTemplate(
 					$wgRequest->getVal( 'templateName' ),
-					$wgRequest->getVal( 'templateBody' ),
-					$displayAnon,
-					$displayAccount
+					$wgRequest->getVal( 'templateBody' )
 				);
 				$sub = 'view';
 			}
-			
-			// Handle editing banner
 			if ( $wgRequest->getVal( 'wpMethod' ) == 'editTemplate' ) {
-			
-				// Handle "Display to anonymous users" checkbox
-				$displayAnon = 0;
-				if ( $wgRequest->getVal( 'displayAnon' ) ) {
-					$displayAnon = $wgRequest->getVal( 'displayAnon' );
-				}
-				
-				// Handle "Display to logged in users" checkbox
-				$displayAccount = 0;
-				if ( $wgRequest->getVal( 'displayAccount' ) ) {
-					$displayAccount = $wgRequest->getVal( 'displayAccount' );
-				}
-				
 				$this->editTemplate(
 					$wgRequest->getVal( 'template' ),
-					$wgRequest->getVal( 'templateBody' ),
-					$displayAnon,
-					$displayAccount
+					$wgRequest->getVal( 'templateBody' )
 				);
 				$sub = 'view';
 			}
@@ -226,15 +194,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::tags( 'p', null,
 			Xml::inputLabel( wfMsg( 'centralnotice-banner-name' ) . ":", 'templateName', 'templateName', 25 )
 		);
-		
-		$htmlOut .= Xml::openElement( 'p', null );
-		$htmlOut .= wfMsg( 'centralnotice-banner-display' );
-		$htmlOut .= Xml::check( 'displayAnon', true, array( 'id' => 'displayAnon' ) );
-		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-anonymous' ), 'displayAnon' );
-		$htmlOut .= Xml::check( 'displayAccount', true, array( 'id' => 'displayAccount' ) );
-		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-logged-in' ), 'displayAccount' );
-		$htmlOut .= Xml::closeElement( 'p' );
-		
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-banner' ) );
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
 		$buttons = array();
@@ -272,10 +231,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		if ( $this->editable ) {
 			$readonly = array();
-			$disabled = array();
 		} else {
 			$readonly = array( 'readonly' => 'readonly' );
-			$disabled = array( 'disabled' => 'disabled' );
 		}
 
 		// Get user's language
@@ -283,17 +240,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		// Get current banner
 		$currentTemplate = $wgRequest->getText( 'template' );
-		
-		// Pull template settings from database
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'cn_templates',
-			array(
-				'tmp_display_anon',
-				'tmp_display_account'
-			),
-			array( 'tmp_name' => $currentTemplate ),
-			__METHOD__
-		);
 		
 		// Begin building HTML
 		$htmlOut = '';
@@ -451,18 +397,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
 		}
-		
-		// FIXME
-		$htmlOut .= Xml::fieldset( 'Settings' );
-		$htmlOut .= Xml::openElement( 'p', null );
-		$htmlOut .= wfMsg( 'centralnotice-banner-display' );
-		$htmlOut .= Xml::check( 'displayAnon', ( $row->tmp_display_anon == 1 ), wfArrayMerge( $disabled, array( 'id' => 'displayAnon' ) ) );
-		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-anonymous' ), 'displayAnon' );
-		$htmlOut .= Xml::check( 'displayAccount', ( $row->tmp_display_account == 1 ), wfArrayMerge( $disabled, array( 'id' => 'displayAccount' ) ) );
-		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-logged-in' ), 'displayAccount' );
-		$htmlOut .= Xml::closeElement( 'p' );
-		$htmlOut .= Xml::closeElement( 'fieldset' );
-		
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-edit-template' ) );
 		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
 		$buttons = array();
@@ -620,7 +554,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	/**
 	 * Create a new banner
 	 */
-	private function addTemplate( $name, $body, $displayAnon, $displayAccount ) {
+	private function addTemplate ( $name, $body ) {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
@@ -645,12 +579,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
-			$res = $dbw->insert( 'cn_templates',
-				array(
-					'tmp_name' => $name,
-					'tmp_display_anon' => $displayAnon,
-					'tmp_display_account' => $displayAccount
-				),
+			$res = $dbw->insert(
+				'cn_templates',
+				array( 'tmp_name' => $name ),
 				__METHOD__
 			);
 			$dbw->commit();
@@ -667,7 +598,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	/**
 	 * Update a banner
 	 */
-	private function editTemplate( $name, $body, $displayAnon, $displayAccount ) {
+	private function editTemplate ( $name, $body ) {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
@@ -681,18 +612,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			__METHOD__
 		);
 
-		if ( $dbr->numRows( $res ) == 1 ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
-			$res = $dbw->update( 'cn_templates',
-				array(
-					'tmp_display_anon' => $displayAnon,
-					'tmp_display_account' => $displayAccount
-				),
-				array( 'tmp_name' => $name )
-			);
-			$dbw->commit();
-		
+		if ( $dbr->numRows( $res ) > 0 ) {
 			// Perhaps these should move into the db as blob
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
