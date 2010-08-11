@@ -366,7 +366,7 @@ class CentralNotice extends SpecialPage {
 	 * Print out all campaigns found in db
 	 */
 	function listNotices() {
-		global $wgOut, $wgUser, $wgUserLang;
+		global $wgOut, $wgUser, $wgLang;
 
 		// Get connection
 		$dbr = wfGetDB( DB_SLAVE );
@@ -409,7 +409,7 @@ class CentralNotice extends SpecialPage {
 					'not_project',
 					'not_locked'
 				),
-				array ( 'not_language' => $wgUserLang ),
+				array ( 'not_language' => $wgLang ),
 				__METHOD__,
 				array( 'ORDER BY' => 'not_id' )
 			);
@@ -478,7 +478,7 @@ class CentralNotice extends SpecialPage {
 				if ( $language_count > 3 ) {
 					$languageList = wfMsg ( 'centralnotice-multiple_languages', $language_count );
 				} elseif ( $language_count > 0 ) {
-					$languageList = Language::commaList( $project_langs );
+					$languageList = $wgLang->commaList( $project_langs );
 				}
 				$fields[] = $languageList;
 
