@@ -1404,7 +1404,7 @@ class CentralNotice extends SpecialPage {
 		foreach( $addLanguages as $code ) {
 			$insertArray[] = array( 'not_id' => $row->not_id, 'not_language' => $code );
 		}
-		$res = $dbw->insert( 'cn_notice_languages', $insertArray );
+		$res = $dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, array( 'IGNORE' ) );
 		
 		// Remove disassociated languages
 		$removeLanguages = array_diff( $oldLanguages, $newLanguages );
