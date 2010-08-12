@@ -409,7 +409,7 @@ class CentralNotice extends SpecialPage {
 					'not_project',
 					'not_locked'
 				),
-				array ( 'not_language' => $wgLang ),
+				array ( 'not_language' => $wgLang->getCode() ),
 				__METHOD__,
 				array( 'ORDER BY' => 'not_id' )
 			);
