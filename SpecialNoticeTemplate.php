@@ -182,7 +182,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show "Add a banner" interface
 	 */
 	function showAdd() {
-		global $wgOut, $wgUser, $wgScriptPath;
+		global $wgOut, $wgUser, $wgScriptPath, $wgLang;
 		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
 
 		// Build HTML
@@ -201,7 +201,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>';
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', Language::commaList( $buttons ) )
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
 		);
 		$htmlOut .= Xml::textarea( 'templateBody', '', 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
@@ -224,7 +224,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode, $wgScriptPath;
+		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode, $wgScriptPath, $wgLang;
 		
 		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
 		$sk = $wgUser->getSkin();
@@ -404,7 +404,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>';
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', Language::commaList( $buttons ) )
+			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
 		);
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
 		$htmlOut .= Xml::closeElement( 'fieldset' );

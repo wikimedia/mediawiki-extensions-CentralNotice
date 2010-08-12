@@ -1330,8 +1330,7 @@ class CentralNotice extends SpecialPage {
 	 * @return multiple select list
 	 */
 	function languageMultiSelector( $selected = array(), $customisedOnly = true ) {
-		global $wgContLanguageCode;
-		global $wgScriptPath;
+		global $wgContLanguageCode, $wgScriptPath, $wgLang;
 		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
 		// Make sure the site language is in the list; a custom language code might not have a defined name...
 		$languages = Language::getLanguageNames( $customisedOnly );
@@ -1360,7 +1359,7 @@ class CentralNotice extends SpecialPage {
 			$buttons[] = '<a href="#" onclick="top10Languages();return false;">' . wfMsg( 'centralnotice-top-ten-languages' ) . '</a>';
 			$htmlOut .= Xml::tags( 'div',
 				array( 'style' => 'margin-top: 0.2em;' ),
-				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select', Language::commaList( $buttons ) )
+				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
