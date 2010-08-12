@@ -1,7 +1,7 @@
 -- Update to allow for any number of languages per notice.
 
 CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_languages (
-  `id` int unsigned NOT NULL auto_increment PRIMARY KEY,
+  `id` int unsigned NOT NULL PRIMARY KEY auto_increment,
   `not_id` int unsigned NOT NULL,
   `not_language` varchar(32) NOT NULL
 ) /*$wgDBTableOptions*/;
