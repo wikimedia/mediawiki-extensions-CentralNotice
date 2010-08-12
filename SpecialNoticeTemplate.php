@@ -407,15 +407,13 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', Language::commaList( $buttons ) )
 		);
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
+		$htmlOut .= Xml::closeElement( 'fieldset' );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			$htmlOut .= Xml::tags( 'div', 
 				array( 'class' => 'cn-buttons' ), 
-				Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
+				Xml::submitButton( wfMsg( 'centralnotice-save-banner' ) ) 
 			);
-		}
-		$htmlOut .= Xml::closeElement( 'fieldset' );
-		if ( $this->editable ) {
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
 
