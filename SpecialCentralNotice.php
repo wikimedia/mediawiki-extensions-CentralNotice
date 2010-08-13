@@ -928,25 +928,7 @@ class CentralNotice extends SpecialPage {
 		$sk = $wgUser->getSkin();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name', '', '', array( 'ORDER BY' => 'tmp_id' ) );
-
-		$res_assignments = $dbr->select(
-			array(
-				'cn_notices',
-				'cn_assignments',
-				'cn_templates'
-			),
-			array(
-			 	'cn_templates.tmp_name',
-			),
-			array(
-				'cn_notices.not_name' => $notice,
-				'cn_notices.not_id = cn_assignments.not_id',
-				'cn_assignments.tmp_id = cn_templates.tmp_id'
-			),
-			__METHOD__,
-			array( 'ORDER BY' => 'cn_notices.not_id' )
-		);
-
+		
 		if ( $dbr->numRows( $res ) > 0 ) {
 			// Build HTML
 			$htmlOut  = Xml::fieldset( wfMsg( "centralnotice-available-templates" ) );
