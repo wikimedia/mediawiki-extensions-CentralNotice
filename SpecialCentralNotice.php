@@ -924,103 +924,25 @@ class CentralNotice extends SpecialPage {
 	 * Create form for adding banners to a campaign
 	 */
 	function addTemplatesForm( $notice ) {
-		global $wgUser;
-		$sk = $wgUser->getSkin();
+		$pager = new TemplatePager( $this );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name', '', '', array( 'ORDER BY' => 'tmp_id' ) );
 		
 		if ( $dbr->numRows( $res ) > 0 ) {
 			// Build HTML
 			$htmlOut  = Xml::fieldset( wfMsg( "centralnotice-available-templates" ) );
-			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
-
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-				 wfMsg ( "centralnotice-add" ) );
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-				 wfMsg ( "centralnotice-weight" ) );
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '70%' ),
-				 wfMsg ( "centralnotice-templates" ) );
-	
-			// Find dups
-			$templatesAssigned = $this->selectTemplatesAssigned( $notice );
-
-			// Build rows
-			while ( $row = $dbr->fetchObject( $res ) ) {
-				if ( !in_array ( $row->tmp_name, $templatesAssigned ) ) {
-					$htmlOut .= Xml::openElement( 'tr' );
-
-					// Add
-					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-						Xml::check( 'addTemplates[]', '', array ( 'value' => $row->tmp_name ) )
-					);
-
-					// Weight
-					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-						Xml::listDropDown( "weight[$row->tmp_name]",
-							$this->dropDownList( wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) ) ,
-							'',
-							'25',
-							'',
-							'' )
-					);
-
-					// Render preview
-					$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
-					$render = new SpecialNoticeText();
-					$render->project = 'wikipedia';
-					global $wgRequest;
-					$render->language = $wgRequest->getVal( 'wpUserLanguage' );
-					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-						$sk->makeLinkObj( $viewPage,
-							htmlspecialchars( $row->tmp_name ),
-							'template=' . urlencode( $row->tmp_name ) ) .
-						Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-							$render->getHtmlNotice( $row->tmp_name ),
-							array( 'class' => 'cn-bannerpreview')
-						)
-					);
-
-					$htmlOut .= Xml::closeElement( 'tr' );
-				}
-			}
-
-			$htmlOut .= Xml::closeElement( 'table' );
+			
+			// Show paginated list of banners
+			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
+			$htmlOut .= $pager->getBody();
+			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
+			
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 		} else {
 			// Nothing found
 			return;
 		}
 		return $htmlOut;
-	}
-
-	/**
-	 * Build a list of all the banners assigned to a campaign
-	 * @return An array of template names
-	 */
-	function selectTemplatesAssigned ( $notice ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			array(
-				'cn_notices',
-				'cn_assignments',
-				'cn_templates'
-			),
-			array(
-				'cn_templates.tmp_name',
-			),
-			array(
-				'cn_notices.not_name' => $notice,
-				'cn_notices.not_id = cn_assignments.not_id',
-				'cn_assignments.tmp_id = cn_templates.tmp_id'
-			),
-			__METHOD__,
-			array( 'ORDER BY' => 'cn_notices.not_id' )
-		);
-		$templateNames = array();
-		foreach ( $res as $row ) {
-			array_push( $templateNames, $row->tmp_name ) ;
-		}
-		return $templateNames;
 	}
 
 	/**
