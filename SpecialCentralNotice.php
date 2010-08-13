@@ -1013,6 +1013,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Build a list of all the banners assigned to a campaign
+	 * @return An array of template names
 	 */
 	function selectTemplatesAssigned ( $notice ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1041,8 +1042,10 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Lookup function for active campaigns under a given language and project
-	 * @return An array of running campaign names with associated banner weights
+	 * Lookup function for active banners under a given language and project. This function is 
+	 * called by SpecialNoticeText::getJsOutput() in order to build the static Javascript files for
+	 * each project.
+	 * @return A 2D array of running banners with associated weights and settings
 	 */
 	static function selectNoticeTemplates( $project, $language ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1056,7 +1059,9 @@ class CentralNotice extends SpecialPage {
 			),
 			array(
 				'tmp_name',
-				'SUM(tmp_weight) AS total_weight'
+				'SUM(tmp_weight) AS total_weight',
+				'tmp_display_anon',
+				'tmp_display_account'
 			),
 			array (
 				"not_start <= $encTimestamp",
@@ -1073,13 +1078,16 @@ class CentralNotice extends SpecialPage {
 				'GROUP BY' => 'tmp_name'
 			)
 		);
-		$templateWeights = array();
+		$templates = array();
 		foreach ( $res as $row ) {
-			$name = $row->tmp_name;
-			$weight = intval( $row->total_weight );
-			$templateWeights[$name] = $weight;
+			$template = array();
+			$template['name'] = $row->tmp_name;
+			$template['weight'] = intval( $row->total_weight );
+			$template['display_anon'] = intval( $row->tmp_display_anon );
+			$template['display_account'] =  intval( $row->tmp_display_account );
+			$templates[] = $template;
 		}
-		return $templateWeights;
+		return $templates;
 	}
 
 	function addNotice( $noticeName, $enabled, $start, $project_name, $project_languages ) {

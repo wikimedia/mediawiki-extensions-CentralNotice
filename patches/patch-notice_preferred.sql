@@ -3,4 +3,4 @@
 -- overlap. Use case is to be able to use one all language and projects notice
 -- and have it superceded by a specific one for en wikipedia.
 
-ALTER TABLE cn_notices ADD COLUMN not_preferred bool NOT NULL default '0';
+ALTER TABLE /*$wgDBprefix*/cn_notices ADD COLUMN not_preferred bool NOT NULL default '0';

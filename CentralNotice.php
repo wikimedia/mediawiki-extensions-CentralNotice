@@ -158,6 +158,7 @@ function efCentralNoticeSchema() {
 		$wgExtNewTables[] = array( 'cn_notices', $base . '/CentralNotice.sql' );
 		$wgExtNewFields[] = array( 'cn_notices', 'not_preferred', $base . '/patches/patch-notice_preferred.sql' );
 		$wgExtNewTables[] = array( 'cn_notice_languages', $base . '/patches/patch-notice_languages.sql' );
+		$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon', $base . '/patches/patch-template_settings.sql' );
 	}
 	return true;
 }

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Generates content for static Javascript files
+ */
 class SpecialNoticeText extends NoticePage {
 	var $project = 'wikipedia';
 	var $language = 'en';
@@ -21,6 +24,9 @@ class SpecialNoticeText extends NoticePage {
 		return 86400 * 7;
 	}
 
+	/**
+	 * Given a project key, generate the body for a static Javascript file
+	 */
 	function getJsOutput( $par ) {
 	
 		// Break $par into separate parameters and assign to $this->project and $this->language
@@ -60,7 +66,18 @@ class SpecialNoticeText extends NoticePage {
 			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
 		}
 
-		$templateNames = array_keys( $templates );
+		// Slice the columns of the $templates array into separate arrays.
+		// This is required due to how pickTemplate() currently works.
+		$templateNames = array();
+		$templateWeights = array();
+		$templateDisplayAnons = array();
+		$templateDisplayAccounts = array();
+		foreach ( $templates as $template ) {
+			$templateNames[] = $template['name'];
+			$templateWeights[] = $template['weight'];
+			$templateDisplayAnons[] = $template['display_anon'];
+			$templateDisplayAccounts[] = $template['display_account'];
+		}
 
 		$templateTexts = array_map(
 			array( $this, 'getHtmlNotice' ),
@@ -69,23 +86,23 @@ class SpecialNoticeText extends NoticePage {
 		if ( preg_grep( "/&lt;centralnotice-template-\w{1,}&gt;\z/", $templateTexts ) ) {
 			return false; // Bailing out if we have a failed cache lookup
 		}
-
-		$weights = array_values( $templates );
-
+		
 		return
 			$this->getScriptFunctions() .
 			$this->getToggleScripts() .
 			'wgNotice=pickTemplate(' .
 				Xml::encodeJsVar( $templateTexts ) .
 				"," .
-				Xml::encodeJsVar( $weights ) .
+				Xml::encodeJsVar( $templateWeights ) .
+				"," .
+				Xml::encodeJsVar( $templateDisplayAnons ) .
+				"," .
+				Xml::encodeJsVar( $templateDisplayAccounts ) .
 				");\n" .
 			"if (wgNotice != '')\n" .
 			"wgNotice='<div id=\"centralNotice\" class=\"' + " .
 			"(wgNoticeToggleState ? 'expanded' : 'collapsed') + " .
-			"' ' + " .
-			"(wgUserName ? 'usernotice' : 'anonnotice' ) + " .
-			"'\">' + wgNotice+'</div>';\n";
+			"'\">' + wgNotice+'</div>';\n"; 
 	}
 
 	function getHtmlNotice( $noticeName ) {
@@ -142,25 +159,27 @@ function toggleNoticeCookie(state) {
 	var work='hidesnmessage='+state+'; expires=' + e.toGMTString() + '; path=/';
 	document.cookie = work;
 }
-function pickTemplate(templates, weights) {
+function pickTemplate(templates, weights, displayAnons, displayAccounts) {
 	var weightedTemplates = new Array();
 	var currentTemplate = 0;
 	var totalWeight = 0;
 
 	if (templates.length == 0)
 		return '';
-
+	
 	while (currentTemplate < templates.length) {
-		totalWeight += weights[currentTemplate];
-		for (i=0; i<weights[currentTemplate]; i++) {
-			weightedTemplates[weightedTemplates.length] = templates[currentTemplate];
+		if ((wgUserName && displayAccounts[currentTemplate]) || (!wgUserName && displayAnons[currentTemplate])) {
+			totalWeight += weights[currentTemplate];
+			for (i=0; i<weights[currentTemplate]; i++) {
+				weightedTemplates[weightedTemplates.length] = templates[currentTemplate];
+			}
 		}
 		currentTemplate++;
 	}
-
+	
 	if (totalWeight == 0)
 		return '';
-
+	
 	var randomnumber=Math.floor(Math.random()*totalWeight);
 	return weightedTemplates[randomnumber];
 }\n\n";

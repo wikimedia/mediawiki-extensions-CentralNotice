@@ -79,7 +79,7 @@ class CentralNoticeDB {
 	}
 
 	/*
-	 * Given a notice return all templates bound to it
+	 * Given a notice return all banners bound to it
 	 */
 	public function selectTemplatesAssigned( $notice ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -92,8 +92,10 @@ class CentralNoticeDB {
 				'cn_templates'
 			),
 			array(
-				'cn_templates.tmp_name',
+				'tmp_name',
 				'SUM(tmp_weight) AS total_weight',
+				'tmp_display_anon',
+				'tmp_display_account'
 			),
 			array(
 				'cn_notices.not_name' => $notice,
@@ -105,13 +107,16 @@ class CentralNoticeDB {
 				'GROUP BY' => 'tmp_name'
 			)
 		);
-		$templateWeights = array();
+		$templates = array();
 		foreach ( $res as $row ) {
-			$name = $row->tmp_name;
-			$weight = intval( $row->total_weight );
-			$templateWeights[$name] = $weight;
+			$template = array();
+			$template['name'] = $row->tmp_name;
+			$template['weight'] = intval( $row->total_weight );
+			$template['display_anon'] = intval( $row->tmp_display_anon );
+			$template['display_account'] =  intval( $row->tmp_display_account );
+			$templates[] = $template;
 		}
-		return $templateWeights;
+		return $templates;
 	}
 
 	public function updatePreferred( $notice, $preferred ) {
