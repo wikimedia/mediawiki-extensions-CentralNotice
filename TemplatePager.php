@@ -24,20 +24,39 @@ class TemplatePager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * Pull all banners from the database
+	 * Pull banners from the database
 	 */
 	function getQueryInfo() {
-		return array(
-			'tables' => 'cn_templates',
-			'fields' => array( 'tmp_name', 'tmp_id' ),
-		);
+		// If we are calling the pager from the manage banners interface...
+		if ( $this->special->mName == 'NoticeTemplate' ) {
+			// Return all the banners in the database
+			return array(
+				'tables' => 'cn_templates',
+				'fields' => array( 'tmp_name', 'tmp_id' ),
+			);
+		// If we are calling the pager from the campaign editing interface...
+		} elseif ( $this->special->mName == 'CentralNotice' ) {
+			$notice = $this->mRequest->getVal( 'notice' );
+			// Return all the banners not already assigned to the current campaign
+			return array(
+				'tables' => array( 'cn_assignments', 'cn_templates' ),
+				'fields' => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
+				'conds' => array( 'cn_assignments.tmp_id is null' ),
+				'join_conds' => array(
+					'cn_assignments' => array( 
+						'LEFT JOIN',
+						"cn_assignments.tmp_id = cn_templates.tmp_id AND cn_assignments.not_id = (SELECT not_id FROM cn_notices WHERE not_name LIKE '$notice')"
+					)
+				)
+			);
+		}
 	}
 	
 	/**
 	 * Sort the banner list by tmp_id
 	 */
 	function getIndexField() {
-		return 'tmp_id';
+		return 'cn_templates.tmp_id';
 	}
 
 	/**
@@ -45,68 +64,56 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	function formatRow( $row ) {
 	
-		$templatesAssigned = array();
-		// If we are calling the pager from the campaign editing interface...
-		if ( $this->special->mName == 'CentralNotice' ) {
-			// Find banners already assigned to the campaign
-			$notice = $this->mRequest->getVal( 'notice' );
-			$templatesAssigned = $this->selectTemplatesAssigned( $notice );
-		}
-
-		// If banner is not already assigned...
-		if ( !in_array ( $row->tmp_name, $templatesAssigned ) ) {
-	
-			// Begin banner row
-			$htmlOut = Xml::openElement( 'tr' );
-			
-			if ( $this->editable ) {
-				// If we are calling the pager from the manage banners interface...
-				if ( $this->special->mName == 'NoticeTemplate' ) {
-					// Remove box
-					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-						Xml::check( 'removeTemplates[]', false,
-							array(
-								'value' => $row->tmp_name,
-								'onchange' => $this->onRemoveChange
-							)
+		// Begin banner row
+		$htmlOut = Xml::openElement( 'tr' );
+		
+		if ( $this->editable ) {
+			// If we are calling the pager from the manage banners interface...
+			if ( $this->special->mName == 'NoticeTemplate' ) {
+				// Remove box
+				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+					Xml::check( 'removeTemplates[]', false,
+						array(
+							'value' => $row->tmp_name,
+							'onchange' => $this->onRemoveChange
 						)
-					);
-				// Else, if we are calling the pager from the campaign editing interface...
-				} elseif ( $this->special->mName == 'CentralNotice' ) {
-					// Add box
-					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-						Xml::check( 'addTemplates[]', '', array ( 'value' => $row->tmp_name ) )
-					);
-					// Weight select
-					$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-						Xml::listDropDown( "weight[$row->tmp_name]",
-							CentralNotice::dropDownList( wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) ) ,
-							'',
-							'25',
-							'',
-							'' )
-					);
-				}
+					)
+				);
+			// If we are calling the pager from the campaign editing interface...
+			} elseif ( $this->special->mName == 'CentralNotice' ) {
+				// Add box
+				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+					Xml::check( 'addTemplates[]', '', array ( 'value' => $row->tmp_name ) )
+				);
+				// Weight select
+				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+					Xml::listDropDown( "weight[$row->tmp_name]",
+						CentralNotice::dropDownList( wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) ) ,
+						'',
+						'25',
+						'',
+						'' )
+				);
 			}
-			
-			// Link and Preview
-			$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
-			$render = new SpecialNoticeText();
-			$render->project = 'wikipedia';
-			$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$this->getSkin()->makeLinkObj( $this->viewPage,
-					htmlspecialchars( $row->tmp_name ),
-					'template=' . urlencode( $row->tmp_name ) ) .
-				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-					$render->getHtmlNotice( $row->tmp_name ),
-					array( 'class' => 'cn-bannerpreview')
-				)
-			);
-			
-			// End banner row
-			$htmlOut .= Xml::closeElement( 'tr' );
 		}
+		
+		// Link and Preview
+		$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
+		$render = new SpecialNoticeText();
+		$render->project = 'wikipedia';
+		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$this->getSkin()->makeLinkObj( $this->viewPage,
+				htmlspecialchars( $row->tmp_name ),
+				'template=' . urlencode( $row->tmp_name ) ) .
+			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
+				$render->getHtmlNotice( $row->tmp_name ),
+				array( 'class' => 'cn-bannerpreview')
+			)
+		);
+		
+		// End banner row
+		$htmlOut .= Xml::closeElement( 'tr' );
 		
 		return $htmlOut;
 	}
@@ -156,35 +163,5 @@ class TemplatePager extends ReverseChronologicalPager {
 			}
 		}
 		return $htmlOut;
-	}
-	
-	/**
-	 * Build a list of all the banners assigned to a campaign
-	 * @return An array of banner names
-	 */
-	function selectTemplatesAssigned ( $notice ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			array(
-				'cn_notices',
-				'cn_assignments',
-				'cn_templates'
-			),
-			array(
-				'cn_templates.tmp_name',
-			),
-			array(
-				'cn_notices.not_name' => $notice,
-				'cn_notices.not_id = cn_assignments.not_id',
-				'cn_assignments.tmp_id = cn_templates.tmp_id'
-			),
-			__METHOD__,
-			array( 'ORDER BY' => 'cn_notices.not_id' )
-		);
-		$templateNames = array();
-		foreach ( $res as $row ) {
-			array_push( $templateNames, $row->tmp_name ) ;
-		}
-		return $templateNames;
 	}
 }
