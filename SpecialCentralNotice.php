@@ -758,6 +758,7 @@ class CentralNotice extends SpecialPage {
 
 		if ( $row ) {
 			// Build Html
+			$htmlOut = '';
 			$htmlOut .= Xml::tags( 'h2', null, wfMsg( 'centralnotice-notice-heading', $notice ) );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 
