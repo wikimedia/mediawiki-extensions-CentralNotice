@@ -105,8 +105,8 @@ class SpecialNoticeText extends NoticePage {
 			"'\">' + wgNotice+'</div>';\n"; 
 	}
 
-	function getHtmlNotice( $noticeName ) {
-		$this->noticeName = $noticeName;
+	function getHtmlNotice( $templateName ) {
+		$this->templateName = $templateName;
 		return preg_replace_callback(
 			'/{{{(.*?)}}}/',
 			array( $this, 'getNoticeField' ),
@@ -209,7 +209,7 @@ function pickTemplate(templates, weights, displayAnons, displayAccounts) {
 	}
 
 	function getNoticeTemplate() {
-		return $this->getMessage( "centralnotice-template-{$this->noticeName}" );
+		return $this->getMessage( "centralnotice-template-{$this->templateName}" );
 	}
 
 	function getNoticeField( $matches ) {
@@ -218,7 +218,7 @@ function pickTemplate(templates, weights, displayAnons, displayAccounts) {
 		if ( $field == 'amount' ) {
 			$params = array( $this->formatNum( $this->getDonationAmount() ) );
 		}
-		$message = "centralnotice-{$this->noticeName}-$field";
+		$message = "centralnotice-{$this->templateName}-$field";
 		$source = $this->getMessage( $message, $params );
 		return $source;
 	}
