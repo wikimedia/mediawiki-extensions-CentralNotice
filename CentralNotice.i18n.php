@@ -2145,6 +2145,7 @@ Ez da gehituko',
 );
 
 /** Persian (فارسی)
+ * @author Bersam
  * @author Huji
  * @author Komeil 4life
  * @author Wayiran
@@ -2218,7 +2219,7 @@ $messages['fa'] = array(
 	'centralnotice-template-already-exists' => 'الگو از قبل به اعلان گره خورده است.
 افزوده نشد',
 	'centralnotice-preview-template' => 'الگو نمایش',
-	'centralnotice-start-hour' => 'زمان شروع',
+	'centralnotice-start-hour' => 'زمان شروع (GMT)',
 	'centralnotice-change-lang' => 'تغییر زبان ترجمه',
 	'centralnotice-weights' => 'وزن‌ها',
 	'centralnotice-notice-is-locked' => 'اعلان قفل شده‌است.
@@ -7507,7 +7508,7 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-available-templates' => 'Үрнәкләр',
 	'centralnotice-template-already-exists' => 'Үрнәк  өстәлмәде',
 	'centralnotice-preview-template' => 'Алдан карау',
-	'centralnotice-start-hour' => 'Башлау вакыты',
+	'centralnotice-start-hour' => 'Башлау сәгате (GMT)',
 	'centralnotice-change-lang' => 'Тәрҗемә телен үзгәртү',
 	'centralnotice-weights' => 'Үлчәү',
 	'centralnotice-notice-is-locked' => 'Хәбәр чикләнде',
@@ -7524,7 +7525,12 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-message-not-set' => 'Хат тикшерелмәде',
 	'centralnotice-clone' => 'Кабатлау',
 	'centralnotice-clone-notice' => 'Үрнәне кабатлап ясау',
+	'centralnotice-clone-name' => 'Исеме:',
 	'centralnotice-preview-all-template-translations' => 'Үрнәкнең мөмкин булган тәрҗемәләрен карарга',
+	'centralnotice-insert' => 'Өстәү: $1',
+	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} төймәсе',
+	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} төймәсе',
+	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} төймәсе',
 	'right-centralnotice-admin' => 'Үзәкләштерелгән идарә иту системасы',
 	'right-centralnotice-translate' => 'Хәбәрләрне тәрҗемә итү',
 	'action-centralnotice-admin' => 'үзәкләштерелгән идарә иту системасы',
