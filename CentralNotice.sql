@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_assignments (
 
 CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_templates (
 	`tmp_id` int NOT NULL PRIMARY KEY auto_increment,
-	`tmp_name` varchar(255) default NULL
+	`tmp_name` varchar(255) default NULL,
 	`tmp_display_anon` BOOLEAN NOT NULL DEFAULT 1,
-	`tmp_display_account` BOOLEAN NOT NULL DEFAULT 1;
+	`tmp_display_account` BOOLEAN NOT NULL DEFAULT 1
 ) /*$wgDBTableOptions*/;
 
 CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_languages (
