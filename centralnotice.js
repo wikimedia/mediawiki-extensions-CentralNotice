@@ -8,6 +8,7 @@ function selectLanguages(selectAll) {
 function top10Languages() {
 	var selectBox = document.getElementById('project_languages[]');
 	var top10 = new Array('en','de','fr','it','pt','ja','es','pl','ru','nl');
+	selectLanguages(false);
 	for (var i = 0; i < selectBox.options.length; i++) {
 		var lang = selectBox.options[i].value;
 		if (top10.toString().indexOf(lang)!==-1) {
