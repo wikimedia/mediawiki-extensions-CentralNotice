@@ -151,7 +151,7 @@ function efCentralNoticeSetup() {
 }
 
 function efCentralNoticeSchema() {
-	global $wgDBtype, $wgExtNewTables;
+	global $wgDBtype, $wgExtNewTables, $wgExtNewFields;
 	
 	$base = dirname( __FILE__ );
 	if ( $wgDBtype == 'mysql' ) {
