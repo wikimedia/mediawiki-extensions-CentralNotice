@@ -192,7 +192,6 @@ class CentralNotice extends SpecialPage {
 		}
 
 		// Handle adding of campaign
-		$this->showAll = $wgRequest->getVal( 'showAll' );
 		if ( $this->editable && $method == 'addNotice' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 			$noticeName        = $wgRequest->getVal( 'noticeName' );
 			$start             = $wgRequest->getArray( 'start' );
@@ -377,43 +376,21 @@ class CentralNotice extends SpecialPage {
 			$readonly = array( 'disabled' => 'disabled' );
 		}
 
-		// This is temporarily hard-coded
-		$this->showAll = 'Y';
-
-		// If all languages should be shown
-		if ( isset( $this->showAll ) ) {
-			// Get campaigns for all languages
-			$res = $dbr->select( 'cn_notices',
-				array(
-					'not_name',
-					'not_start',
-					'not_end',
-					'not_enabled',
-					'not_preferred',
-					'not_project',
-					'not_locked'
-				),
-				null,
-				__METHOD__,
-				array( 'ORDER BY' => 'not_id' )
-			);
-		} else {
-			// Get only campaigns for this language
-			$res = $dbr->select( 'cn_notices',
-				array(
-					'not_name',
-					'not_start',
-					'not_end',
-					'not_enabled',
-					'not_preferred',
-					'not_project',
-					'not_locked'
-				),
-				array ( 'not_language' => $wgLang->getCode() ),
-				__METHOD__,
-				array( 'ORDER BY' => 'not_id' )
-			);
-		}
+		// Get all campaigns from the database
+		$res = $dbr->select( 'cn_notices',
+			array(
+				'not_name',
+				'not_start',
+				'not_end',
+				'not_enabled',
+				'not_preferred',
+				'not_project',
+				'not_locked'
+			),
+			null,
+			__METHOD__,
+			array( 'ORDER BY' => 'not_id' )
+		);
 		
 		// Begin building HTML
 		$htmlOut = '';
@@ -669,9 +646,6 @@ class CentralNotice extends SpecialPage {
 			);
 		}
 
-		// Temporarily hard coded
-		$this->showAll = 'Y';
-
 		$output_detail = $this->noticeDetailForm( $notice );
 		$output_assigned = $this->assignedTemplatesForm( $notice );
 		$output_templates = $this->addTemplatesForm( $notice );
@@ -747,13 +721,13 @@ class CentralNotice extends SpecialPage {
 			__METHOD__
 		);
 		$res = $dbr->select( 'cn_notice_languages',
-			'not_language',
-			array( 'not_id' => $row->not_id ),
+			'nl_language',
+			array( 'nl_notice_id' => $row->not_id ),
 			__METHOD__
 		);
 		$project_languages = array();
 		foreach ( $res as $langRow ) {
-			$project_languages[] = $langRow->not_language;
+			$project_languages[] = $langRow->nl_language;
 		}
 
 		if ( $row ) {
@@ -972,8 +946,8 @@ class CentralNotice extends SpecialPage {
 				"not_start <= $encTimestamp",
 				"not_end >= $encTimestamp",
 				"not_enabled = 1",
-				'cn_notice_languages.not_id = cn_notices.not_id',
-				'cn_notice_languages.not_language' => $language,
+				'nl_notice_id = cn_notices.not_id',
+				'nl_language' => $language,
 				"not_project" => array( '', $project ),
 				'cn_notices.not_id=cn_assignments.not_id',
 				'cn_assignments.tmp_id=cn_templates.tmp_id'
@@ -1033,13 +1007,14 @@ class CentralNotice extends SpecialPage {
 				)
 			);
 			$not_id = $dbw->insertId();
+			
+			// Do multi-row insert for campaign languages
+			$insertArray = array();
 			foreach( $project_languages as $code ) {
-				$res = $dbw->insert( 'cn_notice_languages',
-					array( 'not_id' => $not_id,
-						'not_language' => $code
-					)
-				);
+				$insertArray[] = array( 'nl_notice_id' => $not_id, 'nl_language' => $code );
 			}
+			$res = $dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, array( 'IGNORE' ) );
+		
 			$dbw->commit();
 			return;
 		}
@@ -1066,7 +1041,7 @@ class CentralNotice extends SpecialPage {
 			 $noticeId = htmlspecialchars( $this->getNoticeId( $noticeName ) );
 			 $res = $dbw->delete( 'cn_assignments',  array ( 'not_id' => $noticeId ) );
 			 $res = $dbw->delete( 'cn_notices', array ( 'not_name' => $noticeName ) );
-			 $res = $dbw->delete( 'cn_notice_languages', array ( 'not_id' => $noticeId ) );
+			 $res = $dbw->delete( 'cn_notice_languages', array ( 'nl_notice_id' => $noticeId ) );
 			 $dbw->commit();
 			 return;
 		}
@@ -1111,14 +1086,16 @@ class CentralNotice extends SpecialPage {
 		 return $row->not_id;
 	}
 
-	function getNoticeLanguages ( $noticeName ) {
+	function getNoticeLanguages( $noticeName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
-		$res = $dbr->select( 'cn_notice_languages', 'not_language', array( 'not_id' => $row->not_id ) );
 		$languages = array();
-		foreach ( $res as $langRow ) {
-			$languages[] = $langRow->not_language;
+		if ( $dbr->numRows( $row ) > 0 ) {
+			$res = $dbr->select( 'cn_notice_languages', 'nl_language', array( 'nl_notice_id' => $row->not_id ) );
+			foreach ( $res as $langRow ) {
+				$languages[] = $langRow->nl_language;
+			}
 		}
 		return $languages;
 	}
@@ -1314,18 +1291,17 @@ class CentralNotice extends SpecialPage {
 		$addLanguages = array_diff( $newLanguages, $oldLanguages );
 		$insertArray = array();
 		foreach( $addLanguages as $code ) {
-			$insertArray[] = array( 'not_id' => $row->not_id, 'not_language' => $code );
+			$insertArray[] = array( 'nl_notice_id' => $row->not_id, 'nl_language' => $code );
 		}
 		$res = $dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, array( 'IGNORE' ) );
 		
 		// Remove disassociated languages
 		$removeLanguages = array_diff( $oldLanguages, $newLanguages );
-		foreach( $removeLanguages as $code ) {
+		if ( !empty( $removeLanguages ) ) {
 			$res = $dbw->delete( 'cn_notice_languages',
-				array( 'not_id' => $row->not_id, 'not_language' => $code )
+				array( 'nl_notice_id' => $row->not_id, 'nl_language' => $removeLanguages )
 			);
 		}
-		
 		$dbw->commit();
 	}
 

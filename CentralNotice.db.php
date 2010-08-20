@@ -32,8 +32,8 @@ class CentralNoticeDB {
 			$conds[] = "not_project =" . $dbr->addQuotes( $project );
 		}
 		if ( $language ) {
-			$conds[] = "cn_notice_languages.not_id = cn_notices.not_id";
-			$conds[] = "cn_notice_languages.not_language =" . $dbr->addQuotes( $language );
+			$conds[] = "nl_notice_id = cn_notices.not_id";
+			$conds[] = "nl_language =" . $dbr->addQuotes( $language );
 		}
 		if ( $preferred ) {
 			$conds[] = "not_preferred = 1";
