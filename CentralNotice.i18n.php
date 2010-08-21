@@ -136,11 +136,12 @@ Add one below.',
  * @author Lloffiwr
  * @author Nike
  * @author Purodha
+ * @author The Evil IP address
  */
 $messages['qqq'] = array(
 	'centralnotice' => 'Name of Special:CentralNotice in Special:SpecialPages and title of the page',
 	'noticetemplate' => 'Title of Special:NoticeTemplate',
-	'centralnotice-desc' => 'Short description of the Centralnotice extension, shown in [[Special:Version]]. Do not translate or change links.',
+	'centralnotice-desc' => '{{desc}}',
 	'centralnotice-summary' => 'Used in Special:CentralNotice',
 	'centralnotice-end-date' => '{{Identical|End date}}',
 	'centralnotice-enabled' => '{{Identical|Enabled}}',
