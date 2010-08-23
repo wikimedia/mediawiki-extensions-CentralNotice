@@ -754,7 +754,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		// Generate list of message fields from parsing the body
 		$fields = array();
-		preg_match_all( '/\{\{\{([A-Za-z0-9\_\-\x{00C0}-\x{017F}]+)\}\}\}/u', $body, $fields );
+		$allowedChars = Title::legalChars();
+		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
 
 		// Remove duplicates
 		$filteredFields = array();
