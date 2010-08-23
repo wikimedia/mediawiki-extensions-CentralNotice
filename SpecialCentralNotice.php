@@ -706,6 +706,7 @@ class CentralNotice extends SpecialPage {
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 
+		// Get campaign info from database
 		$row = $dbr->selectRow( 'cn_notices',
 			array(
 				'not_id',
@@ -720,17 +721,11 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $notice ),
 			__METHOD__
 		);
-		$res = $dbr->select( 'cn_notice_languages',
-			'nl_language',
-			array( 'nl_notice_id' => $row->not_id ),
-			__METHOD__
-		);
-		$project_languages = array();
-		foreach ( $res as $langRow ) {
-			$project_languages[] = $langRow->nl_language;
-		}
 
 		if ( $row ) {
+			// Get all languages associated with the campaign
+			$noticeLanguages = $this->getNoticeLanguages( $notice );
+		
 			// Build Html
 			$htmlOut = '';
 			$htmlOut .= Xml::tags( 'h2', null, wfMsg( 'centralnotice-notice-heading', $notice ) );
@@ -760,7 +755,7 @@ class CentralNotice extends SpecialPage {
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'yourlanguage' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->languageMultiSelector( $project_languages ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->languageMultiSelector( $noticeLanguages ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1091,7 +1086,7 @@ class CentralNotice extends SpecialPage {
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
 		$languages = array();
-		if ( $dbr->numRows( $row ) > 0 ) {
+		if ( $row ) {
 			$res = $dbr->select( 'cn_notice_languages', 'nl_language', array( 'nl_notice_id' => $row->not_id ) );
 			foreach ( $res as $langRow ) {
 				$languages[] = $langRow->nl_language;
@@ -1297,11 +1292,12 @@ class CentralNotice extends SpecialPage {
 		
 		// Remove disassociated languages
 		$removeLanguages = array_diff( $oldLanguages, $newLanguages );
-		if ( !empty( $removeLanguages ) ) {
+		if ( $removeLanguages ) {
 			$res = $dbw->delete( 'cn_notice_languages',
 				array( 'nl_notice_id' => $row->not_id, 'nl_language' => $removeLanguages )
 			);
 		}
+		
 		$dbw->commit();
 	}
 
