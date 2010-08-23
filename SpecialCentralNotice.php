@@ -23,16 +23,16 @@ class CentralNotice extends SpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest, $wgScriptPath;
+		global $wgOut, $wgUser, $wgRequest, $wgExtensionAssetsPath;
 
 		// Begin output
 		$this->setHeaders();
 		
 		// Add style file to the output headers
-		$wgOut->addExtensionStyle( "$wgScriptPath/extensions/CentralNotice/centralnotice.css" );
+		$wgOut->addExtensionStyle( "$wgExtensionAssetsPath/CentralNotice/centralnotice.css" );
 		
 		// Add script file to the output headers
-		$wgOut->addScriptFile( "$wgScriptPath/extensions/CentralNotice/centralnotice.js" );
+		$wgOut->addScriptFile( "$wgExtensionAssetsPath/CentralNotice/centralnotice.js" );
 		
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
@@ -721,7 +721,7 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $notice ),
 			__METHOD__
 		);
-
+		
 		if ( $row ) {
 			// Get all languages associated with the campaign
 			$noticeLanguages = $this->getNoticeLanguages( $notice );
@@ -1215,8 +1215,8 @@ class CentralNotice extends SpecialPage {
 	 * @return multiple select list
 	 */
 	function languageMultiSelector( $selected = array(), $customisedOnly = true ) {
-		global $wgContLanguageCode, $wgScriptPath, $wgLang;
-		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
+		global $wgContLanguageCode, $wgExtensionAssetsPath, $wgLang;
+		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 		// Make sure the site language is in the list; a custom language code might not have a defined name...
 		$languages = Language::getLanguageNames( $customisedOnly );
 		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
