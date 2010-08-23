@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_templates (
 ) /*$wgDBTableOptions*/;
 
 CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_languages (
-	`nl_id` int unsigned NOT NULL PRIMARY KEY auto_increment,
 	`nl_notice_id` int unsigned NOT NULL,
 	`nl_language` varchar(32) NOT NULL
 ) /*$wgDBTableOptions*/;
