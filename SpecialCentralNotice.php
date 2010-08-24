@@ -185,8 +185,8 @@ class CentralNotice extends SpecialPage {
 			// Handle weight change
 			$updatedWeights = $wgRequest->getArray( 'weight' );
 			if ( isset( $updatedWeights ) ) {
-				foreach ( $updatedWeights as $templateName => $weight ) {
-					$this->updateWeight( $noticeName, $templateName, $weight );
+				foreach ( $updatedWeights as $templateId => $weight ) {
+					$this->updateWeight( $noticeName, $templateId, $weight );
 				}
 			}
 		}
@@ -280,12 +280,16 @@ class CentralNotice extends SpecialPage {
 		$wgOut->addHTML( $htmlOut );
 	}
 
+	/**
+	 * Get all the campaigns in the database
+	 * @return an array of campaign names
+	 */
 	function getNoticesName() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'cn_notices', 'not_name' );
+		$res = $dbr->select( 'cn_notices', 'not_name', null, __METHOD__ );
 		$notices = array();
 		while ( $row = $dbr->fetchObject( $res ) ) {
-			array_push( $notices, $row->not_name );
+			$notices[] = $row->not_name;
 		}
 		return $notices;
 	}
@@ -389,7 +393,7 @@ class CentralNotice extends SpecialPage {
 			),
 			null,
 			__METHOD__,
-			array( 'ORDER BY' => 'not_id' )
+			array( 'ORDER BY' => 'not_id DESC' )
 		);
 		
 		// Begin building HTML
@@ -624,8 +628,9 @@ class CentralNotice extends SpecialPage {
 			$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
 			if ( isset( $templatesToAdd ) ) {
 				$weight = $wgRequest->getArray( 'weight' );
-				foreach ( $templatesToAdd as $template ) {
-					$this->addTemplateTo( $notice, $template, $weight[$template] );
+				foreach ( $templatesToAdd as $templateName ) {
+					$templateId = $this->getTemplateId( $templateName );
+					$this->addTemplateTo( $notice, $templateName, $weight[$templateId] );
 				}
 			}
 			$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
@@ -801,6 +806,7 @@ class CentralNotice extends SpecialPage {
 				'cn_templates'
 			),
 			array(
+				'cn_templates.tmp_id',
 				'cn_templates.tmp_name',
 				'cn_assignments.tmp_weight'
 			),
@@ -850,7 +856,7 @@ class CentralNotice extends SpecialPage {
 
 			// Weight
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$this->weightDropDown( "weight[$row->tmp_name]", $row->tmp_weight )
+				$this->weightDropDown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 
 			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
@@ -1103,7 +1109,7 @@ class CentralNotice extends SpecialPage {
 		 return $row->not_project;
 	}
 
-	function getTemplateId ( $templateName ) {
+	function getTemplateId( $templateName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$templateName = htmlspecialchars ( $templateName );
 		$res = $dbr->select( 'cn_templates', 'tmp_id', array( 'tmp_name' => $templateName ) );
@@ -1173,11 +1179,9 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	function updateWeight ( $noticeName, $templateName, $weight ) {
+	function updateWeight( $noticeName, $templateId, $weight ) {
 		 $dbw = wfGetDB( DB_MASTER );
-		 $dbw->begin();
 		 $noticeId = $this->getNoticeId( $noticeName );
-		 $templateId = $this->getTemplateId( $templateName );
 		 $dbw->update( 'cn_assignments',
 		 	array ( 'tmp_weight' => $weight ),
 		 	array(
@@ -1185,7 +1189,6 @@ class CentralNotice extends SpecialPage {
 				'not_id' => $noticeId
 			)
 		);
-		$dbw->commit();
 	}
 
 	function projectDropDownList( $selected = '' ) {
@@ -1365,7 +1368,7 @@ class CentralNoticePager extends TemplatePager {
 			);
 			// Weight select
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				Xml::listDropDown( "weight[$row->tmp_name]",
+				Xml::listDropDown( "weight[$row->tmp_id]",
 					CentralNotice::dropDownList( wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) ) ,
 					'',
 					'25',
