@@ -894,7 +894,7 @@ class CentralNotice extends SpecialPage {
 	 * Create form for adding banners to a campaign
 	 */
 	function addTemplatesForm( $notice ) {
-		$pager = new TemplatePager( $this );
+		$pager = new CentralNoticePager( $this );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name', '', '', array( 'ORDER BY' => 'tmp_id' ) );
 		
@@ -1315,5 +1315,115 @@ class CentralNotice extends SpecialPage {
 			$text = "0{$text}";
 		}
 		return $text;
+	}
+}
+
+
+class CentralNoticePager extends TemplatePager {
+	var $viewPage, $special;
+	var $editable;
+
+	function __construct( $special ) {
+		parent::__construct( $special );
+	}
+	
+	/**
+	 * Pull banners from the database
+	 */
+	function getQueryInfo() {
+		$notice = $this->mRequest->getVal( 'notice' );
+		// Return all the banners not already assigned to the current campaign
+		return array(
+			'tables' => array( 'cn_templates', 'cn_assignments', 'cn_notices' ),
+			'fields' => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
+			'conds' => array( 'cn_notices.not_id IS NULL' ),
+			'join_conds' => array(
+				'cn_assignments' => array( 
+					'LEFT JOIN',
+					'cn_assignments.tmp_id = cn_templates.tmp_id'
+				),
+				'cn_notices' => array(
+					'LEFT JOIN',
+					"cn_notices.not_id = cn_assignments.not_id AND cn_notices.not_name = '$notice'"
+				)
+			)
+		);
+	}
+	
+	/**
+	 * Generate the content of each table row (1 row = 1 banner)
+	 */
+	function formatRow( $row ) {
+	
+		// Begin banner row
+		$htmlOut = Xml::openElement( 'tr' );
+		
+		if ( $this->editable ) {
+			// Add box
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				Xml::check( 'addTemplates[]', '', array ( 'value' => $row->tmp_name ) )
+			);
+			// Weight select
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				Xml::listDropDown( "weight[$row->tmp_name]",
+					CentralNotice::dropDownList( wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) ) ,
+					'',
+					'25',
+					'',
+					'' )
+			);
+		}
+		
+		// Link and Preview
+		$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
+		$render = new SpecialNoticeText();
+		$render->project = 'wikipedia';
+		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$this->getSkin()->makeLinkObj( $this->viewPage,
+				htmlspecialchars( $row->tmp_name ),
+				'template=' . urlencode( $row->tmp_name ) ) .
+			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
+				$render->getHtmlNotice( $row->tmp_name ),
+				array( 'class' => 'cn-bannerpreview')
+			)
+		);
+		
+		// End banner row
+		$htmlOut .= Xml::closeElement( 'tr' );
+		
+		return $htmlOut;
+	}
+	
+	/**
+	 * Specify table headers
+	 */
+	function getStartBody() {
+		$htmlOut = '';
+		$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
+		$htmlOut .= Xml::openElement( 'tr' );
+		if ( $this->editable ) {
+			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+				 wfMsg ( "centralnotice-add" )
+			);
+			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+				 wfMsg ( "centralnotice-weight" )
+			);
+		}
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+			wfMsg ( 'centralnotice-templates' )
+		);
+		$htmlOut .= Xml::closeElement( 'tr' );
+		return $htmlOut;
+	}
+	
+	/**
+	 * Close table
+	 */
+	function getEndBody() {
+		global $wgUser;
+		$htmlOut = '';
+		$htmlOut .= Xml::closeElement( 'table' );
+		return $htmlOut;
 	}
 }
