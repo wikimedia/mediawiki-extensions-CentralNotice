@@ -170,7 +170,7 @@ function pickTemplate(templates, weights, displayAnons, displayAccounts) {
 	while (currentTemplate < templates.length) {
 		if ((wgUserName && displayAccounts[currentTemplate]) || (!wgUserName && displayAnons[currentTemplate])) {
 			totalWeight += weights[currentTemplate];
-			for (i=0; i<weights[currentTemplate]; i++) {
+			for (var i=0; i<weights[currentTemplate]; i++) {
 				weightedTemplates[weightedTemplates.length] = templates[currentTemplate];
 			}
 		}
