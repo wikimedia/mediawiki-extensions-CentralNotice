@@ -132,6 +132,7 @@ Add one below.',
  * @author Darth Kule
  * @author EugeneZelenko
  * @author Fryed-peach
+ * @author Hamilton Abreu
  * @author Jon Harald Søby
  * @author Lloffiwr
  * @author Nike
@@ -151,6 +152,7 @@ $messages['qqq'] = array(
 	'centralnotice-remove' => '{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. $1 is a name of a template.',
 	'centralnotice-add' => '{{Identical|Add}}',
+	'centralnotice-multiple_languages' => '$1 is a number. More precisely, the number of languages a notice is available in. It is always greater than 3.',
 	'centralnotice-language-listing' => 'A language listing for the language multi-select box. First parameter is the language code. Second parameter is the name of the language.',
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
@@ -320,6 +322,7 @@ $messages['an'] = array(
 	'centralnotice-desc' => 'Adibe una "sitenotice" central',
 	'centralnotice-end-date' => 'Calendata final',
 	'centralnotice-modify' => 'Ninviar',
+	'centralnotice-preview' => 'Previsualizar',
 	'centralnotice-start-date' => 'Calendata de prencipio',
 	'centralnotice-invalid-date-range' => "Rango de datos no conforme.
 No s'está adautando.",
@@ -2158,6 +2161,7 @@ Ez da gehituko',
 
 /** Persian (فارسی)
  * @author Bersam
+ * @author Ebraminio
  * @author Huji
  * @author Komeil 4life
  * @author Wayiran
@@ -2249,6 +2253,7 @@ $messages['fa'] = array(
 	'centralnotice-no-templates-translate' => 'الگویی وجود ندارد که ترجمه‌اش را ویرایش کنید',
 	'centralnotice-number-uses' => 'کاربردها',
 	'centralnotice-edit-template' => 'الگو ویرایش',
+	'centralnotice-edit-template-summary' => 'برای ساختن یک پیغام قابل محلی‌سازی، یک رشتهٔ قابل شکستن را در سه کروشه قرار دهید. مانند {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'پیام',
 	'centralnotice-message-not-set' => 'پیغام تنظیم نشده',
 	'centralnotice-clone' => 'کلون',
@@ -4150,7 +4155,7 @@ $messages['kw'] = array(
 	'centralnotice-day' => 'Dydh',
 	'centralnotice-year' => 'Bledhen',
 	'centralnotice-month' => 'Mis',
-	'centralnotice-edit-template' => 'Chanjya skantlyn',
+	'centralnotice-edit-template' => 'Chanjya an baner',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
