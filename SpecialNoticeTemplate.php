@@ -430,7 +430,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 		
 		// Show banner settings
-		$htmlOut .= Xml::fieldset( 'Settings' );
+		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-settings' ) );
 		$htmlOut .= Xml::openElement( 'p', null );
 		$htmlOut .= wfMsg( 'centralnotice-banner-display' );
 		$htmlOut .= Xml::check( 'displayAnon', ( $row->tmp_display_anon == 1 ), wfArrayMerge( $disabled, array( 'id' => 'displayAnon' ) ) );
