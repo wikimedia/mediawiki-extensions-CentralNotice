@@ -682,7 +682,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		if ( $dbr->numRows( $res ) == 1 ) {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
 			$res = $dbw->update( 'cn_templates',
 				array(
 					'tmp_display_anon' => $displayAnon,
@@ -690,7 +689,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				),
 				array( 'tmp_name' => $name )
 			);
-			$dbw->commit();
 		
 			// Perhaps these should move into the db as blob
 			$article = new Article(
