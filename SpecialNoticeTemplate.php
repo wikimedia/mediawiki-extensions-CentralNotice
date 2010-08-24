@@ -73,23 +73,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// FIXME: getText()? weak comparison
 			if ( $wgRequest->getVal( 'wpMethod' ) == 'addTemplate' ) {
 			
-				// Handle "Display to anonymous users" checkbox
-				$displayAnon = 0;
-				if ( $wgRequest->getVal( 'displayAnon' ) ) {
-					$displayAnon = $wgRequest->getVal( 'displayAnon' );
-				}
-				
-				// Handle "Display to logged in users" checkbox
-				$displayAccount = 0;
-				if ( $wgRequest->getVal( 'displayAccount' ) ) {
-					$displayAccount = $wgRequest->getVal( 'displayAccount' );
-				}
-				
 				$this->addTemplate(
 					$wgRequest->getVal( 'templateName' ),
 					$wgRequest->getVal( 'templateBody' ),
-					$displayAnon,
-					$displayAccount
+					$wgRequest->getBool( 'displayAnon' ),
+					$wgRequest->getBool( 'displayAccount' )
 				);
 				$sub = 'view';
 			}
@@ -97,23 +85,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Handle editing banner
 			if ( $wgRequest->getVal( 'wpMethod' ) == 'editTemplate' ) {
 			
-				// Handle "Display to anonymous users" checkbox
-				$displayAnon = 0;
-				if ( $wgRequest->getVal( 'displayAnon' ) ) {
-					$displayAnon = $wgRequest->getVal( 'displayAnon' );
-				}
-				
-				// Handle "Display to logged in users" checkbox
-				$displayAccount = 0;
-				if ( $wgRequest->getVal( 'displayAccount' ) ) {
-					$displayAccount = $wgRequest->getVal( 'displayAccount' );
-				}
-				
 				$this->editTemplate(
 					$wgRequest->getVal( 'template' ),
 					$wgRequest->getVal( 'templateBody' ),
-					$displayAnon,
-					$displayAccount
+					$wgRequest->getBool( 'displayAnon' ),
+					$wgRequest->getBool( 'displayAccount' )
 				);
 				$sub = 'view';
 			}
