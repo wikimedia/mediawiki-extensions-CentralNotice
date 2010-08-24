@@ -481,24 +481,24 @@ class CentralNotice extends SpecialPage {
 				$fields[] =
 					Xml::check( 'enabled[]', ( $row->not_enabled == '1' ),
 					wfArrayMerge( $readonly,
-						array( 'value' => $row->not_name ) ) );
+						array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) ) );
 
 				// Preferred
 				$fields[] =
 				Xml::check( 'preferred[]', ( $row->not_preferred == '1' ),
 				wfArrayMerge( $readonly,
-				array( 'value' => $row->not_name ) ) );
+				array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) ) );
 
 				// Locked
 				$fields[] =
 					Xml::check( 'locked[]', ( $row->not_locked == '1' ),
 					wfArrayMerge( $readonly,
-						array( 'value' => $row->not_name ) ) );
+						array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) ) );
 
 				if ( $this->editable ) {
 					// Remove
 					$fields[] = Xml::check( 'removeNotices[]', false,
-						array( 'value' => $row->not_name ) );
+						array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) );
 				}
 				
 				// If campaign is currently active, set special class on table row.
