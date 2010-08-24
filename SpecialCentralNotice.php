@@ -268,7 +268,7 @@ class CentralNotice extends SpecialPage {
 		foreach ( $pages as $page => $msg ) {
 			$title = SpecialPage::getTitleFor( $page );
 			$attribs = array();
-			if ( $wgTitle == $title ) {
+			if ( $wgTitle->equals( $title ) ) {
 				$attribs['class'] = 'selected';
 			}
 			$htmlOut .= Xml::tags( 'li', $attribs,
