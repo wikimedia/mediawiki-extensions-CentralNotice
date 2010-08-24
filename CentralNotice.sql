@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_assignments (
 	`tmp_weight` int NOT NULL
 ) /*$wgDBTableOptions*/;
 
+-- FIXME: make tmp_name UNIQUE
 CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_templates (
 	`tmp_id` int NOT NULL PRIMARY KEY auto_increment,
 	`tmp_name` varchar(255) default NULL,
