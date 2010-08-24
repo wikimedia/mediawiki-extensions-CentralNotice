@@ -117,7 +117,7 @@ Add one below.',
 	'centralnotice-banner-logged-in' => 'Logged in users',
 	'centralnotice-banner-type' => 'Banner type:',
 	'centralnotice-banner-hidable' => 'Static/Hidable',
-	'centralnotice-banner-collapsible' => 'Collapsable',
+	'centralnotice-banner-collapsible' => 'Collapsible',
 	
 	'right-centralnotice-admin' => 'Manage central notices',
 	'right-centralnotice-translate' => 'Translate central notices',
