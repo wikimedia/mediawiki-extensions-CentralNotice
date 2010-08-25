@@ -262,7 +262,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->commit();
 	}
 
-	static public function printHeader() {
+	public static function printHeader() {
 		global $wgOut, $wgTitle, $wgUser;
 		$sk = $wgUser->getSkin();
 
@@ -1078,7 +1078,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Lookup the ID for a campaign based on the campaign name
 	 */
-	public function getNoticeId( $noticeName ) {
+	public static function getNoticeId( $noticeName ) {
 		 $dbr = wfGetDB( DB_SLAVE );
 		 $eNoticeName = htmlspecialchars( $noticeName );
 		 $res = $dbr->select( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
@@ -1100,7 +1100,7 @@ class CentralNotice extends SpecialPage {
 		return $languages;
 	}
 
-	function getNoticeProjectName ( $noticeName ) {
+	function getNoticeProjectName( $noticeName ) {
 		 $dbr = wfGetDB( DB_SLAVE );
 		 $eNoticeName = htmlspecialchars( $noticeName );
 		 $res = $dbr->select( 'cn_notices', 'not_project', array( 'not_name' => $eNoticeName ) );
@@ -1125,7 +1125,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->commit();
 	}
 
-	function updateNoticeDate ( $noticeName, $start, $end ) {
+	function updateNoticeDate( $noticeName, $start, $end ) {
 		global $wgOut;
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1158,7 +1158,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->commit();
 	}
 
-	function updateLock ( $noticeName, $isLocked ) {
+	function updateLock( $noticeName, $isLocked ) {
 		global $wgOut;
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1303,7 +1303,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->commit();
 	}
 
-	function dropDownList ( $text, $values ) {
+	function dropDownList( $text, $values ) {
 		$dropDown = "* {$text}\n";
 		foreach ( $values as $value ) {
 			$dropDown .= "**{$value}\n";
@@ -1311,7 +1311,7 @@ class CentralNotice extends SpecialPage {
 		return $dropDown;
 	}
 
-	function addZero ( $text ) {
+	function addZero( $text ) {
 		// Prepend a 0 for text needing it
 		if ( strlen( $text ) == 1 ) {
 			$text = "0{$text}";
