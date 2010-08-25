@@ -1081,9 +1081,12 @@ class CentralNotice extends SpecialPage {
 	public static function getNoticeId( $noticeName ) {
 		 $dbr = wfGetDB( DB_SLAVE );
 		 $eNoticeName = htmlspecialchars( $noticeName );
-		 $res = $dbr->select( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
-		 $row = $dbr->fetchObject( $res );
-		 return $row->not_id;
+		 $row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
+		 if ( $row ) {
+		 	return $row->not_id;
+		 } else {
+		 	return;
+		 }
 	}
 
 	function getNoticeLanguages( $noticeName ) {
@@ -1282,7 +1285,7 @@ class CentralNotice extends SpecialPage {
 		$oldLanguages = $this->getNoticeLanguages( $notice );
 		
 		// Get the notice id
-		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
+		$row = $this->getNoticeId( $notice );
 		
 		// Add newly assigned languages
 		$addLanguages = array_diff( $newLanguages, $oldLanguages );
@@ -1303,7 +1306,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->commit();
 	}
 
-	function dropDownList( $text, $values ) {
+	public static function dropDownList( $text, $values ) {
 		$dropDown = "* {$text}\n";
 		foreach ( $values as $value ) {
 			$dropDown .= "**{$value}\n";
@@ -1335,18 +1338,26 @@ class CentralNoticePager extends TemplatePager {
 	function getQueryInfo() {
 		$notice = $this->mRequest->getVal( 'notice' );
 		$noticeId = CentralNotice::getNoticeId( $notice );
-		// Return all the banners not already assigned to the current campaign
-		return array(
-			'tables' => array( 'cn_assignments', 'cn_templates' ),
-			'fields' => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
-			'conds' => array( 'cn_assignments.tmp_id IS NULL' ),
-			'join_conds' => array(
-				'cn_assignments' => array( 
-					'LEFT JOIN',
-					"cn_assignments.tmp_id = cn_templates.tmp_id AND cn_assignments.not_id = $noticeId"
+		if ( $noticeId ) {
+			// Return all the banners not already assigned to the current campaign
+			return array(
+				'tables' => array( 'cn_assignments', 'cn_templates' ),
+				'fields' => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
+				'conds' => array( 'cn_assignments.tmp_id IS NULL' ),
+				'join_conds' => array(
+					'cn_assignments' => array( 
+						'LEFT JOIN',
+						"cn_assignments.tmp_id = cn_templates.tmp_id AND cn_assignments.not_id = $noticeId"
+					)
 				)
-			)
-		);
+			);
+		} else {
+			// Return all the banners in the database
+			return array(
+				'tables' => 'cn_templates',
+				'fields' => array( 'tmp_name', 'tmp_id' ),
+			);
+		}
 	}
 	
 	/**
