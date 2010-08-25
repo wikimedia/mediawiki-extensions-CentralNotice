@@ -1085,7 +1085,10 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	function getNoticeId ( $noticeName ) {
+	/**
+	 * Lookup the ID for a campaign based on the campaign name
+	 */
+	public function getNoticeId( $noticeName ) {
 		 $dbr = wfGetDB( DB_SLAVE );
 		 $eNoticeName = htmlspecialchars( $noticeName );
 		 $res = $dbr->select( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
@@ -1341,19 +1344,16 @@ class CentralNoticePager extends TemplatePager {
 	 */
 	function getQueryInfo() {
 		$notice = $this->mRequest->getVal( 'notice' );
+		$noticeId = CentralNotice::getNoticeId( $notice );
 		// Return all the banners not already assigned to the current campaign
 		return array(
-			'tables' => array( 'cn_templates', 'cn_assignments', 'cn_notices' ),
+			'tables' => array( 'cn_assignments', 'cn_templates' ),
 			'fields' => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
-			'conds' => array( 'cn_notices.not_id IS NULL' ),
+			'conds' => array( 'cn_assignments.tmp_id IS NULL' ),
 			'join_conds' => array(
 				'cn_assignments' => array( 
 					'LEFT JOIN',
-					'cn_assignments.tmp_id = cn_templates.tmp_id'
-				),
-				'cn_notices' => array(
-					'LEFT JOIN',
-					"cn_notices.not_id = cn_assignments.not_id AND cn_notices.not_name = '$notice'"
+					"cn_assignments.tmp_id = cn_templates.tmp_id AND cn_assignments.not_id = $noticeId"
 				)
 			)
 		);
