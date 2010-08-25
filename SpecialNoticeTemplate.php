@@ -433,18 +433,23 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-logged-in' ), 'displayAccount' );
 		$htmlOut .= Xml::closeElement( 'p' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		
-		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-edit-template' ) );
-		$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
-		$buttons = array();
-		$buttons[] = '<a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>';
-		$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>';
-		$htmlOut .= Xml::tags( 'div',
-			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
-		);
-		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		if ( $this->editable ) {
+			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-edit-template' ) );
+			$htmlOut .= wfMsg( 'centralnotice-edit-template-summary' );
+			$buttons = array();
+			$buttons[] = '<a href="#" onclick="insertButton(\'hide\');return false;">' . wfMsg( 'centralnotice-hide-button' ) . '</a>';
+			$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . wfMsg( 'centralnotice-translate-button' ) . '</a>';
+			$htmlOut .= Xml::tags( 'div',
+				array( 'style' => 'margin-bottom: 0.2em;' ),
+				'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
+			);
+			$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
+			$htmlOut .= Xml::closeElement( 'fieldset' );
+		} else {
+			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-banner' ) );
+			$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
+			$htmlOut .= Xml::closeElement( 'fieldset' );
+		}
 		if ( $this->editable ) {
 			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 			$htmlOut .= Xml::tags( 'div', 
