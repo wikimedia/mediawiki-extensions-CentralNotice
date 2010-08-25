@@ -119,6 +119,7 @@ Add one below.',
 	'centralnotice-banner-type' => 'Banner type:',
 	'centralnotice-banner-hidable' => 'Static/Hidable',
 	'centralnotice-banner-collapsible' => 'Collapsible',
+	'centralnotice-bad-authtoken' => 'Invalid authentication token. Please try again.',
 	
 	'right-centralnotice-admin' => 'Manage central notices',
 	'right-centralnotice-translate' => 'Translate central notices',
