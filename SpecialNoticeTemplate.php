@@ -155,12 +155,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::element( 'p', null, wfMsg( 'centralnotice-no-templates' ) );
 		} else {
 			if ( $this->editable ) {
-				$htmlOut .= Xml::openElement( 'form',
-					array(
-						'method' => 'post',
-						'action' => ''
-					 )
-				);
+				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			}
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-manage-templates' ) );
 			
@@ -562,19 +557,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	private function removeTemplate ( $name ) {
 		global $wgOut;
 
-		// FIXME: weak comparison
-		if ( $name == '' ) {
-			// FIXME: message not defined?
-			$wgOut->addWikiMsg( 'centralnotice-template-doesnt-exist' );
-			return;
-		}
-
 		$id = $this->getTemplateId( $name );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addWikiMsg( 'centralnotice-template-still-bound' );
+			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-template-still-bound' ) ) );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );

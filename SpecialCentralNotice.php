@@ -48,7 +48,7 @@ class CentralNotice extends SpecialPage {
 		
 		$method = $wgRequest->getVal( 'method' );
 		// Handle form sumissions
-		 if ( $this->editable && $wgRequest->wasPosted() ) {
+		if ( $this->editable && $wgRequest->wasPosted() ) {
 		 
 		 	// Check authentication token
 		 	if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
@@ -411,12 +411,7 @@ class CentralNotice extends SpecialPage {
 		// If there are campaigns to show...
 		if ( $dbr->numRows( $res ) >= 1 ) {
 			if ( $this->editable ) {
-				$htmlOut .= Xml::openElement( 'form',
-					array(
-						'method' => 'post',
-						'action' => $this->getTitle()->getFullUrl()
-					 )
-				);
+				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			}
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-manage' ) );
 			
@@ -549,12 +544,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
 			// Form for adding a campaign
-			$htmlOut .= Xml::openElement( 'form',
-				array(
-					'method' => 'post',
-					'action' =>  $this->getTitle()->getLocalUrl()
-				)
-			);
+			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-notice' ) );
 			$htmlOut .= Xml::hidden( 'title', $this->getTitle()->getPrefixedText() );
 			$htmlOut .= Xml::hidden( 'method', 'addNotice' );
