@@ -1329,7 +1329,6 @@ class CentralNotice extends SpecialPage {
 
 class CentralNoticePager extends TemplatePager {
 	var $viewPage, $special;
-	var $editable;
 
 	function __construct( $special ) {
 		parent::__construct( $special );

@@ -6,7 +6,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class SpecialNoticeTemplate extends UnlistedSpecialPage {
-	var $editable;
 	
 	function __construct() {
 		parent::__construct( 'NoticeTemplate' );

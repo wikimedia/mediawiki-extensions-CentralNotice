@@ -2,7 +2,6 @@
 
 class TemplatePager extends ReverseChronologicalPager {
 	var $onRemoveChange, $viewPage, $special;
-	var $editable;
 
 	function __construct( $special ) {
 		$this->special = $special;
@@ -41,15 +40,17 @@ class TemplatePager extends ReverseChronologicalPager {
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
 		
-		// Remove box
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			Xml::check( 'removeTemplates[]', false,
-				array(
-					'value' => $row->tmp_name,
-					'onchange' => $this->onRemoveChange
+		if ( $this->editable ) {
+			// Remove box
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				Xml::check( 'removeTemplates[]', false,
+					array(
+						'value' => $row->tmp_name,
+						'onchange' => $this->onRemoveChange
+					)
 				)
-			)
-		);
+			);
+		}
 		
 		// Link and Preview
 		$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
