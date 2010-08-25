@@ -47,7 +47,8 @@ class CentralNotice extends SpecialPage {
 		$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
 		
 		$method = $wgRequest->getVal( 'method' );
-		// Handle form sumissions
+		
+		// Handle form submissions
 		if ( $this->editable && $wgRequest->wasPosted() ) {
 		 
 		 	// Check authentication token
@@ -185,53 +186,23 @@ class CentralNotice extends SpecialPage {
 					}
 				}
 
-				// Handle weight change
-				$updatedWeights = $wgRequest->getArray( 'weight' );
-				if ( isset( $updatedWeights ) ) {
-					foreach ( $updatedWeights as $templateId => $weight ) {
-						$this->updateWeight( $noticeName, $templateId, $weight );
+				// Handle adding of campaign
+				if ( $method == 'addNotice' ) {
+					$noticeName        = $wgRequest->getVal( 'noticeName' );
+					$start             = $wgRequest->getArray( 'start' );
+					$project_name      = $wgRequest->getVal( 'project_name' );
+					$project_languages = $wgRequest->getArray( 'project_languages' );
+					if ( $noticeName == '' ) {
+						$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
+					} else {
+						$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
 					}
 				}
+
 			} else {
 				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
 			}
-		}
 
-		// Handle adding of campaign
-		if ( $this->editable && $method == 'addNotice' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
-			$noticeName        = $wgRequest->getVal( 'noticeName' );
-			$start             = $wgRequest->getArray( 'start' );
-			$project_name      = $wgRequest->getVal( 'project_name' );
-			$project_languages = $wgRequest->getArray( 'project_languages' );
-			if ( $noticeName == '' ) {
-				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
-			} else {
-				$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
-			}
-		}
-
-		// Handle removing of campaign
-		if ( $this->editable && $method == 'removeNotice' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
-			$noticeName = $wgRequest->getVal ( 'noticeName' );
-			$this->removeNotice ( $noticeName );
-		}
-
-		// Handle adding a banner to a campaign
-		if ( $this->editable && $method == 'addTemplateTo' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
-			$noticeName = $wgRequest->getVal( 'noticeName' );
-			$templateName = $wgRequest->getVal( 'templateName' );
-			$templateWeight = $wgRequest->getVal ( 'weight' );
-			$this->addTemplateTo( $noticeName, $templateName, $weight );
-			$this->listNoticeDetail( $noticeName );
-			$wgOut->addHTML( Xml::closeElement( 'div' ) );
-			return;
-		}
-
-		// Handle removing a banner from a campaign
-		if ( $this->editable && $method == 'removeTemplateFor' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
-			$noticeName = $wgRequest->getVal ( 'noticeName' );
-			$templateName = $wgRequest->getVal ( 'templateName ' );
-			$this->removeTemplateFor( $noticeName , $templateName );
 		}
 
 		// Handle showing campaign detail
@@ -314,13 +285,13 @@ class CentralNotice extends SpecialPage {
 	function dateSelector( $prefix, $timestamp = null ) {
 		if ( $this->editable ) {
 			// Default ranges...
-			$years = range( 2007, 2012 );
+			$years = range( 2008, 2014 );
 			$months = range( 1, 12 );
 			$months = array_map( array( $this, 'addZero' ), $months );
 			$days = range( 1 , 31 );
 			$days = array_map( array( $this, 'addZero' ), $days );
 	
-			// Normalize timestamp format...
+			// Normalize timestamp format. If no timestamp passed, defaults to now.
 			$ts = wfTimestamp( TS_MW, $timestamp );
 	
 			$fields = array(
@@ -375,7 +346,7 @@ class CentralNotice extends SpecialPage {
 	 * Print out all campaigns found in db
 	 */
 	function listNotices() {
-		global $wgOut, $wgUser, $wgLang;
+		global $wgOut, $wgUser, $wgLang, $wgRequest;
 
 		// Get connection
 		$dbr = wfGetDB( DB_SLAVE );
@@ -554,7 +525,7 @@ class CentralNotice extends SpecialPage {
 			// Name
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-notice-name' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::input( 'noticeName', 25 ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::input( 'noticeName', 25, $wgRequest->getVal( 'noticeName' ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -599,39 +570,56 @@ class CentralNotice extends SpecialPage {
 	function listNoticeDetail( $notice ) {
 		global $wgOut, $wgRequest, $wgUser;
 		
-		if ( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+		if ( $wgRequest->wasPosted() ) {
+			
+			// Check authentication token
+			if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+			
+				// Handle adding of banners to the campaign
+				$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
+				if ( isset( $templatesToAdd ) ) {
+					$weight = $wgRequest->getArray( 'weight' );
+					foreach ( $templatesToAdd as $templateName ) {
+						$templateId = $this->getTemplateId( $templateName );
+						$this->addTemplateTo( $notice, $templateName, $weight[$templateId] );
+					}
+				}
 		
-			// Handle removing of banners from the campaign
-			$templateToRemove = $wgRequest->getArray( 'removeTemplates' );
-			if ( isset( $templateToRemove ) ) {
-				foreach ( $templateToRemove as $template ) {
-					$this->removeTemplateFor( $notice, $template );
+				// Handle removing of banners from the campaign
+				$templateToRemove = $wgRequest->getArray( 'removeTemplates' );
+				if ( isset( $templateToRemove ) ) {
+					foreach ( $templateToRemove as $template ) {
+						$this->removeTemplateFor( $notice, $template );
+					}
 				}
-			}
-
-			// Handle new project name
-			$projectName = $wgRequest->getVal( 'project_name' );
-			if ( isset( $projectName ) ) {
-				$this->updateProjectName ( $notice, $projectName );
-			}
-
-			// Handle new project languages
-			$projectLangs = $wgRequest->getArray( 'project_languages' );
-			if ( isset( $projectLangs ) ) {
-				$this->updateProjectLanguages( $notice, $projectLangs );
-			}
-
-			// Handle adding of banners to the campaign
-			$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
-			if ( isset( $templatesToAdd ) ) {
-				$weight = $wgRequest->getArray( 'weight' );
-				foreach ( $templatesToAdd as $templateName ) {
-					$templateId = $this->getTemplateId( $templateName );
-					$this->addTemplateTo( $notice, $templateName, $weight[$templateId] );
+	
+				// Handle new project name
+				$projectName = $wgRequest->getVal( 'project_name' );
+				if ( isset( $projectName ) ) {
+					$this->updateProjectName ( $notice, $projectName );
 				}
+	
+				// Handle new project languages
+				$projectLangs = $wgRequest->getArray( 'project_languages' );
+				if ( isset( $projectLangs ) ) {
+					$this->updateProjectLanguages( $notice, $projectLangs );
+				}
+				
+				// Handle weight change
+				$updatedWeights = $wgRequest->getArray( 'weight' );
+				if ( isset( $updatedWeights ) ) {
+					foreach ( $updatedWeights as $templateId => $weight ) {
+						$this->updateWeight( $noticeName, $templateId, $weight );
+					}
+				}
+
+				$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
+				return;
+				
+			} else {
+				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
 			}
-			$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
-			return;
+			
 		}
 		
 		$noticeId = $this->getNoticeId( $notice );
@@ -1329,6 +1317,7 @@ class CentralNotice extends SpecialPage {
 
 class CentralNoticePager extends TemplatePager {
 	var $viewPage, $special;
+	var $editable;
 
 	function __construct( $special ) {
 		parent::__construct( $special );

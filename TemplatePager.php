@@ -2,6 +2,7 @@
 
 class TemplatePager extends ReverseChronologicalPager {
 	var $onRemoveChange, $viewPage, $special;
+	var $editable;
 
 	function __construct( $special ) {
 		$this->special = $special;

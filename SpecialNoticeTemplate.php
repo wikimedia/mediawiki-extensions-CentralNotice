@@ -6,6 +6,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class SpecialNoticeTemplate extends UnlistedSpecialPage {
+	var $editable;
 	
 	function __construct() {
 		parent::__construct( 'NoticeTemplate' );
@@ -41,9 +42,13 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Begin Banners tab content
 		$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
 		
-		if ( $this->editable && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
-			// Handle forms
-			if ( $wgRequest->wasPosted() ) {
+		$method = $wgRequest->getVal( 'wpMethod' );
+		
+		// Handle form submissions
+		if ( $this->editable && $wgRequest->wasPosted() ) {
+				
+			// Check authentication token
+			if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 
 				// Handle removing banners
 				$toRemove = $wgRequest->getArray( 'removeTemplates' );
@@ -66,32 +71,40 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 						}
 					}
 				}
-			}
 
-			// Handle adding banner
-			// FIXME: getText()? weak comparison
-			if ( $wgRequest->getVal( 'wpMethod' ) == 'addTemplate' ) {
-			
-				$this->addTemplate(
-					$wgRequest->getVal( 'templateName' ),
-					$wgRequest->getVal( 'templateBody' ),
-					$wgRequest->getBool( 'displayAnon' ),
-					$wgRequest->getBool( 'displayAccount' )
-				);
-				$sub = 'view';
+				// Handle adding banner
+				// FIXME: getText()? weak comparison
+				if ( $method == 'addTemplate' ) {
+					$newTemplateName = $wgRequest->getVal( 'templateName' );
+					$newTemplateBody = $wgRequest->getVal( 'templateBody' );
+					if ( $newTemplateName != '' && $newTemplateBody != '' ) {
+						$this->addTemplate(
+							$newTemplateName,
+							$newTemplateBody,
+							$wgRequest->getBool( 'displayAnon' ),
+							$wgRequest->getBool( 'displayAccount' )
+						);
+						$sub = 'view';
+					} else {
+						$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
+					}
+				}
+				
+				// Handle editing banner
+				if ( $method == 'editTemplate' ) {
+					$this->editTemplate(
+						$wgRequest->getVal( 'template' ),
+						$wgRequest->getVal( 'templateBody' ),
+						$wgRequest->getBool( 'displayAnon' ),
+						$wgRequest->getBool( 'displayAccount' )
+					);
+					$sub = 'view';
+				}
+					
+			} else {
+				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
 			}
 			
-			// Handle editing banner
-			if ( $wgRequest->getVal( 'wpMethod' ) == 'editTemplate' ) {
-			
-				$this->editTemplate(
-					$wgRequest->getVal( 'template' ),
-					$wgRequest->getVal( 'templateBody' ),
-					$wgRequest->getBool( 'displayAnon' ),
-					$wgRequest->getBool( 'displayAccount' )
-				);
-				$sub = 'view';
-			}
 		}
 
 		// Handle viewing of a banner in all languages
@@ -110,7 +123,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 
 		if ( $this->editable ) {
-			// Handle "Add a banner" link
+			// Handle showing "Add a banner" interface
 			if ( $sub == 'add' ) {
 				$this->showAdd();
 				$wgOut->addHTML( Xml::closeElement( 'div' ) );
@@ -118,14 +131,24 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			
 			// Handle cloning a specific banner
-			if ( $sub == 'clone' && $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
-				$oldTemplate = $wgRequest->getVal( 'oldTemplate' );
-				$newTemplate =  $wgRequest->getVal( 'newTemplate' );
-				// We use the returned name in case any special characters had to be removed
-				$template = $this->cloneTemplate( $oldTemplate, $newTemplate );
-				$wgOut->redirect( $this->getTitle( 'view' )->getLocalUrl( "template=$template" ) );
-				return;
+			if ( $sub == 'clone' ) {
+			
+				// Check authentication token
+				if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+				
+					$oldTemplate = $wgRequest->getVal( 'oldTemplate' );
+					$newTemplate =  $wgRequest->getVal( 'newTemplate' );
+					// We use the returned name in case any special characters had to be removed
+					$template = $this->cloneTemplate( $oldTemplate, $newTemplate );
+					$wgOut->redirect( $this->getTitle( 'view' )->getLocalUrl( "template=$template" ) );
+					return;
+					
+				} else {
+					$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
+				}
+				
 			}
+			
 		}
 
 		// Show list of banners by default
@@ -184,7 +207,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show "Add a banner" interface
 	 */
 	function showAdd() {
-		global $wgOut, $wgUser, $wgScriptPath, $wgLang;
+		global $wgOut, $wgUser, $wgScriptPath, $wgLang, $wgRequest;
 		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
 
 		// Build HTML
@@ -194,7 +217,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-template' ) );
 		$htmlOut .= Xml::hidden( 'wpMethod', 'addTemplate' );
 		$htmlOut .= Xml::tags( 'p', null,
-			Xml::inputLabel( wfMsg( 'centralnotice-banner-name' ) . ":", 'templateName', 'templateName', 25 )
+			Xml::inputLabel( wfMsg( 'centralnotice-banner-name' ) . ":", 'templateName', 'templateName', 25, $wgRequest->getVal( 'templateName' ) )
 		);
 		
 		$htmlOut .= Xml::openElement( 'p', null );
@@ -214,7 +237,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			array( 'style' => 'margin-bottom: 0.2em;' ),
 			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
 		);
-		$htmlOut .= Xml::textarea( 'templateBody', '', 60, 20 );
+		$body = '';
+		
+		// Restore banner body state in the event of an error on form submit
+		if ( $wgRequest->getVal( 'templateBody' ) ) {
+			$body = $wgRequest->getVal( 'templateBody' );
+		}
+		
+		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
 		
@@ -296,6 +326,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$fields = array();
 		$allowedChars = Title::legalChars();
 		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
+		
+		// Restore banner body state in the event of an error on form submit
+		if ( $wgRequest->getVal( 'templateBody' ) ) {
+			$body = $wgRequest->getVal( 'templateBody' );
+		}
 			
 		// If there are any message fields in the banner, display translation tools.
 		if ( count( $fields[0] ) > 0 ) {
@@ -609,7 +644,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			return false;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
 			$res = $dbw->insert( 'cn_templates',
 				array(
 					'tmp_name' => $name,
@@ -618,7 +652,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				),
 				__METHOD__
 			);
-			$dbw->commit();
 
 			// Perhaps these should move into the db as blob
 			$article = new Article(
