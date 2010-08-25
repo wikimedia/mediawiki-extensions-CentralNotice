@@ -193,7 +193,7 @@ class CentralNotice extends SpecialPage {
 					}
 				}
 			} else {
-				$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-bad-authtoken' ) ) );
+				$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'sessionfailure' ) ) );
 			}
 		}
 
