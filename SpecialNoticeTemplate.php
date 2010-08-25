@@ -562,7 +562,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-template-still-bound' ) ) );
+			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-template-still-bound' );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -587,7 +587,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-null-string' ) ) );
+			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
 			return;
 		}
 
@@ -603,7 +603,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-template-exists' ) ) );
+			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-template-exists' );
 			return false;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -634,7 +634,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->addHTML( Xml::element( 'div', array( 'class' => 'cn-error' ), wfMsg( 'centralnotice-null-string' ) ) );
+			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
 			return;
 		}
 
