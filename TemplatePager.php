@@ -30,7 +30,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * Sort the banner list by tmp_id
 	 */
 	function getIndexField() {
-		return 'tmp_id';
+		return 'cn_templates.tmp_id';
 	}
 
 	/**
