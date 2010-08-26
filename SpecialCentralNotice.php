@@ -1324,7 +1324,7 @@ class CentralNotice extends SpecialPage {
 		$oldLanguages = $this->getNoticeLanguages( $notice );
 		
 		// Get the notice id
-		$row = $this->getNoticeId( $notice );
+		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
 		
 		// Add newly assigned languages
 		$addLanguages = array_diff( $newLanguages, $oldLanguages );
