@@ -704,6 +704,8 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing campaign settings (start date, end date, languages, etc.)
 	 */
 	function noticeDetailForm( $notice ) {
+		global $wgRequest;
+		
 		if ( $this->editable ) {
 			$readonly = array();
 		} else {
@@ -728,6 +730,20 @@ class CentralNotice extends SpecialPage {
 		);
 		
 		if ( $row ) {
+		
+			// If there was an error, we'll need to restore the state of the start date and time select lists
+			if ( $wgRequest->wasPosted() ) {
+				$startArray = $wgRequest->getArray( 'start' );
+				$timestamp = $startArray['year'] .
+					$startArray['month'] .
+					$startArray['day'] .
+					$startArray['hour'] .
+					$startArray['min'] . '00'
+				;
+			} else {
+				$timestamp = $row->not_start;
+			}
+			
 			// Get all languages associated with the campaign
 			$noticeLanguages = $this->getNoticeLanguages( $notice );
 		
@@ -740,12 +756,12 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $row->not_start ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $timestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) . "(GMT)" );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $row->not_start, "[$row->not_name]" ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $timestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
