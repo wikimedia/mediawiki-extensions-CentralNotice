@@ -512,7 +512,7 @@ class CentralNotice extends SpecialPage {
 		if ( $this->editable ) {
 		
 			// If there was an error, we'll need to restore the state of the form
-			if ( $wgRequest->wasPosted() ) {
+			if ( $wgRequest->wasPosted() && ( $wgRequest->getVal( 'method' ) == 'addNotice' ) ) {
 				$startArray = $wgRequest->getArray( 'start' );
 				$startTimestamp = $startArray['year'] .
 					$startArray['month'] .
@@ -521,7 +521,11 @@ class CentralNotice extends SpecialPage {
 					$startArray['min'] . '00'
 				;
 				$projectSelected = $wgRequest->getVal( 'project_name' );
-				$noticeLanguages = $wgRequest->getArray( 'project_languages' );
+				if ( $wgRequest->getArray( 'project_languages' ) ) {
+					$noticeLanguages = $wgRequest->getArray( 'project_languages' );
+				} else {
+					$noticeLanguages = array();
+				}
 			} else { // Defaults
 				$startTimestamp = null;
 				$projectSelected = '';
