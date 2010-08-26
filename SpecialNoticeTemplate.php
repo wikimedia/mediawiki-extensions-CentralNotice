@@ -237,12 +237,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			array( 'style' => 'margin-bottom: 0.2em;' ),
 			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
 		);
-		$body = '';
 		
 		// Restore banner body state in the event of an error on form submit
-		if ( $wgRequest->getVal( 'templateBody' ) ) {
-			$body = $wgRequest->getVal( 'templateBody' );
-		}
+		$body = $wgRequest->getVal( 'templateBody', '' )
 		
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
@@ -328,9 +325,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
 		
 		// Restore banner body state in the event of an error on form submit
-		if ( $wgRequest->getVal( 'templateBody' ) ) {
-			$body = $wgRequest->getVal( 'templateBody' );
-		}
+		$body = $wgRequest->getVal( 'templateBody', $body );
 			
 		// If there are any message fields in the banner, display translation tools.
 		if ( count( $fields[0] ) > 0 ) {
