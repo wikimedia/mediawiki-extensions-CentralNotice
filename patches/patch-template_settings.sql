@@ -3,5 +3,5 @@
 -- is displayed to anonymous users, the other indicating whether or not the banner is displayed
 -- to logged in users.
 
-ALTER TABLE /*$wgDBprefix*/cn_templates ADD `tmp_display_anon` BOOLEAN NOT NULL DEFAULT 1;
-ALTER TABLE /*$wgDBprefix*/cn_templates ADD `tmp_display_account` BOOLEAN NOT NULL DEFAULT 1;
+ALTER TABLE /*$wgDBprefix*/cn_templates ADD `tmp_display_anon` bool NOT NULL DEFAULT 1;
+ALTER TABLE /*$wgDBprefix*/cn_templates ADD `tmp_display_account` bool NOT NULL DEFAULT 1;
