@@ -217,7 +217,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-template' ) );
 		$htmlOut .= Xml::hidden( 'wpMethod', 'addTemplate' );
 		$htmlOut .= Xml::tags( 'p', null,
-			Xml::inputLabel( wfMsg( 'centralnotice-banner-name' ) . ":", 'templateName', 'templateName', 25, $wgRequest->getVal( 'templateName' ) )
+			Xml::inputLabel( wfMsg( 'centralnotice-banner-name' ), 'templateName', 'templateName', 25, $wgRequest->getVal( 'templateName' ) )
 		);
 		
 		$htmlOut .= Xml::openElement( 'p', null );
