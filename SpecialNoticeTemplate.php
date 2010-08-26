@@ -222,9 +222,19 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		$htmlOut .= Xml::openElement( 'p', null );
 		$htmlOut .= wfMsg( 'centralnotice-banner-display' );
-		$htmlOut .= Xml::check( 'displayAnon', true, array( 'id' => 'displayAnon' ) );
+		if ( $wgRequest->wasPosted() ) {
+			$displayAnon = $wgRequest->getCheck( 'displayAnon' );
+		} else {
+			$displayAnon = true;
+		}
+		$htmlOut .= Xml::check( 'displayAnon', $displayAnon, array( 'id' => 'displayAnon' ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-anonymous' ), 'displayAnon' );
-		$htmlOut .= Xml::check( 'displayAccount', true, array( 'id' => 'displayAccount' ) );
+		if ( $wgRequest->wasPosted() ) {
+			$displayAccount = $wgRequest->getCheck( 'displayAccount' );
+		} else {
+			$displayAccount = true;
+		}
+		$htmlOut .= Xml::check( 'displayAccount', $displayAccount, array( 'id' => 'displayAccount' ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-logged-in' ), 'displayAccount' );
 		$htmlOut .= Xml::closeElement( 'p' );
 		
@@ -457,9 +467,19 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-settings' ) );
 		$htmlOut .= Xml::openElement( 'p', null );
 		$htmlOut .= wfMsg( 'centralnotice-banner-display' );
-		$htmlOut .= Xml::check( 'displayAnon', ( $row->tmp_display_anon == 1 ), wfArrayMerge( $disabled, array( 'id' => 'displayAnon' ) ) );
+		if ( $wgRequest->wasPosted() ) {
+			$displayAnon = $wgRequest->getCheck( 'displayAnon' );
+		} else {
+			$displayAnon = ( $row->tmp_display_anon == 1 );
+		}
+		$htmlOut .= Xml::check( 'displayAnon', $displayAnon, wfArrayMerge( $disabled, array( 'id' => 'displayAnon' ) ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-anonymous' ), 'displayAnon' );
-		$htmlOut .= Xml::check( 'displayAccount', ( $row->tmp_display_account == 1 ), wfArrayMerge( $disabled, array( 'id' => 'displayAccount' ) ) );
+		if ( $wgRequest->wasPosted() ) {
+			$displayAccount = $wgRequest->getCheck( 'displayAccount' );
+		} else {
+			$displayAccount = ( $row->tmp_display_account == 1 );
+		}
+		$htmlOut .= Xml::check( 'displayAccount', $displayAccount, wfArrayMerge( $disabled, array( 'id' => 'displayAccount' ) ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-logged-in' ), 'displayAccount' );
 		$htmlOut .= Xml::closeElement( 'p' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
