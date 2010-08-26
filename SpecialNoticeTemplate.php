@@ -710,7 +710,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$langs = $this->getTranslations( $source );
 
 		// Normalize name
-		$dest = ereg_replace( '[^A-Za-z0-9\_]', '', $dest );
+		$dest = preg_replace( '/[^A-Za-z0-9_]/', '', $dest );
 		
 		// Pull banner settings from database
 		$dbr = wfGetDB( DB_SLAVE );
