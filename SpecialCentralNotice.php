@@ -293,7 +293,7 @@ class CentralNotice extends SpecialPage {
 	
 			// Normalize timestamp format. If no timestamp passed, defaults to now.
 			$ts = wfTimestamp( TS_MW, $timestamp );
-	
+			
 			$fields = array(
 				array( "month", "centralnotice-month", $months, substr( $ts, 4, 2 ) ),
 				array( "day",   "centralnotice-day",   $days,   substr( $ts, 6, 2 ) ),
@@ -511,6 +511,19 @@ class CentralNotice extends SpecialPage {
 
 		if ( $this->editable ) {
 		
+			// If there was an error, we'll need to restore the state of the start date and time select lists
+			if ( $wgRequest->wasPosted() ) {
+				$startArray = $wgRequest->getArray( 'start' );
+				$timestamp = $startArray['year'] .
+					$startArray['month'] .
+					$startArray['day'] .
+					$startArray['hour'] .
+					$startArray['min'] . '00'
+				;
+			} else {
+				$timestamp = null;
+			}
+		
 			// Begin Add a campaign fieldset
 			$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
@@ -530,12 +543,12 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start' ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $timestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start' ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $timestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );

@@ -223,16 +223,16 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::openElement( 'p', null );
 		$htmlOut .= wfMsg( 'centralnotice-banner-display' );
 		if ( $wgRequest->wasPosted() ) {
-			$displayAnon = $wgRequest->getCheck( 'displayAnon' );
+			$displayAnon = $wgRequest->getCheck( 'displayAnon' ); // Restore checkbox state in event of error
 		} else {
-			$displayAnon = true;
+			$displayAnon = true; // Default is checked
 		}
 		$htmlOut .= Xml::check( 'displayAnon', $displayAnon, array( 'id' => 'displayAnon' ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-anonymous' ), 'displayAnon' );
 		if ( $wgRequest->wasPosted() ) {
-			$displayAccount = $wgRequest->getCheck( 'displayAccount' );
+			$displayAccount = $wgRequest->getCheck( 'displayAccount' ); // Restore checkbox state in event of error
 		} else {
-			$displayAccount = true;
+			$displayAccount = true; // Default is checked
 		}
 		$htmlOut .= Xml::check( 'displayAccount', $displayAccount, array( 'id' => 'displayAccount' ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-logged-in' ), 'displayAccount' );
@@ -468,16 +468,16 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::openElement( 'p', null );
 		$htmlOut .= wfMsg( 'centralnotice-banner-display' );
 		if ( $wgRequest->wasPosted() ) {
-			$displayAnon = $wgRequest->getCheck( 'displayAnon' );
+			$displayAnon = $wgRequest->getCheck( 'displayAnon' ); // Restore checkbox state in event of error
 		} else {
-			$displayAnon = ( $row->tmp_display_anon == 1 );
+			$displayAnon = ( $row->tmp_display_anon == 1 ); // Default to saved state
 		}
 		$htmlOut .= Xml::check( 'displayAnon', $displayAnon, wfArrayMerge( $disabled, array( 'id' => 'displayAnon' ) ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-anonymous' ), 'displayAnon' );
 		if ( $wgRequest->wasPosted() ) {
-			$displayAccount = $wgRequest->getCheck( 'displayAccount' );
+			$displayAccount = $wgRequest->getCheck( 'displayAccount' ); // Restore checkbox state in event of error
 		} else {
-			$displayAccount = ( $row->tmp_display_account == 1 );
+			$displayAccount = ( $row->tmp_display_account == 1 ); // Default to saved state
 		}
 		$htmlOut .= Xml::check( 'displayAccount', $displayAccount, wfArrayMerge( $disabled, array( 'id' => 'displayAccount' ) ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-logged-in' ), 'displayAccount' );
