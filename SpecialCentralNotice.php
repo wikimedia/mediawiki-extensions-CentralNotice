@@ -198,6 +198,14 @@ class CentralNotice extends SpecialPage {
 						$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
 					}
 				}
+				
+				// Handle weight change
+				$updatedWeights = $wgRequest->getArray( 'weight' );
+				if ( isset( $updatedWeights ) ) {
+					foreach ( $updatedWeights as $templateId => $weight ) {
+						$this->updateWeight( $noticeName, $templateId, $weight );
+					}
+				}
 
 			} else {
 				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
@@ -624,14 +632,6 @@ class CentralNotice extends SpecialPage {
 				$projectLangs = $wgRequest->getArray( 'project_languages' );
 				if ( isset( $projectLangs ) ) {
 					$this->updateProjectLanguages( $notice, $projectLangs );
-				}
-				
-				// Handle weight change
-				$updatedWeights = $wgRequest->getArray( 'weight' );
-				if ( isset( $updatedWeights ) ) {
-					foreach ( $updatedWeights as $templateId => $weight ) {
-						$this->updateWeight( $noticeName, $templateId, $weight );
-					}
 				}
 
 				$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
