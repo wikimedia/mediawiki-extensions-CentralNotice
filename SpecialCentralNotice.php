@@ -511,7 +511,7 @@ class CentralNotice extends SpecialPage {
 
 		if ( $this->editable ) {
 		
-			// If there was an error, we'll need to restore the state of the start date and time select lists
+			// If there was an error, we'll need to restore the state of the form
 			if ( $wgRequest->wasPosted() ) {
 				$startArray = $wgRequest->getArray( 'start' );
 				$timestamp = $startArray['year'] .
@@ -520,8 +520,12 @@ class CentralNotice extends SpecialPage {
 					$startArray['hour'] .
 					$startArray['min'] . '00'
 				;
+				$projectSelected = $wgRequest->getVal( 'project_name' );
+				$noticeLanguages = $wgRequest->getArray( 'project_languages' );
 			} else {
 				$timestamp = null;
+				$projectSelected = '';
+				$noticeLanguages = array();
 			}
 		
 			// Begin Add a campaign fieldset
@@ -553,12 +557,12 @@ class CentralNotice extends SpecialPage {
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-project-name' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->projectDropDownList() );
+			$htmlOut .= Xml::tags( 'td', array(), $this->projectDropDownList( $projectSelected ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'yourlanguage' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->languageMultiSelector() );
+			$htmlOut .= Xml::tags( 'td', array(), $this->languageMultiSelector( $noticeLanguages ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::closeElement( 'table' );
 			$htmlOut .= Xml::hidden( 'change', 'weight' );
@@ -731,7 +735,7 @@ class CentralNotice extends SpecialPage {
 		
 		if ( $row ) {
 		
-			// If there was an error, we'll need to restore the state of the start date and time select lists
+			// If there was an error, we'll need to restore the state of the form
 			if ( $wgRequest->wasPosted() ) {
 				$startArray = $wgRequest->getArray( 'start' );
 				$timestamp = $startArray['year'] .
@@ -740,12 +744,13 @@ class CentralNotice extends SpecialPage {
 					$startArray['hour'] .
 					$startArray['min'] . '00'
 				;
+				$projectSelected = $wgRequest->getVal( 'project_name' );
+				$noticeLanguages = $wgRequest->getArray( 'project_languages' );
 			} else {
 				$timestamp = $row->not_start;
+				$projectSelected = $row->not_project;
+				$noticeLanguages = $this->getNoticeLanguages( $notice );
 			}
-			
-			// Get all languages associated with the campaign
-			$noticeLanguages = $this->getNoticeLanguages( $notice );
 		
 			// Build Html
 			$htmlOut = '';
@@ -766,12 +771,12 @@ class CentralNotice extends SpecialPage {
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-end-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $row->not_end, "[$row->not_name]" ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $row->not_end ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-project-name' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->projectDropDownList( $row->not_project ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->projectDropDownList( $projectSelected ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
