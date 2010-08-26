@@ -514,7 +514,7 @@ class CentralNotice extends SpecialPage {
 			// If there was an error, we'll need to restore the state of the form
 			if ( $wgRequest->wasPosted() ) {
 				$startArray = $wgRequest->getArray( 'start' );
-				$timestamp = $startArray['year'] .
+				$startTimestamp = $startArray['year'] .
 					$startArray['month'] .
 					$startArray['day'] .
 					$startArray['hour'] .
@@ -522,8 +522,8 @@ class CentralNotice extends SpecialPage {
 				;
 				$projectSelected = $wgRequest->getVal( 'project_name' );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages' );
-			} else {
-				$timestamp = null;
+			} else { // Defaults
+				$startTimestamp = null;
 				$projectSelected = '';
 				$noticeLanguages = array();
 			}
@@ -547,12 +547,12 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $timestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $timestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -738,16 +738,22 @@ class CentralNotice extends SpecialPage {
 			// If there was an error, we'll need to restore the state of the form
 			if ( $wgRequest->wasPosted() ) {
 				$startArray = $wgRequest->getArray( 'start' );
-				$timestamp = $startArray['year'] .
+				$startTimestamp = $startArray['year'] .
 					$startArray['month'] .
 					$startArray['day'] .
 					$startArray['hour'] .
 					$startArray['min'] . '00'
 				;
+				$endArray = $wgRequest->getArray( 'end' );
+				$endTimestamp = $endArray['year'] .
+					$endArray['month'] .
+					$endArray['day'] . '000000'
+				;
 				$projectSelected = $wgRequest->getVal( 'project_name' );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages' );
-			} else {
-				$timestamp = $row->not_start;
+			} else { // Defaults
+				$startTimestamp = $row->not_start;
+				$endTimestamp = $row->not_end;
 				$projectSelected = $row->not_project;
 				$noticeLanguages = $this->getNoticeLanguages( $notice );
 			}
@@ -761,17 +767,17 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $timestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) . "(GMT)" );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $timestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-end-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $row->not_end ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $endTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
