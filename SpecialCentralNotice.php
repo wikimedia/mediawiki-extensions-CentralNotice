@@ -754,7 +754,11 @@ class CentralNotice extends SpecialPage {
 					$endArray['day'] . '000000'
 				;
 				$projectSelected = $wgRequest->getVal( 'project_name' );
-				$noticeLanguages = $wgRequest->getArray( 'project_languages' );
+				if ( $wgRequest->getArray( 'project_languages' ) ) {
+					$noticeLanguages = $wgRequest->getArray( 'project_languages' );
+				} else {
+					$noticeLanguages = array();
+				}
 			} else { // Defaults
 				$startTimestamp = $row->not_start;
 				$endTimestamp = $row->not_end;
