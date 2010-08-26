@@ -239,7 +239,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 		
 		// Restore banner body state in the event of an error on form submit
-		$body = $wgRequest->getVal( 'templateBody', '' )
+		$body = $wgRequest->getVal( 'templateBody', '' );
 		
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
