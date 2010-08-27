@@ -1166,14 +1166,15 @@ class CentralNotice extends SpecialPage {
 
 		// Start/end don't line up
 		if ( $start > $end || $end < $start ) {
-			 $wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-invalid-date-range3' );
-			 return;
+			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-invalid-date-range' );
+			return;
 		}
 
 		// Invalid campaign name
-		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
-		if ( $dbr->numRows( $res ) < 1 ) {
+		$row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
+		if ( !$row ) {
 			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-doesnt-exist' );
+			return;
 		}
 
 		// Overlap over a date within the same project and language
@@ -1181,7 +1182,6 @@ class CentralNotice extends SpecialPage {
 		$endDate = $dbr->timestamp( $end );
 
  		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 		$res = $dbw->update( 'cn_notices',
 			array(
 				'not_start' => $startDate,
@@ -1189,7 +1189,6 @@ class CentralNotice extends SpecialPage {
 			),
 			array( 'not_name' => $noticeName )
 		);
-		$dbw->commit();
 	}
 
 	function updateLock( $noticeName, $isLocked ) {
