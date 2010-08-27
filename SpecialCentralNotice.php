@@ -529,11 +529,7 @@ class CentralNotice extends SpecialPage {
 					$startArray['min'] . '00'
 				;
 				$projectSelected = $wgRequest->getVal( 'project_name' );
-				if ( $wgRequest->getArray( 'project_languages' ) ) {
-					$noticeLanguages = $wgRequest->getArray( 'project_languages' );
-				} else {
-					$noticeLanguages = array();
-				}
+				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
 			} else { // Defaults
 				$startTimestamp = null;
 				$projectSelected = '';
@@ -754,11 +750,7 @@ class CentralNotice extends SpecialPage {
 					$endArray['day'] . '000000'
 				;
 				$projectSelected = $wgRequest->getVal( 'project_name' );
-				if ( $wgRequest->getArray( 'project_languages' ) ) {
-					$noticeLanguages = $wgRequest->getArray( 'project_languages' );
-				} else {
-					$noticeLanguages = array();
-				}
+				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
 			} else { // Defaults
 				$startTimestamp = $row->not_start;
 				$endTimestamp = $row->not_end;
