@@ -573,65 +573,61 @@ class CentralNotice extends SpecialPage {
 
 	function listNoticeDetail( $notice ) {
 		global $wgOut, $wgRequest, $wgUser;
-		
-		if ( $wgRequest->wasPosted() ) {
-			
-			// Check authentication token
-			if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
-			
-				// Handle adding of banners to the campaign
-				$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
-				if ( $templatesToAdd ) {
-					$weight = $wgRequest->getArray( 'weight' );
-					foreach ( $templatesToAdd as $templateName ) {
-						$templateId = $this->getTemplateId( $templateName );
-						$this->addTemplateTo( $notice, $templateName, $weight[$templateId] );
-					}
-				}
-		
-				// Handle removing of banners from the campaign
-				$templateToRemove = $wgRequest->getArray( 'removeTemplates' );
-				if ( $templateToRemove ) {
-					foreach ( $templateToRemove as $template ) {
-						$this->removeTemplateFor( $notice, $template );
-					}
-				}
-				
-				// Handle weight changes
-				$updatedWeights = $wgRequest->getArray( 'weight' );
-				if ( $updatedWeights ) {
-					foreach ( $updatedWeights as $templateId => $weight ) {
-						$this->updateWeight( $notice, $templateId, $weight );
-					}
-				}
-	
-				// Handle new project name
-				$projectName = $wgRequest->getVal( 'project_name' );
-				if ( $projectName ) {
-					$this->updateProjectName ( $notice, $projectName );
-				}
-	
-				// Handle new project languages
-				$projectLangs = $wgRequest->getArray( 'project_languages' );
-				if ( $projectLangs ) {
-					$this->updateProjectLanguages( $notice, $projectLangs );
-				}
 
-				$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
-				return;
-				
-			} else {
-				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
-			}
-			
-		}
-		
-		$noticeId = $this->getNoticeId( $notice );
-		
 		// Make sure notice exists
-		if ( !$noticeId ) {
+		if ( !$this->noticeExists( $notice ) ) {
 			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-doesnt-exist' );
 		} else {
+
+			if ( $wgRequest->wasPosted() ) {
+				
+				// Check authentication token
+				if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+				
+					// Handle adding of banners to the campaign
+					$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
+					if ( $templatesToAdd ) {
+						$weight = $wgRequest->getArray( 'weight' );
+						foreach ( $templatesToAdd as $templateName ) {
+							$templateId = $this->getTemplateId( $templateName );
+							$this->addTemplateTo( $notice, $templateName, $weight[$templateId] );
+						}
+					}
+			
+					// Handle removing of banners from the campaign
+					$templateToRemove = $wgRequest->getArray( 'removeTemplates' );
+					if ( $templateToRemove ) {
+						foreach ( $templateToRemove as $template ) {
+							$this->removeTemplateFor( $notice, $template );
+						}
+					}
+					
+					// Handle weight changes
+					$updatedWeights = $wgRequest->getArray( 'weight' );
+					if ( $updatedWeights ) {
+						foreach ( $updatedWeights as $templateId => $weight ) {
+							$this->updateWeight( $notice, $templateId, $weight );
+						}
+					}
+		
+					// Handle new project name
+					$projectName = $wgRequest->getVal( 'project_name' );
+					if ( $projectName ) {
+						$this->updateProjectName ( $notice, $projectName );
+					}
+		
+					// Handle new project languages
+					$projectLangs = $wgRequest->getArray( 'project_languages' );
+					if ( $projectLangs ) {
+						$this->updateProjectLanguages( $notice, $projectLangs );
+					}
+					
+				} else {
+					$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
+				}
+				
+			}
+		
 			$htmlOut = '';
 			
 			// Begin Campaign detail fieldset
