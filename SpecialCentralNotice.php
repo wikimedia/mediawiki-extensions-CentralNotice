@@ -56,7 +56,7 @@ class CentralNotice extends SpecialPage {
 				
 				// Handle removing campaigns
 				$toRemove = $wgRequest->getArray( 'removeNotices' );
-				if ( isset( $toRemove ) ) {
+				if ( $toRemove ) {
 					// Remove campaigns in list
 					foreach ( $toRemove as $notice ) {
 						$this->removeNotice( $notice );
@@ -70,7 +70,7 @@ class CentralNotice extends SpecialPage {
 
 				// Handle locking/unlocking campaigns
 				$lockedNotices = $wgRequest->getArray( 'locked' );
-				if ( isset( $lockedNotices ) ) {
+				if ( $lockedNotices ) {
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
 						$this->updateLock( $notice, '1' );
@@ -90,7 +90,7 @@ class CentralNotice extends SpecialPage {
 
 				// Handle enabling/disabling campaigns
 				$enabledNotices = $wgRequest->getArray( 'enabled' );
-				if ( isset( $enabledNotices ) ) {
+				if ( $enabledNotices ) {
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
 						$this->updateEnabled( $notice, '1' );
@@ -110,7 +110,7 @@ class CentralNotice extends SpecialPage {
 
 				// Handle setting preferred campaigns
 				$preferredNotices = $wgRequest->getArray( 'preferred' );
-				if ( isset( $preferredNotices ) ) {
+				if ( $preferredNotices ) {
 					// Set since this is a single display
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
@@ -135,7 +135,7 @@ class CentralNotice extends SpecialPage {
 				// Handle range setting
 				$start = $wgRequest->getArray( 'start' );
 				$end = $wgRequest->getArray( 'end' );
-				if ( isset( $start ) && isset( $end ) ) {
+				if ( $start && $end ) {
 					$updatedStart = sprintf( "%04d%02d%02d%02d%02d00",
 						$start['year'],
 						$start['month'],
@@ -150,7 +150,7 @@ class CentralNotice extends SpecialPage {
 				}
 
 				// Handle updates if no post content came through
-				if ( !isset( $lockedNotices ) && $method !== 'addNotice' ) {
+				if ( !$lockedNotices && $method !== 'addNotice' ) {
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
 							$this->updateLock( $notice, 0 );
@@ -162,7 +162,7 @@ class CentralNotice extends SpecialPage {
 					}
 				}
 
-				if ( !isset( $enabledNotices ) && $method !== 'addNotice' ) {
+				if ( !$enabledNotices && $method !== 'addNotice' ) {
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
 							$this->updateEnabled( $notice, 0 );
@@ -174,7 +174,7 @@ class CentralNotice extends SpecialPage {
 					}
 				}
 
-				if ( !isset( $preferredNotices ) && $method !== 'addNotice' ) {
+				if ( !$preferredNotices && $method !== 'addNotice' ) {
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
 							$this->updatePreferred( $notice, 0 );
