@@ -114,7 +114,7 @@ class CentralNotice extends SpecialPage {
 					// Set since this is a single display
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
-						$this->centralNoticeDB->updatePreferred( $notice, '1' );
+						$this->updatePreferred( $notice, '1' );
 					}
 					else {
 						// Build list of campaigns to unset 
@@ -122,10 +122,10 @@ class CentralNotice extends SpecialPage {
 	
 						// Set flag accordingly
 						foreach ( $preferredNotices as $notice ) {
-							$this->centralNoticeDB->updatePreferred( $notice, '1' );
+							$this->updatePreferred( $notice, '1' );
 						}
 						foreach ( $unsetNotices as $notice ) {
-							$this->centralNoticeDB->updatePreferred( $notice, '0' );
+							$this->updatePreferred( $notice, '0' );
 						}
 					}
 				}
@@ -177,11 +177,11 @@ class CentralNotice extends SpecialPage {
 				if ( !isset( $preferredNotices ) && $method !== 'addNotice' ) {
 					if ( $method == 'listNoticeDetail' ) {
 						$notice = $wgRequest->getVal ( 'notice' );
-							$this->centralNoticeDB->updatePreferred( $notice, 0 );
+							$this->updatePreferred( $notice, 0 );
 					} else {
 						$allNotices = $this->getNoticesName();
 						foreach ( $allNotices as $notice ) {
-							$this->centralNoticeDB->updatePreferred( $notice, '0' );
+							$this->updatePreferred( $notice, '0' );
 						}
 					}
 				}
