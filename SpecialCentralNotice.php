@@ -198,14 +198,6 @@ class CentralNotice extends SpecialPage {
 						$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
 					}
 				}
-				
-				// Handle weight change
-				$updatedWeights = $wgRequest->getArray( 'weight' );
-				if ( isset( $updatedWeights ) ) {
-					foreach ( $updatedWeights as $templateId => $weight ) {
-						$this->updateWeight( $noticeName, $templateId, $weight );
-					}
-				}
 
 			} else {
 				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
@@ -589,7 +581,7 @@ class CentralNotice extends SpecialPage {
 			
 				// Handle adding of banners to the campaign
 				$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
-				if ( isset( $templatesToAdd ) ) {
+				if ( $templatesToAdd ) {
 					$weight = $wgRequest->getArray( 'weight' );
 					foreach ( $templatesToAdd as $templateName ) {
 						$templateId = $this->getTemplateId( $templateName );
@@ -599,21 +591,29 @@ class CentralNotice extends SpecialPage {
 		
 				// Handle removing of banners from the campaign
 				$templateToRemove = $wgRequest->getArray( 'removeTemplates' );
-				if ( isset( $templateToRemove ) ) {
+				if ( $templateToRemove ) {
 					foreach ( $templateToRemove as $template ) {
 						$this->removeTemplateFor( $notice, $template );
+					}
+				}
+				
+				// Handle weight changes
+				$updatedWeights = $wgRequest->getArray( 'weight' );
+				if ( $updatedWeights ) {
+					foreach ( $updatedWeights as $templateId => $weight ) {
+						$this->updateWeight( $notice, $templateId, $weight );
 					}
 				}
 	
 				// Handle new project name
 				$projectName = $wgRequest->getVal( 'project_name' );
-				if ( isset( $projectName ) ) {
+				if ( $projectName ) {
 					$this->updateProjectName ( $notice, $projectName );
 				}
 	
 				// Handle new project languages
 				$projectLangs = $wgRequest->getArray( 'project_languages' );
-				if ( isset( $projectLangs ) ) {
+				if ( $projectLangs ) {
 					$this->updateProjectLanguages( $notice, $projectLangs );
 				}
 
