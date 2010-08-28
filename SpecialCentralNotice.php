@@ -228,19 +228,6 @@ class CentralNotice extends SpecialPage {
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 
-	/**
-	 * Update the enabled/disabled state of a campaign
-	 */
-	private function updateEnabled( $notice, $state ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
-		$res = $dbw->update( 'cn_notices',
-			array( 'not_enabled' => $state ),
-			array( 'not_name' => $notice )
-		);
-		$dbw->commit();
-	}
-
 	public static function printHeader() {
 		global $wgOut, $wgTitle, $wgUser;
 		$sk = $wgUser->getSkin();
@@ -1000,9 +987,7 @@ class CentralNotice extends SpecialPage {
 	function addNotice( $noticeName, $enabled, $start, $project_name, $project_languages ) {
 		global $wgOut;
 
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
-		if ( $dbr->numRows( $res ) > 0 ) {
+		if ( $this->noticeExists( $noticeName ) ) {
 			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-exists' );
 			return;
 		} elseif ( empty( $project_languages ) ) {
@@ -1116,7 +1101,7 @@ class CentralNotice extends SpecialPage {
 		 if ( $row ) {
 		 	return $row->not_id;
 		 } else {
-		 	return;
+		 	return null;
 		 }
 	}
 
@@ -1171,8 +1156,7 @@ class CentralNotice extends SpecialPage {
 		}
 
 		// Invalid campaign name
-		$row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $noticeName ) );
-		if ( !$row ) {
+		if ( !$this->noticeExists( $noticeName ) ) {
 			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-doesnt-exist' );
 			return;
 		}
@@ -1191,23 +1175,54 @@ class CentralNotice extends SpecialPage {
 		);
 	}
 
-	function updateLock( $noticeName, $isLocked ) {
+	/**
+	 * Update the enabled/disabled state of a campaign
+	 */
+	private function updateEnabled( $noticeName, $isEnabled ) {
 		global $wgOut;
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'cn_notices', 'not_name',
-			array( 'not_name' => $noticeName )
-		);
-		if ( $dbr->numRows( $res ) < 1 ) {
+		
+		if ( !$this->noticeExists( $noticeName ) ) {
 			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-doesnt-exist' );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
+			$res = $dbw->update( 'cn_notices',
+				array( 'not_enabled' => $isEnabled ),
+				array( 'not_name' => $noticeName )
+			);
+		}
+	}
+
+	/**
+	 * Update the preferred/not preferred state of a campaign
+	 */
+	function updatePreferred( $noticeName, $isPreferred ) {
+		global $wgOut;
+		
+		if ( !$this->noticeExists( $noticeName ) ) {
+			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-doesnt-exist' );
+		} else {
+			$dbw = wfGetDB( DB_MASTER );
+			$res = $dbw->update( 'cn_notices',
+				array( 'not_preferred' => $isPreferred ),
+				array( 'not_name' => $noticeName )
+			);
+		}
+	}
+
+	/**
+	 * Update the locked/unlocked state of a campaign
+	 */
+	function updateLock( $noticeName, $isLocked ) {
+		global $wgOut;
+
+		if ( !$this->noticeExists( $noticeName ) ) {
+			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-doesnt-exist' );
+		} else {
+			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->update( 'cn_notices',
 				array( 'not_locked' => $isLocked ),
 				array( 'not_name' => $noticeName )
 			);
-			$dbw->commit();
 		}
 	}
 
@@ -1296,14 +1311,12 @@ class CentralNotice extends SpecialPage {
 
 	function updateProjectName( $notice, $projectName ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 		$res = $dbw->update( 'cn_notices',
 			array ( 'not_project' => $projectName ),
 			array(
 				'not_name' => $notice
 			)
 		);
-		$dbw->commit();
 	}
 
 	function updateProjectLanguages( $notice, $newLanguages ) {
@@ -1334,6 +1347,17 @@ class CentralNotice extends SpecialPage {
 		}
 		
 		$dbw->commit();
+	}
+	
+	public static function noticeExists( $noticeName ) {
+		 $dbr = wfGetDB( DB_SLAVE );
+		 $eNoticeName = htmlspecialchars( $noticeName );
+		 $row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eNoticeName ) );
+		 if ( $row ) {
+		 	return true;
+		 } else {
+		 	return false;
+		 }
 	}
 
 	public static function dropDownList( $text, $values ) {
