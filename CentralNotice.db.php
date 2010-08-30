@@ -9,7 +9,7 @@ class CentralNoticeDB {
 
 	/* Functions */
 
-	function CentralNoticeDB() {
+	function __construct() {
 		// Internationalization
 		wfLoadExtensionMessages( 'CentralNotice' );
 	}

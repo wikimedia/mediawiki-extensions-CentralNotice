@@ -9,7 +9,7 @@ class CentralNotice extends SpecialPage {
 	var $centralNoticeDB;
 	/* Functions */
 
-	function CentralNotice() {
+	function __construct() {
 		// Register special page
 		parent::SpecialPage( 'CentralNotice' );
 
