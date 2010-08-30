@@ -462,8 +462,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		// If there was an error, we'll need to restore the state of the form
 		if ( $wgRequest->wasPosted() && $wgRequest->getVal( 'mainform' ) ) {
-			$displayAnon = $wgRequest->getCheck( 'displayAnon' ); // Restore checkbox state in event of error
-			$displayAccount = $wgRequest->getCheck( 'displayAccount' ); // Restore checkbox state in event of error
+			$displayAnon = $wgRequest->getCheck( 'displayAnon' );
+			$displayAccount = $wgRequest->getCheck( 'displayAccount' );
 			$body = $wgRequest->getVal( 'templateBody', $body );
 		} else { // Defaults
 			$displayAnon = ( $row->tmp_display_anon == 1 );

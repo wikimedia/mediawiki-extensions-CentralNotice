@@ -724,11 +724,17 @@ class CentralNotice extends SpecialPage {
 					$endArray['month'] .
 					$endArray['day'] . '000000'
 				;
+				$isEnabled = $wgRequest->getCheck( 'enabled' );
+				$isPreferred = $wgRequest->getCheck( 'preferred' );
+				$isLocked = $wgRequest->getCheck( 'locked' );
 				$projectSelected = $wgRequest->getVal( 'project_name' );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
 			} else { // Defaults
 				$startTimestamp = $row->not_start;
 				$endTimestamp = $row->not_end;
+				$isEnabled = ( $row->not_enabled == '1' );
+				$isPreferred = ( $row->not_preferred == '1' );
+				$isLocked = ( $row->not_locked == '1' );
 				$projectSelected = $row->not_project;
 				$noticeLanguages = $this->getNoticeLanguages( $notice );
 			}
@@ -767,17 +773,17 @@ class CentralNotice extends SpecialPage {
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-enabled' ), 'enabled' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'enabled', ( $row->not_enabled == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'enabled' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'enabled', $isEnabled, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'enabled' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Preferred
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-preferred' ), 'preferred' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'preferred', ( $row->not_preferred == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'preferred' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'preferred', $isPreferred, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'preferred' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-locked' ), 'locked' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'locked', ( $row->not_locked == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'locked' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'locked', $isLocked, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'locked' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			if ( $this->editable ) {
 				// Locked
