@@ -48,7 +48,7 @@ class CentralNotice extends SpecialPage {
 		
 		$method = $wgRequest->getVal( 'method' );
 		
-		// Handle showing campaign detail
+		// Switch to campaign detail interface if requested
 		if ( $method == 'listNoticeDetail' ) {
 			$notice = $wgRequest->getVal ( 'notice' );
 			$this->listNoticeDetail( $notice );
@@ -56,7 +56,7 @@ class CentralNotice extends SpecialPage {
 			return;
 		}
 		
-		// Handle form submissions
+		// Handle form submissions from "Manage campaigns" or "Add a campaign" interface
 		if ( $this->editable && $wgRequest->wasPosted() ) {
 		 
 		 	// Check authentication token
@@ -524,6 +524,7 @@ class CentralNotice extends SpecialPage {
 			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-doesnt-exist' );
 		} else {
 
+			// Handle form submissions from campaign detail interface
 			if ( $wgRequest->wasPosted() ) {
 				
 				// Check authentication token
