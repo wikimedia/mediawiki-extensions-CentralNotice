@@ -79,7 +79,7 @@ Add some!',
 	'centralnotice-template-already-exists' => 'Banner is already tied to campaign.
 Not adding.',
 	'centralnotice-preview-template' => 'Preview banner',
-	'centralnotice-start-hour' => 'Start time (GMT)',
+	'centralnotice-start-hour' => 'Start time (UTC)',
 	'centralnotice-change-lang' => 'Change translation language',
 	'centralnotice-weights' => 'Weights',
 	'centralnotice-notice-is-locked' => 'Campaign is locked.
@@ -165,7 +165,7 @@ $messages['qqq'] = array(
 {{Identical|Start date}}',
 	'centralnotice-start-time' => 'Used in Special:CentralNotice',
 	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
-	'centralnotice-start-hour' => 'It is probably best to use UTC instead of GMT here. GMT = Greenwich Mean Time. UTC = Coordinated Universal Time. See [http://www.nist.gov/physlab/div847/utcnist.cfm explanation of terms].',
+	'centralnotice-start-hour' => 'UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]".',
 	'centralnotice-notice-is-locked' => 'Error message displayed in Special:CentralNotice when trying to delete a locked notice',
 	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
