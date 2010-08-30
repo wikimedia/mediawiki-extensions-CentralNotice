@@ -48,6 +48,14 @@ class CentralNotice extends SpecialPage {
 		
 		$method = $wgRequest->getVal( 'method' );
 		
+		// Handle showing campaign detail
+		if ( $method == 'listNoticeDetail' ) {
+			$notice = $wgRequest->getVal ( 'notice' );
+			$this->listNoticeDetail( $notice );
+			$wgOut->addHTML( Xml::closeElement( 'div' ) );
+			return;
+		}
+		
 		// Handle form submissions
 		if ( $this->editable && $wgRequest->wasPosted() ) {
 		 
@@ -71,118 +79,63 @@ class CentralNotice extends SpecialPage {
 				// Handle locking/unlocking campaigns
 				$lockedNotices = $wgRequest->getArray( 'locked' );
 				if ( $lockedNotices ) {
-					if ( $method == 'listNoticeDetail' ) {
-						$notice = $wgRequest->getVal ( 'notice' );
+					// Build list of campaigns to lock
+					$unlockedNotices = array_diff( $this->getNoticesName(), $lockedNotices );
+
+					// Set locked/unlocked flag accordingly
+					foreach ( $lockedNotices as $notice ) {
 						$this->updateLock( $notice, '1' );
-					} else {
-						// Build list of campaigns to lock
-						$unlockedNotices = array_diff( $this->getNoticesName(), $lockedNotices );
-	
-						// Set locked/unlocked flag accordingly
-						foreach ( $lockedNotices as $notice ) {
-							$this->updateLock( $notice, '1' );
-						}
-						foreach ( $unlockedNotices as $notice ) {
-							$this->updateLock( $notice, '0' );
-						}
+					}
+					foreach ( $unlockedNotices as $notice ) {
+						$this->updateLock( $notice, '0' );
+					}
+				// Handle updates if no post content came through (all checkboxes unchecked)
+				} elseif ( $method !== 'addNotice' ) {
+					$allNotices = $this->getNoticesName();
+					foreach ( $allNotices as $notice ) {
+						$this->updateLock( $notice, '0' );
 					}
 				}
 
 				// Handle enabling/disabling campaigns
 				$enabledNotices = $wgRequest->getArray( 'enabled' );
 				if ( $enabledNotices ) {
-					if ( $method == 'listNoticeDetail' ) {
-						$notice = $wgRequest->getVal ( 'notice' );
+					// Build list of campaigns to disable
+					$disabledNotices = array_diff( $this->getNoticesName(), $enabledNotices );
+
+					// Set enabled/disabled flag accordingly
+					foreach ( $enabledNotices as $notice ) {
 						$this->updateEnabled( $notice, '1' );
-					} else {
-						// Build list of campaigns to disable
-						$disabledNotices = array_diff( $this->getNoticesName(), $enabledNotices );
-	
-						// Set enabled/disabled flag accordingly
-						foreach ( $enabledNotices as $notice ) {
-							$this->updateEnabled( $notice, '1' );
-						}
-						foreach ( $disabledNotices as $notice ) {
-							$this->updateEnabled( $notice, '0' );
-						}
+					}
+					foreach ( $disabledNotices as $notice ) {
+						$this->updateEnabled( $notice, '0' );
+					}
+				// Handle updates if no post content came through (all checkboxes unchecked)
+				} elseif ( $method !== 'addNotice' ) {
+					$allNotices = $this->getNoticesName();
+					foreach ( $allNotices as $notice ) {
+						$this->updateEnabled( $notice, '0' );
 					}
 				}
 
 				// Handle setting preferred campaigns
 				$preferredNotices = $wgRequest->getArray( 'preferred' );
 				if ( $preferredNotices ) {
-					// Set since this is a single display
-					if ( $method == 'listNoticeDetail' ) {
-						$notice = $wgRequest->getVal ( 'notice' );
+					// Build list of campaigns to unset 
+					$unsetNotices = array_diff( $this->getNoticesName(), $preferredNotices );
+
+					// Set flag accordingly
+					foreach ( $preferredNotices as $notice ) {
 						$this->updatePreferred( $notice, '1' );
 					}
-					else {
-						// Build list of campaigns to unset 
-						$unsetNotices = array_diff( $this->getNoticesName(), $preferredNotices );
-	
-						// Set flag accordingly
-						foreach ( $preferredNotices as $notice ) {
-							$this->updatePreferred( $notice, '1' );
-						}
-						foreach ( $unsetNotices as $notice ) {
-							$this->updatePreferred( $notice, '0' );
-						}
+					foreach ( $unsetNotices as $notice ) {
+						$this->updatePreferred( $notice, '0' );
 					}
-				}
-
-				$noticeName = $wgRequest->getVal( 'notice' );
-	
-				// Handle range setting
-				$start = $wgRequest->getArray( 'start' );
-				$end = $wgRequest->getArray( 'end' );
-				if ( $start && $end ) {
-					$updatedStart = sprintf( "%04d%02d%02d%02d%02d00",
-						$start['year'],
-						$start['month'],
-						$start['day'],
-						$start['hour'],
-						$start['min'] );
-					$updatedEnd = sprintf( "%04d%02d%02d000000",
-						$end['year'],
-						$end['month'],
-						$end['day'] );
-					$this->updateNoticeDate( $noticeName, $updatedStart, $updatedEnd );
-				}
-
-				// Handle updates if no post content came through
-				if ( !$lockedNotices && $method !== 'addNotice' ) {
-					if ( $method == 'listNoticeDetail' ) {
-						$notice = $wgRequest->getVal ( 'notice' );
-							$this->updateLock( $notice, 0 );
-					} else {
-						$allNotices = $this->getNoticesName();
-						foreach ( $allNotices as $notice ) {
-							$this->updateLock( $notice, '0' );
-						}
-					}
-				}
-
-				if ( !$enabledNotices && $method !== 'addNotice' ) {
-					if ( $method == 'listNoticeDetail' ) {
-						$notice = $wgRequest->getVal ( 'notice' );
-							$this->updateEnabled( $notice, 0 );
-					} else {
-						$allNotices = $this->getNoticesName();
-						foreach ( $allNotices as $notice ) {
-							$this->updateEnabled( $notice, '0' );
-						}
-					}
-				}
-
-				if ( !$preferredNotices && $method !== 'addNotice' ) {
-					if ( $method == 'listNoticeDetail' ) {
-						$notice = $wgRequest->getVal ( 'notice' );
-							$this->updatePreferred( $notice, 0 );
-					} else {
-						$allNotices = $this->getNoticesName();
-						foreach ( $allNotices as $notice ) {
-							$this->updatePreferred( $notice, '0' );
-						}
+				// Handle updates if no post content came through (all checkboxes unchecked)
+				} elseif ( $method !== 'addNotice' ) {
+					$allNotices = $this->getNoticesName();
+					foreach ( $allNotices as $notice ) {
+						$this->updatePreferred( $notice, '0' );
 					}
 				}
 
@@ -203,14 +156,6 @@ class CentralNotice extends SpecialPage {
 				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
 			}
 
-		}
-
-		// Handle showing campaign detail
-		if ( $method == 'listNoticeDetail' ) {
-			$notice = $wgRequest->getVal ( 'notice' );
-			$this->listNoticeDetail( $notice );
-			$wgOut->addHTML( Xml::closeElement( 'div' ) );
-			return;
 		}
 
 		// Show list of campaigns
@@ -573,7 +518,7 @@ class CentralNotice extends SpecialPage {
 
 	function listNoticeDetail( $notice ) {
 		global $wgOut, $wgRequest, $wgUser;
-
+		
 		// Make sure notice exists
 		if ( !$this->noticeExists( $notice ) ) {
 			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-doesnt-exist' );
@@ -583,6 +528,53 @@ class CentralNotice extends SpecialPage {
 				
 				// Check authentication token
 				if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+				
+					// Handle removing campaign
+					if ( $wgRequest->getVal( 'remove' ) ) {
+						$this->removeNotice( $notice );
+		
+						// Leave campaign detail interface
+						$wgOut->redirect( $this->getTitle()->getLocalUrl() );
+						return;
+					}
+					
+					// Handle locking/unlocking campaign
+					if ( $wgRequest->getArray( 'locked' ) ) {
+						$this->updateLock( $notice, '1' );
+					} else {
+						$this->updateLock( $notice, 0 );
+					}
+					
+					// Handle enabling/disabling campaign
+					if ( $wgRequest->getArray( 'enabled' ) ) {
+						$this->updateEnabled( $notice, '1' );
+					} else {
+						$this->updateEnabled( $notice, 0 );
+					}
+					
+					// Handle setting campaign to preferred/not preferred
+					if ( $wgRequest->getArray( 'preferred' ) ) {
+						$this->updatePreferred( $notice, '1' );
+					} else {
+						$this->updatePreferred( $notice, 0 );
+					}
+					
+					// Handle updating the start and end settings
+					$start = $wgRequest->getArray( 'start' );
+					$end = $wgRequest->getArray( 'end' );
+					if ( $start && $end ) {
+						$updatedStart = sprintf( "%04d%02d%02d%02d%02d00",
+							$start['year'],
+							$start['month'],
+							$start['day'],
+							$start['hour'],
+							$start['min'] );
+						$updatedEnd = sprintf( "%04d%02d%02d000000",
+							$end['year'],
+							$end['month'],
+							$end['day'] );
+						$this->updateNoticeDate( $notice, $updatedStart, $updatedEnd );
+					}
 				
 					// Handle adding of banners to the campaign
 					$templatesToAdd = $wgRequest->getArray( 'addTemplates' );
@@ -774,24 +766,24 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-enabled' ), 'enabled[]' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'enabled[]', ( $row->not_enabled == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'enabled[]' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-enabled' ), 'enabled' ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'enabled', ( $row->not_enabled == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'enabled' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Preferred
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-preferred' ), 'preferred[]' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'preferred[]', ( $row->not_preferred == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'preferred[]' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-preferred' ), 'preferred' ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'preferred', ( $row->not_preferred == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'preferred' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-locked' ), 'locked[]' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'locked[]', ( $row->not_locked == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'locked[]' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-locked' ), 'locked' ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'locked', ( $row->not_locked == '1' ), wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'locked' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			if ( $this->editable ) {
 				// Locked
 				$htmlOut .= Xml::openElement( 'tr' );
-				$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-remove' ), 'removeNotices[]' ) );
-				$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'removeNotices[]', false, array( 'value' => $row->not_name, 'id' => 'removeNotices[]' ) ) );
+				$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-remove' ), 'remove' ) );
+				$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'remove', false, array( 'value' => $row->not_name, 'id' => 'remove' ) ) );
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			$htmlOut .= Xml::closeElement( 'table' );
@@ -1010,8 +1002,8 @@ class CentralNotice extends SpecialPage {
 			$res = $dbw->insert( 'cn_notices',
 				array( 'not_name' => $noticeName,
 					'not_enabled' => $enabled,
-					'not_start' => $dbr->timestamp( $startTs ),
-					'not_end' => $dbr->timestamp( $endTs ),
+					'not_start' => $dbw->timestamp( $startTs ),
+					'not_end' => $dbw->timestamp( $endTs ),
 					'not_project' => $project_name
 				)
 			);
