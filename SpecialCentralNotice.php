@@ -525,7 +525,7 @@ class CentralNotice extends SpecialPage {
 		} else {
 
 			// Handle form submissions from campaign detail interface
-			if ( $wgRequest->wasPosted() ) {
+			if ( $this->editable && $wgRequest->wasPosted() ) {
 				
 				// Check authentication token
 				if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
