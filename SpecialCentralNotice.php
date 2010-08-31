@@ -6,9 +6,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class CentralNotice extends SpecialPage {
-	var $centralNoticeDB;
-	/* Functions */
-
+	var $centralNoticeDB, $editable, $centralNoticeError;
+	
 	function __construct() {
 		// Register special page
 		parent::__construct( 'CentralNotice' );
@@ -36,6 +35,9 @@ class CentralNotice extends SpecialPage {
 		
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
+		
+		// Initialize error variable
+		$this->centralNoticeError = false;
 
 		// Show summary
 		$wgOut->addWikiText( wfMsg( 'centralnotice-summary' ) );
@@ -70,7 +72,7 @@ class CentralNotice extends SpecialPage {
 						$this->removeNotice( $notice );
 					}
 	
-					// Show list of campaigns
+					// Skip subsequent form handling and show list of campaigns
 					$this->listNotices();
 					$wgOut->addHTML( Xml::closeElement( 'div' ) );
 					return;
@@ -146,14 +148,20 @@ class CentralNotice extends SpecialPage {
 					$project_name      = $wgRequest->getVal( 'project_name' );
 					$project_languages = $wgRequest->getArray( 'project_languages' );
 					if ( $noticeName == '' ) {
-						$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
+						$this->showError( 'centralnotice-null-string' );
 					} else {
 						$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
 					}
 				}
-
+				
+				// If there were no errors, reload the page to prevent duplicate form submission
+				if ( !$this->centralNoticeError ) {
+					$wgOut->redirect( $this->getTitle()->getLocalUrl() );
+					return;
+				}
+				
 			} else {
-				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
+				$this->showError( 'sessionfailure' );
 			}
 
 		}
@@ -521,7 +529,7 @@ class CentralNotice extends SpecialPage {
 		
 		// Make sure notice exists
 		if ( !$this->noticeExists( $notice ) ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-doesnt-exist' );
+			$this->showError( 'centralnotice-notice-doesnt-exist' );
 		} else {
 
 			// Handle form submissions from campaign detail interface
@@ -533,10 +541,11 @@ class CentralNotice extends SpecialPage {
 					// Handle removing campaign
 					if ( $wgRequest->getVal( 'remove' ) ) {
 						$this->removeNotice( $notice );
-		
-						// Leave campaign detail interface
-						$wgOut->redirect( $this->getTitle()->getLocalUrl() );
-						return;
+						if ( !$this->centralNoticeError ) {
+							// Leave campaign detail interface
+							$wgOut->redirect( $this->getTitle()->getLocalUrl() );
+							return;
+						}
 					}
 					
 					// Handle locking/unlocking campaign
@@ -615,8 +624,13 @@ class CentralNotice extends SpecialPage {
 						$this->updateProjectLanguages( $notice, $projectLangs );
 					}
 					
+					// If there were no errors, reload the page to prevent duplicate form submission
+					if ( !$this->centralNoticeError ) {
+						$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
+						return;
+					}
 				} else {
-					$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
+					$this->showError( 'sessionfailure' );
 				}
 				
 			}
@@ -983,10 +997,10 @@ class CentralNotice extends SpecialPage {
 		global $wgOut;
 
 		if ( $this->noticeExists( $noticeName ) ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-exists' );
+			$this->showError( 'centralnotice-notice-exists' );
 			return;
 		} elseif ( empty( $project_languages ) ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-no-language' );
+			$this->showError( 'centralnotice-no-language' );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -1036,22 +1050,22 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $noticeName )
 		);
 		if ( $dbr->numRows( $res ) < 1 ) {
-			 $wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-remove-notice-doesnt-exist' );
-			 return;
+			$this->showError( 'centralnotice-remove-notice-doesnt-exist' );
+			return;
 		}
 		$row = $dbr->fetchObject( $res );
 		if ( $row->not_locked == '1' ) {
-			 $wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-is-locked' );
-			 return;
+			$this->showError( 'centralnotice-notice-is-locked' );
+			return;
 		} else {
-			 $dbw = wfGetDB( DB_MASTER );
-			 $dbw->begin();
-			 $noticeId = htmlspecialchars( $this->getNoticeId( $noticeName ) );
-			 $res = $dbw->delete( 'cn_assignments',  array ( 'not_id' => $noticeId ) );
-			 $res = $dbw->delete( 'cn_notices', array ( 'not_name' => $noticeName ) );
-			 $res = $dbw->delete( 'cn_notice_languages', array ( 'nl_notice_id' => $noticeId ) );
-			 $dbw->commit();
-			 return;
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
+			$noticeId = htmlspecialchars( $this->getNoticeId( $noticeName ) );
+			$res = $dbw->delete( 'cn_assignments',  array ( 'not_id' => $noticeId ) );
+			$res = $dbw->delete( 'cn_notices', array ( 'not_name' => $noticeName ) );
+			$res = $dbw->delete( 'cn_notice_languages', array ( 'nl_notice_id' => $noticeId ) );
+			$dbw->commit();
+			return;
 		}
 	}
 
@@ -1070,7 +1084,7 @@ class CentralNotice extends SpecialPage {
 			)
 		);
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-template-already-exists' );
+			$this->showError( 'centralnotice-template-already-exists' );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
@@ -1146,13 +1160,13 @@ class CentralNotice extends SpecialPage {
 
 		// Start/end don't line up
 		if ( $start > $end || $end < $start ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-invalid-date-range' );
+			$this->showError( 'centralnotice-invalid-date-range' );
 			return;
 		}
 
 		// Invalid campaign name
 		if ( !$this->noticeExists( $noticeName ) ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-notice-doesnt-exist' );
+			$this->showError( 'centralnotice-notice-doesnt-exist' );
 			return;
 		}
 
@@ -1177,7 +1191,7 @@ class CentralNotice extends SpecialPage {
 		global $wgOut;
 		
 		if ( !$this->noticeExists( $noticeName ) ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-doesnt-exist' );
+			$this->showError( 'centralnotice-doesnt-exist' );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->update( 'cn_notices',
@@ -1194,7 +1208,7 @@ class CentralNotice extends SpecialPage {
 		global $wgOut;
 		
 		if ( !$this->noticeExists( $noticeName ) ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-doesnt-exist' );
+			$this->showError( 'centralnotice-doesnt-exist' );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->update( 'cn_notices',
@@ -1211,7 +1225,7 @@ class CentralNotice extends SpecialPage {
 		global $wgOut;
 
 		if ( !$this->noticeExists( $noticeName ) ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-doesnt-exist' );
+			$this->showError( 'centralnotice-doesnt-exist' );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->update( 'cn_notices',
@@ -1369,6 +1383,12 @@ class CentralNotice extends SpecialPage {
 			$text = "0{$text}";
 		}
 		return $text;
+	}
+	
+	function showError( $message ) {
+		global $wgOut;
+		$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
+		$this->centralNoticeError = true;
 	}
 }
 

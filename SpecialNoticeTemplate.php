@@ -6,7 +6,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class SpecialNoticeTemplate extends UnlistedSpecialPage {
-	var $editable;
+	var $editable, $centralNoticeError;
 	
 	function __construct() {
 		parent::__construct( 'NoticeTemplate' );
@@ -32,6 +32,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
+		
+		// Initialize error variable
+		$this->centralNoticeError = false;
 
 		// Show summary
 		$wgOut->addWikiMsg( 'centralnotice-summary' );
@@ -86,7 +89,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 						);
 						$sub = 'view';
 					} else {
-						$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
+						$this->showError( 'centralnotice-null-string' );
 					}
 				}
 				
@@ -102,7 +105,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				}
 					
 			} else {
-				$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
+				$this->showError( 'sessionfailure' );
 			}
 			
 		}
@@ -144,7 +147,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					return;
 					
 				} else {
-					$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'sessionfailure' );
+					$this->showError( 'sessionfailure' );
 				}
 				
 			}
@@ -612,7 +615,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-template-still-bound' );
+			$this->showError( 'centralnotice-template-still-bound' );
 			return;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -637,7 +640,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
+			$this->showError( 'centralnotice-null-string' );
 			return;
 		}
 
@@ -653,7 +656,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		);
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-template-exists' );
+			$this->showError( 'centralnotice-template-exists' );
 			return false;
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
@@ -682,7 +685,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut;
 
 		if ( $body == '' || $name == '' ) {
-			$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", 'centralnotice-null-string' );
+			$this->showError( 'centralnotice-null-string' );
 			return;
 		}
 
@@ -804,5 +807,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 		}
 		return $translations;
+	}
+	
+	function showError( $message ) {
+		global $wgOut;
+		$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
+		$this->centralNoticeError = true;
 	}
 }
