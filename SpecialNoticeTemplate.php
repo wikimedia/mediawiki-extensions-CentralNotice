@@ -76,10 +76,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				}
 
 				// Handle adding banner
-				// FIXME: getText()? weak comparison
 				if ( $method == 'addTemplate' ) {
-					$newTemplateName = $wgRequest->getVal( 'templateName' );
-					$newTemplateBody = $wgRequest->getVal( 'templateBody' );
+					$newTemplateName = $wgRequest->getText( 'templateName' );
+					$newTemplateBody = $wgRequest->getText( 'templateBody' );
 					if ( $newTemplateName != '' && $newTemplateBody != '' ) {
 						$this->addTemplate(
 							$newTemplateName,
@@ -96,8 +95,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				// Handle editing banner
 				if ( $method == 'editTemplate' ) {
 					$this->editTemplate(
-						$wgRequest->getVal( 'template' ),
-						$wgRequest->getVal( 'templateBody' ),
+						$wgRequest->getText( 'template' ),
+						$wgRequest->getText( 'templateBody' ),
 						$wgRequest->getBool( 'displayAnon' ),
 						$wgRequest->getBool( 'displayAccount' )
 					);
