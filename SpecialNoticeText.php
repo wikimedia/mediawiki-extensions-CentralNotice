@@ -27,7 +27,7 @@ class SpecialNoticeText extends NoticePage {
 	/**
 	 * Given a project key, generate the body for a static Javascript file
 	 */
-	function getJsOutput( $par ) {
+	function getOutput( $par ) {
 	
 		// Break $par into separate parameters and assign to $this->project and $this->language
 		$this->setLanguage( $par );

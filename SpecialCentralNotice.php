@@ -946,7 +946,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Lookup function for active banners under a given language and project. This function is 
-	 * called by SpecialNoticeText::getJsOutput() in order to build the static Javascript files for
+	 * called by SpecialNoticeText::getOutput() in order to build the static Javascript files for
 	 * each project.
 	 * @return A 2D array of running banners with associated weights and settings
 	 */

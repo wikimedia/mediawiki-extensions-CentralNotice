@@ -22,7 +22,7 @@ if ( isset( $options['help'] ) ) {
 		echo "$wgDBname/$key\n";
 
 		$builder = new SpecialNoticeLocal();
-		$js = $builder->getJsOutput( $key );
+		$js = $builder->getOutput( $key );
 
 		$outputDir = $wgNoticeLocalDirectory;
 		if ( wfMkDirParents( $outputDir ) ) {

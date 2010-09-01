@@ -5,13 +5,13 @@ class NoticePage extends UnlistedSpecialPage {
 		global $wgOut;
 		$wgOut->disable();
 		$this->sendHeaders();
-		$js = $this->getJsOutput( $par );
+		$content = $this->getOutput( $par );
 
-		if ( strlen( $js ) == 0 ) {
+		if ( strlen( $content ) == 0 ) {
 			/* Hack for IE/Mac 0-length keepalive problem, see RawPage.php */
 			echo "/* Empty */";
 		} else {
-			echo $js;
+			echo $content;
 		}
 	}
 
@@ -40,7 +40,7 @@ class NoticePage extends UnlistedSpecialPage {
 		// header( "Last-modified: $epoch" );
 	}
 
-	function getJsOutput( $par ) {
+	function getOutput( $par ) {
 		return "";
 	}
 }

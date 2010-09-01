@@ -30,7 +30,7 @@ if ( isset( $options['help'] ) ) {
 			echo "$key\n";
 
 			$builder = new SpecialNoticeText();
-			$js = $builder->getJsOutput( $key );
+			$js = $builder->getOutput( $key );
 
 			if ( isset( $options['o'] ) ) {
 				$outputDir = "$wgNoticeCentralDirectory/$project/$lang";
