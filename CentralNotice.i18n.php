@@ -5621,6 +5621,7 @@ Pa giontà',
 	'centralnotice-notice-doesnt-exist' => 'La campagna a esist pa.',
 	'centralnotice-remove-notice-doesnt-exist' => 'La campagna a esist pa.
 Pa gnente da gavé.',
+	'centralnotice-banner-doesnt-exist' => 'La bara a esist pa.',
 	'centralnotice-template-still-bound' => "Lë stamp a l'é ancó gropà a na neuva.
 Pa gavà.",
 	'centralnotice-template-body' => 'Còrp ëd lë stamp:',
