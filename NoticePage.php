@@ -23,7 +23,7 @@ class NoticePage extends UnlistedSpecialPage {
 		return 600;
 	}
 
-	private function sendHeaders() {
+	protected function sendHeaders() {
 		$smaxage = $this->sharedMaxAge();
 		$maxage = $this->maxAge();
 		// $epoch = wfTimestamp( TS_RFC2822, efCentralNoticeEpoch() );
