@@ -164,11 +164,11 @@ function efCentralNoticeSchema() {
 }
 
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgUser, $wgOut, $wgLang;
+	global $wgUser, $wgOut, $wgLanguageCode;
 	global $wgNoticeProject, $wgNoticeCentralPath, $wgNoticeLocalPath, $wgNoticeUseLocalNotice;
 
-	$lang = $wgLang->getCode();
-	$centralNotice = "$wgNoticeProject/$lang/centralnotice.js";
+	// Pull the static Javascript file for this site
+	$centralNotice = "$wgNoticeProject/$wgLanguageCode/centralnotice.js";
 
 	if ( $wgNoticeCentralPath === false ) {
 		$centralLoader = SpecialPage::getTitleFor( 'NoticeText', $centralNotice )->getLocalUrl();
