@@ -56,6 +56,7 @@ Not adding.',
 	'centralnotice-notice-doesnt-exist' => 'Campaign does not exist.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Campaign does not exist.
 Nothing to remove.',
+	'centralnotice-banner-doesnt-exist' => 'Banner does not exist.',
 	'centralnotice-template-still-bound' => 'Banner is still bound to a campaign.
 Not removing.',
 	'centralnotice-template-body' => 'Banner body:',
