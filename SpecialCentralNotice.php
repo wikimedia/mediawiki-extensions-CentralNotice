@@ -614,7 +614,7 @@ class CentralNotice extends SpecialPage {
 		
 					// Handle new project name
 					$projectName = $wgRequest->getVal( 'project_name' );
-					if ( isset( $projectName ) ) {
+					if ( $projectName !== null ) {
 						$this->updateProjectName ( $notice, $projectName );
 					}
 		
