@@ -4,8 +4,8 @@
  * Generates banner HTML files
  */
 class BannerLoader extends UnlistedSpecialPage {
-	var $project = 'wikipedia'; // Project name
-	var $language = 'en'; // User language
+	public $project = 'wikipedia'; // Project name
+	public $language = 'en'; // User language
 	protected $sharedMaxAge = 22; // Cache for ? hours on the server side
 	protected $maxAge = 0; // No client-side banner caching so we get all impressions
 	protected $contentType = 'text/html';
@@ -22,10 +22,10 @@ class BannerLoader extends UnlistedSpecialPage {
 		$this->sendHeaders();
 		
 		// Get user language from the query string
-		$this->language = htmlspecialchars( $wgRequest->getText( 'language', 'en' ) );
+		$this->language = $wgRequest->getText( 'language', 'en' );
 		
 		// Get project name from the query string
-		$this->project = htmlspecialchars( $wgRequest->getText( 'project', 'wikipedia' ) );
+		$this->project = $wgRequest->getText( 'project', 'wikipedia' );
 		
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = htmlspecialchars( $wgRequest->getText( 'banner' ) );
@@ -146,7 +146,9 @@ class BannerLoader extends UnlistedSpecialPage {
 		$count = intval( $wgMemc->get( 'centralnotice:counter' ) );
 		if ( !$count ) {
 			// Pull from dynamic counter
-			$count = intval( @file_get_contents( $wgNoticeCounterSource ) );
+			wfSuppressWarnings();
+			$count = intval( file_get_contents( $wgNoticeCounterSource ) );
+			wfRestoreWarnings();
 			if ( !$count ) {
 				// Pull long-cached amount
 				$count = intval( $wgMemc->get( 'centralnotice:counter:fallback' ) );
