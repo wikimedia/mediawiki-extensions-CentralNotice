@@ -28,7 +28,7 @@ class BannerLoader extends UnlistedSpecialPage {
 		$this->project = $wgRequest->getText( 'project', 'wikipedia' );
 		
 		if ( $wgRequest->getText( 'banner' ) ) {
-			$bannerName = htmlspecialchars( $wgRequest->getText( 'banner' ) );
+			$bannerName = $wgRequest->getText( 'banner' );
 			$content = $this->getHtmlNotice( $bannerName );
 			if ( strlen( $content ) == 0 ) {
 				// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
