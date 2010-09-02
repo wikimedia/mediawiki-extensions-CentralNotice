@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Generates content for static HTML files
+ * Generates banner HTML files
  */
 class BannerLoader extends UnlistedSpecialPage {
 	var $project = 'wikipedia';
