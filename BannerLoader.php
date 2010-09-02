@@ -4,8 +4,8 @@
  * Generates banner HTML files
  */
 class BannerLoader extends UnlistedSpecialPage {
-	var $project = 'wikipedia';
-	var $language = 'en';
+	var $project = 'wikipedia'; // Project name
+	var $language = 'en'; // User language
 	protected $sharedMaxAge = 22; // Cache for ? hours on the server side
 	protected $maxAge = 0; // No client-side banner caching so we get all impressions
 	protected $contentType = 'text/html';
@@ -21,12 +21,13 @@ class BannerLoader extends UnlistedSpecialPage {
 		$wgOut->disable();
 		$this->sendHeaders();
 		
-		// If a language is specified in the query string, use it
-		if ( $wgRequest->getText( 'language' ) ) {
-			$this->language = htmlspecialchars( $wgRequest->getText( 'language' ) );
-		}
+		// Get user language from the query string
+		$this->language = htmlspecialchars( $wgRequest->getText( 'language', 'en' ) );
 		
-		if ( $wgRequest->getText( 'banner') ) {
+		// Get project name from the query string
+		$this->project = htmlspecialchars( $wgRequest->getText( 'project', 'wikipedia' ) );
+		
+		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = htmlspecialchars( $wgRequest->getText( 'banner' ) );
 			$content = $this->getHtmlNotice( $bannerName );
 			if ( strlen( $content ) == 0 ) {
