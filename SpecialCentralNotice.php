@@ -386,12 +386,14 @@ class CentralNotice extends SpecialPage {
 				$end_year = substr( $end_timestamp, 0 , 4 );
 				$end_month = substr( $end_timestamp, 4, 2 );
 				$end_day = substr( $end_timestamp, 6, 2 );
+				$end_hour = substr( $end_timestamp, 8, 2 );
+				$end_min = substr( $end_timestamp, 10, 2 );
 
 				// Start
 				$fields[] = "{$start_year}/{$start_month}/{$start_day} {$start_hour}:{$start_min}";
 
 				// End
-				$fields[] = "{$end_year}/{$end_month}/{$end_day}";
+				$fields[] = "{$end_year}/{$end_month}/{$end_day} {$end_hour}:{$end_min}";
 
 				// Enabled
 				$fields[] =
