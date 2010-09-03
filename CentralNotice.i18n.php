@@ -71,6 +71,7 @@ Not removing.',
 	'centralnotice-project-name' => 'Project name',
 	'centralnotice-start-date' => 'Start date',
 	'centralnotice-start-time' => 'Start time (UTC)',
+	'centralnotice-end-time' => 'End time (UTC)',
 	'centralnotice-assigned-templates' => 'Assigned banners',
 	'centralnotice-no-templates' => 'No banners found.
 Add some!',
@@ -80,7 +81,6 @@ Add some!',
 	'centralnotice-template-already-exists' => 'Banner is already tied to campaign.
 Not adding.',
 	'centralnotice-preview-template' => 'Preview banner',
-	'centralnotice-start-hour' => 'Start time (UTC)',
 	'centralnotice-change-lang' => 'Change translation language',
 	'centralnotice-weights' => 'Weights',
 	'centralnotice-notice-is-locked' => 'Campaign is locked.
@@ -164,9 +164,9 @@ $messages['qqq'] = array(
 	'centralnotice-start-date' => 'Used in Special:CentralNotice.
 
 {{Identical|Start date}}',
-	'centralnotice-start-time' => 'Used in Special:CentralNotice',
+	'centralnotice-start-time' => 'Used in Special:CentralNotice. UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]',
+	'centralnotice-end-time' => 'Used in Special:CentralNotice. UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]',
 	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
-	'centralnotice-start-hour' => 'UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]".',
 	'centralnotice-notice-is-locked' => 'Error message displayed in Special:CentralNotice when trying to delete a locked notice',
 	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
@@ -243,7 +243,6 @@ Voeg 'n paar by!",
 	'centralnotice-template-already-exists' => 'Die sjabloon is reeds aan \'n "campaign" gekoppel.
 Word nie bygevoeg nie',
 	'centralnotice-preview-template' => 'Voorskou sjabloon',
-	'centralnotice-start-hour' => 'Begintyd (UTC)',
 	'centralnotice-change-lang' => 'Verander taal vir vertaling',
 	'centralnotice-weights' => 'Gewigte',
 	'centralnotice-notice-is-locked' => 'Kennisgewing is gesluit.
@@ -396,7 +395,6 @@ $messages['ar'] = array(
 	'centralnotice-template-already-exists' => 'القالب مربوط بالفعل بالحملة.
 لن تتم الإضافة',
 	'centralnotice-preview-template' => 'معاينة القالب',
-	'centralnotice-start-hour' => 'وقت البدء',
 	'centralnotice-change-lang' => 'تغيير لغة الترجمة',
 	'centralnotice-weights' => 'الأوزان',
 	'centralnotice-notice-is-locked' => 'الإخطار مغلق.
@@ -504,7 +502,6 @@ $messages['arz'] = array(
 	'centralnotice-template-already-exists' => 'قالب موجود
 . مافيش  إضافة',
 	'centralnotice-preview-template' => 'معاينة القالب',
-	'centralnotice-start-hour' => 'وقت البداية',
 	'centralnotice-change-lang' => 'تغيير لغة الترجمه',
 	'centralnotice-weights' => 'الاوزان',
 	'centralnotice-notice-is-locked' => 'الاعلان مقفول.
@@ -566,7 +563,7 @@ $messages['bcc'] = array(
 	'centralnotice-month' => 'ماه',
 	'centralnotice-hours' => 'ساعت',
 	'centralnotice-min' => 'دقیقه',
-	'centralnotice-start-hour' => 'وهد بنگیج',
+	'centralnotice-start-time' => 'وهد بنگیج',
 	'centralnotice-null-string' => 'هالیکن رشتگی نه تونیت هور بیت.
 هوری نکنت',
 );
@@ -648,7 +645,6 @@ $messages['be-tarask'] = array(
 	'centralnotice-template-already-exists' => 'Паведамленьне ужо выкарыстоўваецца ў кампаніі.
 Не дададзенае.',
 	'centralnotice-preview-template' => 'Папярэдні прагляд паведамленьня',
-	'centralnotice-start-hour' => 'Час пачатку (UTC)',
 	'centralnotice-change-lang' => 'Зьмяніць мову перакладу',
 	'centralnotice-weights' => 'Вагі',
 	'centralnotice-notice-is-locked' => 'Кампанія заблякаванае.
@@ -743,7 +739,6 @@ $messages['bg'] = array(
 	'centralnotice-start-time' => 'начално време (UTC)',
 	'centralnotice-available-templates' => 'Налични шаблони',
 	'centralnotice-preview-template' => 'Преглед на шаблона',
-	'centralnotice-start-hour' => 'Начален час',
 	'centralnotice-no-templates-translate' => 'Няма шаблони, за които да се редактират преводите',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
 	'centralnotice-message' => 'Съобщение',
@@ -812,7 +807,6 @@ $messages['bn'] = array(
 যোগ করুন!',
 	'centralnotice-available-templates' => 'বিদ্যমান টেম্পলেট',
 	'centralnotice-preview-template' => 'টেম্পলেট প্রাকদর্শন',
-	'centralnotice-start-hour' => 'শুরুর সময়',
 	'centralnotice-change-lang' => 'অনুবাদের ভাষা পরিবর্তন',
 	'centralnotice-weights' => 'ওজন',
 	'centralnotice-notice-is-locked' => 'নোটিশটি অবরুদ্ধ।
@@ -910,7 +904,6 @@ Ouzhpennit unan !",
 	'centralnotice-template-already-exists' => "Liammet eo c'hoazh ar patrom gant ur c'houlzad.
 N'eo ket bet ouzhpennet.",
 	'centralnotice-preview-template' => 'Rakwelet ar patrom',
-	'centralnotice-start-hour' => 'Eurvezh kregiñ (UTC)',
 	'centralnotice-change-lang' => 'Cheñch yezh an droidigezh',
 	'centralnotice-weights' => 'Pouezioù',
 	'centralnotice-notice-is-locked' => "Prenet eo an ali.
@@ -1014,7 +1007,6 @@ Dodajte neki!',
 	'centralnotice-template-already-exists' => 'Šablon je već povezan sa kampanjom.
 Ne dodaje se',
 	'centralnotice-preview-template' => 'Izgled šablona',
-	'centralnotice-start-hour' => 'Početno vrijeme (UTC)',
 	'centralnotice-change-lang' => 'Promjena jezika prijevoda',
 	'centralnotice-weights' => 'Težina',
 	'centralnotice-notice-is-locked' => 'Obavještenje je zaključano.
@@ -1113,7 +1105,6 @@ Afegiu-ne!",
 	'centralnotice-template-already-exists' => "La plantilla ja s'està usant a la campanya.
 No s'afegirà",
 	'centralnotice-preview-template' => 'Previsualitza la plantilla',
-	'centralnotice-start-hour' => "Hora d'inici",
 	'centralnotice-change-lang' => 'Canvia la llengua de la traducció',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-notice-is-locked' => "L'avís està bloquejat.
@@ -1217,7 +1208,6 @@ Není co odstranit.',
 	'centralnotice-template-already-exists' => 'Šablona už byla s kampaní svázána.
 Nebude přidána.',
 	'centralnotice-preview-template' => 'Náhled šablony',
-	'centralnotice-start-hour' => 'Čas začátku (UTC)',
 	'centralnotice-change-lang' => 'Změnit překládaný jazyk',
 	'centralnotice-weights' => 'Váhy',
 	'centralnotice-notice-is-locked' => 'Oznámení je uzamčeno. Nebude odstraněno.',
@@ -1313,7 +1303,6 @@ Ddim yn tynnu i ffwrdd.",
 	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
 	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner. 
 Ychwanegwch rai!',
-	'centralnotice-start-hour' => 'Amser dechrau (UTC)',
 	'centralnotice-weights' => 'Pwysau',
 	'centralnotice-notice-is-locked' => "Mae'r hysbysiad wedi ei gloi.
 Ni chaiff ei dynnu i ffwrdd",
@@ -1435,7 +1424,6 @@ Füge eine hinzu.',
 	'centralnotice-template-already-exists' => 'Vorlage ist bereits mit der Meldung verbunden.
 Sie wird daher nicht hinzugefügt.',
 	'centralnotice-preview-template' => 'Vorschau Vorlage',
-	'centralnotice-start-hour' => 'Startzeit (UTC)',
 	'centralnotice-change-lang' => 'Übersetzungssprache ändern',
 	'centralnotice-weights' => 'Gewicht',
 	'centralnotice-notice-is-locked' => 'Meldung ist gesperrt.
@@ -1552,7 +1540,6 @@ Tay de bike!',
 	'centralnotice-template-already-exists' => 'Template hama hebitiyeno.
 De nikeno',
 	'centralnotice-preview-template' => 'Template verqeyd bike',
-	'centralnotice-start-hour' => 'Seetê başli kerdişî',
 	'centralnotice-change-lang' => 'Ziwanê translasyonî bivurne',
 	'centralnotice-weights' => 'Ebatan',
 	'centralnotice-notice-is-locked' => 'îkaz kefiniyo.
@@ -1655,7 +1642,6 @@ Pśidaj jadnu!',
 	'centralnotice-template-already-exists' => 'Pśedłoga jo južo z kampanju zwězana.
 Žedno pśidaśe',
 	'centralnotice-preview-template' => 'Pśeglěd pśedłogi',
-	'centralnotice-start-hour' => 'Startowy cas (UTC)',
 	'centralnotice-change-lang' => 'Pśełožkowu rěc změniś',
 	'centralnotice-weights' => 'Wagi',
 	'centralnotice-notice-is-locked' => 'Powěźeńka jo zastajona.
@@ -1776,7 +1762,6 @@ $messages['el'] = array(
 	'centralnotice-template-already-exists' => 'Το πρότυπο είναι ακόμη συνδεδεμένο με μία καμπάνια.
 Δεν έχει προστεθεί',
 	'centralnotice-preview-template' => 'Πρότυπο προεπισκόπησης',
-	'centralnotice-start-hour' => 'Χρόνος εκκίνησης',
 	'centralnotice-change-lang' => 'Αλλαγή της γλώσσας μετάφρασης',
 	'centralnotice-weights' => 'Βάρη',
 	'centralnotice-notice-is-locked' => 'Η σημείωση είναι κλειδωμένη.
@@ -1877,7 +1862,6 @@ Aldonu iujn!',
 	'centralnotice-template-already-exists' => 'La ŝablono jam estas ligita al kampanjo.
 Ne aldonante',
 	'centralnotice-preview-template' => 'Antaŭrigardi ŝablonon',
-	'centralnotice-start-hour' => 'Komenca tempo',
 	'centralnotice-change-lang' => 'Ŝanĝi traduklingvon',
 	'centralnotice-weights' => 'Pezoj',
 	'centralnotice-notice-is-locked' => 'Notico estas ŝlosita.
@@ -1995,7 +1979,6 @@ No se borrará.',
 	'centralnotice-template-already-exists' => 'La plantilla ya está atada a una campaña.
 No se añade',
 	'centralnotice-preview-template' => 'Previsualizar plantilla',
-	'centralnotice-start-hour' => 'Hora de inicio',
 	'centralnotice-change-lang' => 'Cambiar idioma de traducción',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-notice-is-locked' => 'El aviso está cerrado con llave.
@@ -2100,7 +2083,6 @@ Lisa mõni!',
 	'centralnotice-template-already-exists' => 'Mall on juba kampaaniaga seotud.
 Ei lisata',
 	'centralnotice-preview-template' => 'Malli eelvaade',
-	'centralnotice-start-hour' => 'Algusaeg (UTC)',
 	'centralnotice-change-lang' => 'Tõlkekeele vahetamine',
 	'centralnotice-weights' => 'Raskused',
 	'centralnotice-notice-is-locked' => 'Teade on lukustatud.
@@ -2170,7 +2152,6 @@ Ez da gehituko',
 	'centralnotice-start-time' => 'Hasiera ordua (UTC)',
 	'centralnotice-assigned-templates' => 'Ezarritako txantiloiak',
 	'centralnotice-preview-template' => 'Txantiloia aurreikusi',
-	'centralnotice-start-hour' => 'Hasiera ordua',
 	'centralnotice-change-lang' => 'Aldatu itzulpen hizkuntza',
 	'centralnotice-edit-template' => 'Txantiloia aldatu',
 	'centralnotice-message' => 'Mezua',
@@ -2255,7 +2236,6 @@ $messages['fa'] = array(
 	'centralnotice-template-already-exists' => 'الگو از قبل به اعلان گره خورده است.
 افزوده نشد',
 	'centralnotice-preview-template' => 'الگو نمایش',
-	'centralnotice-start-hour' => 'زمان شروع (UTC)',
 	'centralnotice-change-lang' => 'تغییر زبان ترجمه',
 	'centralnotice-weights' => 'وزن‌ها',
 	'centralnotice-notice-is-locked' => 'اعلان قفل شده‌است.
@@ -2365,7 +2345,6 @@ Lisää niitä!',
 	'centralnotice-template-already-exists' => 'Malline on jo kytketty kampanjaan.
 Ei lisätä',
 	'centralnotice-preview-template' => 'Esikatsele malline',
-	'centralnotice-start-hour' => 'Alkamisaika',
 	'centralnotice-change-lang' => 'Vaihda käännöskieli',
 	'centralnotice-weights' => 'Painot',
 	'centralnotice-notice-is-locked' => 'Tiedote on lukittu.
@@ -2478,7 +2457,6 @@ Ajoutez-en !',
 	'centralnotice-template-already-exists' => 'Le modèle est déjà attaché à une campagne.
 Il n’a pas été ajouté.',
 	'centralnotice-preview-template' => 'Prévisualiser le modèle',
-	'centralnotice-start-hour' => 'Heure de départ (UTC)',
 	'centralnotice-change-lang' => 'Modifier la langue de traduction',
 	'centralnotice-weights' => 'Poids',
 	'centralnotice-notice-is-locked' => 'L’avis est verrouillé.
@@ -2595,7 +2573,6 @@ Apondéd-nen !',
 	'centralnotice-template-already-exists' => 'Lo modèlo est ja atachiê a un avis.
 Il at pas étâ apondu.',
 	'centralnotice-preview-template' => 'Prèvisualisacion du modèlo',
-	'centralnotice-start-hour' => 'Hora de comencement (UTC)',
 	'centralnotice-change-lang' => 'Changiér la lengoua de traduccion',
 	'centralnotice-weights' => 'Pêds',
 	'centralnotice-notice-is-locked' => 'L’avis est vèrrolyê.
@@ -2718,7 +2695,6 @@ Engada algún!',
 	'centralnotice-template-already-exists' => 'O modelo xa está atado á campaña.
 Non se engade',
 	'centralnotice-preview-template' => 'Vista previa do modelo',
-	'centralnotice-start-hour' => 'Hora de inicio (UTC)',
 	'centralnotice-change-lang' => 'Cambiar a lingua de tradución',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-notice-is-locked' => 'O aviso está bloqueado.
@@ -2862,7 +2838,6 @@ Fieg eini zue.',
 	'centralnotice-template-already-exists' => 'Vorlage isch scho an d Kampagne bunde.
 Nit zuegfiegt.',
 	'centralnotice-preview-template' => 'Vorschau-Vorlag',
-	'centralnotice-start-hour' => 'Startzyt (UTC)',
 	'centralnotice-change-lang' => 'Ibersetzigssproch ändere',
 	'centralnotice-weights' => 'Gwicht',
 	'centralnotice-notice-is-locked' => 'Mäldig isch gsperrt.
@@ -2970,7 +2945,6 @@ $messages['he'] = array(
 	'centralnotice-template-already-exists' => 'התבנית כבר קשורה להודעה.
 התוספת לא תבוצע',
 	'centralnotice-preview-template' => 'תצוגה מקדימה של התבנית',
-	'centralnotice-start-hour' => 'זמן התחלה',
 	'centralnotice-change-lang' => 'שינוי שפת התרגום',
 	'centralnotice-weights' => 'משקלים',
 	'centralnotice-notice-is-locked' => 'ההודעה נעולה.
@@ -3077,7 +3051,6 @@ Dodaj jedan!',
 	'centralnotice-template-already-exists' => 'Predložak je već vezan uz kampanju.
 Nije dodano',
 	'centralnotice-preview-template' => 'Pregledaj predložak',
-	'centralnotice-start-hour' => 'Početno vrijeme',
 	'centralnotice-change-lang' => 'Promijeni jezik prijevoda',
 	'centralnotice-weights' => 'Težine',
 	'centralnotice-notice-is-locked' => 'Obavijest je zaključana.
@@ -3179,7 +3152,6 @@ Přidaj někajke!',
 	'centralnotice-template-already-exists' => 'Předłoha je hižo z kampanju zwjazana.
 Njepřidawa so',
 	'centralnotice-preview-template' => 'Přehlad předłohi',
-	'centralnotice-start-hour' => 'Startowy čas (UTC)',
 	'centralnotice-change-lang' => 'Přełožowansku rěč změnić',
 	'centralnotice-weights' => 'Wahi',
 	'centralnotice-notice-is-locked' => 'Powěsć je zawrjena.
@@ -3285,7 +3257,6 @@ Adj hozzá néhányat.',
 	'centralnotice-template-already-exists' => 'A sablon már hozzá van rendelve a kampányhoz.
 Nem történt hozzáadás',
 	'centralnotice-preview-template' => 'Sablon előnézete',
-	'centralnotice-start-hour' => 'Kezdési idő',
 	'centralnotice-change-lang' => 'Fordítási nyelv megváltoztatása',
 	'centralnotice-weights' => 'Súlyok',
 	'centralnotice-notice-is-locked' => 'Az üzenet le van zárva.
@@ -3388,7 +3359,6 @@ Adde alcunes!',
 	'centralnotice-template-already-exists' => 'Le bandiera es ja ligate a un campania.
 Non es addite.',
 	'centralnotice-preview-template' => 'Previsualisar bandiera',
-	'centralnotice-start-hour' => 'Hora de initio (UTC)',
 	'centralnotice-change-lang' => 'Cambiar lingua de traduction',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-notice-is-locked' => 'Le campania es serrate.
@@ -3511,7 +3481,6 @@ Tambahkan!',
 	'centralnotice-template-already-exists' => 'Templat sudah digunakan dalam kampanye.
 Batal menambahkan',
 	'centralnotice-preview-template' => 'Lihat pratayang templat',
-	'centralnotice-start-hour' => 'Waktu mulai (UTC)',
 	'centralnotice-change-lang' => 'Ubah bahasa terjemahan',
 	'centralnotice-weights' => 'Bobot',
 	'centralnotice-notice-is-locked' => 'Pengumuman terkunci.
@@ -3665,7 +3634,6 @@ $messages['it'] = array(
 	'centralnotice-available-templates' => 'Template disponibili',
 	'centralnotice-template-already-exists' => 'Il template è già collegato alla campagna. Il template non è stato aggiunto',
 	'centralnotice-preview-template' => 'Anteprima template',
-	'centralnotice-start-hour' => 'Ora di inizio',
 	'centralnotice-change-lang' => 'Cambia lingua della traduzione',
 	'centralnotice-weights' => 'Dimensioni',
 	'centralnotice-notice-is-locked' => "L'avviso è bloccato. Avviso non rimosso",
@@ -3761,7 +3729,6 @@ $messages['ja'] = array(
 	'centralnotice-available-templates' => '利用可能なテンプレート',
 	'centralnotice-template-already-exists' => 'テンプレートが特定の目的に使用されています。追加できません。',
 	'centralnotice-preview-template' => 'テンプレートをプレビューする',
-	'centralnotice-start-hour' => '開始時刻(UTC)',
 	'centralnotice-change-lang' => '翻訳言語を変更する',
 	'centralnotice-weights' => '重要性',
 	'centralnotice-notice-is-locked' => '通知がロックされています。除去できません。',
@@ -3870,7 +3837,6 @@ Gawénen!",
 	'centralnotice-template-already-exists' => "Cithakan isih kagandhèng menyang ''campaing''.
 Ora bisa nambah",
 	'centralnotice-preview-template' => 'Tampilaké cithakan',
-	'centralnotice-start-hour' => 'Wektu diwiwiti',
 	'centralnotice-change-lang' => 'Owahi basa terjemahan',
 	'centralnotice-weights' => 'Bobot',
 	'centralnotice-notice-is-locked' => 'Cathetan dikunci.
@@ -3943,7 +3909,6 @@ $messages['ka'] = array(
 	'centralnotice-start-time' => 'დაწყების დრო (UTC)',
 	'centralnotice-no-templates' => 'თარგები ნაპოვნი არ არის. დაამატეთ რამე!',
 	'centralnotice-preview-template' => 'წინა თარგი',
-	'centralnotice-start-hour' => 'დაწყების დრო',
 	'centralnotice-change-lang' => 'თარგმანის ენის შეცვლა',
 	'centralnotice-confirm-delete' => 'დარწმუნებული ხართ, რომ გინდათ ამ ელემენტის წაშლა? ეს მოქმედება ვეღარ გაუქმნდება.',
 	'centralnotice-number-uses' => 'გამოიყენება',
@@ -3985,7 +3950,6 @@ $messages['km'] = array(
 	'centralnotice-project-name' => 'ឈ្មោះគម្រោង',
 	'centralnotice-start-time' => 'ម៉ោង​ចាប់ផ្តើម (UTC)',
 	'centralnotice-preview-template' => 'មើលទំព័រគំរូជាមុន',
-	'centralnotice-start-hour' => 'ពេលចាប់ផ្តើម',
 	'centralnotice-edit-template' => 'កែប្រែទំព័រគំរូ',
 	'centralnotice-message' => 'សារ',
 	'centralnotice-clone' => 'ក្លូន',
@@ -4067,7 +4031,6 @@ $messages['ko'] = array(
 	'centralnotice-available-templates' => '사용 가능한 템플릿 목록',
 	'centralnotice-template-already-exists' => '템플릿이 이미 설정되어 있습니다. 추가할 수 없습니다.',
 	'centralnotice-preview-template' => '틀 미리 보기',
-	'centralnotice-start-hour' => '시작 시간 (UTC)',
 	'centralnotice-change-lang' => '번역할 언어 변경',
 	'centralnotice-weights' => '중요도',
 	'centralnotice-notice-is-locked' => '공지가 잠겼습니다.
@@ -4155,7 +4118,6 @@ Donn dat ens!',
 	'centralnotice-template-already-exists' => 'Di Schablon weed ald förr_en Kampannje jebruch.
 Nit dobeijedonn.',
 	'centralnotice-preview-template' => 'Vör-Ansich för di Schablon',
-	'centralnotice-start-hour' => 'Uhrzigg fum Aanfang',
 	'centralnotice-change-lang' => 'Shprooch fö et Övversäze ändere',
 	'centralnotice-weights' => 'Jeweeschte',
 	'centralnotice-notice-is-locked' => 'Di zentraal Nohresch es jesperrt.
@@ -4269,7 +4231,6 @@ Setzt der derbäi!',
 	'centralnotice-template-already-exists' => 'De Banner ass schonn enger Campagne zougedeelt.
 Net derbäisetzen',
 	'centralnotice-preview-template' => 'Schabloun weisen ouni ze späicheren',
-	'centralnotice-start-hour' => 'Ufankszäit (UTC)',
 	'centralnotice-change-lang' => 'Sprooch vun der Iwwersetzung änneren',
 	'centralnotice-weights' => 'Gewiicht',
 	'centralnotice-notice-is-locked' => "D'Matdeelung ass gespaart.
@@ -4393,7 +4354,6 @@ Doog 'rs bie!",
 	'centralnotice-template-already-exists' => "'t Sjabloon is al gekoppeld aan 'n campagne.
 't Weurt neet biegedoon.",
 	'centralnotice-preview-template' => 'Veursjouw sjabloon',
-	'centralnotice-start-hour' => 'Sjtarttied (UTC)',
 	'centralnotice-change-lang' => 'Euver te zètte taal verangere',
 	'centralnotice-weights' => 'Gewichte',
 	'centralnotice-notice-is-locked' => 'De sitenotice is toe.
@@ -4456,7 +4416,6 @@ $messages['lt'] = array(
 Pridėkite!',
 	'centralnotice-available-templates' => 'Galimi šablonai',
 	'centralnotice-preview-template' => 'Peržiūrėti šabloną',
-	'centralnotice-start-hour' => 'Pradžios laikas',
 	'centralnotice-edit-template' => 'Redaguoti šabloną',
 	'centralnotice-message' => 'Pranešimas',
 	'centralnotice-message-not-set' => 'Pranešimas nenustatytas',
@@ -4512,7 +4471,6 @@ Ampio!',
 Ampio!",
 	'centralnotice-available-templates' => 'Endrika afaka ampiasaina',
 	'centralnotice-preview-template' => 'Asehoy aloha io endrika',
-	'centralnotice-start-hour' => 'Ora fanombohany',
 	'centralnotice-change-lang' => "Ampio ny fiteny miasa amin'ny fandikàna-teny",
 	'centralnotice-weights' => 'Lanja',
 	'centralnotice-notice-is-locked' => 'Voaaro ilay hafatra.
@@ -4602,7 +4560,6 @@ $messages['mk'] = array(
 	'centralnotice-template-already-exists' => 'Шаблонот е веќе врзан за кампањата.
 Нема да биде додаден',
 	'centralnotice-preview-template' => 'Преглед на шаблонот',
-	'centralnotice-start-hour' => 'Започнува (UTC):',
 	'centralnotice-change-lang' => 'Смени јазик на превод',
 	'centralnotice-weights' => 'Тегови',
 	'centralnotice-notice-is-locked' => 'Известувањето е заклучено.
@@ -4723,7 +4680,6 @@ $messages['ml'] = array(
 	'centralnotice-template-already-exists' => 'ഫലകം പ്രചരണപ്രവർത്തനവുമായി ബന്ധിച്ചിരിക്കുന്നു.
 കൂട്ടിച്ചേർക്കുന്നില്ല',
 	'centralnotice-preview-template' => 'ഫലകത്തിന്റെ പ്രിവ്യൂ കാണുക',
-	'centralnotice-start-hour' => 'തുടങ്ങേണ്ട സമയം (ജി.എം.റ്റി.)',
 	'centralnotice-change-lang' => 'തർജ്ജമയുടെ ഭാഷ മാറ്റുക',
 	'centralnotice-weights' => 'ഘനങ്ങൾ',
 	'centralnotice-notice-is-locked' => 'അറിയിപ്പ് പൂട്ടപ്പെട്ടിരിക്കുന്നു.
@@ -4870,7 +4826,6 @@ $messages['ms'] = array(
 	'centralnotice-available-templates' => 'Templat yang ada',
 	'centralnotice-template-already-exists' => 'Templat telah pun terikat dengan kempen, oleh itu tidak ditambah.',
 	'centralnotice-preview-template' => 'Pralihat templat',
-	'centralnotice-start-hour' => 'Waktu mula',
 	'centralnotice-change-lang' => 'Tukar bahasa terjemahan',
 	'centralnotice-weights' => 'Berat',
 	'centralnotice-notice-is-locked' => 'Pemberitahuan telah dikunci dan tidak boleh dibuang.',
@@ -4984,7 +4939,6 @@ Föög welk to!',
 	'centralnotice-template-already-exists' => 'Vörlaag is al an Kampagne bunnen.
 Nich toföögt',
 	'centralnotice-preview-template' => 'Vörschau för de Vörlaag',
-	'centralnotice-start-hour' => 'Starttied',
 	'centralnotice-change-lang' => 'Spraak för’t Översetten ännern',
 	'centralnotice-weights' => 'Gewichten',
 	'centralnotice-notice-is-locked' => 'Sitenotice is sperrt.
@@ -5100,7 +5054,6 @@ Die moet u toevoegen.',
 	'centralnotice-template-already-exists' => 'Het sjabloon is al gekoppeld aan een campagne.
 Het wordt niet toegevoegd.',
 	'centralnotice-preview-template' => 'Voorvertoning sjabloon',
-	'centralnotice-start-hour' => 'Starttijd (in UTC)',
 	'centralnotice-change-lang' => 'Te vertalen taal wijzigen',
 	'centralnotice-weights' => 'Gewichten',
 	'centralnotice-notice-is-locked' => 'De sitenotice is afgesloten.
@@ -5202,7 +5155,6 @@ Legg han ikkje til',
 	'centralnotice-available-templates' => 'Tilgjengelege malar',
 	'centralnotice-template-already-exists' => 'Malen er allereie knytta til ein kampanje Legg han ikkje til',
 	'centralnotice-preview-template' => 'Førehandsvis mal',
-	'centralnotice-start-hour' => 'Starttid',
 	'centralnotice-change-lang' => 'Endra omsetjingsspråk',
 	'centralnotice-weights' => 'Vekter',
 	'centralnotice-notice-is-locked' => 'Merknad er låst. Fjernar ikkje',
@@ -5303,7 +5255,6 @@ Legg til noen!',
 	'centralnotice-template-already-exists' => 'Mal er allerede knyttet til kampanje.
 Ikke lagt inn',
 	'centralnotice-preview-template' => 'Forhåndsvis mal',
-	'centralnotice-start-hour' => 'Starttid (UTC)',
 	'centralnotice-change-lang' => 'Endre oversettelsesspråk',
 	'centralnotice-weights' => 'Tyngder',
 	'centralnotice-notice-is-locked' => 'Melding er låst.
@@ -5407,7 +5358,6 @@ Apondètz-ne un !',
 	'centralnotice-template-already-exists' => "Lo modèl je es estacat a una campanha.
 D'apondre pas",
 	'centralnotice-preview-template' => 'Previsualizacion del modèl',
-	'centralnotice-start-hour' => 'Ora de començament',
 	'centralnotice-change-lang' => 'Modificar la lenga de traduccion',
 	'centralnotice-weights' => 'Pes',
 	'centralnotice-notice-is-locked' => 'La notificacion es varrolhada.
@@ -5539,7 +5489,6 @@ Dodaj jakiś szablon!',
 	'centralnotice-template-already-exists' => 'Szablon nie został dodany.
 Jest już wykorzystany w kampani.',
 	'centralnotice-preview-template' => 'Podgląd szablonu',
-	'centralnotice-start-hour' => 'Czas rozpoczęcia (UTC)',
 	'centralnotice-change-lang' => 'Zmień język tłumaczenia',
 	'centralnotice-weights' => 'Wagi',
 	'centralnotice-notice-is-locked' => 'Komunikat nie może zostać usunięty, ponieważ jest zablokowany.',
@@ -5657,7 +5606,6 @@ Giontne un!',
 	'centralnotice-template-already-exists' => "Lë stamp a l'é già gropà a na campagna.
 Pa giontà",
 	'centralnotice-preview-template' => 'Previsualisassion stamp',
-	'centralnotice-start-hour' => "Ora d'inissi (UTC)",
 	'centralnotice-change-lang' => 'Cangé lenga ëd tradussion',
 	'centralnotice-weights' => 'Pèis',
 	'centralnotice-notice-is-locked' => 'Neuva blocà.
@@ -5737,7 +5685,6 @@ $messages['ps'] = array(
 	'centralnotice-start-date' => 'د پيل نېټه',
 	'centralnotice-start-time' => 'د پيل وخت (UTC)',
 	'centralnotice-available-templates' => 'شته کينډۍ',
-	'centralnotice-start-hour' => 'د پيل وخت',
 	'centralnotice-change-lang' => 'د ژباړې ژبه بدلول',
 	'centralnotice-number-uses' => 'کاروي',
 	'centralnotice-message' => 'پيغام',
@@ -5819,7 +5766,6 @@ Adicione alguns!',
 	'centralnotice-template-already-exists' => 'O modelo já está ligado a um aviso.
 Não adicionado.',
 	'centralnotice-preview-template' => 'Antever modelo',
-	'centralnotice-start-hour' => 'Hora de início (UTC)',
 	'centralnotice-change-lang' => 'Alterar língua de tradução',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-notice-is-locked' => 'O aviso está bloqueado.
@@ -5941,7 +5887,6 @@ Adicione alguns!',
 	'centralnotice-template-already-exists' => 'O modelo já está ligado a campanha.
 Não adicionado',
 	'centralnotice-preview-template' => 'Prever modelo',
-	'centralnotice-start-hour' => 'Hora de início (UTC)',
 	'centralnotice-change-lang' => 'Alterar língua de tradução',
 	'centralnotice-weights' => 'Pesos',
 	'centralnotice-notice-is-locked' => 'O aviso está bloqueado.
@@ -6061,7 +6006,6 @@ Yapay!',
 	'centralnotice-template-already-exists' => 'Unanchaqa huk kampañamanmi watasqaña.
 Mana yapaspa',
 	'centralnotice-preview-template' => 'Plantillata ñawpaqta qhawallay',
-	'centralnotice-start-hour' => 'Qallarisqanpa pachan (UTC)',
 	'centralnotice-change-lang' => "T'ikrana rimayta hukchay",
 	'centralnotice-weights' => 'Llasaykuna',
 	'centralnotice-notice-is-locked' => "Willayqa llawiwanmi wichq'asqa.
@@ -6153,7 +6097,6 @@ $messages['ro'] = array(
 	'centralnotice-start-time' => 'Data de începere (UTC)',
 	'centralnotice-available-templates' => 'Formate disponibile',
 	'centralnotice-preview-template' => 'Previzualizare format',
-	'centralnotice-start-hour' => 'Ora de început',
 	'centralnotice-change-lang' => 'Schimbă limba de traducere',
 	'centralnotice-weights' => 'Greutăți',
 	'centralnotice-edit-template' => 'Modifică format',
@@ -6253,7 +6196,6 @@ $messages['ru'] = array(
 	'centralnotice-template-already-exists' => 'Шаблон уже привязан.
 Не добавлен',
 	'centralnotice-preview-template' => 'Предпросмотр шаблона',
-	'centralnotice-start-hour' => 'Время начала (UTC)',
 	'centralnotice-change-lang' => 'Изменить язык перевода',
 	'centralnotice-weights' => 'Веса',
 	'centralnotice-notice-is-locked' => 'Уведомление заблокировано.
@@ -6322,7 +6264,6 @@ $messages['rue'] = array(
 	'centralnotice-start-date' => 'Датум початку',
 	'centralnotice-start-time' => 'Час початку (UTC)',
 	'centralnotice-available-templates' => 'Доступны шаблоны',
-	'centralnotice-start-hour' => 'Час початку',
 	'centralnotice-change-lang' => 'Змінити язык перекладу',
 	'centralnotice-weights' => 'Вагы',
 	'centralnotice-number-uses' => 'Хоснує',
@@ -6389,7 +6330,6 @@ $messages['sah'] = array(
 	'centralnotice-template-already-exists' => 'Халыып ситимнээх.
 Эбиллибэтэх',
 	'centralnotice-preview-template' => 'Халыыбы хайдах буолуоҕун көрүү',
-	'centralnotice-start-hour' => 'Саҕаламмыт кэмэ',
 	'centralnotice-change-lang' => 'Тылбаас тылын уларытыы',
 	'centralnotice-weights' => 'Ыйааһына',
 	'centralnotice-notice-is-locked' => 'Биллэрии көмүскэллээх.
@@ -6476,7 +6416,6 @@ Nun si leva.',
 	'centralnotice-template-already-exists' => 'Lu template è già liatu â campagna.
 Nun si junci',
 	'centralnotice-preview-template' => 'Antiprima dû template',
-	'centralnotice-start-hour' => "Ura d'accuminzatina",
 	'centralnotice-change-lang' => 'Cancia la lingua dâ traduzzioni',
 	'centralnotice-weights' => 'Pisa',
 	'centralnotice-notice-is-locked' => "L'avvisu è bliccatu. Avvisu nun livatu",
@@ -6563,7 +6502,6 @@ Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
 	'centralnotice-available-templates' => 'Dostupné šablóny',
 	'centralnotice-template-already-exists' => 'Šablóna sa už viaže na kampaň. Nebude pridaná.',
 	'centralnotice-preview-template' => 'Náhľad šablóny',
-	'centralnotice-start-hour' => 'Dátum začiatku',
 	'centralnotice-change-lang' => 'Zmeniť jazyk prekladu',
 	'centralnotice-weights' => 'Váhy',
 	'centralnotice-notice-is-locked' => 'Oznam je zamknutý. Nebude odstránený.',
@@ -6651,7 +6589,6 @@ $messages['sr-ec'] = array(
 Додај неки!',
 	'centralnotice-available-templates' => 'Расположиви шаблони',
 	'centralnotice-preview-template' => 'Прикажи шаблон',
-	'centralnotice-start-hour' => 'Почетно време',
 	'centralnotice-change-lang' => 'Измени језик транслитерације',
 	'centralnotice-weights' => 'Тежине',
 	'centralnotice-notice-is-locked' => 'Напомена је закључана.
@@ -6722,7 +6659,6 @@ Neće biti obrisan.',
 Dodaj neki!',
 	'centralnotice-available-templates' => 'Raspoloživi šabloni',
 	'centralnotice-preview-template' => 'Prikaži šablon',
-	'centralnotice-start-hour' => 'Početno vreme',
 	'centralnotice-change-lang' => 'Izmeni jezik transliteracije',
 	'centralnotice-weights' => 'Težine',
 	'centralnotice-notice-is-locked' => 'Napomena je zaključana.
@@ -6801,7 +6737,6 @@ Föich een bietou.',
 	'centralnotice-template-already-exists' => 'Foarloage is al an ju Kampagne buunen.
 Nit bietouföiged.',
 	'centralnotice-preview-template' => 'Foarschau Foarloage',
-	'centralnotice-start-hour' => 'Starttied',
 	'centralnotice-change-lang' => 'Uursättengssproake annerje',
 	'centralnotice-weights' => 'Gewicht',
 	'centralnotice-notice-is-locked' => 'Mäldenge is speerd.
@@ -6901,7 +6836,6 @@ Lägg till några!',
 	'centralnotice-template-already-exists' => 'Mall är redan kopplad till kampanj.
 Lägger inte till',
 	'centralnotice-preview-template' => 'Förhandsgranska mall',
-	'centralnotice-start-hour' => 'Starttid',
 	'centralnotice-change-lang' => 'Ändra översättningsspråk',
 	'centralnotice-weights' => 'Tyngder',
 	'centralnotice-notice-is-locked' => 'Meddelande är låst.
@@ -6978,7 +6912,6 @@ $messages['te'] = array(
 కొన్నింటిని చేర్చండి!',
 	'centralnotice-available-templates' => 'అందుబాటులో ఉన్న మూసలు',
 	'centralnotice-preview-template' => 'మూస మునుజూపు',
-	'centralnotice-start-hour' => 'ప్రారంభ సమయం',
 	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
 	'centralnotice-weights' => 'భారాలు',
 	'centralnotice-no-notices-exist' => 'గమనికలు ఏమీ లేవు.
@@ -7068,7 +7001,6 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-template-already-exists' => 'Шаблони аллакай ба эълон часпонида шудааст.
 Изофа нашуд.',
 	'centralnotice-preview-template' => 'Пешнамоиши шаблон',
-	'centralnotice-start-hour' => 'Вақти шурӯъ',
 	'centralnotice-change-lang' => 'Тағйири забони тарҷума',
 	'centralnotice-weights' => 'Вазнҳо',
 	'centralnotice-notice-is-locked' => 'Эълон баста аст.
@@ -7158,7 +7090,6 @@ Cande izofa namoed!",
 	'centralnotice-template-already-exists' => "Şabloni allakaj ba e'lon casponida şudaast.
 Izofa naşud.",
 	'centralnotice-preview-template' => 'Peşnamoişi şablon',
-	'centralnotice-start-hour' => "Vaqti şurū'",
 	'centralnotice-change-lang' => 'Taƣjiri zaboni tarçuma',
 	'centralnotice-weights' => 'Vaznho',
 	'centralnotice-notice-is-locked' => "E'lon basta ast.
@@ -7251,7 +7182,6 @@ $messages['th'] = array(
 	'centralnotice-template-already-exists' => 'แม่แบบนี้เป็นส่วนหนึ่งของการรณรงค์
 ไม่ทำการเพิ่ม',
 	'centralnotice-preview-template' => 'ดูตัวอย่างแม่แบบ',
-	'centralnotice-start-hour' => 'เวลาที่เริ่ม',
 	'centralnotice-change-lang' => 'เปลี่ยนภาษาที่ใช้ในการแปล',
 	'centralnotice-weights' => 'น้ำหนัก',
 	'centralnotice-notice-is-locked' => 'ประกาศถูกล็อกอยู่
@@ -7341,7 +7271,6 @@ Biraz goşuň!',
 	'centralnotice-template-already-exists' => 'Şablon eýýäç kampaniýa baglanypdyr.
 Goşulmaýar',
 	'centralnotice-preview-template' => 'Şablony deslapky synla',
-	'centralnotice-start-hour' => 'Başlangyç wagty',
 	'centralnotice-change-lang' => 'Terjime dilini üýtget',
 	'centralnotice-weights' => 'Agramlar',
 	'centralnotice-notice-is-locked' => 'Uwedomleniýe gulply.
@@ -7430,7 +7359,6 @@ Magdagdag ng ilan!',
 	'centralnotice-template-already-exists' => 'Nakabigkis na ang suleras sa kampanya.
 Hindi idaragdag',
 	'centralnotice-preview-template' => 'Paunang tingnan ang suleras',
-	'centralnotice-start-hour' => 'Oras ng pagsisimula',
 	'centralnotice-change-lang' => 'Baguhin ang wika ng pagsasalin',
 	'centralnotice-weights' => 'Mga timbang',
 	'centralnotice-notice-is-locked' => 'Nakakandado ang pabatid.
@@ -7523,7 +7451,6 @@ Birkaç tane ekleyin!',
 	'centralnotice-template-already-exists' => 'Şablon zaten kampanyaya bağlı.
 Eklenmiyor',
 	'centralnotice-preview-template' => 'Şablonu önizle',
-	'centralnotice-start-hour' => 'Başlangıç zamanı',
 	'centralnotice-change-lang' => 'Çeviri dilini değiştir',
 	'centralnotice-weights' => 'Önemler',
 	'centralnotice-notice-is-locked' => 'Uyarı kilitli.
@@ -7608,7 +7535,6 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-available-templates' => 'Үрнәкләр',
 	'centralnotice-template-already-exists' => 'Үрнәк  өстәлмәде',
 	'centralnotice-preview-template' => 'Алдан карау',
-	'centralnotice-start-hour' => 'Башлау сәгате (UTC)',
 	'centralnotice-change-lang' => 'Тәрҗемә телен үзгәртү',
 	'centralnotice-weights' => 'Үлчәү',
 	'centralnotice-notice-is-locked' => 'Хәбәр чикләнде',
@@ -7715,7 +7641,6 @@ $messages['uk'] = array(
 	'centralnotice-template-already-exists' => "Шаблон вже прив'язаний.
 Не доданий",
 	'centralnotice-preview-template' => 'Попередній перегляд шаблону',
-	'centralnotice-start-hour' => 'Час початку (UTC)',
 	'centralnotice-change-lang' => 'Змінити мову перекладу',
 	'centralnotice-weights' => 'Ваги',
 	'centralnotice-notice-is-locked' => 'Повідомлення заблоковано.
@@ -7811,7 +7736,6 @@ Zónteghene qualchedun!',
 	'centralnotice-template-already-exists' => 'Sto modèl el xe zà ligà a na campagna.
 Inserimento mia fato',
 	'centralnotice-preview-template' => 'Anteprima modèl',
-	'centralnotice-start-hour' => 'Ora de scominsio',
 	'centralnotice-change-lang' => 'Cànbia lengoa de tradussion',
 	'centralnotice-weights' => 'Pesi',
 	'centralnotice-notice-is-locked' => 'Notifica blocà.
@@ -7908,7 +7832,6 @@ Hãy thêm vào!',
 	'centralnotice-available-templates' => 'Bảng có sẵn',
 	'centralnotice-template-already-exists' => 'Không chỉ định được: thông báo đã sử dụng bảng.',
 	'centralnotice-preview-template' => 'Xem trước bảng',
-	'centralnotice-start-hour' => 'Lúc bắt đầu (UTC)',
 	'centralnotice-change-lang' => 'Thay đổi ngôn ngữ của bản dịch',
 	'centralnotice-weights' => 'Mức ưu tiên',
 	'centralnotice-notice-is-locked' => 'Không dời được: thông báo bị khóa.',
@@ -7987,7 +7910,6 @@ No paläükon',
 Läükolös anikis!',
 	'centralnotice-available-templates' => 'Samafomots gebidik',
 	'centralnotice-preview-template' => 'Büologed samafomota',
-	'centralnotice-start-hour' => 'Primatim',
 	'centralnotice-change-lang' => 'Votükön tradutamapük',
 	'centralnotice-confirm-delete' => 'Sevol-li fümo, das vilol moükön atosi?
 Dun at obinon nesädunovik.',
@@ -8112,7 +8034,6 @@ $messages['zh-hans'] = array(
 	'centralnotice-template-already-exists' => '模板已经绑定到营销。
 没有添加',
 	'centralnotice-preview-template' => '预览模板',
-	'centralnotice-start-hour' => '开始时间',
 	'centralnotice-change-lang' => '改变翻译语言',
 	'centralnotice-weights' => '权重',
 	'centralnotice-notice-is-locked' => '通告已经锁定。
@@ -8209,7 +8130,6 @@ $messages['zh-hant'] = array(
 	'centralnotice-template-already-exists' => '模板已經綁定到營銷。
 沒有添加',
 	'centralnotice-preview-template' => '預覽模板',
-	'centralnotice-start-hour' => '開始時間',
 	'centralnotice-change-lang' => '改變翻譯語言',
 	'centralnotice-weights' => '權重',
 	'centralnotice-notice-is-locked' => '通告已經鎖定。

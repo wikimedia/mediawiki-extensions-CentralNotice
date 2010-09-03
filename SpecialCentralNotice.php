@@ -491,7 +491,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) );
+			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-time' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
@@ -578,11 +578,16 @@ class CentralNotice extends SpecialPage {
 							$start['month'],
 							$start['day'],
 							$start['hour'],
-							$start['min'] );
-						$updatedEnd = sprintf( "%04d%02d%02d000000",
+							$start['min']
+						);
+						$updatedEnd = sprintf( "%04d%02d%02d%02d%02d00",
 							$end['year'],
 							$end['month'],
-							$end['day'] );
+							$end['day'],
+							$end['hour'],
+							$end['min']
+						);
+						
 						$this->updateNoticeDate( $notice, $updatedStart, $updatedEnd );
 					}
 				
@@ -737,7 +742,9 @@ class CentralNotice extends SpecialPage {
 				$endArray = $wgRequest->getArray( 'end' );
 				$endTimestamp = $endArray['year'] .
 					$endArray['month'] .
-					$endArray['day'] . '000000'
+					$endArray['day'] .
+					$endArray['hour'] .
+					$endArray['min'] .'00'
 				;
 				$isEnabled = $wgRequest->getCheck( 'enabled' );
 				$isPreferred = $wgRequest->getCheck( 'preferred' );
@@ -767,13 +774,18 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-hour' ) );
+			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-time' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-end-date' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $endTimestamp ) );
+			$htmlOut .= Xml::closeElement( 'tr' );
+			// End Time
+			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-end-time' ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $endTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1006,6 +1018,7 @@ class CentralNotice extends SpecialPage {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
 			$start['hour'] = substr( $start['hour'], 0 , 2 );
+			$start['min'] = substr( $start['min'], 0 , 2 );
 			if ( $start['month'] == 12 ) {
 				$end['month'] = '01';
 				$end['year'] = ( $start['year'] + 1 );
@@ -1017,8 +1030,8 @@ class CentralNotice extends SpecialPage {
 				$end['year'] = $start['year'];
 			}
 
-			$startTs = wfTimeStamp( TS_MW, "{$start['year']}:{$start['month']}:{$start['day']} {$start['hour']}:00:00" );
-			$endTs = wfTimeStamp( TS_MW, "{$end['year']}:{$end['month']}:{$start['day']} {$start['hour']}:00:00" );
+			$startTs = wfTimeStamp( TS_MW, "{$start['year']}:{$start['month']}:{$start['day']} {$start['hour']}:{$start['min']}:00" );
+			$endTs = wfTimeStamp( TS_MW, "{$end['year']}:{$end['month']}:{$start['day']} {$start['hour']}:{$start['min']}:00" );
 
 			$res = $dbw->insert( 'cn_notices',
 				array( 'not_name' => $noticeName,
