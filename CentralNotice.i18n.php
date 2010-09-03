@@ -175,6 +175,7 @@ $messages['qqq'] = array(
 Translate as a plural noun.
 
 Maximum length of the message is 5% of the total width of the table.',
+	'centralnotice-settings' => '{{Identical|Settings}}',
 	'centralnotice-message' => '{{Identical|Message}}',
 	'centralnotice-clone-name' => '{{Identical|Name}}',
 	'centralnotice-insert' => '{{Identical|Insert}}',
@@ -606,7 +607,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-translate-to' => 'Пераклад на',
 	'centralnotice-translate' => 'Пераклад',
 	'centralnotice-english' => 'Ангельская',
-	'centralnotice-banner-name' => 'Назва паведамленьня',
+	'centralnotice-banner-name' => 'Назва паведамленьня:',
 	'centralnotice-banner' => 'Паведамленьне',
 	'centralnotice-banner-heading' => 'Банэр: $1',
 	'centralnotice-templates' => 'Паведамленьні',
@@ -623,6 +624,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-notice-doesnt-exist' => 'Кампанія не існуе.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Кампанія не існуе.
 Няма чаго выдаляць',
+	'centralnotice-banner-doesnt-exist' => 'Паведамленьне не існуе.',
 	'centralnotice-template-still-bound' => 'Паведамленьне па-ранейшаму зьвязанае з кампаніяй.
 Не выдаляецца.',
 	'centralnotice-template-body' => 'Зьмест паведамленьня:',
@@ -663,6 +665,7 @@ $messages['be-tarask'] = array(
 Дадайце адну ніжэй.',
 	'centralnotice-no-templates-translate' => 'Няма паведамленьняў для рэдагаваньня перакладаў',
 	'centralnotice-number-uses' => 'Выкарыстоўвае',
+	'centralnotice-settings' => 'Устаноўкі',
 	'centralnotice-edit-template' => 'Рэдагаваць паведамленьне',
 	'centralnotice-edit-template-summary' => 'Каб стварыць лякалізуемае паведамленьне, атачыце дэфісны радок у тры фігурныя дужкі, напрыклад, {{{цытата-джымба}}}.',
 	'centralnotice-message' => 'Паведамленьне',
@@ -1193,6 +1196,7 @@ Také zde můžete přidávat nová či odstraňovat stará.',
 	'centralnotice-notice-doesnt-exist' => 'Kampaň neexistuje.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Kampaň neexistuje.
 Není co odstranit.',
+	'centralnotice-banner-doesnt-exist' => 'Banner neexistuje.',
 	'centralnotice-template-still-bound' => 'Šablona je stále navázána na oznámení. Nebude odstraněna.',
 	'centralnotice-template-body' => 'Tělo šablony:',
 	'centralnotice-day' => 'Den',
@@ -5629,7 +5633,7 @@ Pa giontà',
 	'centralnotice-notice-doesnt-exist' => 'La campagna a esist pa.',
 	'centralnotice-remove-notice-doesnt-exist' => 'La campagna a esist pa.
 Pa gnente da gavé.',
-	'centralnotice-banner-doesnt-exist' => 'La bara a esist pa.',
+	'centralnotice-banner-doesnt-exist' => 'Ël tilèt a esist pa.',
 	'centralnotice-template-still-bound' => "Lë stamp a l'é ancó gropà a na neuva.
 Pa gavà.",
 	'centralnotice-template-body' => 'Còrp ëd lë stamp:',
@@ -5879,7 +5883,7 @@ Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-enabled' => 'Ativo',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-save-banner' => 'Salvar modelo',
-	'centralnotice-preview' => 'Previsão',
+	'centralnotice-preview' => 'Pré-visualização',
 	'centralnotice-add-new' => 'Adicionar um novo aviso centralizado',
 	'centralnotice-remove' => 'Remover',
 	'centralnotice-translate-heading' => 'Tradução de $1',
