@@ -4,9 +4,9 @@
  * Generates banner HTML files
  */
 class BannerLoader extends UnlistedSpecialPage {
-	public $project = 'wikipedia'; // Project name
+	public $siteName = 'Wikipedia'; // Site name
 	public $language = 'en'; // User language
-	protected $sharedMaxAge = 22; // Cache for ? hours on the server side
+	protected $sharedMaxAge = 22; // Cache for 2 hours on the server side
 	protected $maxAge = 0; // No client-side banner caching so we get all impressions
 	protected $contentType = 'text/html';
 	
@@ -24,8 +24,8 @@ class BannerLoader extends UnlistedSpecialPage {
 		// Get user language from the query string
 		$this->language = $wgRequest->getText( 'language', 'en' );
 		
-		// Get project name from the query string
-		$this->project = $wgRequest->getText( 'project', 'wikipedia' );
+		// Get site name from the query string
+		$this->siteName = $wgRequest->getText( 'site', 'Wikipedia' );
 		
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
@@ -64,77 +64,50 @@ class BannerLoader extends UnlistedSpecialPage {
 		}
 	}
 
+	/**
+	 * Get the body of the banner with only {{int:...}} messages translated
+	 */
 	function getNoticeTemplate() {
-		return $this->getMessage( "centralnotice-template-{$this->bannerName}" );
+		$out = $this->getMessage( "centralnotice-template-{$this->bannerName}" );
+		return $out;
 	}
 
 	function getNoticeField( $matches ) {
 		$field = $matches[1];
-		$params = array();
-		if ( $field == 'amount' ) {
-			$params = array( $this->formatNum( $this->getDonationAmount() ) );
-		}
 		$message = "centralnotice-{$this->bannerName}-$field";
-		$source = $this->getMessage( $message, $params );
+		$source = $this->getMessage( $message );
 		return $source;
 	}
-	
+
+	/**
+	 * Convert number of dollars to millions of dollars
+	 */
 	private function formatNum( $num ) {
 		$num = sprintf( "%.1f", $num / 1e6 );
 		if ( substr( $num, - 2 ) == '.0' ) {
-		$num = substr( $num, 0, - 2 );
+			$num = substr( $num, 0, - 2 );
 		}
 		$lang = Language::factory( $this->language );
 		return $lang->formatNum( $num );
 	}
-
-	private function getMessage( $msg, $params = array() ) {
-		// A god-damned dirty hack! :D
-		$old = array();
-		$old['wgSitename'] = $GLOBALS['wgSitename'];
-		$old['wgLang'] = $GLOBALS['wgLang'];
-
-		$GLOBALS['wgSitename'] = $this->projectName();
-		$GLOBALS['wgLang'] = Language::factory( $this->language ); // hack for {{int:...}}
-
-		$options = array(
-			'language' => $this->language,
-			'parsemag',
-		);
-		array_unshift( $params, $options );
-		array_unshift( $params, $msg );
-		$out = call_user_func_array( 'wfMsgExt', $params );
-
-		// Restore globals
-		$GLOBALS['wgSitename'] = $old['wgSitename'];
-		$GLOBALS['wgLang'] = $old['wgLang'];
-
-		return $out;
-	}
 	
-	private function projectName() {
-		global $wgConf;
+	private function getMessage( $msg ) {
+		global $wgLang;
+		
+		// A god-damned dirty hack! :D
+		$oldLang = $wgLang;
 
-		$wgConf->loadFullData();
+		$wgLang = Language::factory( $this->language ); // hack for {{int:...}}
+		$out = wfMsgExt( $msg, array( 'language' => $this->language, 'parsemag' ) );
 
-		// Special cases for commons and meta who have no lang
-		if ( $this->project == 'commons' )
-			return "Commons";
-		else if ( $this->project == 'meta' )
-			return "Wikimedia";
-
-		// Guess dbname since we don't have it atm
-		$dbname = $this->language .
-			( ( $this->project == 'wikipedia' ) ? "wiki" : $this->project );
-		$name = $wgConf->get( 'wgSitename', $dbname, $this->project,
-			array( 'lang' => $this->language, 'site' => $this->project ) );
-
-		if ( $name ) {
-			return $name;
-		} else {
-			global $wgLang;
-			return $wgLang->ucfirst( $this->project );
-		}
+		// Restore global
+		$wgLang = $oldLang;
+		
+		// Replace variables in banner with values
+		$out = str_ireplace( '$amount', $this->formatNum( $this->getDonationAmount() ), $out );
+		$out = str_ireplace( '$sitename', $this->siteName, $out );
+		
+		return $out;
 	}
 	
 	/**
@@ -154,7 +127,7 @@ class BannerLoader extends UnlistedSpecialPage {
 				$count = intval( $wgMemc->get( 'centralnotice:counter:fallback' ) );
 				if ( !$count ) {
 					// Return hard-coded amount if all else fails
-					return 100; // Update as needed during fundraiser
+					return 1100000; // Update as needed during fundraiser
 				}
 			}
 			$wgMemc->set( 'centralnotice:counter', $count, 60 ); // Expire in 60 seconds

@@ -317,8 +317,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-banner-heading', $currentTemplate ) );
 	
 			// Show preview of banner
-			$render = new SpecialNoticeText();
-			$render->project = 'wikipedia';
+			$render = new BannerLoader();
+			$render->siteName = 'Wikipedia';
 			$render->language = $wgRequest->getVal( 'wpUserLanguage' );
 			if ( $render->language != '' ) {
 				$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-preview' ) . " ($render->language)",
