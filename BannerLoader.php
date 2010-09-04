@@ -92,8 +92,13 @@ EOT;
 		return $out;
 	}
 
-	function getNoticeField( $matches ) {
-		$field = $matches[1];
+	/**
+	 * Extract a message name and send to getMessage() for translation
+	 * @param $match A message array with 2 members: raw match, short name of message
+	 * @return translated messsage string
+	 */
+	function getNoticeField( $match ) {
+		$field = $match[1];
 		$message = "centralnotice-{$this->bannerName}-$field";
 		$source = $this->getMessage( $message );
 		return $source;
@@ -111,6 +116,11 @@ EOT;
 		return $lang->formatNum( $num );
 	}
 	
+	/**
+	 * Retrieve a translated message
+	 * @param $msg The full name of the message
+	 * @return translated messsage string
+	 */
 	private function getMessage( $msg ) {
 		global $wgLang;
 		
