@@ -22,14 +22,17 @@ class BannerLoader extends UnlistedSpecialPage {
 		$this->sendHeaders();
 		
 		// Get user language from the query string
-		$this->language = $wgRequest->getText( 'language', 'en' );
+		$this->language = $wgRequest->getText( 'userlang', 'en' );
 		
 		// Get site name from the query string
-		$this->siteName = $wgRequest->getText( 'site', 'Wikipedia' );
+		$this->siteName = $wgRequest->getText( 'sitename', 'Wikipedia' );
+		
+		// If we're not pulling the banner into another page, we'll need to add some extra HTML
+		$standAlone = $wgRequest->getBool( 'standalone' );
 		
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
-			$content = $this->getHtmlNotice( $bannerName );
+			$content = $this->getHtmlNotice( $bannerName, $standAlone );
 			if ( strlen( $content ) == 0 ) {
 				// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
 				echo "/* Empty */";
@@ -52,15 +55,32 @@ class BannerLoader extends UnlistedSpecialPage {
 	/**
 	 * Generate the HTML for the requested banner
 	 */
-	function getHtmlNotice( $bannerName ) {
+	function getHtmlNotice( $bannerName, $standAlone = false ) {
 		// Make sure the banner exists
 		if ( SpecialNoticeTemplate::templateExists( $bannerName ) ) {
 			$this->bannerName = $bannerName;
-			return preg_replace_callback(
+			$bannerHtml = '';
+			if ( $standAlone ) {
+				$bannerHtml .= <<<EOT
+<html>
+<head>
+	<script type="text/javascript" src="http://bits.wikimedia.org/skins-1.5/common/jquery.min.js"></script>
+</head>
+<body>
+EOT;
+			}
+			$bannerHtml .= preg_replace_callback(
 				'/{{{(.*?)}}}/',
 				array( $this, 'getNoticeField' ),
 				$this->getNoticeTemplate()
 			);
+			if ( $standAlone ) {
+				$bannerHtml .= <<<EOT
+</body>
+</html>
+EOT;
+			}
+			return $bannerHtml;
 		}
 	}
 
