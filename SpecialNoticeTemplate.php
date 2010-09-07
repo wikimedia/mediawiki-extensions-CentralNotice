@@ -274,7 +274,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgOut, $wgUser, $wgRequest, $wgContLanguageCode, $wgScriptPath, $wgLang;
+		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgScriptPath, $wgLang;
 		
 		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
 		$sk = $wgUser->getSkin();
