@@ -128,7 +128,7 @@ EOT;
 		$oldLang = $wgLang;
 
 		$wgLang = Language::factory( $this->language ); // hack for {{int:...}}
-		$out = wfMsgExt( $msg, array( 'language' => $this->language, 'parsemag' ) );
+		$out = wfMessage( $msg )->inLanguage( $this->language )->text();
 
 		// Restore global
 		$wgLang = $oldLang;

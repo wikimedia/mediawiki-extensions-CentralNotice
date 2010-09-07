@@ -288,7 +288,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 
 		// Get user's language
-		$wpUserLang = $wgRequest->getVal( 'wpUserLanguage' ) ? $wgRequest->getVal( 'wpUserLanguage' ) : $wgContLanguageCode;
+		$wpUserLang = $wgRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
 
 		// Get current banner
 		$currentTemplate = $wgRequest->getText( 'template' );
@@ -319,7 +319,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Show preview of banner
 			$render = new BannerLoader();
 			$render->siteName = 'Wikipedia';
-			$render->language = $wgRequest->getVal( 'wpUserLanguage' );
+			$render->language = $wpUserLang;
 			if ( $render->language != '' ) {
 				$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-preview' ) . " ($render->language)",
 					$render->getHtmlNotice( $wgRequest->getText( 'template' ) )
