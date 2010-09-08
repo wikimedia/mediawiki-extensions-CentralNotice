@@ -56,6 +56,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * Generate the HTML for the requested banner
 	 */
 	function getHtmlNotice( $bannerName, $standAlone = false ) {
+		global $wgStylePath;
+		
 		// Make sure the banner exists
 		if ( SpecialNoticeTemplate::templateExists( $bannerName ) ) {
 			$this->bannerName = $bannerName;
@@ -64,7 +66,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				$bannerHtml .= <<<EOT
 <html>
 <head>
-	<script type="text/javascript" src="http://bits.wikimedia.org/skins-1.5/common/jquery.min.js"></script>
+	<script type="text/javascript" src="$wgStylePath/common/jquery.min.js"></script>
 </head>
 <body>
 EOT;
