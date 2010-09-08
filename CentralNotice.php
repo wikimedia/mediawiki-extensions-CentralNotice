@@ -141,6 +141,9 @@ function efCentralNoticeSetup() {
 		
 		$wgSpecialPages['BannerLoader'] = 'SpecialBannerLoader';
 		$wgAutoloadClasses['SpecialBannerLoader'] = $dir . 'SpecialBannerLoader.php';
+		
+		$wgSpecialPages['BannerListLoader'] = 'SpecialBannerListLoader';
+		$wgAutoloadClasses['SpecialBannerListLoader'] = $dir . 'SpecialBannerListLoader.php';
 
 		$wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
 		$wgAutoloadClasses['SpecialNoticeText'] = $dir . 'SpecialNoticeText.php';
