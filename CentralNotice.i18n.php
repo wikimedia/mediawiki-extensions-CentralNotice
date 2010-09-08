@@ -3960,11 +3960,13 @@ $messages['ka'] = array(
 	'centralnotice-change-lang' => 'თარგმანის ენის შეცვლა',
 	'centralnotice-confirm-delete' => 'დარწმუნებული ხართ, რომ გინდათ ამ ელემენტის წაშლა? ეს მოქმედება ვეღარ გაუქმნდება.',
 	'centralnotice-number-uses' => 'გამოიყენება',
+	'centralnotice-settings' => 'კონფიგურაცია',
 	'centralnotice-edit-template' => 'თარგის რედაქტირება',
 	'centralnotice-message' => 'შეტყობინება',
 	'centralnotice-message-not-set' => 'შეტყობინება არ არის',
 	'centralnotice-clone' => 'კლონირება',
 	'centralnotice-clone-notice' => 'თარგის ასლის შექმნა',
+	'centralnotice-clone-name' => 'სახელი:',
 	'right-centralnotice-translate' => 'ცენტრალური შეტყობინებების თარგმანი',
 );
 
@@ -6727,6 +6729,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-message' => 'Порука',
 	'centralnotice-message-not-set' => 'Порука није подешена',
 	'centralnotice-clone' => 'Клонирај',
+	'centralnotice-clone-name' => 'Име:',
 );
 
 /** Serbian Latin ekavian (Srpski (latinica))
