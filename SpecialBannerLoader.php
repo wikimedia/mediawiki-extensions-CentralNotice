@@ -35,12 +35,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$content = $this->getHtmlNotice( $bannerName, $standAlone );
 			if ( strlen( $content ) == 0 ) {
 				// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
-				echo "/* Empty */";
+				echo "<!-- Empty -->";
 			} else {
 				echo $content;
 			}
 		} else {
-			echo "/* No banner specified */";
+			echo "<!-- No banner specified -->";
 		}
 	}
 	
@@ -146,7 +146,7 @@ EOT;
 	private function getDonationAmount() {
 		global $wgNoticeCounterSource, $wgMemc;
 		// Pull short-cached amount
-		$count = intval( $wgMemc->get( 'centralnotice:counter' ) );
+		$count = intval( wfMemcKey( 'centralnotice', 'counter' ) );
 		if ( !$count ) {
 			// Pull from dynamic counter
 			wfSuppressWarnings();
@@ -154,7 +154,7 @@ EOT;
 			wfRestoreWarnings();
 			if ( !$count ) {
 				// Pull long-cached amount
-				$count = intval( $wgMemc->get( 'centralnotice:counter:fallback' ) );
+				$count = intval( wfMemcKey( 'centralnotice', 'counter', 'fallback' ) );
 				if ( !$count ) {
 					// Return hard-coded amount if all else fails
 					return 1100000; // Update as needed during fundraiser
