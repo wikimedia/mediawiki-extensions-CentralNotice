@@ -3,7 +3,7 @@
 /**
  * Generates banner HTML files
  */
-class BannerLoader extends UnlistedSpecialPage {
+class SpecialBannerLoader extends UnlistedSpecialPage {
 	public $siteName = 'Wikipedia'; // Site name
 	public $language = 'en'; // User language
 	protected $sharedMaxAge = 22; // Cache for 2 hours on the server side
