@@ -1,18 +1,5 @@
 <?php
 
-// Override this URL to point to the central notice text loader...
-// This guy gets loaded from every page on every wiki, so caching helps!
-// /
-// Can be set to a directory where static files will be made --
-// match that up with $wgNoticeStaticDirectory and use rebuildTemplates.php
-// to fill out the directory tree.
-//
-// Default: Local path to Special:NoticeText
-//
-// Loads: $wgNoticeCentralPath/<project>/<lang>/centralnotice.js
-//
-$wgNoticeCentralPath = false;
-
 // Override these per-wiki to pass on via the loader to the text system
 // for localization by language and project.
 // Actual user language is used for localization; $wgNoticeLang is used
@@ -20,8 +7,7 @@ $wgNoticeCentralPath = false;
 $wgNoticeLang = $wgLanguageCode;
 $wgNoticeProject = 'wikipedia';
 
-// List of available projects, which will be used to generate static
-// output .js in the batch generation...
+// List of available projects
 $wgNoticeProjects = array(
 	'wikipedia',
 	'wiktionary',
@@ -35,13 +21,6 @@ $wgNoticeProjects = array(
 	'meta',
 	'wikispecies',
 );
-
-// Local filesystem path under which static .js output is written
-// for the central notice system.
-//
-// $wgNoticeCentralDirectory = "/mnt/uploads/centralnotice";
-//
-$wgNoticeCentralDirectory = false;
 
 // Enable the notice-hosting infrastructure on this wiki...
 // Leave at false for wikis that only use a sister site for the control.
@@ -143,19 +122,11 @@ function efCentralNoticeSchema() {
 }
 
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgUser, $wgOut, $wgLanguageCode;
-	global $wgNoticeProject, $wgNoticeCentralPath;
+	global $wgUser, $wgOut;
 
-	// Pull the static Javascript file for this site
-	$centralNotice = "$wgNoticeProject/$wgLanguageCode/centralnotice.js";
+	$centralLoader = SpecialPage::getTitleFor( 'NoticeText' )->getLocalUrl();
 
-	if ( $wgNoticeCentralPath === false ) {
-		$centralLoader = SpecialPage::getTitleFor( 'NoticeText', $centralNotice )->getLocalUrl();
-	} else {
-		$centralLoader = "$wgNoticeCentralPath/$centralNotice";
-	}
-
-	// Load the notice text from <head>
+	// Insert the banner controller Javascript into the <head>
 	$wgOut->addScriptFile( $centralLoader );
 
 	return true;
@@ -169,7 +140,7 @@ function efCentralNoticeDefaults( &$vars ) {
 }
 
 function efCentralNoticeDisplay( &$notice ) {
-	// Slip in load of the data...
+	// Slip in loading of the banner (inside the siteNotice div)
 	$notice =
 		Html::inlineScript( "if (wgNotice != '') document.writeln(wgNotice);" ) .
 		$notice;
