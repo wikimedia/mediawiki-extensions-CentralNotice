@@ -148,7 +148,7 @@ EOT;
 	private function getDonationAmount() {
 		global $wgNoticeCounterSource, $wgMemc;
 		// Pull short-cached amount
-		$count = intval( wfMemcKey( 'centralnotice', 'counter' ) );
+		$count = intval( $wgMemc->get( wfMemcKey( 'centralnotice', 'counter' ) ) );
 		if ( !$count ) {
 			// Pull from dynamic counter
 			wfSuppressWarnings();
@@ -156,7 +156,7 @@ EOT;
 			wfRestoreWarnings();
 			if ( !$count ) {
 				// Pull long-cached amount
-				$count = intval( wfMemcKey( 'centralnotice', 'counter', 'fallback' ) );
+				$count = intval( $wgMemc->get( wfMemcKey( 'centralnotice', 'counter', 'fallback' ) ) );
 				if ( !$count ) {
 					// Return hard-coded amount if all else fails
 					return 1100000; // Update as needed during fundraiser
