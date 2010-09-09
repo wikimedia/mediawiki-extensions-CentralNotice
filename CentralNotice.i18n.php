@@ -3243,6 +3243,7 @@ Přidaj někajku',
 );
 
 /** Hungarian (Magyar)
+ * @author BáthoryPéter
  * @author Dani
  */
 $messages['hu'] = array(
@@ -3279,8 +3280,7 @@ Használhatod újak hozzáadására, vagy régiek eltávolítására is.',
 Nem történt hozzáadás.',
 	'centralnotice-template-exists' => 'A sablon már létezik.
 Nem történt hozzáadás.',
-	'centralnotice-notice-doesnt-exist' => 'Az üzenet nem létezik.
-Nincs mit eltávolítani.',
+	'centralnotice-notice-doesnt-exist' => 'Az üzenet nem létezik.',
 	'centralnotice-template-still-bound' => 'A sablon nem létezik.
 Nincs mit eltávolítani.',
 	'centralnotice-template-body' => 'Sablon törzse:',
@@ -3318,12 +3318,15 @@ A művelet visszavonhatatlan.',
 Itt adhatsz hozzá újakat.',
 	'centralnotice-no-templates-translate' => 'Nincs egyetlen sablon sem, amit fordítani lehetne',
 	'centralnotice-number-uses' => 'Használatok',
+	'centralnotice-settings' => 'Beállítások',
 	'centralnotice-edit-template' => 'Sablon szerkesztése',
 	'centralnotice-message' => 'Üzenet',
 	'centralnotice-message-not-set' => 'Üzenet nincs beállítva',
 	'centralnotice-clone' => 'Klónozás',
 	'centralnotice-clone-notice' => 'Másolat készítése a sablonról',
+	'centralnotice-clone-name' => 'Név:',
 	'centralnotice-preview-all-template-translations' => 'A sablon összes fordításának megtekintése',
+	'centralnotice-banner-anonymous' => 'Névtelen szerkesztők',
 	'right-centralnotice-admin' => 'központi üzenetek beállítása',
 	'right-centralnotice-translate' => 'központi üzenetek fordítása',
 	'action-centralnotice-admin' => 'központi üzenetek beállítása',
