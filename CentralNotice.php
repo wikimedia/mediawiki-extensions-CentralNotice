@@ -13,19 +13,6 @@
 //
 $wgNoticeCentralPath = false;
 
-// Whether to use local notice loader
-$wgNoticeUseLocalNotice = false;
-
-// This guy does much the same, but with the local sitenotice/anonnotice.
-// Static generation isn't quite supported yet.
-//
-// Default: Local path to Special:NoticeLocal
-//
-// Loads: $wgNoticeLocalPath/sitenotice.js
-//   -or- $wgNoticeLocalPath/anonnotice.js
-//
-$wgNoticeLocalPath = false;
-
 // Override these per-wiki to pass on via the loader to the text system
 // for localization by language and project.
 // Actual user language is used for localization; $wgNoticeLang is used
@@ -55,13 +42,6 @@ $wgNoticeProjects = array(
 // $wgNoticeCentralDirectory = "/mnt/uploads/centralnotice";
 //
 $wgNoticeCentralDirectory = false;
-
-// Local filesystem path under which static .js output is written
-// for this wiki's local sitenotice and anonnotice.
-//
-// $wgNoticeLocalDirectory = "/mnt/uploads/sitenotice/$wgDBname";
-//
-$wgNoticeLocalDirectory = false;
 
 // Enable the notice-hosting infrastructure on this wiki...
 // Leave at false for wikis that only use a sister site for the control.
@@ -114,7 +94,7 @@ $wgGroupPermissions['sysop']['centralnotice-translate'] = true; // Only sysops c
 
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
-	global $wgCentralNoticeLoader, $wgNoticeUseLocalNotice;
+	global $wgCentralNoticeLoader;
 
 	$dir = dirname( __FILE__ ) . '/';
 
@@ -122,14 +102,7 @@ function efCentralNoticeSetup() {
 		$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
 		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
 		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
-
-		if ( $wgNoticeUseLocalNotice ) {
-			$wgSpecialPages['NoticeLocal'] = 'SpecialNoticeLocal';
-			$wgAutoloadClasses['SpecialNoticeLocal'] = $dir . 'SpecialNoticeLocal.php';
-			$wgHooks['SiteNoticeBefore'][] = 'efCentralNoticeDisplayBefore';
-		} else {
-			$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplayAfter';
-		}
+		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
 	}
 
 	$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
@@ -171,7 +144,7 @@ function efCentralNoticeSchema() {
 
 function efCentralNoticeLoader( $out, $skin ) {
 	global $wgUser, $wgOut, $wgLanguageCode;
-	global $wgNoticeProject, $wgNoticeCentralPath, $wgNoticeLocalPath, $wgNoticeUseLocalNotice;
+	global $wgNoticeProject, $wgNoticeCentralPath;
 
 	// Pull the static Javascript file for this site
 	$centralNotice = "$wgNoticeProject/$wgLanguageCode/centralnotice.js";
@@ -185,46 +158,20 @@ function efCentralNoticeLoader( $out, $skin ) {
 	// Load the notice text from <head>
 	$wgOut->addScriptFile( $centralLoader );
 
-	if ( $wgNoticeUseLocalNotice ) {
-		$localNotice = ( is_object( $wgUser ) && $wgUser->isLoggedIn() )
-			? 'sitenotice.js'
-			: 'anonnotice.js';
-		if ( $wgNoticeLocalPath === false ) {
-			$localLoader = SpecialPage::getTitleFor( 'NoticeLocal', $localNotice )->getLocalUrl();
-		} else {
-			$localLoader = "$wgNoticeLocalPath/$localNotice";
-		}
-		$wgOut->addScriptFile( $localLoader );
-	}
-
 	return true;
 }
 
 function efCentralNoticeDefaults( &$vars ) {
-	global $wgNoticeUseLocalNotice;
-
 	// Initialize these variables to empty, so if the notice script fails
 	// we don't have any surprises.
 	$vars['wgNotice'] = '';
-	if ( $wgNoticeUseLocalNotice ) {
-		$vars['wgNoticeLocal'] = '';
-	}
 	return true;
 }
 
-function efCentralNoticeDisplayAfter( &$notice ) {
+function efCentralNoticeDisplay( &$notice ) {
 	// Slip in load of the data...
 	$notice =
 		Html::inlineScript( "if (wgNotice != '') document.writeln(wgNotice);" ) .
 		$notice;
 	return true;
-}
-
-function efCentralNoticeDisplayBefore( &$notice ) {
-	// Slip in load of the data...
-	$notice = Html::inlineScript(
-		"if (wgNotice != '') document.writeln(wgNotice);" .
-		" if (wgNoticeLocal != '') document.writeln(wgNoticeLocal);"
-	);
-	return false;
 }
