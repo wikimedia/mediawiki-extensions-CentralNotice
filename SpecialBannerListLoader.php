@@ -89,7 +89,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
 		}
 		
-		return json_encode( $templates );
+		return 'Banners = ' . json_encode( $templates );
 	}
 	
 }
