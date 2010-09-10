@@ -133,9 +133,11 @@ function efCentralNoticeLoader( $out, $skin ) {
 }
 
 function efCentralNoticeDefaults( &$vars ) {
-	// Initialize these variables to empty, so if the notice script fails
-	// we don't have any surprises.
+	global $wgNoticeProject;
+	// Initialize global Javascript variables. We initialize wgNotice to empty so if the notice
+	// script fails we don't have any surprises.
 	$vars['wgNotice'] = '';
+	$vars['wgNoticeProject'] = $wgNoticeProject;
 	return true;
 }
 
