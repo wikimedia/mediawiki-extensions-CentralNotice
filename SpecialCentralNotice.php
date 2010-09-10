@@ -508,11 +508,11 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( 'Geotargeted', 'geotargeted' ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-geotargeted' ), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', false, wfArrayMerge( $readonly, array( 'value' => 1, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 'Countries' );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'centralnotice-countries' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector() );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			
@@ -811,11 +811,11 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( 'Geotargeted', 'geotargeted' ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-geotargeted' ), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', false, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 'Countries' );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'centralnotice-countries' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector() );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
@@ -1684,12 +1684,12 @@ class CentralNotice extends SpecialPage {
 		$htmlOut = '';
 		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'geo_countries[]', 'name' => 'geo_countries[]' ),
+				array( 'multiple' => 'multiple', 'size' => 5, 'id' => 'geo_countries[]', 'name' => 'geo_countries[]' ),
 				$options
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'geo_countries[]', 'name' => 'geo_countries[]', 'disabled' => 'disabled' ),
+				array( 'multiple' => 'multiple', 'size' => 5, 'id' => 'geo_countries[]', 'name' => 'geo_countries[]', 'disabled' => 'disabled' ),
 				$options
 			);
 		}
