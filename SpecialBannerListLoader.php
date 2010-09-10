@@ -3,7 +3,7 @@
 /**
  * Generates JSON files listing all the banners for a particular site
  */
-class BannerListLoader extends UnlistedSpecialPage {
+class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $project; // Project name
 	public $language; // Project language
 	public $centralNoticeDB;
