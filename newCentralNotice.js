@@ -7,8 +7,9 @@
  * 
  * QUESTIONS: 
  * 1. How do I determin if a user is logged in or not?
+ *    A: See function pickTemplate() in SpecialNoticeText.php
  * 2. How do I determin a users location?
- * 
+ *    A: The country value given by http://geoiplookup.wikimedia.org/
  */
 ( function( $ ) {
 	$.centralNotice = {
@@ -18,20 +19,23 @@
 		'fn': {
 			'loadBanner': function( bannerName ) {
 				// get the requested banner from /centralnotice/banners/<bannername>/<wgUserLanguage>.js
+				var bannerPage = 'Special:BannerLoader?banner='+bannerName+'&userlang='+wgContentLanguage+'&sitename='+wgNoticeProject;
+				var bannerURL = wgArticlePath.replace( '$1', bannerPage );
 				var request = $.ajax( {
-					url: 'response.html',
+					url: wgArticlePath
+					url: bannerURL,
 					dataType: 'html',
 					success: function( data ) {
 						$.centralNotice.fn.displayBanner( data );
 					}
 				});
 			},
-			'loadCampaign': function( timestamp ) {
+			'loadBannerList': function( timestamp ) {
 				var listURL;
 				if ( timestamp ) {
 					listURL = "TBD"
 				} else {
-					listURL = "/centralnotice/<project type>/<wgContentLanguage>.js"
+					listURL = "/centralnotice/"+wgNoticeProject+"/"+wgContentLanguage+".js"
 				}
 				var request = $.ajax( {
 					url: listURL,
@@ -48,7 +52,7 @@
 			},
 			'displayBanner': function( bannerHTML ) {
 				// inject the banner html into the page
-				$( '#centralNotice' ).replaceWith( bannerHTML );
+				$( '#siteNotice' ).prepend('<div id="centralnotice" class="'+(wgNoticeToggleState ? 'expanded' : 'collapsed')+'">'+bannerHTML+'</div>');
 			},
 			'getQueryStringVariables': function() {
 				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function () {
@@ -68,10 +72,10 @@
 			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['forceBanner'] );
 		} else if ( $.centralNotice.data.getVars['forceTimestamp'] ) {
 			// if we're forcing a future campaign time
-			$.centralNotice.fn.loadCampaign( $.centralNotice.data.getVars['forceTimestamp'] );	
+			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars['forceTimestamp'] );	
 		} else {
 			// look for banners ready to go NOW
-			$.centralNotice.fn.loadCampaign( );	
+			$.centralNotice.fn.loadBannerList( );	
 		}
 	} ); //document ready
 } )( jQuery );
