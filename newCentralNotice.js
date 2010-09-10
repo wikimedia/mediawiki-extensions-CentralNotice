@@ -36,6 +36,7 @@
 				if ( timestamp ) {
 					listURL = "TBD"
 				} else {
+					// http://geoiplookup.wikimedia.org/
 					var geoLocation = 'US'; // Hard-coding for now
 					var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
 					//centralized version:
@@ -45,19 +46,40 @@
 				var request = $.ajax( {
 					url: bannerListURL,
 					dataType: 'json',
-					success: function( data ) {
-						$.centralNotice.fn.chooseBanner( data );
-					}
+					success: $.centralNotice.fn.chooseBanner
 				} );
 			},
 			'chooseBanner': function( bannerList ) {
-				// pick a banner based on logged-in status and geotargetting
-				var bannerHTML = bannerList[0].html;
-				$.centralNotice.fn.displayBanner( bannerHTML );
+				// convert the json object to a true array
+				bannerList = Array.prototype.slice.call( bannerList );
+				
+				// Make sure there are some banners to choose from
+				if ( bannerList.length == 0 ) return false;
+				
+				var groomedBannerList = [];
+				
+				for( var i = 0; i < bannerList.length; i++ ) {
+					// only include this banner if it's inteded for the current user
+					if( ( wgUserName ? bannerList[i].display_account == 1 : bannerList.display_anon == 1 ) ) {
+						// add the banner to our list once per weight
+						for( var j=0; j < bannerList[i].weight; j++ ) {
+							groomedBannerList.push( bannerList[i] );
+						}
+					}
+				}
+				
+				// return if there's nothing left after the grooming
+				if( groomedBannerList.length == 0 ) return false;
+				// load a random banner from our groomed list
+				
+				$.centralNotice.fn.loadBanner( 
+					groomedBannerList[ Math.floor( Math.random() * groomedBannerList.length ) ].name
+				 );
 			},
 			'displayBanner': function( bannerHTML ) {
 				// inject the banner html into the page
-				$( '#siteNotice' ).prepend('<div id="centralnotice" class="'+(wgNoticeToggleState ? 'expanded' : 'collapsed')+'">'+bannerHTML+'</div>');
+				$( '#siteNotice' )
+					.prepend( '<div id="centralnotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">' + bannerHTML + '</div>' );
 			},
 			'getQueryStringVariables': function() {
 				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function () {
