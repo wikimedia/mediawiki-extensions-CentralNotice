@@ -509,7 +509,7 @@ class CentralNotice extends SpecialPage {
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::label( 'Geotargeted', 'geotargeted' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', false, wfArrayMerge( $readonly, array( 'value' => 0, 'id' => 'geotargeted' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', false, wfArrayMerge( $readonly, array( 'value' => 1, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 'Countries' );

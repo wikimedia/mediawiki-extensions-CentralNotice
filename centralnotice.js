@@ -48,9 +48,9 @@ function insertButton( buttonType ) {
 	$(document).ready(function() {
 		$("#geotargeted").click(function () {
 			if ($('#geotargeted:checked').val() !== undefined) {
-				$("#geoMultiSelector").show('slow');
+				$("#geoMultiSelector").fadeIn('fast');
 			} else {
-				$("#geoMultiSelector").hide('slow');
+				$("#geoMultiSelector").fadeOut('fast');
 			}
 		});
 	});
