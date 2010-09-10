@@ -47,6 +47,9 @@
 	border-style: solid;
 	border-width: 1px;
 }
+#preferences tr#geoMultiSelector {
+	display: none;
+}
 
 /* Vector-specific definitions */
 body.skin-vector #preferences fieldset.prefsection {
