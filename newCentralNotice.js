@@ -22,7 +22,6 @@
 				var bannerPage = 'Special:BannerLoader?banner='+bannerName+'&userlang='+wgContentLanguage+'&sitename='+wgNoticeProject;
 				var bannerURL = wgArticlePath.replace( '$1', bannerPage );
 				var request = $.ajax( {
-					url: wgArticlePath
 					url: bannerURL,
 					dataType: 'html',
 					success: function( data ) {
