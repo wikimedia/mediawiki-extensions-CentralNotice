@@ -20,6 +20,8 @@
 			'loadBanner': function( bannerName ) {
 				// get the requested banner from /centralnotice/banners/<bannername>/<wgUserLanguage>.js
 				var bannerPage = 'Special:BannerLoader?banner='+bannerName+'&userlang='+wgContentLanguage+'&sitename='+wgNoticeProject;
+				//centralized version:
+				//var bannerURL = 'http://meta.wikimedia.org/wiki/'+bannerPage;
 				var bannerURL = wgArticlePath.replace( '$1', bannerPage );
 				var request = $.ajax( {
 					url: bannerURL,
@@ -34,10 +36,14 @@
 				if ( timestamp ) {
 					listURL = "TBD"
 				} else {
-					listURL = "/centralnotice/"+wgNoticeProject+"/"+wgContentLanguage+".js"
+					var geoLocation = 'US'; // Hard-coding for now
+					var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
+					//centralized version:
+					//var bannerListURL = 'http://meta.wikimedia.org/wiki/'+bannerListPage;
+					var bannerListURL = wgArticlePath.replace( '$1', bannerListPage );
 				}
 				var request = $.ajax( {
-					url: listURL,
+					url: bannerListURL,
 					dataType: 'json',
 					success: function( data ) {
 						$.centralNotice.fn.chooseBanner( data );
