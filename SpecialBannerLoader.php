@@ -6,7 +6,7 @@
 class SpecialBannerLoader extends UnlistedSpecialPage {
 	public $siteName = 'Wikipedia'; // Site name
 	public $language = 'en'; // User language
-	protected $sharedMaxAge = 22; // Cache for 2 hours on the server side
+	protected $sharedMaxAge = 150; // Cache for 2 hours on the server side
 	protected $maxAge = 0; // No client-side banner caching so we get all impressions
 	protected $contentType = 'text/html';
 	

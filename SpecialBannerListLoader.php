@@ -7,8 +7,8 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $project; // Project name
 	public $language; // Project language
 	public $centralNoticeDB;
-	protected $sharedMaxAge = 22; // Cache for ? minutes on the server side
-	protected $maxAge = 10; // Cache for ? minutes on the client side
+	protected $sharedMaxAge = 150; // Cache for ? minutes on the server side
+	protected $maxAge = 150; // Cache for ? minutes on the client side
 	protected $contentType = 'text/javascript';
 	
 	function __construct() {

@@ -83,25 +83,28 @@ function efCentralNoticeSetup() {
 		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
 		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
 	}
-
-	$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
+	
+	$wgSpecialPages['BannerLoader'] = 'SpecialBannerLoader';
+	$wgAutoloadClasses['SpecialBannerLoader'] = $dir . 'SpecialBannerLoader.php';
+	
+	$wgSpecialPages['BannerListLoader'] = 'SpecialBannerListLoader';
+	$wgAutoloadClasses['SpecialBannerListLoader'] = $dir . 'SpecialBannerListLoader.php';
+	
+	$wgSpecialPages['BannerController'] = 'SpecialBannerController';
+	$wgAutoloadClasses['SpecialBannerController'] = $dir . 'SpecialBannerController.php';
 
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
 		$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 		
-		$wgSpecialPages['BannerLoader'] = 'SpecialBannerLoader';
-		$wgAutoloadClasses['SpecialBannerLoader'] = $dir . 'SpecialBannerLoader.php';
-		
-		$wgSpecialPages['BannerListLoader'] = 'SpecialBannerListLoader';
-		$wgAutoloadClasses['SpecialBannerListLoader'] = $dir . 'SpecialBannerListLoader.php';
-
-		$wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
-		$wgAutoloadClasses['SpecialNoticeText'] = $dir . 'SpecialNoticeText.php';
-
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
+		
+		// remove these as soon as banner loader is complete
+		$wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
+		$wgAutoloadClasses['SpecialNoticeText'] = $dir . 'SpecialNoticeText.php';
+		$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
 		
 		$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
@@ -117,6 +120,7 @@ function efCentralNoticeSchema() {
 		$wgExtNewFields[] = array( 'cn_notices', 'not_preferred', $base . '/patches/patch-notice_preferred.sql' );
 		$wgExtNewTables[] = array( 'cn_notice_languages', $base . '/patches/patch-notice_languages.sql' );
 		$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon', $base . '/patches/patch-template_settings.sql' );
+		$wgExtNewTables[] = array( 'cn_notice_geo', $base . '/patches/patch-notice_geo.sql' );
 	}
 	return true;
 }
@@ -124,7 +128,7 @@ function efCentralNoticeSchema() {
 function efCentralNoticeLoader( $out, $skin ) {
 	global $wgUser, $wgOut;
 
-	$centralLoader = SpecialPage::getTitleFor( 'NoticeText' )->getLocalUrl();
+	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl();
 
 	// Insert the banner controller Javascript into the <head>
 	$wgOut->addScriptFile( $centralLoader );
