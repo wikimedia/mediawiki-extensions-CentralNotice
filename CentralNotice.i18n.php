@@ -2934,6 +2934,8 @@ Fieg eini zue.',
 	'centralnotice-banner-type' => 'Bannertyp:',
 	'centralnotice-banner-hidable' => 'Statisch/Uusbländbar',
 	'centralnotice-banner-collapsible' => 'Yyklappbar',
+	'centralnotice-geotargeted' => 'Geo-aavisiert',
+	'centralnotice-countries' => 'Länder',
 	'right-centralnotice-admin' => 'Zentrali Mäldige verwalte',
 	'right-centralnotice-translate' => 'Zentrali Mäldige ibersetze',
 	'action-centralnotice-admin' => 'Zentrali Sytenotize verwalte',
@@ -3992,6 +3994,7 @@ $messages['ka'] = array(
 /** Khmer (ភាសាខ្មែរ)
  * @author Lovekhmer
  * @author Thearith
+ * @author គីមស៊្រុន
  * @author វ័ណថារិទ្ធ
  */
 $messages['km'] = array(
@@ -4006,7 +4009,7 @@ $messages['km'] = array(
 	'centralnotice-translate-to' => 'បកប្រែ​ទៅ',
 	'centralnotice-translate' => 'បកប្រែ',
 	'centralnotice-english' => 'ភាសាអង់គ្លេស',
-	'centralnotice-banner-name' => 'ឈ្មោះទំព័រគំរូ',
+	'centralnotice-banner-name' => 'ឈ្មោះបដា៖',
 	'centralnotice-templates' => 'ទំព័រគំរូ',
 	'centralnotice-weight' => 'ទម្ងន់​',
 	'centralnotice-locked' => 'បានចាក់សោ',
@@ -4022,6 +4025,7 @@ $messages['km'] = array(
 	'centralnotice-edit-template' => 'កែប្រែទំព័រគំរូ',
 	'centralnotice-message' => 'សារ',
 	'centralnotice-clone' => 'ក្លូន',
+	'centralnotice-donate-button' => 'ប៊ូតុងវិភាគទាន',
 );
 
 /** Kannada (ಕನ್ನಡ)
@@ -7084,6 +7088,7 @@ $messages['te'] = array(
 	'centralnotice-hours' => 'గంట',
 	'centralnotice-min' => 'నిమిషం',
 	'centralnotice-project-lang' => 'ప్రాజెక్టు భాష',
+	'centralnotice-top-ten-languages' => 'పై 10 భాషలు',
 	'centralnotice-project-name' => 'ప్రాజెక్టు పేరు',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
@@ -7098,6 +7103,7 @@ $messages['te'] = array(
 	'centralnotice-number-uses' => 'వాడుకరులు',
 	'centralnotice-edit-template' => 'మూసని మార్చు',
 	'centralnotice-message' => 'సందేశం',
+	'centralnotice-countries' => 'దేశాలు',
 	'right-centralnotice-admin' => 'కేంద్రీయ గమనికలని నిర్వహించగలగడం',
 	'right-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనుదించండి',
 	'action-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనువదించగలగడం',
