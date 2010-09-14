@@ -68,7 +68,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				var bannerListURL;
 				var geoLocation = Geo.country; // pull the geo info
 				var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
-				var bannerListURL = wgArticlePath.replace( '$1', bannerListPage );
+				bannerListURL = wgArticlePath.replace( '$1', bannerListPage );
 				var request = $.ajax( {
 					url: bannerListURL,
 					dataType: 'json',
