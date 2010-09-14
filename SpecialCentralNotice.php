@@ -147,10 +147,12 @@ class CentralNotice extends SpecialPage {
 					$start             = $wgRequest->getArray( 'start' );
 					$project_name      = $wgRequest->getVal( 'project_name' );
 					$project_languages = $wgRequest->getArray( 'project_languages' );
+					$geotargeted       = $wgRequest->getCheck( 'geotargeted' );
+					$geo_countries     = $wgRequest->getArray( 'geo_countries' );
 					if ( $noticeName == '' ) {
 						$this->showError( 'centralnotice-null-string' );
 					} else {
-						$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages );
+						$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages, $geotargeted, $geo_countries );
 					}
 				}
 				
@@ -1026,7 +1028,7 @@ class CentralNotice extends SpecialPage {
 		return $templates;
 	}
 
-	function addNotice( $noticeName, $enabled, $start, $project_name, $project_languages ) {
+	function addNotice( $noticeName, $enabled, $start, $project_name, $project_languages, $geotargeted, $geo_countries ) {
 		global $wgOut;
 
 		if ( $this->noticeExists( $noticeName ) ) {
@@ -1059,7 +1061,8 @@ class CentralNotice extends SpecialPage {
 					'not_enabled' => $enabled,
 					'not_start' => $dbw->timestamp( $startTs ),
 					'not_end' => $dbw->timestamp( $endTs ),
-					'not_project' => $project_name
+					'not_project' => $project_name,
+					'not_geo' => $geotargeted
 				)
 			);
 			$not_id = $dbw->insertId();
@@ -1070,6 +1073,15 @@ class CentralNotice extends SpecialPage {
 				$insertArray[] = array( 'nl_notice_id' => $not_id, 'nl_language' => $code );
 			}
 			$res = $dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, array( 'IGNORE' ) );
+			
+			if ( $geotargeted ) {
+				// Do multi-row insert for campaign countries
+				$insertArray = array();
+				foreach( $geo_countries as $code ) {
+					$insertArray[] = array( 'nc_notice_id' => $not_id, 'nc_country' => $code );
+				}
+				$res = $dbw->insert( 'cn_notice_countries', $insertArray, __METHOD__, array( 'IGNORE' ) );
+			}
 		
 			$dbw->commit();
 			return;

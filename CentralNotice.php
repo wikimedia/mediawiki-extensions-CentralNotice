@@ -120,7 +120,7 @@ function efCentralNoticeSchema() {
 		$wgExtNewFields[] = array( 'cn_notices', 'not_preferred', $base . '/patches/patch-notice_preferred.sql' );
 		$wgExtNewTables[] = array( 'cn_notice_languages', $base . '/patches/patch-notice_languages.sql' );
 		$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon', $base . '/patches/patch-template_settings.sql' );
-		$wgExtNewTables[] = array( 'cn_notice_geo', $base . '/patches/patch-notice_geo.sql' );
+		$wgExtNewTables[] = array( 'cn_notice_countries', $base . '/patches/patch-notice_countries.sql' );
 	}
 	return true;
 }
