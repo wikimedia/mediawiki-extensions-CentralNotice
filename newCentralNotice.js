@@ -53,19 +53,25 @@
 				if ( bannerList.length == 0 ) return false;
 				
 				var totalWeight = 0;
+				// run through the bannerlist and sum the weights of all banners
 				for( var i = 0; i < bannerList.length; i++ ) {
 					totalWeight += bannerList[i].weight;
 				}
+				
+				// select a random integer between 0 and our total weight
 				var pointer = Math.floor( Math.random() * totalWeight ),
 					selectedBanner = bannerList[0],
 					w = 0;
+				// run through the banner list and start accumulating weights
 				for( var i = 0; i < bannerList.length; i++ ) {
 					w += bannerList[i].weight;
+					// when the weight tally exceeds the random integer, return the banner and stop the loop
 					if( w < pointer ) {
 						selectedBanner = bannerList[i];
 						break;
 					}
 				}
+				// return our selected banner
 				$.centralNotice.fn.loadBanner( 
 					selectedBanner.name
 				 );
