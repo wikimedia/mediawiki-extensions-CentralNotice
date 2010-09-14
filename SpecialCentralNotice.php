@@ -563,24 +563,35 @@ class CentralNotice extends SpecialPage {
 					}
 					
 					// Handle locking/unlocking campaign
-					if ( $wgRequest->getArray( 'locked' ) ) {
+					if ( $wgRequest->getCheck( 'locked' ) ) {
 						$this->updateLock( $notice, '1' );
 					} else {
 						$this->updateLock( $notice, 0 );
 					}
 					
 					// Handle enabling/disabling campaign
-					if ( $wgRequest->getArray( 'enabled' ) ) {
+					if ( $wgRequest->getCheck( 'enabled' ) ) {
 						$this->updateEnabled( $notice, '1' );
 					} else {
 						$this->updateEnabled( $notice, 0 );
 					}
 					
 					// Handle setting campaign to preferred/not preferred
-					if ( $wgRequest->getArray( 'preferred' ) ) {
+					if ( $wgRequest->getCheck( 'preferred' ) ) {
 						$this->updatePreferred( $notice, '1' );
 					} else {
 						$this->updatePreferred( $notice, 0 );
+					}
+					
+					// Handle updating geotargeting
+					if ( $wgRequest->getCheck( 'geotargeted' ) ) {
+						$this->updateGeotargeted( $notice, '1' );
+						$countries = $wgRequest->getArray( 'geo_countries' );
+						if ( $countries ) {
+							$this->updateCountries( $notice, $countries );
+						}
+					} else {
+						$this->updateGeotargeted( $notice, 0 );
 					}
 					
 					// Handle updating the start and end settings
@@ -736,7 +747,8 @@ class CentralNotice extends SpecialPage {
 				'not_enabled',
 				'not_preferred',
 				'not_project',
-				'not_locked'
+				'not_locked',
+				'not_geo'
 			),
 			array( 'not_name' => $notice ),
 			__METHOD__
@@ -765,6 +777,8 @@ class CentralNotice extends SpecialPage {
 				$isLocked = $wgRequest->getCheck( 'locked' );
 				$projectSelected = $wgRequest->getVal( 'project_name' );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
+				$isGeotargeted = $wgRequest->getCheck( 'geotargeted' );
+				$countries = $wgRequest->getArray( 'geo_countries', array() );
 			} else { // Defaults
 				$startTimestamp = $row->not_start;
 				$endTimestamp = $row->not_end;
@@ -773,6 +787,8 @@ class CentralNotice extends SpecialPage {
 				$isLocked = ( $row->not_locked == '1' );
 				$projectSelected = $row->not_project;
 				$noticeLanguages = $this->getNoticeLanguages( $notice );
+				$isGeotargeted = ( $row->not_geo == '1' );
+				$countries = $this->getNoticeCountries( $notice );
 			}
 		
 			// Build Html
@@ -814,11 +830,11 @@ class CentralNotice extends SpecialPage {
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-geotargeted' ), 'geotargeted' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', false, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'geotargeted' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', $isGeotargeted, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'centralnotice-countries' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector() );
+			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector( $countries ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1173,6 +1189,20 @@ class CentralNotice extends SpecialPage {
 		}
 		return $languages;
 	}
+	
+	function getNoticeCountries( $noticeName ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$eNoticeName = htmlspecialchars( $noticeName );
+		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
+		$countries = array();
+		if ( $row ) {
+			$res = $dbr->select( 'cn_notice_countries', 'nc_country', array( 'nc_notice_id' => $row->not_id ) );
+			foreach ( $res as $countryRow ) {
+				$countries[] = $countryRow->nc_country;
+			}
+		}
+		return $countries;
+	}
 
 	function getNoticeProjectName( $noticeName ) {
 		 $dbr = wfGetDB( DB_SLAVE );
@@ -1246,7 +1276,7 @@ class CentralNotice extends SpecialPage {
 			);
 		}
 	}
-
+	
 	/**
 	 * Update the preferred/not preferred state of a campaign
 	 */
@@ -1259,6 +1289,23 @@ class CentralNotice extends SpecialPage {
 			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->update( 'cn_notices',
 				array( 'not_preferred' => $isPreferred ),
+				array( 'not_name' => $noticeName )
+			);
+		}
+	}
+
+	/**
+	 * Update the geotargeted/not geotargeted state of a campaign
+	 */
+	function updateGeotargeted( $noticeName, $isGeotargeted ) {
+		global $wgOut;
+		
+		if ( !$this->noticeExists( $noticeName ) ) {
+			$this->showError( 'centralnotice-doesnt-exist' );
+		} else {
+			$dbw = wfGetDB( DB_MASTER );
+			$res = $dbw->update( 'cn_notices',
+				array( 'not_geo' => $isGeotargeted ),
 				array( 'not_name' => $noticeName )
 			);
 		}
@@ -1398,6 +1445,36 @@ class CentralNotice extends SpecialPage {
 		if ( $removeLanguages ) {
 			$res = $dbw->delete( 'cn_notice_languages',
 				array( 'nl_notice_id' => $row->not_id, 'nl_language' => $removeLanguages )
+			);
+		}
+		
+		$dbw->commit();
+	}
+	
+	function updateCountries( $notice, $newCountries ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+		
+		// Get the previously assigned languages
+		$oldCountries = array();
+		$oldCountries = $this->getNoticeCountries( $notice );
+		
+		// Get the notice id
+		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
+		
+		// Add newly assigned countries
+		$addCountries = array_diff( $newCountries, $oldCountries );
+		$insertArray = array();
+		foreach( $addCountries as $code ) {
+			$insertArray[] = array( 'nc_notice_id' => $row->not_id, 'nc_country' => $code );
+		}
+		$res = $dbw->insert( 'cn_notice_countries', $insertArray, __METHOD__, array( 'IGNORE' ) );
+		
+		// Remove disassociated countries
+		$removeCountries = array_diff( $oldCountries, $newCountries );
+		if ( $removeCountries ) {
+			$res = $dbw->delete( 'cn_notice_countries',
+				array( 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries )
 			);
 		}
 		
