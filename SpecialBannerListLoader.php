@@ -80,7 +80,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
 			$notices = $this->centralNoticeDB->getNotices( 'wikipedia', $this->language, '', '', 1 );
-			if ( $notices && is_array( $notices ) ) {
+			if ( $notices ) ) {
 				foreach ( $notices as $notice => $val ) {
 					$templates = $this->centralNoticeDB->selectTemplatesAssigned( $notice );
 					break;

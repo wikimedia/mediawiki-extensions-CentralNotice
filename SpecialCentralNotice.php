@@ -1026,11 +1026,12 @@ class CentralNotice extends SpecialPage {
 			array (
 				"not_start <= $encTimestamp",
 				"not_end >= $encTimestamp",
-				"not_enabled = 1",
+				'not_enabled = 1',
+				'nc_notice_id = cn_notices.not_id',
 				"(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))",
 				'nl_notice_id = cn_notices.not_id',
 				'nl_language' => $language,
-				"not_project" => array( '', $project ),
+				'not_project' => array( '', $project ),
 				'cn_notices.not_id=cn_assignments.not_id',
 				'cn_assignments.tmp_id=cn_templates.tmp_id'
 			),
