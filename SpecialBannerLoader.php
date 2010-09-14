@@ -162,8 +162,8 @@ EOT;
 					return 1100000; // Update as needed during fundraiser
 				}
 			}
-			$wgMemc->set( 'centralnotice:counter', $count, 60 ); // Expire in 60 seconds
-			$wgMemc->set( 'centralnotice:counter:fallback', $count ); // No expiration
+			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter' ), $count, 60 ); // Expire in 60 seconds
+			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter', 'fallback' ), $count ); // No expiration
 		}
 		return $count;
 	}
