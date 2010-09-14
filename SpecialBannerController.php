@@ -53,12 +53,11 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		},
 		'fn': {
 			'loadBanner': function( bannerName ) {
-				// get the requested banner from /centralnotice/banners/<bannername>/<wgUserLanguage>.js
+				// Get the requested banner from /centralnotice/banners/<bannername>/<wgUserLanguage>.js
 				var bannerPage = 'Special:BannerLoader?banner='+bannerName+'&userlang='+wgContentLanguage+'&sitename='+wgNoticeProject;
 				//centralized version:
 				//var bannerURL = 'http://meta.wikimedia.org/wiki/'+bannerPage;
-				//var bannerURL = wgArticlePath.replace( '$1', bannerPage );
-				var bannerURL = 'http://localhost/~rkaldari/banner.html';
+				var bannerURL = wgArticlePath.replace( '$1', bannerPage );
 				var request = $.ajax( {
 					url: bannerURL,
 					dataType: 'html',
@@ -69,16 +68,11 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			},
 			'loadBannerList': function( timestamp ) {
 				var listURL;
-				if ( timestamp ) {
-					listURL = "TBD"
-				} else {
-					// http://geoiplookup.wikimedia.org/
-					var geoLocation = 'US'; // Hard-coding for now
-					var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
-					//centralized version:
-					//var bannerListURL = 'http://meta.wikimedia.org/wiki/'+bannerListPage;
-					var bannerListURL = wgArticlePath.replace( '$1', bannerListPage );
-				}
+				var geoLocation = Geo.country; // pull the geo info
+				var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
+				//centralized version:
+				//var bannerListURL = 'http://meta.wikimedia.org/wiki/'+bannerListPage;
+				var bannerListURL = wgArticlePath.replace( '$1', bannerListPage );
 				var request = $.ajax( {
 					url: bannerListURL,
 					dataType: 'json',
@@ -86,7 +80,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				} );
 			},
 			'chooseBanner': function( bannerList ) {
-				// convert the json object to a true array
+				// Convert the json object to a true array
 				bannerList = Array.prototype.slice.call( bannerList );
 				
 				// Make sure there are some banners to choose from
@@ -95,8 +89,8 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				var groomedBannerList = [];
 				
 				for( var i = 0; i < bannerList.length; i++ ) {
-					// only include this banner if it's inteded for the current user
-					if( ( wgUserName ? bannerList[i].display_account == 1 : bannerList.display_anon == 1 ) ) {
+					// Only include this banner if it's inteded for the current user
+					if( ( wgUserName && bannerList[i].display_account ) || ( !wgUserName && bannerList[i].display_anon == 1 ) ) {
 						// add the banner to our list once per weight
 						for( var j=0; j < bannerList[i].weight; j++ ) {
 							groomedBannerList.push( bannerList[i] );
@@ -104,18 +98,18 @@ class SpecialBannerController extends UnlistedSpecialPage {
 					}
 				}
 				
-				// return if there's nothing left after the grooming
+				// Return if there's nothing left after the grooming
 				if( groomedBannerList.length == 0 ) return false;
-				// load a random banner from our groomed list
 				
+				// Load a random banner from our groomed list
 				$.centralNotice.fn.loadBanner( 
 					groomedBannerList[ Math.floor( Math.random() * groomedBannerList.length ) ].name
-				 );
+				);
 			},
 			'displayBanner': function( bannerHTML ) {
-				// inject the banner html into the page
+				// Inject the banner html into the page
 				$( '#siteNotice' )
-					.prepend( '<div id="centralnotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">' + bannerHTML + '</div>' );
+					.prepend( '<div id="centralNotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">' + bannerHTML + '</div>' );
 			},
 			'getQueryStringVariables': function() {
 				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function () {
@@ -128,18 +122,10 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		}
 	}
 	$( document ).ready( function () {
-		// initialize the query string vars
+		// Initialize the query string vars
 		$.centralNotice.fn.getQueryStringVariables();
-		if( $.centralNotice.data.getVars['forceBanner'] ) {
-			// if we're forcing one banner
-			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['forceBanner'] );
-		} else if ( $.centralNotice.data.getVars['forceTimestamp'] ) {
-			// if we're forcing a future campaign time
-			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars['forceTimestamp'] );	
-		} else {
-			// look for banners ready to go NOW
-			$.centralNotice.fn.loadBannerList( );	
-		}
+		// Look for banners ready to go NOW
+		$.centralNotice.fn.loadBannerList( );
 	} ); //document ready
 } )( jQuery );
 EOT;
@@ -151,14 +137,8 @@ EOT;
 		$showStyle = <<<END
 <style type="text/css">
 #centralNotice .siteNoticeSmall {display:none;}
-#centralNotice .siteNoticeSmallAnon {display:none;}
-#centralNotice .siteNoticeSmallUser {display:none;}
 #centralNotice.collapsed .siteNoticeBig {display:none;}
 #centralNotice.collapsed .siteNoticeSmall {display:block;}
-#centralNotice.collapsed .siteNoticeSmallUser {display:block;}
-#centralNotice.collapsed .siteNoticeSmallAnon {display:block;}
-#centralNotice.anonnotice .siteNoticeSmallUser {display:none !important;}
-#centralNotice.usernotice .siteNoticeSmallAnon {display:none !important;}
 </style>
 END;
 		$encShowStyle = Xml::encodeJsVar( $showStyle );

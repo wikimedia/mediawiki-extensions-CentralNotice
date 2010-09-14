@@ -130,6 +130,9 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl();
 
+	// Insert the geo IP lookup into the <head>
+	$wgOut->addScriptFile( 'http://geoiplookup.wikimedia.org/' );
+	
 	// Insert the banner controller Javascript into the <head>
 	$wgOut->addScriptFile( $centralLoader );
 
@@ -138,17 +141,20 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 function efCentralNoticeDefaults( &$vars ) {
 	global $wgNoticeProject;
-	// Initialize global Javascript variables. We initialize wgNotice to empty so if the notice
-	// script fails we don't have any surprises.
-	$vars['wgNotice'] = '';
+	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
+	// IP lookup fails we don't have any surprises.
+	$geo = (object)array();
+	$geo->{'city'} = '';
+	$geo->{'country'} = '';
+	$vars['Geo'] = $geo; // change this to wgGeo as soon as Mark updates on his end
 	$vars['wgNoticeProject'] = $wgNoticeProject;
 	return true;
 }
 
 function efCentralNoticeDisplay( &$notice ) {
-	// Slip in loading of the banner (inside the siteNotice div)
+	// setup siteNotice div
 	$notice =
-		Html::inlineScript( "if (wgNotice != '') document.writeln(wgNotice);" ) .
+		'<!-- centralNotice loads here -->'. // hack for IE8 to collapse empty div
 		$notice;
 	return true;
 }
