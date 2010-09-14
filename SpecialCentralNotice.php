@@ -1006,40 +1006,82 @@ class CentralNotice extends SpecialPage {
 	 * @return A 2D array of running banners with associated weights and settings
 	 */
 	static function selectNoticeTemplates( $project, $language, $location = null ) {
-		$location = htmlspecialchars( $location );
+		
+		// Normalize location parameter (should be an uppercase 2-letter country code)
+		preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
+		$location = strtoupper( $matches[0] );
+		
 		$dbr = wfGetDB( DB_SLAVE );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
-		$res = $dbr->select(
-			array(
-				'cn_notices',
-				'cn_notice_languages',
-				'cn_notice_countries',
-				'cn_assignments',
-				'cn_templates'
-			),
-			array(
-				'tmp_name',
-				'SUM(tmp_weight) AS total_weight',
-				'tmp_display_anon',
-				'tmp_display_account'
-			),
-			array (
-				"not_start <= $encTimestamp",
-				"not_end >= $encTimestamp",
-				'not_enabled = 1',
-				'nc_notice_id = cn_notices.not_id',
-				"(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))",
-				'nl_notice_id = cn_notices.not_id',
-				'nl_language' => $language,
-				'not_project' => array( '', $project ),
-				'cn_notices.not_id=cn_assignments.not_id',
-				'cn_assignments.tmp_id=cn_templates.tmp_id'
-			),
-			__METHOD__,
-			array(
-				'GROUP BY' => 'tmp_name'
-			)
-		);
+		if ( $location ) {
+			$res = $dbr->select(
+				array(
+					'cn_notices',
+					'cn_notice_languages',
+					'cn_notice_countries',
+					'cn_assignments',
+					'cn_templates'
+				),
+				array(
+					'tmp_name',
+					'SUM(tmp_weight) AS total_weight',
+					'tmp_display_anon',
+					'tmp_display_account'
+				),
+				array (
+					"not_start <= $encTimestamp",
+					"not_end >= $encTimestamp",
+					'not_enabled = 1',
+					'nc_notice_id = cn_notices.not_id',
+					"(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))", // not geotargeted or (geotargeted and matches location)
+					'nl_notice_id = cn_notices.not_id',
+					'nl_language' => $language,
+					'not_project' => array( '', $project ),
+					'cn_notices.not_id=cn_assignments.not_id',
+					'cn_assignments.tmp_id=cn_templates.tmp_id'
+				),
+				__METHOD__,
+				array(
+					'GROUP BY' => 'tmp_name'
+				),
+				array(
+					'cn_notice_countries' => array(
+						'LEFT JOIN',
+						"nc_country = '$location'"
+					)
+				)
+			);
+		} else {
+			$res = $dbr->select(
+				array(
+					'cn_notices',
+					'cn_notice_languages',
+					'cn_assignments',
+					'cn_templates'
+				),
+				array(
+					'tmp_name',
+					'SUM(tmp_weight) AS total_weight',
+					'tmp_display_anon',
+					'tmp_display_account'
+				),
+				array (
+					"not_start <= $encTimestamp",
+					"not_end >= $encTimestamp",
+					'not_enabled = 1', // enabled
+					'not_geo = 0', // not geotargeted
+					'nl_notice_id = cn_notices.not_id',
+					'nl_language' => $language,
+					'not_project' => array( '', $project ),
+					'cn_notices.not_id=cn_assignments.not_id',
+					'cn_assignments.tmp_id=cn_templates.tmp_id'
+				),
+				__METHOD__,
+				array(
+					'GROUP BY' => 'tmp_name'
+				)
+			);
+		}
 		$templates = array();
 		foreach ( $res as $row ) {
 			$template = array();
