@@ -64,7 +64,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		if ( $this->language == 'en' && $this->project != null ) {
 			// See if we have any preferred notices for all of en
-			$notices = $this->centralNoticeDB->getNotices( '', 'en', '', '', 1 );
+			$notices = $this->centralNoticeDB->getNotices( '', 'en', '', '', 1, $this->location );
 
 			if ( $notices ) {
 				// Pull out values
@@ -79,7 +79,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 		}
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
-			$notices = $this->centralNoticeDB->getNotices( 'wikipedia', $this->language, '', '', 1 );
+			$notices = $this->centralNoticeDB->getNotices( 'wikipedia', $this->language, '', '', 1, $this->location );
 			if ( $notices ) ) {
 				foreach ( $notices as $notice => $val ) {
 					$templates = $this->centralNoticeDB->selectTemplatesAssigned( $notice );

@@ -18,13 +18,16 @@ class CentralNoticeDB {
 	 * Return notices in the system within given constraints
 	 * Optional: return both enabled and disabled notices
 	 */
-	public function getNotices( $project = false, $language = false, $date = false, $enabled = true, $preferred = false ) {
+	public function getNotices( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
 		// Database setup
 		$dbr = wfGetDB( DB_SLAVE );
 		
 		$tables[] = "cn_notices";
 		if ( $language ) {
 			$tables[] = "cn_notice_languages";
+		}
+		if ( $location ) {
+			$tables[] = "cn_notice_countries";
 		}
 
 		// Use whatever conditional arguments got passed in
@@ -37,6 +40,10 @@ class CentralNoticeDB {
 		}
 		if ( $preferred ) {
 			$conds[] = "not_preferred = 1";
+		}
+		if ( $location ) {
+			$conds[] = 'nc_notice_id = cn_notices.not_id',
+			$conds[] = "(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))",
 		}
 		if ( !$date ) {
 			$date = $dbr->timestamp();
