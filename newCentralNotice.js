@@ -52,24 +52,22 @@
 				// Make sure there are some banners to choose from
 				if ( bannerList.length == 0 ) return false;
 				
-				var groomedBannerList = [];
-				
+				var totalWeight = 0;
 				for( var i = 0; i < bannerList.length; i++ ) {
-					// only include this banner if it's inteded for the current user
-					if( ( wgUserName ? bannerList[i].display_account == 1 : bannerList.display_anon == 1 ) ) {
-						// add the banner to our list once per weight
-						for( var j=0; j < bannerList[i].weight; j++ ) {
-							groomedBannerList.push( bannerList[i] );
-						}
+					totalWeight += bannerList[i].weight;
+				}
+				var pointer = Math.floor( Math.random() * totalWeight ),
+					selectedBanner = bannerList[0],
+					w = 0;
+				for( var i = 0; i < bannerList.length; i++ ) {
+					w += bannerList[i].weight;
+					if( w < pointer ) {
+						selectedBanner = bannerList[i];
+						break;
 					}
 				}
-				
-				// return if there's nothing left after the grooming
-				if( groomedBannerList.length == 0 ) return false;
-				// load a random banner from our groomed list
-				
 				$.centralNotice.fn.loadBanner( 
-					groomedBannerList[ Math.floor( Math.random() * groomedBannerList.length ) ].name
+					selectedBanner.name
 				 );
 			},
 			'displayBanner': function( bannerHTML ) {
