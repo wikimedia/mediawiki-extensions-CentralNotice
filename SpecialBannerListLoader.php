@@ -70,7 +70,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 				// Pull out values
 				foreach ( $notices as $notice => $val ) {
 					// Either match against ALL project or a specific project
-					if ( $val['project'] == '' || $val['project'] == $this->project ) {
+					if ( $val['project'] === '' || $val['project'] == $this->project ) {
 						$templates = $this->centralNoticeDB->selectTemplatesAssigned( $notice );
 						break;
 					}
@@ -93,7 +93,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language, $this->location );
 		}
 		
-		return 'Banners = ' . json_encode( $templates );
+		return 'banners = ' . FormatJson::encode( $templates );
 	}
 	
 }
