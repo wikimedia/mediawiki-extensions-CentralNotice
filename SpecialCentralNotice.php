@@ -513,7 +513,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-geotargeted' ), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', false, wfArrayMerge( $readonly, array( 'value' => 1, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
+			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector', 'style'=>'display:none;' ) );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'centralnotice-countries' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector() );
 			$htmlOut .= Xml::closeElement( 'tr' );
@@ -832,7 +832,11 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsgHtml( 'centralnotice-geotargeted' ), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', $isGeotargeted, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
+			if ( $isGeotargeted ) {
+				$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
+			} else {
+				$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector', 'style'=>'display:none;' ) );
+			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'centralnotice-countries' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector( $countries ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
