@@ -53,10 +53,8 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		},
 		'fn': {
 			'loadBanner': function( bannerName ) {
-				// Get the requested banner from /centralnotice/banners/<bannername>/<wgUserLanguage>.js
+				// Get the requested banner
 				var bannerPage = 'Special:BannerLoader?banner='+bannerName+'&userlang='+wgContentLanguage+'&sitename='+wgNoticeProject;
-				//centralized version:
-				//var bannerURL = 'http://meta.wikimedia.org/wiki/'+bannerPage;
 				var bannerURL = wgArticlePath.replace( '$1', bannerPage );
 				var request = $.ajax( {
 					url: bannerURL,
@@ -70,8 +68,6 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				var listURL;
 				var geoLocation = Geo.country; // pull the geo info
 				var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
-				//centralized version:
-				//var bannerListURL = 'http://meta.wikimedia.org/wiki/'+bannerListPage;
 				var bannerListURL = wgArticlePath.replace( '$1', bannerListPage );
 				var request = $.ajax( {
 					url: bannerListURL,
