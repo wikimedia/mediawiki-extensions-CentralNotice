@@ -65,7 +65,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				});
 			},
 			'loadBannerList': function( timestamp ) {
-				var listURL;
+				var bannerListURL;
 				var geoLocation = Geo.country; // pull the geo info
 				var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
 				var bannerListURL = wgArticlePath.replace( '$1', bannerListPage );

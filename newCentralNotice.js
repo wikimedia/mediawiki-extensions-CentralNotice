@@ -32,9 +32,9 @@
 				});
 			},
 			'loadBannerList': function( timestamp ) {
-				var listURL;
+				var bannerListURL;
 				if ( timestamp ) {
-					listURL = "TBD"
+					bannerListURL = "TBD"
 				} else {
 					// http://geoiplookup.wikimedia.org/
 					var geoLocation = 'US'; // Hard-coding for now
