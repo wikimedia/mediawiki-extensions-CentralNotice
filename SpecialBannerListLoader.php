@@ -6,6 +6,7 @@
 class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $project; // Project name
 	public $language; // Project language
+	public $location; // User country
 	public $centralNoticeDB;
 	protected $sharedMaxAge = 150; // Cache for ? minutes on the server side
 	protected $maxAge = 150; // Cache for ? minutes on the client side
@@ -24,10 +25,13 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 		$this->sendHeaders();
 		
 		// Get project language from the query string
-		$this->language = htmlspecialchars( $wgRequest->getText( 'language', 'en' ) );
+		$this->language = $wgRequest->getText( 'language', 'en' );
 		
 		// Get project name from the query string
-		$this->project = htmlspecialchars( $wgRequest->getText( 'project', 'wikipedia' ) );
+		$this->project = $wgRequest->getText( 'project', 'wikipedia' );
+		
+		// Get location from the query string
+		$this->location = $wgRequest->getText( 'location' );
 		
 		if ( $this->project && $this->language ) {
 			$content = $this->getJsonList();
@@ -86,7 +90,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		// Didn't find any preferred matches so do an old style lookup
 		if ( !$templates )  {
-			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language );
+			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language, $this->location );
 		}
 		
 		return 'Banners = ' . json_encode( $templates );

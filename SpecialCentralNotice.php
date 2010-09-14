@@ -1005,13 +1005,15 @@ class CentralNotice extends SpecialPage {
 	 * each project.
 	 * @return A 2D array of running banners with associated weights and settings
 	 */
-	static function selectNoticeTemplates( $project, $language ) {
+	static function selectNoticeTemplates( $project, $language, $location = null ) {
+		$location = htmlspecialchars( $location );
 		$dbr = wfGetDB( DB_SLAVE );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
 		$res = $dbr->select(
 			array(
 				'cn_notices',
 				'cn_notice_languages',
+				'cn_notice_countries',
 				'cn_assignments',
 				'cn_templates'
 			),
@@ -1025,6 +1027,7 @@ class CentralNotice extends SpecialPage {
 				"not_start <= $encTimestamp",
 				"not_end >= $encTimestamp",
 				"not_enabled = 1",
+				"(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))",
 				'nl_notice_id = cn_notices.not_id',
 				'nl_language' => $language,
 				"not_project" => array( '', $project ),
