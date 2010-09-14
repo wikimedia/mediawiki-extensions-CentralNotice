@@ -42,8 +42,8 @@ class CentralNoticeDB {
 			$conds[] = "not_preferred = 1";
 		}
 		if ( $location ) {
-			$conds[] = 'nc_notice_id = cn_notices.not_id',
-			$conds[] = "(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))",
+			$conds[] = 'nc_notice_id = cn_notices.not_id';
+			$conds[] = "(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))";
 		}
 		if ( !$date ) {
 			$date = $dbr->timestamp();

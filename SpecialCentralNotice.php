@@ -938,7 +938,7 @@ class CentralNotice extends SpecialPage {
 			);
 
 			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
-			$render = new SpecialNoticeText();
+			$render = new SpecialBannerLoader();
 			$render->project = 'wikipedia';
 			global $wgRequest;
 			$render->language = $wgRequest->getVal( 'wpUserLanguage' );
@@ -1000,8 +1000,8 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Lookup function for active banners under a given language and project. This function is 
-	 * called by SpecialNoticeText::getOutput() in order to build the static Javascript files for
+	 * Lookup function for active banners under a given language/project/location. This function is 
+	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
 	 * each project.
 	 * @return A 2D array of running banners with associated weights and settings
 	 */
@@ -1856,7 +1856,7 @@ class CentralNoticePager extends TemplatePager {
 		
 		// Link and Preview
 		$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
-		$render = new SpecialNoticeText();
+		$render = new SpecialBannerLoader();
 		$render->project = 'wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
