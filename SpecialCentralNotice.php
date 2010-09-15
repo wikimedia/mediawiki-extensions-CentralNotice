@@ -1024,7 +1024,7 @@ class CentralNotice extends SpecialPage {
 			array(
 				'not_id'
 			),
-			array (
+			array(
 				"not_start <= $encTimestamp",
 				"not_end >= $encTimestamp",
 				'not_enabled = 1', // enabled
@@ -1083,7 +1083,7 @@ class CentralNotice extends SpecialPage {
 				'tmp_display_anon',
 				'tmp_display_account'
 			),
-			array (
+			array(
 				"cn_notices.not_id IN ($campaignList)",
 				'cn_notices.not_id=cn_assignments.not_id',
 				'cn_assignments.tmp_id=cn_templates.tmp_id'
