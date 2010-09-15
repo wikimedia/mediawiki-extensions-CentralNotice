@@ -1067,39 +1067,9 @@ class CentralNotice extends SpecialPage {
 			}
 		}
 		
-		// Pull all banners assigned to the campaigns
-		$bannerResults = $dbr->select(
-			array(
-				'cn_notices',
-				'cn_assignments',
-				'cn_templates'
-			),
-			array(
-				'tmp_name',
-				'SUM(tmp_weight) AS total_weight',
-				'tmp_display_anon',
-				'tmp_display_account'
-			),
-			array(
-				'cn_notices.not_id' => $campaigns,
-				'cn_notices.not_id=cn_assignments.not_id',
-				'cn_assignments.tmp_id=cn_templates.tmp_id'
-			),
-			__METHOD__,
-			array(
-				'GROUP BY' => 'tmp_name'
-			)
-		);
-		
 		$templates = array();
-		foreach ( $bannerResults as $row ) {
-			$template = array();
-			$template['name'] = $row->tmp_name;
-			$template['weight'] = intval( $row->total_weight );
-			$template['display_anon'] = intval( $row->tmp_display_anon );
-			$template['display_account'] =  intval( $row->tmp_display_account );
-			$templates[] = $template;
-		}
+		// Pull all banners assigned to the campaigns
+		$templates = $this->centralNoticeDB->selectTemplatesAssigned( $campaigns );
 		return $templates;
 	}
 
