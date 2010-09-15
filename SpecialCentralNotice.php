@@ -1067,9 +1067,6 @@ class CentralNotice extends SpecialPage {
 			}
 		}
 		
-		// Convert array of campaigns into a comma-delimited list for SQL
-		$campaignList = implode(',', $campaigns);
-		
 		// Pull all banners assigned to the campaigns
 		$bannerResults = $dbr->select(
 			array(
@@ -1084,7 +1081,7 @@ class CentralNotice extends SpecialPage {
 				'tmp_display_account'
 			),
 			array(
-				"cn_notices.not_id IN ($campaignList)",
+				'cn_notices.not_id' => $campaigns,
 				'cn_notices.not_id=cn_assignments.not_id',
 				'cn_assignments.tmp_id=cn_templates.tmp_id'
 			),
