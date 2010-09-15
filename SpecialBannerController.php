@@ -5,8 +5,8 @@
  */
 class SpecialBannerController extends UnlistedSpecialPage {
 	public $centralNoticeDB;
-	protected $sharedMaxAge = 150; // Cache for ? minutes on the server side
-	protected $maxAge = 150; // Cache for ? minutes on the client side
+	protected $sharedMaxAge = 7200; // Cache for 2 hours on the server side
+	protected $maxAge = 7200; // Cache for 2 hours on the client side
 	protected $contentType = 'text/javascript';
 
 	function __construct() {
