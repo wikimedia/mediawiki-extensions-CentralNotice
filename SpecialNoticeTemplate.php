@@ -565,8 +565,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		foreach ( $langs as $lang ) {
 			// Link and Preview all available translations
 			$viewPage = $this->getTitle( 'view' );
-			$render = new SpecialNoticeText();
-			$render->project = 'wikipedia';
+			$render = new SpecialBannerLoader();
+			$render->siteName = 'Wikipedia';
 			$render->language = $lang;
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$sk->makeLinkObj( $viewPage,

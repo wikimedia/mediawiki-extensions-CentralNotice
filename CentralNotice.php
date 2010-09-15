@@ -101,11 +101,6 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
 		
-		// remove these as soon as banner loader is complete
-		$wgSpecialPages['NoticeText'] = 'SpecialNoticeText';
-		$wgAutoloadClasses['SpecialNoticeText'] = $dir . 'SpecialNoticeText.php';
-		$wgAutoloadClasses['NoticePage'] = $dir . 'NoticePage.php';
-		
 		$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 	}

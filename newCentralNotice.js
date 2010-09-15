@@ -4,12 +4,6 @@
  * Mostly stubbed functionallity for central notice improvements
  * May or may not be used, definitely will be changed.
  * More of a sketch of what we think needs to be done.
- * 
- * QUESTIONS: 
- * 1. How do I determin if a user is logged in or not?
- *    A: See function pickTemplate() in SpecialNoticeText.php
- * 2. How do I determin a users location?
- *    A: The country value given by http://geoiplookup.wikimedia.org/
  */
 ( function( $ ) {
 	$.centralNotice = {

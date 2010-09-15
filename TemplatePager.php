@@ -55,8 +55,8 @@ class TemplatePager extends ReverseChronologicalPager {
 		
 		// Link and Preview
 		$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
-		$render = new SpecialNoticeText();
-		$render->project = 'wikipedia';
+		$render = new SpecialBannerLoader();
+		$render->siteName = 'Wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 			$this->getSkin()->makeLinkObj( $this->viewPage,
