@@ -585,7 +585,7 @@ class CentralNotice extends SpecialPage {
 					
 					// Handle updating geotargeting
 					if ( $wgRequest->getCheck( 'geotargeted' ) ) {
-						$this->updateGeotargeted( $notice, '1' );
+						$this->updateGeotargeted( $notice, 1 );
 						$countries = $wgRequest->getArray( 'geo_countries' );
 						if ( $countries ) {
 							$this->updateCountries( $notice, $countries );
@@ -1512,10 +1512,8 @@ class CentralNotice extends SpecialPage {
 	
 	function updateCountries( $notice, $newCountries ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 		
 		// Get the previously assigned languages
-		$oldCountries = array();
 		$oldCountries = $this->getNoticeCountries( $notice );
 		
 		// Get the notice id
@@ -1536,8 +1534,6 @@ class CentralNotice extends SpecialPage {
 				array( 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries )
 			);
 		}
-		
-		$dbw->commit();
 	}
 	
 	public static function noticeExists( $noticeName ) {
