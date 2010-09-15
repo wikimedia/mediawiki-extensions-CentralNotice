@@ -15,19 +15,25 @@ class CentralNoticeDB {
 	}
 
 	/*
-	 * Return notices in the system within given constraints
-	 * Optional: return both enabled and disabled notices
+	 * Return campaigns in the system within given constraints
+	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
 	 */
 	public function getNotices( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
+	
+		$notices = array();
+		
 		// Database setup
 		$dbr = wfGetDB( DB_SLAVE );
+		
+		if ( !$date ) {
+			$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
+		} else {
+			$encTimestamp = $dbr->addQuotes( $date );
+		}
 		
 		$tables[] = "cn_notices";
 		if ( $language ) {
 			$tables[] = "cn_notice_languages";
-		}
-		if ( $location ) {
-			$tables[] = "cn_notice_countries";
 		}
 
 		// Use whatever conditional arguments got passed in
@@ -38,20 +44,15 @@ class CentralNoticeDB {
 			$conds[] = "nl_notice_id = cn_notices.not_id";
 			$conds[] = "nl_language =" . $dbr->addQuotes( $language );
 		}
+		if ( $enabled ) {
+			$conds[] = "not_enabled = 1";
+		}
 		if ( $preferred ) {
 			$conds[] = "not_preferred = 1";
 		}
-		if ( $location ) {
-			$conds[] = 'nc_notice_id = cn_notices.not_id';
-			$conds[] = "(not_geo = 0) OR ((not_geo = 1) AND (nc_country = '$location'))";
-		}
-		if ( !$date ) {
-			$date = $dbr->timestamp();
-		}
-
-		$conds[] = ( $date ) ? "not_start <= " . $dbr->addQuotes( $date ) : "not_start <= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
-		$conds[] = ( $date ) ? "not_end >= " . $dbr->addQuotes( $date ) : "not_end >= " . $dbr->addQuotes( $dbr->timestamp( $date ) );
-		$conds[] = ( $enabled ) ? "not_enabled = " . $dbr->addQuotes( $enabled ) : "not_enabled = " . $dbr->addQuotes( 1 );
+		$conds[] = "not_geo = 0";
+		$conds[] = "not_start <= " . $encTimestamp;
+		$conds[] = "not_end >= " . $encTimestamp;
 
 		// Pull db data
 		$res = $dbr->select(
@@ -67,19 +68,71 @@ class CentralNoticeDB {
 			__METHOD__
 		);
 
-		// If no matching notices, return NULL
-		if ( $dbr->numRows( $res ) < 1 ) {
-			return;
-		}
-
-		$notices = array();
 		// Loop through result set and return attributes
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$notice = $row->not_name;
 			$notices[$notice]['project'] = $row->not_project;
 			$notices[$notice]['preferred'] = $row->not_preferred;
 			$notices[$notice]['locked'] = $row->not_locked;
 			$notices[$notice]['enabled'] = $row->not_enabled;
+		}
+		
+		// If a location is passed, also pull geotargeted campaigns that match the location
+		if ( $location ) {
+			$tables = array();
+			$tables[] = "cn_notices";
+			if ( $language ) {
+				$tables[] = "cn_notice_languages";
+			}
+			if ( $location ) {
+				$tables[] = "cn_notice_countries";
+			}
+	
+			// Use whatever conditional arguments got passed in
+			$conds = array();
+			if ( $project ) {
+				$conds[] = "not_project =" . $dbr->addQuotes( $project );
+			}
+			if ( $language ) {
+				$conds[] = "nl_notice_id = cn_notices.not_id";
+				$conds[] = "nl_language =" . $dbr->addQuotes( $language );
+			}
+			if ( $location ) {
+				$conds[] = "not_geo = 1";
+				$conds[] = "nc_notice_id = cn_notices.not_id";
+				$conds[] = "nc_country =" . $dbr->addQuotes( $location );
+			}
+			if ( $enabled ) {
+				$conds[] = "not_enabled = 1";
+			}
+			if ( $preferred ) {
+				$conds[] = "not_preferred = 1";
+			}
+			$conds[] = "not_start <= " . $encTimestamp;
+			$conds[] = "not_end >= " . $encTimestamp;
+	
+			// Pull db data
+			$res = $dbr->select(
+				$tables,
+				array(
+					'not_name',
+					'not_project',
+					'not_locked',
+					'not_enabled',
+					'not_preferred'
+				),
+				$conds,
+				__METHOD__
+			);
+			
+			// Loop through result set and return attributes
+			foreach ( $res as $row ) {
+				$notice = $row->not_name;
+				$notices[$notice]['project'] = $row->not_project;
+				$notices[$notice]['preferred'] = $row->not_preferred;
+				$notices[$notice]['locked'] = $row->not_locked;
+				$notices[$notice]['enabled'] = $row->not_enabled;
+			}
 		}
 
 		return $notices;
