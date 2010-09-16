@@ -16,7 +16,11 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 	
 	function execute( $par ) {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgDBname, $wgCentralDBname;
+		
+		// Temporarily switch to central wiki database
+		$localDBname = $wgDBname;
+		$wgDBname = $wgCentralDBname;
 		
 		$wgOut->disable();
 		$this->sendHeaders();
@@ -42,6 +46,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		} else {
 			echo "<!-- No banner specified -->";
 		}
+		
+		// Switch back to local wiki database
+		$wgDBname = $localDBname;
 	}
 	
 	/**

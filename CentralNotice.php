@@ -27,6 +27,9 @@ $wgNoticeProjects = array(
 // All remaining options apply only to the infrastructure wiki.
 $wgNoticeInfrastructure = true;
 
+// The name of the database which hosts the centralized campaign data
+$wgCentralDBname = 'my_wiki';
+
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
 // for cached content
