@@ -18,7 +18,7 @@ class CentralNoticeDB {
 	 * Return campaigns in the system within given constraints
 	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
 	 */
-	public function getNotices( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
+	static function getNotices( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
 	
 		$notices = array();
 		
@@ -47,7 +47,7 @@ class CentralNoticeDB {
 		if ( $preferred ) {
 			$conds[] = "not_preferred = 1";
 		}
-		$conds[] = 'not_project' => array( '', $project );
+		$conds[] = "not_project IN ( '', " . $dbr->addQuotes($project ) . " )";
 		$conds[] = "not_geo = 0";
 		$conds[] = "not_start <= " . $encTimestamp;
 		$conds[] = "not_end >= " . $encTimestamp;
@@ -92,7 +92,7 @@ class CentralNoticeDB {
 			if ( $preferred ) {
 				$conds[] = "not_preferred = 1";
 			}
-			$conds[] = 'not_project' => array( '', $project );
+			$conds[] = "not_project IN ( '', " . $dbr->addQuotes($project ) . " )";
 			$conds[] = "not_geo = 1";
 			$conds[] = "nc_notice_id = cn_notices.not_id";
 			$conds[] = "nc_country =" . $dbr->addQuotes( $location );
@@ -121,7 +121,7 @@ class CentralNoticeDB {
 	/*
 	 * Given one or more campaign ids, return all banners bound to them
 	 */
-	public function selectTemplatesAssigned( $campaigns ) {
+	static function selectTemplatesAssigned( $campaigns ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Pull templates based on join with assignments

@@ -14,8 +14,6 @@ class CentralNotice extends SpecialPage {
 
 		// Internationalization
 		wfLoadExtensionMessages( 'CentralNotice' );
-
-		$this->centralNoticeDB = new CentralNoticeDB();
 	}
 	
 	/**
@@ -1069,7 +1067,7 @@ class CentralNotice extends SpecialPage {
 		
 		$templates = array();
 		// Pull all banners assigned to the campaigns
-		$templates = $this->centralNoticeDB->selectTemplatesAssigned( $campaigns );
+		$templates = CentralNoticeDB::selectTemplatesAssigned( $campaigns );
 		return $templates;
 	}
 

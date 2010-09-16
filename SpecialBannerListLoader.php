@@ -15,7 +15,6 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	function __construct() {
 		// Register special page
 		parent::__construct( "BannerListLoader" );
-		$this->centralNoticeDB = new CentralNoticeDB();
 	}
 	
 	function execute( $par ) {
@@ -64,21 +63,21 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		if ( $this->language == 'en' && $this->project != null ) {
 			// See if we have any preferred notices for all of en
-			$notices = $this->centralNoticeDB->getNotices( null, 'en', null, 1, 1, $this->location );
+			$notices = CentralNoticeDB::getNotices( null, 'en', null, 1, 1, $this->location );
 
 			if ( $notices ) {
 				// Pull banners
-				$templates = $this->centralNoticeDB->selectTemplatesAssigned( $notices );
+				$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
 			}
 		}
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
 			// See if we have any preferred notices for this language wikipedia
-			$notices = $this->centralNoticeDB->getNotices( 'wikipedia', $this->language, null, 1, 1, $this->location );
+			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, null, 1, 1, $this->location );
 			
 			if ( $notices ) {
 				// Pull banners
-				$templates = $this->centralNoticeDB->selectTemplatesAssigned( $notices );
+				$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
 			}
 		}
 
