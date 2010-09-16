@@ -1952,6 +1952,7 @@ Afiŝu noticon suben',
 /** Spanish (Español)
  * @author Crazymadlover
  * @author Danke7
+ * @author Dferg
  * @author Imre
  * @author Locos epraix
  * @author McDutchie
@@ -1960,7 +1961,7 @@ Afiŝu noticon suben',
  * @author Sanbec
  */
 $messages['es'] = array(
-	'centralnotice' => 'Administración del aviso central',
+	'centralnotice' => 'Sistema de administración de avisos centralizados',
 	'noticetemplate' => 'Plantilla del aviso central',
 	'centralnotice-desc' => 'Añade un mensaje central',
 	'centralnotice-summary' => 'Este módulo te permite editar los parámetros actuales de los avisos centrales.
@@ -1983,21 +1984,23 @@ También puede usarse para añadir o borrar avisos antiguos.',
 	'centralnotice-add-template' => 'Añadir una plantilla',
 	'centralnotice-show-notices' => 'Mostrar avisos',
 	'centralnotice-list-templates' => 'Listar plantillas',
+	'centralnotice-multiple_languages' => 'múltiples ($1)',
 	'centralnotice-translations' => 'Traducciones',
 	'centralnotice-translate-to' => 'Traducir al',
 	'centralnotice-translate' => 'Traducir',
 	'centralnotice-english' => 'Inglés',
-	'centralnotice-banner-name' => 'Nombre de la plantilla',
+	'centralnotice-banner-name' => 'Nombre del banner:',
 	'centralnotice-banner' => 'Banner',
 	'centralnotice-banner-heading' => 'Banner: $1',
 	'centralnotice-templates' => 'Plantillas',
 	'centralnotice-weight' => 'Peso',
-	'centralnotice-locked' => 'Cerrada con llave',
+	'centralnotice-locked' => 'Bloqueado',
 	'centralnotice-notice' => 'Campaña',
 	'centralnotice-notice-heading' => 'Campaña: $1',
 	'centralnotice-notices' => 'Avisos',
 	'centralnotice-notice-exists' => 'El aviso ya existe.
 No se ha añadido',
+	'centralnotice-no-language' => 'No se ha seleccionado ninguna lengua para la campaña. No añadido.',
 	'centralnotice-template-exists' => 'La plantilla ya exixte.
 No se ha añadido',
 	'centralnotice-notice-doesnt-exist' => 'La campaña no existe.',
