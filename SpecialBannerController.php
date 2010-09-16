@@ -82,24 +82,28 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				// Make sure there are some banners to choose from
 				if ( bannerList.length == 0 ) return false;
 				
-				var groomedBannerList = [];
-				
+				var totalWeight = 0;
+				// run through the bannerlist and sum the weights of all banners
 				for( var i = 0; i < bannerList.length; i++ ) {
-					// Only include this banner if it's inteded for the current user
-					if( ( wgUserName && bannerList[i].display_account ) || ( !wgUserName && bannerList[i].display_anon == 1 ) ) {
-						// add the banner to our list once per weight
-						for( var j=0; j < bannerList[i].weight; j++ ) {
-							groomedBannerList.push( bannerList[i] );
-						}
-					}
+					totalWeight += bannerList[i].weight;
 				}
 				
-				// Return if there's nothing left after the grooming
-				if( groomedBannerList.length == 0 ) return false;
-				
-				// Load a random banner from our groomed list
+				// Select a random integer between 0 and our total weight
+				var pointer = Math.floor( Math.random() * totalWeight ),
+					selectedBanner = bannerList[0],
+					w = 0;
+				// Run through the banner list and start accumulating weights
+				for( var i = 0; i < bannerList.length; i++ ) {
+					w += bannerList[i].weight;
+					// when the weight tally exceeds the random integer, return the banner and stop the loop
+					if( w < pointer ) {
+						selectedBanner = bannerList[i];
+						break;
+					}
+				}
+				// Return our selected banner
 				$.centralNotice.fn.loadBanner( 
-					groomedBannerList[ Math.floor( Math.random() * groomedBannerList.length ) ].name
+					selectedBanner.name
 				);
 			},
 			'displayBanner': function( bannerHTML ) {
