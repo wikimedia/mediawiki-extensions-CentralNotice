@@ -37,7 +37,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
 			$content = $this->getHtmlNotice( $bannerName, $standAlone );
-			if ( strlen( $content ) == 0 ) {
+			if ( preg_match( "/&lt;centralnotice-template-\w{1,}&gt;\z/", $content ) ) {
+				echo "<!-- Failed cache lookup -->";
+			} elseif ( strlen( $content ) == 0 ) {
 				// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
 				echo "<!-- Empty -->";
 			} else {
@@ -124,7 +126,7 @@ EOT;
 		$lang = Language::factory( $this->language );
 		return $lang->formatNum( $num );
 	}
-	
+
 	/**
 	 * Retrieve a translated message
 	 * @param $msg The full name of the message
@@ -143,8 +145,11 @@ EOT;
 		$wgLang = $oldLang;
 		
 		// Replace variables in banner with values
-		$out = str_ireplace( '$amount', $this->formatNum( $this->getDonationAmount() ), $out );
-		$out = str_ireplace( '$sitename', $this->siteName, $out );
+		$amountSub = strpos( $out, '$amount');
+		if ( $amountSub !== false ) {
+			$out = str_replace( '$amount', $this->formatNum( $this->getDonationAmount() ), $out );
+		}
+		$out = str_replace( '$sitename', $this->siteName, $out );
 		
 		return $out;
 	}
