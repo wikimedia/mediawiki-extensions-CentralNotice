@@ -104,6 +104,9 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
 		
+		$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
+		$wgAutoloadClasses['SpecialBannerAllocation'] = $dir . 'SpecialBannerAllocation.php';
+		
 		$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 	}

@@ -179,7 +179,8 @@ class CentralNotice extends SpecialPage {
 
 		$pages = array(
 			'CentralNotice' => wfMsg( 'centralnotice-notices' ),
-			'NoticeTemplate' => wfMsg ( 'centralnotice-templates' )
+			'NoticeTemplate' => wfMsg ( 'centralnotice-templates' ),
+			'BannerAllocation' => wfMsg ( 'centralnotice-allocation' )
 		);
 		$htmlOut = Xml::openElement( 'ul', array( 'id' => 'preftoc' ) );
 		foreach ( $pages as $page => $msg ) {

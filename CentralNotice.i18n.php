@@ -11,7 +11,8 @@ $messages = array();
 
 $messages['en'] = array(
 	'centralnotice' => 'Central notice admin',
-	'noticetemplate' => 'Central notice banner',
+	'noticetemplate' => 'Central notice banners',
+	'bannerallocation' => 'Central notice banner allocation',
 	'centralnotice-desc' => 'Adds a central sitenotice',
 	'centralnotice-summary' => 'This module allows you to edit your currently setup central notices.
 It can also be used to add or remove old notices.',
@@ -122,6 +123,7 @@ Add one below.',
 	'centralnotice-banner-collapsible' => 'Collapsible',
 	'centralnotice-geotargeted' => 'Geotargeted',
 	'centralnotice-countries' => 'Countries',
+	'centralnotice-allocation' => 'Allocation',
 	
 	'right-centralnotice-admin' => 'Manage central notices',
 	'right-centralnotice-translate' => 'Translate central notices',
