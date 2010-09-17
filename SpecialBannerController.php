@@ -4,7 +4,6 @@
  * Generates Javascript file which controls banner selection on the client side
  */
 class SpecialBannerController extends UnlistedSpecialPage {
-	public $centralNoticeDB;
 	protected $sharedMaxAge = 7200; // Cache for 2 hours on the server side
 	protected $maxAge = 7200; // Cache for 2 hours on the client side
 	protected $contentType = 'text/javascript';
@@ -12,7 +11,6 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	function __construct() {
 		// Register special page
 		parent::__construct( "BannerController" );
-		$this->centralNoticeDB = new CentralNoticeDB();
 	}
 
 	function execute( $par ) {
