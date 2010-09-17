@@ -128,9 +128,9 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	$( document ).ready( function () {
 		// Initialize the query string vars
 		$.centralNotice.fn.getQueryStringVariables();
-		if( $.centralNotice.data.getVars['cnbanner'] ) {
+		if( $.centralNotice.data.getVars['banner'] ) {
 			// if we're forcing one banner
-			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['cnbanner'] );
+			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['banner'] );
 		} else {
 			// Look for banners ready to go NOW
 			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars['country'] );
