@@ -11,8 +11,8 @@ $messages = array();
 
 $messages['en'] = array(
 	'centralnotice' => 'Central notice admin',
-	'noticetemplate' => 'Central notice banners',
-	'bannerallocation' => 'Central notice banner allocation',
+	'noticetemplate' => 'Central notice admin',
+	'bannerallocation' => 'Central notice admin',
 	'centralnotice-desc' => 'Adds a central sitenotice',
 	'centralnotice-summary' => 'This module allows you to edit your currently setup central notices.
 It can also be used to add or remove old notices.',

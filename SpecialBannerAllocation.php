@@ -20,7 +20,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest, $wgScriptPath;
+		global $wgOut, $wgUser, $wgRequest, $wgScriptPath, $wgNoticeProjects, $wgContLanguageCode;
 
 		// Begin output
 		$this->setHeaders();
@@ -48,7 +48,63 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		// Begin Allocation selection fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$htmlOut .= 'Coming soon!';
+		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+		$htmlOut .= Xml::element( 'h2', null, 'View banner allocation' );
+		$htmlOut .= Xml::tags( 'p', null, 'Choose the environment you would like to view banner allocation for:' );
+		
+		$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array( 'style' => 'width: 150px;' ), wfMsgHtml( 'centralnotice-project-name' ) );
+		$htmlOut .= Xml::openElement( 'td' );
+		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'project' ) );
+		foreach ( $wgNoticeProjects as $value ) {
+			$htmlOut .= Xml::option( $value, $value, false );
+		}
+		$htmlOut .= Xml::closeElement( 'select' );
+		$htmlOut .= Xml::closeElement( 'td' );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 'Project language' );
+		$htmlOut .= Xml::openElement( 'td' );
+		// Make sure the site language is in the list; a custom language code might not have a defined name...
+		$languages = Language::getLanguageNames( true );
+		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
+			$languages[$wgContLanguageCode] = $wgContLanguageCode;
+		}
+		ksort( $languages );
+		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'language' ) );
+		foreach( $languages as $code => $name ) {
+			$htmlOut .= Xml::option(
+				wfMsg( 'centralnotice-language-listing', $code, $name ),
+				$code,
+				false
+			);
+		}
+		$htmlOut .= Xml::closeElement( 'select' );
+		$htmlOut .= Xml::closeElement( 'td' );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array(), 'Country' );
+		$htmlOut .= Xml::openElement( 'td' );
+		$countries = CentralNoticeDB::getCountriesList();
+		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'country' ) );
+		foreach( $countries as $code => $name ) {
+			$htmlOut .= Xml::option(
+				$name,
+				$code,
+				false
+			);
+		}
+		$htmlOut .= Xml::closeElement( 'select' );
+		$htmlOut .= Xml::closeElement( 'td' );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Xml::closeElement( 'table' );
+		
+		$htmlOut .= Xml::tags( 'div', 
+			array( 'class' => 'cn-buttons' ), 
+			Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
+		);
+		$htmlOut .= Xml::closeElement( 'form' );
 		
 		// End Allocation selection fieldset
 		$htmlOut .= Xml::closeElement( 'fieldset' );
