@@ -64,10 +64,14 @@ class SpecialBannerController extends UnlistedSpecialPage {
 					}
 				});
 			},
-			'loadBannerList': function( timestamp ) {
+			'loadBannerList': function( geoOverride ) {
 				var bannerListURL;
-				var geoLocation = Geo.country; // pull the geo info
-				var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&location='+geoLocation;
+				if ( geoOverride ) {
+					var geoLocation = geoOverride; // override the geo info
+				} else {
+					var geoLocation = Geo.country; // pull the geo info
+				}
+				var bannerListPage = 'Special:BannerListLoader?language='+wgContentLanguage+'&project='+wgNoticeProject+'&country='+geoLocation;
 				bannerListURL = wgArticlePath.replace( '$1', bannerListPage );
 				var request = $.ajax( {
 					url: bannerListURL,
@@ -96,7 +100,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				for( var i = 0; i < bannerList.length; i++ ) {
 					w += bannerList[i].weight;
 					// when the weight tally exceeds the random integer, return the banner and stop the loop
-					if( w < pointer ) {
+					if( w > pointer ) {
 						selectedBanner = bannerList[i];
 						break;
 					}
@@ -129,7 +133,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['cnbanner'] );
 		} else {
 			// Look for banners ready to go NOW
-			$.centralNotice.fn.loadBannerList( );
+			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars['country'] );
 		}
 	} ); //document ready
 } )( jQuery );

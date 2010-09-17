@@ -60,7 +60,7 @@
 				for( var i = 0; i < bannerList.length; i++ ) {
 					w += bannerList[i].weight;
 					// when the weight tally exceeds the random integer, return the banner and stop the loop
-					if( w < pointer ) {
+					if( w > pointer ) {
 						selectedBanner = bannerList[i];
 						break;
 					}

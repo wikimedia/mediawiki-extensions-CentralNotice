@@ -1004,11 +1004,6 @@ class CentralNotice extends SpecialPage {
 	 * @return A 2D array of running banners with associated weights and settings
 	 */
 	static function selectNoticeTemplates( $project, $language, $location = null ) {
-		
-		// Normalize location parameter (should be an uppercase 2-letter country code)
-		preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
-		$location = strtoupper( $matches[0] );
-		
 		$campaigns = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
@@ -1037,6 +1032,11 @@ class CentralNotice extends SpecialPage {
 			$campaigns[] = $row->not_id;
 		}
 		if ( $location ) {
+		
+			// Normalize location parameter (should be an uppercase 2-letter country code)
+			preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
+			$location = strtoupper( $matches[0] );
+		
 			// Pull geotargeted campaigns
 			$campaignResults2 = $dbr->select(
 				array(

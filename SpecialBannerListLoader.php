@@ -34,7 +34,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 		$this->project = $wgRequest->getText( 'project', 'wikipedia' );
 		
 		// Get location from the query string
-		$this->location = $wgRequest->getText( 'location' );
+		$this->location = $wgRequest->getText( 'country' );
 		
 		if ( $this->project && $this->language ) {
 			$content = $this->getJsonList();
