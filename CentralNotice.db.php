@@ -124,29 +124,31 @@ class CentralNoticeDB {
 	static function selectTemplatesAssigned( $campaigns ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		// Pull templates based on join with assignments
-		$res = $dbr->select(
-			array(
-				'cn_notices',
-				'cn_assignments',
-				'cn_templates'
-			),
-			array(
-				'tmp_name',
-				'SUM(tmp_weight) AS total_weight',
-				'tmp_display_anon',
-				'tmp_display_account'
-			),
-			array(
-				'cn_notices.not_id' => $campaigns,
-				'cn_notices.not_id = cn_assignments.not_id',
-				'cn_assignments.tmp_id = cn_templates.tmp_id'
-			),
-			__METHOD__,
-			array(
-				'GROUP BY' => 'tmp_name'
-			)
-		);
+		if ( $campaigns ) {
+			// Pull templates based on join with assignments
+			$res = $dbr->select(
+				array(
+					'cn_notices',
+					'cn_assignments',
+					'cn_templates'
+				),
+				array(
+					'tmp_name',
+					'SUM(tmp_weight) AS total_weight',
+					'tmp_display_anon',
+					'tmp_display_account'
+				),
+				array(
+					'cn_notices.not_id' => $campaigns,
+					'cn_notices.not_id = cn_assignments.not_id',
+					'cn_assignments.tmp_id = cn_templates.tmp_id'
+				),
+				__METHOD__,
+				array(
+					'GROUP BY' => 'tmp_name'
+				)
+			);
+		}
 		$templates = array();
 		foreach ( $res as $row ) {
 			$template = array();

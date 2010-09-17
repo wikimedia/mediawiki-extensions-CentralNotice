@@ -937,7 +937,7 @@ class CentralNotice extends SpecialPage {
 
 			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
 			$render = new SpecialBannerLoader();
-			$render->project = 'wikipedia';
+			$render->siteName = 'Wikipedia';
 			global $wgRequest;
 			$render->language = $wgRequest->getVal( 'wpUserLanguage' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
@@ -1066,8 +1066,10 @@ class CentralNotice extends SpecialPage {
 		}
 		
 		$templates = array();
-		// Pull all banners assigned to the campaigns
-		$templates = CentralNoticeDB::selectTemplatesAssigned( $campaigns );
+		if ( $campaigns ) {
+			// Pull all banners assigned to the campaigns
+			$templates = CentralNoticeDB::selectTemplatesAssigned( $campaigns );
+		}
 		return $templates;
 	}
 
@@ -1872,7 +1874,7 @@ class CentralNoticePager extends TemplatePager {
 		// Link and Preview
 		$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 		$render = new SpecialBannerLoader();
-		$render->project = 'wikipedia';
+		$render->siteName = 'Wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 			$this->getSkin()->makeLinkObj( $this->viewPage,
