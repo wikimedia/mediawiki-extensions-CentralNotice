@@ -124,8 +124,13 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	$( document ).ready( function () {
 		// Initialize the query string vars
 		$.centralNotice.fn.getQueryStringVariables();
-		// Look for banners ready to go NOW
-		$.centralNotice.fn.loadBannerList( );
+		if( $.centralNotice.data.getVars['cnbanner'] ) {
+			// if we're forcing one banner
+			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['cnbanner'] );
+		} else {
+			// Look for banners ready to go NOW
+			$.centralNotice.fn.loadBannerList( );
+		}
 	} ); //document ready
 } )( jQuery );
 EOT;
