@@ -10,6 +10,10 @@ $aliases['en'] = array(
 	'NoticeText' => array( 'NoticeText' ),
 	'NoticeTemplate' => array( 'NoticeTemplate' ),
 	'NoticeLocal' => array( 'NoticeLocal' ),
+	'BannerAllocation' => array( 'BannerAllocation' ),
+	'BannerController' => array( 'BannerController' ),
+	'BannerListLoader' => array( 'BannerListLoader' ),
+	'BannerLoader' => array( 'BannerLoader' ),
 );
 
 $aliases['ar'] = array(
