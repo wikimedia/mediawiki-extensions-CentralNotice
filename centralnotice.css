@@ -31,6 +31,12 @@
 #preferences table tr.cn-active-campaign {
 	background-color: #ddffdd;
 }
+#preferences table#envpicker {
+	margin-bottom: 1em;
+}
+#preferences table#envpicker td {
+	white-space:nowrap;
+}
 #preferences div.cn-buttons {
 	padding:1em;
 }
