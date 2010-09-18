@@ -6,7 +6,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class SpecialBannerAllocation extends UnlistedSpecialPage {
-	var $centralNoticeError;
+	public $project = 'wikipedia';
+	public $language = 'en';
+	public $location = 'US';
 	
 	function __construct() {
 		// Register special page
@@ -21,6 +23,12 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 */
 	function execute( $sub ) {
 		global $wgOut, $wgUser, $wgRequest, $wgScriptPath, $wgNoticeProjects, $wgLanguageCode;
+		
+		if ( $wgRequest->wasPosted() ) {
+			$this->project = $wgRequest->getText( 'project', 'wikipedia' );
+			$this->language = $wgRequest->getText( 'language', 'en' );
+			$this->location = $wgRequest->getText( 'country', 'US' );
+		}
 
 		// Begin output
 		$this->setHeaders();
@@ -58,7 +66,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Xml::openElement( 'td' );
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'project' ) );
 		foreach ( $wgNoticeProjects as $value ) {
-			$htmlOut .= Xml::option( $value, $value, $value == 'wikipedia' );
+			$htmlOut .= Xml::option( $value, $value, $value == $this->project );
 		}
 		$htmlOut .= Xml::closeElement( 'select' );
 		$htmlOut .= Xml::closeElement( 'td' );
@@ -74,11 +82,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		ksort( $languages );
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'language' ) );
 		foreach( $languages as $code => $name ) {
-			$htmlOut .= Xml::option(
-				wfMsg( 'centralnotice-language-listing', $code, $name ),
-				$code,
-				$code == 'en'
-			);
+			$htmlOut .= Xml::option( wfMsg( 'centralnotice-language-listing', $code, $name ), $code, $code == $this->language );
 		}
 		$htmlOut .= Xml::closeElement( 'select' );
 		$htmlOut .= Xml::closeElement( 'td' );
@@ -89,11 +93,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$countries = CentralNoticeDB::getCountriesList();
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'country' ) );
 		foreach( $countries as $code => $name ) {
-			$htmlOut .= Xml::option(
-				$name,
-				$code,
-				$code == 'US'
-			);
+			$htmlOut .= Xml::option( $name, $code, $code == $this->location );
 		}
 		$htmlOut .= Xml::closeElement( 'select' );
 		$htmlOut .= Xml::closeElement( 'td' );
