@@ -3,6 +3,8 @@
  * Aliases for special pages of CentralNotice extension.
  */
 
+$specialPageAliases = array();
+
 /** English (English) */
 $specialPageAliases['en'] = array(
 	'CentralNotice' => array( 'CentralNotice' ),
@@ -66,6 +68,10 @@ $specialPageAliases['nl'] = array(
 	'NoticeText' => array( 'Mededeling' ),
 	'NoticeTemplate' => array( 'Mededelingsjabloon' ),
 	'NoticeLocal' => array( 'LokaleMededeling' ),
+	'BannerAllocation' => array( 'Bannertoewijzing' ),
+	'BannerController' => array( 'Bannerbeheerder' ),
+	'BannerListLoader' => array( 'Bannerlijstlader' ),
+	'BannerLoader' => array( 'Bannerlader' ),
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬) */
