@@ -145,7 +145,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 				'centralnotice-allocation-description',
 				htmlspecialchars( $bannerLister->language ),
 				htmlspecialchars( $bannerLister->project ),
-				htmlspecialchars( $bannerLister->country )
+				htmlspecialchars( $bannerLister->location )
 			)
 		);
 
