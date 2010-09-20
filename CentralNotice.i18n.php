@@ -693,6 +693,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-banner-collapsible' => 'Згортваемы',
 	'centralnotice-geotargeted' => 'Геаграфічная прывязка',
 	'centralnotice-countries' => 'Краіны',
+	'centralnotice-allocation' => 'Прызначэньне',
 	'right-centralnotice-admin' => 'Кіраваньне цэнтральнымі паведамленьнямі',
 	'right-centralnotice-translate' => 'пераклад цэнтралізаваных паведамленьняў',
 	'action-centralnotice-admin' => 'кіраваньне цэнтралізаванымі паведамленьнямі',
@@ -972,7 +973,8 @@ Ouzhpennit unan da heul.",
  */
 $messages['bs'] = array(
 	'centralnotice' => 'Uređivanje središnjeg obavještenja',
-	'noticetemplate' => 'Šablon za središnju obavijest',
+	'noticetemplate' => 'Uređivanje središnjeg obavještenja',
+	'bannerallocation' => 'Uređivanje središnjeg obavještenja',
 	'centralnotice-desc' => 'Dodaje središnju obavijest na stranici',
 	'centralnotice-summary' => 'Ovaj modul omogućava uređivanje Vaših trenutno postavljenih središnjih obavještenja.
 Također se može koristiti i za dodavanje ili uklanjanje starih obavještenja.',
@@ -1082,6 +1084,7 @@ Dodaj jednu ispod',
 	'centralnotice-banner-collapsible' => 'Moguće sakriti',
 	'centralnotice-geotargeted' => 'Geociljano',
 	'centralnotice-countries' => 'Države',
+	'centralnotice-allocation' => 'Raspoređivanje',
 	'right-centralnotice-admin' => 'Uređivanje središnjeg obavještenja',
 	'right-centralnotice-translate' => 'Prevođenje središnjeg obavještenja',
 	'action-centralnotice-admin' => 'uređujete središnje obavještenje',
@@ -1194,7 +1197,7 @@ $messages['ckb'] = array(
  */
 $messages['cs'] = array(
 	'centralnotice' => 'Správa centralizovaných oznámení',
-	'noticetemplate' => 'Šablony centralizovaných oznámení',
+	'noticetemplate' => 'Správa centralizovaných oznámení',
 	'centralnotice-desc' => 'Přidává centrální zprávu do záhlaví',
 	'centralnotice-summary' => 'Pomocí tohoto modulu můžete upravovat momentálně nastavená centralizovaná oznámení.
 Také zde můžete přidávat nová či odstraňovat stará.',
@@ -2847,8 +2850,8 @@ $messages['grc'] = array(
  */
 $messages['gsw'] = array(
 	'centralnotice' => 'Adminischtrierig vu dr zentrale Mäldige',
-	'noticetemplate' => 'Zentrali Mäldigs-Vorlag',
-	'bannerallocation' => 'Zuewysig vu Banner zue dr zäntrale Mäldig',
+	'noticetemplate' => 'Verwaltig vu dr zentrale Mäldige',
+	'bannerallocation' => 'Verwaltig vu dr zäntrale Mäldig',
 	'centralnotice-desc' => "Fiegt e zentrali ''sitenotice'' zue",
 	'centralnotice-summary' => 'Die Erwyterig erlaubt d Konfiguration vu zentrale Mäldige.
 Si cha au zum Aalege vu neije un dr Leschig vu alte Mäldige brucht wäre.',
