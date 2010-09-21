@@ -978,6 +978,8 @@ Ouzhpennit unan da heul.",
 	'centralnotice-banner-hidable' => 'Statek/Masklus',
 	'centralnotice-banner-collapsible' => 'Digreskus',
 	'centralnotice-countries' => 'Broioù',
+	'centralnotice-country' => 'Bro',
+	'centralnotice-percentage' => 'Dregantad',
 	'right-centralnotice-admin' => 'Merañ an alioù kreiz',
 	'right-centralnotice-translate' => 'Treiñ an alioù kreiz',
 	'action-centralnotice-admin' => 'merañ an alioù kreiz',
@@ -6581,7 +6583,7 @@ $messages['ru'] = array(
 	'centralnotice-preferred' => 'Желательно',
 );
 
-/** Rusyn (русиньскый язык)
+/** Rusyn (Русиньскый)
  * @author Gazeb
  */
 $messages['rue'] = array(
