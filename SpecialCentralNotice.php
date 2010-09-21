@@ -1005,13 +1005,9 @@ class CentralNotice extends SpecialPage {
 	 * @return A 2D array of running banners with associated weights and settings
 	 */
 	static function selectNoticeTemplates( $project, $language, $location = null ) {
-		global $cnDebug, $wgDBname;
-		
 		$campaigns = array();
 		$dbr = wfGetDB( DB_SLAVE );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
-		
-		$cnDebug .= ' project:'.$project.' language:'.$language.' location:'.$location.' timestamp:'.$encTimestamp.' ';
 		
 		// Pull non-geotargeted campaigns
 		$campaignResults1 = $dbr->select(
@@ -1069,7 +1065,6 @@ class CentralNotice extends SpecialPage {
 				$campaigns[] = $row->not_id;
 			}
 		}
-		$cnDebug .= ' campaigns: '.count( $campaigns ).' database: '.$wgDBname;
 		
 		$templates = array();
 		if ( $campaigns ) {

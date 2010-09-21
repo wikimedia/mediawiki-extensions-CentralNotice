@@ -51,8 +51,6 @@ $wgNoticeTimeout = 0;
 // smallish if you will. :)
 $wgNoticeServerTimeout = 0;
 
-$cnDebug = '';
-
 // Source for live counter information
 $wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
 
