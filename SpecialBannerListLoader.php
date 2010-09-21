@@ -64,9 +64,11 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 * Generate JSON for the specified site
 	 */
 	function getJsonList() {
+		global $cnDebug;
 		
 		// Quick short circuit to be able to show preferred notices
 		$templates = array();
+		$cnDebug = ' //';
 
 		if ( $this->language == 'en' && $this->project != null ) {
 			// See if we have any preferred notices for all of en
@@ -76,6 +78,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 				// Pull banners
 				$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
 			}
+			$cnDebug .= ' 1';
 		}
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
@@ -86,14 +89,16 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 				// Pull banners
 				$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
 			}
+			$cnDebug .= ' 2';
 		}
 
 		// Didn't find any preferred matches so do an old style lookup
 		if ( !$templates )  {
 			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language, $this->location );
+			$cnDebug .= ' 3';
 		}
 		
-		return FormatJson::encode( $templates );
+		return FormatJson::encode( $templates ) . $cnDebug;
 	}
 	
 }
