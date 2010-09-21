@@ -1011,6 +1011,8 @@ class CentralNotice extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
 		
+		$cnDebug .= ' project:'.$project.' language:'.$language.' location:'.$location.' timestamp:'.$encTimestamp.' ';
+		
 		// Pull non-geotargeted campaigns
 		$campaignResults1 = $dbr->select(
 			array(
