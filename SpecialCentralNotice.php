@@ -1005,8 +1005,10 @@ class CentralNotice extends SpecialPage {
 	 * @return A 2D array of running banners with associated weights and settings
 	 */
 	static function selectNoticeTemplates( $project, $language, $location = null ) {
+		global $wgCentralDBname;
+		
 		$campaigns = array();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
 		
 		// Pull non-geotargeted campaigns
