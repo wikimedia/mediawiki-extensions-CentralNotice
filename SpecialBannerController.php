@@ -6,7 +6,6 @@
 class SpecialBannerController extends UnlistedSpecialPage {
 	protected $sharedMaxAge = 7200; // Cache for 2 hours on the server side
 	protected $maxAge = 7200; // Cache for 2 hours on the client side
-	protected $contentType = 'text/javascript';
 
 	function __construct() {
 		// Register special page
@@ -34,7 +33,8 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	 * Generate the HTTP response headers for the banner controller
 	 */
 	function sendHeaders() {
-		header( "Content-type: $this->contentType; charset=utf-8" );
+		global $wgJsMimeType;
+		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 		header( "Cache-Control: public, s-maxage=$this->sharedMaxAge, max-age=$this->maxAge" );
 	}
 
@@ -47,6 +47,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<EOT
 ( function( $ ) {
+	$.ajaxSetup({ cache: true });
 	$.centralNotice = {
 		'data': {
 			'getVars': {}
@@ -56,7 +57,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				// Get the requested banner
 				var bannerPage = 'Special:BannerLoader?banner='+bannerName+'&userlang='+wgContentLanguage+'&sitename='+wgNoticeProject;
 EOT;
-		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"$wgCentralPagePath' + bannerPage + '\"></script>';\n";
+		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"".Xml::escapeJsString( $wgCentralPagePath )."' + bannerPage + '\"></script>';\n";
 		$js .= <<<EOT
 				$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">'+bannerScript+'</div>' );
 			},

@@ -10,7 +10,6 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $centralNoticeDB;
 	protected $sharedMaxAge = 900; // Cache for 15 minutes on the server side
 	protected $maxAge = 900; // Cache for 15 minutes on the client side
-	protected $contentType = 'text/javascript';
 	
 	function __construct() {
 		// Register special page
@@ -49,7 +48,8 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 * Generate the HTTP response headers for the banner file
 	 */
 	function sendHeaders() {
-		header( "Content-type: $this->contentType; charset=utf-8" );
+		global $wgJsMimeType;
+		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 		header( "Cache-Control: public, s-maxage=$this->sharedMaxAge, max-age=$this->maxAge" );
 	}
 	
