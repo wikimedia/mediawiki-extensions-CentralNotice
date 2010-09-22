@@ -42,6 +42,8 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	 * Generate the body for a static Javascript file
 	 */
 	function getOutput() {
+		global $wgCentralPagePath;
+		
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<EOT
 ( function( $ ) {
@@ -53,14 +55,10 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			'loadBanner': function( bannerName ) {
 				// Get the requested banner
 				var bannerPage = 'Special:BannerLoader?banner='+bannerName+'&userlang='+wgContentLanguage+'&sitename='+wgNoticeProject;
-				var bannerURL = wgArticlePath.replace( '$1', bannerPage );
-				var request = $.ajax( {
-					url: bannerURL,
-					dataType: 'html',
-					success: function( data ) {
-						$.centralNotice.fn.displayBanner( data );
-					}
-				});
+EOT;
+		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"$wgCentralPagePath' + bannerPage + '\"></script>';\n";
+		$js .= <<<EOT
+				$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">'+bannerScript+'</div>' );
 			},
 			'loadBannerList': function( geoOverride ) {
 				var bannerListURL;
@@ -108,11 +106,6 @@ class SpecialBannerController extends UnlistedSpecialPage {
 					selectedBanner.name
 				);
 			},
-			'displayBanner': function( bannerHTML ) {
-				// Inject the banner html into the page
-				$( '#siteNotice' )
-					.prepend( '<div id="centralNotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">' + bannerHTML + '</div>' );
-			},
 			'getQueryStringVariables': function() {
 				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function () {
 					function decode( s ) {
@@ -158,6 +151,9 @@ document.writeln($encShowStyle);\n\n";
 
 	function getScriptFunctions() {
 		$script = "
+function insertBanner(bannerJson) {
+	jQuery('div#centralNotice').prepend( bannerJson.banner );
+}
 function toggleNotice() {
 	var notice = document.getElementById('centralNotice');
 	if (!wgNoticeToggleState) {

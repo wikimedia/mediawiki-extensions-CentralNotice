@@ -8,7 +8,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	public $language = 'en'; // User language
 	protected $sharedMaxAge = 900; // Cache for 15 minutes on the server side
 	protected $maxAge = 0; // No client-side banner caching so we get all impressions
-	protected $contentType = 'text/html';
+	protected $contentType = 'text/js';
 	
 	function __construct() {
 		// Register special page
@@ -27,22 +27,19 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		// Get site name from the query string
 		$this->siteName = $wgRequest->getText( 'sitename', 'Wikipedia' );
 		
-		// If we're not pulling the banner into another page, we'll need to add some extra HTML
-		$standAlone = $wgRequest->getBool( 'standalone' );
-		
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
-			$content = $this->getHtmlNotice( $bannerName, $standAlone );
+			$content = $this->getJsNotice( $bannerName );
 			if ( preg_match( "/&lt;centralnotice-template-\w{1,}&gt;\z/", $content ) ) {
-				echo "<!-- Failed cache lookup -->";
+				echo "/* Failed cache lookup */";
 			} elseif ( strlen( $content ) == 0 ) {
 				// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
-				echo "<!-- Empty -->";
+				echo "/* Empty */";
 			} else {
 				echo $content;
 			}
 		} else {
-			echo "<!-- No banner specified -->";
+			echo "/* No banner specified */";
 		}
 	}
 	
@@ -55,35 +52,38 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 	
 	/**
-	 * Generate the HTML for the requested banner
+	 * Generate the JS for the requested banner
+	 * @return a string of Javascript containing a call to insertBanner() with JSON containing the banner content as the parameter
 	 */
-	function getHtmlNotice( $bannerName, $standAlone = false ) {
-		global $wgStylePath;
-		
+	function getJsNotice( $bannerName ) {
 		// Make sure the banner exists
 		if ( SpecialNoticeTemplate::templateExists( $bannerName ) ) {
 			$this->bannerName = $bannerName;
 			$bannerHtml = '';
-			if ( $standAlone ) {
-				$bannerHtml .= <<<EOT
-<html>
-<head>
-	<script type="text/javascript" src="$wgStylePath/common/jquery.min.js"></script>
-</head>
-<body>
-EOT;
-			}
 			$bannerHtml .= preg_replace_callback(
 				'/{{{(.*?)}}}/',
 				array( $this, 'getNoticeField' ),
 				$this->getNoticeTemplate()
 			);
-			if ( $standAlone ) {
-				$bannerHtml .= <<<EOT
-</body>
-</html>
-EOT;
-			}
+			$bannerArray = array( 'banner' => $bannerHtml );
+			$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
+			return $bannerJs;
+		}
+	}
+	
+	/**
+	 * Generate the HTML for the requested banner
+	 */
+	function getHtmlNotice( $bannerName ) {
+		// Make sure the banner exists
+		if ( SpecialNoticeTemplate::templateExists( $bannerName ) ) {
+			$this->bannerName = $bannerName;
+			$bannerHtml = '';
+			$bannerHtml .= preg_replace_callback(
+				'/{{{(.*?)}}}/',
+				array( $this, 'getNoticeField' ),
+				$this->getNoticeTemplate()
+			);
 			return $bannerHtml;
 		}
 	}

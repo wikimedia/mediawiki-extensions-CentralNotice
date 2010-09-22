@@ -30,6 +30,9 @@ $wgNoticeInfrastructure = true;
 // The name of the database which hosts the centralized campaign data
 $wgCentralDBname = 'metawiki';
 
+// The path to Special Pages on the wiki that hosts the CentralNotice infrastructure
+$wgCentralPagePath = 'http://meta.wikimedia.org/wiki/';
+
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
 // for cached content
