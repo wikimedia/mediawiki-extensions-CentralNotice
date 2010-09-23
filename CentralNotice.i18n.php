@@ -989,6 +989,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-countries' => 'Broioù',
 	'centralnotice-allocation' => 'Skorenn',
 	'centralnotice-view-allocation' => 'Gwelout skorenn ar giton',
+	'centralnotice-allocation-instructions' => "Dibabit an endro e-lec'h m'ho pefe c'hoant da welet skorenn ar giton evit :",
 	'centralnotice-project-language' => 'Yezh ar raktres',
 	'centralnotice-country' => 'Bro',
 	'centralnotice-no-allocation' => 'Giton skorennet ebet.',
@@ -2142,7 +2143,7 @@ Añade uno debajo',
  */
 $messages['et'] = array(
 	'centralnotice' => 'Keskuse teadete haldamine',
-	'noticetemplate' => 'Keskuse teate mall',
+	'noticetemplate' => 'Keskuse teadete haldamine',
 	'centralnotice-desc' => 'Lisab keskse võrgukohateatesüsteemi.',
 	'centralnotice-summary' => 'See komponent võimaldab muuta praegu üles seatud keskuse teateid.
 Samuti saab sellega teateid lisada või vanu teateid eemaldada.',
@@ -8034,7 +8035,7 @@ $messages['udm'] = array(
  */
 $messages['uk'] = array(
 	'centralnotice' => 'Управління централізованими сповіщеннями',
-	'noticetemplate' => 'Шаблон централізованого повідомлення',
+	'noticetemplate' => 'Управління централізованими сповіщеннями',
 	'centralnotice-desc' => 'Додає загальне повідомлення сайту',
 	'centralnotice-summary' => 'Цей модуль дозволяє вам змінювати ваші поточні централізовані повідомлення.
 Він також може використовуватися для додавання нових і видалення старих повідомлень.',
