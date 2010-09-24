@@ -1239,6 +1239,7 @@ $messages['ckb'] = array(
 $messages['cs'] = array(
 	'centralnotice' => 'Správa centralizovaných oznámení',
 	'noticetemplate' => 'Správa centralizovaných oznámení',
+	'bannerallocation' => 'Správa centralizovaných oznámení',
 	'centralnotice-desc' => 'Přidává centrální zprávu do záhlaví',
 	'centralnotice-summary' => 'Pomocí tohoto modulu můžete upravovat momentálně nastavená centralizovaná oznámení.
 Také zde můžete přidávat nová či odstraňovat stará.',
@@ -3130,6 +3131,7 @@ $messages['hi'] = array(
 /** Croatian (Hrvatski)
  * @author Dalibor Bosits
  * @author Ex13
+ * @author Herr Mlinka
  * @author SpeedyGonsales
  */
 $messages['hr'] = array(
@@ -3246,6 +3248,7 @@ Dodajte jednu ispod',
 	'centralnotice-geotargeted' => 'Geociljano',
 	'centralnotice-countries' => 'Države',
 	'centralnotice-allocation' => 'Dodjela',
+	'centralnotice-percentage' => 'Postotak',
 	'right-centralnotice-admin' => 'Uređivanje središnjih obavijesti',
 	'right-centralnotice-translate' => 'Prevođenje središnjih obavijesti',
 	'action-centralnotice-admin' => 'uređivanje središnjih obavijesti',
@@ -5147,7 +5150,7 @@ $messages['mt'] = array(
 $messages['myv'] = array(
 	'centralnotice-add' => 'Поладомс',
 	'centralnotice-add-template' => 'Поладомс лопа парцун',
-	'centralnotice-banner-name' => 'Лопа парцунонь лем',
+	'centralnotice-banner-name' => 'Баннеранть лемезэ:',
 	'centralnotice-templates' => 'Лопа парцунт',
 	'centralnotice-weight' => 'Сталмо',
 	'centralnotice-template-body' => 'Лопа парцунонть рунгозо:',
