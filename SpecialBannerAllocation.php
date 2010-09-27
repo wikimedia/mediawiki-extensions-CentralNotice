@@ -63,7 +63,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Xml::openElement( 'td' );
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'project' ) );
 		foreach ( $wgNoticeProjects as $value ) {
-			$htmlOut .= Xml::option( $value, $value, $value == $this->project );
+			$htmlOut .= Xml::option( $value, $value, $value === $this->project );
 		}
 		$htmlOut .= Xml::closeElement( 'select' );
 		$htmlOut .= Xml::closeElement( 'td' );
@@ -79,7 +79,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		ksort( $languages );
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'language' ) );
 		foreach( $languages as $code => $name ) {
-			$htmlOut .= Xml::option( wfMsg( 'centralnotice-language-listing', $code, $name ), $code, $code == $this->language );
+			$htmlOut .= Xml::option( wfMsg( 'centralnotice-language-listing', $code, $name ), $code, $code === $this->language );
 		}
 		$htmlOut .= Xml::closeElement( 'select' );
 		$htmlOut .= Xml::closeElement( 'td' );
@@ -90,7 +90,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$countries = CentralNoticeDB::getCountriesList();
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'country' ) );
 		foreach( $countries as $code => $name ) {
-			$htmlOut .= Xml::option( $name, $code, $code == $this->location );
+			$htmlOut .= Xml::option( $name, $code, $code === $this->location );
 		}
 		$htmlOut .= Xml::closeElement( 'select' );
 		$htmlOut .= Xml::closeElement( 'td' );
