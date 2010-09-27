@@ -27,9 +27,9 @@ class CentralNoticeDB {
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		
 		if ( !$date ) {
-			$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
+			$encTimestamp = $dbr->timestamp();
 		} else {
-			$encTimestamp = $dbr->addQuotes( $date );
+			$encTimestamp = $dbr->timestamp( $date );
 		}
 		
 		$tables[] = "cn_notices";
@@ -48,7 +48,7 @@ class CentralNoticeDB {
 		if ( $preferred ) {
 			$conds[] = "not_preferred = 1";
 		}
-		$conds[] = "not_project IN ( '', " . $dbr->addQuotes($project ) . " )";
+		$conds[] = "not_project IN ( '', " . $dbr->addQuotes( $project ) . " )";
 		$conds[] = "not_geo = 0";
 		$conds[] = "not_start <= " . $encTimestamp;
 		$conds[] = "not_end >= " . $encTimestamp;
@@ -79,9 +79,6 @@ class CentralNoticeDB {
 	
 			// Use whatever conditional arguments got passed in
 			$conds = array();
-			if ( $project ) {
-				$conds[] = "not_project =" . $dbr->addQuotes( $project );
-			}
 			if ( $language ) {
 				$conds[] = "nl_notice_id = cn_notices.not_id";
 				$conds[] = "nl_language =" . $dbr->addQuotes( $language );

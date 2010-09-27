@@ -73,7 +73,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
 			// See if we have any preferred notices for this language wikipedia
-			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, null, 1, 1, $this->location );
+			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, false, 1, 1, $this->location );
 			
 			if ( $notices ) {
 				// Pull banners
