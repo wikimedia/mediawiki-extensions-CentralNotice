@@ -1038,33 +1038,35 @@ class CentralNotice extends SpecialPage {
 		
 			// Normalize location parameter (should be an uppercase 2-letter country code)
 			preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
-			$location = strtoupper( $matches[0] );
-		
-			// Pull geotargeted campaigns
-			$campaignResults2 = $dbr->select(
-				array(
-					'cn_notices',
-					'cn_notice_languages',
-					'cn_notice_countries'
-				),
-				array(
-					'not_id'
-				),
-				array(
-					"not_start <= $encTimestamp",
-					"not_end >= $encTimestamp",
-					'not_enabled = 1', // enabled
-					'not_geo = 1', // geotargeted
-					'nc_notice_id = cn_notices.not_id',
-					'nc_country' => $location,
-					'nl_notice_id = cn_notices.not_id',
-					'nl_language' => $language,
-					'not_project' => array( '', $project )
-				),
-				__METHOD__
-			);
-			foreach ( $campaignResults2 as $row ) {
-				$campaigns[] = $row->not_id;
+			if ( $matches ) {
+				$location = strtoupper( $matches[0] );
+			
+				// Pull geotargeted campaigns
+				$campaignResults2 = $dbr->select(
+					array(
+						'cn_notices',
+						'cn_notice_languages',
+						'cn_notice_countries'
+					),
+					array(
+						'not_id'
+					),
+					array(
+						"not_start <= $encTimestamp",
+						"not_end >= $encTimestamp",
+						'not_enabled = 1', // enabled
+						'not_geo = 1', // geotargeted
+						'nc_notice_id = cn_notices.not_id',
+						'nc_country' => $location,
+						'nl_notice_id = cn_notices.not_id',
+						'nl_language' => $language,
+						'not_project' => array( '', $project )
+					),
+					__METHOD__
+				);
+				foreach ( $campaignResults2 as $row ) {
+					$campaigns[] = $row->not_id;
+				}
 			}
 		}
 		
