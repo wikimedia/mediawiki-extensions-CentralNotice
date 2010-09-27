@@ -9,10 +9,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	var $editable, $centralNoticeError;
 	
 	function __construct() {
+		// Register special page
 		parent::__construct( 'NoticeTemplate' );
-
-		// Internationalization
-		wfLoadExtensionMessages( 'CentralNotice' );
 	}
 	
 	/**

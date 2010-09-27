@@ -11,9 +11,6 @@ class CentralNotice extends SpecialPage {
 	function __construct() {
 		// Register special page
 		parent::__construct( 'CentralNotice' );
-
-		// Internationalization
-		wfLoadExtensionMessages( 'CentralNotice' );
 	}
 	
 	/**

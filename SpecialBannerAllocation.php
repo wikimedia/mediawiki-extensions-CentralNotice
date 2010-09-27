@@ -13,9 +13,6 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	function __construct() {
 		// Register special page
 		parent::__construct( "BannerAllocation" );
-
-		// Internationalization
-		wfLoadExtensionMessages( 'CentralNotice' );
 	}
 	
 	/**
