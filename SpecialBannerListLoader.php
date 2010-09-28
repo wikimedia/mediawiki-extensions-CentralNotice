@@ -7,7 +7,6 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $project; // Project name
 	public $language; // Project language
 	public $location; // User country
-	public $centralNoticeDB;
 	protected $sharedMaxAge = 600; // Cache for 10 minutes on the server side
 	protected $maxAge = 600; // Cache for 10 minutes on the client side
 	
@@ -61,19 +60,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 		// Quick short circuit to be able to show preferred notices
 		$templates = array();
 
-		$templates[] = array(
-			'name' => 'debug_begin',
-			'weight' => 0,
-			'display_anon' => 0,
-			'display_account' => 0
-		);
 		if ( $this->language == 'en' && $this->project != null ) {
-			$templates[] = array(
-				'name' => 'debug_en_preferred',
-				'weight' => 0,
-				'display_anon' => 0,
-				'display_account' => 0
-			);
 			// See if we have any preferred notices for all of en
 			$notices = CentralNoticeDB::getNotices( null, 'en', null, 1, 1, $this->location );
 
@@ -84,12 +71,6 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 		}
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
-			$templates[] = array(
-				'name' => 'debug_wikipedia_preferred',
-				'weight' => 0,
-				'display_anon' => 0,
-				'display_account' => 0
-			);
 			// See if we have any preferred notices for this language wikipedia
 			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, false, 1, 1, $this->location );
 			
@@ -101,20 +82,9 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		// Didn't find any preferred matches so do an old style lookup
 		if ( !$templates )  {
-			$templates[] = array(
-				'name' => 'debug_old_style_lookup',
-				'weight' => 0,
-				'display_anon' => 0,
-				'display_account' => 0
-			);
 			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language, $this->location );
 		}
-		$templates[] = array(
-				'name' => 'debug_finished',
-				'weight' => 0,
-				'display_anon' => 0,
-				'display_account' => 0
-			);
+		
 		return FormatJson::encode( $templates );
 	}
 	

@@ -98,19 +98,20 @@ function efCentralNoticeSetup() {
 	
 	$wgSpecialPages['BannerController'] = 'SpecialBannerController';
 	$wgAutoloadClasses['SpecialBannerController'] = $dir . 'SpecialBannerController.php';
+	
+	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
 		$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
-		
+
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
-		
+
 		$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
 		$wgAutoloadClasses['SpecialBannerAllocation'] = $dir . 'SpecialBannerAllocation.php';
-		
-		$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
+
 		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 	}
 }
