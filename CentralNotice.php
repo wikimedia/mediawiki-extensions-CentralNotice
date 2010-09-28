@@ -99,12 +99,12 @@ function efCentralNoticeSetup() {
 	$wgSpecialPages['BannerController'] = 'SpecialBannerController';
 	$wgAutoloadClasses['SpecialBannerController'] = $dir . 'SpecialBannerController.php';
 	
+	$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
-		$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
 		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
