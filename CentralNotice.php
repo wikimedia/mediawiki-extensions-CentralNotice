@@ -101,6 +101,7 @@ function efCentralNoticeSetup() {
 	
 	$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
+	$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
@@ -111,8 +112,6 @@ function efCentralNoticeSetup() {
 
 		$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
 		$wgAutoloadClasses['SpecialBannerAllocation'] = $dir . 'SpecialBannerAllocation.php';
-
-		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 	}
 }
 
