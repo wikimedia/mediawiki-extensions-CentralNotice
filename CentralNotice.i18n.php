@@ -778,6 +778,13 @@ $messages['bg'] = array(
 	'centralnotice-preferred' => 'Предпочитано',
 );
 
+/** Bihari (भोजपुरी)
+ * @author Ganesh
+ */
+$messages['bh'] = array(
+	'centralnotice-edit-template' => 'बैनर सम्पादन',
+);
+
 /** Bengali (বাংলা)
  * @author Bellayet
  */
@@ -2140,6 +2147,9 @@ Añade uno debajo',
 	'centralnotice-banner-type' => 'Tipo de banner:',
 	'centralnotice-banner-hidable' => 'Estático/Ocultable',
 	'centralnotice-banner-collapsible' => 'Colapsable',
+	'centralnotice-project-language' => 'Idioma del proyecto',
+	'centralnotice-country' => 'País',
+	'centralnotice-percentage' => 'Porcentaje',
 	'right-centralnotice-admin' => 'Gestionar avisos centrales',
 	'right-centralnotice-translate' => 'Traducir avisos centrales',
 	'action-centralnotice-admin' => 'gestionar avisos centrales',
@@ -7317,6 +7327,28 @@ $messages['sw'] = array(
 	'centralnotice-min' => 'Dakika',
 	'centralnotice-message' => 'Ujumbe',
 	'centralnotice-clone-name' => 'Jina:',
+);
+
+/** Tamil (தமிழ்)
+ * @author TRYPPN
+ */
+$messages['ta'] = array(
+	'centralnotice-preview' => 'முன்தோற்றம்',
+	'centralnotice-remove' => 'நீக்கு',
+	'centralnotice-add' => 'சேர்க்கவும்',
+	'centralnotice-english' => 'ஆங்கிலம்',
+	'centralnotice-weight' => 'எடை',
+	'centralnotice-locked' => 'மூடப்பட்டது',
+	'centralnotice-month' => 'மாதம்',
+	'centralnotice-hours' => 'மணி',
+	'centralnotice-min' => 'நிமிடம்',
+	'centralnotice-project-lang' => 'திட்டத்தின் மொழி',
+	'centralnotice-top-ten-languages' => 'உயர்நிலையில் உள்ள 10 மொழிகள்',
+	'centralnotice-project-name' => 'திட்டத்தின் பெயர்',
+	'centralnotice-number-uses' => 'பயன்பாடுகள்',
+	'centralnotice-clone-name' => 'பெயர்:',
+	'centralnotice-project-language' => 'திட்டத்தின் மொழி',
+	'centralnotice-country' => 'நாடு',
 );
 
 /** Telugu (తెలుగు)
