@@ -2728,7 +2728,7 @@ Il at pas étâ apondu.',
 Il at pas étâ enlevâ.',
 	'centralnotice-overlap' => 'L’avis côvre tot ou ben partia du temps d’un ôtro avis.
 Il at pas étâ apondu.',
-	'centralnotice-invalid-date-range' => 'Entèrvalo de dâtes fôx por l’avis.
+	'centralnotice-invalid-date-range' => 'Plage de dâtes envalida.
 Il at pas étâ betâ a jorn.',
 	'centralnotice-null-string' => 'Empossiblo d’apondre un avis vouedo.
 Il at pas étâ apondu.',
@@ -3806,6 +3806,7 @@ $messages['is'] = array(
 );
 
 /** Italian (Italiano)
+ * @author Beta16
  * @author BrokenArrow
  * @author Darth Kule
  * @author Melos
@@ -3813,7 +3814,7 @@ $messages['is'] = array(
  */
 $messages['it'] = array(
 	'centralnotice' => 'Gestione avviso centralizzato',
-	'noticetemplate' => 'Template avvisi centralizzati',
+	'noticetemplate' => 'Gestione avviso centralizzato',
 	'centralnotice-desc' => 'Aggiunge un avviso centralizzato a inizio pagina (sitenotice)',
 	'centralnotice-summary' => 'Questo modulo permette di modificare gli avvisi centralizzati. Puoi essere inoltre usato per aggiungere o rimuovere vecchi avvisi.',
 	'centralnotice-query' => 'Modifica avvisi attuali',
@@ -3821,6 +3822,7 @@ $messages['it'] = array(
 	'centralnotice-end-date' => 'Data di fine',
 	'centralnotice-enabled' => 'Attivato',
 	'centralnotice-modify' => 'Invia',
+	'centralnotice-save-banner' => 'Salva banner',
 	'centralnotice-preview' => 'Anteprima',
 	'centralnotice-add-new' => 'Aggiungi un nuovo avviso centralizzato',
 	'centralnotice-remove' => 'Rimuovi',
@@ -3836,6 +3838,8 @@ $messages['it'] = array(
 	'centralnotice-translate' => 'Traduci',
 	'centralnotice-english' => 'Inglese',
 	'centralnotice-banner-name' => 'Nome template',
+	'centralnotice-banner' => 'Banner',
+	'centralnotice-banner-heading' => 'Banner: $1',
 	'centralnotice-templates' => 'Template',
 	'centralnotice-weight' => 'Dimensione',
 	'centralnotice-locked' => 'Bloccato',
@@ -3872,12 +3876,19 @@ Non aggiorno',
 	'centralnotice-no-notices-exist' => 'Non esiste alcun avviso. Aggiungine uno di seguito',
 	'centralnotice-no-templates-translate' => 'Non ci sono template per cui modificare le traduzioni',
 	'centralnotice-number-uses' => 'Usi',
+	'centralnotice-settings' => 'Impostazioni',
 	'centralnotice-edit-template' => 'Modifica template',
 	'centralnotice-message' => 'Messaggio',
 	'centralnotice-message-not-set' => 'Messaggio non impostato',
 	'centralnotice-clone' => 'Clona',
 	'centralnotice-clone-notice' => 'Crea una copia del template',
+	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Mostra tutte le traduzioni disponibili del template',
+	'centralnotice-banner-anonymous' => 'Utenti anonimi',
+	'centralnotice-countries' => 'Paesi',
+	'centralnotice-project-language' => 'Lingua progetto',
+	'centralnotice-country' => 'Nazione',
+	'centralnotice-percentage' => 'Percentuale',
 	'right-centralnotice-admin' => 'Gestisce gli avvisi centralizzati',
 	'right-centralnotice-translate' => 'Traduce avvisi centralizzati',
 	'action-centralnotice-admin' => 'gestire gli avvisi centralizzati',
