@@ -103,8 +103,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 */
 	function getNoticeField( $match ) {
 		$field = $match[1];
+		$params = array();
+		if ( $field == 'amount' ) {
+			$params = array( $this->formatNum( $this->getDonationAmount() ) );
+		}
 		$message = "centralnotice-{$this->bannerName}-$field";
-		$source = $this->getMessage( $message );
+		$source = $this->getMessage( $message, $params );
 		return $source;
 	}
 
@@ -125,25 +129,25 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @param $msg The full name of the message
 	 * @return translated messsage string
 	 */
-	private function getMessage( $msg ) {
-		global $wgLang;
-		
+	private function getMessage( $msg, $params = array() ) {
+		global $wgLang, $wgSitename;
+
 		// A god-damned dirty hack! :D
 		$oldLang = $wgLang;
+		$oldSitename = $wgSitename;
 
+		$wgSitename = $this->siteName; // hack for {{SITENAME}}
 		$wgLang = Language::factory( $this->language ); // hack for {{int:...}}
-		$out = wfMsgExt( $msg, array( 'language' => $this->language, 'parsemag' ) );
 
-		// Restore global
+		$options = array( 'language' => $this->language, 'parsemag' );
+		array_unshift( $params, $options );
+		array_unshift( $params, $msg );
+		$out = call_user_func_array( 'wfMsgExt', $params );
+
+		// Restore global variables
 		$wgLang = $oldLang;
-		
-		// Replace variables in banner with values
-		$amountSub = strpos( $out, '$amount');
-		if ( $amountSub !== false ) {
-			$out = str_replace( '$amount', $this->formatNum( $this->getDonationAmount() ), $out );
-		}
-		$out = str_replace( '$sitename', $this->siteName, $out );
-		
+		$wgSitename = $oldSitename;
+
 		return $out;
 	}
 	

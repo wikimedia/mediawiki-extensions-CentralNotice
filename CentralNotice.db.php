@@ -27,9 +27,9 @@ class CentralNoticeDB {
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		
 		if ( !$date ) {
-			$encTimestamp = $dbr->timestamp();
+			$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
 		} else {
-			$encTimestamp = $dbr->timestamp( $date );
+			$encTimestamp = $dbr->addQuotes( $dbr->timestamp( $date ) );
 		}
 		
 		$tables[] = "cn_notices";
