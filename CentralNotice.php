@@ -141,7 +141,7 @@ function efCentralNoticeSchema( $updater = null ) {
 }
 
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgUser, $wgOut;
+	global $wgUser, $wgOut, $wgCentralDBname;
 
 	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl();
 
