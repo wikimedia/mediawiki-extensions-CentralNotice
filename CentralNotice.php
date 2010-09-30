@@ -145,11 +145,13 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl();
 
-	$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-	$row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_enabled = 1', 'not_geo = 1' ) );
-	if ( $row ) {
-		// Insert the geo IP lookup into the <head>
-		$wgOut->addScriptFile( 'http://geoiplookup.wikimedia.org/' );
+	if ( $wgCentralDBname ) {
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_enabled = 1', 'not_geo = 1' ) );
+		if ( $row ) {
+			// Insert the geo IP lookup into the <head>
+			$wgOut->addScriptFile( 'http://geoiplookup.wikimedia.org/' );
+		}
 	}
 	
 	// Insert the banner controller Javascript into the <head>
