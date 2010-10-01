@@ -7,8 +7,8 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $project; // Project name
 	public $language; // Project language
 	public $location; // User country
-	protected $sharedMaxAge = 600; // Cache for 10 minutes on the server side
-	protected $maxAge = 600; // Cache for 10 minutes on the client side
+	protected $sharedMaxAge = 300; // Cache for 5 minutes on the server side
+	protected $maxAge = 300; // Cache for 5 minutes on the client side
 	
 	function __construct() {
 		// Register special page
