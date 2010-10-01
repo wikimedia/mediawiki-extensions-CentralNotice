@@ -1,4 +1,4 @@
-function selectLanguages(selectAll) {
+function selectLanguages( selectAll ) {
 	var selectBox = document.getElementById('project_languages[]');
 	var firstSelect = selectBox.options.length - 1;
 	for (var i = firstSelect; i >= 0; i--) {
@@ -45,6 +45,18 @@ function insertButton( buttonType ) {
 		bannerField.value += buttonValue;
 	}
 	bannerField.focus();
+}
+function validateBannerForm( form ) {
+	var output = '';
+	var pos = form.templateBody.value.indexOf("document.write");
+	if( pos > -1 ) {
+		output += documentWriteError + '\n';
+	}
+	if( output ) {
+		alert( output );
+		return false;
+	}
+	return true;
 }
 // Handle revealing the geoMultiSelector when the geotargetted checkbox is checked
 ( function( $ ) {

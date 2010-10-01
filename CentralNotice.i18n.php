@@ -132,6 +132,7 @@ Add one below.',
 	'centralnotice-no-allocation' => 'No banners allocated.',
 	'centralnotice-allocation-description' => 'Banner allocation for $1.$2 in $3:',
 	'centralnotice-percentage' => 'Percentage',
+	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	
 	'right-centralnotice-admin' => 'Manage central notices',
 	'right-centralnotice-translate' => 'Translate central notices',
