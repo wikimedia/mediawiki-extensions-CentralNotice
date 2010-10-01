@@ -20,11 +20,14 @@ function insertButton( buttonType ) {
 	var bannerField = document.getElementById('templateBody');
 	switch( buttonType ) {
 	case 'translate':
-	  var buttonValue = '[<a href="http://meta.wikimedia.org/wiki/CentralNotice">{{int:centralnotice-shared-help-translate}}</a>]';
-	  break;
+		var buttonValue = '[<a href="http://meta.wikimedia.org/wiki/CentralNotice">{{int:centralnotice-shared-help-translate}}</a>]';
+		break;
 	case 'hide':
-	  var buttonValue = '[<a href="#" onclick="toggleNotice();return false">{{int:centralnotice-shared-hide}}</a>]';
-	  break;
+		var buttonValue = '[<a href="#" onclick="toggleNotice();return false">{{int:centralnotice-shared-hide}}</a>]';
+		break;
+	case 'close':
+		var buttonValue = '<a href="#" onclick="toggleNotice();return false"><img border="0" src="http://upload.wikimedia.org/wikipedia/commons/1/1b/Close_window_X.gif" width="10" height="10" alt="Close" /></a>';
+		break;
 	}
 	if (document.selection) {
 		// IE support
