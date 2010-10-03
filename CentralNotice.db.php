@@ -32,33 +32,33 @@ class CentralNoticeDB {
 			$encTimestamp = $dbr->addQuotes( $dbr->timestamp( $date ) );
 		}
 		
-		$tables[] = "cn_notices";
+		$tables = array( 'cn_notices' );
 		if ( $language ) {
-			$tables[] = "cn_notice_languages";
+			$tables[] = 'cn_notice_languages';
 		}
 
+		$conds = array(
+			'not_project' => array( '', $project ),
+			'not_geo' => 0,
+			"not_start <= $encTimestamp",
+			"not_end >= $encTimestamp",
+		);
 		// Use whatever conditional arguments got passed in
 		if ( $language ) {
-			$conds[] = "nl_notice_id = cn_notices.not_id";
-			$conds[] = "nl_language =" . $dbr->addQuotes( $language );
+			$conds[] = 'nl_notice_id = cn_notices.not_id';
+			$conds['nl_language'] = $language;
 		}
 		if ( $enabled ) {
-			$conds[] = "not_enabled = 1";
+			$conds['not_enabled'] = 1;
 		}
 		if ( $preferred ) {
-			$conds[] = "not_preferred = 1";
+			$conds['not_preferred'] = 1;
 		}
-		$conds[] = "not_project IN ( '', " . $dbr->addQuotes( $project ) . " )";
-		$conds[] = "not_geo = 0";
-		$conds[] = "not_start <= " . $encTimestamp;
-		$conds[] = "not_end >= " . $encTimestamp;
 
 		// Pull db data
 		$res = $dbr->select(
 			$tables,
-			array(
-				'not_id'
-			),
+			'not_id',
 			$conds,
 			__METHOD__
 		);
@@ -70,39 +70,35 @@ class CentralNoticeDB {
 		
 		// If a location is passed, also pull geotargeted campaigns that match the location
 		if ( $location ) {
-			$tables = array();
-			$tables[] = "cn_notices";
-			$tables[] = "cn_notice_countries";
+			$tables = array( 'cn_notices', 'cn_notice_countries' );
 			if ( $language ) {
-				$tables[] = "cn_notice_languages";
+				$tables[] = 'cn_notice_languages';
 			}
 	
 			// Use whatever conditional arguments got passed in
-			$conds = array();
+			$conds = array(
+				'not_project' => array( '', $project ),
+				'not_geo' => 1,
+				'nc_notice_id = cn_notices.not_id',
+				'nc_country' => $location,
+				"not_start <= $encTimestamp",
+				"not_end >= $encTimestamp",
+			);
 			if ( $language ) {
 				$conds[] = "nl_notice_id = cn_notices.not_id";
-				$conds[] = "nl_language =" . $dbr->addQuotes( $language );
+				$conds['nl_language'] = $language;
 			}
 			
 			if ( $enabled ) {
-				$conds[] = "not_enabled = 1";
+				$conds['not_enabled'] = 1;
 			}
 			if ( $preferred ) {
-				$conds[] = "not_preferred = 1";
-			}
-			$conds[] = "not_project IN ( '', " . $dbr->addQuotes($project ) . " )";
-			$conds[] = "not_geo = 1";
-			$conds[] = "nc_notice_id = cn_notices.not_id";
-			$conds[] = "nc_country =" . $dbr->addQuotes( $location );
-			$conds[] = "not_start <= " . $encTimestamp;
-			$conds[] = "not_end >= " . $encTimestamp;
-	
+				$conds['not_preferred'] = 1;
+			}	
 			// Pull db data
 			$res = $dbr->select(
 				$tables,
-				array(
-					'not_id'
-				),
+				'not_id'
 				$conds,
 				__METHOD__
 			);
@@ -151,12 +147,12 @@ class CentralNoticeDB {
 		}
 		$templates = array();
 		foreach ( $res as $row ) {
-			$template = array();
-			$template['name'] = $row->tmp_name;
-			$template['weight'] = intval( $row->total_weight );
-			$template['display_anon'] = intval( $row->tmp_display_anon );
-			$template['display_account'] =  intval( $row->tmp_display_account );
-			$templates[] = $template;
+			$templates[] = array(
+				'name' => $row->tmp_name,
+				'weight' => intval( $row->total_weight ),
+				'display_anon' => intval( $row->tmp_display_anon ),
+				'display_account' => intval( $row->tmp_display_account ),
+			);
 		}
 		return $templates;
 	}
@@ -166,7 +162,7 @@ class CentralNoticeDB {
 	 * (This should probably be moved to a core database table at some point.)
 	 */
 	static function getCountriesList() {
-		$countries = array(
+		return array(
 			'AF'=>'Afghanistan',
 			'AL'=>'Albania',
 			'DZ'=>'Algeria',
@@ -408,6 +404,5 @@ class CentralNoticeDB {
 			'ZM'=>'Zambia',
 			'ZW'=>'Zimbabwe'
 		);
-		return $countries;
 	}
 }
