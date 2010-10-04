@@ -153,15 +153,8 @@ function efCentralNoticeLoader( $out, $skin ) {
 }
 
 function efCentralNoticeGeoLoader( $skin, &$text ) {
-	global $wgCentralDBname;
-	if ( $wgCentralDBname ) {
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_enabled = 1', 'not_geo = 1' ) );
-		if ( $row ) {
-			// Insert the geo IP lookup
-			$text .= '<script type="text/javascript" src="http://geoiplookup.wikimedia.org/"></script>';
-		}
-	}
+	// Insert the geo IP lookup
+	$text .= '<script type="text/javascript" src="http://geoiplookup.wikimedia.org/"></script>';
 	return true;
 }
 
