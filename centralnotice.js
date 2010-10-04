@@ -26,7 +26,7 @@ function insertButton( buttonType ) {
 		var buttonValue = '[<a href="#" onclick="toggleNotice();return false">{{int:centralnotice-shared-hide}}</a>]';
 		break;
 	case 'close':
-		var buttonValue = '<a href="#" onclick="toggleNotice();return false"><img border="0" src="http://upload.wikimedia.org/wikipedia/commons/1/1b/Close_window_X.gif" width="10" height="10" alt="Close" /></a>';
+		var buttonValue = '<a href="#" onclick="toggleNotice();return false"><img border="0" src="http://bits.wikimedia.org/skins-1.5/common/closewindow.png" width="11" height="11" alt="Close" /></a>';
 		break;
 	}
 	if (document.selection) {
