@@ -98,7 +98,7 @@ class CentralNoticeDB {
 			// Pull db data
 			$res = $dbr->select(
 				$tables,
-				'not_id'
+				'not_id',
 				$conds,
 				__METHOD__
 			);
