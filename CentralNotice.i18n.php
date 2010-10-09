@@ -931,8 +931,8 @@ N'eo ket bet ouzhpennet neuze",
 	'centralnotice-template-exists' => "Bez' ez eus ar patrom-mañ c'hoazh.
 N'eo ket bet ouzhpennet.",
 	'centralnotice-notice-doesnt-exist' => "N'eus ket eus ar c'houlzad-mañ",
-	'centralnotice-remove-notice-doesnt-exist' => "N'eus ket eus an ali-mañ.
-N'eus netra da zilemel",
+	'centralnotice-remove-notice-doesnt-exist' => "N'eus ket eus ar c'hemenn-mañ.
+N'eus netra da zilemel.",
 	'centralnotice-banner-doesnt-exist' => "N'eus ket eus ar giton-mañ",
 	'centralnotice-template-still-bound' => "Liammet eo c'hoazh ar patrom gant un ali.
 N'eo ket bet dilammet.",
