@@ -911,11 +911,13 @@ $messages['bg'] = array(
 	'centralnotice-available-templates' => 'Налични шаблони',
 	'centralnotice-preview-template' => 'Преглед на шаблона',
 	'centralnotice-no-templates-translate' => 'Няма шаблони, за които да се редактират преводите',
+	'centralnotice-settings' => 'Настройки',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
 	'centralnotice-message' => 'Съобщение',
 	'centralnotice-message-not-set' => 'Съобщението не е зададено',
 	'centralnotice-clone' => 'Клониране',
 	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
+	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-preview-all-template-translations' => 'Преглед на всички налични преводи на шаблона',
 	'right-centralnotice-admin' => 'Управление на централизираните съобщения',
 	'right-centralnotice-translate' => 'Превод на централизираните съобщения',
@@ -2379,6 +2381,7 @@ Samuti saab sellega teateid lisada või vanu teateid eemaldada.',
 	'centralnotice-remove' => 'Eemalda',
 	'centralnotice-translate-heading' => 'Malli $1 tõlge',
 	'centralnotice-manage' => 'Keskuse teate muutmine',
+	'centralnotice-manage-templates' => 'Teadete haldamine',
 	'centralnotice-add' => 'Lisa',
 	'centralnotice-add-notice' => 'Lisa teade',
 	'centralnotice-add-template' => 'Lisa mall',
@@ -2441,6 +2444,7 @@ Lisa allpool üks.',
 	'centralnotice-clone-name' => 'Nimi:',
 	'centralnotice-preview-all-template-translations' => 'Malli kõigi kättesaadavate tõlgete eelvaated',
 	'centralnotice-countries' => 'Riigid',
+	'centralnotice-project-language' => 'Projekti keel',
 	'centralnotice-country' => 'Riik',
 	'centralnotice-percentage' => 'Protsent',
 	'right-centralnotice-admin' => 'Keskuse teateid hallata',
@@ -5572,6 +5576,13 @@ $messages['ml'] = array(
 	'centralnotice-preferred' => 'അഭിലഷണീയമായുള്ളത്',
 );
 
+/** Mongolian (Монгол)
+ * @author Chinneeb
+ */
+$messages['mn'] = array(
+	'centralnotice-add' => 'Нэмэх',
+);
+
 /** Marathi (मराठी)
  * @author Mahitgar
  * @author V.narsikar
@@ -7682,6 +7693,7 @@ Nun junciutu',
 	'centralnotice-clone-notice' => 'Cria na copia dû template',
 	'centralnotice-clone-name' => 'Nomu:',
 	'centralnotice-preview-all-template-translations' => "Tutti li traduzzioni dî template dispunìbbili 'n anteprima",
+	'centralnotice-banner-anonymous' => 'Utenti anònimi',
 	'right-centralnotice-admin' => "Gistisci l'avvisi cintralizzati",
 	'right-centralnotice-translate' => 'Traduci avvisi cintralizzati',
 	'action-centralnotice-admin' => "Guverna l'avvisi cintralizzati",
@@ -7702,6 +7714,7 @@ $messages['sh'] = array(
 $messages['sk'] = array(
 	'centralnotice' => 'Centrálny oznam',
 	'noticetemplate' => 'Správa centrálnych oznamov',
+	'bannerallocation' => 'Správa centrálnych oznamov',
 	'centralnotice-desc' => 'Pridáva centrálnu Správu lokality',
 	'centralnotice-summary' => 'Tento modul umožňuje upravovať vaše momentálne nastavené centrálne oznamy.
 Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
@@ -7777,11 +7790,40 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-number-uses' => 'Použitia',
 	'centralnotice-settings' => 'Nastavenie',
 	'centralnotice-edit-template' => 'Upraviť šablónu',
+	'centralnotice-edit-template-summary' => 'Ak chcete vytvoriť správu, ktorú bude možné lokalizovať, zatvorte reťazec so slovami oddelenými pomlčkami do troch zložených zátvoriek, napr. {{{citát-jimbo}}}.',
 	'centralnotice-message' => 'Správa',
 	'centralnotice-message-not-set' => 'Správa nebola nastavená',
 	'centralnotice-clone' => 'Klonovať',
 	'centralnotice-clone-notice' => 'Vytvoriť kópiu šablóny',
+	'centralnotice-clone-name' => 'Názov:',
 	'centralnotice-preview-all-template-translations' => 'Náhľad všetkých dostupných verzií šablóny',
+	'centralnotice-insert' => 'Vložiť: $1',
+	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} odkaz',
+	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} odkaz',
+	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} odkaz',
+	'centralnotice-close-button' => 'Tlačidlo Zatvoriť',
+	'centralnotice-translate-button' => 'Pomôžte preložiť odkaz',
+	'centralnotice-donate-button' => 'Tlačidlo Podpora',
+	'centralnotice-expanded-banner' => 'Rozbalený oznam',
+	'centralnotice-collapsed-banner' => 'Zbalený oznam',
+	'centralnotice-banner-display' => 'Zobraziť:',
+	'centralnotice-banner-anonymous' => 'Anonymným používateľom',
+	'centralnotice-banner-logged-in' => 'Prihláseným používateľom',
+	'centralnotice-banner-type' => 'Typ oznamu:',
+	'centralnotice-banner-hidable' => 'Statický/skrývateľný',
+	'centralnotice-banner-collapsible' => 'Zbaliteľný',
+	'centralnotice-geotargeted' => 'Geograficky cielený',
+	'centralnotice-countries' => 'Krajiny',
+	'centralnotice-allocation' => 'Alokácia',
+	'centralnotice-view-allocation' => 'Zobraziť alokáciu oznamu',
+	'centralnotice-allocation-instructions' => 'Vyberte prostredie, pre ktoré chcete zobraziť alokáciu oznamu:',
+	'centralnotice-project-language' => 'Jazyk projektu',
+	'centralnotice-country' => 'Krajina',
+	'centralnotice-no-allocation' => 'Nie sú alokované žiadne oznamy.',
+	'centralnotice-allocation-description' => 'Alokácia oznamu $1.$2 v $3:',
+	'centralnotice-percentage' => 'Percent',
+	'centralnotice-documentwrite-error' => 'document.write() nie je možné použiť v rámci odkazu.
+Ďalšie informácie nájdete na http://meta.wikimedia.org/wiki/Help:CentralNotice',
 	'right-centralnotice-admin' => 'Spravovať centrálne oznamy',
 	'right-centralnotice-translate' => 'Prekladať centrálne oznamy',
 	'action-centralnotice-admin' => 'spravovať centrálne oznamy',
@@ -8837,6 +8879,16 @@ Tingnan ang http://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas marami
 	'centralnotice-preferred' => 'Mas ninanais',
 );
 
+/** Tok Pisin (Tok Pisin)
+ * @author Iketsi
+ */
+$messages['tpi'] = array(
+	'centralnotice-translations' => 'Ol tantok',
+	'centralnotice-translate-to' => 'Tantok long',
+	'centralnotice-translate' => 'Tantok',
+	'centralnotice-day' => 'De',
+);
+
 /** Turkish (Türkçe)
  * @author Joseph
  * @author Karduelis
@@ -9033,6 +9085,7 @@ $messages['udm'] = array(
 $messages['uk'] = array(
 	'centralnotice' => 'Управління централізованими сповіщеннями',
 	'noticetemplate' => 'Управління централізованими сповіщеннями',
+	'bannerallocation' => 'Управління централізованими сповіщеннями',
 	'centralnotice-desc' => 'Додає загальне повідомлення сайту',
 	'centralnotice-summary' => 'Цей модуль дозволяє вам змінювати ваші поточні централізовані повідомлення.
 Він також може використовуватися для додавання нових і видалення старих повідомлень.',
@@ -9041,6 +9094,7 @@ $messages['uk'] = array(
 	'centralnotice-end-date' => 'Дата закінчення',
 	'centralnotice-enabled' => 'Включено',
 	'centralnotice-modify' => 'Відправити',
+	'centralnotice-save-banner' => 'Зберегти банер',
 	'centralnotice-preview' => 'Попередній перегляд',
 	'centralnotice-add-new' => 'Додати нове централізоване повідомлення',
 	'centralnotice-remove' => 'Вилучити',
@@ -9053,6 +9107,7 @@ $messages['uk'] = array(
 	'centralnotice-add-template' => 'Додати шаблон',
 	'centralnotice-show-notices' => 'Показати повідомлення',
 	'centralnotice-list-templates' => 'Cписок шаблонів',
+	'centralnotice-multiple_languages' => 'декілька ($1)',
 	'centralnotice-translations' => 'Переклади',
 	'centralnotice-translate-to' => 'Переклад на',
 	'centralnotice-translate' => 'Переклад',
@@ -9064,14 +9119,17 @@ $messages['uk'] = array(
 	'centralnotice-weight' => 'Ширина',
 	'centralnotice-locked' => 'Заблокований',
 	'centralnotice-notice' => 'Кампанія',
+	'centralnotice-notice-heading' => 'Кампанія: $1',
 	'centralnotice-notices' => 'повідомлення',
 	'centralnotice-notice-exists' => 'Повідомлення вже існує.
 Не додається',
+	'centralnotice-no-language' => 'Не обрано мови для проведення кампанії. Не додано.',
 	'centralnotice-template-exists' => 'Шаблон вже існує.
 Не додається',
 	'centralnotice-notice-doesnt-exist' => 'Кампанії не існує.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Кампанії не існує.
 Нема чого вилучати.',
+	'centralnotice-banner-doesnt-exist' => 'Банер не існує.',
 	'centralnotice-template-still-bound' => "Шаблон, як і раніше, пов'язаний з повідомленням.
 Не видаляється.",
 	'centralnotice-template-body' => 'Тіло шаблону:',
@@ -9081,9 +9139,12 @@ $messages['uk'] = array(
 	'centralnotice-hours' => 'Час',
 	'centralnotice-min' => 'Хвилина',
 	'centralnotice-project-lang' => 'Мова проекту',
+	'centralnotice-select' => 'Вибрати: $1',
+	'centralnotice-top-ten-languages' => 'Перших 10 мов',
 	'centralnotice-project-name' => 'Назва проекту',
 	'centralnotice-start-date' => 'Дата початку',
 	'centralnotice-start-time' => 'Час початку (UTC)',
+	'centralnotice-end-time' => 'Час закінчення (UTC)',
 	'centralnotice-assigned-templates' => 'Встановлені шаблони',
 	'centralnotice-no-templates' => 'Не знайдено шаблонів.
 Додайте що-небудь!',
@@ -9109,6 +9170,7 @@ $messages['uk'] = array(
 Можна додати',
 	'centralnotice-no-templates-translate' => 'Не має ні одного шаблону для редагування перекладу',
 	'centralnotice-number-uses' => 'Використовуються',
+	'centralnotice-settings' => 'Налаштування',
 	'centralnotice-edit-template' => 'Редагувати шаблон',
 	'centralnotice-edit-template-summary' => 'Щоб створити повідомлення, яке можна локалізувати, укладіть рядок з дефісом в три фігурні дужки, наприклад {{{цитата-джимбо}}}.',
 	'centralnotice-message' => 'Повідомлення',
@@ -9117,6 +9179,10 @@ $messages['uk'] = array(
 	'centralnotice-clone-notice' => 'Створити копію шаблона',
 	'centralnotice-clone-name' => 'Назва:',
 	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблону',
+	'centralnotice-insert' => 'Вставити: $1',
+	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} посилання',
+	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} посилання',
+	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} посилання',
 	'centralnotice-close-button' => 'Кнопка "Закрити"',
 	'centralnotice-translate-button' => 'Допоможіть перекласти посилання',
 	'centralnotice-donate-button' => 'Ґудзик для пожертв',
@@ -9127,6 +9193,19 @@ $messages['uk'] = array(
 	'centralnotice-banner-logged-in' => 'Користувачі онлайн',
 	'centralnotice-banner-type' => 'Тип банера:',
 	'centralnotice-banner-hidable' => 'Статичний / Приховуваний',
+	'centralnotice-banner-collapsible' => 'Що згортається',
+	'centralnotice-geotargeted' => "Геоприв'язка",
+	'centralnotice-countries' => 'Країни',
+	'centralnotice-allocation' => 'Розподіл',
+	'centralnotice-view-allocation' => 'Переглянути розміщення банера',
+	'centralnotice-allocation-instructions' => 'Виберіть середовище, для якого ви хочете переглянути розміщення банера:',
+	'centralnotice-project-language' => 'Мова проекту',
+	'centralnotice-country' => 'Країна',
+	'centralnotice-no-allocation' => 'Немає розміщених банерів.',
+	'centralnotice-allocation-description' => 'Розміщення банеру для $1.$2 в $3:',
+	'centralnotice-percentage' => 'Відсоток',
+	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері. 
+Дивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.',
 	'right-centralnotice-admin' => 'Управління централізованими сповіщеннями',
 	'right-centralnotice-translate' => 'Переклад централізованих повідомлень',
 	'action-centralnotice-admin' => 'управління централізованими сповіщеннями',
