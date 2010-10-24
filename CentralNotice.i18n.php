@@ -606,6 +606,7 @@ $messages['ast'] = array(
 );
 
 /** Bashkir (Башҡорт)
+ * @author Assele
  * @author Haqmar
  */
 $messages['ba'] = array(
@@ -613,6 +614,8 @@ $messages['ba'] = array(
 	'noticetemplate' => 'Үҙәк белдереүҙәрҙе идаралау',
 	'bannerallocation' => 'Үҙәк белдереүҙәрҙе идаралау',
 	'centralnotice-desc' => 'Үҙәк сайттан дөйөм белдереү өҫтәй',
+	'centralnotice-summary' => 'Был киңәйтеү һеҙгә үҙәк белдереүҙәрегеҙҙе үҙгәртергә мөмкинлек бирә.
+Ул шулай уҡ яңы белдереүҙәр өҫтәү һәм иҫкеләрен юйыу өсөн ҡулланыла ала.',
 	'centralnotice-query' => 'Ағымдағы белдереүҙе үҙгәртергә',
 	'centralnotice-notice-name' => 'Белдереү исеме',
 	'centralnotice-end-date' => 'Тамамланыу ваҡыты',
@@ -654,6 +657,8 @@ $messages['ba'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'Бындай кампания юҡ.
 Юйып булмай.',
 	'centralnotice-banner-doesnt-exist' => 'Баннер юҡ.',
+	'centralnotice-template-still-bound' => 'Баннер элеккесә кампания менән бәйле.
+Юйылмай.',
 	'centralnotice-template-body' => 'Баннер эстәлеге:',
 	'centralnotice-day' => 'Көн',
 	'centralnotice-year' => 'Йыл',
@@ -668,14 +673,39 @@ $messages['ba'] = array(
 	'centralnotice-start-time' => 'Башлау сәғәте (UTC)',
 	'centralnotice-end-time' => 'Тамамланыу ваҡыты (UTC)',
 	'centralnotice-assigned-templates' => 'Аталған баннерҙар',
-	'centralnotice-no-templates' => 'Ҡалыптар табылманы.
+	'centralnotice-no-templates' => 'Баннерҙар табылманы.
 Бер нимә өҫтәгеҙ!',
+	'centralnotice-no-templates-assigned' => 'Кампания менән бәйле баннер юҡ.
+Бер нимә өҫтәгеҙ!',
+	'centralnotice-available-templates' => 'Мөмкин булған баннерҙар',
+	'centralnotice-template-already-exists' => 'Баннер кампанияға бәйләнгән инде.
+Өҫтәлмәне.',
+	'centralnotice-preview-template' => 'Баннерҙы ҡарап сығыу',
+	'centralnotice-change-lang' => 'Тәржемә телен үҙгәртергә',
+	'centralnotice-weights' => 'Ауырлыҡтар',
+	'centralnotice-notice-is-locked' => 'Кампания бикләнгән.
+Юйылмай.',
+	'centralnotice-overlap' => 'Кампания ваҡыты буйынса икенсе кампания менән ҡаплана.
+Өҫтәлмәй.',
+	'centralnotice-invalid-date-range' => 'Хаталы ваҡыт арауығы.
+Яңыртылмай.',
+	'centralnotice-null-string' => 'Буш юлды өҫтәп булмай.
+Өҫтәлмәй.',
+	'centralnotice-confirm-delete' => 'Һеҙ ысынлап та был есемде юйырға теләһегеҙме?
+Был ғәмәлде кире алып булмай.',
+	'centralnotice-no-notices-exist' => 'Кампаниялар юҡ.
+Түбәндә берҙе өҫтәгеҙ.',
+	'centralnotice-no-templates-translate' => 'Тәржемәне үҙгәртер өсөн бер баннер ҙа юҡ.',
+	'centralnotice-number-uses' => 'Ҡулланыла',
+	'centralnotice-settings' => 'Көйләүҙәр',
+	'centralnotice-edit-template' => 'Баннерҙы үҙгәртергә',
+	'centralnotice-edit-template-summary' => 'Тәржемә ителә торған хәбәр булдырыр өсөн, дефис аша яҙылған юлды өс һырлы йәйәләр эсенә алығыҙ, мәҫәлән {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Хәбәр',
 	'centralnotice-message-not-set' => 'Хәбәр ҡуйылманы',
 	'centralnotice-clone' => 'Клонларға',
-	'centralnotice-clone-notice' => 'Ҡалыптың күсермәһен яһарға',
+	'centralnotice-clone-notice' => 'Баннерҙың күсермәһен яһарға',
 	'centralnotice-clone-name' => 'Исем:',
-	'centralnotice-preview-all-template-translations' => 'Ҡалыптың мөмкин булған бар тәржемәләрен ҡарарға',
+	'centralnotice-preview-all-template-translations' => 'Баннерҙың мөмкин булған бар тәржемәләрен ҡарарға',
 	'centralnotice-insert' => 'Өҫтәү: $1',
 	'centralnotice-hide-button' => 'һылтанманы {{int:centralnotice-shared-hide}}',
 	'centralnotice-collapse-button' => 'һылтанманы {{int:centralnotice-shared-collapse}}',
@@ -695,11 +725,14 @@ $messages['ba'] = array(
 	'centralnotice-countries' => 'Илдәр',
 	'centralnotice-allocation' => 'Урынлашыу',
 	'centralnotice-view-allocation' => 'Баннерҙарҙың урынлашыуын ҡарау',
+	'centralnotice-allocation-instructions' => 'Ниндәй өлкә өсөн баннерҙар урынлашыуын ҡарарға теләүегеҙҙе һайлағыҙ:',
 	'centralnotice-project-language' => 'Проект теле',
 	'centralnotice-country' => 'Ил',
 	'centralnotice-no-allocation' => 'Баннерҙар урынлаштырылмаған',
 	'centralnotice-allocation-description' => '$1.$2 өсөн $3 эсендә баннерҙар урынлашыуы',
 	'centralnotice-percentage' => 'Процент',
+	'centralnotice-documentwrite-error' => 'Был баннерҙа document.write() ҡулланыла алмай.
+Тулыраҡ мәғлүмәт өсөн http://meta.wikimedia.org/wiki/Help:CentralNotice ҡарағыҙ.',
 	'right-centralnotice-admin' => 'Үҙәк белдереүҙәрен идаралау',
 	'right-centralnotice-translate' => 'Үҙәк белдереүҙәрен тәржемә итеү',
 	'action-centralnotice-admin' => 'үҙәк белдереүҙәрен идаралау',
@@ -939,6 +972,7 @@ $messages['bg'] = array(
 	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
 	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-preview-all-template-translations' => 'Преглед на всички налични преводи на шаблона',
+	'centralnotice-percentage' => 'Процент',
 	'right-centralnotice-admin' => 'Управление на централизираните съобщения',
 	'right-centralnotice-translate' => 'Превод на централизираните съобщения',
 	'centralnotice-preferred' => 'Предпочитано',
@@ -2418,14 +2452,20 @@ Samuti saab sellega teateid lisada või vanu teateid eemaldada.',
 	'centralnotice-templates' => 'Mallid',
 	'centralnotice-weight' => 'Kaal',
 	'centralnotice-locked' => 'Lukustatud',
+	'centralnotice-notice' => 'Teade',
+	'centralnotice-notice-heading' => 'Teade: $1',
 	'centralnotice-notices' => 'Teated',
 	'centralnotice-notice-exists' => 'Teade on juba olemas.
 
 Ei lisatud',
+	'centralnotice-no-language' => 'Teatele pole keelt valitud. Ei lisata.',
 	'centralnotice-template-exists' => 'Mall on juba olemas.
 
 Ei lisatud.',
 	'centralnotice-notice-doesnt-exist' => 'Teadet pole.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Teadet pole olemas.
+Midagi pole eemldada.',
+	'centralnotice-banner-doesnt-exist' => 'Malli pole.',
 	'centralnotice-template-still-bound' => 'Mall on ikka teatega seotud.
 Ei eemaldata',
 	'centralnotice-template-body' => 'Malli sisu:',
@@ -2435,10 +2475,11 @@ Ei eemaldata',
 	'centralnotice-hours' => 'Tund',
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Projekti keel',
+	'centralnotice-top-ten-languages' => 'Keelte esikümme',
 	'centralnotice-project-name' => 'Projekti nimi',
 	'centralnotice-start-date' => 'Alguskuupäev',
 	'centralnotice-start-time' => 'Alguskellaaeg (UTC)',
-	'centralnotice-end-time' => 'Lõpuaeg (UTC)',
+	'centralnotice-end-time' => 'Lõpukellaaeg (UTC)',
 	'centralnotice-assigned-templates' => 'Vastavad mallid',
 	'centralnotice-no-templates' => 'Malle ei leitud.
 
@@ -2476,6 +2517,7 @@ Lisa allpool üks.',
 	'centralnotice-banner-logged-in' => 'Sisseloginud kasutajatele',
 	'centralnotice-banner-type' => 'Malli tüüp:',
 	'centralnotice-banner-collapsible' => 'Kokkulükatav',
+	'centralnotice-geotargeted' => 'Kohamääranguga',
 	'centralnotice-countries' => 'Riigid',
 	'centralnotice-allocation' => 'Ülesseadmine',
 	'centralnotice-view-allocation' => 'Mallide ülesseade vaatamine',
@@ -2860,7 +2902,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-save-banner' => 'Enregistrer la bannière',
 	'centralnotice-preview' => 'Prévisualiser',
 	'centralnotice-add-new' => 'Ajouter un nouvel avis central',
-	'centralnotice-remove' => 'Supprimer',
+	'centralnotice-remove' => 'Enlever',
 	'centralnotice-translate-heading' => 'Traduction de l’avis « $1 »',
 	'centralnotice-manage' => 'Gérer les avis centraux',
 	'centralnotice-manage-templates' => 'Gérer les bannières',
@@ -5507,7 +5549,7 @@ $messages['ml'] = array(
 	'centralnotice-save-banner' => 'എഴുത്തുപട്ട സേവ് ചെയ്യുക',
 	'centralnotice-preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക',
 	'centralnotice-add-new' => 'പുതിയൊരു കേന്ദ്രീകൃത അറിയിപ്പ് ചേർക്കുക',
-	'centralnotice-remove' => 'നീക്കംചെയ്യുക',
+	'centralnotice-remove' => 'നീക്കം ചെയ്യുക',
 	'centralnotice-translate-heading' => '$1 എന്നതിനുള്ള തർജ്ജമ',
 	'centralnotice-manage' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കൈകാര്യം ചെയ്യുക',
 	'centralnotice-manage-templates' => 'എഴുത്തുപട്ടകൾ കൈകാര്യം ചെയ്യുക',
@@ -5627,6 +5669,7 @@ $messages['ml'] = array(
  * @author Chinneeb
  */
 $messages['mn'] = array(
+	'centralnotice-modify' => 'Явуулах',
 	'centralnotice-add' => 'Нэмэх',
 );
 
@@ -8575,6 +8618,7 @@ $messages['te'] = array(
 	'centralnotice-project-name' => 'ప్రాజెక్టు పేరు',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
+	'centralnotice-end-time' => 'ముగింపు సమయం (UTC)',
 	'centralnotice-no-templates' => 'మూసలు ఏమీ లేవు.
 కొన్నింటిని చేర్చండి!',
 	'centralnotice-available-templates' => 'అందుబాటులో ఉన్న మూసలు',
@@ -8585,11 +8629,14 @@ $messages['te'] = array(
 తొలగించడం లేదు.',
 	'centralnotice-invalid-date-range' => 'చెల్లని తేదీ అవధి.
 తాజాకరించుటలేదు.',
+	'centralnotice-confirm-delete' => 'ఈ అంశాన్ని మీరు నిజంగానే తొలగించాలనుకుంటున్నారా?
+ఈ చర్యని వెనక్కితీసుకోలేరు.',
 	'centralnotice-no-notices-exist' => 'గమనికలు ఏమీ లేవు.
 క్రింద చేర్చండి.',
 	'centralnotice-number-uses' => 'వాడుకరులు',
 	'centralnotice-settings' => 'అమరికలు',
 	'centralnotice-edit-template' => 'మూసని మార్చు',
+	'centralnotice-edit-template-summary' => 'అనువదించదగ్గ సందేశాన్ని సృష్టించడానికి, హైఫన్లతో కూడిన పదబంధాన్ని మూడు మీసాల బ్రాకెట్ల మధ్యలో ఉంచండి, ఉ.దా. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'సందేశం',
 	'centralnotice-clone-name' => 'పేరు:',
 	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} లంకె',
@@ -8603,6 +8650,7 @@ $messages['te'] = array(
 	'centralnotice-banner-logged-in' => 'ప్రవేశించిన వాడుకరులు',
 	'centralnotice-banner-hidable' => 'స్థిరం/దాచదగ్గది',
 	'centralnotice-countries' => 'దేశాలు',
+	'centralnotice-allocation' => 'కేటాయింపు',
 	'centralnotice-project-language' => 'ప్రాజెక్టు భాష',
 	'centralnotice-country' => 'దేశం',
 	'centralnotice-percentage' => 'శాతం',
