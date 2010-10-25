@@ -63,14 +63,13 @@ EOT;
 				$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">'+bannerScript+'</div>' );
 			},
 			'loadBannerList': function( geoOverride ) {
-				var bannerListURL;
 				if ( geoOverride ) {
 					var geoLocation = geoOverride; // override the geo info
 				} else {
 					var geoLocation = Geo.country; // pull the geo info
 				}
 				var bannerListQuery = $.param( { 'title': wgFormattedNamespaces[-1] + ':BannerListLoader', 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation, 'cache': 'cn.js' } );
-				bannerListURL = wgScript + '?' + bannerListQuery;
+				var bannerListURL = wgScript + '?' + bannerListQuery;
 				var request = $.ajax( {
 					url: bannerListURL,
 					dataType: 'json',
