@@ -68,8 +68,8 @@ EOT;
 				} else {
 					var geoLocation = Geo.country; // pull the geo info
 				}
-				var bannerListQuery = $.param( { 'title': wgFormattedNamespaces[-1] + ':BannerListLoader', 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation, 'cache': 'cn.js' } );
-				var bannerListURL = wgScript + '?' + bannerListQuery;
+				var bannerListQuery = $.param( { 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation } );
+				var bannerListURL = wgScript + '?title=' + wgFormattedNamespaces[-1] + ':BannerListLoader&cache=/cn.js' + bannerListQuery;
 				var request = $.ajax( {
 					url: bannerListURL,
 					dataType: 'json',
