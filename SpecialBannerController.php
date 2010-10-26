@@ -69,7 +69,7 @@ EOT;
 					var geoLocation = Geo.country; // pull the geo info
 				}
 				var bannerListQuery = $.param( { 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation } );
-				var bannerListURL = wgScript + '?title=' + encodeURIComponent(wgFormattedNamespaces[-1]) + ':BannerListLoader&cache=/cn.js&' + bannerListQuery;
+				var bannerListURL = wgScript + '?title=' + wgFormattedNamespaces[-1] + ':BannerListLoader&cache=/cn.js&' + bannerListQuery;
 				var request = $.ajax( {
 					url: bannerListURL,
 					dataType: 'json',
