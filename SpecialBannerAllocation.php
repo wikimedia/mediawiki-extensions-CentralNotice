@@ -19,7 +19,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest, $wgScriptPath, $wgNoticeProjects, $wgLanguageCode;
+		global $wgOut, $wgUser, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode;
 		
 		if ( $wgRequest->wasPosted() ) {
 			$this->project = $wgRequest->getText( 'project', 'wikipedia' );
@@ -31,10 +31,10 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$this->setHeaders();
 		
 		// Add style file to the output headers
-		$wgOut->addExtensionStyle( "$wgScriptPath/extensions/CentralNotice/centralnotice.css" );
+		$wgOut->addExtensionStyle( "$wgExtensionAssetsPath/CentralNotice/centralnotice.css" );
 		
 		// Add script file to the output headers
-		$wgOut->addScriptFile( "$wgScriptPath/extensions/CentralNotice/centralnotice.js" );
+		$wgOut->addScriptFile( "$wgExtensionAssetsPath/CentralNotice/centralnotice.js" );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
