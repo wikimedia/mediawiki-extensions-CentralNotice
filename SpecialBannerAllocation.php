@@ -19,7 +19,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode;
+		global $wgOut, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode;
 		
 		if ( $wgRequest->wasPosted() ) {
 			$this->project = $wgRequest->getText( 'project', 'wikipedia' );

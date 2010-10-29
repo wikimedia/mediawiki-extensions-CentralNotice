@@ -13,8 +13,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgOut, $wgRequest;
-		global $wgNoticeLang, $wgNoticeProject;
+		global $wgOut;
 		
 		$wgOut->disable();
 		$this->sendHeaders();
@@ -26,7 +25,6 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		} else {
 			echo $content;
 		}
-		
 	}
 	
 	/**
