@@ -8,12 +8,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class CentralNoticeDB {
 
 	/* Functions */
-
-	function __construct() {
-		// Internationalization
-		wfLoadExtensionMessages( 'CentralNotice' );
-	}
-
 	/*
 	 * Return campaigns in the system within given constraints
 	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
