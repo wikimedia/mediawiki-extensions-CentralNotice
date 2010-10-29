@@ -1302,8 +1302,6 @@ class CentralNotice extends SpecialPage {
 	 * Update the preferred/not preferred state of a campaign
 	 */
 	function updatePreferred( $noticeName, $isPreferred ) {
-		global $wgOut;
-		
 		if ( !$this->noticeExists( $noticeName ) ) {
 			$this->showError( 'centralnotice-doesnt-exist' );
 		} else {
@@ -1487,7 +1485,7 @@ class CentralNotice extends SpecialPage {
 		// Remove disassociated countries
 		$removeCountries = array_diff( $oldCountries, $newCountries );
 		if ( $removeCountries ) {
-			$res = $dbw->delete( 'cn_notice_countries',
+			$dbw->delete( 'cn_notice_countries',
 				array( 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries )
 			);
 		}

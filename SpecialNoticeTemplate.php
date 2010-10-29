@@ -628,7 +628,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
-			$res = $dbw->delete( 'cn_templates',
+			$dbw->delete( 'cn_templates',
 				array( 'tmp_id' => $id ),
 				__METHOD__
 			);
