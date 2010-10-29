@@ -221,7 +221,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post', 'onsubmit' => 'return validateBannerForm(this)' ) );
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-template' ) );
-		$htmlOut .= Xml::hidden( 'wpMethod', 'addTemplate' );
+		$htmlOut .= Html::hidden( 'wpMethod', 'addTemplate' );
 		$htmlOut .= Xml::tags( 'p', null,
 			Xml::inputLabel( wfMsg( 'centralnotice-banner-name' ), 'templateName', 'templateName', 25, $wgRequest->getVal( 'templateName' ) )
 		);
@@ -260,7 +260,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-		$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+		$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 		
 		// Submit button
 		$htmlOut .= Xml::tags( 'div', 
@@ -426,9 +426,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::closeElement( 'table' );
 				
 				if ( $this->editable ) {
-					$htmlOut .= Xml::hidden( 'wpUserLanguage', $wpUserLang );
-					$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
-					$htmlOut .= Xml::tags( 'div', 
+					$htmlOut .= Html::hidden( 'wpUserLanguage', $wpUserLang );
+					$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+					$htmlOut .= Xml::tags( 'div',
 						array( 'class' => 'cn-buttons' ), 
 						Xml::submitButton( wfMsg( 'centralnotice-modify' ), array( 'name' => 'update' ) ) 
 					);
@@ -460,7 +460,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					Xml::tags( 'td', null, $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-preview-all-template-translations' ), "template=$currentTemplate&wpUserLanguage=all" ) )
 				);
 				$htmlOut .= Xml::closeElement( 'table' );
-				$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Xml::closeElement( 'fieldset' );
 				$htmlOut .= Xml::closeElement( 'form' );
 			}
@@ -468,7 +468,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Show edit form
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post', 'onsubmit' => 'return validateBannerForm(this)' ) );
-				$htmlOut .= Xml::hidden( 'wpMethod', 'editTemplate' );
+				$htmlOut .= Html::hidden( 'wpMethod', 'editTemplate' );
 			}
 			
 			// If there was an error, we'll need to restore the state of the form
@@ -508,8 +508,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20, $readonly );
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 			if ( $this->editable ) {
-				$htmlOut .= Xml::hidden( 'mainform', 'true' ); // Indicate which form was submitted
-				$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+				$htmlOut .= Html::hidden( 'mainform', 'true' ); // Indicate which form was submitted
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Xml::tags( 'div', 
 					array( 'class' => 'cn-buttons' ), 
 					Xml::submitButton( wfMsg( 'centralnotice-save-banner' ) ) 
@@ -531,11 +531,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::openElement( 'tr' );
 				$htmlOut .= Xml::inputLabel( wfMsg( 'centralnotice-clone-name' ), 'newTemplate', 'newTemplate', '25' );
 				$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-clone' ), array ( 'id' => 'clone' ) );
-				$htmlOut .= Xml::hidden( 'oldTemplate', $currentTemplate );
+				$htmlOut .= Html::hidden( 'oldTemplate', $currentTemplate );
 	
 				$htmlOut .= Xml::closeElement( 'tr' );
 				$htmlOut .= Xml::closeElement( 'table' );
-				$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Xml::closeElement( 'fieldset' );
 				$htmlOut .= Xml::closeElement( 'form' );
 			}

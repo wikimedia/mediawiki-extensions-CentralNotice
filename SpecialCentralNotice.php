@@ -474,8 +474,8 @@ class CentralNotice extends SpecialPage {
 			// Form for adding a campaign
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-add-notice' ) );
-			$htmlOut .= Xml::hidden( 'title', $this->getTitle()->getPrefixedText() );
-			$htmlOut .= Xml::hidden( 'method', 'addNotice' );
+			$htmlOut .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+			$htmlOut .= Html::hidden( 'method', 'addNotice' );
 	
 			$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
 			
@@ -515,8 +515,8 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			
 			$htmlOut .= Xml::closeElement( 'table' );
-			$htmlOut .= Xml::hidden( 'change', 'weight' );
-			$htmlOut .= Xml::hidden( 'authtoken', $wgUser->editToken() );
+			$htmlOut .= Html::hidden( 'change', 'weight' );
+			$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 			
 			// Submit button
 			$htmlOut .= Xml::tags( 'div', 
@@ -899,7 +899,7 @@ class CentralNotice extends SpecialPage {
 		}
 
 		// Build Assigned banners HTML
-		$htmlOut  = Xml::hidden( 'change', 'weight' );
+		$htmlOut  = Html::hidden( 'change', 'weight' );
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-assigned-templates' ) );
 		$htmlOut .= Xml::openElement( 'table',
 			array(
