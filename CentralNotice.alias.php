@@ -39,11 +39,28 @@ $specialPageAliases['fa'] = array(
 	'NoticeLocal' => array( 'اعلامیه_محلی' ),
 );
 
+/** Interlingua (Interlingua) */
+$specialPageAliases['ia'] = array(
+	'CentralNotice' => array( 'Aviso_central' ),
+	'NoticeText' => array( 'Texto_de_aviso' ),
+	'NoticeTemplate' => array( 'Patrono_de_aviso' ),
+	'NoticeLocal' => array( 'Aviso_local' ),
+	'BannerAllocation' => array( 'Alloca_bandieras' ),
+	'BannerController' => array( 'Controla_bandieras' ),
+	'BannerListLoader' => array( 'Carga_lista_de_bandieras' ),
+	'BannerLoader' => array( 'Carga_bandieras' ),
+);
+
 /** Japanese (日本語) */
 $specialPageAliases['ja'] = array(
 	'CentralNotice' => array( '中央管理通知' ),
 	'NoticeText' => array( '通知文' ),
 	'NoticeTemplate' => array( '通知テンプレート' ),
+	'NoticeLocal' => array( 'ローカル通知' ),
+	'BannerAllocation' => array( 'テンプレート割り当て' ),
+	'BannerController' => array( 'テンプレート制御' ),
+	'BannerListLoader' => array( 'テンプレート一覧読み込み' ),
+	'BannerLoader' => array( 'テンプレート読み込み' ),
 );
 
 /** Ladino (Ladino) */
