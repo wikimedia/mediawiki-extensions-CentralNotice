@@ -54,7 +54,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			'loadBanner': function( bannerName ) {
 				// Get the requested banner
 				var bannerPageQuery = $.param( { 'banner': bannerName, 'userlang': wgUserLanguage, 'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country } );
-				var bannerPage = 'Special:BannerLoader?' + bannerPageQuery;
+				var bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
 EOT;
 		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"".Xml::escapeJsString( $wgCentralPagePath )."' + bannerPage + '\"></script>';\n";
 		$js .= <<<EOT
