@@ -43,7 +43,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		global $wgCentralPagePath;
 		
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
-		$js .= <<<EOT
+		$js .= <<<JAVASCRIPT
 ( function( $ ) {
 	$.ajaxSetup({ cache: true });
 	$.centralNotice = {
@@ -53,12 +53,18 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		'fn': {
 			'loadBanner': function( bannerName ) {
 				// Get the requested banner
-				var bannerPageQuery = $.param( { 'banner': bannerName, 'userlang': wgUserLanguage, 'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country } );
+				var bannerPageQuery = $.param( { 
+					'banner': bannerName, 'userlang': wgUserLanguage, 
+					'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country } );
 				var bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
-EOT;
-		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"".Xml::escapeJsString( $wgCentralPagePath )."' + bannerPage + '\"></script>';\n";
-		$js .= <<<EOT
-				$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + ( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + '">'+bannerScript+'</div>' );
+JAVASCRIPT;
+		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"" . 
+			Xml::escapeJsString( $wgCentralPagePath ) .
+			"' + bannerPage + '\"></script>';\n";
+		$js .= <<<JAVASCRIPT
+				$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + 
+					( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + 
+					'">'+bannerScript+'</div>' );
 			},
 			'loadBannerList': function( geoOverride ) {
 				if ( geoOverride ) {
@@ -85,7 +91,9 @@ EOT;
 				
 				for( var i = 0; i < bannerList.length; i++ ) {
 					// Only include this banner if it's inteded for the current user
-					if( ( wgUserName && bannerList[i].display_account ) || ( !wgUserName && bannerList[i].display_anon == 1 ) ) {
+					if( ( wgUserName && bannerList[i].display_account ) || 
+						( !wgUserName && bannerList[i].display_anon == 1 ) ) 
+					{
 						// add the banner to our list once per weight
 						for( var j=0; j < bannerList[i].weight; j++ ) {
 							groomedBannerList.push( bannerList[i] );
@@ -98,7 +106,9 @@ EOT;
 				
 				// Load a random banner from our groomed list
 				$.centralNotice.fn.loadBanner( 
-					groomedBannerList[ Math.floor( Math.random() * groomedBannerList.length ) ].name
+					groomedBannerList[ 
+						Math.floor( Math.random() * groomedBannerList.length ) 
+					].name
 				);
 			},
 			'getQueryStringVariables': function() {
@@ -123,19 +133,19 @@ EOT;
 		}
 	} ); //document ready
 } )( jQuery );
-EOT;
+JAVASCRIPT;
 		return $js;
 			
 	}
 	
 	function getToggleScripts() {
-		$showStyle = <<<END
+		$showStyle = <<<HTML
 <style type="text/css">
 #centralNotice .siteNoticeSmall {display:none;}
 #centralNotice.collapsed .siteNoticeBig {display:none;}
 #centralNotice.collapsed .siteNoticeSmall {display:block;}
 </style>
-END;
+HTML;
 		$encShowStyle = Xml::encodeJsVar( $showStyle );
 
 		$script = "
@@ -145,7 +155,7 @@ document.writeln($encShowStyle);\n\n";
 	}
 
 	function getScriptFunctions() {
-		$script = "
+		$script = <<<JAVASCRIPT
 function insertBanner(bannerJson) {
 	jQuery('div#centralNotice').prepend( bannerJson.banner );
 }
@@ -170,7 +180,9 @@ function toggleNoticeCookie(state) {
 	e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
 	var work='hidesnmessage='+state+'; expires=' + e.toGMTString() + '; path=/';
 	document.cookie = work;
-}\n\n";
+}
+
+JAVASCRIPT;
 		return $script;
 	}
 	

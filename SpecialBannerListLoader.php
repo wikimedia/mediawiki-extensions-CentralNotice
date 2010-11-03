@@ -72,7 +72,8 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		if ( !$templates && $this->project == 'wikipedia' ) {
 			// See if we have any preferred notices for this language wikipedia
-			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, false, 1, 1, $this->location );
+			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, 
+				false, 1, 1, $this->location );
 			
 			if ( $notices ) {
 				// Pull banners
@@ -82,7 +83,8 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 		// Didn't find any preferred matches so do an old style lookup
 		if ( !$templates )  {
-			$templates = CentralNotice::selectNoticeTemplates( $this->project, $this->language, $this->location );
+			$templates = CentralNotice::selectNoticeTemplates( 
+				$this->project, $this->language, $this->location );
 		}
 		
 		return FormatJson::encode( $templates );

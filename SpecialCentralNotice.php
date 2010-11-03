@@ -147,7 +147,8 @@ class CentralNotice extends SpecialPage {
 					if ( $noticeName == '' ) {
 						$this->showError( 'centralnotice-null-string' );
 					} else {
-						$this->addNotice( $noticeName, '0', $start, $project_name, $project_languages, $geotargeted, $geo_countries );
+						$this->addNotice( $noticeName, '0', $start, $project_name,
+							$project_languages, $geotargeted, $geo_countries );
 					}
 				}
 				
@@ -418,7 +419,10 @@ class CentralNotice extends SpecialPage {
 				
 				// If campaign is currently active, set special class on table row.
 				$attribs = array();
-				if ( wfTimestamp() > wfTimestamp( TS_UNIX , $row->not_start ) && wfTimestamp() < wfTimestamp( TS_UNIX , $row->not_end ) && $row->not_enabled == '1' ) {
+				if ( wfTimestamp() > wfTimestamp( TS_UNIX , $row->not_start ) 
+					&& wfTimestamp() < wfTimestamp( TS_UNIX , $row->not_end ) 
+					&& $row->not_enabled == '1' ) 
+				{
 					$attribs = array( 'class' => 'cn-active-campaign' );
 				}
 				
@@ -481,7 +485,8 @@ class CentralNotice extends SpecialPage {
 			// Name
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-notice-name' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::input( 'noticeName', 25, $wgRequest->getVal( 'noticeName' ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::input( 'noticeName', 25, $wgRequest->getVal( 'noticeName' ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -501,15 +506,21 @@ class CentralNotice extends SpecialPage {
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'yourlanguage' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->languageMultiSelector( $noticeLanguages ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				$this->languageMultiSelector( $noticeLanguages ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsg( 'centralnotice-geotargeted' ), 'geotargeted' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', false, wfArrayMerge( $readonly, array( 'value' => 1, 'id' => 'geotargeted' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::label( wfMsg( 'centralnotice-geotargeted' ), 'geotargeted' ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::check( 'geotargeted', false, 
+					wfArrayMerge( $readonly, array( 'value' => 1, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector', 'style'=>'display:none;' ) );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'centralnotice-countries' ) );
+			$htmlOut .= Xml::openElement( 'tr', 
+				array( 'id'=>'geoMultiSelector', 'style'=>'display:none;' ) );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 
+				wfMsgHtml( 'centralnotice-countries' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector() );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			
@@ -651,7 +662,8 @@ class CentralNotice extends SpecialPage {
 					
 					// If there were no errors, reload the page to prevent duplicate form submission
 					if ( !$this->centralNoticeError ) {
-						$wgOut->redirect( $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" ) );
+						$wgOut->redirect( $this->getTitle()->getLocalUrl( 
+							"method=listNoticeDetail&notice=$notice" ) );
 						return;
 					}
 				} else {
@@ -669,7 +681,8 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= Xml::openElement( 'form',
 					array(
 						'method' => 'post',
-						'action' => $this->getTitle()->getLocalUrl( "method=listNoticeDetail&notice=$notice" )
+						'action' => $this->getTitle()->getLocalUrl( 
+							"method=listNoticeDetail&notice=$notice" )
 					)
 				);
 			}
@@ -820,41 +833,64 @@ class CentralNotice extends SpecialPage {
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'yourlanguage' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->languageMultiSelector( $noticeLanguages ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				$this->languageMultiSelector( $noticeLanguages ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsg( 'centralnotice-geotargeted' ), 'geotargeted' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'geotargeted', $isGeotargeted, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'geotargeted' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::label( wfMsg( 'centralnotice-geotargeted' ), 'geotargeted' ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::check( 'geotargeted', $isGeotargeted, 
+					wfArrayMerge( 
+						$readonly, 
+						array( 'value' => $row->not_name, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			if ( $isGeotargeted ) {
 				$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector' ) );
 			} else {
-				$htmlOut .= Xml::openElement( 'tr', array( 'id'=>'geoMultiSelector', 'style'=>'display:none;' ) );
+				$htmlOut .= Xml::openElement( 'tr', 
+					array( 'id'=>'geoMultiSelector', 'style'=>'display:none;' ) );
 			}
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'centralnotice-countries' ) );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 
+				wfMsgHtml( 'centralnotice-countries' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector( $countries ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsg( 'centralnotice-enabled' ), 'enabled' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'enabled', $isEnabled, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'enabled' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::label( wfMsg( 'centralnotice-enabled' ), 'enabled' ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::check( 'enabled', $isEnabled, 
+					wfArrayMerge( $readonly, 
+						array( 'value' => $row->not_name, 'id' => 'enabled' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Preferred
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsg( 'centralnotice-preferred' ), 'preferred' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'preferred', $isPreferred, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'preferred' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::label( wfMsg( 'centralnotice-preferred' ), 'preferred' ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::check( 'preferred', $isPreferred, 
+					wfArrayMerge( $readonly, 
+						array( 'value' => $row->not_name, 'id' => 'preferred' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsg( 'centralnotice-locked' ), 'locked' ) );
-			$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'locked', $isLocked, wfArrayMerge( $readonly, array( 'value' => $row->not_name, 'id' => 'locked' ) ) ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::label( wfMsg( 'centralnotice-locked' ), 'locked' ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				Xml::check( 'locked', $isLocked, 
+					wfArrayMerge( $readonly, 
+						array( 'value' => $row->not_name, 'id' => 'locked' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			if ( $this->editable ) {
 				// Locked
 				$htmlOut .= Xml::openElement( 'tr' );
-				$htmlOut .= Xml::tags( 'td', array(), Xml::label( wfMsg( 'centralnotice-remove' ), 'remove' ) );
-				$htmlOut .= Xml::tags( 'td', array(), Xml::check( 'remove', false, array( 'value' => $row->not_name, 'id' => 'remove' ) ) );
+				$htmlOut .= Xml::tags( 'td', array(), 
+					Xml::label( wfMsg( 'centralnotice-remove' ), 'remove' ) );
+				$htmlOut .= Xml::tags( 'td', array(), 
+					Xml::check( 'remove', false, 
+						array( 'value' => $row->not_name, 'id' => 'remove' ) ) );
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			$htmlOut .= Xml::closeElement( 'table' );
@@ -982,9 +1018,13 @@ class CentralNotice extends SpecialPage {
 			$htmlOut  = Xml::fieldset( wfMsg( "centralnotice-available-templates" ) );
 			
 			// Show paginated list of banners
-			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
+			$htmlOut .= Xml::tags( 'div', 
+				array( 'class' => 'cn-pager' ), 
+				$pager->getNavigationBar() );
 			$htmlOut .= $pager->getBody();
-			$htmlOut .= Xml::tags( 'div', array( 'class' => 'cn-pager' ), $pager->getNavigationBar() );
+			$htmlOut .= Xml::tags( 'div', 
+				array( 'class' => 'cn-pager' ), 
+				$pager->getNavigationBar() );
 			
 			$htmlOut .= Xml::closeElement( 'fieldset' );
 		} else {
@@ -1074,7 +1114,9 @@ class CentralNotice extends SpecialPage {
 		return $templates;
 	}
 
-	function addNotice( $noticeName, $enabled, $start, $project_name, $project_languages, $geotargeted, $geo_countries ) {
+	function addNotice( $noticeName, $enabled, $start, $project_name, 
+		$project_languages, $geotargeted, $geo_countries ) 
+	{
 		if ( $this->noticeExists( $noticeName ) ) {
 			$this->showError( 'centralnotice-notice-exists' );
 			return;
@@ -1093,12 +1135,17 @@ class CentralNotice extends SpecialPage {
 				$end['month'] = '10';
 				$end['year'] = $start['year'];
 			} else {
-				$end['month'] = ( substr( $start['month'], 0, 1 ) ) == 0 ? 0 . ( intval( $start['month'] ) + 1 ) : ( $start['month'] + 1 );
+				$end['month'] = 
+					( substr( $start['month'], 0, 1 ) ) == 0 
+					? 0 . ( intval( $start['month'] ) + 1 ) 
+					: ( $start['month'] + 1 );
 				$end['year'] = $start['year'];
 			}
 
-			$startTs = wfTimeStamp( TS_MW, "{$start['year']}:{$start['month']}:{$start['day']} {$start['hour']}:{$start['min']}:00" );
-			$endTs = wfTimeStamp( TS_MW, "{$end['year']}:{$end['month']}:{$start['day']} {$start['hour']}:{$start['min']}:00" );
+			$startTs = wfTimeStamp( TS_MW, "{$start['year']}:{$start['month']}:{$start['day']} " . 
+				"{$start['hour']}:{$start['min']}:00" );
+			$endTs = wfTimeStamp( TS_MW, "{$end['year']}:{$end['month']}:{$start['day']} " .
+				"{$start['hour']}:{$start['min']}:00" );
 
 			$res = $dbw->insert( 'cn_notices',
 				array( 'not_name' => $noticeName,
@@ -1116,7 +1163,8 @@ class CentralNotice extends SpecialPage {
 			foreach( $project_languages as $code ) {
 				$insertArray[] = array( 'nl_notice_id' => $not_id, 'nl_language' => $code );
 			}
-			$res = $dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, array( 'IGNORE' ) );
+			$res = $dbw->insert( 'cn_notice_languages', $insertArray, 
+				__METHOD__, array( 'IGNORE' ) );
 			
 			if ( $geotargeted ) {
 				// Do multi-row insert for campaign countries
@@ -1124,7 +1172,8 @@ class CentralNotice extends SpecialPage {
 				foreach( $geo_countries as $code ) {
 					$insertArray[] = array( 'nc_notice_id' => $not_id, 'nc_country' => $code );
 				}
-				$res = $dbw->insert( 'cn_notice_countries', $insertArray, __METHOD__, array( 'IGNORE' ) );
+				$res = $dbw->insert( 'cn_notice_countries', $insertArray, 
+					__METHOD__, array( 'IGNORE' ) );
 			}
 		
 			$dbw->commit();
@@ -1207,7 +1256,8 @@ class CentralNotice extends SpecialPage {
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
 		$languages = array();
 		if ( $row ) {
-			$res = $dbr->select( 'cn_notice_languages', 'nl_language', array( 'nl_notice_id' => $row->not_id ) );
+			$res = $dbr->select( 'cn_notice_languages', 'nl_language', 
+				array( 'nl_notice_id' => $row->not_id ) );
 			foreach ( $res as $langRow ) {
 				$languages[] = $langRow->nl_language;
 			}
@@ -1221,7 +1271,8 @@ class CentralNotice extends SpecialPage {
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
 		$countries = array();
 		if ( $row ) {
-			$res = $dbr->select( 'cn_notice_countries', 'nc_country', array( 'nc_notice_id' => $row->not_id ) );
+			$res = $dbr->select( 'cn_notice_countries', 'nc_country', 
+				array( 'nc_notice_id' => $row->not_id ) );
 			foreach ( $res as $countryRow ) {
 				$countries[] = $countryRow->nc_country;
 			}
@@ -1384,7 +1435,8 @@ class CentralNotice extends SpecialPage {
 	function languageMultiSelector( $selected = array(), $customisedOnly = true ) {
 		global $wgContLanguageCode, $wgExtensionAssetsPath, $wgLang;
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
-		// Make sure the site language is in the list; a custom language code might not have a defined name...
+		// Make sure the site language is in the list; a custom language code 
+		// might not have a defined name...
 		$languages = Language::getLanguageNames( $customisedOnly );
 		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
 			$languages[$wgContLanguageCode] = $wgContLanguageCode;
@@ -1406,16 +1458,26 @@ class CentralNotice extends SpecialPage {
 				$options
 			);
 			$buttons = array();
-			$buttons[] = '<a href="#" onclick="selectLanguages(true);return false;">' . wfMsg( 'powersearch-toggleall' ) . '</a>';
-			$buttons[] = '<a href="#" onclick="selectLanguages(false);return false;">' . wfMsg( 'powersearch-togglenone' ) . '</a>';
-			$buttons[] = '<a href="#" onclick="top10Languages();return false;">' . wfMsg( 'centralnotice-top-ten-languages' ) . '</a>';
+			$buttons[] = '<a href="#" onclick="selectLanguages(true);return false;">' . 
+				wfMsg( 'powersearch-toggleall' ) . '</a>';
+			$buttons[] = '<a href="#" onclick="selectLanguages(false);return false;">' . 
+				wfMsg( 'powersearch-togglenone' ) . '</a>';
+			$buttons[] = '<a href="#" onclick="top10Languages();return false;">' . 
+				wfMsg( 'centralnotice-top-ten-languages' ) . '</a>';
 			$htmlOut .= Xml::tags( 'div',
 				array( 'style' => 'margin-top: 0.2em;' ),
-				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
+				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . 
+				wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'project_languages[]', 'name' => 'project_languages[]', 'disabled' => 'disabled' ),
+				array( 
+					'multiple' => 'multiple', 
+					'size' => 4, 
+					'id' => 'project_languages[]', 
+					'name' => 'project_languages[]', 
+					'disabled' => 'disabled' 
+				),
 				$options
 			);
 		}
@@ -1542,12 +1604,23 @@ class CentralNotice extends SpecialPage {
 		$htmlOut = '';
 		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 5, 'id' => 'geo_countries[]', 'name' => 'geo_countries[]' ),
+				array( 
+					'multiple' => 'multiple', 
+					'size' => 5, 
+					'id' => 'geo_countries[]', 
+					'name' => 'geo_countries[]' 
+				),
 				$options
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 5, 'id' => 'geo_countries[]', 'name' => 'geo_countries[]', 'disabled' => 'disabled' ),
+				array( 
+					'multiple' => 'multiple', 
+					'size' => 5, 
+					'id' => 'geo_countries[]', 
+					'name' => 'geo_countries[]', 
+					'disabled' => 'disabled' 
+				),
 				$options
 			);
 		}
@@ -1578,7 +1651,8 @@ class CentralNoticePager extends TemplatePager {
 				'join_conds' => array(
 					'cn_assignments' => array( 
 						'LEFT JOIN',
-						"cn_assignments.tmp_id = cn_templates.tmp_id AND cn_assignments.not_id = $noticeId"
+						"cn_assignments.tmp_id = cn_templates.tmp_id " . 
+						"AND cn_assignments.not_id = $noticeId"
 					)
 				)
 			);
@@ -1607,7 +1681,9 @@ class CentralNoticePager extends TemplatePager {
 			// Weight select
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				Xml::listDropDown( "weight[$row->tmp_id]",
-					CentralNotice::dropDownList( wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) ) ,
+					CentralNotice::dropDownList( 
+						wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) 
+					) ,
 					'',
 					'25',
 					'',

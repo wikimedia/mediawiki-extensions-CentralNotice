@@ -59,7 +59,9 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		
 		$htmlOut .= Xml::openElement( 'table', array ( 'id' => 'envpicker', 'cellpadding' => 7 ) );
 		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', array( 'style' => 'width: 20%;' ), wfMsg( 'centralnotice-project-name' ) );
+		$htmlOut .= Xml::tags( 'td', 
+			array( 'style' => 'width: 20%;' ), 
+			wfMsg( 'centralnotice-project-name' ) );
 		$htmlOut .= Xml::openElement( 'td' );
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'project' ) );
 		foreach ( $wgNoticeProjects as $value ) {
@@ -69,9 +71,12 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Xml::closeElement( 'td' );
 		$htmlOut .= Xml::closeElement( 'tr' );
 		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsg( 'centralnotice-project-language' ) );
+		$htmlOut .= Xml::tags( 'td', 
+			array( 'valign' => 'top' ), 
+			wfMsg( 'centralnotice-project-language' ) );
 		$htmlOut .= Xml::openElement( 'td' );
-		// Make sure the site language is in the list; a custom language code might not have a defined name...
+		// Make sure the site language is in the list; a custom language code 
+		// might not have a defined name...
 		$languages = Language::getLanguageNames( true );
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
@@ -79,7 +84,9 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		ksort( $languages );
 		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'language' ) );
 		foreach( $languages as $code => $name ) {
-			$htmlOut .= Xml::option( wfMsg( 'centralnotice-language-listing', $code, $name ), $code, $code === $this->language );
+			$htmlOut .= Xml::option( 
+				wfMsg( 'centralnotice-language-listing', $code, $name ), 
+				$code, $code === $this->language );
 		}
 		$htmlOut .= Xml::closeElement( 'select' );
 		$htmlOut .= Xml::closeElement( 'td' );
@@ -153,10 +160,13 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 			$totalWeight += $banner['weight'];
 		}
 		if ( $banners ) {
-			$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9, 'class' => 'wikitable sortable' ) );
+			$htmlOut .= Xml::openElement( 'table', 
+				array ( 'cellpadding' => 9, 'class' => 'wikitable sortable' ) );
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), wfMsg ( 'centralnotice-percentage' ) );
-			$htmlOut .= Xml::element( 'th', array( 'width' => '60%' ), wfMsg ( 'centralnotice-banner' ) );
+			$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), 
+				wfMsg ( 'centralnotice-percentage' ) );
+			$htmlOut .= Xml::element( 'th', array( 'width' => '60%' ), 
+				wfMsg ( 'centralnotice-banner' ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			foreach ( $banners as $banner ) {
 				$htmlOut .= Xml::openElement( 'tr' );
@@ -165,7 +175,8 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 				$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
 				$htmlOut .= Xml::closeElement( 'td' );
 				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					$sk->makeLinkObj( $viewPage, htmlspecialchars( $banner['name'] ), 'template=' . urlencode( $banner['name'] ) )
+					$sk->makeLinkObj( $viewPage, htmlspecialchars( $banner['name'] ), 
+						'template=' . urlencode( $banner['name'] ) )
 				);
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}

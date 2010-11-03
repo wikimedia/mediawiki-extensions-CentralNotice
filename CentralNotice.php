@@ -123,19 +123,29 @@ function efCentralNoticeSchema( $updater = null ) {
 		global $wgDBtype, $wgExtNewTables, $wgExtNewFields;
 
 		if ( $wgDBtype == 'mysql' ) {
-			$wgExtNewTables[] = array( 'cn_notices', $base . '/CentralNotice.sql' );
-			$wgExtNewFields[] = array( 'cn_notices', 'not_preferred', $base . '/patches/patch-notice_preferred.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_languages', $base . '/patches/patch-notice_languages.sql' );
-			$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon', $base . '/patches/patch-template_settings.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_countries', $base . '/patches/patch-notice_countries.sql' );
+			$wgExtNewTables[] = array( 'cn_notices', 
+				$base . '/CentralNotice.sql' );
+			$wgExtNewFields[] = array( 'cn_notices', 'not_preferred',
+			   $base . '/patches/patch-notice_preferred.sql' );
+			$wgExtNewTables[] = array( 'cn_notice_languages', 
+				$base . '/patches/patch-notice_languages.sql' );
+			$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon', 
+				$base . '/patches/patch-template_settings.sql' );
+			$wgExtNewTables[] = array( 'cn_notice_countries', 
+				$base . '/patches/patch-notice_countries.sql' );
 		}
 	} else {
 		if ( $updater->getDB()->getType() == 'mysql' ) {
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notices', $base . '/CentralNotice.sql' ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_notices', 'not_preferred', $base . '/patches/patch-notice_preferred.sql' ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_languages', $base . '/patches/patch-notice_languages.sql' ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon', $base . '/patches/patch-template_settings.sql' ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries', $base . '/patches/patch-notice_countries.sql' ) );
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notices', 
+				$base . '/CentralNotice.sql' ) );
+			$updater->addExtensionUpdate( array( 'addField', 'cn_notices', 'not_preferred', 
+				$base . '/patches/patch-notice_preferred.sql' ) );
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_languages', 
+				$base . '/patches/patch-notice_languages.sql' ) );
+			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon', 
+				$base . '/patches/patch-template_settings.sql' ) );
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries', 
+				$base . '/patches/patch-notice_countries.sql' ) );
 		}
 	}
 	return true;

@@ -53,7 +53,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	
 	/**
 	 * Generate the JS for the requested banner
-	 * @return a string of Javascript containing a call to insertBanner() with JSON containing the banner content as the parameter
+	 * @return a string of Javascript containing a call to insertBanner() 
+	 *   with JSON containing the banner content as the parameter
 	 */
 	function getJsNotice( $bannerName ) {
 		// Make sure the banner exists
@@ -165,16 +166,18 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			wfRestoreWarnings();
 			if ( !$count ) {
 				// Pull long-cached amount
-				$count = intval( $wgMemc->get( wfMemcKey( 'centralnotice', 'counter', 'fallback' ) ) );
+				$count = intval( $wgMemc->get( 
+					wfMemcKey( 'centralnotice', 'counter', 'fallback' ) ) );
 				if ( !$count ) {
 					// Return hard-coded amount if all else fails
 					return 1100000; // Update as needed during fundraiser
 				}
 			}
-			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter' ), $count, 60 ); // Expire in 60 seconds
-			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter', 'fallback' ), $count ); // No expiration
+			// Expire in 60 seconds
+			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter' ), $count, 60 );
+			// No expiration
+			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter', 'fallback' ), $count );
 		}
 		return $count;
 	}
-	
 }
