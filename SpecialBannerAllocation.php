@@ -128,7 +128,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
 	function showList() {
-		global $wgRequest, $wgOut, $wgUser, $wgRequest, $wgLang;
+		global $wgOut, $wgUser, $wgRequest, $wgLang;
 		
 		$sk = $wgUser->getSkin();
 		$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
