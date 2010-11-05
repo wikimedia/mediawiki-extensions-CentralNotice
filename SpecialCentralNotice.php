@@ -1692,12 +1692,11 @@ class CentralNoticePager extends TemplatePager {
 		}
 		
 		// Link and Preview
-		$viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			$this->getSkin()->makeLinkObj( $viewPage,
+			$this->getSkin()->makeLinkObj( $this->viewPage,
 				htmlspecialchars( $row->tmp_name ),
 				'template=' . urlencode( $row->tmp_name ) ) .
 			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
