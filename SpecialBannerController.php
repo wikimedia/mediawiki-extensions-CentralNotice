@@ -4,8 +4,8 @@
  * Generates Javascript file which controls banner selection on the client side
  */
 class SpecialBannerController extends UnlistedSpecialPage {
-	protected $sharedMaxAge = 7200; // Cache for 2 hours on the server side
-	protected $maxAge = 7200; // Cache for 2 hours on the client side
+	protected $sharedMaxAge = 3600; // Cache for 1 hour on the server side
+	protected $maxAge = 3600; // Cache for 1 hour on the client side
 
 	function __construct() {
 		// Register special page
