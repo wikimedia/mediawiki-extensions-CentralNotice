@@ -1601,7 +1601,7 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
  */
 $messages['cy'] = array(
 	'centralnotice' => "Gweinyddu'r hysbysiad canolog",
-	'noticetemplate' => 'Nodyn ar gyfer hysbysiad canolog',
+	'noticetemplate' => "Gweinyddu'r hysbysiad canolog",
 	'centralnotice-desc' => 'Yn ychwanegu hysbysiad canolog',
 	'centralnotice-summary' => "Mae'r teclyn hwn yn eich galluogi i olygu'r hysbysiadau canolog sydd wedi eu gosod ar hyn o bryd.
 Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.",
