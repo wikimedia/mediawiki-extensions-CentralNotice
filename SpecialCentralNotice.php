@@ -282,7 +282,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Print out all campaigns found in db
+	 * Show all campaigns found in the database, show "Add a campaign" form
 	 */
 	function listNotices() {
 		global $wgOut, $wgUser, $wgLang, $wgRequest;
@@ -337,8 +337,8 @@ class CentralNotice extends SpecialPage {
 			// Table headers
 			$headers = array(
 				wfMsgHtml( 'centralnotice-notice-name' ),
-				wfMsgHtml( 'centralnotice-project-name' ),
-				wfMsgHtml( 'centralnotice-project-lang' ),
+				wfMsgHtml( 'centralnotice-projects' ),
+				wfMsgHtml( 'centralnotice-languages' ),
 				wfMsgHtml( 'centralnotice-start-date' ),
 				wfMsgHtml( 'centralnotice-end-date' ),
 				wfMsgHtml( 'centralnotice-enabled' ),
@@ -463,11 +463,11 @@ class CentralNotice extends SpecialPage {
 					$startArray['hour'] .
 					$startArray['min'] . '00'
 				;
-				$projectSelected = $wgRequest->getVal( 'project_name' );
+				$noticeProjects = $wgRequest->getArray( 'projects', array() );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
 			} else { // Defaults
 				$startTimestamp = null;
-				$projectSelected = '';
+				$noticeProjects = array();
 				$noticeLanguages = array();
 			}
 		
@@ -500,12 +500,14 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-project-name' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->projectDropDownList( $projectSelected ) );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				wfMsgHtml( 'centralnotice-projects' ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->projectMultiSelector( $noticeProjects ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'yourlanguage' ) );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 
+				wfMsgHtml( 'centralnotice-languages' ) );
 			$htmlOut .= Xml::tags( 'td', array(), 
 				$this->languageMultiSelector( $noticeLanguages ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
@@ -544,6 +546,10 @@ class CentralNotice extends SpecialPage {
 		$wgOut->addHTML( $htmlOut );
 	}
 
+	/**
+	 * Show the interface for viewing/editing an individual campaign
+	 * @param $notice The name of the campaign to view
+	 */
 	function listNoticeDetail( $notice ) {
 		global $wgOut, $wgRequest, $wgUser;
 		
@@ -827,12 +833,13 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-project-name' ) );
+			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-projects' ) );
 			$htmlOut .= Xml::tags( 'td', array(), $this->projectDropDownList( $projectSelected ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), wfMsgHtml( 'yourlanguage' ) );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 
+				wfMsgHtml( 'centralnotice-languages' ) );
 			$htmlOut .= Xml::tags( 'td', array(), 
 				$this->languageMultiSelector( $noticeLanguages ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
@@ -1476,6 +1483,54 @@ class CentralNotice extends SpecialPage {
 					'size' => 4, 
 					'id' => 'project_languages[]', 
 					'name' => 'project_languages[]', 
+					'disabled' => 'disabled' 
+				),
+				$options
+			);
+		}
+		return $htmlOut;
+	}
+	
+	/**
+	 * Generates a multiple select list of all project types.
+	 * @param $selected The name of the selected project type
+	 * @return multiple select list
+	 */
+	function projectMultiSelector( $selected = array() ) {
+		global $wgNoticeProjects, $wgExtensionAssetsPath, $wgLang;
+		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
+		
+		$options = "\n";
+		foreach( $wgNoticeProjects as $project ) {
+			$options .= Xml::option(
+				$project,
+				$project,
+				in_array( $project, $selected )
+			) . "\n";
+		}
+		$htmlOut = '';
+		if ( $this->editable ) {
+			$htmlOut .= Xml::tags( 'select',
+				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'projects[]', 'name' => 'projects[]' ),
+				$options
+			);
+			$buttons = array();
+			$buttons[] = '<a href="#" onclick="selectProjects(true);return false;">' . 
+				wfMsg( 'powersearch-toggleall' ) . '</a>';
+			$buttons[] = '<a href="#" onclick="selectProjects(false);return false;">' . 
+				wfMsg( 'powersearch-togglenone' ) . '</a>';
+			$htmlOut .= Xml::tags( 'div',
+				array( 'style' => 'margin-top: 0.2em;' ),
+				'<img src="'.$scriptPath.'/up-arrow.png" style="vertical-align:baseline;"/>' . 
+				wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
+			);
+		} else {
+			$htmlOut .= Xml::tags( 'select',
+				array( 
+					'multiple' => 'multiple', 
+					'size' => 4, 
+					'id' => 'projects[]', 
+					'name' => 'projects[]', 
 					'disabled' => 'disabled' 
 				),
 				$options
