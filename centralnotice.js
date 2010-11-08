@@ -1,3 +1,10 @@
+function selectProjects( selectAll ) {
+	var selectBox = document.getElementById('projects[]');
+	var firstSelect = selectBox.options.length - 1;
+	for (var i = firstSelect; i >= 0; i--) {
+		selectBox.options[i].selected = selectAll;
+	}
+}
 function selectLanguages( selectAll ) {
 	var selectBox = document.getElementById('project_languages[]');
 	var firstSelect = selectBox.options.length - 1;

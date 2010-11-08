@@ -760,7 +760,6 @@ class CentralNotice extends SpecialPage {
 				'not_end',
 				'not_enabled',
 				'not_preferred',
-				'not_project',
 				'not_locked',
 				'not_geo'
 			),
@@ -789,7 +788,7 @@ class CentralNotice extends SpecialPage {
 				$isEnabled = $wgRequest->getCheck( 'enabled' );
 				$isPreferred = $wgRequest->getCheck( 'preferred' );
 				$isLocked = $wgRequest->getCheck( 'locked' );
-				$projectSelected = $wgRequest->getVal( 'project_name' );
+				$noticeProjects = $wgRequest->getArray( 'projects', array() );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
 				$isGeotargeted = $wgRequest->getCheck( 'geotargeted' );
 				$countries = $wgRequest->getArray( 'geo_countries', array() );
@@ -799,7 +798,7 @@ class CentralNotice extends SpecialPage {
 				$isEnabled = ( $row->not_enabled == '1' );
 				$isPreferred = ( $row->not_preferred == '1' );
 				$isLocked = ( $row->not_locked == '1' );
-				$projectSelected = $row->not_project;
+				$noticeProjects = $this->getNoticeProjects( $notice );
 				$noticeLanguages = $this->getNoticeLanguages( $notice );
 				$isGeotargeted = ( $row->not_geo == '1' );
 				$countries = $this->getNoticeCountries( $notice );
@@ -833,8 +832,10 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-projects' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->projectDropDownList( $projectSelected ) );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ), 
+				wfMsgHtml( 'centralnotice-projects' ) );
+			$htmlOut .= Xml::tags( 'td', array(), 
+				$this->projectMultiSelector( $noticeProjects ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1255,6 +1256,21 @@ class CentralNotice extends SpecialPage {
 		 } else {
 		 	return null;
 		 }
+	}
+	
+	function getNoticeProjects( $noticeName ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$eNoticeName = htmlspecialchars( $noticeName );
+		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
+		$projects = array();
+		if ( $row ) {
+			$res = $dbr->select( 'cn_notice_projects', 'np_project', 
+				array( 'np_notice_id' => $row->not_id ) );
+			foreach ( $res as $projectRow ) {
+				$projects[] = $projectRow->np_project;
+			}
+		}
+		return $projects;
 	}
 
 	function getNoticeLanguages( $noticeName ) {
