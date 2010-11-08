@@ -140,14 +140,14 @@ class CentralNotice extends SpecialPage {
 				if ( $method == 'addNotice' ) {
 					$noticeName        = $wgRequest->getVal( 'noticeName' );
 					$start             = $wgRequest->getArray( 'start' );
-					$project_name      = $wgRequest->getVal( 'project_name' );
+					$projects          = $wgRequest->getArray( 'projects' );
 					$project_languages = $wgRequest->getArray( 'project_languages' );
 					$geotargeted       = $wgRequest->getCheck( 'geotargeted' );
 					$geo_countries     = $wgRequest->getArray( 'geo_countries' );
 					if ( $noticeName == '' ) {
 						$this->showError( 'centralnotice-null-string' );
 					} else {
-						$this->addNotice( $noticeName, '0', $start, $project_name,
+						$this->addNotice( $noticeName, '0', $start, $projects,
 							$project_languages, $geotargeted, $geo_countries );
 					}
 				}
@@ -304,7 +304,6 @@ class CentralNotice extends SpecialPage {
 				'not_end',
 				'not_enabled',
 				'not_preferred',
-				'not_project',
 				'not_locked'
 			),
 			null,
@@ -359,15 +358,23 @@ class CentralNotice extends SpecialPage {
 						htmlspecialchars( $row->not_name ),
 						'method=listNoticeDetail&notice=' . urlencode( $row->not_name ) );
 
-				// Project
-				$fields[] = htmlspecialchars( $this->getProjectName( $row->not_project ) );
+				// Projects
+				$projects = $this->getNoticeProjects( $row->not_name );
+				$project_count = count( $projects );
+				$projectList = '';
+				if ( $language_count > 2 ) {
+					$projectList = wfMsg ( 'centralnotice-multiple', $project_count );
+				} elseif ( $project_count > 0 ) {
+					$projectList = $wgLang->commaList( $projects );
+				}
+				$fields[] = $projectList;
 
 				// Languages
 				$project_langs = $this->getNoticeLanguages( $row->not_name );
 				$language_count = count( $project_langs );
 				$languageList = '';
 				if ( $language_count > 3 ) {
-					$languageList = wfMsg ( 'centralnotice-multiple_languages', $language_count );
+					$languageList = wfMsg ( 'centralnotice-multiple', $language_count );
 				} elseif ( $language_count > 0 ) {
 					$languageList = $wgLang->commaList( $project_langs );
 				}
@@ -654,10 +661,10 @@ class CentralNotice extends SpecialPage {
 						}
 					}
 		
-					// Handle new project name
-					$projectName = $wgRequest->getVal( 'project_name' );
-					if ( $projectName !== null ) {
-						$this->updateProjectName ( $notice, $projectName );
+					// Handle new projects
+					$projects = $wgRequest->getArray( 'projects' );
+					if ( $projects ) {
+						$this->updateProjects( $notice, $projects );
 					}
 		
 					// Handle new project languages
@@ -1122,11 +1129,14 @@ class CentralNotice extends SpecialPage {
 		return $templates;
 	}
 
-	function addNotice( $noticeName, $enabled, $start, $project_name, 
+	function addNotice( $noticeName, $enabled, $start, $projects, 
 		$project_languages, $geotargeted, $geo_countries ) 
 	{
 		if ( $this->noticeExists( $noticeName ) ) {
 			$this->showError( 'centralnotice-notice-exists' );
+			return;
+		} elseif ( empty( $projects ) ) {
+			$this->showError( 'centralnotice-no-project' );
 			return;
 		} elseif ( empty( $project_languages ) ) {
 			$this->showError( 'centralnotice-no-language' );
@@ -1160,12 +1170,19 @@ class CentralNotice extends SpecialPage {
 					'not_enabled' => $enabled,
 					'not_start' => $dbw->timestamp( $startTs ),
 					'not_end' => $dbw->timestamp( $endTs ),
-					'not_project' => $project_name,
 					'not_geo' => $geotargeted
 				)
 			);
 			$not_id = $dbw->insertId();
 			
+			// Do multi-row insert for campaign projects
+			$insertArray = array();
+			foreach( $projects as $project ) {
+				$insertArray[] = array( 'np_notice_id' => $not_id, 'np_project' => $project );
+			}
+			$res = $dbw->insert( 'cn_notice_projects', $insertArray, 
+				__METHOD__, array( 'IGNORE' ) );
+				
 			// Do multi-row insert for campaign languages
 			$insertArray = array();
 			foreach( $project_languages as $code ) {
@@ -1567,6 +1584,35 @@ class CentralNotice extends SpecialPage {
 				'not_name' => $notice
 			)
 		);
+	}
+	
+	function updateProjects( $notice, $newProjects ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+		
+		// Get the previously assigned projects
+		$oldProjects = $this->getNoticeProjects( $notice );
+		
+		// Get the notice id
+		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
+		
+		// Add newly assigned projects
+		$addProjects = array_diff( $newProjects, $oldProjects );
+		$insertArray = array();
+		foreach( $addProjects as $project ) {
+			$insertArray[] = array( 'np_notice_id' => $row->not_id, 'np_project' => $project );
+		}
+		$res = $dbw->insert( 'cn_notice_projects', $insertArray, __METHOD__, array( 'IGNORE' ) );
+		
+		// Remove disassociated projects
+		$removeProjects = array_diff( $oldProjects, $newProjects );
+		if ( $removeProjects ) {
+			$res = $dbw->delete( 'cn_notice_projects',
+				array( 'np_notice_id' => $row->not_id, 'np_project' => $removeProjects )
+			);
+		}
+		
+		$dbw->commit();
 	}
 
 	function updateProjectLanguages( $notice, $newLanguages ) {
