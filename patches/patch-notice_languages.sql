@@ -1,4 +1,4 @@
--- Update to allow for any number of languages per notice.
+-- Update to allow for any number of languages per campaign.
 
 CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_languages (
 	`nl_notice_id` int unsigned NOT NULL,

@@ -133,6 +133,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_settings.sql' );
 			$wgExtNewTables[] = array( 'cn_notice_countries', 
 				$base . '/patches/patch-notice_countries.sql' );
+			$wgExtNewTables[] = array( 'cn_notice_projects', 
+				$base . '/patches/patch-notice_projects.sql' );
 		}
 	} else {
 		if ( $updater->getDB()->getType() == 'mysql' ) {
@@ -146,6 +148,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_settings.sql' ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries', 
 				$base . '/patches/patch-notice_countries.sql' ) );
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects', 
+				$base . '/patches/patch-notice_projects.sql' ) );
 		}
 	}
 	return true;
