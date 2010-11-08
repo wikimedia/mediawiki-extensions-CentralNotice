@@ -362,7 +362,7 @@ class CentralNotice extends SpecialPage {
 				$projects = $this->getNoticeProjects( $row->not_name );
 				$project_count = count( $projects );
 				$projectList = '';
-				if ( $language_count > 2 ) {
+				if ( $project_count > 2 ) {
 					$projectList = wfMsg ( 'centralnotice-multiple', $project_count );
 				} elseif ( $project_count > 0 ) {
 					$projectList = $wgLang->commaList( $projects );
