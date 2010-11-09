@@ -56,32 +56,18 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 * Generate JSON for the specified site
 	 */
 	function getJsonList() {
-		
-		// Quick short circuit to be able to show preferred notices
 		$templates = array();
-
-		if ( $this->language == 'en' && $this->project != null ) {
-			// See if we have any preferred notices for all of en
-			$notices = CentralNoticeDB::getNotices( null, 'en', null, 1, 1, $this->location );
-
-			if ( $notices ) {
-				// Pull banners
-				$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
-			}
+		
+		// See if we have any preferred campaigns for this language and project
+		$notices = CentralNoticeDB::getNotices( $this->project, $this->language, null, 1, 1, $this->location );
+		
+		// Quick short circuit to show preferred campaigns
+		if ( $notices ) {
+			// Pull banners
+			$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
 		}
 
-		if ( !$templates && $this->project == 'wikipedia' ) {
-			// See if we have any preferred notices for this language wikipedia
-			$notices = CentralNoticeDB::getNotices( 'wikipedia', $this->language, 
-				false, 1, 1, $this->location );
-			
-			if ( $notices ) {
-				// Pull banners
-				$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
-			}
-		}
-
-		// Didn't find any preferred matches so do an old style lookup
+		// Didn't find any preferred banners so do an old style lookup
 		if ( !$templates )  {
 			$templates = CentralNotice::selectNoticeTemplates( 
 				$this->project, $this->language, $this->location );

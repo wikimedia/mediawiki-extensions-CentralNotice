@@ -1070,6 +1070,7 @@ class CentralNotice extends SpecialPage {
 		$campaignResults1 = $dbr->select(
 			array(
 				'cn_notices',
+				'cn_notice_projects',
 				'cn_notice_languages'
 			),
 			array(
@@ -1080,9 +1081,10 @@ class CentralNotice extends SpecialPage {
 				"not_end >= $encTimestamp",
 				'not_enabled = 1', // enabled
 				'not_geo = 0', // not geotargeted
+				'np_notice_id = cn_notices.not_id',
+				'np_project' => $project,
 				'nl_notice_id = cn_notices.not_id',
-				'nl_language' => $language,
-				'not_project' => array( '', $project )
+				'nl_language' => $language
 			),
 			__METHOD__
 		);
@@ -1100,6 +1102,7 @@ class CentralNotice extends SpecialPage {
 				$campaignResults2 = $dbr->select(
 					array(
 						'cn_notices',
+						'cn_notice_projects',
 						'cn_notice_languages',
 						'cn_notice_countries'
 					),
@@ -1113,9 +1116,10 @@ class CentralNotice extends SpecialPage {
 						'not_geo = 1', // geotargeted
 						'nc_notice_id = cn_notices.not_id',
 						'nc_country' => $location,
+						'np_notice_id = cn_notices.not_id',
+						'np_project' => $project,
 						'nl_notice_id = cn_notices.not_id',
-						'nl_language' => $language,
-						'not_project' => array( '', $project )
+						'nl_language' => $language
 					),
 					__METHOD__
 				);

@@ -27,17 +27,23 @@ class CentralNoticeDB {
 		}
 		
 		$tables = array( 'cn_notices' );
+		if ( $project ) {
+			$tables[] = 'cn_notice_projects';
+		}
 		if ( $language ) {
 			$tables[] = 'cn_notice_languages';
 		}
 
 		$conds = array(
-			'not_project' => array( '', $project ),
 			'not_geo' => 0,
 			"not_start <= $encTimestamp",
 			"not_end >= $encTimestamp",
 		);
 		// Use whatever conditional arguments got passed in
+		if ( $project ) {
+			$conds[] = 'np_notice_id = cn_notices.not_id';
+			$conds['np_project'] = $project;
+		}
 		if ( $language ) {
 			$conds[] = 'nl_notice_id = cn_notices.not_id';
 			$conds['nl_language'] = $language;
@@ -65,19 +71,25 @@ class CentralNoticeDB {
 		// If a location is passed, also pull geotargeted campaigns that match the location
 		if ( $location ) {
 			$tables = array( 'cn_notices', 'cn_notice_countries' );
+			if ( $project ) {
+				$tables[] = 'cn_notice_projects';
+			}
 			if ( $language ) {
 				$tables[] = 'cn_notice_languages';
 			}
 	
 			// Use whatever conditional arguments got passed in
 			$conds = array(
-				'not_project' => array( '', $project ),
 				'not_geo' => 1,
 				'nc_notice_id = cn_notices.not_id',
 				'nc_country' => $location,
 				"not_start <= $encTimestamp",
 				"not_end >= $encTimestamp",
 			);
+			if ( $project ) {
+				$conds[] = 'np_notice_id = cn_notices.not_id';
+				$conds['np_project'] = $project;
+			}
 			if ( $language ) {
 				$conds[] = "nl_notice_id = cn_notices.not_id";
 				$conds['nl_language'] = $language;
