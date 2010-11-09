@@ -1454,26 +1454,6 @@ class CentralNotice extends SpecialPage {
 		);
 	}
 
-	function projectDropDownList( $selected = '' ) {
-		global $wgNoticeProjects;
-		
-		if ( $this->editable ) {
-			$htmlOut = Xml::openElement( 'select', array( 'name' => 'project_name' ) );
-			$htmlOut .= Xml::option( 'All projects', '', ( $selected == '' ) );
-			foreach ( $wgNoticeProjects as $value ) {
-				$htmlOut .= Xml::option( $value, $value, ( $selected == $value ) );
-			}
-			$htmlOut .= Xml::closeElement( 'select' );
-			return $htmlOut;
-		} else {
-			if ( $selected == '' ) {
-				return 'All projects';
-			} else {
-				return htmlspecialchars( $selected );
-			}
-		}
-	}
-	
 	/**
 	 * Generates a multiple select list of all languages.
 	 * @param $selected The language codes of the selected languages
