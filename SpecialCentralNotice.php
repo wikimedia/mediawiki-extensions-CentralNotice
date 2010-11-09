@@ -285,7 +285,7 @@ class CentralNotice extends SpecialPage {
 	 * Show all campaigns found in the database, show "Add a campaign" form
 	 */
 	function listNotices() {
-		global $wgOut, $wgUser, $wgLang, $wgRequest;
+		global $wgOut, $wgUser, $wgLang, $wgRequest, $wgNoticeProjects;
 
 		// Get connection
 		$dbr = wfGetDB( DB_SLAVE );
@@ -362,8 +362,12 @@ class CentralNotice extends SpecialPage {
 				$projects = $this->getNoticeProjects( $row->not_name );
 				$project_count = count( $projects );
 				$projectList = '';
-				if ( $project_count > 2 ) {
-					$projectList = wfMsg ( 'centralnotice-multiple', $project_count );
+				if ( $project_count > 1 ) {
+					if ( $project_count == count( $wgNoticeProjects ) ) {
+						$projectList = wfMsg ( 'centralnotice-all-projects' );
+					} else {
+						$projectList = wfMsg ( 'centralnotice-multiple', $project_count );
+					}
 				} elseif ( $project_count > 0 ) {
 					$projectList = $wgLang->commaList( $projects );
 				}

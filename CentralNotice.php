@@ -20,6 +20,7 @@ $wgNoticeProjects = array(
 	'commons',
 	'meta',
 	'wikispecies',
+	'test'
 );
 
 // Enable the notice-hosting infrastructure on this wiki...
