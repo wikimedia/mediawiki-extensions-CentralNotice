@@ -363,13 +363,20 @@ class CentralNotice extends SpecialPage {
 				$project_count = count( $projects );
 				$projectList = '';
 				if ( $project_count > 1 ) {
-					if ( $project_count == count( $wgNoticeProjects ) ) {
+					$allProjects = true;
+					foreach ( $wgNoticeProjects as $project ) {
+						if ( !in_array( $project, $projects ) ) {
+							$allProjects = false;
+							break;
+						}
+					}
+					if ( $allProjects ) {
 						$projectList = wfMsg ( 'centralnotice-all-projects' );
 					} else {
 						$projectList = wfMsg ( 'centralnotice-multiple', $project_count );
 					}
-				} elseif ( $project_count > 0 ) {
-					$projectList = $wgLang->commaList( $projects );
+				} elseif ( $project_count == 1 ) {
+					$projectList = htmlspecialchars( $projects[0] );
 				}
 				$fields[] = $projectList;
 
