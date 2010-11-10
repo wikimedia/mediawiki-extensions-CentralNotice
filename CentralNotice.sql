@@ -30,3 +30,9 @@ CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_languages (
 	`nl_language` varchar(32) NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/nl_notice_id_language ON /*$wgDBprefix*/cn_notice_languages (nl_notice_id, nl_language);
+
+CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_projects (
+	`np_notice_id` int unsigned NOT NULL,
+	`np_project` varchar(32) NOT NULL
+) /*$wgDBTableOptions*/;
+CREATE UNIQUE INDEX /*i*/np_notice_id_project ON /*$wgDBprefix*/cn_notice_projects (np_notice_id, np_project);
