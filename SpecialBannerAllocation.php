@@ -73,7 +73,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', 
 			array( 'valign' => 'top' ), 
-			wfMsg( 'centralnotice-project-language' ) );
+			wfMsg( 'centralnotice-project-lang' ) );
 		$htmlOut .= Xml::openElement( 'td' );
 		// Make sure the site language is in the list; a custom language code 
 		// might not have a defined name...
