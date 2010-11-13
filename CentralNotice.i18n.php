@@ -4551,7 +4551,8 @@ $messages['ja'] = array(
 	'centralnotice-notices' => '告知',
 	'centralnotice-notice-exists' => '告知がすでに存在します。
 追加できませんでした。',
-	'centralnotice-no-language' => '告知する言語が指定されませんでした。追加できませんでした。',
+	'centralnotice-no-language' => '告知する言語が選択されませんでした。追加されません。',
+	'centralnotice-no-project' => '告知するプロジェクトが選択されませんでした。追加されません。',
 	'centralnotice-template-exists' => 'テンプレートがすでに存在します。追加できませんでした。',
 	'centralnotice-notice-doesnt-exist' => '告知が存在しません。',
 	'centralnotice-remove-notice-doesnt-exist' => '告知は存在しません。
@@ -5080,6 +5081,7 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-show-notices' => 'Matdeelunge weisen',
 	'centralnotice-list-templates' => 'Lëscht vun de Banneren',
 	'centralnotice-multiple' => 'méi ($1)',
+	'centralnotice-all-projects' => 'All Projeten',
 	'centralnotice-translations' => 'Iwwersetzungen',
 	'centralnotice-translate-to' => 'Iwwersetzen op',
 	'centralnotice-translate' => 'Iwwersetzen',
@@ -5096,6 +5098,7 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-notice-exists' => "D'Matdeelung gëtt et schonn.
 Si konnt net derbäigesat ginn.",
 	'centralnotice-no-language' => "Fir d'Campagne gouf keng Sprooch erausgesicht. Se gëtt net derbäigesat.",
+	'centralnotice-no-project' => "Fir d'Campagne gouf kee Projet erausgesicht. E gëtt net derbäigesat.",
 	'centralnotice-template-exists' => 'De Banner gëtt et schonn.
 Net derbäisetzen.',
 	'centralnotice-notice-doesnt-exist' => "D'Campagne gëtt et net.",
@@ -5171,6 +5174,8 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-allocation' => 'Dispositioun',
 	'centralnotice-view-allocation' => 'Dispositioun vum Banner weisen',
 	'centralnotice-allocation-instructions' => 'Sicht den Environnement eraus wou Dir wëllt datt de Banner esou soll gesi ginn:',
+	'centralnotice-languages' => 'Sproochen',
+	'centralnotice-projects' => 'Projeten',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Keng Banneren zougedeelt.',
 	'centralnotice-allocation-description' => 'Dispositioun vum Banner fir $1.$2 a(n) $3:',
@@ -7660,6 +7665,7 @@ $messages['rue'] = array(
 	'centralnotice-show-notices' => 'Указати повідомлїня',
 	'centralnotice-list-templates' => 'Cписок шаблон',
 	'centralnotice-multiple' => 'веце ($1)',
+	'centralnotice-all-projects' => 'Вшыткы проєкты',
 	'centralnotice-translations' => 'Переклады',
 	'centralnotice-translate-to' => 'Переклад до',
 	'centralnotice-translate' => 'Переложыти',
@@ -7676,6 +7682,7 @@ $messages['rue'] = array(
 	'centralnotice-notice-exists' => 'Повідомлїня уж екзістує.
 Непридане.',
 	'centralnotice-no-language' => 'Про кампань не быв выбраный жаден язык. Повідомлїня не было придане.',
+	'centralnotice-no-project' => 'Про кампань не быв выбраный жаден проєкт. Повідомлїня не было придане.',
 	'centralnotice-template-exists' => 'Банер уж екзістує.
 Непридане.',
 	'centralnotice-notice-doesnt-exist' => 'Кампань не екзістує.',
@@ -7746,6 +7753,8 @@ $messages['rue'] = array(
 	'centralnotice-allocation' => 'Придїлїня',
 	'centralnotice-view-allocation' => 'Зобразити придїлїня баверів',
 	'centralnotice-allocation-instructions' => 'Выберте собі середовище, про котре хочете указати придїлїня банерів:',
+	'centralnotice-languages' => 'Языкы',
+	'centralnotice-projects' => 'Проєкты',
 	'centralnotice-country' => 'Країна:',
 	'centralnotice-no-allocation' => 'Жадны банеры не суть придїлены.',
 	'centralnotice-allocation-description' => 'Придїлїня банерів на $1.$2 у $3:',
@@ -9344,7 +9353,8 @@ $messages['tpi'] = array(
  */
 $messages['tr'] = array(
 	'centralnotice' => 'Merkezi uyarı yöneticisi',
-	'noticetemplate' => 'Merkezi uyarı şablonu',
+	'noticetemplate' => 'Merkezi uyarı yöneticisi',
+	'bannerallocation' => 'Merkezi uyarı yöneticisi',
 	'centralnotice-desc' => 'Merkezi site uyarısı ekler',
 	'centralnotice-summary' => 'Bu modül size, mevcut ayarlanmış merkezi uyarıları değiştirmenize izin verir.
 Eski uyarıları ekleyip çıkarmak için de kullanılabilir.',
@@ -9353,31 +9363,44 @@ Eski uyarıları ekleyip çıkarmak için de kullanılabilir.',
 	'centralnotice-end-date' => 'Bitiş tarihi',
 	'centralnotice-enabled' => 'Etkinleştirilmiş',
 	'centralnotice-modify' => 'Gönder',
+	'centralnotice-save-banner' => 'Afişi kaydet',
 	'centralnotice-preview' => 'Ön izleme',
 	'centralnotice-add-new' => 'Yeni bir merkezi uyarı ekle',
 	'centralnotice-remove' => 'Çıkar',
 	'centralnotice-translate-heading' => '$1 için çeviri',
 	'centralnotice-manage' => 'Merkezi uyarıyı yönet',
+	'centralnotice-manage-templates' => 'Afişleri yönet',
 	'centralnotice-add' => 'Ekle',
 	'centralnotice-add-notice' => 'Bir uyarı ekle',
+	'centralnotice-edit-notice' => 'Kampanyayı düzenle',
 	'centralnotice-add-template' => 'Bir şablon ekle',
 	'centralnotice-show-notices' => 'Uyarıları göster',
 	'centralnotice-list-templates' => 'Şablonları listele',
+	'centralnotice-multiple' => 'Çoklu ($1)',
+	'centralnotice-all-projects' => 'Tüm projeler',
 	'centralnotice-translations' => 'Çeviriler',
 	'centralnotice-translate-to' => 'Şu dile çevir',
 	'centralnotice-translate' => 'Çevir',
 	'centralnotice-english' => 'İngilizce',
-	'centralnotice-banner-name' => 'Şablon adı',
+	'centralnotice-banner-name' => 'Afiş adı:',
+	'centralnotice-banner' => 'Afiş',
+	'centralnotice-banner-heading' => 'Afiş: $1',
 	'centralnotice-templates' => 'Şablonlar',
 	'centralnotice-weight' => 'Önem',
 	'centralnotice-locked' => 'Kilitli',
+	'centralnotice-notice' => 'Kampanya',
+	'centralnotice-notice-heading' => 'Kampanya: $1',
 	'centralnotice-notices' => 'Uyarılar',
 	'centralnotice-notice-exists' => 'Uyarı zaten var.
 Eklenmiyor',
+	'centralnotice-no-language' => 'Kampanya için hiç bir dil seçilmedi. Eklenmiyor.',
+	'centralnotice-no-project' => 'Kampanya için hiç bir proje seçilmedi. Eklenmiyor.',
 	'centralnotice-template-exists' => 'Şablon zaten var.
 Eklenmiyor',
-	'centralnotice-notice-doesnt-exist' => 'Uyarı mevcut değil.
-Çıkaracak birşey yok',
+	'centralnotice-notice-doesnt-exist' => 'Kampanya mevcut değil.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Kampanya mevcut değil.
+Çıkarılacak bir şey yok.',
+	'centralnotice-banner-doesnt-exist' => 'Afiş mevcut değil.',
 	'centralnotice-template-still-bound' => 'Şablon hala bir uyarıya bağlı.
 Kaldırılmıyor.',
 	'centralnotice-template-body' => 'Şablon gövdesi:',
@@ -9387,9 +9410,11 @@ Kaldırılmıyor.',
 	'centralnotice-hours' => 'Saat',
 	'centralnotice-min' => 'Dakika',
 	'centralnotice-project-lang' => 'Proje dili',
+	'centralnotice-select' => 'Seç: $1',
 	'centralnotice-project-name' => 'Proje adı',
 	'centralnotice-start-date' => 'Başlangıç tarihi',
 	'centralnotice-start-time' => 'Başlangıç zamanı (UTC)',
+	'centralnotice-end-time' => 'Bitiş zamanı (UTC)',
 	'centralnotice-assigned-templates' => 'Atanmış şablonlar',
 	'centralnotice-no-templates' => 'Hiç şablon bulunamadı.
 Birkaç tane ekleyin!',
@@ -9424,6 +9449,10 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-clone-notice' => 'Şablonun kopyasını oluştur',
 	'centralnotice-clone-name' => 'Adı:',
 	'centralnotice-preview-all-template-translations' => 'Şablonun bütün uygun çevirilerini önizle',
+	'centralnotice-insert' => 'Ekle: $1',
+	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} bağlantısı',
+	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} bağlantısı',
+	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} bağlantısı',
 	'centralnotice-banner-anonymous' => 'Anonim kullanıcılar',
 	'right-centralnotice-admin' => 'Merkezi uyarıları yönet',
 	'right-centralnotice-translate' => 'Merkezi uyarıları çevir',
@@ -9523,6 +9552,7 @@ $messages['udm'] = array(
 );
 
 /** Ukrainian (Українська)
+ * @author AS
  * @author Ahonc
  * @author Aleksandrit
  * @author Alex Khimich
@@ -9574,6 +9604,7 @@ $messages['uk'] = array(
 	'centralnotice-notice-exists' => 'Повідомлення вже існує.
 Не додається',
 	'centralnotice-no-language' => 'Не обрано мови для проведення кампанії. Не додано.',
+	'centralnotice-no-project' => 'Жодного проекту не вибрано для проведення кампанії. Не додано.',
 	'centralnotice-template-exists' => 'Шаблон вже існує.
 Не додається',
 	'centralnotice-notice-doesnt-exist' => 'Кампанії не існує.',
