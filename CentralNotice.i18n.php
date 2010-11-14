@@ -2967,6 +2967,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-show-notices' => 'Afficher les avis',
 	'centralnotice-list-templates' => 'Lister les modèles',
 	'centralnotice-multiple' => 'multiple ($1)',
+	'centralnotice-all-projects' => 'Tous les projets',
 	'centralnotice-translations' => 'Traductions',
 	'centralnotice-translate-to' => 'Traduire en',
 	'centralnotice-translate' => 'Traduire',
@@ -2983,6 +2984,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-notice-exists' => 'L’avis existe déjà.
 Il n’a pas été ajouté.',
 	'centralnotice-no-language' => 'Aucune langue n’a été sélectionnée pour la campagne. Non ajoutée.',
+	'centralnotice-no-project' => 'Aucun projet n’a été sélectionné pour la campagne. Pas d’ajout.',
 	'centralnotice-template-exists' => 'Le modèle existe déjà.
 Il n’a pas été ajouté.',
 	'centralnotice-notice-doesnt-exist' => 'La campagne n’existe pas.',
@@ -3058,6 +3060,8 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-allocation' => 'Allocation',
 	'centralnotice-view-allocation' => 'Voir la disposition de bannière',
 	'centralnotice-allocation-instructions' => 'Choisissez l’environnement pour lequel vous souhaitez afficher la disposition de bannière :',
+	'centralnotice-languages' => 'Langues',
+	'centralnotice-projects' => 'Projets',
 	'centralnotice-country' => 'Pays',
 	'centralnotice-no-allocation' => 'Pas de bannières disposées.',
 	'centralnotice-allocation-description' => 'Disposition de bannière pour $1.$2 en $3 :',
@@ -4204,6 +4208,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
  * @author Farras
  * @author Irwangatot
  * @author IvanLanin
+ * @author Kenrick95
  * @author Rex
  */
 $messages['id'] = array(
@@ -4323,6 +4328,7 @@ Tambahkan di bawah ini.',
 	'centralnotice-allocation' => 'Alokasi',
 	'centralnotice-view-allocation' => 'Lihat alokasi pengumuman',
 	'centralnotice-allocation-instructions' => 'Pilih lingkungan yang ingin Anda lihat alokasi pengumumannya:',
+	'centralnotice-projects' => 'Proyek',
 	'centralnotice-country' => 'Negara',
 	'centralnotice-no-allocation' => 'Tidak ada pengumuman yang dialokasikan.',
 	'centralnotice-allocation-description' => 'Alokasi pengumuman untuk $1.$2 di $3:',
@@ -6275,6 +6281,7 @@ Den kan også bli brukt for å legge til eller fjerne gamle meldinger.',
 	'centralnotice-show-notices' => 'Vis meldinger',
 	'centralnotice-list-templates' => 'Vis maler',
 	'centralnotice-multiple' => 'flere ($1)',
+	'centralnotice-all-projects' => 'Alle prosjekter',
 	'centralnotice-translations' => 'Oversettelser',
 	'centralnotice-translate-to' => 'Oversett til',
 	'centralnotice-translate' => 'Oversett',
@@ -6291,6 +6298,7 @@ Den kan også bli brukt for å legge til eller fjerne gamle meldinger.',
 	'centralnotice-notice-exists' => 'Melding eksisterer allerede.
 Ikke lagt inn.',
 	'centralnotice-no-language' => 'Ingen språk ble valgt for kampanjen. Ikke lagt til.',
+	'centralnotice-no-project' => 'Ingen prosjekter ble valgt for kampanjen. Legger ikke til.',
 	'centralnotice-template-exists' => 'Mal finnes allerede.
 Ikke lagt inn',
 	'centralnotice-notice-doesnt-exist' => 'Kampanje finnes ikke.',
@@ -6366,6 +6374,8 @@ Legg til en under',
 	'centralnotice-allocation' => 'Tildeling',
 	'centralnotice-view-allocation' => 'Vis bannertildeling',
 	'centralnotice-allocation-instructions' => 'Velg miljøet du ønsker å se bannertildelingen for:',
+	'centralnotice-languages' => 'Språk',
+	'centralnotice-projects' => 'Prosjekter',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Ingen bannere tildelt.',
 	'centralnotice-allocation-description' => 'Bannertildeling for $1.$2 i $3:',
