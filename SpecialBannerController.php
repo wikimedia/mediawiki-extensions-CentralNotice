@@ -139,18 +139,7 @@ JAVASCRIPT;
 	}
 	
 	function getToggleScripts() {
-		$showStyle = <<<HTML
-<style type="text/css">
-#centralNotice .siteNoticeSmall {display:none;}
-#centralNotice.collapsed .siteNoticeBig {display:none;}
-#centralNotice.collapsed .siteNoticeSmall {display:block;}
-</style>
-HTML;
-		$encShowStyle = Xml::encodeJsVar( $showStyle );
-
-		$script = "
-var wgNoticeToggleState = (document.cookie.indexOf('hidesnmessage=1')==-1);
-document.writeln($encShowStyle);\n\n";
+		$script = "var wgNoticeToggleState = (document.cookie.indexOf('hidesnmessage=1')==-1);\n\n";
 		return $script;
 	}
 
