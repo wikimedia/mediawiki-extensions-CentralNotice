@@ -5436,6 +5436,7 @@ Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.'
 );
 
 /** Lithuanian (Lietuvių)
+ * @author Garas
  * @author Matasg
  */
 $messages['lt'] = array(
@@ -5452,6 +5453,7 @@ $messages['lt'] = array(
 Pridėkite!',
 	'centralnotice-available-templates' => 'Galimi šablonai',
 	'centralnotice-preview-template' => 'Peržiūrėti šabloną',
+	'centralnotice-settings' => 'Nustatymai',
 	'centralnotice-edit-template' => 'Redaguoti šabloną',
 	'centralnotice-message' => 'Pranešimas',
 	'centralnotice-message-not-set' => 'Pranešimas nenustatytas',
@@ -9762,7 +9764,7 @@ $messages['uk'] = array(
 	'centralnotice-banner-doesnt-exist' => 'Банер не існує.',
 	'centralnotice-template-still-bound' => "Шаблон, як і раніше, пов'язаний з повідомленням.
 Не видаляється.",
-	'centralnotice-template-body' => 'Тіло шаблону:',
+	'centralnotice-template-body' => 'Тіло шаблона:',
 	'centralnotice-day' => 'День',
 	'centralnotice-year' => 'Рік',
 	'centralnotice-month' => 'Місяць',
@@ -9783,7 +9785,7 @@ $messages['uk'] = array(
 	'centralnotice-available-templates' => 'Доступні шаблони',
 	'centralnotice-template-already-exists' => "Шаблон вже прив'язаний.
 Не доданий",
-	'centralnotice-preview-template' => 'Попередній перегляд шаблону',
+	'centralnotice-preview-template' => 'Попередній перегляд шаблона',
 	'centralnotice-change-lang' => 'Змінити мову перекладу',
 	'centralnotice-weights' => 'Ваги',
 	'centralnotice-notice-is-locked' => 'Повідомлення заблоковано.
@@ -9798,7 +9800,7 @@ $messages['uk'] = array(
 Цю дію не можна буде скасувати.',
 	'centralnotice-no-notices-exist' => 'Немає повідомлень.
 Можна додати',
-	'centralnotice-no-templates-translate' => 'Не має ні одного шаблону для редагування перекладу',
+	'centralnotice-no-templates-translate' => 'Не має ні одного шаблона для редагування перекладу',
 	'centralnotice-number-uses' => 'Використовуються',
 	'centralnotice-settings' => 'Налаштування',
 	'centralnotice-edit-template' => 'Редагувати шаблон',
