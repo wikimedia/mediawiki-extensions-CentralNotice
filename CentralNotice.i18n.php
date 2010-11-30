@@ -969,6 +969,7 @@ $messages['bg'] = array(
 	'centralnotice-hours' => 'Час',
 	'centralnotice-min' => 'Минута',
 	'centralnotice-project-lang' => 'Език на проекта',
+	'centralnotice-top-ten-languages' => 'Топ 10 езика',
 	'centralnotice-project-name' => 'Име на проекта',
 	'centralnotice-start-date' => 'Начална дата',
 	'centralnotice-start-time' => 'начално време (UTC)',
@@ -2774,6 +2775,7 @@ Ez da gehituko',
  * @author Ebraminio
  * @author Huji
  * @author Komeil 4life
+ * @author Mjbmr
  * @author Sahim
  * @author Wayiran
  */
@@ -2820,6 +2822,7 @@ $messages['fa'] = array(
 	'centralnotice-notice-exists' => 'اعلان از قبل وجود دارد.
 افزوده نشد',
 	'centralnotice-no-language' => 'هیچ زبانی برای کمپین انتخاب نشده است. اضاقه نشده است.',
+	'centralnotice-no-project' => 'هیچ پروژه‌ای برای پیکار انتخاب نشده بود. هیچ چیز اضافه نشد.',
 	'centralnotice-template-exists' => 'الگو از قبل وجود دارد.
 افزوده نشد',
 	'centralnotice-notice-doesnt-exist' => 'کمپین وجود ندارد.',
@@ -5470,6 +5473,29 @@ Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.'
  * @author Matasg
  */
 $messages['lt'] = array(
+	'centralnotice-query' => 'Keisti šiuo metu vykdomas kampanijas',
+	'centralnotice-notice-name' => 'Kampanijos pavadinimas',
+	'centralnotice-end-date' => 'Pabaigos data',
+	'centralnotice-enabled' => 'Įjungta',
+	'centralnotice-modify' => 'Pateikti',
+	'centralnotice-save-banner' => 'Įrašyti reklaminę juostą',
+	'centralnotice-preview' => 'Peržiūra',
+	'centralnotice-add-new' => 'Pridėti naują kampaniją',
+	'centralnotice-remove' => 'Pašalinti',
+	'centralnotice-translate-heading' => '$1 vertimas',
+	'centralnotice-manage' => 'Valdyti kampanijas',
+	'centralnotice-manage-templates' => 'Valdyti reklamines juostas',
+	'centralnotice-add' => 'Pridėti',
+	'centralnotice-add-notice' => 'Pridėti kampaniją',
+	'centralnotice-edit-notice' => 'Redaguoti kampaniją',
+	'centralnotice-add-template' => 'Pridėti reklaminę juostą',
+	'centralnotice-show-notices' => 'Rodyti kampanijas',
+	'centralnotice-list-templates' => 'Reklaminių juostų sąrašas',
+	'centralnotice-all-projects' => 'Visi projektai',
+	'centralnotice-translations' => 'Vertimai',
+	'centralnotice-translate-to' => 'Išversti į',
+	'centralnotice-translate' => 'Išversti',
+	'centralnotice-english' => 'Anglų',
 	'centralnotice-day' => 'Diena',
 	'centralnotice-year' => 'Metai',
 	'centralnotice-month' => 'Mėnuo',
@@ -5503,10 +5529,17 @@ Pridėkite!',
 	'centralnotice-banner-type' => 'Pranešimo tipas:',
 	'centralnotice-banner-hidable' => 'Statinis/Paslepiamas',
 	'centralnotice-banner-collapsible' => 'Sutraukiamas',
+	'centralnotice-geotargeted' => 'Taikomas geografiškai',
+	'centralnotice-countries' => 'Valstybės',
+	'centralnotice-languages' => 'Kalbos',
+	'centralnotice-projects' => 'Projektai',
+	'centralnotice-country' => 'Valstybė',
+	'centralnotice-percentage' => 'Procentinė dalis',
 	'right-centralnotice-admin' => 'Visuotinių pranešimų valdymas',
 	'right-centralnotice-translate' => 'Visuotinių pranešimų vertimas',
 	'action-centralnotice-admin' => 'visuotinių pranešimų valdymas',
 	'action-centralnotice-translate' => 'visuotinių pranešimų vertimas',
+	'centralnotice-preferred' => 'Pageidaujamas',
 );
 
 /** Latvian (Latviešu)
@@ -9840,7 +9873,7 @@ $messages['uk'] = array(
 	'centralnotice-clone' => 'Клонування',
 	'centralnotice-clone-notice' => 'Створити копію шаблона',
 	'centralnotice-clone-name' => 'Назва:',
-	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблону',
+	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблона',
 	'centralnotice-insert' => 'Вставити: $1',
 	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} посилання',
 	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} посилання',
