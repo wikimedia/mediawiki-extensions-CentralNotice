@@ -5798,7 +5798,7 @@ $messages['ml'] = array(
 പഴയ അറിയിപ്പുകൾ കൂട്ടിച്ചേർക്കാനോ നീക്കം ചെയ്യാനോ വേണ്ടിയും ഇതുപയോഗിക്കാവുന്നതാണ്.',
 	'centralnotice-query' => 'ഇപ്പോഴുള്ള അറിയിപ്പുകളിൽ മാറ്റം വരുത്തുക',
 	'centralnotice-notice-name' => 'അറിയിപ്പിന്റെ പേര്',
-	'centralnotice-end-date' => 'അവസാനിക്കുന്ന തീയ്യതി',
+	'centralnotice-end-date' => 'അവസാനിക്കുന്ന തീയതി',
 	'centralnotice-enabled' => 'സജ്ജമാക്കിയിരിക്കുന്നു',
 	'centralnotice-modify' => 'സമർപ്പിക്കുക',
 	'centralnotice-save-banner' => 'എഴുത്തുപട്ട സേവ് ചെയ്യുക',
