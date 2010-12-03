@@ -10295,6 +10295,7 @@ $messages['yue'] = array(
  * @author Gzdavidwong
  * @author Kuailong
  * @author Liangent
+ * @author PhiLiP
  * @author Wmr89502270
  * @author Xiaomingyan
  */
@@ -10350,7 +10351,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-hours' => '时',
 	'centralnotice-min' => '分',
 	'centralnotice-project-lang' => '计划语言',
-	'centralnotice-select' => '选定： $1',
+	'centralnotice-select' => '选定：$1',
 	'centralnotice-top-ten-languages' => '语言TOP10',
 	'centralnotice-project-name' => '计划名称',
 	'centralnotice-start-date' => '开始日期',
