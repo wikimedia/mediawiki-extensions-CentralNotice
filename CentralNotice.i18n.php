@@ -1824,7 +1824,7 @@ Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werde
 	'centralnotice-notice-name' => 'Name der Notiz',
 	'centralnotice-end-date' => 'Enddatum',
 	'centralnotice-enabled' => 'Aktiviert',
-	'centralnotice-modify' => 'OK',
+	'centralnotice-modify' => 'Speichern',
 	'centralnotice-save-banner' => 'Vorlage speichern',
 	'centralnotice-preview' => 'Vorschau',
 	'centralnotice-add-new' => 'Füge eine neue zentrale Meldung hinzu',
@@ -2935,6 +2935,7 @@ $messages['fa'] = array(
  * @author Nike
  * @author Olli
  * @author Tarmo
+ * @author Tofu II
  */
 $messages['fi'] = array(
 	'centralnotice' => 'Keskitettyjen tiedotteiden ylläpito',
@@ -3053,6 +3054,7 @@ Lisää alapuolella sellainen',
 	'centralnotice-allocation' => 'Jakaminen',
 	'centralnotice-view-allocation' => 'Näytä bannerin jakaminen',
 	'centralnotice-allocation-instructions' => 'Valitse ympäristö, jossa haluaisit nähdä bannerin jakamisen:',
+	'centralnotice-languages' => 'Kielet',
 	'centralnotice-country' => 'Maa',
 	'centralnotice-no-allocation' => 'Ei kohdistettuja bannereita.',
 	'centralnotice-allocation-description' => 'Bannerin kohdistus $1.$2 maassa $3:',
