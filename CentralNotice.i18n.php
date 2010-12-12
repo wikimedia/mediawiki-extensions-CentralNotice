@@ -10321,6 +10321,7 @@ $messages['yue'] = array(
  * @author Chenxiaoqino
  * @author Chenzw
  * @author Gzdavidwong
+ * @author Hydra
  * @author Kuailong
  * @author Liangent
  * @author PhiLiP
@@ -10352,6 +10353,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-show-notices' => '显示通告',
 	'centralnotice-list-templates' => '列出模板',
 	'centralnotice-multiple' => '较多($1)',
+	'centralnotice-all-projects' => '所有项目',
 	'centralnotice-translations' => '翻译',
 	'centralnotice-translate-to' => '翻译到',
 	'centralnotice-translate' => '翻译',
@@ -10439,6 +10441,8 @@ $messages['zh-hans'] = array(
 	'centralnotice-allocation' => '配额',
 	'centralnotice-view-allocation' => '察看横幅配额',
 	'centralnotice-allocation-instructions' => '选择你想察看横幅配额的环境',
+	'centralnotice-languages' => '语言',
+	'centralnotice-projects' => '项目',
 	'centralnotice-country' => '国家',
 	'centralnotice-no-allocation' => '没有配给横幅',
 	'centralnotice-percentage' => '百分比',
