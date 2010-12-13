@@ -3795,9 +3795,16 @@ $messages['he'] = array(
 
 /** Hindi (हिन्दी)
  * @author Kaustubh
+ * @author Suman
  */
 $messages['hi'] = array(
 	'centralnotice-desc' => 'सेंट्रल साईटनोटिस बढ़ायें',
+	'centralnotice-day' => 'दिन',
+	'centralnotice-year' => 'सन',
+	'centralnotice-month' => 'माह',
+	'centralnotice-hours' => 'घंटा',
+	'centralnotice-min' => 'मिनट',
+	'centralnotice-project-lang' => 'परियोजना भाषा',
 );
 
 /** Croatian (Hrvatski)
