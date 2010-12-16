@@ -10257,8 +10257,12 @@ Dun at obinon nesädunovik.',
  * @author פוילישער
  */
 $messages['yi'] = array(
+	'centralnotice' => 'צענטראַלע מעלדונג פֿאַרוואַטונג',
+	'noticetemplate' => 'צענטראַלע מעלדונג פֿאַרוואַטונג',
+	'bannerallocation' => 'צענטראַלע מעלדונג פֿאַרוואַטונג',
+	'centralnotice-desc' => 'לייגט צו א צענטראַלע מעלדונג',
 	'centralnotice-preview' => 'פֿאראויסשטעלונג',
-	'centralnotice-translate-heading' => 'פֿאַרטייטשונג פֿאַר ִ$1',
+	'centralnotice-translate-heading' => 'פֿאַרטייטשונג פֿאַר $1',
 	'centralnotice-add' => 'צולייגן',
 	'centralnotice-translations' => 'פֿאַרטייטשונגען',
 	'centralnotice-translate-to' => 'פֿאַרטייטשן אויף',
@@ -10275,7 +10279,17 @@ $messages['yi'] = array(
 	'centralnotice-hours' => 'שעה',
 	'centralnotice-min' => 'מינוט',
 	'centralnotice-project-lang' => 'פראיעקט שפראך',
+	'centralnotice-select' => 'אויסוויילן: $1',
+	'centralnotice-top-ten-languages' => '10 הויפט שפראַכן',
 	'centralnotice-project-name' => 'פראיעקט נאמען',
+	'centralnotice-start-date' => 'אָנהייב דאַטע',
+	'centralnotice-start-time' => 'אָנהייב צייַט (UTC)',
+	'centralnotice-end-time' => 'סוף צייַט (UTC)',
+	'centralnotice-number-uses' => 'ניצונגען',
+	'centralnotice-clone-name' => 'נאָמען',
+	'centralnotice-languages' => 'שפּראַכן',
+	'centralnotice-projects' => 'פראיעקטן:',
+	'centralnotice-country' => 'לאַנד',
 );
 
 /** Yoruba (Yorùbá)
