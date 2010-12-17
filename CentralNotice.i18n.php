@@ -959,6 +959,8 @@ $messages['bg'] = array(
 	'centralnotice-translate' => 'Превеждане',
 	'centralnotice-english' => 'Английски',
 	'centralnotice-banner-name' => 'Име на шаблона',
+	'centralnotice-banner' => 'Банер',
+	'centralnotice-banner-heading' => 'Банер: $1',
 	'centralnotice-templates' => 'Шаблони',
 	'centralnotice-weight' => 'Тежест',
 	'centralnotice-locked' => 'Заключено',
@@ -986,6 +988,8 @@ $messages['bg'] = array(
 	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
 	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-preview-all-template-translations' => 'Преглед на всички налични преводи на шаблона',
+	'centralnotice-languages' => 'Езици',
+	'centralnotice-projects' => 'Проекти',
 	'centralnotice-percentage' => 'Процент',
 	'right-centralnotice-admin' => 'Управление на централизираните съобщения',
 	'right-centralnotice-translate' => 'Превод на централизираните съобщения',
@@ -8215,6 +8219,144 @@ $messages['sh'] = array(
 	'centralnotice-modify' => 'Unesi',
 );
 
+/** Sinhala (සිංහල)
+ * @author Thameera123
+ * @author තඹරු විජේසේකර
+ */
+$messages['si'] = array(
+	'centralnotice' => 'ප්‍රධාන දැන්වීම් පාලක',
+	'noticetemplate' => 'ප්‍රධාන දැන්වීම් පාලක',
+	'bannerallocation' => 'ප්‍රධාන දැන්වීම් පාලක',
+	'centralnotice-desc' => 'ප්‍රධාන අඩවි දැන්වීමක් එකතු කරයි',
+	'centralnotice-summary' => 'මෙම ඒකකය මගින් ඔබ දැනට පිහිටුවා ඇති ප්‍රධාන දැන්වීම් සංස්කරණය කළ හැකිය. 
+එය පැරැණි දැන්වීම් එකතු කිරීමට හෝ අයින් කිරීමට ද භාවිතා කළ හැකිය.',
+	'centralnotice-query' => 'වත්මන් ව්‍යාපාර සංස්කරණය කරන්න',
+	'centralnotice-notice-name' => 'ව්‍යාපාරයේ නම',
+	'centralnotice-end-date' => 'අවසන් දිනය',
+	'centralnotice-enabled' => 'බලය දෙන ලදී',
+	'centralnotice-modify' => 'යොමන්න',
+	'centralnotice-save-banner' => 'බැනරය සුරකින්න',
+	'centralnotice-preview' => 'පෙරදසුන',
+	'centralnotice-add-new' => 'නව ව්‍යාපාරයක් එකතු කරන්න',
+	'centralnotice-remove' => 'ඉවත් කරන්න',
+	'centralnotice-translate-heading' => '$1 සඳහා පරිවර්තනය',
+	'centralnotice-manage' => 'ව්‍යාපාර පාලනය කරන්න',
+	'centralnotice-manage-templates' => 'බැනර පාලනය කරන්න',
+	'centralnotice-add' => 'එකතු කරන්න',
+	'centralnotice-add-notice' => 'ව්‍යාපාරයක් එකතු කරන්න',
+	'centralnotice-edit-notice' => 'ව්‍යාපාරය සංස්කරණය කරන්න',
+	'centralnotice-add-template' => 'බැනරයක් එකතු කරන්න',
+	'centralnotice-show-notices' => 'ව්‍යාපාර පෙන්වන්න',
+	'centralnotice-list-templates' => 'බැනර ලයිස්තුගත කරන්න',
+	'centralnotice-multiple' => 'බහු ($1)',
+	'centralnotice-all-projects' => 'සියලු ව්‍යාපෘති',
+	'centralnotice-translations' => 'පරිවර්තන',
+	'centralnotice-translate-to' => 'ට පරිවර්තනය කරන්න',
+	'centralnotice-translate' => 'පරිවර්තනය කරන්න',
+	'centralnotice-english' => 'ඉංග්‍රීසි',
+	'centralnotice-banner-name' => 'බැනරයේ නම:',
+	'centralnotice-banner' => 'බැනරය',
+	'centralnotice-banner-heading' => 'බැනරය: $1',
+	'centralnotice-templates' => 'බැනර',
+	'centralnotice-weight' => 'බර',
+	'centralnotice-locked' => 'අගුළුලා ඇත',
+	'centralnotice-notice' => 'ව්‍යාපාරය',
+	'centralnotice-notice-heading' => 'ව්‍යාපාරය: $1',
+	'centralnotice-notices' => 'ව්‍යාපාර',
+	'centralnotice-notice-exists' => 'ව්‍යාපාරය දැනටමත් පවතී.
+එකතු කරනු නොලැබේ.',
+	'centralnotice-no-language' => 'ව්‍යාපාරය සඳහා භාෂාවක් තෝරාගෙන නැත. එකතු කරනු නොලැබේ.',
+	'centralnotice-no-project' => 'ව්‍යාපාරය සඳහා ව්‍යාපෘතියක් තෝරාගෙන නැත. එකතු කරනු නොලැබේ.',
+	'centralnotice-template-exists' => 'බැනරය දැනටමත් පවතී. 
+එකතු කරනු නොලැබේ.',
+	'centralnotice-notice-doesnt-exist' => 'ව්‍යාපාරය නොපවතී.',
+	'centralnotice-remove-notice-doesnt-exist' => 'ව්‍යාපාරය නොපවතී.
+අයින් කිරීමට කිසිවක් නැත.',
+	'centralnotice-banner-doesnt-exist' => 'බැනරය නොපවතී.',
+	'centralnotice-template-still-bound' => 'බැනරය තවමත් ව්‍යාපාරයකට බැඳී ඇත. 
+ඉවත් නොකෙරේ.',
+	'centralnotice-template-body' => 'බැනර බඳ:',
+	'centralnotice-day' => 'දවස',
+	'centralnotice-year' => 'අවුරුද්ද',
+	'centralnotice-month' => 'මාසය',
+	'centralnotice-hours' => 'පැය',
+	'centralnotice-min' => 'මිනිත්තුව',
+	'centralnotice-project-lang' => 'ව්‍යාපෘති භාෂාව',
+	'centralnotice-select' => 'තෝරන්න: $1',
+	'centralnotice-top-ten-languages' => 'ඉහළම භාෂා 10',
+	'centralnotice-project-name' => 'ව්‍යාපෘතියේ නම',
+	'centralnotice-start-date' => 'ආරම්භක දිනය',
+	'centralnotice-start-time' => 'ඇරඹුම් දිනය (යූටීසී)',
+	'centralnotice-end-time' => 'අවසන් දිනය (යූටීසී)',
+	'centralnotice-assigned-templates' => 'පවරන ලද බැනර',
+	'centralnotice-no-templates' => 'බැනර හමුවුණේ නැත.
+එකතු කරන්න!',
+	'centralnotice-no-templates-assigned' => 'ව්‍යාපාරයට බැනර පවරා නැත.
+එකතු කරන්න!',
+	'centralnotice-available-templates' => 'දැනට ඇති බැනර',
+	'centralnotice-template-already-exists' => 'බැනරය දැනටමත් ව්‍යාපෘතියට බැඳී ඇත. 
+එකතු නොකෙරේ.',
+	'centralnotice-preview-template' => 'බැනර පෙරදසුන',
+	'centralnotice-change-lang' => 'පරිවර්තන භාෂාව වෙනස් කරන්න',
+	'centralnotice-weights' => 'බර',
+	'centralnotice-notice-is-locked' => 'ව්‍යාපාරය අගුළු ලා ඇත. 
+ඉවත් නොකෙරේ.',
+	'centralnotice-overlap' => 'ව්‍යාපාරය තවත් ව්‍යාපාරයක කාල පරාසය සමග අතිච්ඡාදනය වේ.
+එකතු නොකෙරේ.',
+	'centralnotice-invalid-date-range' => 'අවලංගු දත්ත පරාසයකි.
+ය',
+	'centralnotice-null-string' => 'හිස් string එකක් එකතු කළ නොහැකිය.
+එකතු නොකෙරේ.',
+	'centralnotice-confirm-delete' => 'මේ අයිතමය මැකීමට අවශ්‍ය යැයි ඔබට විශ්වාසද?
+මෙම ක්‍රියාව ආපසු වෙනස්කළ නොහැකිය.',
+	'centralnotice-no-notices-exist' => 'ව්‍යාපාර නොපවතී.
+පහතින් එකක් එකතු කරන්න.',
+	'centralnotice-no-templates-translate' => 'පරිවර්තන සංස්කරණය කිරීමට බැනර නොපවතී.',
+	'centralnotice-number-uses' => 'භාවිත',
+	'centralnotice-settings' => 'පරිස්ථිතීන්',
+	'centralnotice-edit-template' => 'බැනරය සංස්කරණය කරන්න',
+	'centralnotice-edit-template-summary' => 'Localize කළ හැකි පණිවුඩයක් සෑදීමට, එම වචන සඟල වරහන් තුළ අසුරන්න',
+	'centralnotice-message' => 'පණිවුඩය',
+	'centralnotice-message-not-set' => 'පණිවුඩය නියම කර නැත',
+	'centralnotice-clone' => 'ක්ලෝනය',
+	'centralnotice-clone-notice' => 'බැනරයේ කොපියක් සාදන්න',
+	'centralnotice-clone-name' => 'නම:',
+	'centralnotice-preview-all-template-translations' => 'බැනරය සඳහා පවතින සියලු පරිවර්තනවල පෙරදසුන් පෙන්වන්න',
+	'centralnotice-insert' => 'ඇතුළු කරන්න: $1',
+	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} යොමුව',
+	'centralnotice-collapse-button' => '{{int:centralnotice-shared-hide}} යොමුව',
+	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} යොමුව',
+	'centralnotice-close-button' => 'වැසීමේ බොත්තම',
+	'centralnotice-translate-button' => 'යොමුව පරිවර්තනය කිරීමට උදව් වන්න',
+	'centralnotice-donate-button' => 'පරිත්‍යාග කිරීමේ බොත්තම',
+	'centralnotice-expanded-banner' => 'විශාල කරන ලද බැනරය',
+	'centralnotice-collapsed-banner' => 'කුඩා කරන ලද බැනරය',
+	'centralnotice-banner-display' => 'මොවුන්ට පෙන්වන්න:',
+	'centralnotice-banner-anonymous' => 'නිර්නාමික පරිශීලකයන්',
+	'centralnotice-banner-logged-in' => 'පිවිසී ඇති පරිශීලකයන්',
+	'centralnotice-banner-type' => 'බැනර වර්ගය:',
+	'centralnotice-banner-hidable' => 'ස්ථිතික/සැඟවිය හැකි',
+	'centralnotice-banner-collapsible' => 'කුඩා කළ හැකි',
+	'centralnotice-geotargeted' => 'භූමි එල්ල කළ (geotargeted)',
+	'centralnotice-countries' => 'රටවල්',
+	'centralnotice-allocation' => 'වෙන්කිරීම',
+	'centralnotice-view-allocation' => 'බැනරයේ වෙන්කිරීම පෙන්වන්න',
+	'centralnotice-allocation-instructions' => 'බැනර වෙන්කිරීම පෙන්වීමට කැමති පරිසරය තෝරන්න:',
+	'centralnotice-languages' => 'භාෂා',
+	'centralnotice-projects' => 'ව්‍යාපෘති',
+	'centralnotice-country' => 'රට',
+	'centralnotice-no-allocation' => 'බැනර වෙන්කර නැත',
+	'centralnotice-allocation-description' => '$3 හි $1.$2 සඳහා බෙැනර වෙන්කිරීම',
+	'centralnotice-percentage' => 'ප්‍රතිශත',
+	'centralnotice-documentwrite-error' => 'බැනරය තුළ document.write() යොදාගත නොහැකිය. 
+වැඩි විස්තර සඳහා http://meta.wikimedia.org/wiki/Help:CentralNotice බලන්න.',
+	'right-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
+	'right-centralnotice-translate' => 'ප්‍රධාන දැන්වීම් පරිවර්තනය කරන්න',
+	'action-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
+	'action-centralnotice-translate' => ' ප්‍රධාන දැන්වීම් පරිවර්තනය කරන්න',
+	'centralnotice-preferred' => 'වඩා කැමති',
+);
+
 /** Slovak (Slovenčina)
  * @author Helix84
  */
@@ -8476,6 +8618,31 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'action-centralnotice-admin' => 'upravljanje osrednjih sporočil',
 	'action-centralnotice-translate' => 'prevajanje osrednjih sporočil',
 	'centralnotice-preferred' => 'Prednostno',
+);
+
+/** Albanian (Shqip)
+ * @author Mikullovci11
+ */
+$messages['sq'] = array(
+	'centralnotice-end-date' => 'Data e përfundimit',
+	'centralnotice-modify' => 'Dërgo',
+	'centralnotice-preview' => 'Parapamje',
+	'centralnotice-remove' => 'Largo',
+	'centralnotice-add' => 'Shto',
+	'centralnotice-all-projects' => 'Të gjitha projekte',
+	'centralnotice-translations' => 'Përkthyes',
+	'centralnotice-translate-to' => 'Përkthime',
+	'centralnotice-translate' => 'Përkthime',
+	'centralnotice-english' => 'Anglisht',
+	'centralnotice-day' => 'Ditë',
+	'centralnotice-year' => 'Viti',
+	'centralnotice-month' => 'Muaj',
+	'centralnotice-hours' => 'Orë',
+	'centralnotice-min' => 'Minutë',
+	'centralnotice-project-lang' => 'Gjuha e Projektit',
+	'centralnotice-languages' => 'Gjuha',
+	'centralnotice-projects' => 'Projekte',
+	'centralnotice-country' => 'Veni',
 );
 
 /** Serbian Cyrillic ekavian (Српски (ћирилица))
