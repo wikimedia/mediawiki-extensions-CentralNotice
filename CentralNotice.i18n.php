@@ -1112,6 +1112,23 @@ $messages['bn'] = array(
 	'centralnotice-preferred' => 'পছন্দনীয়',
 );
 
+/** Tibetan (བོད་ཡིག)
+ * @author Freeyak
+ */
+$messages['bo'] = array(
+	'centralnotice-add' => 'ཁ་སྣོན།',
+	'centralnotice-day' => 'ཚེས་',
+	'centralnotice-year' => 'ལོ་',
+	'centralnotice-month' => 'ཟླ་བ་',
+	'centralnotice-hours' => 'དུས་ཚོད་',
+	'centralnotice-min' => 'སྐར་མ་',
+	'centralnotice-top-ten-languages' => 'སྐད་ཡིག་རྩེ་གྲས་བཅུ།',
+	'centralnotice-project-name' => 'ལས་འཆར་གྱི་མིང་།',
+	'centralnotice-start-date' => 'འགོ་འཛུགས་དུས་སྐབས།',
+	'centralnotice-message' => 'སྐད།',
+	'centralnotice-country' => 'རྒྱལ་ཁབ།',
+);
+
 /** Breton (Brezhoneg)
  * @author Fohanno
  * @author Fulup
@@ -2247,11 +2264,13 @@ $messages['el'] = array(
 	'centralnotice-notices' => 'Ανακοινώσεις',
 	'centralnotice-notice-exists' => 'Η σημείωση υπάρχει ήδη.
 Δεν προστίθεται',
+	'centralnotice-no-language' => 'Καμία γλώσσα δεν επιλέχθηκε για την καμπάνια. Δεν προστίθεται.',
 	'centralnotice-template-exists' => 'Το πρότυπο υπάρχει ήδη.
 Δεν προστέθηκε',
 	'centralnotice-notice-doesnt-exist' => 'Καμπάνια δεν υπάρχει.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Καμπάνια δεν υπάρχει. 
 Τίποτε προς διαγραφή.',
+	'centralnotice-banner-doesnt-exist' => 'Το λογότυπο δεν υπάρχει.',
 	'centralnotice-template-still-bound' => 'Το πρότυπο είναι ακόμη συνδεδεμένο με ένα σημείωμα.
 Δεν έχει αφαιρεθεί.',
 	'centralnotice-template-body' => 'Δομή προτύπου:',
@@ -2266,6 +2285,7 @@ $messages['el'] = array(
 	'centralnotice-project-name' => 'Όνομα εγχειρήματος',
 	'centralnotice-start-date' => 'Αρχική ημερομηνία',
 	'centralnotice-start-time' => 'Χρόνος εκκίνησης (UTC)',
+	'centralnotice-end-time' => 'Ώρα τερματισμού (UTC)',
 	'centralnotice-assigned-templates' => 'Απονομημένα πρότυπα',
 	'centralnotice-no-templates' => 'Δεν βρέθηκαν πρότυπα.
 Προσθέστε μερικά!',
@@ -2312,6 +2332,7 @@ $messages['el'] = array(
 	'centralnotice-banner-logged-in' => 'Συνδεδεμένοι χρήστες',
 	'centralnotice-banner-type' => 'Τύπος banner:',
 	'centralnotice-countries' => 'Χώρες',
+	'centralnotice-allocation' => 'Κατανομή',
 	'centralnotice-view-allocation' => 'Δείτε κατανομή banner',
 	'centralnotice-allocation-instructions' => 'Επιλέξτε το περιβάλλον που θα θέλατε να δείτε την κατανομή banner για:',
 	'centralnotice-languages' => 'Γλώσσες',
