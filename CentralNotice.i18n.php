@@ -10009,6 +10009,7 @@ $messages['udm'] = array(
  * @author Aleksandrit
  * @author Alex Khimich
  * @author Arturyatsko
+ * @author NickK
  * @author Riwnodennyk
  * @author Ytsukeng Fyvaprol
  * @author Тест
@@ -10065,7 +10066,7 @@ $messages['uk'] = array(
 	'centralnotice-banner-doesnt-exist' => 'Банер не існує.',
 	'centralnotice-template-still-bound' => "Шаблон, як і раніше, пов'язаний з повідомленням.
 Не видаляється.",
-	'centralnotice-template-body' => 'Тіло шаблона:',
+	'centralnotice-template-body' => 'Тіло шаблону:',
 	'centralnotice-day' => 'День',
 	'centralnotice-year' => 'Рік',
 	'centralnotice-month' => 'Місяць',
@@ -10086,7 +10087,7 @@ $messages['uk'] = array(
 	'centralnotice-available-templates' => 'Доступні шаблони',
 	'centralnotice-template-already-exists' => "Шаблон вже прив'язаний.
 Не доданий",
-	'centralnotice-preview-template' => 'Попередній перегляд шаблона',
+	'centralnotice-preview-template' => 'Попередній перегляд шаблону',
 	'centralnotice-change-lang' => 'Змінити мову перекладу',
 	'centralnotice-weights' => 'Ваги',
 	'centralnotice-notice-is-locked' => 'Повідомлення заблоковано.
@@ -10101,7 +10102,7 @@ $messages['uk'] = array(
 Цю дію не можна буде скасувати.',
 	'centralnotice-no-notices-exist' => 'Немає повідомлень.
 Можна додати',
-	'centralnotice-no-templates-translate' => 'Не має ні одного шаблона для редагування перекладу',
+	'centralnotice-no-templates-translate' => 'Не має жодного шаблону для редагування перекладу',
 	'centralnotice-number-uses' => 'Використовуються',
 	'centralnotice-settings' => 'Налаштування',
 	'centralnotice-edit-template' => 'Редагувати шаблон',
@@ -10109,9 +10110,9 @@ $messages['uk'] = array(
 	'centralnotice-message' => 'Повідомлення',
 	'centralnotice-message-not-set' => 'Повідомлення не встановлено',
 	'centralnotice-clone' => 'Клонування',
-	'centralnotice-clone-notice' => 'Створити копію шаблона',
+	'centralnotice-clone-notice' => 'Створити копію шаблону',
 	'centralnotice-clone-name' => 'Назва:',
-	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблона',
+	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблону',
 	'centralnotice-insert' => 'Вставити: $1',
 	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} посилання',
 	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} посилання',
