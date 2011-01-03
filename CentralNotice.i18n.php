@@ -4988,6 +4988,8 @@ $messages['ka'] = array(
 	'centralnotice-clone' => 'კლონირება',
 	'centralnotice-clone-notice' => 'თარგის ასლის შექმნა',
 	'centralnotice-clone-name' => 'სახელი:',
+	'centralnotice-banner-anonymous' => 'ანონიმური მომხმარებლები',
+	'centralnotice-projects' => 'პროექტები',
 	'right-centralnotice-translate' => 'ცენტრალური შეტყობინებების თარგმანი',
 );
 
