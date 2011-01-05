@@ -37,7 +37,10 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Generate the body for a static Javascript file
+	 * Generate the body for the Javascript file
+	 *
+	 * We use a jsonp scheme for actual delivery of the banner so that they can be served from meta.
+	 * In order to circumvent the normal squid cache override we add '/cn.js' to the bannerlist URL.
 	 */
 	function getOutput() {
 		global $wgCentralPagePath;
@@ -90,7 +93,7 @@ JAVASCRIPT;
 				var groomedBannerList = [];
 				
 				for( var i = 0; i < bannerList.length; i++ ) {
-					// Only include this banner if it's inteded for the current user
+					// Only include this banner if it's intended for the current user
 					if( ( wgUserName && bannerList[i].display_account ) || 
 						( !wgUserName && bannerList[i].display_anon == 1 ) ) 
 					{
