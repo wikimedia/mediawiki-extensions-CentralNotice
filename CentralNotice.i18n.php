@@ -2361,6 +2361,7 @@ $messages['el'] = array(
 
 /** Esperanto (Esperanto)
  * @author Michawiki
+ * @author Mihxil
  * @author Yekrats
  */
 $messages['eo'] = array(
@@ -2406,6 +2407,7 @@ $messages['eo'] = array(
 	'centralnotice-notice-exists' => 'Notico jam ekzistas.
 Ne aldonante',
 	'centralnotice-no-language' => 'Neniu lingvo estis elektita por ĉi tiu kampanjo. Ne aldonante.',
+	'centralnotice-no-project' => 'Neniu projekto elektitas por la kampanjo. Nenio aldonotas.',
 	'centralnotice-template-exists' => 'Ŝablono jam ekzistas.
 Ne aldonante',
 	'centralnotice-notice-doesnt-exist' => 'Kampanjo ne ekzistas.',
@@ -4945,31 +4947,44 @@ Tambahaké ing ngisor',
 
 /** Georgian (ქართული)
  * @author BRUTE
+ * @author David1010
  * @author Malafaya
  * @author გიორგიმელა
  */
 $messages['ka'] = array(
 	'noticetemplate' => 'გლობალური შეტყობინების თარგი',
 	'centralnotice-query' => 'მოქმედი შეტყობინების შეცვლა',
+	'centralnotice-notice-name' => 'შეტყობინების სახელი',
 	'centralnotice-end-date' => 'დასრულების თარიღი',
 	'centralnotice-enabled' => 'ჩართულია',
 	'centralnotice-modify' => 'გაგზავნა',
+	'centralnotice-save-banner' => 'ბანერის შენახვა',
 	'centralnotice-preview' => 'წინა',
+	'centralnotice-add-new' => 'ახალი შეტყობინების დამატება',
 	'centralnotice-remove' => 'წაშლა',
 	'centralnotice-translate-heading' => 'თარგმანი $1-თვის',
+	'centralnotice-manage' => 'კამპანიების მართვა',
+	'centralnotice-manage-templates' => 'ბანერების მართვა',
 	'centralnotice-add' => 'დამატება',
 	'centralnotice-add-notice' => 'შეტყობინების დამატება',
+	'centralnotice-edit-notice' => 'კამპანიის რედაქტირება',
 	'centralnotice-add-template' => 'დაამატეთ თარგი',
 	'centralnotice-show-notices' => 'შეტყობინებების ჩვენება',
 	'centralnotice-list-templates' => 'თარგების სია',
+	'centralnotice-multiple' => 'მრავალი ($1)',
+	'centralnotice-all-projects' => 'ყველა პროექტი',
 	'centralnotice-translations' => 'თარგმანები',
 	'centralnotice-translate-to' => 'გადათარგმნა',
 	'centralnotice-translate' => 'თარგმნა',
 	'centralnotice-english' => 'ინგლისური',
-	'centralnotice-banner-name' => 'თარგების სახელი',
+	'centralnotice-banner-name' => 'ბანერის სახელი:',
+	'centralnotice-banner' => 'ბანერი',
+	'centralnotice-banner-heading' => 'ბანერი: $1',
 	'centralnotice-templates' => 'თარგები',
 	'centralnotice-weight' => 'სიგანე',
 	'centralnotice-locked' => 'დაბლოკილი',
+	'centralnotice-notice' => 'კამპანია',
+	'centralnotice-notice-heading' => 'კამპანია: $1',
 	'centralnotice-notices' => 'შეტყობინებები',
 	'centralnotice-notice-exists' => 'შენიშვნა უკვე არსებობს.
 არ დაამატოთ',
@@ -4983,12 +4998,16 @@ $messages['ka'] = array(
 	'centralnotice-hours' => 'საათი',
 	'centralnotice-min' => 'წუთი',
 	'centralnotice-project-lang' => 'პროექტის ენა',
+	'centralnotice-select' => 'აირჩიეთ: $1',
+	'centralnotice-top-ten-languages' => 'საუკეთესო 10 ენა',
 	'centralnotice-project-name' => 'პროექტის სახელი',
 	'centralnotice-start-date' => 'დაწყების თარიღი',
 	'centralnotice-start-time' => 'დაწყების დრო (UTC)',
+	'centralnotice-end-time' => 'დასრულების დრო (UTC)',
 	'centralnotice-no-templates' => 'თარგები ნაპოვნი არ არის. დაამატეთ რამე!',
 	'centralnotice-preview-template' => 'წინა თარგი',
 	'centralnotice-change-lang' => 'თარგმანის ენის შეცვლა',
+	'centralnotice-weights' => 'წონა',
 	'centralnotice-confirm-delete' => 'დარწმუნებული ხართ, რომ გინდათ ამ ელემენტის წაშლა? ეს მოქმედება ვეღარ გაუქმნდება.',
 	'centralnotice-number-uses' => 'გამოიყენება',
 	'centralnotice-settings' => 'კონფიგურაცია',
@@ -4998,8 +5017,14 @@ $messages['ka'] = array(
 	'centralnotice-clone' => 'კლონირება',
 	'centralnotice-clone-notice' => 'თარგის ასლის შექმნა',
 	'centralnotice-clone-name' => 'სახელი:',
+	'centralnotice-insert' => 'ჩასვით: $1',
+	'centralnotice-close-button' => 'დახურვის ღილაკი',
 	'centralnotice-banner-anonymous' => 'ანონიმური მომხმარებლები',
+	'centralnotice-banner-type' => 'ბანერის ტიპი:',
+	'centralnotice-countries' => 'ქვეყნები',
+	'centralnotice-languages' => 'ენები',
 	'centralnotice-projects' => 'პროექტები',
+	'centralnotice-country' => 'ქვეყანა',
 	'right-centralnotice-translate' => 'ცენტრალური შეტყობინებების თარგმანი',
 );
 
