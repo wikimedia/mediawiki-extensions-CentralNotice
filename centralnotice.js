@@ -26,15 +26,9 @@ function top10Languages() {
 function insertButton( buttonType ) {
 	var bannerField = document.getElementById('templateBody');
 	switch( buttonType ) {
-	case 'translate':
-		var buttonValue = '[<a href="http://meta.wikimedia.org/wiki/CentralNotice">{{int:centralnotice-shared-help-translate}}</a>]';
-		break;
-	case 'hide':
-		var buttonValue = '[<a href="#" onclick="toggleNotice();return false">{{int:centralnotice-shared-hide}}</a>]';
-		break;
-	case 'close':
-		var buttonValue = '<a href="#" onclick="toggleNotice();return false">{{MediaWiki:centralnotice-shared-close}}</a>';
-		break;
+		case 'close': // Insert close button
+			var buttonValue = '<a href="#" onclick="toggleNotice();return false"><img border="0" src="'+stylepath+'/common/images/closewindow.png" alt="Close" /></a>';
+			break;
 	}
 	if (document.selection) {
 		// IE support

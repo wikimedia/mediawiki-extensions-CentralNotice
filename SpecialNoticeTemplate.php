@@ -261,10 +261,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$buttons = array();
 		$buttons[] = '<a href="#" onclick="insertButton(\'close\');return false;">' . 
 			wfMsg( 'centralnotice-close-button' ) . '</a>';
-		$buttons[] = '<a href="#" onclick="insertButton(\'hide\');return false;">' . 
-			wfMsg( 'centralnotice-hide-button' ) . '</a>';
-		$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . 
-			wfMsg( 'centralnotice-translate-button' ) . '</a>';
 		$htmlOut .= Xml::tags( 'div',
 			array( 'style' => 'margin-bottom: 0.2em;' ),
 			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' . 
@@ -549,10 +545,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$buttons = array();
 				$buttons[] = '<a href="#" onclick="insertButton(\'close\');return false;">' . 
 					wfMsg( 'centralnotice-close-button' ) . '</a>';
-				$buttons[] = '<a href="#" onclick="insertButton(\'hide\');return false;">' . 
-					wfMsg( 'centralnotice-hide-button' ) . '</a>';
-				$buttons[] = '<a href="#" onclick="insertButton(\'translate\');return false;">' . 
-					wfMsg( 'centralnotice-translate-button' ) . '</a>';
 				$htmlOut .= Xml::tags( 'div',
 					array( 'style' => 'margin-bottom: 0.2em;' ),
 					'<img src="' . $scriptPath . '/down-arrow.png" ' . 
