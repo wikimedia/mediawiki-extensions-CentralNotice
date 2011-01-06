@@ -31,8 +31,8 @@ $wgNoticeInfrastructure = true;
 // The name of the database which hosts the centralized campaign data
 $wgCentralDBname = '';
 
-// The path to Special Pages on the wiki that hosts the CentralNotice infrastructure
-// For example 'http://meta.wikimedia.org/wiki/'
+// The script path on the wiki that hosts the CentralNotice infrastructure
+// For example 'http://meta.wikimedia.org/w/index.php'
 $wgCentralPagePath = '';
 
 // Enable the loader itself
