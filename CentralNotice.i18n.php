@@ -616,6 +616,8 @@ $messages['ba'] = array(
 	'centralnotice' => 'Үҙәк белдереүҙәрҙе идаралау',
 	'noticetemplate' => 'Үҙәк белдереүҙәрҙе идаралау',
 	'bannerallocation' => 'Үҙәк белдереүҙәрҙе идаралау',
+	'right-centralnotice-admin' => 'Үҙәк белдереүҙәрен идаралау',
+	'action-centralnotice-admin' => 'үҙәк белдереүҙәрен идаралау',
 	'centralnotice-desc' => 'Үҙәк сайттан дөйөм белдереү өҫтәй',
 	'centralnotice-summary' => 'Был киңәйтеү һеҙгә үҙәк белдереүҙәрегеҙҙе үҙгәртергә мөмкинлек бирә.
 Ул шулай уҡ яңы белдереүҙәр өҫтәү һәм иҫкеләрен юйыу өсөн ҡулланыла ала.',
@@ -739,10 +741,6 @@ $messages['ba'] = array(
 	'centralnotice-percentage' => 'Процент',
 	'centralnotice-documentwrite-error' => 'Был баннерҙа document.write() ҡулланыла алмай.
 Тулыраҡ мәғлүмәт өсөн http://meta.wikimedia.org/wiki/Help:CentralNotice ҡарағыҙ.',
-	'right-centralnotice-admin' => 'Үҙәк белдереүҙәрен идаралау',
-	'right-centralnotice-translate' => 'Үҙәк белдереүҙәрен тәржемә итеү',
-	'action-centralnotice-admin' => 'үҙәк белдереүҙәрен идаралау',
-	'action-centralnotice-translate' => 'үҙәк белдереүҙәрен тәржемә итеү',
 	'centralnotice-preferred' => 'Өҫтөнлөк бирелгән',
 );
 
@@ -794,6 +792,8 @@ $messages['be-tarask'] = array(
 	'centralnotice' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
 	'noticetemplate' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
 	'bannerallocation' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
+	'right-centralnotice-admin' => 'Кіраваньне цэнтральнымі паведамленьнямі',
+	'action-centralnotice-admin' => 'кіраваньне цэнтралізаванымі паведамленьнямі',
 	'centralnotice-desc' => 'Дадае цэнтралізаванае паведамленьне сайту',
 	'centralnotice-summary' => 'Гэты модуль дазваляе Вам рэдагаваць Вашыя актуальныя цэнтралізаваныя паведамленьні.
 Ён таксама можа выкарыстоўвацца для даданьня ці выдаленьня старых паведамленьняў.',
@@ -917,10 +917,6 @@ $messages['be-tarask'] = array(
 	'centralnotice-percentage' => 'Адсоткаў',
 	'centralnotice-documentwrite-error' => 'document.write() не магчыма выкарыстоўваць у банэре.
 Падрабязнасьці глядзіце на http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'right-centralnotice-admin' => 'Кіраваньне цэнтральнымі паведамленьнямі',
-	'right-centralnotice-translate' => 'пераклад цэнтралізаваных паведамленьняў',
-	'action-centralnotice-admin' => 'кіраваньне цэнтралізаванымі паведамленьнямі',
-	'action-centralnotice-translate' => 'пераклад цэнтральных паведамленьняў',
 	'centralnotice-preferred' => 'Пажадана',
 );
 
@@ -1137,6 +1133,8 @@ $messages['br'] = array(
 	'centralnotice' => 'Melestradurezh an alioù kreiz',
 	'noticetemplate' => 'Melestradurezh an alioù kreiz',
 	'bannerallocation' => 'Melestradurezh an alioù kreiz',
+	'right-centralnotice-admin' => 'Merañ an alioù kreiz',
+	'action-centralnotice-admin' => 'merañ an alioù kreiz',
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
 	'centralnotice-summary' => "Talvezout a ra ar vodulenn-mañ da zegas kemmoù en arventennoù ar pennkemennoù.
 Implijet e c'hall bezañ evit ouzhpennañ kemennoù pe tennañ kuit re gozh ivez .",
@@ -1260,10 +1258,6 @@ Ouzhpennit unan da heul.",
 	'centralnotice-percentage' => 'Dregantad',
 	'centralnotice-documentwrite-error' => "N'hall ket document.write() bezañ implijet hep giton.
 Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc'h.",
-	'right-centralnotice-admin' => 'Merañ an alioù kreiz',
-	'right-centralnotice-translate' => 'Treiñ an alioù kreiz',
-	'action-centralnotice-admin' => 'merañ an alioù kreiz',
-	'action-centralnotice-translate' => 'treiñ an alioù kreiz',
 	'centralnotice-preferred' => "Kavet gwelloc'h",
 );
 
@@ -1274,6 +1268,8 @@ $messages['bs'] = array(
 	'centralnotice' => 'Uređivanje središnjeg obavještenja',
 	'noticetemplate' => 'Uređivanje središnjeg obavještenja',
 	'bannerallocation' => 'Uređivanje središnjeg obavještenja',
+	'right-centralnotice-admin' => 'Uređivanje središnjeg obavještenja',
+	'action-centralnotice-admin' => 'uređujete središnje obavještenje',
 	'centralnotice-desc' => 'Dodaje središnju obavijest na stranici',
 	'centralnotice-summary' => 'Ovaj modul omogućava uređivanje Vaših trenutno postavljenih središnjih obavještenja.
 Također se može koristiti i za dodavanje ili uklanjanje starih obavještenja.',
@@ -1370,9 +1366,9 @@ Dodaj jednu ispod',
 	'centralnotice-clone-name' => 'Ime:',
 	'centralnotice-preview-all-template-translations' => 'Pregled svih dostupnih prijevoda za šablon',
 	'centralnotice-insert' => 'Ubaci: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} link',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} link',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} link',
+	'centralnotice-hide-button' => 'Sakrij link',
+	'centralnotice-collapse-button' => 'Zatvori link',
+	'centralnotice-expand-button' => 'Proširi link',
 	'centralnotice-close-button' => 'Zatvori dugme',
 	'centralnotice-translate-button' => 'Link za pomoć pri prevođenju',
 	'centralnotice-donate-button' => 'Dugme za donacije',
@@ -1397,10 +1393,6 @@ Dodaj jednu ispod',
 	'centralnotice-percentage' => 'Postotak',
 	'centralnotice-documentwrite-error' => 'document.write() se ne može koristiti unutar obavještenja.
 Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
-	'right-centralnotice-admin' => 'Uređivanje središnjeg obavještenja',
-	'right-centralnotice-translate' => 'Prevođenje središnjeg obavještenja',
-	'action-centralnotice-admin' => 'uređujete središnje obavještenje',
-	'action-centralnotice-translate' => 'Prevođenje središnjeg obavještenja',
 	'centralnotice-preferred' => 'Preferirano',
 );
 
@@ -1418,6 +1410,8 @@ $messages['ca'] = array(
 	'centralnotice' => "Administrador d'avisos centrals",
 	'noticetemplate' => "Administració d'avisos centrals",
 	'bannerallocation' => "Administració d'avisos centrals",
+	'right-centralnotice-admin' => 'Gestionau els avisos centrals',
+	'action-centralnotice-admin' => 'Gestionau els avisos centrals',
 	'centralnotice-desc' => "Afegeix un lloc central d'avisos",
 	'centralnotice-summary' => "Aquesta extensió us permet editar el vostre lloc central d'avisos.
 També pot ser usat per afegir o eliminar avisos.",
@@ -1539,10 +1533,6 @@ Afegiu-ne un a continuació.',
 	'centralnotice-percentage' => 'Percentatge',
 	'centralnotice-documentwrite-error' => "document.write () no pot ser utilitzat dins d'una pancarta
  Veure http://meta.wikimedia.org/wiki/Help:CentralNotice per a més informació.",
-	'right-centralnotice-admin' => 'Gestionau els avisos centrals',
-	'right-centralnotice-translate' => 'Traduïu els avisos centrals',
-	'action-centralnotice-admin' => 'Gestionau els avisos centrals',
-	'action-centralnotice-translate' => 'Traduïu els avisos centrals',
 	'centralnotice-preferred' => 'Preferit',
 );
 
@@ -1560,6 +1550,8 @@ $messages['cs'] = array(
 	'centralnotice' => 'Správa centralizovaných oznámení',
 	'noticetemplate' => 'Správa centralizovaných oznámení',
 	'bannerallocation' => 'Správa centralizovaných oznámení',
+	'right-centralnotice-admin' => 'Správa centralizovaných oznámení',
+	'action-centralnotice-admin' => 'spravovat centralizovaná oznámení',
 	'centralnotice-desc' => 'Přidává centrální zprávu do záhlaví',
 	'centralnotice-summary' => 'Pomocí tohoto modulu můžete upravovat momentálně nastavená centralizovaná oznámení.
 Také zde můžete přidávat nová či odstraňovat stará.',
@@ -1674,10 +1666,6 @@ Níže můžete vytvořit nové.',
 	'centralnotice-percentage' => 'Procenta',
 	'centralnotice-documentwrite-error' => 'V banneru nelze používat document.write().
 Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'right-centralnotice-admin' => 'Správa centralizovaných oznámení',
-	'right-centralnotice-translate' => 'Překlad centralizovaných oznámení',
-	'action-centralnotice-admin' => 'spravovat centralizovaná oznámení',
-	'action-centralnotice-translate' => 'překládat centralizovaná oznámení',
 	'centralnotice-preferred' => 'Preferováno',
 );
 
@@ -1847,6 +1835,8 @@ $messages['de'] = array(
 	'centralnotice' => 'Verwaltung zentraler Meldungen',
 	'noticetemplate' => 'Verwaltung zentraler Meldungen',
 	'bannerallocation' => 'Verwaltung zentraler Meldungen',
+	'right-centralnotice-admin' => 'Zentrale Meldungen verwalten',
+	'action-centralnotice-admin' => 'zentrale Meldungen verwalten',
 	'centralnotice-desc' => 'Ermöglicht es, zentrale Meldungen für das Wiki zu erstellen',
 	'centralnotice-summary' => 'Diese Erweiterung erlaubt die Konfiguration zentraler Meldungen.
 Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werden.',
@@ -1943,9 +1933,9 @@ Füge eine hinzu.',
 	'centralnotice-clone-name' => 'Name:',
 	'centralnotice-preview-all-template-translations' => 'Vorschau aller verfügbaren Übersetzungen einer Vorlage',
 	'centralnotice-insert' => 'Einfügen: $1',
-	'centralnotice-hide-button' => 'Link {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'Link {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'Link {{int:centralnotice-shared-collapse}}',
+	'centralnotice-hide-button' => 'Link verstecken',
+	'centralnotice-collapse-button' => 'Link einklappen',
+	'centralnotice-expand-button' => 'Link ausklappen',
 	'centralnotice-close-button' => 'Button schließen',
 	'centralnotice-translate-button' => 'Übersetzungshilfen-Link',
 	'centralnotice-donate-button' => 'Spendenbutton',
@@ -1970,10 +1960,6 @@ Füge eine hinzu.',
 	'centralnotice-percentage' => 'Prozentsatz',
 	'centralnotice-documentwrite-error' => 'document.write() kann nicht innerhalb eines Banners verwendet werden.
 Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.',
-	'right-centralnotice-admin' => 'Zentrale Meldungen verwalten',
-	'right-centralnotice-translate' => 'Zentrale Meldungen übersetzen',
-	'action-centralnotice-admin' => 'zentrale Meldungen verwalten',
-	'action-centralnotice-translate' => 'Zentrale Seitennotiz übersetzen',
 	'centralnotice-preferred' => 'Bevorzugt',
 );
 
@@ -2084,6 +2070,8 @@ $messages['dsb'] = array(
 	'centralnotice' => 'Administrěrowanje centralnych powěźeńkow',
 	'noticetemplate' => 'Administrěrowanje centralnych powěźeńkow',
 	'bannerallocation' => 'Administrěrowanje centralnych powěźeńkow',
+	'right-centralnotice-admin' => 'Centralne powěźeńki zastojaś',
+	'action-centralnotice-admin' => 'Centralne powěźeńki zastojaś',
 	'centralnotice-desc' => 'Pśidawa centralnu powěźeńku do głowy boka',
 	'centralnotice-summary' => 'Toś ten modul zmóžnja wobźěłowanje tuchylu nastajenych centralnych powěźeńkow.
 Dajo se teke wužywaś, aby se pśidali nowe powěźeńki abo wótpórali stare powěźeńki.',
@@ -2207,10 +2195,6 @@ Pśidaj jadnu.',
 	'centralnotice-percentage' => 'Procentowa sajźba',
 	'centralnotice-documentwrite-error' => 'document.write() njedajo se w banarju wužywaś.
 Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.',
-	'right-centralnotice-admin' => 'Centralne powěźeńki zastojaś',
-	'right-centralnotice-translate' => 'Centralne powěźeńki pśełožiś',
-	'action-centralnotice-admin' => 'Centralne powěźeńki zastojaś',
-	'action-centralnotice-translate' => 'Centralne powěźeńki pśełožiś',
 	'centralnotice-preferred' => 'Preferěrowane',
 );
 
@@ -2235,6 +2219,8 @@ $messages['el'] = array(
 	'centralnotice' => 'Διαχειριστής κεντρικών ειδοποιήσεων',
 	'noticetemplate' => 'Διαχειριστής κεντρικών ειδοποιήσεων',
 	'bannerallocation' => 'Διαχειριστής κεντρικών ειδοποιήσεων',
+	'right-centralnotice-admin' => 'Διαχείριση κεντρικών ειδοποιήσεων',
+	'action-centralnotice-admin' => 'διαχείριση κεντρικών ειδοποιήσεων',
 	'centralnotice-desc' => 'Προσθέτει μια κεντρική ανακοίνωση',
 	'centralnotice-summary' => 'Αυτή η επέκταση σας επιτρέπει να επεξεργαστείτε τις τώρα εγκατεστημένες κεντρικές ειδοποιήσεις σας.
 Μπορεί επίσης να χρησιμοποιηθεί για να προσθέσει ή να αφαιρέσει παλιές ειδοποιήσεις.',
@@ -2348,10 +2334,6 @@ $messages['el'] = array(
 	'centralnotice-projects' => 'Εγχειρήματα',
 	'centralnotice-country' => 'Χώρα',
 	'centralnotice-percentage' => 'Ποσοστό',
-	'right-centralnotice-admin' => 'Διαχείριση κεντρικών ειδοποιήσεων',
-	'right-centralnotice-translate' => 'Μετάφραση κεντρικών ειδοποιήσεων',
-	'action-centralnotice-admin' => 'διαχείριση κεντρικών ειδοποιήσεων',
-	'action-centralnotice-translate' => 'μετάφραση κεντρικών ειδοποιήσεων',
 	'centralnotice-preferred' => 'Προτιμώμενα',
 );
 
@@ -2364,6 +2346,8 @@ $messages['eo'] = array(
 	'centralnotice' => 'Administranto de centrala notico',
 	'noticetemplate' => 'Administranto por centrala notico',
 	'bannerallocation' => 'Administranto por centrala notico',
+	'right-centralnotice-admin' => 'Administri centralajn noticojn',
+	'action-centralnotice-admin' => 'administri centralajn noticojn',
 	'centralnotice-desc' => 'Aldonas centralan noticon por la vikio',
 	'centralnotice-summary' => 'Ĉi tiu modulo permesas al vi redakti viajn aktualajn centralajn noticojn.
 Ĝi ankaŭ estas uzable por aldoni aŭ forigi malfreŝajn noticojn.',
@@ -2487,10 +2471,6 @@ Afiŝu noticon suben',
 	'centralnotice-percentage' => 'Procento',
 	'centralnotice-documentwrite-error' => 'Ne  povas uzi document.write() en reklamrubando.
 Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
-	'right-centralnotice-admin' => 'Administri centralajn noticojn',
-	'right-centralnotice-translate' => 'Traduki centralajn noticojn',
-	'action-centralnotice-admin' => 'administri centralajn noticojn',
-	'action-centralnotice-translate' => 'traduki centralajn noticojn',
 	'centralnotice-preferred' => 'Preferata',
 );
 
@@ -2511,6 +2491,8 @@ $messages['es'] = array(
 	'centralnotice' => 'Sistema de administración de avisos centralizados',
 	'noticetemplate' => 'Administración de avisos centrales',
 	'bannerallocation' => 'Administración de avisos centrales',
+	'right-centralnotice-admin' => 'Gestionar avisos centrales',
+	'action-centralnotice-admin' => 'gestionar avisos centrales',
 	'centralnotice-desc' => 'Añade un mensaje central',
 	'centralnotice-summary' => 'Este módulo te permite editar los parámetros actuales de los avisos centrales.
 También puede usarse para añadir o borrar avisos antiguos.',
@@ -2634,10 +2616,6 @@ Añade uno debajo',
 	'centralnotice-percentage' => 'Porcentaje',
 	'centralnotice-documentwrite-error' => 'No se puede usar document.write() dentro de un banner.
 Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
-	'right-centralnotice-admin' => 'Gestionar avisos centrales',
-	'right-centralnotice-translate' => 'Traducir avisos centrales',
-	'action-centralnotice-admin' => 'gestionar avisos centrales',
-	'action-centralnotice-translate' => 'traducir avisos centrales',
 	'centralnotice-preferred' => 'Preferido',
 );
 
@@ -2837,6 +2815,8 @@ $messages['fa'] = array(
 	'centralnotice' => 'مدیر اعلان متمرکز',
 	'noticetemplate' => 'مدیر اعلان متمرکز',
 	'bannerallocation' => 'مدیر اعلان متمرکز',
+	'right-centralnotice-admin' => 'مدیریت اعلان‌های متمرکز',
+	'action-centralnotice-admin' => 'مدیریت اعلان‌های متمرکز',
 	'centralnotice-desc' => 'یک اعلان متمرکز می‌افزاید',
 	'centralnotice-summary' => 'این ابزار به شما اجازه می‌دهد که اعلانات متمرکز خود را ویرایش کنید.
 از آن می‌توان برای افزودن یا برداشتن اعلان‌های قبلی نیز استفاده کرد.',
@@ -2960,10 +2940,6 @@ $messages['fa'] = array(
 	'centralnotice-percentage' => 'درصد',
 	'centralnotice-documentwrite-error' => 'دستور document.write() نمی‌تواند درون یک آگهی استفاده شود.
 برای اطلاعات بیشتر ttp://meta.wikimedia.org/wiki/Help:CentralNotice را ببینید.',
-	'right-centralnotice-admin' => 'مدیریت اعلان‌های متمرکز',
-	'right-centralnotice-translate' => 'ترجمهٔ اعلان‌های متمرکز',
-	'action-centralnotice-admin' => 'مدیریت اعلان‌های متمرکز',
-	'action-centralnotice-translate' => 'ترجمهٔ اعلان‌های متمرکز',
 	'centralnotice-preferred' => 'ترجیح داده شده',
 );
 
@@ -2979,6 +2955,8 @@ $messages['fi'] = array(
 	'centralnotice' => 'Keskitettyjen tiedotteiden ylläpito',
 	'noticetemplate' => 'Keskitettyjen tiedotteiden ylläpito',
 	'bannerallocation' => 'Keskitettyjen tiedotteiden ylläpito',
+	'right-centralnotice-admin' => 'Hallinnoida keskitettyjä tiedotteita',
+	'action-centralnotice-admin' => 'hallinnoida keskitettyjä tiedotteita',
 	'centralnotice-desc' => 'Mahdollistaa keskitetyn sivustotiedotteen lisäämisen.',
 	'centralnotice-summary' => 'Tämä moduuli antaa sinun muokata tällä hetkellä käytössä olevia keskitettyjä tiedotteita.
 Voit myös lisätä tai poistaa vanhoja tiedotteita.',
@@ -3099,10 +3077,6 @@ Lisää alapuolella sellainen',
 	'centralnotice-percentage' => 'Prosenttiosuus',
 	'centralnotice-documentwrite-error' => 'document.write() -komentoa ei voi käyttää bannerin sisällä.
 Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
-	'right-centralnotice-admin' => 'Hallinnoida keskitettyjä tiedotteita',
-	'right-centralnotice-translate' => 'Kääntää keskitettyjä tiedotteita',
-	'action-centralnotice-admin' => 'hallinnoida keskitettyjä tiedotteita',
-	'action-centralnotice-translate' => 'kääntää keskitettyjä tiedotteita',
 	'centralnotice-preferred' => 'Suositeltu',
 );
 
@@ -3123,6 +3097,8 @@ $messages['fr'] = array(
 	'centralnotice' => 'Administration des avis centraux',
 	'noticetemplate' => 'Administration des avis centraux',
 	'bannerallocation' => 'Administration des avis centraux',
+	'right-centralnotice-admin' => 'Gérer les avis centraux',
+	'action-centralnotice-admin' => 'gérer les avis centraux',
 	'centralnotice-desc' => 'Ajoute un avis central du site',
 	'centralnotice-summary' => 'Ce module vous permet de modifier vos paramètres d’avis centraux.
 Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus anciens.',
@@ -3246,10 +3222,6 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-percentage' => 'Pourcentage',
 	'centralnotice-documentwrite-error' => 'document.write() ne peut pas être utilisé dans une bannière.
 Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d’informations.',
-	'right-centralnotice-admin' => 'Gérer les avis centraux',
-	'right-centralnotice-translate' => 'Traduire les avis centraux',
-	'action-centralnotice-admin' => 'gérer les avis centraux',
-	'action-centralnotice-translate' => 'traduire les avis centraux',
 	'centralnotice-preferred' => 'Préféré',
 );
 
@@ -3260,6 +3232,8 @@ $messages['frp'] = array(
 	'centralnotice' => 'Administracion des avis centrâls',
 	'noticetemplate' => 'Administracion des avis centrâls',
 	'bannerallocation' => 'Administracion des avis centrâls',
+	'right-centralnotice-admin' => 'Administrar los avis centrâls',
+	'action-centralnotice-admin' => 'administrar los avis centrâls',
 	'centralnotice-desc' => 'Apond un avis centrâl du seto.',
 	'centralnotice-summary' => 'Ceti modulo vos pèrmèt de changiér voutros paramètres d’avis centrâls.
 Pôt asse-ben étre utilisâ por apondre des avis ou ben nen enlevar los ples vielys.',
@@ -3377,10 +3351,6 @@ Apondéd-nen ce-desot.',
 	'centralnotice-no-allocation' => 'Gins de baniére balyê.',
 	'centralnotice-allocation-description' => 'Alocacion de baniére por $1.$2 en $3 :',
 	'centralnotice-percentage' => 'Porcentâjo',
-	'right-centralnotice-admin' => 'Administrar los avis centrâls',
-	'right-centralnotice-translate' => 'Traduire los avis centrâls',
-	'action-centralnotice-admin' => 'administrar los avis centrâls',
-	'action-centralnotice-translate' => 'traduire los avis centrâls',
 	'centralnotice-preferred' => 'Prèferâ',
 );
 
@@ -3398,6 +3368,8 @@ $messages['gl'] = array(
 	'centralnotice' => 'Administración do aviso central',
 	'noticetemplate' => 'Administración do aviso central',
 	'bannerallocation' => 'Administración do aviso central',
+	'right-centralnotice-admin' => 'Xestionar os avisos centrais',
+	'action-centralnotice-admin' => 'xestionar os avisos centrais',
 	'centralnotice-desc' => 'Engade un aviso central',
 	'centralnotice-summary' => 'Este módulo permite editar os parámetros dos seus avisos centrais actuais.
 Tamén pode ser usado para engadir ou eliminar avisos vellos.',
@@ -3521,10 +3493,6 @@ Engada algún embaixo',
 	'centralnotice-percentage' => 'Porcentaxe',
 	'centralnotice-documentwrite-error' => 'document.write() non se pode empregar nos carteis.
 Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis información.',
-	'right-centralnotice-admin' => 'Xestionar os avisos centrais',
-	'right-centralnotice-translate' => 'Traducir os avisos centrais',
-	'action-centralnotice-admin' => 'xestionar os avisos centrais',
-	'action-centralnotice-translate' => 'traducir os avisos centrais',
 	'centralnotice-preferred' => 'Preferido',
 );
 
@@ -3560,6 +3528,8 @@ $messages['gsw'] = array(
 	'centralnotice' => 'Adminischtrierig vu dr zentrale Mäldige',
 	'noticetemplate' => 'Verwaltig vu dr zentrale Mäldige',
 	'bannerallocation' => 'Verwaltig vu dr zäntrale Mäldig',
+	'right-centralnotice-admin' => 'Zentrali Mäldige verwalte',
+	'action-centralnotice-admin' => 'Zentrali Sytenotize verwalte',
 	'centralnotice-desc' => "Fiegt e zentrali ''sitenotice'' zue",
 	'centralnotice-summary' => 'Die Erwyterig erlaubt d Konfiguration vu zentrale Mäldige.
 Si cha au zum Aalege vu neije un dr Leschig vu alte Mäldige brucht wäre.',
@@ -3682,10 +3652,6 @@ Fieg eini zue.',
 	'centralnotice-percentage' => 'Prozäntsatz',
 	'centralnotice-documentwrite-error' => 'document.write() cha nit in eme Banner brucht wäre.
 Lueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.',
-	'right-centralnotice-admin' => 'Zentrali Mäldige verwalte',
-	'right-centralnotice-translate' => 'Zentrali Mäldige ibersetze',
-	'action-centralnotice-admin' => 'Zentrali Sytenotize verwalte',
-	'action-centralnotice-translate' => 'Zentrali Sytenotize ibersetze',
 	'centralnotice-preferred' => 'Bevorzugt',
 );
 
@@ -3699,6 +3665,8 @@ $messages['he'] = array(
 	'centralnotice' => 'ניהול ההודעה המרכזית',
 	'noticetemplate' => 'ניהול ההודעה המרכזית',
 	'bannerallocation' => 'ניהול ההודעה המרכזית',
+	'right-centralnotice-admin' => 'ניהול הודעת מרכזיות',
+	'action-centralnotice-admin' => 'לנהל הודעות מרכזיות',
 	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
 	'centralnotice-summary' => 'מודול זה מאפשר את עריכת ההודעות המרכזיות המותקנות כעת.
 ניתן גם להשתמש בו כדי להוסיף או להסיר הודעות ישנות.',
@@ -3795,9 +3763,9 @@ $messages['he'] = array(
 	'centralnotice-clone-name' => 'שם:',
 	'centralnotice-preview-all-template-translations' => 'תצוגה מקדימה של כל התרגומים בתבנית',
 	'centralnotice-insert' => 'הוספה: $1',
-	'centralnotice-hide-button' => 'קישור ל{{grammar:תחילית|{{int:centralnotice-shared-hide}}}}',
-	'centralnotice-collapse-button' => 'קישור ל{{grammar:תחילית|{{int:centralnotice-shared-collapse}}}}',
-	'centralnotice-expand-button' => 'קישור ל{{grammar:תחילית|{{int:centralnotice-shared-expand}}}}',
+	'centralnotice-hide-button' => 'הסתרת הקישור',
+	'centralnotice-collapse-button' => 'כיווץ הקישור',
+	'centralnotice-expand-button' => 'הרחבת הקישור',
 	'centralnotice-close-button' => 'לחצן סגירה',
 	'centralnotice-translate-button' => 'הקישור לסיוע בתרגום',
 	'centralnotice-donate-button' => 'לחצן התרומה',
@@ -3822,10 +3790,6 @@ $messages['he'] = array(
 	'centralnotice-percentage' => 'אחוזים',
 	'centralnotice-documentwrite-error' => 'לא ניתן להשתמש ב־document.write() בתוך באנר.
 ניתן לעיין ב־http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.',
-	'right-centralnotice-admin' => 'ניהול הודעת מרכזיות',
-	'right-centralnotice-translate' => 'תרגום הודעות מרכזיות',
-	'action-centralnotice-admin' => 'לנהל הודעות מרכזיות',
-	'action-centralnotice-translate' => 'לתרגם הודעות מרכזיות',
 	'centralnotice-preferred' => 'מועדפת',
 );
 
@@ -3853,6 +3817,8 @@ $messages['hr'] = array(
 	'centralnotice' => 'Administracija središnjih obavijesti',
 	'noticetemplate' => 'Administracija središnjih obavijesti',
 	'bannerallocation' => 'Administracija središnjih obavijesti',
+	'right-centralnotice-admin' => 'Uređivanje središnjih obavijesti',
+	'action-centralnotice-admin' => 'uređivanje središnjih obavijesti',
 	'centralnotice-desc' => 'Dodaje središnju obavijest za projekt',
 	'centralnotice-summary' => 'Ova stranica vam omogućava uređivanje trenutačno postavljenih središnjih obavijesti.
 Može biti korištena i za dodavanje ili uklanjanje zastarjelih obavijesti.',
@@ -3976,10 +3942,6 @@ Dodajte jednu ispod',
 	'centralnotice-percentage' => 'Postotak',
 	'centralnotice-documentwrite-error' => 'document.write() ne može se rabiti unutar obavijesti. 
 Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
-	'right-centralnotice-admin' => 'Uređivanje središnjih obavijesti',
-	'right-centralnotice-translate' => 'Prevođenje središnjih obavijesti',
-	'action-centralnotice-admin' => 'uređivanje središnjih obavijesti',
-	'action-centralnotice-translate' => 'prevođenje središnjih obavijesti',
 	'centralnotice-preferred' => 'Željeno',
 );
 
@@ -3990,6 +3952,8 @@ $messages['hsb'] = array(
 	'centralnotice' => 'Administrator centralnych powěsćow',
 	'noticetemplate' => 'Zarjadowanje centralnych powěsćow',
 	'bannerallocation' => 'Zarjadowanje centralnych powěsćow',
+	'right-centralnotice-admin' => 'Centralne powěsće zrjadować',
+	'action-centralnotice-admin' => 'Centralne powěsće zrjadować',
 	'centralnotice-desc' => 'Přidawa centralnu bóčnu zdźělenku',
 	'centralnotice-summary' => 'Tutón modul ći dowola, zo by swoje aktualnu konfiguraciju centralnych powěsćow wobdźěłał.
 Hodźi so tež za přidaće abo wotstronjenje starych powěsćow wužiwać.',
@@ -4113,10 +4077,6 @@ Přidaj někajku',
 	'centralnotice-percentage' => 'Procentowa sadźba',
 	'centralnotice-documentwrite-error' => 'document.write() njeda so znutřka chorhoje wužiwać.
 Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
-	'right-centralnotice-admin' => 'Centralne powěsće zrjadować',
-	'right-centralnotice-translate' => 'Centralne powěsće přełožić',
-	'action-centralnotice-admin' => 'Centralne powěsće zrjadować',
-	'action-centralnotice-translate' => 'centralne powěsće přełožić',
 	'centralnotice-preferred' => 'Preferowany',
 );
 
@@ -4129,6 +4089,8 @@ $messages['hu'] = array(
 	'centralnotice' => 'Központi üzenet adminisztráció',
 	'noticetemplate' => 'Központi figyelmeztetés adminisztrációja',
 	'bannerallocation' => 'Központi figyelmeztetés adminisztrációja',
+	'right-centralnotice-admin' => 'központi üzenetek beállítása',
+	'action-centralnotice-admin' => 'központi üzenetek beállítása',
 	'centralnotice-desc' => 'Központi üzenet megjelenítése',
 	'centralnotice-summary' => 'Ez a kiegészítő lehetővé teszi, hogy szerkeszd a jelenleg beállított központi üzeneteket.
 Használhatod újak hozzáadására, vagy régiek eltávolítására is.',
@@ -4252,10 +4214,6 @@ Itt adhatsz hozzá újakat.',
 	'centralnotice-percentage' => 'Százalék',
 	'centralnotice-documentwrite-error' => 'A document.write() nem használható hirdetéseken belül.
 További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lapon olvashatsz.',
-	'right-centralnotice-admin' => 'központi üzenetek beállítása',
-	'right-centralnotice-translate' => 'központi üzenetek fordítása',
-	'action-centralnotice-admin' => 'központi üzenetek beállítása',
-	'action-centralnotice-translate' => 'központi üzenetek fordítása',
 	'centralnotice-preferred' => 'Előnyben részesített',
 );
 
@@ -4266,6 +4224,8 @@ $messages['ia'] = array(
 	'centralnotice' => 'Administration de avisos central',
 	'noticetemplate' => 'Administration de avisos central',
 	'bannerallocation' => 'Administration de avisos central',
+	'right-centralnotice-admin' => 'Gerer avisos central',
+	'action-centralnotice-admin' => 'gerer avisos central',
 	'centralnotice-desc' => 'Adde un aviso de sito central',
 	'centralnotice-summary' => 'Iste modulo permitte modificar le avisos central actualmente configurate.
 Illo pote tamben esser usate pro adder o remover avisos ancian.',
@@ -4362,9 +4322,9 @@ Adde un hic infra.',
 	'centralnotice-clone-name' => 'Nomine:',
 	'centralnotice-preview-all-template-translations' => 'Previsualiar tote le traductiones disponibile del bandiera',
 	'centralnotice-insert' => 'Inserer: $1',
-	'centralnotice-hide-button' => 'Ligamine "{{int:centralnotice-shared-hide}}"',
-	'centralnotice-collapse-button' => 'Ligamine "{{int:centralnotice-shared-collapse}}"',
-	'centralnotice-expand-button' => 'Ligamine "{{int:centralnotice-shared-expand}}"',
+	'centralnotice-hide-button' => 'Celar ligamine',
+	'centralnotice-collapse-button' => 'Plicar ligamine',
+	'centralnotice-expand-button' => 'Displicar ligamine',
 	'centralnotice-close-button' => 'Button "Clauder"',
 	'centralnotice-translate-button' => 'Ligamine "Adjuta de traduction"',
 	'centralnotice-donate-button' => 'Button "Donar"',
@@ -4389,10 +4349,6 @@ Adde un hic infra.',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => 'document.write() non pote esser usate intra un bandiera.
 Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
-	'right-centralnotice-admin' => 'Gerer avisos central',
-	'right-centralnotice-translate' => 'Traducer avisos central',
-	'action-centralnotice-admin' => 'gerer avisos central',
-	'action-centralnotice-translate' => 'traducer avisos central',
 	'centralnotice-preferred' => 'Preferite',
 );
 
@@ -4408,6 +4364,8 @@ $messages['id'] = array(
 	'centralnotice' => 'Administrasi pengumuman sentral',
 	'noticetemplate' => 'Pengurus pengumuman sentral',
 	'bannerallocation' => 'Pengurus pengumuman sentral',
+	'right-centralnotice-admin' => 'Mengatur pengumuman sentral',
+	'action-centralnotice-admin' => 'mengatur pengumuman sentral',
 	'centralnotice-desc' => 'Menambahkan suatu pengumuman sentral',
 	'centralnotice-summary' => 'Dengan modul ini, Anda dapat menyunting pengaturan pengumuman sentral saat ini.
 Modul ini juga dapat digunakan untuk menambahkan atau menghapus pengumuman lama.',
@@ -4504,9 +4462,9 @@ Tambahkan di bawah ini.',
 	'centralnotice-clone-name' => 'Nama:',
 	'centralnotice-preview-all-template-translations' => 'Lihat pratayang semua terjemahan templat yang tersedia',
 	'centralnotice-insert' => 'Sisipkan: $1',
-	'centralnotice-hide-button' => 'Pranala {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'Pranala {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'Pranala {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'Sembunyikan pranala',
+	'centralnotice-collapse-button' => 'Ciutkan pranala',
+	'centralnotice-expand-button' => 'Luaskan pranala',
 	'centralnotice-close-button' => 'Tombol tutup',
 	'centralnotice-translate-button' => 'Pranala bantu terjemahkan',
 	'centralnotice-donate-button' => 'Tombol sumbangan',
@@ -4531,10 +4489,6 @@ Tambahkan di bawah ini.',
 	'centralnotice-percentage' => 'Persentase',
 	'centralnotice-documentwrite-error' => 'document.write() tidak dapat digunakan di dalam pengumuman.
 Lihat http://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih lanjut.',
-	'right-centralnotice-admin' => 'Mengatur pengumuman sentral',
-	'right-centralnotice-translate' => 'Menerjemahkan pengumuman sentral',
-	'action-centralnotice-admin' => 'mengatur pengumuman sentral',
-	'action-centralnotice-translate' => 'menerjemahkan pengumuman sentral',
 	'centralnotice-preferred' => 'Preferensi',
 );
 
@@ -4720,6 +4674,8 @@ $messages['ja'] = array(
 	'centralnotice' => '中央管理通知の管理',
 	'noticetemplate' => '中央管理通知の管理',
 	'bannerallocation' => '中央管理通知の管理',
+	'right-centralnotice-admin' => '中央管理通知の管理',
+	'action-centralnotice-admin' => '中央管理通知の管理',
 	'centralnotice-desc' => '中央管理のサイト通知を追加する',
 	'centralnotice-summary' => 'このモジュールにより現在設定されている中央管理通知を編集することができます。通知の追加や除去も行えます。',
 	'centralnotice-query' => '現在の告知を変更する',
@@ -4839,10 +4795,6 @@ $messages['ja'] = array(
 	'centralnotice-percentage' => '割合',
 	'centralnotice-documentwrite-error' => 'テンプレート内で、document.write()を使うことはできません。
 詳細については、 http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。',
-	'right-centralnotice-admin' => '中央管理通知の管理',
-	'right-centralnotice-translate' => '中央管理通知の翻訳',
-	'action-centralnotice-admin' => '中央管理通知の管理',
-	'action-centralnotice-translate' => '中央管理通知の翻訳',
 	'centralnotice-preferred' => '優先',
 );
 
@@ -5290,6 +5242,8 @@ $messages['lb'] = array(
 	'centralnotice' => 'Administratioun vun den zentrale Matdeelungen',
 	'noticetemplate' => 'Gstioun vun den zentrale Matdeelungen',
 	'bannerallocation' => 'Administratioun vun den zentrale Matdeelungen',
+	'right-centralnotice-admin' => 'Zentralmatdeelunge geréieren',
+	'action-centralnotice-admin' => 'Zentralmatdeelungen ze geréieren',
 	'centralnotice-desc' => 'Setzt eng zentral Matdeelung iwwert de Site derbäi',
 	'centralnotice-summary' => "Dës Erweiderung erlaabt et Är aktuell Parameter vun den zentrale Matdeelungen z'änneren.
 Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen.",
@@ -5413,10 +5367,6 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-percentage' => 'Prozentsaz',
 	'centralnotice-documentwrite-error' => 'document.write() kann net bannen an engem Banner benotzt ginn.
 Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.',
-	'right-centralnotice-admin' => 'Zentralmatdeelunge geréieren',
-	'right-centralnotice-translate' => 'Zentralmatdeelungen iwwersetzen',
-	'action-centralnotice-admin' => 'Zentralmatdeelungen ze geréieren',
-	'action-centralnotice-translate' => "Zentralmatdeelungen z'iwwersetzen",
 	'centralnotice-preferred' => 'Am léiwsten',
 );
 
@@ -5438,6 +5388,8 @@ $messages['li'] = array(
 	'centralnotice' => 'Beheer centrale sitemitdeiling',
 	'noticetemplate' => 'Behier centraal sitemitdeiling',
 	'bannerallocation' => 'Behier centraal sitemitdeiling',
+	'right-centralnotice-admin' => 'Centrale sitemitdeilinge behere',
+	'action-centralnotice-admin' => 'beheer centrale sitemitdeilinge',
 	'centralnotice-desc' => "Deit 'n centrale sitemededeling bie",
 	'centralnotice-summary' => 'Mit dees moduul kinne centraal ingestelde sitemitdeilinge bewirk waere.
 De module kin ouch gebroek waere om sitemitdeilinge bie te doon of eweg te sjaffe.',
@@ -5558,10 +5510,6 @@ De kins hiejónger ein biedoon.",
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => 'document.write() kin neet zónger de vaan gebroek waere.
 Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.',
-	'right-centralnotice-admin' => 'Centrale sitemitdeilinge behere',
-	'right-centralnotice-translate' => 'Centrale sitenotices vertale',
-	'action-centralnotice-admin' => 'beheer centrale sitemitdeilinge',
-	'action-centralnotice-translate' => 'centrale sitemitdeilinge euverzètte',
 	'centralnotice-preferred' => 'Prifferensies',
 );
 
@@ -5570,6 +5518,8 @@ Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.'
  * @author Matasg
  */
 $messages['lt'] = array(
+	'right-centralnotice-admin' => 'Visuotinių pranešimų valdymas',
+	'action-centralnotice-admin' => 'visuotinių pranešimų valdymas',
 	'centralnotice-query' => 'Keisti šiuo metu vykdomas kampanijas',
 	'centralnotice-notice-name' => 'Kampanijos pavadinimas',
 	'centralnotice-end-date' => 'Pabaigos data',
@@ -5632,10 +5582,6 @@ Pridėkite!',
 	'centralnotice-projects' => 'Projektai',
 	'centralnotice-country' => 'Valstybė',
 	'centralnotice-percentage' => 'Procentinė dalis',
-	'right-centralnotice-admin' => 'Visuotinių pranešimų valdymas',
-	'right-centralnotice-translate' => 'Visuotinių pranešimų vertimas',
-	'action-centralnotice-admin' => 'visuotinių pranešimų valdymas',
-	'action-centralnotice-translate' => 'visuotinių pranešimų vertimas',
 	'centralnotice-preferred' => 'Pageidaujamas',
 );
 
@@ -5753,6 +5699,8 @@ $messages['mk'] = array(
 	'centralnotice' => 'Администратор на централни известувања',
 	'noticetemplate' => 'Администратор на централни известувања',
 	'bannerallocation' => 'Администратор на централни известувања',
+	'right-centralnotice-admin' => 'Раководење со централни известувања',
+	'action-centralnotice-admin' => 'раководење со централни известувања',
 	'centralnotice-desc' => 'Централизирано известување',
 	'centralnotice-summary' => 'Овој модул ви овозможува да ги уредувате вашите моментално поставени централни известувања.
 Може да се користи и за додавање или отстранување на стари известувања.',
@@ -5849,9 +5797,9 @@ $messages['mk'] = array(
 	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-preview-all-template-translations' => 'Преглед на сите расположиви преводи на шаблонот',
 	'centralnotice-insert' => 'Вметни: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} врска',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} врска',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} врска',
+	'centralnotice-hide-button' => 'Скриј',
+	'centralnotice-collapse-button' => 'Склопи',
+	'centralnotice-expand-button' => 'Расклопи',
 	'centralnotice-close-button' => 'Копче за затворање',
 	'centralnotice-translate-button' => 'Врска за помош со преводите',
 	'centralnotice-donate-button' => 'Копче за донации',
@@ -5875,10 +5823,6 @@ $messages['mk'] = array(
 	'centralnotice-allocation-description' => 'Распределба на плакати за $1.$2 iво $3:',
 	'centralnotice-percentage' => 'Постоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може да се користи во рамките на плаЗа повеќе информации, погледајте ја страницата http://meta.wikimedia.org/wiki/Help:CentralNotice',
-	'right-centralnotice-admin' => 'Раководење со централни известувања',
-	'right-centralnotice-translate' => 'Преведување на централни известувања',
-	'action-centralnotice-admin' => 'раководење со централни известувања',
-	'action-centralnotice-translate' => 'преведување на цетрални известувања',
 	'centralnotice-preferred' => 'Претпочитано',
 );
 
@@ -5890,6 +5834,8 @@ $messages['ml'] = array(
 	'centralnotice' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
 	'noticetemplate' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
 	'bannerallocation' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
+	'right-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
+	'action-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
 	'centralnotice-desc' => 'കേന്ദീകൃത സൈറ്റ്നോട്ടീസ് ചേർക്കുന്നു',
 	'centralnotice-summary' => 'തയ്യാറാക്കപ്പെട്ട കേന്ദ്രീകൃത അറിയിപ്പുകൾ തിരുത്താൻ ഈ ഘടകം താങ്കളെ പ്രാപ്തമാക്കുന്നു.
 പഴയ അറിയിപ്പുകൾ കൂട്ടിച്ചേർക്കാനോ നീക്കം ചെയ്യാനോ വേണ്ടിയും ഇതുപയോഗിക്കാവുന്നതാണ്.',
@@ -5986,9 +5932,9 @@ $messages['ml'] = array(
 	'centralnotice-clone-name' => 'പേര്:',
 	'centralnotice-preview-all-template-translations' => 'ഫലകത്തിന്റെ ലഭ്യമായ എല്ലാ തർജ്ജമകളുടേയും പ്രിവ്യൂ കാണുക',
 	'centralnotice-insert' => 'ഉൾപ്പെടുത്തുക: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} കണ്ണി',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} കണ്ണി',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} കണ്ണി',
+	'centralnotice-hide-button' => 'മറയ്ക്കാനുള്ള കണ്ണി',
+	'centralnotice-collapse-button' => 'ചുരുക്കാനുള്ള കണ്ണി',
+	'centralnotice-expand-button' => 'വികസിപ്പിക്കാനുള്ള കണ്ണി',
 	'centralnotice-close-button' => 'അടയ്ക്കാനുള്ള ബട്ടൺ',
 	'centralnotice-translate-button' => 'പരിഭാഷാസഹായി ബട്ടൺ',
 	'centralnotice-donate-button' => 'സംഭാവനാ ബട്ടൺ',
@@ -6013,10 +5959,6 @@ $messages['ml'] = array(
 	'centralnotice-percentage' => 'ശതമാനം',
 	'centralnotice-documentwrite-error' => 'എഴുത്തുപട്ടയിൽ document.write() ഉപയോഗിക്കാനാവില്ല.
 കൂടുതൽ വിവരങ്ങൾക്ക് http://meta.wikimedia.org/wiki/Help:CentralNotice കാണുക',
-	'right-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
-	'right-centralnotice-translate' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ തർജ്ജമ ചെയ്യുക',
-	'action-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
-	'action-centralnotice-translate' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ തർജ്ജമ ചെയ്യുക',
 	'centralnotice-preferred' => 'അഭിലഷണീയമായുള്ളത്',
 );
 
@@ -6302,6 +6244,8 @@ $messages['nl'] = array(
 	'centralnotice' => 'Beheer centrale sitenotice',
 	'noticetemplate' => 'Centrale sitenotice beheren',
 	'bannerallocation' => 'Centrale sitenotice beheren',
+	'right-centralnotice-admin' => 'Centrale sitenotices beheren',
+	'action-centralnotice-admin' => 'centrale sitenotices beheren',
 	'centralnotice-desc' => 'Voegt een centrale sitemededeling toe',
 	'centralnotice-summary' => 'Met deze module kunnen centraal ingestelde sitenotices bewerkt worden.
 De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwijderen.',
@@ -6426,10 +6370,6 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => 'document.write() kan niet worden gebruikt binnen een banner. 
 Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
-	'right-centralnotice-admin' => 'Centrale sitenotices beheren',
-	'right-centralnotice-translate' => 'Centrale sitenotices vertalen',
-	'action-centralnotice-admin' => 'centrale sitenotices beheren',
-	'action-centralnotice-translate' => 'centrale sitenotices vertalen',
 	'centralnotice-preferred' => 'Voorkeur',
 );
 
@@ -6528,6 +6468,8 @@ $messages['no'] = array(
 	'centralnotice' => 'Administrasjon av sentrale beskjeder',
 	'noticetemplate' => 'Admin for sentrale beskjeder',
 	'bannerallocation' => 'Administrasjon av sentrale beskjeder',
+	'right-centralnotice-admin' => 'Håndtere sentrale meldinger',
+	'action-centralnotice-admin' => 'administrere sentrale meldinger',
 	'centralnotice-desc' => 'Legger til en sentral sidenotis',
 	'centralnotice-summary' => 'Denne modulen lar deg redigere din nåværende sentralmeldinger.
 Den kan også bli brukt for å legge til eller fjerne gamle meldinger.',
@@ -6651,10 +6593,6 @@ Legg til en under',
 	'centralnotice-percentage' => 'Prosent',
 	'centralnotice-documentwrite-error' => 'document.write() kan ikke brukes i et banner.
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
-	'right-centralnotice-admin' => 'Håndtere sentrale meldinger',
-	'right-centralnotice-translate' => 'Oversett sentrale meldinger',
-	'action-centralnotice-admin' => 'administrere sentrale meldinger',
-	'action-centralnotice-translate' => 'oversette sentrale meldinger',
 	'centralnotice-preferred' => 'Foretrukket',
 );
 
@@ -6786,6 +6724,8 @@ $messages['pl'] = array(
 	'centralnotice' => 'Administrowanie wspólnymi komunikatami',
 	'noticetemplate' => 'Zarządzanie wspólnymi komunikatami',
 	'bannerallocation' => 'Zarządzanie wspólnymi komunikatami',
+	'right-centralnotice-admin' => 'Zarządzanie wspólnymi komunikatami',
+	'action-centralnotice-admin' => 'zarządzaj centralnymi komunikatami',
 	'centralnotice-desc' => 'Dodaje wspólny komunikat dla serwisów',
 	'centralnotice-summary' => 'Ten moduł pozwala zmieniać bieżące ustawienia wspólnych komunikatów.
 Można także dodawać i usuwać komunikaty.',
@@ -6875,9 +6815,9 @@ Dodaj nowy poniżej.',
 	'centralnotice-clone-name' => 'Nazwa',
 	'centralnotice-preview-all-template-translations' => 'Zobacz wszystkie dostępne tłumaczenia szablonu',
 	'centralnotice-insert' => 'Wstaw: $1',
-	'centralnotice-hide-button' => 'Link {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'Link {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'Link {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'Ukryj link',
+	'centralnotice-collapse-button' => 'Zwiń link',
+	'centralnotice-expand-button' => 'Rozwiń link',
 	'centralnotice-close-button' => 'Przycisk zamykania',
 	'centralnotice-translate-button' => 'Link „Pomóż w tłumaczeniu”',
 	'centralnotice-donate-button' => 'Przycisk „Wspomóż”',
@@ -6902,10 +6842,6 @@ Dodaj nowy poniżej.',
 	'centralnotice-percentage' => 'Procentowo',
 	'centralnotice-documentwrite-error' => 'Nie można korzystać z document.write() w banerze.
 Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:CentralNotice',
-	'right-centralnotice-admin' => 'Zarządzanie wspólnymi komunikatami',
-	'right-centralnotice-translate' => 'Tłumaczenie wspólnych dla projektów ogłoszeń',
-	'action-centralnotice-admin' => 'zarządzaj centralnymi komunikatami',
-	'action-centralnotice-translate' => 'przetłumacz centralne komunikaty',
 	'centralnotice-preferred' => 'Preferowany',
 );
 
@@ -6917,6 +6853,8 @@ $messages['pms'] = array(
 	'centralnotice' => 'Aministrassion sentral ëd le neuve',
 	'noticetemplate' => 'Aministrassion sentral ëd le neuve',
 	'bannerallocation' => 'Aministrassion sentral ëd le neuve',
+	'right-centralnotice-admin' => 'Gestì le neuve sentraj',
+	'action-centralnotice-admin' => 'gestì le neuve sentraj',
 	'centralnotice-desc' => 'A gionta na Neuva Sentral dël sit',
 	'centralnotice-summary' => 'Sto mòdol-sì a-j përmët ëd modifiché soe Neuve Sentraj ampostà al moment.
 A peul ëdcò esse dovrà për gionté o gavé notissie veje.',
@@ -7040,10 +6978,6 @@ Ch'a na gionta un-a sì-sota.",
 	'centralnotice-percentage' => 'Përsentual',
 	'centralnotice-documentwrite-error' => "document.write() a peul pa esse dovrà ant un tilèt.
 ch'a lesa http://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi.",
-	'right-centralnotice-admin' => 'Gestì le neuve sentraj',
-	'right-centralnotice-translate' => 'Volté le neuve sentraj',
-	'action-centralnotice-admin' => 'gestì le neuve sentraj',
-	'action-centralnotice-translate' => 'volté le neuve sentraj',
 	'centralnotice-preferred' => 'Mè gust',
 );
 
@@ -7104,6 +7038,8 @@ $messages['pt'] = array(
 	'centralnotice' => 'Administração de avisos centralizados',
 	'noticetemplate' => 'Administração de avisos centralizados',
 	'bannerallocation' => 'Administração de avisos centralizados',
+	'right-centralnotice-admin' => 'Gerir avisos centralizados',
+	'action-centralnotice-admin' => 'gerir avisos centralizados',
 	'centralnotice-desc' => 'Adiciona um aviso centralizado',
 	'centralnotice-summary' => 'Este módulo permite-lhe editar os avisos centralizados configurados.
 Pode também ser usado para adicionar novos ou remover antigos.',
@@ -7227,10 +7163,6 @@ Adicione um, abaixo.',
 	'centralnotice-percentage' => 'Percentagem',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'right-centralnotice-admin' => 'Gerir avisos centralizados',
-	'right-centralnotice-translate' => 'Traduzir avisos centralizados',
-	'action-centralnotice-admin' => 'gerir avisos centralizados',
-	'action-centralnotice-translate' => 'traduzir avisos centralizados',
 	'centralnotice-preferred' => 'Preferido',
 );
 
@@ -7244,6 +7176,8 @@ $messages['pt-br'] = array(
 	'centralnotice' => 'Administração de aviso centralizado',
 	'noticetemplate' => 'Administração de avisos centralizados',
 	'bannerallocation' => 'Administração de avisos centralizados',
+	'right-centralnotice-admin' => 'Gerenciar avisos centralizados',
+	'action-centralnotice-admin' => 'gerenciar avisos centralizados',
 	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
 	'centralnotice-summary' => 'Este módulo permite-lhe editar os seus avisos centralizados atualmente configurados.
 Pode também ser usado para adicionar ou remover avisos antigos.',
@@ -7367,10 +7301,6 @@ Adicione um abaixo',
 	'centralnotice-percentage' => 'Porcentagem',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'right-centralnotice-admin' => 'Gerenciar avisos centralizados',
-	'right-centralnotice-translate' => 'Traduzir avisos centralizados',
-	'action-centralnotice-admin' => 'gerenciar avisos centralizados',
-	'action-centralnotice-translate' => 'traduzir avisos centralizados',
 	'centralnotice-preferred' => 'Preferido',
 );
 
@@ -7381,6 +7311,8 @@ $messages['qu'] = array(
 	'centralnotice' => 'Chawpi willay kamachiy',
 	'noticetemplate' => 'Chawpi willay kamachiy',
 	'bannerallocation' => 'Chawpi willay kamachiy',
+	'right-centralnotice-admin' => 'Chawpi willaykunata kamachiy',
+	'action-centralnotice-admin' => 'chawpi willaykunata kamachiy',
 	'centralnotice-desc' => 'Tukuy ruraykamaykunapaq chawpi willayta yapan',
 	'centralnotice-summary' => "Kay wakina tupuwanqa qampa kachkaq chawpi willayniykikunatam allinchayta atinki.
 Paywanmi mawk'a willaykunatapas yapayta icha qichuyta atinki.",
@@ -7504,10 +7436,6 @@ Kay qatiqpi hukta yapay',
 	'centralnotice-percentage' => 'Pachakmanta',
 	'centralnotice-documentwrite-error' => "document.write() nisqaqa unanchapi manam llamk'anchu.
 http://meta.wikimedia.org/wiki/Help:CentralNotice nisqapi qhaway willasunaykipaq.",
-	'right-centralnotice-admin' => 'Chawpi willaykunata kamachiy',
-	'right-centralnotice-translate' => "Chawpi willaykunata t'ikray",
-	'action-centralnotice-admin' => 'chawpi willaykunata kamachiy',
-	'action-centralnotice-translate' => "chawpi willaykunata t'ikray",
 	'centralnotice-preferred' => 'Astawan munakusqa',
 );
 
@@ -7523,6 +7451,8 @@ $messages['ro'] = array(
 	'centralnotice' => 'Administrarea anunțului central',
 	'noticetemplate' => 'Administrarea anunțului central',
 	'bannerallocation' => 'Administrarea anunțului central',
+	'right-centralnotice-admin' => 'Gestionați anunțurile centrale',
+	'action-centralnotice-admin' => 'administrați anunțurile centrale',
 	'centralnotice-desc' => 'Adaugă un anunț central sitului',
 	'centralnotice-summary' => 'Acest modul vă permite să modificați configurația anunțurilor centrale.
 El poate fi folosit de asemenea pentru a adăuga sau șterge anunțuri vechi.',
@@ -7618,9 +7548,9 @@ Adăugați una mai jos.',
 	'centralnotice-clone-name' => 'Nume:',
 	'centralnotice-preview-all-template-translations' => 'Previzualizează toate traducerile disponibile ale bannerului',
 	'centralnotice-insert' => 'Introduceți: $1',
-	'centralnotice-hide-button' => 'legătură {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'legătură {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'legătură {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'Ascunde legătura',
+	'centralnotice-collapse-button' => 'Restrânge legătura',
+	'centralnotice-expand-button' => 'Extinde legătura',
 	'centralnotice-close-button' => 'Buton închidere',
 	'centralnotice-translate-button' => 'Ajutor traducere link',
 	'centralnotice-donate-button' => 'Buton de donare',
@@ -7643,10 +7573,6 @@ Adăugați una mai jos.',
 	'centralnotice-percentage' => 'Procentaj',
 	'centralnotice-documentwrite-error' => 'document.write() nu poate fi folosit într-un banner.
 Vedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe informații.',
-	'right-centralnotice-admin' => 'Gestionați anunțurile centrale',
-	'right-centralnotice-translate' => 'Traduce anunțurile centrale',
-	'action-centralnotice-admin' => 'administrați anunțurile centrale',
-	'action-centralnotice-translate' => 'traduceți anunțurile centrale',
 	'centralnotice-preferred' => 'Preferat',
 );
 
@@ -7658,6 +7584,8 @@ $messages['roa-tara'] = array(
 	'centralnotice' => "Amministrazione de l'avvise cendrale",
 	'noticetemplate' => "Amministrazione de l'avvise cendrale",
 	'bannerallocation' => "Amministrazione de l'avvise cendrale",
+	'right-centralnotice-admin' => 'Gestiscere le notizie cendrale',
+	'action-centralnotice-admin' => 'gestiscere le notizie cendrale',
 	'centralnotice-desc' => "Aggiunge 'n'avvise cendrale a 'u site",
 	'centralnotice-query' => "Cange 'a cambagne corrende",
 	'centralnotice-notice-name' => "Nome d'a cambagne",
@@ -7771,10 +7699,6 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-no-allocation' => 'Nisciune banner assignate.',
 	'centralnotice-allocation-description' => 'Assignazione de banner pè $1.$2 jndre $3:',
 	'centralnotice-percentage' => 'Percenduale',
-	'right-centralnotice-admin' => 'Gestiscere le notizie cendrale',
-	'right-centralnotice-translate' => 'Traducere le notizie cendrale',
-	'action-centralnotice-admin' => 'gestiscere le notizie cendrale',
-	'action-centralnotice-translate' => 'traducere le notizie cendrale',
 	'centralnotice-preferred' => 'Preferite',
 );
 
@@ -7791,6 +7715,8 @@ $messages['ru'] = array(
 	'centralnotice' => 'Управление централизованными уведомлениями',
 	'noticetemplate' => 'Управление централизованными уведомлениями',
 	'bannerallocation' => 'Управление централизованными уведомлениями',
+	'right-centralnotice-admin' => 'управление централизованными уведомлениями',
+	'action-centralnotice-admin' => 'управление централизованными уведомлениями',
 	'centralnotice-desc' => 'Добавляет общее сообщение сайта',
 	'centralnotice-summary' => 'Этот модуль позволяет вам изменять ваши текущие централизованные уведомления.
 Он также может использоваться для добавления новых и удаления старых уведомлений.',
@@ -7914,10 +7840,6 @@ $messages['ru'] = array(
 	'centralnotice-percentage' => 'Процент',
 	'centralnotice-documentwrite-error' => 'document.write() нельзя использовать в баннере.
 Подробности: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].',
-	'right-centralnotice-admin' => 'управление централизованными уведомлениями',
-	'right-centralnotice-translate' => 'перевод централизованных уведомлений',
-	'action-centralnotice-admin' => 'управление централизованными уведомлениями',
-	'action-centralnotice-translate' => 'перевод централизованных уведомлений',
 	'centralnotice-preferred' => 'Желательно',
 );
 
@@ -7928,6 +7850,8 @@ $messages['rue'] = array(
 	'centralnotice' => 'Адміністрація централізованых повідомлїнь',
 	'noticetemplate' => 'Адміністрація централізованых повідомлїнь',
 	'bannerallocation' => 'Адміністрація централізованых повідомлїнь',
+	'right-centralnotice-admin' => 'Адміністрація централізованых повідомлїнь',
+	'action-centralnotice-admin' => 'адміністровати централізованы повідомлїня',
 	'centralnotice-desc' => 'Придасть цетралне повідомлїня до заголовя сайту',
 	'centralnotice-summary' => 'За помочі того модулу можете управляти моментално наставлены централізованы повідомлїня.
 Тыж ту можете придавати новы ці одстранёвати стары.',
@@ -8046,10 +7970,6 @@ $messages['rue'] = array(
 	'centralnotice-percentage' => 'Процента',
 	'centralnotice-documentwrite-error' => 'В банері ся не дасть хосновати document.write().
 Далшы інформації найдете на сторінцї http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'right-centralnotice-admin' => 'Адміністрація централізованых повідомлїнь',
-	'right-centralnotice-translate' => 'Переклад централізованых повідомлїнь',
-	'action-centralnotice-admin' => 'адміністровати централізованы повідомлїня',
-	'action-centralnotice-translate' => 'переклад централізованых повідомлїнь',
 	'centralnotice-preferred' => 'Префероване',
 );
 
@@ -8060,6 +7980,8 @@ $messages['sah'] = array(
 	'centralnotice' => 'Кииннэммит биллэриилэри салайыы',
 	'noticetemplate' => 'Кииннэммит биллэриилэри салайыы',
 	'bannerallocation' => 'Кииннэммит биллэриилэри салайыы',
+	'right-centralnotice-admin' => 'Кииннэмит биллэриилэри салайыы',
+	'action-centralnotice-admin' => 'кииннэммит биллэриилэри салайыы',
 	'centralnotice-desc' => 'Саайт биллэриитин эбэр',
 	'centralnotice-summary' => 'Бу муодул билигин үлэлиир кииннэммит биллэриилэргитин уларытарга туһаныллар.
 Саҥа биллэриилэри эбэргэ, эргэ биллэриилэри соторго туһаныллыан эмиэ сөп.',
@@ -8156,7 +8078,7 @@ $messages['sah'] = array(
 	'centralnotice-clone-name' => 'Аата:',
 	'centralnotice-preview-all-template-translations' => 'Халыып баар тылбаастарын барытын көрүү',
 	'centralnotice-insert' => 'Киллэрии: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} сигэни',
+	'centralnotice-hide-button' => 'Сигэни кистииргэ',
 	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} сигэни',
 	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} сигэни',
 	'centralnotice-close-button' => 'Сабар тимэх',
@@ -8183,10 +8105,6 @@ $messages['sah'] = array(
 	'centralnotice-percentage' => 'Бырыһыан',
 	'centralnotice-documentwrite-error' => 'document.write() диэни бааннерга туттар сатаммат.
 Сиһилии: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].',
-	'right-centralnotice-admin' => 'Кииннэмит биллэриилэри салайыы',
-	'right-centralnotice-translate' => 'Кииннэммит биллэриилэри тылбаастааһын',
-	'action-centralnotice-admin' => 'кииннэммит биллэриилэри салайыы',
-	'action-centralnotice-translate' => 'кииннэммит биллэриилэри тылбаастааһын',
 	'centralnotice-preferred' => 'Бэрт буолуо этэ',
 );
 
@@ -8291,6 +8209,8 @@ $messages['si'] = array(
 	'centralnotice' => 'ප්‍රධාන දැන්වීම් පාලක',
 	'noticetemplate' => 'ප්‍රධාන දැන්වීම් පාලක',
 	'bannerallocation' => 'ප්‍රධාන දැන්වීම් පාලක',
+	'right-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
+	'action-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
 	'centralnotice-desc' => 'ප්‍රධාන අඩවි දැන්වීමක් එකතු කරයි',
 	'centralnotice-summary' => 'මෙම ඒකකය මගින් ඔබ දැනට පිහිටුවා ඇති ප්‍රධාන දැන්වීම් සංස්කරණය කළ හැකිය. 
 එය පැරැණි දැන්වීම් එකතු කිරීමට හෝ අයින් කිරීමට ද භාවිතා කළ හැකිය.',
@@ -8414,10 +8334,6 @@ $messages['si'] = array(
 	'centralnotice-percentage' => 'ප්‍රතිශත',
 	'centralnotice-documentwrite-error' => 'බැනරය තුළ document.write() යොදාගත නොහැකිය. 
 වැඩි විස්තර සඳහා http://meta.wikimedia.org/wiki/Help:CentralNotice බලන්න.',
-	'right-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
-	'right-centralnotice-translate' => 'ප්‍රධාන දැන්වීම් පරිවර්තනය කරන්න',
-	'action-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
-	'action-centralnotice-translate' => ' ප්‍රධාන දැන්වීම් පරිවර්තනය කරන්න',
 	'centralnotice-preferred' => 'වඩා කැමති',
 );
 
@@ -8428,6 +8344,8 @@ $messages['sk'] = array(
 	'centralnotice' => 'Centrálny oznam',
 	'noticetemplate' => 'Správa centrálnych oznamov',
 	'bannerallocation' => 'Správa centrálnych oznamov',
+	'right-centralnotice-admin' => 'Spravovať centrálne oznamy',
+	'action-centralnotice-admin' => 'spravovať centrálne oznamy',
 	'centralnotice-desc' => 'Pridáva centrálnu Správu lokality',
 	'centralnotice-summary' => 'Tento modul umožňuje upravovať vaše momentálne nastavené centrálne oznamy.
 Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
@@ -8540,10 +8458,6 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-percentage' => 'Percent',
 	'centralnotice-documentwrite-error' => 'document.write() nie je možné použiť v rámci odkazu.
 Ďalšie informácie nájdete na http://meta.wikimedia.org/wiki/Help:CentralNotice',
-	'right-centralnotice-admin' => 'Spravovať centrálne oznamy',
-	'right-centralnotice-translate' => 'Prekladať centrálne oznamy',
-	'action-centralnotice-admin' => 'spravovať centrálne oznamy',
-	'action-centralnotice-translate' => 'prekladať centrálne oznamy',
 	'centralnotice-preferred' => 'Uprednostňované',
 );
 
@@ -8554,6 +8468,8 @@ $messages['sl'] = array(
 	'centralnotice' => 'Upravljanje osrednjega obvestila',
 	'noticetemplate' => 'Upravljanje osrednjega obvestila',
 	'bannerallocation' => 'Upravljanje osrednjega obvestila',
+	'right-centralnotice-admin' => 'Upravljanje osrednjih sporočil',
+	'action-centralnotice-admin' => 'upravljanje osrednjih sporočil',
 	'centralnotice-desc' => 'Doda osrednje obvestilo strani',
 	'centralnotice-summary' => 'Ta modul omogoča urejanje vaših trenutno nastavljenih osrednjih obvestil.
 Z njim lahko tudi dodajate ali odstranjujete stara obvestila.',
@@ -8650,9 +8566,9 @@ Dodajte kakšno spodaj.',
 	'centralnotice-clone-name' => 'Ime:',
 	'centralnotice-preview-all-template-translations' => 'Predogled vseh prevodov pasic, ki so na voljo',
 	'centralnotice-insert' => 'Vstavi: $1',
-	'centralnotice-hide-button' => 'povezava {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'povezava {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'povezava {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'Skrij povezavo',
+	'centralnotice-collapse-button' => 'Skrči povezavo',
+	'centralnotice-expand-button' => 'Razširi povezavo',
 	'centralnotice-close-button' => 'Gumb za zapiranje',
 	'centralnotice-translate-button' => 'Povezava za pomoč pri prevajanju',
 	'centralnotice-donate-button' => 'Gumb za doniranje',
@@ -8677,10 +8593,6 @@ Dodajte kakšno spodaj.',
 	'centralnotice-percentage' => 'Odstotek',
 	'centralnotice-documentwrite-error' => 'document.write() ni mogoče uporabiti v pasici.
 Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.',
-	'right-centralnotice-admin' => 'Upravljanje osrednjih sporočil',
-	'right-centralnotice-translate' => 'Prevajanje osrednjih sporočil',
-	'action-centralnotice-admin' => 'upravljanje osrednjih sporočil',
-	'action-centralnotice-translate' => 'prevajanje osrednjih sporočil',
 	'centralnotice-preferred' => 'Prednostno',
 );
 
@@ -8964,6 +8876,8 @@ $messages['sv'] = array(
 	'centralnotice' => 'Centralmeddelande-administration',
 	'noticetemplate' => 'Administration för Centralmeddelandemall',
 	'bannerallocation' => 'Administraton av centralmeddelande',
+	'right-centralnotice-admin' => 'Hantera centralmeddelanden',
+	'action-centralnotice-admin' => 'hantera centralmeddelanden',
 	'centralnotice-desc' => 'Lägger till en central sitenotice',
 	'centralnotice-summary' => 'Denna modul låter dig redigera din nuvarande uppsättning centralmeddelanden.
 Den kan också användas för att lägga till eller ta bort gamla meddelanden.',
@@ -9087,10 +9001,6 @@ Lägg till ett nedan',
 	'centralnotice-percentage' => 'Procent',
 	'centralnotice-documentwrite-error' => 'document.write() kan inte användas inom en banner. 
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
-	'right-centralnotice-admin' => 'Hantera centralmeddelanden',
-	'right-centralnotice-translate' => 'Översätt centralmeddelanden',
-	'action-centralnotice-admin' => 'hantera centralmeddelanden',
-	'action-centralnotice-translate' => 'översätt centralmeddelanden',
 	'centralnotice-preferred' => 'Föredragen',
 );
 
@@ -9162,6 +9072,7 @@ $messages['ta'] = array(
 $messages['te'] = array(
 	'centralnotice' => 'కేంద్రీయ గమనిక నిర్వహణ',
 	'noticetemplate' => 'కేంద్రీయ గమనిక నిర్వహణ',
+	'right-centralnotice-admin' => 'కేంద్రీయ గమనికలని నిర్వహించగలగడం',
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
 	'centralnotice-notice-name' => 'గమనిక పేరు',
 	'centralnotice-end-date' => 'ముగింపు తేదీ',
@@ -9244,9 +9155,6 @@ $messages['te'] = array(
 	'centralnotice-allocation' => 'కేటాయింపు',
 	'centralnotice-country' => 'దేశం',
 	'centralnotice-percentage' => 'శాతం',
-	'right-centralnotice-admin' => 'కేంద్రీయ గమనికలని నిర్వహించగలగడం',
-	'right-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనుదించండి',
-	'action-centralnotice-translate' => 'కేంద్రీయ గమనికలని అనువదించగలగడం',
 );
 
 /** Tetum (Tetun)
@@ -9543,6 +9451,8 @@ $messages['tk'] = array(
 	'centralnotice' => 'Merkezi uwedomleniýe admini',
 	'noticetemplate' => 'Merkezi uwedomleniýe admini',
 	'bannerallocation' => 'Merkezi uwedomleniýe admini',
+	'right-centralnotice-admin' => 'Merkezi uwedomleniýeleri dolandyr',
+	'action-centralnotice-admin' => 'merkezi uwedomleniýeleri dolandyr',
 	'centralnotice-desc' => 'Merkezi uwedomleniýe goşýar',
 	'centralnotice-summary' => 'Bu modul size bar bolan gurulgy merkezi uwedomleniýeleri üýtgetmäge rugsat berýär.
 Ony köne uwedomleniýeleri goşmak ýa-da aýyrmak üçin hem ulanmak bolýar.',
@@ -9657,10 +9567,6 @@ Aşak birini goşuň.',
 	'centralnotice-country' => 'Ýurt',
 	'centralnotice-no-allocation' => 'Hiç hili banner ýerleşdirilmändir.',
 	'centralnotice-percentage' => 'Göterim',
-	'right-centralnotice-admin' => 'Merkezi uwedomleniýeleri dolandyr',
-	'right-centralnotice-translate' => 'Merkezi uwedomleniýeleri terjime et',
-	'action-centralnotice-admin' => 'merkezi uwedomleniýeleri dolandyr',
-	'action-centralnotice-translate' => 'merkezi uwedomleniýeleri terjime et',
 	'centralnotice-preferred' => 'Ileri tutulýan',
 );
 
@@ -9671,6 +9577,8 @@ $messages['tl'] = array(
 	'centralnotice' => 'Tagapangasiwa ng pangunahing pabatid',
 	'noticetemplate' => 'Tagapangasiwa ng pangunahing pabatid',
 	'bannerallocation' => 'Tagapangasiwa ng pangunahing pabatid',
+	'right-centralnotice-admin' => 'Pamahalaan ang pangunahing mga pabatid',
+	'action-centralnotice-admin' => 'pamahalaan ang pangunahing mga pabatid',
 	'centralnotice-desc' => 'Nagdaragdag ng pangunahing pahayag ng sayt/sityo',
 	'centralnotice-summary' => 'Nagbibigay ang bahaging-panggampaning ito ng pahintulot na mabago mo ang iyong pangkasulukyang naitakdang mga pangunahing pahayag.
 Maaari rin itong gamitin upang makapagdagdag o magtanggal ng mga lumang pahayag.',
@@ -9790,10 +9698,6 @@ Magdagdag ng isa sa ibaba',
 	'centralnotice-percentage' => 'Kabahagdanan',
 	'centralnotice-documentwrite-error' => 'Hindi magagamit ang kasulatan.sulat() sa loob ng isang bandera.
 Tingnan ang http://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas maraming kabatiran.',
-	'right-centralnotice-admin' => 'Pamahalaan ang pangunahing mga pabatid',
-	'right-centralnotice-translate' => 'Isalinwika ang pangunahing mga pabatid',
-	'action-centralnotice-admin' => 'pamahalaan ang pangunahing mga pabatid',
-	'action-centralnotice-translate' => 'isalinwika ang pangunahing mga pabatid',
 	'centralnotice-preferred' => 'Mas ninanais',
 );
 
@@ -9816,6 +9720,8 @@ $messages['tr'] = array(
 	'centralnotice' => 'Merkezi uyarı yöneticisi',
 	'noticetemplate' => 'Merkezi uyarı yöneticisi',
 	'bannerallocation' => 'Merkezi uyarı yöneticisi',
+	'right-centralnotice-admin' => 'Merkezi uyarıları yönet',
+	'action-centralnotice-admin' => 'merkezi uyarıları yönet',
 	'centralnotice-desc' => 'Merkezi site uyarısı ekler',
 	'centralnotice-summary' => 'Bu modül size, mevcut ayarlanmış merkezi uyarıları değiştirmenize izin verir.
 Eski uyarıları ekleyip çıkarmak için de kullanılabilir.',
@@ -9939,10 +9845,6 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-percentage' => 'Yüzde',
 	'centralnotice-documentwrite-error' => 'document.write() afiş içinde kullanılamaz.
 Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.',
-	'right-centralnotice-admin' => 'Merkezi uyarıları yönet',
-	'right-centralnotice-translate' => 'Merkezi uyarıları çevir',
-	'action-centralnotice-admin' => 'merkezi uyarıları yönet',
-	'action-centralnotice-translate' => 'merkezi uyarıları çevir',
 	'centralnotice-preferred' => 'Tercih edilen',
 );
 
@@ -9952,6 +9854,8 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 $messages['tt-cyrl'] = array(
 	'centralnotice' => 'Хәбәрләр белән  идарә итү үзәге',
 	'noticetemplate' => 'Үзәк хәбәрләр үрнәге',
+	'right-centralnotice-admin' => 'Үзәкләштерелгән идарә иту системасы',
+	'action-centralnotice-admin' => 'үзәкләштерелгән идарә иту системасы',
 	'centralnotice-desc' => 'Сәхифәнең гомуми хатларын йөкли',
 	'centralnotice-summary' => 'Бу модуль Сезгә хәбәрләрегезне үзгәртергә ярдәм итә. Ул тагын яңа хәбәрләр өстәргә яки искеләрен юкка чыгарырга ярдәм итәчәк.',
 	'centralnotice-query' => 'Әлеге хәбәрне үзгәртү',
@@ -10022,10 +9926,6 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} төймәсе',
 	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} төймәсе',
 	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} төймәсе',
-	'right-centralnotice-admin' => 'Үзәкләштерелгән идарә иту системасы',
-	'right-centralnotice-translate' => 'Хәбәрләрне тәрҗемә итү',
-	'action-centralnotice-admin' => 'үзәкләштерелгән идарә иту системасы',
-	'action-centralnotice-translate' => 'хәбәрләрне тәрҗемә итү',
 	'centralnotice-preferred' => 'Катгый рәвештә',
 );
 
@@ -10051,6 +9951,8 @@ $messages['uk'] = array(
 	'centralnotice' => 'Управління централізованими сповіщеннями',
 	'noticetemplate' => 'Управління централізованими сповіщеннями',
 	'bannerallocation' => 'Управління централізованими сповіщеннями',
+	'right-centralnotice-admin' => 'Управління централізованими сповіщеннями',
+	'action-centralnotice-admin' => 'управління централізованими сповіщеннями',
 	'centralnotice-desc' => 'Додає загальне повідомлення сайту',
 	'centralnotice-summary' => 'Цей модуль дозволяє вам змінювати ваші поточні централізовані повідомлення.
 Він також може використовуватися для додавання нових і видалення старих повідомлень.',
@@ -10147,9 +10049,9 @@ $messages['uk'] = array(
 	'centralnotice-clone-name' => 'Назва:',
 	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблону',
 	'centralnotice-insert' => 'Вставити: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} посилання',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} посилання',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} посилання',
+	'centralnotice-hide-button' => 'Сховати посилання',
+	'centralnotice-collapse-button' => 'Згорнути посилання',
+	'centralnotice-expand-button' => 'Розгорнути посилання',
 	'centralnotice-close-button' => 'Кнопка "Закрити"',
 	'centralnotice-translate-button' => 'Допоможіть перекласти посилання',
 	'centralnotice-donate-button' => 'Ґудзик для пожертв',
@@ -10174,10 +10076,6 @@ $messages['uk'] = array(
 	'centralnotice-percentage' => 'Відсоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері. 
 Дивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.',
-	'right-centralnotice-admin' => 'Управління централізованими сповіщеннями',
-	'right-centralnotice-translate' => 'Переклад централізованих повідомлень',
-	'action-centralnotice-admin' => 'управління централізованими сповіщеннями',
-	'action-centralnotice-translate' => 'переклад централізованих повідомлень',
 	'centralnotice-preferred' => 'Бажано',
 );
 
@@ -10189,6 +10087,8 @@ $messages['vec'] = array(
 	'centralnotice' => 'Gestion notifiche sentralizade',
 	'noticetemplate' => "'Ministrassion dei avisi sentralizà",
 	'bannerallocation' => "'Ministrassion dei avisi sentralizà",
+	'right-centralnotice-admin' => 'Gestisse i avisi sentralixà',
+	'action-centralnotice-admin' => 'gestir i avisi sentralixà',
 	'centralnotice-desc' => 'Zonta un aviso çentralizà in çima a la pagina (sitenotice)',
 	'centralnotice-summary' => 'Sto modulo el permete de canbiar i avisi sentralixà.
 In più se pol dopararlo anca par zontar o cavar avisi veci.',
@@ -10307,10 +10207,6 @@ Zónteghene una qua soto.',
 	'centralnotice-percentage' => 'Persentuale',
 	'centralnotice-documentwrite-error' => 'document.write() no se pol dopararlo drento un banner.
 Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
-	'right-centralnotice-admin' => 'Gestisse i avisi sentralixà',
-	'right-centralnotice-translate' => 'Tradusi le notifiche sentrali',
-	'action-centralnotice-admin' => 'gestir i avisi sentralixà',
-	'action-centralnotice-translate' => 'tradur i avisi sentralixà',
 	'centralnotice-preferred' => 'Preferìo',
 );
 
@@ -10322,6 +10218,8 @@ $messages['vi'] = array(
 	'centralnotice' => 'Quản lý các thông báo chung',
 	'noticetemplate' => 'Quản lý các thông báo chung',
 	'bannerallocation' => 'Quản lý các thông báo chung',
+	'right-centralnotice-admin' => 'Quản lý thông báo chung',
+	'action-centralnotice-admin' => 'quản lý thông báo chung',
 	'centralnotice-desc' => 'Thêm thông báo ở đầu các trang tại hơn một wiki',
 	'centralnotice-summary' => 'Dùng phần này, bạn có thể sửa đổi các thông báo chung đã được thiết lập, cũng như thêm thông báo mới hoặc dời thông báo cũ.',
 	'centralnotice-query' => 'Sửa đổi các thông báo hiện hành',
@@ -10407,9 +10305,9 @@ Hãy thêm vào!',
 	'centralnotice-clone-name' => 'Tên:',
 	'centralnotice-preview-all-template-translations' => 'Xem trước các bản dịch có sẵn của bảng',
 	'centralnotice-insert' => 'Chèn: $1',
-	'centralnotice-hide-button' => 'Liên kết {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'Liên kết {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'Liên kết {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'Liên kết ẩn',
+	'centralnotice-collapse-button' => 'Liên kết thu gọn',
+	'centralnotice-expand-button' => 'Liên kết mở rộng',
 	'centralnotice-close-button' => 'Nút Đóng',
 	'centralnotice-translate-button' => 'Liên kết Giúp dịch',
 	'centralnotice-donate-button' => 'Nút quyên góp',
@@ -10434,10 +10332,6 @@ Hãy thêm vào!',
 	'centralnotice-percentage' => 'Tỷ lệ',
 	'centralnotice-documentwrite-error' => 'Không có thể sử dụng document.write() trong bảng.
 Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
-	'right-centralnotice-admin' => 'Quản lý thông báo chung',
-	'right-centralnotice-translate' => 'Dịch thông báo chung',
-	'action-centralnotice-admin' => 'quản lý thông báo chung',
-	'action-centralnotice-translate' => 'dịch thông báo chung',
 	'centralnotice-preferred' => 'Nổi bật hơn',
 );
 
@@ -10591,6 +10485,8 @@ $messages['zh-hans'] = array(
 	'centralnotice' => '中央通告管理',
 	'noticetemplate' => '中央通告管理',
 	'bannerallocation' => 'Central notice admin',
+	'right-centralnotice-admin' => '管理中央通告',
+	'action-centralnotice-admin' => '管理中央通告',
 	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
 	'centralnotice-summary' => '这个模块允许你编辑你当前设置的中央通告。
 它也可以用于添加或删除旧的通告。',
@@ -10714,10 +10610,6 @@ $messages['zh-hans'] = array(
 	'centralnotice-percentage' => '百分比',
 	'centralnotice-documentwrite-error' => 'document.write() 不能在横幅中使用。
 更多信息请参见 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',
-	'right-centralnotice-admin' => '管理中央通告',
-	'right-centralnotice-translate' => '翻译中央通告',
-	'action-centralnotice-admin' => '管理中央通告',
-	'action-centralnotice-translate' => '翻译中央通告',
 	'centralnotice-preferred' => '偏好的',
 );
 
