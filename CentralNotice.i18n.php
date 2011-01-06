@@ -13,6 +13,8 @@ $messages['en'] = array(
 	'centralnotice' => 'Central notice admin',
 	'noticetemplate' => 'Central notice admin',
 	'bannerallocation' => 'Central notice admin',
+	'right-centralnotice-admin' => 'Manage central notices',
+	'action-centralnotice-admin' => 'manage central notices',
 	'centralnotice-desc' => 'Adds a central sitenotice',
 	'centralnotice-summary' => 'This module allows you to edit your currently setup central notices.
 It can also be used to add or remove old notices.',
@@ -136,11 +138,6 @@ Add one below.',
 	'centralnotice-allocation-description' => 'Banner allocation for $1.$2 in $3:',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
-	
-	'right-centralnotice-admin' => 'Manage central notices',
-
-	'action-centralnotice-admin' => 'manage central notices',
-	'action-centralnotice-translate' => 'translate central notices',
 	'centralnotice-preferred' => 'Preferred',
 );
 
