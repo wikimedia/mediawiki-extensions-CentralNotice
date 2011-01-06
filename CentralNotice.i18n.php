@@ -138,7 +138,6 @@ Add one below.',
 	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	
 	'right-centralnotice-admin' => 'Manage central notices',
-	'right-centralnotice-translate' => 'Translate central notices',
 
 	'action-centralnotice-admin' => 'manage central notices',
 	'action-centralnotice-translate' => 'translate central notices',
