@@ -74,6 +74,10 @@ $dir = dirname( __FILE__ ) . '/';
 $wgExtensionMessagesFiles['CentralNotice'] = $dir . 'CentralNotice.i18n.php';
 $wgExtensionAliasesFiles['CentralNotice'] = $dir . 'CentralNotice.alias.php';
 
+// Register user rights
+$wgAvailableRights[] = 'centralnotice-admin';
+$wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
+
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
 	global $wgCentralNoticeLoader;
@@ -102,10 +106,6 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 
 	if ( $wgNoticeInfrastructure ) {
-		// Register user rights
-		$wgAvailableRights[] = 'centralnotice-admin';
-		$wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
-	
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
 
