@@ -91,16 +91,19 @@ function efCentralNoticeSetup() {
 		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
 		$wgHooks['SkinAfterBottomScripts'][] = 'efCentralNoticeGeoLoader';
 	}
-	
+
 	$wgSpecialPages['BannerLoader'] = 'SpecialBannerLoader';
 	$wgAutoloadClasses['SpecialBannerLoader'] = $dir . 'SpecialBannerLoader.php';
-	
+
 	$wgSpecialPages['BannerListLoader'] = 'SpecialBannerListLoader';
 	$wgAutoloadClasses['SpecialBannerListLoader'] = $dir . 'SpecialBannerListLoader.php';
-	
+
 	$wgSpecialPages['BannerController'] = 'SpecialBannerController';
 	$wgAutoloadClasses['SpecialBannerController'] = $dir . 'SpecialBannerController.php';
-	
+
+	$wgSpecialPages['HideBanners'] = 'SpecialHideBanners';
+	$wgAutoloadClasses['SpecialHideBanners'] = $dir . 'SpecialHideBanners.php';
+
 	$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 	$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
