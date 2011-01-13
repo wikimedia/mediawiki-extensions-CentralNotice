@@ -69,7 +69,7 @@ $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 $wgExtensionCredits['other'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'CentralNotice',
-	'author'         => 'Brion Vibber, Ryan Kaldari',
+	'author'         => array( 'Brion Vibber', 'Ryan Kaldari' ),
 	'url'            => 'http://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 );
