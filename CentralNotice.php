@@ -64,10 +64,6 @@ $wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
 // This setting is currently shared with CentralAuth extension.
 $wgCentralAuthCookieDomain = '';
 
-// Enable HideBanners Special Page
-// Set to true on wikis with donation thank you pages.
-$wgAllowHideBanners = false;
-
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 $wgExtensionCredits['other'][] = array(

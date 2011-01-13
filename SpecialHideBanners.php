@@ -13,8 +13,8 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgAllowHideBanners, $wgRequest, $wgOut;
-
+		global $wgOut;
+		
 		$this->setHideCookie();
 
 		$wgOut->disable();
