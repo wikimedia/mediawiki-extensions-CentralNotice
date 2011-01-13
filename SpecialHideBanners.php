@@ -17,13 +17,13 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		if ( $wgAllowHideBanners ) {
 			$this->setHideCookie();
-	
+
 			$wgOut->disable();
 			wfResetOutputBuffers();
-			
+
 			header( 'Content-Type: image/png' );
 			header( 'Cache-Control: no-cache' );
-			
+
 			readfile( dirname( __FILE__ ) . '/1x1.png' );
 		}
 	}

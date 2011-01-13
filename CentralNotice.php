@@ -66,7 +66,7 @@ $wgCentralAuthCookieDomain = '';
 
 // Enable HideBanners Special Page
 // Set to true on wikis with donation thank you pages.
-$wgAllowHideBanners = 'false';
+$wgAllowHideBanners = false;
 
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
