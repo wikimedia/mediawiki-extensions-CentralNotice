@@ -15,17 +15,15 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgAllowHideBanners, $wgRequest, $wgOut;
 
-		if ( $wgAllowHideBanners ) {
-			$this->setHideCookie();
+		$this->setHideCookie();
 
-			$wgOut->disable();
-			wfResetOutputBuffers();
+		$wgOut->disable();
+		wfResetOutputBuffers();
 
-			header( 'Content-Type: image/png' );
-			header( 'Cache-Control: no-cache' );
+		header( 'Content-Type: image/png' );
+		header( 'Cache-Control: no-cache' );
 
-			readfile( dirname( __FILE__ ) . '/1x1.png' );
-		}
+		readfile( dirname( __FILE__ ) . '/1x1.png' );
 	}
 	
 	function setHideCookie() {
