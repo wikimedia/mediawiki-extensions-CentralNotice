@@ -15,7 +15,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgRequest, $wgOut;
 
-		$this->setGlobalCookie();
+		$this->setHideCookie();
 
 		$wgOut->disable();
 		wfResetOutputBuffers();
@@ -26,8 +26,10 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		readfile( dirname( __FILE__ ) . '/1x1.png' );
 	}
 	
-	function setGlobalCookie() {
-		$exp = time() + 86400 * 14; // cookie expires after 2 weeks
-		setcookie( 'hidesnmessage', '0', $exp, '/' );
+	function setHideCookie() {
+		global $wgCentralAuthCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
+		$exp = time() + 86400 * 14; // Cookie expires after 2 weeks
+		// Hide banners for this domain
+		setcookie( 'hidesnmessage', '1', $exp, '/', $wgCentralAuthCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 	}
 }
