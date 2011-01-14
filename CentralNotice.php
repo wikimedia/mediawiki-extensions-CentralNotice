@@ -59,11 +59,6 @@ $wgNoticeServerTimeout = 0;
 // Source for live counter information
 $wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
 
-// Domain to set global cookies for.
-// Example: '.wikipedia.org'
-// This setting is currently shared with CentralAuth extension.
-$wgCentralAuthCookieDomain = '';
-
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 $wgExtensionCredits['other'][] = array(
