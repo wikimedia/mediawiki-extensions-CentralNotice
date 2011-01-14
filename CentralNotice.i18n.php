@@ -8889,6 +8889,7 @@ $messages['su'] = array(
  * @author Lejonel
  * @author M.M.S.
  * @author Najami
+ * @author Tobulos1
  */
 $messages['sv'] = array(
 	'centralnotice' => 'Centralmeddelande-administration',
@@ -8992,9 +8993,9 @@ Lägg till ett nedan',
 	'centralnotice-clone-name' => 'Namn:',
 	'centralnotice-preview-all-template-translations' => 'Förhandsgranska alla tillgängliga översättningar av mallen',
 	'centralnotice-insert' => 'Infoga: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} länk',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}}-länk',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}}-länk',
+	'centralnotice-hide-button' => 'Göm länk',
+	'centralnotice-collapse-button' => 'Göm länk',
+	'centralnotice-expand-button' => 'Expandera länk',
 	'centralnotice-close-button' => 'Stäng-knapp',
 	'centralnotice-translate-button' => 'Hjälp till att översätta-länk',
 	'centralnotice-donate-button' => 'Donera-knapp',
