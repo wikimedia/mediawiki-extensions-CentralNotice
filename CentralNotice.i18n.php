@@ -9837,9 +9837,9 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-clone-name' => 'Adı:',
 	'centralnotice-preview-all-template-translations' => 'Şablonun bütün uygun çevirilerini önizle',
 	'centralnotice-insert' => 'Ekle: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} bağlantısı',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} bağlantısı',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} bağlantısı',
+	'centralnotice-hide-button' => 'Bağlantıyı gizle',
+	'centralnotice-collapse-button' => 'Bağlantıyı daralt',
+	'centralnotice-expand-button' => 'Bağlantıyı genişlet',
 	'centralnotice-close-button' => 'Kapatma düğmesi',
 	'centralnotice-translate-button' => 'Çevirmeye yardım edin bağlantısı',
 	'centralnotice-donate-button' => 'Bağış düğmesi',
@@ -10677,11 +10677,14 @@ $messages['zh-hans'] = array(
  * @author Frankou
  * @author Horacewai2
  * @author Liangent
+ * @author Mark85296341
  * @author Wrightbus
  */
 $messages['zh-hant'] = array(
 	'centralnotice' => '中央通告管理',
 	'noticetemplate' => '中央通告模板',
+	'right-centralnotice-admin' => '管理中央通告',
+	'action-centralnotice-admin' => '管理中央通告',
 	'centralnotice-desc' => '在頁面頂端增加統一的公告欄位',
 	'centralnotice-summary' => '這個模塊允許你編輯你當前設置的中央通告。
 它也可以用於添加或刪除舊的通告。',
@@ -10691,15 +10694,16 @@ $messages['zh-hant'] = array(
 	'centralnotice-enabled' => '已啟用',
 	'centralnotice-modify' => '提交',
 	'centralnotice-preview' => '預覽',
-	'centralnotice-add-new' => '添加一個新的中央通告',
+	'centralnotice-add-new' => '新增一個新的中央通告',
 	'centralnotice-remove' => '移除',
 	'centralnotice-translate-heading' => '$1的翻譯',
 	'centralnotice-manage' => '管理中央通告',
-	'centralnotice-add' => '添加',
-	'centralnotice-add-notice' => '添加一個通告',
-	'centralnotice-add-template' => '添加一個模板',
+	'centralnotice-add' => '新增',
+	'centralnotice-add-notice' => '新增一個通告',
+	'centralnotice-add-template' => '新增一個模板',
 	'centralnotice-show-notices' => '顯示通告',
 	'centralnotice-list-templates' => '列出模板',
+	'centralnotice-all-projects' => '所有計畫',
 	'centralnotice-translations' => '翻譯',
 	'centralnotice-translate-to' => '翻譯到',
 	'centralnotice-translate' => '翻譯',
@@ -10710,7 +10714,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-locked' => '已鎖定',
 	'centralnotice-notices' => '通告',
 	'centralnotice-notice-exists' => '通告已經存在。
-沒有添加',
+不新增',
 	'centralnotice-template-exists' => '模板已經存在。
 沒有添加',
 	'centralnotice-notice-doesnt-exist' => '通告不存在。
@@ -10724,17 +10728,20 @@ $messages['zh-hant'] = array(
 	'centralnotice-hours' => '時',
 	'centralnotice-min' => '分',
 	'centralnotice-project-lang' => '計劃語言',
+	'centralnotice-select' => '選擇：$1',
+	'centralnotice-top-ten-languages' => '前10種語言',
 	'centralnotice-project-name' => '計劃名稱',
 	'centralnotice-start-date' => '開始日期',
 	'centralnotice-start-time' => '開始時間（UTC）',
+	'centralnotice-end-time' => '結束時間（UTC）',
 	'centralnotice-assigned-templates' => '已分配的模板',
-	'centralnotice-no-templates' => '沒有找到模板。
-添加一些！',
-	'centralnotice-no-templates-assigned' => '沒有模板分配到通告。
-添加一些！',
-	'centralnotice-available-templates' => '可用模板',
-	'centralnotice-template-already-exists' => '模板已經綁定到營銷。
-沒有添加',
+	'centralnotice-no-templates' => '沒有找到橫幅。
+新增一些！',
+	'centralnotice-no-templates-assigned' => '沒有橫幅分配到通告。
+新增一些！',
+	'centralnotice-available-templates' => '可用橫幅',
+	'centralnotice-template-already-exists' => '模板已經綁定到橫幅。
+不新增',
 	'centralnotice-preview-template' => '預覽模板',
 	'centralnotice-change-lang' => '改變翻譯語言',
 	'centralnotice-weights' => '權重',
@@ -10752,17 +10759,32 @@ $messages['zh-hant'] = array(
 在下面添加一個。',
 	'centralnotice-no-templates-translate' => '沒有任何可以編輯翻譯的模板',
 	'centralnotice-number-uses' => '使用',
+	'centralnotice-settings' => '設定',
 	'centralnotice-edit-template' => '編輯模板',
-	'centralnotice-edit-template-summary' => '要創建一個可本地化的消息，使用三個大括號，例如{{{jimbo-quote}}}。',
+	'centralnotice-edit-template-summary' => '要建立一個可本地化的消息，使用三個大括號，例如{{{jimbo-quote}}}。',
 	'centralnotice-message' => '消息',
-	'centralnotice-message-not-set' => '沒有設置消息',
+	'centralnotice-message-not-set' => '沒有設定訊息',
 	'centralnotice-clone' => '建立副本',
-	'centralnotice-clone-notice' => '創建一個模板的副本',
+	'centralnotice-clone-notice' => '建立建一個模板的副本',
 	'centralnotice-preview-all-template-translations' => '預覽模板的所有可用翻譯',
-	'right-centralnotice-admin' => '管理中央通告',
-	'right-centralnotice-translate' => '翻譯中央通告',
-	'action-centralnotice-admin' => '管理中央通告',
-	'action-centralnotice-translate' => '翻譯中央通告',
+	'centralnotice-insert' => '插入：$1',
+	'centralnotice-hide-button' => '隱藏連結',
+	'centralnotice-collapse-button' => '摺疊連結',
+	'centralnotice-expand-button' => '展開連結',
+	'centralnotice-close-button' => '關閉按鈕',
+	'centralnotice-translate-button' => '協助翻譯連結',
+	'centralnotice-donate-button' => '捐款按鈕',
+	'centralnotice-banner-display' => '顯示為：',
+	'centralnotice-banner-anonymous' => '匿名用戶',
+	'centralnotice-banner-collapsible' => '可摺疊',
+	'centralnotice-geotargeted' => '已地理定位的',
+	'centralnotice-countries' => '國家',
+	'centralnotice-languages' => '語言',
+	'centralnotice-projects' => '專案',
+	'centralnotice-country' => '國家',
+	'centralnotice-percentage' => '百分比',
+	'centralnotice-documentwrite-error' => 'document.write() 不能在橫幅中使用。
+更多資訊請參見 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',
 	'centralnotice-preferred' => '偏好的',
 );
 
