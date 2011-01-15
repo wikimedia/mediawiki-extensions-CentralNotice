@@ -61,10 +61,7 @@ $wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
 
 // Domain to set global cookies for.
 // Example: '.wikipedia.org'
-// This setting is currently shared with CentralAuth extension.
-if ( !isset( $wgCentralAuthCookieDomain )) {
-	$wgCentralAuthCookieDomain = '';
-}
+$wgNoticeCookieDomain = '';
 
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
