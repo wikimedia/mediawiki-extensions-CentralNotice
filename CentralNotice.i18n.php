@@ -4335,7 +4335,7 @@ Adde un hic infra.',
 	'centralnotice-clone' => 'Clonar',
 	'centralnotice-clone-notice' => 'Crear un copia del bandiera',
 	'centralnotice-clone-name' => 'Nomine:',
-	'centralnotice-preview-all-template-translations' => 'Previsualiar tote le traductiones disponibile del bandiera',
+	'centralnotice-preview-all-template-translations' => 'Previsualisar tote le traductiones disponibile del bandiera',
 	'centralnotice-insert' => 'Inserer: $1',
 	'centralnotice-hide-button' => 'Celar ligamine',
 	'centralnotice-collapse-button' => 'Plicar ligamine',
@@ -4918,7 +4918,11 @@ Tambahaké ing ngisor',
  * @author გიორგიმელა
  */
 $messages['ka'] = array(
+	'centralnotice' => 'ცენტრალური შეტყობინების ადმინი',
 	'noticetemplate' => 'ცენტრალური შეტყობინების ადმინი',
+	'bannerallocation' => 'ცენტრალური შეტყობინების ადმინი',
+	'right-centralnotice-admin' => 'ცენტრალური შეტყობინებების მართვა',
+	'action-centralnotice-admin' => 'ცენტრალური შეტყობინებების მართვა',
 	'centralnotice-query' => 'მოქმედი შეტყობინების შეცვლა',
 	'centralnotice-notice-name' => 'შეტყობინების სახელი',
 	'centralnotice-end-date' => 'დასრულების თარიღი',
@@ -4954,8 +4958,12 @@ $messages['ka'] = array(
 	'centralnotice-notices' => 'შეტყობინებები',
 	'centralnotice-notice-exists' => 'შენიშვნა უკვე არსებობს.
 არ დაამატოთ',
+	'centralnotice-no-language' => 'შეტყობინებისათვის არაა არჩეული ენა. ამიტომ ის არ დამატებულა.',
+	'centralnotice-no-project' => 'პროექტისათვის არჩეული არაა კამპანია. ამიტომ ის არ დამატებულა.',
 	'centralnotice-template-exists' => 'თარგი უკვე არსებობს. არ დაამატოთ',
 	'centralnotice-notice-doesnt-exist' => 'შეტყობინება არ არსებობს.',
+	'centralnotice-remove-notice-doesnt-exist' => 'შეტყობინება არ არსებობს.
+არაფერია წასაშლელი.',
 	'centralnotice-banner-doesnt-exist' => 'თარგი არ არსებობს',
 	'centralnotice-template-body' => 'თარგის სხეული:',
 	'centralnotice-day' => 'დღე',
@@ -4986,6 +4994,7 @@ $messages['ka'] = array(
 	'centralnotice-insert' => 'ჩასვით: $1',
 	'centralnotice-hide-button' => 'ბმულის დამალვა',
 	'centralnotice-close-button' => 'დახურვის ღილაკი',
+	'centralnotice-donate-button' => 'შემოწირულობების ღილაკი',
 	'centralnotice-banner-anonymous' => 'ანონიმური მომხმარებლები',
 	'centralnotice-banner-type' => 'ბანერის ტიპი:',
 	'centralnotice-banner-collapsible' => 'დასაკეცი',
@@ -7055,6 +7064,7 @@ $messages['ps'] = array(
  * @author Crazymadlover
  * @author Giro720
  * @author Hamilton Abreu
+ * @author Lijealso
  * @author Malafaya
  */
 $messages['pt'] = array(
@@ -7159,9 +7169,9 @@ Adicione um, abaixo.',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Antever todas as traduções disponíveis do modelo',
 	'centralnotice-insert' => 'Inserir: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} link',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} link',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} link',
+	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} ocultar',
+	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} recolher',
+	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} expandir',
 	'centralnotice-close-button' => 'Botão Fechar',
 	'centralnotice-translate-button' => 'Ajudar a traduzir link',
 	'centralnotice-donate-button' => 'Botão Donativo',
@@ -8649,8 +8659,9 @@ $messages['sq'] = array(
 	'centralnotice-country' => 'Veni',
 );
 
-/** Serbian Cyrillic ekavian (Српски (ћирилица))
+/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
  * @author Millosh
+ * @author Rancher
  * @author Јованвб
  * @author Михајло Анђелковић
  */
@@ -8695,7 +8706,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-hours' => 'Сат',
 	'centralnotice-min' => 'Минут',
 	'centralnotice-project-lang' => 'Име пројекта',
-	'centralnotice-project-name' => 'Име пројекта',
+	'centralnotice-project-name' => 'Назив пројекта',
 	'centralnotice-start-date' => 'Почетни датум',
 	'centralnotice-start-time' => 'Почетно време (UTC)',
 	'centralnotice-no-templates' => 'Шаблони нису проађен.
@@ -10683,11 +10694,13 @@ $messages['zh-hans'] = array(
  * @author Horacewai2
  * @author Liangent
  * @author Mark85296341
+ * @author Waihorace
  * @author Wrightbus
  */
 $messages['zh-hant'] = array(
 	'centralnotice' => '中央通告管理',
-	'noticetemplate' => '中央通告模板',
+	'noticetemplate' => '中央通告管理',
+	'bannerallocation' => '中央通告管理',
 	'right-centralnotice-admin' => '管理中央通告',
 	'action-centralnotice-admin' => '管理中央通告',
 	'centralnotice-desc' => '在頁面頂端增加統一的公告欄位',
@@ -10698,32 +10711,44 @@ $messages['zh-hant'] = array(
 	'centralnotice-end-date' => '結束日期',
 	'centralnotice-enabled' => '已啟用',
 	'centralnotice-modify' => '提交',
+	'centralnotice-save-banner' => '儲存橫幅',
 	'centralnotice-preview' => '預覽',
 	'centralnotice-add-new' => '新增一個新的中央通告',
 	'centralnotice-remove' => '移除',
 	'centralnotice-translate-heading' => '$1的翻譯',
 	'centralnotice-manage' => '管理中央通告',
+	'centralnotice-manage-templates' => '管理橫幅',
 	'centralnotice-add' => '新增',
 	'centralnotice-add-notice' => '新增一個通告',
+	'centralnotice-edit-notice' => '編輯活動',
 	'centralnotice-add-template' => '新增一個模板',
 	'centralnotice-show-notices' => '顯示通告',
 	'centralnotice-list-templates' => '列出模板',
+	'centralnotice-multiple' => '較多（$1）',
 	'centralnotice-all-projects' => '所有計畫',
 	'centralnotice-translations' => '翻譯',
 	'centralnotice-translate-to' => '翻譯到',
 	'centralnotice-translate' => '翻譯',
 	'centralnotice-english' => '英語',
-	'centralnotice-banner-name' => '模板名稱',
+	'centralnotice-banner-name' => '橫幅名稱：',
+	'centralnotice-banner' => '橫幅',
+	'centralnotice-banner-heading' => '橫幅：$1',
 	'centralnotice-templates' => '模板',
 	'centralnotice-weight' => '權重',
 	'centralnotice-locked' => '已鎖定',
+	'centralnotice-notice' => '活動',
+	'centralnotice-notice-heading' => '活動：$1',
 	'centralnotice-notices' => '通告',
 	'centralnotice-notice-exists' => '通告已經存在。
 不新增',
+	'centralnotice-no-language' => '没有一種語言被選的運動。不添加。',
+	'centralnotice-no-project' => '這個運動沒有選擇任何項目，故此沒有添加。',
 	'centralnotice-template-exists' => '模板已經存在。
 沒有添加',
-	'centralnotice-notice-doesnt-exist' => '通告不存在。
-沒有東西移除',
+	'centralnotice-notice-doesnt-exist' => '通告不存在。',
+	'centralnotice-remove-notice-doesnt-exist' => '通告不存在。
+沒有東西移除。',
+	'centralnotice-banner-doesnt-exist' => '橫幅不存在。',
 	'centralnotice-template-still-bound' => '模板不存在。
 沒有東西移除。',
 	'centralnotice-template-body' => '模板體：',
@@ -10771,6 +10796,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-message-not-set' => '沒有設定訊息',
 	'centralnotice-clone' => '建立副本',
 	'centralnotice-clone-notice' => '建立建一個模板的副本',
+	'centralnotice-clone-name' => '名字：',
 	'centralnotice-preview-all-template-translations' => '預覽模板的所有可用翻譯',
 	'centralnotice-insert' => '插入：$1',
 	'centralnotice-hide-button' => '隱藏連結',
@@ -10779,14 +10805,24 @@ $messages['zh-hant'] = array(
 	'centralnotice-close-button' => '關閉按鈕',
 	'centralnotice-translate-button' => '協助翻譯連結',
 	'centralnotice-donate-button' => '捐款按鈕',
+	'centralnotice-expanded-banner' => '展開了的橫幅',
+	'centralnotice-collapsed-banner' => '收縮了的橫幅',
 	'centralnotice-banner-display' => '顯示為：',
 	'centralnotice-banner-anonymous' => '匿名用戶',
+	'centralnotice-banner-logged-in' => '已登入用戶',
+	'centralnotice-banner-type' => '橫幅類型：',
+	'centralnotice-banner-hidable' => '靜態可隱藏',
 	'centralnotice-banner-collapsible' => '可摺疊',
 	'centralnotice-geotargeted' => '已地理定位的',
 	'centralnotice-countries' => '國家',
+	'centralnotice-allocation' => '分配',
+	'centralnotice-view-allocation' => '查看橫幅分配',
+	'centralnotice-allocation-instructions' => '選擇你想察看橫幅配額的環境：',
 	'centralnotice-languages' => '語言',
 	'centralnotice-projects' => '專案',
 	'centralnotice-country' => '國家',
+	'centralnotice-no-allocation' => '沒有橫幅分配。',
+	'centralnotice-allocation-description' => '在$1.$2，$3的分配：',
 	'centralnotice-percentage' => '百分比',
 	'centralnotice-documentwrite-error' => 'document.write() 不能在橫幅中使用。
 更多資訊請參見 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',
