@@ -27,7 +27,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	}
 	
 	function setHideCookie() {
-		global $wgNoticeCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
+		global $wgNoticeCookieDomain, $wgCookieSecure;
 		$exp = time() + 86400 * 14; // Cookie expires after 2 weeks
 		if ( is_callable( 'CentralAuthUser', 'getCookieDomain' ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
@@ -35,6 +35,6 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 			$cookieDomain = $wgNoticeCookieDomain;
 		}
 		// Hide banners for this domain
-		setcookie( 'hidesnmessage', '1', $exp, '/', $cookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
+		setcookie( 'hidesnmessage', '1', $exp, '/', $cookieDomain, $wgCookieSecure );
 	}
 }
