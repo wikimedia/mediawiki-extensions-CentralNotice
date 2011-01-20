@@ -6,6 +6,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 /**
  * Unlisted Special Page which sets a cookie for hiding banners across all languages of a project.
+ * This is typically used on donation thank-you pages so that users who have donated will no longer 
+ * see fundrasing banners.
  */
 class SpecialHideBanners extends UnlistedSpecialPage {
 	function __construct() {
