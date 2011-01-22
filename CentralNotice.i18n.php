@@ -158,6 +158,8 @@ $messages['qqq'] = array(
 	'centralnotice' => 'Name of Special:CentralNotice in Special:SpecialPages and title of Special:CentralNotice page',
 	'noticetemplate' => 'Title of Special:NoticeTemplate page, should be identical to centralnotice message. (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-manage-templates.)',
 	'bannerallocation' => 'Title of Special:BannerAllocation page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)',
+	'right-centralnotice-admin' => '{{doc-right}}',
+	'action-centralnotice-admin' => '{{doc-action}}',
 	'centralnotice-desc' => '{{desc}}',
 	'centralnotice-summary' => 'Used in Special:CentralNotice',
 	'centralnotice-end-date' => '{{Identical|End date}}',
@@ -198,10 +200,6 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-projects' => '{{Identical|Project}}',
 	'centralnotice-country' => '{{Identical|Country}}',
 	'centralnotice-allocation-description' => 'A description of the environment whose allocation is being described. $1 is the language code for the site (en). $2 is the project name for the site (wikipedia). $3 is the country code (US).',
-	'right-centralnotice-admin' => '{{doc-right}}',
-	'right-centralnotice-translate' => '{{doc-right}}',
-	'action-centralnotice-admin' => '{{doc-action}}',
-	'action-centralnotice-translate' => '{{doc-action}}',
 );
 
 /** Afrikaans (Afrikaans)
@@ -210,6 +208,8 @@ Maximum length of the message is 5% of the total width of the table.',
 $messages['af'] = array(
 	'centralnotice' => 'Bestuur sentrale kennisgewings',
 	'noticetemplate' => 'Sjabloon vir sentrale kennisgewing',
+	'right-centralnotice-admin' => 'Bestuur sentrale kennisgewings',
+	'action-centralnotice-admin' => 'bestuur sentrale kennisgewings',
 	'centralnotice-desc' => "Voeg 'n sentrale stelselkennisgewing by",
 	'centralnotice-query' => 'Verander huidige kennisgewings',
 	'centralnotice-notice-name' => 'Kennisgewing-naam',
@@ -322,10 +322,6 @@ U kan een hieronder byvoeg',
 	'centralnotice-no-allocation' => 'Geen baniere toegeken nie.',
 	'centralnotice-allocation-description' => 'Baniertoekenning vir $1.$2 in $3:',
 	'centralnotice-percentage' => 'Persentasie',
-	'right-centralnotice-admin' => 'Bestuur sentrale kennisgewings',
-	'right-centralnotice-translate' => 'Vertaal sentrale kennisgewings',
-	'action-centralnotice-admin' => 'bestuur sentrale kennisgewings',
-	'action-centralnotice-translate' => 'vertaal sentrale kennisgewings',
 	'centralnotice-preferred' => 'Voorkeur',
 );
 
@@ -398,6 +394,8 @@ No s'está adautando.",
 $messages['ar'] = array(
 	'centralnotice' => 'مدير الإخطار المركزي',
 	'noticetemplate' => 'قالب الإخطار المركزي',
+	'right-centralnotice-admin' => 'أدر الإخطارات المركزية',
+	'action-centralnotice-admin' => 'التحكم بالإعلانات المركزية',
 	'centralnotice-desc' => 'يضيف إعلانا مركزيا للموقع',
 	'centralnotice-summary' => 'هذه الوحدة تسمح لك بتعديل إعدادات الإخطار المركزي الحالية.
 يمكن أن تستخدم أيضا لإضافة أو إزالة إخطارات قديمة.',
@@ -474,10 +472,6 @@ $messages['ar'] = array(
 	'centralnotice-clone' => 'استنساخ',
 	'centralnotice-clone-notice' => 'أنشئ نسخة من القالب',
 	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات المتوفرة للقالب',
-	'right-centralnotice-admin' => 'أدر الإخطارات المركزية',
-	'right-centralnotice-translate' => 'ترجم الإخطارات المركزية',
-	'action-centralnotice-admin' => 'التحكم بالإعلانات المركزية',
-	'action-centralnotice-translate' => 'ترجمة الإعلانات المركزية',
 	'centralnotice-preferred' => 'مفضل',
 );
 
@@ -518,6 +512,8 @@ $messages['arc'] = array(
 $messages['arz'] = array(
 	'centralnotice' => 'مدير الاعلانات المركزية',
 	'noticetemplate' => 'قالب الاعلانات المركزية',
+	'right-centralnotice-admin' => 'ادارة الاعلانات المركزيه',
+	'action-centralnotice-admin' => 'ادارة الاعلانات المركزية',
 	'centralnotice-desc' => 'بيحط اعلان مركزى للموقع',
 	'centralnotice-summary' => 'الوحدة دى بتسمحلك بتعديل إعدادات الإخطار المركزى الحالية.
 ممكن تستخدم كمان لإضافة أو إزالة إخطارات قديمة.',
@@ -594,10 +590,6 @@ $messages['arz'] = array(
 	'centralnotice-clone' => 'انسخ',
 	'centralnotice-clone-notice' => 'اعمل نسخة من القالب',
 	'centralnotice-preview-all-template-translations' => 'اعرض كل الترجمات الموجودة للقالب',
-	'right-centralnotice-admin' => 'ادارة الاعلانات المركزيه',
-	'right-centralnotice-translate' => 'ترجم الاعلانات المركزية',
-	'action-centralnotice-admin' => 'ادارة الاعلانات المركزية',
-	'action-centralnotice-translate' => 'ترجمة الاعلانات المركزية',
 	'centralnotice-preferred' => ' مفضله',
 );
 
@@ -608,7 +600,7 @@ $messages['ast'] = array(
 	'centralnotice-desc' => 'Añade una anuncia centralizada del sitiu (sitenotice)',
 );
 
-/** Bashkir (Башҡорт)
+/** Bashkir (Башҡортса)
  * @author Assele
  * @author Haqmar
  */
@@ -929,6 +921,7 @@ $messages['be-tarask'] = array(
 $messages['bg'] = array(
 	'centralnotice' => 'Администратор на централизираните съобщения',
 	'noticetemplate' => 'Шаблон за централизирани съобщения',
+	'right-centralnotice-admin' => 'Управление на централизираните съобщения',
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
 	'centralnotice-summary' => 'Този интерфейс позволява да редактирате текущо съществуващите централизирани съобщения.
 Той може да се използва и за прибавяне на нови и премахване на стари съобщения.',
@@ -985,8 +978,6 @@ $messages['bg'] = array(
 	'centralnotice-languages' => 'Езици',
 	'centralnotice-projects' => 'Проекти',
 	'centralnotice-percentage' => 'Процент',
-	'right-centralnotice-admin' => 'Управление на централизираните съобщения',
-	'right-centralnotice-translate' => 'Превод на централизираните съобщения',
 	'centralnotice-preferred' => 'Предпочитано',
 );
 
@@ -1003,6 +994,8 @@ $messages['bh'] = array(
 $messages['bn'] = array(
 	'centralnotice' => 'কেন্দ্রীয় নোটিশ প্রশাসক',
 	'noticetemplate' => 'কেন্দ্রীয় নোটিশ প্রশাসক',
+	'right-centralnotice-admin' => 'কেন্দ্রীয় নোটিশ ব্যবস্থাপনা',
+	'action-centralnotice-admin' => 'কেন্দ্রীয় নোটিশ ব্যবস্থাপনা করুন',
 	'centralnotice-desc' => 'একটি কেন্দ্রীয় সাইটনোটিশ যোগ করো',
 	'centralnotice-summary' => 'এই মডিউলটি বর্তমান সেটআপ করা সাইট নোটিশ সম্পাদনা করার সুযোগ দিবে।
 পুরাতন নোটিশ যোগ বা অপসারণের কাজেও এটি ব্যবহার করা যাবে।',
@@ -1099,10 +1092,6 @@ $messages['bn'] = array(
 	'centralnotice-projects' => 'প্রকল্প',
 	'centralnotice-country' => 'দেশ',
 	'centralnotice-percentage' => 'শতাংশ',
-	'right-centralnotice-admin' => 'কেন্দ্রীয় নোটিশ ব্যবস্থাপনা',
-	'right-centralnotice-translate' => 'কেন্দ্রীয় নোটিশ অনুবাদ করুন',
-	'action-centralnotice-admin' => 'কেন্দ্রীয় নোটিশ ব্যবস্থাপনা করুন',
-	'action-centralnotice-translate' => 'কেন্দ্রীয় নোটিশ অনুবাদ করুন',
 	'centralnotice-preferred' => 'পছন্দনীয়',
 );
 
@@ -1691,6 +1680,8 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 $messages['cy'] = array(
 	'centralnotice' => "Gweinyddu'r hysbysiad canolog",
 	'noticetemplate' => "Gweinyddu'r hysbysiad canolog",
+	'right-centralnotice-admin' => 'Gweinyddu hysbysiadau canolog',
+	'action-centralnotice-admin' => 'gweinyddu hysbysiadau canolog',
 	'centralnotice-desc' => 'Yn ychwanegu hysbysiad canolog',
 	'centralnotice-summary' => "Mae'r teclyn hwn yn eich galluogi i olygu'r hysbysiadau canolog sydd wedi eu gosod ar hyn o bryd.
 Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.",
@@ -1757,10 +1748,6 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-countries' => 'Gwledydd',
 	'centralnotice-languages' => 'Ieithoedd',
 	'centralnotice-country' => 'Gwlad',
-	'right-centralnotice-admin' => 'Gweinyddu hysbysiadau canolog',
-	'right-centralnotice-translate' => 'Cyfieithu hysbysiadau canolog',
-	'action-centralnotice-admin' => 'gweinyddu hysbysiadau canolog',
-	'action-centralnotice-translate' => 'cyfieithu hysbysiadau canolog',
 );
 
 /** Danish (Dansk)
@@ -1769,6 +1756,8 @@ Gallwch ychwanegu un isod.',
  * @author Sarrus
  */
 $messages['da'] = array(
+	'right-centralnotice-admin' => 'Administrere centrale meddelelser',
+	'action-centralnotice-admin' => 'administrere centrale beskeder',
 	'centralnotice-query' => 'Ændr nuværende kampagner',
 	'centralnotice-notice-name' => 'Kampagnenavn',
 	'centralnotice-end-date' => 'Slutdato',
@@ -1832,9 +1821,6 @@ Tilføj nogle!',
 	'centralnotice-no-templates-assigned' => 'Ingen bannere tildelt kampagne. 
 Tilføj nogle!',
 	'centralnotice-available-templates' => 'Tilgængelige bannere',
-	'right-centralnotice-admin' => 'Administrere centrale meddelelser',
-	'action-centralnotice-admin' => 'administrere centrale beskeder',
-	'action-centralnotice-translate' => 'oversætte centrale beskeder',
 );
 
 /** German (Deutsch)
@@ -1978,7 +1964,7 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-preferred' => 'Bevorzugt',
 );
 
-/** German (formal address) (Deutsch (Sie-Form))
+/** German (formal address) (‪Deutsch (Sie-Form)‬)
  * @author Imre
  * @author Kghbln
  */
@@ -1994,6 +1980,8 @@ Die Aktion kann nicht rückgängig gemacht werden.',
 $messages['diq'] = array(
 	'centralnotice' => 'Noticeyê adminê merkezî',
 	'noticetemplate' => 'Templatê adminê merkezî',
+	'right-centralnotice-admin' => 'Îkazanê merkezî îdare bike',
+	'action-centralnotice-admin' => 'îkazanê merkezî îdare bike',
 	'centralnotice-desc' => 'Yew sitenoticeyê merkezî de keno',
 	'centralnotice-summary' => 'Ena panel ti ra yardim keno ke ti eşkeno îkazanê merkezî bivurne.
 Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
@@ -2071,10 +2059,6 @@ Yew de bike',
 	'centralnotice-clone' => 'Kopye bike',
 	'centralnotice-clone-notice' => 'Ye kopyayê templateyî viraze',
 	'centralnotice-preview-all-template-translations' => 'Çarnayîşê template yê hemî bivîne',
-	'right-centralnotice-admin' => 'Îkazanê merkezî îdare bike',
-	'right-centralnotice-translate' => 'Çarnayîşê merkezî îdare bike',
-	'action-centralnotice-admin' => 'îkazanê merkezî îdare bike',
-	'action-centralnotice-translate' => 'çarnayîşê merkezî îdare bike',
 	'centralnotice-preferred' => 'Tercih biyo',
 );
 
@@ -2642,6 +2626,8 @@ $messages['et'] = array(
 	'centralnotice' => 'Keskuse teadete haldamine',
 	'noticetemplate' => 'Keskuse teadete haldamine',
 	'bannerallocation' => 'Keskuse teadete haldamine',
+	'right-centralnotice-admin' => 'Keskuse teateid hallata',
+	'action-centralnotice-admin' => 'keskuse teateid hallata',
 	'centralnotice-desc' => 'Lisab keskse võrgukohateatesüsteemi.',
 	'centralnotice-summary' => 'See komponent võimaldab muuta praegu üles seatud keskuse teateid.
 Samuti saab sellega teateid lisada või vanu teateid eemaldada.',
@@ -2748,10 +2734,6 @@ Lisa allpool üks.',
 	'centralnotice-no-allocation' => 'Ühtegi malli pole üles seatud.',
 	'centralnotice-allocation-description' => 'Üles seatud mallid maal koodiga $3 ja saidil $1.$2.',
 	'centralnotice-percentage' => 'Protsent',
-	'right-centralnotice-admin' => 'Keskuse teateid hallata',
-	'right-centralnotice-translate' => 'Tõlkida keskuse teateid',
-	'action-centralnotice-admin' => 'keskuse teateid hallata',
-	'action-centralnotice-translate' => 'keskuse teateid tõlkida',
 	'centralnotice-preferred' => 'Eelistatud',
 );
 
@@ -4573,6 +4555,8 @@ $messages['it'] = array(
 	'centralnotice' => 'Gestione avviso centralizzato',
 	'noticetemplate' => 'Gestione avviso centralizzato',
 	'bannerallocation' => 'Gestione avviso centralizzato',
+	'right-centralnotice-admin' => 'Gestisce gli avvisi centralizzati',
+	'action-centralnotice-admin' => 'gestire gli avvisi centralizzati',
 	'centralnotice-desc' => 'Aggiunge un avviso centralizzato a inizio pagina (sitenotice)',
 	'centralnotice-summary' => 'Questo modulo permette di modificare gli avvisi centralizzati. Puoi essere inoltre usato per aggiungere o rimuovere vecchi avvisi.',
 	'centralnotice-query' => 'Modifica avvisi attuali',
@@ -4670,10 +4654,6 @@ Non aggiorno',
 	'centralnotice-percentage' => 'Percentuale',
 	'centralnotice-documentwrite-error' => 'Non è possibile usare document.write() dentro un banner.
 Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.',
-	'right-centralnotice-admin' => 'Gestisce gli avvisi centralizzati',
-	'right-centralnotice-translate' => 'Traduce avvisi centralizzati',
-	'action-centralnotice-admin' => 'gestire gli avvisi centralizzati',
-	'action-centralnotice-translate' => 'tradurre avvisi centralizzati',
 	'centralnotice-preferred' => 'Preferito',
 );
 
@@ -4829,6 +4809,8 @@ $messages['jut'] = array(
 $messages['jv'] = array(
 	'centralnotice' => "Admin cathetan pusat (''central notice'')",
 	'noticetemplate' => "Cithakan cathetan pusat (''central notice'')",
+	'right-centralnotice-admin' => 'Tata cathetan pusat',
+	'action-centralnotice-admin' => "tata cathetan pusat (''central notices'')",
 	'centralnotice-desc' => 'Nambahaké wara-wara situs punjer',
 	'centralnotice-summary' => "Modul iki kanggo nyunting tatanan cathetan pusat (''central notice'') sing ana.
 Iki uga bisa kanggo nambah utawa mbuwang cathetan/pangumuman lawas.",
@@ -4904,10 +4886,6 @@ Tambahaké ing ngisor',
 	'centralnotice-clone' => 'Kloning',
 	'centralnotice-clone-notice' => "Gawé salinan (''copy'') saka cithakan",
 	'centralnotice-preview-all-template-translations' => 'Tampilaké kabèh terjemahan cithakan sing ana',
-	'right-centralnotice-admin' => 'Tata cathetan pusat',
-	'right-centralnotice-translate' => "Terjemahaké cathetan pusat (''central notices'')",
-	'action-centralnotice-admin' => "tata cathetan pusat (''central notices'')",
-	'action-centralnotice-translate' => "terjemahaké cathetan pusat (''central notices'')",
 );
 
 /** Georgian (ქართული)
@@ -5072,6 +5050,8 @@ $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
 	'noticetemplate' => '중앙 공지 관리',
 	'bannerallocation' => '중앙 공지 관리',
+	'right-centralnotice-admin' => '중앙 공지 관리',
+	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 	'centralnotice-desc' => '중앙에서 공지하는 사이트노티스를 추가',
 	'centralnotice-summary' => '전체 공지 기능을 추가합니다. 현재의 공지 편집 기능과 공지의 추가/삭제 기능을 제공합니다.',
 	'centralnotice-query' => '현재 공지 수정하기',
@@ -5152,10 +5132,6 @@ $messages['ko'] = array(
 	'centralnotice-country' => '국가',
 	'centralnotice-documentwrite-error' => '배너에 document.write() 메서드는 사용할 수 없습니다.
 자세한 내용에 대해서는 [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice]를 참조하십시오.',
-	'right-centralnotice-admin' => '중앙 공지 관리',
-	'right-centralnotice-translate' => '중앙 공지 번역',
-	'action-centralnotice-admin' => '중앙 공지를 관리하기',
-	'action-centralnotice-translate' => '중앙 공지를 번역할',
 	'centralnotice-preferred' => '우선 사용',
 );
 
@@ -5165,6 +5141,8 @@ $messages['ko'] = array(
 $messages['ksh'] = array(
 	'centralnotice' => 'Zentraal Nohreschte verwallde',
 	'noticetemplate' => 'Schabloon för zentraal Nohreschte',
+	'right-centralnotice-admin' => 'Zentraal Nohreschte verwallde',
+	'action-centralnotice-admin' => 'zentraal Nohreschte ze verwallde',
 	'centralnotice-desc' => "Brengk en zentraale ''sitenotice'' en et wiki",
 	'centralnotice-summary' => 'Hee met kanns De de zentraal Nohreschte ändere, die jraad em Wiki opjesaz sen,
 ävver och neue dobei donn, un allde fott schmieße.',
@@ -5248,14 +5226,10 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-preview-all-template-translations' => 'Vör-Aansich fun all dä Övversäzunge fun dä Schablon',
 	'centralnotice-countries' => 'Länder',
 	'centralnotice-country' => 'Land',
-	'right-centralnotice-admin' => 'Zentraal Nohreschte verwallde',
-	'right-centralnotice-translate' => 'Zentraal Nohreschte övversäze',
-	'action-centralnotice-admin' => 'zentraal Nohreschte ze verwallde',
-	'action-centralnotice-translate' => 'zentraal Nohreschte ze övversäze',
 	'centralnotice-preferred' => 'Förjetrocke!',
 );
 
-/** Cornish (Kernewek)
+/** Cornish (Kernowek)
  * @author Kernoweger
  * @author Kw-Moon
  */
@@ -5666,6 +5640,7 @@ $messages['lv'] = array(
 $messages['mg'] = array(
 	'centralnotice' => "Fandrindàn'ny toerana fampandrenesana",
 	'noticetemplate' => "Endrin'ny toerana fampandrenesana",
+	'action-centralnotice-admin' => "mikojakoja n'io hafatra io",
 	'centralnotice-desc' => "Manampy toerana fampandrenesana amin'ilay tranonkala",
 	'centralnotice-query' => 'Ovay ny fampandrenesana misy ankehitriny',
 	'centralnotice-notice-name' => "Anaran'ilay fampandrenesana",
@@ -5717,9 +5692,6 @@ Tsy nifafàna ilay izy',
 	'centralnotice-message' => 'Hafatra',
 	'centralnotice-clone' => 'Avereno dikao',
 	'centralnotice-clone-notice' => "Angala-tahaka n'ilay endrika",
-	'right-centralnotice-translate' => 'dikao teny ny hafatra',
-	'action-centralnotice-admin' => "mikojakoja n'io hafatra io",
-	'action-centralnotice-translate' => 'dikao teny ny fampandrenesana',
 	'centralnotice-preferred' => 'Ny tiako/ny tianao/Ny tiny',
 );
 
@@ -6007,6 +5979,8 @@ $messages['mn'] = array(
  * @author V.narsikar
  */
 $messages['mr'] = array(
+	'right-centralnotice-admin' => '↓ मध्यवर्ती सूचनांचे प्रबंधन करा',
+	'action-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
 	'centralnotice-end-date' => 'अंतिम तारीख',
 	'centralnotice-add-new' => 'नव्या मोहीमेची सुरूवात करा',
@@ -6042,10 +6016,6 @@ $messages['mr'] = array(
 	'centralnotice-clone' => '↓ कृत्तक (क्लोन)',
 	'centralnotice-clone-notice' => '↓ मुखशीर्षकाची(बॅनरची प्रत बनवा)',
 	'centralnotice-preview-all-template-translations' => '↓ मुखशीर्षकांच्या सर्व उपलब्ध भाषांतराची झलक पहा',
-	'right-centralnotice-admin' => '↓ मध्यवर्ती सूचनांचे प्रबंधन करा',
-	'right-centralnotice-translate' => '↓ मध्यवर्ती सूचनांचे भाषांतरकरा',
-	'action-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
-	'action-centralnotice-translate' => 'मध्यवर्ती सूचनांचे भाषांतरकरा',
 	'centralnotice-preferred' => 'प्राधान्य',
 );
 
@@ -6056,6 +6026,8 @@ $messages['mr'] = array(
 $messages['ms'] = array(
 	'centralnotice' => 'Pentadbiran pemberitahuan pusat',
 	'noticetemplate' => 'Templat pemberitahuan pusat',
+	'right-centralnotice-admin' => 'Mengurus pemberitahuan pusat',
+	'action-centralnotice-admin' => 'mengurus pemberitahuan pusat',
 	'centralnotice-desc' => 'Menambah pemberitahuan pusat',
 	'centralnotice-summary' => 'Anda boleh menggunakan modul ini untuk menyunting pemberitahuan pusat yang disediakan. Anda juga boleh menambah atau membuang pemberitahuan yang lama.',
 	'centralnotice-query' => 'Ubah suai pemberitahuan semasa',
@@ -6118,10 +6090,6 @@ $messages['ms'] = array(
 	'centralnotice-clone' => 'Salin',
 	'centralnotice-clone-notice' => 'Buat salinan templat ini',
 	'centralnotice-preview-all-template-translations' => 'Pratonton semua terjemahan yang ada bagi templat ini',
-	'right-centralnotice-admin' => 'Mengurus pemberitahuan pusat',
-	'right-centralnotice-translate' => 'Menterjemah pemberitahuan pusat',
-	'action-centralnotice-admin' => 'mengurus pemberitahuan pusat',
-	'action-centralnotice-translate' => 'menterjemah pemberitahuan pusat',
 	'centralnotice-preferred' => 'Dipilih',
 );
 
@@ -6173,6 +6141,8 @@ $messages['myv'] = array(
 $messages['nds'] = array(
 	'centralnotice' => 'Sitenotice verwalten',
 	'noticetemplate' => 'Vörlaag för Sitenotice',
+	'right-centralnotice-admin' => 'Zentrale Siedennotiz verwalten',
+	'action-centralnotice-admin' => 'zentrale Siedennotiz verwalten',
 	'centralnotice-desc' => 'Föögt en zentrale Naricht för de Websteed to',
 	'centralnotice-summary' => 'Dit Modul verlöövt di dat Ännern vun de Instellungen för Sitenotice.
 Dat kann ok bruukt warrn, üm Sitenotices totofögen oder ruttonehmen.',
@@ -6249,10 +6219,6 @@ Kannst ünnen een tofögen',
 	'centralnotice-clone' => 'Koperen',
 	'centralnotice-clone-notice' => 'En Kopie vun de Vörlaag maken',
 	'centralnotice-preview-all-template-translations' => 'All vörhannen Översetten vun en Vörlaag ankieken',
-	'right-centralnotice-admin' => 'Zentrale Siedennotiz verwalten',
-	'right-centralnotice-translate' => 'Zentrale Siedennotiz översetten',
-	'action-centralnotice-admin' => 'zentrale Siedennotiz verwalten',
-	'action-centralnotice-translate' => 'zentrale Siedennotiz översetten',
 	'centralnotice-preferred' => 'Vörtagen',
 );
 
@@ -6412,6 +6378,8 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 $messages['nn'] = array(
 	'centralnotice' => 'Administrasjon av sentrale merknader',
 	'noticetemplate' => 'Mal for sentrale merknader',
+	'right-centralnotice-admin' => 'Handtera sentrale merknader',
+	'action-centralnotice-admin' => 'handtera sentrale merknader',
 	'centralnotice-desc' => 'Legg til ein sentral sidemerknad',
 	'centralnotice-summary' => 'Denne modulen lèt deg endra dine noverande sentralmerknader.
 Han kan òg bli nytta til å leggja til eller fjerna gamle merknader.',
@@ -6483,10 +6451,6 @@ Denne handlinga kan ikkje bli omgjort.',
 	'centralnotice-preview-all-template-translations' => 'Førehandsvis alle tilgjengelege omsetjingar av malen',
 	'centralnotice-insert' => 'Sett inn: $1',
 	'centralnotice-country' => 'Land',
-	'right-centralnotice-admin' => 'Handtera sentrale merknader',
-	'right-centralnotice-translate' => 'Omsetja sentrale merknader',
-	'action-centralnotice-admin' => 'handtera sentrale merknader',
-	'action-centralnotice-translate' => 'omsetja sentrale merknader',
 	'centralnotice-preferred' => 'Føretrukke',
 );
 
@@ -6634,6 +6598,8 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 $messages['oc'] = array(
 	'centralnotice' => 'Administracion de las notificacions centralas',
 	'noticetemplate' => 'Modèls de las notificacions centralas',
+	'right-centralnotice-admin' => 'Gerís las notificacions centralas',
+	'action-centralnotice-admin' => 'gerir las notificacions centralas',
 	'centralnotice-desc' => 'Apond un sitenotice central',
 	'centralnotice-summary' => 'Aqueste modul vos permet de modificar vòstres paramètres de las notificacions centralas.',
 	'centralnotice-query' => 'Modificar las notificacions actualas',
@@ -6709,10 +6675,6 @@ Apondètz-ne una en dejós.',
 	'centralnotice-clone' => 'Clonar',
 	'centralnotice-clone-notice' => "Crear una còpia d'aqueste modèl",
 	'centralnotice-preview-all-template-translations' => "Previsualizar totas las traduccions d'aqueste modèl",
-	'right-centralnotice-admin' => 'Gerís las notificacions centralas',
-	'right-centralnotice-translate' => 'Traduire las notificacions centralas',
-	'action-centralnotice-admin' => 'gerir las notificacions centralas',
-	'action-centralnotice-translate' => 'traduire las notificacions centralas',
 	'centralnotice-preferred' => 'Preferit',
 );
 
@@ -8149,6 +8111,8 @@ $messages['sah'] = array(
 $messages['scn'] = array(
 	'centralnotice' => 'Gistioni di avvisu cintralizzatu',
 	'noticetemplate' => "Template di l'avvisi cintralizzati",
+	'right-centralnotice-admin' => "Gistisci l'avvisi cintralizzati",
+	'action-centralnotice-admin' => "Guverna l'avvisi cintralizzati",
 	'centralnotice-desc' => "Jiunci n'avvisu cintralizzatu a inìzziu pàggina",
 	'centralnotice-summary' => "Stu mòdulu pirmetti di canciari l'avvisa cintralizzati. Pò èssiri usatu pi junciri o livari avvisa vecchi.",
 	'centralnotice-query' => "Cancia l'avvisa attuali",
@@ -8220,10 +8184,6 @@ Nun junciutu',
 	'centralnotice-clone-name' => 'Nomu:',
 	'centralnotice-preview-all-template-translations' => "Tutti li traduzzioni dî template dispunìbbili 'n anteprima",
 	'centralnotice-banner-anonymous' => 'Utenti anònimi',
-	'right-centralnotice-admin' => "Gistisci l'avvisi cintralizzati",
-	'right-centralnotice-translate' => 'Traduci avvisi cintralizzati',
-	'action-centralnotice-admin' => "Guverna l'avvisi cintralizzati",
-	'action-centralnotice-translate' => 'tradùciri avvisi cintralizzati',
 	'centralnotice-preferred' => 'Prifiriti',
 );
 
@@ -8636,6 +8596,9 @@ $messages['sq'] = array(
 	'centralnotice' => 'Menaxhimi e mesazheve qendrore',
 	'noticetemplate' => 'Menaxhimi e mesazheve qendrore',
 	'bannerallocation' => 'Menaxhimi e mesazheve qendrore',
+	'right-centralnotice-admin' => 'Menaxhoni mesazhet qendrore',
+	'action-centralnotice-admin' => 'menaxhoni mesazhet qendrore',
+	'centralnotice-desc' => 'Ju lejon, të krijoni mesazhe qendrore për Wiki.',
 	'centralnotice-end-date' => 'Data e përfundimit',
 	'centralnotice-modify' => 'Dërgo',
 	'centralnotice-preview' => 'Parapamje',
@@ -8736,7 +8699,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-clone-name' => 'Име:',
 );
 
-/** Serbian Latin ekavian (Srpski (latinica))
+/** Serbian Latin ekavian (‪Srpski (latinica)‬)
  * @author Michaello
  */
 $messages['sr-el'] = array(
@@ -8812,6 +8775,8 @@ Dodajte jednu ispod.',
 $messages['stq'] = array(
 	'centralnotice' => 'Adminstrierenge fon do zentroale Mäldengen',
 	'noticetemplate' => 'Zentroale Mäldengs-Foarloage',
+	'right-centralnotice-admin' => 'Ferwaltjen fon zentroale Mäldengen',
+	'action-centralnotice-admin' => 'Zentroale Siedennotiz ferfaalen',
 	'centralnotice-desc' => "Föiget ne zentroale ''sitenotice'' bietou",
 	'centralnotice-summary' => 'Disse Ärwiederenge ferlööwet ju Konfiguration fon zentroale Mäldengen.
 Ju kon uk tou dät Moakjen fon näie un Läskenge fon oolde Mäldengen ferwoand wäide.',
@@ -8887,10 +8852,6 @@ Föich een bietou.',
 	'centralnotice-clone' => 'Klon moakje',
 	'centralnotice-clone-notice' => 'Moak ne Kopie fon ju Foarloage',
 	'centralnotice-preview-all-template-translations' => 'Foarschau fon aal do ferföichboare Uursättengen fon ne Foarloage',
-	'right-centralnotice-admin' => 'Ferwaltjen fon zentroale Mäldengen',
-	'right-centralnotice-translate' => 'Uursätten fon zentroale Mäldengen',
-	'action-centralnotice-admin' => 'Zentroale Siedennotiz ferfaalen',
-	'action-centralnotice-translate' => 'Zentroale Siedennotiz uursätte',
 	'centralnotice-preferred' => 'Foarleeken',
 );
 
@@ -9218,6 +9179,8 @@ $messages['tet'] = array(
 $messages['tg-cyrl'] = array(
 	'centralnotice' => 'Мудири эълони мутамарказ',
 	'noticetemplate' => 'Шаблони эълони мутамарказ',
+	'right-centralnotice-admin' => 'Идоракунии эълонҳои мутамарказ',
+	'action-centralnotice-admin' => 'идоракунии эълонҳои мутамарказ',
 	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
 	'centralnotice-summary' => 'Ин модул ба шумо имкони вироиги насби эълони мутамаркази кунинро пешкаш мекунад.
 Он боз метавонад барои изофа ё пок кардани эълонҳои кӯҳна истифода шавад.',
@@ -9294,10 +9257,6 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-clone' => 'Клон',
 	'centralnotice-clone-notice' => 'Эҷоди як нусхаи ин шаблон',
 	'centralnotice-preview-all-template-translations' => 'Пешнамоиши ҳамаи тарҷумаҳои дастраси шаблон',
-	'right-centralnotice-admin' => 'Идоракунии эълонҳои мутамарказ',
-	'right-centralnotice-translate' => 'Тарҷумаи эълонҳои мутамарказ',
-	'action-centralnotice-admin' => 'идоракунии эълонҳои мутамарказ',
-	'action-centralnotice-translate' => 'тарҷумаи эълонҳои мутамарказ',
 	'centralnotice-preferred' => 'Тарҷиҳи додашуда',
 );
 
@@ -9307,6 +9266,8 @@ $messages['tg-cyrl'] = array(
 $messages['tg-latn'] = array(
 	'centralnotice' => "Mudiri e'loni mutamarkaz",
 	'noticetemplate' => "Şabloni e'loni mutamarkaz",
+	'right-centralnotice-admin' => "Idorakuniji e'lonhoi mutamarkaz",
+	'action-centralnotice-admin' => "idorakuniji e'lonhoi mutamarkaz",
 	'centralnotice-desc' => 'Jak ittilooti markazi ilova mekunad',
 	'centralnotice-summary' => "In modul ba şumo imkoni viroigi nasbi e'loni mutamarkazi kuninro peşkaş mekunad.
 On boz metavonad baroi izofa jo pok kardani e'lonhoi kūhna istifoda şavad.",
@@ -9383,10 +9344,6 @@ Dar zer jak e'lone izofa namoed",
 	'centralnotice-clone' => 'Klon',
 	'centralnotice-clone-notice' => 'Eçodi jak nusxai in şablon',
 	'centralnotice-preview-all-template-translations' => 'Peşnamoişi hamai tarçumahoi dastrasi şablon',
-	'right-centralnotice-admin' => "Idorakuniji e'lonhoi mutamarkaz",
-	'right-centralnotice-translate' => "Tarçumai e'lonhoi mutamarkaz",
-	'action-centralnotice-admin' => "idorakuniji e'lonhoi mutamarkaz",
-	'action-centralnotice-translate' => "tarçumai e'lonhoi mutamarkaz",
 	'centralnotice-preferred' => 'Tarçihi dodaşuda',
 );
 
@@ -9399,6 +9356,8 @@ Dar zer jak e'lone izofa namoed",
 $messages['th'] = array(
 	'centralnotice' => 'การจัดการประกาศส่วนกลาง',
 	'noticetemplate' => 'แม่แบบประกาศของส่้วนกลาง',
+	'right-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
+	'action-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
 	'centralnotice-desc' => 'เพิ่มประกาศส่วนกลางของไซต์',
 	'centralnotice-summary' => 'คุณสามารถแก้ไขประกาศส่วนกลางปัจจุบันได้ โดยใช้เครื่องมือนี้
 คุณสามารถเพิ่มหรือนำประกาศเก่าออกได้เช่นกัน',
@@ -9475,10 +9434,6 @@ $messages['th'] = array(
 	'centralnotice-clone' => 'สำเนา',
 	'centralnotice-clone-notice' => 'สร้างสำเนาของแม่แบบ',
 	'centralnotice-preview-all-template-translations' => 'ดูการแปลในทุก ๆ ภาษาของแม่แบบ',
-	'right-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
-	'right-centralnotice-translate' => 'แปลประกาศส่วนกลาง',
-	'action-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
-	'action-centralnotice-translate' => 'แปลประกาศส่วนกลาง',
 	'centralnotice-preferred' => 'แบบที่เลือก',
 );
 
@@ -10541,6 +10496,7 @@ $messages['yo'] = array(
 /** Cantonese (粵語)
  * @author Horacewai2
  * @author Shinjiman
+ * @author Waihorace
  */
 $messages['yue'] = array(
 	'centralnotice' => '統一通告管理',
@@ -10762,7 +10718,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-min' => '分',
 	'centralnotice-project-lang' => '計劃語言',
 	'centralnotice-select' => '選擇：$1',
-	'centralnotice-top-ten-languages' => '前10種語言',
+	'centralnotice-top-ten-languages' => '前 10 種語言',
 	'centralnotice-project-name' => '計劃名稱',
 	'centralnotice-start-date' => '開始日期',
 	'centralnotice-start-time' => '開始時間（UTC）',
