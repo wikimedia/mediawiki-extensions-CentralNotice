@@ -8633,6 +8633,9 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
  * @author Mikullovci11
  */
 $messages['sq'] = array(
+	'centralnotice' => 'Menaxhimi e mesazheve qendrore',
+	'noticetemplate' => 'Menaxhimi e mesazheve qendrore',
+	'bannerallocation' => 'Menaxhimi e mesazheve qendrore',
 	'centralnotice-end-date' => 'Data e përfundimit',
 	'centralnotice-modify' => 'Dërgo',
 	'centralnotice-preview' => 'Parapamje',
