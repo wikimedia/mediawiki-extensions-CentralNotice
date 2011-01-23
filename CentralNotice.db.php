@@ -126,6 +126,8 @@ class CentralNoticeDB {
 		
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 
+		$templates = array();
+
 		if ( $campaigns ) {
 			// Pull templates based on join with assignments
 			$res = $dbr->select(
@@ -150,15 +152,15 @@ class CentralNoticeDB {
 					'GROUP BY' => 'tmp_name'
 				)
 			);
-		}
-		$templates = array();
-		foreach ( $res as $row ) {
-			$templates[] = array(
-				'name' => $row->tmp_name,
-				'weight' => intval( $row->total_weight ),
-				'display_anon' => intval( $row->tmp_display_anon ),
-				'display_account' => intval( $row->tmp_display_account ),
-			);
+
+			foreach ( $res as $row ) {
+				$templates[] = array(
+					'name' => $row->tmp_name,
+					'weight' => intval( $row->total_weight ),
+					'display_anon' => intval( $row->tmp_display_anon ),
+					'display_account' => intval( $row->tmp_display_account ),
+				);
+			}
 		}
 		return $templates;
 	}

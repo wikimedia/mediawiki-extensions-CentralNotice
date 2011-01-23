@@ -84,7 +84,7 @@ $wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can m
 
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
-	global $wgCentralNoticeLoader;
+	global $wgCentralNoticeLoader, $wgSpecialPageGroups;
 
 	$dir = dirname( __FILE__ ) . '/';
 
