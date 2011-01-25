@@ -29,7 +29,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
 			$content = $this->getJsNotice( $bannerName );
-			if ( preg_match( "/&lt;centralnotice-template-\w{1,}&gt;\z/", $content ) ) {
+			if ( preg_match( "/&lt;centralnotice-template-\w+&gt;\z/", $content ) ) {
 				echo "/* Failed cache lookup */";
 			} elseif ( strlen( $content ) == 0 ) {
 				// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
