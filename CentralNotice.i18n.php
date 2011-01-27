@@ -600,6 +600,13 @@ $messages['ast'] = array(
 	'centralnotice-desc' => 'Añade una anuncia centralizada del sitiu (sitenotice)',
 );
 
+/** Azerbaijani (Azərbaycanca)
+ * @author PPerviz
+ */
+$messages['az'] = array(
+	'centralnotice-all-projects' => 'Bütün layihələr',
+);
+
 /** Bashkir (Башҡортса)
  * @author Assele
  * @author Haqmar
@@ -8699,6 +8706,17 @@ Kjo nuk mund të hiqet.',
 	'centralnotice-clone' => 'Mbylle',
 	'centralnotice-clone-notice' => 'Krijo një kopje të Stampës',
 	'centralnotice-clone-name' => 'Emri:',
+	'centralnotice-hide-button' => 'Hsheh Lidhjen',
+	'centralnotice-collapse-button' => 'Rënë Lidhjen',
+	'centralnotice-expand-button' => ' Zmadhoje Lidhjen',
+	'centralnotice-close-button' => 'Mbylle buton',
+	'centralnotice-translate-button' => 'Lidhja ndihmues',
+	'centralnotice-donate-button' => 'Buton për dhurim',
+	'centralnotice-banner-anonymous' => 'Përdoruesit anonim',
+	'centralnotice-banner-logged-in' => 'Përdoruesit të regjistruar',
+	'centralnotice-countries' => 'Shtetet',
+	'centralnotice-allocation' => 'Rregullimi',
+	'centralnotice-view-allocation' => 'Shikoni rregullimin e Stampës',
 	'centralnotice-languages' => 'Gjuha',
 	'centralnotice-projects' => 'Projekte',
 	'centralnotice-country' => 'Veni',
