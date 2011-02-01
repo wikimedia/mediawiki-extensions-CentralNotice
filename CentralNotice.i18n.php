@@ -5090,6 +5090,7 @@ $messages['ko'] = array(
 	'centralnotice-show-notices' => '공지 표시하기',
 	'centralnotice-list-templates' => '템플릿 목록 표시하기',
 	'centralnotice-multiple' => '다수 ($1)',
+	'centralnotice-all-projects' => '모든 프로젝트',
 	'centralnotice-translations' => '번역',
 	'centralnotice-translate-to' => '번역할 언어',
 	'centralnotice-translate' => '번역하기',
@@ -5146,6 +5147,8 @@ $messages['ko'] = array(
 	'centralnotice-clone-notice' => '이 틀의 사본을 만들기',
 	'centralnotice-clone-name' => '이름:',
 	'centralnotice-preview-all-template-translations' => '템플렛의 모든 번역 미리 보기',
+	'centralnotice-countries' => '국가',
+	'centralnotice-languages' => '언어',
 	'centralnotice-country' => '국가',
 	'centralnotice-documentwrite-error' => '배너에 document.write() 메서드는 사용할 수 없습니다.
 자세한 내용에 대해서는 [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice]를 참조하십시오.',
