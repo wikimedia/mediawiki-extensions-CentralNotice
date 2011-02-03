@@ -7708,9 +7708,9 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => "Andeprime de totte le traduzione disponibbele d'u banner",
 	'centralnotice-insert' => 'Mitte: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} link',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} link',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} link',
+	'centralnotice-hide-button' => "Scunne 'u collegamende",
+	'centralnotice-collapse-button' => "Collasse 'u collegamende",
+	'centralnotice-expand-button' => "Spanne 'u collegamende",
 	'centralnotice-close-button' => 'Buttone de chiusure',
 	'centralnotice-translate-button' => "Ajute a traducere 'u link",
 	'centralnotice-donate-button' => 'Buttone pa donazzione',
@@ -7725,6 +7725,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-countries' => 'Paìse',
 	'centralnotice-allocation' => 'Allocazione',
 	'centralnotice-view-allocation' => "Visualizze l'assignazione d'u banner",
+	'centralnotice-projects' => 'Pruggette',
 	'centralnotice-country' => 'Nazione',
 	'centralnotice-no-allocation' => 'Nisciune banner assignate.',
 	'centralnotice-allocation-description' => 'Assignazione de banner pè $1.$2 jndre $3:',
@@ -8626,6 +8627,8 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 
 /** Albanian (Shqip)
  * @author Mikullovci11
+ * @author Olsi
+ * @author Techlik
  */
 $messages['sq'] = array(
 	'centralnotice' => 'Menaxhimi e mesazheve qendrore',
@@ -8634,6 +8637,8 @@ $messages['sq'] = array(
 	'right-centralnotice-admin' => 'Menaxhoni mesazhet qendrore',
 	'action-centralnotice-admin' => 'menaxhoni mesazhet qendrore',
 	'centralnotice-desc' => 'Ju lejon, të krijoni mesazhe qendrore për Wiki.',
+	'centralnotice-summary' => 'Ky modul ju lejon që të editoni shënimet tuaja të tanishme qendrore. 
+Ai gjithashtu mund të përdoret për të shtuar ose hequr njoftime të vjetra.',
 	'centralnotice-query' => 'Ndryshoni mesazhin aktuale',
 	'centralnotice-notice-name' => 'Emri i shënimit',
 	'centralnotice-end-date' => 'Data e përfundimit',
@@ -8695,20 +8700,37 @@ Largimi nuk është e mundur.',
 	'centralnotice-assigned-templates' => 'Stampat e caktuara',
 	'centralnotice-no-templates' => 'Nuk ka rezultate që përputhen me kërkesën. 
 Shtoje prandaj!',
+	'centralnotice-no-templates-assigned' => 'Nuk ka baner të lidhur me fushatën.
+Shtoni disa!',
 	'centralnotice-available-templates' => 'Stampat në dispozicion',
+	'centralnotice-template-already-exists' => 'Baneri është tashmë i lidhur për fushatën.
+Nuk ka shtim.',
 	'centralnotice-preview-template' => 'Parapamje e stampës',
 	'centralnotice-change-lang' => 'Ndryshoni gjuhën përkthimi',
 	'centralnotice-weights' => 'Peshësia',
 	'centralnotice-notice-is-locked' => 'Mesazhi është e bllokuar.
 Kjo nuk mund të hiqet.',
+	'centralnotice-overlap' => 'Fushata përputhet me kohën e një fushate tjetër. 
+Nuk ka shtim.',
+	'centralnotice-invalid-date-range' => 'Bashkësi e gabuar për datën.
+Nuk ka përditësim.',
+	'centralnotice-null-string' => 'Nuk mund të shtoni një varg null. 
+Jo duke shtuar.',
+	'centralnotice-confirm-delete' => 'Jeni i sigurt se doni ta grisni këtë artikull?
+Ky veprim do të jetë i pakthyeshëm.',
+	'centralnotice-no-notices-exist' => 'Nuk ekziston asnjë fushatë.
+Shtoni një më poshtë.',
+	'centralnotice-no-templates-translate' => 'Nuk ka asnjë parullë për tu redaktuar për përkthime.',
 	'centralnotice-number-uses' => 'Përdorues',
 	'centralnotice-settings' => 'Alternativa',
 	'centralnotice-edit-template' => 'Redaktoni Stampën',
+	'centralnotice-edit-template-summary' => 'Për të krijuar një mesazh të lokalizuar, bashkangjitni një varg i shkruar me vizë në kllapa tre valë-valë, si p.sh. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Mesazh',
 	'centralnotice-message-not-set' => 'Mesauhi nuk është caktuar',
 	'centralnotice-clone' => 'Mbylle',
 	'centralnotice-clone-notice' => 'Krijo një kopje të Stampës',
 	'centralnotice-clone-name' => 'Emri:',
+	'centralnotice-preview-all-template-translations' => 'Shikoni të gjitha përkthimet e mundshme të "banner"',
 	'centralnotice-insert' => 'Shtoni: $1',
 	'centralnotice-hide-button' => 'Hsheh Lidhjen',
 	'centralnotice-collapse-button' => 'Rënë Lidhjen',
@@ -8716,20 +8738,27 @@ Kjo nuk mund të hiqet.',
 	'centralnotice-close-button' => 'Mbylle buton',
 	'centralnotice-translate-button' => 'Lidhja ndihmues',
 	'centralnotice-donate-button' => 'Buton për dhurim',
+	'centralnotice-expanded-banner' => '"Banner" i zgjeruar',
+	'centralnotice-collapsed-banner' => '"Banner" i zvogëluar',
 	'centralnotice-banner-display' => 'Shfaqe për:',
 	'centralnotice-banner-anonymous' => 'Përdoruesit anonim',
 	'centralnotice-banner-logged-in' => 'Përdoruesit të regjistruar',
 	'centralnotice-banner-type' => 'Lloji i stampës:',
+	'centralnotice-banner-hidable' => 'Statik/I mundshëm për fshehje',
+	'centralnotice-banner-collapsible' => 'I mundshëm për zvogëlim',
 	'centralnotice-geotargeted' => 'Geo-objektiv',
 	'centralnotice-countries' => 'Shtetet',
 	'centralnotice-allocation' => 'Rregullimi',
 	'centralnotice-view-allocation' => 'Shikoni rregullimin e Stampës',
+	'centralnotice-allocation-instructions' => 'Zgjidhni mjedisin që dëshironi të shihni shpërndarjen e "bannerit" për:',
 	'centralnotice-languages' => 'Gjuha',
 	'centralnotice-projects' => 'Projekte',
 	'centralnotice-country' => 'Veni',
 	'centralnotice-no-allocation' => 'As një stampë e caktuar.',
 	'centralnotice-allocation-description' => 'Caktimi e stampës për $1.$2 në $3:',
 	'centralnotice-percentage' => 'Përqindje',
+	'centralnotice-documentwrite-error' => 'document.write() nuk mund të përdoret brenda një "banneri".
+Shikoni http://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë informacion.',
 	'centralnotice-preferred' => 'Preferuar',
 );
 
