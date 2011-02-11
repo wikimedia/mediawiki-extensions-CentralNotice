@@ -1555,6 +1555,7 @@ $messages['ckb'] = array(
 /** Czech (Česky)
  * @author Danny B.
  * @author Li-sung
+ * @author Matěj Grabovský
  * @author Mormegil
  */
 $messages['cs'] = array(
@@ -1650,9 +1651,9 @@ Níže můžete vytvořit nové.',
 	'centralnotice-clone-name' => 'Název:',
 	'centralnotice-preview-all-template-translations' => 'Náhled všech dostupných překladů šablony',
 	'centralnotice-insert' => 'Vložit: $1',
-	'centralnotice-hide-button' => 'Odkaz „{{int:centralnotice-shared-hide}}“',
-	'centralnotice-collapse-button' => 'Odkaz „{{int:centralnotice-shared-collapse}}“',
-	'centralnotice-expand-button' => 'Odkaz „{{int:centralnotice-shared-expand}}“',
+	'centralnotice-hide-button' => 'Skrýt odkaz',
+	'centralnotice-collapse-button' => 'Sbalit odkaz',
+	'centralnotice-expand-button' => 'Rozbalit odkaz',
 	'centralnotice-close-button' => 'Zavírací tlačítko',
 	'centralnotice-translate-button' => 'Odkaz „Pomozte s překladem“',
 	'centralnotice-donate-button' => 'Tlačítko „Přispějte“',
@@ -1742,9 +1743,12 @@ Ddim yn tynnu i ffwrdd.",
 	'centralnotice-hours' => 'Awr',
 	'centralnotice-min' => 'Munud',
 	'centralnotice-project-lang' => 'Iaith y prosiect',
+	'centralnotice-select' => 'Dewis: $1',
+	'centralnotice-top-ten-languages' => 'Y 10 iaith mwyaf eu defnydd',
 	'centralnotice-project-name' => "Enw'r prosiect",
 	'centralnotice-start-date' => 'Dyddiad cychwyn',
 	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
+	'centralnotice-end-time' => 'Amser y daw i ben (UTC)',
 	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner. 
 Ychwanegwch rai!',
 	'centralnotice-weights' => 'Pwysau',
@@ -1752,17 +1756,23 @@ Ychwanegwch rai!',
 Ni chaiff ei dynnu i ffwrdd",
 	'centralnotice-no-notices-exist' => 'Does dim hysbysiadau i gael.
 Gallwch ychwanegu un isod.',
+	'centralnotice-settings' => 'Gosodiadau',
 	'centralnotice-edit-template' => "Golygu'r nodyn",
 	'centralnotice-message' => 'Neges',
 	'centralnotice-clone-name' => 'Enw:',
 	'centralnotice-hide-button' => 'y cyswllt cuddio',
 	'centralnotice-collapse-button' => 'Y cyswllt crebachu',
 	'centralnotice-expand-button' => 'Y cyswllt ehangu',
+	'centralnotice-close-button' => 'Botwm cau',
+	'centralnotice-translate-button' => 'Cyswllt i annog cyfieithu',
+	'centralnotice-donate-button' => 'Botwm rhoi',
 	'centralnotice-banner-anonymous' => 'Defnyddwyr anhysbys',
 	'centralnotice-countries' => 'Gwledydd',
 	'centralnotice-view-allocation' => 'Gweld dosbarthiad y faner',
 	'centralnotice-languages' => 'Ieithoedd',
 	'centralnotice-country' => 'Gwlad',
+	'centralnotice-percentage' => 'Canran',
+	'centralnotice-preferred' => 'Gorau gennych',
 );
 
 /** Danish (Dansk)
