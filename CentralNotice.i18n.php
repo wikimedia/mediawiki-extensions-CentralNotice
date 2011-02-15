@@ -9323,6 +9323,7 @@ $messages['te'] = array(
 	'centralnotice-show-notices' => 'ప్రచారోద్యమాలని చూపించు',
 	'centralnotice-list-templates' => 'మూసలను చూపించు',
 	'centralnotice-multiple' => 'బహుళం ($1)',
+	'centralnotice-all-projects' => 'అన్ని ప్రాజెక్టులు',
 	'centralnotice-translations' => 'అనువాదాలు',
 	'centralnotice-translate' => 'అనువదించండి',
 	'centralnotice-english' => 'ఇంగ్లీష్',
@@ -9374,9 +9375,9 @@ $messages['te'] = array(
 	'centralnotice-edit-template-summary' => 'అనువదించదగ్గ సందేశాన్ని సృష్టించడానికి, హైఫన్లతో కూడిన పదబంధాన్ని మూడు మీసాల బ్రాకెట్ల మధ్యలో ఉంచండి, ఉ.దా. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'సందేశం',
 	'centralnotice-clone-name' => 'పేరు:',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} లంకె',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} లంకె',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} లంకె',
+	'centralnotice-hide-button' => 'దాచు లంకె',
+	'centralnotice-collapse-button' => 'కుదించు లంకె',
+	'centralnotice-expand-button' => 'విస్తరించు లంకె',
 	'centralnotice-close-button' => 'మూసివేయి బొత్తం',
 	'centralnotice-translate-button' => 'అనువాదానికి తోడ్పడండి లంకె',
 	'centralnotice-donate-button' => 'విరాళమివ్వండి బొత్తం',
@@ -9386,6 +9387,8 @@ $messages['te'] = array(
 	'centralnotice-banner-hidable' => 'స్థిరం/దాచదగ్గది',
 	'centralnotice-countries' => 'దేశాలు',
 	'centralnotice-allocation' => 'కేటాయింపు',
+	'centralnotice-languages' => 'భాషలు',
+	'centralnotice-projects' => 'ప్రాజెక్టులు',
 	'centralnotice-country' => 'దేశం',
 	'centralnotice-percentage' => 'శాతం',
 );
@@ -10194,6 +10197,21 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-documentwrite-error' => 'document.write() өлгедә кулланырга ярамый.
 Тулырак мәгълүмат: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].',
 	'centralnotice-preferred' => 'Катгый рәвештә',
+);
+
+/** Tuvinian (Тыва дыл)
+ * @author Sborsody
+ */
+$messages['tyv'] = array(
+	'centralnotice-modify' => 'Күүcедири',
+	'centralnotice-preview' => 'Чижеглей көөрү',
+	'centralnotice-english' => 'Англи',
+	'centralnotice-day' => 'Хүн',
+	'centralnotice-year' => 'Чыл',
+	'centralnotice-month' => 'Ай',
+	'centralnotice-hours' => 'Шак',
+	'centralnotice-min' => 'Минут',
+	'centralnotice-clone-name' => 'Ат:',
 );
 
 /** Udmurt (Удмурт)
