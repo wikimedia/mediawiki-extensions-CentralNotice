@@ -1902,7 +1902,7 @@ Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werde
 	'centralnotice-notice-exists' => 'Meldung ist bereits vorhanden.
 Sie wird daher nicht hinzugefügt.',
 	'centralnotice-no-language' => 'Für die Meldung wurde keine Sprache ausgewählt. Sie wird daher nicht hinzugefügt.',
-	'centralnotice-no-project' => 'Für das Projekt wurde keine Kampagne ausgewählt. Es wird daher nicht hinzugefügt.',
+	'centralnotice-no-project' => 'Für die Kampagne wurde kein Projekt ausgewählt. Es wird daher nichts hinzugefügt.',
 	'centralnotice-template-exists' => 'Vorlage ist bereits vorhanden.
 Sie wird daher nicht hinzugefügt.',
 	'centralnotice-notice-doesnt-exist' => 'Meldung ist nicht vorhanden.',
@@ -5283,18 +5283,19 @@ $messages['ksh'] = array(
 	'centralnotice-desc' => "Brengk en zentraale ''sitenotice'' en et wiki",
 	'centralnotice-summary' => 'Hee met kanns De de zentraal Nohreschte ändere, die jraad em Wiki opjesaz sen,
 ävver och neue dobei donn, un allde fott schmieße.',
-	'centralnotice-query' => 'Aktowälle zentraale Nohresch ändere.',
-	'centralnotice-notice-name' => 'Dä Nohresch ier Name',
+	'centralnotice-query' => 'Aktowälle zentraale Nohreesch ändere.',
+	'centralnotice-notice-name' => 'Dä Nohreesch ier Name',
 	'centralnotice-end-date' => 'Et Dattum fum Engk',
 	'centralnotice-enabled' => 'Aanjeschalldt',
 	'centralnotice-modify' => 'Loß Jonn!',
 	'centralnotice-preview' => 'Vör-Aansich zeije',
-	'centralnotice-add-new' => 'Donn en zentrale Nohresch dobei',
+	'centralnotice-add-new' => 'Donn en zentrale Nohreesch dobei',
 	'centralnotice-remove' => 'Fottnämme',
 	'centralnotice-translate-heading' => 'Övversäzong för $1',
 	'centralnotice-manage' => 'Zentrale Nohreschte fowallde',
 	'centralnotice-add' => 'Dobeidonn',
-	'centralnotice-add-notice' => 'En zentrale Nohresch dobei donn',
+	'centralnotice-add-notice' => 'En zentral Nohreesch dobei donn',
+	'centralnotice-edit-notice' => 'En zentrale Nohreesch ändere',
 	'centralnotice-add-template' => 'En Schabloon dobei donn',
 	'centralnotice-show-notices' => 'Zentrale Nohreschte zeije',
 	'centralnotice-list-templates' => 'Schablone opleßte',
@@ -5309,13 +5310,18 @@ $messages['ksh'] = array(
 	'centralnotice-weight' => 'Jeweesch',
 	'centralnotice-locked' => 'jespert',
 	'centralnotice-notices' => 'zentrale Nohreschte',
-	'centralnotice-notice-exists' => 'Di zentrale Nohresch es ald doh.
+	'centralnotice-notice-exists' => 'Di zentrale Nohreesch es ald doh.
+Nix dobei jedonn.',
+	'centralnotice-no-language' => 'Et es kein Shprooch för di zentrale Nohreesch ußjesöhk.
+Nix dobei jedonn.',
+	'centralnotice-no-project' => 'Et es kein Projäk för di zentrale Nohreesch ußjesöhk.
 Nix dobei jedonn.',
 	'centralnotice-template-exists' => 'Di Schablon es ald doh.
 Nit dobei jedonn.',
-	'centralnotice-notice-doesnt-exist' => 'Di zentrale Nohresch es nit doh.
-Kam_mer nit fott lohße.',
-	'centralnotice-template-still-bound' => 'Di Schablon deit aan ene zentrale Nohresch hange.
+	'centralnotice-notice-doesnt-exist' => 'Di zentrale Nohreesch jidd et nit.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Di zentrale Nohreesch es nit doh.
+Nix wood fott jelohße.',
+	'centralnotice-template-still-bound' => 'Di Schablon deit aan ene zentrale Nohreesch hange.
 Di kam_mer nit fott nämme.',
 	'centralnotice-template-body' => 'Dä Tex fun dä Schablon:',
 	'centralnotice-day' => 'Daach',
@@ -5333,7 +5339,7 @@ Di kam_mer nit fott nämme.',
 	'centralnotice-assigned-templates' => 'Zojedeilte Schablone',
 	'centralnotice-no-templates' => 'Mer han kein Schablone.
 Kanns ävver welshe dobei don.',
-	'centralnotice-no-templates-assigned' => 'Et sin kein Schablone för de zentraal Nohresch zojedeilt.
+	'centralnotice-no-templates-assigned' => 'Et sin kein Schablone för di zentraal Nohreesch zojedeilt.
 Donn dat ens!',
 	'centralnotice-available-templates' => 'Müjjelesche Schabloone',
 	'centralnotice-template-already-exists' => 'Di Schablon weed ald förr_en Kampannje jebruch.
@@ -5341,7 +5347,7 @@ Nit dobeijedonn.',
 	'centralnotice-preview-template' => 'Vör-Ansich för di Schablon',
 	'centralnotice-change-lang' => 'Shprooch fö et Övversäze ändere',
 	'centralnotice-weights' => 'Jeweeschte',
-	'centralnotice-notice-is-locked' => 'Di zentraal Nohresch es jesperrt.
+	'centralnotice-notice-is-locked' => 'Di zentraal Nohreesch es jesperrt.
 Se blief.',
 	'centralnotice-overlap' => 'De Zick vun hee dä, un en ander vun dä zentraale Nohreschte, donn sesch övverlappe. Dat jeiht nit.
 Nit dobei jedonn.',
@@ -5357,8 +5363,8 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-number-uses' => 'mol jebruch',
 	'centralnotice-settings' => 'Enshtällonge',
 	'centralnotice-edit-template' => 'Schablon beärbeide',
-	'centralnotice-message' => 'Nohresch',
-	'centralnotice-message-not-set' => 'De Nohresch es nit jesaz',
+	'centralnotice-message' => 'Nohreesch',
+	'centralnotice-message-not-set' => 'De Nohreesch es nit jesaz',
 	'centralnotice-clone' => 'Kopi maache',
 	'centralnotice-clone-notice' => 'Maach en Kopi fun dä Schabloon',
 	'centralnotice-clone-name' => 'Name:',
@@ -5370,6 +5376,12 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-close-button' => 'Knopp zom Zohmaache',
 	'centralnotice-translate-button' => 'Hellef met bem Övversäze!',
 	'centralnotice-donate-button' => 'Dä Knopp för et Spände',
+	'centralnotice-banner-anonymous' => 'Nameloose Metmaacher',
+	'centralnotice-banner-logged-in' => 'Enjeelog Metmaacher',
+	'centralnotice-banner-type' => 'Banner Zoot:',
+	'centralnotice-banner-hidable' => 'Faß udder ußschaltbaa',
+	'centralnotice-banner-collapsible' => 'Enklappbaa',
+	'centralnotice-geotargeted' => 'Met Koodinaate op de Ääd',
 	'centralnotice-countries' => 'Länder',
 	'centralnotice-country' => 'Land',
 	'centralnotice-preferred' => 'Förjetrocke!',
@@ -6873,6 +6885,9 @@ $messages['pdc'] = array(
 	'centralnotice-year' => 'Yaahr',
 	'centralnotice-month' => 'Munet',
 	'centralnotice-hours' => 'Schtund',
+	'centralnotice-project-name' => 'Project-Naame',
+	'centralnotice-languages' => 'Schprooche',
+	'centralnotice-country' => 'Land',
 );
 
 /** Polish (Polski)
