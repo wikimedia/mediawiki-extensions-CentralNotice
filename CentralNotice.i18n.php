@@ -5392,7 +5392,9 @@ De kanns ävver welshe dobei don.',
  */
 $messages['ku-latn'] = array(
 	'centralnotice-preview' => 'Pêşdîtin',
+	'centralnotice-add' => 'Zêde bike',
 	'centralnotice-translations' => 'Wergerran',
+	'centralnotice-translate' => 'Wergerrîne',
 	'centralnotice-english' => 'Inglîzî',
 	'centralnotice-locked' => 'Hate astengkirin',
 	'centralnotice-day' => 'Roj',
@@ -5406,6 +5408,7 @@ $messages['ku-latn'] = array(
 	'centralnotice-message' => 'Mesaj',
 	'centralnotice-clone-name' => 'Nav:',
 	'centralnotice-hide-button' => 'Lînkê veşêre',
+	'centralnotice-languages' => 'Ziman',
 	'centralnotice-country' => 'Welat',
 );
 
