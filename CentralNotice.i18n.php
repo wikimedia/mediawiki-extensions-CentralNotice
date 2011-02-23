@@ -2982,6 +2982,7 @@ $messages['fa'] = array(
  * @author Olli
  * @author Tarmo
  * @author Tofu II
+ * @author Wix
  */
 $messages['fi'] = array(
 	'centralnotice' => 'Keskitettyjen tiedotteiden ylläpito',
@@ -3028,6 +3029,7 @@ Voit myös lisätä tai poistaa vanhoja tiedotteita.',
 	'centralnotice-notice-exists' => 'Tiedote on jo olemassa.
 Ei lisätä',
 	'centralnotice-no-language' => 'Kampanjalle ei valittu kieltä. Sitä ei lisätty.',
+	'centralnotice-no-project' => 'Mitään projektia ei valittu kampanjaa varten. Mitään ei lisätä.',
 	'centralnotice-template-exists' => 'Malline on jo olemassa.
 Ei lisätä',
 	'centralnotice-notice-doesnt-exist' => 'Kampanjaa ei ole olemassa.',
