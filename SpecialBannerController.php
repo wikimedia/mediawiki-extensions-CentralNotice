@@ -43,7 +43,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	 * In order to circumvent the normal squid cache override we add '/cn.js' to the bannerlist URL.
 	 */
 	function getOutput() {
-		global $wgCentralPagePath;
+		global $wgCentralPagePath, $wgContLang;
 		
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<JAVASCRIPT
@@ -76,7 +76,11 @@ JAVASCRIPT;
 					var geoLocation = Geo.country; // pull the geo info
 				}
 				var bannerListQuery = $.param( { 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation } );
-				var bannerListURL = wgScript + '?title=' + encodeURIComponent(wgFormattedNamespaces[-1]) + ':BannerListLoader&cache=/cn.js&' + bannerListQuery;
+JAVASCRIPT;
+		$js .= "\n\t\t\t\tvar bannerListURL = wgScript + '?title=' + encodeURIComponent('" . 
+			$wgContLang->specialPage( 'BannerListLoader' ) .
+			"') + '&cache=/cn.js&' + bannerListQuery;\n";
+		$js .= <<<JAVASCRIPT
 				var request = $.ajax( {
 					url: bannerListURL,
 					dataType: 'json',
@@ -177,5 +181,5 @@ function toggleNoticeCookie(state) {
 JAVASCRIPT;
 		return $script;
 	}
-	
+
 }
