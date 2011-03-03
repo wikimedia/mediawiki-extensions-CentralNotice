@@ -2945,9 +2945,9 @@ $messages['fa'] = array(
 	'centralnotice-clone-name' => 'نام:',
 	'centralnotice-preview-all-template-translations' => 'پیش‌نمایش تمام ترجمه‌های موجود از الگو',
 	'centralnotice-insert' => 'درج: $1',
-	'centralnotice-hide-button' => 'پیوند {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'پیوند {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'پیوند {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'مخفی‌کردن پیوند',
+	'centralnotice-collapse-button' => 'پیوند بستن',
+	'centralnotice-expand-button' => 'پیوند گسترش‌دادن',
 	'centralnotice-close-button' => 'دکمه بستن',
 	'centralnotice-translate-button' => 'پیوند راهنمای ترجمه',
 	'centralnotice-donate-button' => 'دکمهٔ کمک مالی',
@@ -4946,6 +4946,7 @@ $messages['ka'] = array(
 	'bannerallocation' => 'ცენტრალური შეტყობინების ადმინი',
 	'right-centralnotice-admin' => 'ცენტრალური შეტყობინებების მართვა',
 	'action-centralnotice-admin' => 'ცენტრალური შეტყობინებების მართვა',
+	'centralnotice-desc' => 'ამატებს ცენტრალურ შეტყობინებას',
 	'centralnotice-query' => 'მოქმედი შეტყობინების შეცვლა',
 	'centralnotice-notice-name' => 'შეტყობინების სახელი',
 	'centralnotice-end-date' => 'დასრულების თარიღი',
@@ -4988,6 +4989,8 @@ $messages['ka'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'შეტყობინება არ არსებობს.
 არაფერია წასაშლელი.',
 	'centralnotice-banner-doesnt-exist' => 'თარგი არ არსებობს',
+	'centralnotice-template-still-bound' => 'ბანერი ჯერ კიდევ დაკავშირებულია შეტყობინებასთან.
+წაშლა შეუძლებელია.',
 	'centralnotice-template-body' => 'თარგის სხეული:',
 	'centralnotice-day' => 'დღე',
 	'centralnotice-year' => 'წელი',
@@ -5001,10 +5004,13 @@ $messages['ka'] = array(
 	'centralnotice-start-date' => 'დაწყების თარიღი',
 	'centralnotice-start-time' => 'დაწყების დრო (UTC)',
 	'centralnotice-end-time' => 'დასრულების დრო (UTC)',
+	'centralnotice-assigned-templates' => 'დანიშნული ბანერები',
 	'centralnotice-no-templates' => 'თარგები ნაპოვნი არ არის. დაამატეთ რამე!',
 	'centralnotice-preview-template' => 'წინა თარგი',
 	'centralnotice-change-lang' => 'თარგმანის ენის შეცვლა',
 	'centralnotice-weights' => 'წონა',
+	'centralnotice-invalid-date-range' => 'დროის არასწორი მონაკვეთი.
+არ განახლდება.',
 	'centralnotice-confirm-delete' => 'დარწმუნებული ხართ, რომ გინდათ ამ ელემენტის წაშლა? ეს მოქმედება ვეღარ გაუქმნდება.',
 	'centralnotice-no-notices-exist' => 'შეტყობინება არ არსებობს.
 დაამატე.',
@@ -5039,6 +5045,7 @@ $messages['ka'] = array(
 	'centralnotice-percentage' => 'პროცენტი',
 	'centralnotice-documentwrite-error' => 'document.write() არ შეიძლება გამოყენებული იქნას ბანერის შიგნით. 
 იხილეთ http://meta.wikimedia.org/wiki/Help:CentralNotice მეტი ინფორმაციისათვის.',
+	'centralnotice-preferred' => 'პრივილეგირებული',
 );
 
 /** Khmer (ភាសាខ្មែរ)
