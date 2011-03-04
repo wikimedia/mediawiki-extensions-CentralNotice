@@ -6217,12 +6217,13 @@ $messages['mr'] = array(
 );
 
 /** Malay (Bahasa Melayu)
+ * @author Aurora
  * @author Aviator
  * @author Izzudin
  */
 $messages['ms'] = array(
 	'centralnotice' => 'Pentadbiran pemberitahuan pusat',
-	'noticetemplate' => 'Templat pemberitahuan pusat',
+	'noticetemplate' => 'Pentadbiran pemberitahuan pusat',
 	'right-centralnotice-admin' => 'Mengurus pemberitahuan pusat',
 	'action-centralnotice-admin' => 'mengurus pemberitahuan pusat',
 	'centralnotice-desc' => 'Menambah pemberitahuan pusat',
