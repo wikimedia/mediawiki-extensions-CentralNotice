@@ -1203,16 +1203,16 @@ N'eo ket bet ouzhpennet.",
 	'centralnotice-preview-template' => 'Rakwelet ar patrom',
 	'centralnotice-change-lang' => 'Cheñch yezh an droidigezh',
 	'centralnotice-weights' => 'Pouezioù',
-	'centralnotice-notice-is-locked' => "Prenet eo an ali.
-N'eo ket bet dilammet.",
+	'centralnotice-notice-is-locked' => "Prennet eo an ali.
+N'eo ket bet diverket.",
 	'centralnotice-overlap' => "Goleiñ a ra ar c'hemenn ur c'hemenn all, evit darn pe da vat.
-N'eo ket bet ouhzpennet",
+N'eo ket bet ouzhpennet",
 	'centralnotice-invalid-date-range' => "Frapad deiziadoù direizh.
 N'eo ket bet hizivaet",
 	'centralnotice-null-string' => "Ne c'haller ket ouzhpennañ un neudennad c'houllo.
 N'eo ket bet ouzhpennet",
-	'centralnotice-confirm-delete' => "Ha sur oc'h ho peus c'hoant dilemmel an elfenn-mañ ?
-Ne vo ket tu adtapout anezhi.",
+	'centralnotice-confirm-delete' => "Ha sur oc'h da gaout c'hoant da ziverkañ an elfenn-mañ ?
+Ne vo ket tu da zizober an traoù.",
 	'centralnotice-no-notices-exist' => "N'eus ali ebet.
 Ouzhpennit unan da heul.",
 	'centralnotice-no-templates-translate' => "N'eus patrom ebet da dreiñ",
@@ -5032,6 +5032,7 @@ $messages['ka'] = array(
 	'centralnotice-banner-anonymous' => 'ანონიმური მომხმარებლები',
 	'centralnotice-banner-logged-in' => 'შემოსული მომხმარებლები',
 	'centralnotice-banner-type' => 'ბანერის ტიპი:',
+	'centralnotice-banner-hidable' => 'სტატიკური/დაფარული',
 	'centralnotice-banner-collapsible' => 'დასაკეცი',
 	'centralnotice-geotargeted' => 'გეო-მიზნობრივი',
 	'centralnotice-countries' => 'ქვეყნები',
@@ -9901,6 +9902,7 @@ Maaari rin itong gamitin upang makapagdagdag o magtanggal ng mga lumang pahayag.
 	'centralnotice-show-notices' => 'Ipagkita ang mga pabatid',
 	'centralnotice-list-templates' => 'Itala ang mga suleras',
 	'centralnotice-multiple' => 'maramihan ($1)',
+	'centralnotice-all-projects' => 'Lahat ng mga proyekto',
 	'centralnotice-translations' => 'Mga salinwika',
 	'centralnotice-translate-to' => 'Isalinwika patungong',
 	'centralnotice-translate' => 'Isalinwika',
@@ -9917,6 +9919,7 @@ Maaari rin itong gamitin upang makapagdagdag o magtanggal ng mga lumang pahayag.
 	'centralnotice-notice-exists' => 'Umiiral na ang pabatid/pahayag.
 Hindi idaragdag',
 	'centralnotice-no-language' => 'Walang napiling wika para sa kampanya. Hindi idinaragdag.',
+	'centralnotice-no-project' => 'Walang napiling proyekto para sa kampanya.  Hindi idaragdag.',
 	'centralnotice-template-exists' => 'Umiiral na ang suleras.
 Hindi idinargdag',
 	'centralnotice-notice-doesnt-exist' => 'Hindi umiiral ang kampanya.',
@@ -9973,9 +9976,9 @@ Magdagdag ng isa sa ibaba',
 	'centralnotice-clone-name' => 'Pangalan:',
 	'centralnotice-preview-all-template-translations' => 'Paunang tanawin ang lahat ng mga makukuhang mga salinwika ng suleras',
 	'centralnotice-insert' => 'Isingit: $1',
-	'centralnotice-hide-button' => 'Kawing na {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'Kawing na {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'Kawing na {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'Itago ang kawing',
+	'centralnotice-collapse-button' => 'Ibagsak ang kawing',
+	'centralnotice-expand-button' => 'Ibuka ang kawing',
 	'centralnotice-close-button' => 'Pindutang pansara',
 	'centralnotice-translate-button' => 'Kawing na pantulong sa pagsasalinwika',
 	'centralnotice-donate-button' => 'Pindutang pang-abuloy',
@@ -9992,6 +9995,8 @@ Magdagdag ng isa sa ibaba',
 	'centralnotice-allocation' => 'Paglalaan',
 	'centralnotice-view-allocation' => 'Tingnan ang kabahagi ng bandera',
 	'centralnotice-allocation-instructions' => 'Piliin ang kapaligirang nais mong tingnan ang kabahagi ng bandera:',
+	'centralnotice-languages' => 'Mga wika',
+	'centralnotice-projects' => 'Mga proyekto',
 	'centralnotice-country' => 'Bansa',
 	'centralnotice-no-allocation' => 'Walang bandera ibinahagi.',
 	'centralnotice-allocation-description' => 'Ang banderang kabahagi para sa $1.$2 sa loob ng $3:',
