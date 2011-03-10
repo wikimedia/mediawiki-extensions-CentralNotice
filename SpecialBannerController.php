@@ -43,7 +43,14 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	 * In order to circumvent the normal squid cache override we add '/cn.js' to the bannerlist URL.
 	 */
 	function getOutput() {
-		global $wgCentralPagePath, $wgContLang;
+		global $wgCentralPagePath, $wgCentralPagePathSecure, $wgContLang, $wgProto;
+		
+		// If we're on the secure server, use the secure path to Special:BannerLoader
+		if ( $wgProto == 'https' ) {
+			$bannerPath = Xml::escapeJsString( $wgCentralPagePathSecure );
+		} else {
+			$bannerPath = Xml::escapeJsString( $wgCentralPagePath );
+		}
 		
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<JAVASCRIPT
@@ -62,7 +69,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				var bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
 JAVASCRIPT;
 		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"" . 
-			Xml::escapeJsString( $wgCentralPagePath ) .
+			$bannerPath .
 			"' + bannerPage + '\"></script>';\n";
 		$js .= <<<JAVASCRIPT
 				$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + 

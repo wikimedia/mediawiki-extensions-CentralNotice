@@ -35,6 +35,10 @@ $wgCentralDBname = '';
 // For example 'http://meta.wikimedia.org/w/index.php'
 $wgCentralPagePath = '';
 
+// Secure server version of above
+// For example 'https://secure.wikimedia.org/wikipedia/meta/w/index.php'
+$wgCentralPagePathSecure = '';
+
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
 // for cached content
