@@ -157,10 +157,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	private function fetchUrl($url) {
-		$ctx = stream_context_create('http' => array(
+		$ctx = stream_context_create(array('http' => array(
 			'method' => "GET",
 			'header' => "User-Agent: CentralNotice/1.0 (+http://www.mediawiki.org/wiki/Extension:CentralNotice)\r\n")
-		);
+		));
 		wfSuppressWarnings();
 		$content = file_get_contents( $url, false, $ctx);
 		wfRestoreWarnings();

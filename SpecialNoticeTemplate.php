@@ -17,13 +17,13 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest, $wgScriptPath;
+		global $wgOut, $wgUser, $wgRequest, $wgExtensionAssetsPath;
 
 		// Begin output
 		$this->setHeaders();
 		
 		// Add style file to the output headers
-		$wgOut->addExtensionStyle( "$wgScriptPath/extensions/CentralNotice/centralnotice.css" );
+		$wgOut->addExtensionStyle( "$wgExtensionAssetsPath/CentralNotice/centralnotice.css" );
 		
 		// Add localized script error messages
 		$scriptVars = array(
@@ -32,7 +32,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
 		
 		// Add script file to the output headers
-		$wgOut->addScriptFile( "$wgScriptPath/extensions/CentralNotice/centralnotice.js" );
+		$wgOut->addScriptFile( "$wgExtensionAssetsPath/CentralNotice/centralnotice.js" );
 
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
@@ -216,8 +216,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show "Add a banner" interface
 	 */
 	function showAdd() {
-		global $wgOut, $wgUser, $wgScriptPath, $wgLang, $wgRequest;
-		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
+		global $wgOut, $wgUser, $wgExtensionAssetsPath, $wgLang, $wgRequest;
+		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 
 		// Build HTML
 		$htmlOut = '';
@@ -291,9 +291,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgScriptPath, $wgLang;
+		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgExtensionAssetsPath, $wgLang;
 		
-		$scriptPath = "$wgScriptPath/extensions/CentralNotice";
+		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 		$sk = $wgUser->getSkin();
 		
 		if ( $this->editable ) {
