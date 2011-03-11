@@ -25,11 +25,10 @@ $wgNoticeProjects = array(
 
 // Enable the notice-hosting infrastructure on this wiki...
 // Leave at false for wikis that only use a sister site for the control.
-// All remaining options apply only to the infrastructure wiki.
 $wgNoticeInfrastructure = true;
 
 // The name of the database which hosts the centralized campaign data
-$wgCentralDBname = '';
+$wgCentralDBname = $wgDBname;
 
 // The script path on the wiki that hosts the CentralNotice infrastructure
 // For example 'http://meta.wikimedia.org/w/index.php'
@@ -40,24 +39,8 @@ $wgCentralPagePath = '';
 // for cached content
 $wgCentralNoticeLoader = true;
 
-// If true, notice only displays if 'sitenotice=yes' is in the query string
-$wgNoticeTestMode = false;
-
-// Array of '$lang.$project' for exceptions to the test mode rule
-$wgNoticeEnabledSites = array();
-
-// Client-side cache timeout for the loader JS stub.
-// If 0, clients will (probably) rechceck it on every hit,
-// which is good for testing.
-$wgNoticeTimeout = 0;
-
-// Server-side cache timeout for the loader JS stub.
-// Should be big if you won't include the counter info in the text,
-// smallish if you will. :)
-$wgNoticeServerTimeout = 0;
-
 // Source for live counter information
-$wgNoticeCounterSource = "http://donate.wikimedia.org/counter.php";
+$wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
 
 // Domain to set global cookies for.
 // Example: '.wikipedia.org'

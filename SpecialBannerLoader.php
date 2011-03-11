@@ -28,14 +28,18 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
-			$content = $this->getJsNotice( $bannerName );
-			if ( preg_match( "/&lt;centralnotice-template-\w+&gt;\z/", $content ) ) {
-				echo "/* Failed cache lookup */";
-			} elseif ( strlen( $content ) == 0 ) {
-				// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
-				echo "/* Empty */";
-			} else {
-				echo $content;
+			try {
+				$content = $this->getJsNotice( $bannerName );
+				if ( preg_match( "/&lt;centralnotice-template-\w+&gt;\z/", $content ) ) {
+					echo "/* Failed cache lookup */";
+				} elseif ( strlen( $content ) == 0 ) {
+					// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
+					echo "/* Empty */";
+				} else {
+					echo $content;
+				}
+			} catch (SpecialBannerLoaderException $e) {
+				echo "/* Banner could not be generated */";
 			}
 		} else {
 			echo "/* No banner specified */";
@@ -106,7 +110,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$field = $match[1];
 		$params = array();
 		if ( $field == 'amount' ) {
-			$params = array( $this->formatNum( $this->getDonationAmount() ) );
+			$params = array( $this->toMillions( $this->getDonationAmount() ) );
 		}
 		$message = "centralnotice-{$this->bannerName}-$field";
 		$source = $this->getMessage( $message, $params );
@@ -116,7 +120,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/**
 	 * Convert number of dollars to millions of dollars
 	 */
-	private function formatNum( $num ) {
+	private function toMillions( $num ) {
 		$num = sprintf( "%.1f", $num / 1e6 );
 		if ( substr( $num, - 2 ) == '.0' ) {
 			$num = substr( $num, 0, - 2 );
@@ -151,6 +155,20 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		return $out;
 	}
+
+	private function fetchUrl($url) {
+		$ctx = stream_context_create('http' => array(
+			'method' => "GET",
+			'header' => "User-Agent: CentralNotice/1.0 (+http://www.mediawiki.org/wiki/Extension:CentralNotice)\r\n")
+		);
+		wfSuppressWarnings();
+		$content = file_get_contents( $url, false, $ctx);
+		wfRestoreWarnings();
+		if( !$content ) {
+			throw new RemoteServerProblemException();
+		}
+		return $content;
+	}
 	
 	/**
 	 * Pull the current amount raised during a fundraiser
@@ -161,16 +179,13 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$count = intval( $wgMemc->get( wfMemcKey( 'centralnotice', 'counter' ) ) );
 		if ( !$count ) {
 			// Pull from dynamic counter
-			wfSuppressWarnings();
-			$count = intval( file_get_contents( $wgNoticeCounterSource ) );
-			wfRestoreWarnings();
+			$count = intval( $this->fetchUrl( $wgNoticeCounterSource ));
 			if ( !$count ) {
 				// Pull long-cached amount
 				$count = intval( $wgMemc->get( 
 					wfMemcKey( 'centralnotice', 'counter', 'fallback' ) ) );
 				if ( !$count ) {
-					// Return hard-coded amount if all else fails
-					return 1100000; // Update as needed during fundraiser
+					throw new DonationAmountUnknownException();
 				}
 			}
 			// Expire in 60 seconds
@@ -180,4 +195,26 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		}
 		return $count;
 	}
+}
+/**
+ * @defgroup Exception Exception
+ */
+
+/**
+ * SpecialBannerLoaderException exception
+ *
+ * This exception is being thrown whenever
+ * some fatal error occurs that may affect
+ * how the banner is presented. 
+ *
+ * @ingroup Exception
+ */
+
+class SpecialBannerLoaderException extends Exception {
+}
+
+class RemoteServerProblemException extends SpecialBannerLoaderException {
+}
+
+class DonationAmountUnknownException extends SpecialBannerLoaderException {
 }
