@@ -57,12 +57,17 @@ class TemplatePager extends ReverseChronologicalPager {
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
+		try { 
+			$preview = $render->getHtmlNotice( $row->tmp_name );
+		} catch ( SpecialBannerLoaderException $e ) {
+			$preview = wfMsg( 'centralnotice-nopreview' );
+		}
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 			$this->getSkin()->makeLinkObj( $this->viewPage,
 				htmlspecialchars( $row->tmp_name ),
 				'template=' . urlencode( $row->tmp_name ) ) .
 			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-				$render->getHtmlNotice( $row->tmp_name ),
+				$preview,
 				array( 'class' => 'cn-bannerpreview')
 			)
 		);

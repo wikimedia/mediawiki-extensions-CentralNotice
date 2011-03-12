@@ -338,14 +338,19 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$render = new SpecialBannerLoader();
 			$render->siteName = 'Wikipedia';
 			$render->language = $wpUserLang;
+			try {
+				$preview = $render->getHtmlNotice( $wgRequest->getText( 'template' ) );
+			} catch ( SpecialBannerLoaderException $e ) {
+				$preview = wfMsg( 'centralnotice-nopreview' );
+			}
 			if ( $render->language != '' ) {
 				$htmlOut .= Xml::fieldset( 
 					wfMsg( 'centralnotice-preview' ) . " ($render->language)",
-					$render->getHtmlNotice( $wgRequest->getText( 'template' ) )
+					$preview
 				);
 			} else {
 				$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-					$render->getHtmlNotice( $wgRequest->getText( 'template' ) )
+					$preview
 				);
 			}
 	
@@ -628,12 +633,17 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$render = new SpecialBannerLoader();
 			$render->siteName = 'Wikipedia';
 			$render->language = $lang;
+			try {
+				$preview = $render->getHtmlNotice( $template );
+			} catch ( SpecialBannerLoaderException $e ) {
+				$preview = wfMsg( 'centralnotice-nopreview' );
+			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$sk->makeLinkObj( $viewPage,
 					$lang,
 					'template=' . urlencode( $template ) . "&wpUserLanguage=$lang" ) .
 				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-					$render->getHtmlNotice( $template ),
+					$preview,
 					array( 'class' => 'cn-bannerpreview')
 				)
 			);

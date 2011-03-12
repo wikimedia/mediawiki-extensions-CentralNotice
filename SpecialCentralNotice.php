@@ -995,16 +995,23 @@ class CentralNotice extends SpecialPage {
 			);
 
 			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
+
+			/* XXX this code is duplicated in the CentralNoticePager::formatRow */
 			$render = new SpecialBannerLoader();
 			$render->siteName = 'Wikipedia';
 			global $wgRequest;
 			$render->language = $wgRequest->getVal( 'wpUserLanguage' );
+			try { 
+				$preview = $render->getHtmlNotice( $row->tmp_name );
+			} catch ( SpecialBannerLoaderException $e ) {
+				$preview = wfMsg( 'centralnotice-nopreview' );
+			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$sk->makeLinkObj( $viewPage,
 					htmlspecialchars( $row->tmp_name ),
 					'template=' . urlencode( $row->tmp_name ) ) .
 				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-					$render->getHtmlNotice( $row->tmp_name ),
+					$preview,
 					array( 'class' => 'cn-bannerpreview')
 				)
 			);
@@ -1807,12 +1814,17 @@ class CentralNoticePager extends TemplatePager {
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
+		try { 
+			$preview = $render->getHtmlNotice( $row->tmp_name );
+		} catch ( SpecialBannerLoaderException $e ) {
+			$preview = wfMsg( 'centralnotice-nopreview' );
+		}
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 			$this->getSkin()->makeLinkObj( $this->viewPage,
 				htmlspecialchars( $row->tmp_name ),
 				'template=' . urlencode( $row->tmp_name ) ) .
 			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-				$render->getHtmlNotice( $row->tmp_name ),
+				$preview,
 				array( 'class' => 'cn-bannerpreview')
 			)
 		);

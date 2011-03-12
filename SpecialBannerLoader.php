@@ -59,6 +59,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * Generate the JS for the requested banner
 	 * @return a string of Javascript containing a call to insertBanner() 
 	 *   with JSON containing the banner content as the parameter
+	 * @throws SpecialBannerLoaderException
 	 */
 	function getJsNotice( $bannerName ) {
 		// Make sure the banner exists
@@ -78,6 +79,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	
 	/**
 	 * Generate the HTML for the requested banner
+	 * @throws SpecialBannerLoaderException
 	 */
 	function getHtmlNotice( $bannerName ) {
 		// Make sure the banner exists
@@ -105,6 +107,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * Extract a message name and send to getMessage() for translation
 	 * @param $match A message array with 2 members: raw match, short name of message
 	 * @return translated messsage string
+	 * @throws SpecialBannerLoaderException
 	 */
 	function getNoticeField( $match ) {
 		$field = $match[1];
@@ -156,22 +159,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		return $out;
 	}
 
-	private function fetchUrl($url) {
-		$ctx = stream_context_create(array('http' => array(
-			'method' => "GET",
-			'header' => "User-Agent: CentralNotice/1.0 (+http://www.mediawiki.org/wiki/Extension:CentralNotice)\r\n")
-		));
-		wfSuppressWarnings();
-		$content = file_get_contents( $url, false, $ctx);
-		wfRestoreWarnings();
-		if( !$content ) {
-			throw new RemoteServerProblemException();
-		}
-		return $content;
-	}
-	
 	/**
 	 * Pull the current amount raised during a fundraiser
+	 * @throws SpecialBannerLoaderException
 	 */
 	private function getDonationAmount() {
 		global $wgNoticeCounterSource, $wgMemc;
@@ -179,7 +169,11 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$count = intval( $wgMemc->get( wfMemcKey( 'centralnotice', 'counter' ) ) );
 		if ( !$count ) {
 			// Pull from dynamic counter
-			$count = intval( $this->fetchUrl( $wgNoticeCounterSource ));
+			$counter_value = Http::get( $wgNoticeCounterSource );
+			if( !$counter_value ) {
+				throw new RemoteServerProblemException();
+			}
+			$count = intval( $counter_value );
 			if ( !$count ) {
 				// Pull long-cached amount
 				$count = intval( $wgMemc->get( 
