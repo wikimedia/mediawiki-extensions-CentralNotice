@@ -886,7 +886,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 	
 	public static function templateExists( $templateName ) {
-		 $dbr = wfGetDB( DB_SLAVE );
+		 global $wgCentralDBname;
+		 $dbr = wfGetDB( DB_SLAVE,  array(), $wgCentralDBname );
+
 		 $eTemplateName = htmlspecialchars( $templateName );
 		 $row = $dbr->selectRow( 'cn_templates', 'tmp_name', 
 			 array( 'tmp_name' => $eTemplateName ) );

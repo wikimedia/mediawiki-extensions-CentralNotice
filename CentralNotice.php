@@ -94,13 +94,13 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 	$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
+	$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
 
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
 
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
-		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
 
 		$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
 		$wgAutoloadClasses['SpecialBannerAllocation'] = $dir . 'SpecialBannerAllocation.php';
