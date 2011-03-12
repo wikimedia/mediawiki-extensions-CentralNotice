@@ -31,7 +31,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	function setHideCookie() {
 		global $wgNoticeCookieDomain, $wgCookieSecure;
 		$exp = time() + 86400 * 14; // Cookie expires after 2 weeks
-		if ( is_callable( 'CentralAuthUser', 'getCookieDomain' ) ) {
+		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
