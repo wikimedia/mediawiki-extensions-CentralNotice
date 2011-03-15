@@ -3422,6 +3422,7 @@ Tamén pode ser usado para engadir ou eliminar avisos vellos.',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-save-banner' => 'Gardar o cartel',
 	'centralnotice-preview' => 'Vista previa',
+	'centralnotice-nopreview' => '(A vista previa non está dispoñíbel)',
 	'centralnotice-add-new' => 'Engadir un novo aviso central',
 	'centralnotice-remove' => 'Eliminar',
 	'centralnotice-translate-heading' => 'Traducións de "$1"',
@@ -7078,6 +7079,7 @@ A peul ëdcò esse dovrà për gionté o gavé notissie veje.',
 	'centralnotice-modify' => 'Spediss',
 	'centralnotice-save-banner' => 'Salvé ël tilèt',
 	'centralnotice-preview' => 'Previsualisassion',
+	'centralnotice-nopreview' => "(Gnun-a preuva ch'as peula smon-se)",
 	'centralnotice-add-new' => 'Gionta na Neuva Sentral neuva',
 	'centralnotice-remove' => 'Gava',
 	'centralnotice-translate-heading' => 'Tradussion për $1',
@@ -7942,6 +7944,7 @@ $messages['ru'] = array(
 	'centralnotice-modify' => 'Отправить',
 	'centralnotice-save-banner' => 'Сохранить баннер',
 	'centralnotice-preview' => 'Предпросмотр',
+	'centralnotice-nopreview' => '(Предпросмотр недоступен)',
 	'centralnotice-add-new' => 'Добавить новое централизованное уведомление',
 	'centralnotice-remove' => 'Удалить',
 	'centralnotice-translate-heading' => 'Перевод для $1',
@@ -10861,6 +10864,7 @@ $messages['yue'] = array(
  * @author PhiLiP
  * @author Wmr89502270
  * @author Xiaomingyan
+ * @author 阿pp
  */
 $messages['zh-hans'] = array(
 	'centralnotice' => '中央通告管理',
@@ -10878,6 +10882,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-modify' => '提交',
 	'centralnotice-save-banner' => '保存横幅',
 	'centralnotice-preview' => '预览',
+	'centralnotice-nopreview' => '（无预览可用）',
 	'centralnotice-add-new' => '添加一个新的中央通告',
 	'centralnotice-remove' => '移除',
 	'centralnotice-translate-heading' => '$1的翻译',
