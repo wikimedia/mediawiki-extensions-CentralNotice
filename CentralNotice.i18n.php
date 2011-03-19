@@ -1790,6 +1790,7 @@ Gallwch ychwanegu un isod.',
 /** Danish (Dansk)
  * @author Byrial
  * @author Masz
+ * @author Peter Alberti
  * @author Sarrus
  */
 $messages['da'] = array(
@@ -1858,6 +1859,14 @@ Tilføj nogle!',
 	'centralnotice-no-templates-assigned' => 'Ingen bannere tildelt kampagne. 
 Tilføj nogle!',
 	'centralnotice-available-templates' => 'Tilgængelige bannere',
+	'centralnotice-preview-template' => 'Forhåndsvis banner',
+	'centralnotice-weights' => 'Vægte',
+	'centralnotice-clone-name' => 'Navn:',
+	'centralnotice-banner-anonymous' => 'Anonyme brugere',
+	'centralnotice-banner-type' => 'Bannertype:',
+	'centralnotice-countries' => 'Lande',
+	'centralnotice-languages' => 'Sprog',
+	'centralnotice-percentage' => 'Procentdel',
 );
 
 /** German (Deutsch)
@@ -2268,6 +2277,7 @@ $messages['el'] = array(
 	'centralnotice-modify' => 'Καταχώρηση',
 	'centralnotice-save-banner' => 'Αποθήκευση banner',
 	'centralnotice-preview' => 'Προεπισκόπηση',
+	'centralnotice-nopreview' => '(Μη διαθέσιμη προεπισκόπηση)',
 	'centralnotice-add-new' => 'Προσθήκη νέας κεντρικής ανακοίνωσης',
 	'centralnotice-remove' => 'Αφαίρεση',
 	'centralnotice-translate-heading' => 'Μετάφραση για το $1',
@@ -6359,6 +6369,20 @@ $messages['myv'] = array(
 	'centralnotice-country' => 'Мастор',
 );
 
+/** Nahuatl (Nāhuatl)
+ * @author Teòtlalili
+ */
+$messages['nah'] = array(
+	'centralnotice-translate-to' => 'Motlâtòlkuepas ìka',
+	'centralnotice-translate' => 'Motlâtòlkuepas',
+	'centralnotice-day' => 'Tònalli',
+	'centralnotice-year' => 'Xiwitl',
+	'centralnotice-month' => 'Mètztli',
+	'centralnotice-hours' => 'Ìmantli',
+	'centralnotice-project-lang' => 'Ìtlâtòl tlayekàntekitl',
+	'centralnotice-select' => 'Motlapêpenìs: $1',
+);
+
 /** Low German (Plattdüütsch)
  * @author Slomox
  */
@@ -6456,6 +6480,32 @@ $messages['nds-nl'] = array(
 	'centralnotice-add-template' => 'Mal toevoegen',
 	'centralnotice-translations' => 'Vertalingen',
 	'centralnotice-change-lang' => 'Taal dee-j vertalen willen wiezigen',
+);
+
+/** Nepali (नेपाली)
+ * @author Bhawani Gautam Rhk
+ */
+$messages['ne'] = array(
+	'centralnotice-end-date' => 'समाप्ति तिथि',
+	'centralnotice-preview' => 'पूर्वालोकन',
+	'centralnotice-add' => 'थप्ने',
+	'centralnotice-translations' => 'अनुवाद',
+	'centralnotice-translate-to' => 'अनुवाद गर्ने यसमा',
+	'centralnotice-weight' => 'ओजन',
+	'centralnotice-day' => 'दिन',
+	'centralnotice-year' => 'वर्ष',
+	'centralnotice-month' => 'महिना',
+	'centralnotice-hours' => 'घण्टा',
+	'centralnotice-min' => 'मिनट',
+	'centralnotice-project-lang' => 'परियोजना भाषा',
+	'centralnotice-select' => '$1 चुन्ने',
+	'centralnotice-start-date' => 'सुरुको तिथि',
+	'centralnotice-start-time' => 'सुरुको तिथि (UTC)',
+	'centralnotice-message' => 'सन्देश',
+	'centralnotice-message-not-set' => 'सन्देश व्यवस्थित व्यवस्थित गरिएकोछैन',
+	'centralnotice-clone-name' => 'नाम:',
+	'centralnotice-close-button' => 'बटन बन्द गर्ने',
+	'centralnotice-languages' => 'भाषाहरु',
 );
 
 /** Dutch (Nederlands)
@@ -7276,6 +7326,7 @@ Também pode ser usado para adicionar avisos novos ou remover antigos.',
 	'centralnotice-modify' => 'Submeter',
 	'centralnotice-save-banner' => 'Gravar modelo',
 	'centralnotice-preview' => 'Antevisão',
+	'centralnotice-nopreview' => '(Antevisão indisponível)',
 	'centralnotice-add-new' => 'Adicionar um aviso centralizado',
 	'centralnotice-remove' => 'Remover',
 	'centralnotice-translate-heading' => 'Tradução para $1',
