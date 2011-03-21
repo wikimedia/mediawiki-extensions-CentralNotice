@@ -1285,6 +1285,7 @@ Također se može koristiti i za dodavanje ili uklanjanje starih obavještenja.'
 	'centralnotice-modify' => 'Pošalji',
 	'centralnotice-save-banner' => 'Spremi obavještenje',
 	'centralnotice-preview' => 'Izgled',
+	'centralnotice-nopreview' => '(Pregled nije dostupan)',
 	'centralnotice-add-new' => 'Dodavanje novog središnjeg obavještenja',
 	'centralnotice-remove' => 'Ukloni',
 	'centralnotice-translate-heading' => 'Prijevod za $1',
@@ -2535,6 +2536,7 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
  * @author Crazymadlover
  * @author Danke7
  * @author Dferg
+ * @author Fitoschido
  * @author Imre
  * @author Locos epraix
  * @author McDutchie
@@ -2560,6 +2562,7 @@ También puede usarse para añadir o borrar avisos antiguos.',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-save-banner' => 'Grabar banner',
 	'centralnotice-preview' => 'Previsualizar',
+	'centralnotice-nopreview' => '(Previsualización no disponible)',
 	'centralnotice-add-new' => 'Añadir un nuevo aviso central',
 	'centralnotice-remove' => 'Quitar',
 	'centralnotice-translate-heading' => 'Traducción para $1',
@@ -2882,6 +2885,7 @@ $messages['fa'] = array(
 	'centralnotice-modify' => 'ارسال',
 	'centralnotice-save-banner' => 'پرچم ذخیره',
 	'centralnotice-preview' => 'پیش‌نمایش',
+	'centralnotice-nopreview' => '(پیش‌نمایش در دسترس نیست)',
 	'centralnotice-add-new' => 'افزودن یک اعلان متمرکز جدید',
 	'centralnotice-remove' => 'حذف',
 	'centralnotice-translate-heading' => 'ترجمه از $1',
@@ -10406,6 +10410,7 @@ $messages['uk'] = array(
 	'centralnotice-modify' => 'Відправити',
 	'centralnotice-save-banner' => 'Зберегти банер',
 	'centralnotice-preview' => 'Попередній перегляд',
+	'centralnotice-nopreview' => '(Попередній перегляд недоступний)',
 	'centralnotice-add-new' => 'Додати нове централізоване повідомлення',
 	'centralnotice-remove' => 'Вилучити',
 	'centralnotice-translate-heading' => 'Переклад для $1',
