@@ -1559,9 +1559,24 @@ $messages['ce'] = array(
 	'centralnotice-year' => 'Шо',
 );
 
-/** Sorani (کوردی) */
+/** Sorani (کوردی)
+ * @author Asoxor
+ */
 $messages['ckb'] = array(
 	'centralnotice-modify' => 'ناردن',
+	'centralnotice-english' => 'ئینگلیزی',
+	'centralnotice-day' => 'ڕۆژ',
+	'centralnotice-year' => 'ساڵ',
+	'centralnotice-month' => 'مانگ',
+	'centralnotice-hours' => 'کاتژمێر',
+	'centralnotice-min' => 'خولەک',
+	'centralnotice-project-lang' => 'زمانی پرۆژە',
+	'centralnotice-start-date' => 'ڕێکەوتی دەستپێکردن',
+	'centralnotice-start-time' => 'کاتی دەستپێکردن (UTC)',
+	'centralnotice-end-time' => 'کاتی کۆتایی (UTC)',
+	'centralnotice-languages' => 'زمانەکان',
+	'centralnotice-projects' => 'پرۆژەکان',
+	'centralnotice-country' => 'وڵات',
 );
 
 /** Czech (Česky)
@@ -7887,6 +7902,7 @@ $messages['roa-tara'] = array(
 	'centralnotice-show-notices' => 'Visualizze le cambagne',
 	'centralnotice-list-templates' => 'Liste de le banner',
 	'centralnotice-multiple' => 'multiple ($1)',
+	'centralnotice-all-projects' => 'Tutte le pruggette',
 	'centralnotice-translations' => 'Traduziune',
 	'centralnotice-translate-to' => 'Traduce a',
 	'centralnotice-translate' => 'Traduce',
@@ -7976,6 +7992,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-countries' => 'Paìse',
 	'centralnotice-allocation' => 'Allocazione',
 	'centralnotice-view-allocation' => "Visualizze l'assignazione d'u banner",
+	'centralnotice-languages' => 'Lènghe',
 	'centralnotice-projects' => 'Pruggette',
 	'centralnotice-country' => 'Nazione',
 	'centralnotice-no-allocation' => 'Nisciune banner assignate.',
