@@ -8656,6 +8656,7 @@ Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
 	'centralnotice-modify' => 'Odoslať',
 	'centralnotice-save-banner' => 'Uložiť oznam',
 	'centralnotice-preview' => 'Náhľad',
+	'centralnotice-nopreview' => '(Náhľad nie je k dispozícii)',
 	'centralnotice-add-new' => 'Pridať nový centrálny oznam',
 	'centralnotice-remove' => 'Odstrániť',
 	'centralnotice-translate-heading' => 'Preklad $1',
@@ -10674,6 +10675,78 @@ Zónteghene una qua soto.',
 	'centralnotice-documentwrite-error' => 'document.write() no se pol dopararlo drento un banner.
 Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
 	'centralnotice-preferred' => 'Preferìo',
+);
+
+/** Veps (Vepsan kel')
+ * @author Игорь Бродский
+ */
+$messages['vep'] = array(
+	'centralnotice-end-date' => 'Lopdat',
+	'centralnotice-enabled' => 'Kävutamižes',
+	'centralnotice-modify' => 'Oigeta',
+	'centralnotice-save-banner' => 'Panda banner muštho',
+	'centralnotice-preview' => 'Ezikacund',
+	'centralnotice-nopreview' => '(Ei voi ezikacta)',
+	'centralnotice-remove' => 'Čuta poiš',
+	'centralnotice-translate-heading' => 'Känduz $1:n täht',
+	'centralnotice-manage-templates' => 'Ohjata bannerid',
+	'centralnotice-add' => 'Ližata',
+	'centralnotice-add-notice' => 'Ližata kampanii',
+	'centralnotice-edit-notice' => 'Redaktiruida kompanijad',
+	'centralnotice-add-template' => 'Ližata banner',
+	'centralnotice-show-notices' => 'Ozutada kampanijad',
+	'centralnotice-list-templates' => 'Ozutada banneriden nimikirjutez',
+	'centralnotice-multiple' => 'Äjad ($1)',
+	'centralnotice-all-projects' => 'Kaik projektad',
+	'centralnotice-translations' => 'Kändused',
+	'centralnotice-translate-to' => 'Känduz:',
+	'centralnotice-translate' => 'Käta',
+	'centralnotice-english' => 'Anglijaks',
+	'centralnotice-banner-name' => 'Banneran nimi:',
+	'centralnotice-banner' => 'Banner',
+	'centralnotice-banner-heading' => 'Banneri $1',
+	'centralnotice-templates' => 'Bannerad',
+	'centralnotice-weight' => 'Leveduz',
+	'centralnotice-locked' => 'Luklostadud',
+	'centralnotice-notice' => 'Kampanii',
+	'centralnotice-notice-heading' => 'Kampanii: $1',
+	'centralnotice-notices' => 'Kampanijad',
+	'centralnotice-notice-exists' => 'Mugoi kampanii om ko olmas.
+Ei ližakoi.',
+	'centralnotice-no-language' => "Kel' kampanijan täht ei ole valitud. Ei ližakoi.",
+	'centralnotice-no-project' => 'Projekt kampanijan täht ei ole valitud. Ei ližakoi.',
+	'centralnotice-template-exists' => 'Mugoi šablon om jo olmas.
+Ei ližakoi.',
+	'centralnotice-notice-doesnt-exist' => 'Mugošt kampanijad ei ole.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Mugošt kampanijad ei ole.
+Ei ole midä čuta poiš.',
+	'centralnotice-banner-doesnt-exist' => 'Mugošt bannerad ei ole.',
+	'centralnotice-template-body' => 'Banneran hibj:',
+	'centralnotice-day' => 'Päiv',
+	'centralnotice-year' => "Voz'",
+	'centralnotice-month' => 'Ku',
+	'centralnotice-hours' => 'Čas',
+	'centralnotice-min' => 'Minut',
+	'centralnotice-project-lang' => "Projektan kel'",
+	'centralnotice-select' => 'Valiče: $1',
+	'centralnotice-top-ten-languages' => "10 päkel't",
+	'centralnotice-project-name' => 'Projektannimi',
+	'centralnotice-start-date' => 'Augotišen dat',
+	'centralnotice-start-time' => 'Augotišen dat (UTC)',
+	'centralnotice-end-time' => 'Lopindan aig (UTC)',
+	'centralnotice-assigned-templates' => 'Kävutadud šablonad',
+	'centralnotice-no-templates' => 'Ei voi löuta bannerid.
+Ližakat banner!',
+	'centralnotice-available-templates' => 'Olijad olmas bannerad',
+	'centralnotice-template-already-exists' => 'Nece banner om jo sidodud.
+Ei ližakoi.',
+	'centralnotice-preview-template' => 'Banneran ezikacund',
+	'centralnotice-change-lang' => "Vajehtada kändmižen kel'",
+	'centralnotice-weights' => 'Vedadused',
+	'centralnotice-notice-is-locked' => 'Kampanii om luklostadud.
+Ei čukoi poiš.',
+	'centralnotice-null-string' => "Ei voi ližata pall'ast rived.
+Ei ližakoi.",
 );
 
 /** Vietnamese (Tiếng Việt)
