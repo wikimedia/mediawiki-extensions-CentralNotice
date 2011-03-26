@@ -5841,6 +5841,13 @@ Pridėkite!',
 	'centralnotice-preferred' => 'Pageidaujamas',
 );
 
+/** Latgalian (Latgaļu)
+ * @author Dark Eagle
+ */
+$messages['ltg'] = array(
+	'centralnotice-message' => 'Viestejums',
+);
+
 /** Latvian (Latviešu)
  * @author Papuass
  */
