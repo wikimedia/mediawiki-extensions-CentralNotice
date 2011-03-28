@@ -946,6 +946,7 @@ $messages['bg'] = array(
 	'centralnotice-remove' => 'Премахване',
 	'centralnotice-translate-heading' => 'Превод за $1',
 	'centralnotice-manage' => 'Управление на централизираното съобщение',
+	'centralnotice-manage-templates' => 'Управление на банерите',
 	'centralnotice-add' => 'Добавяне',
 	'centralnotice-add-notice' => 'Добавяне на съобщение',
 	'centralnotice-add-template' => 'Добавяне на шаблон',
@@ -956,7 +957,7 @@ $messages['bg'] = array(
 	'centralnotice-translate-to' => 'Превеждане на',
 	'centralnotice-translate' => 'Превеждане',
 	'centralnotice-english' => 'Английски',
-	'centralnotice-banner-name' => 'Име на шаблона',
+	'centralnotice-banner-name' => 'Име на банера:',
 	'centralnotice-banner' => 'Банер',
 	'centralnotice-banner-heading' => 'Банер: $1',
 	'centralnotice-templates' => 'Шаблони',
@@ -6358,7 +6359,7 @@ $messages['ms'] = array(
  */
 $messages['mt'] = array(
 	'centralnotice-add-template' => 'Żid mudell',
-	'centralnotice-banner-name' => 'Isem tal-mudell',
+	'centralnotice-banner-name' => "Isem tal-''banner'':",
 	'centralnotice-number-uses' => 'Użi',
 	'centralnotice-message' => 'Messaġġ',
 );
@@ -7767,6 +7768,7 @@ El poate fi folosit de asemenea pentru a adăuga sau șterge anunțuri vechi.',
 	'centralnotice-modify' => 'Trimite',
 	'centralnotice-save-banner' => 'Salvează banner',
 	'centralnotice-preview' => 'Previzualizare',
+	'centralnotice-nopreview' => '(Previzualizare indisponibilă)',
 	'centralnotice-add-new' => 'Adaugă un anunț central nou',
 	'centralnotice-remove' => 'Şterge',
 	'centralnotice-translate-heading' => 'Traducere pentru $1',
