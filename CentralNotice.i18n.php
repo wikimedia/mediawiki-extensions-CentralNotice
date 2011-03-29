@@ -787,6 +787,7 @@ $messages['be'] = array(
  * @author Jim-by
  * @author Red Winged Duck
  * @author Wizardist
+ * @author Zedlik
  * @author Александр Сигачёв
  */
 $messages['be-tarask'] = array(
@@ -882,7 +883,7 @@ $messages['be-tarask'] = array(
 Дадайце адну ніжэй.',
 	'centralnotice-no-templates-translate' => 'Няма паведамленьняў для рэдагаваньня перакладаў',
 	'centralnotice-number-uses' => 'Выкарыстоўвае',
-	'centralnotice-settings' => 'Устаноўкі',
+	'centralnotice-settings' => 'Налады',
 	'centralnotice-edit-template' => 'Рэдагаваць паведамленьне',
 	'centralnotice-edit-template-summary' => 'Каб стварыць лякалізуемае паведамленьне, атачыце дэфісны радок у тры фігурныя дужкі, напрыклад, {{{цытата-джымба}}}.',
 	'centralnotice-message' => 'Паведамленьне',
@@ -6978,6 +6979,14 @@ Apondètz-ne una en dejós.',
 	'centralnotice-clone-notice' => "Crear una còpia d'aqueste modèl",
 	'centralnotice-preview-all-template-translations' => "Previsualizar totas las traduccions d'aqueste modèl",
 	'centralnotice-preferred' => 'Preferit',
+);
+
+/** Oriya (ଓଡ଼ିଆ)
+ * @author Psubhashish
+ */
+$messages['or'] = array(
+	'centralnotice-banner-logged-in' => 'ଲଗଇନ କରିଥିବା ଇଉଜରମାନେ',
+	'centralnotice-banner-type' => 'ବ୍ୟାନର ପ୍ରକାର',
 );
 
 /** Ossetic (Иронау)
