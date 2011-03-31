@@ -197,6 +197,8 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-message' => '{{Identical|Message}}',
 	'centralnotice-clone-name' => '{{Identical|Name}}',
 	'centralnotice-insert' => '{{Identical|Insert}}',
+	'centralnotice-hide-button' => 'See also {{msg|Centralnotice-expand-button}}.',
+	'centralnotice-expand-button' => 'See also {{msg|Centralnotice-hide-button}}.',
 	'centralnotice-geotargeted' => 'Used to label a checkbox which activates geotargeting',
 	'centralnotice-languages' => '{{Identical|Language}}',
 	'centralnotice-projects' => '{{Identical|Project}}',
@@ -3892,6 +3894,7 @@ $messages['hi'] = array(
 );
 
 /** Croatian (Hrvatski)
+ * @author Anton008
  * @author Dalibor Bosits
  * @author Ex13
  * @author Herr Mlinka
@@ -4001,7 +4004,7 @@ Dodajte jednu ispod',
 	'centralnotice-preview-all-template-translations' => 'Vidi sve dostupne prijevode predloška',
 	'centralnotice-insert' => 'Umetni: $1',
 	'centralnotice-hide-button' => 'Sakrij poveznicu',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} poveznica',
+	'centralnotice-collapse-button' => 'Poveznica sažimanja',
 	'centralnotice-expand-button' => 'Proširi poveznicu',
 	'centralnotice-close-button' => 'Zatvori gumb',
 	'centralnotice-translate-button' => 'Poveznica za pomoć pri prevođenju',
