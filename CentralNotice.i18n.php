@@ -203,7 +203,10 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-languages' => '{{Identical|Language}}',
 	'centralnotice-projects' => '{{Identical|Project}}',
 	'centralnotice-country' => '{{Identical|Country}}',
-	'centralnotice-allocation-description' => 'A description of the environment whose allocation is being described. $1 is the language code for the site (en). $2 is the project name for the site (wikipedia). $3 is the country code (US).',
+	'centralnotice-allocation-description' => 'A description of the environment the allocation of which is being described.
+* $1 is the language code for the site (e.g "en").
+* $2 is the project name for the site (e.g. "wikipedia").
+* $3 is the country code (e.g. "US").',
 );
 
 /** Afrikaans (Afrikaans)
@@ -631,6 +634,7 @@ $messages['ba'] = array(
 	'centralnotice-modify' => 'Һаҡларға',
 	'centralnotice-save-banner' => 'Баннерҙы һаҡларға',
 	'centralnotice-preview' => 'Алдан байҡау',
+	'centralnotice-nopreview' => '(Ҡарап сығыу мөмкин түгел)',
 	'centralnotice-add-new' => 'Яңы үҙәктән белдереүҙе өҫтәргә',
 	'centralnotice-remove' => 'Юйырға',
 	'centralnotice-translate-heading' => '$1 өсөн тәржемә',
@@ -717,9 +721,9 @@ $messages['ba'] = array(
 	'centralnotice-clone-name' => 'Исем:',
 	'centralnotice-preview-all-template-translations' => 'Баннерҙың мөмкин булған бар тәржемәләрен ҡарарға',
 	'centralnotice-insert' => 'Өҫтәү: $1',
-	'centralnotice-hide-button' => 'һылтанманы {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'һылтанманы {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'һылтанманы {{int:centralnotice-shared-expand}}',
+	'centralnotice-hide-button' => 'Һылтанманы йәшерергә',
+	'centralnotice-collapse-button' => 'Һылтанманы төрөргә',
+	'centralnotice-expand-button' => 'Һылтанманы йәйергә',
 	'centralnotice-close-button' => '«Ябыу» төймәһе',
 	'centralnotice-translate-button' => 'Тәржемә ярҙамы өсөн һылтанма',
 	'centralnotice-donate-button' => 'Ярҙам төймәһе',
@@ -3411,9 +3415,9 @@ Apondéd-nen ce-desot.',
 	'centralnotice-clone-name' => 'Nom :',
 	'centralnotice-preview-all-template-translations' => 'Prèvisualisar totes les traduccions disponibles de la baniére',
 	'centralnotice-insert' => 'Entrebetar : $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} lo lim',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} lo lim',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} lo lim',
+	'centralnotice-hide-button' => 'Cachiér lo lim',
+	'centralnotice-collapse-button' => 'Recllôre lo lim',
+	'centralnotice-expand-button' => 'Dèvelopar lo lim',
 	'centralnotice-close-button' => 'Boton cllôre',
 	'centralnotice-translate-button' => 'Lim d’éde a la traduccion',
 	'centralnotice-donate-button' => 'Boton de donacion',
@@ -5343,52 +5347,61 @@ $messages['ko'] = array(
  */
 $messages['ksh'] = array(
 	'centralnotice' => 'Zentraal Nohreschte verwallde',
-	'noticetemplate' => 'Schabloon för zentraal Nohreschte',
+	'noticetemplate' => 'Zentraal Nohreschte verwallde',
 	'bannerallocation' => 'Zentraal Nohreschte verwallde',
 	'right-centralnotice-admin' => 'Zentraal Nohreschte verwallde',
 	'action-centralnotice-admin' => 'zentraal Nohreschte ze verwallde',
 	'centralnotice-desc' => "Brengk en zentraale ''sitenotice'' en et wiki",
 	'centralnotice-summary' => 'Hee met kanns De de zentraal Nohreschte ändere, die jraad em Wiki opjesaz sen,
 ävver och neue dobei donn, un allde fott schmieße.',
-	'centralnotice-query' => 'Aktowälle zentraale Nohreesch ändere.',
-	'centralnotice-notice-name' => 'Dä Nohreesch ier Name',
+	'centralnotice-query' => 'De Aktowälle Kampannje ändere',
+	'centralnotice-notice-name' => 'Dä Kampannje ier Name',
 	'centralnotice-end-date' => 'Et Dattum fum Engk',
 	'centralnotice-enabled' => 'Aanjeschalldt',
 	'centralnotice-modify' => 'Loß Jonn!',
+	'centralnotice-save-banner' => 'Banner_Schabloone faßhallde',
 	'centralnotice-preview' => 'Vör-Aansich zeije',
-	'centralnotice-add-new' => 'Donn en zentrale Nohreesch dobei',
+	'centralnotice-nopreview' => '(Kein Vör-Aansich ze hann)',
+	'centralnotice-add-new' => 'Donn en Kampannje dobei',
 	'centralnotice-remove' => 'Fottnämme',
 	'centralnotice-translate-heading' => 'Övversäzong för $1',
-	'centralnotice-manage' => 'Zentrale Nohreschte fowallde',
+	'centralnotice-manage' => 'Kampannje fowallde',
+	'centralnotice-manage-templates' => 'Banner_Schabloone verwallde',
 	'centralnotice-add' => 'Dobeidonn',
-	'centralnotice-add-notice' => 'En zentral Nohreesch dobei donn',
-	'centralnotice-edit-notice' => 'En zentrale Nohreesch ändere',
+	'centralnotice-add-notice' => 'En Kampannje dobei donn',
+	'centralnotice-edit-notice' => 'En Kampannje ändere',
 	'centralnotice-add-template' => 'En Schabloon dobei donn',
-	'centralnotice-show-notices' => 'Zentrale Nohreschte zeije',
+	'centralnotice-show-notices' => 'En Kampannje zeije',
 	'centralnotice-list-templates' => 'Schablone opleßte',
 	'centralnotice-multiple' => 'etlijje ($1)',
 	'centralnotice-all-projects' => 'All Projäkte',
+	'centralnotice-language-listing' => '$1 — $2',
 	'centralnotice-translations' => 'Övversäzonge',
 	'centralnotice-translate-to' => 'Övversäze noh',
 	'centralnotice-translate' => 'Övversäze',
 	'centralnotice-english' => 'Englesch',
 	'centralnotice-banner-name' => 'Dä Schablon iere Name',
+	'centralnotice-banner' => 'Banner-Schabloon',
+	'centralnotice-banner-heading' => 'Banner_Schablohn: $1',
 	'centralnotice-templates' => 'Schablone',
 	'centralnotice-weight' => 'Jeweesch',
 	'centralnotice-locked' => 'jespert',
-	'centralnotice-notices' => 'zentrale Nohreschte',
-	'centralnotice-notice-exists' => 'Di zentrale Nohreesch es ald doh.
+	'centralnotice-notice' => 'Kampannje',
+	'centralnotice-notice-heading' => 'Kampannje: $1',
+	'centralnotice-notices' => 'Kampannje',
+	'centralnotice-notice-exists' => 'Di Kampannje es ald doh.
 Nix dobei jedonn.',
-	'centralnotice-no-language' => 'Et es kein Shprooch för di zentrale Nohreesch ußjesöhk.
+	'centralnotice-no-language' => 'Et es kein Shprooch för di Kampannje ußjesöhk.
 Nix dobei jedonn.',
-	'centralnotice-no-project' => 'Et es kein Projäk för di zentrale Nohreesch ußjesöhk.
+	'centralnotice-no-project' => 'Et es kein Projäk för di Kampannje ußjesöhk.
 Nix dobei jedonn.',
 	'centralnotice-template-exists' => 'Di Schablon es ald doh.
 Nit dobei jedonn.',
-	'centralnotice-notice-doesnt-exist' => 'Di zentrale Nohreesch jidd et nit.',
-	'centralnotice-remove-notice-doesnt-exist' => 'Di zentrale Nohreesch es nit doh.
+	'centralnotice-notice-doesnt-exist' => 'Di Kampannje jidd et nit.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Di Kampannje es nit doh.
 Nix wood fott jelohße.',
-	'centralnotice-template-still-bound' => 'Di Schablon deit aan ene zentrale Nohreesch hange.
+	'centralnotice-banner-doesnt-exist' => 'Di Banner_Schablohn jidd_et nit.',
+	'centralnotice-template-still-bound' => 'Di Schablon deit aan en Kampannje hange.
 Di kam_mer nit fott nämme.',
 	'centralnotice-template-body' => 'Dä Tex fun dä Schablon:',
 	'centralnotice-day' => 'Daach',
@@ -5406,7 +5419,7 @@ Di kam_mer nit fott nämme.',
 	'centralnotice-assigned-templates' => 'Zojedeilte Schablone',
 	'centralnotice-no-templates' => 'Mer han kein Schablone.
 Kanns ävver welshe dobei don.',
-	'centralnotice-no-templates-assigned' => 'Et sin kein Schablone för di zentraal Nohreesch zojedeilt.
+	'centralnotice-no-templates-assigned' => 'Et sin kein Schablone för di Kampannje zojedeilt.
 Donn dat ens!',
 	'centralnotice-available-templates' => 'Müjjelesche Schabloone',
 	'centralnotice-template-already-exists' => 'Di Schablon weed ald förr_en Kampannje jebruch.
@@ -5414,9 +5427,9 @@ Nit dobeijedonn.',
 	'centralnotice-preview-template' => 'Vör-Ansich för di Schablon',
 	'centralnotice-change-lang' => 'Shprooch fö et Övversäze ändere',
 	'centralnotice-weights' => 'Jeweeschte',
-	'centralnotice-notice-is-locked' => 'Di zentraal Nohreesch es jesperrt.
+	'centralnotice-notice-is-locked' => 'Di Kampannje es jesperrt.
 Se blief.',
-	'centralnotice-overlap' => 'De Zick vun hee dä, un en ander vun dä zentraale Nohreschte, donn sesch övverlappe. Dat jeiht nit.
+	'centralnotice-overlap' => 'De Zick vun hee dä Kampannje, un en ander  donn sesch övverlappe. Dat jeiht nit.
 Nit dobei jedonn.',
 	'centralnotice-invalid-date-range' => 'Die Zigge jidd_et nit.
 Nix jedonn.',
@@ -5424,8 +5437,8 @@ Nix jedonn.',
 Dat maache mer nit.',
 	'centralnotice-confirm-delete' => "Bes De sescher, dat De dä Enndraach fottschmiiße well?
 Fott eß fott, dä kam_mer '''nit''' widder zeröck holle!",
-	'centralnotice-no-notices-exist' => 'Mer han kein Nohreschte.
-De kanns ävver welshe dobei don.',
+	'centralnotice-no-notices-exist' => 'Mer han kein Kampannje.
+De kanns ävver heh dronger ein dobei donn.',
 	'centralnotice-no-templates-translate' => 'Mer hann kein Schablone, woh mer Översäzunge för beärbeide künnt.',
 	'centralnotice-number-uses' => 'mol jebruch',
 	'centralnotice-settings' => 'Enshtällonge',
@@ -5435,7 +5448,7 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-message-not-set' => 'De Nohreesch es nit jesaz',
 	'centralnotice-clone' => 'Kopi maache',
 	'centralnotice-clone-notice' => 'Maach en Kopi fun dä Schabloon',
-	'centralnotice-clone-name' => 'Name:',
+	'centralnotice-clone-name' => 'Der Name:',
 	'centralnotice-preview-all-template-translations' => 'Vör-Aansich fun all dä Övversäzunge fun dä Schablon',
 	'centralnotice-insert' => 'Enfööje: $1',
 	'centralnotice-hide-button' => 'Lengk vershteiche',
@@ -5444,6 +5457,8 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-close-button' => 'Knopp zom Zohmaache',
 	'centralnotice-translate-button' => 'Hellef met bem Övversäze!',
 	'centralnotice-donate-button' => 'Dä Knopp för et Spände',
+	'centralnotice-expanded-banner' => 'Opjeklapp Banner_Schablohn',
+	'centralnotice-collapsed-banner' => 'Zohjeklapp Banner_Schablohn',
 	'centralnotice-banner-display' => 'Aanzeije för de:',
 	'centralnotice-banner-anonymous' => 'Nameloose Metmaacher',
 	'centralnotice-banner-logged-in' => 'Enjeelog Metmaacher',
@@ -5452,10 +5467,17 @@ De kanns ävver welshe dobei don.',
 	'centralnotice-banner-collapsible' => 'Enklappbaa',
 	'centralnotice-geotargeted' => 'Met Koodinaate op de Ääd',
 	'centralnotice-countries' => 'Länder',
+	'centralnotice-allocation' => 'Verdeilong',
+	'centralnotice-view-allocation' => 'De Banner_Schablohne iehr Zohdeilong beloore',
+	'centralnotice-allocation-instructions' => 'Donn de Ömjävong udder der Zohsammehang ußwähle, woh De de zohjedeilte Banner_Schablohne för belooere wells:',
 	'centralnotice-languages' => 'Shprooche',
 	'centralnotice-projects' => 'Projäkte',
 	'centralnotice-country' => 'Land',
+	'centralnotice-no-allocation' => 'Kein Banner zohjedeilt',
+	'centralnotice-allocation-description' => 'De zohjedeilte Banner_Schablohne för $1.$2 en $3 sin:',
 	'centralnotice-percentage' => 'Prozäntsaz',
+	'centralnotice-documentwrite-error' => 'Mer künne <code lang="en">document.write()</code> nit ennerhallef vun enem  banner bruche.
+Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wills.',
 	'centralnotice-preferred' => 'Förjetrocke!',
 );
 
@@ -6285,6 +6307,7 @@ $messages['mr'] = array(
 );
 
 /** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
  * @author Aurora
  * @author Aviator
  * @author Izzudin
@@ -6306,7 +6329,7 @@ $messages['ms'] = array(
 	'centralnotice-remove' => 'Buang',
 	'centralnotice-translate-heading' => 'Penterjemahan $1',
 	'centralnotice-manage' => 'Urus pemberitahuan pusat',
-	'centralnotice-add' => 'Tambah',
+	'centralnotice-add' => 'Tambahkan',
 	'centralnotice-add-notice' => 'Tambah pemberitahuan',
 	'centralnotice-add-template' => 'Tambah templat',
 	'centralnotice-show-notices' => 'Papar pemberitahuan',
@@ -9314,6 +9337,7 @@ $messages['su'] = array(
 );
 
 /** Swedish (Svenska)
+ * @author Ainali
  * @author Boivie
  * @author Cohan
  * @author Fluff
@@ -9338,6 +9362,7 @@ Den kan också användas för att lägga till eller ta bort gamla meddelanden.',
 	'centralnotice-modify' => 'Verkställ',
 	'centralnotice-save-banner' => 'Spara banner',
 	'centralnotice-preview' => 'Förhandsgranska',
+	'centralnotice-nopreview' => '(Förhandsgranskning inte tillgänglig)',
 	'centralnotice-add-new' => 'Lägg till ett nytt centralmeddelande',
 	'centralnotice-remove' => 'Ta bort',
 	'centralnotice-translate-heading' => 'Översättning för $1',
