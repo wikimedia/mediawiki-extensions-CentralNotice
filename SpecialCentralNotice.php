@@ -1475,13 +1475,13 @@ class CentralNotice extends SpecialPage {
 	 * @return multiple select list
 	 */
 	function languageMultiSelector( $selected = array(), $customisedOnly = true ) {
-		global $wgContLanguageCode, $wgExtensionAssetsPath, $wgLang;
+		global $wgLanguageCode, $wgExtensionAssetsPath, $wgLang;
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 		// Make sure the site language is in the list; a custom language code 
 		// might not have a defined name...
 		$languages = Language::getLanguageNames( $customisedOnly );
-		if( !array_key_exists( $wgContLanguageCode, $languages ) ) {
-			$languages[$wgContLanguageCode] = $wgContLanguageCode;
+		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
+			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
 		ksort( $languages );
 
