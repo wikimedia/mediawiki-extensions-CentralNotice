@@ -480,6 +480,9 @@ $messages['ar'] = array(
 	'centralnotice-clone' => 'استنساخ',
 	'centralnotice-clone-notice' => 'أنشئ نسخة من القالب',
 	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات المتوفرة للقالب',
+	'centralnotice-hide-button' => 'أخفِ الوصلة',
+	'centralnotice-collapse-button' => 'اطوِ الوصلة',
+	'centralnotice-expand-button' => 'وسّع الوصلة',
 	'centralnotice-preferred' => 'مفضل',
 );
 
