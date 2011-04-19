@@ -21,6 +21,7 @@ class CentralNotice extends SpecialPage {
 
 		// Begin output
 		$this->setHeaders();
+		$this->outputHeader();
 		
 		// Add style file to the output headers
 		$wgOut->addExtensionStyle( "$wgExtensionAssetsPath/CentralNotice/centralnotice.css" );
@@ -33,9 +34,6 @@ class CentralNotice extends SpecialPage {
 		
 		// Initialize error variable
 		$this->centralNoticeError = false;
-
-		// Show summary
-		$wgOut->addWikiText( wfMsg( 'centralnotice-summary' ) );
 
 		// Show header
 		$this->printHeader( $sub );
