@@ -9253,7 +9253,7 @@ Dodajte jednu ispod.',
  */
 $messages['stq'] = array(
 	'centralnotice' => 'Adminstrierenge fon do zentroale Mäldengen',
-	'noticetemplate' => 'Zentroale Mäldengs-Foarloage',
+	'noticetemplate' => 'Ferwaltenge fon zentroale Mäldengen',
 	'right-centralnotice-admin' => 'Ferwaltjen fon zentroale Mäldengen',
 	'action-centralnotice-admin' => 'Zentroale Siedennotiz ferfaalen',
 	'centralnotice-desc' => "Föiget ne zentroale ''sitenotice'' bietou",
@@ -9278,7 +9278,7 @@ Ju kon uk tou dät Moakjen fon näie un Läskenge fon oolde Mäldengen ferwoand 
 	'centralnotice-translate-to' => 'Uursätte in',
 	'centralnotice-translate' => 'Uursätte',
 	'centralnotice-english' => 'Ängelsk',
-	'centralnotice-banner-name' => 'Noome fon ju Foarloage',
+	'centralnotice-banner-name' => 'Noome fon ju Foarloage:',
 	'centralnotice-templates' => 'Foarloagen',
 	'centralnotice-weight' => 'Gewicht',
 	'centralnotice-locked' => 'Speerd',
@@ -9287,8 +9287,7 @@ Ju kon uk tou dät Moakjen fon näie un Läskenge fon oolde Mäldengen ferwoand 
 Nit bietouföiged.',
 	'centralnotice-template-exists' => 'Foarloage is al deer.
 Nit bietouföiged.',
-	'centralnotice-notice-doesnt-exist' => 'Mäldenge is nit deer.
-Wächhoaljen nit muugelk.',
+	'centralnotice-notice-doesnt-exist' => 'Mäldenge is nit deer.',
 	'centralnotice-template-still-bound' => 'Foarloage is noch an ne Mäldengen buunen.
 Wächhoaljen nit muugelk.',
 	'centralnotice-template-body' => 'Foarloagentext:',
