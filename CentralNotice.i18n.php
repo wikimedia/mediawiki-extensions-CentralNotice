@@ -4475,6 +4475,7 @@ Modul ini juga dapat digunakan untuk menambahkan atau menghapus pengumuman lama.
 	'centralnotice-modify' => 'Kirim',
 	'centralnotice-save-banner' => 'Panji simpan',
 	'centralnotice-preview' => 'Pratayang',
+	'centralnotice-nopreview' => '(Pratayang tak tersedia)',
 	'centralnotice-add-new' => 'Buat pengumuman sentral baru',
 	'centralnotice-remove' => 'Hapus',
 	'centralnotice-translate-heading' => 'Terjemahan untuk $1',
