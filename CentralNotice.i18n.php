@@ -411,7 +411,7 @@ $messages['ar'] = array(
 	'centralnotice-notice-name' => 'اسم الإخطار',
 	'centralnotice-end-date' => 'تاريخ الانتهاء',
 	'centralnotice-enabled' => 'مُفعّل',
-	'centralnotice-modify' => 'سلّم',
+	'centralnotice-modify' => 'أرسل',
 	'centralnotice-preview' => 'عاين',
 	'centralnotice-add-new' => 'أضف إخطار جديد مركزي',
 	'centralnotice-remove' => 'أزل',
@@ -479,10 +479,16 @@ $messages['ar'] = array(
 	'centralnotice-message-not-set' => 'الرسالة غير مضبوطة',
 	'centralnotice-clone' => 'استنساخ',
 	'centralnotice-clone-notice' => 'أنشئ نسخة من القالب',
+	'centralnotice-clone-name' => 'الاسم:',
 	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات المتوفرة للقالب',
 	'centralnotice-hide-button' => 'أخفِ الوصلة',
 	'centralnotice-collapse-button' => 'اطوِ الوصلة',
 	'centralnotice-expand-button' => 'وسّع الوصلة',
+	'centralnotice-close-button' => 'زر الإغلاق',
+	'centralnotice-donate-button' => 'زر التبرع',
+	'centralnotice-countries' => 'الدول',
+	'centralnotice-languages' => 'اللغات',
+	'centralnotice-country' => 'الدولة',
 	'centralnotice-preferred' => 'مفضل',
 );
 
@@ -612,10 +618,36 @@ $messages['ast'] = array(
 );
 
 /** Azerbaijani (Azərbaycanca)
+ * @author Cekli829
  * @author PPerviz
  */
 $messages['az'] = array(
+	'centralnotice-modify' => 'Yolla',
+	'centralnotice-preview' => 'Sınaq göstərişi',
+	'centralnotice-add' => 'Əlavə et',
 	'centralnotice-all-projects' => 'Bütün layihələr',
+	'centralnotice-english' => 'İngiliscə',
+	'centralnotice-banner-name' => 'Banner adı:',
+	'centralnotice-banner' => 'Banner',
+	'centralnotice-banner-heading' => 'Banner: $1',
+	'centralnotice-templates' => 'Bannerlər',
+	'centralnotice-weight' => 'Hündürlük',
+	'centralnotice-day' => 'Gün',
+	'centralnotice-year' => 'İl',
+	'centralnotice-month' => 'Ay',
+	'centralnotice-hours' => 'Saat',
+	'centralnotice-min' => 'Dəqiqə',
+	'centralnotice-project-lang' => 'Layihə dili',
+	'centralnotice-select' => 'Seçin: $1',
+	'centralnotice-top-ten-languages' => 'Dillərin Top-10-u',
+	'centralnotice-project-name' => 'Layihə səhifəsi',
+	'centralnotice-start-date' => 'Başlanğıc tarixi',
+	'centralnotice-start-time' => 'Başlanğıc tarixi (UTC)',
+	'centralnotice-end-time' => 'Son tarix (UTC)',
+	'centralnotice-weights' => 'Hündürlük',
+	'centralnotice-number-uses' => 'İstifadəçilər',
+	'centralnotice-clone' => 'Bağla',
+	'centralnotice-clone-name' => 'Ad:',
 );
 
 /** Bashkir (Башҡортса)
@@ -1894,7 +1926,9 @@ Tilføj nogle!',
 	'centralnotice-banner-type' => 'Bannertype:',
 	'centralnotice-countries' => 'Lande',
 	'centralnotice-languages' => 'Sprog',
+	'centralnotice-country' => 'Land',
 	'centralnotice-percentage' => 'Procentdel',
+	'centralnotice-preferred' => 'Foretrukket',
 );
 
 /** German (Deutsch)
@@ -7365,8 +7399,11 @@ $messages['ps'] = array(
 	'centralnotice-translations' => 'ژباړې',
 	'centralnotice-translate' => 'ژباړل',
 	'centralnotice-english' => 'انګرېزي',
-	'centralnotice-banner-name' => 'د کينډۍ نوم',
-	'centralnotice-templates' => 'کينډۍ',
+	'centralnotice-banner-name' => 'د ليكتوغ نوم:',
+	'centralnotice-banner' => 'ليكتوغ',
+	'centralnotice-banner-heading' => 'ليكتوغ: $1',
+	'centralnotice-templates' => 'ليكتوغونه',
+	'centralnotice-weight' => 'تول',
 	'centralnotice-day' => 'ورځ',
 	'centralnotice-year' => 'کال',
 	'centralnotice-month' => 'مياشت',
@@ -7374,6 +7411,7 @@ $messages['ps'] = array(
 	'centralnotice-min' => 'دقيقه',
 	'centralnotice-project-lang' => 'د ژبې پروژه',
 	'centralnotice-select' => 'ټاکل: $1',
+	'centralnotice-top-ten-languages' => 'د سر 10 ژبې',
 	'centralnotice-project-name' => 'د پروژې نوم',
 	'centralnotice-start-date' => 'د پيل نېټه',
 	'centralnotice-start-time' => 'د پيل وخت (UTC)',
@@ -7387,6 +7425,8 @@ $messages['ps'] = array(
 	'centralnotice-banner-anonymous' => 'ورکنومي کارنان',
 	'centralnotice-banner-logged-in' => 'ننوتي کارنان',
 	'centralnotice-countries' => 'هيوادونه',
+	'centralnotice-languages' => 'ژبې',
+	'centralnotice-projects' => 'پروژې',
 	'centralnotice-country' => 'هېواد',
 	'centralnotice-percentage' => 'سلنه',
 );
