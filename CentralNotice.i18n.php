@@ -143,6 +143,7 @@ Add one below.',
 );
 
 /** Message documentation (Message documentation)
+ * @author Amire80
  * @author Bennylin
  * @author Darth Kule
  * @author EugeneZelenko
@@ -172,7 +173,7 @@ $messages['qqq'] = array(
 	'centralnotice-remove' => '{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. $1 is a name of a template.',
 	'centralnotice-add' => '{{Identical|Add}}',
-	'centralnotice-multiple' => '$1 is a number. More precisely, the number of languages a notice is available in. It is always greater than 3.',
+	'centralnotice-multiple' => '$1 is the number of languages in which the notice is available. It is always greater than 3. This message in the column "languages" in the table.',
 	'centralnotice-language-listing' => 'A language listing for the language multi-select box. First parameter is the language code. Second parameter is the name of the language.',
 	'centralnotice-translations' => '{{Identical|Translation}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
@@ -622,10 +623,12 @@ $messages['ast'] = array(
  * @author PPerviz
  */
 $messages['az'] = array(
+	'centralnotice-end-date' => 'Son tarix',
 	'centralnotice-modify' => 'Yolla',
 	'centralnotice-preview' => 'Sınaq göstərişi',
 	'centralnotice-add' => 'Əlavə et',
 	'centralnotice-all-projects' => 'Bütün layihələr',
+	'centralnotice-translate' => 'Tərcümə et',
 	'centralnotice-english' => 'İngiliscə',
 	'centralnotice-banner-name' => 'Banner adı:',
 	'centralnotice-banner' => 'Banner',
@@ -648,7 +651,10 @@ $messages['az'] = array(
 	'centralnotice-number-uses' => 'İstifadəçilər',
 	'centralnotice-clone' => 'Bağla',
 	'centralnotice-clone-name' => 'Ad:',
+	'centralnotice-hide-button' => 'Gizli keçid',
+	'centralnotice-countries' => 'Ölkələr',
 	'centralnotice-languages' => 'Dillər',
+	'centralnotice-projects' => 'Layihələr',
 	'centralnotice-country' => 'Ölkə',
 );
 
@@ -3798,8 +3804,8 @@ $messages['he'] = array(
 	'right-centralnotice-admin' => 'ניהול הודעת מרכזיות',
 	'action-centralnotice-admin' => 'לנהל הודעות מרכזיות',
 	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
-	'centralnotice-summary' => 'מודול זה מאפשר את עריכת ההודעות המרכזיות המותקנות כעת.
-ניתן גם להשתמש בו כדי להוסיף או להסיר הודעות ישנות.',
+	'centralnotice-summary' => 'מודול זה מאפשר את עריכת ההודעות המרכזיות המוגדרות כעת.
+ניתן להשתמש בו גם כדי להוסיף ולהסיר הודעות.',
 	'centralnotice-query' => 'שינוי ההודעות הקיימות',
 	'centralnotice-notice-name' => 'שם ההודעה',
 	'centralnotice-end-date' => 'תאריך סיום',
@@ -3819,7 +3825,7 @@ $messages['he'] = array(
 	'centralnotice-add-template' => 'הוספת תבנית',
 	'centralnotice-show-notices' => 'הצגת הודעות',
 	'centralnotice-list-templates' => 'רשימת תבניות',
-	'centralnotice-multiple' => 'מרובים ($1)',
+	'centralnotice-multiple' => 'מרובות ($1)',
 	'centralnotice-all-projects' => 'כל המיזמים',
 	'centralnotice-translations' => 'תרגומים',
 	'centralnotice-translate-to' => 'תרגום ל',
@@ -3830,7 +3836,7 @@ $messages['he'] = array(
 	'centralnotice-banner-heading' => 'באנר: $1',
 	'centralnotice-templates' => 'תבניות',
 	'centralnotice-weight' => 'משקל',
-	'centralnotice-locked' => 'נעול',
+	'centralnotice-locked' => 'נעולה',
 	'centralnotice-notice' => 'מסע פרסום',
 	'centralnotice-notice-heading' => 'מסע פרסום: $1',
 	'centralnotice-notices' => 'הודעות',
@@ -3912,14 +3918,14 @@ $messages['he'] = array(
 	'centralnotice-countries' => 'מדינות',
 	'centralnotice-allocation' => 'הקצאה',
 	'centralnotice-view-allocation' => 'צפייה בהקצאת הבאנר',
-	'centralnotice-allocation-instructions' => 'נא לבחור את הסביבה עבורה ברצונך לצפות בהקצאת הבאנר:',
+	'centralnotice-allocation-instructions' => 'נא לבחור את הסביבה שברצונך לצפות בהקצאת הבאנר עבורה:',
 	'centralnotice-languages' => 'שפות',
 	'centralnotice-projects' => 'מיזמים',
 	'centralnotice-country' => 'ארץ',
 	'centralnotice-no-allocation' => 'לא הוקצו באנרים',
 	'centralnotice-allocation-description' => 'הקצאת באנר עבור $1.$2 תחת $3:',
 	'centralnotice-percentage' => 'אחוזים',
-	'centralnotice-documentwrite-error' => 'לא ניתן להשתמש ב־document.write() בתוך באנר.
+	'centralnotice-documentwrite-error' => 'לא ניתן להשתמש ב־document.write()‎ בתוך באנר.
 ניתן לעיין ב־http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.',
 	'centralnotice-preferred' => 'מועדפת',
 );
