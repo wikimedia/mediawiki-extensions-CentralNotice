@@ -6422,12 +6422,14 @@ $messages['ms'] = array(
 	'centralnotice-no-notices-exist' => 'Tiada pemberitahuan. Anda boleh menambahnya di bawah.',
 	'centralnotice-no-templates-translate' => 'Tiada templat untuk diterjemah',
 	'centralnotice-number-uses' => 'Penggunaan',
+	'centralnotice-settings' => 'Tetapan',
 	'centralnotice-edit-template' => 'Sunting templat',
 	'centralnotice-message' => 'Pesanan',
 	'centralnotice-message-not-set' => 'Pesanan tidak ditetapkan',
 	'centralnotice-clone' => 'Salin',
 	'centralnotice-clone-notice' => 'Buat salinan templat ini',
 	'centralnotice-preview-all-template-translations' => 'Pratonton semua terjemahan yang ada bagi templat ini',
+	'centralnotice-languages' => 'Bahasa',
 	'centralnotice-preferred' => 'Dipilih',
 );
 
@@ -6448,6 +6450,8 @@ $messages['myv'] = array(
 	'centralnotice-add' => 'Поладомс',
 	'centralnotice-add-template' => 'Поладомс лопа парцун',
 	'centralnotice-translations' => 'Ютавтомат',
+	'centralnotice-translate-to' => 'Ютавтомс $1 келентень',
+	'centralnotice-translate' => 'Ютавтомс',
 	'centralnotice-banner-name' => 'Баннеранть лемезэ:',
 	'centralnotice-templates' => 'Лопа парцунт',
 	'centralnotice-weight' => 'Сталмо',
@@ -6613,6 +6617,7 @@ $messages['ne'] = array(
 );
 
 /** Dutch (Nederlands)
+ * @author Romaine
  * @author Siebrand
  * @author Tvdm
  */
@@ -6670,7 +6675,7 @@ Dit wordt niet toegevoegd.',
 	'centralnotice-notice-doesnt-exist' => 'De campagne bestaat niet.',
 	'centralnotice-remove-notice-doesnt-exist' => 'De campagne bestaat niet.
 Er is niets te verwijderen',
-	'centralnotice-banner-doesnt-exist' => 'DE banner bestaat niet.',
+	'centralnotice-banner-doesnt-exist' => 'De banner bestaat niet.',
 	'centralnotice-template-still-bound' => 'Het sjabloon is nog gekoppeld aan een sitenotice.
 Het wordt niet verwijderd.',
 	'centralnotice-template-body' => 'Sjablooninhoud:',
@@ -7874,7 +7879,7 @@ $messages['ro'] = array(
 El poate fi folosit de asemenea pentru a adăuga sau șterge anunțuri vechi.',
 	'centralnotice-query' => 'Modifică anunțurile curente',
 	'centralnotice-notice-name' => 'Numele anunțului',
-	'centralnotice-end-date' => 'Dată de încheiere',
+	'centralnotice-end-date' => 'Data de încheiere',
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Trimite',
 	'centralnotice-save-banner' => 'Salvează banner',
