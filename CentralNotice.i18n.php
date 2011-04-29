@@ -621,13 +621,21 @@ $messages['ast'] = array(
 /** Azerbaijani (Azərbaycanca)
  * @author Cekli829
  * @author PPerviz
+ * @author Vago
+ * @author Vugar 1981
  */
 $messages['az'] = array(
+	'centralnotice' => 'Mərkəzi xəbərdarlıq idarəçisi',
+	'noticetemplate' => 'Mərkəzi xəbərdarlıq idarəçisi',
+	'bannerallocation' => 'Mərkəzi xəbərdarlıq idarəçisi',
 	'centralnotice-end-date' => 'Son tarix',
+	'centralnotice-enabled' => 'Effektiv',
 	'centralnotice-modify' => 'Yolla',
 	'centralnotice-preview' => 'Sınaq göstərişi',
+	'centralnotice-remove' => 'Çıxar',
 	'centralnotice-add' => 'Əlavə et',
 	'centralnotice-all-projects' => 'Bütün layihələr',
+	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translate' => 'Tərcümə et',
 	'centralnotice-english' => 'İngiliscə',
 	'centralnotice-banner-name' => 'Banner adı:',
@@ -649,6 +657,7 @@ $messages['az'] = array(
 	'centralnotice-end-time' => 'Son tarix (UTC)',
 	'centralnotice-weights' => 'Hündürlük',
 	'centralnotice-number-uses' => 'İstifadəçilər',
+	'centralnotice-message' => 'Məlumat',
 	'centralnotice-clone' => 'Bağla',
 	'centralnotice-clone-name' => 'Ad:',
 	'centralnotice-hide-button' => 'Gizli keçid',
@@ -1023,6 +1032,7 @@ $messages['bg'] = array(
 	'centralnotice-hours' => 'Час',
 	'centralnotice-min' => 'Минута',
 	'centralnotice-project-lang' => 'Език на проекта',
+	'centralnotice-select' => 'Избиране: $1',
 	'centralnotice-top-ten-languages' => 'Топ 10 езика',
 	'centralnotice-project-name' => 'Име на проекта',
 	'centralnotice-start-date' => 'Начална дата',
@@ -3378,6 +3388,7 @@ Pôt asse-ben étre utilisâ por apondre des avis ou ben nen enlevar los ples vi
 	'centralnotice-modify' => 'Sometre',
 	'centralnotice-save-banner' => 'Encartar la baniére',
 	'centralnotice-preview' => 'Prèvisualisacion',
+	'centralnotice-nopreview' => '(Prèvisualisacion pas disponibla)',
 	'centralnotice-add-new' => 'Apondre una propaganda novèla',
 	'centralnotice-remove' => 'Enlevar',
 	'centralnotice-translate-heading' => 'Traduccion de « $1 »',
@@ -3390,6 +3401,7 @@ Pôt asse-ben étre utilisâ por apondre des avis ou ben nen enlevar los ples vi
 	'centralnotice-show-notices' => 'Fâre vêre les propagandes',
 	'centralnotice-list-templates' => 'Listar les baniéres',
 	'centralnotice-multiple' => 'un mouél ($1)',
+	'centralnotice-all-projects' => 'Tôs los projèts',
 	'centralnotice-translations' => 'Traduccions',
 	'centralnotice-translate-to' => 'Traduire en',
 	'centralnotice-translate' => 'Traduire',
@@ -3406,6 +3418,7 @@ Pôt asse-ben étre utilisâ por apondre des avis ou ben nen enlevar los ples vi
 	'centralnotice-notice-exists' => 'La propaganda ègziste ja.
 El at pas étâ apondua.',
 	'centralnotice-no-language' => 'Niona lengoua at étâ chouèsia por la propaganda. El at pas étâ apondua.',
+	'centralnotice-no-project' => 'Nion projèt at étâ chouèsi por la propaganda. Il at pas étâ apondu.',
 	'centralnotice-template-exists' => 'La baniére ègziste ja.
 El at pas étâ apondua.',
 	'centralnotice-notice-doesnt-exist' => 'La propaganda ègziste pas.',
@@ -3481,6 +3494,8 @@ Apondéd-nen ce-desot.',
 	'centralnotice-allocation' => 'Alocacion',
 	'centralnotice-view-allocation' => 'Vêre l’alocacion de baniére',
 	'centralnotice-allocation-instructions' => 'Chouèsésséd l’enveronance por laquinta vos souhètâd fâre vêre l’alocacion de baniére :',
+	'centralnotice-languages' => 'Lengoues',
+	'centralnotice-projects' => 'Projèts',
 	'centralnotice-country' => 'Payis',
 	'centralnotice-no-allocation' => 'Gins de baniére balyê.',
 	'centralnotice-allocation-description' => 'Alocacion de baniére por $1.$2 en $3 :',
@@ -10411,6 +10426,7 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-modify' => 'Җибәрү',
 	'centralnotice-save-banner' => 'Өлгене саклау',
 	'centralnotice-preview' => 'Алдан карау',
+	'centralnotice-nopreview' => '(Алдан карау мөмкин түгел)',
 	'centralnotice-add-new' => 'Яңа хәбәр өстәү',
 	'centralnotice-remove' => 'Бетерү',
 	'centralnotice-translate-heading' => '$1 өчен тәрҗемә',
