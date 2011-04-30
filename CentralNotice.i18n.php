@@ -1067,6 +1067,7 @@ $messages['bh'] = array(
 
 /** Bengali (বাংলা)
  * @author Bellayet
+ * @author Wikitanvir
  */
 $messages['bn'] = array(
 	'centralnotice' => 'কেন্দ্রীয় নোটিশ প্রশাসক',
@@ -1158,12 +1159,21 @@ $messages['bn'] = array(
 	'centralnotice-clone-name' => 'নাম:',
 	'centralnotice-preview-all-template-translations' => 'টেম্পলেটের বিদ্যমান সকল অনুবাদের প্রাকদর্শন দেখাও',
 	'centralnotice-insert' => 'যোগ: $1',
+	'centralnotice-hide-button' => 'সংযোগ লুকাও',
+	'centralnotice-collapse-button' => 'ভাঁজকৃত সংযোগ',
+	'centralnotice-expand-button' => 'সংযোগ বর্ধিতকরণ',
 	'centralnotice-close-button' => 'বন্ধ বোতাম',
+	'centralnotice-translate-button' => 'সংযোগ অনুবাদে সাহায্য করুন',
 	'centralnotice-donate-button' => 'দান বোতাম',
 	'centralnotice-expanded-banner' => 'সম্প্রসারিত ব্যানার',
 	'centralnotice-collapsed-banner' => 'ভাঁজ করা ব্যানার',
+	'centralnotice-banner-display' => 'যেখানে প্রদর্শিত হবে:',
 	'centralnotice-banner-anonymous' => 'বেনামী ব্যবহারকারী',
+	'centralnotice-banner-logged-in' => 'প্রবেশকৃত ব্যবহারকারীসমূহ',
+	'centralnotice-banner-type' => 'ব্যানারের ধরন:',
+	'centralnotice-banner-hidable' => 'স্ট্যাটিক/লুকানোযোগ্য',
 	'centralnotice-banner-collapsible' => 'ভাঁজযোগ্য',
+	'centralnotice-geotargeted' => 'স্থানাংকলক্ষ্য',
 	'centralnotice-countries' => 'দেশ',
 	'centralnotice-languages' => 'ভাষা',
 	'centralnotice-projects' => 'প্রকল্প',
@@ -9581,6 +9591,7 @@ $messages['sw'] = array(
 
 /** Tamil (தமிழ்)
  * @author TRYPPN
+ * @author செல்வா
  */
 $messages['ta'] = array(
 	'centralnotice-end-date' => 'முடிவுத்தேதி',
@@ -9600,13 +9611,13 @@ $messages['ta'] = array(
 	'centralnotice-year' => 'ஆண்டு',
 	'centralnotice-month' => 'மாதம்',
 	'centralnotice-hours' => 'மணி',
-	'centralnotice-min' => 'நிமிடம்',
+	'centralnotice-min' => 'நிமிடம் (மணித்துளி)',
 	'centralnotice-project-lang' => 'திட்டத்தின் மொழி',
 	'centralnotice-select' => 'தேர்ந்தெடுக்கவும்:$1',
-	'centralnotice-top-ten-languages' => 'உயர்நிலையில் உள்ள 10 மொழிகள்',
+	'centralnotice-top-ten-languages' => 'முன்வரிசையில் உள்ள 10 மொழிகள்',
 	'centralnotice-project-name' => 'திட்டத்தின் பெயர்',
-	'centralnotice-start-date' => 'ஆரம்பத்தேதி',
-	'centralnotice-start-time' => 'ஆரம்ப நேரம் (UTC)',
+	'centralnotice-start-date' => 'தொடக்க நாள்',
+	'centralnotice-start-time' => 'தொடக்க நேரம் (UTC)',
 	'centralnotice-end-time' => 'முடிவு நேரம் (UTC)',
 	'centralnotice-change-lang' => 'மொழிபெயர்ப்புக்கான மொழியை மாற்றவும்',
 	'centralnotice-weights' => 'எடைகள்',
@@ -9632,15 +9643,19 @@ $messages['te'] = array(
 	'noticetemplate' => 'కేంద్రీయ గమనిక నిర్వహణ',
 	'right-centralnotice-admin' => 'కేంద్రీయ గమనికలని నిర్వహించగలగడం',
 	'centralnotice-desc' => 'కేంద్రీయ సైటు గమనికని చేరుస్తుంది',
+	'centralnotice-summary' => 'మీ ప్రస్తుత కేంద్రీయ గమనికలను మార్చుకునేందుకు ఈ మాడ్యూలు వీలు కలిగిస్తుంది.
+కొత్త గమనికలను చేర్చేందుకు, పాత గమనికలను తీసేసేందుకూ కూడా దీన్ని వాడవచ్చు',
 	'centralnotice-notice-name' => 'గమనిక పేరు',
 	'centralnotice-end-date' => 'ముగింపు తేదీ',
 	'centralnotice-enabled' => 'చేతనమైంది',
 	'centralnotice-modify' => 'దాఖలుచేయి',
 	'centralnotice-preview' => 'మునుజూపు',
+	'centralnotice-nopreview' => '(మునుజూపు అందుబాటులో లేదు)',
 	'centralnotice-add-new' => 'కొత్త కేంద్రీయ గమనికని చేర్చు',
 	'centralnotice-remove' => 'తొలగించు',
 	'centralnotice-translate-heading' => '$1కి అనువాదం',
 	'centralnotice-manage' => 'ప్రచారోద్యమాల నిర్వహణ',
+	'centralnotice-manage-templates' => 'బ్యానర్లను నిర్వహించు',
 	'centralnotice-add' => 'చేర్చు',
 	'centralnotice-add-notice' => 'ఒక ప్రచారోద్యమాన్ని చేర్చండి',
 	'centralnotice-edit-notice' => 'ప్రచారోద్యమాన్ని మార్చండి',
@@ -9650,9 +9665,12 @@ $messages['te'] = array(
 	'centralnotice-multiple' => 'బహుళం ($1)',
 	'centralnotice-all-projects' => 'అన్ని ప్రాజెక్టులు',
 	'centralnotice-translations' => 'అనువాదాలు',
+	'centralnotice-translate-to' => 'ఈ భాషలోకి అనువదించు',
 	'centralnotice-translate' => 'అనువదించండి',
 	'centralnotice-english' => 'ఆంగ్లం',
-	'centralnotice-banner-name' => 'మూస పేరు',
+	'centralnotice-banner-name' => 'బ్యానరు పేరు:',
+	'centralnotice-banner' => 'బ్యానరు',
+	'centralnotice-banner-heading' => 'బ్యానరు: $1',
 	'centralnotice-templates' => 'మూసలు',
 	'centralnotice-weight' => 'భారం',
 	'centralnotice-locked' => 'తాళం వేసారు',
@@ -9662,11 +9680,15 @@ $messages['te'] = array(
 	'centralnotice-notice-exists' => 'గమనిక ఇప్పటికే ఉంది.
 చేర్చట్లేదు',
 	'centralnotice-no-language' => 'ప్రచారోద్యమానికి ఏ భాషనీ ఎంచుకోలేదు. కనుక చేర్చట్లేదు.',
+	'centralnotice-no-project' => 'ప్రచారం కోసం ప్రాజెక్టు దేన్నీ ఎంచుకోలేదు. చేర్చడం లేదు.',
 	'centralnotice-template-exists' => 'మూస ఇప్పటికే ఉంది.
 చేర్చట్లేదు',
 	'centralnotice-notice-doesnt-exist' => 'ప్రచారోద్యమం లేనే లేదు.',
 	'centralnotice-remove-notice-doesnt-exist' => 'ప్రచారోద్యమం లేనే లేదు.
 తొలగించాల్సింది ఏమీలేదు.',
+	'centralnotice-banner-doesnt-exist' => 'బ్యానరు ఉనికిలో లేదు.',
+	'centralnotice-template-still-bound' => 'ఈ బ్యానరు ఇంకా ప్రచారంలో భాగంగా ఉంది.
+తీసెయ్యడం లేదు.',
 	'centralnotice-template-body' => 'మూస వివరణ:',
 	'centralnotice-day' => 'రోజు',
 	'centralnotice-year' => 'సంవత్సరం',
@@ -9680,48 +9702,74 @@ $messages['te'] = array(
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
 	'centralnotice-end-time' => 'ముగింపు సమయం (UTC)',
+	'centralnotice-assigned-templates' => 'నిర్దేశించబడిన బ్యానర్లు',
 	'centralnotice-no-templates' => 'మూసలు ఏమీ లేవు.
 కొన్నింటిని చేర్చండి!',
+	'centralnotice-no-templates-assigned' => 'ప్రచారానికి బ్యానర్లేవీ నిర్దేశించబడి లేవు.
+కొన్నిటిని చేర్చండి!',
 	'centralnotice-available-templates' => 'అందుబాటులో ఉన్న మూసలు',
+	'centralnotice-template-already-exists' => 'ఈ బ్యానరు ఈసరికే ఓ ప్రచారానికి అనుసంధించబడి ఉంది.
+చేర్చడం లేదు.',
 	'centralnotice-preview-template' => 'మూస మునుజూపు',
 	'centralnotice-change-lang' => 'అనువాదపు భాషని మార్చండి',
 	'centralnotice-weights' => 'భారాలు',
 	'centralnotice-notice-is-locked' => 'ప్రచారోద్యమానికి తాళంవేసారు.
 తొలగించడం లేదు.',
+	'centralnotice-overlap' => 'ఈ ప్రచారం వ్యవధి మరో ప్రచారపు సమయంతో ఓవరుల్యాపై ఉంది.
+చేర్చడం లేదు.',
 	'centralnotice-invalid-date-range' => 'చెల్లని తేదీ అవధి.
 తాజాకరించుటలేదు.',
+	'centralnotice-null-string' => 'నల్ స్స్ట్రింగును చేర్చలేం.
+చేర్చడం లేదు.',
 	'centralnotice-confirm-delete' => 'ఈ అంశాన్ని మీరు నిజంగానే తొలగించాలనుకుంటున్నారా?
 ఈ చర్యని వెనక్కితీసుకోలేరు.',
 	'centralnotice-no-notices-exist' => 'గమనికలు ఏమీ లేవు.
 క్రింద చేర్చండి.',
+	'centralnotice-no-templates-translate' => 'అనువాదాలను సవరించాల్సిన బ్యానర్లేమీ లేవు.',
 	'centralnotice-number-uses' => 'వాడుకరులు',
 	'centralnotice-settings' => 'అమరికలు',
 	'centralnotice-edit-template' => 'మూసని మార్చు',
 	'centralnotice-edit-template-summary' => 'అనువదించదగ్గ సందేశాన్ని సృష్టించడానికి, హైఫన్లతో కూడిన పదబంధాన్ని మూడు మీసాల బ్రాకెట్ల మధ్యలో ఉంచండి, ఉ.దా. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'సందేశం',
+	'centralnotice-message-not-set' => 'సందేశం సెట్ చెయ్యలేదు',
+	'centralnotice-clone' => 'అనుసృజించు (క్లోన్)',
+	'centralnotice-clone-notice' => 'బ్యానరు యొక్క కాపీని సృష్టించు',
 	'centralnotice-clone-name' => 'పేరు:',
+	'centralnotice-preview-all-template-translations' => 'బ్యానరుకు ఉన్న అనువాదాలన్నిటినీ మునుజూడు',
+	'centralnotice-insert' => 'చేర్చు: $1',
 	'centralnotice-hide-button' => 'దాచు లంకె',
 	'centralnotice-collapse-button' => 'కుదించు లంకె',
 	'centralnotice-expand-button' => 'విస్తరించు లంకె',
 	'centralnotice-close-button' => 'మూసివేయి బొత్తం',
 	'centralnotice-translate-button' => 'అనువాదానికి తోడ్పడండి లంకె',
 	'centralnotice-donate-button' => 'విరాళమివ్వండి బొత్తం',
+	'centralnotice-expanded-banner' => 'విస్తరించబడిన బ్యానరు',
+	'centralnotice-collapsed-banner' => 'మూసేసిన బ్యానరు',
 	'centralnotice-banner-display' => 'ఎవరికి చూపించాలి:',
 	'centralnotice-banner-anonymous' => 'అజ్ఞాత వాడుకరులు',
 	'centralnotice-banner-logged-in' => 'ప్రవేశించిన వాడుకరులు',
+	'centralnotice-banner-type' => 'బ్యానరు రకం:',
 	'centralnotice-banner-hidable' => 'స్థిరం/దాచదగ్గది',
+	'centralnotice-banner-collapsible' => 'మూసివేయదగిన',
 	'centralnotice-countries' => 'దేశాలు',
 	'centralnotice-allocation' => 'కేటాయింపు',
+	'centralnotice-view-allocation' => 'బ్యానరు కేటాయింపును చూపించు',
+	'centralnotice-allocation-instructions' => 'ఏ ఎన్విరాన్ మెంటు కోసం బ్యానరు కేటాయింపులు చూడాలనుకుంటున్నారో ఎంచుకోండి:',
 	'centralnotice-languages' => 'భాషలు',
 	'centralnotice-projects' => 'ప్రాజెక్టులు',
 	'centralnotice-country' => 'దేశం',
+	'centralnotice-no-allocation' => 'బ్యానర్లేమీ కేటాయించలేదు.',
+	'centralnotice-allocation-description' => '$3 లో $1.$2 కోసం బ్యానరు కేటాయింపు:',
 	'centralnotice-percentage' => 'శాతం',
+	'centralnotice-documentwrite-error' => 'బ్యానరు లోపల document.write() వాడజాలరు.
+మరింత సమాచారం కోసం http://meta.wikimedia.org/wiki/Help:CentralNotice చూడండి.',
 );
 
 /** Tetum (Tetun)
  * @author MF-Warburg
  */
 $messages['tet'] = array(
+	'centralnotice-remove' => 'Hasai',
 	'centralnotice-add' => 'Tau tan',
 	'centralnotice-translations' => 'Tradusaun sira',
 	'centralnotice-translate' => 'Tradús',
@@ -9733,6 +9781,8 @@ $messages['tet'] = array(
 	'centralnotice-project-lang' => 'Lian projetu nian',
 	'centralnotice-project-name' => 'Naran projetu nian',
 	'centralnotice-number-uses' => 'Uza',
+	'centralnotice-clone-name' => 'Naran:',
+	'centralnotice-languages' => 'Lian sira',
 );
 
 /** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
