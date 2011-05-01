@@ -6336,6 +6336,7 @@ $messages['mn'] = array(
 );
 
 /** Marathi (मराठी)
+ * @author Htt
  * @author Mahitgar
  * @author V.narsikar
  */
@@ -6343,7 +6344,7 @@ $messages['mr'] = array(
 	'right-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
 	'action-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
-	'centralnotice-end-date' => 'अंतिम तारीख',
+	'centralnotice-end-date' => 'अंतिम दिनांक',
 	'centralnotice-add-new' => 'नव्या मोहीमेची सुरूवात करा',
 	'centralnotice-translate-heading' => '$1 चे भाषांतर',
 	'centralnotice-manage' => 'मोहीम हाताळा',
@@ -6356,7 +6357,7 @@ $messages['mr'] = array(
 	'centralnotice-hours' => 'तास',
 	'centralnotice-project-lang' => 'प्रकल्प भाषा',
 	'centralnotice-project-name' => 'प्रकल्पाचे नाव',
-	'centralnotice-start-date' => 'सुरू केल्याचा दिनांक',
+	'centralnotice-start-date' => 'सुरूवात दिनांक',
 	'centralnotice-start-time' => 'सुरू केल्याची वेळ (युटीसी)',
 	'centralnotice-no-templates' => 'मथळे सापडले नाहीत.काहींची भर घाला',
 	'centralnotice-available-templates' => 'उपलब्ध मथळे',
