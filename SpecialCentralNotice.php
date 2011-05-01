@@ -371,7 +371,7 @@ class CentralNotice extends SpecialPage {
 					if ( $allProjects ) {
 						$projectList = wfMsg ( 'centralnotice-all-projects' );
 					} else {
-						$projectList = wfMsg ( 'centralnotice-multiple', $project_count );
+						$projectList = wfMsg ( 'centralnotice-multiple-projects', $project_count );
 					}
 				} elseif ( $project_count == 1 ) {
 					$projectList = htmlspecialchars( $projects[0] );
@@ -383,7 +383,7 @@ class CentralNotice extends SpecialPage {
 				$language_count = count( $project_langs );
 				$languageList = '';
 				if ( $language_count > 3 ) {
-					$languageList = wfMsg ( 'centralnotice-multiple', $language_count );
+					$languageList = wfMsg ( 'centralnotice-multiple-languages', $language_count );
 				} elseif ( $language_count > 0 ) {
 					$languageList = $wgLang->commaList( $project_langs );
 				}
