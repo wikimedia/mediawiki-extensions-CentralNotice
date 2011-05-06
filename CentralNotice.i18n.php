@@ -11447,6 +11447,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-modify' => '提交',
 	'centralnotice-save-banner' => '儲存橫幅',
 	'centralnotice-preview' => '預覽',
+	'centralnotice-nopreview' => '（無預覽可用）',
 	'centralnotice-add-new' => '新增一個新的中央通告',
 	'centralnotice-remove' => '移除',
 	'centralnotice-translate-heading' => '$1的翻譯',
