@@ -614,9 +614,30 @@ $messages['arz'] = array(
 
 /** Asturian (Asturianu)
  * @author Esbardu
+ * @author Xuacu
  */
 $messages['ast'] = array(
 	'centralnotice-desc' => 'Añade una anuncia centralizada del sitiu (sitenotice)',
+	'centralnotice-notice' => 'Campaña',
+	'centralnotice-notice-heading' => 'Campaña: $1',
+	'centralnotice-notices' => 'Campañes',
+	'centralnotice-notice-exists' => "La campaña yá esiste.
+Nun s'amiesta.",
+	'centralnotice-day' => 'Día',
+	'centralnotice-year' => 'Añu',
+	'centralnotice-month' => 'Mes',
+	'centralnotice-hours' => 'Hora',
+	'centralnotice-min' => 'Minutu',
+	'centralnotice-project-lang' => 'Llingua del proyeutu',
+	'centralnotice-select' => 'Seleicionar: $1',
+	'centralnotice-top-ten-languages' => 'Les 10 primeres llingües',
+	'centralnotice-project-name' => 'Nome del proyeutu',
+	'centralnotice-start-date' => "Data d'aniciu",
+	'centralnotice-start-time' => "Hora d'aniciu (UTC)",
+	'centralnotice-end-time' => 'Hora final (UTC)',
+	'centralnotice-languages' => 'Llingües',
+	'centralnotice-projects' => 'Proyeutos',
+	'centralnotice-country' => 'País',
 );
 
 /** Azerbaijani (Azərbaycanca)
@@ -5906,6 +5927,7 @@ Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.'
 );
 
 /** Lithuanian (Lietuvių)
+ * @author Eitvys200
  * @author Garas
  * @author Matasg
  */
@@ -5919,6 +5941,7 @@ $messages['lt'] = array(
 	'centralnotice-modify' => 'Pateikti',
 	'centralnotice-save-banner' => 'Įrašyti reklaminę juostą',
 	'centralnotice-preview' => 'Peržiūra',
+	'centralnotice-nopreview' => '(Peržiūra negalima)',
 	'centralnotice-add-new' => 'Pridėti naują kampaniją',
 	'centralnotice-remove' => 'Pašalinti',
 	'centralnotice-translate-heading' => '$1 vertimas',
@@ -5935,12 +5958,19 @@ $messages['lt'] = array(
 	'centralnotice-translate-to' => 'Išversti į',
 	'centralnotice-translate' => 'Išversti',
 	'centralnotice-english' => 'Anglų',
+	'centralnotice-banner-name' => 'Banerio pavadinimas:',
+	'centralnotice-banner' => 'Baneris',
+	'centralnotice-banner-heading' => 'Baneris: $1',
+	'centralnotice-templates' => 'Baneriai',
+	'centralnotice-locked' => 'Užrakintas',
+	'centralnotice-banner-doesnt-exist' => 'Baneris neegzistuoja.',
 	'centralnotice-day' => 'Diena',
 	'centralnotice-year' => 'Metai',
 	'centralnotice-month' => 'Mėnuo',
 	'centralnotice-hours' => 'Valanda',
 	'centralnotice-min' => 'Minutė',
 	'centralnotice-project-lang' => 'Projekto kalba',
+	'centralnotice-select' => 'Pasirinkite: $1',
 	'centralnotice-project-name' => 'Projekto pavadinimas',
 	'centralnotice-start-date' => 'Pradžios data',
 	'centralnotice-start-time' => 'Pradžios laikas (UTC)',
@@ -7128,6 +7158,7 @@ Apondètz-ne una en dejós.',
 );
 
 /** Oriya (ଓଡ଼ିଆ)
+ * @author Odisha1
  * @author Psubhashish
  */
 $messages['or'] = array(
@@ -7150,8 +7181,11 @@ $messages['or'] = array(
 	'centralnotice-top-ten-languages' => '୧୦ ଟି ନାଆଁକରା ଭାଷା',
 	'centralnotice-project-name' => 'ପ୍ରକଳ୍ପ ନାଆଁ',
 	'centralnotice-start-date' => 'ଆରମ୍ଭ ତାରିଖ',
+	'centralnotice-number-uses' => 'ବ୍ୟବହାର',
+	'centralnotice-clone-name' => 'ନାମ:',
 	'centralnotice-banner-logged-in' => 'ଲଗଇନ କରିଥିବା ଇଉଜରମାନେ',
 	'centralnotice-banner-type' => 'ବ୍ୟାନର ପ୍ରକାର',
+	'centralnotice-languages' => 'ଭାଷା',
 );
 
 /** Ossetic (Иронау)
