@@ -4732,6 +4732,17 @@ $messages['ig'] = array(
 	'centralnotice-clone-name' => 'Áhà',
 );
 
+/** Ingush (ГІалгІай Ğalğaj)
+ * @author Sapral Mikail
+ */
+$messages['inh'] = array(
+	'centralnotice-day' => 'Ди',
+	'centralnotice-year' => 'Шу',
+	'centralnotice-month' => 'Бутт',
+	'centralnotice-hours' => 'Сахьат',
+	'centralnotice-min' => 'Минот',
+);
+
 /** Ido (Ido)
  * @author Malafaya
  */
@@ -7933,9 +7944,9 @@ Kay qatiqpi hukta yapay',
 	'centralnotice-clone-name' => 'Suti:',
 	'centralnotice-preview-all-template-translations' => "Tukuy aypanalla plantillamanta t'ikrasqakunata ñawpaqta qhawallay",
 	'centralnotice-insert' => "Sat'iy: $1",
-	'centralnotice-hide-button' => "{{int:centralnotice-shared-hide}} t'inki",
-	'centralnotice-collapse-button' => "{{int:centralnotice-shared-collapse}} t'inki",
-	'centralnotice-expand-button' => "{{int:centralnotice-shared-expand}} t'inki",
+	'centralnotice-hide-button' => "T'inkita pakay",
+	'centralnotice-collapse-button' => "T'inkita thuñichiy",
+	'centralnotice-expand-button' => "T'inkita mast'ariy",
 	'centralnotice-close-button' => "Wichq'ay butun",
 	'centralnotice-translate-button' => "T'ikraysiy t'inki",
 	'centralnotice-donate-button' => 'Qaray butun',
