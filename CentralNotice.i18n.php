@@ -7852,7 +7852,7 @@ $messages['qu'] = array(
 Paywanmi mawk'a willaykunatapas yapayta icha qichuyta atinki.",
 	'centralnotice-query' => 'Kachkaq willaykunata hukchay',
 	'centralnotice-notice-name' => 'Willaypa sutin',
-	'centralnotice-end-date' => "Tukuna p'unchaw",
+	'centralnotice-end-date' => "Puchukana p'unchaw",
 	'centralnotice-enabled' => 'Saqillasqa',
 	'centralnotice-modify' => 'Kachay',
 	'centralnotice-save-banner' => 'Unanchata waqaychay',
