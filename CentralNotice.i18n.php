@@ -8797,6 +8797,7 @@ $messages['sh'] = array(
 );
 
 /** Sinhala (සිංහල)
+ * @author Singhalawap
  * @author Thameera123
  * @author තඹරු විජේසේකර
  */
@@ -8893,7 +8894,7 @@ $messages['si'] = array(
 පහතින් එකක් එකතු කරන්න.',
 	'centralnotice-no-templates-translate' => 'පරිවර්තන සංස්කරණය කිරීමට බැනර නොපවතී.',
 	'centralnotice-number-uses' => 'භාවිත',
-	'centralnotice-settings' => 'පරිස්ථිතීන්',
+	'centralnotice-settings' => 'සැකසුම්',
 	'centralnotice-edit-template' => 'බැනරය සංස්කරණය කරන්න',
 	'centralnotice-edit-template-summary' => 'Localize කළ හැකි පණිවුඩයක් සෑදීමට, එම වචන සඟල වරහන් තුළ අසුරන්න',
 	'centralnotice-message' => 'පණිවුඩය',
