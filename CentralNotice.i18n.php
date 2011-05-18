@@ -8800,6 +8800,7 @@ $messages['sh'] = array(
  * @author Singhalawap
  * @author Thameera123
  * @author තඹරු විජේසේකර
+ * @author පසිඳු කාවින්ද
  */
 $messages['si'] = array(
 	'centralnotice' => 'ප්‍රධාන දැන්වීම් පාලක',
@@ -8817,6 +8818,7 @@ $messages['si'] = array(
 	'centralnotice-modify' => 'යොමන්න',
 	'centralnotice-save-banner' => 'බැනරය සුරකින්න',
 	'centralnotice-preview' => 'පෙරදසුන',
+	'centralnotice-nopreview' => '(පෙර දසුන ලබාගත නොහැක)',
 	'centralnotice-add-new' => 'නව ව්‍යාපාරයක් එකතු කරන්න',
 	'centralnotice-remove' => 'ඉවත් කරන්න',
 	'centralnotice-translate-heading' => '$1 සඳහා පරිවර්තනය',
@@ -8904,9 +8906,9 @@ $messages['si'] = array(
 	'centralnotice-clone-name' => 'නම:',
 	'centralnotice-preview-all-template-translations' => 'බැනරය සඳහා පවතින සියලු පරිවර්තනවල පෙරදසුන් පෙන්වන්න',
 	'centralnotice-insert' => 'ඇතුළු කරන්න: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} යොමුව',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-hide}} යොමුව',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} යොමුව',
+	'centralnotice-hide-button' => 'සබැඳිය සගවන්න',
+	'centralnotice-collapse-button' => 'අභිපාත සබැඳිය',
+	'centralnotice-expand-button' => 'විකසිත සබැඳිය',
 	'centralnotice-close-button' => 'වැසීමේ බොත්තම',
 	'centralnotice-translate-button' => 'යොමුව පරිවර්තනය කිරීමට උදව් වන්න',
 	'centralnotice-donate-button' => 'පරිත්‍යාග කිරීමේ බොත්තම',
