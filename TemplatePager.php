@@ -30,7 +30,8 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * Sort the banner list by tmp_id
 	 */
 	function getIndexField() {
-		return 'cn_templates.tmp_id';
+		$dbr = wfGetDB( DB_SLAVE );
+		return $dbr->tableName( 'cn_templates' ) . '.tmp_id';
 	}
 
 	/**
