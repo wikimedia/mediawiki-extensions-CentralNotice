@@ -1958,6 +1958,7 @@ $messages['da'] = array(
 	'centralnotice-modify' => 'Send',
 	'centralnotice-save-banner' => 'Gem banner',
 	'centralnotice-preview' => 'Forhåndsvisning',
+	'centralnotice-nopreview' => '(Forhåndsvisning ikke mulig)',
 	'centralnotice-add-new' => 'Tilføj en ny kampagne',
 	'centralnotice-remove' => 'Fjern',
 	'centralnotice-translate-heading' => 'Oversættelse for $1',
