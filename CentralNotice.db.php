@@ -132,37 +132,36 @@ class CentralNoticeDB {
 		$templates = array();
 
 		if ( $campaigns ) {
-			// Pull templates based on join with assignments
-			$res = $dbr->select(
-				array(
-					'cn_notices',
-					'cn_assignments',
-					'cn_templates'
-				),
-				array(
-					'tmp_name',
-					'SUM(tmp_weight) AS total_weight',
-					'tmp_display_anon',
-					'tmp_display_account'
-				),
-				array(
-					'cn_notices.not_id' => $campaigns,
-					'cn_notices.not_id = cn_assignments.not_id',
-					'cn_assignments.tmp_id = cn_templates.tmp_id'
-				),
-				__METHOD__,
-				array(
-					'GROUP BY' => 'tmp_name'
-				)
-			);
-
-			foreach ( $res as $row ) {
-				$templates[] = array(
-					'name' => $row->tmp_name,
-					'weight' => intval( $row->total_weight ),
-					'display_anon' => intval( $row->tmp_display_anon ),
-					'display_account' => intval( $row->tmp_display_account ),
+			foreach ( $campaigns as $campaignId ) {
+				$res = $dbr->select(
+					array(
+						'cn_notices',
+						'cn_assignments',
+						'cn_templates'
+					),
+					array(
+						'tmp_name',
+						'tmp_weight',
+						'tmp_display_anon',
+						'tmp_display_account'
+					),
+					array(
+						'cn_notices.not_id' => $campaignId,
+						'cn_notices.not_id = cn_assignments.not_id',
+						'cn_assignments.tmp_id = cn_templates.tmp_id'
+					),
+					__METHOD__
 				);
+	
+				foreach ( $res as $row ) {
+					$templates[] = array(
+						'name' => $row->tmp_name,
+						'weight' => intval( $row->tmp_weight ),
+						'display_anon' => intval( $row->tmp_display_anon ),
+						'display_account' => intval( $row->tmp_display_account ),
+						'campaign' => CentralNotice::getNoticeName( $campaignId ),
+					);
+				}
 			}
 		}
 		return $templates;
