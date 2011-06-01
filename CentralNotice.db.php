@@ -12,7 +12,7 @@ class CentralNoticeDB {
 	 * Return campaigns in the system within given constraints
 	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
 	 */
-	static function getNotices( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
+	static function getCampaigns( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
 		global $wgCentralDBname;
 	
 		$notices = array();
@@ -121,7 +121,7 @@ class CentralNoticeDB {
 	/*
 	 * Given one or more campaign ids, return all banners bound to them
 	 */
-	static function selectTemplatesAssigned( $campaigns ) {
+	static function selectBannersAssigned( $campaigns ) {
 		global $wgCentralDBname;
 		
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );

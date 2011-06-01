@@ -59,12 +59,12 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 		$templates = array();
 		
 		// See if we have any preferred campaigns for this language and project
-		$notices = CentralNoticeDB::getNotices( $this->project, $this->language, null, 1, 1, $this->location );
+		$notices = CentralNoticeDB::getCampaigns( $this->project, $this->language, null, 1, 1, $this->location );
 		
 		// Quick short circuit to show preferred campaigns
 		if ( $notices ) {
 			// Pull banners
-			$templates = CentralNoticeDB::selectTemplatesAssigned( $notices );
+			$templates = CentralNoticeDB::selectBannersAssigned( $notices );
 		}
 
 		// Didn't find any preferred banners so do an old style lookup

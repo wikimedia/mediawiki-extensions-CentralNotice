@@ -75,7 +75,7 @@ class CentralNotice extends SpecialPage {
 				$lockedNotices = $wgRequest->getArray( 'locked' );
 				if ( $lockedNotices ) {
 					// Build list of campaigns to lock
-					$unlockedNotices = array_diff( $this->getNoticesName(), $lockedNotices );
+					$unlockedNotices = array_diff( $this->getAllCampaignNames(), $lockedNotices );
 
 					// Set locked/unlocked flag accordingly
 					foreach ( $lockedNotices as $notice ) {
@@ -86,7 +86,7 @@ class CentralNotice extends SpecialPage {
 					}
 				// Handle updates if no post content came through (all checkboxes unchecked)
 				} elseif ( $method !== 'addNotice' ) {
-					$allNotices = $this->getNoticesName();
+					$allNotices = $this->getAllCampaignNames();
 					foreach ( $allNotices as $notice ) {
 						$this->updateLock( $notice, '0' );
 					}
@@ -96,7 +96,7 @@ class CentralNotice extends SpecialPage {
 				$enabledNotices = $wgRequest->getArray( 'enabled' );
 				if ( $enabledNotices ) {
 					// Build list of campaigns to disable
-					$disabledNotices = array_diff( $this->getNoticesName(), $enabledNotices );
+					$disabledNotices = array_diff( $this->getAllCampaignNames(), $enabledNotices );
 
 					// Set enabled/disabled flag accordingly
 					foreach ( $enabledNotices as $notice ) {
@@ -107,7 +107,7 @@ class CentralNotice extends SpecialPage {
 					}
 				// Handle updates if no post content came through (all checkboxes unchecked)
 				} elseif ( $method !== 'addNotice' ) {
-					$allNotices = $this->getNoticesName();
+					$allNotices = $this->getAllCampaignNames();
 					foreach ( $allNotices as $notice ) {
 						$this->updateEnabled( $notice, '0' );
 					}
@@ -117,7 +117,7 @@ class CentralNotice extends SpecialPage {
 				$preferredNotices = $wgRequest->getArray( 'preferred' );
 				if ( $preferredNotices ) {
 					// Build list of campaigns to unset 
-					$unsetNotices = array_diff( $this->getNoticesName(), $preferredNotices );
+					$unsetNotices = array_diff( $this->getAllCampaignNames(), $preferredNotices );
 
 					// Set flag accordingly
 					foreach ( $preferredNotices as $notice ) {
@@ -128,7 +128,7 @@ class CentralNotice extends SpecialPage {
 					}
 				// Handle updates if no post content came through (all checkboxes unchecked)
 				} elseif ( $method !== 'addNotice' ) {
-					$allNotices = $this->getNoticesName();
+					$allNotices = $this->getAllCampaignNames();
 					foreach ( $allNotices as $notice ) {
 						$this->updatePreferred( $notice, '0' );
 					}
@@ -198,7 +198,7 @@ class CentralNotice extends SpecialPage {
 	 * Get all the campaigns in the database
 	 * @return an array of campaign names
 	 */
-	function getNoticesName() {
+	function getAllCampaignNames() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_notices', 'not_name', null, __METHOD__ );
 		$notices = array();
@@ -1144,7 +1144,7 @@ class CentralNotice extends SpecialPage {
 		$templates = array();
 		if ( $campaigns ) {
 			// Pull all banners assigned to the campaigns
-			$templates = CentralNoticeDB::selectTemplatesAssigned( $campaigns );
+			$templates = CentralNoticeDB::selectBannersAssigned( $campaigns );
 		}
 		return $templates;
 	}
