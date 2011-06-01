@@ -1295,6 +1295,20 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 	
+	/*
+	 * Lookup the name of a campaign based on the campaign ID
+	 */
+	public static function getNoticeName( $noticeId ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		if ( is_numeric( $noticeId ) ) {
+			$row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_id' => $noticeId ) );
+			if ( $row ) {
+				return $row->not_name;
+			}
+		}
+		return null;
+	}
+	
 	function getNoticeProjects( $noticeName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$eNoticeName = htmlspecialchars( $noticeName );
