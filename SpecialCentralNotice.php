@@ -1069,7 +1069,7 @@ class CentralNotice extends SpecialPage {
 	 * Lookup function for active banners under a given language/project/location. This function is 
 	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
 	 * each project.
-	 * @return A 2D array of running banners with associated weights and settings
+	 * @return a 2D array of running banners with associated weights and settings
 	 */
 	static function selectNoticeTemplates( $project, $language, $location = null ) {
 		global $wgCentralDBname;
@@ -1285,14 +1285,14 @@ class CentralNotice extends SpecialPage {
 	 * Lookup the ID for a campaign based on the campaign name
 	 */
 	public static function getNoticeId( $noticeName ) {
-		 $dbr = wfGetDB( DB_SLAVE );
-		 $eNoticeName = htmlspecialchars( $noticeName );
-		 $row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
-		 if ( $row ) {
-		 	return $row->not_id;
-		 } else {
-		 	return null;
-		 }
+		$dbr = wfGetDB( DB_SLAVE );
+		$eNoticeName = htmlspecialchars( $noticeName );
+		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
+		if ( $row ) {
+			return $row->not_id;
+		} else {
+			return null;
+		}
 	}
 	
 	function getNoticeProjects( $noticeName ) {

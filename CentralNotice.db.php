@@ -11,6 +11,7 @@ class CentralNoticeDB {
 	/*
 	 * Return campaigns in the system within given constraints
 	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
+	 * @return an array of ids
 	 */
 	static function getCampaigns( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
 		global $wgCentralDBname;
@@ -120,6 +121,8 @@ class CentralNoticeDB {
 
 	/*
 	 * Given one or more campaign ids, return all banners bound to them
+	 * @param $campaigns An array of id numbers
+	 * @return a 2D array of banners with associated weights and settings
 	 */
 	static function selectBannersAssigned( $campaigns ) {
 		global $wgCentralDBname;

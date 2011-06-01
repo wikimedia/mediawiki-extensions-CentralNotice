@@ -56,24 +56,24 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 * Generate JSON for the specified site
 	 */
 	function getJsonList() {
-		$templates = array();
+		$banners = array();
 		
 		// See if we have any preferred campaigns for this language and project
-		$notices = CentralNoticeDB::getCampaigns( $this->project, $this->language, null, 1, 1, $this->location );
+		$campaigns = CentralNoticeDB::getCampaigns( $this->project, $this->language, null, 1, 1, $this->location );
 		
 		// Quick short circuit to show preferred campaigns
-		if ( $notices ) {
+		if ( $campaigns ) {
 			// Pull banners
-			$templates = CentralNoticeDB::selectBannersAssigned( $notices );
+			$banners = CentralNoticeDB::selectBannersAssigned( $campaigns );
 		}
 
 		// Didn't find any preferred banners so do an old style lookup
-		if ( !$templates )  {
-			$templates = CentralNotice::selectNoticeTemplates( 
+		if ( !$banners )  {
+			$banners = CentralNotice::selectNoticeTemplates( 
 				$this->project, $this->language, $this->location );
 		}
 		
-		return FormatJson::encode( $templates );
+		return FormatJson::encode( $banners );
 	}
 	
 }
