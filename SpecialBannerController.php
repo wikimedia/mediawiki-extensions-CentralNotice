@@ -43,7 +43,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	 * In order to circumvent the normal squid cache override we add '/cn.js' to the bannerlist URL.
 	 */
 	function getOutput() {
-		global $wgCentralPagePath, $wgContLang;
+		global $wgCentralPagePath, $wgNoticeFundraisingUrl, $wgContLang;
 		
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<JAVASCRIPT
@@ -54,11 +54,13 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			'getVars': {}
 		},
 		'fn': {
-			'loadBanner': function( bannerName ) {
+			'loadBanner': function( bannerName, fundraising, landingPages, campaign ) {
 				// Get the requested banner
 				var bannerPageQuery = $.param( { 
-					'banner': bannerName, 'userlang': wgUserLanguage, 
-					'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country } );
+					'banner': bannerName, 'campaign': campaign, 'userlang': wgUserLanguage, 
+					'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country, 
+					'fundraising': fundraising, 'landingpages': landingPages
+				} );
 				var bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
 JAVASCRIPT;
 		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"" . 
@@ -111,11 +113,15 @@ JAVASCRIPT;
 				// Return if there's nothing left after the grooming
 				if( groomedBannerList.length == 0 ) return false;
 				
+				// Choose a random key
+				var pointer = Math.floor( Math.random() * groomedBannerList.length );
+				
 				// Load a random banner from our groomed list
 				$.centralNotice.fn.loadBanner( 
-					groomedBannerList[ 
-						Math.floor( Math.random() * groomedBannerList.length ) 
-					].name
+					groomedBannerList[pointer].name,
+					groomedBannerList[pointer].fundraising,
+					groomedBannerList[pointer].landing_pages,
+					groomedBannerList[pointer].campaign
 				);
 			},
 			'getQueryStringVariables': function() {
@@ -151,9 +157,29 @@ JAVASCRIPT;
 	}
 
 	function getScriptFunctions() {
+		global $wgNoticeFundraisingUrl;
 		$script = <<<JAVASCRIPT
 function insertBanner(bannerJson) {
-	jQuery('div#centralNotice').prepend( bannerJson.banner );
+	jQuery( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
+	if ( bannerJson.fundraising ) {
+JAVASCRIPT;
+	$script .= "\n\t\tvar url = '" . 
+	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';";
+	$script .= <<<JAVASCRIPT
+		console.debug(bannerJson.landingPages.length);
+		if ( bannerJson.landingPages.length ) {
+			targets = String( bannerJson.landingPages ).split(',');
+			url += "?" + jQuery.param( {
+				'landing_page': targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' )
+			} );
+			url += "&" + jQuery.param( {
+				'utm_medium': 'sitenotice', 'utm_campaign': bannerJson.campaign, 
+				'utm_source': bannerJson.bannerName, 'language': wgUserLanguage, 
+				'country': Geo.country
+			} );
+			jQuery( '#cn_fundraising_link' ).attr( 'href', url );
+		}
+	}
 }
 function toggleNotice() {
 	var notice = document.getElementById('centralNotice');

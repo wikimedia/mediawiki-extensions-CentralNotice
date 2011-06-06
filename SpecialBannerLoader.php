@@ -20,11 +20,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$wgOut->disable();
 		$this->sendHeaders();
 		
-		// Get user language from the query string
+		// Get values from the query string
 		$this->language = $wgRequest->getText( 'userlang', 'en' );
-		
-		// Get site name from the query string
 		$this->siteName = $wgRequest->getText( 'sitename', 'Wikipedia' );
+		$this->campaign = $wgRequest->getText( 'campaign', 'unknown' );
+		$this->fundraising = $wgRequest->getBool( 'fundraising', false );
+		$this->landingPages = $wgRequest->getText( 'landingpages' );
 		
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
@@ -71,7 +72,13 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				array( $this, 'getNoticeField' ),
 				$this->getNoticeTemplate()
 			);
-			$bannerArray = array( 'banner' => $bannerHtml );
+			$bannerArray = array(
+				'bannerName' => $bannerName,
+				'bannerHtml' => $bannerHtml,
+				'campaign' => $this->campaign,
+				'fundraising' => $this->fundraising,
+				'landingPages' => $this->landingPages
+			);
 			$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
 			return $bannerJs;
 		}

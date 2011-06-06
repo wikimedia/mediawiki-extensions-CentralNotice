@@ -39,6 +39,12 @@ $wgCentralPagePath = '';
 // for cached content
 $wgCentralNoticeLoader = true;
 
+// Flag for turning on fundraising specific features
+$wgNoticeEnableFundraising = true;
+
+// Base URL for default fundraiser landing page (without query string)
+$wgNoticeFundraisingUrl = 'http://wikimediafoundation.org/wiki/Special:LandingCheck';
+
 // Source for live counter information
 $wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
 
@@ -122,6 +128,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-notice_languages.sql' );
 			$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon', 
 				$base . '/patches/patch-template_settings.sql' );
+			$wgExtNewFields[] = array( 'cn_templates', 'tmp_fundraising',
+				$base . '/patches/patch-template_fundraising.sql' );
 			$wgExtNewTables[] = array( 'cn_notice_countries', 
 				$base . '/patches/patch-notice_countries.sql' );
 			$wgExtNewTables[] = array( 'cn_notice_projects', 
@@ -137,6 +145,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-notice_languages.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon', 
 				$base . '/patches/patch-template_settings.sql', true ) );
+			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising', 
+				$base . '/patches/patch-template_fundraising.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries', 
 				$base . '/patches/patch-notice_countries.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects', 

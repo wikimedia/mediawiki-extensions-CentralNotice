@@ -143,7 +143,9 @@ class CentralNoticeDB {
 						'tmp_name',
 						'tmp_weight',
 						'tmp_display_anon',
-						'tmp_display_account'
+						'tmp_display_account',
+						'tmp_fundraising',
+						'tmp_landing_pages'
 					),
 					array(
 						'cn_notices.not_id' => $campaignId,
@@ -159,7 +161,9 @@ class CentralNoticeDB {
 						'weight' => intval( $row->tmp_weight ),
 						'display_anon' => intval( $row->tmp_display_anon ),
 						'display_account' => intval( $row->tmp_display_account ),
-						'campaign' => CentralNotice::getNoticeName( $campaignId ),
+						'fundraising' => intval( $row->tmp_fundraising ),
+						'landing_pages' => $row->tmp_landing_pages,
+						'campaign' => CentralNotice::getNoticeName( $campaignId )
 					);
 				}
 			}

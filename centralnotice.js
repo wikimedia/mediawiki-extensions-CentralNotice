@@ -69,5 +69,12 @@ function validateBannerForm( form ) {
 				$("#geoMultiSelector").fadeOut('fast');
 			}
 		});
+		$("#fundraising").click(function () {
+			if ($('#fundraising:checked').val() !== undefined) {
+				$("#fundraisingInterface").fadeIn('fast');
+			} else {
+				$("#fundraisingInterface").fadeOut('fast');
+			}
+		});
 	});
 })(jQuery);
