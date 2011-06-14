@@ -1438,6 +1438,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-banner-hidable' => 'Statek/Masklus',
 	'centralnotice-banner-collapsible' => 'Digreskus',
 	'centralnotice-banner-fundraising' => "Ur giton dastum arc'hant eo hemañ",
+	'centralnotice-banner-fundraising-help' => 'Krouiñ ur valizenn eoriañ e-korf ar giton gant id = "cn_fundraising_link" ha merkit ur bajenn dal pe meur a hini a-is, da skouer, "JimmyAppeal01". Savet e vo href al liamm ent emgefre.',
 	'centralnotice-banner-landing-pages' => 'Pajennoù pal (dispartiet dre skejoù) :',
 	'centralnotice-geotargeted' => "Geolec'hiet",
 	'centralnotice-countries' => 'Broioù',
@@ -7341,6 +7342,7 @@ $messages['or'] = array(
 	'centralnotice-banner-logged-in' => 'ଲଗଇନ କରିଥିବା ଇଉଜରମାନେ',
 	'centralnotice-banner-type' => 'ବ୍ୟାନର ପ୍ରକାର',
 	'centralnotice-languages' => 'ଭାଷା',
+	'centralnotice-projects' => 'ପ୍ରକଳ୍ପ',
 );
 
 /** Ossetic (Иронау)
