@@ -237,7 +237,7 @@ class CentralNotice extends SpecialPage {
 				array( "year",  "centralnotice-year",  $years,  substr( $ts, 0, 4 ) ),
 			);
 	
-			return $this->genSelector( $prefix, $fields );
+			return $this->createSelector( $prefix, $fields );
 		} else {
 			global $wgLang;
 			return $wgLang->date( $timestamp );
@@ -260,14 +260,19 @@ class CentralNotice extends SpecialPage {
 				array( "min",  "centralnotice-min",   $minutes, substr( $ts, 10, 2 ) ),
 			);
 	
-			return $this->genSelector( $prefix, $fields );
+			return $this->createSelector( $prefix, $fields );
 		} else {
 			global $wgLang;
 			return $wgLang->time( $timestamp );
 		}
 	}
 
-	private function genSelector( $prefix, $fields ) {
+	/**
+	 * Build a set of select lists. Used by dateSelector and timeSelector.
+	 * @param $prefix string
+	 * @param $fields array
+	 */	
+	private function createSelector( $prefix, $fields ) {
 		$out = '';
 		foreach ( $fields as $data ) {
 			list( $field, $label, $set, $current ) = $data;
