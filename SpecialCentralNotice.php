@@ -1701,7 +1701,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	public static function dropDownList( $text, $values ) {
-		$dropDown = "* {$text}\n";
+		$dropDown = "*{$text}\n";
 		foreach ( $values as $value ) {
 			$dropDown .= "**{$value}\n";
 		}
