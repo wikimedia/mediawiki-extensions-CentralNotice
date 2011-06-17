@@ -72,6 +72,14 @@ $wgExtensionAliasesFiles['CentralNotice'] = $dir . 'CentralNotice.alias.php';
 $wgAvailableRights[] = 'centralnotice-admin';
 $wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
 
+# Unit tests
+$wgHooks['UnitTestsList'][] = 'efCentralNoticeUnitTests';
+
+function efCentralNoticeUnitTests( &$files ) {
+	$files[] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
+	return true;
+}
+
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
 	global $wgCentralNoticeLoader, $wgSpecialPageGroups;
