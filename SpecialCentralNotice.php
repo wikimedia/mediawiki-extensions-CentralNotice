@@ -169,6 +169,9 @@ class CentralNotice extends SpecialPage {
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 
+	/**
+	 * Output the tabs for the different CentralNotice interfaces (Allocation, Logs, etc.)
+	 */
 	public static function printHeader() {
 		global $wgOut, $wgTitle, $wgUser;
 		$sk = $wgUser->getSkin();
@@ -176,7 +179,8 @@ class CentralNotice extends SpecialPage {
 		$pages = array(
 			'CentralNotice' => wfMsg( 'centralnotice-notices' ),
 			'NoticeTemplate' => wfMsg ( 'centralnotice-templates' ),
-			'BannerAllocation' => wfMsg ( 'centralnotice-allocation' )
+			'BannerAllocation' => wfMsg ( 'centralnotice-allocation' ),
+			'CentralNoticeLogs' => wfMsg ( 'centralnotice-logs' )
 		);
 		$htmlOut = Xml::openElement( 'ul', array( 'id' => 'preftoc' ) );
 		foreach ( $pages as $page => $msg ) {

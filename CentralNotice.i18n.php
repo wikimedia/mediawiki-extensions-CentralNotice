@@ -13,6 +13,7 @@ $messages['en'] = array(
 	'centralnotice' => 'Central notice admin',
 	'noticetemplate' => 'Central notice admin',
 	'bannerallocation' => 'Central notice admin',
+	'centralnoticelogs' => 'Central notice admin',
 	'right-centralnotice-admin' => 'Manage central notices',
 	'action-centralnotice-admin' => 'manage central notices',
 	'centralnotice-desc' => 'Adds a central sitenotice',
@@ -143,6 +144,8 @@ Add one below.',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	'centralnotice-preferred' => 'Preferred',
+	'centralnotice-logs' => 'Logs',
+	'centralnotice-view-logs' => 'View logs',
 );
 
 /** Message documentation (Message documentation)
@@ -163,6 +166,7 @@ $messages['qqq'] = array(
 	'centralnotice' => 'Name of Special:CentralNotice in Special:SpecialPages and title of Special:CentralNotice page',
 	'noticetemplate' => 'Title of Special:NoticeTemplate page, should be identical to centralnotice message. (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-manage-templates.)',
 	'bannerallocation' => 'Title of Special:BannerAllocation page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)',
+	'centralnoticelogs' => 'Title of Special:CentralNoticeLogs page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-logs.)',
 	'right-centralnotice-admin' => '{{doc-right}}',
 	'action-centralnotice-admin' => '{{doc-action}}',
 	'centralnotice-desc' => '{{desc}}',
@@ -212,6 +216,7 @@ Maximum length of the message is 5% of the total width of the table.',
 * $1 is the language code for the site (e.g "en").
 * $2 is the project name for the site (e.g. "wikipedia").
 * $3 is the country code (e.g. "US").',
+	'centralnotice-logs' => 'Label for tab which displays a log of changes',
 );
 
 /** Afrikaans (Afrikaans)
