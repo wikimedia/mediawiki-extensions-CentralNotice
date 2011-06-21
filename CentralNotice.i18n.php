@@ -160,6 +160,7 @@ Add one below.',
  * @author Nike
  * @author Purodha
  * @author Raymond
+ * @author Siebrand
  * @author The Evil IP address
  */
 $messages['qqq'] = array(
@@ -2109,6 +2110,7 @@ $messages['de'] = array(
 	'centralnotice' => 'Verwaltung zentraler Meldungen',
 	'noticetemplate' => 'Verwaltung zentraler Meldungen',
 	'bannerallocation' => 'Verwaltung zentraler Meldungen',
+	'centralnoticelogs' => 'Verwaltung zentraler Meldungen',
 	'right-centralnotice-admin' => 'Zentrale Meldungen verwalten',
 	'action-centralnotice-admin' => 'zentrale Meldungen verwalten',
 	'centralnotice-desc' => 'Ermöglicht es, zentrale Meldungen für das Wiki zu erstellen',
@@ -2240,6 +2242,8 @@ Füge eine hinzu.',
 	'centralnotice-documentwrite-error' => 'document.write() kann nicht innerhalb eines Banners verwendet werden.
 Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.',
 	'centralnotice-preferred' => 'Bevorzugt',
+	'centralnotice-logs' => 'Logbücher',
+	'centralnotice-view-logs' => 'Logbücher ansehen',
 );
 
 /** German (formal address) (‪Deutsch (Sie-Form)‬)
@@ -4556,6 +4560,7 @@ $messages['ia'] = array(
 	'centralnotice' => 'Administration de avisos central',
 	'noticetemplate' => 'Administration de avisos central',
 	'bannerallocation' => 'Administration de avisos central',
+	'centralnoticelogs' => 'Administration de avisos central',
 	'right-centralnotice-admin' => 'Gerer avisos central',
 	'action-centralnotice-admin' => 'gerer avisos central',
 	'centralnotice-desc' => 'Adde un aviso de sito central',
@@ -4687,6 +4692,8 @@ Adde un hic infra.',
 	'centralnotice-documentwrite-error' => 'document.write() non pote esser usate intra un bandiera.
 Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
 	'centralnotice-preferred' => 'Preferite',
+	'centralnotice-logs' => 'Registros',
+	'centralnotice-view-logs' => 'Vider registros',
 );
 
 /** Indonesian (Bahasa Indonesia)
