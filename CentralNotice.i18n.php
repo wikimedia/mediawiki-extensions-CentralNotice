@@ -969,6 +969,7 @@ $messages['be-tarask'] = array(
 	'centralnotice' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
 	'noticetemplate' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
 	'bannerallocation' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
+	'centralnoticelogs' => 'Кіраваньне цэнтралізаванымі паведамленьнямі',
 	'right-centralnotice-admin' => 'Кіраваньне цэнтральнымі паведамленьнямі',
 	'action-centralnotice-admin' => 'кіраваньне цэнтралізаванымі паведамленьнямі',
 	'centralnotice-desc' => 'Дадае цэнтралізаванае паведамленьне сайту',
@@ -1100,6 +1101,8 @@ $messages['be-tarask'] = array(
 	'centralnotice-documentwrite-error' => 'document.write() не магчыма выкарыстоўваць у банэре.
 Падрабязнасьці глядзіце на http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-preferred' => 'Пажадана',
+	'centralnotice-logs' => 'Журналы падзеяў',
+	'centralnotice-view-logs' => 'Паказаць журнал падзеяў',
 );
 
 /** Bulgarian (Български)
@@ -3403,6 +3406,7 @@ $messages['fr'] = array(
 	'centralnotice' => 'Administration des avis centraux',
 	'noticetemplate' => 'Administration des avis centraux',
 	'bannerallocation' => 'Administration des avis centraux',
+	'centralnoticelogs' => 'Administrateur des avis centraux',
 	'right-centralnotice-admin' => 'Gérer les avis centraux',
 	'action-centralnotice-admin' => 'gérer les avis centraux',
 	'centralnotice-desc' => 'Ajoute un avis central du site',
@@ -3534,6 +3538,8 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-documentwrite-error' => 'document.write() ne peut pas être utilisé dans une bannière.
 Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d’informations.',
 	'centralnotice-preferred' => 'Préféré',
+	'centralnotice-logs' => 'Journaux',
+	'centralnotice-view-logs' => 'Voir les journaux',
 );
 
 /** Franco-Provençal (Arpetan)
@@ -3685,6 +3691,7 @@ $messages['gl'] = array(
 	'centralnotice' => 'Administración do aviso central',
 	'noticetemplate' => 'Administración do aviso central',
 	'bannerallocation' => 'Administración do aviso central',
+	'centralnoticelogs' => 'Administración do aviso central',
 	'right-centralnotice-admin' => 'Xestionar os avisos centrais',
 	'action-centralnotice-admin' => 'xestionar os avisos centrais',
 	'centralnotice-desc' => 'Engade un aviso central',
@@ -3816,6 +3823,8 @@ Engada algún embaixo',
 	'centralnotice-documentwrite-error' => 'document.write() non se pode empregar nos carteis.
 Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis información.',
 	'centralnotice-preferred' => 'Preferido',
+	'centralnotice-logs' => 'Rexistros',
+	'centralnotice-view-logs' => 'Ver os rexistros',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
@@ -6274,6 +6283,7 @@ $messages['mk'] = array(
 	'centralnotice' => 'Администратор на централни известувања',
 	'noticetemplate' => 'Администратор на централни известувања',
 	'bannerallocation' => 'Администратор на централни известувања',
+	'centralnoticelogs' => 'Администратор на централни известувања',
 	'right-centralnotice-admin' => 'Раководење со централни известувања',
 	'action-centralnotice-admin' => 'раководење со централни известувања',
 	'centralnotice-desc' => 'Централизирано известување',
@@ -6404,6 +6414,8 @@ $messages['mk'] = array(
 	'centralnotice-percentage' => 'Постоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може да се користи во рамките на плаЗа повеќе информации, погледајте ја страницата http://meta.wikimedia.org/wiki/Help:CentralNotice',
 	'centralnotice-preferred' => 'Претпочитано',
+	'centralnotice-logs' => 'Дневници',
+	'centralnotice-view-logs' => 'Погл. дневници',
 );
 
 /** Malayalam (മലയാളം)
@@ -6414,6 +6426,7 @@ $messages['ml'] = array(
 	'centralnotice' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
 	'noticetemplate' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
 	'bannerallocation' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
+	'centralnoticelogs' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
 	'right-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
 	'action-centralnotice-admin' => 'കേന്ദ്രീകൃത അറിയിപ്പുകൾ കൈകാര്യം ചെയ്യുക',
 	'centralnotice-desc' => 'കേന്ദീകൃത സൈറ്റ്നോട്ടീസ് ചേർക്കുന്നു',
@@ -6544,6 +6557,8 @@ $messages['ml'] = array(
 	'centralnotice-documentwrite-error' => 'എഴുത്തുപട്ടയിൽ document.write() ഉപയോഗിക്കാനാവില്ല.
 കൂടുതൽ വിവരങ്ങൾക്ക് http://meta.wikimedia.org/wiki/Help:CentralNotice കാണുക',
 	'centralnotice-preferred' => 'അഭിലഷണീയമായുള്ളത്',
+	'centralnotice-logs' => 'പ്രവർത്തനരേഖകൾ',
+	'centralnotice-view-logs' => 'പ്രവർത്തനരേഖകൾ കാണുക',
 );
 
 /** Mongolian (Монгол)
@@ -7408,6 +7423,7 @@ $messages['pl'] = array(
 	'centralnotice' => 'Administrowanie wspólnymi komunikatami',
 	'noticetemplate' => 'Zarządzanie wspólnymi komunikatami',
 	'bannerallocation' => 'Zarządzanie wspólnymi komunikatami',
+	'centralnoticelogs' => 'Zarządzanie wspólnymi komunikatami',
 	'right-centralnotice-admin' => 'Zarządzanie wspólnymi komunikatami',
 	'action-centralnotice-admin' => 'zarządzaj centralnymi komunikatami',
 	'centralnotice-desc' => 'Dodaje wspólny komunikat dla serwisów',
@@ -7532,6 +7548,8 @@ Dodaj nowy poniżej.',
 	'centralnotice-documentwrite-error' => 'Nie można korzystać z document.write() w banerze.
 Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:CentralNotice',
 	'centralnotice-preferred' => 'Preferowany',
+	'centralnotice-logs' => 'Rejestr operacji',
+	'centralnotice-view-logs' => 'Rejestr odsłon',
 );
 
 /** Piedmontese (Piemontèis)
@@ -7736,6 +7754,7 @@ $messages['pt'] = array(
 	'centralnotice' => 'Administração de avisos centralizados',
 	'noticetemplate' => 'Administração de avisos centralizados',
 	'bannerallocation' => 'Administração de avisos centralizados',
+	'centralnoticelogs' => 'Administração de avisos centralizados',
 	'right-centralnotice-admin' => 'Gerir avisos centralizados',
 	'action-centralnotice-admin' => 'gerir avisos centralizados',
 	'centralnotice-desc' => 'Adiciona um aviso centralizado',
@@ -7867,6 +7886,8 @@ Adicione um, abaixo.',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-preferred' => 'Preferido',
+	'centralnotice-logs' => 'Registos',
+	'centralnotice-view-logs' => 'Ver registos',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -8439,6 +8460,7 @@ $messages['ru'] = array(
 	'centralnotice' => 'Управление централизованными уведомлениями',
 	'noticetemplate' => 'Управление централизованными уведомлениями',
 	'bannerallocation' => 'Управление централизованными уведомлениями',
+	'centralnoticelogs' => 'Управление централизованными уведомлениями',
 	'right-centralnotice-admin' => 'управление централизованными уведомлениями',
 	'action-centralnotice-admin' => 'управление централизованными уведомлениями',
 	'centralnotice-desc' => 'Добавляет общее сообщение сайта',
@@ -8570,6 +8592,8 @@ $messages['ru'] = array(
 	'centralnotice-documentwrite-error' => 'document.write() нельзя использовать в баннере.
 Подробности: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].',
 	'centralnotice-preferred' => 'Желательно',
+	'centralnotice-logs' => 'Журналы',
+	'centralnotice-view-logs' => 'Просмотр журналов',
 );
 
 /** Rusyn (Русиньскый)
@@ -9204,6 +9228,7 @@ $messages['sl'] = array(
 	'centralnotice' => 'Upravljanje osrednjega obvestila',
 	'noticetemplate' => 'Upravljanje osrednjega obvestila',
 	'bannerallocation' => 'Upravljanje osrednjega obvestila',
+	'centralnoticelogs' => 'Upravljanje osrednjega obvestila',
 	'right-centralnotice-admin' => 'Upravljanje osrednjih sporočil',
 	'action-centralnotice-admin' => 'upravljanje osrednjih sporočil',
 	'centralnotice-desc' => 'Doda osrednje obvestilo strani',
@@ -9335,6 +9360,8 @@ Dodajte kakšno spodaj.',
 	'centralnotice-documentwrite-error' => 'document.write() ni mogoče uporabiti v pasici.
 Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.',
 	'centralnotice-preferred' => 'Prednostno',
+	'centralnotice-logs' => 'Dnevniki',
+	'centralnotice-view-logs' => 'Ogled dnevnikov',
 );
 
 /** Albanian (Shqip)
@@ -11254,6 +11281,7 @@ $messages['vi'] = array(
 	'centralnotice' => 'Quản lý các thông báo chung',
 	'noticetemplate' => 'Quản lý các thông báo chung',
 	'bannerallocation' => 'Quản lý các thông báo chung',
+	'centralnoticelogs' => 'Quản lý các thông báo chung',
 	'right-centralnotice-admin' => 'Quản lý thông báo chung',
 	'action-centralnotice-admin' => 'quản lý thông báo chung',
 	'centralnotice-desc' => 'Thêm thông báo ở đầu các trang tại hơn một wiki',
@@ -11374,6 +11402,8 @@ Hãy thêm vào!',
 	'centralnotice-documentwrite-error' => 'Không có thể sử dụng document.write() trong bảng.
 Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-preferred' => 'Nổi bật hơn',
+	'centralnotice-logs' => 'Nhật trình',
+	'centralnotice-view-logs' => 'Xem nhật trình',
 );
 
 /** Volapük (Volapük)
