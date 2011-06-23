@@ -220,7 +220,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show "Add a banner" interface
 	 */
 	function showAdd() {
-		global $wgOut, $wgUser, $wgExtensionAssetsPath, $wgLang, $wgRequest;
+		global $wgOut, $wgUser, $wgExtensionAssetsPath, $wgLang, $wgRequest, $wgNoticeEnableFundraising;
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 
 		// Build HTML
@@ -266,20 +266,22 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$htmlOut .= Xml::closeElement( 'p' );
 		
 		// Fundraising settings
-		$htmlOut .= Xml::openElement( 'p', null );
-		$htmlOut .= Xml::check( 'fundraising', $fundraising, array( 'id' => 'fundraising' ) );
-		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 'fundraising' );
-		$htmlOut .= Xml::closeElement( 'p' );
-		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'fundraisingInterface', 'style' => 'display: none;' ) );
-		$htmlOut .= Xml::tags( 'p', array(), wfMsg( 'centralnotice-banner-fundraising-help' ) );
-		$htmlOut .= Xml::tags( 'p', array(),
-			Xml::inputLabel( 
-				wfMsg( 'centralnotice-banner-landing-pages' ), 
-				'landingPages', 'landingPages', 40, $landingPages, 
-				array( 'maxlength' => 255 )
-			)
-		);
-		$htmlOut .= Xml::closeElement( 'div' );
+		if ( $wgNoticeEnableFundraising ) {
+			$htmlOut .= Xml::openElement( 'p', null );
+			$htmlOut .= Xml::check( 'fundraising', $fundraising, array( 'id' => 'fundraising' ) );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 'fundraising' );
+			$htmlOut .= Xml::closeElement( 'p' );
+			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'fundraisingInterface', 'style' => 'display: none;' ) );
+			$htmlOut .= Xml::tags( 'p', array(), wfMsg( 'centralnotice-banner-fundraising-help' ) );
+			$htmlOut .= Xml::tags( 'p', array(),
+				Xml::inputLabel( 
+					wfMsg( 'centralnotice-banner-landing-pages' ), 
+					'landingPages', 'landingPages', 40, $landingPages, 
+					array( 'maxlength' => 255 )
+				)
+			);
+			$htmlOut .= Xml::closeElement( 'div' );
+		}
 		
 		// Begin banner body section
 		$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-banner' ) );
@@ -314,7 +316,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgExtensionAssetsPath, $wgLang;
+		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgExtensionAssetsPath, $wgLang, $wgNoticeEnableFundraising;
 		
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 		$sk = $wgUser->getSkin();
@@ -575,25 +577,27 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::closeElement( 'p' );
 			
 			// Fundraising settings
-			$htmlOut .= Xml::openElement( 'p', null );
-			$htmlOut .= Xml::check( 'fundraising', $fundraising, 
-				wfArrayMerge( $disabled, array( 'id' => 'fundraising' ) ) );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 'fundraising' );
-			$htmlOut .= Xml::closeElement( 'p' );
-			if ( $fundraising ) {
-				$htmlOut .= Xml::openElement( 'div', array( 'id'=>'fundraisingInterface' ) );
-			} else {
-				$htmlOut .= Xml::openElement( 'div', array( 'id'=>'fundraisingInterface', 'style'=>'display:none;' ) );
+			if ( $wgNoticeEnableFundraising ) {
+				$htmlOut .= Xml::openElement( 'p', null );
+				$htmlOut .= Xml::check( 'fundraising', $fundraising, 
+					wfArrayMerge( $disabled, array( 'id' => 'fundraising' ) ) );
+				$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 'fundraising' );
+				$htmlOut .= Xml::closeElement( 'p' );
+				if ( $fundraising ) {
+					$htmlOut .= Xml::openElement( 'div', array( 'id'=>'fundraisingInterface' ) );
+				} else {
+					$htmlOut .= Xml::openElement( 'div', array( 'id'=>'fundraisingInterface', 'style'=>'display:none;' ) );
+				}
+				$htmlOut .= Xml::tags( 'p', array(), wfMsg( 'centralnotice-banner-fundraising-help' ) );
+				$htmlOut .= Xml::tags( 'p', array(),
+					Xml::inputLabel( 
+						wfMsg( 'centralnotice-banner-landing-pages' ), 
+						'landingPages', 'landingPages', 40, $landingPages, 
+						array( 'maxlength' => 255 )
+					)
+				);
+				$htmlOut .= Xml::closeElement( 'div' );
 			}
-			$htmlOut .= Xml::tags( 'p', array(), wfMsg( 'centralnotice-banner-fundraising-help' ) );
-			$htmlOut .= Xml::tags( 'p', array(),
-				Xml::inputLabel( 
-					wfMsg( 'centralnotice-banner-landing-pages' ), 
-					'landingPages', 'landingPages', 40, $landingPages, 
-					array( 'maxlength' => 255 )
-				)
-			);
-			$htmlOut .= Xml::closeElement( 'div' );
 
 			// Begin banner body section
 			$htmlOut .= Xml::closeElement( 'fieldset' );
