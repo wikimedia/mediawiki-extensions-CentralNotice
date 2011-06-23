@@ -220,7 +220,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show "Add a banner" interface
 	 */
 	function showAdd() {
-		global $wgOut, $wgUser, $wgExtensionAssetsPath, $wgLang, $wgRequest, $wgNoticeEnableFundraising;
+		global $wgOut, $wgUser, $wgExtensionAssetsPath, $wgLang, $wgRequest, 
+			$wgNoticeEnableFundraising;
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 
 		// Build HTML
@@ -271,7 +272,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::check( 'fundraising', $fundraising, array( 'id' => 'fundraising' ) );
 			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 'fundraising' );
 			$htmlOut .= Xml::closeElement( 'p' );
-			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'fundraisingInterface', 'style' => 'display: none;' ) );
+			$htmlOut .= Xml::openElement( 'div', 
+				array( 'id' => 'fundraisingInterface', 'style' => 'display: none;' ) );
 			$htmlOut .= Xml::tags( 'p', array(), wfMsg( 'centralnotice-banner-fundraising-help' ) );
 			$htmlOut .= Xml::tags( 'p', array(),
 				Xml::inputLabel( 
@@ -316,7 +318,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgExtensionAssetsPath, $wgLang, $wgNoticeEnableFundraising;
+		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgExtensionAssetsPath, $wgLang, 
+			$wgNoticeEnableFundraising;
 		
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
 		$sk = $wgUser->getSkin();
@@ -581,14 +584,17 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::openElement( 'p', null );
 				$htmlOut .= Xml::check( 'fundraising', $fundraising, 
 					wfArrayMerge( $disabled, array( 'id' => 'fundraising' ) ) );
-				$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 'fundraising' );
+				$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 
+					'fundraising' );
 				$htmlOut .= Xml::closeElement( 'p' );
 				if ( $fundraising ) {
 					$htmlOut .= Xml::openElement( 'div', array( 'id'=>'fundraisingInterface' ) );
 				} else {
-					$htmlOut .= Xml::openElement( 'div', array( 'id'=>'fundraisingInterface', 'style'=>'display:none;' ) );
+					$htmlOut .= Xml::openElement( 'div', 
+						array( 'id'=>'fundraisingInterface', 'style'=>'display:none;' ) );
 				}
-				$htmlOut .= Xml::tags( 'p', array(), wfMsg( 'centralnotice-banner-fundraising-help' ) );
+				$htmlOut .= Xml::tags( 'p', array(), 
+					wfMsg( 'centralnotice-banner-fundraising-help' ) );
 				$htmlOut .= Xml::tags( 'p', array(),
 					Xml::inputLabel( 
 						wfMsg( 'centralnotice-banner-landing-pages' ), 
@@ -765,7 +771,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	/**
 	 * Create a new banner
 	 */
-	private function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising, $landingPages ) {
+	private function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising, 
+		$landingPages ) {
+		
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 			return;
@@ -810,7 +818,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	/**
 	 * Update a banner
 	 */
-	private function editTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising, $landingPages ) {
+	private function editTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising, 
+		$landingPages ) {
+		
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 			return;
@@ -879,7 +889,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$template_body = Revision::newFromTitle( $bodyPage )->getText();
 
 		// Create new banner
-		if ( $this->addTemplate( $dest, $template_body, $displayAnon, $displayAccount, $fundraising, $landingPages ) ) {
+		if ( $this->addTemplate( $dest, $template_body, $displayAnon, $displayAccount, $fundraising,
+			$landingPages ) ) {
 
 			// Populate the fields
 			foreach ( $langs as $lang => $fields ) {
