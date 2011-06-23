@@ -131,7 +131,8 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		global $wgOut, $wgUser, $wgRequest, $wgLang;
 		
 		$sk = $wgUser->getSkin();
-		$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
+		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
+		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		
 		// Begin building HTML
 		$htmlOut = '';
@@ -163,10 +164,12 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'table', 
 				array ( 'cellpadding' => 9, 'class' => 'wikitable sortable' ) );
 			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::element( 'th', array( 'width' => '40%' ), 
+			$htmlOut .= Xml::element( 'th', array( 'width' => '20%' ), 
 				wfMsg ( 'centralnotice-percentage' ) );
-			$htmlOut .= Xml::element( 'th', array( 'width' => '60%' ), 
+			$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ), 
 				wfMsg ( 'centralnotice-banner' ) );
+			$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ), 
+				wfMsg ( 'centralnotice-notice' ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			foreach ( $banners as $banner ) {
 				$htmlOut .= Xml::openElement( 'tr' );
@@ -175,8 +178,12 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 				$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
 				$htmlOut .= Xml::closeElement( 'td' );
 				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					$sk->makeLinkObj( $viewPage, htmlspecialchars( $banner['name'] ), 
+					$sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ), 
 						'template=' . urlencode( $banner['name'] ) )
+				);
+				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+					$sk->makeLinkObj( $viewCampaign, htmlspecialchars( $banner['campaign'] ), 
+						'method=listNoticeDetail&notice=' . urlencode( $banner['campaign'] ) )
 				);
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
