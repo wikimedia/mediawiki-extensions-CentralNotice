@@ -46,14 +46,14 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		
 		$htmlOut = '';
 		
-		// Begin Allocation selection fieldset
+		// Begin log selection fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
 		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-logs' ) );
 		$htmlOut .= Xml::closeElement( 'form' );
 		
-		// End Allocation selection fieldset
+		// End log selection fieldset
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
@@ -71,6 +71,16 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		global $wgOut;
 		
 		$htmlOut = '';
+		
+		// Begin log fieldset
+		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		
+		$htmlOut .= Xml::tags( 'p', null,
+			'<i>Coming soon...</i>'
+		);
+		
+		// End log fieldset
+		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
 	}
