@@ -132,40 +132,39 @@ class CentralNoticeDB {
 		$templates = array();
 
 		if ( $campaigns ) {
-			foreach ( $campaigns as $campaignId ) {
-				$res = $dbr->select(
-					array(
-						'cn_notices',
-						'cn_assignments',
-						'cn_templates'
-					),
-					array(
-						'tmp_name',
-						'tmp_weight',
-						'tmp_display_anon',
-						'tmp_display_account',
-						'tmp_fundraising',
-						'tmp_landing_pages'
-					),
-					array(
-						'cn_notices.not_id' => $campaignId,
-						'cn_notices.not_id = cn_assignments.not_id',
-						'cn_assignments.tmp_id = cn_templates.tmp_id'
-					),
-					__METHOD__
+			$res = $dbr->select(
+				array(
+					'cn_notices',
+					'cn_assignments',
+					'cn_templates'
+				),
+				array(
+					'tmp_name',
+					'tmp_weight',
+					'tmp_display_anon',
+					'tmp_display_account',
+					'tmp_fundraising',
+					'tmp_landing_pages',
+					'not_name'
+				),
+				array(
+					'cn_notices.not_id' => $campaigns,
+					'cn_notices.not_id = cn_assignments.not_id',
+					'cn_assignments.tmp_id = cn_templates.tmp_id'
+				),
+				__METHOD__
+			);
+
+			foreach ( $res as $row ) {
+				$templates[] = array(
+					'name' => $row->tmp_name,
+					'weight' => intval( $row->tmp_weight ),
+					'display_anon' => intval( $row->tmp_display_anon ),
+					'display_account' => intval( $row->tmp_display_account ),
+					'fundraising' => intval( $row->tmp_fundraising ),
+					'landing_pages' => $row->tmp_landing_pages,
+					'campaign' => $row->not_name
 				);
-	
-				foreach ( $res as $row ) {
-					$templates[] = array(
-						'name' => $row->tmp_name,
-						'weight' => intval( $row->tmp_weight ),
-						'display_anon' => intval( $row->tmp_display_anon ),
-						'display_account' => intval( $row->tmp_display_account ),
-						'fundraising' => intval( $row->tmp_fundraising ),
-						'landing_pages' => $row->tmp_landing_pages,
-						'campaign' => CentralNotice::getNoticeName( $campaignId )
-					);
-				}
 			}
 		}
 		return $templates;
