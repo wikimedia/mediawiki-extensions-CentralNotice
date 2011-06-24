@@ -3998,6 +3998,7 @@ $messages['he'] = array(
 	'centralnotice' => 'ניהול ההודעה המרכזית',
 	'noticetemplate' => 'ניהול ההודעה המרכזית',
 	'bannerallocation' => 'ניהול ההודעה המרכזית',
+	'centralnoticelogs' => 'ניהול הודעה מרכזית',
 	'right-centralnotice-admin' => 'ניהול הודעת מרכזיות',
 	'action-centralnotice-admin' => 'לנהל הודעות מרכזיות',
 	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
@@ -4129,6 +4130,8 @@ $messages['he'] = array(
 	'centralnotice-documentwrite-error' => 'לא ניתן להשתמש ב־document.write()‎ בתוך באנר.
 ניתן לעיין ב־http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.',
 	'centralnotice-preferred' => 'מועדפת',
+	'centralnotice-logs' => 'יומנים',
+	'centralnotice-view-logs' => 'הצגת יומנים',
 );
 
 /** Hindi (हिन्दी)
@@ -5934,6 +5937,7 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-documentwrite-error' => 'document.write() kann net bannen an engem Banner benotzt ginn.
 Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.',
 	'centralnotice-preferred' => 'Am léiwsten',
+	'centralnotice-logs' => 'Logbicher',
 );
 
 /** Lingua Franca Nova (Lingua Franca Nova)
