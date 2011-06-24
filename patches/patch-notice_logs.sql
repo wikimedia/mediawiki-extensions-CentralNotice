@@ -1,6 +1,6 @@
 -- Update to allow for logging of changes to campaign settings.
 
-CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_log (
+CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_log (
 	`notlog_id` int unsigned NOT NULL PRIMARY KEY auto_increment,
 	`notlog_timestamp` binary(14) NOT NULL,
 	`notlog_user_id` int unsigned NOT NULL,
@@ -29,6 +29,6 @@ CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_log (
 	`notlog_begin_assignments` text,
 	`notlog_end_assignments` text
 ) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/notlog_timestamp ON /*_*/cn_log (notlog_timestamp);
-CREATE INDEX /*i*/notlog_user_id ON /*_*/cn_log (notlog_user_id, notlog_timestamp);
-CREATE INDEX /*i*/notlog_not_id ON /*_*/cn_log (notlog_not_id, notlog_timestamp);
+CREATE INDEX /*i*/notlog_timestamp ON /*_*/cn_notice_log (notlog_timestamp);
+CREATE INDEX /*i*/notlog_user_id ON /*_*/cn_notice_log (notlog_user_id, notlog_timestamp);
+CREATE INDEX /*i*/notlog_not_id ON /*_*/cn_notice_log (notlog_not_id, notlog_timestamp);
