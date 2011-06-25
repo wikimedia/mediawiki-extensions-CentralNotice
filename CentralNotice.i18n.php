@@ -1334,6 +1334,7 @@ $messages['br'] = array(
 	'centralnotice' => 'Melestradurezh an alioù kreiz',
 	'noticetemplate' => 'Melestradurezh an alioù kreiz',
 	'bannerallocation' => 'Melestradurezh an alioù kreiz',
+	'centralnoticelogs' => 'Merour an alioù kreiz',
 	'right-centralnotice-admin' => 'Merañ an alioù kreiz',
 	'action-centralnotice-admin' => 'merañ an alioù kreiz',
 	'centralnotice-desc' => "Ouzhpennañ a ra ur c'hemenn kreiz e laez ar pajennoù (sitenotice).",
@@ -1465,6 +1466,8 @@ Ouzhpennit unan da heul.",
 	'centralnotice-documentwrite-error' => "N'hall ket document.write() bezañ implijet hep giton.
 Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc'h.",
 	'centralnotice-preferred' => "Kavet gwelloc'h",
+	'centralnotice-logs' => 'Marilhoù',
+	'centralnotice-view-logs' => 'Gwelet ar marilhoù',
 );
 
 /** Bosnian (Bosanski)
@@ -7904,6 +7907,7 @@ $messages['pt-br'] = array(
 	'centralnotice' => 'Administração de aviso centralizado',
 	'noticetemplate' => 'Administração de avisos centralizados',
 	'bannerallocation' => 'Administração de avisos centralizados',
+	'centralnoticelogs' => 'Administração de avisos centralizados',
 	'right-centralnotice-admin' => 'Gerenciar avisos centralizados',
 	'action-centralnotice-admin' => 'gerenciar avisos centralizados',
 	'centralnotice-desc' => 'Adiciona um aviso do sítio centralizado',
@@ -8035,6 +8039,8 @@ Adicione um abaixo',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-preferred' => 'Preferido',
+	'centralnotice-logs' => 'Registros',
+	'centralnotice-view-logs' => 'Ver registros',
 );
 
 /** Quechua (Runa Simi)
