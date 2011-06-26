@@ -5514,6 +5514,7 @@ $messages['ko'] = array(
 	'centralnotice' => '중앙 공지 관리',
 	'noticetemplate' => '중앙 공지 관리',
 	'bannerallocation' => '중앙 공지 관리',
+	'centralnoticelogs' => '중앙 공지 관리자',
 	'right-centralnotice-admin' => '중앙 공지 관리',
 	'action-centralnotice-admin' => '중앙 공지를 관리하기',
 	'centralnotice-desc' => '중앙에서 공지하는 사이트노티스를 추가',
@@ -6904,13 +6905,15 @@ $messages['ne'] = array(
 
 /** Dutch (Nederlands)
  * @author Romaine
+ * @author SPQRobin
  * @author Siebrand
  * @author Tvdm
  */
 $messages['nl'] = array(
-	'centralnotice' => 'Beheer centrale sitenotice',
+	'centralnotice' => 'Centrale sitenotice beheren',
 	'noticetemplate' => 'Centrale sitenotice beheren',
 	'bannerallocation' => 'Centrale sitenotice beheren',
+	'centralnoticelogs' => 'Centrale sitenotice beheren',
 	'right-centralnotice-admin' => 'Centrale sitenotices beheren',
 	'action-centralnotice-admin' => 'centrale sitenotices beheren',
 	'centralnotice-desc' => 'Voegt een centrale sitemededeling toe',
@@ -7043,6 +7046,8 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-documentwrite-error' => 'document.write() kan niet worden gebruikt binnen een banner. 
 Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-preferred' => 'Voorkeur',
+	'centralnotice-logs' => 'Logboeken',
+	'centralnotice-view-logs' => 'Logboeken bekijken',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
