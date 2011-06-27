@@ -960,18 +960,5 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
 		$this->centralNoticeError = true;
 	}
-	
-	public static function templateExists( $templateName ) {
-		 global $wgCentralDBname;
-		 $dbr = wfGetDB( DB_SLAVE,  array(), $wgCentralDBname );
 
-		 $eTemplateName = htmlspecialchars( $templateName );
-		 $row = $dbr->selectRow( 'cn_templates', 'tmp_name', 
-			 array( 'tmp_name' => $eTemplateName ) );
-		 if ( $row ) {
-		 	return true;
-		 } else {
-		 	return false;
-		 }
-	}
 }

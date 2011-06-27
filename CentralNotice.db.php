@@ -171,6 +171,22 @@ class CentralNoticeDB {
 	}
 	
 	/*
+	 * See if a given banner exists in the database
+	 */
+	public static function bannerExists( $bannerName ) {
+		 global $wgCentralDBname;
+		 $dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+
+		 $eBannerName = htmlspecialchars( $bannerName );
+		 $row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_name' => $eBannerName ) );
+		 if ( $row ) {
+		 	return true;
+		 } else {
+		 	return false;
+		 }
+	}
+	
+	/*
 	 * Return all of the available countries for geotargeting
 	 * (This should probably be moved to a core database table at some point.)
 	 */
