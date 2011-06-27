@@ -1519,9 +1519,19 @@ class CentralNotice extends SpecialPage {
 	function languageMultiSelector( $selected = array(), $customisedOnly = true ) {
 		global $wgLanguageCode, $wgExtensionAssetsPath, $wgLang;
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
+		if ( is_callable( array( 'LanguageNames', 'getNames' ) ) ) {
+			// Retrieve the list of languages in user's language (via CLDR)
+			$languages = LanguageNames::getNames( 
+				$wgLang->getCode(), // User's language
+				LanguageNames::FALLBACK_NORMAL, // Use fallback chain
+				LanguageNames::LIST_MW // Pull all languages that are in Names.php
+			);
+		} else {
+			// Use this as fallback if CLDR extension is not enabled
+			$languages = Language::getLanguageNames();
+		}
 		// Make sure the site language is in the list; a custom language code 
 		// might not have a defined name...
-		$languages = Language::getLanguageNames();
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
