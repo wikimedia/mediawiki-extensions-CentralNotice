@@ -166,7 +166,6 @@ JAVASCRIPT;
 	$script .= "\n\t\tvar url = '" . 
 	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';";
 	$script .= <<<JAVASCRIPT
-		console.debug(bannerJson.landingPages.length);
 		if ( bannerJson.landingPages.length ) {
 			targets = String( bannerJson.landingPages ).split(',');
 			url += "?" + jQuery.param( {
