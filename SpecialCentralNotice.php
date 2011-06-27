@@ -1220,7 +1220,7 @@ class CentralNotice extends SpecialPage {
 			$res = $dbw->insert( 'cn_notice_languages', $insertArray, 
 				__METHOD__, array( 'IGNORE' ) );
 			
-			if ( $geotargeted ) {
+			if ( $geotargeted && $geo_countries ) {
 				// Do multi-row insert for campaign countries
 				$insertArray = array();
 				foreach( $geo_countries as $code ) {
@@ -1231,6 +1231,23 @@ class CentralNotice extends SpecialPage {
 			}
 		
 			$dbw->commit();
+			
+			// Log the creation of the campaign
+			$beginSettings = array();
+			$endSettings = array(
+				'notlog_end_name' => $noticeName,
+				'notlog_end_projects' => implode( ", ", $projects ),
+				'notlog_end_languages' => implode( ", ", $project_languages ),
+				'notlog_end_countries' => implode( ", ", $geo_countries ),
+				'notlog_end_start' => $dbw->timestamp( $startTs ),
+				'notlog_end_end' => $dbw->timestamp( $endTs ),
+				'notlog_end_enabled' => $enabled,
+				'notlog_end_preferred' => 0,
+				'notlog_end_locked' => 0,
+				'notlog_end_geo' => $geotargeted
+			);
+			$this->logCampaignChange( 'created', $not_id, $beginSettings, $endSettings );
+			
 			return;
 		}
 	}
@@ -1257,6 +1274,10 @@ class CentralNotice extends SpecialPage {
 			$res = $dbw->delete( 'cn_notices', array ( 'not_name' => $noticeName ) );
 			$res = $dbw->delete( 'cn_notice_languages', array ( 'nl_notice_id' => $noticeId ) );
 			$dbw->commit();
+			
+			// Log the removal of the campaign
+			$this->logCampaignChange( 'removed', $noticeId );
+			
 			return;
 		}
 	}
@@ -1765,6 +1786,36 @@ class CentralNotice extends SpecialPage {
 			);
 		}
 		return $htmlOut;
+	}
+	
+	/**
+	 * Log any changes related to a campaign
+	 * @param $action string: 'created', 'modified', or 'removed'
+	 * @param $campaign integer: id of campaign
+	 * @param $beginSettings array of campaign settings before changes (optional)
+	 * @param $endSettings array of campaign settings after changes (optional)
+	 * @param $beginAssignments array of banner assignments before changes (optional)
+	 * @param $endAssignments array of banner assignments after changes (optional)
+	 */
+	function logCampaignChange( $action, $campaign, $beginSettings = array(), 
+		$endSettings = array(), $beginAssignments = array(), $endAssignments = array() )
+	{
+		global $wgUser;
+		
+		$dbw = wfGetDB( DB_MASTER );
+		
+		$log = array(
+			'notlog_timestamp' => $dbw->timestamp(),
+			'notlog_user_id' => $wgUser->getId(),
+			'notlog_action' => $action,
+			'notlog_not_id' => $campaign
+		);
+		
+		$log = array_merge($log, $beginSettings, $endSettings);
+		
+		$res = $dbw->insert( 'cn_notice_log', $log );
+		$log_id = $dbw->insertId();
+		return $log_id;
 	}
 }
 
