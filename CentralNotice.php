@@ -94,19 +94,21 @@ function efCentralNoticeSetup() {
 		$wgHooks['SkinAfterBottomScripts'][] = 'efCentralNoticeGeoLoader';
 	}
 
+	$specialDir = $dir . 'special/';
+
 	$wgSpecialPages['BannerLoader'] = 'SpecialBannerLoader';
-	$wgAutoloadClasses['SpecialBannerLoader'] = $dir . 'SpecialBannerLoader.php';
+	$wgAutoloadClasses['SpecialBannerLoader'] = $specialDir . 'SpecialBannerLoader.php';
 
 	$wgSpecialPages['BannerListLoader'] = 'SpecialBannerListLoader';
-	$wgAutoloadClasses['SpecialBannerListLoader'] = $dir . 'SpecialBannerListLoader.php';
+	$wgAutoloadClasses['SpecialBannerListLoader'] = $specialDir . 'SpecialBannerListLoader.php';
 
 	$wgSpecialPages['BannerController'] = 'SpecialBannerController';
-	$wgAutoloadClasses['SpecialBannerController'] = $dir . 'SpecialBannerController.php';
+	$wgAutoloadClasses['SpecialBannerController'] = $specialDir . 'SpecialBannerController.php';
 
 	$wgSpecialPages['HideBanners'] = 'SpecialHideBanners';
-	$wgAutoloadClasses['SpecialHideBanners'] = $dir . 'SpecialHideBanners.php';
+	$wgAutoloadClasses['SpecialHideBanners'] = $specialDir . 'SpecialHideBanners.php';
 
-	$wgAutoloadClasses['CentralNotice'] = $dir . 'SpecialCentralNotice.php';
+	$wgAutoloadClasses['CentralNotice'] = $specialDir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
 	$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 
@@ -115,13 +117,13 @@ function efCentralNoticeSetup() {
 		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
 
 		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
-		$wgAutoloadClasses['SpecialNoticeTemplate'] = $dir . 'SpecialNoticeTemplate.php';
+		$wgAutoloadClasses['SpecialNoticeTemplate'] = $specialDir . 'SpecialNoticeTemplate.php';
 
 		$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
-		$wgAutoloadClasses['SpecialBannerAllocation'] = $dir . 'SpecialBannerAllocation.php';
-		
+		$wgAutoloadClasses['SpecialBannerAllocation'] = $specialDir . 'SpecialBannerAllocation.php';
+
 		$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
-		$wgAutoloadClasses['SpecialCentralNoticeLogs'] = $dir . 'SpecialCentralNoticeLogs.php';
+		$wgAutoloadClasses['SpecialCentralNoticeLogs'] = $specialDir . 'SpecialCentralNoticeLogs.php';
 	}
 }
 
@@ -131,36 +133,36 @@ function efCentralNoticeSchema( $updater = null ) {
 		global $wgDBtype, $wgExtNewTables, $wgExtNewFields;
 
 		if ( $wgDBtype == 'mysql' ) {
-			$wgExtNewTables[] = array( 'cn_notices', 
+			$wgExtNewTables[] = array( 'cn_notices',
 				$base . '/CentralNotice.sql' );
 			$wgExtNewFields[] = array( 'cn_notices', 'not_preferred',
 			   $base . '/patches/patch-notice_preferred.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_languages', 
+			$wgExtNewTables[] = array( 'cn_notice_languages',
 				$base . '/patches/patch-notice_languages.sql' );
-			$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon', 
+			$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon',
 				$base . '/patches/patch-template_settings.sql' );
 			$wgExtNewFields[] = array( 'cn_templates', 'tmp_fundraising',
 				$base . '/patches/patch-template_fundraising.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_countries', 
+			$wgExtNewTables[] = array( 'cn_notice_countries',
 				$base . '/patches/patch-notice_countries.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_projects', 
+			$wgExtNewTables[] = array( 'cn_notice_projects',
 				$base . '/patches/patch-notice_projects.sql' );
 		}
 	} else {
 		if ( $updater->getDB()->getType() == 'mysql' ) {
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notices', 
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notices',
 				$base . '/CentralNotice.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_notices', 'not_preferred', 
+			$updater->addExtensionUpdate( array( 'addField', 'cn_notices', 'not_preferred',
 				$base . '/patches/patch-notice_preferred.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_languages', 
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_languages',
 				$base . '/patches/patch-notice_languages.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon', 
+			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon',
 				$base . '/patches/patch-template_settings.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising', 
+			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising',
 				$base . '/patches/patch-template_fundraising.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries', 
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries',
 				$base . '/patches/patch-notice_countries.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects', 
+			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects',
 				$base . '/patches/patch-notice_projects.sql', true ) );
 		}
 	}
@@ -172,7 +174,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 	// Include '.js' to exempt script from squid cache override
 	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl( 'cache=/cn.js' );
-	
+
 	// Insert the banner controller Javascript into the <head>
 	$wgOut->addScriptFile( $centralLoader );
 
