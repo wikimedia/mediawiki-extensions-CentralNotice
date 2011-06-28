@@ -1477,6 +1477,7 @@ $messages['bs'] = array(
 	'centralnotice' => 'Uređivanje središnjeg obavještenja',
 	'noticetemplate' => 'Uređivanje središnjeg obavještenja',
 	'bannerallocation' => 'Uređivanje središnjeg obavještenja',
+	'centralnoticelogs' => 'Administrator središnjeg obavještenja',
 	'right-centralnotice-admin' => 'Uređivanje središnjeg obavještenja',
 	'action-centralnotice-admin' => 'uređujete središnje obavještenje',
 	'centralnotice-desc' => 'Dodaje središnju obavijest na stranici',
@@ -1592,6 +1593,8 @@ Dodaj jednu ispod',
 	'centralnotice-banner-hidable' => 'Statično/Dinamično',
 	'centralnotice-banner-collapsible' => 'Moguće sakriti',
 	'centralnotice-banner-fundraising' => 'Ovo je plakat za donacije',
+	'centralnotice-banner-fundraising-help' => 'Pravi oznaku za uklapanje u tijelo banera sa id="cn_fundraising_link" i unosi jedan ili više ciljnih članaka ispod, naprimjer, "JimmyAppeal01". Oznaka href za link će biti automatski napravljen.',
+	'centralnotice-banner-landing-pages' => 'Ciljne stranice (razdvojene zarezima):',
 	'centralnotice-geotargeted' => 'Geociljano',
 	'centralnotice-countries' => 'Države',
 	'centralnotice-allocation' => 'Raspoređivanje',
@@ -1606,6 +1609,8 @@ Dodaj jednu ispod',
 	'centralnotice-documentwrite-error' => 'document.write() se ne može koristiti unutar obavještenja.
 Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
 	'centralnotice-preferred' => 'Preferirano',
+	'centralnotice-logs' => 'Zapisnici',
+	'centralnotice-view-logs' => 'Pogledaj zapisnike',
 );
 
 /** Catalan (Català)
