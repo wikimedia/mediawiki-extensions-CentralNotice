@@ -23,9 +23,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		// Get values from the query string
 		$this->language = $wgRequest->getText( 'userlang', 'en' );
 		$this->siteName = $wgRequest->getText( 'sitename', 'Wikipedia' );
-		$this->campaign = $wgRequest->getText( 'campaign', 'unknown' );
-		$this->fundraising = $wgRequest->getBool( 'fundraising', false );
-		$this->landingPages = $wgRequest->getText( 'landingpages' );
+		$this->campaign = $wgRequest->getText( 'campaign', 'undefined' );
 		
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
@@ -76,8 +74,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				'bannerName' => $bannerName,
 				'bannerHtml' => $bannerHtml,
 				'campaign' => $this->campaign,
-				'fundraising' => $this->fundraising,
-				'landingPages' => $this->landingPages
+				'fundraising' => $this->getFundraising( $bannerName ),
+				'landingPages' => $this->getLandingPages( $bannerName )
 			);
 			$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
 			return $bannerJs;
@@ -195,6 +193,22 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter', 'fallback' ), $count );
 		}
 		return $count;
+	}
+	
+	function getFundraising( $bannerName ) {
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$eBannerName = htmlspecialchars( $bannerName );
+		$row = $dbr->selectRow( 'cn_templates', 'tmp_fundraising', array( 'tmp_name' => $eBannerName ) );
+		return $row->tmp_fundraising;
+	}
+	
+	function getLandingPages( $bannerName ) {
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$eBannerName = htmlspecialchars( $bannerName );
+		$row = $dbr->selectRow( 'cn_templates', 'tmp_landing_pages', array( 'tmp_name' => $eBannerName ) );
+		return $row->tmp_landing_pages;
 	}
 }
 /**

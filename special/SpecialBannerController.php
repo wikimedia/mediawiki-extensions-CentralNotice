@@ -54,12 +54,11 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			'getVars': {}
 		},
 		'fn': {
-			'loadBanner': function( bannerName, fundraising, landingPages, campaign ) {
+			'loadBanner': function( bannerName, campaign ) {
 				// Get the requested banner
 				var bannerPageQuery = $.param( { 
 					'banner': bannerName, 'campaign': campaign, 'userlang': wgUserLanguage, 
-					'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country, 
-					'fundraising': fundraising, 'landingpages': landingPages
+					'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country
 				} );
 				var bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
 JAVASCRIPT;
@@ -119,8 +118,6 @@ JAVASCRIPT;
 				// Load a random banner from our groomed list
 				$.centralNotice.fn.loadBanner( 
 					groomedBannerList[pointer].name,
-					groomedBannerList[pointer].fundraising,
-					groomedBannerList[pointer].landing_pages,
 					groomedBannerList[pointer].campaign
 				);
 			},
