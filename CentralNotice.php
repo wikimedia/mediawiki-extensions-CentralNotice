@@ -121,6 +121,9 @@ function efCentralNoticeSetup() {
 
 		$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
 		$wgAutoloadClasses['SpecialBannerAllocation'] = $specialDir . 'SpecialBannerAllocation.php';
+
+		$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
+		$wgAutoloadClasses['SpecialCentralNoticeLogs'] = $specialDir . 'SpecialCentralNoticeLogs.php';
 	}
 }
 
