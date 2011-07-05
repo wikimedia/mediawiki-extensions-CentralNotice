@@ -180,6 +180,7 @@ $messages['qqq'] = array(
 	'centralnotice-nopreview' => '{{Identical|Nopreview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. $1 is a name of a template.',
+	'centralnotice-manage' => 'Title of sub-page of [http://meta.wikimedia.org/wiki/Special:CentralNotice Manage Central Notice] special page.',
 	'centralnotice-add' => '{{Identical|Add}}',
 	'centralnotice-multiple-languages' => '$1 is the number of languages in which the notice is available. It is always greater than 3. This message in the column "languages" in the table.',
 	'centralnotice-language-listing' => 'A language listing for the language multi-select box. First parameter is the language code. Second parameter is the name of the language.',
@@ -211,7 +212,9 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-expand-button' => 'See also {{msg|Centralnotice-hide-button}}.',
 	'centralnotice-geotargeted' => 'Used to label a checkbox which activates geotargeting',
 	'centralnotice-languages' => '{{Identical|Language}}',
-	'centralnotice-projects' => '{{Identical|Project}}',
+	'centralnotice-projects' => 'Column heading of a table in the [http://meta.wikimedia.org/wiki/Special:CentralNotice Manage Central Notice] special page
+
+{{Identical|Project}}',
 	'centralnotice-country' => '{{Identical|Country}}',
 	'centralnotice-allocation-description' => 'A description of the environment the allocation of which is being described.
 * $1 is the language code for the site (e.g "en").
@@ -1933,7 +1936,7 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
  * @author Xxglennxx
  */
 $messages['cy'] = array(
-	'centralnotice' => "Gweinyddu'r hysbysiad canolog",
+	'centralnotice' => 'Gweinyddu hysbysiadau canolog',
 	'noticetemplate' => "Gweinyddu'r hysbysiad canolog",
 	'bannerallocation' => "Gweinyddu'r hysbysiad canolog",
 	'right-centralnotice-admin' => 'Gweinyddu hysbysiadau canolog',
@@ -1998,6 +2001,7 @@ Ddim yn tynnu i ffwrdd.",
 	'centralnotice-end-time' => 'Amser y daw i ben (UTC)',
 	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner. 
 Ychwanegwch rai!',
+	'centralnotice-available-templates' => 'Y baneri sydd ar gael',
 	'centralnotice-weights' => 'Pwysau',
 	'centralnotice-notice-is-locked' => "Mae'r hysbysiad wedi ei gloi.
 Ni chaiff ei dynnu i ffwrdd",
@@ -2017,9 +2021,12 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-countries' => 'Gwledydd',
 	'centralnotice-view-allocation' => 'Gweld dosbarthiad y faner',
 	'centralnotice-languages' => 'Ieithoedd',
+	'centralnotice-projects' => 'Prosiectau',
 	'centralnotice-country' => 'Gwlad',
 	'centralnotice-percentage' => 'Canran',
 	'centralnotice-preferred' => 'Gorau gennych',
+	'centralnotice-logs' => 'Logiau',
+	'centralnotice-view-logs' => 'Gweld y logiau',
 );
 
 /** Danish (Dansk)
@@ -6724,6 +6731,9 @@ $messages['ms'] = array(
 	'centralnotice-expand-button' => 'Bentangkan pautan',
 	'centralnotice-close-button' => 'Butang tutup',
 	'centralnotice-translate-button' => 'Pautan bantu menterjemah',
+	'centralnotice-banner-type' => 'Jenis sepanduk:',
+	'centralnotice-banner-hidable' => 'Statik/Boleh sorok',
+	'centralnotice-banner-collapsible' => 'Boleh lipat',
 	'centralnotice-languages' => 'Bahasa',
 	'centralnotice-country' => 'Negara',
 	'centralnotice-preferred' => 'Dipilih',
