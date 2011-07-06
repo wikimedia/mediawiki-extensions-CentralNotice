@@ -118,6 +118,47 @@ class CentralNoticeDB {
 
 		return $notices;
 	}
+	
+	/*
+	 * Return settings for a campaign
+	 * @param $campaignName The name of the campaign
+	 * @return an array of settings
+	 */
+	static function getCampaignSettings( $campaignName ) {
+		global $wgCentralDBname;
+		
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		
+		$campaign = array();
+
+		// Get campaign info from database
+		$row = $dbr->selectRow( 'cn_notices',
+			array(
+				'not_name',
+				'not_start',
+				'not_end',
+				'not_enabled',
+				'not_preferred',
+				'not_locked',
+				'not_geo'
+			),
+			array( 'not_name' => $campaignName ),
+			__METHOD__
+		);
+		if ( $row ) {
+			$campaign = array(
+				'name' => $row->not_name,
+				'start' => $row->not_start,
+				'end' => $row->not_end,
+				'enabled' => $row->not_enabled,
+				'preferred' => $row->not_preferred,
+				'locked' => $row->not_locked,
+				'geo' => $row->not_geo
+			);
+		}
+		// TODO: Add languages, projects, and countries
+		return $campaign;
+	}
 
 	/*
 	 * Given one or more campaign ids, return all banners bound to them
