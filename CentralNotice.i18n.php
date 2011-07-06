@@ -4945,6 +4945,7 @@ $messages['it'] = array(
 	'centralnotice' => 'Gestione avviso centralizzato',
 	'noticetemplate' => 'Gestione avviso centralizzato',
 	'bannerallocation' => 'Gestione avviso centralizzato',
+	'centralnoticelogs' => 'Gestione avviso centralizzato',
 	'right-centralnotice-admin' => 'Gestisce gli avvisi centralizzati',
 	'action-centralnotice-admin' => 'gestire gli avvisi centralizzati',
 	'centralnotice-desc' => 'Aggiunge un avviso centralizzato a inizio pagina (sitenotice)',
@@ -5045,6 +5046,7 @@ Non aggiorno',
 	'centralnotice-banner-type' => 'Tipo banner:',
 	'centralnotice-banner-hidable' => 'Fisso/Nascondibile',
 	'centralnotice-banner-collapsible' => 'Contraibile',
+	'centralnotice-banner-fundraising' => 'Questo è un banner per la raccolta fondi',
 	'centralnotice-countries' => 'Paesi',
 	'centralnotice-languages' => 'Lingue',
 	'centralnotice-projects' => 'Progetti',
@@ -5053,6 +5055,8 @@ Non aggiorno',
 	'centralnotice-documentwrite-error' => 'Non è possibile usare document.write() dentro un banner.
 Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.',
 	'centralnotice-preferred' => 'Preferito',
+	'centralnotice-logs' => 'Log',
+	'centralnotice-view-logs' => 'Vedi i log',
 );
 
 /** Japanese (日本語)
