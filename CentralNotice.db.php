@@ -156,7 +156,14 @@ class CentralNoticeDB {
 				'geo' => $row->not_geo
 			);
 		}
-		// TODO: Add languages, projects, and countries
+		
+		$projects = CentralNotice::getNoticeProjects( $campaignName );
+		$languages = CentralNotice::getNoticeLanguages( $campaignName );
+		$geo_countries = CentralNotice::getNoticeCountries( $campaignName );
+		$campaign['projects'] = implode( ", ", $projects );
+		$campaign['languages'] = implode( ", ", $languages );
+		$campaign['countries'] = implode( ", ", $geo_countries );
+				
 		return $campaign;
 	}
 

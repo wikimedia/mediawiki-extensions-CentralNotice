@@ -1331,7 +1331,7 @@ class CentralNotice extends SpecialPage {
 		return null;
 	}
 	
-	function getNoticeProjects( $noticeName ) {
+	static function getNoticeProjects( $noticeName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
@@ -1346,7 +1346,7 @@ class CentralNotice extends SpecialPage {
 		return $projects;
 	}
 
-	function getNoticeLanguages( $noticeName ) {
+	static function getNoticeLanguages( $noticeName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
@@ -1361,7 +1361,7 @@ class CentralNotice extends SpecialPage {
 		return $languages;
 	}
 	
-	function getNoticeCountries( $noticeName ) {
+	static function getNoticeCountries( $noticeName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
