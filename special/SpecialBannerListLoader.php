@@ -64,12 +64,12 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 		// Quick short circuit to show preferred campaigns
 		if ( $campaigns ) {
 			// Pull banners
-			$banners = CentralNoticeDB::selectBannersAssigned( $campaigns );
+			$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
 		}
 
 		// Didn't find any preferred banners so do an old style lookup
 		if ( !$banners )  {
-			$banners = CentralNotice::selectNoticeTemplates( 
+			$banners = CentralNoticeDB::getBannersByTarget( 
 				$this->project, $this->language, $this->location );
 		}
 		

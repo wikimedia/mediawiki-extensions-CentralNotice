@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_log (
 	`notlog_end_locked` tinyint(1) DEFAULT NULL,
 	`notlog_begin_geo` tinyint(1) DEFAULT NULL,
 	`notlog_end_geo` tinyint(1) DEFAULT NULL,
-	`notlog_begin_assignments` text,
-	`notlog_end_assignments` text
+	`notlog_begin_banners` text,
+	`notlog_end_banners` text
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/notlog_timestamp ON /*_*/cn_notice_log (notlog_timestamp);
 CREATE INDEX /*i*/notlog_user_id ON /*_*/cn_notice_log (notlog_user_id, notlog_timestamp);
