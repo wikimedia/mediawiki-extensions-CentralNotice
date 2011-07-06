@@ -1376,14 +1376,6 @@ class CentralNotice extends SpecialPage {
 		return $countries;
 	}
 
-	function getNoticeProjectName( $noticeName ) {
-		 $dbr = wfGetDB( DB_SLAVE );
-		 $eNoticeName = htmlspecialchars( $noticeName );
-		 $res = $dbr->select( 'cn_notices', 'not_project', array( 'not_name' => $eNoticeName ) );
-		 $row = $dbr->fetchObject( $res );
-		 return $row->not_project;
-	}
-
 	function getTemplateId( $templateName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$templateName = htmlspecialchars ( $templateName );
