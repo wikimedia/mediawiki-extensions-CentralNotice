@@ -100,16 +100,16 @@ class CentralNotice extends SpecialPage {
 	
 						// Set locked/unlocked flag accordingly
 						foreach ( $lockedNotices as $notice ) {
-							$this->updateLock( $notice, '1' );
+							$this->setBooleanCampaignSetting( $notice, 'locked', 1 );
 						}
 						foreach ( $unlockedNotices as $notice ) {
-							$this->updateLock( $notice, '0' );
+							$this->setBooleanCampaignSetting( $notice, 'locked', 0 );
 						}
 					// Handle updates if no post content came through (all checkboxes unchecked)
 					} else {
 						$allNotices = $this->getAllCampaignNames();
 						foreach ( $allNotices as $notice ) {
-							$this->updateLock( $notice, '0' );
+							$this->setBooleanCampaignSetting( $notice, 'locked', 0 );
 						}
 					}
 	
@@ -121,16 +121,16 @@ class CentralNotice extends SpecialPage {
 	
 						// Set enabled/disabled flag accordingly
 						foreach ( $enabledNotices as $notice ) {
-							$this->updateEnabled( $notice, '1' );
+							$this->setBooleanCampaignSetting( $notice, 'enabled', 1 );
 						}
 						foreach ( $disabledNotices as $notice ) {
-							$this->updateEnabled( $notice, '0' );
+							$this->setBooleanCampaignSetting( $notice, 'enabled', 0 );
 						}
 					// Handle updates if no post content came through (all checkboxes unchecked)
 					} else {
 						$allNotices = $this->getAllCampaignNames();
 						foreach ( $allNotices as $notice ) {
-							$this->updateEnabled( $notice, '0' );
+							$this->setBooleanCampaignSetting( $notice, 'enabled', 0 );
 						}
 					}
 	
@@ -142,23 +142,28 @@ class CentralNotice extends SpecialPage {
 	
 						// Set flag accordingly
 						foreach ( $preferredNotices as $notice ) {
-							$this->updatePreferred( $notice, '1' );
+							$this->setBooleanCampaignSetting( $notice, 'preferred', 1 );
 						}
 						foreach ( $unsetNotices as $notice ) {
-							$this->updatePreferred( $notice, '0' );
+							$this->setBooleanCampaignSetting( $notice, 'preferred', 0 );
 						}
 					// Handle updates if no post content came through (all checkboxes unchecked)
 					} else {
 						$allNotices = $this->getAllCampaignNames();
 						foreach ( $allNotices as $notice ) {
-							$this->updatePreferred( $notice, '0' );
+							$this->setBooleanCampaignSetting( $notice, 'preferred', 0 );
 						}
 					}
 					
-					// Get all the final campaign settings for logging
-					$allFinalCampaignSettings = array();
+					// Get all the final campaign settings for potential logging
 					foreach ( $allCampaignNames as $campaignName ) {
-						$allFinalCampaignSettings[$campaignName] = CentralNoticeDB::getCampaignSettings( $campaignName, false );
+						$finalCampaignSettings = CentralNoticeDB::getCampaignSettings( $campaignName, false );
+						$diffs = array_diff_assoc( $allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
+						// If there are changes, log them
+						if ( $diffs ) {
+							$campaignId = $this->getNoticeId( $notice );
+							$this->logCampaignChange( 'modified', $campaignId, $allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
+						}
 					}
 				}
 				
@@ -615,34 +620,34 @@ class CentralNotice extends SpecialPage {
 					
 					// Handle locking/unlocking campaign
 					if ( $wgRequest->getCheck( 'locked' ) ) {
-						$this->updateLock( $notice, '1' );
+						$this->setBooleanCampaignSetting( $notice, 'locked', 1 );
 					} else {
-						$this->updateLock( $notice, 0 );
+						$this->setBooleanCampaignSetting( $notice, 'locked', 0 );
 					}
 					
 					// Handle enabling/disabling campaign
 					if ( $wgRequest->getCheck( 'enabled' ) ) {
-						$this->updateEnabled( $notice, '1' );
+						$this->setBooleanCampaignSetting( $notice, 'enabled', 1 );
 					} else {
-						$this->updateEnabled( $notice, 0 );
+						$this->setBooleanCampaignSetting( $notice, 'enabled', 0 );
 					}
 					
 					// Handle setting campaign to preferred/not preferred
 					if ( $wgRequest->getCheck( 'preferred' ) ) {
-						$this->updatePreferred( $notice, '1' );
+						$this->setBooleanCampaignSetting( $notice, 'preferred', 1 );
 					} else {
-						$this->updatePreferred( $notice, 0 );
+						$this->setBooleanCampaignSetting( $notice, 'preferred', 0 );
 					}
 					
 					// Handle updating geotargeting
 					if ( $wgRequest->getCheck( 'geotargeted' ) ) {
-						$this->updateGeotargeted( $notice, 1 );
+						$this->setBooleanCampaignSetting( $notice, 'geo', 1 );
 						$countries = $wgRequest->getArray( 'geo_countries' );
 						if ( $countries ) {
 							$this->updateCountries( $notice, $countries );
 						}
 					} else {
-						$this->updateGeotargeted( $notice, 0 );
+						$this->setBooleanCampaignSetting( $notice, 'geo', 0 );
 					}
 					
 					// Handle updating the start and end settings
@@ -1349,62 +1354,22 @@ class CentralNotice extends SpecialPage {
 			array( 'not_name' => $noticeName )
 		);
 	}
-
-	/**
-	 * Update the enabled/disabled state of a campaign
-	 */
-	private function updateEnabled( $noticeName, $isEnabled ) {
-		if ( !$this->noticeExists( $noticeName ) ) {
-			$this->showError( 'centralnotice-doesnt-exist' );
-		} else {
-			$dbw = wfGetDB( DB_MASTER );
-			$res = $dbw->update( 'cn_notices',
-				array( 'not_enabled' => $isEnabled ),
-				array( 'not_name' => $noticeName )
-			);
-		}
-	}
 	
 	/**
-	 * Update the preferred/not preferred state of a campaign
+	 * Update a boolean setting on a campaign
+	 * @param $noticeName string: Name of the campaign
+	 * @param $settingName string: Name of a boolean setting (enabled, preferred, locked, or geo)
+	 * @param $settingValue boolean: Value to use for the setting
 	 */
-	function updatePreferred( $noticeName, $isPreferred ) {
+	private function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
 		if ( !$this->noticeExists( $noticeName ) ) {
-			$this->showError( 'centralnotice-doesnt-exist' );
+			// Exit quietly since campaign may have been deleted at the same time.
+			return;
 		} else {
+			$settingName = strtolower( $settingName );
 			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->update( 'cn_notices',
-				array( 'not_preferred' => $isPreferred ),
-				array( 'not_name' => $noticeName )
-			);
-		}
-	}
-
-	/**
-	 * Update the geotargeted/not geotargeted state of a campaign
-	 */
-	function updateGeotargeted( $noticeName, $isGeotargeted ) {
-		if ( !$this->noticeExists( $noticeName ) ) {
-			$this->showError( 'centralnotice-doesnt-exist' );
-		} else {
-			$dbw = wfGetDB( DB_MASTER );
-			$res = $dbw->update( 'cn_notices',
-				array( 'not_geo' => $isGeotargeted ),
-				array( 'not_name' => $noticeName )
-			);
-		}
-	}
-
-	/**
-	 * Update the locked/unlocked state of a campaign
-	 */
-	function updateLock( $noticeName, $isLocked ) {
-		if ( !$this->noticeExists( $noticeName ) ) {
-			$this->showError( 'centralnotice-doesnt-exist' );
-		} else {
-			$dbw = wfGetDB( DB_MASTER );
-			$res = $dbw->update( 'cn_notices',
-				array( 'not_locked' => $isLocked ),
+				array( 'not_'.$settingName => $settingValue ),
 				array( 'not_name' => $noticeName )
 			);
 		}
