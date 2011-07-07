@@ -57,85 +57,9 @@ class CentralNotice extends SpecialPage {
 		 	// Check authentication token
 		 	if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 				
-				// Handle removing campaigns
-				$toRemove = $wgRequest->getArray( 'removeNotices' );
-				if ( $toRemove ) {
-					// Remove campaigns in list
-					foreach ( $toRemove as $notice ) {
-						$this->removeNotice( $notice );
-					}
-	
-					// Skip subsequent form handling and show list of campaigns
-					$this->listNotices();
-					$wgOut->addHTML( Xml::closeElement( 'div' ) );
-					return;
-				}
-
-				// Handle locking/unlocking campaigns
-				$lockedNotices = $wgRequest->getArray( 'locked' );
-				if ( $lockedNotices ) {
-					// Build list of campaigns to lock
-					$unlockedNotices = array_diff( $this->getAllCampaignNames(), $lockedNotices );
-
-					// Set locked/unlocked flag accordingly
-					foreach ( $lockedNotices as $notice ) {
-						$this->updateLock( $notice, '1' );
-					}
-					foreach ( $unlockedNotices as $notice ) {
-						$this->updateLock( $notice, '0' );
-					}
-				// Handle updates if no post content came through (all checkboxes unchecked)
-				} elseif ( $method !== 'addNotice' ) {
-					$allNotices = $this->getAllCampaignNames();
-					foreach ( $allNotices as $notice ) {
-						$this->updateLock( $notice, '0' );
-					}
-				}
-
-				// Handle enabling/disabling campaigns
-				$enabledNotices = $wgRequest->getArray( 'enabled' );
-				if ( $enabledNotices ) {
-					// Build list of campaigns to disable
-					$disabledNotices = array_diff( $this->getAllCampaignNames(), $enabledNotices );
-
-					// Set enabled/disabled flag accordingly
-					foreach ( $enabledNotices as $notice ) {
-						$this->updateEnabled( $notice, '1' );
-					}
-					foreach ( $disabledNotices as $notice ) {
-						$this->updateEnabled( $notice, '0' );
-					}
-				// Handle updates if no post content came through (all checkboxes unchecked)
-				} elseif ( $method !== 'addNotice' ) {
-					$allNotices = $this->getAllCampaignNames();
-					foreach ( $allNotices as $notice ) {
-						$this->updateEnabled( $notice, '0' );
-					}
-				}
-
-				// Handle setting preferred campaigns
-				$preferredNotices = $wgRequest->getArray( 'preferred' );
-				if ( $preferredNotices ) {
-					// Build list of campaigns to unset 
-					$unsetNotices = array_diff( $this->getAllCampaignNames(), $preferredNotices );
-
-					// Set flag accordingly
-					foreach ( $preferredNotices as $notice ) {
-						$this->updatePreferred( $notice, '1' );
-					}
-					foreach ( $unsetNotices as $notice ) {
-						$this->updatePreferred( $notice, '0' );
-					}
-				// Handle updates if no post content came through (all checkboxes unchecked)
-				} elseif ( $method !== 'addNotice' ) {
-					$allNotices = $this->getAllCampaignNames();
-					foreach ( $allNotices as $notice ) {
-						$this->updatePreferred( $notice, '0' );
-					}
-				}
-
-				// Handle adding of campaign
+				// Handle adding a campaign
 				if ( $method == 'addNotice' ) {
+				
 					$noticeName        = $wgRequest->getVal( 'noticeName' );
 					$start             = $wgRequest->getArray( 'start' );
 					$projects          = $wgRequest->getArray( 'projects' );
@@ -147,6 +71,94 @@ class CentralNotice extends SpecialPage {
 					} else {
 						$this->addNotice( $noticeName, '0', $start, $projects,
 							$project_languages, $geotargeted, $geo_countries );
+					}
+					
+				// Handle changing settings to existing campaigns
+				} else {
+				
+					// Handle removing campaigns
+					$toRemove = $wgRequest->getArray( 'removeNotices' );
+					if ( $toRemove ) {
+						// Remove campaigns in list
+						foreach ( $toRemove as $notice ) {
+							$this->removeNotice( $notice );
+						}
+					}
+				
+					// Get all the initial campaign settings for logging
+					$allCampaignNames = $this->getAllCampaignNames();
+					$allInitialCampaignSettings = array();
+					foreach ( $allCampaignNames as $campaignName ) {
+						$allInitialCampaignSettings[$campaignName] = CentralNoticeDB::getCampaignSettings( $campaignName, false );
+					}
+	
+					// Handle locking/unlocking campaigns
+					$lockedNotices = $wgRequest->getArray( 'locked' );
+					if ( $lockedNotices ) {
+						// Build list of campaigns to lock
+						$unlockedNotices = array_diff( $this->getAllCampaignNames(), $lockedNotices );
+	
+						// Set locked/unlocked flag accordingly
+						foreach ( $lockedNotices as $notice ) {
+							$this->updateLock( $notice, '1' );
+						}
+						foreach ( $unlockedNotices as $notice ) {
+							$this->updateLock( $notice, '0' );
+						}
+					// Handle updates if no post content came through (all checkboxes unchecked)
+					} else {
+						$allNotices = $this->getAllCampaignNames();
+						foreach ( $allNotices as $notice ) {
+							$this->updateLock( $notice, '0' );
+						}
+					}
+	
+					// Handle enabling/disabling campaigns
+					$enabledNotices = $wgRequest->getArray( 'enabled' );
+					if ( $enabledNotices ) {
+						// Build list of campaigns to disable
+						$disabledNotices = array_diff( $this->getAllCampaignNames(), $enabledNotices );
+	
+						// Set enabled/disabled flag accordingly
+						foreach ( $enabledNotices as $notice ) {
+							$this->updateEnabled( $notice, '1' );
+						}
+						foreach ( $disabledNotices as $notice ) {
+							$this->updateEnabled( $notice, '0' );
+						}
+					// Handle updates if no post content came through (all checkboxes unchecked)
+					} else {
+						$allNotices = $this->getAllCampaignNames();
+						foreach ( $allNotices as $notice ) {
+							$this->updateEnabled( $notice, '0' );
+						}
+					}
+	
+					// Handle setting preferred campaigns
+					$preferredNotices = $wgRequest->getArray( 'preferred' );
+					if ( $preferredNotices ) {
+						// Build list of campaigns to unset 
+						$unsetNotices = array_diff( $this->getAllCampaignNames(), $preferredNotices );
+	
+						// Set flag accordingly
+						foreach ( $preferredNotices as $notice ) {
+							$this->updatePreferred( $notice, '1' );
+						}
+						foreach ( $unsetNotices as $notice ) {
+							$this->updatePreferred( $notice, '0' );
+						}
+					// Handle updates if no post content came through (all checkboxes unchecked)
+					} else {
+						$allNotices = $this->getAllCampaignNames();
+						foreach ( $allNotices as $notice ) {
+							$this->updatePreferred( $notice, '0' );
+						}
+					}
+					
+					// Get all the final campaign settings for logging
+					$allFinalCampaignSettings = array();
+					foreach ( $allCampaignNames as $campaignName ) {
+						$allFinalCampaignSettings[$campaignName] = CentralNoticeDB::getCampaignSettings( $campaignName, false );
 					}
 				}
 				

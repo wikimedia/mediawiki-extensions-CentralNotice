@@ -121,10 +121,11 @@ class CentralNoticeDB {
 	
 	/*
 	 * Return settings for a campaign
-	 * @param $campaignName The name of the campaign
+	 * @param $campaignName string: The name of the campaign
+	 * @param $detailed boolean: Whether or not to include targeting and banner assignment info
 	 * @return an array of settings
 	 */
-	static function getCampaignSettings( $campaignName ) {
+	static function getCampaignSettings( $campaignName, $detailed = true ) {
 		global $wgCentralDBname;
 		
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
@@ -158,24 +159,26 @@ class CentralNoticeDB {
 			);
 		}
 		
-		$projects = CentralNotice::getNoticeProjects( $campaignName );
-		$languages = CentralNotice::getNoticeLanguages( $campaignName );
-		$geo_countries = CentralNotice::getNoticeCountries( $campaignName );
-		$campaign['projects'] = implode( ", ", $projects );
-		$campaign['languages'] = implode( ", ", $languages );
-		$campaign['countries'] = implode( ", ", $geo_countries );
-		
-		$banners = CentralNoticeDB::getCampaignBanners( $row->not_id );
-		// Throw out the stuff we don't need for campaign logging
-		foreach ( $banners as $key => $row ) {
-			unset( $banners[$key]['display_anon'] );
-			unset( $banners[$key]['display_account'] );
-			unset( $banners[$key]['fundraising'] );
-			unset( $banners[$key]['landing_pages'] );
-			unset( $banners[$key]['campaign'] );
+		if ( $detailed ) {
+			$projects = CentralNotice::getNoticeProjects( $campaignName );
+			$languages = CentralNotice::getNoticeLanguages( $campaignName );
+			$geo_countries = CentralNotice::getNoticeCountries( $campaignName );
+			$campaign['projects'] = implode( ", ", $projects );
+			$campaign['languages'] = implode( ", ", $languages );
+			$campaign['countries'] = implode( ", ", $geo_countries );
+			
+			$banners = CentralNoticeDB::getCampaignBanners( $row->not_id );
+			// Throw out the stuff we don't need for campaign logging
+			foreach ( $banners as $key => $row ) {
+				unset( $banners[$key]['display_anon'] );
+				unset( $banners[$key]['display_account'] );
+				unset( $banners[$key]['fundraising'] );
+				unset( $banners[$key]['landing_pages'] );
+				unset( $banners[$key]['campaign'] );
+			}
+			// Encode into a JSON string for storage
+			$campaign['banners'] = FormatJson::encode( $banners );
 		}
-		// Encode into a JSON string for storage
-		$campaign['banners'] = FormatJson::encode( $banners );
 				
 		return $campaign;
 	}
