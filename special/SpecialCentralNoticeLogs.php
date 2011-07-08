@@ -80,17 +80,16 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		foreach( $campaignLogs as $campaignLog ) {
 			$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-log-entry' ) );
 			
-			// Timestamp
+			// Create a user object so we can pull the name, user page link, etc.
+			$loggedUser = User::newFromId( $campaignLog['user_id'] );
+			
 			$htmlOut .= Xml::tags( 'span', null,
-				$wgLang->date( $campaignLog['timestamp'] ) . ' ' . $wgLang->time( $campaignLog['timestamp'] )
+				$wgLang->date( $campaignLog['timestamp'] ) . ' ' // date
+				. $wgLang->time( $campaignLog['timestamp'] ) . ' ' // time
+				. $loggedUser->getName() . ' ' // user
+				. $campaignLog['action'] . ' '  // action
+				. $campaignLog['campaign_name']. ' '. strtolower( wfMsg( 'centralnotice-notice' ) ) // campaign
 			);
-			// User
-			$cnUser = User::newFromId( $campaignLog['user_id'] );
-			$htmlOut .= Xml::tags( 'span', null, $cnUser->getName() );
-			// Action
-			$htmlOut .= Xml::tags( 'span', null, $campaignLog['action'] );
-			// Campaign
-			$htmlOut .= Xml::tags( 'span', null, $campaignLog['campaign_name'] );
 			
 			$htmlOut .= Xml::closeElement( 'div', array( 'class' => 'cn-log-entry' ) );
 		}
@@ -106,13 +105,17 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$logs = array();
 
-		$results = $dbr->select( 'cn_notice_log', array(
-			'notlog_timestamp',
-			'notlog_user_id',
-			'notlog_action',
-			'notlog_not_id',
-			'notlog_not_name',
-			)
+		$results = $dbr->select( 'cn_notice_log', 
+			array(
+				'notlog_timestamp',
+				'notlog_user_id',
+				'notlog_action',
+				'notlog_not_id',
+				'notlog_not_name',
+			),
+			null,
+			__METHOD__,
+			array( 'ORDER BY' => 'notlog_timestamp DESC' )
 		);
 		foreach ( $results as $row ) {
 			$logs[] = array(
