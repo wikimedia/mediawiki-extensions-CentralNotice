@@ -1160,7 +1160,6 @@ class CentralNotice extends SpecialPage {
 			// Log the creation of the campaign
 			$beginSettings = array();
 			$endSettings = array(
-				'name' => $noticeName,
 				'projects' => implode( ", ", $projects ),
 				'languages' => implode( ", ", $project_languages ),
 				'countries' => implode( ", ", $geo_countries ),
@@ -1192,16 +1191,18 @@ class CentralNotice extends SpecialPage {
 			$this->showError( 'centralnotice-notice-is-locked' );
 			return;
 		} else {
+			// Log the removal of the campaign
+			$noticeId = $this->getNoticeId( $noticeName );
+			$this->logCampaignChange( 'removed', $noticeId );
+			
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
-			$noticeId = htmlspecialchars( $this->getNoticeId( $noticeName ) );
 			$res = $dbw->delete( 'cn_assignments',  array ( 'not_id' => $noticeId ) );
 			$res = $dbw->delete( 'cn_notices', array ( 'not_name' => $noticeName ) );
 			$res = $dbw->delete( 'cn_notice_languages', array ( 'nl_notice_id' => $noticeId ) );
+			$res = $dbw->delete( 'cn_notice_projects', array ( 'np_notice_id' => $noticeId ) );
+			$res = $dbw->delete( 'cn_notice_countries', array ( 'nc_notice_id' => $noticeId ) );
 			$dbw->commit();
-			
-			// Log the removal of the campaign
-			$this->logCampaignChange( 'removed', $noticeId );
 			
 			return;
 		}
@@ -1678,13 +1679,13 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Log any changes related to a campaign
 	 * @param $action string: 'created', 'modified', or 'removed'
-	 * @param $campaign integer: id of campaign
+	 * @param $campaignId integer: ID of campaign
 	 * @param $beginSettings array of campaign settings before changes (optional)
 	 * @param $endSettings array of campaign settings after changes (optional)
 	 * @param $beginAssignments array of banner assignments before changes (optional)
 	 * @param $endAssignments array of banner assignments after changes (optional)
 	 */
-	function logCampaignChange( $action, $campaign, $beginSettings = array(), 
+	function logCampaignChange( $action, $campaignId, $beginSettings = array(), 
 		$endSettings = array(), $beginAssignments = array(), $endAssignments = array() )
 	{
 		global $wgUser;
@@ -1695,7 +1696,8 @@ class CentralNotice extends SpecialPage {
 			'notlog_timestamp' => $dbw->timestamp(),
 			'notlog_user_id' => $wgUser->getId(),
 			'notlog_action' => $action,
-			'notlog_not_id' => $campaign
+			'notlog_not_id' => $campaignId,
+			'notlog_not_name' => $this->getNoticeName( $campaignId )
 		);
 		
 		foreach ( $beginSettings as $key => $value ) {

@@ -136,7 +136,6 @@ class CentralNoticeDB {
 		$row = $dbr->selectRow( 'cn_notices',
 			array(
 				'not_id',
-				'not_name',
 				'not_start',
 				'not_end',
 				'not_enabled',
@@ -149,7 +148,6 @@ class CentralNoticeDB {
 		);
 		if ( $row ) {
 			$campaign = array(
-				'name' => $row->not_name,
 				'start' => $row->not_start,
 				'end' => $row->not_end,
 				'enabled' => $row->not_enabled,
