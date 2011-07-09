@@ -421,6 +421,7 @@ $messages['ar'] = array(
 	'centralnotice' => 'مدير الإخطار المركزي',
 	'noticetemplate' => 'إداري الإخطار المركزي',
 	'bannerallocation' => 'أخطار الإداري المركزي',
+	'centralnoticelogs' => 'إداري الإخطار المركزي',
 	'right-centralnotice-admin' => 'أدر الإخطارات المركزية',
 	'action-centralnotice-admin' => 'التحكم بالإعلانات المركزية',
 	'centralnotice-desc' => 'يضيف إعلانا مركزيا للموقع',
@@ -552,6 +553,8 @@ $messages['ar'] = array(
 	'centralnotice-documentwrite-error' => 'لا يمكن إستخدام التعبير document.write()  في داخل الشعار.
 للحصول على مزيد من المعلومات راجع http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-preferred' => 'مفضل',
+	'centralnotice-logs' => 'سجلات',
+	'centralnotice-view-logs' => 'عرض السجلات',
 );
 
 /** Aramaic (ܐܪܡܝܐ)
@@ -3696,6 +3699,8 @@ Apondéd-nen ce-desot.',
 	'centralnotice-allocation-description' => 'Alocacion de baniére por $1.$2 en $3 :',
 	'centralnotice-percentage' => 'Porcentâjo',
 	'centralnotice-preferred' => 'Prèferâ',
+	'centralnotice-logs' => 'Jornals',
+	'centralnotice-view-logs' => 'Vêre los jornals',
 );
 
 /** Irish (Gaeilge)
@@ -4893,7 +4898,7 @@ $messages['ig'] = array(
 	'centralnotice-project-name' => 'Áhà orürü',
 	'centralnotice-start-date' => 'Bìdó ubochi',
 	'centralnotice-message' => 'Ozi',
-	'centralnotice-clone-name' => 'Áhà',
+	'centralnotice-clone-name' => 'Áhà:',
 );
 
 /** Ingush (ГІалгІай Ğalğaj)
@@ -5076,6 +5081,7 @@ $messages['ja'] = array(
 	'centralnotice' => '中央管理通知の管理',
 	'noticetemplate' => '中央管理通知の管理',
 	'bannerallocation' => '中央管理通知の管理',
+	'centralnoticelogs' => '中央管理通知管理',
 	'right-centralnotice-admin' => '中央管理通知の管理',
 	'action-centralnotice-admin' => '中央管理通知の管理',
 	'centralnotice-desc' => '中央管理のサイト通知を追加する',
@@ -5186,6 +5192,7 @@ $messages['ja'] = array(
 	'centralnotice-banner-type' => 'テンプレートの種類：',
 	'centralnotice-banner-hidable' => '固定/非表示可',
 	'centralnotice-banner-collapsible' => '折りたたみ',
+	'centralnotice-banner-fundraising' => 'これは資金調達のバナーです',
 	'centralnotice-geotargeted' => '対象地域',
 	'centralnotice-countries' => '国',
 	'centralnotice-allocation' => '割り当て',
@@ -11723,7 +11730,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-settings' => '设置',
 	'centralnotice-edit-template' => '编辑模板',
 	'centralnotice-edit-template-summary' => '欲创建一个可本地化的消息，请用三对花括号分隔含连字符的字符串，例如{{{jimbo-quote}}}。',
-	'centralnotice-message' => '消息',
+	'centralnotice-message' => '信息',
 	'centralnotice-message-not-set' => '没有设置消息',
 	'centralnotice-clone' => '建立副本',
 	'centralnotice-clone-notice' => '创建一个模板的副本',
