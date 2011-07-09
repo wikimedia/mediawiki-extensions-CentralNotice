@@ -57,6 +57,9 @@
 	margin-left:1.6em;
 	margin-right:1.6em;
 }
+#preferences table#cn-campaign-logs {
+	width: auto;
+}
 
 /* Vector-specific definitions */
 body.skin-vector #preferences fieldset.prefsection {

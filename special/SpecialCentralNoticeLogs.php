@@ -94,7 +94,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 }
 
 class CentralNoticeLogPager extends ReverseChronologicalPager {
-	var $special;
+	var $viewPage, $special;
 
 	function __construct( $special ) {
 		$this->special = $special;
@@ -103,6 +103,8 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		// Override paging defaults
 		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
 		$this->mLimitsShown = array( 20, 50, 100 );
+		
+		$this->viewPage = SpecialPage::getTitleFor( 'CentralNotice' );
 	}
 	
 	/**
@@ -133,10 +135,18 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	 */
 	function formatRow( $row ) {
 		global $wgLang;
-	
-		// Create a user object so we can pull the name, user page link, etc.
+		
+		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->notlog_user_id );
-	
+		// Create the user page link
+		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(), 
+			$loggedUser->getName() );
+		
+		// Create the campaign link
+		$campaignLink = $this->getSkin()->makeLinkObj( $this->viewPage,
+			htmlspecialchars( $row->notlog_not_name ),
+			'method=listNoticeDetail&notice=' . urlencode( $row->notlog_not_name ) );
+				
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
 		
@@ -144,13 +154,13 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 			$wgLang->date( $row->notlog_timestamp ) . ' ' . $wgLang->time( $row->notlog_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			$loggedUser->getName()
+			$userLink
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 			$row->notlog_action
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			$row->notlog_not_name
+			$campaignLink
 		);
 		
 		// End banner row
@@ -164,7 +174,7 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	 */
 	function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
+		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 4 ) );
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
 			 wfMsg ( 'centralnotice-timestamp' )
