@@ -146,6 +146,9 @@ Add one below.',
 	'centralnotice-preferred' => 'Preferred',
 	'centralnotice-logs' => 'Logs',
 	'centralnotice-view-logs' => 'View logs',
+	'centralnotice-timestamp' => 'Timestamp',
+	'centralnotice-user' => 'User',
+	'centralnotice-action' => 'Action',
 );
 
 /** Message documentation (Message documentation)

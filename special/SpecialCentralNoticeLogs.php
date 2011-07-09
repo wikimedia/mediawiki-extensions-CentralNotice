@@ -68,65 +68,126 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	 * Show a log.
 	 */
 	function showLog( $logType ) {
-		global $wgOut, $wgLang;
+		global $wgOut;
 		
+		$pager = new CentralNoticeLogPager( $this );
 		$htmlOut = '';
 		
 		// Begin log fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$campaignLogs = $this->getCampaignLogs();
-		
-		foreach( $campaignLogs as $campaignLog ) {
-			$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-log-entry' ) );
-			
-			// Create a user object so we can pull the name, user page link, etc.
-			$loggedUser = User::newFromId( $campaignLog['user_id'] );
-			
-			$htmlOut .= Xml::tags( 'span', null,
-				$wgLang->date( $campaignLog['timestamp'] ) . ' ' // date
-				. $wgLang->time( $campaignLog['timestamp'] ) . ' ' // time
-				. $loggedUser->getName() . ' ' // user
-				. $campaignLog['action'] . ' '  // action
-				. $campaignLog['campaign_name']. ' '. strtolower( wfMsg( 'centralnotice-notice' ) ) // campaign
-			);
-			
-			$htmlOut .= Xml::closeElement( 'div', array( 'class' => 'cn-log-entry' ) );
-		}
+		// Show paginated list of log entries
+		$htmlOut .= Xml::tags( 'div', 
+			array( 'class' => 'cn-pager' ), 
+			$pager->getNavigationBar() );
+		$htmlOut .= $pager->getBody();
+		$htmlOut .= Xml::tags( 'div', 
+			array( 'class' => 'cn-pager' ), 
+			$pager->getNavigationBar() );
 		
 		// End log fieldset
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
 	}
-	
-	function getCampaignLogs() {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$logs = array();
 
-		$results = $dbr->select( 'cn_notice_log', 
-			array(
+}
+
+class CentralNoticeLogPager extends ReverseChronologicalPager {
+	var $special;
+
+	function __construct( $special ) {
+		$this->special = $special;
+		parent::__construct();
+		
+		// Override paging defaults
+		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
+		$this->mLimitsShown = array( 20, 50, 100 );
+	}
+	
+	/**
+	 * Sort the log list by timestamp
+	 */
+	function getIndexField() {
+		return 'notlog_timestamp';
+	}
+	
+	/**
+	 * Pull log entries from the database
+	 */
+	function getQueryInfo() {
+		return array(
+			'tables' => array( 'cn_notice_log' ),
+			'fields' => array(
 				'notlog_timestamp',
 				'notlog_user_id',
 				'notlog_action',
 				'notlog_not_id',
 				'notlog_not_name',
-			),
-			null,
-			__METHOD__,
-			array( 'ORDER BY' => 'notlog_timestamp DESC' )
+			)
 		);
-		foreach ( $results as $row ) {
-			$logs[] = array(
-				'timestamp' => $row->notlog_timestamp,
-				'user_id' => $row->notlog_user_id,
-				'action' => $row->notlog_action,
-				'campaign_id' => $row->notlog_not_id,
-				'campaign_name' => $row->notlog_not_name,
-			);
-		}
-		return $logs;
 	}
-
+	
+	/**
+	 * Generate the content of each table row (1 row = 1 log entry)
+	 */
+	function formatRow( $row ) {
+		global $wgLang;
+	
+		// Create a user object so we can pull the name, user page link, etc.
+		$loggedUser = User::newFromId( $row->notlog_user_id );
+	
+		// Begin banner row
+		$htmlOut = Xml::openElement( 'tr' );
+		
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$wgLang->date( $row->notlog_timestamp ) . ' ' . $wgLang->time( $row->notlog_timestamp )
+		);
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$loggedUser->getName()
+		);
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$row->notlog_action
+		);
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$row->notlog_not_name
+		);
+		
+		// End banner row
+		$htmlOut .= Xml::closeElement( 'tr' );
+		
+		return $htmlOut;
+	}
+	
+	/**
+	 * Specify table headers
+	 */
+	function getStartBody() {
+		$htmlOut = '';
+		$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+			 wfMsg ( 'centralnotice-timestamp' )
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+			 wfMsg ( 'centralnotice-user' )
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+			 wfMsg ( 'centralnotice-action' )
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+			wfMsg ( 'centralnotice-notice' )
+		);
+		$htmlOut .= Xml::closeElement( 'tr' );
+		return $htmlOut;
+	}
+	
+	/**
+	 * Close table
+	 */
+	function getEndBody() {
+		$htmlOut = '';
+		$htmlOut .= Xml::closeElement( 'table' );
+		return $htmlOut;
+	}
 }
