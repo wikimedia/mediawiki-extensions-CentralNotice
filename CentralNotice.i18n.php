@@ -7641,6 +7641,9 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-preferred' => 'Preferowany',
 	'centralnotice-logs' => 'Rejestr operacji',
 	'centralnotice-view-logs' => 'Rejestr odsłon',
+	'centralnotice-timestamp' => 'Data i czas',
+	'centralnotice-user' => 'Użytkownik',
+	'centralnotice-action' => 'Akcja',
 );
 
 /** Piedmontese (Piemontèis)
@@ -9864,6 +9867,7 @@ $messages['su'] = array(
  * @author Cohan
  * @author Fluff
  * @author Lejonel
+ * @author Lokal Profil
  * @author M.M.S.
  * @author Najami
  * @author Tobulos1
@@ -10000,6 +10004,11 @@ Lägg till ett nedan',
 	'centralnotice-documentwrite-error' => 'document.write() kan inte användas inom en banner. 
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-preferred' => 'Föredragen',
+	'centralnotice-logs' => 'Loggar',
+	'centralnotice-view-logs' => 'Visa loggar',
+	'centralnotice-timestamp' => 'Tidsstämpel',
+	'centralnotice-user' => 'Användare',
+	'centralnotice-action' => 'Åtgärd',
 );
 
 /** Swahili (Kiswahili)
