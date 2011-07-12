@@ -161,7 +161,7 @@ class CentralNotice extends SpecialPage {
 						$diffs = array_diff_assoc( $allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
 						// If there are changes, log them
 						if ( $diffs ) {
-							$campaignId = $this->getNoticeId( $notice );
+							$campaignId = $this->getNoticeId( $campaignName );
 							$this->logCampaignChange( 'modified', $campaignId, $allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
 						}
 					}
