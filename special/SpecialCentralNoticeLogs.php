@@ -137,6 +137,8 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		// Create the user page link
 		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(), 
 			$loggedUser->getName() );
+		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(), 
+			wfMsg ( 'centralnotice-talk-link' ) );
 		
 		// Create the campaign link
 		$campaignLink = $this->getSkin()->makeLinkObj( $this->viewPage,
@@ -158,7 +160,7 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 			$wgLang->date( $row->notlog_timestamp ) . ' ' . $wgLang->time( $row->notlog_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$userLink
+			$userLink.' ('.$userTalkLink.')'
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$row->notlog_action
@@ -337,13 +339,13 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
 			 wfMsg ( 'centralnotice-timestamp' )
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
 			 wfMsg ( 'centralnotice-user' )
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 100px;' ),
 			 wfMsg ( 'centralnotice-action' )
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
 			wfMsg ( 'centralnotice-notice' )
 		);
 		$htmlOut .= Xml::tags( 'td', array(),
