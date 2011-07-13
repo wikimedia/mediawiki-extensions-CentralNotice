@@ -1,3 +1,17 @@
+function toggleDisplay( logId ) {
+	var thisCollapsed = document.getElementById( 'cn-collapsed-'+logId );
+	var thisUncollapsed = document.getElementById( 'cn-uncollapsed-'+logId );
+	var thisDetails = document.getElementById( 'cn-log-details-'+logId );
+	if ( thisCollapsed.style.display == "none" ) {
+		thisUncollapsed.style.display = "none";
+		thisCollapsed.style.display = "block";
+		thisDetails.style.display = "none";
+	} else {
+		thisCollapsed.style.display = "none";
+		thisUncollapsed.style.display = "block";
+		thisDetails.style.display = "table-row";
+	}
+}
 function selectProjects( selectAll ) {
 	var selectBox = document.getElementById('projects[]');
 	var firstSelect = selectBox.options.length - 1;

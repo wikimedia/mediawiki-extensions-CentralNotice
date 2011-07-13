@@ -556,7 +556,7 @@ class CentralNotice extends SpecialPage {
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), 
-				Xml::label( wfMsg( 'centralnotice-geotargeted' ), 'geotargeted' ) );
+				Xml::label( wfMsg( 'centralnotice-geo' ), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(), 
 				Xml::check( 'geotargeted', false, 
 					wfArrayMerge( $readonly, array( 'value' => 1, 'id' => 'geotargeted' ) ) ) );
@@ -880,7 +880,7 @@ class CentralNotice extends SpecialPage {
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), 
-				Xml::label( wfMsg( 'centralnotice-geotargeted' ), 'geotargeted' ) );
+				Xml::label( wfMsg( 'centralnotice-geo' ), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(), 
 				Xml::check( 'geotargeted', $isGeotargeted, 
 					wfArrayMerge( 

@@ -60,6 +60,15 @@
 #preferences table#cn-campaign-logs {
 	width: auto;
 }
+#preferences table#cn-campaign-logs td.primary {
+	background-color: #F0F0F0;
+}
+#preferences .cn-new-value {
+	color: #006400;
+}
+#preferences .cn-old-value {
+	color: #8B0000;
+}
 
 /* Vector-specific definitions */
 body.skin-vector #preferences fieldset.prefsection {

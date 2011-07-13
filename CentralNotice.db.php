@@ -165,17 +165,15 @@ class CentralNoticeDB {
 			$campaign['languages'] = implode( ", ", $languages );
 			$campaign['countries'] = implode( ", ", $geo_countries );
 			
-			$banners = CentralNoticeDB::getCampaignBanners( $row->not_id );
-			// Throw out the stuff we don't need for campaign logging
-			foreach ( $banners as $key => $row ) {
-				unset( $banners[$key]['display_anon'] );
-				unset( $banners[$key]['display_account'] );
-				unset( $banners[$key]['fundraising'] );
-				unset( $banners[$key]['landing_pages'] );
-				unset( $banners[$key]['campaign'] );
+			$bannersIn = CentralNoticeDB::getCampaignBanners( $row->not_id );
+			$bannersOut = array();
+			// All we want are the banner names and weights
+			foreach ( $bannersIn as $key => $row ) {
+				$outKey = $bannersIn[$key]['name'];
+				$bannersOut[$outKey] = $bannersIn[$key]['weight'];
 			}
 			// Encode into a JSON string for storage
-			$campaign['banners'] = FormatJson::encode( $banners );
+			$campaign['banners'] = FormatJson::encode( $bannersOut );
 		}
 				
 		return $campaign;
