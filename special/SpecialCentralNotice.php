@@ -161,7 +161,7 @@ class CentralNotice extends SpecialPage {
 						$diffs = array_diff_assoc( $allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
 						// If there are changes, log them
 						if ( $diffs ) {
-							$campaignId = $this->getNoticeId( $campaignName );
+							$campaignId = CentralNotice::getNoticeId( $campaignName );
 							$this->logCampaignChange( 'modified', $campaignId, $allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
 						}
 					}
@@ -383,7 +383,7 @@ class CentralNotice extends SpecialPage {
 						'method=listNoticeDetail&notice=' . urlencode( $row->not_name ) );
 
 				// Projects
-				$projects = $this->getNoticeProjects( $row->not_name );
+				$projects = CentralNotice::getNoticeProjects( $row->not_name );
 				$project_count = count( $projects );
 				$projectList = '';
 				if ( $project_count > 1 ) {
@@ -405,7 +405,7 @@ class CentralNotice extends SpecialPage {
 				$fields[] = $projectList;
 
 				// Languages
-				$project_langs = $this->getNoticeLanguages( $row->not_name );
+				$project_langs = CentralNotice::getNoticeLanguages( $row->not_name );
 				$language_count = count( $project_langs );
 				$languageList = '';
 				if ( $language_count > 3 ) {
@@ -711,7 +711,7 @@ class CentralNotice extends SpecialPage {
 					}
 					
 					$finalCampaignSettings = CentralNoticeDB::getCampaignSettings( $notice );
-					$campaignId = $this->getNoticeId( $notice );
+					$campaignId = CentralNotice::getNoticeId( $notice );
 					$this->logCampaignChange( 'modified', $campaignId, $initialCampaignSettings, $finalCampaignSettings );
 					
 					// If there were no errors, reload the page to prevent duplicate form submission
@@ -831,10 +831,10 @@ class CentralNotice extends SpecialPage {
 				$isEnabled = ( $campaign['enabled'] == '1' );
 				$isPreferred = ( $campaign['preferred'] == '1' );
 				$isLocked = ( $campaign['locked'] == '1' );
-				$noticeProjects = $this->getNoticeProjects( $notice );
-				$noticeLanguages = $this->getNoticeLanguages( $notice );
+				$noticeProjects = CentralNotice::getNoticeProjects( $notice );
+				$noticeLanguages = CentralNotice::getNoticeLanguages( $notice );
 				$isGeotargeted = ( $campaign['geo'] == '1' );
-				$countries = $this->getNoticeCountries( $notice );
+				$countries = CentralNotice::getNoticeCountries( $notice );
 			}
 		
 			// Build Html
@@ -1192,7 +1192,7 @@ class CentralNotice extends SpecialPage {
 			return;
 		} else {
 			// Log the removal of the campaign
-			$noticeId = $this->getNoticeId( $noticeName );
+			$noticeId = CentralNotice::getNoticeId( $noticeName );
 			$this->logCampaignChange( 'removed', $noticeId );
 			
 			$dbw = wfGetDB( DB_MASTER );
@@ -1212,7 +1212,7 @@ class CentralNotice extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$eNoticeName = htmlspecialchars ( $noticeName );
-		$noticeId = $this->getNoticeId( $eNoticeName );
+		$noticeId = CentralNotice::getNoticeId( $eNoticeName );
 		$templateId = $this->getTemplateId( $templateName );
 		$res = $dbr->select( 'cn_assignments', 'asn_id',
 			array(
@@ -1225,7 +1225,7 @@ class CentralNotice extends SpecialPage {
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
-			$noticeId = $this->getNoticeId( $eNoticeName );
+			$noticeId = CentralNotice::getNoticeId( $eNoticeName );
 			$res = $dbw->insert( 'cn_assignments',
 				array(
 					'tmp_id' => $templateId,
@@ -1321,7 +1321,7 @@ class CentralNotice extends SpecialPage {
 	function removeTemplateFor( $noticeName, $templateName ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
-		$noticeId = $this->getNoticeId( $noticeName );
+		$noticeId = CentralNotice::getNoticeId( $noticeName );
 		$templateId = $this->getTemplateId( $templateName );
 		$dbw->delete( 'cn_assignments', array ( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
 		$dbw->commit();
@@ -1378,7 +1378,7 @@ class CentralNotice extends SpecialPage {
 
 	function updateWeight( $noticeName, $templateId, $weight ) {
 		 $dbw = wfGetDB( DB_MASTER );
-		 $noticeId = $this->getNoticeId( $noticeName );
+		 $noticeId = CentralNotice::getNoticeId( $noticeName );
 		 $dbw->update( 'cn_assignments',
 		 	array ( 'tmp_weight' => $weight ),
 		 	array(
@@ -1523,7 +1523,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->begin();
 		
 		// Get the previously assigned projects
-		$oldProjects = $this->getNoticeProjects( $notice );
+		$oldProjects = CentralNotice::getNoticeProjects( $notice );
 		
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
@@ -1552,7 +1552,7 @@ class CentralNotice extends SpecialPage {
 		$dbw->begin();
 		
 		// Get the previously assigned languages
-		$oldLanguages = $this->getNoticeLanguages( $notice );
+		$oldLanguages = CentralNotice::getNoticeLanguages( $notice );
 		
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
@@ -1580,7 +1580,7 @@ class CentralNotice extends SpecialPage {
 		$dbw = wfGetDB( DB_MASTER );
 		
 		// Get the previously assigned languages
-		$oldCountries = $this->getNoticeCountries( $notice );
+		$oldCountries = CentralNotice::getNoticeCountries( $notice );
 		
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
@@ -1697,7 +1697,7 @@ class CentralNotice extends SpecialPage {
 			'notlog_user_id' => $wgUser->getId(),
 			'notlog_action' => $action,
 			'notlog_not_id' => $campaignId,
-			'notlog_not_name' => $this->getNoticeName( $campaignId )
+			'notlog_not_name' => CentralNotice::getNoticeName( $campaignId )
 		);
 		
 		foreach ( $beginSettings as $key => $value ) {
