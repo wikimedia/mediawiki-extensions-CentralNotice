@@ -957,6 +957,15 @@ $messages['ba'] = array(
 	'centralnotice-preferred' => 'Өҫтөнлөк бирелгән',
 );
 
+/** Bavarian (Boarisch)
+ * @author Mucalexx
+ */
+$messages['bar'] = array(
+	'centralnotice-translate-to' => 'Ywersetzen auf',
+	'centralnotice-translate' => 'Ywersetzen',
+	'centralnotice-english' => 'Englisch',
+);
+
 /** Southern Balochi (بلوچی مکرانی)
  * @author Mostafadaneshvar
  */
@@ -4105,6 +4114,7 @@ $messages['he'] = array(
 	'centralnotice-list-templates' => 'רשימת תבניות',
 	'centralnotice-multiple-projects' => 'מרובים ($1)',
 	'centralnotice-multiple-languages' => 'מרובות ($1)',
+	'centralnotice-multiple-countries' => 'מרובות ($1)',
 	'centralnotice-all-projects' => 'כל המיזמים',
 	'centralnotice-translations' => 'תרגומים',
 	'centralnotice-translate-to' => 'תרגום ל',
@@ -4215,6 +4225,14 @@ $messages['he'] = array(
 	'centralnotice-timestamp' => 'חותם זמן',
 	'centralnotice-user' => 'משתמש',
 	'centralnotice-action' => 'פעולה',
+	'centralnotice-changed' => 'שונה מהערך <span class="cn-old-value">$1</span> לערך <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'פעיל',
+	'centralnotice-off' => 'כבוי',
+	'centralnotice-added' => 'נוסף: <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'הוסר: <span class="cn-old-value">$1</span>',
+	'centralnotice-banners-changed' => 'הקצאות של כרזות שונו',
+	'centralnotice-no-assignments' => 'לא הוקצו כרזות',
+	'centralnotice-talk-link' => 'שיחה',
 );
 
 /** Hindi (हिन्दी)
@@ -4682,6 +4700,7 @@ Illo pote tamben esser usate pro adder o remover avisos ancian.',
 	'centralnotice-list-templates' => 'Listar bandieras',
 	'centralnotice-multiple-projects' => 'multiple ($1)',
 	'centralnotice-multiple-languages' => 'multiple ($1)',
+	'centralnotice-multiple-countries' => 'Multiple ($1)',
 	'centralnotice-all-projects' => 'Tote le projectos',
 	'centralnotice-translations' => 'Traductiones',
 	'centralnotice-translate-to' => 'Traducer in',
@@ -4792,6 +4811,14 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
 	'centralnotice-timestamp' => 'Data e hora',
 	'centralnotice-user' => 'Usator',
 	'centralnotice-action' => 'Action',
+	'centralnotice-changed' => 'Cambiate de <span class="cn-old-value">$1</span> a <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'active',
+	'centralnotice-off' => 'inactive',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> addite',
+	'centralnotice-removed' => '<span class="cn-old-value">$1</span> removite',
+	'centralnotice-banners-changed' => 'Assignationes de bandieras ha essite cambiate',
+	'centralnotice-no-assignments' => 'nulle bandieras assignate',
+	'centralnotice-talk-link' => 'discussion',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -5934,6 +5961,7 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-list-templates' => 'Lëscht vun de Banneren',
 	'centralnotice-multiple-projects' => 'méi ($1)',
 	'centralnotice-multiple-languages' => 'méi ($1)',
+	'centralnotice-multiple-countries' => 'Méi ($1)',
 	'centralnotice-all-projects' => 'All Projeten',
 	'centralnotice-translations' => 'Iwwersetzungen',
 	'centralnotice-translate-to' => 'Iwwersetzen op',
@@ -6038,6 +6066,11 @@ Setzt eng hei ënnendrënner bäi.',
 Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.',
 	'centralnotice-preferred' => 'Am léiwsten',
 	'centralnotice-logs' => 'Logbicher',
+	'centralnotice-user' => 'Benotzer',
+	'centralnotice-action' => 'Aktioun',
+	'centralnotice-on' => 'un',
+	'centralnotice-off' => 'aus',
+	'centralnotice-talk-link' => 'Diskussioun',
 );
 
 /** Lingua Franca Nova (Lingua Franca Nova)
@@ -6414,6 +6447,7 @@ $messages['mk'] = array(
 	'centralnotice-list-templates' => 'Наведи шаблони',
 	'centralnotice-multiple-projects' => 'повеќе ($1)',
 	'centralnotice-multiple-languages' => 'повеќе ($1)',
+	'centralnotice-multiple-countries' => 'Повеќе ($1)',
 	'centralnotice-all-projects' => 'Сите проекти',
 	'centralnotice-translations' => 'Преводи',
 	'centralnotice-translate-to' => 'Преведи на',
@@ -6523,6 +6557,14 @@ $messages['mk'] = array(
 	'centralnotice-timestamp' => 'Време и датум',
 	'centralnotice-user' => 'Корисник',
 	'centralnotice-action' => 'Дејство',
+	'centralnotice-changed' => 'Изменето од <span class="cn-old-value">$1</span> на <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'вкл',
+	'centralnotice-off' => 'искл',
+	'centralnotice-added' => 'Додадено <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Отстрането <span class="cn-old-value">$1</span>',
+	'centralnotice-banners-changed' => 'Задавањата на плакатите се изменети',
+	'centralnotice-no-assignments' => 'нема зададено плакати',
+	'centralnotice-talk-link' => 'разговор',
 );
 
 /** Malayalam (മലയാളം)
@@ -6560,6 +6602,7 @@ $messages['ml'] = array(
 	'centralnotice-list-templates' => 'ഫലകങ്ങൾ പട്ടികവത്കരിക്കുക',
 	'centralnotice-multiple-projects' => 'നിരവധി ($1)',
 	'centralnotice-multiple-languages' => 'നിരവധി ($1)',
+	'centralnotice-multiple-countries' => 'നിരവധി ($1)',
 	'centralnotice-all-projects' => 'എല്ലാ പദ്ധതികളും',
 	'centralnotice-translations' => 'പരിഭാഷകൾ',
 	'centralnotice-translate-to' => 'ഇതിലേയ്ക്ക് തർജ്ജമ ചെയ്യുക',
@@ -6669,6 +6712,12 @@ $messages['ml'] = array(
 	'centralnotice-timestamp' => 'സമയമുദ്ര',
 	'centralnotice-user' => 'ഉപയോക്താവ്',
 	'centralnotice-action' => 'നടപടി',
+	'centralnotice-changed' => '<span class="cn-old-value">$1</span> എന്നത് <span class="cn-new-value">$2</span> എന്നാക്കി മാറ്റിയിരിക്കുന്നു',
+	'centralnotice-on' => 'സജ്ജമാക്കുക',
+	'centralnotice-off' => 'പ്രവർത്തനരഹിതമാക്കുക',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> കൂട്ടിച്ചേർത്തിരിക്കുന്നു',
+	'centralnotice-removed' => '<span class="cn-old-value">$1</span> നീക്കം ചെയ്തിരിക്കുന്നു',
+	'centralnotice-talk-link' => 'സംവാദം',
 );
 
 /** Mongolian (Монгол)
@@ -7949,8 +7998,8 @@ Também pode ser usado para adicionar avisos novos ou remover antigos.',
 	'centralnotice-add-template' => 'Adicionar um modelo',
 	'centralnotice-show-notices' => 'Mostrar avisos',
 	'centralnotice-list-templates' => 'Listar modelos',
-	'centralnotice-multiple-projects' => 'múltiplas ($1)',
-	'centralnotice-multiple-languages' => 'múltiplas ($1)',
+	'centralnotice-multiple-projects' => 'Múltiplos ($1)',
+	'centralnotice-multiple-languages' => 'Múltiplas ($1)',
 	'centralnotice-multiple-countries' => 'Múltiplos ($1)',
 	'centralnotice-all-projects' => 'Todos os projetos',
 	'centralnotice-translations' => 'Traduções',
@@ -8065,6 +8114,11 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-changed' => 'Alterado de <span class="cn-old-value">$1</span> para <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'activo',
 	'centralnotice-off' => 'inactivo',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> foi adicionado',
+	'centralnotice-removed' => '<span class="cn-old-value">$1</span> foi removido',
+	'centralnotice-banners-changed' => 'As atribuições de modelos foram alteradas',
+	'centralnotice-no-assignments' => 'não há modelos atribuídos',
+	'centralnotice-talk-link' => 'discussão',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -8104,6 +8158,7 @@ Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-list-templates' => 'Listar modelos',
 	'centralnotice-multiple-projects' => 'múltiplas ($1)',
 	'centralnotice-multiple-languages' => 'múltiplas ($1)',
+	'centralnotice-multiple-countries' => 'Múltiplos ($1)',
 	'centralnotice-all-projects' => 'Todos os projetos',
 	'centralnotice-translations' => 'Traduções',
 	'centralnotice-translate-to' => 'Traduzir para',
@@ -8211,6 +8266,17 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-preferred' => 'Preferido',
 	'centralnotice-logs' => 'Registros',
 	'centralnotice-view-logs' => 'Ver registros',
+	'centralnotice-timestamp' => 'Data e hora',
+	'centralnotice-user' => 'Usuário',
+	'centralnotice-action' => 'Ação',
+	'centralnotice-changed' => 'Alterado de <span class="cn-old-value">$1</span> para <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'ativo',
+	'centralnotice-off' => 'inativo',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> foi adicionado',
+	'centralnotice-removed' => '<span class="cn-old-value">$1</span> foi removido',
+	'centralnotice-banners-changed' => 'As atribuições do banner foram alteradas',
+	'centralnotice-no-assignments' => 'não há banners atribuídos',
+	'centralnotice-talk-link' => 'discussão',
 );
 
 /** Quechua (Runa Simi)
