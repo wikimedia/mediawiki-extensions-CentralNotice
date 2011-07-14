@@ -159,6 +159,7 @@ Add one below.',
 	'centralnotice-banners-changed' => 'Banner assignments were changed',
 	'centralnotice-no-assignments' => 'no banners assigned',
 	'centralnotice-talk-link' => 'talk',
+	'centralnotice-user-links' => '$1 ($2)',
 );
 
 /** Message documentation (Message documentation)
@@ -249,6 +250,7 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-action' => '{{Identical|Action}}',
 	'centralnotice-no-assignments' => 'Appears in the middle of a sentence; should be all lower case.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.',
+	'centralnotice-user-links' => '$1 is a link to the user page, $2 is a link to the user talk page.',
 );
 
 /** Afrikaans (Afrikaans)

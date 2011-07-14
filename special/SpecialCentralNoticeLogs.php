@@ -160,7 +160,7 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 			$wgLang->date( $row->notlog_timestamp ) . ' ' . $wgLang->time( $row->notlog_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$userLink.' ('.$userTalkLink.')'
+			wfMsg ( 'centralnotice-user-links', $userLink, $userTalkLink )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$row->notlog_action
