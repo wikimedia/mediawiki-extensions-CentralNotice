@@ -200,14 +200,21 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	function showInitialSettings( $row ) {
 		global $wgLang;
 		$details = '';
-		$details .= '<b>'.wfMsg ( 'centralnotice-start-date' ).':</b> '.
-			$wgLang->date( $row->notlog_end_start ).' '.
-			$wgLang->time( $row->notlog_end_start )."<br/>";
-		$details .= '<b>'.wfMsg ( 'centralnotice-end-date' ).':</b> '.
-			$wgLang->date( $row->notlog_end_end ).' '.
-			$wgLang->time( $row->notlog_end_end )."<br/>";
-		$details .= '<b>'.wfMsg ( 'centralnotice-projects' ).':</b> '.
-			$row->notlog_end_projects."<br/>";
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-start-date' ), 
+			$wgLang->date( $row->notlog_end_start ).' '.$wgLang->time( $row->notlog_end_start )
+		)."<br/>";
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-end-date' ),
+			$wgLang->date( $row->notlog_end_end ).' '.$wgLang->time( $row->notlog_end_end )
+		)."<br/>";
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-projects' ),
+			$row->notlog_end_projects
+		)."<br/>";
 		$language_count = count( explode ( ', ', $row->notlog_end_languages ) );
 		$languageList = '';
 		if ( $language_count > 15 ) {
@@ -215,11 +222,16 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		} elseif ( $language_count > 0 ) {
 			$languageList = $row->notlog_end_languages;
 		}
-		$details .= '<b>'.wfMsg ( 'centralnotice-languages' ).':</b> '.
-			$languageList."<br/>";
-		$details .= '<b>'.wfMsg ( 'centralnotice-geo' ).':</b> ';
-		$details .= $row->notlog_end_geo ? 'on' : 'off';
-		$details .= "<br/>";
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-languages' ),
+			$languageList
+		)."<br/>";
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-geo' ),
+			($row->notlog_end_geo ? 'on' : 'off')
+		)."<br/>";
 		if ( $row->notlog_end_geo ) {
 			$country_count = count( explode ( ', ', $row->notlog_end_countries ) );
 			$countryList = '';
@@ -228,8 +240,11 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 			} elseif ( $country_count > 0 ) {
 				$countryList = $row->notlog_end_countries;
 			}
-			$details .= '<b>'.wfMsg ( 'centralnotice-countries' ).':</b> '.
-				$countryList."<br/>";
+			$details .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-countries' ),
+				$countryList
+			)."<br/>";
 		}
 		return $details;
 	}
@@ -238,16 +253,26 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		global $wgLang;
 		$details = '';
 		if ( $row->notlog_begin_start !== $row->notlog_end_start ) {
-			$details .= '<b>'.wfMsg ( 'centralnotice-start-date' ).':</b> ';
-			$details .= wfMsg ( 'centralnotice-changed', 
-				$wgLang->date( $row->notlog_begin_start ).' '.$wgLang->time( $row->notlog_begin_start ), 
-				$wgLang->date( $row->notlog_end_start ).' '.$wgLang->time( $row->notlog_end_start ) )."<br/>";
+			$details .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-start-date' ),
+				wfMsg (
+					'centralnotice-changed', 
+					$wgLang->date( $row->notlog_begin_start ).' '.$wgLang->time( $row->notlog_begin_start ), 
+					$wgLang->date( $row->notlog_end_start ).' '.$wgLang->time( $row->notlog_end_start )
+				)
+			)."<br/>";
 		}
 		if ( $row->notlog_begin_end !== $row->notlog_end_end ) {
-			$details .= '<b>'.wfMsg ( 'centralnotice-end-date' ).':</b> ';
-			$details .= wfMsg ( 'centralnotice-changed', 
-				$wgLang->date( $row->notlog_begin_end ).' '.$wgLang->time( $row->notlog_begin_end ), 
-				$wgLang->date( $row->notlog_end_end ).' '.$wgLang->time( $row->notlog_end_end ) )."<br/>";
+			$details .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-end-date' ),
+				wfMsg (
+					'centralnotice-changed', 
+					$wgLang->date( $row->notlog_begin_end ).' '.$wgLang->time( $row->notlog_begin_end ), 
+					$wgLang->date( $row->notlog_end_end ).' '.$wgLang->time( $row->notlog_end_end )
+				)
+			)."<br/>";
 		}
 		$details .= $this->testBooleanChange( 'enabled', $row );
 		$details .= $this->testBooleanChange( 'preferred', $row );
@@ -268,7 +293,6 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 			foreach( $endBannersObject as $key => $weight ) {
 				$endBanners[$key] = $key.' ('.$weight.')';
 			}
-			$details .= '<b>'.wfMsg ( 'centralnotice-templates' ).':</b> ';
 			if ( $beginBanners ) {
 				$before = implode( ', ', $beginBanners );
 			} else {
@@ -279,7 +303,11 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 			} else {
 				$after = wfMsg ( 'centralnotice-no-assignments' );
 			}
-			$details .= wfMsg ( 'centralnotice-changed', $before, $after) . "<br/>";
+			$details .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-templates' ),
+				wfMsg ( 'centralnotice-changed', $before, $after)
+			)."<br/>";
 		}
 		return $details;
 	}
@@ -289,10 +317,15 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		$beginField = 'notlog_begin_'.$param;
 		$endField = 'notlog_end_'.$param;
 		if ( $row->$beginField !== $row->$endField ) {
-			$result .= '<b>'.wfMsg ( 'centralnotice-'.$param ).':</b> ';
-			$result .= wfMsg ( 'centralnotice-changed', 
-				( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ), 
-				( $row->$endField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ) )."<br/>";
+			$result .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-'.$param ),
+				wfMsg (
+					'centralnotice-changed', 
+					( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ), 
+					( $row->$endField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) )
+				)
+			)."<br/>";
 		}
 		return $result;
 	}
@@ -312,18 +345,19 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 			}
 			$added = array_diff( $endSet, $beginSet );
 			$removed = array_diff( $beginSet, $endSet );
-			$result .= '<b>'.wfMsg ( 'centralnotice-'.$param ).':</b> ';
+			$differences = '';
 			if ( $added ) {
-				$result .= wfMsg ( 'centralnotice-added', implode( ', ', $added ) );
-				if ( $removed ) {
-					$result .= '; ';
-				} else {
-					$result .= '<br/>';
-				}
+				$differences .= wfMsg ( 'centralnotice-added', implode( ', ', $added ) );
+				if ( $removed ) $differences .= '; ';
 			}
 			if ( $removed ) {
-				$result .= wfMsg ( 'centralnotice-removed', implode( ', ', $removed ) ).'<br/>';
+				$differences .= wfMsg ( 'centralnotice-removed', implode( ', ', $removed ) );
 			}
+			$result .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-'.$param ),
+				$differences
+			)."<br/>";
 		}
 		return $result;
 	}

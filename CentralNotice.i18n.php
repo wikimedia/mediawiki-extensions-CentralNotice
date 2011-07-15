@@ -160,6 +160,7 @@ Add one below.',
 	'centralnotice-no-assignments' => 'no banners assigned',
 	'centralnotice-talk-link' => 'talk',
 	'centralnotice-user-links' => '$1 ($2)',
+	'centralnotice-log-label' => '<span class="cn-log-label">$1:</span> $2',
 );
 
 /** Message documentation (Message documentation)
@@ -251,6 +252,7 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-no-assignments' => 'Appears in the middle of a sentence; should be all lower case.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.',
 	'centralnotice-user-links' => '$1 is a link to the user page, $2 is a link to the user talk page.',
+	'centralnotice-log-label' => '$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
 );
 
 /** Afrikaans (Afrikaans)
