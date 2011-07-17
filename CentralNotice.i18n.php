@@ -6092,6 +6092,7 @@ Setzt eng hei ënnendrënner bäi.',
 Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.',
 	'centralnotice-preferred' => 'Am léiwsten',
 	'centralnotice-logs' => 'Logbicher',
+	'centralnotice-view-logs' => 'Logbicher weisen',
 	'centralnotice-timestamp' => 'Zäitstempel',
 	'centralnotice-user' => 'Benotzer',
 	'centralnotice-action' => 'Aktioun',
@@ -7289,6 +7290,8 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-off' => 'af',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> toegevoegd',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> verwijderd',
+	'centralnotice-banners-changed' => 'Bannertoewijzingen zijn gewijzigd',
+	'centralnotice-no-assignments' => 'geen banners toegewezen',
 	'centralnotice-talk-link' => 'overleg',
 );
 
@@ -10073,6 +10076,7 @@ $messages['su'] = array(
  * @author M.M.S.
  * @author Najami
  * @author Tobulos1
+ * @author WikiPhoenix
  */
 $messages['sv'] = array(
 	'centralnotice' => 'Centralmeddelande-administration',
@@ -10211,6 +10215,10 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-timestamp' => 'Tidsstämpel',
 	'centralnotice-user' => 'Användare',
 	'centralnotice-action' => 'Åtgärd',
+	'centralnotice-on' => 'på',
+	'centralnotice-off' => 'av',
+	'centralnotice-added' => 'Lade till <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Tog bort <span class="cn-old-value">$1</span>',
 );
 
 /** Swahili (Kiswahili)
@@ -11633,6 +11641,7 @@ $messages['vi'] = array(
 	'centralnotice-list-templates' => 'Liệt kê các bảng',
 	'centralnotice-multiple-projects' => 'đa ngữ ($1)',
 	'centralnotice-multiple-languages' => 'đa ngữ ($1)',
+	'centralnotice-multiple-countries' => 'Đa quốc gia ($1)',
 	'centralnotice-all-projects' => 'Tất cả các dự án',
 	'centralnotice-language-listing' => '$1 – $2',
 	'centralnotice-translations' => 'Bản dịch',
@@ -11730,6 +11739,17 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-preferred' => 'Nổi bật hơn',
 	'centralnotice-logs' => 'Nhật trình',
 	'centralnotice-view-logs' => 'Xem nhật trình',
+	'centralnotice-timestamp' => 'Thời gian',
+	'centralnotice-user' => 'Người dùng',
+	'centralnotice-action' => 'Tác vụ',
+	'centralnotice-changed' => 'Thay đổi từ <span class="cn-old-value">$1</span> thành <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'bật',
+	'centralnotice-off' => 'tắt',
+	'centralnotice-added' => 'Thêm <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Gỡ <span class="cn-old-value">$1</span>',
+	'centralnotice-banners-changed' => 'Đã thay đổi các chỉ định biểu ngữ',
+	'centralnotice-no-assignments' => 'không chỉ định biểu ngữ',
+	'centralnotice-talk-link' => 'thảo luận',
 );
 
 /** Volapük (Volapük)
