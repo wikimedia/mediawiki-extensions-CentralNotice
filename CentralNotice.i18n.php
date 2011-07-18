@@ -1157,7 +1157,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-timestamp' => 'Дата/час',
 	'centralnotice-user' => 'Удзельнік',
 	'centralnotice-action' => 'Дзеяньне',
-	'centralnotice-changed' => 'Зьмяніць з <span class="cn-old-value">$1</span> на <span class="cn-new-value">$2</span>',
+	'centralnotice-changed' => 'Зьмененае з <span class="cn-old-value">$1</span> на <span class="cn-new-value">$2</span>',
 );
 
 /** Bulgarian (Български)
@@ -5519,6 +5519,10 @@ $messages['ka'] = array(
 	'centralnotice-documentwrite-error' => 'document.write() არ შეიძლება გამოყენებული იქნას ბანერის შიგნით. 
 იხილეთ http://meta.wikimedia.org/wiki/Help:CentralNotice მეტი ინფორმაციისათვის.',
 	'centralnotice-preferred' => 'პრივილეგირებული',
+	'centralnotice-logs' => 'ჟურნალები',
+	'centralnotice-view-logs' => 'ჟურნალების ნახვა',
+	'centralnotice-user' => 'მომხმარებელი',
+	'centralnotice-talk-link' => 'განხილვა',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -8901,6 +8905,8 @@ $messages['ru'] = array(
 	'centralnotice-timestamp' => 'Дата/время',
 	'centralnotice-user' => 'Участник',
 	'centralnotice-action' => 'Действие',
+	'centralnotice-on' => 'вкл',
+	'centralnotice-off' => 'откл',
 );
 
 /** Rusyn (Русиньскый)
