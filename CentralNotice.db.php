@@ -5,6 +5,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
+/**
+ * Static methods that retrieve information from the database.
+ */
 class CentralNoticeDB {
 
 	/* Functions */
