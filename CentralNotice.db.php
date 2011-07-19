@@ -318,6 +318,22 @@ class CentralNoticeDB {
 	}
 	
 	/*
+	 * See if a given campaign exists in the database
+	 */
+	public static function campaignExists( $campaignName ) {
+		 global $wgCentralDBname;
+		 $dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+
+		 $eCampaignName = htmlspecialchars( $campaignName );
+		 $row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eCampaignName ) );
+		 if ( $row ) {
+		 	return true;
+		 } else {
+		 	return false;
+		 }
+	}
+	
+	/*
 	 * See if a given banner exists in the database
 	 */
 	public static function bannerExists( $bannerName ) {

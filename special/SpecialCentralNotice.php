@@ -596,7 +596,7 @@ class CentralNotice extends SpecialPage {
 		global $wgOut, $wgRequest, $wgUser;
 		
 		// Make sure notice exists
-		if ( !$this->noticeExists( $notice ) ) {
+		if ( !CentralNoticeDB::campaignExists( $notice ) ) {
 			$this->showError( 'centralnotice-notice-doesnt-exist' );
 		} else {
 
@@ -1096,7 +1096,7 @@ class CentralNotice extends SpecialPage {
 	function addCampaign( $noticeName, $enabled, $start, $projects, 
 		$project_languages, $geotargeted, $geo_countries ) 
 	{
-		if ( $this->noticeExists( $noticeName ) ) {
+		if ( CentralNoticeDB::campaignExists( $noticeName ) ) {
 			$this->showError( 'centralnotice-notice-exists' );
 			return null;
 		} elseif ( empty( $projects ) ) {
@@ -1359,7 +1359,7 @@ class CentralNotice extends SpecialPage {
 		}
 
 		// Invalid campaign name
-		if ( !$this->noticeExists( $noticeName ) ) {
+		if ( !CentralNoticeDB::campaignExists( $noticeName ) ) {
 			$this->showError( 'centralnotice-notice-doesnt-exist' );
 			return;
 		}
@@ -1385,7 +1385,7 @@ class CentralNotice extends SpecialPage {
 	 * @param $settingValue int: Value to use for the setting, 0 or 1
 	 */
 	private function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
-		if ( !$this->noticeExists( $noticeName ) ) {
+		if ( !CentralNoticeDB::campaignExists( $noticeName ) ) {
 			// Exit quietly since campaign may have been deleted at the same time.
 			return;
 		} else {
@@ -1624,17 +1624,6 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 	
-	public static function noticeExists( $noticeName ) {
-		 $dbr = wfGetDB( DB_SLAVE );
-		 $eNoticeName = htmlspecialchars( $noticeName );
-		 $row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eNoticeName ) );
-		 if ( $row ) {
-		 	return true;
-		 } else {
-		 	return false;
-		 }
-	}
-
 	public static function dropDownList( $text, $values ) {
 		$dropDown = "*{$text}\n";
 		foreach ( $values as $value ) {
