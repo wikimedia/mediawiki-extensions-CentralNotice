@@ -192,7 +192,7 @@ class CentralNoticeDB {
 		
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 
-		$templates = array();
+		$banners = array();
 
 		if ( $campaigns ) {
 			$res = $dbr->select(
@@ -219,18 +219,18 @@ class CentralNoticeDB {
 			);
 
 			foreach ( $res as $row ) {
-				$templates[] = array(
-					'name' => $row->tmp_name,
-					'weight' => intval( $row->tmp_weight ),
-					'display_anon' => intval( $row->tmp_display_anon ),
-					'display_account' => intval( $row->tmp_display_account ),
-					'fundraising' => intval( $row->tmp_fundraising ),
-					'landing_pages' => $row->tmp_landing_pages,
-					'campaign' => $row->not_name
+				$banners[] = array(
+					'name' => $row->tmp_name, // name of the banner
+					'weight' => intval( $row->tmp_weight ), // weight assigned to the banner
+					'display_anon' => intval( $row->tmp_display_anon ), // display to anonymous users?
+					'display_account' => intval( $row->tmp_display_account ), // display to logged in users?
+					'fundraising' => intval( $row->tmp_fundraising ), // fundraising banner?
+					'landing_pages' => $row->tmp_landing_pages, // landing pages to link to
+					'campaign' => $row->not_name // campaign the banner is assigned to
 				);
 			}
 		}
-		return $templates;
+		return $banners;
 	}
 	
 	/**
@@ -309,12 +309,12 @@ class CentralNoticeDB {
 			}
 		}
 		
-		$templates = array();
+		$banners = array();
 		if ( $campaigns ) {
 			// Pull all banners assigned to the campaigns
-			$templates = CentralNoticeDB::getCampaignBanners( $campaigns );
+			$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
 		}
-		return $templates;
+		return $banners;
 	}
 	
 	/*

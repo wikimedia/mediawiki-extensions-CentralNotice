@@ -8,6 +8,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	protected static $centralNotice;
 
 	protected function setUp() {
+		parent::setUp();
 		self::$centralNotice = new CentralNotice;
 		$noticeName        = 'PHPUnitTestCampaign';
 		$enabled           = 0;
@@ -27,6 +28,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	protected function tearDown() {
+		parent::tearDown();
 		self::$centralNotice->removeCampaign( 'PHPUnitTestCampaign' );
 	}
 	
