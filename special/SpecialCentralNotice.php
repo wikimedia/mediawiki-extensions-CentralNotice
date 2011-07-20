@@ -1695,32 +1695,40 @@ class CentralNotice extends SpecialPage {
 	 * @param $endSettings array of campaign settings after changes (optional)
 	 * @param $beginAssignments array of banner assignments before changes (optional)
 	 * @param $endAssignments array of banner assignments after changes (optional)
+	 * @return integer: ID of log entry (or null)
 	 */
 	function logCampaignChange( $action, $campaignId, $beginSettings = array(), 
 		$endSettings = array(), $beginAssignments = array(), $endAssignments = array() )
 	{
 		global $wgUser;
 		
-		$dbw = wfGetDB( DB_MASTER );
+		// Only log the change if it is done by an actual user (rather than a testing script)
+		if ( $wgUser->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
 		
-		$log = array(
-			'notlog_timestamp' => $dbw->timestamp(),
-			'notlog_user_id' => $wgUser->getId(),
-			'notlog_action' => $action,
-			'notlog_not_id' => $campaignId,
-			'notlog_not_name' => CentralNotice::getNoticeName( $campaignId )
-		);
-		
-		foreach ( $beginSettings as $key => $value ) {
-			$log['notlog_begin_'.$key] = $value;
+			$dbw = wfGetDB( DB_MASTER );
+			
+			$log = array(
+				'notlog_timestamp' => $dbw->timestamp(),
+				'notlog_user_id' => $wgUser->getId(),
+				'notlog_action' => $action,
+				'notlog_not_id' => $campaignId,
+				'notlog_not_name' => CentralNotice::getNoticeName( $campaignId )
+			);
+			
+			foreach ( $beginSettings as $key => $value ) {
+				$log['notlog_begin_'.$key] = $value;
+			}
+			foreach ( $endSettings as $key => $value ) {
+				$log['notlog_end_'.$key] = $value;
+			}
+			
+			$res = $dbw->insert( 'cn_notice_log', $log );
+			$log_id = $dbw->insertId();
+			return $log_id;
+			
+		} else {
+			return null;
 		}
-		foreach ( $endSettings as $key => $value ) {
-			$log['notlog_end_'.$key] = $value;
-		}
-		
-		$res = $dbw->insert( 'cn_notice_log', $log );
-		$log_id = $dbw->insertId();
-		return $log_id;
 	}
 }
 
