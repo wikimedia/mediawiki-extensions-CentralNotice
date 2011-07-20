@@ -51,32 +51,41 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		
 		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-logs' ) );
+		// TODO: interface for switching between log types.
+		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-switcher' ) );
+		
+		$htmlOut .= Xml::radio( 'log_type', 'campaign', true );
+		$htmlOut .= Xml::label( wfMsg( 'centralnotice-campaign-settings' ), 'campaign' );
+		
+		$htmlOut .= Xml::radio( 'log_type', 'banner', false );
+		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-settings' ), 'banner' );
+		
+		$htmlOut .= Xml::closeElement( 'div' );
 		$htmlOut .= Xml::closeElement( 'form' );
 		
 		// End log selection fieldset
-		// Uncomment when we have multiple logs
-		//$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
 		
-		$this->showLog( $this->logType );
+		$this->showCampaignLog( $this->logType );
 
 		// End Banners tab content
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 	
 	/**
-	 * Show a log.
+	 * Show a log of campaign changes.
 	 */
-	function showLog( $logType ) {
+	function showCampaignLog( $logType ) {
 		global $wgOut;
 		
-		$pager = new CentralNoticeLogPager( $this );
+		//$pager = new CentralNoticeLogPager( $this );
+		$pager = new CentralNoticeBannerLogPager( $this );
 		$htmlOut = '';
 		
 		// Begin log fieldset
-		// Uncomment when we have multiple logs
-		//$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
 		// Show paginated list of log entries
 		$htmlOut .= Xml::tags( 'div', 
@@ -381,6 +390,139 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		);
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
 			wfMsg ( 'centralnotice-notice' )
+		);
+		$htmlOut .= Xml::tags( 'td', array(),
+			'&nbsp;'
+		);
+		$htmlOut .= Xml::closeElement( 'tr' );
+		return $htmlOut;
+	}
+	
+	/**
+	 * Close table
+	 */
+	function getEndBody() {
+		$htmlOut = '';
+		$htmlOut .= Xml::closeElement( 'table' );
+		return $htmlOut;
+	}
+	
+}
+
+class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
+	var $viewPage, $special;
+
+	function __construct( $special ) {
+		$this->special = $special;
+		parent::__construct();
+		
+		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
+	}
+	
+	/**
+	 * Sort the log list by timestamp
+	 */
+	function getIndexField() {
+		return 'templog_timestamp';
+	}
+	
+	/**
+	 * Pull log entries from the database
+	 */
+	function getQueryInfo() {
+		return array(
+			'tables' => array( 'cn_template_log' ),
+			'fields' => '*',
+		);
+	}
+	
+	/**
+	 * Generate the content of each table row (1 row = 1 log entry)
+	 */
+	function formatRow( $row ) {
+		global $wgLang, $wgExtensionAssetsPath;
+		
+		// Create a user object so we can pull the name, user page, etc.
+		$loggedUser = User::newFromId( $row->templog_user_id );
+		// Create the user page link
+		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(), 
+			$loggedUser->getName() );
+		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(), 
+			wfMsg ( 'centralnotice-talk-link' ) );
+		
+		// Create the banner link
+		$bannerLink = $this->getSkin()->makeLinkObj( $this->viewPage,
+			htmlspecialchars( $row->templog_template_name ),
+			'template=' . urlencode( $row->templog_template_name ) );
+				
+		// Begin log entry primary row
+		$htmlOut = Xml::openElement( 'tr' );
+		
+		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
+		if ( $row->templog_action !== 'removed' ) {
+			$htmlOut .= '<a href="javascript:toggleDisplay(\''.$row->templog_id.'\')">'.
+				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-'.$row->templog_id.'" style="display:block;vertical-align:baseline;"/>'.
+				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->templog_id.'" style="display:none;vertical-align:baseline;"/>'.
+				'</a>';
+		}
+		$htmlOut .= Xml::closeElement( 'td' );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+			$wgLang->date( $row->templog_timestamp ) . ' ' . $wgLang->time( $row->templog_timestamp )
+		);
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+			wfMsg ( 'centralnotice-user-links', $userLink, $userTalkLink )
+		);
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+			$row->templog_action
+		);
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+			$bannerLink
+		);
+		$htmlOut .= Xml::tags( 'td', array(),
+			'&nbsp;'
+		);
+		
+		// End log entry primary row
+		$htmlOut .= Xml::closeElement( 'tr' );
+		
+		if ( $row->templog_action !== 'removed' ) {
+			// Begin log entry secondary row
+			$htmlOut .= Xml::openElement( 'tr', array( 'id' => 'cn-log-details-'.$row->templog_id, 'style' => 'display:none;' ) );
+			
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				'&nbsp;' // force a table cell in older browsers
+			);
+			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '5' ) );
+			if ( $row->templog_action == 'created' ) {
+				//$htmlOut .= $this->showInitialSettings( $row );
+			} else if ( $row->templog_action == 'modified' ) {
+				//$htmlOut .= $this->showChanges( $row );
+			}
+			$htmlOut .= Xml::closeElement( 'td' );
+			
+			// End log entry primary row
+			$htmlOut .= Xml::closeElement( 'tr' );
+		}
+		
+		return $htmlOut;
+	}
+	
+	function getStartBody() {
+		$htmlOut = '';
+		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ) );
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::element( 'th', array( 'style' => 'width: 20px;' ) );
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
+			 wfMsg ( 'centralnotice-timestamp' )
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+			 wfMsg ( 'centralnotice-user' )
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 100px;' ),
+			 wfMsg ( 'centralnotice-action' )
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+			wfMsg ( 'centralnotice-banner' )
 		);
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
