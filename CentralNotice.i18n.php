@@ -6620,7 +6620,7 @@ $messages['ml'] = array(
 	'centralnotice-summary' => 'തയ്യാറാക്കപ്പെട്ട കേന്ദ്രീകൃത അറിയിപ്പുകൾ തിരുത്താൻ ഈ ഘടകം താങ്കളെ പ്രാപ്തമാക്കുന്നു.
 പഴയ അറിയിപ്പുകൾ കൂട്ടിച്ചേർക്കാനോ നീക്കം ചെയ്യാനോ വേണ്ടിയും ഇതുപയോഗിക്കാവുന്നതാണ്.',
 	'centralnotice-query' => 'ഇപ്പോഴുള്ള അറിയിപ്പുകളിൽ മാറ്റം വരുത്തുക',
-	'centralnotice-notice-name' => 'പ്രചരണമേളയുടെ പേര്',
+	'centralnotice-notice-name' => 'മേളയുടെ പേര്',
 	'centralnotice-end-date' => 'അവസാനിക്കുന്ന തീയതി',
 	'centralnotice-enabled' => 'സജ്ജമാക്കിയിരിക്കുന്നു',
 	'centralnotice-modify' => 'സമർപ്പിക്കുക',
