@@ -191,9 +191,9 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		
 		$htmlOut = Xml::openElement( 'table', 
-			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'border: 1px solid gray; margin: 1em' )
+			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em;' )
 		);
-		$htmlOut .= Xml::element( 'caption', array( 'style' => 'font-size:1.2em' ), $type );
+		$htmlOut .= Xml::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $type );
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::element( 'th', array( 'width' => '20%' ), 
 			wfMsg ( 'centralnotice-percentage' ) );
