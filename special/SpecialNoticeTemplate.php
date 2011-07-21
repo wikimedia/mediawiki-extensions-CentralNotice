@@ -730,7 +730,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$article->doEdit( $translation, '', EDIT_FORCE_BOT );
 	}
 	
-	private function getTemplateId ( $templateName ) {
+	private static function getTemplateId ( $templateName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_id',
 			array( 'tmp_name' => $templateName ),
@@ -756,7 +756,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	}
 
 	private function removeTemplate ( $name ) {
-		$id = $this->getTemplateId( $name );
+		$id = SpecialNoticeTemplate::getTemplateId( $name );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
@@ -764,6 +764,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$this->showError( 'centralnotice-template-still-bound' );
 			return;
 		} else {
+			// Log the removal of the banner
+			$this->logBannerChange( 'removed', $id );
+			
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
 			$dbw->delete( 'cn_templates',

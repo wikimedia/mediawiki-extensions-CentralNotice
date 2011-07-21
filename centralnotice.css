@@ -72,6 +72,9 @@
 #preferences .cn-log-label {
 	font-weight: bold;
 }
+#preferences #cn-log-switcher label {
+	margin-right: 1em;
+}
 
 /* Vector-specific definitions */
 body.skin-vector #preferences fieldset.prefsection {

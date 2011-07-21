@@ -52,10 +52,10 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		// TODO: interface for switching between log types.
 		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-switcher' ) );
 		
-		$htmlOut .= Xml::radio( 'log_type', 'campaign', true );
+		$htmlOut .= Xml::radio( 'log_type', 'campaign', ( $this->logType == 'campaignsettings' ? true : false ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-campaign-settings' ), 'campaign' );
 		
-		$htmlOut .= Xml::radio( 'log_type', 'banner', false );
+		$htmlOut .= Xml::radio( 'log_type', 'banner', ( $this->logType == 'bannersettings' ? true : false ) );
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-settings' ), 'banner' );
 		
 		$htmlOut .= Xml::closeElement( 'div' );
