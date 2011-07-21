@@ -2345,6 +2345,8 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-banners-changed' => 'Bannerzuordnungen wurden geändert',
 	'centralnotice-no-assignments' => 'keine Banner zugeordnet',
 	'centralnotice-talk-link' => 'Diskussion',
+	'centralnotice-campaign-settings' => 'Kampagneneinstellungen',
+	'centralnotice-banner-settings' => 'Bannereinstellungen',
 );
 
 /** German (formal address) (‪Deutsch (Sie-Form)‬)
@@ -3674,6 +3676,7 @@ Pôt asse-ben étre utilisâ por apondre des avis ou ben nen enlevar los ples vi
 	'centralnotice-list-templates' => 'Listar les baniéres',
 	'centralnotice-multiple-projects' => 'un mouél ($1)',
 	'centralnotice-multiple-languages' => 'un mouél ($1)',
+	'centralnotice-multiple-countries' => 'Un mouél ($1)',
 	'centralnotice-all-projects' => 'Tôs los projèts',
 	'centralnotice-translations' => 'Traduccions',
 	'centralnotice-translate-to' => 'Traduire en',
@@ -4249,6 +4252,8 @@ $messages['he'] = array(
 	'centralnotice-banners-changed' => 'הקצאות של כרזות שונו',
 	'centralnotice-no-assignments' => 'לא הוקצו כרזות',
 	'centralnotice-talk-link' => 'שיחה',
+	'centralnotice-campaign-settings' => 'הגדרות מבצע פרסום',
+	'centralnotice-banner-settings' => 'הגדרת כרזה',
 );
 
 /** Hindi (हिन्दी)
@@ -7831,6 +7836,8 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-banners-changed' => 'Zmieniono przydział banera',
 	'centralnotice-no-assignments' => 'brak przydzielonych banerów',
 	'centralnotice-talk-link' => 'dyskusja',
+	'centralnotice-campaign-settings' => 'Ustawienia kampanii',
+	'centralnotice-banner-settings' => 'Ustawienia banera',
 );
 
 /** Piedmontese (Piemontèis)
@@ -9706,6 +9713,8 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-banners-changed' => 'Naloge pasice so spremenjene',
 	'centralnotice-no-assignments' => 'ni dodeljenih pasic',
 	'centralnotice-talk-link' => 'pogovor',
+	'centralnotice-campaign-settings' => 'Nastavitve kampanje',
+	'centralnotice-banner-settings' => 'Nastavitve pasice',
 );
 
 /** Albanian (Shqip)
