@@ -743,6 +743,17 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		}
 		return null;
 	}
+	
+	public static function getBannerName( $bannerId ) {
+		$dbr = wfGetDB( DB_MASTER );
+		if ( is_numeric( $bannerId ) ) {
+			$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_id' => $bannerId ) );
+			if ( $row ) {
+				return $row->tmp_name;
+			}
+		}
+		return null;
+	}
 
 	private function removeTemplate ( $name ) {
 		$id = $this->getTemplateId( $name );
@@ -805,12 +816,24 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				),
 				__METHOD__
 			);
+			$bannerId = $dbw->insertId();
 
 			// Perhaps these should move into the db as blobs instead of being stored as articles
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
 			$article->doEdit( $body, '', EDIT_FORCE_BOT );
+			
+			// Log the creation of the banner
+			$beginSettings = array();
+			$endSettings = array(
+				'anon_display' => $displayAnon,
+				'account_display' => $displayAccount,
+				'fundraising' => $fundraising,
+				'landing_pages' => $landingPages
+			);
+			$this->logBannerChange( 'created', $bannerId, $beginSettings, $endSettings );
+			
 			return true;
 		}
 	}
@@ -959,6 +982,42 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		global $wgOut;
 		$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
 		$this->centralNoticeError = true;
+	}
+	
+	/**
+	 * Log setting changes related to a banner
+	 * @param $action string: 'created', 'modified', or 'removed'
+	 * @param $bannerId integer: ID of banner
+	 * @param $beginSettings array of banner settings before changes (optional)
+	 * @param $endSettings array of banner settings after changes (optional)
+	 * @param $beginContent banner content before changes (optional)
+	 * @param $endContent banner content after changes (optional)
+	 */
+	function logBannerChange( $action, $bannerId, $beginSettings = array(), 
+		$endSettings = array(), $beginContent = null, $endContent = null )
+	{
+		global $wgUser;
+		
+		$dbw = wfGetDB( DB_MASTER );
+		
+		$log = array(
+			'tmplog_timestamp' => $dbw->timestamp(),
+			'tmplog_user_id' => $wgUser->getId(),
+			'tmplog_action' => $action,
+			'tmplog_template_id' => $bannerId,
+			'tmplog_template_name' => SpecialNoticeTemplate::getBannerName( $bannerId )
+		);
+		
+		foreach ( $beginSettings as $key => $value ) {
+			$log['tmplog_begin_'.$key] = $value;
+		}
+		foreach ( $endSettings as $key => $value ) {
+			$log['tmplog_end_'.$key] = $value;
+		}
+		
+		$res = $dbw->insert( 'cn_template_log', $log );
+		$log_id = $dbw->insertId();
+		return $log_id;
 	}
 
 }

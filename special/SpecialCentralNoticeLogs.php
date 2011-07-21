@@ -19,9 +19,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	function execute( $sub ) {
 		global $wgOut, $wgRequest, $wgExtensionAssetsPath;
 		
-		if ( $wgRequest->wasPosted() ) {
-			$this->logType = $wgRequest->getText( 'log', 'campaignsettings' );
-		}
+		$this->logType = $wgRequest->getText( 'log', 'campaignsettings' );
 
 		// Begin output
 		$this->setHeaders();
@@ -68,20 +66,25 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 
 		$wgOut->addHTML( $htmlOut );
 		
-		$this->showCampaignLog( $this->logType );
+		$this->showLog( $this->logType );
 
 		// End Banners tab content
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 	
 	/**
-	 * Show a log of campaign changes.
+	 * Show a log of changes.
+	 * @param $logType string: which type of log to show
 	 */
-	function showCampaignLog( $logType ) {
+	function showLog( $logType ) {
 		global $wgOut;
 		
-		//$pager = new CentralNoticeLogPager( $this );
-		$pager = new CentralNoticeBannerLogPager( $this );
+		if ( $logType == 'bannersettings' ) {
+			$pager = new CentralNoticeBannerLogPager( $this );
+		} else {
+			$pager = new CentralNoticeLogPager( $this );
+		}
+		
 		$htmlOut = '';
 		
 		// Begin log fieldset
@@ -423,7 +426,7 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 	 * Sort the log list by timestamp
 	 */
 	function getIndexField() {
-		return 'templog_timestamp';
+		return 'tmplog_timestamp';
 	}
 	
 	/**
@@ -443,7 +446,7 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 		global $wgLang, $wgExtensionAssetsPath;
 		
 		// Create a user object so we can pull the name, user page, etc.
-		$loggedUser = User::newFromId( $row->templog_user_id );
+		$loggedUser = User::newFromId( $row->tmplog_user_id );
 		// Create the user page link
 		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(), 
 			$loggedUser->getName() );
@@ -452,28 +455,28 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 		
 		// Create the banner link
 		$bannerLink = $this->getSkin()->makeLinkObj( $this->viewPage,
-			htmlspecialchars( $row->templog_template_name ),
-			'template=' . urlencode( $row->templog_template_name ) );
+			htmlspecialchars( $row->tmplog_template_name ),
+			'template=' . urlencode( $row->tmplog_template_name ) );
 				
 		// Begin log entry primary row
 		$htmlOut = Xml::openElement( 'tr' );
 		
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
-		if ( $row->templog_action !== 'removed' ) {
-			$htmlOut .= '<a href="javascript:toggleDisplay(\''.$row->templog_id.'\')">'.
-				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-'.$row->templog_id.'" style="display:block;vertical-align:baseline;"/>'.
-				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->templog_id.'" style="display:none;vertical-align:baseline;"/>'.
+		if ( $row->tmplog_action !== 'removed' ) {
+			$htmlOut .= '<a href="javascript:toggleDisplay(\''.$row->tmplog_id.'\')">'.
+				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-'.$row->tmplog_id.'" style="display:block;vertical-align:baseline;"/>'.
+				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->tmplog_id.'" style="display:none;vertical-align:baseline;"/>'.
 				'</a>';
 		}
 		$htmlOut .= Xml::closeElement( 'td' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$wgLang->date( $row->templog_timestamp ) . ' ' . $wgLang->time( $row->templog_timestamp )
+			$wgLang->date( $row->tmplog_timestamp ) . ' ' . $wgLang->time( $row->tmplog_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			wfMsg ( 'centralnotice-user-links', $userLink, $userTalkLink )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$row->templog_action
+			$row->tmplog_action
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$bannerLink
@@ -485,17 +488,17 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 		// End log entry primary row
 		$htmlOut .= Xml::closeElement( 'tr' );
 		
-		if ( $row->templog_action !== 'removed' ) {
+		if ( $row->tmplog_action !== 'removed' ) {
 			// Begin log entry secondary row
-			$htmlOut .= Xml::openElement( 'tr', array( 'id' => 'cn-log-details-'.$row->templog_id, 'style' => 'display:none;' ) );
+			$htmlOut .= Xml::openElement( 'tr', array( 'id' => 'cn-log-details-'.$row->tmplog_id, 'style' => 'display:none;' ) );
 			
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				'&nbsp;' // force a table cell in older browsers
 			);
 			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '5' ) );
-			if ( $row->templog_action == 'created' ) {
+			if ( $row->tmplog_action == 'created' ) {
 				//$htmlOut .= $this->showInitialSettings( $row );
-			} else if ( $row->templog_action == 'modified' ) {
+			} else if ( $row->tmplog_action == 'modified' ) {
 				//$htmlOut .= $this->showChanges( $row );
 			}
 			$htmlOut .= Xml::closeElement( 'td' );
