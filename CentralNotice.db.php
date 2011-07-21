@@ -131,7 +131,8 @@ class CentralNoticeDB {
 	static function getCampaignSettings( $campaignName, $detailed = true ) {
 		global $wgCentralDBname;
 		
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		// Read from the master database to avoid concurrency problems
+		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 		
 		$campaign = array();
 
