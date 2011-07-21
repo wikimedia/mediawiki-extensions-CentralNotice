@@ -128,11 +128,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
 	function showList() {
-		global $wgOut, $wgUser, $wgRequest, $wgLang;
-		
-		$sk = $wgUser->getSkin();
-		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
-		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
+		global $wgOut, $wgRequest;
 		
 		// Begin building HTML
 		$htmlOut = '';
@@ -156,38 +152,27 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 		$bannerList = $bannerLister->getJsonList();
 		$banners = FormatJson::decode( $bannerList, true );
-		$totalWeight = 0;
-		foreach ( $banners as $banner ) {
-			$totalWeight += $banner['weight'];
-		}
+		$anonBanners = array();
+		$accountBanners = array();
+		$anonWeight = 0;
+		$accountWeight = 0;
 		if ( $banners ) {
-			$htmlOut .= Xml::openElement( 'table', 
-				array ( 'cellpadding' => 9, 'class' => 'wikitable sortable' ) );
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::element( 'th', array( 'width' => '20%' ), 
-				wfMsg ( 'centralnotice-percentage' ) );
-			$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ), 
-				wfMsg ( 'centralnotice-banner' ) );
-			$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ), 
-				wfMsg ( 'centralnotice-notice' ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
 			foreach ( $banners as $banner ) {
-				$htmlOut .= Xml::openElement( 'tr' );
-				$htmlOut .= Xml::openElement( 'td' );
-				$percentage = ( $banner['weight'] / $totalWeight ) * 100;
-				$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
-				$htmlOut .= Xml::closeElement( 'td' );
-				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					$sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ), 
-						'template=' . urlencode( $banner['name'] ) )
-				);
-				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					$sk->makeLinkObj( $viewCampaign, htmlspecialchars( $banner['campaign'] ), 
-						'method=listNoticeDetail&notice=' . urlencode( $banner['campaign'] ) )
-				);
-				$htmlOut .= Xml::closeElement( 'tr' );
+				if ($banner['display_anon']) {
+					$anonBanners[] = $banner;
+					$anonWeight += $banner['weight'];
+				}
+				if ($banner['display_account']) {
+					$accountBanners[] = $banner;
+					$accountWeight += $banner['weight'];
+				}
 			}
-			$htmlOut .= Xml::closeElement( 'table' );
+			if ( $anonBanners ) {
+				$htmlOut .= $this->getTable( wfMsg ( 'centralnotice-banner-anonymous' ), $anonBanners, $anonWeight );
+			}
+			if ( $accountBanners ) {
+				$htmlOut .= $this->getTable( wfMsg ( 'centralnotice-banner-logged-in' ), $accountBanners, $accountWeight );
+			}
 		} else {
 			$htmlOut .= Xml::tags( 'p', null, wfMsg ( 'centralnotice-no-allocation' ) );
 		}
@@ -196,6 +181,45 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
+	}
+	
+	function getTable( $type, $banners, $weight ) {
+		global $wgUser, $wgLang;
+		
+		$sk = $wgUser->getSkin();
+		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
+		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
+		
+		$htmlOut = Xml::openElement( 'table', 
+			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'border: 1px solid gray; margin: 1em' )
+		);
+		$htmlOut .= Xml::element( 'caption', array( 'style' => 'font-size:1.2em' ), $type );
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::element( 'th', array( 'width' => '20%' ), 
+			wfMsg ( 'centralnotice-percentage' ) );
+		$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ), 
+			wfMsg ( 'centralnotice-banner' ) );
+		$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ), 
+			wfMsg ( 'centralnotice-notice' ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		foreach ( $banners as $banner ) {
+			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Xml::openElement( 'td' );
+			$percentage = round( ( $banner['weight'] / $weight ) * 100, 2 );
+			$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
+			$htmlOut .= Xml::closeElement( 'td' );
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ), 
+					'template=' . urlencode( $banner['name'] ) )
+			);
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$sk->makeLinkObj( $viewCampaign, htmlspecialchars( $banner['campaign'] ), 
+					'method=listNoticeDetail&notice=' . urlencode( $banner['campaign'] ) )
+			);
+			$htmlOut .= Xml::closeElement( 'tr' );
+		}
+		$htmlOut .= Xml::closeElement( 'table' );
+		return $htmlOut;
 	}
 
 }
