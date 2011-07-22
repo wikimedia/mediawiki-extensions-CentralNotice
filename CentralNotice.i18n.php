@@ -4840,6 +4840,8 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
 	'centralnotice-banners-changed' => 'Assignationes de bandieras ha essite cambiate',
 	'centralnotice-no-assignments' => 'nulle bandieras assignate',
 	'centralnotice-talk-link' => 'discussion',
+	'centralnotice-campaign-settings' => 'Configurationes del campania',
+	'centralnotice-banner-settings' => 'Configurationes del bandiera',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -6612,6 +6614,8 @@ $messages['mk'] = array(
 	'centralnotice-banners-changed' => 'Задавањата на плакатите се изменети',
 	'centralnotice-no-assignments' => 'нема зададено плакати',
 	'centralnotice-talk-link' => 'разговор',
+	'centralnotice-campaign-settings' => 'Поставки за кампања',
+	'centralnotice-banner-settings' => 'Поставки за плакат',
 );
 
 /** Malayalam (മലയാളം)
@@ -6968,6 +6972,8 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-banners-changed' => 'Peruntukan sepanduk diubah',
 	'centralnotice-no-assignments' => 'tiada sepanduk yang diberikan',
 	'centralnotice-talk-link' => 'bincang',
+	'centralnotice-campaign-settings' => 'Tetapan kempen',
+	'centralnotice-banner-settings' => 'Tetapan sepanduk',
 );
 
 /** Maltese (Malti)
@@ -7396,6 +7402,7 @@ Denne handlinga kan ikkje bli omgjort.',
 );
 
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+ * @author Event
  * @author Harald Khan
  * @author Jon Harald Søby
  * @author Laaknor
@@ -7431,6 +7438,7 @@ Den kan også bli brukt for å legge til eller fjerne gamle meldinger.',
 	'centralnotice-list-templates' => 'Vis maler',
 	'centralnotice-multiple-projects' => 'flere ($1)',
 	'centralnotice-multiple-languages' => 'flere ($1)',
+	'centralnotice-multiple-countries' => 'Multippel ($1)',
 	'centralnotice-all-projects' => 'Alle prosjekter',
 	'centralnotice-translations' => 'Oversettelser',
 	'centralnotice-translate-to' => 'Oversett til',
@@ -7519,6 +7527,9 @@ Legg til en under',
 	'centralnotice-banner-type' => 'Banner type:',
 	'centralnotice-banner-hidable' => 'Statisk/skjulbar',
 	'centralnotice-banner-collapsible' => 'Sammenleggbar',
+	'centralnotice-banner-fundraising' => 'Dette er et banner for pengeinnsamling',
+	'centralnotice-banner-fundraising-help' => 'Opprett en ankertag til bannerkroppen med id="cn_fundraising_link" og legg inn en eller flere mottakssider under, f. eks. "Jimmyappell". Det opprettes automatisk en href for lenken.',
+	'centralnotice-banner-landing-pages' => 'Mottakssider (kommaseparert):',
 	'centralnotice-geo' => 'Geografisk målrettet',
 	'centralnotice-countries' => 'Land',
 	'centralnotice-allocation' => 'Tildeling',
@@ -7533,6 +7544,21 @@ Legg til en under',
 	'centralnotice-documentwrite-error' => 'document.write() kan ikke brukes i et banner.
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-preferred' => 'Foretrukket',
+	'centralnotice-logs' => 'Logger',
+	'centralnotice-view-logs' => 'Vis logger',
+	'centralnotice-timestamp' => 'Tidsstempel',
+	'centralnotice-user' => 'Bruker',
+	'centralnotice-action' => 'Handling',
+	'centralnotice-changed' => 'Endret fra <span class="cn-old-value">$1</span> til <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'på',
+	'centralnotice-off' => 'av',
+	'centralnotice-added' => 'Lagt til <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Fjernet <span class="cn-old-value">$1</span>',
+	'centralnotice-banners-changed' => 'Bannertilordninger ble endret',
+	'centralnotice-no-assignments' => 'Ingen bannere tilordnet',
+	'centralnotice-talk-link' => 'snakke',
+	'centralnotice-campaign-settings' => 'Kampanjeinnstillinger',
+	'centralnotice-banner-settings' => 'Bannerinnstillinger',
 );
 
 /** Occitan (Occitan)
@@ -8151,7 +8177,7 @@ Adicione um, abaixo.',
 	'centralnotice-translate-button' => 'Ajudar a traduzir link',
 	'centralnotice-donate-button' => 'Botão Donativo',
 	'centralnotice-expanded-banner' => 'Modelo expandido',
-	'centralnotice-collapsed-banner' => 'Modelo colapsado',
+	'centralnotice-collapsed-banner' => 'Modelo recolhido',
 	'centralnotice-banner-display' => 'Apresentar a:',
 	'centralnotice-banner-anonymous' => 'Utilizadores anónimos',
 	'centralnotice-banner-logged-in' => 'Utilizadores autenticados',
@@ -8188,6 +8214,8 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-banners-changed' => 'As atribuições de modelos foram alteradas',
 	'centralnotice-no-assignments' => 'não há modelos atribuídos',
 	'centralnotice-talk-link' => 'discussão',
+	'centralnotice-campaign-settings' => 'Configurações do aviso',
+	'centralnotice-banner-settings' => 'Configurações do modelo',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
@@ -11780,6 +11808,8 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-banners-changed' => 'Đã thay đổi các chỉ định biểu ngữ',
 	'centralnotice-no-assignments' => 'không chỉ định biểu ngữ',
 	'centralnotice-talk-link' => 'thảo luận',
+	'centralnotice-campaign-settings' => 'Thiết lập thông báo chung',
+	'centralnotice-banner-settings' => 'Thiết lập biểu ngữ',
 );
 
 /** Volapük (Volapük)
