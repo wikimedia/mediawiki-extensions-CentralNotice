@@ -338,20 +338,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Get current banner
 		$currentTemplate = $wgRequest->getText( 'template' );
 		
-		// Pull banner settings from database
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'cn_templates',
-			array(
-				'tmp_display_anon',
-				'tmp_display_account',
-				'tmp_fundraising',
-				'tmp_landing_pages'
-			),
-			array( 'tmp_name' => $currentTemplate ),
-			__METHOD__
-		);
+		$bannerSettings = CentralNoticeDB::getBannerSettings( $currentTemplate );
 		
-		if ( !$row ) {
+		if ( !$bannerSettings ) {
 			$this->showError( 'centralnotice-banner-doesnt-exist' );
 			return;
 		} else {
@@ -560,10 +549,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$landingPages = $wgRequest->getVal( 'landingPages' );
 				$body = $wgRequest->getVal( 'templateBody', $body );
 			} else { // Use previously stored values
-				$displayAnon = ( $row->tmp_display_anon == 1 );
-				$displayAccount = ( $row->tmp_display_account == 1 );
-				$fundraising = ( $row->tmp_fundraising == 1 );
-				$landingPages = $row->tmp_landing_pages;
+				$displayAnon = ( $bannerSettings['anon'] == 1 );
+				$displayAccount = ( $bannerSettings['account'] == 1 );
+				$fundraising = ( $bannerSettings['fundraising'] == 1 );
+				$landingPages = $bannerSettings['landingpages'];
 				// $body default is defined prior to message interface code
 			}
 			
@@ -830,10 +819,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Log the creation of the banner
 			$beginSettings = array();
 			$endSettings = array(
-				'anon_display' => $displayAnon,
-				'account_display' => $displayAccount,
+				'anon' => $displayAnon,
+				'account' => $displayAccount,
 				'fundraising' => $fundraising,
-				'landing_pages' => $landingPages
+				'landingpages' => $landingPages
 			);
 			$this->logBannerChange( 'created', $bannerId, $beginSettings, $endSettings );
 			
@@ -851,6 +840,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$this->showError( 'centralnotice-null-string' );
 			return;
 		}
+		
+		$initialBannerSettings = CentralNoticeDB::getBannerSettings( $name );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name',
@@ -875,6 +866,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
 			$article->doEdit( $body, '', EDIT_FORCE_BOT );
+			
+			$bannerId = SpecialNoticeTemplate::getTemplateId( $name );
+			$finalBannerSettings = CentralNoticeDB::getBannerSettings( $name );
+			$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings );
+			
 			return;
 		}
 	}

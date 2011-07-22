@@ -235,6 +235,41 @@ class CentralNoticeDB {
 	}
 	
 	/**
+	 * Return settings for a banner
+	 * @param $bannerName string name of banner
+	 * @return an array of banner settings
+	 */
+	static function getBannerSettings( $bannerName ) {
+		global $wgCentralDBname;
+		
+		$banner = array();
+		
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		
+		$row = $dbr->selectRow( 'cn_templates',
+			array(
+				'tmp_display_anon',
+				'tmp_display_account',
+				'tmp_fundraising',
+				'tmp_landing_pages'
+			),
+			array( 'tmp_name' => $bannerName ),
+			__METHOD__
+		);
+		
+		if ( $row ) {
+			$banner = array(
+				'anon' => $row->tmp_display_anon,
+				'account' => $row->tmp_display_account,
+				'fundraising' => $row->tmp_fundraising,
+				'landingpages' => $row->tmp_landing_pages
+			);
+		}
+		
+		return $banner;
+	}
+	
+	/**
 	 * Lookup function for active banners under a given language/project/location. This function is 
 	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
 	 * each project.

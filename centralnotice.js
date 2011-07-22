@@ -12,6 +12,10 @@ function toggleDisplay( logId ) {
 		thisDetails.style.display = "table-row";
 	}
 }
+function switchLogs( baseUrl, logType ) {
+	encodeURIComponent( logType );
+	window.location = baseUrl + '?log=' + logType;
+}
 function selectProjects( selectAll ) {
 	var selectBox = document.getElementById('projects[]');
 	var firstSelect = selectBox.options.length - 1;

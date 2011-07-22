@@ -163,6 +163,12 @@ Add one below.',
 	'centralnotice-log-label' => '<span class="cn-log-label">$1:</span> $2',
 	'centralnotice-campaign-settings' => 'Campaign settings',
 	'centralnotice-banner-settings' => 'Banner settings',
+	'centralnotice-anon' => 'Display to anonymous users',
+	'centralnotice-account' => 'Display to logged in users',
+	'centralnotice-fundraising' => 'Fundraising',
+	'centralnotice-landingpages' => 'Landing pages',
+	'centralnotice-banner-content' => 'Banner content',
+	'centralnotice-banner-content-changed' => 'Changed',
 );
 
 /** Message documentation (Message documentation)

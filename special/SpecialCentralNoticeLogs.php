@@ -49,13 +49,24 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		
 		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-logs' ) );
-		// TODO: interface for switching between log types.
 		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-switcher' ) );
+		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
+		$fullUrl = $title->getFullUrl();
 		
-		$htmlOut .= Xml::radio( 'log_type', 'campaign', ( $this->logType == 'campaignsettings' ? true : false ) );
+		$htmlOut .= Xml::radio( 
+			'log_type',
+			'campaign',
+			( $this->logType == 'campaignsettings' ? true : false ),
+			array( 'onclick' => "switchLogs( '".$fullUrl."', 'campaignsettings' )" )
+		);
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-campaign-settings' ), 'campaign' );
 		
-		$htmlOut .= Xml::radio( 'log_type', 'banner', ( $this->logType == 'bannersettings' ? true : false ) );
+		$htmlOut .= Xml::radio(
+			'log_type',
+			'banner',
+			( $this->logType == 'bannersettings' ? true : false ),
+			array( 'onclick' => "switchLogs( '".$fullUrl."', 'bannersettings' )" )
+		);
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-settings' ), 'banner' );
 		
 		$htmlOut .= Xml::closeElement( 'div' );
@@ -497,9 +508,9 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 			);
 			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '5' ) );
 			if ( $row->tmplog_action == 'created' ) {
-				//$htmlOut .= $this->showInitialSettings( $row );
+				$htmlOut .= $this->showInitialSettings( $row );
 			} else if ( $row->tmplog_action == 'modified' ) {
-				//$htmlOut .= $this->showChanges( $row );
+				$htmlOut .= $this->showChanges( $row );
 			}
 			$htmlOut .= Xml::closeElement( 'td' );
 			
@@ -541,5 +552,68 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 		$htmlOut = '';
 		$htmlOut .= Xml::closeElement( 'table' );
 		return $htmlOut;
+	}
+	
+	function showInitialSettings( $row ) {
+		global $wgLang;
+		$details = '';
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-anon' ), 
+			($row->tmplog_end_anon ? 'on' : 'off')
+		)."<br/>";
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-account' ), 
+			($row->tmplog_end_account ? 'on' : 'off')
+		)."<br/>";
+		$details .= wfMsg (
+			'centralnotice-log-label',
+			wfMsg ( 'centralnotice-fundraising' ), 
+			($row->tmplog_end_fundraising ? 'on' : 'off')
+		)."<br/>";
+		if ( $row->tmplog_end_landingpages ) {
+			$details .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-landingpages' ), 
+				$row->tmplog_end_landingpages
+			)."<br/>";
+		}
+		return $details;
+	}
+	
+	function showChanges( $row ) {
+		global $wgLang;
+		$details = '';
+		$details .= $this->testBooleanChange( 'anon', $row );
+		$details .= $this->testBooleanChange( 'account', $row );
+		$details .= $this->testBooleanChange( 'fundraising', $row );
+		if ( $row->tmplog_content_change ) {
+			// Show changes to banner content
+			$details .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-banner-content' ),
+				wfMsg ( 'centralnotice-banner-content-changed' )
+			)."<br/>";
+		}
+		return $details;
+	}
+	
+	private function testBooleanChange( $param, $row ) {
+		$result = '';
+		$beginField = 'tmplog_begin_'.$param;
+		$endField = 'tmplog_end_'.$param;
+		if ( $row->$beginField !== $row->$endField ) {
+			$result .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-'.$param ),
+				wfMsg (
+					'centralnotice-changed', 
+					( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ), 
+					( $row->$endField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) )
+				)
+			)."<br/>";
+		}
+		return $result;
 	}
 }
