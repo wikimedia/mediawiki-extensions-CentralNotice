@@ -865,11 +865,26 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
+
+			$bodyPage = Title::newFromText(
+				"Centralnotice-template-{$name}", NS_MEDIAWIKI );
+			$curRev = Revision::newFromTitle( $bodyPage );
+			$oldbody = $curRev ? $curRev->getText() : '';
+
 			$article->doEdit( $body, '', EDIT_FORCE_BOT );
+			
+			$curRev = Revision::newFromTitle( $bodyPage );
+			$newbody = $curRev ? $curRev->getText() : '';
+
+			//test for body changes
+			$contentChanged = 0;
+			if ($newbody !== $oldbody){
+				$contentChanged = 1;
+			}
 			
 			$bannerId = SpecialNoticeTemplate::getTemplateId( $name );
 			$finalBannerSettings = CentralNoticeDB::getBannerSettings( $name );
-			$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings );
+			$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings, $contentChanged);
 			
 			return;
 		}
@@ -993,7 +1008,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * @param $endContent banner content after changes (optional)
 	 */
 	function logBannerChange( $action, $bannerId, $beginSettings = array(), 
-		$endSettings = array(), $beginContent = null, $endContent = null )
+		$endSettings = array(), $contentChanged = 0 )
 	{
 		global $wgUser;
 		
@@ -1004,7 +1019,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			'tmplog_user_id' => $wgUser->getId(),
 			'tmplog_action' => $action,
 			'tmplog_template_id' => $bannerId,
-			'tmplog_template_name' => SpecialNoticeTemplate::getBannerName( $bannerId )
+			'tmplog_template_name' => SpecialNoticeTemplate::getBannerName( $bannerId ),
+			'tmplog_content_change' => $contentChanged
 		);
 		
 		foreach ( $beginSettings as $key => $value ) {

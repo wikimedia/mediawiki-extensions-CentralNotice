@@ -136,7 +136,7 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	 * Sort the log list by timestamp
 	 */
 	function getIndexField() {
-		return 'notlog_timestamp';
+	return 'notlog_timestamp';
 	}
 	
 	/**
@@ -149,7 +149,7 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		);
 	}
 	
-	/**
+	/** 
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
@@ -423,7 +423,7 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	
 }
 
-class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
+class CentralNoticeBannerLogPager extends CentralNoticeLogPager {
 	var $viewPage, $special;
 
 	function __construct( $special ) {
@@ -588,6 +588,7 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 		$details .= $this->testBooleanChange( 'anon', $row );
 		$details .= $this->testBooleanChange( 'account', $row );
 		$details .= $this->testBooleanChange( 'fundraising', $row );
+		$details .= $this->testTextChange( 'landingpages', $row );
 		if ( $row->tmplog_content_change ) {
 			// Show changes to banner content
 			$details .= wfMsg (
@@ -611,6 +612,24 @@ class CentralNoticeBannerLogPager extends ReverseChronologicalPager {
 					'centralnotice-changed', 
 					( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ), 
 					( $row->$endField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) )
+				)
+			)."<br/>";
+		}
+		return $result;
+	}
+
+	private function testTextChange( $param, $row ) {
+		$result = '';
+		$beginField = 'tmplog_begin_'.$param;
+		$endField = 'tmplog_end_'.$param;
+		if ( $row->$beginField !== $row->$endField ) {
+			$result .= wfMsg (
+				'centralnotice-log-label',
+				wfMsg ( 'centralnotice-'.$param ),
+				wfMsg (
+					'centralnotice-changed',
+					$row->$beginField,
+					$row->$endField
 				)
 			)."<br/>";
 		}
