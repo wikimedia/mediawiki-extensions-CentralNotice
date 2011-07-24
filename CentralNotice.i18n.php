@@ -183,6 +183,7 @@ Add one below.',
  * @author Nike
  * @author Purodha
  * @author Raymond
+ * @author Seb35
  * @author Siebrand
  * @author The Evil IP address
  */
@@ -257,6 +258,8 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
 	'centralnotice-user' => '{{Identical|User}}',
 	'centralnotice-action' => '{{Identical|Action}}',
+	'centralnotice-on' => 'indicates a notice is on air',
+	'centralnotice-off' => 'indicates a notice is not on air',
 	'centralnotice-no-assignments' => 'Appears in the middle of a sentence; should be all lower case.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.',
 	'centralnotice-user-links' => '$1 is a link to the user page, $2 is a link to the user talk page.',
@@ -1819,6 +1822,11 @@ Afegiu-ne un a continuació.',
 	'centralnotice-documentwrite-error' => "document.write () no pot ser utilitzat dins d'una pancarta
  Veure http://meta.wikimedia.org/wiki/Help:CentralNotice per a més informació.",
 	'centralnotice-preferred' => 'Preferit',
+	'centralnotice-logs' => 'Registres',
+	'centralnotice-view-logs' => 'Vegeu registres',
+	'centralnotice-user' => 'Usuari',
+	'centralnotice-added' => 'Afegit <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Eliminat <span class="cn-old-value">$1</span>',
 );
 
 /** Chechen (Нохчийн)
@@ -2353,6 +2361,12 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-talk-link' => 'Diskussion',
 	'centralnotice-campaign-settings' => 'Kampagneneinstellungen',
 	'centralnotice-banner-settings' => 'Bannereinstellungen',
+	'centralnotice-anon' => 'Anonymen Benutzern anzeigen',
+	'centralnotice-account' => 'Angemeldeten Benutzern anzeigen',
+	'centralnotice-fundraising' => 'Spendenaufruf',
+	'centralnotice-landingpages' => 'Zielseiten',
+	'centralnotice-banner-content' => 'Bannerinhalt',
+	'centralnotice-banner-content-changed' => 'Geändert',
 );
 
 /** German (formal address) (‪Deutsch (Sie-Form)‬)
@@ -3505,6 +3519,7 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
  * @author Meithal
  * @author Peter17
  * @author PieRRoMaN
+ * @author Seb35
  * @author Sherbrooke
  * @author Urhixidur
  * @author Verdy p
@@ -3540,6 +3555,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-list-templates' => 'Lister les modèles',
 	'centralnotice-multiple-projects' => 'multiple ($1)',
 	'centralnotice-multiple-languages' => 'multiple ($1)',
+	'centralnotice-multiple-countries' => 'Multiple ($1)',
 	'centralnotice-all-projects' => 'Tous les projets',
 	'centralnotice-translations' => 'Traductions',
 	'centralnotice-translate-to' => 'Traduire en',
@@ -3647,6 +3663,25 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-preferred' => 'Préféré',
 	'centralnotice-logs' => 'Journaux',
 	'centralnotice-view-logs' => 'Voir les journaux',
+	'centralnotice-timestamp' => 'Date',
+	'centralnotice-user' => 'Utilisateur',
+	'centralnotice-action' => 'Action',
+	'centralnotice-changed' => 'Changé depuis <span class="cn-old-value">$1</span> vers <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'on',
+	'centralnotice-off' => 'off',
+	'centralnotice-added' => 'A ajouté <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'A retiré <span class="cn-old-value">$1</span>',
+	'centralnotice-banners-changed' => 'Les assignements de bannière ont été changé',
+	'centralnotice-no-assignments' => 'aucune bannière assignée',
+	'centralnotice-talk-link' => 'discuter',
+	'centralnotice-campaign-settings' => 'Paramètres de la campagne',
+	'centralnotice-banner-settings' => 'Paramètres de la bannière',
+	'centralnotice-anon' => 'Afficher aux utilisateurs anonymes',
+	'centralnotice-account' => 'Afficher aux utilisateurs connectés',
+	'centralnotice-fundraising' => 'Levée de fonds',
+	'centralnotice-landingpages' => 'Pages de destination',
+	'centralnotice-banner-content' => 'Contenu de la bannière',
+	'centralnotice-banner-content-changed' => 'Changé',
 );
 
 /** Franco-Provençal (Arpetan)
@@ -3788,7 +3823,10 @@ Apondéd-nen ce-desot.',
 	'centralnotice-timestamp' => 'Dâta et hora',
 	'centralnotice-user' => 'Utilisator',
 	'centralnotice-action' => 'Accion',
+	'centralnotice-on' => 'activâ',
+	'centralnotice-off' => 'dèsactivâ',
 	'centralnotice-talk-link' => 'discussion',
+	'centralnotice-banner-content-changed' => 'Changiê',
 );
 
 /** Irish (Gaeilge)
@@ -6126,6 +6164,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> derbäigesat',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> ewechgeholl',
 	'centralnotice-talk-link' => 'Diskussioun',
+	'centralnotice-banner-content-changed' => 'Geännert',
 );
 
 /** Lingua Franca Nova (Lingua Franca Nova)
@@ -6622,6 +6661,12 @@ $messages['mk'] = array(
 	'centralnotice-talk-link' => 'разговор',
 	'centralnotice-campaign-settings' => 'Поставки за кампања',
 	'centralnotice-banner-settings' => 'Поставки за плакат',
+	'centralnotice-anon' => 'Прикажувај на анонимни корисници',
+	'centralnotice-account' => 'Прикажувај на најавени корисници',
+	'centralnotice-fundraising' => 'Прибирање средства',
+	'centralnotice-landingpages' => 'Целни страници',
+	'centralnotice-banner-content' => 'Содржина на плакатот',
+	'centralnotice-banner-content-changed' => 'Изменето',
 );
 
 /** Malayalam (മലയാളം)
@@ -6775,6 +6820,9 @@ $messages['ml'] = array(
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> കൂട്ടിച്ചേർത്തിരിക്കുന്നു',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> നീക്കം ചെയ്തിരിക്കുന്നു',
 	'centralnotice-talk-link' => 'സംവാദം',
+	'centralnotice-anon' => 'അജ്ഞാത ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
+	'centralnotice-account' => 'പ്രവേശിച്ചിട്ടുള്ള ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
+	'centralnotice-banner-content-changed' => 'മാറ്റിയിരിക്കുന്നു',
 );
 
 /** Mongolian (Монгол)
@@ -7322,6 +7370,7 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-banners-changed' => 'Bannertoewijzingen zijn gewijzigd',
 	'centralnotice-no-assignments' => 'geen banners toegewezen',
 	'centralnotice-talk-link' => 'overleg',
+	'centralnotice-campaign-settings' => 'Campagne-instellingen',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
@@ -7565,6 +7614,11 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-talk-link' => 'snakke',
 	'centralnotice-campaign-settings' => 'Kampanjeinnstillinger',
 	'centralnotice-banner-settings' => 'Bannerinnstillinger',
+	'centralnotice-anon' => 'Angi til anonyme brukere',
+	'centralnotice-account' => 'Angi til innloggede brukere',
+	'centralnotice-fundraising' => 'Pengeinnsamling',
+	'centralnotice-banner-content' => 'Bannerinnhold',
+	'centralnotice-banner-content-changed' => 'Endret',
 );
 
 /** Occitan (Occitan)
@@ -7870,6 +7924,12 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-talk-link' => 'dyskusja',
 	'centralnotice-campaign-settings' => 'Ustawienia kampanii',
 	'centralnotice-banner-settings' => 'Ustawienia banera',
+	'centralnotice-anon' => 'Wyświetlaj niezalogowanym użytkownikom',
+	'centralnotice-account' => 'Wyświetlaj użytkownikom zalogowanym',
+	'centralnotice-fundraising' => 'Pozyskiwanie funduszy',
+	'centralnotice-landingpages' => 'Strona powitalna',
+	'centralnotice-banner-content' => 'Treść banera',
+	'centralnotice-banner-content-changed' => 'Zmieniono',
 );
 
 /** Piedmontese (Piemontèis)
@@ -9749,6 +9809,12 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-talk-link' => 'pogovor',
 	'centralnotice-campaign-settings' => 'Nastavitve kampanje',
 	'centralnotice-banner-settings' => 'Nastavitve pasice',
+	'centralnotice-anon' => 'Prikaži brezimnim uporabnikom',
+	'centralnotice-account' => 'Prikaži prijavljenim uporabnikom',
+	'centralnotice-fundraising' => 'Zbiranje sredstev',
+	'centralnotice-landingpages' => 'Ciljne strani',
+	'centralnotice-banner-content' => 'Vsebina pasice',
+	'centralnotice-banner-content-changed' => 'Spremenjeno',
 );
 
 /** Albanian (Shqip)
@@ -11816,6 +11882,12 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-talk-link' => 'thảo luận',
 	'centralnotice-campaign-settings' => 'Thiết lập thông báo chung',
 	'centralnotice-banner-settings' => 'Thiết lập biểu ngữ',
+	'centralnotice-anon' => 'Hiện cho người dùng không đăng nhập',
+	'centralnotice-account' => 'Hiện cho thành viên đăng nhập',
+	'centralnotice-fundraising' => 'Gây quỹ',
+	'centralnotice-landingpages' => 'Trang giới thiệu',
+	'centralnotice-banner-content' => 'Nội dung biểu ngữ',
+	'centralnotice-banner-content-changed' => 'Thay đổi',
 );
 
 /** Volapük (Volapük)
