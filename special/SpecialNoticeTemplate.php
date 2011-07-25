@@ -501,8 +501,11 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				}
 		
 				// Show language selection form
-				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+				$actionTitle = $this->getTitleFor( 'NoticeTemplate', 'view' );
+				$actionUrl = $actionTitle->getLocalURL();
+				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $actionUrl ) );
 				$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-change-lang' ) );
+				$htmlOut .= Html::hidden( 'template', $currentTemplate );
 				$htmlOut .= Xml::openElement( 'table', array ( 'cellpadding' => 9 ) );
 				list( $lsLabel, $lsSelect ) = Xml::languageSelector( $wpUserLang );
 		
@@ -525,7 +528,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 						)
 				);
 				$htmlOut .= Xml::closeElement( 'table' );
-				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Xml::closeElement( 'fieldset' );
 				$htmlOut .= Xml::closeElement( 'form' );
 			}
