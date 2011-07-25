@@ -4298,6 +4298,12 @@ $messages['he'] = array(
 	'centralnotice-talk-link' => 'שיחה',
 	'centralnotice-campaign-settings' => 'הגדרות מבצע פרסום',
 	'centralnotice-banner-settings' => 'הגדרת כרזה',
+	'centralnotice-anon' => 'להציג למשתמשים אלמוניים',
+	'centralnotice-account' => 'להציג למשתמשים שנכנסו לחשבון',
+	'centralnotice-fundraising' => 'התרמה',
+	'centralnotice-landingpages' => 'דפי נחיתה',
+	'centralnotice-banner-content' => 'תוכן כרזה',
+	'centralnotice-banner-content-changed' => 'השתנה',
 );
 
 /** Hindi (हिन्दी)
