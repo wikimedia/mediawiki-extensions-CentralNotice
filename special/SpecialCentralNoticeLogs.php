@@ -428,7 +428,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeLogPager {
 
 	function __construct( $special ) {
 		$this->special = $special;
-		parent::__construct();
+		parent::__construct($special);
 		
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 	}
