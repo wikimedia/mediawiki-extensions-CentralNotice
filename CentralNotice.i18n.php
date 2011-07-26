@@ -259,9 +259,11 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-user' => '{{Identical|User}}',
 	'centralnotice-action' => '{{Identical|Action}}',
 	'centralnotice-on' => 'indicates a notice is on air',
-	'centralnotice-off' => 'indicates a notice is not on air',
+	'centralnotice-off' => 'indicates a notice is not on air
+{{Identical|Off}}',
 	'centralnotice-no-assignments' => 'Appears in the middle of a sentence; should be all lower case.',
-	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.',
+	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.
+{{Identical|Talk}}',
 	'centralnotice-user-links' => '$1 is a link to the user page, $2 is a link to the user talk page.',
 	'centralnotice-log-label' => '$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
 	'centralnotice-campaign-settings' => 'Label for a radio button',
@@ -1171,6 +1173,15 @@ $messages['be-tarask'] = array(
 	'centralnotice-user' => 'Удзельнік',
 	'centralnotice-action' => 'Дзеяньне',
 	'centralnotice-changed' => 'Зьмененае з <span class="cn-old-value">$1</span> на <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'уключыць',
+	'centralnotice-off' => 'выключыць',
+	'centralnotice-added' => 'Дададзенае <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Выдаленае <span class="cn-old-value">$1</span>',
+	'centralnotice-banners-changed' => 'Зьмененае прызначэньне паведамленьняў',
+	'centralnotice-no-assignments' => 'паведамленьні не прызначаныя',
+	'centralnotice-talk-link' => 'абмеркаваньне',
+	'centralnotice-campaign-settings' => 'Налады кампаніі',
+	'centralnotice-banner-settings' => 'Налады паведамленьня',
 );
 
 /** Bulgarian (Български)
@@ -7185,12 +7196,12 @@ Kannst ünnen een tofögen',
  * @author Servien
  */
 $messages['nds-nl'] = array(
-	'centralnotice-desc' => 'Voeg een centrale mededeling an de webstee toe',
+	'centralnotice-desc' => 'Zet een sentrale mededeling op de webstee',
 	'centralnotice-translate-heading' => 'Vertaling veur $1',
-	'centralnotice-add' => 'Toevoegen',
-	'centralnotice-add-template' => 'Mal toevoegen',
+	'centralnotice-add' => 'Derbie doon',
+	'centralnotice-add-template' => 'Mal derbie doon',
 	'centralnotice-translations' => 'Vertalingen',
-	'centralnotice-change-lang' => 'Taal dee-j vertalen willen wiezigen',
+	'centralnotice-change-lang' => "Taal die'j vertalen willen wiezigen",
 );
 
 /** Nepali (नेपाली)
@@ -7377,6 +7388,8 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-no-assignments' => 'geen banners toegewezen',
 	'centralnotice-talk-link' => 'overleg',
 	'centralnotice-campaign-settings' => 'Campagne-instellingen',
+	'centralnotice-fundraising' => 'Fondsenwerving',
+	'centralnotice-banner-content-changed' => 'Gewijzigd',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
@@ -8288,6 +8301,12 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-talk-link' => 'discussão',
 	'centralnotice-campaign-settings' => 'Configurações do aviso',
 	'centralnotice-banner-settings' => 'Configurações do modelo',
+	'centralnotice-anon' => 'Apresentar a utilizadores anónimos',
+	'centralnotice-account' => 'Apresentar a utilizadores autenticados',
+	'centralnotice-fundraising' => 'Angariação de fundos',
+	'centralnotice-landingpages' => 'Páginas de chegada',
+	'centralnotice-banner-content' => 'Conteúdo do modelo',
+	'centralnotice-banner-content-changed' => 'Alterações',
 );
 
 /** Brazilian Portuguese (Português do Brasil)
