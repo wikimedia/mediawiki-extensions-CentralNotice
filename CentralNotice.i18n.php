@@ -983,6 +983,7 @@ $messages['bar'] = array(
 	'centralnotice-translate-to' => 'Ywersetzen auf',
 	'centralnotice-translate' => 'Ywersetzen',
 	'centralnotice-english' => 'Englisch',
+	'centralnotice-logs' => 'Logbiacher',
 );
 
 /** Southern Balochi (بلوچی مکرانی)
@@ -1182,6 +1183,12 @@ $messages['be-tarask'] = array(
 	'centralnotice-talk-link' => 'абмеркаваньне',
 	'centralnotice-campaign-settings' => 'Налады кампаніі',
 	'centralnotice-banner-settings' => 'Налады паведамленьня',
+	'centralnotice-anon' => 'Паказваць ананімным удзельнікам',
+	'centralnotice-account' => 'Паказваць зарэгістраваным удзельнікам',
+	'centralnotice-fundraising' => 'Збор сродкаў',
+	'centralnotice-landingpages' => 'Прывітальная старонка',
+	'centralnotice-banner-content' => 'Зьмест паведамленьня',
+	'centralnotice-banner-content-changed' => 'Зьменены',
 );
 
 /** Bulgarian (Български)
@@ -6181,6 +6188,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> derbäigesat',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> ewechgeholl',
 	'centralnotice-talk-link' => 'Diskussioun',
+	'centralnotice-fundraising' => 'Spendenopruff',
 	'centralnotice-banner-content-changed' => 'Geännert',
 );
 
@@ -7388,7 +7396,12 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-no-assignments' => 'geen banners toegewezen',
 	'centralnotice-talk-link' => 'overleg',
 	'centralnotice-campaign-settings' => 'Campagne-instellingen',
+	'centralnotice-banner-settings' => 'Bannerinstellingen',
+	'centralnotice-anon' => 'Weergeven aan anonieme gebruikers',
+	'centralnotice-account' => 'Weergeven aan aangemelde gebruikers',
 	'centralnotice-fundraising' => 'Fondsenwerving',
+	'centralnotice-landingpages' => "Ingangspagina's",
+	'centralnotice-banner-content' => 'Bannerinhoud',
 	'centralnotice-banner-content-changed' => 'Gewijzigd',
 );
 
