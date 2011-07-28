@@ -6188,6 +6188,8 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> derbäigesat',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> ewechgeholl',
 	'centralnotice-talk-link' => 'Diskussioun',
+	'centralnotice-anon' => 'Anonyme Benotzer weisen',
+	'centralnotice-account' => 'Ageloggte Benotzer weisen',
 	'centralnotice-fundraising' => 'Spendenopruff',
 	'centralnotice-banner-content-changed' => 'Geännert',
 );
@@ -7053,6 +7055,12 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-talk-link' => 'bincang',
 	'centralnotice-campaign-settings' => 'Tetapan kempen',
 	'centralnotice-banner-settings' => 'Tetapan sepanduk',
+	'centralnotice-anon' => 'Paparkan kepada pengguna tanpa nama',
+	'centralnotice-account' => 'Paparkan kepada pengguna yang log masuk',
+	'centralnotice-fundraising' => 'Pendermaan',
+	'centralnotice-landingpages' => 'Laman pendaratan',
+	'centralnotice-banner-content' => 'Kandungan sepanduk',
+	'centralnotice-banner-content-changed' => 'Diubah',
 );
 
 /** Maltese (Malti)
