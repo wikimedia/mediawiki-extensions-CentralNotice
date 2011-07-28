@@ -45,7 +45,11 @@ function insertButton( buttonType ) {
 	var bannerField = document.getElementById('templateBody');
 	switch( buttonType ) {
 		case 'close': // Insert close button
-			var buttonValue = '<a href="#" onclick="toggleNotice();return false"><img border="0" src="'+stylepath+'/common/images/closewindow.png" alt="Close" /></a>';
+			if ( $( '#fundraising' ).is( ':checked' ) ) {
+				var buttonValue = '<a href="#" onclick="hideBanner(\'fundraising\');return false;"><img border="0" src="'+stylepath+'/common/images/closewindow.png" alt="Close" /></a>';
+			} else {
+				var buttonValue = '<a href="#" onclick="hideBanner();return false;"><img border="0" src="'+stylepath+'/common/images/closewindow.png" alt="Close" /></a>';
+			}
 			break;
 	}
 	if (document.selection) {

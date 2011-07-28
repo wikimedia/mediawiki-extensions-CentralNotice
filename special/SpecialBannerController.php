@@ -54,7 +54,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			'getVars': {}
 		},
 		'fn': {
-			'loadBanner': function( bannerName, campaign ) {
+			'loadBanner': function( bannerName, campaign, bannerType ) {
 				// Get the requested banner
 				var bannerPageQuery = $.param( { 
 					'banner': bannerName, 'campaign': campaign, 'userlang': wgUserLanguage, 
@@ -66,9 +66,11 @@ JAVASCRIPT;
 			Xml::escapeJsString( $wgCentralPagePath ) .
 			"' + bannerPage + '\"></script>';\n";
 		$js .= <<<JAVASCRIPT
-				$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + 
-					( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + 
-					'">'+bannerScript+'</div>' );
+				if ( document.cookie.indexOf( 'centralnotice_'+bannerType+'=hide' ) == -1 ) {
+					$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + 
+						( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + 
+						' cn-' + bannerType + '">'+bannerScript+'</div>' );
+				}
 			},
 			'loadBannerList': function( geoOverride ) {
 				if ( geoOverride ) {
@@ -118,7 +120,8 @@ JAVASCRIPT;
 				// Load a random banner from our groomed list
 				$.centralNotice.fn.loadBanner( 
 					groomedBannerList[pointer].name,
-					groomedBannerList[pointer].campaign
+					groomedBannerList[pointer].campaign,
+					( groomedBannerList[pointer].fundraising ? 'fundraising' : 'default' )
 				);
 			},
 			'getQueryStringVariables': function() {
@@ -177,14 +180,25 @@ JAVASCRIPT;
 		}
 	}
 }
+function hideBanner( bannerType ) {
+	$( '#centralNotice' ).hide(); // Hide current banner
+	if ( bannerType === undefined ) bannerType = 'default';
+	setBannerHidingCookie( bannerType ); // Hide future banners of the same type
+}
+function setBannerHidingCookie( bannerType ) {
+	var e = new Date();
+	e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
+	var work='centralnotice_'+bannerType+'=hide; expires=' + e.toGMTString() + '; path=/';
+	document.cookie = work;
+}
 function toggleNotice() {
 	var notice = document.getElementById('centralNotice');
 	if (!wgNoticeToggleState) {
 		notice.className = notice.className.replace('collapsed', 'expanded');
-		toggleNoticeCookie('0');
+		toggleNoticeCookie('0'); // Expand banners
 	} else {
 		notice.className = notice.className.replace('expanded', 'collapsed');
-		toggleNoticeCookie('1');
+		toggleNoticeCookie('1'); // Collapse banners
 	}
 	wgNoticeToggleState = !wgNoticeToggleState;
 }
