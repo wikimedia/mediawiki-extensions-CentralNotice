@@ -169,7 +169,7 @@ class CentralNoticeDB {
 			$campaign['languages'] = implode( ", ", $languages );
 			$campaign['countries'] = implode( ", ", $geo_countries );
 			
-			$bannersIn = CentralNoticeDB::getCampaignBanners( $row->not_id );
+			$bannersIn = CentralNoticeDB::getCampaignBanners( $row->not_id, true );
 			$bannersOut = array();
 			// All we want are the banner names and weights
 			foreach ( $bannersIn as $key => $row ) {
@@ -185,13 +185,19 @@ class CentralNoticeDB {
 
 	/*
 	 * Given one or more campaign ids, return all banners bound to them
-	 * @param $campaigns An array of id numbers
+	 * @param $campaigns array of id numbers
+	 * @param $logging boolean whether or not request is for logging (optional)
 	 * @return a 2D array of banners with associated weights and settings
 	 */
-	static function getCampaignBanners( $campaigns ) {
+	static function getCampaignBanners( $campaigns, $logging = false ) {
 		global $wgCentralDBname;
 		
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		// If logging, read from the master database to avoid concurrency problems
+		if ( $logging ) {
+			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		} else {
+			$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		}
 
 		$banners = array();
 
