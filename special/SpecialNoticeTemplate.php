@@ -783,7 +783,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * @param $landingPages string list of landing pages (optional)
 	 * @return boolean banner successfully added or not?
 	 */
-	private function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0, 
+	public function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0, 
 		$landingPages = '' ) {
 		
 		if ( $body == '' || $name == '' ) {
