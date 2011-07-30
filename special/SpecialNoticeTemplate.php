@@ -746,7 +746,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		return null;
 	}
 
-	private function removeTemplate ( $name ) {
+	public function removeTemplate ( $name ) {
 		$id = SpecialNoticeTemplate::getTemplateId( $name );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
