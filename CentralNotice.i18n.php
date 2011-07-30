@@ -8903,6 +8903,8 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-documentwrite-error' => "document.write() non ge pò essere ausate jndr'à 'nu banner.
 Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-preferred' => 'Preferite',
+	'centralnotice-user' => 'Utende',
+	'centralnotice-action' => 'Azione',
 );
 
 /** Russian (Русский)
