@@ -1230,6 +1230,9 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
+	/**
+	 * Assign a banner to a campaign at a certain weight
+	 */
 	function addTemplateTo( $noticeName, $templateName, $weight ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -1344,6 +1347,9 @@ class CentralNotice extends SpecialPage {
 		return $row->tmp_id;
 	}
 
+	/**
+	 * Remove a banner assignment from a campaign
+	 */
 	function removeTemplateFor( $noticeName, $templateName ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();

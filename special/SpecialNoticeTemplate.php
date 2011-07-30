@@ -775,13 +775,20 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 	/**
 	 * Create a new banner
+	 * @param $name string name of banner
+	 * @param $body string content of banner
+	 * @param $displayAnon integer flag for display to anonymous users
+	 * @param $displayAccount integer flag for display to logged in users
+	 * @param $fundraising integer flag for fundraising banner (optional)
+	 * @param $landingPages string list of landing pages (optional)
+	 * @return boolean banner successfully added or not?
 	 */
-	private function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising, 
-		$landingPages ) {
+	private function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0, 
+		$landingPages = '' ) {
 		
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
-			return;
+			return false;
 		}
 
 		// Format name so there are only letters, numbers, and underscores
