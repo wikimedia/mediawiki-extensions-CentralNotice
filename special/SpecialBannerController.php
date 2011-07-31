@@ -166,7 +166,7 @@ JAVASCRIPT;
 	$script .= "\n\t\tvar url = '" . 
 	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';";
 	$script .= <<<JAVASCRIPT
-		if ( bannerJson.landingPages.length ) {
+		if ( bannerJson.landingPages && bannerJson.landingPages.length ) {
 			targets = String( bannerJson.landingPages ).split(',');
 			url += "?" + jQuery.param( {
 				'landing_page': targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' )
