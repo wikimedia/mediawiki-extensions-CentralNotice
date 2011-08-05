@@ -3866,6 +3866,8 @@ Apondéd-nen ce-desot.',
 	'centralnotice-action' => 'Accion',
 	'centralnotice-on' => 'activâ',
 	'centralnotice-off' => 'dèsactivâ',
+	'centralnotice-added' => 'At apondu <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'At enlevâ <span class="cn-old-value">$1</span>',
 	'centralnotice-talk-link' => 'discussion',
 	'centralnotice-banner-content-changed' => 'Changiê',
 );
@@ -4025,6 +4027,8 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-on' => 'activo',
 	'centralnotice-off' => 'inactivo',
 	'centralnotice-talk-link' => 'conversa',
+	'centralnotice-campaign-settings' => 'Configuración da campaña',
+	'centralnotice-banner-settings' => 'Configuración do cartel',
 	'centralnotice-landingpages' => 'Páxinas de destino',
 	'centralnotice-banner-content-changed' => 'Cambiado',
 );
@@ -7990,7 +7994,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-preferred' => 'Preferowany',
 	'centralnotice-logs' => 'Rejestr operacji',
 	'centralnotice-view-logs' => 'Rejestr odsłon',
-	'centralnotice-timestamp' => 'Data i czas',
+	'centralnotice-timestamp' => 'Sygnatura czasowa',
 	'centralnotice-user' => 'Użytkownik',
 	'centralnotice-action' => 'Akcja',
 	'centralnotice-changed' => 'Zmieniono z <span class="cn-old-value">$1</span> na <span class="cn-new-value">$2</span>',
@@ -7998,7 +8002,6 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-off' => 'wyłączone',
 	'centralnotice-added' => 'Dodano <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Usunięto <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'Zmieniono przydział banera',
 	'centralnotice-no-assignments' => 'brak przydzielonych banerów',
 	'centralnotice-talk-link' => 'dyskusja',
 	'centralnotice-campaign-settings' => 'Ustawienia kampanii',
@@ -9106,9 +9109,16 @@ $messages['ru'] = array(
 	'centralnotice-off' => 'откл',
 	'centralnotice-added' => 'Добавлено <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Удалено <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'Распределение баннеров было изменено',
 	'centralnotice-no-assignments' => 'баннеры не назначены',
 	'centralnotice-talk-link' => 'обсуждение',
+	'centralnotice-campaign-settings' => 'Настройки кампании',
+	'centralnotice-banner-settings' => 'Настройки баннера',
+	'centralnotice-anon' => 'Показывать анонимным пользователям',
+	'centralnotice-account' => 'Показывать представившимся участникам',
+	'centralnotice-fundraising' => 'Сбор средств',
+	'centralnotice-landingpages' => 'Целевые страницы',
+	'centralnotice-banner-content' => 'Содержание баннера',
+	'centralnotice-banner-content-changed' => 'Изменено',
 );
 
 /** Rusyn (Русиньскый)
@@ -10287,6 +10297,7 @@ $messages['su'] = array(
  * @author Boivie
  * @author Cohan
  * @author Fluff
+ * @author Knuckles
  * @author Lejonel
  * @author Lokal Profil
  * @author M.M.S.
@@ -10299,6 +10310,7 @@ $messages['sv'] = array(
 	'centralnotice' => 'Centralmeddelande-administration',
 	'noticetemplate' => 'Administration för Centralmeddelandemall',
 	'bannerallocation' => 'Administraton av centralmeddelande',
+	'centralnoticelogs' => 'Administration av centralmeddelande',
 	'right-centralnotice-admin' => 'Hantera centrala meddelanden',
 	'action-centralnotice-admin' => 'hantera centralmeddelanden',
 	'centralnotice-desc' => 'Lägger till en central sitenotice',
@@ -10325,6 +10337,7 @@ Den kan också användas för att lägga till eller ta bort gamla meddelanden.',
 	'centralnotice-list-templates' => 'Lista mallar',
 	'centralnotice-multiple-projects' => 'flera ($1)',
 	'centralnotice-multiple-languages' => 'flera ($1)',
+	'centralnotice-multiple-countries' => 'Flera ($1)',
 	'centralnotice-all-projects' => 'Alla projekt',
 	'centralnotice-translations' => 'Översättningar',
 	'centralnotice-translate-to' => 'Översätt till',
@@ -10413,6 +10426,9 @@ Lägg till ett nedan',
 	'centralnotice-banner-type' => 'Bannertyp:',
 	'centralnotice-banner-hidable' => 'Statisk/gömbar',
 	'centralnotice-banner-collapsible' => 'Hopfällbar',
+	'centralnotice-banner-fundraising' => 'Detta är en insamlingsbanner',
+	'centralnotice-banner-fundraising-help' => 'Skapa ett ankartagg i banners body med id = "cn_fundraising_link" och skriv in en eller flera målsidor nedan, till exempel "JimmyAppeal01". Länkens href kommer att skapas automatiskt.',
+	'centralnotice-banner-landing-pages' => 'Målsidor (kommaseparerade):',
 	'centralnotice-geo' => 'Geografiskt fokuserat',
 	'centralnotice-countries' => 'Länder',
 	'centralnotice-allocation' => 'Tilldelning',
@@ -10432,10 +10448,21 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-timestamp' => 'Tidsstämpel',
 	'centralnotice-user' => 'Användare',
 	'centralnotice-action' => 'Åtgärd',
+	'centralnotice-changed' => 'Ändrad från <span class="cn-old-value">$1</span> till <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'på',
 	'centralnotice-off' => 'av',
 	'centralnotice-added' => 'Lade till <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Tog bort <span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => 'inga banners tilldelade',
+	'centralnotice-talk-link' => 'diskussion',
+	'centralnotice-campaign-settings' => 'Kampanjinställningar',
+	'centralnotice-banner-settings' => 'Banner-inställningar',
+	'centralnotice-anon' => 'Visa för anonyma användare',
+	'centralnotice-account' => 'Visa för inloggade användare',
+	'centralnotice-fundraising' => 'Insamling',
+	'centralnotice-landingpages' => 'Målsidor',
+	'centralnotice-banner-content' => 'Banner-innehåll',
+	'centralnotice-banner-content-changed' => 'Ändrad',
 );
 
 /** Swahili (Kiswahili)
