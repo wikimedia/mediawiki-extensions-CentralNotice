@@ -367,12 +367,7 @@ class CentralNoticeDB {
 		 $dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 
 		 $eCampaignName = htmlspecialchars( $campaignName );
-		 $row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eCampaignName ) );
-		 if ( $row ) {
-		 	return true;
-		 } else {
-		 	return false;
-		 }
+		 return (bool)$dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eCampaignName ) );
 	}
 	
 	/*
