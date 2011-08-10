@@ -781,7 +781,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * @param $displayAccount integer flag for display to logged in users
 	 * @param $fundraising integer flag for fundraising banner (optional)
 	 * @param $landingPages string list of landing pages (optional)
-	 * @return boolean banner successfully added or not?
+	 * @return true or false depending on whether banner was successfully added
 	 */
 	public function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0, 
 		$landingPages = '' ) {

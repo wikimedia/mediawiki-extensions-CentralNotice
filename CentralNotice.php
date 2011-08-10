@@ -110,7 +110,6 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses['CentralNotice'] = $specialDir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
-	$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 
 	if ( $wgNoticeInfrastructure ) {
 		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
@@ -124,6 +123,11 @@ function efCentralNoticeSetup() {
 
 		$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
 		$wgAutoloadClasses['SpecialCentralNoticeLogs'] = $specialDir . 'SpecialCentralNoticeLogs.php';
+		
+		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
+		$wgAutoloadClasses['CentralNoticePager'] = $dir . 'CentralNoticePager.php';
+		$wgAutoloadClasses['CentralNoticeLogPager'] = $dir . 'CentralNoticeLogPager.php';
+		$wgAutoloadClasses['CentralNoticeBannerLogPager'] = $dir . 'CentralNoticeBannerLogPager.php';
 	}
 }
 
