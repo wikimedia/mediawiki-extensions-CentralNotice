@@ -25,7 +25,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		header( 'Content-Type: image/png' );
 		header( 'Cache-Control: no-cache' );
 
-		readfile( dirname( __FILE__ ) . '/1x1.png' );
+		readfile( dirname( __FILE__ ) . '/../1x1.png' );
 	}
 	
 	function setHideCookie() {
@@ -36,7 +36,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
 		}
-		// Hide banners for this domain
-		setcookie( 'hidesnmessage', '1', $exp, '/', $cookieDomain, $wgCookieSecure );
+		// Hide fundraising banners for this domain
+		setcookie( 'centralnotice_fundraising', 'hide', $exp, '/', $cookieDomain, $wgCookieSecure );
 	}
 }
