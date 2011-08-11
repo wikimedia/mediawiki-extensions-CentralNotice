@@ -297,7 +297,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
 		);
 		
-		$htmlOut .= Html::textarea( 'templateBody', $body, 60, 20 );
+		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
 		$htmlOut .= Html::closeElement( 'fieldset' );
 		$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 		
