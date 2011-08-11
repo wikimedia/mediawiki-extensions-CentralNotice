@@ -226,6 +226,7 @@ $messages['qqq'] = array(
 	'centralnotice-start-time' => 'Used in Special:CentralNotice. UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]',
 	'centralnotice-end-time' => 'Used in Special:CentralNotice. UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]',
 	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
+	'centralnotice-change-lang' => 'Fieldset legend for a language selector, that is used to set a preference for which language to translate to in the translation module of the extension CentralNotice.',
 	'centralnotice-notice-is-locked' => 'Error message displayed in Special:CentralNotice when trying to delete a locked notice',
 	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
@@ -2110,6 +2111,7 @@ Ddim yn tynnu i ffwrdd.",
 	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner. 
 Ychwanegwch rai!',
 	'centralnotice-available-templates' => 'Y baneri sydd ar gael',
+	'centralnotice-change-lang' => 'Newid iaith y cyfieithu',
 	'centralnotice-weights' => 'Pwysau',
 	'centralnotice-notice-is-locked' => "Mae'r hysbysiad wedi ei gloi.
 Ni chaiff ei dynnu i ffwrdd",
@@ -6542,7 +6544,7 @@ $messages['lv'] = array(
  */
 $messages['mg'] = array(
 	'centralnotice' => "Fandrindàn'ny toerana fampandrenesana",
-	'noticetemplate' => "Endrin'ny toerana fampandrenesana",
+	'noticetemplate' => "Fandrindrana ny renitoeran'ny filazana",
 	'action-centralnotice-admin' => "mikojakoja n'io hafatra io",
 	'centralnotice-desc' => "Manampy toerana fampandrenesana amin'ilay tranonkala",
 	'centralnotice-query' => 'Ovay ny fampandrenesana misy ankehitriny',
@@ -6563,7 +6565,7 @@ $messages['mg'] = array(
 	'centralnotice-translate-to' => "Dikao amin'ny",
 	'centralnotice-translate' => 'Dikao',
 	'centralnotice-english' => 'Anglisy',
-	'centralnotice-banner-name' => "Anaran'ilay endrika",
+	'centralnotice-banner-name' => "Anaran'ilay baniera :",
 	'centralnotice-templates' => 'Endrika',
 	'centralnotice-weight' => 'Lanja',
 	'centralnotice-locked' => 'Voaaro/voasakana',
@@ -10489,6 +10491,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 
 /** Swahili (Kiswahili)
  * @author Ikiwaner
+ * @author Lloffiwr
  */
 $messages['sw'] = array(
 	'centralnotice-modify' => 'Wasilisha',
@@ -10500,6 +10503,7 @@ $messages['sw'] = array(
 	'centralnotice-month' => 'Mwezi',
 	'centralnotice-hours' => 'Saa',
 	'centralnotice-min' => 'Dakika',
+	'centralnotice-change-lang' => 'Badili lugha ya tafsiri',
 	'centralnotice-message' => 'Ujumbe',
 	'centralnotice-clone-name' => 'Jina:',
 );
@@ -11529,6 +11533,7 @@ $messages['udm'] = array(
  * @author Aleksandrit
  * @author Alex Khimich
  * @author Arturyatsko
+ * @author Dim Grits
  * @author NickK
  * @author Riwnodennyk
  * @author Ytsukeng Fyvaprol
@@ -11666,6 +11671,8 @@ $messages['uk'] = array(
 	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері. 
 Дивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.',
 	'centralnotice-preferred' => 'Бажано',
+	'centralnotice-logs' => 'Журнали',
+	'centralnotice-talk-link' => 'обговорення',
 );
 
 /** Vèneto (Vèneto)
@@ -12222,6 +12229,7 @@ $messages['zh-hans'] = array(
 	'centralnotice' => '中央通告管理',
 	'noticetemplate' => '中央通告管理',
 	'bannerallocation' => 'Central notice admin',
+	'centralnoticelogs' => '中央通告管理',
 	'right-centralnotice-admin' => '管理中央通告',
 	'action-centralnotice-admin' => '管理中央通告',
 	'centralnotice-desc' => '在页面的顶部增加統一的公告栏位',
@@ -12248,6 +12256,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-list-templates' => '列出模板',
 	'centralnotice-multiple-projects' => '较多($1)',
 	'centralnotice-multiple-languages' => '较多($1)',
+	'centralnotice-multiple-countries' => '多条（$1）',
 	'centralnotice-all-projects' => '所有项目',
 	'centralnotice-translations' => '翻译',
 	'centralnotice-translate-to' => '翻译到',
@@ -12337,6 +12346,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner-hidable' => '静态/可隐藏',
 	'centralnotice-banner-collapsible' => '可收缩',
 	'centralnotice-banner-fundraising' => '这是一个筹款横幅',
+	'centralnotice-banner-fundraising-help' => '在横幅体内创建id="cn_fundraising_link"的锚点标记，并在下方输入一个或多个目标页面，例如“吉米的请求01”。程序会自动构造链接的href属性。',
 	'centralnotice-banner-landing-pages' => '登录页（逗号分隔）：',
 	'centralnotice-geo' => '已地理定位的',
 	'centralnotice-countries' => '国家',
@@ -12352,6 +12362,26 @@ $messages['zh-hans'] = array(
 	'centralnotice-documentwrite-error' => 'document.write() 不能在横幅中使用。
 更多信息请参见 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',
 	'centralnotice-preferred' => '偏好的',
+	'centralnotice-logs' => '日志',
+	'centralnotice-view-logs' => '查看日志',
+	'centralnotice-timestamp' => '时间戳',
+	'centralnotice-user' => '用户',
+	'centralnotice-action' => '操作',
+	'centralnotice-changed' => '已从<span class="cn-old-value">$1</span>改为<span class="cn-new-value">$2</span>',
+	'centralnotice-on' => '打开',
+	'centralnotice-off' => '关闭',
+	'centralnotice-added' => '已添加<span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => '已移除<span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => '没有已分配的横幅',
+	'centralnotice-talk-link' => '讨论',
+	'centralnotice-campaign-settings' => '活动设置',
+	'centralnotice-banner-settings' => '横幅设置',
+	'centralnotice-anon' => '向匿名用户展示',
+	'centralnotice-account' => '向已登录用户展示',
+	'centralnotice-fundraising' => '筹款',
+	'centralnotice-landingpages' => '目标页面',
+	'centralnotice-banner-content' => '横幅内容',
+	'centralnotice-banner-content-changed' => '已更改',
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
