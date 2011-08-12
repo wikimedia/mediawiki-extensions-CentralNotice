@@ -61,6 +61,7 @@
 	width: auto;
 }
 #preferences table#cn-campaign-logs td.primary {
+	white-space: nowrap;
 	background-color: #F0F0F0;
 }
 #preferences .cn-new-value {
@@ -71,6 +72,15 @@
 }
 #preferences .cn-log-label {
 	font-weight: bold;
+}
+#preferences .cn-log-filter {
+	margin-right: 1.5em;
+}
+#preferences .cn-log-filter-label {
+	margin-right: 0.5em;
+}
+#preferences .cn-filter-buttons {
+	margin-right: 0.5em;
 }
 #preferences #cn-log-switcher label {
 	margin-right: 1em;

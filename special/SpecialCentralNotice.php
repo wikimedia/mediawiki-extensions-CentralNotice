@@ -240,17 +240,19 @@ class CentralNotice extends SpecialPage {
 		return Xml::tags( 'tr', $attribs, implode( "\n", $cells ) ) . "\n";
 	}
 
-	function dateSelector( $prefix, $timestamp = null ) {
-		if ( $this->editable ) {
-			// Default ranges...
-			$years = range( 2008, 2014 );
-			$months = range( 1, 12 );
-			$months = array_map( array( $this, 'addZero' ), $months );
-			$days = range( 1 , 31 );
-			$days = array_map( array( $this, 'addZero' ), $days );
-	
-			// Normalize timestamp format. If no timestamp passed, defaults to now.
-			$ts = wfTimestamp( TS_MW, $timestamp );
+	public static function dateSelector( $prefix, $editable, $timestamp = null ) {
+		if ( $editable ) {
+			$years = range( 2010, 2016 );
+			$months = CentralNotice::paddedRange( 1, 12 );
+			$days = CentralNotice::paddedRange( 1, 31 );
+
+			// Normalize timestamp format. If no timestamp is passed, default to now. If -1 is 
+			// passed, set no defaults.
+			if ( $timestamp === -1 ) {
+				$ts = '00000000';
+			} else {
+				$ts = wfTimestamp( TS_MW, $timestamp );
+			}
 			
 			$fields = array(
 				array( "month", "centralnotice-month", $months, substr( $ts, 4, 2 ) ),
@@ -258,20 +260,17 @@ class CentralNotice extends SpecialPage {
 				array( "year",  "centralnotice-year",  $years,  substr( $ts, 0, 4 ) ),
 			);
 	
-			return $this->createSelector( $prefix, $fields );
+			return CentralNotice::createSelector( $prefix, $fields );
 		} else {
 			global $wgLang;
 			return $wgLang->date( $timestamp );
 		}
 	}
 
-	function timeSelector( $prefix, $timestamp = null ) {
-		if ( $this->editable ) {
-			// Default ranges...
-			$minutes = range( 0, 59 ); // formerly in 15-minute increments
-			$minutes = array_map( array( $this, 'addZero' ), $minutes );
-			$hours = range( 0 , 23 );
-			$hours = array_map( array( $this, 'addZero' ), $hours );
+	public static function timeSelector( $prefix, $editable, $timestamp = null ) {
+		if ( $editable ) {
+			$minutes = CentralNotice::paddedRange( 0, 59 );
+			$hours = CentralNotice::paddedRange( 0 , 23 );
 	
 			// Normalize timestamp format...
 			$ts = wfTimestamp( TS_MW, $timestamp );
@@ -281,7 +280,7 @@ class CentralNotice extends SpecialPage {
 				array( "min",  "centralnotice-min",   $minutes, substr( $ts, 10, 2 ) ),
 			);
 	
-			return $this->createSelector( $prefix, $fields );
+			return CentralNotice::createSelector( $prefix, $fields );
 		} else {
 			global $wgLang;
 			return $wgLang->time( $timestamp );
@@ -290,15 +289,15 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Build a set of select lists. Used by dateSelector and timeSelector.
-	 * @param $prefix string
-	 * @param $fields array
+	 * @param $prefix string to identify selector set, for example, 'start' or 'end'
+	 * @param $fields array of select lists to build
 	 */	
-	private function createSelector( $prefix, $fields ) {
+	public static function createSelector( $prefix, $fields ) {
 		$out = '';
 		foreach ( $fields as $data ) {
 			list( $field, $label, $set, $current ) = $data;
 			$out .= Xml::listDropDown( "{$prefix}[{$field}]",
-				$this->dropDownList( wfMsg( $label ), $set ),
+				CentralNotice::dropDownList( wfMsg( $label ), $set ),
 				'',
 				$current );
 		}
@@ -533,12 +532,12 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-time' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -846,22 +845,22 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-start-time' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $startTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-end-date' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $endTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $this->editable, $endTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), wfMsgHtml( 'centralnotice-end-time' ) );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $endTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $this->editable, $endTimestamp ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1641,15 +1640,16 @@ class CentralNotice extends SpecialPage {
 		}
 		return $dropDown;
 	}
-
-	function addZero( $text ) {
-		// Prepend a 0 for text needing it
-		if ( strlen( $text ) == 1 ) {
-			$text = "0{$text}";
-		}
-		return $text;
-	}
 	
+	public static function paddedRange( $begin, $end ) {
+		$unpaddedRange = range( $begin, $end );
+		$paddedRange = array();
+		foreach ( $unpaddedRange as $number ) {
+			$paddedRange[] = sprintf( "%02d", $number ); // pad number with 0 if needed
+		}
+		return $paddedRange;
+	}
+
 	function showError( $message ) {
 		global $wgOut;
 		$wgOut->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );

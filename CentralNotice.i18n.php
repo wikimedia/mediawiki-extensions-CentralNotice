@@ -168,6 +168,9 @@ Add one below.',
 	'centralnotice-landingpages' => 'Landing pages',
 	'centralnotice-banner-content' => 'Banner content',
 	'centralnotice-banner-content-changed' => 'Changed',
+	'centralnotice-filters' => 'Filters',
+	'centralnotice-date' => 'Date',
+	'centralnotice-apply-filters' => 'Apply filters',
 );
 
 /** Message documentation (Message documentation)

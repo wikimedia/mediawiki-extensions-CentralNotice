@@ -70,10 +70,56 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-settings' ), 'banner' );
 		
 		$htmlOut .= Xml::closeElement( 'div' );
+		
+		if ( $this->logType == 'campaignsettings' ) {
+		
+			$reset = $wgRequest->getVal( 'centralnoticelogreset' );
+			
+			$startArray = $wgRequest->getArray( 'start' );
+			if ( $wgRequest->wasPosted() && $startArray && !$reset ) {
+				$filterTimestamp = $startArray['year'] .
+					$startArray['month'] .
+					$startArray['day'] . '000000'
+				;
+			} else { // Default
+				$filterTimestamp = -1;
+			}
+			
+			$filters = Xml::openElement( 'span', array( 'class' => 'cn-log-filter' ) );
+			$filters .= Xml::label( wfMsg( 'centralnotice-date' ), 'start[month]', array( 'class' => 'cn-log-filter-label' ) );
+			$filters .= CentralNotice::dateSelector( 'start', true, $filterTimestamp );
+			$filters .= Xml::closeElement( 'span' );
+			
+			$filters .= Xml::openElement( 'span', array( 'class' => 'cn-log-filter' ) );
+			$filters .= Xml::label( wfMsg( 'centralnotice-notice' ), 'campaign', array( 'class' => 'cn-log-filter-label' ) );
+			$filters .= Xml::input( 'campaign', 25, ( $reset ? '' : $wgRequest->getVal( 'campaign' ) ) );
+			$filters .= Xml::closeElement( 'span' );
+			
+			$filters .= Xml::submitButton( wfMsg( 'centralnotice-apply-filters' ),
+				array(
+					'id' => 'centralnoticesubmit',
+					'name' => 'centralnoticesubmit',
+					'class' => 'cn-filter-buttons',
+				)
+			);
+			$filters .= Xml::submitButton( 'Clear filters',
+				array(
+					'id' => 'centralnoticelogreset',
+					'name' => 'centralnoticelogreset',
+					'class' => 'cn-filter-buttons',
+				)
+			);
+			
+			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-filters' ),
+				$filters,
+				array( 'class' => 'cn-bannerpreview')
+			);
+		}
+		
 		$htmlOut .= Xml::closeElement( 'form' );
 		
 		// End log selection fieldset
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		//$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
 		
@@ -99,7 +145,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$htmlOut = '';
 		
 		// Begin log fieldset
-		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		//$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
 		// Show paginated list of log entries
 		$htmlOut .= Xml::tags( 'div', 

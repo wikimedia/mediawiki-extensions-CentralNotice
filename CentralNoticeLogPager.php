@@ -4,6 +4,7 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	var $viewPage, $special;
 
 	function __construct( $special ) {
+		global $wgRequest;
 		$this->special = $special;
 		parent::__construct();
 		
@@ -25,10 +26,31 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	 * Pull log entries from the database
 	 */
 	function getQueryInfo() {
-		return array(
+		global $wgRequest;
+		
+		$dateArray = $wgRequest->getArray( 'start' );
+		$filterDate = $dateArray['year'] . $dateArray['month'] . $dateArray['day'];
+		$filterCampaign = $wgRequest->getVal( 'campaign' );
+		$reset = $wgRequest->getVal( 'centralnoticelogreset' );
+		
+		$info = array(
 			'tables' => array( 'cn_notice_log' ),
 			'fields' => '*',
+			'conds' => array()
 		);
+		
+		if ( !$reset ) {
+			$date1 = intval( $filterDate.'000000' );
+			$date2 = intval( ( $filterDate + 1 ).'000000' );
+			if ( $filterDate > 0 ) {
+				$info['conds'][] = "notlog_timestamp >= $date1 AND notlog_timestamp < $date2";
+			}
+			if ( $filterCampaign ) {
+				$info['conds'][] = "notlog_not_name LIKE '$filterCampaign'";
+			}
+		}
+		
+		return $info;
 	}
 	
 	/** 
