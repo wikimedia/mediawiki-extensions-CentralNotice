@@ -171,6 +171,7 @@ Add one below.',
 	'centralnotice-filters' => 'Filters',
 	'centralnotice-date' => 'Date',
 	'centralnotice-apply-filters' => 'Apply filters',
+	'centralnotice-clear-filters' => 'Clear filters',
 );
 
 /** Message documentation (Message documentation)
@@ -271,6 +272,8 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-log-label' => '$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
 	'centralnotice-campaign-settings' => 'Label for a radio button',
 	'centralnotice-banner-settings' => 'Label for a radio button',
+	'centralnotice-apply-filters' => 'Label for a submit button',
+	'centralnotice-clear-filters' => 'Label for a submit button. Clear as in reset.',
 );
 
 /** Afrikaans (Afrikaans)

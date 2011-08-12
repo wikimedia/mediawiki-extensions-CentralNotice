@@ -102,7 +102,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 					'class' => 'cn-filter-buttons',
 				)
 			);
-			$filters .= Xml::submitButton( 'Clear filters',
+			$filters .= Xml::submitButton( wfMsg( 'centralnotice-clear-filters' ),
 				array(
 					'id' => 'centralnoticelogreset',
 					'name' => 'centralnoticelogreset',
