@@ -6264,6 +6264,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-anon' => 'Anonyme Benotzer weisen',
 	'centralnotice-account' => 'Ageloggte Benotzer weisen',
 	'centralnotice-fundraising' => 'Spendenopruff',
+	'centralnotice-landingpages' => 'Zilsäiten',
 	'centralnotice-banner-content-changed' => 'Geännert',
 );
 
@@ -7845,11 +7846,14 @@ $messages['or'] = array(
 	'centralnotice-project-name' => 'ପ୍ରକଳ୍ପ ନାଆଁ',
 	'centralnotice-start-date' => 'ଆରମ୍ଭ ତାରିଖ',
 	'centralnotice-number-uses' => 'ବ୍ୟବହାର',
+	'centralnotice-settings' => 'ବିନ୍ୟାସ',
 	'centralnotice-clone-name' => 'ନାମ:',
 	'centralnotice-banner-logged-in' => 'ଲଗଇନ କରିଥିବା ଇଉଜରମାନେ',
 	'centralnotice-banner-type' => 'ବ୍ୟାନର ପ୍ରକାର',
 	'centralnotice-languages' => 'ଭାଷା',
 	'centralnotice-projects' => 'ପ୍ରକଳ୍ପ',
+	'centralnotice-user' => 'ବ୍ୟବାହାରକାରୀ',
+	'centralnotice-action' => 'କାମ',
 );
 
 /** Ossetic (Иронау)
