@@ -57,8 +57,14 @@
 	margin-left:1.6em;
 	margin-right:1.6em;
 }
-#preferences table#cn-campaign-logs {
+#preferences div#cn-log-filters-container {
+	margin: 1em 0;
+}
+#preferences table#cn-campaign-logs, #preferences div#cn-log-filters table {
 	width: auto;
+}
+#preferences div#cn-log-filters table td {
+	padding: 0.5em;
 }
 #preferences table#cn-campaign-logs td.primary {
 	white-space: nowrap;
@@ -72,12 +78,6 @@
 }
 #preferences .cn-log-label {
 	font-weight: bold;
-}
-#preferences .cn-log-filter {
-	margin-right: 1.5em;
-}
-#preferences .cn-log-filter-label {
-	margin-right: 0.5em;
 }
 #preferences .cn-filter-buttons {
 	margin-right: 0.5em;

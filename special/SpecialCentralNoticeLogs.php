@@ -47,7 +47,9 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		// Begin log selection fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
+		$actionUrl = $title->getLocalURL();
+		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $actionUrl ) );
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-logs' ) );
 		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-switcher' ) );
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
@@ -72,48 +74,97 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$htmlOut .= Xml::closeElement( 'div' );
 		
 		if ( $this->logType == 'campaignsettings' ) {
-		
-			$reset = $wgRequest->getVal( 'centralnoticelogreset' );
 			
-			$startArray = $wgRequest->getArray( 'start' );
-			if ( $wgRequest->wasPosted() && $startArray && !$reset ) {
-				$filterTimestamp = $startArray['year'] .
-					$startArray['month'] .
-					$startArray['day'] . '000000'
-				;
-			} else { // Default
-				$filterTimestamp = -1;
+			$reset = $wgRequest->getVal( 'centralnoticelogreset' );
+			$campaign = $wgRequest->getVal( 'campaign' );
+			$user = $wgRequest->getVal( 'user' );
+			$year = $wgRequest->getVal( 'year' );
+			if ( $year === 'other' ) $year = null;
+			$month = $wgRequest->getVal( 'month' );
+			if ( $month === 'other' ) $month = null;
+			$day = $wgRequest->getVal( 'day' );
+			if ( $day === 'other' ) $day = null;
+			
+			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters-container' ) );
+			
+			if ( $campaign || $user || $year || $month || $day ) { // filters on
+				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
+					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
+					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
+					'</a>';
+				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), wfMsg( 'centralnotice-filters' ) );
+				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters' ) );
+			} else { // filters off
+				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
+					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
+					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
+					'</a>';
+				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), 'Log filters' );
+				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters', 'style' => 'display:none;' ) );
 			}
 			
-			$filters = Xml::openElement( 'span', array( 'class' => 'cn-log-filter' ) );
-			$filters .= Xml::label( wfMsg( 'centralnotice-date' ), 'start[month]', array( 'class' => 'cn-log-filter-label' ) );
-			$filters .= CentralNotice::dateSelector( 'start', true, $filterTimestamp );
-			$filters .= Xml::closeElement( 'span' );
+			$htmlOut .= Xml::openElement( 'table' );
+			$htmlOut .= Xml::openElement( 'tr' );
 			
-			$filters .= Xml::openElement( 'span', array( 'class' => 'cn-log-filter' ) );
-			$filters .= Xml::label( wfMsg( 'centralnotice-notice' ), 'campaign', array( 'class' => 'cn-log-filter-label' ) );
-			$filters .= Xml::input( 'campaign', 25, ( $reset ? '' : $wgRequest->getVal( 'campaign' ) ) );
-			$filters .= Xml::closeElement( 'span' );
+			$htmlOut .= Xml::openElement( 'td' );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-date' ), 'month', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::closeElement( 'td' );
+			$htmlOut .= Xml::openElement( 'td' );
+			if ( $reset ) {
+				$htmlOut .= $this->dateSelector();
+			} else {
+				$htmlOut .= $this->dateSelector( $year, $month, $day );
+			}
+			$htmlOut .= Xml::closeElement( 'td' );
 			
-			$filters .= Xml::submitButton( wfMsg( 'centralnotice-apply-filters' ),
+			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Xml::openElement( 'tr' );
+			
+			$htmlOut .= Xml::openElement( 'td' );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-notice' ), 'campaign', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::closeElement( 'td' );
+			$htmlOut .= Xml::openElement( 'td' );
+			$htmlOut .= Xml::input( 'campaign', 25, ( $reset ? '' : $campaign ) );
+			$htmlOut .= Xml::closeElement( 'span' );
+			$htmlOut .= Xml::closeElement( 'td' );
+			
+			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Xml::openElement( 'tr' );
+			
+			$htmlOut .= Xml::openElement( 'td' );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-user' ), 'user', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::closeElement( 'td' );
+			$htmlOut .= Xml::openElement( 'td' );
+			$htmlOut .= Xml::input( 'user', 25, ( $reset ? '' : $user ) );
+			$htmlOut .= Xml::closeElement( 'span' );
+			$htmlOut .= Xml::closeElement( 'td' );
+			
+			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Xml::openElement( 'tr' );
+			
+			$htmlOut .= Xml::openElement( 'td', array( 'colspan' => 2 ) );
+			$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-apply-filters' ),
 				array(
 					'id' => 'centralnoticesubmit',
 					'name' => 'centralnoticesubmit',
 					'class' => 'cn-filter-buttons',
 				)
 			);
-			$filters .= Xml::submitButton( wfMsg( 'centralnotice-clear-filters' ),
+			$link = $title->getLinkUrl();
+			$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-clear-filters' ),
 				array(
 					'id' => 'centralnoticelogreset',
 					'name' => 'centralnoticelogreset',
 					'class' => 'cn-filter-buttons',
+					'onclick' => "window.location = '$link'; return false;",
 				)
 			);
+			$htmlOut .= Xml::closeElement( 'td' );
 			
-			$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-filters' ),
-				$filters,
-				array( 'class' => 'cn-bannerpreview')
-			);
+			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Xml::closeElement( 'div' );
+			$htmlOut .= Xml::closeElement( 'div' );
 		}
 		
 		$htmlOut .= Xml::closeElement( 'form' );
@@ -127,6 +178,28 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 
 		// End Banners tab content
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
+	}
+	
+	private function dateSelector( $year = 0, $month = 0, $day = 0 ) {
+		$years = range( 2010, 2016 );
+		$months = CentralNotice::paddedRange( 1, 12 );
+		$days = CentralNotice::paddedRange( 1, 31 );
+
+		$fields = array(
+			array( "month", "centralnotice-month", $months, $month ),
+			array( "day",   "centralnotice-day",   $days,   $day ),
+			array( "year",  "centralnotice-year",  $years,  $year ),
+		);
+
+		$out = '';
+		foreach ( $fields as $data ) {
+			list( $field, $label, $set, $current ) = $data;
+			$out .= Xml::listDropDown( $field,
+				CentralNotice::dropDownList( wfMsg( $label ), $set ),
+				'',
+				$current );
+		}
+		return $out;
 	}
 	
 	/**

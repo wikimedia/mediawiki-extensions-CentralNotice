@@ -28,9 +28,15 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		global $wgRequest;
 		
-		$dateArray = $wgRequest->getArray( 'start' );
-		$filterDate = $dateArray['year'] . $dateArray['month'] . $dateArray['day'];
+		$filterDate = 0;
+		$year = $wgRequest->getVal( 'year' );
+		$month = $wgRequest->getVal( 'month' );
+		$day = $wgRequest->getVal( 'day' );
+		if ( $year !== 'other' && $month !== 'other' && $day !== 'other' ) {
+			$filterDate = $year . $month . $day;
+		}
 		$filterCampaign = $wgRequest->getVal( 'campaign' );
+		$filterUser = $wgRequest->getVal( 'user' );
 		$reset = $wgRequest->getVal( 'centralnoticelogreset' );
 		
 		$info = array(
@@ -40,13 +46,18 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		);
 		
 		if ( !$reset ) {
-			$date1 = intval( $filterDate.'000000' );
-			$date2 = intval( ( $filterDate + 1 ).'000000' );
 			if ( $filterDate > 0 ) {
+				$date1 = intval( $filterDate.'000000' );
+				$date2 = intval( ( $filterDate + 1 ).'000000' );
 				$info['conds'][] = "notlog_timestamp >= $date1 AND notlog_timestamp < $date2";
 			}
 			if ( $filterCampaign ) {
 				$info['conds'][] = "notlog_not_name LIKE '$filterCampaign'";
+			}
+			if ( $filterUser ) {
+				$user = User::newFromName( $filterUser );
+				$userId = $user->getId();
+				$info['conds'][] = "notlog_user_id = $userId";
 			}
 		}
 		
@@ -77,9 +88,9 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		if ( $row->notlog_action !== 'removed' ) {
-			$htmlOut .= '<a href="javascript:toggleDisplay(\''.$row->notlog_id.'\')">'.
-				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-'.$row->notlog_id.'" style="display:block;vertical-align:baseline;"/>'.
-				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->notlog_id.'" style="display:none;vertical-align:baseline;"/>'.
+			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$row->notlog_id.'\')">'.
+				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-'.$row->notlog_id.'" style="display:block;"/>'.
+				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->notlog_id.'" style="display:none;"/>'.
 				'</a>';
 		}
 		$htmlOut .= Xml::closeElement( 'td' );

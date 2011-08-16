@@ -1,4 +1,4 @@
-function toggleDisplay( logId ) {
+function toggleLogDisplay( logId ) {
 	var thisCollapsed = document.getElementById( 'cn-collapsed-'+logId );
 	var thisUncollapsed = document.getElementById( 'cn-uncollapsed-'+logId );
 	var thisDetails = document.getElementById( 'cn-log-details-'+logId );
@@ -10,6 +10,20 @@ function toggleDisplay( logId ) {
 		thisCollapsed.style.display = "none";
 		thisUncollapsed.style.display = "block";
 		thisDetails.style.display = "table-row";
+	}
+}
+function toggleFilterDisplay() {
+	var thisCollapsed = document.getElementById( 'cn-collapsed-filter-arrow' );
+	var thisUncollapsed = document.getElementById( 'cn-uncollapsed-filter-arrow' );
+	var thisFilters = document.getElementById( 'cn-log-filters' );
+	if ( thisCollapsed.style.display == "none" ) {
+		thisUncollapsed.style.display = "none";
+		thisCollapsed.style.display = "inline-block";
+		thisFilters.style.display = "none";
+	} else {
+		thisCollapsed.style.display = "none";
+		thisUncollapsed.style.display = "inline-block";
+		thisFilters.style.display = "block";
 	}
 }
 function switchLogs( baseUrl, logType ) {
