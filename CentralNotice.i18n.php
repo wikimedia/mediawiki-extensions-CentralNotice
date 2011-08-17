@@ -274,6 +274,8 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-banner-settings' => 'Label for a radio button',
 	'centralnotice-filters' => 'The meaning is "filters of logs".',
 	'centralnotice-date' => '{{Identical|Date}}',
+	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
+	'centralnotice-date' => 'Label for a date selection interface',
 	'centralnotice-apply-filters' => 'Label for a submit button',
 	'centralnotice-clear-filters' => 'Label for a submit button. Clear as in reset.',
 );
