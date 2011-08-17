@@ -272,6 +272,8 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-log-label' => '$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
 	'centralnotice-campaign-settings' => 'Label for a radio button',
 	'centralnotice-banner-settings' => 'Label for a radio button',
+	'centralnotice-filters' => '{{Identical|Filter}}',
+	'centralnotice-date' => '{{Identical|Date}}',
 	'centralnotice-apply-filters' => 'Label for a submit button',
 	'centralnotice-clear-filters' => 'Label for a submit button. Clear as in reset.',
 );
@@ -1194,6 +1196,10 @@ $messages['be-tarask'] = array(
 	'centralnotice-landingpages' => 'Прывітальная старонка',
 	'centralnotice-banner-content' => 'Зьмест паведамленьня',
 	'centralnotice-banner-content-changed' => 'Зьменены',
+	'centralnotice-filters' => 'Фільтры',
+	'centralnotice-date' => 'Дата',
+	'centralnotice-apply-filters' => 'Ужыць фільтры',
+	'centralnotice-clear-filters' => 'Ачысьціць фільтры',
 );
 
 /** Bulgarian (Български)
@@ -1278,6 +1284,13 @@ $messages['bg'] = array(
  * @author Ganesh
  */
 $messages['bh'] = array(
+	'centralnotice-edit-template' => 'बैनर सम्पादन',
+);
+
+/** Bhojpuri (भोजपुरी)
+ * @author Ganesh
+ */
+$messages['bho'] = array(
 	'centralnotice-edit-template' => 'बैनर सम्पादन',
 );
 
@@ -2399,7 +2412,6 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-off' => 'aus',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> hinzugefügt',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> entfernt',
-	'centralnotice-banners-changed' => 'Bannerzuordnungen wurden geändert',
 	'centralnotice-no-assignments' => 'keine Banner zugeordnet',
 	'centralnotice-talk-link' => 'Diskussion',
 	'centralnotice-campaign-settings' => 'Kampagneneinstellungen',
@@ -2410,6 +2422,10 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-landingpages' => 'Zielseiten',
 	'centralnotice-banner-content' => 'Bannerinhalt',
 	'centralnotice-banner-content-changed' => 'Geändert',
+	'centralnotice-filters' => 'Logbuchfilter',
+	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'Filter anwenden',
+	'centralnotice-clear-filters' => 'Filter aufheben',
 );
 
 /** German (formal address) (‪Deutsch (Sie-Form)‬)
@@ -2953,10 +2969,11 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
  */
 $messages['es'] = array(
 	'centralnotice' => 'Sistema de administración de avisos centralizados',
-	'noticetemplate' => 'Administración de avisos centrales',
-	'bannerallocation' => 'Administración de avisos centrales',
-	'right-centralnotice-admin' => 'Gestionar avisos centrales',
-	'action-centralnotice-admin' => 'gestionar avisos centrales',
+	'noticetemplate' => 'Sistema de administración de avisos centralizados',
+	'bannerallocation' => 'Sistema de administración de avisos centralizados',
+	'centralnoticelogs' => 'Sistema de administración de avisos centralizados',
+	'right-centralnotice-admin' => 'Administrar avisos centrales',
+	'action-centralnotice-admin' => 'administrar avisos centrales',
 	'centralnotice-desc' => 'Añade un mensaje central',
 	'centralnotice-summary' => 'Este módulo te permite editar los parámetros actuales de los avisos centrales.
 También puede usarse para añadir o borrar avisos antiguos.',
@@ -2965,14 +2982,14 @@ También puede usarse para añadir o borrar avisos antiguos.',
 	'centralnotice-end-date' => 'Fecha de fin',
 	'centralnotice-enabled' => 'Habilitado',
 	'centralnotice-modify' => 'Enviar',
-	'centralnotice-save-banner' => 'Grabar banner',
+	'centralnotice-save-banner' => 'Grabar anuncio',
 	'centralnotice-preview' => 'Previsualizar',
 	'centralnotice-nopreview' => '(Previsualización no disponible)',
 	'centralnotice-add-new' => 'Añadir un nuevo aviso central',
 	'centralnotice-remove' => 'Quitar',
 	'centralnotice-translate-heading' => 'Traducción para $1',
 	'centralnotice-manage' => 'Gestionar aviso central',
-	'centralnotice-manage-templates' => 'Gestionar banners',
+	'centralnotice-manage-templates' => 'Gestionar anuncios',
 	'centralnotice-add' => 'Añadir',
 	'centralnotice-add-notice' => 'Añadir un aviso',
 	'centralnotice-edit-notice' => 'Editar campaña',
@@ -2991,7 +3008,7 @@ También puede usarse para añadir o borrar avisos antiguos.',
 	'centralnotice-banner' => 'Banner',
 	'centralnotice-banner-heading' => 'Banner: $1',
 	'centralnotice-templates' => 'Plantillas',
-	'centralnotice-weight' => 'Peso',
+	'centralnotice-weight' => 'Altura',
 	'centralnotice-locked' => 'Bloqueado',
 	'centralnotice-notice' => 'Campaña',
 	'centralnotice-notice-heading' => 'Campaña: $1',
@@ -3016,7 +3033,7 @@ No se borrará.',
 	'centralnotice-min' => 'Minuto',
 	'centralnotice-project-lang' => 'Idioma del proyecto',
 	'centralnotice-select' => 'Seleccionar: $1',
-	'centralnotice-top-ten-languages' => 'Idiomas top 10',
+	'centralnotice-top-ten-languages' => 'Los 10 idiomas más hablados',
 	'centralnotice-project-name' => 'Nombre del proyecto',
 	'centralnotice-start-date' => 'Fecha de inicio',
 	'centralnotice-start-time' => 'Hora de inicio (UTC)',
@@ -3085,11 +3102,29 @@ Añade uno debajo',
 	'centralnotice-documentwrite-error' => 'No se puede usar document.write() dentro de un banner.
 Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
 	'centralnotice-preferred' => 'Preferido',
+	'centralnotice-logs' => 'Registros',
+	'centralnotice-view-logs' => 'Ver los registros',
+	'centralnotice-timestamp' => 'Fecha y hora',
 	'centralnotice-user' => 'Usuario',
 	'centralnotice-action' => 'Acción',
 	'centralnotice-changed' => 'Pasó de <span class="cn-old-value">$1</span> a <span class="cn-new-value">$2</span>',
-	'centralnotice-on' => 'ACT.',
-	'centralnotice-off' => 'APAG.',
+	'centralnotice-on' => 'activado',
+	'centralnotice-off' => 'apagado',
+	'centralnotice-added' => 'Añadido <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Eliminado <span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => 'sin anuncios asignados',
+	'centralnotice-talk-link' => 'discusión',
+	'centralnotice-campaign-settings' => 'Configuración de la campaña',
+	'centralnotice-banner-settings' => 'Configuración del anuncio',
+	'centralnotice-anon' => 'Mostrar a usuarios anónimos',
+	'centralnotice-account' => 'Mostrar a usuarios registrados',
+	'centralnotice-fundraising' => 'Recaudación de fondos',
+	'centralnotice-banner-content' => 'Contenido del anuncio',
+	'centralnotice-banner-content-changed' => 'Modificado',
+	'centralnotice-filters' => 'Filtros',
+	'centralnotice-date' => 'Fecha',
+	'centralnotice-apply-filters' => 'Aplicar filtros',
+	'centralnotice-clear-filters' => 'Borrar filtros',
 );
 
 /** Estonian (Eesti)
@@ -3562,6 +3597,7 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 /** French (Français)
  * @author Crochet.david
  * @author Grondin
+ * @author Hashar
  * @author IAlex
  * @author Jean-Frédéric
  * @author McDutchie
@@ -3720,7 +3756,6 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-off' => 'off',
 	'centralnotice-added' => 'A ajouté <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'A retiré <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'Les assignements de bannière ont été changé',
 	'centralnotice-no-assignments' => 'aucune bannière assignée',
 	'centralnotice-talk-link' => 'discuter',
 	'centralnotice-campaign-settings' => 'Paramètres de la campagne',
@@ -3731,6 +3766,10 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-landingpages' => 'Pages de destination',
 	'centralnotice-banner-content' => 'Contenu de la bannière',
 	'centralnotice-banner-content-changed' => 'Changé',
+	'centralnotice-filters' => 'Filtres',
+	'centralnotice-date' => 'Date',
+	'centralnotice-apply-filters' => 'Appliquer les filtres',
+	'centralnotice-clear-filters' => 'Effacer les filtres',
 );
 
 /** Franco-Provençal (Arpetan)
@@ -4377,7 +4416,6 @@ $messages['he'] = array(
 	'centralnotice-off' => 'כבוי',
 	'centralnotice-added' => 'נוסף: <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'הוסר: <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'הקצאות של כרזות שונו',
 	'centralnotice-no-assignments' => 'לא הוקצו כרזות',
 	'centralnotice-talk-link' => 'שיחה',
 	'centralnotice-campaign-settings' => 'הגדרות מבצע פרסום',
@@ -4388,6 +4426,10 @@ $messages['he'] = array(
 	'centralnotice-landingpages' => 'דפי נחיתה',
 	'centralnotice-banner-content' => 'תוכן כרזה',
 	'centralnotice-banner-content-changed' => 'השתנה',
+	'centralnotice-filters' => 'מסננים',
+	'centralnotice-date' => 'תאריך',
+	'centralnotice-apply-filters' => 'החלת מסננים',
+	'centralnotice-clear-filters' => 'ניקוי מסננים',
 );
 
 /** Hindi (हिन्दी)
@@ -4983,6 +5025,10 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
 	'centralnotice-landingpages' => 'Paginas de arrivata',
 	'centralnotice-banner-content' => 'Contento de bandiera',
 	'centralnotice-banner-content-changed' => 'Cambiate',
+	'centralnotice-filters' => 'Filtros',
+	'centralnotice-date' => 'Data',
+	'centralnotice-apply-filters' => 'Applicar filtros',
+	'centralnotice-clear-filters' => 'Rader filtros',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -5465,6 +5511,11 @@ $messages['ja'] = array(
 	'centralnotice-documentwrite-error' => 'テンプレート内で、document.write()を使うことはできません。
 詳細については、 http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。',
 	'centralnotice-preferred' => '優先',
+	'centralnotice-logs' => '記録',
+	'centralnotice-view-logs' => '記録を閲覧',
+	'centralnotice-timestamp' => 'タイムスタンプ',
+	'centralnotice-user' => '利用者',
+	'centralnotice-action' => '操作',
 );
 
 /** Jutish (Jysk)
@@ -6072,7 +6123,6 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-off' => 'uß',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> dobei jedonn.',
 	'centralnotice-removed' => '<span class="cn-new-value">$1</span> fott jenumme.',
-	'centralnotice-banners-changed' => 'Banner_Schablohne woodte anders udder neu zohjedeilt',
 	'centralnotice-no-assignments' => 'Kein Banner_Schablohne zohjedeilt',
 	'centralnotice-talk-link' => 'klaafe',
 );
@@ -6266,6 +6316,10 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-fundraising' => 'Spendenopruff',
 	'centralnotice-landingpages' => 'Zilsäiten',
 	'centralnotice-banner-content-changed' => 'Geännert',
+	'centralnotice-filters' => 'Filteren',
+	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'Filteren uwenden',
+	'centralnotice-clear-filters' => 'Filteren eidel maachen',
 );
 
 /** Lingua Franca Nova (Lingua Franca Nova)
@@ -6757,7 +6811,6 @@ $messages['mk'] = array(
 	'centralnotice-off' => 'искл',
 	'centralnotice-added' => 'Додадено <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Отстрането <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'Задавањата на плакатите се изменети',
 	'centralnotice-no-assignments' => 'нема зададено плакати',
 	'centralnotice-talk-link' => 'разговор',
 	'centralnotice-campaign-settings' => 'Поставки за кампања',
@@ -6768,6 +6821,10 @@ $messages['mk'] = array(
 	'centralnotice-landingpages' => 'Целни страници',
 	'centralnotice-banner-content' => 'Содржина на плакатот',
 	'centralnotice-banner-content-changed' => 'Изменето',
+	'centralnotice-filters' => 'Филтри',
+	'centralnotice-date' => 'Датум',
+	'centralnotice-apply-filters' => 'Примени филтри',
+	'centralnotice-clear-filters' => 'Исчисти филтри',
 );
 
 /** Malayalam (മലയാളം)
@@ -7135,6 +7192,10 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-landingpages' => 'Laman pendaratan',
 	'centralnotice-banner-content' => 'Kandungan sepanduk',
 	'centralnotice-banner-content-changed' => 'Diubah',
+	'centralnotice-filters' => 'Penapis',
+	'centralnotice-date' => 'Tarikh',
+	'centralnotice-apply-filters' => 'Gunakan penapis',
+	'centralnotice-clear-filters' => 'Kosongkan penapis',
 );
 
 /** Maltese (Malti)
@@ -7295,6 +7356,7 @@ $messages['nds-nl'] = array(
 );
 
 /** Nepali (नेपाली)
+ * @author Bhawani Gautam
  * @author Bhawani Gautam Rhk
  */
 $messages['ne'] = array(
@@ -7485,6 +7547,10 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-landingpages' => "Ingangspagina's",
 	'centralnotice-banner-content' => 'Bannerinhoud',
 	'centralnotice-banner-content-changed' => 'Gewijzigd',
+	'centralnotice-filters' => 'Logboekfilters',
+	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'Filters toepassen',
+	'centralnotice-clear-filters' => 'Filters verwijderen',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
@@ -7723,7 +7789,6 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-off' => 'av',
 	'centralnotice-added' => 'Lagt til <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Fjernet <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'Bannertilordninger ble endret',
 	'centralnotice-no-assignments' => 'Ingen bannere tilordnet',
 	'centralnotice-talk-link' => 'snakke',
 	'centralnotice-campaign-settings' => 'Kampanjeinnstillinger',
@@ -7856,7 +7921,7 @@ $messages['or'] = array(
 	'centralnotice-action' => 'କାମ',
 );
 
-/** Ossetic (Иронау)
+/** Ossetic (Ирон)
  * @author Amikeco
  */
 $messages['os'] = array(
@@ -8046,6 +8111,10 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-landingpages' => 'Strona powitalna',
 	'centralnotice-banner-content' => 'Treść banera',
 	'centralnotice-banner-content-changed' => 'Zmieniono',
+	'centralnotice-filters' => 'Filtry',
+	'centralnotice-date' => 'Data',
+	'centralnotice-apply-filters' => 'Zastosuj filtry',
+	'centralnotice-clear-filters' => 'Wyczyść filtry',
 );
 
 /** Piedmontese (Piemontèis)
@@ -8558,7 +8627,6 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-off' => 'inativo',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> foi adicionado',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> foi removido',
-	'centralnotice-banners-changed' => 'As atribuições do banner foram alteradas',
 	'centralnotice-no-assignments' => 'não há banners atribuídos',
 	'centralnotice-talk-link' => 'discussão',
 );
@@ -9286,7 +9354,7 @@ $messages['rue'] = array(
 	'centralnotice-preferred' => 'Префероване',
 );
 
-/** Yakut (Саха тыла)
+/** Sakha (Саха тыла)
  * @author HalanTul
  */
 $messages['sah'] = array(
@@ -9934,7 +10002,6 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-off' => 'izklopljeno',
 	'centralnotice-added' => 'Dodano <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Odstranjeno <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'Naloge pasice so spremenjene',
 	'centralnotice-no-assignments' => 'ni dodeljenih pasic',
 	'centralnotice-talk-link' => 'pogovor',
 	'centralnotice-campaign-settings' => 'Nastavitve kampanje',
@@ -9945,6 +10012,10 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-landingpages' => 'Ciljne strani',
 	'centralnotice-banner-content' => 'Vsebina pasice',
 	'centralnotice-banner-content-changed' => 'Spremenjeno',
+	'centralnotice-filters' => 'Filtri',
+	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'Uveljavi filtre',
+	'centralnotice-clear-filters' => 'Počisti filtre',
 );
 
 /** Albanian (Shqip)
@@ -12030,7 +12101,6 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-off' => 'tắt',
 	'centralnotice-added' => 'Thêm <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Gỡ <span class="cn-old-value">$1</span>',
-	'centralnotice-banners-changed' => 'Đã thay đổi các chỉ định biểu ngữ',
 	'centralnotice-no-assignments' => 'không chỉ định biểu ngữ',
 	'centralnotice-talk-link' => 'thảo luận',
 	'centralnotice-campaign-settings' => 'Thiết lập thông báo chung',
@@ -12041,6 +12111,10 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-landingpages' => 'Trang giới thiệu',
 	'centralnotice-banner-content' => 'Nội dung biểu ngữ',
 	'centralnotice-banner-content-changed' => 'Thay đổi',
+	'centralnotice-filters' => 'Bộ lọc',
+	'centralnotice-date' => 'Ngày tháng',
+	'centralnotice-apply-filters' => 'Áp dụng bộ lọc',
+	'centralnotice-clear-filters' => 'Đặt lại bộ lọc',
 );
 
 /** Volapük (Volapük)
@@ -12392,6 +12466,10 @@ $messages['zh-hans'] = array(
 	'centralnotice-landingpages' => '目标页面',
 	'centralnotice-banner-content' => '横幅内容',
 	'centralnotice-banner-content-changed' => '已更改',
+	'centralnotice-filters' => '筛选器',
+	'centralnotice-date' => '日期',
+	'centralnotice-apply-filters' => '应用筛选器',
+	'centralnotice-clear-filters' => '清除筛选器',
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
