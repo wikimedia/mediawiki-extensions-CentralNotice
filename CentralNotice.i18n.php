@@ -272,8 +272,6 @@ Maximum length of the message is 5% of the total width of the table.',
 	'centralnotice-log-label' => '$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
 	'centralnotice-campaign-settings' => 'Label for a radio button',
 	'centralnotice-banner-settings' => 'Label for a radio button',
-	'centralnotice-filters' => 'The meaning is "filters of logs".',
-	'centralnotice-date' => '{{Identical|Date}}',
 	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
 	'centralnotice-date' => 'Label for a date selection interface',
 	'centralnotice-apply-filters' => 'Label for a submit button',
@@ -6984,6 +6982,9 @@ $messages['ml'] = array(
 	'centralnotice-anon' => 'അജ്ഞാത ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
 	'centralnotice-account' => 'പ്രവേശിച്ചിട്ടുള്ള ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
 	'centralnotice-banner-content-changed' => 'മാറ്റിയിരിക്കുന്നു',
+	'centralnotice-date' => 'തീയതി',
+	'centralnotice-apply-filters' => 'അരിപ്പകൾ പ്രയോഗിക്കുക',
+	'centralnotice-clear-filters' => 'അരിപ്പ ശുദ്ധമാക്കുക',
 );
 
 /** Mongolian (Монгол)
