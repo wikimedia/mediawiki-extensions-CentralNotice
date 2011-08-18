@@ -78,16 +78,22 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$reset = $wgRequest->getVal( 'centralnoticelogreset' );
 			$campaign = $wgRequest->getVal( 'campaign' );
 			$user = $wgRequest->getVal( 'user' );
-			$year = $wgRequest->getVal( 'year' );
-			if ( $year === 'other' ) $year = null;
-			$month = $wgRequest->getVal( 'month' );
-			if ( $month === 'other' ) $month = null;
-			$day = $wgRequest->getVal( 'day' );
-			if ( $day === 'other' ) $day = null;
+			$startYear = $wgRequest->getVal( 'start_year' );
+			if ( $startYear === 'other' ) $startYear = null;
+			$startMonth = $wgRequest->getVal( 'start_month' );
+			if ( $startMonth === 'other' ) $startMonth = null;
+			$startDay = $wgRequest->getVal( 'start_day' );
+			if ( $startDay === 'other' ) $startDay = null;
+			$endYear = $wgRequest->getVal( 'end_year' );
+			if ( $endYear === 'other' ) $endYear = null;
+			$endMonth = $wgRequest->getVal( 'end_month' );
+			if ( $endMonth === 'other' ) $endMonth = null;
+			$endDay = $wgRequest->getVal( 'end_day' );
+			if ( $endDay === 'other' ) $endDay = null;
 			
 			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters-container' ) );
 			
-			if ( $campaign || $user || $year || $month || $day ) { // filters on
+			if ( $campaign || $user || $startYear || $startMonth || $startDay || $endYear || $endMonth || $endDay ) { // filters on
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
@@ -107,13 +113,27 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'tr' );
 			
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-date' ), 'month', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-start-date' ), 'month', array( 'class' => 'cn-log-filter-label' ) );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			if ( $reset ) {
-				$htmlOut .= $this->dateSelector();
+				$htmlOut .= $this->dateSelector( 'start' );
 			} else {
-				$htmlOut .= $this->dateSelector( $year, $month, $day );
+				$htmlOut .= $this->dateSelector( 'start', $startYear, $startMonth, $startDay );
+			}
+			$htmlOut .= Xml::closeElement( 'td' );
+			
+			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Xml::openElement( 'tr' );
+			
+			$htmlOut .= Xml::openElement( 'td' );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-end-date' ), 'month', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::closeElement( 'td' );
+			$htmlOut .= Xml::openElement( 'td' );
+			if ( $reset ) {
+				$htmlOut .= $this->dateSelector( 'end' );
+			} else {
+				$htmlOut .= $this->dateSelector( 'end', $endYear, $endMonth, $endDay );
 			}
 			$htmlOut .= Xml::closeElement( 'td' );
 			
@@ -180,15 +200,15 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$wgOut->addHTML( Xml::closeElement( 'div' ) );
 	}
 	
-	private function dateSelector( $year = 0, $month = 0, $day = 0 ) {
+	private function dateSelector( $prefix, $year = 0, $month = 0, $day = 0 ) {
 		$years = range( 2010, 2016 );
 		$months = CentralNotice::paddedRange( 1, 12 );
 		$days = CentralNotice::paddedRange( 1, 31 );
 
 		$fields = array(
-			array( "month", "centralnotice-month", $months, $month ),
-			array( "day",   "centralnotice-day",   $days,   $day ),
-			array( "year",  "centralnotice-year",  $years,  $year ),
+			array( $prefix."_month", "centralnotice-month", $months, $month ),
+			array( $prefix."_day",   "centralnotice-day",   $days,   $day ),
+			array( $prefix."_year",  "centralnotice-year",  $years,  $year ),
 		);
 
 		$out = '';

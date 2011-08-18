@@ -28,12 +28,26 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		global $wgRequest;
 		
-		$filterDate = 0;
-		$year = $wgRequest->getVal( 'year' );
-		$month = $wgRequest->getVal( 'month' );
-		$day = $wgRequest->getVal( 'day' );
-		if ( $year !== 'other' && $month !== 'other' && $day !== 'other' ) {
-			$filterDate = $year . $month . $day;
+		$filterStartDate = 0;
+		$filterEndDate = 0;
+		$startYear = $wgRequest->getVal( 'start_year' );
+		if ( $startYear === 'other' ) $startYear = null;
+		$startMonth = $wgRequest->getVal( 'start_month' );
+		if ( $startMonth === 'other' ) $startMonth = null;
+		$startDay = $wgRequest->getVal( 'start_day' );
+		if ( $startDay === 'other' ) $startDay = null;
+		$endYear = $wgRequest->getVal( 'end_year' );
+		if ( $endYear === 'other' ) $endYear = null;
+		$endMonth = $wgRequest->getVal( 'end_month' );
+		if ( $endMonth === 'other' ) $endMonth = null;
+		$endDay = $wgRequest->getVal( 'end_day' );
+		if ( $endDay === 'other' ) $endDay = null;
+			
+		if ( $startYear && $startMonth && $startDay ) {
+			$filterStartDate = $startYear . $startMonth . $startDay;
+		}
+		if ( $endYear && $endMonth && $endDay ) {
+			$filterEndDate = $endYear . $endMonth . $endDay;
 		}
 		$filterCampaign = $wgRequest->getVal( 'campaign' );
 		$filterUser = $wgRequest->getVal( 'user' );
@@ -46,10 +60,13 @@ class CentralNoticeLogPager extends ReverseChronologicalPager {
 		);
 		
 		if ( !$reset ) {
-			if ( $filterDate > 0 ) {
-				$date1 = intval( $filterDate.'000000' );
-				$date2 = intval( ( $filterDate + 1 ).'000000' );
-				$info['conds'][] = "notlog_timestamp >= $date1 AND notlog_timestamp < $date2";
+			if ( $filterStartDate > 0 ) {
+				$filterStartDate = intval( $filterStartDate.'000000' );
+				$info['conds'][] = "notlog_timestamp >= $filterStartDate";
+			}
+			if ( $filterEndDate > 0 ) {
+				$filterEndDate = intval( $filterEndDate.'000000' );
+				$info['conds'][] = "notlog_timestamp < $filterEndDate";
 			}
 			if ( $filterCampaign ) {
 				$info['conds'][] = "notlog_not_name LIKE '$filterCampaign'";
