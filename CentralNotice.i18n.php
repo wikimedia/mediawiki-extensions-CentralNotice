@@ -2953,6 +2953,7 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
 );
 
 /** Spanish (Español)
+ * @author Alhen
  * @author Crazymadlover
  * @author Danke7
  * @author Dferg
@@ -6304,6 +6305,7 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-banner-hidable' => 'Statesch/Ka verstoppt ginn',
 	'centralnotice-banner-collapsible' => 'Aklappbar',
 	'centralnotice-banner-fundraising' => "Dëst ass e Banner vun enger Campagne fir Don'en ze sammelen",
+	'centralnotice-banner-landing-pages' => 'Zilsäiten (mat Kommae getrennt):',
 	'centralnotice-geo' => 'Geografesch geziilt',
 	'centralnotice-countries' => 'Länner',
 	'centralnotice-allocation' => 'Dispositioun',
@@ -10688,6 +10690,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-landingpages' => 'Målsidor',
 	'centralnotice-banner-content' => 'Banner-innehåll',
 	'centralnotice-banner-content-changed' => 'Ändrad',
+	'centralnotice-date' => 'Datum',
 );
 
 /** Swahili (Kiswahili)
@@ -10885,6 +10888,8 @@ $messages['te'] = array(
 	'centralnotice-percentage' => 'శాతం',
 	'centralnotice-documentwrite-error' => 'బ్యానరు లోపల document.write() వాడజాలరు.
 మరింత సమాచారం కోసం http://meta.wikimedia.org/wiki/Help:CentralNotice చూడండి.',
+	'centralnotice-user' => 'వాడుకరి',
+	'centralnotice-action' => 'చర్య',
 );
 
 /** Tetum (Tetun)
