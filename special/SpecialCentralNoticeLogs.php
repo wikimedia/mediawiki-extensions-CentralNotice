@@ -201,7 +201,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	}
 	
 	private function dateSelector( $prefix, $year = 0, $month = 0, $day = 0 ) {
-		$years = range( 2010, 2016 );
+		$years = range( 2011, date("Y") );
 		$months = CentralNotice::paddedRange( 1, 12 );
 		$days = CentralNotice::paddedRange( 1, 31 );
 
