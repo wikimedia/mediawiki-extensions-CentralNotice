@@ -802,6 +802,7 @@ Nun s'amiesta.",
  * @author PPerviz
  * @author Vago
  * @author Vugar 1981
+ * @author Wertuose
  */
 $messages['az'] = array(
 	'centralnotice' => 'Mərkəzi xəbərdarlıq idarəçisi',
@@ -809,7 +810,7 @@ $messages['az'] = array(
 	'bannerallocation' => 'Mərkəzi xəbərdarlıq idarəçisi',
 	'centralnotice-end-date' => 'Son tarix',
 	'centralnotice-enabled' => 'Effektiv',
-	'centralnotice-modify' => 'Yolla',
+	'centralnotice-modify' => 'Təsdiq et',
 	'centralnotice-preview' => 'Sınaq göstərişi',
 	'centralnotice-remove' => 'Çıxar',
 	'centralnotice-add' => 'Əlavə et',
@@ -8298,8 +8299,21 @@ ch'a lesa http://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi
  */
 $messages['pnb'] = array(
 	'centralnotice' => 'سینٹرل نوٹس ایڈمن',
+	'noticetemplate' => 'سینٹرل نوٹس ایڈمن',
+	'bannerallocation' => 'سینٹرل نوٹس ایڈمن',
+	'centralnoticelogs' => 'سینٹرل نوٹس ایڈمن',
+	'right-centralnotice-admin' => 'سینٹرل نوٹس سنبھالو',
+	'action-centralnotice-admin' => 'سینٹرل نوٹس سنبھالو',
+	'centralnotice-query' => 'ہن والے کم تبدیل کرو',
+	'centralnotice-notice-name' => 'کم دا ناں',
+	'centralnotice-end-date' => 'انت تریخ',
+	'centralnotice-enabled' => 'قابل',
+	'centralnotice-modify' => 'پیجو',
+	'centralnotice-preview' => 'وکھاؤ',
+	'centralnotice-nopreview' => '(کچا کم نئیں ویکھ سکدے او)',
 	'centralnotice-add-new' => 'نواں کم جوڑو',
 	'centralnotice-remove' => 'پرے کرو',
+	'centralnotice-translate-heading' => '$1 دا التھن',
 	'centralnotice-manage' => 'کماں نوں ترتیب دیو',
 	'centralnotice-manage-templates' => 'نشاناں نوں ترتیب دیو',
 	'centralnotice-add' => 'جوڑو',
@@ -8308,6 +8322,9 @@ $messages['pnb'] = array(
 	'centralnotice-add-template' => 'نشان جوڑو',
 	'centralnotice-show-notices' => 'کم دسو',
 	'centralnotice-list-templates' => 'نشان لسٹ',
+	'centralnotice-multiple-projects' => 'کافی سارے ($1)',
+	'centralnotice-multiple-languages' => 'کافی سارے ($1)',
+	'centralnotice-multiple-countries' => 'کافی سارے ($1)',
 	'centralnotice-all-projects' => 'سارے ویونت',
 	'centralnotice-translations' => 'بولی وٹاندرے',
 	'centralnotice-translate-to' => 'التھاؤ',
@@ -8319,9 +8336,13 @@ $messages['pnb'] = array(
 	'centralnotice-weight' => 'جوکھ',
 	'centralnotice-locked' => 'تالا',
 	'centralnotice-notice' => 'کم',
+	'centralnotice-notice-heading' => 'کم: $1',
 	'centralnotice-notices' => 'کم',
 	'centralnotice-notice-exists' => 'کم پہلے توں اے ہیگا اے۔ تبدیلی نئیں۔',
 	'centralnotice-no-language' => 'کم لئی کوئی بولی نئیں چنی گئی۔ کوئی تبدیلی نئیں۔',
+	'centralnotice-no-project' => 'کم لئی کوئی ویونت نئیں چنی گئی۔ کوئی تبدیلی نئیں۔',
+	'centralnotice-template-exists' => 'نشان پہلے توں ہیگا اے۔
+ہور نئیں جوڑنا۔',
 	'centralnotice-notice-doesnt-exist' => 'کم ہے ای نئیں۔',
 	'centralnotice-remove-notice-doesnt-exist' => 'کم ہے ای نئیں۔  ہٹان دی لوڑ نئیں۔',
 	'centralnotice-banner-doesnt-exist' => 'نشان ہے ای نئیں۔',
@@ -8333,17 +8354,28 @@ $messages['pnb'] = array(
 	'centralnotice-hours' => 'کینٹہ',
 	'centralnotice-min' => 'منٹ',
 	'centralnotice-project-lang' => 'ویونت بولی',
+	'centralnotice-select' => 'چنو: $1',
 	'centralnotice-top-ten-languages' => 'وڈیاں دس بولیاں',
 	'centralnotice-project-name' => 'ویونت ناں',
 	'centralnotice-start-date' => 'ٹرن دیہاڑہ',
+	'centralnotice-start-time' => 'ٹرن دا ویلا (UTC)',
+	'centralnotice-end-time' => 'مکن دا ویلا (UTC)',
 	'centralnotice-assigned-templates' => 'دتے گۓ نشان',
 	'centralnotice-no-templates' => 'کوئی نشان نئیں لبیا۔ کوئی جورو !',
 	'centralnotice-no-templates-assigned' => 'کم نال کوئی نشان نئیں جڑیا۔ کوئی جورو !',
 	'centralnotice-available-templates' => 'کول ہیگے نشان',
+	'centralnotice-template-already-exists' => 'نشان پہلے ای کم نال جڑیا اے۔
+ہور نئیں جوڑنا۔',
 	'centralnotice-preview-template' => 'نشان ویکھو',
 	'centralnotice-change-lang' => 'التھن والی بولی بدلو',
 	'centralnotice-weights' => 'جوکھ',
 	'centralnotice-notice-is-locked' => 'کم نوں تالا لکیا اے۔ ہٹانا نئیں۔',
+	'centralnotice-overlap' => 'اے کم کسے اور کم دے ویلے دے اتے آندا اے۔
+کوئی تبدیلی نئیں ہوۓ گی۔',
+	'centralnotice-invalid-date-range' => 'مکیا تریخ ویلا۔
+نواں نئیں کر رۓ۔',
+	'centralnotice-confirm-delete' => 'توانوں یقین اے کے تسی اس شے نوں مٹانا چاندے اوہ؟
+اے کم واپس نئیں لیا جا سکگے گا۔',
 	'centralnotice-no-notices-exist' => 'کوئی کم نئیں ہیگا۔
 اک تھلے جوڑو۔',
 	'centralnotice-number-uses' => 'ورتن',
@@ -8351,8 +8383,10 @@ $messages['pnb'] = array(
 	'centralnotice-edit-template' => 'نشان بدلو',
 	'centralnotice-message' => 'سنیعہ',
 	'centralnotice-message-not-set' => 'سنیعہ تیار نئیں',
+	'centralnotice-clone' => 'کلون',
 	'centralnotice-clone-notice' => 'نشان دی کاپی بناؤ',
 	'centralnotice-clone-name' => 'ناں:',
+	'centralnotice-insert' => 'پاؤ: $1',
 	'centralnotice-hide-button' => 'جوڑ لکاؤ',
 	'centralnotice-collapse-button' => 'جوڑ توڑو',
 	'centralnotice-expand-button' => 'جوڑ ودھاؤ',
@@ -10730,7 +10764,10 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-landingpages' => 'Målsidor',
 	'centralnotice-banner-content' => 'Banner-innehåll',
 	'centralnotice-banner-content-changed' => 'Ändrad',
+	'centralnotice-filters' => 'Logga filter',
 	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'Tillämpa filter',
+	'centralnotice-clear-filters' => 'Rensa filter',
 );
 
 /** Swahili (Kiswahili)
