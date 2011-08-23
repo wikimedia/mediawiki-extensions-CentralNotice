@@ -248,6 +248,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	}
 	
 	private function getDateValue( $type ) {
+		global $wgRequest;
 		$value = $wgRequest->getVal( $type );
 		if ( $value === 'other' ) $value = null;
 		return $value;
