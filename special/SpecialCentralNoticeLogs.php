@@ -201,14 +201,12 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	}
 	
 	private function dateSelector( $prefix, $year = 0, $month = 0, $day = 0 ) {
-		$years = range( 2011, date("Y") );
-		$months = CentralNotice::paddedRange( 1, 12 );
-		$days = CentralNotice::paddedRange( 1, 31 );
+		$dateRanges = CentralNotice::getDateRanges();
 
 		$fields = array(
-			array( $prefix."_month", "centralnotice-month", $months, $month ),
-			array( $prefix."_day",   "centralnotice-day",   $days,   $day ),
-			array( $prefix."_year",  "centralnotice-year",  $years,  $year ),
+			array( $prefix."_month", "centralnotice-month", $dateRanges['months'], $month ),
+			array( $prefix."_day",   "centralnotice-day",   $dateRanges['days'],   $day ),
+			array( $prefix."_year",  "centralnotice-year",  $dateRanges['years'],  $year ),
 		);
 
 		$out = '';

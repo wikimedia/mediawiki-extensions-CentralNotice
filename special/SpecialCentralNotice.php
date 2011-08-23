@@ -242,9 +242,7 @@ class CentralNotice extends SpecialPage {
 
 	public static function dateSelector( $prefix, $editable, $timestamp = null ) {
 		if ( $editable ) {
-			$years = range( 2010, 2016 );
-			$months = CentralNotice::paddedRange( 1, 12 );
-			$days = CentralNotice::paddedRange( 1, 31 );
+			$dateRanges = CentralNotice::getDateRanges();
 
 			// Normalize timestamp format. If no timestamp is passed, default to now. If -1 is 
 			// passed, set no defaults.
@@ -255,9 +253,9 @@ class CentralNotice extends SpecialPage {
 			}
 			
 			$fields = array(
-				array( "month", "centralnotice-month", $months, substr( $ts, 4, 2 ) ),
-				array( "day",   "centralnotice-day",   $days,   substr( $ts, 6, 2 ) ),
-				array( "year",  "centralnotice-year",  $years,  substr( $ts, 0, 4 ) ),
+				array( "month", "centralnotice-month", $dateRanges['months'], substr( $ts, 4, 2 ) ),
+				array( "day",   "centralnotice-day",   $dateRanges['days'],   substr( $ts, 6, 2 ) ),
+				array( "year",  "centralnotice-year",  $dateRanges['years'],  substr( $ts, 0, 4 ) ),
 			);
 	
 			return CentralNotice::createSelector( $prefix, $fields );
@@ -265,6 +263,18 @@ class CentralNotice extends SpecialPage {
 			global $wgLang;
 			return $wgLang->date( $timestamp );
 		}
+	}
+	
+	/*
+	 * Get date ranges for use in date selectors
+	 * @return array of ranges for months, days, and years (padded with zeros)
+	 */
+	public static function getDateRanges() {
+		$dateRanges = array();
+		$dateRanges['years'] = range( 2011, date("Y") );
+		$dateRanges['months'] = CentralNotice::paddedRange( 1, 12 );
+		$dateRanges['days'] = CentralNotice::paddedRange( 1, 31 );
+		return $dateRanges;
 	}
 
 	public static function timeSelector( $prefix, $editable, $timestamp = null ) {
