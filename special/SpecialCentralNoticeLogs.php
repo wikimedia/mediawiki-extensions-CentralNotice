@@ -78,18 +78,12 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$reset = $wgRequest->getVal( 'centralnoticelogreset' );
 			$campaign = $wgRequest->getVal( 'campaign' );
 			$user = $wgRequest->getVal( 'user' );
-			$startYear = $wgRequest->getVal( 'start_year' );
-			if ( $startYear === 'other' ) $startYear = null;
-			$startMonth = $wgRequest->getVal( 'start_month' );
-			if ( $startMonth === 'other' ) $startMonth = null;
-			$startDay = $wgRequest->getVal( 'start_day' );
-			if ( $startDay === 'other' ) $startDay = null;
-			$endYear = $wgRequest->getVal( 'end_year' );
-			if ( $endYear === 'other' ) $endYear = null;
-			$endMonth = $wgRequest->getVal( 'end_month' );
-			if ( $endMonth === 'other' ) $endMonth = null;
-			$endDay = $wgRequest->getVal( 'end_day' );
-			if ( $endDay === 'other' ) $endDay = null;
+			$startYear = $this->getDateValue( 'start_year' );
+			$startMonth = $this->getDateValue( 'start_month' );
+			$startDay = $this->getDateValue( 'start_day' );
+			$endYear = $this->getDateValue( 'end_year' );
+			$endMonth = $this->getDateValue( 'end_month' );
+			$endDay = $this->getDateValue( 'end_day' );
 			
 			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters-container' ) );
 			
@@ -251,6 +245,12 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
+	}
+	
+	private function getDateValue( $type ) {
+		$value = $wgRequest->getVal( $type );
+		if ( $value === 'other' ) $value = null;
+		return $value;
 	}
 
 }
