@@ -7837,6 +7837,9 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-fundraising' => 'Pengeinnsamling',
 	'centralnotice-banner-content' => 'Bannerinnhold',
 	'centralnotice-banner-content-changed' => 'Endret',
+	'centralnotice-date' => 'Dato',
+	'centralnotice-apply-filters' => 'Bruk filtre',
+	'centralnotice-clear-filters' => 'Nullstill filtre',
 );
 
 /** Occitan (Occitan)
@@ -9393,7 +9396,10 @@ $messages['ru'] = array(
 	'centralnotice-landingpages' => 'Целевые страницы',
 	'centralnotice-banner-content' => 'Содержание баннера',
 	'centralnotice-banner-content-changed' => 'Изменено',
+	'centralnotice-filters' => 'Фильтры журналов',
 	'centralnotice-date' => 'Дата',
+	'centralnotice-apply-filters' => 'Применить фильтры',
+	'centralnotice-clear-filters' => 'Очистить фильтры',
 );
 
 /** Rusyn (Русиньскый)
