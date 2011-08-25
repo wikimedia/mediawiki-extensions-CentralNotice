@@ -51,7 +51,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeLogPager {
 		
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		if ( $row->tmplog_action !== 'removed' ) {
-			$htmlOut .= '<a href="javascript:toggleDisplay(\''.$row->tmplog_id.'\')">'.
+			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$row->tmplog_id.'\')">'.
 				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-'.$row->tmplog_id.'" style="display:block;vertical-align:baseline;"/>'.
 				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->tmplog_id.'" style="display:none;vertical-align:baseline;"/>'.
 				'</a>';
