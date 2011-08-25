@@ -260,6 +260,7 @@ Maximum length of the message is 5% of the total width of the table.',
 * $2 is the project name for the site (e.g. "wikipedia").
 * $3 is the country code (e.g. "US").',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
+	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
 	'centralnotice-user' => '{{Identical|User}}',
 	'centralnotice-action' => '{{Identical|Action}}',
 	'centralnotice-on' => 'indicates a notice is on air',
@@ -3607,6 +3608,7 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 
 /** French (Français)
  * @author Crochet.david
+ * @author Gomoko
  * @author Grondin
  * @author Hashar
  * @author IAlex
@@ -3777,7 +3779,7 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-landingpages' => 'Pages de destination',
 	'centralnotice-banner-content' => 'Contenu de la bannière',
 	'centralnotice-banner-content-changed' => 'Changé',
-	'centralnotice-filters' => 'Filtres',
+	'centralnotice-filters' => 'Filtres des journaux',
 	'centralnotice-date' => 'Date',
 	'centralnotice-apply-filters' => 'Appliquer les filtres',
 	'centralnotice-clear-filters' => 'Effacer les filtres',
@@ -4111,6 +4113,10 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-landingpages' => 'Páxinas de destino',
 	'centralnotice-banner-content' => 'Contido do cartel',
 	'centralnotice-banner-content-changed' => 'Cambiado',
+	'centralnotice-filters' => 'Filtros dos rexistros',
+	'centralnotice-date' => 'Data',
+	'centralnotice-apply-filters' => 'Aplicar os filtros',
+	'centralnotice-clear-filters' => 'Restablecer os filtros',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
@@ -8153,7 +8159,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-landingpages' => 'Strona powitalna',
 	'centralnotice-banner-content' => 'Treść banera',
 	'centralnotice-banner-content-changed' => 'Zmieniono',
-	'centralnotice-filters' => 'Filtry',
+	'centralnotice-filters' => 'Dzienniki filtrów',
 	'centralnotice-date' => 'Data',
 	'centralnotice-apply-filters' => 'Zastosuj filtry',
 	'centralnotice-clear-filters' => 'Wyczyść filtry',
