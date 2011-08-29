@@ -769,7 +769,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-			$article->doDeleteArticle( 'CentralNotice Automated Removal' );
+			$article->doDeleteArticle( 'CentralNotice automated removal' );
 		}
 	}
 
