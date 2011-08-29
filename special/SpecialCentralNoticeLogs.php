@@ -53,7 +53,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-logs' ) );
 		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-switcher' ) );
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
-		$fullUrl = $title->getFullUrl();
+		$fullUrl = wfExpandUrl( $title->getFullUrl(), PROTO_CURRENT );
 		
 		$htmlOut .= Xml::radio( 
 			'log_type',
