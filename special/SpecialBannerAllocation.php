@@ -19,13 +19,19 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode;
+		global $wgOut, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
+
+		$locationSubmitted = false;
 		
-		if ( $wgRequest->wasPosted() ) {
-			$this->project = $wgRequest->getText( 'project', 'wikipedia' );
-			$this->language = $wgRequest->getText( 'language', 'en' );
-			$this->location = $wgRequest->getText( 'country', 'US' );
-		}
+        $this->project = $wgRequest->getText( 'project', 'wikipedia', $wgNoticeProject );
+        $this->language = $wgRequest->getText( 'language', $wgLanguageCode );
+			
+        // If the form has been submitted, the country code should be passed along.
+        $locationSubmitted = $wgRequest->getVal( 'country' );
+        $this->location = $locationSubmitted ? $locationSubmitted : $this->location;
+		
+        // Convert submitted location to boolean value. If it true, showList() will be called.
+        $locationSubmitted = (boolean) $locationSubmitted;
 
 		// Begin output
 		$this->setHeaders();
@@ -53,7 +59,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		// Begin Allocation selection fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 		
-		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'get' ) );
 		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-allocation' ) );
 		$htmlOut .= Xml::tags( 'p', null, wfMsg( 'centralnotice-allocation-instructions' ) );
 		
@@ -116,7 +122,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$wgOut->addHTML( $htmlOut );
 		
 		// Handle form submissions
-		if ( $wgRequest->wasPosted() ) {
+		if ( $locationSubmitted ) {
 			$this->showList();
 		}
 
