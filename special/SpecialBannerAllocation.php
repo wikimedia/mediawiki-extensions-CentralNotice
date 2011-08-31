@@ -23,15 +23,15 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 		$locationSubmitted = false;
 		
-        $this->project = $wgRequest->getText( 'project', 'wikipedia', $wgNoticeProject );
-        $this->language = $wgRequest->getText( 'language', $wgLanguageCode );
+		$this->project = $wgRequest->getText( 'project', $wgNoticeProject );
+		$this->language = $wgRequest->getText( 'language', $wgLanguageCode );
 			
-        // If the form has been submitted, the country code should be passed along.
-        $locationSubmitted = $wgRequest->getVal( 'country' );
-        $this->location = $locationSubmitted ? $locationSubmitted : $this->location;
+		// If the form has been submitted, the country code should be passed along.
+		$locationSubmitted = $wgRequest->getVal( 'country' );
+		$this->location = $locationSubmitted ? $locationSubmitted : $this->location;
 		
-        // Convert submitted location to boolean value. If it true, showList() will be called.
-        $locationSubmitted = (boolean) $locationSubmitted;
+		// Convert submitted location to boolean value. If it true, showList() will be called.
+		$locationSubmitted = (boolean) $locationSubmitted;
 
 		// Begin output
 		$this->setHeaders();
