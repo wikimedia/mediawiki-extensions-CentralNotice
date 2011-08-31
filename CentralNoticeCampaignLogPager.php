@@ -1,6 +1,6 @@
 <?php
 
-class CentralNoticeLogPager extends ReverseChronologicalPager {
+class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	var $viewPage, $special;
 
 	function __construct( $special ) {

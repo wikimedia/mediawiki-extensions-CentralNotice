@@ -1,6 +1,6 @@
 <?php
 
-class CentralNoticeBannerLogPager extends CentralNoticeLogPager {
+class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	var $viewPage, $special;
 
 	function __construct( $special ) {

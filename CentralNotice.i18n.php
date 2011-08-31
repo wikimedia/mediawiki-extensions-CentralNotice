@@ -139,6 +139,7 @@ Add one below.',
 	'centralnotice-view-allocation' => 'View banner allocation',
 	'centralnotice-allocation-instructions' => 'Choose the environment you would like to view banner allocation for:',
 	'centralnotice-languages' => 'Languages',
+	'centralnotice-language' => 'Language',
 	'centralnotice-projects' => 'Projects',
 	'centralnotice-country' => 'Country',
 	'centralnotice-no-allocation' => 'No banners allocated.',
@@ -172,6 +173,7 @@ Add one below.',
 	'centralnotice-date' => 'Date',
 	'centralnotice-apply-filters' => 'Apply filters',
 	'centralnotice-clear-filters' => 'Clear filters',
+	'centralnotice-banner-messages' => 'Banner messages',
 );
 
 /** Message documentation (Message documentation)

@@ -55,21 +55,15 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
 		$fullUrl = wfExpandUrl( $title->getFullUrl(), PROTO_CURRENT );
 		
-		$htmlOut .= Xml::radio( 
-			'log_type',
-			'campaign',
-			( $this->logType == 'campaignsettings' ? true : false ),
-			array( 'onclick' => "switchLogs( '".$fullUrl."', 'campaignsettings' )" )
-		);
-		$htmlOut .= Xml::label( wfMsg( 'centralnotice-campaign-settings' ), 'campaign' );
-		
-		$htmlOut .= Xml::radio(
-			'log_type',
-			'banner',
-			( $this->logType == 'bannersettings' ? true : false ),
-			array( 'onclick' => "switchLogs( '".$fullUrl."', 'bannersettings' )" )
-		);
-		$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-settings' ), 'banner' );
+		// Build the radio buttons for switching the log type
+		$htmlOut .= $this->getLogSwitcher( 'campaignsettings', 'campaignSettings', 
+			'centralnotice-campaign-settings', $fullUrl );
+		$htmlOut .= $this->getLogSwitcher( 'bannersettings', 'bannerSettings', 
+			'centralnotice-banner-settings', $fullUrl );
+		$htmlOut .= $this->getLogSwitcher( 'bannercontent', 'bannerContent', 
+			'centralnotice-banner-content', $fullUrl );
+		$htmlOut .= $this->getLogSwitcher( 'bannermessages', 'bannerMessages', 
+			'centralnotice-banner-messages', $fullUrl );
 		
 		$htmlOut .= Xml::closeElement( 'div' );
 		
@@ -221,10 +215,16 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	function showLog( $logType ) {
 		global $wgOut;
 		
-		if ( $logType == 'bannersettings' ) {
-			$pager = new CentralNoticeBannerLogPager( $this );
-		} else {
-			$pager = new CentralNoticeLogPager( $this );
+		switch ( $logType ) {
+			case 'bannersettings':
+				$pager = new CentralNoticeBannerLogPager( $this );
+				break;
+			case 'bannercontent':
+			case 'bannermessages':
+				$pager = new CentralNoticePageLogPager( $this, $logType );
+				break;
+			default:
+				$pager = new CentralNoticeCampaignLogPager( $this );
 		}
 		
 		$htmlOut = '';
@@ -247,11 +247,26 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$wgOut->addHTML( $htmlOut );
 	}
 	
-	private function getDateValue( $type ) {
+	static function getDateValue( $type ) {
 		global $wgRequest;
 		$value = $wgRequest->getVal( $type );
 		if ( $value === 'other' ) $value = null;
 		return $value;
+	}
+	
+	/**
+	 * Build a radio button that switches the log type when you click it
+	 */
+	private function getLogSwitcher( $type, $id, $message, $fullUrl ) {
+		$htmlOut = '';
+		$htmlOut .= Xml::radio(
+			'log_type',
+			$id,
+			( $this->logType == $type ? true : false ),
+			array( 'onclick' => "switchLogs( '".$fullUrl."', '".$type."' )" )
+		);
+		$htmlOut .= Xml::label( wfMsg( $message ), $id );
+		return $htmlOut;
 	}
 
 }
