@@ -2464,6 +2464,7 @@ Füge eine hinzu.',
 	'centralnotice-view-allocation' => 'Anordnung der Vorlagen ansehen',
 	'centralnotice-allocation-instructions' => 'Die Ausgabeumgebung für die Ansicht der Vorlagenanordnung auswählen:',
 	'centralnotice-languages' => 'Sprachen',
+	'centralnotice-language' => 'Sprache',
 	'centralnotice-projects' => 'Projekte',
 	'centralnotice-country' => 'Staat',
 	'centralnotice-no-allocation' => 'Es wurden keine Vorlagen angeordnet.',
@@ -2496,6 +2497,7 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-date' => 'Datum',
 	'centralnotice-apply-filters' => 'Filter anwenden',
 	'centralnotice-clear-filters' => 'Filter aufheben',
+	'centralnotice-banner-messages' => 'Bannernachrichten',
 );
 
 /** German (formal address) (‪Deutsch (Sie-Form)‬)
@@ -3831,6 +3833,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-view-allocation' => 'Voir la disposition de bannière',
 	'centralnotice-allocation-instructions' => 'Choisissez l’environnement pour lequel vous souhaitez afficher la disposition de bannière :',
 	'centralnotice-languages' => 'Langues',
+	'centralnotice-language' => 'Langue',
 	'centralnotice-projects' => 'Projets',
 	'centralnotice-country' => 'Pays',
 	'centralnotice-no-allocation' => 'Pas de bannières disposées.',
@@ -3863,6 +3866,7 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-date' => 'Date',
 	'centralnotice-apply-filters' => 'Appliquer les filtres',
 	'centralnotice-clear-filters' => 'Effacer les filtres',
+	'centralnotice-banner-messages' => 'Messages bannière',
 );
 
 /** Franco-Provençal (Arpetan)
@@ -4169,6 +4173,7 @@ Engada algún embaixo',
 	'centralnotice-view-allocation' => 'Ollar a asignación do modelo',
 	'centralnotice-allocation-instructions' => 'Escolla o entorno onde desexa mostrar a asignación do modelo:',
 	'centralnotice-languages' => 'Linguas',
+	'centralnotice-language' => 'Lingua',
 	'centralnotice-projects' => 'Proxectos',
 	'centralnotice-country' => 'País',
 	'centralnotice-no-allocation' => 'Non hai asignación de modelos.',
@@ -4201,6 +4206,7 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-date' => 'Data',
 	'centralnotice-apply-filters' => 'Aplicar os filtros',
 	'centralnotice-clear-filters' => 'Restablecer os filtros',
+	'centralnotice-banner-messages' => 'Mensaxes en carteis',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
@@ -6908,6 +6914,7 @@ $messages['mk'] = array(
 	'centralnotice-view-allocation' => 'Преглед на распределбата на плакати',
 	'centralnotice-allocation-instructions' => 'Одберете во која околина сакате да ја погледате распределбата на плакати:',
 	'centralnotice-languages' => 'Јазици',
+	'centralnotice-language' => 'Јазик',
 	'centralnotice-projects' => 'Проекти',
 	'centralnotice-country' => 'Земја',
 	'centralnotice-no-allocation' => 'Нема распределени плакати',
@@ -6939,6 +6946,7 @@ $messages['mk'] = array(
 	'centralnotice-date' => 'Датум',
 	'centralnotice-apply-filters' => 'Примени филтри',
 	'centralnotice-clear-filters' => 'Исчисти филтри',
+	'centralnotice-banner-messages' => 'Пораки на плакат',
 );
 
 /** Malayalam (മലയാളം)
@@ -7299,6 +7307,7 @@ Tidak boleh dibuang.',
 	'centralnotice-view-allocation' => 'Lihat peruntukan sepanduk',
 	'centralnotice-allocation-instructions' => 'Pilih persekitaran yang mana anda ingin melihat peruntukan sepanduk:',
 	'centralnotice-languages' => 'Bahasa',
+	'centralnotice-language' => 'Bahasa',
 	'centralnotice-projects' => 'Projek',
 	'centralnotice-country' => 'Negara',
 	'centralnotice-no-allocation' => 'Tiada sepanduk diperuntukkan.',
@@ -7331,6 +7340,7 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-date' => 'Tarikh',
 	'centralnotice-apply-filters' => 'Gunakan penapis',
 	'centralnotice-clear-filters' => 'Kosongkan penapis',
+	'centralnotice-banner-messages' => 'Pesanan sepanduk',
 );
 
 /** Maltese (Malti)
@@ -7654,6 +7664,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-view-allocation' => 'Bannertoewijzing bekijken',
 	'centralnotice-allocation-instructions' => 'Kies de omgeving waarvoor u de bannertoewijzing wilt bekijken:',
 	'centralnotice-languages' => 'Talen',
+	'centralnotice-language' => 'Taal',
 	'centralnotice-projects' => 'Projecten',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Geen banners toegewezen.',
@@ -7686,6 +7697,7 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-date' => 'Datum',
 	'centralnotice-apply-filters' => 'Filters toepassen',
 	'centralnotice-clear-filters' => 'Filters verwijderen',
+	'centralnotice-banner-messages' => 'Bannerberichten',
 );
 
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
@@ -9467,6 +9479,7 @@ $messages['ru'] = array(
 	'centralnotice-view-allocation' => 'Просмотр размещения баннеров',
 	'centralnotice-allocation-instructions' => 'Выберите среды, для которых вы хотите просмотреть размещение баннеров:',
 	'centralnotice-languages' => 'Языки',
+	'centralnotice-language' => 'Язык',
 	'centralnotice-projects' => 'Проекты',
 	'centralnotice-country' => 'Страна',
 	'centralnotice-no-allocation' => 'Баннеры не размещены',
@@ -9499,6 +9512,7 @@ $messages['ru'] = array(
 	'centralnotice-date' => 'Дата',
 	'centralnotice-apply-filters' => 'Применить фильтры',
 	'centralnotice-clear-filters' => 'Очистить фильтры',
+	'centralnotice-banner-messages' => 'Сообщения баннеров',
 );
 
 /** Rusyn (Русиньскый)
@@ -10285,6 +10299,7 @@ Dodajte kakšno spodaj.',
 	'centralnotice-view-allocation' => 'Ogled dodelitve pasic',
 	'centralnotice-allocation-instructions' => 'Izberite okolje, za katero si želite ogledati dodelitve pasic:',
 	'centralnotice-languages' => 'Jeziki',
+	'centralnotice-language' => 'Jezik',
 	'centralnotice-projects' => 'Projekti',
 	'centralnotice-country' => 'Država',
 	'centralnotice-no-allocation' => 'Nobena pasica ni dodeljena.',
@@ -10317,6 +10332,7 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-date' => 'Datum',
 	'centralnotice-apply-filters' => 'Uveljavi filtre',
 	'centralnotice-clear-filters' => 'Počisti filtre',
+	'centralnotice-banner-messages' => 'Sporočila pasic',
 );
 
 /** Albanian (Shqip)
@@ -12390,6 +12406,7 @@ Hãy thêm vào!',
 	'centralnotice-view-allocation' => 'Xem cách phân phối bảng',
 	'centralnotice-allocation-instructions' => 'Chọn môi trường để xem cách phân phối bảng:',
 	'centralnotice-languages' => 'Ngôn ngữ',
+	'centralnotice-language' => 'Ngôn ngữ',
 	'centralnotice-projects' => 'Dự án',
 	'centralnotice-country' => 'Quốc gia',
 	'centralnotice-no-allocation' => 'Chưa có phân phối bảng nào.',
@@ -12422,6 +12439,7 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-date' => 'Ngày tháng',
 	'centralnotice-apply-filters' => 'Áp dụng bộ lọc',
 	'centralnotice-clear-filters' => 'Đặt lại bộ lọc',
+	'centralnotice-banner-messages' => 'Thông điệp biểu ngữ',
 );
 
 /** Volapük (Volapük)
