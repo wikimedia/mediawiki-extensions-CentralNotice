@@ -850,7 +850,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			return;
 		}
 		
-		$initialBannerSettings = CentralNoticeDB::getBannerSettings( $name );
+		$initialBannerSettings = CentralNoticeDB::getBannerSettings( $name, true );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name',
@@ -892,7 +892,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			}
 			
 			$bannerId = SpecialNoticeTemplate::getTemplateId( $name );
-			$finalBannerSettings = CentralNoticeDB::getBannerSettings( $name );
+			$finalBannerSettings = CentralNoticeDB::getBannerSettings( $name, true );
 			$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings, $contentChanged);
 			
 			return;

@@ -243,14 +243,20 @@ class CentralNoticeDB {
 	/**
 	 * Return settings for a banner
 	 * @param $bannerName string name of banner
+	 * @param $logging boolean whether or not request is for logging (optional)
 	 * @return an array of banner settings
 	 */
-	static function getBannerSettings( $bannerName ) {
+	static function getBannerSettings( $bannerName, $logging = false ) {
 		global $wgCentralDBname;
 		
 		$banner = array();
 		
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		// If logging, read from the master database to avoid concurrency problems
+		if ( $logging ) {
+			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		} else {
+			$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		}
 		
 		$row = $dbr->selectRow( 'cn_templates',
 			array(
