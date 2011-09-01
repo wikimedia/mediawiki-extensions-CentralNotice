@@ -24,6 +24,7 @@ It can also be used to add or remove old notices.',
 	'centralnotice-end-date' => 'End date',
 	'centralnotice-enabled' => 'Enabled',
 	'centralnotice-modify' => 'Submit',
+	'centralnotice-view' => 'View',
 	'centralnotice-save-banner' => 'Save banner',
 	'centralnotice-preview' => 'Preview',
 	'centralnotice-nopreview' => '(Preview not available)',
@@ -204,11 +205,12 @@ $messages['qqq'] = array(
 	'centralnotice-end-date' => '{{Identical|End date}}',
 	'centralnotice-enabled' => '{{Identical|Enabled}}',
 	'centralnotice-modify' => 'Submit button on:
-* "change translation language" dialog box on [[m:Special:NoticeTemplate]]
-* "view banner allocation" on [[m:Special:BannerAllocation]]
-* any others?
+* "change translation language" dialog box on [[m:Special:NoticeTemplate]].
+* "add campaign" form on [[m:Special:CentralNotice]] (only when sufficent access rights).
 
 {{Identical|Submit}}',
+	'centralnotice-view' => 'Submit button on:
+* "view banner allocation" on [[m:Special:BannerAllocation]].',
 	'centralnotice-save-banner' => 'Label for the submit button which saves a CentralNotice banner.',
 	'centralnotice-preview' => '{{Identical|Preview}}',
 	'centralnotice-nopreview' => '{{Identical|Nopreview}}',

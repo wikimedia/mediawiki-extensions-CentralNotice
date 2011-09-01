@@ -117,7 +117,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 		$htmlOut .= Xml::tags( 'div',
 			array( 'class' => 'cn-buttons' ),
-			Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
+			Xml::submitButton( wfMsg( 'centralnotice-view' ) )
 		);
 		$htmlOut .= Html::closeElement( 'form' );
 
