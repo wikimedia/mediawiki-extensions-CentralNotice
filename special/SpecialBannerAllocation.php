@@ -47,37 +47,37 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		CentralNotice::printHeader();
 
 		// Begin Banners tab content
-		$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
+		$wgOut->addHTML( Html::openElement( 'div', array( 'id' => 'preferences' ) ) );
 
 		$htmlOut = '';
 
 		// Begin Allocation selection fieldset
-		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
-		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'get' ) );
-		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-allocation' ) );
+		$htmlOut .= Html::openElement( 'form', array( 'method' => 'get' ) );
+		$htmlOut .= Html::element( 'h2', null, wfMsg( 'centralnotice-view-allocation' ) );
 		$htmlOut .= Xml::tags( 'p', null, wfMsg( 'centralnotice-allocation-instructions' ) );
 
-		$htmlOut .= Xml::openElement( 'table', array ( 'id' => 'envpicker', 'cellpadding' => 7 ) );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Html::openElement( 'table', array ( 'id' => 'envpicker', 'cellpadding' => 7 ) );
+		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			array( 'style' => 'width: 20%;' ),
 			wfMsg( 'centralnotice-project-name' ) );
-		$htmlOut .= Xml::openElement( 'td' );
-		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'project' ) );
+		$htmlOut .= Html::openElement( 'td' );
+		$htmlOut .= Html::openElement( 'select', array( 'name' => 'project' ) );
 
 		foreach ( $wgNoticeProjects as $value ) {
 			$htmlOut .= Xml::option( $value, $value, $value === $this->project );
 		}
 
-		$htmlOut .= Xml::closeElement( 'select' );
-		$htmlOut .= Xml::closeElement( 'td' );
-		$htmlOut .= Xml::closeElement( 'tr' );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'select' );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::closeElement( 'tr' );
+		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			array( 'valign' => 'top' ),
 			wfMsg( 'centralnotice-project-lang' ) );
-		$htmlOut .= Xml::openElement( 'td' );
+		$htmlOut .= Html::openElement( 'td' );
 
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
@@ -87,7 +87,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		}
 
 		ksort( $languages );
-		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'language' ) );
+		$htmlOut .= Html::openElement( 'select', array( 'name' => 'language' ) );
 
 		foreach( $languages as $code => $name ) {
 			$htmlOut .= Xml::option(
@@ -95,34 +95,34 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 				$code, $code === $this->language );
 		}
 
-		$htmlOut .= Xml::closeElement( 'select' );
-		$htmlOut .= Xml::closeElement( 'td' );
-		$htmlOut .= Xml::closeElement( 'tr' );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'select' );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::closeElement( 'tr' );
+		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', array(), wfMsg( 'centralnotice-country' ) );
-		$htmlOut .= Xml::openElement( 'td' );
+		$htmlOut .= Html::openElement( 'td' );
 
 		$countries = CentralNoticeDB::getCountriesList();
 
-		$htmlOut .= Xml::openElement( 'select', array( 'name' => 'country' ) );
+		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
 
 		foreach( $countries as $code => $name ) {
 			$htmlOut .= Xml::option( $name, $code, $code === $this->location );
 		}
 
-		$htmlOut .= Xml::closeElement( 'select' );
-		$htmlOut .= Xml::closeElement( 'td' );
-		$htmlOut .= Xml::closeElement( 'tr' );
-		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Html::closeElement( 'select' );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'table' );
 
 		$htmlOut .= Xml::tags( 'div',
 			array( 'class' => 'cn-buttons' ),
 			Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
 		);
-		$htmlOut .= Xml::closeElement( 'form' );
+		$htmlOut .= Html::closeElement( 'form' );
 
 		// End Allocation selection fieldset
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
 
@@ -132,7 +132,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		}
 
 		// End Banners tab content
-		$wgOut->addHTML( Xml::closeElement( 'div' ) );
+		$wgOut->addHTML( Html::closeElement( 'div' ) );
 	}
 
 	/**
@@ -145,7 +145,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut = '';
 
 		// Begin Allocation list fieldset
-		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
 		$bannerLister = new SpecialBannerListLoader();
 		$bannerLister->project = $wgRequest->getVal( 'project' );
@@ -193,7 +193,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		}
 
 		// End Allocation list fieldset
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		$wgOut->addHTML( $htmlOut );
 	}
@@ -205,27 +205,27 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
-		$htmlOut = Xml::openElement( 'table',
+		$htmlOut = Html::openElement( 'table',
 			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em;' )
 		);
-		$htmlOut .= Xml::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $type );
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::element( 'th', array( 'width' => '20%' ),
+		$htmlOut .= Html::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $type );
+		$htmlOut .= Html::openElement( 'tr' );
+		$htmlOut .= Html::element( 'th', array( 'width' => '20%' ),
 			wfMsg ( 'centralnotice-percentage' ) );
-		$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ),
+		$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
 			wfMsg ( 'centralnotice-banner' ) );
-		$htmlOut .= Xml::element( 'th', array( 'width' => '30%' ),
+		$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
 			wfMsg ( 'centralnotice-notice' ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 
 		foreach ( $banners as $banner ) {
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'td' );
+			$htmlOut .= Html::openElement( 'tr' );
+			$htmlOut .= Html::openElement( 'td' );
 
 			$percentage = round( ( $banner['weight'] / $weight ) * 100, 2 );
 
 			$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
-			$htmlOut .= Xml::closeElement( 'td' );
+			$htmlOut .= Html::closeElement( 'td' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 
 			$sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
@@ -238,10 +238,10 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 					'method=listNoticeDetail&notice=' . urlencode( $banner['campaign'] ) )
 			);
 
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::closeElement( 'tr' );
 		}
 
-		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Html::closeElement( 'table' );
 
 		return $htmlOut;
 	}
