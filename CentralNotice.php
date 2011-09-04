@@ -196,7 +196,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 function efCentralNoticeGeoLoader( $skin, &$text ) {
 	// Insert the geo IP lookup
-	$text .= '<script type="text/javascript" src="http://geoiplookup.wikimedia.org/"></script>';
+	$text .= '<script type="text/javascript" src="//geoiplookup.wikimedia.org/"></script>';
 	return true;
 }
 
