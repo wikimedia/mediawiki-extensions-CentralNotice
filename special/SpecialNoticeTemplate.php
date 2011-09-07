@@ -875,25 +875,16 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
 
-			$bodyPage = Title::newFromText(
-				"Centralnotice-template-{$name}", NS_MEDIAWIKI );
-			$curRev = Revision::newFromTitle( $bodyPage );
-			$oldbody = $curRev ? $curRev->getText() : '';
-
 			$article->doEdit( $body, '', EDIT_FORCE_BOT );
-			
-			$curRev = Revision::newFromTitle( $bodyPage );
-			$newbody = $curRev ? $curRev->getText() : '';
 
-			//test for body changes
-			$contentChanged = 0;
-			if ($newbody !== $oldbody){
-				$contentChanged = 1;
-			}
-			
 			$bannerId = SpecialNoticeTemplate::getTemplateId( $name );
 			$finalBannerSettings = CentralNoticeDB::getBannerSettings( $name, true );
-			$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings, $contentChanged);
+			
+			// If there are any difference between the old settings and the new settings, log them.
+			$diffs = array_diff_assoc( $initialBannerSettings, $finalBannerSettings );
+			if ( $diffs ) {
+				$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings );
+			}
 			
 			return;
 		}
@@ -1013,12 +1004,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * @param $bannerId integer: ID of banner
 	 * @param $beginSettings array of banner settings before changes (optional)
 	 * @param $endSettings array of banner settings after changes (optional)
-	 * @param $beginContent banner content before changes (optional)
-	 * @param $endContent banner content after changes (optional)
 	 */
-	function logBannerChange( $action, $bannerId, $beginSettings = array(), 
-		$endSettings = array(), $contentChanged = 0 )
-	{
+	function logBannerChange( $action, $bannerId, $beginSettings = array(), $endSettings = array() ) {
 		global $wgUser;
 		
 		$dbw = wfGetDB( DB_MASTER );
@@ -1028,8 +1015,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			'tmplog_user_id' => $wgUser->getId(),
 			'tmplog_action' => $action,
 			'tmplog_template_id' => $bannerId,
-			'tmplog_template_name' => SpecialNoticeTemplate::getBannerName( $bannerId ),
-			'tmplog_content_change' => $contentChanged
+			'tmplog_template_name' => SpecialNoticeTemplate::getBannerName( $bannerId )
 		);
 		
 		foreach ( $beginSettings as $key => $value ) {
