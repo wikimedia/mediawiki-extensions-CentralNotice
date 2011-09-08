@@ -7008,6 +7008,7 @@ $messages['ltg'] = array(
 );
 
 /** Latvian (Latviešu)
+ * @author GreenZeb
  * @author Papuass
  */
 $messages['lv'] = array(
@@ -7019,11 +7020,20 @@ $messages['lv'] = array(
 	'centralnotice-add' => 'Pievienot',
 	'centralnotice-add-notice' => 'Pievienot kampaņu',
 	'centralnotice-edit-notice' => 'Labot kampaņu',
+	'centralnotice-add-template' => 'Pievienot reklāmkarogu',
 	'centralnotice-show-notices' => 'Rādīt kampaņas',
+	'centralnotice-list-templates' => 'Reklāmkarogu saraksts',
+	'centralnotice-multiple-projects' => 'Vairāki ($1)',
+	'centralnotice-multiple-languages' => 'Vairākas ($1)',
+	'centralnotice-multiple-countries' => 'Vairākas ($1)',
 	'centralnotice-all-projects' => 'Visi projekti',
 	'centralnotice-translations' => 'Tulkojumi',
 	'centralnotice-translate-to' => 'Tulkot uz',
 	'centralnotice-translate' => 'Tulkot',
+	'centralnotice-english' => 'Angļu',
+	'centralnotice-banner-name' => 'Reklāmkaroga nosaukums:',
+	'centralnotice-banner' => 'Reklāmkarogs',
+	'centralnotice-banner-heading' => 'Reklāmkarogs: $1',
 	'centralnotice-notice' => 'Kampaņa',
 	'centralnotice-notice-heading' => 'Kampaņa: $1',
 	'centralnotice-notices' => 'Kampaņas',
@@ -7051,6 +7061,8 @@ $messages['lv'] = array(
 	'centralnotice-languages' => 'Valodas',
 	'centralnotice-projects' => 'Projekti',
 	'centralnotice-country' => 'Valsts',
+	'centralnotice-user' => 'Lietotājs',
+	'centralnotice-action' => 'Darbība',
 );
 
 /** Malagasy (Malagasy)
@@ -7840,14 +7852,37 @@ $messages['nds-nl'] = array(
 /** Nepali (नेपाली)
  * @author Bhawani Gautam
  * @author Bhawani Gautam Rhk
+ * @author सरोज कुमार ढकाल
  */
 $messages['ne'] = array(
 	'centralnotice-end-date' => 'समाप्ति तिथि',
+	'centralnotice-enabled' => 'सकृय पारिएको',
+	'centralnotice-modify' => 'बुझाउने',
+	'centralnotice-view' => 'दृष्य',
+	'centralnotice-save-banner' => 'यस ब्यानरलाई संग्रह गर्ने',
 	'centralnotice-preview' => 'पूर्वालोकन',
+	'centralnotice-nopreview' => '(पूर्वरुप उपलब्ध छैन)',
+	'centralnotice-remove' => 'हटाउने',
+	'centralnotice-translate-heading' => ' $1को लागि अनुवादहरु',
+	'centralnotice-manage-templates' => 'ब्यानर ब्यवस्थापन गर्ने',
 	'centralnotice-add' => 'थप्ने',
+	'centralnotice-add-template' => 'ब्यानर थप्ने',
+	'centralnotice-list-templates' => 'ब्यानरहरुको सुचीकरण गर्ने',
+	'centralnotice-multiple-projects' => 'धेरै पटक ($1)',
+	'centralnotice-multiple-languages' => 'धेरै पटक ($1)',
+	'centralnotice-multiple-countries' => 'धेरैपटक ($1)',
+	'centralnotice-all-projects' => 'सबै परियोजनाहरु',
+	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'अनुवाद',
 	'centralnotice-translate-to' => 'अनुवाद गर्ने यसमा',
+	'centralnotice-translate' => 'अनुवाद गर्ने \\',
+	'centralnotice-english' => 'अङ्ग्रेजी',
+	'centralnotice-banner-name' => 'ब्यानरनाम:',
+	'centralnotice-banner' => 'ब्यानर',
+	'centralnotice-banner-heading' => 'ब्यानर: $1',
+	'centralnotice-templates' => 'ब्यानरहरु',
 	'centralnotice-weight' => 'ओजन',
+	'centralnotice-locked' => 'ताला लगाइएको छ \\',
 	'centralnotice-day' => 'दिन',
 	'centralnotice-year' => 'वर्ष',
 	'centralnotice-month' => 'महिना',
@@ -9650,6 +9685,7 @@ $messages['roa-tara'] = array(
 	'centralnotice' => "Amministrazione de l'avvise cendrale",
 	'noticetemplate' => "Amministrazione de l'avvise cendrale",
 	'bannerallocation' => "Amministrazione de l'avvise cendrale",
+	'centralnoticelogs' => "Amministrazione de l'avvise cendrale",
 	'right-centralnotice-admin' => 'Gestiscere le notizie cendrale',
 	'action-centralnotice-admin' => 'gestiscere le notizie cendrale',
 	'centralnotice-desc' => "Aggiunge 'n'avvise cendrale a 'u site",
@@ -9767,6 +9803,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-banner-hidable' => 'Stateche/Scunnibbele',
 	'centralnotice-banner-collapsible' => 'Collassabbele',
 	'centralnotice-banner-fundraising' => "Quiste jè 'nu banner pa raccolte de le funne",
+	'centralnotice-banner-landing-pages' => 'Pàggene de arrive (separate da virgole):',
 	'centralnotice-geo' => 'Geo referenziate',
 	'centralnotice-countries' => 'Paìse',
 	'centralnotice-allocation' => 'Allocazione',
@@ -9789,6 +9826,8 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-action' => 'Azione',
 	'centralnotice-on' => 'appizzeche',
 	'centralnotice-off' => 'stute',
+	'centralnotice-added' => 'Aggiunde <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Luate <span class="cn-old-value">$1</span>',
 	'centralnotice-no-assignments' => 'nisicune banner assegnate',
 	'centralnotice-talk-link' => 'ngazzamende',
 	'centralnotice-campaign-settings' => "'Mbostaziune d'a cambagne",
