@@ -983,6 +983,7 @@ $messages['az'] = array(
 	'centralnotice-projects' => 'Layihələr',
 	'centralnotice-country' => 'Ölkə',
 	'centralnotice-logs' => 'Loqlar',
+	'centralnotice-talk-link' => 'müzakirə',
 	'centralnotice-date' => 'Tarix',
 );
 
@@ -1386,8 +1387,21 @@ $messages['bg'] = array(
 	'centralnotice-templates' => 'Шаблони',
 	'centralnotice-weight' => 'Тежест',
 	'centralnotice-locked' => 'Заключено',
+	'centralnotice-notice' => 'Кампания',
+	'centralnotice-notice-heading' => 'Кампания: $1',
 	'centralnotice-notices' => 'Съобщения',
+	'centralnotice-notice-exists' => 'Вече съществува кампания.
+Друга няма да бъде добавена.',
+	'centralnotice-no-language' => 'Не е избран език за кампанията.
+Тя няма да бъде добавена.',
+	'centralnotice-no-project' => 'Не е избран проект за кампанията. Тя няма да бъде добавена.',
+	'centralnotice-template-exists' => 'Вече съществува банер.
+Друг няма да бъде добавен.',
+	'centralnotice-notice-doesnt-exist' => 'Не съществува такава кампания.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Не съществува такава кампания.
+Няма обект за премахване.',
 	'centralnotice-banner-doesnt-exist' => 'Банерът не съществува.',
+	'centralnotice-template-still-bound' => 'Банерът продължава да е асоцииран с кампанията и няма да бъде премахнат.',
 	'centralnotice-template-body' => 'Тяло на шаблона:',
 	'centralnotice-day' => 'Ден',
 	'centralnotice-year' => 'Година',
@@ -1400,11 +1414,30 @@ $messages['bg'] = array(
 	'centralnotice-project-name' => 'Име на проекта',
 	'centralnotice-start-date' => 'Начална дата',
 	'centralnotice-start-time' => 'начално време (UTC)',
+	'centralnotice-assigned-templates' => 'Асоциирани банери',
+	'centralnotice-no-templates' => 'Не са открити банери.
+Добавете банер!',
+	'centralnotice-no-templates-assigned' => 'Няма банери за тази кампания.
+Добавете банер!',
 	'centralnotice-available-templates' => 'Налични шаблони',
+	'centralnotice-template-already-exists' => 'Вече има банер, предназначен за тази кампания.
+Друг няма да бъде добавен.',
 	'centralnotice-preview-template' => 'Преглед на шаблона',
+	'centralnotice-weights' => 'Тегла',
+	'centralnotice-notice-is-locked' => 'Кампанията е заключена и не може да бъде премахната.',
+	'centralnotice-overlap' => 'Тази кампания се припокрива по време с друга кампания.
+Кампанията не е добавена.',
+	'centralnotice-invalid-date-range' => 'Невалиден интервал от време.
+Промените няма да бъдат запазени.',
+	'centralnotice-null-string' => 'Не може да се добави нулев низ.
+Нищо няма да бъде добавено.',
+	'centralnotice-confirm-delete' => 'Сигурни ли сте, че искате да изтриете този обект?
+Това действие няма да може да бъде отменено.',
+	'centralnotice-no-notices-exist' => 'Няма текущи кампании. Добавете някоя.',
 	'centralnotice-no-templates-translate' => 'Няма шаблони, за които да се редактират преводите',
 	'centralnotice-settings' => 'Настройки',
 	'centralnotice-edit-template' => 'Редактиране на шаблон',
+	'centralnotice-edit-template-summary' => 'За да създадете локализируемо съобщение, включете между тройките фигурни скоби низ от думи, свързани с тирета, например {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Съобщение',
 	'centralnotice-message-not-set' => 'Съобщението не е зададено',
 	'centralnotice-clone' => 'Клониране',
@@ -1414,13 +1447,34 @@ $messages['bg'] = array(
 	'centralnotice-banner-display' => 'Показване на:',
 	'centralnotice-banner-anonymous' => 'Анонимни потребители',
 	'centralnotice-banner-logged-in' => 'Регистрирани потребители',
+	'centralnotice-banner-type' => 'Тип банер:',
+	'centralnotice-banner-fundraising' => 'Това е банер за дарителска кампания',
+	'centralnotice-banner-landing-pages' => 'Входящи страници (разделени със запетая):',
 	'centralnotice-countries' => 'Страни',
 	'centralnotice-allocation' => 'Разпределение',
 	'centralnotice-languages' => 'Езици',
+	'centralnotice-language' => 'Език',
 	'centralnotice-projects' => 'Проекти',
 	'centralnotice-country' => 'Страна',
 	'centralnotice-percentage' => 'Процент',
+	'centralnotice-documentwrite-error' => 'document.write() не може да се използва в рамките на банер.
+За повече информация вижте http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-preferred' => 'Предпочитано',
+	'centralnotice-logs' => 'Дневници',
+	'centralnotice-view-logs' => 'Преглед на дневниците',
+	'centralnotice-user' => 'Потребител',
+	'centralnotice-action' => 'Действие',
+	'centralnotice-no-assignments' => 'няма асоциирани банери',
+	'centralnotice-talk-link' => 'беседа',
+	'centralnotice-campaign-settings' => 'Настройки на кампанията',
+	'centralnotice-banner-settings' => 'Настройки на банера',
+	'centralnotice-anon' => 'Показване на анонимни потребители',
+	'centralnotice-account' => 'Показване на регистрирани потребители',
+	'centralnotice-fundraising' => 'Дарителска кампания',
+	'centralnotice-landingpages' => 'Входящи страници',
+	'centralnotice-banner-content' => 'Съдържание на банера',
+	'centralnotice-date' => 'Дата',
+	'centralnotice-banner-messages' => 'Банерни съобщения',
 );
 
 /** Bihari (भोजपुरी)
@@ -1454,6 +1508,7 @@ $messages['bn'] = array(
 	'centralnotice-end-date' => 'শেষের তারিখ',
 	'centralnotice-enabled' => 'সক্রিয়',
 	'centralnotice-modify' => 'জমা দাও',
+	'centralnotice-view' => 'দেখাও',
 	'centralnotice-save-banner' => 'ব্যানার সংরক্ষণ',
 	'centralnotice-preview' => 'প্রাকদর্শন',
 	'centralnotice-add-new' => 'একটি নতুন কেন্দ্রীয় নোটিশ যোগ করো',
@@ -1548,10 +1603,14 @@ $messages['bn'] = array(
 	'centralnotice-geo' => 'স্থানাংকলক্ষ্য',
 	'centralnotice-countries' => 'দেশ',
 	'centralnotice-languages' => 'ভাষা',
+	'centralnotice-language' => 'ভাষা',
 	'centralnotice-projects' => 'প্রকল্প',
 	'centralnotice-country' => 'দেশ',
 	'centralnotice-percentage' => 'শতাংশ',
 	'centralnotice-preferred' => 'পছন্দনীয়',
+	'centralnotice-logs' => 'লগ',
+	'centralnotice-talk-link' => 'আলোচনা',
+	'centralnotice-date' => 'তারিখ',
 );
 
 /** Tibetan (བོད་ཡིག)
@@ -8419,6 +8478,7 @@ Apondètz-ne una en dejós.',
  * @author Psubhashish
  */
 $messages['or'] = array(
+	'centralnotice-desc' => 'ଏକ କେନ୍ଦ୍ର ସାଇଟ ସୂଚନା ଯୋଡ଼ିଥାଏ',
 	'centralnotice-enabled' => 'ସଚଳ କରାଗଲା',
 	'centralnotice-modify' => 'ଦାଖଲ କରିବା',
 	'centralnotice-view' => 'ଦେଖା',
