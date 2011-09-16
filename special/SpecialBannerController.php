@@ -164,7 +164,7 @@ function insertBanner(bannerJson) {
 	if ( bannerJson.fundraising ) {
 JAVASCRIPT;
 	$script .= "\n\t\tvar url = '" . 
-	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';";
+	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';\n";
 	$script .= <<<JAVASCRIPT
 		if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
 			targets = String( bannerJson.landingPages ).split(',');
