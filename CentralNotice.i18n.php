@@ -8656,7 +8656,7 @@ $messages['or'] = array(
 ତଳେ ଗୋଟିଏ ଯୋଡ଼ନ୍ତୁ ।',
 	'centralnotice-no-templates-translate' => 'ଏଠାରେ ଅନୁବାଦ କରିବା ପାଇଁ ଆଉ ଗୋଟିଏ ବି ସୂଚନା ଫଳକ ନାହିଁ ।',
 	'centralnotice-number-uses' => 'ବ୍ୟବହାର',
-	'centralnotice-settings' => 'ବିନ୍ୟାସ',
+	'centralnotice-settings' => 'ସଜାଣି',
 	'centralnotice-edit-template' => 'ସୂଚନା ଫଳକଟିର ସମ୍ପାଦନା କରିବେ',
 	'centralnotice-edit-template-summary' => 'ଏକ ଆଞ୍ଚଳିକ ସନ୍ଦେଶ ତିଆରିବାକୁ ତିନୋଟି ବଙ୍କା ବନ୍ଧନୀ ଭିତରେ ଏକ ହାଇଫେନ ଦିଆ ଅକ୍ଷର ଗୋଠ ତିଆରି କରନ୍ତୁ, ଯଥା: {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'ଖବର',
