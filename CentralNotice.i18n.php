@@ -8512,6 +8512,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 );
 
 /** Occitan (Occitan)
+ * @author Boulaur
  * @author Cedric31
  */
 $messages['oc'] = array(
@@ -8526,6 +8527,7 @@ $messages['oc'] = array(
 	'centralnotice-end-date' => 'Data de fin',
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Sometre',
+	'centralnotice-view' => 'Afichar',
 	'centralnotice-preview' => 'Previsualizacion',
 	'centralnotice-add-new' => 'Apondre una notificacion centrala novèla',
 	'centralnotice-remove' => 'Suprimir',
@@ -8560,9 +8562,11 @@ Es pas estat suprimit.',
 	'centralnotice-hours' => 'Ora',
 	'centralnotice-min' => 'Minuta',
 	'centralnotice-project-lang' => 'Lenga del projècte',
+	'centralnotice-top-ten-languages' => 'Top 10 lengas',
 	'centralnotice-project-name' => 'Nom del projècte',
 	'centralnotice-start-date' => 'Data de començament',
 	'centralnotice-start-time' => 'Ora de començament (UTC)',
+	'centralnotice-end-time' => 'Ora finala (UTC)',
 	'centralnotice-assigned-templates' => 'Modèls assignats',
 	'centralnotice-no-templates' => 'I a pas de modèl dins lo sistèma.
 Apondètz-ne un !',
@@ -8588,13 +8592,27 @@ Aquesta accion poirà pas pus èsser recuperada.',
 Apondètz-ne una en dejós.',
 	'centralnotice-no-templates-translate' => 'I a pas cap de modèl de traduire',
 	'centralnotice-number-uses' => 'Utilizaires',
+	'centralnotice-settings' => 'Configuracion',
 	'centralnotice-edit-template' => 'Modificar lo modèl',
 	'centralnotice-message' => 'Messatge',
 	'centralnotice-message-not-set' => 'Messatge pas entresenhat',
 	'centralnotice-clone' => 'Clonar',
 	'centralnotice-clone-notice' => "Crear una còpia d'aqueste modèl",
+	'centralnotice-clone-name' => 'Nom :',
 	'centralnotice-preview-all-template-translations' => "Previsualizar totas las traduccions d'aqueste modèl",
+	'centralnotice-countries' => 'Païses',
+	'centralnotice-language' => 'Lenga',
+	'centralnotice-projects' => 'Projèctes',
+	'centralnotice-country' => 'País',
+	'centralnotice-percentage' => 'Percentatge',
 	'centralnotice-preferred' => 'Preferit',
+	'centralnotice-user' => 'Utilizaire',
+	'centralnotice-action' => 'Accion',
+	'centralnotice-changed' => 'Cambiat de <span class="cn-old-value">$1</span> a <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'activat',
+	'centralnotice-off' => 'desactivat',
+	'centralnotice-date' => 'Data',
+	'centralnotice-apply-filters' => 'Filtrar',
 );
 
 /** Oriya (ଓଡ଼ିଆ)
@@ -9251,11 +9269,18 @@ $messages['pnb'] = array(
 	'centralnotice-banner-hidable' => 'رکیا/لکنفابل',
 	'centralnotice-banner-collapsible' => 'ڈگن والا',
 	'centralnotice-banner-fundraising' => 'اے فنڈ کٹھا کرن والا نشان اے',
+	'centralnotice-banner-landing-pages' => 'لینڈنگ صفے :',
+	'centralnotice-geo' => 'جیوتارگٹڈ',
 	'centralnotice-countries' => 'دیس',
+	'centralnotice-allocation' => 'الوکیشن',
+	'centralnotice-view-allocation' => 'نشان ایلوکیشن ویکھو',
+	'centralnotice-allocation-instructions' => 'اوہ محول چنو جیہڑا توانوں نشان لئی پسند ہووے:',
 	'centralnotice-languages' => 'بولیاں',
+	'centralnotice-language' => 'بولی',
 	'centralnotice-projects' => 'ویونت',
 	'centralnotice-country' => 'دیس',
 	'centralnotice-no-allocation' => 'کوئی نشان نئیں دتا گیا',
+	'centralnotice-allocation-description' => 'نشان دی لاٹمنٹ $1۔$2 لئی $3 چ:',
 	'centralnotice-percentage' => '٪',
 	'centralnotice-preferred' => 'چونواں',
 	'centralnotice-logs' => 'لاگز',
@@ -9263,6 +9288,7 @@ $messages['pnb'] = array(
 	'centralnotice-timestamp' => 'ویلے دی مہر',
 	'centralnotice-user' => 'ورتن والا',
 	'centralnotice-action' => 'کم',
+	'centralnotice-on' => 'اون',
 	'centralnotice-off' => 'بند',
 	'centralnotice-no-assignments' => 'کوئی نشان نئیں دتا گیا',
 	'centralnotice-talk-link' => 'گل بات',
@@ -9271,12 +9297,14 @@ $messages['pnb'] = array(
 	'centralnotice-anon' => 'گم نام ورتن والیاں اگے رکھو',
 	'centralnotice-account' => 'لاگان ہوۓ ورتن والیاں اگے رکھو',
 	'centralnotice-fundraising' => 'چندہ کٹھا کرنا',
+	'centralnotice-landingpages' => 'لینڈنگ صفے',
 	'centralnotice-banner-content' => 'نشان دا مال',
 	'centralnotice-banner-content-changed' => 'بدلیا',
 	'centralnotice-filters' => 'لاگ نتارے',
 	'centralnotice-date' => 'تریخ',
 	'centralnotice-apply-filters' => 'نتارے چلاؤ',
 	'centralnotice-clear-filters' => 'نتارے صاف کرو',
+	'centralnotice-banner-messages' => 'نشان سنیعے',
 );
 
 /** Pontic (Ποντιακά)
@@ -10905,6 +10933,7 @@ $messages['si'] = array(
 
 /** Slovak (Slovenčina)
  * @author Helix84
+ * @author Rudko
  */
 $messages['sk'] = array(
 	'centralnotice' => 'Centrálny oznam',
@@ -10921,6 +10950,7 @@ Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
 	'centralnotice-end-date' => 'Dátum ukončenia',
 	'centralnotice-enabled' => 'Zapnutá',
 	'centralnotice-modify' => 'Odoslať',
+	'centralnotice-view' => 'Zobraziť',
 	'centralnotice-save-banner' => 'Uložiť oznam',
 	'centralnotice-preview' => 'Náhľad',
 	'centralnotice-nopreview' => '(Náhľad nie je k dispozícii)',
