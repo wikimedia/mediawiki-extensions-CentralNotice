@@ -694,6 +694,8 @@ $messages['arc'] = array(
 	'centralnotice-edit-template' => 'ܫܚܠܦ ܩܠܒܐ',
 	'centralnotice-message' => 'ܐܓܪܬܐ',
 	'centralnotice-clone-name' => 'ܫܡܐ:',
+	'centralnotice-collapse-button' => 'ܐܟܪܟ ܐܣܘܪܐ',
+	'centralnotice-expand-button' => 'ܪܘܚ ܐܣܘܪܐ',
 	'centralnotice-countries' => 'ܐܬܪ̈ܘܬܐ',
 	'centralnotice-country' => 'ܐܬܪܐ',
 );
@@ -1607,6 +1609,7 @@ $messages['bn'] = array(
 	'centralnotice-banner-collapsible' => 'ভাঁজযোগ্য',
 	'centralnotice-geo' => 'স্থানাংকলক্ষ্য',
 	'centralnotice-countries' => 'দেশ',
+	'centralnotice-allocation' => 'বরাদ্দ',
 	'centralnotice-languages' => 'ভাষা',
 	'centralnotice-language' => 'ভাষা',
 	'centralnotice-projects' => 'প্রকল্প',
@@ -1614,7 +1617,14 @@ $messages['bn'] = array(
 	'centralnotice-percentage' => 'শতাংশ',
 	'centralnotice-preferred' => 'পছন্দনীয়',
 	'centralnotice-logs' => 'লগ',
+	'centralnotice-view-logs' => 'লগ দেখাও',
+	'centralnotice-user' => 'ব্যবহারকারী',
+	'centralnotice-on' => 'চালু',
+	'centralnotice-off' => 'বন্ধ',
 	'centralnotice-talk-link' => 'আলোচনা',
+	'centralnotice-banner-settings' => 'ব্যানার সেটিং',
+	'centralnotice-fundraising' => 'তহবিল সংগ্রহ',
+	'centralnotice-banner-content-changed' => 'পরিবর্তিত',
 	'centralnotice-date' => 'তারিখ',
 );
 
@@ -8616,6 +8626,7 @@ Apondètz-ne una en dejós.',
 );
 
 /** Oriya (ଓଡ଼ିଆ)
+ * @author Ansumang
  * @author Odisha1
  * @author Psubhashish
  */
@@ -8761,7 +8772,7 @@ $messages['or'] = array(
 	'centralnotice-logs' => 'ଲଗସବୁ',
 	'centralnotice-view-logs' => 'ଇତିହାସ ଦେଖିବେ',
 	'centralnotice-timestamp' => 'ସମୟଚିହ୍ନ',
-	'centralnotice-user' => 'ବ୍ୟବାହାରକାରୀ',
+	'centralnotice-user' => 'ବ୍ୟବହାରକାରୀ',
 	'centralnotice-action' => 'କାମ',
 	'centralnotice-changed' => '<span class="cn-old-value">$1</span> ରୁ <span class="cn-new-value">$2</span>କୁ ବଦଳାଗଲା',
 	'centralnotice-on' => 'ସଚଳ',
