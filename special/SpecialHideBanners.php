@@ -28,9 +28,16 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		readfile( dirname( __FILE__ ) . '/../1x1.png' );
 	}
 	
+	/**
+	 * Set the cookie for hiding fundraising banners.
+	 */
 	function setHideCookie() {
-		global $wgNoticeCookieDomain, $wgCookieSecure;
-		$exp = time() + 86400 * 14; // Cookie expires after 2 weeks
+		global $wgNoticeCookieDomain, $wgCookieSecure, $wgNoticeHideBannersExpiration;
+		if ( is_numeric( $wgNoticeHideBannersExpiration ) ) {
+			$exp = $wgNoticeHideBannersExpiration;
+		} else {
+			$exp = time() + 86400 * 14; // Cookie expires after 2 weeks
+		}
 		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
