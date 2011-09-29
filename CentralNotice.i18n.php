@@ -5885,6 +5885,9 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-added' => 'Aggiunto <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Rimosso <span class="cn-old-value">$1</span>',
 	'centralnotice-talk-link' => 'discussione',
+	'centralnotice-date' => 'Data',
+	'centralnotice-apply-filters' => 'Applica i filtri',
+	'centralnotice-clear-filters' => 'Cancella filtri',
 );
 
 /** Japanese (日本語)
