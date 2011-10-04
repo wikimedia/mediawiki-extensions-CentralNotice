@@ -9191,6 +9191,9 @@ $messages['pnb'] = array(
 	'centralnoticelogs' => 'سینٹرل نوٹس ایڈمن',
 	'right-centralnotice-admin' => 'سینٹرل نوٹس سنبھالو',
 	'action-centralnotice-admin' => 'سینٹرل نوٹس سنبھالو',
+	'centralnotice-desc' => 'اک سنٹرل سائٹنوٹس جوڑو',
+	'centralnotice-summary' => 'ایہ موڈیول توانوں اپنا ہن دا سیٹ اپ سنٹرل نوٹسز بدل دیندا اے۔
+ایہ پرانے نوٹسز چ تبدیلی یا بدلن چ وی ورتیا جاندا ایہ۔',
 	'centralnotice-query' => 'ہن والے کم تبدیل کرو',
 	'centralnotice-notice-name' => 'کم دا ناں',
 	'centralnotice-end-date' => 'انت تریخ',
@@ -9274,6 +9277,7 @@ $messages['pnb'] = array(
 	'centralnotice-number-uses' => 'ورتن',
 	'centralnotice-settings' => 'سیٹنکز',
 	'centralnotice-edit-template' => 'نشان بدلو',
+	'centralnotice-edit-template-summary' => 'اک دیسی سنیعہ بنان لئی، اک جڑی  سٹرنگ تن کرلی بریکٹاں چ بناؤ ۔ ادھارن {{{jimbo-quote}}}',
 	'centralnotice-message' => 'سنیعہ',
 	'centralnotice-message-not-set' => 'سنیعہ تیار نئیں',
 	'centralnotice-clone' => 'کلون',
@@ -9296,6 +9300,8 @@ $messages['pnb'] = array(
 	'centralnotice-banner-hidable' => 'رکیا/لکنفابل',
 	'centralnotice-banner-collapsible' => 'ڈگن والا',
 	'centralnotice-banner-fundraising' => 'اے فنڈ کٹھا کرن والا نشان اے',
+	'centralnotice-banner-fundraising-help' => 'بینر باڈی چ اک اینکر ٹیگ بناؤ جیدی آئی ڈی id="cn_fundraising_link" ہووے تے تھلے اک یا چوکھے صفے تھلے پاؤ جیویں "JimmyAppeal01"۔
+جوڑ دا ہرین اپنے آپ بن جائیگا۔',
 	'centralnotice-banner-landing-pages' => 'لینڈنگ صفے :',
 	'centralnotice-geo' => 'جیوتارگٹڈ',
 	'centralnotice-countries' => 'دیس',
@@ -9309,14 +9315,19 @@ $messages['pnb'] = array(
 	'centralnotice-no-allocation' => 'کوئی نشان نئیں دتا گیا',
 	'centralnotice-allocation-description' => 'نشان دی لاٹمنٹ $1۔$2 لئی $3 چ:',
 	'centralnotice-percentage' => '٪',
+	'centralnotice-documentwrite-error' => 'ڈوکومنٹ۔لکھو () اک نشان دے اندر نئیں ورتی جاسکدی۔
+ہور جانکاری لئی ویکھو http://meta.wikimedia.org/wiki/Help:CentralNotice',
 	'centralnotice-preferred' => 'چونواں',
 	'centralnotice-logs' => 'لاگز',
 	'centralnotice-view-logs' => 'لاگز ویکھو',
 	'centralnotice-timestamp' => 'ویلے دی مہر',
 	'centralnotice-user' => 'ورتن والا',
 	'centralnotice-action' => 'کم',
+	'centralnotice-changed' => 'بدلیا گیا <span class="cn-old-value">$1</span> توں <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'اون',
 	'centralnotice-off' => 'بند',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> جوڑیا۔',
+	'centralnotice-removed' => 'ہٹادتا گیا <span class="cn-old-value">$1</span>',
 	'centralnotice-no-assignments' => 'کوئی نشان نئیں دتا گیا',
 	'centralnotice-talk-link' => 'گل بات',
 	'centralnotice-campaign-settings' => 'کم دی ترتیب',
@@ -10823,6 +10834,7 @@ $messages['sh'] = array(
  * @author Thameera123
  * @author තඹරු විජේසේකර
  * @author පසිඳු කාවින්ද
+ * @author බිඟුවා
  */
 $messages['si'] = array(
 	'centralnotice' => 'ප්‍රධාන දැන්වීම් පාලක',
@@ -10838,6 +10850,7 @@ $messages['si'] = array(
 	'centralnotice-end-date' => 'අවසන් දිනය',
 	'centralnotice-enabled' => 'බලය දෙන ලදී',
 	'centralnotice-modify' => 'යොමන්න',
+	'centralnotice-view' => 'දර්ශනය',
 	'centralnotice-save-banner' => 'බැනරය සුරකින්න',
 	'centralnotice-preview' => 'පෙරදසුන',
 	'centralnotice-nopreview' => '(පෙර-දසුන ලබාගත නොහැක)',
@@ -10948,6 +10961,7 @@ $messages['si'] = array(
 	'centralnotice-view-allocation' => 'බැනරයේ වෙන්කිරීම පෙන්වන්න',
 	'centralnotice-allocation-instructions' => 'බැනර වෙන්කිරීම පෙන්වීමට කැමති පරිසරය තෝරන්න:',
 	'centralnotice-languages' => 'භාෂා',
+	'centralnotice-language' => 'භාෂාව',
 	'centralnotice-projects' => 'ව්‍යාපෘති',
 	'centralnotice-country' => 'රට',
 	'centralnotice-no-allocation' => 'බැනර වෙන්කර නැත',
@@ -10956,6 +10970,11 @@ $messages['si'] = array(
 	'centralnotice-documentwrite-error' => 'බැනරය තුළ document.write() යොදාගත නොහැකිය. 
 වැඩි විස්තර සඳහා http://meta.wikimedia.org/wiki/Help:CentralNotice බලන්න.',
 	'centralnotice-preferred' => 'වඩා කැමති',
+	'centralnotice-logs' => 'සටහන්',
+	'centralnotice-view-logs' => 'සටහන් බලන්',
+	'centralnotice-talk-link' => 'සාකච්ඡාව',
+	'centralnotice-banner-content-changed' => 'වෙනස්කරන ලදි',
+	'centralnotice-date' => 'දිනය',
 );
 
 /** Slovak (Slovenčina)
