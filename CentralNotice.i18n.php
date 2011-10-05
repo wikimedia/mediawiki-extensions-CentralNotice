@@ -6674,7 +6674,7 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-date' => 'Dattum',
 	'centralnotice-apply-filters' => 'Lohß Jonn!',
 	'centralnotice-clear-filters' => 'Ußwahl ophävve',
-	'centralnotice-banner-messages' => 'Der Banner_Schablohne irer Täxte ',
+	'centralnotice-banner-messages' => 'Der Banner_Schablohne ier Täxte ',
 );
 
 /** Kurdish (Latin) (Kurdî (Latin))
@@ -10867,6 +10867,7 @@ $messages['si'] = array(
 	'centralnotice-list-templates' => 'බැනර ලයිස්තුගත කරන්න',
 	'centralnotice-multiple-projects' => 'බහු ($1)',
 	'centralnotice-multiple-languages' => 'බහු ($1)',
+	'centralnotice-multiple-countries' => 'බහු ($1)',
 	'centralnotice-all-projects' => 'සියලු ව්‍යාපෘති',
 	'centralnotice-translations' => 'පරිවර්තන',
 	'centralnotice-translate-to' => 'ට පරිවර්තනය කරන්න',
@@ -10972,6 +10973,11 @@ $messages['si'] = array(
 	'centralnotice-preferred' => 'වඩා කැමති',
 	'centralnotice-logs' => 'සටහන්',
 	'centralnotice-view-logs' => 'සටහන් බලන්',
+	'centralnotice-timestamp' => 'කාලමුද්‍රාව',
+	'centralnotice-user' => 'පරිශීලක',
+	'centralnotice-action' => 'කාර්යය',
+	'centralnotice-on' => 'අරින්න',
+	'centralnotice-off' => 'ඉවතට',
 	'centralnotice-talk-link' => 'සාකච්ඡාව',
 	'centralnotice-banner-content-changed' => 'වෙනස්කරන ලදි',
 	'centralnotice-date' => 'දිනය',
