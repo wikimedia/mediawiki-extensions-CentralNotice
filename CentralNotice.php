@@ -153,8 +153,6 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_settings.sql' );
 			$wgExtNewFields[] = array( 'cn_templates', 'tmp_fundraising',
 				$base . '/patches/patch-template_fundraising.sql' );
-			$wgExtNewFields[] = array( 'cn_templates', 'tmp_landingcheck',
-				$base . '/patches/patch-template_landingcheck.sql' );
 			$wgExtNewTables[] = array( 'cn_notice_countries',
 				$base . '/patches/patch-notice_countries.sql' );
 			$wgExtNewTables[] = array( 'cn_notice_projects',
@@ -163,6 +161,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-notice_log.sql' );
 			$wgExtNewTables[] = array( 'cn_template_log',
 				$base . '/patches/patch-template_log.sql' );
+			$wgExtNewFields[] = array( 'cn_templates', 'tmp_landingcheck',
+				$base . '/patches/patch-template_landingcheck.sql' );
 		}
 	} else {
 		if ( $updater->getDB()->getType() == 'mysql' ) {
@@ -176,8 +176,6 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_settings.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising',
 				$base . '/patches/patch-template_fundraising.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_landingcheck',
-				$base . '/patches/patch-template_landingcheck.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries',
 				$base . '/patches/patch-notice_countries.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects',
@@ -186,6 +184,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-notice_log.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_template_log',
 				$base . '/patches/patch-template_log.sql', true ) );
+			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_landingcheck',
+				$base . '/patches/patch-template_landingcheck.sql', true ) );
 		}
 	}
 	return true;
