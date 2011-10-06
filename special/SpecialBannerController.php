@@ -43,7 +43,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	 * In order to circumvent the normal squid cache override we add '/cn.js' to the bannerlist URL.
 	 */
 	function getOutput() {
-		global $wgCentralPagePath, $wgNoticeFundraisingUrl, $wgContLang;
+		global $wgCentralPagePath, $wgContLang;
 		
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<JAVASCRIPT
