@@ -271,7 +271,7 @@ class CentralNotice extends SpecialPage {
 	 */
 	public static function getDateRanges() {
 		$dateRanges = array();
-		$dateRanges['years'] = range( 2011, date("Y") );
+		$dateRanges['years'] = range( date('Y'), date('Y') + 1 ); // this year and next year
 		$dateRanges['months'] = CentralNotice::paddedRange( 1, 12 );
 		$dateRanges['days'] = CentralNotice::paddedRange( 1, 31 );
 		return $dateRanges;
