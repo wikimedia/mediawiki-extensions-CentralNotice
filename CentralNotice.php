@@ -153,6 +153,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_settings.sql' );
 			$wgExtNewFields[] = array( 'cn_templates', 'tmp_fundraising',
 				$base . '/patches/patch-template_fundraising.sql' );
+			$wgExtNewFields[] = array( 'cn_templates', 'tmp_landingcheck',
+				$base . '/patches/patch-template_landingcheck.sql' );
 			$wgExtNewTables[] = array( 'cn_notice_countries',
 				$base . '/patches/patch-notice_countries.sql' );
 			$wgExtNewTables[] = array( 'cn_notice_projects',
@@ -174,6 +176,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_settings.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising',
 				$base . '/patches/patch-template_fundraising.sql', true ) );
+			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_landingcheck',
+				$base . '/patches/patch-template_landingcheck.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries',
 				$base . '/patches/patch-notice_countries.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects',
@@ -190,7 +194,7 @@ function efCentralNoticeSchema( $updater = null ) {
 function efCentralNoticeLoader( $out, $skin ) {
 	global $wgOut;
 
-	// Include '.js' to exempt script from squid cache override
+	// Include '.js' to exempt script from squid cache expiration override
 	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl( 'cache=/cn.js' );
 
 	// Insert the banner controller Javascript into the <head>

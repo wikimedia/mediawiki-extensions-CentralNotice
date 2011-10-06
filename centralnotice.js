@@ -95,9 +95,10 @@ function validateBannerForm( form ) {
 	}
 	return true;
 }
-// Handle revealing the geoMultiSelector when the geotargetted checkbox is checked
+
 ( function( $ ) {
 	$(document).ready(function() {
+		// Reveal the geoMultiSelector when the geotargetted checkbox is checked
 		$("#geotargeted").click(function () {
 			if ($('#geotargeted:checked').val() !== undefined) {
 				$("#geoMultiSelector").fadeIn('fast');
@@ -105,11 +106,12 @@ function validateBannerForm( form ) {
 				$("#geoMultiSelector").fadeOut('fast');
 			}
 		});
-		$("#fundraising").click(function () {
-			if ($('#fundraising:checked').val() !== undefined) {
-				$("#fundraisingInterface").fadeIn('fast');
+		// Reveal the LandingCheck interface when the LandingCheck checkbox is checked
+		$("#landingCheck").click(function () {
+			if ($('#landingCheck:checked').val() !== undefined) {
+				$("#landingCheckInterface").fadeIn('fast');
 			} else {
-				$("#fundraisingInterface").fadeOut('fast');
+				$("#landingCheckInterface").fadeOut('fast');
 			}
 		});
 	});

@@ -75,6 +75,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				'bannerHtml' => $bannerHtml,
 				'campaign' => $this->campaign,
 				'fundraising' => $this->getFundraising( $bannerName ),
+				'landingCheck' => $this->getLandingCheck( $bannerName ),
 				'landingPages' => $this->getLandingPages( $bannerName )
 			);
 			$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
@@ -201,6 +202,14 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$eBannerName = htmlspecialchars( $bannerName );
 		$row = $dbr->selectRow( 'cn_templates', 'tmp_fundraising', array( 'tmp_name' => $eBannerName ) );
 		return $row->tmp_fundraising;
+	}
+	
+	function getLandingCheck( $bannerName ) {
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$eBannerName = htmlspecialchars( $bannerName );
+		$row = $dbr->selectRow( 'cn_templates', 'tmp_landingcheck', array( 'tmp_name' => $eBannerName ) );
+		return $row->tmp_landingcheck;
 	}
 	
 	function getLandingPages( $bannerName ) {

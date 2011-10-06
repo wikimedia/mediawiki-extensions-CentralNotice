@@ -214,6 +214,7 @@ class CentralNoticeDB {
 					'tmp_display_anon',
 					'tmp_display_account',
 					'tmp_fundraising',
+					'tmp_landingcheck',
 					'tmp_landing_pages',
 					'not_name'
 				),
@@ -232,6 +233,7 @@ class CentralNoticeDB {
 					'display_anon' => intval( $row->tmp_display_anon ), // display to anonymous users?
 					'display_account' => intval( $row->tmp_display_account ), // display to logged in users?
 					'fundraising' => intval( $row->tmp_fundraising ), // fundraising banner?
+					'landingcheck' => intval( $row->tmp_landingcheck ), // use LandingCheck?
 					'landing_pages' => $row->tmp_landing_pages, // landing pages to link to
 					'campaign' => $row->not_name // campaign the banner is assigned to
 				);
@@ -263,6 +265,7 @@ class CentralNoticeDB {
 				'tmp_display_anon',
 				'tmp_display_account',
 				'tmp_fundraising',
+				'tmp_landingcheck',
 				'tmp_landing_pages'
 			),
 			array( 'tmp_name' => $bannerName ),
@@ -274,6 +277,7 @@ class CentralNoticeDB {
 				'anon' => $row->tmp_display_anon,
 				'account' => $row->tmp_display_account,
 				'fundraising' => $row->tmp_fundraising,
+				'landingcheck' => $row->tmp_landingcheck,
 				'landingpages' => $row->tmp_landing_pages
 			);
 		}
