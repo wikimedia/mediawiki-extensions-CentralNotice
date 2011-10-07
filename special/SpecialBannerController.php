@@ -176,7 +176,7 @@ JAVASCRIPT;
 				'utm_source': bannerJson.bannerName, 'language': wgUserLanguage, 
 				'country': Geo.country
 			} );
-			jQuery( '#cn-landingcheck-link' ).attr( 'href', url );
+			jQuery( '#cn-landingpage-link' ).attr( 'href', url );
 		}
 	}
 }
