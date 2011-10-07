@@ -22,17 +22,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Begin output
 		$this->setHeaders();
 		
-		// Add style file to the output headers
-		$wgOut->addExtensionStyle( "$wgExtensionAssetsPath/CentralNotice/centralnotice.css" );
-		
-		// Add localized script error messages
-		$scriptVars = array(
-			'documentWriteError' => wfMsg( 'centralnotice-documentwrite-error' )
-		);
-		$wgOut->addScript( Skin::makeVariablesScript( $scriptVars ) );
-		
-		// Add script file to the output headers
-		$wgOut->addScriptFile( "$wgExtensionAssetsPath/CentralNotice/centralnotice.js" );
+		// Output ResourceLoader module for styling and javascript functions
+		$wgOut->addModules( 'ext.centralNotice.interface' );
 
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );

@@ -1,4 +1,5 @@
-function toggleLogDisplay( logId ) {
+// Collapse and uncollapse detailed view for an individual log entry
+window.toggleLogDisplay = function( logId ) {
 	var thisCollapsed = document.getElementById( 'cn-collapsed-'+logId );
 	var thisUncollapsed = document.getElementById( 'cn-uncollapsed-'+logId );
 	var thisDetails = document.getElementById( 'cn-log-details-'+logId );
@@ -11,8 +12,10 @@ function toggleLogDisplay( logId ) {
 		thisUncollapsed.style.display = "block";
 		thisDetails.style.display = "table-row";
 	}
-}
-function toggleFilterDisplay() {
+};
+
+// Collapse and uncollapse log filter interface
+window.toggleFilterDisplay = function() {
 	var thisCollapsed = document.getElementById( 'cn-collapsed-filter-arrow' );
 	var thisUncollapsed = document.getElementById( 'cn-uncollapsed-filter-arrow' );
 	var thisFilters = document.getElementById( 'cn-log-filters' );
@@ -25,26 +28,29 @@ function toggleFilterDisplay() {
 		thisUncollapsed.style.display = "inline-block";
 		thisFilters.style.display = "block";
 	}
-}
-function switchLogs( baseUrl, logType ) {
+};
+
+// Switch among various log displays
+window.switchLogs = function( baseUrl, logType ) {
 	encodeURIComponent( logType );
 	window.location = baseUrl + '?log=' + logType;
-}
-function selectProjects( selectAll ) {
+};
+
+window.selectProjects = function( selectAll ) {
 	var selectBox = document.getElementById('projects[]');
 	var firstSelect = selectBox.options.length - 1;
 	for (var i = firstSelect; i >= 0; i--) {
 		selectBox.options[i].selected = selectAll;
 	}
-}
-function selectLanguages( selectAll ) {
+};
+window.selectLanguages = function( selectAll ) {
 	var selectBox = document.getElementById('project_languages[]');
 	var firstSelect = selectBox.options.length - 1;
 	for (var i = firstSelect; i >= 0; i--) {
 		selectBox.options[i].selected = selectAll;
 	}
-}
-function top10Languages() {
+};
+window.top10Languages = function() {
 	var selectBox = document.getElementById('project_languages[]');
 	var top10 = new Array('en','de','fr','it','pt','ja','es','pl','ru','nl');
 	selectLanguages(false);
@@ -54,15 +60,17 @@ function top10Languages() {
 			selectBox.options[i].selected = true;
 		}
 	}
-}
-function insertButton( buttonType ) {
+};
+
+// Insert banner close button
+window.insertButton = function( buttonType ) {
 	var bannerField = document.getElementById('templateBody');
 	switch( buttonType ) {
 		case 'close': // Insert close button
 			if ( $( '#fundraising' ).is( ':checked' ) ) {
-				var buttonValue = '<a href="#" onclick="hideBanner(\'fundraising\');return false;"><img border="0" src="'+stylepath+'/common/images/closewindow.png" alt="Close" /></a>';
+				var buttonValue = '<a href="#" onclick="hideBanner(\'fundraising\');return false;"><img border="0" src="' + mw.config.get( 'stylepath' ) + '/common/images/closewindow.png" alt="Close" /></a>';
 			} else {
-				var buttonValue = '<a href="#" onclick="hideBanner();return false;"><img border="0" src="'+stylepath+'/common/images/closewindow.png" alt="Close" /></a>';
+				var buttonValue = '<a href="#" onclick="hideBanner();return false;"><img border="0" src="' + mw.config.get( 'stylepath' ) + '/common/images/closewindow.png" alt="Close" /></a>';
 			}
 			break;
 	}
@@ -82,19 +90,21 @@ function insertButton( buttonType ) {
 		bannerField.value += buttonValue;
 	}
 	bannerField.focus();
-}
-function validateBannerForm( form ) {
+};
+
+// Make sure the contents of the banner body are valid
+window.validateBannerForm = function( form ) {
 	var output = '';
 	var pos = form.templateBody.value.indexOf("document.write");
 	if( pos > -1 ) {
-		output += documentWriteError + '\n';
+		output += mw.msg( 'centralnotice-documentwrite-error' ) + '\n';
 	}
 	if( output ) {
 		alert( output );
 		return false;
 	}
 	return true;
-}
+};
 
 ( function( $ ) {
 	$(document).ready(function() {

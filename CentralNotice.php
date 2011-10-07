@@ -80,6 +80,15 @@ $wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can m
 # Unit tests
 $wgHooks['UnitTestsList'][] = 'efCentralNoticeUnitTests';
 
+// Register ResourceLoader modules
+$wgResourceModules['ext.centralNotice.interface'] = array(
+	'localBasePath' => dirname( __FILE__ ),
+	'remoteExtPath' => 'CentralNotice',
+	'scripts' => 'centralnotice.js',
+	'styles' => 'centralnotice.css',
+	'messages' => 'centralnotice-documentwrite-error'
+);
+
 function efCentralNoticeUnitTests( &$files ) {
 	$files[] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
 	return true;

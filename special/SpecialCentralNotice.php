@@ -23,11 +23,8 @@ class CentralNotice extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		
-		// Add style file to the output headers
-		$wgOut->addExtensionStyle( "$wgExtensionAssetsPath/CentralNotice/centralnotice.css" );
-		
-		// Add script file to the output headers
-		$wgOut->addScriptFile( "$wgExtensionAssetsPath/CentralNotice/centralnotice.js" );
+		// Output ResourceLoader module for styling and javascript functions
+		$wgOut->addModules( 'ext.centralNotice.interface' );
 		
 		// Check permissions
 		$this->editable = $wgUser->isAllowed( 'centralnotice-admin' );
