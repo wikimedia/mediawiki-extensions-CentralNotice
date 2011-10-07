@@ -161,7 +161,7 @@ JAVASCRIPT;
 		$script = <<<JAVASCRIPT
 function insertBanner(bannerJson) {
 	jQuery( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
-	if ( bannerJson.landingCheck ) {
+	if ( bannerJson.autolink ) {
 JAVASCRIPT;
 	$script .= "\n\t\tvar url = '" . 
 	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';\n";

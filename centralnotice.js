@@ -106,12 +106,12 @@ function validateBannerForm( form ) {
 				$("#geoMultiSelector").fadeOut('fast');
 			}
 		});
-		// Reveal the LandingCheck interface when the LandingCheck checkbox is checked
-		$("#landingCheck").click(function () {
-			if ($('#landingCheck:checked').val() !== undefined) {
-				$("#landingCheckInterface").fadeIn('fast');
+		// Reveal the landing page interface when the autolink checkbox is checked
+		$("#autolink").click(function () {
+			if ($('#autolink:checked').val() !== undefined) {
+				$("#autolinkInterface").fadeIn('fast');
 			} else {
-				$("#landingCheckInterface").fadeOut('fast');
+				$("#autolinkInterface").fadeOut('fast');
 			}
 		});
 	});

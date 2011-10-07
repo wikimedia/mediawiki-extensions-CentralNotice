@@ -90,7 +90,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 							$wgRequest->getBool( 'displayAnon' ),
 							$wgRequest->getBool( 'displayAccount' ),
 							$wgRequest->getBool( 'fundraising' ),
-							$wgRequest->getBool( 'landingCheck' ),
+							$wgRequest->getBool( 'autolink' ),
 							$wgRequest->getVal( 'landingPages' )
 						);
 						$sub = 'view';
@@ -107,7 +107,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 						$wgRequest->getBool( 'displayAnon' ),
 						$wgRequest->getBool( 'displayAccount' ),
 						$wgRequest->getBool( 'fundraising' ),
-						$wgRequest->getBool( 'landingCheck' ),
+						$wgRequest->getBool( 'autolink' ),
 						$wgRequest->getVal( 'landingPages' )
 					);
 					$sub = 'view';
@@ -240,7 +240,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$displayAnon = $wgRequest->getCheck( 'displayAnon' );
 			$displayAccount = $wgRequest->getCheck( 'displayAccount' );
 			$fundraising = $wgRequest->getCheck( 'fundraising' );
-			$landingCheck = $wgRequest->getCheck( 'landingCheck' );
+			$autolink = $wgRequest->getCheck( 'autolink' );
 			$landingPages = $wgRequest->getVal( 'landingPages' );
 			$body = $wgRequest->getVal( 'templateBody' );
 		} else { // Use default values
@@ -248,7 +248,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$displayAnon = true;
 			$displayAccount = true;
 			$fundraising = false;
-			$landingCheck = false;
+			$autolink = false;
 			$landingPages = '';
 			$body = '';
 		}
@@ -279,15 +279,15 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-fundraising' ), 'fundraising' );
 			$htmlOut .= Html::closeElement( 'p' );
 			
-			// Checkbox for whether or not to use the LandingCheck extension
+			// Checkbox for whether or not to automatically create landing page link
 			$htmlOut .= Html::openElement( 'p', null );
-			$htmlOut .= Xml::check( 'landingCheck', $landingCheck, array( 'id' => 'landingCheck' ) );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-autolink' ), 'landingCheck' );
+			$htmlOut .= Xml::check( 'autolink', $autolink, array( 'id' => 'autolink' ) );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-autolink' ), 'autolink' );
 			$htmlOut .= Html::closeElement( 'p' );
 			
 			// Interface for setting the landing pages
 			$htmlOut .= Html::openElement( 'div', 
-				array( 'id' => 'landingCheckInterface', 'style' => 'display: none;' ) );
+				array( 'id' => 'autolinkInterface', 'style' => 'display: none;' ) );
 			$htmlOut .= Xml::tags( 'p', array(), 
 				wfMsg( 'centralnotice-banner-autolink-help', 'id="cn-landingpage-link"', 'JimmyAppeal01' ) );
 			$htmlOut .= Xml::tags( 'p', array(),
@@ -563,14 +563,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$displayAnon = $wgRequest->getCheck( 'displayAnon' );
 				$displayAccount = $wgRequest->getCheck( 'displayAccount' );
 				$fundraising = $wgRequest->getCheck( 'fundraising' );
-				$landingCheck = $wgRequest->getCheck( 'landingCheck' );
+				$autolink = $wgRequest->getCheck( 'autolink' );
 				$landingPages = $wgRequest->getVal( 'landingPages' );
 				$body = $wgRequest->getVal( 'templateBody', $body );
 			} else { // Use previously stored values
 				$displayAnon = ( $bannerSettings['anon'] == 1 );
 				$displayAccount = ( $bannerSettings['account'] == 1 );
 				$fundraising = ( $bannerSettings['fundraising'] == 1 );
-				$landingCheck = ( $bannerSettings['landingcheck'] == 1 );
+				$autolink = ( $bannerSettings['autolink'] == 1 );
 				$landingPages = $bannerSettings['landingpages'];
 				// $body default is defined prior to message interface code
 			}
@@ -598,20 +598,20 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					'fundraising' );
 				$htmlOut .= Html::closeElement( 'p' );
 				
-				// Checkbox for whether or not to use the LandingCheck extension
+				// Checkbox for whether or not to automatically create landing page link
 				$htmlOut .= Html::openElement( 'p', null );
-				$htmlOut .= Xml::check( 'landingCheck', $landingCheck, 
-					wfArrayMerge( $disabled, array( 'id' => 'landingCheck' ) ) );
+				$htmlOut .= Xml::check( 'autolink', $autolink, 
+					wfArrayMerge( $disabled, array( 'id' => 'autolink' ) ) );
 				$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-autolink' ), 
-					'landingCheck' );
+					'autolink' );
 				$htmlOut .= Html::closeElement( 'p' );
 				
 				// Interface for setting the landing pages
-				if ( $landingCheck ) {
-					$htmlOut .= Html::openElement( 'div', array( 'id'=>'landingCheckInterface' ) );
+				if ( $autolink ) {
+					$htmlOut .= Html::openElement( 'div', array( 'id'=>'autolinkInterface' ) );
 				} else {
 					$htmlOut .= Html::openElement( 'div', 
-						array( 'id'=>'landingCheckInterface', 'style'=>'display:none;' ) );
+						array( 'id'=>'autolinkInterface', 'style'=>'display:none;' ) );
 				}
 				$htmlOut .= Xml::tags( 'p', array(), 
 					wfMsg( 'centralnotice-banner-autolink-help', 'id="cn-landingpage-link"', 'JimmyAppeal01' ) );
@@ -810,12 +810,12 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * @param $displayAnon integer flag for display to anonymous users
 	 * @param $displayAccount integer flag for display to logged in users
 	 * @param $fundraising integer flag for fundraising banner (optional)
-	 * @param $landingCheck integer flag for using LandingCheck (optional)
+	 * @param $autolink integer flag for automatically creating landing page links (optional)
 	 * @param $landingPages string list of landing pages (optional)
 	 * @return true or false depending on whether banner was successfully added
 	 */
 	public function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0, 
-		$landingCheck = 0, $landingPages = '' ) {
+		$autolink = 0, $landingPages = '' ) {
 		
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
@@ -844,7 +844,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					'tmp_display_anon' => $displayAnon,
 					'tmp_display_account' => $displayAccount,
 					'tmp_fundraising' => $fundraising,
-					'tmp_landingcheck' => $landingCheck,
+					'tmp_autolink' => $autolink,
 					'tmp_landing_pages' => $landingPages
 				),
 				__METHOD__
@@ -863,7 +863,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				'anon' => $displayAnon,
 				'account' => $displayAccount,
 				'fundraising' => $fundraising,
-				'landingcheck' => $landingCheck,
+				'autolink' => $autolink,
 				'landingpages' => $landingPages
 			);
 			$this->logBannerChange( 'created', $bannerId, $beginSettings, $endSettings );
@@ -876,7 +876,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Update a banner
 	 */
 	private function editTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising, 
-		$landingCheck, $landingPages ) {
+		$autolink, $landingPages ) {
 		
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
@@ -898,7 +898,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					'tmp_display_anon' => $displayAnon,
 					'tmp_display_account' => $displayAccount,
 					'tmp_fundraising' => $fundraising,
-					'tmp_landingcheck' => $landingCheck,
+					'tmp_autolink' => $autolink,
 					'tmp_landing_pages' => $landingPages
 				),
 				array( 'tmp_name' => $name )
@@ -945,7 +945,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				'tmp_display_anon',
 				'tmp_display_account',
 				'tmp_fundraising',
-				'tmp_landingcheck',
+				'tmp_autolink',
 				'tmp_landing_pages'
 			),
 			array( 'tmp_name' => $source ),
@@ -954,7 +954,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$displayAnon = $row->tmp_display_anon;
 		$displayAccount = $row->tmp_display_account;
 		$fundraising = $row->tmp_fundraising;
-		$landingCheck = $row->tmp_landingcheck;
+		$autolink = $row->tmp_autolink;
 		$landingPages = $row->tmp_landing_pages;
 
 		// Pull banner text and respect any inc: markup
@@ -963,7 +963,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		// Create new banner
 		if ( $this->addTemplate( $dest, $template_body, $displayAnon, $displayAccount, $fundraising,
-			$landingCheck, $landingPages ) ) {
+			$autolink, $landingPages ) ) {
 
 			// Populate the fields
 			foreach ( $langs as $lang => $fields ) {

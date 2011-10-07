@@ -151,8 +151,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		)."<br/>";
 		$details .= wfMsg (
 			'centralnotice-log-label',
-			wfMsg ( 'centralnotice-landingcheck' ), 
-			($row->tmplog_end_landingcheck ? 'on' : 'off')
+			wfMsg ( 'centralnotice-autolink' ), 
+			($row->tmplog_end_autolink ? 'on' : 'off')
 		)."<br/>";
 		if ( $row->tmplog_end_landingpages ) {
 			$details .= wfMsg (
@@ -170,7 +170,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->testBooleanChange( 'anon', $row );
 		$details .= $this->testBooleanChange( 'account', $row );
 		$details .= $this->testBooleanChange( 'fundraising', $row );
-		$details .= $this->testBooleanChange( 'landingcheck', $row );
+		$details .= $this->testBooleanChange( 'autolink', $row );
 		$details .= $this->testTextChange( 'landingpages', $row );
 		if ( $row->tmplog_content_change ) {
 			// Show changes to banner content

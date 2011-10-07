@@ -161,8 +161,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-notice_log.sql' );
 			$wgExtNewTables[] = array( 'cn_template_log',
 				$base . '/patches/patch-template_log.sql' );
-			$wgExtNewFields[] = array( 'cn_templates', 'tmp_landingcheck',
-				$base . '/patches/patch-template_landingcheck.sql' );
+			$wgExtNewFields[] = array( 'cn_templates', 'tmp_autolink',
+				$base . '/patches/patch-template_autolink.sql' );
 		}
 	} else {
 		if ( $updater->getDB()->getType() == 'mysql' ) {
@@ -184,8 +184,8 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-notice_log.sql', true ) );
 			$updater->addExtensionUpdate( array( 'addTable', 'cn_template_log',
 				$base . '/patches/patch-template_log.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_landingcheck',
-				$base . '/patches/patch-template_landingcheck.sql', true ) );
+			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_autolink',
+				$base . '/patches/patch-template_autolink.sql', true ) );
 		}
 	}
 	return true;
