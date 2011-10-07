@@ -51,10 +51,13 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	$.ajaxSetup({ cache: true });
 	$.centralNotice = {
 		'data': {
-			'getVars': {}
+			'getVars': {},
+			'bannerType': 'default'
 		},
 		'fn': {
 			'loadBanner': function( bannerName, campaign, bannerType ) {
+				// Store the bannerType in case we need to set a banner hiding cookie later
+				$.centralNotice.data.bannerType = bannerType;
 				// Get the requested banner
 				var bannerPageQuery = $.param( { 
 					'banner': bannerName, 'campaign': campaign, 'userlang': wgUserLanguage, 
@@ -159,7 +162,7 @@ JAVASCRIPT;
 	function getScriptFunctions() {
 		global $wgNoticeFundraisingUrl;
 		$script = <<<JAVASCRIPT
-function insertBanner(bannerJson) {
+function insertBanner( bannerJson ) {
 	jQuery( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
 	if ( bannerJson.autolink ) {
 JAVASCRIPT;
@@ -180,8 +183,9 @@ JAVASCRIPT;
 		}
 	}
 }
-function hideBanner( bannerType ) {
+function hideBanner() {
 	$( '#centralNotice' ).hide(); // Hide current banner
+	var bannerType = $.centralNotice.data.bannerType;
 	if ( bannerType === undefined ) bannerType = 'default';
 	setBannerHidingCookie( bannerType ); // Hide future banners of the same type
 }
@@ -191,6 +195,7 @@ function setBannerHidingCookie( bannerType ) {
 	var work='centralnotice_'+bannerType+'=hide; expires=' + e.toGMTString() + '; path=/';
 	document.cookie = work;
 }
+// This function is deprecated
 function toggleNotice() {
 	var notice = document.getElementById('centralNotice');
 	if (!wgNoticeToggleState) {
@@ -202,11 +207,7 @@ function toggleNotice() {
 	}
 	wgNoticeToggleState = !wgNoticeToggleState;
 }
-function toggleNoticeStyle(elems, display) {
-	if(elems)
-		for(var i=0;i<elems.length;i++)
-			elems[i].style.display = display;
-}
+// This function is deprecated
 function toggleNoticeCookie(state) {
 	var e = new Date();
 	e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
