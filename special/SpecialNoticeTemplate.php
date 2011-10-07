@@ -282,14 +282,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			// Checkbox for whether or not to use the LandingCheck extension
 			$htmlOut .= Html::openElement( 'p', null );
 			$htmlOut .= Xml::check( 'landingCheck', $landingCheck, array( 'id' => 'landingCheck' ) );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-landingcheck' ), 'landingCheck' );
+			$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-autolink' ), 'landingCheck' );
 			$htmlOut .= Html::closeElement( 'p' );
 			
 			// Interface for setting the landing pages
 			$htmlOut .= Html::openElement( 'div', 
 				array( 'id' => 'landingCheckInterface', 'style' => 'display: none;' ) );
 			$htmlOut .= Xml::tags( 'p', array(), 
-				wfMsg( 'centralnotice-banner-landingcheck-help', 'id="cn-landingcheck-link"', 'JimmyAppeal01' ) );
+				wfMsg( 'centralnotice-banner-autolink-help', 'id="cn-landingpage-link"', 'JimmyAppeal01' ) );
 			$htmlOut .= Xml::tags( 'p', array(),
 				Xml::inputLabel( 
 					wfMsg( 'centralnotice-banner-landing-pages' ), 
@@ -602,7 +602,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Html::openElement( 'p', null );
 				$htmlOut .= Xml::check( 'landingCheck', $landingCheck, 
 					wfArrayMerge( $disabled, array( 'id' => 'landingCheck' ) ) );
-				$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-landingcheck' ), 
+				$htmlOut .= Xml::label( wfMsg( 'centralnotice-banner-autolink' ), 
 					'landingCheck' );
 				$htmlOut .= Html::closeElement( 'p' );
 				
@@ -614,7 +614,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 						array( 'id'=>'landingCheckInterface', 'style'=>'display:none;' ) );
 				}
 				$htmlOut .= Xml::tags( 'p', array(), 
-					wfMsg( 'centralnotice-banner-landingcheck-help', 'id="cn-landingcheck-link"', 'JimmyAppeal01' ) );
+					wfMsg( 'centralnotice-banner-autolink-help', 'id="cn-landingpage-link"', 'JimmyAppeal01' ) );
 				$htmlOut .= Xml::tags( 'p', array(),
 					Xml::inputLabel( 
 						wfMsg( 'centralnotice-banner-landing-pages' ), 
