@@ -68,9 +68,13 @@ window.insertButton = function( buttonType ) {
 	switch( buttonType ) {
 		case 'close': // Insert close button
 			if ( $( '#fundraising' ).is( ':checked' ) ) {
-				var buttonValue = '<a href="#" onclick="hideBanner(\'fundraising\');return false;"><img border="0" src="' + mw.config.get( 'stylepath' ) + '/common/images/closewindow.png" alt="Close" /></a>';
+				var buttonValue = '<a href="#" onclick="hideBanner(\'fundraising\');return false;">'
+					+ '<img border="0" src="' + mw.config.get( 'stylepath' )
+					+ '/common/images/closewindow.png" alt="Close" /></a>';
 			} else {
-				var buttonValue = '<a href="#" onclick="hideBanner();return false;"><img border="0" src="' + mw.config.get( 'stylepath' ) + '/common/images/closewindow.png" alt="Close" /></a>';
+				var buttonValue = '<a href="#" onclick="hideBanner();return false;">'
+					+ '<img border="0" src="' + mw.config.get( 'stylepath' )
+					+ '/common/images/closewindow.png" alt="Close" /></a>';
 			}
 			break;
 	}
@@ -84,8 +88,8 @@ window.insertButton = function( buttonType ) {
 		var startPos = bannerField.selectionStart;
 		var endPos = bannerField.selectionEnd;
 		bannerField.value = bannerField.value.substring(0, startPos)
-		+ buttonValue
-		+ bannerField.value.substring(endPos, bannerField.value.length);
+			+ buttonValue
+			+ bannerField.value.substring(endPos, bannerField.value.length);
 	} else {
 		bannerField.value += buttonValue;
 	}
