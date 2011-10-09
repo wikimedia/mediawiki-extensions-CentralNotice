@@ -201,14 +201,14 @@ function efCentralNoticeSchema( $updater = null ) {
 
 function efCentralNoticeGeoLoader( $skin, &$text ) {
 	// Insert the geo IP lookup and cookie setter
-	$text .= <<<HTML
-<script type="text/javascript" src="//geoiplookup.wikimedia.org/"></script>
-<script>
+	$text .= Html::linkedScript( "//geoiplookup.wikimedia.org/" );
+	$cookieScript = <<<JAVASCRIPT
 var e = new Date();
 e.setTime( e.getTime() + (30*24*60*60*1000) ); // 30 days
-document.cookie = 'geo_country=' + Geo.country + '; expires=' + e.toGMTString() + '; path=/';
-</script>
-HTML;
+document.cookie = 'geoCountry=' + Geo.country + '; expires=' + e.toGMTString() + '; path=/';
+
+JAVASCRIPT;
+	$text .= Html::inlineScript( $cookieScript );
 	return true;
 }
 
@@ -217,8 +217,8 @@ function efCentralNoticeDefaults( &$vars ) {
 	// Initialize global Javascript variables
 	$geo = (object)array();
 	$geo->{'city'} = '';
-	if ( array_key_exists( 'geo_country', $_COOKIE ) && $_COOKIE['geo_country'] != '' ) {
-		$geo->{'country'} = $_COOKIE['geo_country'];
+	if ( array_key_exists( 'geoCountry', $_COOKIE ) && $_COOKIE['geoCountry'] != '' ) {
+		$geo->{'country'} = $_COOKIE['geoCountry'];
 	} else {
 		$geo->{'country'} = '';
 	}
