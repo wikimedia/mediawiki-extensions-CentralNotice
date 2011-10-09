@@ -102,9 +102,8 @@ function efCentralNoticeSetup() {
 
 	if ( $wgCentralNoticeLoader ) {
 		$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
-		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
 		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
-		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
+		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeLoader';
 		$wgHooks['SkinAfterBottomScripts'][] = 'efCentralNoticeGeoLoader';
 	}
 
@@ -200,40 +199,38 @@ function efCentralNoticeSchema( $updater = null ) {
 	return true;
 }
 
-function efCentralNoticeLoader( $out, $skin ) {
-	global $wgOut;
-
-	// Include '.js' to exempt script from squid cache expiration override
-	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl( 'cache=/cn.js' );
-
-	// Insert the banner controller Javascript into the <head>
-	$wgOut->addScriptFile( $centralLoader );
-
-	return true;
-}
-
 function efCentralNoticeGeoLoader( $skin, &$text ) {
-	// Insert the geo IP lookup
-	$text .= '<script type="text/javascript" src="//geoiplookup.wikimedia.org/"></script>';
+	// Insert the geo IP lookup and cookie setter
+	$text .= <<<HTML
+<script type="text/javascript" src="//geoiplookup.wikimedia.org/"></script>
+<script>
+var e = new Date();
+e.setTime( e.getTime() + (30*24*60*60*1000) ); // 30 days
+document.cookie = 'geo_country=' + Geo.country + '; expires=' + e.toGMTString() + '; path=/';
+</script>
+HTML;
 	return true;
 }
 
 function efCentralNoticeDefaults( &$vars ) {
 	global $wgNoticeProject;
-	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
-	// IP lookup fails we don't have any surprises.
+	// Initialize global Javascript variables
 	$geo = (object)array();
 	$geo->{'city'} = '';
-	$geo->{'country'} = '';
-	$vars['Geo'] = $geo; // change this to wgGeo as soon as Mark updates on his end
+	if ( array_key_exists( 'geo_country', $_COOKIE ) && $_COOKIE['geo_country'] != '' ) {
+		$geo->{'country'} = $_COOKIE['geo_country'];
+	} else {
+		$geo->{'country'} = '';
+	}
+	$vars['Geo'] = $geo;
 	$vars['wgNoticeProject'] = $wgNoticeProject;
 	return true;
 }
 
-function efCentralNoticeDisplay( &$notice ) {
+function efCentralNoticeLoader( &$notice ) {
 	// setup siteNotice div
-	$notice =
-		'<!-- centralNotice loads here -->'. // hack for IE8 to collapse empty div
-		$notice;
+	// Include '.js' to exempt script from squid cache expiration override
+	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl( 'cache=/cn.js' );
+	$notice .= '<!-- centralNotice loads here --><script type="text/javascript" src="'.$centralLoader.'"></script>';
 	return true;
 }

@@ -4,8 +4,8 @@
  * Generates Javascript file which controls banner selection on the client side
  */
 class SpecialBannerController extends UnlistedSpecialPage {
-	protected $sharedMaxAge = 3600; // Cache for 1 hour on the server side
-	protected $maxAge = 3600; // Cache for 1 hour on the client side
+	protected $sharedMaxAge = 300; // Cache for 5 minutes on the server side
+	protected $maxAge = 300; // Cache for 5 minutes on the client side
 
 	function __construct() {
 		// Register special page
@@ -19,16 +19,11 @@ class SpecialBannerController extends UnlistedSpecialPage {
 		$this->sendHeaders();
 		
 		$content = $this->getOutput();
-		if ( strlen( $content ) == 0 ) {
-			// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
-			echo "/* Empty */";
-		} else {
-			echo $content;
-		}
+		echo $content;
 	}
 	
 	/**
-	 * Generate the HTTP response headers for the banner controller
+	 * Generate the HTTP response headers
 	 */
 	function sendHeaders() {
 		global $wgJsMimeType;
@@ -45,7 +40,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	function getOutput() {
 		global $wgCentralPagePath, $wgContLang;
 		
-		$js = $this->getScriptFunctions() . $this->getToggleScripts();
+		$js = $this->getAllBannerLists() . $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<JAVASCRIPT
 ( function( $ ) {
 	$.ajaxSetup({ cache: true });
@@ -81,22 +76,12 @@ JAVASCRIPT;
 				} else {
 					var geoLocation = Geo.country; // pull the geo info
 				}
-				var bannerListQuery = $.param( { 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation } );
-JAVASCRIPT;
-		$js .= "\n\t\t\t\tvar bannerListURL = wgScript + '?title=' + encodeURIComponent('" . 
-			$wgContLang->specialPage( 'BannerListLoader' ) .
-			"') + '&cache=/cn.js&' + bannerListQuery;\n";
-		$js .= <<<JAVASCRIPT
-				var request = $.ajax( {
-					url: bannerListURL,
-					dataType: 'json',
-					success: $.centralNotice.fn.chooseBanner
-				} );
+				var bannerList = $.parseJSON( wgBannerList[geoLocation] );
+				$.centralNotice.fn.chooseBanner( bannerList );
 			},
 			'chooseBanner': function( bannerList ) {
 				// Convert the json object to a true array
 				bannerList = Array.prototype.slice.call( bannerList );
-				
 				// Make sure there are some banners to choose from
 				if ( bannerList.length == 0 ) return false;
 				
@@ -137,17 +122,29 @@ JAVASCRIPT;
 			}
 		}
 	}
-	$( document ).ready( function () {
-		// Initialize the query string vars
-		$.centralNotice.fn.getQueryStringVariables();
+	// Initialize the query string vars
+	$.centralNotice.fn.getQueryStringVariables();
+	if ( Geo.country ) {
+		// We know the user's country so go ahead and load everything
 		if( $.centralNotice.data.getVars['banner'] ) {
-			// if we're forcing one banner
+			// We're forcing one banner
 			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['banner'] );
 		} else {
 			// Look for banners ready to go NOW
 			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars['country'] );
 		}
-	} ); //document ready
+	} else {
+		// We don't know the user's country yet, so we have to wait for the GeoIP lookup
+		$( document ).ready( function () {
+			if( $.centralNotice.data.getVars['banner'] ) {
+				// We're forcing one banner
+				$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['banner'] );
+			} else {
+				// Look for banners ready to go NOW
+				$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars['country'] );
+			}
+		} ); //document ready
+	}
 } )( jQuery );
 JAVASCRIPT;
 		return $js;
@@ -217,6 +214,42 @@ function toggleNoticeCookie(state) {
 
 JAVASCRIPT;
 		return $script;
+	}
+	
+	/**
+	 * Generate all the banner lists for all the countries
+	 */
+	function getAllBannerLists() {
+		$script = "var wgBannerList = new Array();\r\n";
+		$countriesList = CentralNoticeDB::getCountriesList();
+		foreach ( $countriesList as $countryCode => $countryName ) {
+			$script .= "wgBannerList['$countryCode'] = '".$this->getBannerList( $countryCode )."';\r\n";
+		}
+		return $script;
+	}
+	
+	/**
+	 * Generate JSON banner list for a given country
+	 */
+	function getBannerList( $country ) {
+		global $wgNoticeProject, $wgNoticeLang;
+		$banners = array();
+		
+		// See if we have any preferred campaigns for this language and project
+		$campaigns = CentralNoticeDB::getCampaigns( $wgNoticeProject, $wgNoticeLang, null, 1, 1, $country );
+		
+		// Quick short circuit to show preferred campaigns
+		if ( $campaigns ) {
+			// Pull banners
+			$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
+		}
+
+		// Didn't find any preferred banners so do an old style lookup
+		if ( !$banners )  {
+			$banners = CentralNoticeDB::getBannersByTarget( $wgNoticeProject, $wgNoticeLang, $country );
+		}
+		
+		return FormatJson::encode( $banners );
 	}
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Note: This file is deprecated and should be deleted if the new banner loading system works better.
  * Generates JSON files listing all the banners for a particular site
  */
 class SpecialBannerListLoader extends UnlistedSpecialPage {
