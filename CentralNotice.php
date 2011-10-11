@@ -214,7 +214,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 function efCentralNoticeGeoLoader( $skin, &$text ) {
 	// Insert the geo IP lookup
-	$text .= '<script type="text/javascript" src="//geoiplookup.wikimedia.org/"></script>';
+	$text .= Html::linkedScript( "//geoiplookup.wikimedia.org/" );
 	return true;
 }
 
