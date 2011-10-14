@@ -506,6 +506,7 @@ No s'está adautando.",
 
 /** Arabic (العربية)
  * @author Aiman titi
+ * @author Alexknight12
  * @author Meno25
  * @author OsamaK
  * @author Ouda
@@ -647,7 +648,7 @@ $messages['ar'] = array(
 	'centralnotice-no-allocation' => 'لا يوجد شعارات مخصصة.',
 	'centralnotice-allocation-description' => 'الشعار المخصص ل $1.$2 في $3:',
 	'centralnotice-percentage' => 'نسبة مئوية',
-	'centralnotice-documentwrite-error' => 'لا يمكن إستخدام التعبير document.write()  في داخل الشعار.
+	'centralnotice-documentwrite-error' => 'لا يمكن استخدام التعبير document.write() داخل الشعار.
 للحصول على مزيد من المعلومات راجع http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-preferred' => 'مفضل',
 	'centralnotice-logs' => 'سجلات',
@@ -4188,7 +4189,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-banner-collapsible' => 'Réductible',
 	'centralnotice-banner-fundraising' => "Il s'agit d'une bannière de levée de fonds",
 	'centralnotice-banner-autolink' => 'Crée automatiquement un lien vers une page d’atterrissage.',
-	'centralnotice-banner-autolink-help' => "Créer une balise d'ancrage dans le corps de la bannière avec $1 et entrez un ou plusieurs pages de destination ci-dessous, par exemple, $2. Le lien sera construit automatiquement quand la bannière est affichée.",
+	'centralnotice-banner-autolink-help' => 'Créez une balise d’ancrage dans le corps de la bannière avec $1 et entrez une ou plusieurs pages de destination ci-dessous ($2, par exemple). Le lien sera construit automatiquement quand la bannière est affichée.',
 	'centralnotice-banner-landing-pages' => 'Pages de destination (séparées par des virgules):',
 	'centralnotice-geo' => 'Géolocalisé',
 	'centralnotice-countries' => 'Pays',
@@ -4609,6 +4610,7 @@ $messages['grc'] = array(
 );
 
 /** Swiss German (Alemannisch)
+ * @author Als-Chlämens
  * @author Als-Holder
  */
 $messages['gsw'] = array(
@@ -4766,6 +4768,7 @@ Lueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.',
 	'centralnotice-anon' => 'Fir anonymi Benutzer aazeige',
 	'centralnotice-account' => 'Aagmäldete Benutzer aazeige',
 	'centralnotice-fundraising' => 'Spändenufruef',
+	'centralnotice-autolink' => 'Automatischi Link-Erstellig',
 	'centralnotice-landingpages' => 'Ziilsyte',
 	'centralnotice-banner-content' => 'Bannerinhalt',
 	'centralnotice-banner-content-changed' => 'gänderet',
@@ -7979,6 +7982,13 @@ $messages['nah'] = array(
 	'centralnotice-select' => 'Motlapêpenìs: $1',
 );
 
+/** Min Nan Chinese (Bân-lâm-gú)
+ * @author Ianbu
+ */
+$messages['nan'] = array(
+	'centralnotice-date' => 'Ji̍t-kî',
+);
+
 /** Low German (Plattdüütsch)
  * @author Slomox
  */
@@ -8800,7 +8810,8 @@ $messages['or'] = array(
 	'centralnotice-banner-hidable' => 'ଥିର/ଲୁଚାଯାଇ ପାରିବା',
 	'centralnotice-banner-collapsible' => 'ସଙ୍କୁଚିତ କରାଯାଇପାରିବା',
 	'centralnotice-banner-fundraising' => 'ଏହା ଏକ ଅର୍ଥସଂଗ୍ରହ ସୂଚନା ଫଳକ',
-	'centralnotice-banner-fundraising-help' => 'ସୂଚନା ଫଳକ ଦେହରେ ଏକ ଆଙ୍କର ଚିହ୍ନ ="cn_fundraising_link" ଯୋଡ଼ିଥାଏ ଓ ଗୋଟିଏ ବା ଦୁଇଟି ମୁକାମ ପୃଷ୍ଠାକୁ ଯାଇଥାଏ ଯଥା: "ଜିମିଆବେଦନ୦୧" । ଲିଙ୍କର ଏହି href ଆପେଆପେ ଗଠିତ ହୋଇଥାଏ ।',
+	'centralnotice-banner-autolink' => 'ଆପେଆପେ ଓହ୍ଲାଇବା ପୃଷ୍ଠା ଲିଙ୍କ ଗଢ଼ିବେ',
+	'centralnotice-banner-autolink-help' => 'ସୂଚନା ଫଳକ ଦେହରେ ଏକ ଆଙ୍କର ଚିହ୍ନ ="cn_fundraising_link" ଯୋଡ଼ିଥାଏ ଓ ଗୋଟିଏ ବା ଦୁଇଟି ମୁକାମ ପୃଷ୍ଠାକୁ ଯାଇଥାଏ ଯଥା: "ଜିମିଆବେଦନ୦୧" । ଲିଙ୍କର ଏହି href ଆପେଆପେ ଗଠିତ ହୋଇଥାଏ ।',
 	'centralnotice-banner-landing-pages' => 'ଅବତରଣ ପୃଷ୍ଠାସମୂହ (କମା ଦେଇ ଅଲଗାକରାଯାଇଥିବା)',
 	'centralnotice-geo' => 'ଭୂ ଲକ୍ଷିତ',
 	'centralnotice-countries' => 'ଦେଶସବୁ',
@@ -8834,6 +8845,7 @@ $messages['or'] = array(
 	'centralnotice-anon' => 'ବେନାମି ସଭୟଙ୍କୁ ଦେଖାଇବେ',
 	'centralnotice-account' => 'ଲଗ ଇନ କରିଥିବା ସଭ୍ୟଗଣଙ୍କୁ ଦେଖାଇବେ',
 	'centralnotice-fundraising' => 'ଅର୍ଥସଂଗ୍ରହ',
+	'centralnotice-autolink' => 'ଆପେଆପେ ଗଢ଼ା ଲିଙ୍କ ଯୋଡ଼ିବେ',
 	'centralnotice-landingpages' => 'ଅବତରଣ ପୃଷ୍ଠାମାନ',
 	'centralnotice-banner-content' => 'ସୂଚନା ଫଳକ ଭିତର ଭାଗ',
 	'centralnotice-banner-content-changed' => 'ବଦଳାଗଲା',
