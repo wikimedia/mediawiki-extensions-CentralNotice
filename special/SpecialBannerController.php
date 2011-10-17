@@ -197,22 +197,7 @@ function setBannerHidingCookie( bannerType ) {
 }
 // This function is deprecated
 function toggleNotice() {
-	var notice = document.getElementById('centralNotice');
-	if (!wgNoticeToggleState) {
-		notice.className = notice.className.replace('collapsed', 'expanded');
-		toggleNoticeCookie('0'); // Expand banners
-	} else {
-		notice.className = notice.className.replace('expanded', 'collapsed');
-		toggleNoticeCookie('1'); // Collapse banners
-	}
-	wgNoticeToggleState = !wgNoticeToggleState;
-}
-// This function is deprecated
-function toggleNoticeCookie(state) {
-	var e = new Date();
-	e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
-	var work='hidesnmessage='+state+'; expires=' + e.toGMTString() + '; path=/';
-	document.cookie = work;
+	hideBanner();
 }
 
 JAVASCRIPT;

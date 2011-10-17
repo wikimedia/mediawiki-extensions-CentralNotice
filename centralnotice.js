@@ -67,15 +67,9 @@ window.insertButton = function( buttonType ) {
 	var bannerField = document.getElementById('templateBody');
 	switch( buttonType ) {
 		case 'close': // Insert close button
-			if ( $( '#fundraising' ).is( ':checked' ) ) {
-				var buttonValue = '<a href="#" onclick="hideBanner(\'fundraising\');return false;">'
-					+ '<img border="0" src="' + mw.config.get( 'stylepath' )
-					+ '/common/images/closewindow.png" alt="Close" /></a>';
-			} else {
-				var buttonValue = '<a href="#" onclick="hideBanner();return false;">'
-					+ '<img border="0" src="' + mw.config.get( 'stylepath' )
-					+ '/common/images/closewindow.png" alt="Close" /></a>';
-			}
+			var buttonValue = '<a href="#" onclick="hideBanner();return false;">'
+				+ '<img border="0" src="' + mw.config.get( 'stylepath' )
+				+ '/common/images/closewindow.png" alt="Close" /></a>';
 			break;
 	}
 	if (document.selection) {
