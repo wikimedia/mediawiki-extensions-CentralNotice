@@ -507,6 +507,7 @@ No s'está adautando.",
 /** Arabic (العربية)
  * @author Aiman titi
  * @author Alexknight12
+ * @author AwamerT
  * @author Meno25
  * @author OsamaK
  * @author Ouda
@@ -634,6 +635,7 @@ $messages['ar'] = array(
 	'centralnotice-banner-hidable' => 'ثابت/ مخفي',
 	'centralnotice-banner-collapsible' => 'قابلة للطي',
 	'centralnotice-banner-fundraising' => 'هذا هو شعار جمع التبرعات.',
+	'centralnotice-banner-autolink' => 'إنشىء إرتباط الصفحة المطلوبة تلقائيا',
 	'centralnotice-banner-autolink-help' => 'إنشاء علامة ارتساء في نص الشعار مع معرف = $1 وقم بإدخال واحد أو أكثر الصفحات المقصودة أدناه، على سبيل المثال، $2. سيتم تعبيد href الارتباط تلقائياً.',
 	'centralnotice-banner-landing-pages' => 'الصفحات المقصودة (مفصولة بفواصل) :',
 	'centralnotice-geo' => 'الاستهداف الجغرافي',
@@ -668,6 +670,7 @@ $messages['ar'] = array(
 	'centralnotice-anon' => 'اعرض للمستخدمين المجهولين',
 	'centralnotice-account' => 'اعرض للمستخدمين الداخلين',
 	'centralnotice-fundraising' => 'جمع تبرعات',
+	'centralnotice-autolink' => 'إنشاء تلقائي للوصلة',
 	'centralnotice-landingpages' => 'صفحات الوصول',
 	'centralnotice-banner-content' => 'محتوى اللافتة',
 	'centralnotice-banner-content-changed' => 'غيرت',
@@ -5562,6 +5565,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
 );
 
 /** Indonesian (Bahasa Indonesia)
+ * @author Aldnonymous
  * @author Bennylin
  * @author Farras
  * @author Irwangatot
@@ -5690,6 +5694,8 @@ Tambahkan di bawah ini.',
 	'centralnotice-banner-type' => 'Jenis panji:',
 	'centralnotice-banner-hidable' => 'Statis/Dapat disembunyikan',
 	'centralnotice-banner-collapsible' => 'Dapat dibuka',
+	'centralnotice-banner-fundraising' => 'Ini adalah spanduk penggalangan dana',
+	'centralnotice-banner-autolink' => 'Secara otomatis membuat tautan rahan halaman',
 	'centralnotice-geo' => 'Ditargetgeokan',
 	'centralnotice-countries' => 'Negara',
 	'centralnotice-allocation' => 'Alokasi',
@@ -5715,11 +5721,14 @@ Lihat http://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih la
 	'centralnotice-off' => 'mati',
 	'centralnotice-added' => 'Menambahkan <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Menghapus <span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => 'Tidak ada spanduk diberikan',
 	'centralnotice-talk-link' => 'pembicaraan',
 	'centralnotice-campaign-settings' => 'Setelan kampanye',
+	'centralnotice-banner-settings' => 'Setting spanduk',
 	'centralnotice-anon' => 'Tampilkan ke pengguna anonim',
 	'centralnotice-account' => 'Tampilkan ke pengguna yang telah masuk log',
 	'centralnotice-fundraising' => 'Penggalangan dana',
+	'centralnotice-autolink' => 'Pembuatan tautan secara otomatis',
 	'centralnotice-landingpages' => 'Halaman arahan',
 	'centralnotice-banner-content' => 'Konten spanduk',
 	'centralnotice-banner-content-changed' => 'Diubah',
@@ -5727,6 +5736,7 @@ Lihat http://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih la
 	'centralnotice-date' => 'Tanggal',
 	'centralnotice-apply-filters' => 'Terapkan penyaring',
 	'centralnotice-clear-filters' => 'Hapus penyaring',
+	'centralnotice-banner-messages' => 'Pesan spanduk',
 );
 
 /** Igbo (Igbo)
