@@ -7698,6 +7698,7 @@ $messages['ml'] = array(
 	'centralnotice-campaign-settings' => 'മേളയുടെ സജ്ജീകരണങ്ങൾ',
 	'centralnotice-anon' => 'അജ്ഞാത ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
 	'centralnotice-account' => 'പ്രവേശിച്ചിട്ടുള്ള ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
+	'centralnotice-autolink' => 'കണ്ണി സ്വയം സൃഷ്ടിക്കൽ',
 	'centralnotice-banner-content' => 'എഴുത്തുപട്ടയുടെ ഉള്ളടക്കം',
 	'centralnotice-banner-content-changed' => 'മാറ്റിയിരിക്കുന്നു',
 	'centralnotice-filters' => 'രേഖകൾക്കുള്ള അരിപ്പകൾ',
