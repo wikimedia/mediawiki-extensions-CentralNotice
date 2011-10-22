@@ -7668,6 +7668,7 @@ $messages['ml'] = array(
 	'centralnotice-banner-hidable' => 'സ്ഥിരസ്ഥിതി/മറയ്ക്കാവുന്നത്',
 	'centralnotice-banner-collapsible' => 'ചുരുക്കാവുന്നത്',
 	'centralnotice-banner-fundraising' => 'ഇത് ഫണ്ട്‌റൈസിങ് എഴുത്തുപട്ടയാണ്',
+	'centralnotice-banner-autolink' => 'ചെല്ലുന്ന താളിലേയ്ക്കുള്ള കണ്ണി സ്വയം സൃഷ്ടിക്കുക',
 	'centralnotice-banner-landing-pages' => 'എത്തിച്ചേരേണ്ട താളുകൾ (അങ്കുശത്താൽ വേർതിരിച്ച്):',
 	'centralnotice-geo' => 'ഭൂപ്രദേശങ്ങൾ ലക്ഷ്യമാക്കിയവ',
 	'centralnotice-countries' => 'രാജ്യങ്ങൾ',
@@ -7699,6 +7700,7 @@ $messages['ml'] = array(
 	'centralnotice-anon' => 'അജ്ഞാത ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
 	'centralnotice-account' => 'പ്രവേശിച്ചിട്ടുള്ള ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
 	'centralnotice-autolink' => 'കണ്ണി സ്വയം സൃഷ്ടിക്കൽ',
+	'centralnotice-landingpages' => 'ചെല്ലുന്ന താളുകൾ',
 	'centralnotice-banner-content' => 'എഴുത്തുപട്ടയുടെ ഉള്ളടക്കം',
 	'centralnotice-banner-content-changed' => 'മാറ്റിയിരിക്കുന്നു',
 	'centralnotice-filters' => 'രേഖകൾക്കുള്ള അരിപ്പകൾ',
@@ -13751,6 +13753,7 @@ $messages['yue'] = array(
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Alex S.H. Lin
+ * @author Bencmq
  * @author Chenxiaoqino
  * @author Chenzw
  * @author Gzdavidwong
@@ -13884,7 +13887,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner-hidable' => '静态/可隐藏',
 	'centralnotice-banner-collapsible' => '可收缩',
 	'centralnotice-banner-fundraising' => '这是一个筹款横幅',
-	'centralnotice-banner-autolink-help' => '在横幅体内创建$1的锚点标记，并在下方输入一个或多个目标页面，例如$2。程序会自动构造链接的href属性。',
+	'centralnotice-banner-autolink-help' => '在横幅内使用$1创建锚点标记，并在下方输入一个或多个目标页面，例如$2。程序会在用户浏览横幅时自动创建链接。',
 	'centralnotice-banner-landing-pages' => '登录页（逗号分隔）：',
 	'centralnotice-geo' => '已地理定位的',
 	'centralnotice-countries' => '国家',
