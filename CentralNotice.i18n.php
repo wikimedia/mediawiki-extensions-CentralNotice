@@ -11057,7 +11057,11 @@ $messages['si'] = array(
 	'centralnotice-off' => 'ඉවතට',
 	'centralnotice-talk-link' => 'සාකච්ඡාව',
 	'centralnotice-banner-content-changed' => 'වෙනස්කරන ලදි',
+	'centralnotice-filters' => 'වාර්තා සටහන් පෙරනය',
 	'centralnotice-date' => 'දිනය',
+	'centralnotice-apply-filters' => 'පෙරහන් එක් කරන්න',
+	'centralnotice-clear-filters' => 'පෙරහන් පිරිසිදු කරන්න',
+	'centralnotice-banner-messages' => 'සිරස්තල පණිවිඩය',
 );
 
 /** Slovak (Slovenčina)
