@@ -6673,7 +6673,8 @@ De kanns ävver heh dronger ein dobei donn.',
 	'centralnotice-banner-hidable' => 'Faß udder ußschaltbaa',
 	'centralnotice-banner-collapsible' => 'Enklappbaa',
 	'centralnotice-banner-fundraising' => 'Dat es en Banner_Schablohn för noh Jeld ze froore',
-	'centralnotice-banner-autolink-help' => 'Donn ene Anker en dä Banner_Schablohn ongerbrenge met $1 un en Zielsigg udder mieh dovun, esu jät wi $2. E <code lang="en">href</code>-Kommando fö dä Lenk kriss De automattesch dobei jemaat.',
+	'centralnotice-banner-autolink' => 'Donn ene Lenk op di Zielsigg automatėsch aanlääje',
+	'centralnotice-banner-autolink-help' => 'Donn ene Anker en dä Banner_Schablohn ongerbrenge met $1 un en Zielsigg udder mieh dovun, esu jät wi $2. Dä Lenk kütt automattesch dobei wann di Banner_Schabloon aanjezeisch weed.',
 	'centralnotice-banner-landing-pages' => 'Zielsigge för aanzekumme, med Kommas dozwesche',
 	'centralnotice-geo' => 'Met Koodinaate op de Ääd',
 	'centralnotice-countries' => 'Länder',
@@ -6707,6 +6708,7 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-anon' => 'Aanzeije bei nameloose Medmaacher',
 	'centralnotice-account' => 'Aanzeije för enjelogg Metmaacher',
 	'centralnotice-fundraising' => 'Kötte un Jeld sammele',
+	'centralnotice-autolink' => 'Lenk automatėsch aanlääje',
 	'centralnotice-landingpages' => 'De Sigge, woh mer drop kütt',
 	'centralnotice-banner-content' => 'Dä Banner_Schablohn iere Enhald',
 	'centralnotice-banner-content-changed' => 'jeändert',
@@ -6714,7 +6716,7 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-date' => 'Dattum',
 	'centralnotice-apply-filters' => 'Lohß Jonn!',
 	'centralnotice-clear-filters' => 'Ußwahl ophävve',
-	'centralnotice-banner-messages' => 'Der Banner_Schablohne ier Täxte ',
+	'centralnotice-banner-messages' => 'Dä Banner_Schablohne ier Täxte',
 );
 
 /** Kurdish (Latin) (Kurdî (Latin))
@@ -8440,6 +8442,7 @@ $messages['no'] = array(
 	'centralnotice' => 'Administrasjon av sentrale beskjeder',
 	'noticetemplate' => 'Admin for sentrale beskjeder',
 	'bannerallocation' => 'Administrasjon av sentrale beskjeder',
+	'centralnoticelogs' => 'Administrasjon av fellesbeskjeder',
 	'right-centralnotice-admin' => 'Håndtere sentrale meldinger',
 	'action-centralnotice-admin' => 'administrere sentrale meldinger',
 	'centralnotice-desc' => 'Legger til en sentral sidenotis',
@@ -8557,6 +8560,7 @@ Legg til en under',
 	'centralnotice-banner-hidable' => 'Statisk/skjulbar',
 	'centralnotice-banner-collapsible' => 'Sammenleggbar',
 	'centralnotice-banner-fundraising' => 'Dette er et banner for pengeinnsamling',
+	'centralnotice-banner-autolink' => 'Automatisk opprette målsidelenke',
 	'centralnotice-banner-autolink-help' => 'Opprett en ankertag til bannerkroppen med $1 og legg inn en eller flere mottakssider under, f. eks. $2. Det opprettes automatisk en href for lenken.',
 	'centralnotice-banner-landing-pages' => 'Mottakssider (kommaseparert):',
 	'centralnotice-geo' => 'Geografisk målrettet',
@@ -12746,6 +12750,7 @@ $messages['tpi'] = array(
 );
 
 /** Turkish (Türkçe)
+ * @author Emperyan
  * @author Joseph
  * @author Karduelis
  * @author Srhat
@@ -12754,6 +12759,7 @@ $messages['tr'] = array(
 	'centralnotice' => 'Merkezi uyarı yöneticisi',
 	'noticetemplate' => 'Merkezi uyarı yöneticisi',
 	'bannerallocation' => 'Merkezi uyarı yöneticisi',
+	'centralnoticelogs' => 'Merkezi uyarı yöneticisi',
 	'right-centralnotice-admin' => 'Merkezi uyarıları yönet',
 	'action-centralnotice-admin' => 'merkezi uyarıları yönet',
 	'centralnotice-desc' => 'Merkezi site uyarısı ekler',
@@ -12764,8 +12770,10 @@ Eski uyarıları ekleyip çıkarmak için de kullanılabilir.',
 	'centralnotice-end-date' => 'Bitiş tarihi',
 	'centralnotice-enabled' => 'Etkinleştirilmiş',
 	'centralnotice-modify' => 'Gönder',
+	'centralnotice-view' => 'Görüntüle',
 	'centralnotice-save-banner' => 'Afişi kaydet',
 	'centralnotice-preview' => 'Ön izleme',
+	'centralnotice-nopreview' => '(Ön izleme mevcut değil)',
 	'centralnotice-add-new' => 'Yeni bir merkezi uyarı ekle',
 	'centralnotice-remove' => 'Çıkar',
 	'centralnotice-translate-heading' => '$1 için çeviri',
@@ -12882,6 +12890,8 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-documentwrite-error' => 'document.write() afiş içinde kullanılamaz.
 Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.',
 	'centralnotice-preferred' => 'Tercih edilen',
+	'centralnotice-logs' => 'Kayıtlar',
+	'centralnotice-user' => 'Kullanıcı',
 );
 
 /** Tatar (Cyrillic) (Татарча/Tatarça (Cyrillic))
