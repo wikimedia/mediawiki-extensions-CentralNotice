@@ -11,25 +11,25 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class CentralNoticeDB {
 
 	/* Functions */
-	/*
+	/**
 	 * Return campaigns in the system within given constraints
 	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
 	 * @return an array of ids
 	 */
 	static function getCampaigns( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
 		global $wgCentralDBname;
-	
+
 		$notices = array();
-		
+
 		// Database setup
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		
+
 		if ( !$date ) {
 			$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
 		} else {
 			$encTimestamp = $dbr->addQuotes( $dbr->timestamp( $date ) );
 		}
-		
+
 		$tables = array( 'cn_notices' );
 		if ( $project ) {
 			$tables[] = 'cn_notice_projects';
@@ -71,7 +71,7 @@ class CentralNoticeDB {
 		foreach ( $res as $row ) {
 			$notices[] = $row->not_id;
 		}
-		
+
 		// If a location is passed, also pull geotargeted campaigns that match the location
 		if ( $location ) {
 			$tables = array( 'cn_notices', 'cn_notice_countries' );
@@ -81,7 +81,7 @@ class CentralNoticeDB {
 			if ( $language ) {
 				$tables[] = 'cn_notice_languages';
 			}
-	
+
 			// Use whatever conditional arguments got passed in
 			$conds = array(
 				'not_geo' => 1,
@@ -98,13 +98,13 @@ class CentralNoticeDB {
 				$conds[] = "nl_notice_id = cn_notices.not_id";
 				$conds['nl_language'] = $language;
 			}
-			
+
 			if ( $enabled ) {
 				$conds['not_enabled'] = 1;
 			}
 			if ( $preferred ) {
 				$conds['not_preferred'] = 1;
-			}	
+			}
 			// Pull db data
 			$res = $dbr->select(
 				$tables,
@@ -112,7 +112,7 @@ class CentralNoticeDB {
 				$conds,
 				__METHOD__
 			);
-			
+
 			// Loop through result set and return ids
 			foreach ( $res as $row ) {
 				$notices[] = $row->not_id;
@@ -121,8 +121,8 @@ class CentralNoticeDB {
 
 		return $notices;
 	}
-	
-	/*
+
+	/**
 	 * Return settings for a campaign
 	 * @param $campaignName string: The name of the campaign
 	 * @param $detailed boolean: Whether or not to include targeting and banner assignment info
@@ -130,10 +130,10 @@ class CentralNoticeDB {
 	 */
 	static function getCampaignSettings( $campaignName, $detailed = true ) {
 		global $wgCentralDBname;
-		
+
 		// Read from the master database to avoid concurrency problems
 		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-		
+
 		$campaign = array();
 
 		// Get campaign info from database
@@ -160,7 +160,7 @@ class CentralNoticeDB {
 				'geo' => $row->not_geo
 			);
 		}
-		
+
 		if ( $detailed ) {
 			$projects = CentralNotice::getNoticeProjects( $campaignName );
 			$languages = CentralNotice::getNoticeLanguages( $campaignName );
@@ -168,7 +168,7 @@ class CentralNoticeDB {
 			$campaign['projects'] = implode( ", ", $projects );
 			$campaign['languages'] = implode( ", ", $languages );
 			$campaign['countries'] = implode( ", ", $geo_countries );
-			
+
 			$bannersIn = CentralNoticeDB::getCampaignBanners( $row->not_id, true );
 			$bannersOut = array();
 			// All we want are the banner names and weights
@@ -179,11 +179,11 @@ class CentralNoticeDB {
 			// Encode into a JSON string for storage
 			$campaign['banners'] = FormatJson::encode( $bannersOut );
 		}
-				
+
 		return $campaign;
 	}
 
-	/*
+	/**
 	 * Given one or more campaign ids, return all banners bound to them
 	 * @param $campaigns array of id numbers
 	 * @param $logging boolean whether or not request is for logging (optional)
@@ -191,7 +191,7 @@ class CentralNoticeDB {
 	 */
 	static function getCampaignBanners( $campaigns, $logging = false ) {
 		global $wgCentralDBname;
-		
+
 		// If logging, read from the master database to avoid concurrency problems
 		if ( $logging ) {
 			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
@@ -241,7 +241,7 @@ class CentralNoticeDB {
 		}
 		return $banners;
 	}
-	
+
 	/**
 	 * Return settings for a banner
 	 * @param $bannerName string name of banner
@@ -250,16 +250,16 @@ class CentralNoticeDB {
 	 */
 	static function getBannerSettings( $bannerName, $logging = false ) {
 		global $wgCentralDBname;
-		
+
 		$banner = array();
-		
+
 		// If logging, read from the master database to avoid concurrency problems
 		if ( $logging ) {
 			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 		} else {
 			$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		}
-		
+
 		$row = $dbr->selectRow( 'cn_templates',
 			array(
 				'tmp_display_anon',
@@ -271,7 +271,7 @@ class CentralNoticeDB {
 			array( 'tmp_name' => $bannerName ),
 			__METHOD__
 		);
-		
+
 		if ( $row ) {
 			$banner = array(
 				'anon' => $row->tmp_display_anon,
@@ -281,23 +281,23 @@ class CentralNoticeDB {
 				'landingpages' => $row->tmp_landing_pages
 			);
 		}
-		
+
 		return $banner;
 	}
-	
+
 	/**
-	 * Lookup function for active banners under a given language/project/location. This function is 
+	 * Lookup function for active banners under a given language/project/location. This function is
 	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
 	 * each project.
 	 * @return a 2D array of running banners with associated weights and settings
 	 */
 	static function getBannersByTarget( $project, $language, $location = null ) {
 		global $wgCentralDBname;
-		
+
 		$campaigns = array();
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
-		
+
 		// Pull non-geotargeted campaigns
 		$campaignResults1 = $dbr->select(
 			array(
@@ -324,12 +324,12 @@ class CentralNoticeDB {
 			$campaigns[] = $row->not_id;
 		}
 		if ( $location ) {
-		
+
 			// Normalize location parameter (should be an uppercase 2-letter country code)
 			preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
 			if ( $matches ) {
 				$location = strtoupper( $matches[0] );
-			
+
 				// Pull geotargeted campaigns
 				$campaignResults2 = $dbr->select(
 					array(
@@ -360,7 +360,7 @@ class CentralNoticeDB {
 				}
 			}
 		}
-		
+
 		$banners = array();
 		if ( $campaigns ) {
 			// Pull all banners assigned to the campaigns
@@ -368,8 +368,8 @@ class CentralNoticeDB {
 		}
 		return $banners;
 	}
-	
-	/*
+
+	/**
 	 * See if a given campaign exists in the database
 	 */
 	public static function campaignExists( $campaignName ) {
@@ -379,8 +379,8 @@ class CentralNoticeDB {
 		 $eCampaignName = htmlspecialchars( $campaignName );
 		 return (bool)$dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eCampaignName ) );
 	}
-	
-	/*
+
+	/**
 	 * See if a given banner exists in the database
 	 */
 	public static function bannerExists( $bannerName ) {
@@ -395,8 +395,8 @@ class CentralNoticeDB {
 		 	return false;
 		 }
 	}
-	
-	/*
+
+	/**
 	 * Return all of the available countries for geotargeting
 	 * (This should probably be moved to a core database table at some point.)
 	 */
