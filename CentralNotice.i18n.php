@@ -2331,7 +2331,9 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 );
 
 /** Welsh (Cymraeg)
+ * @author Lcawte
  * @author Lloffiwr
+ * @author Pwyll
  * @author Xxglennxx
  */
 $messages['cy'] = array(
@@ -2414,6 +2416,7 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-edit-template' => "Golygu'r nodyn",
 	'centralnotice-message' => 'Neges',
 	'centralnotice-clone-name' => 'Enw:',
+	'centralnotice-insert' => 'Mewnosod: $1',
 	'centralnotice-hide-button' => 'y cyswllt cuddio',
 	'centralnotice-collapse-button' => 'Y cyswllt crebachu',
 	'centralnotice-expand-button' => 'Y cyswllt ehangu',
@@ -2429,6 +2432,7 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-view-allocation' => 'Gweld dyraniad baneri',
 	'centralnotice-allocation-instructions' => 'Dewiswch y cyfuniad o feysydd yr hoffech weld dyraniad y baneri arno:',
 	'centralnotice-languages' => 'Ieithoedd',
+	'centralnotice-language' => 'Iaith',
 	'centralnotice-projects' => 'Prosiectau',
 	'centralnotice-country' => 'Gwlad',
 	'centralnotice-no-allocation' => 'Dim baneri wedi eu dyrannu.',
@@ -2438,6 +2442,14 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-logs' => 'Logiau',
 	'centralnotice-view-logs' => 'Gweld y logiau',
 	'centralnotice-user' => 'Defnyddiwr',
+	'centralnotice-talk-link' => 'sgwrs',
+	'centralnotice-fundraising' => 'Codi arian',
+	'centralnotice-banner-content-changed' => 'Newidiwyd',
+	'centralnotice-filters' => 'Hidlyddion log',
+	'centralnotice-date' => 'Dyddiad',
+	'centralnotice-apply-filters' => 'Gosod hidlyddion',
+	'centralnotice-clear-filters' => 'Clirio hidlyddion',
+	'centralnotice-banner-messages' => 'Negeseuon baner',
 );
 
 /** Danish (Dansk)
@@ -4056,6 +4068,19 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-banner-messages' => 'Bannerin viestit',
 );
 
+/** Faroese (Føroyskt)
+ * @author EileenSanda
+ */
+$messages['fo'] = array(
+	'centralnotice-countries' => 'Lond',
+	'centralnotice-allocation' => 'Býti',
+	'centralnotice-languages' => 'Mál',
+	'centralnotice-language' => 'Mál',
+	'centralnotice-projects' => 'Verkætlanir',
+	'centralnotice-country' => 'Land',
+	'centralnotice-percentage' => 'Prosent partur',
+);
+
 /** French (Français)
  * @author Crochet.david
  * @author Gomoko
@@ -5253,6 +5278,10 @@ Přidaj někajku',
 	'centralnotice-documentwrite-error' => 'document.write() njeda so znutřka chorhoje wužiwać.
 Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-preferred' => 'Preferowany',
+	'centralnotice-logs' => 'Protokole',
+	'centralnotice-user' => 'Wužiwar',
+	'centralnotice-action' => 'Akcija',
+	'centralnotice-talk-link' => 'diskusija',
 );
 
 /** Hungarian (Magyar)
