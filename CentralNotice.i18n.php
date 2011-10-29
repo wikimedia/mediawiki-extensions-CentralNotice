@@ -1984,6 +1984,7 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
  * @author SMP
  * @author Solde
  * @author Ssola
+ * @author Toniher
  * @author Vriullop
  */
 $messages['ca'] = array(
@@ -2109,6 +2110,7 @@ Afegiu-ne un a continuació.',
 	'centralnotice-view-allocation' => 'Veure la disposició de la pancarta',
 	'centralnotice-allocation-instructions' => "Tria l'entorn on t'agradaria veure la pancarta assignada per:",
 	'centralnotice-languages' => 'Idiomes',
+	'centralnotice-language' => 'Llengua',
 	'centralnotice-projects' => 'Projectes',
 	'centralnotice-country' => 'País',
 	'centralnotice-no-allocation' => 'No hi ha pancartes assignades.',
@@ -2119,7 +2121,9 @@ Afegiu-ne un a continuació.',
 	'centralnotice-preferred' => 'Preferit',
 	'centralnotice-logs' => 'Registres',
 	'centralnotice-view-logs' => 'Vegeu registres',
+	'centralnotice-timestamp' => 'Marca horària',
 	'centralnotice-user' => 'Usuari',
+	'centralnotice-action' => 'Acció',
 	'centralnotice-added' => 'Afegit <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Eliminat <span class="cn-old-value">$1</span>',
 );
@@ -7519,7 +7523,7 @@ $messages['mk'] = array(
 	'centralnotice-expand-button' => 'Расклопи',
 	'centralnotice-close-button' => 'Копче за затворање',
 	'centralnotice-translate-button' => 'Врска за помош со преводите',
-	'centralnotice-donate-button' => 'Копче за донации',
+	'centralnotice-donate-button' => 'Копче за дарување',
 	'centralnotice-expanded-banner' => 'Расклопен плакат',
 	'centralnotice-collapsed-banner' => 'Склопен плакат',
 	'centralnotice-banner-display' => 'Прикажи во:',
