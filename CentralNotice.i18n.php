@@ -3726,6 +3726,7 @@ Ez da gehituko',
  * @author Ebraminio
  * @author Huji
  * @author Komeil 4life
+ * @author Leyth
  * @author Mjbmr
  * @author Sahim
  * @author Wayiran
@@ -3887,6 +3888,7 @@ $messages['fa'] = array(
 	'centralnotice-anon' => 'نمایش برای کاربران ناشناس',
 	'centralnotice-account' => 'نمایش به کاربران ثبت‌نام‌کرده',
 	'centralnotice-fundraising' => 'جمع‌آوری کمک‌های مردمی',
+	'centralnotice-autolink' => 'ایجاد خودکار پیوند',
 	'centralnotice-landingpages' => 'صفحه‌های فرود',
 	'centralnotice-banner-content' => 'محتوای بنر',
 	'centralnotice-banner-content-changed' => 'تغییر یافته',
@@ -5283,9 +5285,19 @@ Přidaj někajku',
 Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-preferred' => 'Preferowany',
 	'centralnotice-logs' => 'Protokole',
+	'centralnotice-view-logs' => 'Protokole sej wobhladać',
+	'centralnotice-timestamp' => 'Časowy kołk',
 	'centralnotice-user' => 'Wužiwar',
 	'centralnotice-action' => 'Akcija',
 	'centralnotice-talk-link' => 'diskusija',
+	'centralnotice-campaign-settings' => 'Kampanjowe nastajenja',
+	'centralnotice-anon' => 'Anonymnym wužiwarjam pokazać',
+	'centralnotice-account' => 'Přizjewjenym wužiwarjam pokazać',
+	'centralnotice-banner-content-changed' => 'Změnjeny',
+	'centralnotice-filters' => 'Protokolowe filtry',
+	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'Filtry nałožić',
+	'centralnotice-clear-filters' => 'Filtry zhašeć',
 );
 
 /** Hungarian (Magyar)
@@ -6475,6 +6487,7 @@ $messages['ko'] = array(
 	'centralnotice-end-date' => '종료 날짜',
 	'centralnotice-enabled' => '활성화됨',
 	'centralnotice-modify' => '변경',
+	'centralnotice-view' => '보기',
 	'centralnotice-save-banner' => '배너 저장하기',
 	'centralnotice-preview' => '미리 보기',
 	'centralnotice-add-new' => '새 중앙 공지 추가',
@@ -6753,15 +6766,16 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-banner-messages' => 'Dä Banner_Schablohne ier Täxte',
 );
 
-/** Kurdish (Latin) (Kurdî (Latin))
+/** Kurdish (Latin script) (‪Kurdî (latînî)‬)
  * @author George Animal
+ * @author Gomada
  */
 $messages['ku-latn'] = array(
 	'centralnotice-preview' => 'Pêşdîtin',
 	'centralnotice-add' => 'Zêde bike',
 	'centralnotice-translations' => 'Wergerran',
 	'centralnotice-translate' => 'Wergerrîne',
-	'centralnotice-english' => 'Inglîzî',
+	'centralnotice-english' => 'Îngilîzî',
 	'centralnotice-locked' => 'Hate astengkirin',
 	'centralnotice-day' => 'Roj',
 	'centralnotice-year' => 'Sal',
@@ -6771,9 +6785,9 @@ $messages['ku-latn'] = array(
 	'centralnotice-project-lang' => 'Zimanê projeyê',
 	'centralnotice-top-ten-languages' => 'Zimanên Top 10',
 	'centralnotice-project-name' => 'Navê projeyê',
-	'centralnotice-message' => 'Mesaj',
+	'centralnotice-message' => 'Peyam',
 	'centralnotice-clone-name' => 'Nav:',
-	'centralnotice-hide-button' => 'Lînkê veşêre',
+	'centralnotice-hide-button' => 'Girêdanê veşêre',
 	'centralnotice-languages' => 'Ziman',
 	'centralnotice-country' => 'Welat',
 );
