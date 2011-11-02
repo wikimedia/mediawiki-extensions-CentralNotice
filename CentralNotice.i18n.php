@@ -2977,6 +2977,7 @@ Pśidaj jadnu.',
 	'centralnotice-view-allocation' => 'Zrědowanje banarja se woglědaś',
 	'centralnotice-allocation-instructions' => 'Wokolinu wubraś, za kótaruž by rady wiźeł zrědowanje banarja:',
 	'centralnotice-languages' => 'Rěcy',
+	'centralnotice-language' => 'Rěc',
 	'centralnotice-projects' => 'Projekty',
 	'centralnotice-country' => 'Kraj',
 	'centralnotice-no-allocation' => 'Žedne banarje zrědowane.',
@@ -2985,6 +2986,8 @@ Pśidaj jadnu.',
 	'centralnotice-documentwrite-error' => 'document.write() njedajo se w banarju wužywaś.
 Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.',
 	'centralnotice-preferred' => 'Preferěrowane',
+	'centralnotice-user' => 'Wužywaŕ',
+	'centralnotice-action' => 'Akcija',
 );
 
 /** Ewe (Eʋegbe)
