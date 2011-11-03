@@ -2986,8 +2986,12 @@ Pśidaj jadnu.',
 	'centralnotice-documentwrite-error' => 'document.write() njedajo se w banarju wužywaś.
 Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.',
 	'centralnotice-preferred' => 'Preferěrowane',
+	'centralnotice-logs' => 'Protokole',
 	'centralnotice-user' => 'Wužywaŕ',
 	'centralnotice-action' => 'Akcija',
+	'centralnotice-talk-link' => 'diskusija',
+	'centralnotice-banner-content-changed' => 'Změnjony',
+	'centralnotice-date' => 'Datum',
 );
 
 /** Ewe (Eʋegbe)
@@ -3264,7 +3268,7 @@ Ne aldonante',
 Ne forigante',
 	'centralnotice-overlap' => 'Notico kolizias inter la tempo de alia notico.
 Ne aldonante',
-	'centralnotice-invalid-date-range' => 'Nevalida data intervalo.
+	'centralnotice-invalid-date-range' => 'Malvalida data intervalo.
 Ne ĝisdatigante',
 	'centralnotice-null-string' => 'Ne povas aldoni nulan signoĉenon.
 Ne aldonante.',
