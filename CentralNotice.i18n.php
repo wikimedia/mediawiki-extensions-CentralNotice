@@ -1979,6 +1979,7 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
 /** Catalan (Català)
  * @author Aleator
  * @author El libre
+ * @author Gemmaa
  * @author Loupeter
  * @author Paucabot
  * @author SMP
@@ -1991,6 +1992,7 @@ $messages['ca'] = array(
 	'centralnotice' => "Administrador d'avisos centrals",
 	'noticetemplate' => "Administració d'avisos centrals",
 	'bannerallocation' => "Administració d'avisos centrals",
+	'centralnoticelogs' => 'Avís central admin',
 	'right-centralnotice-admin' => 'Gestionar els avisos centrals',
 	'action-centralnotice-admin' => 'Gestionau els avisos centrals',
 	'centralnotice-desc' => "Afegeix un lloc central d'avisos",
@@ -2001,6 +2003,7 @@ També pot ser usat per afegir o eliminar avisos.",
 	'centralnotice-end-date' => 'Data de finalització',
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Tramet',
+	'centralnotice-view' => 'Vista',
 	'centralnotice-save-banner' => 'Salva pancarta',
 	'centralnotice-preview' => 'Previsualitza',
 	'centralnotice-nopreview' => '(Vista prèvia no disponible)',
@@ -2017,6 +2020,7 @@ També pot ser usat per afegir o eliminar avisos.",
 	'centralnotice-list-templates' => 'Llista les plantilles',
 	'centralnotice-multiple-projects' => 'Múltiple ($1)',
 	'centralnotice-multiple-languages' => 'Múltiple ($1)',
+	'centralnotice-multiple-countries' => 'Múltiples ( $1 )',
 	'centralnotice-all-projects' => 'Tots els projectes',
 	'centralnotice-translations' => 'Traduccions',
 	'centralnotice-translate-to' => 'Tradueix a',
@@ -2104,6 +2108,10 @@ Afegiu-ne un a continuació.',
 	'centralnotice-banner-type' => 'Tipus de pancarta:',
 	'centralnotice-banner-hidable' => 'Estàtic/Amagable',
 	'centralnotice-banner-collapsible' => 'Plegable',
+	'centralnotice-banner-fundraising' => 'Aquest és un banner de recaptació de fons',
+	'centralnotice-banner-autolink' => "Automàticament Crea enllaç de pàgina d'aterratge",
+	'centralnotice-banner-autolink-help' => "Crear una etiqueta d'ancoratge en el cos de banner amb  $1  i introduïu una o més pàgines d'aterratge per sota, per exemple,  $2 . L'enllaç s'alçaran automàticament cada vegada que es veu de la bandera.",
+	'centralnotice-banner-landing-pages' => 'Pàgines (separats per comes) de destinació:',
 	'centralnotice-geo' => 'Geolocalitzat',
 	'centralnotice-countries' => 'Països',
 	'centralnotice-allocation' => 'Assignació',
@@ -2124,13 +2132,27 @@ Afegiu-ne un a continuació.',
 	'centralnotice-timestamp' => 'Marca horària',
 	'centralnotice-user' => 'Usuari',
 	'centralnotice-action' => 'Acció',
+	'centralnotice-changed' => 'Canviat des de <span class="cn-old-value"> $1 </span> per<span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'el',
+	'centralnotice-off' => 'Off',
 	'centralnotice-added' => 'Afegit <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Eliminat <span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => 'no hi ha banners assignats',
+	'centralnotice-talk-link' => 'discussió',
 	'centralnotice-campaign-settings' => 'Paràmetres de la campanya',
 	'centralnotice-banner-settings' => 'Paràmetres del bàner',
+	'centralnotice-anon' => 'Mostrar els usuaris anònims',
+	'centralnotice-account' => 'Exhibició a registrat en usuaris',
+	'centralnotice-fundraising' => 'Recaptació de fons',
+	'centralnotice-autolink' => "Creació d'enllaç automàtic",
+	'centralnotice-landingpages' => 'Les pàgines de destinació',
 	'centralnotice-banner-content' => 'Contingut del bàner',
+	'centralnotice-banner-content-changed' => 'Canviat',
+	'centralnotice-filters' => 'Filtres de registre',
 	'centralnotice-date' => 'Data',
 	'centralnotice-apply-filters' => 'Aplica els filtres',
+	'centralnotice-clear-filters' => 'Filtres clars',
+	'centralnotice-banner-messages' => 'Bandera de missatges',
 );
 
 /** Chechen (Нохчийн)
@@ -2466,6 +2488,7 @@ Gallwch ychwanegu un isod.',
  * @author Masz
  * @author Peter Alberti
  * @author Sarrus
+ * @author Tjernobyl
  */
 $messages['da'] = array(
 	'right-centralnotice-admin' => 'Administrere centrale meddelelser',
@@ -2548,7 +2571,10 @@ Tilføj nogle!',
 	'centralnotice-clone-name' => 'Navn:',
 	'centralnotice-insert' => 'Indsæt: $1',
 	'centralnotice-hide-button' => 'Skjul link',
+	'centralnotice-collapse-button' => 'Skjul link',
 	'centralnotice-close-button' => 'Lukkeknap',
+	'centralnotice-expanded-banner' => 'Udvidet banner',
+	'centralnotice-collapsed-banner' => 'Komprimeret banner',
 	'centralnotice-banner-display' => 'Vis til:',
 	'centralnotice-banner-anonymous' => 'Anonyme brugere',
 	'centralnotice-banner-logged-in' => 'Indloggede brugere',
@@ -2571,6 +2597,8 @@ Tilføj nogle!',
 	'centralnotice-fundraising' => 'Indsamling',
 	'centralnotice-banner-content-changed' => 'Ændret',
 	'centralnotice-date' => 'Dato',
+	'centralnotice-apply-filters' => 'Tilføj filter',
+	'centralnotice-clear-filters' => 'Nulstil filtre',
 );
 
 /** German (Deutsch)
@@ -5177,6 +5205,7 @@ Hodźi so tež za přidaće abo wotstronjenje starych powěsćow wužiwać.',
 	'centralnotice-end-date' => 'Kónčny datum',
 	'centralnotice-enabled' => 'Zmóžnjeny',
 	'centralnotice-modify' => 'Wotpósłać',
+	'centralnotice-view' => 'Zwobraznić',
 	'centralnotice-save-banner' => 'Chorhoj składować',
 	'centralnotice-preview' => 'Přehlad',
 	'centralnotice-nopreview' => '(žadyn přehlad k dispoziciji)',
