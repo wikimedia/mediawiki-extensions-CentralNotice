@@ -709,6 +709,7 @@ $messages['arc'] = array(
 	'centralnotice-collapse-button' => 'ܐܟܪܟ ܐܣܘܪܐ',
 	'centralnotice-expand-button' => 'ܪܘܚ ܐܣܘܪܐ',
 	'centralnotice-countries' => 'ܐܬܪ̈ܘܬܐ',
+	'centralnotice-language' => 'ܠܫܢܐ',
 	'centralnotice-country' => 'ܐܬܪܐ',
 );
 
@@ -3693,10 +3694,12 @@ Lisa allpool üks.',
 	'centralnotice-talk-link' => 'arutelu',
 	'centralnotice-campaign-settings' => 'Teadete sätted',
 	'centralnotice-banner-settings' => 'Mallide sätted',
+	'centralnotice-banner-content' => 'Mallide sisu',
 	'centralnotice-filters' => 'Logifiltrid',
 	'centralnotice-date' => 'Kuupäev',
 	'centralnotice-apply-filters' => 'Rakenda filtrid',
 	'centralnotice-clear-filters' => 'Eemalda filtrid',
+	'centralnotice-banner-messages' => 'Mallide sõnumid',
 );
 
 /** Basque (Euskara)
