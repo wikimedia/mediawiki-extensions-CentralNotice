@@ -601,6 +601,7 @@ class CentralNoticeDB {
 			'SO'=>'Somalia',
 			'ZA'=>'South Africa',
 			'KR'=>'South Korea',
+			'SS'=>'South Sudan',
 			'ES'=>'Spain',
 			'LK'=>'Sri Lanka',
 			'SD'=>'Sudan',
