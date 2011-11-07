@@ -191,7 +191,7 @@ function hideBanner() {
 }
 function setBannerHidingCookie( bannerType ) {
 	var e = new Date();
-	e.setTime( e.getTime() + (7*24*60*60*1000) ); // one week
+	e.setTime( e.getTime() + (14*24*60*60*1000) ); // two weeks
 	var work='centralnotice_'+bannerType+'=hide; expires=' + e.toGMTString() + '; path=/';
 	document.cookie = work;
 }
