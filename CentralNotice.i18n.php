@@ -11022,7 +11022,7 @@ $messages['si'] = array(
 	'centralnotice-query' => 'වත්මන් ව්‍යාපාර සංස්කරණය කරන්න',
 	'centralnotice-notice-name' => 'ව්‍යාපාරයේ නම',
 	'centralnotice-end-date' => 'අවසන් දිනය',
-	'centralnotice-enabled' => 'බලය දෙන ලදී',
+	'centralnotice-enabled' => 'සක්‍රීය කරනලදී',
 	'centralnotice-modify' => 'යොමන්න',
 	'centralnotice-view' => 'දර්ශනය',
 	'centralnotice-save-banner' => 'බැනරය සුරකින්න',
@@ -11156,8 +11156,8 @@ $messages['si'] = array(
 	'centralnotice-banner-content-changed' => 'වෙනස්කරන ලදි',
 	'centralnotice-filters' => 'වාර්තා සටහන් පෙරනය',
 	'centralnotice-date' => 'දිනය',
-	'centralnotice-apply-filters' => 'පෙරහන් එක් කරන්න',
-	'centralnotice-clear-filters' => 'පෙරහන් පිරිසිදු කරන්න',
+	'centralnotice-apply-filters' => 'පෙරහන් එක්කරන්න',
+	'centralnotice-clear-filters' => 'පෙරහන් ඉවත්කරන්න',
 	'centralnotice-banner-messages' => 'සිරස්තල පණිවිඩය',
 );
 
