@@ -13167,6 +13167,7 @@ $messages['udm'] = array(
  * @author Dim Grits
  * @author NickK
  * @author Riwnodennyk
+ * @author Sodmy
  * @author Ytsukeng Fyvaprol
  * @author Тест
  */
@@ -13293,6 +13294,7 @@ $messages['uk'] = array(
 	'centralnotice-banner-hidable' => 'Статичний / Приховуваний',
 	'centralnotice-banner-collapsible' => 'Що згортається',
 	'centralnotice-banner-fundraising' => 'Це банер збору коштів',
+	'centralnotice-banner-autolink' => 'Автоматично створити посилання на цільову сторінку',
 	'centralnotice-banner-autolink-help' => 'Створіть тег в тілі банера з $1 й вкажіть нижче одну чи декілька цільових сторінок, наприклад $2. Поле href у посиланні буде створено автоматично.',
 	'centralnotice-banner-landing-pages' => 'Цільові сторінки (через кому):',
 	'centralnotice-geo' => "Геоприв'язка",
@@ -13329,6 +13331,7 @@ $messages['uk'] = array(
 	'centralnotice-anon' => 'Відображати анонімним користувачам',
 	'centralnotice-account' => 'Відображати для зареєстрованих користувачів',
 	'centralnotice-fundraising' => 'Збір коштів',
+	'centralnotice-autolink' => 'Створення автоматичного посилання',
 	'centralnotice-landingpages' => 'Цільові сторінки',
 	'centralnotice-banner-content' => 'Вміст банера',
 	'centralnotice-banner-content-changed' => 'Змінено',
