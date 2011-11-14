@@ -70,7 +70,7 @@ JAVASCRIPT;
 			"' + bannerPage + '\"></script>';\n";
 		$js .= <<<JAVASCRIPT
 				if ( document.cookie.indexOf( 'centralnotice_'+bannerType+'=hide' ) == -1 ) {
-					$( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + 
+					jQuery( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + 
 						( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + 
 						' cn-' + bannerType + '">'+bannerScript+'</div>' );
 				}
@@ -137,7 +137,7 @@ JAVASCRIPT;
 			}
 		}
 	}
-	$( document ).ready( function () {
+	jQuery( document ).ready( function ( $ ) {
 		// Initialize the query string vars
 		$.centralNotice.fn.getQueryStringVariables();
 		if( $.centralNotice.data.getVars['banner'] ) {
@@ -184,7 +184,7 @@ JAVASCRIPT;
 	}
 }
 function hideBanner() {
-	$( '#centralNotice' ).hide(); // Hide current banner
+	jQuery( '#centralNotice' ).hide(); // Hide current banner
 	var bannerType = $.centralNotice.data.bannerType;
 	if ( bannerType === undefined ) bannerType = 'default';
 	setBannerHidingCookie( bannerType ); // Hide future banners of the same type
