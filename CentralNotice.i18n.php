@@ -9028,8 +9028,11 @@ $messages['pdc'] = array(
 	'centralnotice-year' => 'Yaahr',
 	'centralnotice-month' => 'Munet',
 	'centralnotice-hours' => 'Schtund',
+	'centralnotice-min' => 'Minudd',
 	'centralnotice-project-name' => 'Project-Naame',
+	'centralnotice-countries' => 'Lenner',
 	'centralnotice-languages' => 'Schprooche',
+	'centralnotice-language' => 'Schprooch',
 	'centralnotice-country' => 'Land',
 );
 
