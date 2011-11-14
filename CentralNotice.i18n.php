@@ -5367,6 +5367,7 @@ Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 /** Hungarian (Magyar)
  * @author BáthoryPéter
  * @author Dani
+ * @author Dj
  * @author Misibacsi
  */
 $messages['hu'] = array(
@@ -5383,6 +5384,7 @@ Használhatod újak hozzáadására, vagy régiek eltávolítására is.',
 	'centralnotice-end-date' => 'Befejezés dátuma',
 	'centralnotice-enabled' => 'Engedélyezve',
 	'centralnotice-modify' => 'Elküldés',
+	'centralnotice-view' => 'Megtekintés',
 	'centralnotice-save-banner' => 'Hirdetés mentése',
 	'centralnotice-preview' => 'Előnézet',
 	'centralnotice-nopreview' => '(Előnézet nem áll rendelkezésre)',
@@ -5399,6 +5401,7 @@ Használhatod újak hozzáadására, vagy régiek eltávolítására is.',
 	'centralnotice-list-templates' => 'Sablonok listázása',
 	'centralnotice-multiple-projects' => 'több ($1)',
 	'centralnotice-multiple-languages' => 'több ($1)',
+	'centralnotice-multiple-countries' => 'több ($1)',
 	'centralnotice-all-projects' => 'Minden projekt',
 	'centralnotice-translations' => 'Fordítások',
 	'centralnotice-translate-to' => 'Lefordítás',
@@ -5493,6 +5496,7 @@ Itt adhatsz hozzá újakat.',
 	'centralnotice-view-allocation' => 'Hirdetéskiosztás megtekintése',
 	'centralnotice-allocation-instructions' => 'Válaszd ki azt a környezetet, amihez meg szeretnéd nézni a kiosztott hirdetéseket:',
 	'centralnotice-languages' => 'Nyelvek',
+	'centralnotice-language' => 'Nyelv',
 	'centralnotice-projects' => 'Projektek',
 	'centralnotice-country' => 'Ország',
 	'centralnotice-no-allocation' => 'Nincs kiosztva egyetlen hirdetés sem.',
@@ -5501,6 +5505,8 @@ Itt adhatsz hozzá újakat.',
 	'centralnotice-documentwrite-error' => 'A document.write() nem használható hirdetéseken belül.
 További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lapon olvashatsz.',
 	'centralnotice-preferred' => 'Előnyben részesített',
+	'centralnotice-timestamp' => 'Időbélyeg',
+	'centralnotice-landingpages' => 'Érkezési oldal',
 );
 
 /** Interlingua (Interlingua)
