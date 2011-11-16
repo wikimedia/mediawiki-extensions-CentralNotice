@@ -1102,6 +1102,7 @@ class CentralNotice extends SpecialPage {
 	function addCampaign( $noticeName, $enabled, $start, $projects,
 		$project_languages, $geotargeted, $geo_countries )
 	{
+		$noticeName = trim( $noticeName );
 		if ( CentralNoticeDB::campaignExists( $noticeName ) ) {
 			$this->showError( 'centralnotice-notice-exists' );
 			return null;
