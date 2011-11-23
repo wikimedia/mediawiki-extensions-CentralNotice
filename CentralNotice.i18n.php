@@ -5993,6 +5993,7 @@ $messages['is'] = array(
  * @author Darth Kule
  * @author F. Cosoleto
  * @author Melos
+ * @author Nemo bis
  * @author Pietrodn
  */
 $messages['it'] = array(
@@ -6096,7 +6097,7 @@ Non aggiorno',
 	'centralnotice-collapsed-banner' => 'Banner compresso',
 	'centralnotice-banner-display' => 'Visualizza in:',
 	'centralnotice-banner-anonymous' => 'Utenti anonimi',
-	'centralnotice-banner-logged-in' => 'Utenti collegati',
+	'centralnotice-banner-logged-in' => 'Utenti registrati',
 	'centralnotice-banner-type' => 'Tipo banner:',
 	'centralnotice-banner-hidable' => 'Fisso/Nascondibile',
 	'centralnotice-banner-collapsible' => 'Contraibile',
@@ -11139,7 +11140,7 @@ Nun junciutu',
 	'centralnotice-preferred' => 'Prifiriti',
 );
 
-/** Serbo-Croatian (Srpskohrvatski / Српскохрватски)
+/** Serbo-Croatian (Srpskohrvatski)
  * @author OC Ripper
  */
 $messages['sh'] = array(
@@ -11882,7 +11883,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-log-label' => '<span class="cn-log-label">$1:</span> $2',
 );
 
-/** Serbian Latin ekavian (‪Srpski (latinica)‬)
+/** Serbian (Latin script) (‪Srpski (latinica)‬)
  * @author Michaello
  */
 $messages['sr-el'] = array(
@@ -12447,7 +12448,7 @@ $messages['tet'] = array(
 	'centralnotice-languages' => 'Lian sira',
 );
 
-/** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
+/** Tajik (Cyrillic script) (Тоҷикӣ)
  * @author Ibrahim
  */
 $messages['tg-cyrl'] = array(
@@ -12534,7 +12535,7 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-preferred' => 'Тарҷиҳи додашуда',
 );
 
-/** Tajik (Latin) (Тоҷикӣ (Latin))
+/** Tajik (Latin script) (tojikī)
  * @author Liangent
  */
 $messages['tg-latn'] = array(
@@ -13155,7 +13156,7 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 	'centralnotice-user' => 'Kullanıcı',
 );
 
-/** Tatar (Cyrillic) (Татарча/Tatarça (Cyrillic))
+/** Tatar (Cyrillic script) (Татарча)
  * @author Ильнар
  */
 $messages['tt-cyrl'] = array(
