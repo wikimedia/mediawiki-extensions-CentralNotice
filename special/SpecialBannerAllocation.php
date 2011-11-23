@@ -32,7 +32,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		// Output ResourceLoader module for styling and javascript functions
-		$wgOut->addModules( 'ext.centralNotice.interface' );
+		$wgOut->addModules( array( 'ext.centralNotice.interface', 'ext.centralNotice.bannerStats' ) );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
@@ -160,23 +160,34 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 		$bannerList = $bannerLister->getJsonList();
 		$banners = FormatJson::decode( $bannerList, true );
+		$campaigns = array();
 		$anonBanners = array();
 		$accountBanners = array();
 		$anonWeight = 0;
 		$accountWeight = 0;
 
 		if ( $banners ) {
+			
 			foreach ( $banners as $banner ) {
-				if ($banner['display_anon']) {
+				if ( $banner['display_anon'] ) {
 					$anonBanners[] = $banner;
 					$anonWeight += $banner['weight'];
 				}
 
-				if ($banner['display_account']) {
+				if ( $banner['display_account'] ) {
 					$accountBanners[] = $banner;
 					$accountWeight += $banner['weight'];
 				}
+				
+				if ( $banner['campaign'] ) {
+					$campaigns[] = "'".$banner['campaign']."'";
+				}
 			}
+			
+			// Build campaign list for bannerstats.js
+			$campaignList = implode( ', ', $campaigns );
+			$js = "wgCentralNoticeAllocationCampaigns = array( $campaignList );";
+			$htmlOut .= Html::inlineScript( $js );
 
 			if ( $anonBanners ) {
 				$htmlOut .= $this->getTable( wfMsg ( 'centralnotice-banner-anonymous' ), $anonBanners, $anonWeight );
@@ -223,11 +234,15 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 			$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
 			$htmlOut .= Html::closeElement( 'td' );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-
-			$sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
-					'template=' . urlencode( $banner['name'] ) )
-			);
+			
+			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
+			// The span class is used by bannerstats.js to find where to insert the stats
+			$htmlOut .= Html::openElement( 'span', 
+				array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
+			$htmlOut .= $sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
+					'template=' . urlencode( $banner['name'] ) );
+			$htmlOut .= Html::closeElement( 'span' );
+			$htmlOut .= Html::closeElement( 'td' );
 
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 

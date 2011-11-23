@@ -88,6 +88,11 @@ $wgResourceModules['ext.centralNotice.interface'] = array(
 	'styles' => 'centralnotice.css',
 	'messages' => 'centralnotice-documentwrite-error'
 );
+$wgResourceModules['ext.centralNotice.bannerStats'] = array(
+	'localBasePath' => dirname( __FILE__ ),
+	'remoteExtPath' => 'CentralNotice',
+	'scripts' => 'bannerstats.js',
+);
 
 function efCentralNoticeUnitTests( &$files ) {
 	$files[] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
