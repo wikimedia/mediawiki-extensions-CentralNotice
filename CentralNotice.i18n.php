@@ -228,7 +228,8 @@ $messages['qqq'] = array(
 	'centralnotice-multiple-languages' => '$1 is the number of languages in which the notice is available. It is always greater than 3. This message is in the column "languages" in the table.',
 	'centralnotice-multiple-countries' => '$1 is the number of countries in which the notice is available.',
 	'centralnotice-all-projects' => 'Data entry in the column "Projects" in the table on the [[m:Special:CentralNotice|Central Notice]] special page.',
-	'centralnotice-language-listing' => 'A language listing for the language multi-select box. First parameter is the language code. Second parameter is the name of the language.',
+	'centralnotice-language-listing' => '{{optional}}
+A language listing for the language multi-select box. First parameter is the language code. Second parameter is the name of the language.',
 	'centralnotice-translations' => '{{Identical|Translation}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
@@ -287,8 +288,10 @@ See also {{msg|Centralnotice-hide-button}}.',
 	'centralnotice-no-assignments' => 'Appears in the middle of a sentence; should be all lower case.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.
 {{Identical|Talk}}',
-	'centralnotice-user-links' => '$1 is a link to the user page, $2 is a link to the user talk page.',
-	'centralnotice-log-label' => '$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
+	'centralnotice-user-links' => '{{optional}}
+$1 is a link to the user page, $2 is a link to the user talk page.',
+	'centralnotice-log-label' => '{{optional}}
+$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
 	'centralnotice-campaign-settings' => 'Label for a radio button',
 	'centralnotice-banner-settings' => "Label for a radio button
 
@@ -558,7 +561,7 @@ $messages['ar'] = array(
 	'centralnotice-weight' => 'الوزن',
 	'centralnotice-locked' => 'مغلق',
 	'centralnotice-notice' => 'حملة',
-	'centralnotice-notice-heading' => 'الحملة : $1',
+	'centralnotice-notice-heading' => 'الحملة: $1',
 	'centralnotice-notices' => 'الإخطارات',
 	'centralnotice-notice-exists' => 'الإخطار موجود بالفعل.
 لا إضافة',
@@ -579,7 +582,7 @@ $messages['ar'] = array(
 	'centralnotice-hours' => 'الساعة',
 	'centralnotice-min' => 'الدقيقة',
 	'centralnotice-project-lang' => 'لغة المشروع',
-	'centralnotice-select' => 'حدد : $1',
+	'centralnotice-select' => 'حدد: $1',
 	'centralnotice-top-ten-languages' => 'أفضل 10 لغات',
 	'centralnotice-project-name' => 'اسم المشروع',
 	'centralnotice-start-date' => 'تاريخ البدء',
@@ -619,7 +622,7 @@ $messages['ar'] = array(
 	'centralnotice-clone-notice' => 'أنشئ نسخة من القالب',
 	'centralnotice-clone-name' => 'الاسم:',
 	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات المتوفرة للقالب',
-	'centralnotice-insert' => 'إدراج : $1',
+	'centralnotice-insert' => 'أدرج: $1',
 	'centralnotice-hide-button' => 'أخفِ الوصلة',
 	'centralnotice-collapse-button' => 'اطوِ الوصلة',
 	'centralnotice-expand-button' => 'وسّع الوصلة',
@@ -10367,6 +10370,7 @@ Vedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe infor
 	'centralnotice-anon' => 'Afișează utilizatorilor anonimi',
 	'centralnotice-account' => 'Afișează utilizatorilor autentificați',
 	'centralnotice-fundraising' => 'Strângere de fonduri',
+	'centralnotice-autolink' => 'Creare automată de legătură',
 	'centralnotice-landingpages' => 'Paginile de destinație',
 	'centralnotice-banner-content' => 'Conținutul bannerului',
 	'centralnotice-banner-content-changed' => 'Modificat',
