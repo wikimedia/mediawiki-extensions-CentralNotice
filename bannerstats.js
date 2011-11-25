@@ -8,15 +8,15 @@ $( document ).ready( function () {
 		$.ajax( {
 			'url': statUrl,
 			'data': {},
-			'dataType': 'json',
+			'dataType': 'jsonp',
 			'type': 'GET',
 			'success': function( data ) {
-				console.debug( "Success" );
-				console.debug( data );
+				//console.debug( "Success" );
+				//console.debug( data );
 			},
 			'error': function( xhr ) {
-				console.debug( "Error" );
-				console.debug( xhr );
+				//console.debug( "Error" );
+				//console.debug( xhr );
 			}
 		} );
 	} )
