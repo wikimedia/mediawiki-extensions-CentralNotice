@@ -1,8 +1,8 @@
 <?php
 
 /**
- * This class generates a paginated log of recent changes to banner messages (the parts that get 
- * translated). We use the rencentchanges table since it is lightweight, however, this means that 
+ * This class generates a paginated log of recent changes to banner messages (the parts that get
+ * translated). We use the rencentchanges table since it is lightweight, however, this means that
  * the log only goes back 30 days.
  */
 class CentralNoticePageLogPager extends ReverseChronologicalPager {
@@ -16,18 +16,18 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	function __construct( $special, $type = 'bannercontent' ) {
 		$this->special = $special;
 		parent::__construct( $special );
-		
+
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 		$this->logType = $type;
 	}
-	
+
 	/**
 	 * Sort the log list by timestamp
 	 */
 	function getIndexField() {
 		return 'rc_timestamp';
 	}
-	
+
 	/**
 	 * Pull log entries from the database
 	 */
@@ -54,29 +54,29 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			'conds' => $conds, // WHERE conditions
 		);
 	}
-	
+
 	/**
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
 		global $wgLang, $wgExtensionAssetsPath;
-		
+
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
-		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(), 
+		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(),
 			$loggedUser->getName() );
-		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(), 
+		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(),
 			wfMsg ( 'centralnotice-talk-link' ) );
-			
+
 		$language = 'en'; // English is the default for CentralNotice messages
-		
+
 		if ( $this->logType == 'bannercontent' ) {
 			// Extract the banner name from the title
 			$pattern = '/Centralnotice-template-(.*)/';
 			preg_match( $pattern, $row->rc_title, $matches );
 			$banner = $matches[1];
-		} else if ( $this->logType == 'bannermessages' ) {
+		} elseif ( $this->logType == 'bannermessages' ) {
 			// Split the title into banner, message, and language
 			$titlePieces = explode( "/", $row->rc_title, 2 );
 			$titleBase = $titlePieces[0];
@@ -86,17 +86,17 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$banner = $matches[1];
 			$message = $matches[2];
 		}
-		
+
 		// Create banner link
 		$bannerLink = $this->getSkin()->makeLinkObj( $this->viewPage,
 			htmlspecialchars( $banner ),
 			'template=' . urlencode( $banner ) );
-		
+
 		// Create title object
 		$title = Title::newFromText( "MediaWiki:{$row->rc_title}" );
-			
+
 		if ( $this->logType == 'bannercontent' ) {
-			// If the banner was just created, show a link to the banner. If the banner was 
+			// If the banner was just created, show a link to the banner. If the banner was
 			// edited, show a link to the banner and a link to the diff.
 			if ( $row->rc_new ) {
 				$bannerCell = $bannerLink;
@@ -111,13 +111,13 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				// See ChangesList->preCacheMessages() for example.
 				$bannerCell = $bannerLink . "&nbsp;(<a href=\"$diffUrl\">diff</a>)";
 			}
-		} else if ( $this->logType == 'bannermessages' ) {
+		} elseif ( $this->logType == 'bannermessages' ) {
 			$bannerCell = $bannerLink;
-			
+
 			// Create the message link
 			$messageLink = $this->getSkin()->makeLinkObj( $title, htmlspecialchars( $message ) );
-			
-			// If the message was just created, show a link to the message. If the message was 
+
+			// If the message was just created, show a link to the message. If the message was
 			// edited, show a link to the message and a link to the diff.
 			if ( $row->rc_new ) {
 				$messageCell = $messageLink;
@@ -133,10 +133,10 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				$messageCell = $messageLink . "&nbsp;(<a href=\"$diffUrl\">diff</a>)";
 			}
 		}
-				
+
 		// Begin log entry primary row
 		$htmlOut = Xml::openElement( 'tr' );
-		
+
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		$htmlOut .= Xml::closeElement( 'td' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
@@ -159,13 +159,13 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
 		);
-		
+
 		// End log entry primary row
 		$htmlOut .= Xml::closeElement( 'tr' );
-		
+
 		return $htmlOut;
 	}
-	
+
 	function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ) );
@@ -194,7 +194,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::closeElement( 'tr' );
 		return $htmlOut;
 	}
-	
+
 	/**
 	 * Close table
 	 */
@@ -203,5 +203,5 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::closeElement( 'table' );
 		return $htmlOut;
 	}
-	
+
 }

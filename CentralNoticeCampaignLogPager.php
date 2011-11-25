@@ -7,27 +7,27 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		global $wgRequest;
 		$this->special = $special;
 		parent::__construct();
-		
+
 		// Override paging defaults
 		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
 		$this->mLimitsShown = array( 20, 50, 100 );
-		
+
 		$this->viewPage = SpecialPage::getTitleFor( 'CentralNotice' );
 	}
-	
+
 	/**
 	 * Sort the log list by timestamp
 	 */
 	function getIndexField() {
 	return 'notlog_timestamp';
 	}
-	
+
 	/**
 	 * Pull log entries from the database
 	 */
 	function getQueryInfo() {
 		global $wgRequest;
-		
+
 		$filterStartDate = 0;
 		$filterEndDate = 0;
 		$startYear = $wgRequest->getVal( 'start_year' );
@@ -42,7 +42,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		if ( $endMonth === 'other' ) $endMonth = null;
 		$endDay = $wgRequest->getVal( 'end_day' );
 		if ( $endDay === 'other' ) $endDay = null;
-			
+
 		if ( $startYear && $startMonth && $startDay ) {
 			$filterStartDate = $startYear . $startMonth . $startDay;
 		}
@@ -52,13 +52,13 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$filterCampaign = $wgRequest->getVal( 'campaign' );
 		$filterUser = $wgRequest->getVal( 'user' );
 		$reset = $wgRequest->getVal( 'centralnoticelogreset' );
-		
+
 		$info = array(
 			'tables' => array( 'cn_notice_log' ),
 			'fields' => '*',
 			'conds' => array()
 		);
-		
+
 		if ( !$reset ) {
 			if ( $filterStartDate > 0 ) {
 				$filterStartDate = intval( $filterStartDate.'000000' );
@@ -77,32 +77,32 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				$info['conds'][] = "notlog_user_id = $userId";
 			}
 		}
-		
+
 		return $info;
 	}
-	
-	/** 
+
+	/**
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
 		global $wgLang, $wgExtensionAssetsPath;
-		
+
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->notlog_user_id );
 		// Create the user page link
-		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(), 
+		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(),
 			$loggedUser->getName() );
-		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(), 
+		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(),
 			wfMsg ( 'centralnotice-talk-link' ) );
-		
+
 		// Create the campaign link
 		$campaignLink = $this->getSkin()->makeLinkObj( $this->viewPage,
 			htmlspecialchars( $row->notlog_not_name ),
 			'method=listNoticeDetail&notice=' . urlencode( $row->notlog_not_name ) );
-				
+
 		// Begin log entry primary row
 		$htmlOut = Xml::openElement( 'tr' );
-		
+
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		if ( $row->notlog_action !== 'removed' ) {
 			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$row->notlog_id.'\')">'.
@@ -126,38 +126,38 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
 		);
-		
+
 		// End log entry primary row
 		$htmlOut .= Xml::closeElement( 'tr' );
-		
+
 		if ( $row->notlog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr', array( 'id' => 'cn-log-details-'.$row->notlog_id, 'style' => 'display:none;' ) );
-			
+
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				'&nbsp;' // force a table cell in older browsers
 			);
 			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '5' ) );
 			if ( $row->notlog_action == 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
-			} else if ( $row->notlog_action == 'modified' ) {
+			} elseif ( $row->notlog_action == 'modified' ) {
 				$htmlOut .= $this->showChanges( $row );
 			}
 			$htmlOut .= Xml::closeElement( 'td' );
-			
+
 			// End log entry primary row
 			$htmlOut .= Xml::closeElement( 'tr' );
 		}
-		
+
 		return $htmlOut;
 	}
-	
+
 	function showInitialSettings( $row ) {
 		global $wgLang;
 		$details = '';
 		$details .= wfMsg (
 			'centralnotice-log-label',
-			wfMsg ( 'centralnotice-start-date' ), 
+			wfMsg ( 'centralnotice-start-date' ),
 			$wgLang->date( $row->notlog_end_start ).' '.$wgLang->time( $row->notlog_end_start )
 		)."<br/>";
 		$details .= wfMsg (
@@ -203,7 +203,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		}
 		return $details;
 	}
-	
+
 	function showChanges( $row ) {
 		global $wgLang;
 		$details = '';
@@ -212,8 +212,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'centralnotice-log-label',
 				wfMsg ( 'centralnotice-start-date' ),
 				wfMsg (
-					'centralnotice-changed', 
-					$wgLang->date( $row->notlog_begin_start ).' '.$wgLang->time( $row->notlog_begin_start ), 
+					'centralnotice-changed',
+					$wgLang->date( $row->notlog_begin_start ).' '.$wgLang->time( $row->notlog_begin_start ),
 					$wgLang->date( $row->notlog_end_start ).' '.$wgLang->time( $row->notlog_end_start )
 				)
 			)."<br/>";
@@ -223,8 +223,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'centralnotice-log-label',
 				wfMsg ( 'centralnotice-end-date' ),
 				wfMsg (
-					'centralnotice-changed', 
-					$wgLang->date( $row->notlog_begin_end ).' '.$wgLang->time( $row->notlog_begin_end ), 
+					'centralnotice-changed',
+					$wgLang->date( $row->notlog_begin_end ).' '.$wgLang->time( $row->notlog_begin_end ),
 					$wgLang->date( $row->notlog_end_end ).' '.$wgLang->time( $row->notlog_end_end )
 				)
 			)."<br/>";
@@ -266,7 +266,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		}
 		return $details;
 	}
-	
+
 	private function testBooleanChange( $param, $row ) {
 		$result = '';
 		$beginField = 'notlog_begin_'.$param;
@@ -276,15 +276,15 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'centralnotice-log-label',
 				wfMsg ( 'centralnotice-'.$param ),
 				wfMsg (
-					'centralnotice-changed', 
-					( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ), 
+					'centralnotice-changed',
+					( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ),
 					( $row->$endField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) )
 				)
 			)."<br/>";
 		}
 		return $result;
 	}
-	
+
 	private function testSetChange( $param, $row ) {
 		$result = '';
 		$beginField = 'notlog_begin_'.$param;
@@ -316,7 +316,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		}
 		return $result;
 	}
-	
+
 	/**
 	 * Specify table headers
 	 */
@@ -343,7 +343,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::closeElement( 'tr' );
 		return $htmlOut;
 	}
-	
+
 	/**
 	 * Close table
 	 */
@@ -352,5 +352,5 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::closeElement( 'table' );
 		return $htmlOut;
 	}
-	
+
 }

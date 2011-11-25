@@ -6,17 +6,17 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	function __construct( $special ) {
 		$this->special = $special;
 		parent::__construct($special);
-		
+
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 	}
-	
+
 	/**
 	 * Sort the log list by timestamp
 	 */
 	function getIndexField() {
 		return 'tmplog_timestamp';
 	}
-	
+
 	/**
 	 * Pull log entries from the database
 	 */
@@ -26,29 +26,29 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			'fields' => '*',
 		);
 	}
-	
+
 	/**
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
 		global $wgLang, $wgExtensionAssetsPath;
-		
+
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->tmplog_user_id );
 		// Create the user page link
-		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(), 
+		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(),
 			$loggedUser->getName() );
-		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(), 
+		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(),
 			wfMsg ( 'centralnotice-talk-link' ) );
-		
+
 		// Create the banner link
 		$bannerLink = $this->getSkin()->makeLinkObj( $this->viewPage,
 			htmlspecialchars( $row->tmplog_template_name ),
 			'template=' . urlencode( $row->tmplog_template_name ) );
-				
+
 		// Begin log entry primary row
 		$htmlOut = Xml::openElement( 'tr' );
-		
+
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		if ( $row->tmplog_action !== 'removed' ) {
 			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$row->tmplog_id.'\')">'.
@@ -72,32 +72,32 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
 		);
-		
+
 		// End log entry primary row
 		$htmlOut .= Xml::closeElement( 'tr' );
-		
+
 		if ( $row->tmplog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr', array( 'id' => 'cn-log-details-'.$row->tmplog_id, 'style' => 'display:none;' ) );
-			
+
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				'&nbsp;' // force a table cell in older browsers
 			);
 			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '5' ) );
 			if ( $row->tmplog_action == 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
-			} else if ( $row->tmplog_action == 'modified' ) {
+			} elseif ( $row->tmplog_action == 'modified' ) {
 				$htmlOut .= $this->showChanges( $row );
 			}
 			$htmlOut .= Xml::closeElement( 'td' );
-			
+
 			// End log entry primary row
 			$htmlOut .= Xml::closeElement( 'tr' );
 		}
-		
+
 		return $htmlOut;
 	}
-	
+
 	function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ) );
@@ -121,7 +121,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::closeElement( 'tr' );
 		return $htmlOut;
 	}
-	
+
 	/**
 	 * Close table
 	 */
@@ -130,40 +130,40 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::closeElement( 'table' );
 		return $htmlOut;
 	}
-	
+
 	function showInitialSettings( $row ) {
 		global $wgLang;
 		$details = '';
 		$details .= wfMsg (
 			'centralnotice-log-label',
-			wfMsg ( 'centralnotice-anon' ), 
+			wfMsg ( 'centralnotice-anon' ),
 			($row->tmplog_end_anon ? 'on' : 'off')
 		)."<br/>";
 		$details .= wfMsg (
 			'centralnotice-log-label',
-			wfMsg ( 'centralnotice-account' ), 
+			wfMsg ( 'centralnotice-account' ),
 			($row->tmplog_end_account ? 'on' : 'off')
 		)."<br/>";
 		$details .= wfMsg (
 			'centralnotice-log-label',
-			wfMsg ( 'centralnotice-fundraising' ), 
+			wfMsg ( 'centralnotice-fundraising' ),
 			($row->tmplog_end_fundraising ? 'on' : 'off')
 		)."<br/>";
 		$details .= wfMsg (
 			'centralnotice-log-label',
-			wfMsg ( 'centralnotice-autolink' ), 
+			wfMsg ( 'centralnotice-autolink' ),
 			($row->tmplog_end_autolink ? 'on' : 'off')
 		)."<br/>";
 		if ( $row->tmplog_end_landingpages ) {
 			$details .= wfMsg (
 				'centralnotice-log-label',
-				wfMsg ( 'centralnotice-landingpages' ), 
+				wfMsg ( 'centralnotice-landingpages' ),
 				$row->tmplog_end_landingpages
 			)."<br/>";
 		}
 		return $details;
 	}
-	
+
 	function showChanges( $row ) {
 		global $wgLang;
 		$details = '';
@@ -182,7 +182,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		}
 		return $details;
 	}
-	
+
 	private function testBooleanChange( $param, $row ) {
 		$result = '';
 		$beginField = 'tmplog_begin_'.$param;
@@ -192,8 +192,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				'centralnotice-log-label',
 				wfMsg ( 'centralnotice-'.$param ),
 				wfMsg (
-					'centralnotice-changed', 
-					( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ), 
+					'centralnotice-changed',
+					( $row->$beginField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) ),
 					( $row->$endField ? wfMsg ( 'centralnotice-on' ) : wfMsg ( 'centralnotice-off' ) )
 				)
 			)."<br/>";
