@@ -7953,9 +7953,11 @@ $messages['mn'] = array(
 );
 
 /** Marathi (मराठी)
+ * @author Evision
  * @author Htt
  * @author Mahitgar
  * @author V.narsikar
+ * @author Vinayak.kulkarni11
  */
 $messages['mr'] = array(
 	'right-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
@@ -7963,8 +7965,10 @@ $messages['mr'] = array(
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
 	'centralnotice-end-date' => 'अंतिम दिनांक',
 	'centralnotice-modify' => 'पाठवा',
+	'centralnotice-save-banner' => 'banner वाचवा',
 	'centralnotice-preview' => 'झलक',
 	'centralnotice-add-new' => 'नव्या मोहीमेची सुरूवात करा',
+	'centralnotice-remove' => 'काढा',
 	'centralnotice-translate-heading' => '$1 चे भाषांतर',
 	'centralnotice-manage' => 'मोहीम हाताळा',
 	'centralnotice-add' => 'वाढवा',
@@ -7976,12 +7980,15 @@ $messages['mr'] = array(
 	'centralnotice-translate' => 'भाषांतर करा',
 	'centralnotice-english' => 'इंग्लिश',
 	'centralnotice-banner-name' => 'मथळ्याचे नाव',
+	'centralnotice-weight' => 'वजन',
+	'centralnotice-locked' => 'बंद',
 	'centralnotice-day' => 'दिनांक',
 	'centralnotice-year' => 'वर्ष',
 	'centralnotice-month' => 'महिना',
 	'centralnotice-hours' => 'तास',
 	'centralnotice-min' => 'मिनीट',
 	'centralnotice-project-lang' => 'प्रकल्प भाषा',
+	'centralnotice-top-ten-languages' => 'दहा उच्च भाषा',
 	'centralnotice-project-name' => 'प्रकल्पाचे नाव',
 	'centralnotice-start-date' => 'सुरूवात दिनांक',
 	'centralnotice-start-time' => 'सुरू केल्याची वेळ (युटीसी)',
@@ -7997,6 +8004,7 @@ $messages['mr'] = array(
 एक मथळा खाली जोडा.',
 	'centralnotice-no-templates-translate' => 'भाषांतरे संपादीत करण्याकरिता कोणतेही मुखशीर्षक (बॅनर) उपलब्ध नाही',
 	'centralnotice-number-uses' => 'उपयोग',
+	'centralnotice-settings' => 'मांडणी',
 	'centralnotice-edit-template' => 'मुखशीर्षक (बॅनर) संपादीत करा',
 	'centralnotice-edit-template-summary' => 'स्थानिकीकरण संदेश तयार करण्याकरिता, तीहेरी महिरपीकंस  संयोगचिन्ह(-) असलेले सूत्राने (स्ट्रींग)भरा, उदाहरणार्थ. {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'संदेश',
@@ -8005,11 +8013,14 @@ $messages['mr'] = array(
 	'centralnotice-clone-notice' => 'मुखशीर्षकाची(बॅनरची प्रत बनवा)',
 	'centralnotice-clone-name' => 'नाव:',
 	'centralnotice-preview-all-template-translations' => 'मुखशीर्षकांच्या सर्व उपलब्ध भाषांतराची झलक पहा',
+	'centralnotice-insert' => 'समाविष्ट करा : $1',
+	'centralnotice-hide-button' => 'दुवा लपवा',
 	'centralnotice-languages' => 'भाषा',
 	'centralnotice-projects' => 'प्रकल्प',
 	'centralnotice-country' => 'देश',
 	'centralnotice-percentage' => 'टक्केवारी',
 	'centralnotice-preferred' => 'प्राधान्य',
+	'centralnotice-view-logs' => 'नोंदी पहा',
 	'centralnotice-user' => 'सदस्य',
 	'centralnotice-action' => 'क्रिया',
 );
