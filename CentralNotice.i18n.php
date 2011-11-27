@@ -937,9 +937,18 @@ Amiesta una debaxo.',
 	'centralnotice-banner-landing-pages' => 'Páxines de destín (separaes por comes):',
 	'centralnotice-geo' => 'Xeollocalizáu',
 	'centralnotice-countries' => 'Países',
+	'centralnotice-allocation' => 'Distribución',
+	'centralnotice-view-allocation' => 'Ver la distribución de la pancarta',
+	'centralnotice-allocation-instructions' => "Escueyi l'entornu pal que quies ver la distribución de pancartes:",
 	'centralnotice-languages' => 'Llingües',
+	'centralnotice-language' => 'Llingua',
 	'centralnotice-projects' => 'Proyeutos',
 	'centralnotice-country' => 'País',
+	'centralnotice-no-allocation' => 'Nun hai pancartes distribuíes.',
+	'centralnotice-allocation-description' => 'Distribución de pancarta pa $1.$2 en $3:',
+	'centralnotice-percentage' => 'Porcentaxe',
+	'centralnotice-documentwrite-error' => "document.write () nun se pue utilizar dientro d'una pancarta.
+Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	'centralnotice-preferred' => 'Preferíu',
 	'centralnotice-logs' => 'Rexistros',
 	'centralnotice-view-logs' => 'Ver los rexistros',
@@ -949,6 +958,24 @@ Amiesta una debaxo.',
 	'centralnotice-changed' => 'Cammudó de <span class="cn-old-value">$1</span> a <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'activáu',
 	'centralnotice-off' => 'inactivu',
+	'centralnotice-added' => 'Amestáu <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Desaniciáu <span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => 'nun hai pancartes distribuíes',
+	'centralnotice-talk-link' => 'alderique',
+	'centralnotice-campaign-settings' => 'Preferencies de la campaña',
+	'centralnotice-banner-settings' => 'Preferencies de la pancarta',
+	'centralnotice-anon' => 'Amosar a usuarios anónimos',
+	'centralnotice-account' => 'Amosar a los usuarios identificaos',
+	'centralnotice-fundraising' => 'Recaudación de fondos',
+	'centralnotice-autolink' => "Creación automática d'enllaz",
+	'centralnotice-landingpages' => 'Páxines de destín',
+	'centralnotice-banner-content' => 'Conteníu de la pancarta',
+	'centralnotice-banner-content-changed' => 'Camudao',
+	'centralnotice-filters' => 'Peñeres de rexistru',
+	'centralnotice-date' => 'Data',
+	'centralnotice-apply-filters' => 'Aplicar peñeres',
+	'centralnotice-clear-filters' => 'Llimpiar les peñeres',
+	'centralnotice-banner-messages' => 'Mensaxes de pancarta',
 );
 
 /** Azerbaijani (Azərbaycanca)
@@ -5094,6 +5121,7 @@ $messages['hi'] = array(
 
 /** Croatian (Hrvatski)
  * @author Anton008
+ * @author Bugoslav
  * @author Dalibor Bosits
  * @author Ex13
  * @author Herr Mlinka
@@ -5233,6 +5261,7 @@ Dodajte jednu ispod',
 Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
 	'centralnotice-preferred' => 'Željeno',
 	'centralnotice-talk-link' => 'razgovor',
+	'centralnotice-date' => 'Datum',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
