@@ -7985,6 +7985,7 @@ $messages['mn'] = array(
  * @author Evision
  * @author Htt
  * @author Mahitgar
+ * @author Rahuldeshmukh101
  * @author V.narsikar
  * @author Vinayak.kulkarni11
  */
@@ -7994,6 +7995,7 @@ $messages['mr'] = array(
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
 	'centralnotice-end-date' => 'अंतिम दिनांक',
 	'centralnotice-modify' => 'पाठवा',
+	'centralnotice-view' => 'दाखवा',
 	'centralnotice-save-banner' => 'banner वाचवा',
 	'centralnotice-preview' => 'झलक',
 	'centralnotice-add-new' => 'नव्या मोहीमेची सुरूवात करा',
@@ -8009,6 +8011,9 @@ $messages['mr'] = array(
 	'centralnotice-translate' => 'भाषांतर करा',
 	'centralnotice-english' => 'इंग्लिश',
 	'centralnotice-banner-name' => 'मथळ्याचे नाव',
+	'centralnotice-banner' => 'फलक',
+	'centralnotice-banner-heading' => 'फलक: $1',
+	'centralnotice-templates' => 'फलक',
 	'centralnotice-weight' => 'वजन',
 	'centralnotice-locked' => 'बंद',
 	'centralnotice-day' => 'दिनांक',
@@ -8049,9 +8054,17 @@ $messages['mr'] = array(
 	'centralnotice-country' => 'देश',
 	'centralnotice-percentage' => 'टक्केवारी',
 	'centralnotice-preferred' => 'प्राधान्य',
+	'centralnotice-logs' => 'नोंदी',
 	'centralnotice-view-logs' => 'नोंदी पहा',
+	'centralnotice-timestamp' => 'वेळशिक्का',
 	'centralnotice-user' => 'सदस्य',
 	'centralnotice-action' => 'क्रिया',
+	'centralnotice-on' => 'चालू',
+	'centralnotice-off' => 'बंद',
+	'centralnotice-talk-link' => 'चर्चा',
+	'centralnotice-banner-content-changed' => 'बदलला',
+	'centralnotice-date' => 'दिनांक',
+	'centralnotice-banner-messages' => 'फलकावरील माहिती',
 );
 
 /** Malay (Bahasa Melayu)
