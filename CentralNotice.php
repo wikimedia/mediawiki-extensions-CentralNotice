@@ -246,9 +246,7 @@ function efCentralNoticeDefaults( &$vars ) {
 	global $wgNoticeProject;
 	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
 	// IP lookup fails we don't have any surprises.
-	$geo = (object)array();
-	$geo->{'city'} = '';
-	$geo->{'country'} = '';
+	$geo = array( 'city' => '', 'country' => '' );
 	$vars['Geo'] = $geo; // change this to wgGeo as soon as Mark updates on his end
 	$vars['wgNoticeProject'] = $wgNoticeProject;
 	return true;
