@@ -94,11 +94,17 @@ $wgResourceModules['ext.centralNotice.bannerStats'] = array(
 	'scripts' => 'bannerstats.js',
 );
 
+/**
+ * UnitTestsList hook handler
+ */
 function efCentralNoticeUnitTests( &$files ) {
 	$files[] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
 	return true;
 }
 
+/**
+ * Called through wgExtensionFunctions
+ */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
 	global $wgCentralNoticeLoader, $wgSpecialPageGroups;
@@ -151,6 +157,9 @@ function efCentralNoticeSetup() {
 	}
 }
 
+/**
+ * LoadExtensionSchemaUpdates hook handler
+ */
 function efCentralNoticeSchema( $updater = null ) {
 	$base = dirname( __FILE__ );
 	if ( $updater === null ) {
@@ -205,6 +214,9 @@ function efCentralNoticeSchema( $updater = null ) {
 	return true;
 }
 
+/**
+ * BeforePageDisplay hook handler
+ */
 function efCentralNoticeLoader( $out, $skin ) {
 	global $wgOut;
 
@@ -217,12 +229,19 @@ function efCentralNoticeLoader( $out, $skin ) {
 	return true;
 }
 
+/**
+ * SkinAfterBottomScripts hook handler
+ */
 function efCentralNoticeGeoLoader( $skin, &$text ) {
 	// Insert the geo IP lookup
 	$text .= Html::linkedScript( "//geoiplookup.wikimedia.org/" );
 	return true;
 }
 
+
+/**
+ * MakeGlobalVariablesScript hook handler
+ */
 function efCentralNoticeDefaults( &$vars ) {
 	global $wgNoticeProject;
 	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
@@ -235,6 +254,9 @@ function efCentralNoticeDefaults( &$vars ) {
 	return true;
 }
 
+/**
+ * SiteNoticeAfter hook handler
+ */
 function efCentralNoticeDisplay( &$notice ) {
 	// setup siteNotice div
 	$notice =
