@@ -94,6 +94,9 @@ $wgResourceModules['ext.centralNotice.bannerStats'] = array(
 	'scripts' => 'bannerstats.js',
 );
 
+// Temporary setting to configure salt for Harvard banner protocol
+$wgNoticeBanner_Harvard2011_salt = 'default';
+
 /**
  * UnitTestsList hook handler
  */
@@ -243,12 +246,90 @@ function efCentralNoticeGeoLoader( $skin, &$text ) {
  * MakeGlobalVariablesScript hook handler
  */
 function efCentralNoticeDefaults( &$vars ) {
-	global $wgNoticeProject;
+	// Using global $wgUser for compatibility with 1.18
+	global $wgNoticeProject, $wgUser, $wgRequest;
+
 	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
 	// IP lookup fails we don't have any surprises.
 	$geo = array( 'city' => '', 'country' => '' );
 	$vars['Geo'] = $geo; // change this to wgGeo as soon as Mark updates on his end
 	$vars['wgNoticeProject'] = $wgNoticeProject;
+
+	// XXX: Temporary WMF-specific code for the 2011 Harvard survey invitation banner.
+	// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
+	// Also, don't run if the UserDailyContribs-extension isn't installed.
+	if ( $wgUser->isLoggedIn() && function_exists( 'getUserEditCountSince' ) ) {
+
+		$cacheKey = wfMemcKey( 'CentralNotice', 'Harvard2011', $wgUser->getId() );
+		$data = $wgMemc->get( $cacheKey );
+
+		// Cached ?
+		if ( is_null( $data ) ) {
+			/**
+			 * To be eligible, the user must match all of the following:
+			 * - have an account
+			 * - not be a bot (userright=bot)
+			 * .. and match one of the following:
+			 * - be an admin (group=sysop)
+			 * - have an editcount higher than 300, of which 20 within the last 180 days (on the launch date)
+			 * - have had their account registered for less than 30 days (on to the launch date)
+			 */
+			if ( $wgUser->isAllowed( 'bot' ) ) {
+				$data = false;
+
+			} else {
+				global $wgNoticeBanner_Harvard2011_salt;
+
+				$launchTimestamp = wfTimestamp( TS_UNIX, '2011-12-06 00:00:00' );
+				$groups = $wgUser->getGroups();
+				$registrationDate = !$wgUser->getRegistration() ? 0 : $wgUser->getRegistration();
+				$daysOld = floor( ( $launchTimestamp - wfTimestamp( TS_UNIX, $registrationDate ) ) / ( 60*60*24 ) );
+				$salt = $wgNoticeBanner_Harvard2011_salt;
+				$metrics = array(
+					// "username" the user's username
+					'username' => $wgUser->getName(),
+
+					// "group" is the group name(s) of the user (comma-separated).
+					'group' => join( ',', $groups ),
+
+					// "duration" is the number of days since the user registered his (on the launching date).
+					// Note: Will be negative if user registered after launch date!
+					'duration' => $daysOld,
+
+					// "editcounts" is the user's total number of edits
+					'editcounts' => $wgUser->getEditCount() == NULL ? 0 : $wgUser->getEditCount(),
+
+					// "last6monthseditcount" is the user's total number of edits in the last 180 days (on the launching date)
+					'last6monthseditcount' => getUserEditCountSince(
+						$launchTimestamp - ( 180*24*3600 ),
+						$wgUser,
+						$launchTimestamp
+					),
+				);
+				$realData = array(
+					'id' => $wgUser->getId(),
+					'metrics' => $metrics,
+					'hash' => md5( $salt . serialize( $metrics ) ),
+				);
+
+				if (
+					in_array( 'sysop', $groups )
+					|| ( $metrics['editcounts'] >= 300 && $metrics['last6monthseditcount'] >= 20 )
+					|| ( $metrics['duration'] < 30 )
+				) {
+					$data = $realData;
+				} else {
+					$data = false;
+				}
+			}
+
+			$wgMemc->set( $cacheKey, $data, strtotime( '+10 days' ) );
+		}
+
+		$vars['wgNoticeBanner_Harvard2011'] = $data;
+
+	}
+
 	return true;
 }
 
