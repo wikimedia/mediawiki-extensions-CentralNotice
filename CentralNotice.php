@@ -247,7 +247,7 @@ function efCentralNoticeGeoLoader( $skin, &$text ) {
  */
 function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
-	global $wgNoticeProject, $wgUser, $wgRequest;
+	global $wgNoticeProject, $wgUser, $wgMemc;
 
 	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
 	// IP lookup fails we don't have any surprises.
@@ -264,7 +264,7 @@ function efCentralNoticeDefaults( &$vars ) {
 		$data = $wgMemc->get( $cacheKey );
 
 		// Cached ?
-		if ( is_null( $data ) ) {
+		if ( !$data ) {
 			/**
 			 * To be eligible, the user must match all of the following:
 			 * - have an account
