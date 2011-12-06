@@ -306,6 +306,13 @@ $1 is a label for a setting, $2 is the value of the setting (or changes to the s
 	'centralnotice-clear-filters' => 'Label for a submit button. Clear as in reset.',
 );
 
+/** Goan Konkani (Latin script) (Konknni)
+ * @author The Discoverer
+ */
+$messages['gom-latn'] = array(
+	'centralnotice-language' => 'Bhas',
+);
+
 /** Afrikaans (Afrikaans)
  * @author Naudefj
  */
@@ -2273,6 +2280,7 @@ Také zde můžete přidávat nová či odstraňovat stará.',
 	'centralnotice-multiple-languages' => 'více ($1)',
 	'centralnotice-multiple-countries' => 'Vícero ($1)',
 	'centralnotice-all-projects' => 'Všechny projekty',
+	'centralnotice-language-listing' => '$1 – $2',
 	'centralnotice-translations' => 'Překlady',
 	'centralnotice-translate-to' => 'Přeložit do jazyka',
 	'centralnotice-translate' => 'Přeložit',
@@ -7997,6 +8005,7 @@ $messages['mn'] = array(
  * @author Rahuldeshmukh101
  * @author V.narsikar
  * @author Vinayak.kulkarni11
+ * @author कोल्हापुरी
  */
 $messages['mr'] = array(
 	'centralnotice' => 'प्रचालाका कडून केन्द्रीय सुचना',
@@ -8006,6 +8015,7 @@ $messages['mr'] = array(
 	'right-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
 	'action-centralnotice-admin' => 'मध्यवर्ती सूचनांचे प्रबंधन करा',
 	'centralnotice-desc' => 'संकेतस्थळाचा मध्यवर्ती सूचना फलक',
+	'centralnotice-query' => 'सद्द अभियान संशोधित करा',
 	'centralnotice-notice-name' => 'प्रचार शीर्षक',
 	'centralnotice-end-date' => 'अंतिम दिनांक',
 	'centralnotice-enabled' => 'कार्यान्वित केले',
@@ -8013,6 +8023,7 @@ $messages['mr'] = array(
 	'centralnotice-view' => 'दाखवा',
 	'centralnotice-save-banner' => 'banner वाचवा',
 	'centralnotice-preview' => 'झलक',
+	'centralnotice-nopreview' => '(पूर्वावलोकन उपलब्द्ध नाही )',
 	'centralnotice-add-new' => 'नव्या मोहीमेची सुरूवात करा',
 	'centralnotice-remove' => 'काढा',
 	'centralnotice-translate-heading' => '$1 चे भाषांतर',
@@ -8021,6 +8032,7 @@ $messages['mr'] = array(
 	'centralnotice-add-notice' => 'नव्या मोहीमेची भर घाला',
 	'centralnotice-edit-notice' => 'सम्पादन अभियान',
 	'centralnotice-add-template' => 'नविन मथळा लावा',
+	'centralnotice-show-notices' => 'अभियान दाखवा',
 	'centralnotice-multiple-projects' => 'अनेक  ($1)',
 	'centralnotice-multiple-languages' => 'अनेक  ($1)',
 	'centralnotice-multiple-countries' => 'अनेक  ($1)',
@@ -8074,8 +8086,13 @@ $messages['mr'] = array(
 	'centralnotice-preview-all-template-translations' => 'मुखशीर्षकांच्या सर्व उपलब्ध भाषांतराची झलक पहा',
 	'centralnotice-insert' => 'समाविष्ट करा : $1',
 	'centralnotice-hide-button' => 'दुवा लपवा',
+	'centralnotice-translate-button' => 'दुव्याच्या भाषांतरासाठी मदत करा',
+	'centralnotice-donate-button' => 'दान कळ',
 	'centralnotice-banner-display' => ' दाखवा :',
 	'centralnotice-banner-anonymous' => 'अनामिक उपयोगकर्ता',
+	'centralnotice-banner-logged-in' => 'प्रवेश केलेले सदस्य',
+	'centralnotice-banner-collapsible' => 'लपवण्या सारखे',
+	'centralnotice-geo' => 'भूलक्षित',
 	'centralnotice-countries' => 'देश',
 	'centralnotice-allocation' => 'वाटप',
 	'centralnotice-languages' => 'भाषा',
@@ -8092,6 +8109,7 @@ $messages['mr'] = array(
 	'centralnotice-on' => 'चालू',
 	'centralnotice-off' => 'बंद',
 	'centralnotice-talk-link' => 'चर्चा',
+	'centralnotice-fundraising' => 'निधी उभारणे',
 	'centralnotice-autolink' => 'स्वयंमचलीत  दुवा निर्मिती',
 	'centralnotice-banner-content-changed' => 'बदलला',
 	'centralnotice-date' => 'दिनांक',
