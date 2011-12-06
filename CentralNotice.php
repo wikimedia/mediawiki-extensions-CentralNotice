@@ -282,7 +282,7 @@ function efCentralNoticeDefaults( &$vars ) {
 
 				$launchTimestamp = wfTimestamp( TS_UNIX, '2011-12-06 00:00:00' );
 				$groups = $wgUser->getGroups();
-				$registrationDate = !$wgUser->getRegistration() ? 0 : $wgUser->getRegistration();
+				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
 				$daysOld = floor( ( $launchTimestamp - wfTimestamp( TS_UNIX, $registrationDate ) ) / ( 60*60*24 ) );
 				$salt = $wgNoticeBanner_Harvard2011_salt;
 				$metrics = array(
