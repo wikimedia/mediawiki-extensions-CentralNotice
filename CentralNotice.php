@@ -94,8 +94,11 @@ $wgResourceModules['ext.centralNotice.bannerStats'] = array(
 	'scripts' => 'bannerstats.js',
 );
 
-// Temporary setting to configure salt for Harvard banner protocol
-$wgNoticeBanner_Harvard2011_salt = 'default';
+// Temporary setting to enable and configure info for Harvard banner on en.wikipedia.org
+$wgNoticeBanner_Harvard2011 = array(
+	'enable' => false,
+	'salt' => 'default',
+);
 
 /**
  * UnitTestsList hook handler
@@ -247,7 +250,7 @@ function efCentralNoticeGeoLoader( $skin, &$text ) {
  */
 function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
-	global $wgNoticeProject, $wgUser, $wgMemc;
+	global $wgNoticeProject, $wgUser, $wgMemc, $wgNoticeBanner_Harvard2011, $wgContLang;
 
 	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
 	// IP lookup fails we don't have any surprises.
@@ -258,7 +261,7 @@ function efCentralNoticeDefaults( &$vars ) {
 	// XXX: Temporary WMF-specific code for the 2011 Harvard survey invitation banner.
 	// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
 	// Also, don't run if the UserDailyContribs-extension isn't installed.
-	if ( $wgUser->isLoggedIn() && function_exists( 'getUserEditCountSince' ) ) {
+	if ( $wgNoticeBanner_Harvard2011['enable'] && $wgUser->isLoggedIn() && function_exists( 'getUserEditCountSince' ) ) {
 
 		$cacheKey = wfMemcKey( 'CentralNotice', 'Harvard2011', 'v1', $wgUser->getId() );
 		$value = $wgMemc->get( $cacheKey );
@@ -278,13 +281,12 @@ function efCentralNoticeDefaults( &$vars ) {
 				$value = false;
 
 			} else {
-				global $wgNoticeBanner_Harvard2011_salt, $wgContLang;
 
 				$launchTimestamp = wfTimestamp( TS_UNIX, '2011-12-08 00:00:00' );
 				$groups = $wgUser->getGroups();
 				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
 				$daysOld = floor( ( $launchTimestamp - wfTimestamp( TS_UNIX, $registrationDate ) ) / ( 60*60*24 ) );
-				$salt = $wgNoticeBanner_Harvard2011_salt;
+				$salt = $wgNoticeBanner_Harvard2011['salt'];
 
 				// Variables
 				$hashData = array(
