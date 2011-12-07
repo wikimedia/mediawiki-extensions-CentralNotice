@@ -260,11 +260,11 @@ function efCentralNoticeDefaults( &$vars ) {
 	// Also, don't run if the UserDailyContribs-extension isn't installed.
 	if ( $wgUser->isLoggedIn() && function_exists( 'getUserEditCountSince' ) ) {
 
-		$cacheKey = wfMemcKey( 'CentralNotice', 'Harvard2011', $wgUser->getId() );
-		$data = $wgMemc->get( $cacheKey );
+		$cacheKey = wfMemcKey( 'CentralNotice', 'Harvard2011', 'v1', $wgUser->getId() );
+		$value = $wgMemc->get( $cacheKey );
 
 		// Cached ?
-		if ( !$data ) {
+		if ( !$value ) {
 			/**
 			 * To be eligible, the user must match all of the following:
 			 * - have an account
@@ -275,29 +275,31 @@ function efCentralNoticeDefaults( &$vars ) {
 			 * - have had their account registered for less than 30 days (on to the launch date)
 			 */
 			if ( $wgUser->isAllowed( 'bot' ) ) {
-				$data = false;
+				$value = false;
 
 			} else {
-				global $wgNoticeBanner_Harvard2011_salt;
+				global $wgNoticeBanner_Harvard2011_salt, $wgContLang;
 
 				$launchTimestamp = wfTimestamp( TS_UNIX, '2011-12-06 00:00:00' );
 				$groups = $wgUser->getGroups();
 				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
 				$daysOld = floor( ( $launchTimestamp - wfTimestamp( TS_UNIX, $registrationDate ) ) / ( 60*60*24 ) );
 				$salt = $wgNoticeBanner_Harvard2011_salt;
-				$metrics = array(
-					// "username" the user's username
-					'username' => $wgUser->getName(),
+
+				// Variables
+				$hashData = array(
+					// "login"
+					'login' => intval( $wgUser->getId() ),
 
 					// "group" is the group name(s) of the user (comma-separated).
 					'group' => join( ',', $groups ),
 
 					// "duration" is the number of days since the user registered his (on the launching date).
 					// Note: Will be negative if user registered after launch date!
-					'duration' => $daysOld,
+					'duration' => intval( $daysOld ),
 
 					// "editcounts" is the user's total number of edits
-					'editcounts' => $wgUser->getEditCount() == NULL ? 0 : $wgUser->getEditCount(),
+					'editcounts' => $wgUser->getEditCount() == NULL ? 0 : intval( $wgUser->getEditCount() ),
 
 					// "last6monthseditcount" is the user's total number of edits in the last 180 days (on the launching date)
 					'last6monthseditcount' => getUserEditCountSince(
@@ -306,27 +308,34 @@ function efCentralNoticeDefaults( &$vars ) {
 						$launchTimestamp
 					),
 				);
-				$realData = array(
-					'id' => $wgUser->getId(),
-					'metrics' => $metrics,
-					'hash' => md5( $salt . serialize( $metrics ) ),
-				);
+
+				$postData = $hashData;
+
+				// "username" the user's username
+				$postData['username'] = $wgUser->getName();
+
+				// Security checksum. Prevent users from entering the survey with invalid metrics 
+				$postData['secretkey'] = md5( $salt . serialize( $hashData ) );
+
+				// MD5 hash
+				$postData['lang'] = $wgContLang->getCode();
+				echo $salt . serialize( $hashData )."\n\n";
 
 				if (
 					in_array( 'sysop', $groups )
-					|| ( $metrics['editcounts'] >= 300 && $metrics['last6monthseditcount'] >= 20 )
-					|| ( $metrics['duration'] < 30 )
+					|| ( $postData['editcounts'] >= 300 && $postData['last6monthseditcount'] >= 20 )
+					|| ( $postData['duration'] < 30 )
 				) {
-					$data = $realData;
+					$value = $postData;
 				} else {
-					$data = false;
+					$value = false;
 				}
 			}
 
-			$wgMemc->set( $cacheKey, $data, strtotime( '+10 days' ) );
+			$wgMemc->set( $cacheKey, $value, strtotime( '+10 days' ) );
 		}
 
-		$vars['wgNoticeBanner_Harvard2011'] = $data;
+		$vars['wgNoticeBanner_Harvard2011'] = $value;
 
 	}
 
