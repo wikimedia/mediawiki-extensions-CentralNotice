@@ -280,7 +280,7 @@ function efCentralNoticeDefaults( &$vars ) {
 			} else {
 				global $wgNoticeBanner_Harvard2011_salt, $wgContLang;
 
-				$launchTimestamp = wfTimestamp( TS_UNIX, '2011-12-06 00:00:00' );
+				$launchTimestamp = wfTimestamp( TS_UNIX, '2011-12-08 00:00:00' );
 				$groups = $wgUser->getGroups();
 				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
 				$daysOld = floor( ( $launchTimestamp - wfTimestamp( TS_UNIX, $registrationDate ) ) / ( 60*60*24 ) );
@@ -323,7 +323,7 @@ function efCentralNoticeDefaults( &$vars ) {
 
 				if (
 					in_array( 'sysop', $groups )
-					|| ( $postData['editcounts'] >= 300 && $postData['last6monthseditcount'] >= 20 )
+					|| ( $postData['duration'] >= 180 && $postData['editcounts'] >= 300 && $postData['last6monthseditcount'] >= 20 )
 					|| ( $postData['duration'] < 30 )
 				) {
 					$value = $postData;
