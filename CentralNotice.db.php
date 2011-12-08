@@ -14,6 +14,12 @@ class CentralNoticeDB {
 	/**
 	 * Return campaigns in the system within given constraints
 	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
+	 * @param $project string
+	 * @param $language string
+	 * @param $date string
+	 * @param $enabled bool
+	 * @param $preferred string
+	 * @param $location string
 	 * @return an array of ids
 	 */
 	static function getCampaigns( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
@@ -289,7 +295,10 @@ class CentralNoticeDB {
 	 * Lookup function for active banners under a given language/project/location. This function is
 	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
 	 * each project.
-	 * @return a 2D array of running banners with associated weights and settings
+	 * @param $project string
+	 * @param $language string
+	 * @param $location string
+	 * @return array a 2D array of running banners with associated weights and settings
 	 */
 	static function getBannersByTarget( $project, $language, $location = null ) {
 		global $wgCentralDBname;
@@ -371,6 +380,8 @@ class CentralNoticeDB {
 
 	/**
 	 * See if a given campaign exists in the database
+	 * @param $campaignName string
+	 * @return bool
 	 */
 	public static function campaignExists( $campaignName ) {
 		 global $wgCentralDBname;
@@ -382,6 +393,8 @@ class CentralNoticeDB {
 
 	/**
 	 * See if a given banner exists in the database
+	 * @param $bannerName string
+	 * @return bool
 	 */
 	public static function bannerExists( $bannerName ) {
 		 global $wgCentralDBname;
@@ -399,6 +412,7 @@ class CentralNoticeDB {
 	/**
 	 * Return all of the available countries for geotargeting
 	 * (This should probably be moved to a core database table at some point.)
+	 * @return array
 	 */
 	static function getCountriesList() {
 		return array(

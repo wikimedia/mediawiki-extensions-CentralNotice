@@ -102,6 +102,8 @@ $wgNoticeBanner_Harvard2011 = array(
 
 /**
  * UnitTestsList hook handler
+ * @param $files array
+ * @return bool
  */
 function efCentralNoticeUnitTests( &$files ) {
 	$files[] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
@@ -165,6 +167,8 @@ function efCentralNoticeSetup() {
 
 /**
  * LoadExtensionSchemaUpdates hook handler
+ * @param $updater DatabaseUpdater|null
+ * @return bool
  */
 function efCentralNoticeSchema( $updater = null ) {
 	$base = dirname( __FILE__ );
@@ -222,21 +226,25 @@ function efCentralNoticeSchema( $updater = null ) {
 
 /**
  * BeforePageDisplay hook handler
+ * @param $out OutputPage
+ * @param $skin Skin
+ * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgOut;
-
 	// Include '.js' to exempt script from squid cache expiration override
 	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl( 'cache=/cn.js' );
 
 	// Insert the banner controller Javascript into the page
-	$wgOut->addScriptFile( $centralLoader );
+	$out->addScriptFile( $centralLoader );
 
 	return true;
 }
 
 /**
  * SkinAfterBottomScripts hook handler
+ * @param $skin Skin
+ * @param $text string
+ * @return bool
  */
 function efCentralNoticeGeoLoader( $skin, &$text ) {
 	// Insert the geo IP lookup
@@ -244,9 +252,10 @@ function efCentralNoticeGeoLoader( $skin, &$text ) {
 	return true;
 }
 
-
 /**
  * MakeGlobalVariablesScript hook handler
+ * @param $vars array
+ * @return bool
  */
 function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
@@ -294,14 +303,14 @@ function efCentralNoticeDefaults( &$vars ) {
 					'login' => intval( $wgUser->getId() ),
 
 					// "group" is the group name(s) of the user (comma-separated).
-					'group' => join( ',', $groups ),
+					'group' => implode( ',', $groups ),
 
 					// "duration" is the number of days since the user registered his (on the launching date).
 					// Note: Will be negative if user registered after launch date!
 					'duration' => intval( $daysOld ),
 
 					// "editcounts" is the user's total number of edits
-					'editcounts' => $wgUser->getEditCount() == NULL ? 0 : intval( $wgUser->getEditCount() ),
+					'editcounts' => $wgUser->getEditCount() == null ? 0 : intval( $wgUser->getEditCount() ),
 
 					// "last6monthseditcount" is the user's total number of edits in the last 180 days (on the launching date)
 					'last6monthseditcount' => getUserEditCountSince(
@@ -346,6 +355,8 @@ function efCentralNoticeDefaults( &$vars ) {
 
 /**
  * SiteNoticeAfter hook handler
+ * @param $notice string
+ * @return bool
  */
 function efCentralNoticeDisplay( &$notice ) {
 	// setup siteNotice div
