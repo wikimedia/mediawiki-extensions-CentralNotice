@@ -330,7 +330,6 @@ function efCentralNoticeDefaults( &$vars ) {
 
 				// MD5 hash
 				$postData['lang'] = $wgContLang->getCode();
-				echo $salt . serialize( $hashData )."\n\n";
 
 				if (
 					in_array( 'sysop', $groups )
