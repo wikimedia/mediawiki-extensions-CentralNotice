@@ -67,9 +67,13 @@ window.insertButton = function( buttonType ) {
 	var bannerField = document.getElementById('templateBody');
 	switch( buttonType ) {
 		case 'close': // Insert close button
-			var buttonValue = '<a href="#" onclick="hideBanner();return false;">'
+			var buttonValue = '<a href="#" title="'
+				+ mw.msg( 'centralnotice-close-title' )
+				+ '" onclick="hideBanner();return false;">'
 				+ '<img border="0" src="' + mw.config.get( 'stylepath' )
-				+ '/common/images/closewindow.png" alt="Close" /></a>';
+				+ '/common/images/closewindow19x19.png" alt="' 
+				+ mw.msg( 'centralnotice-close-title' )
+				+ '" /></a>';
 			break;
 	}
 	if (document.selection) {

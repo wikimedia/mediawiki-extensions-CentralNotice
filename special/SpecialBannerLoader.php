@@ -111,6 +111,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	/**
 	 * Extract a message name and send to getMessage() for translation
+	 * If the field is 'amount', get the current fundraiser donation amount and pass it as a
+	 * parameter to the message.
 	 * @param $match A message array with 2 members: raw match, short name of message
 	 * @return translated messsage string
 	 * @throws SpecialBannerLoaderException

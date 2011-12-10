@@ -86,7 +86,10 @@ $wgResourceModules['ext.centralNotice.interface'] = array(
 	'remoteExtPath' => 'CentralNotice',
 	'scripts' => 'centralnotice.js',
 	'styles' => 'centralnotice.css',
-	'messages' => 'centralnotice-documentwrite-error'
+	'messages' => array(
+		'centralnotice-documentwrite-error',
+		'centralnotice-close-title',
+	)
 );
 $wgResourceModules['ext.centralNotice.bannerStats'] = array(
 	'localBasePath' => dirname( __FILE__ ),
