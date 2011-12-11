@@ -159,7 +159,7 @@ function efCentralNoticeSetup() {
 
 		$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
 		$wgAutoloadClasses['SpecialCentralNoticeLogs'] = $specialDir . 'SpecialCentralNoticeLogs.php';
-		
+
 		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
 		$wgAutoloadClasses['CentralNoticePager'] = $dir . 'CentralNoticePager.php';
 		$wgAutoloadClasses['CentralNoticeCampaignLogPager'] = $dir . 'CentralNoticeCampaignLogPager.php';
@@ -328,7 +328,7 @@ function efCentralNoticeDefaults( &$vars ) {
 				// "username" the user's username
 				$postData['username'] = $wgUser->getName();
 
-				// Security checksum. Prevent users from entering the survey with invalid metrics 
+				// Security checksum. Prevent users from entering the survey with invalid metrics
 				$postData['secretkey'] = md5( $salt . serialize( $hashData ) );
 
 				// MD5 hash
