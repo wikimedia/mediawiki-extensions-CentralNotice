@@ -64,7 +64,7 @@ $wgExtensionCredits['other'][] = array(
 	'name'           => 'CentralNotice',
 	'version'        => '2.0',
 	'author'         => array( 'Brion Vibber', 'Ryan Kaldari' ),
-	'url'            => 'http://www.mediawiki.org/wiki/Extension:CentralNotice',
+	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 );
 
