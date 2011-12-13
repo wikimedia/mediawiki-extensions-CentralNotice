@@ -2486,23 +2486,30 @@ Ddim yn tynnu i ffwrdd.",
 	'centralnotice-end-time' => 'Amser y daw i ben (UTC)',
 	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner. 
 Ychwanegwch rai!',
+	'centralnotice-no-templates-assigned' => "Ni briodolwyd baneri i'r ymgyrch.
+Ychwanegwch rai!",
 	'centralnotice-available-templates' => 'Y baneri sydd ar gael',
 	'centralnotice-change-lang' => 'Newid iaith y cyfieithu',
 	'centralnotice-weights' => 'Pwysau',
 	'centralnotice-notice-is-locked' => "Mae'r hysbysiad wedi ei gloi.
 Ni chaiff ei dynnu i ffwrdd",
+	'centralnotice-confirm-delete' => "Ydych chi'n siwr eich bod am ddileu'r eitem hwn?
+Ni fydd modd dad-wneud y weithred hwn.",
 	'centralnotice-no-notices-exist' => 'Does dim hysbysiadau i gael.
 Gallwch ychwanegu un isod.',
 	'centralnotice-number-uses' => 'Mannau',
 	'centralnotice-settings' => 'Gosodiadau',
 	'centralnotice-edit-template' => "Golygu'r nodyn",
 	'centralnotice-message' => 'Neges',
+	'centralnotice-clone-notice' => "Creu copi o'r faner",
 	'centralnotice-clone-name' => 'Enw:',
+	'centralnotice-preview-all-template-translations' => "Rhagweld pob cyfieithiad o'r faner sydd ar gael",
 	'centralnotice-insert' => 'Mewnosod: $1',
 	'centralnotice-hide-button' => 'y cyswllt cuddio',
 	'centralnotice-collapse-button' => 'Y cyswllt crebachu',
 	'centralnotice-expand-button' => 'Y cyswllt ehangu',
 	'centralnotice-close-button' => 'Botwm cau',
+	'centralnotice-close-title' => 'Cau',
 	'centralnotice-translate-button' => 'Cyswllt i annog cyfieithu',
 	'centralnotice-donate-button' => 'Botwm rhoi',
 	'centralnotice-banner-display' => 'Dangos i:',
@@ -7334,6 +7341,7 @@ De kins hiejónger ein biedoon.",
 	'centralnotice-collapse-button' => 'Inklaplink',
 	'centralnotice-expand-button' => 'Oetklaplink',
 	'centralnotice-close-button' => 'Sloet knoep',
+	'centralnotice-close-title' => 'Sloet',
 	'centralnotice-translate-button' => 'Euverzèttingshölpknoep',
 	'centralnotice-donate-button' => 'Gaefknoep',
 	'centralnotice-expanded-banner' => 'Oetgeklap vaan',
@@ -7944,6 +7952,7 @@ $messages['ml'] = array(
 	'centralnotice-collapse-button' => 'ചുരുക്കാനുള്ള കണ്ണി',
 	'centralnotice-expand-button' => 'വികസിപ്പിക്കാനുള്ള കണ്ണി',
 	'centralnotice-close-button' => 'അടയ്ക്കാനുള്ള ബട്ടൺ',
+	'centralnotice-close-title' => 'അടയ്ക്കുക',
 	'centralnotice-translate-button' => 'പരിഭാഷാസഹായി ബട്ടൺ',
 	'centralnotice-donate-button' => 'സംഭാവനാ ബട്ടൺ',
 	'centralnotice-expanded-banner' => 'വികസിപ്പിച്ച എഴുത്തുപട്ട',
@@ -8007,6 +8016,7 @@ $messages['mn'] = array(
 /** Marathi (मराठी)
  * @author Evision
  * @author Htt
+ * @author Kaajawa
  * @author Mahitgar
  * @author Rahuldeshmukh101
  * @author V.narsikar
@@ -8097,7 +8107,10 @@ $messages['mr'] = array(
 	'centralnotice-preview-all-template-translations' => 'मुखशीर्षकांच्या सर्व उपलब्ध भाषांतराची झलक पहा',
 	'centralnotice-insert' => 'समाविष्ट करा : $1',
 	'centralnotice-hide-button' => 'दुवा लपवा',
+	'centralnotice-collapse-button' => 'झाकण्याचा दुवा',
+	'centralnotice-expand-button' => 'उघडण्याचा दुवा',
 	'centralnotice-close-button' => 'समाप्त कळ',
+	'centralnotice-close-title' => 'बंद',
 	'centralnotice-translate-button' => 'दुव्याच्या भाषांतरासाठी मदत करा',
 	'centralnotice-donate-button' => 'दान कळ',
 	'centralnotice-banner-display' => ' दाखवा :',
@@ -8130,6 +8143,7 @@ $messages['mr'] = array(
 	'centralnotice-talk-link' => 'चर्चा',
 	'centralnotice-campaign-settings' => 'अभियान नियोजन',
 	'centralnotice-anon' => 'अनामिक सदस्यास दाखवा',
+	'centralnotice-account' => 'प्रवेश केलेल्या सदस्यास दाखवा',
 	'centralnotice-fundraising' => 'निधी उभारणे',
 	'centralnotice-autolink' => 'स्वयंमचलीत  दुवा निर्मिती',
 	'centralnotice-banner-content' => 'मुखशीर्षक मजकूर',
