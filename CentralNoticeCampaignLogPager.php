@@ -118,7 +118,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			wfMsg ( 'centralnotice-user-links', $userLink, $userTalkLink )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$row->notlog_action
+			wfMsg ( 'centralnotice-action-'.$row->notlog_action )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$campaignLink

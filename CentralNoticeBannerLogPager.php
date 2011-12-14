@@ -64,7 +64,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			wfMsg ( 'centralnotice-user-links', $userLink, $userTalkLink )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$row->tmplog_action
+			wfMsg ( 'centralnotice-action-'.$row->tmplog_action )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$bannerLink
