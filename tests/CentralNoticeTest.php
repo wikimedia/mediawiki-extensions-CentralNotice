@@ -13,10 +13,10 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		self::$centralNotice = new CentralNotice;
 		$noticeName        = 'PHPUnitTestCampaign';
 		$enabled           = 0;
-		$start             = array( 
-  			"month" => '07',
-  			"day"   => '18',
-  			"year"  => '2011',
+		$start             = array(
+			"month" => '07',
+			"day"   => '18',
+			"year"  => '2011',
 			"hour"  => '23',
 			"min"   => '55',
 		);
@@ -27,7 +27,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		self::$centralNotice->addCampaign( $noticeName, $enabled, $start, $projects,
 			$project_languages, $geotargeted, $geo_countries );
 		$this->campaignId = CentralNotice::getNoticeId( 'PHPUnitTestCampaign' );
-			
+
 		self::$noticeTemplate = new SpecialNoticeTemplate;
 		$bannerName = 'PHPUnitTestBanner';
 		$body = 'testing';
@@ -35,20 +35,20 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$displayAccount = 1;
 		$fundaising = 1;
 		$landingPages = 'JA1, JA2';
-		self::$noticeTemplate->addTemplate( $bannerName, $body, $displayAnon, $displayAccount, 
+		self::$noticeTemplate->addTemplate( $bannerName, $body, $displayAnon, $displayAccount,
 			$fundaising, $landingPages );
 		self::$centralNotice->addTemplateTo( 'PHPUnitTestCampaign', 'PHPUnitTestBanner', '25' );
-		
+
 		self::$centralNoticeDB = new CentralNoticeDB;
 	}
-	
+
 	protected function tearDown() {
 		parent::tearDown();
 		self::$centralNotice->removeCampaign( 'PHPUnitTestCampaign' );
 		self::$centralNotice->removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
 		self::$noticeTemplate->removeTemplate ( 'PHPUnitTestBanner' );
 	}
-	
+
 	public function testDropDownList() {
 		$text = 'Weight';
 		$values = range ( 0, 50, 10 );
@@ -56,28 +56,28 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			"*Weight\n**0\n**10\n**20\n**30\n**40\n**50\n",
 			CentralNotice::dropDownList( $text, $values ) );
 	}
-	
+
 	public function testGetNoticeProjects() {
 		$this->assertEquals(
 			array ( 'wikibooks', 'wikipedia' ),
 			CentralNotice::getNoticeProjects( 'PHPUnitTestCampaign' )
 		);
 	}
-	
+
 	public function testGetNoticeLanguages() {
 		$this->assertEquals(
 			array ( 'de', 'en' ),
 			CentralNotice::getNoticeLanguages( 'PHPUnitTestCampaign' )
 		);
 	}
-	
+
 	public function testGetNoticeCountries() {
 		$this->assertEquals(
 			array ( 'AF', 'US' ),
 			CentralNotice::getNoticeCountries( 'PHPUnitTestCampaign' )
 		);
 	}
-	
+
 	public function testGetCampaignBanners() {
 		$campaignId = CentralNotice::getNoticeId( 'PHPUnitTestCampaign' );
 		$this->assertEquals(
@@ -85,9 +85,9 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			json_encode( CentralNoticeDB::getCampaignBanners( $campaignId ) )
 		);
 	}
-	
+
 	public function testGetCampaignSettings() {
-		$campaignArray = array( 
+		$campaignArray = array(
 			'enabled' => 0,
 			'end' => 20110818235500,
 			'geo' => 1,

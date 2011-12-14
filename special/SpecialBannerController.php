@@ -14,10 +14,10 @@ class SpecialBannerController extends UnlistedSpecialPage {
 
 	function execute( $par ) {
 		global $wgOut;
-		
+
 		$wgOut->disable();
 		$this->sendHeaders();
-		
+
 		$content = $this->getOutput();
 		if ( strlen( $content ) == 0 ) {
 			// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
@@ -26,7 +26,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 			echo $content;
 		}
 	}
-	
+
 	/**
 	 * Generate the HTTP response headers for the banner controller
 	 */
@@ -44,7 +44,7 @@ class SpecialBannerController extends UnlistedSpecialPage {
 	 */
 	function getOutput() {
 		global $wgCentralPagePath, $wgContLang;
-		
+
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<JAVASCRIPT
 ( function( $ ) {
@@ -59,19 +59,19 @@ class SpecialBannerController extends UnlistedSpecialPage {
 				// Store the bannerType in case we need to set a banner hiding cookie later
 				$.centralNotice.data.bannerType = bannerType;
 				// Get the requested banner
-				var bannerPageQuery = $.param( { 
-					'banner': bannerName, 'campaign': campaign, 'userlang': wgUserLanguage, 
+				var bannerPageQuery = $.param( {
+					'banner': bannerName, 'campaign': campaign, 'userlang': wgUserLanguage,
 					'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country
 				} );
 				var bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
 JAVASCRIPT;
-		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"" . 
+		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"" .
 			Xml::escapeJsString( $wgCentralPagePath ) .
 			"' + bannerPage + '\"></script>';\n";
 		$js .= <<<JAVASCRIPT
 				if ( document.cookie.indexOf( 'centralnotice_'+bannerType+'=hide' ) == -1 ) {
-					jQuery( '#siteNotice' ).prepend( '<div id="centralNotice" class="' + 
-						( wgNoticeToggleState ? 'expanded' : 'collapsed' ) + 
+					jQuery( '#siteNotice' ).prepend( '<div id="centralNotice" class="' +
+						( wgNoticeToggleState ? 'expanded' : 'collapsed' ) +
 						' cn-' + bannerType + '">'+bannerScript+'</div>' );
 				}
 			},
@@ -83,7 +83,7 @@ JAVASCRIPT;
 				}
 				var bannerListQuery = $.param( { 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation } );
 JAVASCRIPT;
-		$js .= "\n\t\t\t\tvar bannerListURL = wgScript + '?title=' + encodeURIComponent('" . 
+		$js .= "\n\t\t\t\tvar bannerListURL = wgScript + '?title=' + encodeURIComponent('" .
 			$wgContLang->specialPage( 'BannerListLoader' ) .
 			"') + '&cache=/cn.js&' + bannerListQuery;\n";
 		$js .= <<<JAVASCRIPT
@@ -96,16 +96,16 @@ JAVASCRIPT;
 			'chooseBanner': function( bannerList ) {
 				// Convert the json object to a true array
 				bannerList = Array.prototype.slice.call( bannerList );
-				
+
 				// Make sure there are some banners to choose from
 				if ( bannerList.length == 0 ) return false;
-				
+
 				var groomedBannerList = [];
-				
+
 				for( var i = 0; i < bannerList.length; i++ ) {
 					// Only include this banner if it's intended for the current user
-					if( ( wgUserName && bannerList[i].display_account ) || 
-						( !wgUserName && bannerList[i].display_anon == 1 ) ) 
+					if( ( wgUserName && bannerList[i].display_account ) ||
+						( !wgUserName && bannerList[i].display_anon == 1 ) )
 					{
 						// add the banner to our list once per weight
 						for( var j=0; j < bannerList[i].weight; j++ ) {
@@ -113,15 +113,15 @@ JAVASCRIPT;
 						}
 					}
 				}
-				
+
 				// Return if there's nothing left after the grooming
 				if( groomedBannerList.length == 0 ) return false;
-				
+
 				// Choose a random key
 				var pointer = Math.floor( Math.random() * groomedBannerList.length );
-				
+
 				// Load a random banner from our groomed list
-				$.centralNotice.fn.loadBanner( 
+				$.centralNotice.fn.loadBanner(
 					groomedBannerList[pointer].name,
 					groomedBannerList[pointer].campaign,
 					( groomedBannerList[pointer].fundraising ? 'fundraising' : 'default' )
@@ -151,9 +151,9 @@ JAVASCRIPT;
 } )( jQuery );
 JAVASCRIPT;
 		return $js;
-			
+
 	}
-	
+
 	function getToggleScripts() {
 		$script = "var wgNoticeToggleState = (document.cookie.indexOf('hidesnmessage=1')==-1);\n\n";
 		return $script;
@@ -166,7 +166,7 @@ function insertBanner( bannerJson ) {
 	jQuery( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
 	if ( bannerJson.autolink ) {
 JAVASCRIPT;
-	$script .= "\n\t\tvar url = '" . 
+	$script .= "\n\t\tvar url = '" .
 	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';\n";
 	$script .= <<<JAVASCRIPT
 		if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
@@ -175,8 +175,8 @@ JAVASCRIPT;
 				'landing_page': targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' )
 			} );
 			url += "&" + jQuery.param( {
-				'utm_medium': 'sitenotice', 'utm_campaign': bannerJson.campaign, 
-				'utm_source': bannerJson.bannerName, 'language': wgUserLanguage, 
+				'utm_medium': 'sitenotice', 'utm_campaign': bannerJson.campaign,
+				'utm_source': bannerJson.bannerName, 'language': wgUserLanguage,
 				'country': Geo.country
 			} );
 			jQuery( '#cn-landingpage-link' ).attr( 'href', url );

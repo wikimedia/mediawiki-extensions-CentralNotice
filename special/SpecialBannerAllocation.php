@@ -167,7 +167,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$accountWeight = 0;
 
 		if ( $banners ) {
-			
+
 			foreach ( $banners as $banner ) {
 				if ( $banner['display_anon'] ) {
 					$anonBanners[] = $banner;
@@ -178,12 +178,12 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 					$accountBanners[] = $banner;
 					$accountWeight += $banner['weight'];
 				}
-				
+
 				if ( $banner['campaign'] ) {
 					$campaigns[] = "'".$banner['campaign']."'";
 				}
 			}
-			
+
 			// Build campaign list for bannerstats.js
 			$campaignList = implode( ', ', $campaigns );
 			$js = "wgCentralNoticeAllocationCampaigns = array( $campaignList );";
@@ -234,10 +234,10 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 			$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
 			$htmlOut .= Html::closeElement( 'td' );
-			
+
 			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 			// The span class is used by bannerstats.js to find where to insert the stats
-			$htmlOut .= Html::openElement( 'span', 
+			$htmlOut .= Html::openElement( 'span',
 				array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
 			$htmlOut .= $sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
 					'template=' . urlencode( $banner['name'] ) );

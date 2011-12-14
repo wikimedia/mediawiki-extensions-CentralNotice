@@ -6,7 +6,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 /**
  * Unlisted Special Page which sets a cookie for hiding banners across all languages of a project.
- * This is typically used on donation thank-you pages so that users who have donated will no longer 
+ * This is typically used on donation thank-you pages so that users who have donated will no longer
  * see fundrasing banners.
  */
 class SpecialHideBanners extends UnlistedSpecialPage {
@@ -16,7 +16,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 	function execute( $par ) {
 		global $wgOut;
-		
+
 		$this->setHideCookie();
 
 		$wgOut->disable();
@@ -27,7 +27,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		readfile( dirname( __FILE__ ) . '/../1x1.png' );
 	}
-	
+
 	/**
 	 * Set the cookie for hiding fundraising banners.
 	 */

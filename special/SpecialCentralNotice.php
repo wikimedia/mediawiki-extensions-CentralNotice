@@ -51,8 +51,8 @@ class CentralNotice extends SpecialPage {
 		// Handle form submissions from "Manage campaigns" or "Add a campaign" interface
 		if ( $this->editable && $wgRequest->wasPosted() ) {
 
-		 	// Check authentication token
-		 	if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
+			// Check authentication token
+			if ( $wgUser->matchEditToken( $wgRequest->getVal( 'authtoken' ) ) ) {
 
 				// Handle adding a campaign
 				if ( $method == 'addCampaign' ) {
@@ -1385,7 +1385,7 @@ class CentralNotice extends SpecialPage {
 		$startDate = $dbr->timestamp( $start );
 		$endDate = $dbr->timestamp( $end );
 
- 		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->update( 'cn_notices',
 			array(
 				'not_start' => $startDate,
@@ -1419,8 +1419,8 @@ class CentralNotice extends SpecialPage {
 		 $dbw = wfGetDB( DB_MASTER );
 		 $noticeId = CentralNotice::getNoticeId( $noticeName );
 		 $dbw->update( 'cn_assignments',
-		 	array ( 'tmp_weight' => $weight ),
-		 	array(
+			array ( 'tmp_weight' => $weight ),
+			array(
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId
 			)

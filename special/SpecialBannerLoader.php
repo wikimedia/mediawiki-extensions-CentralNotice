@@ -8,23 +8,23 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	public $language = 'en'; // User language
 	protected $sharedMaxAge = 600; // Cache for 10 minutes on the server side
 	protected $maxAge = 0; // No client-side banner caching so we get all impressions
-	
+
 	function __construct() {
 		// Register special page
 		parent::__construct( "BannerLoader" );
 	}
-	
+
 	function execute( $par ) {
 		global $wgOut, $wgRequest;
-		
+
 		$wgOut->disable();
 		$this->sendHeaders();
-		
+
 		// Get values from the query string
 		$this->language = $wgRequest->getText( 'userlang', 'en' );
 		$this->siteName = $wgRequest->getText( 'sitename', 'Wikipedia' );
 		$this->campaign = $wgRequest->getText( 'campaign', 'undefined' );
-		
+
 		if ( $wgRequest->getText( 'banner' ) ) {
 			$bannerName = $wgRequest->getText( 'banner' );
 			try {
@@ -44,7 +44,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			echo "/* No banner specified */";
 		}
 	}
-	
+
 	/**
 	 * Generate the HTTP response headers for the banner file
 	 */
@@ -53,10 +53,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 		header( "Cache-Control: public, s-maxage=$this->sharedMaxAge, max-age=$this->maxAge" );
 	}
-	
+
 	/**
 	 * Generate the JS for the requested banner
-	 * @return a string of Javascript containing a call to insertBanner() 
+	 * @return a string of Javascript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
 	 * @throws SpecialBannerLoaderException
 	 */
@@ -82,7 +82,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			return $bannerJs;
 		}
 	}
-	
+
 	/**
 	 * Generate the HTML for the requested banner
 	 * @throws SpecialBannerLoaderException
@@ -184,7 +184,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$count = intval( $counter_value );
 			if ( !$count ) {
 				// Pull long-cached amount
-				$count = intval( $wgMemc->get( 
+				$count = intval( $wgMemc->get(
 					wfMemcKey( 'centralnotice', 'counter', 'fallback' ) ) );
 				if ( !$count ) {
 					throw new DonationAmountUnknownException();
@@ -197,7 +197,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		}
 		return $count;
 	}
-	
+
 	function getFundraising( $bannerName ) {
 		global $wgCentralDBname;
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
@@ -205,7 +205,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$row = $dbr->selectRow( 'cn_templates', 'tmp_fundraising', array( 'tmp_name' => $eBannerName ) );
 		return $row->tmp_fundraising;
 	}
-	
+
 	function getAutolink( $bannerName ) {
 		global $wgCentralDBname;
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
@@ -213,7 +213,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$row = $dbr->selectRow( 'cn_templates', 'tmp_autolink', array( 'tmp_name' => $eBannerName ) );
 		return $row->tmp_autolink;
 	}
-	
+
 	function getLandingPages( $bannerName ) {
 		global $wgCentralDBname;
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
@@ -231,7 +231,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
  *
  * This exception is being thrown whenever
  * some fatal error occurs that may affect
- * how the banner is presented. 
+ * how the banner is presented.
  *
  * @ingroup Exception
  */

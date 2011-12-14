@@ -7,7 +7,7 @@ class CentralNoticePager extends TemplatePager {
 	function __construct( $special ) {
 		parent::__construct( $special );
 	}
-	
+
 	/**
 	 * Pull banners from the database
 	 */
@@ -21,9 +21,9 @@ class CentralNoticePager extends TemplatePager {
 				'fields' => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
 				'conds' => array( 'cn_assignments.tmp_id IS NULL' ),
 				'join_conds' => array(
-					'cn_assignments' => array( 
+					'cn_assignments' => array(
 						'LEFT JOIN',
-						"cn_assignments.tmp_id = cn_templates.tmp_id " . 
+						"cn_assignments.tmp_id = cn_templates.tmp_id " .
 						"AND cn_assignments.not_id = $noticeId"
 					)
 				)
@@ -36,15 +36,15 @@ class CentralNoticePager extends TemplatePager {
 			);
 		}
 	}
-	
+
 	/**
 	 * Generate the content of each table row (1 row = 1 banner)
 	 */
 	function formatRow( $row ) {
-	
+
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
-		
+
 		if ( $this->editable ) {
 			// Add box
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
@@ -53,8 +53,8 @@ class CentralNoticePager extends TemplatePager {
 			// Weight select
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				Xml::listDropDown( "weight[$row->tmp_id]",
-					CentralNotice::dropDownList( 
-						wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 ) 
+					CentralNotice::dropDownList(
+						wfMsg( 'centralnotice-weight' ), range ( 0, 100, 5 )
 					) ,
 					'',
 					'25',
@@ -62,12 +62,12 @@ class CentralNoticePager extends TemplatePager {
 					'' )
 			);
 		}
-		
+
 		// Link and Preview
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
-		try { 
+		try {
 			$preview = $render->getHtmlNotice( $row->tmp_name );
 		} catch ( SpecialBannerLoaderException $e ) {
 			$preview = wfMsg( 'centralnotice-nopreview' );
@@ -81,13 +81,13 @@ class CentralNoticePager extends TemplatePager {
 				array( 'class' => 'cn-bannerpreview')
 			)
 		);
-		
+
 		// End banner row
 		$htmlOut .= Xml::closeElement( 'tr' );
-		
+
 		return $htmlOut;
 	}
-	
+
 	/**
 	 * Specify table headers
 	 */
@@ -109,7 +109,7 @@ class CentralNoticePager extends TemplatePager {
 		$htmlOut .= Xml::closeElement( 'tr' );
 		return $htmlOut;
 	}
-	
+
 	/**
 	 * Close table
 	 */

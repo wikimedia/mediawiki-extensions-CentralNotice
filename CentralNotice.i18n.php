@@ -373,7 +373,7 @@ Word nie bygevoeg nie.',
 	'centralnotice-template-exists' => 'Die sjabloon bestaan reeds.
 Dit word nie bygevoeg nie.',
 	'centralnotice-notice-doesnt-exist' => 'Die veldtog bestaan nie.',
-	'centralnotice-remove-notice-doesnt-exist' => 'Die veldtog bestaan nie. 
+	'centralnotice-remove-notice-doesnt-exist' => 'Die veldtog bestaan nie.
 Niks om te verwyder nie.',
 	'centralnotice-banner-doesnt-exist' => 'Die banier bestaan nie.',
 	'centralnotice-template-still-bound' => "Die sjabloon is nog aan 'n kennisgewing gekoppel.
@@ -2490,7 +2490,7 @@ Ddim yn tynnu i ffwrdd.",
 	'centralnotice-start-date' => 'Dyddiad cychwyn',
 	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
 	'centralnotice-end-time' => 'Amser y daw i ben (UTC)',
-	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner. 
+	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner.
 Ychwanegwch rai!',
 	'centralnotice-no-templates-assigned' => "Ni briodolwyd baneri i'r ymgyrch.
 Ychwanegwch rai!",
@@ -2629,7 +2629,7 @@ Ikke fjernet.',
 	'centralnotice-assigned-templates' => 'Tildelte bannere',
 	'centralnotice-no-templates' => 'Ingen bannere fundet.
 Tilføj nogle!',
-	'centralnotice-no-templates-assigned' => 'Ingen bannere tildelt kampagne. 
+	'centralnotice-no-templates-assigned' => 'Ingen bannere tildelt kampagne.
 Tilføj nogle!',
 	'centralnotice-available-templates' => 'Tilgængelige bannere',
 	'centralnotice-preview-template' => 'Forhåndsvis banner',
@@ -2738,7 +2738,7 @@ Sie wird daher nicht hinzugefügt.',
 	'centralnotice-template-exists' => 'Vorlage ist bereits vorhanden.
 Sie wird daher nicht hinzugefügt.',
 	'centralnotice-notice-doesnt-exist' => 'Meldung ist nicht vorhanden.',
-	'centralnotice-remove-notice-doesnt-exist' => 'Die Meldung ist nicht vorhanden. 
+	'centralnotice-remove-notice-doesnt-exist' => 'Die Meldung ist nicht vorhanden.
 Entfernen nicht möglich.',
 	'centralnotice-banner-doesnt-exist' => 'Die Vorlage ist nicht vorhanden.',
 	'centralnotice-template-still-bound' => 'Vorlage ist noch an eine Meldung gebunden.
@@ -3166,7 +3166,7 @@ $messages['el'] = array(
 	'centralnotice-template-exists' => 'Το πρότυπο υπάρχει ήδη.
 Δεν προστέθηκε',
 	'centralnotice-notice-doesnt-exist' => 'Καμπάνια δεν υπάρχει.',
-	'centralnotice-remove-notice-doesnt-exist' => 'Καμπάνια δεν υπάρχει. 
+	'centralnotice-remove-notice-doesnt-exist' => 'Καμπάνια δεν υπάρχει.
 Τίποτε προς διαγραφή.',
 	'centralnotice-banner-doesnt-exist' => 'Το λογότυπο δεν υπάρχει.',
 	'centralnotice-template-still-bound' => 'Το πρότυπο είναι ακόμη συνδεδεμένο με ένα σημείωμα.
@@ -4103,7 +4103,7 @@ Ei lisätä',
 	'centralnotice-template-exists' => 'Malline on jo olemassa.
 Ei lisätä',
 	'centralnotice-notice-doesnt-exist' => 'Kampanjaa ei ole olemassa.',
-	'centralnotice-remove-notice-doesnt-exist' => 'Kampanjaa ei ole olemassa. 
+	'centralnotice-remove-notice-doesnt-exist' => 'Kampanjaa ei ole olemassa.
 Ei poistettavaa.',
 	'centralnotice-banner-doesnt-exist' => 'Banneria ei ole olemassa.',
 	'centralnotice-template-still-bound' => 'Malline on vielä kytkettynä tiedotteeseen.
@@ -5284,7 +5284,7 @@ Dodajte jednu ispod',
 	'centralnotice-no-allocation' => 'Nema dodijeljenih obavijesti.',
 	'centralnotice-allocation-description' => 'Dodjela obavijesti za $1.$2 u $3:',
 	'centralnotice-percentage' => 'Postotak',
-	'centralnotice-documentwrite-error' => 'document.write() ne može se rabiti unutar obavijesti. 
+	'centralnotice-documentwrite-error' => 'document.write() ne može se rabiti unutar obavijesti.
 Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
 	'centralnotice-preferred' => 'Željeno',
 	'centralnotice-talk-link' => 'razgovor',
@@ -6547,7 +6547,7 @@ $messages['ka'] = array(
 	'centralnotice-no-allocation' => 'ბანერები არ განაწილდა.',
 	'centralnotice-allocation-description' => 'ბანერთა განაწილება $1.$2-თვის $3–ში:',
 	'centralnotice-percentage' => 'პროცენტი',
-	'centralnotice-documentwrite-error' => 'document.write() არ შეიძლება გამოყენებული იქნას ბანერის შიგნით. 
+	'centralnotice-documentwrite-error' => 'document.write() არ შეიძლება გამოყენებული იქნას ბანერის შიგნით.
 იხილეთ http://meta.wikimedia.org/wiki/Help:CentralNotice მეტი ინფორმაციისათვის.',
 	'centralnotice-preferred' => 'პრივილეგირებული',
 	'centralnotice-logs' => 'ჟურნალები',
@@ -8096,7 +8096,7 @@ $messages['mr'] = array(
 	'centralnotice-change-lang' => 'भाषांतरासाठी भाषेत बदल करा',
 	'centralnotice-weights' => 'वजन',
 	'centralnotice-notice-is-locked' => 'मथळ्यास ताळा लावला आहे. काढु नका.',
-	'centralnotice-confirm-delete' => 'आपणास हा मजकुर नक्की गाळावयाचा आहे काय? 
+	'centralnotice-confirm-delete' => 'आपणास हा मजकुर नक्की गाळावयाचा आहे काय?
 ही कृती परतविता येणार नाही.',
 	'centralnotice-no-notices-exist' => 'मथळा अस्तित्वात नाही.
 एक मथळा खाली जोडा.',
@@ -8696,7 +8696,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-no-allocation' => 'Geen banners toegewezen.',
 	'centralnotice-allocation-description' => 'Bannertoewijzing voor $1.$2 in $3:',
 	'centralnotice-percentage' => 'Percentage',
-	'centralnotice-documentwrite-error' => 'document.write() kan niet worden gebruikt binnen een banner. 
+	'centralnotice-documentwrite-error' => 'document.write() kan niet worden gebruikt binnen een banner.
 Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-preferred' => 'Voorkeur',
 	'centralnotice-logs' => 'Logboeken',
@@ -9357,7 +9357,7 @@ Można w nim także dodawać i usuwać komunikaty.',
 	'centralnotice-no-project' => 'Żaden projekt nie został wybrany dla kampanii. Nic nie dodano.',
 	'centralnotice-template-exists' => 'Szablon o podanej nazwie już istnieje. Nowy szablon nie został dodany.',
 	'centralnotice-notice-doesnt-exist' => 'Kampania nie istnieje.',
-	'centralnotice-remove-notice-doesnt-exist' => 'Kampania nie istnieje. 
+	'centralnotice-remove-notice-doesnt-exist' => 'Kampania nie istnieje.
 Usunięcie jest niemożliwe.',
 	'centralnotice-banner-doesnt-exist' => 'Baner nie istnieje.',
 	'centralnotice-template-still-bound' => 'Szablon nie może zostać usunięty. Jest ciągle używany przez komunikat.',
@@ -10443,17 +10443,17 @@ El poate fi folosit de asemenea pentru a adăuga sau șterge anunțuri vechi.',
 	'centralnotice-notice' => 'Campanie',
 	'centralnotice-notice-heading' => 'Campanie: $1',
 	'centralnotice-notices' => 'Notificări',
-	'centralnotice-notice-exists' => 'Campania există deja. 
+	'centralnotice-notice-exists' => 'Campania există deja.
 Nu se adaugă.',
 	'centralnotice-no-language' => 'Nicio limbă nu a fost selectată pentru campanie. Nu se adaugă.',
 	'centralnotice-no-project' => 'Niciun proiect nu a fost selectat pentru campanie. Nu se adaugă.',
-	'centralnotice-template-exists' => 'Bannerul există deja. 
+	'centralnotice-template-exists' => 'Bannerul există deja.
 Nu se adaugă.',
 	'centralnotice-notice-doesnt-exist' => 'Campania nu există.',
-	'centralnotice-remove-notice-doesnt-exist' => 'Campania nu există. 
+	'centralnotice-remove-notice-doesnt-exist' => 'Campania nu există.
 Nimic de eliminat.',
 	'centralnotice-banner-doesnt-exist' => 'Bannerul nu există.',
-	'centralnotice-template-still-bound' => 'Bannerul este încă legat de o campanie. 
+	'centralnotice-template-still-bound' => 'Bannerul este încă legat de o campanie.
 Nu se elimină.',
 	'centralnotice-template-body' => 'Corpul bannerului:',
 	'centralnotice-day' => 'Zi',
@@ -10489,7 +10489,7 @@ Nu se actualizează.',
 Nu se adaugă.',
 	'centralnotice-confirm-delete' => 'Sunteți sigur că doriți să ștergeți acest element?
 Acțiunea este iremediabilă.',
-	'centralnotice-no-notices-exist' => 'Nu există campanii. 
+	'centralnotice-no-notices-exist' => 'Nu există campanii.
 Adăugați una mai jos.',
 	'centralnotice-no-templates-translate' => 'Nu există bannere de tradus.',
 	'centralnotice-number-uses' => 'Utilizări',
@@ -11347,7 +11347,7 @@ $messages['si'] = array(
 	'right-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
 	'action-centralnotice-admin' => 'ප්‍රධාන දැන්වීම් පාලනය කරන්න',
 	'centralnotice-desc' => 'ප්‍රධාන අඩවි දැන්වීමක් එකතු කරයි',
-	'centralnotice-summary' => 'මෙම ඒකකය මගින් ඔබ දැනට පිහිටුවා ඇති ප්‍රධාන දැන්වීම් සංස්කරණය කළ හැකිය. 
+	'centralnotice-summary' => 'මෙම ඒකකය මගින් ඔබ දැනට පිහිටුවා ඇති ප්‍රධාන දැන්වීම් සංස්කරණය කළ හැකිය.
 එය පැරැණි දැන්වීම් එකතු කිරීමට හෝ අයින් කිරීමට ද භාවිතා කළ හැකිය.',
 	'centralnotice-query' => 'වත්මන් ව්‍යාපාර සංස්කරණය කරන්න',
 	'centralnotice-notice-name' => 'ව්‍යාපාරයේ නම',
@@ -11390,13 +11390,13 @@ $messages['si'] = array(
 එකතු කරනු නොලැබේ.',
 	'centralnotice-no-language' => 'ව්‍යාපාරය සඳහා භාෂාවක් තෝරාගෙන නැත. එකතු කරනු නොලැබේ.',
 	'centralnotice-no-project' => 'ව්‍යාපාරය සඳහා ව්‍යාපෘතියක් තෝරාගෙන නැත. එකතු කරනු නොලැබේ.',
-	'centralnotice-template-exists' => 'බැනරය දැනටමත් පවතී. 
+	'centralnotice-template-exists' => 'බැනරය දැනටමත් පවතී.
 එකතු කරනු නොලැබේ.',
 	'centralnotice-notice-doesnt-exist' => 'ව්‍යාපාරය නොපවතී.',
 	'centralnotice-remove-notice-doesnt-exist' => 'ව්‍යාපාරය නොපවතී.
 අයින් කිරීමට කිසිවක් නැත.',
 	'centralnotice-banner-doesnt-exist' => 'බැනරය නොපවතී.',
-	'centralnotice-template-still-bound' => 'බැනරය තවමත් ව්‍යාපාරයකට බැඳී ඇත. 
+	'centralnotice-template-still-bound' => 'බැනරය තවමත් ව්‍යාපාරයකට බැඳී ඇත.
 ඉවත් නොකෙරේ.',
 	'centralnotice-template-body' => 'බැනර බඳ:',
 	'centralnotice-day' => 'දවස',
@@ -11417,12 +11417,12 @@ $messages['si'] = array(
 	'centralnotice-no-templates-assigned' => 'ව්‍යාපාරයට බැනර පවරා නැත.
 එකතු කරන්න!',
 	'centralnotice-available-templates' => 'දැනට ඇති බැනර',
-	'centralnotice-template-already-exists' => 'බැනරය දැනටමත් ව්‍යාපෘතියට බැඳී ඇත. 
+	'centralnotice-template-already-exists' => 'බැනරය දැනටමත් ව්‍යාපෘතියට බැඳී ඇත.
 එකතු නොකෙරේ.',
 	'centralnotice-preview-template' => 'බැනර පෙරදසුන',
 	'centralnotice-change-lang' => 'පරිවර්තන භාෂාව වෙනස් කරන්න',
 	'centralnotice-weights' => 'බර',
-	'centralnotice-notice-is-locked' => 'ව්‍යාපාරය අගුළු ලා ඇත. 
+	'centralnotice-notice-is-locked' => 'ව්‍යාපාරය අගුළු ලා ඇත.
 ඉවත් නොකෙරේ.',
 	'centralnotice-overlap' => 'ව්‍යාපාරය තවත් ව්‍යාපාරයක කාල පරාසය සමග අතිච්ඡාදනය වේ.
 එකතු නොකෙරේ.',
@@ -11472,7 +11472,7 @@ $messages['si'] = array(
 	'centralnotice-no-allocation' => 'බැනර වෙන්කර නැත',
 	'centralnotice-allocation-description' => '$3 හි $1.$2 සඳහා බෙැනර වෙන්කිරීම',
 	'centralnotice-percentage' => 'ප්‍රතිශත',
-	'centralnotice-documentwrite-error' => 'බැනරය තුළ document.write() යොදාගත නොහැකිය. 
+	'centralnotice-documentwrite-error' => 'බැනරය තුළ document.write() යොදාගත නොහැකිය.
 වැඩි විස්තර සඳහා http://meta.wikimedia.org/wiki/Help:CentralNotice බලන්න.',
 	'centralnotice-preferred' => 'වඩා කැමති',
 	'centralnotice-logs' => 'සටහන්',
@@ -11811,7 +11811,7 @@ $messages['sq'] = array(
 	'right-centralnotice-admin' => 'Menaxhoni mesazhet qendrore',
 	'action-centralnotice-admin' => 'menaxhoni mesazhet qendrore',
 	'centralnotice-desc' => 'Ju lejon, të krijoni mesazhe qendrore për Wiki.',
-	'centralnotice-summary' => 'Ky modul ju lejon që të editoni shënimet tuaja të tanishme qendrore. 
+	'centralnotice-summary' => 'Ky modul ju lejon që të editoni shënimet tuaja të tanishme qendrore.
 Ai gjithashtu mund të përdoret për të shtuar ose hequr njoftime të vjetra.',
 	'centralnotice-query' => 'Ndryshoni mesazhin aktuale',
 	'centralnotice-notice-name' => 'Emri i shënimit',
@@ -11848,11 +11848,11 @@ Ai gjithashtu mund të përdoret për të shtuar ose hequr njoftime të vjetra.'
 	'centralnotice-notice' => 'Mesazh',
 	'centralnotice-notice-heading' => 'Mesazh: $1',
 	'centralnotice-notices' => 'Mesazhet',
-	'centralnotice-notice-exists' => 'Ky mesazhi ekziston. 
+	'centralnotice-notice-exists' => 'Ky mesazhi ekziston.
 Prandaj mesazhi nuk është shtuar.',
 	'centralnotice-no-language' => 'Për këtë mesaxh nuk është zgjedhur gjuha. Prandaj nuk u shtuar.',
 	'centralnotice-no-project' => 'Për këtë projekt nuk është zgjedhur fushata. Prandaj nuk u shtuar.',
-	'centralnotice-template-exists' => 'Stampa ekziston. 
+	'centralnotice-template-exists' => 'Stampa ekziston.
 Prandaj stampa nuk është shtuar.',
 	'centralnotice-notice-doesnt-exist' => 'Mesazhi nuk ekziston.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Mesazhi nuk ekziston.
@@ -11874,7 +11874,7 @@ Largimi nuk është e mundur.',
 	'centralnotice-start-time' => 'Koha e fillimit (UTC)',
 	'centralnotice-end-time' => 'Koha e përfundimit',
 	'centralnotice-assigned-templates' => 'Stampat e caktuara',
-	'centralnotice-no-templates' => 'Nuk ka rezultate që përputhen me kërkesën. 
+	'centralnotice-no-templates' => 'Nuk ka rezultate që përputhen me kërkesën.
 Shtoje prandaj!',
 	'centralnotice-no-templates-assigned' => 'Nuk ka baner të lidhur me fushatën.
 Shtoni disa!',
@@ -11886,11 +11886,11 @@ Nuk ka shtim.',
 	'centralnotice-weights' => 'Peshësia',
 	'centralnotice-notice-is-locked' => 'Mesazhi është e bllokuar.
 Kjo nuk mund të hiqet.',
-	'centralnotice-overlap' => 'Fushata përputhet me kohën e një fushate tjetër. 
+	'centralnotice-overlap' => 'Fushata përputhet me kohën e një fushate tjetër.
 Nuk ka shtim.',
 	'centralnotice-invalid-date-range' => 'Bashkësi e gabuar për datën.
 Nuk ka përditësim.',
-	'centralnotice-null-string' => 'Nuk mund të shtoni një varg null. 
+	'centralnotice-null-string' => 'Nuk mund të shtoni një varg null.
 Jo duke shtuar.',
 	'centralnotice-confirm-delete' => 'Jeni i sigurt se doni ta grisni këtë artikull?
 Ky veprim do të jetë i pakthyeshëm.',
@@ -12384,7 +12384,7 @@ Lägg till ett nedan',
 	'centralnotice-no-allocation' => 'Inga banners tilldelade.',
 	'centralnotice-allocation-description' => 'Bannertilldelning för $1.$2 i $3:',
 	'centralnotice-percentage' => 'Procent',
-	'centralnotice-documentwrite-error' => 'document.write() kan inte användas inom en banner. 
+	'centralnotice-documentwrite-error' => 'document.write() kan inte användas inom en banner.
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-preferred' => 'Föredragen',
 	'centralnotice-logs' => 'Loggar',
@@ -13640,7 +13640,7 @@ $messages['uk'] = array(
 	'centralnotice-no-allocation' => 'Немає розміщених банерів.',
 	'centralnotice-allocation-description' => 'Розміщення банеру для $1.$2 в $3:',
 	'centralnotice-percentage' => 'Відсоток',
-	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері. 
+	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері.
 Дивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.',
 	'centralnotice-preferred' => 'Бажано',
 	'centralnotice-logs' => 'Журнали',

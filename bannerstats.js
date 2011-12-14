@@ -1,5 +1,5 @@
 /**
- * This script retrieves click-thru rates for all the banners in all the campaigns in 
+ * This script retrieves click-thru rates for all the banners in all the campaigns in
  * wgCentralNoticeAllocationCampaigns. It then adds the rates to the allocation tables.
  */
 $( document ).ready( function () {

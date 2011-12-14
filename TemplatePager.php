@@ -8,16 +8,16 @@ class TemplatePager extends ReverseChronologicalPager {
 		$this->special = $special;
 		$this->editable = $special->editable;
 		parent::__construct();
-		
+
 		// Override paging defaults
 		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
 		$this->mLimitsShown = array( 20, 50, 100 );
-		
+
 		$msg = Xml::encodeJsVar( wfMsg( 'centralnotice-confirm-delete' ) );
 		$this->onRemoveChange = "if( this.checked ) { this.checked = confirm( $msg ) }";
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 	}
-	
+
 	function getQueryInfo() {
 		// Return all the banners in the database
 		return array(
@@ -25,7 +25,7 @@ class TemplatePager extends ReverseChronologicalPager {
 			'fields' => array( 'tmp_name', 'tmp_id' ),
 		);
 	}
-	
+
 	/**
 	 * Sort the banner list by tmp_id
 	 */
@@ -38,10 +38,10 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * Generate the content of each table row (1 row = 1 banner)
 	 */
 	function formatRow( $row ) {
-	
+
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
-		
+
 		if ( $this->editable ) {
 			// Remove box
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
@@ -53,12 +53,12 @@ class TemplatePager extends ReverseChronologicalPager {
 				)
 			);
 		}
-		
+
 		// Link and Preview
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
-		try { 
+		try {
 			$preview = $render->getHtmlNotice( $row->tmp_name );
 		} catch ( SpecialBannerLoaderException $e ) {
 			$preview = wfMsg( 'centralnotice-nopreview' );
@@ -72,10 +72,10 @@ class TemplatePager extends ReverseChronologicalPager {
 				array( 'class' => 'cn-bannerpreview')
 			)
 		);
-		
+
 		// End banner row
 		$htmlOut .= Xml::closeElement( 'tr' );
-		
+
 		return $htmlOut;
 	}
 
@@ -107,9 +107,9 @@ class TemplatePager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::closeElement( 'table' );
 		if ( $this->editable ) {
 			$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
-			$htmlOut .= Xml::tags( 'div', 
-				array( 'class' => 'cn-buttons' ), 
-				Xml::submitButton( wfMsg( 'centralnotice-modify' ) ) 
+			$htmlOut .= Xml::tags( 'div',
+				array( 'class' => 'cn-buttons' ),
+				Xml::submitButton( wfMsg( 'centralnotice-modify' ) )
 			);
 		}
 		return $htmlOut;

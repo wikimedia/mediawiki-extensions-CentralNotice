@@ -403,9 +403,9 @@ class CentralNoticeDB {
 		 $eBannerName = htmlspecialchars( $bannerName );
 		 $row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_name' => $eBannerName ) );
 		 if ( $row ) {
-		 	return true;
+			return true;
 		 } else {
-		 	return false;
+			return false;
 		 }
 	}
 
