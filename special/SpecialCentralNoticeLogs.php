@@ -90,7 +90,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
 					'</a>';
-				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), 'Log filters' );
+				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), wfMsg( 'centralnotice-filters' ) );
 				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters', 'style' => 'display:none;' ) );
 			}
 
