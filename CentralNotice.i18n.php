@@ -287,8 +287,10 @@ See also {{msg|Centralnotice-hide-button}}.',
 	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
 	'centralnotice-user' => '{{Identical|User}}',
 	'centralnotice-action' => '{{Identical|Action}}',
-	'centralnotice-action-created' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.',
-	'centralnotice-action-modified' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.',
+	'centralnotice-action-created' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
+{{Identical|Created}}',
+	'centralnotice-action-modified' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
+{{Identical|Modified}}',
 	'centralnotice-action-removed' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.',
 	'centralnotice-on' => 'indicates a notice is on air
 
@@ -1362,6 +1364,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-collapse-button' => 'Згарнуць спасылку',
 	'centralnotice-expand-button' => 'Разгарнуць спасылку',
 	'centralnotice-close-button' => 'Кнопка закрыцьця',
+	'centralnotice-close-title' => 'Закрыць',
 	'centralnotice-translate-button' => 'Спасылка дапамогі ў перакладзе',
 	'centralnotice-donate-button' => 'Кнопка ахвяраваньняў',
 	'centralnotice-expanded-banner' => 'Разгорнуты банэр',
@@ -1396,6 +1399,9 @@ $messages['be-tarask'] = array(
 	'centralnotice-timestamp' => 'Дата/час',
 	'centralnotice-user' => 'Удзельнік',
 	'centralnotice-action' => 'Дзеяньне',
+	'centralnotice-action-created' => 'створанае',
+	'centralnotice-action-modified' => 'зьмененае',
+	'centralnotice-action-removed' => 'выдаленае',
 	'centralnotice-changed' => 'Зьмененае з <span class="cn-old-value">$1</span> на <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'уключыць',
 	'centralnotice-off' => 'выключыць',
@@ -4283,6 +4289,7 @@ $messages['fo'] = array(
  * @author Sherbrooke
  * @author Urhixidur
  * @author Verdy p
+ * @author Wyz
  */
 $messages['fr'] = array(
 	'centralnotice' => 'Administration des avis centraux',
@@ -4395,6 +4402,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-collapse-button' => 'Réduire le lien',
 	'centralnotice-expand-button' => 'Développer le lien',
 	'centralnotice-close-button' => 'Bouton fermer',
+	'centralnotice-close-title' => 'Fermer',
 	'centralnotice-translate-button' => 'Lien d’aide à la traduction',
 	'centralnotice-donate-button' => 'Bouton de donation',
 	'centralnotice-expanded-banner' => 'Bannière étendue',
@@ -4429,6 +4437,9 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-timestamp' => 'Date',
 	'centralnotice-user' => 'Utilisateur',
 	'centralnotice-action' => 'Action',
+	'centralnotice-action-created' => 'créé',
+	'centralnotice-action-modified' => 'modifié',
+	'centralnotice-action-removed' => 'supprimé',
 	'centralnotice-changed' => 'Changé depuis <span class="cn-old-value">$1</span> vers <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'on',
 	'centralnotice-off' => 'off',
@@ -7871,6 +7882,9 @@ $messages['mk'] = array(
 	'centralnotice-timestamp' => 'Време и датум',
 	'centralnotice-user' => 'Корисник',
 	'centralnotice-action' => 'Дејство',
+	'centralnotice-action-created' => 'создадено',
+	'centralnotice-action-modified' => 'изменето',
+	'centralnotice-action-removed' => 'отстрането',
 	'centralnotice-changed' => 'Изменето од <span class="cn-old-value">$1</span> на <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'вкл',
 	'centralnotice-off' => 'искл',
@@ -9288,6 +9302,7 @@ $messages['or'] = array(
 	'centralnotice-collapse-button' => 'ଲିଙ୍କକୁ ସଙ୍କୁଚିତ କରିବେ',
 	'centralnotice-expand-button' => 'ଲିଙ୍କକୁ ବଢ଼ାଇବେ',
 	'centralnotice-close-button' => 'ବନ୍ଦକରିବା ବୋତାମ',
+	'centralnotice-close-title' => 'ବନ୍ଦ କରିବେ',
 	'centralnotice-translate-button' => 'ଲିଙ୍କ ଅନୁବାଦରେ ସହଯୋଗ କରନ୍ତୁ',
 	'centralnotice-donate-button' => 'ଦାନଦେବା ବୋତାମ',
 	'centralnotice-expanded-banner' => 'ବଢ଼ାଯାଇଥିବା ସୂଚନା ଫଳକ',
@@ -9322,6 +9337,9 @@ $messages['or'] = array(
 	'centralnotice-timestamp' => 'ସମୟଚିହ୍ନ',
 	'centralnotice-user' => 'ବ୍ୟବହାରକାରୀ',
 	'centralnotice-action' => 'କାମ',
+	'centralnotice-action-created' => 'ତିଆରି କରାଗଲା',
+	'centralnotice-action-modified' => 'ବଦଳାଯାଇଥିବା',
+	'centralnotice-action-removed' => 'ବାହାର କରାଗଲା',
 	'centralnotice-changed' => '<span class="cn-old-value">$1</span> ରୁ <span class="cn-new-value">$2</span>କୁ ବଦଳାଗଲା',
 	'centralnotice-on' => 'ସଚଳ',
 	'centralnotice-off' => 'ଅଚଳ',
