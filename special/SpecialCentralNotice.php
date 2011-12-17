@@ -1670,7 +1670,9 @@ class CentralNotice extends SpecialPage {
 	 * @return multiple select list
 	 */
 	function geoMultiSelector( $selected = array() ) {
-		$countries = CentralNoticeDB::getCountriesList();
+		global $wgLang;
+		$userLanguageCode = $wgLang->getCode();
+		$countries = CentralNoticeDB::getCountriesList( $userLanguageCode );
 		$options = "\n";
 		foreach( $countries as $code => $name ) {
 			$options .= Xml::option(

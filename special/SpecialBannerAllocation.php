@@ -14,7 +14,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
+		global $wgOut, $wgLang, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
 
 		$locationSubmitted = false;
 
@@ -99,7 +99,8 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Xml::tags( 'td', array(), wfMsg( 'centralnotice-country' ) );
 		$htmlOut .= Html::openElement( 'td' );
 
-		$countries = CentralNoticeDB::getCountriesList();
+		$userLanguageCode = $wgLang->getCode();
+		$countries = CentralNoticeDB::getCountriesList( $userLanguageCode );
 
 		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
 
