@@ -420,10 +420,10 @@ class CentralNoticeDB {
 		
 		if ( is_callable( array( 'CountryNames', 'getNames' ) ) ) {
 			// Retrieve the list of countries in user's language (via CLDR)
-			$countries = CountryNames::getNames(
-				$code, // Language code
-				CountryNames::LIST_FUNDRAISING // Pull all non-embargoed countries
-			);
+			$countries = CountryNames::getNames( $code );
+			unset( $countries['CU'] ); // Cuba
+			unset( $countries['IR'] ); // Iran
+			unset( $countries['SY'] ); // Syria
 		}
 		
 		if ( !$countries ) {
