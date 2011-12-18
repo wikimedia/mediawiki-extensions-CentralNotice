@@ -71,7 +71,7 @@ $wgExtensionCredits['other'][] = array(
 $dir = dirname( __FILE__ ) . '/';
 
 $wgExtensionMessagesFiles['CentralNotice'] = $dir . 'CentralNotice.i18n.php';
-$wgExtensionAliasesFiles['CentralNotice'] = $dir . 'CentralNotice.alias.php';
+$wgExtensionMessagesFiles['CentralNoticeAliases'] = $dir . 'CentralNotice.alias.php';
 
 // Register user rights
 $wgAvailableRights[] = 'centralnotice-admin';
