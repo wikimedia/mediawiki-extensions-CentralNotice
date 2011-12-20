@@ -513,6 +513,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-change-lang' ) );
 				$htmlOut .= Html::hidden( 'template', $currentTemplate );
 				$htmlOut .= Html::openElement( 'table', array ( 'cellpadding' => 9 ) );
+				// TODO: Change this to use CLDR
 				list( $lsLabel, $lsSelect ) = Xml::languageSelector( $wpUserLang );
 
 				$newPage = $this->getTitle( 'view' );

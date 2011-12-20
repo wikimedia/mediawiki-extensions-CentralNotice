@@ -47,6 +47,7 @@ $wgNoticeFundraisingUrl = 'http://wikimediafoundation.org/wiki/Special:LandingCh
 
 // Source for live counter information
 $wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
+$wgNoticeDailyCounterSource = 'http://wikimediafoundation.org/wiki/Special:DailyTotal?action=raw';
 
 // Domain to set global cookies for.
 // Example: '.wikipedia.org'
