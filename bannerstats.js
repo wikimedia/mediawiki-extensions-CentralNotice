@@ -3,6 +3,7 @@
  * wgCentralNoticeAllocationCampaigns. It then adds the rates to the allocation tables.
  */
 $( document ).ready( function () {
+	/*
 	$.each( wgCentralNoticeAllocationCampaigns, function( index, campaignName ) {
 		var statUrl = 'http://fundraising-analytics.wikimedia.org/live_stats/' + campaignName;
 		$.ajax( {
@@ -20,4 +21,5 @@ $( document ).ready( function () {
 			}
 		} );
 	} )
+	*/
 } );

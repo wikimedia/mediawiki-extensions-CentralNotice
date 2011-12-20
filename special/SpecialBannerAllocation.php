@@ -181,13 +181,13 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 				}
 
 				if ( $banner['campaign'] ) {
-					$campaigns[] = "'".$banner['campaign']."'";
+					$campaigns[] = $banner['campaign'];
 				}
 			}
 
 			// Build campaign list for bannerstats.js
-			$campaignList = implode( ', ', $campaigns );
-			$js = "wgCentralNoticeAllocationCampaigns = array( $campaignList );";
+			$campaignList = json_encode( $campaigns );
+			$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
 			$htmlOut .= Html::inlineScript( $js );
 
 			if ( $anonBanners && $anonWeight > 0 ) {
