@@ -9437,6 +9437,7 @@ $messages['pdc'] = array(
  * @author Derbeth
  * @author Leinad
  * @author Maikking
+ * @author Mikołka
  * @author Odder
  * @author Qblik
  * @author Sp5uhe
@@ -9545,6 +9546,7 @@ Dodaj nowy poniżej.',
 	'centralnotice-collapse-button' => 'Zwiń link',
 	'centralnotice-expand-button' => 'Rozwiń link',
 	'centralnotice-close-button' => 'Przycisk zamykania',
+	'centralnotice-close-title' => 'Zamknij',
 	'centralnotice-translate-button' => 'Link „Pomóż w tłumaczeniu”',
 	'centralnotice-donate-button' => 'Przycisk „Wspomóż”',
 	'centralnotice-expanded-banner' => 'Rozwinięty baner',
