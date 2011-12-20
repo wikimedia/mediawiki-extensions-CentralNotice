@@ -186,7 +186,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 			}
 
 			// Build campaign list for bannerstats.js
-			$campaignList = json_encode( $campaigns );
+			$campaignList = FormatJson::encode( $campaigns );
 			$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
 			$htmlOut .= Html::inlineScript( $js );
 
