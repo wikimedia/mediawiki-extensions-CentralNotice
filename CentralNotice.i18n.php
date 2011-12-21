@@ -9434,6 +9434,7 @@ $messages['pdc'] = array(
 );
 
 /** Polish (Polski)
+ * @author Bartek50003
  * @author Derbeth
  * @author Leinad
  * @author Maikking
@@ -9581,6 +9582,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-timestamp' => 'Sygnatura czasowa',
 	'centralnotice-user' => 'Użytkownik',
 	'centralnotice-action' => 'Akcja',
+	'centralnotice-action-created' => 'utworzono',
 	'centralnotice-changed' => 'Zmieniono z <span class="cn-old-value">$1</span> na <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'włączone',
 	'centralnotice-off' => 'wyłączone',
