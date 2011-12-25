@@ -8978,7 +8978,7 @@ Denne handlinga kan ikkje bli omgjort.',
  * @author Nghtwlkr
  * @author Njardarlogar
  */
-$messages['no'] = array(
+$messages['nb'] = array(
 	'centralnotice' => 'Administrasjon av sentrale beskjeder',
 	'noticetemplate' => 'Admin for sentrale beskjeder',
 	'bannerallocation' => 'Administrasjon av sentrale beskjeder',
