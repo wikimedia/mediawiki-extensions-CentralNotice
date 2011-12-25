@@ -53,7 +53,8 @@ $specialPageAliases['eo'] = array(
 
 /** Persian (فارسی) */
 $specialPageAliases['fa'] = array(
-	'CentralNotice' => array( 'اعلامیه_مرکزی' ),
+	'CentralNotice' => array( 'اعلان_مرکزی' ),
+	'CentralNoticeLogs' => array( 'سیاهه‌های_اعلان_مرکزی' ),
 	'NoticeTemplate' => array( 'الگوی_اعلامیه' ),
 	'BannerAllocation' => array( 'موقعیت_نشان' ),
 	'BannerController' => array( 'کنترل_نشان' ),
@@ -65,6 +66,8 @@ $specialPageAliases['fa'] = array(
 /** Galician (Galego) */
 $specialPageAliases['gl'] = array(
 	'CentralNotice' => array( 'Aviso_central' ),
+	'CentralNoticeLogs' => array( 'Rexistro_do_aviso_central' ),
+	'NoticeTemplate' => array( 'Modelo_de_aviso' ),
 );
 
 /** 湘语 (湘语) */
@@ -91,16 +94,19 @@ $specialPageAliases['ht'] = array(
 /** Interlingua (Interlingua) */
 $specialPageAliases['ia'] = array(
 	'CentralNotice' => array( 'Aviso_central' ),
+	'CentralNoticeLogs' => array( 'Registro_de_aviso_central' ),
 	'NoticeTemplate' => array( 'Patrono_de_aviso' ),
 	'BannerAllocation' => array( 'Alloca_bandieras' ),
 	'BannerController' => array( 'Controla_bandieras' ),
 	'BannerListLoader' => array( 'Carga_lista_de_bandieras' ),
 	'BannerLoader' => array( 'Carga_bandieras' ),
+	'HideBanners' => array( 'Celar_bandieras' ),
 );
 
 /** Japanese (日本語) */
 $specialPageAliases['ja'] = array(
 	'CentralNotice' => array( '中央管理通知' ),
+	'CentralNoticeLogs' => array( '中央管理通知記録' ),
 	'NoticeTemplate' => array( '通知テンプレート' ),
 	'BannerAllocation' => array( 'テンプレート割り当て' ),
 	'BannerController' => array( 'テンプレート制御' ),
@@ -135,7 +141,18 @@ $specialPageAliases['mk'] = array(
 /** Malayalam (മലയാളം) */
 $specialPageAliases['ml'] = array(
 	'CentralNotice' => array( 'കേന്ദ്രീകൃതഅറിയിപ്പ്' ),
+	'CentralNoticeLogs' => array( 'കേന്ദ്രീകൃതഅറിയിപ്പ്‌രേഖകൾ' ),
 	'NoticeTemplate' => array( 'അറിയിപ്പ്ഫലകം' ),
+);
+
+/** Norwegian Bokmål (‪Norsk (bokmål)‬) */
+$specialPageAliases['nb'] = array(
+	'CentralNotice' => array( 'Sentralnotis' ),
+	'NoticeTemplate' => array( 'Notismal' ),
+	'BannerAllocation' => array( 'Bannerplassering' ),
+	'BannerController' => array( 'Bannerkontroll' ),
+	'BannerListLoader' => array( 'Bannerlistelaster' ),
+	'BannerLoader' => array( 'Bannerlaster' ),
 );
 
 /** Nedersaksisch (Nedersaksisch) */
@@ -167,18 +184,10 @@ $specialPageAliases['nn'] = array(
 	'NoticeTemplate' => array( 'Merknadsmal' ),
 );
 
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬) */
-$specialPageAliases['nb'] = array(
-	'CentralNotice' => array( 'Sentralnotis' ),
-	'NoticeTemplate' => array( 'Notismal' ),
-	'BannerAllocation' => array( 'Bannerplassering' ),
-	'BannerController' => array( 'Bannerkontroll' ),
-	'BannerListLoader' => array( 'Bannerlistelaster' ),
-	'BannerLoader' => array( 'Bannerlaster' ),
-);
-
 /** Oriya (ଓଡ଼ିଆ) */
 $specialPageAliases['or'] = array(
+	'CentralNotice' => array( 'ମଝି‌_ସୂଚନା_ଫଳକ' ),
+	'CentralNoticeLogs' => array( 'ମଝି‌_ସୂଚନା_ଫଳକ_ଇତିହାସ' ),
 	'NoticeTemplate' => array( 'ସୂଚନା_ଛାଞ୍ଚ' ),
 );
 
@@ -232,8 +241,3 @@ $specialPageAliases['zh-hant'] = array(
 	'BannerLoader' => array( '橫幅裝載' ),
 	'HideBanners' => array( '隱藏橫幅' ),
 );
-
-/**
- * For backwards compatibility with MediaWiki 1.15 and earlier.
- */
-$aliases =& $specialPageAliases;
