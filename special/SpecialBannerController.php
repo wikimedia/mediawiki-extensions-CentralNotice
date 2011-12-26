@@ -87,11 +87,13 @@ JAVASCRIPT;
 			$wgContLang->specialPage( 'BannerListLoader' ) .
 			"') + '&cache=/cn.js&' + bannerListQuery;\n";
 		$js .= <<<JAVASCRIPT
-				var request = $.ajax( {
-					url: bannerListURL,
-					dataType: 'json',
-					success: $.centralNotice.fn.chooseBanner
-				} );
+				if ( wgNamespaceNumber !== -1 ) { // disable loading banners on Special pages
+					var request = $.ajax( {
+						url: bannerListURL,
+						dataType: 'json',
+						success: $.centralNotice.fn.chooseBanner
+					} );
+				}
 			},
 			'chooseBanner': function( bannerList ) {
 				// Convert the json object to a true array
