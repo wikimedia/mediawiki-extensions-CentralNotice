@@ -99,11 +99,14 @@ JAVASCRIPT;
 			$wgContLang->specialPage( 'BannerListLoader' ) .
 			"') + '&cache=/cn.js&' + bannerListQuery;\n";
 		$js .= <<<JAVASCRIPT
-				$.ajax( {
-					url: bannerListURL,
-					dataType: 'json',
-					success: $.centralNotice.fn.chooseBanner
-				} );
+				// Prevent loading banners on Special pages
+				if ( mw.config.get( 'wgNamespaceNumber' ) !== -1 ) {
+					$.ajax( {
+						url: bannerListURL,
+						dataType: 'json',
+						success: $.centralNotice.fn.chooseBanner
+					} );
+				}
 			},
 			chooseBanner: function( bannerList ) {
 				var groomedBannerList = [], i, j, pointer;
