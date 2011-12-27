@@ -50,77 +50,88 @@ class SpecialBannerController extends UnlistedSpecialPage {
 ( function( $ ) {
 	$.ajaxSetup({ cache: true });
 	$.centralNotice = {
-		'data': {
-			'getVars': {},
-			'bannerType': 'default'
+		data: {
+			getVars: {},
+			bannerType: 'default'
 		},
-		'fn': {
-			'loadBanner': function( bannerName, campaign, bannerType ) {
+		fn: {
+			loadBanner: function( bannerName, campaign, bannerType ) {
+				var bannerPageQuery, bannerPage, bannerScript;
+
 				// Store the bannerType in case we need to set a banner hiding cookie later
 				$.centralNotice.data.bannerType = bannerType;
 				// Get the requested banner
-				var bannerPageQuery = $.param( {
-					'banner': bannerName, 'campaign': campaign, 'userlang': wgUserLanguage,
-					'db': wgDBname, 'sitename': wgSiteName, 'country': Geo.country
+				bannerPageQuery = $.param( {
+					banner: bannerName,
+					campaign: campaign,
+					userlang: mw.config.get( 'wgUserLanguage' ),
+					db: mw.config.get( 'wgDBname' ),
+					sitename: mw.config.get( 'wgSiteName' ),
+					country: Geo.country
 				} );
-				var bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
+				bannerPage = '?title=Special:BannerLoader&' + bannerPageQuery;
 JAVASCRIPT;
-		$js .= "\n\t\t\t\tvar bannerScript = '<script type=\"text/javascript\" src=\"" .
+		$js .= "\n\t\t\t\tbannerScript = '<script type=\"text/javascript\" src=\"" .
 			Xml::escapeJsString( $wgCentralPagePath ) .
 			"' + bannerPage + '\"></script>';\n";
 		$js .= <<<JAVASCRIPT
-				if ( document.cookie.indexOf( 'centralnotice_'+bannerType+'=hide' ) == -1 ) {
+				if ( document.cookie.indexOf( 'centralnotice_' + bannerType + '=hide' ) === -1 ) {
 					jQuery( '#siteNotice' ).prepend( '<div id="centralNotice" class="' +
 						( wgNoticeToggleState ? 'expanded' : 'collapsed' ) +
 						' cn-' + bannerType + '">'+bannerScript+'</div>' );
 				}
 			},
-			'loadBannerList': function( geoOverride ) {
+			loadBannerList: function( geoOverride ) {
+				var geoLocation, bannerListQuery, bannerListURL;
+
 				if ( geoOverride ) {
-					var geoLocation = geoOverride; // override the geo info
+					geoLocation = geoOverride; // override the geo info
 				} else {
-					var geoLocation = Geo.country; // pull the geo info
+					geoLocation = Geo.country; // pull the geo info
 				}
-				var bannerListQuery = $.param( { 'language': wgContentLanguage, 'project': wgNoticeProject, 'country': geoLocation } );
+				bannerListQuery = $.param( {
+					language: mw.config.get( 'wgContentLanguage' ),
+					project: mw.config.get( 'wgNoticeProject' ),
+					country: geoLocation
+				} );
 JAVASCRIPT;
-		$js .= "\n\t\t\t\tvar bannerListURL = wgScript + '?title=' + encodeURIComponent('" .
+		$js .= "\n\t\t\t\tbannerListURL = mw.util.wikiScript() + '?title=' + encodeURIComponent('" .
 			$wgContLang->specialPage( 'BannerListLoader' ) .
 			"') + '&cache=/cn.js&' + bannerListQuery;\n";
 		$js .= <<<JAVASCRIPT
-				if ( wgNamespaceNumber !== -1 ) { // disable loading banners on Special pages
-					var request = $.ajax( {
-						url: bannerListURL,
-						dataType: 'json',
-						success: $.centralNotice.fn.chooseBanner
-					} );
-				}
+				$.ajax( {
+					url: bannerListURL,
+					dataType: 'json',
+					success: $.centralNotice.fn.chooseBanner
+				} );
 			},
-			'chooseBanner': function( bannerList ) {
-				// Convert the json object to a true array
-				bannerList = Array.prototype.slice.call( bannerList );
+			chooseBanner: function( bannerList ) {
+				var groomedBannerList = [], i, j, pointer;
 
 				// Make sure there are some banners to choose from
-				if ( bannerList.length == 0 ) return false;
+				if ( bannerList.length === 0 ) {
+					return false;
+				}
 
-				var groomedBannerList = [];
-
-				for( var i = 0; i < bannerList.length; i++ ) {
+				for( i = 0; i < bannerList.length; i++ ) {
 					// Only include this banner if it's intended for the current user
-					if( ( wgUserName && bannerList[i].display_account ) ||
-						( !wgUserName && bannerList[i].display_anon == 1 ) )
+					if( ( !mw.user.anonymous() && bannerList[i].display_account === 1 ) ||
+						( mw.user.anonymous() && bannerList[i].display_anon === 1 ) )
 					{
-						// add the banner to our list once per weight
-						for( var j=0; j < bannerList[i].weight; j++ ) {
+						// Add the banner to our list once per weight
+						for( j = 0; j < bannerList[i].weight; j++ ) {
 							groomedBannerList.push( bannerList[i] );
 						}
 					}
 				}
 
 				// Return if there's nothing left after the grooming
-				if( groomedBannerList.length == 0 ) return false;
+				if ( groomedBannerList.length === 0 ) {
+					return false;
+				}
 
 				// Choose a random key
-				var pointer = Math.floor( Math.random() * groomedBannerList.length );
+				pointer = Math.floor( Math.random() * groomedBannerList.length );
 
 				// Load a random banner from our groomed list
 				$.centralNotice.fn.loadBanner(
@@ -129,27 +140,29 @@ JAVASCRIPT;
 					( groomedBannerList[pointer].fundraising ? 'fundraising' : 'default' )
 				);
 			},
-			'getQueryStringVariables': function() {
-				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function () {
-					function decode( s ) {
-						return decodeURIComponent( s.split( "+" ).join( " " ) );
-					}
-					$.centralNotice.data.getVars[decode( arguments[1] )] = decode( arguments[2] );
+			getQueryStringVariables: function() {
+				function decode( s ) {
+					return decodeURIComponent( s.split( '+' ).join( ' ' ) );
+				}
+				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
+					$.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
 				} );
 			}
 		}
-	}
-	jQuery( document ).ready( function ( $ ) {
+	};
+
+	$( document ).ready( function ( $ ) {
 		// Initialize the query string vars
 		$.centralNotice.fn.getQueryStringVariables();
-		if( $.centralNotice.data.getVars['banner'] ) {
+		if( $.centralNotice.data.getVars.banner ) {
 			// if we're forcing one banner
-			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars['banner'] );
+			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars.banner );
 		} else {
 			// Look for banners ready to go NOW
-			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars['country'] );
+			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars.country );
 		}
-	} ); //document ready
+	} );
+
 } )( jQuery );
 JAVASCRIPT;
 		return $js;
@@ -157,7 +170,7 @@ JAVASCRIPT;
 	}
 
 	function getToggleScripts() {
-		$script = "var wgNoticeToggleState = (document.cookie.indexOf('hidesnmessage=1')==-1);\n\n";
+		$script = "var wgNoticeToggleState = document.cookie.indexOf( 'hidesnmessage=1' ) === -1;\n\n";
 		return $script;
 	}
 
@@ -165,37 +178,43 @@ JAVASCRIPT;
 		global $wgNoticeFundraisingUrl;
 		$script = <<<JAVASCRIPT
 function insertBanner( bannerJson ) {
+	var url, targets;
+
 	jQuery( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
 	if ( bannerJson.autolink ) {
 JAVASCRIPT;
-	$script .= "\n\t\tvar url = '" .
+	$script .= "\n\t\turl = '" .
 	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';\n";
 	$script .= <<<JAVASCRIPT
 		if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
 			targets = String( bannerJson.landingPages ).split(',');
 			url += "?" + jQuery.param( {
-				'landing_page': targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' )
+				landing_page: targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' )
 			} );
 			url += "&" + jQuery.param( {
-				'utm_medium': 'sitenotice', 'utm_campaign': bannerJson.campaign,
-				'utm_source': bannerJson.bannerName, 'language': wgUserLanguage,
-				'country': Geo.country
+				utm_medium: 'sitenotice',
+				utm_campaign: bannerJson.campaign,
+				utm_source: bannerJson.bannerName,
+				language: mw.config.get( 'wgUserLanguage' ),
+				country: Geo.country
 			} );
 			jQuery( '#cn-landingpage-link' ).attr( 'href', url );
 		}
 	}
 }
-function hideBanner() {
-	jQuery( '#centralNotice' ).hide(); // Hide current banner
-	var bannerType = $.centralNotice.data.bannerType;
-	if ( bannerType === undefined ) bannerType = 'default';
-	setBannerHidingCookie( bannerType ); // Hide future banners of the same type
-}
 function setBannerHidingCookie( bannerType ) {
 	var e = new Date();
 	e.setTime( e.getTime() + (14*24*60*60*1000) ); // two weeks
-	var work='centralnotice_'+bannerType+'=hide; expires=' + e.toGMTString() + '; path=/';
+	var work = 'centralnotice_' + bannerType + '=hide; expires=' + e.toGMTString() + '; path=/';
 	document.cookie = work;
+}
+function hideBanner() {
+	jQuery( '#centralNotice' ).hide(); // Hide current banner
+	var bannerType = jQuery.centralNotice.data.bannerType;
+	if ( bannerType === undefined ) {
+		bannerType = 'default';
+	}
+	setBannerHidingCookie( bannerType ); // Hide future banners of the same type
 }
 // This function is deprecated
 function toggleNotice() {
