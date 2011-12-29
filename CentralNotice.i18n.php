@@ -3393,6 +3393,7 @@ $messages['el'] = array(
 	'centralnotice-anon' => 'Εμφάνιση σε ανώνυμους χρήστες',
 	'centralnotice-account' => 'Εμφάνιση σε συνδεδεμένους χρήστες',
 	'centralnotice-fundraising' => 'Εξεύρεση Πόρων',
+	'centralnotice-autolink' => 'Αυτόματη δημιουργία συνδέσμων',
 	'centralnotice-landingpages' => 'Καταληκτικές σελίδες',
 	'centralnotice-banner-content' => 'Περιεχόμενο της πληροφοριακής σελίδας',
 	'centralnotice-banner-content-changed' => 'Άλλαξε',
@@ -5408,6 +5409,8 @@ $messages['hi'] = array(
 	'centralnotice-country' => 'देश',
 	'centralnotice-no-allocation' => 'कोई बैनर आवंटित नहीं है ।',
 	'centralnotice-percentage' => 'प्रतिशत',
+	'centralnotice-documentwrite-error' => 'दस्तावेज़.लेख() बैनर के अंदर इस्तेमाल नहीं हो सकता ।
+देखो http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.',
 	'centralnotice-preferred' => 'पसंदीदा',
 	'centralnotice-logs' => 'लॉग',
 	'centralnotice-view-logs' => 'लॉग देखें',
@@ -5417,9 +5420,13 @@ $messages['hi'] = array(
 	'centralnotice-action-created' => 'बनाया गया',
 	'centralnotice-action-modified' => 'परिवर्तित',
 	'centralnotice-action-removed' => 'हटाया गया',
+	'centralnotice-changed' => 'बदला गया <span class="cn-old-value">$1</span> से <span class="cn-new-value">$2</span> तक',
 	'centralnotice-on' => 'चालू',
 	'centralnotice-off' => 'बंद',
+	'centralnotice-added' => 'जोड़ा गया <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'निकाला गया <span class="cn-old-value">$1</span>',
 	'centralnotice-talk-link' => 'वार्ता',
+	'centralnotice-banner-settings' => 'बैनर सेटिंग्स',
 	'centralnotice-autolink' => 'स्वचालित लिंक निर्माण',
 	'centralnotice-banner-content' => 'बैनर सामग्री',
 	'centralnotice-banner-content-changed' => 'परिवर्तित',
@@ -12184,6 +12191,7 @@ $messages['si'] = array(
 	'centralnotice-action-created' => 'තනන ලද',
 	'centralnotice-action-modified' => 'වෙනස් කරන ලද',
 	'centralnotice-action-removed' => 'ඉවත් කරන ලද',
+	'centralnotice-changed' => '<span class="cn-old-value">$1</span> වෙතින් <span class="cn-new-value">$2</span> වෙත වෙනස් කරන ලදී',
 	'centralnotice-on' => 'අරින්න',
 	'centralnotice-off' => 'ඉවතට',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> එක් කරන ලදී',
@@ -13384,6 +13392,8 @@ $messages['ta'] = array(
 	'centralnotice-template-exists' => 'பதாகை ஏற்கனவே உள்ளது.
 சேர்க்க வில்லை.',
 	'centralnotice-notice-doesnt-exist' => 'பிரச்சாரம் இல்லை',
+	'centralnotice-remove-notice-doesnt-exist' => 'பிரச்சாரம்  இல்லை.
+நீக்க எதுவுமில்லை',
 	'centralnotice-banner-doesnt-exist' => 'பதாகை இல்லை',
 	'centralnotice-template-body' => 'பதாகை உரை:',
 	'centralnotice-day' => 'நாள்',
@@ -13456,11 +13466,14 @@ $messages['ta'] = array(
 	'centralnotice-preferred' => 'விரும்பத்தக்கது',
 	'centralnotice-logs' => 'பதிவுகள்',
 	'centralnotice-view-logs' => 'பதிவுகளை காண்',
+	'centralnotice-timestamp' => 'நேரமுத்திரை',
 	'centralnotice-user' => 'பயனர்',
 	'centralnotice-action' => 'செயல்',
 	'centralnotice-action-created' => 'உருவாக்கப்பட்டுவிட்டது',
 	'centralnotice-action-modified' => 'மாற்றப்பட்டுள்ளது',
 	'centralnotice-action-removed' => 'நீக்கப்பட்டது',
+	'centralnotice-off' => 'அணை',
+	'centralnotice-removed' => 'நீக்கப்பட்டது<span class="cn-old-value">$1</span>',
 	'centralnotice-no-assignments' => 'பதாகைகள் எதுவும் ஒதுக்கப்படவில்லை',
 	'centralnotice-talk-link' => 'பேச்சு',
 	'centralnotice-campaign-settings' => 'பிரச்சார அமைப்புகள்',
@@ -13470,6 +13483,13 @@ $messages['ta'] = array(
 	'centralnotice-fundraising' => 'நிதி திரட்டுகிற',
 	'centralnotice-autolink' => 'தானாக இணைப்பு உருவாக்கல்',
 	'centralnotice-landingpages' => 'இறங்கும் பக்கங்கள்',
+	'centralnotice-banner-content' => 'பதாகை உள்ளடக்கம்',
+	'centralnotice-banner-content-changed' => 'மாற்றப்பட்டது',
+	'centralnotice-filters' => 'குறிப்பேடு வடிப்பான்கள்',
+	'centralnotice-date' => 'தேதி',
+	'centralnotice-apply-filters' => 'வடிப்பான்கள் பயன்படுத்து',
+	'centralnotice-clear-filters' => 'வடிப்பான்களை துடை',
+	'centralnotice-banner-messages' => 'பதாகை தகவல்கள்',
 );
 
 /** Telugu (తెలుగు)
@@ -14807,13 +14827,14 @@ Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
 	'centralnotice-preferred' => 'Preferìo',
 );
 
-/** Veps (Vepsan kel')
+/** Veps (Vepsän kel')
  * @author Игорь Бродский
  */
 $messages['vep'] = array(
 	'centralnotice-end-date' => 'Lopdat',
 	'centralnotice-enabled' => 'Kävutamižes',
 	'centralnotice-modify' => 'Oigeta',
+	'centralnotice-view' => 'Nähta',
 	'centralnotice-save-banner' => 'Panda banner muštho',
 	'centralnotice-preview' => 'Ezikacund',
 	'centralnotice-nopreview' => '(Ei voi ezikacta)',
@@ -14878,6 +14899,22 @@ Ei ližakoi.',
 Ei čukoi poiš.',
 	'centralnotice-null-string' => "Ei voi ližata pall'ast rived.
 Ei ližakoi.",
+	'centralnotice-number-uses' => 'Kävutadas',
+	'centralnotice-clone' => 'Klon',
+	'centralnotice-clone-name' => 'Nimi:',
+	'centralnotice-hide-button' => 'Peitta kosketuz',
+	'centralnotice-close-title' => 'Saubata',
+	'centralnotice-banner-type' => 'Banneran tip:',
+	'centralnotice-countries' => 'Valdkundad',
+	'centralnotice-languages' => 'Keled',
+	'centralnotice-language' => 'Kel’',
+	'centralnotice-projects' => 'Proektad',
+	'centralnotice-country' => 'Valdkund',
+	'centralnotice-percentage' => 'Procentuz',
+	'centralnotice-banner-content' => 'Banneran südäiolend',
+	'centralnotice-banner-content-changed' => 'Om toižetadud',
+	'centralnotice-date' => 'Dat',
+	'centralnotice-apply-filters' => "Kävutada fil'trad",
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -15179,6 +15216,7 @@ $messages['yi'] = array(
 	'centralnotice-language' => 'שפראַך',
 	'centralnotice-projects' => 'פראיעקטן:',
 	'centralnotice-country' => 'לאַנד',
+	'centralnotice-user' => 'באַניצער',
 	'centralnotice-date' => 'דאַטע',
 );
 
