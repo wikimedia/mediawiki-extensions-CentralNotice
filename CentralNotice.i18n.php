@@ -4679,13 +4679,14 @@ Apondéd-nen ce-desot.',
 	'centralnotice-collapse-button' => 'Recllôre lo lim',
 	'centralnotice-expand-button' => 'Dèvelopar lo lim',
 	'centralnotice-close-button' => 'Boton cllôre',
+	'centralnotice-close-title' => 'Cllôre',
 	'centralnotice-translate-button' => 'Lim d’éde a la traduccion',
 	'centralnotice-donate-button' => 'Boton de donacion',
 	'centralnotice-expanded-banner' => 'Baniére ètendua',
 	'centralnotice-collapsed-banner' => 'Baniére rèduita',
 	'centralnotice-banner-display' => 'Fâre vêre ux :',
-	'centralnotice-banner-anonymous' => 'Utilisators pas encartâs',
-	'centralnotice-banner-logged-in' => 'Utilisators branchiês',
+	'centralnotice-banner-anonymous' => 'Usanciérs pas encartâs',
+	'centralnotice-banner-logged-in' => 'Usanciérs branchiês',
 	'centralnotice-banner-type' => 'Tipo de baniére :',
 	'centralnotice-banner-hidable' => 'Statica / cachâbla',
 	'centralnotice-banner-collapsible' => 'Rèductibla',
@@ -4713,6 +4714,9 @@ Volyéd vêre http://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enf
 	'centralnotice-timestamp' => 'Dâta et hora',
 	'centralnotice-user' => 'Usanciér',
 	'centralnotice-action' => 'Accion',
+	'centralnotice-action-created' => 'fêt',
+	'centralnotice-action-modified' => 'changiê',
+	'centralnotice-action-removed' => 'enlevâ',
 	'centralnotice-changed' => 'Changiê dês <span class="cn-old-value">$1</span> vers <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'activâ',
 	'centralnotice-off' => 'dèsactivâ',
@@ -4723,8 +4727,8 @@ Volyéd vêre http://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enf
 	'centralnotice-log-label' => '<span class="cn-log-label">$1 :</span> $2',
 	'centralnotice-campaign-settings' => 'Paramètres de la propaganda',
 	'centralnotice-banner-settings' => 'Paramètres de la baniére',
-	'centralnotice-anon' => 'Fâre vêre ux utilisators pas encartâs',
-	'centralnotice-account' => 'Fâre vêre ux utilisators branchiês',
+	'centralnotice-anon' => 'Fâre vêre ux usanciérs pas encartâs',
+	'centralnotice-account' => 'Fâre vêre ux usanciérs branchiês',
 	'centralnotice-fundraising' => 'Levâ de fonds',
 	'centralnotice-autolink' => 'Crèacion de lim ôtomatica',
 	'centralnotice-landingpages' => 'Pâges d’arrevâ',
@@ -6947,6 +6951,7 @@ Tambahaké ing ngisor',
  * @author BRUTE
  * @author David1010
  * @author Dawid Deutschland
+ * @author ITshnik
  * @author Malafaya
  * @author გიორგიმელა
  */
@@ -7038,6 +7043,7 @@ $messages['ka'] = array(
 	'centralnotice-insert' => 'ჩასვით: $1',
 	'centralnotice-hide-button' => 'ბმულის დამალვა',
 	'centralnotice-close-button' => 'დახურვის ღილაკი',
+	'centralnotice-close-title' => 'დახურვა',
 	'centralnotice-translate-button' => 'დამხმარე ბმული თარგმანებისთვის',
 	'centralnotice-donate-button' => 'შემოწირულობების ღილაკი',
 	'centralnotice-banner-display' => 'აჩვენე:',
@@ -8091,6 +8097,8 @@ $messages['lv'] = array(
 	'centralnotice-notice-name' => 'Kampaņas nosaukums',
 	'centralnotice-end-date' => 'Beigu datums',
 	'centralnotice-modify' => 'Iesniegt',
+	'centralnotice-view' => 'Apskatīt',
+	'centralnotice-preview' => 'Priekšskats',
 	'centralnotice-add-new' => 'Pievienot jaunu kampaņu',
 	'centralnotice-manage' => 'Pārvaldīt kampaņas',
 	'centralnotice-manage-templates' => 'Pārvaldīt reklāmkarogus',
@@ -13455,6 +13463,7 @@ $messages['ta'] = array(
 	'centralnotice-banner-logged-in' => 'புகுபதிகை செய்த பயனர்கள்',
 	'centralnotice-banner-type' => 'பதாகை வகை',
 	'centralnotice-banner-hidable' => 'நிலையானது/மறைக்கக்கூடியது',
+	'centralnotice-banner-fundraising' => 'இது ஒரு நிதி திரட்டும் பதாகை',
 	'centralnotice-countries' => 'நாடுகள்',
 	'centralnotice-languages' => 'மொழிகள்',
 	'centralnotice-language' => 'மொழி',
@@ -15132,6 +15141,13 @@ Dun at obinon nesädunovik.',
 	'centralnotice-preferred' => 'Pebuüköl',
 );
 
+/** Waray (Winaray)
+ * @author JinJian
+ */
+$messages['war'] = array(
+	'centralnotice-user' => 'Gumaramit',
+);
+
 /** Yiddish (ייִדיש)
  * @author Imre
  * @author פוילישער
@@ -15253,7 +15269,10 @@ $messages['yo'] = array(
 	'centralnotice-donate-button' => 'Bọ́tìnì ìṣọrẹ',
 	'centralnotice-banner-anonymous' => 'Àwọn oníṣe aláìlórúkọ',
 	'centralnotice-countries' => 'Àwọn orílẹ̀-èdè',
+	'centralnotice-languages' => 'Àwọn èdè',
+	'centralnotice-language' => 'Èdè',
 	'centralnotice-country' => 'Orílẹ̀-èdè',
+	'centralnotice-user' => 'Oníṣe',
 );
 
 /** Cantonese (粵語)
