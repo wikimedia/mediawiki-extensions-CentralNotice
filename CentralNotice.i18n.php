@@ -341,13 +341,18 @@ $messages['gom-latn'] = array(
 
 /** Afrikaans (Afrikaans)
  * @author Naudefj
+ * @author පසිඳු කාවින්ද
  */
 $messages['af'] = array(
 	'centralnotice' => 'Bestuur sentrale kennisgewings',
 	'noticetemplate' => 'Sjabloon vir sentrale kennisgewing',
+	'bannerallocation' => 'Sentrale kennisgewing admin',
+	'centralnoticelogs' => 'Sentrale kennisgewing admin',
 	'right-centralnotice-admin' => 'Bestuur sentrale kennisgewings',
 	'action-centralnotice-admin' => 'bestuur sentrale kennisgewings',
 	'centralnotice-desc' => "Voeg 'n sentrale stelselkennisgewing by",
+	'centralnotice-summary' => 'Hierdie module kan jy jou tans opstel van sentrale kennisgewings te wysig.
+Dit kan ook gebruik word om by te voeg of ou kennisgewings te verwyder.',
 	'centralnotice-query' => 'Verander huidige kennisgewings',
 	'centralnotice-notice-name' => 'Kennisgewing-naam',
 	'centralnotice-end-date' => 'Einddatum',
@@ -445,6 +450,8 @@ U kan een hieronder byvoeg',
 	'centralnotice-preview-all-template-translations' => 'Voorskou al die beskikbare vertalings van die sjabloon',
 	'centralnotice-insert' => 'Invoeging: $1',
 	'centralnotice-hide-button' => 'Versteek skakel',
+	'centralnotice-collapse-button' => 'Collapse skakel',
+	'centralnotice-expand-button' => 'Expand skakel',
 	'centralnotice-close-button' => 'Sluit-knoppie',
 	'centralnotice-close-title' => 'Sluit',
 	'centralnotice-translate-button' => '"Help met vertaling" byvoeg',
@@ -457,6 +464,10 @@ U kan een hieronder byvoeg',
 	'centralnotice-banner-type' => 'Baniertipe:',
 	'centralnotice-banner-hidable' => 'Staties/Versteekbaar',
 	'centralnotice-banner-collapsible' => 'Opvoubaar',
+	'centralnotice-banner-fundraising' => "Dit is 'n fondsinsameling banner",
+	'centralnotice-banner-autolink' => 'Vakansie skep bestemming bladsy skakel',
+	'centralnotice-banner-landing-pages' => 'Bestemming bladsye (deur kommas geskei):',
+	'centralnotice-geo' => 'Geotargeted',
 	'centralnotice-countries' => 'Lande',
 	'centralnotice-allocation' => 'Toekenning',
 	'centralnotice-view-allocation' => 'Wys baniertoekenning',
@@ -480,10 +491,22 @@ U kan een hieronder byvoeg',
 	'centralnotice-off' => 'af',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> toegevoeg',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> verwyder',
+	'centralnotice-no-assignments' => 'geen baniere opgedra',
 	'centralnotice-talk-link' => 'bespreking',
+	'centralnotice-campaign-settings' => 'veldtog-instellings',
+	'centralnotice-banner-settings' => 'banner instellings',
+	'centralnotice-anon' => 'Wys te anonieme gebruikers',
+	'centralnotice-account' => 'Toon aan gebruikers wat aangeteken',
 	'centralnotice-fundraising' => 'Fondsinsameling',
+	'centralnotice-autolink' => 'Outomatiese skakel te skep',
+	'centralnotice-landingpages' => 'bestemming bladsye',
+	'centralnotice-banner-content' => 'banner inhoud',
 	'centralnotice-banner-content-changed' => 'Gewysig',
+	'centralnotice-filters' => 'Logbestand Filters',
 	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'filters toe te pas',
+	'centralnotice-clear-filters' => 'Duidelike filters',
+	'centralnotice-banner-messages' => 'banner boodskappe',
 );
 
 /** Gheg Albanian (Gegë)
@@ -961,6 +984,7 @@ Amiesta una debaxo.',
 	'centralnotice-collapse-button' => 'Plegar enllaz',
 	'centralnotice-expand-button' => 'Desplegar enllaz',
 	'centralnotice-close-button' => 'Botón zarrar',
+	'centralnotice-close-title' => 'Zarrar',
 	'centralnotice-translate-button' => "Enllaz d'ayudar a traducir",
 	'centralnotice-donate-button' => 'Botón de donación',
 	'centralnotice-expanded-banner' => 'Cartel enantáu',
@@ -995,6 +1019,9 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	'centralnotice-timestamp' => "Marca d'hora",
 	'centralnotice-user' => 'Usuariu',
 	'centralnotice-action' => 'Aición',
+	'centralnotice-action-created' => 'creada',
+	'centralnotice-action-modified' => 'camudada',
+	'centralnotice-action-removed' => 'desaniciada',
 	'centralnotice-changed' => 'Cammudó de <span class="cn-old-value">$1</span> a <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'activáu',
 	'centralnotice-off' => 'inactivu',
@@ -11951,6 +11978,26 @@ $messages['rue'] = array(
 	'centralnotice-banner-messages' => 'Повідомлїня банера',
 );
 
+/** Sanskrit (संस्कृतम्)
+ * @author Ansumang
+ */
+$messages['sa'] = array(
+	'centralnotice-english' => 'आङ्ग्लभाषा',
+	'centralnotice-day' => 'दिवस',
+	'centralnotice-year' => 'वर्ष',
+	'centralnotice-month' => 'मासक',
+	'centralnotice-hours' => 'घण्टा',
+	'centralnotice-min' => 'निमेष',
+	'centralnotice-message' => 'संदेश',
+	'centralnotice-clone-name' => 'नाम:',
+	'centralnotice-languages' => 'भाषा',
+	'centralnotice-language' => 'भाषा',
+	'centralnotice-country' => 'देशम्',
+	'centralnotice-user' => 'योजक',
+	'centralnotice-talk-link' => 'कथा',
+	'centralnotice-date' => 'दिनाङ्क',
+);
+
 /** Sakha (Саха тыла)
  * @author HalanTul
  */
@@ -15023,7 +15070,7 @@ Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
  */
 $messages['vep'] = array(
 	'centralnotice-end-date' => 'Lopdat',
-	'centralnotice-enabled' => 'Kävutamižes',
+	'centralnotice-enabled' => 'Kävutamas',
 	'centralnotice-modify' => 'Oigeta',
 	'centralnotice-view' => 'Nähta',
 	'centralnotice-save-banner' => 'Panda banner muštho',
