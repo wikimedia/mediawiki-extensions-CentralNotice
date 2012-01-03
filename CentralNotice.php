@@ -98,12 +98,6 @@ $wgResourceModules['ext.centralNotice.bannerStats'] = array(
 	'scripts' => 'bannerstats.js',
 );
 
-// Temporary setting to enable and configure info for Harvard banner on en.wikipedia.org
-$wgNoticeBanner_Harvard2011 = array(
-	'enable' => false,
-	'salt' => 'default',
-);
-
 /**
  * UnitTestsList hook handler
  * @param $files array
@@ -258,98 +252,71 @@ function efCentralNoticeGeoLoader( $skin, &$text ) {
 
 /**
  * MakeGlobalVariablesScript hook handler
+ * This function sets all the psuedo-global Javascript variables that are used by CentralNotice
  * @param $vars array
  * @return bool
  */
 function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
-	global $wgNoticeProject, $wgUser, $wgMemc, $wgNoticeBanner_Harvard2011, $wgContLang;
+	global $wgNoticeProject, $wgUser, $wgMemc;
 
 	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
 	// IP lookup fails we don't have any surprises.
 	$geo = array( 'city' => '', 'country' => '' );
-	$vars['Geo'] = $geo; // change this to wgGeo as soon as Mark updates on his end
+	$vars['Geo'] = $geo; // change this to wgGeo if Ops updates the variable name on their end
 	$vars['wgNoticeProject'] = $wgNoticeProject;
 
-	// XXX: Temporary WMF-specific code for the 2011 Harvard survey invitation banner.
+	// Output the user's registration date, total edit count, and past year's edit count.
+	// This is useful for banners that need to be targeted to specific types of users.
 	// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
-	// Also, don't run if the UserDailyContribs-extension isn't installed.
-	if ( $wgNoticeBanner_Harvard2011['enable'] && $wgUser->isLoggedIn() && function_exists( 'getUserEditCountSince' ) ) {
+	if ( $wgUser->isLoggedIn() ) {
+	
+		$cacheKey = wfMemcKey( 'CentralNotice', 'UserData', $wgUser->getId() );
+		$userData = $wgMemc->get( $cacheKey );
 
-		$cacheKey = wfMemcKey( 'CentralNotice', 'Harvard2011', 'v1', $wgUser->getId() );
-		$value = $wgMemc->get( $cacheKey );
-
-		// Cached ?
-		if ( !$value ) {
-			/**
-			 * To be eligible, the user must match all of the following:
-			 * - have an account
-			 * - not be a bot (userright=bot)
-			 * .. and match one of the following:
-			 * - be an admin (group=sysop)
-			 * - have an editcount higher than 300, of which 20 within the last 180 days (on the launch date)
-			 * - have had their account registered for less than 30 days (on to the launch date)
-			 */
+		// Cached?
+		if ( !$userData ) {
+			
+			// Exclude bots
 			if ( $wgUser->isAllowed( 'bot' ) ) {
-				$value = false;
+				
+				$userData = false;
 
 			} else {
+			
+				$userData = array();
 
-				$launchTimestamp = wfTimestamp( TS_UNIX, '2011-12-08 00:00:00' );
-				$groups = $wgUser->getGroups();
+				// Add the user's registration date (MediaWiki timestamp)
 				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
-				$daysOld = floor( ( $launchTimestamp - wfTimestamp( TS_UNIX, $registrationDate ) ) / ( 60*60*24 ) );
-				$salt = $wgNoticeBanner_Harvard2011['salt'];
-
-				// Variables
-				$hashData = array(
-					// "login"
-					'login' => intval( $wgUser->getId() ),
-
-					// "group" is the group name(s) of the user (comma-separated).
-					'group' => implode( ',', $groups ),
-
-					// "duration" is the number of days since the user registered his (on the launching date).
-					// Note: Will be negative if user registered after launch date!
-					'duration' => intval( $daysOld ),
-
-					// "editcounts" is the user's total number of edits
-					'editcounts' => $wgUser->getEditCount() == null ? 0 : intval( $wgUser->getEditCount() ),
-
-					// "last6monthseditcount" is the user's total number of edits in the last 180 days (on the launching date)
-					'last6monthseditcount' => getUserEditCountSince(
-						$launchTimestamp - ( 180*24*3600 ),
+				$userData['registration'] = $registrationDate;
+				
+				// Make sure UserDailyContribs extension is installed.
+				if ( function_exists( 'getUserEditCountSince' ) ) {
+					
+					// Add the user's total edit count
+					if ( $wgUser->getEditCount() == null ) {
+						$userData['editcount'] = 0;
+					} else {
+						$userData['editcount'] = intval( $wgUser->getEditCount() );
+					}
+					
+					// Add the user's edit count for the past year
+					$userData['pastyearseditcount'] = getUserEditCountSince(
+						time() - ( 365 * 24 * 3600 ), // from a year ago
 						$wgUser,
-						$launchTimestamp
-					),
-				);
-
-				$postData = $hashData;
-
-				// "username" the user's username
-				$postData['username'] = $wgUser->getName();
-
-				// Security checksum. Prevent users from entering the survey with invalid metrics
-				$postData['secretkey'] = md5( $salt . serialize( $hashData ) );
-
-				// MD5 hash
-				$postData['lang'] = $wgContLang->getCode();
-
-				if (
-					in_array( 'sysop', $groups )
-					|| ( $postData['duration'] >= 180 && $postData['editcounts'] >= 300 && $postData['last6monthseditcount'] >= 20 )
-					|| ( $postData['duration'] < 30 )
-				) {
-					$value = $postData;
-				} else {
-					$value = false;
+						time() // until now
+					);
+					
 				}
+					
 			}
 
-			$wgMemc->set( $cacheKey, $value, strtotime( '+10 days' ) );
+			// Cache the data for 1 day
+			$wgMemc->set( $cacheKey, $userData, strtotime( '+1 day' ) );
 		}
 
-		$vars['wgNoticeBanner_Harvard2011'] = $value;
+		// Set the variable that will be output to the page
+		$vars['wgNoticeUserData'] = $userData;
 
 	}
 
