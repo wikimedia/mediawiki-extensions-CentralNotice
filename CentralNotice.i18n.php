@@ -394,6 +394,7 @@ Dit kan ook gebruik word om by te voeg of ou kennisgewings te verwyder.',
 Hierdie word nie bygevoeg nie.',
 	'centralnotice-no-language' => 'Geen taal is vir die veldtog gekies nie.
 Word nie bygevoeg nie.',
+	'centralnotice-no-project' => 'Geen projek is gekies vir die veldtog. Nie toe te voeg.',
 	'centralnotice-template-exists' => 'Die sjabloon bestaan reeds.
 Dit word nie bygevoeg nie.',
 	'centralnotice-notice-doesnt-exist' => 'Die veldtog bestaan nie.',
@@ -471,6 +472,7 @@ U kan een hieronder byvoeg',
 	'centralnotice-countries' => 'Lande',
 	'centralnotice-allocation' => 'Toekenning',
 	'centralnotice-view-allocation' => 'Wys baniertoekenning',
+	'centralnotice-allocation-instructions' => 'Kies die omgewing wat jy wil banner toekenning te sien vir:',
 	'centralnotice-languages' => 'Tale',
 	'centralnotice-language' => 'Taal',
 	'centralnotice-projects' => 'Projekte',
@@ -4950,7 +4952,7 @@ Tamén pode ser usado para engadir ou eliminar avisos vellos.',
 	'centralnotice-view' => 'Ver',
 	'centralnotice-save-banner' => 'Gardar o cartel',
 	'centralnotice-preview' => 'Vista previa',
-	'centralnotice-nopreview' => '(A vista previa non está dispoñíbel)',
+	'centralnotice-nopreview' => '(A vista previa non está dispoñible)',
 	'centralnotice-add-new' => 'Engadir un novo aviso central',
 	'centralnotice-remove' => 'Eliminar',
 	'centralnotice-translate-heading' => 'Traducións de "$1"',
@@ -5565,6 +5567,8 @@ $messages['hi'] = array(
 नहीं निकल रही ।',
 	'centralnotice-invalid-date-range' => 'अमान्य तारीख रेंज ।
 अपडेट नहीं हो रही ।',
+	'centralnotice-null-string' => 'खाली स्ट्रिंग जोड़ नहीं सकता ।
+जोड़ नहीं रहा ।',
 	'centralnotice-confirm-delete' => 'क्या आप निश्चित है इस आइटम को हटाने केलिए ?
 इसे लौटा नहीं जा सकता ।',
 	'centralnotice-no-notices-exist' => 'कोई अभियान मौजूद नहीं ।
@@ -6879,7 +6883,7 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-action-removed' => 'rimosso',
 	'centralnotice-changed' => 'Modificato da <span class="cn-old-value">$1</span> a <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'attivo',
-	'centralnotice-off' => 'disattivo',
+	'centralnotice-off' => 'disattivato',
 	'centralnotice-added' => 'Aggiunto <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Rimosso <span class="cn-old-value">$1</span>',
 	'centralnotice-no-assignments' => 'nessun banner assegnato',
