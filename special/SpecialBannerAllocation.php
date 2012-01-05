@@ -14,9 +14,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgLang, $wgRequest, $wgExtensionAssetsPath, $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
-
-		$locationSubmitted = false;
+		global $wgOut, $wgLang, $wgRequest, $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
 
 		$this->project = $wgRequest->getText( 'project', $wgNoticeProject );
 		$this->language = $wgRequest->getText( 'language', $wgLanguageCode );
@@ -208,9 +206,9 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	}
 
 	function getTable( $type, $banners, $weight ) {
-		global $wgUser, $wgLang;
+		global $wgLang;
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 

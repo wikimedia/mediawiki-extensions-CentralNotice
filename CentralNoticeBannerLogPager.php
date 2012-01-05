@@ -132,7 +132,6 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	}
 
 	function showInitialSettings( $row ) {
-		global $wgLang;
 		$details = '';
 		$details .= wfMsg (
 			'centralnotice-log-label',
@@ -165,9 +164,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	}
 
 	function showChanges( $row ) {
-		global $wgLang;
-		$details = '';
-		$details .= $this->testBooleanChange( 'anon', $row );
+		$details = $this->testBooleanChange( 'anon', $row );
 		$details .= $this->testBooleanChange( 'account', $row );
 		$details .= $this->testBooleanChange( 'fundraising', $row );
 		$details .= $this->testBooleanChange( 'autolink', $row );

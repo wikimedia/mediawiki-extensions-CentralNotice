@@ -59,8 +59,6 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
-		global $wgLang, $wgExtensionAssetsPath;
-
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link

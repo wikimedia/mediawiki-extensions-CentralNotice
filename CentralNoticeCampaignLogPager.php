@@ -4,7 +4,6 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	var $viewPage, $special;
 
 	function __construct( $special ) {
-		global $wgRequest;
 		$this->special = $special;
 		parent::__construct();
 

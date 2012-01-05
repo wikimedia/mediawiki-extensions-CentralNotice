@@ -81,6 +81,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
 			return $bannerJs;
 		}
+		return '';
 	}
 
 	/**
@@ -99,6 +100,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			);
 			return $bannerHtml;
 		}
+		return '';
 	}
 
 	/**

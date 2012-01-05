@@ -17,7 +17,7 @@ class CentralNotice extends SpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest, $wgExtensionAssetsPath;
+		global $wgOut, $wgUser, $wgRequest;
 
 		// Begin output
 		$this->setHeaders();
@@ -319,7 +319,7 @@ class CentralNotice extends SpecialPage {
 
 		// Get connection
 		$dbr = wfGetDB( DB_SLAVE );
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 		if ( $this->editable ) {
 			$readonly = array();
 		} else {
@@ -480,7 +480,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'table' );
 
 			if ( $this->editable ) {
-				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
 				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons' ) );
 				$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-modify' ),
 					array(
@@ -576,7 +576,7 @@ class CentralNotice extends SpecialPage {
 
 			$htmlOut .= Xml::closeElement( 'table' );
 			$htmlOut .= Html::hidden( 'change', 'weight' );
-			$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+			$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
 
 			// Submit button
 			$htmlOut .= Xml::tags( 'div',
@@ -758,7 +758,7 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= wfMsg( 'centralnotice-no-templates' );
 				$htmlOut .= Xml::element( 'p' );
 				$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
-				$sk = $wgUser->getSkin();
+				$sk = $this->getSkin();
 				$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 				$htmlOut .= Xml::element( 'p' );
 			} elseif ( $output_assigned == '' ) {
@@ -775,7 +775,7 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 			if ( $this->editable ) {
-				 $htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+				 $htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
 
 				// Submit button
 				$htmlOut .= Xml::tags( 'div',
@@ -951,8 +951,7 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing banners assigned to a campaign
 	 */
 	function assignedTemplatesForm( $notice ) {
-		global $wgUser;
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
@@ -977,7 +976,7 @@ class CentralNotice extends SpecialPage {
 
 		// No banners found
 		if ( $dbr->numRows( $res ) < 1 ) {
-			return;
+			return '';
 		}
 
 		// Build Assigned banners HTML
@@ -1067,9 +1066,10 @@ class CentralNotice extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name', '', '', array( 'ORDER BY' => 'tmp_id' ) );
 
+		$htmlOut = '';
 		if ( $dbr->numRows( $res ) > 0 ) {
 			// Build HTML
-			$htmlOut  = Xml::fieldset( wfMsg( "centralnotice-available-templates" ) );
+			$htmlOut = Xml::fieldset( wfMsg( "centralnotice-available-templates" ) );
 
 			// Show paginated list of banners
 			$htmlOut .= Xml::tags( 'div',
@@ -1081,9 +1081,6 @@ class CentralNotice extends SpecialPage {
 				$pager->getNavigationBar() );
 
 			$htmlOut .= Xml::closeElement( 'fieldset' );
-		} else {
-			// Nothing found
-			return;
 		}
 		return $htmlOut;
 	}

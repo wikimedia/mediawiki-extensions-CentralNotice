@@ -17,7 +17,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgUser, $wgRequest, $wgExtensionAssetsPath;
+		global $wgOut, $wgUser, $wgRequest;
 
 		// Begin output
 		$this->setHeaders();
@@ -166,9 +166,9 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Show a list of available banners. Newer banners are shown first.
 	 */
 	function showList() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 		$pager = new TemplatePager( $this );
 
 		// Begin building HTML
@@ -305,7 +305,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
 		$htmlOut .= Html::closeElement( 'fieldset' );
-		$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+		$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
 
 		// Submit button
 		$htmlOut .= Xml::tags( 'div',
@@ -328,7 +328,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$wgNoticeEnableFundraising;
 
 		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 
 		if ( $this->editable ) {
 			$readonly = array();
@@ -490,7 +490,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 				if ( $this->editable ) {
 					$htmlOut .= Html::hidden( 'wpUserLanguage', $wpUserLang );
-					$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+					$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
 					$htmlOut .= Xml::tags( 'div',
 						array( 'class' => 'cn-buttons' ),
 						Xml::submitButton(
@@ -640,7 +640,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			if ( $this->editable ) {
 				// Indicate which form was submitted
 				$htmlOut .= Html::hidden( 'mainform', 'true' );
-				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
 				$htmlOut .= Xml::tags( 'div',
 					array( 'class' => 'cn-buttons' ),
 					Xml::submitButton( wfMsg( 'centralnotice-save-banner' ) )
@@ -670,7 +670,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 				$htmlOut .= Html::closeElement( 'tr' );
 				$htmlOut .= Html::closeElement( 'table' );
-				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
 				$htmlOut .= Html::closeElement( 'fieldset' );
 				$htmlOut .= Html::closeElement( 'form' );
 			}
@@ -692,7 +692,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		// Testing to see if bumping up the memory limit lets meta preview
 		ini_set( 'memory_limit', '120M' );
 
-		$sk = $wgUser->getSkin();
+		$sk = $this->getSkin();
 
 		// Pull all available text for a banner
 		$langs = array_keys( $this->getTranslations( $template ) );
