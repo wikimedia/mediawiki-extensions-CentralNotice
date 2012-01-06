@@ -1368,6 +1368,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-multiple-languages' => 'некалькі ($1)',
 	'centralnotice-multiple-countries' => 'Некалькі ($1)',
 	'centralnotice-all-projects' => 'Усе праекты',
+	'centralnotice-language-listing' => '$1 — $2',
 	'centralnotice-translations' => 'Пераклады',
 	'centralnotice-translate-to' => 'Пераклад на',
 	'centralnotice-translate' => 'Пераклад',
@@ -8625,6 +8626,7 @@ $messages['mk'] = array(
 /** Malayalam (മലയാളം)
  * @author Praveenp
  * @author Shijualex
+ * @author Vssun
  */
 $messages['ml'] = array(
 	'centralnotice' => 'കേന്ദ്രീകൃത അറിയിപ്പ് കാര്യനിർവാഹകൻ',
@@ -8781,6 +8783,7 @@ $messages['ml'] = array(
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> നീക്കം ചെയ്തിരിക്കുന്നു',
 	'centralnotice-talk-link' => 'സംവാദം',
 	'centralnotice-campaign-settings' => 'മേളയുടെ സജ്ജീകരണങ്ങൾ',
+	'centralnotice-banner-settings' => 'ബാനർ ക്രമീകരണങ്ങൾ',
 	'centralnotice-anon' => 'അജ്ഞാത ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
 	'centralnotice-account' => 'പ്രവേശിച്ചിട്ടുള്ള ഉപയോക്താക്കൾക്കായി പ്രദർശിപ്പിക്കുക',
 	'centralnotice-fundraising' => 'സംഭാവനാസമാഹരണം',
@@ -8792,6 +8795,7 @@ $messages['ml'] = array(
 	'centralnotice-date' => 'തീയതി',
 	'centralnotice-apply-filters' => 'അരിപ്പകൾ പ്രയോഗിക്കുക',
 	'centralnotice-clear-filters' => 'അരിപ്പ ശുദ്ധമാക്കുക',
+	'centralnotice-banner-messages' => 'ബാനർ സന്ദേശങ്ങൾ',
 );
 
 /** Mongolian (Монгол)
