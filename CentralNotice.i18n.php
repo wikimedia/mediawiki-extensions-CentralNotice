@@ -8901,6 +8901,8 @@ $messages['mr'] = array(
 जोडु नका.',
 	'centralnotice-invalid-date-range' => 'दिनांकांचा अग्राह्य आवाका.
 अद्ययावत् करू नये.',
+	'centralnotice-null-string' => 'null string जोडता येत नाही 
+जोडत नाही आहे.',
 	'centralnotice-confirm-delete' => 'आपणास हा मजकुर नक्की गाळावयाचा आहे काय?
 ही कृती परतविता येणार नाही.',
 	'centralnotice-no-notices-exist' => 'मथळा अस्तित्वात नाही.
@@ -8934,10 +8936,13 @@ $messages['mr'] = array(
 	'centralnotice-banner-collapsible' => 'लपवण्या सारखे',
 	'centralnotice-banner-fundraising' => 'हे निधी उभारण्याचे मुखशीर्षक आहे',
 	'centralnotice-banner-autolink' => 'पडावपानाचा दुवा आपोआप तयार',
+	'centralnotice-banner-autolink-help' => '$1 सोबत बॅनरबॉडी मध्ये anchor चिन्ह तयार करा आणि खाली एक किंवा अधिक लॅंडीग पाने भरा , उदाहरणार्थ,$2 जेव्हा केव्हा बॅनर पाहिला जाईल दुवा आपोआप कंस्ट्रक्ट होईल.',
+	'centralnotice-banner-landing-pages' => 'लॅंडींग पाने (विरामचिन्हांनी-वेगवेगळी):',
 	'centralnotice-geo' => 'भूलक्षित',
 	'centralnotice-countries' => 'देश',
 	'centralnotice-allocation' => 'वाटप',
 	'centralnotice-view-allocation' => 'मुखशीर्षक वाटप दाखवा',
+	'centralnotice-allocation-instructions' => 'बॅनर अलोकेशनचे आपणास पहाण्यास आवडारी पार्श्वभूमी निवडा',
 	'centralnotice-languages' => 'भाषा',
 	'centralnotice-language' => 'भाषा',
 	'centralnotice-projects' => 'प्रकल्प',
@@ -8969,6 +8974,7 @@ $messages['mr'] = array(
 	'centralnotice-account' => 'प्रवेश केलेल्या सदस्यास दाखवा',
 	'centralnotice-fundraising' => 'निधी उभारणे',
 	'centralnotice-autolink' => 'स्वयंमचलीत  दुवा निर्मिती',
+	'centralnotice-landingpages' => 'लॅंडींग पाने',
 	'centralnotice-banner-content' => 'मुखशीर्षक मजकूर',
 	'centralnotice-banner-content-changed' => 'बदलला',
 	'centralnotice-filters' => 'विवरण गाळणी',
