@@ -47,7 +47,8 @@ class SpecialBannerController extends UnlistedSpecialPage {
 
 		$js = $this->getScriptFunctions() . $this->getToggleScripts();
 		$js .= <<<JAVASCRIPT
-( function( $ ) {
+( function( $, mw ) { mw.loader.using( 'mediawiki.util', function () {
+
 	$.ajaxSetup({ cache: true });
 	$.centralNotice = {
 		data: {
@@ -166,7 +167,7 @@ JAVASCRIPT;
 		}
 	} );
 
-} )( jQuery );
+} ); } )( jQuery, mediaWiki );
 JAVASCRIPT;
 		return $js;
 
