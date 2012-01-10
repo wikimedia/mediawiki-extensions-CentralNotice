@@ -1,9 +1,8 @@
 <?php
 
-// Override these per-wiki to pass on via the loader to the text system
-// for localization by language and project.
-// Actual user language is used for localization; $wgNoticeLang is used
-// for selective enabling/disabling on sites.
+// $wgNoticeLang and $wgNoticeProject are used for targeting campaigns to specific wikis. These
+// should be overridden on each wiki with the appropriate values.
+// Actual user language (wgUserLanguage) is used for banner localization.
 $wgNoticeLang = $wgLanguageCode;
 $wgNoticeProject = 'wikipedia';
 
@@ -23,8 +22,8 @@ $wgNoticeProjects = array(
 	'test'
 );
 
-// Enable the notice-hosting infrastructure on this wiki...
-// Leave at false for wikis that only use a sister site for the control.
+// Enable the campaign hosting infrastructure on this wiki...
+// Set to false for wikis that only use a sister site for the control.
 $wgNoticeInfrastructure = true;
 
 // The name of the database which hosts the centralized campaign data
@@ -58,6 +57,7 @@ $wgNoticeCookieDomain = '';
 // NOTE: This must be in UNIX timestamp format, for example, '1325462400'
 $wgNoticeHideBannersExpiration = '';
 
+// Functions to be called after MediaWiki initialization is complete
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 $wgExtensionCredits['other'][] = array(
@@ -109,7 +109,7 @@ function efCentralNoticeUnitTests( &$files ) {
 }
 
 /**
- * Called through wgExtensionFunctions
+ * Load all the classes, register special pages, etc. Called through wgExtensionFunctions.
  */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
@@ -165,6 +165,7 @@ function efCentralNoticeSetup() {
 
 /**
  * LoadExtensionSchemaUpdates hook handler
+ * This function makes sure that the database schema is up to date.
  * @param $updater DatabaseUpdater|null
  * @return bool
  */
@@ -240,12 +241,13 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 /**
  * SkinAfterBottomScripts hook handler
+ * This function outputs the call to the geoIP lookup
  * @param $skin Skin
  * @param $text string
  * @return bool
  */
 function efCentralNoticeGeoLoader( $skin, &$text ) {
-	// Insert the geo IP lookup
+	// Insert the geoIP lookup
 	$text .= Html::linkedScript( "//geoiplookup.wikimedia.org/" );
 	return true;
 }
@@ -325,6 +327,7 @@ function efCentralNoticeDefaults( &$vars ) {
 
 /**
  * SiteNoticeAfter hook handler
+ * This function outputs the siteNotice div that the banners are loaded into.
  * @param $notice string
  * @return bool
  */

@@ -3,6 +3,7 @@
  * wgCentralNoticeAllocationCampaigns. It then adds the rates to the allocation tables.
  */
 $( document ).ready( function () {
+	/* TODO: Once the lag issue with retrieving the stats is resolved, finish implementing this functionality */
 	/*
 	if ( typeof wgCentralNoticeAllocationCampaigns !== 'undefined' ) {
 		$.each( wgCentralNoticeAllocationCampaigns, function( index, campaignName ) {
