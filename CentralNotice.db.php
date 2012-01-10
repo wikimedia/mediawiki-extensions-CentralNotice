@@ -411,6 +411,7 @@ class CentralNoticeDB {
 
 	/**
 	 * Return all of the available countries for geotargeting
+	 * TODO: Move this out of CentralNoticeDB (or rename the class)
 	 * @param string $code The language code to return the country list in
 	 * @return array
 	 */

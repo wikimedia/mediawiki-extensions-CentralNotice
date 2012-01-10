@@ -205,6 +205,13 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$wgOut->addHTML( $htmlOut );
 	}
 
+	/**
+	 * Generate the HTML for an allocation table
+	 * @param $type string The title for the table
+	 * @param $banners array The banners to list
+	 * @param $weight integer The total weight of the banners
+	 * @return HTML for the table
+	 */
 	function getTable( $type, $banners, $weight ) {
 		global $wgLang;
 
