@@ -1462,7 +1462,7 @@ class CentralNotice extends SpecialPage {
 		$htmlOut = '';
 		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'project_languages[]', 'name' => 'project_languages[]' ),
+				array( 'multiple' => 'multiple', 'size' => 6, 'id' => 'project_languages[]', 'name' => 'project_languages[]' ),
 				$options
 			);
 			$buttons = array();
@@ -1481,7 +1481,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'select',
 				array(
 					'multiple' => 'multiple',
-					'size' => 4,
+					'size' => 6,
 					'id' => 'project_languages[]',
 					'name' => 'project_languages[]',
 					'disabled' => 'disabled'
@@ -1512,7 +1512,7 @@ class CentralNotice extends SpecialPage {
 		$htmlOut = '';
 		if ( $this->editable ) {
 			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 4, 'id' => 'projects[]', 'name' => 'projects[]' ),
+				array( 'multiple' => 'multiple', 'size' => 5, 'id' => 'projects[]', 'name' => 'projects[]' ),
 				$options
 			);
 			$buttons = array();
@@ -1529,7 +1529,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'select',
 				array(
 					'multiple' => 'multiple',
-					'size' => 4,
+					'size' => 5,
 					'id' => 'projects[]',
 					'name' => 'projects[]',
 					'disabled' => 'disabled'
@@ -1683,7 +1683,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'select',
 				array(
 					'multiple' => 'multiple',
-					'size' => 5,
+					'size' => 6,
 					'id' => 'geo_countries[]',
 					'name' => 'geo_countries[]'
 				),
@@ -1693,7 +1693,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'select',
 				array(
 					'multiple' => 'multiple',
-					'size' => 5,
+					'size' => 6,
 					'id' => 'geo_countries[]',
 					'name' => 'geo_countries[]',
 					'disabled' => 'disabled'
