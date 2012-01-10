@@ -480,7 +480,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'table' );
 
 			if ( $this->editable ) {
-				$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons' ) );
 				$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-modify' ),
 					array(
@@ -576,7 +576,7 @@ class CentralNotice extends SpecialPage {
 
 			$htmlOut .= Xml::closeElement( 'table' );
 			$htmlOut .= Html::hidden( 'change', 'weight' );
-			$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+			$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 
 			// Submit button
 			$htmlOut .= Xml::tags( 'div',
@@ -775,7 +775,7 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 			if ( $this->editable ) {
-				 $htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+				 $htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 
 				// Submit button
 				$htmlOut .= Xml::tags( 'div',

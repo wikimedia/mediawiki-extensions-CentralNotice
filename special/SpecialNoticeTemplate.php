@@ -305,7 +305,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
 		$htmlOut .= Html::closeElement( 'fieldset' );
-		$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+		$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 
 		// Submit button
 		$htmlOut .= Xml::tags( 'div',
@@ -490,7 +490,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 				if ( $this->editable ) {
 					$htmlOut .= Html::hidden( 'wpUserLanguage', $wpUserLang );
-					$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+					$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 					$htmlOut .= Xml::tags( 'div',
 						array( 'class' => 'cn-buttons' ),
 						Xml::submitButton(
@@ -640,7 +640,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			if ( $this->editable ) {
 				// Indicate which form was submitted
 				$htmlOut .= Html::hidden( 'mainform', 'true' );
-				$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Xml::tags( 'div',
 					array( 'class' => 'cn-buttons' ),
 					Xml::submitButton( wfMsg( 'centralnotice-save-banner' ) )
@@ -670,7 +670,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 				$htmlOut .= Html::closeElement( 'tr' );
 				$htmlOut .= Html::closeElement( 'table' );
-				$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+				$htmlOut .= Html::hidden( 'authtoken', $wgUser->editToken() );
 				$htmlOut .= Html::closeElement( 'fieldset' );
 				$htmlOut .= Html::closeElement( 'form' );
 			}
