@@ -15,7 +15,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 */
 	function __construct( $special, $type = 'bannercontent' ) {
 		$this->special = $special;
-		parent::__construct( $special );
+		parent::__construct();
 
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 		$this->logType = $type;
@@ -59,6 +59,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
+		global $wgLang;
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
