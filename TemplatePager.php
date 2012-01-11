@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Provides pagination functionality for viewing banner lists in the CentralNotice admin interface.
+ */
 class TemplatePager extends ReverseChronologicalPager {
 	var $onRemoveChange, $viewPage, $special;
 	var $editable;
@@ -18,8 +21,11 @@ class TemplatePager extends ReverseChronologicalPager {
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 	}
 
+	/**
+	 * Set the database query to retrieve all the banners in the database
+	 * @return array of query settings
+	 */
 	function getQueryInfo() {
-		// Return all the banners in the database
 		return array(
 			'tables' => 'cn_templates',
 			'fields' => array( 'tmp_name', 'tmp_id' ),
@@ -27,7 +33,8 @@ class TemplatePager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * Sort the banner list by tmp_id
+	 * Sort the banner list by tmp_id (generally equals reverse chronological)
+	 * @return string
 	 */
 	function getIndexField() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -36,6 +43,8 @@ class TemplatePager extends ReverseChronologicalPager {
 
 	/**
 	 * Generate the content of each table row (1 row = 1 banner)
+	 * @param $row object: database row
+	 * @return string HTML
 	 */
 	function formatRow( $row ) {
 
@@ -81,6 +90,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 	/**
 	 * Specify table headers
+	 * @return string HTML
 	 */
 	function getStartBody() {
 		$htmlOut = '';
@@ -100,6 +110,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 	/**
 	 * Close table and add Submit button
+	 * @return string HTML
 	 */
 	function getEndBody() {
 		global $wgUser;
