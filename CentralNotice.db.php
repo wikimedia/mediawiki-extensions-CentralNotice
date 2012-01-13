@@ -422,9 +422,6 @@ class CentralNoticeDB {
 		if ( is_callable( array( 'CountryNames', 'getNames' ) ) ) {
 			// Retrieve the list of countries in user's language (via CLDR)
 			$countries = CountryNames::getNames( $code );
-			unset( $countries['CU'] ); // Cuba
-			unset( $countries['IR'] ); // Iran
-			unset( $countries['SY'] ); // Syria
 		}
 		
 		if ( !$countries ) {
@@ -484,7 +481,7 @@ class CentralNoticeDB {
 				'CR'=>'Costa Rica',
 				'CI'=>'Côte d\'Ivoire',
 				'HR'=>'Croatia',
-				//'CU'=>'Cuba',
+				'CU'=>'Cuba',
 				'CY'=>'Cyprus',
 				'CZ'=>'Czech Republic',
 				'DK'=>'Denmark',
@@ -530,7 +527,7 @@ class CentralNoticeDB {
 				'IS'=>'Iceland',
 				'IN'=>'India',
 				'ID'=>'Indonesia',
-				//'IR'=>'Iran',
+				'IR'=>'Iran',
 				'IQ'=>'Iraq',
 				'IE'=>'Ireland',
 				'IL'=>'Israel',
@@ -638,7 +635,7 @@ class CentralNoticeDB {
 				'SZ'=>'Swaziland',
 				'SE'=>'Sweden',
 				'CH'=>'Switzerland',
-				//'SY'=>'Syrian Arab Republic',
+				'SY'=>'Syrian Arab Republic',
 				'TW'=>'Taiwan',
 				'TJ'=>'Tajikistan',
 				'TZ'=>'Tanzania',
