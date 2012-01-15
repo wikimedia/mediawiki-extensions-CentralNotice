@@ -7971,7 +7971,7 @@ $messages['kw'] = array(
  */
 $messages['lb'] = array(
 	'centralnotice' => 'Administratioun vun den zentrale Matdeelungen',
-	'noticetemplate' => 'Gstioun vun den zentrale Matdeelungen',
+	'noticetemplate' => 'Gestioun vun den zentrale Matdeelungen',
 	'bannerallocation' => 'Administratioun vun den zentrale Matdeelungen',
 	'right-centralnotice-admin' => 'Zentralmatdeelunge geréieren',
 	'action-centralnotice-admin' => 'Zentralmatdeelungen ze geréieren',
