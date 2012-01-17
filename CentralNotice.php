@@ -52,6 +52,9 @@ $wgNoticeDailyCounterSource = 'http://wikimediafoundation.org/wiki/Special:Daily
 // Example: '.wikipedia.org'
 $wgNoticeCookieDomain = '';
 
+// Server-side banner cache timeout in seconds
+$wgNoticeBannerMaxAge = 600;
+
 // When the cookie set in SpecialHideBanners.php should expire
 // This would typically be the end date for a fundraiser
 // NOTE: This must be in UNIX timestamp format, for example, '1325462400'

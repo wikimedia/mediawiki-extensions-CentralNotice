@@ -6,8 +6,6 @@
 class SpecialBannerLoader extends UnlistedSpecialPage {
 	public $siteName = 'Wikipedia'; // Site name
 	public $language = 'en'; // User language
-	protected $sharedMaxAge = 600; // Cache for 10 minutes on the server side
-	protected $maxAge = 0; // No client-side banner caching so we get all impressions
 
 	function __construct() {
 		// Register special page
@@ -49,9 +47,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * Generate the HTTP response headers for the banner file
 	 */
 	function sendHeaders() {
-		global $wgJsMimeType;
+		global $wgJsMimeType, $wgNoticeBannerMaxAge;
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
-		header( "Cache-Control: public, s-maxage=$this->sharedMaxAge, max-age=$this->maxAge" );
+		// No client-side banner caching so we get all impressions
+		header( "Cache-Control: public, s-maxage=$wgNoticeBannerMaxAge, max-age=0" );
 	}
 
 	/**
