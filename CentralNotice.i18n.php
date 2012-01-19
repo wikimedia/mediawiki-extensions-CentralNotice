@@ -15595,6 +15595,7 @@ $messages['yi'] = array(
 	'centralnotice-end-date' => 'סוף דאַטע',
 	'centralnotice-enabled' => 'אַקטיוויזירט',
 	'centralnotice-modify' => 'אײַנגעבן',
+	'centralnotice-view' => 'באַקוקן',
 	'centralnotice-save-banner' => 'אויפֿהיטן פאָן',
 	'centralnotice-preview' => 'פֿאראויסשטעלונג',
 	'centralnotice-nopreview' => '(פֿאראויסקוק נישט פֿאַראַן)',
@@ -15654,6 +15655,7 @@ $messages['yi'] = array(
 	'centralnotice-no-templates' => 'נישט געטראפן קיין פאנעס.
 לייגט צו!',
 	'centralnotice-number-uses' => 'ניצונגען',
+	'centralnotice-message' => 'מעלדונג',
 	'centralnotice-clone-name' => 'נאָמען',
 	'centralnotice-close-title' => 'שליסן',
 	'centralnotice-languages' => 'שפּראַכן',
