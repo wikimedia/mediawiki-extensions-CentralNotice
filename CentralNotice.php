@@ -317,7 +317,7 @@ function efCentralNoticeDefaults( &$vars ) {
 			}
 
 			// Cache the data for 7 days
-			$wgMemc->set( $cacheKey, $userData, strtotime( '+7 days' ) );
+			$wgMemc->set( $cacheKey, $userData, 7 * 86400 );
 		}
 
 		// Set the variable that will be output to the page
