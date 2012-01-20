@@ -1767,6 +1767,7 @@ $messages['bg'] = array(
 	'centralnotice-clone-notice' => 'Създаване на копие на шаблона',
 	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-preview-all-template-translations' => 'Преглед на всички налични преводи на шаблона',
+	'centralnotice-close-title' => 'Затваряне',
 	'centralnotice-translate-button' => 'Помогнете с превод на препратката',
 	'centralnotice-donate-button' => 'Бутон за дарение',
 	'centralnotice-banner-display' => 'Показване на:',
