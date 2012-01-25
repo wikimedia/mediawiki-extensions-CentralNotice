@@ -110,39 +110,41 @@ JAVASCRIPT;
 				}
 			},
 			chooseBanner: function( bannerList ) {
-				var groomedBannerList = [], i, j, pointer;
+				mw.loader.using('mediawiki.user', function() {
+					var groomedBannerList = [], i, j, pointer;
 
-				// Make sure there are some banners to choose from
-				if ( bannerList.length === 0 ) {
-					return false;
-				}
+					// Make sure there are some banners to choose from
+					if ( bannerList.length === 0 ) {
+						return false;
+					}
 
-				for( i = 0; i < bannerList.length; i++ ) {
-					// Only include this banner if it's intended for the current user
-					if( ( !mw.user.anonymous() && bannerList[i].display_account === 1 ) ||
-						( mw.user.anonymous() && bannerList[i].display_anon === 1 ) )
-					{
-						// Add the banner to our list once per weight
-						for( j = 0; j < bannerList[i].weight; j++ ) {
-							groomedBannerList.push( bannerList[i] );
+					for( i = 0; i < bannerList.length; i++ ) {
+						// Only include this banner if it's intended for the current user
+						if( ( !mw.user.anonymous() && bannerList[i].display_account === 1 ) ||
+							( mw.user.anonymous() && bannerList[i].display_anon === 1 ) )
+						{
+							// Add the banner to our list once per weight
+							for( j = 0; j < bannerList[i].weight; j++ ) {
+								groomedBannerList.push( bannerList[i] );
+							}
 						}
 					}
-				}
 
-				// Return if there's nothing left after the grooming
-				if ( groomedBannerList.length === 0 ) {
-					return false;
-				}
+					// Return if there's nothing left after the grooming
+					if ( groomedBannerList.length === 0 ) {
+						return false;
+					}
 
-				// Choose a random key
-				pointer = Math.floor( Math.random() * groomedBannerList.length );
+					// Choose a random key
+					pointer = Math.floor( Math.random() * groomedBannerList.length );
 
-				// Load a random banner from our groomed list
-				$.centralNotice.fn.loadBanner(
-					groomedBannerList[pointer].name,
-					groomedBannerList[pointer].campaign,
-					( groomedBannerList[pointer].fundraising ? 'fundraising' : 'default' )
-				);
+					// Load a random banner from our groomed list
+					$.centralNotice.fn.loadBanner(
+						groomedBannerList[pointer].name,
+						groomedBannerList[pointer].campaign,
+						( groomedBannerList[pointer].fundraising ? 'fundraising' : 'default' )
+					);
+				});
 			},
 			getQueryStringVariables: function() {
 				function decode( s ) {
