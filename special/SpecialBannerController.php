@@ -110,7 +110,7 @@ JAVASCRIPT;
 				}
 			},
 			chooseBanner: function( bannerList ) {
-				mw.loader.using('mediawiki.user', function() {
+				mw.loader.using( 'mediawiki.user', function() {
 					var groomedBannerList = [], i, j, pointer;
 
 					// Make sure there are some banners to choose from
