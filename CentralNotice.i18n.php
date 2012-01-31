@@ -9712,6 +9712,7 @@ $messages['nds-nl'] = array(
 /** Nepali (नेपाली)
  * @author Bhawani Gautam
  * @author Bhawani Gautam Rhk
+ * @author RajeshPandey
  * @author सरोज कुमार ढकाल
  */
 $messages['ne'] = array(
@@ -9720,7 +9721,7 @@ $messages['ne'] = array(
 	'centralnotice-modify' => 'बुझाउने',
 	'centralnotice-view' => 'दृष्य',
 	'centralnotice-save-banner' => 'यस ब्यानरलाई संग्रह गर्ने',
-	'centralnotice-preview' => 'पूर्वालोकन',
+	'centralnotice-preview' => 'पूर्वावलोकन',
 	'centralnotice-nopreview' => '(पूर्वरुप उपलब्ध छैन)',
 	'centralnotice-remove' => 'हटाउने',
 	'centralnotice-translate-heading' => '$1को लागि अनुवाद',
@@ -10179,7 +10180,7 @@ $messages['or'] = array(
 	'centralnotice-translations' => 'ଅନୁବାଦସମୂହ',
 	'centralnotice-translate-to' => 'କେଉଁଠିକୁ ଅନୁବାଦ କରିବେ:',
 	'centralnotice-translate' => 'ଅନୁବାଦ',
-	'centralnotice-english' => 'ଅଙ୍ଗରେଜି',
+	'centralnotice-english' => 'ଇଂରାଜି',
 	'centralnotice-banner-name' => 'ସୂଚନା ଫଳକ ପ୍ରକାର:',
 	'centralnotice-banner' => 'ସୂଚନା ଫଳକ',
 	'centralnotice-banner-heading' => 'ସୂଚନା ଫଳକ: $1',
