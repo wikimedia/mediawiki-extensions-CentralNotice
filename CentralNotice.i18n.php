@@ -14664,6 +14664,7 @@ $messages['tpi'] = array(
 /** Turkish (Türkçe)
  * @author Cekli829
  * @author Emperyan
+ * @author Incelemeelemani
  * @author Joseph
  * @author Karduelis
  * @author Srhat
@@ -14806,6 +14807,11 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 	'centralnotice-preferred' => 'Tercih edilen',
 	'centralnotice-logs' => 'Kayıtlar',
 	'centralnotice-user' => 'Kullanıcı',
+	'centralnotice-on' => 'açık',
+	'centralnotice-off' => 'kapalı',
+	'centralnotice-talk-link' => 'tartışma',
+	'centralnotice-banner-content-changed' => 'Değiştirildi',
+	'centralnotice-date' => 'Tarih',
 );
 
 /** Tatar (Cyrillic script) (Татарча)
