@@ -78,8 +78,7 @@ JAVASCRIPT;
 		$js .= <<<JAVASCRIPT
 				if ( document.cookie.indexOf( 'centralnotice_' + bannerType + '=hide' ) === -1 ) {
 					jQuery( '#siteNotice' ).prepend( '<div id="centralNotice" class="' +
-						( wgNoticeToggleState ? 'expanded' : 'collapsed' ) +
-						' cn-' + bannerType + '">'+bannerScript+'</div>' );
+						'cn-' + bannerType + '">'+bannerScript+'</div>' );
 				}
 			},
 			loadBannerList: function( geoOverride ) {
