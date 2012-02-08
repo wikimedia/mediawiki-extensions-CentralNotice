@@ -5414,6 +5414,7 @@ Lueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.',
 );
 
 /** Gujarati (ગુજરાતી)
+ * @author Dsvyas
  * @author KartikMistry
  * @author Sushant savla
  */
@@ -5464,12 +5465,16 @@ $messages['gu'] = array(
 	'centralnotice-notices' => 'ઝુંબેશો',
 	'centralnotice-notice-exists' => 'ઝુંબેશ પહેલેથી મોજૂદ છે.
 તેથી નથી ઉમેરતા નથી',
+	'centralnotice-no-language' => 'અભિયાન માટે કોઈ પણ ભાષા પસંદ કરાઈ નથી. ઉમેરતા નથી.',
+	'centralnotice-no-project' => 'અભિયાન માટે કોઈ પણ પરિયોજના પસંદ કરાઈ નથી. ઉમેરતા નથી.',
 	'centralnotice-template-exists' => 'જાહેરાત ફલક પહેલેથી મોજૂદ છે.
 તેથી નથી ઉમેરતા નથી',
 	'centralnotice-notice-doesnt-exist' => 'ઝુંબેશ અસ્તિત્વ ધરાવતી નથી.',
 	'centralnotice-remove-notice-doesnt-exist' => 'ઝુંબેશ અસ્તિત્વમાં નથી 
 હટાવવા લાયક કાંઈ નથી',
 	'centralnotice-banner-doesnt-exist' => 'જાહેરાત ફલક અસ્તિત્વ ધરાવતું નથી.',
+	'centralnotice-template-still-bound' => 'બેનર હજી ઝુંબેશનો ભાગ છે.
+દૂર કરાતું નથી.',
 	'centralnotice-template-body' => 'જાહેરાત ફલક નું માળખું',
 	'centralnotice-day' => 'દિવસ',
 	'centralnotice-year' => 'વર્ષ',
@@ -5500,15 +5505,20 @@ $messages['gu'] = array(
 	'centralnotice-null-string' => 'ખાલી હોય તેવા વાક્ય નહીં આપી શકાય
 ઉમેરતો નથી',
 	'centralnotice-confirm-delete' => 'શું તમે આ વસ્તુ દૂર કરવા માટે ચોક્કસ છો?
-આ ક્રિયા પાછી ફેરવી શકાતી નથી.',
+આ ક્રિયા પાછી ફેરવી શકાશે નહી.',
+	'centralnotice-no-notices-exist' => 'કોઈ પણ અભિયાન મોજૂદ નથી.
+નીચે કોઈ એક ઉમેરો',
+	'centralnotice-no-templates-translate' => 'મઠારવા કે અનુવાદ કરવા માટે કોઈ જાહેરાત ફલક નથી',
 	'centralnotice-number-uses' => 'સભ્યો',
 	'centralnotice-settings' => 'ગોઠવણીઓ',
 	'centralnotice-edit-template' => 'જાહેરાત ફલકમાઁ ફેરફાર કરો',
+	'centralnotice-edit-template-summary' => 'સ્થાનીય સંદેશ બનાવવા માટૅ હાયપરનેટેડ સ્ટ્રીંગને  ત્રણ ઘગડીયા કૌંસમાં મૂકો',
 	'centralnotice-message' => 'સંદેશ',
 	'centralnotice-message-not-set' => 'સંદેશો ન પહોંચાડી શકાયો',
 	'centralnotice-clone' => 'પ્રત',
 	'centralnotice-clone-notice' => 'જાહેરાત ફલકની નકલ બનાવો',
 	'centralnotice-clone-name' => 'નામ:',
+	'centralnotice-preview-all-template-translations' => 'બેનરનાં બધાં પ્રાપ્ત ભાષાંતરોનું પૂર્વાલોકન.',
 	'centralnotice-insert' => '$1  ઉમેરો',
 	'centralnotice-hide-button' => 'કડી  સંતાડો',
 	'centralnotice-collapse-button' => 'કડી વિસ્તારો',
@@ -5524,14 +5534,19 @@ $messages['gu'] = array(
 	'centralnotice-banner-hidable' => 'સ્થિર/છુપાવી શકાતું',
 	'centralnotice-banner-collapsible' => 'પાડીને વિસ્તરી શકાય તેવું',
 	'centralnotice-banner-fundraising' => 'આ ફાળો ઉઘરાવવાનું જાહેરાત ફલક છે.',
+	'centralnotice-banner-autolink' => 'સ્વયંચાલિત લેન્ડીગ પૃષ્ઠ ની કડી તૈયાર કરો',
+	'centralnotice-banner-landing-pages' => 'લેન્ડીગ પૃષ્ઠ (અલ્પવિરામ- વિભાજીત) :',
+	'centralnotice-geo' => 'ભૂપ્રેષિત',
 	'centralnotice-countries' => 'દેશો',
 	'centralnotice-allocation' => 'ફાળવણી',
 	'centralnotice-view-allocation' => 'જહેરાત ફલકની ફાળવણી જુઓ',
+	'centralnotice-allocation-instructions' => 'તમે જે પર્યાવરણમાં આ જાહેરાત ફલક જોવા માંગતા હોવ તે પસંદ કરો.',
 	'centralnotice-languages' => 'ભાષાઓ',
 	'centralnotice-language' => 'ભાષા',
 	'centralnotice-projects' => 'યોજના',
 	'centralnotice-country' => 'દેશ',
 	'centralnotice-no-allocation' => 'કોઈ પણ જાહેરાત ફલક આવંટિત ન થયું',
+	'centralnotice-allocation-description' => '$3 માં $1.$2ની જાહેરાત ફલક ફાળવણી:',
 	'centralnotice-percentage' => 'ટકાવારી',
 	'centralnotice-preferred' => 'અગ્ર',
 	'centralnotice-logs' => 'લૉગ',
@@ -5542,6 +5557,7 @@ $messages['gu'] = array(
 	'centralnotice-action-created' => 'રચ્યું',
 	'centralnotice-action-modified' => 'બદલેલ',
 	'centralnotice-action-removed' => 'હટાવાયું',
+	'centralnotice-changed' => '<span class="cn-old-value">$1</span> થી <span class="cn-new-value">$2</span> બદલેલ છે',
 	'centralnotice-on' => 'સક્રીય',
 	'centralnotice-off' => 'નિષ્ક્રીય',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> ઉમેર્યું',
@@ -5554,6 +5570,7 @@ $messages['gu'] = array(
 	'centralnotice-account' => 'પ્રવેશ કરેલ સભ્યો દર્શાવો',
 	'centralnotice-fundraising' => 'ફાળો ઉઘરાવ',
 	'centralnotice-autolink' => 'આપમેળે કડી બનાવવી',
+	'centralnotice-landingpages' => 'લેન્ડીંગ પૃષ્ઠ',
 	'centralnotice-banner-content' => 'વાવટાની વિગત',
 	'centralnotice-banner-content-changed' => 'બદલાયેલ',
 	'centralnotice-filters' => 'ગરણાનો લોગ',
