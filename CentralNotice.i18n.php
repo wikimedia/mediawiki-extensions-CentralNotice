@@ -5500,6 +5500,8 @@ $messages['gu'] = array(
 	'centralnotice-change-lang' => 'ભાષાંતરની ભાષા બદલો',
 	'centralnotice-weights' => 'વજન',
 	'centralnotice-notice-is-locked' => 'ઝુંબેશ પર તાળું મરાયું',
+	'centralnotice-overlap' => 'આ અભિયાનનો સમય અન્ય અભિયાનના સમય સાથે ટકરાય છે.
+તેને ઉમેરતો નથી.',
 	'centralnotice-invalid-date-range' => 'અયોગ્ય તારીખ ની શ્રેણી
 ઉમેરતા નથી',
 	'centralnotice-null-string' => 'ખાલી હોય તેવા વાક્ય નહીં આપી શકાય
