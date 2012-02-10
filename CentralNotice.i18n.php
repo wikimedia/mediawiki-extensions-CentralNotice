@@ -5426,6 +5426,8 @@ $messages['gu'] = array(
 	'right-centralnotice-admin' => 'કેંદ્રીય સૂચનાનું વ્યવસ્થાપન',
 	'action-centralnotice-admin' => 'કેંદ્રીય સૂચનાનું વ્યવસ્થાપન',
 	'centralnotice-desc' => 'મધ્યવર્તી સૂચનાનું સ્થાપન કરે છે',
+	'centralnotice-summary' => 'આ મોડ્યુલ તમે તમારા હાલમાં કેંદ્રીય નોટિસના સેટ અપ બદલવાની પરવાનગી આપે છે.
+આને નોટિસ ઉમેરવા કે હટાવવા પણ વાપરી શકાય છે.',
 	'centralnotice-query' => 'હાલની ઝુંબેશ મઠારો',
 	'centralnotice-notice-name' => 'ઝુંબેશ નામ',
 	'centralnotice-end-date' => 'અંતિમ તારીખ',
