@@ -15951,6 +15951,7 @@ $messages['zh-hans'] = array(
  * @author Horacewai2
  * @author Liangent
  * @author Mark85296341
+ * @author Oapbtommy
  * @author Waihorace
  * @author Wrightbus
  */
@@ -16100,7 +16101,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-action' => '操作',
 	'centralnotice-action-created' => '建立了',
 	'centralnotice-action-modified' => '修改',
-	'centralnotice-action-removed' => '已刪除',
+	'centralnotice-action-removed' => '已被移除',
 	'centralnotice-changed' => '已從<span class="cn-old-value">$1</span>改成<span class="cn-new-value">$2</span>',
 	'centralnotice-on' => '打開',
 	'centralnotice-off' => '關閉',
