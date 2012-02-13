@@ -3179,6 +3179,7 @@ Die Aktion kann nicht rückgängig gemacht werden.',
 
 /** Zazaki (Zazaki)
  * @author Erdemaslancan
+ * @author Mirzali
  * @author Xoser
  */
 $messages['diq'] = array(
@@ -3264,6 +3265,7 @@ Yew de bike',
 	'centralnotice-clone-notice' => 'Ye kopyayê templateyî viraze',
 	'centralnotice-preview-all-template-translations' => 'Çarnayîşê Sabloni hemî bivîne',
 	'centralnotice-preferred' => 'Tercih biyo',
+	'centralnotice-talk-link' => 'werênayış',
 );
 
 /** Lower Sorbian (Dolnoserbski)
@@ -5241,6 +5243,8 @@ $messages['grc'] = array(
 	'centralnotice-number-uses' => 'Χρήσεις',
 	'centralnotice-message' => 'Μήνυμα',
 	'centralnotice-clone' => 'Κλών',
+	'centralnotice-languages' => 'Γλῶτται',
+	'centralnotice-language' => 'Γλῶττα',
 	'centralnotice-preferred' => 'Προκρινομένη',
 );
 
@@ -5539,6 +5543,7 @@ $messages['gu'] = array(
 	'centralnotice-banner-collapsible' => 'પાડીને વિસ્તરી શકાય તેવું',
 	'centralnotice-banner-fundraising' => 'આ ફાળો ઉઘરાવવાનું જાહેરાત ફલક છે.',
 	'centralnotice-banner-autolink' => 'સ્વયંચાલિત લેન્ડીગ પૃષ્ઠ ની કડી તૈયાર કરો',
+	'centralnotice-banner-autolink-help' => '$1 સાથે બેનર દેહમાં ઍંકર ટેગ ઉમેરો અને નીચે ઍક કે વધુ લેંડેંગ પૃષ્ઠ ઉમેરો, દા. ત. $2. જ્યારે બેનર જોવામાં આવશે સ્વયંચાલિત રીતે કડી રચાશે.',
 	'centralnotice-banner-landing-pages' => 'લેન્ડીગ પૃષ્ઠ (અલ્પવિરામ- વિભાજીત) :',
 	'centralnotice-geo' => 'ભૂપ્રેષિત',
 	'centralnotice-countries' => 'દેશો',
@@ -5552,6 +5557,8 @@ $messages['gu'] = array(
 	'centralnotice-no-allocation' => 'કોઈ પણ જાહેરાત ફલક આવંટિત ન થયું',
 	'centralnotice-allocation-description' => '$3 માં $1.$2ની જાહેરાત ફલક ફાળવણી:',
 	'centralnotice-percentage' => 'ટકાવારી',
+	'centralnotice-documentwrite-error' => 'બેનરમાં  document.write() નહીં વાપરી શકાય. 
+વધુ માહિતે માટે http://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.',
 	'centralnotice-preferred' => 'અગ્ર',
 	'centralnotice-logs' => 'લૉગ',
 	'centralnotice-view-logs' => 'લૉગ્સ જુઓ',
@@ -14703,6 +14710,7 @@ $messages['tpi'] = array(
  * @author Incelemeelemani
  * @author Joseph
  * @author Karduelis
+ * @author LuCKY
  * @author Srhat
  */
 $messages['tr'] = array(
@@ -14840,6 +14848,8 @@ Aşağıya bir tane ekleyin',
 Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.',
 	'centralnotice-preferred' => 'Tercih edilen',
 	'centralnotice-logs' => 'Kayıtlar',
+	'centralnotice-view-logs' => 'Günlüklerini görüntüle',
+	'centralnotice-timestamp' => 'Zaman damgası',
 	'centralnotice-user' => 'Kullanıcı',
 	'centralnotice-on' => 'açık',
 	'centralnotice-off' => 'kapalı',
