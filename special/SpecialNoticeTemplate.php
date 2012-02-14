@@ -338,7 +338,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$disabled = array( 'disabled' => 'disabled' );
 		}
 
-		// Get user's language
+		// Get the language to display the banner preview and messages in
 		$wpUserLang = $wgRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
 
 		// Get current banner
@@ -414,7 +414,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 					wfMsg ( 'centralnotice-number-uses' )  );
 				$htmlOut .= Html::element( 'th', array( 'width' => '40%' ),
 					wfMsg ( 'centralnotice-english' ) );
-				$languages = Language::getLanguageNames();
+				$languages = Language::getTranslatedLanguageNames( $wgLang->getCode() );
 				$htmlOut .= Html::element( 'th', array( 'width' => '40%' ),
 					$languages[$wpUserLang] );
 
