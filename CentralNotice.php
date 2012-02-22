@@ -119,11 +119,18 @@ function efCentralNoticeSetup() {
 	global $wgCentralNoticeLoader, $wgSpecialPageGroups;
 
 	$dir = dirname( __FILE__ ) . '/';
-
+	
+	// Update the database schema if necessary
+	$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
+	
+	// If CentralNotice banners should be shown on this wiki, load the components we need for
+	// showing banners. For discussion of banner loading strategies, see
+	// http://wikitech.wikimedia.org/view/CentralNotice/Optimizing_banner_loading
 	if ( $wgCentralNoticeLoader ) {
-		$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
-		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
 		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
+		// NOTE: We might want to change efCentralNoticeLoader to use the SkinAfterBottomScripts
+		// hook instead of BeforePageDisplay. See bug 34572.
+		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
 		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
 		$wgHooks['SkinAfterBottomScripts'][] = 'efCentralNoticeGeoLoader';
 	}
