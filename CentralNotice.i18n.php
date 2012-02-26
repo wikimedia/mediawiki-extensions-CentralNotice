@@ -1266,6 +1266,7 @@ $messages['az'] = array(
 /** Bashkir (Башҡортса)
  * @author Assele
  * @author Haqmar
+ * @author Roustammr
  */
 $messages['ba'] = array(
 	'centralnotice' => 'Үҙәк белдереүҙәрҙе идаралау',
@@ -1375,6 +1376,7 @@ $messages['ba'] = array(
 	'centralnotice-collapse-button' => 'Һылтанманы төрөргә',
 	'centralnotice-expand-button' => 'Һылтанманы йәйергә',
 	'centralnotice-close-button' => '«Ябыу» төймәһе',
+	'centralnotice-close-title' => 'Ябырға',
 	'centralnotice-translate-button' => 'Тәржемә ярҙамы өсөн һылтанма',
 	'centralnotice-donate-button' => 'Ярҙам төймәһе',
 	'centralnotice-banner-display' => 'Күрһәтеләсәк урын:',
