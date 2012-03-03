@@ -1258,8 +1258,17 @@ $messages['az'] = array(
 	'centralnotice-projects' => 'Layihələr',
 	'centralnotice-country' => 'Ölkə',
 	'centralnotice-logs' => 'Loqlar',
+	'centralnotice-timestamp' => 'Vaxt',
 	'centralnotice-user' => 'İstifadəçi',
+	'centralnotice-action' => 'Fəaliyyət',
+	'centralnotice-action-created' => 'Yaradılıb',
+	'centralnotice-action-modified' => 'Dəyişdirilib',
+	'centralnotice-action-removed' => 'Çıxarılıb',
+	'centralnotice-on' => 'qoşuldu',
+	'centralnotice-off' => 'çıxarıldı',
 	'centralnotice-talk-link' => 'müzakirə',
+	'centralnotice-fundraising' => 'İanələr',
+	'centralnotice-banner-content-changed' => 'Dəyişdi',
 	'centralnotice-date' => 'Tarix',
 );
 
@@ -2204,6 +2213,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 
 /** Bosnian (Bosanski)
  * @author CERminator
+ * @author DzWiki
  */
 $messages['bs'] = array(
 	'centralnotice' => 'Uređivanje središnjeg obavještenja',
@@ -2314,6 +2324,7 @@ Dodaj jednu ispod',
 	'centralnotice-collapse-button' => 'Zatvori link',
 	'centralnotice-expand-button' => 'Proširi link',
 	'centralnotice-close-button' => 'Zatvori dugme',
+	'centralnotice-close-title' => 'Zatvori',
 	'centralnotice-translate-button' => 'Link za pomoć pri prevođenju',
 	'centralnotice-donate-button' => 'Dugme za donacije',
 	'centralnotice-banner-display' => 'Prikazati za:',
@@ -2331,6 +2342,7 @@ Dodaj jednu ispod',
 	'centralnotice-view-allocation' => 'Pogledaj dodjelu obavještenja',
 	'centralnotice-allocation-instructions' => 'Odaberi okruženje za koje želite vidjeti dodjelu obavještenja:',
 	'centralnotice-languages' => 'Jezici',
+	'centralnotice-language' => 'Jezik',
 	'centralnotice-projects' => 'Projekti',
 	'centralnotice-country' => 'Država',
 	'centralnotice-no-allocation' => 'Nema dodijeljenih obavještenja.',
@@ -2341,6 +2353,10 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
 	'centralnotice-preferred' => 'Preferirano',
 	'centralnotice-logs' => 'Zapisnici',
 	'centralnotice-view-logs' => 'Pogledaj zapisnike',
+	'centralnotice-timestamp' => 'Vremenska oznaka',
+	'centralnotice-user' => 'Korisnik',
+	'centralnotice-talk-link' => 'razgovor',
+	'centralnotice-date' => 'Datum',
 );
 
 /** Catalan (Català)
@@ -4811,7 +4827,7 @@ Cette action ne pourra pas être récupérée.',
 Ajoutez-en ci-dessous.',
 	'centralnotice-no-templates-translate' => 'Il n’y a aucun modèle à traduire',
 	'centralnotice-number-uses' => 'Utilisations',
-	'centralnotice-settings' => 'Paramètres',
+	'centralnotice-settings' => 'Configuration',
 	'centralnotice-edit-template' => 'Modifier le modèle',
 	'centralnotice-edit-template-summary' => 'Pour créer un message localisable, entourez une chaîne à trait d’union de trois accolades, par exemple {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Message',
@@ -7504,6 +7520,7 @@ $messages['ka'] = array(
 	'centralnotice-list-templates' => 'თარგების სია',
 	'centralnotice-multiple-projects' => 'მრავალი ($1)',
 	'centralnotice-multiple-languages' => 'მრავალი ($1)',
+	'centralnotice-multiple-countries' => 'რამდენიმე ($1)',
 	'centralnotice-all-projects' => 'ყველა პროექტი',
 	'centralnotice-translations' => 'თარგმანები',
 	'centralnotice-translate-to' => 'გადათარგმნა',
@@ -7544,6 +7561,7 @@ $messages['ka'] = array(
 	'centralnotice-end-time' => 'დასრულების დრო (UTC)',
 	'centralnotice-assigned-templates' => 'დანიშნული ბანერები',
 	'centralnotice-no-templates' => 'თარგები ნაპოვნი არ არის. დაამატეთ რამე!',
+	'centralnotice-available-templates' => 'ხელმისაწვდომი ბანერები',
 	'centralnotice-preview-template' => 'წინა თარგი',
 	'centralnotice-change-lang' => 'თარგმანის ენის შეცვლა',
 	'centralnotice-weights' => 'წონა',
@@ -7578,6 +7596,7 @@ $messages['ka'] = array(
 	'centralnotice-allocation' => 'განაწილება',
 	'centralnotice-view-allocation' => 'თარგების განაწილების ხილვა',
 	'centralnotice-languages' => 'ენები',
+	'centralnotice-language' => 'ენა',
 	'centralnotice-projects' => 'პროექტები',
 	'centralnotice-country' => 'ქვეყანა',
 	'centralnotice-no-allocation' => 'ბანერები არ განაწილდა.',
@@ -7589,7 +7608,15 @@ $messages['ka'] = array(
 	'centralnotice-logs' => 'ჟურნალები',
 	'centralnotice-view-logs' => 'ჟურნალების ნახვა',
 	'centralnotice-user' => 'მომხმარებელი',
+	'centralnotice-on' => 'ჩართული',
+	'centralnotice-off' => 'გამორთული',
+	'centralnotice-added' => 'დამატებულია <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'წაშლილია <span class="cn-old-value">$1</span>',
 	'centralnotice-talk-link' => 'განხილვა',
+	'centralnotice-date' => 'თარიღი',
+	'centralnotice-apply-filters' => 'ფილტრების მიღება',
+	'centralnotice-clear-filters' => 'ფილტრების გაწმენდა',
+	'centralnotice-banner-messages' => 'ბანერების შეტყობინებები',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -14741,6 +14768,7 @@ $messages['tpi'] = array(
  * @author Karduelis
  * @author LuCKY
  * @author Srhat
+ * @author Suelnur
  */
 $messages['tr'] = array(
 	'centralnotice' => 'Merkezi uyarı yöneticisi',
@@ -14774,6 +14802,7 @@ Eski uyarıları ekleyip çıkarmak için de kullanılabilir.',
 	'centralnotice-list-templates' => 'Şablonları listele',
 	'centralnotice-multiple-projects' => 'Çoklu ($1)',
 	'centralnotice-multiple-languages' => 'Çoklu ($1)',
+	'centralnotice-multiple-countries' => 'Çoklu ($1)',
 	'centralnotice-all-projects' => 'Tüm projeler',
 	'centralnotice-translations' => 'Çeviriler',
 	'centralnotice-translate-to' => 'Şu dile çevir',
@@ -14880,10 +14909,13 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 	'centralnotice-view-logs' => 'Günlüklerini görüntüle',
 	'centralnotice-timestamp' => 'Zaman damgası',
 	'centralnotice-user' => 'Kullanıcı',
+	'centralnotice-action-created' => 'oluşturuldu',
 	'centralnotice-on' => 'açık',
 	'centralnotice-off' => 'kapalı',
 	'centralnotice-talk-link' => 'tartışma',
+	'centralnotice-autolink' => 'Otomatik bağlantı oluşturma',
 	'centralnotice-banner-content-changed' => 'Değiştirildi',
+	'centralnotice-filters' => 'Günlük süzgeçleri',
 	'centralnotice-date' => 'Tarih',
 );
 
