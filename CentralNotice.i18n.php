@@ -7240,11 +7240,13 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 /** Japanese (日本語)
  * @author Aotake
  * @author Fryed-peach
+ * @author Hmiyazaki
  * @author Hosiryuhosi
  * @author JtFuruhata
  * @author Klutzy
  * @author Ohgi
  * @author Schu
+ * @author Shirayuki
  * @author Whym
  * @author 青子守歌
  */
@@ -7385,10 +7387,17 @@ $messages['ja'] = array(
 	'centralnotice-timestamp' => 'タイムスタンプ',
 	'centralnotice-user' => '利用者',
 	'centralnotice-action' => '操作',
+	'centralnotice-action-removed' => '削除',
 	'centralnotice-on' => '入',
 	'centralnotice-off' => '切',
 	'centralnotice-talk-link' => '会話',
+	'centralnotice-campaign-settings' => 'キャンペーン設定',
+	'centralnotice-banner-settings' => 'バナー設定',
+	'centralnotice-banner-content' => 'バナー コンテンツ',
 	'centralnotice-date' => '日付',
+	'centralnotice-apply-filters' => 'フィルタを適用',
+	'centralnotice-clear-filters' => 'フィルタをクリア',
+	'centralnotice-banner-messages' => 'バナー メッセージ',
 );
 
 /** Jutish (Jysk)
