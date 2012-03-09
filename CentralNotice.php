@@ -119,10 +119,10 @@ function efCentralNoticeSetup() {
 	global $wgCentralNoticeLoader, $wgSpecialPageGroups;
 
 	$dir = dirname( __FILE__ ) . '/';
-	
+
 	// Update the database schema if necessary
 	$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
-	
+
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
 	// http://wikitech.wikimedia.org/view/CentralNotice/Optimizing_banner_loading
