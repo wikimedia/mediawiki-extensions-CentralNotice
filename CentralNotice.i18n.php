@@ -2214,6 +2214,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 /** Bosnian (Bosanski)
  * @author CERminator
  * @author DzWiki
+ * @author Palapa
  */
 $messages['bs'] = array(
 	'centralnotice' => 'Uređivanje središnjeg obavještenja',
@@ -2230,6 +2231,7 @@ Također se može koristiti i za dodavanje ili uklanjanje starih obavještenja.'
 	'centralnotice-end-date' => 'Krajnji datum',
 	'centralnotice-enabled' => 'Omogućeno',
 	'centralnotice-modify' => 'Pošalji',
+	'centralnotice-view' => 'Pregled',
 	'centralnotice-save-banner' => 'Spremi obavještenje',
 	'centralnotice-preview' => 'Izgled',
 	'centralnotice-nopreview' => '(Pregled nije dostupan)',
