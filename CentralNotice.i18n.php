@@ -337,6 +337,21 @@ $messages['gom-latn'] = array(
 	'centralnotice-language' => 'Bhas',
 );
 
+/** Ṫuroyo (Ṫuroyo)
+ * @author Ariyo
+ */
+$messages['tru'] = array(
+	'centralnotice-day' => 'Yawmo',
+	'centralnotice-year' => 'Şato',
+	'centralnotice-month' => 'Yarḥo',
+	'centralnotice-hours' => 'Sa3aye',
+	'centralnotice-min' => 'Daqaye',
+	'centralnotice-change-lang' => 'Mşaḥlaf uLeşono duTurjomo',
+	'centralnotice-languages' => 'Leşone',
+	'centralnotice-language' => 'Leşono',
+	'centralnotice-user' => 'Hadomo',
+);
+
 /** Afrikaans (Afrikaans)
  * @author Naudefj
  * @author පසිඳු කාවින්ද
