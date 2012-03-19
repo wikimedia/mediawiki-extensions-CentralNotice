@@ -8677,6 +8677,24 @@ $messages['ltg'] = array(
 	'centralnotice-message' => 'Viestejums',
 );
 
+/** Lushai (Mizo ţawng)
+ * @author RMizo
+ */
+$messages['lus'] = array(
+	'centralnotice-day' => 'Ni',
+	'centralnotice-year' => 'Kum',
+	'centralnotice-month' => 'Thla',
+	'centralnotice-hours' => 'Dar',
+	'centralnotice-min' => 'Minit',
+	'centralnotice-project-lang' => 'Hna-hmachhawp ţawng',
+	'centralnotice-select' => 'Thlang rawh le: $1',
+	'centralnotice-top-ten-languages' => 'Hman tam ber ţawng 10',
+	'centralnotice-project-name' => 'Hna-hmachhawp hming',
+	'centralnotice-start-date' => 'Ţan ni',
+	'centralnotice-start-time' => 'Ţah hun (UTC-in)',
+	'centralnotice-end-time' => 'Tàwp hun (UTC-in)',
+);
+
 /** Latvian (Latviešu)
  * @author GreenZeb
  * @author Papuass
@@ -12817,6 +12835,7 @@ $messages['si'] = array(
 /** Slovak (Slovenčina)
  * @author Helix84
  * @author Rudko
+ * @author Teslaton
  */
 $messages['sk'] = array(
 	'centralnotice' => 'Centrálny oznam',
@@ -12850,6 +12869,7 @@ Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
 	'centralnotice-list-templates' => 'Zoznam šablón',
 	'centralnotice-multiple-projects' => 'viaceré ($1)',
 	'centralnotice-multiple-languages' => 'viaceré ($1)',
+	'centralnotice-multiple-countries' => 'viaceré ($1)',
 	'centralnotice-all-projects' => 'Všetky projekty',
 	'centralnotice-translations' => 'Preklady',
 	'centralnotice-translate-to' => 'Preložiť do jazyka',
@@ -12917,6 +12937,7 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-collapse-button' => 'Odkaz „Zbaliť“',
 	'centralnotice-expand-button' => 'Odkaz „Rozbaliť“',
 	'centralnotice-close-button' => 'Tlačidlo Zatvoriť',
+	'centralnotice-close-title' => 'Zatvoriť',
 	'centralnotice-translate-button' => 'Pomôžte preložiť odkaz',
 	'centralnotice-donate-button' => 'Tlačidlo Podpora',
 	'centralnotice-banner-display' => 'Zobraziť:',
@@ -12925,6 +12946,10 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-banner-type' => 'Typ oznamu:',
 	'centralnotice-banner-hidable' => 'Statický/skrývateľný',
 	'centralnotice-banner-collapsible' => 'Zbaliteľný',
+	'centralnotice-banner-fundraising' => 'Toto je banner pre fundraising',
+	'centralnotice-banner-autolink' => 'Automaticky vytvoriť odkaz na cieľovú stránku',
+	'centralnotice-banner-autolink-help' => 'V tele banneru vytvorte odkaz s $1 a nižšie zadajte jednu alebo viacero cieľových stránok, napríklad $2. Pri každom zobrazení banneru sa automaticky vytvorí odkaz.',
+	'centralnotice-banner-landing-pages' => 'Cieľové stránky (oddelené čiarkou):',
 	'centralnotice-geo' => 'Geograficky cielený',
 	'centralnotice-countries' => 'Krajiny',
 	'centralnotice-allocation' => 'Alokácia',
@@ -12941,10 +12966,34 @@ Túto operáciu nebude možné vrátiť.',
 Ďalšie informácie nájdete na http://meta.wikimedia.org/wiki/Help:CentralNotice',
 	'centralnotice-preferred' => 'Uprednostňované',
 	'centralnotice-logs' => 'Záznamy',
+	'centralnotice-view-logs' => 'Zobraziť záznamy',
+	'centralnotice-timestamp' => 'Datum a čas',
 	'centralnotice-user' => 'Používateľ',
 	'centralnotice-action' => 'Operácia',
+	'centralnotice-action-created' => 'vytvorené',
+	'centralnotice-action-modified' => 'zmenené',
+	'centralnotice-action-removed' => 'odstránené',
+	'centralnotice-changed' => 'Zmenil z <span class="cn-old-value">$1</span> na <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'zapnuté',
 	'centralnotice-off' => 'vypnuté',
+	'centralnotice-added' => 'Pridal <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Odstránil <span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => 'žiadne priradené bannery',
+	'centralnotice-talk-link' => 'diskusia',
+	'centralnotice-campaign-settings' => 'Nastavenia kampane',
+	'centralnotice-banner-settings' => 'Nastavenia bannerov',
+	'centralnotice-anon' => 'Zobrazovať anonymným používateľom',
+	'centralnotice-account' => 'Zobrazovať prihláseným používateľom',
+	'centralnotice-fundraising' => 'Fundraising',
+	'centralnotice-autolink' => 'Automatické vytvorenie odkazu',
+	'centralnotice-landingpages' => 'Cieľové stránky',
+	'centralnotice-banner-content' => 'Obsah banneru',
+	'centralnotice-banner-content-changed' => 'Zmenené',
+	'centralnotice-filters' => 'Filter záznamov',
+	'centralnotice-date' => 'Dátum',
+	'centralnotice-apply-filters' => 'Použiť filter',
+	'centralnotice-clear-filters' => 'Vyčistiť filter',
+	'centralnotice-banner-messages' => 'Bannerové správy',
 );
 
 /** Slovenian (Slovenščina)
