@@ -14862,6 +14862,7 @@ $messages['tpi'] = array(
  * @author LuCKY
  * @author Srhat
  * @author Suelnur
+ * @author Szoszv
  */
 $messages['tr'] = array(
 	'centralnotice' => 'Merkezi uyarı yöneticisi',
@@ -15005,7 +15006,7 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 	'centralnotice-action-created' => 'oluşturuldu',
 	'centralnotice-on' => 'açık',
 	'centralnotice-off' => 'kapalı',
-	'centralnotice-talk-link' => 'tartışma',
+	'centralnotice-talk-link' => 'mesaj',
 	'centralnotice-autolink' => 'Otomatik bağlantı oluşturma',
 	'centralnotice-banner-content-changed' => 'Değiştirildi',
 	'centralnotice-filters' => 'Günlük süzgeçleri',
