@@ -31,7 +31,7 @@ $wgCentralDBname = $wgDBname;
 
 // The script path on the wiki that hosts the CentralNotice infrastructure
 // For example 'http://meta.wikimedia.org/w/index.php'
-$wgCentralPagePath = '';
+$wgCentralPagePath = false;
 
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
@@ -116,12 +116,16 @@ function efCentralNoticeUnitTests( &$files ) {
  */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
-	global $wgCentralNoticeLoader, $wgSpecialPageGroups;
+	global $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript;
 
 	$dir = dirname( __FILE__ ) . '/';
 
 	// Update the database schema if necessary
 	$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
+
+	if ( $wgCentralPagePath === false ) {
+		$wgCentralPagePath = $wgScript;
+	}
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
