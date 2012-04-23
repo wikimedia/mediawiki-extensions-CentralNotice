@@ -1,11 +1,59 @@
 <?php
+/**
+ * Wikimedia Foundation
+ *
+ * LICENSE
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ */
 
+/**
+ * SpecialBannerAllocation
+ *
+ * Special page for handling banner allocation.
+ */
 class SpecialBannerAllocation extends UnlistedSpecialPage {
+
+	/**
+	 * The project being used for banner allocation.
+	 *
+	 * @see $wgNoticeProjects
+	 *
+	 * @var string $project
+	 */
 	public $project = 'wikipedia';
+
+	/**
+	 * The language being used for banner allocation
+	 *
+	 * This should always be a lowercase language code.
+	 *
+	 * @var string $project
+	 */
 	public $language = 'en';
+
+	/**
+	 * The location being used for banner allocation.
+	 *
+	 * This should always be an uppercase country code.
+	 *
+	 * @var string $location
+	 */
 	public $location = 'US';
 
-	function __construct() {
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
 		// Register special page
 		parent::__construct( 'BannerAllocation' );
 	}
@@ -13,7 +61,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	/**
 	 * Handle different types of page requests
 	 */
-	function execute( $sub ) {
+	public function execute( $sub ) {
 		global $wgOut, $wgLang, $wgRequest, $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
 
 		$this->project = $wgRequest->getText( 'project', $wgNoticeProject );
@@ -134,7 +182,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	/**
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
-	function showList() {
+	public function showList() {
 		global $wgOut, $wgRequest;
 
 		// Begin building HTML
@@ -212,7 +260,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * @param $weight integer The total weight of the banners
 	 * @return HTML for the table
 	 */
-	function getTable( $type, $banners, $weight ) {
+	public function getTable( $type, $banners, $weight ) {
 		global $wgLang;
 
 		$sk = $this->getSkin();
