@@ -1291,6 +1291,7 @@ $messages['az'] = array(
  * @author Assele
  * @author Haqmar
  * @author Roustammr
+ * @author ҒатаУлла
  */
 $messages['ba'] = array(
 	'centralnotice' => 'Үҙәк белдереүҙәрҙе идаралау',
@@ -1306,6 +1307,7 @@ $messages['ba'] = array(
 	'centralnotice-end-date' => 'Тамамланыу ваҡыты',
 	'centralnotice-enabled' => 'Асыҡ',
 	'centralnotice-modify' => 'Һаҡларға',
+	'centralnotice-view' => 'Ҡарау',
 	'centralnotice-save-banner' => 'Баннерҙы һаҡларға',
 	'centralnotice-preview' => 'Алдан байҡау',
 	'centralnotice-nopreview' => '(Ҡарап сығыу мөмкин түгел)',
@@ -8805,6 +8807,7 @@ $messages['lus'] = array(
 	'centralnotice-start-date' => 'Ţan ni',
 	'centralnotice-start-time' => 'Ţah hun (UTC-in)',
 	'centralnotice-end-time' => 'Tàwp hun (UTC-in)',
+	'centralnotice-talk-link' => 'sawihona',
 );
 
 /** Latvian (Latviešu)
