@@ -108,6 +108,14 @@
 	background: url('down-arrow-ltr.png') no-repeat scroll left center transparent;
 }
 
+.select-hint {
+	margin-top: 0.2em;
+	/* Leaving room for the background image. */
+	padding-left: 17px !important;
+	/* @embed */
+	background: url('up-arrow-ltr.png') no-repeat scroll left top transparent;
+}
+
 /* Vector-specific definitions */
 body.skin-vector #preferences fieldset.prefsection {
 	border-color:#CCCCCC;

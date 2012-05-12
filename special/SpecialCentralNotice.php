@@ -1609,9 +1609,8 @@ class CentralNotice extends SpecialPage {
 			$buttons[ ] = '<a href="#" onclick="top10Languages();return false;">' .
 				wfMsg( 'centralnotice-top-ten-languages' ) . '</a>';
 			$htmlOut .= Xml::tags( 'div',
-				array( 'style' => 'margin-top: 0.2em;' ),
-				'<img src="' . $scriptPath . '/up-arrow.png" style="vertical-align:baseline;"/>' .
-					wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
+				array( 'class' => 'select-hint' ),
+				wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
@@ -1659,9 +1658,8 @@ class CentralNotice extends SpecialPage {
 			$buttons[ ] = '<a href="#" onclick="selectProjects(false);return false;">' .
 				wfMsg( 'powersearch-togglenone' ) . '</a>';
 			$htmlOut .= Xml::tags( 'div',
-				array( 'style' => 'margin-top: 0.2em;' ),
-				'<img src="' . $scriptPath . '/up-arrow.png" style="vertical-align:baseline;"/>' .
-					wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
+				array( 'class' => 'select-hint' ),
+				wfMsg( 'centralnotice-select', $wgLang->commaList( $buttons ) )
 			);
 		} else {
 			$htmlOut .= Xml::tags( 'select',
