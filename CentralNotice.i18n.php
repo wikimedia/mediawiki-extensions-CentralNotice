@@ -1038,6 +1038,34 @@ $messages['arz'] = array(
 	'centralnotice-preferred' => ' مفضله',
 );
 
+/** Assamese (অসমীয়া)
+ * @author Bishnu Saikia
+ */
+$messages['as'] = array(
+	'centralnotice-enabled' => 'সক্ৰিয়',
+	'centralnotice-modify' => 'দাখিল কৰক',
+	'centralnotice-view' => 'দৰ্শন',
+	'centralnotice-preview' => 'প্ৰদৰ্শন',
+	'centralnotice-remove' => 'অপসাৰণ',
+	'centralnotice-add' => 'যোগ',
+	'centralnotice-add-template' => 'সাঁচ যোগ',
+	'centralnotice-english' => 'ইংৰাজী',
+	'centralnotice-day' => 'দিন',
+	'centralnotice-year' => 'বছৰ',
+	'centralnotice-month' => 'মাহ',
+	'centralnotice-hours' => 'ঘণ্টা',
+	'centralnotice-min' => 'মিনিট',
+	'centralnotice-number-uses' => 'ব্যৱহাৰ',
+	'centralnotice-clone-name' => 'নাম:',
+	'centralnotice-languages' => 'ভাষা',
+	'centralnotice-projects' => 'প্ৰকল্পসমূহ',
+	'centralnotice-country' => 'দেশ',
+	'centralnotice-user' => 'সদস্য',
+	'centralnotice-action' => 'কাৰ্যসমূহ',
+	'centralnotice-talk-link' => 'বাৰ্তা',
+	'centralnotice-date' => 'তাৰিখ',
+);
+
 /** Asturian (Asturianu)
  * @author Esbardu
  * @author Xuacu
@@ -4872,7 +4900,7 @@ Il n’a pas été ajouté.',
 	'centralnotice-notice-doesnt-exist' => 'La campagne n’existe pas.',
 	'centralnotice-remove-notice-doesnt-exist' => 'La campagne n’existe pas.
 Rien à supprimer.',
-	'centralnotice-banner-doesnt-exist' => "La bannière n'existe pas.",
+	'centralnotice-banner-doesnt-exist' => 'La bannière n’existe pas.',
 	'centralnotice-template-still-bound' => 'Le modèle est encore lié à un avis.
 Il n’a pas été supprimé.',
 	'centralnotice-template-body' => 'Corps du modèle :',
@@ -4936,7 +4964,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-banner-type' => 'Type de bannière :',
 	'centralnotice-banner-hidable' => 'Statique/masquable',
 	'centralnotice-banner-collapsible' => 'Réductible',
-	'centralnotice-banner-fundraising' => "Il s'agit d'une bannière de levée de fonds",
+	'centralnotice-banner-fundraising' => 'Il s’agit d’une bannière de levée de fonds',
 	'centralnotice-banner-autolink' => 'Crée automatiquement un lien vers une page d’atterrissage.',
 	'centralnotice-banner-autolink-help' => 'Créez une balise d’ancrage dans le corps de la bannière avec $1 et entrez une ou plusieurs pages de destination ci-dessous ($2, par exemple). Le lien sera construit automatiquement quand la bannière est affichée.',
 	'centralnotice-banner-landing-pages' => 'Pages de destination (séparées par des virgules):',
@@ -6961,7 +6989,7 @@ Mabalin pay nga usaren a pag-nayon wenno pag-ikkat kadagiti daan a paammo.',
 	'centralnotice-translations' => 'Dagiti patarus',
 	'centralnotice-translate-to' => 'Ipatarus iti',
 	'centralnotice-translate' => 'Ipatarus',
-	'centralnotice-english' => 'Ingles',
+	'centralnotice-english' => 'Inggles',
 	'centralnotice-banner-name' => 'Nagan ti wagayway:',
 	'centralnotice-banner' => 'Wagayway',
 	'centralnotice-banner-heading' => 'Wagayway: $1',
@@ -7059,7 +7087,7 @@ Agnayon ti maysa dita baba.',
 	'centralnotice-country' => 'Pagilian',
 	'centralnotice-no-allocation' => 'Awan dagiti nailasinan a wagayway.',
 	'centralnotice-allocation-description' => 'Nailasinan ti wagayway para iti $1. $2 idiay $3:',
-	'centralnotice-percentage' => 'Porciento',
+	'centralnotice-percentage' => 'Porsiento',
 	'centralnotice-documentwrite-error' => 'document.write() saan a mabalin a mausar ti kaunegan ti wagayway.
 Kitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a paammo.',
 	'centralnotice-preferred' => 'Kaykayat',
@@ -7078,7 +7106,7 @@ Kitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a paammo
 	'centralnotice-removed' => 'Inikkat ti <span class="cn-old-value">$1</span>',
 	'centralnotice-no-assignments' => 'awan dagiti napatudonan a wagayway',
 	'centralnotice-talk-link' => 'makipatang',
-	'centralnotice-campaign-settings' => 'Kasasaas dagiti kampania',
+	'centralnotice-campaign-settings' => 'Kasasaad dagiti kampania',
 	'centralnotice-banner-settings' => 'Kasasaad dagiti wagayway',
 	'centralnotice-anon' => 'Ipabuya kadagiti di am-ammo nga agar-aramat',
 	'centralnotice-account' => 'Ipabuya kadagiti nakastrek  nga agar-aramat',
@@ -7094,7 +7122,7 @@ Kitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a paammo
 	'centralnotice-banner-messages' => 'Mensahe dagiti wagayway',
 );
 
-/** Ingush (ГІалгІай Ğalğaj)
+/** Ingush (ГӀалгӀай)
  * @author Sapral Mikail
  */
 $messages['inh'] = array(
@@ -8272,10 +8300,11 @@ $messages['ku-latn'] = array(
 /** Cornish (Kernowek)
  * @author Kernoweger
  * @author Kw-Moon
+ * @author Nrowe
  */
 $messages['kw'] = array(
 	'centralnotice-english' => 'Sowsnek',
-	'centralnotice-day' => 'Dedh',
+	'centralnotice-day' => 'Dydh',
 	'centralnotice-year' => 'Bledhen',
 	'centralnotice-month' => 'Mis',
 	'centralnotice-edit-template' => 'Chanjya an baner',
@@ -8449,6 +8478,47 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-apply-filters' => 'Filteren uwenden',
 	'centralnotice-clear-filters' => 'Filteren eidel maachen',
 	'centralnotice-banner-messages' => 'Banner-Messagen',
+);
+
+/** Lezghian (Лезги)
+ * @author Migraghvi
+ */
+$messages['lez'] = array(
+	'centralnotice-modify' => 'Ракъурун',
+	'centralnotice-view' => 'Килигун',
+	'centralnotice-preview' => 'Сифтедин килигун',
+	'centralnotice-remove' => 'Алудун',
+	'centralnotice-add' => 'Алава авун',
+	'centralnotice-weight' => 'Заланвал',
+	'centralnotice-day' => 'Югъ',
+	'centralnotice-year' => 'Йис:',
+	'centralnotice-month' => 'Варз',
+	'centralnotice-hours' => 'Сят',
+	'centralnotice-min' => 'Декъикъа',
+	'centralnotice-project-lang' => 'Проектдин чIал',
+	'centralnotice-weights' => 'Заланвилер',
+	'centralnotice-number-uses' => 'Кардик кутазва',
+	'centralnotice-settings' => 'Низамарунар',
+	'centralnotice-edit-template' => 'Баннер дуьзар хъувун',
+	'centralnotice-message' => 'Чар',
+	'centralnotice-clone' => 'Клон',
+	'centralnotice-clone-name' => 'Тlвар:',
+	'centralnotice-close-button' => '"КIевун" дуьгме',
+	'centralnotice-close-title' => 'Агалун',
+	'centralnotice-countries' => 'Уьлквеяр',
+	'centralnotice-languages' => 'ЧIалар',
+	'centralnotice-language' => 'Чlал',
+	'centralnotice-projects' => 'Проектар',
+	'centralnotice-country' => 'Уьлкве',
+	'centralnotice-percentage' => 'Процент',
+	'centralnotice-user' => 'Уртах',
+	'centralnotice-action' => 'Кар',
+	'centralnotice-action-created' => 'ТуькIуьрнава',
+	'centralnotice-action-modified' => 'дегишарнава',
+	'centralnotice-action-removed' => 'алуднава',
+	'centralnotice-on' => 'кутуннава',
+	'centralnotice-off' => 'хкуднава',
+	'centralnotice-date' => 'Тарих',
 );
 
 /** Lingua Franca Nova (Lingua Franca Nova)
@@ -12172,6 +12242,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 
 /** Russian (Русский)
  * @author Aleksandrit
+ * @author Amire80
  * @author Dim Grits
  * @author Eleferen
  * @author Eugrus
@@ -12249,7 +12320,7 @@ $messages['ru'] = array(
 	'centralnotice-hours' => 'Час',
 	'centralnotice-min' => 'Минута',
 	'centralnotice-project-lang' => 'Язык проекта',
-	'centralnotice-select' => 'Выборка: $1',
+	'centralnotice-select' => 'Выбор: $1',
 	'centralnotice-top-ten-languages' => '10 языков',
 	'centralnotice-project-name' => 'Название проекта',
 	'centralnotice-start-date' => 'Дата начала',
@@ -14527,7 +14598,7 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-preferred' => 'Тарҷиҳи додашуда',
 );
 
-/** Tajik (Latin script) (tojikī)
+/** Tajik (Latin script) (Tojikī)
  * @author Liangent
  */
 $messages['tg-latn'] = array(
@@ -14994,6 +15065,26 @@ Tingnan ang http://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas marami
 	'centralnotice-preferred' => 'Mas ninanais',
 );
 
+/** Толышә зывон (Толышә зывон)
+ * @author Гусейн
+ */
+$messages['tly'] = array(
+	'centralnotice-add' => 'Зијод кардеј',
+	'centralnotice-day' => 'Руж',
+	'centralnotice-year' => 'Сор',
+	'centralnotice-month' => 'Манг',
+	'centralnotice-hours' => 'Саат',
+	'centralnotice-min' => 'Дәғиғә',
+	'centralnotice-project-lang' => 'Нәхшә зывон',
+	'centralnotice-top-ten-languages' => '10 зывон',
+	'centralnotice-project-name' => 'Нәхшә ном',
+	'centralnotice-close-button' => 'Егәтәдыгмә «Жәј»',
+	'centralnotice-close-title' => 'Жәј',
+	'centralnotice-user' => 'Иштирокәкә',
+	'centralnotice-action' => 'Һәрәкәт',
+	'centralnotice-date' => 'Тарых',
+);
+
 /** Tok Pisin (Tok Pisin)
  * @author Iketsi
  */
@@ -15162,6 +15253,8 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 	'centralnotice-banner-content-changed' => 'Değiştirildi',
 	'centralnotice-filters' => 'Günlük süzgeçleri',
 	'centralnotice-date' => 'Tarih',
+	'centralnotice-apply-filters' => 'Süzgeçleri uygula',
+	'centralnotice-clear-filters' => 'Süzgeçleri temizle',
 );
 
 /** Tatar (Cyrillic script) (Татарча)
@@ -15623,7 +15716,7 @@ Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
 	'centralnotice-preferred' => 'Preferìo',
 );
 
-/** Veps (Vepsän kel')
+/** Veps (Vepsän kel’)
  * @author Игорь Бродский
  */
 $messages['vep'] = array(
