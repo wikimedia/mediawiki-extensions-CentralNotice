@@ -298,9 +298,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		$buttons[] = '<a href="#" onclick="insertButton(\'close\');return false;">' .
 			wfMsg( 'centralnotice-close-button' ) . '</a>';
 		$htmlOut .= Xml::tags( 'div',
-			array( 'style' => 'margin-bottom: 0.2em;' ),
-			'<img src="'.$scriptPath.'/down-arrow.png" style="vertical-align:baseline;"/>' .
-				wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
+			array( 'class' => 'banner-editing-top-hint' ),
+			wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
 		);
 
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
@@ -627,9 +626,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$buttons[] = '<a href="#" onclick="insertButton(\'close\');return false;">' .
 					wfMsg( 'centralnotice-close-button' ) . '</a>';
 				$htmlOut .= Xml::tags( 'div',
-					array( 'style' => 'margin-bottom: 0.2em;' ),
-					'<img src="' . $scriptPath . '/down-arrow.png" ' .
-					'style="vertical-align:baseline;"/>' .
+					array( 'class' => 'banner-editing-top-hint' ),
 					wfMsg( 'centralnotice-insert', $wgLang->commaList( $buttons ) )
 				);
 			} else {
