@@ -211,7 +211,9 @@ $messages['qqq'] = array(
 {{desc}}',
 	'centralnotice-summary' => 'Used in Special:CentralNotice for [[mw:Extension:CentralNotice]]',
 	'centralnotice-end-date' => '{{Identical|End date}}',
-	'centralnotice-enabled' => '{{Identical|Enabled}}',
+	'centralnotice-enabled' => 'Refers to campaign.
+
+{{Identical|Enabled}}',
 	'centralnotice-modify' => 'Submit button on:
 * "change translation language" dialog box on [[m:Special:NoticeTemplate]].
 * "add campaign" form on [[m:Special:CentralNotice]] (only when sufficent access rights).
@@ -235,6 +237,16 @@ $messages['qqq'] = array(
 A language listing for the language multi-select box. First parameter is the language code. Second parameter is the name of the language.',
 	'centralnotice-translations' => '{{Identical|Translation}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
+	'centralnotice-english' => 'The header of a column with the original values of the translatable messages.
+
+The other headers are:
+
+* {{msg-mw|centralnotice-message}}
+* {{msg-mw|centralnotice-number-uses}}
+* (the name of a language to which the banner is being translated)
+
+(See also [[:bugzilla:16321|Bug 16321 - All messages in CentralNotice are defaulted to English regardless of content language]].)',
+	'centralnotice-locked' => 'Refers to campaign.',
 	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
 	'centralnotice-template-exists' => 'Error message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
 	'centralnotice-day' => '{{Identical|Day}}',
@@ -249,13 +261,24 @@ A language listing for the language multi-select box. First parameter is the lan
 	'centralnotice-notice-is-locked' => 'Error message displayed in Special:CentralNotice when trying to delete a locked notice',
 	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
-	'centralnotice-number-uses' => 'Column header in table with sitenotice campaign information.
+	'centralnotice-number-uses' => 'The header of a narrow column in the table with sitenotice campaign information. The values in the column are the numbers of times that a message enclosed in three curly brackets appears in the banner\'s code.
 
-Translate as a plural noun.
+In English this is the plural form of the noun "use".
 
-Maximum length of the message is 5% of the total width of the table.',
+The other columns are:
+* {{msg-mw|centralnotice-message}}
+* {{msg-mw|centralnotice-english}}
+* (the name of a language to which the banner is being translated)
+
+The width of the column is 5% of the total width of the table, so the message should be accordingly short.',
 	'centralnotice-settings' => '{{Identical|Settings}}',
-	'centralnotice-message' => '{{Identical|Message}}',
+	'centralnotice-message' => 'The header of a table of translatable messages. Translatable messages are represented in the template code by strings enclosed in three curly brackets.
+
+* {{msg-mw|centralnotice-number-uses}}
+* {{msg-mw|centralnotice-english}}
+* (the name of a language to which the banner is being translated)
+
+{{Identical|Message}}',
 	'centralnotice-clone-name' => '{{Identical|Name}}',
 	'centralnotice-insert' => '{{Identical|Insert}}',
 	'centralnotice-hide-button' => 'This is an action, a verb in imperative form. It refers to "Do hide the centralnotice!"
@@ -281,7 +304,8 @@ See also {{msg|Centralnotice-hide-button}}.',
 	'centralnotice-allocation-description' => 'A description of the environment the allocation of which is being described.
 * $1 is the language code for the site (e.g "en").
 * $2 is the project name for the site (e.g. "wikipedia").
-* $3 is the country code (e.g. "US").',
+* $3 is the country code (e.g. "US" for the United States, "FR" for France, etc.).',
+	'centralnotice-preferred' => 'Refers to campaign.',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
 	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
 	'centralnotice-user' => '{{Identical|User}}',
@@ -5753,32 +5777,32 @@ $messages['he'] = array(
 	'centralnotice' => 'ניהול ההודעה המרכזית',
 	'noticetemplate' => 'ניהול ההודעה המרכזית',
 	'bannerallocation' => 'ניהול ההודעה המרכזית',
-	'centralnoticelogs' => 'ניהול הודעה מרכזית',
-	'right-centralnotice-admin' => 'ניהול הודעת מרכזיות',
+	'centralnoticelogs' => 'ניהול ההודעה המרכזית',
+	'right-centralnotice-admin' => 'ניהול הודעות מרכזיות',
 	'action-centralnotice-admin' => 'לנהל הודעות מרכזיות',
 	'centralnotice-desc' => 'הוספת הודעה בראש הדף משרת מרכזי',
-	'centralnotice-summary' => 'מודול זה מאפשר את עריכת ההודעות המרכזיות המוגדרות כעת.
-ניתן להשתמש בו גם כדי להוסיף ולהסיר הודעות.',
-	'centralnotice-query' => 'שינוי ההודעות הקיימות',
-	'centralnotice-notice-name' => 'שם ההודעה',
+	'centralnotice-summary' => 'המודול הזה מאפשר לך לערוך את ההודעות המרכזיות המוגדרות כעת.
+ניתן להשתמש בו גם כדי להוסיף ולהסיר הודעות ישנות.',
+	'centralnotice-query' => 'שינוי מסעות הפרסום הקיימים',
+	'centralnotice-notice-name' => 'שם מסע הפרסום',
 	'centralnotice-end-date' => 'תאריך סיום',
-	'centralnotice-enabled' => 'מופעלת',
+	'centralnotice-enabled' => 'מופעל',
 	'centralnotice-modify' => 'שליחה',
 	'centralnotice-view' => 'הצגה',
-	'centralnotice-save-banner' => 'שמירת הבאנר',
+	'centralnotice-save-banner' => 'שמירת הכּרזה',
 	'centralnotice-preview' => 'תצוגה מקדימה',
 	'centralnotice-nopreview' => '(תצוגה מקדימה אינה זמינה)',
-	'centralnotice-add-new' => 'הוספת הודעה מרכזית חדשה',
+	'centralnotice-add-new' => 'הוספת מסע פרסום חדש',
 	'centralnotice-remove' => 'הסרה',
 	'centralnotice-translate-heading' => 'תרגום של $1',
-	'centralnotice-manage' => 'ניהול ההודעה המרכזית',
-	'centralnotice-manage-templates' => 'ניהול באנרים',
+	'centralnotice-manage' => 'ניהול מסעות פרסום',
+	'centralnotice-manage-templates' => 'ניהול כרזות',
 	'centralnotice-add' => 'הוספה',
-	'centralnotice-add-notice' => 'הוספת הודעה',
+	'centralnotice-add-notice' => 'הוספת מסע פרסום',
 	'centralnotice-edit-notice' => 'עריכת מסע הפרסום',
-	'centralnotice-add-template' => 'הוספת תבנית',
-	'centralnotice-show-notices' => 'הצגת הודעות',
-	'centralnotice-list-templates' => 'רשימת תבניות',
+	'centralnotice-add-template' => 'הוספת כרזה',
+	'centralnotice-show-notices' => 'הצגת מסעות פרסום',
+	'centralnotice-list-templates' => 'רשימת כרזות',
 	'centralnotice-multiple-projects' => 'מרובים ($1)',
 	'centralnotice-multiple-languages' => 'מרובות ($1)',
 	'centralnotice-multiple-countries' => 'מרובות ($1)',
@@ -5787,28 +5811,28 @@ $messages['he'] = array(
 	'centralnotice-translate-to' => 'תרגום ל',
 	'centralnotice-translate' => 'תרגום',
 	'centralnotice-english' => 'אנגלית',
-	'centralnotice-banner-name' => 'שם הבאנר:',
-	'centralnotice-banner' => 'באנר',
-	'centralnotice-banner-heading' => 'באנר: $1',
-	'centralnotice-templates' => 'תבניות',
+	'centralnotice-banner-name' => 'שם הכרזה:',
+	'centralnotice-banner' => 'כרזה',
+	'centralnotice-banner-heading' => 'כרזה: $1',
+	'centralnotice-templates' => 'כרזות',
 	'centralnotice-weight' => 'משקל',
-	'centralnotice-locked' => 'נעולה',
+	'centralnotice-locked' => 'נעול',
 	'centralnotice-notice' => 'מסע פרסום',
 	'centralnotice-notice-heading' => 'מסע פרסום: $1',
-	'centralnotice-notices' => 'הודעות',
-	'centralnotice-notice-exists' => 'ההודעה כבר קיימת.
-התוספת לא תבוצע',
-	'centralnotice-no-language' => 'לא נבחרה שפה למסע הפרסום. לא נוסף.',
-	'centralnotice-no-project' => 'לא נבחר שום מיזם למסע הפרסום. לא נוסף.',
-	'centralnotice-template-exists' => 'התבנית כבר קיימת.
-התוספת לא תבוצע',
+	'centralnotice-notices' => 'מסעות פרסום',
+	'centralnotice-notice-exists' => 'מסע הפרסום כבר קיים.
+ההוספה לא תיעשה.',
+	'centralnotice-no-language' => 'לא נבחרה שפה למסע הפרסום. ההוספה לא תיעשה.',
+	'centralnotice-no-project' => 'לא נבחר שום מיזם למסע הפרסום. ההוספה לא תיעשה.',
+	'centralnotice-template-exists' => 'הכרזה כבר קיימת.
+ההוספה לא תיעשה.',
 	'centralnotice-notice-doesnt-exist' => 'מסע הפרסום אינו קיים.',
 	'centralnotice-remove-notice-doesnt-exist' => 'מסע הפרסום אינו קיים.
 אין מה להסיר.',
-	'centralnotice-banner-doesnt-exist' => 'הבאנר אינו קיים.',
-	'centralnotice-template-still-bound' => 'התבנית עדיין מקושרת להודעה.
-ההסרה לא תבוצע.',
-	'centralnotice-template-body' => 'גוף ההודעה:',
+	'centralnotice-banner-doesnt-exist' => 'הכרזה אינה קיימת.',
+	'centralnotice-template-still-bound' => 'הכרזה עדיין מקושרת למסע פרסום.
+ההסרה לא תיעשה.',
+	'centralnotice-template-body' => 'גוף הכרזה:',
 	'centralnotice-day' => 'יום',
 	'centralnotice-year' => 'שנה',
 	'centralnotice-month' => 'חודש',
@@ -5821,40 +5845,40 @@ $messages['he'] = array(
 	'centralnotice-start-date' => 'תאריך ההתחלה',
 	'centralnotice-start-time' => 'שעת ההתחלה (UTC)',
 	'centralnotice-end-time' => 'זמן הסיום (UTC)',
-	'centralnotice-assigned-templates' => 'תבניות מקושרות',
-	'centralnotice-no-templates' => 'לא נמצאו תבניות.
+	'centralnotice-assigned-templates' => 'כרזות משויכות',
+	'centralnotice-no-templates' => 'לא נמצאו כרזות.
 הוסיפו כמה!',
-	'centralnotice-no-templates-assigned' => 'אין תבניות המקושרות להודעה.
+	'centralnotice-no-templates-assigned' => 'אין כרזות שמשויכות למסע פרסום.
 הוסיפו כמה!',
-	'centralnotice-available-templates' => 'תבניות זמינות',
-	'centralnotice-template-already-exists' => 'התבנית כבר קשורה להודעה.
-התוספת לא תבוצע',
-	'centralnotice-preview-template' => 'תצוגה מקדימה של התבנית',
+	'centralnotice-available-templates' => 'כרזות זמינות',
+	'centralnotice-template-already-exists' => 'הכרזה כבר קשורה למסע פרסום.
+התוספת לא תיעשה.',
+	'centralnotice-preview-template' => 'תצוגה מקדימה של הכרזה',
 	'centralnotice-change-lang' => 'שינוי שפת התרגום',
 	'centralnotice-weights' => 'משקלים',
-	'centralnotice-notice-is-locked' => 'ההודעה נעולה.
-היא לא תוסר',
-	'centralnotice-overlap' => 'ההודעה מתנגשת עם הזמן של הודעה אחרת.
-התוספת לא תבוצע',
-	'centralnotice-invalid-date-range' => 'טווח תאריכים בלתי תקין.
-העדכון לא יבוצע',
+	'centralnotice-notice-is-locked' => 'מסע הפרסום נעול.
+ההסרה לא תיעשה.',
+	'centralnotice-overlap' => 'מסע הפרסום מתנגש בזמן עם מסע פרסום אחר.
+ההוספה לא תיעשה.',
+	'centralnotice-invalid-date-range' => 'טווח תאריכים בלתי־תקין.
+לא ייעשה עדכון.',
 	'centralnotice-null-string' => 'לא ניתן להוסיף מחרוזת ריקה.
-התוספת לא תבוצע',
+ההוספה לא תיעשה.',
 	'centralnotice-confirm-delete' => 'האם אתם בטוחים שברצונכם למחוק פריט זה?
 אין אפשרות לבטל פעולה זו.',
-	'centralnotice-no-notices-exist' => 'אין עדיין הודעות.
-הוסיפו אחת למטה',
-	'centralnotice-no-templates-translate' => 'אין תבניות כדי לערוך את התרגומים שלהן',
-	'centralnotice-number-uses' => 'משתמשת ב',
+	'centralnotice-no-notices-exist' => 'אין עדיין מסעות פרסום.
+הוסיפו אחד למטה.',
+	'centralnotice-no-templates-translate' => 'אין כרזות שאפשר לערוך את התרגומים עבורן.',
+	'centralnotice-number-uses' => 'מופעים',
 	'centralnotice-settings' => 'הגדרות',
-	'centralnotice-edit-template' => 'עריכת התבנית',
-	'centralnotice-edit-template-summary' => 'כדי ליצור הודעות הניתנות לתרגום יש לתחום מחרוזות על מקפיהן בסוגריים מסולסלים, לדוגמה {{{jimbo-quote}}}.',
+	'centralnotice-edit-template' => 'עריכת הכּרזה',
+	'centralnotice-edit-template-summary' => 'כדי ליצור הודעה שאפשר לתרגם, יש לתחום מחרוזות עם מקפים בשלושה סוגריים מסולסלים, למשל {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'הודעה',
 	'centralnotice-message-not-set' => 'לא הוגדרה הודעה',
 	'centralnotice-clone' => 'שכפול',
-	'centralnotice-clone-notice' => 'יצירת עותק של התבנית',
+	'centralnotice-clone-notice' => 'יצירת עותק של הכרזה הזאת',
 	'centralnotice-clone-name' => 'שם:',
-	'centralnotice-preview-all-template-translations' => 'תצוגה מקדימה של כל התרגומים בתבנית',
+	'centralnotice-preview-all-template-translations' => 'תצוגה מקדימה של כל התרגומים של הכרזה',
 	'centralnotice-insert' => 'הוספה: $1',
 	'centralnotice-hide-button' => 'הסתרת הקישור',
 	'centralnotice-collapse-button' => 'כיווץ הקישור',
@@ -5863,48 +5887,48 @@ $messages['he'] = array(
 	'centralnotice-close-title' => 'סגירה',
 	'centralnotice-translate-button' => 'הקישור לסיוע בתרגום',
 	'centralnotice-donate-button' => 'לחצן התרומה',
-	'centralnotice-banner-display' => 'הצגה בפני:',
-	'centralnotice-banner-anonymous' => 'משתמשים אלמונים',
+	'centralnotice-banner-display' => 'להציג בפני:',
+	'centralnotice-banner-anonymous' => 'משתמשים אלמוניים',
 	'centralnotice-banner-logged-in' => 'משתמשים שנכנסו',
-	'centralnotice-banner-type' => 'סוג הבאנר:',
-	'centralnotice-banner-hidable' => 'סטטי/ניתן להסתרה',
-	'centralnotice-banner-collapsible' => 'מתקפל',
+	'centralnotice-banner-type' => 'סוג הכּרזה:',
+	'centralnotice-banner-hidable' => 'סטטית/ניתנת להסתרה',
+	'centralnotice-banner-collapsible' => 'מתקפלת',
 	'centralnotice-banner-fundraising' => 'זוהי כרזת התרמה',
 	'centralnotice-banner-autolink' => 'ליצור אוטומטית קישור לדף נחיתה',
-	'centralnotice-banner-autolink-help' => 'נא ליצור תג עוגן בגוף הכּרזה עם $1‎ ולהזין דף נחיתה אחד או יותר בהמשך, למשל $2. ערך ה־href של הקישור ייבנה באופן אוטומטי.',
+	'centralnotice-banner-autolink-help' => 'יש ליצור תג עוגן בגוף הכרזה עם $1‎ ולהזין דף נחיתה אחד או יותר בהמשך, למשל $2. הקישור ייבנה באופן אוטומטי בכל פעם שהכרזה תוצג.',
 	'centralnotice-banner-landing-pages' => 'דפי נחיתה (מופרדים בפסיקים):',
 	'centralnotice-geo' => 'ממוקד גאוגרפית',
 	'centralnotice-countries' => 'מדינות',
 	'centralnotice-allocation' => 'הקצאה',
-	'centralnotice-view-allocation' => 'צפייה בהקצאת הבאנר',
-	'centralnotice-allocation-instructions' => 'נא לבחור את הסביבה שברצונך לצפות בהקצאת הבאנר עבורה:',
+	'centralnotice-view-allocation' => 'צפייה בהקצאת הכרזה',
+	'centralnotice-allocation-instructions' => 'נא לבחור בסביבה שברצונך לצפות בהקצאת הכרזה עבורה:',
 	'centralnotice-languages' => 'שפות',
 	'centralnotice-language' => 'שפה',
 	'centralnotice-projects' => 'מיזמים',
 	'centralnotice-country' => 'ארץ',
-	'centralnotice-no-allocation' => 'לא הוקצו באנרים',
-	'centralnotice-allocation-description' => 'הקצאת באנר עבור $1.$2 תחת $3:',
+	'centralnotice-no-allocation' => 'לא הוקצו כרזות.',
+	'centralnotice-allocation-description' => 'הקצאת כזרות עבור $1.$2 במדינה $3:',
 	'centralnotice-percentage' => 'אחוזים',
-	'centralnotice-documentwrite-error' => 'לא ניתן להשתמש ב־document.write()‎ בתוך באנר.
-ניתן לעיין ב־http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.',
-	'centralnotice-preferred' => 'מועדפת',
+	'centralnotice-documentwrite-error' => "לא ניתן להשתמש ב־document.write()‎ בתוך כרזה.
+ר' http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.",
+	'centralnotice-preferred' => 'מועדף',
 	'centralnotice-logs' => 'יומנים',
 	'centralnotice-view-logs' => 'הצגת יומנים',
 	'centralnotice-timestamp' => 'חותם זמן',
 	'centralnotice-user' => 'משתמש',
 	'centralnotice-action' => 'פעולה',
 	'centralnotice-action-created' => 'נוצר',
-	'centralnotice-action-modified' => 'שונה',
+	'centralnotice-action-modified' => 'שׁוּנָּה',
 	'centralnotice-action-removed' => 'הוסר',
 	'centralnotice-changed' => 'שונה מהערך <span class="cn-old-value">$1</span> לערך <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'פעיל',
 	'centralnotice-off' => 'כבוי',
 	'centralnotice-added' => 'נוסף: <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'הוסר: <span class="cn-old-value">$1</span>',
-	'centralnotice-no-assignments' => 'לא הוקצו כרזות',
+	'centralnotice-no-assignments' => 'לא שויכו כרזות',
 	'centralnotice-talk-link' => 'שיחה',
-	'centralnotice-campaign-settings' => 'הגדרות מבצע פרסום',
-	'centralnotice-banner-settings' => 'הגדרת כרזה',
+	'centralnotice-campaign-settings' => 'הגדרות מסע פרסום',
+	'centralnotice-banner-settings' => 'הגדרות כרזה',
 	'centralnotice-anon' => 'להציג למשתמשים אלמוניים',
 	'centralnotice-account' => 'להציג למשתמשים שנכנסו לחשבון',
 	'centralnotice-fundraising' => 'התרמה',
@@ -10285,9 +10309,9 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-banner-collapsible' => 'In te klappen',
 	'centralnotice-banner-fundraising' => 'Dit is een fondsenwervingsbanner',
 	'centralnotice-banner-autolink' => 'Verwijzing naar landingspagina automatisch aanmaken',
-	'centralnotice-banner-autolink-help' => "Maak een ankertag in de body van de banner met $1 en voer hieronder een of meer bestemmingspagina's in, bijvoorbeeld $2. De href voor de verwijzing wordt automatisch geconstrueerd.",
+	'centralnotice-banner-autolink-help' => 'Maak een ankerlabel in de hoofdtekst van de banner met $1 en voer hieronder een of meer bestemmingspagina\'s in, bijvoorbeeld $2. De "href" voor de verwijzing wordt automatisch samengesteld.',
 	'centralnotice-banner-landing-pages' => "Landingspagina's (kommagescheiden):",
-	'centralnotice-geo' => 'Geografische doelen',
+	'centralnotice-geo' => 'Geografisch bepaald',
 	'centralnotice-countries' => 'Landen',
 	'centralnotice-allocation' => 'Toewijzing',
 	'centralnotice-view-allocation' => 'Bannertoewijzing bekijken',
@@ -10299,7 +10323,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-no-allocation' => 'Geen banners toegewezen.',
 	'centralnotice-allocation-description' => 'Bannertoewijzing voor $1.$2 in $3:',
 	'centralnotice-percentage' => 'Percentage',
-	'centralnotice-documentwrite-error' => 'document.write() kan niet worden gebruikt binnen een banner.
+	'centralnotice-documentwrite-error' => '"document.write()" kan niet worden gebruikt binnen een banner.
 Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-preferred' => 'Voorkeur',
 	'centralnotice-logs' => 'Logboeken',
@@ -12350,7 +12374,7 @@ $messages['ru'] = array(
 	'centralnotice-no-notices-exist' => 'Нет уведомлений.
 Можно добавить',
 	'centralnotice-no-templates-translate' => 'Нет ни одного шаблона для правки перевода',
-	'centralnotice-number-uses' => 'Используются',
+	'centralnotice-number-uses' => 'Раз',
 	'centralnotice-settings' => 'Настройки',
 	'centralnotice-edit-template' => 'Править шаблон',
 	'centralnotice-edit-template-summary' => 'Чтобы создать локализуемое сообщение, заключите дефисную строку в три фигурные скобки, например {{{цитата-джимбо}}}.',
