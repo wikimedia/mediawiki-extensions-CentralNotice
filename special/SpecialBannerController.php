@@ -203,6 +203,11 @@ JAVASCRIPT;
 				language: mw.config.get( 'wgUserLanguage' ),
 				country: Geo.country
 			} );
+			if ( bannerJson.fundraising == 1 ) {
+				url += "&" + jQuery.param( {
+					utm_key: genUTMKey()
+				} );
+			}
 			jQuery( '#cn-landingpage-link' ).attr( 'href', url );
 		}
 	}
@@ -220,6 +225,15 @@ function hideBanner() {
 		bannerType = 'default';
 	}
 	setBannerHidingCookie( bannerType ); // Hide future banners of the same type
+}
+function genUTMKey() {
+	var keyspace = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	var keylen = 8;
+	var key = "";
+	for( var i = 0; i < keylen; i++ ){
+		key += keyspace.charAt( Math.floor( Math.random() * keyspace.length ) );
+	}
+	return key;
 }
 // This function is deprecated
 function toggleNotice() {
