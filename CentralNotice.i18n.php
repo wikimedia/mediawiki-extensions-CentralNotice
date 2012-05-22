@@ -14499,6 +14499,7 @@ $messages['te'] = array(
 	'centralnotice-documentwrite-error' => 'బ్యానరు లోపల document.write() వాడజాలరు.
 మరింత సమాచారం కోసం http://meta.wikimedia.org/wiki/Help:CentralNotice చూడండి.',
 	'centralnotice-logs' => 'చిట్టాలు',
+	'centralnotice-timestamp' => 'కాలముద్ర',
 	'centralnotice-user' => 'వాడుకరి',
 	'centralnotice-action' => 'చర్య',
 	'centralnotice-talk-link' => 'చర్చ',
