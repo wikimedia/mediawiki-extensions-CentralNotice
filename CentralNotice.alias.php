@@ -40,6 +40,16 @@ $specialPageAliases['br'] = array(
 	'HideBanners' => array( 'KuzhatBanniel' ),
 );
 
+/** German (Deutsch) */
+$specialPageAliases['de'] = array(
+	'CentralNotice' => array( 'Zentrale_Mitteilung' ),
+	'CentralNoticeLogs' => array( 'Logbücher_zur_zentralen_Mitteilung' ),
+	'NoticeTemplate' => array( 'Mitteilungsvorlage' ),
+	'BannerAllocation' => array( 'Bannerverteilung' ),
+	'BannerController' => array( 'Bannersteuerung' ),
+	'HideBanners' => array( 'Banner_ausblenden' ),
+);
+
 /** Esperanto (Esperanto) */
 $specialPageAliases['eo'] = array(
 	'CentralNotice' => array( 'Centra_informilo' ),
@@ -115,6 +125,11 @@ $specialPageAliases['ja'] = array(
 	'HideBanners' => array( 'バナーを隠す' ),
 );
 
+/** Georgian (ქართული) */
+$specialPageAliases['ka'] = array(
+	'HideBanners' => array( 'ბანერების_დამალვა' ),
+);
+
 /** Ladino (Ladino) */
 $specialPageAliases['lad'] = array(
 	'CentralNotice' => array( 'AvisoCentral' ),
@@ -148,11 +163,13 @@ $specialPageAliases['ml'] = array(
 /** Norwegian Bokmål (‪Norsk (bokmål)‬) */
 $specialPageAliases['nb'] = array(
 	'CentralNotice' => array( 'Sentralnotis' ),
+	'CentralNoticeLogs' => array( 'Sentralnotislogger' ),
 	'NoticeTemplate' => array( 'Notismal' ),
 	'BannerAllocation' => array( 'Bannerplassering' ),
 	'BannerController' => array( 'Bannerkontroll' ),
 	'BannerListLoader' => array( 'Bannerlistelaster' ),
 	'BannerLoader' => array( 'Bannerlaster' ),
+	'HideBanners' => array( 'Skjul_bannere' ),
 );
 
 /** Nedersaksisch (Nedersaksisch) */
@@ -186,9 +203,9 @@ $specialPageAliases['nn'] = array(
 
 /** Oriya (ଓଡ଼ିଆ) */
 $specialPageAliases['or'] = array(
-	'CentralNotice' => array( 'ମଝି‌_ସୂଚନା_ଫଳକ' ),
-	'CentralNoticeLogs' => array( 'ମଝି‌_ସୂଚନା_ଫଳକ_ଇତିହାସ' ),
-	'NoticeTemplate' => array( 'ସୂଚନା_ଛାଞ୍ଚ' ),
+	'CentralNotice' => array( 'ସୂଚନାଫଳକ' ),
+	'CentralNoticeLogs' => array( 'ସୂଚନାଫଳକଲଗ' ),
+	'NoticeTemplate' => array( 'ସୂଚନାଛାଞ୍ଚ' ),
 );
 
 /** Polish (Polski) */
@@ -211,6 +228,7 @@ $specialPageAliases['tr'] = array(
 /** Vietnamese (Tiếng Việt) */
 $specialPageAliases['vi'] = array(
 	'CentralNotice' => array( 'Thông_báo_chung' ),
+	'CentralNoticeLogs' => array( 'Nhật_trình_thông_báo_chung' ),
 	'NoticeTemplate' => array( 'Bản_mẫu_thông_báo' ),
 	'BannerAllocation' => array( 'Phân_bố_bảng' ),
 	'BannerController' => array( 'Điều_khiển_bảng' ),
