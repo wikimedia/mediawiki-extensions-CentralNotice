@@ -1061,8 +1061,12 @@ $messages['arz'] = array(
 
 /** Assamese (অসমীয়া)
  * @author Bishnu Saikia
+ * @author Gitartha.bordoloi
  */
 $messages['as'] = array(
+	'centralnotice' => 'কেন্দ্ৰীয় জাননী প্ৰশাসক',
+	'noticetemplate' => 'কেন্দ্ৰীয় জাননী প্ৰশাসক',
+	'bannerallocation' => 'কেন্দ্ৰীয় জাননী প্ৰশাসক',
 	'centralnotice-enabled' => 'সক্ৰিয়',
 	'centralnotice-modify' => 'দাখিল কৰক',
 	'centralnotice-view' => 'দৰ্শন',
@@ -3407,7 +3411,7 @@ Yew de bike',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> vıraziya',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> wederya',
 	'centralnotice-no-assignments' => 'afiş tede nêdebyayo',
-	'centralnotice-talk-link' => 'werênayış',
+	'centralnotice-talk-link' => 'mesac',
 	'centralnotice-campaign-settings' => 'Sazkerdışê kampnaya',
 	'centralnotice-banner-settings' => 'Sazkerdışê Afişer',
 	'centralnotice-fundraising' => 'Bêc arêdayış',
@@ -7492,9 +7496,6 @@ $messages['ja'] = array(
 	'centralnotice-clone-name' => '名前：',
 	'centralnotice-preview-all-template-translations' => 'テンプレートの、利用できるすべての翻訳をプレビュー',
 	'centralnotice-insert' => '挿入：$1',
-	'centralnotice-hide-button' => 'リンクを非表示',
-	'centralnotice-collapse-button' => 'リンクを折り畳む',
-	'centralnotice-expand-button' => 'リンクを展開',
 	'centralnotice-close-button' => '閉じるボタン',
 	'centralnotice-close-title' => '閉じる',
 	'centralnotice-translate-button' => '翻訳協力リンク',
@@ -7548,8 +7549,8 @@ $messages['ja'] = array(
 	'centralnotice-banner-content-changed' => '変更',
 	'centralnotice-filters' => 'ログフィルタ',
 	'centralnotice-date' => '日付',
-	'centralnotice-apply-filters' => 'フィルタを適用',
-	'centralnotice-clear-filters' => 'フィルタをクリア',
+	'centralnotice-apply-filters' => 'フィルターを適用',
+	'centralnotice-clear-filters' => 'フィルターをクリア',
 	'centralnotice-banner-messages' => 'バナー メッセージ',
 );
 
