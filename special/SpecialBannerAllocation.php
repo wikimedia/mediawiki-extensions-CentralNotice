@@ -183,7 +183,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
 	public function showList() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgLanguageCode;
 
 		// Begin building HTML
 		$htmlOut = '';
@@ -193,7 +193,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 		$bannerLister = new SpecialBannerListLoader();
 		$bannerLister->project = $wgRequest->getVal( 'project' );
-		$bannerLister->language = $wgRequest->getVal( 'language' );
+		$bannerLister->language = $wgRequest->getVal( 'language', $wgLanguageCode );
 		$bannerLister->location = $wgRequest->getVal( 'country' );
 
 		$htmlOut .= Xml::tags( 'p', null,

@@ -41,6 +41,7 @@ class CentralNoticePager extends TemplatePager {
 	 * Generate the content of each table row (1 row = 1 banner)
 	 */
 	function formatRow( $row ) {
+		global $wgLanguageCode;
 
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
@@ -66,7 +67,7 @@ class CentralNoticePager extends TemplatePager {
 		// Link and Preview
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia';
-		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
+		$render->language = $this->mRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
 		try {
 			$preview = $render->getHtmlNotice( $row->tmp_name );
 		} catch ( SpecialBannerLoaderException $e ) {

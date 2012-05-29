@@ -47,6 +47,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * @return string HTML
 	 */
 	function formatRow( $row ) {
+		global $wgLanguageCode;
 
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
@@ -66,7 +67,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		// Link and Preview
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia';
-		$render->language = $this->mRequest->getVal( 'wpUserLanguage' );
+		$render->language = $this->mRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
 		try {
 			$preview = $render->getHtmlNotice( $row->tmp_name );
 		} catch ( SpecialBannerLoaderException $e ) {

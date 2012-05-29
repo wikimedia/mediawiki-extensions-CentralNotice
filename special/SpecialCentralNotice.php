@@ -951,6 +951,8 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing banners assigned to a campaign
 	 */
 	function assignedTemplatesForm( $notice ) {
+		global $wgLanguageCode;
+
 		$sk = $this->getSkin();
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -1020,7 +1022,7 @@ class CentralNotice extends SpecialPage {
 			$render = new SpecialBannerLoader();
 			$render->siteName = 'Wikipedia';
 			global $wgRequest;
-			$render->language = $wgRequest->getVal( 'wpUserLanguage' );
+			$render->language = $wgRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
 			try {
 				$preview = $render->getHtmlNotice( $row->tmp_name );
 			} catch ( SpecialBannerLoaderException $e ) {
