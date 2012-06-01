@@ -766,6 +766,8 @@ Mire-se http://meta.wikimedia.org/wiki/Help:CentralNotice ta mas información.",
  * @author Aiman titi
  * @author Alexknight12
  * @author AwamerT
+ * @author Bassem JARKAS
+ * @author DRIHEM
  * @author Meno25
  * @author OsamaK
  * @author Ouda
@@ -878,10 +880,8 @@ $messages['ar'] = array(
 	'centralnotice-clone-name' => 'الاسم:',
 	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات المتوفرة للقالب',
 	'centralnotice-insert' => 'أدرج: $1',
-	'centralnotice-hide-button' => 'أخفِ الوصلة',
-	'centralnotice-collapse-button' => 'اطوِ الوصلة',
-	'centralnotice-expand-button' => 'وسّع الوصلة',
 	'centralnotice-close-button' => 'زر الإغلاق',
+	'centralnotice-close-title' => 'أغلق',
 	'centralnotice-translate-button' => 'المساعدة في ترجمة الارتباط',
 	'centralnotice-donate-button' => 'زر التبرع',
 	'centralnotice-banner-display' => 'عرض:',
@@ -892,7 +892,7 @@ $messages['ar'] = array(
 	'centralnotice-banner-collapsible' => 'قابلة للطي',
 	'centralnotice-banner-fundraising' => 'هذا هو شعار جمع التبرعات.',
 	'centralnotice-banner-autolink' => 'إنشىء إرتباط الصفحة المطلوبة تلقائيا',
-	'centralnotice-banner-autolink-help' => 'إنشاء علامة ارتساء في نص الشعار مع معرف = $1 وقم بإدخال واحد أو أكثر الصفحات المقصودة أدناه، على سبيل المثال، $2. سيتم تعبيد href الارتباط تلقائياً.',
+	'centralnotice-banner-autolink-help' => 'إنشاء علامة ارتساء في نص الشعار مع معرف $1 وقم بإدخال واحد أو أكثر الصفحات المقصودة أدناه، على سبيل المثال، $2. سيتم إنشاء الرابط تلقائيا كلما تم عرض الشعار.',
 	'centralnotice-banner-landing-pages' => 'الصفحات المقصودة (مفصولة بفواصل) :',
 	'centralnotice-geo' => 'الاستهداف الجغرافي',
 	'centralnotice-countries' => 'الدول',
@@ -914,6 +914,9 @@ $messages['ar'] = array(
 	'centralnotice-timestamp' => 'طابع زمني',
 	'centralnotice-user' => 'مستخدم',
 	'centralnotice-action' => 'فعل',
+	'centralnotice-action-created' => 'تم إنشاءها',
+	'centralnotice-action-modified' => 'تم تعديلها',
+	'centralnotice-action-removed' => 'تم حذفها',
 	'centralnotice-changed' => 'غير من <span class="cn-old-value">$1</span> إلى <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'مشغل',
 	'centralnotice-off' => 'معطل',
@@ -1162,6 +1165,7 @@ $messages['as'] = array(
 	'centralnotice-number-uses' => 'ব্যৱহাৰ',
 	'centralnotice-settings' => 'ছেটিং',
 	'centralnotice-edit-template' => 'বেনাৰ সম্পাদনা কৰক',
+	'centralnotice-edit-template-summary' => 'স্থানীয় বাৰ্তা সৃষ্টি কৰিবলৈ তিনিডাল বেঁকা বন্ধনীৰ মাজত হাইফেনসহ এটা ষ্ট্ৰিং লিখক, যেনে {{{jimbo-quote}}}।',
 	'centralnotice-message' => 'বাৰ্তা:',
 	'centralnotice-message-not-set' => 'বাৰ্তা ছেট কৰা হোৱা নাই',
 	'centralnotice-clone' => 'হুবহু প্ৰতিলিপি',
@@ -1195,6 +1199,8 @@ $messages['as'] = array(
 	'centralnotice-no-allocation' => 'কোনো বেনাৰ আবণ্টন কৰা নাই।',
 	'centralnotice-allocation-description' => '$1.$2ৰ বাবে $3ত বেনাৰ আবণ্টন:',
 	'centralnotice-percentage' => 'শতাংশ',
+	'centralnotice-documentwrite-error' => 'document.write()ক বেনাৰৰ মাজত ব্যৱহাৰ কৰিব নোৱাৰি।
+অধিক তথ্যৰ বাবে http://meta.wikimedia.org/wiki/Help:CentralNotice চাওক।',
 	'centralnotice-preferred' => 'পছন্দনীয়',
 	'centralnotice-logs' => "ল'গ",
 	'centralnotice-view-logs' => "ল'গ চাওক",
