@@ -11538,6 +11538,7 @@ $messages['ps'] = array(
  * @author Lijealso
  * @author Malafaya
  * @author MetalBrasil
+ * @author Rhaijin
  */
 $messages['pt'] = array(
 	'centralnotice' => 'Administração de avisos centralizados',
@@ -11646,9 +11647,6 @@ Adicione um, abaixo.',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Antever todas as traduções disponíveis do modelo',
 	'centralnotice-insert' => 'Inserir: $1',
-	'centralnotice-hide-button' => 'Ocultar link',
-	'centralnotice-collapse-button' => 'Recolher link',
-	'centralnotice-expand-button' => 'Expandir link',
 	'centralnotice-close-button' => 'Botão Fechar',
 	'centralnotice-close-title' => 'Fechar',
 	'centralnotice-translate-button' => 'Ajudar a traduzir link',
