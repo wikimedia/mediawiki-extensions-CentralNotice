@@ -3560,6 +3560,7 @@ Yew de bike',
 	'centralnotice-banner-settings' => 'Sazkerdışê Afişer',
 	'centralnotice-fundraising' => 'Bêc arêdayış',
 	'centralnotice-landingpages' => 'Pelê erdi',
+	'centralnotice-banner-content' => 'Zerrey Afişer',
 	'centralnotice-banner-content-changed' => 'Vurneya',
 	'centralnotice-filters' => 'Avrêjê rocekan',
 	'centralnotice-date' => 'Deme',
@@ -11531,7 +11532,7 @@ $messages['ps'] = array(
 	'centralnotice-clear-filters' => 'چاڼګرونه پاکول',
 );
 
-/** Portuguese (Português)
+/** Portuguese (português)
  * @author Crazymadlover
  * @author Giro720
  * @author Hamilton Abreu
