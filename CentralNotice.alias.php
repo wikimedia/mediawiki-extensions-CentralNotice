@@ -35,7 +35,7 @@ $specialPageAliases['arz'] = array(
 	'NoticeTemplate' => array( 'قالب_الملاحظة' ),
 );
 
-/** Breton (Brezhoneg) */
+/** Breton (brezhoneg) */
 $specialPageAliases['br'] = array(
 	'HideBanners' => array( 'KuzhatBanniel' ),
 );
@@ -48,6 +48,18 @@ $specialPageAliases['de'] = array(
 	'BannerAllocation' => array( 'Bannerverteilung' ),
 	'BannerController' => array( 'Bannersteuerung' ),
 	'HideBanners' => array( 'Banner_ausblenden' ),
+);
+
+/** Zazaki (Zazaki) */
+$specialPageAliases['diq'] = array(
+	'CentralNotice' => array( 'MerkeziXeberdaren' ),
+	'CentralNoticeLogs' => array( 'MerkeziİlanêRocekan' ),
+	'NoticeTemplate' => array( 'ŞablonêXeberdaren' ),
+	'BannerAllocation' => array( 'TahsisêAfişan' ),
+	'BannerController' => array( 'KontrollkarêAfişan' ),
+	'BannerListLoader' => array( 'ListeyêAfişanBarkerden' ),
+	'BannerLoader' => array( 'BarkerdenêAfişan' ),
+	'HideBanners' => array( 'AfişanBınımnê' ),
 );
 
 /** Esperanto (Esperanto) */
@@ -101,7 +113,7 @@ $specialPageAliases['ht'] = array(
 	'BannerLoader' => array( 'ChajeAnsey' ),
 );
 
-/** Interlingua (Interlingua) */
+/** Interlingua (interlingua) */
 $specialPageAliases['ia'] = array(
 	'CentralNotice' => array( 'Aviso_central' ),
 	'CentralNoticeLogs' => array( 'Registro_de_aviso_central' ),
@@ -130,6 +142,18 @@ $specialPageAliases['ka'] = array(
 	'HideBanners' => array( 'ბანერების_დამალვა' ),
 );
 
+/** Korean (한국어) */
+$specialPageAliases['ko'] = array(
+	'CentralNotice' => array( '주요알림', '주요공지' ),
+	'CentralNoticeLogs' => array( '주요알림기록', '주요공지기록' ),
+	'NoticeTemplate' => array( '알림틀', '공지틀' ),
+	'BannerAllocation' => array( '배너배정' ),
+	'BannerController' => array( '배너컨트롤러' ),
+	'BannerListLoader' => array( '배너목록열기', '배너목록로더' ),
+	'BannerLoader' => array( '배너열기', '배너로더' ),
+	'HideBanners' => array( '배너숨기기' ),
+);
+
 /** Ladino (Ladino) */
 $specialPageAliases['lad'] = array(
 	'CentralNotice' => array( 'AvisoCentral' ),
@@ -141,7 +165,7 @@ $specialPageAliases['lb'] = array(
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
-/** Macedonian (Македонски) */
+/** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'CentralNotice' => array( 'ЦентралноИзвестување' ),
 	'CentralNoticeLogs' => array( 'ДневнициНаЦентралноИзвестување' ),
@@ -160,7 +184,7 @@ $specialPageAliases['ml'] = array(
 	'NoticeTemplate' => array( 'അറിയിപ്പ്ഫലകം' ),
 );
 
-/** Norwegian Bokmål (‪Norsk (bokmål)‬) */
+/** Norwegian Bokmål (‪norsk (bokmål)‬) */
 $specialPageAliases['nb'] = array(
 	'CentralNotice' => array( 'Sentralnotis' ),
 	'CentralNoticeLogs' => array( 'Sentralnotislogger' ),
@@ -195,7 +219,7 @@ $specialPageAliases['nl'] = array(
 	'HideBanners' => array( 'BannersVerbergen' ),
 );
 
-/** Norwegian Nynorsk (‪Norsk (nynorsk)‬) */
+/** Norwegian Nynorsk (‪norsk (nynorsk)‬) */
 $specialPageAliases['nn'] = array(
 	'CentralNotice' => array( 'Sentralmerknad' ),
 	'NoticeTemplate' => array( 'Merknadsmal' ),
@@ -208,7 +232,7 @@ $specialPageAliases['or'] = array(
 	'NoticeTemplate' => array( 'ସୂଚନାଛାଞ୍ଚ' ),
 );
 
-/** Polish (Polski) */
+/** Polish (polski) */
 $specialPageAliases['pl'] = array(
 	'CentralNotice' => array( 'Globalny_komunikat' ),
 	'NoticeTemplate' => array( 'Szablon_komunikatu' ),
@@ -225,6 +249,11 @@ $specialPageAliases['tr'] = array(
 	'HideBanners' => array( 'AfişleriGizle', 'AfişGizle' ),
 );
 
+/** Ukrainian (українська) */
+$specialPageAliases['uk'] = array(
+	'CentralNotice' => array( 'Загальне_оголошення' ),
+);
+
 /** Vietnamese (Tiếng Việt) */
 $specialPageAliases['vi'] = array(
 	'CentralNotice' => array( 'Thông_báo_chung' ),
@@ -237,7 +266,7 @@ $specialPageAliases['vi'] = array(
 	'HideBanners' => array( 'Ẩn_bảng' ),
 );
 
-/** Simplified Chinese (‪中文(简体)‬) */
+/** Simplified Chinese (‪中文（简体）‬) */
 $specialPageAliases['zh-hans'] = array(
 	'CentralNotice' => array( '中央通告' ),
 	'CentralNoticeLogs' => array( '中央通告日志' ),
@@ -249,7 +278,7 @@ $specialPageAliases['zh-hans'] = array(
 	'HideBanners' => array( '隐藏横幅' ),
 );
 
-/** Traditional Chinese (‪中文(繁體)‬) */
+/** Traditional Chinese (‪中文（繁體）‬) */
 $specialPageAliases['zh-hant'] = array(
 	'CentralNotice' => array( '中央通告' ),
 	'NoticeTemplate' => array( '通告模板' ),
