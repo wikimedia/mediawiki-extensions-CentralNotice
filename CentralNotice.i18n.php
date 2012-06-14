@@ -278,13 +278,6 @@ The width of the column is 5% of the total width of the table, so the message sh
 {{Identical|Message}}',
 	'centralnotice-clone-name' => '{{Identical|Name}}',
 	'centralnotice-insert' => '{{Identical|Insert}}',
-	'centralnotice-hide-button' => 'This is an action, a verb in imperative form. It refers to "Do hide the centralnotice!"
-
-See also {{msg|Centralnotice-expand-button}}.',
-	'centralnotice-collapse-button' => 'This is an action, a verb in imperative form. It refers to "Do collapse the centralnotice!"',
-	'centralnotice-expand-button' => 'This is an action, a verb in imperative form. It refers to "Do expand the centralnotice!"
-
-See also {{msg|Centralnotice-hide-button}}.',
 	'centralnotice-close-title' => '{{Identical|Close}}',
 	'centralnotice-banner-autolink-help' => 'Brief instructions on how to use the interface. $1 is a bit of HTML, $2 is a title for a page.',
 	'centralnotice-geo' => 'Used to label a checkbox which activates geotargeting',
@@ -484,9 +477,6 @@ U kan een hieronder byvoeg',
 	'centralnotice-clone-name' => 'Naam:',
 	'centralnotice-preview-all-template-translations' => 'Voorskou al die beskikbare vertalings van die sjabloon',
 	'centralnotice-insert' => 'Invoeging: $1',
-	'centralnotice-hide-button' => 'Versteek skakel',
-	'centralnotice-collapse-button' => 'Collapse skakel',
-	'centralnotice-expand-button' => 'Expand skakel',
 	'centralnotice-close-button' => 'Sluit-knoppie',
 	'centralnotice-close-title' => 'Sluit',
 	'centralnotice-translate-button' => '"Help met vertaling" byvoeg',
@@ -699,9 +689,6 @@ Adhiba-ne uno debaixo.',
 	'centralnotice-clone-name' => 'Nombre:',
 	'centralnotice-preview-all-template-translations' => "Previsualizar todas as traduccions disponibles de l'anuncio",
 	'centralnotice-insert' => 'Insertar: $1',
-	'centralnotice-hide-button' => 'Amagar vinclo',
-	'centralnotice-collapse-button' => 'Contrayer vinclo',
-	'centralnotice-expand-button' => 'Ixamplar vinclo',
 	'centralnotice-close-button' => 'Botón de zarrar',
 	'centralnotice-close-title' => 'Zarrar',
 	'centralnotice-translate-button' => "Vinclo d'aduya ta traducir",
@@ -965,8 +952,6 @@ $messages['arc'] = array(
 	'centralnotice-edit-template' => 'ܫܚܠܦ ܩܠܒܐ',
 	'centralnotice-message' => 'ܐܓܪܬܐ',
 	'centralnotice-clone-name' => 'ܫܡܐ:',
-	'centralnotice-collapse-button' => 'ܐܟܪܟ ܐܣܘܪܐ',
-	'centralnotice-expand-button' => 'ܪܘܚ ܐܣܘܪܐ',
 	'centralnotice-countries' => 'ܐܬܪ̈ܘܬܐ',
 	'centralnotice-languages' => 'ܠܫܢ̈ܐ',
 	'centralnotice-language' => 'ܠܫܢܐ',
@@ -1233,7 +1218,7 @@ $messages['as'] = array(
 	'centralnotice-banner-messages' => 'বেনাৰ বাৰ্তাসমূহ',
 );
 
-/** Asturian (Asturianu)
+/** Asturian (asturianu)
  * @author Esbardu
  * @author Xuacu
  */
@@ -1344,9 +1329,6 @@ Amiesta una debaxo.',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Vista previa de toles traducciones disponibles del anunciu',
 	'centralnotice-insert' => 'Inxertar: $1',
-	'centralnotice-hide-button' => 'Anubrir enllaz',
-	'centralnotice-collapse-button' => 'Plegar enllaz',
-	'centralnotice-expand-button' => 'Desplegar enllaz',
 	'centralnotice-close-button' => 'Botón zarrar',
 	'centralnotice-close-title' => 'Zarrar',
 	'centralnotice-translate-button' => "Enllaz d'ayudar a traducir",
@@ -1407,7 +1389,7 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	'centralnotice-banner-messages' => 'Mensaxes de pancarta',
 );
 
-/** Azerbaijani (Azərbaycanca)
+/** Azerbaijani (azərbaycanca)
  * @author Cekli829
  * @author PPerviz
  * @author Vago
@@ -1460,7 +1442,6 @@ $messages['az'] = array(
 	'centralnotice-message' => 'Məlumat',
 	'centralnotice-clone' => 'Bağla',
 	'centralnotice-clone-name' => 'Ad:',
-	'centralnotice-hide-button' => 'Gizli keçid',
 	'centralnotice-close-title' => 'Bağlı',
 	'centralnotice-countries' => 'Ölkələr',
 	'centralnotice-languages' => 'Dillər',
@@ -1690,7 +1671,7 @@ $messages['bcc'] = array(
 هوری نکنت',
 );
 
-/** Belarusian (Беларуская)
+/** Belarusian (беларуская)
  * @author Тест
  */
 $messages['be'] = array(
@@ -1813,9 +1794,6 @@ $messages['be-tarask'] = array(
 	'centralnotice-clone-name' => 'Назва:',
 	'centralnotice-preview-all-template-translations' => 'Праглядзець усе даступныя пераклады паведамленьня',
 	'centralnotice-insert' => 'Уставіць: $1',
-	'centralnotice-hide-button' => 'Схаваць спасылку',
-	'centralnotice-collapse-button' => 'Згарнуць спасылку',
-	'centralnotice-expand-button' => 'Разгарнуць спасылку',
 	'centralnotice-close-button' => 'Кнопка закрыцьця',
 	'centralnotice-close-title' => 'Закрыць',
 	'centralnotice-translate-button' => 'Спасылка дапамогі ў перакладзе',
@@ -1876,7 +1854,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-banner-messages' => 'Паведамленьні банэраў',
 );
 
-/** Bulgarian (Български)
+/** Bulgarian (български)
  * @author Borislav
  * @author DCLXVI
  * @author Spiritia
@@ -2189,9 +2167,6 @@ $messages['bn'] = array(
 	'centralnotice-clone-name' => 'নাম:',
 	'centralnotice-preview-all-template-translations' => 'টেম্পলেটের বিদ্যমান সকল অনুবাদের প্রাকদর্শন দেখাও',
 	'centralnotice-insert' => 'যোগ: $1',
-	'centralnotice-hide-button' => 'সংযোগ লুকাও',
-	'centralnotice-collapse-button' => 'ভাঁজকৃত সংযোগ',
-	'centralnotice-expand-button' => 'সংযোগ বর্ধিতকরণ',
 	'centralnotice-close-button' => 'বন্ধ বোতাম',
 	'centralnotice-close-title' => 'বন্ধ',
 	'centralnotice-translate-button' => 'সংযোগ অনুবাদে সাহায্য করুন',
@@ -2247,7 +2222,7 @@ $messages['bo'] = array(
 	'centralnotice-country' => 'རྒྱལ་ཁབ།',
 );
 
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  * @author Fohanno
  * @author Fulup
  * @author Gwendal
@@ -2360,9 +2335,6 @@ Ouzhpennit unan da heul.",
 	'centralnotice-clone-name' => 'Anv :',
 	'centralnotice-preview-all-template-translations' => 'Rakwellit an holl droidigezhioù a zo evit ar patrom-mañ',
 	'centralnotice-insert' => "Ensoc'hañ : $1",
-	'centralnotice-hide-button' => 'Kuzhat al liamm',
-	'centralnotice-collapse-button' => 'Digreskiñ al liamm',
-	'centralnotice-expand-button' => 'Displegañ al liamm',
 	'centralnotice-close-button' => 'Serriñ ar bouton',
 	'centralnotice-close-title' => 'Serriñ',
 	'centralnotice-translate-button' => 'Liamm da sikour treiñ',
@@ -2423,7 +2395,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-banner-messages' => 'Kemennadennoù er giton',
 );
 
-/** Bosnian (Bosanski)
+/** Bosnian (bosanski)
  * @author CERminator
  * @author DzWiki
  * @author Palapa
@@ -2534,9 +2506,6 @@ Dodaj jednu ispod',
 	'centralnotice-clone-name' => 'Ime:',
 	'centralnotice-preview-all-template-translations' => 'Pregled svih dostupnih prijevoda za šablon',
 	'centralnotice-insert' => 'Ubaci: $1',
-	'centralnotice-hide-button' => 'Sakrij link',
-	'centralnotice-collapse-button' => 'Zatvori link',
-	'centralnotice-expand-button' => 'Proširi link',
 	'centralnotice-close-button' => 'Zatvori dugme',
 	'centralnotice-close-title' => 'Zatvori',
 	'centralnotice-translate-button' => 'Link za pomoć pri prevođenju',
@@ -2573,7 +2542,7 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
 	'centralnotice-date' => 'Datum',
 );
 
-/** Catalan (Català)
+/** Catalan (català)
  * @author Aleator
  * @author El libre
  * @author Gemmaa
@@ -2691,9 +2660,6 @@ Afegiu-ne un a continuació.',
 	'centralnotice-clone-name' => 'Nom:',
 	'centralnotice-preview-all-template-translations' => 'Previsualitza totes les traduccions disponibles de plantilles',
 	'centralnotice-insert' => 'Inserir: $1',
-	'centralnotice-hide-button' => 'Amaga enllaç',
-	'centralnotice-collapse-button' => 'plega enllaç',
-	'centralnotice-expand-button' => 'Amplia enllaç',
 	'centralnotice-close-button' => 'Botó tancar',
 	'centralnotice-translate-button' => "Ajudar a traduir l'enllaç",
 	'centralnotice-donate-button' => 'Botó donar',
@@ -2765,7 +2731,7 @@ $messages['ce'] = array(
 	'centralnotice-year' => 'Шо',
 );
 
-/** Sorani (کوردی)
+/** Sorani Kurdish (کوردی)
  * @author Asoxor
  */
 $messages['ckb'] = array(
@@ -2785,13 +2751,13 @@ $messages['ckb'] = array(
 	'centralnotice-country' => 'وڵات',
 );
 
-/** Corsican (Corsu) */
+/** Corsican (corsu) */
 $messages['co'] = array(
 	'centralnotice-message' => 'Messaghju',
 	'centralnotice-clone-name' => 'Nome:',
 );
 
-/** Czech (Česky)
+/** Czech (česky)
  * @author Danny B.
  * @author Li-sung
  * @author Matěj Grabovský
@@ -2896,9 +2862,6 @@ Níže můžete vytvořit nové.',
 	'centralnotice-clone-name' => 'Název:',
 	'centralnotice-preview-all-template-translations' => 'Náhled všech dostupných překladů šablony',
 	'centralnotice-insert' => 'Vložit: $1',
-	'centralnotice-hide-button' => 'Odkaz pro skrytí',
-	'centralnotice-collapse-button' => 'Odkaz pro sbalení',
-	'centralnotice-expand-button' => 'Odkaz pro rozbalení',
 	'centralnotice-close-button' => 'Zavírací tlačítko',
 	'centralnotice-close-title' => 'Zavřít',
 	'centralnotice-translate-button' => 'Odkaz „Pomozte s překladem“',
@@ -3057,9 +3020,6 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-clone-name' => 'Enw:',
 	'centralnotice-preview-all-template-translations' => "Rhagweld pob cyfieithiad o'r faner sydd ar gael",
 	'centralnotice-insert' => 'Mewnosod: $1',
-	'centralnotice-hide-button' => 'y cyswllt cuddio',
-	'centralnotice-collapse-button' => 'Y cyswllt crebachu',
-	'centralnotice-expand-button' => 'Y cyswllt ehangu',
 	'centralnotice-close-button' => 'Botwm cau',
 	'centralnotice-close-title' => 'Cau',
 	'centralnotice-translate-button' => 'Cyswllt i annog cyfieithu',
@@ -3104,7 +3064,7 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-banner-messages' => 'Negeseuon baner',
 );
 
-/** Danish (Dansk)
+/** Danish (dansk)
  * @author Byrial
  * @author Masz
  * @author Peter Alberti
@@ -3191,8 +3151,6 @@ Tilføj nogle!',
 	'centralnotice-clone-notice' => 'Opret en kopi af banneret',
 	'centralnotice-clone-name' => 'Navn:',
 	'centralnotice-insert' => 'Indsæt: $1',
-	'centralnotice-hide-button' => 'Skjul link',
-	'centralnotice-collapse-button' => 'Skjul link',
 	'centralnotice-close-button' => 'Lukkeknap',
 	'centralnotice-banner-display' => 'Vis til:',
 	'centralnotice-banner-anonymous' => 'Anonyme brugere',
@@ -3338,9 +3296,6 @@ Füge eine hinzu.',
 	'centralnotice-clone-name' => 'Name:',
 	'centralnotice-preview-all-template-translations' => 'Vorschau aller verfügbaren Übersetzungen einer Vorlage',
 	'centralnotice-insert' => 'Einfügen: $1',
-	'centralnotice-hide-button' => 'Link verstecken',
-	'centralnotice-collapse-button' => 'Link einklappen',
-	'centralnotice-expand-button' => 'Link ausklappen',
 	'centralnotice-close-button' => 'Button schließen',
 	'centralnotice-close-title' => 'Schließen',
 	'centralnotice-translate-button' => 'Übersetzungshilfen-Link',
@@ -3688,9 +3643,6 @@ Pśidaj jadnu.',
 	'centralnotice-clone-name' => 'Mě:',
 	'centralnotice-preview-all-template-translations' => 'Pśeglěd wšych k dispoziciji stojecych pśełožkow pśedłogi',
 	'centralnotice-insert' => 'Zasunuś: $1',
-	'centralnotice-hide-button' => 'Wótkaz schowaś',
-	'centralnotice-collapse-button' => 'Wótkaz schowaś',
-	'centralnotice-expand-button' => 'Wótkaz pokazaś',
 	'centralnotice-close-button' => 'Tłocašk zacyniś',
 	'centralnotice-close-title' => 'Zacyniś',
 	'centralnotice-translate-button' => 'Wótkaz pśełožowańskeje pomocy',
@@ -3751,7 +3703,7 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
 	'centralnotice-banner-messages' => 'Chórgojowe powěźeńki',
 );
 
-/** Ewe (Eʋegbe)
+/** Ewe (eʋegbe)
  * @author Natsubee
  */
 $messages['ee'] = array(
@@ -3876,9 +3828,6 @@ $messages['el'] = array(
 	'centralnotice-clone-name' => 'Όνομα:',
 	'centralnotice-preview-all-template-translations' => 'Προεπισκόπηση όλων των διαθέσιμων μεταφράσεων του προτύπου',
 	'centralnotice-insert' => 'Εισαγωγή: $1',
-	'centralnotice-hide-button' => 'Απόκρυψη συνδέσμου',
-	'centralnotice-collapse-button' => 'Σύμπτυξη συνδέσμου',
-	'centralnotice-expand-button' => 'Επεκτείνετε τον σύνδεσμο',
 	'centralnotice-close-button' => 'Κουμπί κλεισίματος',
 	'centralnotice-close-title' => 'Κλείσιμο',
 	'centralnotice-translate-button' => 'Σύνδεσμος για βοήθεια στην μετάφραση',
@@ -4049,9 +3998,6 @@ Afiŝu noticon suben',
 	'centralnotice-clone-name' => 'Nomo:',
 	'centralnotice-preview-all-template-translations' => 'Antaŭvidi ĉiujn haveblajn tradukojn de ŝablono',
 	'centralnotice-insert' => 'Enmeti: $1',
-	'centralnotice-hide-button' => 'Kaŝi ligilon',
-	'centralnotice-collapse-button' => 'Kaŝi ligilon',
-	'centralnotice-expand-button' => 'Malkaŝi ligilon',
 	'centralnotice-close-button' => 'Fermo-butono',
 	'centralnotice-close-title' => 'Fermi',
 	'centralnotice-translate-button' => 'Ligilo por helpi tradukadon',
@@ -4112,7 +4058,7 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
 	'centralnotice-banner-messages' => 'Mesaĝoj de reklamrubendoj',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Alhen
  * @author Crazymadlover
  * @author Danke7
@@ -4237,9 +4183,6 @@ Añade uno debajo',
 	'centralnotice-clone-name' => 'Nombre:',
 	'centralnotice-preview-all-template-translations' => 'Previsualizar todas las traducciones disponibles de la plantilla',
 	'centralnotice-insert' => 'Insertar: $1',
-	'centralnotice-hide-button' => 'Ocultar enlace',
-	'centralnotice-collapse-button' => 'Contraer enlace',
-	'centralnotice-expand-button' => 'Ampliar enlace',
 	'centralnotice-close-button' => 'Botón cerrar',
 	'centralnotice-close-title' => 'Cerrar',
 	'centralnotice-translate-button' => 'Vínculo de ayuda a traducir',
@@ -4300,7 +4243,7 @@ Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
 	'centralnotice-banner-messages' => 'Mensajes de banner',
 );
 
-/** Estonian (Eesti)
+/** Estonian (eesti)
  * @author Avjoska
  * @author Pikne
  */
@@ -4414,9 +4357,6 @@ Lisa allpool üks.',
 	'centralnotice-clone-name' => 'Nimi:',
 	'centralnotice-preview-all-template-translations' => 'Malli kõigi kättesaadavate tõlgete eelvaated',
 	'centralnotice-insert' => 'Lisa: $1',
-	'centralnotice-hide-button' => 'Peida link',
-	'centralnotice-collapse-button' => 'Lükka link kokku',
-	'centralnotice-expand-button' => 'Ava link',
 	'centralnotice-close-button' => 'Sulgemisnupp',
 	'centralnotice-close-title' => 'Sule',
 	'centralnotice-translate-button' => 'Tõlkimiseks abi palumise link',
@@ -4477,7 +4417,7 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-banner-messages' => 'Mallide sõnumid',
 );
 
-/** Basque (Euskara)
+/** Basque (euskara)
  * @author An13sa
  * @author Kobazulo
  * @author Pi
@@ -4666,9 +4606,6 @@ $messages['fa'] = array(
 	'centralnotice-clone-name' => 'نام:',
 	'centralnotice-preview-all-template-translations' => 'پیش‌نمایش تمام ترجمه‌های موجود از الگو',
 	'centralnotice-insert' => 'درج: $1',
-	'centralnotice-hide-button' => 'مخفی‌کردن پیوند',
-	'centralnotice-collapse-button' => 'پیوند بستن',
-	'centralnotice-expand-button' => 'پیوند گسترش‌دادن',
 	'centralnotice-close-button' => 'دکمه بستن',
 	'centralnotice-close-title' => 'بستن',
 	'centralnotice-translate-button' => 'پیوند راهنمای ترجمه',
@@ -4731,7 +4668,7 @@ $messages['fa'] = array(
 	'centralnotice-banner-messages' => 'پیام‌های اعلان',
 );
 
-/** Finnish (Suomi)
+/** Finnish (suomi)
  * @author Centerlink
  * @author Crt
  * @author Nedergard
@@ -4848,9 +4785,6 @@ Lisää alapuolella sellainen',
 	'centralnotice-clone-name' => 'Nimi:',
 	'centralnotice-preview-all-template-translations' => 'Esikatsele kaikkia saatavilla olevia mallineen käännöksiä',
 	'centralnotice-insert' => 'Lisää: $1',
-	'centralnotice-hide-button' => 'Piilota linkki',
-	'centralnotice-collapse-button' => 'Pienennä linkki',
-	'centralnotice-expand-button' => 'Laajenna linkki',
 	'centralnotice-close-button' => 'Sulje-painike',
 	'centralnotice-close-title' => 'Sulje',
 	'centralnotice-translate-button' => 'Auta kääntämisessä -linkki',
@@ -4911,7 +4845,7 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-banner-messages' => 'Bannerin viestit',
 );
 
-/** Faroese (Føroyskt)
+/** Faroese (føroyskt)
  * @author EileenSanda
  */
 $messages['fo'] = array(
@@ -4962,9 +4896,6 @@ Er ikki lagt afturat.',
 	'centralnotice-settings' => 'Innstillingar',
 	'centralnotice-message' => 'Boð',
 	'centralnotice-clone-name' => 'Navn:',
-	'centralnotice-hide-button' => 'Fjal leinkju',
-	'centralnotice-collapse-button' => 'Falda slóðini saman',
-	'centralnotice-expand-button' => 'Víðka leinki',
 	'centralnotice-close-button' => 'Lat aftur knappur',
 	'centralnotice-close-title' => 'Lat aftur',
 	'centralnotice-translate-button' => 'Hjálp við at týða slóð',
@@ -5005,7 +4936,7 @@ Er ikki lagt afturat.',
 	'centralnotice-banner-messages' => 'Bannara boð',
 );
 
-/** French (Français)
+/** French (français)
  * @author Crochet.david
  * @author Gomoko
  * @author Grondin
@@ -5129,9 +5060,6 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-clone-name' => 'Nom :',
 	'centralnotice-preview-all-template-translations' => 'Prévisualiser toutes les traductions disponibles du modèle',
 	'centralnotice-insert' => 'Insérer : $1',
-	'centralnotice-hide-button' => 'Cacher le lien',
-	'centralnotice-collapse-button' => 'Réduire le lien',
-	'centralnotice-expand-button' => 'Développer le lien',
 	'centralnotice-close-button' => 'Bouton fermer',
 	'centralnotice-close-title' => 'Fermer',
 	'centralnotice-translate-button' => 'Lien d’aide à la traduction',
@@ -5192,7 +5120,7 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-banner-messages' => 'Messages bannière',
 );
 
-/** Franco-Provençal (Arpetan)
+/** Franco-Provençal (arpetan)
  * @author ChrisPtDe
  */
 $messages['frp'] = array(
@@ -5302,9 +5230,6 @@ Apondéd-nen ce-desot.',
 	'centralnotice-clone-name' => 'Nom :',
 	'centralnotice-preview-all-template-translations' => 'Prèvisualisar totes les traduccions disponibles de la baniére',
 	'centralnotice-insert' => 'Entrebetar : $1',
-	'centralnotice-hide-button' => 'Cachiér lo lim',
-	'centralnotice-collapse-button' => 'Recllôre lo lim',
-	'centralnotice-expand-button' => 'Dèvelopar lo lim',
 	'centralnotice-close-button' => 'Boton cllôre',
 	'centralnotice-close-title' => 'Cllôre',
 	'centralnotice-translate-button' => 'Lim d’éde a la traduccion',
@@ -5483,9 +5408,6 @@ Engada algún embaixo',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Mostrar a vista previa de todas as traducións dispoñibles do modelo',
 	'centralnotice-insert' => 'Inserir: $1',
-	'centralnotice-hide-button' => 'Ligazón de agochar',
-	'centralnotice-collapse-button' => 'Ligazón de contraer',
-	'centralnotice-expand-button' => 'Ligazón de expandir',
 	'centralnotice-close-button' => 'Botón de pechar',
 	'centralnotice-close-title' => 'Pechar',
 	'centralnotice-translate-button' => 'Ligazón para axudar coas traducións',
@@ -5683,9 +5605,6 @@ Fieg eini zue.',
 	'centralnotice-clone-name' => 'Name:',
 	'centralnotice-preview-all-template-translations' => 'Vorschau vu allene verfiegbare Ibersetzige vun ere Vorlag',
 	'centralnotice-insert' => 'Yyfiege: $1',
-	'centralnotice-hide-button' => 'Link verstecke',
-	'centralnotice-collapse-button' => 'Link zueklappe',
-	'centralnotice-expand-button' => 'Link ufklappe',
 	'centralnotice-close-button' => '"Zuemache"-Chnopf',
 	'centralnotice-close-title' => 'Zuemache',
 	'centralnotice-translate-button' => 'Ibersetzigshilfe-Link',
@@ -5857,9 +5776,6 @@ $messages['gu'] = array(
 	'centralnotice-clone-name' => 'નામ:',
 	'centralnotice-preview-all-template-translations' => 'બેનરનાં બધાં પ્રાપ્ત ભાષાંતરોનું પૂર્વાલોકન.',
 	'centralnotice-insert' => '$1  ઉમેરો',
-	'centralnotice-hide-button' => 'કડી  સંતાડો',
-	'centralnotice-collapse-button' => 'કડી વિસ્તારો',
-	'centralnotice-expand-button' => 'કદી વિસ્તારો',
 	'centralnotice-close-button' => 'બટન બંધ',
 	'centralnotice-close-title' => 'બંધ કરો',
 	'centralnotice-translate-button' => 'કડીનું ભાષાંતર કરવામાં મદદ કરો',
@@ -6034,9 +5950,6 @@ $messages['he'] = array(
 	'centralnotice-clone-name' => 'שם:',
 	'centralnotice-preview-all-template-translations' => 'תצוגה מקדימה של כל התרגומים של הכרזה',
 	'centralnotice-insert' => 'הוספה: $1',
-	'centralnotice-hide-button' => 'הסתרת הקישור',
-	'centralnotice-collapse-button' => 'כיווץ הקישור',
-	'centralnotice-expand-button' => 'הרחבת הקישור',
 	'centralnotice-close-button' => 'לחצן סגירה',
 	'centralnotice-close-title' => 'סגירה',
 	'centralnotice-translate-button' => 'הקישור לסיוע בתרגום',
@@ -6200,9 +6113,6 @@ $messages['hi'] = array(
 	'centralnotice-clone-name' => 'नाम:',
 	'centralnotice-preview-all-template-translations' => 'बैनर के सारे उपलब्ध अनुबाद को अवलोकन करें',
 	'centralnotice-insert' => 'सम्मिलित करें: $1',
-	'centralnotice-hide-button' => 'छिपा लिंक',
-	'centralnotice-collapse-button' => 'संक्षिप्त करें लिंक',
-	'centralnotice-expand-button' => 'लिंक का विस्तार करें',
 	'centralnotice-close-button' => 'बंद करें बटन',
 	'centralnotice-close-title' => 'बंद करें',
 	'centralnotice-translate-button' => 'लिंक अनुवाद में सहायता करें',
@@ -6261,7 +6171,7 @@ $messages['hi'] = array(
 	'centralnotice-banner-messages' => 'बैनर संदेश',
 );
 
-/** Croatian (Hrvatski)
+/** Croatian (hrvatski)
  * @author Anton008
  * @author Bugoslav
  * @author Dalibor Bosits
@@ -6374,9 +6284,6 @@ Dodajte jednu ispod',
 	'centralnotice-clone-name' => 'Ime:',
 	'centralnotice-preview-all-template-translations' => 'Vidi sve dostupne prijevode predloška',
 	'centralnotice-insert' => 'Umetni: $1',
-	'centralnotice-hide-button' => 'Sakrij poveznicu',
-	'centralnotice-collapse-button' => 'Sažmi poveznicu',
-	'centralnotice-expand-button' => 'Proširi poveznicu',
 	'centralnotice-close-button' => 'Zatvori gumb',
 	'centralnotice-translate-button' => 'Poveznica za pomoć pri prevođenju',
 	'centralnotice-donate-button' => 'Gumb za donacije',
@@ -6514,9 +6421,6 @@ Přidaj někajku',
 	'centralnotice-clone-name' => 'Mjeno:',
 	'centralnotice-preview-all-template-translations' => 'Přehlad wšěch k dispoziciji stejacych přełožkow předłohi',
 	'centralnotice-insert' => 'Zasunyć: $1',
-	'centralnotice-hide-button' => 'Wotkaz schować',
-	'centralnotice-collapse-button' => 'Wotkaz schować',
-	'centralnotice-expand-button' => 'Wotkaz pokazać',
 	'centralnotice-close-button' => 'Tłóčatko začinić',
 	'centralnotice-close-title' => 'Začinić',
 	'centralnotice-translate-button' => 'Wotkaz přełožowanskeje pomocy',
@@ -6577,7 +6481,7 @@ Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-banner-messages' => 'Chorhojowe powěsće',
 );
 
-/** Hungarian (Magyar)
+/** Hungarian (magyar)
  * @author BáthoryPéter
  * @author Dani
  * @author Dj
@@ -6690,9 +6594,6 @@ Itt adhatsz hozzá újakat.',
 	'centralnotice-clone-name' => 'Név:',
 	'centralnotice-preview-all-template-translations' => 'A sablon összes fordításának megtekintése',
 	'centralnotice-insert' => 'Beszúrás: $1',
-	'centralnotice-hide-button' => 'Hivatkozás elrejtése',
-	'centralnotice-collapse-button' => 'Hivatkozás összecsukása',
-	'centralnotice-expand-button' => 'Hivatkozás kibontása',
 	'centralnotice-close-button' => 'Bezárás gomb',
 	'centralnotice-close-title' => 'Bezárás',
 	'centralnotice-translate-button' => '„Segíts a fordításban”-hivatkozás',
@@ -6752,7 +6653,7 @@ További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lap
 	'centralnotice-banner-messages' => 'Hirdetés üzenetek',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
@@ -6862,9 +6763,6 @@ Adde un hic infra.',
 	'centralnotice-clone-name' => 'Nomine:',
 	'centralnotice-preview-all-template-translations' => 'Previsualisar tote le traductiones disponibile del bandiera',
 	'centralnotice-insert' => 'Inserer: $1',
-	'centralnotice-hide-button' => 'Celar ligamine',
-	'centralnotice-collapse-button' => 'Plicar ligamine',
-	'centralnotice-expand-button' => 'Displicar ligamine',
 	'centralnotice-close-button' => 'Button "Clauder"',
 	'centralnotice-close-title' => 'Clauder',
 	'centralnotice-translate-button' => 'Ligamine "Adjuta de traduction"',
@@ -7041,9 +6939,6 @@ Tambahkan di bawah ini.',
 	'centralnotice-clone-name' => 'Nama:',
 	'centralnotice-preview-all-template-translations' => 'Lihat pratayang semua terjemahan templat yang tersedia',
 	'centralnotice-insert' => 'Sisipkan: $1',
-	'centralnotice-hide-button' => 'Sembunyikan pranala',
-	'centralnotice-collapse-button' => 'Ciutkan pranala',
-	'centralnotice-expand-button' => 'Luaskan pranala',
 	'centralnotice-close-button' => 'Tombol tutup',
 	'centralnotice-close-title' => 'Tutup',
 	'centralnotice-translate-button' => 'Pranala bantu terjemahkan',
@@ -7237,9 +7132,6 @@ Agnayon ti maysa dita baba.',
 	'centralnotice-clone-name' => 'Nagan:',
 	'centralnotice-preview-all-template-translations' => 'Ipadas amin dagiti magun-od a pagpatarus ti wagayway',
 	'centralnotice-insert' => 'Isengngat: $1',
-	'centralnotice-hide-button' => 'Ilemmeng ti panilpo',
-	'centralnotice-collapse-button' => 'Parbaen ti panilpo',
-	'centralnotice-expand-button' => 'Palawaen ti panilpo',
 	'centralnotice-close-button' => 'Irekep ti buton',
 	'centralnotice-close-title' => 'Irikep',
 	'centralnotice-translate-button' => 'Tumulong nga ipatarus ti panilpo',
@@ -7331,7 +7223,7 @@ $messages['io'] = array(
 	'centralnotice-number-uses' => 'Uzadi',
 );
 
-/** Icelandic (Íslenska)
+/** Icelandic (íslenska)
  * @author Maxí
  * @author Spacebirdy
  */
@@ -7355,7 +7247,6 @@ $messages['is'] = array(
 	'centralnotice-project-lang' => 'Verkefnistungumál',
 	'centralnotice-top-ten-languages' => 'Topp 10 tungumál',
 	'centralnotice-settings' => 'Stillingar',
-	'centralnotice-hide-button' => 'Fela tengil',
 	'centralnotice-countries' => 'Lönd',
 	'centralnotice-languages' => 'Tungumál',
 	'centralnotice-language' => 'Tungumál',
@@ -7363,7 +7254,7 @@ $messages['is'] = array(
 	'centralnotice-country' => 'Land',
 );
 
-/** Italian (Italiano)
+/** Italian (italiano)
  * @author Aushulz
  * @author Beta16
  * @author Blaisorblade
@@ -7470,9 +7361,6 @@ Non aggiorno',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Mostra tutte le traduzioni disponibili del template',
 	'centralnotice-insert' => 'Inserisci: $1',
-	'centralnotice-hide-button' => 'Nascondi collegamento',
-	'centralnotice-collapse-button' => 'Comprimi collegamento',
-	'centralnotice-expand-button' => 'Espandi collegamento',
 	'centralnotice-close-button' => 'Pulsante di chiusura',
 	'centralnotice-close-title' => 'Chiudi',
 	'centralnotice-translate-button' => 'Aiuta a tradurre il collegamento',
@@ -7708,7 +7596,7 @@ $messages['ja'] = array(
 	'centralnotice-banner-messages' => 'バナー メッセージ',
 );
 
-/** Jutish (Jysk)
+/** Jutish (jysk)
  * @author Huslåke
  */
 $messages['jut'] = array(
@@ -7913,9 +7801,6 @@ $messages['ka'] = array(
 	'centralnotice-clone-name' => 'სახელი:',
 	'centralnotice-preview-all-template-translations' => 'ბანერის ყველა არსებული თარგმანის ხილვა',
 	'centralnotice-insert' => 'ჩასვით: $1',
-	'centralnotice-hide-button' => 'ბმულის დამალვა',
-	'centralnotice-collapse-button' => 'ბმულის დაკეცვა',
-	'centralnotice-expand-button' => 'ბმულის გაშლა',
 	'centralnotice-close-button' => 'დახურვის ღილაკი',
 	'centralnotice-close-title' => 'დახურვა',
 	'centralnotice-translate-button' => 'დამხმარე ბმული თარგმანებისთვის',
@@ -8051,9 +7936,6 @@ $messages['km'] = array(
 	'centralnotice-clone-name' => 'ឈ្មោះ៖',
 	'centralnotice-preview-all-template-translations' => 'មើលមុននូវរាល់ការបកប្រែដែលអាចមានសំរាប់បដានេះ',
 	'centralnotice-insert' => 'បញ្ចូល៖ $1',
-	'centralnotice-hide-button' => 'លាក់តំណភ្ជាប់',
-	'centralnotice-collapse-button' => 'បង្រួញតំណភ្ជាប់',
-	'centralnotice-expand-button' => 'ពង្រីកតំណភ្ជាប់',
 	'centralnotice-close-button' => 'ប៊ូតុងបិទ',
 	'centralnotice-close-title' => 'បិទ',
 	'centralnotice-translate-button' => 'តំណភ្ជាប់ជំនួយក្នុងការបកប្រែ',
@@ -8381,9 +8263,6 @@ De kanns ävver heh dronger ein dobei donn.',
 	'centralnotice-clone-name' => 'Der Name:',
 	'centralnotice-preview-all-template-translations' => 'Vör-Aansich fun all dä Övversäzunge fun dä Banner_Schablohn',
 	'centralnotice-insert' => 'Enfööje: $1',
-	'centralnotice-hide-button' => 'Lengk vershteiche',
-	'centralnotice-collapse-button' => 'Lengk zosammefallde',
-	'centralnotice-expand-button' => 'Lengk ußklappe',
 	'centralnotice-close-button' => 'Knopp zom Zohmaache',
 	'centralnotice-close-title' => 'Zohmaache',
 	'centralnotice-translate-button' => 'Hellef met bem Övversäze!',
@@ -8472,7 +8351,7 @@ $messages['ku-latn'] = array(
 	'centralnotice-user' => 'Bikarhêner',
 );
 
-/** Cornish (Kernowek)
+/** Cornish (kernowek)
  * @author Kernoweger
  * @author Kw-Moon
  * @author Nrowe
@@ -8594,9 +8473,6 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-clone-name' => 'Numm:',
 	'centralnotice-preview-all-template-translations' => 'All disponibel Iwwersetzunge vum Banner weisen ouni ofzespäicheren',
 	'centralnotice-insert' => 'Drasetzen: $1',
-	'centralnotice-hide-button' => 'Link verstoppen',
-	'centralnotice-collapse-button' => 'Link zesummeklappen',
-	'centralnotice-expand-button' => 'Link opklappen',
 	'centralnotice-close-button' => "Knäppchen 'Zoumaachen'",
 	'centralnotice-close-title' => 'Zoumaachen',
 	'centralnotice-translate-button' => "Link 'Hëllef iwwersetzen'",
@@ -8819,9 +8695,6 @@ De kins hiejónger ein biedoon.",
 	'centralnotice-clone-name' => 'Naam:',
 	'centralnotice-preview-all-template-translations' => "Alle besjikbare euverzèttinge van 't sjabloon betrachte",
 	'centralnotice-insert' => 'Voog in: $1',
-	'centralnotice-hide-button' => 'Verbergknoep',
-	'centralnotice-collapse-button' => 'Inklaplink',
-	'centralnotice-expand-button' => 'Oetklaplink',
 	'centralnotice-close-button' => 'Sloet knoep',
 	'centralnotice-close-title' => 'Sloet',
 	'centralnotice-translate-button' => 'Euverzèttingshölpknoep',
@@ -8882,7 +8755,7 @@ Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.'
 	'centralnotice-banner-messages' => 'Vaanberichter',
 );
 
-/** Lithuanian (Lietuvių)
+/** Lithuanian (lietuvių)
  * @author Eitvys200
  * @author Garas
  * @author Ignas693
@@ -8991,9 +8864,6 @@ Pridėti vieną žemiau.',
 	'centralnotice-clone-notice' => 'Sukurti šablono kopiją',
 	'centralnotice-clone-name' => 'Pavadinimas:',
 	'centralnotice-insert' => 'Įdėti: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} mygtukas',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} mygtukas',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} mygtukas',
 	'centralnotice-close-button' => 'Uždarymo mygtukas',
 	'centralnotice-close-title' => 'Uždaryti',
 	'centralnotice-translate-button' => 'Padėkite išversti mygtukas',
@@ -9029,7 +8899,7 @@ Pridėti vieną žemiau.',
 	'centralnotice-banner-messages' => 'Banerio pranešimai',
 );
 
-/** Latgalian (Latgaļu)
+/** Latgalian (latgaļu)
  * @author Dark Eagle
  */
 $messages['ltg'] = array(
@@ -9055,7 +8925,7 @@ $messages['lus'] = array(
 	'centralnotice-talk-link' => 'sawihona',
 );
 
-/** Latvian (Latviešu)
+/** Latvian (latviešu)
  * @author GreenZeb
  * @author Papuass
  */
@@ -9113,9 +8983,6 @@ Pievienojiet kādu!',
 	'centralnotice-message-not-set' => 'Paziņojums nav uzstādīts',
 	'centralnotice-clone' => 'Klonēt',
 	'centralnotice-clone-name' => 'Nosaukums:',
-	'centralnotice-hide-button' => 'Slēpt saiti',
-	'centralnotice-collapse-button' => 'Sakļaut saiti',
-	'centralnotice-expand-button' => 'Izvērst saiti',
 	'centralnotice-close-title' => 'Aizvērt',
 	'centralnotice-translate-button' => 'Palīdzēt iztulkot saiti',
 	'centralnotice-banner-display' => 'Rādīt:',
@@ -9206,7 +9073,7 @@ Tsy nifafàna ilay izy',
 	'centralnotice-preferred' => 'Ny tiako/ny tianao/Ny tiny',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  * @author Brest
  * @author Rancher
@@ -9318,9 +9185,6 @@ $messages['mk'] = array(
 	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-preview-all-template-translations' => 'Преглед на сите расположиви преводи на шаблонот',
 	'centralnotice-insert' => 'Вметни: $1',
-	'centralnotice-hide-button' => 'Скриј',
-	'centralnotice-collapse-button' => 'Склопи',
-	'centralnotice-expand-button' => 'Расклопи',
 	'centralnotice-close-button' => 'Копче за затворање',
 	'centralnotice-close-title' => 'Затворање',
 	'centralnotice-translate-button' => 'Врска за помош со преводите',
@@ -9492,9 +9356,6 @@ $messages['ml'] = array(
 	'centralnotice-clone-name' => 'പേര്:',
 	'centralnotice-preview-all-template-translations' => 'ഫലകത്തിന്റെ ലഭ്യമായ എല്ലാ തർജ്ജമകളുടേയും പ്രിവ്യൂ കാണുക',
 	'centralnotice-insert' => 'ഉൾപ്പെടുത്തുക: $1',
-	'centralnotice-hide-button' => 'മറയ്ക്കാനുള്ള കണ്ണി',
-	'centralnotice-collapse-button' => 'ചുരുക്കാനുള്ള കണ്ണി',
-	'centralnotice-expand-button' => 'വികസിപ്പിക്കാനുള്ള കണ്ണി',
 	'centralnotice-close-button' => 'അടയ്ക്കാനുള്ള ബട്ടൺ',
 	'centralnotice-close-title' => 'അടയ്ക്കുക',
 	'centralnotice-translate-button' => 'പരിഭാഷാസഹായി ബട്ടൺ',
@@ -9553,7 +9414,7 @@ $messages['ml'] = array(
 	'centralnotice-banner-messages' => 'ബാനർ സന്ദേശങ്ങൾ',
 );
 
-/** Mongolian (Монгол)
+/** Mongolian (монгол)
  * @author Chinneeb
  */
 $messages['mn'] = array(
@@ -9674,9 +9535,6 @@ $messages['mr'] = array(
 	'centralnotice-clone-name' => 'नाव:',
 	'centralnotice-preview-all-template-translations' => 'मुखशीर्षकांच्या सर्व उपलब्ध भाषांतराची झलक पहा',
 	'centralnotice-insert' => 'समाविष्ट करा : $1',
-	'centralnotice-hide-button' => 'दुवा लपवा',
-	'centralnotice-collapse-button' => 'झाकण्याचा दुवा',
-	'centralnotice-expand-button' => 'उघडण्याचा दुवा',
 	'centralnotice-close-button' => 'समाप्त कळ',
 	'centralnotice-close-title' => 'बंद',
 	'centralnotice-translate-button' => 'दुव्याच्या भाषांतरासाठी मदत करा',
@@ -9841,9 +9699,6 @@ Tidak boleh dibuang.',
 	'centralnotice-clone-name' => 'Nama:',
 	'centralnotice-preview-all-template-translations' => 'Pralihat semua terjemahan yang ada bagi templat ini',
 	'centralnotice-insert' => 'Masukkan: $1',
-	'centralnotice-hide-button' => 'Sorokkan pautan',
-	'centralnotice-collapse-button' => 'Lipat pautan',
-	'centralnotice-expand-button' => 'Kembangkan pautan',
 	'centralnotice-close-button' => 'Butang tutup',
 	'centralnotice-close-title' => 'Tutup',
 	'centralnotice-translate-button' => 'Pautan bantu menterjemah',
@@ -10445,9 +10300,6 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-clone-name' => 'Naam:',
 	'centralnotice-preview-all-template-translations' => 'Alle beschikbare vertalingen van het sjabloon bekijken',
 	'centralnotice-insert' => 'Invoegen: $1',
-	'centralnotice-hide-button' => '"Verbergen" toevoegen',
-	'centralnotice-collapse-button' => '"Inklappen" toevoegen',
-	'centralnotice-expand-button' => '"Uitklappen" toevoegen',
 	'centralnotice-close-button' => '"Sluiten" toevoegen',
 	'centralnotice-close-title' => 'Sluiten',
 	'centralnotice-translate-button' => '"Help met vertalen" toevoegen',
@@ -10508,7 +10360,7 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-banner-messages' => 'Bannerberichten',
 );
 
-/** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+/** Norwegian Nynorsk (‪norsk (nynorsk)‬)
  * @author Harald Khan
  * @author Nghtwlkr
  * @author Njardarlogar
@@ -10592,7 +10444,7 @@ Denne handlinga kan ikkje bli omgjort.',
 	'centralnotice-preferred' => 'Føretrukke',
 );
 
-/** Occitan (Occitan)
+/** Occitan (occitan)
  * @author Boulaur
  * @author Cedric31
  */
@@ -10808,9 +10660,6 @@ $messages['or'] = array(
 	'centralnotice-clone-name' => 'ନାମ:',
 	'centralnotice-preview-all-template-translations' => 'ସୂଚନା ଫଳକ ମିଳୁଥିବା ସବୁଯାକ ଅନୁବାଦ ଦେଖାଇବେ',
 	'centralnotice-insert' => 'ଭର୍ତ୍ତିକରିବା: $1',
-	'centralnotice-hide-button' => 'ଲିଙ୍କ ଲୁଚାଇବେ',
-	'centralnotice-collapse-button' => 'ଲିଙ୍କକୁ ସଙ୍କୁଚିତ କରିବେ',
-	'centralnotice-expand-button' => 'ଲିଙ୍କକୁ ବଢ଼ାଇବେ',
 	'centralnotice-close-button' => 'ବନ୍ଦକରିବା ବୋତାମ',
 	'centralnotice-close-title' => 'ବନ୍ଦ କରିବେ',
 	'centralnotice-translate-button' => 'ଲିଙ୍କ ଅନୁବାଦରେ ସହଯୋଗ କରନ୍ତୁ',
@@ -10942,7 +10791,7 @@ Sie werd doher ned g'leschd.",
 	'centralnotice-banner-content-changed' => 'Vaänad',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author Bartek50003
  * @author Derbeth
  * @author Leinad
@@ -11053,9 +10902,6 @@ Dodaj nowy poniżej.',
 	'centralnotice-clone-name' => 'Nazwa',
 	'centralnotice-preview-all-template-translations' => 'Zobacz wszystkie dostępne tłumaczenia szablonu',
 	'centralnotice-insert' => 'Wstaw: $1',
-	'centralnotice-hide-button' => 'Ukryj link',
-	'centralnotice-collapse-button' => 'Zwiń link',
-	'centralnotice-expand-button' => 'Rozwiń link',
 	'centralnotice-close-button' => 'Przycisk zamykania',
 	'centralnotice-close-title' => 'Zamknij',
 	'centralnotice-translate-button' => 'Link „Pomóż w tłumaczeniu”',
@@ -11227,9 +11073,6 @@ Ch'a na gionta un-a sì-sota.",
 	'centralnotice-clone-name' => 'Nòm:',
 	'centralnotice-preview-all-template-translations' => 'Previsualisa tute le tradussion disponìbij ëd lë stamp',
 	'centralnotice-insert' => 'Anserì: $1',
-	'centralnotice-hide-button' => "Stërmé l'anliura",
-	'centralnotice-collapse-button' => "Strenze l'anliura",
-	'centralnotice-expand-button' => "Espande l'anliura",
 	'centralnotice-close-button' => 'Boton për boton',
 	'centralnotice-close-title' => 'Sara',
 	'centralnotice-translate-button' => 'Colegament për giuté a volté',
@@ -11394,9 +11237,6 @@ $messages['pnb'] = array(
 	'centralnotice-clone-name' => 'ناں:',
 	'centralnotice-preview-all-template-translations' => 'سارے موجود ترجمیاں دا نشان دا وکھالہ',
 	'centralnotice-insert' => 'پاؤ: $1',
-	'centralnotice-hide-button' => 'جوڑ لکاؤ',
-	'centralnotice-collapse-button' => 'جوڑ توڑو',
-	'centralnotice-expand-button' => 'جوڑ ودھاؤ',
 	'centralnotice-close-button' => 'بٹن بند کرو',
 	'centralnotice-close-title' => 'بند',
 	'centralnotice-translate-button' => 'جوڑ دے ترجمے چ ہتھ ونڈاؤ',
@@ -11508,9 +11348,6 @@ $messages['ps'] = array(
 	'centralnotice-message' => 'پيغام',
 	'centralnotice-clone-name' => 'نوم:',
 	'centralnotice-insert' => 'ورټومبل: $1',
-	'centralnotice-hide-button' => 'تړنه پټول',
-	'centralnotice-collapse-button' => 'تړنه پرځول',
-	'centralnotice-expand-button' => 'تړنه غځول',
 	'centralnotice-close-button' => 'د تړلو تڼۍ',
 	'centralnotice-close-title' => 'تړل',
 	'centralnotice-translate-button' => 'د تړنې د ژباړلو مرسته وکړۍ',
@@ -11717,7 +11554,7 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-banner-messages' => 'Mensagens de cartaz',
 );
 
-/** Brazilian Portuguese (Português do Brasil)
+/** Brazilian Portuguese (português do Brasil)
  * @author Eduardo.mps
  * @author Giro720
  * @author Helder.wiki
@@ -11833,9 +11670,6 @@ Adicione um abaixo',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Prever todas as traduções disponíveis do modelo',
 	'centralnotice-insert' => 'Inserir: $1',
-	'centralnotice-hide-button' => 'Ocultar link',
-	'centralnotice-collapse-button' => 'Colapsar link',
-	'centralnotice-expand-button' => 'Expandir link',
 	'centralnotice-close-button' => 'Botão fechar',
 	'centralnotice-close-title' => 'Fechar',
 	'centralnotice-translate-button' => 'Ajudar a traduzir link',
@@ -12006,9 +11840,6 @@ Kay qatiqpi hukta yapay',
 	'centralnotice-clone-name' => 'Suti:',
 	'centralnotice-preview-all-template-translations' => "Tukuy aypanalla plantillamanta t'ikrasqakunata ñawpaqta qhawallay",
 	'centralnotice-insert' => "Sat'iy: $1",
-	'centralnotice-hide-button' => "T'inkita pakay",
-	'centralnotice-collapse-button' => "T'inkita thuñichiy",
-	'centralnotice-expand-button' => "T'inkita mast'ariy",
 	'centralnotice-close-button' => "Wichq'ay butun",
 	'centralnotice-translate-button' => "T'ikraysiy t'inki",
 	'centralnotice-donate-button' => 'Qaray butun',
@@ -12065,7 +11896,7 @@ http://meta.wikimedia.org/wiki/Help:CentralNotice nisqapi qhaway willasunaykipaq
 	'centralnotice-banner-messages' => 'Qhatira willaykuna',
 );
 
-/** Romanian (Română)
+/** Romanian (română)
  * @author Cin
  * @author Firilacroco
  * @author KlaudiuMihaila
@@ -12180,9 +12011,6 @@ Adăugați una mai jos.',
 	'centralnotice-clone-name' => 'Nume:',
 	'centralnotice-preview-all-template-translations' => 'Previzualizează toate traducerile disponibile ale bannerului',
 	'centralnotice-insert' => 'Introduceți: $1',
-	'centralnotice-hide-button' => 'Ascunde legătura',
-	'centralnotice-collapse-button' => 'Restrânge legătura',
-	'centralnotice-expand-button' => 'Extinde legătura',
 	'centralnotice-close-button' => 'Buton închidere',
 	'centralnotice-close-title' => 'Închidere',
 	'centralnotice-translate-button' => 'Ajutor traducere link',
@@ -12242,7 +12070,7 @@ Vedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe infor
 	'centralnotice-banner-messages' => 'Mesaje banner',
 );
 
-/** Tarandíne (Tarandíne)
+/** tarandíne (tarandíne)
  * @author Joetaras
  * @author Reder
  */
@@ -12353,9 +12181,6 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => "Andeprime de totte le traduzione disponibbele d'u banner",
 	'centralnotice-insert' => 'Mitte: $1',
-	'centralnotice-hide-button' => "Scunne 'u collegamende",
-	'centralnotice-collapse-button' => "Collasse 'u collegamende",
-	'centralnotice-expand-button' => "Spanne 'u collegamende",
 	'centralnotice-close-button' => 'Buttone de chiusure',
 	'centralnotice-close-title' => 'Achiude',
 	'centralnotice-translate-button' => "Ajute a traducere 'u link",
@@ -12413,7 +12238,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-banner-messages' => "Messàgge d'u banner",
 );
 
-/** Russian (Русский)
+/** Russian (русский)
  * @author Aleksandrit
  * @author Amire80
  * @author Dim Grits
@@ -12702,9 +12527,6 @@ $messages['rue'] = array(
 	'centralnotice-clone-name' => 'Назва:',
 	'centralnotice-preview-all-template-translations' => 'Нагляд вшыткых доступных перекладів шаблоны',
 	'centralnotice-insert' => 'Вложыти: $1',
-	'centralnotice-hide-button' => 'Сховати одказы',
-	'centralnotice-collapse-button' => 'Згорнути одказы',
-	'centralnotice-expand-button' => 'Розгорнути одказы',
 	'centralnotice-close-button' => 'Кнапка "Заперти"',
 	'centralnotice-translate-button' => 'Поможте перекласти одказ',
 	'centralnotice-donate-button' => 'Клапка „Приспійте“',
@@ -12779,7 +12601,7 @@ $messages['sa'] = array(
 	'centralnotice-date' => 'दिनाङ्क',
 );
 
-/** Sakha (Саха тыла)
+/** Sakha (саха тыла)
  * @author HalanTul
  */
 $messages['sah'] = array(
@@ -12889,9 +12711,6 @@ $messages['sah'] = array(
 	'centralnotice-clone-name' => 'Аата:',
 	'centralnotice-preview-all-template-translations' => 'Халыып баар тылбаастарын барытын көрүү',
 	'centralnotice-insert' => 'Киллэрии: $1',
-	'centralnotice-hide-button' => 'Сигэни кистииргэ',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} Сигэни кистээ',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} Сигэни тэнит',
 	'centralnotice-close-button' => 'Сабар тимэх',
 	'centralnotice-close-title' => 'Сап',
 	'centralnotice-translate-button' => 'Тылбаас көмөтүгэр сигэ',
@@ -12944,7 +12763,7 @@ $messages['sah'] = array(
 	'centralnotice-clear-filters' => 'Сиидэлэри уһул',
 );
 
-/** Sicilian (Sicilianu)
+/** Sicilian (sicilianu)
  * @author Aushulz
  * @author Gmelfi
  * @author Santu
@@ -13041,7 +12860,7 @@ Nun junciutu',
 	'centralnotice-clear-filters' => 'Pulizzia firtri',
 );
 
-/** Serbo-Croatian (Srpskohrvatski)
+/** Serbo-Croatian (srpskohrvatski / српскохрватски)
  * @author OC Ripper
  */
 $messages['sh'] = array(
@@ -13162,9 +12981,6 @@ $messages['si'] = array(
 	'centralnotice-clone-name' => 'නම:',
 	'centralnotice-preview-all-template-translations' => 'බැනරය සඳහා පවතින සියලු පරිවර්තනවල පෙරදසුන් පෙන්වන්න',
 	'centralnotice-insert' => 'ඇතුළු කරන්න: $1',
-	'centralnotice-hide-button' => 'සබැඳිය සගවන්න',
-	'centralnotice-collapse-button' => 'සබැඳිය හකුලන්න',
-	'centralnotice-expand-button' => 'විකසිත සබැඳිය',
 	'centralnotice-close-button' => 'වැසීමේ බොත්තම',
 	'centralnotice-close-title' => 'වසන්න',
 	'centralnotice-translate-button' => 'යොමුව පරිවර්තනය කිරීමට උදව් වන්න',
@@ -13224,7 +13040,7 @@ $messages['si'] = array(
 	'centralnotice-banner-messages' => 'සිරස්තල පණිවිඩය',
 );
 
-/** Slovak (Slovenčina)
+/** Slovak (slovenčina)
  * @author Helix84
  * @author Rudko
  * @author Teslaton
@@ -13325,9 +13141,6 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-clone-name' => 'Názov:',
 	'centralnotice-preview-all-template-translations' => 'Náhľad všetkých dostupných verzií šablóny',
 	'centralnotice-insert' => 'Vložiť: $1',
-	'centralnotice-hide-button' => 'Odkaz „Skryť“',
-	'centralnotice-collapse-button' => 'Odkaz „Zbaliť“',
-	'centralnotice-expand-button' => 'Odkaz „Rozbaliť“',
 	'centralnotice-close-button' => 'Tlačidlo Zatvoriť',
 	'centralnotice-close-title' => 'Zatvoriť',
 	'centralnotice-translate-button' => 'Pomôžte preložiť odkaz',
@@ -13388,7 +13201,7 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-banner-messages' => 'Správy bannerov',
 );
 
-/** Slovenian (Slovenščina)
+/** Slovenian (slovenščina)
  * @author Dbc334
  */
 $messages['sl'] = array(
@@ -13498,9 +13311,6 @@ Dodajte kakšno spodaj.',
 	'centralnotice-clone-name' => 'Ime:',
 	'centralnotice-preview-all-template-translations' => 'Predogled vseh prevodov pasic, ki so na voljo',
 	'centralnotice-insert' => 'Vstavi: $1',
-	'centralnotice-hide-button' => 'Skrij povezavo',
-	'centralnotice-collapse-button' => 'Skrči povezavo',
-	'centralnotice-expand-button' => 'Razširi povezavo',
 	'centralnotice-close-button' => 'Gumb za zapiranje',
 	'centralnotice-close-title' => 'Zapri',
 	'centralnotice-translate-button' => 'Povezava za pomoč pri prevajanju',
@@ -13561,7 +13371,7 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-banner-messages' => 'Sporočila pasic',
 );
 
-/** Albanian (Shqip)
+/** Albanian (shqip)
  * @author Mikullovci11
  * @author Olsi
  * @author Techlik
@@ -13674,9 +13484,6 @@ Shtoni një më poshtë.',
 	'centralnotice-clone-name' => 'Emri:',
 	'centralnotice-preview-all-template-translations' => 'Shikoni të gjitha përkthimet e mundshme të "banner"',
 	'centralnotice-insert' => 'Shtoni: $1',
-	'centralnotice-hide-button' => 'Hsheh Lidhjen',
-	'centralnotice-collapse-button' => 'Rënë Lidhjen',
-	'centralnotice-expand-button' => ' Zmadhoje Lidhjen',
 	'centralnotice-close-button' => 'Mbylle buton',
 	'centralnotice-close-title' => 'Mbylle',
 	'centralnotice-translate-button' => 'Lidhja ndihmues',
@@ -13737,7 +13544,7 @@ Shikoni http://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë inform
 	'centralnotice-banner-messages' => 'Mesazhet e banerit',
 );
 
-/** Serbian (Cyrillic script) (‪Српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
  * @author Millosh
  * @author Rancher
  * @author Јованвб
@@ -13839,9 +13646,6 @@ $messages['sr-ec'] = array(
 	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-preview-all-template-translations' => 'Преглед свих доступних превода шаблона',
 	'centralnotice-insert' => 'Убаците: $1',
-	'centralnotice-hide-button' => 'Сакриј',
-	'centralnotice-collapse-button' => 'Скупи',
-	'centralnotice-expand-button' => 'Прошири',
 	'centralnotice-close-button' => 'Затвори дугме',
 	'centralnotice-close-title' => 'Затварање',
 	'centralnotice-translate-button' => 'Веза за помоћ при превођењу',
@@ -13900,7 +13704,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-clear-filters' => 'Очисти филтере',
 );
 
-/** Serbian (Latin script) (‪Srpski (latinica)‬)
+/** Serbian (Latin script) (‪srpski (latinica)‬)
  * @author Michaello
  */
 $messages['sr-el'] = array(
@@ -14008,9 +13812,6 @@ Dodajte jednu ispod.',
 	'centralnotice-clone-name' => 'Ime:',
 	'centralnotice-preview-all-template-translations' => 'Pregled svih dostupnih prevoda šablona',
 	'centralnotice-insert' => 'Ubacite: $1',
-	'centralnotice-hide-button' => 'Sakrij',
-	'centralnotice-collapse-button' => 'Skupi',
-	'centralnotice-expand-button' => 'Proširi',
 	'centralnotice-close-button' => 'Zatvori dugme',
 	'centralnotice-close-title' => 'Zatvaranje',
 	'centralnotice-translate-button' => 'Veza za pomoć pri prevođenju',
@@ -14158,7 +13959,7 @@ $messages['su'] = array(
 	'centralnotice-desc' => 'Nambah émbaran puseur',
 );
 
-/** Swedish (Svenska)
+/** Swedish (svenska)
  * @author Ainali
  * @author Boivie
  * @author Cohan
@@ -14280,9 +14081,6 @@ Lägg till ett nedan',
 	'centralnotice-clone-name' => 'Namn:',
 	'centralnotice-preview-all-template-translations' => 'Förhandsgranska alla tillgängliga översättningar av mallen',
 	'centralnotice-insert' => 'Infoga: $1',
-	'centralnotice-hide-button' => 'Göm länk',
-	'centralnotice-collapse-button' => 'Göm länk',
-	'centralnotice-expand-button' => 'Expandera länk',
 	'centralnotice-close-button' => 'Stäng-knapp',
 	'centralnotice-close-title' => 'Stäng',
 	'centralnotice-translate-button' => 'Hjälp till att översätta-länk',
@@ -14471,9 +14269,6 @@ $messages['ta'] = array(
 	'centralnotice-clone-name' => 'பெயர்:',
 	'centralnotice-preview-all-template-translations' => 'அனைத்து கிடைக்கப்பெறும் மொழிமாற்றம் செய்யப்பட்ட பதாகைகளை  முன்னோட்டம் காண்',
 	'centralnotice-insert' => 'உள்ளீடு செய்யவும்: $1',
-	'centralnotice-hide-button' => 'இணைப்பை மறை',
-	'centralnotice-collapse-button' => 'இணைப்பை ஒன்றுசேர்',
-	'centralnotice-expand-button' => 'இணைப்பை விரிவாக்கு',
 	'centralnotice-close-button' => 'மூடு பொத்தான்',
 	'centralnotice-close-title' => 'மூடு',
 	'centralnotice-translate-button' => ' மொழிபெயர்ப்பு உதவி இணைப்பு',
@@ -14660,7 +14455,7 @@ $messages['te'] = array(
 	'centralnotice-date' => 'తేదీ',
 );
 
-/** Tetum (Tetun)
+/** Tetum (tetun)
  * @author MF-Warburg
  */
 $messages['tet'] = array(
@@ -14680,7 +14475,7 @@ $messages['tet'] = array(
 	'centralnotice-languages' => 'Lian sira',
 );
 
-/** Tajik (Cyrillic script) (Тоҷикӣ)
+/** Tajik (Cyrillic script) (тоҷикӣ)
  * @author Ibrahim
  */
 $messages['tg-cyrl'] = array(
@@ -14767,7 +14562,7 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-preferred' => 'Тарҷиҳи додашуда',
 );
 
-/** Tajik (Latin script) (Tojikī)
+/** Tajik (Latin script) (tojikī)
  * @author Liangent
  */
 $messages['tg-latn'] = array(
@@ -14948,7 +14743,6 @@ $messages['th'] = array(
 	'centralnotice-clone' => 'สำเนา',
 	'centralnotice-clone-notice' => 'สร้างสำเนาของแม่แบบ',
 	'centralnotice-preview-all-template-translations' => 'ดูการแปลในทุก ๆ ภาษาของแม่แบบ',
-	'centralnotice-hide-button' => 'ซ่อนลิงก์',
 	'centralnotice-close-button' => 'ปุ่มปิด',
 	'centralnotice-translate-button' => 'ลิงก์ช่วยแปล',
 	'centralnotice-donate-button' => 'ปุ่มบริจาค',
@@ -15077,9 +14871,6 @@ Aşak birini goşuň.',
 	'centralnotice-clone-name' => 'At:',
 	'centralnotice-preview-all-template-translations' => 'Şablonyň bar bolan ähli terjimelerini deslapky synla',
 	'centralnotice-insert' => 'Sal: $1',
-	'centralnotice-hide-button' => 'çykgydy {{int:centralnotice-shared-hide}}',
-	'centralnotice-collapse-button' => 'çykgydy {{int:centralnotice-shared-collapse}}',
-	'centralnotice-expand-button' => 'çykgydy {{int:centralnotice-shared-expand}}',
 	'centralnotice-close-button' => 'Ýap düwmesi',
 	'centralnotice-translate-button' => 'Terjimä kömek et çykgydy',
 	'centralnotice-donate-button' => 'Bagyş et düwmesi',
@@ -15266,7 +15057,7 @@ Tingnan ang http://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas marami
 	'centralnotice-banner-messages' => 'Mga mensahe sa bandila',
 );
 
-/** Толышә зывон (Толышә зывон)
+/** толышә зывон (толышә зывон)
  * @author Гусейн
  */
 $messages['tly'] = array(
@@ -15414,9 +15205,6 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-clone-name' => 'Adı:',
 	'centralnotice-preview-all-template-translations' => 'Şablonun bütün uygun çevirilerini önizle',
 	'centralnotice-insert' => 'Ekle: $1',
-	'centralnotice-hide-button' => 'Bağlantıyı gizle',
-	'centralnotice-collapse-button' => 'Bağlantıyı daralt',
-	'centralnotice-expand-button' => 'Bağlantıyı genişlet',
 	'centralnotice-close-button' => 'Kapatma düğmesi',
 	'centralnotice-close-title' => 'Kapat',
 	'centralnotice-translate-button' => 'Çevirmeye yardım edin bağlantısı',
@@ -15458,7 +15246,7 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 	'centralnotice-clear-filters' => 'Süzgeçleri temizle',
 );
 
-/** Tatar (Cyrillic script) (Татарча)
+/** Tatar (Cyrillic script) (татарча)
  * @author Ильнар
  */
 $messages['tt-cyrl'] = array(
@@ -15551,9 +15339,6 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-clone-name' => 'Исеме:',
 	'centralnotice-preview-all-template-translations' => 'Үрнәкнең мөмкин булган тәрҗемәләрен карарга',
 	'centralnotice-insert' => 'Өстәү: $1',
-	'centralnotice-hide-button' => 'Сылтаманы яшерү',
-	'centralnotice-collapse-button' => 'Сылтаманы ябу',
-	'centralnotice-expand-button' => 'Сылтаманы ачу',
 	'centralnotice-close-button' => '«Ябу» төймәсе',
 	'centralnotice-translate-button' => 'Тәрҗемә итүдә ярдәм сылтамасы',
 	'centralnotice-donate-button' => 'Иганә төймәсе',
@@ -15601,7 +15386,7 @@ $messages['udm'] = array(
 	'centralnotice-message' => 'Ивортон',
 );
 
-/** Ukrainian (Українська)
+/** Ukrainian (українська)
  * @author AS
  * @author Ahonc
  * @author Aleksandrit
@@ -15722,9 +15507,6 @@ $messages['uk'] = array(
 	'centralnotice-clone-name' => 'Назва:',
 	'centralnotice-preview-all-template-translations' => 'Переглянути всі доступні переклади шаблону',
 	'centralnotice-insert' => 'Вставити: $1',
-	'centralnotice-hide-button' => 'Сховати посилання',
-	'centralnotice-collapse-button' => 'Згорнути посилання',
-	'centralnotice-expand-button' => 'Розгорнути посилання',
 	'centralnotice-close-button' => 'Кнопка "Закрити"',
 	'centralnotice-close-title' => 'Закрити',
 	'centralnotice-translate-button' => 'Допоможіть перекласти посилання',
@@ -15787,7 +15569,7 @@ $messages['uk'] = array(
 	'centralnotice-banner-messages' => 'Повідомлення банера',
 );
 
-/** Vèneto (Vèneto)
+/** vèneto (vèneto)
  * @author Candalua
  * @author Vajotwo
  */
@@ -15891,9 +15673,6 @@ Zónteghene una qua soto.',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-preview-all-template-translations' => 'Anteprima de tute le tradussion disponibili del modèl',
 	'centralnotice-insert' => 'Inserir: $1',
-	'centralnotice-hide-button' => '{{int:centralnotice-shared-hide}} link',
-	'centralnotice-collapse-button' => '{{int:centralnotice-shared-collapse}} link',
-	'centralnotice-expand-button' => '{{int:centralnotice-shared-expand}} link',
 	'centralnotice-close-button' => 'Boton Sara',
 	'centralnotice-translate-button' => 'Juta a tradur el link',
 	'centralnotice-donate-button' => 'Boton Dona',
@@ -15994,7 +15773,6 @@ Ei ližakoi.",
 	'centralnotice-message' => 'Tedotuz',
 	'centralnotice-clone' => 'Klon',
 	'centralnotice-clone-name' => 'Nimi:',
-	'centralnotice-hide-button' => 'Peitta kosketuz',
 	'centralnotice-close-title' => 'Saubata',
 	'centralnotice-banner-anonymous' => 'Anonimižed kävutajad',
 	'centralnotice-banner-type' => 'Banneran tip:',
@@ -16116,9 +15894,6 @@ Hãy thêm vào!',
 	'centralnotice-clone-name' => 'Tên:',
 	'centralnotice-preview-all-template-translations' => 'Xem trước các bản dịch có sẵn của bảng',
 	'centralnotice-insert' => 'Chèn: $1',
-	'centralnotice-hide-button' => 'Liên kết ẩn',
-	'centralnotice-collapse-button' => 'Liên kết thu gọn',
-	'centralnotice-expand-button' => 'Liên kết mở rộng',
 	'centralnotice-close-button' => 'Nút Đóng',
 	'centralnotice-close-title' => 'Đóng',
 	'centralnotice-translate-button' => 'Liên kết Giúp dịch',
@@ -16377,7 +16152,7 @@ $messages['yue'] = array(
 	'centralnotice-desc' => '加入一個中央公告欄',
 );
 
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文（简体）‬)
  * @author Alex S.H. Lin
  * @author Anakmalaysia
  * @author Bencmq
@@ -16500,9 +16275,6 @@ $messages['zh-hans'] = array(
 	'centralnotice-clone-name' => '名称：',
 	'centralnotice-preview-all-template-translations' => '预览模板的所有可用翻译',
 	'centralnotice-insert' => '插入：$1',
-	'centralnotice-hide-button' => '隐藏链接',
-	'centralnotice-collapse-button' => '折叠链接',
-	'centralnotice-expand-button' => '展开链接',
 	'centralnotice-close-button' => '关闭按钮',
 	'centralnotice-close-title' => '关闭',
 	'centralnotice-translate-button' => '协助翻译链接',
@@ -16563,7 +16335,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner-messages' => '条幅消息',
 );
 
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文（繁體）‬)
  * @author Alex S.H. Lin
  * @author Anakmalaysia
  * @author Frankou
@@ -16681,9 +16453,6 @@ $messages['zh-hant'] = array(
 	'centralnotice-clone-name' => '名字：',
 	'centralnotice-preview-all-template-translations' => '預覽模板的所有可用翻譯',
 	'centralnotice-insert' => '插入：$1',
-	'centralnotice-hide-button' => '隱藏連結',
-	'centralnotice-collapse-button' => '摺疊連結',
-	'centralnotice-expand-button' => '展開連結',
 	'centralnotice-close-button' => '關閉按鈕',
 	'centralnotice-close-title' => '關閉',
 	'centralnotice-translate-button' => '協助翻譯連結',
