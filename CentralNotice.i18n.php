@@ -1049,6 +1049,7 @@ $messages['arz'] = array(
 
 /** Assamese (অসমীয়া)
  * @author Bishnu Saikia
+ * @author Chaipau
  * @author Gitartha.bordoloi
  */
 $messages['as'] = array(
@@ -1085,6 +1086,7 @@ $messages['as'] = array(
 	'centralnotice-multiple-languages' => 'একাধিক ($1)',
 	'centralnotice-multiple-countries' => 'একাধিক ($1)',
 	'centralnotice-all-projects' => 'সকলো প্ৰকল্প',
+	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'ভাঙনি',
 	'centralnotice-translate-to' => 'এই ভাষালৈ অনুবাদ কৰক',
 	'centralnotice-translate' => 'ভাঙনি কৰক',
@@ -1202,6 +1204,7 @@ $messages['as'] = array(
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> আঁতৰ কৰা হ\'ল',
 	'centralnotice-no-assignments' => 'কোনো বেনাৰ প্ৰদান কৰা হোৱা নাই',
 	'centralnotice-talk-link' => 'বাৰ্তা',
+	'centralnotice-user-links' => '$1 ($2)',
 	'centralnotice-campaign-settings' => 'প্ৰচাৰ ছেটিংসমূহ',
 	'centralnotice-banner-settings' => 'বেনাৰ ছেটিংসমূহ',
 	'centralnotice-anon' => 'বেনামী ব্যৱহাৰকাৰীক দেখুৱাওক',
@@ -1586,6 +1589,9 @@ $messages['ba'] = array(
 	'centralnotice-banner-type' => 'Баннер төрө:',
 	'centralnotice-banner-hidable' => 'Статик/йәшерелеүсән',
 	'centralnotice-banner-collapsible' => 'Төрөлөүсән',
+	'centralnotice-banner-fundraising' => 'Был иғәнәләр йыйыу иғланы',
+	'centralnotice-banner-autolink' => 'Маҡсатлы биткә үҙенән-үҙе һылтанма яһау.',
+	'centralnotice-banner-autolink-help' => '$1 ярҙамы менән иғланға һылтанма тамғаһы ҡуйығыҙ, аҫта бер йәки ике маҡстлы битте күрһәтегеҙ, әйтәйек $2. Артабан иғланды ҡарағанда һылтанма үҙенән-үҙе ҡуйыласаҡ.',
 	'centralnotice-banner-landing-pages' => 'Маҡсатлы биттәр (өтөр аша)',
 	'centralnotice-geo' => 'Геобәйләнеш',
 	'centralnotice-countries' => 'Илдәр',
@@ -1610,6 +1616,7 @@ $messages['ba'] = array(
 	'centralnotice-action-created' => 'яһалған',
 	'centralnotice-action-modified' => 'үҙгәртелгән',
 	'centralnotice-action-removed' => 'юйылған',
+	'centralnotice-changed' => '<span class="cn-old-value">$1</span>-нан <span class="cn-new-value">$2</span>-ға үҙгәртелгән',
 	'centralnotice-on' => 'асыҡ',
 	'centralnotice-off' => 'ябыҡ',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> өҫтәлде',
@@ -1620,6 +1627,7 @@ $messages['ba'] = array(
 	'centralnotice-banner-settings' => 'Баннер көйләүҙәре',
 	'centralnotice-anon' => 'Аноним ҡулланыусыларға күрһәтергә',
 	'centralnotice-account' => 'Танылған ҡулланыусыларға күрһәтергә',
+	'centralnotice-fundraising' => 'Иғәнәләр',
 	'centralnotice-autolink' => 'Автоматик һылтанма яһау',
 	'centralnotice-landingpages' => 'Килеү биттәре',
 	'centralnotice-banner-content' => 'Баннер эстәлеге',
