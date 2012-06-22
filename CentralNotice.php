@@ -262,7 +262,7 @@ function efCentralNoticeLoader( $out, $skin ) {
  */
 function efCentralNoticeGeoLoader( $skin, &$text ) {
 	// Insert the geoIP lookup
-	$text .= Html::linkedScript( "//geoiplookup.wikimedia.org/" );
+	$text .= Html::linkedScript( "//bits.wikimedia.org/geoiplookup" );
 	return true;
 }
 
