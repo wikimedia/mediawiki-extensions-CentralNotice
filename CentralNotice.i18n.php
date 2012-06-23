@@ -16014,6 +16014,18 @@ Dun at obinon nesädunovik.',
 	'centralnotice-preferred' => 'Pebuüköl',
 );
 
+/** Walloon (walon)
+ * @author Srtxg
+ */
+$messages['wa'] = array(
+	'centralnotice-translations' => 'Ratournaedjes',
+	'centralnotice-translate-to' => 'Ratourner e',
+	'centralnotice-translate' => 'Ratourner',
+	'centralnotice-english' => 'inglès',
+	'centralnotice-number-uses' => 'Eployaedje',
+	'centralnotice-message' => 'Messaedje',
+);
+
 /** Waray (Winaray)
  * @author JinJian
  */
