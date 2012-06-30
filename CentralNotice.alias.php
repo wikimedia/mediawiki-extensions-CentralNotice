@@ -35,6 +35,13 @@ $specialPageAliases['arz'] = array(
 	'NoticeTemplate' => array( 'قالب_الملاحظة' ),
 );
 
+/** Assamese (অসমীয়া) */
+$specialPageAliases['as'] = array(
+	'CentralNotice' => array( 'কেন্দ্ৰীয়_জাননী' ),
+	'CentralNoticeLogs' => array( 'কেন্দ্ৰীয়_জাননী_অভিলেখসমূহ' ),
+	'NoticeTemplate' => array( 'জাননী_সাঁচ' ),
+);
+
 /** Breton (brezhoneg) */
 $specialPageAliases['br'] = array(
 	'HideBanners' => array( 'KuzhatBanniel' ),
@@ -85,7 +92,7 @@ $specialPageAliases['fa'] = array(
 	'HideBanners' => array( 'پنهان_کردن_نشان‌ها' ),
 );
 
-/** Galician (Galego) */
+/** Galician (galego) */
 $specialPageAliases['gl'] = array(
 	'CentralNotice' => array( 'Aviso_central' ),
 	'CentralNoticeLogs' => array( 'Rexistro_do_aviso_central' ),
