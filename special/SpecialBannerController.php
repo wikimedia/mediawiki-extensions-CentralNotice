@@ -161,7 +161,7 @@ JAVASCRIPT;
 		$.centralNotice.fn.getQueryStringVariables();
 		if( $.centralNotice.data.getVars.banner ) {
 			// if we're forcing one banner
-			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars.banner );
+			$.centralNotice.fn.loadBanner( $.centralNotice.data.getVars.banner, 'none', 'testing' );
 		} else {
 			// Look for banners ready to go NOW
 			$.centralNotice.fn.loadBannerList( $.centralNotice.data.getVars.country );
