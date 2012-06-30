@@ -185,54 +185,28 @@ function efCentralNoticeSetup() {
  */
 function efCentralNoticeSchema( $updater = null ) {
 	$base = dirname( __FILE__ );
-	if ( $updater === null ) {
-		global $wgDBtype, $wgExtNewTables, $wgExtNewFields;
 
-		if ( $wgDBtype == 'mysql' ) {
-			$wgExtNewTables[] = array( 'cn_notices',
-				$base . '/CentralNotice.sql' );
-			$wgExtNewFields[] = array( 'cn_notices', 'not_preferred',
-			   $base . '/patches/patch-notice_preferred.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_languages',
-				$base . '/patches/patch-notice_languages.sql' );
-			$wgExtNewFields[] = array( 'cn_templates', 'tmp_display_anon',
-				$base . '/patches/patch-template_settings.sql' );
-			$wgExtNewFields[] = array( 'cn_templates', 'tmp_fundraising',
-				$base . '/patches/patch-template_fundraising.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_countries',
-				$base . '/patches/patch-notice_countries.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_projects',
-				$base . '/patches/patch-notice_projects.sql' );
-			$wgExtNewTables[] = array( 'cn_notice_log',
-				$base . '/patches/patch-notice_log.sql' );
-			$wgExtNewTables[] = array( 'cn_template_log',
-				$base . '/patches/patch-template_log.sql' );
-			$wgExtNewFields[] = array( 'cn_templates', 'tmp_autolink',
-				$base . '/patches/patch-template_autolink.sql' );
-		}
-	} else {
-		if ( $updater->getDB()->getType() == 'mysql' ) {
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notices',
-				$base . '/CentralNotice.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_notices', 'not_preferred',
-				$base . '/patches/patch-notice_preferred.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_languages',
-				$base . '/patches/patch-notice_languages.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon',
-				$base . '/patches/patch-template_settings.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising',
-				$base . '/patches/patch-template_fundraising.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries',
-				$base . '/patches/patch-notice_countries.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects',
-				$base . '/patches/patch-notice_projects.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_log',
-				$base . '/patches/patch-notice_log.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addTable', 'cn_template_log',
-				$base . '/patches/patch-template_log.sql', true ) );
-			$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_autolink',
-				$base . '/patches/patch-template_autolink.sql', true ) );
-		}
+	if ( $updater->getDB()->getType() == 'mysql' ) {
+		$updater->addExtensionUpdate( array( 'addTable', 'cn_notices',
+			$base . '/CentralNotice.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addField', 'cn_notices', 'not_preferred',
+			$base . '/patches/patch-notice_preferred.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_languages',
+			$base . '/patches/patch-notice_languages.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon',
+			$base . '/patches/patch-template_settings.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising',
+			$base . '/patches/patch-template_fundraising.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries',
+			$base . '/patches/patch-notice_countries.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects',
+			$base . '/patches/patch-notice_projects.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_log',
+			$base . '/patches/patch-notice_log.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addTable', 'cn_template_log',
+			$base . '/patches/patch-template_log.sql', true ) );
+		$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_autolink',
+			$base . '/patches/patch-template_autolink.sql', true ) );
 	}
 	return true;
 }
@@ -286,45 +260,39 @@ function efCentralNoticeDefaults( &$vars ) {
 	// This is useful for banners that need to be targeted to specific types of users.
 	// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
 	if ( $wgUser->isLoggedIn() ) {
-	
+
 		$cacheKey = wfMemcKey( 'CentralNotice', 'UserData', $wgUser->getId() );
 		$userData = $wgMemc->get( $cacheKey );
 
 		// Cached?
 		if ( !$userData ) {
-			
 			// Exclude bots
 			if ( $wgUser->isAllowed( 'bot' ) ) {
-				
 				$userData = false;
-
 			} else {
-			
 				$userData = array();
 
 				// Add the user's registration date (MediaWiki timestamp)
 				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
 				$userData['registration'] = $registrationDate;
-				
+
 				// Make sure UserDailyContribs extension is installed.
 				if ( function_exists( 'getUserEditCountSince' ) ) {
-					
+
 					// Add the user's total edit count
 					if ( $wgUser->getEditCount() == null ) {
 						$userData['editcount'] = 0;
 					} else {
 						$userData['editcount'] = intval( $wgUser->getEditCount() );
 					}
-					
+
 					// Add the user's edit count for the past year
 					$userData['pastyearseditcount'] = getUserEditCountSince(
 						time() - ( 365 * 24 * 3600 ), // from a year ago
 						$wgUser,
 						time() // until now
 					);
-					
 				}
-					
 			}
 
 			// Cache the data for 7 days
