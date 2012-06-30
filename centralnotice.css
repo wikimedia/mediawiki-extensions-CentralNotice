@@ -86,6 +86,14 @@
 	margin-right: 1em;
 }
 
+.banner-editing-top-hint {
+	margin-bottom: 0.2em;
+	/* Leaving room for the background image. */
+	padding-left: 17px !important;
+	/* @embed */
+	background: url('down-arrow-ltr.png') no-repeat scroll left center transparent;
+}
+
 /* Vector-specific definitions */
 body.skin-vector #preferences fieldset.prefsection {
 	border-color:#CCCCCC;
