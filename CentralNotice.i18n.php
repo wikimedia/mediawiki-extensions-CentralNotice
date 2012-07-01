@@ -305,12 +305,15 @@ The width of the column is 5% of the total width of the table, so the message sh
 	'centralnotice-action-modified' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
 {{Identical|Modified}}',
 	'centralnotice-action-removed' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.',
+	'centralnotice-changed' => 'Parameters:
+* $1 is are the old banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.
+* $2 is/are are new banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.',
 	'centralnotice-on' => 'indicates a notice is on air
 
 {{Identical|On}}',
 	'centralnotice-off' => 'indicates a notice is not on air
 {{Identical|Off}}',
-	'centralnotice-no-assignments' => 'Appears in the middle of a sentence; should be all lower case.',
+	'centralnotice-no-assignments' => 'Substituted for $1 or $2 in {{msg-mw|centralnotice-changed}}.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.
 {{Identical|Talk}}',
 	'centralnotice-user-links' => '{{optional}}
@@ -579,7 +582,7 @@ $messages['am'] = array(
 	'centralnotice-message' => 'መልእክት',
 );
 
-/** Aragonese (Aragonés)
+/** Aragonese (aragonés)
  * @author Juanpabl
  */
 $messages['an'] = array(
@@ -1686,7 +1689,7 @@ $messages['be'] = array(
 	'centralnotice-add' => 'Дадаць',
 );
 
-/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Red Winged Duck
@@ -2938,8 +2941,9 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
  */
 $messages['cy'] = array(
 	'centralnotice' => 'Gweinyddu hysbysiadau canolog',
-	'noticetemplate' => "Gweinyddu'r hysbysiad canolog",
-	'bannerallocation' => "Gweinyddu'r hysbysiad canolog",
+	'noticetemplate' => 'Gweinyddu hysbysiadau canolog',
+	'bannerallocation' => 'Gweinyddu hysbysiadau canolog',
+	'centralnoticelogs' => 'Gweinyddu hysbysiadau canolog',
 	'right-centralnotice-admin' => 'Gweinyddu hysbysiadau canolog',
 	'action-centralnotice-admin' => 'gweinyddu hysbysiadau canolog',
 	'centralnotice-desc' => 'Yn ychwanegu hysbysiad canolog',
@@ -2957,7 +2961,7 @@ Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.
 	'centralnotice-add-new' => 'Ychwanegu hysbysiad canolog newydd',
 	'centralnotice-remove' => 'Diddymu',
 	'centralnotice-translate-heading' => 'Cyfieithiad ar gyfer $1',
-	'centralnotice-manage' => 'Gweinyddu hysbysiad canolog',
+	'centralnotice-manage' => 'Gweinyddu hysbysiadau canolog',
 	'centralnotice-manage-templates' => 'Trefnu baneri',
 	'centralnotice-add' => 'Ychwanegu',
 	'centralnotice-add-notice' => 'Ychwanegu ymgyrch',
@@ -3007,11 +3011,15 @@ Ddim yn tynnu i ffwrdd.",
 	'centralnotice-start-date' => 'Dyddiad cychwyn',
 	'centralnotice-start-time' => 'Amser cychwyn (UTC)',
 	'centralnotice-end-time' => 'Amser y daw i ben (UTC)',
+	'centralnotice-assigned-templates' => 'Baneri a neilltuwyd',
 	'centralnotice-no-templates' => 'Ni chanfuwyd unrhyw faner.
 Ychwanegwch rai!',
-	'centralnotice-no-templates-assigned' => "Ni briodolwyd baneri i'r ymgyrch.
+	'centralnotice-no-templates-assigned' => "Ni neilltuwyd unrhyw faneri i'r ymgyrch.
 Ychwanegwch rai!",
 	'centralnotice-available-templates' => 'Y baneri sydd ar gael',
+	'centralnotice-template-already-exists' => "Mae'r faner eisoes wedi ei neilltuo i'r ymgyrch.
+Ni chaiff felly ei hychwanegu.",
+	'centralnotice-preview-template' => "Dangos rhagolwg o'r faner",
 	'centralnotice-change-lang' => 'Newid iaith y cyfieithu',
 	'centralnotice-weights' => 'Pwysau',
 	'centralnotice-notice-is-locked' => "Mae'r hysbysiad wedi ei gloi.
@@ -3024,6 +3032,8 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-settings' => 'Gosodiadau',
 	'centralnotice-edit-template' => "Golygu'r nodyn",
 	'centralnotice-message' => 'Neges',
+	'centralnotice-message-not-set' => 'Ni osodwyd y neges',
+	'centralnotice-clone' => 'Clôn',
 	'centralnotice-clone-notice' => "Creu copi o'r faner",
 	'centralnotice-clone-name' => 'Enw:',
 	'centralnotice-preview-all-template-translations' => "Rhagweld pob cyfieithiad o'r faner sydd ar gael",
@@ -3051,17 +3061,25 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-preferred' => 'Gorau gennych',
 	'centralnotice-logs' => 'Logiau',
 	'centralnotice-view-logs' => 'Gweld y logiau',
+	'centralnotice-timestamp' => 'Stamp amser',
 	'centralnotice-user' => 'Defnyddiwr',
 	'centralnotice-action' => 'Gweithred',
 	'centralnotice-action-created' => 'dechreuwyd',
 	'centralnotice-action-modified' => 'newidiwyd',
 	'centralnotice-action-removed' => 'tynnwyd',
+	'centralnotice-changed' => 'Newidiwyd o <span class="cn-old-value">$1</span> i <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'ar waith',
 	'centralnotice-off' => 'bant',
+	'centralnotice-added' => 'Ychwanegwyd <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Tynnwyd <span class="cn-old-value">$1</span> i ffwrdd',
+	'centralnotice-no-assignments' => 'fod heb unrhyw faneri',
 	'centralnotice-talk-link' => 'sgwrs',
 	'centralnotice-campaign-settings' => 'Gosodiadau hysbysiadau canolog',
 	'centralnotice-banner-settings' => 'Gosodiadau baneri',
+	'centralnotice-anon' => 'Dangos i ddefnyddwyr anhysbys',
+	'centralnotice-account' => 'Dangos i ddefnyddwyr mewngofnodedig',
 	'centralnotice-fundraising' => 'Codi arian',
+	'centralnotice-autolink' => "Gosod cysylltau'n awtomatig",
 	'centralnotice-landingpages' => 'Tudalennau glanio',
 	'centralnotice-banner-content' => 'Testun baneri',
 	'centralnotice-banner-content-changed' => 'Newidiwyd',
@@ -3541,7 +3559,7 @@ Yew de bike',
 	'centralnotice-banner-messages' => 'Mesacê afişer',
 );
 
-/** Lower Sorbian (Dolnoserbski)
+/** Lower Sorbian (dolnoserbski)
  * @author Michawiki
  */
 $messages['dsb'] = array(
@@ -5306,7 +5324,7 @@ $messages['ga'] = array(
 	'noticetemplate' => 'Teimpléad fógra lárnach',
 );
 
-/** Galician (Galego)
+/** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
@@ -6319,7 +6337,7 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
 	'centralnotice-date' => 'Datum',
 );
 
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
 $messages['hsb'] = array(
@@ -8261,7 +8279,7 @@ Fott eß fott, dä kam_mer '''nit''' widder zeröck holle!",
 De kanns ävver heh dronger ein dobei donn.',
 	'centralnotice-no-templates-translate' => 'Mer hann kein Banner_Schablohne, woh mer Översäzunge för beärbeide künnt.',
 	'centralnotice-number-uses' => 'mol jebruch',
-	'centralnotice-settings' => 'Enshtällonge',
+	'centralnotice-settings' => 'Enschtällonge',
 	'centralnotice-edit-template' => 'Banner_Schablohn beärbeide',
 	'centralnotice-edit-template-summary' => 'Öm en Nohreesch för zem Övversäze ze krijje, donn ene Name doför (uß Boochshtabe un Bendeshtresch) zwesche drei jeschwänzde Klammre erin schrieve, wi för e Beishpell; <code lang="en">{{{jimbo-zitat}}}</code>.',
 	'centralnotice-message' => 'Nohreesch',
@@ -8291,7 +8309,7 @@ De kanns ävver heh dronger ein dobei donn.',
 	'centralnotice-view-allocation' => 'De Banner_Schablohne iehr Zohdeilong beloore',
 	'centralnotice-allocation-instructions' => 'Donn de Ömjävong udder der Zohsammehang ußwähle, woh De de zohjedeilte Banner_Schablohne för belooere wells:',
 	'centralnotice-languages' => 'Shprooche',
-	'centralnotice-language' => 'Shprooch',
+	'centralnotice-language' => 'Schprooch',
 	'centralnotice-projects' => 'Projäkte',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Kein Banner_Schablohne zohjedeilt',
@@ -12432,7 +12450,7 @@ $messages['ru'] = array(
 	'centralnotice-banner-messages' => 'Сообщения баннеров',
 );
 
-/** Rusyn (Русиньскый)
+/** Rusyn (русиньскый)
  * @author Dim Grits
  * @author Gazeb
  */
