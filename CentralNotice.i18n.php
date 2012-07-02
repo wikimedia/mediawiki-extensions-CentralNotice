@@ -5692,6 +5692,7 @@ Lueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.',
 );
 
 /** Gujarati (ગુજરાતી)
+ * @author Ashok modhvadia
  * @author Dsvyas
  * @author KartikMistry
  * @author Sushant savla
@@ -5802,7 +5803,7 @@ $messages['gu'] = array(
 	'centralnotice-clone-name' => 'નામ:',
 	'centralnotice-preview-all-template-translations' => 'બેનરનાં બધાં પ્રાપ્ત ભાષાંતરોનું પૂર્વાલોકન.',
 	'centralnotice-insert' => '$1  ઉમેરો',
-	'centralnotice-close-button' => 'બટન બંધ',
+	'centralnotice-close-button' => 'બંધ કરવાનું બટન',
 	'centralnotice-close-title' => 'બંધ કરો',
 	'centralnotice-translate-button' => 'કડીનું ભાષાંતર કરવામાં મદદ કરો',
 	'centralnotice-donate-button' => 'દાન આપો બટન',
@@ -8354,9 +8355,10 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
  * @author Gomada
  */
 $messages['ku-latn'] = array(
+	'centralnotice-modify' => 'Tomar bike',
 	'centralnotice-preview' => 'Pêşdîtin',
 	'centralnotice-add' => 'Zêde bike',
-	'centralnotice-translations' => 'Wergerran',
+	'centralnotice-translations' => 'Werger',
 	'centralnotice-translate' => 'Wergerîne',
 	'centralnotice-english' => 'Îngilîzî',
 	'centralnotice-locked' => 'Hate astengkirin',
