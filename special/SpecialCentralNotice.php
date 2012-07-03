@@ -381,12 +381,16 @@ class CentralNotice extends SpecialPage {
 
 			// Table rows
 			foreach ( $res as $row ) {
-				$fields = array();
+				$rowCells = '';
 
 				// Name
-				$fields[] = $sk->makeLinkObj( $this->getTitle(),
+				$rowCells .= Html::rawElement( 'td', array(),
+					$sk->makeLinkObj(
+						$this->getTitle(),
 						htmlspecialchars( $row->not_name ),
-						'method=listNoticeDetail&notice=' . urlencode( $row->not_name ) );
+						'method=listNoticeDetail&notice=' . urlencode( $row->not_name )
+					)
+				);
 
 				// Projects
 				$projects = CentralNotice::getNoticeProjects( $row->not_name );
@@ -408,7 +412,7 @@ class CentralNotice extends SpecialPage {
 				} elseif ( $project_count == 1 ) {
 					$projectList = htmlspecialchars( $projects[0] );
 				}
-				$fields[] = $projectList;
+				$rowCells .= Html::rawElement( 'td', array(), $projectList );
 
 				// Languages
 				$project_langs = CentralNotice::getNoticeLanguages( $row->not_name );
@@ -419,7 +423,7 @@ class CentralNotice extends SpecialPage {
 				} elseif ( $language_count > 0 ) {
 					$languageList = $wgLang->commaList( $project_langs );
 				}
-				$fields[] = $languageList;
+				$rowCells .= Html::rawElement( 'td', array(), $languageList );
 
 				// Date and time calculations
 				$start_timestamp = wfTimestamp( TS_MW, $row->not_start );
@@ -436,33 +440,57 @@ class CentralNotice extends SpecialPage {
 				$end_min = substr( $end_timestamp, 10, 2 );
 
 				// Start
-				$fields[] = "{$start_year}/{$start_month}/{$start_day} {$start_hour}:{$start_min}";
+				$rowCells .= Html::rawElement( 'td', array(),
+					"{$start_year}/{$start_month}/{$start_day} {$start_hour}:{$start_min}"
+				);
 
 				// End
-				$fields[] = "{$end_year}/{$end_month}/{$end_day} {$end_hour}:{$end_min}";
+				$rowCells .= Html::rawElement( 'td', array(),
+					"{$end_year}/{$end_month}/{$end_day} {$end_hour}:{$end_min}"
+				);
 
 				// Enabled
-				$fields[] =
-					Xml::check( 'enabled[]', ( $row->not_enabled == '1' ),
-					wfArrayMerge( $readonly,
-						array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) ) );
+				$rowCells .= Html::rawElement( 'td', array(),
+					Xml::check(
+						'enabled[]',
+						( $row->not_enabled == '1' ),
+						wfArrayMerge( $readonly,
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+						)
+					)
+				);
 
 				// Preferred
-				$fields[] =
-				Xml::check( 'preferred[]', ( $row->not_preferred == '1' ),
-				wfArrayMerge( $readonly,
-				array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) ) );
+				$rowCells .= Html::rawElement( 'td', array(),
+					Xml::check(
+						'preferred[]',
+						( $row->not_preferred == '1' ),
+						wfArrayMerge( $readonly,
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+						)
+					)
+				);
 
 				// Locked
-				$fields[] =
-					Xml::check( 'locked[]', ( $row->not_locked == '1' ),
-					wfArrayMerge( $readonly,
-						array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) ) );
+				$rowCells .= Html::rawElement( 'td', array(),
+					Xml::check(
+						'locked[]',
+						( $row->not_locked == '1' ),
+						wfArrayMerge( $readonly,
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+						)
+					)
+				);
 
 				if ( $this->editable ) {
 					// Remove
-					$fields[] = Xml::check( 'removeCampaigns[]', false,
-						array( 'value' => $row->not_name, 'class' => 'noshiftselect' ) );
+					$rowCells .= Html::rawElement( 'td', array(),
+						Xml::check(
+							'removeCampaigns[]',
+							false,
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+						)
+					);
 				}
 
 				// If campaign is currently active, set special class on table row.
@@ -474,7 +502,7 @@ class CentralNotice extends SpecialPage {
 					$attribs = array( 'class' => 'cn-active-campaign' );
 				}
 
-				$htmlOut .= $this->tableRow( $fields, 'td', $attribs );
+				$htmlOut .= Html::rawElement( 'tr', $attribs, $rowCells );
 			}
 			// End table of campaigns
 			$htmlOut .= Xml::closeElement( 'table' );
