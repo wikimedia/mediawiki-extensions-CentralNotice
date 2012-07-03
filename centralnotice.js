@@ -118,6 +118,7 @@ window.validateBannerForm = function( form ) {
 				$("#geoMultiSelector").fadeOut('fast');
 			}
 		});
+
 		// Reveal the landing page interface when the autolink checkbox is checked
 		$("#autolink").click(function () {
 			if ($('#autolink:checked').val() !== undefined) {
@@ -126,5 +127,12 @@ window.validateBannerForm = function( form ) {
 				$("#autolinkInterface").fadeOut('fast');
 			}
 		});
+
+		// Special:CentralNotice; keep data-sort-value attributes for
+		// jquery.tablesorter in synx
+		$( '.mw-cn-input-check-sort' ).on( 'change click blur', function () {
+			$(this).parent( 'td' )
+				.data( 'sortValue', Number( this.checked ) );
+		} );
 	});
 })(jQuery);

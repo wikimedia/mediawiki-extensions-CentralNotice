@@ -450,45 +450,49 @@ class CentralNotice extends SpecialPage {
 				);
 
 				// Enabled
-				$rowCells .= Html::rawElement( 'td', array(),
+				$checked = ( $row->not_enabled == '1' );
+				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int) $checked ),
 					Xml::check(
 						'enabled[]',
-						( $row->not_enabled == '1' ),
+						$checked,
 						wfArrayMerge( $readonly,
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
 					)
 				);
 
 				// Preferred
-				$rowCells .= Html::rawElement( 'td', array(),
+				$checked = ( $row->not_preferred == '1' );
+				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int) $checked ),
 					Xml::check(
 						'preferred[]',
-						( $row->not_preferred == '1' ),
+						$checked,
 						wfArrayMerge( $readonly,
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
 					)
 				);
 
 				// Locked
-				$rowCells .= Html::rawElement( 'td', array(),
+				$checked = ( $row->not_locked == '1' );
+				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int) $checked ),
 					Xml::check(
 						'locked[]',
-						( $row->not_locked == '1' ),
+						$checked,
 						wfArrayMerge( $readonly,
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
 					)
 				);
 
 				if ( $this->editable ) {
 					// Remove
-					$rowCells .= Html::rawElement( 'td', array(),
+					$checked = false;
+					$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int) $checked ),
 						Xml::check(
 							'removeCampaigns[]',
-							false,
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect' )
+							$checked,
+							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
 					);
 				}
