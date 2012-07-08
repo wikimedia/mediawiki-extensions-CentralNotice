@@ -8786,6 +8786,7 @@ Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.'
 /** Lithuanian (lietuvių)
  * @author Eitvys200
  * @author Garas
+ * @author Homo
  * @author Ignas693
  * @author Matasg
  */
@@ -8912,7 +8913,7 @@ Pridėti vieną žemiau.',
 	'centralnotice-preferred' => 'Pageidaujamas',
 	'centralnotice-logs' => 'Veiksmų istorija',
 	'centralnotice-view-logs' => 'Peržiūrėti veiksmų istoriją',
-	'centralnotice-timestamp' => 'Laiko žymė',
+	'centralnotice-timestamp' => 'Laiko žyma',
 	'centralnotice-user' => 'Vartotojas',
 	'centralnotice-action' => 'Veiksmas',
 	'centralnotice-action-created' => 'sukurtas',
