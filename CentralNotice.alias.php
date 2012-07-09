@@ -245,6 +245,13 @@ $specialPageAliases['pl'] = array(
 	'NoticeTemplate' => array( 'Szablon_komunikatu' ),
 );
 
+/** Tagalog (Tagalog) */
+$specialPageAliases['tl'] = array(
+	'CentralNotice' => array( 'Panggitnang_Pabatid' ),
+	'CentralNoticeLogs' => array( 'Mga_Pagtatala_ng_Panggitnang_Pabatid' ),
+	'NoticeTemplate' => array( 'Suleras_ng_Pabatid' ),
+);
+
 /** Turkish (Türkçe) */
 $specialPageAliases['tr'] = array(
 	'CentralNotice' => array( 'MerkeziBildirim' ),
