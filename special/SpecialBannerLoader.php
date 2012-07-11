@@ -55,9 +55,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	/**
 	 * Generate the JS for the requested banner
-	 * @return a string of Javascript containing a call to insertBanner()
+	 * @param $bannerName string
+	 * @return string of Javascript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
-	 * @throws SpecialBannerLoaderException
+	 * @throw SpecialBannerLoaderException
 	 */
 	function getJsNotice( $bannerName ) {
 		// Make sure the banner exists
@@ -114,9 +115,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * Extract a message name and send to getMessage() for translation
 	 * If the field is 'amount', get the current fundraiser donation amount and pass it as a
 	 * parameter to the message.
-	 * @param $match A message array with 2 members: raw match, short name of message
-	 * @return translated messsage string
-	 * @throws SpecialBannerLoaderException
+	 * @param $match array A message array with 2 members: raw match, short name of message
+	 * @return string translated messsage string
+	 * @throw SpecialBannerLoaderException
 	 */
 	function getNoticeField( $match ) {
 		$field = $match[1];
@@ -160,8 +161,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	/**
 	 * Retrieve a translated message
-	 * @param $msg The full name of the message
-	 * @return translated messsage string
+	 * @param $msg string The full name of the message
+	 * @return string translated messsage string
 	 */
 	private function getMessage( $msg, $params = array() ) {
 		global $wgLang, $wgSitename;

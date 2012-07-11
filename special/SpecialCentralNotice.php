@@ -204,7 +204,7 @@ class CentralNotice extends SpecialPage {
 				$attribs['class'] = 'selected';
 			}
 			$htmlOut .= Xml::tags( 'li', $attribs,
-				$sk->makeLinkObj( $title, htmlspecialchars( $msg ) )
+				Linker::makeLinkObj( $title, htmlspecialchars( $msg ) )
 			);
 		}
 		$htmlOut .= Xml::closeElement( 'ul' );
@@ -214,7 +214,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Get all the campaigns in the database
-	 * @return an array of campaign names
+	 * @return array an array of campaign names
 	 */
 	function getAllCampaignNames() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -319,7 +319,7 @@ class CentralNotice extends SpecialPage {
 
 		// Get connection
 		$dbr = wfGetDB( DB_SLAVE );
-		$sk = $this->getSkin();
+
 		if ( $this->editable ) {
 			$readonly = array();
 		} else {
@@ -385,7 +385,7 @@ class CentralNotice extends SpecialPage {
 
 				// Name
 				$rowCells .= Html::rawElement( 'td', array(),
-					$sk->makeLinkObj(
+					Linker::makeLinkObj(
 						$this->getTitle(),
 						htmlspecialchars( $row->not_name ),
 						'method=listNoticeDetail&notice=' . urlencode( $row->not_name )
@@ -628,7 +628,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Show the interface for viewing/editing an individual campaign
-	 * @param $notice The name of the campaign to view
+	 * @param $notice string The name of the campaign to view
 	 */
 	function listNoticeDetail( $notice ) {
 		global $wgOut, $wgRequest, $wgUser;
@@ -791,7 +791,7 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= Xml::element( 'p' );
 				$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
 				$sk = $this->getSkin();
-				$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+				$htmlOut .= Linker::makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 				$htmlOut .= Xml::element( 'p' );
 			} elseif ( $output_assigned == '' ) {
 				$htmlOut .= Xml::fieldset( wfMsg( 'centralnotice-assigned-templates' ) );
@@ -985,8 +985,6 @@ class CentralNotice extends SpecialPage {
 	function assignedTemplatesForm( $notice ) {
 		global $wgLanguageCode;
 
-		$sk = $this->getSkin();
-
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			array(
@@ -1061,7 +1059,7 @@ class CentralNotice extends SpecialPage {
 				$preview = wfMsg( 'centralnotice-nopreview' );
 			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$sk->makeLinkObj( $viewPage,
+				Linker::makeLinkObj( $viewPage,
 					htmlspecialchars( $row->tmp_name ),
 					'template=' . urlencode( $row->tmp_name ) ) .
 				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
@@ -1128,7 +1126,7 @@ class CentralNotice extends SpecialPage {
 	 * @param $project_languages array: Targeted project languages (en, de, etc.)
 	 * @param $geotargeted int: Boolean setting, 0 or 1
 	 * @param $geo_countries array: Targeted countries
-	 * @return true or null
+	 * @return bool|null
 	 */
 	function addCampaign( $noticeName, $enabled, $start, $projects,
 		$project_languages, $geotargeted, $geo_countries )
@@ -1447,9 +1445,9 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function updateWeight( $noticeName, $templateId, $weight ) {
-		 $dbw = wfGetDB( DB_MASTER );
-		 $noticeId = CentralNotice::getNoticeId( $noticeName );
-		 $dbw->update( 'cn_assignments',
+		$dbw = wfGetDB( DB_MASTER );
+		$noticeId = CentralNotice::getNoticeId( $noticeName );
+		$dbw->update( 'cn_assignments',
 			array ( 'tmp_weight' => $weight ),
 			array(
 				'tmp_id' => $templateId,

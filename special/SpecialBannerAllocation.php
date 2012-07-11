@@ -263,7 +263,6 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	public function getTable( $type, $banners, $weight ) {
 		global $wgLang;
 
-		$sk = $this->getSkin();
 		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
@@ -293,14 +292,14 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 			// The span class is used by bannerstats.js to find where to insert the stats
 			$htmlOut .= Html::openElement( 'span',
 				array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
-			$htmlOut .= $sk->makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
+			$htmlOut .= Linker::makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
 					'template=' . urlencode( $banner['name'] ) );
 			$htmlOut .= Html::closeElement( 'span' );
 			$htmlOut .= Html::closeElement( 'td' );
 
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 
-			$sk->makeLinkObj( $viewCampaign, htmlspecialchars( $banner['campaign'] ),
+				Linker::makeLinkObj( $viewCampaign, htmlspecialchars( $banner['campaign'] ),
 					'method=listNoticeDetail&notice=' . urlencode( $banner['campaign'] ) )
 			);
 

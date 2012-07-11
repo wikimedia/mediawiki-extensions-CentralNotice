@@ -20,7 +20,7 @@ class CentralNoticeDB {
 	 * @param $enabled bool
 	 * @param $preferred string
 	 * @param $location string
-	 * @return an array of ids
+	 * @return array an array of ids
 	 */
 	static function getCampaigns( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
 		global $wgCentralDBname;
@@ -132,7 +132,7 @@ class CentralNoticeDB {
 	 * Return settings for a campaign
 	 * @param $campaignName string: The name of the campaign
 	 * @param $detailed boolean: Whether or not to include targeting and banner assignment info
-	 * @return an array of settings
+	 * @return array an array of settings
 	 */
 	static function getCampaignSettings( $campaignName, $detailed = true ) {
 		global $wgCentralDBname;
@@ -193,7 +193,7 @@ class CentralNoticeDB {
 	 * Given one or more campaign ids, return all banners bound to them
 	 * @param $campaigns array of id numbers
 	 * @param $logging boolean whether or not request is for logging (optional)
-	 * @return a 2D array of banners with associated weights and settings
+	 * @return array a 2D array of banners with associated weights and settings
 	 */
 	static function getCampaignBanners( $campaigns, $logging = false ) {
 		global $wgCentralDBname;
@@ -252,7 +252,7 @@ class CentralNoticeDB {
 	 * Return settings for a banner
 	 * @param $bannerName string name of banner
 	 * @param $logging boolean whether or not request is for logging (optional)
-	 * @return an array of banner settings
+	 * @return array an array of banner settings
 	 */
 	static function getBannerSettings( $bannerName, $logging = false ) {
 		global $wgCentralDBname;
@@ -397,16 +397,16 @@ class CentralNoticeDB {
 	 * @return bool
 	 */
 	public static function bannerExists( $bannerName ) {
-		 global $wgCentralDBname;
-		 $dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 
-		 $eBannerName = htmlspecialchars( $bannerName );
-		 $row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_name' => $eBannerName ) );
-		 if ( $row ) {
+		$eBannerName = htmlspecialchars( $bannerName );
+		$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_name' => $eBannerName ) );
+		if ( $row ) {
 			return true;
-		 } else {
+		} else {
 			return false;
-		 }
+		}
 	}
 
 	/**
@@ -416,14 +416,13 @@ class CentralNoticeDB {
 	 * @return array
 	 */
 	static function getCountriesList( $code ) {
-	
 		$countries = array();
-		
+
 		if ( is_callable( array( 'CountryNames', 'getNames' ) ) ) {
 			// Retrieve the list of countries in user's language (via CLDR)
 			$countries = CountryNames::getNames( $code );
 		}
-		
+
 		if ( !$countries ) {
 			// Use this as fallback if CLDR extension is not enabled
 			$countries = array(
@@ -670,7 +669,7 @@ class CentralNoticeDB {
 				'ZW'=>'Zimbabwe'
 			);
 		}
-		
+
 		return $countries;
 	}
 }

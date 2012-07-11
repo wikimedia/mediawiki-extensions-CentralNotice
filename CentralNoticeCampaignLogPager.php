@@ -18,7 +18,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Sort the log list by timestamp
 	 */
 	function getIndexField() {
-	return 'notlog_timestamp';
+		return 'notlog_timestamp';
 	}
 
 	/**
@@ -30,17 +30,29 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$filterStartDate = 0;
 		$filterEndDate = 0;
 		$startYear = $wgRequest->getVal( 'start_year' );
-		if ( $startYear === 'other' ) $startYear = null;
+		if ( $startYear === 'other' ) {
+			$startYear = null;
+		}
 		$startMonth = $wgRequest->getVal( 'start_month' );
-		if ( $startMonth === 'other' ) $startMonth = null;
+		if ( $startMonth === 'other' ) {
+			$startMonth = null;
+		}
 		$startDay = $wgRequest->getVal( 'start_day' );
-		if ( $startDay === 'other' ) $startDay = null;
+		if ( $startDay === 'other' ) {
+			$startDay = null;
+		}
 		$endYear = $wgRequest->getVal( 'end_year' );
-		if ( $endYear === 'other' ) $endYear = null;
+		if ( $endYear === 'other' ) {
+			$endYear = null;
+		}
 		$endMonth = $wgRequest->getVal( 'end_month' );
-		if ( $endMonth === 'other' ) $endMonth = null;
+		if ( $endMonth === 'other' ) {
+			$endMonth = null;
+		}
 		$endDay = $wgRequest->getVal( 'end_day' );
-		if ( $endDay === 'other' ) $endDay = null;
+		if ( $endDay === 'other' ) {
+			$endDay = null;
+		}
 
 		if ( $startYear && $startMonth && $startDay ) {
 			$filterStartDate = $startYear . $startMonth . $startDay;
@@ -89,13 +101,13 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->notlog_user_id );
 		// Create the user page link
-		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(),
+		$userLink = Linker::makeLinkObj( $loggedUser->getUserPage(),
 			$loggedUser->getName() );
-		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(),
+		$userTalkLink = Linker::makeLinkObj( $loggedUser->getTalkPage(),
 			wfMsg( 'centralnotice-talk-link' ) );
 
 		// Create the campaign link
-		$campaignLink = $this->getSkin()->makeLinkObj( $this->viewPage,
+		$campaignLink = Linker::makeLinkObj( $this->viewPage,
 			htmlspecialchars( $row->notlog_not_name ),
 			'method=listNoticeDetail&notice=' . urlencode( $row->notlog_not_name ) );
 
@@ -151,6 +163,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $htmlOut;
 	}
 
+	/**
+	 * @param $row
+	 * @return string
+	 */
 	function showInitialSettings( $row ) {
 		global $wgLang;
 		$details = '';
@@ -204,6 +220,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $details;
 	}
 
+	/**
+	 * @param $row
+	 * @return string
+	 */
 	function showChanges( $row ) {
 		global $wgLang;
 		$details = '';
@@ -268,10 +288,15 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $details;
 	}
 
+	/**
+	 * @param $param
+	 * @param $row
+	 * @return string
+	 */
 	private function testBooleanChange( $param, $row ) {
 		$result = '';
-		$beginField = 'notlog_begin_'.$param;
-		$endField = 'notlog_end_'.$param;
+		$beginField = 'notlog_begin_' . $param;
+		$endField = 'notlog_end_' . $param;
 		if ( $row->$beginField !== $row->$endField ) {
 			$result .= wfMsg(
 				'centralnotice-log-label',
@@ -287,9 +312,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	private function testSetChange( $param, $row ) {
+		global $wgLang;
 		$result = '';
 		$beginField = 'notlog_begin_'.$param;
 		$endField = 'notlog_end_'.$param;
+
 		if ( $row->$beginField !== $row->$endField ) {
 			$beginSet = array();
 			$endSet = array();

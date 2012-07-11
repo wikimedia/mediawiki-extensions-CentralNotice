@@ -74,7 +74,7 @@ class CentralNoticePager extends TemplatePager {
 			$preview = wfMsg( 'centralnotice-nopreview' );
 		}
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			$this->getSkin()->makeLinkObj( $this->viewPage,
+			Linker::makeLinkObj( $this->viewPage,
 				htmlspecialchars( $row->tmp_name ),
 				'template=' . urlencode( $row->tmp_name ) ) .
 			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
@@ -91,6 +91,7 @@ class CentralNoticePager extends TemplatePager {
 
 	/**
 	 * Specify table headers
+	 * @return string
 	 */
 	function getStartBody() {
 		$htmlOut = '';
@@ -113,10 +114,9 @@ class CentralNoticePager extends TemplatePager {
 
 	/**
 	 * Close table
+	 * @return string
 	 */
 	function getEndBody() {
-		$htmlOut = '';
-		$htmlOut .= Xml::closeElement( 'table' );
-		return $htmlOut;
+		return Xml::closeElement( 'table' );
 	}
 }

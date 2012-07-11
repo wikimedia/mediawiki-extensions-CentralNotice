@@ -33,8 +33,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 */
 	function getQueryInfo() {
 		$conds = array(
-				'rc_bot' => 1, // include bot edits (all edits made by CentralNotice are bot edits)
-				'rc_namespace' => 8, // only MediaWiki pages
+			'rc_bot' => 1, // include bot edits (all edits made by CentralNotice are bot edits)
+			'rc_namespace' => 8, // only MediaWiki pages
 		);
 		if ( $this->logType == 'bannercontent' ) {
 			// Add query contitions for banner content log
@@ -63,9 +63,9 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
-		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(),
+		$userLink = Linker::makeLinkObj( $loggedUser->getUserPage(),
 			$loggedUser->getName() );
-		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(),
+		$userTalkLink = Linker::makeLinkObj( $loggedUser->getTalkPage(),
 			wfMsg ( 'centralnotice-talk-link' ) );
 
 		$language = 'en'; // English is the default for CentralNotice messages
@@ -87,7 +87,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		}
 
 		// Create banner link
-		$bannerLink = $this->getSkin()->makeLinkObj( $this->viewPage,
+		$bannerLink = Linker::makeLinkObj( $this->viewPage,
 			htmlspecialchars( $banner ),
 			'template=' . urlencode( $banner ) );
 
@@ -114,7 +114,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell = $bannerLink;
 
 			// Create the message link
-			$messageLink = $this->getSkin()->makeLinkObj( $title, htmlspecialchars( $message ) );
+			$messageLink = Linker::makeLinkObj( $title, htmlspecialchars( $message ) );
 
 			// If the message was just created, show a link to the message. If the message was
 			// edited, show a link to the message and a link to the diff.
@@ -165,6 +165,9 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		return $htmlOut;
 	}
 
+	/**
+	 * @return String
+	 */
 	function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ) );
@@ -196,11 +199,10 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Close table
+	 * @return string
 	 */
 	function getEndBody() {
-		$htmlOut = '';
-		$htmlOut .= Xml::closeElement( 'table' );
-		return $htmlOut;
+		return Xml::closeElement( 'table' );
 	}
 
 }

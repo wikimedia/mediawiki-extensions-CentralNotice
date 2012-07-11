@@ -74,7 +74,7 @@ class TemplatePager extends ReverseChronologicalPager {
 			$preview = wfMsg( 'centralnotice-nopreview' );
 		}
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			$this->getSkin()->makeLinkObj( $this->viewPage,
+			Linker::makeLinkObj( $this->viewPage,
 				htmlspecialchars( $row->tmp_name ),
 				'template=' . urlencode( $row->tmp_name ) ) .
 			Xml::fieldset( wfMsg( 'centralnotice-preview' ),

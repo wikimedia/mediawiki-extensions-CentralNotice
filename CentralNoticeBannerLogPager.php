@@ -36,13 +36,13 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->tmplog_user_id );
 		// Create the user page link
-		$userLink = $this->getSkin()->makeLinkObj( $loggedUser->getUserPage(),
+		$userLink = Linker::makeLinkObj( $loggedUser->getUserPage(),
 			$loggedUser->getName() );
-		$userTalkLink = $this->getSkin()->makeLinkObj( $loggedUser->getTalkPage(),
+		$userTalkLink = Linker::makeLinkObj( $loggedUser->getTalkPage(),
 			wfMsg ( 'centralnotice-talk-link' ) );
 
 		// Create the banner link
-		$bannerLink = $this->getSkin()->makeLinkObj( $this->viewPage,
+		$bannerLink = Linker::makeLinkObj( $this->viewPage,
 			htmlspecialchars( $row->tmplog_template_name ),
 			'template=' . urlencode( $row->tmplog_template_name ) );
 
@@ -124,11 +124,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	/**
 	 * Close table
+	 * @return string
 	 */
 	function getEndBody() {
-		$htmlOut = '';
-		$htmlOut .= Xml::closeElement( 'table' );
-		return $htmlOut;
+		return Xml::closeElement( 'table' );
 	}
 
 	function showInitialSettings( $row ) {

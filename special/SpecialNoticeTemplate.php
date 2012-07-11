@@ -168,7 +168,6 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	function showList() {
 		global $wgOut;
 
-		$sk = $this->getSkin();
 		$pager = new TemplatePager( $this );
 
 		// Begin building HTML
@@ -200,7 +199,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 		if ( $this->editable ) {
 			$htmlOut .= Html::element( 'p' );
 			$newPage = $this->getTitle( 'add' );
-			$htmlOut .= $sk->makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
+			$htmlOut .= Linker::makeLinkObj( $newPage, wfMsgHtml( 'centralnotice-add-template' ) );
 		}
 
 		// End Manage Banners fieldset
@@ -323,11 +322,8 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgExtensionAssetsPath, $wgLang,
+		global $wgOut, $wgUser, $wgRequest, $wgLanguageCode, $wgLang,
 			$wgNoticeEnableFundraising;
-
-		$scriptPath = "$wgExtensionAssetsPath/CentralNotice";
-		$sk = $this->getSkin();
 
 		if ( $this->editable ) {
 			$readonly = array();
@@ -436,7 +432,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 					$title = Title::newFromText( "MediaWiki:{$message}" );
 					$htmlOut .= Xml::tags( 'td', null,
-						$sk->makeLinkObj( $title, htmlspecialchars( $field ) )
+						Linker::makeLinkObj( $title, htmlspecialchars( $field ) )
 					);
 
 					$htmlOut .= Html::element( 'td', null, $count );
@@ -527,7 +523,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$htmlOut .= Xml::tags( 'tr', null,
 					Xml::tags( 'td', null, '' ) .
 					Xml::tags( 'td', null,
-						$sk->makeLinkObj(
+						Linker::makeLinkObj(
 							$newPage,
 							wfMsgHtml( 'centralnotice-preview-all-template-translations' ),
 							"template=$currentTemplate&wpUserLanguage=all" )
@@ -684,12 +680,10 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 	 * Preview all available translations of a banner
 	 */
 	public function showViewAvailable( $template ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		// Testing to see if bumping up the memory limit lets meta preview
 		ini_set( 'memory_limit', '120M' );
-
-		$sk = $this->getSkin();
 
 		// Pull all available text for a banner
 		$langs = array_keys( $this->getTranslations( $template ) );
@@ -712,7 +706,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 				$preview = wfMsg( 'centralnotice-nopreview' );
 			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$sk->makeLinkObj( $viewPage,
+				Linker::makeLinkObj( $viewPage,
 					$lang,
 					'template=' . urlencode( $template ) . "&wpUserLanguage=$lang" ) .
 				Xml::fieldset( wfMsg( 'centralnotice-preview' ),

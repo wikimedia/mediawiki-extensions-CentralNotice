@@ -174,11 +174,16 @@ JAVASCRIPT;
 
 	}
 
+	/**
+	 * @return string
+	 */
 	function getToggleScripts() {
-		$script = "var wgNoticeToggleState = document.cookie.indexOf( 'hidesnmessage=1' ) === -1;\n\n";
-		return $script;
+		return "var wgNoticeToggleState = document.cookie.indexOf( 'hidesnmessage=1' ) === -1;\n\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	function getScriptFunctions() {
 		global $wgNoticeFundraisingUrl;
 		$script = <<<JAVASCRIPT
