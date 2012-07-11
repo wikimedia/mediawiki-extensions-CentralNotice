@@ -1469,7 +1469,7 @@ $messages['az'] = array(
 	'centralnotice-date' => 'Tarix',
 );
 
-/** Bashkir (Башҡортса)
+/** Bashkir (башҡортса)
  * @author Assele
  * @author Haqmar
  * @author Roustammr
@@ -2727,7 +2727,7 @@ Afegiu-ne un a continuació.',
 	'centralnotice-banner-messages' => 'Bandera de missatges',
 );
 
-/** Chechen (Нохчийн)
+/** Chechen (нохчийн)
  * @author Sasan700
  */
 $messages['ce'] = array(
@@ -8151,7 +8151,7 @@ $messages['ko'] = array(
 	'centralnotice-timestamp' => '시각',
 	'centralnotice-user' => '사용자',
 	'centralnotice-action' => '동작',
-	'centralnotice-action-created' => '생성',
+	'centralnotice-action-created' => '만들어짐',
 	'centralnotice-action-modified' => '수정',
 	'centralnotice-action-removed' => '제거',
 	'centralnotice-changed' => '<span class="cn-old-value">$1</span>에서 <span class="cn-new-value">$2</span>으로 변경',
@@ -8166,7 +8166,7 @@ $messages['ko'] = array(
 	'centralnotice-anon' => '익명 사용자에게 표시',
 	'centralnotice-account' => '로그인한 사용자에게 표시',
 	'centralnotice-fundraising' => '모금 행사',
-	'centralnotice-autolink' => '자동 링크 생성',
+	'centralnotice-autolink' => '자동 링크 만들기',
 	'centralnotice-landingpages' => '랜딩 페이지',
 	'centralnotice-banner-content' => '배너 내용',
 	'centralnotice-banner-content-changed' => '변경됨',
@@ -8559,7 +8559,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-banner-messages' => 'Banner-Messagen',
 );
 
-/** Lezghian (Лезги)
+/** Lezghian (лезги)
  * @author Migraghvi
  */
 $messages['lez'] = array(
@@ -9821,7 +9821,7 @@ $messages['mt'] = array(
 	'centralnotice-languages' => 'Lingwi',
 );
 
-/** Erzya (Эрзянь)
+/** Erzya (эрзянь)
  * @author Botuzhaleny-sodamo
  */
 $messages['myv'] = array(
@@ -9877,7 +9877,7 @@ $messages['nan'] = array(
 	'centralnotice-date' => 'Ji̍t-kî',
 );
 
-/** Norwegian Bokmål (‪Norsk (bokmål)‬)
+/** Norwegian Bokmål (‪norsk (bokmål)‬)
  * @author Event
  * @author Harald Khan
  * @author Jsoby
@@ -9993,9 +9993,6 @@ Legg til en under',
 	'centralnotice-clone-name' => 'Navn:',
 	'centralnotice-preview-all-template-translations' => 'Forhåndsvis alle tilgjengelige oversettelser av malen',
 	'centralnotice-insert' => 'Sett inn: $1',
-	'centralnotice-hide-button' => 'Skjul lenke',
-	'centralnotice-collapse-button' => 'Skjul lenke',
-	'centralnotice-expand-button' => 'Utvid lenke',
 	'centralnotice-close-button' => 'Lukk-knapp',
 	'centralnotice-close-title' => 'Lukk',
 	'centralnotice-translate-button' => 'Hjelp med oversettelse-lenke',
@@ -15399,7 +15396,7 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-preferred' => 'Катгый рәвештә',
 );
 
-/** Tuvinian (Тыва дыл)
+/** Tuvinian (тыва дыл)
  * @author Sborsody
  */
 $messages['tyv'] = array(
@@ -15414,7 +15411,7 @@ $messages['tyv'] = array(
 	'centralnotice-clone-name' => 'Ат:',
 );
 
-/** Udmurt (Удмурт)
+/** Udmurt (удмурт)
  * @author Kaganer
  */
 $messages['udm'] = array(
@@ -15731,7 +15728,7 @@ Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
 	'centralnotice-preferred' => 'Preferìo',
 );
 
-/** Veps (Vepsän kel’)
+/** Veps (vepsän kel’)
  * @author Игорь Бродский
  */
 $messages['vep'] = array(
