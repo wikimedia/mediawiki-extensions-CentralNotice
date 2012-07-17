@@ -176,6 +176,8 @@ Add one below.',
 	'centralnotice-apply-filters' => 'Apply filters',
 	'centralnotice-clear-filters' => 'Clear filters',
 	'centralnotice-banner-messages' => 'Banner messages',
+	'centralnotice-filter-template-prompt' => 'Banner name contains:',
+	'centralnotice-filter-template-submit' => 'Apply filter',
 );
 
 /** Message documentation (Message documentation)

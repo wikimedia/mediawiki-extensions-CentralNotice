@@ -85,6 +85,20 @@
 #preferences #cn-log-switcher label {
 	margin-right: 1em;
 }
+#preferences #cn-template-searchbox {
+    border: 1px solid #CCCCCC;
+    line-height: 1.5em;
+    margin: 1em 0px;
+    padding: 0px 1em 1em;
+    display: block;
+}
+#preferences #cn-template-searchbox legend {
+    font-size: 95%;
+    color: black;
+}
+#preferences #cn-template-searchbox label,input {
+    margin-right: 0.25em;
+}
 
 .banner-editing-top-hint {
 	margin-bottom: 0.2em;
@@ -106,3 +120,4 @@ body.skin-vector #preferences fieldset.prefsection fieldset.cn-bannerpreview {
 body.skin-monobook #preferences fieldset.prefsection {
 	border-color:#AAAAAA;
 }
+

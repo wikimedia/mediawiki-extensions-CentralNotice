@@ -6,10 +6,12 @@
 class TemplatePager extends ReverseChronologicalPager {
 	var $onRemoveChange, $viewPage, $special;
 	var $editable;
+	var $filter;
 
-	function __construct( $special ) {
+	function __construct( $special, $filter = '' ) {
 		$this->special = $special;
 		$this->editable = $special->editable;
+		$this->filter = $filter;
 		parent::__construct();
 
 		// Override paging defaults
@@ -23,17 +25,38 @@ class TemplatePager extends ReverseChronologicalPager {
 
 	/**
 	 * Set the database query to retrieve all the banners in the database
+	 *
 	 * @return array of query settings
 	 */
 	function getQueryInfo() {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// When the filter comes in it is space delimited, so break that...
+		$likeArray = preg_split( '/\s/', $this->filter );
+
+		// ...and then insert all the wildcards betwean search terms
+		if ( empty( $likeArray ) ) {
+			$likeArray = $dbr->anyString();
+		} else {
+			$anyStringToken = $dbr->anyString();
+			$tempArray = array( $anyStringToken );
+			foreach ( $likeArray as $likePart ) {
+				$tempArray[ ] = $likePart;
+				$tempArray[ ] = $anyStringToken;
+			}
+			$likeArray = $tempArray;
+		}
+
 		return array(
 			'tables' => 'cn_templates',
 			'fields' => array( 'tmp_name', 'tmp_id' ),
+			'conds'  => array( 'tmp_name' . $dbr->buildLike( $likeArray ) ),
 		);
 	}
 
 	/**
 	 * Sort the banner list by tmp_id (generally equals reverse chronological)
+	 *
 	 * @return string
 	 */
 	function getIndexField() {
@@ -43,7 +66,9 @@ class TemplatePager extends ReverseChronologicalPager {
 
 	/**
 	 * Generate the content of each table row (1 row = 1 banner)
+	 *
 	 * @param $row object: database row
+	 *
 	 * @return string HTML
 	 */
 	function formatRow( $row ) {
@@ -57,7 +82,7 @@ class TemplatePager extends ReverseChronologicalPager {
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				Xml::check( 'removeTemplates[]', false,
 					array(
-						'value' => $row->tmp_name,
+						'value'    => $row->tmp_name,
 						'onchange' => $this->onRemoveChange
 					)
 				)
@@ -77,10 +102,10 @@ class TemplatePager extends ReverseChronologicalPager {
 			Linker::makeLinkObj( $this->viewPage,
 				htmlspecialchars( $row->tmp_name ),
 				'template=' . urlencode( $row->tmp_name ) ) .
-			Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-				$preview,
-				array( 'class' => 'cn-bannerpreview')
-			)
+				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
+					$preview,
+					array( 'class' => 'cn-bannerpreview' )
+				)
 		);
 
 		// End banner row
@@ -91,6 +116,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 	/**
 	 * Specify table headers
+	 *
 	 * @return string HTML
 	 */
 	function getStartBody() {
@@ -99,11 +125,11 @@ class TemplatePager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::openElement( 'tr' );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-				wfMsg ( 'centralnotice-remove' )
+				wfMsg( 'centralnotice-remove' )
 			);
 		}
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
-			wfMsg ( 'centralnotice-templates' )
+			wfMsg( 'centralnotice-templates' )
 		);
 		$htmlOut .= Xml::closeElement( 'tr' );
 		return $htmlOut;
@@ -111,6 +137,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 	/**
 	 * Close table and add Submit button
+	 *
 	 * @return string HTML
 	 */
 	function getEndBody() {
