@@ -270,12 +270,12 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				$endBanners[$key] = $key.' ('.$weight.')';
 			}
 			if ( $beginBanners ) {
-				$before = $wgLang->listToText( $beginBanners );
+				$before = $wgLang->commaList( $beginBanners );
 			} else {
 				$before = wfMsg( 'centralnotice-no-assignments' );
 			}
 			if ( $endBanners ) {
-				$after = $wgLang->listToText( $endBanners );
+				$after = $wgLang->commaList( $endBanners );
 			} else {
 				$after = wfMsg( 'centralnotice-no-assignments' );
 			}
@@ -330,11 +330,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$removed = array_diff( $beginSet, $endSet );
 			$differences = '';
 			if ( $added ) {
-				$differences .= wfMsg( 'centralnotice-added', $wgLang->listToText( $added ) );
+				$differences .= wfMsg( 'centralnotice-added', $wgLang->commaList( $added ) );
 				if ( $removed ) $differences .= '; ';
 			}
 			if ( $removed ) {
-				$differences .= wfMsg( 'centralnotice-removed', $wgLang->listToText( $removed ) );
+				$differences .= wfMsg( 'centralnotice-removed', $wgLang->commaList( $removed ) );
 			}
 			$result .= wfMsg(
 				'centralnotice-log-label',
