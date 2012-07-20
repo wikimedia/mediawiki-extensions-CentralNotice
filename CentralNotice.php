@@ -42,7 +42,7 @@ $wgCentralNoticeLoader = true;
 $wgNoticeEnableFundraising = true;
 
 // Base URL for default fundraiser landing page (without query string)
-$wgNoticeFundraisingUrl = 'http://wikimediafoundation.org/wiki/Special:LandingCheck';
+$wgNoticeFundraisingUrl = 'https://donate.wikimedia.org/wiki/Special:LandingCheck';
 
 // Source for live counter information
 $wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
