@@ -110,38 +110,77 @@ JAVASCRIPT;
 			},
 			chooseBanner: function( bannerList ) {
 				mw.loader.using( 'mediawiki.user', function() {
-					var groomedBannerList = [], i, j, pointer;
+					var groomedBannerList = [], campaignWeights = {};
+					var numFilteredCampaigns = 0, zLevel = 0, i, idx, count, rnd;
 
-					// Make sure there are some banners to choose from
-					if ( bannerList.length === 0 ) {
-						return false;
-					}
-
-					for( i = 0; i < bannerList.length; i++ ) {
-						// Only include this banner if it's intended for the current user
-						if( ( !mw.user.anonymous() && bannerList[i].display_account === 1 ) ||
-							( mw.user.anonymous() && bannerList[i].display_anon === 1 ) )
+					// Find the highest campaign Z level that fulfills filter constraints
+					for ( i = 0; i < bannerList.length; i++ ) {
+						if ( ( bannerList[i].campaign_z_index >= zLevel ) &&
+						     ( ( !mw.user.anonymous() && bannerList[i].display_account === 1 ) ||
+						       ( mw.user.anonymous() && bannerList[i].display_anon === 1 )
+						     )
+						   )
 						{
-							// Add the banner to our list once per weight
-							for( j = 0; j < bannerList[i].weight; j++ ) {
-								groomedBannerList.push( bannerList[i] );
-							}
+							zLevel = bannerList[i].campaign_z_index;
 						}
 					}
 
-					// Return if there's nothing left after the grooming
+					// Iterate through all banners; filtering for: user/anon and z level
+					// Also determine weight counts per campaign
+					for (i = 0; i < bannerList.length; i++ ) {
+						if ( ( bannerList[i].campaign_z_index === zLevel ) &&
+						     ( ( !mw.user.anonymous() && bannerList[i].display_account === 1 ) ||
+						       ( mw.user.anonymous() && bannerList[i].display_anon === 1 ) ) ) {
+
+							if ( bannerList[i].campaign in campaignWeights ) {
+								campaignWeights[ bannerList[i].campaign ] += bannerList[i].weight;
+							} else {
+								campaignWeights[ bannerList[i].campaign ] = bannerList[i].weight;
+								numFilteredCampaigns += 1;
+							}
+
+							groomedBannerList.push( bannerList[i] );
+						}
+					}
+
+					// Make sure there are some banners to choose from
 					if ( groomedBannerList.length === 0 ) {
 						return false;
 					}
 
-					// Choose a random key
-					pointer = Math.floor( Math.random() * groomedBannerList.length );
+					// Apply normalized weight to selected banners (campaigns have equal weight)
+					count = 0.0;
+					for ( i = 0; i < groomedBannerList.length; i++ ) {
+						groomedBannerList[i].weight =
+							( groomedBannerList[i].weight / campaignWeights[ groomedBannerList[i].campaign ] );
+						groomedBannerList[i].weight *= ( 1 / numFilteredCampaigns );
+
+						count += groomedBannerList[i].weight;
+					}
+
+					// Make sure we add to 1.0
+					groomedBannerList[ groomedBannerList.length - 1 ].weight += ( 1.0 - count );
+
+					// Obtain randomness
+					rnd = Math.random();
+
+					// Obtain banner index
+					count = 0;
+					idx = -1;
+					for (i = 0; i < groomedBannerList.length; i++ ) {
+						if ( rnd < count + groomedBannerList[i].weight ) {
+							idx = i;
+							break;
+						} else {
+							count += groomedBannerList[i].weight;
+						}
+					}
 
 					// Load a random banner from our groomed list
 					$.centralNotice.fn.loadBanner(
-						groomedBannerList[pointer].name,
-						groomedBannerList[pointer].campaign,
-						( groomedBannerList[pointer].fundraising ? 'fundraising' : 'default' )
+						groomedBannerList[idx].name,
+						groomedBannerList[idx].campaign,
+						( groomedBannerList[idx].fundraising ? 'fundraising' : 'default' )
 					);
 				});
 			},
@@ -186,16 +225,16 @@ JAVASCRIPT;
 	 */
 	function getScriptFunctions() {
 		global $wgNoticeFundraisingUrl;
+
+		$noticeFrUrl = Xml::escapeJsString( $wgNoticeFundraisingUrl );
+
 		$script = <<<JAVASCRIPT
 function insertBanner( bannerJson ) {
 	var url, targets;
 
 	jQuery( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
 	if ( bannerJson.autolink ) {
-JAVASCRIPT;
-	$script .= "\n\t\turl = '" .
-	Xml::escapeJsString( $wgNoticeFundraisingUrl ) . "';\n";
-	$script .= <<<JAVASCRIPT
+		url = '{$noticeFrUrl}';
 		if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
 			targets = String( bannerJson.landingPages ).split(',');
 			url += "?" + jQuery.param( {
@@ -230,8 +269,8 @@ function hideBanner() {
 function toggleNotice() {
 	hideBanner();
 }
-
 JAVASCRIPT;
+
 		return $script;
 	}
 

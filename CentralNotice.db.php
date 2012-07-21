@@ -11,18 +11,26 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 class CentralNoticeDB {
 
 	/* Functions */
+
 	/**
-	 * Return campaigns in the system within given constraints
-	 * By default returns enabled campaigns, if $enabled set to false, returns both enabled and disabled campaigns
-	 * @param $project string
-	 * @param $language string
-	 * @param $date string
-	 * @param $enabled bool
-	 * @param $preferred string
-	 * @param $location string
-	 * @return array an array of ids
+	 * @static Returns a list of campaigns. May be filtered on optional constraints.
+	 * By default returns only enabled and active campaigns in all projects, languages and
+	 * countries.
+	 *
+	 * @param null|string $project  The name of the project, ie: 'wikipedia'; if null select all
+	 *                              projects.
+	 * @param null|string $language ISO language code, if null select all languages
+	 * @param null|string $location ISO country code, if null select only non geo-targeted
+	 *                              campaigns.
+	 * @param null|date   $date     Campaigns must start before and end after this date
+	 *                              If the parameter is null, it takes the current date/time
+	 * @param bool        $enabled  If true, select only active campaigns. If false select all.
+	 *
+	 * @return array Array of campaign IDs that matched the filter.
 	 */
-	static function getCampaigns( $project = false, $language = false, $date = false, $enabled = true, $preferred = false, $location = false ) {
+	static function getCampaigns( $project = null, $language = null, $location = null, $date = null,
+	                              $enabled = true )
+	{
 		global $wgCentralDBname;
 
 		$notices = array();
@@ -30,46 +38,49 @@ class CentralNoticeDB {
 		// Database setup
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 
-		if ( !$date ) {
-			$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
-		} else {
+		// We will perform two queries (one geo-targeted, the other not) to
+		// catch all notices. We do it bifurcated because otherwise the query
+		// would be really funky (if even possible) to pass to the underlying
+		// DB layer.
+
+		// Therefore... construct the common components : cn_notices
+		if ( $date ) {
 			$encTimestamp = $dbr->addQuotes( $dbr->timestamp( $date ) );
+		} else {
+			$encTimestamp = $dbr->addQuotes( $dbr->timestamp( ) );
 		}
 
 		$tables = array( 'cn_notices' );
-		if ( $project ) {
-			$tables[] = 'cn_notice_projects';
-		}
-		if ( $language ) {
-			$tables[] = 'cn_notice_languages';
-		}
-
-		$conds = array(
-			'not_geo' => 0,
+		$conds  = array(
 			"not_start <= $encTimestamp",
 			"not_end >= $encTimestamp",
 		);
-		// Use whatever conditional arguments got passed in
-		if ( $project ) {
-			$conds[] = 'np_notice_id = cn_notices.not_id';
-			$conds['np_project'] = $project;
-		}
-		if ( $language ) {
-			$conds[] = 'nl_notice_id = cn_notices.not_id';
-			$conds['nl_language'] = $language;
-		}
+
 		if ( $enabled ) {
 			$conds['not_enabled'] = 1;
 		}
-		if ( $preferred ) {
-			$conds['not_preferred'] = 1;
+
+		// common components: cn_notice_projects
+		if ( $project ) {
+			$tables[] = 'cn_notice_projects';
+
+			$conds[] = 'np_notice_id = cn_notices.not_id';
+			$conds['np_project'] = $project;
 		}
 
-		// Pull db data
+		// common components: language
+		if ( $language ) {
+			$tables[] = 'cn_notice_languages';
+
+			$conds[] = 'nl_notice_id = cn_notices.not_id';
+			$conds['nl_language'] = $language;
+		}
+
+		// Pull the notice IDs of the non geotargeted campaigns
 		$res = $dbr->select(
 			$tables,
 			'not_id',
-			$conds,
+			array_merge($conds, array( 'not_geo' => 0 ) ),
 			__METHOD__
 		);
 
@@ -80,38 +91,13 @@ class CentralNoticeDB {
 
 		// If a location is passed, also pull geotargeted campaigns that match the location
 		if ( $location ) {
-			$tables = array( 'cn_notices', 'cn_notice_countries' );
-			if ( $project ) {
-				$tables[] = 'cn_notice_projects';
-			}
-			if ( $language ) {
-				$tables[] = 'cn_notice_languages';
-			}
+			$tables[] = 'cn_notice_countries';
 
-			// Use whatever conditional arguments got passed in
-			$conds = array(
-				'not_geo' => 1,
-				'nc_notice_id = cn_notices.not_id',
-				'nc_country' => $location,
-				"not_start <= $encTimestamp",
-				"not_end >= $encTimestamp",
-			);
-			if ( $project ) {
-				$conds[] = 'np_notice_id = cn_notices.not_id';
-				$conds['np_project'] = $project;
-			}
-			if ( $language ) {
-				$conds[] = "nl_notice_id = cn_notices.not_id";
-				$conds['nl_language'] = $language;
-			}
+			$conds['not_geo'] = 1;
+			$conds[] = 'nc_notice_id = cn_notices.not_id';
+			$conds['nc_country'] = $location;
 
-			if ( $enabled ) {
-				$conds['not_enabled'] = 1;
-			}
-			if ( $preferred ) {
-				$conds['not_preferred'] = 1;
-			}
-			// Pull db data
+			// Pull the notice IDs
 			$res = $dbr->select(
 				$tables,
 				'not_id',
@@ -222,7 +208,8 @@ class CentralNoticeDB {
 					'tmp_fundraising',
 					'tmp_autolink',
 					'tmp_landing_pages',
-					'not_name'
+					'not_name',
+					'not_preferred'
 				),
 				array(
 					'cn_notices.not_id' => $campaigns,
@@ -241,7 +228,8 @@ class CentralNoticeDB {
 					'fundraising' => intval( $row->tmp_fundraising ), // fundraising banner?
 					'autolink' => intval( $row->tmp_autolink ), // automatically create links?
 					'landing_pages' => $row->tmp_landing_pages, // landing pages to link to
-					'campaign' => $row->not_name // campaign the banner is assigned to
+					'campaign' => $row->not_name, // campaign the banner is assigned to
+					'campaign_z_index' => $row->not_preferred, // z level of the campaign
 				);
 			}
 		}
@@ -289,93 +277,6 @@ class CentralNoticeDB {
 		}
 
 		return $banner;
-	}
-
-	/**
-	 * Lookup function for active banners under a given language/project/location. This function is
-	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
-	 * each project.
-	 * @param $project string
-	 * @param $language string
-	 * @param $location string
-	 * @return array a 2D array of running banners with associated weights and settings
-	 */
-	static function getBannersByTarget( $project, $language, $location = null ) {
-		global $wgCentralDBname;
-
-		$campaigns = array();
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
-
-		// Pull non-geotargeted campaigns
-		$campaignResults1 = $dbr->select(
-			array(
-				'cn_notices',
-				'cn_notice_projects',
-				'cn_notice_languages'
-			),
-			array(
-				'not_id'
-			),
-			array(
-				"not_start <= $encTimestamp",
-				"not_end >= $encTimestamp",
-				'not_enabled = 1', // enabled
-				'not_geo = 0', // not geotargeted
-				'np_notice_id = cn_notices.not_id',
-				'np_project' => $project,
-				'nl_notice_id = cn_notices.not_id',
-				'nl_language' => $language
-			),
-			__METHOD__
-		);
-		foreach ( $campaignResults1 as $row ) {
-			$campaigns[] = $row->not_id;
-		}
-		if ( $location ) {
-
-			// Normalize location parameter (should be an uppercase 2-letter country code)
-			preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
-			if ( $matches ) {
-				$location = strtoupper( $matches[0] );
-
-				// Pull geotargeted campaigns
-				$campaignResults2 = $dbr->select(
-					array(
-						'cn_notices',
-						'cn_notice_projects',
-						'cn_notice_languages',
-						'cn_notice_countries'
-					),
-					array(
-						'not_id'
-					),
-					array(
-						"not_start <= $encTimestamp",
-						"not_end >= $encTimestamp",
-						'not_enabled = 1', // enabled
-						'not_geo = 1', // geotargeted
-						'nc_notice_id = cn_notices.not_id',
-						'nc_country' => $location,
-						'np_notice_id = cn_notices.not_id',
-						'np_project' => $project,
-						'nl_notice_id = cn_notices.not_id',
-						'nl_language' => $language
-					),
-					__METHOD__
-				);
-				foreach ( $campaignResults2 as $row ) {
-					$campaigns[] = $row->not_id;
-				}
-			}
-		}
-
-		$banners = array();
-		if ( $campaigns ) {
-			// Pull all banners assigned to the campaigns
-			$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
-		}
-		return $banners;
 	}
 
 	/**

@@ -6,6 +6,16 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class CentralNotice extends SpecialPage {
+	/**
+	 * The least important Z level
+	 */
+	const MIN_Z_LEVEL = 0;
+
+	/**
+	 * The most important Z level
+	 */
+	const MAX_Z_LEVEL = 5;
+
 	var $editable, $centralNoticeError;
 
 	function __construct() {
@@ -86,7 +96,8 @@ class CentralNotice extends SpecialPage {
 					$allCampaignNames = $this->getAllCampaignNames();
 					$allInitialCampaignSettings = array();
 					foreach ( $allCampaignNames as $campaignName ) {
-						$allInitialCampaignSettings[ $campaignName ] = CentralNoticeDB::getCampaignSettings( $campaignName, false );
+						$settings = CentralNoticeDB::getCampaignSettings( $campaignName, false );
+						$allInitialCampaignSettings[ $campaignName ] = $settings;
 					}
 
 					// Handle locking/unlocking campaigns
@@ -131,24 +142,18 @@ class CentralNotice extends SpecialPage {
 						}
 					}
 
-					// Handle setting preferred campaigns
-					$preferredNotices = $wgRequest->getArray( 'preferred' );
+					// Handle setting priority on campaigns
+					$preferredNotices = $wgRequest->getArray( 'priority' );
 					if ( $preferredNotices ) {
-						// Build list of campaigns to unset
-						$unsetNotices = array_diff( $this->getAllCampaignNames(), $preferredNotices );
+						foreach ( $preferredNotices as $notice => $value ) {
+							if ($value == 'other') $value = $this->MIN_Z_VALUE;
 
-						// Set flag accordingly
-						foreach ( $preferredNotices as $notice ) {
-							$this->setBooleanCampaignSetting( $notice, 'preferred', 1 );
-						}
-						foreach ( $unsetNotices as $notice ) {
-							$this->setBooleanCampaignSetting( $notice, 'preferred', 0 );
-						}
-					// Handle updates if no post content came through (all checkboxes unchecked)
-					} else {
-						$allNotices = $this->getAllCampaignNames();
-						foreach ( $allNotices as $notice ) {
-							$this->setBooleanCampaignSetting( $notice, 'preferred', 0 );
+							$this->setNumericCampaignSetting(
+								$notice,
+								'preferred',
+								$value,
+								CentralNotice::MAX_Z_LEVEL
+							);
 						}
 					}
 
@@ -159,7 +164,8 @@ class CentralNotice extends SpecialPage {
 						// If there are changes, log them
 						if ( $diffs ) {
 							$campaignId = CentralNotice::getNoticeId( $campaignName );
-							$this->logCampaignChange( 'modified', $campaignId, $allInitialCampaignSettings[ $campaignName ], $finalCampaignSettings );
+							$this->logCampaignChange( 'modified', $campaignId,
+								$allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
 						}
 					}
 				}
@@ -293,6 +299,28 @@ class CentralNotice extends SpecialPage {
 		} else {
 			global $wgLang;
 			return $wgLang->time( $timestamp );
+		}
+	}
+
+	public static function prioritySelector( $index, $editable, $value ) {
+		if ($editable) {
+
+			$itemName = 'priority';
+			if ($index) {
+				$itemName .= "[$index]";
+			}
+
+			return Xml::listDropDown(
+				$itemName,
+				CentralNotice::dropDownList(
+					wfMsg('centralnotice-preferred'),
+					range(CentralNotice::MIN_Z_LEVEL, CentralNotice::MAX_Z_LEVEL)
+				),
+				'',
+				$value
+			);
+		} else {
+			return $value;
 		}
 	}
 
@@ -464,16 +492,9 @@ class CentralNotice extends SpecialPage {
 					)
 				);
 
-				// Preferred
-				$checked = ( $row->not_preferred == '1' );
-				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$checked ),
-					Xml::check(
-						'preferred[]',
-						$checked,
-						wfArrayMerge( $readonly,
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
-						)
-					)
+				// Preferred / Priority
+				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => $row->not_preferred ),
+					$this::prioritySelector( $row->not_name, $this->editable, $row->not_preferred)
 				);
 
 				// Locked
@@ -678,12 +699,14 @@ class CentralNotice extends SpecialPage {
 							$this->setBooleanCampaignSetting( $notice, 'enabled', 0 );
 						}
 
-						// Handle setting campaign to preferred/not preferred
-						if ( $wgRequest->getCheck( 'preferred' ) ) {
-							$this->setBooleanCampaignSetting( $notice, 'preferred', 1 );
-						} else {
-							$this->setBooleanCampaignSetting( $notice, 'preferred', 0 );
-						}
+						// Handle setting campaign priority
+						$this->setNumericCampaignSetting(
+							$notice,
+							'preferred',
+							$wgRequest->getInt('priority', CentralNotice::MIN_Z_LEVEL),
+							CentralNotice::MAX_Z_LEVEL,
+							CentralNotice::MIN_Z_LEVEL
+						);
 
 						// Handle updating geotargeting
 						if ( $wgRequest->getCheck( 'geotargeted' ) ) {
@@ -863,7 +886,7 @@ class CentralNotice extends SpecialPage {
 					$endArray[ 'hour' ] .
 					$endArray[ 'min' ] . '00';
 				$isEnabled = $wgRequest->getCheck( 'enabled' );
-				$isPreferred = $wgRequest->getCheck( 'preferred' );
+				$priority = $wgRequest->getInt( 'priority', CentralNotice::MIN_Z_LEVEL );
 				$isLocked = $wgRequest->getCheck( 'locked' );
 				$noticeProjects = $wgRequest->getArray( 'projects', array() );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
@@ -873,7 +896,7 @@ class CentralNotice extends SpecialPage {
 				$startTimestamp = $campaign[ 'start' ];
 				$endTimestamp = $campaign[ 'end' ];
 				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
-				$isPreferred = ( $campaign[ 'preferred' ] == '1' );
+				$priority = ( $campaign[ 'preferred' ] );
 				$isLocked = ( $campaign[ 'locked' ] == '1' );
 				$noticeProjects = CentralNotice::getNoticeProjects( $notice );
 				$noticeLanguages = CentralNotice::getNoticeLanguages( $notice );
@@ -950,14 +973,12 @@ class CentralNotice extends SpecialPage {
 					wfArrayMerge( $readonly,
 						array( 'value' => $notice, 'id' => 'enabled' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			// Preferred
+			// Preferred / Priority
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::label( wfMsg( 'centralnotice-preferred' ), 'preferred' ) );
+				Xml::label( wfMsg( 'centralnotice-preferred' ), 'priority' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::check( 'preferred', $isPreferred,
-					wfArrayMerge( $readonly,
-						array( 'value' => $notice, 'id' => 'preferred' ) ) ) );
+				$this::prioritySelector( '0', $this->editable, $priority ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1454,8 +1475,8 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Update a boolean setting on a campaign
 	 *
-	 * @param $noticeName   string: Name of the campaign
-	 * @param $settingName  string: Name of a boolean setting (enabled, preferred, locked, or geo)
+	 * @param $noticeName string: Name of the campaign
+	 * @param $settingName string: Name of a boolean setting (enabled, locked, or geo)
 	 * @param $settingValue int: Value to use for the setting, 0 or 1
 	 */
 	private function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
@@ -1467,6 +1488,36 @@ class CentralNotice extends SpecialPage {
 			$dbw = wfGetDB( DB_MASTER );
 			$res = $dbw->update( 'cn_notices',
 				array( 'not_' . $settingName => $settingValue ),
+				array( 'not_name' => $noticeName )
+			);
+		}
+	}
+
+	/**
+	 * Updates a numeric setting on a campaign
+	 * @param string $noticeName Name of the campaign
+	 * @param string $settingName Name of a numeric setting (preferred)
+	 * @param int $settingValue Value to use
+	 * @param int $max The max that the value can take, default 1
+	 * @param int $min The min that the value can take, default 0
+	 */
+	private function setNumericCampaignSetting( $noticeName, $settingName, $settingValue, $max = 1, $min = 0) {
+		if ($max <= $min) {
+			throw new RangeException('Max must be greater than min.');
+		}
+
+		if ($settingValue > $max) $settingValue = $max;
+		if ($settingValue < $min) $settingValue = $min;
+
+		if ( !CentralNoticeDB::campaignExists( $noticeName ) ) {
+			// Exit quietly since campaign may have been deleted at the same time.
+			return;
+		} else {
+			$settingName = strtolower( $settingName );
+			$dbw = wfGetDB( DB_MASTER );
+
+			$res = $dbw->update( 'cn_notices',
+				array( 'not_'.$settingName => $settingValue ),
 				array( 'not_name' => $noticeName )
 			);
 		}
