@@ -86,11 +86,10 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 * @param string    $default  Default value to return on error
 	 * @return The sanitized value
 	 */
-	static function getTextAndSanitize($param, $regex, $default = null) {
+	static function getTextAndSanitize( $param, $regex, $default = null ) {
 		global $wgRequest;
 
-		if (preg_match( $regex, $wgRequest->getText( $param ), $matches ))
-		{
+		if ( preg_match( $regex, $wgRequest->getText( $param ), $matches ) ) {
 			return $matches[0];
 		} else {
 			return $default;

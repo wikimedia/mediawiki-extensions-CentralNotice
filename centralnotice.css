@@ -120,7 +120,3 @@ body.skin-vector #preferences fieldset.prefsection fieldset.cn-bannerpreview {
 body.skin-monobook #preferences fieldset.prefsection {
 	border-color:#AAAAAA;
 }
-
-.cn-zorder-select {
-    width: 5em;
-}

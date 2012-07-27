@@ -80,7 +80,7 @@ class CentralNoticeDB {
 		$res = $dbr->select(
 			$tables,
 			'not_id',
-			array_merge($conds, array( 'not_geo' => 0 ) ),
+			array_merge( $conds, array( 'not_geo' => 0 ) ),
 			__METHOD__
 		);
 

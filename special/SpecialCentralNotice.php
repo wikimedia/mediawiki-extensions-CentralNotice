@@ -6,15 +6,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 class CentralNotice extends SpecialPage {
-	/**
-	 * The least important Z level
-	 */
-	const MIN_Z_LEVEL = 0;
 
-	/**
-	 * The most important Z level
-	 */
-	const MAX_Z_LEVEL = 5;
+	const LOW_PRIORITY = 0;
+	const NORMAL_PRIORITY = 1;
+	const HIGH_PRIORITY = 2;
+	const EMERGENCY_PRIORITY = 3;
 
 	var $editable, $centralNoticeError;
 
@@ -146,13 +142,12 @@ class CentralNotice extends SpecialPage {
 					$preferredNotices = $wgRequest->getArray( 'priority' );
 					if ( $preferredNotices ) {
 						foreach ( $preferredNotices as $notice => $value ) {
-							if ($value == 'other') $value = $this->MIN_Z_VALUE;
-
 							$this->setNumericCampaignSetting(
 								$notice,
 								'preferred',
 								$value,
-								CentralNotice::MAX_Z_LEVEL
+								CentralNotice::EMERGENCY_PRIORITY,
+								CentralNotice::LOW_PRIORITY
 							);
 						}
 					}
@@ -302,25 +297,49 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	public static function prioritySelector( $index, $editable, $value ) {
-		if ($editable) {
+	/**
+	 * Construct the priority select list for a campaign
+	 *
+	 * @param string|false $index The name of the campaign (or false if it isn't needed)
+	 * @param boolean $editable Whether or not the form is editable by the user
+	 * @param integer $priorityValue The current priority value for this campaign
+	 *
+	 * @return string HTML for the select list
+	 */
+	public static function prioritySelector( $index, $editable, $priorityValue ) {
+
+		$priorities = array(
+			CentralNotice::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' )->escaped(),
+			CentralNotice::NORMAL_PRIORITY => wfMessage( 'centralnotice-priority-normal' )->escaped(),
+			CentralNotice::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' )->escaped(),
+			CentralNotice::EMERGENCY_PRIORITY => wfMessage( 'centralnotice-priority-emergency' )->escaped(),
+		);
+
+		if ( $editable ) {
 
 			$itemName = 'priority';
-			if ($index) {
+			if ( $index ) {
 				$itemName .= "[$index]";
 			}
 
-			return Xml::listDropDown(
-				$itemName,
-				CentralNotice::dropDownList(
-					wfMsg('centralnotice-preferred'),
-					range(CentralNotice::MIN_Z_LEVEL, CentralNotice::MAX_Z_LEVEL)
-				),
-				'',
-				$value
+			$options = ''; // The HTML for the select list options
+			foreach ( $priorities as $key => $label ) {
+				$options .= XML::option( $label, $key, $priorityValue == $key );
+			}
+
+			$selectAttribs = array(
+				'id' => $itemName,
+				'name' => $itemName,
 			);
+
+			return Xml::openElement( 'select', $selectAttribs )
+				. "\n"
+				. $options
+				. "\n"
+				. Xml::closeElement( 'select' );
+		
 		} else {
-			return $value;
+			return $priorities[$priorityValue];
 		}
 	}
 
@@ -703,9 +722,9 @@ class CentralNotice extends SpecialPage {
 						$this->setNumericCampaignSetting(
 							$notice,
 							'preferred',
-							$wgRequest->getInt('priority', CentralNotice::MIN_Z_LEVEL),
-							CentralNotice::MAX_Z_LEVEL,
-							CentralNotice::MIN_Z_LEVEL
+							$wgRequest->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
+							CentralNotice::EMERGENCY_PRIORITY,
+							CentralNotice::LOW_PRIORITY
 						);
 
 						// Handle updating geotargeting
@@ -886,7 +905,7 @@ class CentralNotice extends SpecialPage {
 					$endArray[ 'hour' ] .
 					$endArray[ 'min' ] . '00';
 				$isEnabled = $wgRequest->getCheck( 'enabled' );
-				$priority = $wgRequest->getInt( 'priority', CentralNotice::MIN_Z_LEVEL );
+				$priority = $wgRequest->getInt( 'priority', CentralNotice::NORMAL_PRIORITY );
 				$isLocked = $wgRequest->getCheck( 'locked' );
 				$noticeProjects = $wgRequest->getArray( 'projects', array() );
 				$noticeLanguages = $wgRequest->getArray( 'project_languages', array() );
@@ -896,7 +915,7 @@ class CentralNotice extends SpecialPage {
 				$startTimestamp = $campaign[ 'start' ];
 				$endTimestamp = $campaign[ 'end' ];
 				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
-				$priority = ( $campaign[ 'preferred' ] );
+				$priority = $campaign[ 'preferred' ];
 				$isLocked = ( $campaign[ 'locked' ] == '1' );
 				$noticeProjects = CentralNotice::getNoticeProjects( $notice );
 				$noticeLanguages = CentralNotice::getNoticeLanguages( $notice );
@@ -978,7 +997,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( wfMsg( 'centralnotice-preferred' ), 'priority' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				$this::prioritySelector( '0', $this->editable, $priority ) );
+				$this::prioritySelector( false, $this->editable, $priority ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1495,19 +1514,23 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Updates a numeric setting on a campaign
+	 *
 	 * @param string $noticeName Name of the campaign
 	 * @param string $settingName Name of a numeric setting (preferred)
 	 * @param int $settingValue Value to use
 	 * @param int $max The max that the value can take, default 1
 	 * @param int $min The min that the value can take, default 0
 	 */
-	private function setNumericCampaignSetting( $noticeName, $settingName, $settingValue, $max = 1, $min = 0) {
-		if ($max <= $min) {
-			throw new RangeException('Max must be greater than min.');
+	private function setNumericCampaignSetting( $noticeName, $settingName, $settingValue, $max = 1, $min = 0 ) {
+		if ( $max <= $min ) {
+			throw new RangeException( 'Max must be greater than min.' );
+		}
+		if ( !is_numeric( $settingValue ) ) {
+			throw new MWException( 'Setting value must be numeric.' );
 		}
 
-		if ($settingValue > $max) $settingValue = $max;
-		if ($settingValue < $min) $settingValue = $min;
+		if ( $settingValue > $max ) $settingValue = $max;
+		if ( $settingValue < $min ) $settingValue = $min;
 
 		if ( !CentralNoticeDB::campaignExists( $noticeName ) ) {
 			// Exit quietly since campaign may have been deleted at the same time.

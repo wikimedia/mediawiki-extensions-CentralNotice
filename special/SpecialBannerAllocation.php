@@ -188,15 +188,18 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		// Obtain all banners & campaigns
 		$project = SpecialBannerListLoader::getTextAndSanitize(
 			'project',
-			SpecialBannerListLoader::PROJECT_FILTER);
+			SpecialBannerListLoader::PROJECT_FILTER
+		);
 
 		$language = SpecialBannerListLoader::getTextAndSanitize(
 			'language',
-			SpecialBannerListLoader::LANG_FILTER);
+			SpecialBannerListLoader::LANG_FILTER
+		);
 
 		$location = SpecialBannerListLoader::getTextAndSanitize(
 			'country',
-			SpecialBannerListLoader::LOCATION_FILTER);
+			SpecialBannerListLoader::LOCATION_FILTER
+		);
 
 		$campaigns = CentralNoticeDB::getCampaigns( $project, $language, $location );
 		$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
@@ -205,8 +208,8 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$anonCampaigns = array();
 		$accountCampaigns = array();
 
-		$anonBanners = $this->filterBanners($banners, 'display_anon', 'anon_weight', $anonCampaigns);
-		$accountBanners = $this->filterBanners($banners, 'display_account', 'account_weight', $accountCampaigns);
+		$anonBanners = $this->filterBanners( $banners, 'display_anon', 'anon_weight', $anonCampaigns );
+		$accountBanners = $this->filterBanners( $banners, 'display_account', 'account_weight', $accountCampaigns );
 
 		$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
 
@@ -316,21 +319,21 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 *
 	 * @return array
 	 */
-	private function filterBanners($banners, $filterKey, $weightKey, &$campaignWeights = array()) {
+	private function filterBanners( $banners, $filterKey, $weightKey, &$campaignWeights = array() ) {
 		$campaignZLevel = CentralNotice::MIN_Z_LEVEL;
 		$filteredBanners = array();
 
 		// Find the highest Z level
-		foreach ($banners as $banner) {
-			if (($banner['campaign_z_index'] > $campaignZLevel) && ($banner[$filterKey] == true)) {
+		foreach ( $banners as $banner ) {
+			if ( ( $banner['campaign_z_index'] > $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
 				$campaignZLevel = $banner['campaign_z_index'];
 			}
 		}
 
 		// Determine the weighting factors
-		foreach ($banners as $banner) {
-			if (($banner['campaign_z_index'] == $campaignZLevel) && ($banner[$filterKey] == true)) {
-				if (array_key_exists($banner['campaign'], $campaignWeights)) {
+		foreach ( $banners as $banner ) {
+			if ( ( $banner['campaign_z_index'] == $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
+				if ( array_key_exists( $banner['campaign'], $campaignWeights ) ) {
 					$campaignWeights[$banner['campaign']] += $banner['weight'];
 				} else {
 					$campaignWeights[$banner['campaign']] = $banner['weight'];
@@ -339,11 +342,11 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		}
 
 		// Construct the relative weights
-		foreach ($banners as $banner) {
-			if (($banner['campaign_z_index'] == $campaignZLevel) && ($banner[$filterKey] == true)) {
+		foreach ( $banners as $banner ) {
+			if ( ( $banner['campaign_z_index'] == $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
 
-				$banner[$weightKey] = ($banner['weight'] / $campaignWeights[$banner['campaign']]);
-				$banner[$weightKey] *= 1 / count($campaignWeights);
+				$banner[$weightKey] = ( $banner['weight'] / $campaignWeights[$banner['campaign']] );
+				$banner[$weightKey] *= 1 / count( $campaignWeights );
 
 				$filteredBanners[] = $banner;
 			}

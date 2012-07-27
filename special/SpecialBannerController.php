@@ -226,7 +226,7 @@ JAVASCRIPT;
 	function getScriptFunctions() {
 		global $wgNoticeFundraisingUrl;
 
-		$noticeFrUrl = Xml::escapeJsString( $wgNoticeFundraisingUrl );
+		$noticeFundraisingUrl = Xml::escapeJsString( $wgNoticeFundraisingUrl );
 
 		$script = <<<JAVASCRIPT
 function insertBanner( bannerJson ) {
@@ -234,7 +234,7 @@ function insertBanner( bannerJson ) {
 
 	jQuery( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
 	if ( bannerJson.autolink ) {
-		url = '{$noticeFrUrl}';
+		url = '{$noticeFundraisingUrl}';
 		if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
 			targets = String( bannerJson.landingPages ).split(',');
 			url += "?" + jQuery.param( {
