@@ -96,7 +96,7 @@ JAVASCRIPT;
 				} );
 JAVASCRIPT;
 		$js .= "\n\t\t\t\tbannerListURL = mw.util.wikiScript() + '?title=' + encodeURIComponent('" .
-			$wgContLang->specialPage( 'BannerListLoader' ) .
+			Xml::escapeJsString( $wgContLang->specialPage( 'BannerListLoader' ) ) .
 			"') + '&cache=/cn.js&' + bannerListQuery;\n";
 		$js .= <<<JAVASCRIPT
 				// Prevent loading banners on Special pages
