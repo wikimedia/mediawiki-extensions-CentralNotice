@@ -147,7 +147,11 @@ JAVASCRIPT;
 			},
 			getQueryStringVariables: function() {
 				function decode( s ) {
-					return decodeURIComponent( s.split( '+' ).join( ' ' ) );
+					try {
+						return decodeURIComponent( s.split( '+' ).join( ' ' ) );
+					}catch(e){
+						return '';
+					}
 				}
 				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
 					$.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
