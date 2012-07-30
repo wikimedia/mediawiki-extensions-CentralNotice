@@ -8,8 +8,8 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $language; // Project language
 	public $location; // User country
 
-	const LANG_FILTER = '/[a-zA-Z0-9\-]*/';         // alphanum w/ -
-	const PROJECT_FILTER = '/[a-zA-Z0-9_\-]*/';     // alphanum w/ _ & -
+	const LANG_FILTER = '/[a-zA-Z0-9\-]+/';         // alphanum w/ -
+	const PROJECT_FILTER = '/[a-zA-Z0-9_\-]+/';     // alphanum w/ _ & -
 	const LOCATION_FILTER = '/[a-zA-Z][a-zA-Z]/';   // 2 alphas
 
 	protected $sharedMaxAge = 300; // Cache for 5 minutes on the server side
