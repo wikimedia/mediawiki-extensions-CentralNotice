@@ -185,67 +185,57 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	public function showList() {
 		global $wgOut, $wgRequest, $wgLanguageCode;
 
+		// Obtain all banners & campaigns
+		$project = SpecialBannerListLoader::getTextAndSanitize(
+			'project',
+			SpecialBannerListLoader::PROJECT_FILTER
+		);
+
+		$language = SpecialBannerListLoader::getTextAndSanitize(
+			'language',
+			SpecialBannerListLoader::LANG_FILTER
+		);
+
+		$location = SpecialBannerListLoader::getTextAndSanitize(
+			'country',
+			SpecialBannerListLoader::LOCATION_FILTER
+		);
+
+		$campaigns = CentralNoticeDB::getCampaigns( $project, $language, $location );
+		$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
+
+		// Filter appropriately
+		$anonCampaigns = array();
+		$accountCampaigns = array();
+
+		$anonBanners = $this->filterBanners( $banners, 'display_anon', 'anon_weight', $anonCampaigns );
+		$accountBanners = $this->filterBanners( $banners, 'display_account', 'account_weight', $accountCampaigns );
+
+		$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
+
 		// Begin building HTML
 		$htmlOut = '';
 
 		// Begin Allocation list fieldset
 		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
-		$bannerLister = new SpecialBannerListLoader();
-		$bannerLister->project = $wgRequest->getVal( 'project' );
-		$bannerLister->language = $wgRequest->getVal( 'language', $wgLanguageCode );
-		$bannerLister->location = $wgRequest->getVal( 'country' );
-
 		$htmlOut .= Xml::tags( 'p', null,
 			wfMsg (
 				'centralnotice-allocation-description',
-				htmlspecialchars( $bannerLister->language ),
-				htmlspecialchars( $bannerLister->project ),
-				htmlspecialchars( $bannerLister->location )
+				htmlspecialchars( $language ),
+				htmlspecialchars( $project ),
+				htmlspecialchars( $location )
 			)
 		);
 
-		$bannerList = $bannerLister->getJsonList();
-		$banners = FormatJson::decode( $bannerList, true );
-		$campaigns = array();
-		$anonBanners = array();
-		$accountBanners = array();
-		$anonWeight = 0;
-		$accountWeight = 0;
+		// Build campaign list for bannerstats.js
+		$campaignList = FormatJson::encode( $campaignsUsed );
+		$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
+		$htmlOut .= Html::inlineScript( $js );
 
-		if ( $banners ) {
-
-			foreach ( $banners as $banner ) {
-				if ( $banner['display_anon'] ) {
-					$anonBanners[] = $banner;
-					$anonWeight += $banner['weight'];
-				}
-
-				if ( $banner['display_account'] ) {
-					$accountBanners[] = $banner;
-					$accountWeight += $banner['weight'];
-				}
-
-				if ( $banner['campaign'] ) {
-					$campaigns[] = $banner['campaign'];
-				}
-			}
-
-			// Build campaign list for bannerstats.js
-			$campaignList = FormatJson::encode( $campaigns );
-			$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
-			$htmlOut .= Html::inlineScript( $js );
-
-			if ( $anonBanners && $anonWeight > 0 ) {
-				$htmlOut .= $this->getTable( wfMsg ( 'centralnotice-banner-anonymous' ), $anonBanners, $anonWeight );
-			}
-
-			if ( $accountBanners && $accountWeight > 0  ) {
-				$htmlOut .= $this->getTable( wfMsg ( 'centralnotice-banner-logged-in' ), $accountBanners, $accountWeight );
-			}
-		} else {
-			$htmlOut .= Xml::tags( 'p', null, wfMsg ( 'centralnotice-no-allocation' ) );
-		}
+		// And now print the allocation tables
+		$htmlOut .= $this->getTable( wfMsg ( 'centralnotice-banner-anonymous' ), $anonBanners, 'anon_weight' );
+		$htmlOut .= $this->getTable( wfMsg ( 'centralnotice-banner-logged-in' ), $accountBanners, 'account_weight' );
 
 		// End Allocation list fieldset
 		$htmlOut .= Html::closeElement( 'fieldset' );
@@ -260,7 +250,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * @param $weight integer The total weight of the banners
 	 * @return HTML for the table
 	 */
-	public function getTable( $type, $banners, $weight ) {
+	public function getTable( $type, $banners, $weightKey ) {
 		global $wgLang;
 
 		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
@@ -270,44 +260,99 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
 		);
 		$htmlOut .= Html::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $type );
-		$htmlOut .= Html::openElement( 'tr' );
-		$htmlOut .= Html::element( 'th', array( 'width' => '20%' ),
-			wfMsg ( 'centralnotice-percentage' ) );
-		$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
-			wfMsg ( 'centralnotice-banner' ) );
-		$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
-			wfMsg ( 'centralnotice-notice' ) );
-		$htmlOut .= Html::closeElement( 'tr' );
 
-		foreach ( $banners as $banner ) {
+		if (count($banners) > 0) {
+
 			$htmlOut .= Html::openElement( 'tr' );
-			$htmlOut .= Html::openElement( 'td' );
-
-			$percentage = round( ( $banner['weight'] / $weight ) * 100, 2 );
-
-			$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
-			$htmlOut .= Html::closeElement( 'td' );
-
-			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
-			// The span class is used by bannerstats.js to find where to insert the stats
-			$htmlOut .= Html::openElement( 'span',
-				array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
-			$htmlOut .= Linker::makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
-					'template=' . urlencode( $banner['name'] ) );
-			$htmlOut .= Html::closeElement( 'span' );
-			$htmlOut .= Html::closeElement( 'td' );
-
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-
-				Linker::makeLinkObj( $viewCampaign, htmlspecialchars( $banner['campaign'] ),
-					'method=listNoticeDetail&notice=' . urlencode( $banner['campaign'] ) )
-			);
-
+			$htmlOut .= Html::element( 'th', array( 'width' => '20%' ),
+				wfMsg ( 'centralnotice-percentage' ) );
+			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+				wfMsg ( 'centralnotice-banner' ) );
+			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+				wfMsg ( 'centralnotice-notice' ) );
 			$htmlOut .= Html::closeElement( 'tr' );
+
+			foreach ( $banners as $banner ) {
+
+				$percentage = round( $banner[$weightKey] * 100, 2 );
+
+				$htmlOut .= Html::openElement( 'tr' );
+				$htmlOut .= Html::openElement( 'td' );
+
+				$htmlOut .= wfMsg ( 'percent', $wgLang->formatNum( $percentage ) );
+				$htmlOut .= Html::closeElement( 'td' );
+
+				$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
+				// The span class is used by bannerstats.js to find where to insert the stats
+				$htmlOut .= Html::openElement( 'span',
+					array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
+				$htmlOut .= Linker::makeLinkObj( $viewBanner, htmlspecialchars( $banner['name'] ),
+						'template=' . urlencode( $banner['name'] ) );
+				$htmlOut .= Html::closeElement( 'span' );
+				$htmlOut .= Html::closeElement( 'td' );
+
+				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+
+					Linker::makeLinkObj( $viewCampaign, htmlspecialchars( $banner['campaign'] ),
+						'method=listNoticeDetail&notice=' . urlencode( $banner['campaign'] ) )
+				);
+
+				$htmlOut .= Html::closeElement( 'tr' );
+			}
+
+		} else {
+			$htmlOut .= Html::openElement('tr');
+			$htmlOut .= Html::openElement('td');
+			$htmlOut .= Xml::tags( 'p', null, wfMsg ( 'centralnotice-no-allocation' ) );
 		}
 
 		$htmlOut .= Html::closeElement( 'table' );
 
 		return $htmlOut;
+	}
+
+	/**
+	 * @param array  $banners
+	 * @param string $filterKey
+	 * @param string $weightKey
+	 * @param array  $campaignWeights
+	 *
+	 * @return array
+	 */
+	private function filterBanners( $banners, $filterKey, $weightKey, &$campaignWeights = array() ) {
+		$campaignZLevel = CentralNotice::MIN_Z_LEVEL;
+		$filteredBanners = array();
+
+		// Find the highest Z level
+		foreach ( $banners as $banner ) {
+			if ( ( $banner['campaign_z_index'] > $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
+				$campaignZLevel = $banner['campaign_z_index'];
+			}
+		}
+
+		// Determine the weighting factors
+		foreach ( $banners as $banner ) {
+			if ( ( $banner['campaign_z_index'] == $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
+				if ( array_key_exists( $banner['campaign'], $campaignWeights ) ) {
+					$campaignWeights[$banner['campaign']] += $banner['weight'];
+				} else {
+					$campaignWeights[$banner['campaign']] = $banner['weight'];
+				}
+			}
+		}
+
+		// Construct the relative weights
+		foreach ( $banners as $banner ) {
+			if ( ( $banner['campaign_z_index'] == $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
+
+				$banner[$weightKey] = ( $banner['weight'] / $campaignWeights[$banner['campaign']] );
+				$banner[$weightKey] *= 1 / count( $campaignWeights );
+
+				$filteredBanners[] = $banner;
+			}
+		}
+
+		// Return everything
+		return $filteredBanners;
 	}
 }

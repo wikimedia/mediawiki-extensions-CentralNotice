@@ -144,7 +144,7 @@ Add one below.',
 	'centralnotice-allocation-description' => 'Banner allocation for $1.$2 in $3:',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
-	'centralnotice-preferred' => 'Preferred',
+	'centralnotice-preferred' => 'Priority',
 	'centralnotice-logs' => 'Logs',
 	'centralnotice-view-logs' => 'View logs',
 	'centralnotice-timestamp' => 'Timestamp',
@@ -178,6 +178,10 @@ Add one below.',
 	'centralnotice-banner-messages' => 'Banner messages',
 	'centralnotice-filter-template-prompt' => 'Banner name contains:',
 	'centralnotice-filter-template-submit' => 'Apply filter',
+	'centralnotice-priority-low' => 'low',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'high',
+	'centralnotice-priority-emergency' => 'emergency',
 );
 
 /** Message documentation (Message documentation)
@@ -297,7 +301,7 @@ The width of the column is 5% of the total width of the table, so the message sh
 * $1 is the language code for the site (e.g "en").
 * $2 is the project name for the site (e.g. "wikipedia").
 * $3 is the country code (e.g. "US" for the United States, "FR" for France, etc.).',
-	'centralnotice-preferred' => 'Refers to campaign.',
+	'centralnotice-preferred' => 'Refers to campaign priority.',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
 	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
 	'centralnotice-user' => '{{Identical|User}}',
@@ -347,6 +351,10 @@ Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-settings}}
 *{{msg-mw|centralnotice-banner-content}}',
+	'centralnotice-priority-low' => 'Label for the lowest campaign priority setting',
+	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting',
+	'centralnotice-priority-high' => 'Label for a high campaign priority setting',
+	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies)',
 );
 
 /** Goan Konkani (Latin script) (Konknni)
