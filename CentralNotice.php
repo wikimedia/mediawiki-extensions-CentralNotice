@@ -61,9 +61,9 @@ $wgNoticeBannerMaxAge = 600;
 $wgNoticeHideBannersExpiration = '';
 
 // Functions to be called after MediaWiki initialization is complete
-$wgExtensionFunctions[] = 'efCentralNoticeSetup';
+$wgExtensionFunctions[ ] = 'efCentralNoticeSetup';
 
-$wgExtensionCredits['other'][] = array(
+$wgExtensionCredits[ 'other' ][ ] = array(
 	'path'           => __FILE__,
 	'name'           => 'CentralNotice',
 	'version'        => '2.0',
@@ -74,40 +74,42 @@ $wgExtensionCredits['other'][] = array(
 
 $dir = dirname( __FILE__ ) . '/';
 
-$wgExtensionMessagesFiles['CentralNotice'] = $dir . 'CentralNotice.i18n.php';
-$wgExtensionMessagesFiles['CentralNoticeAliases'] = $dir . 'CentralNotice.alias.php';
+$wgExtensionMessagesFiles[ 'CentralNotice' ] = $dir . 'CentralNotice.i18n.php';
+$wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . 'CentralNotice.alias.php';
 
 // Register user rights
-$wgAvailableRights[] = 'centralnotice-admin';
-$wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
+$wgAvailableRights[ ] = 'centralnotice-admin';
+$wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops can make change
 
 # Unit tests
-$wgHooks['UnitTestsList'][] = 'efCentralNoticeUnitTests';
+$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
 
 // Register ResourceLoader modules
-$wgResourceModules['ext.centralNotice.interface'] = array(
+$wgResourceModules[ 'ext.centralNotice.interface' ] = array(
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'CentralNotice',
-	'scripts' => 'centralnotice.js',
-	'styles' => 'centralnotice.css',
-	'messages' => array(
+	'scripts'       => 'centralnotice.js',
+	'styles'        => 'centralnotice.css',
+	'messages'      => array(
 		'centralnotice-documentwrite-error',
 		'centralnotice-close-title',
 	)
 );
-$wgResourceModules['ext.centralNotice.bannerStats'] = array(
+$wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'CentralNotice',
-	'scripts' => 'bannerstats.js',
+	'scripts'       => 'bannerstats.js',
 );
 
 /**
  * UnitTestsList hook handler
+ *
  * @param $files array
+ *
  * @return bool
  */
 function efCentralNoticeUnitTests( &$files ) {
-	$files[] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
+	$files[ ] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
 	return true;
 }
 
@@ -117,11 +119,12 @@ function efCentralNoticeUnitTests( &$files ) {
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
 	global $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript;
+	global $wgAPIModules;
 
 	$dir = dirname( __FILE__ ) . '/';
 
 	// Update the database schema if necessary
-	$wgHooks['LoadExtensionSchemaUpdates'][] = 'efCentralNoticeSchema';
+	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
 
 	if ( $wgCentralPagePath === false ) {
 		$wgCentralPagePath = $wgScript;
@@ -131,90 +134,138 @@ function efCentralNoticeSetup() {
 	// showing banners. For discussion of banner loading strategies, see
 	// http://wikitech.wikimedia.org/view/CentralNotice/Optimizing_banner_loading
 	if ( $wgCentralNoticeLoader ) {
-		$wgHooks['MakeGlobalVariablesScript'][] = 'efCentralNoticeDefaults';
+		$wgHooks[ 'MakeGlobalVariablesScript' ][ ] = 'efCentralNoticeDefaults';
 		// NOTE: We might want to change efCentralNoticeLoader to use the SkinAfterBottomScripts
 		// hook instead of BeforePageDisplay. See bug 34572.
-		$wgHooks['BeforePageDisplay'][] = 'efCentralNoticeLoader';
-		$wgHooks['SiteNoticeAfter'][] = 'efCentralNoticeDisplay';
-		$wgHooks['SkinAfterBottomScripts'][] = 'efCentralNoticeGeoLoader';
+		$wgHooks[ 'BeforePageDisplay' ][ ] = 'efCentralNoticeLoader';
+		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
+		$wgHooks[ 'SkinAfterBottomScripts' ][ ] = 'efCentralNoticeGeoLoader';
 	}
 
 	$specialDir = $dir . 'special/';
+	$apiDir = $dir . 'api/';
 
-	$wgSpecialPages['BannerLoader'] = 'SpecialBannerLoader';
-	$wgAutoloadClasses['SpecialBannerLoader'] = $specialDir . 'SpecialBannerLoader.php';
+	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
+	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
 
-	$wgSpecialPages['BannerListLoader'] = 'SpecialBannerListLoader';
-	$wgAutoloadClasses['SpecialBannerListLoader'] = $specialDir . 'SpecialBannerListLoader.php';
+	$wgSpecialPages[ 'BannerListLoader' ] = 'SpecialBannerListLoader';
+	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
 
-	$wgSpecialPages['BannerController'] = 'SpecialBannerController';
-	$wgAutoloadClasses['SpecialBannerController'] = $specialDir . 'SpecialBannerController.php';
+	$wgSpecialPages[ 'BannerController' ] = 'SpecialBannerController';
+	$wgAutoloadClasses[ 'SpecialBannerController' ] = $specialDir . 'SpecialBannerController.php';
 
-	$wgSpecialPages['HideBanners'] = 'SpecialHideBanners';
-	$wgAutoloadClasses['SpecialHideBanners'] = $specialDir . 'SpecialHideBanners.php';
+	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';
+	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
 
-	$wgAutoloadClasses['CentralNotice'] = $specialDir . 'SpecialCentralNotice.php';
-	$wgAutoloadClasses['CentralNoticeDB'] = $dir . 'CentralNotice.db.php';
+	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
+	$wgAutoloadClasses[ 'CentralNoticeDB' ] = $dir . 'CentralNotice.db.php';
 
 	if ( $wgNoticeInfrastructure ) {
-		$wgSpecialPages['CentralNotice'] = 'CentralNotice';
-		$wgSpecialPageGroups['CentralNotice'] = 'wiki'; // Wiki data and tools"
+		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
+		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools"
 
-		$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
-		$wgAutoloadClasses['SpecialNoticeTemplate'] = $specialDir . 'SpecialNoticeTemplate.php';
+		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
+		$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
 
-		$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
-		$wgAutoloadClasses['SpecialBannerAllocation'] = $specialDir . 'SpecialBannerAllocation.php';
+		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
+		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
 
-		$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
-		$wgAutoloadClasses['SpecialCentralNoticeLogs'] = $specialDir . 'SpecialCentralNoticeLogs.php';
+		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
+		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
 
-		$wgAutoloadClasses['TemplatePager'] = $dir . 'TemplatePager.php';
-		$wgAutoloadClasses['CentralNoticePager'] = $dir . 'CentralNoticePager.php';
-		$wgAutoloadClasses['CentralNoticeCampaignLogPager'] = $dir . 'CentralNoticeCampaignLogPager.php';
-		$wgAutoloadClasses['CentralNoticeBannerLogPager'] = $dir . 'CentralNoticeBannerLogPager.php';
-		$wgAutoloadClasses['CentralNoticePageLogPager'] = $dir . 'CentralNoticePageLogPager.php';
+		$wgAutoloadClasses[ 'TemplatePager' ] = $dir . 'TemplatePager.php';
+		$wgAutoloadClasses[ 'CentralNoticePager' ] = $dir . 'CentralNoticePager.php';
+		$wgAutoloadClasses[ 'CentralNoticeCampaignLogPager' ] = $dir . 'CentralNoticeCampaignLogPager.php';
+		$wgAutoloadClasses[ 'CentralNoticeBannerLogPager' ] = $dir . 'CentralNoticeBannerLogPager.php';
+		$wgAutoloadClasses[ 'CentralNoticePageLogPager' ] = $dir . 'CentralNoticePageLogPager.php';
+
+		$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
+		$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	}
 }
 
 /**
  * LoadExtensionSchemaUpdates hook handler
  * This function makes sure that the database schema is up to date.
+ *
  * @param $updater DatabaseUpdater|null
+ *
  * @return bool
  */
 function efCentralNoticeSchema( $updater = null ) {
 	$base = dirname( __FILE__ );
 
 	if ( $updater->getDB()->getType() == 'mysql' ) {
-		$updater->addExtensionUpdate( array( 'addTable', 'cn_notices',
-			$base . '/CentralNotice.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addField', 'cn_notices', 'not_preferred',
-			$base . '/patches/patch-notice_preferred.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_languages',
-			$base . '/patches/patch-notice_languages.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_display_anon',
-			$base . '/patches/patch-template_settings.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_fundraising',
-			$base . '/patches/patch-template_fundraising.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_countries',
-			$base . '/patches/patch-notice_countries.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_projects',
-			$base . '/patches/patch-notice_projects.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addTable', 'cn_notice_log',
-			$base . '/patches/patch-notice_log.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addTable', 'cn_template_log',
-			$base . '/patches/patch-template_log.sql', true ) );
-		$updater->addExtensionUpdate( array( 'addField', 'cn_templates', 'tmp_autolink',
-			$base . '/patches/patch-template_autolink.sql', true ) );
+		$updater->addExtensionUpdate(
+			array(
+				'addTable', 'cn_notices',
+				$base . '/CentralNotice.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addField', 'cn_notices', 'not_preferred',
+				$base . '/patches/patch-notice_preferred.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addTable', 'cn_notice_languages',
+				$base . '/patches/patch-notice_languages.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addField', 'cn_templates', 'tmp_display_anon',
+				$base . '/patches/patch-template_settings.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addField', 'cn_templates', 'tmp_fundraising',
+				$base . '/patches/patch-template_fundraising.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addTable', 'cn_notice_countries',
+				$base . '/patches/patch-notice_countries.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addTable', 'cn_notice_projects',
+				$base . '/patches/patch-notice_projects.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addTable', 'cn_notice_log',
+				$base . '/patches/patch-notice_log.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addTable', 'cn_template_log',
+				$base . '/patches/patch-template_log.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
+				'addField', 'cn_templates', 'tmp_autolink',
+				$base . '/patches/patch-template_autolink.sql', true
+			)
+		);
 	}
 	return true;
 }
 
 /**
  * BeforePageDisplay hook handler
- * @param $out OutputPage
+ *
+ * @param $out  OutputPage
  * @param $skin Skin
+ *
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
@@ -230,8 +281,10 @@ function efCentralNoticeLoader( $out, $skin ) {
 /**
  * SkinAfterBottomScripts hook handler
  * This function outputs the call to the geoIP lookup
+ *
  * @param $skin Skin
  * @param $text string
+ *
  * @return bool
  */
 function efCentralNoticeGeoLoader( $skin, &$text ) {
@@ -243,7 +296,9 @@ function efCentralNoticeGeoLoader( $skin, &$text ) {
 /**
  * MakeGlobalVariablesScript hook handler
  * This function sets all the psuedo-global Javascript variables that are used by CentralNotice
+ *
  * @param $vars array
+ *
  * @return bool
  */
 function efCentralNoticeDefaults( &$vars ) {
@@ -253,8 +308,8 @@ function efCentralNoticeDefaults( &$vars ) {
 	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
 	// IP lookup fails we don't have any surprises.
 	$geo = array( 'city' => '', 'country' => '' );
-	$vars['Geo'] = $geo; // change this to wgGeo if Ops updates the variable name on their end
-	$vars['wgNoticeProject'] = $wgNoticeProject;
+	$vars[ 'Geo' ] = $geo; // change this to wgGeo if Ops updates the variable name on their end
+	$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
 
 	// Output the user's registration date, total edit count, and past year's edit count.
 	// This is useful for banners that need to be targeted to specific types of users.
@@ -274,20 +329,20 @@ function efCentralNoticeDefaults( &$vars ) {
 
 				// Add the user's registration date (MediaWiki timestamp)
 				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
-				$userData['registration'] = $registrationDate;
+				$userData[ 'registration' ] = $registrationDate;
 
 				// Make sure UserDailyContribs extension is installed.
 				if ( function_exists( 'getUserEditCountSince' ) ) {
 
 					// Add the user's total edit count
 					if ( $wgUser->getEditCount() == null ) {
-						$userData['editcount'] = 0;
+						$userData[ 'editcount' ] = 0;
 					} else {
-						$userData['editcount'] = intval( $wgUser->getEditCount() );
+						$userData[ 'editcount' ] = intval( $wgUser->getEditCount() );
 					}
 
 					// Add the user's edit count for the past year
-					$userData['pastyearseditcount'] = getUserEditCountSince(
+					$userData[ 'pastyearseditcount' ] = getUserEditCountSince(
 						time() - ( 365 * 24 * 3600 ), // from a year ago
 						$wgUser,
 						time() // until now
@@ -300,7 +355,7 @@ function efCentralNoticeDefaults( &$vars ) {
 		}
 
 		// Set the variable that will be output to the page
-		$vars['wgNoticeUserData'] = $userData;
+		$vars[ 'wgNoticeUserData' ] = $userData;
 
 	}
 
@@ -310,13 +365,15 @@ function efCentralNoticeDefaults( &$vars ) {
 /**
  * SiteNoticeAfter hook handler
  * This function outputs the siteNotice div that the banners are loaded into.
+ *
  * @param $notice string
+ *
  * @return bool
  */
 function efCentralNoticeDisplay( &$notice ) {
 	// setup siteNotice div
 	$notice =
-		'<!-- centralNotice loads here -->'. // hack for IE8 to collapse empty div
-		$notice;
+		'<!-- centralNotice loads here -->' . // hack for IE8 to collapse empty div
+			$notice;
 	return true;
 }

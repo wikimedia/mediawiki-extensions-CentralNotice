@@ -320,7 +320,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 * @return array
 	 */
 	private function filterBanners( $banners, $filterKey, $weightKey, &$campaignWeights = array() ) {
-		$campaignZLevel = CentralNotice::MIN_Z_LEVEL;
+		$campaignZLevel = CentralNotice::LOW_PRIORITY;
 		$filteredBanners = array();
 
 		// Find the highest Z level
