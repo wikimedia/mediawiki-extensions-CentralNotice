@@ -1,4 +1,71 @@
 <?php
+/**
+ * CentralNotice extension
+ * For more info see https://www.mediawiki.org/wiki/Extension:CentralNotice
+ *
+ * This file loads everything needed for the CentralNotice extension to function.
+ *
+ * @file
+ * @ingroup Extensions
+ * @license GNU General Public Licence 2.0 or later
+ */
+
+ $wgExtensionCredits[ 'other' ][] = array(
+	'path'           => __FILE__,
+	'name'           => 'CentralNotice',
+	'author'         => array(
+		'Brion Vibber',
+		'Tomasz Finc',
+		'Trevor Parscal',
+		'Ryan Kaldari',
+		'Matthew Walker'
+	),
+	'version'        => '2.1',
+	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
+	'descriptionmsg' => 'centralnotice-desc',
+);
+
+
+/* Setup */
+
+$dir = dirname( __FILE__ );
+
+// Register message files
+$wgExtensionMessagesFiles[ 'CentralNotice' ] = $dir . '/CentralNotice.i18n.php';
+$wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . '/CentralNotice.alias.php';
+
+// Register user rights
+$wgAvailableRights[] = 'centralnotice-admin';
+$wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops can make change
+
+// Functions to be called after MediaWiki initialization is complete
+$wgExtensionFunctions[] = 'efCentralNoticeSetup';
+
+// Register ResourceLoader modules
+$wgResourceModules[ 'ext.centralNotice.interface' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'scripts'       => 'ext.centralNotice.interface/centralnotice.js',
+	'styles'        => 'ext.centralNotice.interface/centralnotice.css',
+	'messages'      => array(
+		'centralnotice-documentwrite-error',
+		'centralnotice-close-title',
+	)
+);
+$wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'scripts'       => 'ext.centralNotice.bannerStats/bannerStats.js',
+);
+$wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'scripts'       => 'ext.centralNotice.bannerController/bannerController.js',
+	'position'      => 'top',
+);
+
+
+/* Configuration */
 
 // $wgNoticeLang and $wgNoticeProject are used for targeting campaigns to specific wikis. These
 // should be overridden on each wiki with the appropriate values.
@@ -19,7 +86,7 @@ $wgNoticeProjects = array(
 	'commons',
 	'meta',
 	'wikispecies',
-	'test'
+	'test',
 );
 
 // Enable the campaign hosting infrastructure on this wiki...
@@ -60,126 +127,68 @@ $wgNoticeBannerMaxAge = 600;
 // NOTE: This must be in UNIX timestamp format, for example, '1325462400'
 $wgNoticeHideBannersExpiration = '';
 
-// Functions to be called after MediaWiki initialization is complete
-$wgExtensionFunctions[ ] = 'efCentralNoticeSetup';
-
-$wgExtensionCredits[ 'other' ][ ] = array(
-	'path'           => __FILE__,
-	'name'           => 'CentralNotice',
-	'version'        => '2.0',
-	'author'         => array( 'Brion Vibber', 'Ryan Kaldari' ),
-	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
-	'descriptionmsg' => 'centralnotice-desc',
-);
-
-$dir = dirname( __FILE__ ) . '/';
-
-$wgExtensionMessagesFiles[ 'CentralNotice' ] = $dir . 'CentralNotice.i18n.php';
-$wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . 'CentralNotice.alias.php';
-
-// Register user rights
-$wgAvailableRights[ ] = 'centralnotice-admin';
-$wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops can make change
-
-# Unit tests
-$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
-
-// Register ResourceLoader modules
-$wgResourceModules[ 'ext.centralNotice.interface' ] = array(
-	'localBasePath' => dirname( __FILE__ ),
-	'remoteExtPath' => 'CentralNotice',
-	'scripts'       => 'centralnotice.js',
-	'styles'        => 'centralnotice.css',
-	'messages'      => array(
-		'centralnotice-documentwrite-error',
-		'centralnotice-close-title',
-	)
-);
-$wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
-	'localBasePath' => dirname( __FILE__ ),
-	'remoteExtPath' => 'CentralNotice',
-	'scripts'       => 'bannerstats.js',
-);
-
-/**
- * UnitTestsList hook handler
- *
- * @param $files array
- *
- * @return bool
- */
-function efCentralNoticeUnitTests( &$files ) {
-	$files[ ] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
-	return true;
-}
 
 /**
  * Load all the classes, register special pages, etc. Called through wgExtensionFunctions.
  */
 function efCentralNoticeSetup() {
-	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages;
-	global $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript;
-	global $wgAPIModules;
+	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
+		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript, $wgAPIModules;
 
-	$dir = dirname( __FILE__ ) . '/';
-
-	// Update the database schema if necessary
-	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
-
+	// If $wgCentralPagePath hasn't been set, set it to the local script path.
+	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
 	if ( $wgCentralPagePath === false ) {
 		$wgCentralPagePath = $wgScript;
 	}
+
+	$dir = dirname( __FILE__ ) . '/';
+	$specialDir = $dir . 'special/';
+	$apiDir = $dir . 'api/';
+
+	// Register files
+	$wgAutoloadClasses[ 'CentralNoticeDB' ] = $dir . 'CentralNotice.db.php';
+	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
+	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
+	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
+	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
+
+	// Register hooks
+	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
+	$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
 	// http://wikitech.wikimedia.org/view/CentralNotice/Optimizing_banner_loading
 	if ( $wgCentralNoticeLoader ) {
 		$wgHooks[ 'MakeGlobalVariablesScript' ][ ] = 'efCentralNoticeDefaults';
-		// NOTE: We might want to change efCentralNoticeLoader to use the SkinAfterBottomScripts
-		// hook instead of BeforePageDisplay. See bug 34572.
 		$wgHooks[ 'BeforePageDisplay' ][ ] = 'efCentralNoticeLoader';
 		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
-		$wgHooks[ 'SkinAfterBottomScripts' ][ ] = 'efCentralNoticeGeoLoader';
+		$wgHooks[ 'ResourceLoaderGetConfigVars' ][] = 'efResourceLoaderGetConfigVars';
 	}
 
-	$specialDir = $dir . 'special/';
-	$apiDir = $dir . 'api/';
-
+	// Register special pages
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
-	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
-
 	$wgSpecialPages[ 'BannerListLoader' ] = 'SpecialBannerListLoader';
-	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
-
-	$wgSpecialPages[ 'BannerController' ] = 'SpecialBannerController';
-	$wgAutoloadClasses[ 'SpecialBannerController' ] = $specialDir . 'SpecialBannerController.php';
-
 	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';
-	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
 
-	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
-	$wgAutoloadClasses[ 'CentralNoticeDB' ] = $dir . 'CentralNotice.db.php';
-
+	// If this is the wiki that hosts the management interface, loaded further components
 	if ( $wgNoticeInfrastructure ) {
-		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
-		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools"
-
-		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
-		$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
-
-		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
-		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
-
-		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
-		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
-
 		$wgAutoloadClasses[ 'TemplatePager' ] = $dir . 'TemplatePager.php';
 		$wgAutoloadClasses[ 'CentralNoticePager' ] = $dir . 'CentralNoticePager.php';
 		$wgAutoloadClasses[ 'CentralNoticeCampaignLogPager' ] = $dir . 'CentralNoticeCampaignLogPager.php';
 		$wgAutoloadClasses[ 'CentralNoticeBannerLogPager' ] = $dir . 'CentralNoticeBannerLogPager.php';
 		$wgAutoloadClasses[ 'CentralNoticePageLogPager' ] = $dir . 'CentralNoticePageLogPager.php';
-
 		$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
+		$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
+		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
+		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
+
+		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
+		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools
+		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
+		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
+		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
+
 		$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	}
 }
@@ -189,7 +198,6 @@ function efCentralNoticeSetup() {
  * This function makes sure that the database schema is up to date.
  *
  * @param $updater DatabaseUpdater|null
- *
  * @return bool
  */
 function efCentralNoticeSchema( $updater = null ) {
@@ -262,43 +270,26 @@ function efCentralNoticeSchema( $updater = null ) {
 
 /**
  * BeforePageDisplay hook handler
+ * This function adds the banner controller and geoIP lookup to the page
  *
  * @param $out  OutputPage
  * @param $skin Skin
- *
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	// Include '.js' to exempt script from squid cache expiration override
-	$centralLoader = SpecialPage::getTitleFor( 'BannerController' )->getLocalUrl( 'cache=/cn.js' );
-
-	// Insert the banner controller Javascript into the page
-	$out->addScriptFile( $centralLoader );
-
-	return true;
-}
-
-/**
- * SkinAfterBottomScripts hook handler
- * This function outputs the call to the geoIP lookup
- *
- * @param $skin Skin
- * @param $text string
- *
- * @return bool
- */
-function efCentralNoticeGeoLoader( $skin, &$text ) {
 	// Insert the geoIP lookup
-	$text .= Html::linkedScript( "//bits.wikimedia.org/geoiplookup" );
+	// TODO: Make this url configurable
+	$out->addHeadItem( 'geoip', '<script src="//bits.wikimedia.org/geoiplookup"></script>' );
+	// Insert the banner controller
+	$out->addModules( 'ext.centralNotice.bannerController' );
 	return true;
 }
 
 /**
  * MakeGlobalVariablesScript hook handler
- * This function sets all the psuedo-global Javascript variables that are used by CentralNotice
+ * This function sets the psuedo-global Javascript variables that are used by CentralNotice
  *
  * @param $vars array
- *
  * @return bool
  */
 function efCentralNoticeDefaults( &$vars ) {
@@ -367,13 +358,37 @@ function efCentralNoticeDefaults( &$vars ) {
  * This function outputs the siteNotice div that the banners are loaded into.
  *
  * @param $notice string
- *
  * @return bool
  */
 function efCentralNoticeDisplay( &$notice ) {
-	// setup siteNotice div
-	$notice =
-		'<!-- centralNotice loads here -->' . // hack for IE8 to collapse empty div
-			$notice;
+	// Setup siteNotice div and initialize the banner controller.
+	// Comment hack for IE8 to collapse empty div
+	$notice = '<!-- CentralNotice --><script>mw.centralNotice.initialize();</script>' . $notice;
+	return true;
+}
+
+/**
+ * ResourceLoaderGetConfigVars hook handler
+ * Send php config vars to js via ResourceLoader
+ *
+ * @param &$vars: variables to be added to the output of the startup module
+ * @return bool
+ */
+function efResourceLoaderGetConfigVars( &$vars ) {
+	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang;
+	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
+	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
+	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
+	return true;
+}
+
+/**
+ * UnitTestsList hook handler
+ *
+ * @param $files array
+ * @return bool
+ */
+function efCentralNoticeUnitTests( &$files ) {
+	$files[ ] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
 	return true;
 }

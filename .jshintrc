@@ -1,0 +1,14 @@
+{
+	"predef": [
+		"mediaWiki"
+	],
+
+	"undef": true,
+	"unused": true,
+	"trailing": true,
+
+	"laxbreak": true,
+
+	"browser": true,
+	"jquery": true
+}
