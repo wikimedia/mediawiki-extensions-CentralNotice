@@ -301,7 +301,7 @@ The width of the column is 5% of the total width of the table, so the message sh
 * $1 is the language code for the site (e.g "en").
 * $2 is the project name for the site (e.g. "wikipedia").
 * $3 is the country code (e.g. "US" for the United States, "FR" for France, etc.).',
-	'centralnotice-preferred' => 'Refers to campaign priority.',
+	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
 	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
 	'centralnotice-user' => '{{Identical|User}}',
@@ -351,10 +351,10 @@ Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-settings}}
 *{{msg-mw|centralnotice-banner-content}}',
-	'centralnotice-priority-low' => 'Label for the lowest campaign priority setting',
-	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting',
-	'centralnotice-priority-high' => 'Label for a high campaign priority setting',
-	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies)',
+	'centralnotice-priority-low' => 'Label for the lowest campaign priority setting. An adjective that describes the priority.',
+	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting. An adjective that describes the priority.',
+	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.',
+	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
 );
 
 /** Goan Konkani (Latin script) (Konknni)
@@ -5162,7 +5162,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-percentage' => 'Pourcentage',
 	'centralnotice-documentwrite-error' => 'document.write() ne peut pas être utilisé dans une bannière.
 Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d’informations.',
-	'centralnotice-preferred' => 'Préféré',
+	'centralnotice-preferred' => 'Priorité',
 	'centralnotice-logs' => 'Journaux',
 	'centralnotice-view-logs' => 'Voir les journaux',
 	'centralnotice-timestamp' => 'Date',
@@ -5194,6 +5194,10 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-banner-messages' => 'Messages bannière',
 	'centralnotice-filter-template-prompt' => 'Le nom de la bannière contient:',
 	'centralnotice-filter-template-submit' => 'Appliquer le filtre',
+	'centralnotice-priority-low' => 'basse',
+	'centralnotice-priority-normal' => 'normale',
+	'centralnotice-priority-high' => 'haute',
+	'centralnotice-priority-emergency' => 'urgente',
 );
 
 /** Franco-Provençal (arpetan)
@@ -5512,7 +5516,7 @@ Engada algún embaixo',
 	'centralnotice-percentage' => 'Porcentaxe',
 	'centralnotice-documentwrite-error' => 'document.write() non se pode empregar nos carteis.
 Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis información.',
-	'centralnotice-preferred' => 'Preferido',
+	'centralnotice-preferred' => 'Prioridade',
 	'centralnotice-logs' => 'Rexistros',
 	'centralnotice-view-logs' => 'Ver os rexistros',
 	'centralnotice-timestamp' => 'Data e hora',
@@ -5544,6 +5548,10 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-banner-messages' => 'Mensaxes en carteis',
 	'centralnotice-filter-template-prompt' => 'O nome do cartel contén:',
 	'centralnotice-filter-template-submit' => 'Aplicar o filtro',
+	'centralnotice-priority-low' => 'baixa',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'alta',
+	'centralnotice-priority-emergency' => 'emerxencia',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
@@ -6057,7 +6065,7 @@ $messages['he'] = array(
 	'centralnotice-percentage' => 'אחוזים',
 	'centralnotice-documentwrite-error' => "לא ניתן להשתמש ב־document.write()‎ בתוך כרזה.
 ר' http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.",
-	'centralnotice-preferred' => 'מועדף',
+	'centralnotice-preferred' => 'עדיפות',
 	'centralnotice-logs' => 'יומנים',
 	'centralnotice-view-logs' => 'הצגת יומנים',
 	'centralnotice-timestamp' => 'חותם זמן',
@@ -6089,6 +6097,10 @@ $messages['he'] = array(
 	'centralnotice-banner-messages' => 'הודעות כרזה',
 	'centralnotice-filter-template-prompt' => 'שם הכרזה מכיל:',
 	'centralnotice-filter-template-submit' => 'החלת מסנן',
+	'centralnotice-priority-low' => 'נמוכה',
+	'centralnotice-priority-normal' => 'רגילה',
+	'centralnotice-priority-high' => 'גבוהה',
+	'centralnotice-priority-emergency' => 'חירום',
 );
 
 /** Hindi (हिन्दी)
@@ -6531,7 +6543,7 @@ Přidaj někajku',
 	'centralnotice-percentage' => 'Procentowa sadźba',
 	'centralnotice-documentwrite-error' => 'document.write() njeda so znutřka chorhoje wužiwać.
 Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
-	'centralnotice-preferred' => 'Preferowany',
+	'centralnotice-preferred' => 'Priorita',
 	'centralnotice-logs' => 'Protokole',
 	'centralnotice-view-logs' => 'Protokole sej wobhladać',
 	'centralnotice-timestamp' => 'Časowy kołk',
@@ -6563,6 +6575,10 @@ Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-banner-messages' => 'Chorhojowe powěsće',
 	'centralnotice-filter-template-prompt' => 'Chorhojowe mjeno wobsahuje:',
 	'centralnotice-filter-template-submit' => 'Filter nałožić',
+	'centralnotice-priority-low' => 'niska',
+	'centralnotice-priority-normal' => 'normalna',
+	'centralnotice-priority-high' => 'wysoka',
+	'centralnotice-priority-emergency' => 'nuzowy pad',
 );
 
 /** Hungarian (magyar)
@@ -7479,7 +7495,7 @@ Non aggiorno',
 	'centralnotice-percentage' => 'Percentuale',
 	'centralnotice-documentwrite-error' => 'Non è possibile usare document.write() dentro un banner.
 Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.',
-	'centralnotice-preferred' => 'Preferito',
+	'centralnotice-preferred' => 'Priorità',
 	'centralnotice-logs' => 'Log',
 	'centralnotice-view-logs' => 'Vedi i log',
 	'centralnotice-timestamp' => 'Data e ora',
@@ -7511,6 +7527,10 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-banner-messages' => 'Messaggi dei banner',
 	'centralnotice-filter-template-prompt' => 'Il nome del banner contiene:',
 	'centralnotice-filter-template-submit' => 'Applica i filtri',
+	'centralnotice-priority-low' => 'bassa',
+	'centralnotice-priority-normal' => 'normale',
+	'centralnotice-priority-high' => 'alta',
+	'centralnotice-priority-emergency' => 'emergenza',
 );
 
 /** Japanese (日本語)
@@ -9321,7 +9341,7 @@ $messages['mk'] = array(
 	'centralnotice-allocation-description' => 'Распределба на плакати за $1.$2 во $3:',
 	'centralnotice-percentage' => 'Постоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може да се користи во рамките на плаЗа повеќе информации, погледајте ја страницата http://meta.wikimedia.org/wiki/Help:CentralNotice',
-	'centralnotice-preferred' => 'Претпочитано',
+	'centralnotice-preferred' => 'Приоритет',
 	'centralnotice-logs' => 'Дневници',
 	'centralnotice-view-logs' => 'Погл. дневници',
 	'centralnotice-timestamp' => 'Време и датум',
@@ -9353,6 +9373,10 @@ $messages['mk'] = array(
 	'centralnotice-banner-messages' => 'Пораки на плакат',
 	'centralnotice-filter-template-prompt' => 'Називот на плакатот содржи:',
 	'centralnotice-filter-template-submit' => 'Примени филтер',
+	'centralnotice-priority-low' => 'низок',
+	'centralnotice-priority-normal' => 'нормален',
+	'centralnotice-priority-high' => 'висок',
+	'centralnotice-priority-emergency' => 'итен',
 );
 
 /** Malayalam (മലയാളം)
@@ -9842,7 +9866,7 @@ Tidak boleh dibuang.',
 	'centralnotice-percentage' => 'Peratusan',
 	'centralnotice-documentwrite-error' => 'document.write() tidak boleh digunakan di dalam sepanduk.
 Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
-	'centralnotice-preferred' => 'Dipilih',
+	'centralnotice-preferred' => 'Keutamaan',
 	'centralnotice-logs' => 'Log',
 	'centralnotice-view-logs' => 'Lihat log',
 	'centralnotice-timestamp' => 'Cop masa',
@@ -9872,6 +9896,12 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-apply-filters' => 'Gunakan penapis',
 	'centralnotice-clear-filters' => 'Kosongkan penapis',
 	'centralnotice-banner-messages' => 'Pesanan sepanduk',
+	'centralnotice-filter-template-prompt' => 'Nama sepanduk mengandungi:',
+	'centralnotice-filter-template-submit' => 'Gunakan penapis',
+	'centralnotice-priority-low' => 'rendah',
+	'centralnotice-priority-normal' => 'biasa',
+	'centralnotice-priority-high' => 'tinggi',
+	'centralnotice-priority-emergency' => 'kecemasan',
 );
 
 /** Maltese (Malti)
@@ -10104,7 +10134,7 @@ Legg til en under',
 	'centralnotice-percentage' => 'Prosent',
 	'centralnotice-documentwrite-error' => 'document.write() kan ikke brukes i et banner.
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
-	'centralnotice-preferred' => 'Foretrukket',
+	'centralnotice-preferred' => 'Prioritet',
 	'centralnotice-logs' => 'Logger',
 	'centralnotice-view-logs' => 'Vis logger',
 	'centralnotice-timestamp' => 'Tidsstempel',
@@ -10909,6 +10939,7 @@ Sie werd doher ned g'leschd.",
 
 /** Polish (polski)
  * @author Bartek50003
+ * @author BeginaFelicysym
  * @author Derbeth
  * @author Leinad
  * @author Maikking
@@ -11046,7 +11077,7 @@ Dodaj nowy poniżej.',
 	'centralnotice-percentage' => 'Procentowo',
 	'centralnotice-documentwrite-error' => 'Nie można korzystać z document.write() w banerze.
 Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:CentralNotice',
-	'centralnotice-preferred' => 'Preferowany',
+	'centralnotice-preferred' => 'Priorytet',
 	'centralnotice-logs' => 'Rejestr operacji',
 	'centralnotice-view-logs' => 'Rejestr odsłon',
 	'centralnotice-timestamp' => 'Sygnatura czasowa',
@@ -12158,7 +12189,7 @@ Adăugați una mai jos.',
 	'centralnotice-percentage' => 'Procentaj',
 	'centralnotice-documentwrite-error' => 'document.write() nu poate fi folosit într-un banner.
 Vedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe informații.',
-	'centralnotice-preferred' => 'Preferat',
+	'centralnotice-preferred' => 'Prioritate',
 	'centralnotice-logs' => 'Jurnale',
 	'centralnotice-view-logs' => 'Vezi jurnale',
 	'centralnotice-timestamp' => 'Data și ora',
@@ -12835,7 +12866,7 @@ $messages['sa'] = array(
 	'centralnotice-percentage' => 'प्रतिशतम्',
 	'centralnotice-documentwrite-error' => 'प्रलेख.लेखनम्() फलके उपयोक्तुं न शक्यते ।
 अधिकविवरणाय दृश्यताम्  http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.',
-	'centralnotice-preferred' => 'इष्टानि',
+	'centralnotice-preferred' => 'प्राशस्त्यम्',
 	'centralnotice-logs' => 'लोग्स',
 	'centralnotice-view-logs' => 'प्रणाली दृश्यताम्',
 	'centralnotice-timestamp' => 'समयमृदुमुद्रा',
@@ -12863,6 +12894,10 @@ $messages['sa'] = array(
 	'centralnotice-banner-messages' => 'फलकस्य सन्देशाः',
 	'centralnotice-filter-template-prompt' => 'फलकस्य नाम्नि विद्यते :',
 	'centralnotice-filter-template-submit' => 'शोधकाः प्रयुज्यन्ताम्',
+	'centralnotice-priority-low' => 'कनिष्ठतमम्',
+	'centralnotice-priority-normal' => 'सामान्यम्',
+	'centralnotice-priority-high' => 'गरिष्ठतमम्',
+	'centralnotice-priority-emergency' => 'आपत्कालः',
 );
 
 /** Sakha (саха тыла)
