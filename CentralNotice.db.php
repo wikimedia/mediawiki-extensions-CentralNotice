@@ -287,6 +287,94 @@ class CentralNoticeDB {
 	}
 
 	/**
+	 * DEPRECATED, but included for backwards compatibility during upgrade
+	 * Lookup function for active banners under a given language/project/location. This function is
+	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
+	 * each project.
+	 * @param $project string
+	 * @param $language string
+	 * @param $location string
+	 * @return array a 2D array of running banners with associated weights and settings
+	 */
+	static function getBannersByTarget( $project, $language, $location = null ) {
+		global $wgCentralDBname;
+
+		$campaigns = array();
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
+
+		// Pull non-geotargeted campaigns
+		$campaignResults1 = $dbr->select(
+			array(
+				'cn_notices',
+				'cn_notice_projects',
+				'cn_notice_languages'
+			),
+			array(
+				'not_id'
+			),
+			array(
+				"not_start <= $encTimestamp",
+				"not_end >= $encTimestamp",
+				'not_enabled = 1', // enabled
+				'not_geo = 0', // not geotargeted
+				'np_notice_id = cn_notices.not_id',
+				'np_project' => $project,
+				'nl_notice_id = cn_notices.not_id',
+				'nl_language' => $language
+			),
+			__METHOD__
+		);
+		foreach ( $campaignResults1 as $row ) {
+			$campaigns[] = $row->not_id;
+		}
+		if ( $location ) {
+
+			// Normalize location parameter (should be an uppercase 2-letter country code)
+			preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
+			if ( $matches ) {
+				$location = strtoupper( $matches[0] );
+
+				// Pull geotargeted campaigns
+				$campaignResults2 = $dbr->select(
+					array(
+						'cn_notices',
+						'cn_notice_projects',
+						'cn_notice_languages',
+						'cn_notice_countries'
+					),
+					array(
+						'not_id'
+					),
+					array(
+						"not_start <= $encTimestamp",
+						"not_end >= $encTimestamp",
+						'not_enabled = 1', // enabled
+						'not_geo = 1', // geotargeted
+						'nc_notice_id = cn_notices.not_id',
+						'nc_country' => $location,
+						'np_notice_id = cn_notices.not_id',
+						'np_project' => $project,
+						'nl_notice_id = cn_notices.not_id',
+						'nl_language' => $language
+					),
+					__METHOD__
+				);
+				foreach ( $campaignResults2 as $row ) {
+					$campaigns[] = $row->not_id;
+				}
+			}
+		}
+
+		$banners = array();
+		if ( $campaigns ) {
+			// Pull all banners assigned to the campaigns
+			$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
+		}
+		return $banners;
+	}
+
+	/**
 	 * See if a given campaign exists in the database
 	 *
 	 * @param $campaignName string
