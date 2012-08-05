@@ -1067,6 +1067,7 @@ $messages['arz'] = array(
  * @author Bishnu Saikia
  * @author Chaipau
  * @author Gitartha.bordoloi
+ * @author Nilamdyuti
  */
 $messages['as'] = array(
 	'centralnotice' => 'কেন্দ্ৰীয় জাননী প্ৰশাসক',
@@ -1204,7 +1205,7 @@ $messages['as'] = array(
 	'centralnotice-percentage' => 'শতাংশ',
 	'centralnotice-documentwrite-error' => 'document.write()ক বেনাৰৰ মাজত ব্যৱহাৰ কৰিব নোৱাৰি।
 অধিক তথ্যৰ বাবে http://meta.wikimedia.org/wiki/Help:CentralNotice চাওক।',
-	'centralnotice-preferred' => 'পছন্দনীয়',
+	'centralnotice-preferred' => 'প্ৰাথমিকতা',
 	'centralnotice-logs' => "ল'গ",
 	'centralnotice-view-logs' => "ল'গ চাওক",
 	'centralnotice-timestamp' => 'সময়-মোহৰ',
@@ -1235,6 +1236,12 @@ $messages['as'] = array(
 	'centralnotice-apply-filters' => 'ছেকনী প্ৰয়োগ কৰক',
 	'centralnotice-clear-filters' => 'ছেকনী আঁতৰ কৰক',
 	'centralnotice-banner-messages' => 'বেনাৰ বাৰ্তাসমূহ',
+	'centralnotice-filter-template-prompt' => 'বেনাৰ নামে অন্তৰ্ভুক্ত কৰে:',
+	'centralnotice-filter-template-submit' => 'ফিল্টাৰ প্ৰয়োগ কৰক',
+	'centralnotice-priority-low' => 'নিম্ন',
+	'centralnotice-priority-normal' => 'স্বাভাৱিক',
+	'centralnotice-priority-high' => 'উচ্চ',
+	'centralnotice-priority-emergency' => 'আপাতকালীন',
 );
 
 /** Asturian (asturianu)
@@ -1376,7 +1383,7 @@ Amiesta una debaxo.',
 	'centralnotice-percentage' => 'Porcentaxe',
 	'centralnotice-documentwrite-error' => "document.write () nun se pue utilizar dientro d'una pancarta.
 Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
-	'centralnotice-preferred' => 'Preferíu',
+	'centralnotice-preferred' => 'Prioridá',
 	'centralnotice-logs' => 'Rexistros',
 	'centralnotice-view-logs' => 'Ver los rexistros',
 	'centralnotice-timestamp' => "Marca d'hora",
@@ -1408,6 +1415,10 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	'centralnotice-banner-messages' => 'Mensaxes de pancarta',
 	'centralnotice-filter-template-prompt' => 'El nome del cartel contién:',
 	'centralnotice-filter-template-submit' => 'Aplicar peñera',
+	'centralnotice-priority-low' => 'baxa',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'alta',
+	'centralnotice-priority-emergency' => 'emerxencia',
 );
 
 /** Azerbaijani (azərbaycanca)
@@ -1848,7 +1859,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-percentage' => 'Адсоткаў',
 	'centralnotice-documentwrite-error' => 'document.write() не магчыма выкарыстоўваць у банэре.
 Падрабязнасьці глядзіце на http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'centralnotice-preferred' => 'Пажадана',
+	'centralnotice-preferred' => 'Прыярытэт',
 	'centralnotice-logs' => 'Журналы падзеяў',
 	'centralnotice-view-logs' => 'Паказаць журнал падзеяў',
 	'centralnotice-timestamp' => 'Дата/час',
@@ -1878,6 +1889,12 @@ $messages['be-tarask'] = array(
 	'centralnotice-apply-filters' => 'Ужыць фільтры',
 	'centralnotice-clear-filters' => 'Ачысьціць фільтры',
 	'centralnotice-banner-messages' => 'Паведамленьні банэраў',
+	'centralnotice-filter-template-prompt' => 'Назва банэра ўтрымлівае:',
+	'centralnotice-filter-template-submit' => 'Ужыць фільтар',
+	'centralnotice-priority-low' => 'нізкі',
+	'centralnotice-priority-normal' => 'звычайны',
+	'centralnotice-priority-high' => 'вялікі',
+	'centralnotice-priority-emergency' => 'тэрміновы',
 );
 
 /** Bulgarian (български)
@@ -3556,7 +3573,7 @@ Yew de bike',
 	'centralnotice-no-allocation' => 'Hêç afiş nêabıryayo.',
 	'centralnotice-allocation-description' => 'Qandê $1 tahsisê afişan. $2 $3 de:',
 	'centralnotice-percentage' => 'Sera',
-	'centralnotice-preferred' => 'Tercih biyo',
+	'centralnotice-preferred' => 'Tercih kerden',
 	'centralnotice-logs' => 'Qeydi',
 	'centralnotice-view-logs' => 'Roceka bımocne',
 	'centralnotice-timestamp' => 'İmzay demi',
@@ -3590,6 +3607,10 @@ Yew de bike',
 	'centralnotice-banner-messages' => 'Mesacê afişer',
 	'centralnotice-filter-template-prompt' => 'Nameyê afişi tedero:',
 	'centralnotice-filter-template-submit' => 'Parzumê dezgan',
+	'centralnotice-priority-low' => 'kılm',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'berz',
+	'centralnotice-priority-emergency' => 'rew',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -3730,7 +3751,7 @@ Pśidaj jadnu.',
 	'centralnotice-percentage' => 'Procentowa sajźba',
 	'centralnotice-documentwrite-error' => 'document.write() njedajo se w banarju wužywaś.
 Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.',
-	'centralnotice-preferred' => 'Preferěrowane',
+	'centralnotice-preferred' => 'Priorita',
 	'centralnotice-logs' => 'Protokole',
 	'centralnotice-view-logs' => 'Protokole se woglědaś',
 	'centralnotice-timestamp' => 'Casowy kołk',
@@ -3762,6 +3783,10 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
 	'centralnotice-banner-messages' => 'Chórgojowe powěźeńki',
 	'centralnotice-filter-template-prompt' => 'Mě chórgoja wopśimujo:',
 	'centralnotice-filter-template-submit' => 'Filter nałožyś',
+	'centralnotice-priority-low' => 'niska',
+	'centralnotice-priority-normal' => 'normalna',
+	'centralnotice-priority-high' => 'wusoka',
+	'centralnotice-priority-emergency' => 'nuzny pad',
 );
 
 /** Ewe (eʋegbe)
@@ -10472,7 +10497,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => '"document.write()" kan niet worden gebruikt binnen een banner.
 Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
-	'centralnotice-preferred' => 'Voorkeur',
+	'centralnotice-preferred' => 'Prioriteit',
 	'centralnotice-logs' => 'Logboeken',
 	'centralnotice-view-logs' => 'Logboeken bekijken',
 	'centralnotice-timestamp' => 'Tijdstip',
@@ -10504,6 +10529,10 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-banner-messages' => 'Bannerberichten',
 	'centralnotice-filter-template-prompt' => 'Bannernaam bevat:',
 	'centralnotice-filter-template-submit' => 'Filter toepassen',
+	'centralnotice-priority-low' => 'laag',
+	'centralnotice-priority-normal' => 'normaal',
+	'centralnotice-priority-high' => 'hoog',
+	'centralnotice-priority-emergency' => 'noodgeval',
 );
 
 /** Norwegian Nynorsk (‪norsk (nynorsk)‬)
@@ -13638,7 +13667,7 @@ Dodajte kakšno spodaj.',
 	'centralnotice-percentage' => 'Odstotek',
 	'centralnotice-documentwrite-error' => 'document.write() ni mogoče uporabiti v pasici.
 Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.',
-	'centralnotice-preferred' => 'Prednostno',
+	'centralnotice-preferred' => 'Prioriteta',
 	'centralnotice-logs' => 'Dnevniki',
 	'centralnotice-view-logs' => 'Ogled dnevnikov',
 	'centralnotice-timestamp' => 'Časovni žig',
