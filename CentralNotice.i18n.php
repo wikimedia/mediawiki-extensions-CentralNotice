@@ -9548,7 +9548,7 @@ $messages['ml'] = array(
 	'centralnotice-percentage' => 'ശതമാനം',
 	'centralnotice-documentwrite-error' => 'എഴുത്തുപട്ടയിൽ document.write() ഉപയോഗിക്കാനാവില്ല.
 കൂടുതൽ വിവരങ്ങൾക്ക് http://meta.wikimedia.org/wiki/Help:CentralNotice കാണുക',
-	'centralnotice-preferred' => 'അഭിലഷണീയമായുള്ളത്',
+	'centralnotice-preferred' => 'പ്രാധാന്യം',
 	'centralnotice-logs' => 'പ്രവർത്തനരേഖകൾ',
 	'centralnotice-view-logs' => 'പ്രവർത്തനരേഖകൾ കാണുക',
 	'centralnotice-timestamp' => 'സമയമുദ്ര',
@@ -9580,6 +9580,10 @@ $messages['ml'] = array(
 	'centralnotice-banner-messages' => 'ബാനർ സന്ദേശങ്ങൾ',
 	'centralnotice-filter-template-prompt' => 'എഴുത്ത്പട്ടയുടെ പേരിൽ ഉൾപ്പെടുന്നത്:',
 	'centralnotice-filter-template-submit' => 'അരിപ്പ ഉപയോഗിക്കുക',
+	'centralnotice-priority-low' => 'കുറവ്',
+	'centralnotice-priority-normal' => 'സാധാരണം',
+	'centralnotice-priority-high' => 'ഉന്നതം',
+	'centralnotice-priority-emergency' => 'അടിയന്തരം',
 );
 
 /** Mongolian (монгол)
@@ -12391,7 +12395,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-percentage' => 'Percenduale',
 	'centralnotice-documentwrite-error' => "document.write() non ge pò essere ausate jndr'à 'nu banner.
 Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
-	'centralnotice-preferred' => 'Preferite',
+	'centralnotice-preferred' => 'Priorità',
 	'centralnotice-logs' => 'Archivije',
 	'centralnotice-view-logs' => "Vide l'archivije",
 	'centralnotice-timestamp' => 'Orarie de stambe',
@@ -12420,6 +12424,11 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-apply-filters' => 'Appleche le filtre',
 	'centralnotice-clear-filters' => 'Pulizze le filtre',
 	'centralnotice-banner-messages' => "Messàgge d'u banner",
+	'centralnotice-filter-template-submit' => 'Appleche le filtre',
+	'centralnotice-priority-low' => 'vasce',
+	'centralnotice-priority-normal' => 'normale',
+	'centralnotice-priority-high' => 'ierte',
+	'centralnotice-priority-emergency' => 'emergenze',
 );
 
 /** Russian (русский)
