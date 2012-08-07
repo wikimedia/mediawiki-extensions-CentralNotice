@@ -58,7 +58,7 @@ class CentralNotice extends SpecialPage {
 				// Handle adding a campaign
 				if ( $method == 'addCampaign' ) {
 					$noticeName = $request->getVal( 'noticeName' );
-					$start = $request->getArray( 'start' );
+					$start = $this->getDateTime( 'start' );
 					$projects = $request->getArray( 'projects' );
 					$project_languages = $request->getArray( 'project_languages' );
 					$geotargeted = $request->getCheck( 'geotargeted' );
@@ -217,41 +217,39 @@ class CentralNotice extends SpecialPage {
 		return Xml::tags( 'tr', $attribs, implode( "\n", $cells ) ) . "\n";
 	}
 
-	protected function dateSelector( $prefix, $editable, $timestamp = null ) {
+	/**
+	 * Render a field suitable for jquery.ui datepicker
+	 */
+	protected function dateSelector( $name, $editable, $timestamp = null ) {
 		if ( $editable ) {
-			$dateRanges = $this->getDateRanges();
-
 			// Normalize timestamp format. If no timestamp is passed, default to now. If -1 is
 			// passed, set no defaults.
 			if ( $timestamp === -1 ) {
-				$ts = '00000000';
+				$ts = '';
 			} else {
-				$ts = wfTimestamp( TS_MW, $timestamp );
+				$ts = wfTimestamp(TS_MW, $timestamp);
 			}
 
-			$fields = array(
-				array( "month", "centralnotice-month", $dateRanges[ 'months' ], substr( $ts, 4, 2 ) ),
-				array( "day",   "centralnotice-day",   $dateRanges[ 'days' ],   substr( $ts, 6, 2 ) ),
-				array( "year",  "centralnotice-year",  $dateRanges[ 'years' ],  substr( $ts, 0, 4 ) ),
+			$out = Html::element( 'input',
+				array(
+					'id' => "{$name}Date",
+					'name' => "{$name}Date",
+					'type' => 'text',
+					'class' => 'centralnotice-datepicker centralnotice-datepicker-limit_one_year',
+				)
 			);
-
-			return $this->createSelector( $prefix, $fields );
+			$out .= Html::element( 'input',
+				array(
+					'id' => "{$name}Date_timestamp",
+					'name' => "{$name}Date_timestamp",
+					'type' => 'hidden',
+					'value' => $ts,
+				)
+			);
+			return $out;
 		} else {
 			return $this->getLanguage()->date( $timestamp );
 		}
-	}
-
-	/**
-	 * Get date ranges for use in date selectors
-	 *
-	 * @return array of ranges for months, days, and years (padded with zeros)
-	 */
-	protected function getDateRanges() {
-		$dateRanges = array();
-		$dateRanges[ 'years' ] = range( date( 'Y' ), date( 'Y' ) + 1 ); // this year and next year
-		$dateRanges[ 'months' ] = $this->paddedRange( 1, 12 );
-		$dateRanges[ 'days' ] = $this->paddedRange( 1, 31 );
-		return $dateRanges;
 	}
 
 	protected function timeSelector( $prefix, $editable, $timestamp = null ) {
@@ -317,8 +315,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Build a set of select lists. Used by dateSelector and timeSelector.
-	 *
+	 * Build a set of select lists. Used by timeSelector.
 	 * @param $prefix string to identify selector set, for example, 'start' or 'end'
 	 * @param $fields array of select lists to build
 	 * @return string
@@ -558,16 +555,11 @@ class CentralNotice extends SpecialPage {
 			$request = $this->getRequest();
 			// If there was an error, we'll need to restore the state of the form
 			if ( $request->wasPosted() && ( $request->getVal( 'method' ) == 'addCampaign' ) ) {
-				$startArray = $request->getArray( 'start' );
-				$startTimestamp = $startArray[ 'year' ] .
-					$startArray[ 'month' ] .
-					$startArray[ 'day' ] .
-					$startArray[ 'hour' ] .
-					$startArray[ 'min' ] . '00';
+				$start = $this->getDateTime( 'start' );
 				$noticeProjects = $request->getArray( 'projects', array() );
 				$noticeLanguages = $request->getArray( 'project_languages', array() );
 			} else { // Defaults
-				$startTimestamp = null;
+				$start = null;
 				$noticeProjects = array();
 				$noticeLanguages = array();
 			}
@@ -592,12 +584,12 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $start ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $start ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -645,6 +637,27 @@ class CentralNotice extends SpecialPage {
 
 		// Output HTML
 		$this->getOutput()->addHTML( $htmlOut );
+	}
+
+	/**
+	 * Retrieve jquery.ui.datepicker date and homebrew time,
+	 * and return as a MW timestamp string.
+	 */
+	function getDateTime( $prefix ) {
+		global $wgRequest;
+		// Check whether the user left the date field blank.
+		// Interpret any form of "empty" as a blank value.
+		$manual_entry = $wgRequest->getVal( "{$prefix}Date" );
+		if ( !$manual_entry ) {
+			return null;
+		}
+
+		$datestamp = $wgRequest->getVal( "{$prefix}Date_timestamp" );
+		$timeArray = $wgRequest->getArray( $prefix );
+		$timestamp = substr( $datestamp, 0, 8 ) .
+			$timeArray[ 'hour' ] .
+			$timeArray[ 'min' ] . '00';
+		return $timestamp;
 	}
 
 	/**
@@ -717,28 +730,10 @@ class CentralNotice extends SpecialPage {
 						}
 
 						// Handle updating the start and end settings
-						$start = $request->getArray( 'start' );
-						$end = $request->getArray( 'end' );
+						$start = $this->getDateTime( 'start' );
+						$end = $this->getDateTime( 'end' );
 						if ( $start && $end ) {
-							$updatedStart = sprintf( "%04d%02d%02d%02d%02d00",
-								$start[ 'year' ],
-								$start[ 'month' ],
-								$start[ 'day' ],
-								$start[ 'hour' ],
-								$start[ 'min' ]
-							);
-							$updatedEnd = sprintf( "%04d%02d%02d%02d%02d00",
-								$end[ 'year' ],
-								$end[ 'month' ],
-								$end[ 'day' ],
-								$end[ 'hour' ],
-								$end[ 'min' ]
-							);
-
-							$result = $cndb->updateNoticeDate( $notice, $updatedStart, $updatedEnd );
-							if( $result !== true ) {
-								$this->showError( $result );
-							}
+							$cndb->updateNoticeDate( $notice, $start, $end );
 						}
 
 						// Handle adding of banners to the campaign
@@ -885,18 +880,8 @@ class CentralNotice extends SpecialPage {
 			$request = $this->getRequest();
 
 			if ( $request->wasPosted() ) {
-				$startArray = $request->getArray( 'start' );
-				$startTimestamp = $startArray[ 'year' ] .
-					$startArray[ 'month' ] .
-					$startArray[ 'day' ] .
-					$startArray[ 'hour' ] .
-					$startArray[ 'min' ] . '00';
-				$endArray = $request->getArray( 'end' );
-				$endTimestamp = $endArray[ 'year' ] .
-					$endArray[ 'month' ] .
-					$endArray[ 'day' ] .
-					$endArray[ 'hour' ] .
-					$endArray[ 'min' ] . '00';
+				$start = $this->getDateTime( 'start' );
+				$end = $this->getDateTime( 'end' );
 				$isEnabled = $request->getCheck( 'enabled' );
 				$priority = $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY );
 				$isLocked = $request->getCheck( 'locked' );
@@ -905,8 +890,8 @@ class CentralNotice extends SpecialPage {
 				$isGeotargeted = $request->getCheck( 'geotargeted' );
 				$countries = $request->getArray( 'geo_countries', array() );
 			} else { // Defaults
-				$startTimestamp = $campaign[ 'start' ];
-				$endTimestamp = $campaign[ 'end' ];
+				$start = $campaign[ 'start' ];
+				$end = $campaign[ 'end' ];
 				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
 				$priority = $campaign[ 'preferred' ];
 				$isLocked = ( $campaign[ 'locked' ] == '1' );
@@ -925,22 +910,22 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $start ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $startTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $start ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-end-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $this->editable, $endTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $this->editable, $end ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-end-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $this->editable, $endTimestamp ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $this->editable, $end ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );

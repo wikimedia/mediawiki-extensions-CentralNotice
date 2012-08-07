@@ -45,6 +45,9 @@ $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 $wgResourceModules[ 'ext.centralNotice.interface' ] = array(
 	'localBasePath' => $dir . '/modules',
 	'remoteExtPath' => 'CentralNotice/modules',
+	'dependencies' => array(
+		'jquery.ui.datepicker',
+	),
 	'scripts'       => 'ext.centralNotice.interface/centralnotice.js',
 	'styles'        => 'ext.centralNotice.interface/centralnotice.css',
 	'messages'      => array(

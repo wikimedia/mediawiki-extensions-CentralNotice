@@ -107,6 +107,33 @@ window.validateBannerForm = function( form ) {
 };
 
 jQuery(document).ready( function ( $ ) {
+
+	// Render jquery.ui.datepicker on appropriate fields
+	$( '.centralnotice-datepicker' ).each( function () {
+		var altFormat = 'yymmdd000000';
+		var altField = document.getElementById( this.id + '_timestamp' );
+		// Remove the time, leaving only the date info
+		$( this ).datepicker({
+			'altField': altField,
+			'altFormat': altFormat,
+			'dateFormat': 'yy-mm-dd'
+		});
+
+		if ( altField.value ) {
+			altField.value = altField.value.substr( 0, 8 ) + '000000';
+			var defaultDate = $.datepicker.parseDate( altFormat, altField.value );
+			$( this ).datepicker(
+				'setDate', defaultDate
+			);
+		}
+	});
+	$( '.centralnotice-datepicker-limit_one_year' ).datepicker(
+		'option',
+		{
+			'maxDate': '+1Y'
+		}
+	);
+
 	// Reveal the geoMultiSelector when the geotargetted checkbox is checked
 	$( '#geotargeted' ).click(function () {
 		if ( $( '#geotargeted:checked' ).val() !== undefined ) {

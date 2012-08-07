@@ -67,19 +67,16 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut .= Xml::closeElement( 'div' );
 
 		if ( $this->logType == 'campaignsettings' ) {
+
 			$reset = $request->getVal( 'centralnoticelogreset' );
 			$campaign = $request->getVal( 'campaign' );
 			$user = $request->getVal( 'user' );
-			$startYear = $this->getDateValue( 'start_year' );
-			$startMonth = $this->getDateValue( 'start_month' );
-			$startDay = $this->getDateValue( 'start_day' );
-			$endYear = $this->getDateValue( 'end_year' );
-			$endMonth = $this->getDateValue( 'end_month' );
-			$endDay = $this->getDateValue( 'end_day' );
+			$start = $this->getDateValue( 'start' );
+			$end = $this->getDateValue( 'end' );
 
 			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters-container' ) );
 
-			if ( $campaign || $user || $startYear || $startMonth || $startDay || $endYear || $endMonth || $endDay ) { // filters on
+			if ( $campaign || $user || $start || $end ) { // filters on
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
@@ -103,9 +100,9 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			if ( $reset ) {
-				$htmlOut .= $this->dateSelector( 'start' );
+				$htmlOut .= $this->dateSelector( 'start', true );
 			} else {
-				$htmlOut .= $this->dateSelector( 'start', $startYear, $startMonth, $startDay );
+				$htmlOut .= $this->dateSelector( 'start', true, $start );
 			}
 			$htmlOut .= Xml::closeElement( 'td' );
 
@@ -117,9 +114,9 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			if ( $reset ) {
-				$htmlOut .= $this->dateSelector( 'end' );
+				$htmlOut .= $this->dateSelector( 'end', true );
 			} else {
-				$htmlOut .= $this->dateSelector( 'end', $endYear, $endMonth, $endDay );
+				$htmlOut .= $this->dateSelector( 'end', true, $end );
 			}
 			$htmlOut .= Xml::closeElement( 'td' );
 
@@ -190,23 +187,26 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$out->addHTML( Xml::closeElement( 'div' ) );
 	}
 
-	protected function dateSelector( $prefix, $year = 0, $month = 0, $day = 0 ) {
-		$dateRanges = $this->getDateRanges();
-
-		$fields = array(
-			array( $prefix."_month", "centralnotice-month", $dateRanges['months'], $month ),
-			array( $prefix."_day",   "centralnotice-day",   $dateRanges['days'],   $day ),
-			array( $prefix."_year",  "centralnotice-year",  $dateRanges['years'],  $year ),
+	/**
+	 * Render a field suitable for jquery.ui datepicker
+	 */
+	protected function dateSelector( $prefix, $editable = true, $date = '' ) {
+		$out = Html::element( 'input',
+			array(
+				'id' => "{$prefix}Date",
+				'name' => "{$prefix}Date",
+				'type' => 'text',
+				'class' => 'centralnotice-datepicker',
+			)
 		);
-
-		$out = '';
-		foreach ( $fields as $data ) {
-			list( $field, $label, $set, $current ) = $data;
-			$out .= Xml::listDropDown( $field,
-				CentralNotice::dropDownList( $this->msg( $label )->text(), $set ),
-				'',
-				$current );
-		}
+		$out .= Html::element( 'input',
+			array(
+				'id' => "{$prefix}Date_timestamp",
+				'name' => "{$prefix}Date_timestamp",
+				'type' => 'hidden',
+				'value' => $date,
+			)
+		);
 		return $out;
 	}
 
@@ -247,10 +247,16 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$this->getOutput()->addHTML( $htmlOut );
 	}
 
-	protected function getDateValue( $type ) {
-		$value = $this->getRequest()->getVal( $type );
-		if ( $value === 'other' ) $value = null;
-		return $value;
+	/**
+	 * Returns the jquery.ui datepicker value, or null if the field is blank.
+	 */
+	public function getDateValue( $name ) {
+		$manual_entry = $this->getRequest()->getVal( "{$name}Date" );
+		if ( !$manual_entry ) {
+			return null;
+		}
+
+		return $this->getRequest()->getVal( "{$name}Date_timestamp" );
 	}
 
 	/**

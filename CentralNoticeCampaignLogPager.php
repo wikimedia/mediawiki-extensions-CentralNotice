@@ -29,36 +29,14 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		$filterStartDate = 0;
 		$filterEndDate = 0;
-		$startYear = $request->getVal( 'start_year' );
-		if ( $startYear === 'other' ) {
-			$startYear = null;
-		}
-		$startMonth = $request->getVal( 'start_month' );
-		if ( $startMonth === 'other' ) {
-			$startMonth = null;
-		}
-		$startDay = $request->getVal( 'start_day' );
-		if ( $startDay === 'other' ) {
-			$startDay = null;
-		}
-		$endYear = $request->getVal( 'end_year' );
-		if ( $endYear === 'other' ) {
-			$endYear = null;
-		}
-		$endMonth = $request->getVal( 'end_month' );
-		if ( $endMonth === 'other' ) {
-			$endMonth = null;
-		}
-		$endDay = $request->getVal( 'end_day' );
-		if ( $endDay === 'other' ) {
-			$endDay = null;
-		}
+		$start = $this->special->getDateValue( 'start' );
+		$end = $this->special->getDateValue( 'end' );
 
-		if ( $startYear && $startMonth && $startDay ) {
-			$filterStartDate = $startYear . $startMonth . $startDay;
+		if ( $start ) {
+			$filterStartDate = substr( $start, 0, 8 );
 		}
-		if ( $endYear && $endMonth && $endDay ) {
-			$filterEndDate = $endYear . $endMonth . $endDay;
+		if ( $end ) {
+			$filterEndDate = substr( $end, 0, 8 );
 		}
 		$filterCampaign = $request->getVal( 'campaign' );
 		$filterUser = $request->getVal( 'user' );

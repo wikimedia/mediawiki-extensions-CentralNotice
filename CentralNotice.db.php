@@ -741,7 +741,7 @@ class CentralNoticeDB {
 	 *
 	 * @param $noticeName        string: Name of the campaign
 	 * @param $enabled           int: Boolean setting, 0 or 1
-	 * @param $start             array: Start date and time
+	 * @param $startTs           string: Campaign start in UTC
 	 * @param $projects          array: Targeted project types (wikipedia, wikibooks, etc.)
 	 * @param $project_languages array: Targeted project languages (en, de, etc.)
 	 * @param $geotargeted       int: Boolean setting, 0 or 1
@@ -751,7 +751,7 @@ class CentralNoticeDB {
 	 * @throws MWException
 	 * @return bool|string True on success, string with message key for error
 	 */
-	public function addCampaign( $noticeName, $enabled, $start, $projects, $project_languages,
+	public function addCampaign( $noticeName, $enabled, $startTs, $projects, $project_languages,
 								 $geotargeted, $geo_countries, $user ) {
 		$noticeName = trim( $noticeName );
 		if ( $this->campaignExists( $noticeName ) ) {
@@ -768,26 +768,9 @@ class CentralNoticeDB {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
-		$start[ 'hour' ] = substr( $start[ 'hour' ], 0, 2 );
-		$start[ 'min' ] = substr( $start[ 'min' ], 0, 2 );
-		if ( $start[ 'month' ] == 12 ) {
-			$end[ 'month' ] = '01';
-			$end[ 'year' ] = ( $start[ 'year' ] + 1 );
-		} elseif ( $start[ 'month' ] == '09' ) {
-			$end[ 'month' ] = '10';
-			$end[ 'year' ] = $start[ 'year' ];
-		} else {
-			$end[ 'month' ] =
-				( substr( $start[ 'month' ], 0, 1 ) ) == 0
-					? 0 . ( intval( $start[ 'month' ] ) + 1 )
-					: ( $start[ 'month' ] + 1 );
-			$end[ 'year' ] = $start[ 'year' ];
-		}
 
-		$startTs = wfTimeStamp( TS_MW, "{$start['year']}:{$start['month']}:{$start['day']} " .
-			"{$start['hour']}:{$start['min']}:00" );
-		$endTs = wfTimeStamp( TS_MW, "{$end['year']}:{$end['month']}:{$start['day']} " .
-			"{$start['hour']}:{$start['min']}:00" );
+		$endTime = strtotime( '+1 month', wfTimestamp( TS_UNIX, $startTs ) );
+		$endTs = wfTimestamp( TS_MW, $endTime );
 
 		$dbw->insert( 'cn_notices',
 			array( 'not_name'    => $noticeName,
