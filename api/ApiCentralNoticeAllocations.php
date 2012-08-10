@@ -102,6 +102,6 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 * @return array|bool|string
 	 */
 	public function getExamples() {
-		return "api.php?action=centralnoticeallocations&format=json&project=wikipedia&country=us&language=en";
+		return "api.php?action=centralnoticeallocations&format=json&project=wikipedia&country=US&language=en";
 	}
 }
