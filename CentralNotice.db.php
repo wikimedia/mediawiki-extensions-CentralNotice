@@ -671,6 +671,7 @@ class CentralNoticeDB {
 				'ZW'=> 'Zimbabwe'
 			);
 		}
+		asort( $countries );
 
 		return $countries;
 	}
