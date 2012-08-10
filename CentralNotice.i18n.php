@@ -6812,7 +6812,7 @@ Itt adhatsz hozzá újakat.',
 	'centralnotice-percentage' => 'Százalék',
 	'centralnotice-documentwrite-error' => 'A document.write() nem használható hirdetéseken belül.
 További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lapon olvashatsz.',
-	'centralnotice-preferred' => 'Előnyben részesített',
+	'centralnotice-preferred' => 'Prioritás',
 	'centralnotice-logs' => 'Rendszernaplók',
 	'centralnotice-view-logs' => 'Rendszernapló megtekintése',
 	'centralnotice-timestamp' => 'Időbélyeg',
@@ -6842,6 +6842,11 @@ További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lap
 	'centralnotice-apply-filters' => 'Szűrők alkalmazása',
 	'centralnotice-clear-filters' => 'Szűrők törlése',
 	'centralnotice-banner-messages' => 'Hirdetés üzenetek',
+	'centralnotice-filter-template-submit' => 'Szűrő alkalmazása',
+	'centralnotice-priority-low' => 'alacsony',
+	'centralnotice-priority-normal' => 'normál',
+	'centralnotice-priority-high' => 'magas',
+	'centralnotice-priority-emergency' => 'sürgősségi',
 );
 
 /** Interlingua (interlingua)
@@ -7427,6 +7432,7 @@ $messages['io'] = array(
 
 /** Icelandic (íslenska)
  * @author Maxí
+ * @author Snævar
  * @author Spacebirdy
  */
 $messages['is'] = array(
@@ -7438,6 +7444,7 @@ $messages['is'] = array(
 	'centralnotice-translations' => 'Þýðingar',
 	'centralnotice-translate-to' => 'Þýða yfir á',
 	'centralnotice-translate' => 'Þýða',
+	'centralnotice-locked' => 'Læstur',
 	'centralnotice-notice' => 'Herferð',
 	'centralnotice-notice-heading' => 'Herferð: $1',
 	'centralnotice-notices' => 'Herferðir',
@@ -7773,7 +7780,7 @@ $messages['ja'] = array(
 	'centralnotice-percentage' => '割合',
 	'centralnotice-documentwrite-error' => 'テンプレート内ではdocument.write()は使用できません。
 詳細は http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。',
-	'centralnotice-preferred' => '優先',
+	'centralnotice-preferred' => '優先度',
 	'centralnotice-logs' => '記録',
 	'centralnotice-view-logs' => '記録を閲覧',
 	'centralnotice-timestamp' => '時刻印',
@@ -7818,11 +7825,14 @@ $messages['jut'] = array(
 
 /** Javanese (Basa Jawa)
  * @author Meursault2004
+ * @author NoiX180
  * @author Pras
  */
 $messages['jv'] = array(
 	'centralnotice' => "Admin cathetan pusat (''central notice'')",
-	'noticetemplate' => "Cithakan cathetan pusat (''central notice'')",
+	'noticetemplate' => 'Admin wara-wara pusat',
+	'bannerallocation' => 'Pangurus wara-wara pusat',
+	'centralnoticelogs' => 'Pangurus wara-wara pusat',
 	'right-centralnotice-admin' => 'Tata cathetan pusat',
 	'action-centralnotice-admin' => "tata cathetan pusat (''central notices'')",
 	'centralnotice-desc' => 'Nambahaké wara-wara situs punjer',
@@ -7833,13 +7843,18 @@ Iki uga bisa kanggo nambah utawa mbuwang cathetan/pangumuman lawas.",
 	'centralnotice-end-date' => 'Tanggal dipungkasi',
 	'centralnotice-enabled' => 'Diaktifaké',
 	'centralnotice-modify' => 'Kirim',
+	'centralnotice-view' => 'Delok',
+	'centralnotice-save-banner' => 'Simpen spanduk',
 	'centralnotice-preview' => 'Pratayang',
+	'centralnotice-nopreview' => '(Pratayang ora sumadhiya)',
 	'centralnotice-add-new' => 'Tambah cathetan pusat (pangumuman) anyar',
 	'centralnotice-remove' => 'Buwang/busak',
 	'centralnotice-translate-heading' => 'Terjemahan saka $1',
 	'centralnotice-manage' => "Tata cathetan pusat (''central notice'')",
+	'centralnotice-manage-templates' => 'Tata spanduk',
 	'centralnotice-add' => 'Tambahaké',
 	'centralnotice-add-notice' => 'Tambahaké cathetan',
+	'centralnotice-edit-notice' => 'Sunting kampanye',
 	'centralnotice-add-template' => 'Tambahaké cithakan',
 	'centralnotice-show-notices' => 'Tuduhaké cathetan',
 	'centralnotice-list-templates' => 'Dhaptar cithakan',
@@ -7847,7 +7862,7 @@ Iki uga bisa kanggo nambah utawa mbuwang cathetan/pangumuman lawas.",
 	'centralnotice-translate-to' => 'Terjemahaké menyang',
 	'centralnotice-translate' => 'Terjemah',
 	'centralnotice-english' => 'Basa Inggris',
-	'centralnotice-banner-name' => 'Jeneng cithakan',
+	'centralnotice-banner-name' => 'Jeneng spanduk:',
 	'centralnotice-templates' => 'Cithakan',
 	'centralnotice-weight' => 'Bobot',
 	'centralnotice-locked' => 'Kakunci',
@@ -7856,8 +7871,7 @@ Iki uga bisa kanggo nambah utawa mbuwang cathetan/pangumuman lawas.",
 Dudu panambahan',
 	'centralnotice-template-exists' => 'Cithakan wis ana.
 Dudu panambahan',
-	'centralnotice-notice-doesnt-exist' => 'Cathetan ora ana.
-Ora ana sing perlu dibusak',
+	'centralnotice-notice-doesnt-exist' => 'Kampanyé ora ana.',
 	'centralnotice-template-still-bound' => 'Cithakan isih diwatesi déning cathetan.
 Ora bisa mbusak.',
 	'centralnotice-template-body' => 'Bagéyan utama cithakan',
@@ -7900,6 +7914,7 @@ Tambahaké ing ngisor',
 	'centralnotice-clone' => 'Kloning',
 	'centralnotice-clone-notice' => "Gawé salinan (''copy'') saka cithakan",
 	'centralnotice-preview-all-template-translations' => 'Tampilaké kabèh terjemahan cithakan sing ana',
+	'centralnotice-language' => 'Basa',
 );
 
 /** Georgian (ქართული)
@@ -10879,6 +10894,7 @@ Apondètz-ne una en dejós.',
 
 /** Oriya (ଓଡ଼ିଆ)
  * @author Ansumang
+ * @author Jnanaranjan Sahu
  * @author Odisha1
  * @author Psubhashish
  */
@@ -11017,7 +11033,7 @@ $messages['or'] = array(
 	'centralnotice-percentage' => 'ଶତକଡ଼ା',
 	'centralnotice-documentwrite-error' => 'document.write() ଏକ ସୂଚନା ଫଳକ ଭିତରେ ବ୍ୟବହାର ହୋଇପାରିବ ନାହିଁ ।
 ଅଧିକ ଜାଣିବା ପାଇଁ http://meta.wikimedia.org/wiki/Help:CentralNotice ଦେଖନ୍ତୁ ।',
-	'centralnotice-preferred' => 'ବଛା',
+	'centralnotice-preferred' => 'ଅଧିକ ଦରକାରୀ',
 	'centralnotice-logs' => 'ଲଗସବୁ',
 	'centralnotice-view-logs' => 'ଇତିହାସ ଦେଖିବେ',
 	'centralnotice-timestamp' => 'ସମୟଚିହ୍ନ',
@@ -11047,6 +11063,12 @@ $messages['or'] = array(
 	'centralnotice-apply-filters' => 'ଛାଣିବା ସଚଳ କରିବେ',
 	'centralnotice-clear-filters' => 'ଛାଣିବାକୁ ବାହାର କରିଦେବେ',
 	'centralnotice-banner-messages' => 'ସୂଚନା ଫଳକ ସମ୍ବାଦ',
+	'centralnotice-filter-template-prompt' => 'ପ୍ରସାର ପତ୍ରରେ ଅଛି :',
+	'centralnotice-filter-template-submit' => 'ଛଣା ସଚଳ କରିବେ',
+	'centralnotice-priority-low' => 'ନିମ୍ନ',
+	'centralnotice-priority-normal' => 'ସାଧାରଣ',
+	'centralnotice-priority-high' => 'ଉଚ୍ଚ',
+	'centralnotice-priority-emergency' => 'ଜରୁରୀକାଳୀନ',
 );
 
 /** Ossetic (Ирон)
@@ -11900,6 +11922,10 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-banner-messages' => 'Mensagens do modelo',
 	'centralnotice-filter-template-prompt' => 'O nome do modelo contém:',
 	'centralnotice-filter-template-submit' => 'Aplicar filtro',
+	'centralnotice-priority-low' => 'baixa',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'alta',
+	'centralnotice-priority-emergency' => 'emergência',
 );
 
 /** Brazilian Portuguese (português do Brasil)
@@ -13567,6 +13593,7 @@ $messages['si'] = array(
 	'centralnotice-apply-filters' => 'පෙරහන් එක්කරන්න',
 	'centralnotice-clear-filters' => 'පෙරහන් ඉවත්කරන්න',
 	'centralnotice-banner-messages' => 'සිරස්තල පණිවිඩය',
+	'centralnotice-filter-template-prompt' => 'බැනර නාමයේ අන්තර්ගතයන්:',
 	'centralnotice-filter-template-submit' => 'පෙරහන යොදන්න',
 	'centralnotice-priority-low' => 'අවම',
 	'centralnotice-priority-normal' => 'සාමාන්‍ය',
@@ -14205,8 +14232,8 @@ $messages['sr-ec'] = array(
 	'centralnotice-no-allocation' => 'Нема додељених плаката.',
 	'centralnotice-allocation-description' => 'Додела плаката за $1.$2 у $3:',
 	'centralnotice-percentage' => 'Постотак',
-	'centralnotice-documentwrite-error' => 'document.write() не може бити употребљен унутар банера.
-Видите http://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.',
+	'centralnotice-documentwrite-error' => 'document.write() не може да се користи унутар плаката.
+За више информација погледајте http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-preferred' => 'Приоритет',
 	'centralnotice-logs' => 'Историје',
 	'centralnotice-view-logs' => 'Погледај историје',
@@ -14241,7 +14268,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-priority-low' => 'низак',
 	'centralnotice-priority-normal' => 'нормалан',
 	'centralnotice-priority-high' => 'висок',
-	'centralnotice-priority-emergency' => 'ургентно',
+	'centralnotice-priority-emergency' => 'хитан',
 );
 
 /** Serbian (Latin script) (‪srpski (latinica)‬)
@@ -16739,6 +16766,7 @@ $messages['yue'] = array(
  * @author Kuailong
  * @author Liangent
  * @author PhiLiP
+ * @author Shirayuki
  * @author Wmr89502270
  * @author Xiaomingyan
  * @author 阿pp
@@ -16908,6 +16936,8 @@ $messages['zh-hans'] = array(
 	'centralnotice-apply-filters' => '应用筛选器',
 	'centralnotice-clear-filters' => '清除筛选器',
 	'centralnotice-banner-messages' => '条幅消息',
+	'centralnotice-filter-template-prompt' => '标题名称中包含：',
+	'centralnotice-filter-template-submit' => '应用筛选器',
 	'centralnotice-priority-low' => '低',
 	'centralnotice-priority-normal' => '一般',
 	'centralnotice-priority-high' => '高',
@@ -16922,6 +16952,7 @@ $messages['zh-hans'] = array(
  * @author Liangent
  * @author Mark85296341
  * @author Oapbtommy
+ * @author Shirayuki
  * @author Simon Shek
  * @author Waihorace
  * @author Wrightbus
@@ -17092,6 +17123,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-clear-filters' => '清除篩選器',
 	'centralnotice-banner-messages' => '橫幅消息',
 	'centralnotice-filter-template-prompt' => '標題名稱中包含：',
+	'centralnotice-filter-template-submit' => '應用篩選器',
 	'centralnotice-priority-low' => '低',
 	'centralnotice-priority-normal' => '一般',
 	'centralnotice-priority-high' => '高',
