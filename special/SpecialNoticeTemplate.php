@@ -404,6 +404,14 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 			$fields = array();
 			$allowedChars = Title::legalChars();
 			preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
+			
+			// Remove magic words that don't need translation
+			foreach ( $fields[ 0 ] as $index => $rawField ) {
+				if ( $rawField === '{{{campaign}}}' || $rawField === '{{{banner}}}' ) {
+					unset( $fields[ 0 ][ $index ] ); // unset raw field
+					unset( $fields[ 1 ][ $index ] ); // unset field name
+				}
+			}
 
 			// If there are any message fields in the banner, display translation tools.
 			if ( count( $fields[ 0 ] ) > 0 ) {

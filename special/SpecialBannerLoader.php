@@ -6,6 +6,8 @@
 class SpecialBannerLoader extends UnlistedSpecialPage {
 	public $siteName = 'Wikipedia'; // Site name
 	public $language = 'en'; // User language
+	public $campaign = 'undefined'; // Campaign name
+	public $bannerName = '';
 
 	function __construct() {
 		// Register special page
@@ -35,7 +37,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				} else {
 					echo $content;
 				}
-			} catch (SpecialBannerLoaderException $e) {
+			} catch ( SpecialBannerLoaderException $e ) {
 				echo "/* Banner could not be generated */";
 			}
 		} else {
@@ -130,6 +132,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				break;
 			case 'daily-amount': // daily fundraising amount
 				$params = array( $this->toThousands( $this->getDailyDonationAmount() ) );
+				break;
+			case 'campaign': // campaign name
+				return( $this->campaign );
+				break;
+			case 'banner': // banner name
+				return( $this->bannerName );
 				break;
 		}
 		
