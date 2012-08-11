@@ -792,10 +792,10 @@ $messages['ar'] = array(
 	'centralnotice-notice-name' => 'اسم الإخطار',
 	'centralnotice-end-date' => 'تاريخ الانتهاء',
 	'centralnotice-enabled' => 'مُفعّل',
-	'centralnotice-modify' => 'أرسل',
+	'centralnotice-modify' => 'إرسال',
 	'centralnotice-view' => 'عرض',
 	'centralnotice-save-banner' => 'حفظ الشعار',
-	'centralnotice-preview' => 'عاين',
+	'centralnotice-preview' => 'عرض مسبق',
 	'centralnotice-nopreview' => '(المعاينة غير متوفرة)',
 	'centralnotice-add-new' => 'أضف إخطار جديد مركزي',
 	'centralnotice-remove' => 'أزل',
@@ -905,7 +905,7 @@ $messages['ar'] = array(
 	'centralnotice-view-allocation' => 'موقع عرض الشعار',
 	'centralnotice-allocation-instructions' => 'اختر البيئة قد ترغب في عرض الشعار بها:',
 	'centralnotice-languages' => 'اللغات',
-	'centralnotice-language' => 'لغة',
+	'centralnotice-language' => 'اللغة',
 	'centralnotice-projects' => 'مشاريع',
 	'centralnotice-country' => 'الدولة',
 	'centralnotice-no-allocation' => 'لا يوجد شعارات مخصصة.',
@@ -913,7 +913,7 @@ $messages['ar'] = array(
 	'centralnotice-percentage' => 'نسبة مئوية',
 	'centralnotice-documentwrite-error' => 'لا يمكن استخدام التعبير document.write() داخل الشعار.
 للحصول على مزيد من المعلومات راجع http://meta.wikimedia.org/wiki/Help:CentralNotice .',
-	'centralnotice-preferred' => 'مفضل',
+	'centralnotice-preferred' => 'أولوية',
 	'centralnotice-logs' => 'سجلات',
 	'centralnotice-view-logs' => 'عرض السجلات',
 	'centralnotice-timestamp' => 'طابع زمني',
@@ -945,6 +945,10 @@ $messages['ar'] = array(
 	'centralnotice-banner-messages' => 'رسائل لافتات',
 	'centralnotice-filter-template-prompt' => 'اسم البانر يتضمن:',
 	'centralnotice-filter-template-submit' => 'تطبيق المرشح',
+	'centralnotice-priority-low' => 'منخفض',
+	'centralnotice-priority-normal' => 'عادي',
+	'centralnotice-priority-high' => 'مرتفع',
+	'centralnotice-priority-emergency' => 'طوارئ',
 );
 
 /** Aramaic (ܐܪܡܝܐ)
@@ -2592,6 +2596,7 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
 
 /** Catalan (català)
  * @author Aleator
+ * @author Arnaugir
  * @author El libre
  * @author Gemmaa
  * @author Loupeter
@@ -2737,12 +2742,14 @@ Afegiu-ne un a continuació.',
 	'centralnotice-percentage' => 'Percentatge',
 	'centralnotice-documentwrite-error' => "document.write () no pot ser utilitzat dins d'una pancarta
  Veure http://meta.wikimedia.org/wiki/Help:CentralNotice per a més informació.",
-	'centralnotice-preferred' => 'Preferit',
+	'centralnotice-preferred' => 'Prioritat',
 	'centralnotice-logs' => 'Registres',
 	'centralnotice-view-logs' => 'Vegeu registres',
 	'centralnotice-timestamp' => 'Marca horària',
 	'centralnotice-user' => 'Usuari',
 	'centralnotice-action' => 'Acció',
+	'centralnotice-action-created' => 'creat',
+	'centralnotice-action-modified' => 'modificat',
 	'centralnotice-action-removed' => 'eliminat',
 	'centralnotice-changed' => 'Canviat des de <span class="cn-old-value"> $1 </span> per<span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'el',
@@ -2765,6 +2772,12 @@ Afegiu-ne un a continuació.',
 	'centralnotice-apply-filters' => 'Aplica els filtres',
 	'centralnotice-clear-filters' => 'Filtres clars',
 	'centralnotice-banner-messages' => 'Bandera de missatges',
+	'centralnotice-filter-template-prompt' => 'El nom del bàner conté:',
+	'centralnotice-filter-template-submit' => 'Aplica el filtre',
+	'centralnotice-priority-low' => 'baixa',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'alta',
+	'centralnotice-priority-emergency' => 'emergència',
 );
 
 /** Chechen (нохчийн)
@@ -4186,6 +4199,7 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
 	'centralnotice-apply-filters' => 'Apliki filtrilojn',
 	'centralnotice-clear-filters' => 'Nuligi filtrilojn',
 	'centralnotice-banner-messages' => 'Mesaĝoj de reklamrubendoj',
+	'centralnotice-filter-template-prompt' => 'Nomo de reklamrubando enhavas:',
 	'centralnotice-filter-template-submit' => 'Apliki filtrilon',
 	'centralnotice-priority-low' => 'malaltprioritata',
 	'centralnotice-priority-normal' => 'mezprioritata',
@@ -6001,7 +6015,7 @@ $messages['gu'] = array(
 	'centralnotice-landingpages' => 'લેન્ડીંગ પૃષ્ઠ',
 	'centralnotice-banner-content' => 'વાવટાની વિગત',
 	'centralnotice-banner-content-changed' => 'બદલાયેલ',
-	'centralnotice-filters' => 'ગરણાનો લોગ',
+	'centralnotice-filters' => 'લોગના ગાળકો',
 	'centralnotice-date' => 'તારીખ',
 	'centralnotice-apply-filters' => 'ગળણાં લાગુ પાડો',
 	'centralnotice-clear-filters' => 'ફરણાં હટાવો',
@@ -13933,6 +13947,7 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 );
 
 /** Albanian (shqip)
+ * @author FatosMorina
  * @author Mikullovci11
  * @author Olsi
  * @author Techlik
@@ -14103,6 +14118,12 @@ Shikoni http://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë inform
 	'centralnotice-apply-filters' => 'Apliko filtrat',
 	'centralnotice-clear-filters' => 'Pastro filtrat',
 	'centralnotice-banner-messages' => 'Mesazhet e banerit',
+	'centralnotice-filter-template-prompt' => 'Emri i banerit përmban:',
+	'centralnotice-filter-template-submit' => 'Apliko filtrin',
+	'centralnotice-priority-low' => 'Ulët',
+	'centralnotice-priority-normal' => 'Normal',
+	'centralnotice-priority-high' => 'I lartë',
+	'centralnotice-priority-emergency' => 'Emergjent',
 );
 
 /** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
@@ -14232,8 +14253,8 @@ $messages['sr-ec'] = array(
 	'centralnotice-no-allocation' => 'Нема додељених плаката.',
 	'centralnotice-allocation-description' => 'Додела плаката за $1.$2 у $3:',
 	'centralnotice-percentage' => 'Постотак',
-	'centralnotice-documentwrite-error' => 'document.write() не може да се користи унутар плаката.
-За више информација погледајте http://meta.wikimedia.org/wiki/Help:CentralNotice.',
+	'centralnotice-documentwrite-error' => 'document.write() не може бити употребљен унутар банера.
+Видите http://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.',
 	'centralnotice-preferred' => 'Приоритет',
 	'centralnotice-logs' => 'Историје',
 	'centralnotice-view-logs' => 'Погледај историје',
@@ -14711,20 +14732,91 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 /** Swahili (Kiswahili)
  * @author Ikiwaner
  * @author Lloffiwr
+ * @author Stephenwanjau
  */
 $messages['sw'] = array(
+	'centralnotice-notice-name' => 'Jina la kampeni',
+	'centralnotice-end-date' => 'Tarehe ya Kumaliza',
+	'centralnotice-enabled' => 'Imewezeshwa',
 	'centralnotice-modify' => 'Wasilisha',
+	'centralnotice-view' => 'Tazama',
+	'centralnotice-save-banner' => 'Hifadhi bango',
 	'centralnotice-preview' => 'Hakiki',
+	'centralnotice-add-new' => 'Ongeza kampeni mpya',
 	'centralnotice-remove' => 'Ondoa',
+	'centralnotice-translate-heading' => 'Tafsiri ya $1',
+	'centralnotice-manage' => 'Simamia kampeni',
+	'centralnotice-manage-templates' => 'Simamia mabango',
 	'centralnotice-add' => 'Ongeza',
+	'centralnotice-add-notice' => 'Ongeza kampeni',
+	'centralnotice-edit-notice' => 'Hariri kampeni',
+	'centralnotice-add-template' => 'Ongeza bana',
+	'centralnotice-show-notices' => 'Onyesha kampeni',
+	'centralnotice-list-templates' => 'Orodhesha mabango',
+	'centralnotice-all-projects' => 'Miradi yote',
+	'centralnotice-translations' => 'Tafsiri',
+	'centralnotice-translate-to' => 'Tafsiri kuelekea',
+	'centralnotice-translate' => 'Tafsiri',
+	'centralnotice-english' => 'Kiingereza',
+	'centralnotice-banner-name' => 'Jina ya bango:',
+	'centralnotice-banner' => 'Bango',
+	'centralnotice-banner-heading' => 'Bango: $1',
+	'centralnotice-templates' => 'Mabango',
+	'centralnotice-weight' => 'Uzito',
+	'centralnotice-locked' => 'Imezuia',
+	'centralnotice-notice' => 'Kampeni:',
+	'centralnotice-notice-heading' => 'Kampeni: $1',
+	'centralnotice-notices' => 'Kampeni',
+	'centralnotice-notice-exists' => 'Kampeni tayari ipo.
+Haitaongeza.',
+	'centralnotice-no-language' => 'Hakuna lugha ilichaguliwa ya kampeni. Haitaongeza.',
+	'centralnotice-no-project' => 'Hakuna mradi ulichaguliwa kwa ajili ya kampeni. Haitaongeza.',
+	'centralnotice-template-exists' => 'Bango tayari lipo.
+Haitaongeza.',
+	'centralnotice-notice-doesnt-exist' => 'Kampeni haipo.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Kampeni haipo.
+Hakuna kitu cha kutoa.',
+	'centralnotice-banner-doesnt-exist' => 'Bango halipo.',
+	'centralnotice-template-body' => 'Mwili wa bango:',
 	'centralnotice-day' => 'Siku',
 	'centralnotice-year' => 'Mwaka',
 	'centralnotice-month' => 'Mwezi',
 	'centralnotice-hours' => 'Saa',
 	'centralnotice-min' => 'Dakika',
+	'centralnotice-project-lang' => 'Lugha ya mradi',
+	'centralnotice-select' => 'Chagua: $1',
+	'centralnotice-top-ten-languages' => 'Lugha 10 bora',
+	'centralnotice-project-name' => 'Jina la mradi',
+	'centralnotice-start-date' => 'Tarehe ya kuanza',
+	'centralnotice-start-time' => 'Masaa ya kuanza (UTC)',
+	'centralnotice-end-time' => 'Masaa ya kuisha (UTC)',
+	'centralnotice-available-templates' => 'Mabango yaliyopo',
 	'centralnotice-change-lang' => 'Badili lugha ya tafsiri',
+	'centralnotice-number-uses' => 'Inatumia',
+	'centralnotice-edit-template' => 'Hariri bango',
 	'centralnotice-message' => 'Ujumbe',
+	'centralnotice-message-not-set' => 'Ujumbe haukutumwa',
 	'centralnotice-clone-name' => 'Jina:',
+	'centralnotice-insert' => 'Ingiza: $1',
+	'centralnotice-close-button' => 'Kitufe cha kufunga',
+	'centralnotice-close-title' => 'Funga',
+	'centralnotice-donate-button' => 'Kitufe cha kuchangia',
+	'centralnotice-banner-fundraising' => 'Hili ni bango la kuchangisha fedha',
+	'centralnotice-countries' => 'Nchi',
+	'centralnotice-languages' => 'Lugha',
+	'centralnotice-language' => 'Lugha',
+	'centralnotice-projects' => 'Miradi',
+	'centralnotice-country' => 'Nchi',
+	'centralnotice-percentage' => 'Asilimia',
+	'centralnotice-preferred' => 'Kipaumbele',
+	'centralnotice-user' => 'Mtumiaji',
+	'centralnotice-action-modified' => 'ilirekebishwa',
+	'centralnotice-action-removed' => 'Iliondolewa',
+	'centralnotice-campaign-settings' => 'Mpangilio wa kampeni',
+	'centralnotice-banner-settings' => 'Vipimo vya bango',
+	'centralnotice-banner-content' => 'Maudhui ya bango',
+	'centralnotice-banner-content-changed' => 'imebadilishwa',
+	'centralnotice-date' => 'Tarehe',
 );
 
 /** Tamil (தமிழ்)
@@ -14926,6 +15018,7 @@ $messages['te'] = array(
 	'centralnotice-list-templates' => 'మూసలను చూపించు',
 	'centralnotice-multiple-projects' => 'బహుళం ($1)',
 	'centralnotice-multiple-languages' => 'బహుళం ($1)',
+	'centralnotice-multiple-countries' => 'బహుళం ($1)',
 	'centralnotice-all-projects' => 'అన్ని ప్రాజెక్టులు',
 	'centralnotice-translations' => 'అనువాదాలు',
 	'centralnotice-translate-to' => 'ఈ భాషలోకి అనువదించు',
@@ -15025,11 +15118,13 @@ $messages['te'] = array(
 మరింత సమాచారం కోసం http://meta.wikimedia.org/wiki/Help:CentralNotice చూడండి.',
 	'centralnotice-preferred' => 'ప్రాధాన్యత',
 	'centralnotice-logs' => 'చిట్టాలు',
+	'centralnotice-view-logs' => 'చిట్టాలను చూడండి',
 	'centralnotice-timestamp' => 'కాలముద్ర',
 	'centralnotice-user' => 'వాడుకరి',
 	'centralnotice-action' => 'చర్య',
 	'centralnotice-talk-link' => 'చర్చ',
 	'centralnotice-fundraising' => 'నిధుల సేకరణ',
+	'centralnotice-filters' => 'చిట్టా వడపోతలు',
 	'centralnotice-date' => 'తేదీ',
 );
 
