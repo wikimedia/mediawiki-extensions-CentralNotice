@@ -364,7 +364,7 @@ $messages['gom-latn'] = array(
 	'centralnotice-language' => 'Bhas',
 );
 
-/** Ṫuroyo (Ṫuroyo)
+/** Turoyo (Ṫuroyo)
  * @author Ariyo
  */
 $messages['tru'] = array(
