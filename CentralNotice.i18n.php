@@ -515,7 +515,7 @@ U kan een hieronder byvoeg',
 	'centralnotice-no-allocation' => 'Geen baniere toegeken nie.',
 	'centralnotice-allocation-description' => 'Baniertoekenning vir $1.$2 in $3:',
 	'centralnotice-percentage' => 'Persentasie',
-	'centralnotice-preferred' => 'Voorkeur',
+	'centralnotice-preferred' => 'Prioriteit',
 	'centralnotice-logs' => 'Logboeke',
 	'centralnotice-view-logs' => 'Wys logboeke',
 	'centralnotice-timestamp' => 'Tydstip',
@@ -6210,6 +6210,7 @@ $messages['he'] = array(
 
 /** Hindi (हिन्दी)
  * @author Ansumang
+ * @author Karthi.dr
  * @author Kaustubh
  * @author Siddhartha Ghai
  * @author Suman
@@ -6368,6 +6369,27 @@ $messages['hi'] = array(
 	'centralnotice-apply-filters' => 'फ़िल्टर लागू करें',
 	'centralnotice-clear-filters' => 'स्पष्ट फ़िल्टर्स',
 	'centralnotice-banner-messages' => 'बैनर संदेश',
+	'centralnotice-priority-low' => 'कम',
+	'centralnotice-priority-normal' => 'साधारण',
+	'centralnotice-priority-high' => 'उच्च',
+	'centralnotice-priority-emergency' => 'आपातकालीन',
+);
+
+/** Fiji Hindi (Latin script) (Fiji Hindi)
+ * @author Karthi.dr
+ */
+$messages['hif-latn'] = array(
+	'centralnotice-modify' => 'Submit karo',
+	'centralnotice-view' => 'Dekho',
+	'centralnotice-remove' => 'Hatao',
+	'centralnotice-add' => 'Jorro',
+	'centralnotice-english' => 'English',
+	'centralnotice-clone-name' => 'Naam:',
+	'centralnotice-close-title' => 'Band karo',
+	'centralnotice-language' => 'Bhasa',
+	'centralnotice-talk-link' => 'baat',
+	'centralnotice-date' => 'Tarik',
+	'centralnotice-priority-high' => 'jaada',
 );
 
 /** Croatian (hrvatski)
@@ -7872,17 +7894,27 @@ Iki uga bisa kanggo nambah utawa mbuwang cathetan/pangumuman lawas.",
 	'centralnotice-add-template' => 'Tambahaké cithakan',
 	'centralnotice-show-notices' => 'Tuduhaké cathetan',
 	'centralnotice-list-templates' => 'Dhaptar cithakan',
+	'centralnotice-multiple-projects' => 'Dobel ($1)',
+	'centralnotice-multiple-languages' => 'Dobel ($1)',
+	'centralnotice-multiple-countries' => 'Dobel ($1)',
+	'centralnotice-all-projects' => 'Kabèh proyèk',
 	'centralnotice-translations' => 'Terjemahan',
 	'centralnotice-translate-to' => 'Terjemahaké menyang',
 	'centralnotice-translate' => 'Terjemah',
 	'centralnotice-english' => 'Basa Inggris',
 	'centralnotice-banner-name' => 'Jeneng spanduk:',
+	'centralnotice-banner' => 'Spanduk',
+	'centralnotice-banner-heading' => 'Spanduk: $1',
 	'centralnotice-templates' => 'Cithakan',
 	'centralnotice-weight' => 'Bobot',
 	'centralnotice-locked' => 'Kakunci',
+	'centralnotice-notice' => 'Kampanye',
+	'centralnotice-notice-heading' => 'Kampanye: $1',
 	'centralnotice-notices' => 'Cathetan',
 	'centralnotice-notice-exists' => 'Cathetan wis ana.
 Dudu panambahan',
+	'centralnotice-no-language' => 'Ora ana basa pinilih kanggo kampanye. Ora nambahaké.',
+	'centralnotice-no-project' => 'Ora ana proyèk pinilih kanggo kampanye. Ora nambahaké.',
 	'centralnotice-template-exists' => 'Cithakan wis ana.
 Dudu panambahan',
 	'centralnotice-notice-doesnt-exist' => 'Kampanyé ora ana.',
@@ -7895,9 +7927,12 @@ Ora bisa mbusak.',
 	'centralnotice-hours' => 'Jam',
 	'centralnotice-min' => 'Menit',
 	'centralnotice-project-lang' => 'Basa Proyèk',
+	'centralnotice-select' => 'Pilih: $1',
+	'centralnotice-top-ten-languages' => '10 basa pinunjul',
 	'centralnotice-project-name' => 'Jeneng proyèk',
 	'centralnotice-start-date' => 'Tanggal diwiwiti',
 	'centralnotice-start-time' => 'Wektu diwiwiti (UTC)',
+	'centralnotice-end-time' => 'Wektu akir (UTC)',
 	'centralnotice-assigned-templates' => 'Cithakan-cithakan sing ditetepaké',
 	'centralnotice-no-templates' => 'Ora ana cithakan.
 Gawénen!',
@@ -7922,13 +7957,58 @@ Tumindak iki bakal ora bisa didandani manèh.',
 Tambahaké ing ngisor',
 	'centralnotice-no-templates-translate' => 'Ora ana cithakan sing kudu disunting/terjemahaké',
 	'centralnotice-number-uses' => 'Guna',
+	'centralnotice-settings' => 'Pangaturan',
 	'centralnotice-edit-template' => 'Sunting cithakan',
 	'centralnotice-message' => 'Warta',
 	'centralnotice-message-not-set' => 'Warta durung di sèt',
 	'centralnotice-clone' => 'Kloning',
 	'centralnotice-clone-notice' => "Gawé salinan (''copy'') saka cithakan",
 	'centralnotice-preview-all-template-translations' => 'Tampilaké kabèh terjemahan cithakan sing ana',
+	'centralnotice-banner-logged-in' => 'Panganggo sing wis mlebu log',
+	'centralnotice-banner-type' => 'Jinisé spanduk:',
+	'centralnotice-countries' => 'Nagara',
+	'centralnotice-allocation' => 'Alokasi',
+	'centralnotice-view-allocation' => 'Delok alokasi spanduk',
+	'centralnotice-languages' => 'Basa',
 	'centralnotice-language' => 'Basa',
+	'centralnotice-projects' => 'Proyèk',
+	'centralnotice-country' => 'Nagara',
+	'centralnotice-no-allocation' => 'Ora ana spanduk sing dialokasèkaké.',
+	'centralnotice-allocation-description' => 'Alokasi spanduk kanggo $1.$2 nèng $3:',
+	'centralnotice-percentage' => 'Persèntasé',
+	'centralnotice-documentwrite-error' => 'document.write() ora bisa dianggo nèng njero spanduk.
+Delok http://meta.wikimedia.org/wiki/Help:CentralNotice kanggo informasiné.',
+	'centralnotice-preferred' => 'Prioritas',
+	'centralnotice-logs' => 'Log',
+	'centralnotice-view-logs' => 'Delok log',
+	'centralnotice-timestamp' => 'Cap wektu',
+	'centralnotice-user' => 'Panganggo',
+	'centralnotice-action' => 'Lelakon',
+	'centralnotice-action-created' => 'digawé',
+	'centralnotice-action-modified' => 'diowah',
+	'centralnotice-action-removed' => 'disingkiraké',
+	'centralnotice-changed' => 'Diowah saka <span class="cn-old-value">$1</span> dadi <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'murub',
+	'centralnotice-off' => 'mati',
+	'centralnotice-added' => 'Nambahaké <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'Nyingkiraké <span class="cn-old-value">$1</span>',
+	'centralnotice-no-assignments' => 'ora ana spanduk sing diawèhaké',
+	'centralnotice-banner-settings' => 'Pangaturan spanduk',
+	'centralnotice-autolink' => 'Nggawé pranala otomatis',
+	'centralnotice-landingpages' => 'Kaca pandaratan',
+	'centralnotice-banner-content' => 'Isi spanduk',
+	'centralnotice-banner-content-changed' => 'Diganti',
+	'centralnotice-filters' => 'Saringan log',
+	'centralnotice-date' => 'Tanggal',
+	'centralnotice-apply-filters' => 'Patrapaké saringan',
+	'centralnotice-clear-filters' => 'Ilangi saringan',
+	'centralnotice-banner-messages' => 'Layang spanduk',
+	'centralnotice-filter-template-prompt' => 'Jeneng spanduk kaisi:',
+	'centralnotice-filter-template-submit' => 'Patrapaké saringan',
+	'centralnotice-priority-low' => 'cedhek',
+	'centralnotice-priority-normal' => 'sedhengan',
+	'centralnotice-priority-high' => 'dhuwur',
+	'centralnotice-priority-emergency' => 'darurat',
 );
 
 /** Georgian (ქართული)
@@ -10060,8 +10140,10 @@ $messages['mt'] = array(
 	'centralnotice-end-date' => 'Data tat-tmiem',
 	'centralnotice-enabled' => 'Attivata',
 	'centralnotice-modify' => 'Ibgħat',
+	'centralnotice-view' => 'Ara',
 	'centralnotice-add-template' => 'Żid mudell',
 	'centralnotice-translations' => 'Traduzzjonijiet',
+	'centralnotice-english' => 'Ingliż',
 	'centralnotice-banner-name' => "Isem tal-''banner'':",
 	'centralnotice-day' => 'Jum',
 	'centralnotice-year' => 'Sena',
@@ -11739,7 +11821,7 @@ $messages['ps'] = array(
 	'centralnotice-projects' => 'پروژې',
 	'centralnotice-country' => 'هېواد',
 	'centralnotice-percentage' => 'سلنه',
-	'centralnotice-preferred' => 'غوره شوی',
+	'centralnotice-preferred' => 'لومړيتوب',
 	'centralnotice-logs' => 'يادښتونه',
 	'centralnotice-view-logs' => 'يادښتونه کتل',
 	'centralnotice-timestamp' => 'وخت ټاپه',
@@ -11757,6 +11839,9 @@ $messages['ps'] = array(
 	'centralnotice-date' => 'نېټه',
 	'centralnotice-apply-filters' => 'چاڼګرونه کارول',
 	'centralnotice-clear-filters' => 'چاڼګرونه پاکول',
+	'centralnotice-priority-low' => 'لږ',
+	'centralnotice-priority-normal' => 'نورمال',
+	'centralnotice-priority-high' => 'لوړ',
 );
 
 /** Portuguese (português)
@@ -12962,7 +13047,7 @@ $messages['rue'] = array(
 Далшы інформації найдете на сторінцї http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-preferred' => 'Пріоріта',
 	'centralnotice-logs' => 'Лоґы',
-	'centralnotice-view-logs' => 'Відїти лоґы',
+	'centralnotice-view-logs' => 'Видїти лоґы',
 	'centralnotice-timestamp' => 'Часова значка',
 	'centralnotice-user' => 'Хоснователь',
 	'centralnotice-action' => 'Дїя',
@@ -14697,7 +14782,7 @@ Lägg till ett nedan',
 	'centralnotice-percentage' => 'Procent',
 	'centralnotice-documentwrite-error' => 'document.write() kan inte användas inom en banner.
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
-	'centralnotice-preferred' => 'Föredragen',
+	'centralnotice-preferred' => 'Prioritet',
 	'centralnotice-logs' => 'Loggar',
 	'centralnotice-view-logs' => 'Visa loggar',
 	'centralnotice-timestamp' => 'Tidsstämpel',
@@ -14727,6 +14812,12 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-apply-filters' => 'Tillämpa filter',
 	'centralnotice-clear-filters' => 'Rensa filter',
 	'centralnotice-banner-messages' => 'Bannermeddelanden',
+	'centralnotice-filter-template-prompt' => 'Bannernamn innehåller:',
+	'centralnotice-filter-template-submit' => 'Verkställ filter',
+	'centralnotice-priority-low' => 'låg',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'hög',
+	'centralnotice-priority-emergency' => 'nödsituation',
 );
 
 /** Swahili (Kiswahili)
@@ -14821,9 +14912,11 @@ Hakuna kitu cha kutoa.',
 
 /** Tamil (தமிழ்)
  * @author Balajijagadesh
+ * @author Karthi.dr
  * @author Shanmugamp7
  * @author TRYPPN
  * @author செல்வா
+ * @author மதனாஹரன்
  */
 $messages['ta'] = array(
 	'centralnotice' => 'மத்திய அறிவிப்பு நிர்வாகி',
@@ -14873,11 +14966,11 @@ $messages['ta'] = array(
 	'centralnotice-notice-heading' => 'பிரச்சாரம்:$1',
 	'centralnotice-notices' => 'பிரச்சாரங்கள்',
 	'centralnotice-notice-exists' => 'பிரச்சாரம் ஏற்கனவே உள்ளது.
-சேர்க்க வில்லை.',
+சேர்க்கவில்லை.',
 	'centralnotice-no-language' => 'பிரச்சாரத்திற்கு மொழி எதுவும் தேர்ந்தெடுக்கப்படவில்லை . சேர்க்கப் படவில்லை.',
 	'centralnotice-no-project' => 'பிரச்சாரத்திற்கு திட்டம் எதுவும் தேர்ந்தெடுக்கப்படவில்லை . சேர்க்கப் படவில்லை.',
 	'centralnotice-template-exists' => 'பதாகை ஏற்கனவே உள்ளது.
-சேர்க்க வில்லை.',
+சேர்க்கவில்லை.',
 	'centralnotice-notice-doesnt-exist' => 'பிரச்சாரம் இல்லை',
 	'centralnotice-remove-notice-doesnt-exist' => 'பிரச்சாரம்  இல்லை.
 நீக்க எதுவுமில்லை',
@@ -14923,7 +15016,7 @@ $messages['ta'] = array(
 	'centralnotice-settings' => 'அமைப்புகள்',
 	'centralnotice-edit-template' => 'பதாகையை திருத்து',
 	'centralnotice-message' => 'செய்தி',
-	'centralnotice-message-not-set' => 'தகவல் அமைக்க படவில்லை',
+	'centralnotice-message-not-set' => 'தகவல் அமைக்கப்படவில்லை',
 	'centralnotice-clone' => 'நகலி',
 	'centralnotice-clone-notice' => 'இந்த பதாகையின் நகலை உருவாக்கு',
 	'centralnotice-clone-name' => 'பெயர்:',
@@ -14938,7 +15031,7 @@ $messages['ta'] = array(
 	'centralnotice-banner-logged-in' => 'புகுபதிகை செய்த பயனர்கள்',
 	'centralnotice-banner-type' => 'பதாகை வகை',
 	'centralnotice-banner-hidable' => 'நிலையானது/மறைக்கக்கூடியது',
-	'centralnotice-banner-collapsible' => 'திறந்து மூடிக்ககொள்பவை',
+	'centralnotice-banner-collapsible' => 'திறந்து மூடிக்கொள்பவை',
 	'centralnotice-banner-fundraising' => 'இது ஒரு நிதி திரட்டும் பதாகை',
 	'centralnotice-banner-autolink' => 'தானாக தரையிறங்கும் பக்க தொடர்பிணைப்பு உருவாக்கு',
 	'centralnotice-countries' => 'நாடுகள்',
@@ -14951,7 +15044,7 @@ $messages['ta'] = array(
 	'centralnotice-no-allocation' => 'பதாகைகள் எதுவும் ஒதுக்கப்படவில்லை',
 	'centralnotice-allocation-description' => '$3 ல் $1.$2 க்கு பதாகை ஒதுக்கீடு',
 	'centralnotice-percentage' => 'சதவிகிதம்/விழுக்காடு',
-	'centralnotice-preferred' => 'விரும்பத்தக்கது',
+	'centralnotice-preferred' => 'முன்னுரிமை',
 	'centralnotice-logs' => 'பதிவுகள்',
 	'centralnotice-view-logs' => 'பதிவுகளை காண்',
 	'centralnotice-timestamp' => 'நேரமுத்திரை',
@@ -14960,6 +15053,7 @@ $messages['ta'] = array(
 	'centralnotice-action-created' => 'உருவாக்கப்பட்டுவிட்டது',
 	'centralnotice-action-modified' => 'மாற்றப்பட்டுள்ளது',
 	'centralnotice-action-removed' => 'நீக்கப்பட்டது',
+	'centralnotice-changed' => '<span class="cn-old-value">$1</span> என்பதிலிருந்து <span class="cn-new-value">$2</span> என்பதற்கு மாற்றப்பட்டது',
 	'centralnotice-on' => 'தொடங்கு',
 	'centralnotice-off' => 'அணை',
 	'centralnotice-removed' => 'நீக்கப்பட்டது<span class="cn-old-value">$1</span>',
