@@ -1153,7 +1153,7 @@ class CentralNotice extends SpecialPage {
 
 		// Banner search box
 		$htmlOut .= Html::openElement( 'fieldset', array( 'id' => 'cn-template-searchbox' ) );
-		$htmlOut .= Html::element( 'legend', null, 'Filter banners' );
+		$htmlOut .= Html::element( 'legend', null, wfMsg( 'centralnotice-filter-template-banner' ) );
 
 		$htmlOut .= Html::element( 'label', array( 'for' => 'tplsearchkey' ), wfMsg( 'centralnotice-filter-template-prompt' ) );
 		$htmlOut .= Html::input( 'tplsearchkey', $searchTerms );

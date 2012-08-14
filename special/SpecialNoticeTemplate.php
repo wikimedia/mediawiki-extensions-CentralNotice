@@ -185,7 +185,7 @@ class SpecialNoticeTemplate extends UnlistedSpecialPage {
 
 		// Search box
 		$htmlOut .= Html::openElement( 'fieldset', array( 'id' => 'cn-template-searchbox' ) );
-		$htmlOut .= Html::element( 'legend', null, 'Filter banners' );
+		$htmlOut .= Html::element( 'legend', null, wfMsg( 'centralnotice-filter-template-banner' ) );
 
 		$htmlOut .= Html::openElement( 'form', array( 'method' => 'get' ) );
 

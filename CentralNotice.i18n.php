@@ -178,6 +178,7 @@ Add one below.',
 	'centralnotice-banner-messages' => 'Banner messages',
 	'centralnotice-filter-template-prompt' => 'Banner name contains:',
 	'centralnotice-filter-template-submit' => 'Apply filter',
+	'centralnotice-filter-template-banner' => 'Filter banners',
 	'centralnotice-priority-low' => 'low',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'high',
@@ -346,6 +347,9 @@ Related messages:
 	'centralnotice-date' => 'Label for a date selection interface',
 	'centralnotice-apply-filters' => 'Label for a submit button',
 	'centralnotice-clear-filters' => 'Label for a submit button. Clear as in reset.',
+	'centralnotice-filter-template-prompt' => 'Label for a banner name search string; terms are space delimited',
+	'centralnotice-filter-template-submit' => 'Button label: on click will apply a filter to the banners displayed',
+	'centralnotice-filter-template-banner' => 'Section heading label for the banner filter bar',
 	'centralnotice-banner-messages' => 'On the Special:CentralNoticeLogs page, this is a radio button which shows log entries associated to edits to MediaWiki messages (translated variables) used by the banner, whose structure is stored in a single message per banner, whose changes are in contrast shown by {{msg-mw|centralnotice-banner-content}} button.
 Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
