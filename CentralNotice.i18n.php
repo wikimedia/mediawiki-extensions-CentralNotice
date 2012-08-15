@@ -949,6 +949,7 @@ $messages['ar'] = array(
 	'centralnotice-banner-messages' => 'رسائل لافتات',
 	'centralnotice-filter-template-prompt' => 'اسم البانر يتضمن:',
 	'centralnotice-filter-template-submit' => 'تطبيق المرشح',
+	'centralnotice-filter-template-banner' => 'إعلانات المرشحات',
 	'centralnotice-priority-low' => 'منخفض',
 	'centralnotice-priority-normal' => 'عادي',
 	'centralnotice-priority-high' => 'مرتفع',
@@ -3868,6 +3869,7 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
 	'centralnotice-banner-messages' => 'Chórgojowe powěźeńki',
 	'centralnotice-filter-template-prompt' => 'Mě chórgoja wopśimujo:',
 	'centralnotice-filter-template-submit' => 'Filter nałožyś',
+	'centralnotice-filter-template-banner' => 'Chórgoje filtrowaś',
 	'centralnotice-priority-low' => 'niska',
 	'centralnotice-priority-normal' => 'normalna',
 	'centralnotice-priority-high' => 'wusoka',
@@ -4606,6 +4608,7 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-banner-messages' => 'Mallide sõnumid',
 	'centralnotice-filter-template-prompt' => 'Malli nimi sisaldab:',
 	'centralnotice-filter-template-submit' => 'Rakenda filter',
+	'centralnotice-filter-template-banner' => 'Mallide filtrimine',
 	'centralnotice-priority-low' => 'madal',
 	'centralnotice-priority-normal' => 'tavaline',
 	'centralnotice-priority-high' => 'kõrge',
@@ -4625,6 +4628,7 @@ $messages['eu'] = array(
 	'centralnotice-end-date' => 'Bukaera data',
 	'centralnotice-enabled' => 'Gaitua',
 	'centralnotice-modify' => 'Bidali',
+	'centralnotice-view' => 'Ikusi',
 	'centralnotice-preview' => 'Aurrikusi',
 	'centralnotice-add-new' => 'Mezu orokor berri bat gehitu',
 	'centralnotice-remove' => 'Ezabatu',
@@ -4636,11 +4640,14 @@ $messages['eu'] = array(
 	'centralnotice-add-template' => 'Txantiloi bat gehitu',
 	'centralnotice-show-notices' => 'Oharrak erakutsi',
 	'centralnotice-list-templates' => 'Txantiloiak zerrendatu',
+	'centralnotice-all-projects' => 'Proiektu Guztiak',
 	'centralnotice-translations' => 'Itzulpenak',
 	'centralnotice-translate-to' => 'Hona itzuli',
 	'centralnotice-translate' => 'Itzuli',
 	'centralnotice-english' => 'Ingelesa',
 	'centralnotice-banner-name' => 'Banner izena:',
+	'centralnotice-banner' => 'Bannerra',
+	'centralnotice-banner-heading' => 'Bannerra: $1',
 	'centralnotice-templates' => 'Txantiloiak',
 	'centralnotice-weight' => 'Pisua',
 	'centralnotice-locked' => 'Babesturik',
@@ -4665,6 +4672,7 @@ Ez da gehituko',
 	'centralnotice-assigned-templates' => 'Ezarritako txantiloiak',
 	'centralnotice-preview-template' => 'Txantiloia aurreikusi',
 	'centralnotice-change-lang' => 'Aldatu itzulpen hizkuntza',
+	'centralnotice-number-uses' => 'Erabilerak',
 	'centralnotice-settings' => 'Hobespenak',
 	'centralnotice-edit-template' => 'Txantiloia aldatu',
 	'centralnotice-message' => 'Mezua',
@@ -4678,10 +4686,15 @@ Ez da gehituko',
 	'centralnotice-projects' => 'Proiektuak',
 	'centralnotice-country' => 'Herrialdea',
 	'centralnotice-percentage' => 'Ehunekoa',
+	'centralnotice-preferred' => 'Lehentasuna',
 	'centralnotice-logs' => 'Erregistroak',
 	'centralnotice-user' => 'Erabiltzailea',
 	'centralnotice-action' => 'Ekintza',
+	'centralnotice-action-created' => 'sortu',
+	'centralnotice-action-modified' => 'aldatuta',
+	'centralnotice-action-removed' => 'ezabatua',
 	'centralnotice-talk-link' => 'eztabaida',
+	'centralnotice-banner-content-changed' => 'aldatuta',
 	'centralnotice-date' => 'Data',
 );
 
@@ -5047,6 +5060,7 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-banner-messages' => 'Bannerin viestit',
 	'centralnotice-filter-template-prompt' => 'Ilmoituspalkin nimi sisältää:',
 	'centralnotice-filter-template-submit' => 'Käytä suodatinta',
+	'centralnotice-filter-template-banner' => 'Bannereiden suodatus',
 	'centralnotice-priority-low' => 'matala',
 	'centralnotice-priority-normal' => 'normaali',
 	'centralnotice-priority-high' => 'korkea',
@@ -5146,6 +5160,7 @@ Er ikki lagt afturat.',
 
 /** French (français)
  * @author Crochet.david
+ * @author Erkethan
  * @author Gomoko
  * @author Grondin
  * @author Hashar
@@ -5328,6 +5343,7 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-banner-messages' => 'Messages bannière',
 	'centralnotice-filter-template-prompt' => 'Le nom de la bannière contient:',
 	'centralnotice-filter-template-submit' => 'Appliquer le filtre',
+	'centralnotice-filter-template-banner' => 'Bannières de filtre',
 	'centralnotice-priority-low' => 'basse',
 	'centralnotice-priority-normal' => 'normale',
 	'centralnotice-priority-high' => 'haute',
@@ -5505,6 +5521,7 @@ Volyéd vêre http://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enf
 	'centralnotice-banner-messages' => 'Mèssâjos baniére',
 	'centralnotice-filter-template-prompt' => 'Lo nom de la baniére contint :',
 	'centralnotice-filter-template-submit' => 'Aplicar lo filtro',
+	'centralnotice-filter-template-banner' => 'Baniéres de filtro',
 	'centralnotice-priority-low' => 'bâssa',
 	'centralnotice-priority-normal' => 'normala',
 	'centralnotice-priority-high' => 'hôta',
@@ -5513,9 +5530,22 @@ Volyéd vêre http://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enf
 
 /** Irish (Gaeilge)
  * @author Alison
+ * @author පසිඳු කාවින්ද
  */
 $messages['ga'] = array(
 	'noticetemplate' => 'Teimpléad fógra lárnach',
+	'centralnotice-view' => 'Amharc',
+	'centralnotice-preview' => 'Réamhamharc',
+	'centralnotice-day' => 'Lá',
+	'centralnotice-month' => 'Mí',
+	'centralnotice-message' => 'Teachtaireacht',
+	'centralnotice-clone-name' => 'Ainm:',
+	'centralnotice-close-title' => 'Dún',
+	'centralnotice-language' => 'Teanga',
+	'centralnotice-user' => 'Úsáideoir',
+	'centralnotice-talk-link' => 'plé',
+	'centralnotice-date' => 'Dáta',
+	'centralnotice-priority-normal' => 'Gnáth',
 );
 
 /** Galician (galego)
@@ -6243,6 +6273,7 @@ $messages['he'] = array(
 	'centralnotice-banner-messages' => 'הודעות כרזה',
 	'centralnotice-filter-template-prompt' => 'שם הכרזה מכיל:',
 	'centralnotice-filter-template-submit' => 'החלת מסנן',
+	'centralnotice-filter-template-banner' => 'סינון כרזות',
 	'centralnotice-priority-low' => 'נמוכה',
 	'centralnotice-priority-normal' => 'רגילה',
 	'centralnotice-priority-high' => 'גבוהה',
@@ -6745,6 +6776,7 @@ Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-banner-messages' => 'Chorhojowe powěsće',
 	'centralnotice-filter-template-prompt' => 'Chorhojowe mjeno wobsahuje:',
 	'centralnotice-filter-template-submit' => 'Filter nałožić',
+	'centralnotice-filter-template-banner' => 'Chorhoje filtrować',
 	'centralnotice-priority-low' => 'niska',
 	'centralnotice-priority-normal' => 'normalna',
 	'centralnotice-priority-high' => 'wysoka',
@@ -7709,6 +7741,7 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-banner-messages' => 'Messaggi dei banner',
 	'centralnotice-filter-template-prompt' => 'Il nome del banner contiene:',
 	'centralnotice-filter-template-submit' => 'Applica i filtri',
+	'centralnotice-filter-template-banner' => 'Filtra banner',
 	'centralnotice-priority-low' => 'bassa',
 	'centralnotice-priority-normal' => 'normale',
 	'centralnotice-priority-high' => 'alta',
@@ -8248,6 +8281,7 @@ $messages['ka'] = array(
 	'centralnotice-banner-messages' => 'ბანერების შეტყობინებები',
 	'centralnotice-filter-template-prompt' => 'ბანერის სახელწოდება შეიცავს:',
 	'centralnotice-filter-template-submit' => 'ფილტრის გამოყენება',
+	'centralnotice-filter-template-banner' => 'ბანერების ფილტრი',
 	'centralnotice-priority-low' => 'დაბალი',
 	'centralnotice-priority-normal' => 'ნორმალური',
 	'centralnotice-priority-high' => 'მაღალი',
@@ -9669,6 +9703,7 @@ $messages['mk'] = array(
 	'centralnotice-banner-messages' => 'Пораки на плакат',
 	'centralnotice-filter-template-prompt' => 'Називот на плакатот содржи:',
 	'centralnotice-filter-template-submit' => 'Примени филтер',
+	'centralnotice-filter-template-banner' => 'Филтрирање на плакати',
 	'centralnotice-priority-low' => 'низок',
 	'centralnotice-priority-normal' => 'нормален',
 	'centralnotice-priority-high' => 'висок',
@@ -10933,10 +10968,20 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-banner-messages' => 'Bannerberichten',
 	'centralnotice-filter-template-prompt' => 'Bannernaam bevat:',
 	'centralnotice-filter-template-submit' => 'Filter toepassen',
+	'centralnotice-filter-template-banner' => 'Banners filteren',
 	'centralnotice-priority-low' => 'laag',
 	'centralnotice-priority-normal' => 'normaal',
 	'centralnotice-priority-high' => 'hoog',
 	'centralnotice-priority-emergency' => 'noodgeval',
+);
+
+/** ‪Nederlands (informeel)‬ (‪Nederlands (informeel)‬)
+ * @author Siebrand
+ */
+$messages['nl-informal'] = array(
+	'centralnotice-confirm-delete' => 'Weet je zeker dat je dit item wilt verwijderen?
+Deze handeling is niet terug te draaien.',
+	'centralnotice-allocation-instructions' => 'Kies de omgeving waarvoor je de bannertoewijzing wilt bekijken:',
 );
 
 /** Norwegian Nynorsk (‪norsk (nynorsk)‬)
@@ -13388,6 +13433,7 @@ $messages['sa'] = array(
 	'centralnotice-banner-messages' => 'फलकस्य सन्देशाः',
 	'centralnotice-filter-template-prompt' => 'फलकस्य नाम्नि विद्यते :',
 	'centralnotice-filter-template-submit' => 'शोधकाः प्रयुज्यन्ताम्',
+	'centralnotice-filter-template-banner' => 'शोधफलकानि',
 	'centralnotice-priority-low' => 'कनिष्ठतमम्',
 	'centralnotice-priority-normal' => 'सामान्यम्',
 	'centralnotice-priority-high' => 'गरिष्ठतमम्',
@@ -15986,6 +16032,7 @@ Tingnan ang http://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas marami
 	'centralnotice-banner-messages' => 'Mga mensahe sa bandila',
 	'centralnotice-filter-template-prompt' => 'Naglalaman ang pangalan ng bandera ng:',
 	'centralnotice-filter-template-submit' => 'Gamitin ang pansala',
+	'centralnotice-filter-template-banner' => 'Mga bandera ng pansala',
 	'centralnotice-priority-low' => 'mababa',
 	'centralnotice-priority-normal' => 'karaniwan',
 	'centralnotice-priority-high' => 'mataas',
