@@ -2184,10 +2184,16 @@ $messages['bn'] = array(
 	'centralnotice-notices' => 'নোটিশ',
 	'centralnotice-notice-exists' => 'সাইট নোটশ ইতিমধ্যে রয়েছে।
 যোগ হয়নি',
+	'centralnotice-no-language' => 'এই ক্যাম্পেইনের জন্য কোনো ভাষা নির্বাচন করা হয়নি। যুক্ত হচ্ছে না।',
+	'centralnotice-no-project' => 'এই ক্যাম্পেইনের জন্য কোনো প্রকল্প নির্বাচন করা হয়নি। যুক্ত হচ্ছে না।',
 	'centralnotice-template-exists' => 'টেম্পলেট ইতিমধ্যে রয়েছে।
 যোগ হয়নি',
 	'centralnotice-notice-doesnt-exist' => 'ক্যাম্পেইনের অস্তিত্ব নেই',
+	'centralnotice-remove-notice-doesnt-exist' => 'ক্যাম্পেইনটি নেই।
+কিছু অপসারন করা হয়নি।',
 	'centralnotice-banner-doesnt-exist' => 'ব্যানারটি নাই।',
+	'centralnotice-template-still-bound' => 'ব্যানারটি এখনো ক্যাম্পেইনের সাথে যুক্ত আছে।
+অপসারিত হচ্ছে না।',
 	'centralnotice-template-body' => 'টেম্পলেট বডি:',
 	'centralnotice-day' => 'দিন',
 	'centralnotice-year' => 'বছর',
@@ -2207,6 +2213,8 @@ $messages['bn'] = array(
 	'centralnotice-no-templates-assigned' => 'নোটিশে কোনো টেম্পলেট নিয়োগ হয় নাই।
 যোগ করুন!',
 	'centralnotice-available-templates' => 'বিদ্যমান টেম্পলেট',
+	'centralnotice-template-already-exists' => 'ব্যানারটি এখনো ক্যাম্পেইনের সাথে যুক্ত আছে।
+অপসারিত হচ্ছে না।',
 	'centralnotice-preview-template' => 'টেম্পলেট প্রাকদর্শন',
 	'centralnotice-change-lang' => 'অনুবাদের ভাষা পরিবর্তন',
 	'centralnotice-weights' => 'ওজন',
@@ -2243,15 +2251,23 @@ $messages['bn'] = array(
 	'centralnotice-banner-type' => 'ব্যানারের ধরন:',
 	'centralnotice-banner-hidable' => 'স্ট্যাটিক/লুকানোযোগ্য',
 	'centralnotice-banner-collapsible' => 'ভাঁজযোগ্য',
+	'centralnotice-banner-fundraising' => 'অনুদান সংগ্রহের ব্যানার',
+	'centralnotice-banner-autolink' => 'সয়ংক্রিয়ভাবে ল্যান্ডিং পাতার লিংক তৈরী হয়েছে',
+	'centralnotice-banner-landing-pages' => 'ল্যান্ডিং পেজ (কমা দ্বারা আলাদা):',
 	'centralnotice-geo' => 'স্থানাংকলক্ষ্য',
 	'centralnotice-countries' => 'দেশ',
 	'centralnotice-allocation' => 'বরাদ্দ',
+	'centralnotice-view-allocation' => 'ব্যানারের অবস্থান দেখুন',
 	'centralnotice-languages' => 'ভাষা',
 	'centralnotice-language' => 'ভাষা',
 	'centralnotice-projects' => 'প্রকল্প',
 	'centralnotice-country' => 'দেশ',
+	'centralnotice-no-allocation' => 'কোনো ব্যানার নির্ধারিত হয়নি।',
+	'centralnotice-allocation-description' => '$3 এর জন্য $1.$2 এর ব্যানার নির্ধারণ:',
 	'centralnotice-percentage' => 'শতাংশ',
-	'centralnotice-preferred' => 'পছন্দনীয়',
+	'centralnotice-documentwrite-error' => 'ব্যানারের জন্য document.write() ব্যবহার করা যাবে না।
+বিস্তারিত জানতে দেখুন http://meta.wikimedia.org/wiki/Help:CentralNotice।',
+	'centralnotice-preferred' => 'গুরুত্বপূর্ণ',
 	'centralnotice-logs' => 'লগ',
 	'centralnotice-view-logs' => 'লগ দেখাও',
 	'centralnotice-timestamp' => 'সময়বার্তা',
@@ -2283,6 +2299,7 @@ $messages['bn'] = array(
 	'centralnotice-banner-messages' => 'ব্যানার বার্তা',
 	'centralnotice-filter-template-prompt' => 'ব্যানার নাম:',
 	'centralnotice-filter-template-submit' => 'ফিল্টার নির্ধারণ',
+	'centralnotice-filter-template-banner' => 'ব্যানার ফিল্টার',
 	'centralnotice-priority-low' => 'খারাপ',
 	'centralnotice-priority-normal' => 'সাধারণ',
 	'centralnotice-priority-high' => 'ভাল',
@@ -2478,6 +2495,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-clear-filters' => 'Riñsañ ar siloù',
 	'centralnotice-banner-messages' => 'Kemennadennoù er giton',
 	'centralnotice-filter-template-submit' => 'Arloañ ar sil',
+	'centralnotice-priority-low' => 'izel',
 );
 
 /** Bosnian (bosanski)
@@ -8057,6 +8075,7 @@ Tambahaké ing ngisor',
 	'centralnotice-banner-collapsible' => 'Bisa dibukak',
 	'centralnotice-banner-fundraising' => 'Iki spanduk panggalangan dana',
 	'centralnotice-banner-autolink' => 'Otomatis nggawé pranala kaca pandaratan',
+	'centralnotice-banner-landing-pages' => 'Kaca pandaratan (dipisahaké koma):',
 	'centralnotice-geo' => 'Digéotargètaké',
 	'centralnotice-countries' => 'Nagara',
 	'centralnotice-allocation' => 'Alokasi',
@@ -8103,6 +8122,7 @@ Delok http://meta.wikimedia.org/wiki/Help:CentralNotice kanggo informasiné.',
 	'centralnotice-banner-messages' => 'Layang spanduk',
 	'centralnotice-filter-template-prompt' => 'Jeneng spanduk kaisi:',
 	'centralnotice-filter-template-submit' => 'Patrapaké saringan',
+	'centralnotice-filter-template-banner' => 'Saring spanduk',
 	'centralnotice-priority-low' => 'cedhek',
 	'centralnotice-priority-normal' => 'sedhengan',
 	'centralnotice-priority-high' => 'dhuwur',
@@ -8577,6 +8597,7 @@ $messages['ko'] = array(
 	'centralnotice-banner-messages' => '배너 메시지',
 	'centralnotice-filter-template-prompt' => '배너 이름 포함:',
 	'centralnotice-filter-template-submit' => '필터 적용',
+	'centralnotice-filter-template-banner' => '배너 필터',
 	'centralnotice-priority-low' => '낮음',
 	'centralnotice-priority-normal' => '보통',
 	'centralnotice-priority-high' => '높음',
@@ -10320,7 +10341,11 @@ Tista' tiġi wżata wkoll biex iżżid jew tneħħi avviżi qodma.",
 	'centralnotice-change-lang' => 'Biddel il-lingwa tat-traduzzjoni',
 	'centralnotice-weights' => 'Dimensjonijiet',
 	'centralnotice-notice-is-locked' => 'Il-kampanja hi mblukkata u għalhekk ma ġietx imneħħija.',
+	'centralnotice-overlap' => "Il-kampanja taħbat ma' kampanja oħra u għalhekk ma ġietx miżjuda.",
+	'centralnotice-invalid-date-range' => "Firxa ta' dati ħażina. Ma ġietx aġġornata.",
+	'centralnotice-null-string' => "Ma tistax iżżid ''string'' nulla. Ma ġietx miżjuda.",
 	'centralnotice-confirm-delete' => 'Inti ċert li tixtieq tħassar dan l-oġġett? L-azzjoni mhijiex rikoverabbli.',
+	'centralnotice-no-notices-exist' => 'L-ebda kampanja ma teżisti. Żid waħda hawn taħt.',
 	'centralnotice-no-templates-translate' => "M'hemm l-ebda strixxun sabiex timmodifika t-traduzzjonijiet tagħhom.",
 	'centralnotice-number-uses' => 'Użi',
 	'centralnotice-settings' => 'Konfigurazzjoni',
@@ -10345,6 +10370,7 @@ Tista' tiġi wżata wkoll biex iżżid jew tneħħi avviżi qodma.",
 	'centralnotice-banner-collapsible' => 'Kollassabbli',
 	'centralnotice-banner-fundraising' => "Din hija ''banner'' għall-ġbir ta' fondi",
 	'centralnotice-banner-autolink' => "Oħloq awtomatikament il-ħolqa għall-paġna ta' destinazzjoni",
+	'centralnotice-banner-autolink-help' => "Oħloq ''anchor tag'' fil-kontentut tal-istrixxun b'$1 u daħħal waħda jew iktar paġni ta' destinazzjoni hawn taħt, per eżempju, $2. Il-ħolqa tiġi mibnija awtomatikament kull darba li l-istrixxun jintwera.",
 	'centralnotice-banner-landing-pages' => "Paġni ta' destinazzjoni (separati permezz ta' virgola):",
 	'centralnotice-geo' => 'Ibbażata fuq il-pożizzjoni ġeografika',
 	'centralnotice-countries' => 'Pajjiżi',
@@ -10392,6 +10418,7 @@ Ara http://meta.wikimedia.org/wiki/Help:CentralNotice għal aktar informazzjoni.
 	'centralnotice-banner-messages' => "Messaġġi tal-''banner''",
 	'centralnotice-filter-template-prompt' => "L-isem tal-''banner'' jinkludi:",
 	'centralnotice-filter-template-submit' => 'Applika l-filtru',
+	'centralnotice-filter-template-banner' => 'Iffiltra l-istrixxuni',
 	'centralnotice-priority-low' => 'baxx',
 	'centralnotice-priority-normal' => 'normali',
 	'centralnotice-priority-high' => 'għoli',
@@ -11177,6 +11204,7 @@ Apondètz-ne una en dejós.',
  * @author Jnanaranjan Sahu
  * @author Odisha1
  * @author Psubhashish
+ * @author Shisir 1945
  */
 $messages['or'] = array(
 	'centralnotice' => 'କେନ୍ଦ୍ର ସୂଚନା ପରିଛା',
@@ -11345,6 +11373,7 @@ $messages['or'] = array(
 	'centralnotice-banner-messages' => 'ସୂଚନା ଫଳକ ସମ୍ବାଦ',
 	'centralnotice-filter-template-prompt' => 'ପ୍ରସାର ପତ୍ରରେ ଅଛି :',
 	'centralnotice-filter-template-submit' => 'ଛଣା ସଚଳ କରିବେ',
+	'centralnotice-filter-template-banner' => 'ବ୍ୟାନର ବାଛନ୍ତୁ',
 	'centralnotice-priority-low' => 'ନିମ୍ନ',
 	'centralnotice-priority-normal' => 'ସାଧାରଣ',
 	'centralnotice-priority-high' => 'ଉଚ୍ଚ',
@@ -11772,6 +11801,7 @@ ch'a lesa http://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi
 	'centralnotice-banner-messages' => 'Mëssagi dël tilèt',
 	'centralnotice-filter-template-prompt' => 'Ël nòm dël tilèt a conten:',
 	'centralnotice-filter-template-submit' => 'Apliché ël filtr',
+	'centralnotice-filter-template-banner' => 'Filtra banner',
 	'centralnotice-priority-low' => 'bass',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'àut',
@@ -13387,6 +13417,7 @@ $messages['sa'] = array(
 	'centralnotice-banner-collapsible' => 'पतनोद्युक्तः',
 	'centralnotice-banner-fundraising' => 'धनसङ्ग्रहणसम्बद्धं फलकमिदम्',
 	'centralnotice-banner-autolink' => 'स्वचालितरूपेण अवतरणपृष्ठानुबन्धः सृज्यताम्',
+	'centralnotice-banner-autolink-help' => 'फलके $1 उपयुज्य सम्पर्कप्रणाली निर्मीयताम् । अपि च अधः द्वित्राणि अवतरनपृष्ठानि योज्यन्ताम्, उदा $2 । यदा फलकं दृश्यते तदा स्वयमेव सम्पर्कः कल्पितः भवति ।',
 	'centralnotice-banner-landing-pages' => 'अवतारणपृष्ठानि (अर्धविरामेण पृथक्कृतम्) :',
 	'centralnotice-geo' => 'भूलक्षितम्',
 	'centralnotice-countries' => 'देशाः',
@@ -13424,6 +13455,7 @@ $messages['sa'] = array(
 	'centralnotice-account' => 'प्रविष्टसदस्येभ्यः दर्श्यताम्',
 	'centralnotice-fundraising' => 'धनसङ्ग्रहणम्',
 	'centralnotice-autolink' => 'स्वचालितानुबन्धस्य निर्माणम्',
+	'centralnotice-landingpages' => 'अवतरणपृष्ठानि',
 	'centralnotice-banner-content' => 'फलकस्य विषयः',
 	'centralnotice-banner-content-changed' => 'परिवर्तितम्',
 	'centralnotice-filters' => 'प्रणालीशोधकाः',
@@ -14358,7 +14390,7 @@ Shtoni një më poshtë.',
 	'centralnotice-percentage' => 'Përqindje',
 	'centralnotice-documentwrite-error' => 'document.write() nuk mund të përdoret brenda një "banneri".
 Shikoni http://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë informacion.',
-	'centralnotice-preferred' => 'Preferuar',
+	'centralnotice-preferred' => 'Prioriteti',
 	'centralnotice-logs' => 'Regjistrat',
 	'centralnotice-view-logs' => 'Shiko regjistrat',
 	'centralnotice-timestamp' => 'Kohë-caktimi',
@@ -16551,6 +16583,89 @@ $messages['uk'] = array(
 	'centralnotice-banner-messages' => 'Повідомлення банера',
 );
 
+/** Urdu (اردو)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['ur'] = array(
+	'centralnotice' => 'مرکزی نوٹس ایڈمن سے',
+	'noticetemplate' => 'مرکزی نوٹس ایڈمن سے',
+	'bannerallocation' => 'مرکزی نوٹس ایڈمن سے',
+	'centralnoticelogs' => 'مرکزی نوٹس ایڈمن سے',
+	'right-centralnotice-admin' => 'مرکزی نوٹس کا انتظام کریں',
+	'action-centralnotice-admin' => 'مرکزی نوٹس کا انتظام کریں',
+	'centralnotice-query' => 'موجودہ مہمات میں ترمیم',
+	'centralnotice-notice-name' => 'مہم کے نام',
+	'centralnotice-end-date' => 'تاریخ اختتام',
+	'centralnotice-enabled' => 'فعال',
+	'centralnotice-modify' => 'جمع کرائیں',
+	'centralnotice-view' => 'نقطہ نظر',
+	'centralnotice-save-banner' => 'بینر محفوظ کریں',
+	'centralnotice-preview' => 'پیش نظارہ',
+	'centralnotice-add-new' => 'ایک نئی مہم میں شامل',
+	'centralnotice-remove' => 'حذف کریں',
+	'centralnotice-manage' => 'مہمات کا انتظام کریں',
+	'centralnotice-add' => 'شامل کریں',
+	'centralnotice-add-notice' => 'ایک مہم میں شامل',
+	'centralnotice-edit-notice' => 'مہم میں ترمیم کریں',
+	'centralnotice-add-template' => 'ایک بینر شامل کریں',
+	'centralnotice-show-notices' => 'شو کی مہمات',
+	'centralnotice-all-projects' => 'سب منصوبوں',
+	'centralnotice-translations' => 'ترجمہ',
+	'centralnotice-translate' => 'کا ترجمہ',
+	'centralnotice-english' => 'اردو',
+	'centralnotice-banner-name' => 'بینر کا نام:',
+	'centralnotice-banner' => 'بینر',
+	'centralnotice-weight' => 'وزن',
+	'centralnotice-notice' => 'مہم',
+	'centralnotice-notices' => 'مہمات',
+	'centralnotice-notice-doesnt-exist' => 'مہم وجود نہیں.',
+	'centralnotice-banner-doesnt-exist' => 'بینر وجود نہیں.',
+	'centralnotice-template-body' => 'بینر کے جسم میں:',
+	'centralnotice-day' => 'دن',
+	'centralnotice-year' => 'سال',
+	'centralnotice-month' => 'ماہ',
+	'centralnotice-hours' => 'قیامت',
+	'centralnotice-min' => 'منٹ',
+	'centralnotice-project-lang' => 'پروجیکٹ کی زبان',
+	'centralnotice-top-ten-languages' => 'سب سے اوپر 10 زبانوں میں',
+	'centralnotice-project-name' => 'پراجیکٹ کا نام',
+	'centralnotice-start-date' => 'تاریخ شروع',
+	'centralnotice-preview-template' => 'پیش نظارہ بینر',
+	'centralnotice-weights' => 'وزن',
+	'centralnotice-number-uses' => 'استعمال کرتا ہے',
+	'centralnotice-settings' => 'ترتیبات',
+	'centralnotice-message' => 'پیغام',
+	'centralnotice-clone' => 'کلون',
+	'centralnotice-clone-name' => 'نام:',
+	'centralnotice-close-title' => 'بند',
+	'centralnotice-countries' => 'ممالک',
+	'centralnotice-allocation' => 'تقرری',
+	'centralnotice-view-allocation' => 'قول بینر کی تقرری',
+	'centralnotice-languages' => 'زبانوں میں',
+	'centralnotice-language' => 'زبان',
+	'centralnotice-projects' => 'منصوبوں',
+	'centralnotice-country' => 'ملک',
+	'centralnotice-percentage' => 'فی صد',
+	'centralnotice-preferred' => 'ترجیح',
+	'centralnotice-logs' => 'کیلیے نوشتہ جات دیکھیے',
+	'centralnotice-view-logs' => 'دیکھنے کیلیے نوشتہ جات دیکھیے',
+	'centralnotice-user' => 'صارف',
+	'centralnotice-action' => 'کارروائی',
+	'centralnotice-action-created' => 'پیدا',
+	'centralnotice-action-modified' => 'بار',
+	'centralnotice-action-removed' => 'ہٹا دیا',
+	'centralnotice-talk-link' => 'بات',
+	'centralnotice-campaign-settings' => 'مہم کی ترتیبات',
+	'centralnotice-fundraising' => 'فنڈ ریزنگ',
+	'centralnotice-banner-content' => 'بینر مواد',
+	'centralnotice-date' => 'تاریخ',
+	'centralnotice-clear-filters' => 'واضح فلٹر',
+	'centralnotice-banner-messages' => 'بینر کے پیغامات',
+	'centralnotice-filter-template-prompt' => 'بینر کے نام پر مشتمل ہے:',
+	'centralnotice-priority-high' => 'اعلی',
+	'centralnotice-priority-emergency' => 'ہنگامی',
+);
+
 /** vèneto (vèneto)
  * @author Candalua
  * @author Vajotwo
@@ -16779,6 +16894,7 @@ Ei ližakoi.",
 /** Vietnamese (Tiếng Việt)
  * @author Minh Nguyen
  * @author Vinhtantran
+ * @author පසිඳු කාවින්ද
  */
 $messages['vi'] = array(
 	'centralnotice' => 'Quản lý các thông báo chung',
@@ -16934,6 +17050,7 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-apply-filters' => 'Áp dụng bộ lọc',
 	'centralnotice-clear-filters' => 'Đặt lại bộ lọc',
 	'centralnotice-banner-messages' => 'Thông điệp biểu ngữ',
+	'centralnotice-priority-normal' => 'Bình thường',
 );
 
 /** Volapük (Volapük)
@@ -17008,6 +17125,7 @@ $messages['war'] = array(
 /** Yiddish (ייִדיש)
  * @author Imre
  * @author פוילישער
+ * @author පසිඳු කාවින්ද
  */
 $messages['yi'] = array(
 	'centralnotice' => 'צענטראַלע מעלדונג פֿאַרוואַטונג',
@@ -17084,14 +17202,17 @@ $messages['yi'] = array(
 	'centralnotice-no-templates' => 'נישט געטראפן קיין פאנעס.
 לייגט צו!',
 	'centralnotice-number-uses' => 'ניצונגען',
+	'centralnotice-settings' => 'איינשטעלונגען',
 	'centralnotice-message' => 'מעלדונג',
 	'centralnotice-clone-name' => 'נאָמען',
 	'centralnotice-close-title' => 'שליסן',
+	'centralnotice-countries' => 'לענדער',
 	'centralnotice-languages' => 'שפּראַכן',
 	'centralnotice-language' => 'שפראַך',
 	'centralnotice-projects' => 'פראיעקטן:',
 	'centralnotice-country' => 'לאַנד',
 	'centralnotice-user' => 'באַניצער',
+	'centralnotice-action' => 'אַקציע',
 	'centralnotice-date' => 'דאַטע',
 );
 
