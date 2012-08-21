@@ -7156,6 +7156,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
 	'centralnotice-banner-messages' => 'Messages de bandiera',
 	'centralnotice-filter-template-prompt' => 'Le nomine del bandiera contine:',
 	'centralnotice-filter-template-submit' => 'Applicar filtro',
+	'centralnotice-filter-template-banner' => 'Filtrar bandieras',
 	'centralnotice-priority-low' => 'basse',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alte',
@@ -10513,6 +10514,7 @@ $messages['nan'] = array(
 );
 
 /** Norwegian Bokmål (‪norsk (bokmål)‬)
+ * @author Danmichaelo
  * @author Event
  * @author Harald Khan
  * @author Jsoby
@@ -10688,6 +10690,10 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-banner-messages' => 'Banner-meldinger',
 	'centralnotice-filter-template-prompt' => 'Bannernavn inneholder:',
 	'centralnotice-filter-template-submit' => 'Bruk filter',
+	'centralnotice-priority-low' => 'lav',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'høy',
+	'centralnotice-priority-emergency' => 'nødsfall',
 );
 
 /** Low German (Plattdüütsch)
@@ -11833,7 +11839,7 @@ ch'a lesa http://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi
 	'centralnotice-banner-messages' => 'Mëssagi dël tilèt',
 	'centralnotice-filter-template-prompt' => 'Ël nòm dël tilèt a conten:',
 	'centralnotice-filter-template-submit' => 'Apliché ël filtr',
-	'centralnotice-filter-template-banner' => 'Filtra banner',
+	'centralnotice-filter-template-banner' => 'Tilèt ëd filtror',
 	'centralnotice-priority-low' => 'bass',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'àut',
