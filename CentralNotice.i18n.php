@@ -265,16 +265,9 @@ The other headers are:
 	'centralnotice-notice-is-locked' => 'Error message displayed in Special:CentralNotice when trying to delete a locked notice',
 	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
-	'centralnotice-number-uses' => 'The header of a narrow column in the table with sitenotice campaign information. The values in the column are the numbers of times that a message enclosed in three curly brackets appears in the banner\'s code.
+	'centralnotice-number-uses' => 'The header of a narrow column in the table with sitenotice campaign information. The values in the column are the numbers of times that a message enclosed in three curly brackets appears in the banner\'s code. The width of the column is 5% of the total width of the table, so the message should be accordingly short.
 
-In English this is the plural form of the noun "use".
-
-The other columns are:
-* {{msg-mw|centralnotice-message}}
-* {{msg-mw|centralnotice-english}}
-* (the name of a language to which the banner is being translated)
-
-The width of the column is 5% of the total width of the table, so the message should be accordingly short.',
+In English this is a short form of "Number of uses".',
 	'centralnotice-settings' => '{{Identical|Settings}}',
 	'centralnotice-message' => 'The header of a table of translatable messages. Translatable messages are represented in the template code by strings enclosed in three curly brackets.
 
@@ -12793,11 +12786,13 @@ Vedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe infor
 	'centralnotice-apply-filters' => 'Aplică filtrele',
 	'centralnotice-clear-filters' => 'Curăță filtrele',
 	'centralnotice-banner-messages' => 'Mesaje banner',
+	'centralnotice-filter-template-prompt' => 'Numele bannerului conține:',
 	'centralnotice-filter-template-submit' => 'Aplică filtrul',
+	'centralnotice-filter-template-banner' => 'Bannere de filtru',
 	'centralnotice-priority-low' => 'scăzută',
 	'centralnotice-priority-normal' => 'normală',
 	'centralnotice-priority-high' => 'ridicată',
-	'centralnotice-priority-emergency' => 'urgență',
+	'centralnotice-priority-emergency' => 'urgentă',
 );
 
 /** tarandíne (tarandíne)
@@ -12922,6 +12917,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-banner-hidable' => 'Stateche/Scunnibbele',
 	'centralnotice-banner-collapsible' => 'Collassabbele',
 	'centralnotice-banner-fundraising' => "Quiste jè 'nu banner pa raccolte de le funne",
+	'centralnotice-banner-autolink' => "Automaticamende ccreje 'u collegamende a 'a pàgene de destinazione",
 	'centralnotice-banner-landing-pages' => 'Pàggene de arrive (separate da virgole):',
 	'centralnotice-geo' => 'Geo referenziate',
 	'centralnotice-countries' => 'Paìse',
