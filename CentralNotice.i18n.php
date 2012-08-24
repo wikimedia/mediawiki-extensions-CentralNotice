@@ -4638,9 +4638,14 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
  * @author Kobazulo
  * @author Pi
  * @author Theklan
+ * @author Unai Fdz. de Betoño
  * @author පසිඳු කාවින්ද
  */
 $messages['eu'] = array(
+	'centralnotice' => 'Ohar zentralizatuen administrazioa',
+	'noticetemplate' => 'Ohar zentralizatuen administrazioa',
+	'bannerallocation' => 'Ohar zentralizatuen administrazioa',
+	'centralnoticelogs' => 'Ohar zentralizatuen administrazioa',
 	'centralnotice-query' => 'Oraingo oharrak aldatu',
 	'centralnotice-notice-name' => 'Oharraren izena',
 	'centralnotice-end-date' => 'Bukaera data',
@@ -4690,6 +4695,7 @@ Ez da gehituko',
 	'centralnotice-assigned-templates' => 'Ezarritako txantiloiak',
 	'centralnotice-preview-template' => 'Txantiloia aurreikusi',
 	'centralnotice-change-lang' => 'Aldatu itzulpen hizkuntza',
+	'centralnotice-weights' => 'Pisuak',
 	'centralnotice-number-uses' => 'Erabilerak',
 	'centralnotice-settings' => 'Hobespenak',
 	'centralnotice-edit-template' => 'Txantiloia aldatu',
@@ -4714,6 +4720,7 @@ Ez da gehituko',
 	'centralnotice-talk-link' => 'eztabaida',
 	'centralnotice-banner-content-changed' => 'aldatuta',
 	'centralnotice-date' => 'Data',
+	'centralnotice-priority-emergency' => 'larrialdia',
 );
 
 /** Persian (فارسی)
@@ -13915,7 +13922,7 @@ $messages['si'] = array(
 	'centralnotice-percentage' => 'ප්‍රතිශත',
 	'centralnotice-documentwrite-error' => 'බැනරය තුළ document.write() යොදාගත නොහැකිය.
 වැඩි විස්තර සඳහා http://meta.wikimedia.org/wiki/Help:CentralNotice බලන්න.',
-	'centralnotice-preferred' => 'වඩා කැමති',
+	'centralnotice-preferred' => 'ප්‍රමුඛත්වය',
 	'centralnotice-logs' => 'සටහන්',
 	'centralnotice-view-logs' => 'සටහන් බලන්',
 	'centralnotice-timestamp' => 'කාලමුද්‍රාව',
