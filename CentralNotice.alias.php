@@ -255,6 +255,7 @@ $specialPageAliases['tl'] = array(
 /** Turkish (Türkçe) */
 $specialPageAliases['tr'] = array(
 	'CentralNotice' => array( 'MerkeziBildirim' ),
+	'CentralNoticeLogs' => array( 'MerkeziBildirimGünlükleri' ),
 	'NoticeTemplate' => array( 'BildirimŞablonu' ),
 	'BannerAllocation' => array( 'AfişTahsisi' ),
 	'BannerController' => array( 'AfişKontrolü', 'AfişKontrolAracı' ),
