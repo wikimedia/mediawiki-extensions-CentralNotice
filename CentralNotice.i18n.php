@@ -15360,6 +15360,7 @@ $messages['ta'] = array(
 );
 
 /** Telugu (తెలుగు)
+ * @author Arjunaraoc
  * @author Chaduvari
  * @author Veeven
  */
@@ -15494,6 +15495,7 @@ $messages['te'] = array(
 	'centralnotice-timestamp' => 'కాలముద్ర',
 	'centralnotice-user' => 'వాడుకరి',
 	'centralnotice-action' => 'చర్య',
+	'centralnotice-action-removed' => 'తొలగించబడింది',
 	'centralnotice-talk-link' => 'చర్చ',
 	'centralnotice-fundraising' => 'నిధుల సేకరణ',
 	'centralnotice-filters' => 'చిట్టా వడపోతలు',
