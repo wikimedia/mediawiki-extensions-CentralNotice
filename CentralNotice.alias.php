@@ -54,6 +54,8 @@ $specialPageAliases['de'] = array(
 	'NoticeTemplate' => array( 'Mitteilungsvorlage' ),
 	'BannerAllocation' => array( 'Bannerverteilung' ),
 	'BannerController' => array( 'Bannersteuerung' ),
+	'BannerListLoader' => array( 'Bannerlisten_laden' ),
+	'BannerLoader' => array( 'Banner_laden' ),
 	'HideBanners' => array( 'Banner_ausblenden' ),
 );
 
