@@ -3663,11 +3663,13 @@ Yew de bike',
 	'centralnotice-banner-collapsible' => 'Şeno teng bo',
 	'centralnotice-banner-fundraising' => 'Na afiş jew sernameya',
 	'centralnotice-banner-autolink' => 'Greyê pela akerdışi otomatik vırazê',
+	'centralnotice-banner-autolink-help' => 'Baneri bın dı gurweynayışi re da çend çuwey icab kenê mesela $1 ew ciya ata zewbi bınd peleya rê mesela, $2. Greyê afişan de herg çımpawıtan xob xo êdê vırazê.',
 	'centralnotice-banner-landing-pages' => 'Pelaya akerdışi (virgulla pêra abıryayê):',
 	'centralnotice-geo' => 'Geo-menzili',
 	'centralnotice-countries' => 'Dewleti',
 	'centralnotice-allocation' => 'Tahsis',
 	'centralnotice-view-allocation' => 'Abıryayışanê afişa bımocne',
+	'centralnotice-allocation-instructions' => 'Tahsisê çerçewerda weçineyen da xo weçinê:',
 	'centralnotice-languages' => 'Zuwani',
 	'centralnotice-language' => 'Zıwan',
 	'centralnotice-projects' => 'Procey',
@@ -3675,6 +3677,8 @@ Yew de bike',
 	'centralnotice-no-allocation' => 'Hêç afiş nêabıryayo.',
 	'centralnotice-allocation-description' => 'Qandê $1 tahsisê afişan. $2 $3 de:',
 	'centralnotice-percentage' => 'Sera',
+	'centralnotice-documentwrite-error' => 'document.write() afiş miyan dı nêkarêno.
+Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-preferred' => 'Tercih kerden',
 	'centralnotice-logs' => 'Qeydi',
 	'centralnotice-view-logs' => 'Roceka bımocne',
@@ -4730,6 +4734,7 @@ Ez da gehituko',
  * @author Komeil 4life
  * @author Leyth
  * @author Mjbmr
+ * @author Reza1615
  * @author Sahim
  * @author Wayiran
  * @author ZxxZxxZ
@@ -4869,7 +4874,7 @@ $messages['fa'] = array(
 	'centralnotice-percentage' => 'درصد',
 	'centralnotice-documentwrite-error' => 'دستور document.write()&lrm; نمی‌تواند درون یک آگهی استفاده شود.
 برای اطلاعات بیشتر http://meta.wikimedia.org/wiki/Help:CentralNotice را ببینید.',
-	'centralnotice-preferred' => 'ترجیح داده شده',
+	'centralnotice-preferred' => 'اولویت',
 	'centralnotice-logs' => 'سیاهه‌ها',
 	'centralnotice-view-logs' => 'مشاهده سیاهه‌ها',
 	'centralnotice-timestamp' => 'برچسب زمان',
