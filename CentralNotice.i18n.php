@@ -4738,6 +4738,7 @@ Ez da gehituko',
  * @author Sahim
  * @author Wayiran
  * @author ZxxZxxZ
+ * @author پسر یاس
  */
 $messages['fa'] = array(
 	'centralnotice' => 'مدیر اعلان متمرکز',
@@ -4906,7 +4907,10 @@ $messages['fa'] = array(
 	'centralnotice-apply-filters' => 'اعمال پالایش‌ها',
 	'centralnotice-clear-filters' => 'پاک کردن پالایش‌ها',
 	'centralnotice-banner-messages' => 'پیام‌های اعلان',
+	'centralnotice-filter-template-prompt' => 'محتویات بنر نام :',
 	'centralnotice-filter-template-submit' => 'اعمال پالایش',
+	'centralnotice-filter-template-banner' => '
+فیلتر آگهی ها',
 	'centralnotice-priority-low' => 'کم',
 	'centralnotice-priority-normal' => 'عادی',
 	'centralnotice-priority-high' => 'زیاد',
