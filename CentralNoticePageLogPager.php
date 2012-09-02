@@ -63,10 +63,12 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
-		$userLink = Linker::makeLinkObj( $loggedUser->getUserPage(),
+		$userLink = Linker::linkKnown( $loggedUser->getUserPage(),
 			$loggedUser->getName() );
-		$userTalkLink = Linker::makeLinkObj( $loggedUser->getTalkPage(),
-			wfMsg ( 'centralnotice-talk-link' ) );
+		$userTalkLink = Linker::linkKnown(
+			$loggedUser->getTalkPage(),
+			$this->msg( 'centralnotice-talk-link' )->escaped()
+		);
 
 		$language = 'en'; // English is the default for CentralNotice messages
 
@@ -87,9 +89,12 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		}
 
 		// Create banner link
-		$bannerLink = Linker::makeLinkObj( $this->viewPage,
+		$bannerLink = Linker::linkKnown(
+			$this->viewPage,
 			htmlspecialchars( $banner ),
-			'template=' . urlencode( $banner ) );
+			array(),
+			array( 'template' => $banner )
+		);
 
 		// Create title object
 		$title = Title::newFromText( "MediaWiki:{$row->rc_title}" );
@@ -114,7 +119,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell = $bannerLink;
 
 			// Create the message link
-			$messageLink = Linker::makeLinkObj( $title, htmlspecialchars( $message ) );
+			$messageLink = Linker::linkKnown( $title, htmlspecialchars( $message ) );
 
 			// If the message was just created, show a link to the message. If the message was
 			// edited, show a link to the message and a link to the diff.
@@ -142,7 +147,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$wgLang->date( $row->rc_timestamp ) . ' ' . $wgLang->time( $row->rc_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			wfMsg ( 'centralnotice-user-links', $userLink, $userTalkLink )
+			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$bannerCell
@@ -174,20 +179,20 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::element( 'th', array( 'style' => 'width: 20px;' ) );
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
-			 wfMsg ( 'centralnotice-timestamp' )
+			$this->msg ( 'centralnotice-timestamp' )->text()
 		);
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
-			 wfMsg ( 'centralnotice-user' )
+			$this->msg( 'centralnotice-user' )->text()
 		);
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
-			 wfMsg ( 'centralnotice-banner' )
+			$this->msg( 'centralnotice-banner' )->text()
 		);
 		if ( $this->logType == 'bannermessages' ) {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
-				wfMsg ( 'centralnotice-message' )
+				$this->msg( 'centralnotice-message' )->text()
 			);
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 100px;' ),
-				wfMsg ( 'centralnotice-language' )
+				$this->msg( 'centralnotice-language' )->text()
 			);
 		}
 		$htmlOut .= Xml::tags( 'td', array(),
@@ -204,5 +209,4 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	function getEndBody() {
 		return Xml::closeElement( 'table' );
 	}
-
 }

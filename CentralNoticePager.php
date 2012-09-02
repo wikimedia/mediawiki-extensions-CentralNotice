@@ -79,7 +79,7 @@ class CentralNoticePager extends TemplatePager {
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				Xml::listDropDown( "weight[$row->tmp_id]",
 					CentralNotice::dropDownList(
-						wfMsg( 'centralnotice-weight' ), range( 0, 100, 5 )
+						$this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 )
 					),
 					'',
 					'25',
@@ -95,16 +95,19 @@ class CentralNoticePager extends TemplatePager {
 		try {
 			$preview = $render->getHtmlNotice( $row->tmp_name );
 		} catch ( SpecialBannerLoaderException $e ) {
-			$preview = wfMsg( 'centralnotice-nopreview' );
+			$preview = $this->msg( 'centralnotice-nopreview' )->text();
 		}
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			Linker::makeLinkObj( $this->viewPage,
+			Linker::link(
+				$this->viewPage,
 				htmlspecialchars( $row->tmp_name ),
-				'template=' . urlencode( $row->tmp_name ) ) .
-				Xml::fieldset( wfMsg( 'centralnotice-preview' ),
-					$preview,
-					array( 'class' => 'cn-bannerpreview' )
-				)
+				array(),
+				array( 'template' => $row->tmp_name )
+			) . Xml::fieldset(
+				$this->msg( 'centralnotice-preview' )->text(),
+				$preview,
+				array( 'class' => 'cn-bannerpreview' )
+			)
 		);
 
 		// End banner row
@@ -124,14 +127,14 @@ class CentralNoticePager extends TemplatePager {
 		$htmlOut .= Xml::openElement( 'tr' );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-				wfMsg( "centralnotice-add" )
+				$this->msg( "centralnotice-add" )->text()
 			);
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
-				wfMsg( "centralnotice-weight" )
+				$this->msg( 'centralnotice-weight' )->text()
 			);
 		}
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
-			wfMsg( 'centralnotice-templates' )
+			$this->msg( 'centralnotice-templates' )->text()
 		);
 		$htmlOut .= Xml::closeElement( 'tr' );
 		return $htmlOut;
