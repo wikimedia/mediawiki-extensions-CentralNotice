@@ -7514,7 +7514,7 @@ Agnayon ti maysa dita baba.',
 	'centralnotice-percentage' => 'Porsiento',
 	'centralnotice-documentwrite-error' => 'document.write() saan a mabalin a mausar ti kaunegan ti wagayway.
 Kitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a paammo.',
-	'centralnotice-preferred' => 'Kaykayat',
+	'centralnotice-preferred' => 'Prioridad',
 	'centralnotice-logs' => 'Dagiti listaan',
 	'centralnotice-view-logs' => 'Kitaen dagiti listaan',
 	'centralnotice-timestamp' => 'Petsa ken oras',
