@@ -12856,7 +12856,7 @@ Quiste pò essere ausate pure pe aggiungere o luà le vecchie notizie.",
 	'centralnotice-banner-name' => "Nome d'u banner:",
 	'centralnotice-banner' => 'Banner',
 	'centralnotice-banner-heading' => 'Banner: $1',
-	'centralnotice-templates' => 'Banners',
+	'centralnotice-templates' => 'Banner',
 	'centralnotice-weight' => 'Pese',
 	'centralnotice-locked' => 'Bloccate',
 	'centralnotice-notice' => 'Cambagne',
@@ -16463,6 +16463,7 @@ $messages['udm'] = array(
  * @author Alex Khimich
  * @author Arturyatsko
  * @author Dim Grits
+ * @author Microcell
  * @author NickK
  * @author Riwnodennyk
  * @author Sodmy
@@ -16605,7 +16606,7 @@ $messages['uk'] = array(
 	'centralnotice-percentage' => 'Відсоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері.
 Дивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.',
-	'centralnotice-preferred' => 'Бажано',
+	'centralnotice-preferred' => 'Важливість',
 	'centralnotice-logs' => 'Журнали',
 	'centralnotice-view-logs' => 'Перегляд журналів',
 	'centralnotice-timestamp' => 'Часова позначка',
@@ -16637,6 +16638,13 @@ $messages['uk'] = array(
 	'centralnotice-apply-filters' => 'Застосувати фільтри',
 	'centralnotice-clear-filters' => 'Очистити фільтри',
 	'centralnotice-banner-messages' => 'Повідомлення банера',
+	'centralnotice-filter-template-prompt' => 'Назва банера містить:',
+	'centralnotice-filter-template-submit' => 'Застосувати фільтр',
+	'centralnotice-filter-template-banner' => 'Фільтр банерів',
+	'centralnotice-priority-low' => 'низька',
+	'centralnotice-priority-normal' => 'нормальна',
+	'centralnotice-priority-high' => 'висока',
+	'centralnotice-priority-emergency' => 'надзвичайна',
 );
 
 /** Urdu (اردو)
