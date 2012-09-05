@@ -196,7 +196,6 @@
 
 	// Function for hiding banners when the user clicks the close button
 	window.hideBanner = function () {
-
 		// Hide current banner
 		$( '#centralNotice' ).hide();
 
@@ -206,9 +205,7 @@
 		// Set the banner hiding cookie to hide future banners of the same type
 		var d = new Date();
 		d.setTime( d.getTime() + ( 14 * 24 * 60 * 60 * 1000 ) ); // two weeks
-		var c = 'centralnotice_' + encodeURIComponent( bannerType ) + '=hide; expires=' + d.toGMTString() + '; path=/';
-		document.cookie = c;
-	
+		document.cookie = 'centralnotice_' + encodeURIComponent( bannerType ) + '=hide; expires=' + d.toGMTString() + '; path=/';
 	};
 
 	// This function is deprecated

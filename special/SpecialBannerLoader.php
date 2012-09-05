@@ -170,6 +170,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/**
 	 * Retrieve a translated message
 	 * @param $msg string The full name of the message
+	 * @param $params array
 	 * @return string translated messsage string
 	 */
 	private function getMessage( $msg, $params = array() ) {
@@ -185,6 +186,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$options = array( 'language' => $this->language, 'parsemag' );
 		array_unshift( $params, $options );
 		array_unshift( $params, $msg );
+		// @todo FIXME: Use wfMessage.
 		$out = call_user_func_array( 'wfMsgExt', $params );
 
 		// Restore global variables

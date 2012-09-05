@@ -84,7 +84,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 * @param string    $regex    Sanitization regular expression
 	 * @param string    $default  Default value to return on error
 	 *
-	 * @return The sanitized value
+	 * @return string The sanitized value
 	 */
 	static function sanatizeText( $param, $regex, $default = null ) {
 		$matches = array();

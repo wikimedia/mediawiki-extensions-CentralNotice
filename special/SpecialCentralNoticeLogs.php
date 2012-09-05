@@ -1,10 +1,5 @@
 <?php
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo "CentralNotice extension\n";
-	exit( 1 );
-}
-
 class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	public $logType = 'campaignsettings';
 
@@ -47,7 +42,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
 		$actionUrl = $title->getLocalURL();
 		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $actionUrl ) );
-		$htmlOut .= Xml::element( 'h2', null, wfMsg( 'centralnotice-view-logs' ) );
+		$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-view-logs' )->text() );
 		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-switcher' ) );
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
 		$fullUrl = wfExpandUrl( $title->getFullUrl(), PROTO_CURRENT );
@@ -83,14 +78,14 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
 					'</a>';
-				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), wfMsg( 'centralnotice-filters' ) );
+				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), $this->msg( 'centralnotice-filters' )->escaped() );
 				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters' ) );
 			} else { // filters off
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
 					'</a>';
-				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), wfMsg( 'centralnotice-filters' ) );
+				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), $this->msg( 'centralnotice-filters' )->escaped() );
 				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters', 'style' => 'display:none;' ) );
 			}
 
@@ -98,7 +93,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-start-date' ), 'month', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label( $this->msg( 'centralnotice-start-date' )->text(), 'month', array( 'class' => 'cn-log-filter-label' ) );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			if ( $reset ) {
@@ -112,7 +107,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-end-date' ), 'month', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label( $this->msg( 'centralnotice-end-date' )->text(), 'month', array( 'class' => 'cn-log-filter-label' ) );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			if ( $reset ) {
@@ -126,7 +121,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-notice' ), 'campaign', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label( $this->msg( 'centralnotice-notice' )->text(), 'campaign', array( 'class' => 'cn-log-filter-label' ) );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			$htmlOut .= Xml::input( 'campaign', 25, ( $reset ? '' : $campaign ) );
@@ -137,7 +132,11 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( wfMsg( 'centralnotice-user' ), 'user', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label(
+				$this->msg( 'centralnotice-user' )->text(),
+				'user',
+				array( 'class' => 'cn-log-filter-label' )
+			);
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			$htmlOut .= Xml::input( 'user', 25, ( $reset ? '' : $user ) );
@@ -148,7 +147,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td', array( 'colspan' => 2 ) );
-			$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-apply-filters' ),
+			$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-apply-filters' )->text(),
 				array(
 					'id' => 'centralnoticesubmit',
 					'name' => 'centralnoticesubmit',
@@ -156,7 +155,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 				)
 			);
 			$link = $title->getLinkUrl();
-			$htmlOut .= Xml::submitButton( wfMsg( 'centralnotice-clear-filters' ),
+			$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-clear-filters' )->text(),
 				array(
 					'id' => 'centralnoticelogreset',
 					'name' => 'centralnoticelogreset',
@@ -198,7 +197,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		foreach ( $fields as $data ) {
 			list( $field, $label, $set, $current ) = $data;
 			$out .= Xml::listDropDown( $field,
-				CentralNotice::dropDownList( wfMsg( $label ), $set ),
+				CentralNotice::dropDownList( $this->msg( $label )->text(), $set ),
 				'',
 				$current );
 		}
@@ -262,8 +261,7 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 			( $this->logType == $type ? true : false ),
 			array( 'onclick' => "switchLogs( '".$fullUrl."', '".$type."' )" )
 		);
-		$htmlOut .= Xml::label( wfMsg( $message ), $id );
+		$htmlOut .= Xml::label( $this->msg( $message )->text(), $id );
 		return $htmlOut;
 	}
-
 }

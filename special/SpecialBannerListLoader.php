@@ -67,8 +67,6 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 * Generate JSON for the specified site
 	 */
 	function getJsonList() {
-		$banners = array();
-
 		// Pull all campaigns that match the following filter
 		$campaigns = CentralNoticeDB::getCampaigns( $this->project, $this->language, $this->location );
 
@@ -84,7 +82,7 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 * @param string    $param    Name of GET/POST parameter
 	 * @param string    $regex    Sanitization regular expression
 	 * @param string    $default  Default value to return on error
-	 * @return The sanitized value
+	 * @return null|string The sanitized value
 	 */
 	static function getTextAndSanitize( $param, $regex, $default = null ) {
 		global $wgRequest;

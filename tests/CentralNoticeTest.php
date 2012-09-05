@@ -4,8 +4,18 @@
  * @group Fundraising
  */
 class CentralNoticeTest extends PHPUnit_Framework_TestCase {
-
-	protected static $centralNotice, $centralNoticeDB, $noticeTemplate;
+	/**
+	 * @var CentralNotice
+	 */
+	protected static $centralNotice;
+	/**
+	 * @var CentralNoticeDB
+	 */
+	protected static $centralNoticeDB;
+	/**
+	 * @var SpecialNoticeTemplate
+	 */
+	protected static $noticeTemplate;
 	var $campaignId;
 
 	protected function setUp() {
