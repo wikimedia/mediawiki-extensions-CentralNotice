@@ -15,18 +15,17 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgOut, $wgRequest;
-
-		$wgOut->disable();
+		$this->getOutput()->disable();
 		$this->sendHeaders();
 
 		// Get values from the query string
-		$this->language = $wgRequest->getText( 'userlang', 'en' );
-		$this->siteName = $wgRequest->getText( 'sitename', 'Wikipedia' );
-		$this->campaign = $wgRequest->getText( 'campaign', 'undefined' );
+		$request = $this->getRequest();
+		$this->language = $request->getText( 'userlang', 'en' );
+		$this->siteName = $request->getText( 'sitename', 'Wikipedia' );
+		$this->campaign = $request->getText( 'campaign', 'undefined' );
 
-		if ( $wgRequest->getText( 'banner' ) ) {
-			$bannerName = $wgRequest->getText( 'banner' );
+		if ( $request->getText( 'banner' ) ) {
+			$bannerName = $request->getText( 'banner' );
 			try {
 				$content = $this->getJsNotice( $bannerName );
 				if ( preg_match( "/&lt;centralnotice-template-\w+&gt;\z/", $content ) ) {
@@ -124,7 +123,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	function getNoticeField( $match ) {
 		$field = $match[1];
 		$params = array();
-		
+
 		// Handle "magic messages"
 		switch ( $field ) {
 			case 'amount': // total fundraising amount
@@ -140,7 +139,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				return( $this->bannerName );
 				break;
 		}
-		
+
 		$message = "centralnotice-{$this->bannerName}-$field";
 		$source = $this->getMessage( $message, $params );
 		return $source;
@@ -157,7 +156,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$lang = Language::factory( $this->language );
 		return $lang->formatNum( $num );
 	}
-	
+
 	/**
 	 * Convert number of dollars to thousands of dollars
 	 */
@@ -174,23 +173,15 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @return string translated messsage string
 	 */
 	private function getMessage( $msg, $params = array() ) {
-		global $wgLang, $wgSitename;
+		global $wgSitename;
 
 		// A god-damned dirty hack! :D
-		$oldLang = $wgLang;
 		$oldSitename = $wgSitename;
-
 		$wgSitename = $this->siteName; // hack for {{SITENAME}}
-		$wgLang = Language::factory( $this->language ); // hack for {{int:...}}
 
-		$options = array( 'language' => $this->language, 'parsemag' );
-		array_unshift( $params, $options );
 		array_unshift( $params, $msg );
-		// @todo FIXME: Use wfMessage.
-		$out = call_user_func_array( 'wfMsgExt', $params );
+		$out = call_user_func_array( 'wfMessage', $params )->inLanguage( $this->language )->text();
 
-		// Restore global variables
-		$wgLang = $oldLang;
 		$wgSitename = $oldSitename;
 
 		return $out;
@@ -226,7 +217,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		}
 		return $count;
 	}
-	
+
 	/**
 	 * Pull the amount raised so far today during a fundraiser
 	 * @throws SpecialBannerLoaderException

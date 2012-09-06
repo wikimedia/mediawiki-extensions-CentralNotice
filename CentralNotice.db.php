@@ -1,15 +1,9 @@
 <?php
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo "CentralNotice extension\n";
-	exit( 1 );
-}
-
 /**
  * Static methods that retrieve information from the database.
  */
 class CentralNoticeDB {
-
 	/* Functions */
 
 	/**

@@ -17,13 +17,11 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 
 	function __construct() {
 		// Register special page
-		parent::__construct( "BannerListLoader" );
+		parent::__construct( 'BannerListLoader' );
 	}
 
 	function execute( $par ) {
-		global $wgOut;
-
-		$wgOut->disable();
+		$this->getOutput()->disable();
 		$this->sendHeaders();
 
 		// Get project language from the query string; valid is alphanum w/ -
@@ -77,17 +75,15 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @static Obtains the parameter $param, sanitizes by returning the first match to $regex or
+	 * Obtains the parameter $param, sanitizes by returning the first match to $regex or
 	 * $default if there was no match.
 	 * @param string    $param    Name of GET/POST parameter
 	 * @param string    $regex    Sanitization regular expression
 	 * @param string    $default  Default value to return on error
 	 * @return null|string The sanitized value
 	 */
-	static function getTextAndSanitize( $param, $regex, $default = null ) {
-		global $wgRequest;
-
-		if ( preg_match( $regex, $wgRequest->getText( $param ), $matches ) ) {
+	protected function getTextAndSanitize( $param, $regex, $default = null ) {
+		if ( preg_match( $regex, $this->getRequest()->getText( $param ), $matches ) ) {
 			return $matches[0];
 		} else {
 			return $default;

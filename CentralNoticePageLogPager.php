@@ -59,7 +59,6 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
-		global $wgLang;
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
@@ -139,12 +138,13 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		}
 
 		// Begin log entry primary row
+		$lang = $this->getLanguage();
 		$htmlOut = Xml::openElement( 'tr' );
 
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		$htmlOut .= Xml::closeElement( 'td' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$wgLang->date( $row->rc_timestamp ) . ' ' . $wgLang->time( $row->rc_timestamp )
+			$lang->date( $row->rc_timestamp ) . ' ' . $lang->time( $row->rc_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()

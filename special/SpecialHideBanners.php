@@ -1,8 +1,4 @@
 <?php
-if ( !defined( 'MEDIAWIKI' ) ) {
-	echo "CentralNotice extension\n";
-	exit( 1 );
-}
 
 /**
  * Unlisted Special Page which sets a cookie for hiding banners across all languages of a project.
@@ -15,17 +11,15 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgOut;
-
 		$this->setHideCookie();
 
-		$wgOut->disable();
+		$this->getOutput()->disable();
 		wfResetOutputBuffers();
 
 		header( 'Content-Type: image/png' );
 		header( 'Cache-Control: no-cache' );
 
-		readfile( dirname( __FILE__ ) . '/../1x1.png' );
+		readfile( __DIR__ . '/../1x1.png' );
 	}
 
 	/**
@@ -33,6 +27,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	 */
 	function setHideCookie() {
 		global $wgNoticeCookieDomain, $wgCookieSecure, $wgNoticeHideBannersExpiration;
+
 		if ( is_numeric( $wgNoticeHideBannersExpiration ) ) {
 			$exp = $wgNoticeHideBannersExpiration;
 		} else {

@@ -21,7 +21,7 @@
  *
  * Special page for handling banner allocation.
  */
-class SpecialBannerAllocation extends UnlistedSpecialPage {
+class SpecialBannerAllocation extends CentralNotice {
 	/**
 	 * The project being used for banner allocation.
 	 *
@@ -54,20 +54,26 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 	 */
 	public function __construct() {
 		// Register special page
-		parent::__construct( 'BannerAllocation' );
+		SpecialPage::__construct( 'BannerAllocation' );
+	}
+
+	public function isListed() {
+		return false;
 	}
 
 	/**
 	 * Handle different types of page requests
 	 */
 	public function execute( $sub ) {
-		global $wgOut, $wgLang, $wgRequest, $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
+		global $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
+		$out = $this->getOutput();
+		$request = $this->getRequest();
 
-		$this->project = $wgRequest->getText( 'project', $wgNoticeProject );
-		$this->language = $wgRequest->getText( 'language', $wgLanguageCode );
+		$this->project = $request->getText( 'project', $wgNoticeProject );
+		$this->language = $request->getText( 'language', $wgLanguageCode );
 
 		// If the form has been submitted, the country code should be passed along.
-		$locationSubmitted = $wgRequest->getVal( 'country' );
+		$locationSubmitted = $request->getVal( 'country' );
 		$this->location = $locationSubmitted ? $locationSubmitted : $this->location;
 
 		// Convert submitted location to boolean value. If it true, showList() will be called.
@@ -77,19 +83,22 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$this->setHeaders();
 
 		// Output ResourceLoader module for styling and javascript functions
-		$wgOut->addModules( array( 'ext.centralNotice.interface', 'ext.centralNotice.bannerStats' ) );
+		$out->addModules( array(
+			'ext.centralNotice.interface',
+			'ext.centralNotice.bannerStats'
+		) );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
 
 		// Show summary
-		$wgOut->addWikiMsg( 'centralnotice-summary' );
+		$out->addWikiMsg( 'centralnotice-summary' );
 
 		// Show header
-		CentralNotice::printHeader();
+		$this->printHeader();
 
 		// Begin Banners tab content
-		$wgOut->addHTML( Html::openElement( 'div', array( 'id' => 'preferences' ) ) );
+		$out->addHTML( Html::openElement( 'div', array( 'id' => 'preferences' ) ) );
 
 		$htmlOut = '';
 
@@ -97,7 +106,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
 		$htmlOut .= Html::openElement( 'form', array( 'method' => 'get' ) );
-		$htmlOut .= Html::element( 'h2', null, $this->msg( 'centralnotice-view-allocation' )->text() );
+		$htmlOut .= Html::element( 'h2', array(), $this->msg( 'centralnotice-view-allocation' )->text() );
 		$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-allocation-instructions' )->text() );
 
 		$htmlOut .= Html::openElement( 'table', array ( 'id' => 'envpicker', 'cellpadding' => 7 ) );
@@ -123,7 +132,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
-		$languages = Language::getLanguageNames( true );
+		$languages = Language::fetchLanguageNames( null, 'mwfile' );
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
@@ -144,7 +153,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-country' )->text() );
 		$htmlOut .= Html::openElement( 'td' );
 
-		$userLanguageCode = $wgLang->getCode();
+		$userLanguageCode = $this->getLanguage()->getCode();
 		$countries = CentralNoticeDB::getCountriesList( $userLanguageCode );
 
 		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
@@ -167,7 +176,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		// End Allocation selection fieldset
 		$htmlOut .= Html::closeElement( 'fieldset' );
 
-		$wgOut->addHTML( $htmlOut );
+		$out->addHTML( $htmlOut );
 
 		// Handle form submissions
 		if ( $locationSubmitted ) {
@@ -175,27 +184,25 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		}
 
 		// End Banners tab content
-		$wgOut->addHTML( Html::closeElement( 'div' ) );
+		$out->addHTML( Html::closeElement( 'div' ) );
 	}
 
 	/**
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
 	public function showList() {
-		global $wgOut;
-
 		// Obtain all banners & campaigns
-		$project = SpecialBannerListLoader::getTextAndSanitize(
+		$project = $this->getTextAndSanitize(
 			'project',
 			SpecialBannerListLoader::PROJECT_FILTER
 		);
 
-		$language = SpecialBannerListLoader::getTextAndSanitize(
+		$language = $this->getTextAndSanitize(
 			'language',
 			SpecialBannerListLoader::LANG_FILTER
 		);
 
-		$location = SpecialBannerListLoader::getTextAndSanitize(
+		$location = $this->getTextAndSanitize(
 			'country',
 			SpecialBannerListLoader::LOCATION_FILTER
 		);
@@ -239,7 +246,7 @@ class SpecialBannerAllocation extends UnlistedSpecialPage {
 		// End Allocation list fieldset
 		$htmlOut .= Html::closeElement( 'fieldset' );
 
-		$wgOut->addHTML( $htmlOut );
+		$this->getOutput()->addHTML( $htmlOut );
 	}
 
 	/**

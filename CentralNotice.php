@@ -28,7 +28,7 @@
 
 /* Setup */
 
-$dir = dirname( __FILE__ );
+$dir = __DIR__;
 
 // Register message files
 $wgExtensionMessagesFiles[ 'CentralNotice' ] = $dir . '/CentralNotice.i18n.php';
@@ -63,7 +63,6 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'scripts'       => 'ext.centralNotice.bannerController/bannerController.js',
 	'position'      => 'top',
 );
-
 
 /* Configuration */
 
@@ -141,7 +140,7 @@ function efCentralNoticeSetup() {
 		$wgCentralPagePath = $wgScript;
 	}
 
-	$dir = dirname( __FILE__ ) . '/';
+	$dir = __DIR__ . '/';
 	$specialDir = $dir . 'special/';
 	$apiDir = $dir . 'api/';
 
@@ -201,7 +200,7 @@ function efCentralNoticeSetup() {
  * @return bool
  */
 function efCentralNoticeSchema( $updater = null ) {
-	$base = dirname( __FILE__ );
+	$base = __DIR__;
 
 	if ( $updater->getDB()->getType() == 'mysql' ) {
 		$updater->addExtensionUpdate(
@@ -389,6 +388,6 @@ function efResourceLoaderGetConfigVars( &$vars ) {
  * @return bool
  */
 function efCentralNoticeUnitTests( &$files ) {
-	$files[ ] = dirname( __FILE__ ) . '/tests/CentralNoticeTest.php';
+	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
 	return true;
 }

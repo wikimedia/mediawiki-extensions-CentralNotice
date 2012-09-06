@@ -31,7 +31,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Generate the content of each table row (1 row = 1 log entry)
 	 */
 	function formatRow( $row ) {
-		global $wgLang, $wgExtensionAssetsPath;
+		global $wgExtensionAssetsPath;
+		$lang = $this->getLanguage();
 
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->tmplog_user_id );
@@ -65,7 +66,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		}
 		$htmlOut .= Xml::closeElement( 'td' );
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$wgLang->date( $row->tmplog_timestamp ) . ' ' . $wgLang->time( $row->tmplog_timestamp )
+			$lang->date( $row->tmplog_timestamp ) . ' ' . $lang->time( $row->tmplog_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()

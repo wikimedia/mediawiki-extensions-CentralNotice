@@ -1,38 +1,45 @@
 <?php
 
-class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
+class SpecialCentralNoticeLogs extends CentralNotice {
 	public $logType = 'campaignsettings';
 
 	function __construct() {
 		// Register special page
-		parent::__construct( "CentralNoticeLogs" );
+		SpecialPage::__construct( "CentralNoticeLogs" );
+	}
+
+	public function isListed() {
+		return false;
 	}
 
 	/**
 	 * Handle different types of page requests
 	 */
 	function execute( $sub ) {
-		global $wgOut, $wgRequest, $wgExtensionAssetsPath;
+		global $wgExtensionAssetsPath;
 
-		$this->logType = $wgRequest->getText( 'log', 'campaignsettings' );
+		$out = $this->getOutput();
+		$request = $this->getRequest();
+
+		$this->logType = $request->getText( 'log', 'campaignsettings' );
 
 		// Begin output
 		$this->setHeaders();
 
 		// Output ResourceLoader module for styling and javascript functions
-		$wgOut->addModules( 'ext.centralNotice.interface' );
+		$out->addModules( 'ext.centralNotice.interface' );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
 
 		// Show summary
-		$wgOut->addWikiMsg( 'centralnotice-summary' );
+		$out->addWikiMsg( 'centralnotice-summary' );
 
 		// Show header
-		CentralNotice::printHeader();
+		$this->printHeader();
 
 		// Begin Banners tab content
-		$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
+		$out->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
 
 		$htmlOut = '';
 
@@ -60,10 +67,9 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		$htmlOut .= Xml::closeElement( 'div' );
 
 		if ( $this->logType == 'campaignsettings' ) {
-
-			$reset = $wgRequest->getVal( 'centralnoticelogreset' );
-			$campaign = $wgRequest->getVal( 'campaign' );
-			$user = $wgRequest->getVal( 'user' );
+			$reset = $request->getVal( 'centralnoticelogreset' );
+			$campaign = $request->getVal( 'campaign' );
+			$user = $request->getVal( 'user' );
 			$startYear = $this->getDateValue( 'start_year' );
 			$startMonth = $this->getDateValue( 'start_month' );
 			$startDay = $this->getDateValue( 'start_day' );
@@ -176,16 +182,16 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		// End log selection fieldset
 		//$htmlOut .= Xml::closeElement( 'fieldset' );
 
-		$wgOut->addHTML( $htmlOut );
+		$out->addHTML( $htmlOut );
 
 		$this->showLog( $this->logType );
 
 		// End Banners tab content
-		$wgOut->addHTML( Xml::closeElement( 'div' ) );
+		$out->addHTML( Xml::closeElement( 'div' ) );
 	}
 
-	private function dateSelector( $prefix, $year = 0, $month = 0, $day = 0 ) {
-		$dateRanges = CentralNotice::getDateRanges();
+	protected function dateSelector( $prefix, $year = 0, $month = 0, $day = 0 ) {
+		$dateRanges = $this->getDateRanges();
 
 		$fields = array(
 			array( $prefix."_month", "centralnotice-month", $dateRanges['months'], $month ),
@@ -209,8 +215,6 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 	 * @param $logType string: which type of log to show
 	 */
 	function showLog( $logType ) {
-		global $wgOut;
-
 		switch ( $logType ) {
 			case 'bannersettings':
 				$pager = new CentralNoticeBannerLogPager( $this );
@@ -240,12 +244,11 @@ class SpecialCentralNoticeLogs extends UnlistedSpecialPage {
 		// End log fieldset
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 
-		$wgOut->addHTML( $htmlOut );
+		$this->getOutput()->addHTML( $htmlOut );
 	}
 
-	static function getDateValue( $type ) {
-		global $wgRequest;
-		$value = $wgRequest->getVal( $type );
+	protected function getDateValue( $type ) {
+		$value = $this->getRequest()->getVal( $type );
 		if ( $value === 'other' ) $value = null;
 		return $value;
 	}

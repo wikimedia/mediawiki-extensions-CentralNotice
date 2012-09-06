@@ -144,11 +144,10 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * @return string HTML
 	 */
 	function getEndBody() {
-		global $wgUser;
 		$htmlOut = '';
 		$htmlOut .= Xml::closeElement( 'table' );
 		if ( $this->editable ) {
-			$htmlOut .= Html::hidden( 'authtoken', $wgUser->getEditToken() );
+			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
 			$htmlOut .= Xml::tags( 'div',
 				array( 'class' => 'cn-buttons' ),
 				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
