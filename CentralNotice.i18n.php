@@ -2871,6 +2871,7 @@ $messages['co'] = array(
 );
 
 /** Czech (česky)
+ * @author Chmee2
  * @author Danny B.
  * @author Jkjk
  * @author Li-sung
@@ -3036,6 +3037,7 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 	'centralnotice-banner-messages' => 'Bannerové zprávy',
 	'centralnotice-filter-template-prompt' => 'Název banneru obsahuje:',
 	'centralnotice-filter-template-submit' => 'Použít filtr',
+	'centralnotice-filter-template-banner' => 'Filtruj bannery',
 	'centralnotice-priority-low' => 'nízká',
 	'centralnotice-priority-normal' => 'normální',
 	'centralnotice-priority-high' => 'vysoká',
@@ -14298,6 +14300,13 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-apply-filters' => 'Uveljavi filtre',
 	'centralnotice-clear-filters' => 'Počisti filtre',
 	'centralnotice-banner-messages' => 'Sporočila pasic',
+	'centralnotice-filter-template-prompt' => 'Ime pasice vsebuje:',
+	'centralnotice-filter-template-submit' => 'Uveljavi filter',
+	'centralnotice-filter-template-banner' => 'Filtriranje pasic',
+	'centralnotice-priority-low' => 'nizko',
+	'centralnotice-priority-normal' => 'navadno',
+	'centralnotice-priority-high' => 'visoko',
+	'centralnotice-priority-emergency' => 'nujno',
 );
 
 /** Albanian (shqip)
@@ -16128,6 +16137,7 @@ Tingnan ang http://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas marami
 );
 
 /** толышә зывон (толышә зывон)
+ * @author Erdemaslancan
  * @author Гусейн
  */
 $messages['tly'] = array(
@@ -16142,6 +16152,7 @@ $messages['tly'] = array(
 	'centralnotice-project-name' => 'Нәхшә ном',
 	'centralnotice-close-button' => 'Егәтәдыгмә «Жәј»',
 	'centralnotice-close-title' => 'Жәј',
+	'centralnotice-country' => 'Мәмләкәт',
 	'centralnotice-user' => 'Иштирокәкә',
 	'centralnotice-action' => 'Һәрәкәт',
 	'centralnotice-date' => 'Тарых',
