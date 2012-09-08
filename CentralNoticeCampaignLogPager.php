@@ -244,20 +244,37 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testPriorityChange( 'preferred', $row );
 		$details .= $this->testBooleanChange( 'locked', $row );
 		$details .= $this->testBooleanChange( 'geo', $row );
+		$details .= $this->testBooleanChange( 'buckets', $row );
 		$details .= $this->testSetChange( 'projects', $row );
 		$details .= $this->testSetChange( 'languages', $row );
 		$details .= $this->testSetChange( 'countries', $row );
 		if ( $row->notlog_begin_banners !== $row->notlog_end_banners ) {
 			// Show changes to banner weights and assignment
-			$beginBannersObject = json_decode( $row->notlog_begin_banners );
-			$endBannersObject = json_decode( $row->notlog_end_banners );
+			$beginBannersObject = json_decode( $row->notlog_begin_banners, true );
+			$endBannersObject = json_decode( $row->notlog_end_banners, true );
 			$beginBanners = array();
 			$endBanners = array();
-			foreach( $beginBannersObject as $key => $weight ) {
-				$beginBanners[$key] = $key.' ('.$weight.')';
+			foreach( $beginBannersObject as $key => $params ) {
+				if ( is_array( $params ) ) {
+					$weight = $params['weight'];
+					$bucket = chr( 65 + $params['bucket'] );
+				} else {
+					// Legacy, we used to only store the weight
+					$weight = $params;
+					$bucket = 0;
+				}
+				$beginBanners[$key] = "$key ($bucket, $weight)";
 			}
-			foreach( $endBannersObject as $key => $weight ) {
-				$endBanners[$key] = $key.' ('.$weight.')';
+			foreach( $endBannersObject as $key => $params ) {
+				if ( is_array( $params ) ) {
+					$weight = $params['weight'];
+					$bucket = chr( 65 + $params['bucket'] );
+				} else {
+					// Legacy, we used to only store the weight
+					$weight = $params;
+					$bucket = 0;
+				}
+				$endBanners[$key] = "$key ($bucket, $weight)";
 			}
 			if ( $beginBanners ) {
 				$before = $lang->commaList( $beginBanners );

@@ -285,6 +285,12 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_autolink.sql', true
 			)
 		);
+		$updater->addExtensionUpdate(
+			array(
+				'addField', 'cn_notices', 'not_buckets',
+				$base . '/patches/patch-bucketing.sql', true
+			)
+		);
 	}
 	return true;
 }
@@ -405,7 +411,10 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$wgNoticeInfrastructure, $wgNoticeCloseButton;
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
+
+	// Get the localized title of the BannerListLoader special page
 	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
+
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
 	}

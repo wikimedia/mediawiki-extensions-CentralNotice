@@ -133,7 +133,8 @@ class CentralNoticeDB {
 				'not_enabled',
 				'not_preferred',
 				'not_locked',
-				'not_geo'
+				'not_geo',
+				'not_buckets',
 			),
 			array( 'not_name' => $campaignName ),
 			__METHOD__
@@ -145,7 +146,8 @@ class CentralNoticeDB {
 				'enabled'   => $row->not_enabled,
 				'preferred' => $row->not_preferred,
 				'locked'    => $row->not_locked,
-				'geo'       => $row->not_geo
+				'geo'       => $row->not_geo,
+				'buckets'   => $row->not_buckets,
 			);
 		}
 
@@ -159,10 +161,11 @@ class CentralNoticeDB {
 
 			$bannersIn = $this->getCampaignBanners( $row->not_id, true );
 			$bannersOut = array();
-			// All we want are the banner names and weights
+			// All we want are the banner names, weights, and buckets
 			foreach ( $bannersIn as $key => $row ) {
 				$outKey = $bannersIn[ $key ][ 'name' ];
-				$bannersOut[ $outKey ] = $bannersIn[ $key ][ 'weight' ];
+				$bannersOut[ $outKey ]['weight'] = $bannersIn[ $key ][ 'weight' ];
+				$bannersOut[ $outKey ]['bucket'] = $bannersIn[ $key ][ 'bucket' ];
 			}
 			// Encode into a JSON string for storage
 			$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
@@ -208,7 +211,9 @@ class CentralNoticeDB {
 					'tmp_autolink',
 					'tmp_landing_pages',
 					'not_name',
-					'not_preferred'
+					'not_preferred',
+					'asn_bucket',
+					'not_buckets',
 				),
 				array(
 					'notices.not_id' => $campaigns,
@@ -229,6 +234,8 @@ class CentralNoticeDB {
 					'landing_pages'    => $row->tmp_landing_pages, // landing pages to link to
 					'campaign'         => $row->not_name, // campaign the banner is assigned to
 					'campaign_z_index' => $row->not_preferred, // z level of the campaign
+					'campaign_num_buckets' => intval( $row->not_buckets ),
+					'bucket'           => ( intval( $row->not_buckets ) == 1 ) ? 0 : intval( $row->asn_bucket ),
 				);
 			}
 		}
@@ -1058,11 +1065,38 @@ class CentralNoticeDB {
 		}
 	}
 
+	/**
+	 * Updates the weight of a banner in a campaign.
+	 *
+	 * @param $noticeName   Name of the campaign to update
+	 * @param $templateId   ID of the banner in the campaign
+	 * @param $weight       New banner weight
+	 */
 	function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$noticeId = $this->getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			array( 'tmp_weight' => $weight ),
+			array(
+				'tmp_id' => $templateId,
+				'not_id' => $noticeId
+			)
+		);
+	}
+
+	/**
+	 * Updates the bucket of a banner in a campaign. Buckets alter what is shown to the end user
+	 * which can affect the relative weight of the banner in a campaign.
+	 *
+	 * @param $noticeName   Name of the campaign to update
+	 * @param $templateId   ID of the banner in the campaign
+	 * @param $bucket       New bucket number
+	 */
+	function updateBucket( $noticeName, $templateId, $bucket ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$noticeId = $this->getNoticeId( $noticeName );
+		$dbw->update( 'cn_assignments',
+			array( 'asn_bucket' => $bucket ),
 			array(
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId

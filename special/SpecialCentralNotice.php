@@ -6,6 +6,8 @@ class CentralNotice extends SpecialPage {
 	const HIGH_PRIORITY = 2;
 	const EMERGENCY_PRIORITY = 3;
 
+	const NUMBER_OF_BUCKETS = 2;
+
 	var $editable, $centralNoticeError;
 
 	function __construct() {
@@ -709,6 +711,13 @@ class CentralNotice extends SpecialPage {
 							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 0 );
 						}
 
+						// Handle user bucketing setting for campaign
+						if ( $request->getCheck( 'buckets' ) ) {
+							$cndb->setBooleanCampaignSetting( $notice, 'buckets', 2 );
+						} else {
+							$cndb->setBooleanCampaignSetting( $notice, 'buckets', 1 );
+						}
+
 						// Handle setting campaign priority
 						$cndb->setNumericCampaignSetting(
 							$notice,
@@ -764,6 +773,15 @@ class CentralNotice extends SpecialPage {
 						if ( $updatedWeights ) {
 							foreach ( $updatedWeights as $templateId => $weight ) {
 								$cndb->updateWeight( $notice, $templateId, $weight );
+							}
+						}
+
+						// Handle bucket changes
+						$updatedBuckets = $request->getArray( 'bucket' );
+						if ( $updatedBuckets ) {
+							foreach ( $updatedBuckets as $templateId => $bucket ) {
+								if ( $bucket == 'other' ) $bucket = 'A';
+								$cndb->updateBucket( $notice, $templateId, ord( $bucket ) - 65 );
 							}
 						}
 
@@ -888,6 +906,7 @@ class CentralNotice extends SpecialPage {
 				$noticeProjects = $request->getArray( 'projects', array() );
 				$noticeLanguages = $request->getArray( 'project_languages', array() );
 				$isGeotargeted = $request->getCheck( 'geotargeted' );
+				$useBuckets = $request->getCheck( 'buckets' );
 				$countries = $request->getArray( 'geo_countries', array() );
 			} else { // Defaults
 				$start = $campaign[ 'start' ];
@@ -898,6 +917,7 @@ class CentralNotice extends SpecialPage {
 				$noticeProjects = $cndb->getNoticeProjects( $notice );
 				$noticeLanguages = $cndb->getNoticeLanguages( $notice );
 				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
+				$useBuckets = ( $campaign[ 'buckets' ] == '2' );
 				$countries = $cndb->getNoticeCountries( $notice );
 			}
 
@@ -961,6 +981,15 @@ class CentralNotice extends SpecialPage {
 				$this->msg( 'centralnotice-countries' )->escaped() );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector( $countries ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
+			// User bucketing
+			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' ) );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::check( 'buckets', $useBuckets,
+					wfArrayMerge( $readonly,
+						array( 'value' => $notice, 'id' => 'buckets' ) ) ) );
+			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(),
@@ -1020,7 +1049,8 @@ class CentralNotice extends SpecialPage {
 			array(
 				'templates.tmp_id',
 				'templates.tmp_name',
-				'assignments.tmp_weight'
+				'assignments.tmp_weight',
+				'assignments.asn_bucket',
 			),
 			array(
 				'notices.not_name' => $notice,
@@ -1028,7 +1058,7 @@ class CentralNotice extends SpecialPage {
 				'assignments.tmp_id = templates.tmp_id'
 			),
 			__METHOD__,
-			array( 'ORDER BY' => 'notices.not_id' )
+			array( 'ORDER BY' => 'assignments.asn_bucket, notices.not_id' )
 		);
 
 		// No banners found
@@ -1051,6 +1081,8 @@ class CentralNotice extends SpecialPage {
 		}
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 			$this->msg( 'centralnotice-weight' )->text() );
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+			$this->msg( 'centralnotice-bucket' )->text() );
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '70%' ),
 			$this->msg( 'centralnotice-templates' )->text() );
 
@@ -1070,6 +1102,12 @@ class CentralNotice extends SpecialPage {
 				$this->weightDropDown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 
+			// Bucket
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				$this->bucketDropDown( "bucket[$row->tmp_id]", chr( 65 + $row->asn_bucket ) )
+			);
+
+			// Banner
 			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
 
 			/* XXX this code is duplicated in the CentralNoticePager::formatRow */
@@ -1106,12 +1144,32 @@ class CentralNotice extends SpecialPage {
 			return Xml::listDropDown( $name,
 				$this->dropDownList( $this->msg( 'centralnotice-weight' )->text(),
 					range( 0, 100, 5 ) ),
-				'',
+				null,
 				$selected,
 				'',
 				1 );
 		} else {
 			return htmlspecialchars( $selected );
+		}
+	}
+
+	function bucketDropDown( $name, $value ) {
+		if ( $this->editable ) {
+			return Xml::listDropDown( $name,
+				$this->dropDownList(
+					$this->msg( 'centralnotice-bucket' )->text(),
+					array_map(
+						function ($a) { return chr( $a + 65 ); },
+						range( 0, static::NUMBER_OF_BUCKETS - 1 )
+					)
+				),
+				'',
+				$value,
+				'',
+				1
+			);
+		} else {
+			return htmlspecialchars( $value );
 		}
 	}
 

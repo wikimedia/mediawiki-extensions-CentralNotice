@@ -5,12 +5,12 @@ class BannerChooser {
 
 	var $banners = array();
 
-	function __construct( $project, $language, $country, $anonymous /*, $bucket */ ) {
+	function __construct( $project, $language, $country, $anonymous, $bucket ) {
 		$cndb = new CentralNoticeDB();
 		$campaigns = $cndb->getCampaigns( $project, $language, $country );
 		$this->banners = $cndb->getCampaignBanners( $campaigns );
 
-		$this->filterBanners( $anonymous );
+		$this->filterBanners( $anonymous, $bucket );
 
 		$this->allocate();
 	}
@@ -31,7 +31,7 @@ class BannerChooser {
 	/**
 	 * Filters banners and returns those matching criteria
 	 */
-	protected function filterBanners( $anonymous = null /* TODO $bucket */ ) {
+	protected function filterBanners( $anonymous, $bucket ) {
 		$filterColumn = function ( &$banners, $key, $value ) {
 			$banners = array_filter(
 				$banners,
@@ -52,6 +52,16 @@ class BannerChooser {
 			$highest_z = max( $banner[ 'campaign_z_index' ], $highest_z );
 		}
 		$filterColumn( $this->banners, 'campaign_z_index', $highest_z );
+
+		$this->banners = array_filter(
+			$this->banners,
+			function ( $banner ) use ( $bucket ) {
+				if ( $banner[ 'campaign_num_buckets' ] == 1 ) {
+					return true;
+				}
+				return ( $banner[ 'bucket' ] === intval( $bucket ) );
+			}
+		);
 	}
 
 	// note: lumps all campaigns weights together according to absolute proportions of total.

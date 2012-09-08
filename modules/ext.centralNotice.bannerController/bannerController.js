@@ -50,98 +50,66 @@
 				}
 			},
 			loadBannerList: function ( geoOverride ) {
-				var geoLocation;
+				var geoLocation,
+					anonymous = ( mw.config.get( 'wgUserName' ) === null );
 
 				if ( geoOverride ) {
 					geoLocation = geoOverride; // override the geo info
 				} else {
 					geoLocation = Geo.country; // pull the geo info
 				}
+
+				// To deal with bucketing we first have to have all our buckets! So dig in the
+				// cookie jar or make them.
+				var bucket = $.cookie( 'centralnotice_bucket' );
+				if ( bucket == null ) {
+					bucket = Math.round( Math.random() );
+					$.cookie(
+						'centralnotice_bucket', bucket,
+						{ expires: 7, path: '/' }
+					);
+				}
+
 				// Prevent loading banners on Special pages
 				if ( mw.config.get( 'wgNamespaceNumber' ) !== -1 ) {
 					$.ajax( {
-						url: mw.util.wikiScript(),
+						url: mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + mw.config.get('wgScript'),
 						data: {
-							bcache: '1',
 							title: mw.config.get( 'wgNoticeBannerListLoader' ),
 							language: mw.config.get( 'wgContentLanguage' ),
 							project: mw.config.get( 'wgNoticeProject' ),
-							country: geoLocation
+							country: geoLocation,
+							anonymous: anonymous,
+							bucket: bucket
 						},
 						dataType: 'json'
 					}).done( mw.centralNotice.chooseBanner );
 				}
 			},
 			chooseBanner: function ( bannerList ) {
-				var i, idx, count, rnd,
-					groomedBannerList = [],
-					campaignWeights = {},
-					numFilteredCampaigns = 0,
-					zLevel = 0,
-					anonymous = ( mw.config.get( 'wgUserName' ) === null );
+				var i, idx, rnd, count, groomedBannerList;
 
-				// Find the highest campaign Z level that fulfills filter constraints
-				for ( i = 0; i < bannerList.length; i++ ) {
-					if ( ( bannerList[i].campaign_z_index >= zLevel ) &&
-						( ( !anonymous && bannerList[i].display_account === 1 ) ||
-							( anonymous && bannerList[i].display_anon === 1 )
-						)
-					) {
-						zLevel = bannerList[i].campaign_z_index;
-					}
-				}
-
-				// Iterate through all banners; filtering for: user/anon and z level
-				// Also determine weight counts per campaign
-				for (i = 0; i < bannerList.length; i++ ) {
-					if ( ( bannerList[i].campaign_z_index === zLevel ) &&
-						( ( !anonymous && bannerList[i].display_account === 1 ) ||
-							( anonymous && bannerList[i].display_anon === 1 )
-						)
-					) {
-
-						if ( bannerList[i].campaign in campaignWeights ) {
-							campaignWeights[ bannerList[i].campaign ] += bannerList[i].weight;
-						} else {
-							campaignWeights[ bannerList[i].campaign ] = bannerList[i].weight;
-							numFilteredCampaigns += 1;
-						}
-
-						groomedBannerList.push( bannerList[i] );
-					}
-				}
-
-				// Make sure there are some banners to choose from
-				if ( groomedBannerList.length === 0 ) {
+				// Did we get anything useful from the query?
+				if ( bannerList['centralnoticeallocations'] != null ) {
+					groomedBannerList = bannerList['centralnoticeallocations']['banners'];
+				} else {
 					return false;
 				}
 
-				// Apply normalized weight to selected banners (campaigns have equal weight)
-				count = 0.0;
-				for ( i = 0; i < groomedBannerList.length; i++ ) {
-					groomedBannerList[i].weight =
-						( groomedBannerList[i].weight / campaignWeights[ groomedBannerList[i].campaign ] );
-					groomedBannerList[i].weight *= ( 1 / numFilteredCampaigns );
-
-					count += groomedBannerList[i].weight;
-				}
-
-				// Make sure we add to 1.0
-				groomedBannerList[ groomedBannerList.length - 1 ].weight += ( 1.0 - count );
-
-				// Obtain randomness
-				rnd = Math.random();
-
 				// Obtain banner index
-				count = 0;
+				rnd = Math.random();
 				idx = -1;
-				for (i = 0; i < groomedBannerList.length; i++ ) {
-					if ( rnd < count + groomedBannerList[i].weight ) {
+				count = 0;
+				for ( i = 0; i < groomedBannerList.length; i++ ) {
+					count += groomedBannerList[i].allocation;
+					if ( rnd < count ) {
 						idx = i;
 						break;
-					} else {
-						count += groomedBannerList[i].weight;
 					}
+				}
+
+				if ( idx == -1 ) {
+					return false;
 				}
 
 				// Load a random banner from our groomed list
