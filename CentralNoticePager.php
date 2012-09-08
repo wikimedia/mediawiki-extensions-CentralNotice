@@ -34,15 +34,18 @@ class CentralNoticePager extends TemplatePager {
 
 		// Get the current campaign and filter on that as well if required
 		$notice = $this->mRequest->getVal( 'notice' );
-		$noticeId = CentralNotice::getNoticeId( $notice );
+		$cndb = new CentralNoticeDB();
+		$noticeId = $cndb->getNoticeId( $notice );
 
 		if ( $noticeId ) {
 			// Return all the banners not already assigned to the current campaign
 			return array(
 				'tables'     => array( 'cn_assignments', 'cn_templates' ),
 				'fields'     => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
-				'conds'      => array( 'cn_assignments.tmp_id IS NULL',
-					'tmp_name' . $dbr->buildLike( $likeArray ) ),
+				'conds'      => array(
+					'cn_assignments.tmp_id IS NULL',
+					'tmp_name' . $dbr->buildLike( $likeArray )
+				),
 				'join_conds' => array(
 					'cn_assignments' => array(
 						'LEFT JOIN',

@@ -362,7 +362,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 		// Get current banner
 		$currentTemplate = $request->getText( 'template' );
 
-		$bannerSettings = CentralNoticeDB::getBannerSettings( $currentTemplate );
+		$cndb = new CentralNoticeDB();
+		$bannerSettings = $cndb->getBannerSettings( $currentTemplate );
 
 		if ( !$bannerSettings ) {
 			$this->showError( 'centralnotice-banner-doesnt-exist' );
@@ -916,7 +917,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 			return;
 		}
 
-		$initialBannerSettings = CentralNoticeDB::getBannerSettings( $name, true );
+		$cndb = new CentralNoticeDB();
+		$initialBannerSettings = $cndb->getBannerSettings( $name, true );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name',
@@ -945,7 +947,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
 
 			$bannerId = $this->getTemplateId( $name );
-			$finalBannerSettings = CentralNoticeDB::getBannerSettings( $name, true );
+			$cndb = new CentralNoticeDB();
+			$finalBannerSettings = $cndb->getBannerSettings( $name, true );
 
 			// If there are any difference between the old settings and the new settings, log them.
 			$diffs = array_diff_assoc( $initialBannerSettings, $finalBannerSettings );
@@ -1060,11 +1063,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 			}
 		}
 		return $translations;
-	}
-
-	function showError( $message ) {
-		$this->getOutput()->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
-		$this->centralNoticeError = true;
 	}
 
 	/**

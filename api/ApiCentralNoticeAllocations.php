@@ -37,11 +37,12 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		);
 
 		// OK, now run the banner query
-		$campaigns = CentralNoticeDB::getCampaigns( $project, $language, $country );
-		$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
+		$cndb = new CentralNoticeDB();
+		$campaigns = $cndb->getCampaigns( $project, $language, $country );
+		$banners = $cndb->getCampaignBanners( $campaigns );
 
-		$anonBanners = CentralNoticeDB::filterBanners( $banners, 'display_anon', 'allocation', $anonCampaigns );
-		$accountBanners = CentralNoticeDB::filterBanners( $banners, 'display_account', 'allocation', $accountCampaigns );
+		$anonBanners = $cndb->filterBanners( $banners, 'display_anon', 'allocation', $anonCampaigns );
+		$accountBanners = $cndb->filterBanners( $banners, 'display_account', 'allocation', $accountCampaigns );
 
 		$result->addValue( array( 'cn-banner-allocations' ), 'anon', $anonBanners );
 		$result->addValue( array( 'cn-banner-allocations' ), 'account', $accountBanners );

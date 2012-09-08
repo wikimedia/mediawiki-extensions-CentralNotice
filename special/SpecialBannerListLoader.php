@@ -66,10 +66,11 @@ class SpecialBannerListLoader extends UnlistedSpecialPage {
 	 */
 	function getJsonList() {
 		// Pull all campaigns that match the following filter
-		$campaigns = CentralNoticeDB::getCampaigns( $this->project, $this->language, $this->location );
+		$centralNoticeDb = new CentralNoticeDB();
+		$campaigns = $centralNoticeDb->getCampaigns( $this->project, $this->language, $this->location );
 
 		// Pull banners
-		$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
+		$banners = $centralNoticeDb->getCampaignBanners( $campaigns );
 
 		return FormatJson::encode( $banners );
 	}

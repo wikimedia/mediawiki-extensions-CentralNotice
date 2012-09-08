@@ -130,14 +130,16 @@ class SpecialBannerAllocation extends CentralNotice {
 			$this->msg( 'centralnotice-project-lang' )->text() );
 		$htmlOut .= Html::openElement( 'td' );
 
+		// Retrieve the list of languages in user's language
+		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
-		$languages = Language::fetchLanguageNames( null, 'mwfile' );
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
 
 		ksort( $languages );
+
 		$htmlOut .= Html::openElement( 'select', array( 'name' => 'language' ) );
 
 		foreach( $languages as $code => $name ) {
@@ -154,7 +156,8 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'td' );
 
 		$userLanguageCode = $this->getLanguage()->getCode();
-		$countries = CentralNoticeDB::getCountriesList( $userLanguageCode );
+		$cndb = new CentralNoticeDB();
+		$countries = $cndb->getCountriesList( $userLanguageCode );
 
 		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
 
@@ -207,15 +210,16 @@ class SpecialBannerAllocation extends CentralNotice {
 			SpecialBannerListLoader::LOCATION_FILTER
 		);
 
-		$campaigns = CentralNoticeDB::getCampaigns( $project, $language, $location );
-		$banners = CentralNoticeDB::getCampaignBanners( $campaigns );
+		$cndb = new CentralNoticeDB();
+		$campaigns = $cndb->getCampaigns( $project, $language, $location );
+		$banners = $cndb->getCampaignBanners( $campaigns );
 
 		// Filter appropriately
 		$anonCampaigns = array();
 		$accountCampaigns = array();
 
-		$anonBanners = $this->filterBanners( $banners, 'display_anon', 'anon_weight', $anonCampaigns );
-		$accountBanners = $this->filterBanners( $banners, 'display_account', 'account_weight', $accountCampaigns );
+		$anonBanners = $cndb->filterBanners( $banners, 'display_anon', 'anon_weight', $anonCampaigns );
+		$accountBanners = $cndb->filterBanners( $banners, 'display_account', 'account_weight', $accountCampaigns );
 
 		$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
 
@@ -323,50 +327,5 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'table' );
 
 		return $htmlOut;
-	}
-
-	/**
-	 * @param array  $banners
-	 * @param string $filterKey
-	 * @param string $weightKey
-	 * @param array  $campaignWeights
-	 *
-	 * @return array
-	 */
-	private function filterBanners( $banners, $filterKey, $weightKey, &$campaignWeights = array() ) {
-		$campaignZLevel = CentralNotice::LOW_PRIORITY;
-		$filteredBanners = array();
-
-		// Find the highest Z level
-		foreach ( $banners as $banner ) {
-			if ( ( $banner['campaign_z_index'] > $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
-				$campaignZLevel = $banner['campaign_z_index'];
-			}
-		}
-
-		// Determine the weighting factors
-		foreach ( $banners as $banner ) {
-			if ( ( $banner['campaign_z_index'] == $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
-				if ( array_key_exists( $banner['campaign'], $campaignWeights ) ) {
-					$campaignWeights[$banner['campaign']] += $banner['weight'];
-				} else {
-					$campaignWeights[$banner['campaign']] = $banner['weight'];
-				}
-			}
-		}
-
-		// Construct the relative weights
-		foreach ( $banners as $banner ) {
-			if ( ( $banner['campaign_z_index'] == $campaignZLevel ) && ( $banner[$filterKey] == true ) ) {
-
-				$banner[$weightKey] = ( $banner['weight'] / $campaignWeights[$banner['campaign']] );
-				$banner[$weightKey] *= 1 / count( $campaignWeights );
-
-				$filteredBanners[] = $banner;
-			}
-		}
-
-		// Return everything
-		return $filteredBanners;
 	}
 }
