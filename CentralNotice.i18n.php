@@ -2322,6 +2322,7 @@ $messages['bo'] = array(
  * @author Fohanno
  * @author Fulup
  * @author Gwendal
+ * @author Gwenn-Ael
  * @author Y-M D
  */
 $messages['br'] = array(
@@ -2459,7 +2460,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-percentage' => 'Dregantad',
 	'centralnotice-documentwrite-error' => "N'hall ket document.write() bezañ implijet hep giton.
 Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc'h.",
-	'centralnotice-preferred' => "Kavet gwelloc'h",
+	'centralnotice-preferred' => 'Da gentañ',
 	'centralnotice-logs' => 'Marilhoù',
 	'centralnotice-view-logs' => 'Gwelet ar marilhoù',
 	'centralnotice-timestamp' => 'Deiziad hag eur',
@@ -2489,7 +2490,9 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-apply-filters' => 'Arloañ ar siloù',
 	'centralnotice-clear-filters' => 'Riñsañ ar siloù',
 	'centralnotice-banner-messages' => 'Kemennadennoù er giton',
+	'centralnotice-filter-template-prompt' => 'anv ar giton zo ennañ :',
 	'centralnotice-filter-template-submit' => 'Arloañ ar sil',
+	'centralnotice-filter-template-banner' => 'Sil gitonoù',
 	'centralnotice-priority-low' => 'izel',
 	'centralnotice-priority-normal' => 'boutin',
 	'centralnotice-priority-high' => 'uhel',
