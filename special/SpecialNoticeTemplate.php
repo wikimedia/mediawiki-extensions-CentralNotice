@@ -835,6 +835,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			// Log the removal of the banner
 			$this->logBannerChange( 'removed', $id );
 
+			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
 			$dbw->delete( 'cn_templates',
@@ -843,10 +844,15 @@ class SpecialNoticeTemplate extends CentralNotice {
 			);
 			$dbw->commit();
 
+			// Delete the MediaWiki page that contains the banner source
 			$article = new Article(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
+			$pageId = $article->getPage()->getId();
 			$article->doDeleteArticle( 'CentralNotice automated removal' );
+
+			// Remove any revision tags related to the banner
+			$this->removeTag( 'banner:translate', $pageId );
 		}
 	}
 
@@ -917,6 +923,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 				// If the banner includes translatable messages, tag it for translation
 				$fields = $this->extractMessageFields( $body );
 				if ( count( $fields[ 0 ] ) > 0 ) {
+					// Tag the banner for translation
 					$this->addTag( 'banner:translate', $revisionId, $pageId );
 					MessageGroups::clearCache();
 				}
@@ -964,6 +971,22 @@ class SpecialNoticeTemplate extends CentralNotice {
 		}
 
 		$dbw->insert( 'revtag', $conds, __METHOD__ );
+	}
+
+	/**
+	 * Make sure banner is not tagged with specified tag
+	 * @param string $tag The name of the tag
+	 * @param integer $pageId ID of the MediaWiki page for the banner
+	 * @throws MWException
+	 */
+	protected function removeTag( $tag, $pageId ) {
+		$dbw = wfGetDB( DB_MASTER );
+
+		$conds = array(
+			'rt_page' => $pageId,
+			'rt_type' => RevTag::getType( $tag )
+		);
+		$dbw->delete( 'revtag', $conds, __METHOD__ );
 	}
 
 	/**
@@ -1021,9 +1044,13 @@ class SpecialNoticeTemplate extends CentralNotice {
 				// If the banner includes translatable messages, tag it for translation
 				$fields = $this->extractMessageFields( $body );
 				if ( count( $fields[ 0 ] ) > 0 ) {
+					// Tag the banner for translation
 					$this->addTag( 'banner:translate', $revisionId, $pageId );
-					MessageGroups::clearCache();
+				} else {
+					// Make sure banner is not tagged for translation
+					$this->removeTag( 'banner:translate', $pageId );
 				}
+				MessageGroups::clearCache();
 			}
 
 			// If there are any difference between the old settings and the new settings, log them.
