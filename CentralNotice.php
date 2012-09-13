@@ -126,13 +126,17 @@ $wgNoticeBannerMaxAge = 600;
 // NOTE: This must be in UNIX timestamp format, for example, '1325462400'
 $wgNoticeHideBannersExpiration = '';
 
+// Whether to use the Translation extension for banner message translation
+$wgNoticeUseTranslateExtension = true;
+
 
 /**
  * Load all the classes, register special pages, etc. Called through wgExtensionFunctions.
  */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
-		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript, $wgAPIModules;
+		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
+		$wgNoticeUseTranslateExtension, $wgAPIModules;
 
 	// If $wgCentralPagePath hasn't been set, set it to the local script path.
 	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
@@ -150,10 +154,14 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
+	$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
 
 	// Register hooks
 	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
 	$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
+	if ( $wgNoticeUseTranslateExtension ) {
+		$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
+	}
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
@@ -389,5 +397,33 @@ function efResourceLoaderGetConfigVars( &$vars ) {
  */
 function efCentralNoticeUnitTests( &$files ) {
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
+	return true;
+}
+
+/**
+ * TranslatePostInitGroups hook handler
+ * Add banner message groups to the list of message groups that should be
+ * translated through the Translate extension.
+ *
+ * @param array $list
+ * @return bool
+ */
+function efRegisterMessageGroups( &$list ) {
+	$dbr = wfGetDB( DB_MASTER );
+
+	// Find all the banners marked for translation
+	$tables = array( 'page', 'revtag' );
+	$vars   = array( 'page_id', 'page_namespace', 'page_title', );
+	$conds  = array( 'page_id=rt_page', 'rt_type' => RevTag::getType( 'banner:translate' ) );
+	$options = array( 'GROUP BY' => 'rt_page' );
+	$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
+
+	foreach ( $res as $r ) {
+		$title = Title::makeTitle( $r->page_namespace, $r->page_title );
+		$id = 'banner-' . $r->page_title;
+		$bannerPageName = $r->page_title;
+		$list[$id] = new BannerMessageGroup( $id, $bannerPageName );
+		$list[$id]->setLabel( $title->getPrefixedText() );
+	}
 	return true;
 }

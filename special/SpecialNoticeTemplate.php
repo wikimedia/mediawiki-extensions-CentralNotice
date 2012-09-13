@@ -339,10 +339,31 @@ class SpecialNoticeTemplate extends CentralNotice {
 	}
 
 	/**
+	 * Extract the raw fields and field names from the banner body source.
+	 * @param string $body The body source of the banner
+	 * @return array
+	 */
+	static function extractMessageFields( $body ) {
+		// Extract message fields from the banner body
+		$fields = array();
+		$allowedChars = Title::legalChars();
+		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
+
+		// Remove magic words that don't need translation
+		foreach ( $fields[ 0 ] as $index => $rawField ) {
+			if ( $rawField === '{{{campaign}}}' || $rawField === '{{{banner}}}' ) {
+				unset( $fields[ 0 ][ $index ] ); // unset raw field
+				unset( $fields[ 1 ][ $index ] ); // unset field name
+			}
+		}
+		return $fields;
+	}
+
+	/**
 	 * View or edit an individual banner
 	 */
 	private function showView() {
-		global $wgLanguageCode, $wgNoticeEnableFundraising;
+		global $wgLanguageCode, $wgNoticeEnableFundraising, $wgNoticeUseTranslateExtension;
 
 		$lang = $this->getLanguage();
 		$request = $this->getRequest();
@@ -404,20 +425,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$curRev = Revision::newFromTitle( $bodyPage );
 			$body = $curRev ? $curRev->getText() : '';
 
-			// Extract message fields from the banner body
-			$fields = array();
-			$allowedChars = Title::legalChars();
-			preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
-
-			// Remove magic words that don't need translation
-			foreach ( $fields[ 0 ] as $index => $rawField ) {
-				if ( $rawField === '{{{campaign}}}' || $rawField === '{{{banner}}}' ) {
-					unset( $fields[ 0 ][ $index ] ); // unset raw field
-					unset( $fields[ 1 ][ $index ] ); // unset field name
-				}
-			}
-
 			// If there are any message fields in the banner, display translation tools.
+			$fields = $this->extractMessageFields( $body );
 			if ( count( $fields[ 0 ] ) > 0 ) {
 				if ( $this->editable ) {
 					$htmlOut .= Html::openElement( 'form', array( 'method' => 'post' ) );
@@ -499,16 +508,22 @@ class SpecialNoticeTemplate extends CentralNotice {
 							->inLanguage( $wpUserLang )->text();
 						$foreignTextExists = true;
 					}
-					$htmlOut .= Xml::tags( 'td', null,
-						Xml::input(
-							"updateText[{$wpUserLang}][{$currentTemplate}-{$field}]",
-							'',
-							$foreignText,
-							wfArrayMerge( $readonly,
-								array( 'style' => 'width:100%;' .
-									( !$foreignTextExists ? 'color:red' : '' ) ) )
-						)
-					);
+					// If we're using the Translate extension to handle translations,
+					// don't allow translations to be edited through CentralNotice.
+					if ( ( $wgNoticeUseTranslateExtension && $wpUserLang !== 'en' ) || !$this->editable ) {
+						$htmlOut .= Xml::tags( 'td', null, $foreignText );
+					} else {
+						$htmlOut .= Xml::tags( 'td', null,
+							Xml::input(
+								"updateText[{$wpUserLang}][{$currentTemplate}-{$field}]",
+								'',
+								$foreignText,
+								wfArrayMerge( $readonly,
+									array( 'style' => 'width:100%;' .
+										( !$foreignTextExists ? 'color:red' : '' ) ) )
+							)
+						);
+					}
 					$htmlOut .= Html::closeElement( 'tr' );
 				}
 				$htmlOut .= Html::closeElement( 'table' );
@@ -851,6 +866,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 	public function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0,
 	                             $autolink = 0, $landingPages = ''
 	) {
+		global $wgNoticeUseTranslateExtension;
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 			return false;
@@ -889,7 +905,22 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$wikiPage = new WikiPage(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-			$wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
+			$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
+
+			if ( $wgNoticeUseTranslateExtension ) {
+				// Get the revision and page ID of the page that was created
+				$pageResultValue = $pageResult->value;
+				$revision = $pageResultValue['revision'];
+				$revisionId = $revision->getId();
+				$pageId = $revision->getPage();
+
+				// If the banner includes translatable messages, tag it for translation
+				$fields = $this->extractMessageFields( $body );
+				if ( count( $fields[ 0 ] ) > 0 ) {
+					$this->addTag( 'banner:translate', $revisionId, $pageId );
+					MessageGroups::clearCache();
+				}
+			}
 
 			// Log the creation of the banner
 			$beginSettings = array();
@@ -907,11 +938,41 @@ class SpecialNoticeTemplate extends CentralNotice {
 	}
 
 	/**
+	 * Add a revision tag for the banner
+	 * @param string $tag The name of the tag
+	 * @param integer $revisionId ID of the revision
+	 * @param integer $pageId ID of the MediaWiki page for the banner
+	 * @param string $value Value to store for the tag
+	 * @throws MWException
+	 */
+	protected function addTag( $tag, $revisionId, $pageId, $value = null ) {
+		$dbw = wfGetDB( DB_MASTER );
+
+		if ( is_object( $revisionId ) ) {
+			throw new MWException( 'Got object, excepted id' );
+		}
+
+		$conds = array(
+			'rt_page' => $pageId,
+			'rt_type' => RevTag::getType( $tag ),
+			'rt_revision' => $revisionId
+		);
+		$dbw->delete( 'revtag', $conds, __METHOD__ );
+
+		if ( $value !== null ) {
+			$conds['rt_value'] = serialize( implode( '|', $value ) );
+		}
+
+		$dbw->insert( 'revtag', $conds, __METHOD__ );
+	}
+
+	/**
 	 * Update a banner
 	 */
 	private function editTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising,
 	                               $autolink, $landingPages
 	) {
+		global $wgNoticeUseTranslateExtension;
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 			return;
@@ -944,11 +1005,26 @@ class SpecialNoticeTemplate extends CentralNotice {
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
 
-			$wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
+			$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
 
 			$bannerId = $this->getTemplateId( $name );
 			$cndb = new CentralNoticeDB();
 			$finalBannerSettings = $cndb->getBannerSettings( $name, true );
+
+			if ( $wgNoticeUseTranslateExtension ) {
+				// Get the revision and page ID of the page that was created
+				$pageResultValue = $pageResult->value;
+				$revision = $pageResultValue['revision'];
+				$revisionId = $revision->getId();
+				$pageId = $revision->getPage();
+
+				// If the banner includes translatable messages, tag it for translation
+				$fields = $this->extractMessageFields( $body );
+				if ( count( $fields[ 0 ] ) > 0 ) {
+					$this->addTag( 'banner:translate', $revisionId, $pageId );
+					MessageGroups::clearCache();
+				}
+			}
 
 			// If there are any difference between the old settings and the new settings, log them.
 			$diffs = array_diff_assoc( $initialBannerSettings, $finalBannerSettings );
