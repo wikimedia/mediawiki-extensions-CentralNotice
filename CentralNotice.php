@@ -127,7 +127,7 @@ $wgNoticeBannerMaxAge = 600;
 $wgNoticeHideBannersExpiration = '';
 
 // Whether to use the Translation extension for banner message translation
-$wgNoticeUseTranslateExtension = true;
+$wgNoticeUseTranslateExtension = false;
 
 
 /**
@@ -154,14 +154,10 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
-	$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
 
 	// Register hooks
 	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
 	$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
-	if ( $wgNoticeUseTranslateExtension ) {
-		$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
-	}
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
@@ -189,6 +185,11 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
 		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
 		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
+		
+		if ( $wgNoticeUseTranslateExtension ) {
+			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
+			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
+		}
 
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
 		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools
