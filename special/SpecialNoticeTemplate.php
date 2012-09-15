@@ -318,7 +318,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$this->msg( 'centralnotice-close-button' )->text() . '</a>';
 		$htmlOut .= Xml::tags( 'div',
 			array( 'class' => 'banner-editing-top-hint' ),
-			$this->msg( 'centralnotice-insert', $this->getLanguage()->commaList( $buttons ) )->text()
+			$this->msg( 'centralnotice-insert' )->rawParams( $this->getLanguage()->commaList( $buttons ) )->escaped()
 		);
 
 		$htmlOut .= Xml::textarea( 'templateBody', $body, 60, 20 );
@@ -678,7 +678,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 					$this->msg( 'centralnotice-close-button' )->text() . '</a>';
 				$htmlOut .= Xml::tags( 'div',
 					array( 'class' => 'banner-editing-top-hint' ),
-					$this->msg( 'centralnotice-insert', $lang->commaList( $buttons ) )->escaped()
+					$this->msg( 'centralnotice-insert' )->rawParams( $lang->commaList( $buttons ) )->escaped()
 				);
 			} else {
 				$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-banner' )->text() );
