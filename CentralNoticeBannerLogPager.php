@@ -176,6 +176,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->testBooleanChange( 'fundraising', $row );
 		$details .= $this->testBooleanChange( 'autolink', $row );
 		$details .= $this->testTextChange( 'landingpages', $row );
+		$details .= $this->testTextChange( 'prioritylangs', $row );
 		if ( $row->tmplog_content_change ) {
 			// Show changes to banner content
 			$details .= $this->msg (

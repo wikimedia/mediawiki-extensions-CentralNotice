@@ -98,7 +98,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 						$request->getBool( 'displayAccount' ),
 						$request->getBool( 'fundraising' ),
 						$request->getBool( 'autolink' ),
-						$request->getVal( 'landingPages' )
+						$request->getVal( 'landingPages' ),
+						$request->getArray( 'project_languages' )
 					);
 					$sub = 'view';
 				}
@@ -229,7 +230,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 	 * Show "Add a banner" interface
 	 */
 	function showAdd() {
-		global $wgNoticeEnableFundraising;
+		global $wgNoticeEnableFundraising, $wgNoticeUseTranslateExtension;
 
 		$request = $this->getRequest();
 
@@ -306,6 +307,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 				)
 			);
 			$htmlOut .= Html::closeElement( 'div' );
+		}
+
+		// Allow setting prioritization of translations
+		if ( $wgNoticeUseTranslateExtension ) {
+			$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-prioritylangs' )->text() );
+			$htmlOut .= Html::element( 'p', array(), $this->msg( 'centralnotice-prioritylangs-explain' )->text() );
+			$htmlOut .= $this->languageMultiSelector();
+			$htmlOut .= Html::closeElement( 'fieldset' );
 		}
 
 		// Begin banner body section
@@ -468,10 +477,23 @@ class SpecialNoticeTemplate extends CentralNotice {
 					// English value
 					$htmlOut .= Html::openElement( 'tr' );
 
-					$title = Title::newFromText( "MediaWiki:{$message}" );
-					$htmlOut .= Xml::tags( 'td', null,
-						Linker::link( $title, htmlspecialchars( $field ) )
-					);
+					if ( $wgNoticeUseTranslateExtension ) {
+						// Create per message link to the translate extension
+						$title = SpecialPage::getTitleFor( 'Translate' );
+						$htmlOut .= Xml::tags( 'td', null,
+							Linker::link( $title, htmlspecialchars( $field ), array(), array(
+									'group' => BannerMessageGroup::getTranslateGroupName( $currentTemplate ),
+									'task' => 'view'
+								)
+							)
+						);
+					} else {
+						// Legacy method; which is to edit the page directly
+						$title = Title::newFromText( "MediaWiki:{$message}" );
+						$htmlOut .= Xml::tags( 'td', null,
+							Linker::link( $title, htmlspecialchars( $field ) )
+						);
+					}
 
 					$htmlOut .= Html::element( 'td', array(), $count );
 
@@ -600,6 +622,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 				$fundraising = $request->getCheck( 'fundraising' );
 				$autolink = $request->getCheck( 'autolink' );
 				$landingPages = $request->getVal( 'landingPages' );
+				$priorityLangs = $request->getArray( 'project_languages', array() );
 				$body = $request->getVal( 'templateBody', $body );
 			} else { // Use previously stored values
 				$displayAnon = ( $bannerSettings[ 'anon' ] == 1 );
@@ -607,6 +630,9 @@ class SpecialNoticeTemplate extends CentralNotice {
 				$fundraising = ( $bannerSettings[ 'fundraising' ] == 1 );
 				$autolink = ( $bannerSettings[ 'autolink' ] == 1 );
 				$landingPages = $bannerSettings[ 'landingpages' ];
+				if ( $wgNoticeUseTranslateExtension ) {
+					$priorityLangs = $bannerSettings[ 'prioritylangs' ];
+				}
 				// $body default is defined prior to message interface code
 			}
 
@@ -663,6 +689,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 				);
 				$htmlOut .= Html::closeElement( 'div' );
 
+			}
+
+			// Allow setting prioritization of translations
+			if ( $wgNoticeUseTranslateExtension ) {
+				$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-prioritylangs' )->text() );
+				$htmlOut .= Html::element( 'p', array(), $this->msg( 'centralnotice-prioritylangs-explain' )->text() );
+				$htmlOut .= $this->languageMultiSelector( $priorityLangs );
+				$htmlOut .= Html::closeElement( 'fieldset' );
 			}
 
 			// Begin banner body section
@@ -853,6 +887,13 @@ class SpecialNoticeTemplate extends CentralNotice {
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
 				$this->removeTag( 'banner:translate', $pageId );
+
+				// And the preferred language metadata if it exists
+				TranslateMetadata::set(
+					BannerMessageGroup::getTranslateGroupName( $name ),
+					'prioritylangs',
+					false
+				);
 			}
 		}
 	}
@@ -860,20 +901,22 @@ class SpecialNoticeTemplate extends CentralNotice {
 	/**
 	 * Create a new banner
 	 *
-	 * @param $name           string name of banner
-	 * @param $body           string content of banner
-	 * @param $displayAnon    integer flag for display to anonymous users
-	 * @param $displayAccount integer flag for display to logged in users
-	 * @param $fundraising    integer flag for fundraising banner (optional)
-	 * @param $autolink       integer flag for automatically creating landing page links (optional)
-	 * @param $landingPages   string list of landing pages (optional)
+	 * @param $name             string name of banner
+	 * @param $body             string content of banner
+	 * @param $displayAnon      integer flag for display to anonymous users
+	 * @param $displayAccount   integer flag for display to logged in users
+	 * @param $fundraising      integer flag for fundraising banner (optional)
+	 * @param $autolink         integer flag for automatically creating landing page links (optional)
+	 * @param $landingPages     string list of landing pages (optional)
+	 * @param $priorityLangs    array Array of priority languages for the translate extension
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	public function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0,
-	                             $autolink = 0, $landingPages = ''
+	                             $autolink = 0, $landingPages = '', $priorityLangs = array()
 	) {
 		global $wgNoticeUseTranslateExtension;
+
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 			return false;
@@ -928,17 +971,25 @@ class SpecialNoticeTemplate extends CentralNotice {
 					// Tag the banner for translation
 					$this->addTag( 'banner:translate', $revisionId, $pageId );
 					MessageGroups::clearCache();
+					MessageIndexRebuildJob::newJob()->run();
 				}
+
+				TranslateMetadata::set(
+					BannerMessageGroup::getTranslateGroupName( $name ),
+					'prioritylangs',
+					implode( ',', $priorityLangs )
+				);
 			}
 
 			// Log the creation of the banner
 			$beginSettings = array();
 			$endSettings = array(
-				'anon'         => $displayAnon,
-				'account'      => $displayAccount,
-				'fundraising'  => $fundraising,
-				'autolink'     => $autolink,
-				'landingpages' => $landingPages
+				'anon'          => $displayAnon,
+				'account'       => $displayAccount,
+				'fundraising'   => $fundraising,
+				'autolink'      => $autolink,
+				'landingpages'  => $landingPages,
+				'prioritylangs' => $priorityLangs,
 			);
 			$this->logBannerChange( 'created', $bannerId, $beginSettings, $endSettings );
 
@@ -995,9 +1046,10 @@ class SpecialNoticeTemplate extends CentralNotice {
 	 * Update a banner
 	 */
 	private function editTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising,
-	                               $autolink, $landingPages
+	                               $autolink, $landingPages, $priorityLangs
 	) {
 		global $wgNoticeUseTranslateExtension;
+
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 			return;
@@ -1032,12 +1084,23 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
 			$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
 
+			if ( $wgNoticeUseTranslateExtension ) {
+				if ( $priorityLangs ) {
+					TranslateMetadata::set(
+						BannerMessageGroup::getTranslateGroupName( $name ),
+						'prioritylangs',
+						implode( ',', $priorityLangs )
+					);
+				}
+			}
+
 			$bannerId = $this->getTemplateId( $name );
 			$cndb = new CentralNoticeDB();
 			$finalBannerSettings = $cndb->getBannerSettings( $name, true );
 
-			if ( $wgNoticeUseTranslateExtension && $pageResult->isOK() && $pageResult->value['revision'] ) {
-				// Get the revision and page ID of the page that was created
+			if ( $wgNoticeUseTranslateExtension && $pageResult->value['revision'] ) {
+				// Get the revision and page ID of the page that was created (if it was actually
+				// edited this session)
 				$pageResultValue = $pageResult->value;
 				$revision = $pageResultValue['revision'];
 				$revisionId = $revision->getId();
@@ -1053,11 +1116,18 @@ class SpecialNoticeTemplate extends CentralNotice {
 					$this->removeTag( 'banner:translate', $pageId );
 				}
 				MessageGroups::clearCache();
+				MessageIndexRebuildJob::newJob()->insert();
 			}
 
 			// If there are any difference between the old settings and the new settings, log them.
-			$diffs = array_diff_assoc( $initialBannerSettings, $finalBannerSettings );
-			if ( $diffs ) {
+			$changed = false;
+			foreach ( $finalBannerSettings as $key => $value ) {
+				if ( $finalBannerSettings[$key] != $initialBannerSettings[$key] ) {
+					$changed = true;
+				}
+			}
+
+			if ( $changed ) {
 				$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings );
 			}
 
@@ -1191,9 +1261,17 @@ class SpecialNoticeTemplate extends CentralNotice {
 		);
 
 		foreach ( $beginSettings as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$value = FormatJson::encode( $value );
+			}
+
 			$log[ 'tmplog_begin_' . $key ] = $value;
 		}
 		foreach ( $endSettings as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$value = FormatJSON::encode( $value );
+			}
+
 			$log[ 'tmplog_end_' . $key ] = $value;
 		}
 

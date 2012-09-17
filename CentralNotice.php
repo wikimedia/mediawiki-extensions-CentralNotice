@@ -341,6 +341,12 @@ function efCentralNoticeSchema( $updater = null ) {
 		);
 		$updater->addExtensionUpdate(
 			array(
+				'addField', 'cn_template_log', 'tmplog_begin_prioritylangs',
+				$base . '/patches/patch-prioritylangs.sql', true
+			)
+		);
+		$updater->addExtensionUpdate(
+			array(
 				'addField', 'cn_notices', 'not_buckets',
 				$base . '/patches/patch-bucketing.sql', true
 			)
@@ -518,7 +524,7 @@ function efRegisterMessageGroups( &$list ) {
 
 	foreach ( $res as $r ) {
 		$title = Title::makeTitle( $r->page_namespace, $r->page_title );
-		$id = 'banner-' . $r->page_title;
+		$id = BannerMessageGroup::getTranslateGroupName( $r->page_title );
 		$bannerPageName = $r->page_title;
 		$list[$id] = new BannerMessageGroup( $id, $bannerPageName );
 		$list[$id]->setLabel( $title->getPrefixedText() );

@@ -251,7 +251,7 @@ class CentralNoticeDB {
 	 * @return array an array of banner settings
 	 */
 	public function getBannerSettings( $bannerName, $logging = false ) {
-		global $wgCentralDBname;
+		global $wgCentralDBname, $wgNoticeUseTranslateExtension;
 
 		$banner = array();
 
@@ -283,6 +283,18 @@ class CentralNoticeDB {
 				'autolink'     => $row->tmp_autolink,
 				'landingpages' => $row->tmp_landing_pages
 			);
+
+			if ( $wgNoticeUseTranslateExtension ) {
+				$langs = TranslateMetadata::get(
+					BannerMessageGroup::getTranslateGroupName( $bannerName ),
+					'prioritylangs'
+				);
+				if ( !$langs ) {
+					// If priority langs is not set; TranslateMetadata::get will return false
+					$langs = '';
+				}
+				$banner['prioritylangs'] = explode( ',', $langs );
+			}
 		}
 
 		return $banner;
