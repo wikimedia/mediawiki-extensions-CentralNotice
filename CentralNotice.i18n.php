@@ -199,6 +199,7 @@ Add one below.',
  * @author Purodha
  * @author Raymond
  * @author Seb35
+ * @author Shirayuki
  * @author Siebrand
  * @author The Evil IP address
  * @author Umherirrender
@@ -213,8 +214,9 @@ $messages['qqq'] = array(
 	'action-centralnotice-admin' => '{{doc-action|centralnotice-admin}}',
 	'centralnotice-desc' => 'The [[mw:Extension:CentralNotice|Central Notice extension]] allows a notice to be posted centrally to several wikis.
 {{desc}}',
-	'centralnotice-summary' => 'Used in Special:CentralNotice for [[mw:Extension:CentralNotice]]',
-	'centralnotice-end-date' => '{{Identical|End date}}',
+	'centralnotice-summary' => 'Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]',
+	'centralnotice-end-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
+{{Identical|End date}}',
 	'centralnotice-enabled' => 'Refers to campaign.
 
 {{Identical|Enabled}}',
@@ -232,13 +234,18 @@ $messages['qqq'] = array(
 	'centralnotice-remove' => '{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. $1 is a name of a template.',
 	'centralnotice-manage' => 'Title of sub-page of [http://meta.wikimedia.org/wiki/Special:CentralNotice Manage Central Notice] special page.',
+	'centralnotice-manage-templates' => 'Title of sub-page of [http://meta.wikimedia.org/wiki/Special:NoticeTemplate Manage Banners] special page.',
 	'centralnotice-add' => 'Used in [[mw:Extension:CentralNotice]]
 {{Identical|Add}}',
+	'centralnotice-add-notice' => 'Used as heading (<nowiki><h2></nowiki> tag)',
+	'centralnotice-add-template' => 'Used as link text and as heading (<nowiki><h2></nowiki> tag)',
 	'centralnotice-multiple-languages' => '$1 is the number of languages in which the notice is available. It is always greater than 3. This message is in the column "languages" in the table.',
 	'centralnotice-multiple-countries' => '$1 is the number of countries in which the notice is available.',
 	'centralnotice-all-projects' => 'Data entry in the column "Projects" in the table on the [[m:Special:CentralNotice|Central Notice]] special page.',
 	'centralnotice-language-listing' => '{{optional}}
-A language listing for the language multi-select box. First parameter is the language code. Second parameter is the name of the language.',
+A language listing for the language multi-select box.
+*$1 - the language code
+*$2 - the name of the language',
 	'centralnotice-translations' => '{{Identical|Translation}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-english' => 'The header of a column with the original values of the translatable messages.
@@ -250,12 +257,13 @@ The other headers are:
 * (the name of a language to which the banner is being translated)
 
 (See also [[:bugzilla:16321|Bug 16321 - All messages in CentralNotice are defaulted to English regardless of content language]].)',
+	'centralnotice-weight' => 'Used in Notice Details page of [[meta:Special:CentralNotice|Central Notice]] special page.',
 	'centralnotice-locked' => 'Refers to campaign.',
 	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
 	'centralnotice-template-exists' => 'Error message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
 	'centralnotice-day' => '{{Identical|Day}}',
 	'centralnotice-select' => '{{Identical|Select}}',
-	'centralnotice-start-date' => 'Used in Special:CentralNotice.
+	'centralnotice-start-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
 
 {{Identical|Start date}}',
 	'centralnotice-start-time' => 'Used in Special:CentralNotice. UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]',
@@ -279,6 +287,11 @@ In English this is a short form of "Number of uses".',
 	'centralnotice-clone-name' => '{{Identical|Name}}',
 	'centralnotice-insert' => '{{Identical|Insert}}',
 	'centralnotice-close-title' => '{{Identical|Close}}',
+	'centralnotice-banner-display' => 'Checkboxes with the following messages comes after the colon:
+*{{msg-mw|Centralnotice-banner-anonymous}}
+*{{msg-mw|Centralnotice-banner-logged-in}}',
+	'centralnotice-banner-fundraising' => 'Label of checkbox',
+	'centralnotice-banner-autolink' => 'Label of checkbox',
 	'centralnotice-banner-autolink-help' => 'Brief instructions on how to use the interface. $1 is a bit of HTML, $2 is a title for a page.',
 	'centralnotice-geo' => 'Used to label a checkbox which activates geotargeting',
 	'centralnotice-allocation' => 'Tab for sub-page [[m:BannerAllocation|banner allocation]] to central notice special page.',
@@ -297,6 +310,7 @@ In English this is a short form of "Number of uses".',
 * $3 is the country code (e.g. "US" for the United States, "FR" for France, etc.).',
 	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
+	'centralnotice-view-logs' => 'Title of sub-page of [http://meta.wikimedia.org/wiki/Special:CentralNoticeLogs View Central Notice Logs] special page.',
 	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
 	'centralnotice-user' => '{{Identical|User}}',
 	'centralnotice-action' => '{{Identical|Action}}',
@@ -306,8 +320,8 @@ In English this is a short form of "Number of uses".',
 {{Identical|Modified}}',
 	'centralnotice-action-removed' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.',
 	'centralnotice-changed' => 'Parameters:
-* $1 is are the old banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.
-* $2 is/are are new banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.',
+* $1 is/are the old banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.
+* $2 is/are the new banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} or empty string is used.',
 	'centralnotice-on' => 'indicates a notice is on air
 
 {{Identical|On}}',
@@ -317,9 +331,11 @@ In English this is a short form of "Number of uses".',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.
 {{Identical|Talk}}',
 	'centralnotice-user-links' => '{{optional}}
-$1 is a link to the user page, $2 is a link to the user talk page.',
+*$1 - a link to the user page
+*$2 - a link to the user talk page',
 	'centralnotice-log-label' => '{{optional}}
-$1 is a label for a setting, $2 is the value of the setting (or changes to the setting)',
+*$1 - a label for a setting
+*$2 - the value of the setting (or changes to the setting)',
 	'centralnotice-campaign-settings' => 'On the Special:CentralNoticeLogs page, this is a radio button which, if selected, shows only the changes to meta-properties (settings) of campaigns, which are managed directly by the CentralNotice extensions: basically which banner(s) to use, when, where and how much.
 Related messages:
 *{{msg-mw|centralnotice-banner-settings}}
@@ -330,12 +346,19 @@ Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-content}}
 *{{msg-mw|centralnotice-banner-messages}}',
-	'centralnotice-autolink' => 'Label for a setting',
-	'centralnotice-banner-content' => 'On the Special:CentralNoticeLogs page, this is a radio button which shows log entries associated to edits to the MediaWiki pages (one per banner) which define the structure ("content") of every banner and can use other (sub)messages as translatable variables, whose changes are in contrast shown by {{msg-mw|centralnotice-banner-messages}} button.
+	'centralnotice-anon' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-account' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-fundraising' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-autolink' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-landingpages' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-banner-content' => 'On the [[meta:Special:CentralNoticeLogs|Central Notice Logs]] special page, this is a radio button which shows log entries associated to edits to the MediaWiki pages (one per banner) which define the structure ("content") of every banner and can use other (sub)messages as translatable variables, whose changes are in contrast shown by {{msg-mw|centralnotice-banner-messages}} button.
 Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-settings}}
 *{{msg-mw|centralnotice-banner-messages}}',
+	'centralnotice-banner-content-changed' => 'Used as parameter $2 of {{msg-mw|Centralnotice-log-label}}.
+
+(Parameter $1 of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
 	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
 	'centralnotice-date' => 'Label for a date selection interface',
 	'centralnotice-apply-filters' => 'Label for a submit button',
@@ -7808,103 +7831,98 @@ $messages['ja'] = array(
 	'bannerallocation' => '中央管理通知の管理',
 	'centralnoticelogs' => '中央管理通知の管理',
 	'right-centralnotice-admin' => '中央管理通知を管理',
-	'action-centralnotice-admin' => '中央管理通知を管理',
+	'action-centralnotice-admin' => '中央管理通知の管理',
 	'centralnotice-desc' => '中央管理のサイト通知を追加する',
-	'centralnotice-summary' => 'このモジュールにより現在設定されている中央管理通知を編集できます。通知の追加や除去もできます。',
+	'centralnotice-summary' => 'このモジュールでは、現在保存されている中央管理通知を編集できます。
+通知の追加や、古い通知の除去もできます。',
 	'centralnotice-query' => '現在の告知を変更',
 	'centralnotice-notice-name' => '告知名',
 	'centralnotice-end-date' => '終了日',
 	'centralnotice-enabled' => '有効',
-	'centralnotice-modify' => '投稿',
+	'centralnotice-modify' => '送信',
 	'centralnotice-view' => '表示',
-	'centralnotice-save-banner' => 'テンプレートを保存',
+	'centralnotice-save-banner' => 'バナーを保存',
 	'centralnotice-preview' => 'プレビュー',
-	'centralnotice-nopreview' => '（プレビューはありません）',
+	'centralnotice-nopreview' => '(プレビューはありません)',
 	'centralnotice-add-new' => '新しい告知を追加',
 	'centralnotice-remove' => '除去',
 	'centralnotice-translate-heading' => '$1の翻訳',
 	'centralnotice-manage' => '告知の管理',
 	'centralnotice-manage-templates' => 'テンプレートの管理',
 	'centralnotice-add' => '追加',
-	'centralnotice-add-notice' => '告知を追加',
-	'centralnotice-edit-notice' => '通知を編集',
+	'centralnotice-add-notice' => '告知の追加',
+	'centralnotice-edit-notice' => '告知を編集',
 	'centralnotice-add-template' => 'テンプレートを追加',
 	'centralnotice-show-notices' => '告知を表示',
-	'centralnotice-list-templates' => 'テンプレートを一覧表示',
-	'centralnotice-multiple-projects' => '複数（$1）',
-	'centralnotice-multiple-languages' => '複数（$1）',
-	'centralnotice-multiple-countries' => '複数（$1）',
+	'centralnotice-list-templates' => 'テンプレート一覧',
+	'centralnotice-multiple-projects' => '複数 ($1)',
+	'centralnotice-multiple-languages' => '複数 ($1)',
+	'centralnotice-multiple-countries' => '複数 ($1)',
 	'centralnotice-all-projects' => '全プロジェクト',
+	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => '翻訳',
 	'centralnotice-translate-to' => '翻訳先',
 	'centralnotice-translate' => '翻訳',
 	'centralnotice-english' => '英語',
-	'centralnotice-banner-name' => 'テンプレート名：',
-	'centralnotice-banner' => 'テンプレート',
-	'centralnotice-banner-heading' => 'テンプレート：$1',
+	'centralnotice-banner-name' => 'バナー名:',
+	'centralnotice-banner' => 'バナー',
+	'centralnotice-banner-heading' => 'バナー: $1',
 	'centralnotice-templates' => 'テンプレート',
 	'centralnotice-weight' => '重さ',
-	'centralnotice-locked' => 'ロック中',
+	'centralnotice-locked' => 'ロック済み',
 	'centralnotice-notice' => '告知',
-	'centralnotice-notice-heading' => '告知：$1',
+	'centralnotice-notice-heading' => '告知: $1',
 	'centralnotice-notices' => '告知',
-	'centralnotice-notice-exists' => '告知が既に存在します。
-追加できませんでした。',
-	'centralnotice-no-language' => '告知する言語が選択されませんでした。追加されません。',
-	'centralnotice-no-project' => '告知するプロジェクトが選択されませんでした。追加されません。',
-	'centralnotice-template-exists' => 'テンプレートが既に存在します。追加できませんでした。',
+	'centralnotice-notice-exists' => '告知が既に存在するため、追加できません。',
+	'centralnotice-no-language' => '告知する言語を選択しなかったため追加できません。',
+	'centralnotice-no-project' => '告知するプロジェクトを選択しなかったため追加できません。',
+	'centralnotice-template-exists' => 'テンプレートが既に存在するため、追加できません。',
 	'centralnotice-notice-doesnt-exist' => '告知が存在しません。',
-	'centralnotice-remove-notice-doesnt-exist' => '告知は存在しません。
-除去できませんでした。',
-	'centralnotice-banner-doesnt-exist' => 'テンプレートは存在しません。',
-	'centralnotice-template-still-bound' => 'そのテンプレートはまだ告知に使用されています。
-除去できませんでした。',
-	'centralnotice-template-body' => 'テンプレート本文：',
+	'centralnotice-remove-notice-doesnt-exist' => '告知が存在しないため、除去できません。',
+	'centralnotice-banner-doesnt-exist' => 'バナーが存在しません。',
+	'centralnotice-template-still-bound' => 'テンプレートがまだ告知に使用されているため、除去できません。',
+	'centralnotice-template-body' => 'テンプレート本文:',
 	'centralnotice-day' => '日',
 	'centralnotice-year' => '年',
 	'centralnotice-month' => '月',
 	'centralnotice-hours' => '時',
 	'centralnotice-min' => '分',
-	'centralnotice-project-lang' => 'プロジェクト言語',
-	'centralnotice-select' => '選択：$1',
-	'centralnotice-top-ten-languages' => '上位10言語',
+	'centralnotice-project-lang' => 'プロジェクトの言語',
+	'centralnotice-select' => '選択: $1',
+	'centralnotice-top-ten-languages' => '上位 10 言語',
 	'centralnotice-project-name' => 'プロジェクト名',
 	'centralnotice-start-date' => '開始日',
 	'centralnotice-start-time' => '開始時刻 (UTC)',
 	'centralnotice-end-time' => '終了時刻 (UTC)',
-	'centralnotice-assigned-templates' => '使用テンプレート',
+	'centralnotice-assigned-templates' => '割り当てられたテンプレート',
 	'centralnotice-no-templates' => 'テンプレートが見つかりません。
-何か追加してください！',
+何か追加してください!',
 	'centralnotice-no-templates-assigned' => '告知にテンプレートが使用されていません。
-何か追加してください！',
+何か追加してください!',
 	'centralnotice-available-templates' => '利用できるテンプレート',
-	'centralnotice-template-already-exists' => 'テンプレートは既に告知に関連付けられています。
-追加できません。',
-	'centralnotice-preview-template' => 'バナーをプレビュー',
-	'centralnotice-change-lang' => '翻訳言語を変更',
-	'centralnotice-weights' => '重要性',
-	'centralnotice-notice-is-locked' => '告知がロックされています。除去できません。',
-	'centralnotice-overlap' => '他の告知と通知期間が重複しています。
-追加できません。',
-	'centralnotice-invalid-date-range' => '通知期間の指定が無効です。
-更新できません。',
-	'centralnotice-null-string' => '空の行は追加できません。
-追加できませんでした。',
-	'centralnotice-confirm-delete' => 'この項目を削除してよいですか？
+	'centralnotice-template-already-exists' => 'テンプレートが既に告知に関連付けられているため、追加できません。',
+	'centralnotice-preview-template' => 'テンプレートをプレビュー',
+	'centralnotice-change-lang' => '翻訳言語の変更',
+	'centralnotice-weights' => '重要度',
+	'centralnotice-notice-is-locked' => '告知がロックされているため、除去できません。',
+	'centralnotice-overlap' => '通知期間が他の告知と重複しているため、追加できません。',
+	'centralnotice-invalid-date-range' => '期間が無効であるため、更新できません。',
+	'centralnotice-null-string' => '空の文字列は追加できないため、何も追加しません。',
+	'centralnotice-confirm-delete' => 'この項目を本当に削除しますか?
 この操作は取り消せません。',
-	'centralnotice-no-notices-exist' => '告知はひとつもありません。
+	'centralnotice-no-notices-exist' => '告知はありません。
 以下に追加してください。',
 	'centralnotice-no-templates-translate' => '翻訳が必要なテンプレートはありません。',
-	'centralnotice-number-uses' => '使用目的',
+	'centralnotice-number-uses' => '使用',
 	'centralnotice-settings' => '設定',
 	'centralnotice-edit-template' => 'テンプレートを編集',
-	'centralnotice-edit-template-summary' => 'ローカライズできるメッセージを作成するには、ハイフンで連結した文字列を3つの波括弧で囲みます。例：{{{jimbo-quote}}}',
+	'centralnotice-edit-template-summary' => '地域化できるメッセージを作成するには、ハイフンで連結した文字列を 3 つの波括弧で囲みます。例: {{{jimbo-quote}}}',
 	'centralnotice-message' => 'メッセージ',
 	'centralnotice-message-not-set' => 'メッセージ未指定',
 	'centralnotice-clone' => '複製',
 	'centralnotice-clone-notice' => 'テンプレートの複製を作成',
 	'centralnotice-clone-name' => '名前:',
-	'centralnotice-preview-all-template-translations' => 'テンプレートの、利用できるすべての翻訳をプレビュー',
+	'centralnotice-preview-all-template-translations' => 'テンプレートに対する利用可能なすべての翻訳をプレビュー',
 	'centralnotice-insert' => '挿入: $1',
 	'centralnotice-close-button' => '閉じるボタン',
 	'centralnotice-close-title' => '閉じる',
@@ -7913,17 +7931,18 @@ $messages['ja'] = array(
 	'centralnotice-banner-display' => '表示先:',
 	'centralnotice-banner-anonymous' => '匿名利用者',
 	'centralnotice-banner-logged-in' => 'ログイン利用者',
-	'centralnotice-banner-type' => 'テンプレートの種類:',
+	'centralnotice-banner-type' => 'バナーの種類:',
 	'centralnotice-banner-hidable' => '固定/非表示可能',
 	'centralnotice-banner-collapsible' => '折り畳み可能',
 	'centralnotice-banner-fundraising' => 'これは資金調達のバナーです',
-	'centralnotice-banner-autolink' => '自動的にランディングページのリンクを作成',
-	'centralnotice-banner-landing-pages' => 'ランディングページ（カンマ区切り）：',
-	'centralnotice-geo' => '対象地域',
+	'centralnotice-banner-autolink' => 'ランディング ページのリンクを自動作成',
+	'centralnotice-banner-autolink-help' => 'バナーの本文内に $1 を含むアンカー タグを作成して、以下にランディング ページを 1 つ以上入力します。例: $2。このリンクは、バナーが表示されるたびに自動構築されます。',
+	'centralnotice-banner-landing-pages' => 'ランディング ページ (カンマ区切り):',
+	'centralnotice-geo' => '特定地域が対象',
 	'centralnotice-countries' => '国',
 	'centralnotice-allocation' => '割り当て',
-	'centralnotice-view-allocation' => 'テンプレートの割り当てを表示',
-	'centralnotice-allocation-instructions' => 'テンプレートの割り当てを表示したい環境を選んでください：',
+	'centralnotice-view-allocation' => 'テンプレートの割り当ての閲覧',
+	'centralnotice-allocation-instructions' => 'テンプレートの割り当てを閲覧したい環境を選択してください:',
 	'centralnotice-languages' => '言語',
 	'centralnotice-language' => '言語',
 	'centralnotice-projects' => 'プロジェクト',
@@ -7931,37 +7950,40 @@ $messages['ja'] = array(
 	'centralnotice-no-allocation' => 'テンプレートが割り当てられていません。',
 	'centralnotice-allocation-description' => '$3 での $1.$2 へのテンプレートの割り当て:',
 	'centralnotice-percentage' => '割合',
-	'centralnotice-documentwrite-error' => 'テンプレート内ではdocument.write()は使用できません。
+	'centralnotice-documentwrite-error' => 'テンプレート内では document.write() は使用できません。
 詳細は http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。',
 	'centralnotice-preferred' => '優先度',
 	'centralnotice-logs' => '記録',
-	'centralnotice-view-logs' => '記録を閲覧',
-	'centralnotice-timestamp' => '時刻印',
+	'centralnotice-view-logs' => '記録の閲覧',
+	'centralnotice-timestamp' => '日時',
 	'centralnotice-user' => '利用者',
 	'centralnotice-action' => '操作',
 	'centralnotice-action-created' => '作成',
 	'centralnotice-action-modified' => '変更',
 	'centralnotice-action-removed' => '除去',
-	'centralnotice-changed' => '<span class="cn-old-value">$1</span>から<span class="cn-new-value">$2</span>に変更',
+	'centralnotice-changed' => '<span class="cn-old-value">$1</span> から <span class="cn-new-value">$2</span> に変更',
 	'centralnotice-on' => 'ON',
 	'centralnotice-off' => 'OFF',
-	'centralnotice-added' => '追加しました <span class="cn-new-value">$1</span>',
-	'centralnotice-removed' => '除去しました <span class="cn-old-value">$1</span>',
-	'centralnotice-no-assignments' => 'テンプレートが割り当てられていません',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> を追加しました',
+	'centralnotice-removed' => '<span class="cn-old-value">$1</span> を除去しました',
+	'centralnotice-no-assignments' => 'テンプレートの割り当てなし',
 	'centralnotice-talk-link' => 'トーク',
+	'centralnotice-user-links' => '$1 ($2)',
+	'centralnotice-log-label' => '<span class="cn-log-label">$1:</span> $2',
 	'centralnotice-campaign-settings' => 'キャンペーン設定',
 	'centralnotice-banner-settings' => 'バナー設定',
 	'centralnotice-anon' => '匿名利用者に表示',
 	'centralnotice-account' => 'ログイン利用者に表示',
-	'centralnotice-autolink' => '自動リンク作成',
-	'centralnotice-landingpages' => 'ランディングページ',
-	'centralnotice-banner-content' => 'バナー コンテンツ',
+	'centralnotice-fundraising' => '資金調達',
+	'centralnotice-autolink' => 'リンク自動作成',
+	'centralnotice-landingpages' => 'ランディング ページ',
+	'centralnotice-banner-content' => 'バナーの本文',
 	'centralnotice-banner-content-changed' => '変更',
 	'centralnotice-filters' => '記録のフィルター',
 	'centralnotice-date' => '日付',
 	'centralnotice-apply-filters' => 'フィルターを適用',
 	'centralnotice-clear-filters' => 'フィルターをクリア',
-	'centralnotice-banner-messages' => 'バナー メッセージ',
+	'centralnotice-banner-messages' => 'バナーのメッセージ',
 	'centralnotice-filter-template-prompt' => 'バナー名が以下を含む:',
 	'centralnotice-filter-template-submit' => 'フィルターを適用',
 	'centralnotice-filter-template-banner' => 'バナーの絞り込み',
@@ -8770,7 +8792,7 @@ De kanns ävver heh dronger ein dobei donn.',
 	'centralnotice-percentage' => 'Prozäntsaz',
 	'centralnotice-documentwrite-error' => 'Mer künne <code lang="en">document.write()</code> nit ennerhallef vun ene Banner_Schablohn bruche.
 Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wells.',
-	'centralnotice-preferred' => 'Förjetrocke!',
+	'centralnotice-preferred' => 'Rang',
 	'centralnotice-logs' => 'Logböcher',
 	'centralnotice-view-logs' => 'Logböcher aanloore',
 	'centralnotice-timestamp' => 'Dattum un Zick',
@@ -8802,6 +8824,10 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-banner-messages' => 'Dä Banner_Schablohne ier Täxte',
 	'centralnotice-filter-template-prompt' => 'Em Name vun dämm Banner es änthallde:',
 	'centralnotice-filter-template-submit' => 'Donn da Fellter aanwände',
+	'centralnotice-priority-low' => 'klein',
+	'centralnotice-priority-normal' => 'nomaal',
+	'centralnotice-priority-high' => 'huh',
+	'centralnotice-priority-emergency' => 'Nuudfall',
 );
 
 /** Kurdish (Latin script) (‪Kurdî (latînî)‬)
