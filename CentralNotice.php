@@ -515,6 +515,18 @@ function efCentralNoticeUnitTests( &$files ) {
 function efRegisterMessageGroups( &$list ) {
 	$dbr = wfGetDB( DB_MASTER );
 
+	// Create the base aggregate group
+	$conf = array();
+	$conf['BASIC'] = array(
+		'id' => BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
+		'label' => 'CentralNotice Banners',
+		'description' => '{{int:centralnotice-aggregate-group-desc}}',
+		'meta' => 1,
+		'class' => 'AggregateMessageGroup',
+		'namespace' => NS_TRANSLATIONS,
+	);
+	$conf['GROUPS'] = array();
+
 	// Find all the banners marked for translation
 	$tables = array( 'page', 'revtag' );
 	$vars   = array( 'page_id', 'page_namespace', 'page_title', );
@@ -528,6 +540,13 @@ function efRegisterMessageGroups( &$list ) {
 		$bannerPageName = $r->page_title;
 		$list[$id] = new BannerMessageGroup( $id, $bannerPageName );
 		$list[$id]->setLabel( $title->getPrefixedText() );
+
+		// Add the banner group to the aggregate group
+		$conf['GROUPS'][] = $id;
 	}
+
+	// Update the subgroup meta with any new groups since the last time this was run
+	$list[$conf['BASIC']['id']] = MessageGroupBase::factory( $conf );
+
 	return true;
 }

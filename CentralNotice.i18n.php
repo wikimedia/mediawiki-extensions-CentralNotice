@@ -186,6 +186,7 @@ Add one below.',
 	'centralnotice-priority-emergency' => 'emergency',
 	'centralnotice-prioritylangs' => 'Priority languages',
 	'centralnotice-prioritylangs-explain' => 'Marking a language as a priority will encourage translators to translate these languages first.',
+	'centralnotice-aggregate-group-desc' => 'All messages in this group are included in Central Notice banners.',
 	'centralnotice-country-eu' => 'Unknown/European Union Region',
 	'centralnotice-country-ap' => 'Unknown/Asia Pacific Region',
 	'centralnotice-country-a1' => 'Unknown/Anonymous Proxy',
@@ -224,8 +225,8 @@ $messages['qqq'] = array(
 	'centralnoticelogs' => 'Title of Special:CentralNoticeLogs page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-logs.)',
 	'right-centralnotice-admin' => '{{doc-right|centralnotice-admin}}',
 	'action-centralnotice-admin' => '{{doc-action|centralnotice-admin}}',
-	'centralnotice-desc' => '{{desc|name=Central Notice|url=http://www.mediawiki.org/wiki/Extension:CentralNotice}}
-This extension allows a notice to be posted centrally to several wikis.',
+	'centralnotice-desc' => 'The [[mw:Extension:CentralNotice|Central Notice extension]] allows a notice to be posted centrally to several wikis.
+{{desc}}',
 	'centralnotice-summary' => 'Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]',
 	'centralnotice-end-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
 {{Identical|End date}}',
@@ -390,6 +391,7 @@ Related messages:
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
 	'centralnotice-prioritylangs' => 'Label for section marking priority languages for translation.',
 	'centralnotice-prioritylangs-explain' => 'Description notifying the user that marking a language as a priority will encourage translators to translate selected languages first.',
+	'centralnotice-aggregate-group-desc' => 'Description of what Central Notice banners do for the group description in the translate extension.',
 	'centralnotice-country-eu' => 'Label for MaxMind country "EU", European Union, used rarely when further information is not known',
 	'centralnotice-country-ap' => 'Label for MaxMind country "AP", Asia Pacific Region, used rarely when further information is not known',
 	'centralnotice-country-a1' => 'Label for MaxMind country "A1", Anonymous Proxy, used when the IP address belongs to an anonymization service',

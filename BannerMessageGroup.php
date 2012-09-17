@@ -5,7 +5,7 @@
  */
 class BannerMessageGroup extends WikiMessageGroup {
 
-	const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup-';
+	const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup';
 
 	/**
 	 * Constructor.
@@ -58,10 +58,10 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return string Canonical translate group name
 	 */
 	static function getTranslateGroupName( $bannerName ) {
-		if ( strpos( $bannerName, 'Centralnotice-template-' ) === 0 ) {
-			return str_replace( 'Centralnotice-template-', static::TRANSLATE_GROUP_NAME_BASE, $bannerName );
+		if ( strpos( $bannerName, 'Centralnotice-template' ) === 0 ) {
+			return str_replace( 'Centralnotice-template', static::TRANSLATE_GROUP_NAME_BASE, $bannerName );
 		} else {
-			return static::TRANSLATE_GROUP_NAME_BASE . $bannerName;
+			return static::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
 		}
 	}
 
