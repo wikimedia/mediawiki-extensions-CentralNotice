@@ -16505,6 +16505,7 @@ $messages['udm'] = array(
  * @author Dim Grits
  * @author Microcell
  * @author NickK
+ * @author Olvin
  * @author Riwnodennyk
  * @author Sodmy
  * @author Ytsukeng Fyvaprol
@@ -16646,7 +16647,7 @@ $messages['uk'] = array(
 	'centralnotice-percentage' => 'Відсоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері.
 Дивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.',
-	'centralnotice-preferred' => 'Важливість',
+	'centralnotice-preferred' => 'Пріоритет',
 	'centralnotice-logs' => 'Журнали',
 	'centralnotice-view-logs' => 'Перегляд журналів',
 	'centralnotice-timestamp' => 'Часова позначка',
@@ -16684,7 +16685,7 @@ $messages['uk'] = array(
 	'centralnotice-priority-low' => 'низька',
 	'centralnotice-priority-normal' => 'нормальна',
 	'centralnotice-priority-high' => 'висока',
-	'centralnotice-priority-emergency' => 'надзвичайна',
+	'centralnotice-priority-emergency' => 'надзвичайний',
 );
 
 /** Urdu (اردو)
