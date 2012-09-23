@@ -3672,7 +3672,7 @@ Yew de bike',
 	'centralnotice-settings' => 'Sazi',
 	'centralnotice-edit-template' => 'Sabloni bıvurnê',
 	'centralnotice-edit-template-summary' => 'Seba mesajanê lokali viraştişi, yew tire u hire paranatezi de bikefilne, mesela {{{jimbo-quote}}}.',
-	'centralnotice-message' => 'Mesaj',
+	'centralnotice-message' => 'Mesac',
 	'centralnotice-message-not-set' => 'Mesaj nişiravt',
 	'centralnotice-clone' => 'Kopye bike',
 	'centralnotice-clone-notice' => 'Ye kopyayê templateyî viraze',
@@ -8615,7 +8615,7 @@ $messages['ko'] = array(
 	'centralnotice-preferred' => '우선 순위',
 	'centralnotice-logs' => '기록',
 	'centralnotice-view-logs' => '기록 보기',
-	'centralnotice-timestamp' => '시각',
+	'centralnotice-timestamp' => '시간 기록',
 	'centralnotice-user' => '사용자',
 	'centralnotice-action' => '동작',
 	'centralnotice-action-created' => '만들어짐',
@@ -16769,6 +16769,13 @@ $messages['ur'] = array(
 	'centralnotice-filter-template-prompt' => 'بینر کے نام پر مشتمل ہے:',
 	'centralnotice-priority-high' => 'اعلی',
 	'centralnotice-priority-emergency' => 'ہنگامی',
+);
+
+/** Uzbek (oʻzbekcha)
+ * @author CoderSI
+ */
+$messages['uz'] = array(
+	'centralnotice-translations' => 'Tarjimalar',
 );
 
 /** vèneto (vèneto)
