@@ -263,7 +263,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			)->text() . "<br />";
 		}
 		$details .= $this->testBooleanChange( 'enabled', $row );
-		$details .= $this->testBooleanChange( 'preferred', $row );
+		$details .= $this->testPriorityChange( 'preferred', $row );
 		$details .= $this->testBooleanChange( 'locked', $row );
 		$details .= $this->testBooleanChange( 'geo', $row );
 		$details .= $this->testSetChange( 'projects', $row );
@@ -352,6 +352,58 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-'.$param )->text(),
 				$differences
+			)->text() . "<br />";
+		}
+		return $result;
+	}
+
+	/**
+	 * Test for changes to campaign priority
+	 * @param $param
+	 * @param $row
+	 * @return string
+	 */
+	private function testPriorityChange( $param, $row ) {
+		$result = '';
+		$beginField = 'notlog_begin_' . $param;
+		$endField = 'notlog_end_' . $param;
+		if ( $row->$beginField !== $row->$endField ) {
+			switch ( $row->$beginField ) {
+				case CentralNotice::LOW_PRIORITY:
+					$beginMessage = $this->msg( 'centralnotice-priority-low' )->text();
+					break;
+				case CentralNotice::NORMAL_PRIORITY:
+					$beginMessage = $this->msg( 'centralnotice-priority-normal' )->text();
+					break;
+				case CentralNotice::HIGH_PRIORITY:
+					$beginMessage = $this->msg( 'centralnotice-priority-high' )->text();
+					break;
+				case CentralNotice::EMERGENCY_PRIORITY:
+					$beginMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
+					break;
+			}
+			switch ( $row->$endField ) {
+				case CentralNotice::LOW_PRIORITY:
+					$endMessage = $this->msg( 'centralnotice-priority-low' )->text();
+					break;
+				case CentralNotice::NORMAL_PRIORITY:
+					$endMessage = $this->msg( 'centralnotice-priority-normal' )->text();
+					break;
+				case CentralNotice::HIGH_PRIORITY:
+					$endMessage = $this->msg( 'centralnotice-priority-high' )->text();
+					break;
+				case CentralNotice::EMERGENCY_PRIORITY:
+					$endMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
+					break;
+			}
+			$result .= $this->msg(
+				'centralnotice-log-label',
+				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg(
+					'centralnotice-changed',
+					$beginMessage,
+					$endMessage
+				)->text()
 			)->text() . "<br />";
 		}
 		return $result;
