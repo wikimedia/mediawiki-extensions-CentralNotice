@@ -193,7 +193,7 @@ $specialPageAliases['ml'] = array(
 	'NoticeTemplate' => array( 'അറിയിപ്പ്ഫലകം' ),
 );
 
-/** Norwegian Bokmål (‪norsk (bokmål)‬) */
+/** Norwegian Bokmål (norsk (bokmål)‎) */
 $specialPageAliases['nb'] = array(
 	'CentralNotice' => array( 'Sentralnotis' ),
 	'CentralNoticeLogs' => array( 'Sentralnotislogger' ),
@@ -228,7 +228,7 @@ $specialPageAliases['nl'] = array(
 	'HideBanners' => array( 'BannersVerbergen' ),
 );
 
-/** Norwegian Nynorsk (‪norsk (nynorsk)‬) */
+/** Norwegian Nynorsk (norsk (nynorsk)‎) */
 $specialPageAliases['nn'] = array(
 	'CentralNotice' => array( 'Sentralmerknad' ),
 	'NoticeTemplate' => array( 'Merknadsmal' ),
@@ -283,7 +283,7 @@ $specialPageAliases['vi'] = array(
 	'HideBanners' => array( 'Ẩn_bảng' ),
 );
 
-/** Simplified Chinese (‪中文（简体）‬) */
+/** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
 	'CentralNotice' => array( '中央通告' ),
 	'CentralNoticeLogs' => array( '中央通告日志' ),
@@ -295,7 +295,7 @@ $specialPageAliases['zh-hans'] = array(
 	'HideBanners' => array( '隐藏横幅' ),
 );
 
-/** Traditional Chinese (‪中文（繁體）‬) */
+/** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
 	'CentralNotice' => array( '中央通告' ),
 	'NoticeTemplate' => array( '通告模板' ),
