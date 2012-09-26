@@ -70,9 +70,8 @@ window.insertButton = function( buttonType ) {
 		buttonValue = '<a href="#" title="'
 			+ mediaWiki.msg( 'centralnotice-close-title' )
 			+ '" onclick="hideBanner();return false;">'
-			+ '<img border="0" src="' + mediaWiki.config.get( 'stylepath' )
-			+ '/common/images/closewindow19x19.png" alt="'
-			+ mediaWiki.msg( 'centralnotice-close-title' )
+			+ '<img border="0" src="' + mediaWiki.config.get( 'wgNoticeCloseButton' )
+			+ '" alt="' + mediaWiki.msg( 'centralnotice-close-title' )
 			+ '" /></a>';
 	}
 	if ( document.selection ) {

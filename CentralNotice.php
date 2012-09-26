@@ -114,6 +114,9 @@ $wgNoticeFundraisingUrl = 'https://donate.wikimedia.org/wiki/Special:LandingChec
 $wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
 $wgNoticeDailyCounterSource = 'http://wikimediafoundation.org/wiki/Special:DailyTotal?action=raw';
 
+// URL for a banner close button
+$wgNoticeCloseButton = '//upload.wikimedia.org/wikipedia/foundation/2/20/CloseWindow19x19.png';
+
 // Domain to set global cookies for.
 // Example: '.wikipedia.org'
 $wgNoticeCookieDomain = '';
@@ -174,7 +177,7 @@ function efCentralNoticeSetup() {
 	$wgSpecialPages[ 'BannerListLoader' ] = 'SpecialBannerListLoader';
 	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';
 
-	// If this is the wiki that hosts the management interface, loaded further components
+	// If this is the wiki that hosts the management interface, load further components
 	if ( $wgNoticeInfrastructure ) {
 		$wgAutoloadClasses[ 'TemplatePager' ] = $dir . 'TemplatePager.php';
 		$wgAutoloadClasses[ 'CentralNoticePager' ] = $dir . 'CentralNoticePager.php';
@@ -383,10 +386,14 @@ function efCentralNoticeDisplay( &$notice ) {
  * @return bool
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
-	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang;
+	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang,
+		$wgNoticeInfrastructure, $wgNoticeCloseButton;
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
+	if ( $wgNoticeInfrastructure ) {
+		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
+	}
 	return true;
 }
 
