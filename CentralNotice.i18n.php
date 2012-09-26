@@ -5090,7 +5090,7 @@ Lisää alapuolella sellainen',
 	'centralnotice-percentage' => 'Prosenttiosuus',
 	'centralnotice-documentwrite-error' => 'document.write() -komentoa ei voi käyttää bannerin sisällä.
 Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
-	'centralnotice-preferred' => 'Suositeltu',
+	'centralnotice-preferred' => 'Prioriteetti',
 	'centralnotice-logs' => 'Lokit',
 	'centralnotice-view-logs' => 'Näytä lokit',
 	'centralnotice-timestamp' => 'Aikaleima',
@@ -14685,7 +14685,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-priority-emergency' => 'хитан',
 );
 
-/** Serbian (Latin script) (‪srpski (latinica)‬)
+/** Serbian (Latin script) (srpski (latinica)‎)
  * @author Michaello
  */
 $messages['sr-el'] = array(
@@ -14818,7 +14818,9 @@ Dodajte jednu ispod.',
 	'centralnotice-no-allocation' => 'Nema dodeljenih plakata.',
 	'centralnotice-allocation-description' => 'Dodela plakata za $1.$2 u $3:',
 	'centralnotice-percentage' => 'Postotak',
-	'centralnotice-preferred' => 'Željeno',
+	'centralnotice-documentwrite-error' => 'document.write() ne može biti upotrebljen unutar banera.
+Vidite http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
+	'centralnotice-preferred' => 'Prioritet',
 	'centralnotice-logs' => 'Istorije',
 	'centralnotice-view-logs' => 'Pogledaj istorije',
 	'centralnotice-timestamp' => 'Vreme i datum',
@@ -14846,6 +14848,13 @@ Dodajte jednu ispod.',
 	'centralnotice-banner-content' => 'Sadržaj plakata',
 	'centralnotice-banner-content-changed' => 'Izmenjeno',
 	'centralnotice-filters' => 'Filteri istorije',
+	'centralnotice-date' => 'Datum',
+	'centralnotice-apply-filters' => 'Primeni filtere',
+	'centralnotice-clear-filters' => 'Očisti filtere',
+	'centralnotice-priority-low' => 'nizak',
+	'centralnotice-priority-normal' => 'normalan',
+	'centralnotice-priority-high' => 'visok',
+	'centralnotice-priority-emergency' => 'hitan',
 );
 
 /** Seeltersk (Seeltersk)
