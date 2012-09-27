@@ -9994,6 +9994,7 @@ $messages['mn'] = array(
  * @author Kaajawa
  * @author Mahitgar
  * @author Rahuldeshmukh101
+ * @author Shantanoo
  * @author V.narsikar
  * @author Vinayak.kulkarni11
  * @author कोल्हापुरी
@@ -10025,7 +10026,7 @@ $messages['mr'] = array(
 	'centralnotice-add' => 'वाढवा',
 	'centralnotice-add-notice' => 'नव्या मोहीमेची भर घाला',
 	'centralnotice-edit-notice' => 'सम्पादन अभियान',
-	'centralnotice-add-template' => 'नविन मथळा लावा',
+	'centralnotice-add-template' => 'नवीन मथळा लावा',
 	'centralnotice-show-notices' => 'अभियान दाखवा',
 	'centralnotice-list-templates' => 'मुखशीर्षकांची यादी',
 	'centralnotice-multiple-projects' => 'अनेक  ($1)',
