@@ -5960,7 +5960,7 @@ Fieg eini zue.',
 	'centralnotice-percentage' => 'Prozäntsatz',
 	'centralnotice-documentwrite-error' => 'document.write() cha nit in eme Banner brucht wäre.
 Lueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.',
-	'centralnotice-preferred' => 'Bevorzugt',
+	'centralnotice-preferred' => 'Prioritet',
 	'centralnotice-logs' => 'Logbiecher',
 	'centralnotice-view-logs' => 'Logbiecher aaluege',
 	'centralnotice-timestamp' => 'Zytstämpfel',
@@ -5990,6 +5990,13 @@ Lueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.',
 	'centralnotice-apply-filters' => 'Filter aawände',
 	'centralnotice-clear-filters' => 'Filter ufhebe',
 	'centralnotice-banner-messages' => 'Bannernochrichte',
+	'centralnotice-filter-template-prompt' => 'Im Name vum Banner het s:',
+	'centralnotice-filter-template-submit' => 'Filter aawände',
+	'centralnotice-filter-template-banner' => 'Banner filtere',
+	'centralnotice-priority-low' => 'nidrig',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'hoch',
+	'centralnotice-priority-emergency' => 'Notfall',
 );
 
 /** Gujarati (ગુજરાતી)
