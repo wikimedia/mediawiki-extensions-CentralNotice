@@ -1750,7 +1750,7 @@ $messages['be'] = array(
 	'centralnotice-add' => 'Дадаць',
 );
 
-/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author EugeneZelenko
  * @author Jim-by
  * @author Red Winged Duck
@@ -3556,7 +3556,15 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-priority-emergency' => 'Notfall',
 );
 
-/** German (formal address) (‪Deutsch (Sie-Form)‬)
+/** Swiss High German (Schweizer Hochdeutsch)
+ * @author Geitost
+ */
+$messages['de-ch'] = array(
+	'centralnotice-close-button' => 'Button schliessen',
+	'centralnotice-close-title' => 'Schliessen',
+);
+
+/** German (formal address) (Deutsch (Sie-Form)‎)
  * @author Imre
  * @author Kghbln
  */
@@ -8830,7 +8838,7 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-priority-emergency' => 'Nuudfall',
 );
 
-/** Kurdish (Latin script) (‪Kurdî (latînî)‬)
+/** Kurdish (Latin script) (Kurdî (latînî)‎)
  * @author George Animal
  * @author Gomada
  */
@@ -10554,7 +10562,7 @@ $messages['nan'] = array(
 	'centralnotice-date' => 'Ji̍t-kî',
 );
 
-/** Norwegian Bokmål (‪norsk (bokmål)‬)
+/** Norwegian Bokmål (norsk (bokmål)‎)
  * @author Danmichaelo
  * @author Event
  * @author Harald Khan
@@ -11080,7 +11088,7 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-priority-emergency' => 'noodgeval',
 );
 
-/** ‪Nederlands (informeel)‬ (‪Nederlands (informeel)‬)
+/** Nederlands (informeel)‎ (Nederlands (informeel)‎)
  * @author Siebrand
  */
 $messages['nl-informal'] = array(
@@ -11089,7 +11097,7 @@ Deze handeling is niet terug te draaien.',
 	'centralnotice-allocation-instructions' => 'Kies de omgeving waarvoor je de bannertoewijzing wilt bekijken:',
 );
 
-/** Norwegian Nynorsk (‪norsk (nynorsk)‬)
+/** Norwegian Nynorsk (norsk (nynorsk)‎)
  * @author Harald Khan
  * @author Nghtwlkr
  * @author Njardarlogar
@@ -14520,7 +14528,7 @@ Shikoni http://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë inform
 	'centralnotice-priority-emergency' => 'Emergjent',
 );
 
-/** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Millosh
  * @author Rancher
  * @author Јованвб
@@ -17395,7 +17403,7 @@ $messages['yue'] = array(
 	'centralnotice-desc' => '加入一個中央公告欄',
 );
 
-/** Simplified Chinese (‪中文（简体）‬)
+/** Simplified Chinese (中文（简体）‎)
  * @author Alex S.H. Lin
  * @author Anakmalaysia
  * @author Bencmq
@@ -17585,7 +17593,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-priority-emergency' => '紧急',
 );
 
-/** Traditional Chinese (‪中文（繁體）‬)
+/** Traditional Chinese (中文（繁體）‎)
  * @author Alex S.H. Lin
  * @author Anakmalaysia
  * @author Frankou
