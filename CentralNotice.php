@@ -153,6 +153,32 @@ $wgNoticeHideBannersExpiration = '';
 // Whether to use the Translation extension for banner message translation
 $wgNoticeUseTranslateExtension = false;
 
+// When using the group review feature of translate; this will be the namespace ID for the banner
+// staging area -- ie: banners here are world editable and will not be moved to the MW namespace
+// until they are in @ref $wgNoticeTranslateDeployStates
+$wgNoticeBannerNSID = 866;
+
+define( 'NS_CN_BANNER', $wgNoticeBannerNSID );
+define( 'NS_CN_BANNER_TALK', $wgNoticeBannerNSID + 1 );
+
+$wgExtraNamespaces[NS_CN_BANNER] = 'CNBanner';
+$wgNamespacesWithSubpages[NS_CN_BANNER] = true;
+$wgTranslateMessageNamespaces[] = NS_CN_BANNER;
+
+$wgExtraNamespaces[NS_CN_BANNER_TALK] = 'CNBanner_talk';
+$wgNamespacesWithSubpages[NS_CN_BANNER_TALK] = true;
+
+// When a banner is protected; what group is assigned. This is used for banners in the CNBanner
+// namespace to protect origin messages.
+$wgNoticeProtectGroup = 'sysop';
+
+// When using the group review feature of the translate extension, only message groups with these
+// group review states will be deployed -- e.g. copy from the CNBanners namespace to the MW
+// namespace. This requires that anyone who can assign this state much have site-edit permissions
+$wgNoticeTranslateDeployStates = array(
+	'published',
+);
+
 // These are countries that MaxMind will give out when information is a bit fuzzy. However,
 // fundraising code doesn't like non ISO countries so we map them to the fictional point case 'XX'
 $wgNoticeXXCountries = array( 'XX', 'EU', 'AP', 'A1', 'A2', 'O1' );
@@ -258,6 +284,7 @@ function efCentralNoticeSetup() {
 		if ( $wgNoticeUseTranslateExtension ) {
 			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
+            $wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = array( 'BannerMessageGroup::updateBannerGroupStateHook' );
 		}
 
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
@@ -523,7 +550,7 @@ function efRegisterMessageGroups( &$list ) {
 		'description' => '{{int:centralnotice-aggregate-group-desc}}',
 		'meta' => 1,
 		'class' => 'AggregateMessageGroup',
-		'namespace' => NS_TRANSLATIONS,
+		'namespace' => NS_CN_BANNER,
 	);
 	$conf['GROUPS'] = array();
 
@@ -535,11 +562,9 @@ function efRegisterMessageGroups( &$list ) {
 	$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
 
 	foreach ( $res as $r ) {
-		$title = Title::makeTitle( $r->page_namespace, $r->page_title );
-		$id = BannerMessageGroup::getTranslateGroupName( $r->page_title );
-		$bannerPageName = $r->page_title;
-		$list[$id] = new BannerMessageGroup( $id, $bannerPageName );
-		$list[$id]->setLabel( $title->getPrefixedText() );
+        $grp = new BannerMessageGroup( $r->page_namespace, $r->page_title );
+        $id = $grp::getTranslateGroupName( $r->page_title );
+        $list[$id] = $grp;
 
 		// Add the banner group to the aggregate group
 		$conf['GROUPS'][] = $id;

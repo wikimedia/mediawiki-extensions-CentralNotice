@@ -82,7 +82,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 						$request->getBool( 'displayAccount' ),
 						$request->getBool( 'fundraising' ),
 						$request->getBool( 'autolink' ),
-						$request->getVal( 'landingPages' )
+						$request->getVal( 'landingPages' ),
+						$request->getArray( 'project_languages', array() )
 					);
 					if ( $success ) {
 						$sub = 'view';
@@ -826,6 +827,47 @@ class SpecialNoticeTemplate extends CentralNotice {
 		$wikiPage = new WikiPage( $title );
 		$content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
 		$wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
+	
+		// If we're using translate : group review; create and protect the english and QQQ pages
+		if ( ( $lang == 'en') && BannerMessageGroup::isUsingGroupReview() ) {
+			$this->updateMessageInCnNamespaces( $text, $translation, 'en' );
+			$this->updateMessageInCnNamespaces( $text, $translation, 'qqq' );
+		}
+	}
+
+	/**
+	 * Creates and protects a message entry in the CNBanner namespace so that the translation
+	 * WebUI can use it. The protection lasts for infinity and acts for group
+	 * @ref $wgNoticeProtectGroup
+     *
+     * This really is intended only for use on the original source language and qqq because
+     * these languages are set via the CN UI; not the translate UI. At some point this needs
+     * to become less anglo-centric because right now we assume 'english' as the source
+     * language in the functions that call this.
+	 *
+	 * @param $text         Message name; should be BannerName-MessageName format
+	 * @param $translation  Contents of the message
+	 * @param $lang         Language to update for
+	 */
+	private function updateMessageInCnNamespaces( $text, $translation, $lang ) {
+		global $wgNoticeProtectGroup;
+
+        $title = Title::newFromText( "$text/$lang", NS_CN_BANNER );
+        $wikiPage = new WikiPage( $title );
+        $content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
+        $wikiPage->doEditContent( $content, 'Created by CentralNotice on banner update.', EDIT_FORCE_BOT );
+
+		if ( !$title->getRestrictions( 'edit' ) ) {
+			$var = false;
+
+			$wikiPage->doUpdateRestrictions(
+				array( 'edit' => $wgNoticeProtectGroup, 'move' => $wgNoticeProtectGroup ),
+				array( 'edit' => 'infinity', 'move' => 'infinity' ),
+				$var,
+				'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.',
+				$this->getContext()->getUser()
+			);
+		}
 	}
 
 	// @todo Can CentralNotice::getTemplateId() be updated and reused?
@@ -957,29 +999,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			);
 			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
 			$pageResult = $wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
-
-			if ( $wgNoticeUseTranslateExtension ) {
-				// Get the revision and page ID of the page that was created
-				$pageResultValue = $pageResult->value;
-				$revision = $pageResultValue['revision'];
-				$revisionId = $revision->getId();
-				$pageId = $revision->getPage();
-
-				// If the banner includes translatable messages, tag it for translation
-				$fields = $this->extractMessageFields( $body );
-				if ( count( $fields[ 0 ] ) > 0 ) {
-					// Tag the banner for translation
-					$this->addTag( 'banner:translate', $revisionId, $pageId );
-					MessageGroups::clearCache();
-					MessageIndexRebuildJob::newJob()->run();
-				}
-
-				TranslateMetadata::set(
-					BannerMessageGroup::getTranslateGroupName( $name ),
-					'prioritylangs',
-					implode( ',', $priorityLangs )
-				);
-			}
+			$this->updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
 
 			// Log the creation of the banner
 			$beginSettings = array();
@@ -994,6 +1014,45 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$this->logBannerChange( 'created', $bannerId, $beginSettings, $endSettings );
 
 			return true;
+		}
+	}
+
+	/**
+	 * Updates any metadata required for banner/translation extension integration.
+	 *
+	 * @param string $name              Raw name of banner
+	 * @param string $body              Body text of banner
+	 * @param array  $priorityLangs     Languages to emphasize during translation
+	 */
+	protected function updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs ) {
+		global $wgNoticeUseTranslateExtension;
+
+		// Do nothing if we arent actually using translate
+		if ( $wgNoticeUseTranslateExtension ) {
+			// Get the revision and page ID of the page that was created/modified
+			if ( $pageResult->value['revision'] ) {
+				$revision = $pageResult->value['revision'];
+				$revisionId = $revision->getId();
+				$pageId = $revision->getPage();
+
+				// If the banner includes translatable messages, tag it for translation
+				$fields = $this->extractMessageFields( $body );
+				if ( count( $fields[0] ) > 0 ) {
+					// Tag the banner for translation
+					$this->addTag( 'banner:translate', $revisionId, $pageId );
+					MessageGroups::clearCache();
+					MessageIndexRebuildJob::newJob()->run();
+				}
+			}
+
+			// Set the priority languages
+			if ( $wgNoticeUseTranslateExtension && $priorityLangs ) {
+				TranslateMetadata::set(
+					BannerMessageGroup::getTranslateGroupName( $name ),
+					'prioritylangs',
+					implode( ',', $priorityLangs )
+				);
+			}
 		}
 	}
 
@@ -1048,8 +1107,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 	private function editTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising,
 	                               $autolink, $landingPages, $priorityLangs
 	) {
-		global $wgNoticeUseTranslateExtension;
-
 		if ( $body == '' || $name == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 			return;
@@ -1083,52 +1140,19 @@ class SpecialNoticeTemplate extends CentralNotice {
 			);
 			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
 			$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
-
-			if ( $wgNoticeUseTranslateExtension ) {
-				if ( $priorityLangs ) {
-					TranslateMetadata::set(
-						BannerMessageGroup::getTranslateGroupName( $name ),
-						'prioritylangs',
-						implode( ',', $priorityLangs )
-					);
-				}
-			}
-
-			$bannerId = $this->getTemplateId( $name );
-			$cndb = new CentralNoticeDB();
-			$finalBannerSettings = $cndb->getBannerSettings( $name, true );
-
-			if ( $wgNoticeUseTranslateExtension && $pageResult->value['revision'] ) {
-				// Get the revision and page ID of the page that was created (if it was actually
-				// edited this session)
-				$pageResultValue = $pageResult->value;
-				$revision = $pageResultValue['revision'];
-				$revisionId = $revision->getId();
-				$pageId = $revision->getPage();
-
-				// If the banner includes translatable messages, tag it for translation
-				$fields = $this->extractMessageFields( $body );
-				if ( count( $fields[ 0 ] ) > 0 ) {
-					// Tag the banner for translation
-					$this->addTag( 'banner:translate', $revisionId, $pageId );
-				} else {
-					// Make sure banner is not tagged for translation
-					$this->removeTag( 'banner:translate', $pageId );
-				}
-				MessageGroups::clearCache();
-				MessageIndexRebuildJob::newJob()->insert();
-			}
+			$this->updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
 
 			// If there are any difference between the old settings and the new settings, log them.
-			$changed = false;
-			foreach ( $finalBannerSettings as $key => $value ) {
-				if ( $finalBannerSettings[$key] != $initialBannerSettings[$key] ) {
-					$changed = true;
-				}
-			}
+            $finalBannerSettings = $cndb->getBannerSettings( $name, true );
+            $changed = false;
+            foreach ( $finalBannerSettings as $key => $value ) {
+                if ( $finalBannerSettings[$key] != $initialBannerSettings[$key] ) {
+                    $changed = true;
+                }
+            }
 
 			if ( $changed ) {
-				$this->logBannerChange( 'modified', $bannerId, $initialBannerSettings, $finalBannerSettings );
+				$this->logBannerChange( 'modified', $name, $initialBannerSettings, $finalBannerSettings );
 			}
 
 			return;

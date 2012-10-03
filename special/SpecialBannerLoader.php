@@ -138,27 +138,27 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 */
 	function getNoticeField( $match ) {
 		$field = $match[1];
-		$params = array();
+        $params = array();
 
 		// Handle "magic messages"
 		switch ( $field ) {
 			case 'amount': // total fundraising amount
-				$params = array( $this->toMillions( $this->getDonationAmount() ) );
+				$params[] = $this->toMillions( $this->getDonationAmount() );
 				break;
 			case 'daily-amount': // daily fundraising amount
-				$params = array( $this->toThousands( $this->getDailyDonationAmount() ) );
+				$params[] = $this->toThousands( $this->getDailyDonationAmount() );
 				break;
+
 			case 'campaign': // campaign name
 				return( $this->campaign );
-				break;
 			case 'banner': // banner name
 				return( $this->bannerName );
-				break;
 		}
 
-		$message = "centralnotice-{$this->bannerName}-$field";
-		$source = $this->getMessage( $message, $params );
-		return $source;
+		// MediaWiki getMessage() doesn't support language fallbacks as of 4 Oct 2012 - therefore
+		// since we know where the messages will be we shall parse the thing ourselves
+		$message = "Centralnotice-{$this->bannerName}-$field";
+        return $this->getMessage( $message, $params );
 	}
 
 	/**
@@ -191,12 +191,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	private function getMessage( $msg, $params = array() ) {
 		global $wgSitename;
 
-		// A god-damned dirty hack! :D
+		// A god-damned dirty hack! :D This makes the {{SITENAME}} variable work the way
+		// it's expected to when CN is running in infrastructure mode.
 		$oldSitename = $wgSitename;
-		$wgSitename = $this->siteName; // hack for {{SITENAME}}
+		$wgSitename = $this->siteName;
 
-		array_unshift( $params, $msg );
-		$out = call_user_func_array( 'wfMessage', $params )->inLanguage( $this->language )->text();
+		$out = wfMessage( $msg, $params )->inLanguage( $this->language )->text();
 
 		$wgSitename = $oldSitename;
 
