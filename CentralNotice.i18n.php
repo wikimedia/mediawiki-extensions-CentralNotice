@@ -8839,6 +8839,7 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-banner-messages' => 'Dä Banner_Schablohne ier Täxte',
 	'centralnotice-filter-template-prompt' => 'Em Name vun dämm Banner es änthallde:',
 	'centralnotice-filter-template-submit' => 'Donn da Fellter aanwände',
+	'centralnotice-filter-template-banner' => 'Bannere ußsöhke',
 	'centralnotice-priority-low' => 'klein',
 	'centralnotice-priority-normal' => 'nomaal',
 	'centralnotice-priority-high' => 'huh',
