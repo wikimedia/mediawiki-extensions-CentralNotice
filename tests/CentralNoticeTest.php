@@ -16,6 +16,9 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	 * @var SpecialNoticeTemplate
 	 */
 	protected static $noticeTemplate;
+
+	protected $userUser;
+
 	var $campaignId;
 
 	protected function setUp() {
@@ -34,10 +37,18 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$project_languages = array( 'en', 'de' );
 		$geotargeted       = 1;
 		$geo_countries     = array( 'US', 'AF' );
-		// @todo FIXME: Needs user.
-		self::$centralNoticeDB->addCampaign( $noticeName, $enabled, $start, $projects,
-			$project_languages, $geotargeted, $geo_countries );
+
+		//get User
+		$this->userUser = User::newFromName( 'TestUser' );
+		if ( !$this->userUser->getID() ) {
+			$this->userUser = User::createNew( 'TestUser', array(
+				"email" => "test@example.com",
+				"real_name" => "Test User" ) );
+			$this->userUser->load();
+		}
 		self::$centralNoticeDB = new CentralNoticeDB();
+		self::$centralNoticeDB->addCampaign( $noticeName, $enabled, $start, $projects,
+			$project_languages, $geotargeted, $geo_countries, $this->userUser );
 		$this->campaignId = self::$centralNoticeDB->getNoticeId( 'PHPUnitTestCampaign' );
 
 		self::$noticeTemplate = new SpecialNoticeTemplate;
