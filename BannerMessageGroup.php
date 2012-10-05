@@ -43,4 +43,21 @@ class BannerMessageGroup extends WikiMessageGroup {
 		return $definitions;
 	}
 
+	public function getMessageGroupStates() {
+		$conf = array(
+			'progress' => array( 'color' => 'E00' ),
+			'proofreading' => array( 'color' => 'FFBF00' ),
+			'ready' => array( 'color' => 'FF0' ),
+			'published' => array( 'color' => 'AEA', 'right' => 'centralnotice-admin' ),
+			'state conditions' => array(
+				array( 'ready', array( 'PROOFREAD' => 'MAX' ) ),
+				array( 'proofreading', array( 'TRANSLATED' => 'MAX' ) ),
+				array( 'progress', array( 'UNTRANSLATED' => 'NONZERO' ) ),
+				array( 'unset', array( 'UNTRANSLATED' => 'MAX', 'OUTDATED' => 'ZERO', 'TRANSLATED' => 'ZERO' ) ),
+			),
+		);
+
+		return new MessageGroupStates( $conf );
+	}
+
 }
