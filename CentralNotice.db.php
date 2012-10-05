@@ -193,10 +193,11 @@ class CentralNoticeDB {
 
 		if ( $campaigns ) {
 			$res = $dbr->select(
+					// Aliases (keys) are needed to avoid problems with table prefixes
 				array(
-					'cn_notices',
-					'cn_assignments',
-					'cn_templates'
+					'notices' => 'cn_notices',
+					'assignments' => 'cn_assignments',
+					'templates' => 'cn_templates',
 				),
 				array(
 					'tmp_name',
@@ -210,9 +211,9 @@ class CentralNoticeDB {
 					'not_preferred'
 				),
 				array(
-					'cn_notices.not_id' => $campaigns,
-					'cn_notices.not_id = cn_assignments.not_id',
-					'cn_assignments.tmp_id = cn_templates.tmp_id'
+					'notices.not_id' => $campaigns,
+					'notices.not_id = assignments.not_id',
+					'assignments.tmp_id = templates.tmp_id'
 				),
 				__METHOD__
 			);
@@ -300,8 +301,9 @@ class CentralNoticeDB {
 
 		// Pull non-geotargeted campaigns
 		$campaignResults1 = $dbr->select(
+			// Aliases are needed to avoid problems with table prefixes
 			array(
-				'cn_notices',
+				'notices' => 'cn_notices',
 				'cn_notice_projects',
 				'cn_notice_languages'
 			),
@@ -313,9 +315,9 @@ class CentralNoticeDB {
 				"not_end >= $encTimestamp",
 				'not_enabled = 1', // enabled
 				'not_geo = 0', // not geotargeted
-				'np_notice_id = cn_notices.not_id',
+				'np_notice_id = notices.not_id',
 				'np_project' => $project,
-				'nl_notice_id = cn_notices.not_id',
+				'nl_notice_id = notices.not_id',
 				'nl_language' => $language
 			),
 			__METHOD__

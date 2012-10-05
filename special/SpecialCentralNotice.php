@@ -1011,23 +1011,24 @@ class CentralNotice extends SpecialPage {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
+			// Aliases are needed to avoid problems with table prefixes
 			array(
-				'cn_notices',
-				'cn_assignments',
-				'cn_templates'
+				'notices' => 'cn_notices',
+				'assignments' => 'cn_assignments',
+				'templates' => 'cn_templates'
 			),
 			array(
-				'cn_templates.tmp_id',
-				'cn_templates.tmp_name',
-				'cn_assignments.tmp_weight'
+				'templates.tmp_id',
+				'templates.tmp_name',
+				'assignments.tmp_weight'
 			),
 			array(
-				'cn_notices.not_name' => $notice,
-				'cn_notices.not_id = cn_assignments.not_id',
-				'cn_assignments.tmp_id = cn_templates.tmp_id'
+				'notices.not_name' => $notice,
+				'notices.not_id = assignments.not_id',
+				'assignments.tmp_id = templates.tmp_id'
 			),
 			__METHOD__,
-			array( 'ORDER BY' => 'cn_notices.not_id' )
+			array( 'ORDER BY' => 'notices.not_id' )
 		);
 
 		// No banners found
