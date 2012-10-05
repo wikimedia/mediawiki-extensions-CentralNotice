@@ -96,7 +96,7 @@ $wgNoticeProjects = array(
 $wgNoticeInfrastructure = true;
 
 // The name of the database which hosts the centralized campaign data
-$wgCentralDBname = $wgDBname;
+$wgCentralDBname = false;
 
 // The script path on the wiki that hosts the CentralNotice infrastructure
 // For example 'http://meta.wikimedia.org/w/index.php'
