@@ -5042,7 +5042,7 @@ Lisää niitä.',
 Liitä niitä!',
 	'centralnotice-available-templates' => 'Käytettävissä olevat bannerit',
 	'centralnotice-template-already-exists' => 'Banneri on jo liitetty kampanjaan.
-ei lisätty.',
+Ei lisätty.',
 	'centralnotice-preview-template' => 'Esikatsele banneri',
 	'centralnotice-change-lang' => 'Vaihda käännöskieli',
 	'centralnotice-weights' => 'Painot',
