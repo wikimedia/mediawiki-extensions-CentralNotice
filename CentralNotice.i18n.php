@@ -10747,6 +10747,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-banner-messages' => 'Banner-meldinger',
 	'centralnotice-filter-template-prompt' => 'Bannernavn inneholder:',
 	'centralnotice-filter-template-submit' => 'Bruk filter',
+	'centralnotice-filter-template-banner' => 'Filtrer bannere',
 	'centralnotice-priority-low' => 'lav',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'høy',
@@ -14180,6 +14181,7 @@ Túto operáciu nebude možné vrátiť.',
 
 /** Slovenian (slovenščina)
  * @author Dbc334
+ * @author Eleassar
  */
 $messages['sl'] = array(
 	'centralnotice' => 'Upravljanje osrednjega obvestila',
@@ -14199,7 +14201,7 @@ Z njim lahko tudi dodajate ali odstranjujete stara obvestila.',
 	'centralnotice-view' => 'Ogled',
 	'centralnotice-save-banner' => 'Shrani pasico',
 	'centralnotice-preview' => 'Predogled',
-	'centralnotice-nopreview' => '(Predogled ni na voljo)',
+	'centralnotice-nopreview' => '(Predogled ni mogoč)',
 	'centralnotice-add-new' => 'Dodaj novo akcijo',
 	'centralnotice-remove' => 'Odstrani',
 	'centralnotice-translate-heading' => 'Prevod za $1',
@@ -14258,7 +14260,7 @@ Ne odstranjujem.',
 Dodajte kakšno!',
 	'centralnotice-no-templates-assigned' => 'Nobena pasica ni priključena k akciji.
 Dodajte kakšno!',
-	'centralnotice-available-templates' => 'Pasice na voljo',
+	'centralnotice-available-templates' => 'Razpoložljive pasice',
 	'centralnotice-template-already-exists' => 'Pasica je že priključena k akciji.
 Ne dodajam.',
 	'centralnotice-preview-template' => 'Predogled pasice',
@@ -14286,7 +14288,7 @@ Dodajte kakšno spodaj.',
 	'centralnotice-clone' => 'Kloniraj',
 	'centralnotice-clone-notice' => 'Ustvarite kopijo pasice',
 	'centralnotice-clone-name' => 'Ime:',
-	'centralnotice-preview-all-template-translations' => 'Predogled vseh prevodov pasic, ki so na voljo',
+	'centralnotice-preview-all-template-translations' => 'Predogled vseh razpoložljivih prevodov pasice',
 	'centralnotice-insert' => 'Vstavi: $1',
 	'centralnotice-close-button' => 'Gumb za zapiranje',
 	'centralnotice-close-title' => 'Zapri',
