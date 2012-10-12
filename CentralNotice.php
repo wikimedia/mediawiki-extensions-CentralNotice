@@ -98,8 +98,8 @@ $wgNoticeInfrastructure = true;
 // The name of the database which hosts the centralized campaign data
 $wgCentralDBname = $wgDBname;
 
-// The base URL of the wiki that hosts the CentralNotice infrastructure
-// For example '//meta.wikimedia.org'
+// Protocol and host name of the wiki that hosts the CentralNotice infrastructure,
+// for example '//meta.wikimedia.org'. This is used for DNS prefetching.
 $wgCentralHost = false;
 
 // The script path on the wiki that hosts the CentralNotice infrastructure
@@ -301,7 +301,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 	$out->addHeadItem( 'geoip', '<script src="//bits.wikimedia.org/geoiplookup"></script>' );
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost ) {
-		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . $wgCentralHost . '" />' );
+		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
 	}
 	// Insert the banner controller
 	$out->addModules( 'ext.centralNotice.bannerController' );
