@@ -62,7 +62,7 @@
 					$.ajax( {
 						url: mw.util.wikiScript(),
 						data: {
-							cache: '/cn.js',
+							bcache: '1',
 							title: mw.config.get( 'wgNoticeBannerListLoader' ),
 							language: mw.config.get( 'wgContentLanguage' ),
 							project: mw.config.get( 'wgNoticeProject' ),
