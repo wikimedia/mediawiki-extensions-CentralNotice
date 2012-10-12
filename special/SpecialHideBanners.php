@@ -28,10 +28,11 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	function setHideCookie() {
 		global $wgNoticeCookieDomain, $wgCookieSecure, $wgNoticeHideBannersExpiration;
 
-		if ( is_numeric( $wgNoticeHideBannersExpiration ) ) {
+		$currentTime = time();
+		if ( is_numeric( $wgNoticeHideBannersExpiration ) && $wgNoticeHideBannersExpiration > $currentTime ) {
 			$exp = $wgNoticeHideBannersExpiration;
 		} else {
-			$exp = time() + 86400 * 14; // Cookie expires after 2 weeks
+			$exp = $currentTime + 86400 * 14; // Cookie expires after 2 weeks
 		}
 		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
