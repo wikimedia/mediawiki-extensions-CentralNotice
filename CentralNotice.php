@@ -98,6 +98,10 @@ $wgNoticeInfrastructure = true;
 // The name of the database which hosts the centralized campaign data
 $wgCentralDBname = $wgDBname;
 
+// The base URL of the wiki that hosts the CentralNotice infrastructure
+// For example '//meta.wikimedia.org'
+$wgCentralHost = false;
+
 // The script path on the wiki that hosts the CentralNotice infrastructure
 // For example 'http://meta.wikimedia.org/w/index.php'
 $wgCentralPagePath = false;
@@ -291,9 +295,14 @@ function efCentralNoticeSchema( $updater = null ) {
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
+	global $wgCentralHost;
 	// Insert the geoIP lookup
 	// TODO: Make this url configurable
 	$out->addHeadItem( 'geoip', '<script src="//bits.wikimedia.org/geoiplookup"></script>' );
+	// Insert DNS prefetch for banner loading
+	if ( $wgCentralHost ) {
+		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . $wgCentralHost . '" />' );
+	}
 	// Insert the banner controller
 	$out->addModules( 'ext.centralNotice.bannerController' );
 	return true;
