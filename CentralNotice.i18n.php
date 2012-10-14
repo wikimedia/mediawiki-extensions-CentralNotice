@@ -5058,7 +5058,7 @@ Ei lisätä',
 Tätä tekoa ei voi perua.',
 	'centralnotice-no-notices-exist' => 'Ei tiedotteita.
 Lisää alapuolella sellainen',
-	'centralnotice-no-templates-translate' => 'Ei bannereita, joiden käännöksiä voisi muokata',
+	'centralnotice-no-templates-translate' => 'Ei bannereita, joiden käännöksiä voisi muokata.',
 	'centralnotice-number-uses' => 'Käyttää',
 	'centralnotice-settings' => 'Asetukset',
 	'centralnotice-edit-template' => 'Muokkaa banneria',
