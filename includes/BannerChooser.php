@@ -2,6 +2,7 @@
 
 class BannerChooser {
 	const ALLOCATION_KEY = 'allocation';
+	const RAND_MAX = 30;
 
 	var $banners = array();
 
@@ -16,16 +17,28 @@ class BannerChooser {
 	}
 
 	/**
-	 * @param float $rand [0-1]
+	 * @param $rand [1-RAND_MAX]
 	 */
-	function chooseBanner( $rand ) {
+	function chooseBanner( $slot ) {
+		// Convert slot to a float, [0-1]
+		$slot = intval( $slot );
+		if ( $slot < 1 || $slot > self::RAND_MAX ) {
+			wfDebugLog( 'CentralNotice', "Illegal banner slot: {$slot}" );
+			$slot = rand( 1, self::RAND_MAX );
+		}
+		$p = $slot / self::RAND_MAX;
+
+		// Choose a banner
 		$counter = 0;
 		foreach ( $this->banners as $banner ) {
 			$counter += $banner[ self::ALLOCATION_KEY ];
-			if ( $rand <= $counter ) {
+			if ( $p <= $counter ) {
 				return $banner;
 			}
 		}
+		// If there is floating-point precision error, we were close to 1.0,
+		// so use the last banner.
+		return $this->banners[ count( $this->banners ) - 1 ];
 	}
 
 	/**
@@ -56,7 +69,7 @@ class BannerChooser {
 
 	// note: lumps all campaigns weights together according to absolute proportions of total.
 	protected function allocate() {
-		$total_weight = array_reduce(
+		$total = array_reduce(
 			$this->banners,
 			function ( $result, $banner ) {
 				return $result + $banner[ 'weight' ];
@@ -64,14 +77,26 @@ class BannerChooser {
 			0
 		);
 
-		if ( $total_weight === 0 ) {
+		if ( $total === 0 ) {
 			//TODO wfDebug
 			return;
 		}
 
-		// Construct the relative weights
 		foreach ( $this->banners as &$banner ) {
-			$banner[ self::ALLOCATION_KEY ] = $banner[ 'weight' ] / $total_weight;
+			$banner[ self::ALLOCATION_KEY ] = $banner[ 'weight' ] / $total;
 		}
+
+		// Quantize to RAND_MAX to give the effective allocations.
+		// Get the closest slot boundary and round to that.
+		$quantum = 1 / self::RAND_MAX;
+		$sum = 0;
+		foreach ( $this->banners as &$banner ) {
+			$sum += $banner[ self::ALLOCATION_KEY ];
+			$error = $sum - round( $sum / $quantum ) * $quantum;
+			$banner[ self::ALLOCATION_KEY ] -= $error;
+			$sum -= $error;
+		}
+		// Arbitrarily move the final banner to 1.0 so we don't have a dead zone.
+		$this->banners[ count( $this->banners ) - 1 ][ self::ALLOCATION_KEY ] += 1.0 - $sum;
 	}
 }

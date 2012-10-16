@@ -1,9 +1,7 @@
 <?php
 // FIXME deprecated in so many ways... assuming we will merge the Api patch here:
+// can be deleted once the bannerController module is updated and purged.
 
-/**
- * Generates JSON files listing all the banners for a particular site
- */
 class SpecialBannerListLoader extends UnlistedSpecialPage {
 	public $project; // Project name
 	public $language; // Project language

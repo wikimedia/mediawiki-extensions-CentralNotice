@@ -98,13 +98,17 @@ $wgNoticeInfrastructure = true;
 // The name of the database which hosts the centralized campaign data
 $wgCentralDBname = false;
 
+// URL where the BannerLoader is hosted, where FALSE will default to
+// the Special:BannerLoader on the machine serving ResourceLoader requests
+// (meta for WMF).  To use our reverse proxy, for example, set this variable
+// to 'http://banners.wikimedia.org/banner_load'.
+$wgCentralBannerDispatcher = false;
+
 // Protocol and host name of the wiki that hosts the CentralNotice infrastructure,
 // for example '//meta.wikimedia.org'. This is used for DNS prefetching.
+// NOTE: this should be the same host as wgCentralBannerDispatcher, above,
+// when on a different subdomain than the wiki.
 $wgCentralHost = false;
-
-// The script path on the wiki that hosts the CentralNotice infrastructure
-// For example 'http://meta.wikimedia.org/w/index.php'
-$wgCentralPagePath = false;
 
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
@@ -145,14 +149,8 @@ $wgNoticeUseTranslateExtension = false;
  */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
-		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
-		$wgNoticeUseTranslateExtension, $wgAPIModules;
-
-	// If $wgCentralPagePath hasn't been set, set it to the local script path.
-	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
-	if ( $wgCentralPagePath === false ) {
-		$wgCentralPagePath = $wgScript;
-	}
+		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgContLang, $wgScript,
+		$wgNoticeUseTranslateExtension, $wgAPIModules, $wgCentralBannerDispatcher;
 
 	$dir = __DIR__ . '/';
 	$specialDir = $dir . 'special/';
@@ -167,6 +165,11 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
 
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
+
+	// Do this here, to ensure that wgScript has been bootstrapped
+	if ( !$wgCentralBannerDispatcher ) {
+		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerLoader' )}";
+	}
 
 	// Register hooks
 	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
@@ -401,11 +404,11 @@ function efCentralNoticeDisplay( &$notice ) {
  * @return bool
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
-	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang,
-		$wgNoticeInfrastructure, $wgNoticeCloseButton;
+	global $wgNoticeFundraisingUrl, $wgContLang,
+		$wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher;
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
-	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
-	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
+	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
+
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
 	}

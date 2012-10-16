@@ -1,14 +1,10 @@
 <?php
-
 /**
- * Generates banner HTML files
+ * Renders banner (jsonp) contents.
+ *
+ * 
  */
 class SpecialBannerLoader extends UnlistedSpecialPage {
-	public $siteName = 'Wikipedia'; // Site name
-	public $language = 'en'; // User language
-	public $campaign = 'undefined'; // Campaign name
-	public $bannerName = '';
-
 	function __construct() {
 		// Register special page
 		parent::__construct( "BannerLoader" );
@@ -16,31 +12,54 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	function execute( $par ) {
 		$this->getOutput()->disable();
-		$this->sendHeaders();
 
 		// Get values from the query string
 		$request = $this->getRequest();
+
+		$this->project = $request->getText( 'project', 'wikipedia' );
+		$this->country = $request->getText( 'country', 'undefined' );
 		$this->language = $request->getText( 'userlang', 'en' );
+		$this->anonymous = $request->getText( 'anonymous', true );
+		$this->bucket = intval( $request->getText( 'bucket', '0' ) );
+
 		$this->siteName = $request->getText( 'sitename', 'Wikipedia' );
 		$this->campaign = $request->getText( 'campaign', 'undefined' );
 
+		$bannerName = false;
+
 		if ( $request->getText( 'banner' ) ) {
 			$bannerName = $request->getText( 'banner' );
-			try {
+		} elseif ( $request->getText( 'slot' ) ) {
+			$slot = $request->getText( 'slot' );
+
+			$chooser = new BannerChooser(
+				$this->project,
+				$this->language,
+				$this->country,
+				$this->anonymous
+				/*$this->bucket,*/
+			);
+			$banner = $chooser->chooseBanner( $slot );
+
+			$bannerName = $banner['name'];
+			$this->campaign = $banner['campaign'];
+		}
+
+		$this->sendHeaders();
+
+		try {
+			if ( $bannerName ) {
 				$content = $this->getJsNotice( $bannerName );
-				if ( preg_match( "/&lt;centralnotice-template-\w+&gt;\z/", $content ) ) {
-					echo "/* Failed cache lookup */";
-				} elseif ( strlen( $content ) == 0 ) {
-					// Hack for IE/Mac 0-length keepalive problem, see RawPage.php
-					echo "/* Empty */";
-				} else {
-					echo $content;
-				}
-			} catch ( SpecialBannerLoaderException $e ) {
-				echo "/* Banner could not be generated */";
 			}
+		} catch ( SpecialBannerLoaderException $e ) {
+			wfDebugLog( 'CentralNotice', "Exception while loading banner: " . $e->getMessage() );
+		}
+
+		if ( $content ) {
+			echo $content;
 		} else {
-			echo "/* No banner specified */";
+			wfDebugLog( 'CentralNotice', "No content retrieved for banner: {$bannerName}" );
+			echo "/* Banner could not be generated */";
 		}
 	}
 
