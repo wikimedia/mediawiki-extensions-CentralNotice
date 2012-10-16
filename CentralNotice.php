@@ -296,9 +296,7 @@ function efCentralNoticeSchema( $updater = null ) {
  */
 function efCentralNoticeLoader( $out, $skin ) {
 	global $wgCentralHost;
-	// Insert the geoIP lookup
-	// TODO: Make this url configurable
-	$out->addHeadItem( 'geoip', '<script src="//bits.wikimedia.org/geoiplookup"></script>' );
+	$out->addHeadItem( 'cb-banner-loader', '<script src="/direct_banner_loader.php"></script>' );
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost ) {
 		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
