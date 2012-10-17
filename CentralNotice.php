@@ -96,7 +96,7 @@ $wgNoticeProjects = array(
 $wgNoticeInfrastructure = true;
 
 // The name of the database which hosts the centralized campaign data
-$wgCentralDBname = $wgDBname;
+$wgCentralDBname = false;
 
 // Protocol and host name of the wiki that hosts the CentralNotice infrastructure,
 // for example '//meta.wikimedia.org'. This is used for DNS prefetching.
