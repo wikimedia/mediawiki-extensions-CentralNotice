@@ -639,6 +639,20 @@ class CentralNotice extends SpecialPage {
 		$this->getOutput()->addHTML( $htmlOut );
 	}
 
+	function getCampaignParams() {
+		return array(
+			'start' => $this->getDateTime( 'start' ),
+			'end' => $this->getDateTime( 'end' ),
+			'enabled' => $request->getCheck( 'enabled' ),
+			'priority' => $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
+			'locked' => $request->getCheck( 'locked' ),
+			'projects' => $request->getArray( 'projects', array() ),
+			'project_languages' => $request->getArray( 'project_languages', array() ),
+			'geotargeted' => $request->getCheck( 'geotargeted' ),
+			'countries' => $request->getArray( 'geo_countries', array() ),
+		);
+	}
+
 	/**
 	 * Retrieve jquery.ui.datepicker date and homebrew time,
 	 * and return as a MW timestamp string.
@@ -693,99 +707,31 @@ class CentralNotice extends SpecialPage {
 							}
 						}
 
-						$initialCampaignSettings = $cndb->getCampaignSettings( $notice );
-
-						// Handle locking/unlocking campaign
-						if ( $request->getCheck( 'locked' ) ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'locked', 1 );
-						} else {
-							$cndb->setBooleanCampaignSetting( $notice, 'locked', 0 );
-						}
-
-						// Handle enabling/disabling campaign
-						if ( $request->getCheck( 'enabled' ) ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 1 );
-						} else {
-							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 0 );
-						}
-
-						// Handle setting campaign priority
-						$cndb->setNumericCampaignSetting(
-							$notice,
-							'preferred',
-							$request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
-							CentralNotice::EMERGENCY_PRIORITY,
-							CentralNotice::LOW_PRIORITY
+						$campaign = new Campaign( $notice );
+						$result = $campaign->updateSettings(
+							$this->getUser(),
+							array(
+								'locked' => $request->getCheck( 'locked' ),
+								'enabled' => $request->getCheck( 'enabled' ),
+								'priority' => $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
+								'geotargeted' => $request->getCheck( 'geotargeted' ),
+								'countries' => $request->getArray( 'geo_countries' ),
+								'start' => $this->getDateTime( 'start' ),
+								'end' => $this->getDateTime( 'end' ),
+								'weight' => $request->getArray( 'weight' ),
+								'addBanners' => $request->getArray( 'addTemplates' ),
+								'removeBanners' => $request->getArray( 'removeTemplates' ),
+								'projects' => $request->getArray( 'projects' ),
+								'project_languages' => $request->getArray( 'project_languages' ),
+							)
 						);
 
-						// Handle updating geotargeting
-						if ( $request->getCheck( 'geotargeted' ) ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'geo', 1 );
-							$countries = $request->getArray( 'geo_countries' );
-							if ( $countries ) {
-								$cndb->updateCountries( $notice, $countries );
+						// If there were no errors, reload the page to prevent duplicate form submission
+						if ( $result ) {
+							foreach ( $result as $error ) {
+								$this->showError( $error );
 							}
 						} else {
-							$cndb->setBooleanCampaignSetting( $notice, 'geo', 0 );
-						}
-
-						// Handle updating the start and end settings
-						$start = $this->getDateTime( 'start' );
-						$end = $this->getDateTime( 'end' );
-						if ( $start && $end ) {
-							$cndb->updateNoticeDate( $notice, $start, $end );
-						}
-
-						// Handle adding of banners to the campaign
-						$templatesToAdd = $request->getArray( 'addTemplates' );
-						if ( $templatesToAdd ) {
-							$weight = $request->getArray( 'weight' );
-							foreach ( $templatesToAdd as $templateName ) {
-								$templateId = $cndb->getTemplateId( $templateName );
-								$result = $cndb->addTemplateTo(
-									$notice, $templateName, $weight[ $templateId ]
-								);
-								if ( $result !== true ) {
-									$this->showError( $result );
-								}
-							}
-						}
-
-						// Handle removing of banners from the campaign
-						$templateToRemove = $request->getArray( 'removeTemplates' );
-						if ( $templateToRemove ) {
-							foreach ( $templateToRemove as $template ) {
-								$cndb->removeTemplateFor( $notice, $template );
-							}
-						}
-
-						// Handle weight changes
-						$updatedWeights = $request->getArray( 'weight' );
-						if ( $updatedWeights ) {
-							foreach ( $updatedWeights as $templateId => $weight ) {
-								$cndb->updateWeight( $notice, $templateId, $weight );
-							}
-						}
-
-						// Handle new projects
-						$projects = $request->getArray( 'projects' );
-						if ( $projects ) {
-							$cndb->updateProjects( $notice, $projects );
-						}
-
-						// Handle new project languages
-						$projectLangs = $request->getArray( 'project_languages' );
-						if ( $projectLangs ) {
-							$cndb->updateProjectLanguages( $notice, $projectLangs );
-						}
-
-						$finalCampaignSettings = $cndb->getCampaignSettings( $notice );
-						$campaignId = $cndb->getNoticeId( $notice );
-						$cndb->logCampaignChange( 'modified', $campaignId, $this->getUser(),
-							$initialCampaignSettings, $finalCampaignSettings );
-
-						// If there were no errors, reload the page to prevent duplicate form submission
-						if ( !$this->centralNoticeError ) {
 							$this->getOutput()->redirect( $this->getTitle()->getLocalUrl( array(
 									'method' => 'listNoticeDetail',
 									'notice' => $notice
@@ -872,33 +818,16 @@ class CentralNotice extends SpecialPage {
 			$readonly = array( 'disabled' => 'disabled' );
 		}
 
-		$cndb = new CentralNoticeDB();
-		$campaign = $cndb->getCampaignSettings( $notice );
+		$campaign = new Campaign( $notice );
 
 		if ( $campaign ) {
 			// If there was an error, we'll need to restore the state of the form
 			$request = $this->getRequest();
 
 			if ( $request->wasPosted() ) {
-				$start = $this->getDateTime( 'start' );
-				$end = $this->getDateTime( 'end' );
-				$isEnabled = $request->getCheck( 'enabled' );
-				$priority = $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY );
-				$isLocked = $request->getCheck( 'locked' );
-				$noticeProjects = $request->getArray( 'projects', array() );
-				$noticeLanguages = $request->getArray( 'project_languages', array() );
-				$isGeotargeted = $request->getCheck( 'geotargeted' );
-				$countries = $request->getArray( 'geo_countries', array() );
+				$params = $this->getCampaignParams();
 			} else { // Defaults
-				$start = $campaign[ 'start' ];
-				$end = $campaign[ 'end' ];
-				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
-				$priority = $campaign[ 'preferred' ];
-				$isLocked = ( $campaign[ 'locked' ] == '1' );
-				$noticeProjects = $cndb->getNoticeProjects( $notice );
-				$noticeLanguages = $cndb->getNoticeLanguages( $notice );
-				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
-				$countries = $cndb->getNoticeCountries( $notice );
+				$params = $campaign->getSettings();
 			}
 
 			// Build Html
@@ -910,48 +839,48 @@ class CentralNotice extends SpecialPage {
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $params['start'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $params['start'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-end-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $this->editable, $end ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'end', $this->editable, $params['end'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-end-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $this->editable, $end ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $this->editable, $params['end'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$this->msg( 'centralnotice-projects' )->escaped() );
 			$htmlOut .= Xml::tags( 'td', array(),
-				$this->projectMultiSelector( $noticeProjects ) );
+				$this->projectMultiSelector( $params['projects'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Languages
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$this->msg( 'centralnotice-languages' )->escaped() );
 			$htmlOut .= Xml::tags( 'td', array(),
-				$this->languageMultiSelector( $noticeLanguages ) );
+				$this->languageMultiSelector( $params['project_languages'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Countries
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::check( 'geotargeted', $isGeotargeted,
+				Xml::check( 'geotargeted', $params['geotargeted'],
 					wfArrayMerge(
 						$readonly,
 						array( 'value' => $notice, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			if ( $isGeotargeted ) {
+			if ( $params['geotargeted'] ) {
 				$htmlOut .= Xml::openElement( 'tr', array( 'id'=> 'geoMultiSelector' ) );
 			} else {
 				$htmlOut .= Xml::openElement( 'tr',
@@ -959,14 +888,14 @@ class CentralNotice extends SpecialPage {
 			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$this->msg( 'centralnotice-countries' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector( $countries ) );
+			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector( $params['countries'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( $this->msg( 'centralnotice-enabled' )->text(), 'enabled' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::check( 'enabled', $isEnabled,
+				Xml::check( 'enabled', $params['enabled'],
 					wfArrayMerge( $readonly,
 						array( 'value' => $notice, 'id' => 'enabled' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
@@ -975,14 +904,14 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( $this->msg( 'centralnotice-preferred' )->text(), 'priority' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				$this::prioritySelector( false, $this->editable, $priority ) );
+				$this::prioritySelector( false, $this->editable, $params['priority'] ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( $this->msg( 'centralnotice-locked' )->text(), 'locked' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::check( 'locked', $isLocked,
+				Xml::check( 'locked', $params['locked'],
 					wfArrayMerge( $readonly,
 						array( 'value' => $notice, 'id' => 'locked' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
@@ -1070,28 +999,18 @@ class CentralNotice extends SpecialPage {
 				$this->weightDropDown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 
+			$banner = new Banner( $row->tmp_name );
+			$lang = $this->getRequest()->getVal( 'wpUserLanguage', $wgLanguageCode );
+			$preview = $banner->previewFieldset( $this->getContext(), $lang );
 			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
 
-			/* XXX this code is duplicated in the CentralNoticePager::formatRow */
-			$render = new SpecialBannerLoader();
-			$render->siteName = 'Wikipedia';
-			$render->language = $this->getRequest()->getVal( 'wpUserLanguage', $wgLanguageCode );
-			try {
-				$preview = $render->getHtmlNotice( $row->tmp_name );
-			} catch ( SpecialBannerLoaderException $e ) {
-				$preview = $this->msg( 'centralnotice-nopreview' )->text();
-			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				Linker::link(
 					$viewPage,
 					htmlspecialchars( $row->tmp_name ),
 					array(),
 					array( 'template' => $row->tmp_name )
-				) . Xml::fieldset(
-					$this->msg( 'centralnotice-preview' )->text(),
-					$preview,
-					array( 'class' => 'cn-bannerpreview' )
-				)
+				) . $preview
 			);
 
 			$htmlOut .= Xml::closeElement( 'tr' );

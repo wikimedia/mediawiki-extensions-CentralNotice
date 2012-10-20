@@ -1002,7 +1002,7 @@ class CentralNoticeDB {
 	 *
 	 * @param $noticeName string: Name of the campaign
 	 * @param $settingName string: Name of a boolean setting (enabled, locked, or geo)
-	 * @param $settingValue int: Value to use for the setting, 0 or 1
+	 * @param $settingValue int: Value to use for the setting, 0, 1 or boolean
 	 */
 	public function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
 		if ( !$this->campaignExists( $noticeName ) ) {
@@ -1010,6 +1010,7 @@ class CentralNoticeDB {
 			return;
 		} else {
 			$settingName = strtolower( $settingName );
+			$settingValue = ( $settingValue ? 1 : 0 );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'cn_notices',
 				array( 'not_' . $settingName => $settingValue ),

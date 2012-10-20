@@ -164,6 +164,8 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
 
+	$wgAutoloadClasses[ 'Banner' ] = $includeDir . 'Banner.php';
+	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 
 	// Do this here, to ensure that wgScript has been bootstrapped
@@ -203,7 +205,7 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
 		
 		if ( $wgNoticeUseTranslateExtension ) {
-			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
+			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
 		}
 
