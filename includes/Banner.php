@@ -33,14 +33,16 @@ class Banner {
 
 	/**
 	 * Extract the raw fields and field names from the banner body source.
-	 * @param string $body The body source of the banner
+	 * @param string $body The unparsed body source of the banner
 	 * @return array
 	 */
 	static function extractMessageFields( $body ) {
+		$expanded = MessageCache::singleton()->transform( $body );
+
 		// Extract message fields from the banner body
 		$fields = array();
 		$allowedChars = Title::legalChars();
-		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
+		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $expanded, $fields );
 
 		// Remove duplicate keys and count occurrences
 		$unique_fields = array_unique( array_flip( $fields[1] ) );

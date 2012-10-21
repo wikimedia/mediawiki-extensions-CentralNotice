@@ -39,12 +39,13 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$definitions = array();
 
 		// Retrieve the body source of the banner
-		$bannerSource = wfMessage(
-			"Centralnotice-template-{$this->bannerPageName}"
-		)->inContentLanguage()->plain();
+		$bodyPage = Title::newFromText(
+			"Centralnotice-template-{$currentTemplate}", NS_MEDIAWIKI );
+		$curRev = Revision::newFromTitle( $bodyPage );
+		$body = $curRev ? $curRev->getText() : '';
 
 		// Extract the list of message fields from the banner source.
-		$fields = Banner::extractMessageFields( $bannerSource );
+		$fields = Banner::extractMessageFields( $body );
 
 		// The MediaWiki page name convention for messages is the same as the
 		// convention for banners themselves, except that it doesn't include
