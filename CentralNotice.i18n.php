@@ -7,8 +7,6 @@
 
 $messages = array();
 
-// Don't create a message named "centralnotice-template" or beginning with "centralnotice-template-" since those terms are reserved in CentralNotice
-
 $messages['en'] = array(
 	'centralnotice' => 'Central notice admin',
 	'noticetemplate' => 'Central notice admin',
@@ -377,35 +375,13 @@ Related messages:
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
 );
 
-/** Goan Konkani (Latin script) (Konknni)
- * @author The Discoverer
- */
-$messages['gom-latn'] = array(
-	'centralnotice-language' => 'Bhas',
-);
-
-/** Turoyo (Ṫuroyo)
- * @author Ariyo
- */
-$messages['tru'] = array(
-	'centralnotice-day' => 'Yawmo',
-	'centralnotice-year' => 'Şato',
-	'centralnotice-month' => 'Yarḥo',
-	'centralnotice-hours' => 'Sa3aye',
-	'centralnotice-min' => 'Daqaye',
-	'centralnotice-change-lang' => 'Mşaḥlaf uLeşono duTurjomo',
-	'centralnotice-languages' => 'Leşone',
-	'centralnotice-language' => 'Leşono',
-	'centralnotice-user' => 'Hadomo',
-);
-
 /** Afrikaans (Afrikaans)
  * @author Naudefj
  * @author පසිඳු කාවින්ද
  */
 $messages['af'] = array(
 	'centralnotice' => 'Bestuur sentrale kennisgewings',
-	'noticetemplate' => 'Sjabloon vir sentrale kennisgewing',
+	'noticetemplate' => 'Sjabloon vir sentrale kennisgewing', # Fuzzy
 	'bannerallocation' => 'Sentrale kennisgewing admin',
 	'centralnoticelogs' => 'Sentrale kennisgewing admin',
 	'right-centralnotice-admin' => 'Bestuur sentrale kennisgewings',
@@ -575,7 +551,7 @@ U kan een hieronder byvoeg',
  */
 $messages['aln'] = array(
 	'centralnotice' => 'admin Qendrore njoftim',
-	'noticetemplate' => 'njoftim Qendrore template',
+	'noticetemplate' => 'njoftim Qendrore template', # Fuzzy
 	'centralnotice-desc' => 'Shton një sitenotice qendrore',
 	'centralnotice-summary' => 'Ky modul ju lejon që të redaktoj setup aktualisht qendrore njoftimeve tuaj. Ajo mund të përdoret gjithashtu për të shtuar ose hequr njoftimeve të vjetër.',
 	'centralnotice-query' => 'Njoftime Modifiko e tanishme',
@@ -597,14 +573,14 @@ $messages['aln'] = array(
 	'centralnotice-translate-to' => 'Translate në',
 	'centralnotice-translate' => 'Përkthej',
 	'centralnotice-english' => 'Anglisht',
-	'centralnotice-banner-name' => 'Emri Template',
+	'centralnotice-banner-name' => 'Emri Template', # Fuzzy
 	'centralnotice-templates' => 'Templates',
 	'centralnotice-weight' => 'Peshë',
 	'centralnotice-locked' => 'I bllokuar',
 	'centralnotice-notices' => 'Njoftime',
 	'centralnotice-notice-exists' => 'Njoftim ekziston. Jo duke shtuar',
 	'centralnotice-template-exists' => 'Template ekziston. Jo duke shtuar',
-	'centralnotice-notice-doesnt-exist' => 'Njoftim nuk ekziston. Asgjë për të hequr',
+	'centralnotice-notice-doesnt-exist' => 'Njoftim nuk ekziston. Asgjë për të hequr', # Fuzzy
 );
 
 /** Amharic (አማርኛ)
@@ -754,7 +730,7 @@ Adhiba-ne uno debaixo.',
 	'centralnotice-percentage' => 'Porcentache',
 	'centralnotice-documentwrite-error' => "No se puede fer servir document.write() dintro d'un banner.
 Mire-se http://meta.wikimedia.org/wiki/Help:CentralNotice ta mas información.",
-	'centralnotice-preferred' => 'Preferiu',
+	'centralnotice-preferred' => 'Preferiu', # Fuzzy
 	'centralnotice-logs' => 'Rechistros',
 	'centralnotice-view-logs' => 'Veyer os rechistros',
 	'centralnotice-timestamp' => 'Calendata y hora',
@@ -1010,7 +986,7 @@ $messages['arc'] = array(
  */
 $messages['arz'] = array(
 	'centralnotice' => 'مدير الاعلانات المركزية',
-	'noticetemplate' => 'قالب الاعلانات المركزية',
+	'noticetemplate' => 'قالب الاعلانات المركزية', # Fuzzy
 	'right-centralnotice-admin' => 'ادارة الاعلانات المركزيه',
 	'action-centralnotice-admin' => 'ادارة الاعلانات المركزية',
 	'centralnotice-desc' => 'بيحط اعلان مركزى للموقع',
@@ -1035,7 +1011,7 @@ $messages['arz'] = array(
 	'centralnotice-translate-to' => 'ترجم لـ',
 	'centralnotice-translate' => 'ترجم',
 	'centralnotice-english' => 'انجليزى',
-	'centralnotice-banner-name' => 'اسم القالب',
+	'centralnotice-banner-name' => 'اسم القالب', # Fuzzy
 	'centralnotice-templates' => 'قوالب',
 	'centralnotice-weight' => 'الوزن',
 	'centralnotice-locked' => 'مقفول',
@@ -1045,7 +1021,7 @@ $messages['arz'] = array(
 	'centralnotice-template-exists' => 'القالب موجود من قبل كده
 مافيش اضافة',
 	'centralnotice-notice-doesnt-exist' => 'الاعلان مش موجود
-مافيش حاجة عشان تتشال',
+مافيش حاجة عشان تتشال', # Fuzzy
 	'centralnotice-template-still-bound' => 'القالب لسة مربوط بالاعلان.
 ماينفعش يتشال.',
 	'centralnotice-template-body' => 'جسم القالب:',
@@ -1089,7 +1065,7 @@ $messages['arz'] = array(
 	'centralnotice-clone' => 'انسخ',
 	'centralnotice-clone-notice' => 'اعمل نسخة من القالب',
 	'centralnotice-preview-all-template-translations' => 'اعرض كل الترجمات الموجودة للقالب',
-	'centralnotice-preferred' => ' مفضله',
+	'centralnotice-preferred' => ' مفضله', # Fuzzy
 );
 
 /** Assamese (অসমীয়া)
@@ -1666,7 +1642,7 @@ $messages['ba'] = array(
 	'centralnotice-percentage' => 'Процент',
 	'centralnotice-documentwrite-error' => 'Был баннерҙа document.write() ҡулланыла алмай.
 Тулыраҡ мәғлүмәт өсөн http://meta.wikimedia.org/wiki/Help:CentralNotice ҡарағыҙ.',
-	'centralnotice-preferred' => 'Өҫтөнлөк бирелгән',
+	'centralnotice-preferred' => 'Өҫтөнлөк бирелгән', # Fuzzy
 	'centralnotice-logs' => 'Журналдар',
 	'centralnotice-view-logs' => 'Журнал ҡарауҙар',
 	'centralnotice-timestamp' => 'Ваҡыт',
@@ -1717,7 +1693,7 @@ $messages['bar'] = array(
  * @author Mostafadaneshvar
  */
 $messages['bcc'] = array(
-	'noticetemplate' => 'تمپلت اعلان مرکزی',
+	'noticetemplate' => 'تمپلت اعلان مرکزی', # Fuzzy
 	'centralnotice-desc' => 'یک مرکزی اخطار سایت هور کنت',
 	'centralnotice-query' => 'عوض کتن نوکین اعلانات',
 	'centralnotice-notice-name' => 'اعلان ءِ نام',
@@ -1943,7 +1919,7 @@ $messages['be-tarask'] = array(
  */
 $messages['bg'] = array(
 	'centralnotice' => 'Администратор на централизираните съобщения',
-	'noticetemplate' => 'Шаблон за централизирани съобщения',
+	'noticetemplate' => 'Шаблон за централизирани съобщения', # Fuzzy
 	'right-centralnotice-admin' => 'Управление на централизираните съобщения',
 	'centralnotice-desc' => 'Добавя главнa сайтова бележка',
 	'centralnotice-summary' => 'Този интерфейс позволява да редактирате текущо съществуващите централизирани съобщения.
@@ -2051,7 +2027,7 @@ $messages['bg'] = array(
 	'centralnotice-percentage' => 'Процент',
 	'centralnotice-documentwrite-error' => 'document.write() не може да се използва в рамките на банер.
 За повече информация вижте http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'centralnotice-preferred' => 'Предпочитано',
+	'centralnotice-preferred' => 'Предпочитано', # Fuzzy
 	'centralnotice-logs' => 'Дневници',
 	'centralnotice-view-logs' => 'Преглед на дневниците',
 	'centralnotice-user' => 'Потребител',
@@ -2660,7 +2636,7 @@ Dodaj jednu ispod',
 	'centralnotice-percentage' => 'Postotak',
 	'centralnotice-documentwrite-error' => 'document.write() se ne može koristiti unutar obavještenja.
 Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
-	'centralnotice-preferred' => 'Preferirano',
+	'centralnotice-preferred' => 'Preferirano', # Fuzzy
 	'centralnotice-logs' => 'Zapisnici',
 	'centralnotice-view-logs' => 'Pogledaj zapisnike',
 	'centralnotice-timestamp' => 'Vremenska oznaka',
@@ -2890,7 +2866,8 @@ $messages['ckb'] = array(
 	'centralnotice-country' => 'وڵات',
 );
 
-/** Corsican (corsu) */
+/** Corsican (corsu)
+ */
 $messages['co'] = array(
 	'centralnotice-message' => 'Messaghju',
 	'centralnotice-clone-name' => 'Nome:',
@@ -3195,7 +3172,7 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-no-allocation' => 'Dim baneri wedi eu dyrannu.',
 	'centralnotice-allocation-description' => 'Dyraniad y baneri ar $1.$2 yn $3:',
 	'centralnotice-percentage' => 'Canran',
-	'centralnotice-preferred' => 'Gorau gennych',
+	'centralnotice-preferred' => 'Pwysigrwydd',
 	'centralnotice-logs' => 'Logiau',
 	'centralnotice-view-logs' => 'Gweld y logiau',
 	'centralnotice-timestamp' => 'Stamp amser',
@@ -3225,6 +3202,10 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-apply-filters' => 'Gosod hidlyddion',
 	'centralnotice-clear-filters' => 'Clirio hidlyddion',
 	'centralnotice-banner-messages' => 'Negeseuon baner',
+	'centralnotice-priority-low' => 'isel',
+	'centralnotice-priority-normal' => 'normal',
+	'centralnotice-priority-high' => 'uchel',
+	'centralnotice-priority-emergency' => 'achos brys',
 );
 
 /** Danish (dansk)
@@ -5603,7 +5584,7 @@ Volyéd vêre http://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enf
  * @author පසිඳු කාවින්ද
  */
 $messages['ga'] = array(
-	'noticetemplate' => 'Teimpléad fógra lárnach',
+	'noticetemplate' => 'Teimpléad fógra lárnach', # Fuzzy
 	'centralnotice-view' => 'Amharc',
 	'centralnotice-preview' => 'Réamhamharc',
 	'centralnotice-day' => 'Lá',
@@ -5795,6 +5776,13 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-priority-emergency' => 'emerxencia',
 );
 
+/** Goan Konkani (Latin script) (Konknni)
+ * @author The Discoverer
+ */
+$messages['gom-latn'] = array(
+	'centralnotice-language' => 'Bhas',
+);
+
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
  * @author Crazymadlover
  * @author Omnipaedista
@@ -5819,7 +5807,7 @@ $messages['grc'] = array(
 	'centralnotice-clone' => 'Κλών',
 	'centralnotice-languages' => 'Γλῶτται',
 	'centralnotice-language' => 'Γλῶττα',
-	'centralnotice-preferred' => 'Προκρινομένη',
+	'centralnotice-preferred' => 'Προκρινομένη', # Fuzzy
 );
 
 /** Swiss German (Alemannisch)
@@ -6489,7 +6477,7 @@ $messages['hi'] = array(
 	'centralnotice-percentage' => 'प्रतिशत',
 	'centralnotice-documentwrite-error' => 'दस्तावेज़.लेख() बैनर के अंदर इस्तेमाल नहीं हो सकता ।
 देखो http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.',
-	'centralnotice-preferred' => 'पसंदीदा',
+	'centralnotice-preferred' => 'पसंदीदा', # Fuzzy
 	'centralnotice-logs' => 'लॉग',
 	'centralnotice-view-logs' => 'लॉग देखें',
 	'centralnotice-timestamp' => 'टाइम मोहर',
@@ -6679,7 +6667,7 @@ Dodajte jednu ispod',
 	'centralnotice-percentage' => 'Postotak',
 	'centralnotice-documentwrite-error' => 'document.write() ne može se rabiti unutar obavijesti.
 Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
-	'centralnotice-preferred' => 'Željeno',
+	'centralnotice-preferred' => 'Željeno', # Fuzzy
 	'centralnotice-talk-link' => 'razgovor',
 	'centralnotice-date' => 'Datum',
 );
@@ -7357,7 +7345,7 @@ Tambahkan di bawah ini.',
 	'centralnotice-percentage' => 'Persentase',
 	'centralnotice-documentwrite-error' => 'document.write() tidak dapat digunakan di dalam pengumuman.
 Lihat http://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih lanjut.',
-	'centralnotice-preferred' => 'Preferensi',
+	'centralnotice-preferred' => 'Preferensi', # Fuzzy
 	'centralnotice-logs' => 'Log',
 	'centralnotice-view-logs' => 'Lihat log',
 	'centralnotice-timestamp' => 'Stempel waktu',
@@ -7629,7 +7617,7 @@ $messages['is'] = array(
 	'centralnotice-modify' => 'Staðfesta',
 	'centralnotice-preview' => 'Forskoðun',
 	'centralnotice-remove' => 'Fjarlægja',
-	'centralnotice-translate-heading' => 'Þýðing fyrir',
+	'centralnotice-translate-heading' => 'Þýðing fyrir', # Fuzzy
 	'centralnotice-add' => 'Bæta við',
 	'centralnotice-translations' => 'Þýðingar',
 	'centralnotice-translate-to' => 'Þýða yfir á',
@@ -9254,7 +9242,7 @@ De kins hiejónger ein biedoon.",
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => 'document.write() kin neet zónger de vaan gebroek waere.
 Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.',
-	'centralnotice-preferred' => 'Prifferensies',
+	'centralnotice-preferred' => 'Prifferensies', # Fuzzy
 	'centralnotice-logs' => 'Logbeuk',
 	'centralnotice-view-logs' => 'Bekiek logbeuk',
 	'centralnotice-timestamp' => 'Tied',
@@ -9416,7 +9404,7 @@ Pridėti vieną žemiau.',
 	'centralnotice-projects' => 'Projektai',
 	'centralnotice-country' => 'Valstybė',
 	'centralnotice-percentage' => 'Procentinė dalis',
-	'centralnotice-preferred' => 'Pageidaujamas',
+	'centralnotice-preferred' => 'Pageidaujamas', # Fuzzy
 	'centralnotice-logs' => 'Veiksmų sąrašas',
 	'centralnotice-view-logs' => 'Peržiūrėti veiksmų istoriją',
 	'centralnotice-timestamp' => 'Laiko žyma',
@@ -9637,7 +9625,7 @@ Tsy nifafàna ilay izy',
 	'centralnotice-message' => 'Hafatra',
 	'centralnotice-clone' => 'Avereno dikao',
 	'centralnotice-clone-notice' => "Angala-tahaka n'ilay endrika",
-	'centralnotice-preferred' => 'Ny tiako/ny tianao/Ny tiny',
+	'centralnotice-preferred' => 'Ny tiako/ny tianao/Ny tiny', # Fuzzy
 );
 
 /** Macedonian (македонски)
@@ -10146,7 +10134,7 @@ $messages['mr'] = array(
 	'centralnotice-percentage' => 'टक्केवारी',
 	'centralnotice-documentwrite-error' => 'दस्तावेज. घोषणाफलकासमवेत लिहा() वापरू शकत नाही.
 अधिक माहितीसाठी http://meta.wikimedia.org/wiki/Help:CentralNotice बघा.',
-	'centralnotice-preferred' => 'प्राधान्य',
+	'centralnotice-preferred' => 'प्राधान्य', # Fuzzy
 	'centralnotice-logs' => 'नोंदी',
 	'centralnotice-view-logs' => 'नोंदी पहा',
 	'centralnotice-timestamp' => 'वेळशिक्का',
@@ -10521,7 +10509,7 @@ $messages['myv'] = array(
 	'centralnotice-add' => 'Поладомс',
 	'centralnotice-add-template' => 'Поладомс лопа парцун',
 	'centralnotice-translations' => 'Ютавтомат',
-	'centralnotice-translate-to' => 'Ютавтомс $1 келентень',
+	'centralnotice-translate-to' => 'Ютавтомс $1 келентень', # Fuzzy
 	'centralnotice-translate' => 'Ютавтомс',
 	'centralnotice-banner-name' => 'Баннеранть лемезэ:',
 	'centralnotice-templates' => 'Лопа парцунт',
@@ -10759,7 +10747,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
  */
 $messages['nds'] = array(
 	'centralnotice' => 'Sitenotice verwalten',
-	'noticetemplate' => 'Vörlaag för Sitenotice',
+	'noticetemplate' => 'Vörlaag för Sitenotice', # Fuzzy
 	'right-centralnotice-admin' => 'Zentrale Siedennotiz verwalten',
 	'action-centralnotice-admin' => 'zentrale Siedennotiz verwalten',
 	'centralnotice-desc' => 'Föögt en zentrale Naricht för de Websteed to',
@@ -10784,7 +10772,7 @@ Dat kann ok bruukt warrn, üm Sitenotices totofögen oder ruttonehmen.',
 	'centralnotice-translate-to' => 'Översetten na',
 	'centralnotice-translate' => 'Översetten',
 	'centralnotice-english' => 'Engelsch',
-	'centralnotice-banner-name' => 'Vörlagennaam',
+	'centralnotice-banner-name' => 'Vörlagennaam', # Fuzzy
 	'centralnotice-templates' => 'Vörlagen',
 	'centralnotice-weight' => 'Gewicht',
 	'centralnotice-locked' => 'Afslaten',
@@ -10794,7 +10782,7 @@ Nix toföögt.',
 	'centralnotice-template-exists' => 'De Vörlaag gifft dat al.
 Nix toföögt.',
 	'centralnotice-notice-doesnt-exist' => 'De Sitenotice gifft dat nich.
-Nix rutnahmen.',
+Nix rutnahmen.', # Fuzzy
 	'centralnotice-template-still-bound' => 'Vörlaag is noch jümmer an en Sitenotice bunnen.
 Nich rutnahmen.',
 	'centralnotice-template-body' => 'Vörlagentext:',
@@ -10838,7 +10826,7 @@ Kannst ünnen een tofögen',
 	'centralnotice-clone' => 'Koperen',
 	'centralnotice-clone-notice' => 'En Kopie vun de Vörlaag maken',
 	'centralnotice-preview-all-template-translations' => 'All vörhannen Översetten vun en Vörlaag ankieken',
-	'centralnotice-preferred' => 'Vörtagen',
+	'centralnotice-preferred' => 'Vörtagen', # Fuzzy
 );
 
 /** Nedersaksisch (Nedersaksisch)
@@ -11113,7 +11101,7 @@ Deze handeling is niet terug te draaien.',
  */
 $messages['nn'] = array(
 	'centralnotice' => 'Administrasjon av sentrale merknader',
-	'noticetemplate' => 'Mal for sentrale merknader',
+	'noticetemplate' => 'Mal for sentrale merknader', # Fuzzy
 	'right-centralnotice-admin' => 'Handtera sentrale merknader',
 	'action-centralnotice-admin' => 'handtera sentrale merknader',
 	'centralnotice-desc' => 'Legg til ein sentral sidemerknad',
@@ -11138,7 +11126,7 @@ Han kan òg bli nytta til å leggja til eller fjerna gamle merknader.',
 	'centralnotice-translate-to' => 'Omset til',
 	'centralnotice-translate' => 'Omset',
 	'centralnotice-english' => 'Engelsk',
-	'centralnotice-banner-name' => 'Malnamn',
+	'centralnotice-banner-name' => 'Malnamn', # Fuzzy
 	'centralnotice-templates' => 'Malar',
 	'centralnotice-weight' => 'Vekt',
 	'centralnotice-locked' => 'Låst',
@@ -11147,7 +11135,7 @@ Han kan òg bli nytta til å leggja til eller fjerna gamle merknader.',
 Legg han ikkje til',
 	'centralnotice-template-exists' => 'Mal finst frå før.
 Legg han ikkje til',
-	'centralnotice-notice-doesnt-exist' => 'Merknad finst ikkje. Ingenting å fjerna',
+	'centralnotice-notice-doesnt-exist' => 'Merknad finst ikkje. Ingenting å fjerna', # Fuzzy
 	'centralnotice-template-still-bound' => 'Malen er framleis kopla til ein merknad. Fjernar han ikkje',
 	'centralnotice-template-body' => 'Malinnhald:',
 	'centralnotice-day' => 'Dag',
@@ -11187,7 +11175,7 @@ Denne handlinga kan ikkje bli omgjort.',
 	'centralnotice-preview-all-template-translations' => 'Førehandsvis alle tilgjengelege omsetjingar av malen',
 	'centralnotice-insert' => 'Sett inn: $1',
 	'centralnotice-country' => 'Land',
-	'centralnotice-preferred' => 'Føretrukke',
+	'centralnotice-preferred' => 'Føretrukke', # Fuzzy
 );
 
 /** Occitan (occitan)
@@ -11196,7 +11184,7 @@ Denne handlinga kan ikkje bli omgjort.',
  */
 $messages['oc'] = array(
 	'centralnotice' => 'Administracion de las notificacions centralas',
-	'noticetemplate' => 'Modèls de las notificacions centralas',
+	'noticetemplate' => 'Modèls de las notificacions centralas', # Fuzzy
 	'right-centralnotice-admin' => 'Gerís las notificacions centralas',
 	'action-centralnotice-admin' => 'gerir las notificacions centralas',
 	'centralnotice-desc' => 'Apond un sitenotice central',
@@ -11221,7 +11209,7 @@ $messages['oc'] = array(
 	'centralnotice-translate-to' => 'Traduire en',
 	'centralnotice-translate' => 'Traduire',
 	'centralnotice-english' => 'Anglés',
-	'centralnotice-banner-name' => 'Nom del modèl',
+	'centralnotice-banner-name' => 'Nom del modèl', # Fuzzy
 	'centralnotice-templates' => 'Modèls',
 	'centralnotice-weight' => 'Pes',
 	'centralnotice-locked' => 'Varrolhat',
@@ -11231,7 +11219,7 @@ Es pas estada aponduda.',
 	'centralnotice-template-exists' => 'Lo modèl existís ja.
 Es pas estat apondut.',
 	'centralnotice-notice-doesnt-exist' => 'La notificacion existís pas.
-I a pas res de suprimir.',
+I a pas res de suprimir.', # Fuzzy
 	'centralnotice-template-still-bound' => 'Lo modèl es encara religat a una notificacion.
 Es pas estat suprimit.',
 	'centralnotice-template-body' => 'Còs del modèl :',
@@ -11284,7 +11272,7 @@ Apondètz-ne una en dejós.',
 	'centralnotice-projects' => 'Projèctes',
 	'centralnotice-country' => 'País',
 	'centralnotice-percentage' => 'Percentatge',
-	'centralnotice-preferred' => 'Preferit',
+	'centralnotice-preferred' => 'Preferit', # Fuzzy
 	'centralnotice-user' => 'Utilizaire',
 	'centralnotice-action' => 'Accion',
 	'centralnotice-changed' => 'Cambiat de <span class="cn-old-value">$1</span> a <span class="cn-new-value">$2</span>',
@@ -12037,7 +12025,7 @@ $messages['pnb'] = array(
 	'centralnotice-percentage' => '٪',
 	'centralnotice-documentwrite-error' => 'ڈوکومنٹ۔لکھو () اک نشان دے اندر نئیں ورتی جاسکدی۔
 ہور جانکاری لئی ویکھو http://meta.wikimedia.org/wiki/Help:CentralNotice',
-	'centralnotice-preferred' => 'چونواں',
+	'centralnotice-preferred' => 'چونواں', # Fuzzy
 	'centralnotice-logs' => 'لاگز',
 	'centralnotice-view-logs' => 'لاگز ویکھو',
 	'centralnotice-timestamp' => 'ویلے دی مہر',
@@ -12481,7 +12469,7 @@ Adicione um abaixo',
 	'centralnotice-percentage' => 'Porcentagem',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'centralnotice-preferred' => 'Preferido',
+	'centralnotice-preferred' => 'Preferido', # Fuzzy
 	'centralnotice-logs' => 'Registros',
 	'centralnotice-view-logs' => 'Ver registros',
 	'centralnotice-timestamp' => 'Data e hora',
@@ -12650,7 +12638,7 @@ Kay qatiqpi hukta yapay',
 	'centralnotice-percentage' => 'Pachakmanta',
 	'centralnotice-documentwrite-error' => "document.write() nisqaqa unanchapi manam llamk'anchu.
 http://meta.wikimedia.org/wiki/Help:CentralNotice nisqapi qhaway willasunaykipaq.",
-	'centralnotice-preferred' => 'Astawan munakusqa',
+	'centralnotice-preferred' => 'Astawan munakusqa', # Fuzzy
 	'centralnotice-logs' => "Hallch'asqakuna",
 	'centralnotice-view-logs' => "Hallch'asqakunata qhaway",
 	'centralnotice-timestamp' => "Pacha q'illpay",
@@ -13709,7 +13697,7 @@ $messages['sah'] = array(
 	'centralnotice-percentage' => 'Бырыһыан',
 	'centralnotice-documentwrite-error' => 'document.write() диэни бааннерга туттар сатаммат.
 Сиһилии: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].',
-	'centralnotice-preferred' => 'Бэрт буолуо этэ',
+	'centralnotice-preferred' => 'Бэрт буолуо этэ', # Fuzzy
 	'centralnotice-logs' => 'Сурунааллар',
 	'centralnotice-view-logs' => 'Сурунааллары көрүү',
 	'centralnotice-timestamp' => 'Дьыла/кэмэ',
@@ -13742,7 +13730,7 @@ $messages['sah'] = array(
  */
 $messages['scn'] = array(
 	'centralnotice' => 'Gistioni di avvisu cintralizzatu',
-	'noticetemplate' => "Template di l'avvisi cintralizzati",
+	'noticetemplate' => "Template di l'avvisi cintralizzati", # Fuzzy
 	'right-centralnotice-admin' => "Gistisci l'avvisi cintralizzati",
 	'action-centralnotice-admin' => "Guverna l'avvisi cintralizzati",
 	'centralnotice-desc' => "Jiunci n'avvisu cintralizzatu a inìzziu pàggina",
@@ -13767,7 +13755,7 @@ $messages['scn'] = array(
 	'centralnotice-translate-to' => 'Tradùci n',
 	'centralnotice-translate' => 'Traduci',
 	'centralnotice-english' => 'Ngrisi',
-	'centralnotice-banner-name' => 'Nomu dû template',
+	'centralnotice-banner-name' => 'Nomu dû template', # Fuzzy
 	'centralnotice-templates' => 'Template',
 	'centralnotice-weight' => 'Pisu',
 	'centralnotice-locked' => 'Bluccatu',
@@ -13776,7 +13764,7 @@ $messages['scn'] = array(
 Nun fu jiunchiutu.',
 	'centralnotice-template-exists' => 'Template già esistenti.
 Nun fu jiunchiutu',
-	'centralnotice-notice-doesnt-exist' => "L'avvisu nun esisti. Nun ce nenti di luvari",
+	'centralnotice-notice-doesnt-exist' => "L'avvisu nun esisti. Nun ce nenti di luvari", # Fuzzy
 	'centralnotice-template-still-bound' => 'Lu template è ancora fissatu a na nutizzia.
 Nun si leva.',
 	'centralnotice-template-body' => 'Lu corpu dû template',
@@ -13820,7 +13808,7 @@ Nun junciutu',
 	'centralnotice-close-title' => 'Chiùi',
 	'centralnotice-banner-anonymous' => 'Utenti anònimi',
 	'centralnotice-percentage' => 'Pircintuali',
-	'centralnotice-preferred' => 'Prifiriti',
+	'centralnotice-preferred' => 'Prifiriti', # Fuzzy
 	'centralnotice-user' => 'Utenti',
 	'centralnotice-action' => 'Azzioni',
 	'centralnotice-action-created' => 'criatu',
@@ -14147,7 +14135,7 @@ Túto operáciu nebude možné vrátiť.',
 	'centralnotice-percentage' => 'Percent',
 	'centralnotice-documentwrite-error' => 'document.write() nie je možné použiť v rámci odkazu.
 Ďalšie informácie nájdete na http://meta.wikimedia.org/wiki/Help:CentralNotice',
-	'centralnotice-preferred' => 'Uprednostňované',
+	'centralnotice-preferred' => 'Uprednostňované', # Fuzzy
 	'centralnotice-logs' => 'Záznamy',
 	'centralnotice-view-logs' => 'Zobraziť záznamy',
 	'centralnotice-timestamp' => 'Datum a čas',
@@ -14958,7 +14946,7 @@ Föich een bietou.',
 	'centralnotice-clone' => 'Klon moakje',
 	'centralnotice-clone-notice' => 'Moak ne Kopie fon ju Foarloage',
 	'centralnotice-preview-all-template-translations' => 'Foarbekiek fon aal do ferföichboare Uursättengen fon ne Foarloage',
-	'centralnotice-preferred' => 'Foarleeken',
+	'centralnotice-preferred' => 'Foarleeken', # Fuzzy
 );
 
 /** Sundanese (Basa Sunda)
@@ -15603,7 +15591,7 @@ $messages['tet'] = array(
  */
 $messages['tg-cyrl'] = array(
 	'centralnotice' => 'Мудири эълони мутамарказ',
-	'noticetemplate' => 'Шаблони эълони мутамарказ',
+	'noticetemplate' => 'Шаблони эълони мутамарказ', # Fuzzy
 	'right-centralnotice-admin' => 'Идоракунии эълонҳои мутамарказ',
 	'action-centralnotice-admin' => 'идоракунии эълонҳои мутамарказ',
 	'centralnotice-desc' => 'Як иттилооти маркази илова мекунад',
@@ -15628,7 +15616,7 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-translate-to' => 'Тарҷума ба',
 	'centralnotice-translate' => 'Тарҷума',
 	'centralnotice-english' => 'Англисӣ',
-	'centralnotice-banner-name' => 'Унвони шаблон',
+	'centralnotice-banner-name' => 'Унвони шаблон', # Fuzzy
 	'centralnotice-templates' => 'Шаблонҳо',
 	'centralnotice-weight' => 'Вазн',
 	'centralnotice-locked' => 'Басташуда',
@@ -15638,7 +15626,7 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-template-exists' => 'Шаблони аллакай мавҷуд аст.
 Изофа намешавад',
 	'centralnotice-notice-doesnt-exist' => 'Эълон вуҷуд надорад.
-Чизе барои пок кардан нест',
+Чизе барои пок кардан нест', # Fuzzy
 	'centralnotice-template-still-bound' => 'Шаблон то ҳол дар як эълоне часпида аст.
 Пок намешавад.',
 	'centralnotice-template-body' => 'Танаи Шаблон:',
@@ -15682,7 +15670,7 @@ $messages['tg-cyrl'] = array(
 	'centralnotice-clone' => 'Клон',
 	'centralnotice-clone-notice' => 'Эҷоди як нусхаи ин шаблон',
 	'centralnotice-preview-all-template-translations' => 'Пешнамоиши ҳамаи тарҷумаҳои дастраси шаблон',
-	'centralnotice-preferred' => 'Тарҷиҳи додашуда',
+	'centralnotice-preferred' => 'Тарҷиҳи додашуда', # Fuzzy
 );
 
 /** Tajik (Latin script) (tojikī)
@@ -15690,7 +15678,7 @@ $messages['tg-cyrl'] = array(
  */
 $messages['tg-latn'] = array(
 	'centralnotice' => "Mudiri e'loni mutamarkaz",
-	'noticetemplate' => "Şabloni e'loni mutamarkaz",
+	'noticetemplate' => "Şabloni e'loni mutamarkaz", # Fuzzy
 	'right-centralnotice-admin' => "Idorakuniji e'lonhoi mutamarkaz",
 	'action-centralnotice-admin' => "idorakuniji e'lonhoi mutamarkaz",
 	'centralnotice-desc' => 'Jak ittilooti markazi ilova mekunad',
@@ -15715,7 +15703,7 @@ On boz metavonad baroi izofa jo pok kardani e'lonhoi kūhna istifoda şavad.",
 	'centralnotice-translate-to' => 'Tarçuma ba',
 	'centralnotice-translate' => 'Tarçuma',
 	'centralnotice-english' => 'Anglisī',
-	'centralnotice-banner-name' => 'Unvoni şablon',
+	'centralnotice-banner-name' => 'Unvoni şablon', # Fuzzy
 	'centralnotice-templates' => 'Şablonho',
 	'centralnotice-weight' => 'Vazn',
 	'centralnotice-locked' => 'Bastaşuda',
@@ -15725,7 +15713,7 @@ Izofa naşud",
 	'centralnotice-template-exists' => 'Şabloni allakaj mavçud ast.
 Izofa nameşavad',
 	'centralnotice-notice-doesnt-exist' => "E'lon vuçud nadorad.
-Cize baroi pok kardan nest",
+Cize baroi pok kardan nest", # Fuzzy
 	'centralnotice-template-still-bound' => "Şablon to hol dar jak e'lone caspida ast.
 Pok nameşavad.",
 	'centralnotice-template-body' => 'Tanai Şablon:',
@@ -15769,7 +15757,7 @@ Dar zer jak e'lone izofa namoed",
 	'centralnotice-clone' => 'Klon',
 	'centralnotice-clone-notice' => 'Eçodi jak nusxai in şablon',
 	'centralnotice-preview-all-template-translations' => 'Peşnamoişi hamai tarçumahoi dastrasi şablon',
-	'centralnotice-preferred' => 'Tarçihi dodaşuda',
+	'centralnotice-preferred' => 'Tarçihi dodaşuda', # Fuzzy
 );
 
 /** Thai (ไทย)
@@ -15781,7 +15769,7 @@ Dar zer jak e'lone izofa namoed",
  */
 $messages['th'] = array(
 	'centralnotice' => 'การจัดการประกาศส่วนกลาง',
-	'noticetemplate' => 'แม่แบบประกาศของส่้วนกลาง',
+	'noticetemplate' => 'แม่แบบประกาศของส่้วนกลาง', # Fuzzy
 	'right-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
 	'action-centralnotice-admin' => 'จัดการประกาศส่วนกลาง',
 	'centralnotice-desc' => 'เพิ่มประกาศส่วนกลางของไซต์',
@@ -15809,7 +15797,7 @@ $messages['th'] = array(
 	'centralnotice-translate-to' => 'แปลเป็นภาษา',
 	'centralnotice-translate' => 'แปล',
 	'centralnotice-english' => 'อังกฤษ',
-	'centralnotice-banner-name' => 'ชื่อแม่แบบ',
+	'centralnotice-banner-name' => 'ชื่อแม่แบบ', # Fuzzy
 	'centralnotice-templates' => 'แม่แบบ',
 	'centralnotice-weight' => 'น้ำหนัก',
 	'centralnotice-locked' => 'ถูกล็อก',
@@ -15819,7 +15807,7 @@ $messages['th'] = array(
 	'centralnotice-template-exists' => 'มีแม่แบบอยู่แล้ว
 จะไม่ทำการเพิ่ม',
 	'centralnotice-notice-doesnt-exist' => 'ไม่มีประกาศ
-ไม่สามารถนำออกได้',
+ไม่สามารถนำออกได้', # Fuzzy
 	'centralnotice-template-still-bound' => 'แม่แบบยังอยู่ในระยะเวลาที่ใช้ประกาศ
 จะไม่ทำการนำออก',
 	'centralnotice-template-body' => 'เนื้อหาของแม่แบบ:',
@@ -15875,7 +15863,7 @@ $messages['th'] = array(
 	'centralnotice-language' => 'ภาษา',
 	'centralnotice-projects' => 'โครงการ',
 	'centralnotice-country' => 'ประเทศ',
-	'centralnotice-preferred' => 'แบบที่เลือก',
+	'centralnotice-preferred' => 'แบบที่เลือก', # Fuzzy
 	'centralnotice-logs' => 'ปูม',
 	'centralnotice-view-logs' => 'ดูปูม',
 	'centralnotice-changed' => 'เปลี่ยนจาก <span class="cn-old-value">$1</span> เป็น <span class="cn-new-value">$2</span>',
@@ -16010,7 +15998,7 @@ Aşak birini goşuň.',
 	'centralnotice-country' => 'Ýurt',
 	'centralnotice-no-allocation' => 'Hiç hili banner ýerleşdirilmändir.',
 	'centralnotice-percentage' => 'Göterim',
-	'centralnotice-preferred' => 'Ileri tutulýan',
+	'centralnotice-preferred' => 'Ileri tutulýan', # Fuzzy
 );
 
 /** Tagalog (Tagalog)
@@ -16367,7 +16355,7 @@ Aşağıya bir tane ekleyin',
 	'centralnotice-percentage' => 'Yüzde',
 	'centralnotice-documentwrite-error' => 'document.write() afiş içinde kullanılamaz.
 Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.',
-	'centralnotice-preferred' => 'Tercih edilen',
+	'centralnotice-preferred' => 'Tercih edilen', # Fuzzy
 	'centralnotice-logs' => 'Kayıtlar',
 	'centralnotice-view-logs' => 'Günlüklerini görüntüle',
 	'centralnotice-timestamp' => 'Zaman damgası',
@@ -16382,6 +16370,21 @@ Daha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresin
 	'centralnotice-date' => 'Tarih',
 	'centralnotice-apply-filters' => 'Süzgeçleri uygula',
 	'centralnotice-clear-filters' => 'Süzgeçleri temizle',
+);
+
+/** Turoyo (Ṫuroyo)
+ * @author Ariyo
+ */
+$messages['tru'] = array(
+	'centralnotice-day' => 'Yawmo',
+	'centralnotice-year' => 'Şato',
+	'centralnotice-month' => 'Yarḥo',
+	'centralnotice-hours' => 'Sa3aye',
+	'centralnotice-min' => 'Daqaye',
+	'centralnotice-change-lang' => 'Mşaḥlaf uLeşono duTurjomo',
+	'centralnotice-languages' => 'Leşone',
+	'centralnotice-language' => 'Leşono',
+	'centralnotice-user' => 'Hadomo',
 );
 
 /** Tatar (Cyrillic script) (татарча)
@@ -16499,7 +16502,7 @@ $messages['tt-cyrl'] = array(
 	'centralnotice-percentage' => 'Процент',
 	'centralnotice-documentwrite-error' => 'document.write() өлгедә кулланырга ярамый.
 Тулырак мәгълүмат: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].',
-	'centralnotice-preferred' => 'Катгый рәвештә',
+	'centralnotice-preferred' => 'Катгый рәвештә', # Fuzzy
 );
 
 /** Tuvinian (тыва дыл)
@@ -16930,7 +16933,7 @@ Zónteghene una qua soto.',
 	'centralnotice-percentage' => 'Persentuale',
 	'centralnotice-documentwrite-error' => 'document.write() no se pol dopararlo drento un banner.
 Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
-	'centralnotice-preferred' => 'Preferìo',
+	'centralnotice-preferred' => 'Preferìo', # Fuzzy
 );
 
 /** Veps (vepsän kel’)
@@ -17218,7 +17221,7 @@ $messages['vo'] = array(
 	'centralnotice-translate-to' => 'Tradutön ini',
 	'centralnotice-translate' => 'Tradutön',
 	'centralnotice-english' => 'Linglänapük',
-	'centralnotice-banner-name' => 'Nem samafomota',
+	'centralnotice-banner-name' => 'Nem samafomota', # Fuzzy
 	'centralnotice-templates' => 'Samafomots',
 	'centralnotice-locked' => 'Pelökofärmükon',
 	'centralnotice-template-exists' => 'Samafomot ya dabinon.
@@ -17246,7 +17249,7 @@ Dun at obinon nesädunovik.',
 	'centralnotice-message' => 'Nun',
 	'centralnotice-clone-notice' => 'Jafön kopiedi samafomota',
 	'centralnotice-preview-all-template-translations' => 'Büologed tradutodas gebidik valik samafomota',
-	'centralnotice-preferred' => 'Pebuüköl',
+	'centralnotice-preferred' => 'Pebuüköl', # Fuzzy
 );
 
 /** Walloon (walon)
@@ -17788,4 +17791,3 @@ $messages['zh-hant'] = array(
 	'centralnotice-priority-high' => '高',
 	'centralnotice-priority-emergency' => '緊急',
 );
-
