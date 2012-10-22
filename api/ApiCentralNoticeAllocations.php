@@ -18,6 +18,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		// Get our language/project/country
 		$params = $this->extractRequestParams();
 
+		//TODO typo
 		$project = ApiCentralNoticeAllocations::sanatizeText(
 			$params[ 'project' ],
 			SpecialBannerListLoader::PROJECT_FILTER,
@@ -36,13 +37,11 @@ class ApiCentralNoticeAllocations extends ApiBase {
 			ApiCentralNoticeAllocations::DEFAULT_LANGUAGE
 		);
 
-		// OK, now run the banner query
-		$cndb = new CentralNoticeDB();
-		$campaigns = $cndb->getCampaigns( $project, $language, $country );
-		$banners = $cndb->getCampaignBanners( $campaigns );
-
-		$anonBanners = $cndb->filterBanners( $banners, 'display_anon', 'allocation', $anonCampaigns );
-		$accountBanners = $cndb->filterBanners( $banners, 'display_account', 'allocation', $accountCampaigns );
+		// TODO api handles single or plural criteria
+		$anonChooser = new BannerChooser( $project, $language, $country, true );
+		$anonBanners = $anonChooser->banners;
+		$accountChooser = new BannerChooser( $project, $language, $country, false );
+		$accountBanners = $accountChooser->banners;
 
 		$result->addValue( array( 'cn-banner-allocations' ), 'anon', $anonBanners );
 		$result->addValue( array( 'cn-banner-allocations' ), 'account', $accountBanners );

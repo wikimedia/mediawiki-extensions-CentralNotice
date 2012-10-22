@@ -1,4 +1,5 @@
 <?php
+// FIXME deprecated in so many ways... assuming we will merge the Api patch here:
 
 /**
  * Generates JSON files listing all the banners for a particular site

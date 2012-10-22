@@ -210,19 +210,6 @@ class SpecialBannerAllocation extends CentralNotice {
 			SpecialBannerListLoader::LOCATION_FILTER
 		);
 
-		$cndb = new CentralNoticeDB();
-		$campaigns = $cndb->getCampaigns( $project, $language, $location );
-		$banners = $cndb->getCampaignBanners( $campaigns );
-
-		// Filter appropriately
-		$anonCampaigns = array();
-		$accountCampaigns = array();
-
-		$anonBanners = $cndb->filterBanners( $banners, 'display_anon', 'anon_weight', $anonCampaigns );
-		$accountBanners = $cndb->filterBanners( $banners, 'display_account', 'account_weight', $accountCampaigns );
-
-		$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
-
 		// Begin building HTML
 		$htmlOut = '';
 
@@ -238,14 +225,21 @@ class SpecialBannerAllocation extends CentralNotice {
 			)->text()
 		);
 
+		// FIXME bannerstats is toast
 		// Build campaign list for bannerstats.js
-		$campaignList = FormatJson::encode( $campaignsUsed );
-		$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
-		$htmlOut .= Html::inlineScript( $js );
+		//$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
+		//
+		//$campaignList = FormatJson::encode( $campaignsUsed );
+		//$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
+		//$htmlOut .= Html::inlineScript( $js );
 
 		// And now print the allocation tables
-		$htmlOut .= $this->getTable( $this->msg( 'centralnotice-banner-anonymous' )->text(), $anonBanners, 'anon_weight' );
-		$htmlOut .= $this->getTable( $this->msg( 'centralnotice-banner-logged-in' )->text(), $accountBanners, 'account_weight' );
+		// FIXME matrix is chosen dynamically based on UI stuff
+		$anonAllocator = new BannerChooser( $project, $language, $location, true );
+		$accountAllocator = new BannerChooser( $project, $language, $location, false );
+
+		$htmlOut .= $this->getTable( $this->msg( 'centralnotice-banner-anonymous' )->text(), $anonAllocator->banners );
+		$htmlOut .= $this->getTable( $this->msg( 'centralnotice-banner-logged-in' )->text(), $accountAllocator->banners );
 
 		// End Allocation list fieldset
 		$htmlOut .= Html::closeElement( 'fieldset' );
@@ -257,10 +251,9 @@ class SpecialBannerAllocation extends CentralNotice {
 	 * Generate the HTML for an allocation table
 	 * @param $type string The title for the table
 	 * @param $banners array The banners to list
-	 * @param $weightKey int The total weight of the banners
 	 * @return HTML for the table
 	 */
-	public function getTable( $type, $banners, $weightKey ) {
+	public function getTable( $type, $banners ) {
 		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
@@ -282,7 +275,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 			foreach ( $banners as $banner ) {
 
-				$percentage = round( $banner[$weightKey] * 100, 2 );
+				$percentage = round( $banner['allocation'] * 100, 2 );
 
 				$htmlOut .= Html::openElement( 'tr' );
 				$htmlOut .= Html::openElement( 'td' );

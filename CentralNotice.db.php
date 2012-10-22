@@ -674,56 +674,6 @@ class CentralNoticeDB {
 	}
 
 	/**
-	 * @param array  $banners
-	 * @param string $filterKey
-	 * @param string $weightKey
-	 * @param array  $campaignWeights
-	 *
-	 * @return array
-	 */
-	public function filterBanners( $banners, $filterKey, $weightKey, &$campaignWeights = array() ) {
-		$campaignZLevel = CentralNotice::LOW_PRIORITY;
-		$filteredBanners = array();
-
-		// Just in case they didn't provide us with a weights array.
-		if ( $campaignWeights === null ) {
-			$campaignWeights = array();
-		}
-
-		// Find the highest Z level
-		foreach ( $banners as $banner ) {
-			if ( ( $banner[ 'campaign_z_index' ] > $campaignZLevel ) && ( $banner[ $filterKey ] == true ) ) {
-				$campaignZLevel = $banner[ 'campaign_z_index' ];
-			}
-		}
-
-		// Determine the weighting factors
-		foreach ( $banners as $banner ) {
-			if ( ( $banner[ 'campaign_z_index' ] == $campaignZLevel ) && ( $banner[ $filterKey ] == true ) ) {
-				if ( array_key_exists( $banner[ 'campaign' ], $campaignWeights ) ) {
-					$campaignWeights[ $banner[ 'campaign' ] ] += $banner[ 'weight' ];
-				} else {
-					$campaignWeights[ $banner[ 'campaign' ] ] = $banner[ 'weight' ];
-				}
-			}
-		}
-
-		// Construct the relative weights
-		foreach ( $banners as $banner ) {
-			if ( ( $banner[ 'campaign_z_index' ] == $campaignZLevel ) && ( $banner[ $filterKey ] == true ) ) {
-
-				$banner[ $weightKey ] = ( $banner[ 'weight' ] / $campaignWeights[ $banner[ 'campaign' ] ] );
-				$banner[ $weightKey ] *= 1 / count( $campaignWeights );
-
-				$filteredBanners[ ] = $banner;
-			}
-		}
-
-		// Return everything
-		return $filteredBanners;
-	}
-
-	/**
 	 * Get all the campaigns in the database
 	 *
 	 * @return array an array of campaign names

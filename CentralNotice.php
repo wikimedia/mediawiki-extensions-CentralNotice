@@ -157,6 +157,7 @@ function efCentralNoticeSetup() {
 	$dir = __DIR__ . '/';
 	$specialDir = $dir . 'special/';
 	$apiDir = $dir . 'api/';
+	$includeDir = $dir . 'includes/';
 
 	// Register files
 	$wgAutoloadClasses[ 'CentralNoticeDB' ] = $dir . 'CentralNotice.db.php';
@@ -164,6 +165,8 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
+
+	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 
 	// Register hooks
 	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
