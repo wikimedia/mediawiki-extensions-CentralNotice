@@ -75,19 +75,17 @@ class SpecialNoticeTemplate extends CentralNotice {
 				if ( $method == 'addTemplate' ) {
 					$newTemplateName = $request->getText( 'templateName' );
 					$newTemplateBody = $request->getText( 'templateBody' );
-					if ( $newTemplateName != '' && $newTemplateBody != '' ) {
-						$this->addTemplate(
-							$newTemplateName,
-							$newTemplateBody,
-							$request->getBool( 'displayAnon' ),
-							$request->getBool( 'displayAccount' ),
-							$request->getBool( 'fundraising' ),
-							$request->getBool( 'autolink' ),
-							$request->getVal( 'landingPages' )
-						);
+					$success = $this->addTemplate(
+						$newTemplateName,
+						$newTemplateBody,
+						$request->getBool( 'displayAnon' ),
+						$request->getBool( 'displayAccount' ),
+						$request->getBool( 'fundraising' ),
+						$request->getBool( 'autolink' ),
+						$request->getVal( 'landingPages' )
+					);
+					if ( $success ) {
 						$sub = 'view';
-					} else {
-						$this->showError( 'centralnotice-null-string' );
 					}
 				}
 
@@ -794,7 +792,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 			NS_MEDIAWIKI
 		);
 		$wikiPage = new WikiPage( $title );
-		$wikiPage->doEdit( $translation, '', EDIT_FORCE_BOT );
+		$content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
+		$wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
 	}
 
 	// @todo Can CentralNotice::getTemplateId() be updated and reused?
@@ -824,6 +823,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 	}
 
 	public function removeTemplate( $name ) {
+		global $wgNoticeUseTranslateExtension;
+
 		$id = $this->getTemplateId( $name );
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
@@ -851,8 +852,10 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$pageId = $article->getPage()->getId();
 			$article->doDeleteArticle( 'CentralNotice automated removal' );
 
-			// Remove any revision tags related to the banner
-			$this->removeTag( 'banner:translate', $pageId );
+			if ( $wgNoticeUseTranslateExtension ) {
+				// Remove any revision tags related to the banner
+				$this->removeTag( 'banner:translate', $pageId );
+			}
 		}
 	}
 
@@ -911,7 +914,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$wikiPage = new WikiPage(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-			$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
+			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
+			$pageResult = $wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Get the revision and page ID of the page that was created
