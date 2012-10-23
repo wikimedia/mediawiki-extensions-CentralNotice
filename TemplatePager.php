@@ -60,8 +60,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function getIndexField() {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->tableName( 'cn_templates' ) . '.tmp_id';
+		return 'tmp_id';
 	}
 
 	/**

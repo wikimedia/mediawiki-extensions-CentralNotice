@@ -40,24 +40,30 @@ class CentralNoticePager extends TemplatePager {
 		if ( $noticeId ) {
 			// Return all the banners not already assigned to the current campaign
 			return array(
-				'tables'     => array( 'cn_assignments', 'cn_templates' ),
-				'fields'     => array( 'cn_templates.tmp_name', 'cn_templates.tmp_id' ),
-				'conds'      => array(
-					'cn_assignments.tmp_id IS NULL',
+				'tables' => array(
+					'assignments' => 'cn_assignments',
+					'templates' => 'cn_templates',
+				),
+
+				'fields' => array( 'templates.tmp_name', 'templates.tmp_id' ),
+
+				'conds' => array(
+					'assignments.tmp_id IS NULL',
 					'tmp_name' . $dbr->buildLike( $likeArray )
 				),
+
 				'join_conds' => array(
-					'cn_assignments' => array(
+					'assignments' => array(
 						'LEFT JOIN',
-						"cn_assignments.tmp_id = cn_templates.tmp_id " .
-							"AND cn_assignments.not_id = $noticeId"
+						"assignments.tmp_id = templates.tmp_id " .
+							"AND assignments.not_id = $noticeId"
 					)
 				)
 			);
 		} else {
 			// Return all the banners in the database
 			return array(
-				'tables' => 'cn_templates',
+				'tables' => array( 'templates' => 'cn_templates'),
 				'fields' => array( 'tmp_name', 'tmp_id' ),
 				'conds'  => array( 'tmp_name' . $dbr->buildLike( $likeArray ) ),
 			);

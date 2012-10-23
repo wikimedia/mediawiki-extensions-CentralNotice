@@ -22,7 +22,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 */
 	function getQueryInfo() {
 		return array(
-			'tables' => array( 'cn_template_log' ),
+			'tables' => array( 'template_log' => 'cn_template_log' ),
 			'fields' => '*',
 		);
 	}

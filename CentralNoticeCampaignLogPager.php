@@ -43,7 +43,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$reset = $request->getVal( 'centralnoticelogreset' );
 
 		$info = array(
-			'tables' => array( 'cn_notice_log' ),
+			'tables' => array( 'notice_log' => 'cn_notice_log' ),
 			'fields' => '*',
 			'conds' => array()
 		);

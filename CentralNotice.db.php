@@ -43,7 +43,7 @@ class CentralNoticeDB {
 			$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
 		}
 
-		$tables = array( 'cn_notices' );
+		$tables = array( 'notices' => 'cn_notices' );
 		$conds = array(
 			"not_start <= $encTimestamp",
 			"not_end >= $encTimestamp",
@@ -55,25 +55,25 @@ class CentralNoticeDB {
 
 		// common components: cn_notice_projects
 		if ( $project ) {
-			$tables[ ] = 'cn_notice_projects';
+			$tables[ 'notice_projects' ] = 'cn_notice_projects';
 
-			$conds[ ] = 'np_notice_id = cn_notices.not_id';
+			$conds[ ] = 'np_notice_id = notices.not_id';
 			$conds[ 'np_project' ] = $project;
 		}
 
 		// common components: language
 		if ( $language ) {
-			$tables[ ] = 'cn_notice_languages';
+			$tables[ 'notice_languages' ] = 'cn_notice_languages';
 
-			$conds[ ] = 'nl_notice_id = cn_notices.not_id';
+			$conds[ ] = 'nl_notice_id = notices.not_id';
 			$conds[ 'nl_language' ] = $language;
 		}
 
 		// If a location is passed, also pull geotargeted campaigns that match the location
 		if ( $location ) {
-			$tables[ ] = 'cn_notice_countries';
+			$tables[ 'notice_countries' ] = 'cn_notice_countries';
 
-			$conds[ ] = 'nc_notice_id = cn_notices.not_id';
+			$conds[ ] = 'nc_notice_id = notices.not_id';
 			$conds[ ] = 'nc_country = ' . $dbr->addQuotes( $location ) . ' OR not_geo = 0';
 		} else {
 			$conds[ 'not_geo' ] = 0;
@@ -113,7 +113,7 @@ class CentralNoticeDB {
 
 		// Get campaign info from database
 		$row = $dbr->selectRow(
-			'cn_notices',
+			array('notices' => 'cn_notices'),
 			array(
 				'not_id',
 				'not_start',
@@ -121,7 +121,7 @@ class CentralNoticeDB {
 				'not_enabled',
 				'not_preferred',
 				'not_locked',
-				'not_geo'
+				'not_geo',
 			),
 			array( 'not_name' => $campaignName ),
 			__METHOD__
@@ -133,7 +133,7 @@ class CentralNoticeDB {
 				'enabled'   => $row->not_enabled,
 				'preferred' => $row->not_preferred,
 				'locked'    => $row->not_locked,
-				'geo'       => $row->not_geo
+				'geo'       => $row->not_geo,
 			);
 		}
 
@@ -196,7 +196,7 @@ class CentralNoticeDB {
 					'tmp_autolink',
 					'tmp_landing_pages',
 					'not_name',
-					'not_preferred'
+					'not_preferred',
 				),
 				array(
 					'notices.not_id' => $campaigns,
@@ -1051,6 +1051,13 @@ class CentralNoticeDB {
 		}
 	}
 
+	/**
+	 * Updates the weight of a banner in a campaign.
+	 *
+	 * @param $noticeName   Name of the campaign to update
+	 * @param $templateId   ID of the banner in the campaign
+	 * @param $weight       New banner weight
+	 */
 	function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$noticeId = $this->getNoticeId( $noticeName );
