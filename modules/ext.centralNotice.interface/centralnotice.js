@@ -107,6 +107,7 @@ window.validateBannerForm = function( form ) {
 };
 
 jQuery(document).ready( function ( $ ) {
+	var bucketCheck, buckets;
 
 	// Render jquery.ui.datepicker on appropriate fields
 	$( '.centralnotice-datepicker' ).each( function () {
@@ -136,7 +137,7 @@ jQuery(document).ready( function ( $ ) {
 
 	// Reveal the geoMultiSelector when the geotargetted checkbox is checked
 	$( '#geotargeted' ).click(function () {
-		if ( $( '#geotargeted:checked' ).val() !== undefined ) {
+		if ( this.checked ) {
 			$( '#geoMultiSelector' ).fadeIn( 'fast' );
 		} else {
 			$( '#geoMultiSelector' ).fadeOut( 'fast' );
@@ -145,7 +146,7 @@ jQuery(document).ready( function ( $ ) {
 
 	// Reveal the landing page interface when the autolink checkbox is checked
 	$( '#autolink' ).click(function () {
-		if ( $( '#autolink:checked' ).val() !== undefined ) {
+		if ( $( '#autolink' ).prop( 'checked' ) ) {
 			$( '#autolinkInterface' ).fadeIn( 'fast' );
 		} else {
 			$( '#autolinkInterface' ).fadeOut( 'fast' );
@@ -158,4 +159,15 @@ jQuery(document).ready( function ( $ ) {
 		$(this).parent( 'td' )
 			.data( 'sortValue', Number( this.checked ) );
 	} );
+
+	// Bucketing! Disable bucket selectors if #buckets is not checked.
+	bucketCheck = $( '#buckets' );
+	buckets = $( 'select[id^="bucketSelector"]' );
+
+	bucketCheck.on( 'change click blur', function () {
+		buckets.prop( 'disabled', !this.checked );
+	});
+
+	// Initial state
+	buckets.prop( 'disabled', !bucketCheck.prop( 'checked' ) );
 } );
