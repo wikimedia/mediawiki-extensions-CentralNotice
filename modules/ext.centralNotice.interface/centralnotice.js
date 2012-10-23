@@ -158,4 +158,17 @@ jQuery(document).ready( function ( $ ) {
 		$(this).parent( 'td' )
 			.data( 'sortValue', Number( this.checked ) );
 	} );
+
+    // Bucketing! On load set disabled if required, then change state based on checkbox
+    if ( $( '#buckets:checked' ).val() == undefined ) {
+        $("select[id^='bucket']").each( function() { $(this).attr( 'disabled', 'true' ) });
+    }
+    $( '#buckets' ).click(function() {
+        var els = $("select[id^='bucket']");
+        if ( $( '#buckets:checked' ).val() !== undefined ) {
+            els.each( function() { $(this).removeAttr( 'disabled' ) });
+        } else {
+            els.each( function() { $(this).attr( 'disabled', 'true' ) });
+        }
+    });
 } );

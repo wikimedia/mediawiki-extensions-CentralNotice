@@ -288,6 +288,12 @@ function efCentralNoticeSchema( $updater = null ) {
 				$base . '/patches/patch-template_autolink.sql', true
 			)
 		);
+		$updater->addExtensionUpdate(
+			array(
+				'addField', 'cn_notices', 'not_buckets',
+				$base . '/patches/patch-bucketing.sql', true
+			)
+		);
 	}
 	return true;
 }

@@ -36,8 +36,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				$this->project,
 				$this->language,
 				$this->country,
-				$this->anonymous
-				/*$this->bucket,*/
+				$this->anonymous,
+				$this->bucket
 			);
 			$banner = $chooser->chooseBanner( $slot );
 
