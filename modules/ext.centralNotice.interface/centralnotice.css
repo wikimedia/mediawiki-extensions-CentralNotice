@@ -12,6 +12,10 @@
 	padding: 1em;
 	border-top: 1px solid;
 }
+/* XXX: uncollapse */
+#preferences fieldset.prefsection.collapsed {
+	display: none;
+}
 #preferences fieldset.prefsection:first-child {
 	border-top: none;
 }

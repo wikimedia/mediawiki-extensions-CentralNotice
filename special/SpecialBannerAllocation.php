@@ -103,7 +103,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut = '';
 
 		// Begin Allocation selection fieldset
-		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' /*. ( $this->project ? ' collapsed' : '' )*/ ) );
 
 		$htmlOut .= Html::openElement( 'form', array( 'method' => 'get' ) );
 		$htmlOut .= Html::element( 'h2', array(), $this->msg( 'centralnotice-view-allocation' )->text() );
@@ -115,7 +115,8 @@ class SpecialBannerAllocation extends CentralNotice {
 			array( 'style' => 'width: 20%;' ),
 			$this->msg( 'centralnotice-project-name' )->text() );
 		$htmlOut .= Html::openElement( 'td' );
-		$htmlOut .= Html::openElement( 'select', array( 'name' => 'project' ) );
+		$htmlOut .= Html::openElement( 'select', array( 'name' => 'project[]', 'multiple' => 'true' ) );
+		//TODO js gray-out invalid rows, or filter lists
 
 		foreach ( $wgNoticeProjects as $value ) {
 			$htmlOut .= Xml::option( $value, $value, $value === $this->project );
@@ -140,7 +141,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		ksort( $languages );
 
-		$htmlOut .= Html::openElement( 'select', array( 'name' => 'language' ) );
+		$htmlOut .= Html::openElement( 'select', array( 'name' => 'language[]', 'multiple' => 'true' ) );
 
 		foreach( $languages as $code => $name ) {
 			$htmlOut .= Xml::option(
@@ -159,7 +160,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$cndb = new CentralNoticeDB();
 		$countries = $cndb->getCountriesList( $userLanguageCode );
 
-		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
+		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country[]', 'multiple' => 'true' ) );
 
 		foreach( $countries as $code => $name ) {
 			$htmlOut .= Xml::option( $name, $code, $code === $this->location );
@@ -190,15 +191,22 @@ class SpecialBannerAllocation extends CentralNotice {
 		$out->addHTML( Html::closeElement( 'div' ) );
 	}
 
+	//XXX
+	function getMulti( $key ) {
+		return $_GET[ $key ];
+		//return $this->getRequest()->getText( $key );
+	}
+
 	/**
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
 	public function showList() {
 		// Obtain all banners & campaigns
 		$request = $this->getRequest();
-		$project = $request->getText('project');
-		$country = $request->getText('country');
-		$language = $request->getText('language');
+		$project = $this->getMulti('project');
+		$country = $this->getMulti('country');
+		$language = $this->getMulti('language');
+error_log(var_export($this->language, TRUE));
 
 		// Begin building HTML
 		$htmlOut = '';
@@ -223,13 +231,20 @@ class SpecialBannerAllocation extends CentralNotice {
 		//$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
 		//$htmlOut .= Html::inlineScript( $js );
 
-		// FIXME matrix is chosen dynamically based on more UI inputs
-		$matrix = array(
-			array( 'anonymous' => 'true', 'bucket' => '0' ),
-			array( 'anonymous' => 'true', 'bucket' => '1' ),
-			array( 'anonymous' => 'false', 'bucket' => '0' ),
-			array( 'anonymous' => 'false', 'bucket' => '1' ),
-		);
+		$matrix_split = function ( &$matrix, $key, $values ) {
+			$out = array();
+			foreach ( $matrix as $row ) {
+				foreach ( $values as $val ) {
+					$out[] = array( $key => $val ) + $row;
+				}
+			}
+			$matrix = $out;
+		};
+		$matrix = array( array() );
+		$matrix_split( $matrix, 'anonymous', array( 'true', 'false' ) );
+		$matrix_split( $matrix, 'bucket', array( '0', '1' ) );
+		$matrix_split( $matrix, 'language', $this->language );
+
 		foreach ( $matrix as $target ) {
 			$banners = ApiCentralNoticeAllocations::getAllocationInformation(
 				$project,
@@ -334,3 +349,5 @@ class SpecialBannerAllocation extends CentralNotice {
 		return $htmlOut;
 	}
 }
+
+//class AllocationsMatrix {
