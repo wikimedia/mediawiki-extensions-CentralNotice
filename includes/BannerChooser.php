@@ -65,6 +65,9 @@ class BannerChooser {
 			$highest_z = max( $banner[ 'campaign_z_index' ], $highest_z );
 		}
 		$filterColumn( $this->banners, 'campaign_z_index', $highest_z );
+
+		// Reset the keys
+		$this->banners = array_values( $this->banners );
 	}
 
 	// note: lumps all campaigns weights together according to absolute proportions of total.
