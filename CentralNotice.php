@@ -163,6 +163,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
+	$wgAutoloadClasses[ 'SpecialCNVarnishEndpoint' ] = $specialDir . 'SpecialCNVarnishEndpoint.php';
 
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 
@@ -189,6 +190,7 @@ function efCentralNoticeSetup() {
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
 	$wgSpecialPages[ 'BannerListLoader' ] = 'SpecialBannerListLoader';
 	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';
+	$wgSpecialPages[ 'CNVarnishEndpoint' ] = 'SpecialCNVarnishEndpoint';
 
 	// If this is the wiki that hosts the management interface, load further components
 	if ( $wgNoticeInfrastructure ) {
