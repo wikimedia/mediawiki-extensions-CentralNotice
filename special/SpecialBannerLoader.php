@@ -17,7 +17,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$request = $this->getRequest();
 
 		$this->project = $request->getText( 'project', 'wikipedia' );
-		$this->country = $request->getText( 'country', 'undefined' );
+		$this->country = $request->getText( 'country', 'XX' );
 		$this->language = $request->getText( 'userlang', 'en' );
 		$this->anonymous = $request->getText( 'anonymous', true );
 		$this->bucket = intval( $request->getText( 'bucket', '0' ) );

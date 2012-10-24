@@ -69,39 +69,27 @@ class CentralNoticeDB {
 			$conds[ 'nl_language' ] = $language;
 		}
 
-		// Pull the notice IDs of the non geotargeted campaigns
+		// If a location is passed, also pull geotargeted campaigns that match the location
+		if ( $location ) {
+			$tables[ ] = 'cn_notice_countries';
+
+			$conds[ ] = 'nc_notice_id = cn_notices.not_id';
+			$conds[ ] = 'nc_country = ' . $dbr->addQuotes( $location ) . ' OR not_geo = 0';
+		} else {
+			$conds[ 'not_geo' ] = 0;
+		}
+
+		// Pull the notice IDs
 		$res = $dbr->select(
 			$tables,
 			'not_id',
-			array_merge( $conds, array( 'not_geo' => 0 ) ),
+			$conds,
 			__METHOD__
 		);
 
 		// Loop through result set and return ids
 		foreach ( $res as $row ) {
 			$notices[ ] = $row->not_id;
-		}
-
-		// If a location is passed, also pull geotargeted campaigns that match the location
-		if ( $location ) {
-			$tables[ ] = 'cn_notice_countries';
-
-			$conds[ 'not_geo' ] = 1;
-			$conds[ ] = 'nc_notice_id = cn_notices.not_id';
-			$conds[ 'nc_country' ] = $location;
-
-			// Pull the notice IDs
-			$res = $dbr->select(
-				$tables,
-				'not_id',
-				$conds,
-				__METHOD__
-			);
-
-			// Loop through result set and return ids
-			foreach ( $res as $row ) {
-				$notices[ ] = $row->not_id;
-			}
 		}
 
 		return $notices;
@@ -422,6 +410,7 @@ class CentralNoticeDB {
 			$countries = CountryNames::getNames( $code );
 		}
 
+		// If not via CLDR, we have our own list
 		if ( !$countries ) {
 			// Use this as fallback if CLDR extension is not enabled
 			$countries = array(
@@ -668,6 +657,10 @@ class CentralNoticeDB {
 				'ZW'=> 'Zimbabwe'
 			);
 		}
+
+		// And we need to add XX - Unknown regardless of the source
+		$countries['XX'] = wfMessage('centralnotice-country-unknown')->inContentLanguage()->text();
+
 		asort( $countries );
 
 		return $countries;
