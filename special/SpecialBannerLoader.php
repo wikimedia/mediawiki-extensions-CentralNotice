@@ -41,12 +41,15 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			);
 			$banner = $chooser->chooseBanner( $slot );
 
-			$bannerName = $banner['name'];
-			$this->campaign = $banner['campaign'];
+			if ( $banner ) {
+				$bannerName = $banner['name'];
+				$this->campaign = $banner['campaign'];
+			}
 		}
 
 		$this->sendHeaders();
 
+		$content = false;
 		try {
 			if ( $bannerName ) {
 				$content = $this->getJsNotice( $bannerName );

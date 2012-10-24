@@ -38,7 +38,9 @@ class BannerChooser {
 		}
 		// If there is floating-point precision error, we were close to 1.0,
 		// so use the last banner.
-		return $this->banners[ count( $this->banners ) - 1 ];
+		if ( count( $this->banners ) ) {
+			return $this->banners[ count( $this->banners ) - 1 ];
+		}
 	}
 
 	/**
@@ -100,6 +102,8 @@ class BannerChooser {
 			$sum -= $error;
 		}
 		// Arbitrarily move the final banner to 1.0 so we don't have a dead zone.
-		$this->banners[ count( $this->banners ) - 1 ][ self::ALLOCATION_KEY ] += 1.0 - $sum;
+		if ( count( $this->banners ) ) {
+			$this->banners[ count( $this->banners ) - 1 ][ self::ALLOCATION_KEY ] += 1.0 - $sum;
+		}
 	}
 }
