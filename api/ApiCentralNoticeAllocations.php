@@ -7,7 +7,7 @@
 class ApiCentralNoticeAllocations extends ApiBase {
 
 	const DEFAULT_PROJECT = 'wikipedia';
-	const DEFAULT_COUNTRY = null;
+	const DEFAULT_COUNTRY = 'XX';
 	const DEFAULT_LANGUAGE = 'en';
 
 	public function execute() {

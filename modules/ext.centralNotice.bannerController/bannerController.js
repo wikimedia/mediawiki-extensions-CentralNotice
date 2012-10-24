@@ -32,7 +32,7 @@
 					userlang: mw.config.get( 'wgUserLanguage' ),
 					sitename: mw.config.get( 'wgSiteName' ),
 					project: mw.config.get( 'wgNoticeProject' ),
-					country: Geo.country
+					country: mw.centralNotice.data.country
 				};
 				mw.centralNotice.loadScript( bannerPageQuery );
 			},
@@ -54,7 +54,7 @@
 					project: mw.config.get( 'wgNoticeProject' ),
 					anonymous: mw.config.get( 'wgUserName' ) === null,
 					bucket: bucket,
-					country: Geo.country,
+					country: mw.centralNotice.data.country,
 					slot: Math.floor( Math.random() * RAND_MAX) + 1
 				};
 				mw.centralNotice.loadScript( bannerDispatchQuery );
@@ -75,6 +75,8 @@
 				if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
 					return;
 				}
+
+				mw.centralNotice.data.country = Geo.country || 'XX';
 
 				// Initialize the query string vars
 				mw.centralNotice.getQueryStringVariables();
@@ -117,7 +119,7 @@
 					utm_campaign: bannerJson.campaign,
 					utm_source: bannerJson.bannerName,
 					language: mw.config.get( 'wgUserLanguage' ),
-					country: Geo.country
+					country: mw.centralNotice.data.country
 				} );
 				$( '#cn-landingpage-link' ).attr( 'href', url );
 			}

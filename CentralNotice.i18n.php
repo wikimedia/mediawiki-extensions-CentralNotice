@@ -181,6 +181,7 @@ Add one below.',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'high',
 	'centralnotice-priority-emergency' => 'emergency',
+	'centralnotice-country-unknown' => 'Unknown/Non-Geolocatable',
 );
 
 /** Message documentation (Message documentation)
@@ -373,6 +374,7 @@ Related messages:
 	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting. An adjective that describes the priority.',
 	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.',
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
+	'centralnotice-country-unknown' => 'Label for country XX, ie: the generic place where all the people we cannot geolocate live.',
 );
 
 /** Afrikaans (Afrikaans)
