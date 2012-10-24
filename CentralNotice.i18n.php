@@ -17362,9 +17362,16 @@ $messages['yi'] = array(
 	'centralnotice-language' => 'שפראַך',
 	'centralnotice-projects' => 'פראיעקטן:',
 	'centralnotice-country' => 'לאַנד',
+	'centralnotice-preferred' => 'פריאריטעט',
+	'centralnotice-logs' => 'לאגביכער',
+	'centralnotice-view-logs' => 'ווייזן לאגביכער',
 	'centralnotice-user' => 'באַניצער',
 	'centralnotice-action' => 'אַקציע',
 	'centralnotice-date' => 'דאַטע',
+	'centralnotice-priority-low' => 'נידעריק',
+	'centralnotice-priority-normal' => 'נארמאַל',
+	'centralnotice-priority-high' => 'הויך',
+	'centralnotice-priority-emergency' => 'נויטפאל',
 );
 
 /** Yoruba (Yorùbá)
