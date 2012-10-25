@@ -57,7 +57,7 @@ class BannerChooser {
 		};
 
 		if ( $anonymous !== null ) {
-			$display_column = $anonymous ? 'display_anon' : 'display_account';
+			$display_column = ( $anonymous ? 'display_anon' : 'display_account' );
 			$filterColumn( $this->banners, $display_column, 1 );
 		}
 
