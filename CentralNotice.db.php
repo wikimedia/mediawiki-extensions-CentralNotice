@@ -714,7 +714,7 @@ class CentralNoticeDB {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 
-		$endTime = strtotime( '+1 month', wfTimestamp( TS_UNIX, $startTs ) );
+		$endTime = strtotime( '+1 hour', wfTimestamp( TS_UNIX, $startTs ) );
 		$endTs = wfTimestamp( TS_MW, $endTime );
 
 		$dbw->insert( 'cn_notices',
