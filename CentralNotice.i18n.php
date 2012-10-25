@@ -1909,6 +1909,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-priority-normal' => 'звычайны',
 	'centralnotice-priority-high' => 'вялікі',
 	'centralnotice-priority-emergency' => 'тэрміновы',
+	'centralnotice-country-unknown' => 'Невядомая/Не вызначаецца',
 );
 
 /** Bulgarian (български)
@@ -3537,6 +3538,7 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'hoch',
 	'centralnotice-priority-emergency' => 'Notfall',
+	'centralnotice-country-unknown' => 'Unbekannt/nicht lokalisierbar',
 );
 
 /** Swiss High German (Schweizer Hochdeutsch)
@@ -6346,6 +6348,7 @@ $messages['he'] = array(
 	'centralnotice-priority-normal' => 'רגילה',
 	'centralnotice-priority-high' => 'גבוהה',
 	'centralnotice-priority-emergency' => 'חירום',
+	'centralnotice-country-unknown' => 'לא ידועה או לא מזוהה בזיהוי גאוגרפי',
 );
 
 /** Hindi (हिन्दी)
@@ -7996,6 +7999,7 @@ $messages['ja'] = array(
 	'centralnotice-priority-normal' => '通常',
 	'centralnotice-priority-high' => '高',
 	'centralnotice-priority-emergency' => '緊急',
+	'centralnotice-country-unknown' => '不明/位置特定不能',
 );
 
 /** Jutish (jysk)
@@ -8654,6 +8658,7 @@ $messages['ko'] = array(
 	'centralnotice-priority-normal' => '보통',
 	'centralnotice-priority-high' => '높음',
 	'centralnotice-priority-emergency' => '긴급',
+	'centralnotice-country-unknown' => '알 수 없음/위치 특정할 수 없음',
 );
 
 /** Colognian (Ripoarisch)
@@ -9806,6 +9811,7 @@ $messages['mk'] = array(
 	'centralnotice-priority-normal' => 'нормален',
 	'centralnotice-priority-high' => 'висок',
 	'centralnotice-priority-emergency' => 'итен',
+	'centralnotice-country-unknown' => 'Непознато/Неутврдлива положба',
 );
 
 /** Malayalam (മലയാളം)
@@ -10337,6 +10343,7 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-priority-normal' => 'biasa',
 	'centralnotice-priority-high' => 'tinggi',
 	'centralnotice-priority-emergency' => 'kecemasan',
+	'centralnotice-country-unknown' => 'Tidak diketahui/Tidak boleh digeolokasi',
 );
 
 /** Maltese (Malti)
