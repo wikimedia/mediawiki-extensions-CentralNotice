@@ -18,13 +18,13 @@
 		mw.centralNotice = {
 			data: {
 				getVars: {},
-				bannerType: 'default'
+				bannerType: 'default',
+				bucket: null,
+				testing: false
 			},
 			loadBanner: function ( bannerName, campaign, bannerType ) {
 				var bannerPageQuery, bannerScript;
 
-				// Store the bannerType in case we need to set a banner hiding cookie later
-				mw.centralNotice.data.bannerType = bannerType;
 				// Get the requested banner
 				bannerPageQuery = {
 					title: 'Special:BannerLoader',
@@ -49,75 +49,22 @@
 					);
 				}
 			},
-			loadBannerList: function ( geoOverride ) {
-				var geoLocation;
+			loadRandomBanner: function () {
+				var RAND_MAX = 30;
 
-				if ( geoOverride ) {
-					geoLocation = geoOverride; // override the geo info
-				} else {
-					geoLocation = mw.centralNotice.data.country; // pull the geo info
-				}
-
-				var bucket = $.cookie( 'centralnotice_bucket' );
-				if ( bucket === null ) {
-					bucket = Math.round( Math.random() );
-					$.cookie(
-						'centralnotice_bucket', bucket,
-						{ expires: 7, path: '/' }
-					);
-				}
-
-				// Prevent loading banners on Special pages
-				if ( mw.config.get( 'wgNamespaceNumber' ) !== -1 ) {
-					$.ajax( {
-						url: mw.util.wikiScript(),
-						data: {
-							bcache: '1',
-							title: mw.config.get( 'wgNoticeBannerListLoader' ),
-							language: mw.config.get( 'wgContentLanguage' ),
-							project: mw.config.get( 'wgNoticeProject' ),
-							country: geoLocation,
-							anonymous: mw.config.get( 'wgUserName' ) === null,
-							bucket: bucket
-						},
-						dataType: 'json'
-					}).done( mw.centralNotice.chooseBanner );
-				}
-			},
-			chooseBanner: function ( bannerList ) {
-				var i, idx, count, rnd;
-
-				if ( bannerList.centralnoticeallocations
-					&& bannerList.centralnoticeallocations.banners )
-				{
-					bannerList = bannerList.centralnoticeallocations.banners;
-				}
-
-				if ( bannerList.length < 1 ) {
-					return;
-				}
-
-				// Obtain randomness
-				rnd = Math.random();
-
-				// Obtain banner index
-				count = 0;
-				// default to the last banner...
-				idx = bannerList.length - 1;
-				for (i = 0; i < bannerList.length; i++ ) {
-					count += bannerList[i].allocation;
-					if ( rnd <= count ) {
-						idx = i;
-						break;
-					}
-				}
-
-				// Load a random banner from our groomed list
-				mw.centralNotice.loadBanner(
-					bannerList[idx].name,
-					bannerList[idx].campaign,
-					( bannerList[idx].fundraising ? 'fundraising' : 'default' )
-				);
+				var bannerDispatchQuery = {
+					userlang: mw.config.get( 'wgUserLanguage' ),
+					sitename: mw.config.get( 'wgSiteName' ),
+					project: mw.config.get( 'wgNoticeProject' ),
+					anonymous: mw.config.get( 'wgUserName' ) === null,
+					bucket: mw.centralNotice.data.bucket,
+					country: mw.centralNotice.data.country,
+					slot: Math.floor( Math.random() * RAND_MAX ) + 1
+				};
+				var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' )
+					+ '?' + $.param( bannerDispatchQuery );
+				var bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
+				$( '#centralNotice' ).prepend( bannerScript );
 			},
 			getQueryStringVariables: function () {
 				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
@@ -125,16 +72,35 @@
 				} );
 			},
 			initialize: function () {
+				// Prevent loading banners on Special pages
+				if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
+					return;
+				}
+
 				mw.centralNotice.data.country = Geo.country || 'XX';
+
+				mw.centralNotice.data.bucket = $.cookie( 'centralnotice_bucket' );
+				if ( mw.centralNotice.data.bucket === null ) {
+					mw.centralNotice.data.bucket = Math.round( Math.random() );
+					$.cookie(
+						'centralnotice_bucket', mw.centralNotice.data.bucket,
+						{ expires: 7, path: '/' }
+					);
+				}
 
 				// Initialize the query string vars
 				mw.centralNotice.getQueryStringVariables();
+
+				$( '#siteNotice' ).prepend(
+					'<div id="centralNotice"></div>'
+				);
+
 				if ( mw.centralNotice.data.getVars.banner ) {
 					// if we're forcing one banner
+					mw.centralNotice.data.testing = true;
 					mw.centralNotice.loadBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
 				} else {
-					// Look for banners ready to go NOW
-					mw.centralNotice.loadBannerList( mw.centralNotice.data.getVars.country );
+					mw.centralNotice.loadRandomBanner();
 				}
 			}
 		};
@@ -146,7 +112,19 @@
 	window.insertBanner = function ( bannerJson ) {
 		var url, targets;
 
-		$( 'div#centralNotice' ).prepend( bannerJson.bannerHtml );
+		// Store the bannerType in case we need to set a banner hiding cookie later
+		mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
+
+		if ( document.cookie.indexOf( 'centralnotice_' +
+            encodeURIComponent( mw.centralNotice.data.bannerType ) + '=hide' ) != -1 )
+        {
+			return;
+		}
+
+		$( 'div#centralNotice' )
+			.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.bannerType ) )
+			.prepend( bannerJson.bannerHtml );
+
 		if ( bannerJson.autolink ) {
 			url = mw.config.get( 'wgNoticeFundraisingUrl' );
 			if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
@@ -161,6 +139,22 @@
 				} );
 				$( '#cn-landingpage-link' ).attr( 'href', url );
 			}
+		}
+
+		if ( !mw.centralNotice.data.testing ) {
+			// Record banner impression using old-style URL
+			$.ajax( {
+				url: mw.config.get( 'wgCentralBannerRecorder' ),
+				data: {
+					banner: bannerJson.bannerName,
+					campaign: bannerJson.campaign,
+					userlang: mw.config.get( 'wgUserLanguage' ),
+					db: mw.config.get( 'wgDBname' ),
+					sitename: mw.config.get( 'wgSiteName' ),
+					country: mw.centralNotice.data.country,
+					bucket: mw.centralNotice.data.bucket
+				}
+			} );
 		}
 	};
 
