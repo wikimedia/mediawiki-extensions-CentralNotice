@@ -76,6 +76,10 @@
 			chooseBanner: function ( bannerList ) {
 				var i, idx, count, rnd;
 
+				if ( bannerList.length < 1 ) {
+					return;
+				}
+
 				// Obtain randomness
 				rnd = Math.random();
 
