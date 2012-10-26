@@ -69,14 +69,24 @@ class CentralNoticeDB {
 			$conds[ 'nl_language' ] = $language;
 		}
 
+		// Pull the non-geotargeted campaigns
+		$res = $dbr->select(
+			$tables,
+			'not_id',
+			array_merge( $conds, array( 'not_geo' => 0 ) ),
+			__METHOD__
+		);
+		foreach ( $res as $row ) {
+			$notices[ ] = $row->not_id;
+		}
+
 		// If a location is passed, also pull geotargeted campaigns that match the location
 		if ( $location ) {
 			$tables[ 'notice_countries' ] = 'cn_notice_countries';
 
 			$conds[ ] = 'nc_notice_id = notices.not_id';
-			$conds[ ] = '( nc_country = ' . $dbr->addQuotes( $location ) . ' OR not_geo = 0 )';
-		} else {
-			$conds[ 'not_geo' ] = 0;
+			$conds[ 'nc_country' ] = $location;
+			$conds[ 'not_geo' ] = 1;
 		}
 
 		// Pull the notice IDs
