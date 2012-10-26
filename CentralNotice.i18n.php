@@ -3705,7 +3705,7 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-view-logs' => 'Roceka bımocne',
 	'centralnotice-timestamp' => 'İmzay demi',
 	'centralnotice-user' => 'Karber',
-	'centralnotice-action' => 'Kerden',
+	'centralnotice-action' => 'Kerdış',
 	'centralnotice-action-created' => 'vıraziya',
 	'centralnotice-action-modified' => 'Timar be',
 	'centralnotice-action-removed' => 'wedariya',
@@ -3739,6 +3739,7 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'berz',
 	'centralnotice-priority-emergency' => 'rew',
+	'centralnotice-country-unknown' => 'Nêzanêno//Non-Geolocatable',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -4475,6 +4476,7 @@ Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergencia',
+	'centralnotice-country-unknown' => 'Desconocido / No geolocalizable',
 );
 
 /** Estonian (eesti)
@@ -5778,6 +5780,7 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emerxencia',
+	'centralnotice-country-unknown' => 'Descoñecido/Non xeolocalizable',
 );
 
 /** Goan Konkani (Latin script) (Konknni)
@@ -6852,6 +6855,7 @@ Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-priority-normal' => 'normalna',
 	'centralnotice-priority-high' => 'wysoka',
 	'centralnotice-priority-emergency' => 'nuzowy pad',
+	'centralnotice-country-unknown' => 'Njeznaty/njelokalizujomny',
 );
 
 /** Hungarian (magyar)
@@ -7818,6 +7822,7 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-priority-normal' => 'normale',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergenza',
+	'centralnotice-country-unknown' => 'Sconosciuto/non geo-localizzabile',
 );
 
 /** Japanese (日本語)
