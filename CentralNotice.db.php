@@ -74,7 +74,7 @@ class CentralNoticeDB {
 			$tables[ 'notice_countries' ] = 'cn_notice_countries';
 
 			$conds[ ] = 'nc_notice_id = notices.not_id';
-			$conds[ ] = 'nc_country = ' . $dbr->addQuotes( $location ) . ' OR not_geo = 0';
+			$conds[ ] = '( nc_country = ' . $dbr->addQuotes( $location ) . ' OR not_geo = 0 )';
 		} else {
 			$conds[ 'not_geo' ] = 0;
 		}
