@@ -3691,7 +3691,7 @@ Yew de bike',
 	'centralnotice-allocation' => 'Tahsis',
 	'centralnotice-view-allocation' => 'Abıryayışanê afişa bımocne',
 	'centralnotice-allocation-instructions' => 'Tahsisê çerçewerda weçineyen da xo weçinê:',
-	'centralnotice-languages' => 'Zuwani',
+	'centralnotice-languages' => 'Zıwani',
 	'centralnotice-language' => 'Zıwan',
 	'centralnotice-projects' => 'Procey',
 	'centralnotice-country' => 'Dewlet',
@@ -3739,7 +3739,7 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'berz',
 	'centralnotice-priority-emergency' => 'rew',
-	'centralnotice-country-unknown' => 'Nêzanêno//Non-Geolocatable',
+	'centralnotice-country-unknown' => 'Nêzaniyaye/Non-Geolocatable',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -14357,6 +14357,7 @@ Oglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.
 	'centralnotice-priority-normal' => 'navadno',
 	'centralnotice-priority-high' => 'visoko',
 	'centralnotice-priority-emergency' => 'nujno',
+	'centralnotice-country-unknown' => 'Neznano/Negeolocirano',
 );
 
 /** Albanian (shqip)
