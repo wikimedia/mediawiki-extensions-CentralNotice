@@ -7584,6 +7584,14 @@ Kitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a paammo
 	'centralnotice-apply-filters' => 'Idangep dagiti sagat',
 	'centralnotice-clear-filters' => 'Dalusan dagiti sagat',
 	'centralnotice-banner-messages' => 'Mensahe dagiti wagayway',
+	'centralnotice-filter-template-prompt' => 'Ti nagan ti wagayway ket aglaon ti:',
+	'centralnotice-filter-template-submit' => 'Ipakat ti sagat',
+	'centralnotice-filter-template-banner' => 'Dagiti wagayway a sagat',
+	'centralnotice-priority-low' => 'ababa',
+	'centralnotice-priority-normal' => 'kadawyan',
+	'centralnotice-priority-high' => 'nangato',
+	'centralnotice-priority-emergency' => 'emerhensia',
+	'centralnotice-country-unknown' => 'Di ammo/Saan a mabirukan ti heograpia',
 );
 
 /** Ingush (ГӀалгӀай)
@@ -9453,7 +9461,7 @@ $messages['ltg'] = array(
 	'centralnotice-message' => 'Viestejums',
 );
 
-/** Lushai (Mizo ţawng)
+/** Mizo (Mizo ţawng)
  * @author RMizo
  */
 $messages['lus'] = array(
@@ -17365,11 +17373,16 @@ $messages['yi'] = array(
 	'centralnotice-end-time' => 'סוף צייַט (UTC)',
 	'centralnotice-no-templates' => 'נישט געטראפן קיין פאנעס.
 לייגט צו!',
+	'centralnotice-weights' => 'געוויכטן',
 	'centralnotice-number-uses' => 'ניצונגען',
 	'centralnotice-settings' => 'איינשטעלונגען',
 	'centralnotice-message' => 'מעלדונג',
 	'centralnotice-clone-name' => 'נאָמען',
+	'centralnotice-insert' => 'אריינגעבן: $1',
+	'centralnotice-close-button' => 'שליסן קנעפל',
 	'centralnotice-close-title' => 'שליסן',
+	'centralnotice-translate-button' => 'איבערזעצונג הילף לינק',
+	'centralnotice-donate-button' => 'נדבה קנעפל',
 	'centralnotice-countries' => 'לענדער',
 	'centralnotice-languages' => 'שפּראַכן',
 	'centralnotice-language' => 'שפראַך',
@@ -17380,6 +17393,14 @@ $messages['yi'] = array(
 	'centralnotice-view-logs' => 'ווייזן לאגביכער',
 	'centralnotice-user' => 'באַניצער',
 	'centralnotice-action' => 'אַקציע',
+	'centralnotice-action-created' => 'געשאַפֿן',
+	'centralnotice-action-modified' => 'מאדיפֿיצירט',
+	'centralnotice-action-removed' => 'אראפגענומען',
+	'centralnotice-changed' => 'געענדערט פון  <span class="cn-old-value">$1</span> צו <span class="cn-new-value">$2</span>',
+	'centralnotice-on' => 'אין גאנג',
+	'centralnotice-off' => 'אויס',
+	'centralnotice-added' => 'צוגעלייגט <span class="cn-new-value">$1</span>',
+	'centralnotice-removed' => 'אראפגענומען <span class="cn-old-value">$1</span>',
 	'centralnotice-date' => 'דאַטע',
 	'centralnotice-priority-low' => 'נידעריק',
 	'centralnotice-priority-normal' => 'נארמאַל',
