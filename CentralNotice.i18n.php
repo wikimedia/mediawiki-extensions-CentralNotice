@@ -182,9 +182,6 @@ Add one below.',
 	'centralnotice-priority-high' => 'high',
 	'centralnotice-priority-emergency' => 'emergency',
 	'centralnotice-country-unknown' => 'Unknown/Non-Geolocatable',
-	'centralnotice-buckets' => 'User bucketing',
-	'centralnotice-bucket' => 'Bucket',
-	'centralnotice-bucket-letter' => 'Bucket "$1"',
 );
 
 /** Message documentation (Message documentation)
@@ -378,9 +375,6 @@ Related messages:
 	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.',
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
 	'centralnotice-country-unknown' => 'Label for country XX, ie: the generic place where all the people we cannot geolocate live.',
-	'centralnotice-buckets' => 'Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.',
-	'centralnotice-bucket' => 'Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.',
-	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used.',
 );
 
 /** Afrikaans (Afrikaans)
@@ -5411,6 +5405,7 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-priority-normal' => 'normale',
 	'centralnotice-priority-high' => 'haute',
 	'centralnotice-priority-emergency' => 'urgente',
+	'centralnotice-country-unknown' => 'Inconnu/Non-Géolocalisable',
 );
 
 /** Franco-Provençal (arpetan)
