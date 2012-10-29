@@ -675,7 +675,16 @@ class CentralNoticeDB {
 			);
 		}
 
-		// And we need to add XX - Unknown regardless of the source
+		// And we need to add MaxMind specific countries: http://www.maxmind.com/en/iso3166
+		$countries['EU'] = wfMessage('centralnotice-country-eu')->inContentLanguage()->text();
+		$countries['AP'] = wfMessage('centralnotice-country-ap')->inContentLanguage()->text();
+		$countries['A1'] = wfMessage('centralnotice-country-a1')->inContentLanguage()->text();
+		$countries['A2'] = wfMessage('centralnotice-country-a2')->inContentLanguage()->text();
+		$countries['O1'] = wfMessage('centralnotice-country-o1')->inContentLanguage()->text();
+
+		// We will also add country 'XX' which is a MW specific 'fake' country for when GeoIP
+		// does not return any results at all or when something else odd has happened (IE: we
+		// fail to parse the country.)
 		$countries['XX'] = wfMessage('centralnotice-country-unknown')->inContentLanguage()->text();
 
 		asort( $countries );

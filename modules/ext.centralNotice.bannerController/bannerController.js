@@ -129,6 +129,9 @@
 			url = mw.config.get( 'wgNoticeFundraisingUrl' );
 			if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
 				targets = String( bannerJson.landingPages ).split( ',' );
+				if ( $.inArray( mw.centralNotice.data.country, mw.config.get( 'wgNoticeXXCountries' ) ) !== -1 ) {
+					mw.centralNotice.data.country = 'XX';
+				}
 				url += "?" + $.param( {
 					landing_page: targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' ),
 					utm_medium: 'sitenotice',

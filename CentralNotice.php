@@ -18,7 +18,8 @@
 		'Tomasz Finc',
 		'Trevor Parscal',
 		'Ryan Kaldari',
-		'Matthew Walker'
+		'Matthew Walker',
+		'Adam Wight',
 	),
 	'version'        => '2.2',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
@@ -149,6 +150,10 @@ $wgNoticeHideBannersExpiration = '';
 
 // Whether to use the Translation extension for banner message translation
 $wgNoticeUseTranslateExtension = false;
+
+// These are countries that MaxMind will give out when information is a bit fuzzy. However,
+// fundraising code doesn't like non ISO countries so we map them to the fictional point case 'XX'
+$wgNoticeXXCountries = array( 'XX', 'EU', 'AP', 'A1', 'A2', 'O1' );
 
 
 /**
@@ -431,7 +436,7 @@ function efCentralNoticeDisplay( &$notice ) {
  * @return bool
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
-	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang,
+	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
 		$wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		$wgCentralBannerRecorder;
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
@@ -439,6 +444,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
 	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
+	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
