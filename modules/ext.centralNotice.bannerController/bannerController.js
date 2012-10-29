@@ -57,6 +57,16 @@
 				} else {
 					geoLocation = mw.centralNotice.data.country; // pull the geo info
 				}
+
+				var bucket = $.cookie( 'centralnotice_bucket' );
+				if ( bucket === null ) {
+					bucket = Math.round( Math.random() );
+					$.cookie(
+						'centralnotice_bucket', bucket,
+						{ expires: 7, path: '/' }
+					);
+				}
+
 				// Prevent loading banners on Special pages
 				if ( mw.config.get( 'wgNamespaceNumber' ) !== -1 ) {
 					$.ajax( {
@@ -67,7 +77,8 @@
 							language: mw.config.get( 'wgContentLanguage' ),
 							project: mw.config.get( 'wgNoticeProject' ),
 							country: geoLocation,
-							anonymous: mw.config.get( 'wgUserName' ) === null
+							anonymous: mw.config.get( 'wgUserName' ) === null,
+							bucket: bucket
 						},
 						dataType: 'json'
 					}).done( mw.centralNotice.chooseBanner );
@@ -75,6 +86,12 @@
 			},
 			chooseBanner: function ( bannerList ) {
 				var i, idx, count, rnd;
+
+				if ( bannerList.centralnoticeallocations
+					&& bannerList.centralnoticeallocations.banners )
+				{
+					bannerList = bannerList.centralnoticeallocations.banners;
+				}
 
 				if ( bannerList.length < 1 ) {
 					return;
@@ -85,7 +102,8 @@
 
 				// Obtain banner index
 				count = 0;
-				idx = -1;
+				// default to the last banner...
+				idx = bannerList.length - 1;
 				for (i = 0; i < bannerList.length; i++ ) {
 					count += bannerList[i].allocation;
 					if ( rnd <= count ) {
