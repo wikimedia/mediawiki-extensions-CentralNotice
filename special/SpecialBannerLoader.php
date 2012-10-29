@@ -13,46 +13,14 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	function execute( $par ) {
 		$this->getOutput()->disable();
 
-		// Get values from the query string
-		$request = $this->getRequest();
-
-		$this->project = $request->getText( 'project', 'wikipedia' );
-		$this->country = $request->getText( 'country', 'XX' );
-		$this->language = $request->getText( 'userlang', 'en' );
-		$this->anonymous = $request->getText( 'anonymous', true );
-		$this->bucket = intval( $request->getText( 'bucket', '0' ) );
-
-		$this->siteName = $request->getText( 'sitename', 'Wikipedia' );
-		$this->campaign = $request->getText( 'campaign', 'undefined' );
-
-		$bannerName = false;
-
-		if ( $request->getText( 'banner' ) ) {
-			$bannerName = $request->getText( 'banner' );
-		} elseif ( $request->getText( 'slot' ) ) {
-			$slot = $request->getText( 'slot' );
-
-			$chooser = new BannerChooser(
-				$this->project,
-				$this->language,
-				$this->country,
-				$this->anonymous,
-				$this->bucket
-			);
-			$banner = $chooser->chooseBanner( $slot );
-
-			if ( $banner ) {
-				$bannerName = $banner['name'];
-				$this->campaign = $banner['campaign'];
-			}
-		}
+		$this->getParams();
 
 		$this->sendHeaders();
 
 		$content = false;
 		try {
-			if ( $bannerName ) {
-				$content = $this->getJsNotice( $bannerName );
+			if ( $this->bannerName ) {
+				$content = $this->getJsNotice( $this->bannerName );
 			}
 		} catch ( SpecialBannerLoaderException $e ) {
 			wfDebugLog( 'CentralNotice', "Exception while loading banner: " . $e->getMessage() );
@@ -61,9 +29,32 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		if ( $content ) {
 			echo $content;
 		} else {
-			wfDebugLog( 'CentralNotice', "No content retrieved for banner: {$bannerName}" );
+			wfDebugLog( 'CentralNotice', "No content retrieved for banner: {$this->bannerName}" );
 			echo "/* Banner could not be generated */";
 		}
+	}
+
+	function getParams() {
+		$request = $this->getRequest();
+
+		$this->project = $this->getSanitized( 'project', 'wikipedia', ApiCentralNoticeAllocations::PROJECT_FILTER );
+		$this->country = $this->getSanitized( 'country', 'XX', ApiCentralNoticeAllocations::LOCATION_FILTER );
+		$this->language = $this->getSanitized( 'userlang', 'en', ApiCentralNoticeAllocations::LANG_FILTER );
+		$this->anonymous = ( $this->getSanitized( 'anonymous', 'true', ApiCentralNoticeAllocations::ANONYMOUS_FILTER ) === 'true' );
+		$this->bucket = intval( $this->getSanitized( 'bucket', '0', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
+
+		$this->siteName = $request->getText( 'sitename', 'Wikipedia' );
+		$this->campaign = $request->getText( 'campaign', 'undefined' );
+
+		$this->bannerName = $request->getText( 'banner' );
+	}
+
+	function getSanitized( $param, $default, $filter ) {
+		$matches = array();
+		if ( preg_match( $filter, $this->getRequest()->getText( $param ), $matches ) ) {
+			return $matches[0];
+		}
+		return $default;
 	}
 
 	/**
@@ -98,8 +89,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				'bannerName' => $bannerName,
 				'bannerHtml' => $bannerHtml,
 				'campaign' => $this->campaign,
-				'fundraising' => $this->getFundraising( $bannerName ),
-				'autolink' => $this->getAutolink( $bannerName ),
+				'fundraising' => (int)$this->getFundraising( $bannerName ),
+				'autolink' => (int)$this->getAutolink( $bannerName ),
 				'landingPages' => $this->getLandingPages( $bannerName )
 			);
 			$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';

@@ -20,7 +20,7 @@
 		'Ryan Kaldari',
 		'Matthew Walker'
 	),
-	'version'        => '2.1',
+	'version'        => '2.2',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 );
@@ -98,11 +98,14 @@ $wgNoticeInfrastructure = true;
 // The name of the database which hosts the centralized campaign data
 $wgCentralDBname = false;
 
-// URL where the BannerLoader is hosted, where FALSE will default to
-// the Special:BannerLoader on the machine serving ResourceLoader requests
-// (meta for WMF).  To use our reverse proxy, for example, set this variable
-// to 'http://banners.wikimedia.org/banner_load'.
+// URL where BannerRandom is hosted, where FALSE will default to the
+// Special:BannerRandom on the machine serving ResourceLoader requests (meta
+// in the case of WMF).  To use our reverse proxy, for example, set this
+// variable to 'http://banners.wikimedia.org/banner_load'.
 $wgCentralBannerDispatcher = false;
+
+// URL which is hit after a banner is loaded, for compatibility with analytics.
+$wgCentralBannerRecorder = false;
 
 // Protocol and host name of the wiki that hosts the CentralNotice infrastructure,
 // for example '//meta.wikimedia.org'. This is used for DNS prefetching.
@@ -155,7 +158,7 @@ function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
 		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
 		$wgNoticeUseTranslateExtension, $wgAPIModules, $wgCentralBannerDispatcher,
-		$wgContLang;
+		$wgContLang, $wgCentralBannerRecorder;
 
 	// If $wgCentralPagePath hasn't been set, set it to the local script path.
 	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
@@ -173,13 +176,18 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
+	$wgAutoloadClasses[ 'SpecialBannerRandom' ] = $specialDir . 'SpecialBannerRandom.php';
+	$wgAutoloadClasses[ 'SpecialRecordImpression' ] = $specialDir . 'SpecialRecordImpression.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
 
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 
 	// Do this here, to ensure that wgScript has been bootstrapped
 	if ( !$wgCentralBannerDispatcher ) {
-		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerLoader' )}";
+		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerRandom' )}";
+	}
+	if ( !$wgCentralBannerRecorder ) {
+		$wgCentralBannerRecorder = "{$wgScript}/{$wgContLang->specialPage( 'RecordImpression' )}";
 	}
 
 	// Register hooks
@@ -199,6 +207,8 @@ function efCentralNoticeSetup() {
 	// Register special pages
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
 	$wgSpecialPages[ 'BannerListLoader' ] = 'SpecialBannerListLoader';
+	$wgSpecialPages[ 'BannerRandom' ] = 'SpecialBannerRandom';
+	$wgSpecialPages[ 'RecordImpression' ] = 'SpecialRecordImpression';
 	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';
 
 	// If this is the wiki that hosts the management interface, load further components
@@ -422,11 +432,13 @@ function efCentralNoticeDisplay( &$notice ) {
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang,
-		$wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher;
+		$wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
+		$wgCentralBannerRecorder;
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
 	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
+	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
