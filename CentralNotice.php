@@ -187,6 +187,9 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 
+	$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
+	$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
+
 	// Do this here, to ensure that wgScript has been bootstrapped
 	if ( !$wgCentralBannerDispatcher ) {
 		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerRandom' )}";
@@ -223,11 +226,10 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'CentralNoticeCampaignLogPager' ] = $dir . 'CentralNoticeCampaignLogPager.php';
 		$wgAutoloadClasses[ 'CentralNoticeBannerLogPager' ] = $dir . 'CentralNoticeBannerLogPager.php';
 		$wgAutoloadClasses[ 'CentralNoticePageLogPager' ] = $dir . 'CentralNoticePageLogPager.php';
-		$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
 		$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
 		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
 		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
-		
+
 		if ( $wgNoticeUseTranslateExtension ) {
 			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
@@ -238,8 +240,6 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
 		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
 		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
-
-		$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	}
 }
 
