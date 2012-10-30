@@ -22,8 +22,10 @@
 				bucket: null,
 				testing: false
 			},
-			loadBanner: function ( bannerName, campaign, bannerType ) {
-				var bannerPageQuery, bannerScript;
+			loadTestingBanner: function ( bannerName, campaign ) {
+				var bannerPageQuery, bannerScript, scriptUrl;
+
+				mw.centralNotice.data.testing = true;
 
 				// Get the requested banner
 				bannerPageQuery = {
@@ -35,19 +37,9 @@
 					sitename: mw.config.get( 'wgSiteName' ),
 					country: mw.centralNotice.data.country
 				};
-				bannerScript = '<script src="' +
-					mw.html.escape(
-						mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery )
-					) +
-					'"></script>';
-				if ( document.cookie.indexOf( 'centralnotice_' + encodeURIComponent( bannerType ) + '=hide' ) === -1 ) {
-					$( '#siteNotice' ).prepend(
-						'<div id="centralNotice" class="' + mw.html.escape( 'cn-' + bannerType ) + '">' +
-							// The bannerScript is inserted raw since .html() strips out <script> tags
-							bannerScript +
-							'</div>'
-					);
-				}
+				scriptUrl = mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery );
+				bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
+				$( '#centralNotice' ).prepend( bannerScript );
 			},
 			loadRandomBanner: function () {
 				var RAND_MAX = 30;
@@ -97,8 +89,7 @@
 
 				if ( mw.centralNotice.data.getVars.banner ) {
 					// if we're forcing one banner
-					mw.centralNotice.data.testing = true;
-					mw.centralNotice.loadBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
+					mw.centralNotice.loadTestingBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
 				} else {
 					mw.centralNotice.loadRandomBanner();
 				}
@@ -116,7 +107,8 @@
 		mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
 
 		if ( document.cookie.indexOf( 'centralnotice_' +
-            encodeURIComponent( mw.centralNotice.data.bannerType ) + '=hide' ) != -1 )
+            encodeURIComponent( mw.centralNotice.data.bannerType ) + '=hide' ) != -1
+			&& !mw.centralNotice.data.testing )
         {
 			return;
 		}
