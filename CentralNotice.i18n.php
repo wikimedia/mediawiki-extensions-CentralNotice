@@ -181,6 +181,11 @@ Add one below.',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'high',
 	'centralnotice-priority-emergency' => 'emergency',
+	'centralnotice-country-eu' => 'Unknown/European Union Region',
+	'centralnotice-country-ap' => 'Unknown/Asia Pacific Region',
+	'centralnotice-country-a1' => 'Unknown/Anonymous Proxy',
+	'centralnotice-country-a2' => 'Unknown/Satellite Provider',
+	'centralnotice-country-o1' => 'Unknown/Other Country',
 	'centralnotice-country-unknown' => 'Unknown/Non-Geolocatable',
 );
 
@@ -374,7 +379,12 @@ Related messages:
 	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting. An adjective that describes the priority.',
 	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.',
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
-	'centralnotice-country-unknown' => 'Label for country XX, ie: the generic place where all the people we cannot geolocate live.',
+	'centralnotice-country-eu' => 'Label for MaxMind country "EU", European Union, used rarely when further information is not known',
+	'centralnotice-country-ap' => 'Label for MaxMind country "AP", Asia Pacific Region, used rarely when further information is not known',
+	'centralnotice-country-a1' => 'Label for MaxMind country "A1", Anonymous Proxy, used when the IP address belongs to an anonymization service',
+	'centralnotice-country-a2' => 'Label for MaxMind country "A2", Satellite Provider, used when the IP address belongs to a global internet provider',
+	'centralnotice-country-o1' => 'Label for MaxMind country "O1", Other Country, used very rarely in foggy circumstances that MaxMind doesn\'t elaborate on',
+	'centralnotice-country-unknown' => 'Label for country "XX", the generic place where all the people we cannot geolocate live.',
 );
 
 /** Afrikaans (Afrikaans)

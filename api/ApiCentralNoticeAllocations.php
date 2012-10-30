@@ -23,7 +23,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	/**
 	 * @var string Pattern for 2 alphas
 	 */
-	const LOCATION_FILTER = '/[a-zA-Z][a-zA-Z]/';
+	const LOCATION_FILTER = '/[a-zA-Z][a-zA-Z0-9]/';
 	/**
 	 * @var string Pattern for bool
 	 */
