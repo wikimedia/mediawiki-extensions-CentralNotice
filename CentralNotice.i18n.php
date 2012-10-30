@@ -187,6 +187,9 @@ Add one below.',
 	'centralnotice-country-a2' => 'Unknown/Satellite Provider',
 	'centralnotice-country-o1' => 'Unknown/Other Country',
 	'centralnotice-country-unknown' => 'Unknown/Non-Geolocatable',
+	'centralnotice-buckets' => 'User bucketing',
+	'centralnotice-bucket' => 'Bucket',
+	'centralnotice-bucket-letter' => 'Bucket "$1"',
 );
 
 /** Message documentation (Message documentation)
@@ -385,6 +388,9 @@ Related messages:
 	'centralnotice-country-a2' => 'Label for MaxMind country "A2", Satellite Provider, used when the IP address belongs to a global internet provider',
 	'centralnotice-country-o1' => 'Label for MaxMind country "O1", Other Country, used very rarely in foggy circumstances that MaxMind doesn\'t elaborate on',
 	'centralnotice-country-unknown' => 'Label for country "XX", the generic place where all the people we cannot geolocate live.',
+	'centralnotice-buckets' => 'Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.',
+	'centralnotice-bucket' => 'Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.',
+	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used.',
 );
 
 /** Afrikaans (Afrikaans)
