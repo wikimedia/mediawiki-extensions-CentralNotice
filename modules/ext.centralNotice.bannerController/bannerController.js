@@ -69,8 +69,6 @@
 					return;
 				}
 
-				mw.centralNotice.data.country = Geo.country || 'XX';
-
 				mw.centralNotice.data.bucket = $.cookie( 'centralnotice_bucket' );
 				if ( mw.centralNotice.data.bucket === null ) {
 					mw.centralNotice.data.bucket = Math.round( Math.random() );
@@ -82,6 +80,8 @@
 
 				// Initialize the query string vars
 				mw.centralNotice.getQueryStringVariables();
+
+				mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
 
 				$( '#siteNotice' ).prepend(
 					'<div id="centralNotice"></div>'
