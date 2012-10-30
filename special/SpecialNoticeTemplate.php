@@ -1031,14 +1031,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$wikiPage = new WikiPage(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-
-			$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
+			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
+			$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
 
 			$bannerId = $this->getTemplateId( $name );
 			$cndb = new CentralNoticeDB();
 			$finalBannerSettings = $cndb->getBannerSettings( $name, true );
 
-			if ( $wgNoticeUseTranslateExtension ) {
+			if ( ( $wgNoticeUseTranslateExtension ) && ( $pageResult->value['revision'] != null ) ) {
 				// Get the revision and page ID of the page that was created
 				$pageResultValue = $pageResult->value;
 				$revision = $pageResultValue['revision'];
