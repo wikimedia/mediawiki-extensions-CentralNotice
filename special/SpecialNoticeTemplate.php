@@ -1038,7 +1038,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$cndb = new CentralNoticeDB();
 			$finalBannerSettings = $cndb->getBannerSettings( $name, true );
 
-			if ( ( $wgNoticeUseTranslateExtension ) && ( $pageResult->value['revision'] != null ) ) {
+			if ( $wgNoticeUseTranslateExtension && $pageResult->isOK() && $pageResult->value['revision'] ) {
 				// Get the revision and page ID of the page that was created
 				$pageResultValue = $pageResult->value;
 				$revision = $pageResultValue['revision'];
