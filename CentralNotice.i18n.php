@@ -1925,7 +1925,15 @@ $messages['be-tarask'] = array(
 	'centralnotice-priority-normal' => 'звычайны',
 	'centralnotice-priority-high' => 'вялікі',
 	'centralnotice-priority-emergency' => 'тэрміновы',
+	'centralnotice-country-eu' => 'Невядома/Рэгіён Эўразьвязу',
+	'centralnotice-country-ap' => 'Невядома/Усходнеазіяцкі рэгіён',
+	'centralnotice-country-a1' => 'Невядома/Ананімны проксі',
+	'centralnotice-country-a2' => 'Невядома/Спадарожнікавы правайдэр',
+	'centralnotice-country-o1' => 'Невядома/Іншая краіна',
 	'centralnotice-country-unknown' => 'Невядомая/Не вызначаецца',
+	'centralnotice-buckets' => 'Разьмежаваньне ўдзельнікаў',
+	'centralnotice-bucket' => 'Група',
+	'centralnotice-bucket-letter' => 'Група «$1»',
 );
 
 /** Bulgarian (български)
@@ -3554,6 +3562,11 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'hoch',
 	'centralnotice-priority-emergency' => 'Notfall',
+	'centralnotice-country-eu' => 'Unbekannt/Region der Europäischen Union',
+	'centralnotice-country-ap' => 'Unbekannt/Asiatisch-pazifische Region',
+	'centralnotice-country-a1' => 'Unbekannt/Anonymer Proxy',
+	'centralnotice-country-a2' => 'Unbekannt/Satellitenbetreiber',
+	'centralnotice-country-o1' => 'Unbekannt/Anderer Staat',
 	'centralnotice-country-unknown' => 'Unbekannt/nicht lokalisierbar',
 );
 
@@ -3755,7 +3768,15 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'berz',
 	'centralnotice-priority-emergency' => 'rew',
+	'centralnotice-country-eu' => 'Nêzanıte/Mıntıqay Yewina Ewropa',
+	'centralnotice-country-ap' => 'Nêzanıte/Mıntıqay Asiya Pasifiki',
+	'centralnotice-country-a1' => 'Nêzanıte/Anomin Proksi',
+	'centralnotice-country-a2' => 'Nêzanıte/Wayıre satelite',
+	'centralnotice-country-o1' => 'Nêzanıte/Zewbi Dewlet',
 	'centralnotice-country-unknown' => 'Nêzaniyaye/Non-Geolocatable',
+	'centralnotice-buckets' => 'Sitılê karberi',
+	'centralnotice-bucket' => 'Sitıl',
+	'centralnotice-bucket-letter' => 'Sitılê "$1"',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -4492,7 +4513,15 @@ Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergencia',
+	'centralnotice-country-eu' => 'Desconocido/Región de la Unión Europea',
+	'centralnotice-country-ap' => 'Desconocido/Región Asia Pacífico',
+	'centralnotice-country-a1' => 'Desconocido/Proxy anónimo',
+	'centralnotice-country-a2' => 'Desconocido/Conexión por satélite',
+	'centralnotice-country-o1' => 'Desconocido/Otro país',
 	'centralnotice-country-unknown' => 'Desconocido / No geolocalizable',
+	'centralnotice-buckets' => 'Estrato del usuario',
+	'centralnotice-bucket' => 'Segmento',
+	'centralnotice-bucket-letter' => 'Segmento "$1"',
 );
 
 /** Estonian (eesti)
@@ -5421,7 +5450,15 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-priority-normal' => 'normale',
 	'centralnotice-priority-high' => 'haute',
 	'centralnotice-priority-emergency' => 'urgente',
+	'centralnotice-country-eu' => 'Inconnu/Région Union Européenne',
+	'centralnotice-country-ap' => 'Inconnu/Région Asie-Pacifique',
+	'centralnotice-country-a1' => 'Inconnu/Proxy anonyme',
+	'centralnotice-country-a2' => 'Inconnu/Fournisseur par satellite',
+	'centralnotice-country-o1' => 'Inconnu/Autre pays',
 	'centralnotice-country-unknown' => 'Inconnu/Non-Géolocalisable',
+	'centralnotice-buckets' => 'Écopage utilisateur',
+	'centralnotice-bucket' => 'Godet',
+	'centralnotice-bucket-letter' => 'Godet "$1"',
 );
 
 /** Franco-Provençal (arpetan)
@@ -7847,6 +7884,11 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-priority-normal' => 'normale',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergenza',
+	'centralnotice-country-eu' => "Sconosciuto/Regione dell'Unione Europea",
+	'centralnotice-country-ap' => 'Sconosciuto/Regione Asia-Pacifico',
+	'centralnotice-country-a1' => 'Sconosciuto/Proxy anonimo',
+	'centralnotice-country-a2' => 'Sconosciuto/Provider satellitare',
+	'centralnotice-country-o1' => 'Sconosciuto/Altro paese',
 	'centralnotice-country-unknown' => 'Sconosciuto/non geo-localizzabile',
 );
 
@@ -8029,7 +8071,15 @@ $messages['ja'] = array(
 	'centralnotice-priority-normal' => '通常',
 	'centralnotice-priority-high' => '高',
 	'centralnotice-priority-emergency' => '緊急',
+	'centralnotice-country-eu' => '不明/欧州連合地域',
+	'centralnotice-country-ap' => '不明/アジア太平洋地域',
+	'centralnotice-country-a1' => '不明/匿名プロキシ',
+	'centralnotice-country-a2' => '不明/衛星プロバイダー',
+	'centralnotice-country-o1' => '不明/その他の国',
 	'centralnotice-country-unknown' => '不明/位置特定不能',
+	'centralnotice-buckets' => '利用者のバケツ分類',
+	'centralnotice-bucket' => 'バケツ',
+	'centralnotice-bucket-letter' => 'バケツ「$1」',
 );
 
 /** Jutish (jysk)
@@ -8392,6 +8442,12 @@ $messages['ka'] = array(
 	'centralnotice-priority-normal' => 'ნორმალური',
 	'centralnotice-priority-high' => 'მაღალი',
 	'centralnotice-priority-emergency' => 'საგანგებო',
+	'centralnotice-country-eu' => 'უცნობი/ევროკავშირის რეგიონი',
+	'centralnotice-country-ap' => 'უცნობი/აზია-წყნარი ოკეანის რეგიონი',
+	'centralnotice-country-a1' => 'უცნობი/ანონიმური პროქსი',
+	'centralnotice-country-a2' => 'უცნობი/თანამგზავრული პროვაიდერი',
+	'centralnotice-country-o1' => 'უცნობი/სხვა ქვეყანა',
+	'centralnotice-country-unknown' => 'უცნობი/არაგეოლოკაციური',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -9841,7 +9897,15 @@ $messages['mk'] = array(
 	'centralnotice-priority-normal' => 'нормален',
 	'centralnotice-priority-high' => 'висок',
 	'centralnotice-priority-emergency' => 'итен',
+	'centralnotice-country-eu' => 'Непозната/Подрачје на Европската Унија',
+	'centralnotice-country-ap' => 'Непозната/Азиско-тихоокеанско подрачје',
+	'centralnotice-country-a1' => 'Непозната/Анонимен застапник',
+	'centralnotice-country-a2' => 'Непозната/Сателитски услужник',
+	'centralnotice-country-o1' => 'Непозната/Друга земја',
 	'centralnotice-country-unknown' => 'Непознато/Неутврдлива положба',
+	'centralnotice-buckets' => 'Приказ по кориснички групи',
+	'centralnotice-bucket' => 'Група',
+	'centralnotice-bucket-letter' => 'Група „$1“',
 );
 
 /** Malayalam (മലയാളം)
