@@ -48,9 +48,9 @@ class TemplatePager extends ReverseChronologicalPager {
 		}
 
 		return array(
-			'tables' => 'cn_templates',
-			'fields' => array( 'tmp_name', 'tmp_id' ),
-			'conds'  => array( 'tmp_name' . $dbr->buildLike( $likeArray ) ),
+			'tables' => array( 'templates' => 'cn_templates'),
+			'fields' => array( 'templates.tmp_name', 'templates.tmp_id' ),
+			'conds'  => array( 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ),
 		);
 	}
 
@@ -60,7 +60,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function getIndexField() {
-		return 'tmp_id';
+		return 'templates.tmp_id';
 	}
 
 	/**
@@ -90,8 +90,14 @@ class TemplatePager extends ReverseChronologicalPager {
 
 		// Link and Preview
 		$render = new SpecialBannerLoader();
-		$render->siteName = 'Wikipedia';
+		$render->project = 'wikipedia';
+		$render->country = 'XX';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
+		$render->anonymous = true;
+		$render->bucket = 0;
+		$render->siteName = 'Wikipedia';
+		$render->campaign = 'No-Campaign';
+
 		try {
 			$preview = $render->getHtmlNotice( $row->tmp_name );
 		} catch ( SpecialBannerLoaderException $e ) {
