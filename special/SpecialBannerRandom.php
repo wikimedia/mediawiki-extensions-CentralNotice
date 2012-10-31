@@ -47,7 +47,7 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 			echo $content;
 		} else {
 			wfDebugLog( 'CentralNotice', "No content retrieved for banner: {$this->bannerName}" );
-			echo "/* Banner could not be generated */";
+			echo "insertBanner( false );";
 		}
 	}
 
