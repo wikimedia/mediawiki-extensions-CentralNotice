@@ -24,6 +24,7 @@ class SpecialRecordImpression extends UnlistedSpecialPage {
 	 */
 	function sendHeaders() {
 		$expiry = static::CACHE_EXPIRY;
+		header( "Content-Type: image/png" );
 		header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
 	}
 }
