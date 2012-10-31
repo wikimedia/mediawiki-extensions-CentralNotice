@@ -58,6 +58,11 @@
 				var bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
 				$( '#centralNotice' ).prepend( bannerScript );
 			},
+			// Record banner impression using old-style URL
+			recordImpression: function( data ) {
+				var url = mw.config.get( 'wgCentralBannerRecorder' ) + '?' + $.param( data );
+				(new Image()).src = url;
+			},
 			getQueryStringVariables: function () {
 				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
 					mw.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
@@ -101,7 +106,12 @@
 	// Has to be global because of compatibility with legacy code.
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
-		var url, targets;
+		var url, targets, data;
+
+		if ( !bannerJson ) {
+			mw.centralNotice.recordImpression( { result: 'hide', reason: 'empty' } );
+			return;
+		}
 
 		// Store the bannerType in case we need to set a banner hiding cookie later
 		mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
@@ -110,6 +120,7 @@
             encodeURIComponent( mw.centralNotice.data.bannerType ) + '=hide' ) != -1
 			&& !mw.centralNotice.data.testing )
         {
+			mw.centralNotice.recordImpression( { result: 'hide', reason: 'cookie' } );
 			return;
 		}
 
@@ -137,19 +148,16 @@
 		}
 
 		if ( !mw.centralNotice.data.testing ) {
-			// Record banner impression using old-style URL
-			$.ajax( {
-				url: mw.config.get( 'wgCentralBannerRecorder' ),
-				data: {
-					banner: bannerJson.bannerName,
-					campaign: bannerJson.campaign,
-					userlang: mw.config.get( 'wgUserLanguage' ),
-					db: mw.config.get( 'wgDBname' ),
-					sitename: mw.config.get( 'wgSiteName' ),
-					country: mw.centralNotice.data.country,
-					bucket: mw.centralNotice.data.bucket
-				}
-			} );
+			data = {
+				banner: bannerJson.bannerName,
+				campaign: bannerJson.campaign,
+				userlang: mw.config.get( 'wgUserLanguage' ),
+				db: mw.config.get( 'wgDBname' ),
+				sitename: mw.config.get( 'wgSiteName' ),
+				country: mw.centralNotice.data.country,
+				bucket: mw.centralNotice.data.bucket
+			};
+			mw.centralNotice.recordImpression( data );
 		}
 	};
 
