@@ -3620,7 +3620,7 @@ Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
 	'centralnotice-manage-templates' => 'Afişa idare ke',
 	'centralnotice-add' => 'De bike',
 	'centralnotice-add-notice' => 'Yew îkazê de bike',
-	'centralnotice-edit-notice' => 'Kampanyay timar ke',
+	'centralnotice-edit-notice' => 'Kampanya bıvurne',
 	'centralnotice-add-template' => 'Yew Sablon vırazê',
 	'centralnotice-show-notices' => 'Îkazan bimucne',
 	'centralnotice-list-templates' => 'Şablona liste ke',
@@ -5834,6 +5834,11 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emerxencia',
+	'centralnotice-country-eu' => 'Descoñecido/Rexión da Unión Europea',
+	'centralnotice-country-ap' => 'Descoñecido/Rexión de Asia-Pacífico',
+	'centralnotice-country-a1' => 'Descoñecido/Proxy anónimo',
+	'centralnotice-country-a2' => 'Descoñecido/Conexión por satélite',
+	'centralnotice-country-o1' => 'Descoñecido/Outro país',
 	'centralnotice-country-unknown' => 'Descoñecido/Non xeolocalizable',
 );
 
@@ -10097,6 +10102,12 @@ $messages['ml'] = array(
 	'centralnotice-priority-normal' => 'സാധാരണം',
 	'centralnotice-priority-high' => 'ഉന്നതം',
 	'centralnotice-priority-emergency' => 'അടിയന്തരം',
+	'centralnotice-country-eu' => 'അപരിചിതം/യൂറോപ്യൻ യൂണിയൻ പ്രദേശം',
+	'centralnotice-country-ap' => 'അപരിചിതം/ഏഷ്യാ പസഫിക് പ്രദേശം',
+	'centralnotice-country-a1' => 'അപരിചിതം/അജ്ഞാത പ്രോക്സി',
+	'centralnotice-country-a2' => 'അപരിചിതം/ഉപഗ്രഹ സേവനദാതാവ്',
+	'centralnotice-country-o1' => 'അപരിചിതം/ മറ്റ് രാജ്യം',
+	'centralnotice-country-unknown' => 'അപരിചിതം/ഭൗമസ്ഥാനം നിർണ്ണയിക്കാനാവാത്തത്',
 );
 
 /** Mongolian (монгол)
@@ -17577,6 +17588,7 @@ $messages['yue'] = array(
  * @author Shirayuki
  * @author Wmr89502270
  * @author Xiaomingyan
+ * @author Yfdyh000
  * @author 阿pp
  */
 $messages['zh-hans'] = array(
@@ -17750,6 +17762,12 @@ $messages['zh-hans'] = array(
 	'centralnotice-priority-normal' => '一般',
 	'centralnotice-priority-high' => '高',
 	'centralnotice-priority-emergency' => '紧急',
+	'centralnotice-country-eu' => '未知/欧盟地区',
+	'centralnotice-country-ap' => '未知/亚太地区',
+	'centralnotice-country-a1' => '未知/匿名代理',
+	'centralnotice-country-a2' => '未知/卫星服务商',
+	'centralnotice-country-o1' => '未知/其他国家',
+	'centralnotice-country-unknown' => '未知/非Geolocatable',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
