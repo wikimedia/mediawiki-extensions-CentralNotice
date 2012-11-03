@@ -10461,7 +10461,15 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-priority-normal' => 'biasa',
 	'centralnotice-priority-high' => 'tinggi',
 	'centralnotice-priority-emergency' => 'kecemasan',
+	'centralnotice-country-eu' => 'Tidak pasti/Kawasan Kesatuan Eropah',
+	'centralnotice-country-ap' => 'Tidak pasti/Kawasan Asia Pasifik',
+	'centralnotice-country-a1' => 'Tidak pasti/Proksi Awanama',
+	'centralnotice-country-a2' => 'Tidak pasti/Pembekal Khidmat Satelit',
+	'centralnotice-country-o1' => 'Tidak pasti/Negara Lain',
 	'centralnotice-country-unknown' => 'Tidak diketahui/Tidak boleh digeolokasi',
+	'centralnotice-buckets' => 'Menimba pengguna',
+	'centralnotice-bucket' => 'Timba',
+	'centralnotice-bucket-letter' => 'Timba "$1"',
 );
 
 /** Maltese (Malti)
