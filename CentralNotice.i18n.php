@@ -1443,6 +1443,15 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emerxencia',
+	'centralnotice-country-eu' => 'Desconocíu/Rexón de la Unión Européa',
+	'centralnotice-country-ap' => "Desconocíu/Rexón d'Asia Pacíficu",
+	'centralnotice-country-a1' => 'Desconocíu/Proxy anónimu',
+	'centralnotice-country-a2' => 'Desconocíu/Conexón por satélite',
+	'centralnotice-country-o1' => 'Desconocíu/Otru país',
+	'centralnotice-country-unknown' => 'Desconocíu/Non xeollocalizable',
+	'centralnotice-buckets' => "Agrupación d'usuarios",
+	'centralnotice-bucket' => 'Segmentu',
+	'centralnotice-bucket-letter' => 'Segmentu «$1»',
 );
 
 /** Azerbaijani (azərbaycanca)
