@@ -22,6 +22,14 @@
 				bucket: null,
 				testing: false
 			},
+			loadBanner: function () {
+				if ( mw.centralNotice.data.getVars.banner ) {
+					// If we're forcing one banner
+					mw.centralNotice.loadTestingBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
+				} else {
+					mw.centralNotice.loadRandomBanner();
+				}
+			},
 			loadTestingBanner: function ( bannerName, campaign ) {
 				var bannerPageQuery, bannerScript, scriptUrl;
 
@@ -68,6 +76,20 @@
 					mw.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
 				} );
 			},
+			waitForCountry: function () {
+				if ( Geo.country ) {
+					mw.centralNotice.data.country = Geo.country;
+					mw.centralNotice.loadBanner();
+				} else {
+					mw.centralNotice.data.waitCycle++;
+					if ( mw.centralNotice.data.waitCycle < 10 ) {
+						window.setTimeout( 'mw.centralNotice.waitForCountry();', 100 );
+					} else {
+						mw.centralNotice.data.country = 'XX';
+						mw.centralNotice.loadBanner();
+					}
+				}
+			},
 			initialize: function () {
 				// Prevent loading banners on Special pages
 				if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
@@ -86,17 +108,21 @@
 				// Initialize the query string vars
 				mw.centralNotice.getQueryStringVariables();
 
-				mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
-
 				$( '#siteNotice' ).prepend(
 					'<div id="centralNotice"></div>'
 				);
 
-				if ( mw.centralNotice.data.getVars.banner ) {
-					// if we're forcing one banner
-					mw.centralNotice.loadTestingBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
+				mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
+
+				// If the user has no counry assigned, we try a new lookup via
+				// geoiplookup.wikimedia.org. This hostname has no IPv6 address,
+				// so will force dual-stack users to fall back to IPv4.
+				if ( mw.centralNotice.data.country === 'XX' ) {
+					$( 'body' ).append( '<script src="//geoiplookup.wikimedia.org/"></script>' );
+					mw.centralNotice.data.waitCycle = 0;
+					mw.centralNotice.waitForCountry();
 				} else {
-					mw.centralNotice.loadRandomBanner();
+					mw.centralNotice.loadBanner();
 				}
 			}
 		};
