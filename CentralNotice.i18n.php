@@ -3577,6 +3577,9 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-country-a2' => 'Unbekannt/Satellitenbetreiber',
 	'centralnotice-country-o1' => 'Unbekannt/Anderer Staat',
 	'centralnotice-country-unknown' => 'Unbekannt/nicht lokalisierbar',
+	'centralnotice-buckets' => 'Benutzerumgebung',
+	'centralnotice-bucket' => 'Umgebung',
+	'centralnotice-bucket-letter' => 'Umgebung „$1“',
 );
 
 /** Swiss High German (Schweizer Hochdeutsch)
