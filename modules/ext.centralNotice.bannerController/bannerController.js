@@ -135,7 +135,14 @@
 		var url, targets, data;
 
 		if ( !bannerJson ) {
-			mw.centralNotice.recordImpression( { result: 'hide', reason: 'empty' } );
+			mw.centralNotice.recordImpression( {
+				result: 'hide',
+				reason: 'empty',
+				country: mw.centralNotice.data.country,
+				language: mw.config.get( 'wgUserLanguage' ),
+				project: mw.config.get( 'wgNoticeProject' ),
+				db: mw.config.get( 'wgDBname' ),
+			} );
 			return;
 		}
 
@@ -146,7 +153,14 @@
             encodeURIComponent( mw.centralNotice.data.bannerType ) + '=hide' ) != -1
 			&& !mw.centralNotice.data.testing )
         {
-			mw.centralNotice.recordImpression( { result: 'hide', reason: 'cookie' } );
+			mw.centralNotice.recordImpression( {
+				result: 'hide',
+				reason: 'cookie',
+				country: mw.centralNotice.data.country,
+				language: mw.config.get( 'wgUserLanguage' ),
+				project: mw.config.get( 'wgNoticeProject' ),
+				db: mw.config.get( 'wgDBname' ),
+			} );
 			return;
 		}
 
