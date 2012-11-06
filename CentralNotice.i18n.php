@@ -6422,7 +6422,15 @@ $messages['he'] = array(
 	'centralnotice-priority-normal' => 'רגילה',
 	'centralnotice-priority-high' => 'גבוהה',
 	'centralnotice-priority-emergency' => 'חירום',
+	'centralnotice-country-eu' => 'בלתי־ידוע/אזור האיחוד האירופי',
+	'centralnotice-country-ap' => 'בלתי־ידוע/אזור אסיה והאוקיינוס השקט',
+	'centralnotice-country-a1' => 'בלתי־ידוע/פרוקסי אלמוני',
+	'centralnotice-country-a2' => 'בלתי־ידוע/ספק תקשורת לוויינית',
+	'centralnotice-country-o1' => 'בלתי־ידוע/מדינה אחרת',
 	'centralnotice-country-unknown' => 'לא ידועה או לא מזוהה בזיהוי גאוגרפי',
+	'centralnotice-buckets' => 'הקבצת משתמשים (bucketing)',
+	'centralnotice-bucket' => 'הקבצה',
+	'centralnotice-bucket-letter' => 'ההקבצה "$1"',
 );
 
 /** Hindi (हिन्दी)
