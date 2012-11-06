@@ -157,6 +157,9 @@ $wgNoticeUseTranslateExtension = false;
 // fundraising code doesn't like non ISO countries so we map them to the fictional point case 'XX'
 $wgNoticeXXCountries = array( 'XX', 'EU', 'AP', 'A1', 'A2', 'O1' );
 
+// String of space delimited domains that will be able to accept data via JS message event when
+// calling Special:CNReporter
+$wgNoticeReporterDomains = 'https://donate.wikimedia.org';
 
 /**
  * Load all the classes, register special pages, etc. Called through wgExtensionFunctions.
@@ -186,6 +189,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialBannerRandom' ] = $specialDir . 'SpecialBannerRandom.php';
 	$wgAutoloadClasses[ 'SpecialRecordImpression' ] = $specialDir . 'SpecialRecordImpression.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
+	$wgAutoloadClasses[ 'SpecialCNReporter' ] = $specialDir . 'SpecialCNReporter.php';
 
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 
@@ -220,6 +224,7 @@ function efCentralNoticeSetup() {
 	$wgSpecialPages[ 'BannerRandom' ] = 'SpecialBannerRandom';
 	$wgSpecialPages[ 'RecordImpression' ] = 'SpecialRecordImpression';
 	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';
+	$wgSpecialPages[ 'CNReporter' ] = 'SpecialCNReporter';
 
 	// If this is the wiki that hosts the management interface, load further components
 	if ( $wgNoticeInfrastructure ) {
