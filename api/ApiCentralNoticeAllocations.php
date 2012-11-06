@@ -36,10 +36,6 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	public function execute() {
 		global $wgNoticeBannerMaxAge;
 
-		// Set our cache control
-		$this->getMain()->setCacheMode( 'public' );
-		$this->getMain()->setCacheMaxAge( $wgNoticeBannerMaxAge );
-
 		// Obtain the ApiResults object from the base
 		$result = $this->getResult();
 
