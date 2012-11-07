@@ -11238,6 +11238,15 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-priority-normal' => 'normaal',
 	'centralnotice-priority-high' => 'hoog',
 	'centralnotice-priority-emergency' => 'noodgeval',
+	'centralnotice-country-eu' => 'Onbekend/Europese Unie',
+	'centralnotice-country-ap' => 'Onbekend/Azië/Pacifisch gebied',
+	'centralnotice-country-a1' => 'Onbekend/Anonieme proxy',
+	'centralnotice-country-a2' => 'Onbekend/Satellietprovider',
+	'centralnotice-country-o1' => 'Onbekend/Ander land',
+	'centralnotice-country-unknown' => 'Onbekend/Geen geolocatie',
+	'centralnotice-buckets' => 'Groepen gebruikers',
+	'centralnotice-bucket' => 'Groep',
+	'centralnotice-bucket-letter' => 'Groep "$1"',
 );
 
 /** Nederlands (informeel)‎ (Nederlands (informeel)‎)
@@ -11651,6 +11660,7 @@ $messages['pdc'] = array(
 	'centralnotice-languages' => 'Schprooche',
 	'centralnotice-language' => 'Schprooch',
 	'centralnotice-country' => 'Land',
+	'centralnotice-talk-link' => 'Dischbedutt',
 );
 
 /** Pälzisch (Pälzisch)
