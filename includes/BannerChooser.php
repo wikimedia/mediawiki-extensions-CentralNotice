@@ -1,6 +1,7 @@
 <?php
 
 class BannerChooser {
+	const SLOTS_KEY = 'slots';
 	const ALLOCATION_KEY = 'allocation';
 	const RAND_MAX = 30;
 
@@ -26,18 +27,17 @@ class BannerChooser {
 			wfDebugLog( 'CentralNotice', "Illegal banner slot: {$slot}" );
 			$slot = rand( 1, self::RAND_MAX );
 		}
-		$p = $slot / self::RAND_MAX;
 
 		// Choose a banner
 		$counter = 0;
 		foreach ( $this->banners as $banner ) {
-			$counter += $banner[ self::ALLOCATION_KEY ];
-			if ( $p <= $counter ) {
+			$counter += $banner[ self::SLOTS_KEY ];
+			if ( $slot <= $counter ) {
 				return $banner;
 			}
 		}
-		// If there is floating-point precision error, we were close to 1.0,
-		// so use the last banner.
+
+		// If there was some error, return the last banner (but only if we have banners to return!)
 		if ( count( $this->banners ) ) {
 			return $this->banners[ count( $this->banners ) - 1 ];
 		}
@@ -97,23 +97,25 @@ class BannerChooser {
 			return;
 		}
 
-		foreach ( $this->banners as &$banner ) {
-			$banner[ self::ALLOCATION_KEY ] = $banner[ 'weight' ] / $total;
-		}
-
-		// Quantize to RAND_MAX to give the effective allocations.
-		// Get the closest slot boundary and round to that.
-		$quantum = 1 / self::RAND_MAX;
+		// First pass allocate the minimum number of slots to each banner
 		$sum = 0;
 		foreach ( $this->banners as &$banner ) {
-			$sum += $banner[ self::ALLOCATION_KEY ];
-			$error = $sum - round( $sum / $quantum ) * $quantum;
-			$banner[ self::ALLOCATION_KEY ] -= $error;
-			$sum -= $error;
+			$slots = floor( ( $banner[ 'weight' ] / $total ) * self::RAND_MAX );
+			$banner[ self::SLOTS_KEY ] = $slots;
+			$sum += $slots;
 		}
-		// Arbitrarily move the final banner to 1.0 so we don't have a dead zone.
-		if ( count( $this->banners ) ) {
-			$this->banners[ count( $this->banners ) - 1 ][ self::ALLOCATION_KEY ] += 1.0 - $sum;
+
+		// Allocate each remaining slot one at a time to each banner
+		$bannerIndex = 0;
+		while ( $sum < self::RAND_MAX ) {
+			$this->banners[ $bannerIndex ][ self::SLOTS_KEY ] += 1;
+			$sum += 1;
+			$bannerIndex = ( $bannerIndex + 1 ) % count( $this->banners );
+		}
+
+		// Determine allocation percentage
+		foreach ( $this->banners as &$banner ) {
+			$banner[ self::ALLOCATION_KEY ] = $banner[ self::SLOTS_KEY ] / self::RAND_MAX;
 		}
 	}
 }
