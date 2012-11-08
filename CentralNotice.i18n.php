@@ -16686,6 +16686,38 @@ $messages['tyv'] = array(
 	'centralnotice-clone-name' => 'Ат:',
 );
 
+/** Central Atlas Tamazight (ⵜⴰⵎⴰⵣⵉⵖⵜ)
+ * @author Tifinaghes
+ */
+$messages['tzm'] = array(
+	'centralnotice-add' => 'ⵔⵏⵓ',
+	'centralnotice-translations' => 'ⵜⵉⵙⵓⵖⴰⵍ',
+	'centralnotice-translate-to' => 'ⵙⵙⵓⵖⵍ ⵖⵔ',
+	'centralnotice-translate' => 'ⵙⵙⵓⵖⵍ',
+	'centralnotice-english' => 'ⵜⵉⵏⴳⵍⵉⵣⵉⵜ',
+	'centralnotice-banner-name' => 'ⴰⵙⵙⴰⵖ ⵓⵎⴰⵜⴰⵔ:',
+	'centralnotice-banner' => 'ⴰⵎⴰⵜⴰⵔ',
+	'centralnotice-banner-heading' => 'ⴰⵎⴰⵜⴰⵔ: $1',
+	'centralnotice-templates' => 'ⴰⵎⴰⵜⴰⵔ',
+	'centralnotice-day' => 'ⴰⵙⵙ',
+	'centralnotice-year' => 'ⴰⵙⴳⴳⵯⴰⵙ',
+	'centralnotice-month' => 'ⴰⵢⵢⵓⵔ',
+	'centralnotice-hours' => 'ⵜⴰⵙⵔⴰⴳⵜ',
+	'centralnotice-min' => 'ⵜⵓⵙⴷⴰⴷⵜ',
+	'centralnotice-project-lang' => 'ⵜⵓⵜⵍⴰⵢⵜ ⵓⵙⵏⴼⴰⵔ',
+	'centralnotice-select' => 'ⵙⵡⵓⵜⵜⴰ', # Fuzzy
+	'centralnotice-project-name' => 'ⴰⵙⵙⴰⵖ ⵓⵙⵏⴼⴰⵔ',
+	'centralnotice-start-date' => 'ⴰⴽⵓⴷ ⵓⵙⵙⵏⵜⵉ',
+	'centralnotice-change-lang' => 'ⴱⴷⴷⵍ ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵜⵙⵓⵖⵍⵜ',
+	'centralnotice-message' => 'ⵜⴰⴱⵔⴰⵜ',
+	'centralnotice-clone-name' => 'ⴰⵙⵙⴰⵖ:',
+	'centralnotice-languages' => 'ⵜⵓⵜⵍⴰⵢⵉⵏ',
+	'centralnotice-language' => 'ⵜⵓⵜⵍⴰⵢⵜ',
+	'centralnotice-projects' => 'ⵉⵙⵏⴼⴰⵔⵏ',
+	'centralnotice-user-links' => '$1 ($2)',
+	'centralnotice-date' => 'ⴰⴽⵓⴷ',
+);
+
 /** Udmurt (удмурт)
  * @author Kaganer
  */
