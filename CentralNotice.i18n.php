@@ -3081,6 +3081,15 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 	'centralnotice-priority-normal' => 'normální',
 	'centralnotice-priority-high' => 'vysoká',
 	'centralnotice-priority-emergency' => 'velmi vysoká',
+	'centralnotice-country-eu' => 'Neznámá/Region Evropská unie',
+	'centralnotice-country-ap' => 'Neznámá/Region Asie-Pacifik',
+	'centralnotice-country-a1' => 'Neznámá/Anonymní proxy',
+	'centralnotice-country-a2' => 'Neznámá/Satelitní poskytovatel',
+	'centralnotice-country-o1' => 'Neznámá/Jiná země',
+	'centralnotice-country-unknown' => 'Neznámá/Nelze geolokalizovat',
+	'centralnotice-buckets' => 'Seskupování uživatelů',
+	'centralnotice-bucket' => 'Skupina',
+	'centralnotice-bucket-letter' => 'Skupina „$1“',
 );
 
 /** Welsh (Cymraeg)
@@ -10894,7 +10903,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-priority-low' => 'lav',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'høy',
-	'centralnotice-priority-emergency' => 'nødsfall',
+	'centralnotice-priority-emergency' => 'kritisk',
 );
 
 /** Low German (Plattdüütsch)
@@ -16690,6 +16699,7 @@ $messages['tyv'] = array(
  * @author Tifinaghes
  */
 $messages['tzm'] = array(
+	'centralnotice-view' => 'ⵥⵕ',
 	'centralnotice-add' => 'ⵔⵏⵓ',
 	'centralnotice-translations' => 'ⵜⵉⵙⵓⵖⴰⵍ',
 	'centralnotice-translate-to' => 'ⵙⵙⵓⵖⵍ ⵖⵔ',
