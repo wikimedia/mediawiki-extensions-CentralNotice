@@ -11,122 +11,120 @@
 		}
 	}
 
-	mw.loader.using( 'mediawiki.util', function () {
-		$.ajaxSetup({
-			cache: true
-		});
-		mw.centralNotice = {
-			data: {
-				getVars: {},
-				bannerType: 'default',
-				bucket: null,
-				testing: false
-			},
-			loadBanner: function () {
-				if ( mw.centralNotice.data.getVars.banner ) {
-					// If we're forcing one banner
-					mw.centralNotice.loadTestingBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
+	$.ajaxSetup({
+		cache: true
+	});
+	mw.centralNotice = {
+		data: {
+			getVars: {},
+			bannerType: 'default',
+			bucket: null,
+			testing: false
+		},
+		loadBanner: function () {
+			if ( mw.centralNotice.data.getVars.banner ) {
+				// If we're forcing one banner
+				mw.centralNotice.loadTestingBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
+			} else {
+				mw.centralNotice.loadRandomBanner();
+			}
+		},
+		loadTestingBanner: function ( bannerName, campaign ) {
+			var bannerPageQuery, bannerScript, scriptUrl;
+
+			mw.centralNotice.data.testing = true;
+
+			// Get the requested banner
+			bannerPageQuery = {
+				title: 'Special:BannerLoader',
+				banner: bannerName,
+				campaign: campaign,
+				userlang: mw.config.get( 'wgUserLanguage' ),
+				db: mw.config.get( 'wgDBname' ),
+				sitename: mw.config.get( 'wgSiteName' ),
+				country: mw.centralNotice.data.country
+			};
+			scriptUrl = mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery );
+			bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
+			$( '#centralNotice' ).prepend( bannerScript );
+		},
+		loadRandomBanner: function () {
+			var RAND_MAX = 30;
+
+			var bannerDispatchQuery = {
+				userlang: mw.config.get( 'wgUserLanguage' ),
+				sitename: mw.config.get( 'wgSiteName' ),
+				project: mw.config.get( 'wgNoticeProject' ),
+				anonymous: mw.config.get( 'wgUserName' ) === null,
+				bucket: mw.centralNotice.data.bucket,
+				country: mw.centralNotice.data.country,
+				slot: Math.floor( Math.random() * RAND_MAX ) + 1
+			};
+			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' )
+				+ '?' + $.param( bannerDispatchQuery );
+			var bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
+			$( '#centralNotice' ).prepend( bannerScript );
+		},
+		// Record banner impression using old-style URL
+		recordImpression: function( data ) {
+			var url = mw.config.get( 'wgCentralBannerRecorder' ) + '?' + $.param( data );
+			(new Image()).src = url;
+		},
+		getQueryStringVariables: function () {
+			document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
+				mw.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
+			} );
+		},
+		waitForCountry: function () {
+			if ( Geo.country ) {
+				mw.centralNotice.data.country = Geo.country;
+				mw.centralNotice.loadBanner();
+			} else {
+				mw.centralNotice.data.waitCycle++;
+				if ( mw.centralNotice.data.waitCycle < 10 ) {
+					window.setTimeout( mw.centralNotice.waitForCountry, 100 );
 				} else {
-					mw.centralNotice.loadRandomBanner();
-				}
-			},
-			loadTestingBanner: function ( bannerName, campaign ) {
-				var bannerPageQuery, bannerScript, scriptUrl;
-
-				mw.centralNotice.data.testing = true;
-
-				// Get the requested banner
-				bannerPageQuery = {
-					title: 'Special:BannerLoader',
-					banner: bannerName,
-					campaign: campaign,
-					userlang: mw.config.get( 'wgUserLanguage' ),
-					db: mw.config.get( 'wgDBname' ),
-					sitename: mw.config.get( 'wgSiteName' ),
-					country: mw.centralNotice.data.country
-				};
-				scriptUrl = mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery );
-				bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
-				$( '#centralNotice' ).prepend( bannerScript );
-			},
-			loadRandomBanner: function () {
-				var RAND_MAX = 30;
-
-				var bannerDispatchQuery = {
-					userlang: mw.config.get( 'wgUserLanguage' ),
-					sitename: mw.config.get( 'wgSiteName' ),
-					project: mw.config.get( 'wgNoticeProject' ),
-					anonymous: mw.config.get( 'wgUserName' ) === null,
-					bucket: mw.centralNotice.data.bucket,
-					country: mw.centralNotice.data.country,
-					slot: Math.floor( Math.random() * RAND_MAX ) + 1
-				};
-				var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' )
-					+ '?' + $.param( bannerDispatchQuery );
-				var bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
-				$( '#centralNotice' ).prepend( bannerScript );
-			},
-			// Record banner impression using old-style URL
-			recordImpression: function( data ) {
-				var url = mw.config.get( 'wgCentralBannerRecorder' ) + '?' + $.param( data );
-				(new Image()).src = url;
-			},
-			getQueryStringVariables: function () {
-				document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
-					mw.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
-				} );
-			},
-			waitForCountry: function () {
-				if ( Geo.country ) {
-					mw.centralNotice.data.country = Geo.country;
-					mw.centralNotice.loadBanner();
-				} else {
-					mw.centralNotice.data.waitCycle++;
-					if ( mw.centralNotice.data.waitCycle < 10 ) {
-						window.setTimeout( 'mw.centralNotice.waitForCountry();', 100 );
-					} else {
-						mw.centralNotice.data.country = 'XX';
-						mw.centralNotice.loadBanner();
-					}
-				}
-			},
-			initialize: function () {
-				// Prevent loading banners on Special pages
-				if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
-					return;
-				}
-
-				mw.centralNotice.data.bucket = $.cookie( 'centralnotice_bucket' );
-				if ( mw.centralNotice.data.bucket === null ) {
-					mw.centralNotice.data.bucket = Math.round( Math.random() );
-					$.cookie(
-						'centralnotice_bucket', mw.centralNotice.data.bucket,
-						{ expires: 7, path: '/' }
-					);
-				}
-
-				// Initialize the query string vars
-				mw.centralNotice.getQueryStringVariables();
-
-				$( '#siteNotice' ).prepend(
-					'<div id="centralNotice"></div>'
-				);
-
-				mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
-
-				// If the user has no counry assigned, we try a new lookup via
-				// geoiplookup.wikimedia.org. This hostname has no IPv6 address,
-				// so will force dual-stack users to fall back to IPv4.
-				if ( mw.centralNotice.data.country === 'XX' ) {
-					$( 'body' ).append( '<script src="//geoiplookup.wikimedia.org/"></script>' );
-					mw.centralNotice.data.waitCycle = 0;
-					mw.centralNotice.waitForCountry();
-				} else {
+					mw.centralNotice.data.country = 'XX';
 					mw.centralNotice.loadBanner();
 				}
 			}
-		};
-	} );
+		},
+		initialize: function () {
+			// Prevent loading banners on Special pages
+			if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
+				return;
+			}
+
+			mw.centralNotice.data.bucket = $.cookie( 'centralnotice_bucket' );
+			if ( mw.centralNotice.data.bucket === null ) {
+				mw.centralNotice.data.bucket = Math.round( Math.random() );
+				$.cookie(
+					'centralnotice_bucket', mw.centralNotice.data.bucket,
+					{ expires: 7, path: '/' }
+				);
+			}
+
+			// Initialize the query string vars
+			mw.centralNotice.getQueryStringVariables();
+
+			$( '#siteNotice' ).prepend(
+				'<div id="centralNotice"></div>'
+			);
+
+			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
+
+			// If the user has no counry assigned, we try a new lookup via
+			// geoiplookup.wikimedia.org. This hostname has no IPv6 address,
+			// so will force dual-stack users to fall back to IPv4.
+			if ( mw.centralNotice.data.country === 'XX' ) {
+				$( 'body' ).append( '<script src="//geoiplookup.wikimedia.org/"></script>' );
+				mw.centralNotice.data.waitCycle = 0;
+				mw.centralNotice.waitForCountry();
+			} else {
+				mw.centralNotice.loadBanner();
+			}
+		}
+	};
 
 	// Function that actually inserts the banner into the page after it is retrieved
 	// Has to be global because of compatibility with legacy code.
@@ -141,7 +139,7 @@
 				country: mw.centralNotice.data.country,
 				language: mw.config.get( 'wgUserLanguage' ),
 				project: mw.config.get( 'wgNoticeProject' ),
-				db: mw.config.get( 'wgDBname' ),
+				db: mw.config.get( 'wgDBname' )
 			} );
 			return;
 		}
@@ -159,7 +157,7 @@
 				country: mw.centralNotice.data.country,
 				language: mw.config.get( 'wgUserLanguage' ),
 				project: mw.config.get( 'wgNoticeProject' ),
-				db: mw.config.get( 'wgDBname' ),
+				db: mw.config.get( 'wgDBname' )
 			} );
 			return;
 		}
