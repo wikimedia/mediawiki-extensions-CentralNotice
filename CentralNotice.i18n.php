@@ -9188,6 +9188,8 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-priority-normal' => 'Normal',
 	'centralnotice-priority-high' => 'héich',
 	'centralnotice-priority-emergency' => 'dringend',
+	'centralnotice-country-a2' => 'Onbekannt/Satelittebedreiwer',
+	'centralnotice-country-o1' => 'Onbekannt/Anert Land',
 );
 
 /** Lezghian (лезги)
@@ -16701,6 +16703,7 @@ $messages['tyv'] = array(
 $messages['tzm'] = array(
 	'centralnotice-view' => 'ⵥⵕ',
 	'centralnotice-add' => 'ⵔⵏⵓ',
+	'centralnotice-add-template' => 'ⵔⵏⵓ ⴰⵎⴰⵜⴰⵔ',
 	'centralnotice-translations' => 'ⵜⵉⵙⵓⵖⴰⵍ',
 	'centralnotice-translate-to' => 'ⵙⵙⵓⵖⵍ ⵖⵔ',
 	'centralnotice-translate' => 'ⵙⵙⵓⵖⵍ',
@@ -16716,6 +16719,7 @@ $messages['tzm'] = array(
 	'centralnotice-min' => 'ⵜⵓⵙⴷⴰⴷⵜ',
 	'centralnotice-project-lang' => 'ⵜⵓⵜⵍⴰⵢⵜ ⵓⵙⵏⴼⴰⵔ',
 	'centralnotice-select' => 'ⵙⵡⵓⵜⵜⴰ', # Fuzzy
+	'centralnotice-top-ten-languages' => '10 ⵏ ⵜⵓⵜⵍⴰⵢⵉⵏ ⴰⴽⴽ ⵢⵓⴼⵏ',
 	'centralnotice-project-name' => 'ⴰⵙⵙⴰⵖ ⵓⵙⵏⴼⴰⵔ',
 	'centralnotice-start-date' => 'ⴰⴽⵓⴷ ⵓⵙⵙⵏⵜⵉ',
 	'centralnotice-change-lang' => 'ⴱⴷⴷⵍ ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵜⵙⵓⵖⵍⵜ',
@@ -16725,6 +16729,7 @@ $messages['tzm'] = array(
 	'centralnotice-language' => 'ⵜⵓⵜⵍⴰⵢⵜ',
 	'centralnotice-projects' => 'ⵉⵙⵏⴼⴰⵔⵏ',
 	'centralnotice-user-links' => '$1 ($2)',
+	'centralnotice-banner-content-changed' => 'ⵜⴱⴷⴷⴻⵍⵜ',
 	'centralnotice-date' => 'ⴰⴽⵓⴷ',
 );
 
