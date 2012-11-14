@@ -5861,6 +5861,9 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-country-a2' => 'Descoñecido/Conexión por satélite',
 	'centralnotice-country-o1' => 'Descoñecido/Outro país',
 	'centralnotice-country-unknown' => 'Descoñecido/Non xeolocalizable',
+	'centralnotice-buckets' => 'Selección de usuarios',
+	'centralnotice-bucket' => 'Selección',
+	'centralnotice-bucket-letter' => 'Selección "$1"',
 );
 
 /** Goan Konkani (Latin script) (Konknni)
