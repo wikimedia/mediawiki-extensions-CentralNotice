@@ -6952,6 +6952,9 @@ Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-country-a2' => 'Njeznaty/Satelitowy poskićowar',
 	'centralnotice-country-o1' => 'Njeznaty/Druhi kraj',
 	'centralnotice-country-unknown' => 'Njeznaty/njelokalizujomny',
+	'centralnotice-buckets' => 'Wužiwarska wokolina',
+	'centralnotice-bucket' => 'Wokolina',
+	'centralnotice-bucket-letter' => 'wokolina "$1"',
 );
 
 /** Hungarian (magyar)
