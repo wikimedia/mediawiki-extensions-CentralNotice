@@ -3975,6 +3975,15 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
 	'centralnotice-priority-normal' => 'normalna',
 	'centralnotice-priority-high' => 'wusoka',
 	'centralnotice-priority-emergency' => 'nuzny pad',
+	'centralnotice-country-eu' => 'Njeznaty/Region Europskeje unije',
+	'centralnotice-country-ap' => 'Njeznaty/Aziski-pacifiski region',
+	'centralnotice-country-a1' => 'Njeznaty/Anonymny proksy',
+	'centralnotice-country-a2' => 'Njeznaty/Satelitowy póbitowaŕ',
+	'centralnotice-country-o1' => 'Njeznaty/Drugi kraj',
+	'centralnotice-country-unknown' => 'Njeznaty/njelokalizěrujobny',
+	'centralnotice-buckets' => 'Wužywarska wokolina',
+	'centralnotice-bucket' => 'Wokolina',
+	'centralnotice-bucket-letter' => 'Wokolina "$1"',
 );
 
 /** Ewe (eʋegbe)
@@ -17849,6 +17858,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner-messages' => '条幅消息',
 	'centralnotice-filter-template-prompt' => '标题名称中包含：',
 	'centralnotice-filter-template-submit' => '应用筛选器',
+	'centralnotice-filter-template-banner' => '横幅筛选器',
 	'centralnotice-priority-low' => '低',
 	'centralnotice-priority-normal' => '一般',
 	'centralnotice-priority-high' => '高',
