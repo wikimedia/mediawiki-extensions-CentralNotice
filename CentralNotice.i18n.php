@@ -9203,6 +9203,9 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-priority-normal' => 'Normal',
 	'centralnotice-priority-high' => 'héich',
 	'centralnotice-priority-emergency' => 'dringend',
+	'centralnotice-country-eu' => 'Onbekannt/Regioun Europäesch Unioun',
+	'centralnotice-country-ap' => 'Onbekannt/Regioun Asien-Pazifik',
+	'centralnotice-country-a1' => 'Onbekannt/Anonyme Proxy',
 	'centralnotice-country-a2' => 'Onbekannt/Satelittebedreiwer',
 	'centralnotice-country-o1' => 'Onbekannt/Anert Land',
 );

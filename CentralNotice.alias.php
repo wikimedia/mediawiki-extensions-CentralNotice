@@ -134,6 +134,18 @@ $specialPageAliases['ia'] = array(
 	'HideBanners' => array( 'Celar_bandieras' ),
 );
 
+/** Italian (italiano) */
+$specialPageAliases['it'] = array(
+	'CentralNotice' => array( 'AvvisoCentralizzato' ),
+	'CentralNoticeLogs' => array( 'RegistriAvvisoCentralizzato' ),
+	'NoticeTemplate' => array( 'TemplateAvviso' ),
+	'BannerAllocation' => array( 'DestinazioneBanner' ),
+	'BannerController' => array( 'ControllerBanner' ),
+	'BannerListLoader' => array( 'ElencoCaricatoriBanner' ),
+	'BannerLoader' => array( 'CaricatoreBanner' ),
+	'HideBanners' => array( 'NascondiBanner' ),
+);
+
 /** Japanese (日本語) */
 $specialPageAliases['ja'] = array(
 	'CentralNotice' => array( '中央管理通知' ),
