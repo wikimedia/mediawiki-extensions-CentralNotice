@@ -147,6 +147,8 @@ class CentralNoticeDB {
 				'geo'       => $row->not_geo,
 				'buckets'   => $row->not_buckets,
 			);
+		} else {
+			return false;
 		}
 
 		if ( $detailed ) {

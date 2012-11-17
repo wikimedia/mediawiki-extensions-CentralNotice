@@ -19,7 +19,7 @@
 		'Trevor Parscal',
 		'Ryan Kaldari',
 		'Matthew Walker',
-		'Adam Wight',
+		'Adam Roses Wight',
 	),
 	'version'        => '2.2',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
@@ -194,7 +194,10 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 
 	$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
+	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
+
 	$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
+	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
 
 	// Do this here, to ensure that wgScript has been bootstrapped
 	if ( !$wgCentralBannerDispatcher ) {
