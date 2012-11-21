@@ -11147,7 +11147,7 @@ Deze wordt niet toegevoegd.',
 Er wordt niets toegevoegd.',
 	'centralnotice-no-project' => 'Er is geen project geselecteerd voor de campagne.
 Er wordt niets toegevoegd.',
-	'centralnotice-template-exists' => 'Het sjabloon bestaat al.
+	'centralnotice-template-exists' => 'De sjabloon bestaat al.
 Dit wordt niet toegevoegd.',
 	'centralnotice-notice-doesnt-exist' => 'De campagne bestaat niet.',
 	'centralnotice-remove-notice-doesnt-exist' => 'De campagne bestaat niet.
@@ -11198,9 +11198,9 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-message' => 'Bericht',
 	'centralnotice-message-not-set' => 'Het bericht is niet ingesteld',
 	'centralnotice-clone' => 'Kopiëren',
-	'centralnotice-clone-notice' => 'Een kopie van het sjabloon maken',
+	'centralnotice-clone-notice' => 'Een kopie van de sjabloon maken',
 	'centralnotice-clone-name' => 'Naam:',
-	'centralnotice-preview-all-template-translations' => 'Alle beschikbare vertalingen van het sjabloon bekijken',
+	'centralnotice-preview-all-template-translations' => 'Alle beschikbare vertalingen van de sjabloon bekijken',
 	'centralnotice-insert' => 'Invoegen: $1',
 	'centralnotice-close-button' => '"Sluiten" toevoegen',
 	'centralnotice-close-title' => 'Sluiten',
