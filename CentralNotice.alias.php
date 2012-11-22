@@ -259,6 +259,18 @@ $specialPageAliases['pl'] = array(
 	'NoticeTemplate' => array( 'Szablon_komunikatu' ),
 );
 
+/** Sicilian (sicilianu) */
+$specialPageAliases['scn'] = array(
+	'CentralNotice' => array( 'AvvisoCentralizzato' ),
+	'CentralNoticeLogs' => array( 'RegistriAvvisoCentralizzato' ),
+	'NoticeTemplate' => array( 'TemplateAvviso' ),
+	'BannerAllocation' => array( 'DestinazioneBanner' ),
+	'BannerController' => array( 'ControllerBanner' ),
+	'BannerListLoader' => array( 'ElencoCaricatoriBanner' ),
+	'BannerLoader' => array( 'CaricatoreBanner' ),
+	'HideBanners' => array( 'NascondiBanner' ),
+);
+
 /** Tagalog (Tagalog) */
 $specialPageAliases['tl'] = array(
 	'CentralNotice' => array( 'Panggitnang_Pabatid' ),
