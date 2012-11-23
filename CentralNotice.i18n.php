@@ -18054,6 +18054,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-banner-messages' => '橫幅消息',
 	'centralnotice-filter-template-prompt' => '標題名稱中包含：',
 	'centralnotice-filter-template-submit' => '應用篩選器',
+	'centralnotice-filter-template-banner' => '橫幅篩選器',
 	'centralnotice-priority-low' => '低',
 	'centralnotice-priority-normal' => '一般',
 	'centralnotice-priority-high' => '高',
