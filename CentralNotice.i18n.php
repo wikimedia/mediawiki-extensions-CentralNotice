@@ -12084,6 +12084,15 @@ ch'a lesa http://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'àut',
 	'centralnotice-priority-emergency' => 'emergensa',
+	'centralnotice-country-eu' => "Pa conossù/Region ëd l'Union Europea",
+	'centralnotice-country-ap' => "Pa conossù/Region ëd l'Asia Passìfica",
+	'centralnotice-country-a1' => 'Pa conossù/Proxy Anònim',
+	'centralnotice-country-a2' => 'Pa conossù/Provider Satellitar',
+	'centralnotice-country-o1' => 'Pa conossù/Autr Paìs',
+	'centralnotice-country-unknown' => 'Pa conossù/Pa-Geolocalisàbil',
+	'centralnotice-buckets' => "Sëstin dl'utent",
+	'centralnotice-bucket' => 'Sëstin',
+	'centralnotice-bucket-letter' => 'Sëstin "$1"',
 );
 
 /** Western Punjabi (پنجابی)
@@ -16764,6 +16773,7 @@ $messages['udm'] = array(
  * @author Aleksandrit
  * @author Alex Khimich
  * @author Arturyatsko
+ * @author Base
  * @author Dim Grits
  * @author Microcell
  * @author NickK
@@ -16948,6 +16958,15 @@ $messages['uk'] = array(
 	'centralnotice-priority-normal' => 'нормальна',
 	'centralnotice-priority-high' => 'висока',
 	'centralnotice-priority-emergency' => 'надзвичайний',
+	'centralnotice-country-eu' => 'Невідомо/Регіон Європейського Союзу',
+	'centralnotice-country-ap' => 'Невідомо/Азійсько-Тихоокеанський Регіон',
+	'centralnotice-country-a1' => 'Невідомо/Анонімний проксі',
+	'centralnotice-country-a2' => 'Невідомо/Супутниковий Провайдер',
+	'centralnotice-country-o1' => 'Невідомо/Інша Країна',
+	'centralnotice-country-unknown' => 'Невідомо/Георозташування не визначається',
+	'centralnotice-buckets' => 'Розподіл користувачів',
+	'centralnotice-bucket' => 'Група',
+	'centralnotice-bucket-letter' => 'Група «$1»',
 );
 
 /** Urdu (اردو)
