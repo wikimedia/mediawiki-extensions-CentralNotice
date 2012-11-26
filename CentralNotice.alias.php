@@ -253,6 +253,13 @@ $specialPageAliases['or'] = array(
 	'NoticeTemplate' => array( 'ସୂଚନାଛାଞ୍ଚ' ),
 );
 
+/** Punjabi (ਪੰਜਾਬੀ) */
+$specialPageAliases['pa'] = array(
+	'CentralNotice' => array( 'ਕੇਂਦਰੀ_ਨੋਟਿਸ' ),
+	'CentralNoticeLogs' => array( 'ਕੇਂਦਰੀ_ਨੋਟਿਸ_ਚਿੱਠੇ' ),
+	'HideBanners' => array( 'ਬੈਨਰ_ਲੁਕਾਓ' ),
+);
+
 /** Polish (polski) */
 $specialPageAliases['pl'] = array(
 	'CentralNotice' => array( 'Globalny_komunikat' ),
