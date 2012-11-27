@@ -217,7 +217,7 @@ $specialPageAliases['nb'] = array(
 	'HideBanners' => array( 'Skjul_bannere' ),
 );
 
-/** Nedersaksisch (Nedersaksisch) */
+/** Nedersaksies (Nedersaksies) */
 $specialPageAliases['nds-nl'] = array(
 	'CentralNotice' => array( 'Sentrale_mededeling' ),
 	'NoticeTemplate' => array( 'Mededelingsmal' ),
