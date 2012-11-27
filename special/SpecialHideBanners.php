@@ -40,6 +40,6 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 			$cookieDomain = $wgNoticeCookieDomain;
 		}
 		// Hide fundraising banners for this domain
-		setcookie( 'centralnotice_fundraising', 'hide', $exp, '/', $cookieDomain, $wgCookieSecure );
+		setcookie( 'centralnotice_fundraising', 'hide', $exp, '/', $cookieDomain, false, false );
 	}
 }
