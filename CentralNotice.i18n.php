@@ -1978,6 +1978,7 @@ $messages['bg'] = array(
 	'centralnotice-manage-templates' => 'Управление на банерите',
 	'centralnotice-add' => 'Добавяне',
 	'centralnotice-add-notice' => 'Добавяне на съобщение',
+	'centralnotice-edit-notice' => 'Редактиране на кампанията',
 	'centralnotice-add-template' => 'Добавяне на шаблон',
 	'centralnotice-show-notices' => 'Показване на съобщенията',
 	'centralnotice-list-templates' => 'Списък на шаблоните',
