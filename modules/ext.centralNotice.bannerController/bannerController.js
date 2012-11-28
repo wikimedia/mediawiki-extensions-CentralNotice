@@ -173,7 +173,12 @@
             mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
 
             // Has the banner been hidden by cookie?
-            if ( $.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide' ) {
+			if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
+			    impressionResultData = {
+					result: 'hide',
+					reason: 'mobile'
+			    }
+			} else if ( $.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide' ) {
                 // Yes
                 impressionResultData = {
                     result: 'hide',
