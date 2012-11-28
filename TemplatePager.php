@@ -90,14 +90,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 		// Link and Preview
 		$render = new SpecialBannerLoader();
-		$render->project = 'wikipedia';
-		$render->country = 'XX';
 		$render->language = $this->mRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
-		$render->anonymous = true;
-		$render->bucket = 0;
-		$render->siteName = 'Wikipedia';
-		$render->campaign = 'No-Campaign';
-
 		try {
 			$preview = $render->getHtmlNotice( $row->tmp_name );
 		} catch ( SpecialBannerLoaderException $e ) {

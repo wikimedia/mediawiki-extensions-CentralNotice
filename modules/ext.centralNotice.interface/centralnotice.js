@@ -161,13 +161,29 @@ jQuery(document).ready( function ( $ ) {
 	} );
 
 	// Bucketing! Disable bucket selectors if #buckets is not checked.
-	bucketCheck = $( '#buckets' );
+	bucketSelect = $( '#buckets' );
 	buckets = $( 'select[id^="bucketSelector"]' );
 
-	bucketCheck.on( 'change click blur', function () {
-		buckets.prop( 'disabled', !this.checked );
-	});
+    bucketSelect.change( function () {
+        numBuckets = parseInt( this[this.selectedIndex].value );
+
+        if ( numBuckets == 1 ) {
+            buckets.prop( 'disabled', true );
+        } else {
+            buckets.prop( 'disabled', false );
+            // Go through and modify all the options -- disabling inappropriate ones
+            // and remapping the rings
+            buckets.each( function() {
+                var curBucket = parseInt( this[this.selectedIndex].value );
+                $(this).val( curBucket % numBuckets );
+
+                for ( var i = 0; i < this.options.length; i++ ) {
+                    $(this.options[i]).prop( 'disabled', !(i < numBuckets) );
+                }
+            })
+        }
+	} );
 
 	// Initial state
-	buckets.prop( 'disabled', !bucketCheck.prop( 'checked' ) );
+	bucketSelect.trigger( 'change' );
 } );

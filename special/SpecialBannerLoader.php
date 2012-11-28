@@ -8,12 +8,13 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	function __construct() {
 		// Register special page
 		parent::__construct( "BannerLoader" );
+        $this->getParams();
 	}
 
 	function execute( $par ) {
 		$this->getOutput()->disable();
 
-		$this->getParams();
+        $this->getParams();
 
 		$this->sendHeaders();
 
