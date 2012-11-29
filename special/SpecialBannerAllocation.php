@@ -194,6 +194,8 @@ class SpecialBannerAllocation extends CentralNotice {
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
 	public function showList() {
+        global $wgNoticeNumberOfBuckets;
+
 		// Obtain all banners & campaigns
 		$request = $this->getRequest();
 		$project = $request->getText('project');
@@ -224,12 +226,14 @@ class SpecialBannerAllocation extends CentralNotice {
 		//$htmlOut .= Html::inlineScript( $js );
 
 		// FIXME matrix is chosen dynamically based on more UI inputs
-		$matrix = array(
-			array( 'anonymous' => 'true', 'bucket' => '0' ),
-			array( 'anonymous' => 'true', 'bucket' => '1' ),
-			array( 'anonymous' => 'false', 'bucket' => '0' ),
-			array( 'anonymous' => 'false', 'bucket' => '1' ),
-		);
+        $matrix = array();
+        for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
+            $matrix[] = array( 'anonymous' => 'true', 'bucket' => "$i" );
+        }
+        for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
+            $matrix[] = array( 'anonymous' => 'false', 'bucket' => "$i" );
+        }
+
 		foreach ( $matrix as $target ) {
 			$banners = ApiCentralNoticeAllocations::getAllocationInformation(
 				$project,

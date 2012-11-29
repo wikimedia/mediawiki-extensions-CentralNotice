@@ -6,12 +6,6 @@ class CentralNotice extends SpecialPage {
 	const HIGH_PRIORITY = 2;
 	const EMERGENCY_PRIORITY = 3;
 
-	/**
-	 * Stored in the database as a unsigned tinyint(1) -- this should never exceed 10 in current
-	 * usage.
-	 */
-	const NUMBER_OF_BUCKETS = 2;
-
 	var $editable, $centralNoticeError;
 
 	function __construct() {
@@ -672,6 +666,8 @@ class CentralNotice extends SpecialPage {
 	 * @param $notice string The name of the campaign to view
 	 */
 	function listNoticeDetail( $notice ) {
+        global $wgNoticeNumberOfBuckets;
+
 		// Make sure notice exists
 		$cndb = new CentralNoticeDB();
 		if ( !$cndb->campaignExists( $notice ) ) {
@@ -716,11 +712,16 @@ class CentralNotice extends SpecialPage {
 						}
 
 						// Handle user bucketing setting for campaign
-						if ( $request->getCheck( 'buckets' ) ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'buckets', 2 );
-						} else {
-							$cndb->setBooleanCampaignSetting( $notice, 'buckets', 1 );
-						}
+                        $numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
+                        $numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
+
+                        $cndb->setNumericCampaignSetting(
+                            $notice,
+                            'buckets',
+                            $numCampaignBuckets,
+                            $wgNoticeNumberOfBuckets,
+                            1
+                        );
 
 						// Handle setting campaign priority
 						$cndb->setNumericCampaignSetting(
@@ -780,11 +781,16 @@ class CentralNotice extends SpecialPage {
 							}
 						}
 
-						// Handle bucket changes
+						// Handle bucket changes - keep in mind that the number of campaign buckets
+                        // might have changed simultaneously (and might have happened server side)
 						$updatedBuckets = $request->getArray( 'bucket' );
 						if ( $updatedBuckets ) {
 							foreach ( $updatedBuckets as $templateId => $bucket ) {
-								$cndb->updateBucket( $notice, $templateId, $bucket );
+								$cndb->updateBucket(
+                                    $notice,
+                                    $templateId,
+                                    intval( $bucket ) % $numCampaignBuckets
+                                );
 							}
 						}
 
@@ -887,6 +893,8 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing campaign settings (start date, end date, languages, etc.)
 	 */
 	function noticeDetailForm( $notice ) {
+        global $wgNoticeNumberOfBuckets;
+
 		if ( $this->editable ) {
 			$readonly = array();
 		} else {
@@ -909,7 +917,7 @@ class CentralNotice extends SpecialPage {
 				$noticeProjects = $request->getArray( 'projects', array() );
 				$noticeLanguages = $request->getArray( 'project_languages', array() );
 				$isGeotargeted = $request->getCheck( 'geotargeted' );
-				$useBuckets = $request->getCheck( 'buckets' );
+				$numBuckets = $request->getInt( 'buckets', 1 );
 				$countries = $request->getArray( 'geo_countries', array() );
 			} else { // Defaults
 				$start = $campaign[ 'start' ];
@@ -920,7 +928,7 @@ class CentralNotice extends SpecialPage {
 				$noticeProjects = $cndb->getNoticeProjects( $notice );
 				$noticeLanguages = $cndb->getNoticeLanguages( $notice );
 				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
-				$useBuckets = ( $campaign[ 'buckets' ] == '2' );
+				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = $cndb->getNoticeCountries( $notice );
 			}
 
@@ -989,9 +997,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::check( 'buckets', $useBuckets,
-					wfArrayMerge( $readonly,
-						array( 'value' => $notice, 'id' => 'buckets' ) ) ) );
+                $this->numBucketsDropDown( $wgNoticeNumberOfBuckets, $numBuckets ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1039,7 +1045,7 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing banners assigned to a campaign
 	 */
 	function assignedTemplatesForm( $notice ) {
-		global $wgLanguageCode;
+		global $wgLanguageCode, $wgNoticeNumberOfBuckets;
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
@@ -1107,8 +1113,13 @@ class CentralNotice extends SpecialPage {
 			);
 
 			// Bucket
+            $numCampaignBuckets = min( intval( $row->not_buckets ), $wgNoticeNumberOfBuckets );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$this->bucketDropDown( "bucket[$row->tmp_id]", ( $row->not_buckets == 1 ? null : intval($row->asn_bucket) ) )
+				$this->bucketDropDown(
+                    "bucket[$row->tmp_id]",
+                    ( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
+                    $numCampaignBuckets
+                )
 			);
 
 			// Banner
@@ -1116,7 +1127,6 @@ class CentralNotice extends SpecialPage {
 
 			/* XXX this code is duplicated in the CentralNoticePager::formatRow */
 			$render = new SpecialBannerLoader();
-			$render->siteName = 'Wikipedia';
 			$render->language = $this->getRequest()->getVal( 'wpUserLanguage', $wgLanguageCode );
 			try {
 				$preview = $render->getHtmlNotice( $row->tmp_name );
@@ -1158,7 +1168,9 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	function bucketDropDown( $name, $selected ) {
+	function bucketDropDown( $name, $selected, $numberCampaignBuckets ) {
+        global $wgNoticeNumberOfBuckets;
+
 		$bucketLabel = function ( $val ) {
 			return chr( $val + ord( 'A' ) );
 		};
@@ -1167,9 +1179,15 @@ class CentralNotice extends SpecialPage {
 			if ( $selected === null ) {
 				$selected = 0; // default to bucket 'A'
 			}
+            $selected = $selected % $numberCampaignBuckets;
+
 			$html = Html::openElement( 'select', array( 'name' => $name, 'id' => 'bucketSelector' ) );
-			foreach ( range( 0, static::NUMBER_OF_BUCKETS - 1 ) as $value ) {
-				$html .= Xml::option( $bucketLabel( $value ), $value, $value === $selected );
+			foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
+                $attribs = array();
+                if ( $value >= $numberCampaignBuckets ) {
+                    $attribs['disabled'] = 'disabled';
+                }
+				$html .= Xml::option( $bucketLabel( $value ), $value, $value === $selected, $attribs );
 			}
 			$html .= Html::closeElement( 'select' );
 			return $html;
@@ -1180,6 +1198,24 @@ class CentralNotice extends SpecialPage {
 			return htmlspecialchars( $bucketLabel( $selected ) );
 		}
 	}
+
+    function numBucketsDropDown( $numBuckets, $selected ) {
+        if ( $selected === null ) {
+            $selected = 1;
+        }
+
+        if ( $this->editable ) {
+            $html = Html::openElement( 'select', array( 'name' => 'buckets', 'id' => 'buckets' ) );
+            foreach ( range( 0, intval( log( $numBuckets, 2 ) ) ) as $value ) {
+                $value = pow( 2, $value );
+                $html .= Xml::option( $value, $value, $value === $selected );
+            }
+            $html .= Html::closeElement( 'select' );
+            return $html;
+        } else {
+            return htmlspecialchars( $selected );
+        }
+    }
 
 	/**
 	 * Create form for adding banners to a campaign

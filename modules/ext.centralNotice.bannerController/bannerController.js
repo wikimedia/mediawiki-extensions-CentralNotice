@@ -101,12 +101,18 @@
 				return;
 			}
 
-			mw.centralNotice.data.bucket = $.cookie( 'centralnotice_bucket' );
-			if ( mw.centralNotice.data.bucket === null ) {
-				mw.centralNotice.data.bucket = Math.round( Math.random() );
+            var dataString = $.cookie( 'centralnotice_bucket' ) || '';
+            mw.centralNotice.data.bucket = dataString.split('-')[0];
+            var bucketValidityString = dataString.split('-')[1];
+            var expectedValidityString = mw.config.get( 'wgNoticeNumberOfBuckets' ) + '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
+            
+			if ( ( mw.centralNotice.data.bucket === null ) ||
+                 ( bucketValidityString !== expectedValidityString )
+            ) {
+				mw.centralNotice.data.bucket = Math.floor( Math.random() * mw.config.get( 'wgNoticeNumberOfControllerBuckets' ) );
 				$.cookie(
-					'centralnotice_bucket', mw.centralNotice.data.bucket,
-					{ expires: 7, path: '/' }
+					'centralnotice_bucket', mw.centralNotice.data.bucket + '-' + expectedValidityString,
+					{ expires: mw.config.get( 'wgNoticeBucketExpiry' ), path: '/' }
 				);
 			}
 

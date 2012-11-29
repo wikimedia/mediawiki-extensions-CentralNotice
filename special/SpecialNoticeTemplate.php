@@ -399,7 +399,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 
 			// Show preview of banner
 			$render = new SpecialBannerLoader();
-			$render->siteName = 'Wikipedia';
 			$render->language = $wpUserLang;
 			try {
 				$preview = $render->getHtmlNotice( $request->getText( 'template' ) );
@@ -753,7 +752,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 			// Link and Preview all available translations
 			$viewPage = $this->getTitle( 'view' );
 			$render = new SpecialBannerLoader();
-			$render->siteName = 'Wikipedia';
 			$render->language = $lang;
 			try {
 				$preview = $render->getHtmlNotice( $template );

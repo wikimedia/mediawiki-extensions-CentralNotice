@@ -161,6 +161,18 @@ $wgNoticeXXCountries = array( 'XX', 'EU', 'AP', 'A1', 'A2', 'O1' );
 // calling Special:CNReporter
 $wgNoticeReporterDomains = 'https://donate.wikimedia.org';
 
+// Number of buckets that are provided to choose from -- this must be a power of two! It must not
+// also be greater than 9 unless a schema change is performed. Right now this column is tinyint(1)
+$wgNoticeNumberOfBuckets = 4;
+
+// We can tell the controller to only assign buckets from 0 .. to this variable. This allows
+// us to serve banners only to people who meet certain criteria (ie: banners place people in
+// certain buckets after events happen.)
+$wgNoticeNumberOfControllerBuckets = 2;
+
+// How long, via the jQuery cookie expiry string, will the bucket last
+$wgNoticeBucketExpiry = 7;
+
 /**
  * Load all the classes, register special pages, etc. Called through wgExtensionFunctions.
  */
@@ -454,13 +466,17 @@ EOT;
 function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
 		$wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
-		$wgCentralBannerRecorder;
+		$wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
+        $wgNoticeNumberOfControllerBuckets;
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
 	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
+    $vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
+    $vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
+    $vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;

@@ -34,8 +34,6 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	const BUCKET_FILTER = '/[0-9]+/';
 
 	public function execute() {
-		global $wgNoticeBannerMaxAge;
-
 		// Obtain the ApiResults object from the base
 		$result = $this->getResult();
 
@@ -68,13 +66,15 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	}
 
 	public function getParamDescription() {
+        global $wgNoticeNumberOfBuckets;
+
 		$params = array();
 
 		$params['project']  = "The project to obtain allocations under";
 		$params['country']  = "The country to filter on";
 		$params['language'] = "The language to filter on";
 		$params['anonymous']= "The logged-in status to filter on (true|false)";
-		$params['bucket']   = "The bucket to filter on, by number (0|1, optional)";
+		$params['bucket']   = "The bucket to filter on, by number (0 .. $wgNoticeNumberOfBuckets, optional)";
 		$params['minimal']  = "Alters return - only what is required for the banner loader will be returned";
 
 		return $params;
