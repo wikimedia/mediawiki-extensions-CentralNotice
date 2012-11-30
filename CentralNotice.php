@@ -167,7 +167,7 @@ $wgNoticeReporterDomains = 'https://donate.wikimedia.org';
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
 		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
-		$wgNoticeUseTranslateExtension, $wgAPIModules, $wgCentralBannerDispatcher,
+		$wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules, $wgCentralBannerDispatcher,
 		$wgContLang, $wgCentralBannerRecorder;
 
 	// If $wgCentralPagePath hasn't been set, set it to the local script path.
@@ -192,12 +192,15 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialCNReporter' ] = $specialDir . 'SpecialCNReporter.php';
 
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
+	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
 
 	$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
+	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
 
 	$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
+	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
 	// Do this here, to ensure that wgScript has been bootstrapped
 	if ( !$wgCentralBannerDispatcher ) {
