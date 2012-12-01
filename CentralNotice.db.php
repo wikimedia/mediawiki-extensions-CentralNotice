@@ -1255,4 +1255,41 @@ class CentralNoticeDB {
 			return null;
 		}
 	}
+
+	public function campaignLogs( $campaign=false, $username=false, $start=false, $end=false, $limit=50, $offset=0 ) {
+
+		$conds = array();
+		if ( $start ) {
+			$conds[] = "notlog_timestamp >= $start";
+		}
+		if ( $end ) {
+			$conds[] = "notlog_timestamp < $end";
+		}
+		if ( $campaign ) {
+			$conds[] = "notlog_not_name LIKE '$campaign'";
+		}
+		if ( $username ) {
+			$user = User::newFromName( $username );
+			if ( $user ) {
+				$conds[] = "notlog_user_id = {$user->getId()}";
+			}
+		}
+
+		// Read from the master database to avoid concurrency problems
+		$dbr = wfGetDB( DB_MASTER );
+		$res = $dbr->select( 'cn_notice_log', '*', $conds,
+			'CentralNoticeDB::campaignLogs',
+			array(
+				"ORDER BY" => "notlog_timestamp DESC",
+				"LIMIT" => $limit,
+				"OFFSET" => $offset,
+			)
+		);
+		$logs = array();
+		foreach ( $res as $row ) {
+			$entry = new CampaignLog( $row );
+			$logs[] = array_merge( get_object_vars( $entry ), $entry->changes() );
+		}
+		return $logs;
+	}
 }

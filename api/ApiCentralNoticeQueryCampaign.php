@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Implementation of the query=centralnoticeallocations API call. This call returns the expected banner
- * allocation for the given project, country, and language.
- */
 class ApiCentralNoticeQueryCampaign extends ApiBase {
 
 	/**
