@@ -35,6 +35,10 @@ class CampaignLog {
 		}
 		$this->begin = $begin;
 		$this->end = $end;
+
+		$this->campaign = $row->notlog_not_name;
+		$this->action = $row->notlog_action;
+		$this->timestamp = $row->notlog_timestamp;
 	}
 
 	# TODO: use in logpager
