@@ -175,6 +175,14 @@ $specialPageAliases['ko'] = array(
 	'HideBanners' => array( '배너숨기기' ),
 );
 
+/** Cornish (kernowek) */
+$specialPageAliases['kw'] = array(
+	'CentralNotice' => array( 'ArgemmynCres' ),
+	'CentralNoticeLogs' => array( 'CovnotennowArgemynnowCres' ),
+	'NoticeTemplate' => array( 'ScantlynArgemynnow' ),
+	'HideBanners' => array( 'CudhaBanerow' ),
+);
+
 /** Ladino (Ladino) */
 $specialPageAliases['lad'] = array(
 	'CentralNotice' => array( 'AvisoCentral' ),
