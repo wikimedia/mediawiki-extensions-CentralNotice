@@ -1528,6 +1528,36 @@ $messages['az'] = array(
 	'centralnotice-date' => 'Tarix',
 );
 
+/** South Azerbaijani (تورکجه)
+ * @author Amir a57
+ */
+$messages['azb'] = array(
+	'centralnotice-preferred' => 'اولویت',
+	'centralnotice-logs' => 'قئیدلر',
+	'centralnotice-view-logs' => 'گونده‌لیک‌لرینی باخ',
+	'centralnotice-timestamp' => 'واخت',
+	'centralnotice-user' => 'ایستیفاده‌چی',
+	'centralnotice-action' => 'فعالیت',
+	'centralnotice-action-created' => 'یارادیلیب',
+	'centralnotice-action-modified' => 'دییشدیریلیب',
+	'centralnotice-action-removed' => 'چیخاریلیب',
+	'centralnotice-on' => 'یاندیر',
+	'centralnotice-off' => 'سوندور',
+	'centralnotice-talk-link' => 'دانیشیق',
+	'centralnotice-fundraising' => 'ایانه‌لر',
+	'centralnotice-autolink' => 'آوتوماتیک علاقه یاراتماق',
+	'centralnotice-banner-content-changed' => 'ديَیشدی',
+	'centralnotice-filters' => 'گونده‌لیک فیلترلری',
+	'centralnotice-date' => 'تاریخ',
+	'centralnotice-apply-filters' => 'فیلترلری تطبیق ائت',
+	'centralnotice-clear-filters' => 'فیلتر‌لری تمیزله',
+	'centralnotice-banner-messages' => 'اعلان ساولاری',
+	'centralnotice-priority-low' => 'آز',
+	'centralnotice-priority-normal' => 'نورمال',
+	'centralnotice-priority-high' => 'چوخ',
+	'centralnotice-priority-emergency' => 'اورژانسی',
+);
+
 /** Bashkir (башҡортса)
  * @author Assele
  * @author Haqmar
