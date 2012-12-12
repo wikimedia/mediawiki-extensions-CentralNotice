@@ -1261,10 +1261,19 @@ $messages['as'] = array(
 	'centralnotice-banner-messages' => 'বেনাৰ বাৰ্তাসমূহ',
 	'centralnotice-filter-template-prompt' => 'বেনাৰ নামে অন্তৰ্ভুক্ত কৰে:',
 	'centralnotice-filter-template-submit' => 'ফিল্টাৰ প্ৰয়োগ কৰক',
+	'centralnotice-filter-template-banner' => 'বেনাৰ পৰিশ্ৰাৱক',
 	'centralnotice-priority-low' => 'নিম্ন',
 	'centralnotice-priority-normal' => 'স্বাভাৱিক',
 	'centralnotice-priority-high' => 'উচ্চ',
 	'centralnotice-priority-emergency' => 'আপাতকালীন',
+	'centralnotice-country-eu' => 'অজ্ঞাত/ইউৰোপীয়ান ইউনিয়ন অঞ্চল',
+	'centralnotice-country-ap' => 'অজ্ঞাত/এছিয়া প্ৰশান্তসাগৰীয় অঞ্চল',
+	'centralnotice-country-a1' => 'অজ্ঞাত/বেনামী প্ৰক্সী',
+	'centralnotice-country-a2' => 'অজ্ঞাত/ছেটেলাইট যোগানকৰ্তা',
+	'centralnotice-country-o1' => 'অজ্ঞাত/অন্য দেশ',
+	'centralnotice-country-unknown' => 'অজ্ঞাত/ভৌগলিকৰূপে অচিনাকী',
+	'centralnotice-bucket' => 'পাত্ৰ',
+	'centralnotice-bucket-letter' => 'পাত্ৰ "$1"',
 );
 
 /** Asturian (asturianu)
