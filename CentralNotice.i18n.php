@@ -1272,6 +1272,7 @@ $messages['as'] = array(
 	'centralnotice-country-a2' => 'অজ্ঞাত/ছেটেলাইট যোগানকৰ্তা',
 	'centralnotice-country-o1' => 'অজ্ঞাত/অন্য দেশ',
 	'centralnotice-country-unknown' => 'অজ্ঞাত/ভৌগলিকৰূপে অচিনাকী',
+	'centralnotice-buckets' => 'সদস্যৰ পাত্ৰ',
 	'centralnotice-bucket' => 'পাত্ৰ',
 	'centralnotice-bucket-letter' => 'পাত্ৰ "$1"',
 );
