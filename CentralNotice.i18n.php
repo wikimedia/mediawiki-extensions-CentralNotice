@@ -1541,6 +1541,7 @@ $messages['az'] = array(
 /** South Azerbaijani (تورکجه)
  * @author Amir a57
  * @author E THP
+ * @author Ebrahimi-amir
  */
 $messages['azb'] = array(
 	'centralnotice' => 'مرکزی خبردارلیق ایداره‌چی‌سی',
@@ -1659,6 +1660,7 @@ $messages['azb'] = array(
 	'centralnotice-banner-type' => 'بایراق تیپی:',
 	'centralnotice-banner-hidable' => 'ایستاتیک / گیزلتمک',
 	'centralnotice-banner-collapsible' => 'دارالابیلیر',
+	'centralnotice-banner-fundraising' => 'بو مالی یاردیم اوچون بیر بیلدیریدیر.',
 	'centralnotice-geo' => 'جئو-هدف‌لی',
 	'centralnotice-countries' => 'اؤلکه‌لر',
 	'centralnotice-allocation' => 'تخصیص',
