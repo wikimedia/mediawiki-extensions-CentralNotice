@@ -219,8 +219,8 @@ $messages['qqq'] = array(
 	'centralnoticelogs' => 'Title of Special:CentralNoticeLogs page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-logs.)',
 	'right-centralnotice-admin' => '{{doc-right|centralnotice-admin}}',
 	'action-centralnotice-admin' => '{{doc-action|centralnotice-admin}}',
-	'centralnotice-desc' => 'The [[mw:Extension:CentralNotice|Central Notice extension]] allows a notice to be posted centrally to several wikis.
-{{desc}}',
+	'centralnotice-desc' => '{{desc|name=Central Notice|url=http://www.mediawiki.org/wiki/Extension:CentralNotice}}
+This extension allows a notice to be posted centrally to several wikis.',
 	'centralnotice-summary' => 'Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]',
 	'centralnotice-end-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
 {{Identical|End date}}',
@@ -1577,7 +1577,7 @@ $messages['azb'] = array(
 	'centralnotice-multiple-languages' => 'بیر نئچه ($1)',
 	'centralnotice-multiple-countries' => 'بیر نئچه ($1)',
 	'centralnotice-all-projects' => 'بوتون لاییهه‌لر',
-	'centralnotice-translations' => 'ترجومه‌لر',
+	'centralnotice-translations' => 'چئویرمه‌لر',
 	'centralnotice-translate-to' => 'ترجومه ائت',
 	'centralnotice-translate' => 'ترجومه ائت',
 	'centralnotice-english' => 'اینگیلیسجه',
