@@ -12736,6 +12736,7 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
  * @author MetalBrasil
  * @author Pedroca cerebral
  * @author Rafael Vargas
+ * @author 555
  */
 $messages['pt-br'] = array(
 	'centralnotice' => 'Administração de aviso centralizado',
@@ -12872,7 +12873,7 @@ Adicione um abaixo',
 	'centralnotice-percentage' => 'Porcentagem',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
-	'centralnotice-preferred' => 'Preferido', # Fuzzy
+	'centralnotice-preferred' => 'Prioritário',
 	'centralnotice-logs' => 'Registros',
 	'centralnotice-view-logs' => 'Ver registros',
 	'centralnotice-timestamp' => 'Data e hora',
