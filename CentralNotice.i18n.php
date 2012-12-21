@@ -1542,6 +1542,7 @@ $messages['az'] = array(
  * @author Amir a57
  * @author E THP
  * @author Ebrahimi-amir
+ * @author Mousa
  */
 $messages['azb'] = array(
 	'centralnotice' => 'مرکزی خبردارلیق ایداره‌چی‌سی',
@@ -1666,7 +1667,7 @@ $messages['azb'] = array(
 	'centralnotice-allocation' => 'تخصیص',
 	'centralnotice-view-allocation' => 'آگهی تحصیص سینی گؤر',
 	'centralnotice-allocation-instructions' => 'محیط تحصیص ‌سینی گؤرمک ایستدیگینیز اطرافی سئچین:',
-	'centralnotice-languages' => 'دیل لر',
+	'centralnotice-languages' => 'دیل‌لر',
 	'centralnotice-language' => 'دیل',
 	'centralnotice-projects' => 'پروژه‌لر',
 	'centralnotice-country' => 'اولکه',
