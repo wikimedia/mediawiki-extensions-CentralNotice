@@ -3581,9 +3581,13 @@ Fjernes ikke.',
 	'centralnotice-off' => 'fra',
 	'centralnotice-added' => 'Tilføjede <span class="cn-new-value">$1</span>',
 	'centralnotice-removed' => 'Fjernede <span class="cn-old-value">$1</span>',
+	'centralnotice-talk-link' => 'diskussion',
+	'centralnotice-campaign-settings' => 'Kampagneindstillinger',
+	'centralnotice-banner-settings' => 'Bannerindstillinger',
 	'centralnotice-anon' => 'Vis til anonyme brugere',
 	'centralnotice-account' => 'Vis til brugere, der er logget ind',
 	'centralnotice-fundraising' => 'Indsamling',
+	'centralnotice-landingpages' => 'Destinationssider',
 	'centralnotice-banner-content' => 'Banner indhold',
 	'centralnotice-banner-content-changed' => 'Ændret',
 	'centralnotice-date' => 'Dato',
@@ -3592,10 +3596,16 @@ Fjernes ikke.',
 	'centralnotice-banner-messages' => 'Bannerbeskeder',
 	'centralnotice-filter-template-prompt' => 'Bannernavn indeholder:',
 	'centralnotice-filter-template-submit' => 'Påfør filter',
+	'centralnotice-filter-template-banner' => 'Filtrer bannere',
 	'centralnotice-priority-low' => 'lav',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'høj',
 	'centralnotice-priority-emergency' => 'nødsituation',
+	'centralnotice-country-eu' => 'Ukendt/EU-regionen',
+	'centralnotice-country-ap' => 'Ukendt/Asiatiske stillehavsregion',
+	'centralnotice-country-a1' => 'Ukendt/anonym proxy',
+	'centralnotice-country-a2' => 'Ukendt/satellitudbyder',
+	'centralnotice-country-o1' => 'Ukendt/andet land',
 );
 
 /** German (Deutsch)
@@ -4373,6 +4383,10 @@ $messages['el'] = array(
 	'centralnotice-priority-normal' => 'κανονικό',
 	'centralnotice-priority-high' => 'υψηλό',
 	'centralnotice-priority-emergency' => 'επείγον',
+	'centralnotice-country-eu' => 'Άγνωστη/Περιοχή Ευρωπαϊκής Ένωσης',
+	'centralnotice-country-ap' => 'Άγνωστη/Περιοχή Ειρηνικού Ασίας',
+	'centralnotice-country-a2' => 'Άγνωστη/Δορυφορική Σύνδεση',
+	'centralnotice-country-o1' => 'Άγνωστη/Άλλη Χώρα',
 );
 
 /** Esperanto (Esperanto)
@@ -4551,6 +4565,7 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
 	'centralnotice-priority-normal' => 'mezprioritata',
 	'centralnotice-priority-high' => 'altprioritata',
 	'centralnotice-priority-emergency' => 'kriza',
+	'centralnotice-bucket' => 'Ujo',
 );
 
 /** Spanish (español)
@@ -7663,7 +7678,7 @@ Tambahkan di bawah ini.',
 	'centralnotice-percentage' => 'Persentase',
 	'centralnotice-documentwrite-error' => 'document.write() tidak dapat digunakan di dalam pengumuman.
 Lihat http://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih lanjut.',
-	'centralnotice-preferred' => 'Preferensi', # Fuzzy
+	'centralnotice-preferred' => 'Prioritas',
 	'centralnotice-logs' => 'Log',
 	'centralnotice-view-logs' => 'Lihat log',
 	'centralnotice-timestamp' => 'Stempel waktu',
@@ -13251,6 +13266,14 @@ Vedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe infor
 	'centralnotice-priority-normal' => 'normală',
 	'centralnotice-priority-high' => 'ridicată',
 	'centralnotice-priority-emergency' => 'urgentă',
+	'centralnotice-country-eu' => 'Necunoscut/Regiunea Uniunii Europene',
+	'centralnotice-country-ap' => 'Necunoscut/Regiunea Asia-Pacific',
+	'centralnotice-country-a1' => 'Necunoscut/Proxy anonim',
+	'centralnotice-country-a2' => 'Necunoscut/Furnizor prin satelit',
+	'centralnotice-country-o1' => 'Necunoscut/Altă țară',
+	'centralnotice-country-unknown' => 'Necunoscut/Nelocalizat geografic',
+	'centralnotice-bucket' => 'Găleată',
+	'centralnotice-bucket-letter' => 'Găleata „$1”',
 );
 
 /** tarandíne (tarandíne)
@@ -14405,10 +14428,13 @@ $messages['si'] = array(
 	'centralnotice-banner-messages' => 'සිරස්තල පණිවිඩය',
 	'centralnotice-filter-template-prompt' => 'බැනර නාමයේ අන්තර්ගතයන්:',
 	'centralnotice-filter-template-submit' => 'පෙරහන යොදන්න',
+	'centralnotice-filter-template-banner' => 'පෙරහන් බැනරයන්',
 	'centralnotice-priority-low' => 'අවම',
 	'centralnotice-priority-normal' => 'සාමාන්‍ය',
 	'centralnotice-priority-high' => 'ඉහළ',
 	'centralnotice-priority-emergency' => 'හදිසි',
+	'centralnotice-bucket' => 'පනිට්ටුව',
+	'centralnotice-bucket-letter' => 'පනිට්ටුව "$1"',
 );
 
 /** Slovak (slovenčina)
@@ -18085,6 +18111,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-removed' => '已移除<span class="cn-old-value">$1</span>',
 	'centralnotice-no-assignments' => '没有已分配的横幅',
 	'centralnotice-talk-link' => '讨论',
+	'centralnotice-user-links' => '$1（$2）',
 	'centralnotice-campaign-settings' => '活动设置',
 	'centralnotice-banner-settings' => '横幅设置',
 	'centralnotice-anon' => '向匿名用户展示',
