@@ -2128,6 +2128,7 @@ $messages['be-tarask'] = array(
  * @author Stanqo
  * @author Turin
  * @author Vladimir Penov
+ * @author පසිඳු කාවින්ද
  */
 $messages['bg'] = array(
 	'centralnotice' => 'Администратор на централизираните съобщения',
@@ -2281,6 +2282,7 @@ $messages['bg'] = array(
 	'centralnotice-clear-filters' => 'Изчистване на филтрите',
 	'centralnotice-banner-messages' => 'Банерни съобщения',
 	'centralnotice-priority-low' => 'ниска',
+	'centralnotice-priority-normal' => 'нормална',
 	'centralnotice-priority-high' => 'високо',
 	'centralnotice-priority-emergency' => 'аварийни',
 	'centralnotice-country-o1' => 'Неизвестен/други страна',
@@ -4561,11 +4563,18 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
 	'centralnotice-banner-messages' => 'Mesaĝoj de reklamrubendoj',
 	'centralnotice-filter-template-prompt' => 'Nomo de reklamrubando enhavas:',
 	'centralnotice-filter-template-submit' => 'Apliki filtrilon',
+	'centralnotice-filter-template-banner' => 'Filtri rubandojn',
 	'centralnotice-priority-low' => 'malaltprioritata',
 	'centralnotice-priority-normal' => 'mezprioritata',
 	'centralnotice-priority-high' => 'altprioritata',
 	'centralnotice-priority-emergency' => 'kriza',
+	'centralnotice-country-eu' => 'Nekonata/Regiono de Eŭropa Unio',
+	'centralnotice-country-ap' => 'Nekonata/Regiono Azia Pacifika',
+	'centralnotice-country-a1' => 'Nekonata/Anonima Proksima Servilo',
+	'centralnotice-country-o1' => 'Nekonata/Alia Lando',
+	'centralnotice-buckets' => 'Apartigante uzantojn en ujoj',
 	'centralnotice-bucket' => 'Ujo',
+	'centralnotice-bucket-letter' => 'Ujo "$1"',
 );
 
 /** Spanish (español)
@@ -4949,6 +4958,10 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-priority-normal' => 'tavaline',
 	'centralnotice-priority-high' => 'kõrge',
 	'centralnotice-priority-emergency' => 'kriitiline',
+	'centralnotice-country-eu' => 'Teadmata/Euroopa Liidu piirkond',
+	'centralnotice-country-ap' => 'Teadmata/Aasia – Vaikse ookeani piirkond',
+	'centralnotice-country-a1' => 'Teadmata/Anonüümne proksi',
+	'centralnotice-country-o1' => 'Teadmata/Muu maa',
 );
 
 /** Basque (euskara)
@@ -5237,6 +5250,7 @@ $messages['fa'] = array(
  * @author Nedergard
  * @author Nike
  * @author Olli
+ * @author Stryn
  * @author Tarmo
  * @author Tofu II
  * @author Wix
@@ -5413,6 +5427,10 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-priority-normal' => 'normaali',
 	'centralnotice-priority-high' => 'korkea',
 	'centralnotice-priority-emergency' => 'tärkeysaste',
+	'centralnotice-country-eu' => 'Tuntematon/Euroopan unionin alueella',
+	'centralnotice-country-ap' => 'Tuntematon/Aasian-Tyynenmeren alueella',
+	'centralnotice-country-a1' => 'Tuntematon/anonyymi proxy',
+	'centralnotice-country-o1' => 'Tuntematon/muu maa',
 );
 
 /** Faroese (føroyskt)
@@ -7953,6 +7971,7 @@ $messages['io'] = array(
  * @author Maxí
  * @author Snævar
  * @author Spacebirdy
+ * @author පසිඳු කාවින්ද
  */
 $messages['is'] = array(
 	'centralnotice-modify' => 'Staðfesta',
@@ -7975,11 +7994,15 @@ $messages['is'] = array(
 	'centralnotice-project-lang' => 'Verkefnistungumál',
 	'centralnotice-top-ten-languages' => 'Topp 10 tungumál',
 	'centralnotice-settings' => 'Stillingar',
+	'centralnotice-message' => 'Skilaboð',
+	'centralnotice-clone-name' => 'Nafn:',
+	'centralnotice-close-title' => 'Loka',
 	'centralnotice-countries' => 'Lönd',
 	'centralnotice-languages' => 'Tungumál',
 	'centralnotice-language' => 'Tungumál',
 	'centralnotice-projects' => 'Verkefni',
 	'centralnotice-country' => 'Land',
+	'centralnotice-date' => 'Dagsetning',
 );
 
 /** Italian (italiano)
@@ -8718,6 +8741,9 @@ $messages['ka'] = array(
 	'centralnotice-country-a2' => 'უცნობი/თანამგზავრული პროვაიდერი',
 	'centralnotice-country-o1' => 'უცნობი/სხვა ქვეყანა',
 	'centralnotice-country-unknown' => 'უცნობი/არაგეოლოკაციური',
+	'centralnotice-buckets' => 'მომხმარებლის გარემო',
+	'centralnotice-bucket' => 'გარემო',
+	'centralnotice-bucket-letter' => 'გარემო „$1“',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -9941,6 +9967,12 @@ Pievienojiet kādu!',
 	'centralnotice-clear-filters' => 'Notīrīt filtrus',
 	'centralnotice-banner-messages' => 'Reklāmkaroga ziņojumi',
 	'centralnotice-filter-template-submit' => 'Pielietot filtru',
+	'centralnotice-country-eu' => 'Nezināms/Eiropas Savienības reģions',
+	'centralnotice-country-ap' => 'Nezināms/Āzija Klusā okeāna reģions',
+	'centralnotice-country-a1' => 'Nezināms/Anonīms starpniekserveris',
+	'centralnotice-country-a2' => 'Nezināms/Satelīta pieslēgums',
+	'centralnotice-country-o1' => 'Nezināms/Cita valsts',
+	'centralnotice-country-unknown' => 'Nezināms/Nav nosakāms',
 );
 
 /** Malagasy (Malagasy)
@@ -15853,6 +15885,12 @@ $messages['ta'] = array(
 	'centralnotice-priority-normal' => 'சராசரி',
 	'centralnotice-priority-high' => 'அதிகம்',
 	'centralnotice-priority-emergency' => 'அவசரம்',
+	'centralnotice-country-eu' => 'அறியப்படாதது/ஐரோப்பிய ஒன்றியப் பகுதி',
+	'centralnotice-country-ap' => 'அறியப்படாதது/ஆசிய பசிபிக் பிராந்தியம்',
+	'centralnotice-country-a1' => 'அறியப்படாதது/Anonymous Proxy',
+	'centralnotice-country-a2' => 'அறியப்படாதது/செயற்கைக்கோள் வழங்குனர்',
+	'centralnotice-country-o1' => 'அறியப்படாதது/மற்ற நாடு',
+	'centralnotice-country-unknown' => 'அறியப்படாதது/புவியிடமறிய இயலாதது',
 );
 
 /** Telugu (తెలుగు)
