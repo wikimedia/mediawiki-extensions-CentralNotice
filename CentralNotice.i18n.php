@@ -1648,7 +1648,7 @@ $messages['azb'] = array(
 	'centralnotice-message-not-set' => 'مئساژ آیارلانمادی',
 	'centralnotice-clone' => 'باغلا',
 	'centralnotice-clone-notice' => 'شابلونون صورتینی یارات',
-	'centralnotice-clone-name' => 'آد',
+	'centralnotice-clone-name' => 'آد:',
 	'centralnotice-preview-all-template-translations' => 'شابلونون بوتون اویغون ترجومه‌لرینی باخما',
 	'centralnotice-insert' => 'علاوه: $1',
 	'centralnotice-close-button' => 'باغلاما دویمه‌سی',
@@ -4389,6 +4389,8 @@ $messages['el'] = array(
 	'centralnotice-country-ap' => 'Άγνωστη/Περιοχή Ειρηνικού Ασίας',
 	'centralnotice-country-a2' => 'Άγνωστη/Δορυφορική Σύνδεση',
 	'centralnotice-country-o1' => 'Άγνωστη/Άλλη Χώρα',
+	'centralnotice-bucket' => 'Κουβάς',
+	'centralnotice-bucket-letter' => 'Κάδος «$1»',
 );
 
 /** Esperanto (Esperanto)
@@ -9229,6 +9231,12 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-priority-normal' => 'nomaal',
 	'centralnotice-priority-high' => 'huh',
 	'centralnotice-priority-emergency' => 'Nuudfall',
+	'centralnotice-country-eu' => 'Onbikannd / en Rejohn en de EU',
+	'centralnotice-country-ap' => 'Onbikannd / en Rejohn en Aasije udder em Pazziffesche Oozejaan',
+	'centralnotice-country-a1' => 'Onbikannd / ene Proxyßööver för Onbikannte',
+	'centralnotice-country-a2' => 'Onbikannd / övver ene Sattellet',
+	'centralnotice-country-o1' => 'Onbikannd / uß söns enem Land',
+	'centralnotice-country-unknown' => 'Onbikannd / nit op de Ääd zohzeoodene',
 );
 
 /** Kurdish (Latin script) (Kurdî (latînî)‎)
@@ -11982,6 +11990,7 @@ Sie werd doher ned g'leschd.",
  * @author Derbeth
  * @author Leinad
  * @author Maikking
+ * @author Matma Rex
  * @author Mikołka
  * @author Odder
  * @author Olgak85
@@ -12154,6 +12163,15 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-priority-normal' => 'normalny',
 	'centralnotice-priority-high' => 'wysoki',
 	'centralnotice-priority-emergency' => 'awaryjny',
+	'centralnotice-country-eu' => 'Nieznany/Unia Europejska',
+	'centralnotice-country-ap' => 'Nieznany/Azja–Pacyfik',
+	'centralnotice-country-a1' => 'Nieznany/Proxy anonimizujące',
+	'centralnotice-country-a2' => 'Nieznany/Operator satelitarny',
+	'centralnotice-country-o1' => 'Nieznany/Inne państwo',
+	'centralnotice-country-unknown' => 'Nieznany/Geolokalizacja niemożliwa',
+	'centralnotice-buckets' => 'Podział użytkowników',
+	'centralnotice-bucket' => 'Grupa',
+	'centralnotice-bucket-letter' => 'Grupa „$1”',
 );
 
 /** Piedmontese (Piemontèis)
@@ -14465,6 +14483,13 @@ $messages['si'] = array(
 	'centralnotice-priority-normal' => 'සාමාන්‍ය',
 	'centralnotice-priority-high' => 'ඉහළ',
 	'centralnotice-priority-emergency' => 'හදිසි',
+	'centralnotice-country-eu' => 'නොදන්නා/යුරෝපීය ඒකාබද්ධ රාජ්‍ය කලාපය',
+	'centralnotice-country-ap' => 'නොදන්නා/ආසියා ශාන්තිකර කලාපය',
+	'centralnotice-country-a1' => 'නොදන්නා/නිර්නාමික පෙරකලාසි',
+	'centralnotice-country-a2' => 'නොදන්නා/චන්ද්‍රිකා සපයන්නා',
+	'centralnotice-country-o1' => 'නොදන්නා/වෙනත් රටක්',
+	'centralnotice-country-unknown' => 'නොදන්නා/භූනිශ්චයනය කල නොහැකි',
+	'centralnotice-buckets' => 'පරිශීලක පනිට්ටුගත කිරීම',
 	'centralnotice-bucket' => 'පනිට්ටුව',
 	'centralnotice-bucket-letter' => 'පනිට්ටුව "$1"',
 );
