@@ -1670,7 +1670,7 @@ $messages['azb'] = array(
 	'centralnotice-languages' => 'دیل‌لر',
 	'centralnotice-language' => 'دیل',
 	'centralnotice-projects' => 'پروژه‌لر',
-	'centralnotice-country' => 'اولکه',
+	'centralnotice-country' => 'اؤلکه',
 	'centralnotice-no-allocation' => 'هئچ بیر آگهی تخصیص ائدیلممیش دیر.',
 	'centralnotice-allocation-description' => '$1 اوچون آگهی تسی‌سی. $2 $3 ده:',
 	'centralnotice-percentage' => 'یوز ده (درصد)',
@@ -1690,7 +1690,7 @@ $messages['azb'] = array(
 	'centralnotice-talk-link' => 'دانیشیق',
 	'centralnotice-fundraising' => 'ایانه‌لر',
 	'centralnotice-autolink' => 'آوتوماتیک علاقه یاراتماق',
-	'centralnotice-banner-content-changed' => 'ديَیشدی',
+	'centralnotice-banner-content-changed' => 'دَییشدیریلیب',
 	'centralnotice-filters' => 'گونده‌لیک فیلترلری',
 	'centralnotice-date' => 'تاریخ',
 	'centralnotice-apply-filters' => 'فیلترلری تطبیق ائت',
@@ -5255,6 +5255,7 @@ $messages['fa'] = array(
  * @author Stryn
  * @author Tarmo
  * @author Tofu II
+ * @author VezonThunder
  * @author Wix
  */
 $messages['fi'] = array(
@@ -5432,7 +5433,9 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-country-eu' => 'Tuntematon/Euroopan unionin alueella',
 	'centralnotice-country-ap' => 'Tuntematon/Aasian-Tyynenmeren alueella',
 	'centralnotice-country-a1' => 'Tuntematon/anonyymi proxy',
+	'centralnotice-country-a2' => 'Tuntematon/satelliittipalveluntarjoaja',
 	'centralnotice-country-o1' => 'Tuntematon/muu maa',
+	'centralnotice-country-unknown' => 'Tuntematon/ei paikannettavissa',
 );
 
 /** Faroese (føroyskt)
@@ -7745,7 +7748,7 @@ $messages['ig'] = array(
 	'centralnotice-add' => 'Tinyé',
 	'centralnotice-translations' => 'Nkuwaria na asụsụ ozor',
 	'centralnotice-translate-to' => 'Kuwaria na',
-	'centralnotice-translate' => 'Kuwaria na asụsụ ozor',
+	'centralnotice-translate' => 'Tụ̀wári ásụ̀sụ̀',
 	'centralnotice-english' => 'Inglish',
 	'centralnotice-weight' => 'Ọ zá',
 	'centralnotice-locked' => 'Gbàchịrị',
@@ -13511,6 +13514,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
  * @author Kalan
  * @author Lockal
  * @author MaxSem
+ * @author Ole Yves
  * @author Rubin
  * @author Sabbah
  * @author Александр Сигачёв
@@ -13690,6 +13694,15 @@ $messages['ru'] = array(
 	'centralnotice-priority-normal' => 'обычный',
 	'centralnotice-priority-high' => 'высокий',
 	'centralnotice-priority-emergency' => 'чрезвычайный',
+	'centralnotice-country-eu' => 'Неизвестно/Европейский союз',
+	'centralnotice-country-ap' => 'Неизвестно/Азиатско-Тихоокеанский регион',
+	'centralnotice-country-a1' => 'Неизвестно/Анонимный прокси',
+	'centralnotice-country-a2' => 'Неизвестно/Спутниковый провайдер',
+	'centralnotice-country-o1' => 'Неизвестно/Другие страны',
+	'centralnotice-country-unknown' => 'Неизвестно/Нелокализуемо',
+	'centralnotice-buckets' => 'Группирование участников',
+	'centralnotice-bucket' => 'Ведро',
+	'centralnotice-bucket-letter' => 'Ведро «$1»',
 );
 
 /** Rusyn (русиньскый)
