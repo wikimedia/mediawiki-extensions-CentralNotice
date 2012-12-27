@@ -9284,6 +9284,14 @@ $messages['kw'] = array(
 	'centralnotice-edit-template' => 'Chanjya an baner',
 );
 
+/** Kirghiz (Кыргызча)
+ * @author Growingup
+ */
+$messages['ky'] = array(
+	'centralnotice-remove' => 'Өчүрүү',
+	'centralnotice-add' => 'Кошуу',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
@@ -11553,7 +11561,7 @@ Deze handeling is niet terug te draaien.',
  */
 $messages['nn'] = array(
 	'centralnotice' => 'Administrasjon av sentrale merknader',
-	'noticetemplate' => 'Mal for sentrale merknader', # Fuzzy
+	'noticetemplate' => 'Administrasjon av sentrale merknader',
 	'right-centralnotice-admin' => 'Handtera sentrale merknader',
 	'action-centralnotice-admin' => 'handtera sentrale merknader',
 	'centralnotice-desc' => 'Legg til ein sentral sidemerknad',
@@ -11564,13 +11572,17 @@ Han kan òg bli nytta til å leggja til eller fjerna gamle merknader.',
 	'centralnotice-end-date' => 'Sluttdato',
 	'centralnotice-enabled' => 'Aktivert',
 	'centralnotice-modify' => 'Utfør',
+	'centralnotice-save-banner' => 'Lagra banner',
 	'centralnotice-preview' => 'Førehandsvising',
+	'centralnotice-nopreview' => '(Førehandsvising ikkje tilgjengeleg)',
 	'centralnotice-add-new' => 'Legg til ein ny sentralmerknad',
 	'centralnotice-remove' => 'Fjern',
 	'centralnotice-translate-heading' => 'Omsetjing for $1',
 	'centralnotice-manage' => 'Handter sentralmerknader',
+	'centralnotice-manage-templates' => 'Handsam banner',
 	'centralnotice-add' => 'Legg til',
 	'centralnotice-add-notice' => 'Legg til ein merknad',
+	'centralnotice-edit-notice' => 'Endra kampanje',
 	'centralnotice-add-template' => 'Legg til ein mal',
 	'centralnotice-show-notices' => 'Syn merknader',
 	'centralnotice-list-templates' => 'List opp malar',
@@ -11578,7 +11590,7 @@ Han kan òg bli nytta til å leggja til eller fjerna gamle merknader.',
 	'centralnotice-translate-to' => 'Omset til',
 	'centralnotice-translate' => 'Omset',
 	'centralnotice-english' => 'Engelsk',
-	'centralnotice-banner-name' => 'Malnamn', # Fuzzy
+	'centralnotice-banner-name' => 'Bannernamn:',
 	'centralnotice-templates' => 'Malar',
 	'centralnotice-weight' => 'Vekt',
 	'centralnotice-locked' => 'Låst',
@@ -11627,7 +11639,7 @@ Denne handlinga kan ikkje bli omgjort.',
 	'centralnotice-preview-all-template-translations' => 'Førehandsvis alle tilgjengelege omsetjingar av malen',
 	'centralnotice-insert' => 'Sett inn: $1',
 	'centralnotice-country' => 'Land',
-	'centralnotice-preferred' => 'Føretrukke', # Fuzzy
+	'centralnotice-preferred' => 'Prioritet',
 );
 
 /** Occitan (occitan)
@@ -11913,6 +11925,9 @@ $messages['or'] = array(
 	'centralnotice-priority-normal' => 'ସାଧାରଣ',
 	'centralnotice-priority-high' => 'ଉଚ୍ଚ',
 	'centralnotice-priority-emergency' => 'ଜରୁରୀକାଳୀନ',
+	'centralnotice-country-eu' => 'ଅଜଣା/ଇଉରୋପିଆନ ବିଭାଗ',
+	'centralnotice-country-ap' => 'ଅଜଣା/ଏସୀୟ ବିଭାଗ',
+	'centralnotice-country-o1' => 'ଅଜଣା/ଅନ୍ୟାନ୍ୟ ଦେଶ',
 );
 
 /** Ossetic (Ирон)
@@ -15672,6 +15687,9 @@ $messages['sw'] = array(
 	'centralnotice-add-template' => 'Ongeza bana',
 	'centralnotice-show-notices' => 'Onyesha kampeni',
 	'centralnotice-list-templates' => 'Orodhesha mabango',
+	'centralnotice-multiple-projects' => 'Mbalimbali ($1)',
+	'centralnotice-multiple-languages' => 'Mbalimbali ($1)',
+	'centralnotice-multiple-countries' => 'Mbalimbali ($1)',
 	'centralnotice-all-projects' => 'Miradi yote',
 	'centralnotice-translations' => 'Tafsiri',
 	'centralnotice-translate-to' => 'Tafsiri kuelekea',
@@ -15712,6 +15730,7 @@ Hakuna kitu cha kutoa.',
 	'centralnotice-no-templates' => 'Hakuna mabango yamepatikana.
 Ongeza mabango!',
 	'centralnotice-available-templates' => 'Mabango yaliyopo',
+	'centralnotice-preview-template' => 'Onyesha hakikisho la bango',
 	'centralnotice-change-lang' => 'Badili lugha ya tafsiri',
 	'centralnotice-weights' => 'Uzito',
 	'centralnotice-number-uses' => 'Inatumia',
@@ -15748,7 +15767,9 @@ Ongeza mabango!',
 	'centralnotice-fundraising' => 'Uchangishaji fedha',
 	'centralnotice-banner-content' => 'Maudhui ya bango',
 	'centralnotice-banner-content-changed' => 'imebadilishwa',
+	'centralnotice-filters' => 'Kumbukumbu ya chujio',
 	'centralnotice-date' => 'Tarehe',
+	'centralnotice-clear-filters' => 'Tandua chujio',
 	'centralnotice-banner-messages' => 'Jumbe za mabango',
 	'centralnotice-filter-template-prompt' => 'Jina la bango lina:',
 	'centralnotice-priority-emergency' => 'dharura',

@@ -337,6 +337,7 @@ $specialPageAliases['zh-hans'] = array(
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
 	'CentralNotice' => array( '中央通告' ),
+	'CentralNoticeLogs' => array( '中央通告日誌' ),
 	'NoticeTemplate' => array( '通告模板' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
