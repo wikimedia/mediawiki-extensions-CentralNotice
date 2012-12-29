@@ -3064,10 +3064,17 @@ Afegiu-ne un a continuació.',
 	'centralnotice-banner-messages' => 'Bandera de missatges',
 	'centralnotice-filter-template-prompt' => 'El nom del bàner conté:',
 	'centralnotice-filter-template-submit' => 'Aplica el filtre',
+	'centralnotice-filter-template-banner' => 'Filtra els bàners',
 	'centralnotice-priority-low' => 'baixa',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergència',
+	'centralnotice-country-eu' => 'Desconegut/Regió de la Unió Europea',
+	'centralnotice-country-ap' => 'Desconegut/Regió Àsia Pacífic',
+	'centralnotice-country-a1' => 'Desconegut/Proxy anònim',
+	'centralnotice-country-a2' => 'Desconegut/Proveïdor per satèl·lit',
+	'centralnotice-country-o1' => 'Desconegut/Altres països',
+	'centralnotice-country-unknown' => 'Desconegut/No geolocalitzable',
 );
 
 /** Chechen (нохчийн)
@@ -7380,6 +7387,12 @@ További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lap
 	'centralnotice-priority-normal' => 'normál',
 	'centralnotice-priority-high' => 'magas',
 	'centralnotice-priority-emergency' => 'sürgősségi',
+	'centralnotice-country-eu' => 'Ismeretlen/Európai Unió területe',
+	'centralnotice-country-ap' => 'Ismeretlen/Ázsia Csendes-óceáni régió',
+	'centralnotice-country-a1' => 'Ismeretlen/Anonim proxy',
+	'centralnotice-country-a2' => 'Ismeretlen/Műholdas szolgáltató',
+	'centralnotice-country-o1' => 'Ismeretlen/Más ország',
+	'centralnotice-country-unknown' => 'Ismeretlen/Hely nem meghatározható',
 );
 
 /** Interlingua (interlingua)
