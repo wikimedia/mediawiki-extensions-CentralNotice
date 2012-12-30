@@ -1708,6 +1708,7 @@ $messages['azb'] = array(
  * @author Assele
  * @author Haqmar
  * @author Roustammr
+ * @author Ләйсән
  * @author ҒатаУлла
  */
 $messages['ba'] = array(
@@ -1880,6 +1881,7 @@ $messages['ba'] = array(
 	'centralnotice-priority-normal' => 'ғәҙәти',
 	'centralnotice-priority-high' => 'бейек',
 	'centralnotice-priority-emergency' => 'хәҙәттән тыш',
+	'centralnotice-bucket' => 'Биҙрә',
 );
 
 /** Bavarian (Boarisch)
@@ -5852,7 +5854,7 @@ Apondéd-nen ce-desot.',
 	'centralnotice-translate-button' => 'Lim d’éde a la traduccion',
 	'centralnotice-donate-button' => 'Boton de donacion',
 	'centralnotice-banner-display' => 'Fâre vêre ux :',
-	'centralnotice-banner-anonymous' => 'Usanciérs pas encartâs',
+	'centralnotice-banner-anonymous' => 'Utilisators anonimos',
 	'centralnotice-banner-logged-in' => 'Usanciérs branchiês',
 	'centralnotice-banner-type' => 'Tipo de baniére :',
 	'centralnotice-banner-hidable' => 'Statica / cachâbla',
@@ -10005,6 +10007,36 @@ Pievienojiet kādu!',
 	'centralnotice-country-a2' => 'Nezināms/Satelīta pieslēgums',
 	'centralnotice-country-o1' => 'Nezināms/Cita valsts',
 	'centralnotice-country-unknown' => 'Nezināms/Nav nosakāms',
+);
+
+/** Basa Banyumasan (Basa Banyumasan)
+ * @author StefanusRA
+ */
+$messages['map-bms'] = array(
+	'centralnotice-year' => 'Taun',
+	'centralnotice-month' => 'Sasi',
+	'centralnotice-hours' => 'Jam',
+	'centralnotice-min' => 'Menit',
+	'centralnotice-project-lang' => 'Basa Proyek',
+	'centralnotice-select' => 'Pilih: $1',
+	'centralnotice-top-ten-languages' => '10 basa pinunjul',
+	'centralnotice-project-name' => 'Jeneng Proyek',
+	'centralnotice-start-date' => 'Tanggal molai',
+	'centralnotice-start-time' => 'Tanggal molai (UTC)',
+	'centralnotice-end-time' => 'Tanggal akir (UTC)',
+	'centralnotice-assigned-templates' => 'Cithakan sing digunakna',
+	'centralnotice-no-templates' => 'Ora ana cithakan sing ditemokna.
+Ayo degawe!',
+	'centralnotice-no-templates-assigned' => 'Ora ana cithakan sing dienggo nang pangumuman.
+Ayo degawe!',
+	'centralnotice-available-templates' => 'Cithakan-cithakan sing ana',
+	'centralnotice-template-already-exists' => 'Cithakan wis nggandheng nang kampanye.
+Ora teyeng nambaih.',
+	'centralnotice-preview-template' => 'Deleng pratayang cithakan',
+	'centralnotice-change-lang' => 'Ngowaih basa terjemahan',
+	'centralnotice-weights' => 'Bobote',
+	'centralnotice-notice-is-locked' => 'Pangumuman dekunci.
+Ora teyeng mbusek.',
 );
 
 /** Malagasy (Malagasy)
