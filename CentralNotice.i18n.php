@@ -3096,6 +3096,7 @@ $messages['ce'] = array(
 
 /** Sorani Kurdish (کوردی)
  * @author Asoxor
+ * @author Calak
  */
 $messages['ckb'] = array(
 	'centralnotice-modify' => 'ناردن',
@@ -3109,9 +3110,15 @@ $messages['ckb'] = array(
 	'centralnotice-start-date' => 'ڕێکەوتی دەستپێکردن',
 	'centralnotice-start-time' => 'کاتی دەستپێکردن (UTC)',
 	'centralnotice-end-time' => 'کاتی کۆتایی (UTC)',
+	'centralnotice-clone-name' => 'ناو:',
 	'centralnotice-languages' => 'زمانەکان',
 	'centralnotice-projects' => 'پرۆژەکان',
 	'centralnotice-country' => 'وڵات',
+	'centralnotice-logs' => 'لۆگەکان',
+	'centralnotice-view-logs' => 'لۆگەکان ببینە',
+	'centralnotice-user' => 'بەکارھێنەر',
+	'centralnotice-action' => 'کردەوە',
+	'centralnotice-action-created' => 'دروست کرا',
 );
 
 /** Corsican (corsu)
@@ -5757,7 +5764,7 @@ Pôt asse-ben étre utilisâ por apondre des avis ou ben nen enlevar los ples vi
 	'centralnotice-end-date' => 'Dâta de fin',
 	'centralnotice-enabled' => 'Activâ',
 	'centralnotice-modify' => 'Sometre',
-	'centralnotice-view' => 'Fâre vêre',
+	'centralnotice-view' => 'Vêre',
 	'centralnotice-save-banner' => 'Encartar la baniére',
 	'centralnotice-preview' => 'Prèvisualisacion',
 	'centralnotice-nopreview' => '(Prèvisualisacion pas disponibla)',
@@ -5839,7 +5846,7 @@ Cela accion porrat pas étre rècupèrâ.',
 Apondéd-nen ce-desot.',
 	'centralnotice-no-templates-translate' => 'Y at gins de baniére a traduire.',
 	'centralnotice-number-uses' => 'Usâjos',
-	'centralnotice-settings' => 'Paramètres',
+	'centralnotice-settings' => 'Configuracion',
 	'centralnotice-edit-template' => 'Changiér la baniére',
 	'centralnotice-edit-template-summary' => 'Por fâre un mèssâjo localisâblo, entremâd una chêna a trèt d’union de três colâdes, per ègzemplo {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Mèssâjo',
