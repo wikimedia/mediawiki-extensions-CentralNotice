@@ -310,6 +310,11 @@ $specialPageAliases['uk'] = array(
 	'CentralNotice' => array( 'Загальне_оголошення' ),
 );
 
+/** Urdu (اردو) */
+$specialPageAliases['ur'] = array(
+	'CentralNotice' => array( 'مرکزی_اعلان' ),
+);
+
 /** Vietnamese (Tiếng Việt) */
 $specialPageAliases['vi'] = array(
 	'CentralNotice' => array( 'Thông_báo_chung' ),
