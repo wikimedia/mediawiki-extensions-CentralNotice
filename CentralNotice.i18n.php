@@ -1465,6 +1465,7 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 );
 
 /** Azerbaijani (azərbaycanca)
+ * @author AZISS
  * @author Cekli829
  * @author PPerviz
  * @author Vago
@@ -1479,7 +1480,7 @@ $messages['az'] = array(
 	'centralnotice-enabled' => 'Effektiv',
 	'centralnotice-modify' => 'Təsdiq et',
 	'centralnotice-view' => 'Görünüş',
-	'centralnotice-preview' => 'Sınaq göstərişi',
+	'centralnotice-preview' => 'Sınaq görüntüsü',
 	'centralnotice-remove' => 'Çıxar',
 	'centralnotice-add' => 'Əlavə et',
 	'centralnotice-multiple-projects' => 'Bir neçə ($1)',
