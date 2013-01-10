@@ -111,7 +111,7 @@ class CentralNoticeDB {
 	 * @param $campaignName string: The name of the campaign
 	 * @param $detailed     boolean: Whether or not to include targeting and banner assignment info
 	 *
-	 * @return array an array of settings
+	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
 	public function getCampaignSettings( $campaignName, $detailed = true ) {
 		global $wgCentralDBname;

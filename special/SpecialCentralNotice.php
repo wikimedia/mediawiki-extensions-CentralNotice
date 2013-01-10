@@ -153,12 +153,23 @@ class CentralNotice extends SpecialPage {
 					// Get all the final campaign settings for potential logging
 					foreach ( $allCampaignNames as $campaignName ) {
 						$finalCampaignSettings = $cndb->getCampaignSettings( $campaignName, false );
-						$diffs = array_diff_assoc( $allInitialCampaignSettings[ $campaignName ], $finalCampaignSettings );
+						if ( !$allInitialCampaignSettings[ $campaignName ] || !$finalCampaignSettings ) {
+							// Condition where the campaign has apparently disappeared mid operations
+							// -- possibly a delete call
+							$diffs = false;
+						} else {
+							$diffs = array_diff_assoc( $allInitialCampaignSettings[ $campaignName ], $finalCampaignSettings );
+						}
 						// If there are changes, log them
 						if ( $diffs ) {
 							$campaignId = $cndb->getNoticeId( $campaignName );
-							$cndb->logCampaignChange( 'modified', $campaignId, $this->getUser(),
-								$allInitialCampaignSettings[$campaignName], $finalCampaignSettings );
+							$cndb->logCampaignChange(
+								'modified',
+								$campaignId,
+								$this->getUser(),
+								$allInitialCampaignSettings[ $campaignName ],
+								$finalCampaignSettings
+							);
 						}
 					}
 				}
