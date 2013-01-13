@@ -11980,7 +11980,13 @@ $messages['or'] = array(
 	'centralnotice-priority-emergency' => 'ଜରୁରୀକାଳୀନ',
 	'centralnotice-country-eu' => 'ଅଜଣା/ଇଉରୋପିଆନ ବିଭାଗ',
 	'centralnotice-country-ap' => 'ଅଜଣା/ଏସୀୟ ବିଭାଗ',
+	'centralnotice-country-a1' => 'ଅଜଣା/ଜାହିତାହି ପ୍ରକ୍ସି',
+	'centralnotice-country-a2' => 'ଅଜଣା/ଉପଗ୍ରହ ପ୍ରଦାନକାରୀ',
 	'centralnotice-country-o1' => 'ଅଜଣା/ଅନ୍ୟାନ୍ୟ ଦେଶ',
+	'centralnotice-country-unknown' => 'ଅଜଣା/ଜାଗାଠିକ କରିନହେଲା ଭଳି',
+	'centralnotice-buckets' => 'ବ୍ୟବହାରକାରୀଙ୍କୁ ବକେଟ ଅନ୍ତର୍ଗତକାରୀ',
+	'centralnotice-bucket' => 'ବକେଟ',
+	'centralnotice-bucket-letter' => '"$1" ବକେଟ',
 );
 
 /** Ossetic (Ирон)
