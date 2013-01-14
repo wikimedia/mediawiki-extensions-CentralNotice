@@ -380,7 +380,8 @@ Related messages:
 	'centralnotice-filter-template-banner' => 'Section heading label for the banner filter bar',
 	'centralnotice-priority-low' => 'Label for the lowest campaign priority setting. An adjective that describes the priority.',
 	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting. An adjective that describes the priority.',
-	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.',
+	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.
+{{Identical|High}}',
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
 	'centralnotice-country-eu' => 'Label for MaxMind country "EU", European Union, used rarely when further information is not known',
 	'centralnotice-country-ap' => 'Label for MaxMind country "AP", Asia Pacific Region, used rarely when further information is not known',
