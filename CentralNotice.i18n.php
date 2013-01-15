@@ -789,6 +789,7 @@ Mire-se http://meta.wikimedia.org/wiki/Help:CentralNotice ta mas información.",
  * @author Ciphers
  * @author DRIHEM
  * @author Meno25
+ * @author Mido
  * @author OsamaK
  * @author Ouda
  * @author زكريا
@@ -965,6 +966,12 @@ $messages['ar'] = array(
 	'centralnotice-priority-normal' => 'عادي',
 	'centralnotice-priority-high' => 'مرتفع',
 	'centralnotice-priority-emergency' => 'طوارئ',
+	'centralnotice-country-eu' => 'مجهول/منطقة الاتحاد الأوروبي',
+	'centralnotice-country-ap' => 'مجهول/منطقة آسيا والمحيط الهادئ',
+	'centralnotice-country-a1' => 'مجهول/بروكسي مجهول',
+	'centralnotice-country-a2' => 'مجهول/اتصال ساتلايت',
+	'centralnotice-country-o1' => 'مجهول/بلد أخرى',
+	'centralnotice-country-unknown' => 'مجهول/لا يمكن تحديد المكان',
 );
 
 /** Aramaic (ܐܪܡܝܐ)
@@ -8943,7 +8950,7 @@ $messages['ko'] = array(
 	'centralnotice-all-projects' => '모든 프로젝트',
 	'centralnotice-translations' => '번역',
 	'centralnotice-translate-to' => '번역할 언어',
-	'centralnotice-translate' => '번역하기',
+	'centralnotice-translate' => '번역',
 	'centralnotice-english' => '영어',
 	'centralnotice-banner-name' => '배너 이름:',
 	'centralnotice-banner' => '배너',
