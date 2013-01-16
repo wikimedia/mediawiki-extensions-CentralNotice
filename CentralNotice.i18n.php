@@ -13583,6 +13583,8 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-priority-normal' => 'normale',
 	'centralnotice-priority-high' => 'ierte',
 	'centralnotice-priority-emergency' => 'emergenze',
+	'centralnotice-bucket' => 'Sicchie',
+	'centralnotice-bucket-letter' => 'Sicchie "$1"',
 );
 
 /** Russian (русский)
