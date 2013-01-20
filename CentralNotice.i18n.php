@@ -3485,6 +3485,7 @@ Gallwch ychwanegu un isod.',
  * @author Byrial
  * @author Hylle
  * @author Masz
+ * @author Palnatoke
  * @author Peter Alberti
  * @author Sarrus
  * @author Tjernobyl
@@ -3497,6 +3498,8 @@ $messages['da'] = array(
 	'right-centralnotice-admin' => 'Administrere centrale meddelelser',
 	'action-centralnotice-admin' => 'administrere centrale beskeder',
 	'centralnotice-desc' => 'Tilføjer en central sitenotice',
+	'centralnotice-summary' => 'Dette modul lader dig redigere din opsætning for centrale bekendtgørelser.
+Det kan også bruges til at tilføje eller fjerne gamle meddelelser.',
 	'centralnotice-query' => 'Ændr nuværende kampagner',
 	'centralnotice-notice-name' => 'Kampagnenavn',
 	'centralnotice-end-date' => 'Slutdato',
@@ -3546,6 +3549,7 @@ Intet at fjerne.',
 	'centralnotice-banner-doesnt-exist' => 'Banneret findes ikke.',
 	'centralnotice-template-still-bound' => 'Banneret er stadig bundet af en kampagne.
 Ikke fjernet.',
+	'centralnotice-template-body' => 'Bannerindhold:',
 	'centralnotice-day' => 'Dag',
 	'centralnotice-year' => 'År',
 	'centralnotice-month' => 'Måned',
@@ -3564,12 +3568,23 @@ Tilføj nogle!',
 	'centralnotice-no-templates-assigned' => 'Ingen bannere tildelt kampagne.
 Tilføj nogle!',
 	'centralnotice-available-templates' => 'Tilgængelige bannere',
+	'centralnotice-template-already-exists' => 'Banner er allerede bundet til kampagne.
+Tilføjes ikke.',
 	'centralnotice-preview-template' => 'Forhåndsvis banner',
 	'centralnotice-change-lang' => 'Ændr oversættelsessprog',
 	'centralnotice-weights' => 'Vægte',
 	'centralnotice-notice-is-locked' => 'Kampagne er låst.
 Fjernes ikke.',
+	'centralnotice-overlap' => 'Kampagneperioden overlapper en anden kampagne.
+Tilføjes ikke.',
+	'centralnotice-invalid-date-range' => 'Ugyldigt datointerval.
+Opdaterer ikke.',
+	'centralnotice-null-string' => 'Kan ikke tilføje en null-streng.
+Tilføjer ikke.',
 	'centralnotice-confirm-delete' => 'Er du sikker op, at du ønsker at slette dette? Handlingen kan ikke fortrydes.',
+	'centralnotice-no-notices-exist' => 'Ingen kampagner findes.
+Tilføj en nedenfor.',
+	'centralnotice-no-templates-translate' => 'Der er ingen bannere at redigere oversættelser til.',
 	'centralnotice-number-uses' => 'Bruger',
 	'centralnotice-settings' => 'Indstillinger',
 	'centralnotice-edit-template' => 'Rediger banner',
@@ -13167,6 +13182,7 @@ Kay qatiqpi hukta yapay',
 	'centralnotice-preview-all-template-translations' => "Tukuy aypanalla plantillamanta t'ikrasqakunata ñawpaqta qhawallay",
 	'centralnotice-insert' => "Sat'iy: $1",
 	'centralnotice-close-button' => "Wichq'ay butun",
+	'centralnotice-close-title' => "Wichq'ay",
 	'centralnotice-translate-button' => "T'ikraysiy t'inki",
 	'centralnotice-donate-button' => 'Qaray butun',
 	'centralnotice-banner-display' => 'Kayman qhawachiy:',
@@ -13193,12 +13209,15 @@ Kay qatiqpi hukta yapay',
 	'centralnotice-percentage' => 'Pachakmanta',
 	'centralnotice-documentwrite-error' => "document.write() nisqaqa unanchapi manam llamk'anchu.
 http://meta.wikimedia.org/wiki/Help:CentralNotice nisqapi qhaway willasunaykipaq.",
-	'centralnotice-preferred' => 'Astawan munakusqa', # Fuzzy
+	'centralnotice-preferred' => 'Astawan munakusqa',
 	'centralnotice-logs' => "Hallch'asqakuna",
 	'centralnotice-view-logs' => "Hallch'asqakunata qhaway",
 	'centralnotice-timestamp' => "Pacha q'illpay",
 	'centralnotice-user' => 'Ruraq',
 	'centralnotice-action' => 'Ruray',
+	'centralnotice-action-created' => 'kamarisqa',
+	'centralnotice-action-modified' => 'hukchasqa',
+	'centralnotice-action-removed' => 'qichusqa',
 	'centralnotice-changed' => '<span class="cn-old-value">$1</span>-manta <span class="cn-new-value">$2</span>-man hukchasqa',
 	'centralnotice-on' => 'tiyachkaq',
 	'centralnotice-off' => 'mana tiyachkaq',
@@ -13220,6 +13239,22 @@ http://meta.wikimedia.org/wiki/Help:CentralNotice nisqapi qhaway willasunaykipaq
 	'centralnotice-apply-filters' => "Ch'illchinakunata rurachiy",
 	'centralnotice-clear-filters' => "Ch'illchinakunata ch'usaqchay",
 	'centralnotice-banner-messages' => 'Qhatira willaykuna',
+	'centralnotice-filter-template-prompt' => 'Unanchap sutinpiqa kaymi:',
+	'centralnotice-filter-template-submit' => "Ch'illchinata rurachiy",
+	'centralnotice-filter-template-banner' => "Unanchakunata ch'illchiy",
+	'centralnotice-priority-low' => 'pisilla',
+	'centralnotice-priority-normal' => 'chawpi',
+	'centralnotice-priority-high' => 'achka',
+	'centralnotice-priority-emergency' => 'muchupayasqa',
+	'centralnotice-country-eu' => 'Mana riqsisqa/Iwrupa Huñu suyukuna',
+	'centralnotice-country-ap' => 'Mana riqsisqa/Asya Pasiphiku suyukuna',
+	'centralnotice-country-a1' => 'Mana riqsisqa/Sutinnaq proxy',
+	'centralnotice-country-a2' => "Mana riqsisqa/Satiliti t'ituq",
+	'centralnotice-country-o1' => 'Mana riqsisqa/Huk mamallaqta',
+	'centralnotice-country-unknown' => 'Mana riqsisqa/Mana tarinalla',
+	'centralnotice-buckets' => "Ruraqqa huk p'uruñallatam rikunqa",
+	'centralnotice-bucket' => "P'uruña",
+	'centralnotice-bucket-letter' => 'P\'uruña "$1"',
 );
 
 /** Romanian (română)
