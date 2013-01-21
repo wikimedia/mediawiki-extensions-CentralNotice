@@ -18583,6 +18583,9 @@ $messages['zh-hans'] = array(
 	'centralnotice-country-a2' => '未知/卫星服务商',
 	'centralnotice-country-o1' => '未知/其他国家',
 	'centralnotice-country-unknown' => '未知/非Geolocatable',
+	'centralnotice-buckets' => '用户群',
+	'centralnotice-bucket' => '群组',
+	'centralnotice-bucket-letter' => '群组“$1”',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
