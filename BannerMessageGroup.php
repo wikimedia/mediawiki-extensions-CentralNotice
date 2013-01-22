@@ -5,6 +5,8 @@
  */
 class BannerMessageGroup extends WikiMessageGroup {
 
+	const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup-';
+
 	/**
 	 * Constructor.
 	 *
@@ -43,6 +45,26 @@ class BannerMessageGroup extends WikiMessageGroup {
 		return $definitions;
 	}
 
+	/**
+	 * Constructs the translate group name from any number of alternate forms. The group name is
+	 * defined to be 'Centralnotice-tgroup-<BannerName>'
+	 *
+	 * This function can handle input in the form of:
+	 *  - raw banner name
+	 *  - Centralnotice-template-<banner name>
+	 *
+	 * @param string $bannerName The name of the banner
+	 *
+	 * @return string Canonical translate group name
+	 */
+	static function getTranslateGroupName( $bannerName ) {
+		if ( strpos( $bannerName, 'Centralnotice-template-' ) === 0 ) {
+			return str_replace( 'Centralnotice-template-', static::TRANSLATE_GROUP_NAME_BASE, $bannerName );
+		} else {
+			return static::TRANSLATE_GROUP_NAME_BASE . $bannerName;
+		}
+	}
+
 	public function getMessageGroupStates() {
 		$conf = array(
 			'progress' => array( 'color' => 'E00' ),
@@ -59,5 +81,4 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 		return new MessageGroupStates( $conf );
 	}
-
 }

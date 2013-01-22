@@ -5,6 +5,9 @@
  * @addtogroup Extensions
  */
 
+// Don't create a message named "centralnotice-template" or beginning with "centralnotice-template-"
+// since those terms are reserved in CentralNotice
+
 $messages = array();
 
 $messages['en'] = array(
@@ -181,6 +184,8 @@ Add one below.',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'high',
 	'centralnotice-priority-emergency' => 'emergency',
+	'centralnotice-prioritylangs' => 'Priority languages',
+	'centralnotice-prioritylangs-explain' => 'Marking a language as a priority will encourage translators to translate these languages first.',
 	'centralnotice-country-eu' => 'Unknown/European Union Region',
 	'centralnotice-country-ap' => 'Unknown/Asia Pacific Region',
 	'centralnotice-country-a1' => 'Unknown/Anonymous Proxy',
@@ -383,6 +388,8 @@ Related messages:
 	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.
 {{Identical|High}}',
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
+	'centralnotice-prioritylangs' => 'Label for section marking priority languages for translation.',
+	'centralnotice-prioritylangs-explain' => 'Description notifying the user that marking a language as a priority will encourage translators to translate selected languages first.',
 	'centralnotice-country-eu' => 'Label for MaxMind country "EU", European Union, used rarely when further information is not known',
 	'centralnotice-country-ap' => 'Label for MaxMind country "AP", Asia Pacific Region, used rarely when further information is not known',
 	'centralnotice-country-a1' => 'Label for MaxMind country "A1", Anonymous Proxy, used when the IP address belongs to an anonymization service',
