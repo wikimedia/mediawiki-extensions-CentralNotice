@@ -142,13 +142,16 @@ $wgNoticeCloseButton = '//upload.wikimedia.org/wikipedia/foundation/2/20/CloseWi
 // Example: '.wikipedia.org'
 $wgNoticeCookieDomain = '';
 
+// The amount of time banners will be hidden by the close box.
+// Defaults to two weeks.
+$wgNoticeCookieShortExpiry = 1209600;
+
+// Amount of time the banners will hide after a successful donation.
+// Defaults to one year.
+$wgNoticeCookieLongExpiry = 31536000;
+
 // Server-side banner cache timeout in seconds
 $wgNoticeBannerMaxAge = 600;
-
-// When the cookie set in SpecialHideBanners.php should expire
-// This would typically be the end date for a fundraiser
-// NOTE: This must be in UNIX timestamp format, for example, '1325462400'
-$wgNoticeHideBannersExpiration = '';
 
 // Whether to use the Translation extension for banner message translation
 $wgNoticeUseTranslateExtension = false;
@@ -503,7 +506,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
 		$wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		$wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
-        $wgNoticeNumberOfControllerBuckets;
+		$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieShortExpiry;
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
@@ -513,6 +516,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
     $vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
     $vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
     $vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
+    $vars[ 'wgNoticeCookieShortExpiry' ] = $wgNoticeCookieShortExpiry;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
