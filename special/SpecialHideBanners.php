@@ -26,14 +26,10 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	 * Set the cookie for hiding fundraising banners.
 	 */
 	function setHideCookie() {
-		global $wgNoticeCookieDomain, $wgCookieSecure, $wgNoticeHideBannersExpiration;
+		global $wgNoticeCookieDomain, $wgNoticeCookieLongExpiry;
 
-		$currentTime = time();
-		if ( is_numeric( $wgNoticeHideBannersExpiration ) && $wgNoticeHideBannersExpiration > $currentTime ) {
-			$exp = $wgNoticeHideBannersExpiration;
-		} else {
-			$exp = $currentTime + 86400 * 14; // Cookie expires after 2 weeks
-		}
+		$exp = time() + $wgNoticeCookieLongExpiry;
+
 		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {

@@ -256,8 +256,12 @@
 
 		// Set the banner hiding cookie to hide future banners of the same type
 		var d = new Date();
-		d.setTime( d.getTime() + ( 14 * 24 * 60 * 60 * 1000 ) ); // two weeks
-		document.cookie = 'centralnotice_' + encodeURIComponent( bannerType ) + '=hide; expires=' + d.toGMTString() + '; path=/';
+		d.setSeconds( d.getSeconds() + mw.config.get( 'wgNoticeCookieShortExpiry' ) );
+		$.cookie(
+			'centralnotice_' + encodeURIComponent( bannerType ),
+			'hide',
+			{ expires: d, path: '/' }
+		);
 	};
 
 	// This function is deprecated
