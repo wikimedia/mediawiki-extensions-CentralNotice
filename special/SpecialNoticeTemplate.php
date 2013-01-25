@@ -825,8 +825,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 			NS_MEDIAWIKI
 		);
 		$wikiPage = new WikiPage( $title );
-		$content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
-		$wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
+
+		if ( class_exists( 'ContentHandler' ) ) {
+			// MediaWiki 1.21+
+			$content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
+			$wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
+		} else {
+			$wikiPage->doEdit( $translation, '/* CN admin */', EDIT_FORCE_BOT );
+		}
 	
 		// If we're using translate : group review; create and protect the english and QQQ pages
 		if ( ( $lang == 'en') && BannerMessageGroup::isUsingGroupReview() ) {
@@ -854,8 +860,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 
         $title = Title::newFromText( "$text/$lang", NS_CN_BANNER );
         $wikiPage = new WikiPage( $title );
-        $content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
-        $wikiPage->doEditContent( $content, 'Created by CentralNotice on banner update.', EDIT_FORCE_BOT );
+
+		if ( class_exists( 'ContentHandler' ) ) {
+			// MediaWiki 1.21+
+        	$content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
+        	$wikiPage->doEditContent( $content, 'Created by CentralNotice on banner update.', EDIT_FORCE_BOT );
+		} else {
+			$wikiPage->doEdit( $translation, 'Created by CentralNotice on banner update.', EDIT_FORCE_BOT );
+		}
 
 		if ( !$title->getRestrictions( 'edit' ) ) {
 			$var = false;
@@ -997,8 +1009,15 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$wikiPage = new WikiPage(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
-			$pageResult = $wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
+
+			if ( class_exists( 'ContentHandler' ) ) {
+				// MediaWiki 1.21+
+				$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
+				$pageResult = $wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
+			} else {
+				$pageResult = $wikiPage->doEdit( $body, '/* CN admin */', EDIT_FORCE_BOT );
+			}
+
 			$this->updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
 
 			// Log the creation of the banner
@@ -1138,8 +1157,15 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$wikiPage = new WikiPage(
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
-			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
-			$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
+
+			if ( class_exists( 'ContentHandler' ) ) {
+				// MediaWiki 1.21+
+				$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
+				$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
+			} else {
+				$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
+			}
+
 			$this->updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
 
 			// If there are any difference between the old settings and the new settings, log them.
