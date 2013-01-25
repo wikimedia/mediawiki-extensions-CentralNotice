@@ -13763,6 +13763,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 /** Russian (русский)
  * @author Aleksandrit
  * @author Amire80
+ * @author DCamer
  * @author Dim Grits
  * @author Eleferen
  * @author Eugrus
@@ -13951,6 +13952,8 @@ $messages['ru'] = array(
 	'centralnotice-priority-normal' => 'обычный',
 	'centralnotice-priority-high' => 'высокий',
 	'centralnotice-priority-emergency' => 'чрезвычайный',
+	'centralnotice-prioritylangs' => 'Приоритетные языки',
+	'centralnotice-prioritylangs-explain' => 'Маркировка языка приоритетным подстегнет переводчиков перевести этот язык первым.',
 	'centralnotice-country-eu' => 'Неизвестно/Европейский союз',
 	'centralnotice-country-ap' => 'Неизвестно/Азиатско-Тихоокеанский регион',
 	'centralnotice-country-a1' => 'Неизвестно/Анонимный прокси',
