@@ -2327,7 +2327,7 @@ $messages['bg'] = array(
 	'centralnotice-country-o1' => 'Неизвестен/други страна',
 );
 
-/** Bihari (भोजपुरी)
+/** bh (भोजपुरी)
  * @author Ganesh
  */
 $messages['bh'] = array(
@@ -11421,7 +11421,7 @@ Kannst ünnen een tofögen',
 	'centralnotice-preferred' => 'Vörtagen', # Fuzzy
 );
 
-/** Nedersaksisch (Nedersaksisch)
+/** Nedersaksies (Nedersaksies)
  * @author Servien
  */
 $messages['nds-nl'] = array(
@@ -11675,6 +11675,9 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-priority-normal' => 'normaal',
 	'centralnotice-priority-high' => 'hoog',
 	'centralnotice-priority-emergency' => 'noodgeval',
+	'centralnotice-prioritylangs' => 'Prioriteitstalen',
+	'centralnotice-prioritylangs-explain' => 'Door een taal als prioriteitstaal aan te merken, vraagt u vertalers deze taal voorrang te geven.',
+	'centralnotice-aggregate-group-desc' => 'Alle berichten in deze groep worden gebruikt in banners van de Central Notice.',
 	'centralnotice-country-eu' => 'Onbekend/Europese Unie',
 	'centralnotice-country-ap' => 'Onbekend/Azië/Pacifisch gebied',
 	'centralnotice-country-a1' => 'Onbekend/Anonieme proxy',
