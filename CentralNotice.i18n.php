@@ -2327,13 +2327,6 @@ $messages['bg'] = array(
 	'centralnotice-country-o1' => 'Неизвестен/други страна',
 );
 
-/** bh (भोजपुरी)
- * @author Ganesh
- */
-$messages['bh'] = array(
-	'centralnotice-edit-template' => 'बैनर सम्पादन',
-);
-
 /** Bhojpuri (भोजपुरी)
  * @author Ganesh
  */
