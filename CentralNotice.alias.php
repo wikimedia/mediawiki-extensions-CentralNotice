@@ -225,7 +225,7 @@ $specialPageAliases['nb'] = array(
 	'HideBanners' => array( 'Skjul_bannere' ),
 );
 
-/** Nedersaksies (Nedersaksies) */
+/** Low Saxon (Netherlands) (Nedersaksies) */
 $specialPageAliases['nds-nl'] = array(
 	'CentralNotice' => array( 'Sentrale_mededeling' ),
 	'NoticeTemplate' => array( 'Mededelingsmal' ),
