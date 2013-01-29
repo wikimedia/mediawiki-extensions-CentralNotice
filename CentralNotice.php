@@ -164,13 +164,6 @@ $wgNoticeBannerNSID = 866;
 define( 'NS_CN_BANNER', $wgNoticeBannerNSID );
 define( 'NS_CN_BANNER_TALK', $wgNoticeBannerNSID + 1 );
 
-$wgExtraNamespaces[NS_CN_BANNER] = 'CNBanner';
-$wgNamespacesWithSubpages[NS_CN_BANNER] = true;
-$wgTranslateMessageNamespaces[] = NS_CN_BANNER;
-
-$wgExtraNamespaces[NS_CN_BANNER_TALK] = 'CNBanner_talk';
-$wgNamespacesWithSubpages[NS_CN_BANNER_TALK] = true;
-
 // When a banner is protected; what group is assigned. This is used for banners in the CNBanner
 // namespace to protect origin messages.
 $wgNoticeProtectGroup = 'sysop';
@@ -208,8 +201,7 @@ $wgNoticeBucketExpiry = 7;
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
 		$wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
-		$wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules, $wgCentralBannerDispatcher,
-		$wgContLang, $wgCentralBannerRecorder;
+		$wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules;
 
 	// If $wgCentralPagePath hasn't been set, set it to the local script path.
 	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
@@ -242,14 +234,6 @@ function efCentralNoticeSetup() {
 	$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
-
-	// Do this here, to ensure that wgScript has been bootstrapped
-	if ( !$wgCentralBannerDispatcher ) {
-		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerRandom' )}";
-	}
-	if ( !$wgCentralBannerRecorder ) {
-		$wgCentralBannerRecorder = "{$wgScript}/{$wgContLang->specialPage( 'RecordImpression' )}";
-	}
 
 	// Register hooks
 	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
@@ -285,9 +269,18 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
 
 		if ( $wgNoticeUseTranslateExtension ) {
+			global $wgExtraNamespaces, $wgNamespacesWithSubpages, $wgTranslateMessageNamespaces;
+
 			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
             $wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = array( 'BannerMessageGroup::updateBannerGroupStateHook' );
+
+			$wgExtraNamespaces[NS_CN_BANNER] = 'CNBanner';
+			$wgNamespacesWithSubpages[NS_CN_BANNER] = true;
+			$wgTranslateMessageNamespaces[] = NS_CN_BANNER;
+
+			$wgExtraNamespaces[NS_CN_BANNER_TALK] = 'CNBanner_talk';
+			$wgNamespacesWithSubpages[NS_CN_BANNER_TALK] = true;
 		}
 
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
@@ -507,6 +500,17 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		$wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieShortExpiry;
+
+	// Making these calls too soon will causes issues with the namespace localization cache. This seems
+	// to be just right. We require them at all because MW will 302 page requests made to non localized
+	// namespaces which results in wasteful extra calls.
+	if ( !$wgCentralBannerDispatcher ) {
+		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerRandom' )}";
+	}
+	if ( !$wgCentralBannerRecorder ) {
+		$wgCentralBannerRecorder = "{$wgScript}/{$wgContLang->specialPage( 'RecordImpression' )}";
+	}
+
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
