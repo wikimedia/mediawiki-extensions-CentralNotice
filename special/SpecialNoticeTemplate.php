@@ -820,6 +820,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 	 * Add or update a message
 	 */
 	private function updateMessage( $text, $translation, $lang ) {
+		global $wgNoticeUseTranslateExtension;
+
 		$title = Title::newFromText(
 			( $lang == 'en' ) ? "Centralnotice-{$text}" : "Centralnotice-{$text}/{$lang}",
 			NS_MEDIAWIKI
@@ -829,7 +831,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 		$wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
 	
 		// If we're using translate : group review; create and protect the english and QQQ pages
-		if ( ( $lang == 'en') && BannerMessageGroup::isUsingGroupReview() ) {
+		if ( $wgNoticeUseTranslateExtension && ( $lang == 'en') && BannerMessageGroup::isUsingGroupReview() ) {
 			$this->updateMessageInCnNamespaces( $text, $translation, 'en' );
 			$this->updateMessageInCnNamespaces( $text, $translation, 'qqq' );
 		}
