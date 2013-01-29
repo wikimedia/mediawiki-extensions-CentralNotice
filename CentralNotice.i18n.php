@@ -5051,6 +5051,7 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 
 /** Basque (euskara)
  * @author An13sa
+ * @author Joxemai
  * @author Kobazulo
  * @author Pi
  * @author Theklan
@@ -5120,6 +5121,7 @@ Ez da gehituko',
 	'centralnotice-clone-notice' => 'Txantiloia honen kopia sortu',
 	'centralnotice-clone-name' => 'Izena:',
 	'centralnotice-close-title' => 'Itxi',
+	'centralnotice-banner-anonymous' => 'Erabiltzaile anonimoak',
 	'centralnotice-countries' => 'Herrialdeak',
 	'centralnotice-languages' => 'Hizkuntzak',
 	'centralnotice-language' => 'Hizkuntza',
@@ -5134,9 +5136,14 @@ Ez da gehituko',
 	'centralnotice-action-modified' => 'aldatuta',
 	'centralnotice-action-removed' => 'ezabatua',
 	'centralnotice-talk-link' => 'eztabaida',
+	'centralnotice-fundraising' => 'Dohaintza',
 	'centralnotice-banner-content-changed' => 'aldatuta',
 	'centralnotice-date' => 'Data',
+	'centralnotice-priority-low' => 'baxua',
+	'centralnotice-priority-normal' => 'normala',
+	'centralnotice-priority-high' => 'altua',
 	'centralnotice-priority-emergency' => 'larrialdia',
+	'centralnotice-prioritylangs' => 'Lehentasunezko hizkuntzak',
 );
 
 /** Persian (فارسی)
@@ -18292,6 +18299,9 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-priority-normal' => 'Bình thường',
 	'centralnotice-priority-high' => 'cao',
 	'centralnotice-priority-emergency' => 'khẩn cấp',
+	'centralnotice-prioritylangs' => 'Ngôn ngữ quan trọng',
+	'centralnotice-prioritylangs-explain' => 'Đánh dấu một ngôn ngữ là ngôn ngữ quan trọng là sẽ khuyến khích các biên dịch viên dịch sang các ngôn ngữ trước tiên.',
+	'centralnotice-aggregate-group-desc' => 'Tất cả các thông điệp trong nhóm này được sử dụng trong biểu ngữ Thông báo chung.',
 	'centralnotice-country-eu' => 'Không rõ/Khu vực Liên minh châu Âu',
 	'centralnotice-country-ap' => 'Không rõ/Khu vực châu Á–Thái Bình Dương',
 	'centralnotice-country-a1' => 'Không rõ/Proxy vô danh',
