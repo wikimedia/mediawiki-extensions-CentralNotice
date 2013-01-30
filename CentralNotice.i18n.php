@@ -17850,6 +17850,7 @@ $messages['uz'] = array(
 
 /** vèneto (vèneto)
  * @author Candalua
+ * @author Frigotoni
  * @author GatoSelvadego
  * @author Vajotwo
  */
@@ -18033,6 +18034,9 @@ Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
 	'centralnotice-country-a2' => 'Sconosùo/Provider satełitar',
 	'centralnotice-country-o1' => 'Sconosùo/Altro paexe',
 	'centralnotice-country-unknown' => 'Sconosùo/nó gio-locałixabiłe',
+	'centralnotice-buckets' => "Grupo de l'utente",
+	'centralnotice-bucket' => 'Grupo',
+	'centralnotice-bucket-letter' => 'Grupo "$1"',
 );
 
 /** Veps (vepsän kel’)
