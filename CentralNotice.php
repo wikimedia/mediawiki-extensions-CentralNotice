@@ -274,13 +274,6 @@ function efCentralNoticeSetup() {
 			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $dir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
             $wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = array( 'BannerMessageGroup::updateBannerGroupStateHook' );
-
-			$wgExtraNamespaces[NS_CN_BANNER] = 'CNBanner';
-			$wgNamespacesWithSubpages[NS_CN_BANNER] = true;
-			$wgTranslateMessageNamespaces[] = NS_CN_BANNER;
-
-			$wgExtraNamespaces[NS_CN_BANNER_TALK] = 'CNBanner_talk';
-			$wgNamespacesWithSubpages[NS_CN_BANNER_TALK] = true;
 		}
 
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
@@ -290,6 +283,36 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
 	}
 }
+
+/**
+ * CanonicalNamespaces hook; adds the CentralNotice namespaces if this is an infrastructure
+ * wiki, and if CentralNotice is configured to use the Translate extension.
+ *
+ * We do this here because there are initialization problems wrt Translate and MW core if
+ * the language object is initialized before all namespaces are registered -- which would
+ * be the case if we just used the wgExtensionFunctions hook system.
+ *
+ * @param array $namespaces Modifiable list of namespaces -- similar to $wgExtraNamespaces
+ *
+ * @return bool True if the hook completed successfully.
+ */
+$wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
+	global $wgExtraNamespaces, $wgNamespacesWithSubpages, $wgTranslateMessageNamespaces;
+	global $wgNoticeUseTranslateExtension, $wgNoticeInfrastructure;
+
+	if ( $wgNoticeInfrastructure && $wgNoticeUseTranslateExtension ) {
+		$wgExtraNamespaces[NS_CN_BANNER] = 'CNBanner';
+		$wgTranslateMessageNamespaces[] = NS_CN_BANNER;
+
+		$wgExtraNamespaces[NS_CN_BANNER_TALK] = 'CNBanner_talk';
+		$wgNamespacesWithSubpages[NS_CN_BANNER_TALK] = true;
+
+		$namespaces[NS_CN_BANNER] = 'CNBanner';
+		$namespaces[NS_CN_BANNER_TALK] = 'CNBanner_talk';
+	}
+
+	return true;
+};
 
 /**
  * LoadExtensionSchemaUpdates hook handler
