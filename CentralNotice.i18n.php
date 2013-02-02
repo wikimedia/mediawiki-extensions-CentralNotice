@@ -8865,6 +8865,7 @@ $messages['ka'] = array(
 	'centralnotice-priority-normal' => 'ნორმალური',
 	'centralnotice-priority-high' => 'მაღალი',
 	'centralnotice-priority-emergency' => 'საგანგებო',
+	'centralnotice-prioritylangs' => 'პრიორიტეტული ენები',
 	'centralnotice-country-eu' => 'უცნობი/ევროკავშირის რეგიონი',
 	'centralnotice-country-ap' => 'უცნობი/აზია-წყნარი ოკეანის რეგიონი',
 	'centralnotice-country-a1' => 'უცნობი/ანონიმური პროქსი',
