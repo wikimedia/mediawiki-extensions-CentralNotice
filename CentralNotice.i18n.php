@@ -4086,7 +4086,7 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-filters' => 'Avrêjê rocekan',
 	'centralnotice-date' => 'Deme',
 	'centralnotice-apply-filters' => 'Avrêja dezge fi',
-	'centralnotice-clear-filters' => 'Avrêja besterne',
+	'centralnotice-clear-filters' => 'Avrêzan bestere',
 	'centralnotice-banner-messages' => 'Mesacê afişer',
 	'centralnotice-filter-template-prompt' => 'Nameyê afişi tedero:',
 	'centralnotice-filter-template-submit' => 'Parzumê dezgan',
@@ -4307,6 +4307,7 @@ $messages['ee'] = array(
  * @author K sal 15
  * @author Lou
  * @author Omnipaedista
+ * @author Protnet
  * @author ZaDiak
  * @author Απεργός
  */
@@ -4480,7 +4481,7 @@ $messages['el'] = array(
 	'centralnotice-priority-emergency' => 'επείγον',
 	'centralnotice-country-eu' => 'Άγνωστη/Περιοχή Ευρωπαϊκής Ένωσης',
 	'centralnotice-country-ap' => 'Άγνωστη/Περιοχή Ειρηνικού Ασίας',
-	'centralnotice-country-a1' => 'Άγνωστο/Ανώνυμο Proxy',
+	'centralnotice-country-a1' => 'Άγνωστος/Ανώνυμος Proxy',
 	'centralnotice-country-a2' => 'Άγνωστη/Δορυφορική Σύνδεση',
 	'centralnotice-country-o1' => 'Άγνωστη/Άλλη Χώρα',
 	'centralnotice-bucket' => 'Κουβάς',
@@ -5131,7 +5132,10 @@ Ez da gehituko',
 	'centralnotice-clone' => 'Klonatu',
 	'centralnotice-clone-notice' => 'Txantiloia honen kopia sortu',
 	'centralnotice-clone-name' => 'Izena:',
+	'centralnotice-insert' => 'Txertatu: $1',
+	'centralnotice-close-button' => 'Itxi botoia',
 	'centralnotice-close-title' => 'Itxi',
+	'centralnotice-donate-button' => 'Dohaintza botoia',
 	'centralnotice-banner-anonymous' => 'Erabiltzaile anonimoak',
 	'centralnotice-countries' => 'Herrialdeak',
 	'centralnotice-languages' => 'Hizkuntzak',
@@ -5155,6 +5159,11 @@ Ez da gehituko',
 	'centralnotice-priority-high' => 'altua',
 	'centralnotice-priority-emergency' => 'larrialdia',
 	'centralnotice-prioritylangs' => 'Lehentasunezko hizkuntzak',
+	'centralnotice-country-eu' => 'Ezezaguna/Europar Batasuneko lurraldea',
+	'centralnotice-country-ap' => 'Ezezaguna/Asia Pazifikoko lurraldea',
+	'centralnotice-country-a1' => 'Ezezaguna/Proxy anonimoa',
+	'centralnotice-country-a2' => 'Ezezaguna/Satelite bidezko konexioa',
+	'centralnotice-country-o1' => 'Ezezaguna/Bestelako herrialdea',
 );
 
 /** Persian (فارسی)
@@ -18598,6 +18607,7 @@ $messages['yue'] = array(
  * @author Wmr89502270
  * @author Xiaomingyan
  * @author Yfdyh000
+ * @author 乌拉跨氪
  * @author 阿pp
  */
 $messages['zh-hans'] = array(
@@ -18773,6 +18783,9 @@ $messages['zh-hans'] = array(
 	'centralnotice-priority-normal' => '一般',
 	'centralnotice-priority-high' => '高',
 	'centralnotice-priority-emergency' => '紧急',
+	'centralnotice-prioritylangs' => '优先语言',
+	'centralnotice-prioritylangs-explain' => '标记一种语言为优先语言将引导翻译者先翻译成该种语言。',
+	'centralnotice-aggregate-group-desc' => '该组中的所有消息都包含于中央公告横幅中。',
 	'centralnotice-country-eu' => '未知/欧盟地区',
 	'centralnotice-country-ap' => '未知/亚太地区',
 	'centralnotice-country-a1' => '未知/匿名代理',
