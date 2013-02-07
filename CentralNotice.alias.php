@@ -213,7 +213,7 @@ $specialPageAliases['ml'] = array(
 	'NoticeTemplate' => array( 'അറിയിപ്പ്ഫലകം' ),
 );
 
-/** Norwegian Bokmål (norsk (bokmål)‎) */
+/** Norwegian Bokmål (norsk bokmål) */
 $specialPageAliases['nb'] = array(
 	'CentralNotice' => array( 'Sentralnotis' ),
 	'CentralNoticeLogs' => array( 'Sentralnotislogger' ),
@@ -248,7 +248,7 @@ $specialPageAliases['nl'] = array(
 	'HideBanners' => array( 'BannersVerbergen' ),
 );
 
-/** Norwegian Nynorsk (norsk (nynorsk)‎) */
+/** Norwegian Nynorsk (norsk nynorsk) */
 $specialPageAliases['nn'] = array(
 	'CentralNotice' => array( 'Sentralmerknad' ),
 	'NoticeTemplate' => array( 'Merknadsmal' ),
