@@ -156,8 +156,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'td' );
 
 		$userLanguageCode = $this->getLanguage()->getCode();
-		$cndb = new CentralNoticeDB();
-		$countries = $cndb->getCountriesList( $userLanguageCode );
+		$countries = GeoTarget::getCountriesList( $userLanguageCode );
 
 		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
 

@@ -17,9 +17,8 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 
 		$campaigns = explode( '|', $this->sanitizeText( $params['campaign'], static::CAMPAIGNS_FILTER ) );
 
-		$cndb = new CentralNoticeDB();
 		foreach ( $campaigns as $campaign ) {
-			$settings = $cndb->getCampaignSettings( $campaign );
+			$settings = Campaign::getCampaignSettings( $campaign );
 			if ( $settings ) {
 				$settings['banners'] = json_decode( $settings['banners'] );
 

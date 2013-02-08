@@ -1,10 +1,20 @@
 <?php
 
-/**
- * Class with methods that can retrieve information from the database.
- */
-class CentralNoticeDB {
-	/* Functions */
+class Campaign {
+	/**
+	 * See if a given campaign exists in the database
+	 *
+	 * @param $campaignName string
+	 *
+	 * @return bool
+	 */
+	static function campaignExists( $campaignName ) {
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+
+		$eCampaignName = htmlspecialchars( $campaignName );
+		return (bool)$dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eCampaignName ) );
+	}
 
 	/**
 	 * Returns a list of campaigns. May be filtered on optional constraints.
@@ -22,7 +32,7 @@ class CentralNoticeDB {
 	 *
 	 * @return array Array of campaign IDs that matched the filter.
 	 */
-	public function getCampaigns( $project = null, $language = null, $location = null, $date = null,
+	static function getCampaigns( $project = null, $language = null, $location = null, $date = null,
 	                              $enabled = true ) {
 		global $wgCentralDBname;
 
@@ -113,7 +123,7 @@ class CentralNoticeDB {
 	 *
 	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
-	public function getCampaignSettings( $campaignName, $detailed = true ) {
+	static function getCampaignSettings( $campaignName, $detailed = true ) {
 		global $wgCentralDBname;
 
 		// Read from the master database to avoid concurrency problems
@@ -152,14 +162,14 @@ class CentralNoticeDB {
 		}
 
 		if ( $detailed ) {
-			$projects = $this->getNoticeProjects( $campaignName );
-			$languages = $this->getNoticeLanguages( $campaignName );
-			$geo_countries = $this->getNoticeCountries( $campaignName );
+			$projects = Campaign::getNoticeProjects( $campaignName );
+			$languages = Campaign::getNoticeLanguages( $campaignName );
+			$geo_countries = Campaign::getNoticeCountries( $campaignName );
 			$campaign[ 'projects' ] = implode( ", ", $projects );
 			$campaign[ 'languages' ] = implode( ", ", $languages );
 			$campaign[ 'countries' ] = implode( ", ", $geo_countries );
 
-			$bannersIn = $this->getCampaignBanners( $row->not_id, true );
+			$bannersIn = Banner::getCampaignBanners( $row->not_id, true );
 			$bannersOut = array();
 			// All we want are the banner names, weights, and buckets
 			foreach ( $bannersIn as $key => $row ) {
@@ -175,543 +185,11 @@ class CentralNoticeDB {
 	}
 
 	/**
-	 * Given one or more campaign ids, return all banners bound to them
-	 *
-	 * @param $campaigns array of id numbers
-	 * @param $logging   boolean whether or not request is for logging (optional)
-	 *
-	 * @return array a 2D array of banners with associated weights and settings
-	 */
-	public function getCampaignBanners( $campaigns, $logging = false ) {
-		global $wgCentralDBname;
-
-		// If logging, read from the master database to avoid concurrency problems
-		if ( $logging ) {
-			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-		} else {
-			$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		}
-
-		$banners = array();
-
-		if ( $campaigns ) {
-			$res = $dbr->select(
-					// Aliases (keys) are needed to avoid problems with table prefixes
-				array(
-					'notices' => 'cn_notices',
-					'assignments' => 'cn_assignments',
-					'templates' => 'cn_templates',
-				),
-				array(
-					'tmp_name',
-					'tmp_weight',
-					'tmp_display_anon',
-					'tmp_display_account',
-					'tmp_fundraising',
-					'tmp_autolink',
-					'tmp_landing_pages',
-					'not_name',
-					'not_preferred',
-					'asn_bucket',
-					'not_buckets',
-				),
-				array(
-					'notices.not_id' => $campaigns,
-					'notices.not_id = assignments.not_id',
-					'assignments.tmp_id = templates.tmp_id'
-				),
-				__METHOD__
-			);
-
-			foreach ( $res as $row ) {
-				$banners[ ] = array(
-					'name'             => $row->tmp_name, // name of the banner
-					'weight'           => intval( $row->tmp_weight ), // weight assigned to the banner
-					'display_anon'     => intval( $row->tmp_display_anon ), // display to anonymous users?
-					'display_account'  => intval( $row->tmp_display_account ), // display to logged in users?
-					'fundraising'      => intval( $row->tmp_fundraising ), // fundraising banner?
-					'autolink'         => intval( $row->tmp_autolink ), // automatically create links?
-					'landing_pages'    => $row->tmp_landing_pages, // landing pages to link to
-					'campaign'         => $row->not_name, // campaign the banner is assigned to
-					'campaign_z_index' => $row->not_preferred, // z level of the campaign
-					'campaign_num_buckets' => intval( $row->not_buckets ),
-					'bucket'           => ( intval( $row->not_buckets ) == 1 ) ? 0 : intval( $row->asn_bucket ),
-				);
-			}
-		}
-		return $banners;
-	}
-
-	/**
-	 * Return settings for a banner
-	 *
-	 * @param $bannerName string name of banner
-	 * @param $logging    boolean whether or not request is for logging (optional)
-	 *
-	 * @return array an array of banner settings
-	 */
-	public function getBannerSettings( $bannerName, $logging = false ) {
-		global $wgCentralDBname, $wgNoticeUseTranslateExtension;
-
-		$banner = array();
-
-		// If logging, read from the master database to avoid concurrency problems
-		if ( $logging ) {
-			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-		} else {
-			$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		}
-
-		$row = $dbr->selectRow(
-			'cn_templates',
-			array(
-				'tmp_display_anon',
-				'tmp_display_account',
-				'tmp_fundraising',
-				'tmp_autolink',
-				'tmp_landing_pages'
-			),
-			array( 'tmp_name' => $bannerName ),
-			__METHOD__
-		);
-
-		if ( $row ) {
-			$banner = array(
-				'anon'         => $row->tmp_display_anon,
-				'account'      => $row->tmp_display_account,
-				'fundraising'  => $row->tmp_fundraising,
-				'autolink'     => $row->tmp_autolink,
-				'landingpages' => $row->tmp_landing_pages
-			);
-
-			if ( $wgNoticeUseTranslateExtension ) {
-				$langs = TranslateMetadata::get(
-					BannerMessageGroup::getTranslateGroupName( $bannerName ),
-					'prioritylangs'
-				);
-				if ( !$langs ) {
-					// If priority langs is not set; TranslateMetadata::get will return false
-					$langs = '';
-				}
-				$banner['prioritylangs'] = explode( ',', $langs );
-			}
-		}
-
-		return $banner;
-	}
-
-	/**
-	 * DEPRECATED, but included for backwards compatibility during upgrade
-	 * Lookup function for active banners under a given language/project/location. This function is
-	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
-	 * each project.
-	 * @deprecated Remove me after upgrade has been completed.
-	 * @param $project string
-	 * @param $language string
-	 * @param $location string
-	 * @return array a 2D array of running banners with associated weights and settings
-	 */
-	public function getBannersByTarget( $project, $language, $location = null ) {
-		global $wgCentralDBname;
-
-		$campaigns = array();
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
-
-		// Pull non-geotargeted campaigns
-		$campaignResults1 = $dbr->select(
-			// Aliases are needed to avoid problems with table prefixes
-			array(
-				'notices' => 'cn_notices',
-				'cn_notice_projects',
-				'cn_notice_languages'
-			),
-			array(
-				'not_id'
-			),
-			array(
-				"not_start <= $encTimestamp",
-				"not_end >= $encTimestamp",
-				'not_enabled = 1', // enabled
-				'not_geo = 0', // not geotargeted
-				'np_notice_id = notices.not_id',
-				'np_project' => $project,
-				'nl_notice_id = notices.not_id',
-				'nl_language' => $language
-			),
-			__METHOD__
-		);
-		foreach ( $campaignResults1 as $row ) {
-			$campaigns[] = $row->not_id;
-		}
-		if ( $location ) {
-
-			// Normalize location parameter (should be an uppercase 2-letter country code)
-			preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
-			if ( $matches ) {
-				$location = strtoupper( $matches[0] );
-
-				// Pull geotargeted campaigns
-				$campaignResults2 = $dbr->select(
-					array(
-						'cn_notices',
-						'cn_notice_projects',
-						'cn_notice_languages',
-						'cn_notice_countries'
-					),
-					array(
-						'not_id'
-					),
-					array(
-						"not_start <= $encTimestamp",
-						"not_end >= $encTimestamp",
-						'not_enabled = 1', // enabled
-						'not_geo = 1', // geotargeted
-						'nc_notice_id = cn_notices.not_id',
-						'nc_country' => $location,
-						'np_notice_id = cn_notices.not_id',
-						'np_project' => $project,
-						'nl_notice_id = cn_notices.not_id',
-						'nl_language' => $language
-					),
-					__METHOD__
-				);
-				foreach ( $campaignResults2 as $row ) {
-					$campaigns[] = $row->not_id;
-				}
-			}
-		}
-
-		$banners = array();
-		if ( $campaigns ) {
-			// Pull all banners assigned to the campaigns
-			$banners = $this->getCampaignBanners( $campaigns );
-		}
-		return $banners;
-	}
-
-	/**
-	 * See if a given campaign exists in the database
-	 *
-	 * @param $campaignName string
-	 *
-	 * @return bool
-	 */
-	public function campaignExists( $campaignName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-
-		$eCampaignName = htmlspecialchars( $campaignName );
-		return (bool)$dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eCampaignName ) );
-	}
-
-	/**
-	 * See if a given banner exists in the database
-	 *
-	 * @param $bannerName string
-	 *
-	 * @return bool
-	 */
-	public function bannerExists( $bannerName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-
-		$eBannerName = htmlspecialchars( $bannerName );
-		$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_name' => $eBannerName ) );
-		if ( $row ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Return all of the available countries for geotargeting
-	 * TODO: Move this out of CentralNoticeDB (or rename the class)
-	 *
-	 * @param string $code The language code to return the country list in
-	 *
-	 * @return array
-	 */
-	public function getCountriesList( $code ) {
-		$countries = array();
-
-		if ( is_callable( array( 'CountryNames', 'getNames' ) ) ) {
-			// Retrieve the list of countries in user's language (via CLDR)
-			$countries = CountryNames::getNames( $code );
-		}
-
-		// If not via CLDR, we have our own list
-		if ( !$countries ) {
-			// Use this as fallback if CLDR extension is not enabled
-			$countries = array(
-				'AF'=> 'Afghanistan',
-				'AL'=> 'Albania',
-				'DZ'=> 'Algeria',
-				'AS'=> 'American Samoa',
-				'AD'=> 'Andorra',
-				'AO'=> 'Angola',
-				'AI'=> 'Anguilla',
-				'AQ'=> 'Antarctica',
-				'AG'=> 'Antigua and Barbuda',
-				'AR'=> 'Argentina',
-				'AM'=> 'Armenia',
-				'AW'=> 'Aruba',
-				'AU'=> 'Australia',
-				'AT'=> 'Austria',
-				'AZ'=> 'Azerbaijan',
-				'BS'=> 'Bahamas',
-				'BH'=> 'Bahrain',
-				'BD'=> 'Bangladesh',
-				'BB'=> 'Barbados',
-				'BY'=> 'Belarus',
-				'BE'=> 'Belgium',
-				'BZ'=> 'Belize',
-				'BJ'=> 'Benin',
-				'BM'=> 'Bermuda',
-				'BT'=> 'Bhutan',
-				'BO'=> 'Bolivia',
-				'BA'=> 'Bosnia and Herzegovina',
-				'BW'=> 'Botswana',
-				'BV'=> 'Bouvet Island',
-				'BR'=> 'Brazil',
-				'IO'=> 'British Indian Ocean Territory',
-				'BN'=> 'Brunei Darussalam',
-				'BG'=> 'Bulgaria',
-				'BF'=> 'Burkina Faso',
-				'BI'=> 'Burundi',
-				'KH'=> 'Cambodia',
-				'CM'=> 'Cameroon',
-				'CA'=> 'Canada',
-				'CV'=> 'Cape Verde',
-				'KY'=> 'Cayman Islands',
-				'CF'=> 'Central African Republic',
-				'TD'=> 'Chad',
-				'CL'=> 'Chile',
-				'CN'=> 'China',
-				'CX'=> 'Christmas Island',
-				'CC'=> 'Cocos (Keeling) Islands',
-				'CO'=> 'Colombia',
-				'KM'=> 'Comoros',
-				'CD'=> 'Congo, Democratic Republic of the',
-				'CG'=> 'Congo',
-				'CK'=> 'Cook Islands',
-				'CR'=> 'Costa Rica',
-				'CI'=> 'Côte d\'Ivoire',
-				'HR'=> 'Croatia',
-				'CU'=> 'Cuba',
-				'CY'=> 'Cyprus',
-				'CZ'=> 'Czech Republic',
-				'DK'=> 'Denmark',
-				'DJ'=> 'Djibouti',
-				'DM'=> 'Dominica',
-				'DO'=> 'Dominican Republic',
-				'EC'=> 'Ecuador',
-				'EG'=> 'Egypt',
-				'SV'=> 'El Salvador',
-				'GQ'=> 'Equatorial Guinea',
-				'ER'=> 'Eritrea',
-				'EE'=> 'Estonia',
-				'ET'=> 'Ethiopia',
-				'FK'=> 'Falkland Islands (Malvinas)',
-				'FO'=> 'Faroe Islands',
-				'FJ'=> 'Fiji',
-				'FI'=> 'Finland',
-				'FR'=> 'France',
-				'GF'=> 'French Guiana',
-				'PF'=> 'French Polynesia',
-				'TF'=> 'French Southern Territories',
-				'GA'=> 'Gabon',
-				'GM'=> 'Gambia',
-				'GE'=> 'Georgia',
-				'DE'=> 'Germany',
-				'GH'=> 'Ghana',
-				'GI'=> 'Gibraltar',
-				'GR'=> 'Greece',
-				'GL'=> 'Greenland',
-				'GD'=> 'Grenada',
-				'GP'=> 'Guadeloupe',
-				'GU'=> 'Guam',
-				'GT'=> 'Guatemala',
-				'GW'=> 'Guinea-Bissau',
-				'GN'=> 'Guinea',
-				'GY'=> 'Guyana',
-				'HT'=> 'Haiti',
-				'HM'=> 'Heard Island and McDonald Islands',
-				'VA'=> 'Holy See (Vatican City State)',
-				'HN'=> 'Honduras',
-				'HK'=> 'Hong Kong',
-				'HU'=> 'Hungary',
-				'IS'=> 'Iceland',
-				'IN'=> 'India',
-				'ID'=> 'Indonesia',
-				'IR'=> 'Iran',
-				'IQ'=> 'Iraq',
-				'IE'=> 'Ireland',
-				'IL'=> 'Israel',
-				'IT'=> 'Italy',
-				'JM'=> 'Jamaica',
-				'JP'=> 'Japan',
-				'JO'=> 'Jordan',
-				'KZ'=> 'Kazakhstan',
-				'KE'=> 'Kenya',
-				'KI'=> 'Kiribati',
-				'KW'=> 'Kuwait',
-				'KG'=> 'Kyrgyzstan',
-				'LA'=> 'Lao People\'s Democratic Republic',
-				'LV'=> 'Latvia',
-				'LB'=> 'Lebanon',
-				'LS'=> 'Lesotho',
-				'LR'=> 'Liberia',
-				'LY'=> 'Libyan Arab Jamahiriya',
-				'LI'=> 'Liechtenstein',
-				'LT'=> 'Lithuania',
-				'LU'=> 'Luxembourg',
-				'MO'=> 'Macao',
-				'MK'=> 'Macedonia, Republic of',
-				'MG'=> 'Madagascar',
-				'MW'=> 'Malawi',
-				'MY'=> 'Malaysia',
-				'MV'=> 'Maldives',
-				'ML'=> 'Mali',
-				'MT'=> 'Malta',
-				'MH'=> 'Marshall Islands',
-				'MQ'=> 'Martinique',
-				'MR'=> 'Mauritania',
-				'MU'=> 'Mauritius',
-				'YT'=> 'Mayotte',
-				'MX'=> 'Mexico',
-				'FM'=> 'Micronesia',
-				'MD'=> 'Moldova, Republic of',
-				'MC'=> 'Moldova',
-				'MN'=> 'Mongolia',
-				'ME'=> 'Montenegro',
-				'MS'=> 'Montserrat',
-				'MA'=> 'Morocco',
-				'MZ'=> 'Mozambique',
-				'MM'=> 'Myanmar',
-				'NA'=> 'Namibia',
-				'NR'=> 'Nauru',
-				'NP'=> 'Nepal',
-				'AN'=> 'Netherlands Antilles',
-				'NL'=> 'Netherlands',
-				'NC'=> 'New Caledonia',
-				'NZ'=> 'New Zealand',
-				'NI'=> 'Nicaragua',
-				'NE'=> 'Niger',
-				'NG'=> 'Nigeria',
-				'NU'=> 'Niue',
-				'NF'=> 'Norfolk Island',
-				'KP'=> 'North Korea',
-				'MP'=> 'Northern Mariana Islands',
-				'NO'=> 'Norway',
-				'OM'=> 'Oman',
-				'PK'=> 'Pakistan',
-				'PW'=> 'Palau',
-				'PS'=> 'Palestinian Territory',
-				'PA'=> 'Panama',
-				'PG'=> 'Papua New Guinea',
-				'PY'=> 'Paraguay',
-				'PE'=> 'Peru',
-				'PH'=> 'Philippines',
-				'PN'=> 'Pitcairn',
-				'PL'=> 'Poland',
-				'PT'=> 'Portugal',
-				'PR'=> 'Puerto Rico',
-				'QA'=> 'Qatar',
-				'RE'=> 'Reunion',
-				'RO'=> 'Romania',
-				'RU'=> 'Russian Federation',
-				'RW'=> 'Rwanda',
-				'SH'=> 'Saint Helena',
-				'KN'=> 'Saint Kitts and Nevis',
-				'LC'=> 'Saint Lucia',
-				'PM'=> 'Saint Pierre and Miquelon',
-				'VC'=> 'Saint Vincent and the Grenadines',
-				'WS'=> 'Samoa',
-				'SM'=> 'San Marino',
-				'ST'=> 'Sao Tome and Principe',
-				'SA'=> 'Saudi Arabia',
-				'SN'=> 'Senegal',
-				'CS'=> 'Serbia and Montenegro',
-				'RS'=> 'Serbia',
-				'SC'=> 'Seychelles',
-				'SL'=> 'Sierra Leone',
-				'SG'=> 'Singapore',
-				'SK'=> 'Slovakia',
-				'SI'=> 'Slovenia',
-				'SB'=> 'Solomon Islands',
-				'SO'=> 'Somalia',
-				'ZA'=> 'South Africa',
-				'KR'=> 'South Korea',
-				'SS'=> 'South Sudan',
-				'ES'=> 'Spain',
-				'LK'=> 'Sri Lanka',
-				'SD'=> 'Sudan',
-				'SR'=> 'Suriname',
-				'SJ'=> 'Svalbard and Jan Mayen',
-				'SZ'=> 'Swaziland',
-				'SE'=> 'Sweden',
-				'CH'=> 'Switzerland',
-				'SY'=> 'Syrian Arab Republic',
-				'TW'=> 'Taiwan',
-				'TJ'=> 'Tajikistan',
-				'TZ'=> 'Tanzania',
-				'TH'=> 'Thailand',
-				'TL'=> 'Timor-Leste',
-				'TG'=> 'Togo',
-				'TK'=> 'Tokelau',
-				'TO'=> 'Tonga',
-				'TT'=> 'Trinidad and Tobago',
-				'TN'=> 'Tunisia',
-				'TR'=> 'Turkey',
-				'TM'=> 'Turkmenistan',
-				'TC'=> 'Turks and Caicos Islands',
-				'TV'=> 'Tuvalu',
-				'UG'=> 'Uganda',
-				'UA'=> 'Ukraine',
-				'AE'=> 'United Arab Emirates',
-				'GB'=> 'United Kingdom',
-				'UM'=> 'United States Minor Outlying Islands',
-				'US'=> 'United States',
-				'UY'=> 'Uruguay',
-				'UZ'=> 'Uzbekistan',
-				'VU'=> 'Vanuatu',
-				'VE'=> 'Venezuela',
-				'VN'=> 'Vietnam',
-				'VG'=> 'Virgin Islands, British',
-				'VI'=> 'Virgin Islands, U.S.',
-				'WF'=> 'Wallis and Futuna',
-				'EH'=> 'Western Sahara',
-				'YE'=> 'Yemen',
-				'ZM'=> 'Zambia',
-				'ZW'=> 'Zimbabwe'
-			);
-		}
-
-		// And we need to add MaxMind specific countries: http://www.maxmind.com/en/iso3166
-		$countries['EU'] = wfMessage('centralnotice-country-eu')->inContentLanguage()->text();
-		$countries['AP'] = wfMessage('centralnotice-country-ap')->inContentLanguage()->text();
-		$countries['A1'] = wfMessage('centralnotice-country-a1')->inContentLanguage()->text();
-		$countries['A2'] = wfMessage('centralnotice-country-a2')->inContentLanguage()->text();
-		$countries['O1'] = wfMessage('centralnotice-country-o1')->inContentLanguage()->text();
-
-		// We will also add country 'XX' which is a MW specific 'fake' country for when GeoIP
-		// does not return any results at all or when something else odd has happened (IE: we
-		// fail to parse the country.)
-		$countries['XX'] = wfMessage('centralnotice-country-unknown')->inContentLanguage()->text();
-
-		asort( $countries );
-
-		return $countries;
-	}
-
-	/**
 	 * Get all the campaigns in the database
 	 *
 	 * @return array an array of campaign names
 	 */
-	public function getAllCampaignNames() {
+	static function getAllCampaignNames() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_notices', 'not_name', null, __METHOD__ );
 		$notices = array();
@@ -736,10 +214,10 @@ class CentralNoticeDB {
 	 * @throws MWException
 	 * @return bool|string True on success, string with message key for error
 	 */
-	public function addCampaign( $noticeName, $enabled, $startTs, $projects, $project_languages,
+	static function addCampaign( $noticeName, $enabled, $startTs, $projects, $project_languages,
 								 $geotargeted, $geo_countries, $user ) {
 		$noticeName = trim( $noticeName );
-		if ( $this->campaignExists( $noticeName ) ) {
+		if ( Campaign::campaignExists( $noticeName ) ) {
 			return 'centralnotice-notice-exists';
 		} elseif ( empty( $projects ) ) {
 			return 'centralnotice-no-project';
@@ -809,7 +287,7 @@ class CentralNoticeDB {
 				'locked'    => 0,
 				'geo'       => $geotargeted
 			);
-			$this->logCampaignChange( 'created', $not_id, $user,
+			Campaign::logCampaignChange( 'created', $not_id, $user,
 				$beginSettings, $endSettings );
 
 			return true;
@@ -826,7 +304,7 @@ class CentralNoticeDB {
 	 *
 	 * @return bool|string True on success, string with message key for error
 	 */
-	public function removeCampaign( $campaignName, $user ) {
+	static function removeCampaign( $campaignName, $user ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$res = $dbr->select( 'cn_notices', 'not_name, not_locked',
@@ -840,15 +318,15 @@ class CentralNoticeDB {
 			return 'centralnotice-notice-is-locked';
 		}
 
-		$this->removeCampaignByName( $campaignName, $user );
+		Campaign::removeCampaignByName( $campaignName, $user );
 
 		return true;
 	}
 
 	private function removeCampaignByName( $campaignName, $user ) {
 		// Log the removal of the campaign
-		$campaignId = $this->getNoticeId( $campaignName );
-		$this->logCampaignChange( 'removed', $campaignId, $user );
+		$campaignId = Campaign::getNoticeId( $campaignName );
+		Campaign::logCampaignChange( 'removed', $campaignId, $user );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -867,12 +345,12 @@ class CentralNoticeDB {
 	 * @param $weight
 	 * @return bool|string True on success, string with message key for error
 	 */
-	public function addTemplateTo( $noticeName, $templateName, $weight ) {
+	static function addTemplateTo( $noticeName, $templateName, $weight ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$eNoticeName = htmlspecialchars( $noticeName );
-		$noticeId = $this->getNoticeId( $eNoticeName );
-		$templateId = $this->getTemplateId( $templateName );
+		$noticeId = Campaign::getNoticeId( $eNoticeName );
+		$templateId = Banner::getTemplateId( $templateName );
 		$res = $dbr->select( 'cn_assignments', 'asn_id',
 			array(
 				'tmp_id' => $templateId,
@@ -885,7 +363,7 @@ class CentralNoticeDB {
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
-		$noticeId = $this->getNoticeId( $eNoticeName );
+		$noticeId = Campaign::getNoticeId( $eNoticeName );
 		$dbw->insert( 'cn_assignments',
 			array(
 				'tmp_id'     => $templateId,
@@ -899,9 +377,21 @@ class CentralNoticeDB {
 	}
 
 	/**
+	 * Remove a banner assignment from a campaign
+	 */
+	static function removeTemplateFor( $noticeName, $templateName ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
+		$noticeId = Campaign::getNoticeId( $noticeName );
+		$templateId = Banner::getTemplateId( $templateName );
+		$dbw->delete( 'cn_assignments', array( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
+		$dbw->commit();
+	}
+
+	/**
 	 * Lookup the ID for a campaign based on the campaign name
 	 */
-	public function getNoticeId( $noticeName ) {
+	static function getNoticeId( $noticeName ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
@@ -915,7 +405,7 @@ class CentralNoticeDB {
 	/**
 	 * Lookup the name of a campaign based on the campaign ID
 	 */
-	public function getNoticeName( $noticeId ) {
+	static function getNoticeName( $noticeId ) {
 		// Read from the master database to avoid concurrency problems
 		$dbr = wfGetDB( DB_MASTER );
 		if ( is_numeric( $noticeId ) ) {
@@ -927,7 +417,7 @@ class CentralNoticeDB {
 		return null;
 	}
 
-	public function getNoticeProjects( $noticeName ) {
+	static function getNoticeProjects( $noticeName ) {
 		// Read from the master database to avoid concurrency problems
 		$dbr = wfGetDB( DB_MASTER );
 		$eNoticeName = htmlspecialchars( $noticeName );
@@ -943,7 +433,7 @@ class CentralNoticeDB {
 		return $projects;
 	}
 
-	function getNoticeLanguages( $noticeName ) {
+	static function getNoticeLanguages( $noticeName ) {
 		// Read from the master database to avoid concurrency problems
 		$dbr = wfGetDB( DB_MASTER );
 		$eNoticeName = htmlspecialchars( $noticeName );
@@ -959,7 +449,7 @@ class CentralNoticeDB {
 		return $languages;
 	}
 
-	function getNoticeCountries( $noticeName ) {
+	static function getNoticeCountries( $noticeName ) {
 		// Read from the master database to avoid concurrency problems
 		$dbr = wfGetDB( DB_MASTER );
 		$eNoticeName = htmlspecialchars( $noticeName );
@@ -975,33 +465,13 @@ class CentralNoticeDB {
 		return $countries;
 	}
 
-	public function getTemplateId( $templateName ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$templateName = htmlspecialchars( $templateName );
-		$res = $dbr->select( 'cn_templates', 'tmp_id', array( 'tmp_name' => $templateName ) );
-		$row = $dbr->fetchObject( $res );
-		return $row->tmp_id;
-	}
-
-	/**
-	 * Remove a banner assignment from a campaign
-	 */
-	public function removeTemplateFor( $noticeName, $templateName ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
-		$noticeId = $this->getNoticeId( $noticeName );
-		$templateId = $this->getTemplateId( $templateName );
-		$dbw->delete( 'cn_assignments', array( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
-		$dbw->commit();
-	}
-
 	/**
 	 * @param $noticeName string
 	 * @param $start string Date
 	 * @param $end string Date
 	 * @return bool|string True on success, string with message key for error
 	 */
-	function updateNoticeDate( $noticeName, $start, $end ) {
+	static function updateNoticeDate( $noticeName, $start, $end ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Start/end don't line up
@@ -1010,7 +480,7 @@ class CentralNoticeDB {
 		}
 
 		// Invalid campaign name
-		if ( !$this->campaignExists( $noticeName ) ) {
+		if ( !Campaign::campaignExists( $noticeName ) ) {
 			return 'centralnotice-notice-doesnt-exist';
 		}
 
@@ -1037,8 +507,8 @@ class CentralNoticeDB {
 	 * @param $settingName string: Name of a boolean setting (enabled, locked, or geo)
 	 * @param $settingValue int: Value to use for the setting, 0 or 1
 	 */
-	public function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
-		if ( !$this->campaignExists( $noticeName ) ) {
+	static function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
+		if ( !Campaign::campaignExists( $noticeName ) ) {
 			// Exit quietly since campaign may have been deleted at the same time.
 			return;
 		} else {
@@ -1061,7 +531,7 @@ class CentralNoticeDB {
 	 * @param int $min The min that the value can take, default 0
 	 * @throws MWException|RangeException
 	 */
-	public function setNumericCampaignSetting( $noticeName, $settingName, $settingValue, $max = 1, $min = 0 ) {
+	static function setNumericCampaignSetting( $noticeName, $settingName, $settingValue, $max = 1, $min = 0 ) {
 		if ( $max <= $min ) {
 			throw new RangeException( 'Max must be greater than min.' );
 		}
@@ -1078,7 +548,7 @@ class CentralNoticeDB {
 			$settingValue = $min;
 		}
 
-		if ( !$this->campaignExists( $noticeName ) ) {
+		if ( !Campaign::campaignExists( $noticeName ) ) {
 			// Exit quietly since campaign may have been deleted at the same time.
 			return;
 		} else {
@@ -1098,9 +568,9 @@ class CentralNoticeDB {
 	 * @param $templateId   ID of the banner in the campaign
 	 * @param $weight       New banner weight
 	 */
-	function updateWeight( $noticeName, $templateId, $weight ) {
+	static function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$noticeId = $this->getNoticeId( $noticeName );
+		$noticeId = Campaign::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			array( 'tmp_weight' => $weight ),
 			array(
@@ -1118,9 +588,9 @@ class CentralNoticeDB {
 	 * @param $templateId   ID of the banner in the campaign
 	 * @param $bucket       New bucket number
 	 */
-	function updateBucket( $noticeName, $templateId, $bucket ) {
+	static function updateBucket( $noticeName, $templateId, $bucket ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$noticeId = $this->getNoticeId( $noticeName );
+		$noticeId = Campaign::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			array( 'asn_bucket' => $bucket ),
 			array(
@@ -1131,7 +601,7 @@ class CentralNoticeDB {
 	}
 
 	// @todo FIXME: Unused.
-	public function updateProjectName( $notice, $projectName ) {
+	static function updateProjectName( $notice, $projectName ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'cn_notices',
 			array( 'not_project' => $projectName ),
@@ -1141,12 +611,12 @@ class CentralNoticeDB {
 		);
 	}
 
-	public function updateProjects( $notice, $newProjects ) {
+	static function updateProjects( $notice, $newProjects ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 
 		// Get the previously assigned projects
-		$oldProjects = $this->getNoticeProjects( $notice );
+		$oldProjects = Campaign::getNoticeProjects( $notice );
 
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
@@ -1170,12 +640,12 @@ class CentralNoticeDB {
 		$dbw->commit();
 	}
 
-	public function updateProjectLanguages( $notice, $newLanguages ) {
+	static function updateProjectLanguages( $notice, $newLanguages ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
 
 		// Get the previously assigned languages
-		$oldLanguages = $this->getNoticeLanguages( $notice );
+		$oldLanguages = Campaign::getNoticeLanguages( $notice );
 
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
@@ -1199,11 +669,11 @@ class CentralNoticeDB {
 		$dbw->commit();
 	}
 
-	public function updateCountries( $notice, $newCountries ) {
+	static function updateCountries( $notice, $newCountries ) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Get the previously assigned languages
-		$oldCountries = $this->getNoticeCountries( $notice );
+		$oldCountries = Campaign::getNoticeCountries( $notice );
 
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $notice ) );
@@ -1238,7 +708,7 @@ class CentralNoticeDB {
 	 *
 	 * @return integer: ID of log entry (or null)
 	 */
-	public function logCampaignChange( $action, $campaignId, $user, $beginSettings = array(),
+	static function logCampaignChange( $action, $campaignId, $user, $beginSettings = array(),
 								$endSettings = array(), $beginAssignments = array(), $endAssignments = array()
 	) {
 		// Only log the change if it is done by an actual user (rather than a testing script)
@@ -1250,7 +720,7 @@ class CentralNoticeDB {
 				'notlog_user_id'   => $user->getId(),
 				'notlog_action'    => $action,
 				'notlog_not_id'    => $campaignId,
-				'notlog_not_name'  => $this->getNoticeName( $campaignId )
+				'notlog_not_name'  => Campaign::getNoticeName( $campaignId )
 			);
 
 			foreach ( $beginSettings as $key => $value ) {
@@ -1268,7 +738,7 @@ class CentralNoticeDB {
 		}
 	}
 
-	public function campaignLogs( $campaign=false, $username=false, $start=false, $end=false, $limit=50, $offset=0 ) {
+	static function campaignLogs( $campaign=false, $username=false, $start=false, $end=false, $limit=50, $offset=0 ) {
 
 		$conds = array();
 		if ( $start ) {
@@ -1290,7 +760,7 @@ class CentralNoticeDB {
 		// Read from the master database to avoid concurrency problems
 		$dbr = wfGetDB( DB_MASTER );
 		$res = $dbr->select( 'cn_notice_log', '*', $conds,
-			'CentralNoticeDB::campaignLogs',
+			__METHOD__,
 			array(
 				"ORDER BY" => "notlog_timestamp DESC",
 				"LIMIT" => $limit,

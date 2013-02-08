@@ -77,8 +77,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 */
 	function getJsNotice( $bannerName ) {
 		// Make sure the banner exists
-		$cndb = new CentralNoticeDB();
-		if ( $cndb->bannerExists( $bannerName ) ) {
+		if ( Banner::bannerExists( $bannerName ) ) {
 			$this->bannerName = $bannerName;
 			$bannerHtml = '';
 			$bannerHtml .= preg_replace_callback(
@@ -106,8 +105,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 */
 	function getHtmlNotice( $bannerName ) {
 		// Make sure the banner exists
-		$cndb = new CentralNoticeDB();
-		if ( $cndb->bannerExists( $bannerName ) ) {
+		if ( Banner::bannerExists( $bannerName ) ) {
 			$this->bannerName = $bannerName;
 			$bannerHtml = '';
 			$bannerHtml .= preg_replace_callback(

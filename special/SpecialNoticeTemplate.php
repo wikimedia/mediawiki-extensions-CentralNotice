@@ -54,7 +54,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 				if ( isset( $toRemove ) ) {
 					// Remove banners in list
 					foreach ( $toRemove as $template ) {
-						$this->removeTemplate( $template );
+						Banner::removeTemplate( $template, $this->getUser() );
 					}
 				}
 
@@ -75,9 +75,10 @@ class SpecialNoticeTemplate extends CentralNotice {
 				if ( $method == 'addTemplate' ) {
 					$newTemplateName = $request->getText( 'templateName' );
 					$newTemplateBody = $request->getText( 'templateBody' );
-					$success = $this->addTemplate(
+					$errors = Banner::addTemplate(
 						$newTemplateName,
 						$newTemplateBody,
+						$this->getUser(),
 						$request->getBool( 'displayAnon' ),
 						$request->getBool( 'displayAccount' ),
 						$request->getBool( 'fundraising' ),
@@ -85,7 +86,9 @@ class SpecialNoticeTemplate extends CentralNotice {
 						$request->getVal( 'landingPages' ),
 						$request->getArray( 'project_languages', array() )
 					);
-					if ( $success ) {
+					if ( $errors ) {
+						$this->showError( $errors );
+					} else {
 						$sub = 'view';
 					}
 				}
@@ -347,27 +350,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 	}
 
 	/**
-	 * Extract the raw fields and field names from the banner body source.
-	 * @param string $body The body source of the banner
-	 * @return array
-	 */
-	static function extractMessageFields( $body ) {
-		// Extract message fields from the banner body
-		$fields = array();
-		$allowedChars = Title::legalChars();
-		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
-
-		// Remove magic words that don't need translation
-		foreach ( $fields[ 0 ] as $index => $rawField ) {
-			if ( $rawField === '{{{campaign}}}' || $rawField === '{{{banner}}}' ) {
-				unset( $fields[ 0 ][ $index ] ); // unset raw field
-				unset( $fields[ 1 ][ $index ] ); // unset field name
-			}
-		}
-		return $fields;
-	}
-
-	/**
 	 * View or edit an individual banner
 	 */
 	private function showView() {
@@ -391,8 +373,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 		// Get current banner
 		$currentTemplate = $request->getText( 'template' );
 
-		$cndb = new CentralNoticeDB();
-		$bannerSettings = $cndb->getBannerSettings( $currentTemplate );
+		$bannerSettings = Banner::getBannerSettings( $currentTemplate );
 
 		if ( !$bannerSettings ) {
 			$this->showError( 'centralnotice-banner-doesnt-exist' );
@@ -433,8 +414,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$body = $curRev ? $curRev->getText() : '';
 
 			// If there are any message fields in the banner, display translation tools.
-			$fields = $this->extractMessageFields( $body );
-			if ( count( $fields[ 0 ] ) > 0 ) {
+			$fields = Banner::extractMessageFields( $body );
+			if ( count( $fields ) > 0 ) {
 				if ( $this->editable ) {
 					$htmlOut .= Html::openElement( 'form', array( 'method' => 'post' ) );
 				}
@@ -461,15 +442,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 				$htmlOut .= Html::element( 'th', array( 'width' => '40%' ),
 					$languages[ $wpUserLang ] );
 
-				// Remove duplicate message fields
-				$filteredFields = array();
-				foreach ( $fields[ 1 ] as $field ) {
-					$filteredFields[ $field ] = array_key_exists( $field, $filteredFields )
-						? $filteredFields[ $field ] + 1 : 1;
-				}
-
 				// Table rows
-				foreach ( $filteredFields as $field => $count ) {
+				foreach ( $fields as $field => $count ) {
 					// Message
 					$message = ( $wpUserLang == 'en' )
 						? "Centralnotice-{$currentTemplate}-{$field}"
@@ -884,21 +858,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 		}
 	}
 
-	// @todo Can CentralNotice::getTemplateId() be updated and reused?
-	protected function getTemplateId( $templateName ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'cn_templates', 'tmp_id',
-			array( 'tmp_name' => $templateName ),
-			__METHOD__
-		);
-
-		$row = $dbr->fetchObject( $res );
-		if ( $row ) {
-			return $row->tmp_id;
-		}
-		return null;
-	}
-
 	public function getBannerName( $bannerId ) {
 		$dbr = wfGetDB( DB_MASTER );
 		if ( is_numeric( $bannerId ) ) {
@@ -908,218 +867,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 			}
 		}
 		return null;
-	}
-
-	public function removeTemplate( $name ) {
-		global $wgNoticeUseTranslateExtension;
-
-		$id = $this->getTemplateId( $name );
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
-
-		if ( $dbr->numRows( $res ) > 0 ) {
-			$this->showError( 'centralnotice-template-still-bound' );
-			return;
-		} else {
-			// Log the removal of the banner
-			$this->logBannerChange( 'removed', $id );
-
-			// Delete banner record from the CentralNotice cn_templates table
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
-			$dbw->delete( 'cn_templates',
-				array( 'tmp_id' => $id ),
-				__METHOD__
-			);
-			$dbw->commit();
-
-			// Delete the MediaWiki page that contains the banner source
-			$article = new Article(
-				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
-			);
-			$pageId = $article->getPage()->getId();
-			$article->doDeleteArticle( 'CentralNotice automated removal' );
-
-			if ( $wgNoticeUseTranslateExtension ) {
-				// Remove any revision tags related to the banner
-				$this->removeTag( 'banner:translate', $pageId );
-
-				// And the preferred language metadata if it exists
-				TranslateMetadata::set(
-					BannerMessageGroup::getTranslateGroupName( $name ),
-					'prioritylangs',
-					false
-				);
-			}
-		}
-	}
-
-	/**
-	 * Create a new banner
-	 *
-	 * @param $name             string name of banner
-	 * @param $body             string content of banner
-	 * @param $displayAnon      integer flag for display to anonymous users
-	 * @param $displayAccount   integer flag for display to logged in users
-	 * @param $fundraising      integer flag for fundraising banner (optional)
-	 * @param $autolink         integer flag for automatically creating landing page links (optional)
-	 * @param $landingPages     string list of landing pages (optional)
-	 * @param $priorityLangs    array Array of priority languages for the translate extension
-	 *
-	 * @return bool true or false depending on whether banner was successfully added
-	 */
-	public function addTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising = 0,
-	                             $autolink = 0, $landingPages = '', $priorityLangs = array()
-	) {
-		global $wgNoticeUseTranslateExtension;
-
-		if ( $body == '' || $name == '' ) {
-			$this->showError( 'centralnotice-null-string' );
-			return false;
-		}
-
-		// Format name so there are only letters, numbers, and underscores
-		$name = preg_replace( '/[^A-Za-z0-9_]/', '', $name );
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			'cn_templates',
-			'tmp_name',
-			array( 'tmp_name' => $name ),
-			__METHOD__
-		);
-
-		if ( $dbr->numRows( $res ) > 0 ) {
-			$this->showError( 'centralnotice-template-exists' );
-			return false;
-		} else {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->insert( 'cn_templates',
-				array(
-					'tmp_name'            => $name,
-					'tmp_display_anon'    => $displayAnon,
-					'tmp_display_account' => $displayAccount,
-					'tmp_fundraising'     => $fundraising,
-					'tmp_autolink'        => $autolink,
-					'tmp_landing_pages'   => $landingPages
-				),
-				__METHOD__
-			);
-			$bannerId = $dbw->insertId();
-
-			// Perhaps these should move into the db as blobs instead of being stored as articles
-			$wikiPage = new WikiPage(
-				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
-			);
-
-			if ( class_exists( 'ContentHandler' ) ) {
-				// MediaWiki 1.21+
-				$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
-				$pageResult = $wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
-			} else {
-				$pageResult = $wikiPage->doEdit( $body, '/* CN admin */', EDIT_FORCE_BOT );
-			}
-
-			$this->updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
-
-			// Log the creation of the banner
-			$beginSettings = array();
-			$endSettings = array(
-				'anon'          => $displayAnon,
-				'account'       => $displayAccount,
-				'fundraising'   => $fundraising,
-				'autolink'      => $autolink,
-				'landingpages'  => $landingPages,
-				'prioritylangs' => $priorityLangs,
-			);
-			$this->logBannerChange( 'created', $bannerId, $beginSettings, $endSettings );
-
-			return true;
-		}
-	}
-
-	/**
-	 * Updates any metadata required for banner/translation extension integration.
-	 *
-	 * @param string $name              Raw name of banner
-	 * @param string $body              Body text of banner
-	 * @param array  $priorityLangs     Languages to emphasize during translation
-	 */
-	protected function updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs ) {
-		global $wgNoticeUseTranslateExtension;
-
-		// Do nothing if we arent actually using translate
-		if ( $wgNoticeUseTranslateExtension ) {
-			// Get the revision and page ID of the page that was created/modified
-			if ( $pageResult->value['revision'] ) {
-				$revision = $pageResult->value['revision'];
-				$revisionId = $revision->getId();
-				$pageId = $revision->getPage();
-
-				// If the banner includes translatable messages, tag it for translation
-				$fields = $this->extractMessageFields( $body );
-				if ( count( $fields[0] ) > 0 ) {
-					// Tag the banner for translation
-					$this->addTag( 'banner:translate', $revisionId, $pageId );
-					MessageGroups::clearCache();
-					MessageIndexRebuildJob::newJob()->run();
-				}
-			}
-
-			// Set the priority languages
-			if ( $wgNoticeUseTranslateExtension && $priorityLangs ) {
-				TranslateMetadata::set(
-					BannerMessageGroup::getTranslateGroupName( $name ),
-					'prioritylangs',
-					implode( ',', $priorityLangs )
-				);
-			}
-		}
-	}
-
-	/**
-	 * Add a revision tag for the banner
-	 * @param string $tag The name of the tag
-	 * @param integer $revisionId ID of the revision
-	 * @param integer $pageId ID of the MediaWiki page for the banner
-	 * @param string $value Value to store for the tag
-	 * @throws MWException
-	 */
-	protected function addTag( $tag, $revisionId, $pageId, $value = null ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		if ( is_object( $revisionId ) ) {
-			throw new MWException( 'Got object, excepted id' );
-		}
-
-		$conds = array(
-			'rt_page' => $pageId,
-			'rt_type' => RevTag::getType( $tag ),
-			'rt_revision' => $revisionId
-		);
-		$dbw->delete( 'revtag', $conds, __METHOD__ );
-
-		if ( $value !== null ) {
-			$conds['rt_value'] = serialize( implode( '|', $value ) );
-		}
-
-		$dbw->insert( 'revtag', $conds, __METHOD__ );
-	}
-
-	/**
-	 * Make sure banner is not tagged with specified tag
-	 * @param string $tag The name of the tag
-	 * @param integer $pageId ID of the MediaWiki page for the banner
-	 * @throws MWException
-	 */
-	protected function removeTag( $tag, $pageId ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		$conds = array(
-			'rt_page' => $pageId,
-			'rt_type' => RevTag::getType( $tag )
-		);
-		$dbw->delete( 'revtag', $conds, __METHOD__ );
 	}
 
 	/**
@@ -1133,8 +880,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			return;
 		}
 
-		$cndb = new CentralNoticeDB();
-		$initialBannerSettings = $cndb->getBannerSettings( $name, true );
+		$initialBannerSettings = Banner::getBannerSettings( $name, true );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_templates', 'tmp_name',
@@ -1168,10 +914,10 @@ class SpecialNoticeTemplate extends CentralNotice {
 				$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
 			}
 
-			$this->updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
+			Banner::updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
 
 			// If there are any difference between the old settings and the new settings, log them.
-            $finalBannerSettings = $cndb->getBannerSettings( $name, true );
+            $finalBannerSettings = Banner::getBannerSettings( $name, true );
             $changed = false;
             foreach ( $finalBannerSettings as $key => $value ) {
                 if ( $finalBannerSettings[$key] != $initialBannerSettings[$key] ) {
@@ -1180,7 +926,7 @@ class SpecialNoticeTemplate extends CentralNotice {
             }
 
 			if ( $changed ) {
-				$this->logBannerChange( 'modified', $name, $initialBannerSettings, $finalBannerSettings );
+				Banner::logBannerChange( 'modified', $name, $this->getUser(), $initialBannerSettings, $finalBannerSettings );
 			}
 
 			return;
@@ -1224,7 +970,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 		$template_body = Revision::newFromTitle( $bodyPage )->getText();
 
 		// Create new banner
-		if ( $this->addTemplate( $dest, $template_body, $displayAnon, $displayAccount, $fundraising,
+		if ( Banner::addTemplate( $dest, $template_body, $this->getUser(), $displayAnon, $displayAccount, $fundraising,
 			$autolink, $landingPages )
 		) {
 
@@ -1290,45 +1036,5 @@ class SpecialNoticeTemplate extends CentralNotice {
 			}
 		}
 		return $translations;
-	}
-
-	/**
-	 * Log setting changes related to a banner
-	 *
-	 * @param $action        string: 'created', 'modified', or 'removed'
-	 * @param $bannerId      integer: ID of banner
-	 * @param $beginSettings array of banner settings before changes (optional)
-	 * @param $endSettings   array of banner settings after changes (optional)
-	 * @return int
-	 */
-	function logBannerChange( $action, $bannerId, $beginSettings = array(), $endSettings = array() ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		$log = array(
-			'tmplog_timestamp'     => $dbw->timestamp(),
-			'tmplog_user_id'       => $this->getUser()->getId(),
-			'tmplog_action'        => $action,
-			'tmplog_template_id'   => $bannerId,
-			'tmplog_template_name' => $this->getBannerName( $bannerId )
-		);
-
-		foreach ( $beginSettings as $key => $value ) {
-			if ( is_array( $value ) ) {
-				$value = FormatJson::encode( $value );
-			}
-
-			$log[ 'tmplog_begin_' . $key ] = $value;
-		}
-		foreach ( $endSettings as $key => $value ) {
-			if ( is_array( $value ) ) {
-				$value = FormatJSON::encode( $value );
-			}
-
-			$log[ 'tmplog_end_' . $key ] = $value;
-		}
-
-		$dbw->insert( 'cn_template_log', $log );
-		$log_id = $dbw->insertId();
-		return $log_id;
 	}
 }
