@@ -5173,6 +5173,7 @@ Ez da gehituko',
  * @author Komeil 4life
  * @author Leyth
  * @author Mjbmr
+ * @author Pouyana
  * @author Reza1615
  * @author Sahim
  * @author Wayiran
@@ -5354,6 +5355,7 @@ $messages['fa'] = array(
 	'centralnotice-priority-normal' => 'عادی',
 	'centralnotice-priority-high' => 'زیاد',
 	'centralnotice-priority-emergency' => 'اورژانسی',
+	'centralnotice-prioritylangs' => 'زبان‌های با اولویت بالا',
 );
 
 /** Finnish (suomi)
