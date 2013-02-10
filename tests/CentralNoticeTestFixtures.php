@@ -34,6 +34,8 @@ class CentralNoticeTestFixtures {
 	}
 
 	function addFixtures( $spec ) {
+		CNDeviceTarget::addDeviceTarget( 'desktop', '{{int:centralnotice-devicetype-desktop}}' );
+
 		foreach ( $spec['campaigns'] as $campaignSpec ) {
 			$campaign = $campaignSpec + static::$defaultCampaign + array(
 				'name' => 'TestCampaign_' . rand(),

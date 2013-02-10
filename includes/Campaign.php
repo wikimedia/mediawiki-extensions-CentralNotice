@@ -329,7 +329,7 @@ class Campaign {
 		return true;
 	}
 
-	private function removeCampaignByName( $campaignName, $user ) {
+	private static function removeCampaignByName( $campaignName, $user ) {
 		// Log the removal of the campaign
 		$campaignId = Campaign::getNoticeId( $campaignName );
 		Campaign::logCampaignChange( 'removed', $campaignId, $user );

@@ -23,6 +23,7 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 			$this->language,
 			$this->country,
 			$this->anonymous,
+			$this->device,
 			$this->bucket
 		);
 		$banner = $chooser->chooseBanner( $this->slot );

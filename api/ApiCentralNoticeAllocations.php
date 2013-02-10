@@ -10,6 +10,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	const DEFAULT_COUNTRY = 'XX';
 	const DEFAULT_LANGUAGE = 'en';
 	const DEFAULT_ANONYMOUS = 'true';
+	const DEFAULT_DEVICE_NAME = 'desktop';
 	const DEFAULT_BUCKET = null;
 
 	/**
@@ -29,6 +30,10 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 */
 	const ANONYMOUS_FILTER = '/true|false/';
 	/**
+	 * @var string Pattern for a the requesting device type name, ie: desktop, iphone
+	 */
+	const DEVICE_NAME_FILTER = '/[a-zA-Z0-9\-_]+/';
+	/**
 	 * @var string Pattern for int
 	 */
 	const BUCKET_FILTER = '/[0-9]+/';
@@ -45,6 +50,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 			$params['country'],
 			$params['language'],
 			$params['anonymous'],
+			$params['device'],
 			$params['bucket'],
 			$params['minimal']
 		);
@@ -60,6 +66,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		$params['country']  = ApiCentralNoticeAllocations::DEFAULT_COUNTRY;
 		$params['language'] = ApiCentralNoticeAllocations::DEFAULT_LANGUAGE;
 		$params['anonymous']= ApiCentralNoticeAllocations::DEFAULT_ANONYMOUS;
+		$params['device'] = ApiCentralNoticeAllocations::DEFAULT_DEVICE_NAME;
 		$params['bucket']   = ApiCentralNoticeAllocations::DEFAULT_BUCKET;
 		$params['minimal']  = false;
 
@@ -75,6 +82,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		$params['country']  = "The country to filter on";
 		$params['language'] = "The language to filter on";
 		$params['anonymous']= "The logged-in status to filter on (true|false)";
+		$params['device']   = "Device name to filter on";
 		$params['bucket']   = "The bucket to filter on, by number (0 .. $wgNoticeNumberOfBuckets, optional)";
 		$params['minimal']  = "Alters return - only what is required for the banner loader will be returned";
 
@@ -124,12 +132,13 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 * @param string $country   - ISO country name, ie 'US'
 	 * @param string $language  - ISO language name, ie 'en'
 	 * @param string $anonymous - Is user anonymous, eg 'true'
+	 * @param string $device    - What device to filter on, eg 'desktop' or 'mobile.device.ie'
 	 * @param string $bucket    - Which A/B bucket the user is in
 	 * @param bool   $minimize  - True if the results should be minimized for banner usage
 	 *
 	 * @return array
 	 */
-	public static function getAllocationInformation( $project, $country, $language, $anonymous, $bucket = null, $minimize = false ) {
+	public static function getAllocationInformation( $project, $country, $language, $anonymous, $device, $bucket = null, $minimize = false ) {
 		$project = ApiCentralNoticeAllocations::sanitizeText(
 			$project,
 			static::PROJECT_FILTER,
@@ -155,6 +164,12 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		);
 		$anonymous = ( $anonymous == 'true' );
 
+		$device = ApiCentralNoticeAllocations::sanitizeText(
+			$device,
+			static::DEVICE_NAME_FILTER,
+			static::DEFAULT_DEVICE_NAME
+		);
+
 		$bucket = ApiCentralNoticeAllocations::sanitizeText(
 			$bucket,
 			static::BUCKET_FILTER,
@@ -163,7 +178,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 
 		$minimize = (boolean) $minimize;
 
-		$chooser = new BannerChooser( $project, $language, $country, $anonymous, $bucket );
+		$chooser = new BannerChooser( $project, $language, $country, $anonymous, $device, $bucket );
 		$banners = $chooser->banners;
 
 		if ( $minimize ) {
