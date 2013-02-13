@@ -389,7 +389,8 @@ Related messages:
 (Parameter $1 of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
 	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
 	'centralnotice-date' => 'Label for a date selection interface',
-	'centralnotice-apply-filters' => 'Label for a submit button',
+	'centralnotice-apply-filters' => 'Label for a submit button.
+{{Identical|Apply filter}}',
 	'centralnotice-clear-filters' => 'Label for a submit button. Clear as in reset.',
 	'centralnotice-banner-messages' => 'On the Special:CentralNoticeLogs page, this is a radio button which shows log entries associated to edits to MediaWiki messages (translated variables) used by the banner, whose structure is stored in a single message per banner, whose changes are in contrast shown by {{msg-mw|centralnotice-banner-content}} button.
 Related messages:
@@ -397,7 +398,8 @@ Related messages:
 *{{msg-mw|centralnotice-banner-settings}}
 *{{msg-mw|centralnotice-banner-content}}',
 	'centralnotice-filter-template-prompt' => 'Label for a banner name search string; terms are space delimited',
-	'centralnotice-filter-template-submit' => 'Button label: on click will apply a filter to the banners displayed',
+	'centralnotice-filter-template-submit' => 'Button label: on click will apply a filter to the banners displayed.
+{{Identical|Apply filter}}',
 	'centralnotice-filter-template-banner' => 'Section heading label for the banner filter bar',
 	'centralnotice-priority-low' => 'Label for the lowest campaign priority setting. An adjective that describes the priority.',
 	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting. An adjective that describes the priority.',
@@ -4865,6 +4867,7 @@ Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergencia',
+	'centralnotice-prioritylangs' => 'Idiomas prioritarios',
 	'centralnotice-country-eu' => 'Desconocido/Región de la Unión Europea',
 	'centralnotice-country-ap' => 'Desconocido/Región Asia Pacífico',
 	'centralnotice-country-a1' => 'Desconocido/Proxy anónimo',
