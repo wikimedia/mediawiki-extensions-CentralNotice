@@ -8,9 +8,8 @@ class BannerChooser {
 	var $banners = array();
 
 	function __construct( $project, $language, $country, $anonymous, $bucket ) {
-		$cndb = new CentralNoticeDB();
-		$campaigns = $cndb->getCampaigns( $project, $language, $country );
-		$this->banners = $cndb->getCampaignBanners( $campaigns );
+		$campaigns = Campaign::getCampaigns( $project, $language, $country );
+		$this->banners = Banner::getCampaignBanners( $campaigns );
 
 		$this->filterBanners( $anonymous, $bucket );
 

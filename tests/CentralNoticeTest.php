@@ -9,10 +9,6 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	 */
 	protected static $centralNotice;
 	/**
-	 * @var CentralNoticeDB
-	 */
-	protected static $centralNoticeDB;
-	/**
 	 * @var SpecialNoticeTemplate
 	 */
 	protected static $noticeTemplate;
@@ -50,11 +46,10 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 				"real_name" => "Test User" ) );
 			$this->userUser->load();
 		}
-		self::$centralNoticeDB = new CentralNoticeDB();
-		self::$centralNoticeDB->addCampaign( $noticeName, $enabled, $startTs, $projects,
+		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
 			$project_languages, $geotargeted, $geo_countries, $this->userUser );
 
-		$this->campaignId = self::$centralNoticeDB->getNoticeId( 'PHPUnitTestCampaign' );
+		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
 
 		self::$noticeTemplate = new SpecialNoticeTemplate;
 		$bannerName = 'PHPUnitTestBanner';
@@ -68,16 +63,16 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 
 		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1, JA2","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"bucket":0}]';
 
-		self::$noticeTemplate->addTemplate( $bannerName, $body, $displayAnon, $displayAccount,
+		Banner::addTemplate( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
 			$fundraising, $autolink, $landingPages );
-		self::$centralNoticeDB->addTemplateTo( 'PHPUnitTestCampaign', 'PHPUnitTestBanner', '25' );
+		Campaign::addTemplateTo( 'PHPUnitTestCampaign', 'PHPUnitTestBanner', '25' );
 	}
 
 	protected function tearDown() {
 		parent::tearDown();
-		self::$centralNoticeDB->removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
-		self::$centralNoticeDB->removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
-		self::$noticeTemplate->removeTemplate ( 'PHPUnitTestBanner' );
+		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
+		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
+		Banner::removeTemplate ( 'PHPUnitTestBanner', $this->userUser );
 	}
 
 	public function testDropDownList() {
@@ -91,36 +86,36 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	public function testGetNoticeProjects() {
 		$this->assertEquals(
 			array ( 'wikibooks', 'wikipedia' ),
-			self::$centralNoticeDB->getNoticeProjects( 'PHPUnitTestCampaign' )
+			Campaign::getNoticeProjects( 'PHPUnitTestCampaign' )
 		);
 	}
 
 	public function testGetNoticeLanguages() {
 		$this->assertEquals(
 			array ( 'de', 'en' ),
-			self::$centralNoticeDB->getNoticeLanguages( 'PHPUnitTestCampaign' )
+			Campaign::getNoticeLanguages( 'PHPUnitTestCampaign' )
 		);
 	}
 
 	public function testGetNoticeCountries() {
 		$this->assertEquals(
 			array ( 'AF', 'US' ),
-			self::$centralNoticeDB->getNoticeCountries( 'PHPUnitTestCampaign' )
+			Campaign::getNoticeCountries( 'PHPUnitTestCampaign' )
 		);
 	}
 
 	public function testGetCampaignBanners() {
-		$campaignId = self::$centralNoticeDB->getNoticeId( 'PHPUnitTestCampaign' );
+		$campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
 		$this->assertEquals(
 			$this->campaignBannersJson,
-			json_encode( self::$centralNoticeDB->getCampaignBanners( $campaignId ) )
+			json_encode( Banner::getCampaignBanners( $campaignId ) )
 		);
 	}
 
 	public function testGetCampaignSettings() {
 		$this->assertEquals(
 			$this->campaignArray,
-			self::$centralNoticeDB->getCampaignSettings( 'PHPUnitTestCampaign', false )
+			Campaign::getCampaignSettings( 'PHPUnitTestCampaign', false )
 		);
 	}
 }

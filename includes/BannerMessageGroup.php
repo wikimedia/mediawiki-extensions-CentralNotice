@@ -74,7 +74,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		static $useGroupReview = null;
 
 		if ( $useGroupReview === null ) {
-			$group = MessageGroups::getGroup( static::TRANSLATE_GROUP_NAME_BASE );
+			$group = MessageGroups::getGroup( BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE );
 			if ( $group && $group->getMessageGroupStates() ) {
 				$useGroupReview = true;
 			} else {
@@ -99,9 +99,9 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 */
 	static function getTranslateGroupName( $bannerName ) {
 		if ( strpos( $bannerName, 'Centralnotice-template' ) === 0 ) {
-			return str_replace( 'Centralnotice-template', static::TRANSLATE_GROUP_NAME_BASE, $bannerName );
+			return str_replace( 'Centralnotice-template', BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE, $bannerName );
 		} else {
-			return static::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
+			return BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
 		}
 	}
 
@@ -130,7 +130,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 			// Deal with an aggregate group object having changed
 			$groups = $group->getGroups();
 			foreach ( $groups as $subgroup ) {
-				static::updateBannerGroupStateHook( $subgroup, $code, $currentState, $newState );
+				BannerMessageGroup::updateBannerGroupStateHook( $subgroup, $code, $currentState, $newState );
 			}
 		}
 		elseif ( ( $group instanceof BannerMessageGroup )

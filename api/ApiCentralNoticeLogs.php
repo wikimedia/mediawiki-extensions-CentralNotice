@@ -19,9 +19,7 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 		# TODO: multiple
 		$campaign = $this->sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER );
 
-		$cndb = new CentralNoticeDB();
-
-		$logs = $cndb->campaignLogs( $campaign, $user, $start, $end, $limit, $offset );
+		$logs = Campaign::campaignLogs( $campaign, $user, $start, $end, $limit, $offset );
 
 		$result->addValue( array( 'query', $this->getModuleName() ), 'logs', $logs );
 	}

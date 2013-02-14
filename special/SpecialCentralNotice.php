@@ -53,8 +53,6 @@ class CentralNotice extends SpecialPage {
 		if ( $this->editable && $request->wasPosted() ) {
 			// Check authentication token
 			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
-				$cndb = new CentralNoticeDB();
-
 				// Handle adding a campaign
 				if ( $method == 'addCampaign' ) {
 					$noticeName = $request->getVal( 'noticeName' );
@@ -66,7 +64,7 @@ class CentralNotice extends SpecialPage {
 					if ( $noticeName == '' ) {
 						$this->showError( 'centralnotice-null-string' );
 					} else {
-						$result = $cndb->addCampaign( $noticeName, '0', $start, $projects,
+						$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
 							$project_languages, $geotargeted, $geo_countries, $this->getUser() );
 						if( $result !== true ) {
 							$this->showError( $result );
@@ -79,7 +77,7 @@ class CentralNotice extends SpecialPage {
 					if ( $toRemove ) {
 						// Remove campaigns in list
 						foreach ( $toRemove as $notice ) {
-							$result = $cndb->removeCampaign( $notice, $this->getUser() );
+							$result = Campaign::removeCampaign( $notice, $this->getUser() );
 							if( $result !== true ) {
 								$this->showError( $result );
 							}
@@ -87,10 +85,10 @@ class CentralNotice extends SpecialPage {
 					}
 
 					// Get all the initial campaign settings for logging
-					$allCampaignNames = $cndb->getAllCampaignNames();
+					$allCampaignNames = Campaign::getAllCampaignNames();
 					$allInitialCampaignSettings = array();
 					foreach ( $allCampaignNames as $campaignName ) {
-						$settings = $cndb->getCampaignSettings( $campaignName, false );
+						$settings = Campaign::getCampaignSettings( $campaignName, false );
 						$allInitialCampaignSettings[ $campaignName ] = $settings;
 					}
 
@@ -98,20 +96,20 @@ class CentralNotice extends SpecialPage {
 					$lockedNotices = $request->getArray( 'locked' );
 					if ( $lockedNotices ) {
 						// Build list of campaigns to lock
-						$unlockedNotices = array_diff( $cndb->getAllCampaignNames(), $lockedNotices );
+						$unlockedNotices = array_diff( Campaign::getAllCampaignNames(), $lockedNotices );
 
 						// Set locked/unlocked flag accordingly
 						foreach ( $lockedNotices as $notice ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'locked', 1 );
+							Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
 						}
 						foreach ( $unlockedNotices as $notice ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'locked', 0 );
+							Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
 						}
 					// Handle updates if no post content came through (all checkboxes unchecked)
 					} else {
-						$allNotices = $cndb->getAllCampaignNames();
+						$allNotices = Campaign::getAllCampaignNames();
 						foreach ( $allNotices as $notice ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'locked', 0 );
+							Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
 						}
 					}
 
@@ -119,20 +117,20 @@ class CentralNotice extends SpecialPage {
 					$enabledNotices = $request->getArray( 'enabled' );
 					if ( $enabledNotices ) {
 						// Build list of campaigns to disable
-						$disabledNotices = array_diff( $cndb->getAllCampaignNames(), $enabledNotices );
+						$disabledNotices = array_diff( Campaign::getAllCampaignNames(), $enabledNotices );
 
 						// Set enabled/disabled flag accordingly
 						foreach ( $enabledNotices as $notice ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 1 );
+							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
 						}
 						foreach ( $disabledNotices as $notice ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 0 );
+							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
 						}
 					// Handle updates if no post content came through (all checkboxes unchecked)
 					} else {
-						$allNotices = $cndb->getAllCampaignNames();
+						$allNotices = Campaign::getAllCampaignNames();
 						foreach ( $allNotices as $notice ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 0 );
+							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
 						}
 					}
 
@@ -140,7 +138,7 @@ class CentralNotice extends SpecialPage {
 					$preferredNotices = $request->getArray( 'priority' );
 					if ( $preferredNotices ) {
 						foreach ( $preferredNotices as $notice => $value ) {
-							$cndb->setNumericCampaignSetting(
+							Campaign::setNumericCampaignSetting(
 								$notice,
 								'preferred',
 								$value,
@@ -152,7 +150,7 @@ class CentralNotice extends SpecialPage {
 
 					// Get all the final campaign settings for potential logging
 					foreach ( $allCampaignNames as $campaignName ) {
-						$finalCampaignSettings = $cndb->getCampaignSettings( $campaignName, false );
+						$finalCampaignSettings = Campaign::getCampaignSettings( $campaignName, false );
 						if ( !$allInitialCampaignSettings[ $campaignName ] || !$finalCampaignSettings ) {
 							// Condition where the campaign has apparently disappeared mid operations
 							// -- possibly a delete call
@@ -162,8 +160,8 @@ class CentralNotice extends SpecialPage {
 						}
 						// If there are changes, log them
 						if ( $diffs ) {
-							$campaignId = $cndb->getNoticeId( $campaignName );
-							$cndb->logCampaignChange(
+							$campaignId = Campaign::getNoticeId( $campaignName );
+							Campaign::logCampaignChange(
 								'modified',
 								$campaignId,
 								$this->getUser(),
@@ -412,7 +410,6 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= $this->tableRow( $headers, 'th' );
 
 			// Table rows
-			$cndb = new CentralNoticeDB();
 			foreach ( $res as $row ) {
 				$rowCells = '';
 
@@ -430,7 +427,7 @@ class CentralNotice extends SpecialPage {
 				);
 
 				// Projects
-				$projects = $cndb->getNoticeProjects( $row->not_name );
+				$projects = Campaign::getNoticeProjects( $row->not_name );
 				$project_count = count( $projects );
 				$projectList = '';
 				if ( $project_count > 1 ) {
@@ -452,7 +449,7 @@ class CentralNotice extends SpecialPage {
 				$rowCells .= Html::rawElement( 'td', array(), $projectList );
 
 				// Languages
-				$project_langs = $cndb->getNoticeLanguages( $row->not_name );
+				$project_langs = Campaign::getNoticeLanguages( $row->not_name );
 				$language_count = count( $project_langs );
 				$languageList = '';
 				if ( $language_count > 3 ) {
@@ -680,8 +677,7 @@ class CentralNotice extends SpecialPage {
         global $wgNoticeNumberOfBuckets;
 
 		// Make sure notice exists
-		$cndb = new CentralNoticeDB();
-		if ( !$cndb->campaignExists( $notice ) ) {
+		if ( !Campaign::campaignExists( $notice ) ) {
 			$this->showError( 'centralnotice-notice-doesnt-exist' );
 		} else {
 			// Handle form submissions from campaign detail interface
@@ -698,7 +694,7 @@ class CentralNotice extends SpecialPage {
 
 						// Handle removing campaign
 						if ( $request->getVal( 'remove' ) ) {
-							$cndb->removeCampaign( $notice, $this->getUser() );
+							Campaign::removeCampaign( $notice, $this->getUser() );
 							if ( !$this->centralNoticeError ) {
 								// Leave campaign detail interface
 								$this->getOutput()->redirect( $this->getTitle()->getLocalUrl() );
@@ -706,27 +702,27 @@ class CentralNotice extends SpecialPage {
 							}
 						}
 
-						$initialCampaignSettings = $cndb->getCampaignSettings( $notice );
+						$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
 
 						// Handle locking/unlocking campaign
 						if ( $request->getCheck( 'locked' ) ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'locked', 1 );
+							Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
 						} else {
-							$cndb->setBooleanCampaignSetting( $notice, 'locked', 0 );
+							Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
 						}
 
 						// Handle enabling/disabling campaign
 						if ( $request->getCheck( 'enabled' ) ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 1 );
+							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
 						} else {
-							$cndb->setBooleanCampaignSetting( $notice, 'enabled', 0 );
+							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
 						}
 
 						// Handle user bucketing setting for campaign
                         $numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
                         $numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
-                        $cndb->setNumericCampaignSetting(
+                        Campaign::setNumericCampaignSetting(
                             $notice,
                             'buckets',
                             $numCampaignBuckets,
@@ -735,7 +731,7 @@ class CentralNotice extends SpecialPage {
                         );
 
 						// Handle setting campaign priority
-						$cndb->setNumericCampaignSetting(
+						Campaign::setNumericCampaignSetting(
 							$notice,
 							'preferred',
 							$request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
@@ -745,20 +741,20 @@ class CentralNotice extends SpecialPage {
 
 						// Handle updating geotargeting
 						if ( $request->getCheck( 'geotargeted' ) ) {
-							$cndb->setBooleanCampaignSetting( $notice, 'geo', 1 );
+							Campaign::setBooleanCampaignSetting( $notice, 'geo', 1 );
 							$countries = $request->getArray( 'geo_countries' );
 							if ( $countries ) {
-								$cndb->updateCountries( $notice, $countries );
+								Campaign::updateCountries( $notice, $countries );
 							}
 						} else {
-							$cndb->setBooleanCampaignSetting( $notice, 'geo', 0 );
+							Campaign::setBooleanCampaignSetting( $notice, 'geo', 0 );
 						}
 
 						// Handle updating the start and end settings
 						$start = $this->getDateTime( 'start' );
 						$end = $this->getDateTime( 'end' );
 						if ( $start && $end ) {
-							$cndb->updateNoticeDate( $notice, $start, $end );
+							Campaign::updateNoticeDate( $notice, $start, $end );
 						}
 
 						// Handle adding of banners to the campaign
@@ -766,8 +762,8 @@ class CentralNotice extends SpecialPage {
 						if ( $templatesToAdd ) {
 							$weight = $request->getArray( 'weight' );
 							foreach ( $templatesToAdd as $templateName ) {
-								$templateId = $cndb->getTemplateId( $templateName );
-								$result = $cndb->addTemplateTo(
+								$templateId = Banner::getTemplateId( $templateName );
+								$result = Campaign::addTemplateTo(
 									$notice, $templateName, $weight[ $templateId ]
 								);
 								if ( $result !== true ) {
@@ -780,7 +776,7 @@ class CentralNotice extends SpecialPage {
 						$templateToRemove = $request->getArray( 'removeTemplates' );
 						if ( $templateToRemove ) {
 							foreach ( $templateToRemove as $template ) {
-								$cndb->removeTemplateFor( $notice, $template );
+								Campaign::removeTemplateFor( $notice, $template );
 							}
 						}
 
@@ -788,7 +784,7 @@ class CentralNotice extends SpecialPage {
 						$updatedWeights = $request->getArray( 'weight' );
 						if ( $updatedWeights ) {
 							foreach ( $updatedWeights as $templateId => $weight ) {
-								$cndb->updateWeight( $notice, $templateId, $weight );
+								Campaign::updateWeight( $notice, $templateId, $weight );
 							}
 						}
 
@@ -797,7 +793,7 @@ class CentralNotice extends SpecialPage {
 						$updatedBuckets = $request->getArray( 'bucket' );
 						if ( $updatedBuckets ) {
 							foreach ( $updatedBuckets as $templateId => $bucket ) {
-								$cndb->updateBucket(
+								Campaign::updateBucket(
                                     $notice,
                                     $templateId,
                                     intval( $bucket ) % $numCampaignBuckets
@@ -808,18 +804,18 @@ class CentralNotice extends SpecialPage {
 						// Handle new projects
 						$projects = $request->getArray( 'projects' );
 						if ( $projects ) {
-							$cndb->updateProjects( $notice, $projects );
+							Campaign::updateProjects( $notice, $projects );
 						}
 
 						// Handle new project languages
 						$projectLangs = $request->getArray( 'project_languages' );
 						if ( $projectLangs ) {
-							$cndb->updateProjectLanguages( $notice, $projectLangs );
+							Campaign::updateProjectLanguages( $notice, $projectLangs );
 						}
 
-						$finalCampaignSettings = $cndb->getCampaignSettings( $notice );
-						$campaignId = $cndb->getNoticeId( $notice );
-						$cndb->logCampaignChange( 'modified', $campaignId, $this->getUser(),
+						$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
+						$campaignId = Campaign::getNoticeId( $notice );
+						Campaign::logCampaignChange( 'modified', $campaignId, $this->getUser(),
 							$initialCampaignSettings, $finalCampaignSettings );
 
 						// If there were no errors, reload the page to prevent duplicate form submission
@@ -912,8 +908,7 @@ class CentralNotice extends SpecialPage {
 			$readonly = array( 'disabled' => 'disabled' );
 		}
 
-		$cndb = new CentralNoticeDB();
-		$campaign = $cndb->getCampaignSettings( $notice );
+		$campaign = Campaign::getCampaignSettings( $notice );
 
 		if ( $campaign ) {
 			// If there was an error, we'll need to restore the state of the form
@@ -936,11 +931,11 @@ class CentralNotice extends SpecialPage {
 				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
 				$priority = $campaign[ 'preferred' ];
 				$isLocked = ( $campaign[ 'locked' ] == '1' );
-				$noticeProjects = $cndb->getNoticeProjects( $notice );
-				$noticeLanguages = $cndb->getNoticeLanguages( $notice );
+				$noticeProjects = Campaign::getNoticeProjects( $notice );
+				$noticeLanguages = Campaign::getNoticeLanguages( $notice );
 				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
 				$numBuckets = intval( $campaign[ 'buckets' ] );
-				$countries = $cndb->getNoticeCountries( $notice );
+				$countries = Campaign::getNoticeCountries( $notice );
 			}
 
 			// Build Html
@@ -1421,8 +1416,7 @@ class CentralNotice extends SpecialPage {
 	 */
 	function geoMultiSelector( $selected = array() ) {
 		$userLanguageCode = $this->getLanguage()->getCode();
-		$cndb = new CentralNoticeDB();
-		$countries = $cndb->getCountriesList( $userLanguageCode );
+		$countries = GeoTarget::getCountriesList( $userLanguageCode );
 		$options = "\n";
 		foreach ( $countries as $code => $name ) {
 			$options .= Xml::option(
