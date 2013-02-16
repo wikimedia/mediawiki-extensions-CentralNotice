@@ -4476,16 +4476,22 @@ $messages['el'] = array(
 	'centralnotice-apply-filters' => 'Εφαρμογή φίλτρων',
 	'centralnotice-clear-filters' => 'Εκκαθάριση φίλτρων',
 	'centralnotice-banner-messages' => 'Μηνύματα πληροφοριακών σελίδων',
+	'centralnotice-filter-template-prompt' => 'Το όνομα του banner περιέχει:',
 	'centralnotice-filter-template-submit' => 'Εφαρμογή φίλτρου',
+	'centralnotice-filter-template-banner' => 'Φιλτράρισμα banners',
 	'centralnotice-priority-low' => 'χαμηλό',
 	'centralnotice-priority-normal' => 'κανονικό',
 	'centralnotice-priority-high' => 'υψηλό',
 	'centralnotice-priority-emergency' => 'επείγον',
+	'centralnotice-prioritylangs' => 'Γλώσσες προτεραιότητας',
+	'centralnotice-prioritylangs-explain' => 'Επισημαίνοντας κάποια γλώσσα ως προτεραιότητα θα ενθαρρύνει τους μεταφραστές να μεταφράσουν αυτές τις γλώσσες πρώτα.',
+	'centralnotice-aggregate-group-desc' => 'Όλα τα μηνύματα σε αυτή την ομάδα περιλαμβάνονται στα banners της κεντρικής ειδοποίησης.',
 	'centralnotice-country-eu' => 'Άγνωστη/Περιοχή Ευρωπαϊκής Ένωσης',
 	'centralnotice-country-ap' => 'Άγνωστη/Περιοχή Ειρηνικού Ασίας',
 	'centralnotice-country-a1' => 'Άγνωστος/Ανώνυμος Proxy',
 	'centralnotice-country-a2' => 'Άγνωστη/Δορυφορική Σύνδεση',
 	'centralnotice-country-o1' => 'Άγνωστη/Άλλη Χώρα',
+	'centralnotice-country-unknown' => 'Άγνωστο/Μη Εντοπίσιμο Γεωγραφικά',
 	'centralnotice-bucket' => 'Κουβάς',
 	'centralnotice-bucket-letter' => 'Κάδος «$1»',
 );
@@ -10959,6 +10965,9 @@ Rujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.',
 	'centralnotice-priority-normal' => 'biasa',
 	'centralnotice-priority-high' => 'tinggi',
 	'centralnotice-priority-emergency' => 'kecemasan',
+	'centralnotice-prioritylangs' => 'Bahasa keutamaan',
+	'centralnotice-prioritylangs-explain' => 'Apabila sesuatu bahasa dijadikan keutamaan, para penterjemah akan didorong untuk menterjemah kepada bahasa berkenaan dahulu.',
+	'centralnotice-aggregate-group-desc' => 'Semua mesej dalam kumpulan ini disertakan dalam sepanduk Pemberitahuan Pusat.',
 	'centralnotice-country-eu' => 'Tidak pasti/Kawasan Kesatuan Eropah',
 	'centralnotice-country-ap' => 'Tidak pasti/Kawasan Asia Pasifik',
 	'centralnotice-country-a1' => 'Tidak pasti/Proksi Awanama',
@@ -15987,6 +15996,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'hög',
 	'centralnotice-priority-emergency' => 'nödsituation',
+	'centralnotice-prioritylangs' => 'Prioriterade språk',
 );
 
 /** Swahili (Kiswahili)
@@ -16277,6 +16287,7 @@ $messages['ta'] = array(
 	'centralnotice-country-a2' => 'அறியப்படாதது/செயற்கைக்கோள் வழங்குனர்',
 	'centralnotice-country-o1' => 'அறியப்படாதது/மற்ற நாடு',
 	'centralnotice-country-unknown' => 'அறியப்படாதது/புவியிடமறிய இயலாதது',
+	'centralnotice-bucket' => 'வாளி',
 );
 
 /** Telugu (తెలుగు)
