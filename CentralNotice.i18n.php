@@ -219,7 +219,7 @@ Add one below.',
  * @author Yekrats
  */
 $messages['qqq'] = array(
-	'centralnotice' => 'Name of Special:CentralNotice in Special:SpecialPages and title of Special:CentralNotice page.
+	'centralnotice' => 'Name of Special:CentralNotice in [[Special:SpecialPages]] and title of Special:CentralNotice page.
 {{Identical|Central notice admin}}',
 	'noticetemplate' => 'Title of Special:NoticeTemplate page, should be identical to centralnotice message. (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-manage-templates.)
 {{Identical|Central notice admin}}',
@@ -250,8 +250,8 @@ $messages['qqq'] = array(
 	'centralnotice-nopreview' => '{{Identical|Nopreview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. $1 is a name of a template.',
-	'centralnotice-manage' => 'Title of sub-page of [http://meta.wikimedia.org/wiki/Special:CentralNotice Manage Central Notice] special page.',
-	'centralnotice-manage-templates' => 'Title of sub-page of [http://meta.wikimedia.org/wiki/Special:NoticeTemplate Manage Banners] special page.',
+	'centralnotice-manage' => 'Title of sub-page of [[meta:Special:CentralNotice|Manage Central Notice]] special page.',
+	'centralnotice-manage-templates' => 'Title of sub-page of [[meta:Special:NoticeTemplate|Manage Banners]] special page.',
 	'centralnotice-add' => 'Used in [[mw:Extension:CentralNotice]]
 {{Identical|Add}}',
 	'centralnotice-add-notice' => 'Used as heading (<nowiki><h2></nowiki> tag)',
@@ -327,7 +327,7 @@ In English this is a short form of "Number of uses".',
 	'centralnotice-allocation-instructions' => 'Dialog box instructions on [[m:Special:BannerAllocation|banner allocation]] special page.',
 	'centralnotice-languages' => '{{Identical|Language}}',
 	'centralnotice-language' => '{{Identical|Language}}',
-	'centralnotice-projects' => 'Column heading of a table in the [http://meta.wikimedia.org/wiki/Special:CentralNotice Manage Central Notice] special page
+	'centralnotice-projects' => 'Column heading of a table in the [[meta:Special:CentralNotice|Manage Central Notice]] special page
 
 {{Identical|Project}}',
 	'centralnotice-country' => '{{Identical|Country}}',
@@ -338,7 +338,7 @@ In English this is a short form of "Number of uses".',
 * $3 is the country code (e.g. "US" for the United States, "FR" for France, etc.).',
 	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
-	'centralnotice-view-logs' => 'Title of sub-page of [http://meta.wikimedia.org/wiki/Special:CentralNoticeLogs View Central Notice Logs] special page.',
+	'centralnotice-view-logs' => 'Title of sub-page of [[meta:Special:CentralNoticeLogs|View Central Notice Logs]] special page.',
 	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
 	'centralnotice-user' => '{{Identical|User}}',
 	'centralnotice-action' => '{{Identical|Action}}',
@@ -10627,6 +10627,7 @@ $messages['mn'] = array(
  * @author Htt
  * @author Kaajawa
  * @author Mahitgar
+ * @author Pranav jagtap
  * @author Rahuldeshmukh101
  * @author Shantanoo
  * @author V.narsikar
@@ -10794,6 +10795,9 @@ $messages['mr'] = array(
 	'centralnotice-apply-filters' => 'गाळणी लावा',
 	'centralnotice-clear-filters' => 'गाळणी काढा',
 	'centralnotice-banner-messages' => 'फलकावरील माहिती',
+	'centralnotice-priority-low' => 'कम',
+	'centralnotice-priority-high' => 'उच्च',
+	'centralnotice-priority-emergency' => 'आपातकालीन',
 );
 
 /** Malay (Bahasa Melayu)
