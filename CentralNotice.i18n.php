@@ -230,7 +230,7 @@ $messages['qqq'] = array(
 	'right-centralnotice-admin' => '{{doc-right|centralnotice-admin}}',
 	'action-centralnotice-admin' => '{{doc-action|centralnotice-admin}}',
 	'centralnotice-desc' => 'The [[mw:Extension:CentralNotice|Central Notice extension]] allows a notice to be posted centrally to several wikis.
-{{desc}}',
+{{desc|name=Central Notice|url=http://www.mediawiki.org/wiki/Extension:CentralNotice}}',
 	'centralnotice-summary' => 'Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]',
 	'centralnotice-end-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
 {{Identical|End date}}',
@@ -289,8 +289,8 @@ The other headers are:
 	'centralnotice-start-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
 
 {{Identical|Start date}}',
-	'centralnotice-start-time' => 'Used in Special:CentralNotice. UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]',
-	'centralnotice-end-time' => 'Used in Special:CentralNotice. UTC is "[http://en.wikipedia.org/wiki/Coordinated_Universal_Time Coordinated Universal Time]',
+	'centralnotice-start-time' => 'Used in Special:CentralNotice. UTC is "[[w:Coordinated_Universal_Time|Coordinated Universal Time]]"',
+	'centralnotice-end-time' => 'Used in Special:CentralNotice. UTC is "[[w:Coordinated_Universal_Time|Coordinated Universal Time]]"',
 	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
 	'centralnotice-change-lang' => 'Fieldset legend for a language selector, that is used to set a preference for which language to translate to in the translation module of the extension CentralNotice.',
 	'centralnotice-weights' => '{{Identical|Weight}}',
@@ -402,7 +402,8 @@ Related messages:
 {{Identical|Apply filter}}',
 	'centralnotice-filter-template-banner' => 'Section heading label for the banner filter bar',
 	'centralnotice-priority-low' => 'Label for the lowest campaign priority setting. An adjective that describes the priority.',
-	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting. An adjective that describes the priority.',
+	'centralnotice-priority-normal' => 'Label for a normal (medium) campaign priority setting. An adjective that describes the priority.
+{{Identical|Normal}}',
 	'centralnotice-priority-high' => 'Label for a high campaign priority setting. An adjective that describes the priority.
 {{Identical|High}}',
 	'centralnotice-priority-emergency' => 'Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.',
