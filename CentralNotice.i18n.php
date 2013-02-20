@@ -264,6 +264,7 @@ A language listing for the language multi-select box.
 *$1 - the language code
 *$2 - the name of the language',
 	'centralnotice-translations' => '{{Identical|Translation}}',
+	'centralnotice-translate-to' => '{{Identical|Translate}}',
 	'centralnotice-translate' => '{{Identical|Translate}}',
 	'centralnotice-english' => 'The header of a column with the original values of the translatable messages.
 
@@ -336,7 +337,8 @@ In English this is a short form of "Number of uses".',
 * $1 is the language code for the site (e.g "en").
 * $2 is the project name for the site (e.g. "wikipedia").
 * $3 is the country code (e.g. "US" for the United States, "FR" for France, etc.).',
-	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.',
+	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.
+{{Identical|Priority}}',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
 	'centralnotice-view-logs' => 'Title of sub-page of [[meta:Special:CentralNoticeLogs|View Central Notice Logs]] special page.',
 	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
@@ -388,7 +390,8 @@ Related messages:
 
 (Parameter $1 of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
 	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
-	'centralnotice-date' => 'Label for a date selection interface',
+	'centralnotice-date' => 'Label for a date selection interface.
+{{Identical|Date}}',
 	'centralnotice-apply-filters' => 'Label for a submit button.
 {{Identical|Apply filter}}',
 	'centralnotice-clear-filters' => 'Label for a submit button. Clear as in reset.',
@@ -9629,6 +9632,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 
 /** Lezghian (лезги)
  * @author Migraghvi
+ * @author Namik
  */
 $messages['lez'] = array(
 	'centralnotice-modify' => 'Ракъурун',
@@ -9645,7 +9649,7 @@ $messages['lez'] = array(
 	'centralnotice-project-lang' => 'Проектдин чIал',
 	'centralnotice-weights' => 'Заланвилер',
 	'centralnotice-number-uses' => 'Кардик кутазва',
-	'centralnotice-settings' => 'Низамарунар',
+	'centralnotice-settings' => 'Тикlвирун',
 	'centralnotice-edit-template' => 'Баннер дуьзар хъувун',
 	'centralnotice-message' => 'Чар',
 	'centralnotice-clone' => 'Клон',
