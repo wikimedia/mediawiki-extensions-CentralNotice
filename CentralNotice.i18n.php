@@ -16007,6 +16007,9 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-priority-high' => 'hög',
 	'centralnotice-priority-emergency' => 'nödsituation',
 	'centralnotice-prioritylangs' => 'Prioriterade språk',
+	'centralnotice-country-eu' => 'Okänd/EU-regionen',
+	'centralnotice-country-ap' => 'Okänd/Asiatiska stillahavsregionen',
+	'centralnotice-country-o1' => 'Okänd/Annat land',
 );
 
 /** Swahili (Kiswahili)
