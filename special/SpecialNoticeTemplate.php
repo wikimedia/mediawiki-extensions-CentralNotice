@@ -916,18 +916,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 
 			Banner::updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
 
-			// If there are any difference between the old settings and the new settings, log them.
-            $finalBannerSettings = Banner::getBannerSettings( $name, true );
-            $changed = false;
-            foreach ( $finalBannerSettings as $key => $value ) {
-                if ( $finalBannerSettings[$key] != $initialBannerSettings[$key] ) {
-                    $changed = true;
-                }
-            }
-
-			if ( $changed ) {
-				Banner::logBannerChange( 'modified', $name, $this->getUser(), $initialBannerSettings, $finalBannerSettings );
-			}
+			$bannerObj->logBannerChange( 'modified', $this->getUser(), $initialBannerSettings );
 
 			return;
 		}

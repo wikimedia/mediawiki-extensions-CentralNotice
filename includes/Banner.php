@@ -2,6 +2,7 @@
 
 class Banner {
 	var $name;
+	var $id;
 
 	function __construct( $name ) {
 		$this->name = $name;
@@ -20,7 +21,10 @@ class Banner {
 	}
 
 	function getId() {
-		return Banner::getTemplateId( $this->name );
+		if ( !$this->id ) {
+			$this->id = Banner::getTemplateId( $this->name );
+		}
+		return $this->id;
 	}
 
 	function getMessageField( $field_name ) {
@@ -67,7 +71,8 @@ class Banner {
 	static function removeTemplate( $name, $user ) {
 		global $wgNoticeUseTranslateExtension;
 
-		$id = Banner::getTemplateId( $name );
+		$bannerObj = new Banner( $name );
+		$id = $bannerObj->getId();
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
@@ -76,7 +81,8 @@ class Banner {
 			return;
 		} else {
 			// Log the removal of the banner
-			Banner::logBannerChange( 'removed', $name, $user );
+			// FIXME: this log line will display changes with inverted sense
+			$bannerObj->logBannerChange( 'removed', $user );
 
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = wfGetDB( DB_MASTER );
@@ -428,7 +434,7 @@ class Banner {
 	}
 
 	static function getTemplateId( $templateName ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		$templateName = htmlspecialchars( $templateName );
 		$res = $dbr->select(
 			'cn_templates',
@@ -493,7 +499,8 @@ class Banner {
 				),
 				__METHOD__
 			);
-			$bannerId = $dbw->insertId();
+			$bannerObj = new Banner( $name );
+			$bannerObj->id = $dbw->insertId();
 
 			// Perhaps these should move into the db as blobs instead of being stored as articles
 			$wikiPage = new WikiPage(
@@ -511,16 +518,7 @@ class Banner {
 			Banner::updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
 
 			// Log the creation of the banner
-			$beginSettings = array();
-			$endSettings = array(
-				'anon'          => $displayAnon,
-				'account'       => $displayAccount,
-				'fundraising'   => $fundraising,
-				'autolink'      => $autolink,
-				'landingpages'  => $landingPages,
-				'prioritylangs' => $priorityLangs,
-			);
-			Banner::logBannerChange( 'created', $name, $user, $beginSettings, $endSettings );
+			$bannerObj->logBannerChange( 'created', $user );
 		}
 	}
 
@@ -567,22 +565,33 @@ class Banner {
 	 * Log setting changes related to a banner
 	 *
 	 * @param $action        string: 'created', 'modified', or 'removed'
-	 * @param $banner        banner name
 	 * @param $user          User causing the change
 	 * @param $beginSettings array of banner settings before changes (optional)
-	 * @param $endSettings   array of banner settings after changes (optional)
-	 * @return int
 	 */
-	static function logBannerChange( $action, $banner, $user, $beginSettings = array(), $endSettings = array() ) {
+	function logBannerChange( $action, $user, $beginSettings = array() ) {
+		$endSettings = array();
+		if ( $action === 'modified' ) {
+			// Only log if there are any differences in the settings
+			$endSettings = Banner::getBannerSettings( $this->getName(), true );
+			$changed = false;
+			foreach ( $endSettings as $key => $value ) {
+				if ( $endSettings[$key] != $beginSettings[$key] ) {
+					$changed = true;
+				}
+			}
+			if ( !$changed ) {
+				return;
+			}
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 
-		$bannerObj = new Banner( $banner );
 		$log = array(
 			'tmplog_timestamp'     => $dbw->timestamp(),
 			'tmplog_user_id'       => $user->getId(),
 			'tmplog_action'        => $action,
-			'tmplog_template_id'   => $bannerObj->getId(),
-			'tmplog_template_name' => $banner,
+			'tmplog_template_id'   => $this->getId(),
+			'tmplog_template_name' => $this->getName(),
 		);
 
 		foreach ( $beginSettings as $key => $value ) {
@@ -601,7 +610,5 @@ class Banner {
 		}
 
 		$dbw->insert( 'cn_template_log', $log );
-		$log_id = $dbw->insertId();
-		return $log_id;
 	}
 }

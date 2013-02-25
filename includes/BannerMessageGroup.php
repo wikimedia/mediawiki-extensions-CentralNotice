@@ -44,7 +44,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		)->inContentLanguage()->plain();
 
 		// Extract the list of message fields from the banner source.
-		$fields = SpecialNoticeTemplate::extractMessageFields( $bannerSource );
+		$fields = Banner::extractMessageFields( $bannerSource );
 
 		// The MediaWiki page name convention for messages is the same as the
 		// convention for banners themselves, except that it doesn't include
@@ -58,7 +58,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		}
 
 		// Build the array of message definitions.
-		foreach ( $fields[1] as $msgName ) {
+		foreach ( $fields as $msgName => $msgCount ) {
 			$defkey = $msgDefKeyPrefix . $msgName;
 			$msgkey = $msgKeyPrefix . $msgName;
 			$definitions[$msgkey] = wfMessage( $defkey )->inContentLanguage()->plain();
