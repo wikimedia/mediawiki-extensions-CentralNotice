@@ -105,10 +105,24 @@ class BannerChooser {
 			return;
 		}
 
-		// First pass allocate the minimum number of slots to each banner
+		// Sort the banners by weight, smallest to largest - this helps in slot allocation
+		// because we are not guaranteed to underallocate but we do want to attempt to give
+		// one slot per banner
+		usort( $this->banners, function( $a, $b ) {
+				return ( $a[ 'weight' ] >= $b[ 'weight' ] ) ? 1 : -1;
+			} );
+
+		// First pass allocate the minimum number of slots to each banner, giving at least one
+		// slot per banner up to RAND_MAX slots.
 		$sum = 0;
 		foreach ( $this->banners as &$banner ) {
-			$slots = floor( ( $banner[ 'weight' ] / $total ) * self::RAND_MAX );
+			$slots = max( floor( ( $banner[ 'weight' ] / $total ) * self::RAND_MAX ), 1 );
+
+			// Compensate for potential overallocation
+			if ( $slots + $sum > self::RAND_MAX ) {
+				$slots = self::RAND_MAX - $sum;
+			}
+
 			$banner[ self::SLOTS_KEY ] = $slots;
 			$sum += $slots;
 		}
