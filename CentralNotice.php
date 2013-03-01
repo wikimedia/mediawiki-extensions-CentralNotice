@@ -66,6 +66,8 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'remoteExtPath' => 'CentralNotice/modules',
 	'scripts'       => 'ext.centralNotice.bannerController/bannerController.js',
 	'position'      => 'top',
+	'targets'       => array( 'mobile', 'desktop' ),
+	'mobileTargets' => array( 'beta', 'alpha' ),
 );
 
 /* Configuration */
