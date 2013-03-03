@@ -9623,6 +9623,8 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-priority-normal' => 'Normal',
 	'centralnotice-priority-high' => 'héich',
 	'centralnotice-priority-emergency' => 'dringend',
+	'centralnotice-prioritylangs' => 'Prioritär Sproochen',
+	'centralnotice-prioritylangs-explain' => "Eng Sprooch als prioritär markéieren wäert d'Iwwersetzer encouragéieren dës Sprooche fir d'éischt z'iwwersetzen.",
 	'centralnotice-country-eu' => 'Onbekannt/Regioun Europäesch Unioun',
 	'centralnotice-country-ap' => 'Onbekannt/Regioun Asien-Pazifik',
 	'centralnotice-country-a1' => 'Onbekannt/Anonyme Proxy',
