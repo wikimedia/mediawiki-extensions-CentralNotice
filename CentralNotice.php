@@ -67,6 +67,9 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'scripts'       => 'ext.centralNotice.bannerController/bannerController.js',
 	'position'      => 'top',
 	'targets'       => array( 'mobile', 'desktop' ),
+	'dependencies'  => array(
+		'jquery.cookie',
+	),
 	'mobileTargets' => array( 'beta', 'alpha' ),
 );
 
