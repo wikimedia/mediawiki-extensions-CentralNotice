@@ -36,32 +36,6 @@ window.switchLogs = function ( baseUrl, logType ) {
 	window.location = baseUrl + '?log=' + logType;
 };
 
-window.selectProjects = function ( selectAll ) {
-	var selectBox = document.getElementById( 'projects[]' );
-	var firstSelect = selectBox.options.length - 1;
-	for ( var i = firstSelect; i >= 0; i-- ) {
-		selectBox.options[i].selected = selectAll;
-	}
-};
-window.selectLanguages = function( selectAll ) {
-	var selectBox = document.getElementById( 'project_languages[]' );
-	var firstSelect = selectBox.options.length - 1;
-	for ( var i = firstSelect; i >= 0; i-- ) {
-		selectBox.options[i].selected = selectAll;
-	}
-};
-window.top10Languages = function() {
-	var selectBox = document.getElementById( 'project_languages[]' );
-	var top10 = ['en', 'de', 'fr', 'it', 'pt', 'ja', 'es', 'pl', 'ru', 'nl'];
-	selectLanguages(false);
-	for ( var i = 0; i < selectBox.options.length; i++ ) {
-		var lang = selectBox.options[i].value;
-		if ( top10.toString().indexOf( lang ) !== -1 ) {
-			selectBox.options[i].selected = true;
-		}
-	}
-};
-
 // Insert banner close button
 window.insertButton = function( buttonType ) {
 	var buttonValue, sel;
@@ -135,7 +109,13 @@ jQuery(document).ready( function ( $ ) {
 		}
 	);
 
+	// Do the fancy multiselector
+	$('select[multiple="multiple"]').multiselect({sortable: false, dividerLocation: 0.5});
+
 	// Reveal the geoMultiSelector when the geotargetted checkbox is checked
+	if( !$('#geotargeted' ).checked ) {
+		$( '#geoMultiSelector' ).fadeOut( 'fast' );
+	}
 	$( '#geotargeted' ).click(function () {
 		if ( this.checked ) {
 			$( '#geoMultiSelector' ).fadeIn( 'fast' );

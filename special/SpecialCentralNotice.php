@@ -988,12 +988,7 @@ class CentralNotice extends SpecialPage {
 						$readonly,
 						array( 'value' => $notice, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			if ( $isGeotargeted ) {
-				$htmlOut .= Xml::openElement( 'tr', array( 'id'=> 'geoMultiSelector' ) );
-			} else {
-				$htmlOut .= Xml::openElement( 'tr',
-					array( 'id'=> 'geoMultiSelector', 'style'=> 'display:none;' ) );
-			}
+			$htmlOut .= Xml::openElement( 'tr', array( 'id'=> 'geoMultiSelector' ) );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$this->msg( 'centralnotice-countries' )->escaped() );
 			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector( $countries ) );
@@ -1301,36 +1296,18 @@ class CentralNotice extends SpecialPage {
 				in_array( $code, $selected )
 			) . "\n";
 		}
-		$htmlOut = '';
-		if ( $this->editable ) {
-			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 6, 'id' => 'project_languages[]', 'name' => 'project_languages[]' ),
-				$options
-			);
-			$buttons = array();
-			$buttons[ ] = '<a href="#" onclick="selectLanguages(true);return false;">' .
-				$this->msg( 'powersearch-toggleall' )->text() . '</a>';
-			$buttons[ ] = '<a href="#" onclick="selectLanguages(false);return false;">' .
-				$this->msg( 'powersearch-togglenone' )->text() . '</a>';
-			$buttons[ ] = '<a href="#" onclick="top10Languages();return false;">' .
-				$this->msg( 'centralnotice-top-ten-languages' )->text() . '</a>';
-			$htmlOut .= Xml::tags( 'div',
-				array( 'class' => 'select-hint' ),
-				$this->msg( 'centralnotice-select', $this->getLanguage()->commaList( $buttons ) )->text()
-			);
-		} else {
-			$htmlOut .= Xml::tags( 'select',
-				array(
-					'multiple' => 'multiple',
-					'size'     => 6,
-					'id'       => 'project_languages[]',
-					'name'     => 'project_languages[]',
-					'disabled' => 'disabled'
-				),
-				$options
-			);
+
+		$properties = array(
+			'multiple' => 'multiple',
+			'id' =>'project_languages',
+			'name' => 'project_languages[]',
+			'class' => 'cn-multiselect'
+		);
+		if ( !$this->editable ) {
+			$properties['disabled'] = 'disabled';
 		}
-		return $htmlOut;
+
+		return Xml::tags( 'select', $properties, $options );
 	}
 
 	/**
@@ -1351,34 +1328,18 @@ class CentralNotice extends SpecialPage {
 				in_array( $project, $selected )
 			) . "\n";
 		}
-		$htmlOut = '';
-		if ( $this->editable ) {
-			$htmlOut .= Xml::tags( 'select',
-				array( 'multiple' => 'multiple', 'size' => 5, 'id' => 'projects[]', 'name' => 'projects[]' ),
-				$options
-			);
-			$buttons = array();
-			$buttons[ ] = '<a href="#" onclick="selectProjects(true);return false;">' .
-				$this->msg( 'powersearch-toggleall' )->text() . '</a>';
-			$buttons[ ] = '<a href="#" onclick="selectProjects(false);return false;">' .
-				$this->msg( 'powersearch-togglenone' )->text() . '</a>';
-			$htmlOut .= Xml::tags( 'div',
-				array( 'class' => 'select-hint' ),
-				$this->msg( 'centralnotice-select', $this->getLanguage()->commaList( $buttons ) )->text()
-			);
-		} else {
-			$htmlOut .= Xml::tags( 'select',
-				array(
-					'multiple' => 'multiple',
-					'size'     => 5,
-					'id'       => 'projects[]',
-					'name'     => 'projects[]',
-					'disabled' => 'disabled'
-				),
-				$options
-			);
+
+		$properties = array(
+			'multiple' => 'multiple',
+			'id' =>'projects',
+			'name' => 'projects[]',
+			'class' => 'cn-multiselect'
+		);
+		if ( !$this->editable ) {
+			$properties['disabled'] = 'disabled';
 		}
-		return $htmlOut;
+
+		return Xml::tags( 'select', $properties, $options );
 	}
 
 	function getProjectName( $value ) {
@@ -1425,30 +1386,18 @@ class CentralNotice extends SpecialPage {
 				in_array( $code, $selected )
 			) . "\n";
 		}
-		$htmlOut = '';
-		if ( $this->editable ) {
-			$htmlOut .= Xml::tags( 'select',
-				array(
-					'multiple' => 'multiple',
-					'size'     => 6,
-					'id'       => 'geo_countries[]',
-					'name'     => 'geo_countries[]'
-				),
-				$options
-			);
-		} else {
-			$htmlOut .= Xml::tags( 'select',
-				array(
-					'multiple' => 'multiple',
-					'size'     => 6,
-					'id'       => 'geo_countries[]',
-					'name'     => 'geo_countries[]',
-					'disabled' => 'disabled'
-				),
-				$options
-			);
+
+		$properties = array(
+			'multiple' => 'multiple',
+			'id'       => 'geo_countries',
+			'name'     => 'geo_countries[]',
+			'class'    => 'cn-multiselect'
+		);
+		if ( !$this->editable ) {
+			$properties['disabled'] = 'disabled';
 		}
-		return $htmlOut;
+
+		return Xml::tags( 'select', $properties, $options );
 	}
 
 	/**

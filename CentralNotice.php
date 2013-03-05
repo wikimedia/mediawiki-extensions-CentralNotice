@@ -43,17 +43,33 @@ $wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops c
 $wgExtensionFunctions[] = 'efCentralNoticeSetup';
 
 // Register ResourceLoader modules
+$wgResourceModules[ 'jquery.ui.multiselect' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'dependencies'  => array(
+		'jquery.ui.core',
+		'jquery.ui.sortable',
+		'jquery.ui.draggable',
+		'jquery.ui.droppable'
+	),
+	'scripts'       => 'jquery.ui.multiselect/ui.multiselect.js',
+	'styles'        => 'jquery.ui.multiselect/ui.multiselect.css',
+);
 $wgResourceModules[ 'ext.centralNotice.interface' ] = array(
 	'localBasePath' => $dir . '/modules',
 	'remoteExtPath' => 'CentralNotice/modules',
 	'dependencies' => array(
 		'jquery.ui.datepicker',
+		'jquery.ui.multiselect'
 	),
 	'scripts'       => 'ext.centralNotice.interface/centralnotice.js',
 	'styles'        => 'ext.centralNotice.interface/centralnotice.css',
 	'messages'      => array(
 		'centralnotice-documentwrite-error',
 		'centralnotice-close-title',
+		'centralnotice-select-all',
+		'centralnotice-remove-all',
+		'centralnotice-items-selected'
 	)
 );
 $wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
