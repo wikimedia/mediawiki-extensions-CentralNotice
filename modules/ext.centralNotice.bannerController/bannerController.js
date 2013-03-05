@@ -11,9 +11,6 @@
 		}
 	}
 
-	$.ajaxSetup({
-		cache: true
-	});
 	mw.centralNotice = {
         /** -- Central Notice Required Data -- **/
 		data: {
@@ -48,7 +45,8 @@
 				userlang: mw.config.get( 'wgUserLanguage' ),
 				db: mw.config.get( 'wgDBname' ),
 				sitename: mw.config.get( 'wgSiteName' ),
-				country: mw.centralNotice.data.country
+				country: mw.centralNotice.data.country,
+				device: mw.config.get( 'wgMobileDeviceName', 'desktop' )
 			};
 			scriptUrl = mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery );
 			bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
@@ -57,6 +55,11 @@
 		loadRandomBanner: function () {
 			var RAND_MAX = 30;
 
+			// TODO: Get rid of this when mobile support in CN is totally there
+			if ( mw.config.get( 'wgMobileDeviceName' ) ) {
+				return;
+			}
+
 			var bannerDispatchQuery = {
 				userlang: mw.config.get( 'wgUserLanguage' ),
 				sitename: mw.config.get( 'wgSiteName' ),
@@ -64,6 +67,7 @@
 				anonymous: mw.config.get( 'wgUserName' ) === null,
 				bucket: mw.centralNotice.data.bucket,
 				country: mw.centralNotice.data.country,
+				device: mw.config.get( 'wgMobileDeviceName', 'desktop' ),
 				slot: Math.floor( Math.random() * RAND_MAX ) + 1
 			};
 			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' )
@@ -173,17 +177,17 @@
             impressionResultData = {
                 result: 'hide',
                 reason: 'empty'
-            }
+            };
 		} else {
             // Ok, we have a banner! Get the banner type for more queryness
             mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
 
             // Has the banner been hidden by cookie?
 			if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
-			    impressionResultData = {
+				impressionResultData = {
 					result: 'hide',
 					reason: 'mobile'
-			    }
+				}
 			} else if ( $.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide' ) {
                 // Yes
                 impressionResultData = {
@@ -269,4 +273,8 @@
 		window.hideBanner();
 	};
 
+	// Initialize CentralNotice
+	$( function() {
+		mw.centralNotice.initialize();
+	});
 } )( jQuery, mediaWiki );

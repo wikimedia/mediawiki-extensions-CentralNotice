@@ -509,13 +509,7 @@ function efCentralNoticeDefaults( &$vars ) {
 function efCentralNoticeDisplay( &$notice ) {
 	// Setup siteNotice div and initialize the banner controller.
 	// Comment hack for IE8 to collapse empty div
-	$notice = <<<EOT
-<!-- CentralNotice --><script>
-	mw.loader.using( 'ext.centralNotice.bannerController', function() { mw.centralNotice.initialize(); } );
-</script>
-$notice
-EOT;
-
+	$notice = "<!-- CentralNotice -->$notice";
 	return true;
 }
 
