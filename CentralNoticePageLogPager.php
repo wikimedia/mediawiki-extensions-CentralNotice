@@ -110,7 +110,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 					'oldid' => $row->rc_last_oldid
 				);
 				$diffUrl = htmlspecialchars( $title->getLinkUrl( $querydiff ) );
-				// Should "diff" be localized? It appears not to be elsewhere in the interface.
+				// Should "diff" be localised? It appears not to be elsewhere in the interface.
 				// See ChangesList->preCacheMessages() for example.
 				$bannerCell = $bannerLink . "&nbsp;(<a href=\"$diffUrl\">diff</a>)";
 			}
@@ -131,7 +131,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 					'oldid' => $row->rc_last_oldid
 				);
 				$diffUrl = htmlspecialchars( $title->getLinkUrl( $querydiff ) );
-				// Should "diff" be localized? It appears not to be elsewhere in the interface.
+				// Should "diff" be localised? It appears not to be elsewhere in the interface.
 				// See ChangesList->preCacheMessages() for example.
 				$messageCell = $messageLink . "&nbsp;(<a href=\"$diffUrl\">diff</a>)";
 			}

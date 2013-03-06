@@ -77,7 +77,7 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 
 // $wgNoticeLang and $wgNoticeProject are used for targeting campaigns to specific wikis. These
 // should be overridden on each wiki with the appropriate values.
-// Actual user language (wgUserLanguage) is used for banner localization.
+// Actual user language (wgUserLanguage) is used for banner localisation.
 $wgNoticeLang = $wgLanguageCode;
 $wgNoticeProject = 'wikipedia';
 
@@ -532,8 +532,8 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieShortExpiry, $wgScript;
 
-	// Making these calls too soon will causes issues with the namespace localization cache. This seems
-	// to be just right. We require them at all because MW will 302 page requests made to non localized
+	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
+	// to be just right. We require them at all because MW will 302 page requests made to non localised
 	// namespaces which results in wasteful extra calls.
 	if ( !$wgCentralBannerDispatcher ) {
 		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerRandom' )}";
