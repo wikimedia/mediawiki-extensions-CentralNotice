@@ -4500,6 +4500,13 @@ $messages['el'] = array(
 	'centralnotice-bucket-letter' => 'Κάδος «$1»',
 );
 
+/** British English (British English)
+ * @author Shirayuki
+ */
+$messages['en-gb'] = array(
+	'centralnotice-edit-template-summary' => 'To create a localisable message, enclose a hyphenated string in three curly brackets, e.g. {{{jimbo-quote}}}.',
+);
+
 /** Esperanto (Esperanto)
  * @author Michawiki
  * @author Mihxil
