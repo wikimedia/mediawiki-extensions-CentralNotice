@@ -915,7 +915,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 			}
 
 			Banner::updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
-
+			
+			$bannerObj = new Banner( $name );
 			$bannerObj->logBannerChange( 'modified', $this->getUser(), $initialBannerSettings );
 
 			return;
