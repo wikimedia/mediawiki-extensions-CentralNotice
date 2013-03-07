@@ -21,7 +21,7 @@ $wgExtensionCredits[ 'other' ][] = array(
 		'Matthew Walker',
 		'Adam Roses Wight',
 	),
-	'version'        => '2.2',
+	'version'        => '2.3',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 );
@@ -56,21 +56,69 @@ $wgResourceModules[ 'jquery.ui.multiselect' ] = array(
 	'scripts'       => 'jquery.ui.multiselect/ui.multiselect.js',
 	'styles'        => 'jquery.ui.multiselect/ui.multiselect.css',
 );
-$wgResourceModules[ 'ext.centralNotice.interface' ] = array(
+$wgResourceModules[ 'ext.centralNotice.adminUi' ] = array(
 	'localBasePath' => $dir . '/modules',
 	'remoteExtPath' => 'CentralNotice/modules',
 	'dependencies' => array(
 		'jquery.ui.datepicker',
 		'jquery.ui.multiselect'
 	),
-	'scripts'       => 'ext.centralNotice.interface/centralnotice.js',
-	'styles'        => 'ext.centralNotice.interface/centralnotice.css',
+	'scripts'       => 'ext.centralNotice.adminUi/centralnotice.js',
+	'styles'        => array(
+		'ext.centralNotice.adminUi/centralnotice.css',
+		'ext.centralNotice.adminUi/adminui.common.css'
+	),
 	'messages'      => array(
 		'centralnotice-documentwrite-error',
 		'centralnotice-close-title',
 		'centralnotice-select-all',
 		'centralnotice-remove-all',
 		'centralnotice-items-selected'
+	)
+);
+$wgResourceModules[ 'ext.centralNotice.adminUi.bannerManager' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'dependencies' => array(
+		'ext.centralNotice.adminUi',
+		'jquery.ui.dialog'
+	),
+	'scripts'       => 'ext.centralNotice.adminUi.bannerManager/bannermanager.js',
+	'styles'        => 'ext.centralNotice.adminUi.bannerManager/bannermanager.css',
+	'messages'      => array(
+		'centralnotice-add-notice-button',
+		'centralnotice-add-notice-cancel-button',
+		'centralnotice-archive-banner',
+		'centralnotice-archive-banner-title',
+		'centralnotice-archive-banner-confirm',
+		'centralnotice-archive-banner-cancel',
+		'centralnotice-delete-banner',
+		'centralnotice-delete-banner-title',
+		'centralnotice-delete-banner-confirm',
+		'centralnotice-delete-banner-cancel',
+	)
+);
+$wgResourceModules[ 'ext.centralNotice.adminUi.bannerEditor' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'dependencies' => array(
+		'ext.centralNotice.adminUi',
+		'jquery.ui.dialog'
+	),
+	'scripts'       => 'ext.centralNotice.adminUi.bannerEditor/bannereditor.js',
+	'styles'        => 'ext.centralNotice.adminUi.bannerEditor/bannereditor.css',
+	'messages'      => array(
+		'centralnotice-clone',
+		'centralnotice-clone-notice',
+		'centralnotice-clone-cancel',
+		'centralnotice-archive-banner',
+		'centralnotice-archive-banner-title',
+		'centralnotice-archive-banner-confirm',
+		'centralnotice-archive-banner-cancel',
+		'centralnotice-delete-banner',
+		'centralnotice-delete-banner-title',
+		'centralnotice-delete-banner-confirm',
+		'centralnotice-delete-banner-cancel',
 	)
 );
 $wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
@@ -231,6 +279,33 @@ $wgNoticeBucketExpiry = 7;
 // given as a proportion of the "all" list length.
 $wgNoticeListComplementThreshold = 0.75;
 
+/** @var $wgNoticeTabifyPages array Declare all pages that should be tabified as CN pages */
+$wgNoticeTabifyPages = array(
+	/* Left side 'namespace' tabs */
+	'CentralNotice' => array(
+		'type' => 'namespaces',
+		'message' => 'centralnotice-notices',
+	),
+	'CentralNoticeBanners' => array(
+		'type' => 'namespaces',
+		'message' => 'centralnotice-templates',
+	),
+
+	/* Right side 'view' tabs */
+	'BannerAllocation' => array(
+		'type' => 'views',
+		'message' => 'centralnotice-allocation',
+	),
+	'GlobalAllocation' => array(
+		'type' => 'views',
+		'message' => 'centralnotice-global-allocation',
+	),
+	'CentralNoticeLogs' => array(
+		'type' => 'views',
+		'message' => 'centralnotice-logs',
+	),
+);
+
 // Available banner mixins, usually provided by separate extensions.
 // See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
 $wgNoticeMixins = array(
@@ -259,6 +334,7 @@ function efCentralNoticeSetup() {
 	$specialDir = $dir . 'special/';
 	$apiDir = $dir . 'api/';
 	$includeDir = $dir . 'includes/';
+	$htmlFormDir = $includeDir . '/HtmlFormElements/';
 
 	// Register files
 	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
@@ -280,6 +356,9 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
 	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
 	$wgAutoloadClasses[ 'MixinController' ] = $includeDir . 'MixinController.php';
+
+	$wgAutoloadClasses[ 'HTMLCentralNoticeBanner' ] = $htmlFormDir . 'HTMLCentralNoticeBanner.php';
+	$wgAutoloadClasses[ 'HTMLCentralNoticeBannerMessage' ] = $htmlFormDir . 'HTMLCentralNoticeBannerMessage.php';
 
 	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';
 
@@ -325,6 +404,8 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'SpecialGlobalAllocation' ] = $specialDir . 'SpecialGlobalAllocation.php';
 		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
 		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
+		$wgAutoloadClasses[ 'SpecialCentralNoticeBanners' ] = $specialDir . 'SpecialCentralNoticeBanners.php';
+		$wgAutoloadClasses[ 'CNBannerPager' ] = $includeDir . 'CNBannerPager.php';
 		$wgAutoloadClasses[ 'CNDeviceTarget' ] = $includeDir . 'CNDeviceTarget.php';
 
 		if ( $wgNoticeUseTranslateExtension ) {
@@ -339,6 +420,7 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages[ 'GlobalAllocation' ] = 'SpecialGlobalAllocation';
 		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
 		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
+		$wgSpecialPages[ 'CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
 	}
 }
 
@@ -527,3 +609,4 @@ function efCentralNoticeUnitTests( &$files ) {
 }
 
 $wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'CNDatabasePatcher::applyUpdates';
+$wgHooks[ 'SkinTemplateNavigation::SpecialPage' ][ ] = array( 'CentralNotice::addNavigationTabs' );

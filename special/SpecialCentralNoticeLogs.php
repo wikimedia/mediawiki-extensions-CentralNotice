@@ -27,16 +27,13 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$this->setHeaders();
 
 		// Output ResourceLoader module for styling and javascript functions
-		$out->addModules( 'ext.centralNotice.interface' );
+		$out->addModules( 'ext.centralNotice.adminUi' );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
 
 		// Show summary
 		$out->addWikiMsg( 'centralnotice-summary' );
-
-		// Show header
-		$this->printHeader();
 
 		// Begin Banners tab content
 		$out->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );

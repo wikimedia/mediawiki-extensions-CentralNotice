@@ -123,7 +123,7 @@
 	background: url('up-arrow-ltr.png') no-repeat scroll left top transparent;
 }
 
-.cn-multiselect {
+select.cn-multiselect {
 	width: 500px;
 	height: 175px;
 }
@@ -139,4 +139,13 @@ body.skin-vector #preferences fieldset.prefsection fieldset.cn-bannerpreview {
 /* Monobook-specific definitions */
 body.skin-monobook #preferences fieldset.prefsection {
 	border-color:#AAAAAA;
+}
+
+/* For HTMLForm generated forms */
+form .error {
+	color: #000000;
+	margin: 0 0 0.5em 0;
+	padding: 0.5em;
+	background-color: #FFCCCC;
+	border: 2px solid #FF0000;
 }
