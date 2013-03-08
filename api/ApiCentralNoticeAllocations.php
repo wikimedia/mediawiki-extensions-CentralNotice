@@ -49,6 +49,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 			$params['minimal']
 		);
 
+		$result->setIndexedTagName( $bannerList, 'BannerAllocation' );
 		$result->addValue( $this->getModuleName(), 'banners', $bannerList );
 	}
 
