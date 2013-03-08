@@ -71,6 +71,9 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()
 		);
+		// Give grep a chance to find the usages:
+		// centralnotice-action-created, centralnotice-action-modified,
+		// centralnotice-action-removed
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$this->msg( 'centralnotice-action-'.$row->tmplog_action )->text()
 		);
