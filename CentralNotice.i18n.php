@@ -7535,6 +7535,13 @@ További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lap
 	'centralnotice-country-unknown' => 'Ismeretlen/Hely nem meghatározható',
 );
 
+/** Armenian (Հայերեն)
+ * @author Vadgt
+ */
+$messages['hy'] = array(
+	'centralnotice-talk-link' => 'քննարկում',
+);
+
 /** Interlingua (interlingua)
  * @author McDutchie
  */
