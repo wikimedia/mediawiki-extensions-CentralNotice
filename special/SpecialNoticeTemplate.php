@@ -859,7 +859,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 	}
 
 	public function getBannerName( $bannerId ) {
-		$dbr = wfGetDB( DB_MASTER );
+		global $wgCentralDBnames;
+		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 		if ( is_numeric( $bannerId ) ) {
 			$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_id' => $bannerId ) );
 			if ( $row ) {
@@ -881,15 +882,15 @@ class SpecialNoticeTemplate extends CentralNotice {
 		}
 
 		$initialBannerSettings = Banner::getBannerSettings( $name, true );
-
-		$dbr = wfGetDB( DB_SLAVE );
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$res = $dbr->select( 'cn_templates', 'tmp_name',
 			array( 'tmp_name' => $name ),
 			__METHOD__
 		);
 
 		if ( $dbr->numRows( $res ) == 1 ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 			$dbw->update( 'cn_templates',
 				array(
 					'tmp_display_anon'    => $displayAnon,
@@ -937,7 +938,8 @@ class SpecialNoticeTemplate extends CentralNotice {
 		$dest = preg_replace( '/[^A-Za-z0-9_]/', '', $dest );
 
 		// Pull banner settings from database
-		$dbr = wfGetDB( DB_SLAVE );
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$row = $dbr->selectRow( 'cn_templates',
 			array(
 				'tmp_display_anon',

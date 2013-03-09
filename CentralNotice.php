@@ -589,7 +589,8 @@ function efCentralNoticeUnitTests( &$files ) {
  * @return bool
  */
 function efRegisterMessageGroups( &$list ) {
-	$dbr = wfGetDB( DB_MASTER );
+	global $wgCentralDBname;
+	$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 
 	// Create the base aggregate group
 	$conf = array();
@@ -611,9 +612,9 @@ function efRegisterMessageGroups( &$list ) {
 	$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
 
 	foreach ( $res as $r ) {
-        $grp = new BannerMessageGroup( $r->page_namespace, $r->page_title );
-        $id = $grp::getTranslateGroupName( $r->page_title );
-        $list[$id] = $grp;
+		$grp = new BannerMessageGroup( $r->page_namespace, $r->page_title );
+		$id = $grp::getTranslateGroupName( $r->page_title );
+		$list[$id] = $grp;
 
 		// Add the banner group to the aggregate group
 		$conf['GROUPS'][] = $id;

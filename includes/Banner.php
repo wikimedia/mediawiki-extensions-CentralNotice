@@ -69,11 +69,11 @@ class Banner {
 	}
 
 	static function removeTemplate( $name, $user ) {
-		global $wgNoticeUseTranslateExtension;
+		global $wgNoticeUseTranslateExtension, $wgCentralDBname;
 
 		$bannerObj = new Banner( $name );
 		$id = $bannerObj->getId();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
@@ -85,7 +85,7 @@ class Banner {
 			$bannerObj->logBannerChange( 'removed', $user );
 
 			// Delete banner record from the CentralNotice cn_templates table
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 			$dbw->begin();
 			$dbw->delete( 'cn_templates',
 				array( 'tmp_id' => $id ),
@@ -123,7 +123,8 @@ class Banner {
 	 * @throws MWException
 	 */
 	static function addTag( $tag, $revisionId, $pageId, $value = null ) {
-		$dbw = wfGetDB( DB_MASTER );
+		global $wgCentralDBname;
+		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 
 		if ( is_object( $revisionId ) ) {
 			throw new MWException( 'Got object, excepted id' );
@@ -150,7 +151,8 @@ class Banner {
 	 * @throws MWException
 	 */
 	static protected function removeTag( $tag, $pageId ) {
-		$dbw = wfGetDB( DB_MASTER );
+		global $wgCentralDBname;
+		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 
 		$conds = array(
 			'rt_page' => $pageId,
@@ -165,8 +167,7 @@ class Banner {
 	 * TODO js refresh, iframe
 	 * live_target to other projects depending on ... something
 	 */
-	function previewFieldSet( IContextSource $context, $lang )
-	{
+	function previewFieldSet( IContextSource $context, $lang ) {
 		$render = new SpecialBannerLoader();
 		$render->siteName = 'Wikipedia'; //FIXME: translate?
 		$render->language = $lang;
@@ -434,7 +435,8 @@ class Banner {
 	}
 
 	static function getTemplateId( $templateName ) {
-		$dbr = wfGetDB( DB_MASTER );
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 		$templateName = htmlspecialchars( $templateName );
 		$res = $dbr->select(
 			'cn_templates',
@@ -467,8 +469,6 @@ class Banner {
 	static function addTemplate( $name, $body, $user, $displayAnon, $displayAccount, $fundraising = 0,
 	                             $autolink = 0, $landingPages = '', $priorityLangs = array()
 	) {
-		global $wgNoticeUseTranslateExtension;
-
 		if ( $body == '' || $name == '' ) {
 			return 'centralnotice-null-string';
 		}
@@ -476,7 +476,8 @@ class Banner {
 		// Format name so there are only letters, numbers, and underscores
 		$name = preg_replace( '/[^A-Za-z0-9_]/', '', $name );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$res = $dbr->select(
 			'cn_templates',
 			'tmp_name',
@@ -487,7 +488,7 @@ class Banner {
 		if ( $dbr->numRows( $res ) > 0 ) {
 			return 'centralnotice-template-exists';
 		} else {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 			$dbw->insert( 'cn_templates',
 				array(
 					'tmp_name'            => $name,
@@ -584,7 +585,8 @@ class Banner {
 			}
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		global $wgCentralDBname;
+		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 
 		$log = array(
 			'tmplog_timestamp'     => $dbw->timestamp(),
