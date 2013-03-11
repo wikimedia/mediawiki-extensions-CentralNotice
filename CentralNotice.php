@@ -50,7 +50,8 @@ $wgResourceModules[ 'jquery.ui.multiselect' ] = array(
 		'jquery.ui.core',
 		'jquery.ui.sortable',
 		'jquery.ui.draggable',
-		'jquery.ui.droppable'
+		'jquery.ui.droppable',
+		'mediawiki.jqueryMsg'
 	),
 	'scripts'       => 'jquery.ui.multiselect/ui.multiselect.js',
 	'styles'        => 'jquery.ui.multiselect/ui.multiselect.css',
