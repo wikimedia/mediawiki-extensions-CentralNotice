@@ -12,7 +12,7 @@
 	}
 
 	mw.centralNotice = {
-        /** -- Central Notice Required Data -- **/
+		/** -- Central Notice Required Data -- **/
 		data: {
 			getVars: {},
 			bannerType: 'default',
@@ -20,10 +20,10 @@
 			testing: false
 		},
 
-        /** -- Banner custom data; filled by the banner itself -- */
-        bannerData: {},
+		/** -- Banner custom data; filled by the banner itself -- */
+		bannerData: {},
 
-        /** -- Functions! -- **/
+		/** -- Functions! -- **/
 		loadBanner: function () {
 			if ( mw.centralNotice.data.getVars.banner ) {
 				// If we're forcing one banner
@@ -105,14 +105,14 @@
 				return;
 			}
 
-            var dataString = $.cookie( 'centralnotice_bucket' ) || '';
-            mw.centralNotice.data.bucket = dataString.split('-')[0];
-            var bucketValidityString = dataString.split('-')[1];
-            var expectedValidityString = mw.config.get( 'wgNoticeNumberOfBuckets' ) + '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
-            
+			var dataString = $.cookie( 'centralnotice_bucket' ) || '';
+			mw.centralNotice.data.bucket = dataString.split('-')[0];
+			var bucketValidityString = dataString.split('-')[1];
+			var expectedValidityString = mw.config.get( 'wgNoticeNumberOfBuckets' ) + '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
+			
 			if ( ( mw.centralNotice.data.bucket === null ) ||
-                 ( bucketValidityString !== expectedValidityString )
-            ) {
+				( bucketValidityString !== expectedValidityString )
+			) {
 				mw.centralNotice.data.bucket = Math.floor( Math.random() * mw.config.get( 'wgNoticeNumberOfControllerBuckets' ) );
 				$.cookie(
 					'centralnotice_bucket', mw.centralNotice.data.bucket + '-' + expectedValidityString,
@@ -144,108 +144,108 @@
 
 	// Function that actually inserts the banner into the page after it is retrieved
 	// Has to be global because of compatibility with legacy code.
-    //
-    // Will query the DOM to see if mw.centralNotice.bannerData.alterImpressionData()
-    // exists in the banner. If it does it is expected to return true if the banner was
-    // shown, The alterImpressionData function is called with the impressionData variable
-    // filled below which can be altered at will by the function (thought it is recommended
-    // to only add variables, not remove/alter them as this may have effects on upstream
-    // analytics.)
-    //
-    // Regardless of impression state however, if this is a testing call, ie: the
-    // banner was specifically requested via banner= the record impression call
-    // will NOT be made.
-    //
+	//
+	// Will query the DOM to see if mw.centralNotice.bannerData.alterImpressionData()
+	// exists in the banner. If it does it is expected to return true if the banner was
+	// shown, The alterImpressionData function is called with the impressionData variable
+	// filled below which can be altered at will by the function (thought it is recommended
+	// to only add variables, not remove/alter them as this may have effects on upstream
+	// analytics.)
+	//
+	// Regardless of impression state however, if this is a testing call, ie: the
+	// banner was specifically requested via banner= the record impression call
+	// will NOT be made.
+	//
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
 		var url, targets, data;
 
-        var impressionData = {
-            country: mw.centralNotice.data.country,
-            userlang: mw.config.get( 'wgUserLanguage' ),
-            project: mw.config.get( 'wgNoticeProject' ),
-            db: mw.config.get( 'wgDBname' ),
-            bucket: mw.centralNotice.data.bucket,
+		var impressionData = {
+			country: mw.centralNotice.data.country,
+			userlang: mw.config.get( 'wgUserLanguage' ),
+			project: mw.config.get( 'wgNoticeProject' ),
+			db: mw.config.get( 'wgDBname' ),
+			bucket: mw.centralNotice.data.bucket,
 			anonymous: mw.config.get( 'wgUserName' ) === null,
 			device: mw.config.get( 'wgMobileDeviceName', 'desktop' )
-        };
+		};
 
-        // This gets prepended to the impressionData at the end
-        var impressionResultData = null;
+		// This gets prepended to the impressionData at the end
+		var impressionResultData = null;
 
 		if ( !bannerJson ) {
-            // There was no banner returned from the server
-            impressionResultData = {
-                result: 'hide',
-                reason: 'empty'
-            };
+			// There was no banner returned from the server
+			impressionResultData = {
+				result: 'hide',
+				reason: 'empty'
+			};
 		} else {
-            // Ok, we have a banner! Get the banner type for more queryness
-            mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
+			// Ok, we have a banner! Get the banner type for more queryness
+			mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
 
-            // Has the banner been hidden by cookie?
+			// Has the banner been hidden by cookie?
 			if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
 				impressionResultData = {
 					result: 'hide',
 					reason: 'mobile'
 				}
 			} else if ( $.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide' ) {
-                // Yes
-                impressionResultData = {
-                    result: 'hide',
-                    reason: 'cookie'
-                }
-            } else {
-                // No, inject the banner
-                $( 'div#centralNotice' )
-                    .attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.bannerType ) )
-                    .prepend( bannerJson.bannerHtml );
+				// Yes
+				impressionResultData = {
+					result: 'hide',
+					reason: 'cookie'
+				}
+			} else {
+				// No, inject the banner
+				$( 'div#centralNotice' )
+					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.bannerType ) )
+					.prepend( bannerJson.bannerHtml );
 
-                // Create landing page links if required
-                if ( bannerJson.autolink ) {
-                    url = mw.config.get( 'wgNoticeFundraisingUrl' );
-                    if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
-                        targets = String( bannerJson.landingPages ).split( ',' );
-                        if ( $.inArray( mw.centralNotice.data.country, mw.config.get( 'wgNoticeXXCountries' ) ) !== -1 ) {
-                            mw.centralNotice.data.country = 'XX';
-                        }
-                        url += "?" + $.param( {
-                            landing_page: targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' ),
-                            utm_medium: 'sitenotice',
-                            utm_campaign: bannerJson.campaign,
-                            utm_source: bannerJson.bannerName,
-                            language: mw.config.get( 'wgUserLanguage' ),
-                            country: mw.centralNotice.data.country
-                        } );
-                        $( '#cn-landingpage-link' ).attr( 'href', url );
-                    }
-                }
+				// Create landing page links if required
+				if ( bannerJson.autolink ) {
+					url = mw.config.get( 'wgNoticeFundraisingUrl' );
+					if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
+						targets = String( bannerJson.landingPages ).split( ',' );
+						if ( $.inArray( mw.centralNotice.data.country, mw.config.get( 'wgNoticeXXCountries' ) ) !== -1 ) {
+							mw.centralNotice.data.country = 'XX';
+						}
+						url += "?" + $.param( {
+							landing_page: targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' ),
+							utm_medium: 'sitenotice',
+							utm_campaign: bannerJson.campaign,
+							utm_source: bannerJson.bannerName,
+							language: mw.config.get( 'wgUserLanguage' ),
+							country: mw.centralNotice.data.country
+						} );
+						$( '#cn-landingpage-link' ).attr( 'href', url );
+					}
+				}
 
-                // Query the initial impression state if the banner callback exists
-                var bannerShown = true;
-                if ( typeof mw.centralNotice.bannerData.alterImpressionData === 'function' ) {
-                    bannerShown = mw.centralNotice.bannerData.alterImpressionData( impressionData );
-                }
+				// Query the initial impression state if the banner callback exists
+				var bannerShown = true;
+				if ( typeof mw.centralNotice.bannerData.alterImpressionData === 'function' ) {
+					bannerShown = mw.centralNotice.bannerData.alterImpressionData( impressionData );
+				}
 
-                // eventually we want to unify the ordering here and always return
-                // the result, banner, campaign in that order. presently this is not
-                // possible without some rework of how the analytics scripts work.
-                // ~~ as of 2012-11-27
-                if ( bannerShown ) {
-                    impressionResultData = {
-                        banner: bannerJson.bannerName,
-                        campaign: bannerJson.campaign,
-                        result: 'show'
-                    };
-                } else {
-                    impressionResultData = {
-                        result: 'hide'
-                    };
-                }
-            }
-        }
+				// eventually we want to unify the ordering here and always return
+				// the result, banner, campaign in that order. presently this is not
+				// possible without some rework of how the analytics scripts work.
+				// ~~ as of 2012-11-27
+				if ( bannerShown ) {
+					impressionResultData = {
+						banner: bannerJson.bannerName,
+						campaign: bannerJson.campaign,
+						result: 'show'
+					};
+				} else {
+					impressionResultData = {
+						result: 'hide'
+					};
+				}
+			}
+		}
 
-        // Record whatever impression we made
+		// Record whatever impression we made
 		if ( !mw.centralNotice.data.testing ) {
 			mw.centralNotice.recordImpression($.extend( impressionResultData, impressionData ) );
 		}
