@@ -1046,7 +1046,7 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing banners assigned to a campaign
 	 */
 	function assignedTemplatesForm( $notice ) {
-		global $wgLanguageCode, $wgNoticeNumberOfBuckets, $wgCentralDBnames;
+		global $wgLanguageCode, $wgNoticeNumberOfBuckets, $wgCentralDBname;
 
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$res = $dbr->select(

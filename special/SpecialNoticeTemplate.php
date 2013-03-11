@@ -859,7 +859,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 	}
 
 	public function getBannerName( $bannerId ) {
-		global $wgCentralDBnames;
+		global $wgCentralDBname;
 		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 		if ( is_numeric( $bannerId ) ) {
 			$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_id' => $bannerId ) );
