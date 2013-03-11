@@ -165,8 +165,9 @@
             userlang: mw.config.get( 'wgUserLanguage' ),
             project: mw.config.get( 'wgNoticeProject' ),
             db: mw.config.get( 'wgDBname' ),
-            sitename: mw.config.get( 'wgSiteName' ),        // legacy parameter for faulkner's scripts
-            bucket: mw.centralNotice.data.bucket
+            bucket: mw.centralNotice.data.bucket,
+			anonymous: mw.config.get( 'wgUserName' ) === null,
+			device: mw.config.get( 'wgMobileDeviceName', 'desktop' )
         };
 
         // This gets prepended to the impressionData at the end
