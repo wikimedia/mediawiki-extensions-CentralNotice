@@ -18324,7 +18324,7 @@ Không có gì để dời.',
 	'centralnotice-project-lang' => 'Ngôn ngữ của dự án',
 	'centralnotice-select-all' => 'Chọn tất cả',
 	'centralnotice-remove-all' => 'Loại bỏ tất cả',
-	'centralnotice-items-selected' => '$1 khoản mục được chọn', # Fuzzy
+	'centralnotice-items-selected' => '$1 khoản mục được chọn',
 	'centralnotice-project-name' => 'Tên dự án',
 	'centralnotice-start-date' => 'Ngày bắt đầu',
 	'centralnotice-start-time' => 'Lúc bắt đầu (UTC)',
