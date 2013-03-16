@@ -428,35 +428,12 @@ class CentralNotice extends SpecialPage {
 
 				// Projects
 				$projects = Campaign::getNoticeProjects( $row->not_name );
-				$project_count = count( $projects );
-				$projectList = '';
-				if ( $project_count > 1 ) {
-					$allProjects = true;
-					foreach ( $wgNoticeProjects as $project ) {
-						if ( !in_array( $project, $projects ) ) {
-							$allProjects = false;
-							break;
-						}
-					}
-					if ( $allProjects ) {
-						$projectList = $this->msg( 'centralnotice-all-projects' );
-					} else {
-						$projectList = $this->msg( 'centralnotice-multiple-projects' )->numParams( $project_count )->text();
-					}
-				} elseif ( $project_count == 1 ) {
-					$projectList = htmlspecialchars( $projects[ 0 ] );
-				}
+				$projectList = $this->listProjects( $projects );
 				$rowCells .= Html::rawElement( 'td', array(), $projectList );
 
 				// Languages
 				$project_langs = Campaign::getNoticeLanguages( $row->not_name );
-				$language_count = count( $project_langs );
-				$languageList = '';
-				if ( $language_count > 3 ) {
-					$languageList = $this->msg( 'centralnotice-multiple-languages' )->numParams( $language_count )->text();
-				} elseif ( $language_count > 0 ) {
-					$languageList = $this->getLanguage()->commaList( $project_langs );
-				}
+				$languageList = $this->listLanguages( $project_langs );
 				$rowCells .= Html::rawElement( 'td', array(), $languageList );
 
 				// Date and time calculations
@@ -1435,5 +1412,34 @@ class CentralNotice extends SpecialPage {
 		}
 
 		return trim( $retval );
+	}
+
+	public function listProjects( $projects ) {
+		global $wgNoticeProjects;
+		return $this->makeShortList( $wgNoticeProjects, $projects );
+	}
+
+	public function listCountries( $countries ) {
+		$all = array_keys( GeoTarget::getCountriesList( 'en' ) );
+		return $this->makeShortList( $all, $countries );
+	}
+
+	public function listLanguages( $languages ) {
+		$all = array_keys( Language::fetchLanguageNames( 'en' ) );
+		return $this->makeShortList( $all, $languages );
+	}
+
+	protected function makeShortList( $all, $list ) {
+		global $wgNoticeListComplementThreshold;
+		//TODO ellipsis and js/css expansion
+		if ( count($list) == count($all)  ) {
+			return $this->getContext()->msg( 'centralnotice-all' )->text();
+		}
+		if ( count($list) > $wgNoticeListComplementThreshold * count($all) ) {
+			$inverse = array_values( array_diff( $all, $list ) );
+			$txt = $this->getContext()->getLanguage()->listToText( $inverse );
+			return $this->getContext()->msg( 'centralnotice-all-except', $txt )->text();
+		}
+		return $this->getContext()->getLanguage()->listToText( $list );
 	}
 }

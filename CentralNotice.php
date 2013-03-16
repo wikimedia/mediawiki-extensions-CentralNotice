@@ -217,6 +217,10 @@ $wgNoticeNumberOfControllerBuckets = 2;
 // How long, via the jQuery cookie expiry string, will the bucket last
 $wgNoticeBucketExpiry = 7;
 
+// When displaying a long list, display the complement "all except ~LIST" past a threshold,
+// given as a proportion of the "all" list length.
+$wgNoticeListComplementThreshold = 0.75;
+
 /**
  * Load all the classes, register special pages, etc. Called through wgExtensionFunctions.
  */
