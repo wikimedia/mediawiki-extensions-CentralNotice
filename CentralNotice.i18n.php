@@ -258,6 +258,8 @@ $messages['qqq'] = array(
 {{Identical|Add}}',
 	'centralnotice-add-notice' => 'Used as heading (<nowiki><h2></nowiki> tag)',
 	'centralnotice-add-template' => 'Used as link text and as heading (<nowiki><h2></nowiki> tag)',
+	'centralnotice-multiple-projects' => 'Parameters:
+* $1 - number of projects in which the notice is available',
 	'centralnotice-multiple-languages' => 'This message is in the column "languages" in the table. Parameters:
 * $1 - the number of languages in which the notice is available. It is always greater than 3.',
 	'centralnotice-multiple-countries' => 'Parameters:
@@ -280,9 +282,13 @@ The other headers are:
 * (the name of a language to which the banner is being translated)
 
 (See also [[:bugzilla:16321|Bug 16321 - All messages in CentralNotice are defaulted to English regardless of content language]].)',
+	'centralnotice-banner-heading' => 'Used as <code><nowiki><h2></nowiki></code> heading. Parameters:
+* $1 - current banner (current template)',
 	'centralnotice-weight' => 'Used in Notice Details page of [[meta:Special:CentralNotice|Central Notice]] special page.
 {{Identical|Weight}}',
 	'centralnotice-locked' => 'Refers to campaign.',
+	'centralnotice-notice-heading' => 'Used as <code><nowiki><h2></nowiki></code> heading. Parameters:
+* $1 - campaign',
 	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
 	'centralnotice-template-exists' => 'Error message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
 	'centralnotice-day' => '{{Identical|Day}}',
@@ -369,6 +375,10 @@ In English this is a short form of "Number of uses".',
 {{Identical|On}}',
 	'centralnotice-off' => 'indicates a notice is not on air
 {{Identical|Off}}',
+	'centralnotice-added' => 'Parameters:
+* $1 - list of projects/languages/countries which were added',
+	'centralnotice-removed' => 'Parameters:
+* $1 - list of projects/languages/countries which were removed',
 	'centralnotice-no-assignments' => 'Substituted for $1 or $2 in {{msg-mw|centralnotice-changed}}.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.
 {{Identical|Talk}}',
@@ -6747,7 +6757,7 @@ $messages['he'] = array(
 	'centralnotice-project-lang' => 'שפת המיזם',
 	'centralnotice-select-all' => 'בחר הכל',
 	'centralnotice-remove-all' => 'הסר הכל',
-	'centralnotice-items-selected' => '$1 פריטים נבחרו', # Fuzzy
+	'centralnotice-items-selected' => '{{PLURAL:$1|נבחר פריט אחד|$1 פריטים נבחרו}}',
 	'centralnotice-project-name' => 'שם המיזם',
 	'centralnotice-start-date' => 'תאריך ההתחלה',
 	'centralnotice-start-time' => 'שעת ההתחלה (UTC)',
