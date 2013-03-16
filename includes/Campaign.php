@@ -24,8 +24,7 @@ class Campaign {
 	 * @param null|string $project  The name of the project, ie: 'wikipedia'; if null select all
 	 *                              projects.
 	 * @param null|string $language ISO language code, if null select all languages
-	 * @param null|string $location ISO country code, if null select only non geo-targeted
-	 *                              campaigns.
+	 * @param null|string $location ISO country code, if null select all campaigns
 	 * @param null|date   $date     Campaigns must start before and end after this date
 	 *                              If the parameter is null, it takes the current date/time
 	 * @param bool        $enabled  If true, select only active campaigns. If false select all.
@@ -79,11 +78,15 @@ class Campaign {
 			$conds[ 'nl_language' ] = $language;
 		}
 
+		if ( $location ) {
+			$conds['not_geo'] = 0;
+		}
+
 		// Pull the notice IDs of the non geotargeted campaigns
 		$res = $dbr->select(
 			$tables,
 			'not_id',
-			array_merge( $conds, array( 'not_geo' => 0 ) ),
+			$conds,
 			__METHOD__
 		);
 		foreach ( $res as $row ) {

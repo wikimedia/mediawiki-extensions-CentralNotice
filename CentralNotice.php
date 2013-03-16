@@ -295,6 +295,7 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'CentralNoticeBannerLogPager' ] = $dir . 'CentralNoticeBannerLogPager.php';
 		$wgAutoloadClasses[ 'CentralNoticePageLogPager' ] = $dir . 'CentralNoticePageLogPager.php';
 		$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
+		$wgAutoloadClasses[ 'SpecialGlobalAllocation' ] = $specialDir . 'SpecialGlobalAllocation.php';
 		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
 		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
 
@@ -309,6 +310,7 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
 		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools
 		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
+		$wgSpecialPages[ 'GlobalAllocation' ] = 'SpecialGlobalAllocation';
 		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
 		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
 	}

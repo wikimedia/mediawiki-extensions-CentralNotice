@@ -197,6 +197,7 @@ class CentralNotice extends SpecialPage {
 			'CentralNotice'     => wfMessage( 'centralnotice-notices' )->text(),
 			'NoticeTemplate'    => wfMessage( 'centralnotice-templates' )->text(),
 			'BannerAllocation'  => wfMessage( 'centralnotice-allocation' )->text(),
+			'GlobalAllocation'  => wfMessage( 'centralnotice-global-allocation' )->text(),
 			'CentralNoticeLogs' => wfMessage( 'centralnotice-logs' )->text()
 		);
 		$htmlOut = Xml::openElement( 'ul', array( 'id' => 'preftoc' ) );
@@ -1440,6 +1441,6 @@ class CentralNotice extends SpecialPage {
 			$txt = $this->getContext()->getLanguage()->listToText( $inverse );
 			return $this->getContext()->msg( 'centralnotice-all-except', $txt )->text();
 		}
-		return $this->getContext()->getLanguage()->listToText( $list );
+		return $this->getContext()->getLanguage()->listToText( array_values( $list ) );
 	}
 }

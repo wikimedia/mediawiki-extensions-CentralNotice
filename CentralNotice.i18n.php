@@ -14,6 +14,7 @@ $messages['en'] = array(
 	'centralnotice' => 'Central notice admin',
 	'noticetemplate' => 'Central notice admin',
 	'bannerallocation' => 'Central notice admin',
+	'globalallocation' => 'Central notice admin',
 	'centralnoticelogs' => 'Central notice admin',
 	'right-centralnotice-admin' => 'Manage central notices',
 	'action-centralnotice-admin' => 'manage central notices',
@@ -131,6 +132,7 @@ Add one below.',
 	'centralnotice-banner-landing-pages' => 'Landing pages (comma-separated):',
 	'centralnotice-geo' => 'Geotargeted',
 	'centralnotice-countries' => 'Countries',
+	'centralnotice-global-allocation' => 'Global allocation',
 	'centralnotice-allocation' => 'Allocation',
 	'centralnotice-view-allocation' => 'View banner allocation',
 	'centralnotice-allocation-instructions' => 'Choose the environment you would like to view banner allocation for:',
@@ -139,7 +141,7 @@ Add one below.',
 	'centralnotice-projects' => 'Projects',
 	'centralnotice-country' => 'Country',
 	'centralnotice-no-allocation' => 'No banners allocated.',
-	'centralnotice-allocation-description' => 'Banner allocation for $1.$2 in $3:',
+	'centralnotice-allocation-description' => 'Banner allocation for language: $1, project: $2, in country: $3:',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	'centralnotice-preferred' => 'Priority',
@@ -195,6 +197,9 @@ Add one below.',
 	'centralnotice-bucket-letter' => 'Bucket "$1"',
 	'centralnotice-all' => 'All',
 	'centralnotice-all-except' => 'All except $1',
+	'centralnotice-user-role' => 'User role',
+	'centralnotice-user-role-anonymous' => 'Anonymous',
+	'centralnotice-user-role-logged-in' => 'Logged-in',
 );
 
 /** Message documentation (Message documentation)
@@ -223,6 +228,8 @@ $messages['qqq'] = array(
 	'noticetemplate' => 'Title of Special:NoticeTemplate page, should be identical to centralnotice message. (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-manage-templates.)
 {{Identical|Central notice admin}}',
 	'bannerallocation' => 'Title of Special:BannerAllocation page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)
+{{Identical|Central notice admin}}',
+	'globalallocation' => 'Title of Special:GlobalAllocation page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)
 {{Identical|Central notice admin}}',
 	'centralnoticelogs' => 'Title of Special:CentralNoticeLogs page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-logs.)
 {{Identical|Central notice admin}}',
@@ -331,6 +338,7 @@ In English this is a short form of "Number of uses".',
 * $2 - a title for a page',
 	'centralnotice-geo' => 'Used to label a checkbox which activates geotargeting',
 	'centralnotice-countries' => '{{Identical|Country}}',
+	'centralnotice-global-allocation' => 'Tab for [[m:Special:GlobalAllocation|global allocation]] overview.',
 	'centralnotice-allocation' => 'Tab for sub-page [[m:BannerAllocation|banner allocation]] to central notice special page.',
 	'centralnotice-view-allocation' => 'Heading of dialog box on [[m:Special:BannerAllocation|banner allocation]] special page.',
 	'centralnotice-allocation-instructions' => 'Dialog box instructions on [[m:Special:BannerAllocation|banner allocation]] special page.',
@@ -438,6 +446,9 @@ Related messages:
 	'centralnotice-all' => 'Used when a list contains all possible elements.',
 	'centralnotice-all-except' => 'Describe a list which nearly contains every possible element, by only listing what is excluded. Parameters:
 * $1 - a comma-separated list of excluded elements',
+	'centralnotice-user-role' => 'Label for a logged-in / anonymous user column',
+	'centralnotice-user-role-anonymous' => 'Label for the anonymous user role',
+	'centralnotice-user-role-logged-in' => 'Label for the logged-in user role',
 );
 
 /** Afrikaans (Afrikaans)

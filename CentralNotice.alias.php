@@ -10,6 +10,7 @@ $specialPageAliases['en'] = array(
 	'CentralNotice' => array( 'CentralNotice' ),
 	'CentralNoticeLogs' => array( 'CentralNoticeLogs' ),
 	'NoticeTemplate' => array( 'NoticeTemplate' ),
+	'GlobalAllocation' => array( 'GlobalAllocation' ),
 	'BannerAllocation' => array( 'BannerAllocation' ),
 	'BannerController' => array( 'BannerController' ),
 	'BannerListLoader' => array( 'BannerListLoader' ),
