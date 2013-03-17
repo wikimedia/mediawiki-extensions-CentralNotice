@@ -5705,6 +5705,7 @@ Er ikki lagt afturat.',
  * @author Gomoko
  * @author Grondin
  * @author Hashar
+ * @author Hello71
  * @author IAlex
  * @author Jean-Frédéric
  * @author McDutchie
@@ -5785,7 +5786,7 @@ Il n’a pas été supprimé.',
 	'centralnotice-project-lang' => 'Langue du projet',
 	'centralnotice-select-all' => 'Sélectionner tout',
 	'centralnotice-remove-all' => 'Supprimer tout',
-	'centralnotice-items-selected' => '$1 éléments sélectionnés', # Fuzzy
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|élément sélectionné|éléments sélectionnés}}',
 	'centralnotice-project-name' => 'Nom du projet',
 	'centralnotice-start-date' => 'Date de début',
 	'centralnotice-start-time' => 'Heure de début (UTC)',
