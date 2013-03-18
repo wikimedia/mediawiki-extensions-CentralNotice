@@ -3544,6 +3544,7 @@ Gallwch ychwanegu un isod.',
 
 /** Danish (dansk)
  * @author Byrial
+ * @author HenrikKbh
  * @author Hylle
  * @author Jan Friberg
  * @author Masz
@@ -3621,7 +3622,7 @@ Ikke fjernet.',
 	'centralnotice-project-lang' => 'Projektsprog',
 	'centralnotice-select-all' => 'Vælg alle',
 	'centralnotice-remove-all' => 'Fjern alle',
-	'centralnotice-items-selected' => '$1 valgte elementer', # Fuzzy
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|element|elementer}} valgt',
 	'centralnotice-project-name' => 'Projektnavn',
 	'centralnotice-start-date' => 'Startdato',
 	'centralnotice-start-time' => 'Starttid (UTC)',
@@ -3734,6 +3735,9 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.
 	'centralnotice-country-a2' => 'Ukendt/satellitudbyder',
 	'centralnotice-country-o1' => 'Ukendt/andet land',
 	'centralnotice-country-unknown' => 'Ukendt/Ikke-Geolokaliserbar',
+	'centralnotice-buckets' => 'Bruger spand',
+	'centralnotice-bucket' => 'Spand',
+	'centralnotice-bucket-letter' => 'Spand "$1"',
 );
 
 /** German (Deutsch)
