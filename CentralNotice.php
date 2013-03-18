@@ -577,6 +577,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
  * @return bool
  */
 function efCentralNoticeUnitTests( &$files ) {
+	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
 	return true;
 }

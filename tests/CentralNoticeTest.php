@@ -2,6 +2,7 @@
 
 /**
  * @group Fundraising
+ * @group Database
  */
 class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	/**
