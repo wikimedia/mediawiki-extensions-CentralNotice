@@ -40,10 +40,6 @@ It can also be used to add or remove old notices.',
 	'centralnotice-add-template' => 'Add a banner',
 	'centralnotice-show-notices' => 'Show campaigns',
 	'centralnotice-list-templates' => 'List banners',
-	'centralnotice-multiple-projects' => 'Multiple ($1)',
-	'centralnotice-multiple-languages' => 'Multiple ($1)',
-	'centralnotice-multiple-countries' => 'Multiple ($1)',
-	'centralnotice-all-projects' => 'All projects',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'Translations',
 	'centralnotice-translate-to' => 'Translate to',
@@ -197,6 +193,8 @@ Add one below.',
 	'centralnotice-buckets' => 'User bucketing',
 	'centralnotice-bucket' => 'Bucket',
 	'centralnotice-bucket-letter' => 'Bucket "$1"',
+	'centralnotice-all' => 'All',
+	'centralnotice-all-except' => 'All except $1',
 );
 
 /** Message documentation (Message documentation)
@@ -258,14 +256,6 @@ $messages['qqq'] = array(
 {{Identical|Add}}',
 	'centralnotice-add-notice' => 'Used as heading (<nowiki><h2></nowiki> tag)',
 	'centralnotice-add-template' => 'Used as link text and as heading (<nowiki><h2></nowiki> tag)',
-	'centralnotice-multiple-projects' => 'Parameters:
-* $1 - number of projects in which the notice is available',
-	'centralnotice-multiple-languages' => 'This message is in the column "languages" in the table. Parameters:
-* $1 - the number of languages in which the notice is available. It is always greater than 3.',
-	'centralnotice-multiple-countries' => 'Parameters:
-* $1 - the number of countries in which the notice is available',
-	'centralnotice-all-projects' => 'Data entry in the column "Projects" in the table on the [[m:Special:CentralNotice|Central Notice]] special page.
-{{Identical|All projects}}',
 	'centralnotice-language-listing' => '{{optional}}
 A language listing for the language multi-select box.
 *$1 - the language code
@@ -445,6 +435,9 @@ Related messages:
 	'centralnotice-buckets' => 'Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.',
 	'centralnotice-bucket' => 'Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.',
 	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used.',
+	'centralnotice-all' => 'Used when a list contains all possible elements.',
+	'centralnotice-all-except' => 'Describe a list which nearly contains every possible element, by only listing what is excluded. Parameters:
+* $1 - a comma-separated list of excluded elements',
 );
 
 /** Afrikaans (Afrikaans)
