@@ -113,7 +113,7 @@ jQuery(document).ready( function ( $ ) {
 	$('select[multiple="multiple"]').multiselect({sortable: false, dividerLocation: 0.5});
 
 	// Reveal the geoMultiSelector when the geotargetted checkbox is checked
-	if( !$('#geotargeted' ).checked ) {
+	if( !$( '#geotargeted' ).prop( 'checked' ) ) {
 		$( '#geoMultiSelector' ).fadeOut( 'fast' );
 	}
 	$( '#geotargeted' ).click(function () {
