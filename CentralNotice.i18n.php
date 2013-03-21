@@ -435,9 +435,10 @@ Related messages:
 	'centralnotice-buckets' => 'Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.',
 	'centralnotice-bucket' => 'Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.',
 	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used.',
-	'centralnotice-all' => 'Used when a list contains all possible elements.',
+	'centralnotice-all' => 'Used when a list contains all possible elements.
+{{Identical|All}}',
 	'centralnotice-all-except' => 'Describe a list which nearly contains every possible element, by only listing what is excluded. Parameters:
-* $1 - a comma-separated list of excluded elements',
+* $1 - a comma-separated list of excluded elements (projects, countries or languages)',
 );
 
 /** Afrikaans (Afrikaans)
@@ -6113,10 +6114,6 @@ Tamén pode ser usado para engadir ou eliminar avisos vellos.',
 	'centralnotice-add-template' => 'Engadir un modelo',
 	'centralnotice-show-notices' => 'Mostrar os avisos',
 	'centralnotice-list-templates' => 'Listar os modelos',
-	'centralnotice-multiple-projects' => 'Múltiples ($1)',
-	'centralnotice-multiple-languages' => 'Múltiples ($1)',
-	'centralnotice-multiple-countries' => 'Múltiples ($1)',
-	'centralnotice-all-projects' => 'Todos os proxectos',
 	'centralnotice-translations' => 'Traducións',
 	'centralnotice-translate-to' => 'Traducir ao',
 	'centralnotice-translate' => 'Traducir',
@@ -6151,7 +6148,7 @@ Non se elimina.',
 	'centralnotice-project-lang' => 'Lingua do proxecto',
 	'centralnotice-select-all' => 'Seleccionar todos',
 	'centralnotice-remove-all' => 'Eliminar todo',
-	'centralnotice-items-selected' => 'Seleccionáronse $1 elementos', # Fuzzy
+	'centralnotice-items-selected' => '{{PLURAL:$1|Seleccionouse 1 elemento|Seleccionáronse $1 elementos}}',
 	'centralnotice-project-name' => 'Nome do proxecto',
 	'centralnotice-start-date' => 'Data de inicio',
 	'centralnotice-start-time' => 'Hora de inicio (UTC)',
@@ -6268,6 +6265,8 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-buckets' => 'Selección de usuarios',
 	'centralnotice-bucket' => 'Selección',
 	'centralnotice-bucket-letter' => 'Selección "$1"',
+	'centralnotice-all' => 'Todos',
+	'centralnotice-all-except' => 'Todos agás $1',
 );
 
 /** Goan Konkani (Latin script) (Konknni)
@@ -8221,10 +8220,6 @@ $messages['it'] = array(
 	'centralnotice-add-template' => 'Aggiungi un banner',
 	'centralnotice-show-notices' => 'Mostra campagne',
 	'centralnotice-list-templates' => 'Elenca banner',
-	'centralnotice-multiple-projects' => 'Vari ($1)',
-	'centralnotice-multiple-languages' => 'Varie ($1)',
-	'centralnotice-multiple-countries' => 'Vari ($1)',
-	'centralnotice-all-projects' => 'Tutti i progetti',
 	'centralnotice-translations' => 'Traduzioni',
 	'centralnotice-translate-to' => 'Traduci in',
 	'centralnotice-translate' => 'Traduci',
@@ -8256,7 +8251,7 @@ Niente da rimuovere.',
 	'centralnotice-project-lang' => 'Lingua progetto',
 	'centralnotice-select-all' => 'Seleziona tutto',
 	'centralnotice-remove-all' => 'Rimuovi tutto',
-	'centralnotice-items-selected' => '$1 elementi selezionati', # Fuzzy
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|elemento selezionato|elementi selezionati}}',
 	'centralnotice-project-name' => 'Nome progetto',
 	'centralnotice-start-date' => 'Data di inizio',
 	'centralnotice-start-time' => 'Ora di inizio (UTC)',
@@ -8363,6 +8358,8 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-country-a2' => 'Sconosciuto/Provider satellitare',
 	'centralnotice-country-o1' => 'Sconosciuto/Altro paese',
 	'centralnotice-country-unknown' => 'Sconosciuto/non geo-localizzabile',
+	'centralnotice-all' => 'Tutto',
+	'centralnotice-all-except' => 'Tutti, tranne $1',
 );
 
 /** Japanese (日本語)
@@ -8408,10 +8405,6 @@ $messages['ja'] = array(
 	'centralnotice-add-template' => 'テンプレートを追加',
 	'centralnotice-show-notices' => '告知を表示',
 	'centralnotice-list-templates' => 'テンプレート一覧',
-	'centralnotice-multiple-projects' => '複数 ($1)',
-	'centralnotice-multiple-languages' => '複数 ($1)',
-	'centralnotice-multiple-countries' => '複数 ($1)',
-	'centralnotice-all-projects' => '全プロジェクト',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => '翻訳',
 	'centralnotice-translate-to' => '翻訳先',
@@ -8557,6 +8550,8 @@ $messages['ja'] = array(
 	'centralnotice-buckets' => '利用者のバケツ分類',
 	'centralnotice-bucket' => 'バケツ',
 	'centralnotice-bucket-letter' => 'バケツ「$1」',
+	'centralnotice-all' => 'すべて',
+	'centralnotice-all-except' => '以下を除くすべて: $1',
 );
 
 /** Jutish (jysk)
@@ -9096,10 +9091,6 @@ $messages['ko'] = array(
 	'centralnotice-add-template' => '틀을 추가하기',
 	'centralnotice-show-notices' => '공지 표시하기',
 	'centralnotice-list-templates' => '배너 목록',
-	'centralnotice-multiple-projects' => '다수 ($1)',
-	'centralnotice-multiple-languages' => '다수 ($1)',
-	'centralnotice-multiple-countries' => '다수 ($1)',
-	'centralnotice-all-projects' => '모든 프로젝트',
 	'centralnotice-translations' => '번역',
 	'centralnotice-translate-to' => '번역할 언어',
 	'centralnotice-translate' => '번역',
@@ -9131,7 +9122,7 @@ $messages['ko'] = array(
 	'centralnotice-project-lang' => '프로젝트 언어',
 	'centralnotice-select-all' => '모두 선택',
 	'centralnotice-remove-all' => '모두 제거',
-	'centralnotice-items-selected' => '선택한 항목 $1개', # Fuzzy
+	'centralnotice-items-selected' => '선택한 {{PLURAL:$1|항목}} $1개',
 	'centralnotice-project-name' => '프로젝트 이름',
 	'centralnotice-start-date' => '시작 날짜',
 	'centralnotice-start-time' => '시작 시간 (UTC)',
@@ -9241,6 +9232,8 @@ $messages['ko'] = array(
 	'centralnotice-buckets' => '사용자 버킷팅',
 	'centralnotice-bucket' => '버킷',
 	'centralnotice-bucket-letter' => '"$1" 버킷',
+	'centralnotice-all' => '모두',
+	'centralnotice-all-except' => '$1(을)를 모드 제외',
 );
 
 /** Colognian (Ripoarisch)
@@ -10459,6 +10452,8 @@ $messages['mk'] = array(
 	'centralnotice-buckets' => 'Приказ по кориснички групи',
 	'centralnotice-bucket' => 'Група',
 	'centralnotice-bucket-letter' => 'Група „$1“',
+	'centralnotice-all' => 'Сите',
+	'centralnotice-all-except' => 'Сите освен $1',
 );
 
 /** Malayalam (മലയാളം)
