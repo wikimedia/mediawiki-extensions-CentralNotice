@@ -79,7 +79,7 @@ $specialPageAliases['eo'] = array(
 	'BannerController' => array( 'Informstrikontrolisto' ),
 	'BannerListLoader' => array( 'Informstrilistoŝargilo' ),
 	'BannerLoader' => array( 'Informstriŝargilo' ),
-	'HideBanners' => array( 'Kaŝu_striojn' ),
+	'HideBanners' => array( 'Kaŝi_striojn', 'Kaŝu_striojn' ),
 );
 
 /** Persian (فارسی) */
