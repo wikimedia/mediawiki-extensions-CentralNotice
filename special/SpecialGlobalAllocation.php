@@ -49,6 +49,8 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 */
 	public $location = null;
 
+	public $timestamp;
+
 	/**
 	 * Constructor
 	 */
@@ -72,6 +74,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$this->project = $request->getText( 'project', $this->project );
 		$this->language = $request->getText( 'language', $this->language );
 		$this->location = $request->getVal( 'country', $this->location );
+		$this->timestamp = wfTimestamp( $request->getVal( 'timestamp', 0 ), TS_MW );
 
 		// Begin output
 		$this->setHeaders();
@@ -164,6 +167,17 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'select' );
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::closeElement( 'tr' );
+
+		$htmlOut .= Html::openElement( 'tr' );
+		$htmlOut .= Html::openElement( 'td' );
+		$htmlOut .= $this->msg( 'centralnotice-date' );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::openElement( 'td' );
+		$htmlOut .= $this->dateSelector( 'filter', $this->timestamp );
+		$htmlOut .= $this->timeSelector( 'filter', $this->timestamp );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::closeElement( 'tr' );
+
 		$htmlOut .= Html::closeElement( 'table' );
 
 		$htmlOut .= Xml::tags( 'div',
