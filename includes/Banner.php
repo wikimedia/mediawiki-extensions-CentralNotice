@@ -348,6 +348,50 @@ class Banner {
 	}
 
 	/**
+	 * FIXME: a little thin, it's just enough to get the job done
+	 */
+	static function getHistoricalBanner( $name, $ts ) {
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$id = Banner::getTemplateId( $name );
+
+		$newestLog = $dbr->selectRow(
+			"cn_template_log",
+			array(
+				"log_id" => "MAX(tmplog_id)",
+			),
+			array(
+				"tmplog_timestamp <= $ts",
+				"tmplog_template_id = $id",
+			),
+			__METHOD__
+		);
+
+		$row = $dbr->selectRow(
+			"cn_template_log",
+			array(
+				"display_anon" => "tmplog_end_anon",
+				"display_account" => "tmplog_end_account",
+				"fundraising" => "tmplog_end_fundraising",
+				"autolink" => "tmplog_end_autolink",
+				"landing_pages" => "tmplog_end_landingpages",
+			),
+			array(
+				"tmplog_id = {$newestLog->log_id}",
+			),
+			__METHOD__
+		);
+		$banner['display_anon'] = intval( $row->display_anon );
+		$banner['display_account'] = intval( $row->display_account );
+
+		$banner['fundraising'] = intval( $row->fundraising );
+		$banner['autolink'] = intval( $row->autolink );
+		$banner['landing_pages'] = explode( ", ", $row->landing_pages );
+
+		return $banner;
+	}
+
+	/**
 	 * DEPRECATED, but included for backwards compatibility during upgrade
 	 * Lookup function for active banners under a given language/project/location. This function is
 	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
