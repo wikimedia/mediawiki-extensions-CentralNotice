@@ -188,6 +188,57 @@ class Campaign {
 	}
 
 	/**
+	 * Get all campaign configurations as of timestamp $ts
+	 */
+	static function getHistoricalCampaigns( $ts ) {
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$res = $dbr->select(
+			"cn_notice_log",
+			array(
+				"log_id" => "MAX(notlog_id)",
+			),
+			array(
+				"notlog_timestamp <= $ts",
+				"notlog_end_start <= $ts",
+				"notlog_end_end >= $ts",
+				"notlog_end_enabled = 1",
+			),
+			__METHOD__,
+			array(
+				"GROUP BY" => "notlog_not_id",
+			)
+		);
+
+		$campaigns = array();
+		foreach ( $res as $row ) {
+			$singleRes = $dbr->select(
+				"cn_notice_log",
+				array(
+					"name" => "notlog_not_name",
+					"projects" => "notlog_end_projects",
+					"languages" => "notlog_end_languages",
+					"countries" => "notlog_end_countries",
+					"preferred" => "notlog_end_preferred",
+					"geo" => "notlog_end_geo",
+					"banners" => "notlog_end_banners",
+					"buckets" => "notlog_end_buckets",
+				),
+				array(
+					"notlog_id = {$row->log_id}",
+				),
+				__METHOD__
+			);
+
+			$row = $singleRes->fetchRow();
+			$row['banners'] = FormatJson::decode( $row['banners'], true );
+
+			$campaigns[] = $row;
+		}
+		return $campaigns;
+	}
+
+	/**
 	 * Get all the campaigns in the database
 	 *
 	 * @return array an array of campaign names
