@@ -329,6 +329,14 @@ class Banner {
 
 	/**
 	 * FIXME: a little thin, it's just enough to get the job done
+	 *
+	 * @return banner settings as an associative array, with these properties:
+	 *    display_anon: 0/1 whether the banner is displayed to anonymous users
+	 *    display_account: 0/1 same, for logged-in users
+	 *    fundraising: 0/1, is in the fundraising group
+	 *    autolink: make landing page autolink?
+	 *    landing_pages: array of landing page names
+	 *    device: device key
 	 */
 	static function getHistoricalBanner( $name, $ts ) {
 		global $wgCentralDBname;

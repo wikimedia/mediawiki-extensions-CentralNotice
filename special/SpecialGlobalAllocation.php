@@ -46,8 +46,11 @@ class SpecialGlobalAllocation extends CentralNotice {
 	public $device = null;
 
 	/**
-	 * Constructor
+	 * Time filter
+	 * @var string $timestamp
 	 */
+	public $timestamp;
+
 	public function __construct() {
 		// Register special page
 		SpecialPage::__construct( 'GlobalAllocation' );
@@ -183,6 +186,17 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'select' );
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::closeElement( 'tr' );
+
+		$htmlOut .= Html::openElement( 'tr' );
+		$htmlOut .= Html::openElement( 'td' );
+		$htmlOut .= $this->msg( 'centralnotice-date' );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::openElement( 'td' );
+		$htmlOut .= $this->dateSelector( 'filter', true, $this->timestamp );
+		$htmlOut .= $this->timeSelector( 'filter', true, $this->timestamp );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::closeElement( 'tr' );
+
 		$htmlOut .= Html::closeElement( 'table' );
 
 		$htmlOut .= Xml::tags( 'div',
@@ -225,35 +239,33 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$htmlOut .= Xml::tags( 'p', null,
 			$this->msg(
-				'centralnotice-allocation-description',
+				'centralnotice-historical-allocation-description',
 				$languageLabel,
 				$projectLabel,
 				$countryLabel,
-				$deviceLabel
+				$deviceLabel,
+				wfTimestamp( TS_ISO_8601, $this->timestamp )
 			)->text()
 		);
 
-		$activeCampaigns = Campaign::getCampaigns( $this->project, $this->language, $this->location );
-		$campaigns = array();
-		foreach ( $activeCampaigns as $campaignId ) {
-			$campaignName = Campaign::getNoticeName( $campaignId );
+		$this->campaigns = Campaign::getHistoricalCampaigns( wfTimestamp( TS_MW, $this->timestamp ) );
 
-			//FIXME: get campaign settings as of $date
-			$settings = Campaign::getCampaignSettings( $campaignName, true );
+		//FIXME: static func or something to help with this
+		$allocContext = new AllocationContext(
+			$this->location, $this->language, $this->project,
+			null, null, null
+		);
+		$chooser = new BannerChooser( $allocContext, $this->campaigns );
+		$this->campaigns = $chooser->getCampaigns();
 
-			// omg.  implode explode fail
-			if ( $settings['geo'] ) {
-				$settings['countries'] = explode( ", ", $settings['countries'] );
-			} else {
-				$settings['countries'] = array_keys( GeoTarget::getCountriesList( 'en' ) );
+		foreach ( $this->campaigns as &$campaign ) {
+			if ( !$campaign['geo'] ) {
+				// fill out set according to flags, for symmetry with other criteria
+				$campaign['countries'] = array_keys( GeoTarget::getCountriesList( 'en' ) );
 			}
-			$settings['projects'] = explode( ", ", $settings['projects'] );
-			$settings['languages'] = explode( ", ", $settings['languages'] );
-
-			$campaigns[$campaignName] = $settings;
 		}
 
-		$groupings = $this->analyzeGroupings( $campaigns );
+		$groupings = $this->analyzeGroupings();
 
 		/*
 		 * TODO: need to compare a sample of actual allocations within each grouping,
@@ -324,27 +336,26 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * and to represent the remaining grouping C-CD will take two cross-product
 	 * rows: Cx,y = ({a}, {2}) + ({b}, {1, 2}).
 	 */
-	protected function analyzeGroupings( $campaigns ) {
+	protected function analyzeGroupings() {
 		$groupings = array();
 
 		// starting with the intersection of all campaigns, working towards the
 		// portion of each campaign which does not intersect any others, record
 		// all distinct groupings.
-		for ( $numIntersecting = count( $campaigns ); $numIntersecting > 0; $numIntersecting-- ) {
-			$campaignKeys = array_keys( $campaigns );
+		for ( $numIntersecting = count( $this->campaigns ); $numIntersecting > 0; $numIntersecting-- ) {
+			$campaignKeys = array_keys( $this->campaigns );
 			$combinations = self::makeCombinations( $campaignKeys, $numIntersecting );
 			foreach ( $combinations as $intersectingKeys ) {
 				$excludeKeys = array_diff( $campaignKeys, $intersectingKeys );
 
-				$result = $campaigns[$intersectingKeys[0]];
+				$result = $this->campaigns[$intersectingKeys[0]];
 				$contributing = array();
 				$excluding = array();
 
 				foreach ( $intersectingKeys as $key ) {
-					$result = CampaignCriteria::intersect( $result, $campaigns[$key] );
+					$result = CampaignCriteria::intersect( $result, $this->campaigns[$key] );
 
-					// happens to be the campaign name
-					$contributing[] = $key;
+					$contributing[] = $this->campaigns[$key]['name'];
 				}
 
 				if ( $result ) {
@@ -354,12 +365,12 @@ class SpecialGlobalAllocation extends CentralNotice {
 				}
 				foreach ( $excludeKeys as $key ) {
 					foreach( $result as $row ) {
-						if ( CampaignCriteria::intersect( $row, $campaigns[$key] ) ) {
-							$excluding[] = $key;
+						if ( CampaignCriteria::intersect( $row, $this->campaigns[$key] ) ) {
+							$excluding[] = $this->campaigns[$key]['name'];
 							break;
 						}
 					}
-					$result = CampaignCriteria::difference( $result, $campaigns[$key] );
+					$result = CampaignCriteria::difference( $result, $this->campaigns[$key] );
 				}
 
 				if ( $result ) {
@@ -426,22 +437,43 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * @param $numBuckets array Check allocations in this many buckets
 	 * @return string HTML for the table
 	 */
-	protected function getBannerAllocationsTable( $project, $country, $language, $numBuckets ) {
+	protected function getBannerAllocationsTable( $project, $location, $language, $numBuckets ) {
 		// This is annoying.  Within the campaign, banners usually vary by user
 		// logged-in status, and bucket.  Determine the allocations and
 		// collapse any dimensions which do not vary.
 		//
 		// TODO: the allocation hash should also be used to collapse groupings which
 		// are identical because of e.g. z-index
+		$campaignIds = array();
+		$banners = array();
+		foreach ( $this->campaigns as $campaign ) {
+			$campaignIds[] = $campaign['id'];
+			foreach ( $campaign['banners'] as $name => $banner ) {
+				$banners[] = array(
+					'name' => $name,
+					'weight' => $banner['weight'],
+					'bucket' => $banner['bucket'],
+					'campaign' => $campaign['name'],
+					'campaign_z_index' => $campaign['preferred'],
+					'campaign_num_buckets' => $campaign['buckets'],
+					'display_anon' => $banner['display_anon'],
+					'display_account' => $banner['display_account'],
+				);
+			}
+		}
+		$device = 'desktop'; //XXX
 		foreach ( array( true, false ) as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
 				$device = 'desktop'; //XXX
-				$variations[$isAnon][$bucket] = ApiCentralNoticeAllocations::getBannerAllocation(
-					$project, $country, $language,
-					$isAnon ? 'true' : 'false',
-					$device,
-					$bucket
+
+				$allocContext = new AllocationContext(
+					$location, $language, $project,
+					$isAnon, $device, $bucket
 				);
+				$chooser = new BannerChooser( $allocContext, $this->campaigns );
+
+				$variations[$isAnon][$bucket] = $chooser->getBanners();
+
 				$allocSignatures = array();
 				foreach ( $variations[$isAnon][$bucket] as $banner ) {
 					$allocSignatures[] = "{$banner['name']}:{$banner['allocation']}";
@@ -607,6 +639,10 @@ class CampaignCriteria {
 	 * @param $b single CampaignCriteria
 	 */
 	public static function difference( $rows, $b ) {
+		if ( !$b ) {
+			return $rows;
+		}
+
 		$newRows = array();
 
 		foreach ( $rows as $row ) {

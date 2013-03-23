@@ -26,9 +26,9 @@ class AllocationContext {
 		$this->country = $country;
 		$this->language = $language;
 		$this->project = $project;
-		$this->anonymous = (boolean)$anonymous;
+		$this->anonymous = $anonymous;
 		$this->device = $device;
-		$this->bucket = (int)$bucket;
+		$this->bucket = $bucket;
 	}
 
 	function getCountry() {

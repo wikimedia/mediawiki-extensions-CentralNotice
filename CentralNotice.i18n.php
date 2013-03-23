@@ -144,6 +144,7 @@ Add one below.',
 	'centralnotice-country' => 'Country',
 	'centralnotice-no-allocation' => 'No banners allocated.',
 	'centralnotice-allocation-description' => 'Banner allocation for language: $1, project: $2, in country: $3, on device $4',
+	'centralnotice-historical-allocation-description' => 'Banner allocation for language: $1, project: $2, in country: $3, on device $4, as of $5',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	'centralnotice-preferred' => 'Priority',
@@ -473,6 +474,12 @@ This message is preceded by the following message:
 * $2 - the project name for the site (e.g. "wikipedia")
 * $3 - the country code (e.g. "US" for the United States, "FR" for France, etc.)
 * $4 - the device class (e.g. "desktop", "OperaMini", "Android")',
+	'centralnotice-historical-allocation-description' => 'A description of the criteria used to calculate banner allocations. Parameters:
+* $1 - the language code for the site (e.g "en")
+* $2 - the project name for the site (e.g. "wikipedia")
+* $3 - the country code (e.g. "US" for the United States, "FR" for France, etc.)
+* $4 - the device class (e.g. "desktop", "OperaMini", "Android")
+* $5 - historical snapshot time being analyzed',
 	'centralnotice-percentage' => 'Used as column header of the table in [[Special:BannerAllocation]] and [[Special:GlobalAllocation]].',
 	'centralnotice-documentwrite-error' => 'Used as error message shown by JavaScript function <code>alert()</code>.
 
