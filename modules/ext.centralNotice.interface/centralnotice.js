@@ -117,7 +117,7 @@ jQuery(document).ready( function ( $ ) {
 	}, 250);
 
 	// Reveal the geoMultiSelector when the geotargetted checkbox is checked
-	if( !$('#geotargeted' ).checked ) {
+	if( !$( '#geotargeted' ).prop( 'checked' ) ) {
 		$( '#geoMultiSelector' ).fadeOut( 'fast' );
 	}
 	$( '#geotargeted' ).click(function () {
