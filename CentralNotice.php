@@ -256,6 +256,8 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
 	$wgAutoloadClasses[ 'GeoTarget' ] = $includeDir . 'GeoTarget.php';
 
+	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';
+
 	$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
@@ -631,3 +633,5 @@ function efRegisterMessageGroups( &$list ) {
 
 	return true;
 }
+
+$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'CNDatabasePatcher::applyUpdates';
