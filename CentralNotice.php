@@ -547,4 +547,4 @@ function efRegisterMessageGroups( &$list ) {
 }
 
 // Short hook definitions
-$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = array( 'CNDatabasePatcher', 'applyUpdates' );
+$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'CNDatabasePatcher::applyUpdates';
