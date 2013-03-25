@@ -28,6 +28,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$project_languages = array( 'en', 'de' );
 		$geotargeted       = 1;
 		$geo_countries     = array( 'US', 'AF' );
+		$preferred         = 1;
 
 		$this->campaignArray = array(
 			'enabled' => '0',
@@ -49,6 +50,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
 			$project_languages, $geotargeted, $geo_countries, $this->userUser );
+		Campaign::setNumericCampaignSetting( $noticeName, 'preferred', $preferred );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
 
@@ -60,7 +62,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$fundraising = 1;
 		$autolink = 0;
 		$landingPages = 'JA1, JA2';
-		$campaign_z_index = 0;
+		$campaign_z_index = 1;
 
 		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1, JA2","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"bucket":0}]';
 
@@ -85,23 +87,29 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testGetNoticeProjects() {
+		$projects = Campaign::getNoticeProjects( 'PHPUnitTestCampaign' );
+		sort( $projects );
 		$this->assertEquals(
 			array ( 'wikibooks', 'wikipedia' ),
-			Campaign::getNoticeProjects( 'PHPUnitTestCampaign' )
+			$projects
 		);
 	}
 
 	public function testGetNoticeLanguages() {
+		$languages = Campaign::getNoticeLanguages( 'PHPUnitTestCampaign' );
+		sort( $languages );
 		$this->assertEquals(
 			array ( 'de', 'en' ),
-			Campaign::getNoticeLanguages( 'PHPUnitTestCampaign' )
+			$languages
 		);
 	}
 
 	public function testGetNoticeCountries() {
+		$countries = Campaign::getNoticeCountries( 'PHPUnitTestCampaign' );
+		sort( $countries );
 		$this->assertEquals(
 			array ( 'AF', 'US' ),
-			Campaign::getNoticeCountries( 'PHPUnitTestCampaign' )
+			$countries
 		);
 	}
 
