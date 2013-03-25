@@ -37,6 +37,9 @@
 #preferences table#envpicker td {
 	white-space:nowrap;
 }
+#preferences .cn-date-column {
+	white-space:nowrap;
+}
 #preferences div.cn-buttons {
 	padding:1em;
 }

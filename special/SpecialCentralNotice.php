@@ -448,27 +448,17 @@ class CentralNotice extends SpecialPage {
 				$rowCells .= Html::rawElement( 'td', array(), $countryList );
 
 				// Date and time calculations
-				$start_timestamp = wfTimestamp( TS_MW, $row->not_start );
-				$start_year = substr( $start_timestamp, 0, 4 );
-				$start_month = substr( $start_timestamp, 4, 2 );
-				$start_day = substr( $start_timestamp, 6, 2 );
-				$start_hour = substr( $start_timestamp, 8, 2 );
-				$start_min = substr( $start_timestamp, 10, 2 );
-				$end_timestamp = wfTimestamp( TS_MW, $row->not_end );
-				$end_year = substr( $end_timestamp, 0, 4 );
-				$end_month = substr( $end_timestamp, 4, 2 );
-				$end_day = substr( $end_timestamp, 6, 2 );
-				$end_hour = substr( $end_timestamp, 8, 2 );
-				$end_min = substr( $end_timestamp, 10, 2 );
+				$start_timestamp = wfTimestamp( TS_UNIX, $row->not_start );
+				$end_timestamp = wfTimestamp( TS_UNIX, $row->not_end );
 
 				// Start
-				$rowCells .= Html::rawElement( 'td', array(),
-					"{$start_year}/{$start_month}/{$start_day} {$start_hour}:{$start_min}"
+				$rowCells .= Html::rawElement( 'td', array( 'class' => 'cn-date-column' ),
+					date( '<\b>Y-m-d</\b> H:i', $start_timestamp )
 				);
 
 				// End
-				$rowCells .= Html::rawElement( 'td', array(),
-					"{$end_year}/{$end_month}/{$end_day} {$end_hour}:{$end_min}"
+				$rowCells .= Html::rawElement( 'td', array( 'class' => 'cn-date-column' ),
+					date( '<\b>Y-m-d</\b> H:i', $end_timestamp )
 				);
 
 				// Enabled
