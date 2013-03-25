@@ -1,29 +1,10 @@
 <?php
 /**
- * Wikimedia Foundation
- *
- * LICENSE
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- */
-
-/**
- * SpecialGlobalAllocation
- *
  * Display worldwide allocation
  */
 class SpecialGlobalAllocation extends CentralNotice {
 	/**
-	 * The project being used for banner allocation.
+	 * Optional project filter
 	 *
 	 * @see $wgNoticeProjects
 	 *
@@ -32,8 +13,6 @@ class SpecialGlobalAllocation extends CentralNotice {
 	public $project = null;
 
 	/**
-	 * The language being used for banner allocation
-	 *
 	 * This should always be a lowercase language code.
 	 *
 	 * @var string $project
@@ -41,19 +20,18 @@ class SpecialGlobalAllocation extends CentralNotice {
 	public $language = null;
 
 	/**
-	 * The location being used for banner allocation.
-	 *
 	 * This should always be an uppercase country code.
 	 *
 	 * @var string $location
 	 */
 	public $location = null;
 
+	/**
+	 * Time filter
+	 * @var string $timestamp
+	 */
 	public $timestamp;
 
-	/**
-	 * Constructor
-	 */
 	public function __construct() {
 		// Register special page
 		SpecialPage::__construct( 'GlobalAllocation' );
@@ -64,7 +42,9 @@ class SpecialGlobalAllocation extends CentralNotice {
 	}
 
 	/**
-	 * Handle different types of page requests
+	 * Handle page requests
+	 *
+	 * Without filters, this will display the allocation of all active banners.
 	 */
 	public function execute( $sub ) {
 		global $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
@@ -74,6 +54,10 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$this->project = $request->getText( 'project', $this->project );
 		$this->language = $request->getText( 'language', $this->language );
 		$this->location = $request->getVal( 'country', $this->location );
+		ApiCentralNoticeAllocations::sanitizeParams(
+			$this->project, $this->country, $this->language,
+			$ignore_anonymous, $ignore_bucket, $ignore_minimize
+		);
 		$this->timestamp = wfTimestamp( $request->getVal( 'timestamp', 0 ), TS_MW );
 
 		// Begin output
@@ -225,27 +209,15 @@ class SpecialGlobalAllocation extends CentralNotice {
 			)->text()
 		);
 
-		$activeCampaigns = Campaign::getCampaigns( $this->project, $this->language, $this->location );
-		$campaigns = array();
-		foreach ( $activeCampaigns as $campaignId ) {
-			$campaignName = Campaign::getNoticeName( $campaignId );
-
-			//FIXME: get campaign settings as of $date
-			$settings = Campaign::getCampaignSettings( $campaignName, true );
-
-			// omg.  implode explode fail
-			if ( $settings['geo'] ) {
-				$settings['countries'] = explode( ", ", $settings['countries'] );
-			} else {
-				$settings['countries'] = array_keys( GeoTarget::getCountriesList( 'en' ) );
+		$this->campaigns = Campaign::getHistoricalCampaigns( $this->timestamp );
+		foreach ( $this->campaigns as &$campaign ) {
+			if ( !$campaign['geo'] ) {
+				// fill out set according to flags, for symmetry with other criteria
+				$campaign['countries'] = array_keys( GeoTarget::getCountriesList( 'en' ) );
 			}
-			$settings['projects'] = explode( ", ", $settings['projects'] );
-			$settings['languages'] = explode( ", ", $settings['languages'] );
-
-			$campaigns[$campaignName] = $settings;
 		}
 
-		$groupings = $this->analyzeGroupings( $campaigns );
+		$groupings = $this->analyzeGroupings();
 
 		/*
 		 * TODO: need to compare a sample of actual allocations within each grouping,
@@ -410,11 +382,11 @@ class SpecialGlobalAllocation extends CentralNotice {
 		// are identical because of e.g. z-index
 		foreach ( array( true, false ) as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
-				$variations[$isAnon][$bucket] = ApiCentralNoticeAllocations::getAllocationInformation(
-					$project, $country, $language,
-					$isAnon ? 'true' : 'false',
-					$bucket
-				);
+				$chooser = new BannerChooser();
+				$chooser->campaigns = $this->campaigns;
+				$chooser->filter( $project, $language, $location, $isAnon, $bucket );
+				$variations[$isAnon][$bucket] = $chooser->banners;
+
 				$allocSignatures = array();
 				foreach ( $variations[$isAnon][$bucket] as $banner ) {
 					$allocSignatures[] = "{$banner['name']}:{$banner['allocation']}";

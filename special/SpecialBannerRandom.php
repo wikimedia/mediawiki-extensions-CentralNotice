@@ -18,7 +18,8 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 
 		$this->bannerName = false;
 
-		$chooser = new BannerChooser(
+		$chooser = new BannerChooser();
+		$chooser->filter(
 			$this->project,
 			$this->language,
 			$this->country,

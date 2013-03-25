@@ -40,7 +40,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		// Get our language/project/country
 		$params = $this->extractRequestParams();
 
-		$bannerList = static::getAllocationInformation(
+		$bannerList = static::getBannerAllocation(
 			$params['project'],
 			$params['country'],
 			$params['language'],
@@ -129,41 +129,11 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 *
 	 * @return array
 	 */
-	public static function getAllocationInformation( $project, $country, $language, $anonymous, $bucket = null, $minimize = false ) {
-		$project = ApiCentralNoticeAllocations::sanitizeText(
-			$project,
-			static::PROJECT_FILTER,
-			static::DEFAULT_PROJECT
-		);
+	public static function getBannerAllocation( $project, $country, $language, $anonymous, $bucket = null, $minimize = false ) {
+		self::sanitizeParams( $project, $country, $language, $anonymous, $bucket, $minimize );
 
-		$country = ApiCentralNoticeAllocations::sanitizeText(
-			$country,
-			static::LOCATION_FILTER,
-			static::DEFAULT_COUNTRY
-		);
-
-		$language = ApiCentralNoticeAllocations::sanitizeText(
-			$language,
-			static::LANG_FILTER,
-			static::DEFAULT_LANGUAGE
-		);
-
-		$anonymous = ApiCentralNoticeAllocations::sanitizeText(
-			$anonymous,
-			static::ANONYMOUS_FILTER,
-			static::DEFAULT_ANONYMOUS
-		);
-		$anonymous = ( $anonymous == 'true' );
-
-		$bucket = ApiCentralNoticeAllocations::sanitizeText(
-			$bucket,
-			static::BUCKET_FILTER,
-			static::DEFAULT_BUCKET
-		);
-
-		$minimize = (boolean) $minimize;
-
-		$chooser = new BannerChooser( $project, $language, $country, $anonymous, $bucket );
+		$chooser = new BannerChooser();
+		$chooser->filter( $project, $language, $country, $anonymous, $bucket );
 		$banners = $chooser->banners;
 
 		if ( $minimize ) {
@@ -171,6 +141,49 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		}
 
 		return $banners;
+	}
+
+	public static function getCampaignAllocation( $project, $country, $language ) {
+		self::sanitizeParams( $project, $country, $language, $ignore_anonymous, $ignore_bucket, $ignore_minimize );
+
+		$chooser = new BannerChooser();
+		$chooser->filter( $project, $language, $country, null, null );
+		return $chooser->campaigns;
+	}
+
+	protected static function sanitizeParams( &$project, &$country, &$language, &$anonymous, &$bucket, &$minimize ) {
+		$project = ApiCentralNoticeAllocations::sanitizeText(
+			$project,
+			self::PROJECT_FILTER,
+			self::DEFAULT_PROJECT
+		);
+
+		$country = ApiCentralNoticeAllocations::sanitizeText(
+			$country,
+			self::LOCATION_FILTER,
+			self::DEFAULT_COUNTRY
+		);
+
+		$language = ApiCentralNoticeAllocations::sanitizeText(
+			$language,
+			self::LANG_FILTER,
+			self::DEFAULT_LANGUAGE
+		);
+
+		$anonymous = ApiCentralNoticeAllocations::sanitizeText(
+			$anonymous,
+			self::ANONYMOUS_FILTER,
+			self::DEFAULT_ANONYMOUS
+		);
+		$anonymous = ( $anonymous == 'true' );
+
+		$bucket = ApiCentralNoticeAllocations::sanitizeText(
+			$bucket,
+			self::BUCKET_FILTER,
+			self::DEFAULT_BUCKET
+		);
+
+		$minimize = (boolean) $minimize;
 	}
 
 	/**

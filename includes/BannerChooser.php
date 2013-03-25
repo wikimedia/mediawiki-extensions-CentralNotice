@@ -5,12 +5,24 @@ class BannerChooser {
 	const ALLOCATION_KEY = 'allocation';
 	const RAND_MAX = 30;
 
+	var $campaigns = array();
 	var $banners = array();
 
-	function __construct( $project, $language, $country, $anonymous, $bucket ) {
-		$campaigns = Campaign::getCampaigns( $project, $language, $country );
-		$this->banners = Banner::getCampaignBanners( $campaigns );
+	function __construct( $campaigns = null ) {
+		$this->campaigns = $campaigns;
+	}
 
+	function filter( $project, $language, $country, $anonymous, $bucket ) {
+		if ( $this->campaignIds === null ) {
+			$this->campaignIds = Campaign::getCampaigns( $project, $language, $country );
+		} else {
+			$this->filterCampaigns( $project, $language, $country );
+		}
+		$campaignIds = array();
+		foreach ( $this->campaigns as $campaign ) {
+			$campaignIds[] = $campaign['id'];
+		}
+		$this->banners = Banner::getCampaignBanners( $campaignIds );
 		$this->filterBanners( $anonymous, $bucket );
 
 		$this->allocate();
@@ -40,6 +52,12 @@ class BannerChooser {
 		if ( count( $this->banners ) ) {
 			return $this->banners[ count( $this->banners ) - 1 ];
 		}
+	}
+
+	protected function filterCampaigns( $project, $language, $country ) {
+		$filtered = array();
+		foreach ( $this->campaigns ) {
+			
 	}
 
 	/**

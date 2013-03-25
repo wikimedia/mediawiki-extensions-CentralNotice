@@ -243,6 +243,7 @@ function efCentralNoticeSetup() {
 	// Register files
 	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
+	$wgAutoloadClasses[ 'SpecialBannerListLoader' ] = $specialDir . 'SpecialBannerListLoader.php';
 	$wgAutoloadClasses[ 'SpecialBannerRandom' ] = $specialDir . 'SpecialBannerRandom.php';
 	$wgAutoloadClasses[ 'SpecialRecordImpression' ] = $specialDir . 'SpecialRecordImpression.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
@@ -280,6 +281,7 @@ function efCentralNoticeSetup() {
 
 	// Register special pages
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
+	$wgSpecialPages[ 'BannerListLoader' ] = 'SpecialBannerListLoader';
 	$wgSpecialPages[ 'BannerRandom' ] = 'SpecialBannerRandom';
 	$wgSpecialPages[ 'RecordImpression' ] = 'SpecialRecordImpression';
 	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';
@@ -473,6 +475,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
+	$vars[ 'wgNoticeBannerListLoader' ] = $wgContLang->specialPage( 'BannerListLoader' );
 	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
