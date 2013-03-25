@@ -13,7 +13,6 @@ $specialPageAliases['en'] = array(
 	'GlobalAllocation' => array( 'GlobalAllocation' ),
 	'BannerAllocation' => array( 'BannerAllocation' ),
 	'BannerController' => array( 'BannerController' ),
-	'BannerListLoader' => array( 'BannerListLoader' ),
 	'BannerLoader' => array( 'BannerLoader' ),
 	'HideBanners' => array( 'HideBanners' ),
 );
