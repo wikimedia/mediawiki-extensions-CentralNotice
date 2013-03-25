@@ -48,32 +48,37 @@
 				country: mw.centralNotice.data.country,
 				device: mw.config.get( 'wgMobileDeviceName', 'desktop' )
 			};
-			scriptUrl = mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery );
-			bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
-			$( '#centralNotice' ).prepend( bannerScript );
+
+			$.ajax({
+				url: mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery ),
+				dataType: 'script',
+				cache: true
+			});
 		},
 		loadRandomBanner: function () {
-			var RAND_MAX = 30;
-
 			// TODO: Get rid of this when mobile support in CN is totally there
 			if ( mw.config.get( 'wgMobileDeviceName' ) ) {
 				return;
 			}
 
+			var RAND_MAX = 30;
 			var bannerDispatchQuery = {
-				userlang: mw.config.get( 'wgUserLanguage' ),
-				sitename: mw.config.get( 'wgSiteName' ),
-				project: mw.config.get( 'wgNoticeProject' ),
-				anonymous: mw.config.get( 'wgUserName' ) === null,
-				bucket: mw.centralNotice.data.bucket,
-				country: mw.centralNotice.data.country,
-				device: mw.config.get( 'wgMobileDeviceName', 'desktop' ),
-				slot: Math.floor( Math.random() * RAND_MAX ) + 1
-			};
-			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' )
-				+ '?' + $.param( bannerDispatchQuery );
-			var bannerScript = '<script src="' + mw.html.escape( scriptUrl ) + '"></script>';
-			$( '#centralNotice' ).prepend( bannerScript );
+					userlang: mw.config.get( 'wgUserLanguage' ),
+					sitename: mw.config.get( 'wgSiteName' ),
+					project: mw.config.get( 'wgNoticeProject' ),
+					anonymous: mw.config.get( 'wgUserName' ) === null,
+					bucket: mw.centralNotice.data.bucket,
+					country: mw.centralNotice.data.country,
+					device: mw.config.get( 'wgMobileDeviceName', 'desktop' ),
+					slot: Math.floor( Math.random() * RAND_MAX ) + 1
+				};
+			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) + '?' + $.param( bannerDispatchQuery );
+
+			$.ajax({
+				url: scriptUrl,
+				dataType: 'script',
+				cache: true
+			});
 		},
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
