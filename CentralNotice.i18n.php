@@ -218,7 +218,7 @@ Add one below.',
  * @author Yekrats
  */
 $messages['qqq'] = array(
-	'centralnotice' => 'Name of Special:CentralNotice in [[Special:SpecialPages]] and title of Special:CentralNotice page.
+	'centralnotice' => '{{doc-special|CentralNotice}}
 {{Identical|Central notice admin}}',
 	'noticetemplate' => 'Title of Special:NoticeTemplate page, should be identical to centralnotice message. (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-manage-templates.)
 {{Identical|Central notice admin}}',
@@ -3939,6 +3939,7 @@ Die Aktion kann nicht rückgängig gemacht werden.',
 
 /** Zazaki (Zazaki)
  * @author Erdemaslancan
+ * @author Gorizon
  * @author Mirzali
  * @author Xoser
  */
@@ -3972,10 +3973,6 @@ Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
 	'centralnotice-add-template' => 'Yew Sablon vırazê',
 	'centralnotice-show-notices' => 'Îkazan bimucne',
 	'centralnotice-list-templates' => 'Şablona liste ke',
-	'centralnotice-multiple-projects' => 'Zafen  $1',
-	'centralnotice-multiple-languages' => 'Zafen  $1',
-	'centralnotice-multiple-countries' => 'Zafen  $1',
-	'centralnotice-all-projects' => 'Procey pêro',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'Çarnayişan',
 	'centralnotice-translate-to' => 'Ci ra çarnayîş bike',
@@ -4009,8 +4006,6 @@ Niwedarneno',
 	'centralnotice-hours' => 'Seet',
 	'centralnotice-min' => 'Dekika',
 	'centralnotice-project-lang' => 'Ziwanê proceyî',
-	'centralnotice-select' => 'Weçine: $1',
-	'centralnotice-top-ten-languages' => 'Top 10 zıwani',
 	'centralnotice-project-name' => 'Nameyê proceyî',
 	'centralnotice-start-date' => 'Destpêkerdışeya demi',
 	'centralnotice-start-time' => 'Seetê başli kerdişî  (UTC)',
@@ -4125,6 +4120,7 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-buckets' => 'Sitılê karberi',
 	'centralnotice-bucket' => 'Sitıl',
 	'centralnotice-bucket-letter' => 'Sitılê "$1"',
+	'centralnotice-all' => 'Pêro',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -4311,6 +4307,8 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
 	'centralnotice-buckets' => 'Wužywarska wokolina',
 	'centralnotice-bucket' => 'Wokolina',
 	'centralnotice-bucket-letter' => 'Wokolina "$1"',
+	'centralnotice-all' => 'Wšykne',
+	'centralnotice-all-except' => 'Wšykne mimo $1',
 );
 
 /** Ewe (eʋegbe)
@@ -4945,10 +4943,6 @@ Samuti saab sellega teateid lisada või vanu teateid eemaldada.',
 	'centralnotice-add-template' => 'Lisa mall',
 	'centralnotice-show-notices' => 'Näita teateid',
 	'centralnotice-list-templates' => 'Loetle mallid',
-	'centralnotice-multiple-projects' => 'Mitmed ($1)',
-	'centralnotice-multiple-languages' => 'Mitmed ($1)',
-	'centralnotice-multiple-countries' => 'Mitmed ($1)',
-	'centralnotice-all-projects' => 'Kõik projektid',
 	'centralnotice-translations' => 'Tõlked',
 	'centralnotice-translate-to' => 'Tõlgi',
 	'centralnotice-translate' => 'Tõlgi',
@@ -4983,8 +4977,9 @@ Ei eemaldata',
 	'centralnotice-hours' => 'Tund',
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Projekti keel',
-	'centralnotice-select' => 'Vali: $1',
-	'centralnotice-top-ten-languages' => 'Keelte esikümme',
+	'centralnotice-select-all' => 'Vali kõik',
+	'centralnotice-remove-all' => 'Eemalda kõik',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|üksus|üksust}} valitud',
 	'centralnotice-project-name' => 'Projekti nimi',
 	'centralnotice-start-date' => 'Alguskuupäev',
 	'centralnotice-start-time' => 'Alguskellaaeg (UTC)',
@@ -5091,10 +5086,14 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-priority-high' => 'kõrge',
 	'centralnotice-priority-emergency' => 'kriitiline',
 	'centralnotice-prioritylangs' => 'Eeliskeeled',
+	'centralnotice-prioritylangs-explain' => 'Keelele eelise andmine julgustab tõlkijaid esmajärjekorras tõlkima nendesse keeltesse.',
+	'centralnotice-aggregate-group-desc' => 'Kõiki selle rühma sõnumeid kasutatakse keskuse teadetes.',
 	'centralnotice-country-eu' => 'Teadmata/Euroopa Liidu piirkond',
 	'centralnotice-country-ap' => 'Teadmata/Aasia – Vaikse ookeani piirkond',
 	'centralnotice-country-a1' => 'Teadmata/Anonüümne proksi',
 	'centralnotice-country-o1' => 'Teadmata/Muu maa',
+	'centralnotice-all' => 'Kõik',
+	'centralnotice-all-except' => 'Kõik, v.a $1',
 );
 
 /** Basque (euskara)
@@ -5402,6 +5401,7 @@ $messages['fa'] = array(
  * @author Nedergard
  * @author Nike
  * @author Olli
+ * @author Silvonen
  * @author Stryn
  * @author Tarmo
  * @author Tofu II
@@ -5438,10 +5438,6 @@ Voit myös lisätä tai poistaa vanhoja tiedotteita.',
 	'centralnotice-add-template' => 'Lisää banneri',
 	'centralnotice-show-notices' => 'Näytä tiedotteet',
 	'centralnotice-list-templates' => 'Luettele bannerit',
-	'centralnotice-multiple-projects' => 'useita ($1)',
-	'centralnotice-multiple-languages' => 'useita ($1)',
-	'centralnotice-multiple-countries' => 'useita ($1)',
-	'centralnotice-all-projects' => 'Kaikki projektit',
 	'centralnotice-translations' => 'Käännökset',
 	'centralnotice-translate-to' => 'Käännös:',
 	'centralnotice-translate' => 'Käännä',
@@ -5474,8 +5470,8 @@ Ei poisteta.',
 	'centralnotice-hours' => 'Tunti',
 	'centralnotice-min' => 'Minuutti',
 	'centralnotice-project-lang' => 'Projektin kieli',
-	'centralnotice-select' => 'Valitse: $1',
-	'centralnotice-top-ten-languages' => '10 käytetyintä kieltä',
+	'centralnotice-select-all' => 'Valitse kaikki',
+	'centralnotice-remove-all' => 'Poista kaikki',
 	'centralnotice-project-name' => 'Projektin nimi',
 	'centralnotice-start-date' => 'Alkamispäivä',
 	'centralnotice-start-time' => 'Alkamisaika (UTC)',
@@ -7359,6 +7355,8 @@ Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
 	'centralnotice-buckets' => 'Wužiwarska wokolina',
 	'centralnotice-bucket' => 'Wokolina',
 	'centralnotice-bucket-letter' => 'wokolina "$1"',
+	'centralnotice-all' => 'Wšě',
+	'centralnotice-all-except' => 'Wšě nimo $1',
 );
 
 /** Hungarian (magyar)
@@ -8775,10 +8773,6 @@ $messages['ka'] = array(
 	'centralnotice-add-template' => 'დაამატეთ თარგი',
 	'centralnotice-show-notices' => 'შეტყობინებების ჩვენება',
 	'centralnotice-list-templates' => 'თარგების სია',
-	'centralnotice-multiple-projects' => 'მრავალი ($1)',
-	'centralnotice-multiple-languages' => 'მრავალი ($1)',
-	'centralnotice-multiple-countries' => 'რამდენიმე ($1)',
-	'centralnotice-all-projects' => 'ყველა პროექტი',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'თარგმანები',
 	'centralnotice-translate-to' => 'გადათარგმნა',
@@ -8811,8 +8805,9 @@ $messages['ka'] = array(
 	'centralnotice-hours' => 'საათი',
 	'centralnotice-min' => 'წუთი',
 	'centralnotice-project-lang' => 'პროექტის ენა',
-	'centralnotice-select' => 'აირჩიეთ: $1',
-	'centralnotice-top-ten-languages' => 'საუკეთესო 10 ენა',
+	'centralnotice-select-all' => 'ყველას არჩევა',
+	'centralnotice-remove-all' => 'ყველას წაშლა',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|ობიექტი|ობიექტი}} არჩეულია',
 	'centralnotice-project-name' => 'პროექტის სახელი',
 	'centralnotice-start-date' => 'დაწყების თარიღი',
 	'centralnotice-start-time' => 'დაწყების დრო (UTC)',
@@ -8918,6 +8913,8 @@ $messages['ka'] = array(
 	'centralnotice-priority-high' => 'მაღალი',
 	'centralnotice-priority-emergency' => 'საგანგებო',
 	'centralnotice-prioritylangs' => 'პრიორიტეტული ენები',
+	'centralnotice-prioritylangs-explain' => 'ენის პრიორიტეტულად მონიშვნა მთარგმნელებს მიუთითებს თავდაპირველად ამ ენების გადათარგმნაზე.',
+	'centralnotice-aggregate-group-desc' => 'ამ ჯგუფის ყველა შეტყობინება ჩართულია ცენტრალური შეტყობინების ბანერებში.',
 	'centralnotice-country-eu' => 'უცნობი/ევროკავშირის რეგიონი',
 	'centralnotice-country-ap' => 'უცნობი/აზია-წყნარი ოკეანის რეგიონი',
 	'centralnotice-country-a1' => 'უცნობი/ანონიმური პროქსი',
@@ -8927,6 +8924,8 @@ $messages['ka'] = array(
 	'centralnotice-buckets' => 'მომხმარებლის გარემო',
 	'centralnotice-bucket' => 'გარემო',
 	'centralnotice-bucket-letter' => 'გარემო „$1“',
+	'centralnotice-all' => 'ყველა',
+	'centralnotice-all-except' => 'ყველა, გარდა $1',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -18222,6 +18221,7 @@ Ei ližakoi.",
 );
 
 /** Vietnamese (Tiếng Việt)
+ * @author Cheers!
  * @author Minh Nguyen
  * @author Vinhtantran
  * @author පසිඳු කාවින්ද
@@ -18255,10 +18255,6 @@ $messages['vi'] = array(
 	'centralnotice-add-template' => 'Thêm bảng',
 	'centralnotice-show-notices' => 'Xem các thông báo',
 	'centralnotice-list-templates' => 'Liệt kê các bảng',
-	'centralnotice-multiple-projects' => 'đa ngữ ($1)',
-	'centralnotice-multiple-languages' => 'đa ngữ ($1)',
-	'centralnotice-multiple-countries' => 'Đa quốc gia ($1)',
-	'centralnotice-all-projects' => 'Tất cả các dự án',
 	'centralnotice-language-listing' => '$1 – $2',
 	'centralnotice-translations' => 'Bản dịch',
 	'centralnotice-translate-to' => 'Dịch ra',
@@ -18400,6 +18396,8 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-buckets' => 'Sắp xếp người dùng theo nhóm',
 	'centralnotice-bucket' => 'Nhóm',
 	'centralnotice-bucket-letter' => 'Nhóm “$1”',
+	'centralnotice-all' => 'Tất cả',
+	'centralnotice-all-except' => 'Tất cả ngoại trừ $1',
 );
 
 /** Volapük (Volapük)
@@ -18704,10 +18702,6 @@ $messages['zh-hans'] = array(
 	'centralnotice-add-template' => '添加一个模板',
 	'centralnotice-show-notices' => '显示通告',
 	'centralnotice-list-templates' => '列出模板',
-	'centralnotice-multiple-projects' => '较多($1)',
-	'centralnotice-multiple-languages' => '较多($1)',
-	'centralnotice-multiple-countries' => '多条（$1）',
-	'centralnotice-all-projects' => '所有项目',
 	'centralnotice-translations' => '翻译',
 	'centralnotice-translate-to' => '翻译到',
 	'centralnotice-translate' => '翻译',
@@ -18740,8 +18734,6 @@ $messages['zh-hans'] = array(
 	'centralnotice-hours' => '时',
 	'centralnotice-min' => '分',
 	'centralnotice-project-lang' => '计划语言',
-	'centralnotice-select' => '选定：$1',
-	'centralnotice-top-ten-languages' => '语言TOP10',
 	'centralnotice-project-name' => '计划名称',
 	'centralnotice-start-date' => '开始日期',
 	'centralnotice-start-time' => '开始时间（UTC）',
@@ -18859,6 +18851,8 @@ $messages['zh-hans'] = array(
 	'centralnotice-buckets' => '用户群',
 	'centralnotice-bucket' => '群组',
 	'centralnotice-bucket-letter' => '群组“$1”',
+	'centralnotice-all' => '所有',
+	'centralnotice-all-except' => '所有，除了$1',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
