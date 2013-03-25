@@ -24,7 +24,7 @@ class CNDatabasePatcher {
 			$updater->addExtensionUpdate(
 				array(
 					 'addTable', 'cn_notices',
-					 $base . '../CentralNotice.sql', true
+					 $base . '/../CentralNotice.sql', true
 				)
 			);
 			$updater->addExtensionUpdate(
