@@ -99,6 +99,13 @@ class CNDatabasePatcher {
 					 $base . '/patch-centralnotice-2_3.sql', true
 				)
 			);
+		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
+			$updater->addExtensionUpdate(
+				array(
+					'addTable', 'cn_notices',
+					$base . '/CentralNotice.sql', true
+				)
+			);
 		}
 		return true;
 	}

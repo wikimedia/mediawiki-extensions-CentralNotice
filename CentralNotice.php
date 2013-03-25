@@ -267,7 +267,6 @@ function efCentralNoticeSetup() {
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
 	// Register hooks
-	$wgHooks[ 'LoadExtensionSchemaUpdates' ][ ] = 'efCentralNoticeSchema';
 	$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
@@ -344,93 +343,6 @@ $wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
 
 	return true;
 };
-
-/**
- * LoadExtensionSchemaUpdates hook handler
- * This function makes sure that the database schema is up to date.
- *
- * @param $updater DatabaseUpdater|null
- * @return bool
- */
-function efCentralNoticeSchema( $updater = null ) {
-	$base = __DIR__;
-
-	if ( $updater->getDB()->getType() == 'mysql' ) {
-		$updater->addExtensionUpdate(
-			array(
-				'addTable', 'cn_notices',
-				$base . '/CentralNotice.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addField', 'cn_notices', 'not_preferred',
-				$base . '/patches/patch-notice_preferred.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addTable', 'cn_notice_languages',
-				$base . '/patches/patch-notice_languages.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addField', 'cn_templates', 'tmp_display_anon',
-				$base . '/patches/patch-template_settings.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addField', 'cn_templates', 'tmp_fundraising',
-				$base . '/patches/patch-template_fundraising.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addTable', 'cn_notice_countries',
-				$base . '/patches/patch-notice_countries.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addTable', 'cn_notice_projects',
-				$base . '/patches/patch-notice_projects.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addTable', 'cn_notice_log',
-				$base . '/patches/patch-notice_log.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addTable', 'cn_template_log',
-				$base . '/patches/patch-template_log.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addField', 'cn_templates', 'tmp_autolink',
-				$base . '/patches/patch-template_autolink.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addField', 'cn_template_log', 'tmplog_begin_prioritylangs',
-				$base . '/patches/patch-prioritylangs.sql', true
-			)
-		);
-		$updater->addExtensionUpdate(
-			array(
-				'addField', 'cn_notices', 'not_buckets',
-				$base . '/patches/patch-bucketing.sql', true
-			)
-		);
-	}
-	return true;
-}
 
 /**
  * BeforePageDisplay hook handler
