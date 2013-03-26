@@ -12,6 +12,9 @@
 	}
 
 	mw.centralNotice = {
+		// Used in initialize() to prevent it from running more than once
+		alreadyRan: false,
+		
 		/** -- Central Notice Required Data -- **/
 		data: {
 			getVars: {},
@@ -105,6 +108,11 @@
 			}
 		},
 		initialize: function () {
+			if ( mw.centralNotice.alreadyRan ) {
+				return;
+			}
+			mw.centralNotice.alreadyRan = true;
+			
 			// Prevent loading banners on Special pages
 			if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
 				return;
