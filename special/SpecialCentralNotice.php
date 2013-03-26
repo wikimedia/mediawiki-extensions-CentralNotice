@@ -364,6 +364,7 @@ class CentralNotice extends SpecialPage {
 				'not_end',
 				'not_enabled',
 				'not_preferred',
+				'not_geo',
 				'not_locked'
 			),
 			null,
@@ -398,6 +399,7 @@ class CentralNotice extends SpecialPage {
 				$this->msg( 'centralnotice-notice-name' )->escaped(),
 				$this->msg( 'centralnotice-projects' )->escaped(),
 				$this->msg( 'centralnotice-languages' )->escaped(),
+				$this->msg( 'centralnotice-countries' )->escaped(),
 				$this->msg( 'centralnotice-start-date' )->escaped(),
 				$this->msg( 'centralnotice-end-date' )->escaped(),
 				$this->msg( 'centralnotice-enabled' )->escaped(),
@@ -435,6 +437,15 @@ class CentralNotice extends SpecialPage {
 				$project_langs = Campaign::getNoticeLanguages( $row->not_name );
 				$languageList = $this->listLanguages( $project_langs );
 				$rowCells .= Html::rawElement( 'td', array(), $languageList );
+
+				// Countries
+				if ( $row->not_geo ) {
+					$project_countries = Campaign::getNoticeCountries( $row->not_name );
+				} else {
+					$project_countries = array_keys( GeoTarget::getCountriesList( 'en' ) );
+				}
+				$countryList = $this->listCountries( $project_countries );
+				$rowCells .= Html::rawElement( 'td', array(), $countryList );
 
 				// Date and time calculations
 				$start_timestamp = wfTimestamp( TS_MW, $row->not_start );
