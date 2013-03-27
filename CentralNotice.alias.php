@@ -321,6 +321,7 @@ $specialPageAliases['vi'] = array(
 	'CentralNotice' => array( 'Thông_báo_chung' ),
 	'CentralNoticeLogs' => array( 'Nhật_trình_thông_báo_chung' ),
 	'NoticeTemplate' => array( 'Bản_mẫu_thông_báo' ),
+	'GlobalAllocation' => array( 'Phân_phối_toàn_cục' ),
 	'BannerAllocation' => array( 'Phân_bố_bảng' ),
 	'BannerController' => array( 'Điều_khiển_bảng' ),
 	'BannerListLoader' => array( 'Tải_danh_sách_bảng' ),

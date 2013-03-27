@@ -230,7 +230,9 @@ $messages['qqq'] = array(
 {{Identical|Central notice admin}}',
 	'bannerallocation' => 'Title of Special:BannerAllocation page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)
 {{Identical|Central notice admin}}',
-	'globalallocation' => 'Title of Special:GlobalAllocation page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)
+	'globalallocation' => '{{doc-special|GlobalAllocation|unlisted=1}}
+This should be identical to {{msg-mw|centralnotice}}.
+(Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)
 {{Identical|Central notice admin}}',
 	'centralnoticelogs' => 'Title of Special:CentralNoticeLogs page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-logs.)
 {{Identical|Central notice admin}}',
@@ -240,6 +242,8 @@ $messages['qqq'] = array(
 {{desc|name=Central Notice|url=http://www.mediawiki.org/wiki/Extension:CentralNotice}}',
 	'centralnotice-summary' => 'Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]',
 	'centralnotice-end-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
+
+Used as table column header and follows {{msg-mw|Centralnotice-start-date}}.
 {{Identical|End date}}',
 	'centralnotice-enabled' => 'Refers to campaign.
 
@@ -303,6 +307,9 @@ The other headers are:
 	'centralnotice-project-name' => '{{Identical|Project name}}',
 	'centralnotice-start-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
 
+Used as table column header and followed by {{msg-mw|Centralnotice-start-time}}.
+
+But also used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}} (<code>$2</code> is time and date).
 {{Identical|Start date}}',
 	'centralnotice-start-time' => 'Used in Special:CentralNotice. UTC is "[[w:Coordinated_Universal_Time|Coordinated Universal Time]]"',
 	'centralnotice-end-time' => 'Used in Special:CentralNotice. UTC is "[[w:Coordinated_Universal_Time|Coordinated Universal Time]]"',
@@ -452,7 +459,8 @@ Related messages:
 * $1 - a comma-separated list of included elements
 * $2 - a comma-separated list of excluded elements',
 	'centralnotice-user-role' => 'Label for a logged-in / anonymous user column',
-	'centralnotice-user-role-anonymous' => 'Label for the anonymous user role',
+	'centralnotice-user-role-anonymous' => 'Label for the anonymous user role.
+{{Identical|Anonymous}}',
 	'centralnotice-user-role-logged-in' => 'Label for the logged-in user role',
 );
 
@@ -2139,7 +2147,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-projects' => 'Праекты',
 	'centralnotice-country' => 'Краіна',
 	'centralnotice-no-allocation' => 'Няма разьмешчаных банэраў.',
-	'centralnotice-allocation-description' => 'Разьмяшчэньне банэра для $1.$2 у $3:',
+	'centralnotice-allocation-description' => 'Разьмяшчэньне банэра для $1.$2 у $3:', # Fuzzy
 	'centralnotice-percentage' => 'Адсоткаў',
 	'centralnotice-documentwrite-error' => 'document.write() не магчыма выкарыстоўваць у банэре.
 Падрабязнасьці глядзіце на http://meta.wikimedia.org/wiki/Help:CentralNotice.',
@@ -3680,7 +3688,7 @@ Tilføj en nedenfor.',
 	'centralnotice-projects' => 'Projekter',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Ingen bannere tildelt.',
-	'centralnotice-allocation-description' => 'Bannertildeling for  $1 . $2  i  $3 :',
+	'centralnotice-allocation-description' => 'Bannertildeling for  $1 . $2  i  $3 :', # Fuzzy
 	'centralnotice-percentage' => 'Procentdel',
 	'centralnotice-documentwrite-error' => 'Document.write() kan ikke bruges i et banner.
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.',
@@ -3752,6 +3760,7 @@ $messages['de'] = array(
 	'centralnotice' => 'Verwaltung zentraler Meldungen',
 	'noticetemplate' => 'Verwaltung zentraler Meldungen',
 	'bannerallocation' => 'Verwaltung zentraler Meldungen',
+	'globalallocation' => 'Verwaltung zentraler Meldungen',
 	'centralnoticelogs' => 'Verwaltung zentraler Meldungen',
 	'right-centralnotice-admin' => 'Zentrale Meldungen verwalten',
 	'action-centralnotice-admin' => 'zentrale Meldungen verwalten',
@@ -3868,6 +3877,7 @@ Füge eine hinzu.',
 	'centralnotice-banner-landing-pages' => 'Zielseiten (durch Kommata getrennt):',
 	'centralnotice-geo' => 'Geo-anvisiert',
 	'centralnotice-countries' => 'Staaten',
+	'centralnotice-global-allocation' => 'Globale Zuteilung',
 	'centralnotice-allocation' => 'Anordnung',
 	'centralnotice-view-allocation' => 'Anordnung der Vorlagen ansehen',
 	'centralnotice-allocation-instructions' => 'Die Ausgabeumgebung für die Ansicht der Vorlagenanordnung auswählen:',
@@ -3876,7 +3886,7 @@ Füge eine hinzu.',
 	'centralnotice-projects' => 'Projekte',
 	'centralnotice-country' => 'Staat',
 	'centralnotice-no-allocation' => 'Es wurden keine Vorlagen angeordnet.',
-	'centralnotice-allocation-description' => 'Vorlagenanordnung für $1.$2 in $3:',
+	'centralnotice-allocation-description' => 'Vorlagenanordnung für Sprache: $1, Projekt: $2, in Staat: $3:',
 	'centralnotice-percentage' => 'Prozentsatz',
 	'centralnotice-documentwrite-error' => 'document.write() kann nicht innerhalb eines Banners verwendet werden.
 Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.',
@@ -3931,6 +3941,10 @@ Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.
 	'centralnotice-bucket-letter' => 'Umgebung „$1“',
 	'centralnotice-all' => 'Alle',
 	'centralnotice-all-except' => 'Alle außer $1',
+	'centralnotice-excluding-list' => '$1 (ausschließlich $2)',
+	'centralnotice-user-role' => 'Benutzerrolle',
+	'centralnotice-user-role-anonymous' => 'Anonym',
+	'centralnotice-user-role-logged-in' => 'Angemeldet',
 );
 
 /** Swiss High German (Schweizer Hochdeutsch)
@@ -4064,7 +4078,7 @@ Yew de bike',
 	'centralnotice-translate-button' => 'Greyê açarnayışi rê peşti bıdê',
 	'centralnotice-donate-button' => 'Butona bêc',
 	'centralnotice-banner-display' => 'Bımocne:',
-	'centralnotice-banner-anonymous' => 'Karbero anonim',
+	'centralnotice-banner-anonymous' => 'Karberê bênamey',
 	'centralnotice-banner-logged-in' => 'Karberê ke deqewte miyan',
 	'centralnotice-banner-type' => 'Babeta afişer:',
 	'centralnotice-banner-hidable' => 'Statik/Nımıtayış',
@@ -4083,7 +4097,7 @@ Yew de bike',
 	'centralnotice-projects' => 'Procey',
 	'centralnotice-country' => 'Dewlet',
 	'centralnotice-no-allocation' => 'Hêç afiş nêabıryayo.',
-	'centralnotice-allocation-description' => 'Qandê $1 tahsisê afişan. $2 $3 de:',
+	'centralnotice-allocation-description' => 'Qandê $1 tahsisê afişan. $2 $3 de:', # Fuzzy
 	'centralnotice-percentage' => 'Sera',
 	'centralnotice-documentwrite-error' => 'document.write() afiş miyan dı nêkarêno.
 Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
@@ -4269,7 +4283,7 @@ Pśidaj jadnu.',
 	'centralnotice-projects' => 'Projekty',
 	'centralnotice-country' => 'Kraj',
 	'centralnotice-no-allocation' => 'Žedne banarje zrědowane.',
-	'centralnotice-allocation-description' => 'Zrědowanje banarja za $1.$2 w $3',
+	'centralnotice-allocation-description' => 'Zrědowanje banarja za $1.$2 w $3', # Fuzzy
 	'centralnotice-percentage' => 'Procentowa sajźba',
 	'centralnotice-documentwrite-error' => 'document.write() njedajo se w banarju wužywaś.
 Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.',
@@ -5059,7 +5073,7 @@ Lisa allpool üks.',
 	'centralnotice-projects' => 'Projektid',
 	'centralnotice-country' => 'Riik',
 	'centralnotice-no-allocation' => 'Ühtegi malli pole üles seatud.',
-	'centralnotice-allocation-description' => 'Üles seatud mallid maal koodiga $3 ja saidil $1.$2.',
+	'centralnotice-allocation-description' => 'Üles seatud mallid maal koodiga $3 ja saidil $1.$2.', # Fuzzy
 	'centralnotice-percentage' => 'Protsent',
 	'centralnotice-documentwrite-error' => 'document.write()-i ei saa mallis kasutada.
 Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
@@ -5550,7 +5564,7 @@ Lisää alapuolella sellainen',
 	'centralnotice-projects' => 'Projektit',
 	'centralnotice-country' => 'Maa',
 	'centralnotice-no-allocation' => 'Ei kohdistettuja bannereita.',
-	'centralnotice-allocation-description' => 'Bannerin kohdistus $1.$2 maassa $3:',
+	'centralnotice-allocation-description' => 'Bannerin kohdistus $1.$2 maassa $3:', # Fuzzy
 	'centralnotice-percentage' => 'Prosenttiosuus',
 	'centralnotice-documentwrite-error' => 'document.write() -komentoa ei voi käyttää bannerin sisällä.
 Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
@@ -5713,6 +5727,7 @@ $messages['fr'] = array(
 	'centralnotice' => 'Administration des avis centraux',
 	'noticetemplate' => 'Administration des avis centraux',
 	'bannerallocation' => 'Administration des avis centraux',
+	'globalallocation' => 'Administration centralisée des avertissements',
 	'centralnoticelogs' => 'Administrateur des avis centraux',
 	'right-centralnotice-admin' => 'Gérer les avis centraux',
 	'action-centralnotice-admin' => 'gérer les avis centraux',
@@ -5721,7 +5736,7 @@ $messages['fr'] = array(
 Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus anciens.',
 	'centralnotice-query' => 'Modifier les avis actuels',
 	'centralnotice-notice-name' => 'Nom de l’avis',
-	'centralnotice-end-date' => 'Date de fin', # Fuzzy
+	'centralnotice-end-date' => 'Date de fin (UTC)',
 	'centralnotice-enabled' => 'Activé',
 	'centralnotice-modify' => 'Soumettre',
 	'centralnotice-view' => 'Voir',
@@ -5775,7 +5790,7 @@ Il n’a pas été supprimé.',
 	'centralnotice-remove-all' => 'Supprimer tout',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|élément sélectionné|éléments sélectionnés}}',
 	'centralnotice-project-name' => 'Nom du projet',
-	'centralnotice-start-date' => 'Date de début', # Fuzzy
+	'centralnotice-start-date' => 'Date de début (UTC)',
 	'centralnotice-start-time' => 'Heure de début (UTC)',
 	'centralnotice-end-time' => 'Date de fin (UTC)',
 	'centralnotice-assigned-templates' => 'Modèles assignés',
@@ -5829,6 +5844,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-banner-landing-pages' => 'Pages de destination (séparées par des virgules):',
 	'centralnotice-geo' => 'Géolocalisé',
 	'centralnotice-countries' => 'Pays',
+	'centralnotice-global-allocation' => 'Allocation globale',
 	'centralnotice-allocation' => 'Allocation',
 	'centralnotice-view-allocation' => 'Voir la disposition de bannière',
 	'centralnotice-allocation-instructions' => 'Choisissez l’environnement pour lequel vous souhaitez afficher la disposition de bannière :',
@@ -5837,7 +5853,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-projects' => 'Projets',
 	'centralnotice-country' => 'Pays',
 	'centralnotice-no-allocation' => 'Pas de bannières disposées.',
-	'centralnotice-allocation-description' => 'Disposition de bannière pour $1.$2 en $3 :',
+	'centralnotice-allocation-description' => 'Disposition de bannière pour la langue: $1, projet: $2, dans le pays: $3:',
 	'centralnotice-percentage' => 'Pourcentage',
 	'centralnotice-documentwrite-error' => 'document.write() ne peut pas être utilisé dans une bannière.
 Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d’informations.',
@@ -5892,6 +5908,10 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-bucket-letter' => 'Godet "$1"',
 	'centralnotice-all' => 'Tous',
 	'centralnotice-all-except' => 'Tous sauf $1',
+	'centralnotice-excluding-list' => '$1 (à l’exclusion de $2)',
+	'centralnotice-user-role' => 'Rôle de l’utilisateur',
+	'centralnotice-user-role-anonymous' => 'Anonyme',
+	'centralnotice-user-role-logged-in' => 'Connecté',
 );
 
 /** Franco-Provençal (arpetan)
@@ -6223,7 +6243,7 @@ Engada algún embaixo',
 	'centralnotice-projects' => 'Proxectos',
 	'centralnotice-country' => 'País',
 	'centralnotice-no-allocation' => 'Non hai asignación de modelos.',
-	'centralnotice-allocation-description' => 'Asignación de modelos de $1.$2 en $3:',
+	'centralnotice-allocation-description' => 'Asignación de modelos de $1.$2 en $3:', # Fuzzy
 	'centralnotice-percentage' => 'Porcentaxe',
 	'centralnotice-documentwrite-error' => 'document.write() non se pode empregar nos carteis.
 Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis información.',
@@ -6681,6 +6701,7 @@ $messages['he'] = array(
 	'centralnotice' => 'ניהול ההודעה המרכזית',
 	'noticetemplate' => 'ניהול ההודעה המרכזית',
 	'bannerallocation' => 'ניהול ההודעה המרכזית',
+	'globalallocation' => 'ניהול ההודעה המרכזית',
 	'centralnoticelogs' => 'ניהול ההודעה המרכזית',
 	'right-centralnotice-admin' => 'ניהול הודעות מרכזיות',
 	'action-centralnotice-admin' => 'לנהל הודעות מרכזיות',
@@ -6689,7 +6710,7 @@ $messages['he'] = array(
 ניתן להשתמש בו גם כדי להוסיף ולהסיר הודעות ישנות.',
 	'centralnotice-query' => 'שינוי מסעות הפרסום הקיימים',
 	'centralnotice-notice-name' => 'שם מסע הפרסום',
-	'centralnotice-end-date' => 'תאריך סיום',
+	'centralnotice-end-date' => 'תאריך סיום', # Fuzzy
 	'centralnotice-enabled' => 'מופעל',
 	'centralnotice-modify' => 'שליחה',
 	'centralnotice-view' => 'הצגה',
@@ -6743,7 +6764,7 @@ $messages['he'] = array(
 	'centralnotice-remove-all' => 'הסר הכל',
 	'centralnotice-items-selected' => '{{PLURAL:$1|נבחר פריט אחד|$1 פריטים נבחרו}}',
 	'centralnotice-project-name' => 'שם המיזם',
-	'centralnotice-start-date' => 'תאריך ההתחלה',
+	'centralnotice-start-date' => 'תאריך ההתחלה', # Fuzzy
 	'centralnotice-start-time' => 'שעת ההתחלה (UTC)',
 	'centralnotice-end-time' => 'זמן הסיום (UTC)',
 	'centralnotice-assigned-templates' => 'כרזות משויכות',
@@ -6805,7 +6826,7 @@ $messages['he'] = array(
 	'centralnotice-projects' => 'מיזמים',
 	'centralnotice-country' => 'ארץ',
 	'centralnotice-no-allocation' => 'לא הוקצו כרזות.',
-	'centralnotice-allocation-description' => 'הקצאת כזרות עבור $1.$2 במדינה $3:',
+	'centralnotice-allocation-description' => 'הקצאת כזרות עבור $1.$2 במדינה $3:', # Fuzzy
 	'centralnotice-percentage' => 'אחוזים',
 	'centralnotice-documentwrite-error' => "לא ניתן להשתמש ב־document.write()‎ בתוך כרזה.
 ר' http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.",
@@ -7317,7 +7338,7 @@ Přidaj někajku',
 	'centralnotice-projects' => 'Projekty',
 	'centralnotice-country' => 'Kraj',
 	'centralnotice-no-allocation' => 'Žane chorhoje přidźělene',
-	'centralnotice-allocation-description' => 'Přidźělenje chorhoje za $1.$2 w $3:',
+	'centralnotice-allocation-description' => 'Přidźělenje chorhoje za $1.$2 w $3:', # Fuzzy
 	'centralnotice-percentage' => 'Procentowa sadźba',
 	'centralnotice-documentwrite-error' => 'document.write() njeda so znutřka chorhoje wužiwać.
 Hlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.',
@@ -8321,7 +8342,7 @@ Non aggiorno',
 	'centralnotice-projects' => 'Progetti',
 	'centralnotice-country' => 'Nazione',
 	'centralnotice-no-allocation' => 'Nessun banner assegnato.',
-	'centralnotice-allocation-description' => 'Destinazione dei banner per $1.$2 con codice $3:',
+	'centralnotice-allocation-description' => 'Destinazione dei banner per $1.$2 con codice $3:', # Fuzzy
 	'centralnotice-percentage' => 'Percentuale',
 	'centralnotice-documentwrite-error' => 'Non è possibile usare document.write() dentro un banner.
 Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.',
@@ -8392,6 +8413,7 @@ $messages['ja'] = array(
 	'centralnotice' => '中央管理通知の管理',
 	'noticetemplate' => '中央管理通知の管理',
 	'bannerallocation' => '中央管理通知の管理',
+	'globalallocation' => '中央管理通知の管理',
 	'centralnoticelogs' => '中央管理通知の管理',
 	'right-centralnotice-admin' => '中央管理通知を管理',
 	'action-centralnotice-admin' => '中央管理通知の管理',
@@ -8400,7 +8422,7 @@ $messages['ja'] = array(
 通知の追加や、古い通知の除去もできます。',
 	'centralnotice-query' => '現在の告知を変更',
 	'centralnotice-notice-name' => '告知名',
-	'centralnotice-end-date' => '終了日', # Fuzzy
+	'centralnotice-end-date' => '終了日 (UTC)',
 	'centralnotice-enabled' => '有効',
 	'centralnotice-modify' => '送信',
 	'centralnotice-view' => '表示',
@@ -8451,7 +8473,7 @@ $messages['ja'] = array(
 	'centralnotice-remove-all' => 'すべて除去',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|項目}}を選択しています',
 	'centralnotice-project-name' => 'プロジェクト名',
-	'centralnotice-start-date' => '開始日', # Fuzzy
+	'centralnotice-start-date' => '開始日 (UTC)',
 	'centralnotice-start-time' => '開始時刻 (UTC)',
 	'centralnotice-end-time' => '終了時刻 (UTC)',
 	'centralnotice-assigned-templates' => '割り当てられたテンプレート',
@@ -8508,7 +8530,7 @@ $messages['ja'] = array(
 	'centralnotice-projects' => 'プロジェクト',
 	'centralnotice-country' => '国',
 	'centralnotice-no-allocation' => 'テンプレートが割り当てられていません。',
-	'centralnotice-allocation-description' => '$3 での $1.$2 へのテンプレートの割り当て:',
+	'centralnotice-allocation-description' => '国 $3 での言語 $1 版のプロジェクト $2 へのテンプレートの割り当て:',
 	'centralnotice-percentage' => '割合',
 	'centralnotice-documentwrite-error' => 'テンプレート内では document.write() は使用できません。
 詳細は http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。',
@@ -8565,6 +8587,9 @@ $messages['ja'] = array(
 	'centralnotice-bucket-letter' => 'バケツ「$1」',
 	'centralnotice-all' => 'すべて',
 	'centralnotice-all-except' => '以下を除くすべて: $1',
+	'centralnotice-excluding-list' => '$1 ($2 を除く)',
+	'centralnotice-user-role-anonymous' => '匿名',
+	'centralnotice-user-role-logged-in' => 'ログイン済み',
 );
 
 /** Jutish (jysk)
@@ -8762,6 +8787,7 @@ $messages['ka'] = array(
 	'centralnotice' => 'ცენტრალური შეტყობინების ადმინი',
 	'noticetemplate' => 'ცენტრალური შეტყობინების ადმინი',
 	'bannerallocation' => 'ცენტრალური შეტყობინების ადმინი',
+	'globalallocation' => 'ცენტრალური შეტყობინების ადმინი',
 	'centralnoticelogs' => 'ცენტრალური შეტყობინების ადმინი',
 	'right-centralnotice-admin' => 'ცენტრალური შეტყობინებების მართვა',
 	'action-centralnotice-admin' => 'ცენტრალური შეტყობინებების მართვა',
@@ -8770,7 +8796,7 @@ $messages['ka'] = array(
 ის აგრეთვე შეიძლება გამოყენებულ იქნას ახალი შეტყობინებების დამატებისა და ძველების წასაშლელად.',
 	'centralnotice-query' => 'მოქმედი შეტყობინების შეცვლა',
 	'centralnotice-notice-name' => 'შეტყობინების სახელი',
-	'centralnotice-end-date' => 'დასრულების თარიღი', # Fuzzy
+	'centralnotice-end-date' => 'დასრულების თარიღი (UTC)',
 	'centralnotice-enabled' => 'ჩართულია',
 	'centralnotice-modify' => 'გაგზავნა',
 	'centralnotice-view' => 'ჩვენება',
@@ -8824,7 +8850,7 @@ $messages['ka'] = array(
 	'centralnotice-remove-all' => 'ყველას წაშლა',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|ობიექტი|ობიექტი}} არჩეულია',
 	'centralnotice-project-name' => 'პროექტის სახელი',
-	'centralnotice-start-date' => 'დაწყების თარიღი', # Fuzzy
+	'centralnotice-start-date' => 'დაწყების თარიღი (UTC)',
 	'centralnotice-start-time' => 'დაწყების დრო (UTC)',
 	'centralnotice-end-time' => 'დასრულების დრო (UTC)',
 	'centralnotice-assigned-templates' => 'დანიშნული ბანერები',
@@ -8876,6 +8902,7 @@ $messages['ka'] = array(
 	'centralnotice-banner-landing-pages' => 'მიზნობრივი გვერდები (მძიმით გამოყოფილი):',
 	'centralnotice-geo' => 'გეო-მიზნობრივი',
 	'centralnotice-countries' => 'ქვეყნები',
+	'centralnotice-global-allocation' => 'გლობალური გადანაწილება',
 	'centralnotice-allocation' => 'განაწილება',
 	'centralnotice-view-allocation' => 'თარგების განაწილების ხილვა',
 	'centralnotice-allocation-instructions' => 'აირჩიეთ გარემო, რომლისთვისაც გსურთ ბანერების გათავსების ხილვა:',
@@ -8884,7 +8911,7 @@ $messages['ka'] = array(
 	'centralnotice-projects' => 'პროექტები',
 	'centralnotice-country' => 'ქვეყანა',
 	'centralnotice-no-allocation' => 'ბანერები არ განაწილდა.',
-	'centralnotice-allocation-description' => 'ბანერთა განაწილება $1.$2-თვის $3–ში:',
+	'centralnotice-allocation-description' => 'ბანერთა განაწილება ენისათვის: $1, პროექტი: $2, ქვეყანაში: $3:',
 	'centralnotice-percentage' => 'პროცენტი',
 	'centralnotice-documentwrite-error' => 'document.write() არ შეიძლება გამოყენებული იქნას ბანერის შიგნით.
 იხილეთ http://meta.wikimedia.org/wiki/Help:CentralNotice მეტი ინფორმაციისათვის.',
@@ -8941,6 +8968,9 @@ $messages['ka'] = array(
 	'centralnotice-bucket-letter' => 'გარემო „$1“',
 	'centralnotice-all' => 'ყველა',
 	'centralnotice-all-except' => 'ყველა, გარდა $1',
+	'centralnotice-excluding-list' => '$1 ($2 გარდა)',
+	'centralnotice-user-role' => 'მომხმარებლის როლი',
+	'centralnotice-user-role-anonymous' => 'ანონიმური',
 );
 
 /** Khmer (ភាសាខ្មែរ)
@@ -9193,7 +9223,7 @@ $messages['ko'] = array(
 	'centralnotice-projects' => '프로젝트',
 	'centralnotice-country' => '국가',
 	'centralnotice-no-allocation' => '배너가 배당되지 않았습니다.',
-	'centralnotice-allocation-description' => '$3에서 $1.$2에 배당된 배너',
+	'centralnotice-allocation-description' => '$3에서 $1.$2에 배당된 배너', # Fuzzy
 	'centralnotice-percentage' => '백분율',
 	'centralnotice-documentwrite-error' => '배너에 document.write() 메서드는 사용할 수 없습니다.
 자세한 내용에 대해서는 [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice]를 참조하십시오.',
@@ -10287,9 +10317,10 @@ Tsy nifafàna ilay izy',
  * @author Rancher
  */
 $messages['mk'] = array(
-	'centralnotice' => 'Администратор на централни известувања',
-	'noticetemplate' => 'Администратор на централни известувања',
-	'bannerallocation' => 'Администратор на централни известувања',
+	'centralnotice' => 'Администратор на централниот разглас',
+	'noticetemplate' => 'Администратор на централниот разглас',
+	'bannerallocation' => 'Администратор на централниот разглас',
+	'globalallocation' => 'Администратор на централниот разглас',
 	'centralnoticelogs' => 'Администратор на централни известувања',
 	'right-centralnotice-admin' => 'Раководење со централни известувања',
 	'action-centralnotice-admin' => 'раководење со централни известувања',
@@ -10406,6 +10437,7 @@ $messages['mk'] = array(
 	'centralnotice-banner-landing-pages' => 'Целни страници (одделени со запирки):',
 	'centralnotice-geo' => 'Геобележано',
 	'centralnotice-countries' => 'Земји',
+	'centralnotice-global-allocation' => 'Глобална распределба',
 	'centralnotice-allocation' => 'Распределба',
 	'centralnotice-view-allocation' => 'Преглед на распределбата на плакати',
 	'centralnotice-allocation-instructions' => 'Одберете во која околина сакате да ја погледате распределбата на плакати:',
@@ -10414,7 +10446,7 @@ $messages['mk'] = array(
 	'centralnotice-projects' => 'Проекти',
 	'centralnotice-country' => 'Земја',
 	'centralnotice-no-allocation' => 'Нема распределени плакати',
-	'centralnotice-allocation-description' => 'Распределба на плакати за $1.$2 во $3:',
+	'centralnotice-allocation-description' => 'Распределба на плакати за јазикот: $1, проект: $2, во земјата: $3:',
 	'centralnotice-percentage' => 'Постоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може да се користи во рамките на плаЗа повеќе информации, погледајте ја страницата http://meta.wikimedia.org/wiki/Help:CentralNotice',
 	'centralnotice-preferred' => 'Приоритет',
@@ -10468,6 +10500,10 @@ $messages['mk'] = array(
 	'centralnotice-bucket-letter' => 'Група „$1“',
 	'centralnotice-all' => 'Сите',
 	'centralnotice-all-except' => 'Сите освен $1',
+	'centralnotice-excluding-list' => '$1 (со исклучок на $2)',
+	'centralnotice-user-role' => 'Корисничка улога',
+	'centralnotice-user-role-anonymous' => 'Анонимен',
+	'centralnotice-user-role-logged-in' => 'Најавен',
 );
 
 /** Malayalam (മലയാളം)
@@ -10603,7 +10639,7 @@ $messages['ml'] = array(
 	'centralnotice-projects' => 'പദ്ധതികൾ',
 	'centralnotice-country' => 'രാജ്യം',
 	'centralnotice-no-allocation' => 'എഴുത്തുപട്ടകൾക്ക് ഇടയനുവദിച്ചിട്ടില്ല.',
-	'centralnotice-allocation-description' => '$1.$2 സംരംഭത്തിൽ അനുവദിച്ചിരിക്കുന്ന എഴുത്തുപട്ട (രാജ്യം: $3):',
+	'centralnotice-allocation-description' => '$1.$2 സംരംഭത്തിൽ അനുവദിച്ചിരിക്കുന്ന എഴുത്തുപട്ട (രാജ്യം: $3):', # Fuzzy
 	'centralnotice-percentage' => 'ശതമാനം',
 	'centralnotice-documentwrite-error' => 'എഴുത്തുപട്ടയിൽ document.write() ഉപയോഗിക്കാനാവില്ല.
 കൂടുതൽ വിവരങ്ങൾക്ക് http://meta.wikimedia.org/wiki/Help:CentralNotice കാണുക',
@@ -11432,6 +11468,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 );
 
 /** Low German (Plattdüütsch)
+ * @author Joachim Mos
  * @author Slomox
  */
 $messages['nds'] = array(
@@ -11444,9 +11481,10 @@ $messages['nds'] = array(
 Dat kann ok bruukt warrn, üm Sitenotices totofögen oder ruttonehmen.',
 	'centralnotice-query' => 'Aktuelle Sitenotice ännern',
 	'centralnotice-notice-name' => 'Naam',
-	'centralnotice-end-date' => 'Datum vun’t Enn',
+	'centralnotice-end-date' => 'Datum vun’t Enn', # Fuzzy
 	'centralnotice-enabled' => 'Aktiv',
 	'centralnotice-modify' => 'OK',
+	'centralnotice-view' => 'Ankieken',
 	'centralnotice-preview' => 'Vörschau',
 	'centralnotice-add-new' => 'Ne’e zentrale Sitenotice tofögen',
 	'centralnotice-remove' => 'Rutnehmen',
@@ -11482,7 +11520,7 @@ Nich rutnahmen.',
 	'centralnotice-min' => 'Minuut',
 	'centralnotice-project-lang' => 'Projektspraak',
 	'centralnotice-project-name' => 'Projektnaam',
-	'centralnotice-start-date' => 'Startdatum',
+	'centralnotice-start-date' => 'Startdatum', # Fuzzy
 	'centralnotice-start-time' => 'Starttied (UTC)',
 	'centralnotice-assigned-templates' => 'Towiest Vörlagen',
 	'centralnotice-no-templates' => 'Keen Vörlagen funnen.
@@ -11514,8 +11552,24 @@ Kannst ünnen een tofögen',
 	'centralnotice-message-not-set' => 'Naricht nich instellt',
 	'centralnotice-clone' => 'Koperen',
 	'centralnotice-clone-notice' => 'En Kopie vun de Vörlaag maken',
+	'centralnotice-clone-name' => 'Naam:',
 	'centralnotice-preview-all-template-translations' => 'All vörhannen Översetten vun en Vörlaag ankieken',
+	'centralnotice-close-title' => 'Sluten',
+	'centralnotice-countries' => 'Staaten',
+	'centralnotice-languages' => 'Spraken',
+	'centralnotice-language' => 'Spraak',
+	'centralnotice-projects' => 'Projekten',
+	'centralnotice-country' => 'Staat',
 	'centralnotice-preferred' => 'Vörtagen', # Fuzzy
+	'centralnotice-logs' => 'Logböker',
+	'centralnotice-user' => 'Bruker',
+	'centralnotice-action' => 'Akschoon',
+	'centralnotice-action-created' => 'Opstellt',
+	'centralnotice-action-modified' => 'Ännert',
+	'centralnotice-action-removed' => 'Rutnahmt',
+	'centralnotice-talk-link' => 'Diskuschoon',
+	'centralnotice-banner-content-changed' => 'Ännert',
+	'centralnotice-all' => 'All',
 );
 
 /** Nedersaksies (Nedersaksies)
@@ -11604,6 +11658,7 @@ $messages['nl'] = array(
 	'centralnotice' => 'Centrale sitenotice beheren',
 	'noticetemplate' => 'Centrale sitenotice beheren',
 	'bannerallocation' => 'Centrale sitenotice beheren',
+	'globalallocation' => 'Centralnoticebeheer',
 	'centralnoticelogs' => 'Centrale sitenotice beheren',
 	'right-centralnotice-admin' => 'Centrale sitenotices beheren',
 	'action-centralnotice-admin' => 'centrale sitenotices beheren',
@@ -11612,7 +11667,7 @@ $messages['nl'] = array(
 De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwijderen.',
 	'centralnotice-query' => 'Huidige sitenotices wijzigen',
 	'centralnotice-notice-name' => 'Sitenoticenaam',
-	'centralnotice-end-date' => 'Einddatum', # Fuzzy
+	'centralnotice-end-date' => 'Einddatum (UTC)',
 	'centralnotice-enabled' => 'Actief',
 	'centralnotice-modify' => 'Opslaan',
 	'centralnotice-view' => 'Bekijken',
@@ -11668,7 +11723,7 @@ Het wordt niet verwijderd.',
 	'centralnotice-remove-all' => 'Alle verwijderen',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|item|items}} geselecteerd',
 	'centralnotice-project-name' => 'Projectnaam',
-	'centralnotice-start-date' => 'Begindatum', # Fuzzy
+	'centralnotice-start-date' => 'Begindatum (UTC)',
 	'centralnotice-start-time' => 'Starttijd (UTC)',
 	'centralnotice-end-time' => 'Eindtijd (UTC)',
 	'centralnotice-assigned-templates' => 'Toegewezen sjablonen',
@@ -11721,6 +11776,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-banner-landing-pages' => "Landingspagina's (kommagescheiden):",
 	'centralnotice-geo' => 'Geografisch bepaald',
 	'centralnotice-countries' => 'Landen',
+	'centralnotice-global-allocation' => 'Globale toewijzing',
 	'centralnotice-allocation' => 'Toewijzing',
 	'centralnotice-view-allocation' => 'Bannertoewijzing bekijken',
 	'centralnotice-allocation-instructions' => 'Kies de omgeving waarvoor u de bannertoewijzing wilt bekijken:',
@@ -11729,7 +11785,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-projects' => 'Projecten',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Geen banners toegewezen.',
-	'centralnotice-allocation-description' => 'Bannertoewijzing voor $1.$2 in $3:',
+	'centralnotice-allocation-description' => 'Bannertoewijzing voor taaL: $1, project: $2, in land: $3:',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => '"document.write()" kan niet worden gebruikt binnen een banner.
 Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
@@ -11784,6 +11840,10 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-bucket-letter' => 'Groep "$1"',
 	'centralnotice-all' => 'Alle',
 	'centralnotice-all-except' => 'Alle, behalve $1',
+	'centralnotice-excluding-list' => '$1 (zonder $2)',
+	'centralnotice-user-role' => 'Gebruikersrol',
+	'centralnotice-user-role-anonymous' => 'Anoniem',
+	'centralnotice-user-role-logged-in' => 'Aangemeld',
 );
 
 /** Nederlands (informeel)‎ (Nederlands (informeel)‎)
@@ -13703,6 +13763,7 @@ $messages['roa-tara'] = array(
 	'centralnotice' => "Amministrazione de l'avvise cendrale",
 	'noticetemplate' => "Amministrazione de l'avvise cendrale",
 	'bannerallocation' => "Amministrazione de l'avvise cendrale",
+	'globalallocation' => "Amministrazione de l'avvise cendrale",
 	'centralnoticelogs' => "Amministrazione de l'avvise cendrale",
 	'right-centralnotice-admin' => 'Gestiscere le notizie cendrale',
 	'action-centralnotice-admin' => 'gestiscere le notizie cendrale',
@@ -13711,7 +13772,7 @@ $messages['roa-tara'] = array(
 Quiste pò essere ausate pure pe aggiungere o luà le vecchie notizie.",
 	'centralnotice-query' => "Cange 'a cambagne corrende",
 	'centralnotice-notice-name' => "Nome d'a cambagne",
-	'centralnotice-end-date' => 'Date de fine', # Fuzzy
+	'centralnotice-end-date' => 'Date de fine (UTC)',
 	'centralnotice-enabled' => 'Abbilitate',
 	'centralnotice-modify' => 'Conferme',
 	'centralnotice-view' => 'Vide',
@@ -13765,7 +13826,7 @@ Non ge le luà.",
 	'centralnotice-remove-all' => 'Live tutte',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|vôsce}} scacchiate',
 	'centralnotice-project-name' => "Nome d'u pruggette",
-	'centralnotice-start-date' => 'Date de inizie', # Fuzzy
+	'centralnotice-start-date' => 'Date de inizie (UTC)',
 	'centralnotice-start-time' => 'Timbe de inizie (UTC)',
 	'centralnotice-end-time' => "Timbe d'a fine (UTC)",
 	'centralnotice-assigned-templates' => 'Banners assignate',
@@ -13819,6 +13880,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-banner-landing-pages' => 'Pàggene de arrive (separate da virgole):',
 	'centralnotice-geo' => 'Geo referenziate',
 	'centralnotice-countries' => 'Paìse',
+	'centralnotice-global-allocation' => 'Posizione globbale',
 	'centralnotice-allocation' => 'Allocazione',
 	'centralnotice-view-allocation' => "Visualizze l'assignazione d'u banner",
 	'centralnotice-allocation-instructions' => "Scacchie l'ambiende addo tu vuè vedè 'u banner allocate pe:",
@@ -13827,7 +13889,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-projects' => 'Pruggette',
 	'centralnotice-country' => 'Nazione',
 	'centralnotice-no-allocation' => 'Nisciune banner assignate.',
-	'centralnotice-allocation-description' => 'Assignazione de banner pè $1.$2 jndre $3:',
+	'centralnotice-allocation-description' => "Posizione d'u banner pa lènghe: $1, proggette: $2 jndr'à 'u paese $3:",
 	'centralnotice-percentage' => 'Percenduale',
 	'centralnotice-documentwrite-error' => "document.write() non ge pò essere ausate jndr'à 'nu banner.
 Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
@@ -13882,6 +13944,10 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-bucket-letter' => 'Sicchie "$1"',
 	'centralnotice-all' => 'Tutte',
 	'centralnotice-all-except' => 'Tutte mene $1',
+	'centralnotice-excluding-list' => '$1 (scludenne $2)',
+	'centralnotice-user-role' => "Regole de l'utende",
+	'centralnotice-user-role-anonymous' => 'Anonime',
+	'centralnotice-user-role-logged-in' => 'Trasute',
 );
 
 /** Russian (русский)
@@ -18245,6 +18311,7 @@ $messages['vi'] = array(
 	'centralnotice' => 'Quản lý các thông báo chung',
 	'noticetemplate' => 'Quản lý các thông báo chung',
 	'bannerallocation' => 'Quản lý các thông báo chung',
+	'globalallocation' => 'Quản lý các thông báo chung',
 	'centralnoticelogs' => 'Quản lý các thông báo chung',
 	'right-centralnotice-admin' => 'Quản lý thông báo chung',
 	'action-centralnotice-admin' => 'quản lý thông báo chung',
@@ -18252,7 +18319,7 @@ $messages['vi'] = array(
 	'centralnotice-summary' => 'Dùng phần này, bạn có thể sửa đổi các thông báo chung đã được thiết lập, cũng như thêm thông báo mới hoặc dời thông báo cũ.',
 	'centralnotice-query' => 'Sửa đổi các thông báo hiện hành',
 	'centralnotice-notice-name' => 'Tên thông báo',
-	'centralnotice-end-date' => 'Ngày kết thúc', # Fuzzy
+	'centralnotice-end-date' => 'Ngày kết thúc (UTC)',
 	'centralnotice-enabled' => 'Đang hiện',
 	'centralnotice-modify' => 'Lưu các thông báo',
 	'centralnotice-view' => 'Xem',
@@ -18304,7 +18371,7 @@ Không có gì để dời.',
 	'centralnotice-remove-all' => 'Loại bỏ tất cả',
 	'centralnotice-items-selected' => '$1 khoản mục được chọn',
 	'centralnotice-project-name' => 'Tên dự án',
-	'centralnotice-start-date' => 'Ngày bắt đầu', # Fuzzy
+	'centralnotice-start-date' => 'Ngày bắt đầu (UTC)',
 	'centralnotice-start-time' => 'Lúc bắt đầu (UTC)',
 	'centralnotice-end-time' => 'Lúc kết thức (UTC)',
 	'centralnotice-assigned-templates' => 'Bảng được sử dụng',
@@ -18350,6 +18417,7 @@ Hãy thêm vào!',
 	'centralnotice-banner-landing-pages' => 'Các trang đích (định giới bằng dấu phẩy):',
 	'centralnotice-geo' => 'Mục tiêu địa lý',
 	'centralnotice-countries' => 'Quốc gia',
+	'centralnotice-global-allocation' => 'Phân phối toàn cục',
 	'centralnotice-allocation' => 'Phân bổ',
 	'centralnotice-view-allocation' => 'Xem cách phân phối bảng',
 	'centralnotice-allocation-instructions' => 'Chọn môi trường để xem cách phân phối bảng:',
@@ -18358,7 +18426,7 @@ Hãy thêm vào!',
 	'centralnotice-projects' => 'Dự án',
 	'centralnotice-country' => 'Quốc gia',
 	'centralnotice-no-allocation' => 'Chưa có phân phối bảng nào.',
-	'centralnotice-allocation-description' => 'Phân phối bảng cho $1.$2 tại $3:',
+	'centralnotice-allocation-description' => 'Phân phối bảng cho ngôn ngữ $1, dự án $2, tại quốc gia $3:',
 	'centralnotice-percentage' => 'Tỷ lệ',
 	'centralnotice-documentwrite-error' => 'Không có thể sử dụng document.write() trong bảng.
 Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
@@ -18413,6 +18481,10 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-bucket-letter' => 'Nhóm “$1”',
 	'centralnotice-all' => 'Tất cả',
 	'centralnotice-all-except' => 'Tất cả ngoại trừ $1',
+	'centralnotice-excluding-list' => '$1 (trừ $2)',
+	'centralnotice-user-role' => 'Vai trò người dùng',
+	'centralnotice-user-role-anonymous' => 'Vô danh',
+	'centralnotice-user-role-logged-in' => 'Đã đăng nhập',
 );
 
 /** Volapük (Volapük)
@@ -18812,7 +18884,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-projects' => '项目',
 	'centralnotice-country' => '国家',
 	'centralnotice-no-allocation' => '没有配给横幅',
-	'centralnotice-allocation-description' => '在$1.$2，$3横幅分配：',
+	'centralnotice-allocation-description' => '在$1.$2，$3横幅分配：', # Fuzzy
 	'centralnotice-percentage' => '百分比',
 	'centralnotice-documentwrite-error' => 'document.write() 不能在横幅中使用。
 更多信息请参见 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',
