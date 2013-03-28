@@ -14,6 +14,8 @@ $specialPageAliases['en'] = array(
 	'BannerAllocation' => array( 'BannerAllocation' ),
 	'BannerController' => array( 'BannerController' ),
 	'BannerLoader' => array( 'BannerLoader' ),
+	'BannerRandom' => array( 'BannerRandom' ),
+	'RecordImpression' => array( 'RecordImpression' ),
 	'HideBanners' => array( 'HideBanners' ),
 );
 

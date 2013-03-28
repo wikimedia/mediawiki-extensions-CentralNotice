@@ -1,8 +1,8 @@
 <?php
 
 class Banner {
-	var $name;
-	var $id;
+	protected $name;
+	protected $id;
 
 	function __construct( $name ) {
 		$this->name = $name;
@@ -45,23 +45,40 @@ class Banner {
 	 * @param string $body The unparsed body source of the banner
 	 * @return array
 	 */
-	static function extractMessageFields( $body ) {
-		$expanded = MessageCache::singleton()->transform( $body );
+	function extractMessageFields( $body = null ) {
+		global $wgOut;
+
+		if ( $body === null ) {
+			$body = $this->getContent();
+		}
+		$expanded = $wgOut->parse( $body );
+
+		// Also search the preload js for fields.
+		$renderer = new BannerRenderer( RequestContext::getMain(), $this );
+		$expanded .= $renderer->getPreloadJs();
+
+		/* FIXME: haven't decided if this is a terrrrible idea.
+		// And search magic word output
+		foreach ( $mixedin->getMagicWords() as $magic ) {
+			unset( $fields[$magic] );
+			$expanded .= $mixedin->renderMagicWord( $magic );
+		}
+		*/
 
 		// Extract message fields from the banner body
 		$fields = array();
 		$allowedChars = Title::legalChars();
-		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $expanded, $fields );
+		// We're using a janky custom syntax to pass arguments to a field message:
+		// "{{{fieldname:arg1|arg2}}}"
+		$allowedChars = str_replace( ':', '', $allowedChars );
+		preg_match_all( "/{{{([$allowedChars]+)(:[^}]*)?}}}/u", $expanded, $fields );
 
 		// Remove duplicate keys and count occurrences
 		$unique_fields = array_unique( array_flip( $fields[1] ) );
 		$fields = array_intersect_key( array_count_values( $fields[1] ), $unique_fields );
 
-		// Remove magic words that don't need translation
-		$fields = array_diff_key( $fields, array(
-			'campaign' => 1,
-			'banner' => 1,
-		) );
+		$fields = array_diff_key( $fields, array_flip( $renderer->getMagicWords() ) );
+
 		return $fields;
 	}
 
@@ -291,6 +308,9 @@ class Banner {
 				//TODO: 'landingpages' => explode( ", ", $row->tmp_landing_pages ),
 			);
 
+			$bannerObj = new Banner( $bannerName );
+			$banner['controller_mixin'] = implode( ",", array_keys( $bannerObj->getMixins() ) );
+
 			if ( $wgNoticeUseTranslateExtension && $detailed ) {
 				$langs = TranslateMetadata::get(
 					BannerMessageGroup::getTranslateGroupName( $bannerName ),
@@ -379,12 +399,13 @@ class Banner {
 	 * @param $fundraising      integer flag for fundraising banner (optional)
 	 * @param $autolink         integer flag for automatically creating landing page links (optional)
 	 * @param $landingPages     string list of landing pages (optional)
+	 * @param $mixins           string list of mixins (optional)
 	 * @param $priorityLangs    array Array of priority languages for the translate extension
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon, $displayAccount, $fundraising = 0,
-	                             $autolink = 0, $landingPages = '', $priorityLangs = array()
+	                             $autolink = 0, $landingPages = '', $mixins = '', $priorityLangs = array()
 	) {
 		if ( $body == '' || $name == '' ) {
 			return 'centralnotice-null-string';
@@ -418,6 +439,8 @@ class Banner {
 			);
 			$bannerObj = new Banner( $name );
 			$bannerObj->id = $db->insertId();
+
+			$bannerObj->setMixins( explode( ",", $mixins ) );
 
 			// TODO: Add the attached devices (yes this is a hack until the UI supports it)
 			$res = $db->select(
@@ -475,7 +498,8 @@ class Banner {
 				$pageId = $revision->getPage();
 
 				// If the banner includes translatable messages, tag it for translation
-				$fields = Banner::extractMessageFields( $body );
+				$banner = new Banner( $name );
+				$fields = $banner->extractMessageFields( $body );
 				if ( count( $fields ) > 0 ) {
 					// Tag the banner for translation
 					Banner::addTag( 'banner:translate', $revisionId, $pageId );
@@ -550,43 +574,89 @@ class Banner {
 	}
 
 	/**
+	 * @return array All mixin structs associated with this banner.
+	 */
+	function getMixins() {
+		global $wgNoticeMixins;
+
+		$dbr = CNDatabase::getDb();
+
+		$result = $dbr->select( 'cn_template_mixins', 'mixin_name',
+			array(
+				"tmp_id" => $this->getId(),
+			),
+			__METHOD__
+		);
+
+		$mixins = array();
+		foreach ( $result as $row ) {
+			if ( !array_key_exists( $row->mixin_name, $wgNoticeMixins ) ) {
+				throw new MWException( "Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}" );
+			}
+			$mixins[$row->mixin_name] = $wgNoticeMixins[$row->mixin_name];
+		}
+		return $mixins;
+	}
+
+	/**
+	 * @param string[] list of mixins to associate with this banner.  Clears any
+	 *     existing associations.
+	 */
+	function setMixins( $mixins ) {
+		global $wgCentralDBname;
+		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+
+		$dbw->delete( 'cn_template_mixins',
+			array( 'tmp_id' => $this->getId() ),
+			__METHOD__
+		);
+
+		foreach ( $mixins as $name ) {
+			$name = trim( $name );
+			if ( !$name ) {
+				continue;
+			}
+			$dbw->insert( 'cn_template_mixins',
+				array(
+					'tmp_id' => $this->getId(),
+					'mixin_name' => $name,
+				),
+				__METHOD__
+			);
+		}
+	}
+
+	/**
 	 * Copy all the data from one banner to another
 	 */
 	static function cloneTemplate( $source, $dest, $user ) {
 		// Normalize name
 		$dest = preg_replace( '/[^A-Za-z0-9_]/', '', $dest );
 
-		// Pull banner settings from database
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$row = $dbr->selectRow( 'cn_templates',
-			array(
-				'tmp_display_anon',
-				'tmp_display_account',
-				'tmp_fundraising',
-				'tmp_autolink',
-				'tmp_landing_pages'
-			),
-			array( 'tmp_name' => $source ),
-			__METHOD__
-		);
-		$displayAnon = $row->tmp_display_anon;
-		$displayAccount = $row->tmp_display_account;
-		$fundraising = $row->tmp_fundraising;
-		$autolink = $row->tmp_autolink;
-		$landingPages = $row->tmp_landing_pages;
+		if ( Banner::bannerExists( $dest ) ) {
+			throw new MWException( "Banner by that name already exists!" );
+		}
 
 		$sourceBanner = new Banner( $source );
 
-		$langs = $sourceBanner->getAvailableLanguages();
-		$fields = Banner::extractMessageFields( $sourceBanner->getContent() );
+		$settings = Banner::getBannerSettings( $source, false );
 		$template_body = $sourceBanner->getContent();
 
 		// Create new banner
-		$errors = Banner::addTemplate( $dest, $template_body, $user, $displayAnon, $displayAccount, $fundraising, $autolink, $landingPages );
+		$errors = Banner::addTemplate( $dest, $template_body, $user,
+			$settings['anon'],
+			$settings['account'],
+			$settings['fundraising'],
+			$settings['autolink'],
+			$settings['landingpages'],
+			$settings['controller_mixin']
+		);
 		if ( !$errors ) {
 			$destBanner = new Banner( $dest );
+
 			// Populate the fields
+			$langs = $sourceBanner->getAvailableLanguages();
+			$fields = $sourceBanner->extractMessageFields();
 			foreach ( $langs as $lang ) {
 				foreach ( $fields as $field => $count ) {
 					$text = $sourceBanner->getMessageField( $field )->getContents( $lang );
@@ -595,6 +665,7 @@ class Banner {
 					}
 				}
 			}
+
 			return $dest;
 		} else {
 			//FIXME: throw errors
@@ -608,7 +679,7 @@ class Banner {
 		global $wgLanguageCode;
 		$availableLangs = array();
 
-		$fields = self::extractMessageFields( $this->getContent() );
+		$fields = $this->extractMessageFields();
 
 		//HACK
 		$prefix = $this->getMessageField( '' )->getDbKey();
@@ -640,7 +711,7 @@ class Banner {
 	 * Update a banner
 	 */
 	function editTemplate( $user, $body, $displayAnon, $displayAccount, $fundraising,
-	                               $autolink, $landingPages, $priorityLangs
+	                               $autolink, $landingPages, $mixins, $priorityLangs
 	) {
 		global $wgCentralDBname;
 		if ( !Banner::bannerExists( $this->name ) ) {
@@ -670,6 +741,8 @@ class Banner {
 		} else {
 			$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
 		}
+
+		$this->setMixins( explode( ",", $mixins ) );
 
 		Banner::updateTranslationMetadata( $pageResult, $this->name, $body, $priorityLangs );
 

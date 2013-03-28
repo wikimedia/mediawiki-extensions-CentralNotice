@@ -18,8 +18,6 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		header( 'Content-Type: image/png' );
 		header( 'Cache-Control: no-cache' );
-
-		readfile( __DIR__ . '/../1x1.png' );
 	}
 
 	/**

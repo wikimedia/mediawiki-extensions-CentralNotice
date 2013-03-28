@@ -2,7 +2,7 @@
 /**
  * Renders banner contents as jsonp.
  */
-class SpecialBannerLoader extends UnlistedSpecialPage {
+class SpecialBannerLoader extends UnlistedSpecialPage implements IAllocationContext {
 	/** @var string Name of the choosen banner */
 	public $bannerName;
 
@@ -30,7 +30,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			echo $this->getJsNotice( $this->bannerName );
 		} catch ( EmptyBannerException $e ) {
 			echo "insertBanner( false );";
-		} catch ( BannerLoaderException $e ) {
+		} catch ( MWException $e ) {
 			wfDebugLog( 'CentralNotice', $e->getMessage() );
 			echo "insertBanner( false /* due to internal exception */ );";
 		}
@@ -99,7 +99,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			throw new EmptyBannerException( $bannerName );
 		}
 		$banner = new Banner( $bannerName );
-		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaign );
+		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaign, $this );
 
 		$bannerHtml = $bannerRenderer->toHtml();
 
@@ -118,9 +118,32 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			'autolink' => $settings['autolink'],
 			'landingPages' => explode( ", ", $settings['landingpages'] ),
 		);
+		$bannerJson = FormatJson::encode( $bannerArray );
 
-		$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
+		$preload = $bannerRenderer->getPreloadJs();
+		if ( $preload ) {
+			$preload = "mw.centralNotice.bannerData.preload = function() { return {$preload}; };";
+		}
+
+		$bannerJs = $preload . "mw.centralNotice.insertBanner( {$bannerJson} );";
+
 		return $bannerJs;
+	}
+
+    function getCountry() {
+		return $this->country;
+	}
+    function getProject() {
+		return $this->project;
+	}
+    function getAnonymous() {
+		return $this->anonymous;
+	}
+    function getDevice() {
+		return $this->device;
+	}
+    function getBucket() {
+		return $this->bucket;
 	}
 }
 
@@ -136,7 +159,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
  */
 class BannerLoaderException extends MWException {
 	function __construct( $bannerName = '(none provided)' ) {
-		$this->message = get_class() . " while loading banner: '{$bannerName}'";
+		$this->message = get_called_class() . " while loading banner: '{$bannerName}'";
 	}
 }
 

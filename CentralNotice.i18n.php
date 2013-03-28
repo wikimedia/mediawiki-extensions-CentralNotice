@@ -109,6 +109,7 @@ Add one below.',
 	'centralnotice-settings' => 'Settings',
 	'centralnotice-edit-template' => 'Edit banner',
 	'centralnotice-edit-template-summary' => 'To create a localisable message, enclose a hyphenated string in three curly brackets, e.g. {{{jimbo-quote}}}.',
+	'centralnotice-edit-template-magicwords' => 'Magic words provided by banner mixins: $1',
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message not set',
 	'centralnotice-clone' => 'Clone',
@@ -130,6 +131,7 @@ Add one below.',
 	'centralnotice-banner-autolink' => 'Automatically create landing page link',
 	'centralnotice-banner-autolink-help' => 'Create an anchor tag in the banner body with $1 and enter one or more landing pages below, for example, $2. The link will be constructed automatically whenever the banner is viewed.',
 	'centralnotice-banner-landing-pages' => 'Landing pages (comma-separated):',
+	'centralnotice-banner-mixins' => 'Mixins (comma-separated):',
 	'centralnotice-geo' => 'Geotargeted',
 	'centralnotice-countries' => 'Countries',
 	'centralnotice-global-allocation' => 'Global allocation',
@@ -398,6 +400,8 @@ Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
 Preceded by one of the following fieldset labels:
 * {{msg-mw|Centralnotice-banner}}
 * {{msg-mw|Centralnotice-edit-template}}',
+	'centralnotice-edit-template-magicwords' => 'List of available magic words. Parameters:
+$1 - magic words.',
 	'centralnotice-message' => 'The header of a table of translatable messages. Translatable messages are represented in the template code by strings enclosed in three curly brackets.
 
 * {{msg-mw|centralnotice-number-uses}}
@@ -445,6 +449,8 @@ This message is preceded by the following message:
 * $1 - a bit of HTML
 * $2 - a title for a page',
 	'centralnotice-banner-landing-pages' => 'Used as label for the "Landing pages" input box in [[Special:NoticeTemplate]].',
+	'centralnotice-banner-mixins' => 'Label for a list of banner "[[mw:Extension:CentralNotice/Banner_mixins|mixins]]", code components which can be reused between banners.',
+
 	'centralnotice-geo' => 'Used to label a checkbox which activates geotargeting',
 	'centralnotice-countries' => 'Used as column header of the table in [[Special:CentralNotice]].
 {{Related|Centralnotice-th}}

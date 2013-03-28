@@ -202,8 +202,14 @@
 			// Ok, we have a banner! Get the banner type for more queryness
 			mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
 
-			// Has the banner been hidden by cookie?
-			if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
+			if ( typeof mw.centralNotice.bannerData.preload === 'function'
+					&& !mw.centralNotice.bannerData.preload() ) {
+				impressionResultData = {
+					result: 'hide',
+					reason: 'preload'
+				}
+			} else if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
+				// Has the banner been hidden by cookie?
 				impressionResultData = {
 					result: 'hide',
 					reason: 'mobile'

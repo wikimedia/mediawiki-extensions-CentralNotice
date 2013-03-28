@@ -95,6 +95,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 						$request->getBool( 'fundraising' ),
 						$request->getBool( 'autolink' ),
 						$request->getVal( 'landingPages' ),
+						$request->getVal( 'mixins' ),
 						$request->getArray( 'project_languages', array() )
 					);
 					if ( $errors ) {
@@ -115,6 +116,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 						$request->getBool( 'fundraising' ),
 						$request->getBool( 'autolink' ),
 						$request->getVal( 'landingPages' ),
+						$request->getVal( 'mixins' ),
 						$request->getArray( 'project_languages' )
 					);
 					$sub = 'view';
@@ -266,6 +268,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$fundraising = $request->getCheck( 'fundraising' );
 			$autolink = $request->getCheck( 'autolink' );
 			$landingPages = $request->getVal( 'landingPages' );
+			$mixins = $request->getVal( 'mixins' );
 			$body = $request->getVal( 'templateBody' );
 		} else { // Use default values
 			$templateName = '';
@@ -274,6 +277,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$fundraising = false;
 			$autolink = false;
 			$landingPages = '';
+			$mixins = '';
 			$body = '';
 		}
 
@@ -324,6 +328,15 @@ class SpecialNoticeTemplate extends CentralNotice {
 			);
 			$htmlOut .= Html::closeElement( 'div' );
 		}
+
+		// Mixins
+		$htmlOut .= Xml::tags( 'p', array(),
+			Xml::inputLabel(
+				$this->msg( 'centralnotice-banner-mixins' )->text(),
+				'mixins', 'mixins', 40, $mixins,
+				array( 'maxlength' => 255 )
+			)
+		);
 
 		// Allow setting prioritization of translations
 		if ( $wgNoticeUseTranslateExtension ) {
@@ -392,6 +405,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$fundraising = $request->getCheck( 'fundraising' );
 			$autolink = $request->getCheck( 'autolink' );
 			$landingPages = $request->getVal( 'landingPages' );
+			$mixins = $request->getVal( 'mixins' );
 			$priorityLangs = $request->getArray( 'project_languages', array() );
 			$body = $request->getVal( 'templateBody' );
 		} else {
@@ -401,6 +415,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$fundraising = ( $bannerSettings[ 'fundraising' ] == 1 );
 			$autolink = ( $bannerSettings[ 'autolink' ] == 1 );
 			$landingPages = $bannerSettings[ 'landingpages' ];
+			$mixins = $bannerSettings[ 'controller_mixin' ];
 			if ( $wgNoticeUseTranslateExtension ) {
 				$priorityLangs = $bannerSettings[ 'prioritylangs' ];
 			}
@@ -434,7 +449,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			}
 
 			// If there are any message fields in the banner, display translation tools.
-			$fields = Banner::extractMessageFields( $body );
+			$fields = $banner->extractMessageFields( $body );
 			if ( count( $fields ) > 0 ) {
 				if ( $this->editable ) {
 					$htmlOut .= Html::openElement( 'form', array( 'method' => 'post' ) );
@@ -653,6 +668,15 @@ class SpecialNoticeTemplate extends CentralNotice {
 
 			}
 
+			// Mixins
+			$htmlOut .= Xml::tags( 'p', array(),
+				Xml::inputLabel(
+					$this->msg( 'centralnotice-banner-mixins' )->text(),
+					'mixins', 'mixins', 40, $mixins,
+					array( 'maxlength' => 255 )
+				)
+			);
+
 			// Allow setting prioritization of translations
 			if ( $wgNoticeUseTranslateExtension ) {
 				$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-prioritylangs' )->text() );
@@ -666,6 +690,13 @@ class SpecialNoticeTemplate extends CentralNotice {
 			if ( $this->editable ) {
 				$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-edit-template' )->text() );
 				$htmlOut .= $this->msg( 'centralnotice-edit-template-summary' )->escaped();
+
+				$magicWords = $bannerRenderer->getMagicWords();
+				foreach ( $magicWords as &$word ) {
+					$word = '{{{' . $word . '}}}';
+				}
+				$htmlOut .= Xml::tags( 'p', array(), $this->msg( 'centralnotice-edit-template-magicwords', $this->getLanguage()->listToText( $magicWords ) )->text() );
+
 				$buttons = array();
 				$buttons[ ] = '<a href="#" onclick="insertButton(\'close\');return false;">' .
 					$this->msg( 'centralnotice-close-button' )->text() . '</a>';
