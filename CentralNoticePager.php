@@ -74,8 +74,6 @@ class CentralNoticePager extends TemplatePager {
 	 * Generate the content of each table row (1 row = 1 banner)
 	 */
 	function formatRow( $row ) {
-		global $wgLanguageCode;
-
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
 
@@ -98,24 +96,11 @@ class CentralNoticePager extends TemplatePager {
 		}
 
 		// Link and Preview
-		$render = new SpecialBannerLoader();
-		$render->language = $this->mRequest->getVal( 'wpUserLanguage', $wgLanguageCode );
-		try {
-			$preview = $render->getHtmlNotice( $row->tmp_name );
-		} catch ( SpecialBannerLoaderException $e ) {
-			$preview = $this->msg( 'centralnotice-nopreview' )->text();
-		}
+		$banner = new Banner( $row->tmp_name );
+		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner );
+
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-			Linker::link(
-				$this->viewPage,
-				htmlspecialchars( $row->tmp_name ),
-				array(),
-				array( 'template' => $row->tmp_name )
-			) . Xml::fieldset(
-				$this->msg( 'centralnotice-preview' )->text(),
-				$preview,
-				array( 'class' => 'cn-bannerpreview' )
-			)
+			$bannerRenderer->linkTo() . "<br>" . $bannerRenderer->previewFieldSet()
 		);
 
 		// End banner row

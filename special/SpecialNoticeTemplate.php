@@ -68,11 +68,15 @@ class SpecialNoticeTemplate extends CentralNotice {
 				// Handle translation message update
 				$update = $request->getArray( 'updateText' );
 				if ( isset ( $update ) ) {
-					foreach ( $update as $lang => $messages ) {
-						foreach ( $messages as $text => $translation ) {
-							// If we actually have text
-							if ( $translation ) {
-								$this->updateMessage( $text, $translation, $lang );
+					foreach ( $update as $template => $langs ) {
+						$banner = new Banner( $template );
+						foreach ( $langs as $lang => $messages ) {
+							foreach ( $messages as $field => $translation ) {
+								// If we actually have text
+								if ( $translation ) {
+									$bannerMesage = $banner->getMessageField( $field );
+									$bannerMesage->update( $translation, $lang, $user );
+								}
 							}
 						}
 					}
@@ -102,8 +106,9 @@ class SpecialNoticeTemplate extends CentralNotice {
 
 				// Handle editing banner
 				if ( $method == 'editTemplate' ) {
-					$this->editTemplate(
-						$request->getText( 'template' ),
+					$banner = new Banner( $request->getText( 'template' ) );
+					$banner->editTemplate(
+						$this->getUser(),
 						$request->getText( 'templateBody' ),
 						$request->getBool( 'displayAnon' ),
 						$request->getBool( 'displayAccount' ),
@@ -152,7 +157,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 					$oldTemplate = $request->getVal( 'oldTemplate' );
 					$newTemplate = $request->getVal( 'newTemplate' );
 					// We use the returned name in case any special characters had to be removed
-					$template = $this->cloneTemplate( $oldTemplate, $newTemplate );
+					$template = Banner::cloneTemplate( $oldTemplate, $newTemplate, $this->getUser() );
 					$out->redirect(
 						$this->getTitle( 'view' )->getLocalUrl( "template=$template" ) );
 					return;
@@ -369,18 +374,42 @@ class SpecialNoticeTemplate extends CentralNotice {
 		if ( $this->editable ) {
 			$readonly = array();
 			$disabled = array();
+
+			// If there was an error, we'll need to restore the state of the form
 		} else {
 			$readonly = array( 'readonly' => 'readonly' );
 			$disabled = array( 'disabled' => 'disabled' );
 		}
 
-		// Get the language to display the banner preview and messages in
-		$wpUserLang = $request->getVal( 'wpUserLanguage', $wgLanguageCode );
-
 		// Get current banner
 		$currentTemplate = $request->getText( 'template' );
 
 		$bannerSettings = Banner::getBannerSettings( $currentTemplate );
+
+		if ( $request->wasPosted() && $request->getVal( 'mainform' ) ) {
+			$displayAnon = $request->getCheck( 'displayAnon' );
+			$displayAccount = $request->getCheck( 'displayAccount' );
+			$fundraising = $request->getCheck( 'fundraising' );
+			$autolink = $request->getCheck( 'autolink' );
+			$landingPages = $request->getVal( 'landingPages' );
+			$priorityLangs = $request->getArray( 'project_languages', array() );
+			$body = $request->getVal( 'templateBody' );
+		} else {
+			// Use previously stored values if nothing was posted
+			$displayAnon = ( $bannerSettings[ 'anon' ] == 1 );
+			$displayAccount = ( $bannerSettings[ 'account' ] == 1 );
+			$fundraising = ( $bannerSettings[ 'fundraising' ] == 1 );
+			$autolink = ( $bannerSettings[ 'autolink' ] == 1 );
+			$landingPages = $bannerSettings[ 'landingpages' ];
+			if ( $wgNoticeUseTranslateExtension ) {
+				$priorityLangs = $bannerSettings[ 'prioritylangs' ];
+			}
+		}
+
+		// Get the language to display the banner preview and messages in
+		$wpUserLang = $request->getVal( 'wpUserLanguage', $wgLanguageCode );
+		$userLangContext = new DerivativeContext( $this->getContext() );
+		$userLangContext->setLanguage( $wpUserLang );
 
 		if ( !$bannerSettings ) {
 			$this->showError( 'centralnotice-banner-doesnt-exist' );
@@ -396,29 +425,13 @@ class SpecialNoticeTemplate extends CentralNotice {
 				$this->msg( 'centralnotice-banner-heading', $currentTemplate )->text() );
 
 			// Show preview of banner
-			$render = new SpecialBannerLoader();
-			$render->language = $wpUserLang;
-			try {
-				$preview = $render->getHtmlNotice( $request->getText( 'template' ) );
-			} catch ( SpecialBannerLoaderException $e ) {
-				$preview = $this->msg( 'centralnotice-nopreview' )->text();
-			}
-			if ( $render->language != '' ) {
-				$htmlOut .= Xml::fieldset(
-					$this->msg( 'centralnotice-preview' )->text() . " ($render->language)",
-					$preview
-				);
-			} else {
-				$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-preview' )->text(),
-					$preview
-				);
-			}
+			$banner = new Banner( $currentTemplate );
+			$bannerRenderer = new BannerRenderer( $userLangContext, $banner );
+			$htmlOut .= $bannerRenderer->previewFieldSet();
 
-			// Pull banner text and respect any inc: markup
-			$bodyPage = Title::newFromText(
-				"Centralnotice-template-{$currentTemplate}", NS_MEDIAWIKI );
-			$curRev = Revision::newFromTitle( $bodyPage );
-			$body = $curRev ? $curRev->getText() : '';
+			if ( !isset( $body ) ) {
+				$body = $banner->getContent();
+			}
 
 			// If there are any message fields in the banner, display translation tools.
 			$fields = Banner::extractMessageFields( $body );
@@ -444,17 +457,13 @@ class SpecialNoticeTemplate extends CentralNotice {
 				$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
 					$this->msg( 'centralnotice-number-uses' )->text() );
 				$htmlOut .= Html::element( 'th', array( 'width' => '40%' ),
-					$this->msg( 'centralnotice-english' )->text() );
-				$languages = Language::fetchLanguageNames( $lang->getCode(), 'all' );
+					Language::fetchLanguageName( $this->getLanguage()->getCode() ) );
 				$htmlOut .= Html::element( 'th', array( 'width' => '40%' ),
-					$languages[ $wpUserLang ] );
+					Language::fetchLanguageName( $wpUserLang, $this->getLanguage()->getCode() ) );
 
 				// Table rows
 				foreach ( $fields as $field => $count ) {
-					// Message
-					$message = ( $wpUserLang == 'en' )
-						? "Centralnotice-{$currentTemplate}-{$field}"
-						: "Centralnotice-{$currentTemplate}-{$field}/{$wpUserLang}";
+					$bannerMessage = $banner->getMessageField( $field );
 
 					// English value
 					$htmlOut .= Html::openElement( 'tr' );
@@ -471,7 +480,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 						);
 					} else {
 						// Legacy method; which is to edit the page directly
-						$title = Title::newFromText( "MediaWiki:{$message}" );
+						$title = $bannerMessage->getTitle( $wpUserLang );
 						$htmlOut .= Xml::tags( 'td', null,
 							Linker::link( $title, htmlspecialchars( $field ) )
 						);
@@ -479,44 +488,36 @@ class SpecialNoticeTemplate extends CentralNotice {
 
 					$htmlOut .= Html::element( 'td', array(), $count );
 
-					// English text
-					$englishText = $this->msg( 'centralnotice-message-not-set' )->text();
-					$englishTextExists = false;
-					if (
-						Title::newFromText(
-							"Centralnotice-{$currentTemplate}-{$field}", NS_MEDIAWIKI
-						)->exists()
-					) {
-						$englishText = $this->msg( "Centralnotice-{$currentTemplate}-{$field}" )
-							->inLanguage( 'en' )->text();
-						$englishTextExists = true;
+					// Native text
+					$nativeText = $this->msg( 'centralnotice-message-not-set' )->text();
+					$nativeTextExists = $bannerMessage->existsInLang( $this->getLanguage()->getCode() );
+					if ( $nativeTextExists ) {
+						$nativeText = $bannerMessage->toHtml( $this->getContext() );
 					}
 					$htmlOut .= Xml::tags( 'td', null,
 						Html::element( 'span',
 							array(
 								'style' => 'font-style:italic;' .
-									( !$englishTextExists ? 'color:silver' : '' )
+									( !$nativeTextExists ? 'color:silver' : '' )
 							),
-							$englishText
+							$nativeText
 						)
 					);
 
 					// Foreign text input
 					$foreignText = '';
-					$foreignTextExists = false;
-					if ( Title::newFromText( $message, NS_MEDIAWIKI )->exists() ) {
-						$foreignText = $this->msg( "Centralnotice-{$currentTemplate}-{$field}" )
-							->inLanguage( $wpUserLang )->text();
-						$foreignTextExists = true;
+					$foreignTextExists = $bannerMessage->existsInLang( $wpUserLang );
+					if ( $foreignTextExists ) {
+						$foreignText = $bannerMessage->toHtml( $userLangContext );
 					}
 					// If we're using the Translate extension to handle translations,
 					// don't allow translations to be edited through CentralNotice.
-					if ( ( $wgNoticeUseTranslateExtension && $wpUserLang !== 'en' ) || !$this->editable ) {
+					if ( ( $wgNoticeUseTranslateExtension && $wpUserLang !== $this->getLanguage()->getCode() ) || !$this->editable ) {
 						$htmlOut .= Xml::tags( 'td', null, $foreignText );
 					} else {
 						$htmlOut .= Xml::tags( 'td', null,
 							Xml::input(
-								"updateText[{$wpUserLang}][{$currentTemplate}-{$field}]",
+								"updateText[{$currentTemplate}][{$wpUserLang}][{$field}]",
 								'',
 								$foreignText,
 								wfArrayMerge( $readonly,
@@ -595,27 +596,6 @@ class SpecialNoticeTemplate extends CentralNotice {
 					)
 				);
 				$htmlOut .= Html::hidden( 'wpMethod', 'editTemplate' );
-			}
-
-			// If there was an error, we'll need to restore the state of the form
-			if ( $request->wasPosted() && $request->getVal( 'mainform' ) ) {
-				$displayAnon = $request->getCheck( 'displayAnon' );
-				$displayAccount = $request->getCheck( 'displayAccount' );
-				$fundraising = $request->getCheck( 'fundraising' );
-				$autolink = $request->getCheck( 'autolink' );
-				$landingPages = $request->getVal( 'landingPages' );
-				$priorityLangs = $request->getArray( 'project_languages', array() );
-				$body = $request->getVal( 'templateBody', $body );
-			} else { // Use previously stored values
-				$displayAnon = ( $bannerSettings[ 'anon' ] == 1 );
-				$displayAccount = ( $bannerSettings[ 'account' ] == 1 );
-				$fundraising = ( $bannerSettings[ 'fundraising' ] == 1 );
-				$autolink = ( $bannerSettings[ 'autolink' ] == 1 );
-				$landingPages = $bannerSettings[ 'landingpages' ];
-				if ( $wgNoticeUseTranslateExtension ) {
-					$priorityLangs = $bannerSettings[ 'prioritylangs' ];
-				}
-				// $body default is defined prior to message interface code
 			}
 
 			// Show banner settings
@@ -751,8 +731,10 @@ class SpecialNoticeTemplate extends CentralNotice {
 		// Testing to see if bumping up the memory limit lets meta preview
 		ini_set( 'memory_limit', '120M' );
 
+		$banner = new Banner( $template );
+
 		// Pull all available text for a banner
-		$langs = array_keys( $this->getTranslations( $template ) );
+		$langs = $banner->getAvailableLanguages();
 		$htmlOut = '';
 
 		// Begin View Banner fieldset
@@ -764,30 +746,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$this->msg( 'centralnotice-banner-heading', $template )->text()
 		);
 
+		$langContext = new DerivativeContext( $this->getContext() );
+		$bannerRenderer = new BannerRenderer( $langContext, $banner );
+
 		foreach ( $langs as $lang ) {
+			$langContext->setLanguage( $lang );
 			// Link and Preview all available translations
-			$viewPage = $this->getTitle( 'view' );
-			$render = new SpecialBannerLoader();
-			$render->language = $lang;
-			try {
-				$preview = $render->getHtmlNotice( $template );
-			} catch ( SpecialBannerLoaderException $e ) {
-				$preview = $this->msg( 'centralnotice-nopreview' )->text();
-			}
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				Linker::link(
-					$viewPage,
-					$lang,
-					array(),
-					array(
-						'template' => $template,
-						'wpUserLanguage' => $lang
-					)
-				) . Xml::fieldset(
-					$this->msg( 'centralnotice-preview' )->text(),
-					$preview,
-					array( 'class' => 'cn-bannerpreview' )
-				)
+				$bannerRenderer->previewFieldSet()
 			);
 		}
 
@@ -795,245 +761,5 @@ class SpecialNoticeTemplate extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		$this->getOutput()->addHtml( $htmlOut );
-	}
-
-	/**
-	 * Add or update a message
-	 */
-	private function updateMessage( $text, $translation, $lang ) {
-		global $wgNoticeUseTranslateExtension;
-
-		$title = Title::newFromText(
-			( $lang == 'en' ) ? "Centralnotice-{$text}" : "Centralnotice-{$text}/{$lang}",
-			NS_MEDIAWIKI
-		);
-		$wikiPage = new WikiPage( $title );
-
-		if ( class_exists( 'ContentHandler' ) ) {
-			// MediaWiki 1.21+
-			$content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
-			$wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
-		} else {
-			$wikiPage->doEdit( $translation, '/* CN admin */', EDIT_FORCE_BOT );
-		}
-	
-		// If we're using translate : group review; create and protect the english and QQQ pages
-		if ( $wgNoticeUseTranslateExtension && ( $lang == 'en') && BannerMessageGroup::isUsingGroupReview() ) {
-			$this->updateMessageInCnNamespaces( $text, $translation, 'en' );
-			$this->updateMessageInCnNamespaces( $text, $translation, 'qqq' );
-		}
-	}
-
-	/**
-	 * Creates and protects a message entry in the CNBanner namespace so that the translation
-	 * WebUI can use it. The protection lasts for infinity and acts for group
-	 * @ref $wgNoticeProtectGroup
-     *
-     * This really is intended only for use on the original source language and qqq because
-     * these languages are set via the CN UI; not the translate UI. At some point this needs
-     * to become less anglo-centric because right now we assume 'english' as the source
-     * language in the functions that call this.
-	 *
-	 * @param $text         Message name; should be BannerName-MessageName format
-	 * @param $translation  Contents of the message
-	 * @param $lang         Language to update for
-	 */
-	private function updateMessageInCnNamespaces( $text, $translation, $lang ) {
-		global $wgNoticeProtectGroup;
-
-        $title = Title::newFromText( "$text/$lang", NS_CN_BANNER );
-        $wikiPage = new WikiPage( $title );
-
-		if ( class_exists( 'ContentHandler' ) ) {
-			// MediaWiki 1.21+
-        	$content = ContentHandler::makeContent( $translation, $wikiPage->getTitle() );
-        	$wikiPage->doEditContent( $content, 'Created by CentralNotice on banner update.', EDIT_FORCE_BOT );
-		} else {
-			$wikiPage->doEdit( $translation, 'Created by CentralNotice on banner update.', EDIT_FORCE_BOT );
-		}
-
-		if ( !$title->getRestrictions( 'edit' ) ) {
-			$var = false;
-
-			$wikiPage->doUpdateRestrictions(
-				array( 'edit' => $wgNoticeProtectGroup, 'move' => $wgNoticeProtectGroup ),
-				array( 'edit' => 'infinity', 'move' => 'infinity' ),
-				$var,
-				'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.',
-				$this->getContext()->getUser()
-			);
-		}
-	}
-
-	public function getBannerName( $bannerId ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-		if ( is_numeric( $bannerId ) ) {
-			$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_id' => $bannerId ) );
-			if ( $row ) {
-				return $row->tmp_name;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Update a banner
-	 */
-	private function editTemplate( $name, $body, $displayAnon, $displayAccount, $fundraising,
-	                               $autolink, $landingPages, $priorityLangs
-	) {
-		if ( $body == '' || $name == '' ) {
-			$this->showError( 'centralnotice-null-string' );
-			return;
-		}
-
-		$initialBannerSettings = Banner::getBannerSettings( $name, true );
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$res = $dbr->select( 'cn_templates', 'tmp_name',
-			array( 'tmp_name' => $name ),
-			__METHOD__
-		);
-
-		if ( $dbr->numRows( $res ) == 1 ) {
-			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-			$dbw->update( 'cn_templates',
-				array(
-					'tmp_display_anon'    => $displayAnon,
-					'tmp_display_account' => $displayAccount,
-					'tmp_fundraising'     => $fundraising,
-					'tmp_autolink'        => $autolink,
-					'tmp_landing_pages'   => $landingPages
-				),
-				array( 'tmp_name' => $name )
-			);
-
-			// Perhaps these should move into the db as blob
-			$wikiPage = new WikiPage(
-				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
-			);
-
-			if ( class_exists( 'ContentHandler' ) ) {
-				// MediaWiki 1.21+
-				$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
-				$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
-			} else {
-				$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
-			}
-
-			Banner::updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
-			
-			$bannerObj = new Banner( $name );
-			$bannerObj->logBannerChange( 'modified', $this->getUser(), $initialBannerSettings );
-
-			return;
-		}
-	}
-
-	/**
-	 * Copy all the data from one banner to another
-	 */
-	public function cloneTemplate( $source, $dest ) {
-		// Reset the timer as updates on meta take a long time
-		set_time_limit( 300 );
-
-		// Pull all possible langs
-		$langs = $this->getTranslations( $source );
-
-		// Normalize name
-		$dest = preg_replace( '/[^A-Za-z0-9_]/', '', $dest );
-
-		// Pull banner settings from database
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$row = $dbr->selectRow( 'cn_templates',
-			array(
-				'tmp_display_anon',
-				'tmp_display_account',
-				'tmp_fundraising',
-				'tmp_autolink',
-				'tmp_landing_pages'
-			),
-			array( 'tmp_name' => $source ),
-			__METHOD__
-		);
-		$displayAnon = $row->tmp_display_anon;
-		$displayAccount = $row->tmp_display_account;
-		$fundraising = $row->tmp_fundraising;
-		$autolink = $row->tmp_autolink;
-		$landingPages = $row->tmp_landing_pages;
-
-		// Pull banner text and respect any inc: markup
-		$bodyPage = Title::newFromText( "Centralnotice-template-{$source}", NS_MEDIAWIKI );
-		$template_body = Revision::newFromTitle( $bodyPage )->getText();
-
-		// Create new banner
-		if ( Banner::addTemplate( $dest, $template_body, $this->getUser(), $displayAnon, $displayAccount, $fundraising,
-			$autolink, $landingPages )
-		) {
-
-			// Populate the fields
-			foreach ( $langs as $lang => $fields ) {
-				foreach ( $fields as $field => $text ) {
-					$this->updateMessage( "$dest-$field", $text, $lang );
-				}
-			}
-			return $dest;
-		}
-	}
-
-	/**
-	 * Find all message fields set for a banner
-	 */
-	private function findFields( $template ) {
-		$body = $this->msg( "Centralnotice-template-{$template}" )->text();
-
-		// Generate list of message fields from parsing the body
-		$fields = array();
-		$allowedChars = Title::legalChars();
-		preg_match_all( "/\{\{\{([$allowedChars]+)\}\}\}/u", $body, $fields );
-
-		// Remove duplicates
-		$filteredFields = array();
-		foreach ( $fields[ 1 ] as $field ) {
-			$filteredFields[ $field ] = array_key_exists( $field, $filteredFields )
-				? $filteredFields[ $field ] + 1
-				: 1;
-		}
-		return $filteredFields;
-	}
-
-	/**
-	 * Get all the translations of all the messages for a banner
-	 *
-	 * @param $template
-	 * @return array A 2D array of every set message in every language for one banner
-	 */
-	public function getTranslations( $template ) {
-		$translations = array();
-
-		// Pull all language codes to enumerate
-		$allLangs = array_keys( Language::fetchLanguageNames( null, 'all' ) );
-
-		// Lookup all the message fields for a banner
-		$fields = $this->findFields( $template );
-
-		// Iterate through all possible languages to find matches
-		foreach ( $allLangs as $lang ) {
-			// Iterate through all possible message fields
-			foreach ( $fields as $field => $count ) {
-				// Put all message fields together for a lookup
-				$message = ( $lang == 'en' )
-					? "Centralnotice-{$template}-{$field}"
-					: "Centralnotice-{$template}-{$field}/{$lang}";
-				if ( Title::newFromText( $message, NS_MEDIAWIKI )->exists() ) {
-					$translations[ $lang ][ $field ] = $this->msg(
-						"Centralnotice-{$template}-{$field}"
-					)->inLanguage( $lang )->text();
-				}
-			}
-		}
-		return $translations;
 	}
 }

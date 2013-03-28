@@ -1103,27 +1103,9 @@ class CentralNotice extends SpecialPage {
 			);
 
 			// Banner
-			$viewPage = $this->getTitleFor( 'NoticeTemplate', 'view' );
-
-			/* XXX this code is duplicated in the CentralNoticePager::formatRow */
-			$render = new SpecialBannerLoader();
-			$render->language = $this->getRequest()->getVal( 'wpUserLanguage', $wgLanguageCode );
-			try {
-				$preview = $render->getHtmlNotice( $row->tmp_name );
-			} catch ( SpecialBannerLoaderException $e ) {
-				$preview = $this->msg( 'centralnotice-nopreview' )->text();
-			}
+			$banner = new Banner( $row->tmp_name );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				Linker::link(
-					$viewPage,
-					htmlspecialchars( $row->tmp_name ),
-					array(),
-					array( 'template' => $row->tmp_name )
-				) . Xml::fieldset(
-					$this->msg( 'centralnotice-preview' )->text(),
-					$preview,
-					array( 'class' => 'cn-bannerpreview' )
-				)
+				$banner->previewFieldSet( $this->getContext(), true )
 			);
 
 			$htmlOut .= Xml::closeElement( 'tr' );

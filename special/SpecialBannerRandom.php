@@ -11,13 +11,19 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 		UnlistedSpecialPage::__construct( "BannerRandom" );
 	}
 
-	function execute( $par ) {
-		$this->getOutput()->disable();
+	function getParams() {
+		parent::getParams();
 
-		$this->getParams();
+		$this->slot = $this->getSanitized( 'slot', self::SLOT_FILTER );
 
-		$this->bannerName = false;
+		if ( $this->slot === null ) {
+			throw new MissingRequiredParamsException();
+		}
 
+		$this->chooseBanner();
+	}
+
+	protected function chooseBanner() {
 		$chooser = new BannerChooser(
 			$this->project,
 			$this->language,
@@ -32,29 +38,5 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 			$this->bannerName = $banner['name'];
 			$this->campaign = $banner['campaign'];
 		}
-
-		$this->sendHeaders();
-
-		$content = false;
-		try {
-			if ( $this->bannerName ) {
-				$content = $this->getJsNotice( $this->bannerName );
-			}
-		} catch ( SpecialBannerLoaderException $e ) {
-			wfDebugLog( 'CentralNotice', "Exception while loading banner: " . $e->getMessage() );
-		}
-
-		if ( $content ) {
-			echo $content;
-		} else {
-			wfDebugLog( 'CentralNotice', "No content retrieved for banner: {$this->bannerName}" );
-			echo "insertBanner( false );";
-		}
-	}
-
-	function getParams() {
-		parent::getParams();
-
-		$this->slot = $this->getSanitized( 'slot', 0, self::SLOT_FILTER );
 	}
 }

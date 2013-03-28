@@ -20,6 +20,15 @@ class Banner {
 		return Title::newFromText( $this->getDbKey(), NS_MEDIAWIKI );
 	}
 
+	function getContent() {
+		$bodyPage = $this->getTitle();
+		$curRev = Revision::newFromTitle( $bodyPage );
+		if ( !$curRev ) {
+			throw new MWException( "No content for banner: {$this->name}" );
+		}
+		return $curRev->getText();
+	}
+
 	function getId() {
 		if ( !$this->id ) {
 			$this->id = Banner::getTemplateId( $this->name );
@@ -154,46 +163,9 @@ class Banner {
 	}
 
 	/**
-	 * Render the banner as an html fieldset
-	 *
-	 * TODO js refresh, iframe
-	 * live_target to other projects depending on ... something
-	 */
-	function previewFieldSet( IContextSource $context, $lang ) {
-		$render = new SpecialBannerLoader();
-		$render->siteName = 'Wikipedia'; //FIXME: translate?
-		$render->language = $lang;
-
-		try {
-			$preview = $render->getHtmlNotice( $this->name );
-		} catch ( SpecialBannerLoaderException $e ) {
-			$preview = $context->msg( 'centralnotice-nopreview' )->text();
-		}
-		$label = $context->msg( 'centralnotice-preview' )->text();
-		if ( $render->language ) {
-			$label .= " ($render->language)";
-			$live_target = "wikipedia:{$render->language}:Special:Random";
-		} else {
-			$live_target = "wikipedia:Special:Random";
-		}
-		$live_link = Linker::link(
-			Title::newFromText( $live_target ),
-			$context->msg( 'centralnotice-live-page' )->text(),
-			array(),
-			array( 'banner' => $this->name )
-		);
-		$htmlOut = Xml::fieldset(
-			$label,
-			$preview . '<br>' . $live_link,
-			array( 'class' => 'cn-bannerpreview' )
-		);
-		return $htmlOut;
-	}
-
-	/**
 	 * See if a given banner exists in the database
 	 *
-	 * @param $bannerName string
+	 * @param string $bannerName
 	 *
 	 * @return bool
 	 */
@@ -213,20 +185,12 @@ class Banner {
 	/**
 	 * Given one or more campaign ids, return all banners bound to them
 	 *
-	 * @param $campaigns array of id numbers
-	 * @param $logging   boolean whether or not request is for logging (optional)
+	 * @param array $campaigns list of campaign numeric IDs
 	 *
 	 * @return array a 2D array of banners with associated weights and settings
 	 */
-	static function getCampaignBanners( $campaigns, $logging = false ) {
-		global $wgCentralDBname;
-
-		// If logging, read from the master database to avoid concurrency problems
-		if ( $logging ) {
-			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-		} else {
-			$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		}
+	static function getCampaignBanners( $campaigns ) {
+		$dbr = CNDatabase::getDb();
 
 		$banners = array();
 
@@ -293,21 +257,16 @@ class Banner {
 	 * Return settings for a banner
 	 *
 	 * @param $bannerName string name of banner
-	 * @param $logging    boolean whether or not request is for logging (optional)
+	 * @param $detailed boolean if true, get some more expensive info
 	 *
 	 * @return array an array of banner settings
 	 */
-	static function getBannerSettings( $bannerName, $logging = false ) {
-		global $wgCentralDBname, $wgNoticeUseTranslateExtension;
+	static function getBannerSettings( $bannerName, $detailed = true ) {
+		global $wgNoticeUseTranslateExtension;
 
 		$banner = array();
 
-		// If logging, read from the master database to avoid concurrency problems
-		if ( $logging ) {
-			$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-		} else {
-			$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		}
+		$dbr = CNDatabase::getDb();
 
 		$row = $dbr->selectRow(
 			'cn_templates',
@@ -324,14 +283,15 @@ class Banner {
 
 		if ( $row ) {
 			$banner = array(
-				'anon'         => $row->tmp_display_anon,
-				'account'      => $row->tmp_display_account,
-				'fundraising'  => $row->tmp_fundraising,
-				'autolink'     => $row->tmp_autolink,
-				'landingpages' => $row->tmp_landing_pages
+				'anon'         => (int)$row->tmp_display_anon,
+				'account'      => (int)$row->tmp_display_account,
+				'fundraising'  => (int)$row->tmp_fundraising,
+				'autolink'     => (int)$row->tmp_autolink,
+				'landingpages' => $row->tmp_landing_pages,
+				//TODO: 'landingpages' => explode( ", ", $row->tmp_landing_pages ),
 			);
 
-			if ( $wgNoticeUseTranslateExtension ) {
+			if ( $wgNoticeUseTranslateExtension && $detailed ) {
 				$langs = TranslateMetadata::get(
 					BannerMessageGroup::getTranslateGroupName( $bannerName ),
 					'prioritylangs'
@@ -524,10 +484,7 @@ class Banner {
 				__METHOD__
 			);
 
-			// Perhaps these should move into the db as blobs instead of being stored as articles
-			$wikiPage = new WikiPage(
-				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
-			);
+			$wikiPage = new WikiPage( $bannerObj->getTitle() );
 
 			if ( class_exists( 'ContentHandler' ) ) {
 				// MediaWiki 1.21+
@@ -633,5 +590,132 @@ class Banner {
 		}
 
 		$dbw->insert( 'cn_template_log', $log );
+	}
+
+	/**
+	 * Copy all the data from one banner to another
+	 */
+	static function cloneTemplate( $source, $dest, $user ) {
+		// Normalize name
+		$dest = preg_replace( '/[^A-Za-z0-9_]/', '', $dest );
+
+		// Pull banner settings from database
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$row = $dbr->selectRow( 'cn_templates',
+			array(
+				'tmp_display_anon',
+				'tmp_display_account',
+				'tmp_fundraising',
+				'tmp_autolink',
+				'tmp_landing_pages'
+			),
+			array( 'tmp_name' => $source ),
+			__METHOD__
+		);
+		$displayAnon = $row->tmp_display_anon;
+		$displayAccount = $row->tmp_display_account;
+		$fundraising = $row->tmp_fundraising;
+		$autolink = $row->tmp_autolink;
+		$landingPages = $row->tmp_landing_pages;
+
+		$sourceBanner = new Banner( $source );
+
+		$langs = $sourceBanner->getAvailableLanguages();
+		$fields = Banner::extractMessageFields( $sourceBanner->getContent() );
+		$template_body = $sourceBanner->getContent();
+
+		// Create new banner
+		$errors = Banner::addTemplate( $dest, $template_body, $user, $displayAnon, $displayAccount, $fundraising, $autolink, $landingPages );
+		if ( !$errors ) {
+			$destBanner = new Banner( $dest );
+			// Populate the fields
+			foreach ( $langs as $lang ) {
+				foreach ( $fields as $field => $count ) {
+					$text = $sourceBanner->getMessageField( $field )->getContents( $lang );
+					if ( $text !== null ) {
+						$destBanner->getMessageField( $field )->update( $text, $lang, $user );
+					}
+				}
+			}
+			return $dest;
+		} else {
+			//FIXME: throw errors
+		}
+	}
+
+	/**
+	 * @return a list of languages with existing field translations
+	 */
+	function getAvailableLanguages() {
+		global $wgLanguageCode;
+		$availableLangs = array();
+
+		$fields = self::extractMessageFields( $this->getContent() );
+
+		//HACK
+		$prefix = $this->getMessageField( '' )->getDbKey();
+
+		$db = CNDatabase::getDb();
+		$result = $db->select( 'page',
+			'page_title',
+			array(
+				'page_namespace' => NS_MEDIAWIKI,
+				'page_title' . $db->buildLike( $prefix, $db->anyString() ),
+			),
+			__METHOD__
+		);
+		while ( $row = $result->fetchRow() ) {
+			if ( preg_match( "/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'], $matches ) ) {
+				$field = $matches[1];
+				if ( isset( $matches[2] ) ) {
+					$lang = $matches[2];
+				} else {
+					$lang = $wgLanguageCode;
+				}
+				$availableLangs[$lang] = true;
+			}
+		}
+		return array_keys( $availableLangs );
+	}
+
+	/**
+	 * Update a banner
+	 */
+	function editTemplate( $user, $body, $displayAnon, $displayAccount, $fundraising,
+	                               $autolink, $landingPages, $priorityLangs
+	) {
+		global $wgCentralDBname;
+		if ( !Banner::bannerExists( $this->name ) ) {
+			return;
+		}
+		$initialBannerSettings = Banner::getBannerSettings( $this->name, true );
+
+		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw->update( 'cn_templates',
+			array(
+				'tmp_display_anon'    => $displayAnon,
+				'tmp_display_account' => $displayAccount,
+				'tmp_fundraising'     => $fundraising,
+				'tmp_autolink'        => $autolink,
+				'tmp_landing_pages'   => $landingPages
+			),
+			array( 'tmp_name' => $this->name )
+		);
+
+		// Perhaps these should move into the db as blob
+		$wikiPage = new WikiPage( $this->getTitle() );
+
+		if ( class_exists( 'ContentHandler' ) ) {
+			// MediaWiki 1.21+
+			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
+			$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
+		} else {
+			$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
+		}
+
+		Banner::updateTranslationMetadata( $pageResult, $this->name, $body, $priorityLangs );
+
+		$this->logBannerChange( 'modified', $user, $initialBannerSettings );
 	}
 }

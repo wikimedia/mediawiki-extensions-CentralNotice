@@ -7,7 +7,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup';
 
-	protected $bannerPageName = '';
+	protected $bannerName = '';
 
 	protected $namespace = NS_CN_BANNER;
 
@@ -15,7 +15,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * Constructor.
 	 *
 	 * @param string $id Unique id for this group.
-	 * @param string $bannerPageName The page name of the CentralNotice banner
+	 * @param string $title The page name of the CentralNotice banner
 	 */
 	public function __construct( $namespace, $title ) {
 
@@ -23,9 +23,9 @@ class BannerMessageGroup extends WikiMessageGroup {
         $this->id = static::getTranslateGroupName( $title );
 
 		// For internal usage we just want the name of the banner. In the MediaWiki namespace
-        // this is stored with a prefix. Elsewhere (like the CentralNotice namespace) it is
-        // just the page name.
-		$this->bannerPageName = str_replace( 'Centralnotice-template-', '', $title );
+		// this is stored with a prefix. Elsewhere (like the CentralNotice namespace) it is
+		// just the page name.
+		$this->bannerName = str_replace( 'Centralnotice-template-', '', $title );
 
         // And now set the label for the Translate UI
         $this->setLabel( $titleObj->getPrefixedText() );
@@ -38,11 +38,8 @@ class BannerMessageGroup extends WikiMessageGroup {
 	public function getDefinitions() {
 		$definitions = array();
 
-		// Retrieve the body source of the banner
-		$bodyPage = Title::newFromText(
-			"Centralnotice-template-{$currentTemplate}", NS_MEDIAWIKI );
-		$curRev = Revision::newFromTitle( $bodyPage );
-		$body = $curRev ? $curRev->getText() : '';
+		$banner = new Banner( $this->bannerName );
+		$body = $banner->getContent();
 
 		// Extract the list of message fields from the banner source.
 		$fields = Banner::extractMessageFields( $body );
@@ -50,9 +47,9 @@ class BannerMessageGroup extends WikiMessageGroup {
 		// The MediaWiki page name convention for messages is the same as the
 		// convention for banners themselves, except that it doesn't include
 		// the 'template' designation.
-		$msgDefKeyPrefix = "Centralnotice-{$this->bannerPageName}-";
+		$msgDefKeyPrefix = "Centralnotice-{$this->bannerName}-";
 		if ( $this->namespace == NS_CN_BANNER ) {
-			$msgKeyPrefix = $this->bannerPageName . '-';
+			$msgKeyPrefix = $this->bannerName . '-';
 		}
 		else {
 			$msgKeyPrefix = $msgDefKeyPrefix;
