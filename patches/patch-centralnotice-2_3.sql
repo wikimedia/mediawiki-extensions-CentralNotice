@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_known_devices (
 	`dev_display_label` varchar(255) binary NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/dev_name ON /*_*/cn_known_devices (dev_name);
-INSERT INTO cn_known_devices VALUES (0, 'desktop', '{{int:centralnotice-devicetype-desktop}}');
+INSERT INTO /*_*/cn_known_devices VALUES (0, 'desktop', '{{int:centralnotice-devicetype-desktop}}');
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_template_devices (
 	`tdev_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_template_devices (
 	`dev_id` int NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/tdev_template_id ON /*_*/cn_template_devices (tmp_id);
-INSERT INTO cn_template_devices (tmp_id, dev_id)
+INSERT INTO /*_*/cn_template_devices (tmp_id, dev_id)
 	SELECT tmp_id, dev_id
-	FROM cn_templates, cn_known_devices
+	FROM /*_*/cn_templates, /*_*/cn_known_devices
 	WHERE dev_name='desktop';
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_known_mobile_carriers (
