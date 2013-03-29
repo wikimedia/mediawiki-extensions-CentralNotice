@@ -7,11 +7,11 @@ class BannerChooser {
 
 	var $banners = array();
 
-	function __construct( $project, $language, $country, $anonymous, $bucket ) {
+	function __construct( $project, $language, $country, $anonymous, $device, $bucket ) {
 		$campaigns = Campaign::getCampaigns( $project, $language, $country );
 		$this->banners = Banner::getCampaignBanners( $campaigns );
 
-		$this->filterBanners( $anonymous, $bucket );
+		$this->filterBanners( $anonymous, $device, $bucket );
 
 		$this->allocate();
 	}
@@ -45,7 +45,7 @@ class BannerChooser {
 	/**
 	 * Filters banners and returns those matching criteria
 	 */
-	protected function filterBanners( $anonymous, $bucket ) {
+	protected function filterBanners( $anonymous, $device, $bucket ) {
 		$filterColumn = function ( &$banners, $key, $value ) {
 			$banners = array_filter(
 				$banners,
@@ -66,6 +66,9 @@ class BannerChooser {
 			$highest_z = max( $banner[ 'campaign_z_index' ], $highest_z );
 		}
 		$filterColumn( $this->banners, 'campaign_z_index', $highest_z );
+
+		// Filter for device category
+		$filterColumn( $this->banners, 'device', $device );
 
         // Filter for the provided bucket.
 		$this->banners = array_filter(

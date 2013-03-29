@@ -207,49 +207,66 @@ class SpecialBannerAllocation extends CentralNotice {
 		// Begin Allocation list fieldset
 		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
-		$htmlOut .= Xml::tags( 'p', null,
-			$this->msg(
-				'centralnotice-allocation-description',
-				htmlspecialchars( $language ),
-				htmlspecialchars( $project ),
-				htmlspecialchars( $country )
-			)->text()
-		);
-
-		// FIXME bannerstats is toast
-		// Build campaign list for bannerstats.js
-		//$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
-		//
-		//$campaignList = FormatJson::encode( $campaignsUsed );
-		//$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
-		//$htmlOut .= Html::inlineScript( $js );
-
-		// FIXME matrix is chosen dynamically based on more UI inputs
-        $matrix = array();
-        for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
-            $matrix[] = array( 'anonymous' => 'true', 'bucket' => "$i" );
-        }
-        for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
-            $matrix[] = array( 'anonymous' => 'false', 'bucket' => "$i" );
-        }
-
-		foreach ( $matrix as $target ) {
-			$banners = ApiCentralNoticeAllocations::getAllocationInformation(
-				$project,
-				$country,
-				$language,
-				$target['anonymous'],
-				$target['bucket']
+		// Iterate through each possible device type and get allocation information
+		$devices = CNDeviceTarget::getAvailableDevices();
+		foreach( $devices as $device_id => $device_data ) {
+			$htmlOut .= Html::openElement(
+				'div',
+				array(
+					 'id' => "cn-allocation-{$project}-{$language}-{$country}-{$device_id}",
+					 'class' => 'cn-allocation-group'
+				)
 			);
-			if ( $target['anonymous'] === 'true' ) {
-				$label = $this->msg( 'centralnotice-banner-anonymous' )->text();
-			} else {
-				$label = $this->msg( 'centralnotice-banner-logged-in' )->text();
-			}
-			$label .= ' -- ' . $this->msg( 'centralnotice-bucket-letter' )->
-				rawParams( chr( $target['bucket'] + 65 ) )->text();
 
-			$htmlOut .= $this->getTable( $label, $banners );
+			$htmlOut .= Xml::tags(
+				'h3', null,
+				$this->msg(
+					'centralnotice-allocation-description',
+					htmlspecialchars( $language ),
+					htmlspecialchars( $project ),
+					htmlspecialchars( $country ),
+					$this->getOutput()->parseInline( $device_data['label'] )
+				)->text()
+			);
+
+			// FIXME bannerstats is toast
+			// Build campaign list for bannerstats.js
+			//$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
+			//
+			//$campaignList = FormatJson::encode( $campaignsUsed );
+			//$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
+			//$htmlOut .= Html::inlineScript( $js );
+
+			// FIXME matrix is chosen dynamically based on more UI inputs
+			$matrix = array();
+			for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
+				$matrix[] = array( 'anonymous' => 'true', 'bucket' => "$i" );
+			}
+			for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
+				$matrix[] = array( 'anonymous' => 'false', 'bucket' => "$i" );
+			}
+
+			foreach ( $matrix as $target ) {
+				$banners = ApiCentralNoticeAllocations::getAllocationInformation(
+					$project,
+					$country,
+					$language,
+					$target['anonymous'],
+					$device_data['header'],
+					$target['bucket']
+				);
+				if ( $target['anonymous'] === 'true' ) {
+					$label = $this->msg( 'centralnotice-banner-anonymous' )->text();
+				} else {
+					$label = $this->msg( 'centralnotice-banner-logged-in' )->text();
+				}
+				$label .= ' -- ' . $this->msg( 'centralnotice-bucket-letter' )->
+					rawParams( chr( $target['bucket'] + 65 ) )->text();
+
+				$htmlOut .= $this->getTable( $label, $banners );
+			}
+
+			$htmlOut .= Html::closeElement( 'div' );
 		}
 
 		// End Allocation list fieldset
@@ -262,7 +279,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 * Generate the HTML for an allocation table
 	 * @param $type string The title for the table
 	 * @param $banners array The banners to list
-	 * @return HTML for the table
+	 * @return string HTML for the table
 	 */
 	public function getTable( $type, $banners ) {
 		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
@@ -271,7 +288,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut = Html::openElement( 'table',
 			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
 		);
-		$htmlOut .= Html::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $type );
+		$htmlOut .= Html::element( 'h4', array(), $type );
 
 		if (count($banners) > 0) {
 
@@ -285,15 +302,14 @@ class SpecialBannerAllocation extends CentralNotice {
 			$htmlOut .= Html::closeElement( 'tr' );
 
 			foreach ( $banners as $banner ) {
-
-				$percentage = round( $banner['allocation'] * 100, 2 );
+				$percentage = sprintf( "%0.2f", round( $banner['allocation'] * 100, 2 ) );
 
 				// Row begin
 				$htmlOut .= Html::openElement( 'tr', array( 'class'=>'mw-sp-centralnotice-allocationrow' ) );
 
 				// Percentage
-				$htmlOut .= Html::openElement( 'td' );
-				$htmlOut .= $this->msg( 'percent' )->numParams( $percentage )->escaped();
+				$htmlOut .= Html::openElement( 'td', array( 'align' => 'right' ) );
+				$htmlOut .= $this->msg( 'percent', $percentage )->escaped();
 				$htmlOut .= Html::closeElement( 'td' );
 
 				// Banner name

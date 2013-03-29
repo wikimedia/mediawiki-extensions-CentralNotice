@@ -54,7 +54,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 				if ( isset( $toRemove ) ) {
 					// Remove banners in list
 					foreach ( $toRemove as $template ) {
-						Banner::removeTemplate( $template, $this->getUser() );
+						try {
+							Banner::removeTemplate( $template, $this->getUser() );
+						} catch ( MWException $ex ) {
+							$this->showError( array(
+                                'centralnotice-template-still-bound',
+                                $template
+                            ) );
+						}
 					}
 				}
 

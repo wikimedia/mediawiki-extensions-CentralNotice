@@ -3,6 +3,7 @@
 /**
  * @group Fundraising
  * @group Database
+ * @group CentralNotice
  */
 class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	/**
@@ -64,7 +65,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$landingPages = 'JA1, JA2';
 		$campaign_z_index = 1;
 
-		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1, JA2","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"bucket":0}]';
+		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1, JA2","device":"desktop","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"bucket":0}]';
 
 		Banner::addTemplate( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
 			$fundraising, $autolink, $landingPages );

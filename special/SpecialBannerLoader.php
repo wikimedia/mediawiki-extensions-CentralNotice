@@ -5,6 +5,19 @@
  * 
  */
 class SpecialBannerLoader extends UnlistedSpecialPage {
+	/** @var string Name of the choosen banner */
+	public $bannerName;
+
+	/** @var string Name of the campaign that the banner belongs to. Will be 'undefined' if not attatched. */
+	public $campaign;
+
+	public $project;
+	public $country;
+	public $language;
+	public $anonymous;
+	public $device;
+	public $bucket;
+
 	function __construct() {
 		// Register special page
 		parent::__construct( "BannerLoader" );
@@ -43,6 +56,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$this->language = $this->getSanitized( 'userlang', 'en', ApiCentralNoticeAllocations::LANG_FILTER );
 		$this->anonymous = ( $this->getSanitized( 'anonymous', 'true', ApiCentralNoticeAllocations::ANONYMOUS_FILTER ) === 'true' );
 		$this->bucket = intval( $this->getSanitized( 'bucket', '0', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
+		$this->device = $this->getSanitized( 'device', 'desktop', ApiCentralNoticeAllocations::DEVICE_NAME_FILTER );
 
 		$this->siteName = $request->getText( 'sitename', 'Wikipedia' );
 		$this->campaign = $request->getText( 'campaign', 'undefined' );

@@ -11,6 +11,7 @@ require_once 'ComparisonUtil.php';
  * This is a little sloppy, it is testing both the api and the allocations algorithms
  */
 class ApiAllocationsTest extends ApiTestCase {
+	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
 	protected function setUp() {

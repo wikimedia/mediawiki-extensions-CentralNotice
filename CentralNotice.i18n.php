@@ -65,7 +65,7 @@ Not adding.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Campaign does not exist.
 Nothing to remove.',
 	'centralnotice-banner-doesnt-exist' => 'Banner does not exist.',
-	'centralnotice-template-still-bound' => 'Banner is still bound to a campaign.
+	'centralnotice-template-still-bound' => 'Cannot remove banner "$1" as it is still bound to a campaign.
 Not removing.',
 	'centralnotice-template-body' => 'Banner body:',
 	'centralnotice-day' => 'Day',
@@ -141,7 +141,7 @@ Add one below.',
 	'centralnotice-projects' => 'Projects',
 	'centralnotice-country' => 'Country',
 	'centralnotice-no-allocation' => 'No banners allocated.',
-	'centralnotice-allocation-description' => 'Banner allocation for language: $1, project: $2, in country: $3:',
+	'centralnotice-allocation-description' => 'Banner allocation for language: $1, project: $2, in country: $3, on device $4',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	'centralnotice-preferred' => 'Priority',
@@ -195,6 +195,7 @@ Add one below.',
 	'centralnotice-buckets' => 'User bucketing',
 	'centralnotice-bucket' => 'Bucket',
 	'centralnotice-bucket-letter' => 'Bucket "$1"',
+	'centralnotice-devicetype-desktop' => 'Desktop Computer',
 	'centralnotice-all' => 'All',
 	'centralnotice-all-except' => 'All except $1',
 	'centralnotice-excluding-list' => '$1 (excluding $2)',
@@ -360,7 +361,8 @@ In English this is a short form of "Number of uses".',
 	'centralnotice-allocation-description' => 'A description of the environment the allocation of which is being described. Parameters:
 * $1 - the language code for the site (e.g "en")
 * $2 - the project name for the site (e.g. "wikipedia")
-* $3 - the country code (e.g. "US" for the United States, "FR" for France, etc.)',
+* $3 - the country code (e.g. "US" for the United States, "FR" for France, etc.)
+* $4 - the device class (e.g. "desktop", "OperaMini", "Android")',
 	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.
 {{Identical|Priority}}',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
@@ -455,6 +457,8 @@ Related messages:
 {{Identical|All}}',
 	'centralnotice-all-except' => 'A list which nearly contains every possible element, by only listing what is excluded. Parameters:
 * $1 - a comma-separated list of excluded elements',
+	'centralnotice-devicetype-desktop' => 'Dropdown selector label for identifying clients using a desktop computer',
+	'centralnotice-template-still-bound' => 'Error message displayed when a banner (name: $1) cannot be removed because it is still in use.',
 	'centralnotice-excluding-list' => 'A list followed by what has been excluded. Parameters:
 * $1 - a comma-separated list of included elements
 * $2 - a comma-separated list of excluded elements',

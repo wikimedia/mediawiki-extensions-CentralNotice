@@ -57,17 +57,8 @@ class Banner {
 	}
 
 	function remove() {
-		$result = Banner::removeTemplate( $this->name );
-		if ( $result !== true ) {
-			return $result;
-		}
-		// Delete the MediaWiki page that contains the banner source
-		$article = new Article( $this->getTitle() );
-		$pageId = $article->getPage()->getId();
-		$article->doDeleteArticle( 'CentralNotice automated removal' );
-
-		// Remove any revision tags related to the banner
-		Banner::removeTag( 'banner:translate', $pageId );
+		global $wgUser;
+		Banner::removeTemplate( $this->name, $wgUser );
 	}
 
 	static function removeTemplate( $name, $user ) {
@@ -79,8 +70,7 @@ class Banner {
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			$this->showError( 'centralnotice-template-still-bound' );
-			return;
+			throw new MWException( 'Cannot remove a template still bound to a campaign!' );
 		} else {
 			// Log the removal of the banner
 			// FIXME: this log line will display changes with inverted sense
@@ -242,11 +232,13 @@ class Banner {
 
 		if ( $campaigns ) {
 			$res = $dbr->select(
-					// Aliases (keys) are needed to avoid problems with table prefixes
+				// Aliases (keys) are needed to avoid problems with table prefixes
 				array(
 					'notices' => 'cn_notices',
-					'assignments' => 'cn_assignments',
 					'templates' => 'cn_templates',
+					'known_devices' => 'cn_known_devices',
+					'template_devices' => 'cn_template_devices',
+					'assignments' => 'cn_assignments',
 				),
 				array(
 					'tmp_name',
@@ -260,13 +252,21 @@ class Banner {
 					'not_preferred',
 					'asn_bucket',
 					'not_buckets',
+					'dev_name',
 				),
 				array(
 					'notices.not_id' => $campaigns,
 					'notices.not_id = assignments.not_id',
+					'known_devices.dev_id = template_devices.dev_id',
 					'assignments.tmp_id = templates.tmp_id'
 				),
-				__METHOD__
+				__METHOD__,
+				array(),
+				array(
+					 'template_devices' => array(
+						 'LEFT JOIN', 'template_devices.tmp_id = assignments.tmp_id'
+					 )
+				)
 			);
 
 			foreach ( $res as $row ) {
@@ -278,6 +278,7 @@ class Banner {
 					'fundraising'      => intval( $row->tmp_fundraising ), // fundraising banner?
 					'autolink'         => intval( $row->tmp_autolink ), // automatically create links?
 					'landing_pages'    => $row->tmp_landing_pages, // landing pages to link to
+					'device'           => $row->dev_name, // device this banner can target
 					'campaign'         => $row->not_name, // campaign the banner is assigned to
 					'campaign_z_index' => $row->not_preferred, // z level of the campaign
 					'campaign_num_buckets' => intval( $row->not_buckets ),
@@ -478,20 +479,19 @@ class Banner {
 		// Format name so there are only letters, numbers, and underscores
 		$name = preg_replace( '/[^A-Za-z0-9_]/', '', $name );
 
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$res = $dbr->select(
+		$db = CNDatabase::getDb();
+		$res = $db->select(
 			'cn_templates',
 			'tmp_name',
 			array( 'tmp_name' => $name ),
 			__METHOD__
 		);
 
-		if ( $dbr->numRows( $res ) > 0 ) {
+		if ( $db->numRows( $res ) > 0 ) {
 			return 'centralnotice-template-exists';
 		} else {
-			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-			$dbw->insert( 'cn_templates',
+			// Insert the banner record
+			$db->insert( 'cn_templates',
 				array(
 					'tmp_name'            => $name,
 					'tmp_display_anon'    => $displayAnon,
@@ -503,7 +503,26 @@ class Banner {
 				__METHOD__
 			);
 			$bannerObj = new Banner( $name );
-			$bannerObj->id = $dbw->insertId();
+			$bannerObj->id = $db->insertId();
+
+			// TODO: Add the attached devices (yes this is a hack until the UI supports it)
+			$res = $db->select(
+				array( 'known_devices' => 'cn_known_devices' ),
+				'dev_id',
+				array( 'dev_name' => 'desktop' ),
+				__METHOD__
+			);
+			$desktop_id = $db->fetchRow( $res );
+			$desktop_id = $desktop_id[ 'dev_id' ];
+
+			$db->insert(
+				'cn_template_devices',
+				array(
+					 'tmp_id' => $bannerObj->id,
+					 'dev_id' => $desktop_id
+				),
+				__METHOD__
+			);
 
 			// Perhaps these should move into the db as blobs instead of being stored as articles
 			$wikiPage = new WikiPage(

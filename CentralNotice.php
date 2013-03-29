@@ -262,6 +262,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
 
+	$wgAutoloadClasses[ 'CNDatabase' ] = $includeDir . 'CNDatabase.php';
 	$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
@@ -298,10 +299,9 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'SpecialGlobalAllocation' ] = $specialDir . 'SpecialGlobalAllocation.php';
 		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
 		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
+		$wgAutoloadClasses[ 'CNDeviceTarget' ] = $includeDir . 'CNDeviceTarget.php';
 
 		if ( $wgNoticeUseTranslateExtension ) {
-			global $wgExtraNamespaces, $wgNamespacesWithSubpages, $wgTranslateMessageNamespaces;
-
 			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
             $wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = array( 'BannerMessageGroup::updateBannerGroupStateHook' );
@@ -444,8 +444,7 @@ function efCentralNoticeDefaults( &$vars ) {
  * @return bool
  */
 function efCentralNoticeDisplay( &$notice ) {
-	// Setup siteNotice div and initialize the banner controller.
-	// Comment hack for IE8 to collapse empty div
+	// Ensure that the div including #siteNotice is actually included!
 	$notice = "<!-- CentralNotice -->$notice";
 	return true;
 }

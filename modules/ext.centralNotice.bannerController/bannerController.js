@@ -59,10 +59,6 @@
 			});
 		},
 		loadRandomBanner: function () {
-			// TODO: Get rid of this when mobile support in CN is totally there
-			if ( mw.config.get( 'wgMobileDeviceName' ) ) {
-				return;
-			}
 
 			var RAND_MAX = 30;
 			var bannerDispatchQuery = {
