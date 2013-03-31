@@ -169,6 +169,7 @@ $specialPageAliases['ko'] = array(
 	'CentralNotice' => array( '중앙공지' ),
 	'CentralNoticeLogs' => array( '중앙공지기록' ),
 	'NoticeTemplate' => array( '알림틀', '공지틀' ),
+	'GlobalAllocation' => array( '전역할당' ),
 	'BannerAllocation' => array( '배너배정' ),
 	'BannerController' => array( '배너컨트롤러' ),
 	'BannerListLoader' => array( '배너목록열기', '배너목록로더' ),
