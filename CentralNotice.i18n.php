@@ -5480,7 +5480,7 @@ $messages['fi'] = array(
 Voit myös lisätä tai poistaa vanhoja tiedotteita.',
 	'centralnotice-query' => 'Muokkaa nykyisiä tiedotteita',
 	'centralnotice-notice-name' => 'Tiedotteen nimi',
-	'centralnotice-end-date' => 'Lopetuspäivä', # Fuzzy
+	'centralnotice-end-date' => 'Lopetuspäivä (UTC)',
 	'centralnotice-enabled' => 'Käytössä',
 	'centralnotice-modify' => 'Lähetä',
 	'centralnotice-view' => 'Näytä',
@@ -5533,7 +5533,7 @@ Ei poisteta.', # Fuzzy
 	'centralnotice-select-all' => 'Valitse kaikki',
 	'centralnotice-remove-all' => 'Poista kaikki',
 	'centralnotice-project-name' => 'Projektin nimi',
-	'centralnotice-start-date' => 'Alkamispäivä', # Fuzzy
+	'centralnotice-start-date' => 'Alkamispäivä (UTC)',
 	'centralnotice-start-time' => 'Alkamisaika (UTC)',
 	'centralnotice-end-time' => 'Lopetusaika (UTC)',
 	'centralnotice-assigned-templates' => 'Kytketyt bannerit',
@@ -5636,12 +5636,18 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-priority-normal' => 'normaali',
 	'centralnotice-priority-high' => 'korkea',
 	'centralnotice-priority-emergency' => 'tärkeysaste',
+	'centralnotice-prioritylangs' => 'Ensisijaiset kielet',
 	'centralnotice-country-eu' => 'Tuntematon/Euroopan unionin alueella',
 	'centralnotice-country-ap' => 'Tuntematon/Aasian-Tyynenmeren alueella',
 	'centralnotice-country-a1' => 'Tuntematon/anonyymi proxy',
 	'centralnotice-country-a2' => 'Tuntematon/satelliittipalveluntarjoaja',
 	'centralnotice-country-o1' => 'Tuntematon/muu maa',
 	'centralnotice-country-unknown' => 'Tuntematon/ei paikannettavissa',
+	'centralnotice-all' => 'Kaikki',
+	'centralnotice-all-except' => 'Kaikki paitsi $1',
+	'centralnotice-user-role' => 'Käyttäjärooli',
+	'centralnotice-user-role-anonymous' => 'Anonyymi',
+	'centralnotice-user-role-logged-in' => 'Kirjautunut',
 );
 
 /** Faroese (føroyskt)
@@ -18886,8 +18892,8 @@ $messages['zh-hans'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => '通告不存在。
 没有东西移除',
 	'centralnotice-banner-doesnt-exist' => '横幅不存在。',
-	'centralnotice-template-still-bound' => '模板不存在。
-没有东西移除。', # Fuzzy
+	'centralnotice-template-still-bound' => '不能移除横幅“$1”，因为它仍绑定在一个活动中。
+没有被移除。',
 	'centralnotice-template-body' => '模板主体：',
 	'centralnotice-day' => '日',
 	'centralnotice-year' => '年',
@@ -18962,7 +18968,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-projects' => '项目',
 	'centralnotice-country' => '国家',
 	'centralnotice-no-allocation' => '没有配给横幅',
-	'centralnotice-allocation-description' => '在$1.$2，$3横幅分配：', # Fuzzy
+	'centralnotice-allocation-description' => '横幅分配对语言：$1，项目：$2，在国家：$3 的 $4 设备上',
 	'centralnotice-percentage' => '百分比',
 	'centralnotice-documentwrite-error' => 'document.write() 不能在横幅中使用。
 更多信息请参见 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',
