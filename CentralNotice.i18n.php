@@ -8281,7 +8281,7 @@ $messages['it'] = array(
 	'centralnotice-summary' => 'Questo modulo permette di modificare gli avvisi centralizzati. Può essere inoltre usato per aggiungere o rimuovere vecchi avvisi.',
 	'centralnotice-query' => 'Modifica avvisi attuali',
 	'centralnotice-notice-name' => "Nome dell'avviso",
-	'centralnotice-end-date' => 'Data di fine', # Fuzzy
+	'centralnotice-end-date' => 'Data di fine (UTC)',
 	'centralnotice-enabled' => 'Attivato',
 	'centralnotice-modify' => 'Invia',
 	'centralnotice-view' => 'Visualizza',
@@ -8320,7 +8320,7 @@ $messages['it'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'La campagna non esiste.
 Niente da rimuovere.',
 	'centralnotice-banner-doesnt-exist' => 'Il banner non esiste.',
-	'centralnotice-template-still-bound' => 'Il banner è ancora collegato ad una campagna. Il banner non è stato rimosso.',
+	'centralnotice-template-still-bound' => 'Impossibile rimuovere il banner "$1" poiché è ancora collegato ad una campagna. Il banner non è stato rimosso.',
 	'centralnotice-template-body' => 'Corpo del banner:',
 	'centralnotice-day' => 'Giorno',
 	'centralnotice-year' => 'Anno',
@@ -8332,7 +8332,7 @@ Niente da rimuovere.',
 	'centralnotice-remove-all' => 'Rimuovi tutto',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|elemento selezionato|elementi selezionati}}',
 	'centralnotice-project-name' => 'Nome progetto',
-	'centralnotice-start-date' => 'Data di inizio', # Fuzzy
+	'centralnotice-start-date' => 'Data di inizio (UTC)',
 	'centralnotice-start-time' => 'Ora di inizio (UTC)',
 	'centralnotice-end-time' => 'Ora fine (UTC)',
 	'centralnotice-assigned-templates' => 'Banner assegnati',
@@ -8387,7 +8387,7 @@ Non aggiorno',
 	'centralnotice-projects' => 'Progetti',
 	'centralnotice-country' => 'Nazione',
 	'centralnotice-no-allocation' => 'Nessun banner assegnato.',
-	'centralnotice-allocation-description' => 'Destinazione dei banner per $1.$2 con codice $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'Destinazione dei banner per lingua: $1, progetto: $2, paese: $3, dispositivo: $4',
 	'centralnotice-percentage' => 'Percentuale',
 	'centralnotice-documentwrite-error' => 'Non è possibile usare document.write() dentro un banner.
 Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.',
@@ -13889,8 +13889,8 @@ No a scè aggiungere.",
 	'centralnotice-remove-notice-doesnt-exist' => "'A cambagne non g'esiste.
 Nnijende da luà.",
 	'centralnotice-banner-doesnt-exist' => "'U banner non g'esiste.",
-	'centralnotice-template-still-bound' => "'U banner jè angore cullegate a 'na cambagne.
-Non ge le luà.", # Fuzzy
+	'centralnotice-template-still-bound' => 'Non ge pozze luà \'u banner "$1" purcé jè angore cullegate a \'na cambagne.
+Non giù luà.',
 	'centralnotice-template-body' => "Cuèrpe d'u banner:",
 	'centralnotice-day' => 'Sciúrne',
 	'centralnotice-year' => 'Anne',
@@ -13965,7 +13965,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-projects' => 'Pruggette',
 	'centralnotice-country' => 'Nazione',
 	'centralnotice-no-allocation' => 'Nisciune banner assignate.',
-	'centralnotice-allocation-description' => "Posizione d'u banner pa lènghe: $1, proggette: $2 jndr'à 'u paese $3:", # Fuzzy
+	'centralnotice-allocation-description' => "Posizione d'u banner pa lènghe: $1, proggette: $2, jndr'à 'u paese: $3, sus a 'u dispositive $4",
 	'centralnotice-percentage' => 'Percenduale',
 	'centralnotice-documentwrite-error' => "document.write() non ge pò essere ausate jndr'à 'nu banner.
 Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
@@ -14018,6 +14018,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-buckets' => 'Utende ca scette',
 	'centralnotice-bucket' => 'Sicchie',
 	'centralnotice-bucket-letter' => 'Sicchie "$1"',
+	'centralnotice-devicetype-desktop' => 'Combiuter da tavole',
 	'centralnotice-all' => 'Tutte',
 	'centralnotice-all-except' => 'Tutte mene $1',
 	'centralnotice-excluding-list' => '$1 (scludenne $2)',
@@ -18644,6 +18645,7 @@ $messages['yi'] = array(
 	'centralnotice' => 'צענטראַלע מעלדונג פֿאַרוואַטונג',
 	'noticetemplate' => 'צענטראַלע מעלדונג פֿאַרוואַטונג',
 	'bannerallocation' => 'צענטראַלע מעלדונג פֿאַרוואַטונג',
+	'globalallocation' => ' צענטראלע מעלדונג פֿארוואלטונג',
 	'centralnoticelogs' => ' צענטראלע מעלדונג פֿארוואלטונג',
 	'right-centralnotice-admin' => 'פֿאַרוואַלטן צענטראַלע מעלדונגען',
 	'action-centralnotice-admin' => 'פֿאַרוואַלטן צענטראַלע מעלדונגען',
@@ -18652,7 +18654,7 @@ $messages['yi'] = array(
 מען קען זי אויך ניצן צושטעלן אָדער אַראָפּנעמען אַלטע מעלדונגען.',
 	'centralnotice-query' => 'ענדערן אַקטועלע מעלדונגען',
 	'centralnotice-notice-name' => 'נאטיץ נאָמען',
-	'centralnotice-end-date' => 'סוף דאַטע',
+	'centralnotice-end-date' => 'סוף דאַטע (UTC)',
 	'centralnotice-enabled' => 'אַקטיוויזירט',
 	'centralnotice-modify' => 'אײַנגעבן',
 	'centralnotice-view' => 'באַקוקן',
@@ -18670,10 +18672,6 @@ $messages['yi'] = array(
 	'centralnotice-add-template' => 'צולייגן אַ פֿאָנע',
 	'centralnotice-show-notices' => 'ווייַזן מעלדונגען',
 	'centralnotice-list-templates' => 'אויסרעכענען פֿאָנעס',
-	'centralnotice-multiple-projects' => 'מערערע ($1)',
-	'centralnotice-multiple-languages' => 'מערערע ($1)',
-	'centralnotice-multiple-countries' => 'מערערע ($1)',
-	'centralnotice-all-projects' => 'אַלע פראיעקטן',
 	'centralnotice-translations' => 'פֿאַרטייטשונגען',
 	'centralnotice-translate-to' => 'פֿאַרטייטשן אויף',
 	'centralnotice-translate' => 'פֿאַרטייטשן',
@@ -18697,8 +18695,9 @@ $messages['yi'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'מעלדונג נישט פאראן.
 נישטא וואס אראפצונעמען.',
 	'centralnotice-banner-doesnt-exist' => 'פֿאנע נישט פֿאַראַן.',
-	'centralnotice-template-still-bound' => 'פאנע נאך פארבונדען מיט א מעלדונג.
-מען וועט נישט אראפנעמען.',
+	'centralnotice-template-still-bound' => 'מ\'קעם נישט אראפנעמען פאנע "$1" ווייל זי איז נאך פארבונדען מיט א מעלדונג.
+
+מען נעמט נישט אראפ.',
 	'centralnotice-template-body' => 'פאנע טעקסט:',
 	'centralnotice-day' => 'טאג',
 	'centralnotice-year' => 'יאר',
@@ -18706,10 +18705,11 @@ $messages['yi'] = array(
 	'centralnotice-hours' => 'שעה',
 	'centralnotice-min' => 'מינוט',
 	'centralnotice-project-lang' => 'פראיעקט שפראך',
-	'centralnotice-select' => 'אויסוויילן: $1',
-	'centralnotice-top-ten-languages' => '10 הויפט שפראַכן',
+	'centralnotice-select-all' => 'אויסוויילן אלע',
+	'centralnotice-remove-all' => 'אראפנעמען אלע',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|איינס|איינסן}} אויסגעקליבן',
 	'centralnotice-project-name' => 'פראיעקט נאמען',
-	'centralnotice-start-date' => 'אָנהייב דאַטע',
+	'centralnotice-start-date' => 'אָנהייב דאַטע (UTC)',
 	'centralnotice-start-time' => 'אָנהייב צייַט (UTC)',
 	'centralnotice-end-time' => 'סוף צייַט (UTC)',
 	'centralnotice-no-templates' => 'נישט געטראפן קיין פאנעס.
@@ -18766,6 +18766,12 @@ $messages['yi'] = array(
 	'centralnotice-priority-normal' => 'נארמאַל',
 	'centralnotice-priority-high' => 'הויך',
 	'centralnotice-priority-emergency' => 'נויטפאל',
+	'centralnotice-all' => 'אַלע',
+	'centralnotice-all-except' => 'אלע אחוץ $1',
+	'centralnotice-excluding-list' => '$1 (אחוץ $2)',
+	'centralnotice-user-role' => 'באניצער ראלע',
+	'centralnotice-user-role-anonymous' => 'אַנאנים',
+	'centralnotice-user-role-logged-in' => 'אריינלאגירט',
 );
 
 /** Yoruba (Yorùbá)
@@ -18903,7 +18909,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-project-lang' => '计划语言',
 	'centralnotice-select-all' => '全选',
 	'centralnotice-remove-all' => '全部删除',
-	'centralnotice-items-selected' => '$1 {{PLURAL:$1|项目|项目}}选定',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|项目|项目}}已选定',
 	'centralnotice-project-name' => '计划名称',
 	'centralnotice-start-date' => '开始日期 (UTC)',
 	'centralnotice-start-time' => '开始时间（UTC）',
