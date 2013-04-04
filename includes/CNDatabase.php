@@ -7,20 +7,22 @@ class CNDatabase {
 	/**
 	 * Gets a database object. Will be the master if the user is logged in.
 	 *
-	 * @param string|bool $wiki        Wiki database to connect to, if false will be
-	 *                                 the Infrastructure DB
-	 * @param bool        $forceSlave  If true will force a slave connection; otherwise
-	 *                                 this will return a master if logged in.
+	 * @param int|bool    $force   If false will return a DB master/slave based on users permissions.
+	 *                             Set to DB_MASTER or DB_SLAVE to force that type.
+	 * @param string|bool $wiki    Wiki database to connect to, if false will be the Infrastructure DB
 	 *
 	 * @return DatabaseBase
 	 */
-	public static function getDb( $wiki = false, $forceSlave = false ) {
+	public static function getDb( $force = false, $wiki = false ) {
 		global $wgCentralDBname;
 		global $wgUser;
 
-		$dbmode = DB_SLAVE;
-		if ( $wgUser->isLoggedIn() && !$forceSlave ) {
+		if ( $wgUser->isAllowed( 'centralnotice-admin' ) ) {
 			$dbmode = DB_MASTER;
+		} elseif ( $force === false ) {
+			$dbmode = DB_SLAVE;
+		} else {
+			$dbmode = $force;
 		}
 
 		$db = ( $wiki === false ) ? $wgCentralDBname : $wiki;

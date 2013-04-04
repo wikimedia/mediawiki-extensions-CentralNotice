@@ -504,6 +504,7 @@ class Banner {
 	/**
 	 * Updates any metadata required for banner/translation extension integration.
 	 *
+	 * @param array  $pageResult        Return from WikiPage->doEditContent()
 	 * @param string $name              Raw name of banner
 	 * @param string $body              Body text of banner
 	 * @param array  $priorityLangs     Languages to emphasize during translation

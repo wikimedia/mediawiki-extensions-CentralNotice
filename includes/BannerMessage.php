@@ -7,14 +7,33 @@ class BannerMessage {
 	}
 
 	function getTitle( $lang, $namespace = NS_MEDIAWIKI ) {
-		return Title::newFromText( $this->getDbKey( $lang ), $namespace );
+		return Title::newFromText( $this->getDbKey( $lang, $namespace ), $namespace );
 	}
 
-	function getDbKey( $lang = null ) {
+	/**
+	 * Obtains the key of the message as stored in the database. This varies depending on namespace
+	 *  - in the MediaWiki namespace messages are Centralnotice-{banner name}-{message name}/{lang}
+	 *  -- except for the content language which is stored without the /{lang} extension
+	 *  - in the CN Banner namespace messages are {banner name}-{message name}/{lang}
+	 *
+	 * @param string|null $lang      Language code
+	 * @param int         $namespace Namespace to get key for
+	 *
+	 * @return string Message database key
+	 * @throws MWException
+	 */
+	function getDbKey( $lang = null, $namespace = NS_MEDIAWIKI ) {
 		global $wgLanguageCode;
-		return ( $lang === null or $lang === $wgLanguageCode ) ?
-			"Centralnotice-{$this->banner_name}-{$this->name}" :
-			"Centralnotice-{$this->banner_name}-{$this->name}/{$lang}";
+
+		if ( $namespace === NS_MEDIAWIKI ) {
+			return ( $lang === null or $lang === $wgLanguageCode ) ?
+				"Centralnotice-{$this->banner_name}-{$this->name}" :
+				"Centralnotice-{$this->banner_name}-{$this->name}/{$lang}";
+		} elseif ( $namespace === NS_CN_BANNER ) {
+			return "{$this->banner_name}-{$this->name}/{$lang}";
+		} else {
+			throw new MWException( "Namespace '$namespace' not known for having CentralNotice messages." );
+		}
 	}
 
 	/**
@@ -51,7 +70,7 @@ class BannerMessage {
 			if ( class_exists( 'ContentHandler' ) ) {
 				// MediaWiki 1.21+
 				$content = ContentHandler::makeContent( $text, $title );
-				$wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
+				$result = $wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
 			} else {
 				$wikiPage->doEdit( $translation, '/* CN admin */', EDIT_FORCE_BOT );
 			}
@@ -85,9 +104,8 @@ class BannerMessage {
 	 * This really is intended only for use on the original source language and qqq because
 	 * these languages are set via the CN UI; not the translate UI.
 	 *
-	 * @param $field        Message name; should be BannerName-MessageName format
-	 * @param $content      Contents of the message
-	 * @param $lang         Language to update for
+	 * @param WikiPage $page Page containing the message to protect
+	 * @param User     $user User doing the protection (ie: the last one to edit the page)
 	 */
 	protected function protectMessageInCnNamespaces( $page, $user ) {
 		global $wgNoticeProtectGroup;

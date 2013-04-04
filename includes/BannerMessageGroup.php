@@ -199,8 +199,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return bool
 	 */
 	public static function registerGroupHook( &$list ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb( DB_MASTER ); // Must be explicitly master for runs under a jobqueue
 
 		// Create the base aggregate group
 		$conf = array();

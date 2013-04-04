@@ -1104,8 +1104,10 @@ class CentralNotice extends SpecialPage {
 
 			// Banner
 			$banner = new Banner( $row->tmp_name );
+			$renderer = new BannerRenderer( $this->getContext(), $banner );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$banner->previewFieldSet( $this->getContext(), true )
+				$renderer->linkTo() . '<br/>' .
+				$renderer->previewFieldSet()
 			);
 
 			$htmlOut .= Xml::closeElement( 'tr' );
