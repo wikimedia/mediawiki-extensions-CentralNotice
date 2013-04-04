@@ -549,9 +549,11 @@ class Banner {
 	 */
 	function logBannerChange( $action, $user, $beginSettings = array() ) {
 		$endSettings = array();
+		if ( $action !== 'removed' ) {
+			$endSettings = Banner::getBannerSettings( $this->getName(), true );
+		}
 		if ( $action === 'modified' ) {
 			// Only log if there are any differences in the settings
-			$endSettings = Banner::getBannerSettings( $this->getName(), true );
 			$changed = false;
 			foreach ( $endSettings as $key => $value ) {
 				if ( $endSettings[$key] != $beginSettings[$key] ) {
