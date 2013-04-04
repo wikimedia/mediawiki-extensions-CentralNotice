@@ -204,7 +204,10 @@ Add one below.',
 	'centralnotice-user-role-logged-in' => 'Logged-in',
 );
 
-/** Message documentation (Message documentation)
+/** Message documentation (This is the name of the message documentation language code (qqq). Follow the rules of your languages and use small first letter if it doesn't capitalize language names always.
+
+It might be easier to translate it as "translation guidelines" or "translation help".
+{{Identical|Message documentation}})
  * @author Amire80
  * @author Bennylin
  * @author Darth Kule
@@ -258,8 +261,9 @@ Used as table column header and follows {{msg-mw|Centralnotice-start-date}}.
 * "view banner allocation" on [[m:Special:BannerAllocation]].
 {{Identical|View}}',
 	'centralnotice-save-banner' => 'Label for the submit button which saves a CentralNotice banner.',
-	'centralnotice-preview' => '{{Identical|Preview}} Parameters:
-* $1 - language code of this preview',
+	'centralnotice-preview' => 'Parameters:
+* $1 - language code of this preview
+{{Identical|Preview}}',
 	'centralnotice-nopreview' => '{{Identical|Nopreview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. Parameters:
@@ -1382,7 +1386,7 @@ Tamién se pue usar p'amestar o desaniciar avisos antiguos.",
 	'centralnotice-modify' => 'Unviar',
 	'centralnotice-view' => 'Ver',
 	'centralnotice-save-banner' => 'Guardar cartel',
-	'centralnotice-preview' => 'Vista previa',
+	'centralnotice-preview' => 'Vista previa', # Fuzzy
 	'centralnotice-nopreview' => '(Entever nun ta disponible)',
 	'centralnotice-add-new' => 'Amestar una campaña nueva',
 	'centralnotice-remove' => 'Desaniciar',
@@ -2050,7 +2054,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-modify' => 'Захаваць',
 	'centralnotice-view' => 'Паказаць',
 	'centralnotice-save-banner' => 'Захаваць банэр',
-	'centralnotice-preview' => 'Папярэдні прагляд',
+	'centralnotice-preview' => 'Папярэдні прагляд', # Fuzzy
 	'centralnotice-nopreview' => '(Прагляд недаступны)',
 	'centralnotice-add-new' => 'Дадаць новую кампанію',
 	'centralnotice-remove' => 'Выдаліць',
@@ -3598,7 +3602,7 @@ Det kan også bruges til at tilføje eller fjerne gamle meddelelser.',
 	'centralnotice-modify' => 'Send',
 	'centralnotice-view' => 'Vis',
 	'centralnotice-save-banner' => 'Gem banner',
-	'centralnotice-preview' => 'Forhåndsvisning',
+	'centralnotice-preview' => 'Forhåndsvisning', # Fuzzy
 	'centralnotice-nopreview' => '(Forhåndsvisning ikke mulig)',
 	'centralnotice-add-new' => 'Tilføj en ny kampagne',
 	'centralnotice-remove' => 'Fjern',
@@ -3800,7 +3804,7 @@ Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werde
 	'centralnotice-modify' => 'Speichern',
 	'centralnotice-view' => 'Anzeigen',
 	'centralnotice-save-banner' => 'Vorlage speichern',
-	'centralnotice-preview' => 'Vorschau',
+	'centralnotice-preview' => 'Vorschau ($1)',
 	'centralnotice-nopreview' => '(Vorschau nicht verfügbar)',
 	'centralnotice-add-new' => 'Füge eine neue zentrale Meldung hinzu',
 	'centralnotice-remove' => 'Entfernen',
@@ -4987,7 +4991,7 @@ Samuti saab sellega teateid lisada või vanu teateid eemaldada.',
 	'centralnotice-modify' => 'Sobib',
 	'centralnotice-view' => 'Vaata',
 	'centralnotice-save-banner' => 'Salvesta mall',
-	'centralnotice-preview' => 'Eelvaade',
+	'centralnotice-preview' => 'Eelvaade', # Fuzzy
 	'centralnotice-nopreview' => '(Eelvaade pole saadaval)',
 	'centralnotice-add-new' => 'Lisa uus keskuse teade',
 	'centralnotice-remove' => 'Eemalda',
@@ -5486,7 +5490,7 @@ Voit myös lisätä tai poistaa vanhoja tiedotteita.',
 	'centralnotice-modify' => 'Lähetä',
 	'centralnotice-view' => 'Näytä',
 	'centralnotice-save-banner' => 'Tallenna banneri',
-	'centralnotice-preview' => 'Esikatselu',
+	'centralnotice-preview' => 'Esikatselu', # Fuzzy
 	'centralnotice-nopreview' => '(esikatselua ei saatavilla)',
 	'centralnotice-add-new' => 'Lisää uusi keskitetty tiedote',
 	'centralnotice-remove' => 'Poista',
@@ -5780,7 +5784,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-modify' => 'Soumettre',
 	'centralnotice-view' => 'Voir',
 	'centralnotice-save-banner' => 'Enregistrer la bannière',
-	'centralnotice-preview' => 'Prévisualiser',
+	'centralnotice-preview' => 'Prévisualiser', # Fuzzy
 	'centralnotice-nopreview' => '(Prévisualisation non disponible)',
 	'centralnotice-add-new' => 'Ajouter un nouvel avis central',
 	'centralnotice-remove' => 'Enlever',
@@ -6172,7 +6176,7 @@ Tamén pode ser usado para engadir ou eliminar avisos vellos.',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-view' => 'Ver',
 	'centralnotice-save-banner' => 'Gardar o cartel',
-	'centralnotice-preview' => 'Vista previa',
+	'centralnotice-preview' => 'Vista previa ($1)',
 	'centralnotice-nopreview' => '(A vista previa non está dispoñible)',
 	'centralnotice-add-new' => 'Engadir un novo aviso central',
 	'centralnotice-remove' => 'Eliminar',
@@ -6761,7 +6765,7 @@ $messages['he'] = array(
 	'centralnotice-modify' => 'שליחה',
 	'centralnotice-view' => 'הצגה',
 	'centralnotice-save-banner' => 'שמירת הכּרזה',
-	'centralnotice-preview' => 'תצוגה מקדימה',
+	'centralnotice-preview' => 'תצוגה מקדימה', # Fuzzy
 	'centralnotice-nopreview' => '(תצוגה מקדימה אינה זמינה)',
 	'centralnotice-add-new' => 'הוספת מסע פרסום חדש',
 	'centralnotice-remove' => 'הסרה',
@@ -8287,7 +8291,7 @@ $messages['it'] = array(
 	'centralnotice-modify' => 'Invia',
 	'centralnotice-view' => 'Visualizza',
 	'centralnotice-save-banner' => 'Salva banner',
-	'centralnotice-preview' => 'Anteprima',
+	'centralnotice-preview' => 'Anteprima', # Fuzzy
 	'centralnotice-nopreview' => '(Anteprima non disponibile)',
 	'centralnotice-add-new' => 'Aggiungi un nuovo avviso centralizzato',
 	'centralnotice-remove' => 'Rimuovi',
@@ -8473,7 +8477,7 @@ $messages['ja'] = array(
 	'centralnotice-modify' => '送信',
 	'centralnotice-view' => '表示',
 	'centralnotice-save-banner' => 'バナーを保存',
-	'centralnotice-preview' => 'プレビュー',
+	'centralnotice-preview' => 'プレビュー ($1)',
 	'centralnotice-nopreview' => '(プレビューはありません)',
 	'centralnotice-add-new' => '新しい告知を追加',
 	'centralnotice-remove' => '除去',
@@ -8850,7 +8854,7 @@ $messages['ka'] = array(
 	'centralnotice-modify' => 'გაგზავნა',
 	'centralnotice-view' => 'ჩვენება',
 	'centralnotice-save-banner' => 'ბანერის შენახვა',
-	'centralnotice-preview' => 'წინა',
+	'centralnotice-preview' => 'წინა', # Fuzzy
 	'centralnotice-nopreview' => '(წინასწარი გადახედვა არ არის ხელმისაწვდომი)',
 	'centralnotice-add-new' => 'ახალი შეტყობინების დამატება',
 	'centralnotice-remove' => 'წაშლა',
@@ -9175,7 +9179,7 @@ $messages['ko'] = array(
 	'centralnotice-modify' => '바꾸기',
 	'centralnotice-view' => '보기',
 	'centralnotice-save-banner' => '배너 저장하기',
-	'centralnotice-preview' => '미리 보기',
+	'centralnotice-preview' => '미리 보기', # Fuzzy
 	'centralnotice-nopreview' => '(미리 보기를 할 수 없습니다)',
 	'centralnotice-add-new' => '새 공지 추가',
 	'centralnotice-remove' => '제거',
@@ -9604,7 +9608,7 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-modify' => 'Späicheren',
 	'centralnotice-view' => 'Weisen',
 	'centralnotice-save-banner' => 'Banner späicheren',
-	'centralnotice-preview' => 'Weisen ouni ze späicheren',
+	'centralnotice-preview' => 'Weisen ouni ze späicheren', # Fuzzy
 	'centralnotice-nopreview' => '(Kucken ouni ofzespäichere geet net)',
 	'centralnotice-add-new' => 'Eng nei zentral Matdeelung derbäisetzen',
 	'centralnotice-remove' => 'Ewechhuelen',
@@ -10407,7 +10411,7 @@ $messages['mk'] = array(
 	'centralnotice-modify' => 'Испрати',
 	'centralnotice-view' => 'Погл.',
 	'centralnotice-save-banner' => 'Зачувај плакат',
-	'centralnotice-preview' => 'Преглед',
+	'centralnotice-preview' => 'Преглед ($1)',
 	'centralnotice-nopreview' => '(Прегледот не е достапен)',
 	'centralnotice-add-new' => 'Додај ново централно известување',
 	'centralnotice-remove' => 'Тргни',
@@ -10603,7 +10607,7 @@ $messages['ml'] = array(
 	'centralnotice-modify' => 'സമർപ്പിക്കുക',
 	'centralnotice-view' => 'കാണുക',
 	'centralnotice-save-banner' => 'എഴുത്തുപട്ട സേവ് ചെയ്യുക',
-	'centralnotice-preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക',
+	'centralnotice-preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക', # Fuzzy
 	'centralnotice-nopreview' => '(പ്രിവ്യൂ ലഭ്യമല്ല)',
 	'centralnotice-add-new' => 'പുതിയൊരു മേള ചേർക്കുക',
 	'centralnotice-remove' => 'നീക്കം ചെയ്യുക',
@@ -11561,7 +11565,7 @@ Dat kann ok bruukt warrn, üm Sitenotices totofögen oder ruttonehmen.',
 	'centralnotice-enabled' => 'Aktiv',
 	'centralnotice-modify' => 'OK',
 	'centralnotice-view' => 'Ankieken',
-	'centralnotice-preview' => 'Vörschau',
+	'centralnotice-preview' => 'Vörschau', # Fuzzy
 	'centralnotice-add-new' => 'Ne’e zentrale Sitenotice tofögen',
 	'centralnotice-remove' => 'Rutnehmen',
 	'centralnotice-translate-heading' => 'Översetten för $1',
@@ -11749,7 +11753,7 @@ De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwij
 	'centralnotice-modify' => 'Opslaan',
 	'centralnotice-view' => 'Bekijken',
 	'centralnotice-save-banner' => 'Banner opslaan',
-	'centralnotice-preview' => 'Voorvertoning',
+	'centralnotice-preview' => 'Voorvertoning', # Fuzzy
 	'centralnotice-nopreview' => '(Voorvertoning niet beschikbaar)',
 	'centralnotice-add-new' => 'Nieuwe centrale sitenotice toevoegen',
 	'centralnotice-remove' => 'Verwijderen',
@@ -13854,7 +13858,7 @@ Quiste pò essere ausate pure pe aggiungere o luà le vecchie notizie.",
 	'centralnotice-modify' => 'Conferme',
 	'centralnotice-view' => 'Vide',
 	'centralnotice-save-banner' => "Salve 'u banner",
-	'centralnotice-preview' => 'Andeprime',
+	'centralnotice-preview' => 'Andeprime', # Fuzzy
 	'centralnotice-nopreview' => "(L'andeprime non g'è disponibbile)",
 	'centralnotice-add-new' => "Aggiugne 'na cambagna nove",
 	'centralnotice-remove' => 'Live',
@@ -15217,7 +15221,7 @@ Z njim lahko tudi dodajate ali odstranjujete stara obvestila.',
 	'centralnotice-modify' => 'Pošlji',
 	'centralnotice-view' => 'Ogled',
 	'centralnotice-save-banner' => 'Shrani pasico',
-	'centralnotice-preview' => 'Predogled',
+	'centralnotice-preview' => 'Predogled', # Fuzzy
 	'centralnotice-nopreview' => '(Predogled ni mogoč)',
 	'centralnotice-add-new' => 'Dodaj novo akcijo',
 	'centralnotice-remove' => 'Odstrani',
@@ -18403,7 +18407,7 @@ $messages['vi'] = array(
 	'centralnotice-modify' => 'Lưu các thông báo',
 	'centralnotice-view' => 'Xem',
 	'centralnotice-save-banner' => 'Lưu biểu ngữ',
-	'centralnotice-preview' => 'Xem trước',
+	'centralnotice-preview' => 'Xem trước ($1)',
 	'centralnotice-nopreview' => '(Không có thể xem trước)',
 	'centralnotice-add-new' => 'Thêm thông báo chung mới',
 	'centralnotice-remove' => 'Dời',
@@ -18660,7 +18664,7 @@ $messages['yi'] = array(
 	'centralnotice-modify' => 'אײַנגעבן',
 	'centralnotice-view' => 'באַקוקן',
 	'centralnotice-save-banner' => 'אויפֿהיטן פאָן',
-	'centralnotice-preview' => 'פֿאראויסשטעלונג',
+	'centralnotice-preview' => 'פֿאראויסשטעלונג', # Fuzzy
 	'centralnotice-nopreview' => '(פֿאראויסקוק נישט פֿאַראַן)',
 	'centralnotice-add-new' => 'צולייגן אַ נייַע צענטראַלע מעלדונג',
 	'centralnotice-remove' => 'אַראָפּנעמען',
@@ -18863,7 +18867,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-modify' => '提交',
 	'centralnotice-view' => '查看',
 	'centralnotice-save-banner' => '保存横幅',
-	'centralnotice-preview' => '预览',
+	'centralnotice-preview' => '预览', # Fuzzy
 	'centralnotice-nopreview' => '（无预览可用）',
 	'centralnotice-add-new' => '添加一个新的中央通告',
 	'centralnotice-remove' => '移除',
