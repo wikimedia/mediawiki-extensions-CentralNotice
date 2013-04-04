@@ -189,4 +189,50 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 		return new MessageGroupStates( $conf );
 	}
+
+	/**
+	 * TranslatePostInitGroups hook handler
+	 * Add banner message groups to the list of message groups that should be
+	 * translated through the Translate extension.
+	 *
+	 * @param array $list
+	 * @return bool
+	 */
+	public static function registerGroupHook( &$list ) {
+		global $wgCentralDBname;
+		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+
+		// Create the base aggregate group
+		$conf = array();
+		$conf['BASIC'] = array(
+			'id' => BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
+			'label' => 'CentralNotice Banners',
+			'description' => '{{int:centralnotice-aggregate-group-desc}}',
+			'meta' => 1,
+			'class' => 'AggregateMessageGroup',
+			'namespace' => NS_CN_BANNER,
+		);
+		$conf['GROUPS'] = array();
+
+		// Find all the banners marked for translation
+		$tables = array( 'page', 'revtag' );
+		$vars   = array( 'page_id', 'page_namespace', 'page_title', );
+		$conds  = array( 'page_id=rt_page', 'rt_type' => RevTag::getType( 'banner:translate' ) );
+		$options = array( 'GROUP BY' => 'rt_page' );
+		$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
+
+		foreach ( $res as $r ) {
+			$grp = new BannerMessageGroup( $r->page_namespace, $r->page_title );
+			$id = $grp::getTranslateGroupName( $r->page_title );
+			$list[$id] = $grp;
+
+			// Add the banner group to the aggregate group
+			$conf['GROUPS'][] = $id;
+		}
+
+		// Update the subgroup meta with any new groups since the last time this was run
+		$list[$conf['BASIC']['id']] = MessageGroupBase::factory( $conf );
+
+		return true;
+	}
 }
