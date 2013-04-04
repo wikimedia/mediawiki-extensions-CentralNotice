@@ -54,6 +54,7 @@
 }
 #preferences fieldset.prefsection fieldset.cn-bannerpreview {
 	border: 1px solid;
+	margin-top: 0;
 }
 #preferences div#fundraisingInterface {
 	margin-left:1.6em;
@@ -100,6 +101,10 @@
 }
 #preferences #cn-template-searchbox label,input {
     margin-right: 0.25em;
+}
+#preferences a.cn-banner-title {
+	font-size: large;
+	margin-top: 1em;
 }
 
 .banner-editing-top-hint {

@@ -28,7 +28,7 @@ It can also be used to add or remove old notices.',
 	'centralnotice-modify' => 'Submit',
 	'centralnotice-view' => 'View',
 	'centralnotice-save-banner' => 'Save banner',
-	'centralnotice-preview' => 'Preview',
+	'centralnotice-preview' => 'Preview ($1)',
 	'centralnotice-nopreview' => '(Preview not available)',
 	'centralnotice-add-new' => 'Add a new campaign',
 	'centralnotice-remove' => 'Remove',
@@ -258,7 +258,8 @@ Used as table column header and follows {{msg-mw|Centralnotice-start-date}}.
 * "view banner allocation" on [[m:Special:BannerAllocation]].
 {{Identical|View}}',
 	'centralnotice-save-banner' => 'Label for the submit button which saves a CentralNotice banner.',
-	'centralnotice-preview' => '{{Identical|Preview}}',
+	'centralnotice-preview' => '{{Identical|Preview}} Parameters:
+* $1 - language code of this preview',
 	'centralnotice-nopreview' => '{{Identical|Nopreview}}',
 	'centralnotice-remove' => '{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. Parameters:

@@ -1,8 +1,6 @@
 <?php
 /**
- * Renders banner (jsonp) contents.
- *
- * 
+ * Renders banner contents as jsonp.
  */
 class SpecialBannerLoader extends UnlistedSpecialPage {
 	/** @var string Name of the choosen banner */
@@ -25,51 +23,58 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
+		$this->sendHeaders();
 		$this->getOutput()->disable();
 
-        $this->getParams();
-
-		$this->sendHeaders();
-
-		$content = false;
 		try {
-			if ( $this->bannerName ) {
-				$content = $this->getJsNotice( $this->bannerName );
-			}
-		} catch ( SpecialBannerLoaderException $e ) {
-			wfDebugLog( 'CentralNotice', "Exception while loading banner: " . $e->getMessage() );
-		}
+			$this->getParams();
 
-		if ( $content ) {
-			echo $content;
-		} else {
-			wfDebugLog( 'CentralNotice', "No content retrieved for banner: {$this->bannerName}" );
-			echo "/* Banner could not be generated */";
+			echo $this->getJsNotice( $this->bannerName );
+		} catch ( BannerLoaderException $e ) {
+			wfDebugLog( 'CentralNotice', $e->getMessage() );
+			echo "insertBanner( false );";
 		}
 	}
 
 	function getParams() {
 		$request = $this->getRequest();
 
-		$this->project = $this->getSanitized( 'project', 'wikipedia', ApiCentralNoticeAllocations::PROJECT_FILTER );
-		$this->country = $this->getSanitized( 'country', 'XX', ApiCentralNoticeAllocations::LOCATION_FILTER );
-		$this->language = $this->getSanitized( 'userlang', 'en', ApiCentralNoticeAllocations::LANG_FILTER );
-		$this->anonymous = ( $this->getSanitized( 'anonymous', 'true', ApiCentralNoticeAllocations::ANONYMOUS_FILTER ) === 'true' );
-		$this->bucket = intval( $this->getSanitized( 'bucket', '0', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
-		$this->device = $this->getSanitized( 'device', 'desktop', ApiCentralNoticeAllocations::DEVICE_NAME_FILTER );
+		// FIXME: s/userlang/uselang/g
+		// $this->language = $this->getLanguage()->getCode();
+		if ( $lang = $request->getVal( 'userlang' ) ) {
+			$this->language = $lang;
+			$request->setVal( 'uselang', $this->language );
+			$this->getContext()->setLanguage( $this->language );
+		}
 
-		$this->siteName = $request->getText( 'sitename', 'Wikipedia' );
-		$this->campaign = $request->getText( 'campaign', 'undefined' );
+		$this->project = $this->getSanitized( 'project', ApiCentralNoticeAllocations::PROJECT_FILTER );
+		$this->country = $this->getSanitized( 'country', ApiCentralNoticeAllocations::LOCATION_FILTER );
+		$this->anonymous = ( $this->getSanitized( 'anonymous', ApiCentralNoticeAllocations::ANONYMOUS_FILTER ) === 'true' );
+		$this->bucket = intval( $this->getSanitized( 'bucket', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
+		$this->device = $this->getSanitized( 'device', ApiCentralNoticeAllocations::DEVICE_NAME_FILTER );
 
+		$this->siteName = $request->getText( 'sitename' );
+
+		$required_values = array(
+			$this->project, $this->country, $this->anonymous, $this->bucket,
+			$this->siteName, $this->device
+		);
+		foreach ( $required_values as $value ) {
+			if ( is_null( $value ) ) {
+				throw new MissingRequiredParamsException();
+			}
+		}
+
+		$this->campaign = $request->getText( 'campaign' );
 		$this->bannerName = $request->getText( 'banner' );
 	}
 
-	function getSanitized( $param, $default, $filter ) {
+	function getSanitized( $param, $filter ) {
 		$matches = array();
 		if ( preg_match( $filter, $this->getRequest()->getText( $param ), $matches ) ) {
 			return $matches[0];
 		}
-		return $default;
+		return null;
 	}
 
 	/**
@@ -89,237 +94,54 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 *   with JSON containing the banner content as the parameter
 	 * @throw SpecialBannerLoaderException
 	 */
-	function getJsNotice( $bannerName ) {
-		// Make sure the banner exists
-		if ( Banner::bannerExists( $bannerName ) ) {
-			$this->bannerName = $bannerName;
-			$bannerHtml = '';
-			$bannerHtml .= preg_replace_callback(
-				'/{{{(.*?)}}}/',
-				array( $this, 'getNoticeField' ),
-				$this->getNoticeTemplate()
-			);
-			$bannerArray = array(
-				'bannerName' => $bannerName,
-				'bannerHtml' => $bannerHtml,
-				'campaign' => $this->campaign,
-				'fundraising' => (int)$this->getFundraising( $bannerName ),
-				'autolink' => (int)$this->getAutolink( $bannerName ),
-				'landingPages' => $this->getLandingPages( $bannerName )
-			);
-			$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
-			return $bannerJs;
+	public function getJsNotice( $bannerName ) {
+		if ( !Banner::bannerExists( $bannerName ) ) {
+			throw new EmptyBannerException( $bannerName );
 		}
-		return '';
-	}
+		$banner = new Banner( $bannerName );
+		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaign );
 
-	/**
-	 * Generate the HTML for the requested banner
-	 * @throws SpecialBannerLoaderException
-	 */
-	function getHtmlNotice( $bannerName ) {
-		// Make sure the banner exists
-		if ( Banner::bannerExists( $bannerName ) ) {
-			$this->bannerName = $bannerName;
-			$bannerHtml = '';
-			$bannerHtml .= preg_replace_callback(
-				'/{{{(.*?)}}}/',
-				array( $this, 'getNoticeField' ),
-				$this->getNoticeTemplate()
-			);
-			return $bannerHtml;
-		}
-		return '';
-	}
+		$bannerHtml = $bannerRenderer->toHtml();
 
-	/**
-	 * Get the body of the banner with only {{int:...}} messages translated
-	 */
-	function getNoticeTemplate() {
-		$out = $this->getMessage( "centralnotice-template-{$this->bannerName}" );
-		return $out;
-	}
-
-	/**
-	 * Extract a message name and send to getMessage() for translation
-	 * If the field is 'amount', get the current fundraiser donation amount and pass it as a
-	 * parameter to the message.
-	 * @param $match array A message array with 2 members: raw match, short name of message
-	 * @return string translated messsage string
-	 * @throw SpecialBannerLoaderException
-	 */
-	function getNoticeField( $match ) {
-		$field = $match[1];
-        $params = array();
-
-		// Handle "magic messages"
-		switch ( $field ) {
-			case 'amount': // total fundraising amount
-				$params[] = $this->toMillions( $this->getDonationAmount() );
-				break;
-			case 'daily-amount': // daily fundraising amount
-				$params[] = $this->toThousands( $this->getDailyDonationAmount() );
-				break;
-
-			case 'campaign': // campaign name
-				return( $this->campaign );
-			case 'banner': // banner name
-				return( $this->bannerName );
+		if ( !$bannerHtml ) {
+			throw new EmptyBannerException( $bannerName );
 		}
 
-		// MediaWiki getMessage() doesn't support language fallbacks as of 4 Oct 2012 - therefore
-		// since we know where the messages will be we shall parse the thing ourselves
-		$message = "Centralnotice-{$this->bannerName}-$field";
-        return $this->getMessage( $message, $params );
-	}
+		// TODO: these are BannerRenderer duties:
+		$settings = Banner::getBannerSettings( $bannerName, false );
 
-	/**
-	 * Convert number of dollars to millions of dollars
-	 */
-	private function toMillions( $num ) {
-		$num = sprintf( "%.1f", $num / 1e6 );
-		if ( substr( $num, - 2 ) == '.0' ) {
-			$num = substr( $num, 0, - 2 );
-		}
-		$lang = Language::factory( $this->language );
-		return $lang->formatNum( $num );
-	}
+		$bannerArray = array(
+			'bannerName' => $bannerName,
+			'bannerHtml' => $bannerHtml,
+			'campaign' => $this->campaign,
+			'fundraising' => $settings['fundraising'],
+			'autolink' => $settings['autolink'],
+			'landingPages' => explode( ", ", $settings['landingpages'] ),
+		);
 
-	/**
-	 * Convert number of dollars to thousands of dollars
-	 */
-	private function toThousands( $num ) {
-		$num = sprintf( "%d", $num / 1000 );
-		$lang = Language::factory( $this->language );
-		return $lang->formatNum( $num );
-	}
-
-	/**
-	 * Retrieve a translated message
-	 * @param $msg string The full name of the message
-	 * @param $params array
-	 * @return string translated messsage string
-	 */
-	private function getMessage( $msg, $params = array() ) {
-		global $wgSitename;
-
-		// A god-damned dirty hack! :D This makes the {{SITENAME}} variable work the way
-		// it's expected to when CN is running in infrastructure mode.
-		$oldSitename = $wgSitename;
-		$wgSitename = $this->siteName;
-
-		$out = wfMessage( $msg, $params )->inLanguage( $this->language )->text();
-
-		$wgSitename = $oldSitename;
-
-		return $out;
-	}
-
-	/**
-	 * Pull the current amount raised during a fundraiser
-	 * @throws SpecialBannerLoaderException
-	 */
-	private function getDonationAmount() {
-		global $wgNoticeCounterSource, $wgMemc;
-		// Pull short-cached amount
-		$count = intval( $wgMemc->get( wfMemcKey( 'centralnotice', 'counter' ) ) );
-		if ( !$count ) {
-			// Pull from dynamic counter
-			$counter_value = Http::get( $wgNoticeCounterSource );
-			if( !$counter_value ) {
-				throw new RemoteServerProblemException();
-			}
-			$count = intval( $counter_value );
-			if ( !$count ) {
-				// Pull long-cached amount
-				$count = intval( $wgMemc->get(
-					wfMemcKey( 'centralnotice', 'counter', 'fallback' ) ) );
-				if ( !$count ) {
-					throw new DonationAmountUnknownException();
-				}
-			}
-			// Expire in 60 seconds
-			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter' ), $count, 60 );
-			// No expiration
-			$wgMemc->set( wfMemcKey( 'centralnotice', 'counter', 'fallback' ), $count );
-		}
-		return $count;
-	}
-
-	/**
-	 * Pull the amount raised so far today during a fundraiser
-	 * @throws SpecialBannerLoaderException
-	 */
-	private function getDailyDonationAmount() {
-		global $wgNoticeDailyCounterSource, $wgMemc;
-		// Pull short-cached amount
-		$count = intval( $wgMemc->get( wfMemcKey( 'centralnotice', 'dailycounter' ) ) );
-		if ( !$count ) {
-			// Pull from dynamic counter
-			$counter_value = Http::get( $wgNoticeDailyCounterSource );
-			if( !$counter_value ) {
-				throw new RemoteServerProblemException();
-			}
-			$count = intval( $counter_value );
-			if ( !$count ) {
-				// Pull long-cached amount
-				$count = intval( $wgMemc->get(
-					wfMemcKey( 'centralnotice', 'dailycounter', 'fallback' ) ) );
-				if ( !$count ) {
-					throw new DonationAmountUnknownException();
-				}
-			}
-			// Expire in 60 seconds
-			$wgMemc->set( wfMemcKey( 'centralnotice', 'dailycounter' ), $count, 60 );
-			// No expiration
-			$wgMemc->set( wfMemcKey( 'centralnotice', 'dailycounter', 'fallback' ), $count );
-		}
-		return $count;
-	}
-
-	function getFundraising( $bannerName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$eBannerName = htmlspecialchars( $bannerName );
-		$row = $dbr->selectRow( 'cn_templates', 'tmp_fundraising', array( 'tmp_name' => $eBannerName ) );
-		return $row->tmp_fundraising;
-	}
-
-	function getAutolink( $bannerName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$eBannerName = htmlspecialchars( $bannerName );
-		$row = $dbr->selectRow( 'cn_templates', 'tmp_autolink', array( 'tmp_name' => $eBannerName ) );
-		return $row->tmp_autolink;
-	}
-
-	function getLandingPages( $bannerName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$eBannerName = htmlspecialchars( $bannerName );
-		$row = $dbr->selectRow( 'cn_templates', 'tmp_landing_pages', array( 'tmp_name' => $eBannerName ) );
-		return $row->tmp_landing_pages;
+		$bannerJs = 'insertBanner('.FormatJson::encode( $bannerArray ).');';
+		return $bannerJs;
 	}
 }
+
 /**
  * @defgroup Exception Exception
  */
 
 /**
- * SpecialBannerLoaderException exception
- *
- * This exception is being thrown whenever
- * some fatal error occurs that may affect
- * how the banner is presented.
+ * These exceptions are thrown whenever an error occurs, which is fatal to
+ * rendering the banner, but can be fairly expected.
  *
  * @ingroup Exception
  */
-
-class SpecialBannerLoaderException extends Exception {
+class BannerLoaderException extends MWException {
+	function __construct( $bannerName = '(none provided)' ) {
+		$this->message = get_class() . " while loading banner: '{$bannerName}'";
+	}
 }
 
-class RemoteServerProblemException extends SpecialBannerLoaderException {
+class EmptyBannerException extends BannerLoaderException {
 }
 
-class DonationAmountUnknownException extends SpecialBannerLoaderException {
+class MissingRequiredParamsException extends BannerLoaderException {
 }

@@ -79,6 +79,16 @@
 				cache: true
 			});
 		},
+		// TODO: move function definitions once controller cache has cleared
+		insertBanner: function( bannerJson ) {
+			window.insertBanner( bannerJson );
+		},
+		toggleNotice: function () {
+			window.toggleNotice();
+		},
+		hideBanner: function() {
+			window.hideBanner();
+		},
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
 			var url = mw.config.get( 'wgCentralBannerRecorder' ) + '?' + $.param( data );

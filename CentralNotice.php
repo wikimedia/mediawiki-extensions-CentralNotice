@@ -252,6 +252,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'Banner' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
+	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
 	$wgAutoloadClasses[ 'Campaign' ] = $includeDir . 'Campaign.php';
 	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
 	$wgAutoloadClasses[ 'GeoTarget' ] = $includeDir . 'GeoTarget.php';
