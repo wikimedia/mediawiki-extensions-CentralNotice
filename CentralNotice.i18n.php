@@ -5784,7 +5784,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-modify' => 'Soumettre',
 	'centralnotice-view' => 'Voir',
 	'centralnotice-save-banner' => 'Enregistrer la bannière',
-	'centralnotice-preview' => 'Prévisualiser', # Fuzzy
+	'centralnotice-preview' => 'Prévisualiser ($1)',
 	'centralnotice-nopreview' => '(Prévisualisation non disponible)',
 	'centralnotice-add-new' => 'Ajouter un nouvel avis central',
 	'centralnotice-remove' => 'Enlever',
