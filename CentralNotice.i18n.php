@@ -8854,7 +8854,7 @@ $messages['ka'] = array(
 	'centralnotice-modify' => 'გაგზავნა',
 	'centralnotice-view' => 'ჩვენება',
 	'centralnotice-save-banner' => 'ბანერის შენახვა',
-	'centralnotice-preview' => 'წინა', # Fuzzy
+	'centralnotice-preview' => 'წინასწარ გადახედვა ($1)',
 	'centralnotice-nopreview' => '(წინასწარი გადახედვა არ არის ხელმისაწვდომი)',
 	'centralnotice-add-new' => 'ახალი შეტყობინების დამატება',
 	'centralnotice-remove' => 'წაშლა',
@@ -9368,12 +9368,12 @@ $messages['ksh'] = array(
 ävver och neue dobei donn, un allde fott schmieße.',
 	'centralnotice-query' => 'De Aktowälle Kampannje ändere',
 	'centralnotice-notice-name' => 'Dä Kampannje ier Name',
-	'centralnotice-end-date' => 'Et Dattum fum Engk',
+	'centralnotice-end-date' => 'Et Dattum fum Engk', # Fuzzy
 	'centralnotice-enabled' => 'Aanjeschalldt',
 	'centralnotice-modify' => 'Loß Jonn!',
 	'centralnotice-view' => 'Aanzejge',
 	'centralnotice-save-banner' => 'De Banner_Schablohn faßhallde',
-	'centralnotice-preview' => 'Vör-Aansich zeije',
+	'centralnotice-preview' => 'Vör-Aansich zeije', # Fuzzy
 	'centralnotice-nopreview' => '(Kein Vör-Aansich ze hann)',
 	'centralnotice-add-new' => 'Donn en Kampannje dobei',
 	'centralnotice-remove' => 'Fottnämme',
@@ -9386,10 +9386,6 @@ $messages['ksh'] = array(
 	'centralnotice-add-template' => 'En Banner_Schablohn dobei donn',
 	'centralnotice-show-notices' => 'En Kampannje zeije',
 	'centralnotice-list-templates' => 'Banner_Schablohne opleßte',
-	'centralnotice-multiple-projects' => 'etlijje ($1)',
-	'centralnotice-multiple-languages' => 'etlijje ($1)',
-	'centralnotice-multiple-countries' => 'etlijje ($1)',
-	'centralnotice-all-projects' => 'All Projäkte',
 	'centralnotice-language-listing' => '$1 — $2',
 	'centralnotice-translations' => 'Övversäzonge',
 	'centralnotice-translate-to' => 'Övversäze noh',
@@ -9417,7 +9413,7 @@ Nit norr_ens dobei jedonn.',
 Nix wood fott jelohße.',
 	'centralnotice-banner-doesnt-exist' => 'Di Banner_Schablohn jidd_et nit.',
 	'centralnotice-template-still-bound' => 'Di Banner_Schablohn deit aan en Kampannje hange.
-Di kam_mer nit fott nämme.',
+Di kam_mer nit fott nämme.', # Fuzzy
 	'centralnotice-template-body' => 'Dat es en dä Banner_Schablohn dren:',
 	'centralnotice-day' => 'Daach',
 	'centralnotice-year' => 'Johr',
@@ -9425,10 +9421,8 @@ Di kam_mer nit fott nämme.',
 	'centralnotice-hours' => 'Shtund',
 	'centralnotice-min' => 'Menutt',
 	'centralnotice-project-lang' => 'Däm Projäk sing Shprooch',
-	'centralnotice-select' => 'Ußsöhke: $1',
-	'centralnotice-top-ten-languages' => 'Bövverste zehn Shprooche',
 	'centralnotice-project-name' => 'Däm Projäk singe Name',
-	'centralnotice-start-date' => 'Et Annfangsdattum',
+	'centralnotice-start-date' => 'Et Annfangsdattum', # Fuzzy
 	'centralnotice-start-time' => 'De Aanfangszick (UTC)',
 	'centralnotice-end-time' => 'De UTC Zick för et Engk',
 	'centralnotice-assigned-templates' => 'Zojedeilte Banner_Schablohne',
@@ -9490,7 +9484,7 @@ De kanns ävver heh dronger ein dobei donn.',
 	'centralnotice-projects' => 'Projäkte',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Kein Banner_Schablohne zohjedeilt',
-	'centralnotice-allocation-description' => 'De zohjedeilte Banner_Schablohne för $1.$2 en $3 sin:',
+	'centralnotice-allocation-description' => 'De zohjedeilte Banner_Schablohne för $1.$2 en $3 sin:', # Fuzzy
 	'centralnotice-percentage' => 'Prozäntsaz',
 	'centralnotice-documentwrite-error' => 'Mer künne <code lang="en">document.write()</code> nit ennerhallef vun ene Banner_Schablohn bruche.
 Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wells.',
@@ -9537,6 +9531,8 @@ Loor op http://meta.wikimedia.org/wiki/Help:CentralNotice wann De mieh weße wel
 	'centralnotice-country-a2' => 'Onbikannd / övver ene Sattellet',
 	'centralnotice-country-o1' => 'Onbikannd / uß söns enem Land',
 	'centralnotice-country-unknown' => 'Onbikannd / nit op de Ääd zohzeoodene',
+	'centralnotice-all' => 'Alle',
+	'centralnotice-user-role-anonymous' => 'Nameloßß',
 );
 
 /** Kurdish (Latin script) (Kurdî (latînî)‎)
@@ -10185,18 +10181,19 @@ $messages['lus'] = array(
 );
 
 /** Latvian (latviešu)
+ * @author Admresdeserv.
  * @author GreenZeb
  * @author Papuass
  */
 $messages['lv'] = array(
 	'centralnotice-query' => 'Mainīt esošās kampaņas',
 	'centralnotice-notice-name' => 'Kampaņas nosaukums',
-	'centralnotice-end-date' => 'Beigu datums',
+	'centralnotice-end-date' => 'Beigu datums', # Fuzzy
 	'centralnotice-enabled' => 'Iespējota',
 	'centralnotice-modify' => 'Iesniegt',
 	'centralnotice-view' => 'Apskatīt',
 	'centralnotice-save-banner' => 'Saglabāt banneri',
-	'centralnotice-preview' => 'Priekšskats',
+	'centralnotice-preview' => 'Priekšskats ($1)',
 	'centralnotice-nopreview' => '(Priekšskatījums nav pieejams)',
 	'centralnotice-add-new' => 'Pievienot jaunu kampaņu',
 	'centralnotice-remove' => 'Noņemt',
@@ -10209,10 +10206,6 @@ $messages['lv'] = array(
 	'centralnotice-add-template' => 'Pievienot reklāmkarogu',
 	'centralnotice-show-notices' => 'Rādīt kampaņas',
 	'centralnotice-list-templates' => 'Reklāmkarogu saraksts',
-	'centralnotice-multiple-projects' => 'Vairāki ($1)',
-	'centralnotice-multiple-languages' => 'Vairākas ($1)',
-	'centralnotice-multiple-countries' => 'Vairākas ($1)',
-	'centralnotice-all-projects' => 'Visi projekti',
 	'centralnotice-translations' => 'Tulkojumi',
 	'centralnotice-translate-to' => 'Tulkot uz',
 	'centralnotice-translate' => 'Tulkot',
@@ -10237,9 +10230,8 @@ Nepievieno.',
 	'centralnotice-hours' => 'Stunda',
 	'centralnotice-min' => 'Minūte',
 	'centralnotice-project-lang' => 'Projekta valoda',
-	'centralnotice-top-ten-languages' => '10 populārākās valodas',
 	'centralnotice-project-name' => 'Projekta nosaukums',
-	'centralnotice-start-date' => 'Sākuma datums',
+	'centralnotice-start-date' => 'Sākuma datums', # Fuzzy
 	'centralnotice-start-time' => 'Sākuma laiks (UTC)',
 	'centralnotice-end-time' => 'Beigu laiks (UTC)',
 	'centralnotice-no-templates' => 'Neviens reklāmkarogs nav atrasts.
