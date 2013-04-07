@@ -204,10 +204,7 @@ Add one below.',
 	'centralnotice-user-role-logged-in' => 'Logged-in',
 );
 
-/** Message documentation (This is the name of the message documentation language code (qqq). Follow the rules of your languages and use small first letter if it doesn't capitalize language names always.
-
-It might be easier to translate it as "translation guidelines" or "translation help".
-{{Identical|Message documentation}})
+/** Message documentation (Message documentation)
  * @author Amire80
  * @author Bennylin
  * @author Darth Kule
@@ -290,6 +287,9 @@ The other headers are:
 * (the name of a language to which the banner is being translated)
 
 (See also [[:bugzilla:16321|Bug 16321 - All messages in CentralNotice are defaulted to English regardless of content language]].)',
+	'centralnotice-banner' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].
+
+Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
 	'centralnotice-banner-heading' => 'Used as <code><nowiki><h2></nowiki></code> heading. Parameters:
 * $1 - current banner (current template)',
 	'centralnotice-weight' => 'Used in Notice Details page of [[meta:Special:CentralNotice|Central Notice]] special page.
@@ -330,6 +330,14 @@ But also used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}} (<code>$2
 
 In English this is a short form of "Number of uses".',
 	'centralnotice-settings' => '{{Identical|Settings}}',
+	'centralnotice-edit-template' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].
+
+Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
+	'centralnotice-edit-template-summary' => 'Used as summary of the form in [[Special:NoticeTemplate]].
+
+Preceded by one of the following fieldset labels:
+* {{msg-mw|Centralnotice-banner}}
+* {{msg-mw|Centralnotice-edit-template}}',
 	'centralnotice-message' => 'The header of a table of translatable messages. Translatable messages are represented in the template code by strings enclosed in three curly brackets.
 
 * {{msg-mw|centralnotice-number-uses}}
@@ -338,19 +346,26 @@ In English this is a short form of "Number of uses".',
 
 {{Identical|Message}}',
 	'centralnotice-clone' => '{{Identical|Clone}}',
+	'centralnotice-clone-notice' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].',
 	'centralnotice-clone-name' => '{{Identical|Name}}',
+	'centralnotice-preview-all-template-translations' => 'Used as link text in [[Special:NoticeTemplate]].',
 	'centralnotice-insert' => '{{Identical|Insert}}',
+	'centralnotice-close-button' => 'Used as action link text in [[Special:NoticeTemplate]]. The link is used to insert {{msg-mw|Centralnotice-close-title}} button.',
 	'centralnotice-close-title' => '{{Identical|Close}}',
 	'centralnotice-banner-display' => 'Checkboxes with the following messages comes after the colon:
 *{{msg-mw|Centralnotice-banner-anonymous}}
 *{{msg-mw|Centralnotice-banner-logged-in}}',
 	'centralnotice-banner-anonymous' => '{{Identical|Anonymous user}}',
 	'centralnotice-banner-logged-in' => '{{Identical|Logged in user}}',
+	'centralnotice-banner-type' => 'Unused at this time.',
+	'centralnotice-banner-hidable' => 'Unused at this time.',
+	'centralnotice-banner-collapsible' => 'Unused at this time.',
 	'centralnotice-banner-fundraising' => 'Label of checkbox',
 	'centralnotice-banner-autolink' => 'Label of checkbox',
 	'centralnotice-banner-autolink-help' => 'Brief instructions on how to use the interface. Parameters:
 * $1 - a bit of HTML
 * $2 - a title for a page',
+	'centralnotice-banner-landing-pages' => 'Used as label for the "Landing pages" input box in [[Special:NoticeTemplate]].',
 	'centralnotice-geo' => 'Used to label a checkbox which activates geotargeting',
 	'centralnotice-countries' => '{{Identical|Country}}',
 	'centralnotice-global-allocation' => 'Tab for [[m:Special:GlobalAllocation|global allocation]] overview.',
@@ -369,6 +384,10 @@ In English this is a short form of "Number of uses".',
 * $2 - the project name for the site (e.g. "wikipedia")
 * $3 - the country code (e.g. "US" for the United States, "FR" for France, etc.)
 * $4 - the device class (e.g. "desktop", "OperaMini", "Android")',
+	'centralnotice-percentage' => 'Used as column header of the table in [[Special:BannerAllocation]] and [[Special:GlobalAllocation]].',
+	'centralnotice-documentwrite-error' => 'Used as error message shown by JavaScript function <code>alert()</code>.
+
+<code>document.write()</code> is JavaScript function name.',
 	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.
 {{Identical|Priority}}',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
@@ -8270,6 +8289,7 @@ $messages['is'] = array(
  * @author BrokenArrow
  * @author Darth Kule
  * @author F. Cosoleto
+ * @author Gloria sah
  * @author Melos
  * @author Nemo bis
  * @author Pietrodn
@@ -8279,6 +8299,7 @@ $messages['it'] = array(
 	'centralnotice' => 'Gestione avviso centralizzato',
 	'noticetemplate' => 'Gestione avviso centralizzato',
 	'bannerallocation' => 'Gestione avviso centralizzato',
+	'globalallocation' => 'Gestione avviso centralizzato',
 	'centralnoticelogs' => 'Gestione avviso centralizzato',
 	'right-centralnotice-admin' => 'Gestisce gli avvisi centralizzati',
 	'action-centralnotice-admin' => 'gestire gli avvisi centralizzati',
@@ -8291,7 +8312,7 @@ $messages['it'] = array(
 	'centralnotice-modify' => 'Invia',
 	'centralnotice-view' => 'Visualizza',
 	'centralnotice-save-banner' => 'Salva banner',
-	'centralnotice-preview' => 'Anteprima', # Fuzzy
+	'centralnotice-preview' => 'Anteprima ($1)',
 	'centralnotice-nopreview' => '(Anteprima non disponibile)',
 	'centralnotice-add-new' => 'Aggiungi un nuovo avviso centralizzato',
 	'centralnotice-remove' => 'Rimuovi',
@@ -8384,6 +8405,7 @@ Non aggiorno',
 	'centralnotice-banner-landing-pages' => 'Pagine di destinazione (separate da virgola):',
 	'centralnotice-geo' => 'Basata sulla posizione geografica',
 	'centralnotice-countries' => 'Paesi',
+	'centralnotice-global-allocation' => 'Allocazione globale',
 	'centralnotice-allocation' => 'Destinazione',
 	'centralnotice-view-allocation' => 'Visualizza destinazione dei banner',
 	'centralnotice-allocation-instructions' => 'Seleziona il contesto di esposizione dei banner desiderato:',
@@ -8442,8 +8464,13 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-country-a2' => 'Sconosciuto/Provider satellitare',
 	'centralnotice-country-o1' => 'Sconosciuto/Altro paese',
 	'centralnotice-country-unknown' => 'Sconosciuto/non geo-localizzabile',
+	'centralnotice-devicetype-desktop' => 'Computer desktop',
 	'centralnotice-all' => 'Tutto',
 	'centralnotice-all-except' => 'Tutti, tranne $1',
+	'centralnotice-excluding-list' => '$1 (escluso $2)',
+	'centralnotice-user-role' => 'Ruolo utente',
+	'centralnotice-user-role-anonymous' => 'Anonimo',
+	'centralnotice-user-role-logged-in' => 'Registrato',
 );
 
 /** Japanese (日本語)
@@ -8547,12 +8574,12 @@ $messages['ja'] = array(
 	'centralnotice-no-templates-translate' => '翻訳が必要なテンプレートはありません。',
 	'centralnotice-number-uses' => '使用',
 	'centralnotice-settings' => '設定',
-	'centralnotice-edit-template' => 'テンプレートを編集',
+	'centralnotice-edit-template' => 'テンプレートの編集',
 	'centralnotice-edit-template-summary' => '地域化できるメッセージを作成するには、ハイフンで連結した文字列を 3 つの波括弧で囲みます。例: {{{jimbo-quote}}}',
 	'centralnotice-message' => 'メッセージ',
 	'centralnotice-message-not-set' => 'メッセージ未指定',
 	'centralnotice-clone' => '複製',
-	'centralnotice-clone-notice' => 'テンプレートの複製を作成',
+	'centralnotice-clone-notice' => 'テンプレートの複製の作成',
 	'centralnotice-clone-name' => '名前:',
 	'centralnotice-preview-all-template-translations' => 'テンプレートに対する利用可能なすべての翻訳をプレビュー',
 	'centralnotice-insert' => '挿入: $1',
