@@ -242,12 +242,18 @@ This should be identical to {{msg-mw|centralnotice}}.
 	'centralnotice-desc' => 'The [[mw:Extension:CentralNotice|Central Notice extension]] allows a notice to be posted centrally to several wikis.
 {{desc|name=Central Notice|url=http://www.mediawiki.org/wiki/Extension:CentralNotice}}',
 	'centralnotice-summary' => 'Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]',
+	'centralnotice-query' => 'Unused at this time.',
+	'centralnotice-notice-name' => 'Used as column header of the table in [[Special:CentralNotice]].
+{{Related|Centralnotice-th}}',
 	'centralnotice-end-date' => 'Used in [[meta:Special:CentralNotice|Central Notice]] special page.
 
 Used as table column header and follows {{msg-mw|Centralnotice-start-date}}.
+{{Related|Centralnotice-th}}
 {{Identical|End date}}',
 	'centralnotice-enabled' => 'Refers to campaign.
 
+Used as column header of the table in [[Special:CentralNotice]].
+{{Related|Centralnotice-th}}
 {{Identical|Enabled}}',
 	'centralnotice-modify' => 'Submit button on:
 * "change translation language" dialog box on [[m:Special:NoticeTemplate]].
@@ -262,7 +268,10 @@ Used as table column header and follows {{msg-mw|Centralnotice-start-date}}.
 * $1 - language code of this preview
 {{Identical|Preview}}',
 	'centralnotice-nopreview' => '{{Identical|Nopreview}}',
-	'centralnotice-remove' => '{{Identical|Remove}}',
+	'centralnotice-add-new' => 'Unused at this time.',
+	'centralnotice-remove' => 'Used as column header of the table in [[Special:CentralNotice]].
+{{Related|Centralnotice-th}}
+{{Identical|Remove}}',
 	'centralnotice-translate-heading' => 'Fieldset label. Parameters:
 * $1 - a name of a template',
 	'centralnotice-manage' => 'Title of sub-page of [[meta:Special:CentralNotice|Manage Central Notice]] special page.',
@@ -270,7 +279,10 @@ Used as table column header and follows {{msg-mw|Centralnotice-start-date}}.
 	'centralnotice-add' => 'Used in [[mw:Extension:CentralNotice]]
 {{Identical|Add}}',
 	'centralnotice-add-notice' => 'Used as heading (<nowiki><h2></nowiki> tag)',
+	'centralnotice-edit-notice' => 'Unused at this time.',
 	'centralnotice-add-template' => 'Used as link text and as heading (<nowiki><h2></nowiki> tag)',
+	'centralnotice-show-notices' => 'Unused at this time.',
+	'centralnotice-list-templates' => 'Unused at this time.',
 	'centralnotice-language-listing' => '{{optional}}
 A language listing for the language multi-select box.
 *$1 - the language code
@@ -287,24 +299,52 @@ The other headers are:
 * (the name of a language to which the banner is being translated)
 
 (See also [[:bugzilla:16321|Bug 16321 - All messages in CentralNotice are defaulted to English regardless of content language]].)',
+	'centralnotice-banner-name' => 'Used as label for the "Banner name" ("Template name") input box in [[Special:NoticeTemplate]].',
 	'centralnotice-banner' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].
 
 Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
 	'centralnotice-banner-heading' => 'Used as <code><nowiki><h2></nowiki></code> heading. Parameters:
 * $1 - current banner (current template)',
+	'centralnotice-templates' => '* Used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}}.
+* Used as column header of the table.
+* Used as link text. The link points to [[Special:NoticeTemplate]].',
 	'centralnotice-weight' => 'Used in Notice Details page of [[meta:Special:CentralNotice|Central Notice]] special page.
+* Used as label for the "Weight" select box.
+* Used as column header of the table in [[Special:CentralNotice]].
 {{Identical|Weight}}',
-	'centralnotice-locked' => 'Refers to campaign.',
+	'centralnotice-locked' => 'Refers to campaign.
+
+Used as column header of the table in [[Special:CentralNotice]].
+{{Related|Centralnotice-th}}',
+	'centralnotice-notice' => '* Used as column header in the table (in multiple special pages).
+* Used as label for the "Campaign" input box in [[Special:CentralNoticeLogs]].',
 	'centralnotice-notice-heading' => 'Used as <code><nowiki><h2></nowiki></code> heading. Parameters:
 * $1 - campaign',
-	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice',
-	'centralnotice-template-exists' => 'Error message displayed in Special:NoticeTemplate when trying to add a template with the same name of another template',
-	'centralnotice-template-still-bound' => 'Error message displayed when a banner (name: $1) cannot be removed because it is still in use.',
+	'centralnotice-notices' => 'Used as link text in the tab in [[Special:CentralNotice]]. The link points to [[Special:CentralNotice]].',
+	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice.',
+	'centralnotice-no-language' => 'Error message displayed in [[Special:CentralNotice]] when trying to add a notice.
+
+See also:
+* {{msg-mw|Centralnotice-no-project}}',
+	'centralnotice-no-project' => 'Error message displayed in [[Special:CentralNotice]] when trying to add a notice.
+
+See also:
+* {{msg-mw|Centralnotice-no-language}}',
+	'centralnotice-template-exists' => 'Error message displayed in [[Special:NoticeTemplate]] when trying to add a template with the same name of another template.',
+	'centralnotice-notice-doesnt-exist' => 'Error message displayed in [[Special:NoticeTemplate]] when trying to update a date of a template.',
+	'centralnotice-remove-notice-doesnt-exist' => 'Error message displayed in [[Special:NoticeTemplate]] when trying to remove a template.',
+	'centralnotice-banner-doesnt-exist' => 'Error message displayed in [[Special:NoticeTemplate]] when trying to view a banner (a template).',
+	'centralnotice-template-still-bound' => 'Error message displayed when a banner (name: $1) cannot be removed because it is still in use.
+
+Parameters:
+* $1 - banner name (template name)',
+	'centralnotice-template-body' => 'Unused at this time.',
 	'centralnotice-day' => '{{Identical|Day}}',
 	'centralnotice-year' => '{{Identical|Year}}',
 	'centralnotice-month' => '{{Identical|Month}}',
 	'centralnotice-hours' => '{{Identical|Hour}}',
 	'centralnotice-min' => '{{Identical|Minute}}',
+	'centralnotice-project-lang' => 'Used as label for the "Language" select box in [[Special:BannerAllocation]] and [[Special:GlobalAllocation]].',
 	'centralnotice-select-all' => 'Select all items in a list.
 {{Identical|Select all}}',
 	'centralnotice-remove-all' => 'Remove all items from a list.
@@ -317,15 +357,35 @@ Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
 Used as table column header and followed by {{msg-mw|Centralnotice-start-time}}.
 
 But also used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}} (<code>$2</code> is time and date).
+{{Related|Centralnotice-th}}
 {{Identical|Start date}}',
 	'centralnotice-start-time' => 'Used in Special:CentralNotice. UTC is "[[w:Coordinated_Universal_Time|Coordinated Universal Time]]"',
 	'centralnotice-end-time' => 'Used in Special:CentralNotice. UTC is "[[w:Coordinated_Universal_Time|Coordinated Universal Time]]"',
-	'centralnotice-available-templates' => 'Used in Special:NoticeTemplate',
+	'centralnotice-assigned-templates' => 'Used as fieldset label in the form in [[Special:CentralNotice]].
+
+Followed by the message {{msg-mw|Centralnotice-no-templates-assigned}} or the table.',
+	'centralnotice-no-templates' => 'Used in [[Special:CentralNotice]] and [[Special:NoticeTemplates]].
+
+Can be followed by the link text {{msg-mw|Centralnotice-add-template}}.',
+	'centralnotice-no-templates-assigned' => 'Used in [[Special:CentralNotice]].
+
+Preceded by the fieldset label {{msg-mw|Centralnotice-assigned-templates}}.',
+	'centralnotice-available-templates' => 'Used as fieldset label in [[Special:NoticeTemplate]].',
+	'centralnotice-template-already-exists' => 'Used as error message when trying to add a banner (template) to a campaign.',
+	'centralnotice-preview-template' => 'Unused at this time.',
 	'centralnotice-change-lang' => 'Fieldset legend for a language selector, that is used to set a preference for which language to translate to in the translation module of the extension CentralNotice.',
-	'centralnotice-weights' => '{{Identical|Weight}}',
+	'centralnotice-weights' => 'Unused at this time.
+{{Identical|Weight}}',
 	'centralnotice-notice-is-locked' => 'Error message displayed in Special:CentralNotice when trying to delete a locked notice',
-	'centralnotice-invalid-date-range' => '{{Identical|Date}}',
+	'centralnotice-overlap' => 'Unused at this time.',
+	'centralnotice-invalid-date-range' => 'Used as error message when trying to update date range of a campaign.
+{{Identical|Date}}',
+	'centralnotice-null-string' => 'Used as error message.
+
+Refers any one of the following: name of banner, body of banner, name of notice.',
+	'centralnotice-confirm-delete' => 'Used as conformation message (JavaScript <code>confirm()</code> funciton).',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
+	'centralnotice-no-templates-translate' => 'Unused at this time.',
 	'centralnotice-number-uses' => 'The header of a narrow column in the table with sitenotice campaign information. The values in the column are the numbers of times that a message enclosed in three curly brackets appears in the banner\'s code. The width of the column is 5% of the total width of the table, so the message should be accordingly short.
 
 In English this is a short form of "Number of uses".',
@@ -345,13 +405,32 @@ Preceded by one of the following fieldset labels:
 * (the name of a language to which the banner is being translated)
 
 {{Identical|Message}}',
-	'centralnotice-clone' => '{{Identical|Clone}}',
+	'centralnotice-message-not-set' => 'Used if the native text of the banner message is not set, in [[Special:NoticeTemplate]].',
+	'centralnotice-clone' => 'Used as label for the Submit button in [[Special:NoticeTemplate]].
+
+Preceded by the "Name" input box with the label {{msg-mw|Centralnotice-clone-name}}.
+{{Identical|Clone}}',
 	'centralnotice-clone-notice' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].',
-	'centralnotice-clone-name' => '{{Identical|Name}}',
+	'centralnotice-clone-name' => 'Used as label for the "Name" input box in [[Special:NoticeTemplate]].
+
+Preceded by the fieldset label {{msg-mw|centralnotice-clone-notice}}.
+
+The input box is followed by the Submit button. Its label is {{msg-mw|centralnotice-clone}}.
+{{Identical|Name}}',
 	'centralnotice-preview-all-template-translations' => 'Used as link text in [[Special:NoticeTemplate]].',
-	'centralnotice-insert' => '{{Identical|Insert}}',
+	'centralnotice-insert' => 'Used in [[Special:NoticeTemplate]].
+
+Parameters:
+* $1 - an action link which is used to insert "Close" button. Its link text is {{msg-mw|Centralnotice-close-button}}.
+
+This message is preceded by the following message:
+* {{msg-mw|Centralnotice-edit-template-summary}}.
+{{Identical|Insert}}',
 	'centralnotice-close-button' => 'Used as action link text in [[Special:NoticeTemplate]]. The link is used to insert {{msg-mw|Centralnotice-close-title}} button.',
-	'centralnotice-close-title' => '{{Identical|Close}}',
+	'centralnotice-close-title' => 'Used as tooltip for the action link to hide banner.
+{{Identical|Close}}',
+	'centralnotice-translate-button' => 'Unused at this time.',
+	'centralnotice-donate-button' => 'Unused at this time.',
 	'centralnotice-banner-display' => 'Checkboxes with the following messages comes after the colon:
 *{{msg-mw|Centralnotice-banner-anonymous}}
 *{{msg-mw|Centralnotice-banner-logged-in}}',
@@ -367,15 +446,19 @@ Preceded by one of the following fieldset labels:
 * $2 - a title for a page',
 	'centralnotice-banner-landing-pages' => 'Used as label for the "Landing pages" input box in [[Special:NoticeTemplate]].',
 	'centralnotice-geo' => 'Used to label a checkbox which activates geotargeting',
-	'centralnotice-countries' => '{{Identical|Country}}',
+	'centralnotice-countries' => 'Used as column header of the table in [[Special:CentralNotice]].
+{{Related|Centralnotice-th}}
+{{Identical|Country}}',
 	'centralnotice-global-allocation' => 'Tab for [[m:Special:GlobalAllocation|global allocation]] overview.',
 	'centralnotice-allocation' => 'Tab for sub-page [[m:BannerAllocation|banner allocation]] to central notice special page.',
 	'centralnotice-view-allocation' => 'Heading of dialog box on [[m:Special:BannerAllocation|banner allocation]] special page.',
 	'centralnotice-allocation-instructions' => 'Dialog box instructions on [[m:Special:BannerAllocation|banner allocation]] special page.',
-	'centralnotice-languages' => '{{Identical|Language}}',
+	'centralnotice-languages' => 'Used as column header of the table in [[Special:CentralNotice]].
+{{Related|Centralnotice-th}}
+{{Identical|Language}}',
 	'centralnotice-language' => '{{Identical|Language}}',
 	'centralnotice-projects' => 'Column heading of a table in the [[meta:Special:CentralNotice|Manage Central Notice]] special page
-
+{{Related|Centralnotice-th}}
 {{Identical|Project}}',
 	'centralnotice-country' => '{{Identical|Country}}',
 	'centralnotice-no-allocation' => 'Message for nil result to query on [[m:Special:BannerAllocation|banner allocation]] special page.',
@@ -389,12 +472,19 @@ Preceded by one of the following fieldset labels:
 
 <code>document.write()</code> is JavaScript function name.',
 	'centralnotice-preferred' => 'A label of a list for selecting the priority of the campaign.
+
+Used as column header of the table in [[Special:CentralNotice]].
+{{Related|Centralnotice-th}}
 {{Identical|Priority}}',
 	'centralnotice-logs' => 'Label for tab which displays a log of changes',
 	'centralnotice-view-logs' => 'Title of sub-page of [[meta:Special:CentralNoticeLogs|View Central Notice Logs]] special page.',
-	'centralnotice-timestamp' => '{{Identical|Timestamp}}',
-	'centralnotice-user' => '{{Identical|User}}',
-	'centralnotice-action' => '{{Identical|Action}}',
+	'centralnotice-timestamp' => 'Used as column header in the table.
+{{Identical|Timestamp}}',
+	'centralnotice-user' => '* Used as column header in the table.
+* Used as label for the "User" input box.
+{{Identical|User}}',
+	'centralnotice-action' => 'Used as column header of the table.
+{{Identical|Action}}',
 	'centralnotice-action-created' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
 {{Identical|Created}}',
 	'centralnotice-action-modified' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
@@ -11772,7 +11862,7 @@ De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwij
 	'centralnotice-modify' => 'Opslaan',
 	'centralnotice-view' => 'Bekijken',
 	'centralnotice-save-banner' => 'Banner opslaan',
-	'centralnotice-preview' => 'Voorvertoning', # Fuzzy
+	'centralnotice-preview' => 'Voorvertoning ($1)',
 	'centralnotice-nopreview' => '(Voorvertoning niet beschikbaar)',
 	'centralnotice-add-new' => 'Nieuwe centrale sitenotice toevoegen',
 	'centralnotice-remove' => 'Verwijderen',
@@ -12496,6 +12586,7 @@ Sie werd doher ned g'leschd.",
 /** Polish (polski)
  * @author Bartek50003
  * @author BeginaFelicysym
+ * @author Chrumps
  * @author Derbeth
  * @author Leinad
  * @author Maikking
@@ -12519,12 +12610,12 @@ $messages['pl'] = array(
 Można w nim także dodawać i usuwać komunikaty.',
 	'centralnotice-query' => 'Modyfikuj bieżący komunikat',
 	'centralnotice-notice-name' => 'Nazwa komunikatu',
-	'centralnotice-end-date' => 'Data zakończenia',
+	'centralnotice-end-date' => 'Data zakończenia (UTC)',
 	'centralnotice-enabled' => 'Włączony',
 	'centralnotice-modify' => 'Zapisz',
 	'centralnotice-view' => 'Podgląd',
 	'centralnotice-save-banner' => 'Zapisz baner',
-	'centralnotice-preview' => 'Podgląd',
+	'centralnotice-preview' => 'Podgląd ($1)',
 	'centralnotice-nopreview' => '(Podgląd niedostępny)',
 	'centralnotice-add-new' => 'Dodaj nowy wspólny komunikat',
 	'centralnotice-remove' => 'Usuń',
@@ -12537,10 +12628,6 @@ Można w nim także dodawać i usuwać komunikaty.',
 	'centralnotice-add-template' => 'Dodaj szablon',
 	'centralnotice-show-notices' => 'Pokaż komunikaty',
 	'centralnotice-list-templates' => 'Lista szablonów',
-	'centralnotice-multiple-projects' => 'wiele ($1)',
-	'centralnotice-multiple-languages' => 'wiele ($1)',
-	'centralnotice-multiple-countries' => 'Wiele ($1)',
-	'centralnotice-all-projects' => 'wszystkie projekty',
 	'centralnotice-translations' => 'Tłumaczenia',
 	'centralnotice-translate-to' => 'Przetłumacz na',
 	'centralnotice-translate' => 'Przetłumacz',
@@ -12562,7 +12649,7 @@ Można w nim także dodawać i usuwać komunikaty.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Kampania nie istnieje.
 Usunięcie jest niemożliwe.',
 	'centralnotice-banner-doesnt-exist' => 'Baner nie istnieje.',
-	'centralnotice-template-still-bound' => 'Szablon nie może zostać usunięty. Jest ciągle używany przez komunikat.',
+	'centralnotice-template-still-bound' => 'Szablon nie może zostać usunięty. Jest ciągle używany przez komunikat.', # Fuzzy
 	'centralnotice-template-body' => 'Treść szablonu:',
 	'centralnotice-day' => 'Dzień',
 	'centralnotice-year' => 'Rok',
@@ -12570,10 +12657,9 @@ Usunięcie jest niemożliwe.',
 	'centralnotice-hours' => 'Godzina',
 	'centralnotice-min' => 'Minuta',
 	'centralnotice-project-lang' => 'Język projektu',
-	'centralnotice-select' => 'Wybierz: $1',
-	'centralnotice-top-ten-languages' => '10 najważniejszych języków',
+	'centralnotice-select-all' => 'Zaznacz wszystko',
 	'centralnotice-project-name' => 'Nazwa projektu',
-	'centralnotice-start-date' => 'Data rozpoczęcia',
+	'centralnotice-start-date' => 'Data rozpoczęcia (UTC)',
 	'centralnotice-start-time' => 'Czas rozpoczęcia (UTC)',
 	'centralnotice-end-time' => 'Czas zakończenia (UTC)',
 	'centralnotice-assigned-templates' => 'Dołączone szablony',
@@ -12631,7 +12717,7 @@ Dodaj nowy poniżej.',
 	'centralnotice-projects' => 'Projekty',
 	'centralnotice-country' => 'Kraj',
 	'centralnotice-no-allocation' => 'Brak przypisanych banerów.',
-	'centralnotice-allocation-description' => 'Przydział banera dla $1.$2 w $3:',
+	'centralnotice-allocation-description' => 'Przydział banera dla $1.$2 w $3:', # Fuzzy
 	'centralnotice-percentage' => 'Procentowo',
 	'centralnotice-documentwrite-error' => 'Nie można korzystać z document.write() w banerze.
 Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:CentralNotice',
@@ -12681,6 +12767,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-buckets' => 'Podział użytkowników',
 	'centralnotice-bucket' => 'Grupa',
 	'centralnotice-bucket-letter' => 'Grupa „$1”',
+	'centralnotice-user-role-anonymous' => 'Anonimowy użytkownik',
 );
 
 /** Piedmontese (Piemontèis)
@@ -16050,12 +16137,12 @@ $messages['sv'] = array(
 Den kan också användas för att lägga till eller ta bort gamla meddelanden.',
 	'centralnotice-query' => 'Ändra nuvarande meddelanden',
 	'centralnotice-notice-name' => 'Meddelandenamn',
-	'centralnotice-end-date' => 'Slutdatum',
+	'centralnotice-end-date' => 'Slutdatum (UTC)',
 	'centralnotice-enabled' => 'Aktiverad',
 	'centralnotice-modify' => 'Verkställ',
 	'centralnotice-view' => 'Visa',
 	'centralnotice-save-banner' => 'Spara banner',
-	'centralnotice-preview' => 'Förhandsgranska',
+	'centralnotice-preview' => 'Förhandsgranska ($1)',
 	'centralnotice-nopreview' => '(Förhandsgranskning inte tillgänglig)',
 	'centralnotice-add-new' => 'Lägg till ett nytt centralmeddelande',
 	'centralnotice-remove' => 'Ta bort',
@@ -16068,10 +16155,6 @@ Den kan också användas för att lägga till eller ta bort gamla meddelanden.',
 	'centralnotice-add-template' => 'Lägg till en mall',
 	'centralnotice-show-notices' => 'Visa meddelanden',
 	'centralnotice-list-templates' => 'Lista mallar',
-	'centralnotice-multiple-projects' => 'flera ($1)',
-	'centralnotice-multiple-languages' => 'flera ($1)',
-	'centralnotice-multiple-countries' => 'Flera ($1)',
-	'centralnotice-all-projects' => 'Alla projekt',
 	'centralnotice-translations' => 'Översättningar',
 	'centralnotice-translate-to' => 'Översätt till',
 	'centralnotice-translate' => 'Översätt',
@@ -16096,7 +16179,7 @@ Lägger inte till',
 Inget att ta bort.',
 	'centralnotice-banner-doesnt-exist' => 'Bannern finns inte.',
 	'centralnotice-template-still-bound' => 'Mall är inte fortfarande kopplad till ett meddelande.
-Tar inte bort.',
+Tar inte bort.', # Fuzzy
 	'centralnotice-template-body' => 'Mallinnehåll:',
 	'centralnotice-day' => 'Dag',
 	'centralnotice-year' => 'År',
@@ -16104,10 +16187,8 @@ Tar inte bort.',
 	'centralnotice-hours' => 'Timma',
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Projektspråk',
-	'centralnotice-select' => 'Välj: $1',
-	'centralnotice-top-ten-languages' => 'Topp 10 språk',
 	'centralnotice-project-name' => 'Projektnamn',
-	'centralnotice-start-date' => 'Startdatum',
+	'centralnotice-start-date' => 'Startdatum (UTC)',
 	'centralnotice-start-time' => 'Starttid (UTC)',
 	'centralnotice-end-time' => 'Sluttid (UTC)',
 	'centralnotice-assigned-templates' => 'Använda mallar',
@@ -16169,7 +16250,7 @@ Lägg till ett nedan',
 	'centralnotice-projects' => 'Projekt',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Inga banners tilldelade.',
-	'centralnotice-allocation-description' => 'Bannertilldelning för $1.$2 i $3:',
+	'centralnotice-allocation-description' => 'Bannertilldelning för språk: $1, projekt: $2 i landet $3, på enheten $4:',
 	'centralnotice-percentage' => 'Procent',
 	'centralnotice-documentwrite-error' => 'document.write() kan inte användas inom en banner.
 Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
@@ -18886,7 +18967,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-modify' => '提交',
 	'centralnotice-view' => '查看',
 	'centralnotice-save-banner' => '保存横幅',
-	'centralnotice-preview' => '预览', # Fuzzy
+	'centralnotice-preview' => '预览（$1）',
 	'centralnotice-nopreview' => '（无预览可用）',
 	'centralnotice-add-new' => '添加一个新的中央通告',
 	'centralnotice-remove' => '移除',
