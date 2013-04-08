@@ -10,7 +10,7 @@
  * @license GNU General Public Licence 2.0 or later
  */
 
- $wgExtensionCredits[ 'other' ][] = array(
+$wgExtensionCredits[ 'other' ][] = array(
 	'path'           => __FILE__,
 	'name'           => 'CentralNotice',
 	'author'         => array(
@@ -305,7 +305,7 @@ function efCentralNoticeSetup() {
 		if ( $wgNoticeUseTranslateExtension ) {
 			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'efRegisterMessageGroups';
-            $wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = array( 'BannerMessageGroup::updateBannerGroupStateHook' );
+			$wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = array( 'BannerMessageGroup::updateBannerGroupStateHook' );
 		}
 
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
@@ -479,10 +479,10 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
-    $vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
-    $vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
-    $vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
-    $vars[ 'wgNoticeCookieShortExpiry' ] = $wgNoticeCookieShortExpiry;
+	$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
+	$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
+	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
+	$vars[ 'wgNoticeCookieShortExpiry' ] = $wgNoticeCookieShortExpiry;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;

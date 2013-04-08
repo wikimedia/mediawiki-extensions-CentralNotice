@@ -653,7 +653,7 @@ class CentralNotice extends SpecialPage {
 	 * @param $notice string The name of the campaign to view
 	 */
 	function listNoticeDetail( $notice ) {
-        global $wgNoticeNumberOfBuckets;
+		global $wgNoticeNumberOfBuckets;
 
 		// Make sure notice exists
 		if ( !Campaign::campaignExists( $notice ) ) {
@@ -698,16 +698,16 @@ class CentralNotice extends SpecialPage {
 						}
 
 						// Handle user bucketing setting for campaign
-                        $numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
-                        $numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
+						$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
+						$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
-                        Campaign::setNumericCampaignSetting(
-                            $notice,
-                            'buckets',
-                            $numCampaignBuckets,
-                            $wgNoticeNumberOfBuckets,
-                            1
-                        );
+						Campaign::setNumericCampaignSetting(
+							$notice,
+							'buckets',
+							$numCampaignBuckets,
+							$wgNoticeNumberOfBuckets,
+							1
+						);
 
 						// Handle setting campaign priority
 						Campaign::setNumericCampaignSetting(
@@ -768,15 +768,15 @@ class CentralNotice extends SpecialPage {
 						}
 
 						// Handle bucket changes - keep in mind that the number of campaign buckets
-                        // might have changed simultaneously (and might have happened server side)
+						// might have changed simultaneously (and might have happened server side)
 						$updatedBuckets = $request->getArray( 'bucket' );
 						if ( $updatedBuckets ) {
 							foreach ( $updatedBuckets as $templateId => $bucket ) {
 								Campaign::updateBucket(
-                                    $notice,
-                                    $templateId,
-                                    intval( $bucket ) % $numCampaignBuckets
-                                );
+									$notice,
+									$templateId,
+									intval( $bucket ) % $numCampaignBuckets
+								);
 							}
 						}
 
@@ -879,7 +879,7 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing campaign settings (start date, end date, languages, etc.)
 	 */
 	function noticeDetailForm( $notice ) {
-        global $wgNoticeNumberOfBuckets;
+		global $wgNoticeNumberOfBuckets;
 
 		if ( $this->editable ) {
 			$readonly = array();
@@ -977,7 +977,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-                $this->numBucketsDropDown( $wgNoticeNumberOfBuckets, $numBuckets ) );
+			$this->numBucketsDropDown( $wgNoticeNumberOfBuckets, $numBuckets ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1093,13 +1093,13 @@ class CentralNotice extends SpecialPage {
 			);
 
 			// Bucket
-            $numCampaignBuckets = min( intval( $row->not_buckets ), $wgNoticeNumberOfBuckets );
+			$numCampaignBuckets = min( intval( $row->not_buckets ), $wgNoticeNumberOfBuckets );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$this->bucketDropDown(
-                    "bucket[$row->tmp_id]",
-                    ( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
-                    $numCampaignBuckets
-                )
+					"bucket[$row->tmp_id]",
+					( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
+					$numCampaignBuckets
+				)
 			);
 
 			// Banner
@@ -1131,7 +1131,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function bucketDropDown( $name, $selected, $numberCampaignBuckets ) {
-        global $wgNoticeNumberOfBuckets;
+		global $wgNoticeNumberOfBuckets;
 
 		$bucketLabel = function ( $val ) {
 			return chr( $val + ord( 'A' ) );
@@ -1141,14 +1141,14 @@ class CentralNotice extends SpecialPage {
 			if ( $selected === null ) {
 				$selected = 0; // default to bucket 'A'
 			}
-            $selected = $selected % $numberCampaignBuckets;
+			$selected = $selected % $numberCampaignBuckets;
 
 			$html = Html::openElement( 'select', array( 'name' => $name, 'id' => 'bucketSelector' ) );
 			foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
-                $attribs = array();
-                if ( $value >= $numberCampaignBuckets ) {
-                    $attribs['disabled'] = 'disabled';
-                }
+				$attribs = array();
+				if ( $value >= $numberCampaignBuckets ) {
+					$attribs['disabled'] = 'disabled';
+				}
 				$html .= Xml::option( $bucketLabel( $value ), $value, $value === $selected, $attribs );
 			}
 			$html .= Html::closeElement( 'select' );
@@ -1161,23 +1161,23 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-    function numBucketsDropDown( $numBuckets, $selected ) {
-        if ( $selected === null ) {
-            $selected = 1;
-        }
+	function numBucketsDropDown( $numBuckets, $selected ) {
+		if ( $selected === null ) {
+			$selected = 1;
+		}
 
-        if ( $this->editable ) {
-            $html = Html::openElement( 'select', array( 'name' => 'buckets', 'id' => 'buckets' ) );
-            foreach ( range( 0, intval( log( $numBuckets, 2 ) ) ) as $value ) {
-                $value = pow( 2, $value );
-                $html .= Xml::option( $value, $value, $value === $selected );
-            }
-            $html .= Html::closeElement( 'select' );
-            return $html;
-        } else {
-            return htmlspecialchars( $selected );
-        }
-    }
+		if ( $this->editable ) {
+			$html = Html::openElement( 'select', array( 'name' => 'buckets', 'id' => 'buckets' ) );
+			foreach ( range( 0, intval( log( $numBuckets, 2 ) ) ) as $value ) {
+				$value = pow( 2, $value );
+				$html .= Xml::option( $value, $value, $value === $selected );
+			}
+			$html .= Html::closeElement( 'select' );
+			return $html;
+		} else {
+			return htmlspecialchars( $selected );
+		}
+	}
 
 	/**
 	 * Create form for adding banners to a campaign

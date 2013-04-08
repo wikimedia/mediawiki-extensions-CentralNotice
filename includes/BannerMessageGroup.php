@@ -19,16 +19,16 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 */
 	public function __construct( $namespace, $title ) {
 
-        $titleObj = Title::makeTitle( $namespace, $title );
-        $this->id = static::getTranslateGroupName( $title );
+		$titleObj = Title::makeTitle( $namespace, $title );
+		$this->id = static::getTranslateGroupName( $title );
 
 		// For internal usage we just want the name of the banner. In the MediaWiki namespace
 		// this is stored with a prefix. Elsewhere (like the CentralNotice namespace) it is
 		// just the page name.
 		$this->bannerName = str_replace( 'Centralnotice-template-', '', $title );
 
-        // And now set the label for the Translate UI
-        $this->setLabel( $titleObj->getPrefixedText() );
+		// And now set the label for the Translate UI
+		$this->setLabel( $titleObj->getPrefixedText() );
 	}
 
 	/**

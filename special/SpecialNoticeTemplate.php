@@ -58,9 +58,9 @@ class SpecialNoticeTemplate extends CentralNotice {
 							Banner::removeTemplate( $template, $this->getUser() );
 						} catch ( MWException $ex ) {
 							$this->showError( array(
-                                'centralnotice-template-still-bound',
-                                $template
-                            ) );
+								'centralnotice-template-still-bound',
+								$template
+							) );
 						}
 					}
 				}

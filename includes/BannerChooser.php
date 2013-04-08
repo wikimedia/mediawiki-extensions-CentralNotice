@@ -70,20 +70,20 @@ class BannerChooser {
 		// Filter for device category
 		$filterColumn( $this->banners, 'device', $device );
 
-        // Filter for the provided bucket.
+		// Filter for the provided bucket.
 		$this->banners = array_filter(
 			$this->banners,
 			function ( $banner ) use ( $bucket ) {
-                global $wgNoticeNumberOfBuckets;
+				global $wgNoticeNumberOfBuckets;
 
-                // In case we change the number of buckets available, will map
-                // the banner bucket down
-                $bannerBucket = intval( $banner[ 'bucket' ] ) % $wgNoticeNumberOfBuckets;
+				// In case we change the number of buckets available, will map
+				// the banner bucket down
+				$bannerBucket = intval( $banner[ 'bucket' ] ) % $wgNoticeNumberOfBuckets;
 
-                // Actual mapping. It is assumed the user always was randomly choosing out
-                // of a ring with $wgNoticeNumberOfBuckets choices. This implies that we will
-                // always be mapping the ring down, never up.
-                $userBucket = intval( $bucket ) % intval( $banner[ 'campaign_num_buckets' ] );
+				// Actual mapping. It is assumed the user always was randomly choosing out
+				// of a ring with $wgNoticeNumberOfBuckets choices. This implies that we will
+				// always be mapping the ring down, never up.
+				$userBucket = intval( $bucket ) % intval( $banner[ 'campaign_num_buckets' ] );
 
 				return ( $bannerBucket === $userBucket );
 			}

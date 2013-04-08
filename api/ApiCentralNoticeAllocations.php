@@ -74,7 +74,7 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	}
 
 	public function getParamDescription() {
-        global $wgNoticeNumberOfBuckets;
+		global $wgNoticeNumberOfBuckets;
 
 		$params = array();
 

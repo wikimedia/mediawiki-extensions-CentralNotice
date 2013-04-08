@@ -60,7 +60,7 @@ class ApiAllocationsTest extends ApiTestCase {
 		);
 
 		$ret = $this->doApiRequest( array(
-            'action' => 'centralnoticeallocations',
+			'action' => 'centralnoticeallocations',
 		) );
 		$this->assertTrue( ComparisonUtil::assertSuperset( $ret[0], $expected ) );
 	}

@@ -193,7 +193,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 * Show a list of banners with allocation. Newer banners are shown first.
 	 */
 	public function showList() {
-        global $wgNoticeNumberOfBuckets;
+		global $wgNoticeNumberOfBuckets;
 
 		// Obtain all banners & campaigns
 		$request = $this->getRequest();
