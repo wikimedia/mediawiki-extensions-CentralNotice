@@ -196,6 +196,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$beginField = 'tmplog_begin_'.$param;
 		$endField = 'tmplog_end_'.$param;
 		if ( $row->$beginField !== $row->$endField ) {
+			// Give grep a chance to find the usages:
+			// centralnotice-anon, centralnotice-account, centralnotice-fundraising, centralnotice-autolink
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
@@ -214,6 +216,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$beginField = 'tmplog_begin_'.$param;
 		$endField = 'tmplog_end_'.$param;
 		if ( $row->$beginField !== $row->$endField ) {
+			// Give grep a chance to find the usages: centralnotice-landingpages, centralnotice-prioritylangs
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-'.$param )->text(),
