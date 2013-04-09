@@ -36,7 +36,7 @@ $specialPageAliases['arz'] = array(
 	'NoticeTemplate' => array( 'قالب_الملاحظة' ),
 );
 
-/** Assamese (অসমীয়া) */
+/** Assamese (অসমীয়া) */
 $specialPageAliases['as'] = array(
 	'CentralNotice' => array( 'কেন্দ্ৰীয়_জাননী' ),
 	'CentralNoticeLogs' => array( 'কেন্দ্ৰীয়_জাননী_অভিলেখসমূহ' ),
@@ -257,7 +257,7 @@ $specialPageAliases['nn'] = array(
 	'NoticeTemplate' => array( 'Merknadsmal' ),
 );
 
-/** Oriya (ଓଡ଼ିଆ) */
+/** Oriya (ଓଡ଼ିଆ) */
 $specialPageAliases['or'] = array(
 	'CentralNotice' => array( 'ସୂଚନାଫଳକ' ),
 	'CentralNoticeLogs' => array( 'ସୂଚନାଫଳକଲଗ' ),
