@@ -118,6 +118,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()
 		);
+		// Give grep a chance to find the usages:
+		// centralnotice-action-created, centralnotice-action-modified,
+		// centralnotice-action-removed
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$this->msg( 'centralnotice-action-'.$row->notlog_action )->text()
 		);
@@ -305,6 +308,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;
 		if ( $row->$beginField !== $row->$endField ) {
+			// Give grep a chance to find the usages:
+			// centralnotice-enabled, centralnotice-locked, centralnotice-geo, centralnotice-buckets
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-'.$param )->text(),
@@ -343,6 +348,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			if ( $removed ) {
 				$differences .= $this->msg( 'centralnotice-removed', $lang->commaList( $removed ) )->text();
 			}
+			// Give grep a chance to find the usages:
+			// centralnotice-projects, centralnotice-languages, centralnotice-countries
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-'.$param )->text(),
@@ -391,6 +398,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 					$endMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
 					break;
 			}
+			// Give grep a chance to find the usages: centralnotice-preferred
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-'.$param )->text(),
