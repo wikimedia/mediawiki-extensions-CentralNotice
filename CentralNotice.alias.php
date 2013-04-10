@@ -153,6 +153,7 @@ $specialPageAliases['ja'] = array(
 	'CentralNotice' => array( '中央管理通知' ),
 	'CentralNoticeLogs' => array( '中央管理通知記録' ),
 	'NoticeTemplate' => array( '通知テンプレート' ),
+	'GlobalAllocation' => array( 'グローバル割り当て' ),
 	'BannerAllocation' => array( 'テンプレート割り当て' ),
 	'BannerController' => array( 'テンプレート制御' ),
 	'BannerListLoader' => array( 'テンプレート一覧読み込み' ),
@@ -194,6 +195,7 @@ $specialPageAliases['lad'] = array(
 
 /** Luxembourgish (Lëtzebuergesch) */
 $specialPageAliases['lb'] = array(
+	'BannerController' => array( 'Bannersteierung' ),
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
