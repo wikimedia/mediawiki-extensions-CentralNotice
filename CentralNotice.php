@@ -83,12 +83,22 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'remoteExtPath' => 'CentralNotice/modules',
 	'scripts'       => 'ext.centralNotice.bannerController/bannerController.js',
 	'position'      => 'top',
-	'targets'       => array( 'mobile', 'desktop' ),
 	'dependencies'  => array(
 		'jquery.cookie',
 	),
-	'mobileTargets' => array( 'beta', 'alpha' ),
 );
+$wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = $wgResourceModules[ 'ext.centralNotice.bannerController' ] + array(
+	'targets' => 'mobile',
+);
+
+function efEnableMobileModules( $out, $mode ) {
+	global $wgResourceModules;
+	$name = 'ext.centralNotice.bannerController.mobile';
+	if ( $mode !== 'stable' ) {
+		$out->addModules( $name );
+	}
+	return true;
+}
 
 /* Configuration */
 
@@ -279,6 +289,8 @@ function efCentralNoticeSetup() {
 		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
 		$wgHooks[ 'ResourceLoaderGetConfigVars' ][] = 'efResourceLoaderGetConfigVars';
 	}
+	// Register mobile modules
+	$wgHooks['EnableMobileModules'][] = 'efEnableMobileModules';
 
 	// Register special pages
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
