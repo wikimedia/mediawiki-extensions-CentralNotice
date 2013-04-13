@@ -7,7 +7,7 @@ class MixinController {
 	protected $uiContext;
 	protected $allocContext;
 
-	function __construct( IContextSource $uiContext, $mixins, IAllocationContext $allocContext = null ) {
+	function __construct( IContextSource $uiContext, $mixins, AllocationContext $allocContext = null ) {
 		$this->uiContext = $uiContext;
 		$this->allocContext = $allocContext;
 		$this->mixins = $mixins;

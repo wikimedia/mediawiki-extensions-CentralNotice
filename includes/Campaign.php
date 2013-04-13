@@ -216,6 +216,7 @@ class Campaign {
 			$singleRes = $dbr->select(
 				"cn_notice_log",
 				array(
+					"id" => "notlog_not_id",
 					"name" => "notlog_not_name",
 					"projects" => "notlog_end_projects",
 					"languages" => "notlog_end_languages",
@@ -232,6 +233,9 @@ class Campaign {
 			);
 
 			$campaign = $singleRes->fetchRow();
+			$campaign['projects'] = explode( ", ", $campaign['projects'] );
+			$campaign['languages'] = explode( ", ", $campaign['languages'] );
+			$campaign['countries'] = explode( ", ", $campaign['countries'] );
 			$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );

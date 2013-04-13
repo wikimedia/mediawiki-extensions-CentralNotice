@@ -278,7 +278,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
 	$wgAutoloadClasses[ 'GeoTarget' ] = $includeDir . 'GeoTarget.php';
 	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
-	$wgAutoloadClasses[ 'IAllocationContext' ] = $includeDir . 'IAllocationContext.php';
+	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
 	$wgAutoloadClasses[ 'MixinController' ] = $includeDir . 'MixinController.php';
 
 	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';

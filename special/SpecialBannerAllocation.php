@@ -36,7 +36,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 *
 	 * This should always be a lowercase language code.
 	 *
-	 * @var string $project
+	 * @var string $language
 	 */
 	public $language = 'en';
 
@@ -85,7 +85,6 @@ class SpecialBannerAllocation extends CentralNotice {
 		// Output ResourceLoader module for styling and javascript functions
 		$out->addModules( array(
 			'ext.centralNotice.interface',
-			'ext.centralNotice.bannerStats'
 		) );
 
 		// Initialize error variable
@@ -247,7 +246,7 @@ class SpecialBannerAllocation extends CentralNotice {
 			}
 
 			foreach ( $matrix as $target ) {
-				$banners = ApiCentralNoticeAllocations::getAllocationInformation(
+				$banners = ApiCentralNoticeAllocations::getBannerAllocation(
 					$project,
 					$country,
 					$language,

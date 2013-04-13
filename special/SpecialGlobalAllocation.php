@@ -17,13 +17,11 @@
  */
 
 /**
- * SpecialGlobalAllocation
- *
  * Display worldwide allocation
  */
 class SpecialGlobalAllocation extends CentralNotice {
 	/**
-	 * The project being used for banner allocation.
+	 * Optional project filter
 	 *
 	 * @see $wgNoticeProjects
 	 *
@@ -32,22 +30,20 @@ class SpecialGlobalAllocation extends CentralNotice {
 	public $project = null;
 
 	/**
-	 * The language being used for banner allocation
-	 *
 	 * This should always be a lowercase language code.
 	 *
-	 * @var string $project
+	 * @var string $language
 	 */
 	public $language = null;
 
 	/**
-	 * The location being used for banner allocation.
-	 *
 	 * This should always be an uppercase country code.
 	 *
 	 * @var string $location
 	 */
 	public $location = null;
+
+	public $device = null;
 
 	/**
 	 * Constructor
@@ -61,17 +57,41 @@ class SpecialGlobalAllocation extends CentralNotice {
 		return false;
 	}
 
+	protected function getRequestParams() {
+		$sanitize = function( $param, $regex ) {
+			return filter_var( $param, FILTER_VALIDATE_REGEXP, array( 'options' => array( 'regexp' => $regex ) ) );
+		};
+
+		$this->project = $sanitize(
+			$this->getRequest()->getText( 'project', $this->project ),
+			ApiCentralNoticeAllocations::PROJECT_FILTER
+		);
+		$this->language = $sanitize(
+			$this->getRequest()->getText( 'language', $this->language ),
+			ApiCentralNoticeAllocations::LANG_FILTER
+		);
+		$this->location = $sanitize(
+			$this->getRequest()->getText( 'country', $this->location ),
+			ApiCentralNoticeAllocations::LOCATION_FILTER
+		);
+		$this->device = $sanitize(
+			$this->getRequest()->getText( 'device', $this->device ),
+			ApiCentralNoticeAllocations::DEVICE_NAME_FILTER
+		);
+
+		$this->timestamp = wfTimestamp( TS_UNIX, $this->getDateTime( 'filter' ) );
+	}
+
 	/**
-	 * Handle different types of page requests
+	 * Handle page requests
+	 *
+	 * Without filters, this will display the allocation of all active banners.
 	 */
 	public function execute( $sub ) {
 		global $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
 		$out = $this->getOutput();
-		$request = $this->getRequest();
 
-		$this->project = $request->getText( 'project', $this->project );
-		$this->language = $request->getText( 'language', $this->language );
-		$this->location = $request->getVal( 'country', $this->location );
+		$this->getRequestParams();
 
 		// Begin output
 		$this->setHeaders();
@@ -79,7 +99,6 @@ class SpecialGlobalAllocation extends CentralNotice {
 		// Output ResourceLoader module for styling and javascript functions
 		$out->addModules( array(
 			'ext.centralNotice.interface',
-			'ext.centralNotice.bannerStats'
 		) );
 
 		// Initialize error variable
@@ -201,13 +220,16 @@ class SpecialGlobalAllocation extends CentralNotice {
 			htmlspecialchars( $this->project ) : $this->msg( 'centralnotice-all' )->text();
 		$countryLabel = $this->location ?
 			htmlspecialchars( $this->location ) : $this->msg( 'centralnotice-all' )->text();
+		$deviceLabel = $this->device ?
+			htmlspecialchars( $this->device ) : $this->msg( 'centralnotice-all' )->text();
 
 		$htmlOut .= Xml::tags( 'p', null,
 			$this->msg(
 				'centralnotice-allocation-description',
 				$languageLabel,
 				$projectLabel,
-				$countryLabel
+				$countryLabel,
+				$deviceLabel
 			)->text()
 		);
 
@@ -414,7 +436,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		foreach ( array( true, false ) as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
 				$device = 'desktop'; //XXX
-				$variations[$isAnon][$bucket] = ApiCentralNoticeAllocations::getAllocationInformation(
+				$variations[$isAnon][$bucket] = ApiCentralNoticeAllocations::getBannerAllocation(
 					$project, $country, $language,
 					$isAnon ? 'true' : 'false',
 					$device,

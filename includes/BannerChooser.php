@@ -5,14 +5,37 @@ class BannerChooser {
 	const ALLOCATION_KEY = 'allocation';
 	const RAND_MAX = 30;
 
-	var $banners = array();
+	protected $allocContext;
 
-	function __construct( $project, $language, $country, $anonymous, $device, $bucket ) {
-		$campaigns = Campaign::getCampaigns( $project, $language, $country );
-		$this->banners = Banner::getCampaignBanners( $campaigns );
+	protected $campaigns;
+	protected $banners;
 
-		$this->filterBanners( $anonymous, $device, $bucket );
+	/**
+	 * @param array $campaigns structs of the type returned by getHistoricalCampaigns
+	 * @param AllocationContext $allocContext used for filtering campaigns and banners
+	 */
+	function __construct( AllocationContext $allocContext, $campaigns = null ) {
+		$this->allocContext = $allocContext;
 
+		if ( $campaigns ) {
+			$this->campaigns = $campaigns;
+
+			$this->banners = array();
+			$this->filterCampaigns();
+			foreach ( $this->campaigns as $campaign ) {
+				foreach ( $campaign['banners'] as $name => $banner ) {
+					$this->banners[] = $banner;
+				}
+			}
+		} else {
+			$this->campaigns = Campaign::getCampaigns(
+				$allocContext->getProject(),
+				$allocContext->getLanguage(),
+				$allocContext->getCountry()
+			);
+			$this->banners = Banner::getCampaignBanners( $this->campaigns );
+		}
+		$this->filterBanners();
 		$this->allocate();
 	}
 
@@ -42,22 +65,33 @@ class BannerChooser {
 		}
 	}
 
-	/**
-	 * Filters banners and returns those matching criteria
-	 */
-	protected function filterBanners( $anonymous, $device, $bucket ) {
-		$filterColumn = function ( &$banners, $key, $value ) {
-			$banners = array_filter(
-				$banners,
-				function( $banner ) use ( $key, $value ) {
-					return ( $banner[ $key ] === $value );
-				}
+	protected function filterCampaigns() {
+		$filtered = array();
+		foreach ( $this->campaigns as $campaign ) {
+			$projectAllowed = (
+				$this->allocContext->getProject() === null
+				or in_array( $this->allocContext->getProject(), $campaign['projects'] )
 			);
-		};
+			$languageAllowed = (
+				$this->allocContext->getLanguage() === null
+				or in_array( $this->allocContext->getLanguage(), $campaign['languages'] )
+			);
+			$countryAllowed = (
+				$this->allocContext->getCountry() === null
+				or in_array( $this->allocContext->getCountry(), $campaign['countries'] )
+			);
 
-		if ( $anonymous !== null ) {
-			$display_column = ( $anonymous ? 'display_anon' : 'display_account' );
-			$filterColumn( $this->banners, $display_column, 1 );
+			if ( $projectAllowed and $languageAllowed and $countryAllowed ) {
+				$filtered[] = $campaign;
+			}
+		}
+		$this->campaigns = $filtered;
+	}
+
+	protected function filterBanners() {
+		if ( $this->allocContext->getAnonymous() !== null ) {
+			$display_column = ( $this->allocContext->getAnonymous() ? 'display_anon' : 'display_account' );
+			$this->filterBannersOnColumn( $display_column, 1 );
 		}
 
 		// Always filter out lower Z-levels
@@ -65,12 +99,13 @@ class BannerChooser {
 		foreach ( $this->banners as $banner ) {
 			$highest_z = max( $banner[ 'campaign_z_index' ], $highest_z );
 		}
-		$filterColumn( $this->banners, 'campaign_z_index', $highest_z );
+		$this->filterBannersOnColumn( 'campaign_z_index', $highest_z );
 
 		// Filter for device category
-		$filterColumn( $this->banners, 'device', $device );
+		$this->filterBannersOnColumn( 'device', $this->allocContext->getDevice() );
 
 		// Filter for the provided bucket.
+		$bucket = $this->allocContext->getBucket();
 		$this->banners = array_filter(
 			$this->banners,
 			function ( $banner ) use ( $bucket ) {
@@ -93,7 +128,20 @@ class BannerChooser {
 		$this->banners = array_values( $this->banners );
 	}
 
-	// note: lumps all campaigns weights together according to absolute proportions of total.
+	protected function filterBannersOnColumn( $key, $value ) {
+		$this->banners = array_filter(
+			$this->banners,
+			function( $banner ) use ( $key, $value ) {
+				return ( $banner[$key] === $value );
+			}
+		);
+	}
+
+	/**
+	 * Calculate allocation proportions and store them in the banners
+	 *
+	 * note: lumps all campaigns weights together according to absolute proportions of total.
+	 */
 	protected function allocate() {
 		$total = array_reduce(
 			$this->banners,
@@ -142,5 +190,19 @@ class BannerChooser {
 		foreach ( $this->banners as &$banner ) {
 			$banner[ self::ALLOCATION_KEY ] = $banner[ self::SLOTS_KEY ] / self::RAND_MAX;
 		}
+	}
+
+	/**
+	 * @return array of campaigns after filtering on criteria
+	 */
+	function getCampaigns() {
+		return $this->campaigns;
+	}
+
+	/**
+	 * @return array of banners after filtering on criteria
+	 */
+	function getBanners() {
+		return $this->banners;
 	}
 }

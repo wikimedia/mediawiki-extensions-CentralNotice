@@ -20,14 +20,19 @@ class BannerRenderer {
 
 	protected $mixinController = null;
 
-	function __construct( IContextSource $context, Banner $banner, $campaignName = null, IAllocationContext $allocContext = null ) {
+	function __construct( IContextSource $context, Banner $banner, $campaignName = null, AllocationContext $allocContext = null ) {
 		$this->context = $context;
 
 		$this->banner = $banner;
 		$this->campaignName = $campaignName;
 
 		if ( $allocContext === null ) {
-			$this->allocContext = new FauxAllocContext();
+			/**
+			 * This should only be used when banners are previewed in management forms.
+			 * TODO: set realistic context in the admin ui, drawn from the campaign
+			 * configuration and current translation settings.
+			 */
+			$this->allocContext = new AllocationContext( 'XX', 'en', 'wikipedia', true, 'desktop', 0 );
 		} else {
 			$this->allocContext = $allocContext;
 		}
@@ -158,28 +163,5 @@ class BannerRenderer {
 
 		$bannerMessage = $this->banner->getMessageField( $field );
 		return $bannerMessage->toHtml( $this->context );
-	}
-}
-
-/**
- * This should only be used when banners are previewed in management forms.
- * TODO: set realistic context in the admin ui, drawn from the campaign
- * configuration and current translation settings.
- */
-class FauxAllocContext {
-    function getCountry() {
-		return 'XX';
-	}
-    function getProject() {
-		return 'wikipedia';
-	}
-    function getAnonymous() {
-		return true;
-	}
-    function getDevice() {
-		return 'desktop';
-	}
-    function getBucket() {
-		return 0;
 	}
 }

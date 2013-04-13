@@ -45,14 +45,13 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		// Get our language/project/country
 		$params = $this->extractRequestParams();
 
-		$bannerList = static::getAllocationInformation(
+		$bannerList = static::getBannerAllocation(
 			$params['project'],
 			$params['country'],
 			$params['language'],
 			$params['anonymous'],
 			$params['device'],
-			$params['bucket'],
-			$params['minimal']
+			$params['bucket']
 		);
 
 		$result->setIndexedTagName( $bannerList, 'BannerAllocation' );
@@ -68,7 +67,6 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		$params['anonymous']= ApiCentralNoticeAllocations::DEFAULT_ANONYMOUS;
 		$params['device'] = ApiCentralNoticeAllocations::DEFAULT_DEVICE_NAME;
 		$params['bucket']   = ApiCentralNoticeAllocations::DEFAULT_BUCKET;
-		$params['minimal']  = false;
 
 		return $params;
 	}
@@ -84,7 +82,6 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		$params['anonymous']= "The logged-in status to filter on (true|false)";
 		$params['device']   = "Device name to filter on";
 		$params['bucket']   = "The bucket to filter on, by number (0 .. $wgNoticeNumberOfBuckets, optional)";
-		$params['minimal']  = "Alters return - only what is required for the banner loader will be returned";
 
 		return $params;
 	}
@@ -113,14 +110,11 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 * Returns results as an array of banners
 	 *  - banners
 	 *
-	 *              The following information is provided in minimal mode:
 	 *              - name          The name of the banner
 	 *              - allocation    What the allocation proportion (0 to 1) should be
 	 *              - campaign      The name of the associated campaign
 	 *              - fundraising   1 if this is a fundraising banner
 	 *              - bucket        The bucket this is assigned to in the campaign
-	 *
-	 *              In normal mode the following information is additionally supplied:
 	 *              - weight            The assigned weight in the campaign
 	 *              - display_anon      1 if should be displayed to anonymous users
 	 *              - display_account   1 if should be displayed to logged in users
@@ -134,33 +128,32 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 * @param string $anonymous - Is user anonymous, eg 'true'
 	 * @param string $device    - What device to filter on, eg 'desktop' or 'mobile.device.ie'
 	 * @param string $bucket    - Which A/B bucket the user is in
-	 * @param bool   $minimize  - True if the results should be minimized for banner usage
 	 *
 	 * @return array
 	 */
-	public static function getAllocationInformation( $project, $country, $language, $anonymous, $device, $bucket = null, $minimize = false ) {
+	public static function getBannerAllocation( $project, $country, $language, $anonymous, $device, $bucket = null ) {
 		$project = ApiCentralNoticeAllocations::sanitizeText(
 			$project,
-			static::PROJECT_FILTER,
-			static::DEFAULT_PROJECT
+			self::PROJECT_FILTER,
+			self::DEFAULT_PROJECT
 		);
 
 		$country = ApiCentralNoticeAllocations::sanitizeText(
 			$country,
-			static::LOCATION_FILTER,
-			static::DEFAULT_COUNTRY
+			self::LOCATION_FILTER,
+			self::DEFAULT_COUNTRY
 		);
 
 		$language = ApiCentralNoticeAllocations::sanitizeText(
 			$language,
-			static::LANG_FILTER,
-			static::DEFAULT_LANGUAGE
+			self::LANG_FILTER,
+			self::DEFAULT_LANGUAGE
 		);
 
 		$anonymous = ApiCentralNoticeAllocations::sanitizeText(
 			$anonymous,
-			static::ANONYMOUS_FILTER,
-			static::DEFAULT_ANONYMOUS
+			self::ANONYMOUS_FILTER,
+			self::DEFAULT_ANONYMOUS
 		);
 		$anonymous = ( $anonymous == 'true' );
 
@@ -172,18 +165,14 @@ class ApiCentralNoticeAllocations extends ApiBase {
 
 		$bucket = ApiCentralNoticeAllocations::sanitizeText(
 			$bucket,
-			static::BUCKET_FILTER,
-			static::DEFAULT_BUCKET
+			self::BUCKET_FILTER,
+			self::DEFAULT_BUCKET
 		);
 
-		$minimize = (boolean) $minimize;
+		$allocContext = new AllocationContext( $country, $language, $project, $anonymous, $device, $bucket );
 
-		$chooser = new BannerChooser( $project, $language, $country, $anonymous, $device, $bucket );
-		$banners = $chooser->banners;
-
-		if ( $minimize ) {
-			$banners = static::minimizeBanners( $banners );
-		}
+		$chooser = new BannerChooser( $allocContext );
+		$banners = $chooser->getBanners();
 
 		return $banners;
 	}
@@ -207,25 +196,5 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		} else {
 			return $default;
 		}
-	}
-
-	/**
-	 * Reduces a set of banners to only what the banner controller needs
-	 */
-	private static function minimizeBanners( $banners ) {
-		$requiredKeys = array(
-			'allocation',
-			'campaign',
-			'fundraising',
-			'name',
-			'bucket',
-		);
-
-		$filtVal = array();
-		foreach ( $banners as $banner ) {
-			$filtVal[] = array_intersect_key( $banner, array_flip( $requiredKeys ) );
-		}
-
-		return $filtVal;
 	}
 }
