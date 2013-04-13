@@ -35,9 +35,7 @@ UPDATE cn_template_log target_log
 		target_log.tmplog_end_landingpages = next_data.tmplog_begin_landingpages,
 		target_log.tmplog_end_prioritylangs = next_data.tmplog_begin_prioritylangs,
 		target_log.tmplog_end_archived = next_data.tmplog_begin_archived,
-		target_log.tmplog_end_category = next_data.tmplog_begin_category,
-		target_log.tmplog_end_preview_sandbox = next_data.tmplog_begin_preview_sandbox,
-		target_log.tmplog_end_mixins = next_data.tmplog_begin_mixins
+		target_log.tmplog_end_category = next_data.tmplog_begin_category
 	WHERE
 		bad_log_id = target_log.tmplog_id
 ;
@@ -62,12 +60,7 @@ UPDATE cn_template_log target_log
 		target_log.tmplog_end_autolink = next_data.tmp_autolink,
 		target_log.tmplog_end_landingpages = next_data.tmp_landing_pages,
 		target_log.tmplog_end_archived = next_data.tmp_archived,
-		target_log.tmplog_end_category = next_data.tmp_category,
-		target_log.tmplog_end_preview_sandbox = next_data.tmp_preview_sandbox
-
-		-- These properties didn't exist during the afflicted time window:
-		-- target_log.tmplog_end_prioritylangs = next_data.tmplog_begin_prioritylangs,
-		-- target_log.tmplog_end_mixins = next_data.tmplog_begin_mixins
+		target_log.tmplog_end_category = next_data.tmp_category
 	WHERE
 		bad_log_id = target_log.tmplog_id
 ;
