@@ -47,7 +47,7 @@
 				campaign: campaign,
 				userlang: mw.config.get( 'wgUserLanguage' ),
 				db: mw.config.get( 'wgDBname' ),
-				sitename: mw.config.get( 'wgSiteName' ),
+				project: mw.config.get( 'wgNoticeProject' ),
 				country: mw.centralNotice.data.country,
 				device: mw.config.get( 'wgMobileDeviceName', 'desktop' )
 			};
