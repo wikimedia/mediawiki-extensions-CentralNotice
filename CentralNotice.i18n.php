@@ -4495,7 +4495,7 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
  * @author Natsubee
  */
 $messages['ee'] = array(
-	'centralnotice-preview' => 'Kpɔe do ŋgɔ',
+	'centralnotice-preview' => 'Kpɔe do ŋgɔ ($1)',
 );
 
 /** Greek (Ελληνικά)
@@ -5111,7 +5111,7 @@ Samuti saab sellega teateid lisada või vanu teateid eemaldada.',
 	'centralnotice-modify' => 'Sobib',
 	'centralnotice-view' => 'Vaata',
 	'centralnotice-save-banner' => 'Salvesta mall',
-	'centralnotice-preview' => 'Eelvaade', # Fuzzy
+	'centralnotice-preview' => 'Eelvaade ($1)',
 	'centralnotice-nopreview' => '(Eelvaade pole saadaval)',
 	'centralnotice-add-new' => 'Lisa uus keskuse teade',
 	'centralnotice-remove' => 'Eemalda',
@@ -5149,8 +5149,8 @@ Ei lisatud.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Teadet pole olemas.
 Midagi pole eemldada.',
 	'centralnotice-banner-doesnt-exist' => 'Malli pole.',
-	'centralnotice-template-still-bound' => 'Mall on ikka teatega seotud.
-Ei eemaldata', # Fuzzy
+	'centralnotice-template-still-bound' => 'Malli "$1" ei saa eemaldada, sest see on endiselt teatega seotud.
+Ei eemaldata.',
 	'centralnotice-template-body' => 'Malli sisu:',
 	'centralnotice-day' => 'Päev',
 	'centralnotice-year' => 'Aasta',
@@ -5176,7 +5176,7 @@ Lisa mõni!',
 Ei lisata',
 	'centralnotice-preview-template' => 'Malli eelvaade',
 	'centralnotice-change-lang' => 'Tõlkekeele vahetamine',
-	'centralnotice-weights' => 'Raskused',
+	'centralnotice-weights' => 'Kaalud',
 	'centralnotice-notice-is-locked' => 'Teade on lukustatud.
 Ei eemaldata',
 	'centralnotice-overlap' => 'Teate näitamise aeg kattub teise teate näitamise ajaga.
@@ -5196,7 +5196,7 @@ Lisa allpool üks.',
 	'centralnotice-edit-template-summary' => 'Lokaliseeritava sõnumi loomiseks ümbritse sidekriipsudega ühendatud sõne kolmekordsete looksulgudega, nt {{{jimbo-quote}}}.',
 	'centralnotice-message' => 'Sõnum',
 	'centralnotice-message-not-set' => 'Sõnumit ei ole seatud',
-	'centralnotice-clone' => 'Kloon',
+	'centralnotice-clone' => 'Kopeeri',
 	'centralnotice-clone-notice' => 'Loo mallist koopia',
 	'centralnotice-clone-name' => 'Nimi:',
 	'centralnotice-preview-all-template-translations' => 'Malli kõigi kättesaadavate tõlgete eelvaated',
@@ -5225,7 +5225,7 @@ Lisa allpool üks.',
 	'centralnotice-projects' => 'Projektid',
 	'centralnotice-country' => 'Riik',
 	'centralnotice-no-allocation' => 'Ühtegi malli pole üles seatud.',
-	'centralnotice-allocation-description' => 'Üles seatud mallid: keel: $1, projekt: $2, maa: $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'Üles seatud mallid: keel: $1, projekt: $2, maa: $3, seade: $4',
 	'centralnotice-percentage' => 'Protsent',
 	'centralnotice-documentwrite-error' => 'document.write()-i ei saa mallis kasutada.
 Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
@@ -5273,6 +5273,7 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-country-ap' => 'Teadmata/Aasia – Vaikse ookeani piirkond',
 	'centralnotice-country-a1' => 'Teadmata/Anonüümne proksi',
 	'centralnotice-country-o1' => 'Teadmata/Muu maa',
+	'centralnotice-devicetype-desktop' => 'Lauaarvuti',
 	'centralnotice-all' => 'Kõik',
 	'centralnotice-all-except' => 'Kõik, v.a $1',
 	'centralnotice-excluding-list' => '$1 (välja arvatud $2)',
@@ -8509,7 +8510,7 @@ Non aggiorno',
 	'centralnotice-documentwrite-error' => 'Non è possibile usare document.write() dentro un banner.
 Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.',
 	'centralnotice-preferred' => 'Priorità',
-	'centralnotice-logs' => 'Log',
+	'centralnotice-logs' => 'Registri',
 	'centralnotice-view-logs' => 'Vedi i log',
 	'centralnotice-timestamp' => 'Data e ora',
 	'centralnotice-user' => 'Utente',
@@ -12774,6 +12775,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-bucket' => 'Grupa',
 	'centralnotice-bucket-letter' => 'Grupa „$1”',
 	'centralnotice-user-role-anonymous' => 'Anonimowy użytkownik',
+	'centralnotice-user-role-logged-in' => 'Zalogowany',
 );
 
 /** Piedmontese (Piemontèis)
@@ -13140,16 +13142,15 @@ $messages['pnt'] = array(
  */
 $messages['ps'] = array(
 	'centralnotice-desc' => 'يو مرکزي ويبځی-يادښت ورګډول',
-	'centralnotice-end-date' => 'د پای نېټه',
+	'centralnotice-end-date' => 'پای نېټه (UTC)',
 	'centralnotice-enabled' => 'چارن',
 	'centralnotice-modify' => 'سپارل',
 	'centralnotice-view' => 'کتل',
-	'centralnotice-preview' => 'مخکتنه',
+	'centralnotice-preview' => 'مخکتنه ($1)',
 	'centralnotice-remove' => 'غورځول',
 	'centralnotice-translate-heading' => 'د $1 لپاره ژباړه',
 	'centralnotice-add' => 'ورګډول',
 	'centralnotice-add-template' => 'يوه کينډۍ ورګډول',
-	'centralnotice-all-projects' => 'ټولې پروژې',
 	'centralnotice-translations' => 'ژباړې',
 	'centralnotice-translate-to' => '... ته ژباړل',
 	'centralnotice-translate' => 'ژباړل',
@@ -13166,10 +13167,9 @@ $messages['ps'] = array(
 	'centralnotice-hours' => 'ساعت',
 	'centralnotice-min' => 'دقيقه',
 	'centralnotice-project-lang' => 'د ژبې پروژه',
-	'centralnotice-select' => 'ټاکل: $1',
-	'centralnotice-top-ten-languages' => 'د سر 10 ژبې',
+	'centralnotice-select-all' => 'ټول ټاکل',
 	'centralnotice-project-name' => 'د پروژې نوم',
-	'centralnotice-start-date' => 'د پيل نېټه',
+	'centralnotice-start-date' => 'پيل نېټه (UTC)',
 	'centralnotice-start-time' => 'د پيل وخت (UTC)',
 	'centralnotice-available-templates' => 'شته کينډۍ',
 	'centralnotice-change-lang' => 'د ژباړې ژبه بدلول',
@@ -13211,6 +13211,7 @@ $messages['ps'] = array(
 	'centralnotice-priority-low' => 'لږ',
 	'centralnotice-priority-normal' => 'نورمال',
 	'centralnotice-priority-high' => 'لوړ',
+	'centralnotice-all' => 'ټول',
 );
 
 /** Portuguese (português)
@@ -14162,6 +14163,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
  * @author Eugrus
  * @author Ferrer
  * @author G0rn
+ * @author Iluvatar
  * @author Kalan
  * @author Lockal
  * @author MaxSem
@@ -14182,12 +14184,12 @@ $messages['ru'] = array(
 Он также может использоваться для добавления новых и удаления старых уведомлений.',
 	'centralnotice-query' => 'Изменить текущее уведомление',
 	'centralnotice-notice-name' => 'Название уведомления',
-	'centralnotice-end-date' => 'Дата окончания',
+	'centralnotice-end-date' => 'Дата окончания (UTC)',
 	'centralnotice-enabled' => 'Включено',
 	'centralnotice-modify' => 'Отправить',
 	'centralnotice-view' => 'Просмотр',
 	'centralnotice-save-banner' => 'Сохранить баннер',
-	'centralnotice-preview' => 'Предпросмотр',
+	'centralnotice-preview' => 'Предпросмотр ($1)',
 	'centralnotice-nopreview' => '(Предпросмотр недоступен)',
 	'centralnotice-add-new' => 'Добавить новое централизованное уведомление',
 	'centralnotice-remove' => 'Удалить',
@@ -14200,10 +14202,6 @@ $messages['ru'] = array(
 	'centralnotice-add-template' => 'Добавить шаблон',
 	'centralnotice-show-notices' => 'Показать уведомления',
 	'centralnotice-list-templates' => 'Вывести список шаблонов',
-	'centralnotice-multiple-projects' => 'несколько ($1)',
-	'centralnotice-multiple-languages' => 'несколько ($1)',
-	'centralnotice-multiple-countries' => 'Несколько ($1)',
-	'centralnotice-all-projects' => 'Все проекты',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'Переводы',
 	'centralnotice-translate-to' => 'Перевод на',
@@ -14229,7 +14227,7 @@ $messages['ru'] = array(
 Нечего удалять.',
 	'centralnotice-banner-doesnt-exist' => 'Баннер не существует.',
 	'centralnotice-template-still-bound' => 'Шаблон по-прежнему связан с уведомлением.
-Не удаляется.',
+Не удаляется.', # Fuzzy
 	'centralnotice-template-body' => 'Тело шаблона:',
 	'centralnotice-day' => 'День',
 	'centralnotice-year' => 'Год',
@@ -14237,10 +14235,9 @@ $messages['ru'] = array(
 	'centralnotice-hours' => 'Час',
 	'centralnotice-min' => 'Минута',
 	'centralnotice-project-lang' => 'Язык проекта',
-	'centralnotice-select' => 'Выбор: $1',
-	'centralnotice-top-ten-languages' => '10 языков',
+	'centralnotice-select-all' => 'Выбрать все',
 	'centralnotice-project-name' => 'Название проекта',
-	'centralnotice-start-date' => 'Дата начала',
+	'centralnotice-start-date' => 'Дата начала (UTC)',
 	'centralnotice-start-time' => 'Время начала (UTC)',
 	'centralnotice-end-time' => 'Время окончания (UTC)',
 	'centralnotice-assigned-templates' => 'Установленные шаблоны',
@@ -14302,7 +14299,7 @@ $messages['ru'] = array(
 	'centralnotice-projects' => 'Проекты',
 	'centralnotice-country' => 'Страна',
 	'centralnotice-no-allocation' => 'Баннеры не размещены',
-	'centralnotice-allocation-description' => 'Размещение баннеров для $1.$2 в $3:',
+	'centralnotice-allocation-description' => 'Размещение баннеров для $1.$2 в $3:', # Fuzzy
 	'centralnotice-percentage' => 'Процент',
 	'centralnotice-documentwrite-error' => 'document.write() нельзя использовать в баннере.
 Подробности: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].',
@@ -16202,6 +16199,8 @@ Tar inte bort.', # Fuzzy
 	'centralnotice-hours' => 'Timma',
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Projektspråk',
+	'centralnotice-select-all' => 'Markera allt',
+	'centralnotice-remove-all' => 'Ta bort allt',
 	'centralnotice-project-name' => 'Projektnamn',
 	'centralnotice-start-date' => 'Startdatum (UTC)',
 	'centralnotice-start-time' => 'Starttid (UTC)',
@@ -16310,6 +16309,11 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-country-eu' => 'Okänd/EU-regionen',
 	'centralnotice-country-ap' => 'Okänd/Asiatiska stillahavsregionen',
 	'centralnotice-country-o1' => 'Okänd/Annat land',
+	'centralnotice-all' => 'Alla',
+	'centralnotice-all-except' => 'Alla utom $1',
+	'centralnotice-excluding-list' => '$1 (exklusive $2)',
+	'centralnotice-user-role-anonymous' => 'Anonym',
+	'centralnotice-user-role-logged-in' => 'Inloggad',
 );
 
 /** Swahili (Kiswahili)
