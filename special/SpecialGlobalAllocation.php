@@ -413,9 +413,11 @@ class SpecialGlobalAllocation extends CentralNotice {
 		// are identical because of e.g. z-index
 		foreach ( array( true, false ) as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
+				$device = 'desktop'; //XXX
 				$variations[$isAnon][$bucket] = ApiCentralNoticeAllocations::getAllocationInformation(
 					$project, $country, $language,
 					$isAnon ? 'true' : 'false',
+					$device,
 					$bucket
 				);
 				$allocSignatures = array();
