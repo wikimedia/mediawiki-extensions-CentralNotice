@@ -90,6 +90,7 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 $wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = $wgResourceModules[ 'ext.centralNotice.bannerController' ] + array(
 	'targets' => 'mobile',
 );
+$wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ][ 'dependencies' ][] = 'mobile.xdevice.detect.scripts';
 
 function efEnableMobileModules( $out, $mode ) {
 	global $wgResourceModules;
