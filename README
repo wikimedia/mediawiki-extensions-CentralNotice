@@ -1,3 +1,5 @@
+FIXME: this document is very out-of-date.
+
 Wiki page HTML contains an unchanging bit that just sets JS variables
 about what site this is, then calls an external <script> to fetch site
 notice text.  It also includes a facility to fetch a geolocation data.
