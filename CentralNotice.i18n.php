@@ -6813,7 +6813,7 @@ $messages['gu'] = array(
 	'centralnotice-projects' => 'યોજના',
 	'centralnotice-country' => 'દેશ',
 	'centralnotice-no-allocation' => 'કોઈ પણ જાહેરાત ફલક આવંટિત ન થયું',
-	'centralnotice-allocation-description' => '$3 માં $1.$2ની જાહેરાત ફલક ફાળવણી:', # Fuzzy
+	'centralnotice-allocation-description' => 'ભાષા: $1, પરિયોજના: $2, માટે $3 દેશમાં, $4 સાધન પર જાહેરાત ફલક ફાળવણી',
 	'centralnotice-percentage' => 'ટકાવારી',
 	'centralnotice-documentwrite-error' => 'બેનરમાં  document.write() નહીં વાપરી શકાય. 
 વધુ માહિતે માટે http://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.',

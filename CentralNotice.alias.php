@@ -24,7 +24,6 @@ $specialPageAliases['ar'] = array(
 	'NoticeTemplate' => array( 'قالب_الملاحظة' ),
 	'BannerAllocation' => array( 'وضع_الإعلان' ),
 	'BannerController' => array( 'متحكم_الإعلان' ),
-	'BannerListLoader' => array( 'محمل_قائمة_الإعلان' ),
 	'BannerLoader' => array( 'محمل_الإعلان' ),
 	'HideBanners' => array( 'إخفاء_الإعلان' ),
 );
@@ -55,7 +54,6 @@ $specialPageAliases['de'] = array(
 	'GlobalAllocation' => array( 'Globale_Anordnung' ),
 	'BannerAllocation' => array( 'Banneranordnung' ),
 	'BannerController' => array( 'Bannersteuerung' ),
-	'BannerListLoader' => array( 'Bannerlisten_laden' ),
 	'BannerLoader' => array( 'Banner_laden' ),
 	'HideBanners' => array( 'Banner_ausblenden' ),
 );
@@ -67,7 +65,6 @@ $specialPageAliases['diq'] = array(
 	'NoticeTemplate' => array( 'ŞablonêXeberdaren' ),
 	'BannerAllocation' => array( 'TahsisêAfişan' ),
 	'BannerController' => array( 'KontrolkarêAfişan' ),
-	'BannerListLoader' => array( 'ListeyêAfişanBarkerden' ),
 	'BannerLoader' => array( 'BarkerdenêAfişan' ),
 	'HideBanners' => array( 'AfişanBınımnê' ),
 );
@@ -78,7 +75,6 @@ $specialPageAliases['eo'] = array(
 	'NoticeTemplate' => array( 'Informŝablono' ),
 	'BannerAllocation' => array( 'Strirezervado' ),
 	'BannerController' => array( 'Informstrikontrolisto' ),
-	'BannerListLoader' => array( 'Informstrilistoŝargilo' ),
 	'BannerLoader' => array( 'Informstriŝargilo' ),
 	'HideBanners' => array( 'Kaŝi_striojn', 'Kaŝu_striojn' ),
 );
@@ -90,7 +86,6 @@ $specialPageAliases['fa'] = array(
 	'NoticeTemplate' => array( 'الگوی_اعلامیه' ),
 	'BannerAllocation' => array( 'موقعیت_نشان' ),
 	'BannerController' => array( 'کنترل_نشان' ),
-	'BannerListLoader' => array( 'بارگیری_فهرست_نشان‌ها' ),
 	'BannerLoader' => array( 'بارگیری_نشان' ),
 	'HideBanners' => array( 'پنهان_کردن_نشان‌ها' ),
 );
@@ -108,7 +103,6 @@ $specialPageAliases['hsn'] = array(
 	'NoticeTemplate' => array( '公告样范' ),
 	'BannerAllocation' => array( '横幅配置' ),
 	'BannerController' => array( '横幅控制器' ),
-	'BannerListLoader' => array( '横幅清单载入器' ),
 	'BannerLoader' => array( '横幅载入器' ),
 	'HideBanners' => array( '隐藏横幅' ),
 );
@@ -119,7 +113,6 @@ $specialPageAliases['ht'] = array(
 	'NoticeTemplate' => array( 'ModèlNòt' ),
 	'BannerAllocation' => array( 'BayAnsey' ),
 	'BannerController' => array( 'KontroleAnsey' ),
-	'BannerListLoader' => array( 'ChajeLisAnsey' ),
 	'BannerLoader' => array( 'ChajeAnsey' ),
 );
 
@@ -130,7 +123,6 @@ $specialPageAliases['ia'] = array(
 	'NoticeTemplate' => array( 'Patrono_de_aviso' ),
 	'BannerAllocation' => array( 'Alloca_bandieras' ),
 	'BannerController' => array( 'Controla_bandieras' ),
-	'BannerListLoader' => array( 'Carga_lista_de_bandieras' ),
 	'BannerLoader' => array( 'Carga_bandieras' ),
 	'HideBanners' => array( 'Celar_bandieras' ),
 );
@@ -142,7 +134,6 @@ $specialPageAliases['it'] = array(
 	'NoticeTemplate' => array( 'TemplateAvviso' ),
 	'BannerAllocation' => array( 'DestinazioneBanner' ),
 	'BannerController' => array( 'ControllerBanner' ),
-	'BannerListLoader' => array( 'ElencoCaricatoriBanner' ),
 	'BannerLoader' => array( 'CaricatoreBanner' ),
 	'HideBanners' => array( 'NascondiBanner' ),
 );
@@ -155,7 +146,6 @@ $specialPageAliases['ja'] = array(
 	'GlobalAllocation' => array( 'グローバル割り当て' ),
 	'BannerAllocation' => array( 'テンプレート割り当て' ),
 	'BannerController' => array( 'テンプレート制御' ),
-	'BannerListLoader' => array( 'テンプレート一覧読み込み' ),
 	'BannerLoader' => array( 'テンプレート読み込み' ),
 	'HideBanners' => array( 'バナーを隠す' ),
 );
@@ -173,7 +163,6 @@ $specialPageAliases['ko'] = array(
 	'GlobalAllocation' => array( '전역할당' ),
 	'BannerAllocation' => array( '배너배정' ),
 	'BannerController' => array( '배너컨트롤러' ),
-	'BannerListLoader' => array( '배너목록열기', '배너목록로더' ),
 	'BannerLoader' => array( '배너열기', '배너로더' ),
 	'HideBanners' => array( '배너숨기기' ),
 );
@@ -205,7 +194,6 @@ $specialPageAliases['mk'] = array(
 	'NoticeTemplate' => array( 'ШаблонЗаИзвестување' ),
 	'BannerAllocation' => array( 'РаспределбаНаПлакати' ),
 	'BannerController' => array( 'КонтролорНаПлакати' ),
-	'BannerListLoader' => array( 'ВчитувачНаСписоциНаПлакати' ),
 	'BannerLoader' => array( 'ВчитувачНаПлакати' ),
 	'HideBanners' => array( 'СкријПлакати' ),
 );
@@ -224,7 +212,6 @@ $specialPageAliases['nb'] = array(
 	'NoticeTemplate' => array( 'Notismal' ),
 	'BannerAllocation' => array( 'Bannerplassering' ),
 	'BannerController' => array( 'Bannerkontroll' ),
-	'BannerListLoader' => array( 'Bannerlistelaster' ),
 	'BannerLoader' => array( 'Bannerlaster' ),
 	'HideBanners' => array( 'Skjul_bannere' ),
 );
@@ -235,7 +222,6 @@ $specialPageAliases['nds-nl'] = array(
 	'NoticeTemplate' => array( 'Mededelingsmal' ),
 	'BannerAllocation' => array( 'Baniertoewiezing' ),
 	'BannerController' => array( 'Banierbeheerder' ),
-	'BannerListLoader' => array( 'Banierliestlaojer' ),
 	'BannerLoader' => array( 'Banierlaojer' ),
 	'HideBanners' => array( 'Banierverbargen' ),
 );
@@ -247,7 +233,6 @@ $specialPageAliases['nl'] = array(
 	'NoticeTemplate' => array( 'Mededelingsjabloon' ),
 	'BannerAllocation' => array( 'Bannertoewijzing' ),
 	'BannerController' => array( 'Bannerbeheerder' ),
-	'BannerListLoader' => array( 'Bannerlijstlader' ),
 	'BannerLoader' => array( 'Bannerlader' ),
 	'HideBanners' => array( 'BannersVerbergen' ),
 );
@@ -285,7 +270,6 @@ $specialPageAliases['scn'] = array(
 	'NoticeTemplate' => array( 'TemplateAvviso' ),
 	'BannerAllocation' => array( 'DestinazioneBanner' ),
 	'BannerController' => array( 'ControllerBanner' ),
-	'BannerListLoader' => array( 'ElencoCaricatoriBanner' ),
 	'BannerLoader' => array( 'CaricatoreBanner' ),
 	'HideBanners' => array( 'NascondiBanner' ),
 );
@@ -304,7 +288,6 @@ $specialPageAliases['tr'] = array(
 	'NoticeTemplate' => array( 'BildirimŞablonu' ),
 	'BannerAllocation' => array( 'AfişTahsisi' ),
 	'BannerController' => array( 'AfişKontrolü', 'AfişKontrolAracı' ),
-	'BannerListLoader' => array( 'AfişListeYükleyici' ),
 	'BannerLoader' => array( 'AfişYükleyici' ),
 	'HideBanners' => array( 'AfişleriGizle', 'AfişGizle' ),
 );
@@ -327,7 +310,6 @@ $specialPageAliases['vi'] = array(
 	'GlobalAllocation' => array( 'Phân_phối_toàn_cục' ),
 	'BannerAllocation' => array( 'Phân_bố_bảng' ),
 	'BannerController' => array( 'Điều_khiển_bảng' ),
-	'BannerListLoader' => array( 'Tải_danh_sách_bảng' ),
 	'BannerLoader' => array( 'Tải_bảng' ),
 	'HideBanners' => array( 'Ẩn_bảng' ),
 );
@@ -339,7 +321,6 @@ $specialPageAliases['zh-hans'] = array(
 	'NoticeTemplate' => array( '公告模板' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
-	'BannerListLoader' => array( '横幅列表装载器' ),
 	'BannerLoader' => array( '横幅装载器' ),
 	'HideBanners' => array( '隐藏横幅' ),
 );
@@ -351,7 +332,6 @@ $specialPageAliases['zh-hant'] = array(
 	'NoticeTemplate' => array( '通告模板' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
-	'BannerListLoader' => array( '布條裝載' ),
 	'BannerLoader' => array( '橫幅裝載' ),
 	'HideBanners' => array( '隱藏橫幅' ),
 );
