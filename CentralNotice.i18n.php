@@ -3101,6 +3101,7 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
  * @author Loupeter
  * @author Paucabot
  * @author Pginer
+ * @author Pitort
  * @author SMP
  * @author Solde
  * @author Ssola
@@ -3119,12 +3120,12 @@ $messages['ca'] = array(
 També pot ser usat per afegir o eliminar avisos.",
 	'centralnotice-query' => 'Modifica avisos actuals',
 	'centralnotice-notice-name' => "Nom de l'avís",
-	'centralnotice-end-date' => 'Data de finalització',
+	'centralnotice-end-date' => 'Data de finalització', # Fuzzy
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Tramet',
 	'centralnotice-view' => 'Vista',
 	'centralnotice-save-banner' => 'Salva pancarta',
-	'centralnotice-preview' => 'Previsualitza',
+	'centralnotice-preview' => 'Previsualitza', # Fuzzy
 	'centralnotice-nopreview' => '(Vista prèvia no disponible)',
 	'centralnotice-add-new' => "Afegeix una nova central d'avisos",
 	'centralnotice-remove' => 'Elimina',
@@ -3137,10 +3138,6 @@ També pot ser usat per afegir o eliminar avisos.",
 	'centralnotice-add-template' => 'Afegeix una plantilla',
 	'centralnotice-show-notices' => 'Mostra avisos',
 	'centralnotice-list-templates' => 'Llista les plantilles',
-	'centralnotice-multiple-projects' => 'Múltiple ($1)',
-	'centralnotice-multiple-languages' => 'Múltiple ($1)',
-	'centralnotice-multiple-countries' => 'Múltiples ( $1 )',
-	'centralnotice-all-projects' => 'Tots els projectes',
 	'centralnotice-translations' => 'Traduccions',
 	'centralnotice-translate-to' => 'Tradueix a',
 	'centralnotice-translate' => 'Tradueix',
@@ -3165,7 +3162,7 @@ No s'afegirà.",
 Res a suprimir.',
 	'centralnotice-banner-doesnt-exist' => 'La pancarta no existeix.',
 	'centralnotice-template-still-bound' => "La plantilla encara s'usa en un avís.
-No s'ha pogut eliminar.",
+No s'ha pogut eliminar.", # Fuzzy
 	'centralnotice-template-body' => 'Cos de la plantilla:',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Any',
@@ -3173,10 +3170,11 @@ No s'ha pogut eliminar.",
 	'centralnotice-hours' => 'Hora',
 	'centralnotice-min' => 'Minut',
 	'centralnotice-project-lang' => 'Llengua del projecte',
-	'centralnotice-select' => 'Selecciona: $1',
-	'centralnotice-top-ten-languages' => 'Top 10 idiomes',
+	'centralnotice-select-all' => 'Selecciona-ho tot',
+	'centralnotice-remove-all' => 'Suprimeix-ho tot',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|element seleccionat|elements seleccionats}}',
 	'centralnotice-project-name' => 'Nom del projecte',
-	'centralnotice-start-date' => 'Data inicial',
+	'centralnotice-start-date' => 'Data inicial (UTC)',
 	'centralnotice-start-time' => "Hora d'inici (UTC)",
 	'centralnotice-end-time' => 'Hora de finalització (UTC)',
 	'centralnotice-assigned-templates' => 'Plantilles assignades',
@@ -3237,7 +3235,7 @@ Afegiu-ne un a continuació.',
 	'centralnotice-projects' => 'Projectes',
 	'centralnotice-country' => 'País',
 	'centralnotice-no-allocation' => 'No hi ha pancartes assignades.',
-	'centralnotice-allocation-description' => 'Assignació de pancarta per $1.$2 a $3:',
+	'centralnotice-allocation-description' => 'Assignació de pancarta per $1.$2 a $3:', # Fuzzy
 	'centralnotice-percentage' => 'Percentatge',
 	'centralnotice-documentwrite-error' => "document.write () no pot ser utilitzat dins d'una pancarta
  Veure http://meta.wikimedia.org/wiki/Help:CentralNotice per a més informació.",
@@ -3284,6 +3282,10 @@ Afegiu-ne un a continuació.',
 	'centralnotice-country-a2' => 'Desconegut/Proveïdor per satèl·lit',
 	'centralnotice-country-o1' => 'Desconegut/Altres països',
 	'centralnotice-country-unknown' => 'Desconegut/No geolocalitzable',
+	'centralnotice-all' => 'Tot',
+	'centralnotice-all-except' => 'Tot excepte $1',
+	'centralnotice-excluding-list' => '$1 (excloent $2)',
+	'centralnotice-user-role-anonymous' => 'Anònim',
 );
 
 /** Chechen (нохчийн)
@@ -9722,7 +9724,7 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-modify' => 'Späicheren',
 	'centralnotice-view' => 'Weisen',
 	'centralnotice-save-banner' => 'Banner späicheren',
-	'centralnotice-preview' => 'Weisen ouni ze späicheren', # Fuzzy
+	'centralnotice-preview' => 'Weisen ouni ze späicheren ($1)',
 	'centralnotice-nopreview' => '(Kucken ouni ofzespäichere geet net)',
 	'centralnotice-add-new' => 'Eng nei zentral Matdeelung derbäisetzen',
 	'centralnotice-remove' => 'Ewechhuelen',
