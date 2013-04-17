@@ -408,11 +408,16 @@ class SpecialGlobalAllocation extends CentralNotice {
 		// This is annoying.  Within the campaign, banners usually vary by user
 		// logged-in status, and bucket.  Determine the allocations and
 		// collapse any dimensions which do not vary.
+		//
+		// TODO: the allocation hash should also be used to collapse groupings which
+		// are identical because of e.g. z-index
 		foreach ( array( true, false ) as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
+				$device = 'desktop'; //XXX
 				$variations[$isAnon][$bucket] = ApiCentralNoticeAllocations::getAllocationInformation(
 					$project, $country, $language,
 					$isAnon ? 'true' : 'false',
+					$device,
 					$bucket
 				);
 				$allocSignatures = array();

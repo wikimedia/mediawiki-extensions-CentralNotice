@@ -308,93 +308,47 @@ class Banner {
 	}
 
 	/**
-	 * DEPRECATED, but included for backwards compatibility during upgrade
-	 * Lookup function for active banners under a given language/project/location. This function is
-	 * called by SpecialBannerListLoader::getJsonList() in order to build the banner list JSON for
-	 * each project.
-	 * @deprecated Remove me after upgrade has been completed.
-	 * @param $project string
-	 * @param $language string
-	 * @param $location string
-	 * @return array a 2D array of running banners with associated weights and settings
+	 * FIXME: a little thin, it's just enough to get the job done
 	 */
-	static function getBannersByTarget( $project, $language, $location = null ) {
+	static function getHistoricalBanner( $name, $ts ) {
 		global $wgCentralDBname;
-
-		$campaigns = array();
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
-		$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
+		$id = Banner::getTemplateId( $name );
 
-		// Pull non-geotargeted campaigns
-		$campaignResults1 = $dbr->select(
-			// Aliases are needed to avoid problems with table prefixes
+		$newestLog = $dbr->selectRow(
+			"cn_template_log",
 			array(
-				'notices' => 'cn_notices',
-				'cn_notice_projects',
-				'cn_notice_languages'
+				"log_id" => "MAX(tmplog_id)",
 			),
 			array(
-				'not_id'
-			),
-			array(
-				"not_start <= $encTimestamp",
-				"not_end >= $encTimestamp",
-				'not_enabled = 1', // enabled
-				'not_geo = 0', // not geotargeted
-				'np_notice_id = notices.not_id',
-				'np_project' => $project,
-				'nl_notice_id = notices.not_id',
-				'nl_language' => $language
+				"tmplog_timestamp <= $ts",
+				"tmplog_template_id = $id",
 			),
 			__METHOD__
 		);
-		foreach ( $campaignResults1 as $row ) {
-			$campaigns[] = $row->not_id;
-		}
-		if ( $location ) {
 
-			// Normalize location parameter (should be an uppercase 2-letter country code)
-			preg_match( '/[a-zA-Z][a-zA-Z]/', $location, $matches );
-			if ( $matches ) {
-				$location = strtoupper( $matches[0] );
+		$row = $dbr->selectRow(
+			"cn_template_log",
+			array(
+				"display_anon" => "tmplog_end_anon",
+				"display_account" => "tmplog_end_account",
+				"fundraising" => "tmplog_end_fundraising",
+				"autolink" => "tmplog_end_autolink",
+				"landing_pages" => "tmplog_end_landingpages",
+			),
+			array(
+				"tmplog_id = {$newestLog->log_id}",
+			),
+			__METHOD__
+		);
+		$banner['display_anon'] = intval( $row->display_anon );
+		$banner['display_account'] = intval( $row->display_account );
 
-				// Pull geotargeted campaigns
-				$campaignResults2 = $dbr->select(
-					array(
-						'cn_notices',
-						'cn_notice_projects',
-						'cn_notice_languages',
-						'cn_notice_countries'
-					),
-					array(
-						'not_id'
-					),
-					array(
-						"not_start <= $encTimestamp",
-						"not_end >= $encTimestamp",
-						'not_enabled = 1', // enabled
-						'not_geo = 1', // geotargeted
-						'nc_notice_id = cn_notices.not_id',
-						'nc_country' => $location,
-						'np_notice_id = cn_notices.not_id',
-						'np_project' => $project,
-						'nl_notice_id = cn_notices.not_id',
-						'nl_language' => $language
-					),
-					__METHOD__
-				);
-				foreach ( $campaignResults2 as $row ) {
-					$campaigns[] = $row->not_id;
-				}
-			}
-		}
+		$banner['fundraising'] = intval( $row->fundraising );
+		$banner['autolink'] = intval( $row->autolink );
+		$banner['landing_pages'] = explode( ", ", $row->landing_pages );
 
-		$banners = array();
-		if ( $campaigns ) {
-			// Pull all banners assigned to the campaigns
-			$banners = Banner::getCampaignBanners( $campaigns );
-		}
-		return $banners;
+		return $banner;
 	}
 
 	static function getTemplateId( $templateName ) {
