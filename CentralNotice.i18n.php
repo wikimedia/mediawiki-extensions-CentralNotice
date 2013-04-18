@@ -18226,6 +18226,7 @@ $messages['vec'] = array(
 	'centralnotice' => 'Gestion notifiche sentralizade',
 	'noticetemplate' => "'Ministrassion dei avisi sentralizà",
 	'bannerallocation' => "'Ministrassion dei avisi sentralizà",
+	'globalallocation' => 'Gestion avixo sentrałixà',
 	'centralnoticelogs' => 'Gestion avixo sentrałixà',
 	'right-centralnotice-admin' => 'Gestisse i avisi sentralixà',
 	'action-centralnotice-admin' => 'gestir i avisi sentralixà',
@@ -18234,7 +18235,7 @@ $messages['vec'] = array(
 In più se pol dopararlo anca par zontar o cavar avisi veci.',
 	'centralnotice-query' => 'Modìfega le notifiche corenti',
 	'centralnotice-notice-name' => 'Nome de la notifica',
-	'centralnotice-end-date' => 'Data de fine', # Fuzzy
+	'centralnotice-end-date' => 'Data de fine (UTC)',
 	'centralnotice-enabled' => 'Ativà',
 	'centralnotice-modify' => 'Invia',
 	'centralnotice-view' => 'Varda',
@@ -18275,8 +18276,7 @@ Inserimento mia fato',
 	'centralnotice-remove-notice-doesnt-exist' => 'Campagna mia esistente.
 Rimozion mia fata.',
 	'centralnotice-banner-doesnt-exist' => "Sto banner no l'esiste.",
-	'centralnotice-template-still-bound' => 'Modèl ancora ligà a na notifica.
-Rimozion mia fata.', # Fuzzy
+	'centralnotice-template-still-bound' => 'No se pol cavar el banner "$1" parché el xe \'ncora ligà a na canpagna. Rimozion mia fata.',
 	'centralnotice-template-body' => 'Corpo del modèl:',
 	'centralnotice-day' => 'Zorno',
 	'centralnotice-year' => 'Ano',
@@ -18350,7 +18350,7 @@ Zónteghene una qua soto.',
 	'centralnotice-projects' => 'Projeti',
 	'centralnotice-country' => 'Nassion',
 	'centralnotice-no-allocation' => 'Nissun banner alocà.',
-	'centralnotice-allocation-description' => 'Alocassion dei banner par $1.$2 in $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'Destinassion dei banner par lengua: $1, progeto: $2, paese: $3, dispositivo: $4',
 	'centralnotice-percentage' => 'Persentuale',
 	'centralnotice-documentwrite-error' => 'document.write() no se pol dopararlo drento un banner.
 Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
