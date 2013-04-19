@@ -54,10 +54,11 @@ $specialPageAliases['de'] = array(
 	'CentralNoticeLogs' => array( 'Logbücher_zur_zentralen_Mitteilung' ),
 	'NoticeTemplate' => array( 'Mitteilungsvorlage' ),
 	'GlobalAllocation' => array( 'Globale_Anordnung' ),
-	'BannerAllocation' => array( 'Banneranordnung' ),
-	'BannerController' => array( 'Bannersteuerung' ),
-	'BannerLoader' => array( 'Banner_laden' ),
-	'HideBanners' => array( 'Banner_ausblenden' ),
+	'BannerAllocation' => array( 'Vorlagenanordnung' ),
+	'BannerController' => array( 'Vorlagensteuerung' ),
+	'BannerLoader' => array( 'Vorlage_laden' ),
+	'BannerRandom' => array( 'Zufällige_Vorlage' ),
+	'HideBanners' => array( 'Vorlagen_ausblenden' ),
 );
 
 /** Zazaki (Zazaki) */
