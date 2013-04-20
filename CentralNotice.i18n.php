@@ -1580,6 +1580,7 @@ Amiesta una debaxo.',
 	'centralnotice-settings' => 'Configuración',
 	'centralnotice-edit-template' => 'Editar cartel',
 	'centralnotice-edit-template-summary' => 'Pa crear un mensaxe traducible, pon una cadena de testu con guión dientro de trés llaves , por exemplu: {{{cites-jimbo}}}.',
+	'centralnotice-edit-template-magicwords' => "Pallabres máxiques qu'ufren los mixins del anunciu: $1",
 	'centralnotice-message' => 'Mensaxe',
 	'centralnotice-message-not-set' => 'Mensaxe ensin configurar',
 	'centralnotice-clone' => 'Clonar',
@@ -1601,6 +1602,7 @@ Amiesta una debaxo.',
 	'centralnotice-banner-autolink' => "Crear l'enllaz a la páxina de destín de mou automáticu",
 	'centralnotice-banner-autolink-help' => "Crear una etiqueta d'ancláu nel cuerpu del cartel con  $1  y poner una o más páxines de destín per baxo, por exemplu,  $2 . L'enllaz se construirá de mou automáticu cada vegada que se vea el cartel.",
 	'centralnotice-banner-landing-pages' => 'Páxines de destín (separaes por comes):',
+	'centralnotice-banner-mixins' => 'Mixins (separaos por comes):',
 	'centralnotice-geo' => 'Xeollocalizáu',
 	'centralnotice-countries' => 'Países',
 	'centralnotice-global-allocation' => 'Distribución global',
@@ -6885,12 +6887,12 @@ $messages['he'] = array(
 ניתן להשתמש בו גם כדי להוסיף ולהסיר הודעות ישנות.',
 	'centralnotice-query' => 'שינוי מסעות הפרסום הקיימים',
 	'centralnotice-notice-name' => 'שם מסע הפרסום',
-	'centralnotice-end-date' => 'תאריך סיום', # Fuzzy
+	'centralnotice-end-date' => 'תאריך סיום (UTC)',
 	'centralnotice-enabled' => 'מופעל',
 	'centralnotice-modify' => 'שליחה',
 	'centralnotice-view' => 'הצגה',
 	'centralnotice-save-banner' => 'שמירת הכּרזה',
-	'centralnotice-preview' => 'תצוגה מקדימה', # Fuzzy
+	'centralnotice-preview' => 'תצוגה מקדימה ($1)',
 	'centralnotice-nopreview' => '(תצוגה מקדימה אינה זמינה)',
 	'centralnotice-add-new' => 'הוספת מסע פרסום חדש',
 	'centralnotice-remove' => 'הסרה',
@@ -6926,8 +6928,8 @@ $messages['he'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'מסע הפרסום אינו קיים.
 אין מה להסיר.',
 	'centralnotice-banner-doesnt-exist' => 'הכרזה אינה קיימת.',
-	'centralnotice-template-still-bound' => 'הכרזה עדיין מקושרת למסע פרסום.
-ההסרה לא תיעשה.', # Fuzzy
+	'centralnotice-template-still-bound' => 'לא ניתן להסיר את הכרזה "$1" כי הכרזה עדיין מקושרת למסע פרסום.
+ההסרה לא תיעשה.',
 	'centralnotice-template-body' => 'גוף הכרזה:',
 	'centralnotice-day' => 'יום',
 	'centralnotice-year' => 'שנה',
@@ -6939,7 +6941,7 @@ $messages['he'] = array(
 	'centralnotice-remove-all' => 'הסר הכל',
 	'centralnotice-items-selected' => '{{PLURAL:$1|נבחר פריט אחד|$1 פריטים נבחרו}}',
 	'centralnotice-project-name' => 'שם המיזם',
-	'centralnotice-start-date' => 'תאריך ההתחלה', # Fuzzy
+	'centralnotice-start-date' => 'תאריך ההתחלה (UTC)',
 	'centralnotice-start-time' => 'שעת ההתחלה (UTC)',
 	'centralnotice-end-time' => 'זמן הסיום (UTC)',
 	'centralnotice-assigned-templates' => 'כרזות משויכות',
@@ -6993,6 +6995,7 @@ $messages['he'] = array(
 	'centralnotice-banner-landing-pages' => 'דפי נחיתה (מופרדים בפסיקים):',
 	'centralnotice-geo' => 'ממוקד גאוגרפית',
 	'centralnotice-countries' => 'מדינות',
+	'centralnotice-global-allocation' => 'הקצאה גלובלית',
 	'centralnotice-allocation' => 'הקצאה',
 	'centralnotice-view-allocation' => 'צפייה בהקצאת הכרזה',
 	'centralnotice-allocation-instructions' => 'נא לבחור בסביבה שברצונך לצפות בהקצאת הכרזה עבורה:',
@@ -7001,7 +7004,7 @@ $messages['he'] = array(
 	'centralnotice-projects' => 'מיזמים',
 	'centralnotice-country' => 'ארץ',
 	'centralnotice-no-allocation' => 'לא הוקצו כרזות.',
-	'centralnotice-allocation-description' => 'הקצאת כזרות עבור $1.$2 במדינה $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'הקצאת כזרות עבור שפה $1, מיזם: ,$2 במדינה: $3, במכשיר $4',
 	'centralnotice-percentage' => 'אחוזים',
 	'centralnotice-documentwrite-error' => "לא ניתן להשתמש ב־document.write()‎ בתוך כרזה.
 ר' http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.",
@@ -7054,6 +7057,13 @@ $messages['he'] = array(
 	'centralnotice-buckets' => 'הקבצת משתמשים (bucketing)',
 	'centralnotice-bucket' => 'הקבצה',
 	'centralnotice-bucket-letter' => 'ההקבצה "$1"',
+	'centralnotice-devicetype-desktop' => 'מחשב שולחני',
+	'centralnotice-all' => 'הכול',
+	'centralnotice-all-except' => 'הכול למעט $1',
+	'centralnotice-excluding-list' => '$1 (למעט $2)',
+	'centralnotice-user-role' => 'תפקיד משתמש',
+	'centralnotice-user-role-anonymous' => 'אלמוני',
+	'centralnotice-user-role-logged-in' => 'מזוהה',
 );
 
 /** Hindi (हिन्दी)
@@ -10610,6 +10620,7 @@ $messages['mk'] = array(
 	'centralnotice-settings' => 'Нагодувања',
 	'centralnotice-edit-template' => 'Уреди шаблон',
 	'centralnotice-edit-template-summary' => 'За да создадете порака што ќе може да се локализира, напишете низа со цртичка и ставете ја во три кадрави загради, на пр. {{{цитат-џимбо}}}.',
+	'centralnotice-edit-template-magicwords' => 'Волшебни зборови од плакатните миксини: $1',
 	'centralnotice-message' => 'Порака',
 	'centralnotice-message-not-set' => 'Порката не е поставена',
 	'centralnotice-clone' => 'Клонирај',
@@ -10631,6 +10642,7 @@ $messages['mk'] = array(
 	'centralnotice-banner-autolink' => 'Автоматски создајте врска кон целна страница',
 	'centralnotice-banner-autolink-help' => 'Создајте ознака за врска во содржината на плакатот со $1 и внесете една или повеќе целни страници, како на пр. $2. Врската ќе се оформи автоматски при секое прикажување на плакатот.',
 	'centralnotice-banner-landing-pages' => 'Целни страници (одделени со запирки):',
+	'centralnotice-banner-mixins' => 'Миксини (одделени со запирка):',
 	'centralnotice-geo' => 'Геобележано',
 	'centralnotice-countries' => 'Земји',
 	'centralnotice-global-allocation' => 'Глобална распределба',

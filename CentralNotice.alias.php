@@ -198,6 +198,8 @@ $specialPageAliases['mk'] = array(
 	'BannerAllocation' => array( 'РаспределбаНаПлакати' ),
 	'BannerController' => array( 'КонтролорНаПлакати' ),
 	'BannerLoader' => array( 'ВчитувачНаПлакати' ),
+	'BannerRandom' => array( 'ПлакатСлучаен' ),
+	'RecordImpression' => array( 'ЗаведиВпечаток' ),
 	'HideBanners' => array( 'СкријПлакати' ),
 );
 
