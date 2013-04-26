@@ -2252,6 +2252,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-settings' => 'Налады',
 	'centralnotice-edit-template' => 'Рэдагаваць паведамленьне',
 	'centralnotice-edit-template-summary' => 'Каб стварыць лякалізуемае паведамленьне, атачыце дэфісны радок у тры фігурныя дужкі, напрыклад, {{{цытата-джымба}}}.',
+	'centralnotice-edit-template-magicwords' => 'Магічныя слова, прапанаваныя праз міксіны банэра: $1',
 	'centralnotice-message' => 'Паведамленьне',
 	'centralnotice-message-not-set' => 'Паведамленьне не ўсталяванае',
 	'centralnotice-clone' => 'Копія',
@@ -2273,6 +2274,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-banner-autolink' => 'Аўтаматычна ствараць спасылку на мэтавую старонку',
 	'centralnotice-banner-autolink-help' => 'Стварыце тэг прывязкі ў зьмесьце банэра з $1 і пазначце ніжэй адну ці некалькі мэтавых старонак, напрыклад, $2. Спасылка будзе створаная аўтаматычна незалежна ці будзе банэр праглядацца.',
 	'centralnotice-banner-landing-pages' => 'Мэтавыя старонкі (праз коску):',
+	'centralnotice-banner-mixins' => 'Міксіны (праз коску):',
 	'centralnotice-geo' => 'Геаграфічная прывязка',
 	'centralnotice-countries' => 'Краіны',
 	'centralnotice-global-allocation' => 'Глябальнае разьмяшчэньне',
@@ -19214,6 +19216,7 @@ $messages['zh-hans'] = array(
  * @author Frankou
  * @author Horacewai2
  * @author Liangent
+ * @author Littletung
  * @author Mark85296341
  * @author Oapbtommy
  * @author Shirayuki
@@ -19233,12 +19236,12 @@ $messages['zh-hant'] = array(
 它也可以用於添加或刪除舊的通告。',
 	'centralnotice-query' => '修改當前的通告',
 	'centralnotice-notice-name' => '通告名稱',
-	'centralnotice-end-date' => '結束日期',
+	'centralnotice-end-date' => '結束日期', # Fuzzy
 	'centralnotice-enabled' => '已啟用',
 	'centralnotice-modify' => '提交',
 	'centralnotice-view' => '檢視',
 	'centralnotice-save-banner' => '儲存橫幅',
-	'centralnotice-preview' => '預覽',
+	'centralnotice-preview' => '預覽 ($1)',
 	'centralnotice-nopreview' => '（無預覽可用）',
 	'centralnotice-add-new' => '新增一個新的中央通告',
 	'centralnotice-remove' => '移除',
@@ -19251,10 +19254,6 @@ $messages['zh-hant'] = array(
 	'centralnotice-add-template' => '新增一個模板',
 	'centralnotice-show-notices' => '顯示通告',
 	'centralnotice-list-templates' => '列出模板',
-	'centralnotice-multiple-projects' => '較多（$1）',
-	'centralnotice-multiple-languages' => '較多（$1）',
-	'centralnotice-multiple-countries' => '多條（$1）',
-	'centralnotice-all-projects' => '所有計畫',
 	'centralnotice-translations' => '翻譯',
 	'centralnotice-translate-to' => '翻譯成',
 	'centralnotice-translate' => '翻譯',
@@ -19279,7 +19278,7 @@ $messages['zh-hant'] = array(
 沒有東西移除。',
 	'centralnotice-banner-doesnt-exist' => '橫幅不存在。',
 	'centralnotice-template-still-bound' => '模板不存在。
-沒有東西移除。',
+沒有東西移除。', # Fuzzy
 	'centralnotice-template-body' => '模板體：',
 	'centralnotice-day' => '日',
 	'centralnotice-year' => '年',
@@ -19287,10 +19286,8 @@ $messages['zh-hant'] = array(
 	'centralnotice-hours' => '時',
 	'centralnotice-min' => '分',
 	'centralnotice-project-lang' => '計劃語言',
-	'centralnotice-select' => '選擇：$1',
-	'centralnotice-top-ten-languages' => '前 10 種語言',
 	'centralnotice-project-name' => '計劃名稱',
-	'centralnotice-start-date' => '開始日期',
+	'centralnotice-start-date' => '開始日期', # Fuzzy
 	'centralnotice-start-time' => '開始時間（UTC）',
 	'centralnotice-end-time' => '結束時間（UTC）',
 	'centralnotice-assigned-templates' => '已分配的模板',
@@ -19352,7 +19349,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-projects' => '專案',
 	'centralnotice-country' => '國家',
 	'centralnotice-no-allocation' => '沒有橫幅分配。',
-	'centralnotice-allocation-description' => '在$1.$2，$3的分配：',
+	'centralnotice-allocation-description' => '在$1.$2，$3的分配：', # Fuzzy
 	'centralnotice-percentage' => '百分比',
 	'centralnotice-documentwrite-error' => 'document.write() 不能在橫幅中使用。
 更多資訊請參見 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',

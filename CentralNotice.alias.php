@@ -195,6 +195,7 @@ $specialPageAliases['mk'] = array(
 	'CentralNotice' => array( 'ЦентралноИзвестување' ),
 	'CentralNoticeLogs' => array( 'ДневнициНаЦентралноИзвестување' ),
 	'NoticeTemplate' => array( 'ШаблонЗаИзвестување' ),
+	'GlobalAllocation' => array( 'ГлобалнаРаспределба' ),
 	'BannerAllocation' => array( 'РаспределбаНаПлакати' ),
 	'BannerController' => array( 'КонтролорНаПлакати' ),
 	'BannerLoader' => array( 'ВчитувачНаПлакати' ),
