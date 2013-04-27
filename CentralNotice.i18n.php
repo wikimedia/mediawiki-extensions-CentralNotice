@@ -17977,6 +17977,7 @@ $messages['uk'] = array(
 	'centralnotice' => 'Управління централізованими сповіщеннями',
 	'noticetemplate' => 'Управління централізованими сповіщеннями',
 	'bannerallocation' => 'Управління централізованими сповіщеннями',
+	'globalallocation' => 'Адміністрування централізованих сповіщень',
 	'centralnoticelogs' => 'Управління централізованими сповіщеннями',
 	'right-centralnotice-admin' => 'Управління централізованими сповіщеннями',
 	'action-centralnotice-admin' => 'управління централізованими сповіщеннями',
@@ -17985,12 +17986,12 @@ $messages['uk'] = array(
 Він також може використовуватися для додавання нових і видалення старих повідомлень.',
 	'centralnotice-query' => 'Змінити поточне повідомлення',
 	'centralnotice-notice-name' => 'Назва повідомлення',
-	'centralnotice-end-date' => 'Дата закінчення',
+	'centralnotice-end-date' => 'Дата завершення (UTC)',
 	'centralnotice-enabled' => 'Включено',
 	'centralnotice-modify' => 'Відправити',
 	'centralnotice-view' => 'Перегляд',
 	'centralnotice-save-banner' => 'Зберегти банер',
-	'centralnotice-preview' => 'Попередній перегляд',
+	'centralnotice-preview' => 'Попередній перегляд ($1)',
 	'centralnotice-nopreview' => '(Попередній перегляд недоступний)',
 	'centralnotice-add-new' => 'Додати нове централізоване повідомлення',
 	'centralnotice-remove' => 'Вилучити',
@@ -18027,8 +18028,8 @@ $messages['uk'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'Кампанії не існує.
 Нема чого вилучати.',
 	'centralnotice-banner-doesnt-exist' => 'Банер не існує.',
-	'centralnotice-template-still-bound' => "Шаблон, як і раніше, пов'язаний з повідомленням.
-Не видаляється.",
+	'centralnotice-template-still-bound' => "Неможливо вилучити банер «$1» так як він досі прив'язаний до кампанії.
+Не вилучається.",
 	'centralnotice-template-body' => 'Тіло шаблону:',
 	'centralnotice-day' => 'День',
 	'centralnotice-year' => 'Рік',
@@ -18040,7 +18041,7 @@ $messages['uk'] = array(
 	'centralnotice-remove-all' => 'Видалити всі',
 	'centralnotice-items-selected' => 'Обрано $1 {{PLURAL:$1|тег|теги|тегів}}',
 	'centralnotice-project-name' => 'Назва проекту',
-	'centralnotice-start-date' => 'Дата початку',
+	'centralnotice-start-date' => 'Дата початку (UTC)',
 	'centralnotice-start-time' => 'Час початку (UTC)',
 	'centralnotice-end-time' => 'Час закінчення (UTC)',
 	'centralnotice-assigned-templates' => 'Встановлені шаблони',
@@ -18094,6 +18095,7 @@ $messages['uk'] = array(
 	'centralnotice-banner-landing-pages' => 'Цільові сторінки (через кому):',
 	'centralnotice-geo' => "Геоприв'язка",
 	'centralnotice-countries' => 'Країни',
+	'centralnotice-global-allocation' => 'Глобальне розміщення',
 	'centralnotice-allocation' => 'Розподіл',
 	'centralnotice-view-allocation' => 'Переглянути розміщення банера',
 	'centralnotice-allocation-instructions' => 'Виберіть середовище, для якого ви хочете переглянути розміщення банера:',
@@ -18102,7 +18104,7 @@ $messages['uk'] = array(
 	'centralnotice-projects' => 'Проекти',
 	'centralnotice-country' => 'Країна',
 	'centralnotice-no-allocation' => 'Немає розміщених банерів.',
-	'centralnotice-allocation-description' => 'Розміщення банеру для $1.$2 в $3:',
+	'centralnotice-allocation-description' => 'Розміщення банеру для мови: $1, проекту: $2, у країні $3, на пристрої $4',
 	'centralnotice-percentage' => 'Відсоток',
 	'centralnotice-documentwrite-error' => 'document.write() не може бути використана в банері.
 Дивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.',
@@ -18157,6 +18159,13 @@ $messages['uk'] = array(
 	'centralnotice-buckets' => 'Розподіл користувачів',
 	'centralnotice-bucket' => 'Група',
 	'centralnotice-bucket-letter' => 'Група «$1»',
+	'centralnotice-devicetype-desktop' => "Настільний комп'ютер",
+	'centralnotice-all' => 'Усе',
+	'centralnotice-all-except' => 'Усе окрім $1',
+	'centralnotice-excluding-list' => '$1 (за винятком $2)',
+	'centralnotice-user-role' => 'Роль користувача',
+	'centralnotice-user-role-anonymous' => 'Анонім',
+	'centralnotice-user-role-logged-in' => 'Увійшовший',
 );
 
 /** Urdu (اردو)
