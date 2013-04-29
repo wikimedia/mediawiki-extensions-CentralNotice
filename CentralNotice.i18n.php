@@ -301,7 +301,8 @@ The other headers are:
 * {{msg-mw|centralnotice-number-uses}}
 * (the name of a language to which the banner is being translated)
 
-(See also [[:bugzilla:16321|Bug 16321 - All messages in CentralNotice are defaulted to English regardless of content language]].)',
+(See also [[:bugzilla:16321|Bug 16321 - All messages in CentralNotice are defaulted to English regardless of content language]].)
+{{Identical|English}}',
 	'centralnotice-banner-name' => 'Used as label for the "Banner name" ("Template name") input box in [[Special:NoticeTemplate]].',
 	'centralnotice-banner' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].
 
