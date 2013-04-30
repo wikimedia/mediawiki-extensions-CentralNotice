@@ -78,6 +78,7 @@ class BannerChooser {
 			);
 			$countryAllowed = (
 				!$this->allocContext->getCountry()
+				or !$campaign['geo']
 				or in_array( $this->allocContext->getCountry(), $campaign['countries'] )
 			);
 			if ( $projectAllowed and $languageAllowed and $countryAllowed ) {
