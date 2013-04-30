@@ -69,18 +69,17 @@ class BannerChooser {
 		$filtered = array();
 		foreach ( $this->campaigns as $campaign ) {
 			$projectAllowed = (
-				$this->allocContext->getProject() === null
+				!$this->allocContext->getProject()
 				or in_array( $this->allocContext->getProject(), $campaign['projects'] )
 			);
 			$languageAllowed = (
-				$this->allocContext->getLanguage() === null
+				!$this->allocContext->getLanguage()
 				or in_array( $this->allocContext->getLanguage(), $campaign['languages'] )
 			);
 			$countryAllowed = (
-				$this->allocContext->getCountry() === null
+				!$this->allocContext->getCountry()
 				or in_array( $this->allocContext->getCountry(), $campaign['countries'] )
 			);
-
 			if ( $projectAllowed and $languageAllowed and $countryAllowed ) {
 				$filtered[] = $campaign;
 			}
@@ -102,7 +101,9 @@ class BannerChooser {
 		$this->filterBannersOnColumn( 'campaign_z_index', $highest_z );
 
 		// Filter for device category
-		$this->filterBannersOnColumn( 'device', $this->allocContext->getDevice() );
+		if ( $this->allocContext->getDevice() ) {
+			$this->filterBannersOnColumn( 'device', $this->allocContext->getDevice() );
+		}
 
 		// Filter for the provided bucket.
 		$bucket = $this->allocContext->getBucket();

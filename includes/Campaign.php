@@ -189,6 +189,22 @@ class Campaign {
 
 	/**
 	 * Get all campaign configurations as of timestamp $ts
+	 *
+	 * @return array of settings structs having the following properties:
+	 *     id
+	 *     name
+	 *     enabled
+	 *     projects: array of sister project names
+	 *     languages: array of language codes
+	 *     countries: array of country codes
+	 *     preferred: campaign priority
+	 *     geo: is geolocated?
+	 *     buckets: number of buckets
+	 *     banners: array of banner objects, as returned by getHistoricalBanner,
+	 *       plus the following information from the parent campaign:
+	 *         campaign: name of the campaign
+	 *         campaign_z_index
+	 *         campaign_num_buckets
 	 */
 	static function getHistoricalCampaigns( $ts ) {
 		global $wgCentralDBname;
@@ -202,7 +218,6 @@ class Campaign {
 				"notlog_timestamp <= $ts",
 				"notlog_end_start <= $ts",
 				"notlog_end_end >= $ts",
-				"notlog_end_enabled = 1",
 			),
 			__METHOD__,
 			array(
@@ -218,6 +233,7 @@ class Campaign {
 				array(
 					"id" => "notlog_not_id",
 					"name" => "notlog_not_name",
+					"enabled" => "notlog_end_enabled",
 					"projects" => "notlog_end_projects",
 					"languages" => "notlog_end_languages",
 					"countries" => "notlog_end_countries",
@@ -233,10 +249,17 @@ class Campaign {
 			);
 
 			$campaign = $singleRes->fetchRow();
+			if ( $campaign['enabled'] !== "1" ) {
+				continue;
+			}
 			$campaign['projects'] = explode( ", ", $campaign['projects'] );
 			$campaign['languages'] = explode( ", ", $campaign['languages'] );
 			$campaign['countries'] = explode( ", ", $campaign['countries'] );
-			$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
+			if ( $campaign['banners'] === null ) {
+				$campaign['banners'] = array();
+			} else {
+				$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
+			}
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
 
