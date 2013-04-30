@@ -2,19 +2,14 @@
 /**
  * Renders banner contents as jsonp.
  */
-class SpecialBannerLoader extends UnlistedSpecialPage implements IAllocationContext {
+class SpecialBannerLoader extends UnlistedSpecialPage {
 	/** @var string Name of the choosen banner */
 	public $bannerName;
 
 	/** @var string Name of the campaign that the banner belongs to. Will be 'undefined' if not attatched. */
 	public $campaign;
 
-	public $project;
-	public $country;
-	public $language;
-	public $anonymous;
-	public $device;
-	public $bucket;
+	public $allocContext = null;
 
 	function __construct() {
 		// Register special page
@@ -39,31 +34,30 @@ class SpecialBannerLoader extends UnlistedSpecialPage implements IAllocationCont
 	function getParams() {
 		$request = $this->getRequest();
 
-		// FIXME: s/userlang/uselang/g
-		// $this->language = $this->getLanguage()->getCode();
-		if ( $lang = $request->getVal( 'userlang' ) ) {
-			$this->language = $lang;
-			$request->setVal( 'uselang', $this->language );
-			$this->getContext()->setLanguage( $this->language );
-		}
+		$language = $this->getLanguage()->getCode();
 
-		$this->project = $this->getSanitized( 'project', ApiCentralNoticeAllocations::PROJECT_FILTER );
-		$this->country = $this->getSanitized( 'country', ApiCentralNoticeAllocations::LOCATION_FILTER );
-		$this->anonymous = ( $this->getSanitized( 'anonymous', ApiCentralNoticeAllocations::ANONYMOUS_FILTER ) === 'true' );
-		$this->bucket = intval( $this->getSanitized( 'bucket', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
-		$this->device = $this->getSanitized( 'device', ApiCentralNoticeAllocations::DEVICE_NAME_FILTER );
+		$project = $this->getSanitized( 'project', ApiCentralNoticeAllocations::PROJECT_FILTER );
+		$country = $this->getSanitized( 'country', ApiCentralNoticeAllocations::LOCATION_FILTER );
+		$anonymous = ( $this->getSanitized( 'anonymous', ApiCentralNoticeAllocations::ANONYMOUS_FILTER ) === 'true' );
+		$bucket = intval( $this->getSanitized( 'bucket', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
+		$device = $this->getSanitized( 'device', ApiCentralNoticeAllocations::DEVICE_NAME_FILTER );
 
 		$this->siteName = $request->getText( 'sitename' );
 
 		$required_values = array(
-			$this->project, $this->country, $this->anonymous, $this->bucket,
-			$this->siteName, $this->device
+			$project, $language, $country, $anonymous, $bucket, $device,
+			$this->siteName,
 		);
 		foreach ( $required_values as $value ) {
 			if ( is_null( $value ) ) {
 				throw new MissingRequiredParamsException();
 			}
 		}
+
+		$this->allocContext = new AllocationContext(
+			$country, $language, $project,
+			$anonymous, $device, $bucket
+		);
 
 		$this->campaign = $request->getText( 'campaign' );
 		$this->bannerName = $request->getText( 'banner' );
@@ -99,7 +93,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage implements IAllocationCont
 			throw new EmptyBannerException( $bannerName );
 		}
 		$banner = new Banner( $bannerName );
-		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaign, $this );
+		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaign, $this->allocContext );
 
 		$bannerHtml = $bannerRenderer->toHtml();
 
@@ -128,22 +122,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage implements IAllocationCont
 		$bannerJs = $preload . "mw.centralNotice.insertBanner( {$bannerJson} );";
 
 		return $bannerJs;
-	}
-
-    function getCountry() {
-		return $this->country;
-	}
-    function getProject() {
-		return $this->project;
-	}
-    function getAnonymous() {
-		return $this->anonymous;
-	}
-    function getDevice() {
-		return $this->device;
-	}
-    function getBucket() {
-		return $this->bucket;
 	}
 }
 

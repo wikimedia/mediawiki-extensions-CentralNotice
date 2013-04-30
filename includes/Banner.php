@@ -361,13 +361,15 @@ class Banner {
 			),
 			__METHOD__
 		);
-		$banner['display_anon'] = intval( $row->display_anon );
-		$banner['display_account'] = intval( $row->display_account );
+		$banner['display_anon'] = (int) $row->display_anon;
+		$banner['display_account'] = (int) $row->display_account;
 
-		$banner['fundraising'] = intval( $row->fundraising );
-		$banner['autolink'] = intval( $row->autolink );
+		$banner['fundraising'] = (int) $row->fundraising;
+		$banner['autolink'] = (int) $row->autolink;
 		$banner['landing_pages'] = explode( ", ", $row->landing_pages );
 
+		//XXX
+		$banner['device'] = "desktop";
 		return $banner;
 	}
 

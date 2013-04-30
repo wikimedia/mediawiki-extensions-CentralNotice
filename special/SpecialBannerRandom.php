@@ -24,14 +24,7 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 	}
 
 	protected function chooseBanner() {
-		$chooser = new BannerChooser(
-			$this->project,
-			$this->language,
-			$this->country,
-			$this->anonymous,
-			$this->device,
-			$this->bucket
-		);
+		$chooser = new BannerChooser( $this->allocContext );
 		$banner = $chooser->chooseBanner( $this->slot );
 
 		if ( $banner ) {
