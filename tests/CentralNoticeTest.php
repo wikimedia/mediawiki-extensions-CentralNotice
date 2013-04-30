@@ -39,6 +39,9 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			'preferred' => '1',
 			'start' => '20110718235500',
 			'buckets' => '1',
+			'projects' => 'wikipedia, wikibooks',
+			'languages' => 'en, de',
+			'countries' => 'US, AF'
 		);
 
 		//get User
@@ -123,9 +126,16 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testGetCampaignSettings() {
+		$settings = Campaign::getCampaignSettings( 'PHPUnitTestCampaign' );
+		$banners = json_decode( $settings[ 'banners' ], true );
+
+		$this->assertEquals( 1, count( $banners ) );
+		$this->assertEquals( array( 'PHPUnitTestBanner' ), array_keys( $banners ) );
+		unset( $settings[ 'banners' ] );
+
 		$this->assertEquals(
 			$this->campaignArray,
-			Campaign::getCampaignSettings( 'PHPUnitTestCampaign', false )
+			$settings
 		);
 	}
 }

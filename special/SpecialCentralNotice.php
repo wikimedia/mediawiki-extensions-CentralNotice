@@ -88,7 +88,7 @@ class CentralNotice extends SpecialPage {
 					$allCampaignNames = Campaign::getAllCampaignNames();
 					$allInitialCampaignSettings = array();
 					foreach ( $allCampaignNames as $campaignName ) {
-						$settings = Campaign::getCampaignSettings( $campaignName, false );
+						$settings = Campaign::getCampaignSettings( $campaignName );
 						$allInitialCampaignSettings[ $campaignName ] = $settings;
 					}
 
@@ -150,7 +150,7 @@ class CentralNotice extends SpecialPage {
 
 					// Get all the final campaign settings for potential logging
 					foreach ( $allCampaignNames as $campaignName ) {
-						$finalCampaignSettings = Campaign::getCampaignSettings( $campaignName, false );
+						$finalCampaignSettings = Campaign::getCampaignSettings( $campaignName );
 						if ( !$allInitialCampaignSettings[ $campaignName ] || !$finalCampaignSettings ) {
 							// Condition where the campaign has apparently disappeared mid operations
 							// -- possibly a delete call
