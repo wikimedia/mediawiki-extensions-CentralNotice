@@ -122,11 +122,10 @@ class Campaign {
 	 * Return settings for a campaign
 	 *
 	 * @param $campaignName string: The name of the campaign
-	 * @param $detailed     boolean: Whether or not to include targeting and banner assignment info
 	 *
 	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
-	static function getCampaignSettings( $campaignName, $detailed = true ) {
+	static function getCampaignSettings( $campaignName ) {
 		global $wgCentralDBname;
 
 		// Read from the master database to avoid concurrency problems
@@ -164,25 +163,23 @@ class Campaign {
 			return false;
 		}
 
-		if ( $detailed ) {
-			$projects = Campaign::getNoticeProjects( $campaignName );
-			$languages = Campaign::getNoticeLanguages( $campaignName );
-			$geo_countries = Campaign::getNoticeCountries( $campaignName );
-			$campaign[ 'projects' ] = implode( ", ", $projects );
-			$campaign[ 'languages' ] = implode( ", ", $languages );
-			$campaign[ 'countries' ] = implode( ", ", $geo_countries );
+		$projects = Campaign::getNoticeProjects( $campaignName );
+		$languages = Campaign::getNoticeLanguages( $campaignName );
+		$geo_countries = Campaign::getNoticeCountries( $campaignName );
+		$campaign[ 'projects' ] = implode( ", ", $projects );
+		$campaign[ 'languages' ] = implode( ", ", $languages );
+		$campaign[ 'countries' ] = implode( ", ", $geo_countries );
 
-			$bannersIn = Banner::getCampaignBanners( $row->not_id, true );
-			$bannersOut = array();
-			// All we want are the banner names, weights, and buckets
-			foreach ( $bannersIn as $key => $row ) {
-				$outKey = $bannersIn[ $key ][ 'name' ];
-				$bannersOut[ $outKey ]['weight'] = $bannersIn[ $key ][ 'weight' ];
-				$bannersOut[ $outKey ]['bucket'] = $bannersIn[ $key ][ 'bucket' ];
-			}
-			// Encode into a JSON string for storage
-			$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
+		$bannersIn = Banner::getCampaignBanners( $row->not_id, true );
+		$bannersOut = array();
+		// All we want are the banner names, weights, and buckets
+		foreach ( $bannersIn as $key => $row ) {
+			$outKey = $bannersIn[ $key ][ 'name' ];
+			$bannersOut[ $outKey ]['weight'] = $bannersIn[ $key ][ 'weight' ];
+			$bannersOut[ $outKey ]['bucket'] = $bannersIn[ $key ][ 'bucket' ];
 		}
+		// Encode into a JSON string for storage
+		$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
 
 		return $campaign;
 	}
