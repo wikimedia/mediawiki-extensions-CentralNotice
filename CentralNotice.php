@@ -231,6 +231,16 @@ $wgNoticeBucketExpiry = 7;
 // given as a proportion of the "all" list length.
 $wgNoticeListComplementThreshold = 0.75;
 
+// Available banner mixins, usually provided by separate extensions.
+// See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
+$wgNoticeMixins = array(
+	'BannerDiet' => array(
+		'localBasePath' => __DIR__ . "/mixins/BannerDiet",
+
+		'preloadJs' => "BannerDiet.js",
+	),
+);
+
 /**
  * Load all the classes, register special pages, etc. Called through wgExtensionFunctions.
  */
@@ -258,6 +268,8 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
 	$wgAutoloadClasses[ 'SpecialCNReporter' ] = $specialDir . 'SpecialCNReporter.php';
 
+	$wgAutoloadClasses[ 'BannerLoaderException' ] = $specialDir . 'SpecialBannerLoader.php';
+
 	$wgAutoloadClasses[ 'Banner' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
@@ -265,6 +277,9 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'Campaign' ] = $includeDir . 'Campaign.php';
 	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
 	$wgAutoloadClasses[ 'GeoTarget' ] = $includeDir . 'GeoTarget.php';
+	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
+	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
+	$wgAutoloadClasses[ 'MixinController' ] = $includeDir . 'MixinController.php';
 
 	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';
 

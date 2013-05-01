@@ -122,11 +122,10 @@ class Campaign {
 	 * Return settings for a campaign
 	 *
 	 * @param $campaignName string: The name of the campaign
-	 * @param $detailed     boolean: Whether or not to include targeting and banner assignment info
 	 *
 	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
-	static function getCampaignSettings( $campaignName, $detailed = true ) {
+	static function getCampaignSettings( $campaignName ) {
 		global $wgCentralDBname;
 
 		// Read from the master database to avoid concurrency problems
@@ -164,31 +163,45 @@ class Campaign {
 			return false;
 		}
 
-		if ( $detailed ) {
-			$projects = Campaign::getNoticeProjects( $campaignName );
-			$languages = Campaign::getNoticeLanguages( $campaignName );
-			$geo_countries = Campaign::getNoticeCountries( $campaignName );
-			$campaign[ 'projects' ] = implode( ", ", $projects );
-			$campaign[ 'languages' ] = implode( ", ", $languages );
-			$campaign[ 'countries' ] = implode( ", ", $geo_countries );
+		$projects = Campaign::getNoticeProjects( $campaignName );
+		$languages = Campaign::getNoticeLanguages( $campaignName );
+		$geo_countries = Campaign::getNoticeCountries( $campaignName );
+		$campaign[ 'projects' ] = implode( ", ", $projects );
+		$campaign[ 'languages' ] = implode( ", ", $languages );
+		$campaign[ 'countries' ] = implode( ", ", $geo_countries );
 
-			$bannersIn = Banner::getCampaignBanners( $row->not_id, true );
-			$bannersOut = array();
-			// All we want are the banner names, weights, and buckets
-			foreach ( $bannersIn as $key => $row ) {
-				$outKey = $bannersIn[ $key ][ 'name' ];
-				$bannersOut[ $outKey ]['weight'] = $bannersIn[ $key ][ 'weight' ];
-				$bannersOut[ $outKey ]['bucket'] = $bannersIn[ $key ][ 'bucket' ];
-			}
-			// Encode into a JSON string for storage
-			$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
+		$bannersIn = Banner::getCampaignBanners( $row->not_id, true );
+		$bannersOut = array();
+		// All we want are the banner names, weights, and buckets
+		foreach ( $bannersIn as $key => $row ) {
+			$outKey = $bannersIn[ $key ][ 'name' ];
+			$bannersOut[ $outKey ]['weight'] = $bannersIn[ $key ][ 'weight' ];
+			$bannersOut[ $outKey ]['bucket'] = $bannersIn[ $key ][ 'bucket' ];
 		}
+		// Encode into a JSON string for storage
+		$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
 
 		return $campaign;
 	}
 
 	/**
 	 * Get all campaign configurations as of timestamp $ts
+	 *
+	 * @return array of settings structs having the following properties:
+	 *     id
+	 *     name
+	 *     enabled
+	 *     projects: array of sister project names
+	 *     languages: array of language codes
+	 *     countries: array of country codes
+	 *     preferred: campaign priority
+	 *     geo: is geolocated?
+	 *     buckets: number of buckets
+	 *     banners: array of banner objects, as returned by getHistoricalBanner,
+	 *       plus the following information from the parent campaign:
+	 *         campaign: name of the campaign
+	 *         campaign_z_index
+	 *         campaign_num_buckets
 	 */
 	static function getHistoricalCampaigns( $ts ) {
 		global $wgCentralDBname;
@@ -202,7 +215,6 @@ class Campaign {
 				"notlog_timestamp <= $ts",
 				"notlog_end_start <= $ts",
 				"notlog_end_end >= $ts",
-				"notlog_end_enabled = 1",
 			),
 			__METHOD__,
 			array(
@@ -216,7 +228,9 @@ class Campaign {
 			$singleRes = $dbr->select(
 				"cn_notice_log",
 				array(
+					"id" => "notlog_not_id",
 					"name" => "notlog_not_name",
+					"enabled" => "notlog_end_enabled",
 					"projects" => "notlog_end_projects",
 					"languages" => "notlog_end_languages",
 					"countries" => "notlog_end_countries",
@@ -232,7 +246,17 @@ class Campaign {
 			);
 
 			$campaign = $singleRes->fetchRow();
-			$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
+			if ( $campaign['enabled'] !== "1" ) {
+				continue;
+			}
+			$campaign['projects'] = explode( ", ", $campaign['projects'] );
+			$campaign['languages'] = explode( ", ", $campaign['languages'] );
+			$campaign['countries'] = explode( ", ", $campaign['countries'] );
+			if ( $campaign['banners'] === null ) {
+				$campaign['banners'] = array();
+			} else {
+				$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
+			}
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
 

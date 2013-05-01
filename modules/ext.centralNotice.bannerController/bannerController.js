@@ -45,7 +45,7 @@
 				title: 'Special:BannerLoader',
 				banner: bannerName,
 				campaign: campaign,
-				userlang: mw.config.get( 'wgUserLanguage' ),
+				uselang: mw.config.get( 'wgUserLanguage' ),
 				db: mw.config.get( 'wgDBname' ),
 				project: mw.config.get( 'wgNoticeProject' ),
 				country: mw.centralNotice.data.country,
@@ -62,7 +62,7 @@
 
 			var RAND_MAX = 30;
 			var bannerDispatchQuery = {
-					userlang: mw.config.get( 'wgUserLanguage' ),
+					uselang: mw.config.get( 'wgUserLanguage' ),
 					sitename: mw.config.get( 'wgSiteName' ),
 					project: mw.config.get( 'wgNoticeProject' ),
 					anonymous: mw.config.get( 'wgUserName' ) === null,
@@ -181,7 +181,7 @@
 
 		var impressionData = {
 			country: mw.centralNotice.data.country,
-			userlang: mw.config.get( 'wgUserLanguage' ),
+			uselang: mw.config.get( 'wgUserLanguage' ),
 			project: mw.config.get( 'wgNoticeProject' ),
 			db: mw.config.get( 'wgDBname' ),
 			bucket: mw.centralNotice.data.bucket,
@@ -202,8 +202,14 @@
 			// Ok, we have a banner! Get the banner type for more queryness
 			mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
 
-			// Has the banner been hidden by cookie?
-			if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
+			if ( typeof mw.centralNotice.bannerData.preload === 'function'
+					&& !mw.centralNotice.bannerData.preload() ) {
+				impressionResultData = {
+					result: 'hide',
+					reason: 'preload'
+				}
+			} else if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
+				// Has the banner been hidden by cookie?
 				impressionResultData = {
 					result: 'hide',
 					reason: 'mobile'

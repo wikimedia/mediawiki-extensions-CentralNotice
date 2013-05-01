@@ -99,6 +99,12 @@ class CNDatabasePatcher {
 					 $base . '/patch-centralnotice-2_3.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					 'addField', 'cn_template_mixins', 'mixin_name',
+					 $base . '/patch-mixin_modules.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			$updater->addExtensionUpdate(
 				array(

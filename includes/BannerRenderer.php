@@ -16,17 +16,32 @@ class BannerRenderer {
 	 *
 	 * @var string $campaignName
 	 */
-	protected $campaignName = '';
+	protected $campaignName = "";
 
-	function __construct( IContextSource $context, Banner $banner, $campaignName = null ) {
+	protected $mixinController = null;
+
+	function __construct( IContextSource $context, Banner $banner, $campaignName = null, AllocationContext $allocContext = null ) {
+		$this->context = $context;
+
 		$this->banner = $banner;
 		$this->campaignName = $campaignName;
 
-		$this->setContext( $context );
-	}
+		if ( $allocContext === null ) {
+			/**
+			 * This should only be used when banners are previewed in management forms.
+			 * TODO: set realistic context in the admin ui, drawn from the campaign
+			 * configuration and current translation settings.
+			 */
+			$this->allocContext = new AllocationContext( 'XX', 'en', 'wikipedia', true, 'desktop', 0 );
+		} else {
+			$this->allocContext = $allocContext;
+		}
 
-	function setContext( IContextSource $context ) {
-		$this->context = $context;
+		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins(), $allocContext );
+
+		//FIXME: it should make sense to do this:
+		// $this->mixinController->registerMagicWord( 'campaign', array( $this, 'getCampaign' ) );
+		// $this->mixinController->registerMagicWord( 'banner', array( $this, 'getBanner' ) );
 	}
 
 	function linkTo() {
@@ -79,22 +94,73 @@ class BannerRenderer {
 	 */
 	function toHtml() {
 		$bannerHtml = $this->context->msg( $this->banner->getDbKey() )->inLanguage( $this->context->getLanguage() )->text();
+		$bannerHtml .= $this->getResourceLoaderHtml();
 
-		$bannerHtml = preg_replace_callback(
-			'/{{{([^}]+)}}}/',
+		return $this->substituteMagicWords( $bannerHtml );
+	}
+
+	function getPreloadJs() {
+		$snippets = $this->mixinController->getPreloadJsSnippets();
+		if ( $snippets ) {
+			$bundled = array();
+			foreach ( $snippets as $mixin => $code ) {
+				if ( !$this->context->getRequest()->getFuzzyBool( 'debug' ) ) {
+					$code = JavaScriptMinifier::minify( $code );
+				}
+
+				$bundled[] = "/* {$mixin}: */{$code}";
+			}
+			$js = implode( " && ", $bundled );
+			return $this->substituteMagicWords( $js );
+		}
+		return "";
+	}
+
+	function getResourceLoaderHtml() {
+		$modules = $this->mixinController->getResourceLoaderModules();
+		if ( $modules ) {
+			$html = "<!-- " . implode( ", ", array_keys( $modules ) ) . " -->";
+			$html .= Html::inlineScript(
+				ResourceLoader::makeLoaderConditionalScript(
+					Xml::encodeJsCall( 'mw.loader.load', array_values( $modules ) )
+				)
+			);
+			return $html;
+		}
+		return "";
+	}
+
+	function substituteMagicWords( $contents ) {
+		return preg_replace_callback(
+			'/{{{([^}:]+)(?:[:]([^}]*))?}}}/',
 			array( $this, 'renderMagicWord' ),
-			$bannerHtml
+			$contents
 		);
-		return $bannerHtml;
+	}
+
+	function getMagicWords() {
+		$words = array( 'banner', 'campaign' );
+		$words = array_merge( $words, $this->mixinController->getMagicWords() );
+		return $words;
 	}
 
 	protected function renderMagicWord( $re_matches ) {
 		$field = $re_matches[1];
 		if ( $field === 'banner' ) {
-			return $this->banner->name;
+			return $this->banner->getName();
 		} elseif ( $field === 'campaign' ) {
 			return $this->campaignName;
 		}
+		$params = array();
+		if ( isset( $re_matches[2] ) ) {
+			$params = explode( "|", $re_matches[2] );
+		}
+
+		$value = $this->mixinController->renderMagicWord( $field, $params );
+		if ( $value !== null ) {
+			return $value;
+		}
+
 		$bannerMessage = $this->banner->getMessageField( $field );
 		return $bannerMessage->toHtml( $this->context );
 	}

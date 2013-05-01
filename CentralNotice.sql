@@ -60,10 +60,12 @@ CREATE UNIQUE INDEX /*i*/nc_notice_id_country ON /*_*/cn_notice_countries (nc_no
 CREATE TABLE IF NOT EXISTS /*_*/cn_template_mixins (
 	`tmxn_id` int PRIMARY KEY AUTO_INCREMENT,
 	`tmp_id` int(11) NOT NULL,
-	`page_id` int NOT NULL
+	`page_id` int NOT NULL,
+	`mixin_name` varchar(255) NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/tmxn_tmp_id ON /*_*/cn_template_mixins (tmp_id);
 CREATE INDEX /*i*/tmxn_page_id ON /*_*/cn_template_mixins (page_id);
+CREATE INDEX /*i*/tmxn_mixin_name ON /*_*/cn_template_mixins (mixin_name);
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_known_devices (
 	`dev_id` int PRIMARY KEY AUTO_INCREMENT,
