@@ -12,10 +12,9 @@
 	}
 
 	mw.centralNotice = {
-		// Used in initialize() to prevent it from running more than once
-		alreadyRan: false,
-		
-		/** -- Central Notice Required Data -- **/
+		/**
+		 * Central Notice Required Data
+		 */
 		data: {
 			getVars: {},
 			bannerType: 'default',
@@ -23,8 +22,16 @@
 			testing: false
 		},
 
-		/** -- Banner custom data; filled by the banner itself -- */
+		/**
+		 * Custom data that the banner can play with
+		 */
 		bannerData: {},
+
+		/**
+		 * State variable used in initialize() to prevent it from running more than once
+		 * @private
+		 */
+		alreadyRan: false,
 
 		/** -- Functions! -- **/
 		loadBanner: function () {
@@ -36,7 +43,7 @@
 			}
 		},
 		loadTestingBanner: function ( bannerName, campaign ) {
-			var bannerPageQuery, bannerScript, scriptUrl;
+			var bannerPageQuery;
 
 			mw.centralNotice.data.testing = true;
 
@@ -49,7 +56,7 @@
 				db: mw.config.get( 'wgDBname' ),
 				project: mw.config.get( 'wgNoticeProject' ),
 				country: mw.centralNotice.data.country,
-				device: mw.config.get( 'wgMobileDeviceName', 'desktop' )
+				device: mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' )
 			};
 
 			$.ajax({
@@ -59,18 +66,17 @@
 			});
 		},
 		loadRandomBanner: function () {
-
 			var RAND_MAX = 30;
 			var bannerDispatchQuery = {
-					uselang: mw.config.get( 'wgUserLanguage' ),
-					sitename: mw.config.get( 'wgSiteName' ),
-					project: mw.config.get( 'wgNoticeProject' ),
-					anonymous: mw.config.get( 'wgUserName' ) === null,
-					bucket: mw.centralNotice.data.bucket,
-					country: mw.centralNotice.data.country,
-					device: mw.config.get( 'wgMobileDeviceName', 'desktop' ),
-					slot: Math.floor( Math.random() * RAND_MAX ) + 1
-				};
+				uselang: mw.config.get( 'wgUserLanguage' ),
+				sitename: mw.config.get( 'wgSiteName' ),
+				project: mw.config.get( 'wgNoticeProject' ),
+				anonymous: mw.config.get( 'wgUserName' ) === null,
+				bucket: mw.centralNotice.data.bucket,
+				country: mw.centralNotice.data.country,
+				device: mw.config.get( 'wgMobileDeviceName', 'desktop' ),
+				slot: Math.floor( Math.random() * RAND_MAX ) + 1
+			};
 			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) + '?' + $.param( bannerDispatchQuery );
 
 			$.ajax({
@@ -94,7 +100,7 @@
 			var url = mw.config.get( 'wgCentralBannerRecorder' ) + '?' + $.param( data );
 			(new Image()).src = url;
 		},
-		getQueryStringVariables: function () {
+		loadQueryStringVariables: function () {
 			document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
 				mw.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
 			} );
@@ -113,40 +119,50 @@
 				}
 			}
 		},
-		initialize: function () {
-			if ( mw.centralNotice.alreadyRan ) {
-				return;
-			}
-			mw.centralNotice.alreadyRan = true;
-			
-			// Prevent loading banners on Special pages
-			if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
-				return;
-			}
+		getBucket: function() {
+			var dataString = $.cookie( 'centralnotice_bucket' ) || '',
+				bucket = dataString.split('-')[0],
+				validity = dataString.split('-')[1],
+				expValidity = mw.config.get( 'wgNoticeNumberOfBuckets' ) + '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
 
-			var dataString = $.cookie( 'centralnotice_bucket' ) || '';
-			mw.centralNotice.data.bucket = dataString.split('-')[0];
-			var bucketValidityString = dataString.split('-')[1];
-			var expectedValidityString = mw.config.get( 'wgNoticeNumberOfBuckets' ) + '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
-			
-			if ( ( mw.centralNotice.data.bucket === null ) ||
-				( bucketValidityString !== expectedValidityString )
-			) {
-				mw.centralNotice.data.bucket = Math.floor( Math.random() * mw.config.get( 'wgNoticeNumberOfControllerBuckets' ) );
+			if ( ( bucket === null ) || ( validity !== expValidity ) ) {
+				bucket = Math.floor(
+					Math.random() * mw.config.get( 'wgNoticeNumberOfControllerBuckets' )
+				);
 				$.cookie(
-					'centralnotice_bucket', mw.centralNotice.data.bucket + '-' + expectedValidityString,
+					'centralnotice_bucket', bucket + '-' + expValidity,
 					{ expires: mw.config.get( 'wgNoticeBucketExpiry' ), path: '/' }
 				);
 			}
 
-			// Initialize the query string vars
-			mw.centralNotice.getQueryStringVariables();
+			return bucket;
+		},
+		initialize: function () {
+			// === Do not allow CentralNotice to be re-initialized. ===
+			if ( mw.centralNotice.alreadyRan ) {
+				return;
+			}
+			mw.centralNotice.alreadyRan = true;
 
+			// === Initialize things that don't come from MW itself ===
+			mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
+			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
+
+			// === Attempt to load parameters from the query string ===
+			mw.centralNotice.loadQueryStringVariables();
+
+			// === Do not actually load a banner on a special page ===
+			//     But we keep this after the above initialization for CentralNotice pages
+			//     that do banner previews.
+			if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
+				return;
+			}
+
+			// === Final prep to loading banner ===
+			// Add the CentralNotice div so that insert banner has something to latch on to.
 			$( '#siteNotice' ).prepend(
 				'<div id="centralNotice"></div>'
 			);
-
-			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
 
 			// If the user has no counry assigned, we try a new lookup via
 			// geoiplookup.wikimedia.org. This hostname has no IPv6 address,
@@ -209,19 +225,23 @@
 					reason: 'preload'
 				}
 			} else if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
-				// Has the banner been hidden by cookie?
+				// We do not show banners to mobile devices browsing the desktop site. It's not
+				// guaranteed how they will react.
 				impressionResultData = {
 					result: 'hide',
 					reason: 'mobile'
 				}
-			} else if ( $.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide' ) {
-				// Yes
+			} else if (
+				$.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide' &&
+				!mw.centralNotice.data.testing
+			) {
+				// The banner was hidden by a bannertype hide cookie and we're not testing
 				impressionResultData = {
 					result: 'hide',
 					reason: 'cookie'
 				}
 			} else {
-				// No, inject the banner
+				// All conditions fulfilled, inject the banner
 				$( 'div#centralNotice' )
 					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.bannerType ) )
 					.prepend( bannerJson.bannerHtml );
