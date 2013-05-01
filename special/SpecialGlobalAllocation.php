@@ -358,19 +358,19 @@ class SpecialGlobalAllocation extends CentralNotice {
 					$contributing[] = $this->campaigns[$key]['name'];
 				}
 
-				if ( $result ) {
-					$result = array( $result );
-				} else {
-					$result = array();
+				if ( !$result ) {
+					continue;
 				}
+				$result = array( $result );
+
 				foreach ( $excludeKeys as $key ) {
 					foreach( $result as $row ) {
 						if ( CampaignCriteria::intersect( $row, $this->campaigns[$key] ) ) {
 							$excluding[] = $this->campaigns[$key]['name'];
+							$result = CampaignCriteria::difference( $result, $this->campaigns[$key] );
 							break;
 						}
 					}
-					$result = CampaignCriteria::difference( $result, $this->campaigns[$key] );
 				}
 
 				if ( $result ) {
