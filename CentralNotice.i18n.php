@@ -474,13 +474,17 @@ This message is preceded by the following message:
 * $1 - the language code for the site (e.g "en")
 * $2 - the project name for the site (e.g. "wikipedia")
 * $3 - the country code (e.g. "US" for the United States, "FR" for France, etc.)
-* $4 - the device class (e.g. "desktop", "OperaMini", "Android")',
+* $4 - the device class (e.g. "desktop", "OperaMini", "Android")
+See also:
+* {{msg-mw|Centralnotice-historical-allocation-description}}',
 	'centralnotice-historical-allocation-description' => 'A description of the criteria used to calculate banner allocations. Parameters:
 * $1 - the language code for the site (e.g "en")
 * $2 - the project name for the site (e.g. "wikipedia")
 * $3 - the country code (e.g. "US" for the United States, "FR" for France, etc.)
 * $4 - the device class (e.g. "desktop", "OperaMini", "Android")
-* $5 - historical snapshot time being analyzed',
+* $5 - historical snapshot time being analyzed
+See also:
+* {{msg-mw|Centralnotice-allocation-description}}',
 	'centralnotice-percentage' => 'Used as column header of the table in [[Special:BannerAllocation]] and [[Special:GlobalAllocation]].',
 	'centralnotice-documentwrite-error' => 'Used as error message shown by JavaScript function <code>alert()</code>.
 
@@ -8737,6 +8741,7 @@ $messages['ja'] = array(
 	'centralnotice-country' => '国',
 	'centralnotice-no-allocation' => 'テンプレートが割り当てられていません。',
 	'centralnotice-allocation-description' => '国 $3 での言語 $1 版のプロジェクト $2 へのデバイス $4 向けテンプレートの割り当て:',
+	'centralnotice-historical-allocation-description' => '国 $3 での言語 $1 版のプロジェクト $2 へのデバイス $4 向けテンプレートの $5 時点の割り当て:',
 	'centralnotice-percentage' => '割合',
 	'centralnotice-documentwrite-error' => 'テンプレート内では document.write() は使用できません。
 詳細は http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。',
@@ -12026,7 +12031,8 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-projects' => 'Projecten',
 	'centralnotice-country' => 'Land',
 	'centralnotice-no-allocation' => 'Geen banners toegewezen.',
-	'centralnotice-allocation-description' => 'Bannertoewijzing voor taaL: $1, project: $2, in land: $3, op apparaat $4',
+	'centralnotice-allocation-description' => 'Bannertoewijzing voor taal: $1, project: $2, in land: $3, op apparaat $4',
+	'centralnotice-historical-allocation-description' => 'Bannertoewijzing voor taal: $1, project: $2, in land: $3, op apparaat $4, per $5',
 	'centralnotice-percentage' => 'Percentage',
 	'centralnotice-documentwrite-error' => '"document.write()" kan niet worden gebruikt binnen een banner.
 Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
@@ -13267,6 +13273,7 @@ $messages['ps'] = array(
  * @author Giro720
  * @author Hamilton Abreu
  * @author Lijealso
+ * @author Luckas
  * @author Malafaya
  * @author MetalBrasil
  * @author Rhaijin
@@ -13284,12 +13291,12 @@ $messages['pt'] = array(
 Também pode ser usado para adicionar avisos novos ou remover antigos.',
 	'centralnotice-query' => 'Modificar avisos actuais',
 	'centralnotice-notice-name' => 'Nome do aviso',
-	'centralnotice-end-date' => 'Data de fim',
+	'centralnotice-end-date' => 'Data de fim', # Fuzzy
 	'centralnotice-enabled' => 'Activo',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-view' => 'Ver',
 	'centralnotice-save-banner' => 'Gravar modelo',
-	'centralnotice-preview' => 'Antevisão',
+	'centralnotice-preview' => 'Antevisão', # Fuzzy
 	'centralnotice-nopreview' => '(Antevisão indisponível)',
 	'centralnotice-add-new' => 'Adicionar um aviso centralizado',
 	'centralnotice-remove' => 'Remover',
@@ -13302,10 +13309,6 @@ Também pode ser usado para adicionar avisos novos ou remover antigos.',
 	'centralnotice-add-template' => 'Adicionar um modelo',
 	'centralnotice-show-notices' => 'Mostrar avisos',
 	'centralnotice-list-templates' => 'Listar modelos',
-	'centralnotice-multiple-projects' => 'Múltiplos ($1)',
-	'centralnotice-multiple-languages' => 'Múltiplas ($1)',
-	'centralnotice-multiple-countries' => 'Múltiplos ($1)',
-	'centralnotice-all-projects' => 'Todos os projetos',
 	'centralnotice-translations' => 'Traduções',
 	'centralnotice-translate-to' => 'Traduzir para',
 	'centralnotice-translate' => 'Traduzir',
@@ -13330,18 +13333,16 @@ Não será adicionado.',
 Não há nada para remover.',
 	'centralnotice-banner-doesnt-exist' => 'O modelo não existe.',
 	'centralnotice-template-still-bound' => 'O modelo ainda está ligado a um aviso.
-Não será removido.',
+Não será removido.', # Fuzzy
 	'centralnotice-template-body' => 'Conteúdo do modelo:',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Ano',
 	'centralnotice-month' => 'Mês',
 	'centralnotice-hours' => 'Hora',
 	'centralnotice-min' => 'Minuto',
-	'centralnotice-project-lang' => 'Língua do projecto',
-	'centralnotice-select' => 'Seleccionar: $1',
-	'centralnotice-top-ten-languages' => 'As 10 línguas de topo',
-	'centralnotice-project-name' => 'Nome do projecto',
-	'centralnotice-start-date' => 'Data de início',
+	'centralnotice-project-lang' => 'Língua do projeto',
+	'centralnotice-project-name' => 'Nome do projeto',
+	'centralnotice-start-date' => 'Data de início', # Fuzzy
 	'centralnotice-start-time' => 'Hora de início (UTC)',
 	'centralnotice-end-time' => 'Hora de fim (UTC)',
 	'centralnotice-assigned-templates' => 'Modelos atribuídos',
@@ -13403,7 +13404,7 @@ Adicione um, abaixo.',
 	'centralnotice-projects' => 'Projetos',
 	'centralnotice-country' => 'País',
 	'centralnotice-no-allocation' => 'Não há modelos atribuídos.',
-	'centralnotice-allocation-description' => 'Atribuição de modelos para $1.$2 em $3:',
+	'centralnotice-allocation-description' => 'Atribuição de modelos para $1.$2 em $3:', # Fuzzy
 	'centralnotice-percentage' => 'Percentagem',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
@@ -18696,6 +18697,7 @@ Hãy thêm vào!',
 	'centralnotice-country' => 'Quốc gia',
 	'centralnotice-no-allocation' => 'Chưa có phân phối bảng nào.',
 	'centralnotice-allocation-description' => 'Phân phối bảng cho ngôn ngữ $1, dự án $2, tại quốc gia $3, trên thiết bị $4',
+	'centralnotice-historical-allocation-description' => 'Đặt biểu ngữ ngôn ngữ: $1, dự án: $2, ở quốc gia: $3, trên thiết bị $4, ở dạng $5',
 	'centralnotice-percentage' => 'Tỷ lệ',
 	'centralnotice-documentwrite-error' => 'Không có thể sử dụng document.write() trong bảng.
 Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
