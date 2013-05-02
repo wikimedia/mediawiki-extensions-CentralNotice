@@ -379,7 +379,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'cssclass' => 'separate-form-element',
 		);
 
-		$assignedDevices = CNDeviceTarget::getDevicesAssociatedWithBanner( $banner->getId() );
+		$assignedDevices = array_values( CNDeviceTarget::getDevicesAssociatedWithBanner( $banner->getId() ) );
 		$availableDevices = array();
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
 			$header = $value[ 'header' ];
@@ -737,7 +737,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$formData[ 'create-landingpage-link' ],
 			$formData[ 'landing-pages' ],
 			'',
-			$prioLang
+			$prioLang,
+			$formData[ 'device-classes' ]
 		);
 
 		return null;

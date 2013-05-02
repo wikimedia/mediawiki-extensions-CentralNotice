@@ -142,15 +142,29 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 		'jquery.cookie',
 	),
 );
-$wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = $wgResourceModules[ 'ext.centralNotice.bannerController' ] + array(
-	'targets' => 'mobile',
+
+$wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'position'      => 'top',
+	'targets'       => 'mobile',
+	'scripts'       => array( 'ext.centralNotice.bannerController/mobile/device.js' )
 );
-$wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ][ 'dependencies' ][] = 'mobile.xdevice.detect.scripts';
+$wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = array_merge_recursive(
+	array(
+		'targets' => 'mobile',
+		'dependencies' => 'ext.centralNotice.bannerController.mobiledevice'
+	),
+	$wgResourceModules[ 'ext.centralNotice.bannerController' ]
+);
 
 function efEnableMobileModules( $out, $mode ) {
-	$name = 'ext.centralNotice.bannerController.mobile';
+	$names = array(
+		'ext.centralNotice.bannerController.mobiledevice',
+		'ext.centralNotice.bannerController.mobile',
+	);
 	if ( $mode !== 'stable' ) {
-		$out->addModules( $name );
+		$out->addModules( $names );
 	}
 	return true;
 }

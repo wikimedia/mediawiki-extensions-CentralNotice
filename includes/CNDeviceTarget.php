@@ -7,9 +7,11 @@ class CNDeviceTarget {
 	/**
 	 * Get a listing of all known targetable devices.
 	 *
+	 * @param bool $flip If true will return {<header string value>: {'id': <id>, 'label': <wiki text label>}}
+	 *
 	 * @return array Array of devices in format {id: {'header': <internal string value>, 'label': <wiki text label>}}
 	 */
-	public static function getAvailableDevices() {
+	public static function getAvailableDevices( $flip = false ) {
 		global $wgCentralDBname;
 		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 
@@ -21,10 +23,18 @@ class CNDeviceTarget {
 		);
 
 		foreach( $res as $row ) {
-			$devices[intval( $row->dev_id )] = array(
-				'header' => $row->dev_name,
-				'label' => $row->dev_display_label,
-			);
+			if ( $flip ) {
+				$devices[ $row->dev_name ] = array(
+					'label' => $row->dev_display_label,
+					'id' => intval( $row->dev_id ),
+				);
+			} else {
+				$devices[ intval( $row->dev_id ) ] = array(
+					'header' => $row->dev_name,
+					'label' => $row->dev_display_label,
+				);
+			}
+
 		}
 
 		return $devices;
@@ -47,15 +57,16 @@ class CNDeviceTarget {
 				 'tdev' => 'cn_template_devices',
 				 'devices' => 'cn_known_devices'
 			),
-			array( 'dev_name' ),
+			array( 'devices.dev_id', 'dev_name' ),
 			array(
 				 'tdev.tmp_id' => $bannerId,
 				 'tdev.dev_id = devices.dev_id'
-			)
+			),
+			__METHOD__
 		);
 
 		foreach( $res as $row ) {
-			$devices[] = $row->dev_name;
+			$devices[ intval( $row->dev_id ) ] = $row->dev_name;
 		}
 
 		return $devices;
@@ -78,5 +89,38 @@ class CNDeviceTarget {
 			),
 			__METHOD__
 		);
+	}
+
+	/**
+	 * Sets the associated devices with a banner
+	 *
+	 * @param int    $bannerId   Banner ID to modify
+	 * @param string $newDevices Names of devices that should be associated
+	 */
+	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
+		$db = CNDatabase::getDb();
+
+		$knownDevices = CNDeviceTarget::getAvailableDevices( true );
+		$oldDevices = CNDeviceTarget::getDevicesAssociatedWithBanner( $bannerId );
+
+		// Add newly assigned countries
+		$modifyArray = array();
+		$addDevices = array_diff( $newDevices, $oldDevices );
+		foreach ( $addDevices as $device ) {
+			$modifyArray[ ] = array( 'tmp_id' => $bannerId, 'dev_id' => $knownDevices[ $device ][ 'id' ] );
+		}
+		$db->insert( 'cn_template_devices', $modifyArray, __METHOD__, array( 'IGNORE' ) );
+
+		// Remove disassociated countries
+		$modifyArray = array();
+		$removeDevices = array_diff( $oldDevices, $newDevices );
+		if ( $removeDevices ) {
+			foreach( $removeDevices as $device ) {
+				$modifyArray[] = $knownDevices[ $device ][ 'id' ];
+			}
+			$db->delete( 'cn_template_devices',
+				array( 'tmp_id' => $bannerId, 'dev_id' => $modifyArray )
+			);
+		}
 	}
 }

@@ -91,7 +91,7 @@
 				db: mw.config.get( 'wgDBname' ),
 				project: mw.config.get( 'wgNoticeProject' ),
 				country: mw.centralNotice.data.country,
-				device: mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' )
+				device: mw.centralNotice.data.device
 			};
 
 			$.ajax({
@@ -109,7 +109,7 @@
 				anonymous: mw.config.get( 'wgUserName' ) === null,
 				bucket: mw.centralNotice.data.bucket,
 				country: mw.centralNotice.data.country,
-				device: mw.config.get( 'wgMobileDeviceName', 'desktop' ),
+				device: mw.centralNotice.data.device,
 				slot: Math.floor( Math.random() * RAND_MAX ) + 1
 			};
 			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) + '?' + $.param( bannerDispatchQuery );
@@ -179,13 +179,14 @@
 			}
 			mw.centralNotice.alreadyRan = true;
 
+			// === Attempt to load parameters from the query string ===
+			mw.centralNotice.loadQueryStringVariables();
+
 			// === Initialize things that don't come from MW itself ===
 			mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
 			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
 			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
-
-			// === Attempt to load parameters from the query string ===
-			mw.centralNotice.loadQueryStringVariables();
+			mw.centralNotice.data.device = mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' );
 
 			// === Do not actually load a banner on a special page ===
 			//     But we keep this after the above initialization for CentralNotice pages
@@ -242,7 +243,7 @@
 			db: mw.config.get( 'wgDBname' ),
 			bucket: mw.centralNotice.data.bucket,
 			anonymous: mw.config.get( 'wgUserName' ) === null,
-			device: mw.config.get( 'wgMobileDeviceName', 'desktop' )
+			device: mw.centralNotice.data.device
 		};
 
 		// This gets prepended to the impressionData at the end

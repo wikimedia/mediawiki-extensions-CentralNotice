@@ -736,7 +736,7 @@ class Banner {
 	 * Update a banner
 	 */
 	function editTemplate( $user, $body, $displayAnon, $displayAccount, $fundraising,
-	                               $autolink, $landingPages, $mixins, $priorityLangs
+		$autolink, $landingPages, $mixins, $priorityLangs, $devices
 	) {
 		global $wgCentralDBname;
 		if ( !Banner::bannerExists( $this->name ) ) {
@@ -768,6 +768,7 @@ class Banner {
 		}
 
 		$this->setMixins( explode( ",", $mixins ) );
+		CNDeviceTarget::setBannerDeviceTargets( $this->getId(), $devices );
 
 		Banner::updateTranslationMetadata( $pageResult, $this->name, $body, $priorityLangs );
 
