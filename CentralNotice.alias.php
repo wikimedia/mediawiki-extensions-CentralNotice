@@ -317,6 +317,7 @@ $specialPageAliases['vi'] = array(
 	'BannerAllocation' => array( 'Phân_bố_bảng' ),
 	'BannerController' => array( 'Điều_khiển_bảng' ),
 	'BannerLoader' => array( 'Tải_bảng' ),
+	'BannerRandom' => array( 'Bảng_ngẫu_nhiên' ),
 	'HideBanners' => array( 'Ẩn_bảng' ),
 );
 
