@@ -32,4 +32,11 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 			$this->campaign = $banner['campaign'];
 		}
 	}
+
+	function sendHeaders() {
+		global $wgJsMimeType, $wgNoticeBannerMaxAge;
+		header( "Content-type: $wgJsMimeType; charset=utf-8" );
+		// No client-side banner caching so we get all impressions
+		header( "Cache-Control: public, s-maxage={$wgNoticeBannerMaxAge}, max-age=0" );
+	}
 }

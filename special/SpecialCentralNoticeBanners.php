@@ -58,10 +58,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );
 		$this->getOutput()->addWikiMsg( 'centralnotice-summary' );
 
-		$this->getOutput()->addHTML(
-			Html::element( 'div', array( 'id' => 'cn-js-error-warn' ), wfMessage( 'centralnotice-banner-bad-js' ) )
-		);
-
 		// Now figure out wth to display
 		$parts = explode( '/', $page );
 		$action = ( isset( $parts[0] ) && $parts[0] ) ? $parts[0]: 'list';
@@ -316,13 +312,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			return;
 		}
 
-		// Create a banner preview
-		$banner = new Banner( $this->bannerName );
-		$preview = new BannerRenderer( $this->getContext(), $banner );
-		$this->getOutput()->addHTML(
-			$preview->previewFieldSet()
-		);
-
 		// Recreate the form because something could have changed
 		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
 
@@ -348,6 +337,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = array();
+
+		/* --- Banner Preview Section --- */
+		$formDescriptor[ 'preview' ] = array(
+			'section' => 'preview',
+			'class' => 'HTMLCentralNoticeBanner',
+			'banner' => $this->bannerName,
+			'language' => $this->getLanguage()->getCode(),
+		);
 
 		/* --- Banner Settings --- */
 		// TODO: Make this far more flexible with the option for arbitrary banner classes

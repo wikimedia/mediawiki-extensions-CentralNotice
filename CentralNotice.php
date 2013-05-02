@@ -121,6 +121,13 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.bannerEditor' ] = array(
 		'centralnotice-delete-banner-cancel',
 	)
 );
+$wgResourceModules[ 'ext.centralNotice.adminUi.bannerPreview' ] = array(
+	'localBasePath' => $dir . '/modules/ext.centralNotice.adminUi.bannerPreview',
+	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.adminUi.bannerPreview',
+	'styles'        => 'bannerPreview.css',
+	'scripts'       => 'bannerPreview.js',
+	'dependencies'  => 'ext.centralNotice.bannerController',
+);
 $wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
 	'localBasePath' => $dir . '/modules',
 	'remoteExtPath' => 'CentralNotice/modules',
@@ -339,6 +346,7 @@ function efCentralNoticeSetup() {
 	// Register files
 	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
+	$wgAutoloadClasses[ 'SpecialBannerPreview' ] = $specialDir . 'SpecialBannerPreview.php';
 	$wgAutoloadClasses[ 'SpecialBannerRandom' ] = $specialDir . 'SpecialBannerRandom.php';
 	$wgAutoloadClasses[ 'SpecialRecordImpression' ] = $specialDir . 'SpecialRecordImpression.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
@@ -388,6 +396,7 @@ function efCentralNoticeSetup() {
 
 	// Register special pages
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
+	$wgSpecialPages[ 'BannerPreview' ] = 'SpecialBannerPreview';
 	$wgSpecialPages[ 'BannerRandom' ] = 'SpecialBannerRandom';
 	$wgSpecialPages[ 'RecordImpression' ] = 'SpecialRecordImpression';
 	$wgSpecialPages[ 'HideBanners' ] = 'SpecialHideBanners';

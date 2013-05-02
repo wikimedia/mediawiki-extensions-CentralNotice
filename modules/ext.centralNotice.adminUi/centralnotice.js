@@ -85,6 +85,14 @@ window.validateBannerForm = function( form ) {
 	return true;
 };
 
+window.addEventListener( 'message', receiveMessage, false );
+function receiveMessage( event ) {
+	var remoteData = JSON.parse( event.data );
+	if ( remoteData.banner && remoteData.height ) {
+		$( "#cn-banner-preview-" + remoteData.banner + " iframe" ).height( remoteData.height );
+	}
+}
+
 jQuery(document).ready( function ( $ ) {
 	var bucketCheck, buckets;
 

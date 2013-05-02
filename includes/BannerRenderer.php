@@ -54,35 +54,38 @@ class BannerRenderer {
 
 	/**
 	 * Render the banner as an html fieldset
-	 *
-	 * TODO js refresh, iframe
+	 * This actually renders a fieldset with an iframe inside of it
 	 */
 	function previewFieldSet() {
-		$preview = "";
-		try {
-			$preview = $this->toHtml();
-		} catch ( SpecialBannerLoaderException $e ) {
-			$preview = $this->context->msg( 'centralnotice-nopreview' )->text();
-		}
-		$lang = $this->context->getLanguage()->getCode();
-
-		$label = $this->context->msg( 'centralnotice-preview', $lang )->text();
-
-		/* TODO: enhanced preview modes
-		//FIXME: pull project and language from an associated campaign...
-		$live_target = "wikipedia:{$lang}:Special:Random";
-		$preview .= "<br>" . Linker::link(
-			Title::newFromText( $live_target ),
-			$context->msg( 'centralnotice-live-page' )->text(),
-			array(),
-			array( 'banner' => $this->name )
+		$previewUrl = SpecialPage::getTitleFor( 'BannerPreview' )->getLocalURL(
+			'',
+			array(
+				 'banner' => $this->banner->getName(),
+				 'uselang' => $this->allocContext->getLanguage(),
+				 'force' => '1'
+			)
 		);
-		*/
+		$preview = Xml::tags(
+			'iframe',
+			array(
+				 'src' => $previewUrl,
+				 'width' => "100%",
+				 'seamless' => 'seamless',
+				 'frameborder' => 0,
+			),
+			wfMessage( 'centralnotice-noiframe' )
+		);
+
+		$lang = $this->context->getLanguage()->getCode();
+		$label = $this->context->msg( 'centralnotice-preview', $lang )->text();
 
 		return Xml::fieldset(
 			$label,
 			$preview,
-			array( 'class' => 'cn-bannerpreview' )
+			array(
+				 'class' => 'cn-bannerpreview',
+				 'id' => Sanitizer::escapeId( "cn-banner-preview-{$this->banner->getName()}" ),
+			)
 		);
 	}
 

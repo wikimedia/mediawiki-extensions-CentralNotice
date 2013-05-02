@@ -38,15 +38,31 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 	public function getInputHTML( $value ) {
 		global $wgOut;
 
-		$context = new DerivativeContext( $wgOut->getContext() );
+		$bannerName = $this->mParams['banner'];
 		if ( array_key_exists( 'language', $this->mParams ) ) {
-			$context->setLanguage( $this->mParams['language'] );
+			$language = $this->mParams['language'];
+		} else {
+			$language = $wgOut->getContext()->getLanguage()->getCode();
 		}
 
-		$bannerName = $this->mParams['banner'];
-		$banner = new Banner( $bannerName );
-		$renderer = new BannerRenderer( $context, $banner );
-		$preview = $renderer->toHtml();
+		$previewUrl = SpecialPage::getTitleFor( 'BannerPreview' )->getLocalURL(
+			'',
+			array(
+				'banner' => $bannerName,
+				'uselang' => $language,
+				'force' => '1'
+			)
+		);
+		$preview = Xml::tags(
+			'iframe',
+			array(
+				'src' => $previewUrl,
+				'width' => "100%",
+				'seamless' => 'seamless',
+				'frameborder' => 0,
+			),
+			$this->msg( 'centralnotice-noiframe' )
+		);
 
 		return Xml::tags(
 			'div',

@@ -229,6 +229,7 @@ Add one below.',
 	'centralnotice-delete-banner-cancel' => 'Cancel',
 
 	'centralnotice-banner-bad-js' => 'A banner on this page has invalid JavaScript code and is preventing CentralNotice from initializing correctly. Please fix the banner.',
+	'centralnotice-noiframe' => 'This element cannot be displayed without iframes.',
 );
 
 /** Message documentation (Message documentation)
@@ -625,6 +626,7 @@ Related messages:
 {{Identical|Anonymous}}',
 	'centralnotice-user-role-logged-in' => 'Label for the logged-in user role',
 	'centralnotice-banner-bad-js' => 'Text to display when CentralNotice fails to initialize due to broken JavaScript code present in a banner.',
+	'centralnotice-noiframe' => 'Inform the user that banner previewing has failed because their browser does not support iframes.',
 );
 
 /** Afrikaans (Afrikaans)
@@ -4091,7 +4093,7 @@ Füge eine hinzu.',
 	'centralnotice-country' => 'Staat',
 	'centralnotice-no-allocation' => 'Es wurden keine Vorlagen angeordnet.',
 	'centralnotice-allocation-description' => 'Vorlagenanordnung für Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät $4',
-	'centralnotice-historical-allocation-description' => 'Vorlagenanordnung für die Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät: $4, um: $5',
+	'centralnotice-historical-allocation-description' => 'Vorlagenanordnung für die Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät $4, Stand $5',
 	'centralnotice-percentage' => 'Prozentsatz',
 	'centralnotice-documentwrite-error' => 'document.write() kann nicht innerhalb einer Vorlage verwendet werden.
 Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.',

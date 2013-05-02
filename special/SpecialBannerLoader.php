@@ -76,9 +76,15 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 */
 	function sendHeaders() {
 		global $wgJsMimeType, $wgNoticeBannerMaxAge;
+
+		// If logged in users are previewing banners, give them no delay
+		// but otherwise use the standard cache period so that we don't
+		// open too big of a DDoS hole.
+		$bannerAge = ( $this->getUser()->isLoggedIn() ) ? 0 : $wgNoticeBannerMaxAge;
+
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 		// No client-side banner caching so we get all impressions
-		header( "Cache-Control: public, s-maxage=$wgNoticeBannerMaxAge, max-age=0" );
+		header( "Cache-Control: public, s-maxage=$bannerAge, max-age=0" );
 	}
 
 	/**

@@ -1,4 +1,29 @@
-/* global Geo */
+/**
+ * JS that is loaded onto every MW page to load banners.
+ *
+ * Requires the Geo global object; e.g. from geoiplookup.wikimedia.org
+ *
+ * This file is part of the CentralNotice Extension to MediaWiki
+ * https://www.mediawiki.org/wiki/Extension:CentralNotice
+ *
+ * @section LICENSE
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 ( function ( $, mw ) {
 
 	var rPlus = /\+/g;
@@ -28,10 +53,20 @@
 		bannerData: {},
 
 		/**
+		 * Contains promise objects that other things can hook into
+		 */
+		events: {},
+
+		/**
 		 * State variable used in initialize() to prevent it from running more than once
 		 * @private
 		 */
 		alreadyRan: false,
+
+		/**
+		 * Deferred objects that link into promises in mw.centralNotice.events
+		 */
+		deferredObjs: {},
 
 		/** -- Functions! -- **/
 		loadBanner: function () {
@@ -147,6 +182,7 @@
 			// === Initialize things that don't come from MW itself ===
 			mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
 			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
+			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
 
 			// === Attempt to load parameters from the query string ===
 			mw.centralNotice.loadQueryStringVariables();
@@ -154,9 +190,13 @@
 			// === Do not actually load a banner on a special page ===
 			//     But we keep this after the above initialization for CentralNotice pages
 			//     that do banner previews.
-			if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
+			if ( mw.config.get( 'wgNamespaceNumber' ) == -1 && !mw.centralNotice.isPreviewFrame ) {
 				return;
 			}
+
+			// === Create Deferred and Promise Objects ===
+			mw.centralNotice.deferredObjs.bannerLoaded = $.Deferred();
+			mw.centralNotice.events.bannerLoaded = mw.centralNotice.deferredObjs.bannerLoaded.promise();
 
 			// === Final prep to loading banner ===
 			// Add the CentralNotice div so that insert banner has something to latch on to.
@@ -242,6 +282,7 @@
 				}
 			} else {
 				// All conditions fulfilled, inject the banner
+				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;
 				$( 'div#centralNotice' )
 					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.bannerType ) )
 					.prepend( bannerJson.bannerHtml );
@@ -291,9 +332,11 @@
 		}
 
 		// Record whatever impression we made
+		impressionResultData = $.extend( impressionResultData, impressionData );
 		if ( !mw.centralNotice.data.testing ) {
-			mw.centralNotice.recordImpression($.extend( impressionResultData, impressionData ) );
+			mw.centralNotice.recordImpression( impressionResultData );
 		}
+		mw.centralNotice.deferredObjs.bannerLoaded.resolve( impressionResultData );
 	};
 
 	// Function for hiding banners when the user clicks the close button
