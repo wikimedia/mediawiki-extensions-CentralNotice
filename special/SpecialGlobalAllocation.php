@@ -534,7 +534,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	function getBannerAllocationsVariantRow( $banner, $variesAnon, $variesBucket, $isAnon, $bucket ) {
 		$htmlOut = '';
 
-		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
+		$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/$banner" );
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
 		// Row begin

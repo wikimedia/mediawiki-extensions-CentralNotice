@@ -21,7 +21,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$banner = $this->getRequest()->getText( 'template' );
 
 			$this->getOutput()->redirect(
-				Title::makeTitle( NS_SPECIAL, "CentralNoticeBanners/view/$banner" )->
+				Title::makeTitle( NS_SPECIAL, "CentralNoticeBanners/edit/$banner" )->
 					getCanonicalURL(),
 				301
 			);
