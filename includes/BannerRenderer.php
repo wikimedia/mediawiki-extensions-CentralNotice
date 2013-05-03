@@ -46,10 +46,9 @@ class BannerRenderer {
 
 	function linkTo() {
 		return Linker::link(
-			SpecialPage::getTitleFor( 'NoticeTemplate', 'view' ),
+			SpecialPage::getTitleFor( 'CentralNoticeBanners', "Edit/{$this->banner->getName()}" ),
 			htmlspecialchars( $this->banner->getName() ),
-			array( 'class' => 'cn-banner-title' ),
-			array( 'template' => $this->banner->getName() )
+			array( 'class' => 'cn-banner-title' )
 		);
 	}
 

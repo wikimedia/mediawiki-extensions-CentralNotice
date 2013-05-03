@@ -25,16 +25,13 @@ class CentralNotice extends SpecialPage {
 		$request = $this->getRequest();
 
 		// Output ResourceLoader module for styling and javascript functions
-		$out->addModules( 'ext.centralNotice.interface' );
+		$out->addModules( 'ext.centralNotice.adminUi' );
 
 		// Check permissions
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
-
-		// Show header
-		$this->printHeader( $sub );
 
 		// Begin Campaigns tab content
 		$out->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
@@ -187,33 +184,6 @@ class CentralNotice extends SpecialPage {
 
 		// End Campaigns tab content
 		$out->addHTML( Xml::closeElement( 'div' ) );
-	}
-
-	/**
-	 * Output the tabs for the different CentralNotice interfaces (Allocation, Logs, etc.)
-	 */
-	protected function printHeader() {
-		$pages = array(
-			'CentralNotice'     => wfMessage( 'centralnotice-notices' )->text(),
-			'NoticeTemplate'    => wfMessage( 'centralnotice-templates' )->text(),
-			'BannerAllocation'  => wfMessage( 'centralnotice-allocation' )->text(),
-			'GlobalAllocation'  => wfMessage( 'centralnotice-global-allocation' )->text(),
-			'CentralNoticeLogs' => wfMessage( 'centralnotice-logs' )->text()
-		);
-		$htmlOut = Xml::openElement( 'ul', array( 'id' => 'preftoc' ) );
-		foreach ( $pages as $page => $msg ) {
-			$title = SpecialPage::getTitleFor( $page );
-			$attribs = array();
-			if ( $this->getTitle()->equals( $title ) ) {
-				$attribs[ 'class' ] = 'selected';
-			}
-			$htmlOut .= Xml::tags( 'li', $attribs,
-				Linker::link( $title, htmlspecialchars( $msg ) )
-			);
-		}
-		$htmlOut .= Xml::closeElement( 'ul' );
-
-		$this->getOutput()->addHTML( $htmlOut );
 	}
 
 	/**
@@ -1386,10 +1356,10 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @return string Space delimited string
 	 */
-	protected function sanitizeSearchTerms( $terms ) {
+	public static function sanitizeSearchTerms( $terms ) {
 		$retval = ' '; // The space is important... it gets trimmed later
 
-		foreach ( preg_split( '/\s/', $terms ) as $term ) {
+		foreach ( preg_split( '/\s+/', $terms ) as $term ) {
 			preg_match( '/[0-9a-zA-Z_\-]+/', $term, $matches );
 			if ( $matches ) {
 				$retval .= $matches[ 0 ];
@@ -1398,6 +1368,68 @@ class CentralNotice extends SpecialPage {
 		}
 
 		return trim( $retval );
+	}
+
+	/**
+	 * Adds CentralNotice specific navigation tabs to the UI.
+	 * Implementation of SkinTemplateNavigation::SpecialPage hook.
+	 *
+	 * @param Skin  $skin Reference to the Skin object
+	 * @param array $tabs Any current skin tabs
+	 *
+	 * @return boolean
+	 */
+	public static function addNavigationTabs( Skin $skin, array &$tabs ) {
+		global $wgNoticeTabifyPages;
+
+		$title = $skin->getTitle();
+		list( $alias, $sub ) = SpecialPageFactory::resolveAlias( $title->getText() );
+
+		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
+			return true;
+		}
+
+		// Clear the special page tab that's there already
+		$tabs['namespaces'] = array();
+
+		// Now add our own
+		foreach ( $wgNoticeTabifyPages as $page => $keys ) {
+			$tabs[ $keys[ 'type' ] ][ $page ] = array(
+				'text' => wfMessage( $keys[ 'message' ] ),
+				'href' => SpecialPage::getTitleFor( $page )->getFullURL(),
+				'class' => ( $alias === $page ) ? 'selected' : '',
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Loads a CentralNotice variable from session data.
+	 *
+	 * @param string $variable Name of the variable
+	 * @param object $default Default value of the variable
+	 *
+	 * @return object Stored variable or default
+	 */
+	public function getCNSessionVar( $variable, $default = null ) {
+		$val = $this->getRequest()->getSessionData( "centralnotice-$variable" );
+		if ( is_null( $val ) ) {
+			$val = $default;
+		}
+
+		return $val;
+	}
+
+	/**
+	 * Sets a CentralNotice session variable. Note that this will fail silently if a
+	 * session does not exist for the user.
+	 *
+	 * @param string $variable Name of the variable
+	 * @param object $value    Value for the variable
+	 */
+	public function setCNSessionVar( $variable, $value ) {
+		$this->getRequest()->setSessionData( "centralnotice-{$variable}", $value );
 	}
 
 	public function listProjects( $projects ) {

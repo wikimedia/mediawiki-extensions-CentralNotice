@@ -1,3 +1,8 @@
+/**
+ * CentralNotice Administrative UI - Common Functions
+ */
+window.mw.centralNotice.adminUi = {};
+
 // Collapse and uncollapse detailed view for an individual log entry
 window.toggleLogDisplay = function ( logId ) {
 	var thisCollapsed = document.getElementById( 'cn-collapsed-' + logId );

@@ -1,0 +1,83 @@
+/**
+ * Styles specific to Special:CentralNoticeBanners
+ *
+ * This file is part of the CentralNotice Extension to MediaWiki
+ * https://www.mediawiki.org/wiki/Extension:CentralNotice
+ *
+ * @section LICENSE
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+/* === Banner Manager List Form === */
+/* --- General Form Elements --- */
+/* Restyle the fieldsets to make them less annoying */
+#cn-banner-manager fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+#cn-banner-manager legend {
+	display: none;
+}
+
+/* --- Banner management header --- */
+/* General header */
+#cn-banner-manager #cn-formsection-header {
+	padding: 0.5em;
+	background-color: #F9F9F9;
+	border: 1px solid #2F6FAB;
+}
+
+/* Style the search sub form */
+#cn-formsection-header-banner-search,
+#mw-htmlform-banner-search .mw-htmlform-field-HTMLSubmitField {
+	float: right;
+}
+#mw-htmlform-banner-search .mw-htmlform-field-HTMLTextField {
+	float: left;
+}
+#mw-input-wpbannerNameLike {
+	width: 17em;
+}
+
+/* Bulk management options */
+#cn-formsection-header-banner-bulk-manage {
+	float: left;
+}
+#cn-formsection-header-banner-bulk-manage div {
+	display: inline;
+}
+
+/* One off actions */
+fieldset #cn-formsection-header-one-off {
+	padding-left: 1em;
+}
+
+/* --- Pager Nav --- */
+.cn-banner-list-pager-nav {
+	margin: 0.3em 0.8em 0 0;
+	text-align: right;
+}
+
+/* --- Add banner dialog --- */
+#cn-formsection-addBanner {
+	display: none;
+}
+.ui-dialog-content legend {
+	display: none;
+}

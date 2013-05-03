@@ -91,7 +91,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * Without filters, this will display the allocation of all active banners.
 	 */
 	public function execute( $sub ) {
-		global $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;
+		global $wgNoticeProjects, $wgLanguageCode;
 		$out = $this->getOutput();
 
 		$this->getRequestParams();
@@ -101,7 +101,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		// Output ResourceLoader module for styling and javascript functions
 		$out->addModules( array(
-			'ext.centralNotice.interface',
+			'ext.centralNotice.adminUi',
 		) );
 
 		// Initialize error variable
@@ -109,9 +109,6 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		// Show summary
 		$out->addWikiMsg( 'centralnotice-summary' );
-
-		// Show header
-		$this->printHeader();
 
 		// Begin Banners tab content
 		$out->addHTML( Html::openElement( 'div', array( 'id' => 'preferences' ) ) );

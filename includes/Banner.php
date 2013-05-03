@@ -29,6 +29,16 @@ class Banner {
 		return $curRev->getText();
 	}
 
+	/**
+	 * Returns an array of Title objects that have been included as templates
+	 * in this banner.
+	 *
+	 * @return Array of Title
+	 */
+	function getIncludedTemplates() {
+		return $this->getTitle()->getTemplateLinksFrom();
+	}
+
 	function getId() {
 		if ( !$this->id ) {
 			$this->id = Banner::getTemplateId( $this->name );
@@ -322,6 +332,8 @@ class Banner {
 				}
 				$banner['prioritylangs'] = explode( ',', $langs );
 			}
+		} else {
+			throw new MWException( "Banner doesn't exist!" );
 		}
 
 		return $banner;
@@ -757,5 +769,17 @@ class Banner {
 		Banner::updateTranslationMetadata( $pageResult, $this->name, $body, $priorityLangs );
 
 		$this->logBannerChange( 'modified', $user, $initialBannerSettings );
+	}
+
+	/**
+	 * Validation function for banner names. Will return true iff the name fits
+	 * the generic format of letters, numbers, and dashes.
+	 *
+	 * @param string $name The name to check
+	 *
+	 * @return bool True if valid
+	 */
+	static function isValidBannerName( $name ) {
+		return preg_match( '/^[A-Za-z0-9_]+$/', $name );
 	}
 }

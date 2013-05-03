@@ -27,7 +27,7 @@ It can also be used to add or remove old notices.',
 	'centralnotice-enabled' => 'Enabled',
 	'centralnotice-modify' => 'Submit',
 	'centralnotice-view' => 'View',
-	'centralnotice-save-banner' => 'Save banner',
+	'centralnotice-save-banner' => 'Save',
 	'centralnotice-preview' => 'Preview ($1)',
 	'centralnotice-nopreview' => '(Preview not available)',
 	'centralnotice-add-new' => 'Add a new campaign',
@@ -37,6 +37,8 @@ It can also be used to add or remove old notices.',
 	'centralnotice-manage-templates' => 'Manage banners',
 	'centralnotice-add' => 'Add',
 	'centralnotice-add-notice' => 'Add a campaign',
+	'centralnotice-add-notice-button' => 'Create',
+	'centralnotice-add-notice-cancel-button' => 'Cancel',
 	'centralnotice-edit-notice' => 'Edit campaign',
 	'centralnotice-add-template' => 'Add a banner',
 	'centralnotice-show-notices' => 'Show campaigns',
@@ -100,7 +102,7 @@ Not adding.',
 Not updating.',
 	'centralnotice-null-string' => 'Cannot add a null string.
 Not adding.',
-	'centralnotice-confirm-delete' => 'Are you sure you want to delete this item?
+	'centralnotice-confirm-delete' => 'Are you sure you want to delete the selected item(s)?
 This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No campaigns exist.
 Add one below.',
@@ -115,13 +117,14 @@ Add one below.',
 	'centralnotice-clone' => 'Clone',
 	'centralnotice-clone-notice' => 'Create a copy of the banner',
 	'centralnotice-clone-name' => 'Name:',
-	'centralnotice-preview-all-template-translations' => 'Preview all available translations of banner',
+	'centralnotice-clone-cancel' => 'Cancel',
+	'centralnotice-preview-all-template-translations' => 'Preview all approved translations',
 	'centralnotice-insert' => 'Insert: $1',
 	'centralnotice-close-button' => 'Close button',
 	'centralnotice-close-title' => 'Close',
 	'centralnotice-translate-button' => 'Help translate link',
 	'centralnotice-donate-button' => 'Donate button',
-	'centralnotice-banner-display' => 'Display to:',
+	'centralnotice-banner-display' => 'Display to',
 	'centralnotice-banner-anonymous' => 'Anonymous users',
 	'centralnotice-banner-logged-in' => 'Logged in users',
 	'centralnotice-banner-type' => 'Banner type:',
@@ -129,8 +132,9 @@ Add one below.',
 	'centralnotice-banner-collapsible' => 'Collapsible',
 	'centralnotice-banner-fundraising' => 'This is a fundraising banner',
 	'centralnotice-banner-autolink' => 'Automatically create landing page link',
-	'centralnotice-banner-autolink-help' => 'Create an anchor tag in the banner body with $1 and enter one or more landing pages below, for example, $2. The link will be constructed automatically whenever the banner is viewed.',
-	'centralnotice-banner-landing-pages' => 'Landing pages (comma-separated):',
+	'centralnotice-banner-autolink-help' => 'When enabled CentralNotice will automatically create a localized link to $3 with a landing page selected at random. There must be an anchor tag with $1 in the banner body.',
+	'centralnotice-banner-landing-pages' => 'Landing pages (comma-separated)',
+	'centralnotice-banner-landing-pages-default' => 'e.g. JimmyAppeal01',
 	'centralnotice-banner-mixins' => 'Mixins (comma-separated):',
 	'centralnotice-geo' => 'Geotargeted',
 	'centralnotice-countries' => 'Countries',
@@ -179,7 +183,7 @@ Add one below.',
 	'centralnotice-apply-filters' => 'Apply filters',
 	'centralnotice-clear-filters' => 'Clear filters',
 	'centralnotice-banner-messages' => 'Banner messages',
-	'centralnotice-filter-template-prompt' => 'Banner name contains:',
+	'centralnotice-filter-template-prompt' => 'Filter banners (e.g. Jimmy 2008)',
 	'centralnotice-filter-template-submit' => 'Apply filter',
 	'centralnotice-filter-template-banner' => 'Filter banners',
 	'centralnotice-priority-low' => 'low',
@@ -200,11 +204,31 @@ Add one below.',
 	'centralnotice-bucket-letter' => 'Bucket "$1"',
 	'centralnotice-devicetype-desktop' => 'Desktop Computer',
 	'centralnotice-all' => 'All',
+	'centralnotice-generic-error' => 'You do not have the correct permissions to perform the requested action or the action itself was invalid.',
+	'centralnotice-banner-name-error' => 'Invalid banner name provided. Valid names contain only alpha-numeric and underscore characters.',
 	'centralnotice-all-except' => 'All except $1',
 	'centralnotice-excluding-list' => '$1 (excluding $2)',
 	'centralnotice-user-role' => 'User role',
 	'centralnotice-user-role-anonymous' => 'Anonymous',
 	'centralnotice-user-role-logged-in' => 'Logged-in',
+	'centralnotice-banner-messages' => 'Translatable banner messages',
+	'centralnotice-banner-class' => 'Class',
+	'centralnotice-banner-class-desc' => 'Banners of a specific class share tracking variables and group settings (e.g. hide cookies and impression counts.)',
+	'centralnotice-banner-class-generic' => 'Generic',
+	'centralnotice-banner-class-fundraising' => 'Fundraising',
+	'centralnotice-templates-included' => 'Included templates',
+
+	'centralnotice-archive-banner' => 'Archive',
+	'centralnotice-archive-banner-title' => 'Archive {{PLURAL:$1|banner|banners}}?',
+	'centralnotice-archive-banner-confirm' => 'Archival expands all included templates and sets page protection. This is not an easy action to reverse.',
+	'centralnotice-archive-banner-cancel' => 'Cancel',
+
+	'centralnotice-delete-banner' => 'Delete',
+	'centralnotice-delete-banner-title' => 'Delete {{PLURAL:$1|banner|banners}}‽',
+	'centralnotice-delete-banner-confirm' => 'Deletion removes all settings and messages. This action cannot be reversed. Consider archiving instead.',
+	'centralnotice-delete-banner-cancel' => 'Cancel',
+
+	'centralnotice-banner-bad-js' => 'A banner on this page has invalid JavaScript code and is preventing CentralNotice from initializing correctly. Please fix the banner.',
 );
 
 /** Message documentation (Message documentation)
@@ -424,7 +448,7 @@ Preceded by the fieldset label {{msg-mw|centralnotice-clone-notice}}.
 
 The input box is followed by the Submit button. Its label is {{msg-mw|centralnotice-clone}}.
 {{Identical|Name}}',
-	'centralnotice-preview-all-template-translations' => 'Used as link text in [[Special:NoticeTemplate]].',
+	'centralnotice-preview-all-template-translations' => 'Link to display all approved (currently available to use) translations for a banner.',
 	'centralnotice-insert' => 'Used in [[Special:NoticeTemplate]].
 
 Parameters:
@@ -450,9 +474,11 @@ This message is preceded by the following message:
 	'centralnotice-banner-autolink' => 'Label of checkbox',
 	'centralnotice-banner-autolink-help' => 'Brief instructions on how to use the interface. Parameters:
 * $1 - a bit of HTML
-* $2 - a title for a page',
-	'centralnotice-banner-landing-pages' => 'Used as label for the "Landing pages" input box in [[Special:NoticeTemplate]].',
-	'centralnotice-banner-mixins' => 'Label for a list of banner "[[mw:Extension:CentralNotice/Banner_mixins|mixins]]", code components which can be reused between banners. See also [[Wikipedia:Mixin]].',
+* $2 - (deprecated) a title for a page
+* $3 - a URL',
+	'centralnotice-banner-landing-pages' => 'Label for an input box. Landing pages are valid MediaWiki titles that donors are redirected to upon clicking a banner.',
+	'centralnotice-banner-landing-pages-default' => 'Example valid landing pages for an input box placeholder text.',
+	'centralnotice-banner-mixins' => 'Label for a list of banner "[[mw:Extension:CentralNotice/Banner_mixins|mixins]]", code components which can be reused between banners.',
 	'centralnotice-geo' => 'Used to label a checkbox which activates geotargeting',
 	'centralnotice-countries' => 'Used as column header of the table in [[Special:CentralNotice]].
 {{Related|Centralnotice-th}}
@@ -598,6 +624,7 @@ Related messages:
 	'centralnotice-user-role-anonymous' => 'Label for the anonymous user role.
 {{Identical|Anonymous}}',
 	'centralnotice-user-role-logged-in' => 'Label for the logged-in user role',
+	'centralnotice-banner-bad-js' => 'Text to display when CentralNotice fails to initialize due to broken JavaScript code present in a banner.',
 );
 
 /** Afrikaans (Afrikaans)

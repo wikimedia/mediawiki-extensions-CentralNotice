@@ -35,7 +35,7 @@ class CNDeviceTarget {
 	 *
 	 * @param int $bannerId
 	 *
-	 * @return array Device IDs associated with the banner
+	 * @return array Device names that are associated with the banner
 	 */
 	public static function getDevicesAssociatedWithBanner( $bannerId ) {
 		$dbr = CNDatabase::getDb();
@@ -43,13 +43,19 @@ class CNDeviceTarget {
 		$devices = array();
 
 		$res = $dbr->select(
-			array( 'template_devices' => 'cn_template_devices' ),
-			array( 'dev_id' ),
-			array( 'tmp_id' => $bannerId )
+			array(
+				 'tdev' => 'cn_template_devices',
+				 'devices' => 'cn_known_devices'
+			),
+			array( 'dev_name' ),
+			array(
+				 'tdev.tmp_id' => $bannerId,
+				 'tdev.dev_id = devices.dev_id'
+			)
 		);
 
 		foreach( $res as $row ) {
-			$devices[] = intval( $row->dev_id );
+			$devices[] = $row->dev_name;
 		}
 
 		return $devices;
