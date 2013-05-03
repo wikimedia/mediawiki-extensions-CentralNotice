@@ -231,4 +231,29 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 		return true;
 	}
+
+	public static function getLanguagesInState( $banner, $state ) {
+		if ( !BannerMessageGroup::isUsingGroupReview() ) {
+			throw new MWException( 'CentralNotice is not using group review. Cannot query group review state.' );
+		}
+
+		$groupName = BannerMessageGroup::getTranslateGroupName( $banner );
+
+		$db = CNDatabase::getDb();
+		$result = $db->select(
+			'translate_groupreviews',
+			'tgr_lang',
+			array(
+				 'tgr_group' => $groupName,
+				 'tgr_state' => $state,
+			),
+			__METHOD__
+		);
+
+		$langs = array();
+		while ( $row = $result->fetchRow() ) {
+			$langs[] = $row['tgr_lang'];
+		}
+		return $langs;
+	}
 }

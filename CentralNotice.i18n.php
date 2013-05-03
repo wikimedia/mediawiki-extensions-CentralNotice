@@ -228,8 +228,8 @@ Add one below.',
 	'centralnotice-delete-banner-confirm' => 'Deletion removes all settings and messages. This action cannot be reversed. Consider archiving instead.',
 	'centralnotice-delete-banner-cancel' => 'Cancel',
 
-	'centralnotice-banner-bad-js' => 'A banner on this page has invalid JavaScript code and is preventing CentralNotice from initializing correctly. Please fix the banner.',
 	'centralnotice-noiframe' => 'This element cannot be displayed without iframes.',
+	'centralnotice-messages-pending-approval' => 'Languages with messages currently pending approval',
 );
 
 /** Message documentation (Message documentation)
@@ -625,8 +625,8 @@ Related messages:
 	'centralnotice-user-role-anonymous' => 'Label for the anonymous user role.
 {{Identical|Anonymous}}',
 	'centralnotice-user-role-logged-in' => 'Label for the logged-in user role',
-	'centralnotice-banner-bad-js' => 'Text to display when CentralNotice fails to initialize due to broken JavaScript code present in a banner.',
 	'centralnotice-noiframe' => 'Inform the user that banner previewing has failed because their browser does not support iframes.',
+	'centralnotice-messages-pending-approval' => 'Label for a list of languages in which banner messages are pending approval',
 );
 
 /** Afrikaans (Afrikaans)

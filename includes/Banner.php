@@ -695,22 +695,25 @@ class Banner {
 	}
 
 	/**
-	 * @return a list of languages with existing field translations
+	 * Returns a list of messages that are either published or in the CNBanner translation
+	 *
+	 * @param bool $inTranslation If true and using group translation this will return
+	 * all the messages that are in the translation system
+	 *
+	 * @return array A list of languages with existing field translations
 	 */
-	function getAvailableLanguages() {
+	function getAvailableLanguages( $inTranslation = false ) {
 		global $wgLanguageCode;
 		$availableLangs = array();
 
-		$fields = $this->extractMessageFields();
-
-		//HACK
-		$prefix = $this->getMessageField( '' )->getDbKey();
+		// Bit of an ugly hack to get just the banner prefix
+		$prefix = $this->getMessageField( '' )->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
 
 		$db = CNDatabase::getDb();
 		$result = $db->select( 'page',
 			'page_title',
 			array(
-				'page_namespace' => NS_MEDIAWIKI,
+				'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
 				'page_title' . $db->buildLike( $prefix, $db->anyString() ),
 			),
 			__METHOD__

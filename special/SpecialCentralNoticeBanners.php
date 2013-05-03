@@ -482,17 +482,38 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				);
 			}
 
-			$formDescriptor[ 'banner-languages' ] = array(
-				'section' => 'banner-messages',
-				'class' => 'HTMLInfoField',
-				'disabled' => !$this->editable,
-				'label-raw' => Linker::link(
-						$this->getTitle( "Preview/{$this->bannerName}" ),
-						$this->msg( 'centralnotice-preview-all-template-translations' )->escaped()
-					),
-				'default' => implode( ', ', $banner->getAvailableLanguages() ),
-				'cssclass' => 'separate-form-element',
-			);
+			$liveMessageNames = $banner->getAvailableLanguages();
+			if ( $liveMessageNames ) {
+				$formDescriptor[ 'approved-languages' ] = array(
+					'section' => 'banner-messages',
+					'class' => 'HTMLInfoField',
+					'disabled' => !$this->editable,
+					'label-raw' => Linker::link(
+							$this->getTitle( "Preview/{$this->bannerName}" ),
+							$this->msg( 'centralnotice-preview-all-template-translations' )->escaped()
+						),
+					'default' => implode( ', ', $liveMessageNames ),
+					'cssclass' => 'separate-form-element',
+				);
+			}
+
+			if ( $wgNoticeUseTranslateExtension && BannerMessageGroup::isUsingGroupReview() ) {
+				$readyStateLangs = BannerMessageGroup::getLanguagesInState(
+					$this->bannerName,
+					'ready'
+				);
+
+				if ( $readyStateLangs ) {
+					$formDescriptor[ 'pending-languages' ] = array(
+						'section' => 'banner-messages',
+						'class' => 'HTMLInfoField',
+						'disabled' => !$this->editable,
+						'label-message' => 'centralnotice-messages-pending-approval',
+						'default' => implode( ', ', $readyStateLangs ),
+						'cssclass' => 'separate-form-element',
+					);
+				}
+			}
 		}
 
 		/* -- The banner editor -- */
