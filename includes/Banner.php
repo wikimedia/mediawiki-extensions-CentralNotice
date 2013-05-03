@@ -291,8 +291,6 @@ class Banner {
 	static function getBannerSettings( $bannerName, $detailed = true ) {
 		global $wgNoticeUseTranslateExtension;
 
-		$banner = array();
-
 		$dbr = CNDatabase::getDb();
 
 		$row = $dbr->selectRow(
@@ -332,6 +330,7 @@ class Banner {
 				}
 				$banner['prioritylangs'] = explode( ',', $langs );
 			}
+			$banner['devices'] = array_values( CNDeviceTarget::getDevicesAssociatedWithBanner( $bannerObj->getId() ) );
 		} else {
 			throw new MWException( "Banner doesn't exist!" );
 		}
@@ -423,11 +422,12 @@ class Banner {
 	 * @param $landingPages     string list of landing pages (optional)
 	 * @param $mixins           string list of mixins (optional)
 	 * @param $priorityLangs    array Array of priority languages for the translate extension
+	 * @param $devices          array Array of device names this banner is targeted at
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon, $displayAccount, $fundraising = 0,
-	                             $autolink = 0, $landingPages = '', $mixins = '', $priorityLangs = array()
+		$autolink = 0, $landingPages = '', $mixins = '', $priorityLangs = array(), $devices = array( 'desktop' )
 	) {
 		if ( $body == '' || $name == '' ) {
 			return 'centralnotice-null-string';
@@ -464,24 +464,7 @@ class Banner {
 
 			$bannerObj->setMixins( explode( ",", $mixins ) );
 
-			// TODO: Add the attached devices (yes this is a hack until the UI supports it)
-			$res = $db->select(
-				array( 'known_devices' => 'cn_known_devices' ),
-				'dev_id',
-				array( 'dev_name' => 'desktop' ),
-				__METHOD__
-			);
-			$desktop_id = $db->fetchRow( $res );
-			$desktop_id = $desktop_id[ 'dev_id' ];
-
-			$db->insert(
-				'cn_template_devices',
-				array(
-					 'tmp_id' => $bannerObj->id,
-					 'dev_id' => $desktop_id
-				),
-				__METHOD__
-			);
+			CNDeviceTarget::setBannerDeviceTargets( $bannerObj->id, $devices );
 
 			$wikiPage = new WikiPage( $bannerObj->getTitle() );
 
@@ -671,7 +654,9 @@ class Banner {
 			$settings['fundraising'],
 			$settings['autolink'],
 			$settings['landingpages'],
-			$settings['controller_mixin']
+			$settings['controller_mixin'],
+			array(),
+			$settings['devices']
 		);
 		if ( !$errors ) {
 			$destBanner = new Banner( $dest );

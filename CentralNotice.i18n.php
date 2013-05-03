@@ -230,6 +230,7 @@ Add one below.',
 
 	'centralnotice-noiframe' => 'This element cannot be displayed without iframes.',
 	'centralnotice-messages-pending-approval' => 'Languages with messages currently pending approval',
+	'centralnotice-devices' => 'Display on devices',
 );
 
 /** Message documentation (Message documentation)
@@ -666,6 +667,7 @@ Followed by the confirmation message {{msg-mw|Centralnotice-delete-banner-confir
 	'centralnotice-delete-banner-cancel' => '{{Identical|Cancel}}',
 	'centralnotice-noiframe' => 'Inform the user that banner previewing has failed because their browser does not support iframes.',
 	'centralnotice-messages-pending-approval' => 'Label for a list of languages in which banner messages are pending approval',
+	'centralnotice-devices' => 'Log line label for showing a list of devices (e.g. iphone, desktop) that the banner will display on',
 );
 
 /** Afrikaans (Afrikaans)

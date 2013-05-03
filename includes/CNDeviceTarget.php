@@ -94,33 +94,33 @@ class CNDeviceTarget {
 	/**
 	 * Sets the associated devices with a banner
 	 *
-	 * @param int    $bannerId   Banner ID to modify
-	 * @param string $newDevices Names of devices that should be associated
+	 * @param int          $bannerId   Banner ID to modify
+	 * @param string|array $newDevices Single name, or array of names, of devices that should be
+	 *                                 associated with a banner
 	 */
 	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
 		$db = CNDatabase::getDb();
 
 		$knownDevices = CNDeviceTarget::getAvailableDevices( true );
-		$oldDevices = CNDeviceTarget::getDevicesAssociatedWithBanner( $bannerId );
+		$newDevices = (array)$newDevices;
 
-		// Add newly assigned countries
-		$modifyArray = array();
-		$addDevices = array_diff( $newDevices, $oldDevices );
-		foreach ( $addDevices as $device ) {
-			$modifyArray[ ] = array( 'tmp_id' => $bannerId, 'dev_id' => $knownDevices[ $device ][ 'id' ] );
-		}
-		$db->insert( 'cn_template_devices', $modifyArray, __METHOD__, array( 'IGNORE' ) );
+		// Remove all entries from the table for this banner
+		$db->delete(
+			'cn_template_devices',
+			array( 'tmp_id' => $bannerId ),
+			__METHOD__
+		);
 
-		// Remove disassociated countries
-		$modifyArray = array();
-		$removeDevices = array_diff( $oldDevices, $newDevices );
-		if ( $removeDevices ) {
-			foreach( $removeDevices as $device ) {
-				$modifyArray[] = $knownDevices[ $device ][ 'id' ];
+		// Add the new device mappings
+		if ( $newDevices ) {
+			$modifyArray = array();
+			foreach ( $newDevices as $device ) {
+				if ( !array_key_exists( $device, $knownDevices ) ) {
+					throw new MWException( "Device name '$device' not known! Cannot add." );
+				}
+				$modifyArray[ ] = array( 'tmp_id' => $bannerId, 'dev_id' => $knownDevices[ $device ][ 'id' ] );
 			}
-			$db->delete( 'cn_template_devices',
-				array( 'tmp_id' => $bannerId, 'dev_id' => $modifyArray )
-			);
+			$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
 		}
 	}
 }
