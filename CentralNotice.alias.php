@@ -58,6 +58,7 @@ $specialPageAliases['de'] = array(
 	'BannerController' => array( 'Vorlagensteuerung' ),
 	'BannerLoader' => array( 'Vorlage_laden' ),
 	'BannerRandom' => array( 'Zufällige_Vorlage' ),
+	'RecordImpression' => array( 'Zugriffe_zählen' ),
 	'HideBanners' => array( 'Vorlagen_ausblenden' ),
 );
 
