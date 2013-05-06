@@ -23,7 +23,6 @@ $messages['en'] = array(
 It can also be used to add or remove old notices.',
 	'centralnotice-query' => 'Modify current campaigns',
 	'centralnotice-notice-name' => 'Campaign name',
-	'centralnotice-end-date' => 'End date (UTC)',
 	'centralnotice-enabled' => 'Enabled',
 	'centralnotice-modify' => 'Submit',
 	'centralnotice-view' => 'View',
@@ -80,9 +79,6 @@ Not removing.',
 	'centralnotice-remove-all' => 'Remove all',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|item|items}} selected',
 	'centralnotice-project-name' => 'Project name',
-	'centralnotice-start-date' => 'Start date (UTC)',
-	'centralnotice-start-time' => 'Start time (UTC)',
-	'centralnotice-end-time' => 'End time (UTC)',
 	'centralnotice-assigned-templates' => 'Assigned banners',
 	'centralnotice-no-templates' => 'No banners found.
 Add some!',
@@ -102,8 +98,6 @@ Not adding.',
 Not updating.',
 	'centralnotice-null-string' => 'Cannot add a null string.
 Not adding.',
-	'centralnotice-confirm-delete' => 'Are you sure you want to delete the selected item(s)?
-This action will be unrecoverable.',
 	'centralnotice-no-notices-exist' => 'No campaigns exist.
 Add one below.',
 	'centralnotice-no-templates-translate' => 'There are not any banners to edit translations for.',
@@ -232,6 +226,13 @@ Add one below.',
 	'centralnotice-noiframe' => 'This element cannot be displayed without iframes.',
 	'centralnotice-messages-pending-approval' => 'Languages with messages currently pending approval',
 	'centralnotice-devices' => 'Display on devices',
+
+	'centralnotice-start-timestamp' => 'Starting (UTC)',
+	'centralnotice-end-timestamp' => 'Ending (UTC)',
+	'centralnotice-start-date' => 'Start date (UTC)',
+	'centralnotice-start-time' => 'Start time (UTC)',
+	'centralnotice-end-date' => 'End date (UTC)',
+	'centralnotice-end-time' => 'End time (UTC)',
 );
 
 /** Message documentation (Message documentation)
@@ -419,7 +420,6 @@ Preceded by the fieldset label {{msg-mw|Centralnotice-assigned-templates}}.',
 	'centralnotice-null-string' => 'Used as error message.
 
 Refers any one of the following: name of banner, body of banner, name of notice.',
-	'centralnotice-confirm-delete' => 'Used as confirmation message (JavaScript <code>confirm()</code> function).',
 	'centralnotice-no-notices-exist' => 'Used in Special:CentralNotice when there are no notices',
 	'centralnotice-no-templates-translate' => 'Unused at this time.',
 	'centralnotice-number-uses' => 'The header of a narrow column in the table with sitenotice campaign information. The values in the column are the numbers of times that a message enclosed in three curly brackets appears in the banner\'s code. The width of the column is 5% of the total width of the table, so the message should be accordingly short.
@@ -671,6 +671,8 @@ Followed by the confirmation message {{msg-mw|Centralnotice-delete-banner-confir
 	'centralnotice-noiframe' => 'Inform the user that banner previewing has failed because their browser does not support iframes.',
 	'centralnotice-messages-pending-approval' => 'Label for a list of languages in which banner messages are pending approval',
 	'centralnotice-devices' => 'Log line label for showing a list of devices (e.g. iphone, desktop) that the banner will display on',
+	'centralnotice-start-timestamp' => 'Date/time label for column and log line entries for declaring the start time of a campaign',
+	'centralnotice-end-timestamp' => 'Date/time label for column and log line entries for declaring the end time of a campaign',
 );
 
 /** Afrikaans (Afrikaans)

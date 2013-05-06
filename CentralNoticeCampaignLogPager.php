@@ -166,12 +166,12 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$wordSeparator = $this->msg( 'word-separator' )->plain();
 		$details .= $this->msg(
 			'centralnotice-log-label',
-			$this->msg( 'centralnotice-start-date' )->text(),
+			$this->msg( 'centralnotice-start-timestamp' )->text(),
 			$lang->date( $row->notlog_end_start ) . $wordSeparator . $lang->time( $row->notlog_end_start )
 		)->text() . "<br />";
 		$details .= $this->msg(
 			'centralnotice-log-label',
-			$this->msg( 'centralnotice-end-date' )->text(),
+			$this->msg( 'centralnotice-end-timestamp' )->text(),
 			$lang->date( $row->notlog_end_end ) . $wordSeparator . $lang->time( $row->notlog_end_end )
 		)->text() . "<br />";
 		$details .= $this->msg(
@@ -224,7 +224,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		if ( $row->notlog_begin_start !== $row->notlog_end_start ) {
 			$details .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-start-date' )->text(),
+				$this->msg( 'centralnotice-start-timestamp' )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					$lang->date( $row->notlog_begin_start ) . $wordSeparator . $lang->time( $row->notlog_begin_start ),
@@ -235,7 +235,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		if ( $row->notlog_begin_end !== $row->notlog_end_end ) {
 			$details .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-end-date' )->text(),
+				$this->msg( 'centralnotice-end-timestamp' )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					$lang->date( $row->notlog_begin_end ) . $wordSeparator . $lang->time( $row->notlog_begin_end ),
