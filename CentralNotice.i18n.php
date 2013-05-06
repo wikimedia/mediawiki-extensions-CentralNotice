@@ -179,6 +179,7 @@ Add one below.',
 	'centralnotice-banner-content' => 'Banner content',
 	'centralnotice-banner-content-changed' => 'Changed',
 	'centralnotice-filters' => 'Log filters',
+	'centralnotice-damaged-log' => '$1 - (damaged log)',
 	'centralnotice-date' => 'Date',
 	'centralnotice-apply-filters' => 'Apply filters',
 	'centralnotice-clear-filters' => 'Clear filters',
@@ -586,6 +587,8 @@ Related messages:
 
 (Parameter $1 of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
 	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
+	'centralnotice-damaged-log' => 'This is an annotation on banners or campaigns with inconsistent log entries. Parameters:
+* $1 - name of the damaged record',
 	'centralnotice-date' => 'Label for a date selection interface.
 {{Identical|Date}}',
 	'centralnotice-apply-filters' => 'Label for a submit button.

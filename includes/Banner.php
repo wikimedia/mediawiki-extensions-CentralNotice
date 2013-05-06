@@ -342,7 +342,7 @@ class Banner {
 	/**
 	 * FIXME: a little thin, it's just enough to get the job done
 	 *
-	 * @return banner settings as an associative array, with these properties:
+	 * @return array|null banner settings as an associative array, with these properties:
 	 *    display_anon: 0/1 whether the banner is displayed to anonymous users
 	 *    display_account: 0/1 same, for logged-in users
 	 *    fundraising: 0/1, is in the fundraising group
@@ -351,9 +351,9 @@ class Banner {
 	 *    device: device key
 	 */
 	static function getHistoricalBanner( $name, $ts ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$id = Banner::getTemplateId( $name );
+
+		$dbr = CNDatabase::getDb();
 
 		$newestLog = $dbr->selectRow(
 			"cn_template_log",
@@ -366,6 +366,10 @@ class Banner {
 			),
 			__METHOD__
 		);
+
+		if ( $newestLog->log_id === null ) {
+			return null;
+		}
 
 		$row = $dbr->selectRow(
 			"cn_template_log",
