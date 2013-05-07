@@ -260,6 +260,14 @@ class Campaign {
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
 
+				if ( $historical_banner === null ) {
+					//FIXME: crazy hacks
+					$historical_banner = Banner::getBannerSettings( $name );
+					$historical_banner['name'] = wfMessage( 'centralnotice-damaged-log', $name );
+					$historical_banner['display_anon'] = $historical_banner['anon'];
+					$historical_banner['display_account'] = $historical_banner['account'];
+					$historical_banner['device'] = 'desktop';
+				}
 				$banner['name'] = $name;
 
 				$campaign_info = array(
