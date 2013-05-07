@@ -62,7 +62,7 @@
 					title: 'Add a new banner',
 					modal: true,
 					buttons: buttons,
-					width: 375
+					width: 400
 				});
 
 			// Do not submit the form... that's up to the ok button
