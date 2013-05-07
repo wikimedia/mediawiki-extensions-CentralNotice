@@ -168,6 +168,8 @@ $specialPageAliases['ko'] = array(
 	'BannerAllocation' => array( '배너배정' ),
 	'BannerController' => array( '배너컨트롤러' ),
 	'BannerLoader' => array( '배너열기', '배너로더' ),
+	'BannerRandom' => array( '배너임의' ),
+	'RecordImpression' => array( '기록노출' ),
 	'HideBanners' => array( '배너숨기기' ),
 );
 
