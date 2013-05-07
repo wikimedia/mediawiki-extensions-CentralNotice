@@ -1,3 +1,8 @@
+/**
+ * CentralNotice Administrative UI - Common Functions
+ */
+window.mw.centralNotice.adminUi = {};
+
 // Collapse and uncollapse detailed view for an individual log entry
 window.toggleLogDisplay = function ( logId ) {
 	var thisCollapsed = document.getElementById( 'cn-collapsed-' + logId );
@@ -79,6 +84,14 @@ window.validateBannerForm = function( form ) {
 	}
 	return true;
 };
+
+window.addEventListener( 'message', receiveMessage, false );
+function receiveMessage( event ) {
+	var remoteData = JSON.parse( event.data );
+	if ( remoteData.banner && remoteData.height ) {
+		$( "#cn-banner-preview-" + remoteData.banner + " iframe" ).height( remoteData.height );
+	}
+}
 
 jQuery(document).ready( function ( $ ) {
 	var bucketCheck, buckets;

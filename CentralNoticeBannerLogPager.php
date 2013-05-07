@@ -1,13 +1,11 @@
 <?php
 
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
-	var $viewPage, $special;
+	var $special;
 
 	function __construct( $special ) {
 		$this->special = $special;
 		parent::__construct($special);
-
-		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 	}
 
 	/**
@@ -48,10 +46,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 		// Create the banner link
 		$bannerLink = Linker::linkKnown(
-			$this->viewPage,
-			htmlspecialchars( $row->tmplog_template_name ),
-			array(),
-			array( 'template' => $row->tmplog_template_name )
+			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$row->tmplog_template_name}" ),
+			htmlspecialchars( $row->tmplog_template_name )
 		);
 
 		// Begin log entry primary row
@@ -170,6 +166,11 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				$row->tmplog_end_landingpages
 			)->text() . "<br/>";
 		}
+		$details .= $this->msg(
+			'centralnotice-log-label',
+			$this->msg( 'centralnotice-devices' )->text(),
+			$row->tmplog_end_devices
+		)->text() . "<br/>";
 		return $details;
 	}
 
@@ -181,6 +182,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->testTextChange( 'landingpages', $row );
 		$details .= $this->testTextChange( 'controller_mixin', $row );
 		$details .= $this->testTextChange( 'prioritylangs', $row );
+		$details .= $this->testTextChange( 'devices', $row );
 		if ( $row->tmplog_content_change ) {
 			// Show changes to banner content
 			$details .= $this->msg (

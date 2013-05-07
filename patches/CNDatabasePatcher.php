@@ -105,6 +105,12 @@ class CNDatabasePatcher {
 					 $base . '/patch-mixin_modules.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					 'addField', 'cn_template_log', 'tmplog_begin_devices',
+					 $base . '/patch-template-device-logging.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			$updater->addExtensionUpdate(
 				array(

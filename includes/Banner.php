@@ -29,6 +29,16 @@ class Banner {
 		return $curRev->getText();
 	}
 
+	/**
+	 * Returns an array of Title objects that have been included as templates
+	 * in this banner.
+	 *
+	 * @return Array of Title
+	 */
+	function getIncludedTemplates() {
+		return $this->getTitle()->getTemplateLinksFrom();
+	}
+
 	function getId() {
 		if ( !$this->id ) {
 			$this->id = Banner::getTemplateId( $this->name );
@@ -281,8 +291,6 @@ class Banner {
 	static function getBannerSettings( $bannerName, $detailed = true ) {
 		global $wgNoticeUseTranslateExtension;
 
-		$banner = array();
-
 		$dbr = CNDatabase::getDb();
 
 		$row = $dbr->selectRow(
@@ -322,6 +330,9 @@ class Banner {
 				}
 				$banner['prioritylangs'] = explode( ',', $langs );
 			}
+			$banner['devices'] = array_values( CNDeviceTarget::getDevicesAssociatedWithBanner( $bannerObj->getId() ) );
+		} else {
+			throw new MWException( "Banner doesn't exist!" );
 		}
 
 		return $banner;
@@ -330,7 +341,7 @@ class Banner {
 	/**
 	 * FIXME: a little thin, it's just enough to get the job done
 	 *
-	 * @return banner settings as an associative array, with these properties:
+	 * @return array|null banner settings as an associative array, with these properties:
 	 *    display_anon: 0/1 whether the banner is displayed to anonymous users
 	 *    display_account: 0/1 same, for logged-in users
 	 *    fundraising: 0/1, is in the fundraising group
@@ -339,9 +350,9 @@ class Banner {
 	 *    device: device key
 	 */
 	static function getHistoricalBanner( $name, $ts ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
 		$id = Banner::getTemplateId( $name );
+
+		$dbr = CNDatabase::getDb();
 
 		$newestLog = $dbr->selectRow(
 			"cn_template_log",
@@ -354,6 +365,10 @@ class Banner {
 			),
 			__METHOD__
 		);
+
+		if ( $newestLog->log_id === null ) {
+			return null;
+		}
 
 		$row = $dbr->selectRow(
 			"cn_template_log",
@@ -411,11 +426,12 @@ class Banner {
 	 * @param $landingPages     string list of landing pages (optional)
 	 * @param $mixins           string list of mixins (optional)
 	 * @param $priorityLangs    array Array of priority languages for the translate extension
+	 * @param $devices          array Array of device names this banner is targeted at
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon, $displayAccount, $fundraising = 0,
-	                             $autolink = 0, $landingPages = '', $mixins = '', $priorityLangs = array()
+		$autolink = 0, $landingPages = '', $mixins = '', $priorityLangs = array(), $devices = array( 'desktop' )
 	) {
 		if ( $body == '' || $name == '' ) {
 			return 'centralnotice-null-string';
@@ -452,24 +468,7 @@ class Banner {
 
 			$bannerObj->setMixins( explode( ",", $mixins ) );
 
-			// TODO: Add the attached devices (yes this is a hack until the UI supports it)
-			$res = $db->select(
-				array( 'known_devices' => 'cn_known_devices' ),
-				'dev_id',
-				array( 'dev_name' => 'desktop' ),
-				__METHOD__
-			);
-			$desktop_id = $db->fetchRow( $res );
-			$desktop_id = $desktop_id[ 'dev_id' ];
-
-			$db->insert(
-				'cn_template_devices',
-				array(
-					 'tmp_id' => $bannerObj->id,
-					 'dev_id' => $desktop_id
-				),
-				__METHOD__
-			);
+			CNDeviceTarget::setBannerDeviceTargets( $bannerObj->id, $devices );
 
 			$wikiPage = new WikiPage( $bannerObj->getTitle() );
 
@@ -659,7 +658,9 @@ class Banner {
 			$settings['fundraising'],
 			$settings['autolink'],
 			$settings['landingpages'],
-			$settings['controller_mixin']
+			$settings['controller_mixin'],
+			array(),
+			$settings['devices']
 		);
 		if ( !$errors ) {
 			$destBanner = new Banner( $dest );
@@ -683,22 +684,25 @@ class Banner {
 	}
 
 	/**
-	 * @return a list of languages with existing field translations
+	 * Returns a list of messages that are either published or in the CNBanner translation
+	 *
+	 * @param bool $inTranslation If true and using group translation this will return
+	 * all the messages that are in the translation system
+	 *
+	 * @return array A list of languages with existing field translations
 	 */
-	function getAvailableLanguages() {
+	function getAvailableLanguages( $inTranslation = false ) {
 		global $wgLanguageCode;
 		$availableLangs = array();
 
-		$fields = $this->extractMessageFields();
-
-		//HACK
-		$prefix = $this->getMessageField( '' )->getDbKey();
+		// Bit of an ugly hack to get just the banner prefix
+		$prefix = $this->getMessageField( '' )->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
 
 		$db = CNDatabase::getDb();
 		$result = $db->select( 'page',
 			'page_title',
 			array(
-				'page_namespace' => NS_MEDIAWIKI,
+				'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
 				'page_title' . $db->buildLike( $prefix, $db->anyString() ),
 			),
 			__METHOD__
@@ -721,7 +725,7 @@ class Banner {
 	 * Update a banner
 	 */
 	function editTemplate( $user, $body, $displayAnon, $displayAccount, $fundraising,
-	                               $autolink, $landingPages, $mixins, $priorityLangs
+		$autolink, $landingPages, $mixins, $priorityLangs, $devices
 	) {
 		global $wgCentralDBname;
 		if ( !Banner::bannerExists( $this->name ) ) {
@@ -753,9 +757,22 @@ class Banner {
 		}
 
 		$this->setMixins( explode( ",", $mixins ) );
+		CNDeviceTarget::setBannerDeviceTargets( $this->getId(), $devices );
 
 		Banner::updateTranslationMetadata( $pageResult, $this->name, $body, $priorityLangs );
 
 		$this->logBannerChange( 'modified', $user, $initialBannerSettings );
+	}
+
+	/**
+	 * Validation function for banner names. Will return true iff the name fits
+	 * the generic format of letters, numbers, and dashes.
+	 *
+	 * @param string $name The name to check
+	 *
+	 * @return bool True if valid
+	 */
+	static function isValidBannerName( $name ) {
+		return preg_match( '/^[A-Za-z0-9_]+$/', $name );
 	}
 }

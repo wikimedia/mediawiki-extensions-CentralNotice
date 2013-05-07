@@ -84,7 +84,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		// Output ResourceLoader module for styling and javascript functions
 		$out->addModules( array(
-			'ext.centralNotice.interface',
+			'ext.centralNotice.adminUi',
 		) );
 
 		// Initialize error variable
@@ -92,9 +92,6 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		// Show summary
 		$out->addWikiMsg( 'centralnotice-summary' );
-
-		// Show header
-		$this->printHeader();
 
 		// Begin Banners tab content
 		$out->addHTML( Html::openElement( 'div', array( 'id' => 'preferences' ) ) );
@@ -281,7 +278,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 * @return string HTML for the table
 	 */
 	public function getTable( $type, $banners ) {
-		$viewBanner = $this->getTitleFor( 'NoticeTemplate', 'view' );
+		$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/$banner" );
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
 		$htmlOut = Html::openElement( 'table',

@@ -2,6 +2,10 @@
 
 /**
  * Provides pagination functionality for viewing banner lists in the CentralNotice admin interface.
+ *
+ * @deprecated 2.3 -- We're moving to an HTML form model and this is no longer used directly.
+ * We still need to move the Campaign manager to HTMLForm though and so this still exists for
+ * that part of CN.
  */
 class TemplatePager extends ReverseChronologicalPager {
 	var $onRemoveChange, $viewPage, $special;

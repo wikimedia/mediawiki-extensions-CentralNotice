@@ -44,11 +44,19 @@ class BannerMessage {
 	}
 
 	/**
-	 * Hack to help with cloning.
+	 * Obtain the raw contents of the message; stripping out the stupid <message-name> if it's blank
+	 *
+	 * @returns null|string Will be null if the message does not exist, otherwise will be
+	 * the contents of the message.
 	 */
 	function getContents( $lang ) {
 		if ( $this->existsInLang( $lang ) ) {
-			return wfMessage( $this->getDbKey() )->inLanguage( $lang )->text();
+			$dbKey = $this->getDbKey();
+			$msg = wfMessage( $dbKey )->inLanguage( $lang )->text();
+			if ( $msg === "&lt;{$dbKey}&gt;" ) {
+				$msg = '';
+			}
+			return $msg;
 		} else {
 			return null;
 		}

@@ -1,0 +1,65 @@
+/**
+ * Styles specific to Special:CentralNoticeBanners/edit
+ *
+ * This file is part of the CentralNotice Extension to MediaWiki
+ * https://www.mediawiki.org/wiki/Extension:CentralNotice
+ *
+ * @section LICENSE
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+.mw-label {
+	font-weight: bold;
+}
+
+form#cn-banner-editor .mw-input.mw-htmlform-nolabel {
+	/* Applies to things like checkboxes that have no label */
+	font-weight: bold;
+	margin-left: 0;
+}
+form#cn-banner-editor .mw-input {
+	/* Everything else */
+	margin-left: 1em;
+}
+
+#cn-formsection-clone-banner {
+	border: none;
+	display: none;
+}
+#cn-formsection-clone-banner legend {
+	display: none;
+}
+
+/* === === */
+.cn-message-table {
+	font-family: monospace;
+	font-size: 1em;
+	width: 100%;
+}
+.cn-message-text-origin, .cn-message-text-native, .cn-message-text-origin-header, .cn-message-text-native-header {
+	width: 50%;
+	vertical-align: top;
+}
+.cn-message-text-origin {
+	padding: 0;
+	margin: 0;
+}
+.cn-message-text-native {
+	padding: 0;
+	margin: 0.2em;
+}

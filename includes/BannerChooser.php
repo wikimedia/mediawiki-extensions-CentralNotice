@@ -17,7 +17,7 @@ class BannerChooser {
 	function __construct( AllocationContext $allocContext, $campaigns = null ) {
 		$this->allocContext = $allocContext;
 
-		if ( $campaigns ) {
+		if ( $campaigns !== null ) {
 			$this->campaigns = $campaigns;
 
 			$this->banners = array();

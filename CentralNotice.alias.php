@@ -58,6 +58,7 @@ $specialPageAliases['de'] = array(
 	'BannerController' => array( 'Vorlagensteuerung' ),
 	'BannerLoader' => array( 'Vorlage_laden' ),
 	'BannerRandom' => array( 'Zufällige_Vorlage' ),
+	'RecordImpression' => array( 'Zugriffe_zählen' ),
 	'HideBanners' => array( 'Vorlagen_ausblenden' ),
 );
 
@@ -317,6 +318,7 @@ $specialPageAliases['vi'] = array(
 	'BannerAllocation' => array( 'Phân_bố_bảng' ),
 	'BannerController' => array( 'Điều_khiển_bảng' ),
 	'BannerLoader' => array( 'Tải_bảng' ),
+	'BannerRandom' => array( 'Bảng_ngẫu_nhiên' ),
 	'HideBanners' => array( 'Ẩn_bảng' ),
 );
 
