@@ -51,6 +51,11 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 */
 	public $timestamp;
 
+	/**
+	 * @var array $campaigns Campaign structs which will be analyzed
+	 */
+	protected $campaigns;
+
 	public function __construct() {
 		// Register special page
 		SpecialPage::__construct( 'GlobalAllocation' );
