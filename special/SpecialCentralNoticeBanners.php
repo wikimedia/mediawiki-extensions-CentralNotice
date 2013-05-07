@@ -710,9 +710,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// But only if we aren't using translate or if the preview language is the content language
 		if ( !$wgNoticeUseTranslateExtension || ( $this->bannerLanguagePreview === $wgLanguageCode ) ) {
 			foreach( $formData as $key => $value ) {
-				$parts = explode( '-', $key );
-				if ( ( count( $parts ) === 2 ) && ( $parts[0] === 'message' ) ) {
-					$bannerMessage = $banner->getMessageField( $parts[1] );
+				if ( strpos( $key, 'message-' ) === 0 ) {
+					$messageName = substr( $key, strlen( 'message-' ) );
+					$bannerMessage = $banner->getMessageField( $messageName );
 					$bannerMessage->update( $value, $this->bannerLanguagePreview, $this->getUser() );
 				}
 			}
