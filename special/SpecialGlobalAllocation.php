@@ -539,7 +539,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	function getBannerAllocationsVariantRow( $banner, $variesAnon, $variesBucket, $isAnon, $bucket ) {
 		$htmlOut = '';
 
-		$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/$banner" );
+		$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
 		// Row begin
@@ -580,9 +580,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 				array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
 			$htmlOut .= Linker::link(
 				$viewBanner,
-				htmlspecialchars( $banner['name'] ),
-				array(),
-				array( 'template' => $banner['name'] )
+				htmlspecialchars( $banner['label'] )
 			);
 			$htmlOut .= Html::closeElement( 'span' );
 			$htmlOut .= Html::closeElement( 'td' );
