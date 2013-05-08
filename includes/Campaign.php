@@ -263,12 +263,13 @@ class Campaign {
 				if ( $historical_banner === null ) {
 					//FIXME: crazy hacks
 					$historical_banner = Banner::getBannerSettings( $name );
-					$historical_banner['name'] = wfMessage( 'centralnotice-damaged-log', $name );
+					$historical_banner['label'] = wfMessage( 'centralnotice-damaged-log', $name );
 					$historical_banner['display_anon'] = $historical_banner['anon'];
 					$historical_banner['display_account'] = $historical_banner['account'];
 					$historical_banner['device'] = 'desktop';
 				}
 				$banner['name'] = $name;
+				$banner['label'] = $name;
 
 				$campaign_info = array(
 					'campaign' => $campaign['name'],
