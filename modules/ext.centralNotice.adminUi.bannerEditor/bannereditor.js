@@ -171,8 +171,8 @@
 	$( '#mw-input-wpdelete-button' ).click( mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
 	$( '#mw-input-wparchive-button' ).click( mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
 	$( '#mw-input-wpclone-button' ).click( mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
-	$( '#mw-input-wptranslate-language' ).click( mw.centralNotice.adminUi.bannerEditor.updateLanguage );
-	$( '#mw-input-wpcreate-landingpage-link' ).click( mw.centralNotice.adminUi.bannerEditor.showHideLpEditBox );
+	$( '#mw-input-wptranslate-language' ).change( mw.centralNotice.adminUi.bannerEditor.updateLanguage );
+	$( '#mw-input-wpcreate-landingpage-link' ).change( mw.centralNotice.adminUi.bannerEditor.showHideLpEditBox );
 
 	// And do some initial form work
 	mw.centralNotice.adminUi.bannerEditor.showHideLpEditBox();

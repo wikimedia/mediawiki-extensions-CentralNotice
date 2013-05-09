@@ -343,7 +343,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'section' => 'preview',
 			'class' => 'HTMLCentralNoticeBanner',
 			'banner' => $this->bannerName,
-			'language' => $this->getLanguage()->getCode(),
+			'language' => $this->bannerLanguagePreview,
 		);
 
 		/* --- Banner Settings --- */
@@ -489,7 +489,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'class' => 'HTMLInfoField',
 					'disabled' => !$this->editable,
 					'label-raw' => Linker::link(
-							$this->getTitle( "Preview/{$this->bannerName}" ),
+							$this->getTitle( "preview/{$this->bannerName}" ),
 							$this->msg( 'centralnotice-preview-all-template-translations' )->escaped()
 						),
 					'default' => implode( ', ', $liveMessageNames ),
@@ -768,10 +768,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$htmlOut = '';
 
 		$langContext = new DerivativeContext( $this->getContext() );
-		$bannerRenderer = new BannerRenderer( $langContext, $banner );
 
 		foreach ( $langs as $lang ) {
+			// HACK: We need to unify these two contexts...
 			$langContext->setLanguage( $lang );
+			$allocContext = new AllocationContext( 'XX', $lang, 'wikipedia', true, 'desktop', 0 );
+			$bannerRenderer = new BannerRenderer( $langContext, $banner, 'test', $allocContext );
+
 			// Link and Preview all available translations
 			$htmlOut .= Xml::tags(
 				'td',
