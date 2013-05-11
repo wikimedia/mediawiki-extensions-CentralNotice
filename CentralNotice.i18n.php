@@ -3411,6 +3411,7 @@ $messages['ce'] = array(
 	'centralnotice-add-template' => 'Тlетоха кеп',
 	'centralnotice-templates' => 'Куцкепаш',
 	'centralnotice-year' => 'Шо',
+	'centralnotice-talk-link' => 'дийцаре',
 );
 
 /** Sorani Kurdish (کوردی)
@@ -8643,9 +8644,9 @@ $messages['io'] = array(
  */
 $messages['is'] = array(
 	'centralnotice-modify' => 'Staðfesta',
-	'centralnotice-preview' => 'Forskoðun',
+	'centralnotice-preview' => 'Forskoðun ($1)',
 	'centralnotice-remove' => 'Fjarlægja',
-	'centralnotice-translate-heading' => 'Þýðing fyrir', # Fuzzy
+	'centralnotice-translate-heading' => 'Þýðing fyrir $1',
 	'centralnotice-add' => 'Bæta við',
 	'centralnotice-translations' => 'Þýðingar',
 	'centralnotice-translate-to' => 'Þýða yfir á',
@@ -8660,7 +8661,6 @@ $messages['is'] = array(
 	'centralnotice-hours' => 'Klukkustund',
 	'centralnotice-min' => 'Mínúta',
 	'centralnotice-project-lang' => 'Verkefnistungumál',
-	'centralnotice-top-ten-languages' => 'Topp 10 tungumál',
 	'centralnotice-settings' => 'Stillingar',
 	'centralnotice-message' => 'Skilaboð',
 	'centralnotice-clone-name' => 'Nafn:',
@@ -13790,7 +13790,7 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-view-logs' => 'Ver registos',
 	'centralnotice-timestamp' => 'Data e hora',
 	'centralnotice-user' => 'Utilizador',
-	'centralnotice-action' => 'Acção',
+	'centralnotice-action' => 'Ação',
 	'centralnotice-action-created' => 'criado',
 	'centralnotice-action-modified' => 'modificado',
 	'centralnotice-action-removed' => 'removido',
@@ -13832,6 +13832,7 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
  * @author Giro720
  * @author Helder.wiki
  * @author Heldergeovane
+ * @author Luckas
  * @author MetalBrasil
  * @author Pedroca cerebral
  * @author Rafael Vargas
@@ -13849,12 +13850,11 @@ $messages['pt-br'] = array(
 Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-query' => 'Modificar avisos atuais',
 	'centralnotice-notice-name' => 'Nome do aviso',
-	'centralnotice-end-date' => 'Data de fim',
 	'centralnotice-enabled' => 'Ativo',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-view' => 'Exibir',
-	'centralnotice-save-banner' => 'Salvar modelo',
-	'centralnotice-preview' => 'Pré-visualização',
+	'centralnotice-save-banner' => 'Salvar',
+	'centralnotice-preview' => 'Pré-visualização', # Fuzzy
 	'centralnotice-nopreview' => '(Previsualização não disponível)',
 	'centralnotice-add-new' => 'Adicionar um novo aviso centralizado',
 	'centralnotice-remove' => 'Remover',
@@ -13867,10 +13867,6 @@ Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-add-template' => 'Adicionar um modelo',
 	'centralnotice-show-notices' => 'Mostrar avisos',
 	'centralnotice-list-templates' => 'Listar modelos',
-	'centralnotice-multiple-projects' => 'múltiplas ($1)',
-	'centralnotice-multiple-languages' => 'múltiplas ($1)',
-	'centralnotice-multiple-countries' => 'Múltiplos ($1)',
-	'centralnotice-all-projects' => 'Todos os projetos',
 	'centralnotice-translations' => 'Traduções',
 	'centralnotice-translate-to' => 'Traduzir para',
 	'centralnotice-translate' => 'Traduzir',
@@ -13895,7 +13891,7 @@ Não adicionado',
 Não há nada para remover.',
 	'centralnotice-banner-doesnt-exist' => 'O banner não existe.',
 	'centralnotice-template-still-bound' => 'O modelo ainda está ligado a um aviso.
-Não removido.',
+Não removido.', # Fuzzy
 	'centralnotice-template-body' => 'Conteúdo do modelo:',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Ano',
@@ -13903,12 +13899,7 @@ Não removido.',
 	'centralnotice-hours' => 'Hora',
 	'centralnotice-min' => 'Minuto',
 	'centralnotice-project-lang' => 'Língua do projeto',
-	'centralnotice-select' => 'Seleccionar: $1',
-	'centralnotice-top-ten-languages' => 'As 10 línguas mais usadas',
 	'centralnotice-project-name' => 'Nome do projeto',
-	'centralnotice-start-date' => 'Data início',
-	'centralnotice-start-time' => 'Hora início (UTC)',
-	'centralnotice-end-time' => 'Hora de fim (UTC)',
 	'centralnotice-assigned-templates' => 'Modelos atribuídos',
 	'centralnotice-no-templates' => 'Nenhum modelo encontrado.
 Adicione alguns!',
@@ -13928,8 +13919,6 @@ Não adicionado',
 Não atualizado',
 	'centralnotice-null-string' => 'Não é possível adicionar uma cadeia de caracteres nula.
 Não adicionado',
-	'centralnotice-confirm-delete' => 'Tem a certeza de que pretende eliminar este item?
-Esta ação será irreversível.',
 	'centralnotice-no-notices-exist' => 'Não existe nenhum aviso.
 Adicione um abaixo',
 	'centralnotice-no-templates-translate' => 'Não há quaisquer modelos para os quais seja possível editar traduções',
@@ -13942,7 +13931,7 @@ Adicione um abaixo',
 	'centralnotice-clone' => 'Clonar',
 	'centralnotice-clone-notice' => 'Criar uma cópia do modelo',
 	'centralnotice-clone-name' => 'Nome:',
-	'centralnotice-preview-all-template-translations' => 'Prever todas as traduções disponíveis do modelo',
+	'centralnotice-preview-all-template-translations' => 'Prever todas as traduções disponíveis do modelo', # Fuzzy
 	'centralnotice-insert' => 'Inserir: $1',
 	'centralnotice-close-button' => 'Botão fechar',
 	'centralnotice-close-title' => 'Fechar',
@@ -13956,7 +13945,7 @@ Adicione um abaixo',
 	'centralnotice-banner-collapsible' => 'Colapsável',
 	'centralnotice-banner-fundraising' => 'Este é um banner de angariação de fundos',
 	'centralnotice-banner-autolink' => 'Criar automaticamente o link da página de destino',
-	'centralnotice-banner-autolink-help' => 'Crie uma âncora no corpo do banner com $1 e introduza abaixo uma ou mais páginas de destino. Por exemplo, $2.  O link será construído automaticamente cada vez que o banner for exibido.',
+	'centralnotice-banner-autolink-help' => 'Crie uma âncora no corpo do banner com $1 e introduza abaixo uma ou mais páginas de destino. Por exemplo, $2.  O link será construído automaticamente cada vez que o banner for exibido.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'Páginas de destino (separadas por vírgulas):',
 	'centralnotice-geo' => 'Localizado geograficamente',
 	'centralnotice-countries' => 'Países',
@@ -13968,7 +13957,7 @@ Adicione um abaixo',
 	'centralnotice-projects' => 'Projetos',
 	'centralnotice-country' => 'País',
 	'centralnotice-no-allocation' => 'Não há modelos atribuídos.',
-	'centralnotice-allocation-description' => 'Atribuição de modelos para $1.$2 em $3:',
+	'centralnotice-allocation-description' => 'Atribuição de modelos para $1.$2 em $3:', # Fuzzy
 	'centralnotice-percentage' => 'Porcentagem',
 	'centralnotice-documentwrite-error' => 'document.write() não pode ser usado num modelo.
 Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.',
@@ -14001,7 +13990,11 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-date' => 'Data',
 	'centralnotice-apply-filters' => 'Aplicar filtros',
 	'centralnotice-clear-filters' => 'Limpar filtros',
-	'centralnotice-banner-messages' => 'Mensagens do banner',
+	'centralnotice-banner-messages' => 'Mensagens do banner', # Fuzzy
+	'centralnotice-start-date' => 'Data início', # Fuzzy
+	'centralnotice-start-time' => 'Hora início (UTC)',
+	'centralnotice-end-date' => 'Data de fim', # Fuzzy
+	'centralnotice-end-time' => 'Hora de fim (UTC)',
 );
 
 /** Quechua (Runa Simi)
