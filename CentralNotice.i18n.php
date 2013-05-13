@@ -1266,9 +1266,8 @@ $messages['ar'] = array(
  * @author Basharh
  */
 $messages['arc'] = array(
-	'centralnotice-end-date' => 'ܣܝܩܘܡܐ ܕܫܘܠܡܐ',
 	'centralnotice-modify' => 'ܫܕܪ',
-	'centralnotice-preview' => 'ܚܝܪܐ ܩܕܡܝܐ',
+	'centralnotice-preview' => 'ܚܝܪܐ ܩܕܡܝܐ ($1)',
 	'centralnotice-add' => 'ܐܘܣܦ',
 	'centralnotice-add-template' => 'ܐܘܣܦ ܩܠܒܐ',
 	'centralnotice-translate' => 'ܬܪܓܡ',
@@ -1280,7 +1279,6 @@ $messages['arc'] = array(
 	'centralnotice-hours' => 'ܫܥܬܐ',
 	'centralnotice-min' => 'ܩܛܝܢܬܐ',
 	'centralnotice-project-lang' => 'ܠܫܢܐ ܕܬܪܡܝܬܐ',
-	'centralnotice-select' => 'ܓܒܝ: $1',
 	'centralnotice-project-name' => 'ܫܡܐ ܕܬܪܡܝܬܐ',
 	'centralnotice-weights' => 'ܬܘܩܠ̈ܐ',
 	'centralnotice-settings' => 'ܛܘܝܒ̈ܐ',
@@ -1291,6 +1289,7 @@ $messages['arc'] = array(
 	'centralnotice-languages' => 'ܠܫܢ̈ܐ',
 	'centralnotice-language' => 'ܠܫܢܐ',
 	'centralnotice-country' => 'ܐܬܪܐ',
+	'centralnotice-end-date' => 'ܣܝܩܘܡܐ ܕܫܘܠܡܐ (UTC)',
 );
 
 /** Egyptian Spoken Arabic (مصرى)
@@ -2599,7 +2598,7 @@ $messages['bg'] = array(
 	'centralnotice-priority-high' => 'високо',
 	'centralnotice-priority-emergency' => 'аварийни',
 	'centralnotice-country-o1' => 'Неизвестен/други страна',
-	'centralnotice-archive-banner' => 'Архив',
+	'centralnotice-archive-banner' => 'Архивиране',
 	'centralnotice-delete-banner' => 'Изтриване',
 	'centralnotice-start-date' => 'Начална дата', # Fuzzy
 	'centralnotice-start-time' => 'начално време (UTC)',
@@ -5989,6 +5988,9 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-delete-banner-cancel' => 'Peru',
 	'centralnotice-noiframe' => 'Tätä elementtiä ei voi näyttää ilman iframeja.',
 	'centralnotice-messages-pending-approval' => 'Kielet joiden viestit odotavat hyväksyntää',
+	'centralnotice-devices' => 'Näytä laitteilla',
+	'centralnotice-start-timestamp' => 'Alkaen (UTC)',
+	'centralnotice-end-timestamp' => 'Päättyen (UTC)',
 	'centralnotice-start-date' => 'Alkamispäivä (UTC)',
 	'centralnotice-start-time' => 'Alkamisaika (UTC)',
 	'centralnotice-end-date' => 'Lopetuspäivä (UTC)',
@@ -7295,6 +7297,7 @@ $messages['he'] = array(
 	'centralnotice-banner-content' => 'תוכן כרזה',
 	'centralnotice-banner-content-changed' => 'השתנה',
 	'centralnotice-filters' => 'מסנני יומנים',
+	'centralnotice-damaged-log' => '$1 - (יומן פגום)',
 	'centralnotice-date' => 'תאריך',
 	'centralnotice-apply-filters' => 'החלת מסננים',
 	'centralnotice-clear-filters' => 'ניקוי מסננים',
@@ -7342,6 +7345,9 @@ $messages['he'] = array(
 	'centralnotice-delete-banner-cancel' => 'ביטול',
 	'centralnotice-noiframe' => 'אין אפשרות להציג רכיב זה ללא שימוש בiframe.',
 	'centralnotice-messages-pending-approval' => 'שפות עם הודעות כעת ממתינות לאישור',
+	'centralnotice-devices' => 'להציג במכשירים',
+	'centralnotice-start-timestamp' => 'תחילה (UTC)',
+	'centralnotice-end-timestamp' => 'סיום (UTC)',
 	'centralnotice-start-date' => 'תאריך ההתחלה (UTC)',
 	'centralnotice-start-time' => 'שעת ההתחלה (UTC)',
 	'centralnotice-end-date' => 'תאריך סיום (UTC)',
@@ -8235,6 +8241,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.',
  * @author Farras
  * @author Irwangatot
  * @author IvanLanin
+ * @author Iwan Novirion
  * @author Kenrick95
  * @author Rex
  */
@@ -8250,11 +8257,10 @@ $messages['id'] = array(
 Modul ini juga dapat digunakan untuk menambahkan atau menghapus pengumuman lama.',
 	'centralnotice-query' => 'Ubah pengumuman saat ini',
 	'centralnotice-notice-name' => 'Judul pengumuman',
-	'centralnotice-end-date' => 'Tanggal selesai (UTC)',
 	'centralnotice-enabled' => 'Diaktifkan',
 	'centralnotice-modify' => 'Kirim',
 	'centralnotice-view' => 'Lihat',
-	'centralnotice-save-banner' => 'Panji simpan',
+	'centralnotice-save-banner' => 'Panji simpan', # Fuzzy
 	'centralnotice-preview' => 'Pratayang ($1)',
 	'centralnotice-nopreview' => '(Pratayang tak tersedia)',
 	'centralnotice-add-new' => 'Buat pengumuman sentral baru',
@@ -8301,9 +8307,6 @@ Batal menghapus', # Fuzzy
 	'centralnotice-min' => 'Menit',
 	'centralnotice-project-lang' => 'Bahasa proyek',
 	'centralnotice-project-name' => 'Nama proyek',
-	'centralnotice-start-date' => 'Tanggal mulai (UTC)',
-	'centralnotice-start-time' => 'Waktu mulai (UTC)',
-	'centralnotice-end-time' => 'Waktu berakhir (UTC)',
 	'centralnotice-assigned-templates' => 'Tempat yang digunakan',
 	'centralnotice-no-templates' => 'Tidak ada templat yang ditemukan.
 Tambahkan!',
@@ -8323,8 +8326,6 @@ Batal menambahkan',
 Batal memperbarui',
 	'centralnotice-null-string' => 'Tidak dapat menambahkan string kosong.
 Batal menambahkan',
-	'centralnotice-confirm-delete' => 'Apakah Anda yakin untuk menghapus?
-Tindakan ini tidak dapat dibatalkan.',
 	'centralnotice-no-notices-exist' => 'Tidak ada pengumuman ditemukan.
 Tambahkan di bawah ini.',
 	'centralnotice-no-templates-translate' => 'Tidak ada templat yang dapat diterjemahkan',
@@ -8337,13 +8338,13 @@ Tambahkan di bawah ini.',
 	'centralnotice-clone' => 'Duplikat',
 	'centralnotice-clone-notice' => 'Buat duplikat templat ini',
 	'centralnotice-clone-name' => 'Nama:',
-	'centralnotice-preview-all-template-translations' => 'Lihat pratayang semua terjemahan templat yang tersedia',
+	'centralnotice-preview-all-template-translations' => 'Lihat pratayang semua terjemahan templat yang tersedia', # Fuzzy
 	'centralnotice-insert' => 'Sisipkan: $1',
 	'centralnotice-close-button' => 'Tombol tutup',
 	'centralnotice-close-title' => 'Tutup',
 	'centralnotice-translate-button' => 'Pranala bantu terjemahkan',
 	'centralnotice-donate-button' => 'Tombol sumbangan',
-	'centralnotice-banner-display' => 'Tampilkan ke:',
+	'centralnotice-banner-display' => 'Tampilkan ke',
 	'centralnotice-banner-anonymous' => 'Pengguna anonim',
 	'centralnotice-banner-logged-in' => 'Pengguna telah masuk log',
 	'centralnotice-banner-type' => 'Jenis panji:',
@@ -8394,12 +8395,16 @@ Lihat http://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih la
 	'centralnotice-date' => 'Tanggal',
 	'centralnotice-apply-filters' => 'Terapkan penyaring',
 	'centralnotice-clear-filters' => 'Hapus penyaring',
-	'centralnotice-banner-messages' => 'Pesan spanduk',
+	'centralnotice-banner-messages' => 'Pesan spanduk', # Fuzzy
 	'centralnotice-filter-template-submit' => 'Terapkan penyaring',
 	'centralnotice-priority-low' => 'rendah',
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'tinggi',
 	'centralnotice-priority-emergency' => 'darurat',
+	'centralnotice-start-date' => 'Tanggal mulai (UTC)',
+	'centralnotice-start-time' => 'Waktu mulai (UTC)',
+	'centralnotice-end-date' => 'Tanggal selesai (UTC)',
+	'centralnotice-end-time' => 'Waktu berakhir (UTC)',
 );
 
 /** Igbo (Igbo)
@@ -9815,6 +9820,7 @@ $messages['ko'] = array(
 	'centralnotice-bucket-letter' => '"$1" 버킷',
 	'centralnotice-devicetype-desktop' => '데스크톱 컴퓨터',
 	'centralnotice-all' => '모두',
+	'centralnotice-banner-name-error' => '제공한 배너 이름이 잘못되었습니다. 배너 이름은 알파벳, 숫자와 밑줄 문자만 포함합니다.',
 	'centralnotice-all-except' => '$1(을)를 모드 제외',
 	'centralnotice-excluding-list' => '$1 ($2 제외)',
 	'centralnotice-user-role' => '사용자 역할',
@@ -9827,6 +9833,8 @@ $messages['ko'] = array(
 	'centralnotice-templates-included' => '포함된 틀',
 	'centralnotice-archive-banner' => '보존',
 	'centralnotice-archive-banner-title' => '{{PLURAL:$1|배너}}를 보존하겠습니까?',
+	'centralnotice-archive-banner-cancel' => '취소',
+	'centralnotice-delete-banner' => '삭제',
 	'centralnotice-delete-banner-cancel' => '취소',
 	'centralnotice-noiframe' => '이 요소는 iframe 없이 보여줄 수 없습니다.',
 	'centralnotice-messages-pending-approval' => '승인 보류중인 메시지가 현재 언어',
@@ -13051,7 +13059,6 @@ $messages['pl'] = array(
 Można w nim także dodawać i usuwać komunikaty.',
 	'centralnotice-query' => 'Modyfikuj bieżący komunikat',
 	'centralnotice-notice-name' => 'Nazwa komunikatu',
-	'centralnotice-end-date' => 'Data zakończenia (UTC)',
 	'centralnotice-enabled' => 'Włączony',
 	'centralnotice-modify' => 'Zapisz',
 	'centralnotice-view' => 'Podgląd',
@@ -13065,6 +13072,8 @@ Można w nim także dodawać i usuwać komunikaty.',
 	'centralnotice-manage-templates' => 'Zarządzanie banerami',
 	'centralnotice-add' => 'Dodaj',
 	'centralnotice-add-notice' => 'Dodaj komunikat',
+	'centralnotice-add-notice-button' => 'Utwórz',
+	'centralnotice-add-notice-cancel-button' => 'Anuluj',
 	'centralnotice-edit-notice' => 'Edycja kampanii',
 	'centralnotice-add-template' => 'Dodaj szablon',
 	'centralnotice-show-notices' => 'Pokaż komunikaty',
@@ -13101,9 +13110,6 @@ Usunięcie jest niemożliwe.',
 	'centralnotice-select-all' => 'Zaznacz wszystko',
 	'centralnotice-remove-all' => 'Usuń wszystko',
 	'centralnotice-project-name' => 'Nazwa projektu',
-	'centralnotice-start-date' => 'Data rozpoczęcia (UTC)',
-	'centralnotice-start-time' => 'Czas rozpoczęcia (UTC)',
-	'centralnotice-end-time' => 'Czas zakończenia (UTC)',
 	'centralnotice-assigned-templates' => 'Dołączone szablony',
 	'centralnotice-no-templates' => 'Brak szablonów w bazie modułu',
 	'centralnotice-no-templates-assigned' => 'Nie dołączono szablonów do komunikatu.
@@ -13119,8 +13125,6 @@ Jest już wykorzystany w kampani.',
 	'centralnotice-invalid-date-range' => 'Nieprawidłowy przedział pomiędzy datą rozpoczęcia a zakończenia.
 Komunikat nie został zaktualizowany.',
 	'centralnotice-null-string' => 'Nie można dodać pustej zawartości.',
-	'centralnotice-confirm-delete' => 'Czy jesteś pewien, że chcesz usunąć ten element?
-Działanie to będzie nieodwracalne.', # Fuzzy
 	'centralnotice-no-notices-exist' => 'Brak komunikatów.
 Dodaj nowy poniżej.',
 	'centralnotice-no-templates-translate' => 'Nie ma żadnych szablonów do zmiany tłumaczeń dla',
@@ -13133,6 +13137,7 @@ Dodaj nowy poniżej.',
 	'centralnotice-clone' => 'Kopia',
 	'centralnotice-clone-notice' => 'Utwórz kopię szablonu',
 	'centralnotice-clone-name' => 'Nazwa',
+	'centralnotice-clone-cancel' => 'Anuluj',
 	'centralnotice-preview-all-template-translations' => 'Zobacz wszystkie dostępne tłumaczenia szablonu', # Fuzzy
 	'centralnotice-insert' => 'Wstaw: $1',
 	'centralnotice-close-button' => 'Przycisk zamykania',
@@ -13200,6 +13205,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-priority-normal' => 'normalny',
 	'centralnotice-priority-high' => 'wysoki',
 	'centralnotice-priority-emergency' => 'awaryjny',
+	'centralnotice-prioritylangs' => 'Języki priorytetowe',
 	'centralnotice-country-eu' => 'Nieznany/Unia Europejska',
 	'centralnotice-country-ap' => 'Nieznany/Azja–Pacyfik',
 	'centralnotice-country-a1' => 'Nieznany/Proxy anonimizujące',
@@ -13209,10 +13215,18 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-buckets' => 'Podział użytkowników',
 	'centralnotice-bucket' => 'Grupa',
 	'centralnotice-bucket-letter' => 'Grupa „$1”',
+	'centralnotice-devicetype-desktop' => 'Komputer stacjonarny',
 	'centralnotice-all' => 'Wszystko',
 	'centralnotice-excluding-list' => '$1 (z wyjątkiem $2)',
 	'centralnotice-user-role-anonymous' => 'Anonimowy użytkownik',
 	'centralnotice-user-role-logged-in' => 'Zalogowany',
+	'centralnotice-archive-banner-cancel' => 'Anuluj',
+	'centralnotice-delete-banner' => 'Usuń',
+	'centralnotice-delete-banner-cancel' => 'Anuluj',
+	'centralnotice-start-date' => 'Data rozpoczęcia (UTC)',
+	'centralnotice-start-time' => 'Czas rozpoczęcia (UTC)',
+	'centralnotice-end-date' => 'Data zakończenia (UTC)',
+	'centralnotice-end-time' => 'Czas zakończenia (UTC)',
 );
 
 /** Piedmontese (Piemontèis)
@@ -14572,6 +14586,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-bucket-letter' => 'Sicchie "$1"',
 	'centralnotice-devicetype-desktop' => 'Combiuter da tavole',
 	'centralnotice-all' => 'Tutte',
+	'centralnotice-generic-error' => "Non ge tìne le permesse corrette pe fà st'azione richieste oppure l'azione cercate non g'è valide",
 	'centralnotice-all-except' => 'Tutte mene $1',
 	'centralnotice-excluding-list' => '$1 (scludenne $2)',
 	'centralnotice-user-role' => "Regole de l'utende",
