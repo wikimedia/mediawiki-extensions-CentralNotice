@@ -240,9 +240,12 @@ $specialPageAliases['nl'] = array(
 	'CentralNotice' => array( 'CentraleMededeling' ),
 	'CentralNoticeLogs' => array( 'CentraleMededelingenlogboek' ),
 	'NoticeTemplate' => array( 'Mededelingsjabloon' ),
+	'GlobalAllocation' => array( 'GlobaleToewijzing' ),
 	'BannerAllocation' => array( 'Bannertoewijzing' ),
 	'BannerController' => array( 'Bannerbeheerder' ),
 	'BannerLoader' => array( 'Bannerlader' ),
+	'BannerRandom' => array( 'WillekeurigeBanner' ),
+	'RecordImpression' => array( 'WeergaveVastleggen' ),
 	'HideBanners' => array( 'BannersVerbergen' ),
 );
 
