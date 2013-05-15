@@ -415,6 +415,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'label-message' => 'centralnotice-banner-landing-pages',
 			'placeholder' => $this->msg( 'centralnotice-banner-landing-pages-default' )->escaped(),
 			'cssclass' => 'separate-form-element',
+			'default' => $bannerSettings[ 'landingpages' ],
 		);
 		if ( !$this->editable ) {
 			$formDescriptor[ 'landing-pages' ][ 'readonly' ] = true;
