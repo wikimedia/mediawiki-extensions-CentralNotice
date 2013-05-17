@@ -19524,6 +19524,7 @@ $messages['yue'] = array(
  * @author Gzdavidwong
  * @author Hydra
  * @author Kuailong
+ * @author Li3939108
  * @author Liangent
  * @author PhiLiP
  * @author Shirayuki
@@ -19717,6 +19718,8 @@ $messages['zh-hans'] = array(
 	'centralnotice-bucket-letter' => '群组“$1”',
 	'centralnotice-devicetype-desktop' => '桌面计算机',
 	'centralnotice-all' => '所有',
+	'centralnotice-generic-error' => '您没有合法的权限来执行所请求的操作或操作本身是无效的。',
+	'centralnotice-banner-name-error' => '提供的标题名称无效。有效的名称只包含字母、数字或下划线。',
 	'centralnotice-all-except' => '所有，除了$1',
 	'centralnotice-excluding-list' => '$1（排除 $2）',
 	'centralnotice-user-role' => '用户角色',
