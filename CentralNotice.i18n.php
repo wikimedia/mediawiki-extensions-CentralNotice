@@ -219,7 +219,7 @@ Add one below.',
 	'centralnotice-archive-banner-cancel' => 'Cancel',
 
 	'centralnotice-delete-banner' => 'Delete',
-	'centralnotice-delete-banner-title' => 'Delete {{PLURAL:$1|banner|banners}}‽',
+	'centralnotice-delete-banner-title' => 'Delete {{PLURAL:$1|banner|banners}}?',
 	'centralnotice-delete-banner-confirm' => 'Deletion removes all settings and messages. This action cannot be reversed. Consider archiving instead.',
 	'centralnotice-delete-banner-cancel' => 'Cancel',
 
