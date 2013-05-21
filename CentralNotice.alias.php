@@ -190,6 +190,7 @@ $specialPageAliases['lad'] = array(
 /** Luxembourgish (Lëtzebuergesch) */
 $specialPageAliases['lb'] = array(
 	'BannerController' => array( 'Bannersteierung' ),
+	'BannerRandom' => array( 'Zoufällege_Banner' ),
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
