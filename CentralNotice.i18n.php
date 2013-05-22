@@ -3434,6 +3434,7 @@ $messages['ce'] = array(
 	'centralnotice-remove' => 'ДӀаяккха',
 	'centralnotice-manage' => 'Цхаьна дlахоуьйтуш леладо урхалла',
 	'centralnotice-add-template' => 'Тlетоха кеп',
+	'centralnotice-english' => 'ингалсан',
 	'centralnotice-templates' => 'Куцкепаш',
 	'centralnotice-year' => 'Шо',
 	'centralnotice-talk-link' => 'дийцаре',
@@ -4352,12 +4353,11 @@ $messages['diq'] = array(
 Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
 	'centralnotice-query' => 'Îkazê peniyî bivurne',
 	'centralnotice-notice-name' => 'Nameyê îkazî',
-	'centralnotice-end-date' => 'Tarixê qediyayîşî', # Fuzzy
 	'centralnotice-enabled' => 'Aktifyaye',
 	'centralnotice-modify' => 'Qeyd bike',
 	'centralnotice-view' => 'Bıvin',
-	'centralnotice-save-banner' => 'Afişer star fi',
-	'centralnotice-preview' => 'Verqayt',
+	'centralnotice-save-banner' => 'Afişer star fi', # Fuzzy
+	'centralnotice-preview' => 'Verqayt', # Fuzzy
 	'centralnotice-nopreview' => '(Verqeyd çıno)',
 	'centralnotice-add-new' => 'Yew îkazê merkezi ye newî de bike',
 	'centralnotice-remove' => 'Vec',
@@ -4404,9 +4404,6 @@ Niwedarneno', # Fuzzy
 	'centralnotice-min' => 'Dekika',
 	'centralnotice-project-lang' => 'Ziwanê proceyî',
 	'centralnotice-project-name' => 'Nameyê proceyî',
-	'centralnotice-start-date' => 'Destpêkerdışeya demi', # Fuzzy
-	'centralnotice-start-time' => 'Seetê başli kerdişî  (UTC)',
-	'centralnotice-end-time' => 'Kedyayış (UTC)',
 	'centralnotice-assigned-templates' => 'Şablonê ke çebyayê cı',
 	'centralnotice-no-templates' => 'ŞAbloni nê vineyay.Çend teney dekerê de',
 	'centralnotice-no-templates-assigned' => 'Nê ikazi rê hêç şablon nêerziyaya.
@@ -4425,8 +4422,6 @@ De nikeno',
 Rocaniye nikeno',
 	'centralnotice-null-string' => 'Yew stringê nullyî nieşkeno de bike.
 De nikeno',
-	'centralnotice-confirm-delete' => 'Ti raştî wazeno ena item biwedare?
-Ena hereket reyna nieşkeno biyar.',
 	'centralnotice-no-notices-exist' => 'Yew  îkaz zi çin o.
 Yew de bike',
 	'centralnotice-no-templates-translate' => 'Qan dê açanayşa vurnayışi rê hêç şabloni çinyê',
@@ -4439,7 +4434,7 @@ Yew de bike',
 	'centralnotice-clone' => 'Kopye bike',
 	'centralnotice-clone-notice' => 'Ye kopyayê templateyî viraze',
 	'centralnotice-clone-name' => 'Name:',
-	'centralnotice-preview-all-template-translations' => 'Çarnayîşê Sabloni hemî bivîne',
+	'centralnotice-preview-all-template-translations' => 'Çarnayîşê Sabloni hemî bivîne', # Fuzzy
 	'centralnotice-insert' => 'Defi: $1',
 	'centralnotice-close-button' => 'Butonê racnayışi',
 	'centralnotice-close-title' => 'Racnê',
@@ -4453,7 +4448,7 @@ Yew de bike',
 	'centralnotice-banner-collapsible' => 'Şeno teng bo',
 	'centralnotice-banner-fundraising' => 'Na afiş jew sernameya',
 	'centralnotice-banner-autolink' => 'Greyê pela akerdışi otomatik vırazê',
-	'centralnotice-banner-autolink-help' => 'Baneri bın dı gurweynayışi re da çend çuwey icab kenê mesela $1 ew ciya ata zewbi bınd peleya rê mesela, $2. Greyê afişan de herg çımpawıtan xob xo êdê vırazê.',
+	'centralnotice-banner-autolink-help' => 'Baneri bın dı gurweynayışi re da çend çuwey icab kenê mesela $1 ew ciya ata zewbi bınd peleya rê mesela, $2. Greyê afişan de herg çımpawıtan xob xo êdê vırazê.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'Pelaya akerdışi (virgulla pêra abıryayê):',
 	'centralnotice-geo' => 'Geo-menzili',
 	'centralnotice-countries' => 'Dewleti',
@@ -4500,8 +4495,8 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-date' => 'Deme',
 	'centralnotice-apply-filters' => 'Avrêja dezge fi',
 	'centralnotice-clear-filters' => 'Avrêzan bestere',
-	'centralnotice-banner-messages' => 'Mesacê afişer',
-	'centralnotice-filter-template-prompt' => 'Nameyê afişi tedero:',
+	'centralnotice-banner-messages' => 'Mesacê afişer', # Fuzzy
+	'centralnotice-filter-template-prompt' => 'Nameyê afişi tedero:', # Fuzzy
 	'centralnotice-filter-template-submit' => 'Parzumê dezgan',
 	'centralnotice-filter-template-banner' => 'Avreca banneri',
 	'centralnotice-priority-low' => 'kılm',
@@ -4518,6 +4513,14 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-bucket' => 'Sitıl',
 	'centralnotice-bucket-letter' => 'Sitılê "$1"',
 	'centralnotice-all' => 'Pêro',
+	'centralnotice-archive-banner-cancel' => 'Bıtexelne',
+	'centralnotice-delete-banner' => 'Besterne',
+	'centralnotice-start-timestamp' => 'Serterin (UTC)',
+	'centralnotice-end-timestamp' => 'Qedyin (UTC)',
+	'centralnotice-start-date' => 'Sertera demi (UTC)',
+	'centralnotice-start-time' => 'Seetê başli kerdişî  (UTC)',
+	'centralnotice-end-date' => 'Tarixê qediyayîşî (UTC)',
+	'centralnotice-end-time' => 'Kedyayış (UTC)',
 );
 
 /** Lower Sorbian (dolnoserbski)
@@ -9854,6 +9857,7 @@ $messages['ko'] = array(
 	'centralnotice-archive-banner-title' => '{{PLURAL:$1|배너}}를 보존하겠습니까?',
 	'centralnotice-archive-banner-cancel' => '취소',
 	'centralnotice-delete-banner' => '삭제',
+	'centralnotice-delete-banner-title' => '{{PLURAL:$1|배너}}를 삭제하겠습니까?',
 	'centralnotice-delete-banner-cancel' => '취소',
 	'centralnotice-noiframe' => '이 요소는 iframe 없이 보여줄 수 없습니다.',
 	'centralnotice-messages-pending-approval' => '승인 보류중인 메시지가 현재 언어',
