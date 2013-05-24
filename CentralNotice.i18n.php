@@ -16189,6 +16189,7 @@ Shikoni http://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë inform
 );
 
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
+ * @author Milicevic01
  * @author Millosh
  * @author Rancher
  * @author Јованвб
@@ -16206,12 +16207,11 @@ $messages['sr-ec'] = array(
 Може да се користи и за додавање или уклањање старих обавештења.',
 	'centralnotice-query' => 'Измени тренутна обавештења',
 	'centralnotice-notice-name' => 'Назив обавештења',
-	'centralnotice-end-date' => 'Истиче',
 	'centralnotice-enabled' => 'Омогућено',
 	'centralnotice-modify' => 'Пошаљи',
 	'centralnotice-view' => 'Погледај',
-	'centralnotice-save-banner' => 'Сачувај плакат',
-	'centralnotice-preview' => 'Преглед',
+	'centralnotice-save-banner' => 'Сачувај',
+	'centralnotice-preview' => 'Преглед', # Fuzzy
 	'centralnotice-nopreview' => '(преглед није доступан)',
 	'centralnotice-add-new' => 'Додај ново централно обавештење',
 	'centralnotice-remove' => 'Уклони',
@@ -16220,14 +16220,11 @@ $messages['sr-ec'] = array(
 	'centralnotice-manage-templates' => 'Управљање плакатима',
 	'centralnotice-add' => 'Додај',
 	'centralnotice-add-notice' => 'Додај обавештење',
+	'centralnotice-add-notice-cancel-button' => 'Откажи',
 	'centralnotice-edit-notice' => 'Уреди кампању',
 	'centralnotice-add-template' => 'Додај шаблон',
 	'centralnotice-show-notices' => 'Прикажи обавештења',
 	'centralnotice-list-templates' => 'Списак шаблона',
-	'centralnotice-multiple-projects' => 'више ($1)',
-	'centralnotice-multiple-languages' => 'више ($1)',
-	'centralnotice-multiple-countries' => 'Више ($1)',
-	'centralnotice-all-projects' => 'Сви пројекти',
 	'centralnotice-language-listing' => '$1 – $2',
 	'centralnotice-translations' => 'Преводи',
 	'centralnotice-translate-to' => 'Преведи на',
@@ -16250,7 +16247,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'Кампања не постоји.
 Нема шта да се обрише.',
 	'centralnotice-banner-doesnt-exist' => 'Плакат не постоји.',
-	'centralnotice-template-still-bound' => 'Шаблон је још везан за обавештење. Не уклања се.',
+	'centralnotice-template-still-bound' => 'Шаблон је још везан за обавештење. Не уклања се.', # Fuzzy
 	'centralnotice-template-body' => 'Тело шаблона:',
 	'centralnotice-day' => 'Дан',
 	'centralnotice-year' => 'Година',
@@ -16258,12 +16255,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-hours' => 'Сат',
 	'centralnotice-min' => 'Минут',
 	'centralnotice-project-lang' => 'Име пројекта',
-	'centralnotice-select' => 'Изаберите: $1',
-	'centralnotice-top-ten-languages' => 'Најбољих десет језика',
 	'centralnotice-project-name' => 'Назив пројекта',
-	'centralnotice-start-date' => 'Почетни датум',
-	'centralnotice-start-time' => 'Почетно време (UTC)',
-	'centralnotice-end-time' => 'Завршно време (UTC)',
 	'centralnotice-assigned-templates' => 'Додељени шаблони',
 	'centralnotice-no-templates' => 'Нема шаблона. Додајте неке.',
 	'centralnotice-no-templates-assigned' => 'Нема шаблона додељених за обавештење. Додајте неки.',
@@ -16276,7 +16268,6 @@ $messages['sr-ec'] = array(
 	'centralnotice-overlap' => 'Обавештење се временски поклапа с другим обавештењем. Не додаје се.',
 	'centralnotice-invalid-date-range' => 'Неисправан временски опсег. Не ажурира се.',
 	'centralnotice-null-string' => 'Не могу да додам нулту ниску. Не додаје се.',
-	'centralnotice-confirm-delete' => 'Желите ли да обришете ову ставку? Ова радња је неповратна.',
 	'centralnotice-no-notices-exist' => 'Нема никаквих обавештења. Додаје једно испод.',
 	'centralnotice-no-templates-translate' => 'Нема шаблона на ком можете да уређујете превод.',
 	'centralnotice-number-uses' => 'Употребе',
@@ -16288,7 +16279,8 @@ $messages['sr-ec'] = array(
 	'centralnotice-clone' => 'Клонирај',
 	'centralnotice-clone-notice' => 'Направи примерак шаблона',
 	'centralnotice-clone-name' => 'Име:',
-	'centralnotice-preview-all-template-translations' => 'Преглед свих доступних превода шаблона',
+	'centralnotice-clone-cancel' => 'Откажи',
+	'centralnotice-preview-all-template-translations' => 'Преглед свих доступних превода шаблона', # Fuzzy
 	'centralnotice-insert' => 'Убаците: $1',
 	'centralnotice-close-button' => 'Затвори дугме',
 	'centralnotice-close-title' => 'Затварање',
@@ -16313,7 +16305,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-projects' => 'Пројекти',
 	'centralnotice-country' => 'Земља',
 	'centralnotice-no-allocation' => 'Нема додељених плаката.',
-	'centralnotice-allocation-description' => 'Додела плаката за $1.$2 у $3:',
+	'centralnotice-allocation-description' => 'Додела плаката за $1.$2 у $3:', # Fuzzy
 	'centralnotice-percentage' => 'Постотак',
 	'centralnotice-documentwrite-error' => 'document.write() не може бити употребљен унутар банера.
 Видите http://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.',
@@ -16348,8 +16340,8 @@ $messages['sr-ec'] = array(
 	'centralnotice-date' => 'Датум',
 	'centralnotice-apply-filters' => 'Примени филтере',
 	'centralnotice-clear-filters' => 'Очисти филтере',
-	'centralnotice-banner-messages' => 'Поруке на плакату',
-	'centralnotice-filter-template-prompt' => 'Назив плаката садржи:',
+	'centralnotice-banner-messages' => 'Поруке на плакату', # Fuzzy
+	'centralnotice-filter-template-prompt' => 'Назив плаката садржи:', # Fuzzy
 	'centralnotice-filter-template-submit' => 'Примени филтер',
 	'centralnotice-filter-template-banner' => 'Филтрирање плаката',
 	'centralnotice-priority-low' => 'низак',
@@ -16365,6 +16357,15 @@ $messages['sr-ec'] = array(
 	'centralnotice-buckets' => 'Приказ по корисничким групама',
 	'centralnotice-bucket' => 'Група',
 	'centralnotice-bucket-letter' => 'Група „$1“',
+	'centralnotice-banner-class' => 'Класа',
+	'centralnotice-banner-class-fundraising' => 'Прикупљање средстава',
+	'centralnotice-archive-banner-cancel' => 'Откажи',
+	'centralnotice-delete-banner' => 'Обриши',
+	'centralnotice-delete-banner-cancel' => 'Откажи',
+	'centralnotice-start-date' => 'Почетни датум', # Fuzzy
+	'centralnotice-start-time' => 'Почетно време (UTC)',
+	'centralnotice-end-date' => 'Истиче', # Fuzzy
+	'centralnotice-end-time' => 'Завршно време (UTC)',
 );
 
 /** Serbian (Latin script) (srpski (latinica)‎)
