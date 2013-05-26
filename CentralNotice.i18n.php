@@ -13074,6 +13074,7 @@ Sie werd doher ned g'leschd.",
  * @author Przemub
  * @author Qblik
  * @author Sp5uhe
+ * @author WTM
  */
 $messages['pl'] = array(
 	'centralnotice' => 'Administrowanie wspólnymi komunikatami',
@@ -13127,7 +13128,7 @@ Można w nim także dodawać i usuwać komunikaty.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Kampania nie istnieje.
 Usunięcie jest niemożliwe.',
 	'centralnotice-banner-doesnt-exist' => 'Baner nie istnieje.',
-	'centralnotice-template-still-bound' => 'Szablon nie może zostać usunięty. Jest ciągle używany przez komunikat.', # Fuzzy
+	'centralnotice-template-still-bound' => 'Szablon „$1” nie może zostać usunięty. Jest ciągle używany przez komunikat.',
 	'centralnotice-template-body' => 'Treść szablonu:',
 	'centralnotice-day' => 'Dzień',
 	'centralnotice-year' => 'Rok',
@@ -13193,7 +13194,7 @@ Dodaj nowy poniżej.',
 	'centralnotice-projects' => 'Projekty',
 	'centralnotice-country' => 'Kraj',
 	'centralnotice-no-allocation' => 'Brak przypisanych banerów.',
-	'centralnotice-allocation-description' => 'Przydział banera dla $1.$2 w $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'Przydział banera dla języka $1, projektu $2, w kraju $3 na urządzeniu $4',
 	'centralnotice-percentage' => 'Procentowo',
 	'centralnotice-documentwrite-error' => 'Nie można korzystać z document.write() w banerze.
 Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:CentralNotice',
@@ -13226,8 +13227,8 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-date' => 'Data',
 	'centralnotice-apply-filters' => 'Zastosuj filtry',
 	'centralnotice-clear-filters' => 'Wyczyść filtry',
-	'centralnotice-banner-messages' => 'Treści banerów', # Fuzzy
-	'centralnotice-filter-template-prompt' => 'Nazwa zawiera:', # Fuzzy
+	'centralnotice-banner-messages' => 'Przetłumaczalne treści banerów',
+	'centralnotice-filter-template-prompt' => 'Filtr banerów (np. Jimmy 2008)',
 	'centralnotice-filter-template-submit' => 'Zastosuj filtr',
 	'centralnotice-filter-template-banner' => 'Filtruj banery',
 	'centralnotice-priority-low' => 'niski',
