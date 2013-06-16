@@ -2209,6 +2209,20 @@ $messages['bcc'] = array(
  * @author Geopoet
  */
 $messages['bcl'] = array(
+	'centralnotice' => 'Administrasyon kan sentral na abiso',
+	'noticetemplate' => 'Administrasyon kan sentral na abiso',
+	'bannerallocation' => 'Administrasyon kan sentral na abiso',
+	'globalallocation' => 'Administrasyon kan sentral na abiso',
+	'centralnoticelogs' => 'Administrasyon kan sentral na abiso',
+	'right-centralnotice-admin' => 'Manihoon an sentral na mga abiso',
+	'action-centralnotice-admin' => 'manihoon an sentral na mga abiso',
+	'centralnotice-summary' => 'Ining modyul minatugot saimo na magliwat kan naipuwestong kamugtakan sa ngunyan kan sentral nin mga abiso.',
+	'centralnotice-query' => 'Hirahon an presenteng mga kampanya',
+	'centralnotice-notice-name' => 'Pangaran nin kampanya',
+	'centralnotice-enabled' => 'Pinagpagana',
+	'centralnotice-modify' => 'Isumite',
+	'centralnotice-view' => 'Tanawon',
+	'centralnotice-save-banner' => 'Itagama',
 	'centralnotice-day' => 'Aldaw',
 	'centralnotice-year' => 'Taon',
 	'centralnotice-month' => 'Bulan',
