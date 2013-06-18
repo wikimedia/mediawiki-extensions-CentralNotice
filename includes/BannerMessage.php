@@ -63,7 +63,12 @@ class BannerMessage {
 	}
 
 	function toHtml( IContextSource $context ) {
-		return $context->msg( $this->getDbKey() )->inLanguage( $context->getLanguage() )->text();
+		global $wgNoticeUseLanguageConversion;
+		$lang = $context->getLanguage();
+		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
+			$lang = $lang->getParentLanguage();
+		}
+		return $context->msg( $this->getDbKey() )->inLanguage( $lang )->text();
 	}
 
 	/**

@@ -95,10 +95,20 @@ class BannerRenderer {
 	 * FIXME: "->inLanguage( $context->getLanguage() )" is necessary due to a bug in DerivativeContext
 	 */
 	function toHtml() {
-		$bannerHtml = $this->context->msg( $this->banner->getDbKey() )->inLanguage( $this->context->getLanguage() )->text();
-		$bannerHtml .= $this->getResourceLoaderHtml();
+		global $wgNoticeUseLanguageConversion;
+		$parentLang = $lang = $this->context->getLanguage();
+		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
+			$parentLang = $lang->getParentLanguage();
+		}
 
-		return $this->substituteMagicWords( $bannerHtml );
+		$bannerHtml = $this->context->msg( $this->banner->getDbKey() )->inLanguage( $parentLang )->text();
+		$bannerHtml .= $this->getResourceLoaderHtml();
+		$bannerHtml = $this->substituteMagicWords( $bannerHtml );
+
+		if ( $wgNoticeUseLanguageConversion ) {
+			$bannerHtml = $parentLang->getConverter()->convertTo( $bannerHtml, $lang->getCode() );
+		}
+		return $bannerHtml;
 	}
 
 	function getPreloadJs() {
