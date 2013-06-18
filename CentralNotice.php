@@ -163,9 +163,7 @@ function efEnableMobileModules( $out, $mode ) {
 		'ext.centralNotice.bannerController.mobiledevice',
 		'ext.centralNotice.bannerController.mobile',
 	);
-	if ( $mode !== 'stable' ) {
-		$out->addModules( $names );
-	}
+	$out->addModules( $names );
 	return true;
 }
 
