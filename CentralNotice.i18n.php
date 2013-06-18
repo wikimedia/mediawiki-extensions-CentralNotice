@@ -3151,7 +3151,7 @@ Također se može koristiti i za dodavanje ili uklanjanje starih obavještenja.'
 	'centralnotice-enabled' => 'Omogućeno',
 	'centralnotice-modify' => 'Pošalji',
 	'centralnotice-view' => 'Pregled',
-	'centralnotice-save-banner' => 'Spremi obavještenje', # Fuzzy
+	'centralnotice-save-banner' => 'Sačuvaj',
 	'centralnotice-preview' => 'Izgled', # Fuzzy
 	'centralnotice-nopreview' => '(Pregled nije dostupan)',
 	'centralnotice-add-new' => 'Dodavanje novog središnjeg obavještenja',
