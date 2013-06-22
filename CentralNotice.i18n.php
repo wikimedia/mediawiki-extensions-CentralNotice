@@ -4258,6 +4258,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.
 );
 
 /** German (Deutsch)
+ * @author Geitost
  * @author HvW
  * @author Kghbln
  * @author McDutchie
@@ -4402,7 +4403,7 @@ Füge eine hinzu.',
 	'centralnotice-historical-allocation-description' => 'Vorlagenanordnung für die Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät: $4, um: $5',
 	'centralnotice-percentage' => 'Prozentsatz',
 	'centralnotice-documentwrite-error' => 'document.write() kann nicht innerhalb einer Vorlage verwendet werden.
-Siehe http://meta.wikimedia.org/wiki/Help:CentralNotice für mehr Informationen.',
+Mehr Informationen unter http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-preferred' => 'Priorität',
 	'centralnotice-logs' => 'Logbücher',
 	'centralnotice-view-logs' => 'Logbücher ansehen',
@@ -6273,10 +6274,10 @@ Er ikki lagt afturat.',
 	'centralnotice-date' => 'Dagur',
 	'centralnotice-apply-filters' => 'Set filtur',
 	'centralnotice-clear-filters' => 'Reinsa filtur',
-	'centralnotice-banner-messages' => 'Bannara boð', # Fuzzy
-	'centralnotice-start-date' => 'Byrjunar dagur', # Fuzzy
+	'centralnotice-banner-messages' => 'Bannaraboð sum kunnu týðast',
+	'centralnotice-start-date' => 'Byrjunardagur (UTC)',
 	'centralnotice-start-time' => 'Byrjar kl. (UTC)',
-	'centralnotice-end-date' => 'Endar dag', # Fuzzy
+	'centralnotice-end-date' => 'Endar dag (UTC)',
 	'centralnotice-end-time' => 'Endar kl. (UTC)',
 );
 
