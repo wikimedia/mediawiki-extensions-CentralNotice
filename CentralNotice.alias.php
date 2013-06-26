@@ -175,10 +175,10 @@ $specialPageAliases['ko'] = array(
 
 /** Cornish (kernowek) */
 $specialPageAliases['kw'] = array(
-	'CentralNotice' => array( 'ArgemmynCres' ),
-	'CentralNoticeLogs' => array( 'CovnotennowArgemynnowCres' ),
-	'NoticeTemplate' => array( 'ScantlynArgemynnow' ),
-	'HideBanners' => array( 'CudhaBanerow' ),
+	'CentralNotice' => array( 'ArgemmynKres' ),
+	'CentralNoticeLogs' => array( 'KovnotennowArgemynnowKres' ),
+	'NoticeTemplate' => array( 'SkantlynArgemynnow' ),
+	'HideBanners' => array( 'KudhaBanerow' ),
 );
 
 /** Ladino (Ladino) */
@@ -190,6 +190,7 @@ $specialPageAliases['lad'] = array(
 /** Luxembourgish (Lëtzebuergesch) */
 $specialPageAliases['lb'] = array(
 	'BannerController' => array( 'Bannersteierung' ),
+	'BannerRandom' => array( 'Zoufällege_Banner' ),
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
