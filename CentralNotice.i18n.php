@@ -529,7 +529,8 @@ Used as column header of the table in [[Special:CentralNotice]].
 {{Identical|Created}}',
 	'centralnotice-action-modified' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
 {{Identical|Modified}}',
-	'centralnotice-action-removed' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.',
+	'centralnotice-action-removed' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
+{{Identical|Removed}}',
 	'centralnotice-changed' => 'Parameters:
 * $1 is/are the old banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.
 * $2 is/are the new banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} or empty string is used.',
@@ -1291,13 +1292,16 @@ $messages['arz'] = array(
 	'centralnotice-notice-name' => 'اسم الاعلان',
 	'centralnotice-enabled' => 'متشغل',
 	'centralnotice-modify' => 'قدم',
-	'centralnotice-preview' => 'اعمل بروفة', # Fuzzy
+	'centralnotice-preview' => 'بروفة ($1)',
+	'centralnotice-nopreview' => '(البروفه مش موجوده)',
 	'centralnotice-add-new' => 'حط اعلان مركزى جديد',
 	'centralnotice-remove' => 'شيل',
 	'centralnotice-translate-heading' => 'الترجمة بتاعة $1',
 	'centralnotice-manage' => 'ادارة الاعلانات المركزية',
 	'centralnotice-add' => 'ضيف',
 	'centralnotice-add-notice' => 'حط اعلان',
+	'centralnotice-add-notice-button' => 'إبتدى',
+	'centralnotice-add-notice-cancel-button' => 'الغى',
 	'centralnotice-add-template' => 'ضيف قالب',
 	'centralnotice-show-notices' => 'اظهر الاعلانات',
 	'centralnotice-list-templates' => 'لستة القوالب',
@@ -1305,17 +1309,18 @@ $messages['arz'] = array(
 	'centralnotice-translate-to' => 'ترجم لـ',
 	'centralnotice-translate' => 'ترجم',
 	'centralnotice-english' => 'انجليزى',
-	'centralnotice-banner-name' => 'اسم القالب', # Fuzzy
+	'centralnotice-banner-name' => 'اسم الشعار:',
 	'centralnotice-templates' => 'قوالب',
 	'centralnotice-weight' => 'الوزن',
 	'centralnotice-locked' => 'مقفول',
+	'centralnotice-notice' => 'اعلانات',
 	'centralnotice-notices' => 'اعلانات',
 	'centralnotice-notice-exists' => 'الاعلان موجود من قبل كده.
 مافيش اصافة',
 	'centralnotice-template-exists' => 'القالب موجود من قبل كده
 مافيش اضافة',
-	'centralnotice-notice-doesnt-exist' => 'الاعلان مش موجود
-مافيش حاجة عشان تتشال', # Fuzzy
+	'centralnotice-notice-doesnt-exist' => 'الاعلان مش موجود',
+	'centralnotice-banner-doesnt-exist' => 'الاعلان مش موجود',
 	'centralnotice-template-still-bound' => 'القالب لسة مربوط بالاعلان.
 ماينفعش يتشال.', # Fuzzy
 	'centralnotice-template-body' => 'جسم القالب:',
@@ -1325,6 +1330,7 @@ $messages['arz'] = array(
 	'centralnotice-hours' => 'الساعة',
 	'centralnotice-min' => 'الدقيقة',
 	'centralnotice-project-lang' => 'اللغة بتاعة المشروع',
+	'centralnotice-remove-all' => ' امسح كله',
 	'centralnotice-project-name' => 'الاسم بتاع المشروع',
 	'centralnotice-assigned-templates' => 'قالب موجود',
 	'centralnotice-no-templates' => 'مافيش قوالب.
