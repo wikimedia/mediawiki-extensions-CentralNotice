@@ -10481,6 +10481,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-banner-content' => 'Inhalt vum Banner',
 	'centralnotice-banner-content-changed' => 'Geännert',
 	'centralnotice-filters' => 'Logbuch vun de Filteren',
+	'centralnotice-damaged-log' => '$1 - (Logbuch ass futti)',
 	'centralnotice-date' => 'Datum',
 	'centralnotice-apply-filters' => 'Filteren uwenden',
 	'centralnotice-clear-filters' => 'Filteren eidel maachen',
@@ -15670,8 +15671,8 @@ $messages['si'] = array(
 	'centralnotice-enabled' => 'සක්‍රීය කරනලදී',
 	'centralnotice-modify' => 'යොමන්න',
 	'centralnotice-view' => 'දර්ශනය',
-	'centralnotice-save-banner' => 'බැනරය සුරකින්න', # Fuzzy
-	'centralnotice-preview' => 'පෙරදසුන', # Fuzzy
+	'centralnotice-save-banner' => 'සුරකින්න',
+	'centralnotice-preview' => 'පෙරදසුන ($1)',
 	'centralnotice-nopreview' => '(පෙර-දසුන ලබාගත නොහැක)',
 	'centralnotice-add-new' => 'නව ව්‍යාපාරයක් එකතු කරන්න',
 	'centralnotice-remove' => 'ඉවත් කරන්න',
@@ -15823,9 +15824,9 @@ $messages['si'] = array(
 	'centralnotice-buckets' => 'පරිශීලක පනිට්ටුගත කිරීම',
 	'centralnotice-bucket' => 'පනිට්ටුව',
 	'centralnotice-bucket-letter' => 'පනිට්ටුව "$1"',
-	'centralnotice-start-date' => 'ආරම්භක දිනය', # Fuzzy
+	'centralnotice-start-date' => 'ආරම්භක දිනය (UTC)',
 	'centralnotice-start-time' => 'ඇරඹුම් දිනය (යූටීසී)',
-	'centralnotice-end-date' => 'අවසන් දිනය', # Fuzzy
+	'centralnotice-end-date' => 'අවසන් දිනය (UTC)',
 	'centralnotice-end-time' => 'අවසන් දිනය (යූටීසී)',
 );
 
