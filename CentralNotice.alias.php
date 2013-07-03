@@ -65,12 +65,13 @@ $specialPageAliases['de'] = array(
 /** Zazaki (Zazaki) */
 $specialPageAliases['diq'] = array(
 	'CentralNotice' => array( 'MerkeziXeberdaren' ),
-	'CentralNoticeLogs' => array( 'MerkeziİlanêRocekan' ),
-	'NoticeTemplate' => array( 'ŞablonêXeberdaren' ),
-	'BannerAllocation' => array( 'TahsisêAfişan' ),
-	'BannerController' => array( 'KontrolkarêAfişan' ),
-	'BannerLoader' => array( 'BarkerdenêAfişan' ),
-	'HideBanners' => array( 'AfişanBınımnê' ),
+	'CentralNoticeLogs' => array( 'MerkeziİlanéRocekan' ),
+	'NoticeTemplate' => array( 'ŞablonéXeberdaren' ),
+	'BannerAllocation' => array( 'TehsiséAfişan' ),
+	'BannerController' => array( 'KontrolkaréAfişan' ),
+	'BannerLoader' => array( 'BarkerdenéAfişan' ),
+	'BannerRandom' => array( 'RaştameyéBaner' ),
+	'HideBanners' => array( 'AfişanBınımné' ),
 );
 
 /** Esperanto (Esperanto) */

@@ -126,7 +126,7 @@ Add one below.',
 	'centralnotice-banner-collapsible' => 'Collapsible',
 	'centralnotice-banner-fundraising' => 'This is a fundraising banner',
 	'centralnotice-banner-autolink' => 'Automatically create landing page link',
-	'centralnotice-banner-autolink-help' => 'When enabled CentralNotice will automatically create a localized link to $3 with a landing page selected at random. There must be an anchor tag with $1 in the banner body.',
+	'centralnotice-banner-autolink-help' => 'When enabled CentralNotice will automatically create a localised link to $3 with a landing page selected at random. There must be an anchor tag with $1 in the banner body.',
 	'centralnotice-banner-landing-pages' => 'Landing pages (comma-separated)',
 	'centralnotice-banner-landing-pages-default' => 'e.g. JimmyAppeal01',
 	'centralnotice-banner-mixins' => 'Mixins (comma-separated):',
@@ -529,7 +529,8 @@ Used as column header of the table in [[Special:CentralNotice]].
 {{Identical|Created}}',
 	'centralnotice-action-modified' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
 {{Identical|Modified}}',
-	'centralnotice-action-removed' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.',
+	'centralnotice-action-removed' => 'Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.
+{{Identical|Removed}}',
 	'centralnotice-changed' => 'Parameters:
 * $1 is/are the old banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.
 * $2 is/are the new banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} or empty string is used.',
@@ -1291,13 +1292,16 @@ $messages['arz'] = array(
 	'centralnotice-notice-name' => 'اسم الاعلان',
 	'centralnotice-enabled' => 'متشغل',
 	'centralnotice-modify' => 'قدم',
-	'centralnotice-preview' => 'اعمل بروفة', # Fuzzy
+	'centralnotice-preview' => 'بروفة ($1)',
+	'centralnotice-nopreview' => '(البروفه مش موجوده)',
 	'centralnotice-add-new' => 'حط اعلان مركزى جديد',
 	'centralnotice-remove' => 'شيل',
 	'centralnotice-translate-heading' => 'الترجمة بتاعة $1',
 	'centralnotice-manage' => 'ادارة الاعلانات المركزية',
 	'centralnotice-add' => 'ضيف',
 	'centralnotice-add-notice' => 'حط اعلان',
+	'centralnotice-add-notice-button' => 'إبتدى',
+	'centralnotice-add-notice-cancel-button' => 'الغى',
 	'centralnotice-add-template' => 'ضيف قالب',
 	'centralnotice-show-notices' => 'اظهر الاعلانات',
 	'centralnotice-list-templates' => 'لستة القوالب',
@@ -1305,17 +1309,18 @@ $messages['arz'] = array(
 	'centralnotice-translate-to' => 'ترجم لـ',
 	'centralnotice-translate' => 'ترجم',
 	'centralnotice-english' => 'انجليزى',
-	'centralnotice-banner-name' => 'اسم القالب', # Fuzzy
+	'centralnotice-banner-name' => 'اسم الشعار:',
 	'centralnotice-templates' => 'قوالب',
 	'centralnotice-weight' => 'الوزن',
 	'centralnotice-locked' => 'مقفول',
+	'centralnotice-notice' => 'اعلانات',
 	'centralnotice-notices' => 'اعلانات',
 	'centralnotice-notice-exists' => 'الاعلان موجود من قبل كده.
 مافيش اصافة',
 	'centralnotice-template-exists' => 'القالب موجود من قبل كده
 مافيش اضافة',
-	'centralnotice-notice-doesnt-exist' => 'الاعلان مش موجود
-مافيش حاجة عشان تتشال', # Fuzzy
+	'centralnotice-notice-doesnt-exist' => 'الاعلان مش موجود',
+	'centralnotice-banner-doesnt-exist' => 'الاعلان مش موجود',
 	'centralnotice-template-still-bound' => 'القالب لسة مربوط بالاعلان.
 ماينفعش يتشال.', # Fuzzy
 	'centralnotice-template-body' => 'جسم القالب:',
@@ -1325,6 +1330,7 @@ $messages['arz'] = array(
 	'centralnotice-hours' => 'الساعة',
 	'centralnotice-min' => 'الدقيقة',
 	'centralnotice-project-lang' => 'اللغة بتاعة المشروع',
+	'centralnotice-remove-all' => ' امسح كله',
 	'centralnotice-project-name' => 'الاسم بتاع المشروع',
 	'centralnotice-assigned-templates' => 'قالب موجود',
 	'centralnotice-no-templates' => 'مافيش قوالب.
@@ -2632,6 +2638,18 @@ $messages['be-tarask'] = array(
 	'centralnotice-user-role' => 'Роля ўдзельніка',
 	'centralnotice-user-role-anonymous' => 'Ананім',
 	'centralnotice-user-role-logged-in' => 'Увайшоўшы',
+	'centralnotice-banner-class' => 'Кляса',
+	'centralnotice-banner-class-generic' => 'Звычайная',
+	'centralnotice-banner-class-fundraising' => 'Збор сродкаў',
+	'centralnotice-templates-included' => 'Уключаныя шаблёны',
+	'centralnotice-archive-banner' => 'Заархіваваць',
+	'centralnotice-archive-banner-title' => 'Заархіваваць {{PLURAL:$1|банэр|банэры}}?',
+	'centralnotice-archive-banner-cancel' => 'Скасаваць',
+	'centralnotice-delete-banner' => 'Выдаліць',
+	'centralnotice-delete-banner-title' => 'Выдаліць {{PLURAL:$1|банэр|банэры}}?',
+	'centralnotice-delete-banner-cancel' => 'Скасаваць',
+	'centralnotice-start-timestamp' => 'Пачатак (UTC)',
+	'centralnotice-end-timestamp' => 'Канец (UTC)',
 	'centralnotice-start-date' => 'Дата пачатку (UTC)',
 	'centralnotice-start-time' => 'Час пачатку (UTC)',
 	'centralnotice-end-date' => 'Дата заканчэньня (UTC)',
@@ -3591,8 +3609,10 @@ $messages['ce'] = array(
 	'centralnotice-templates' => 'Кепаш',
 	'centralnotice-weight' => 'Шоралла',
 	'centralnotice-year' => 'Шо',
+	'centralnotice-insert' => 'Чудилла: $1',
 	'centralnotice-language' => 'Мотт',
 	'centralnotice-view-logs' => 'Тептаршка хьажар',
+	'centralnotice-timestamp' => 'Терахь/хан',
 	'centralnotice-talk-link' => 'дийцаре',
 	'centralnotice-date' => 'Терахь',
 );
@@ -9325,7 +9345,7 @@ $messages['ja'] = array(
 	'centralnotice-bucket-letter' => 'バケツ「$1」',
 	'centralnotice-devicetype-desktop' => 'デスクトップ コンピューター',
 	'centralnotice-all' => 'すべて',
-	'centralnotice-generic-error' => 'あなたには要求した操作を実行するための正しい許可がないか、操作自体が無効です。',
+	'centralnotice-generic-error' => 'あなたには指定した操作を実行する正当な権限がないか、または操作自体が無効です。',
 	'centralnotice-banner-name-error' => '指定したバナー名は無効です。バナー名に使用できるのは半角の英数字およびアンダースコア文字のみです。',
 	'centralnotice-all-except' => '以下を除くすべて: $1',
 	'centralnotice-excluding-list' => '$1 ($2 を除く)',
@@ -10461,6 +10481,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-banner-content' => 'Inhalt vum Banner',
 	'centralnotice-banner-content-changed' => 'Geännert',
 	'centralnotice-filters' => 'Logbuch vun de Filteren',
+	'centralnotice-damaged-log' => '$1 - (Logbuch ass futti)',
 	'centralnotice-date' => 'Datum',
 	'centralnotice-apply-filters' => 'Filteren uwenden',
 	'centralnotice-clear-filters' => 'Filteren eidel maachen',
@@ -15650,8 +15671,8 @@ $messages['si'] = array(
 	'centralnotice-enabled' => 'සක්‍රීය කරනලදී',
 	'centralnotice-modify' => 'යොමන්න',
 	'centralnotice-view' => 'දර්ශනය',
-	'centralnotice-save-banner' => 'බැනරය සුරකින්න', # Fuzzy
-	'centralnotice-preview' => 'පෙරදසුන', # Fuzzy
+	'centralnotice-save-banner' => 'සුරකින්න',
+	'centralnotice-preview' => 'පෙරදසුන ($1)',
 	'centralnotice-nopreview' => '(පෙර-දසුන ලබාගත නොහැක)',
 	'centralnotice-add-new' => 'නව ව්‍යාපාරයක් එකතු කරන්න',
 	'centralnotice-remove' => 'ඉවත් කරන්න',
@@ -15803,9 +15824,9 @@ $messages['si'] = array(
 	'centralnotice-buckets' => 'පරිශීලක පනිට්ටුගත කිරීම',
 	'centralnotice-bucket' => 'පනිට්ටුව',
 	'centralnotice-bucket-letter' => 'පනිට්ටුව "$1"',
-	'centralnotice-start-date' => 'ආරම්භක දිනය', # Fuzzy
+	'centralnotice-start-date' => 'ආරම්භක දිනය (UTC)',
 	'centralnotice-start-time' => 'ඇරඹුම් දිනය (යූටීසී)',
-	'centralnotice-end-date' => 'අවසන් දිනය', # Fuzzy
+	'centralnotice-end-date' => 'අවසන් දිනය (UTC)',
 	'centralnotice-end-time' => 'අවසන් දිනය (යූටීසී)',
 );
 
