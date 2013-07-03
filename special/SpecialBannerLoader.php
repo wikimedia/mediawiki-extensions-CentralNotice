@@ -3,11 +3,11 @@
  * Renders banner contents as jsonp.
  */
 class SpecialBannerLoader extends UnlistedSpecialPage {
-	/** @var string Name of the choosen banner */
+	/** @var string Name of the chosen banner */
 	public $bannerName;
 
-	/** @var string Name of the campaign that the banner belongs to. Will be 'undefined' if not attatched. */
-	public $campaign;
+	/** @var string Name of the campaign that the banner belongs to.*/
+	public $campaignName;
 
 	public $allocContext = null;
 
@@ -59,7 +59,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$anonymous, $device, $bucket
 		);
 
-		$this->campaign = $request->getText( 'campaign' );
+		$this->campaignName = $request->getText( 'campaign' );
 		$this->bannerName = $request->getText( 'banner' );
 	}
 
@@ -99,7 +99,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			throw new EmptyBannerException( $bannerName );
 		}
 		$banner = new Banner( $bannerName );
-		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaign, $this->allocContext );
+		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaignName, $this->allocContext );
 
 		$bannerHtml = $bannerRenderer->toHtml();
 
@@ -113,11 +113,20 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$bannerArray = array(
 			'bannerName' => $bannerName,
 			'bannerHtml' => $bannerHtml,
-			'campaign' => $this->campaign,
+			'campaign' => $this->campaignName,
 			'fundraising' => $settings['fundraising'],
 			'autolink' => $settings['autolink'],
 			'landingPages' => explode( ", ", $settings['landingpages'] ),
 		);
+
+		try {
+			$campaignObj = new Campaign( $this->campaignName );
+			$priority = $campaignObj->getPriority();
+		} catch ( CampaignExistenceException $ex ) {
+			$priority = 0;
+		}
+		$bannerArray['priority'] = $priority;
+
 		$bannerJson = FormatJson::encode( $bannerArray );
 
 		$preload = $bannerRenderer->getPreloadJs();
