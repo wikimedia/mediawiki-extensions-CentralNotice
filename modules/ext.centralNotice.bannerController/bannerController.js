@@ -273,8 +273,9 @@
 					reason: 'mobile'
 				}
 			} else if (
-				$.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide' &&
-				!mw.centralNotice.data.testing
+				bannerJson.priority < 3 && /* A priority of 3 is Emergency and cannot be hidden */
+				!mw.centralNotice.data.testing && /* And we want to see what we're testing! :) */
+				$.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide'
 			) {
 				// The banner was hidden by a bannertype hide cookie and we're not testing
 				impressionResultData = {

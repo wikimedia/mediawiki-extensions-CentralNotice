@@ -29,7 +29,7 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 
 		if ( $banner ) {
 			$this->bannerName = $banner['name'];
-			$this->campaign = $banner['campaign'];
+			$this->campaignName = $banner['campaign'];
 		}
 	}
 

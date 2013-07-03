@@ -1,6 +1,223 @@
 <?php
 
 class Campaign {
+
+	protected $id = null;
+	protected $name = null;
+
+	/** @var MWTimestamp Start datetime of campaign  */
+	protected $start = null;
+
+	/** @var MWTimestamp End datetime of campaign */
+	protected $end = null;
+
+	/** @var int Priority level of the campaign, higher is more important */
+	protected $priority = null;
+
+	/** @var bool True if the campaign is enabled for showing */
+	protected $enabled = null;
+
+	/** @var bool True if the campaign is currently non editable  */
+	protected $locked = null;
+
+	/** @var bool True if there is geo-targeting data for ths campaign */
+	protected $geotargeted = null;
+
+	/** @var int The number of buckets in this campaign */
+	protected $buckets = null;
+
+	/**
+	 * Construct a lazily loaded CentralNotice campaign object
+	 *
+	 * @param string|int $campaignIdentifier Either an ID or name for the campaign
+	 */
+	public function __construct( $campaignIdentifier ) {
+		if ( is_int( $campaignIdentifier ) ) {
+			$this->id = $campaignIdentifier;
+		} else {
+			$this->name = $campaignIdentifier;
+		}
+	}
+
+	/**
+	 * Get the unique numerical ID for this campaign
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return int
+	 */
+	public function getId() {
+		if ( $this->id === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->id;
+	}
+
+	/**
+	 * Get the unique name for this campaign
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return string
+	 */
+	public function getName() {
+		if ( $this->name === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->name;
+	}
+
+	/**
+	 * Get the start time for the campaign. Only applicable if the campaign is enabled.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return MWTimestamp
+	 */
+	public function getStartTime() {
+		if ( $this->start === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->start;
+	}
+
+	/**
+	 * Get the end time for the campaign. Only applicable if the campaign is enabled.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return MWTimestamp
+	 */
+	public function getEndTime() {
+		if ( $this->end === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->end;
+	}
+
+	/**
+	 * Get the priority level for this campaign. The larger this is the higher the priority is.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return int
+	 */
+	public function getPriority() {
+		if ( $this->priority === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->priority;
+	}
+
+	/**
+	 * Returns the enabled/disabled status of the campaign.
+	 *
+	 * If a campaign is enabled it is eligible to be shown to users.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return bool
+	 */
+	public function isEnabled() {
+		if ( $this->enabled === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->enabled;
+	}
+
+	/**
+	 * Returns the locked/unlocked status of the campaign. A locked campaign is not able to be
+	 * edited until unlocked.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return bool
+	 */
+	public function isLocked() {
+		if ( $this->locked === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->priority;
+	}
+
+	/**
+	 * Returned the geotargeted status of this campaign. Will be true if GeoIP information should
+	 * be used to determine user eligibility.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return bool
+	 */
+	public function isGeotargeted() {
+		if ( $this->geotargeted === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->geotargeted;
+	}
+
+	/**
+	 * Get the number of buckets in this campaign.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return int
+	 */
+	public function getBuckets() {
+		if ( $this->priority === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->priority;
+	}
+
+	/**
+	 * Load basic campaign settings from the database table cn_notices
+	 *
+	 * @throws CampaignExistenceException If the campaign doesn't exist
+	 */
+	protected function loadBasicSettings() {
+		$db = CNDatabase::getDb();
+
+		// What selector are we using?
+		if ( $this->id !== null ) {
+			$selector = array( 'not_id' => $this->id );
+		} elseif ( $this->name !== null ) {
+			$selector = array( 'not_name' => $this->name );
+		} else {
+			throw new CampaignExistenceException( "No valid database key available for campaign." );
+		}
+
+		// Get campaign info from database
+		$row = $db->selectRow(
+			array('notices' => 'cn_notices'),
+			array(
+				 'not_id',
+				 'not_name',
+				 'not_start',
+				 'not_end',
+				 'not_enabled',
+				 'not_preferred',
+				 'not_locked',
+				 'not_geo',
+				 'not_buckets',
+			),
+			$selector,
+			__METHOD__
+		);
+		if ( $row ) {
+			$this->start = new MWTimestamp( $row->not_start );
+			$this->end = new MWTimestamp( $row->not_end );
+			$this->enabled = (bool)$row->not_enabled;
+			$this->priority = (int)$row->not_preferred;
+			$this->locked = (bool)$row->not_locked;
+			$this->geotargeted = (bool)$row->not_geo;
+			$this->buckets = (int)$row->not_buckets;
+		} else {
+			throw new CampaignExistenceException(
+				"Campaign could not be retrieved from database with id '{$this->id}' or name '{$this->name}'"
+			);
+		}
+	}
+
 	/**
 	 * See if a given campaign exists in the database
 	 *
@@ -898,3 +1115,5 @@ class Campaign {
 		return $logs;
 	}
 }
+
+class CampaignExistenceException extends MWException {}
