@@ -19697,6 +19697,7 @@ $messages['yue'] = array(
  * @author Liangent
  * @author PhiLiP
  * @author Shirayuki
+ * @author StephDC
  * @author Wmr89502270
  * @author Xiaomingyan
  * @author Yfdyh000
@@ -19819,6 +19820,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner-autolink' => '自动创建登陆页面的链接',
 	'centralnotice-banner-autolink-help' => '在横幅内使用$1创建锚点标记，并在下方输入一个或多个目标页面，例如$2。程序会在用户浏览横幅时自动创建链接。', # Fuzzy
 	'centralnotice-banner-landing-pages' => '登录页（逗号分隔）：',
+	'centralnotice-banner-landing-pages-default' => '例如 JimmyAppeal01',
 	'centralnotice-geo' => '已地理定位的',
 	'centralnotice-countries' => '国家',
 	'centralnotice-global-allocation' => '全局分配',
