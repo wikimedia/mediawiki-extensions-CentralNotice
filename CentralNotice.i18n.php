@@ -4051,6 +4051,7 @@ Gallwch ychwanegu un isod.',
 
 /** Danish (dansk)
  * @author Byrial
+ * @author Christian List
  * @author HenrikKbh
  * @author Hylle
  * @author Jan Friberg
@@ -4261,11 +4262,11 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.
 	'centralnotice-banner-class-fundraising' => 'Pengeindsamling',
 	'centralnotice-templates-included' => 'Inkluderede skabeloner',
 	'centralnotice-archive-banner' => 'Arkiv',
-	'centralnotice-archive-banner-title' => 'Arkiv {{PLURAL:$1|flag|flag}}?', # Fuzzy
+	'centralnotice-archive-banner-title' => 'Arkiver {{PLURAL:$1|flag}}?',
 	'centralnotice-archive-banner-confirm' => 'Arkivering udvider alle inkluderede skabeloner og sætter side beskyttelsen. Dette er ikke en opgave, der er let at tilbageføre.',
 	'centralnotice-archive-banner-cancel' => 'Afbryd',
 	'centralnotice-delete-banner' => 'Slet',
-	'centralnotice-delete-banner-title' => 'Slet {{PLURAL:$1|flag|flag}}?', # Fuzzy
+	'centralnotice-delete-banner-title' => 'Slet {{PLURAL:$1|flag}}?',
 	'centralnotice-delete-banner-confirm' => 'Sletning fjerner alle indstillinger og meddelelser. Denne handling kan ikke tilbageføres. Overvej at arkivere istedet.',
 	'centralnotice-delete-banner-cancel' => 'Afbryd',
 	'centralnotice-noiframe' => 'Dette element kan ikke vise uden iframes.',
