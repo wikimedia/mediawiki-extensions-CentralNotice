@@ -946,7 +946,7 @@ class CentralNotice extends SpecialPage {
 				Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::check( 'geotargeted', $isGeotargeted,
-					wfArrayMerge(
+					array_replace(
 						$readonly,
 						array( 'value' => $notice, 'id' => 'geotargeted' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
@@ -968,7 +968,7 @@ class CentralNotice extends SpecialPage {
 				Xml::label( $this->msg( 'centralnotice-enabled' )->text(), 'enabled' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::check( 'enabled', $isEnabled,
-					wfArrayMerge( $readonly,
+					array_replace( $readonly,
 						array( 'value' => $notice, 'id' => 'enabled' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Preferred / Priority
@@ -984,7 +984,7 @@ class CentralNotice extends SpecialPage {
 				Xml::label( $this->msg( 'centralnotice-locked' )->text(), 'locked' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::check( 'locked', $isLocked,
-					wfArrayMerge( $readonly,
+					array_replace( $readonly,
 						array( 'value' => $notice, 'id' => 'locked' ) ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			if ( $this->editable ) {
