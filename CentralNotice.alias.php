@@ -230,11 +230,15 @@ $specialPageAliases['nb'] = array(
 /** Low Saxon (Netherlands) (Nedersaksies) */
 $specialPageAliases['nds-nl'] = array(
 	'CentralNotice' => array( 'Sentrale_mededeling' ),
+	'CentralNoticeLogs' => array( 'Sentrale_mededelingenlogboek' ),
 	'NoticeTemplate' => array( 'Mededelingsmal' ),
+	'GlobalAllocation' => array( 'Globale_toewiezing' ),
 	'BannerAllocation' => array( 'Baniertoewiezing' ),
 	'BannerController' => array( 'Banierbeheerder' ),
 	'BannerLoader' => array( 'Banierlaojer' ),
-	'HideBanners' => array( 'Banierverbargen' ),
+	'BannerRandom' => array( 'Netzelde_welke_banier' ),
+	'RecordImpression' => array( 'Weergave_vastelegen' ),
+	'HideBanners' => array( 'Banier_verbargen' ),
 );
 
 /** Dutch (Nederlands) */
