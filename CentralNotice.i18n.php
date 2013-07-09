@@ -3609,7 +3609,9 @@ $messages['ce'] = array(
 	'centralnotice-templates' => 'Кепаш',
 	'centralnotice-weight' => 'Шоралла',
 	'centralnotice-year' => 'Шо',
+	'centralnotice-edit-template' => 'Нисйé кеп',
 	'centralnotice-insert' => 'Чудилла: $1',
+	'centralnotice-languages' => 'Меттанаш',
 	'centralnotice-language' => 'Мотт',
 	'centralnotice-view-logs' => 'Тептаршка хьажар',
 	'centralnotice-timestamp' => 'Терахь/хан',
@@ -5120,6 +5122,7 @@ $messages['en-gb'] = array(
 );
 
 /** Esperanto (Esperanto)
+ * @author KuboF
  * @author Michawiki
  * @author Mihxil
  * @author Yekrats
@@ -5139,8 +5142,8 @@ $messages['eo'] = array(
 	'centralnotice-enabled' => 'Ŝalta',
 	'centralnotice-modify' => 'Enigi',
 	'centralnotice-view' => 'Vidi',
-	'centralnotice-save-banner' => 'Konservi rubandon', # Fuzzy
-	'centralnotice-preview' => 'Antaŭrigardo', # Fuzzy
+	'centralnotice-save-banner' => 'Konservi',
+	'centralnotice-preview' => 'Antaŭrigardo ($1)',
 	'centralnotice-nopreview' => '(Antaŭvido ne montrebla)',
 	'centralnotice-add-new' => 'Aldoni novan centralan noticon',
 	'centralnotice-remove' => 'Forigi',
@@ -5149,6 +5152,8 @@ $messages['eo'] = array(
 	'centralnotice-manage-templates' => 'Administri rubandojn',
 	'centralnotice-add' => 'Aldoni',
 	'centralnotice-add-notice' => 'Aldoni noticon',
+	'centralnotice-add-notice-button' => 'Krei',
+	'centralnotice-add-notice-cancel-button' => 'Nuligi',
 	'centralnotice-edit-notice' => 'Redakti kampanjon',
 	'centralnotice-add-template' => 'Aldoni ŝablonon',
 	'centralnotice-show-notices' => 'Montri noticojn',
@@ -5185,6 +5190,7 @@ Ne forigante.', # Fuzzy
 	'centralnotice-hours' => 'Horo',
 	'centralnotice-min' => 'Minuto',
 	'centralnotice-project-lang' => 'Projekta lingvo',
+	'centralnotice-select-all' => 'Elekti ĉiujn',
 	'centralnotice-project-name' => 'Projekta nomo',
 	'centralnotice-assigned-templates' => 'Asignitaj ŝablonoj',
 	'centralnotice-no-templates' => 'Neniuj ŝablonoj estis trovitaj.
@@ -5217,7 +5223,8 @@ Afiŝu noticon suben',
 	'centralnotice-clone' => 'Kloni',
 	'centralnotice-clone-notice' => 'Krei duplikaton de la ŝablono',
 	'centralnotice-clone-name' => 'Nomo:',
-	'centralnotice-preview-all-template-translations' => 'Antaŭvidi ĉiujn haveblajn tradukojn de ŝablono', # Fuzzy
+	'centralnotice-clone-cancel' => 'Nuligi',
+	'centralnotice-preview-all-template-translations' => 'Antaŭvidi ĉiujn aprobitajn tradukojn',
 	'centralnotice-insert' => 'Enmeti: $1',
 	'centralnotice-close-button' => 'Fermo-butono',
 	'centralnotice-close-title' => 'Fermi',
