@@ -140,20 +140,6 @@
 				mw.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
 			} );
 		},
-		waitForCountry: function () {
-			if ( Geo.country ) {
-				mw.centralNotice.data.country = Geo.country;
-				mw.centralNotice.loadBanner();
-			} else {
-				mw.centralNotice.data.waitCycle++;
-				if ( mw.centralNotice.data.waitCycle < 10 ) {
-					window.setTimeout( mw.centralNotice.waitForCountry, 100 );
-				} else {
-					mw.centralNotice.data.country = 'XX';
-					mw.centralNotice.loadBanner();
-				}
-			}
-		},
 		getBucket: function() {
 			var dataString = $.cookie( 'centralnotice_bucket' ) || '',
 				bucket = dataString.split('-')[0],
@@ -209,9 +195,19 @@
 			// geoiplookup.wikimedia.org. This hostname has no IPv6 address,
 			// so will force dual-stack users to fall back to IPv4.
 			if ( mw.centralNotice.data.country === 'XX' ) {
-				$( 'body' ).append( '<script src="//geoiplookup.wikimedia.org/"></script>' );
-				mw.centralNotice.data.waitCycle = 0;
-				mw.centralNotice.waitForCountry();
+				$.ajax({
+					url: '//geoiplookup.wikimedia.org/',
+					dataType: 'script',
+					cache: true,
+					complete: function() {
+						if ( Geo.country ) {
+							mw.centralNotice.data.country = Geo.country;
+						} else {
+							mw.centralNotice.data.country = 'XX';
+						}
+						mw.centralNotice.loadBanner();
+					}
+				});
 			} else {
 				mw.centralNotice.loadBanner();
 			}
