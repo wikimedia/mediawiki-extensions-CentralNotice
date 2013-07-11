@@ -89,9 +89,12 @@ $specialPageAliases['fa'] = array(
 	'CentralNotice' => array( 'اعلان_مرکزی' ),
 	'CentralNoticeLogs' => array( 'سیاهه‌های_اعلان_مرکزی' ),
 	'NoticeTemplate' => array( 'الگوی_اعلامیه' ),
+	'GlobalAllocation' => array( 'تخصیص_سراسری' ),
 	'BannerAllocation' => array( 'موقعیت_نشان' ),
 	'BannerController' => array( 'کنترل_نشان' ),
 	'BannerLoader' => array( 'بارگیری_نشان' ),
+	'BannerRandom' => array( 'نشان_تصادفی' ),
+	'RecordImpression' => array( 'ثبت_احساس' ),
 	'HideBanners' => array( 'پنهان_کردن_نشان‌ها' ),
 );
 
