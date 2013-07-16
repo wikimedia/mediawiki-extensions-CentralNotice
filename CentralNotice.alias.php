@@ -89,9 +89,12 @@ $specialPageAliases['fa'] = array(
 	'CentralNotice' => array( 'اعلان_مرکزی' ),
 	'CentralNoticeLogs' => array( 'سیاهه‌های_اعلان_مرکزی' ),
 	'NoticeTemplate' => array( 'الگوی_اعلامیه' ),
+	'GlobalAllocation' => array( 'تخصیص_سراسری' ),
 	'BannerAllocation' => array( 'موقعیت_نشان' ),
 	'BannerController' => array( 'کنترل_نشان' ),
 	'BannerLoader' => array( 'بارگیری_نشان' ),
+	'BannerRandom' => array( 'نشان_تصادفی' ),
+	'RecordImpression' => array( 'ثبت_احساس' ),
 	'HideBanners' => array( 'پنهان_کردن_نشان‌ها' ),
 );
 
@@ -230,11 +233,15 @@ $specialPageAliases['nb'] = array(
 /** Low Saxon (Netherlands) (Nedersaksies) */
 $specialPageAliases['nds-nl'] = array(
 	'CentralNotice' => array( 'Sentrale_mededeling' ),
+	'CentralNoticeLogs' => array( 'Sentrale_mededelingenlogboek' ),
 	'NoticeTemplate' => array( 'Mededelingsmal' ),
+	'GlobalAllocation' => array( 'Globale_toewiezing' ),
 	'BannerAllocation' => array( 'Baniertoewiezing' ),
 	'BannerController' => array( 'Banierbeheerder' ),
 	'BannerLoader' => array( 'Banierlaojer' ),
-	'HideBanners' => array( 'Banierverbargen' ),
+	'BannerRandom' => array( 'Netzelde_welke_banier' ),
+	'RecordImpression' => array( 'Weergave_vastelegen' ),
+	'HideBanners' => array( 'Banier_verbargen' ),
 );
 
 /** Dutch (Nederlands) */
