@@ -3983,7 +3983,9 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-banner-anonymous' => 'Defnyddwyr anhysbys',
 	'centralnotice-banner-logged-in' => 'Defnyddwyr sydd wedi mewngofnodi',
 	'centralnotice-banner-type' => 'Math y faner:',
+	'centralnotice-banner-collapsible' => 'Gellir ei grebachu',
 	'centralnotice-banner-fundraising' => 'Mae hwn yn faner codi arian',
+	'centralnotice-banner-autolink' => 'Gwneud cyswllt yn awtomatig at dudalen lanio',
 	'centralnotice-banner-landing-pages-default' => 'e.e. JimmyAppeal01',
 	'centralnotice-countries' => 'Gwledydd',
 	'centralnotice-allocation' => 'Dyraniad',
@@ -5442,7 +5444,7 @@ Añade uno debajo',
 	'centralnotice-banner-collapsible' => 'Colapsable',
 	'centralnotice-banner-fundraising' => 'Esto es un anuncio de la campaña de recaudación de fondos',
 	'centralnotice-banner-autolink' => 'Crear el enlace hacia la de destino de modo automático',
-	'centralnotice-banner-autolink-help' => 'Cree una etiqueta de largo en el cuerpo del cartel con $1 e introduzca a continuación una o más páginas de destino, por ejemplo, $2. El enlace se construirá automáticamente cada vez que se ve el cartel.', # Fuzzy
+	'centralnotice-banner-autolink-help' => 'Cuando este activado, CentralNotice creará automáticamente un enlace localizado a $3 con una página de aterrizaje seleccionada al azar. Debe haber una etiqueta de anclaje con $1 en el cuerpo de la plantilla.',
 	'centralnotice-banner-landing-pages' => 'Las páginas de destino (separados por comas):',
 	'centralnotice-banner-landing-pages-default' => 'ej: JimmyAppeal01',
 	'centralnotice-banner-mixins' => 'Maxins (separados por comas)',
@@ -5860,6 +5862,7 @@ Ez da gehituko',
 );
 
 /** Persian (فارسی)
+ * @author Alireza
  * @author Bersam
  * @author Ebraminio
  * @author Huji
@@ -5988,7 +5991,7 @@ $messages['fa'] = array(
 	'centralnotice-banner-collapsible' => 'متلاشی‌پذیر',
 	'centralnotice-banner-fundraising' => 'این اعلانی برای جمع‌آوری کمک‌های مالی است',
 	'centralnotice-banner-autolink' => 'ایجاد خودکار پیوند صفحه مقصد',
-	'centralnotice-banner-autolink-help' => 'یک برچسب پیوند در بدنهٔ اعلان با $1 ایجاد کنید و یک یا چند تا از صفحه‌های مقصد مقابل را وارد کنید، برای مثال $2. پیوند هر زمان که اعلان دیده شود به طور خودکار ساخته خواهد شد.', # Fuzzy
+	'centralnotice-banner-autolink-help' => 'زمانی که اطلاع‌رسانی مرکزی فعال شد به صورت خودکار پیوند محلی به  $3  ایجاد می‌کند و صفحه‌ای را به صورت تصادفی انتخاب می‌کند.باید یک برچسب لنگر به  $1 در بدنهٔ بنر  موجود باشد.',
 	'centralnotice-banner-landing-pages' => 'صفحه‌های فرود (با ویرگول جدا شوند):',
 	'centralnotice-banner-landing-pages-default' => 'مثال JimmyAppeal01',
 	'centralnotice-banner-mixins' => 'Mixins (با کاما جدا شده):',
@@ -6003,7 +6006,8 @@ $messages['fa'] = array(
 	'centralnotice-projects' => 'پروژه‌ها',
 	'centralnotice-country' => 'کشور',
 	'centralnotice-no-allocation' => 'هیچ آگهی‌ای اختصاص نیافته است.',
-	'centralnotice-allocation-description' => 'اختصاص آگهی برای $1.$2 در $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'اختصاص آگهی برای زبان $1، پروژه: $2 در کشور: $3، بر روی دستگاه $4',
+	'centralnotice-historical-allocation-description' => 'بنر تخصیص برای زبان:  $1 ، پروژه:  $2 ، در کشور:  $3 ، دستگاه  $4 ، در زمان$5',
 	'centralnotice-percentage' => 'درصد',
 	'centralnotice-documentwrite-error' => 'دستور document.write()&lrm; نمی‌تواند درون یک آگهی استفاده شود.
 برای اطلاعات بیشتر http://meta.wikimedia.org/wiki/Help:CentralNotice را ببینید.',
@@ -6049,16 +6053,21 @@ $messages['fa'] = array(
 	'centralnotice-priority-high' => 'زیاد',
 	'centralnotice-priority-emergency' => 'اورژانسی',
 	'centralnotice-prioritylangs' => 'زبان‌های با اولویت بالا',
+	'centralnotice-prioritylangs-explain' => 'انتخاب یک زبان به عنوان اولویت مترجم‌ها را تشویق به ترجمه آن زبان در ابتدا می‌کند.',
+	'centralnotice-aggregate-group-desc' => 'همهٔ پیام‌ها در این گروه در مرکز اعلانات آگهی‌ها گنجانده خواهد شد.',
 	'centralnotice-country-eu' => 'منطقهٔ ناشناخته/اتحادیهٔ اروپا',
 	'centralnotice-country-ap' => 'منطقهٔ ناشناخته/ منطقهٔ اقیانوس آرام آسیا',
 	'centralnotice-country-a1' => 'ناشناس/پروکسی ناشناخته',
 	'centralnotice-country-a2' => 'ناشناخته/ماهواره',
 	'centralnotice-country-o1' => 'ناشناخته/کشور دیگر',
 	'centralnotice-country-unknown' => 'ناشناخته/غیر-جغرافیایی',
+	'centralnotice-buckets' => 'انتقال سریع کاربر',
 	'centralnotice-bucket' => 'سطل',
 	'centralnotice-bucket-letter' => 'سطل " $1 "',
 	'centralnotice-devicetype-desktop' => 'رایانهٔ رومیزی',
 	'centralnotice-all' => 'همه',
+	'centralnotice-generic-error' => 'شما مجوز صحیح را برای انجام عمل درخواست شده ندارید و یا عمل شما غیر معتبر است.',
+	'centralnotice-banner-name-error' => 'نام بنر نامعتبر ارائه شده است. نام معتبر تنها حاوی آلفا-عددی و شناسه‌های زیرخط‌دار می‌باشد.',
 	'centralnotice-all-except' => 'همه به جز $1',
 	'centralnotice-excluding-list' => '$1 (به جز  $2 )',
 	'centralnotice-user-role' => 'نقش کاربر',
