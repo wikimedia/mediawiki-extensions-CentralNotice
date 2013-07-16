@@ -261,13 +261,6 @@
 					result: 'hide',
 					reason: 'preload'
 				}
-			} else if ( $.cookie( 'stopMobileRedirect' ) === 'true' ) {
-				// We do not show banners to mobile devices browsing the desktop site. It's not
-				// guaranteed how they will react.
-				impressionResultData = {
-					result: 'hide',
-					reason: 'mobile'
-				}
 			} else if (
 				bannerJson.priority < 3 && /* A priority of 3 is Emergency and cannot be hidden */
 				!mw.centralNotice.data.testing && /* And we want to see what we're testing! :) */
