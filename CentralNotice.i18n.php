@@ -3879,6 +3879,13 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 	'centralnotice-end-time' => 'Čas konce (UTC)',
 );
 
+/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+ * @author ОйЛ
+ */
+$messages['cu'] = array(
+	'centralnotice-talk-link' => 'бєсѣда',
+);
+
 /** Welsh (Cymraeg)
  * @author Lcawte
  * @author Lloffiwr
@@ -10905,8 +10912,8 @@ Ji taip pat galima pridėti arba šalinti senų pranešimų.',
 	'centralnotice-enabled' => 'Įjungta',
 	'centralnotice-modify' => 'Pateikti',
 	'centralnotice-view' => 'Peržiūrėti',
-	'centralnotice-save-banner' => 'Įrašyti reklaminę juostą', # Fuzzy
-	'centralnotice-preview' => 'Peržiūra', # Fuzzy
+	'centralnotice-save-banner' => 'Išsaugoti',
+	'centralnotice-preview' => 'Peržiūrėti ($1)',
 	'centralnotice-nopreview' => '(Peržiūra negalima)',
 	'centralnotice-add-new' => 'Pridėti naują kampaniją',
 	'centralnotice-remove' => 'Pašalinti',
@@ -10915,6 +10922,8 @@ Ji taip pat galima pridėti arba šalinti senų pranešimų.',
 	'centralnotice-manage-templates' => 'Valdyti reklamines juostas',
 	'centralnotice-add' => 'Pridėti',
 	'centralnotice-add-notice' => 'Pridėti kampaniją',
+	'centralnotice-add-notice-button' => 'Sukurti',
+	'centralnotice-add-notice-cancel-button' => 'Atšaukti',
 	'centralnotice-edit-notice' => 'Redaguoti kampaniją',
 	'centralnotice-add-template' => 'Pridėti reklaminę juostą',
 	'centralnotice-show-notices' => 'Rodyti kampanijas',
@@ -10951,6 +10960,9 @@ Nėra pašalinti.', # Fuzzy
 	'centralnotice-hours' => 'Valanda',
 	'centralnotice-min' => 'Minutė',
 	'centralnotice-project-lang' => 'Projekto kalba',
+	'centralnotice-select-all' => 'Pasirinkti viską',
+	'centralnotice-remove-all' => 'Pašalinti visus',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|daiktas yra pasirinktas|daiktai yra pasiinkti}}',
 	'centralnotice-project-name' => 'Projekto pavadinimas',
 	'centralnotice-assigned-templates' => 'Jiems priskiriamas banners',
 	'centralnotice-no-templates' => 'Nerasta šablonų.
@@ -10981,6 +10993,8 @@ Pridėti vieną žemiau.',
 	'centralnotice-clone' => 'Klonuoti',
 	'centralnotice-clone-notice' => 'Sukurti šablono kopiją',
 	'centralnotice-clone-name' => 'Pavadinimas:',
+	'centralnotice-clone-cancel' => 'Atšaukti',
+	'centralnotice-preview-all-template-translations' => 'Peržiūrėti visus patvirtintus vertimus',
 	'centralnotice-insert' => 'Įdėti: $1',
 	'centralnotice-close-button' => 'Uždarymo mygtukas',
 	'centralnotice-close-title' => 'Uždaryti',
@@ -10992,6 +11006,8 @@ Pridėti vieną žemiau.',
 	'centralnotice-banner-type' => 'Pranešimo tipas:',
 	'centralnotice-banner-hidable' => 'Statinis/Paslepiamas',
 	'centralnotice-banner-collapsible' => 'Sutraukiamas',
+	'centralnotice-banner-fundraising' => 'Tai lėšų rinkimo reklama',
+	'centralnotice-banner-landing-pages-default' => 'pvz. JimmyAppeal01',
 	'centralnotice-geo' => 'Taikomas geografiškai',
 	'centralnotice-countries' => 'Valstybės',
 	'centralnotice-languages' => 'Kalbos',
@@ -10999,7 +11015,7 @@ Pridėti vieną žemiau.',
 	'centralnotice-projects' => 'Projektai',
 	'centralnotice-country' => 'Valstybė',
 	'centralnotice-percentage' => 'Procentinė dalis',
-	'centralnotice-preferred' => 'Pageidaujamas', # Fuzzy
+	'centralnotice-preferred' => 'Prioritetas',
 	'centralnotice-logs' => 'Veiksmų sąrašas',
 	'centralnotice-view-logs' => 'Peržiūrėti veiksmų istoriją',
 	'centralnotice-timestamp' => 'Laiko žyma',
@@ -11027,9 +11043,31 @@ Pridėti vieną žemiau.',
 	'centralnotice-priority-normal' => 'normalus',
 	'centralnotice-priority-high' => 'didelis',
 	'centralnotice-priority-emergency' => 'skubi',
-	'centralnotice-start-date' => 'Pradžios data', # Fuzzy
+	'centralnotice-country-eu' => 'Nežinomas/Europos Sąjungos regionas',
+	'centralnotice-country-ap' => 'Nežinomas/Azijos Ramiojo Vandenyno Regionas',
+	'centralnotice-country-a1' => 'Nežinomas/Anoniminis Proxy',
+	'centralnotice-country-a2' => 'Nežinomas/Palydovinis Tiekėjas',
+	'centralnotice-country-o1' => 'Nežinomas/Kitos Šalies',
+	'centralnotice-country-unknown' => 'Nežinomas/Nesusekamas',
+	'centralnotice-devicetype-desktop' => 'Stalinis Kompiuteris',
+	'centralnotice-all' => 'Visi',
+	'centralnotice-generic-error' => 'Jūs neturite teisingų teisių šiam veiksmui atlikti arba veiksmas buvo neteisingas.',
+	'centralnotice-all-except' => 'Visi išskyrus $1',
+	'centralnotice-excluding-list' => '$1 (išskyrus $2)',
+	'centralnotice-user-role' => 'Vartotojo vaidmuo',
+	'centralnotice-user-role-anonymous' => 'Anonimas',
+	'centralnotice-user-role-logged-in' => 'Prisijungęs',
+	'centralnotice-banner-class' => 'Klasė',
+	'centralnotice-archive-banner' => 'Archyvas',
+	'centralnotice-archive-banner-cancel' => 'Atšaukti',
+	'centralnotice-delete-banner' => 'Ištrinti',
+	'centralnotice-delete-banner-cancel' => 'Atšaukti',
+	'centralnotice-devices' => 'Rodyti įrenginiuose',
+	'centralnotice-start-timestamp' => 'Pradžia (UTC)',
+	'centralnotice-end-timestamp' => 'Pabaiga (UTC)',
+	'centralnotice-start-date' => 'Pradžios data (UTC)',
 	'centralnotice-start-time' => 'Pradžios laikas (UTC)',
-	'centralnotice-end-date' => 'Pabaigos data', # Fuzzy
+	'centralnotice-end-date' => 'Pabaigos data (UTC)',
 	'centralnotice-end-time' => 'Pabaigos laikas (UTC)',
 );
 
@@ -14068,8 +14106,8 @@ Também pode ser usado para adicionar avisos novos ou remover antigos.',
 	'centralnotice-notices' => 'Avisos',
 	'centralnotice-notice-exists' => 'O aviso já existe.
 Não será adicionado.',
-	'centralnotice-no-language' => 'Não foi seleccionada uma língua para o aviso centralizado. O aviso não será adicionado.',
-	'centralnotice-no-project' => 'Não foi seleccionado um projecto para o aviso centralizado. O aviso não será adicionado.',
+	'centralnotice-no-language' => 'Não foi selecionada uma língua para o aviso centralizado. O aviso não será adicionado.',
+	'centralnotice-no-project' => 'Não foi selecionado um projeto para o aviso centralizado. O aviso não será adicionado.',
 	'centralnotice-template-exists' => 'O modelo já existe.
 Não será adicionado.',
 	'centralnotice-notice-doesnt-exist' => 'O aviso não existe.',
