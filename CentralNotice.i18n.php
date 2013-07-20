@@ -3883,6 +3883,8 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
  * @author ОйЛ
  */
 $messages['cu'] = array(
+	'centralnotice-languages' => 'ѩꙁꙑци',
+	'centralnotice-language' => 'ѩꙁꙑкъ',
 	'centralnotice-talk-link' => 'бєсѣда',
 );
 
@@ -7573,6 +7575,7 @@ $messages['he'] = array(
 	'centralnotice-banner-autolink-help' => 'כשזה מופעל, ההרחבה מיצור קישור מותאם אל $3 עם דף נחיתה שייבחר באופן אקראי. צריך להיות תג עוגן עם $1 בגוף הכּרזה.',
 	'centralnotice-banner-landing-pages' => 'דפי נחיתה (מופרדים בפסיקים):',
 	'centralnotice-banner-landing-pages-default' => 'למשל JimmyAppeal01',
+	'centralnotice-banner-mixins' => 'תוספות (מופרדות בפסיקים):',
 	'centralnotice-geo' => 'ממוקד גאוגרפית',
 	'centralnotice-countries' => 'מדינות',
 	'centralnotice-global-allocation' => 'הקצאה גלובלית',
