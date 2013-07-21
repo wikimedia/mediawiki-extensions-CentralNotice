@@ -3883,8 +3883,10 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
  * @author ОйЛ
  */
 $messages['cu'] = array(
+	'centralnotice-clone-name' => 'имѧ :',
 	'centralnotice-languages' => 'ѩꙁꙑци',
 	'centralnotice-language' => 'ѩꙁꙑкъ',
+	'centralnotice-user' => 'польꙃєватєл҄ь',
 	'centralnotice-talk-link' => 'бєсѣда',
 );
 
@@ -17100,7 +17102,7 @@ Lägg till ett nedan',
 	'centralnotice-banner-collapsible' => 'Hopfällbar',
 	'centralnotice-banner-fundraising' => 'Detta är en insamlingsbanner',
 	'centralnotice-banner-autolink' => 'Skapa automatiskt länk till landningssida',
-	'centralnotice-banner-autolink-help' => 'Skapa en ankartagg i bannerns body med $1 och skriv in en eller flera målsidor nedan, till exempel $2. Länken kommer att skapas automatiskt när bannern visas.', # Fuzzy
+	'centralnotice-banner-autolink-help' => 'När den är inaktiverad kommer CentralNotice automatiskt skapa en lokaliserad länk till $3 med en slumpad landningssida. Det måste finnas en ankartagg med $1 i bannerns innehåll.',
 	'centralnotice-banner-landing-pages' => 'Målsidor (kommaseparerade):',
 	'centralnotice-banner-landing-pages-default' => 't.ex. JimmyAppeal01',
 	'centralnotice-banner-mixins' => 'Mixins (kommaavgränsad):',
@@ -17175,6 +17177,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.',
 	'centralnotice-user-role-anonymous' => 'Anonym',
 	'centralnotice-user-role-logged-in' => 'Inloggad',
 	'centralnotice-banner-class' => 'Klass',
+	'centralnotice-banner-class-generic' => 'Generell',
 	'centralnotice-banner-class-fundraising' => 'Insamling',
 	'centralnotice-templates-included' => 'Inkluderade mallar',
 	'centralnotice-archive-banner' => 'Arkiv',
