@@ -3884,6 +3884,7 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
  */
 $messages['cu'] = array(
 	'centralnotice-clone-name' => 'имѧ :',
+	'centralnotice-close-title' => 'ꙁакрꙑи',
 	'centralnotice-languages' => 'ѩꙁꙑци',
 	'centralnotice-language' => 'ѩꙁꙑкъ',
 	'centralnotice-user' => 'польꙃєватєл҄ь',
@@ -14077,7 +14078,7 @@ $messages['pt'] = array(
 	'centralnotice-desc' => 'Adiciona um aviso centralizado',
 	'centralnotice-summary' => 'Este módulo permite-lhe editar os avisos centralizados que estejam configurados.
 Também pode ser usado para adicionar avisos novos ou remover antigos.',
-	'centralnotice-query' => 'Modificar avisos actuais',
+	'centralnotice-query' => 'Modificar avisos atuais',
 	'centralnotice-notice-name' => 'Nome do aviso',
 	'centralnotice-enabled' => 'Ativo',
 	'centralnotice-modify' => 'Enviar',
@@ -14201,7 +14202,7 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-action-removed' => 'removido',
 	'centralnotice-changed' => 'Alterado de <span class="cn-old-value">$1</span> para <span class="cn-new-value">$2</span>',
 	'centralnotice-on' => 'ativo',
-	'centralnotice-off' => 'inactivo',
+	'centralnotice-off' => 'inativo',
 	'centralnotice-added' => '<span class="cn-new-value">$1</span> foi adicionado',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> foi removido',
 	'centralnotice-no-assignments' => 'não há modelos atribuídos',
@@ -19873,6 +19874,7 @@ $messages['yue'] = array(
  * @author Li3939108
  * @author Liangent
  * @author PhiLiP
+ * @author Qiyue2001
  * @author Shirayuki
  * @author StephDC
  * @author Wmr89502270
@@ -19975,6 +19977,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-settings' => '设置',
 	'centralnotice-edit-template' => '编辑模板',
 	'centralnotice-edit-template-summary' => '欲创建一个可本地化的消息，请用三对花括号分隔含连字符的字符串，例如{{{jimbo-quote}}}。',
+	'centralnotice-edit-template-magicwords' => '横幅Mixins提供的魔术字：$1',
 	'centralnotice-message' => '信息',
 	'centralnotice-message-not-set' => '没有设置消息',
 	'centralnotice-clone' => '建立副本',
@@ -19995,9 +19998,10 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner-collapsible' => '可收缩',
 	'centralnotice-banner-fundraising' => '这是一个筹款横幅',
 	'centralnotice-banner-autolink' => '自动创建登陆页面的链接',
-	'centralnotice-banner-autolink-help' => '在横幅内使用$1创建锚点标记，并在下方输入一个或多个目标页面，例如$2。程序会在用户浏览横幅时自动创建链接。', # Fuzzy
+	'centralnotice-banner-autolink-help' => '当启用CentralNotice时将自动创建一条连至$3的本地化连结，而著陆页则属随机。横幅内必需有一个锚点$1。',
 	'centralnotice-banner-landing-pages' => '登录页（逗号分隔）：',
 	'centralnotice-banner-landing-pages-default' => '例如 JimmyAppeal01',
+	'centralnotice-banner-mixins' => 'Mixins（逗号分隔）：',
 	'centralnotice-geo' => '已地理定位的',
 	'centralnotice-countries' => '国家',
 	'centralnotice-global-allocation' => '全局分配',
@@ -20010,6 +20014,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-country' => '国家',
 	'centralnotice-no-allocation' => '没有配给横幅',
 	'centralnotice-allocation-description' => '横幅分配对语言：$1，项目：$2，在国家：$3 的 $4 设备上',
+	'centralnotice-historical-allocation-description' => '语言分配：$1，项目分配：$2，地区分配：$3，装置分配：$4，时间分配：$5',
 	'centralnotice-percentage' => '百分比',
 	'centralnotice-documentwrite-error' => 'document.write() 不能在横幅中使用。
 更多信息请参见 http://meta.wikimedia.org/wiki/Help:CentralNotice 。',
@@ -20074,16 +20079,19 @@ $messages['zh-hans'] = array(
 	'centralnotice-user-role-anonymous' => '匿名',
 	'centralnotice-user-role-logged-in' => '登录用户',
 	'centralnotice-banner-class' => '类',
+	'centralnotice-banner-class-desc' => '特定类型中的横幅将共用追踪变数及组设置（如隐藏Cookie。）',
 	'centralnotice-banner-class-generic' => '通用',
 	'centralnotice-banner-class-fundraising' => '筹款',
 	'centralnotice-templates-included' => '包含的模板',
 	'centralnotice-archive-banner' => '存档',
 	'centralnotice-archive-banner-title' => '存档{{PLURAL:$1|条幅}}吗？',
+	'centralnotice-archive-banner-confirm' => '存档将展开所有模板并设置页面保护，此动作难以回复。',
 	'centralnotice-archive-banner-cancel' => '取消',
 	'centralnotice-delete-banner' => '删除',
 	'centralnotice-delete-banner-title' => '删除{{PLURAL:$1|条幅}}?',
 	'centralnotice-delete-banner-confirm' => '删除会移除所有设置和消息。此操作无法撤消。请考虑改为存档。',
 	'centralnotice-delete-banner-cancel' => '取消',
+	'centralnotice-noiframe' => '此页内容需要iframe才能正常显示。',
 	'centralnotice-messages-pending-approval' => '有消息正在等待审核的语言',
 	'centralnotice-devices' => '在设备上显示',
 	'centralnotice-start-timestamp' => '开始时间 (UTC)',
