@@ -56,12 +56,15 @@ class Banner {
 	 * @return array
 	 */
 	function extractMessageFields( $body = null ) {
-		global $wgOut;
+		global $wgParser;
 
 		if ( $body === null ) {
 			$body = $this->getContent();
 		}
-		$expanded = $wgOut->parse( $body );
+
+		$expanded = $wgParser->parse(
+			$body, $this->getTitle(), ParserOptions::newFromContext( RequestContext::getMain() )
+		)->getText();
 
 		// Also search the preload js for fields.
 		$renderer = new BannerRenderer( RequestContext::getMain(), $this );
