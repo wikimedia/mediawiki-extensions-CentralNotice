@@ -41,50 +41,6 @@ window.switchLogs = function ( baseUrl, logType ) {
 	window.location = baseUrl + '?log=' + logType;
 };
 
-// Insert banner close button
-window.insertButton = function( buttonType ) {
-	var buttonValue, sel;
-	var bannerField = document.getElementById( 'templateBody' );
-	if ( buttonType === 'close' ) {
-		buttonValue = '<a href="#" title="'
-			+ mediaWiki.msg( 'centralnotice-close-title' )
-			+ '" onclick="hideBanner();return false;">'
-			+ '<img border="0" src="' + mediaWiki.config.get( 'wgNoticeCloseButton' )
-			+ '" alt="' + mediaWiki.msg( 'centralnotice-close-title' )
-			+ '" /></a>';
-	}
-	if ( document.selection ) {
-		// IE support
-		bannerField.focus();
-		sel = document.selection.createRange();
-		sel.text = buttonValue;
-	} else if ( bannerField.selectionStart || bannerField.selectionStart == '0' ) {
-		// Mozilla support
-		var startPos = bannerField.selectionStart;
-		var endPos = bannerField.selectionEnd;
-		bannerField.value = bannerField.value.substring(0, startPos)
-			+ buttonValue
-			+ bannerField.value.substring(endPos, bannerField.value.length);
-	} else {
-		bannerField.value += buttonValue;
-	}
-	bannerField.focus();
-};
-
-// Make sure the contents of the banner body are valid
-window.validateBannerForm = function( form ) {
-	var output = '';
-	var pos = form.templateBody.value.indexOf( 'document.write' );
-	if ( pos > -1 ) {
-		output += mediaWiki.msg( 'centralnotice-documentwrite-error' ) + '\n';
-	}
-	if ( output ) {
-		alert( output );
-		return false;
-	}
-	return true;
-};
-
 window.addEventListener( 'message', receiveMessage, false );
 function receiveMessage( event ) {
 	var remoteData = JSON.parse( event.data );
