@@ -88,10 +88,28 @@ class BannerChooser {
 		$this->campaigns = $filtered;
 	}
 
+	/**
+	 * From the selected group of banners we wish to now filter only for those that
+	 * are relevant to the user. The banners choose if they display to anon/logged
+	 * out, what device, and what bucket. They must also take into account their
+	 * campaigns priority level.
+	 *
+	 * Logged In/Out and device are considered independent of the campaign priority
+	 * for allocation purposes so are filtered for first.
+	 *
+	 * Then we filter for campaign dependent variables -- primarily the priority
+	 * followed by the banner bucket.
+	 */
 	protected function filterBanners() {
+		// Filter on Logged
 		if ( $this->allocContext->getAnonymous() !== null ) {
 			$display_column = ( $this->allocContext->getAnonymous() ? 'display_anon' : 'display_account' );
 			$this->filterBannersOnColumn( $display_column, 1 );
+		}
+
+		// Filter for device category
+		if ( $this->allocContext->getDevice() ) {
+			$this->filterBannersOnColumn( 'device', $this->allocContext->getDevice() );
 		}
 
 		// Always filter out lower Z-levels
@@ -100,11 +118,6 @@ class BannerChooser {
 			$highest_z = max( $banner[ 'campaign_z_index' ], $highest_z );
 		}
 		$this->filterBannersOnColumn( 'campaign_z_index', $highest_z );
-
-		// Filter for device category
-		if ( $this->allocContext->getDevice() ) {
-			$this->filterBannersOnColumn( 'device', $this->allocContext->getDevice() );
-		}
 
 		// Filter for the provided bucket.
 		$bucket = $this->allocContext->getBucket();
