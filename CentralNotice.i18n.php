@@ -3624,6 +3624,7 @@ $messages['ce'] = array(
 	'centralnotice-view-logs' => 'Тептаршка хьажар',
 	'centralnotice-timestamp' => 'Терахь/хан',
 	'centralnotice-action' => 'Дийраш',
+	'centralnotice-action-created' => 'кхоьллина',
 	'centralnotice-talk-link' => 'дийцаре',
 	'centralnotice-date' => 'Терахь',
 );
