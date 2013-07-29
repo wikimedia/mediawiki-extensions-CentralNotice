@@ -93,17 +93,13 @@ class BannerMessage {
 
 		$savePage( $this->getTitle( $lang ), $translation );
 
-		// If we're using translate : group review; create and protect the english and QQQ pages
+		// If we're using translate : group review; create and protect the english page
 		if ( $wgNoticeUseTranslateExtension
 			&& ( $lang === $wgLanguageCode )
 			&& BannerMessageGroup::isUsingGroupReview()
 		) {
 			$this->protectMessageInCnNamespaces(
 				$savePage( $this->getTitle( $lang, NS_CN_BANNER ), $translation ),
-				$user
-			);
-			$this->protectMessageInCnNamespaces(
-				$savePage( $this->getTitle( 'qqq', NS_CN_BANNER ), $translation ),
 				$user
 			);
 		}
@@ -114,8 +110,8 @@ class BannerMessage {
 	 * The protection lasts for infinity and acts for group
 	 * @ref $wgNoticeProtectGroup
 	 *
-	 * This really is intended only for use on the original source language and qqq because
-	 * these languages are set via the CN UI; not the translate UI.
+	 * This really is intended only for use on the original source language
+	 * because those messages are set via the CN UI; not the translate UI.
 	 *
 	 * @param WikiPage $page Page containing the message to protect
 	 * @param User     $user User doing the protection (ie: the last one to edit the page)
