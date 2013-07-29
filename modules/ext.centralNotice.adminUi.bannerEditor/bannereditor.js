@@ -51,10 +51,23 @@
 					title: mw.message('centralnotice-clone-notice' ).text(),
 					modal: true,
 					buttons: buttons,
-					width: 400
+					width: 'auto'
 				});
 
 			// Do not submit the form... that's up to the ok button
+			return false;
+		},
+
+		/**
+		 * Validates the contents of the banner body before submission.
+		 * @returns {boolean}
+		 */
+		doSaveBanner: function() {
+			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).indexOf( 'document.write' ) > -1 ) {
+				alert( mediaWiki.msg( 'centralnotice-documentwrite-error' ) );
+			} else {
+				return true;
+			}
 			return false;
 		},
 
@@ -143,7 +156,7 @@
 			if ( buttonType === 'close' ) {
 				buttonValue = '<a href="#" title="'
 					+ mediaWiki.msg( 'centralnotice-close-title' )
-					+ '" onclick="hideBanner();return false;">'
+					+ '" onclick="mw.centralNotice.hideBanner();return false;">'
 					+ '<img border="0" src="' + mediaWiki.config.get( 'wgNoticeCloseButton' )
 					+ '" alt="' + mediaWiki.msg( 'centralnotice-close-title' )
 					+ '" /></a>';
@@ -171,6 +184,7 @@
 	$( '#mw-input-wpdelete-button' ).click( mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
 	$( '#mw-input-wparchive-button' ).click( mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
 	$( '#mw-input-wpclone-button' ).click( mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
+	$( '#mw-input-wpsave-button' ).click( mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
 	$( '#mw-input-wptranslate-language' ).change( mw.centralNotice.adminUi.bannerEditor.updateLanguage );
 	$( '#mw-input-wpcreate-landingpage-link' ).change( mw.centralNotice.adminUi.bannerEditor.showHideLpEditBox );
 
