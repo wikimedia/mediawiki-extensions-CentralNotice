@@ -297,6 +297,16 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
 		}
 		$out->setPageTitle( $this->bannerName );
+		$out->setSubtitle( Linker::link(
+				SpecialPage::getTitleFor( 'Random' ),
+				$this->msg( 'centralnotice-live-preview' ),
+				array( 'class' => 'cn-banner-list-element-label-text' ),
+				array(
+					 'banner' => $this->bannerName,
+					 'uselang' => $this->bannerLanguagePreview,
+					 'force' => '1',
+				)
+			) );
 
 		// Generate the form
 		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
