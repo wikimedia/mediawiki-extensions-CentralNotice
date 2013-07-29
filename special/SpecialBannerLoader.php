@@ -24,10 +24,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$this->getParams();
 			echo $this->getJsNotice( $this->bannerName );
 		} catch ( EmptyBannerException $e ) {
-			echo "insertBanner( false );";
+			echo "mw.centralNotice.insertBanner( false );";
 		} catch ( MWException $e ) {
 			wfDebugLog( 'CentralNotice', $e->getMessage() );
-			echo "insertBanner( false /* due to internal exception */ );";
+			echo "mw.centralNotice.insertBanner( false /* due to internal exception */ );";
 		}
 	}
 

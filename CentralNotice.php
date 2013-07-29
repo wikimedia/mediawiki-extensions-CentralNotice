@@ -24,6 +24,7 @@ $wgExtensionCredits[ 'other' ][] = array(
 	'version'        => '2.3',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
+	'license-name' => 'GPLv2',
 );
 
 
