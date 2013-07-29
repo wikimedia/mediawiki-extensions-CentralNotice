@@ -14264,7 +14264,7 @@ Pode também ser usado para adicionar ou remover avisos antigos.',
 	'centralnotice-modify' => 'Enviar',
 	'centralnotice-view' => 'Exibir',
 	'centralnotice-save-banner' => 'Salvar',
-	'centralnotice-preview' => 'Pré-visualização', # Fuzzy
+	'centralnotice-preview' => 'Previsão ($1)',
 	'centralnotice-nopreview' => '(Previsualização não disponível)',
 	'centralnotice-add-new' => 'Adicionar um novo aviso centralizado',
 	'centralnotice-remove' => 'Remover',
