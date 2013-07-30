@@ -226,8 +226,7 @@ class Campaign {
 	 * @return bool
 	 */
 	static function campaignExists( $campaignName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		$eCampaignName = htmlspecialchars( $campaignName );
 		return (bool)$dbr->selectRow( 'cn_notices', 'not_name', array( 'not_name' => $eCampaignName ) );
@@ -250,12 +249,10 @@ class Campaign {
 	 */
 	static function getCampaigns( $project = null, $language = null, $location = null, $date = null,
 	                              $enabled = true ) {
-		global $wgCentralDBname;
-
 		$notices = array();
 
 		// Database setup
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		// We will perform two queries (one geo-targeted, the other not) to
 		// catch all notices. We do it bifurcated because otherwise the query
@@ -343,12 +340,7 @@ class Campaign {
 	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
 	static function getCampaignSettings( $campaignName ) {
-		global $wgCentralDBname;
-
-		// Read from the master database to avoid concurrency problems
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
-
-		$campaign = array();
+		$dbr = CNDatabase::getDb();
 
 		// Get campaign info from database
 		$row = $dbr->selectRow(
@@ -421,8 +413,7 @@ class Campaign {
 	 *         campaign_num_buckets
 	 */
 	static function getHistoricalCampaigns( $ts ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$res = $dbr->select(
 			"cn_notice_log",
 			array(
@@ -508,8 +499,7 @@ class Campaign {
 	 * @return array an array of campaign names
 	 */
 	static function getAllCampaignNames() {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$res = $dbr->select( 'cn_notices', 'not_name', null, __METHOD__ );
 		$notices = array();
 		foreach ( $res as $row ) {
@@ -548,8 +538,7 @@ class Campaign {
 			$geo_countries = array();
 		}
 
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$dbw->begin();
 
 		$endTime = strtotime( '+1 hour', wfTimestamp( TS_UNIX, $startTs ) );
@@ -625,8 +614,7 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function removeCampaign( $campaignName, $user ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		$res = $dbr->select( 'cn_notices', 'not_name, not_locked',
 			array( 'not_name' => $campaignName )
@@ -649,8 +637,7 @@ class Campaign {
 		$campaignId = Campaign::getNoticeId( $campaignName );
 		Campaign::logCampaignChange( 'removed', $campaignId, $user );
 
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$dbw->begin();
 		$dbw->delete( 'cn_assignments', array( 'not_id' => $campaignId ) );
 		$dbw->delete( 'cn_notices', array( 'not_name' => $campaignName ) );
@@ -668,23 +655,22 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function addTemplateTo( $noticeName, $templateName, $weight ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$noticeId = Campaign::getNoticeId( $eNoticeName );
 		$templateId = Banner::getTemplateId( $templateName );
-		$res = $dbr->select( 'cn_assignments', 'asn_id',
+		$res = $dbw->select( 'cn_assignments', 'asn_id',
 			array(
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId
 			)
 		);
 
-		if ( $dbr->numRows( $res ) > 0 ) {
+		if ( $dbw->numRows( $res ) > 0 ) {
 			return 'centralnotice-template-already-exists';
 		}
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+
 		$dbw->begin();
 		$noticeId = Campaign::getNoticeId( $eNoticeName );
 		$dbw->insert( 'cn_assignments',
@@ -703,8 +689,7 @@ class Campaign {
 	 * Remove a banner assignment from a campaign
 	 */
 	static function removeTemplateFor( $noticeName, $templateName ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$dbw->begin();
 		$noticeId = Campaign::getNoticeId( $noticeName );
 		$templateId = Banner::getTemplateId( $templateName );
@@ -716,8 +701,7 @@ class Campaign {
 	 * Lookup the ID for a campaign based on the campaign name
 	 */
 	static function getNoticeId( $noticeName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
 		if ( $row ) {
@@ -731,9 +715,7 @@ class Campaign {
 	 * Lookup the name of a campaign based on the campaign ID
 	 */
 	static function getNoticeName( $noticeId ) {
-		// Read from the master database to avoid concurrency problems
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		if ( is_numeric( $noticeId ) ) {
 			$row = $dbr->selectRow( 'cn_notices', 'not_name', array( 'not_id' => $noticeId ) );
 			if ( $row ) {
@@ -744,9 +726,7 @@ class Campaign {
 	}
 
 	static function getNoticeProjects( $noticeName ) {
-		// Read from the master database to avoid concurrency problems
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
 		$projects = array();
@@ -761,9 +741,7 @@ class Campaign {
 	}
 
 	static function getNoticeLanguages( $noticeName ) {
-		// Read from the master database to avoid concurrency problems
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
 		$languages = array();
@@ -778,9 +756,7 @@ class Campaign {
 	}
 
 	static function getNoticeCountries( $noticeName ) {
-		// Read from the master database to avoid concurrency problems
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$row = $dbr->selectRow( 'cn_notices', 'not_id', array( 'not_name' => $eNoticeName ) );
 		$countries = array();
@@ -801,8 +777,7 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function updateNoticeDate( $noticeName, $start, $end ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 
 		// Start/end don't line up
 		if ( $start > $end || $end < $start ) {
@@ -815,10 +790,9 @@ class Campaign {
 		}
 
 		// Overlap over a date within the same project and language
-		$startDate = $dbr->timestamp( $start );
-		$endDate = $dbr->timestamp( $end );
+		$startDate = $dbw->timestamp( $start );
+		$endDate = $dbw->timestamp( $end );
 
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
 		$dbw->update( 'cn_notices',
 			array(
 				'not_start' => $startDate,
@@ -843,8 +817,7 @@ class Campaign {
 			return;
 		} else {
 			$settingName = strtolower( $settingName );
-			global $wgCentralDBname;
-			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+			$dbw = CNDatabase::getDb();
 			$dbw->update( 'cn_notices',
 				array( 'not_' . $settingName => $settingValue ),
 				array( 'not_name' => $noticeName )
@@ -884,8 +857,7 @@ class Campaign {
 			return;
 		} else {
 			$settingName = strtolower( $settingName );
-			global $wgCentralDBname;
-			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+			$dbw = CNDatabase::getDb();
 			$dbw->update( 'cn_notices',
 				array( 'not_'.$settingName => $settingValue ),
 				array( 'not_name' => $noticeName )
@@ -901,8 +873,7 @@ class Campaign {
 	 * @param $weight       New banner weight
 	 */
 	static function updateWeight( $noticeName, $templateId, $weight ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$noticeId = Campaign::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			array( 'tmp_weight' => $weight ),
@@ -922,8 +893,7 @@ class Campaign {
 	 * @param $bucket       New bucket number
 	 */
 	static function updateBucket( $noticeName, $templateId, $bucket ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$noticeId = Campaign::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			array( 'asn_bucket' => $bucket ),
@@ -936,8 +906,7 @@ class Campaign {
 
 	// @todo FIXME: Unused.
 	static function updateProjectName( $notice, $projectName ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$dbw->update( 'cn_notices',
 			array( 'not_project' => $projectName ),
 			array(
@@ -947,8 +916,7 @@ class Campaign {
 	}
 
 	static function updateProjects( $notice, $newProjects ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$dbw->begin();
 
 		// Get the previously assigned projects
@@ -977,8 +945,7 @@ class Campaign {
 	}
 
 	static function updateProjectLanguages( $notice, $newLanguages ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$dbw->begin();
 
 		// Get the previously assigned languages
@@ -1007,8 +974,7 @@ class Campaign {
 	}
 
 	static function updateCountries( $notice, $newCountries ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 
 		// Get the previously assigned languages
 		$oldCountries = Campaign::getNoticeCountries( $notice );
@@ -1051,8 +1017,7 @@ class Campaign {
 	) {
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
-			global $wgCentralDBname;
-			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+			$dbw = CNDatabase::getDb();
 
 			$log = array(
 				'notlog_timestamp' => $dbw->timestamp(),
@@ -1097,8 +1062,7 @@ class Campaign {
 		}
 
 		// Read from the master database to avoid concurrency problems
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$res = $dbr->select( 'cn_notice_log', '*', $conds,
 			__METHOD__,
 			array(

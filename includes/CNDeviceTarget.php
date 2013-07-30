@@ -12,8 +12,7 @@ class CNDeviceTarget {
 	 * @return array Array of devices in format {id: {'header': <internal string value>, 'label': <wiki text label>}}
 	 */
 	public static function getAvailableDevices( $flip = false ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		$devices = array();
 

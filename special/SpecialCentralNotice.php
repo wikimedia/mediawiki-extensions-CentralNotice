@@ -316,10 +316,8 @@ class CentralNotice extends SpecialPage {
 	 * Show all campaigns found in the database, show "Add a campaign" form
 	 */
 	function listNotices() {
-		global $wgNoticeProjects, $wgCentralDBname;
-
 		// Get connection
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		if ( $this->editable ) {
 			$readonly = array();
@@ -995,9 +993,9 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing banners assigned to a campaign
 	 */
 	function assignedTemplatesForm( $notice ) {
-		global $wgLanguageCode, $wgNoticeNumberOfBuckets, $wgCentralDBname;
+		global $wgNoticeNumberOfBuckets;
 
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$res = $dbr->select(
 			// Aliases are needed to avoid problems with table prefixes
 			array(

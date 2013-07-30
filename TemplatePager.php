@@ -33,8 +33,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * @return array of query settings
 	 */
 	function getQueryInfo() {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		// When the filter comes in it is space delimited, so break that...
 		$likeArray = preg_split( '/\s/', $this->filter );

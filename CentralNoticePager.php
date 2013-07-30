@@ -13,8 +13,7 @@ class CentralNoticePager extends TemplatePager {
 	 * Pull banners from the database
 	 */
 	function getQueryInfo() {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		// First we must construct the filter before we pull banners
 		// When the filter comes in it is space delimited, so break that...
