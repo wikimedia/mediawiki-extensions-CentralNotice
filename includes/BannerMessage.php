@@ -52,7 +52,7 @@ class BannerMessage {
 	function getContents( $lang ) {
 		if ( $this->existsInLang( $lang ) ) {
 			$dbKey = $this->getDbKey();
-			$msg = wfMessage( $dbKey )->inLanguage( $lang )->text();
+			$msg = Revision::newFromTitle( $this->getTitle( $lang ) )->getContent()->getNativeData();
 			if ( $msg === "&lt;{$dbKey}&gt;" ) {
 				$msg = '';
 			}
