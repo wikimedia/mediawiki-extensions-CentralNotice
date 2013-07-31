@@ -135,9 +135,10 @@ $wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
 	'scripts'       => 'ext.centralNotice.bannerStats/bannerStats.js',
 );
 $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
-	'scripts'       => 'ext.centralNotice.bannerController/bannerController.js',
+	'localBasePath' => $dir . '/modules/ext.centralNotice.bannerController',
+	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.bannerController',
+	'styles'        => 'bannerController.css',
+	'scripts'       => 'bannerController.js',
 	'position'      => 'top',
 	'dependencies'  => array(
 		'jquery.cookie',
