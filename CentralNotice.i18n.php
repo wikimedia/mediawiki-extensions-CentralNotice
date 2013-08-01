@@ -3634,6 +3634,7 @@ $messages['ce'] = array(
  * @author Calak
  */
 $messages['ckb'] = array(
+	'right-centralnotice-admin' => 'بەڕێوەبردنی ئاگادارییە ناوەندییەکان',
 	'centralnotice-modify' => 'ناردن',
 	'centralnotice-translations' => 'وەرگێڕانەکان',
 	'centralnotice-english' => 'ئینگلیزی',
