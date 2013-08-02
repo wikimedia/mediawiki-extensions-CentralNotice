@@ -28,6 +28,7 @@ It can also be used to add or remove old notices.',
 	'centralnotice-view' => 'View',
 	'centralnotice-save-banner' => 'Save',
 	'centralnotice-preview' => 'Preview ($1)',
+	'centralnotice-live-preview' => 'Preview on-wiki',
 	'centralnotice-nopreview' => '(Preview not available)',
 	'centralnotice-add-new' => 'Add a new campaign',
 	'centralnotice-remove' => 'Remove',
@@ -297,6 +298,7 @@ Used as column header of the table in [[Special:CentralNotice]].
 	'centralnotice-preview' => 'Parameters:
 * $1 - language code of this preview
 {{Identical|Preview}}',
+	'centralnotice-live-preview' => 'Text for a live site preview/render of the current banner',
 	'centralnotice-nopreview' => '{{Identical|Nopreview}}',
 	'centralnotice-add-new' => 'Unused at this time.',
 	'centralnotice-remove' => 'Used as column header of the table in [[Special:CentralNotice]].

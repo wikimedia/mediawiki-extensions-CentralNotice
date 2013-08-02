@@ -46,7 +46,6 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		}
 
 		$previewUrl = SpecialPage::getTitleFor( 'BannerPreview' )->getLocalURL(
-			'',
 			array(
 				'banner' => $bannerName,
 				'uselang' => $language,
@@ -83,6 +82,13 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 	}
 
 	public function getDiv( $value ) {
+		global $wgOut;
+		if ( array_key_exists( 'language', $this->mParams ) ) {
+			$language = $this->mParams['language'];
+		} else {
+			$language = $wgOut->getContext()->getLanguage()->getCode();
+		}
+
 		$html = Xml::openElement(
 			'div',
 			array(
@@ -95,14 +101,21 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		if ( array_key_exists( 'withlabel', $this->mParams ) ) {
 			$bannerName =  $this->mParams['banner'];
 			$html .= Xml::openElement( 'div', array( 'class' => 'cn-banner-list-element-label' ) );
-			$html .= Xml::tags(
-				'div',
-				array( 'class' => 'cn-banner-list-element-label-text' ),
-				Linker::link(
-					SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/$bannerName" ),
-					htmlspecialchars( $bannerName )
-				)
+			$html .= Linker::link(
+				SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/$bannerName" ),
+				htmlspecialchars( $bannerName ),
+				array( 'class' => 'cn-banner-list-element-label-text' )
 			);
+			$html .= ' (' . Linker::link(
+				SpecialPage::getTitleFor( 'Random' ),
+				$this->msg( 'centralnotice-live-preview' ),
+				array( 'class' => 'cn-banner-list-element-label-text' ),
+				array(
+					 'banner' => $bannerName,
+					 'uselang' => $language,
+					 'force' => '1'
+				)
+			) . ')';
 			// TODO: Output status icons
 			$html .= Xml::tags( 'div', array( 'class' => 'cn-banner-list-element-label-icons' ), '' );
 			$html .= Xml::closeElement( 'div' );
