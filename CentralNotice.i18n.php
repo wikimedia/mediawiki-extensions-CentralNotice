@@ -4339,6 +4339,7 @@ Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werde
 	'centralnotice-view' => 'Anzeigen',
 	'centralnotice-save-banner' => 'Speichern',
 	'centralnotice-preview' => 'Vorschau ($1)',
+	'centralnotice-live-preview' => 'Vorschau im Wiki',
 	'centralnotice-nopreview' => '(Vorschau nicht verfügbar)',
 	'centralnotice-add-new' => 'Füge eine neue zentrale Meldung hinzu',
 	'centralnotice-remove' => 'Entfernen',
@@ -6884,6 +6885,7 @@ Tamén pode ser usado para engadir ou eliminar avisos vellos.',
 	'centralnotice-view' => 'Ver',
 	'centralnotice-save-banner' => 'Gardar',
 	'centralnotice-preview' => 'Vista previa ($1)',
+	'centralnotice-live-preview' => 'Vista previa no wiki',
 	'centralnotice-nopreview' => '(A vista previa non está dispoñible)',
 	'centralnotice-add-new' => 'Engadir un novo aviso central',
 	'centralnotice-remove' => 'Eliminar',
@@ -9301,6 +9303,7 @@ $messages['ja'] = array(
 	'centralnotice-view' => '表示',
 	'centralnotice-save-banner' => '保存',
 	'centralnotice-preview' => 'プレビュー ($1)',
+	'centralnotice-live-preview' => 'ウィキ内プレビュー',
 	'centralnotice-nopreview' => '(プレビューはありません)',
 	'centralnotice-add-new' => '新しい告知を追加',
 	'centralnotice-remove' => '除去',
@@ -11329,6 +11332,7 @@ $messages['mk'] = array(
 	'centralnotice-view' => 'Погл.',
 	'centralnotice-save-banner' => 'Зачувај',
 	'centralnotice-preview' => 'Преглед ($1)',
+	'centralnotice-live-preview' => 'Преглед на вики',
 	'centralnotice-nopreview' => '(Прегледот не е достапен)',
 	'centralnotice-add-new' => 'Додај ново централно известување',
 	'centralnotice-remove' => 'Тргни',
@@ -18748,6 +18752,7 @@ $messages['ug-arab'] = array(
  * @author Ahonc
  * @author Aleksandrit
  * @author Alex Khimich
+ * @author Andriykopanytsia
  * @author Arturyatsko
  * @author AtUkr
  * @author Base
@@ -18779,6 +18784,7 @@ $messages['uk'] = array(
 	'centralnotice-view' => 'Перегляд',
 	'centralnotice-save-banner' => 'Зберегти',
 	'centralnotice-preview' => 'Попередній перегляд ($1)',
+	'centralnotice-live-preview' => 'Попередній перегляд на вікі',
 	'centralnotice-nopreview' => '(Попередній перегляд недоступний)',
 	'centralnotice-add-new' => 'Додати нове централізоване повідомлення',
 	'centralnotice-remove' => 'Вилучити',
