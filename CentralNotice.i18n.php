@@ -6493,6 +6493,7 @@ Il peut aussi être utilisé pour ajouter des avis ou en enlever les plus ancien
 	'centralnotice-view' => 'Voir',
 	'centralnotice-save-banner' => 'Enregistrer',
 	'centralnotice-preview' => 'Prévisualiser ($1)',
+	'centralnotice-live-preview' => 'Aperçu dans le wiki',
 	'centralnotice-nopreview' => '(Prévisualisation non disponible)',
 	'centralnotice-add-new' => 'Ajouter un nouvel avis central',
 	'centralnotice-remove' => 'Enlever',
