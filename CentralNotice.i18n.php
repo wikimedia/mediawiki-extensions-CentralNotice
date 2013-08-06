@@ -3652,6 +3652,7 @@ $messages['ce'] = array(
 /** Sorani Kurdish (کوردی)
  * @author Asoxor
  * @author Calak
+ * @author Muhammed taha
  */
 $messages['ckb'] = array(
 	'right-centralnotice-admin' => 'بەڕێوەبردنی ئاگادارییە ناوەندییەکان',
@@ -3673,7 +3674,7 @@ $messages['ckb'] = array(
 	'centralnotice-user' => 'بەکارھێنەر',
 	'centralnotice-action' => 'کردەوە',
 	'centralnotice-action-created' => 'دروست کرا',
-	'centralnotice-start-date' => 'ڕێکەوتی دەستپێکردن', # Fuzzy
+	'centralnotice-start-date' => 'کاتی دەستپێکردن (UTC)',
 	'centralnotice-start-time' => 'کاتی دەستپێکردن (UTC)',
 	'centralnotice-end-time' => 'کاتی کۆتایی (UTC)',
 );
