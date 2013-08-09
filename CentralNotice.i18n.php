@@ -219,6 +219,11 @@ Add one below.',
 	'centralnotice-archive-banner-confirm' => 'Archival expands all included templates and sets page protection. This is not an easy action to reverse.',
 	'centralnotice-archive-banner-cancel' => 'Cancel',
 
+	'centralnotice-archive-campaign' => 'Archive',
+	'centralnotice-archive-campaign-title' => 'Archive {{PLURAL:$1|campaign|campaigns}}?',
+	'centralnotice-archive-campaign-confirm' => 'Archival marks a campaign as permanently inactive.',
+	'centralnotice-archive-campaign-cancel' => 'Cancel',
+
 	'centralnotice-delete-banner' => 'Delete',
 	'centralnotice-delete-banner-title' => 'Delete {{PLURAL:$1|banner|banners}}?',
 	'centralnotice-delete-banner-confirm' => 'Deletion removes all settings and messages. This action cannot be reversed. Consider archiving instead.',
@@ -653,6 +658,14 @@ A "hide cookie" is a cookie that is created when a user asks to hide a banner.
 Followed by the confirmation message {{msg-mw|Centralnotice-archive-banner-confirm}}.',
 	'centralnotice-archive-banner-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-banner-title}}.',
 	'centralnotice-archive-banner-cancel' => '{{Identical|Cancel}}',
+
+	'centralnotice-archive-campaign' => 'Translate as a verb.{{Identical|Archive}}',
+	'centralnotice-archive-campaign-title' => 'Used as title for the dialog box.
+
+Followed by the confirmation message {{msg-mw|Centralnotice-archive-campaign-confirm}}.',
+	'centralnotice-archive-campaign-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-campaign-title}}.',
+	'centralnotice-archive-campaign-cancel' => '{{Identical|Cancel}}',
+
 	'centralnotice-delete-banner' => 'Button label
 
 {{Identical|Delete}}',

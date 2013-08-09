@@ -69,15 +69,12 @@ class CentralNotice extends SpecialPage {
 					}
 				// Handle changing settings to existing campaigns
 				} else {
-					// Handle removing campaigns
-					$toRemove = $request->getArray( 'removeCampaigns' );
-					if ( $toRemove ) {
-						// Remove campaigns in list
-						foreach ( $toRemove as $notice ) {
-							$result = Campaign::removeCampaign( $notice, $this->getUser() );
-							if( $result !== true ) {
-								$this->showError( $result );
-							}
+					// Handle archiving campaigns
+					$toArchive = $request->getArray( 'archiveCampaigns' );
+					if ( $toArchive ) {
+						// Archive campaigns in list
+						foreach ( $toArchive as $notice ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
 						}
 					}
 
@@ -325,6 +322,7 @@ class CentralNotice extends SpecialPage {
 			$readonly = array( 'disabled' => 'disabled' );
 		}
 
+		//TODO: refactor to use Campaign::getCampaigns
 		// Get all campaigns from the database
 		$res = $dbr->select( 'cn_notices',
 			array(
@@ -334,9 +332,12 @@ class CentralNotice extends SpecialPage {
 				'not_enabled',
 				'not_preferred',
 				'not_geo',
-				'not_locked'
+				'not_locked',
+				'not_archived'
 			),
-			null,
+			array(
+				'not_archived = 0',
+			),
 			__METHOD__,
 			array( 'ORDER BY' => 'not_id DESC' )
 		);
@@ -376,7 +377,7 @@ class CentralNotice extends SpecialPage {
 				$this->msg( 'centralnotice-locked' )->escaped(),
 			);
 			if ( $this->editable ) {
-				$headers[ ] = $this->msg( 'centralnotice-remove' )->escaped();
+				$headers[ ] = $this->msg( 'centralnotice-archive-campaign' )->escaped();
 			}
 			$htmlOut .= $this->tableRow( $headers, 'th' );
 
@@ -460,11 +461,11 @@ class CentralNotice extends SpecialPage {
 				);
 
 				if ( $this->editable ) {
-					// Remove
+					// Archive
 					$checked = false;
 					$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$checked ),
 						Xml::check(
-							'removeCampaigns[]',
+							'archiveCampaigns[]',
 							$checked,
 							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
@@ -640,13 +641,8 @@ class CentralNotice extends SpecialPage {
 					if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
 
 						// Handle removing campaign
-						if ( $request->getVal( 'remove' ) ) {
-							Campaign::removeCampaign( $notice, $this->getUser() );
-							if ( !$this->centralNoticeError ) {
-								// Leave campaign detail interface
-								$this->getOutput()->redirect( $this->getTitle()->getLocalUrl() );
-								return;
-							}
+						if ( $request->getVal( 'archive' ) ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
 						}
 
 						$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
@@ -867,6 +863,7 @@ class CentralNotice extends SpecialPage {
 				$isEnabled = $request->getCheck( 'enabled' );
 				$priority = $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY );
 				$isLocked = $request->getCheck( 'locked' );
+				$isArchived = $request->getCheck( 'archived' );
 				$noticeProjects = $request->getArray( 'projects', array() );
 				$noticeLanguages = $request->getArray( 'project_languages', array() );
 				$isGeotargeted = $request->getCheck( 'geotargeted' );
@@ -878,6 +875,7 @@ class CentralNotice extends SpecialPage {
 				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
 				$priority = $campaign[ 'preferred' ];
 				$isLocked = ( $campaign[ 'locked' ] == '1' );
+				$isArchived = ( $campaign[ 'archived' ] == '1' );
 				$noticeProjects = Campaign::getNoticeProjects( $notice );
 				$noticeLanguages = Campaign::getNoticeLanguages( $notice );
 				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
@@ -976,10 +974,10 @@ class CentralNotice extends SpecialPage {
 				// Locked
 				$htmlOut .= Xml::openElement( 'tr' );
 				$htmlOut .= Xml::tags( 'td', array(),
-					Xml::label( $this->msg( 'centralnotice-remove' )->text(), 'remove' ) );
+					Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' ) );
 				$htmlOut .= Xml::tags( 'td', array(),
-					Xml::check( 'remove', false,
-						array( 'value' => $notice, 'id' => 'remove' ) ) );
+					Xml::check( 'archive', $isArchived,
+						array( 'value' => $notice, 'id' => 'archive' ) ) );
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			$htmlOut .= Xml::closeElement( 'table' );

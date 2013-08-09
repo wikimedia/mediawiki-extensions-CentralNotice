@@ -41,7 +41,8 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			'buckets' => '1',
 			'projects' => 'wikipedia, wikibooks',
 			'languages' => 'en, de',
-			'countries' => 'US, AF'
+			'countries' => 'US, AF',
+			'archived' => 0,
 		);
 
 		//get User

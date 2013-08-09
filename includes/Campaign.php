@@ -20,6 +20,9 @@ class Campaign {
 	/** @var bool True if the campaign is currently non editable  */
 	protected $locked = null;
 
+	/** @var bool True if the campaign has been moved to the archive */
+	protected $archived = null;
+
 	/** @var bool True if there is geo-targeting data for ths campaign */
 	protected $geotargeted = null;
 
@@ -197,6 +200,7 @@ class Campaign {
 				 'not_enabled',
 				 'not_preferred',
 				 'not_locked',
+				 'not_archived',
 				 'not_geo',
 				 'not_buckets',
 			),
@@ -209,6 +213,7 @@ class Campaign {
 			$this->enabled = (bool)$row->not_enabled;
 			$this->priority = (int)$row->not_preferred;
 			$this->locked = (bool)$row->not_locked;
+			$this->archived = (bool)$row->not_archived;
 			$this->geotargeted = (bool)$row->not_geo;
 			$this->buckets = (int)$row->not_buckets;
 		} else {
@@ -244,11 +249,12 @@ class Campaign {
 	 * @param null|date   $date     Campaigns must start before and end after this date
 	 *                              If the parameter is null, it takes the current date/time
 	 * @param bool        $enabled  If true, select only active campaigns. If false select all.
+	 * @param bool        $archived If false, select only current campaigns. If false, select only archived. If null, select all.
 	 *
 	 * @return array Array of campaign IDs that matched the filter.
 	 */
 	static function getCampaigns( $project = null, $language = null, $location = null, $date = null,
-	                              $enabled = true ) {
+	                              $enabled = true, $archived = false ) {
 		$notices = array();
 
 		// Database setup
@@ -274,6 +280,12 @@ class Campaign {
 
 		if ( $enabled ) {
 			$conds[ 'not_enabled' ] = 1;
+		}
+
+		if ( $archived === true ) {
+			$conds[ 'not_archived' ] = 1;
+		} elseif ( $archived === false ) {
+			$conds[ 'not_archived' ] = 0;
 		}
 
 		// common components: cn_notice_projects
@@ -352,6 +364,7 @@ class Campaign {
 				'not_enabled',
 				'not_preferred',
 				'not_locked',
+				'not_archived',
 				'not_geo',
 				'not_buckets',
 			),
@@ -365,6 +378,7 @@ class Campaign {
 				'enabled'   => $row->not_enabled,
 				'preferred' => $row->not_preferred,
 				'locked'    => $row->not_locked,
+				'archived'  => $row->not_archived,
 				'geo'       => $row->not_geo,
 				'buckets'   => $row->not_buckets,
 			);
