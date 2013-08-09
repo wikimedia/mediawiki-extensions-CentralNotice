@@ -28,9 +28,6 @@
 #preferences fieldset.prefsection div.cn-error {
 	margin:0;
 }
-#preferences table tr.cn-active-campaign {
-	background-color: #ddffdd;
-}
 #preferences table#envpicker {
 	margin-bottom: 1em;
 }
@@ -39,15 +36,6 @@
 }
 #preferences .cn-date-column {
 	white-space:nowrap;
-}
-#preferences div.cn-buttons {
-	padding:1em;
-}
-#preferences fieldset.prefsection div.cn-buttons {
-	padding:0;
-}
-#preferences div.cn-buttons input {
-	margin-right:0.25em;
 }
 #preferences input#clone {
 	margin-left:0.25em;

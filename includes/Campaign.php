@@ -140,7 +140,22 @@ class Campaign {
 			$this->loadBasicSettings();
 		}
 
-		return $this->priority;
+		return $this->locked;
+	}
+
+	/**
+	 * Returns the archival status of the campaign. An archived campaign is not allowed to be
+	 * edited.
+	 *
+	 * @throws CampaignExistenceException If lazy loading failed.
+	 * @return bool
+	 */
+	public function isArchived() {
+		if ( $this->archived === null ) {
+			$this->loadBasicSettings();
+		}
+
+		return $this->archived;
 	}
 
 	/**
@@ -249,7 +264,7 @@ class Campaign {
 	 * @param null|date   $date     Campaigns must start before and end after this date
 	 *                              If the parameter is null, it takes the current date/time
 	 * @param bool        $enabled  If true, select only active campaigns. If false select all.
-	 * @param bool        $archived If false, select only current campaigns. If false, select only archived. If null, select all.
+	 * @param bool        $archived If true: only archived; false: only active; null; all.
 	 *
 	 * @return array Array of campaign IDs that matched the filter.
 	 */
