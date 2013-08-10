@@ -22,7 +22,7 @@
  *
  * @file
  */
-( function ( $, mw ) {
+( function ( $ ) {
 	$( '#centralnotice-showarchived' ).click( function() {
 		if ( $( this ).prop( 'checked' ) === true ) {
 			$( '.cn-archived-item' ).show();
@@ -30,4 +30,4 @@
 			$( '.cn-archived-item' ).hide();
 		}
 	});
-} )( jQuery, mediaWiki );
+} )( jQuery );

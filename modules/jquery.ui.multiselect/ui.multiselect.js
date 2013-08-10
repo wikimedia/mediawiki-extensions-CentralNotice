@@ -82,7 +82,7 @@
 				this.selectedList.sortable({
 					placeholder: 'ui-state-highlight',
 					axis: 'y',
-					update: function(event, ui) {
+					update: function() {
 						// apply the new sort order to the original selectbox
 						that.selectedList.find('li').each(function() {
 							if ($(this).data('optionLink')) {
@@ -148,7 +148,7 @@
 			this.count = 0;
 
 			var that = this;
-			var items = $(options.map(function(i) {
+			$(options.map(function(i) {
 				var item = that._getOptionNode(this).appendTo(this.selected ? that.selectedList : that.availableList).show();
 
 				if (this.selected) that.count += 1;
@@ -198,7 +198,7 @@
 				// TODO: test needed for dynamic list populating
 				if ( direction ) {
 					while (i>=0 && i<items.length) {
-						direction > 0 ? i++ : i--;
+						i += (direction > 0) ? 1 : -1;
 						if ( direction != comparator(item, $(items[i])) ) {
 							// going up, go back one item down, otherwise leave as is
 							succ = items[direction > 0 ? i : i+1];
@@ -210,7 +210,11 @@
 				}
 
 				var availableItem = this._cloneWithData(item);
-				succ ? availableItem.insertBefore($(succ)) : availableItem.appendTo(this.availableList);
+				if (succ) {
+					availableItem.insertBefore($(succ));
+				} else {
+					availableItem.appendTo(this.availableList);
+				}
 				item[this.options.hide](this.options.animated, function() { $(this).remove(); });
 				availableItem.hide()[this.options.show](this.options.animated);
 
@@ -283,7 +287,7 @@
 		_registerAddEvents: function(elements) {
 			var that = this;
 			elements.click(function() {
-				var item = that._setSelected($(this).parent(), true);
+				that._setSelected($(this).parent(), true);
 				that.count += 1;
 				that._updateCount();
 				return false;

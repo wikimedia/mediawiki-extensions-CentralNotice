@@ -113,19 +113,20 @@ class BannerRenderer {
 
 	function getPreloadJs() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
+		$bundled = array();
+		$bundled[] = 'var retval = true;';
+
 		if ( $snippets ) {
-			$bundled = array();
 			foreach ( $snippets as $mixin => $code ) {
 				if ( !$this->context->getRequest()->getFuzzyBool( 'debug' ) ) {
 					$code = JavaScriptMinifier::minify( $code );
 				}
 
-				$bundled[] = "/* {$mixin}: */{$code}";
+				$bundled[] = "/* {$mixin}: */ retval &= {$code}";
 			}
-			$js = implode( " && ", $bundled );
-			return $this->substituteMagicWords( $js );
 		}
-		return "";
+		$bundled[] = 'return retval;';
+		return $this->substituteMagicWords( implode( "\n", $bundled ) );
 	}
 
 	function getResourceLoaderHtml() {

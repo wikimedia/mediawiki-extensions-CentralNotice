@@ -146,8 +146,6 @@
 		 * Updates the 'checkAll' check box if any of the banner check boxes are checked
 		 */
 		selectCheckStateAltered: function() {
-			var selectAllCheck = $( '#mw-input-wpselectAllBanners' );
-
 			if ( $( this ).prop( 'checked' ) === true ) {
 				mw.centralNotice.adminUi.bannerManagement.selectedItemCount++;
 			} else {
@@ -170,7 +168,7 @@
 				selectAllCheck.prop( 'checked', true );
 				selectAllCheck.prop( 'indeterminate', false );
 				deleteButton.prop( 'disabled', false );
-			} else if ( mw.centralNotice.adminUi.bannerManagement.selectedItemCount == 0 ) {
+			} else if ( mw.centralNotice.adminUi.bannerManagement.selectedItemCount === 0 ) {
 				// Nothing selected
 				selectAllCheck.prop( 'checked', false );
 				selectAllCheck.prop( 'indeterminate', false );

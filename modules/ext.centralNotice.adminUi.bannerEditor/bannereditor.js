@@ -64,7 +64,7 @@
 		 */
 		doSaveBanner: function() {
 			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).indexOf( 'document.write' ) > -1 ) {
-				alert( mediaWiki.msg( 'centralnotice-documentwrite-error' ) );
+				window.alert( mediaWiki.msg( 'centralnotice-documentwrite-error' ) );
 			} else {
 				return true;
 			}
