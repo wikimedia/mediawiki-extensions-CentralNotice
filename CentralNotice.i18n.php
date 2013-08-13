@@ -4981,6 +4981,7 @@ $messages['ee'] = array(
  * @author Lou
  * @author Omnipaedista
  * @author Protnet
+ * @author Tifa93
  * @author ZaDiak
  * @author Απεργός
  */
@@ -5166,6 +5167,8 @@ $messages['el'] = array(
 	'centralnotice-templates-included' => 'Συμπεριλήφθηκαν πρότυπα',
 	'centralnotice-archive-banner' => 'Αρχείο',
 	'centralnotice-archive-banner-cancel' => 'Ακύρωση',
+	'centralnotice-archive-campaign' => 'Αρχείο',
+	'centralnotice-archive-campaign-cancel' => 'Ακύρωση',
 	'centralnotice-delete-banner' => 'Διαγραφή',
 	'centralnotice-delete-banner-cancel' => 'Ακύρωση',
 	'centralnotice-messages-pending-approval' => 'Γλώσσες με μηνύματα σε αναμονή έγκρισης επί του παρόντος',
@@ -13762,6 +13765,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-banner-class' => 'Klasa',
 	'centralnotice-banner-class-fundraising' => 'Pozyskiwanie funduszy',
 	'centralnotice-archive-banner-cancel' => 'Anuluj',
+	'centralnotice-archive-campaign-cancel' => 'Anuluj',
 	'centralnotice-delete-banner' => 'Usuń',
 	'centralnotice-delete-banner-title' => 'Usuń {{PLURAL:$1|baner|banery}}?',
 	'centralnotice-delete-banner-cancel' => 'Anuluj',
