@@ -17,6 +17,8 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 
 	protected $userUser;
 
+	protected $campaignArray;
+
 	var $campaignId;
 
 	protected function setUp() {
@@ -39,9 +41,9 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			'preferred' => '1',
 			'start' => '20110718235500',
 			'buckets' => '1',
-			'projects' => 'wikipedia, wikibooks',
-			'languages' => 'en, de',
-			'countries' => 'US, AF',
+			'projects' => 'wikibooks, wikipedia',
+			'languages' => 'de, en',
+			'countries' => 'AF, US',
 			'archived' => 0,
 		);
 
@@ -69,7 +71,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$landingPages = 'JA1, JA2';
 		$campaign_z_index = 1;
 
-		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1, JA2","device":"desktop","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"bucket":0}]';
+		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1,JA2","device":"desktop","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"bucket":0}]';
 
 		Banner::addTemplate( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
 			$fundraising, $autolink, $landingPages );

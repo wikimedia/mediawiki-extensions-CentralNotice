@@ -233,7 +233,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 						$this->bannerName = $formData[ 'newBannerName' ];
 					}
 
-					if ( Banner::bannerExists( $this->bannerName ) ) {
+					if ( Banner::fromName( $this->bannerName )->exists() ) {
 						return wfMessage( 'centralnotice-template-exists' )->text();
 					} else {
 						$retval = Banner::addTemplate(
@@ -343,7 +343,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
 		$languages = array_flip( $languages );
 
-		$banner = new Banner( $this->bannerName );
+		$banner = Banner::fromName( $this->bannerName );
 		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = array();
@@ -432,7 +432,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 
 		/* --- Translatable Messages Section --- */
-		$messages = $banner->extractMessageFields( $banner->getContent() );
+		$messages = $banner->extractMessageFields( $banner->getBodyContent() );
 
 		if ( $messages ) {
 			// Only show this part of the form if messages exist
@@ -576,7 +576,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'readonly' => !$this->editable,
 			'hidelabel' => true,
 			'placeholder' => '<!-- blank banner -->',
-			'default' => $banner->getContent(),
+			'default' => $banner->getBodyContent(),
 			'cssclass' => 'separate-form-element'
 		);
 
@@ -688,11 +688,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				$newBannerName = $formData[ 'cloneName' ];
-				Banner::cloneTemplate(
-					$this->bannerName,
-					$newBannerName,
-					$this->getUser()
-				);
+				Banner::fromName( $this->bannerName )->cloneBanner( $newBannerName, $this->getUser() );
 				$this->getOutput()->redirect(
 					$this->getTitle( "Edit/$newBannerName" )->getCanonicalURL()
 				);
@@ -715,7 +711,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	protected function processSaveBannerAction( $formData ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
-		$banner = new Banner( $this->bannerName );
+		$banner = Banner::fromName( $this->bannerName );
 
 		/* --- Update the translations --- */
 		// But only if we aren't using translate or if the preview language is the content language
@@ -772,7 +768,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Large amounts of memory apparently required to do this
 		ini_set( 'memory_limit', '120M' );
 
-		$banner = new Banner( $this->bannerName );
+		$banner = Banner::fromName( $this->bannerName );
 
 		// Pull all available text for a banner
 		$langs = $banner->getAvailableLanguages();

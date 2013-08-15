@@ -723,7 +723,7 @@ class CentralNotice extends SpecialPage {
 					if ( $templatesToAdd ) {
 						$weight = $request->getArray( 'weight' );
 						foreach ( $templatesToAdd as $templateName ) {
-							$templateId = Banner::getTemplateId( $templateName );
+							$templateId = Banner::fromName( $templateName )->getId();
 							$result = Campaign::addTemplateTo(
 								$notice, $templateName, $weight[ $templateId ]
 							);
@@ -1086,7 +1086,7 @@ class CentralNotice extends SpecialPage {
 			);
 
 			// Banner
-			$banner = new Banner( $row->tmp_name );
+			$banner = Banner::fromName( $row->tmp_name );
 			$renderer = new BannerRenderer( $this->getContext(), $banner );
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				$renderer->linkTo() . '<br/>' .
