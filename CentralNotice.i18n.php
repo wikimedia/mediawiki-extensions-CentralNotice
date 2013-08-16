@@ -13171,7 +13171,7 @@ Legg han ikkje til',
  */
 $messages['oc'] = array(
 	'centralnotice' => 'Administracion de las notificacions centralas',
-	'noticetemplate' => 'Modèls de las notificacions centralas', # Fuzzy
+	'noticetemplate' => 'Administracion dels avisses centrals',
 	'bannerallocation' => 'Administracion dels vejaires centrals',
 	'centralnoticelogs' => 'Administracion dels vejaires centrals',
 	'right-centralnotice-admin' => 'Gerís las notificacions centralas',
@@ -13183,8 +13183,8 @@ $messages['oc'] = array(
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Sometre',
 	'centralnotice-view' => 'Afichar',
-	'centralnotice-save-banner' => 'Enregistrar la bandièra', # Fuzzy
-	'centralnotice-preview' => 'Previsualizacion', # Fuzzy
+	'centralnotice-save-banner' => 'Enregistrar',
+	'centralnotice-preview' => 'Previsualizar ($1)',
 	'centralnotice-nopreview' => '(Previsualizacion pas disponibla)',
 	'centralnotice-add-new' => 'Apondre una notificacion centrala novèla',
 	'centralnotice-remove' => 'Suprimir',
@@ -13319,9 +13319,9 @@ Apondètz-ne una en dejós.',
 	'centralnotice-delete-banner-cancel' => 'Anullar',
 	'centralnotice-start-timestamp' => 'Començament (UTC)',
 	'centralnotice-end-timestamp' => 'Fin (UTC)',
-	'centralnotice-start-date' => 'Data de començament', # Fuzzy
+	'centralnotice-start-date' => 'Data de començament (UTC)',
 	'centralnotice-start-time' => 'Ora de començament (UTC)',
-	'centralnotice-end-date' => 'Data de fin', # Fuzzy
+	'centralnotice-end-date' => 'Data de fin (UTC)',
 	'centralnotice-end-time' => 'Ora finala (UTC)',
 );
 
