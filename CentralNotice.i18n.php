@@ -10565,6 +10565,7 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-view' => 'Weisen',
 	'centralnotice-save-banner' => 'Späicheren',
 	'centralnotice-preview' => 'Weisen ouni ze späicheren ($1)',
+	'centralnotice-live-preview' => 'Op der Wiki kucken ouni ze späicheren',
 	'centralnotice-nopreview' => '(Kucken ouni ofzespäichere geet net)',
 	'centralnotice-add-new' => 'Eng nei zentral Matdeelung derbäisetzen',
 	'centralnotice-remove' => 'Ewechhuelen',
