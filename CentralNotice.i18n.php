@@ -660,7 +660,6 @@ A "hide cookie" is a cookie that is created when a user asks to hide a banner.
 Followed by the confirmation message {{msg-mw|Centralnotice-archive-banner-confirm}}.',
 	'centralnotice-archive-banner-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-banner-title}}.',
 	'centralnotice-archive-banner-cancel' => '{{Identical|Cancel}}',
-
 	'centralnotice-archive-show' => 'Checkbox text that determines if archived campaigns are shown or hidden',
 	'centralnotice-archive-campaign' => 'Translate as a verb.{{Identical|Archive}}',
 	'centralnotice-archive-campaign-title' => 'Used as title for the dialog box.
@@ -669,7 +668,6 @@ Followed by the confirmation message {{msg-mw|Centralnotice-archive-campaign-con
 	'centralnotice-archive-campaign-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-campaign-title}}.',
 	'centralnotice-archive-campaign-cancel' => '{{Identical|Cancel}}',
 	'centralnotice-archive-edit-prevented' => 'Descriptive banner used on the page to describe why it cannot be edited.',
-
 	'centralnotice-delete-banner' => 'Button label
 
 {{Identical|Delete}}',
@@ -20052,6 +20050,7 @@ $messages['yue'] = array(
  * @author Chenzw
  * @author Gzdavidwong
  * @author Hydra
+ * @author Hzy980512
  * @author Kuailong
  * @author Li3939108
  * @author Liangent
@@ -20083,6 +20082,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-view' => '查看',
 	'centralnotice-save-banner' => '保存',
 	'centralnotice-preview' => '预览（$1）',
+	'centralnotice-live-preview' => 'Wiki上预览',
 	'centralnotice-nopreview' => '（无预览可用）',
 	'centralnotice-add-new' => '添加一个新的中央通告',
 	'centralnotice-remove' => '移除',
@@ -20269,6 +20269,10 @@ $messages['zh-hans'] = array(
 	'centralnotice-archive-banner-title' => '存档{{PLURAL:$1|条幅}}吗？',
 	'centralnotice-archive-banner-confirm' => '存档将展开所有模板并设置页面保护，此动作难以回复。',
 	'centralnotice-archive-banner-cancel' => '取消',
+	'centralnotice-archive-campaign' => '存档',
+	'centralnotice-archive-campaign-title' => '存档{{PLURAL:$1|此|这些}}竞选？',
+	'centralnotice-archive-campaign-confirm' => '存档竞选会把竞选永久停止。',
+	'centralnotice-archive-campaign-cancel' => '取消',
 	'centralnotice-delete-banner' => '删除',
 	'centralnotice-delete-banner-title' => '删除{{PLURAL:$1|条幅}}?',
 	'centralnotice-delete-banner-confirm' => '删除会移除所有设置和消息。此操作无法撤消。请考虑改为存档。',
