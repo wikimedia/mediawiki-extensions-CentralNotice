@@ -25,7 +25,7 @@ class CentralNotice extends SpecialPage {
 		$request = $this->getRequest();
 
 		// Output ResourceLoader module for styling and javascript functions
-		$out->addModules( 'ext.centralNotice.adminUi' );
+		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
 
 		// Check permissions
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
@@ -313,17 +313,12 @@ class CentralNotice extends SpecialPage {
 	 * Show all campaigns found in the database, show "Add a campaign" form
 	 */
 	function listNotices() {
-		// Get connection
-		$dbr = CNDatabase::getDb();
-
-		if ( $this->editable ) {
-			$readonly = array();
-		} else {
-			$readonly = array( 'disabled' => 'disabled' );
-		}
+		// Cache these commonly used properties
+		$readonly = array( 'disabled' => 'disabled' );
 
 		//TODO: refactor to use Campaign::getCampaigns
 		// Get all campaigns from the database
+		$dbr = CNDatabase::getDb();
 		$res = $dbr->select( 'cn_notices',
 			array(
 				'not_name',
@@ -335,9 +330,7 @@ class CentralNotice extends SpecialPage {
 				'not_locked',
 				'not_archived'
 			),
-			array(
-				'not_archived = 0',
-			),
+			array(),
 			__METHOD__,
 			array( 'ORDER BY' => 'not_id DESC' )
 		);
@@ -349,11 +342,22 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
 		// If there are campaigns to show...
-		if ( $dbr->numRows( $res ) >= 1 ) {
+		if ( $res->numRows() >= 1 ) {
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+				$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
 			}
 			$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-manage' )->text() );
+
+			// Filters
+			$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-formsection-emphasis' ) );
+			$htmlOut .= Xml::checkLabel(
+				$this->msg( 'centralnotice-archive-show' )->text(),
+				'centralnotice-showarchived',
+				'centralnotice-showarchived',
+				false
+			);
+			$htmlOut .= Xml::closeElement( 'div' );
 
 			// Begin table of campaigns
 			$htmlOut .= Xml::openElement( 'table',
@@ -375,14 +379,16 @@ class CentralNotice extends SpecialPage {
 				$this->msg( 'centralnotice-enabled' )->escaped(),
 				$this->msg( 'centralnotice-preferred' )->escaped(),
 				$this->msg( 'centralnotice-locked' )->escaped(),
+				$this->msg( 'centralnotice-archive-campaign' )->escaped()
 			);
-			if ( $this->editable ) {
-				$headers[ ] = $this->msg( 'centralnotice-archive-campaign' )->escaped();
-			}
 			$htmlOut .= $this->tableRow( $headers, 'th' );
 
 			// Table rows
 			foreach ( $res as $row ) {
+				$rowIsEnabled = ( $row->not_enabled == '1' );
+				$rowIsLocked = ( $row->not_locked == '1' );
+				$rowIsArchived = ( $row->not_archived == '1' );
+
 				$rowCells = '';
 
 				// Name
@@ -432,12 +438,12 @@ class CentralNotice extends SpecialPage {
 				);
 
 				// Enabled
-				$checked = ( $row->not_enabled == '1' );
-				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$checked ),
+				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$rowIsEnabled ),
 					Xml::check(
 						'enabled[]',
-						$checked,
-						wfArrayMerge( $readonly,
+						$rowIsEnabled,
+						array_replace(
+							( !$this->editable || $rowIsLocked || $rowIsArchived ) ? $readonly : array(),
 							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
 					)
@@ -445,50 +451,57 @@ class CentralNotice extends SpecialPage {
 
 				// Preferred / Priority
 				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => $row->not_preferred ),
-					$this::prioritySelector( $row->not_name, $this->editable, $row->not_preferred)
+					$this::prioritySelector(
+						$row->not_name,
+						$this->editable && !$rowIsLocked && !$rowIsArchived,
+						$row->not_preferred
+					)
 				);
 
 				// Locked
-				$checked = ( $row->not_locked == '1' );
-				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$checked ),
+				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$rowIsLocked ),
 					Xml::check(
 						'locked[]',
-						$checked,
-						wfArrayMerge( $readonly,
+						$rowIsLocked,
+						array_replace(
+							( !$this->editable || $rowIsArchived ) ? $readonly : array(),
 							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
 					)
 				);
 
-				if ( $this->editable ) {
-					// Archive
-					$checked = false;
-					$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$checked ),
-						Xml::check(
-							'archiveCampaigns[]',
-							$checked,
+				// Archive
+				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$rowIsArchived ),
+					Xml::check(
+						'archiveCampaigns[]',
+						$rowIsArchived,
+						array_replace(
+							( !$this->editable || $rowIsLocked || $rowIsEnabled ) ? $readonly : array(),
 							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
 						)
-					);
-				}
+					)
+				);
 
 				// If campaign is currently active, set special class on table row.
-				$attribs = array();
-				if ( wfTimestamp() > wfTimestamp( TS_UNIX, $row->not_start )
-					&& wfTimestamp() < wfTimestamp( TS_UNIX, $row->not_end )
-					&& $row->not_enabled == '1'
+				$classes = array();
+				if (
+					$rowIsEnabled &&
+					wfTimestamp() > wfTimestamp( TS_UNIX, $row->not_start ) &&
+					wfTimestamp() < wfTimestamp( TS_UNIX, $row->not_end )
 				) {
-					$attribs = array( 'class' => 'cn-active-campaign' );
+					$classes[] = 'cn-active-campaign';
+				}
+				if ( $rowIsArchived ) {
+					$classes[] = 'cn-archived-item';
 				}
 
-				$htmlOut .= Html::rawElement( 'tr', $attribs, $rowCells );
+				$htmlOut .= Html::rawElement( 'tr', array( 'class' => $classes ), $rowCells );
 			}
 			// End table of campaigns
 			$htmlOut .= Xml::closeElement( 'table' );
 
 			if ( $this->editable ) {
-				$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
-				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons' ) );
+				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons cn-formsection-emphasis' ) );
 				$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-modify' )->text(),
 					array(
 						'id'   => 'centralnoticesubmit',
@@ -565,8 +578,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(),
 				Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::check( 'geotargeted', false,
-					wfArrayMerge( $readonly, array( 'value' => 1, 'id' => 'geotargeted' ) ) ) );
+				Xml::check( 'geotargeted', false, array( 'value' => 1, 'id' => 'geotargeted' ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::openElement( 'tr',
 				array( 'id'=> 'geoMultiSelector', 'style'=> 'display:none;' ) );
@@ -624,219 +636,224 @@ class CentralNotice extends SpecialPage {
 	function listNoticeDetail( $notice ) {
 		global $wgNoticeNumberOfBuckets;
 
-		// Make sure notice exists
-		if ( !Campaign::campaignExists( $notice ) ) {
-			$this->showError( 'centralnotice-notice-doesnt-exist' );
-		} else {
-			// Handle form submissions from campaign detail interface
-			$request = $this->getRequest();
+		$c = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
+		try {
+			if ( $c->isArchived() || $c->isLocked() ) {
+				$this->getOutput()->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
+				$this->editable = false; // Todo: Fix this gross hack to prevent editing
+			}
+		} catch ( CampaignExistenceException $ex ) {
+			throw new ErrorPageError( 'centralnotice', 'centralnotice-notice-doesnt-exist' );
+		}
 
-			if ( $this->editable && $request->wasPosted() ) {
-				// If what we're doing is actually serious (ie: not updating the banner
-				// filter); process the request. Recall that if the serious request
-				// succeeds, the page will be reloaded again.
-				if ( $request->getCheck( 'template-search' ) == false ) {
+		// Handle form submissions from campaign detail interface
+		$request = $this->getRequest();
 
-					// Check authentication token
-					if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
+		if ( $this->editable && $request->wasPosted() ) {
+			// If what we're doing is actually serious (ie: not updating the banner
+			// filter); process the request. Recall that if the serious request
+			// succeeds, the page will be reloaded again.
+			if ( $request->getCheck( 'template-search' ) == false ) {
 
-						// Handle removing campaign
-						if ( $request->getVal( 'archive' ) ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
-						}
+				// Check authentication token
+				if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
 
-						$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
+					// Handle removing campaign
+					if ( $request->getVal( 'archive' ) ) {
+						Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
+					}
 
-						// Handle locking/unlocking campaign
-						if ( $request->getCheck( 'locked' ) ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
-						} else {
-							Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
-						}
+					$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
 
-						// Handle enabling/disabling campaign
-						if ( $request->getCheck( 'enabled' ) ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
-						} else {
-							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
-						}
+					// Handle locking/unlocking campaign
+					if ( $request->getCheck( 'locked' ) ) {
+						Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
+					} else {
+						Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
+					}
 
-						// Handle user bucketing setting for campaign
-						$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
-						$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
+					// Handle enabling/disabling campaign
+					if ( $request->getCheck( 'enabled' ) ) {
+						Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
+					} else {
+						Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
+					}
 
-						Campaign::setNumericCampaignSetting(
-							$notice,
-							'buckets',
-							$numCampaignBuckets,
-							$wgNoticeNumberOfBuckets,
-							1
-						);
+					// Handle user bucketing setting for campaign
+					$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
+					$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
-						// Handle setting campaign priority
-						Campaign::setNumericCampaignSetting(
-							$notice,
-							'preferred',
-							$request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
-							CentralNotice::EMERGENCY_PRIORITY,
-							CentralNotice::LOW_PRIORITY
-						);
+					Campaign::setNumericCampaignSetting(
+						$notice,
+						'buckets',
+						$numCampaignBuckets,
+						$wgNoticeNumberOfBuckets,
+						1
+					);
 
-						// Handle updating geotargeting
-						if ( $request->getCheck( 'geotargeted' ) ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'geo', 1 );
-							$countries = $request->getArray( 'geo_countries' );
-							if ( $countries ) {
-								Campaign::updateCountries( $notice, $countries );
-							}
-						} else {
-							Campaign::setBooleanCampaignSetting( $notice, 'geo', 0 );
-						}
+					// Handle setting campaign priority
+					Campaign::setNumericCampaignSetting(
+						$notice,
+						'preferred',
+						$request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
+						CentralNotice::EMERGENCY_PRIORITY,
+						CentralNotice::LOW_PRIORITY
+					);
 
-						// Handle updating the start and end settings
-						$start = $this->getDateTime( 'start' );
-						$end = $this->getDateTime( 'end' );
-						if ( $start && $end ) {
-							Campaign::updateNoticeDate( $notice, $start, $end );
-						}
-
-						// Handle adding of banners to the campaign
-						$templatesToAdd = $request->getArray( 'addTemplates' );
-						if ( $templatesToAdd ) {
-							$weight = $request->getArray( 'weight' );
-							foreach ( $templatesToAdd as $templateName ) {
-								$templateId = Banner::getTemplateId( $templateName );
-								$result = Campaign::addTemplateTo(
-									$notice, $templateName, $weight[ $templateId ]
-								);
-								if ( $result !== true ) {
-									$this->showError( $result );
-								}
-							}
-						}
-
-						// Handle removing of banners from the campaign
-						$templateToRemove = $request->getArray( 'removeTemplates' );
-						if ( $templateToRemove ) {
-							foreach ( $templateToRemove as $template ) {
-								Campaign::removeTemplateFor( $notice, $template );
-							}
-						}
-
-						// Handle weight changes
-						$updatedWeights = $request->getArray( 'weight' );
-						if ( $updatedWeights ) {
-							foreach ( $updatedWeights as $templateId => $weight ) {
-								Campaign::updateWeight( $notice, $templateId, $weight );
-							}
-						}
-
-						// Handle bucket changes - keep in mind that the number of campaign buckets
-						// might have changed simultaneously (and might have happened server side)
-						$updatedBuckets = $request->getArray( 'bucket' );
-						if ( $updatedBuckets ) {
-							foreach ( $updatedBuckets as $templateId => $bucket ) {
-								Campaign::updateBucket(
-									$notice,
-									$templateId,
-									intval( $bucket ) % $numCampaignBuckets
-								);
-							}
-						}
-
-						// Handle new projects
-						$projects = $request->getArray( 'projects' );
-						if ( $projects ) {
-							Campaign::updateProjects( $notice, $projects );
-						}
-
-						// Handle new project languages
-						$projectLangs = $request->getArray( 'project_languages' );
-						if ( $projectLangs ) {
-							Campaign::updateProjectLanguages( $notice, $projectLangs );
-						}
-
-						$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
-						$campaignId = Campaign::getNoticeId( $notice );
-						Campaign::logCampaignChange( 'modified', $campaignId, $this->getUser(),
-							$initialCampaignSettings, $finalCampaignSettings );
-
-						// If there were no errors, reload the page to prevent duplicate form submission
-						if ( !$this->centralNoticeError ) {
-							$this->getOutput()->redirect( $this->getTitle()->getLocalUrl( array(
-									'method' => 'listNoticeDetail',
-									'notice' => $notice
-							) ) );
-							return;
+					// Handle updating geotargeting
+					if ( $request->getCheck( 'geotargeted' ) ) {
+						Campaign::setBooleanCampaignSetting( $notice, 'geo', 1 );
+						$countries = $request->getArray( 'geo_countries' );
+						if ( $countries ) {
+							Campaign::updateCountries( $notice, $countries );
 						}
 					} else {
-						$this->showError( 'sessionfailure' );
+						Campaign::setBooleanCampaignSetting( $notice, 'geo', 0 );
 					}
+
+					// Handle updating the start and end settings
+					$start = $this->getDateTime( 'start' );
+					$end = $this->getDateTime( 'end' );
+					if ( $start && $end ) {
+						Campaign::updateNoticeDate( $notice, $start, $end );
+					}
+
+					// Handle adding of banners to the campaign
+					$templatesToAdd = $request->getArray( 'addTemplates' );
+					if ( $templatesToAdd ) {
+						$weight = $request->getArray( 'weight' );
+						foreach ( $templatesToAdd as $templateName ) {
+							$templateId = Banner::getTemplateId( $templateName );
+							$result = Campaign::addTemplateTo(
+								$notice, $templateName, $weight[ $templateId ]
+							);
+							if ( $result !== true ) {
+								$this->showError( $result );
+							}
+						}
+					}
+
+					// Handle removing of banners from the campaign
+					$templateToRemove = $request->getArray( 'removeTemplates' );
+					if ( $templateToRemove ) {
+						foreach ( $templateToRemove as $template ) {
+							Campaign::removeTemplateFor( $notice, $template );
+						}
+					}
+
+					// Handle weight changes
+					$updatedWeights = $request->getArray( 'weight' );
+					if ( $updatedWeights ) {
+						foreach ( $updatedWeights as $templateId => $weight ) {
+							Campaign::updateWeight( $notice, $templateId, $weight );
+						}
+					}
+
+					// Handle bucket changes - keep in mind that the number of campaign buckets
+					// might have changed simultaneously (and might have happened server side)
+					$updatedBuckets = $request->getArray( 'bucket' );
+					if ( $updatedBuckets ) {
+						foreach ( $updatedBuckets as $templateId => $bucket ) {
+							Campaign::updateBucket(
+								$notice,
+								$templateId,
+								intval( $bucket ) % $numCampaignBuckets
+							);
+						}
+					}
+
+					// Handle new projects
+					$projects = $request->getArray( 'projects' );
+					if ( $projects ) {
+						Campaign::updateProjects( $notice, $projects );
+					}
+
+					// Handle new project languages
+					$projectLangs = $request->getArray( 'project_languages' );
+					if ( $projectLangs ) {
+						Campaign::updateProjectLanguages( $notice, $projectLangs );
+					}
+
+					$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
+					$campaignId = Campaign::getNoticeId( $notice );
+					Campaign::logCampaignChange( 'modified', $campaignId, $this->getUser(),
+						$initialCampaignSettings, $finalCampaignSettings );
+
+					// If there were no errors, reload the page to prevent duplicate form submission
+					if ( !$this->centralNoticeError ) {
+						$this->getOutput()->redirect( $this->getTitle()->getLocalUrl( array(
+								'method' => 'listNoticeDetail',
+								'notice' => $notice
+						) ) );
+						return;
+					}
+				} else {
+					$this->showError( 'sessionfailure' );
 				}
 			}
-
-			$htmlOut = '';
-
-			// Begin Campaign detail fieldset
-			$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
-
-			if ( $this->editable ) {
-				$htmlOut .= Xml::openElement( 'form',
-					array(
-						'method' => 'post',
-						'action' => $this->getTitle()->getLocalUrl( array(
-							'method' => 'listNoticeDetail',
-							'notice' => $notice
-						) )
-					)
-				);
-			}
-
-			$output_detail = $this->noticeDetailForm( $notice );
-			$output_assigned = $this->assignedTemplatesForm( $notice );
-			$output_templates = $this->addTemplatesForm( $notice );
-
-			$htmlOut .= $output_detail;
-
-			// Catch for no banners so that we don't double message
-			if ( $output_assigned == '' && $output_templates == '' ) {
-				$htmlOut .= $this->msg( 'centralnotice-no-templates' )->escaped();
-				$htmlOut .= Xml::element( 'p' );
-				$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
-				$htmlOut .= Linker::link(
-					$newPage,
-					$this->msg( 'centralnotice-add-template' )->escaped()
-				);
-				$htmlOut .= Xml::element( 'p' );
-			} elseif ( $output_assigned == '' ) {
-				$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
-				$htmlOut .= $this->msg( 'centralnotice-no-templates-assigned' )->escaped();
-				$htmlOut .= Xml::closeElement( 'fieldset' );
-				if ( $this->editable ) {
-					$htmlOut .= $output_templates;
-				}
-			} else {
-				$htmlOut .= $output_assigned;
-				if ( $this->editable ) {
-					$htmlOut .= $output_templates;
-				}
-			}
-			if ( $this->editable ) {
-				$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
-
-				// Submit button
-				$htmlOut .= Xml::tags( 'div',
-					array( 'class' => 'cn-buttons' ),
-					Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
-				);
-			}
-
-			if ( $this->editable ) {
-				$htmlOut .= Xml::closeElement( 'form' );
-			}
-			$htmlOut .= Xml::closeElement( 'fieldset' );
-			$this->getOutput()->addHTML( $htmlOut );
 		}
+
+		$htmlOut = '';
+
+		// Begin Campaign detail fieldset
+		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+
+		if ( $this->editable ) {
+			$htmlOut .= Xml::openElement( 'form',
+				array(
+					'method' => 'post',
+					'action' => $this->getTitle()->getLocalUrl( array(
+						'method' => 'listNoticeDetail',
+						'notice' => $notice
+					) )
+				)
+			);
+		}
+
+		$output_detail = $this->noticeDetailForm( $notice );
+		$output_assigned = $this->assignedTemplatesForm( $notice );
+		$output_templates = $this->addTemplatesForm( $notice );
+
+		$htmlOut .= $output_detail;
+
+		// Catch for no banners so that we don't double message
+		if ( $output_assigned == '' && $output_templates == '' ) {
+			$htmlOut .= $this->msg( 'centralnotice-no-templates' )->escaped();
+			$htmlOut .= Xml::element( 'p' );
+			$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
+			$htmlOut .= Linker::link(
+				$newPage,
+				$this->msg( 'centralnotice-add-template' )->escaped()
+			);
+			$htmlOut .= Xml::element( 'p' );
+		} elseif ( $output_assigned == '' ) {
+			$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
+			$htmlOut .= $this->msg( 'centralnotice-no-templates-assigned' )->escaped();
+			$htmlOut .= Xml::closeElement( 'fieldset' );
+			if ( $this->editable ) {
+				$htmlOut .= $output_templates;
+			}
+		} else {
+			$htmlOut .= $output_assigned;
+			if ( $this->editable ) {
+				$htmlOut .= $output_templates;
+			}
+		}
+		if ( $this->editable ) {
+			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
+
+			// Submit button
+			$htmlOut .= Xml::tags( 'div',
+				array( 'class' => 'cn-buttons' ),
+				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
+			);
+		}
+
+		if ( $this->editable ) {
+			$htmlOut .= Xml::closeElement( 'form' );
+		}
+		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$this->getOutput()->addHTML( $htmlOut );
 	}
 
 	/**

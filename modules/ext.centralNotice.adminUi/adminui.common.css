@@ -52,3 +52,8 @@ fieldset#cn-formsection-form-actions legend {
 #mw-htmlform-banner-list .cn-banner-list-element {
 	display: inline;
 }
+
+/* --- Archival --- */
+.cn-archived-item {
+	display: none;
+}

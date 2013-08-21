@@ -144,6 +144,17 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 		'jquery.cookie',
 	),
 );
+$wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'dependencies' => array(
+		'ext.centralNotice.adminUi',
+		'jquery.ui.dialog'
+	),
+	'scripts'       => 'ext.centralNotice.adminUi.campaignManager/campaignManager.js',
+	'styles'        => 'ext.centralNotice.adminUi.campaignManager/campaignManager.css',
+	'messages'      => array( )
+);
 
 $wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array(
 	'localBasePath' => $dir . '/modules',
