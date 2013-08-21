@@ -135,13 +135,25 @@ $wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
 	'scripts'       => 'ext.centralNotice.bannerStats/bannerStats.js',
 );
 $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
-	'scripts'       => 'ext.centralNotice.bannerController/bannerController.js',
+	'localBasePath' => $dir . '/modules/ext.centralNotice.bannerController',
+	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.bannerController',
+	'styles'        => 'bannerController.css',
+	'scripts'       => 'bannerController.js',
 	'position'      => 'top',
 	'dependencies'  => array(
 		'jquery.cookie',
 	),
+);
+$wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
+	'localBasePath' => $dir . '/modules',
+	'remoteExtPath' => 'CentralNotice/modules',
+	'dependencies' => array(
+		'ext.centralNotice.adminUi',
+		'jquery.ui.dialog'
+	),
+	'scripts'       => 'ext.centralNotice.adminUi.campaignManager/campaignManager.js',
+	'styles'        => 'ext.centralNotice.adminUi.campaignManager/campaignManager.css',
+	'messages'      => array( )
 );
 
 $wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array(

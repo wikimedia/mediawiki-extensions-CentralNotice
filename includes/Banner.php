@@ -101,11 +101,11 @@ class Banner {
 	}
 
 	static function removeTemplate( $name, $user ) {
-		global $wgNoticeUseTranslateExtension, $wgCentralDBname;
+		global $wgNoticeUseTranslateExtension;
 
 		$bannerObj = new Banner( $name );
 		$id = $bannerObj->getId();
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
@@ -116,7 +116,7 @@ class Banner {
 			$bannerObj->logBannerChange( 'removed', $user );
 
 			// Delete banner record from the CentralNotice cn_templates table
-			$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+			$dbw = CNDatabase::getDb();
 			$dbw->begin();
 			$dbw->delete( 'cn_templates',
 				array( 'tmp_id' => $id ),
@@ -154,8 +154,7 @@ class Banner {
 	 * @throws MWException
 	 */
 	static function addTag( $tag, $revisionId, $pageId, $value = null ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 
 		if ( is_object( $revisionId ) ) {
 			throw new MWException( 'Got object, excepted id' );
@@ -182,8 +181,7 @@ class Banner {
 	 * @throws MWException
 	 */
 	static protected function removeTag( $tag, $pageId ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 
 		$conds = array(
 			'rt_page' => $pageId,
@@ -200,8 +198,7 @@ class Banner {
 	 * @return bool
 	 */
 	static function bannerExists( $bannerName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 
 		$eBannerName = htmlspecialchars( $bannerName );
 		$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_name' => $eBannerName ) );
@@ -400,8 +397,7 @@ class Banner {
 	}
 
 	static function getTemplateId( $templateName ) {
-		global $wgCentralDBname;
-		$dbr = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbr = CNDatabase::getDb();
 		$templateName = htmlspecialchars( $templateName );
 		$res = $dbr->select(
 			'cn_templates',
@@ -556,8 +552,7 @@ class Banner {
 			}
 		}
 
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 
 		$log = array(
 			'tmplog_timestamp'     => $dbw->timestamp(),
@@ -615,8 +610,7 @@ class Banner {
 	 *     existing associations.
 	 */
 	function setMixins( $mixins ) {
-		global $wgCentralDBname;
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 
 		$dbw->delete( 'cn_template_mixins',
 			array( 'tmp_id' => $this->getId() ),
@@ -730,13 +724,12 @@ class Banner {
 	function editTemplate( $user, $body, $displayAnon, $displayAccount, $fundraising,
 		$autolink, $landingPages, $mixins, $priorityLangs, $devices
 	) {
-		global $wgCentralDBname;
 		if ( !Banner::bannerExists( $this->name ) ) {
 			return;
 		}
 		$initialBannerSettings = Banner::getBannerSettings( $this->name, true );
 
-		$dbw = wfGetDB( DB_MASTER, array(), $wgCentralDBname );
+		$dbw = CNDatabase::getDb();
 		$dbw->update( 'cn_templates',
 			array(
 				'tmp_display_anon'    => $displayAnon,
