@@ -3,13 +3,12 @@
 		$.cookie( '{{{hide-cookie-name}}}', 0, { expires: 365, path: '/' } );
 		return true;
 	}
-	var cookieCount = parseInt( $.cookie( '{{{hide-cookie-name}}}' ) ) | 0;
+	var cookieCount = parseInt( $.cookie( '{{{hide-cookie-name}}}' ), 10 ) | 0;
 
-	if ( cookieCount < {{{hide-cookie-max-count}}} ) {
+	if ( cookieCount < parseInt( '{{{hide-cookie-max-count}}}', 10 ) ) {
 		$.cookie( '{{{hide-cookie-name}}}', cookieCount + 1, { expires: 365, path: '/' } );
 		return true;
 	} else {
 		return false;
 	}
-})()
-/* don't put a semicolon here! */
+})();

@@ -131,7 +131,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		$preload = $bannerRenderer->getPreloadJs();
 		if ( $preload ) {
-			$preload = "mw.centralNotice.bannerData.preload = function() { return {$preload}; };";
+			$preload = "mw.centralNotice.bannerData.preload = function() { {$preload} };";
 		}
 
 		$bannerJs = $preload . "mw.centralNotice.insertBanner( {$bannerJson} );";
