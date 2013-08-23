@@ -620,7 +620,8 @@ Related messages:
 	'centralnotice-country-unknown' => 'Label for country "XX", the generic place where all the people we cannot geolocate live.',
 	'centralnotice-buckets' => 'Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.',
 	'centralnotice-bucket' => 'Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.',
-	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used.',
+	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used. Parameters:
+* $1 - a bucket letter (uppercase alphabet)',
 	'centralnotice-devicetype-desktop' => 'Dropdown selector label for identifying clients using a desktop computer',
 	'centralnotice-all' => 'Used when a list contains all possible elements.
 {{Identical|All}}',
@@ -657,14 +658,20 @@ A "hide cookie" is a cookie that is created when a user asks to hide a banner.
 	'centralnotice-archive-banner' => 'Translate as a verb.{{Identical|Archive}}',
 	'centralnotice-archive-banner-title' => 'Used as title for the dialog box.
 
-Followed by the confirmation message {{msg-mw|Centralnotice-archive-banner-confirm}}.',
+Followed by the confirmation message {{msg-mw|Centralnotice-archive-banner-confirm}}.
+
+Parameters:
+* $1 - number of banners',
 	'centralnotice-archive-banner-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-banner-title}}.',
 	'centralnotice-archive-banner-cancel' => '{{Identical|Cancel}}',
 	'centralnotice-archive-show' => 'Checkbox text that determines if archived campaigns are shown or hidden',
 	'centralnotice-archive-campaign' => 'Translate as a verb.{{Identical|Archive}}',
 	'centralnotice-archive-campaign-title' => 'Used as title for the dialog box.
 
-Followed by the confirmation message {{msg-mw|Centralnotice-archive-campaign-confirm}}.',
+Followed by the confirmation message {{msg-mw|Centralnotice-archive-campaign-confirm}}.
+
+Parameters:
+* $1 - number of campaigns',
 	'centralnotice-archive-campaign-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-campaign-title}}.',
 	'centralnotice-archive-campaign-cancel' => '{{Identical|Cancel}}',
 	'centralnotice-archive-edit-prevented' => 'Descriptive banner used on the page to describe why it cannot be edited.',
@@ -673,7 +680,10 @@ Followed by the confirmation message {{msg-mw|Centralnotice-archive-campaign-con
 {{Identical|Delete}}',
 	'centralnotice-delete-banner-title' => 'Used as title for the dialog box.
 
-Followed by the confirmation message {{msg-mw|Centralnotice-delete-banner-confirm}}.',
+Followed by the confirmation message {{msg-mw|Centralnotice-delete-banner-confirm}}.
+
+Parameters:
+* $1 - number of banners',
 	'centralnotice-delete-banner-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-delete-banner-title}}.',
 	'centralnotice-delete-banner-cancel' => '{{Identical|Cancel}}',
 	'centralnotice-noiframe' => 'Inform the user that banner previewing has failed because their browser does not support iframes.',
@@ -9133,6 +9143,7 @@ $messages['is'] = array(
  * @author BrokenArrow
  * @author Darth Kule
  * @author F. Cosoleto
+ * @author Gianfranco
  * @author Gloria sah
  * @author Melos
  * @author Nemo bis
@@ -9156,6 +9167,7 @@ $messages['it'] = array(
 	'centralnotice-view' => 'Visualizza',
 	'centralnotice-save-banner' => 'Salva',
 	'centralnotice-preview' => 'Anteprima ($1)',
+	'centralnotice-live-preview' => 'Anteprima su wiki',
 	'centralnotice-nopreview' => '(Anteprima non disponibile)',
 	'centralnotice-add-new' => 'Aggiungi un nuovo avviso centralizzato',
 	'centralnotice-remove' => 'Rimuovi',
@@ -9330,10 +9342,14 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-archive-banner-title' => 'Archiviare {{PLURAL:$1|il|i}} banner?',
 	'centralnotice-archive-banner-confirm' => "L'archiviazione espande tutti i template inclusi ed imposta la protezione della pagina. Questa non è un'azione semplice da annullare.",
 	'centralnotice-archive-banner-cancel' => 'Annulla',
+	'centralnotice-archive-show' => 'Visualizza le campagne archiviate',
 	'centralnotice-archive-campaign' => 'Archivia',
+	'centralnotice-archive-campaign-title' => 'Archivia {{PLURAL:$1|campagna|campagne}}?',
+	'centralnotice-archive-campaign-confirm' => "L'archiviazione contrassegna una campagna come permanentemente inattiva.",
 	'centralnotice-archive-campaign-cancel' => 'Annulla',
 	'centralnotice-delete-banner' => 'Cancella',
 	'centralnotice-delete-banner-title' => 'Cancellare {{PLURAL:$1|il|i}} banner?',
+	'centralnotice-delete-banner-confirm' => "L'eliminazione rimuove tutte le impostazioni e i messaggi. Questa azione non può essere annullata. Considera l'archiviazione, piuttosto.",
 	'centralnotice-delete-banner-cancel' => 'Annulla',
 	'centralnotice-noiframe' => 'Questo elemento non può essere visualizzato senza iframe.',
 	'centralnotice-messages-pending-approval' => 'Lingue con messaggi attualmente in attesa di approvazione',
@@ -10232,7 +10248,7 @@ $messages['ko'] = array(
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> 제거',
 	'centralnotice-no-assignments' => '배너가 할당되지 않음',
 	'centralnotice-talk-link' => '토론',
-	'centralnotice-campaign-settings' => '캠페인 설정',
+	'centralnotice-campaign-settings' => '공지 설정',
 	'centralnotice-banner-settings' => '배너 설정',
 	'centralnotice-anon' => '익명 사용자에게 표시',
 	'centralnotice-account' => '로그인한 사용자에게 표시',
@@ -10284,10 +10300,12 @@ $messages['ko'] = array(
 	'centralnotice-archive-banner-title' => '{{PLURAL:$1|배너}}를 보존하겠습니까?',
 	'centralnotice-archive-banner-confirm' => '배너 보존은 포함하는 틀을 모두 전개하고 문서를 보호합니다. 이 동작을 되돌리는 것은 쉬운 일이 아닙니다.',
 	'centralnotice-archive-banner-cancel' => '취소',
+	'centralnotice-archive-show' => '보존된 공지 보기',
 	'centralnotice-archive-campaign' => '보존',
-	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|캠페인}}을 보존하겠습니까?',
-	'centralnotice-archive-campaign-confirm' => '보존은 캠페인을 영구적으로 비활성으로 표시합니다.',
+	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|공지}}를 보존하겠습니까?',
+	'centralnotice-archive-campaign-confirm' => '보존은 공지를 영구적으로 비활성으로 표시합니다.',
 	'centralnotice-archive-campaign-cancel' => '취소',
+	'centralnotice-archive-edit-prevented' => '이 공지를 편집하는 것은 잠겨 있거나 보존되어 있기 때문에 비활성화되어 있습니다. [[Special:CentralNotice]]에서 상태를 바꾸세요.',
 	'centralnotice-delete-banner' => '삭제',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|배너}}를 삭제하겠습니까?',
 	'centralnotice-delete-banner-confirm' => '배너 삭제는 모든 설정과 메시지를 지우게 됩니다. 이 동작은 되돌릴 수 없습니다. 대신 보존하는 것을 고려해보십시오.',
@@ -15220,10 +15238,12 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-archive-banner-title' => "Archivije {{PLURAL:$1|'u banner|le banner}}?",
 	'centralnotice-archive-banner-confirm' => "L'archivije spanne tutte le template e 'mboste 'a protezione d'a pàgene. Quiste non g'è 'n'azione facile da repristinà.",
 	'centralnotice-archive-banner-cancel' => 'Annulle',
+	'centralnotice-archive-show' => 'Fà vedè le cambagne archiviate',
 	'centralnotice-archive-campaign' => 'Archivije',
 	'centralnotice-archive-campaign-title' => "Archivije {{PLURAL:$1|'a cambagne|le cambagne}}?",
 	'centralnotice-archive-campaign-confirm' => "Signe in archivije 'na cambagne cumme inattive permanendemende.",
 	'centralnotice-archive-campaign-cancel' => 'Annulle',
+	'centralnotice-archive-edit-prevented' => "'U cangiamende de sta cambagne jè disabbilitate purcé jè archiviate e bloccate. Cange tutte e doje le state da [[Special:CentralNotice]]",
 	'centralnotice-delete-banner' => 'Scangille',
 	'centralnotice-delete-banner-title' => 'Scangille {{PLURAL:$1|banner}}?',
 	'centralnotice-delete-banner-confirm' => "'A scangellazzione lève tutte le 'mbostaziune e le messàgge. St'azione non ge pò essere respristinate. Pinze a l'archiviazione invece.",
@@ -19777,10 +19797,12 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-archive-banner-title' => 'Lưu trữ {{PLURAL:$1|biểu ngữ|các biểu ngữ}} không?',
 	'centralnotice-archive-banner-confirm' => 'Việc lưu trữ sẽ bung các bản mẫu được nhúng và khóa trang. Hành động này không thể dễ dàng lùi lại.',
 	'centralnotice-archive-banner-cancel' => 'Hủy bỏ',
+	'centralnotice-archive-show' => 'Xem các chiến dịch lưu trữ',
 	'centralnotice-archive-campaign' => 'Lưu trữ',
 	'centralnotice-archive-campaign-title' => 'Lưu trữ {{PLURAL:$1|chiến dịch|các chiến dịch}}?',
 	'centralnotice-archive-campaign-confirm' => 'Việc lưu trữ đánh dấu một chiến dịch là không còn hoạt động, không thể khôi phục.',
 	'centralnotice-archive-campaign-cancel' => 'Hủy bỏ',
+	'centralnotice-archive-edit-prevented' => 'Không thể sửa đổi chiến dịch này vì nó đã bị khóa hoặc lưu trữ. Chiến dịch có thể được kích hoặt lại tại [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Xóa',
 	'centralnotice-delete-banner-title' => 'Xóa {{PLURAL:$1|biểu ngữ|các biểu ngữ}}?',
 	'centralnotice-delete-banner-confirm' => 'Việc xóa sẽ loại bỏ tất cả các tùy chọn và thông điệp. Hành động này không thể lùi lại. Thay vào đó hãy nghĩ đến việc lưu trữ.',
