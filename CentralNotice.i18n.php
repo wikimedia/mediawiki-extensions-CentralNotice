@@ -1280,6 +1280,7 @@ $messages['arc'] = array(
 	'centralnotice-preview' => 'ܚܝܪܐ ܩܕܡܝܐ ($1)',
 	'centralnotice-add' => 'ܐܘܣܦ',
 	'centralnotice-add-template' => 'ܐܘܣܦ ܩܠܒܐ',
+	'centralnotice-translate-to' => 'ܬܪܓܡ ܠ',
 	'centralnotice-translate' => 'ܬܪܓܡ',
 	'centralnotice-weight' => 'ܬܘܩܠܐ',
 	'centralnotice-locked' => 'ܩܦܝܠܐ',
@@ -3922,10 +3923,12 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 	'centralnotice-archive-banner-title' => 'Archivovat {{PLURAL:$1|banner|bannery}}?',
 	'centralnotice-archive-banner-confirm' => 'Archivace rozbalí všechny použité šablony a nastaví zámek stránky. Tato akce se těžko vrací zpět.',
 	'centralnotice-archive-banner-cancel' => 'Storno',
+	'centralnotice-archive-show' => 'Zobrazit archivované kampaně',
 	'centralnotice-archive-campaign' => 'Archivovat',
 	'centralnotice-archive-campaign-title' => 'Archivovat {{PLURAL:$1|kampaň|kampaně}}?',
 	'centralnotice-archive-campaign-confirm' => 'Archivace kampaň označí jako trvale neaktivní.',
 	'centralnotice-archive-campaign-cancel' => 'Storno',
+	'centralnotice-archive-edit-prevented' => 'Editace této kampaně jsou zakázány, protože je zamčena nebo archivována. Oba stavy můžete změnit na stránce [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Smazat',
 	'centralnotice-delete-banner-title' => 'Smazat {{PLURAL:$1|banner|bannery}}?',
 	'centralnotice-delete-banner-confirm' => 'Smazání odstraní všechna nastavení a zprávy. Tuto akci nelze vrátit zpět. Zvažte raději archivaci.',
@@ -7145,7 +7148,12 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-archive-banner-title' => 'Quere arquivar {{PLURAL:$1|un cartel|os carteis}}?',
 	'centralnotice-archive-banner-confirm' => 'A acción de arquivar expande todos os modelos incluídos e establece a protección da páxina. Non é unha acción fácil de reverter.',
 	'centralnotice-archive-banner-cancel' => 'Cancelar',
+	'centralnotice-archive-show' => 'Mostrar as campañas arquivadas',
+	'centralnotice-archive-campaign' => 'Arquivar',
+	'centralnotice-archive-campaign-title' => 'Quere arquivar {{PLURAL:$1|a campaña|as campañas}}?',
+	'centralnotice-archive-campaign-confirm' => 'O arquivo marca unha campaña como inactiva permanentemente.',
 	'centralnotice-archive-campaign-cancel' => 'Cancelar',
+	'centralnotice-archive-edit-prevented' => 'A edición desta campaña está desactivada porque está bloqueada ou arquivada. Modifique calquera dos estados en [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Borrar',
 	'centralnotice-delete-banner-title' => 'Quere borrar {{PLURAL:$1|un cartel|os carteis}}?',
 	'centralnotice-delete-banner-confirm' => 'A acción de borrar elimina todas as configuracións e mensaxes. Esta acción non se pode reverter. No canto disto, considere a opción de arquivar.',
@@ -13262,8 +13270,7 @@ Es pas estat apondut.',
 	'centralnotice-remove-notice-doesnt-exist' => 'La campanha existís pas.
 Pas res de suprimir.',
 	'centralnotice-banner-doesnt-exist' => 'La bandièra existís pas',
-	'centralnotice-template-still-bound' => 'Lo modèl es encara religat a una notificacion.
-Es pas estat suprimit.', # Fuzzy
+	'centralnotice-template-still-bound' => 'Impossible de suprimir la bandièra " $1 " perque es encara ligada a una campanha. !N !De levar pas.',
 	'centralnotice-template-body' => 'Còs del modèl :',
 	'centralnotice-day' => 'Jorn',
 	'centralnotice-year' => 'Annada',
@@ -13273,6 +13280,7 @@ Es pas estat suprimit.', # Fuzzy
 	'centralnotice-project-lang' => 'Lenga del projècte',
 	'centralnotice-select-all' => 'Seleccionar tot',
 	'centralnotice-remove-all' => 'Suprimir tot',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|element seleccionat|elements seleccionats}}',
 	'centralnotice-project-name' => 'Nom del projècte',
 	'centralnotice-assigned-templates' => 'Modèls assignats',
 	'centralnotice-no-templates' => 'I a pas de modèl dins lo sistèma.
@@ -13305,7 +13313,7 @@ Apondètz-ne una en dejós.',
 	'centralnotice-clone-notice' => "Crear una còpia d'aqueste modèl",
 	'centralnotice-clone-name' => 'Nom :',
 	'centralnotice-clone-cancel' => 'Anullar',
-	'centralnotice-preview-all-template-translations' => "Previsualizar totas las traduccions d'aqueste modèl", # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'Previsualizar totas las traduccions aprovadas',
 	'centralnotice-insert' => 'Inserir : $1',
 	'centralnotice-close-button' => 'Boton tampar',
 	'centralnotice-close-title' => 'Tampar',
@@ -13316,6 +13324,8 @@ Apondètz-ne una en dejós.',
 	'centralnotice-banner-type' => 'Tipe de bandièra :',
 	'centralnotice-banner-hidable' => 'Estatic/amagable',
 	'centralnotice-banner-collapsible' => 'Reductible',
+	'centralnotice-banner-landing-pages-default' => 'per exemple JimmyAppeal01',
+	'centralnotice-banner-mixins' => 'Mesclas (separats per de virgulas) :',
 	'centralnotice-geo' => 'Geolocalizat',
 	'centralnotice-countries' => 'Païses',
 	'centralnotice-allocation' => 'Allocacion',
@@ -20102,6 +20112,7 @@ $messages['yue'] = array(
  * @author Qiyue2001
  * @author Shirayuki
  * @author StephDC
+ * @author TianyinLee
  * @author Wmr89502270
  * @author Xiaomingyan
  * @author Yfdyh000
@@ -20313,10 +20324,12 @@ $messages['zh-hans'] = array(
 	'centralnotice-archive-banner-title' => '存档{{PLURAL:$1|条幅}}吗？',
 	'centralnotice-archive-banner-confirm' => '存档将展开所有模板并设置页面保护，此动作难以回复。',
 	'centralnotice-archive-banner-cancel' => '取消',
+	'centralnotice-archive-show' => '显示已存档的活动',
 	'centralnotice-archive-campaign' => '存档',
 	'centralnotice-archive-campaign-title' => '存档{{PLURAL:$1|此|这些}}竞选？',
 	'centralnotice-archive-campaign-confirm' => '存档竞选会把竞选永久停止。',
 	'centralnotice-archive-campaign-cancel' => '取消',
+	'centralnotice-archive-edit-prevented' => '不能编辑此活动，因为已被锁定或已存档。请前往[[Special:CentralNotice]] 更改状态。',
 	'centralnotice-delete-banner' => '删除',
 	'centralnotice-delete-banner-title' => '删除{{PLURAL:$1|条幅}}?',
 	'centralnotice-delete-banner-confirm' => '删除会移除所有设置和消息。此操作无法撤消。请考虑改为存档。',
