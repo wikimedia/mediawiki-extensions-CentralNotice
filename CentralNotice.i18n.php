@@ -552,7 +552,7 @@ Used as column header of the table in [[Special:CentralNotice]].
 * $1 - list of projects/languages/countries which were added',
 	'centralnotice-removed' => 'Parameters:
 * $1 - list of projects/languages/countries which were removed',
-	'centralnotice-no-assignments' => 'Substituted for $1 or $2 in {{msg-mw|centralnotice-changed}}.',
+	'centralnotice-no-assignments' => 'Used as <code>$1</code> or <code>$2</code> in {{msg-mw|Centralnotice-changed}}.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.
 {{Identical|Talk}}',
 	'centralnotice-user-links' => '{{optional}}
@@ -571,20 +571,20 @@ Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-content}}
 *{{msg-mw|centralnotice-banner-messages}}',
-	'centralnotice-anon' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
-	'centralnotice-account' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
-	'centralnotice-fundraising' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}.
+	'centralnotice-anon' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-account' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-fundraising' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}.
 {{Identical|Fundraising}}',
-	'centralnotice-autolink' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
-	'centralnotice-landingpages' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-autolink' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-landingpages' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
 	'centralnotice-banner-content' => 'On the [[meta:Special:CentralNoticeLogs|Central Notice Logs]] special page, this is a radio button which shows log entries associated to edits to the MediaWiki pages (one per banner) which define the structure ("content") of every banner and can use other (sub)messages as translatable variables, whose changes are in contrast shown by {{msg-mw|centralnotice-banner-messages}} button.
 Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-settings}}
 *{{msg-mw|centralnotice-banner-messages}}',
-	'centralnotice-banner-content-changed' => 'Used as parameter $2 of {{msg-mw|Centralnotice-log-label}}.
+	'centralnotice-banner-content-changed' => 'Used as parameter <code>$2</code> of {{msg-mw|Centralnotice-log-label}}.
 
-(Parameter $1 of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
+(Parameter <code>$1</code> of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
 	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
 	'centralnotice-damaged-log' => 'This is an annotation on banners or campaigns with inconsistent log entries. Parameters:
 * $1 - name of the damaged record',
@@ -13364,9 +13364,17 @@ Apondètz-ne una en dejós.',
 	'centralnotice-bucket' => 'Godet',
 	'centralnotice-bucket-letter' => 'Godet "$1"',
 	'centralnotice-all' => 'Totes',
+	'centralnotice-user-role' => 'Ròtle de l’utilizaire',
+	'centralnotice-user-role-anonymous' => 'Anonim',
+	'centralnotice-user-role-logged-in' => 'Connectat',
+	'centralnotice-banner-class' => 'Classa',
 	'centralnotice-banner-class-generic' => 'Generic',
+	'centralnotice-banner-class-fundraising' => 'Levada de fonses',
+	'centralnotice-templates-included' => 'Modèls incluses',
 	'centralnotice-archive-banner' => 'Archiu',
 	'centralnotice-archive-banner-cancel' => 'Anullar',
+	'centralnotice-archive-campaign' => 'Archiu',
+	'centralnotice-archive-campaign-cancel' => 'Anullar',
 	'centralnotice-delete-banner' => 'Suprimir',
 	'centralnotice-delete-banner-cancel' => 'Anullar',
 	'centralnotice-start-timestamp' => 'Començament (UTC)',
