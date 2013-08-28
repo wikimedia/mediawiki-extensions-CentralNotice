@@ -50,8 +50,6 @@ function receiveMessage( event ) {
 }
 
 jQuery(document).ready( function ( $ ) {
-	var bucketCheck, buckets;
-
 	// Render jquery.ui.datepicker on appropriate fields
 	$( '.centralnotice-datepicker' ).each( function () {
 		var altFormat = 'yymmdd000000';
@@ -114,11 +112,9 @@ jQuery(document).ready( function ( $ ) {
 	} );
 
 	// Bucketing! Disable bucket selectors if #buckets is not checked.
-	bucketSelect = $( '#buckets' );
-	buckets = $( 'select[id^="bucketSelector"]' );
-
-    bucketSelect.change( function () {
-        numBuckets = parseInt( this[this.selectedIndex].value );
+	$( '#buckets' ).change( function () {
+        var numBuckets = parseInt( this[this.selectedIndex].value, 10 ),
+			buckets = $( 'select[id^="bucketSelector"]' );
 
         if ( numBuckets == 1 ) {
             buckets.prop( 'disabled', true );
@@ -127,16 +123,13 @@ jQuery(document).ready( function ( $ ) {
             // Go through and modify all the options -- disabling inappropriate ones
             // and remapping the rings
             buckets.each( function() {
-                var curBucket = parseInt( this[this.selectedIndex].value );
+                var curBucket = parseInt( this[this.selectedIndex].value, 10 );
                 $(this).val( curBucket % numBuckets );
 
                 for ( var i = 0; i < this.options.length; i++ ) {
-                    $(this.options[i]).prop( 'disabled', !(i < numBuckets) );
+                    $(this.options[i]).prop( 'disabled', (i >= numBuckets) );
                 }
-            })
+            });
         }
-	} );
-
-	// Initial state
-	bucketSelect.trigger( 'change' );
+	} ).trigger( 'change' );
 } );

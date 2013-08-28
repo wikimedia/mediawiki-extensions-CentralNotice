@@ -333,6 +333,7 @@ $specialPageAliases['vi'] = array(
 	'BannerController' => array( 'Điều_khiển_bảng' ),
 	'BannerLoader' => array( 'Tải_bảng' ),
 	'BannerRandom' => array( 'Bảng_ngẫu_nhiên' ),
+	'RecordImpression' => array( 'Ghi_lần_hiển_thị' ),
 	'HideBanners' => array( 'Ẩn_bảng' ),
 );
 

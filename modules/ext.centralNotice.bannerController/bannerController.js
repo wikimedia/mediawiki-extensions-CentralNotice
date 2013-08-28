@@ -170,7 +170,7 @@
 
 			// === Initialize things that don't come from MW itself ===
 			mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
-			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || Geo.country || 'XX';
+			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || window.Geo.country || 'XX';
 			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
 			mw.centralNotice.data.device = mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' );
 
@@ -200,8 +200,8 @@
 					dataType: 'script',
 					cache: true,
 					complete: function() {
-						if ( Geo.country ) {
-							mw.centralNotice.data.country = Geo.country;
+						if ( window.Geo.country ) {
+							mw.centralNotice.data.country = window.Geo.country;
 						} else {
 							mw.centralNotice.data.country = 'XX';
 						}
@@ -230,7 +230,7 @@
 	//
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
-		var url, targets, data;
+		var url, targets;
 
 		var impressionData = {
 			country: mw.centralNotice.data.country,
@@ -260,7 +260,7 @@
 				impressionResultData = {
 					result: 'hide',
 					reason: 'preload'
-				}
+				};
 			} else if (
 				bannerJson.priority < 3 && /* A priority of 3 is Emergency and cannot be hidden */
 				!mw.centralNotice.data.testing && /* And we want to see what we're testing! :) */
@@ -270,7 +270,7 @@
 				impressionResultData = {
 					result: 'hide',
 					reason: 'cookie'
-				}
+				};
 			} else {
 				// All conditions fulfilled, inject the banner
 				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;

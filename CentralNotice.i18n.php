@@ -231,7 +231,6 @@ Add one below.',
 	'centralnotice-delete-banner-confirm' => 'Deletion removes all settings and messages. This action cannot be reversed. Consider archiving instead.',
 	'centralnotice-delete-banner-cancel' => 'Cancel',
 
-	'centralnotice-noiframe' => 'This element cannot be displayed without iframes.',
 	'centralnotice-messages-pending-approval' => 'Languages with messages currently pending approval',
 	'centralnotice-devices' => 'Display on devices',
 
@@ -552,7 +551,7 @@ Used as column header of the table in [[Special:CentralNotice]].
 * $1 - list of projects/languages/countries which were added',
 	'centralnotice-removed' => 'Parameters:
 * $1 - list of projects/languages/countries which were removed',
-	'centralnotice-no-assignments' => 'Substituted for $1 or $2 in {{msg-mw|centralnotice-changed}}.',
+	'centralnotice-no-assignments' => 'Used as <code>$1</code> or <code>$2</code> in {{msg-mw|Centralnotice-changed}}.',
 	'centralnotice-talk-link' => 'Link for user talk page; should be lower case.
 {{Identical|Talk}}',
 	'centralnotice-user-links' => '{{optional}}
@@ -571,20 +570,20 @@ Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-content}}
 *{{msg-mw|centralnotice-banner-messages}}',
-	'centralnotice-anon' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
-	'centralnotice-account' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
-	'centralnotice-fundraising' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}.
+	'centralnotice-anon' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-account' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-fundraising' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}.
 {{Identical|Fundraising}}',
-	'centralnotice-autolink' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
-	'centralnotice-landingpages' => 'Label for a setting. Used as parameter $1 of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-autolink' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-landingpages' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
 	'centralnotice-banner-content' => 'On the [[meta:Special:CentralNoticeLogs|Central Notice Logs]] special page, this is a radio button which shows log entries associated to edits to the MediaWiki pages (one per banner) which define the structure ("content") of every banner and can use other (sub)messages as translatable variables, whose changes are in contrast shown by {{msg-mw|centralnotice-banner-messages}} button.
 Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
 *{{msg-mw|centralnotice-banner-settings}}
 *{{msg-mw|centralnotice-banner-messages}}',
-	'centralnotice-banner-content-changed' => 'Used as parameter $2 of {{msg-mw|Centralnotice-log-label}}.
+	'centralnotice-banner-content-changed' => 'Used as parameter <code>$2</code> of {{msg-mw|Centralnotice-log-label}}.
 
-(Parameter $1 of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
+(Parameter <code>$1</code> of the above message is {{msg-mw|Centralnotice-banner-content}}.)',
 	'centralnotice-filters' => 'Label for a set of options that control filtering of logs',
 	'centralnotice-damaged-log' => 'This is an annotation on banners or campaigns with inconsistent log entries. Parameters:
 * $1 - name of the damaged record',
@@ -620,7 +619,8 @@ Related messages:
 	'centralnotice-country-unknown' => 'Label for country "XX", the generic place where all the people we cannot geolocate live.',
 	'centralnotice-buckets' => 'Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.',
 	'centralnotice-bucket' => 'Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.',
-	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used.',
+	'centralnotice-bucket-letter' => 'Label for specifying what bucket is being used. Parameters:
+* $1 - a bucket letter (uppercase alphabet)',
 	'centralnotice-devicetype-desktop' => 'Dropdown selector label for identifying clients using a desktop computer',
 	'centralnotice-all' => 'Used when a list contains all possible elements.
 {{Identical|All}}',
@@ -657,28 +657,34 @@ A "hide cookie" is a cookie that is created when a user asks to hide a banner.
 	'centralnotice-archive-banner' => 'Translate as a verb.{{Identical|Archive}}',
 	'centralnotice-archive-banner-title' => 'Used as title for the dialog box.
 
-Followed by the confirmation message {{msg-mw|Centralnotice-archive-banner-confirm}}.',
+Followed by the confirmation message {{msg-mw|Centralnotice-archive-banner-confirm}}.
+
+Parameters:
+* $1 - number of banners',
 	'centralnotice-archive-banner-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-banner-title}}.',
 	'centralnotice-archive-banner-cancel' => '{{Identical|Cancel}}',
-
 	'centralnotice-archive-show' => 'Checkbox text that determines if archived campaigns are shown or hidden',
 	'centralnotice-archive-campaign' => 'Translate as a verb.{{Identical|Archive}}',
 	'centralnotice-archive-campaign-title' => 'Used as title for the dialog box.
 
-Followed by the confirmation message {{msg-mw|Centralnotice-archive-campaign-confirm}}.',
+Followed by the confirmation message {{msg-mw|Centralnotice-archive-campaign-confirm}}.
+
+Parameters:
+* $1 - number of campaigns',
 	'centralnotice-archive-campaign-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-campaign-title}}.',
 	'centralnotice-archive-campaign-cancel' => '{{Identical|Cancel}}',
 	'centralnotice-archive-edit-prevented' => 'Descriptive banner used on the page to describe why it cannot be edited.',
-
 	'centralnotice-delete-banner' => 'Button label
 
 {{Identical|Delete}}',
 	'centralnotice-delete-banner-title' => 'Used as title for the dialog box.
 
-Followed by the confirmation message {{msg-mw|Centralnotice-delete-banner-confirm}}.',
+Followed by the confirmation message {{msg-mw|Centralnotice-delete-banner-confirm}}.
+
+Parameters:
+* $1 - number of banners',
 	'centralnotice-delete-banner-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-delete-banner-title}}.',
 	'centralnotice-delete-banner-cancel' => '{{Identical|Cancel}}',
-	'centralnotice-noiframe' => 'Inform the user that banner previewing has failed because their browser does not support iframes.',
 	'centralnotice-messages-pending-approval' => 'Label for a list of languages in which banner messages are pending approval',
 	'centralnotice-devices' => 'Log line label for showing a list of devices (e.g. iphone, desktop) that the banner will display on.
 
@@ -1272,6 +1278,7 @@ $messages['arc'] = array(
 	'centralnotice-preview' => 'ܚܝܪܐ ܩܕܡܝܐ ($1)',
 	'centralnotice-add' => 'ܐܘܣܦ',
 	'centralnotice-add-template' => 'ܐܘܣܦ ܩܠܒܐ',
+	'centralnotice-translate-to' => 'ܬܪܓܡ ܠ',
 	'centralnotice-translate' => 'ܬܪܓܡ',
 	'centralnotice-weight' => 'ܬܘܩܠܐ',
 	'centralnotice-locked' => 'ܩܦܝܠܐ',
@@ -1777,10 +1784,12 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	'centralnotice-archive-banner-title' => '¿Archivar {{PLURAL:$1|el cartel|los cartelos}}?',
 	'centralnotice-archive-banner-confirm' => "L'archiváu espande toles plantíes incluíes y establez la proteición de la páxina. Esta nun ye una aición fácil d'invertir.",
 	'centralnotice-archive-banner-cancel' => 'Encaboxar',
+	'centralnotice-archive-show' => 'Ver les campañes archivaes',
 	'centralnotice-archive-campaign' => 'Archivar',
 	'centralnotice-archive-campaign-title' => '¿Archivar {{PLURAL:$1|campaña|campañes}}?',
 	'centralnotice-archive-campaign-confirm' => "L'archiváu marca una campaña como permanentemente inactiva.",
 	'centralnotice-archive-campaign-cancel' => 'Encaboxar',
+	'centralnotice-archive-edit-prevented' => "La edición d'esta campaña ta desactivada porque ta o bloquiada o archivada. Cambie cualquier estáu dende [[Special:CentralNotice]].",
 	'centralnotice-delete-banner' => 'Desaniciar',
 	'centralnotice-delete-banner-title' => '¿Desaniciar {{PLURAL:$1|el cartel|los cartelos}}?',
 	'centralnotice-delete-banner-confirm' => 'El desaniciu elimina toles configuraciones y mensaxes. Esta aición nun pue invertise. Camiente si ye meyor archivar.',
@@ -3912,10 +3921,12 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 	'centralnotice-archive-banner-title' => 'Archivovat {{PLURAL:$1|banner|bannery}}?',
 	'centralnotice-archive-banner-confirm' => 'Archivace rozbalí všechny použité šablony a nastaví zámek stránky. Tato akce se těžko vrací zpět.',
 	'centralnotice-archive-banner-cancel' => 'Storno',
+	'centralnotice-archive-show' => 'Zobrazit archivované kampaně',
 	'centralnotice-archive-campaign' => 'Archivovat',
 	'centralnotice-archive-campaign-title' => 'Archivovat {{PLURAL:$1|kampaň|kampaně}}?',
 	'centralnotice-archive-campaign-confirm' => 'Archivace kampaň označí jako trvale neaktivní.',
 	'centralnotice-archive-campaign-cancel' => 'Storno',
+	'centralnotice-archive-edit-prevented' => 'Editace této kampaně jsou zakázány, protože je zamčena nebo archivována. Oba stavy můžete změnit na stránce [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Smazat',
 	'centralnotice-delete-banner-title' => 'Smazat {{PLURAL:$1|banner|bannery}}?',
 	'centralnotice-delete-banner-confirm' => 'Smazání odstraní všechna nastavení a zprávy. Tuto akci nelze vrátit zpět. Zvažte raději archivaci.',
@@ -4570,10 +4581,12 @@ Mehr Informationen unter http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-archive-banner-title' => '{{PLURAL:$1|Vorlage|Vorlagen}} archivieren?',
 	'centralnotice-archive-banner-confirm' => 'Die Archivierung erweitert alle eingeschlossenen Vorlagen und legt einen Seitenschutz fest. Diese Aktion kann nicht so einfach rückgängig gemacht werden.',
 	'centralnotice-archive-banner-cancel' => 'Abbrechen',
+	'centralnotice-archive-show' => 'Archivierte Kampagnen anzeigen',
 	'centralnotice-archive-campaign' => 'Archivieren',
 	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|Kampagne|Kampagnen}} archivieren?',
 	'centralnotice-archive-campaign-confirm' => 'Das Archivieren markiert eine Kampagne als dauerhaft inaktiv.',
 	'centralnotice-archive-campaign-cancel' => 'Abbrechen',
+	'centralnotice-archive-edit-prevented' => 'Das Bearbeiten dieser Kampagne ist deaktiviert, da sie entweder gesperrt oder archiviert wurde. Ändere den Status auf [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Löschen',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|Vorlage|Vorlagen}} löschen?',
 	'centralnotice-delete-banner-confirm' => 'Eine Löschung entfernt alle Einstellungen und Nachrichten. Diese Aktion kann nicht rückgängig gemacht werden. Ziehe in Erwägung, stattdessen die Vorlage/n zu archivieren.',
@@ -6714,10 +6727,12 @@ Veuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d
 	'centralnotice-archive-banner-title' => 'Archiver {{PLURAL:$1|la bannière|les bannières}} ?',
 	'centralnotice-archive-banner-confirm' => 'L’archivage développe tous les modèles inclus et positionne la protection de la page. Ce n’est pas une action facile à annuler.',
 	'centralnotice-archive-banner-cancel' => 'Annuler',
+	'centralnotice-archive-show' => 'Afficher les campagnes archivées',
 	'centralnotice-archive-campaign' => 'Archiver',
 	'centralnotice-archive-campaign-title' => 'Archiver {{PLURAL:$1|la campagne|les campagnes}} ?',
 	'centralnotice-archive-campaign-confirm' => 'Archivée marque une campagne comme définitivement inactive.',
 	'centralnotice-archive-campaign-cancel' => 'Annuler',
+	'centralnotice-archive-edit-prevented' => 'La modification de cette campagne est désactivée car elle est soit verrouillée, soit archivée. Modifiez cet état dans [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Supprimer',
 	'centralnotice-delete-banner-title' => 'Supprimer {{PLURAL:$1|bannière|bannières}} ?',
 	'centralnotice-delete-banner-confirm' => 'La suppression supprime tous les paramètres et les messages. Cette action ne peut pas être annulée. Envisagez plutôt l’archivage.',
@@ -7131,7 +7146,12 @@ Olle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis informac
 	'centralnotice-archive-banner-title' => 'Quere arquivar {{PLURAL:$1|un cartel|os carteis}}?',
 	'centralnotice-archive-banner-confirm' => 'A acción de arquivar expande todos os modelos incluídos e establece a protección da páxina. Non é unha acción fácil de reverter.',
 	'centralnotice-archive-banner-cancel' => 'Cancelar',
+	'centralnotice-archive-show' => 'Mostrar as campañas arquivadas',
+	'centralnotice-archive-campaign' => 'Arquivar',
+	'centralnotice-archive-campaign-title' => 'Quere arquivar {{PLURAL:$1|a campaña|as campañas}}?',
+	'centralnotice-archive-campaign-confirm' => 'O arquivo marca unha campaña como inactiva permanentemente.',
 	'centralnotice-archive-campaign-cancel' => 'Cancelar',
+	'centralnotice-archive-edit-prevented' => 'A edición desta campaña está desactivada porque está bloqueada ou arquivada. Modifique calquera dos estados en [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Borrar',
 	'centralnotice-delete-banner-title' => 'Quere borrar {{PLURAL:$1|un cartel|os carteis}}?',
 	'centralnotice-delete-banner-confirm' => 'A acción de borrar elimina todas as configuracións e mensaxes. Esta acción non se pode reverter. No canto disto, considere a opción de arquivar.',
@@ -7647,7 +7667,7 @@ $messages['he'] = array(
 	'centralnotice-banner-collapsible' => 'מתקפלת',
 	'centralnotice-banner-fundraising' => 'זוהי כרזת התרמה',
 	'centralnotice-banner-autolink' => 'ליצור אוטומטית קישור לדף נחיתה',
-	'centralnotice-banner-autolink-help' => 'כשזה מופעל, ההרחבה מיצור קישור מותאם אל $3 עם דף נחיתה שייבחר באופן אקראי. צריך להיות תג עוגן עם $1 בגוף הכּרזה.',
+	'centralnotice-banner-autolink-help' => 'כשזה מופעל, ההרחבה מיצור קישור מותאם אל $3 עם דף נחיתה שייבחר באופן אקראי. צריך להיות תג עוגן עם <code dir="ltr">$1</code> בגוף הכּרזה.',
 	'centralnotice-banner-landing-pages' => 'דפי נחיתה (מופרדים בפסיקים):',
 	'centralnotice-banner-landing-pages-default' => 'למשל JimmyAppeal01',
 	'centralnotice-banner-mixins' => 'תוספות (מופרדות בפסיקים):',
@@ -7735,10 +7755,12 @@ $messages['he'] = array(
 	'centralnotice-archive-banner-title' => 'לארכב את {{PLURAL:$1|הכּרזה|הכּרזות}}?',
 	'centralnotice-archive-banner-confirm' => 'ארכוב פותח את כל התבניות ומגדיר הנגה על דף. לא קל לשחזר את הפעולה הזאת.',
 	'centralnotice-archive-banner-cancel' => 'ביטול',
+	'centralnotice-archive-show' => 'הצגת מבצעי פרסום מאורכבים',
 	'centralnotice-archive-campaign' => 'ארכיון',
 	'centralnotice-archive-campaign-title' => 'לארכב {{PLURAL:$1|מסע|מסעות}} פרסום?',
 	'centralnotice-archive-campaign-confirm' => 'ארכוב מסמן מסע פרסום בתור בלתי־פעיל לצמיתות.',
 	'centralnotice-archive-campaign-cancel' => 'ביטול',
+	'centralnotice-archive-edit-prevented' => 'עריכת מבצע הפרסום הזה כבויה כי הוא נעול או מאורכב. יש לשנות את המצב הזה דרך הדף [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'מחיקה',
 	'centralnotice-delete-banner-title' => 'למחוק את {{PLURAL:$1|הכּרזה|הכּרזות}}?',
 	'centralnotice-delete-banner-confirm' => 'מחיקה מסירה את כל ההגדרות וההודעות. לא ניתן לשחזר את הפעולה הזאת. מומלץ לשקול לארכב במקום זאת.',
@@ -8452,9 +8474,9 @@ További információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lap
 	'centralnotice-country-a2' => 'Ismeretlen/Műholdas szolgáltató',
 	'centralnotice-country-o1' => 'Ismeretlen/Más ország',
 	'centralnotice-country-unknown' => 'Ismeretlen/Hely nem meghatározható',
-	'centralnotice-start-date' => 'Kezdési dátum', # Fuzzy
+	'centralnotice-start-date' => 'Kezdési dátum (UTC)',
 	'centralnotice-start-time' => 'Kezdési idő (UTC)',
-	'centralnotice-end-date' => 'Befejezés dátuma', # Fuzzy
+	'centralnotice-end-date' => 'Befejezés dátuma (UTC)',
 	'centralnotice-end-time' => 'Befejezési idő (UTC)',
 );
 
@@ -9129,6 +9151,7 @@ $messages['is'] = array(
  * @author BrokenArrow
  * @author Darth Kule
  * @author F. Cosoleto
+ * @author Gianfranco
  * @author Gloria sah
  * @author Melos
  * @author Nemo bis
@@ -9152,6 +9175,7 @@ $messages['it'] = array(
 	'centralnotice-view' => 'Visualizza',
 	'centralnotice-save-banner' => 'Salva',
 	'centralnotice-preview' => 'Anteprima ($1)',
+	'centralnotice-live-preview' => 'Anteprima su wiki',
 	'centralnotice-nopreview' => '(Anteprima non disponibile)',
 	'centralnotice-add-new' => 'Aggiungi un nuovo avviso centralizzato',
 	'centralnotice-remove' => 'Rimuovi',
@@ -9326,8 +9350,14 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-archive-banner-title' => 'Archiviare {{PLURAL:$1|il|i}} banner?',
 	'centralnotice-archive-banner-confirm' => "L'archiviazione espande tutti i template inclusi ed imposta la protezione della pagina. Questa non è un'azione semplice da annullare.",
 	'centralnotice-archive-banner-cancel' => 'Annulla',
+	'centralnotice-archive-show' => 'Visualizza le campagne archiviate',
+	'centralnotice-archive-campaign' => 'Archivia',
+	'centralnotice-archive-campaign-title' => 'Archivia {{PLURAL:$1|campagna|campagne}}?',
+	'centralnotice-archive-campaign-confirm' => "L'archiviazione contrassegna una campagna come permanentemente inattiva.",
+	'centralnotice-archive-campaign-cancel' => 'Annulla',
 	'centralnotice-delete-banner' => 'Cancella',
 	'centralnotice-delete-banner-title' => 'Cancellare {{PLURAL:$1|il|i}} banner?',
+	'centralnotice-delete-banner-confirm' => "L'eliminazione rimuove tutte le impostazioni e i messaggi. Questa azione non può essere annullata. Considera l'archiviazione, piuttosto.",
 	'centralnotice-delete-banner-cancel' => 'Annulla',
 	'centralnotice-noiframe' => 'Questo elemento non può essere visualizzato senza iframe.',
 	'centralnotice-messages-pending-approval' => 'Lingue con messaggi attualmente in attesa di approvazione',
@@ -9548,9 +9578,11 @@ $messages['ja'] = array(
 	'centralnotice-archive-banner-title' => '{{PLURAL:$1|バナー}}をアーカイブしますか?',
 	'centralnotice-archive-banner-confirm' => 'アーカイブの操作は、使用しているテンプレートも対象に含めて、ページ保護を設定します。この操作は簡単には取り消せません。',
 	'centralnotice-archive-banner-cancel' => 'キャンセル',
+	'centralnotice-archive-show' => 'アーカイブされたキャンペーンを表示',
 	'centralnotice-archive-campaign' => 'アーカイブする',
 	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|キャンペーン}}をアーカイブしますか?',
 	'centralnotice-archive-campaign-cancel' => 'キャンセル',
+	'centralnotice-archive-edit-prevented' => 'このキャンペーンはロックまたはアーカイブされているため、編集が無効になっています。[[Special:CentralNotice]] でいずれかの状態を変更してください。',
 	'centralnotice-delete-banner' => '削除',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|バナー}}を削除しますか?',
 	'centralnotice-delete-banner-confirm' => '削除すると、設定やメッセージがすべて除去されます。この操作は取り消せません。アーカイブすることを検討してください。',
@@ -10224,7 +10256,7 @@ $messages['ko'] = array(
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> 제거',
 	'centralnotice-no-assignments' => '배너가 할당되지 않음',
 	'centralnotice-talk-link' => '토론',
-	'centralnotice-campaign-settings' => '캠페인 설정',
+	'centralnotice-campaign-settings' => '공지 설정',
 	'centralnotice-banner-settings' => '배너 설정',
 	'centralnotice-anon' => '익명 사용자에게 표시',
 	'centralnotice-account' => '로그인한 사용자에게 표시',
@@ -10276,10 +10308,12 @@ $messages['ko'] = array(
 	'centralnotice-archive-banner-title' => '{{PLURAL:$1|배너}}를 보존하겠습니까?',
 	'centralnotice-archive-banner-confirm' => '배너 보존은 포함하는 틀을 모두 전개하고 문서를 보호합니다. 이 동작을 되돌리는 것은 쉬운 일이 아닙니다.',
 	'centralnotice-archive-banner-cancel' => '취소',
+	'centralnotice-archive-show' => '보존된 공지 보기',
 	'centralnotice-archive-campaign' => '보존',
-	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|캠페인}}을 보존하겠습니까?',
-	'centralnotice-archive-campaign-confirm' => '보존은 캠페인을 영구적으로 비활성으로 표시합니다.',
+	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|공지}}를 보존하겠습니까?',
+	'centralnotice-archive-campaign-confirm' => '보존은 공지를 영구적으로 비활성으로 표시합니다.',
 	'centralnotice-archive-campaign-cancel' => '취소',
+	'centralnotice-archive-edit-prevented' => '이 공지를 편집하는 것은 잠겨 있거나 보존되어 있기 때문에 비활성화되어 있습니다. [[Special:CentralNotice]]에서 상태를 바꾸세요.',
 	'centralnotice-delete-banner' => '삭제',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|배너}}를 삭제하겠습니까?',
 	'centralnotice-delete-banner-confirm' => '배너 삭제는 모든 설정과 메시지를 지우게 됩니다. 이 동작은 되돌릴 수 없습니다. 대신 보존하는 것을 고려해보십시오.',
@@ -11608,10 +11642,12 @@ $messages['mk'] = array(
 	'centralnotice-archive-banner-title' => 'Да {{PLURAL:$1|го архивирам плакатот|ги архивирам плакатите}}?',
 	'centralnotice-archive-banner-confirm' => 'Архивирањето ги проширува сите вклучени шаблони и задава заштита на страницата. Оваа постапка не е лесна за повраќање.',
 	'centralnotice-archive-banner-cancel' => 'Откажи',
+	'centralnotice-archive-show' => 'Прик. архивирани кампањи',
 	'centralnotice-archive-campaign' => 'Архивирај',
 	'centralnotice-archive-campaign-title' => 'Да {{PLURAL:$1|ја архивирам кампањата|ги архивирам кампањите}}?',
 	'centralnotice-archive-campaign-confirm' => 'Архивирајќи ја, кампањата ја означувате како трајно неактивна.',
 	'centralnotice-archive-campaign-cancel' => 'Откажи',
+	'centralnotice-archive-edit-prevented' => 'Уредувањето на оваа кампања е оневозможено бидејќи е заклучена или архивирана. Ова можете да го смените во [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Избриши',
 	'centralnotice-delete-banner-title' => 'Да {{PLURAL:$1|го избришам плакатот|ги избришам плакатите}}?',
 	'centralnotice-delete-banner-confirm' => 'Со бришењето ќе се отстрануваат сите поставки и пораки. Ова е неповратно. Размислете дали сакате да архивирате наместо да избришете.',
@@ -12021,10 +12057,12 @@ $messages['mr'] = array(
 	'centralnotice-archive-banner-title' => 'दप्तरदाखल {{PLURAL:$1|घोषणाफलक}}?',
 	'centralnotice-archive-banner-confirm' => 'दप्तरदाखल करण्याने त्यात सर्व अंतर्भूत साच्यांचे प्रसरण करते व पानाची सुरक्षा स्थापते. ही परतवण्याजोगी सोपी क्रिया नाही.',
 	'centralnotice-archive-banner-cancel' => 'रद्द करा',
+	'centralnotice-archive-show' => 'दप्तरदाखल अभियान दाखवा',
 	'centralnotice-archive-campaign' => 'दप्तरदाखल',
 	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|अभियान|अभियाने}} दप्तरदाखल करायची?',
 	'centralnotice-archive-campaign-confirm' => "एखाद्या अभियानास दप्तरदाखल करण्याने, त्यास, 'कायमस्वरुपी निष्क्रिय' अशी खूण लागते.",
 	'centralnotice-archive-campaign-cancel' => 'रद्द करा',
+	'centralnotice-archive-edit-prevented' => 'या अभियानाचे संपादन अक्षम करण्यात आले आहे कारण एकतर तो ताळेबंद आहे किंवा दप्तरदाखल आहे. [[Special:केंद्रिय सूचना]] येथून यापैकी एक स्थिती बदला.', # Fuzzy
 	'centralnotice-delete-banner' => 'वगळा',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|घोषणाफलक}} रद्द करायचे?',
 	'centralnotice-delete-banner-confirm' => 'रद्द करण्याने सर्व मांडण्या व संदेश काढल्या जातात.ही क्रिया परतवण्याजोगी नाही.त्याएवजी दप्तरदाखल करण्याबाबत विचार करा.',
@@ -13230,8 +13268,7 @@ Es pas estat apondut.',
 	'centralnotice-remove-notice-doesnt-exist' => 'La campanha existís pas.
 Pas res de suprimir.',
 	'centralnotice-banner-doesnt-exist' => 'La bandièra existís pas',
-	'centralnotice-template-still-bound' => 'Lo modèl es encara religat a una notificacion.
-Es pas estat suprimit.', # Fuzzy
+	'centralnotice-template-still-bound' => 'Impossible de suprimir la bandièra " $1 " perque es encara ligada a una campanha. !N !De levar pas.',
 	'centralnotice-template-body' => 'Còs del modèl :',
 	'centralnotice-day' => 'Jorn',
 	'centralnotice-year' => 'Annada',
@@ -13241,6 +13278,7 @@ Es pas estat suprimit.', # Fuzzy
 	'centralnotice-project-lang' => 'Lenga del projècte',
 	'centralnotice-select-all' => 'Seleccionar tot',
 	'centralnotice-remove-all' => 'Suprimir tot',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|element seleccionat|elements seleccionats}}',
 	'centralnotice-project-name' => 'Nom del projècte',
 	'centralnotice-assigned-templates' => 'Modèls assignats',
 	'centralnotice-no-templates' => 'I a pas de modèl dins lo sistèma.
@@ -13273,7 +13311,7 @@ Apondètz-ne una en dejós.',
 	'centralnotice-clone-notice' => "Crear una còpia d'aqueste modèl",
 	'centralnotice-clone-name' => 'Nom :',
 	'centralnotice-clone-cancel' => 'Anullar',
-	'centralnotice-preview-all-template-translations' => "Previsualizar totas las traduccions d'aqueste modèl", # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'Previsualizar totas las traduccions aprovadas',
 	'centralnotice-insert' => 'Inserir : $1',
 	'centralnotice-close-button' => 'Boton tampar',
 	'centralnotice-close-title' => 'Tampar',
@@ -13284,6 +13322,8 @@ Apondètz-ne una en dejós.',
 	'centralnotice-banner-type' => 'Tipe de bandièra :',
 	'centralnotice-banner-hidable' => 'Estatic/amagable',
 	'centralnotice-banner-collapsible' => 'Reductible',
+	'centralnotice-banner-landing-pages-default' => 'per exemple JimmyAppeal01',
+	'centralnotice-banner-mixins' => 'Mesclas (separats per de virgulas) :',
 	'centralnotice-geo' => 'Geolocalizat',
 	'centralnotice-countries' => 'Païses',
 	'centralnotice-allocation' => 'Allocacion',
@@ -13322,9 +13362,17 @@ Apondètz-ne una en dejós.',
 	'centralnotice-bucket' => 'Godet',
 	'centralnotice-bucket-letter' => 'Godet "$1"',
 	'centralnotice-all' => 'Totes',
+	'centralnotice-user-role' => 'Ròtle de l’utilizaire',
+	'centralnotice-user-role-anonymous' => 'Anonim',
+	'centralnotice-user-role-logged-in' => 'Connectat',
+	'centralnotice-banner-class' => 'Classa',
 	'centralnotice-banner-class-generic' => 'Generic',
+	'centralnotice-banner-class-fundraising' => 'Levada de fonses',
+	'centralnotice-templates-included' => 'Modèls incluses',
 	'centralnotice-archive-banner' => 'Archiu',
 	'centralnotice-archive-banner-cancel' => 'Anullar',
+	'centralnotice-archive-campaign' => 'Archiu',
+	'centralnotice-archive-campaign-cancel' => 'Anullar',
 	'centralnotice-delete-banner' => 'Suprimir',
 	'centralnotice-delete-banner-cancel' => 'Anullar',
 	'centralnotice-start-timestamp' => 'Començament (UTC)',
@@ -14403,6 +14451,7 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
  * @author Helder.wiki
  * @author Heldergeovane
  * @author Luckas
+ * @author Matheus Sousa L.T
  * @author MetalBrasil
  * @author Pedroca cerebral
  * @author Rafael Vargas
@@ -14471,6 +14520,7 @@ Não removido.', # Fuzzy
 	'centralnotice-hours' => 'Hora',
 	'centralnotice-min' => 'Minuto',
 	'centralnotice-project-lang' => 'Língua do projeto',
+	'centralnotice-remove-all' => 'Remover todos',
 	'centralnotice-project-name' => 'Nome do projeto',
 	'centralnotice-assigned-templates' => 'Modelos atribuídos',
 	'centralnotice-no-templates' => 'Nenhum modelo encontrado.
@@ -14571,8 +14621,10 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-priority-emergency' => 'emergência',
 	'centralnotice-user-role-anonymous' => 'Anônimo',
 	'centralnotice-banner-class' => 'Classe',
+	'centralnotice-archive-banner' => 'Arquivo',
 	'centralnotice-archive-banner-cancel' => 'Cancelar',
 	'centralnotice-archive-campaign-cancel' => 'Cancelar',
+	'centralnotice-delete-banner' => 'Apagar',
 	'centralnotice-delete-banner-cancel' => 'Cancelar',
 	'centralnotice-start-date' => 'Data de início (UTC)',
 	'centralnotice-start-time' => 'Hora início (UTC)',
@@ -15204,10 +15256,12 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
 	'centralnotice-archive-banner-title' => "Archivije {{PLURAL:$1|'u banner|le banner}}?",
 	'centralnotice-archive-banner-confirm' => "L'archivije spanne tutte le template e 'mboste 'a protezione d'a pàgene. Quiste non g'è 'n'azione facile da repristinà.",
 	'centralnotice-archive-banner-cancel' => 'Annulle',
+	'centralnotice-archive-show' => 'Fà vedè le cambagne archiviate',
 	'centralnotice-archive-campaign' => 'Archivije',
 	'centralnotice-archive-campaign-title' => "Archivije {{PLURAL:$1|'a cambagne|le cambagne}}?",
 	'centralnotice-archive-campaign-confirm' => "Signe in archivije 'na cambagne cumme inattive permanendemende.",
 	'centralnotice-archive-campaign-cancel' => 'Annulle',
+	'centralnotice-archive-edit-prevented' => "'U cangiamende de sta cambagne jè disabbilitate purcé jè archiviate e bloccate. Cange tutte e doje le state da [[Special:CentralNotice]]",
 	'centralnotice-delete-banner' => 'Scangille',
 	'centralnotice-delete-banner-title' => 'Scangille {{PLURAL:$1|banner}}?',
 	'centralnotice-delete-banner-confirm' => "'A scangellazzione lève tutte le 'mbostaziune e le messàgge. St'azione non ge pò essere respristinate. Pinze a l'archiviazione invece.",
@@ -19133,10 +19187,12 @@ $messages['uk'] = array(
 	'centralnotice-archive-banner-title' => 'Заархівувати {{PLURAL:$1|банер|банери}}?',
 	'centralnotice-archive-banner-confirm' => 'Архівування розкриває усі включені шаблони і встановлює захист сторінки. Цю дію нелегко повернути назад.',
 	'centralnotice-archive-banner-cancel' => 'Скасувати',
+	'centralnotice-archive-show' => 'Показати архів кампаній',
 	'centralnotice-archive-campaign' => 'Заархівувати',
 	'centralnotice-archive-campaign-title' => 'Архівувати {{PLURAL:$1|кампанію|кампанії|кампаній}}?',
 	'centralnotice-archive-campaign-confirm' => 'Архівний стан позначає кампанію як остаточно неактивну.',
 	'centralnotice-archive-campaign-cancel' => 'Скасувати',
+	'centralnotice-archive-edit-prevented' => 'Редагування цієї кампанії вимкнено, тому що вона заблокована або заархівована. Поміняйте на який-небудь статус з [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Вилучити',
 	'centralnotice-delete-banner-title' => 'Вилучити {{PLURAL:$1|банер|банери}}?',
 	'centralnotice-delete-banner-confirm' => 'Вилучення видаляє усі налаштування і повідомлення. Ця дія не може бути відкинута. Розгляньте можливість архівування.',
@@ -19759,10 +19815,12 @@ Xem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-archive-banner-title' => 'Lưu trữ {{PLURAL:$1|biểu ngữ|các biểu ngữ}} không?',
 	'centralnotice-archive-banner-confirm' => 'Việc lưu trữ sẽ bung các bản mẫu được nhúng và khóa trang. Hành động này không thể dễ dàng lùi lại.',
 	'centralnotice-archive-banner-cancel' => 'Hủy bỏ',
+	'centralnotice-archive-show' => 'Xem các chiến dịch lưu trữ',
 	'centralnotice-archive-campaign' => 'Lưu trữ',
 	'centralnotice-archive-campaign-title' => 'Lưu trữ {{PLURAL:$1|chiến dịch|các chiến dịch}}?',
 	'centralnotice-archive-campaign-confirm' => 'Việc lưu trữ đánh dấu một chiến dịch là không còn hoạt động, không thể khôi phục.',
 	'centralnotice-archive-campaign-cancel' => 'Hủy bỏ',
+	'centralnotice-archive-edit-prevented' => 'Không thể sửa đổi chiến dịch này vì nó đã bị khóa hoặc lưu trữ. Chiến dịch có thể được kích hoặt lại tại [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Xóa',
 	'centralnotice-delete-banner-title' => 'Xóa {{PLURAL:$1|biểu ngữ|các biểu ngữ}}?',
 	'centralnotice-delete-banner-confirm' => 'Việc xóa sẽ loại bỏ tất cả các tùy chọn và thông điệp. Hành động này không thể lùi lại. Thay vào đó hãy nghĩ đến việc lưu trữ.',
@@ -20052,6 +20110,7 @@ $messages['yue'] = array(
  * @author Chenzw
  * @author Gzdavidwong
  * @author Hydra
+ * @author Hzy980512
  * @author Kuailong
  * @author Li3939108
  * @author Liangent
@@ -20059,6 +20118,7 @@ $messages['yue'] = array(
  * @author Qiyue2001
  * @author Shirayuki
  * @author StephDC
+ * @author TianyinLee
  * @author Wmr89502270
  * @author Xiaomingyan
  * @author Yfdyh000
@@ -20083,6 +20143,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-view' => '查看',
 	'centralnotice-save-banner' => '保存',
 	'centralnotice-preview' => '预览（$1）',
+	'centralnotice-live-preview' => 'Wiki上预览',
 	'centralnotice-nopreview' => '（无预览可用）',
 	'centralnotice-add-new' => '添加一个新的中央通告',
 	'centralnotice-remove' => '移除',
@@ -20269,6 +20330,12 @@ $messages['zh-hans'] = array(
 	'centralnotice-archive-banner-title' => '存档{{PLURAL:$1|条幅}}吗？',
 	'centralnotice-archive-banner-confirm' => '存档将展开所有模板并设置页面保护，此动作难以回复。',
 	'centralnotice-archive-banner-cancel' => '取消',
+	'centralnotice-archive-show' => '显示已存档的活动',
+	'centralnotice-archive-campaign' => '存档',
+	'centralnotice-archive-campaign-title' => '存档{{PLURAL:$1|此|这些}}竞选？',
+	'centralnotice-archive-campaign-confirm' => '存档竞选会把竞选永久停止。',
+	'centralnotice-archive-campaign-cancel' => '取消',
+	'centralnotice-archive-edit-prevented' => '不能编辑此活动，因为已被锁定或已存档。请前往[[Special:CentralNotice]] 更改状态。',
 	'centralnotice-delete-banner' => '删除',
 	'centralnotice-delete-banner-title' => '删除{{PLURAL:$1|条幅}}?',
 	'centralnotice-delete-banner-confirm' => '删除会移除所有设置和消息。此操作无法撤消。请考虑改为存档。',

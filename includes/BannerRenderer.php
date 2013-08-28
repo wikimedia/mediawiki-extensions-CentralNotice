@@ -54,29 +54,26 @@ class BannerRenderer {
 
 	/**
 	 * Render the banner as an html fieldset
-	 * This actually renders a fieldset with an iframe inside of it
 	 */
 	function previewFieldSet() {
-		$previewUrl = SpecialPage::getTitleFor( 'BannerPreview' )->getLocalURL(
-			'',
-			array(
-				 'banner' => $this->banner->getName(),
-				 'uselang' => $this->allocContext->getLanguage(),
-				 'force' => '1'
-			)
-		);
-		$preview = Xml::tags(
-			'iframe',
+		global $wgNoticeBannerPreview;
+
+		if ( !$wgNoticeBannerPreview ) {
+			return '';
+		}
+
+		$bannerName = $this->banner->getName();
+		$lang = $this->context->getLanguage()->getCode();
+
+		$previewUrl = $wgNoticeBannerPreview . "{$bannerName}/{$bannerName}_{$lang}.png";
+		$preview = Html::element(
+			'img',
 			array(
 				 'src' => $previewUrl,
-				 'width' => "100%",
-				 'seamless' => 'seamless',
-				 'frameborder' => 0,
-			),
-			wfMessage( 'centralnotice-noiframe' )
+				 'alt' => $bannerName,
+			)
 		);
 
-		$lang = $this->context->getLanguage()->getCode();
 		$label = $this->context->msg( 'centralnotice-preview', $lang )->text();
 
 		return Xml::fieldset(
@@ -113,19 +110,20 @@ class BannerRenderer {
 
 	function getPreloadJs() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
+		$bundled = array();
+		$bundled[] = 'var retval = true;';
+
 		if ( $snippets ) {
-			$bundled = array();
 			foreach ( $snippets as $mixin => $code ) {
 				if ( !$this->context->getRequest()->getFuzzyBool( 'debug' ) ) {
 					$code = JavaScriptMinifier::minify( $code );
 				}
 
-				$bundled[] = "/* {$mixin}: */{$code}";
+				$bundled[] = "/* {$mixin}: */ retval &= {$code}";
 			}
-			$js = implode( " && ", $bundled );
-			return $this->substituteMagicWords( $js );
 		}
-		return "";
+		$bundled[] = 'return retval;';
+		return $this->substituteMagicWords( implode( "\n", $bundled ) );
 	}
 
 	function getResourceLoaderHtml() {

@@ -47,10 +47,11 @@ fieldset#cn-formsection-form-actions legend {
 	margin-top: 0.5em;
 }
 #mw-htmlform-banner-list .mw-htmlform-field-HTMLCheckField {
+	display: inline-block;
 	float: left;
 }
-#mw-htmlform-banner-list .cn-banner-list-element {
-	display: inline;
+#mw-htmlform-banner-list .mw-label {
+	display: none;
 }
 
 /* --- Archival --- */

@@ -36,7 +36,8 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 
 	/** Get a preview of the banner */
 	public function getInputHTML( $value ) {
-		global $wgOut;
+		global $wgOut,
+			$wgNoticeBannerPreview;
 
 		$bannerName = $this->mParams['banner'];
 		if ( array_key_exists( 'language', $this->mParams ) ) {
@@ -45,22 +46,13 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 			$language = $wgOut->getContext()->getLanguage()->getCode();
 		}
 
-		$previewUrl = SpecialPage::getTitleFor( 'BannerPreview' )->getLocalURL(
-			array(
-				'banner' => $bannerName,
-				'uselang' => $language,
-				'force' => '1'
-			)
-		);
-		$preview = Xml::tags(
-			'iframe',
+		$previewUrl = $wgNoticeBannerPreview . "/{$bannerName}/{$bannerName}_{$language}.png";
+		$preview = Html::Element(
+			'img',
 			array(
 				'src' => $previewUrl,
-				'width' => "100%",
-				'seamless' => 'seamless',
-				'frameborder' => 0,
-			),
-			$this->msg( 'centralnotice-noiframe' )
+				'alt' => $bannerName,
+			)
 		);
 
 		return Xml::tags(
@@ -82,7 +74,9 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 	}
 
 	public function getDiv( $value ) {
-		global $wgOut;
+		global $wgOut,
+			$wgNoticeBannerPreview;
+
 		if ( array_key_exists( 'language', $this->mParams ) ) {
 			$language = $this->mParams['language'];
 		} else {
@@ -122,7 +116,9 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		}
 
 		// Add the banner preview
-		$html .= $this->getInputHTML( null );
+		if ( $wgNoticeBannerPreview ) {
+			$html .= $this->getInputHTML( null );
+		}
 
 		$html .= Xml::closeElement( 'div' );
 		return $html;
