@@ -134,7 +134,9 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
 		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools
 		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
+		/* disabled, see bug 53443
 		$wgSpecialPages[ 'GlobalAllocation' ] = 'SpecialGlobalAllocation';
+		*/
 		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
 		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
 		$wgSpecialPages[ 'CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
