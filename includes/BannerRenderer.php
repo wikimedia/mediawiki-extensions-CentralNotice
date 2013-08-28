@@ -54,29 +54,26 @@ class BannerRenderer {
 
 	/**
 	 * Render the banner as an html fieldset
-	 * This actually renders a fieldset with an iframe inside of it
 	 */
 	function previewFieldSet() {
-		$previewUrl = SpecialPage::getTitleFor( 'BannerPreview' )->getLocalURL(
-			'',
-			array(
-				 'banner' => $this->banner->getName(),
-				 'uselang' => $this->allocContext->getLanguage(),
-				 'force' => '1'
-			)
-		);
-		$preview = Xml::tags(
-			'iframe',
+		global $wgNoticeBannerPreview;
+
+		if ( !$wgNoticeBannerPreview ) {
+			return '';
+		}
+
+		$bannerName = $this->banner->getName();
+		$lang = $this->context->getLanguage()->getCode();
+
+		$previewUrl = $wgNoticeBannerPreview . "{$bannerName}/{$bannerName}_{$lang}.png";
+		$preview = Html::element(
+			'img',
 			array(
 				 'src' => $previewUrl,
-				 'width' => "100%",
-				 'seamless' => 'seamless',
-				 'frameborder' => 0,
-			),
-			wfMessage( 'centralnotice-noiframe' )
+				 'alt' => $bannerName,
+			)
 		);
 
-		$lang = $this->context->getLanguage()->getCode();
 		$label = $this->context->msg( 'centralnotice-preview', $lang )->text();
 
 		return Xml::fieldset(

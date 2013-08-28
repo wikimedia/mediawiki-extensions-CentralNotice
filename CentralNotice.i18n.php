@@ -231,7 +231,6 @@ Add one below.',
 	'centralnotice-delete-banner-confirm' => 'Deletion removes all settings and messages. This action cannot be reversed. Consider archiving instead.',
 	'centralnotice-delete-banner-cancel' => 'Cancel',
 
-	'centralnotice-noiframe' => 'This element cannot be displayed without iframes.',
 	'centralnotice-messages-pending-approval' => 'Languages with messages currently pending approval',
 	'centralnotice-devices' => 'Display on devices',
 
@@ -686,7 +685,6 @@ Parameters:
 * $1 - number of banners',
 	'centralnotice-delete-banner-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-delete-banner-title}}.',
 	'centralnotice-delete-banner-cancel' => '{{Identical|Cancel}}',
-	'centralnotice-noiframe' => 'Inform the user that banner previewing has failed because their browser does not support iframes.',
 	'centralnotice-messages-pending-approval' => 'Label for a list of languages in which banner messages are pending approval',
 	'centralnotice-devices' => 'Log line label for showing a list of devices (e.g. iphone, desktop) that the banner will display on.
 

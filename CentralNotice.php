@@ -99,6 +99,10 @@ $wgNoticeDailyCounterSource = 'http://wikimediafoundation.org/wiki/Special:Daily
 // URL for a banner close button
 $wgNoticeCloseButton = '//upload.wikimedia.org/wikipedia/foundation/2/20/CloseWindow19x19.png';
 
+// URL prefix where banner screenshots are stored. False if this feature is disabled.
+// meta.wikimedia.org CentralNotice banners are archived at 'http://fundraising-archive.wmflabs.org/banner/'
+$wgNoticeBannerPreview = false;
+
 // Domain to set global cookies for.
 // Example: '.wikipedia.org'
 $wgNoticeCookieDomain = '';
