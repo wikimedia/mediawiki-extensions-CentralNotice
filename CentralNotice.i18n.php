@@ -9378,6 +9378,7 @@ Vedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni
 	'centralnotice-archive-campaign-title' => 'Archivia {{PLURAL:$1|campagna|campagne}}?',
 	'centralnotice-archive-campaign-confirm' => "L'archiviazione contrassegna una campagna come permanentemente inattiva.",
 	'centralnotice-archive-campaign-cancel' => 'Annulla',
+	'centralnotice-archive-edit-prevented' => 'La modifica di questa campagna è disattivata perché è o bloccata o archiviata. Modifica lo stato da [[Special:CentralNotice]].',
 	'centralnotice-delete-banner' => 'Cancella',
 	'centralnotice-delete-banner-title' => 'Cancellare {{PLURAL:$1|il|i}} banner?',
 	'centralnotice-delete-banner-confirm' => "L'eliminazione rimuove tutte le impostazioni e i messaggi. Questa azione non può essere annullata. Considera l'archiviazione, piuttosto.",
