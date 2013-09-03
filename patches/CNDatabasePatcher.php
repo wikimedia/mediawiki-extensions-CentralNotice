@@ -113,7 +113,7 @@ class CNDatabasePatcher {
 			);
 			$updater->addExtensionUpdate(
 				array(
-					 'modifyField', 'cn_templates', 'tmp_category',
+					 'addIndex', 'cn_templates', 'tmp_category',
 					 $base . '/patch-custom-groups.sql', true
 				)
 			);
