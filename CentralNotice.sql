@@ -34,10 +34,11 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_templates (
 	`tmp_autolink` tinyint(1) NOT NULL DEFAULT '0',
 	`tmp_landing_pages` varchar(255) DEFAULT NULL,
 	`tmp_archived` tinyint(1) NOT NULL DEFAULT '0',
-	`tmp_category` tinyint NOT NULL DEFAULT '0',
+	`tmp_category` varchar(255) DEFAULT NULL,
 	`tmp_preview_sandbox` tinyint(1) NOT NULL DEFAULT '0'
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/tmp_name ON /*_*/cn_templates (tmp_name);
+CREATE INDEX /*i*/tmp_category ON /*_*/cn_templates (tmp_category);
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_notice_languages (
 	`nl_notice_id` int(10) unsigned NOT NULL,
@@ -159,8 +160,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_template_log (
 	`tmplog_end_prioritylangs` text,
 	`tmplog_begin_archived` tinyint(1) DEFAULT NULL,
 	`tmplog_end_archived` tinyint(1) DEFAULT NULL,
-	`tmplog_begin_category` tinyint DEFAULT NULL,
-	`tmplog_end_category` tinyint DEFAULT NULL,
+	`tmplog_begin_category` varchar(255) DEFAULT NULL,
+	`tmplog_end_category` varchar(255) DEFAULT NULL,
 	`tmplog_begin_preview_sandbox` tinyint(1) DEFAULT NULL,
 	`tmplog_end_preview_sandbox` tinyint(1) DEFAULT NULL,
 	`tmplog_begin_controller_mixin` varbinary(4096) DEFAULT NULL,

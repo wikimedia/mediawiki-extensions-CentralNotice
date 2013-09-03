@@ -111,6 +111,12 @@ class CNDatabasePatcher {
 					 $base . '/patch-template-device-logging.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					 'modifyField', 'cn_templates', 'tmp_category',
+					 $base . '/patch-custom-groups.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			$updater->addExtensionUpdate(
 				array(
