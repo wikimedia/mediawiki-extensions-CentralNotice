@@ -478,7 +478,7 @@ This message is preceded by the following message:
 	'centralnotice-banner-autolink' => 'Label of checkbox',
 	'centralnotice-banner-autolink-help' => 'Brief instructions on how to use the interface. Parameters:
 * $1 - a bit of HTML
-* $2 - (deprecated) a title for a page
+* $2 - (Unused) a title for a page
 * $3 - a URL',
 	'centralnotice-banner-landing-pages' => 'Label for an input box. Landing pages are valid MediaWiki titles that donors are redirected to upon clicking a banner.',
 	'centralnotice-banner-landing-pages-default' => 'Example valid landing pages for an input box placeholder text.',
@@ -3245,6 +3245,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-banner-autolink' => 'Krouiñ a ra ul liamm emgefre war-du ur bajenn dal',
 	'centralnotice-banner-autolink-help' => 'Krouit un dikedenn eoriañ e-korf ar giton gant $1 ha merkit ur bajenn dal pe meur a hini a-is, da skouer, $2. Savet e vo al liamm ent emgefre pa vo diskwelet ar giton.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'Pajennoù pal (dispartiet dre skejoù) :',
+	'centralnotice-banner-landing-pages-default' => 'da skouer : JimmyAppeal01',
 	'centralnotice-geo' => "Geolec'hiet",
 	'centralnotice-countries' => 'Broioù',
 	'centralnotice-allocation' => 'Skorenn',
@@ -3296,6 +3297,8 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-priority-normal' => 'boutin',
 	'centralnotice-priority-high' => 'uhel',
 	'centralnotice-priority-emergency' => 'mallus',
+	'centralnotice-country-o1' => 'Dianav / Bro all',
+	'centralnotice-devicetype-desktop' => 'Urzhiataer burev',
 	'centralnotice-all' => 'An holl',
 	'centralnotice-all-except' => 'An holl war bouez $1',
 	'centralnotice-excluding-list' => '$1 (war bouez $2)',
@@ -3306,7 +3309,10 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-archive-banner' => 'Diell',
 	'centralnotice-archive-banner-title' => 'Diellaouiñ ar giton{{PLURAL:$1||où}}?',
 	'centralnotice-archive-banner-cancel' => 'Nullañ',
+	'centralnotice-archive-campaign' => 'Diell',
+	'centralnotice-archive-campaign-cancel' => 'Nullañ',
 	'centralnotice-delete-banner' => 'Dilemel',
+	'centralnotice-delete-banner-cancel' => 'Nullañ',
 	'centralnotice-start-date' => 'Deiziad kregiñ', # Fuzzy
 	'centralnotice-start-time' => 'Eur kregiñ (UTC)',
 	'centralnotice-end-date' => 'Deiziad echuiñ', # Fuzzy
