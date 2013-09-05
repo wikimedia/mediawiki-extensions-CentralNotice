@@ -35,8 +35,14 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 
 	function sendHeaders() {
 		global $wgJsMimeType, $wgNoticeBannerMaxAge;
+
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
-		// No client-side banner caching so we get all impressions
-		header( "Cache-Control: public, s-maxage={$wgNoticeBannerMaxAge}, max-age=0" );
+
+		// If we have a logged in user; do not cache (default for special pages)
+		// lest we capture a set-cookie header. Otherwise cache so we don't have
+		// too big of a DDoS hole.
+		if ( !$this->getUser()->isLoggedIn() ) {
+			header( "Cache-Control: public, s-maxage={$wgNoticeBannerMaxAge}, max-age=0" );
+		}
 	}
 }

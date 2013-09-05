@@ -25,6 +25,12 @@ class SpecialRecordImpression extends UnlistedSpecialPage {
 	function sendHeaders() {
 		$expiry = static::CACHE_EXPIRY;
 		header( "Content-Type: image/png" );
-		header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
+
+		// If we have a logged in user; do not cache (default for special pages)
+		// lest we capture a set-cookie header. Otherwise cache so we don't have
+		// too big of a DDoS hole.
+		if ( !$this->getUser()->isLoggedIn() ) {
+			header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
+		}
 	}
 }
