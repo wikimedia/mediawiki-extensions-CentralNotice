@@ -11,7 +11,12 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		$this->setHideCookie();
+		global $wgNoticeCookieLongExpiry;
+
+		$duration = $this->getRequest()->getInt( 'duration', $wgNoticeCookieLongExpiry );
+		$category = $this->getRequest()->getText( 'category', 'fundraising' );
+		$category = Banner::sanitizeRenderedCategory( $category );
+		$this->setHideCookie( $category, $duration );
 
 		$this->getOutput()->disable();
 		wfResetOutputBuffers();
@@ -23,17 +28,16 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	/**
 	 * Set the cookie for hiding fundraising banners.
 	 */
-	function setHideCookie() {
-		global $wgNoticeCookieDomain, $wgNoticeCookieLongExpiry;
+	function setHideCookie( $category, $duration ) {
+		global $wgNoticeCookieDomain;
 
-		$exp = time() + $wgNoticeCookieLongExpiry;
+		$exp = time() + $duration;
 
 		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
 		}
-		// Hide fundraising banners for this domain
-		setcookie( 'centralnotice_fundraising', 'hide', $exp, '/', $cookieDomain, false, false );
+		setcookie( "centralnotice_hide_{$category}", 'hide', $exp, '/', $cookieDomain, false, false );
 	}
 }

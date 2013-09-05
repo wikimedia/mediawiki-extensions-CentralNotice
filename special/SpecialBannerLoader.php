@@ -110,11 +110,14 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		// TODO: these are BannerRenderer duties:
 		$settings = Banner::getBannerSettings( $bannerName, false );
 
+		$category = $bannerRenderer->substituteMagicWords( $settings['category'] );
+		$category = Banner::sanitizeRenderedCategory( $category );
+
 		$bannerArray = array(
 			'bannerName' => $bannerName,
 			'bannerHtml' => $bannerHtml,
 			'campaign' => $this->campaignName,
-			'fundraising' => $settings['fundraising'],
+			'category' => $category,
 			'autolink' => $settings['autolink'],
 			'landingPages' => explode( ", ", $settings['landingpages'] ),
 		);

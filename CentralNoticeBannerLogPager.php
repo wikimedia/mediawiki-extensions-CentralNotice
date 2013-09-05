@@ -151,8 +151,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		)->text() . "<br/>";
 		$details .= $this->msg(
 			'centralnotice-log-label',
-			$this->msg( 'centralnotice-fundraising' )->text(),
-			($row->tmplog_end_fundraising ? 'on' : 'off')
+			$this->msg( 'centralnotice-category' )->text(),
+			$row->tmplog_end_category
 		)->text() . "<br/>";
 		$details .= $this->msg(
 			'centralnotice-log-label',
@@ -177,7 +177,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	function showChanges( $row ) {
 		$details = $this->testBooleanChange( 'anon', $row );
 		$details .= $this->testBooleanChange( 'account', $row );
-		$details .= $this->testBooleanChange( 'fundraising', $row );
+		$details .= $this->testTextChange( 'category', $row );
 		$details .= $this->testBooleanChange( 'autolink', $row );
 		$details .= $this->testTextChange( 'landingpages', $row );
 		$details .= $this->testTextChange( 'controller_mixin', $row );

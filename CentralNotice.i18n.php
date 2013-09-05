@@ -208,10 +208,8 @@ Add one below.',
 	'centralnotice-user-role-anonymous' => 'Anonymous',
 	'centralnotice-user-role-logged-in' => 'Logged-in',
 	'centralnotice-banner-messages' => 'Translatable banner messages',
-	'centralnotice-banner-class' => 'Class',
-	'centralnotice-banner-class-desc' => 'Banners of a specific class share tracking variables and group settings (e.g. hide cookies and impression counts.)',
-	'centralnotice-banner-class-generic' => 'Generic',
-	'centralnotice-banner-class-fundraising' => 'Fundraising',
+	'centralnotice-banner-class' => 'Category',
+	'centralnotice-banner-class-desc' => 'Banners of a specific category share tracking variables and group settings (e.g. hide cookies and impression counts.) Category names can be magic words like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> which will be automatically expanded at display time. Values must be alphanumeric.',
 	'centralnotice-templates-included' => 'Included templates',
 
 	'centralnotice-archive-banner' => 'Archive',
@@ -635,24 +633,14 @@ Related messages:
 	'centralnotice-user-role-anonymous' => 'Label for the anonymous user role.
 {{Identical|Anonymous}}',
 	'centralnotice-user-role-logged-in' => 'Label for the logged-in user role',
-	'centralnotice-banner-class' => 'Used as label for the select box.
+	'centralnotice-banner-class' => 'Used as label for a select box that allows a user to choose or create a label for the banner.
 
-Followed by the following options:
-* {{msg-mw|Centralnotice-banner-class-generic}}
-* {{msg-mw|Centralnotice-banner-class-fundraising}}
-
-The help message for the select box is {{msg-mw|Centralnotice-banner-class-desc}}.
-{{Identical|Class}}',
+The help message for the select box is {{msg-mw|Centralnotice-banner-class-desc}}.',
 	'centralnotice-banner-class-desc' => 'Used as help message for the {{msg-mw|Centralnotice-banner-class}} select box which has the following options:
-* {{msg-mw|Centralnotice-banner-class-generic}}
-* {{msg-mw|Centralnotice-banner-class-fundraising}}
 
 A "hide cookie" is a cookie that is created when a user asks to hide a banner.
 
 "Impression" is an instance of showing the banner to a reader. For example, the banner was shown to the site readers a hundred times, then the impression count is 100.',
-	'centralnotice-banner-class-generic' => 'Used as an option in the {{msg-mw|Centralnotice-banner-class}} select box.',
-	'centralnotice-banner-class-fundraising' => 'Used as an option in the {{msg-mw|Centralnotice-banner-class}} select box.
-{{Identical|Fundraising}}',
 	'centralnotice-templates-included' => 'Used as label for the list of included templates.',
 	'centralnotice-archive-banner' => 'Translate as a verb.{{Identical|Archive}}',
 	'centralnotice-archive-banner-title' => 'Used as title for the dialog box.
