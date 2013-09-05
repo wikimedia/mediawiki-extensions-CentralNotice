@@ -431,7 +431,7 @@ Preceded by one of the following fieldset labels:
 * {{msg-mw|Centralnotice-banner}}
 * {{msg-mw|Centralnotice-edit-template}}',
 	'centralnotice-edit-template-magicwords' => 'List of available magic words. Parameters:
-$1 - magic words.',
+* $1 - magic words',
 	'centralnotice-message' => 'The header of a table of translatable messages. Translatable messages are represented in the template code by strings enclosed in three curly brackets.
 
 * {{msg-mw|centralnotice-number-uses}}
@@ -3147,6 +3147,7 @@ Implijet e c'hall bezañ evit ouzhpennañ kemennoù pe tennañ kuit re gozh ivez
 	'centralnotice-view' => 'Gwelet',
 	'centralnotice-save-banner' => 'Enrollañ',
 	'centralnotice-preview' => 'Rakwelet ($1)',
+	'centralnotice-live-preview' => 'Rakwelet er wiki',
 	'centralnotice-nopreview' => '(Dibosupl rakwelet)',
 	'centralnotice-add-new' => 'Ouzhpennañ un ali kreiz nevez',
 	'centralnotice-remove' => 'Dilemel',
@@ -3229,7 +3230,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-clone-notice' => 'Krouiñ un eiladenn eus ar patrom',
 	'centralnotice-clone-name' => 'Anv :',
 	'centralnotice-clone-cancel' => 'Nullañ',
-	'centralnotice-preview-all-template-translations' => 'Rakwellit an holl droidigezhioù a zo evit ar patrom-mañ', # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'Rakwelet an holl droidigezhioù aprouet',
 	'centralnotice-insert' => "Ensoc'hañ : $1",
 	'centralnotice-close-button' => 'Serriñ ar bouton',
 	'centralnotice-close-title' => 'Serriñ',
@@ -3286,6 +3287,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-banner-content' => 'Danvez ar giton',
 	'centralnotice-banner-content-changed' => 'Kemmet',
 	'centralnotice-filters' => 'Siloù ar marilhoù',
+	'centralnotice-damaged-log' => '$1 - (marilh gwastet)',
 	'centralnotice-date' => 'Deiziad',
 	'centralnotice-apply-filters' => 'Arloañ ar siloù',
 	'centralnotice-clear-filters' => 'Riñsañ ar siloù',
@@ -3297,6 +3299,9 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-priority-normal' => 'boutin',
 	'centralnotice-priority-high' => 'uhel',
 	'centralnotice-priority-emergency' => 'mallus',
+	'centralnotice-country-eu' => 'Dianav/Unaniezh Europa',
+	'centralnotice-country-a1' => 'Dianav/Proksi dizanv',
+	'centralnotice-country-a2' => 'Dianav/Pourchaser dre loarell',
 	'centralnotice-country-o1' => 'Dianav / Bro all',
 	'centralnotice-devicetype-desktop' => 'Urzhiataer burev',
 	'centralnotice-all' => 'An holl',
@@ -3306,16 +3311,24 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-user-role-anonymous' => 'Dizanv',
 	'centralnotice-user-role-logged-in' => 'Kevreet',
 	'centralnotice-banner-class' => 'Rummad',
+	'centralnotice-banner-class-fundraising' => 'Klask moneiz',
+	'centralnotice-templates-included' => 'Lakaat ar patromoù e-barzh',
 	'centralnotice-archive-banner' => 'Diell',
 	'centralnotice-archive-banner-title' => 'Diellaouiñ ar giton{{PLURAL:$1||où}}?',
 	'centralnotice-archive-banner-cancel' => 'Nullañ',
+	'centralnotice-archive-show' => "Diskouez ar c'houlzadoù diellaouet",
 	'centralnotice-archive-campaign' => 'Diell',
 	'centralnotice-archive-campaign-cancel' => 'Nullañ',
 	'centralnotice-delete-banner' => 'Dilemel',
+	'centralnotice-delete-banner-title' => 'Dilemel {{PLURAL:$1|ar banniel|ar bannieloù}}?',
 	'centralnotice-delete-banner-cancel' => 'Nullañ',
-	'centralnotice-start-date' => 'Deiziad kregiñ', # Fuzzy
+	'centralnotice-messages-pending-approval' => "Yezhoù gant kemennadennoù a c'hortoz bezañ aprouet",
+	'centralnotice-devices' => 'Diskwel war an trobarzhelloù',
+	'centralnotice-start-timestamp' => 'Kregiñ (UTC)',
+	'centralnotice-end-timestamp' => 'Echuiñ (UTC)',
+	'centralnotice-start-date' => 'Deiziad kregiñ (UTC)',
 	'centralnotice-start-time' => 'Eur kregiñ (UTC)',
-	'centralnotice-end-date' => 'Deiziad echuiñ', # Fuzzy
+	'centralnotice-end-date' => 'Deiziad echuiñ (UTC)',
 	'centralnotice-end-time' => 'Deiziad fin (UTC)',
 );
 
