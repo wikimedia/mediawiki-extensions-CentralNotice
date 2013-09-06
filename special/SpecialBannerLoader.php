@@ -95,10 +95,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @throw SpecialBannerLoaderException
 	 */
 	public function getJsNotice( $bannerName ) {
-		if ( !Banner::bannerExists( $bannerName ) ) {
+		$banner = Banner::fromName( $bannerName );
+		if ( !$banner->exists() ) {
 			throw new EmptyBannerException( $bannerName );
 		}
-		$banner = new Banner( $bannerName );
 		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaignName, $this->allocContext );
 
 		$bannerHtml = $bannerRenderer->toHtml();

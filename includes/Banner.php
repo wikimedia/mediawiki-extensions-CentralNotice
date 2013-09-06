@@ -1,32 +1,735 @@
 <?php
+/**
+ * This file is part of the CentralNotice Extension to MediaWiki
+ * https://www.mediawiki.org/wiki/Extension:CentralNotice
+ *
+ * @section LICENSE
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
+/**
+ * CentralNotice banner object. Banners are pieces of rendered wikimarkup
+ * injected as HTML onto MediaWiki pages via the sitenotice hook.
+ *
+ * - They are allowed to be specific to devices and user status.
+ * - They allow 'mixins', pieces of javascript that add additional standard
+ *   functionality to the banner.
+ * - They have a concept of 'messages' which are translatable strings marked
+ *   out by {{{name}}} in the banner body.
+ *
+ * @see BannerChooser
+ * @see BannerMessage
+ * @see BannerRenderer
+ * @see BannerMixin
+ */
 class Banner {
-	protected $name;
-	protected $id;
+	/**
+	 * Keys indicate a group of properties (which should be a 1-to-1 match to
+	 * a database table.) If the value is null it means the data is not yet
+	 * loaded. True means the data is clean and not modified. False means the
+	 * data should be saved on the next call to save().
+	 *
+	 * Most functions should only ever set the flag to true; flags will be
+	 * reset to false in save().
+	 *
+	 * @var null|bool[]
+	 */
+	protected $dirtyFlags = array(
+		'content' => null,
+		'messages' => null,
+		'basic' => null,
+		'devices' => null,
+		'mixins' => null,
+		'prioritylang' => null,
+	);
 
-	function __construct( $name ) {
-		$this->name = $name;
+	//<editor-fold desc="Properties">
+	// !!! NOTE !!! It is not recommended to use directly. It is almost always more
+	//              correct to use the accessor/setter function.
+
+	/** @var int Unique database identifier key. */
+	protected $id = null;
+
+	/** @var string Unique human friendly name of banner. */
+	protected $name = null;
+
+	/** @var bool True if the banner should be allocated to anonymous users. */
+	protected $allocateAnon = false;
+
+	/** @var bool True if the banner should be allocated to logged in users. */
+	protected $allocateLoggedIn = false;
+
+	/** @var string Category that the banner belongs to. Will be special value expanded. */
+	protected $category = '{{{campaign}}}';
+
+	/** @var bool True if <a#cn-landingpage-link> will have it's href attribute set randomly from.
+	 * @see Banner->landingLinks
+	 */
+	protected $autolink = false;
+
+	/** @var string[] Array of href targets. See Banner->autolink */
+	protected $autolinks = array();
+
+	/** @var bool True if archived and hidden from default view. */
+	protected $archived = false;
+
+	/** @var string[] Devices this banner should be allocated to in the form {Device ID => Device header name} */
+	protected $devices = array();
+
+	/** @var string[] Names of enabled mixins  */
+	protected $mixins = array();
+
+	/** @var string[] Language codes considered a priority for translation.  */
+	protected $priorityLanguages = array();
+
+	/** @var string Wikitext content of the banner */
+	protected $bodyContent = '';
+
+	protected $runTranslateJob = false;
+	//</editor-fold>
+
+	//<editor-fold desc="Constructors">
+	/**
+	 * Create a banner object from a known ID. Must already be
+	 * an object in the database. If a fully new banner is to be created
+	 * use @see newFromName().
+	 *
+	 * @param int $id Unique database ID of the banner
+	 *
+	 * @return Banner
+	 */
+	public static function fromId( $id ) {
+		$obj = new Banner();
+		$obj->id = $id;
+		return $obj;
 	}
 
-	function getName() {
+	/**
+	 * Create a banner object from a known banner name. Must already be
+	 * an object in the database. If a fully new banner is to be created
+	 * use @see newFromName().
+	 *
+	 * @param $name
+	 *
+	 * @return Banner
+	 * @throws BannerDataException
+	 */
+	public static function fromName( $name ) {
+		if ( !Banner::isValidBannerName( $name ) ) {
+			throw new BannerDataException( "Invalid banner name supplied." );
+		}
+
+		$obj = new Banner();
+		$obj->name = $name;
+		return $obj;
+	}
+
+	/**
+	 * Create a brand new banner object.
+	 *
+	 * @param $name
+	 *
+	 * @return Banner
+	 * @throws BannerDataException
+	 */
+	public static function newFromName( $name ) {
+		if ( !Banner::isValidBannerName( $name ) ) {
+			throw new BannerDataException( "Invalid banner name supplied." );
+		}
+
+		$obj = new Banner();
+		$obj->name = $name;
+
+		foreach ( $obj->dirtyFlags as $flag => &$value ) {
+			$value = true;
+		}
+
+		return $obj;
+	}
+	//</editor-fold>
+
+	//<editor-fold desc="Basic metadata getters/setters">
+	/**
+	 * Get the unique ID for this banner.
+	 *
+	 * @return int
+	 */
+	public function getId() {
+		$this->populateBasicData();
+		return $this->id;
+	}
+
+	/**
+	 * Get the unique name for this banner.
+	 *
+	 * This specifically does not include namespace or other prefixing.
+	 *
+	 * @return null|string
+	 */
+	public function getName() {
+		$this->populateBasicData();
 		return $this->name;
 	}
 
-	function getDbKey() {
-		return "Centralnotice-template-{$this->name}";
+	/**
+	 * Should we allocate this banner to anonymous users.
+	 *
+	 * @return bool
+	 */
+	public function allocateToAnon() {
+		$this->populateBasicData();
+		return $this->allocateAnon;
 	}
 
-	function getTitle() {
-		return Title::newFromText( $this->getDbKey(), NS_MEDIAWIKI );
+	/**
+	 * Should we allocate this banner to logged in users.
+	 *
+	 * @return bool
+	 */
+	public function allocateToLoggedIn() {
+		$this->populateBasicData();
+		return $this->allocateLoggedIn;
 	}
 
-	function getContent() {
-		$bodyPage = $this->getTitle();
-		$curRev = Revision::newFromTitle( $bodyPage );
-		if ( !$curRev ) {
-			throw new MWException( "No content for banner: {$this->name}" );
+	/**
+	 * Set user state allocation properties for this banner
+	 *
+	 * @param bool $anon Should the banner be allocated to logged out users.
+	 * @param bool $loggedIn Should the banner be allocated to logged in users.
+	 *
+	 * @return $this
+	 */
+	public function setAllocation( $anon, $loggedIn ) {
+		$this->populateBasicData();
+
+		if ( ( $this->allocateAnon !== $anon ) || ( $this->allocateLoggedIn !== $loggedIn ) ) {
+			$this->setBasicDataDirty();
+			$this->allocateAnon = $anon;
+			$this->allocateLoggedIn = $loggedIn;
 		}
-		return $curRev->getText();
+
+		return $this;
+	}
+
+	/**
+	 * Get the banner category.
+	 *
+	 * The category is the name of the cookie stored on the users computer. In this way
+	 * banners in the same category may share settings.
+	 *
+	 * @return string
+	 */
+	public function getCategory() {
+		$this->populateBasicData();
+		return $this->category;
+	}
+
+	/**
+	 * Set the banner category.
+	 *
+	 * @see Banner->getCategory()
+	 *
+	 * @param string $value
+	 *
+	 * @return $this
+	 */
+	public function setCategory( $value ) {
+		$this->populateBasicData();
+
+		if ( $this->category !== $value ) {
+			$this->setBasicDataDirty();
+			$this->category = $value;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * If true the banner renderer should replace the contents of the <a#cn-landingpage-link> href
+	 * with values from @see Banner->getAutoLinks()
+	 *
+	 * @return bool
+	 */
+	public function isAutoLinked() {
+		$this->populateBasicData();
+		return $this->autolink;
+	}
+
+	/**
+	 * Automatic linking values for the banner renderer to use.
+	 *
+	 * @see Banner->isAutoLinked()
+	 *
+	 * @return string[]
+	 */
+	public function getAutoLinks() {
+		$this->populateBasicData();
+		return $this->autolinks;
+	}
+
+	/**
+	 * Set autolinking behaviour. If enabled the banner renderer should replace the contents of
+	 * the <a#cn-landingpage-link> href with values from $links
+	 *
+	 * @param bool $enabled
+	 * @param string[] $links Array of raw href links. E.g. array( '//foo.bar.com/' )
+	 *
+	 * @return $this
+	 */
+	public function setAutoLink( $enabled, $links ) {
+		$this->populateBasicData();
+
+		$links = (array)$links;
+		array_walk( $links, function ( &$x ) { $x = trim( $x ); } );
+		sort( $links );
+		if ( ( $this->autolink !== $enabled ) || ( $this->autolinks != $links ) ) {
+			$this->setBasicDataDirty();
+			$this->autolink = $enabled;
+			$this->autolinks = $links;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Should the banner be considered archived and hidden from default view
+	 *
+	 * @return bool
+	 */
+	public function isArchived() {
+		$this->populateBasicData();
+		return $this->archived;
+	}
+
+	/**
+	 * Populates basic banner data by querying the cn_templates table
+	 *
+	 * @throws BannerDataException If neither a name or ID can be used to query for data
+	 * @throws BannerExistenceException If no banner data was received
+	 */
+	protected function populateBasicData() {
+		if ( $this->dirtyFlags['basic'] !== null ) {
+			return;
+		}
+
+		$db = CNDatabase::getDb();
+
+		// What are we using to select on?
+		if ( $this->name !== null ) {
+			$selector = array( 'tmp_name' => $this->name );
+		} elseif ( $this->id !== null ) {
+			$selector = array( 'tmp_id' => $this->id );
+		} else {
+			throw new BannerDataException( 'Cannot retrieve banner data without name or ID.' );
+		}
+
+		// Query!
+		$rowRes = $db->select(
+			array( 'templates' => 'cn_templates' ),
+			array(
+				 'tmp_id',
+				 'tmp_name',
+				 'tmp_display_anon',
+				 'tmp_display_account',
+				 'tmp_autolink',
+				 'tmp_landing_pages',
+				 'tmp_archived',
+				 'tmp_category'
+			),
+			$selector,
+			__METHOD__
+		);
+
+		// Extract the dataz!
+		$row = $db->fetchObject( $rowRes );
+		if ( $row ) {
+			$this->id = (int)$row->tmp_id;
+			$this->name = $row->tmp_name;
+			$this->allocateAnon = (bool)$row->tmp_display_anon;
+			$this->allocateLoggedIn = (bool)$row->tmp_display_account;
+			$this->autolink = (bool)$row->tmp_autolink;
+			$this->autolinks = explode( ',', $row->tmp_landing_pages);
+			$this->archived = (bool)$row->tmp_archived;
+			$this->category = $row->tmp_category;
+		} else {
+			$keystr = array();
+			foreach ( $selector as $key => $value ) {
+				$keystr[] = "{$key} = {$value}";
+			}
+			$keystr = implode( " AND ", $keystr );
+			throw new BannerExistenceException( "No banner exists where {$keystr}. Could not load." );
+		}
+
+		// Set the dirty flag to not dirty because we just loaded clean data
+		$this->setBasicDataDirty( false );
+	}
+
+	/**
+	 * Sets the flag which will save basic metadata on next save()
+	 */
+	protected function setBasicDataDirty( $dirty = true ) {
+		return (bool)wfSetVar( $this->dirtyFlags['basic'], $dirty, true );
+	}
+
+	/**
+	 * Helper function to initializeDbForNewBanner()
+	 *
+	 * @param DatabaseBase $db
+	 */
+	protected function initializeDbBasicData( $db ) {
+		$db->insert( 'cn_templates', array( 'tmp_name' => $this->name ), __METHOD__ );
+		$this->id = $db->insertId();
+	}
+
+	/**
+	 * Helper function to saveBannerInternal() for saving basic banner metadata
+	 * @param DatabaseBase $db
+	 */
+	protected function saveBasicData( $db ) {
+		if ( $this->setBasicDataDirty( false ) ) {
+			$db->update( 'cn_templates',
+				array(
+					 'tmp_display_anon'    => (int)$this->allocateAnon,
+					 'tmp_display_account' => (int)$this->allocateLoggedIn,
+					 'tmp_autolink'        => $this->autolink,
+					 'tmp_landing_pages'   => implode( ',', $this->autolinks ),
+					 'tmp_archived'        => $this->archived,
+					 'tmp_category'        => $this->category,
+				),
+				array(
+					 'tmp_id'              => $this->id
+				),
+				__METHOD__
+			);
+		}
+	}
+	//</editor-fold>
+
+	//<editor-fold desc="Device targeting">
+	/**
+	 * Get the devices that this banner should be allocated to.
+	 *
+	 * Array is in the form of {Device internal ID => Device header name}
+	 *
+	 * @return string[]
+	 */
+	public function getDevices() {
+		$this->populateDeviceTargetData();
+		return $this->devices;
+	}
+
+	/**
+	 * Set the devices that this banner should be allocated to.
+	 *
+	 * @param string[]|string $devices Header name of devices. E.g. {'android', 'desktop'}
+	 *
+	 * @return $this
+	 * @throws BannerDataException on unknown device header name.
+	 */
+	public function setDevices( $devices ) {
+		$this->populateDeviceTargetData();
+
+		$knownDevices = CNDeviceTarget::getAvailableDevices( true );
+
+		$devices = (array)$devices;
+		$devices = array_unique( array_values( $devices ) );
+		sort( $devices );
+
+		if ( $devices != $this->devices ) {
+			$this->devices = array();
+
+			foreach ( $devices as $device ) {
+				if ( !$device ) {
+					// Empty...
+					continue;
+				} elseif ( !array_key_exists( $device, $knownDevices ) ) {
+					throw new BannerDataException( "Device name '$device' not known! Cannot add." );
+				} else {
+					$this->devices[$knownDevices[$device]['id']] = $device;
+				}
+			}
+			$this->markDeviceTargetDataDirty();
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Populates device targeting data by querying the cn_template_devices table.
+	 *
+	 * @see CNDeviceTarget for more information about mapping.
+	 */
+	protected function populateDeviceTargetData() {
+		if ( $this->dirtyFlags['devices'] !== null ) {
+			return;
+		}
+
+		$db = CNDatabase::getDb();
+
+		$rowObj = $db->select(
+			array(
+				 'tdev' => 'cn_template_devices',
+				 'devices' => 'cn_known_devices'
+			),
+			array( 'devices.dev_id', 'dev_name' ),
+			array(
+				 'tdev.tmp_id' => $this->getId(),
+				 'tdev.dev_id = devices.dev_id'
+			),
+			__METHOD__
+		);
+
+		foreach( $rowObj as $row ) {
+			$this->devices[ intval( $row->dev_id ) ] = $row->dev_name;
+		}
+
+		$this->markDeviceTargetDataDirty( false );
+	}
+
+	/**
+	 * Sets the flag which will force saving of device targeting data on next save()
+	 */
+	protected function markDeviceTargetDataDirty( $dirty = true ) {
+		return (bool)wfSetVar( $this->dirtyFlags['devices'], $dirty, true );
+	}
+
+	/**
+	 * Helper function to saveBannerInternal()
+	 *
+	 * @param DatabaseBase $db
+	 */
+	protected function saveDeviceTargetData( $db ) {
+		if ( $this->markDeviceTargetDataDirty( false ) ) {
+			// Remove all entries from the table for this banner
+			$db->delete( 'cn_template_devices', array( 'tmp_id' => $this->getId() ), __METHOD__ );
+
+			// Add the new device mappings
+			if ( $this->devices ) {
+				$modifyArray = array();
+				foreach ( $this->devices as $deviceId => $deviceName ) {
+					$modifyArray[] = array( 'tmp_id' => $this->getId(), 'dev_id' => $deviceId );
+				}
+				$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
+			}
+		}
+	}
+	//</editor-fold>
+
+	//<editor-fold desc="Mixin management">
+	/**
+	 * @return array Keys are names of enabled mixins; valeus are mixin params.
+	 * @see $wgNoticeMixins
+	 */
+	public function getMixins() {
+		$this->populateMixinData();
+		return $this->mixins;
+	}
+
+	/**
+	 * Set the banner mixins to enable.
+	 *
+	 * @param string[]|string $mixins Names of mixins to enable on this banner. Valid values
+	 * come from @see $wgNoticeMixins
+	 *
+	 * @throws MWException
+	 * @return $this
+	 */
+	function setMixins( $mixins ) {
+		global $wgNoticeMixins;
+
+		$this->populateMixinData();
+
+		$mixins = array_unique( array_values( (array)$mixins ) );
+		sort( $mixins );
+
+		if ( array_keys( $this->mixins ) != $mixins ) {
+			$this->mixins = array();
+			foreach ( $mixins as $mixin ) {
+				if ( !$mixin ) {
+					// Empty
+					continue;
+				} elseif ( !array_key_exists( $mixin, $wgNoticeMixins ) ) {
+					throw new MWException( "Mixin does not exist: {$mixin}" );
+				}
+				$this->mixins[$mixin] = $wgNoticeMixins[$mixin];
+			}
+			$this->markMixinDataDirty();
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Populates mixin data from the cn_template_mixins table.
+	 *
+	 * @throws MWException
+	 */
+	protected function populateMixinData() {
+		global $wgNoticeMixins;
+
+		if ( $this->dirtyFlags['mixins'] !== null ) {
+			return;
+		}
+
+		$dbr = CNDatabase::getDb();
+
+		$result = $dbr->select( 'cn_template_mixins', 'mixin_name',
+			array(
+				 "tmp_id" => $this->getId(),
+			),
+			__METHOD__
+		);
+
+		$this->mixins = array();
+		foreach ( $result as $row ) {
+			if ( !array_key_exists( $row->mixin_name, $wgNoticeMixins ) ) {
+				// We only want to warn here otherwise we'd never be able to
+				// edit the banner to fix the issue! The editor should warn
+				// when a deprecated mixin is being used; but also when we
+				// do deprecate something we should make sure nothing is using
+				// it!
+				wfLogWarning( "Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}" );
+			}
+			$this->mixins[$row->mixin_name] = $wgNoticeMixins[$row->mixin_name];
+		}
+
+		$this->markMixinDataDirty( false );
+	}
+
+	/**
+	 * Sets the flag which will force saving of mixin data upon next save()
+	 */
+	protected function markMixinDataDirty( $dirty = true ) {
+		return (bool)wfSetVar( $this->dirtyFlags['mixins'], $dirty, true );
+	}
+
+	/**
+	 * @param DatabaseBase $db
+	 */
+	protected function saveMixinData( $db ) {
+		if ( $this->markMixinDataDirty( false ) ) {
+			$db->delete( 'cn_template_mixins',
+				array( 'tmp_id' => $this->getId() ),
+				__METHOD__
+			);
+
+			foreach ( $this->mixins as $name => $params ) {
+				$name = trim( $name );
+				if ( !$name ) {
+					continue;
+				}
+				$db->insert( 'cn_template_mixins',
+					array(
+						 'tmp_id' => $this->getId(),
+						 'page_id' => 0,	// TODO: What were we going to use this for again?
+						 'mixin_name' => $name,
+					),
+					__METHOD__
+				);
+			}
+		}
+	}
+	//</editor-fold>
+
+	//<editor-fold desc="Priority languages">
+	/**
+	 * Returns language codes that are considered a priority for translations.
+	 *
+	 * If a language is in this list it means that the translation UI will promote
+	 * translating them, and discourage translating other languages.
+	 *
+	 * @return string[]
+	 */
+	public function getPriorityLanguages() {
+		$this->populatePriorityLanguageData();
+		return $this->priorityLanguages;
+	}
+
+	/**
+	 * Set language codes that should be considered a priority for translation.
+	 *
+	 * If a language is in this list it means that the translation UI will promote
+	 * translating them, and discourage translating other languages.
+	 *
+	 * @param string[] $languageCodes
+	 *
+	 * @return $this
+	 */
+	public function setPriorityLanguages( $languageCodes ) {
+		$this->populatePriorityLanguageData();
+
+		$languageCodes = array_unique( (array)$languageCodes );
+		sort( $languageCodes );
+
+		if ( $this->priorityLanguages != $languageCodes ) {
+			$this->priorityLanguages = $languageCodes;
+			$this->markPriorityLanguageDataDirty();
+		}
+
+		return $this;
+	}
+
+	protected function populatePriorityLanguageData() {
+		global $wgNoticeUseTranslateExtension;
+
+		if ( $this->dirtyFlags['prioritylang'] !== null ) {
+			return;
+		}
+
+		if ( $wgNoticeUseTranslateExtension ) {
+			$langs = TranslateMetadata::get(
+				BannerMessageGroup::getTranslateGroupName( $this->getName() ),
+				'prioritylangs'
+			);
+			if ( !$langs ) {
+				// If priority langs is not set; TranslateMetadata::get will return false
+				$langs = '';
+			}
+			$this->priorityLanguages = explode( ',', $langs );
+		}
+		$this->markPriorityLanguageDataDirty( false );
+	}
+
+	protected function markPriorityLanguageDataDirty( $dirty = true ) {
+		return (bool)wfSetVar( $this->dirtyFlags['prioritylang'], $dirty, true );
+	}
+
+	protected function savePriorityLanguageData() {
+		global $wgNoticeUseTranslateExtension;
+
+		if ( $wgNoticeUseTranslateExtension && $this->markPriorityLanguageDataDirty( false ) ) {
+			TranslateMetadata::set(
+				BannerMessageGroup::getTranslateGroupName( $this->getName() ),
+				'prioritylangs',
+				implode( ',', $this->priorityLanguages )
+			);
+		}
+	}
+	//</editor-fold>
+
+	//<editor-fold desc="Banner body content">
+	public function getDbKey() {
+		$name = $this->getName();
+		return "Centralnotice-template-{$name}";
+	}
+
+	public function getTitle() {
+		return Title::newFromText( $this->getDbKey(), NS_MEDIAWIKI );
 	}
 
 	/**
@@ -35,19 +738,89 @@ class Banner {
 	 *
 	 * @return Array of Title
 	 */
-	function getIncludedTemplates() {
+	public function getIncludedTemplates() {
 		return $this->getTitle()->getTemplateLinksFrom();
 	}
 
-	function getId() {
-		if ( !$this->id ) {
-			$this->id = Banner::getTemplateId( $this->name );
-		}
-		return $this->id;
+	/**
+	 * Get the raw body HTML for the banner.
+	 *
+	 * @return string HTML
+	 */
+	public function getBodyContent() {
+		$this->populateBodyContent();
+		return $this->bodyContent;
 	}
 
+	/**
+	 * Set the raw body HTML for the banner.
+	 *
+	 * @param string $text HTML
+	 *
+	 * @return $this
+	 */
+	public function setBodyContent( $text ) {
+		$this->populateBodyContent();
+
+		if ( $this->bodyContent !== $text ) {
+			$this->bodyContent = $text;
+			$this->markBodyContentDirty();
+		}
+
+		return $this;
+	}
+
+	protected function populateBodyContent() {
+		if ( $this->dirtyFlags['content'] !== null ) {
+			return;
+		}
+
+		$bodyPage = $this->getTitle();
+		$curRev = Revision::newFromTitle( $bodyPage );
+		if ( !$curRev ) {
+			throw new BannerContentException( "No content for banner: {$this->name}" );
+		}
+		$this->bodyContent = ContentHandler::getContentText( $curRev->getContent() );
+
+		$this->markBodyContentDirty( false );
+	}
+
+	protected function markBodyContentDirty( $dirty = true ) {
+		return (bool)wfSetVar( $this->dirtyFlags['content'], $dirty, true );
+	}
+
+	protected function saveBodyContent() {
+		global $wgNoticeUseTranslateExtension;
+
+		if ( $this->markBodyContentDirty( false ) ) {
+			$wikiPage = new WikiPage( $this->getTitle() );
+
+			$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
+			$pageResult = $wikiPage->doEditContent( $contentObj, '', EDIT_FORCE_BOT );
+
+			if ( $wgNoticeUseTranslateExtension ) {
+				// Get the revision and page ID of the page that was created/modified
+				if ( $pageResult->value['revision'] ) {
+					$revision = $pageResult->value['revision'];
+					$revisionId = $revision->getId();
+					$pageId = $revision->getPage();
+
+					// If the banner includes translatable messages, tag it for translation
+					$fields = $this->extractMessageFields( $this->bodyContent );
+					if ( count( $fields ) > 0 ) {
+						// Tag the banner for translation
+						Banner::addTag( 'banner:translate', $revisionId, $pageId );
+						$this->runTranslateJob = true;
+					}
+				}
+			}
+		}
+	}
+	//</editor-fold>
+
+	//<editor-fold desc="Banner message fields">
 	function getMessageField( $field_name ) {
-		return new BannerMessage( $this->name, $field_name );
+		return new BannerMessage( $this->getName(), $field_name );
 	}
 
 	/**
@@ -59,7 +832,7 @@ class Banner {
 		global $wgParser;
 
 		if ( $body === null ) {
-			$body = $this->getContent();
+			$body = $this->getBodyContent();
 		}
 
 		$expanded = $wgParser->parse(
@@ -95,15 +868,204 @@ class Banner {
 		return $fields;
 	}
 
-	function remove() {
+	/**
+	 * Returns a list of messages that are either published or in the CNBanner translation
+	 *
+	 * @param bool $inTranslation If true and using group translation this will return
+	 * all the messages that are in the translation system
+	 *
+	 * @return array A list of languages with existing field translations
+	 */
+	function getAvailableLanguages( $inTranslation = false ) {
+		global $wgLanguageCode;
+		$availableLangs = array();
+
+		// Bit of an ugly hack to get just the banner prefix
+		$prefix = $this->getMessageField( '' )->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
+
+		$db = CNDatabase::getDb();
+		$result = $db->select( 'page',
+			'page_title',
+			array(
+				 'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
+				 'page_title' . $db->buildLike( $prefix, $db->anyString() ),
+			),
+			__METHOD__
+		);
+		while ( $row = $result->fetchRow() ) {
+			if ( preg_match( "/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'], $matches ) ) {
+				$field = $matches[1];
+				if ( isset( $matches[2] ) ) {
+					$lang = $matches[2];
+				} else {
+					$lang = $wgLanguageCode;
+				}
+				$availableLangs[$lang] = true;
+			}
+		}
+		return array_keys( $availableLangs );
+	}
+	//</editor-fold>
+
+	//<editor-fold desc="Banner actions">
+	//<editor-fold desc="Saving">
+	/**
+	 * Saves any changes made to the banner object into the database
+	 *
+	 * @param null $user
+	 *
+	 * @return $this
+	 * @throws Exception
+	 */
+	public function save( $user = null ) {
+		global $wgUser, $wgNoticeRunMessageIndexRebuildJobImmediately;
+
+		$db = CNDatabase::getDb();
+
+		$action = 'modified';
+		if ( $user === null ) {
+			$user = $wgUser;
+		}
+
+		try {
+			$this->saveBodyContent(); // Do not move into saveBannerInternal -- cannot be in a transaction
+
+			// Open a transaction so that everything is consistent
+			$db->begin( __METHOD__ );
+
+			if ( !$this->exists() ) {
+				$action = 'created';
+				$this->initializeDbForNewBanner( $db );
+			}
+			$this->saveBannerInternal( $db );
+			$this->logBannerChange( $action, $user );
+
+			$db->commit( __METHOD__ );
+
+			// These all should have been set in the individual save functions, but just
+			// to make sure.
+			foreach ( $this->dirtyFlags as $flag => &$value ) { $value = false; }
+
+			if ( $this->runTranslateJob ) {
+				// Must be run after banner has finished saving due to some dependencies that
+				// exist in the render job.
+				// TODO: This will go away if we start tracking messages in database :)
+				MessageGroups::clearCache();
+				if ( $wgNoticeRunMessageIndexRebuildJobImmediately ) {
+					MessageIndexRebuildJob::newJob()->run();
+				} else {
+					return JobQueueGroup::singleton()->push( MessageIndexRebuildJob::newJob() );
+				}
+				$this->runTranslateJob = false;
+			}
+
+		} catch ( Exception $ex ) {
+			$db->rollback( __METHOD__ );
+			throw $ex;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Called before saveBannerInternal() when a new to the database banner is
+	 * being saved. Intended to create all table rows required such that any
+	 * additional operation can be an UPDATE statement.
+	 *
+	 * @param DatabaseBase $db
+	 */
+	protected function initializeDbForNewBanner( $db ) {
+		$this->initializeDbBasicData( $db );
+	}
+
+	/**
+	 * Helper function to save(). This is wrapped in a database transaction and
+	 * is intended to be easy to override -- though overriding function should
+	 * call this at some point. :)
+	 *
+	 * Because it is wrapped in a database transaction; most MediaWiki calls
+	 * like page saving cannot be performed here.
+	 *
+	 * Dirty flags are not globally reset until after this function is called.
+	 *
+	 * @param DatabaseBase $db
+	 *
+	 * @throws BannerExistenceException
+	 */
+	protected function saveBannerInternal( $db ) {
+		$this->saveBasicData( $db );
+		$this->saveDeviceTargetData( $db );
+		$this->saveMixinData( $db );
+		$this->savePriorityLanguageData();
+	}
+	//</editor-fold>
+
+	/**
+	 * Archive a banner.
+	 *
+	 * TODO: Remove data from translation, in place replace all templates
+	 *
+	 * @return $this
+	 */
+	public function archive() {
+		if ( $this->dirtyFlags['basic'] === null ) {
+			$this->populateBasicData();
+		}
+		$this->dirtyFlags['basic'] = true;
+
+		$this->archived = true;
+
+		return $this;
+	}
+
+	public function cloneBanner( $destination, $user ) {
+		if ( !$this->isValidBannerName( $destination ) ) {
+			throw new BannerDataException( "Banner name must be in format /^[A-Za-z0-9_]+$/" );
+		}
+
+		$destBanner = Banner::newFromName( $destination );
+		if ( $destBanner->exists() ) {
+			throw new BannerExistenceException( "Banner by that name already exists!" );
+		}
+
+		$destBanner->setAllocation( $this->allocateToAnon(), $this->allocateToLoggedIn() );
+		$destBanner->setCategory( $this->getCategory() );
+		$destBanner->setAutoLink( $this->isAutoLinked(), $this->getAutoLinks() );
+		$destBanner->setDevices( $this->getDevices() );
+		$destBanner->setMixins( $this->getMixins() );
+		$destBanner->setPriorityLanguages( $this->getPriorityLanguages() );
+
+		$destBanner->setBodyContent( $this->getBodyContent() );
+
+		// Populate the message fields
+		$langs = $this->getAvailableLanguages();
+		$fields = $this->extractMessageFields();
+		foreach ( $langs as $lang ) {
+			foreach ( $fields as $field => $count ) {
+				$text = $this->getMessageField( $field )->getContents( $lang );
+				if ( $text !== null ) {
+					$destBanner->getMessageField( $field )->update( $text, $lang, $user );
+				}
+			}
+		}
+
+		// Save it!
+		$destBanner->save( $user );
+		return $destBanner;
+	}
+
+	public function remove( $user = null ) {
 		global $wgUser;
-		Banner::removeTemplate( $this->name, $wgUser );
+		if ( $user === null ) {
+			$user = $wgUser;
+		}
+		Banner::removeTemplate( $this->getName(), $user );
 	}
 
 	static function removeTemplate( $name, $user ) {
 		global $wgNoticeUseTranslateExtension;
 
-		$bannerObj = new Banner( $name );
+		$bannerObj = Banner::fromName( $name );
 		$id = $bannerObj->getId();
 		$dbr = CNDatabase::getDb();
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
@@ -144,7 +1106,9 @@ class Banner {
 			}
 		}
 	}
+	//</editor-fold>
 
+	//<editor-fold desc=" Random stuff that still needs to die a hideous horrible death">
 	/**
 	 * Add a revision tag for the banner
 	 * @param string $tag The name of the tag
@@ -191,25 +1155,6 @@ class Banner {
 	}
 
 	/**
-	 * See if a given banner exists in the database
-	 *
-	 * @param string $bannerName
-	 *
-	 * @return bool
-	 */
-	static function bannerExists( $bannerName ) {
-		$dbr = CNDatabase::getDb();
-
-		$eBannerName = htmlspecialchars( $bannerName );
-		$row = $dbr->selectRow( 'cn_templates', 'tmp_name', array( 'tmp_name' => $eBannerName ) );
-		if ( $row ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
 	 * Given one or more campaign ids, return all banners bound to them
 	 *
 	 * @param array $campaigns list of campaign numeric IDs
@@ -236,7 +1181,7 @@ class Banner {
 					'tmp_weight',
 					'tmp_display_anon',
 					'tmp_display_account',
-					'tmp_fundraising',
+					'tmp_category',
 					'tmp_autolink',
 					'tmp_landing_pages',
 					'not_name',
@@ -266,7 +1211,7 @@ class Banner {
 					'weight'           => intval( $row->tmp_weight ), // weight assigned to the banner
 					'display_anon'     => intval( $row->tmp_display_anon ), // display to anonymous users?
 					'display_account'  => intval( $row->tmp_display_account ), // display to logged in users?
-					'fundraising'      => intval( $row->tmp_fundraising ), // fundraising banner?
+					'fundraising'      => intval( $row->tmp_category === 'fundraising' ), // fundraising banner?
 					'autolink'         => intval( $row->tmp_autolink ), // automatically create links?
 					'landing_pages'    => $row->tmp_landing_pages, // landing pages to link to
 					'device'           => $row->dev_name, // device this banner can target
@@ -289,53 +1234,26 @@ class Banner {
 	 * @return array an array of banner settings
 	 */
 	static function getBannerSettings( $bannerName, $detailed = true ) {
-		global $wgNoticeUseTranslateExtension;
-
-		$dbr = CNDatabase::getDb();
-
-		$row = $dbr->selectRow(
-			'cn_templates',
-			array(
-				'tmp_display_anon',
-				'tmp_display_account',
-				'tmp_fundraising',
-				'tmp_autolink',
-				'tmp_landing_pages'
-			),
-			array( 'tmp_name' => $bannerName ),
-			__METHOD__
-		);
-
-		if ( $row ) {
-			$banner = array(
-				'anon'         => (int)$row->tmp_display_anon,
-				'account'      => (int)$row->tmp_display_account,
-				'fundraising'  => (int)$row->tmp_fundraising,
-				'autolink'     => (int)$row->tmp_autolink,
-				'landingpages' => $row->tmp_landing_pages,
-				//TODO: 'landingpages' => explode( ", ", $row->tmp_landing_pages ),
-			);
-
-			$bannerObj = new Banner( $bannerName );
-			$banner['controller_mixin'] = implode( ",", array_keys( $bannerObj->getMixins() ) );
-
-			if ( $wgNoticeUseTranslateExtension && $detailed ) {
-				$langs = TranslateMetadata::get(
-					BannerMessageGroup::getTranslateGroupName( $bannerName ),
-					'prioritylangs'
-				);
-				if ( !$langs ) {
-					// If priority langs is not set; TranslateMetadata::get will return false
-					$langs = '';
-				}
-				$banner['prioritylangs'] = explode( ',', $langs );
-			}
-			$banner['devices'] = array_values( CNDeviceTarget::getDevicesAssociatedWithBanner( $bannerObj->getId() ) );
-		} else {
+		$banner = Banner::fromName( $bannerName );
+		if ( !$banner->exists() ) {
 			throw new MWException( "Banner doesn't exist!" );
 		}
 
-		return $banner;
+		$details = array(
+			'anon'             => (int)$banner->allocateToAnon(),
+			'account'          => (int)$banner->allocateToLoggedIn(),
+			'fundraising'      => (int)($banner->getCategory() === 'fundraising'),
+			'autolink'         => (int)$banner->isAutoLinked(),
+			'landingpages'     => implode( ',', $banner->getAutoLinks() ),
+			'controller_mixin' => implode( ",", array_keys( $banner->getMixins() ) ),
+			'devices'          => array_values( $banner->getDevices() ),
+		);
+
+		if ( $detailed ) {
+			$details['prioritylangs'] = $banner->getPriorityLanguages();
+		}
+
+		return $details;
 	}
 
 	/**
@@ -350,7 +1268,7 @@ class Banner {
 	 *    device: device key
 	 */
 	static function getHistoricalBanner( $name, $ts ) {
-		$id = Banner::getTemplateId( $name );
+		$id = Banner::fromName( $name )->getId();
 
 		$dbr = CNDatabase::getDb();
 
@@ -396,22 +1314,6 @@ class Banner {
 		return $banner;
 	}
 
-	static function getTemplateId( $templateName ) {
-		$dbr = CNDatabase::getDb();
-		$templateName = htmlspecialchars( $templateName );
-		$res = $dbr->select(
-			'cn_templates',
-			'tmp_id',
-			array( 'tmp_name' => $templateName ),
-			__METHOD__
-		);
-		$row = $dbr->fetchObject( $res );
-		if ( $row ) {
-			return $row->tmp_id;
-		}
-		return null;
-	}
-
 	/**
 	 * Create a new banner
 	 *
@@ -432,99 +1334,30 @@ class Banner {
 	static function addTemplate( $name, $body, $user, $displayAnon, $displayAccount, $fundraising = 0,
 		$autolink = 0, $landingPages = '', $mixins = '', $priorityLangs = array(), $devices = array( 'desktop' )
 	) {
-		if ( $body == '' || $name == '' ) {
+		if ( $name == '' || !Banner::isValidBannerName( $name ) || $body == '' ) {
 			return 'centralnotice-null-string';
 		}
 
-		// Format name so there are only letters, numbers, and underscores
-		$name = preg_replace( '/[^A-Za-z0-9_]/', '', $name );
-
-		$db = CNDatabase::getDb();
-		$res = $db->select(
-			'cn_templates',
-			'tmp_name',
-			array( 'tmp_name' => $name ),
-			__METHOD__
-		);
-
-		if ( $db->numRows( $res ) > 0 ) {
+		$banner = Banner::newFromName( $name );
+		if ( $banner->exists() ) {
 			return 'centralnotice-template-exists';
-		} else {
-			// Insert the banner record
-			$db->insert( 'cn_templates',
-				array(
-					'tmp_name'            => $name,
-					'tmp_display_anon'    => $displayAnon,
-					'tmp_display_account' => $displayAccount,
-					'tmp_fundraising'     => $fundraising,
-					'tmp_autolink'        => $autolink,
-					'tmp_landing_pages'   => $landingPages
-				),
-				__METHOD__
-			);
-			$bannerObj = new Banner( $name );
-			$bannerObj->id = $db->insertId();
-
-			$bannerObj->setMixins( explode( ",", $mixins ) );
-
-			CNDeviceTarget::setBannerDeviceTargets( $bannerObj->id, $devices );
-
-			$wikiPage = new WikiPage( $bannerObj->getTitle() );
-
-			if ( class_exists( 'ContentHandler' ) ) {
-				// MediaWiki 1.21+
-				$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
-				$pageResult = $wikiPage->doEditContent( $content, '/* CN admin */', EDIT_FORCE_BOT );
-			} else {
-				$pageResult = $wikiPage->doEdit( $body, '/* CN admin */', EDIT_FORCE_BOT );
-			}
-
-			Banner::updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs );
-
-			// Log the creation of the banner
-			$bannerObj->logBannerChange( 'created', $user );
 		}
-	}
 
-	/**
-	 * Updates any metadata required for banner/translation extension integration.
-	 *
-	 * @param array  $pageResult        Return from WikiPage->doEditContent()
-	 * @param string $name              Raw name of banner
-	 * @param string $body              Body text of banner
-	 * @param array  $priorityLangs     Languages to emphasize during translation
-	 */
-	static function updateTranslationMetadata( $pageResult, $name, $body, $priorityLangs ) {
-		global $wgNoticeUseTranslateExtension;
+		$banner->setAllocation( $displayAnon, $displayAccount );
+		$banner->setCategory( ( $fundraising == 1 ) ? 'fundraising' : '{{{campaign}}}' );
+		$banner->setDevices( $devices );
+		$banner->setPriorityLanguages( $priorityLangs );
+		$banner->setBodyContent( $body );
 
-		// Do nothing if we arent actually using translate
-		if ( $wgNoticeUseTranslateExtension ) {
-			// Get the revision and page ID of the page that was created/modified
-			if ( $pageResult->value['revision'] ) {
-				$revision = $pageResult->value['revision'];
-				$revisionId = $revision->getId();
-				$pageId = $revision->getPage();
+		$landingPages = explode( ',', $landingPages );
+		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setAutoLink( $autolink, $landingPages );
 
-				// If the banner includes translatable messages, tag it for translation
-				$banner = new Banner( $name );
-				$fields = $banner->extractMessageFields( $body );
-				if ( count( $fields ) > 0 ) {
-					// Tag the banner for translation
-					Banner::addTag( 'banner:translate', $revisionId, $pageId );
-					MessageGroups::clearCache();
-					MessageIndexRebuildJob::newJob()->run();
-				}
-			}
+		$mixins = explode( ",", $mixins );
+		array_walk( $mixins, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setMixins( $mixins );
 
-			// Set the priority languages
-			if ( $wgNoticeUseTranslateExtension && $priorityLangs ) {
-				TranslateMetadata::set(
-					BannerMessageGroup::getTranslateGroupName( $name ),
-					'prioritylangs',
-					implode( ',', $priorityLangs )
-				);
-			}
-		}
+		$banner->save( $user );
 	}
 
 	/**
@@ -539,18 +1372,6 @@ class Banner {
 		if ( $action !== 'removed' ) {
 			$endSettings = Banner::getBannerSettings( $this->getName(), true );
 		}
-		if ( $action === 'modified' ) {
-			// Only log if there are any differences in the settings
-			$changed = false;
-			foreach ( $endSettings as $key => $value ) {
-				if ( $endSettings[$key] != $beginSettings[$key] ) {
-					$changed = true;
-				}
-			}
-			if ( !$changed ) {
-				return;
-			}
-		}
 
 		$dbw = CNDatabase::getDb();
 
@@ -562,13 +1383,6 @@ class Banner {
 			'tmplog_template_name' => $this->getName(),
 		);
 
-		foreach ( $beginSettings as $key => $value ) {
-			if ( is_array( $value ) ) {
-				$value = FormatJson::encode( $value );
-			}
-
-			$log[ 'tmplog_begin_' . $key ] = $value;
-		}
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {
 				$value = FormatJSON::encode( $value );
@@ -581,184 +1395,33 @@ class Banner {
 	}
 
 	/**
-	 * @return array All mixin structs associated with this banner.
-	 */
-	function getMixins() {
-		global $wgNoticeMixins;
-
-		$dbr = CNDatabase::getDb();
-
-		$result = $dbr->select( 'cn_template_mixins', 'mixin_name',
-			array(
-				"tmp_id" => $this->getId(),
-			),
-			__METHOD__
-		);
-
-		$mixins = array();
-		foreach ( $result as $row ) {
-			if ( !array_key_exists( $row->mixin_name, $wgNoticeMixins ) ) {
-				throw new MWException( "Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}" );
-			}
-			$mixins[$row->mixin_name] = $wgNoticeMixins[$row->mixin_name];
-		}
-		return $mixins;
-	}
-
-	/**
-	 * @param string[] list of mixins to associate with this banner.  Clears any
-	 *     existing associations.
-	 */
-	function setMixins( $mixins ) {
-		$dbw = CNDatabase::getDb();
-
-		$dbw->delete( 'cn_template_mixins',
-			array( 'tmp_id' => $this->getId() ),
-			__METHOD__
-		);
-
-		foreach ( $mixins as $name ) {
-			$name = trim( $name );
-			if ( !$name ) {
-				continue;
-			}
-			$dbw->insert( 'cn_template_mixins',
-				array(
-					'tmp_id' => $this->getId(),
-					'mixin_name' => $name,
-				),
-				__METHOD__
-			);
-		}
-	}
-
-	/**
-	 * Copy all the data from one banner to another
-	 */
-	static function cloneTemplate( $source, $dest, $user ) {
-		// Normalize name
-		$dest = preg_replace( '/[^A-Za-z0-9_]/', '', $dest );
-
-		if ( Banner::bannerExists( $dest ) ) {
-			throw new MWException( "Banner by that name already exists!" );
-		}
-
-		$sourceBanner = new Banner( $source );
-
-		$settings = Banner::getBannerSettings( $source, false );
-		$template_body = $sourceBanner->getContent();
-
-		// Create new banner
-		$errors = Banner::addTemplate( $dest, $template_body, $user,
-			$settings['anon'],
-			$settings['account'],
-			$settings['fundraising'],
-			$settings['autolink'],
-			$settings['landingpages'],
-			$settings['controller_mixin'],
-			array(),
-			$settings['devices']
-		);
-		if ( !$errors ) {
-			$destBanner = new Banner( $dest );
-
-			// Populate the fields
-			$langs = $sourceBanner->getAvailableLanguages();
-			$fields = $sourceBanner->extractMessageFields();
-			foreach ( $langs as $lang ) {
-				foreach ( $fields as $field => $count ) {
-					$text = $sourceBanner->getMessageField( $field )->getContents( $lang );
-					if ( $text !== null ) {
-						$destBanner->getMessageField( $field )->update( $text, $lang, $user );
-					}
-				}
-			}
-
-			return $dest;
-		} else {
-			//FIXME: throw errors
-		}
-	}
-
-	/**
-	 * Returns a list of messages that are either published or in the CNBanner translation
-	 *
-	 * @param bool $inTranslation If true and using group translation this will return
-	 * all the messages that are in the translation system
-	 *
-	 * @return array A list of languages with existing field translations
-	 */
-	function getAvailableLanguages( $inTranslation = false ) {
-		global $wgLanguageCode;
-		$availableLangs = array();
-
-		// Bit of an ugly hack to get just the banner prefix
-		$prefix = $this->getMessageField( '' )->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
-
-		$db = CNDatabase::getDb();
-		$result = $db->select( 'page',
-			'page_title',
-			array(
-				'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
-				'page_title' . $db->buildLike( $prefix, $db->anyString() ),
-			),
-			__METHOD__
-		);
-		while ( $row = $result->fetchRow() ) {
-			if ( preg_match( "/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'], $matches ) ) {
-				$field = $matches[1];
-				if ( isset( $matches[2] ) ) {
-					$lang = $matches[2];
-				} else {
-					$lang = $wgLanguageCode;
-				}
-				$availableLangs[$lang] = true;
-			}
-		}
-		return array_keys( $availableLangs );
-	}
-
-	/**
 	 * Update a banner
 	 */
 	function editTemplate( $user, $body, $displayAnon, $displayAccount, $fundraising,
 		$autolink, $landingPages, $mixins, $priorityLangs, $devices
 	) {
-		if ( !Banner::bannerExists( $this->name ) ) {
+		$banner = Banner::fromName( $this->getName() );
+		if ( !$banner->exists() ) {
 			return;
 		}
-		$initialBannerSettings = Banner::getBannerSettings( $this->name, true );
 
-		$dbw = CNDatabase::getDb();
-		$dbw->update( 'cn_templates',
-			array(
-				'tmp_display_anon'    => $displayAnon,
-				'tmp_display_account' => $displayAccount,
-				'tmp_fundraising'     => $fundraising,
-				'tmp_autolink'        => $autolink,
-				'tmp_landing_pages'   => $landingPages
-			),
-			array( 'tmp_name' => $this->name )
-		);
+		$banner->setAllocation( $displayAnon, $displayAccount );
+		$banner->setCategory( ( $fundraising == 1 ) ? 'fundraising' : '{{{campaign}}}' );
+		$banner->setDevices( $devices );
+		$banner->setPriorityLanguages( $priorityLangs );
+		$banner->setBodyContent( $body );
 
-		// Perhaps these should move into the db as blob
-		$wikiPage = new WikiPage( $this->getTitle() );
+		$landingPages = explode( ',', $landingPages );
+		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setAutoLink( $autolink, $landingPages );
 
-		if ( class_exists( 'ContentHandler' ) ) {
-			// MediaWiki 1.21+
-			$content = ContentHandler::makeContent( $body, $wikiPage->getTitle() );
-			$pageResult = $wikiPage->doEditContent( $content, '', EDIT_FORCE_BOT );
-		} else {
-			$pageResult = $wikiPage->doEdit( $body, '', EDIT_FORCE_BOT );
-		}
+		$mixins = explode( ",", $mixins );
+		array_walk( $mixins, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setMixins( $mixins );
 
-		$this->setMixins( explode( ",", $mixins ) );
-		CNDeviceTarget::setBannerDeviceTargets( $this->getId(), $devices );
-
-		Banner::updateTranslationMetadata( $pageResult, $this->name, $body, $priorityLangs );
-
-		$this->logBannerChange( 'modified', $user, $initialBannerSettings );
+		$banner->save( $user );
 	}
+	//</editor-fold>
 
 	/**
 	 * Validation function for banner names. Will return true iff the name fits
@@ -771,4 +1434,31 @@ class Banner {
 	static function isValidBannerName( $name ) {
 		return preg_match( '/^[A-Za-z0-9_]+$/', $name );
 	}
+
+	/**
+	 * Check to see if a banner actually exists in the database
+	 *
+	 * @return bool
+	 * @throws BannerDataException If it's a silly query
+	 */
+	public function exists() {
+		$db = CNDatabase::getDb();
+		if ( $this->name !== null ) {
+			$selector = array( 'tmp_name' => $this->name );
+		} elseif ( $this->id !== null ) {
+			$selector = array( 'tmp_id' => $this->id );
+		} else {
+			throw new BannerDataException( 'Cannot determine banner existence without name or ID.' );
+		}
+		$row = $db->selectRow( 'cn_templates', 'tmp_name', $selector );
+		if ( $row ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
+
+class BannerDataException extends MWException {}
+class BannerContentException extends BannerDataException {}
+class BannerExistenceException extends BannerDataException {}

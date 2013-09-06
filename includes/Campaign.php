@@ -688,7 +688,7 @@ class Campaign {
 
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$noticeId = Campaign::getNoticeId( $eNoticeName );
-		$templateId = Banner::getTemplateId( $templateName );
+		$templateId = Banner::fromName( $templateName )->getId();
 		$res = $dbw->select( 'cn_assignments', 'asn_id',
 			array(
 				'tmp_id' => $templateId,
@@ -721,7 +721,7 @@ class Campaign {
 		$dbw = CNDatabase::getDb();
 		$dbw->begin();
 		$noticeId = Campaign::getNoticeId( $noticeName );
-		$templateId = Banner::getTemplateId( $templateName );
+		$templateId = Banner::fromName( $templateName )->getId();
 		$dbw->delete( 'cn_assignments', array( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
 		$dbw->commit();
 	}
@@ -766,6 +766,7 @@ class Campaign {
 				$projects[ ] = $projectRow->np_project;
 			}
 		}
+		sort( $projects );
 		return $projects;
 	}
 
@@ -781,6 +782,7 @@ class Campaign {
 				$languages[ ] = $langRow->nl_language;
 			}
 		}
+		sort( $languages );
 		return $languages;
 	}
 
@@ -796,6 +798,7 @@ class Campaign {
 				$countries[ ] = $countryRow->nc_country;
 			}
 		}
+		sort( $countries );
 		return $countries;
 	}
 

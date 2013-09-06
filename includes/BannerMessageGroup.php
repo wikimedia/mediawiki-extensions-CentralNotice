@@ -38,7 +38,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	public function getDefinitions() {
 		$definitions = array();
 
-		$banner = new Banner( $this->bannerName );
+		$banner = Banner::fromName( $this->bannerName );
 		$fields = $banner->extractMessageFields();
 
 		// The MediaWiki page name convention for messages is the same as the
