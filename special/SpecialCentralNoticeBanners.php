@@ -357,20 +357,16 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		/* --- Banner Settings --- */
-		// TODO: Make this far more flexible with the option for arbitrary banner classes
-		$class = ( $bannerSettings[ 'fundraising' ] === 1 ) ? 'fundraising' : 'generic';
-		$formDescriptor[ 'banner-class' ] = array(
+		$formDescriptor['banner-class'] = array(
 			'section' => 'settings',
-			'type' => 'select',
+			'type' => 'selectorother',
 			'disabled' => !$this->editable,
 			'label-message' => 'centralnotice-banner-class',
 			'help-message' => 'centralnotice-banner-class-desc',
-			'options' => array(
-				$this->msg( 'centralnotice-banner-class-generic' )->text() => 'generic',
-				$this->msg( 'centralnotice-banner-class-fundraising' )->text() => 'fundraising'
-			),
-			'default' => $class,
-			'cssclass' => 'separate-form-element',
+			'options' => Banner::getAllUsedCategories(),
+			'size' => 30,
+			'maxlength'=> 255,
+			'default' => $banner->getCategory(),
 		);
 
 		$selected = array();
@@ -735,18 +731,26 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$prioLang = array();
 		}
 
-		$banner->editTemplate(
-			$this->getUser(),
-			$formData[ 'banner-body' ],
+		$banner->setAllocation(
 			in_array( 'anonymous', $formData[ 'display-to' ] ),
-			in_array( 'registered', $formData[ 'display-to' ] ),
-			$formData[ 'banner-class' ] === 'fundraising',
-			$formData[ 'create-landingpage-link' ],
-			$formData[ 'landing-pages' ],
-			'',
-			$prioLang,
-			$formData[ 'device-classes' ]
+			in_array( 'registered', $formData[ 'display-to' ] )
 		);
+		$banner->setCategory( $formData[ 'banner-class' ] );
+		$banner->setDevices( $formData[ 'device-classes' ] );
+		$banner->setPriorityLanguages( $prioLang );
+		$banner->setBodyContent( $formData[ 'banner-body' ] );
+
+		$landingPages = explode( ',', $formData[ 'landing-pages' ] );
+		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setAutoLink( $formData[ 'create-landingpage-link' ], $landingPages );
+
+		/* TODO: Mixins
+		$mixins = explode( ",", $mixins );
+		array_walk( $mixins, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setMixins( $mixins );
+		*/
+
+		$banner->save( $this->getUser() );
 
 		return null;
 	}

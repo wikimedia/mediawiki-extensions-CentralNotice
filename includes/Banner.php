@@ -260,6 +260,39 @@ class Banner {
 	}
 
 	/**
+	 * Obtain an array of all categories currently seen attached to banners
+	 * @return string[]
+	 */
+	public static function getAllUsedCategories() {
+		$db = CNDatabase::getDb();
+		$res = $db->select(
+			'cn_templates',
+			'tmp_category',
+			'',
+			__METHOD__,
+			array( 'DISTINCT', 'ORDER BY tmp_category ASC' )
+		);
+
+		$categories = array();
+		foreach ( $res as $row ) {
+			$categories[$row->tmp_category] = $row->tmp_category;
+		}
+		return $categories;
+	}
+
+	/**
+	 * Remove invalid characters from a category string that has been magic
+	 * word expanded.
+	 *
+	 * @param $cat Category string to sanitize
+	 *
+	 * @return string
+	 */
+	public static function sanitizeRenderedCategory( $cat ) {
+		return preg_replace( '/[^a-zA-Z0-9_]/', '', $cat );
+	}
+
+	/**
 	 * If true the banner renderer should replace the contents of the <a#cn-landingpage-link> href
 	 * with values from @see Banner->getAutoLinks()
 	 *
@@ -1242,7 +1275,8 @@ class Banner {
 		$details = array(
 			'anon'             => (int)$banner->allocateToAnon(),
 			'account'          => (int)$banner->allocateToLoggedIn(),
-			'fundraising'      => (int)($banner->getCategory() === 'fundraising'),
+			'fundraising'      => (int)($banner->getCategory() === 'fundraising'), // TODO: Death to this!
+			'category'         => $banner->getCategory(),
 			'autolink'         => (int)$banner->isAutoLinked(),
 			'landingpages'     => implode( ',', $banner->getAutoLinks() ),
 			'controller_mixin' => implode( ",", array_keys( $banner->getMixins() ) ),
@@ -1392,34 +1426,6 @@ class Banner {
 		}
 
 		$dbw->insert( 'cn_template_log', $log );
-	}
-
-	/**
-	 * Update a banner
-	 */
-	function editTemplate( $user, $body, $displayAnon, $displayAccount, $fundraising,
-		$autolink, $landingPages, $mixins, $priorityLangs, $devices
-	) {
-		$banner = Banner::fromName( $this->getName() );
-		if ( !$banner->exists() ) {
-			return;
-		}
-
-		$banner->setAllocation( $displayAnon, $displayAccount );
-		$banner->setCategory( ( $fundraising == 1 ) ? 'fundraising' : '{{{campaign}}}' );
-		$banner->setDevices( $devices );
-		$banner->setPriorityLanguages( $priorityLangs );
-		$banner->setBodyContent( $body );
-
-		$landingPages = explode( ',', $landingPages );
-		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
-		$banner->setAutoLink( $autolink, $landingPages );
-
-		$mixins = explode( ",", $mixins );
-		array_walk( $mixins, function ( &$x ) { $x = trim( $x ); } );
-		$banner->setMixins( $mixins );
-
-		$banner->save( $user );
 	}
 	//</editor-fold>
 

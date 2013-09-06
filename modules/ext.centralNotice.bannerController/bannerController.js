@@ -42,7 +42,7 @@
 		 */
 		data: {
 			getVars: {},
-			bannerType: 'default',
+			category: 'default',
 			bucket: null,
 			testing: false
 		},
@@ -253,7 +253,7 @@
 			};
 		} else {
 			// Ok, we have a banner! Get the banner type for more queryness
-			mw.centralNotice.data.bannerType = ( bannerJson.fundraising ? 'fundraising' : 'default' );
+			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
 
 			if ( typeof mw.centralNotice.bannerData.preload === 'function'
 					&& !mw.centralNotice.bannerData.preload() ) {
@@ -263,10 +263,14 @@
 				};
 			} else if (
 				bannerJson.priority < 3 && /* A priority of 3 is Emergency and cannot be hidden */
-				!mw.centralNotice.data.testing && /* And we want to see what we're testing! :) */
-				$.cookie( 'centralnotice_' + encodeURIComponent( mw.centralNotice.data.bannerType ) ) === 'hide'
+				mw.centralNotice.data.testing === false && /* And we want to see what we're testing! :) */
+				(
+					$.cookie( 'centralnotice_hide_' + mw.centralNotice.data.category ) === 'hide' ||
+					/* Legacy for long duration fundraising cookies; remove after Oct 1, 2014 */
+					$.cookie( 'centralnotice_' + mw.centralNotice.data.category ) === 'hide'
+				)
 			) {
-				// The banner was hidden by a bannertype hide cookie and we're not testing
+				// The banner was hidden by a category hide cookie and we're not testing
 				impressionResultData = {
 					result: 'hide',
 					reason: 'cookie'
@@ -275,7 +279,7 @@
 				// All conditions fulfilled, inject the banner
 				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;
 				$( 'div#centralNotice' )
-					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.bannerType ) )
+					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.category ) )
 					.prepend( bannerJson.bannerHtml );
 
 				// Create landing page links if required
@@ -331,18 +335,16 @@
 	};
 
 	// Function for hiding banners when the user clicks the close button
+	// TODO: Make it call up to the special page for cross project hiding
 	window.hideBanner = function () {
 		// Hide current banner
 		$( '#centralNotice' ).hide();
-
-		// Get the type of the current banner (e.g. 'fundraising')
-		var bannerType = mw.centralNotice.data.bannerType || 'default';
 
 		// Set the banner hiding cookie to hide future banners of the same type
 		var d = new Date();
 		d.setSeconds( d.getSeconds() + mw.config.get( 'wgNoticeCookieShortExpiry' ) );
 		$.cookie(
-			'centralnotice_' + encodeURIComponent( bannerType ),
+			'centralnotice_hide_' + mw.centralNotice.data.category,
 			'hide',
 			{ expires: d, path: '/' }
 		);
