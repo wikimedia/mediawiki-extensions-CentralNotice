@@ -188,12 +188,10 @@ $wgNoticeTabifyPages = array(
 		'type' => 'views',
 		'message' => 'centralnotice-allocation',
 	),
-	/* disabled, see bug 53443
 	'GlobalAllocation' => array(
 		'type' => 'views',
 		'message' => 'centralnotice-global-allocation',
 	),
-	*/
 	'CentralNoticeLogs' => array(
 		'type' => 'views',
 		'message' => 'centralnotice-logs',

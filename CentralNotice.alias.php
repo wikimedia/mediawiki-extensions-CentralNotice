@@ -8,7 +8,9 @@ $specialPageAliases = array();
 /** English (English) */
 $specialPageAliases['en'] = array(
 	'CentralNotice' => array( 'CentralNotice' ),
+	'CentralNoticeBanners' => array( 'CentralNoticeBanners' ),
 	'CentralNoticeLogs' => array( 'CentralNoticeLogs' ),
+	'CNReporter' => array( 'CNReporter' ),
 	'NoticeTemplate' => array( 'NoticeTemplate' ),
 	'GlobalAllocation' => array( 'GlobalAllocation' ),
 	'BannerAllocation' => array( 'BannerAllocation' ),
