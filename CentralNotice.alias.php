@@ -168,7 +168,9 @@ $specialPageAliases['ka'] = array(
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
 	'CentralNotice' => array( '중앙공지' ),
+	'CentralNoticeBanners' => array( '중앙공지배너' ),
 	'CentralNoticeLogs' => array( '중앙공지기록' ),
+	'CNReporter' => array( 'CN보고기' ),
 	'NoticeTemplate' => array( '알림틀', '공지틀' ),
 	'GlobalAllocation' => array( '전역할당' ),
 	'BannerAllocation' => array( '배너배정' ),
