@@ -62,6 +62,9 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerLoaderException' ] = $specialDir . 'SpecialBannerLoader.php';
 
 	$wgAutoloadClasses[ 'Banner' ] = $includeDir . 'Banner.php';
+	$wgAutoloadClasses[ 'BannerDataException' ] = $includeDir . 'Banner.php';
+	$wgAutoloadClasses[ 'BannerContentException' ] = $includeDir . 'Banner.php';
+	$wgAutoloadClasses[ 'BannerExistenceException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
@@ -132,9 +135,7 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
 		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools
 		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
-		/* disabled, see bug 53443
 		$wgSpecialPages[ 'GlobalAllocation' ] = 'SpecialGlobalAllocation';
-		*/
 		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
 		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
 		$wgSpecialPages[ 'CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
@@ -322,6 +323,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 function efCentralNoticeUnitTests( &$files ) {
 	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
+	$files[ ] = __DIR__ . '/tests/BannerTest.php';
 	return true;
 }
 

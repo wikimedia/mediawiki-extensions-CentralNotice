@@ -95,10 +95,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @throw SpecialBannerLoaderException
 	 */
 	public function getJsNotice( $bannerName ) {
-		if ( !Banner::bannerExists( $bannerName ) ) {
+		$banner = Banner::fromName( $bannerName );
+		if ( !$banner->exists() ) {
 			throw new EmptyBannerException( $bannerName );
 		}
-		$banner = new Banner( $bannerName );
 		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaignName, $this->allocContext );
 
 		$bannerHtml = $bannerRenderer->toHtml();
@@ -110,11 +110,14 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		// TODO: these are BannerRenderer duties:
 		$settings = Banner::getBannerSettings( $bannerName, false );
 
+		$category = $bannerRenderer->substituteMagicWords( $settings['category'] );
+		$category = Banner::sanitizeRenderedCategory( $category );
+
 		$bannerArray = array(
 			'bannerName' => $bannerName,
 			'bannerHtml' => $bannerHtml,
 			'campaign' => $this->campaignName,
-			'fundraising' => $settings['fundraising'],
+			'category' => $category,
 			'autolink' => $settings['autolink'],
 			'landingPages' => explode( ", ", $settings['landingpages'] ),
 		);

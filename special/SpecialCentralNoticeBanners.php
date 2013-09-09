@@ -233,7 +233,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 						$this->bannerName = $formData[ 'newBannerName' ];
 					}
 
-					if ( Banner::bannerExists( $this->bannerName ) ) {
+					if ( Banner::fromName( $this->bannerName )->exists() ) {
 						return wfMessage( 'centralnotice-template-exists' )->text();
 					} else {
 						$retval = Banner::addTemplate(
@@ -343,7 +343,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
 		$languages = array_flip( $languages );
 
-		$banner = new Banner( $this->bannerName );
+		$banner = Banner::fromName( $this->bannerName );
 		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = array();
@@ -357,20 +357,16 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		/* --- Banner Settings --- */
-		// TODO: Make this far more flexible with the option for arbitrary banner classes
-		$class = ( $bannerSettings[ 'fundraising' ] === 1 ) ? 'fundraising' : 'generic';
-		$formDescriptor[ 'banner-class' ] = array(
+		$formDescriptor['banner-class'] = array(
 			'section' => 'settings',
-			'type' => 'select',
+			'type' => 'selectorother',
 			'disabled' => !$this->editable,
 			'label-message' => 'centralnotice-banner-class',
 			'help-message' => 'centralnotice-banner-class-desc',
-			'options' => array(
-				$this->msg( 'centralnotice-banner-class-generic' )->text() => 'generic',
-				$this->msg( 'centralnotice-banner-class-fundraising' )->text() => 'fundraising'
-			),
-			'default' => $class,
-			'cssclass' => 'separate-form-element',
+			'options' => Banner::getAllUsedCategories(),
+			'size' => 30,
+			'maxlength'=> 255,
+			'default' => $banner->getCategory(),
 		);
 
 		$selected = array();
@@ -432,7 +428,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 
 		/* --- Translatable Messages Section --- */
-		$messages = $banner->extractMessageFields( $banner->getContent() );
+		$messages = $banner->extractMessageFields( $banner->getBodyContent() );
 
 		if ( $messages ) {
 			// Only show this part of the form if messages exist
@@ -576,7 +572,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'readonly' => !$this->editable,
 			'hidelabel' => true,
 			'placeholder' => '<!-- blank banner -->',
-			'default' => $banner->getContent(),
+			'default' => $banner->getBodyContent(),
 			'cssclass' => 'separate-form-element'
 		);
 
@@ -688,11 +684,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				$newBannerName = $formData[ 'cloneName' ];
-				Banner::cloneTemplate(
-					$this->bannerName,
-					$newBannerName,
-					$this->getUser()
-				);
+				Banner::fromName( $this->bannerName )->cloneBanner( $newBannerName, $this->getUser() );
 				$this->getOutput()->redirect(
 					$this->getTitle( "Edit/$newBannerName" )->getCanonicalURL()
 				);
@@ -715,7 +707,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	protected function processSaveBannerAction( $formData ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
-		$banner = new Banner( $this->bannerName );
+		$banner = Banner::fromName( $this->bannerName );
 
 		/* --- Update the translations --- */
 		// But only if we aren't using translate or if the preview language is the content language
@@ -739,18 +731,26 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$prioLang = array();
 		}
 
-		$banner->editTemplate(
-			$this->getUser(),
-			$formData[ 'banner-body' ],
+		$banner->setAllocation(
 			in_array( 'anonymous', $formData[ 'display-to' ] ),
-			in_array( 'registered', $formData[ 'display-to' ] ),
-			$formData[ 'banner-class' ] === 'fundraising',
-			$formData[ 'create-landingpage-link' ],
-			$formData[ 'landing-pages' ],
-			'',
-			$prioLang,
-			$formData[ 'device-classes' ]
+			in_array( 'registered', $formData[ 'display-to' ] )
 		);
+		$banner->setCategory( $formData[ 'banner-class' ] );
+		$banner->setDevices( $formData[ 'device-classes' ] );
+		$banner->setPriorityLanguages( $prioLang );
+		$banner->setBodyContent( $formData[ 'banner-body' ] );
+
+		$landingPages = explode( ',', $formData[ 'landing-pages' ] );
+		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setAutoLink( $formData[ 'create-landingpage-link' ], $landingPages );
+
+		/* TODO: Mixins
+		$mixins = explode( ",", $mixins );
+		array_walk( $mixins, function ( &$x ) { $x = trim( $x ); } );
+		$banner->setMixins( $mixins );
+		*/
+
+		$banner->save( $this->getUser() );
 
 		return null;
 	}
@@ -772,7 +772,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Large amounts of memory apparently required to do this
 		ini_set( 'memory_limit', '120M' );
 
-		$banner = new Banner( $this->bannerName );
+		$banner = Banner::fromName( $this->bannerName );
 
 		// Pull all available text for a banner
 		$langs = $banner->getAvailableLanguages();
