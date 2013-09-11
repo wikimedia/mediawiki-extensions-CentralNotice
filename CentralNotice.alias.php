@@ -205,7 +205,9 @@ $specialPageAliases['lb'] = array(
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'CentralNotice' => array( 'ЦентралноИзвестување' ),
+	'CentralNoticeBanners' => array( 'ЦентралноИзвестувањеПлакати' ),
 	'CentralNoticeLogs' => array( 'ДневнициНаЦентралноИзвестување' ),
+	'CNReporter' => array( 'ЦИИзвестувач' ),
 	'NoticeTemplate' => array( 'ШаблонЗаИзвестување' ),
 	'GlobalAllocation' => array( 'ГлобалнаРаспределба' ),
 	'BannerAllocation' => array( 'РаспределбаНаПлакати' ),
