@@ -32,6 +32,33 @@ class BannerMessageGroup extends WikiMessageGroup {
 	}
 
 	/**
+	 * This is optimized version of getDefinitions that only returns
+	 * message keys to speed up message index creation.
+	 * @return array
+	 */
+	public function getKeys() {
+		$keys = array();
+
+		$banner = Banner::fromName( $this->bannerName );
+		$fields = $banner->extractMessageFields();
+
+		// The MediaWiki page name convention for messages is the same as the
+		// convention for banners themselves, except that it doesn't include
+		// the 'template' designation.
+		if ( $this->namespace == NS_CN_BANNER ) {
+			$msgKeyPrefix = $this->bannerName . '-';
+		} else {
+			$msgKeyPrefix = "Centralnotice-{$this->bannerName}-";
+		}
+
+		foreach ( array_keys( $fields ) as $msgName ) {
+			$keys[] = $msgKeyPrefix . $msgName;
+		}
+
+		return $keys;
+	}
+
+	/**
 	 * Fetch the messages for the banner
 	 * @return array Array of message keys with definitions.
 	 */
