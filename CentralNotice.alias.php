@@ -53,7 +53,9 @@ $specialPageAliases['br'] = array(
 /** German (Deutsch) */
 $specialPageAliases['de'] = array(
 	'CentralNotice' => array( 'Zentrale_Mitteilung' ),
+	'CentralNoticeBanners' => array( 'Zentrale_Mitteilungsvorlagen' ),
 	'CentralNoticeLogs' => array( 'Logbücher_zur_zentralen_Mitteilung' ),
+	'CNReporter' => array( 'CN-Reporter' ),
 	'NoticeTemplate' => array( 'Mitteilungsvorlage' ),
 	'GlobalAllocation' => array( 'Globale_Anordnung' ),
 	'BannerAllocation' => array( 'Vorlagenanordnung' ),
