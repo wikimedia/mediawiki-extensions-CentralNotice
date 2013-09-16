@@ -15379,6 +15379,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
  * @author Kalan
  * @author Lockal
  * @author MaxSem
+ * @author Okras
  * @author Ole Yves
  * @author Rubin
  * @author Sabbah
@@ -15399,7 +15400,7 @@ $messages['ru'] = array(
 	'centralnotice-enabled' => 'Включено',
 	'centralnotice-modify' => 'Отправить',
 	'centralnotice-view' => 'Просмотр',
-	'centralnotice-save-banner' => 'Сохранить баннер', # Fuzzy
+	'centralnotice-save-banner' => 'Сохранить',
 	'centralnotice-preview' => 'Предпросмотр ($1)',
 	'centralnotice-nopreview' => '(Предпросмотр недоступен)',
 	'centralnotice-add-new' => 'Добавить новое централизованное уведомление',
@@ -15409,6 +15410,7 @@ $messages['ru'] = array(
 	'centralnotice-manage-templates' => 'Управление баннерами',
 	'centralnotice-add' => 'Добавить',
 	'centralnotice-add-notice' => 'Добавить уведомление',
+	'centralnotice-add-notice-button' => 'Создать',
 	'centralnotice-edit-notice' => 'Изменить кампанию',
 	'centralnotice-add-template' => 'Добавить шаблон',
 	'centralnotice-show-notices' => 'Показать уведомления',
@@ -15495,6 +15497,7 @@ $messages['ru'] = array(
 	'centralnotice-banner-autolink' => 'Автоматически создать ссылку на целевую страницу',
 	'centralnotice-banner-autolink-help' => 'Добавьте тег ссылки в тело баннера с помощью $1, укажите ниже одну или несколько целевых страниц, например, $2. Ссылка будет создана автоматически при просмотре баннера.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'Целевые страницы (через запятую):',
+	'centralnotice-banner-landing-pages-default' => 'например, JimmyAppeal01',
 	'centralnotice-geo' => 'Геопривязка',
 	'centralnotice-countries' => 'Страны',
 	'centralnotice-allocation' => 'Распределение',
@@ -15540,7 +15543,7 @@ $messages['ru'] = array(
 	'centralnotice-date' => 'Дата',
 	'centralnotice-apply-filters' => 'Применить фильтры',
 	'centralnotice-clear-filters' => 'Очистить фильтры',
-	'centralnotice-banner-messages' => 'Сообщения баннеров', # Fuzzy
+	'centralnotice-banner-messages' => 'Переводимые сообщения баннеров',
 	'centralnotice-filter-template-prompt' => 'Название баннера содержит:', # Fuzzy
 	'centralnotice-filter-template-submit' => 'Применить фильтр',
 	'centralnotice-filter-template-banner' => 'Фильтрация баннеров',
@@ -15559,6 +15562,10 @@ $messages['ru'] = array(
 	'centralnotice-buckets' => 'Группирование участников',
 	'centralnotice-bucket' => 'Ведро',
 	'centralnotice-bucket-letter' => 'Ведро «$1»',
+	'centralnotice-all' => 'Все',
+	'centralnotice-banner-class' => 'Категория',
+	'centralnotice-delete-banner' => 'Удалить',
+	'centralnotice-delete-banner-title' => 'Удалить {{PLURAL:$1|баннер|баннеры}}?',
 	'centralnotice-start-date' => 'Дата начала (UTC)',
 	'centralnotice-start-time' => 'Время начала (UTC)',
 	'centralnotice-end-date' => 'Дата окончания (UTC)',

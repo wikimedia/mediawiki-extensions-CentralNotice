@@ -334,6 +334,7 @@ $specialPageAliases['ur'] = array(
 /** Vietnamese (Tiếng Việt) */
 $specialPageAliases['vi'] = array(
 	'CentralNotice' => array( 'Thông_báo_chung' ),
+	'CentralNoticeBanners' => array( 'Bảng_thông_báo_chung' ),
 	'CentralNoticeLogs' => array( 'Nhật_trình_thông_báo_chung' ),
 	'NoticeTemplate' => array( 'Bản_mẫu_thông_báo' ),
 	'GlobalAllocation' => array( 'Phân_phối_toàn_cục' ),
