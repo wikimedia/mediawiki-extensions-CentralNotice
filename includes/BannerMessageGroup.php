@@ -40,7 +40,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$keys = array();
 
 		$banner = Banner::fromName( $this->bannerName );
-		$fields = $banner->extractMessageFields();
+		$fields = $banner->getMessageFieldsFromCache();
 
 		// The MediaWiki page name convention for messages is the same as the
 		// convention for banners themselves, except that it doesn't include
@@ -66,7 +66,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$definitions = array();
 
 		$banner = Banner::fromName( $this->bannerName );
-		$fields = $banner->extractMessageFields();
+		$fields = $banner->getMessageFieldsFromCache();
 
 		// The MediaWiki page name convention for messages is the same as the
 		// convention for banners themselves, except that it doesn't include

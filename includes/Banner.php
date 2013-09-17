@@ -839,7 +839,7 @@ class Banner {
 					$pageId = $revision->getPage();
 
 					// If the banner includes translatable messages, tag it for translation
-					$fields = $this->extractMessageFields( $this->bodyContent );
+					$fields = $this->getMessageFieldsFromCache( $this->bodyContent );
 					if ( count( $fields ) > 0 ) {
 						// Tag the banner for translation
 						Banner::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
@@ -854,6 +854,33 @@ class Banner {
 	//<editor-fold desc="Banner message fields">
 	function getMessageField( $field_name ) {
 		return new BannerMessage( $this->getName(), $field_name );
+	}
+
+	/**
+	 * Returns all the message fields in a banner
+	 * @see Banner::extractMessageFields()
+	 *
+	 * @param bool|string $bodyContent If a string will regenerate cache object from the string
+	 *
+	 * @return array|mixed
+	 */
+	function getMessageFieldsFromCache( $bodyContent = false ) {
+		global $wgMemc;
+
+		$key = wfMemcKey( 'centralnotice', 'bannerfields', $this->getName() );
+		$data = false;
+		if ( $bodyContent === false ) {
+			$data = $wgMemc->get( $key );
+		}
+
+		if ( $data !== false ) {
+			$data = json_decode( $data, true );
+		} else {
+			$data = $this->extractMessageFields( $bodyContent );
+			$wgMemc->set( $key, json_encode( $data ) );
+		}
+
+		return $data;
 	}
 
 	/**
@@ -951,7 +978,7 @@ class Banner {
 	 * @throws Exception
 	 */
 	public function save( $user = null ) {
-		global $wgUser, $wgNoticeRunMessageIndexRebuildJobImmediately;
+		global $wgUser;
 
 		$db = CNDatabase::getDb();
 
@@ -984,11 +1011,7 @@ class Banner {
 				// exist in the render job.
 				// TODO: This will go away if we start tracking messages in database :)
 				MessageGroups::clearCache();
-				if ( $wgNoticeRunMessageIndexRebuildJobImmediately ) {
-					MessageIndexRebuildJob::newJob()->run();
-				} else {
-					return JobQueueGroup::singleton()->push( MessageIndexRebuildJob::newJob() );
-				}
+				MessageIndexRebuildJob::newJob()->run();
 				$this->runTranslateJob = false;
 			}
 

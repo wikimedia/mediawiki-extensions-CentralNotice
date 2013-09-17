@@ -121,9 +121,6 @@ $wgNoticeBannerMaxAge = 600;
 // Whether to use the Translation extension for banner message translation
 $wgNoticeUseTranslateExtension = false;
 
-// True makes translatable banner messages available immediately after save.
-$wgNoticeRunMessageIndexRebuildJobImmediately = true;
-
 // Whether to disable variant languages and use an automatically converted version of banners
 // fetched from their parent language (zh for zh-cn, for example) instead.
 $wgNoticeUseLanguageConversion = false;
