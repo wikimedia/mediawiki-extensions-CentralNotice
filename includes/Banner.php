@@ -842,7 +842,7 @@ class Banner {
 					$fields = $this->extractMessageFields( $this->bodyContent );
 					if ( count( $fields ) > 0 ) {
 						// Tag the banner for translation
-						Banner::addTag( 'banner:translate', $revisionId, $pageId );
+						Banner::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
 						$this->runTranslateJob = true;
 					}
 				}
@@ -1147,25 +1147,27 @@ class Banner {
 	 * @param string $tag The name of the tag
 	 * @param integer $revisionId ID of the revision
 	 * @param integer $pageId ID of the MediaWiki page for the banner
-	 * @param string $value Value to store for the tag
+	 * @param string $bannerId ID of banner this revtag belongs to
 	 * @throws MWException
 	 */
-	static function addTag( $tag, $revisionId, $pageId, $value = null ) {
+	static function addTag( $tag, $revisionId, $pageId, $bannerId ) {
 		$dbw = CNDatabase::getDb();
 
 		if ( is_object( $revisionId ) ) {
 			throw new MWException( 'Got object, excepted id' );
 		}
 
+		// There should only ever be one tag applied to a banner object
+		Banner::removeTag( $tag, $pageId );
+
 		$conds = array(
 			'rt_page' => $pageId,
 			'rt_type' => RevTag::getType( $tag ),
 			'rt_revision' => $revisionId
 		);
-		$dbw->delete( 'revtag', $conds, __METHOD__ );
 
 		if ( $value !== null ) {
-			$conds['rt_value'] = serialize( implode( '|', $value ) );
+			$conds['rt_value'] = $bannerId;
 		}
 
 		$dbw->insert( 'revtag', $conds, __METHOD__ );

@@ -53,7 +53,9 @@ $specialPageAliases['br'] = array(
 /** German (Deutsch) */
 $specialPageAliases['de'] = array(
 	'CentralNotice' => array( 'Zentrale_Mitteilung' ),
+	'CentralNoticeBanners' => array( 'Zentrale_Mitteilungsvorlagen' ),
 	'CentralNoticeLogs' => array( 'Logbücher_zur_zentralen_Mitteilung' ),
+	'CNReporter' => array( 'CN-Reporter' ),
 	'NoticeTemplate' => array( 'Mitteilungsvorlage' ),
 	'GlobalAllocation' => array( 'Globale_Anordnung' ),
 	'BannerAllocation' => array( 'Vorlagenanordnung' ),
@@ -332,6 +334,7 @@ $specialPageAliases['ur'] = array(
 /** Vietnamese (Tiếng Việt) */
 $specialPageAliases['vi'] = array(
 	'CentralNotice' => array( 'Thông_báo_chung' ),
+	'CentralNoticeBanners' => array( 'Bảng_thông_báo_chung' ),
 	'CentralNoticeLogs' => array( 'Nhật_trình_thông_báo_chung' ),
 	'NoticeTemplate' => array( 'Bản_mẫu_thông_báo' ),
 	'GlobalAllocation' => array( 'Phân_phối_toàn_cục' ),
