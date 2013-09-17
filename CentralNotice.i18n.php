@@ -10594,6 +10594,7 @@ $messages['ky'] = array(
 
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
+ * @author Soued031
  */
 $messages['lb'] = array(
 	'centralnotice' => 'Administratioun vun den zentrale Matdeelungen',
@@ -10603,7 +10604,7 @@ $messages['lb'] = array(
 	'centralnoticelogs' => 'Gestioun vun den zentrale Matdeelungen',
 	'right-centralnotice-admin' => 'Zentralmatdeelunge geréieren',
 	'action-centralnotice-admin' => 'Zentralmatdeelungen ze geréieren',
-	'centralnotice-desc' => 'Setzt eng zentral Matdeelung iwwert de Site derbäi',
+	'centralnotice-desc' => 'Setzt eng zentral Matdeelung iwwer de Site derbäi',
 	'centralnotice-summary' => "Dës Erweiderung erlaabt et Är aktuell Parameter vun den zentrale Matdeelungen z'änneren.
 Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen.",
 	'centralnotice-query' => 'Déi aktuell Matdeelungen änneren',
