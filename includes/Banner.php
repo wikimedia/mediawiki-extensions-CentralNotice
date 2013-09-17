@@ -1166,7 +1166,7 @@ class Banner {
 			'rt_revision' => $revisionId
 		);
 
-		if ( $value !== null ) {
+		if ( $bannerId !== null ) {
 			$conds['rt_value'] = $bannerId;
 		}
 
