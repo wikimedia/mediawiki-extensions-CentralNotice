@@ -3233,6 +3233,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-banner-autolink-help' => 'Krouit un dikedenn eoriañ e-korf ar giton gant $1 ha merkit ur bajenn dal pe meur a hini a-is, da skouer, $2. Savet e vo al liamm ent emgefre pa vo diskwelet ar giton.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'Pajennoù pal (dispartiet dre skejoù) :',
 	'centralnotice-banner-landing-pages-default' => 'da skouer : JimmyAppeal01',
+	'centralnotice-banner-mixins' => 'Meskadoù (dispartiet gant virgulennoù) :',
 	'centralnotice-geo' => "Geolec'hiet",
 	'centralnotice-countries' => 'Broioù',
 	'centralnotice-allocation' => 'Skorenn',
@@ -3285,10 +3286,13 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-priority-normal' => 'boutin',
 	'centralnotice-priority-high' => 'uhel',
 	'centralnotice-priority-emergency' => 'mallus',
+	'centralnotice-prioritylangs' => 'Yezhoù pouezusañ',
 	'centralnotice-country-eu' => 'Dianav/Unaniezh Europa',
 	'centralnotice-country-a1' => 'Dianav/Proksi dizanv',
 	'centralnotice-country-a2' => 'Dianav/Pourchaser dre loarell',
 	'centralnotice-country-o1' => 'Dianav / Bro all',
+	'centralnotice-bucket' => 'Kelorn',
+	'centralnotice-bucket-letter' => 'Kelorn "$1"',
 	'centralnotice-devicetype-desktop' => 'Urzhiataer burev',
 	'centralnotice-all' => 'An holl',
 	'centralnotice-all-except' => 'An holl war bouez $1',
@@ -4057,6 +4061,7 @@ Ddim yn diweddaru.',
 Ddim yn ychwanegu.',
 	'centralnotice-no-notices-exist' => 'Does dim hysbysiadau i gael.
 Gallwch ychwanegu un isod.',
+	'centralnotice-no-templates-translate' => 'Nid oes unrhyw faneri ar gael y gellir golygu cyfieithiadau iddynt.',
 	'centralnotice-number-uses' => 'Mannau',
 	'centralnotice-settings' => 'Gosodiadau',
 	'centralnotice-edit-template' => "Golygu'r nodyn",
@@ -4081,6 +4086,7 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-banner-autolink' => 'Gwneud cyswllt yn awtomatig at dudalen lanio',
 	'centralnotice-banner-landing-pages-default' => 'e.e. JimmyAppeal01',
 	'centralnotice-countries' => 'Gwledydd',
+	'centralnotice-global-allocation' => 'Dosraniad cydwici',
 	'centralnotice-allocation' => 'Dyraniad',
 	'centralnotice-view-allocation' => 'Gweld dyraniad baneri',
 	'centralnotice-allocation-instructions' => 'Dewiswch y cyfuniad o feysydd yr hoffech weld dyraniad y baneri arno:',
@@ -4090,6 +4096,7 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-country' => 'Gwlad',
 	'centralnotice-no-allocation' => 'Dim baneri wedi eu dyrannu.',
 	'centralnotice-allocation-description' => 'Dyraniad y baneri yn yr iaith: $1, ar y prosiect: $2, yn y wlad: $3, ar y teclyn: $4',
+	'centralnotice-historical-allocation-description' => 'Dosraniad y faner yn yr iaith: $1, prosiect: $2, gwlad: $3, teclyn $4, am $5',
 	'centralnotice-percentage' => 'Canran',
 	'centralnotice-preferred' => 'Pwysigrwydd',
 	'centralnotice-logs' => 'Logiau',
@@ -4136,6 +4143,9 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-archive-banner' => 'Archif',
 	'centralnotice-archive-banner-title' => "Rhoi'r {{PLURAL:$1||faner|baneri}} mewn archif?",
 	'centralnotice-archive-banner-cancel' => 'Diddymer',
+	'centralnotice-archive-campaign' => 'Archifo',
+	'centralnotice-archive-campaign-title' => "Archifo'r {{PLURAL:$1|ymgyrch|ymgyrch|ymgyrchoedd}}?",
+	'centralnotice-archive-campaign-cancel' => 'Diddymer',
 	'centralnotice-delete-banner' => 'Dileu',
 	'centralnotice-delete-banner-title' => "Dileu'r {{PLURAL:$1|baner|faner|baneri}}?",
 	'centralnotice-delete-banner-cancel' => 'Dileer',
@@ -15483,7 +15493,7 @@ $messages['ru'] = array(
 	'centralnotice-clone-notice' => 'Создать копию шаблона',
 	'centralnotice-clone-name' => 'Имя:',
 	'centralnotice-clone-cancel' => 'Отмена',
-	'centralnotice-preview-all-template-translations' => 'Просмотреть все доступные переводы шаблона', # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'Просмотреть все одобренные переводы',
 	'centralnotice-insert' => 'Вставка: $1',
 	'centralnotice-close-button' => 'Кнопка «Закрыть»',
 	'centralnotice-close-title' => 'Закрыть',
@@ -20000,6 +20010,13 @@ $messages['wa'] = array(
  */
 $messages['war'] = array(
 	'centralnotice-user' => 'Gumaramit',
+);
+
+/** Wu (吴语)
+ * @author 十弌
+ */
+$messages['wuu'] = array(
+	'centralnotice-banner-class' => '分類',
 );
 
 /** Yiddish (ייִדיש)
