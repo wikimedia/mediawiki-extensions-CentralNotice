@@ -15449,8 +15449,8 @@ $messages['ru'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'Кампания не существует.
 Нечего удалять.',
 	'centralnotice-banner-doesnt-exist' => 'Баннер не существует.',
-	'centralnotice-template-still-bound' => 'Шаблон по-прежнему связан с уведомлением.
-Не удаляется.', # Fuzzy
+	'centralnotice-template-still-bound' => 'Не удаётся удалить баннер «$1», так как он по-прежнему привязан к кампании.
+Не удаляемый.',
 	'centralnotice-template-body' => 'Тело шаблона:',
 	'centralnotice-day' => 'День',
 	'centralnotice-year' => 'Год',
