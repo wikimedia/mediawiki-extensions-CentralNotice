@@ -3300,7 +3300,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-user-role' => 'Perzh an implijer',
 	'centralnotice-user-role-anonymous' => 'Dizanv',
 	'centralnotice-user-role-logged-in' => 'Kevreet',
-	'centralnotice-banner-class' => 'Rummad', # Fuzzy
+	'centralnotice-banner-class' => 'Rummad',
 	'centralnotice-templates-included' => 'Lakaat ar patromoù e-barzh',
 	'centralnotice-archive-banner' => 'Diell',
 	'centralnotice-archive-banner-title' => 'Diellaouiñ ar giton{{PLURAL:$1||où}}?',
@@ -15581,6 +15581,7 @@ $messages['ru'] = array(
 	'centralnotice-user-role-anonymous' => 'Аноним',
 	'centralnotice-banner-class' => 'Категория',
 	'centralnotice-archive-banner' => 'Архивировать',
+	'centralnotice-archive-banner-title' => 'Добавить {{PLURAL:$1|баннер|баннеры}} в архив?',
 	'centralnotice-archive-banner-cancel' => 'Отмена',
 	'centralnotice-archive-campaign' => 'Архивировать',
 	'centralnotice-archive-campaign-cancel' => 'Отмена',
