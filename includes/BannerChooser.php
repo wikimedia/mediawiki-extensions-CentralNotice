@@ -193,12 +193,21 @@ class BannerChooser {
 			$sum += $slots;
 		}
 
-		// Allocate each remaining slot one at a time to each banner
+		// Allocate each remaining slot one at a time to each banner if they are
+		// underallocated
 		$bannerIndex = 0;
-		while ( $sum < self::RAND_MAX ) {
-			$this->banners[ $bannerIndex ][ self::SLOTS_KEY ] += 1;
-			$sum += 1;
-			$bannerIndex = ( $bannerIndex + 1 ) % count( $this->banners );
+		$iterCount = 0; // Infinite loop protection
+		while ( ( $sum < self::RAND_MAX ) and ( $iterCount < 5 ) ) {
+			$banner = &$this->banners[ $bannerIndex ];
+			if ( ( ( $banner[ 'weight' ] / $total ) * self::RAND_MAX ) > $banner[ self::SLOTS_KEY ] ) {
+				$banner[ self::SLOTS_KEY ] += 1;
+				$sum += 1;
+			}
+			$bannerIndex = $bannerIndex + 1;
+			if ( $bannerIndex > count( $this->banners ) ) {
+				$bannerIndex = 0;
+				$iterCount++;
+			}
 		}
 
 		// Determine allocation percentage
