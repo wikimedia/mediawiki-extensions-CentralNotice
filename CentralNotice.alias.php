@@ -75,7 +75,7 @@ $specialPageAliases['diq'] = array(
 	'BannerController' => array( 'KontrolkaréAfişan' ),
 	'BannerLoader' => array( 'BarkerdenéAfişan' ),
 	'BannerRandom' => array( 'RaştameyéBaner' ),
-	'HideBanners' => array( 'AfişanBınımné' ),
+	'HideBanners' => array( 'AfişanBınımn' ),
 );
 
 /** Esperanto (Esperanto) */
@@ -91,7 +91,9 @@ $specialPageAliases['eo'] = array(
 /** Persian (فارسی) */
 $specialPageAliases['fa'] = array(
 	'CentralNotice' => array( 'اعلان_مرکزی' ),
+	'CentralNoticeBanners' => array( 'پرچم‌های_اعلان_مرکزی' ),
 	'CentralNoticeLogs' => array( 'سیاهه‌های_اعلان_مرکزی' ),
+	'CNReporter' => array( 'گزارش‌دهندهٔ_اعلان_مرکزی' ),
 	'NoticeTemplate' => array( 'الگوی_اعلامیه' ),
 	'GlobalAllocation' => array( 'تخصیص_سراسری' ),
 	'BannerAllocation' => array( 'موقعیت_نشان' ),
@@ -99,7 +101,7 @@ $specialPageAliases['fa'] = array(
 	'BannerLoader' => array( 'بارگیری_نشان' ),
 	'BannerRandom' => array( 'نشان_تصادفی' ),
 	'RecordImpression' => array( 'ثبت_احساس' ),
-	'HideBanners' => array( 'پنهان_کردن_نشان‌ها' ),
+	'HideBanners' => array( 'پنهان‌کردن_نشان‌ها' ),
 );
 
 /** Galician (galego) */
