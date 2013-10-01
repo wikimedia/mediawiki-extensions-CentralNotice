@@ -1763,10 +1763,8 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	'centralnotice-user-role' => 'Rol del usuariu',
 	'centralnotice-user-role-anonymous' => 'Anónimu',
 	'centralnotice-user-role-logged-in' => 'Identificáu',
-	'centralnotice-banner-class' => 'Clase',
-	'centralnotice-banner-class-desc' => "Los carteles d'una clase específica comparten les variables de siguimentu y la configuración de grupu (p. ex. les cookies d'anubrimientu y los contadores d'impresión).",
-	'centralnotice-banner-class-generic' => 'Xenéricu',
-	'centralnotice-banner-class-fundraising' => 'Recaudación de fondos',
+	'centralnotice-banner-class' => 'Categoría',
+	'centralnotice-banner-class-desc' => "Los carteles d'una categoría específica comparten les variables de siguimientu y la configuración de grupu (p. ex. les cookies d'anubrimientu y los contadores d'impresión). Los nomes de categoría puen ser pallabres máxiques como <nowiki>{{{campaign}}}</nowiki> o <nowiki>{{{banner}}}</nowiki> que s'espanderán automáticamente al tiempu de vese. Los valores han ser alfanumbéricos.",
 	'centralnotice-templates-included' => 'Plantíes incluíes',
 	'centralnotice-archive-banner' => 'Archivar',
 	'centralnotice-archive-banner-title' => '¿Archivar {{PLURAL:$1|el cartel|los cartelos}}?',
@@ -10704,7 +10702,7 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-number-uses' => 'gëtt benotzt',
 	'centralnotice-settings' => 'Astellungen',
 	'centralnotice-edit-template' => 'Schabloun änneren',
-	'centralnotice-edit-template-summary' => 'Fir e lokaliséierbare Message unzeleeën, setzt eng Zeecheketten tëschent dräi geschweefte Klameren  dran, z. Bsp. {{{jimbo-quote}}}.',
+	'centralnotice-edit-template-summary' => 'Fir e lokaliséierbare Message unzeleeën, setzt eng Zeecheketten tëscht dräi geschweefte Klameren  dran, z. B. {{{jimbo-quote}}}.',
 	'centralnotice-edit-template-magicwords' => "Magesch Wierder déi duerch d'Mixe vu Banneren entstan sinn: $1",
 	'centralnotice-message' => 'Message',
 	'centralnotice-message-not-set' => 'Message net gespäichert',
@@ -10728,7 +10726,7 @@ Setzt eng hei ënnendrënner bäi.',
 	'centralnotice-banner-autolink' => "Link fir d'Zilsäit automatesch uleeën",
 	'centralnotice-banner-landing-pages' => 'Zilsäiten (mat Kommae getrennt):',
 	'centralnotice-banner-landing-pages-default' => 'z.Bsp. JimmyAppeal01',
-	'centralnotice-geo' => 'Geografesch geziilt',
+	'centralnotice-geo' => 'Geographesch geziilt',
 	'centralnotice-countries' => 'Länner',
 	'centralnotice-global-allocation' => 'Global Verdeelung',
 	'centralnotice-allocation' => 'Dispositioun',
@@ -12972,6 +12970,7 @@ $messages['ne'] = array(
  * @author Saruman
  * @author Siebrand
  * @author Southparkfan
+ * @author TBloemink
  * @author Tvdm
  * @author User555
  */
@@ -13177,6 +13176,7 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-archive-banner-confirm' => "Bij archiveren worden alle sjablonen gesubstitueerd en worden pagina's beveiligd. Dit is niet eenvoudig terug te draaien.",
 	'centralnotice-archive-banner-cancel' => 'Annuleren',
 	'centralnotice-archive-campaign' => 'Archief',
+	'centralnotice-archive-campaign-cancel' => 'Annuleren',
 	'centralnotice-delete-banner' => 'Verwijderen',
 	'centralnotice-delete-banner-title' => 'Banner{{PLURAL:$1||s}} verwijderen?',
 	'centralnotice-delete-banner-confirm' => 'Bij verwijderen worden alle instellingen en berichten verwijderd. Overweeg of archiveren beter is.',
@@ -14291,14 +14291,14 @@ $messages['pnt'] = array(
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
 $messages['ps'] = array(
-	'centralnotice-desc' => 'يو مرکزي ويبځی-يادښت ورګډول',
+	'centralnotice-desc' => 'يو مرکزي ويبځی-يادښت ورگډول',
 	'centralnotice-enabled' => 'چارن',
 	'centralnotice-modify' => 'سپارل',
 	'centralnotice-view' => 'کتل',
 	'centralnotice-preview' => 'مخکتنه ($1)',
 	'centralnotice-remove' => 'غورځول',
 	'centralnotice-translate-heading' => 'د $1 لپاره ژباړه',
-	'centralnotice-add' => 'ورګډول',
+	'centralnotice-add' => 'ورگډول',
 	'centralnotice-add-template' => 'يوه کينډۍ ورګډول',
 	'centralnotice-translations' => 'ژباړې',
 	'centralnotice-translate-to' => '... ته ژباړل',
