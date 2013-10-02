@@ -48,6 +48,15 @@
 	}
 	$( '#throttle-enabled' ).click( updateThrottle );
 
+	function updateWeightColumn() {
+		if ( $( '#balanced' ).prop( 'checked' ) ) {
+			$( '.cn-weight' ).hide();
+		} else {
+			$( '.cn-weight' ).show();
+		}
+	}
+	$( '#balanced' ).click( updateWeightColumn );
+
 	$( '#centralnotice-showarchived' ).click( function() {
 		if ( $( this ).prop( 'checked' ) === true ) {
 			$( '.cn-archived-item' ).show();
@@ -57,4 +66,5 @@
 	});
 
 	updateThrottle();
+	updateWeightColumn();
 } )( jQuery );

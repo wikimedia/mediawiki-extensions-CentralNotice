@@ -752,8 +752,12 @@ class CentralNotice extends SpecialPage {
 
 					// Handle weight changes
 					$updatedWeights = $request->getArray( 'weight' );
+					$balanced = $request->getCheck( 'balanced' );
 					if ( $updatedWeights ) {
 						foreach ( $updatedWeights as $templateId => $weight ) {
+							if ( $balanced ) {
+								$weight = 25;
+							}
 							Campaign::updateWeight( $notice, $templateId, $weight );
 						}
 					}
@@ -1074,9 +1078,36 @@ class CentralNotice extends SpecialPage {
 			return '';
 		}
 
+		if ( $this->editable ) {
+			$readonly = array();
+		} else {
+			$readonly = array( 'disabled' => 'disabled' );
+		}
+
+		$weights = array();
+
+		$banners = array();
+		foreach ( $res as $row ) {
+			$banners[] = $row;
+
+			$weights[] = $row->tmp_weight;
+		}
+		$isBalanced = ( count( array_unique( $weights ) ) === 1 );
+
 		// Build Assigned banners HTML
 		$htmlOut = Html::hidden( 'change', 'weight' );
 		$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
+
+		// Equal weight banners
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array(),
+			Xml::label( $this->msg( 'centralnotice-balanced' )->text(), 'balanced' ) );
+		$htmlOut .= Xml::tags( 'td', array(),
+			Xml::check( 'balanced', $isBalanced,
+				array_replace( $readonly,
+					array( 'value' => $notice, 'id' => 'balanced' ) ) ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+
 		$htmlOut .= Xml::openElement( 'table',
 			array(
 				'cellpadding' => 9,
@@ -1087,7 +1118,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( "centralnotice-remove" )->text() );
 		}
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 			$this->msg( 'centralnotice-weight' )->text() );
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 			$this->msg( 'centralnotice-bucket' )->text() );
@@ -1095,7 +1126,7 @@ class CentralNotice extends SpecialPage {
 			$this->msg( 'centralnotice-templates' )->text() );
 
 		// Table rows
-		foreach ( $res as $row ) {
+		foreach ( $banners as $row ) {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			if ( $this->editable ) {
@@ -1106,7 +1137,7 @@ class CentralNotice extends SpecialPage {
 			}
 
 			// Weight
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'cn-weight' ),
 				$this->weightDropDown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 
