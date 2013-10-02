@@ -262,7 +262,6 @@
 					reason: 'preload'
 				};
 			} else if (
-				bannerJson.priority < 3 && /* A priority of 3 is Emergency and cannot be hidden */
 				mw.centralNotice.data.testing === false && /* And we want to see what we're testing! :) */
 				(
 					$.cookie( 'centralnotice_hide_' + mw.centralNotice.data.category ) === 'hide' ||
