@@ -14299,7 +14299,7 @@ $messages['ps'] = array(
 	'centralnotice-remove' => 'غورځول',
 	'centralnotice-translate-heading' => 'د $1 لپاره ژباړه',
 	'centralnotice-add' => 'ورگډول',
-	'centralnotice-add-template' => 'يوه کينډۍ ورګډول',
+	'centralnotice-add-template' => 'يوه کينډۍ ورگډول',
 	'centralnotice-translations' => 'ژباړې',
 	'centralnotice-translate-to' => '... ته ژباړل',
 	'centralnotice-translate' => 'ژباړل',
@@ -14353,8 +14353,8 @@ $messages['ps'] = array(
 	'centralnotice-banner-content-changed' => 'بدلېدلی',
 	'centralnotice-filters' => 'د يادښتونو چاڼگر',
 	'centralnotice-date' => 'نېټه',
-	'centralnotice-apply-filters' => 'چاڼګرونه کارول',
-	'centralnotice-clear-filters' => 'چاڼګرونه پاکول',
+	'centralnotice-apply-filters' => 'چاڼگرونه کارول',
+	'centralnotice-clear-filters' => 'چاڼگرونه پاکول',
 	'centralnotice-priority-low' => 'لږ',
 	'centralnotice-priority-normal' => 'نورمال',
 	'centralnotice-priority-high' => 'لوړ',
@@ -20494,6 +20494,7 @@ $messages['zh-hans'] = array(
  * @author Kevinhksouth
  * @author Liangent
  * @author Littletung
+ * @author Liuxinyu970226
  * @author Mark85296341
  * @author Oapbtommy
  * @author Openerror
@@ -20703,6 +20704,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-archive-banner-title' => '將{{PLURAL:$1|橫幅}}存檔？',
 	'centralnotice-archive-banner-confirm' => '存檔將展開所有模板並設置頁面保護，此動作難以回復。',
 	'centralnotice-archive-banner-cancel' => '取消',
+	'centralnotice-archive-campaign' => '存檔',
 	'centralnotice-archive-campaign-cancel' => '取消',
 	'centralnotice-delete-banner' => '刪除',
 	'centralnotice-delete-banner-title' => '刪除{{PLURAL:$1|橫幅}}？',
