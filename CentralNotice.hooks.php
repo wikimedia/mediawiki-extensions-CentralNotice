@@ -321,6 +321,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
  * @return bool
  */
 function efCentralNoticeUnitTests( &$files ) {
+	$files[ ] = __DIR__ . '/tests/AllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
