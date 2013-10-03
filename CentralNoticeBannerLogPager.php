@@ -174,16 +174,28 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	function showChanges( $row ) {
-		$details = $this->testBooleanChange( 'anon', $row );
-		$details .= $this->testBooleanChange( 'account', $row );
-		$details .= $this->testTextChange( 'category', $row );
-		$details .= $this->testBooleanChange( 'autolink', $row );
-		$details .= $this->testTextChange( 'landingpages', $row );
-		$details .= $this->testTextChange( 'controller_mixin', $row );
-		$details .= $this->testTextChange( 'prioritylangs', $row );
-		$details .= $this->testTextChange( 'devices', $row );
-		if ( $row->tmplog_content_change ) {
+	function showChanges( $newrow ) {
+		$oldrow = false;
+		if ( $newrow->tmplog_action === 'modified' ) {
+			$db = CNDatabase::getDb();
+			$oldrow = $db->selectRow(
+				array( 'cn_template_log' => 'cn_template_log' ),
+				'*',
+				array( 'tmplog_template_id' => $newrow->tmplog_template_id, "tmplog_id < {$newrow->tmplog_id}" ),
+				__METHOD__,
+				array( 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => '1' )
+			);
+		}
+
+		$details = $this->testBooleanChange( 'anon', $newrow, $oldrow );
+		$details .= $this->testBooleanChange( 'account', $newrow, $oldrow );
+		$details .= $this->testTextChange( 'category', $newrow, $oldrow );
+		$details .= $this->testBooleanChange( 'autolink', $newrow, $oldrow );
+		$details .= $this->testTextChange( 'landingpages', $newrow, $oldrow );
+		$details .= $this->testTextChange( 'controller_mixin', $newrow, $oldrow );
+		$details .= $this->testTextChange( 'prioritylangs', $newrow, $oldrow );
+		$details .= $this->testTextChange( 'devices', $newrow, $oldrow );
+		if ( $newrow->tmplog_content_change ) {
 			// Show changes to banner content
 			$details .= $this->msg (
 				'centralnotice-log-label',
@@ -194,11 +206,13 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	private function testBooleanChange( $param, $row ) {
+	private function testBooleanChange( $param, $newrow, $oldrow ) {
 		$result = '';
-		$beginField = 'tmplog_begin_'.$param;
 		$endField = 'tmplog_end_'.$param;
-		if ( $row->$beginField !== $row->$endField ) {
+
+		$oldval = ( $oldrow ) ? $oldrow->$endField : 0;
+
+		if ( $oldval !== $newrow->$endField ) {
 			// Give grep a chance to find the usages:
 			// centralnotice-anon, centralnotice-account, centralnotice-fundraising, centralnotice-autolink
 			$result .= $this->msg(
@@ -206,27 +220,31 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
-					( $row->$beginField ? $this->msg( 'centralnotice-on' )->text() : $this->msg( 'centralnotice-off' )->text() ),
-					( $row->$endField ? $this->msg( 'centralnotice-on' )->text() : $this->msg( 'centralnotice-off' )->text() )
+					( $oldval ? $this->msg( 'centralnotice-on' )->text() : $this->msg( 'centralnotice-off' )->text() ),
+					( $newrow->$endField ? $this->msg( 'centralnotice-on' )->text() : $this->msg( 'centralnotice-off' )->text() )
 				)->text()
 			)->text() . "<br/>";
 		}
 		return $result;
 	}
 
-	private function testTextChange( $param, $row ) {
+	private function testTextChange( $param, $newrow, $oldrow ) {
 		$result = '';
-		$beginField = 'tmplog_begin_'.$param;
 		$endField = 'tmplog_end_'.$param;
-		if ( $row->$beginField !== $row->$endField ) {
-			// Give grep a chance to find the usages: centralnotice-landingpages, centralnotice-prioritylangs
+
+		$oldval = ( ( $oldrow ) ? $oldrow->$endField : '' ) ?: '';
+		$newval = ( $newrow->$endField ) ?: '';
+
+		if ( $oldval !== $newval ) {
+			// Give grep a chance to find the usages: centralnotice-landingpages, centralnotice-prioritylangs,
+			// centralnotice-controller_mixin, centralnotice-category
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-'.$param )->text(),
 				$this->msg(
 					'centralnotice-changed',
-					$row->$beginField,
-					$row->$endField
+					$oldval,
+					$newval
 				)->text()
 			)->text() . "<br/>";
 		}
