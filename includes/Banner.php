@@ -1246,6 +1246,7 @@ class Banner {
 					'not_preferred',
 					'asn_bucket',
 					'not_buckets',
+					'not_throttle',
 					'dev_name',
 				),
 				array(
@@ -1276,6 +1277,7 @@ class Banner {
 					'campaign'         => $row->not_name, // campaign the banner is assigned to
 					'campaign_z_index' => $row->not_preferred, // z level of the campaign
 					'campaign_num_buckets' => intval( $row->not_buckets ),
+					'campaign_throttle' => intval( $row->not_throttle ),
 					'bucket'           => ( intval( $row->not_buckets ) == 1 ) ? 0 : intval( $row->asn_bucket ),
 				);
 			}

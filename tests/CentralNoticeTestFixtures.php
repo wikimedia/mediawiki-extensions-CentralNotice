@@ -8,8 +8,8 @@ class CentralNoticeTestFixtures {
 	static public $defaultCampaign;
 	static public $defaultBanner;
 	
-	function __construct( $user ) {
-		$this->user = $user;
+	function __construct() {
+		$this->user = User::newFromName( 'UTSysop' );
 
 		static::$defaultCampaign = array(
 			'enabled' => 1,
@@ -17,8 +17,10 @@ class CentralNoticeTestFixtures {
 			'startTs' => wfTimestamp( TS_MW ),
 			'projects' => array( ApiCentralNoticeAllocations::DEFAULT_PROJECT ),
 			'project_languages' => array( ApiCentralNoticeAllocations::DEFAULT_LANGUAGE ),
-			'geotargeted' => 1,
+			'preferred' => CentralNotice::NORMAL_PRIORITY,
+			'geotargeted' => 0,
 			'geo_countries' => array( ApiCentralNoticeAllocations::DEFAULT_COUNTRY ),
+			'throttle' => 100,
 			'banners' => array(),
 		);
 		static::$defaultBanner = array(
@@ -49,6 +51,8 @@ class CentralNoticeTestFixtures {
 				$campaign['project_languages'],
 				$campaign['geotargeted'],
 				$campaign['geo_countries'],
+				$campaign['throttle'],
+				$campaign['preferred'],
 				$this->user
 			);
 
@@ -79,6 +83,19 @@ class CentralNoticeTestFixtures {
 			$campaign['banners'] = $banners;
 
 			$this->spec['campaigns'][] = $campaign;
+		}
+	}
+
+	function removeFixtures() {
+		if ( $this->spec ) {
+			foreach ( $this->spec['campaigns'] as $campaign ) {
+				foreach ( $campaign['banners'] as $banner ) {
+					Campaign::removeTemplateFor( $campaign['name'], $banner['name'] );
+					Banner::removeTemplate( $banner['name'], $this->user );
+				}
+
+				Campaign::removeCampaign( $campaign['name'], $this->user );
+			}
 		}
 	}
 }

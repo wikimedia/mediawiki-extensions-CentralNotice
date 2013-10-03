@@ -62,7 +62,8 @@ class CentralNotice extends SpecialPage {
 						$this->showError( 'centralnotice-null-string' );
 					} else {
 						$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
-							$project_languages, $geotargeted, $geo_countries, $this->getUser() );
+							$project_languages, $geotargeted, $geo_countries,
+							100, CentralNotice::NORMAL_PRIORITY, $this->getUser() );
 						if( $result !== true ) {
 							$this->showError( $result );
 						}
@@ -679,6 +680,14 @@ class CentralNotice extends SpecialPage {
 						Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
 					}
 
+					// Set campaign traffic throttle
+					if ( $request->getCheck( 'throttle-enabled' ) ) {
+						$throttle = $request->getInt( 'throttle-cur', 100 );
+					} else {
+						$throttle = 100;
+					}
+					Campaign::setNumericCampaignSetting( $notice, 'throttle', $throttle, 100, 0 );
+
 					// Handle user bucketing setting for campaign
 					$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
 					$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
@@ -879,6 +888,7 @@ class CentralNotice extends SpecialPage {
 				$end = $this->getDateTime( 'end' );
 				$isEnabled = $request->getCheck( 'enabled' );
 				$priority = $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY );
+				$throttle = $request->getInt( 'throttle', 100 );
 				$isLocked = $request->getCheck( 'locked' );
 				$isArchived = $request->getCheck( 'archived' );
 				$noticeProjects = $request->getArray( 'projects', array() );
@@ -891,6 +901,7 @@ class CentralNotice extends SpecialPage {
 				$end = $campaign[ 'end' ];
 				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
 				$priority = $campaign[ 'preferred' ];
+				$throttle = intval( $campaign[ 'throttle' ] );
 				$isLocked = ( $campaign[ 'locked' ] == '1' );
 				$isArchived = ( $campaign[ 'archived' ] == '1' );
 				$noticeProjects = Campaign::getNoticeProjects( $notice );
@@ -899,6 +910,7 @@ class CentralNotice extends SpecialPage {
 				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = Campaign::getNoticeCountries( $notice );
 			}
+			$isThrottled = ($throttle < 100);
 
 			// Build Html
 			$htmlOut = '';
@@ -977,6 +989,29 @@ class CentralNotice extends SpecialPage {
 				Xml::label( $this->msg( 'centralnotice-preferred' )->text(), 'priority' ) );
 			$htmlOut .= Xml::tags( 'td', array(),
 				$this::prioritySelector( false, $this->editable, $priority ) );
+			$htmlOut .= Xml::closeElement( 'tr' );
+			// Throttle impressions
+			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::label( $this->msg( 'centralnotice-throttle' )->text(), 'throttle-enabled' ) );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::check( 'throttle-enabled', $isThrottled,
+					array_replace( $readonly,
+						array( 'value' => $notice, 'id' => 'throttle-enabled' ) ) ) );
+			$htmlOut .= Xml::closeElement( 'tr' );
+			// Throttle value
+			$htmlOut .= Xml::openElement( 'tr', array( 'class' => 'cn-throttle-amount' ) );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::label( $this->msg( 'centralnotice-throttle-amount' )->text(), 'throttle' ) );
+			$throttleLabel = strval( $throttle ) . "%";
+			if ( $this->editable ) {
+				$htmlOut .= Xml::tags( 'td', array(),
+					Xml::span( $throttleLabel, 'cn-throttle', array( 'id' => 'centralnotice-throttle-echo' ) ) .
+					Html::hidden( 'throttle-cur', $throttle, array( 'id' => 'centralnotice-throttle-cur' ) ) .
+					Xml::tags( 'div', array( 'id' => 'centralnotice-throttle-amount' ), '' ) );
+			} else {
+				$htmlOut .= Xml::tags( 'td', array(), $throttleLabel );
+			}
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );

@@ -127,7 +127,8 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 	'remoteExtPath' => 'CentralNotice/modules',
 	'dependencies' => array(
 		'ext.centralNotice.adminUi',
-		'jquery.ui.dialog'
+		'jquery.ui.dialog',
+		'jquery.ui.slider',
 	),
 	'scripts'       => 'ext.centralNotice.adminUi.campaignManager/campaignManager.js',
 	'styles'        => 'ext.centralNotice.adminUi.campaignManager/campaignManager.css',

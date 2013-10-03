@@ -23,6 +23,31 @@
  * @file
  */
 ( function ( $ ) {
+	var RAND_MAX = 30,
+		step_size = 100 / RAND_MAX;
+	$( '#centralnotice-throttle-amount' ).slider( {
+		range: "min",
+		min: 0,
+		max: 100,
+		value: $( "#centralnotice-throttle-cur" ).val(),
+		step: step_size,
+		slide: function( event, element ) {
+			var val = Number( element.value ),
+				rounded = Math.round( val * 10 ) / 10;
+			$( "#centralnotice-throttle-echo" ).html( String( rounded ) + "%" );
+			$( "#centralnotice-throttle-cur" ).val( val );
+		}
+	} );
+
+	function updateThrottle() {
+		if ( $( '#throttle-enabled' ).prop( 'checked' ) ) {
+			$( '.cn-throttle-amount' ).show();
+		} else {
+			$( '.cn-throttle-amount' ).hide();
+		}
+	}
+	$( '#throttle-enabled' ).click( updateThrottle );
+
 	$( '#centralnotice-showarchived' ).click( function() {
 		if ( $( this ).prop( 'checked' ) === true ) {
 			$( '.cn-archived-item' ).show();
@@ -30,4 +55,6 @@
 			$( '.cn-archived-item' ).hide();
 		}
 	});
+
+	updateThrottle();
 } )( jQuery );

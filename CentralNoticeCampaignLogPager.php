@@ -249,6 +249,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testBooleanChange( 'locked', $row );
 		$details .= $this->testBooleanChange( 'geo', $row );
 		$details .= $this->testBooleanChange( 'buckets', $row );
+		$details .= $this->testPercentageChange( 'throttle', $row );
 		$details .= $this->testSetChange( 'projects', $row );
 		$details .= $this->testSetChange( 'languages', $row );
 		$details .= $this->testSetChange( 'countries', $row );
@@ -411,6 +412,34 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			)->text() . "<br />";
 		}
 		return $result;
+	}
+
+	/**
+	 * Test for changes to a property interpreted as a percentage
+	 * @param $param name
+	 * @param $row settings
+	 * @return string
+	 */
+	protected function testPercentageChange( $param, $row ) {
+		$beginField = 'notlog_begin_' . $param;
+		$endField = 'notlog_end_' . $param;
+		if ( $row->$beginField !== $row->$endField ) {
+			$beginMessage = strval( $row->$beginField ) . '%';
+			$endMessage = strval( $row->$endField ) . '%';
+			// Give grep a chance to find the usages: centralnotice-throttle
+			$result .= $this->msg(
+				'centralnotice-log-label',
+				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg(
+					'centralnotice-changed',
+					$beginMessage,
+					$endMessage
+				)->text()
+			)->text() . "<br />";
+			return $result;
+		} else {
+			return '';
+		}
 	}
 
 	/**

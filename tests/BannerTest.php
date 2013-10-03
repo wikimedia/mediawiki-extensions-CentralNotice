@@ -108,7 +108,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $banner->isAutoLinked(), "Failed autolink retrieve from initial" );
 		$this->assertEquals( array( 'testlink' ), $banner->getAutoLinks(), 'Failed autolinks retrieve from initial' );
 
-		$this->assertEquals( array( 1 => 'desktop' ), $banner->getDevices(), 'Failed devices retrieve from initial' );
+		$this->assertEquals( array( 'desktop' ), array_values( $banner->getDevices() ), 'Failed devices retrieve from initial' );
 		$this->assertEquals( array( 'BannerDiet' ), array_keys( $banner->getMixins() ), 'Failed mixins retrieve from initial' );
 		$this->assertEquals( array( 'en', 'ru' ), $banner->getPriorityLanguages(), "Failed prilang retrieve from initial" );
 
@@ -120,7 +120,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $banner2->isAutoLinked(), "Failed autolink from copy" );
 		$this->assertEquals( array( 'testlink' ), $banner2->getAutoLinks(), "Failed autolinks from copy" );
 
-		$this->assertEquals( array( 1 => 'desktop' ), $banner2->getDevices(), "Failed devices from copy" );
+		$this->assertEquals( array( 'desktop' ), array_values( $banner2->getDevices() ), "Failed devices from copy" );
 		$this->assertEquals( array( 'BannerDiet' ), array_keys( $banner2->getMixins() ), "Failed mixins from copy" );
 
 		global $wgNoticeUseTranslateExtension;
