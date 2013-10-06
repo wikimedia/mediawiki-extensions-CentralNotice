@@ -2,6 +2,7 @@
 /**
  * Aliases for special pages of CentralNotice extension.
  */
+// @codingStandardsIgnoreFile
 
 $specialPageAliases = array();
 
