@@ -13172,7 +13172,7 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-user-role-anonymous' => 'Anoniem',
 	'centralnotice-user-role-logged-in' => 'Aangemeld',
 	'centralnotice-banner-class' => 'Categorie',
-	'centralnotice-banner-class-desc' => 'Banners van een bepaalde klasse delen volgvariabelen en groepinstellingen (bijvoorbeeld cookies en weergaveaantallen verbergen).', # Fuzzy
+	'centralnotice-banner-class-desc' => 'Banners van een bepaalde categorie delen volgvariabelen en groepinstellingen (bijvoorbeeld cookies en weergaveaantallen verbergen). Categorienamen mogen magische woorden zijn zoals <nowiki>{{{campaign}}}</nowiki> of <nowiki>{{{banner}}}</nowiki> die automatisch worden uitgebreid op het moment dat ze worden weergegeven. Waarden moeten alfanumeriek zijn.',
 	'centralnotice-templates-included' => 'Opgenomen slablonen',
 	'centralnotice-archive-banner' => 'Archiveren',
 	'centralnotice-archive-banner-title' => 'Banner{{PLURAL:$1||s}} archiveren?',
