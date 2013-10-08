@@ -464,7 +464,6 @@ class Campaign {
 			)
 		);
 
-		$banners = array();
 		$campaigns = array();
 		foreach ( $res as $row ) {
 			$singleRes = $dbr->select(
@@ -499,6 +498,19 @@ class Campaign {
 				$campaign['banners'] = array();
 			} else {
 				$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
+				if ( !is_array( current( $campaign['banners'] ) ) ) {
+					// Old log format; only had weight
+					foreach( $campaign['banners'] as $key => &$value ) {
+						$value = array(
+							'weight' => $value,
+							'bucket' => 0
+						);
+					}
+				}
+			}
+			if ( $campaign['buckets'] === null ) {
+				// Fix for legacy logs before bucketing
+				$campaign['buckets'] = 1;
 			}
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
