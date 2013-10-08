@@ -52,6 +52,8 @@ It can also be used to add or remove old notices.',
 	'centralnotice-banner' => 'Banner',
 	'centralnotice-banner-heading' => 'Banner: $1',
 	'centralnotice-templates' => 'Banners',
+	'centralnotice-throttle' => 'Limit traffic',
+	'centralnotice-throttle-amount' => 'Limit traffic to proportion of total',
 	'centralnotice-weight' => 'Weight',
 	'centralnotice-locked' => 'Locked',
 	'centralnotice-notice' => 'Campaign',
@@ -348,6 +350,8 @@ Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
 	'centralnotice-templates' => '* Used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}}.
 * Used as column header of the table.
 * Used as link text. The link points to [[Special:NoticeTemplate]].',
+	'centralnotice-throttle' => 'Label for a checkbox used to limit traffic to a campaign',
+	'centralnotice-throttle-amount' => 'Label for a dropdown menu listing the maximum percentage of traffic which will be allocated to a campaign',
 	'centralnotice-weight' => 'Used in Notice Details page of [[meta:Special:CentralNotice|Central Notice]] special page.
 * Used as label for the "Weight" select box.
 * Used as column header of the table in [[Special:CentralNotice]].

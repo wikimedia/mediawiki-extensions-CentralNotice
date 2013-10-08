@@ -36,3 +36,12 @@
 .cn-active-campaign {
 	background-color: #ddffdd;
 }
+
+#preferences .ui-slider {
+	width: 50%;
+}
+
+#centralnotice-throttle-echo {
+	font-weight: bold;
+	line-height: 200%;
+}
