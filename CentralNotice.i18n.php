@@ -7031,6 +7031,8 @@ Tamén pode ser usado para engadir ou eliminar avisos vellos.',
 	'centralnotice-banner' => 'Cartel',
 	'centralnotice-banner-heading' => 'Cartel: $1',
 	'centralnotice-templates' => 'Modelos',
+	'centralnotice-throttle' => 'Limitar o tráfico',
+	'centralnotice-throttle-amount' => 'Limitar o tráfico en proporción ao total',
 	'centralnotice-weight' => 'Peso',
 	'centralnotice-locked' => 'Bloqueado',
 	'centralnotice-notice' => 'Aviso',
@@ -15462,6 +15464,7 @@ $messages['ru'] = array(
 	'centralnotice-banner' => 'Баннер',
 	'centralnotice-banner-heading' => 'Баннер: $1',
 	'centralnotice-templates' => 'Шаблоны',
+	'centralnotice-throttle' => 'Ограничить трафик',
 	'centralnotice-weight' => 'Ширина',
 	'centralnotice-locked' => 'Заблокированный',
 	'centralnotice-notice' => 'Кампания',
@@ -15582,6 +15585,7 @@ $messages['ru'] = array(
 	'centralnotice-banner-content' => 'Содержание баннера',
 	'centralnotice-banner-content-changed' => 'Изменено',
 	'centralnotice-filters' => 'Фильтры журналов',
+	'centralnotice-damaged-log' => '$1 — (повреждённый журнал)',
 	'centralnotice-date' => 'Дата',
 	'centralnotice-apply-filters' => 'Применить фильтры',
 	'centralnotice-clear-filters' => 'Очистить фильтры',
@@ -15606,6 +15610,7 @@ $messages['ru'] = array(
 	'centralnotice-bucket-letter' => 'Ведро «$1»',
 	'centralnotice-devicetype-desktop' => 'Настольный компьютер',
 	'centralnotice-all' => 'Все',
+	'centralnotice-banner-name-error' => 'Недопустимое имя баннера. Допустимые имена содержат только буквенно-цифровые символы и нижнее подчеркивание.',
 	'centralnotice-all-except' => 'Все, кроме $1',
 	'centralnotice-excluding-list' => '$1 (исключая $2)',
 	'centralnotice-user-role' => 'Роль пользователя',
@@ -15621,6 +15626,8 @@ $messages['ru'] = array(
 	'centralnotice-delete-banner-title' => 'Удалить {{PLURAL:$1|баннер|баннеры}}?',
 	'centralnotice-delete-banner-cancel' => 'Отмена',
 	'centralnotice-devices' => 'Отображать на устройствах',
+	'centralnotice-start-timestamp' => 'Время начала (UTC)',
+	'centralnotice-end-timestamp' => 'Время окончания (UTC)',
 	'centralnotice-start-date' => 'Дата начала (UTC)',
 	'centralnotice-start-time' => 'Время начала (UTC)',
 	'centralnotice-end-date' => 'Дата окончания (UTC)',
@@ -19454,6 +19461,7 @@ $messages['ur'] = array(
  */
 $messages['uz'] = array(
 	'centralnotice-translations' => 'Tarjimalar',
+	'centralnotice-languages' => 'Tillar',
 );
 
 /** vèneto (vèneto)
