@@ -4221,6 +4221,8 @@ Det kan også bruges til at tilføje eller fjerne gamle meddelelser.',
 	'centralnotice-banner' => 'Banner',
 	'centralnotice-banner-heading' => 'Banner: $1',
 	'centralnotice-templates' => 'Skabeloner',
+	'centralnotice-throttle' => 'Begræns trafikken',
+	'centralnotice-throttle-amount' => 'Begræns trafikken til en andel af den samlede trafik',
 	'centralnotice-weight' => 'Vægt',
 	'centralnotice-locked' => 'Låst',
 	'centralnotice-notice' => 'Kampagne',
@@ -10149,6 +10151,7 @@ $messages['kn'] = array(
 
 /** Korean (한국어)
  * @author Gapo
+ * @author Hym411
  * @author Klutzy
  * @author Kwj2772
  * @author Yknok29
@@ -10195,6 +10198,8 @@ $messages['ko'] = array(
 	'centralnotice-banner' => '배너',
 	'centralnotice-banner-heading' => '배너: $1',
 	'centralnotice-templates' => '배너',
+	'centralnotice-throttle' => '트래픽 제한',
+	'centralnotice-throttle-amount' => '트래픽 총 비율 제한',
 	'centralnotice-weight' => '중요도',
 	'centralnotice-locked' => '잠김',
 	'centralnotice-notice' => '공지',
@@ -20343,6 +20348,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner' => '横幅',
 	'centralnotice-banner-heading' => '横幅：$1',
 	'centralnotice-templates' => '模板',
+	'centralnotice-throttle' => '限制流量',
 	'centralnotice-weight' => '权重',
 	'centralnotice-locked' => '已锁定',
 	'centralnotice-notice' => '市场活动',
