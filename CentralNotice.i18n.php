@@ -20295,6 +20295,7 @@ $messages['yue'] = array(
  * @author Kuailong
  * @author Li3939108
  * @author Liangent
+ * @author Liuxinyu970226
  * @author PhiLiP
  * @author Qiyue2001
  * @author Shirayuki
@@ -20349,6 +20350,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-banner-heading' => '横幅：$1',
 	'centralnotice-templates' => '模板',
 	'centralnotice-throttle' => '限制流量',
+	'centralnotice-throttle-amount' => '限制流量占总额的比例',
 	'centralnotice-weight' => '权重',
 	'centralnotice-locked' => '已锁定',
 	'centralnotice-notice' => '市场活动',
@@ -20752,6 +20754,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-archive-banner-confirm' => '存檔將展開所有模板並設置頁面保護，此動作難以回復。',
 	'centralnotice-archive-banner-cancel' => '取消',
 	'centralnotice-archive-campaign' => '存檔',
+	'centralnotice-archive-campaign-title' => '存檔{{PLURAL:$1|本頁}}？',
 	'centralnotice-archive-campaign-cancel' => '取消',
 	'centralnotice-delete-banner' => '刪除',
 	'centralnotice-delete-banner-title' => '刪除{{PLURAL:$1|橫幅}}？',
