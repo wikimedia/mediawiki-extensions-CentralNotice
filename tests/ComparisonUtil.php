@@ -15,7 +15,7 @@ class ComparisonUtil {
 		} else {
 			$actual_value = static::array_dereference( $super, $path );
 			if ( $expected_value !== $actual_value ) {
-				throw new Exception( "Non-match at " . implode( ".", $path ) );
+				throw new Exception( "Non-match at " . implode( ".", $path ) . " expected {$expected_value}, found {$actual_value}" );
 			}
 		}
 		return true;
