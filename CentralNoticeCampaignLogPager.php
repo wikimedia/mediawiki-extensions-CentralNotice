@@ -423,6 +423,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	protected function testPercentageChange( $param, $row ) {
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;
+		$result = '';
 		if ( $row->$beginField !== $row->$endField ) {
 			$beginMessage = strval( $row->$beginField ) . '%';
 			$endMessage = strval( $row->$endField ) . '%';
@@ -436,10 +437,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 					$endMessage
 				)->text()
 			)->text() . "<br />";
-			return $result;
-		} else {
-			return '';
 		}
+		return $result;
 	}
 
 	/**
