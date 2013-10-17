@@ -303,9 +303,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/**
 	 * @param $param
 	 * @param $row
+	 * @param array $oldrow Required because this is a stupid heirarchy -- @see CentralNoticeBannerLogPager
 	 * @return string
 	 */
-	private function testBooleanChange( $param, $row ) {
+	private function testBooleanChange( $param, $row, $oldrow ) {
 		$result = '';
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;

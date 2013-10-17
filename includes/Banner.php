@@ -434,7 +434,7 @@ class Banner {
 	 * @param DatabaseBase $db
 	 */
 	protected function saveBasicData( $db ) {
-		if ( $this->setBasicDataDirty( false ) ) {
+		if ( $this->dirtyFlags['basic'] ) {
 			$db->update( 'cn_templates',
 				array(
 					 'tmp_display_anon'    => (int)$this->allocateAnon,
@@ -547,7 +547,7 @@ class Banner {
 	 * @param DatabaseBase $db
 	 */
 	protected function saveDeviceTargetData( $db ) {
-		if ( $this->markDeviceTargetDataDirty( false ) ) {
+		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
 			$db->delete( 'cn_template_devices', array( 'tmp_id' => $this->getId() ), __METHOD__ );
 
@@ -655,7 +655,7 @@ class Banner {
 	 * @param DatabaseBase $db
 	 */
 	protected function saveMixinData( $db ) {
-		if ( $this->markMixinDataDirty( false ) ) {
+		if ( $this->dirtyFlags['mixins'] ) {
 			$db->delete( 'cn_template_mixins',
 				array( 'tmp_id' => $this->getId() ),
 				__METHOD__
@@ -745,7 +745,7 @@ class Banner {
 	protected function savePriorityLanguageData() {
 		global $wgNoticeUseTranslateExtension;
 
-		if ( $wgNoticeUseTranslateExtension && $this->markPriorityLanguageDataDirty( false ) ) {
+		if ( $wgNoticeUseTranslateExtension && $this->dirtyFlags['prioritylang'] ) {
 			TranslateMetadata::set(
 				BannerMessageGroup::getTranslateGroupName( $this->getName() ),
 				'prioritylangs',
@@ -825,7 +825,7 @@ class Banner {
 	protected function saveBodyContent() {
 		global $wgNoticeUseTranslateExtension;
 
-		if ( $this->markBodyContentDirty( false ) ) {
+		if ( $this->dirtyFlags['content'] ) {
 			$wikiPage = new WikiPage( $this->getTitle() );
 
 			$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
@@ -1002,8 +1002,7 @@ class Banner {
 
 			$db->commit( __METHOD__ );
 
-			// These all should have been set in the individual save functions, but just
-			// to make sure.
+			// Clear the dirty flags
 			foreach ( $this->dirtyFlags as $flag => &$value ) { $value = false; }
 
 			if ( $this->runTranslateJob ) {
@@ -1442,6 +1441,7 @@ class Banner {
 			'tmplog_action'        => $action,
 			'tmplog_template_id'   => $this->getId(),
 			'tmplog_template_name' => $this->getName(),
+			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
 		);
 
 		foreach ( $endSettings as $key => $value ) {

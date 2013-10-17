@@ -174,6 +174,8 @@ Add one below.',
 	'centralnotice-fundraising' => 'Fundraising',
 	'centralnotice-autolink' => 'Automatic link creation',
 	'centralnotice-landingpages' => 'Landing pages',
+	'centralnotice-controller_mixin' => 'Controller mixins',
+	'centralnotice-category' => 'Banner category',
 	'centralnotice-banner-content' => 'Banner content',
 	'centralnotice-banner-content-changed' => 'Changed',
 	'centralnotice-filters' => 'Log filters',
@@ -580,6 +582,8 @@ Related messages:
 {{Identical|Fundraising}}',
 	'centralnotice-autolink' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
 	'centralnotice-landingpages' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
+	'centralnotice-controller_mixin' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}} (a mixin is a small bit of code added to change base functionality)',
+	'centralnotice-category' => 'Label for a setting. Used as parameter <code>$1</code> of {{msg-mw|Centralnotice-log-label}}',
 	'centralnotice-banner-content' => 'On the [[meta:Special:CentralNoticeLogs|Central Notice Logs]] special page, this is a radio button which shows log entries associated to edits to the MediaWiki pages (one per banner) which define the structure ("content") of every banner and can use other (sub)messages as translatable variables, whose changes are in contrast shown by {{msg-mw|centralnotice-banner-messages}} button.
 Related messages:
 *{{msg-mw|centralnotice-campaign-settings}}
