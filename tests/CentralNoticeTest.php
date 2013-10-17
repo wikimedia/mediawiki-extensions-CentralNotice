@@ -45,6 +45,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			'languages' => 'de, en',
 			'countries' => 'AF, US',
 			'archived' => 0,
+			'throttle' => 100,
 		);
 
 		//get User
@@ -56,8 +57,8 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			$this->userUser->load();
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
-			$project_languages, $geotargeted, $geo_countries, $this->userUser );
-		Campaign::setNumericCampaignSetting( $noticeName, 'preferred', $preferred );
+			$project_languages, $geotargeted, $geo_countries,
+			100, $preferred, $this->userUser );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
 
@@ -71,7 +72,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$landingPages = 'JA1, JA2';
 		$campaign_z_index = 1;
 
-		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1,JA2","device":"desktop","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"bucket":0}]';
+		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"autolink":0,"landing_pages":"JA1,JA2","device":"desktop","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"campaign_throttle":100,"bucket":0}]';
 
 		Banner::addTemplate( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
 			$fundraising, $autolink, $landingPages );

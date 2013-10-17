@@ -117,6 +117,12 @@ class CNDatabasePatcher {
 					 $base . '/patch-custom-groups.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					 'addField', 'cn_notices', 'not_throttle',
+					 $base . '/patch-campaign_throttle.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			$updater->addExtensionUpdate(
 				array(

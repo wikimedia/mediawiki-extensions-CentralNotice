@@ -62,7 +62,8 @@ class CentralNotice extends SpecialPage {
 						$this->showError( 'centralnotice-null-string' );
 					} else {
 						$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
-							$project_languages, $geotargeted, $geo_countries, $this->getUser() );
+							$project_languages, $geotargeted, $geo_countries,
+							100, CentralNotice::NORMAL_PRIORITY, $this->getUser() );
 						if( $result !== true ) {
 							$this->showError( $result );
 						}
@@ -679,6 +680,14 @@ class CentralNotice extends SpecialPage {
 						Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
 					}
 
+					// Set campaign traffic throttle
+					if ( $request->getCheck( 'throttle-enabled' ) ) {
+						$throttle = $request->getInt( 'throttle-cur', 100 );
+					} else {
+						$throttle = 100;
+					}
+					Campaign::setNumericCampaignSetting( $notice, 'throttle', $throttle, 100, 0 );
+
 					// Handle user bucketing setting for campaign
 					$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
 					$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
@@ -743,8 +752,12 @@ class CentralNotice extends SpecialPage {
 
 					// Handle weight changes
 					$updatedWeights = $request->getArray( 'weight' );
+					$balanced = $request->getCheck( 'balanced' );
 					if ( $updatedWeights ) {
 						foreach ( $updatedWeights as $templateId => $weight ) {
+							if ( $balanced ) {
+								$weight = 25;
+							}
 							Campaign::updateWeight( $notice, $templateId, $weight );
 						}
 					}
@@ -879,6 +892,7 @@ class CentralNotice extends SpecialPage {
 				$end = $this->getDateTime( 'end' );
 				$isEnabled = $request->getCheck( 'enabled' );
 				$priority = $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY );
+				$throttle = $request->getInt( 'throttle', 100 );
 				$isLocked = $request->getCheck( 'locked' );
 				$isArchived = $request->getCheck( 'archived' );
 				$noticeProjects = $request->getArray( 'projects', array() );
@@ -891,6 +905,7 @@ class CentralNotice extends SpecialPage {
 				$end = $campaign[ 'end' ];
 				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
 				$priority = $campaign[ 'preferred' ];
+				$throttle = intval( $campaign[ 'throttle' ] );
 				$isLocked = ( $campaign[ 'locked' ] == '1' );
 				$isArchived = ( $campaign[ 'archived' ] == '1' );
 				$noticeProjects = Campaign::getNoticeProjects( $notice );
@@ -899,6 +914,7 @@ class CentralNotice extends SpecialPage {
 				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = Campaign::getNoticeCountries( $notice );
 			}
+			$isThrottled = ($throttle < 100);
 
 			// Build Html
 			$htmlOut = '';
@@ -978,6 +994,29 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', array(),
 				$this::prioritySelector( false, $this->editable, $priority ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
+			// Throttle impressions
+			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::label( $this->msg( 'centralnotice-throttle' )->text(), 'throttle-enabled' ) );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::check( 'throttle-enabled', $isThrottled,
+					array_replace( $readonly,
+						array( 'value' => $notice, 'id' => 'throttle-enabled' ) ) ) );
+			$htmlOut .= Xml::closeElement( 'tr' );
+			// Throttle value
+			$htmlOut .= Xml::openElement( 'tr', array( 'class' => 'cn-throttle-amount' ) );
+			$htmlOut .= Xml::tags( 'td', array(),
+				Xml::label( $this->msg( 'centralnotice-throttle-amount' )->text(), 'throttle' ) );
+			$throttleLabel = strval( $throttle ) . "%";
+			if ( $this->editable ) {
+				$htmlOut .= Xml::tags( 'td', array(),
+					Xml::span( $throttleLabel, 'cn-throttle', array( 'id' => 'centralnotice-throttle-echo' ) ) .
+					Html::hidden( 'throttle-cur', $throttle, array( 'id' => 'centralnotice-throttle-cur' ) ) .
+					Xml::tags( 'div', array( 'id' => 'centralnotice-throttle-amount' ), '' ) );
+			} else {
+				$htmlOut .= Xml::tags( 'td', array(), $throttleLabel );
+			}
+			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(),
@@ -1039,9 +1078,36 @@ class CentralNotice extends SpecialPage {
 			return '';
 		}
 
+		if ( $this->editable ) {
+			$readonly = array();
+		} else {
+			$readonly = array( 'disabled' => 'disabled' );
+		}
+
+		$weights = array();
+
+		$banners = array();
+		foreach ( $res as $row ) {
+			$banners[] = $row;
+
+			$weights[] = $row->tmp_weight;
+		}
+		$isBalanced = ( count( array_unique( $weights ) ) === 1 );
+
 		// Build Assigned banners HTML
 		$htmlOut = Html::hidden( 'change', 'weight' );
 		$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
+
+		// Equal weight banners
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array(),
+			Xml::label( $this->msg( 'centralnotice-balanced' )->text(), 'balanced' ) );
+		$htmlOut .= Xml::tags( 'td', array(),
+			Xml::check( 'balanced', $isBalanced,
+				array_replace( $readonly,
+					array( 'value' => $notice, 'id' => 'balanced' ) ) ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+
 		$htmlOut .= Xml::openElement( 'table',
 			array(
 				'cellpadding' => 9,
@@ -1052,7 +1118,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( "centralnotice-remove" )->text() );
 		}
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 			$this->msg( 'centralnotice-weight' )->text() );
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 			$this->msg( 'centralnotice-bucket' )->text() );
@@ -1060,7 +1126,7 @@ class CentralNotice extends SpecialPage {
 			$this->msg( 'centralnotice-templates' )->text() );
 
 		// Table rows
-		foreach ( $res as $row ) {
+		foreach ( $banners as $row ) {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			if ( $this->editable ) {
@@ -1071,7 +1137,7 @@ class CentralNotice extends SpecialPage {
 			}
 
 			// Weight
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'cn-weight' ),
 				$this->weightDropDown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 

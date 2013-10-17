@@ -17,12 +17,11 @@ class ApiAllocationsTest extends ApiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->userUser = self::$users['uploader']->user;
-
-		$this->cnFixtures = new CentralNoticeTestFixtures( $this->userUser );
+		$this->cnFixtures = new CentralNoticeTestFixtures();
 	}
 
 	protected function tearDown() {
+		$this->cnFixtures->removeFixtures();
 		parent::tearDown();
 	}
 

@@ -2,6 +2,7 @@
 /**
  * Aliases for special pages of CentralNotice extension.
  */
+// @codingStandardsIgnoreFile
 
 $specialPageAliases = array();
 
@@ -107,6 +108,7 @@ $specialPageAliases['fa'] = array(
 /** Galician (galego) */
 $specialPageAliases['gl'] = array(
 	'CentralNotice' => array( 'Aviso_central' ),
+	'CentralNoticeBanners' => array( 'Carteis_do_aviso_central' ),
 	'CentralNoticeLogs' => array( 'Rexistro_do_aviso_central' ),
 	'NoticeTemplate' => array( 'Modelo_de_aviso' ),
 );

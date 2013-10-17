@@ -218,6 +218,7 @@ class Campaign {
 				 'not_archived',
 				 'not_geo',
 				 'not_buckets',
+				 'not_throttle',
 			),
 			$selector,
 			__METHOD__
@@ -231,6 +232,7 @@ class Campaign {
 			$this->archived = (bool)$row->not_archived;
 			$this->geotargeted = (bool)$row->not_geo;
 			$this->buckets = (int)$row->not_buckets;
+			$this->throttle = (int)$row->not_throttle;
 		} else {
 			throw new CampaignExistenceException(
 				"Campaign could not be retrieved from database with id '{$this->id}' or name '{$this->name}'"
@@ -382,6 +384,7 @@ class Campaign {
 				'not_archived',
 				'not_geo',
 				'not_buckets',
+				'not_throttle',
 			),
 			array( 'not_name' => $campaignName ),
 			__METHOD__
@@ -396,6 +399,7 @@ class Campaign {
 				'archived'  => $row->not_archived,
 				'geo'       => $row->not_geo,
 				'buckets'   => $row->not_buckets,
+				'throttle'  => $row->not_throttle,
 			);
 		} else {
 			return false;
@@ -440,6 +444,7 @@ class Campaign {
 	 *         campaign: name of the campaign
 	 *         campaign_z_index
 	 *         campaign_num_buckets
+	 *         campaign_throttle
 	 */
 	static function getHistoricalCampaigns( $ts ) {
 		$dbr = CNDatabase::getDb();
@@ -459,7 +464,6 @@ class Campaign {
 			)
 		);
 
-		$banners = array();
 		$campaigns = array();
 		foreach ( $res as $row ) {
 			$singleRes = $dbr->select(
@@ -475,6 +479,7 @@ class Campaign {
 					"geo" => "notlog_end_geo",
 					"banners" => "notlog_end_banners",
 					"buckets" => "notlog_end_buckets",
+					"throttle" => "notlog_end_throttle",
 				),
 				array(
 					"notlog_id = {$row->log_id}",
@@ -493,6 +498,19 @@ class Campaign {
 				$campaign['banners'] = array();
 			} else {
 				$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
+				if ( !is_array( current( $campaign['banners'] ) ) ) {
+					// Old log format; only had weight
+					foreach( $campaign['banners'] as $key => &$value ) {
+						$value = array(
+							'weight' => $value,
+							'bucket' => 0
+						);
+					}
+				}
+			}
+			if ( $campaign['buckets'] === null ) {
+				// Fix for legacy logs before bucketing
+				$campaign['buckets'] = 1;
 			}
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
@@ -512,6 +530,7 @@ class Campaign {
 					'campaign' => $campaign['name'],
 					'campaign_z_index' => $campaign['preferred'],
 					'campaign_num_buckets' => $campaign['buckets'],
+					'campaign_throttle' => $campaign['throttle'],
 				);
 
 				$banner = array_merge( $banner, $campaign_info, $historical_banner );
@@ -547,13 +566,16 @@ class Campaign {
 	 * @param $project_languages array: Targeted project languages (en, de, etc.)
 	 * @param $geotargeted       int: Boolean setting, 0 or 1
 	 * @param $geo_countries     array: Targeted countries
+	 * @param $throttle          int: limit allocations, 0 - 100
+	 * @param $priority          int: priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
 	 * @param $user              User adding the campaign
 	 *
 	 * @throws MWException
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function addCampaign( $noticeName, $enabled, $startTs, $projects, $project_languages,
-								 $geotargeted, $geo_countries, $user ) {
+		$geotargeted, $geo_countries, $throttle, $priority, $user
+	) {
 		$noticeName = trim( $noticeName );
 		if ( Campaign::campaignExists( $noticeName ) ) {
 			return 'centralnotice-notice-exists';
@@ -578,7 +600,9 @@ class Campaign {
 				'not_enabled' => $enabled,
 				'not_start'   => $dbw->timestamp( $startTs ),
 				'not_end'     => $dbw->timestamp( $endTs ),
-				'not_geo'     => $geotargeted
+				'not_geo'     => $geotargeted,
+				'not_throttle' => $throttle,
+				'not_preferred' => $priority,
 			)
 		);
 		$not_id = $dbw->insertId();
@@ -623,7 +647,8 @@ class Campaign {
 				'enabled'   => $enabled,
 				'preferred' => 0,
 				'locked'    => 0,
-				'geo'       => $geotargeted
+				'geo'       => $geotargeted,
+				'throttle'  => $throttle,
 			);
 			Campaign::logCampaignChange( 'created', $not_id, $user,
 				$beginSettings, $endSettings );

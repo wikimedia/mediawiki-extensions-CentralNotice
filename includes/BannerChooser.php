@@ -112,13 +112,6 @@ class BannerChooser {
 			$this->filterBannersOnColumn( 'device', $this->allocContext->getDevice() );
 		}
 
-		// Always filter out lower Z-levels
-		$highest_z = CentralNotice::LOW_PRIORITY;
-		foreach ( $this->banners as $banner ) {
-			$highest_z = max( $banner[ 'campaign_z_index' ], $highest_z );
-		}
-		$this->filterBannersOnColumn( 'campaign_z_index', $highest_z );
-
 		// Filter for the provided bucket.
 		$bucket = $this->allocContext->getBucket();
 		$this->banners = array_filter(
@@ -153,66 +146,112 @@ class BannerChooser {
 	}
 
 	/**
-	 * Calculate allocation proportions and store them in the banners
-	 *
-	 * note: lumps all campaigns weights together according to absolute proportions of total.
+	 * Calculate allocation proportions and store them in the banners.
 	 */
 	protected function allocate() {
-		$total = array_reduce(
-			$this->banners,
-			function ( $result, $banner ) {
-				return $result + $banner[ 'weight' ];
-			},
-			0
-		);
-
-		if ( $total === 0 ) {
-			//TODO wfDebug
-			return;
+		// Normalize banners to a proportion of the total campaign weight.
+		$campaignTotalWeights = array();
+		foreach ( $this->banners as $banner ) {
+			if ( empty( $campaignTotalWeights[$banner['campaign']] ) ) {
+				$campaignTotalWeights[$banner['campaign']] = 0;
+			}
+			$campaignTotalWeights[$banner['campaign']] += $banner['weight'];
+		}
+		foreach ( $this->banners as &$banner ) {
+			// Adjust the maximum allocation for the banner according to
+			// campaign throttle settings.  The max_allocation would be
+			// this banner's allocation if only one campaign were present.
+			$banner['max_allocation'] = ( $banner['weight'] / $campaignTotalWeights[$banner['campaign']] )
+				* ( $banner['campaign_throttle'] / 100.0 );
 		}
 
-		// Sort the banners by weight, smallest to largest - this helps in slot allocation
-		// because we are not guaranteed to underallocate but we do want to attempt to give
-		// one slot per banner
-		usort( $this->banners, function( $a, $b ) {
-				return ( $a[ 'weight' ] >= $b[ 'weight' ] ) ? 1 : -1;
+		// Collect banners by priority level, and determine total desired
+		// allocation for each level.
+		$priorityTotalAllocations = array();
+		$priorityBanners = array();
+		foreach ( $this->banners as &$banner ) {
+			$priorityBanners[$banner['campaign_z_index']][] = &$banner;
+
+			if ( empty( $priorityTotalAllocations[$banner['campaign_z_index']] ) ) {
+				$priorityTotalAllocations[$banner['campaign_z_index']] = 0;
+			}
+			$priorityTotalAllocations[$banner['campaign_z_index']] += $banner['max_allocation'];
+		}
+
+		// Distribute allocation by priority.
+		$remainingAllocation = 1.0;
+		// Order by priority, descending.
+		krsort( $priorityBanners );
+		foreach ( $priorityBanners as $z_index => $banners ) {
+			if ( $remainingAllocation <= 0.01 ) {
+				// Don't show banners at lower priority levels if we've used up
+				// the full 100% already.
+				foreach ( $banners as &$banner ) {
+					$banner[self::ALLOCATION_KEY] = 0;
+				}
+				continue;
+			}
+
+			if ( $priorityTotalAllocations[$z_index] > $remainingAllocation ) {
+				$scaling = $remainingAllocation / $priorityTotalAllocations[$z_index];
+				$remainingAllocation = 0;
+			} else {
+				$scaling = 1;
+				$remainingAllocation -= $priorityTotalAllocations[$z_index];
+			}
+			foreach ( $banners as &$banner ) {
+				$banner[self::ALLOCATION_KEY] = $banner['max_allocation'] * $scaling;
+			}
+
+		}
+
+		// To be deprecated by continuous allocation:
+		$this->quantizeAllocationToSlots();
+	}
+
+	/**
+	 * Take banner allocations in [0, 1] real form and convert to slots.
+	 * Adjust the real form to reflect final slot numbers.
+	 */
+	function quantizeAllocationToSlots() {
+		// Sort the banners by weight, smallest to largest.  This helps
+		// prevent allocating zero slots to a banner, by rounding in
+		// favor of the banners with smallest allocations.
+		$alloc_key = self::ALLOCATION_KEY;
+		usort( $this->banners, function( $a, $b ) use ( $alloc_key ) {
+				return ( $a[$alloc_key] >= $b[$alloc_key] ) ? 1 : -1;
 			} );
 
-		// First pass allocate the minimum number of slots to each banner, giving at least one
-		// slot per banner up to RAND_MAX slots.
+		// First pass: allocate the minimum number of slots to each banner,
+		// giving at least one slot per banner up to RAND_MAX slots.
 		$sum = 0;
 		foreach ( $this->banners as &$banner ) {
-			$slots = max( floor( ( $banner[ 'weight' ] / $total ) * self::RAND_MAX ), 1 );
+			$slots = intval( max( floor( $banner[self::ALLOCATION_KEY] * self::RAND_MAX ), 1 ) );
 
 			// Compensate for potential overallocation
 			if ( $slots + $sum > self::RAND_MAX ) {
 				$slots = self::RAND_MAX - $sum;
 			}
 
-			$banner[ self::SLOTS_KEY ] = $slots;
+			$banner[self::SLOTS_KEY] = $slots;
 			$sum += $slots;
 		}
 
-		// Allocate each remaining slot one at a time to each banner if they are
-		// underallocated
-		$bannerIndex = 0;
-		$iterCount = 0; // Infinite loop protection
-		while ( ( $sum < self::RAND_MAX ) and ( $iterCount < 5 ) ) {
-			$banner = &$this->banners[ $bannerIndex ];
-			if ( ( ( $banner[ 'weight' ] / $total ) * self::RAND_MAX ) > $banner[ self::SLOTS_KEY ] ) {
-				$banner[ self::SLOTS_KEY ] += 1;
-				$sum += 1;
+		// Second pass: allocate each remaining slot one at a time to each
+		// banner if they are underallocated
+		foreach ( $this->banners as &$banner ) {
+			if ( $sum >= self::RAND_MAX ) {
+				break;
 			}
-			$bannerIndex = $bannerIndex + 1;
-			if ( $bannerIndex > count( $this->banners ) ) {
-				$bannerIndex = 0;
-				$iterCount++;
+			if ( ( $banner['max_allocation'] * self::RAND_MAX ) > $banner[self::SLOTS_KEY] ) {
+				$banner[self::SLOTS_KEY] += 1;
+				$sum += 1;
 			}
 		}
 
-		// Determine allocation percentage
+		// Refresh allocation levels according to quantization
 		foreach ( $this->banners as &$banner ) {
-			$banner[ self::ALLOCATION_KEY ] = $banner[ self::SLOTS_KEY ] / self::RAND_MAX;
+			$banner[self::ALLOCATION_KEY] = $banner[self::SLOTS_KEY] / self::RAND_MAX;
 		}
 	}
 

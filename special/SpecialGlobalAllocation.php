@@ -464,6 +464,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 			}
 		}
 		$device = 'desktop'; //XXX
+		$hashes = array();
 		foreach ( array( true, false ) as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
 				$device = 'desktop'; //XXX

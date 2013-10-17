@@ -82,7 +82,7 @@ class CentralNoticePager extends TemplatePager {
 				Xml::check( 'addTemplates[]', '', array( 'value' => $row->tmp_name ) )
 			);
 			// Weight select
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'cn-weight' ),
 				Xml::listDropDown( "weight[$row->tmp_id]",
 					CentralNotice::dropDownList(
 						$this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 )
@@ -121,7 +121,7 @@ class CentralNoticePager extends TemplatePager {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( "centralnotice-add" )->text()
 			);
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 				$this->msg( 'centralnotice-weight' )->text()
 			);
 		}

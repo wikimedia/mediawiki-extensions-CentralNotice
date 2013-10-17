@@ -249,6 +249,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testBooleanChange( 'locked', $row );
 		$details .= $this->testBooleanChange( 'geo', $row );
 		$details .= $this->testBooleanChange( 'buckets', $row );
+		$details .= $this->testPercentageChange( 'throttle', $row );
 		$details .= $this->testSetChange( 'projects', $row );
 		$details .= $this->testSetChange( 'languages', $row );
 		$details .= $this->testSetChange( 'countries', $row );
@@ -302,9 +303,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/**
 	 * @param $param
 	 * @param $row
+	 * @param array $oldrow Required because this is a stupid heirarchy -- @see CentralNoticeBannerLogPager
 	 * @return string
 	 */
-	private function testBooleanChange( $param, $row ) {
+	private function testBooleanChange( $param, $row, $oldrow ) {
 		$result = '';
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;
@@ -400,6 +402,33 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 					break;
 			}
 			// Give grep a chance to find the usages: centralnotice-preferred
+			$result .= $this->msg(
+				'centralnotice-log-label',
+				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg(
+					'centralnotice-changed',
+					$beginMessage,
+					$endMessage
+				)->text()
+			)->text() . "<br />";
+		}
+		return $result;
+	}
+
+	/**
+	 * Test for changes to a property interpreted as a percentage
+	 * @param $param name
+	 * @param $row settings
+	 * @return string
+	 */
+	protected function testPercentageChange( $param, $row ) {
+		$beginField = 'notlog_begin_' . $param;
+		$endField = 'notlog_end_' . $param;
+		$result = '';
+		if ( $row->$beginField !== $row->$endField ) {
+			$beginMessage = strval( $row->$beginField ) . '%';
+			$endMessage = strval( $row->$endField ) . '%';
+			// Give grep a chance to find the usages: centralnotice-throttle
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-'.$param )->text(),
