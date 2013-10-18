@@ -223,6 +223,11 @@ class BannerChooser {
 		foreach ( $this->banners as &$banner ) {
 			$slots = intval( max( floor( $banner[self::ALLOCATION_KEY] * self::RAND_MAX ), 1 ) );
 
+			// Don't give any slots if the banner is hidden due to e.g. priority level
+			if ( $banner[self::ALLOCATION_KEY] == 0 ) {
+				$slots = 0;
+			}
+
 			// Compensate for potential overallocation
 			if ( $slots + $sum > self::RAND_MAX ) {
 				$slots = self::RAND_MAX - $sum;
@@ -238,7 +243,7 @@ class BannerChooser {
 			if ( $sum >= self::RAND_MAX ) {
 				break;
 			}
-			if ( ( $banner['max_allocation'] * self::RAND_MAX ) > $banner[self::SLOTS_KEY] ) {
+			if ( ( $banner[self::ALLOCATION_KEY] * self::RAND_MAX ) > $banner[self::SLOTS_KEY] ) {
 				$banner[self::SLOTS_KEY] += 1;
 				$sum += 1;
 			}
