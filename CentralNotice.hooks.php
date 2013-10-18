@@ -299,10 +299,29 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$wgCentralBannerRecorder = "{$wgScript}/{$wgContLang->specialPage( 'RecordImpression' )}";
 	}
 
+	// Mangle infrastructure URLs for mobile use -- this should always be last.
+	if ( class_exists( 'MobileContext' ) ) {
+		// Where possible; make things mobile friendly
+		$mc = MobileContext::singleton();
+		if ( $mc->shouldDisplayMobileView() ) {
+			$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
+			$wgCentralPagePath = $mc->getMobileUrl( $wgCentralPagePath );
+			$wgCentralBannerDispatcher = $mc->getMobileUrl( $wgCentralBannerDispatcher );
+			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
+		}
+
+		$mobileHides = array();
+		foreach( $wgNoticeHideUrls as $url ) {
+			$mobileHides[] = $mc->getMobileUrl( $url );
+		}
+		$wgNoticeHideUrls = array_merge( $wgNoticeHideUrls, $mobileHides );
+	}
+
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
+
 	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
 	$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 	$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
