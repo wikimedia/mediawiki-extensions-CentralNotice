@@ -121,4 +121,32 @@ class AllocationsTest extends MediaWikiTestCase {
 
 		$this->assertTrue( ComparisonUtil::assertSuperset( $banners, $expected ) );
 	}
+
+	public function testBlanks() {
+		$this->cnFixtures->addFixtures( array(
+			'campaigns' => array(
+				array(
+					'throttle' => 10,
+					'banners' => array(
+						array(),
+					),
+				),
+			),
+		) );
+		$expected = array(
+			array(
+				'slots' => 3,
+			),
+		);
+
+		$allocContext = new AllocationContext( 'US', 'en', 'wikipedia', 'true', 'desktop', null );
+		$chooser = new BannerChooser( $allocContext );
+		$banners = $chooser->getBanners();
+
+		$this->assertTrue( ComparisonUtil::assertSuperset( $banners, $expected ) );
+
+		$this->assertNotNull( $chooser->chooseBanner( 3 ) );
+
+		$this->assertNull( $chooser->chooseBanner( 4 ) );
+	}
 }
