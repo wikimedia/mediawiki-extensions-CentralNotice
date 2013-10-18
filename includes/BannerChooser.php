@@ -58,11 +58,6 @@ class BannerChooser {
 				return $banner;
 			}
 		}
-
-		// If there was some error, return the last banner (but only if we have banners to return!)
-		if ( count( $this->banners ) ) {
-			return $this->banners[ count( $this->banners ) - 1 ];
-		}
 	}
 
 	protected function filterCampaigns() {
