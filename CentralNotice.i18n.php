@@ -365,10 +365,12 @@ Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
 Used as column header of the table in [[Special:CentralNotice]].
 {{Related|Centralnotice-th}}',
 	'centralnotice-notice' => '* Used as column header in the table (in multiple special pages).
-* Used as label for the "Campaign" input box in [[Special:CentralNoticeLogs]].',
+* Used as label for the "Campaign" input box in [[Special:CentralNoticeLogs]].
+{{Identical|Campaign}}',
 	'centralnotice-notice-heading' => 'Used as <code><nowiki><h2></nowiki></code> heading. Parameters:
 * $1 - campaign',
-	'centralnotice-notices' => 'Used as link text in the tab in [[Special:CentralNotice]]. The link points to [[Special:CentralNotice]].',
+	'centralnotice-notices' => 'Used as link text in the tab in [[Special:CentralNotice]]. The link points to [[Special:CentralNotice]].
+{{Identical|Campaign}}',
 	'centralnotice-notice-exists' => 'Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice.',
 	'centralnotice-no-language' => 'Error message displayed in [[Special:CentralNotice]] when trying to add a notice.
 
@@ -4153,12 +4155,14 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-country-ap' => 'Parth Anhysbys yn Asia y Pasiffig',
 	'centralnotice-country-a1' => 'Anhysbys/Dirprwy Dienw',
 	'centralnotice-country-o1' => 'Anhysbys/Gwlad Arall',
+	'centralnotice-devicetype-desktop' => 'Cyfrifiadur Bwrdd Gwaith',
 	'centralnotice-all' => 'Y cwbl',
 	'centralnotice-all-except' => 'Y cwbl heblaw am $1',
 	'centralnotice-excluding-list' => '$1 (heblaw am $2)',
 	'centralnotice-user-role-anonymous' => 'Dienw',
 	'centralnotice-user-role-logged-in' => 'Mewngofnodedig',
 	'centralnotice-banner-class' => 'Categori',
+	'centralnotice-templates-included' => 'Nodynnau cynwysedig',
 	'centralnotice-archive-banner' => 'Archif',
 	'centralnotice-archive-banner-title' => "Rhoi'r {{PLURAL:$1||faner|baneri}} mewn archif?",
 	'centralnotice-archive-banner-cancel' => 'Diddymer',
@@ -4168,6 +4172,8 @@ Gallwch ychwanegu un isod.',
 	'centralnotice-delete-banner' => 'Dileu',
 	'centralnotice-delete-banner-title' => "Dileu'r {{PLURAL:$1|baner|faner|baneri}}?",
 	'centralnotice-delete-banner-cancel' => 'Dileer',
+	'centralnotice-messages-pending-approval' => 'Ieithoedd ag iddynt negeseuon yn disgwyl cael eu cymeradwyo',
+	'centralnotice-devices' => 'Dangos ar y teclynnau',
 	'centralnotice-start-timestamp' => 'Yn dechrau (GMT)',
 	'centralnotice-end-timestamp' => 'Yn dod i ben (GMT)',
 	'centralnotice-start-date' => 'Dyddiad cychwyn (GMT)',
@@ -4200,7 +4206,7 @@ $messages['da'] = array(
 	'centralnotice-desc' => 'Tilføjer en central sitenotice',
 	'centralnotice-summary' => 'Dette modul lader dig redigere din opsætning for centrale bekendtgørelser.
 Det kan også bruges til at tilføje eller fjerne gamle meddelelser.',
-	'centralnotice-query' => 'Ændr nuværende kampagner',
+	'centralnotice-query' => 'Ændre nuværende kampagner',
 	'centralnotice-notice-name' => 'Kampagnenavn',
 	'centralnotice-enabled' => 'Aktiveret',
 	'centralnotice-modify' => 'Send',
@@ -4232,6 +4238,7 @@ Det kan også bruges til at tilføje eller fjerne gamle meddelelser.',
 	'centralnotice-templates' => 'Skabeloner',
 	'centralnotice-throttle' => 'Begræns trafikken',
 	'centralnotice-throttle-amount' => 'Begræns trafikken til en andel af den samlede trafik',
+	'centralnotice-balanced' => 'Giv alle bannere samme vægt',
 	'centralnotice-weight' => 'Vægt',
 	'centralnotice-locked' => 'Låst',
 	'centralnotice-notice' => 'Kampagne',
@@ -4269,7 +4276,7 @@ Tilføj nogle!',
 	'centralnotice-template-already-exists' => 'Banner er allerede bundet til kampagne.
 Tilføjes ikke.',
 	'centralnotice-preview-template' => 'Forhåndsvis banner',
-	'centralnotice-change-lang' => 'Ændr oversættelsessprog',
+	'centralnotice-change-lang' => 'Ændre oversættelsessprog',
 	'centralnotice-weights' => 'Vægte',
 	'centralnotice-notice-is-locked' => 'Kampagne er låst.
 Fjernes ikke.',
@@ -4350,6 +4357,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.
 	'centralnotice-fundraising' => 'Indsamling',
 	'centralnotice-autolink' => 'Automatisk link oprettelse',
 	'centralnotice-landingpages' => 'Destinationssider',
+	'centralnotice-category' => 'Banner kategori',
 	'centralnotice-banner-content' => 'Banner indhold',
 	'centralnotice-banner-content-changed' => 'Ændret',
 	'centralnotice-filters' => 'Log filtre',
@@ -7657,6 +7665,9 @@ $messages['he'] = array(
 	'centralnotice-banner' => 'כרזה',
 	'centralnotice-banner-heading' => 'כרזה: $1',
 	'centralnotice-templates' => 'כרזות',
+	'centralnotice-throttle' => 'הגבלת תעבורה',
+	'centralnotice-throttle-amount' => 'הגבלת התעבורה לחלק יחסי של סך הכול',
+	'centralnotice-balanced' => 'לתת משקל שווה לכל הכרזות',
 	'centralnotice-weight' => 'משקל',
 	'centralnotice-locked' => 'נעול',
 	'centralnotice-notice' => 'מסע פרסום',
@@ -7775,6 +7786,8 @@ $messages['he'] = array(
 	'centralnotice-fundraising' => 'התרמה',
 	'centralnotice-autolink' => 'יצירה אוטומטית של קישורים',
 	'centralnotice-landingpages' => 'דפי נחיתה',
+	'centralnotice-controller_mixin' => 'תוספות בקרה',
+	'centralnotice-category' => 'קטגוריית כרזה',
 	'centralnotice-banner-content' => 'תוכן כרזה',
 	'centralnotice-banner-content-changed' => 'השתנה',
 	'centralnotice-filters' => 'מסנני יומנים',
@@ -7811,8 +7824,8 @@ $messages['he'] = array(
 	'centralnotice-user-role' => 'תפקיד משתמש',
 	'centralnotice-user-role-anonymous' => 'אלמוני',
 	'centralnotice-user-role-logged-in' => 'מזוהה',
-	'centralnotice-banner-class' => 'מחלקה', # Fuzzy
-	'centralnotice-banner-class-desc' => 'לכּרזות ממחלקה מסוימת יש אותם משתני מעקב והגדרות קבוצה (למשל, עוגיות החבאה או מוני הצגות.)', # Fuzzy
+	'centralnotice-banner-class' => 'קטגוריה',
+	'centralnotice-banner-class-desc' => 'לכרזות מקטגוריה מסוימת יש אותם משתני מעקב והגדרות קבוצה (למשל, עוגיות החבאה או מוני הצגות.) שמות קטגוריה יכולים להיות מילות קסם כמו <nowiki>{{{campaign}}}</nowiki> או <nowiki>{{{banner}}}</nowiki>, שיורחבו אוטומטית בעת התצוגה. הערכים צריכים להכיל רק מספרים ואותיות.',
 	'centralnotice-templates-included' => 'תבניות מוכללות',
 	'centralnotice-archive-banner' => 'ארכיון',
 	'centralnotice-archive-banner-title' => 'לארכב את {{PLURAL:$1|הכּרזה|הכּרזות}}?',
@@ -10335,6 +10348,7 @@ $messages['ko'] = array(
 	'centralnotice-fundraising' => '기금 모금',
 	'centralnotice-autolink' => '자동 링크 만들기',
 	'centralnotice-landingpages' => '랜딩 페이지',
+	'centralnotice-controller_mixin' => '컨트롤러 mixins',
 	'centralnotice-category' => '배너 분류',
 	'centralnotice-banner-content' => '배너 내용',
 	'centralnotice-banner-content-changed' => '바뀜',
@@ -12634,6 +12648,7 @@ $messages['nan'] = array(
 /** Norwegian Bokmål (norsk bokmål)
  * @author Danmichaelo
  * @author Event
+ * @author Haakon K
  * @author Harald Khan
  * @author Jsoby
  * @author Laaknor
@@ -12790,6 +12805,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for mer informasjon.',
 	'centralnotice-fundraising' => 'Pengeinnsamling',
 	'centralnotice-autolink' => 'Automatisk lenkeopprettelse',
 	'centralnotice-landingpages' => 'Målsider',
+	'centralnotice-category' => 'Bannerkategori',
 	'centralnotice-banner-content' => 'Bannerinnhold',
 	'centralnotice-banner-content-changed' => 'Endret',
 	'centralnotice-filters' => 'Loggfiltere',
@@ -14267,9 +14283,18 @@ ch'a lesa http://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi
 	'centralnotice-archive-campaign-title' => 'Archivié {{PLURAL:$1|la campagna|le campagne}}?',
 	'centralnotice-archive-campaign-confirm' => "L'archiviassion a marca na campagna coma inativa ëd fasson përmanenta.",
 	'centralnotice-archive-campaign-cancel' => 'Anulé',
-	'centralnotice-start-date' => "Data d'inissi", # Fuzzy
+	'centralnotice-archive-edit-prevented' => "La modìfica ëd costa campagna a l'é disativà përchè a l'é blocà o archivià. Ch'a modìfica cost ëstat an [[Special:CentralNotice]]",
+	'centralnotice-delete-banner' => 'Scancelé',
+	'centralnotice-delete-banner-title' => 'Scancelé {{PLURAL:$1|tilèt}}',
+	'centralnotice-delete-banner-confirm' => "La scancelassion a gava tuti ij paràmeter e ij mëssagi. Costa assion a peul nen esse tirà andré. Ch'a pija pitòst an considerassion l'archiviassion.",
+	'centralnotice-delete-banner-cancel' => 'Anulé',
+	'centralnotice-messages-pending-approval' => "Lenghe con dij mëssagi al moment an cors d'aprovassion",
+	'centralnotice-devices' => 'Smon-e an sle perifériche',
+	'centralnotice-start-timestamp' => 'Inissi (UTC)',
+	'centralnotice-end-timestamp' => 'Fin (UTC)',
+	'centralnotice-start-date' => "Data d'inissi (UTC)",
 	'centralnotice-start-time' => "Ora d'inissi (UTC)",
-	'centralnotice-end-date' => 'Data fin', # Fuzzy
+	'centralnotice-end-date' => 'Data ëd fin (UTC)',
 	'centralnotice-end-time' => 'Ora ëd fin (UTC)',
 );
 
@@ -20478,6 +20503,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-templates' => '模板',
 	'centralnotice-throttle' => '限制流量',
 	'centralnotice-throttle-amount' => '限制流量占总额的比例',
+	'centralnotice-balanced' => '给予所有横幅同等重要性',
 	'centralnotice-weight' => '权重',
 	'centralnotice-locked' => '已锁定',
 	'centralnotice-notice' => '市场活动',
@@ -20597,6 +20623,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-fundraising' => '筹款',
 	'centralnotice-autolink' => '自动链接创建',
 	'centralnotice-landingpages' => '目标页面',
+	'centralnotice-controller_mixin' => '控制器混合',
 	'centralnotice-category' => '横幅分类',
 	'centralnotice-banner-content' => '横幅内容',
 	'centralnotice-banner-content-changed' => '已更改',
@@ -20838,6 +20865,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-fundraising' => '籌款',
 	'centralnotice-autolink' => '自動鏈接創建',
 	'centralnotice-landingpages' => '登錄頁面',
+	'centralnotice-category' => '橫幅分類',
 	'centralnotice-banner-content' => '橫幅內容',
 	'centralnotice-banner-content-changed' => '已更改',
 	'centralnotice-filters' => '日誌篩選器',
