@@ -149,4 +149,39 @@ class AllocationsTest extends MediaWikiTestCase {
 
 		$this->assertNull( $chooser->chooseBanner( 4 ) );
 	}
+
+	public function testPriority() {
+		$this->cnFixtures->addFixtures( array(
+			'campaigns' => array(
+				array(
+					'preferred' => CentralNotice::LOW_PRIORITY,
+					'banners' => array(
+						array(),
+					),
+				),
+				array(
+					'preferred' => CentralNotice::NORMAL_PRIORITY,
+					'banners' => array(
+						array(),
+					),
+				),
+			),
+		) );
+		$expected = array(
+			array(
+				'campaign' => $this->cnFixtures->spec['campaigns'][0]['name'],
+				'slots' => 0,
+			),
+			array(
+				'campaign' => $this->cnFixtures->spec['campaigns'][1]['name'],
+				'slots' => 30,
+			),
+		);
+
+		$allocContext = new AllocationContext( 'US', 'en', 'wikipedia', 'true', 'desktop', null );
+		$chooser = new BannerChooser( $allocContext );
+		$banners = $chooser->getBanners();
+
+		$this->assertTrue( ComparisonUtil::assertSuperset( $banners, $expected ) );
+	}
 }
