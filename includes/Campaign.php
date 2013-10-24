@@ -455,8 +455,6 @@ class Campaign {
 			),
 			array(
 				"notlog_timestamp <= $ts",
-				"notlog_end_start <= $ts",
-				"notlog_end_end >= $ts",
 			),
 			__METHOD__,
 			array(
@@ -483,12 +481,14 @@ class Campaign {
 				),
 				array(
 					"notlog_id = {$row->log_id}",
+					"notlog_end_start <= $ts",
+					"notlog_end_end >= $ts",
 				),
 				__METHOD__
 			);
 
 			$campaign = $singleRes->fetchRow();
-			if ( $campaign['enabled'] !== "1" ) {
+			if ( !$campaign or $campaign['enabled'] !== "1" ) {
 				continue;
 			}
 			$campaign['projects'] = explode( ", ", $campaign['projects'] );
@@ -571,7 +571,7 @@ class Campaign {
 	 * @param $user              User adding the campaign
 	 *
 	 * @throws MWException
-	 * @return bool|string True on success, string with message key for error
+	 * @return int|string noticeId on success, or message key for error
 	 */
 	static function addCampaign( $noticeName, $enabled, $startTs, $projects, $project_languages,
 		$geotargeted, $geo_countries, $throttle, $priority, $user
@@ -653,7 +653,7 @@ class Campaign {
 			Campaign::logCampaignChange( 'created', $not_id, $user,
 				$beginSettings, $endSettings );
 
-			return true;
+			return $not_id;
 		}
 
 		throw new MWException( 'insertId() did not return a value.' );

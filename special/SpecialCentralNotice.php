@@ -64,7 +64,7 @@ class CentralNotice extends SpecialPage {
 						$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
 							$project_languages, $geotargeted, $geo_countries,
 							100, CentralNotice::NORMAL_PRIORITY, $this->getUser() );
-						if( $result !== true ) {
+						if ( is_string( $result ) ) {
 							$this->showError( $result );
 						}
 					}
