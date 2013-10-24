@@ -43,7 +43,7 @@ class CentralNoticeTestFixtures {
 				'name' => 'TestCampaign_' . rand(),
 			);
 
-			Campaign::addCampaign(
+			$campaign['id'] = Campaign::addCampaign(
 				$campaign['name'],
 				$campaign['enabled'],
 				$campaign['startTs'],
