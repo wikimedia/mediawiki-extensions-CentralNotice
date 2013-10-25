@@ -294,15 +294,15 @@ class SpecialGlobalAllocation extends CentralNotice {
 				$htmlOut .= Html::openElement( 'tr', array( 'class'=>'mw-sp-centralnotice-allocationrow' ) );
 
 				$htmlOut .= Html::openElement( 'td' );
-				$htmlOut .= $this->listProjects( $row['projects'] );
+				$htmlOut .= $row['projects_label'];
 				$htmlOut .= Html::closeElement( 'td' );
 
 				$htmlOut .= Html::openElement( 'td' );
-				$htmlOut .= $this->listLanguages( $row['languages'] );
+				$htmlOut .= $row['languages_label'];
 				$htmlOut .= Html::closeElement( 'td' );
 
 				$htmlOut .= Html::openElement( 'td' );
-				$htmlOut .= $this->listCountries( $row['countries'] );
+				$htmlOut .= $row['countries_label'];
 				$htmlOut .= Html::closeElement( 'td' );
 
 				$htmlOut .= Html::closeElement( 'tr' );
@@ -310,10 +310,10 @@ class SpecialGlobalAllocation extends CentralNotice {
 			$htmlOut .= Html::closeElement( 'table' );
 
 			$htmlOut .= $this->getBannerAllocationsTable(
-				end( $grouping['rows'][0]['projects'] ),
-				end( $grouping['rows'][0]['countries'] ),
-				end( $grouping['rows'][0]['languages'] ),
-				$grouping['rows'][0]['buckets']
+				$grouping['a_project'],
+				$grouping['a_country'],
+				$grouping['a_language'],
+				$grouping['a_num_buckets'] //XXX
 			);
 		}
 
@@ -382,14 +382,27 @@ class SpecialGlobalAllocation extends CentralNotice {
 						$label = $this->msg( 'centralnotice-excluding-list',
 							$this->getLanguage()->commaList( $contributing ),
 							$this->getLanguage()->listToText( $excluding )
-						);
+						)->text();
 					} else {
 						$label = $this->getLanguage()->commaList( $contributing );
 					}
 
+					// Optimization: compact by rendering as text
+					$rows = array();
+					foreach ( $result as $row ) {
+						$rows[] = array(
+							'countries_label' => $this->listCountries( $row['countries'] ),
+							'projects_label' => $this->listProjects( $row['projects'] ),
+							'languages_label' => $this->listLanguages( $row['languages'] ),
+						);
+					}
 					$groupings[] = array(
 						'label' => $label,
-						'rows' => $result,
+						'a_country' => end( $result[0]['countries'] ),
+						'a_project' => end( $result[0]['projects'] ),
+						'a_language' => end( $result[0]['languages'] ),
+						'a_num_buckets' => $result[0]['buckets'],
+						'rows' => $rows,
 					);
 				}
 			}
