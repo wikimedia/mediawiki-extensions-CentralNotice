@@ -483,12 +483,13 @@ class Campaign {
 					"notlog_id = {$row->log_id}",
 					"notlog_end_start <= $ts",
 					"notlog_end_end >= $ts",
+					"notlog_end_enabled = 1",
 				),
 				__METHOD__
 			);
 
 			$campaign = $singleRes->fetchRow();
-			if ( !$campaign or $campaign['enabled'] !== "1" ) {
+			if ( !$campaign ) {
 				continue;
 			}
 			$campaign['projects'] = explode( ", ", $campaign['projects'] );

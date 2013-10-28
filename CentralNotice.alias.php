@@ -353,6 +353,7 @@ $specialPageAliases['vi'] = array(
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
 	'CentralNotice' => array( '中央通告' ),
+	'CentralNoticeBanners' => array( '中央通告版' ),
 	'CentralNoticeLogs' => array( '中央通告日志' ),
 	'NoticeTemplate' => array( '公告模板' ),
 	'BannerAllocation' => array( '横幅分配' ),
