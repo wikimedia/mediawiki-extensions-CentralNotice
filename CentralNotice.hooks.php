@@ -298,19 +298,10 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$wgCentralBannerRecorder = "{$wgScript}/{$wgContLang->specialPage( 'RecordImpression' )}";
 	}
 
-	if ( class_exists( 'MobileContext' ) ) {
-		// Where possible; make things mobile friendly
-		$mc = MobileContext::singleton();
-		$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
-		$wgCentralPagePath = $mc->getMobileUrl( $wgCentralPagePath );
-		$wgCentralBannerDispatcher = $mc->getMobileUrl( $wgCentralBannerDispatcher );
-		$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
-	}
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
-
 	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
 	$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 	$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
