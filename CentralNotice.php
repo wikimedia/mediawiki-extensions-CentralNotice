@@ -115,6 +115,17 @@ $wgNoticeCookieShortExpiry = 1209600;
 // Defaults to one year.
 $wgNoticeCookieLongExpiry = 31536000;
 
+/**
+ * @var string[] $wgNoticeHideUrls Locations of Special:HideBanner targets to hit
+ * when a banner close button is pressed. The hides will then be specific to each
+ * domain specified by $wgNoticeCookieDomain on that wiki.
+ *
+ * If CentralNotice is only enabled on a single wiki, or if cross-wiki hiding is
+ * not desired, the leave this as array(). Page code will always hide a banner
+ * by setting a cookie for that wiki's domain.
+ */
+$wgNoticeHideUrls = array();
+
 // Server-side banner cache timeout in seconds
 $wgNoticeBannerMaxAge = 600;
 

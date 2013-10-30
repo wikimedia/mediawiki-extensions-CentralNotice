@@ -336,17 +336,30 @@
 	// Function for hiding banners when the user clicks the close button
 	// TODO: Make it call up to the special page for cross project hiding
 	window.hideBanner = function () {
-		// Hide current banner
+		var d = new Date(),
+			expiry = mw.config.get( 'wgNoticeCookieShortExpiry' );
+
+		// Immediately hide the banner on the page
 		$( '#centralNotice' ).hide();
 
-		// Set the banner hiding cookie to hide future banners of the same type
-		var d = new Date();
-		d.setSeconds( d.getSeconds() + mw.config.get( 'wgNoticeCookieShortExpiry' ) );
+		// Set a local hide cookie for this banner category
+		d.setSeconds( d.getSeconds() + expiry );
 		$.cookie(
 			'centralnotice_hide_' + mw.centralNotice.data.category,
 			'hide',
 			{ expires: d, path: '/' }
 		);
+
+		// Iterate over all configured URLs to hide this category of banner for all
+		// wikis in a cluster
+		$.each( mw.config.get( 'wgNoticeHideUrls' ), function( idx, value ) {
+			(new Image()).src = value + '?' + $.param( {
+				'duration': expiry,
+				'category': mw.centralNotice.data.category
+			} );
+		} );
+
+
 	};
 
 	// This function is deprecated
