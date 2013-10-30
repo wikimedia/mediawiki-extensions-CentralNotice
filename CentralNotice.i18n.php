@@ -20227,7 +20227,7 @@ $messages['vo'] = array(
 	'centralnotice-desc' => 'Läükön sitanulod zänodik',
 	'centralnotice-enabled' => 'Pemögükon',
 	'centralnotice-modify' => 'Sedön',
-	'centralnotice-preview' => 'Büologed', # Fuzzy
+	'centralnotice-preview' => 'Büologed ($1)',
 	'centralnotice-remove' => 'Moükön',
 	'centralnotice-translate-heading' => 'Tradutam pro $1',
 	'centralnotice-add' => 'Läükön',
@@ -20261,10 +20261,10 @@ Läükolös anikis!',
 	'centralnotice-message' => 'Nun',
 	'centralnotice-clone-notice' => 'Jafön kopiedi samafomota',
 	'centralnotice-preview-all-template-translations' => 'Büologed tradutodas gebidik valik samafomota', # Fuzzy
-	'centralnotice-preferred' => 'Pebuüköl', # Fuzzy
-	'centralnotice-start-date' => 'Primadät', # Fuzzy
+	'centralnotice-preferred' => 'Bügitod',
+	'centralnotice-start-date' => 'Primadät (UTC)',
 	'centralnotice-start-time' => 'Primatim (UTC)',
-	'centralnotice-end-date' => 'Finadät', # Fuzzy
+	'centralnotice-end-date' => 'Finadät (UTC)',
 );
 
 /** Walloon (walon)
