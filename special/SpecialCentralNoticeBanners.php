@@ -396,7 +396,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'section' => 'settings',
 			'type' => 'multiselect',
 			'disabled' => !$this->editable,
-			'label' => 'Display on',
+			'label-message' => 'centralnotice-banner-display-on',
 			'options' => $availableDevices,
 			'default' => $assignedDevices,
 			'cssclass' => 'separate-form-element',
