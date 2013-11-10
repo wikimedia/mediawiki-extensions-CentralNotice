@@ -230,6 +230,17 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
+	protected function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
+		return Xml::tags(
+			'td',
+			array(
+				'dir' => 'ltr', // Time is left-to-right in all languages
+				'class' => 'cn-timepicker',
+			),
+			$this->timeSelector( $prefix, $editable, $timestamp )
+		);
+	}
+
 	protected function timeSelector( $prefix, $editable, $timestamp = null ) {
 		if ( $editable ) {
 			$minutes = $this->paddedRange( 0, 59 );
@@ -559,7 +570,7 @@ class CentralNotice extends SpecialPage {
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -930,7 +941,7 @@ class CentralNotice extends SpecialPage {
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -940,7 +951,7 @@ class CentralNotice extends SpecialPage {
 			// End Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-end-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $this->editable, $end ) );
+			$htmlOut .= $this->timeSelectorTd( 'end', $this->editable, $end );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
