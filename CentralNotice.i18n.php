@@ -1395,6 +1395,7 @@ $messages['arz'] = array(
 );
 
 /** Assamese (অসমীয়া)
+ * @author Amire80
  * @author Bishnu Saikia
  * @author Chaipau
  * @author Gitartha.bordoloi
@@ -1480,7 +1481,7 @@ $messages['as'] = array(
 যোগ কৰা হোৱা নাই।',
 	'centralnotice-invalid-date-range' => 'অবৈধ তাৰিখ পৰিসীমা।
 আপডেট হোৱা নাই',
-	'centralnotice-null-string' => 'খালী ষ্ট্ৰিং যোগ কৰিব নোৱাৰি। 
+	'centralnotice-null-string' => 'খালী ষ্ট্ৰিং যোগ কৰিব নোৱাৰি।
 যোগ কৰা হোৱা নাই।',
 	'centralnotice-no-notices-exist' => 'কোনো প্ৰচাৰ নাই। 
 তলত এটা যোগ কৰক।',
@@ -4698,6 +4699,7 @@ $messages['de-formal'] = array(
 );
 
 /** Zazaki (Zazaki)
+ * @author Amire80
  * @author Erdemaslancan
  * @author Gorizon
  * @author Mirzali
@@ -4760,7 +4762,7 @@ De nikeno',
 	'centralnotice-remove-notice-doesnt-exist' => 'Kampanya çıniya.
 theba de wedaryayışi çıniyo.',
 	'centralnotice-banner-doesnt-exist' => 'Afiş çıno.',
-	'centralnotice-template-still-bound' => 'Şablon hona "$1"\'é grédayeyo. 
+	'centralnotice-template-still-bound' => 'Şablon hona "$1"\'é grédayeyo.
 Néhewadéno',
 	'centralnotice-template-body' => 'Bedenê Sabloner:',
 	'centralnotice-day' => 'Roc',
@@ -7496,6 +7498,7 @@ Lueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.',
 );
 
 /** Gujarati (ગુજરાતી)
+ * @author Amire80
  * @author Ashok modhvadia
  * @author Dsvyas
  * @author KartikMistry
@@ -7550,7 +7553,7 @@ $messages['gu'] = array(
 	'centralnotice-template-exists' => 'જાહેરાત ફલક પહેલેથી મોજૂદ છે.
 તેથી નથી ઉમેરતા નથી',
 	'centralnotice-notice-doesnt-exist' => 'ઝુંબેશ અસ્તિત્વ ધરાવતી નથી.',
-	'centralnotice-remove-notice-doesnt-exist' => 'ઝુંબેશ અસ્તિત્વમાં નથી 
+	'centralnotice-remove-notice-doesnt-exist' => 'ઝુંબેશ અસ્તિત્વમાં નથી
 હટાવવા લાયક કાંઈ નથી',
 	'centralnotice-banner-doesnt-exist' => 'જાહેરાત ફલક અસ્તિત્વ ધરાવતું નથી.',
 	'centralnotice-template-still-bound' => 'બેનર "$1" હજી ઝુંબેશનો ભાગ છે.
@@ -7621,7 +7624,7 @@ $messages['gu'] = array(
 	'centralnotice-no-allocation' => 'કોઈ પણ જાહેરાત ફલક આવંટિત ન થયું',
 	'centralnotice-allocation-description' => 'ભાષા: $1, પરિયોજના: $2, માટે $3 દેશમાં, $4 સાધન પર જાહેરાત ફલક ફાળવણી',
 	'centralnotice-percentage' => 'ટકાવારી',
-	'centralnotice-documentwrite-error' => 'બેનરમાં  document.write() નહીં વાપરી શકાય. 
+	'centralnotice-documentwrite-error' => 'બેનરમાં  document.write() નહીં વાપરી શકાય.
 વધુ માહિતે માટે http://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.',
 	'centralnotice-preferred' => 'અગ્રતા',
 	'centralnotice-logs' => 'લૉગ',
@@ -7794,7 +7797,7 @@ $messages['he'] = array(
 	'centralnotice-banner-collapsible' => 'מתקפלת',
 	'centralnotice-banner-fundraising' => 'זוהי כרזת התרמה',
 	'centralnotice-banner-autolink' => 'ליצור אוטומטית קישור לדף נחיתה',
-	'centralnotice-banner-autolink-help' => 'כשזה מופעל, ההרחבה מיצור קישור מותאם אל $3 עם דף נחיתה שייבחר באופן אקראי. צריך להיות תג עוגן עם <code dir="ltr">$1</code> בגוף הכּרזה.',
+	'centralnotice-banner-autolink-help' => 'כשזה מופעל, ההרחבה תיצור קישור מותאם־אזור אל $3 עם דף נחיתה שייבחר באופן אקראי. צריך להיות תג עוגן עם $1‎ בגוף הכּרזה.',
 	'centralnotice-banner-landing-pages' => 'דפי נחיתה (מופרדים בפסיקים):',
 	'centralnotice-banner-landing-pages-default' => 'למשל JimmyAppeal01',
 	'centralnotice-banner-mixins' => 'תוספות (מופרדות בפסיקים):',
@@ -7903,6 +7906,7 @@ $messages['he'] = array(
 );
 
 /** Hindi (हिन्दी)
+ * @author Amire80
  * @author Ansumang
  * @author Karthi.dr
  * @author Kaustubh
@@ -7966,8 +7970,8 @@ $messages['hi'] = array(
 	'centralnotice-project-lang' => 'परियोजना भाषा',
 	'centralnotice-project-name' => 'प्रकल्प नाम',
 	'centralnotice-assigned-templates' => 'सौंपा गया बैनर',
-	'centralnotice-no-templates' => 'कोई बैनर नहीं मिली । 
-कुछ जोड़ें !',
+	'centralnotice-no-templates' => 'कोई बैनर नहीं मिली।
+कुछ जोड़ें!',
 	'centralnotice-no-templates-assigned' => 'कोई बैनर अभियान के लिए सौंपा नहीं गया ।
 कुछ जोड़ें !',
 	'centralnotice-available-templates' => 'उपलब्ध बैनर',
@@ -9047,6 +9051,7 @@ $messages['ilo'] = array(
 	'centralnotice' => 'Admin ti tengnga a paammo',
 	'noticetemplate' => 'Admin ti tengnga a paammo',
 	'bannerallocation' => 'Admin ti tengnga a paammo',
+	'globalallocation' => 'Admin ti tengnga a paammo',
 	'centralnoticelogs' => 'Admin ti tengnga a paammo',
 	'right-centralnotice-admin' => 'Taripatuen dagiti tengnga a paammo',
 	'action-centralnotice-admin' => 'taripatuen dagiti tengnga a paammo',
@@ -9058,8 +9063,9 @@ Mabalin pay nga usaren a pag-nayon wenno pag-ikkat kadagiti daan a paammo.',
 	'centralnotice-enabled' => 'Napabalin',
 	'centralnotice-modify' => 'Ited',
 	'centralnotice-view' => 'Kitaen',
-	'centralnotice-save-banner' => 'Idulin ti wagayway', # Fuzzy
-	'centralnotice-preview' => 'Ipadas', # Fuzzy
+	'centralnotice-save-banner' => 'Idulin',
+	'centralnotice-preview' => 'Ipadas ($1)',
+	'centralnotice-live-preview' => 'Ipadas nga adda iti-wiki',
 	'centralnotice-nopreview' => '(Saan a mabalin nga ipadas)',
 	'centralnotice-add-new' => 'Agnayon ti baro a kampania',
 	'centralnotice-remove' => 'Ikkaten',
@@ -9068,6 +9074,8 @@ Mabalin pay nga usaren a pag-nayon wenno pag-ikkat kadagiti daan a paammo.',
 	'centralnotice-manage-templates' => 'Taripatuen dagiti wagayway',
 	'centralnotice-add' => 'Inayon',
 	'centralnotice-add-notice' => 'Agnayon ti maysa a kampania',
+	'centralnotice-add-notice-button' => 'Agpartuat',
+	'centralnotice-add-notice-cancel-button' => 'Ukasen',
 	'centralnotice-edit-notice' => 'Urnosen ti kampania',
 	'centralnotice-add-template' => 'Agnayon ti wagayway',
 	'centralnotice-show-notices' => 'Iparang dagiti kampania',
@@ -9080,6 +9088,9 @@ Mabalin pay nga usaren a pag-nayon wenno pag-ikkat kadagiti daan a paammo.',
 	'centralnotice-banner' => 'Wagayway',
 	'centralnotice-banner-heading' => 'Wagayway: $1',
 	'centralnotice-templates' => 'Dagiti wagayway',
+	'centralnotice-throttle' => 'Patinggaan ti trapiko',
+	'centralnotice-throttle-amount' => 'Patinggaan ti trapiko a maipada iti dagup',
+	'centralnotice-balanced' => 'Ikkan amin a wagayway iti agpapada a kadagsen',
 	'centralnotice-weight' => 'Kadagsen',
 	'centralnotice-locked' => 'Napengdan',
 	'centralnotice-notice' => 'Kampania',
@@ -9095,8 +9106,8 @@ Saan nga agnay-ayon.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Awan ti kampania.
 Awan ti maikkat.',
 	'centralnotice-banner-doesnt-exist' => 'Awan ti wagayway.',
-	'centralnotice-template-still-bound' => 'Ti wagayway ket nairaman pay iti maysa a kampania.
-Saan nga ik-ikkaten.', # Fuzzy
+	'centralnotice-template-still-bound' => 'Saan a maikkat ti wagayway "$1" gaputa nairaman pay laeng iti maysa a kampania.
+Saan nga ik-ikkaten.',
 	'centralnotice-template-body' => 'Bagi ti wagayway:',
 	'centralnotice-day' => 'Aldaw',
 	'centralnotice-year' => 'Tawen',
@@ -9104,6 +9115,9 @@ Saan nga ik-ikkaten.', # Fuzzy
 	'centralnotice-hours' => 'Oras',
 	'centralnotice-min' => 'Minuto',
 	'centralnotice-project-lang' => 'Pagsasao ti gandat',
+	'centralnotice-select-all' => 'Pilien amin',
+	'centralnotice-remove-all' => 'Ikkaten amin',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|a banag|kadagiti banag}} ti napili',
 	'centralnotice-project-name' => 'Nagan ti gandat',
 	'centralnotice-assigned-templates' => 'Dagiti napatudonan a wagayway',
 	'centralnotice-no-templates' => 'Awan dagiti nabirukan a wagayway.
@@ -9131,12 +9145,14 @@ Agnayon ti maysa dita baba.',
 	'centralnotice-settings' => 'Dagiti kasasaad',
 	'centralnotice-edit-template' => 'Urnosen ti wagayway',
 	'centralnotice-edit-template-summary' => 'Ti agaramid ti lokal a maipatarus a mensahe, rikpan addan ti hyphen a kuerdas iti tallo a kulot a pangrikep, a kas daytoy {{{jimbo-quote}}}.',
+	'centralnotice-edit-template-magicwords' => 'Dagiti salamangka a balikas nga inted babaen ti wagayway ti mixins: $1',
 	'centralnotice-message' => 'Mensahe',
 	'centralnotice-message-not-set' => 'Saan a nai-disso ti mensahe',
 	'centralnotice-clone' => 'Kapadpada',
 	'centralnotice-clone-notice' => 'Agaramid ti kopia iti wagayway',
 	'centralnotice-clone-name' => 'Nagan:',
-	'centralnotice-preview-all-template-translations' => 'Ipadas amin dagiti magun-od a pagpatarus ti wagayway', # Fuzzy
+	'centralnotice-clone-cancel' => 'Ukasen',
+	'centralnotice-preview-all-template-translations' => 'Ipadas amin dagiti napasingkedan a patarus',
 	'centralnotice-insert' => 'Isengngat: $1',
 	'centralnotice-close-button' => 'Irekep ti buton',
 	'centralnotice-close-title' => 'Irikep',
@@ -9150,10 +9166,13 @@ Agnayon ti maysa dita baba.',
 	'centralnotice-banner-collapsible' => 'Mairebba',
 	'centralnotice-banner-fundraising' => 'Daytoy ket maysa a panagdawat ti donasion a wagayway',
 	'centralnotice-banner-autolink' => 'Automatiko nga agaramid ti arusadusan a panid a panilpo',
-	'centralnotice-banner-autolink-help' => 'Agaramid ti angkla nga etiketa idiay bagi ti wagayway nga addaan ti $1 ken agikabil ti maysa wenno adu nga arusadusan ti pampanid dita baba, kas pagarigan, $2. Ti panilpo ket ma-utomatiko a maaramid patinayon no kitaen ti wagayway.', # Fuzzy
+	'centralnotice-banner-autolink-help' => 'No mapakabaelan ti CentralNotice automatikonto nga agpartuat ti lokalisado a silpo iti $3 nga addaan ti pagtungpalan a panid a pugto a mapili. Nasken nga adda iti etiketa ti angkla iti $1 iti bagi ti wagayway.',
 	'centralnotice-banner-landing-pages' => 'Arusadusan ti pampanid (naisina ti-koma) :',
+	'centralnotice-banner-landing-pages-default' => 'kasla iti JimmyAppeal01',
+	'centralnotice-banner-mixins' => 'Mixins (naisinsina iti koma):',
 	'centralnotice-geo' => 'Napuntaan a lugar',
 	'centralnotice-countries' => 'Dagiti pagilian',
+	'centralnotice-global-allocation' => 'Global nga alokasion',
 	'centralnotice-allocation' => 'Nakailasinan',
 	'centralnotice-view-allocation' => 'Kitaen ti nakailasinan ti wagayway',
 	'centralnotice-allocation-instructions' => 'Pilien ti tiempo a kayatmo a kitaen para  iti nakailasinan ti wagayway:',
@@ -9162,7 +9181,8 @@ Agnayon ti maysa dita baba.',
 	'centralnotice-projects' => 'Dagiti gandat',
 	'centralnotice-country' => 'Pagilian',
 	'centralnotice-no-allocation' => 'Awan dagiti nailasinan a wagayway.',
-	'centralnotice-allocation-description' => 'Nailasinan ti wagayway para iti $1. $2 idiay $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'Alokasion ti wagayway para iti pagsasao: $1, gandat: $2, iti pagilian: $3, iti ramit ti $4',
+	'centralnotice-historical-allocation-description' => 'Alokasion ti wagayway para iti pagsasaoe: $1, gandat: $2, iti pagiliany: $3, iti ramit ti $4, iti panawen ti $5',
 	'centralnotice-percentage' => 'Porsiento',
 	'centralnotice-documentwrite-error' => 'document.write() saan a mabalin a mausar ti kaunegan ti wagayway.
 Kitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a paammo.',
@@ -9189,24 +9209,68 @@ Kitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a paammo
 	'centralnotice-fundraising' => 'Agdawdawat ti donasion',
 	'centralnotice-autolink' => 'Automatiko a pinagaramid ti panilpo',
 	'centralnotice-landingpages' => 'Arusadusan ti pampanid',
+	'centralnotice-controller_mixin' => 'Panagtengngel ti mixins',
+	'centralnotice-category' => 'Kategoria ti wagayway',
 	'centralnotice-banner-content' => 'Linaon ti wagayway',
 	'centralnotice-banner-content-changed' => 'Sinukatan',
 	'centralnotice-filters' => 'Ilista dagiti sagat',
+	'centralnotice-damaged-log' => '$1 - (nadadael a listaan)',
 	'centralnotice-date' => 'Petsa',
 	'centralnotice-apply-filters' => 'Idangep dagiti sagat',
 	'centralnotice-clear-filters' => 'Dalusan dagiti sagat',
-	'centralnotice-banner-messages' => 'Mensahe dagiti wagayway', # Fuzzy
-	'centralnotice-filter-template-prompt' => 'Ti nagan ti wagayway ket aglaon ti:', # Fuzzy
+	'centralnotice-banner-messages' => 'Dagiti mabalin a maipatarus mensahe dagiti wagayway',
+	'centralnotice-filter-template-prompt' => 'Sagaten dagiti wagayway (a kas ti Jimmy 2008)',
 	'centralnotice-filter-template-submit' => 'Ipakat ti sagat',
 	'centralnotice-filter-template-banner' => 'Dagiti wagayway a sagat',
 	'centralnotice-priority-low' => 'ababa',
 	'centralnotice-priority-normal' => 'kadawyan',
 	'centralnotice-priority-high' => 'nangato',
 	'centralnotice-priority-emergency' => 'emerhensia',
+	'centralnotice-prioritylangs' => 'Dagiti prioridad a pagsasao',
+	'centralnotice-prioritylangs-explain' => 'Ti panagmarka ti pagsasao a kas prioridad ket managwisto kadagiti agipatpatarus nga umunada nga agipatarus kadagitoy a pagsasao.',
+	'centralnotice-aggregate-group-desc' => 'Amin dagiti mensahe iti daytoy a grupo ket mairaman kadagiti wagayway iti Central Notice.',
+	'centralnotice-country-eu' => 'Di ammo/Rehion ti Kappon ti Europa',
+	'centralnotice-country-ap' => 'Di ammo/Rehion ti Asia Pasipiko',
+	'centralnotice-country-a1' => 'Di ammo/Di ammo a Pannakbagi',
+	'centralnotice-country-a2' => 'Di ammo/Mangit-ited ti Satelite',
+	'centralnotice-country-o1' => 'Di ammo/Sabali a Pagilian',
 	'centralnotice-country-unknown' => 'Di ammo/Saan a mabirukan ti heograpia',
-	'centralnotice-start-date' => 'Petsa a mangrugi', # Fuzzy
+	'centralnotice-buckets' => 'Panagtimba ti agar-aramat',
+	'centralnotice-bucket' => 'Timba',
+	'centralnotice-bucket-letter' => 'Timba ti "$1"',
+	'centralnotice-devicetype-desktop' => 'Desktop a Kompiuter',
+	'centralnotice-all' => 'Amin',
+	'centralnotice-generic-error' => 'Awan ti husto a pammalubosmo nga agaramid ti tignay wenno ti tignay met idi ket imbalido.',
+	'centralnotice-banner-name-error' => 'Imbalido ti naited a wagayway. Dagiti husto a nagan ket aglaon laeng ti alpa-numeriko ken dagiti karakter ti underscore.',
+	'centralnotice-all-except' => 'Amin malaksid ti $1',
+	'centralnotice-excluding-list' => '$1 (malaksid ti $2)',
+	'centralnotice-user-role' => 'Papel ti agar-aramat',
+	'centralnotice-user-role-anonymous' => 'Di ammo',
+	'centralnotice-user-role-logged-in' => 'Nakastrek',
+	'centralnotice-banner-class' => 'Kategoria',
+	'centralnotice-banner-class-desc' => 'Dagiti wagayway iti nainaganan a kategoria ket makibingay kadagiti pagdudumaan a panagsurot ken dagiti panangiyasentar ti grupo (kasla iti panangilemmeng kadagiti galieta ken dagiti bilang ti impresion.) Dagiti nagan ti kategoria ket mabalin a dagiti salamangka a balikas a kas iti <nowiki>{{{kampania}}}</nowiki> wenno <nowiki>{{{wagayway}}}</nowiki> dagitoy ket automatikonto a mapadakkel iti oras a pannakaiparang. Dagiti pateg ket nasken nga alpanumeriko.',
+	'centralnotice-templates-included' => 'Dagiti plantilia a nairaman',
+	'centralnotice-archive-banner' => 'Naidulin',
+	'centralnotice-archive-banner-title' => 'Naidulin {{PLURAL:$1|a wagayway|a wagwagayway}}?',
+	'centralnotice-archive-banner-confirm' => 'Ti panangidulin ket mangpadakkel kadagiti amin a nairaman a plantilia ken iyasentarna ti pannakasalaknib ti panid. Daytoy ket saan a nalaka a maipasubli a tignay.',
+	'centralnotice-archive-banner-cancel' => 'Ukasen',
+	'centralnotice-archive-show' => 'Ipakita dagiti naidulin a kampania',
+	'centralnotice-archive-campaign' => 'Naidulin',
+	'centralnotice-archive-campaign-title' => 'Naidulin {{PLURAL:$1|a kampania|a kamkampania}}?',
+	'centralnotice-archive-campaign-confirm' => 'Ti panangidulin ket mangmarka ti kampania a kas permanente a saan nga aktibo.',
+	'centralnotice-archive-campaign-cancel' => 'Ukasen',
+	'centralnotice-archive-edit-prevented' => 'Nabaldado ti panag-urnos iti daytoy a kampania gaputa daytoy ket mabalin a naserran wenno naidulin. Baliwan ti kasasaad manipud ti [[Special:CentralNotice]].',
+	'centralnotice-delete-banner' => 'Ikkaten',
+	'centralnotice-delete-banner-title' => 'Ikkaten {{PLURAL:$1|ti wagayway|dagiti wagayway}}?',
+	'centralnotice-delete-banner-confirm' => 'Ti panagikkat ket mangikkat kadagiti amin a pannakaiyasentar ken dagiti mensahe. Daytoy a tignay ket saan a mabalin a maisubli. Imbes ket a padasen ti mangidulin.',
+	'centralnotice-delete-banner-cancel' => 'Ukasen',
+	'centralnotice-messages-pending-approval' => 'Dagiti pagsasao nga addaan kadagiti mensahe nga agur-uray ti pammasingked',
+	'centralnotice-devices' => 'Iparang kadagiti ramit',
+	'centralnotice-start-timestamp' => 'Mangrugi (UTC)',
+	'centralnotice-end-timestamp' => 'Agpatingga (UTC)',
+	'centralnotice-start-date' => 'Rugi a petsa (UTC)',
 	'centralnotice-start-time' => 'Oras a mangrugi (UTC)',
-	'centralnotice-end-date' => 'Lippasan ti petsa', # Fuzzy
+	'centralnotice-end-date' => 'Patingga a petsa (UTC)',
 	'centralnotice-end-time' => 'Oras a pannakalippas (UTC)',
 );
 
@@ -10029,7 +10093,7 @@ $messages['ka'] = array(
 	'centralnotice-banner-collapsible' => 'დასაკეცი',
 	'centralnotice-banner-fundraising' => 'ეს არის შემოწირულობების ბანერი',
 	'centralnotice-banner-autolink' => 'მიზნობრივი გვერდის ბმულის ავტომატურად შექმნა',
-	'centralnotice-banner-autolink-help' => 'დაამატეთ ბმულის ტეგი ბანერის სხეულში $1 დახმარებით, ქვევით მიუთითეთ ერთი ან რამდენიმე სამიზნო გვერდი, $2. ბმული შეიქმნება ავტომატურად ბანერის დათვალიერებისას.', # Fuzzy
+	'centralnotice-banner-autolink-help' => 'When enabled CentralNotice will automatically create a localised link to $3 with a landing page selected at random. There must be an anchor tag with $1 in the banner body.',
 	'centralnotice-banner-landing-pages' => 'მიზნობრივი გვერდები (მძიმით გამოყოფილი):',
 	'centralnotice-geo' => 'გეო-მიზნობრივი',
 	'centralnotice-countries' => 'ქვეყნები',
@@ -12056,6 +12120,7 @@ $messages['mn'] = array(
 );
 
 /** Marathi (मराठी)
+ * @author Amire80
  * @author Evision
  * @author Htt
  * @author Kaajawa
@@ -12147,7 +12212,7 @@ $messages['mr'] = array(
 जोडु नका.',
 	'centralnotice-invalid-date-range' => 'दिनांकांचा अग्राह्य आवाका.
 अद्ययावत् करू नये.',
-	'centralnotice-null-string' => 'null string जोडता येत नाही 
+	'centralnotice-null-string' => 'null string जोडता येत नाही
 जोडत नाही आहे.',
 	'centralnotice-no-notices-exist' => 'मथळा अस्तित्वात नाही.
 एक मथळा खाली जोडा.',
@@ -12704,6 +12769,7 @@ $messages['nan'] = array(
 );
 
 /** Norwegian Bokmål (norsk bokmål)
+ * @author Amire80
  * @author Danmichaelo
  * @author Event
  * @author Haakon K
@@ -12766,7 +12832,7 @@ Ikke lagt inn',
 	'centralnotice-remove-notice-doesnt-exist' => 'Kampanje eksisterer ikke.
 Ingenting å fjerne.',
 	'centralnotice-banner-doesnt-exist' => 'Banner finnes ikke.',
-	'centralnotice-template-still-bound' => 'Kan ikke fjernet banneret «$1» fordi det fortsatt er koblet til en kampanje. 
+	'centralnotice-template-still-bound' => 'Kan ikke fjernet banneret «$1» fordi det fortsatt er koblet til en kampanje.
 Fjerning ikke mulig.',
 	'centralnotice-template-body' => 'Malinnhold:',
 	'centralnotice-day' => 'Dag',
