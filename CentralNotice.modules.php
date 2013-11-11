@@ -78,6 +78,7 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.bannerManager' ] = array(
 		'centralnotice-archive-banner-title',
 		'centralnotice-archive-banner-confirm',
 		'centralnotice-archive-banner-cancel',
+		'centralnotice-add-new-banner-title',
 		'centralnotice-delete-banner',
 		'centralnotice-delete-banner-title',
 		'centralnotice-delete-banner-confirm',

@@ -129,6 +129,7 @@ Add one below.',
 	'centralnotice-banner-hidable' => 'Static/Hidable',
 	'centralnotice-banner-collapsible' => 'Collapsible',
 	'centralnotice-banner-fundraising' => 'This is a fundraising banner',
+	'centralnotice-banner-display-on' => 'Display on',
 	'centralnotice-banner-autolink' => 'Automatically create landing page link',
 	'centralnotice-banner-autolink-help' => 'When enabled CentralNotice will automatically create a localised link to $3 with a landing page selected at random. There must be an anchor tag with $1 in the banner body.',
 	'centralnotice-banner-landing-pages' => 'Landing pages (comma-separated)',
@@ -229,6 +230,7 @@ Add one below.',
 	'centralnotice-archive-campaign-cancel' => 'Cancel',
 	'centralnotice-archive-edit-prevented' => 'Editing this campaign is disabled because it is either locked or archived. Change either status from [[Special:CentralNotice]].',
 
+	'centralnotice-add-new-banner-title' => 'Add a new banner',
 	'centralnotice-delete-banner' => 'Delete',
 	'centralnotice-delete-banner-title' => 'Delete {{PLURAL:$1|banner|banners}}?',
 	'centralnotice-delete-banner-confirm' => 'Deletion removes all settings and messages. This action cannot be reversed. Consider archiving instead.',
@@ -483,6 +485,7 @@ This message is preceded by the following message:
 	'centralnotice-banner-hidable' => 'Unused at this time.',
 	'centralnotice-banner-collapsible' => 'Unused at this time.',
 	'centralnotice-banner-fundraising' => 'Label of checkbox',
+	'centralnotice-banner-display-on' => 'A label in a form. The options to select will be different platforms, such as "desktop", "Android" etc.',
 	'centralnotice-banner-autolink' => 'Label of checkbox',
 	'centralnotice-banner-autolink-help' => 'Brief instructions on how to use the interface. Parameters:
 * $1 - a bit of HTML
@@ -675,6 +678,7 @@ Parameters:
 	'centralnotice-archive-campaign-confirm' => 'Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-campaign-title}}.',
 	'centralnotice-archive-campaign-cancel' => '{{Identical|Cancel}}',
 	'centralnotice-archive-edit-prevented' => 'Descriptive banner used on the page to describe why it cannot be edited.',
+	'centralnotice-add-new-banner-title' => 'A title for the dialog for adding a new banner.',
 	'centralnotice-delete-banner' => 'Button label
 
 {{Identical|Delete}}',

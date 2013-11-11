@@ -59,7 +59,7 @@
 			dialogObj[0].name = 'addBannerDialog';
 			dialogObj.append( $( '#cn-formsection-addBanner' ).children( 'div' ).clone().show() )
 				.dialog( {
-					title: 'Add a new banner',
+					title: mw.message( 'centralnotice-add-new-banner-title' ).text(),
 					modal: true,
 					buttons: buttons,
 					width: 400
