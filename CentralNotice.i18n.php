@@ -11018,6 +11018,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-archive-campaign' => 'Archivéieren',
 	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|Campagne|Campagnen}} archivéieren?',
 	'centralnotice-archive-campaign-cancel' => 'Ofbriechen',
+	'centralnotice-add-new-banner-title' => 'En neie Banner derbäisetzen',
 	'centralnotice-delete-banner' => 'Läschen',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|Banner|Bannere}} läschen?',
 	'centralnotice-delete-banner-confirm' => "Beim Läsche ginn all Astellungen an all Message geläscht. Dës Aktioun kann net zréckgesat ginn. Iwwerleet op Dir net léiwer d'Funktioun Archivéiere benotze wëllt.",
