@@ -6,6 +6,9 @@
  * see fundrasing banners.
  */
 class SpecialHideBanners extends UnlistedSpecialPage {
+	// Cache this blank response for a day or so (60 * 60 * 24 s.)
+	const CACHE_EXPIRY = 86400;
+
 	function __construct() {
 		parent::__construct( 'HideBanners' );
 	}
@@ -22,7 +25,10 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		wfResetOutputBuffers();
 
 		header( 'Content-Type: image/png' );
-		header( 'Cache-Control: no-cache' );
+		if ( !$this->getUser()->isLoggedIn() ) {
+			$expiry = SpecialHideBanners::CACHE_EXPIRY;
+			header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
+		}
 	}
 
 	/**
