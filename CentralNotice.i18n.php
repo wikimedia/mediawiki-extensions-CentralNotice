@@ -10290,7 +10290,7 @@ $messages['km'] = array(
 	'centralnotice-clone' => 'ក្លូន',
 	'centralnotice-clone-notice' => 'បង្កើតច្បាប់ចំលងមួយរបស់បដានេះ',
 	'centralnotice-clone-name' => 'ឈ្មោះ៖',
-	'centralnotice-preview-all-template-translations' => 'មើលមុននូវរាល់ការបកប្រែដែលអាចមានសំរាប់បដានេះ', # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'មើលមុននូវរាល់ការបកប្រែដែលបានអ​នុម័តហើយ',
 	'centralnotice-insert' => 'បញ្ចូល៖ $1',
 	'centralnotice-close-button' => 'ប៊ូតុងបិទ',
 	'centralnotice-close-title' => 'បិទ',
@@ -10325,9 +10325,9 @@ $messages['km'] = array(
 	'centralnotice-on' => 'បើក​ (ON)',
 	'centralnotice-off' => 'បិទ​ (OFF)',
 	'centralnotice-date' => 'កាលបរិច្ឆេទ',
-	'centralnotice-start-date' => 'កាលបរិច្ឆេទចាប់ផ្ដើម', # Fuzzy
+	'centralnotice-start-date' => 'កាលបរិច្ឆេទចាប់ផ្ដើម (UTC)',
 	'centralnotice-start-time' => 'ម៉ោង​ចាប់ផ្តើម (UTC)',
-	'centralnotice-end-date' => 'កាលបរិច្ឆេទបញ្ចប់', # Fuzzy
+	'centralnotice-end-date' => 'កាលបរិច្ឆេទបញ្ចប់ (UTC)',
 	'centralnotice-end-time' => 'ម៉ោងបញ្ចប់ (UTC)',
 );
 
@@ -14923,6 +14923,7 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergência',
+	'centralnotice-generic-error' => 'Você não tem as permissões corretas para executar a acção solicitada ou a acção em si era inválida.',
 	'centralnotice-archive-banner-cancel' => 'Cancelar',
 	'centralnotice-archive-campaign-cancel' => 'Cancelar',
 	'centralnotice-delete-banner-cancel' => 'Cancelar',
