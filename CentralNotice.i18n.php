@@ -5749,12 +5749,12 @@ Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
 	'centralnotice-archive-banner-confirm' => 'Archivos expande todas las plantillas incluídas y protege la página. Esta acción no es fácil de revertir.',
 	'centralnotice-archive-banner-cancel' => 'Cancelar',
 	'centralnotice-archive-show' => 'Mostrar campañas archivadas',
-	'centralnotice-archive-campaign' => 'Archivo',
+	'centralnotice-archive-campaign' => 'Archivar',
 	'centralnotice-archive-campaign-title' => 'Archivar {{PLURAL:$1|la campaña|las campañas}}?',
 	'centralnotice-archive-campaign-confirm' => 'Archival marca una campaña como permanentemente inactiva.',
 	'centralnotice-archive-campaign-cancel' => 'Cancelar',
 	'centralnotice-archive-edit-prevented' => 'Las ediciones de esta campaña están deshabilitadas porque está bloqueada o archivada. Cambie cualquier estado desde [[Special:CentralNotice]].',
-	'centralnotice-add-new-banner-title' => 'Agregar un nuevo banner',
+	'centralnotice-add-new-banner-title' => "Añadir un ''banner'' nuevo",
 	'centralnotice-delete-banner' => 'Eliminar',
 	'centralnotice-delete-banner-title' => 'Borrar {{PLURAL:$1|pancarta|pancartas}}?',
 	'centralnotice-delete-banner-confirm' => 'Suprimir elimina todas las configuraciones y mensajes. Esta acción no se puede revertir. Considera archivar en cambio.',
@@ -6343,6 +6343,7 @@ $messages['fa'] = array(
  * @author Nedergard
  * @author Nike
  * @author Olli
+ * @author Pxos
  * @author Silvonen
  * @author Stryn
  * @author Tarmo
@@ -6475,7 +6476,7 @@ Lisää alapuolella sellainen',
 	'centralnotice-projects' => 'Projektit',
 	'centralnotice-country' => 'Maa',
 	'centralnotice-no-allocation' => 'Ei kohdistettuja bannereita.',
-	'centralnotice-allocation-description' => 'Bannerin kohdistus $1.$2 maassa $3:', # Fuzzy
+	'centralnotice-allocation-description' => 'Bannerin kohdistaminen kieleen: $1, projektiin: $2, maahan: $3, laitteeseen: $4',
 	'centralnotice-percentage' => 'Prosenttiosuus',
 	'centralnotice-documentwrite-error' => 'document.write() -komentoa ei voi käyttää bannerin sisällä.
 Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
@@ -6531,7 +6532,6 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-user-role-anonymous' => 'Anonyymi',
 	'centralnotice-user-role-logged-in' => 'Kirjautunut',
 	'centralnotice-banner-class' => 'Luokka',
-	'centralnotice-banner-class-fundraising' => 'Varainkeruu',
 	'centralnotice-templates-included' => 'Sisällytetyt mallineet',
 	'centralnotice-archive-banner' => 'Arkisto',
 	'centralnotice-archive-banner-title' => 'Arkistoidaanko {{PLURAL:$1|banneri|bannerit}}?',
@@ -6540,7 +6540,6 @@ Sivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.',
 	'centralnotice-delete-banner-title' => 'Poistetaanko {{PLURAL:$1|banneri|bannerit}}?',
 	'centralnotice-delete-banner-confirm' => 'Poistaminen poistaa kaikki asetukset ja viestit. Toimintoa ei voi perua. Harkitse arkistoimisen käyttöä poistamisen sijaan.',
 	'centralnotice-delete-banner-cancel' => 'Peru',
-	'centralnotice-noiframe' => 'Tätä elementtiä ei voi näyttää ilman iframeja.',
 	'centralnotice-messages-pending-approval' => 'Kielet joiden viestit odotavat hyväksyntää',
 	'centralnotice-devices' => 'Näytä laitteilla',
 	'centralnotice-start-timestamp' => 'Alkaen (UTC)',
