@@ -309,12 +309,6 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 			$wgCentralBannerDispatcher = $mc->getMobileUrl( $wgCentralBannerDispatcher );
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
 		}
-
-		$mobileHides = array();
-		foreach( $wgNoticeHideUrls as $url ) {
-			$mobileHides[] = $mc->getMobileUrl( $url );
-		}
-		$wgNoticeHideUrls = array_merge( $wgNoticeHideUrls, $mobileHides );
 	}
 
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
