@@ -4304,7 +4304,7 @@ Tilføj nogle!',
 	'centralnotice-template-already-exists' => 'Banner er allerede bundet til kampagne.
 Tilføjes ikke.',
 	'centralnotice-preview-template' => 'Forhåndsvis banner',
-	'centralnotice-change-lang' => 'Ændre oversættelsessprog',
+	'centralnotice-change-lang' => 'Vælg oversættelsessprog',
 	'centralnotice-weights' => 'Vægte',
 	'centralnotice-notice-is-locked' => 'Kampagne er låst.
 Fjernes ikke.',
@@ -12796,7 +12796,7 @@ $messages['myv'] = array(
 	'centralnotice-languages' => 'Кельть',
 	'centralnotice-projects' => 'Проектт',
 	'centralnotice-country' => 'Мастор',
-	'centralnotice-start-date' => 'Ушодома чи', # Fuzzy
+	'centralnotice-start-date' => 'Ушодома чи (UTC)',
 	'centralnotice-start-time' => 'Ушодома шка',
 	'centralnotice-end-time' => 'Прядома шка',
 );
