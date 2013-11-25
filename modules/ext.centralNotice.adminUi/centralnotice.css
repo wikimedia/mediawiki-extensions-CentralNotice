@@ -37,6 +37,9 @@
 #preferences .cn-date-column {
 	white-space:nowrap;
 }
+#preferences td.cn-timepicker {
+	text-align: left; /* To ensure RTL flipping */
+}
 #preferences input#clone {
 	margin-left:0.25em;
 }
