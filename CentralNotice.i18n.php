@@ -4712,6 +4712,7 @@ $messages['de-formal'] = array(
  * @author Amire80
  * @author Erdemaslancan
  * @author Gorizon
+ * @author Marmase
  * @author Mirzali
  * @author Xoser
  */
@@ -4745,7 +4746,7 @@ Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
 	'centralnotice-add-notice-cancel-button' => 'Bıterkne',
 	'centralnotice-edit-notice' => 'Kampanya bıvurne',
 	'centralnotice-add-template' => 'Yew Sablon vırazê',
-	'centralnotice-show-notices' => 'Îkazan bimucne',
+	'centralnotice-show-notices' => 'İkaza bıasne',
 	'centralnotice-list-templates' => 'Şablona liste ke',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'Çarnayişan',
@@ -4761,7 +4762,7 @@ Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
 	'centralnotice-locked' => 'Kafilnaye',
 	'centralnotice-notice' => 'Kampanya',
 	'centralnotice-notice-heading' => 'Qampanya: $1',
-	'centralnotice-notices' => 'Îkazan',
+	'centralnotice-notices' => 'İkazi',
 	'centralnotice-notice-exists' => 'Îkazê verînî hama esto.
 De nikeno',
 	'centralnotice-no-language' => 'Qandê kampanya zıwan nêweçineya. Oyo nêvırazêno.',
@@ -5750,7 +5751,7 @@ Ve http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.',
 	'centralnotice-archive-banner-cancel' => 'Cancelar',
 	'centralnotice-archive-show' => 'Mostrar campañas archivadas',
 	'centralnotice-archive-campaign' => 'Archivar',
-	'centralnotice-archive-campaign-title' => 'Archivar {{PLURAL:$1|la campaña|las campañas}}?',
+	'centralnotice-archive-campaign-title' => '¿Quieres archivar {{PLURAL:$1|la campaña|las campañas}}?',
 	'centralnotice-archive-campaign-confirm' => 'Archival marca una campaña como permanentemente inactiva.',
 	'centralnotice-archive-campaign-cancel' => 'Cancelar',
 	'centralnotice-archive-edit-prevented' => 'Las ediciones de esta campaña están deshabilitadas porque está bloqueada o archivada. Cambie cualquier estado desde [[Special:CentralNotice]].',
@@ -11341,12 +11342,14 @@ $messages['lrc'] = array(
 	'centralnotice-country' => 'كشور',
 	'centralnotice-percentage' => 'درصد',
 	'centralnotice-user' => 'كارور',
+	'centralnotice-action' => 'انجوم گر',
 	'centralnotice-action-created' => 'راست بيه',
 	'centralnotice-action-modified' => 'آلشت بیه',
 	'centralnotice-action-removed' => 'ؤرداشتن',
 	'centralnotice-on' => 'روشنا',
 	'centralnotice-off' => 'كور',
 	'centralnotice-talk-link' => 'چك چنه',
+	'centralnotice-banner-content-changed' => 'آلشت بیه',
 	'centralnotice-date' => 'وخت',
 	'centralnotice-apply-filters' => 'وه كار بردن فيلتريا',
 	'centralnotice-priority-low' => 'هار',
