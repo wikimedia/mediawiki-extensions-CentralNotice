@@ -1582,6 +1582,15 @@ $messages['as'] = array(
 	'centralnotice-end-time' => 'শেষ হোৱা সময় (UTC)',
 );
 
+/** American sign language (American sign language)
+ * @author Icemandeaf
+ */
+$messages['ase'] = array(
+	'centralnotice-banner-logged-in' => 'M538x521S2a200497x480S20b00462x508S11530523x482S15a37462x483S11551470x493 M526x522S15a56499x510S11520503x479S20e00489x496S26a02474x489',
+	'centralnotice-logs' => 'M514x523S11541487x478S22f04489x509',
+	'centralnotice-view-logs' => 'M525x524S2ff00482x483S10e00507x494S26500511x474 M514x523S11541487x478S22f04489x509',
+);
+
 /** Asturian (asturianu)
  * @author Esbardu
  * @author Xuacu
@@ -3493,6 +3502,7 @@ Pogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacij
 
 /** Catalan (català)
  * @author Aleator
+ * @author Alvaro Vidal-Abarca
  * @author Arnaugir
  * @author El libre
  * @author Gemmaa
@@ -3521,8 +3531,8 @@ També pot ser usat per afegir o eliminar avisos.",
 	'centralnotice-enabled' => 'Activat',
 	'centralnotice-modify' => 'Tramet',
 	'centralnotice-view' => 'Vista',
-	'centralnotice-save-banner' => 'Salva pancarta', # Fuzzy
-	'centralnotice-preview' => 'Previsualitza', # Fuzzy
+	'centralnotice-save-banner' => 'Desa',
+	'centralnotice-preview' => 'Previsualitza ($1)',
 	'centralnotice-nopreview' => '(Vista prèvia no disponible)',
 	'centralnotice-add-new' => "Afegeix una nova central d'avisos",
 	'centralnotice-remove' => 'Elimina',
@@ -3680,7 +3690,7 @@ Afegiu-ne un a continuació.',
 	'centralnotice-user-role-anonymous' => 'Anònim',
 	'centralnotice-start-date' => 'Data inicial (UTC)',
 	'centralnotice-start-time' => "Hora d'inici (UTC)",
-	'centralnotice-end-date' => 'Data de finalització', # Fuzzy
+	'centralnotice-end-date' => 'Data de finalització (UTC)',
 	'centralnotice-end-time' => 'Hora de finalització (UTC)',
 );
 
@@ -17538,6 +17548,7 @@ $messages['sr-ec'] = array(
 
 /** Serbian (Latin script) (srpski (latinica)‎)
  * @author Michaello
+ * @author Milicevic01
  */
 $messages['sr-el'] = array(
 	'centralnotice' => 'Administrator centralnog obaveštavanja',
@@ -17564,6 +17575,7 @@ Može da se koristi i za dodavanje ili uklanjanje starih obaveštenja.',
 	'centralnotice-manage-templates' => 'Upravljanje plakatima',
 	'centralnotice-add' => 'Dodaj',
 	'centralnotice-add-notice' => 'Dodaj obaveštenje',
+	'centralnotice-add-notice-cancel-button' => 'Otkaži',
 	'centralnotice-edit-notice' => 'Uredi kampanju',
 	'centralnotice-add-template' => 'Dodaj šablon',
 	'centralnotice-show-notices' => 'Prikaži obaveštenja',
@@ -17694,6 +17706,7 @@ Vidite http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.',
 	'centralnotice-priority-normal' => 'normalan',
 	'centralnotice-priority-high' => 'visok',
 	'centralnotice-priority-emergency' => 'hitan',
+	'centralnotice-delete-banner-cancel' => 'Otkaži',
 	'centralnotice-start-date' => 'Početni datum', # Fuzzy
 	'centralnotice-start-time' => 'Početno vreme (UTC)',
 	'centralnotice-end-date' => 'Završni datum', # Fuzzy
