@@ -1587,8 +1587,8 @@ $messages['as'] = array(
  */
 $messages['ase'] = array(
 	'centralnotice-banner-logged-in' => 'M538x521S2a200497x480S20b00462x508S11530523x482S15a37462x483S11551470x493 M526x522S15a56499x510S11520503x479S20e00489x496S26a02474x489',
-	'centralnotice-logs' => 'M514x523S11541487x478S22f04489x509',
-	'centralnotice-view-logs' => 'M525x524S2ff00482x483S10e00507x494S26500511x474 M514x523S11541487x478S22f04489x509',
+	'centralnotice-logs' => 'M518x536S15a37483x465S18550493x476S15a37483x509S15a51486x513',
+	'centralnotice-view-logs' => 'M525x524S2ff00482x483S10e00507x494S26500511x474 M518x536S15a37483x465S18550493x476S15a37483x509S15a51486x513',
 );
 
 /** Asturian (asturianu)
@@ -7563,7 +7563,7 @@ $messages['gu'] = array(
 	'centralnotice-enabled' => 'સક્રિય',
 	'centralnotice-modify' => 'જમા કરો',
 	'centralnotice-view' => 'જુઓ',
-	'centralnotice-save-banner' => 'જાહેરાત ફલક સાચવો', # Fuzzy
+	'centralnotice-save-banner' => 'સાચવો',
 	'centralnotice-preview' => 'પૂર્વાવલોકન ($1)',
 	'centralnotice-nopreview' => '(ઝલક મોજુદ નથી)',
 	'centralnotice-add-new' => 'નવી ઝુંબેશ ઉમેરો',
@@ -7640,7 +7640,7 @@ $messages['gu'] = array(
 	'centralnotice-clone' => 'નકલ',
 	'centralnotice-clone-notice' => 'જાહેરાત ફલકની નકલ બનાવો',
 	'centralnotice-clone-name' => 'નામ:',
-	'centralnotice-preview-all-template-translations' => 'બેનરનાં બધાં પ્રાપ્ત ભાષાંતરોનું પૂર્વાલોકન.', # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'બધાં સ્વીકૃત ભાષાંતરોનું પૂર્વાલોકન.',
 	'centralnotice-insert' => '$1  ઉમેરો',
 	'centralnotice-close-button' => 'બંધ કરવાનું બટન',
 	'centralnotice-close-title' => 'બંધ કરો',
@@ -7699,8 +7699,8 @@ $messages['gu'] = array(
 	'centralnotice-date' => 'તારીખ',
 	'centralnotice-apply-filters' => 'ગળણાં લાગુ પાડો',
 	'centralnotice-clear-filters' => 'ફરણાં હટાવો',
-	'centralnotice-banner-messages' => 'જહેરાત ફલક પરના સંદેશાઓ', # Fuzzy
-	'centralnotice-filter-template-prompt' => 'બેનર નામ આ ધરાવે છે:', # Fuzzy
+	'centralnotice-banner-messages' => 'ભાષાંતરયોગ્ય જાહેરાત ફલક પરના સંદેશાઓ',
+	'centralnotice-filter-template-prompt' => 'ફિલ્ટર બેનર (દા.ત. Jimmy 2008)',
 	'centralnotice-filter-template-submit' => 'ગળણાં લાગુ પાડો',
 	'centralnotice-priority-low' => 'નીચું',
 	'centralnotice-priority-normal' => 'સામાન્ય',
@@ -7715,6 +7715,7 @@ $messages['gu'] = array(
 /** Hebrew (עברית)
  * @author Amire80
  * @author Deror avi
+ * @author Guycn2
  * @author Orsa
  * @author Rotem Liss
  * @author Rotemliss
@@ -7790,8 +7791,8 @@ $messages['he'] = array(
 	'centralnotice-hours' => 'שעה',
 	'centralnotice-min' => 'דקה',
 	'centralnotice-project-lang' => 'שפת המיזם',
-	'centralnotice-select-all' => 'בחר הכל',
-	'centralnotice-remove-all' => 'הסר הכל',
+	'centralnotice-select-all' => 'בחר הכול',
+	'centralnotice-remove-all' => 'הסר הכול',
 	'centralnotice-items-selected' => '{{PLURAL:$1|נבחר פריט אחד|$1 פריטים נבחרו}}',
 	'centralnotice-project-name' => 'שם המיזם',
 	'centralnotice-assigned-templates' => 'כרזות משויכות',
@@ -13351,7 +13352,7 @@ De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwij
 	'centralnotice-view' => 'Bekijken',
 	'centralnotice-save-banner' => 'Opslaan',
 	'centralnotice-preview' => 'Voorvertoning ($1)',
-	'centralnotice-live-preview' => 'Toon weergave',
+	'centralnotice-live-preview' => 'Voorbeeld in wiki',
 	'centralnotice-nopreview' => '(Voorvertoning niet beschikbaar)',
 	'centralnotice-add-new' => 'Nieuwe centrale sitenotice toevoegen',
 	'centralnotice-remove' => 'Verwijderen',
@@ -13376,7 +13377,7 @@ De module kan ook gebruikt worden om sitenotices toe te voegen of oude te verwij
 	'centralnotice-templates' => 'Sjablonen',
 	'centralnotice-throttle' => 'Verkeer beperken',
 	'centralnotice-throttle-amount' => 'Verkeer beperken naar verhouding van het totale',
-	'centralnotice-balanced' => 'Geef alle banners gelijk gewicht',
+	'centralnotice-balanced' => 'Alle banners gelijk gewicht geven',
 	'centralnotice-weight' => 'Gewicht',
 	'centralnotice-locked' => 'Afgesloten',
 	'centralnotice-notice' => 'Campagne',
@@ -13451,7 +13452,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-banner-hidable' => 'Statisch/te verbergen',
 	'centralnotice-banner-collapsible' => 'In te klappen',
 	'centralnotice-banner-fundraising' => 'Dit is een fondsenwervingsbanner',
-	'centralnotice-banner-display-on' => 'Weergave aan',
+	'centralnotice-banner-display-on' => 'Weergave op',
 	'centralnotice-banner-autolink' => 'Koppeling naar landingspagina automatisch aanmaken',
 	'centralnotice-banner-autolink-help' => 'Als ingeschakeld, maakt CentralNotice automatisch een taalspecifieke koppeling naar $3 met een willekeurige landingspagina. Er moet een ankerlabel met $1 in de inhoud van de banner aanwezig zijn.',
 	'centralnotice-banner-landing-pages' => "Landingspagina's (kommagescheiden):",
@@ -13546,7 +13547,7 @@ Zie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.',
 	'centralnotice-archive-campaign-confirm' => 'Archiveren markeert een campagne als permanent inactief.',
 	'centralnotice-archive-campaign-cancel' => 'Annuleren',
 	'centralnotice-archive-edit-prevented' => 'De mogelijkheid om deze campagne te bewerken is uitgeschakeld omdat deze vergrendeld of gearchiveerd is. Wijzig de status op [[Special:CentralNotice]].',
-	'centralnotice-add-new-banner-title' => 'Voeg een nieuwe banner toe',
+	'centralnotice-add-new-banner-title' => 'Nieuwe banner toevoegen',
 	'centralnotice-delete-banner' => 'Verwijderen',
 	'centralnotice-delete-banner-title' => 'Banner{{PLURAL:$1||s}} verwijderen?',
 	'centralnotice-delete-banner-confirm' => 'Bij verwijderen worden alle instellingen en berichten verwijderd. Overweeg of archiveren beter is.',
