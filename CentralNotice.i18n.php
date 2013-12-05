@@ -21058,6 +21058,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-banner-heading' => '橫幅：$1',
 	'centralnotice-templates' => '模板',
 	'centralnotice-throttle' => '限定流量',
+	'centralnotice-throttle-amount' => '限制流量占總數比',
 	'centralnotice-weight' => '權重',
 	'centralnotice-locked' => '已鎖定',
 	'centralnotice-notice' => '活動',
