@@ -2702,9 +2702,7 @@ $messages['be-tarask'] = array(
 	'centralnotice-user-role' => 'Роля ўдзельніка',
 	'centralnotice-user-role-anonymous' => 'Ананім',
 	'centralnotice-user-role-logged-in' => 'Увайшоўшы',
-	'centralnotice-banner-class' => 'Кляса',
-	'centralnotice-banner-class-generic' => 'Звычайная',
-	'centralnotice-banner-class-fundraising' => 'Збор сродкаў',
+	'centralnotice-banner-class' => 'Кляса', # Fuzzy
 	'centralnotice-templates-included' => 'Уключаныя шаблёны',
 	'centralnotice-archive-banner' => 'Заархіваваць',
 	'centralnotice-archive-banner-title' => 'Заархіваваць {{PLURAL:$1|банэр|банэры}}?',
@@ -3119,7 +3117,7 @@ $messages['bn'] = array(
 	'centralnotice-priority-emergency' => 'জরুরী',
 	'centralnotice-devicetype-desktop' => 'ডেস্কটপ কম্পিউটার',
 	'centralnotice-all' => 'সমস্ত',
-	'centralnotice-banner-class' => 'শ্রেণি',
+	'centralnotice-banner-class' => 'শ্রেণি', # Fuzzy
 	'centralnotice-archive-banner-cancel' => 'বাতিল',
 	'centralnotice-delete-banner' => 'অপসারণ',
 	'centralnotice-delete-banner-cancel' => 'বাতিল',
@@ -3775,7 +3773,7 @@ $messages['co'] = array(
 	'centralnotice-clone-name' => 'Nome:',
 );
 
-/** Czech (česky)
+/** Czech (čeština)
  * @author Chmee2
  * @author Danny B.
  * @author Jkjk
@@ -3998,7 +3996,7 @@ Další informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:Cent
 	'centralnotice-end-time' => 'Čas konce (UTC)',
 );
 
-/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+/** Church Slavic (словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
  * @author ОйЛ
  */
 $messages['cu'] = array(
@@ -5324,7 +5322,6 @@ $messages['el'] = array(
 	'centralnotice-all-except' => 'Όλα εκτός του $1',
 	'centralnotice-user-role' => 'Ρόλος χρήστη',
 	'centralnotice-user-role-anonymous' => 'Ανώνυμος',
-	'centralnotice-banner-class-fundraising' => 'Οικονομική εκστρατεία',
 	'centralnotice-templates-included' => 'Συμπεριλήφθηκαν πρότυπα',
 	'centralnotice-archive-banner' => 'Αρχείο',
 	'centralnotice-archive-banner-cancel' => 'Ακύρωση',
@@ -7640,7 +7637,7 @@ $messages['gu'] = array(
 	'centralnotice-clone' => 'નકલ',
 	'centralnotice-clone-notice' => 'જાહેરાત ફલકની નકલ બનાવો',
 	'centralnotice-clone-name' => 'નામ:',
-	'centralnotice-preview-all-template-translations' => 'બધાં સ્વીકૃત ભાષાંતરોનું પૂર્વાલોકન.',
+	'centralnotice-preview-all-template-translations' => 'બધાં સ્વિકૃત ભાષાંતરોનું પૂર્વાલોકન',
 	'centralnotice-insert' => '$1  ઉમેરો',
 	'centralnotice-close-button' => 'બંધ કરવાનું બટન',
 	'centralnotice-close-title' => 'બંધ કરો',
@@ -7668,8 +7665,8 @@ $messages['gu'] = array(
 	'centralnotice-no-allocation' => 'કોઈ પણ જાહેરાત ફલક આવંટિત ન થયું',
 	'centralnotice-allocation-description' => 'ભાષા: $1, પરિયોજના: $2, માટે $3 દેશમાં, $4 સાધન પર જાહેરાત ફલક ફાળવણી',
 	'centralnotice-percentage' => 'ટકાવારી',
-	'centralnotice-documentwrite-error' => 'બેનરમાં  document.write() નહીં વાપરી શકાય.
-વધુ માહિતે માટે http://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.',
+	'centralnotice-documentwrite-error' => 'બેનરમાં document.write() વાપરી શકાશે નહીં.
+વધુ માહિતી માટે http://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.',
 	'centralnotice-preferred' => 'અગ્રતા',
 	'centralnotice-logs' => 'લૉગ',
 	'centralnotice-view-logs' => 'લૉગ્સ જુઓ',
@@ -10827,7 +10824,7 @@ $messages['kw'] = array(
 	'centralnotice-edit-template' => 'Chanjya an baner',
 );
 
-/** Kirghiz (Кыргызча)
+/** Kyrgyz (Кыргызча)
  * @author Growingup
  * @author Викиней
  */
@@ -11553,7 +11550,7 @@ Pridėti vieną žemiau.',
 	'centralnotice-user-role' => 'Vartotojo vaidmuo',
 	'centralnotice-user-role-anonymous' => 'Anonimas',
 	'centralnotice-user-role-logged-in' => 'Prisijungęs',
-	'centralnotice-banner-class' => 'Klasė',
+	'centralnotice-banner-class' => 'Klasė', # Fuzzy
 	'centralnotice-archive-banner' => 'Archyvas',
 	'centralnotice-archive-banner-cancel' => 'Atšaukti',
 	'centralnotice-delete-banner' => 'Ištrinti',
@@ -12055,8 +12052,9 @@ $messages['ml'] = array(
 	'centralnotice-enabled' => 'സജ്ജമാക്കിയിരിക്കുന്നു',
 	'centralnotice-modify' => 'സമർപ്പിക്കുക',
 	'centralnotice-view' => 'കാണുക',
-	'centralnotice-save-banner' => 'എഴുത്തുപട്ട സേവ് ചെയ്യുക', # Fuzzy
-	'centralnotice-preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക', # Fuzzy
+	'centralnotice-save-banner' => 'സേവ് ചെയ്യുക',
+	'centralnotice-preview' => 'എങ്ങനെയുണ്ടെന്നു കാണുക ($1)',
+	'centralnotice-live-preview' => 'എങ്ങനെയുണ്ടെന്ന് വിക്കിയിൽ കാണുക',
 	'centralnotice-nopreview' => '(പ്രിവ്യൂ ലഭ്യമല്ല)',
 	'centralnotice-add-new' => 'പുതിയൊരു മേള ചേർക്കുക',
 	'centralnotice-remove' => 'നീക്കം ചെയ്യുക',
@@ -12066,6 +12064,7 @@ $messages['ml'] = array(
 	'centralnotice-add' => 'കൂട്ടിച്ചേർക്കുക',
 	'centralnotice-add-notice' => 'ഒരു മേള കൂട്ടിച്ചേർക്കുക',
 	'centralnotice-add-notice-button' => 'സൃഷ്ടിക്കുക',
+	'centralnotice-add-notice-cancel-button' => 'റദ്ദാക്കുക',
 	'centralnotice-edit-notice' => 'പ്രചാരണപ്രവർത്തനം തിരുത്തുക',
 	'centralnotice-add-template' => 'ഫലകം കൂട്ടിച്ചേർക്കുക',
 	'centralnotice-show-notices' => 'അറിയിപ്പുകൾ പ്രദർശിപ്പിക്കുക',
@@ -12078,6 +12077,9 @@ $messages['ml'] = array(
 	'centralnotice-banner' => 'എഴുത്തുപട്ട',
 	'centralnotice-banner-heading' => 'എഴുത്തുപട്ട: $1',
 	'centralnotice-templates' => 'ഫലകങ്ങൾ',
+	'centralnotice-throttle' => 'ഉപയോഗം പരിമിതപ്പെടുത്തുക',
+	'centralnotice-throttle-amount' => 'ആകെയുള്ളതിന് ആനുപാതികമായി ഉപയോഗം പരിമിതപ്പെടുത്തുക',
+	'centralnotice-balanced' => 'എല്ലാ എഴുത്തുപട്ടകൾക്കും ഒരേ പ്രാധാന്യം കൊടുക്കുക',
 	'centralnotice-weight' => 'ഘനം',
 	'centralnotice-locked' => 'പൂട്ടിയിരിക്കുന്നു',
 	'centralnotice-notice' => 'പ്രചാരണപ്രവർത്തനം',
@@ -12093,8 +12095,8 @@ $messages['ml'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'പ്രചാരണപ്രവർത്തനം നിലനിൽക്കുന്നില്ല.
 നീക്കംചെയ്യാൻ ഒന്നുമില്ല.',
 	'centralnotice-banner-doesnt-exist' => 'എഴുത്തുപട്ട നിലവിലില്ല.',
-	'centralnotice-template-still-bound' => 'ഫലകം ഇപ്പോഴും ഒരു അറിയിപ്പുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു.
-നീക്കം ചെയ്യുന്നില്ല.', # Fuzzy
+	'centralnotice-template-still-bound' => '"$1" എന്ന എഴുത്തുപട്ട ഇപ്പോഴും ഒരു അറിയിപ്പുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു.
+നീക്കം ചെയ്യുന്നില്ല.',
 	'centralnotice-template-body' => 'ഫലകത്തിന്റെ ഉള്ളടക്കം:',
 	'centralnotice-day' => 'ദിവസം',
 	'centralnotice-year' => 'വർഷം',
@@ -12132,12 +12134,14 @@ $messages['ml'] = array(
 	'centralnotice-settings' => 'സജ്ജീകരണങ്ങൾ',
 	'centralnotice-edit-template' => 'ഫലകം തിരുത്തുക',
 	'centralnotice-edit-template-summary' => 'പ്രാദേശീകരിക്കാവുന്ന സന്ദേശം സൃഷ്ടിക്കാൻ, മൂന്ന് വളയൻ കോഷ്ഠകങ്ങൾക്കുള്ളിൽ ഹൈഫൻ ഉപയോഗിച്ച് ചേർത്ത പദങ്ങൾ നൽകുക, ഉദാ: {{{jimbo-quote}}}.',
+	'centralnotice-edit-template-magicwords' => 'എഴുത്തുപട്ട മിക്സിനുകളിൽ നൽകിയിട്ടുള്ള മാന്ത്രികവാക്കുകൾ: $1',
 	'centralnotice-message' => 'സന്ദേശം',
 	'centralnotice-message-not-set' => 'സന്ദേശം നിശ്ചിതപ്പെടുത്തിയില്ല.',
 	'centralnotice-clone' => 'സമപ്പകർപ്പ്',
 	'centralnotice-clone-notice' => 'ഫലകത്തിന്റെ പകർപ്പ് സൃഷ്ടിക്കുക',
 	'centralnotice-clone-name' => 'പേര്:',
-	'centralnotice-preview-all-template-translations' => 'ഫലകത്തിന്റെ ലഭ്യമായ എല്ലാ തർജ്ജമകളുടേയും പ്രിവ്യൂ കാണുക', # Fuzzy
+	'centralnotice-clone-cancel' => 'റദ്ദാക്കുക',
+	'centralnotice-preview-all-template-translations' => 'അംഗീകരിക്കപ്പെട്ട എല്ലാ തർജ്ജമകളുടേയും പ്രിവ്യൂ കാണുക',
 	'centralnotice-insert' => 'ഉൾപ്പെടുത്തുക: $1',
 	'centralnotice-close-button' => 'അടയ്ക്കാനുള്ള ബട്ടൺ',
 	'centralnotice-close-title' => 'അടയ്ക്കുക',
@@ -12150,6 +12154,7 @@ $messages['ml'] = array(
 	'centralnotice-banner-hidable' => 'സ്ഥിരസ്ഥിതി/മറയ്ക്കാവുന്നത്',
 	'centralnotice-banner-collapsible' => 'ചുരുക്കാവുന്നത്',
 	'centralnotice-banner-fundraising' => 'ഇത് ഫണ്ട്‌റൈസിങ് എഴുത്തുപട്ടയാണ്',
+	'centralnotice-banner-display-on' => 'പ്രദർശിപ്പിക്കേണ്ടത്:',
 	'centralnotice-banner-autolink' => 'ചെല്ലുന്ന താളിലേയ്ക്കുള്ള കണ്ണി സ്വയം സൃഷ്ടിക്കുക',
 	'centralnotice-banner-autolink-help' => 'എഴുത്തുപട്ടയുടെ ഉള്ളടക്കത്തിൽ $1 ഉൾപ്പെടുന്ന ഒരു അടിസ്ഥാന ടാഗ് നിർമ്മിക്കുക, ഒപ്പം താഴെ ഒന്നോ അതിലധികമോ എത്തിച്ചേരേണ്ട താളുകളും നിർമ്മിക്കുക, ഉദാഹരണം: $2. എഴുത്തുപട്ട എടുത്തുനോക്കുന്ന മുറയ്ക്ക് കണ്ണി സ്വയം സൃഷ്ടിച്ചു കൊള്ളുന്നതാണ്.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'എത്തിച്ചേരേണ്ട താളുകൾ (അങ്കുശത്താൽ വേർതിരിച്ച്):',
@@ -14320,8 +14325,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-excluding-list' => '$1 (z wyjątkiem $2)',
 	'centralnotice-user-role-anonymous' => 'Anonimowy użytkownik',
 	'centralnotice-user-role-logged-in' => 'Zalogowany',
-	'centralnotice-banner-class' => 'Klasa',
-	'centralnotice-banner-class-fundraising' => 'Pozyskiwanie funduszy',
+	'centralnotice-banner-class' => 'Klasa', # Fuzzy
 	'centralnotice-archive-banner-cancel' => 'Anuluj',
 	'centralnotice-archive-campaign-cancel' => 'Anuluj',
 	'centralnotice-delete-banner' => 'Usuń',
@@ -15582,9 +15586,7 @@ Vedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe infor
 	'centralnotice-user-role' => 'Rolul utilizatorului',
 	'centralnotice-user-role-anonymous' => 'Anonim',
 	'centralnotice-user-role-logged-in' => 'Autentificat',
-	'centralnotice-banner-class' => 'Clasă',
-	'centralnotice-banner-class-generic' => 'Generice',
-	'centralnotice-banner-class-fundraising' => 'Strângere de fonduri',
+	'centralnotice-banner-class' => 'Clasă', # Fuzzy
 	'centralnotice-templates-included' => 'Formate incluse',
 	'centralnotice-archive-banner' => 'Arhivează',
 	'centralnotice-archive-banner-title' => 'Arhivați {{PLURAL:$1|bannerul|bannerele}}?',
@@ -17537,8 +17539,7 @@ $messages['sr-ec'] = array(
 	'centralnotice-buckets' => 'Приказ по корисничким групама',
 	'centralnotice-bucket' => 'Група',
 	'centralnotice-bucket-letter' => 'Група „$1“',
-	'centralnotice-banner-class' => 'Класа',
-	'centralnotice-banner-class-fundraising' => 'Прикупљање средстава',
+	'centralnotice-banner-class' => 'Класа', # Fuzzy
 	'centralnotice-archive-banner-cancel' => 'Откажи',
 	'centralnotice-delete-banner' => 'Обриши',
 	'centralnotice-delete-banner-cancel' => 'Откажи',
@@ -19914,7 +19915,6 @@ $messages['ur'] = array(
 	'centralnotice-filter-template-prompt' => 'بینر کے نام پر مشتمل ہے:', # Fuzzy
 	'centralnotice-priority-high' => 'اعلی',
 	'centralnotice-priority-emergency' => 'ہنگامی',
-	'centralnotice-noiframe' => 'یہ عنصر آئی فریم کے بغیر نہیں دکھایا جا سکتا ہے ۔',
 	'centralnotice-start-date' => 'تاریخ شروع', # Fuzzy
 	'centralnotice-end-date' => 'تاریخ اختتام', # Fuzzy
 );
@@ -20126,10 +20126,8 @@ Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
 	'centralnotice-user-role' => 'Ruolo utente',
 	'centralnotice-user-role-anonymous' => 'Anonimo',
 	'centralnotice-user-role-logged-in' => 'Registrà',
-	'centralnotice-banner-class' => 'Clase',
-	'centralnotice-banner-class-desc' => 'I banner de na serta clase i convidive el traciamento de le variabili e le inpostasion de grupo (p.e. scondar i cookies e la conta de le inpresion).',
-	'centralnotice-banner-class-generic' => 'Generico',
-	'centralnotice-banner-class-fundraising' => 'Racolta fondi',
+	'centralnotice-banner-class' => 'Clase', # Fuzzy
+	'centralnotice-banner-class-desc' => 'I banner de na serta clase i convidive el traciamento de le variabili e le inpostasion de grupo (p.e. scondar i cookies e la conta de le inpresion).', # Fuzzy
 	'centralnotice-templates-included' => 'Modèi inclusi',
 	'centralnotice-archive-banner' => 'Archivia',
 	'centralnotice-archive-banner-title' => 'Archivia {{PLURAL:$1|el banner|i banner}}?',
@@ -20139,7 +20137,6 @@ Varda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.',
 	'centralnotice-delete-banner-title' => 'Scancelar {{PLURAL:$1|el banner|i banner}}?',
 	'centralnotice-delete-banner-confirm' => 'La scancelasion la cava tute le inpostasion e i mesaji. Sta azion no se pol anularla. Tien presente che invese de scancelar se pol anca archiviar.',
 	'centralnotice-delete-banner-cancel' => 'Anùla',
-	'centralnotice-noiframe' => 'No se pol mostrar sto elemento sensa iframe.',
 	'centralnotice-messages-pending-approval' => "Lengue con mesaji che speta l'aprovasion",
 	'centralnotice-devices' => 'Mostra su dispositivi',
 	'centralnotice-start-timestamp' => 'Ora de scominsio (UTC)',
@@ -21059,6 +21056,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-templates' => '模板',
 	'centralnotice-throttle' => '限定流量',
 	'centralnotice-throttle-amount' => '限制流量占總數比',
+	'centralnotice-balanced' => '給所有橫幅同等權重',
 	'centralnotice-weight' => '權重',
 	'centralnotice-locked' => '已鎖定',
 	'centralnotice-notice' => '活動',
