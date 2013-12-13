@@ -4486,7 +4486,7 @@ $messages['de'] = array(
 	'centralnoticelogs' => 'Verwaltung zentraler Meldungen',
 	'right-centralnotice-admin' => 'Zentrale Meldungen verwalten',
 	'action-centralnotice-admin' => 'zentrale Meldungen verwalten',
-	'centralnotice-desc' => 'Ermöglicht es, zentrale Meldungen für das Wiki zu erstellen',
+	'centralnotice-desc' => 'Ermöglicht das Erstellen wikiweiter Meldungen',
 	'centralnotice-summary' => 'Diese Erweiterung erlaubt die Konfiguration zentraler Meldungen.
 Sie kann auch zur Erstellung neuer und Löschung alter Meldungen verwendet werden.',
 	'centralnotice-query' => 'Aktuelle Meldung ändern',
@@ -4733,9 +4733,10 @@ $messages['de-formal'] = array(
  * @author Xoser
  */
 $messages['diq'] = array(
-	'centralnotice' => 'Noticeyê adminê merkezî',
+	'centralnotice' => 'İkaz merkeziya adminan',
 	'noticetemplate' => 'İkaz merkeziya adminan',
 	'bannerallocation' => 'İkaz merkeziya adminan',
+	'globalallocation' => 'İkaz merkeziya adminan',
 	'centralnoticelogs' => 'İkaz merkeziya adminan',
 	'right-centralnotice-admin' => 'Îkazanê merkezî îdare bike',
 	'action-centralnotice-admin' => 'îkazanê merkezî îdare bike',
