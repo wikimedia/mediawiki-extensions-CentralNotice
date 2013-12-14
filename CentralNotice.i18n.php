@@ -10872,9 +10872,9 @@ $messages['lb'] = array(
 	'centralnoticelogs' => 'Gestioun vun den zentrale Matdeelungen',
 	'right-centralnotice-admin' => 'Zentralmatdeelunge geréieren',
 	'action-centralnotice-admin' => 'Zentralmatdeelungen ze geréieren',
-	'centralnotice-desc' => 'Setzt eng zentral Matdeelung iwwer de Site derbäi',
+	'centralnotice-desc' => 'Setzt eng zentral Matdeelung iwwer de Site dobäi',
 	'centralnotice-summary' => "Dës Erweiderung erlaabt et Är aktuell Parameter vun den zentrale Matdeelungen z'änneren.
-Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen.",
+Se kann och benotzt gi fir Matdeelunge dobäizesetzen oder aler ewechzehuelen.",
 	'centralnotice-query' => 'Déi aktuell Matdeelungen änneren',
 	'centralnotice-notice-name' => 'Numm vun der Matdeelung',
 	'centralnotice-enabled' => 'Aktivéiert',
@@ -10884,17 +10884,17 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-preview' => 'Weisen ouni ze späicheren ($1)',
 	'centralnotice-live-preview' => 'Op der Wiki kucken ouni ze späicheren',
 	'centralnotice-nopreview' => '(Kucken ouni ofzespäichere geet net)',
-	'centralnotice-add-new' => 'Eng nei zentral Matdeelung derbäisetzen',
+	'centralnotice-add-new' => 'Eng nei zentral Matdeelung dobäisetzen',
 	'centralnotice-remove' => 'Ewechhuelen',
 	'centralnotice-translate-heading' => 'Iwwersetzung vu(n) $1',
 	'centralnotice-manage' => 'Zentralmatdeelunge geréieren',
 	'centralnotice-manage-templates' => 'Bannere geréieren',
-	'centralnotice-add' => 'Derbäisetzen',
-	'centralnotice-add-notice' => 'Eng Matdeelung derbäisetzen',
+	'centralnotice-add' => 'Dobäisetzen',
+	'centralnotice-add-notice' => 'Eng Matdeelung dobäisetzen',
 	'centralnotice-add-notice-button' => 'Uleeën',
 	'centralnotice-add-notice-cancel-button' => 'Ofbriechen',
 	'centralnotice-edit-notice' => 'Campagne änneren',
-	'centralnotice-add-template' => 'E Banner derbäisetzen',
+	'centralnotice-add-template' => 'E Banner dobäisetzen',
 	'centralnotice-show-notices' => 'Matdeelunge weisen',
 	'centralnotice-list-templates' => 'Lëscht vun de Banneren',
 	'centralnotice-translations' => 'Iwwersetzungen',
@@ -10911,11 +10911,11 @@ Se kann och benotzt gi fir Matdeelunge derbäizesetzen oder aler ewechzehuelen."
 	'centralnotice-notice-heading' => 'Campagne: $1',
 	'centralnotice-notices' => 'Matdeelungen',
 	'centralnotice-notice-exists' => "D'Matdeelung gëtt et schonn.
-Si konnt net derbäigesat ginn.",
-	'centralnotice-no-language' => "Fir d'Campagne gouf keng Sprooch erausgesicht. Se gëtt net derbäigesat.",
-	'centralnotice-no-project' => "Fir d'Campagne gouf kee Projet erausgesicht. E gëtt net derbäigesat.",
+Si konnt net dobäigesat ginn.",
+	'centralnotice-no-language' => "Fir d'Campagne gouf keng Sprooch erausgesicht. Se gëtt net dobäigesat.",
+	'centralnotice-no-project' => "Fir d'Campagne gouf kee Projet erausgesicht. E gëtt net dobäigesat.",
 	'centralnotice-template-exists' => 'De Banner gëtt et schonn.
-Net derbäisetzen.',
+Net dobäisetzen.',
 	'centralnotice-notice-doesnt-exist' => "D'Campagne gëtt et net.",
 	'centralnotice-remove-notice-doesnt-exist' => "D'Campagne gëtt et net.
 Et gëtt näischt fir ewechzehuelen.",
@@ -10935,23 +10935,23 @@ Net ewechhuelen.',
 	'centralnotice-project-name' => 'Numm vum Projet',
 	'centralnotice-assigned-templates' => 'Zougewise Banneren',
 	'centralnotice-no-templates' => 'Keng Bannere fonnt.
-Setzt der derbäi!',
+Setzt der dobäi!',
 	'centralnotice-no-templates-assigned' => 'Keng Bannere mat der Campagne verbonn.
-Setzt der derbäi!',
+Setzt der dobäi!',
 	'centralnotice-available-templates' => 'Disponibel Banneren',
 	'centralnotice-template-already-exists' => 'De Banner ass schonn enger Campagne zougedeelt.
-Net derbäisetzen',
+Net dobäisetzen',
 	'centralnotice-preview-template' => 'Schabloun weisen ouni ze späicheren',
 	'centralnotice-change-lang' => 'Sprooch vun der Iwwersetzung änneren',
 	'centralnotice-weights' => 'Gewiicht',
 	'centralnotice-notice-is-locked' => "D'Matdeelung ass gespaart.
 Se kann net ewechgeholl ginn.",
-	'centralnotice-overlap' => "D'Meldung iwwerschneid sech mat der Zäit vun enger anerer Meldung.
-Net derbäigesat.",
+	'centralnotice-overlap' => "D'Meldung iwwerschneit sech mat der Zäit vun enger anerer Meldung.
+Net dobäigesat.",
 	'centralnotice-invalid-date-range' => 'Ongëltegen Zäitraum.
 Gëtt net aktualiséiert.',
-	'centralnotice-null-string' => 'Et ass net méiglech näischt derbäizesetzen.
-Näischt derbäigesat',
+	'centralnotice-null-string' => 'Et ass net méiglech näischt dobäizesetzen.
+Näischt dobäigesat',
 	'centralnotice-no-notices-exist' => 'Et gëtt keng Matdeelung.
 Setzt eng hei ënnendrënner bei.',
 	'centralnotice-no-templates-translate' => "Et gëtt keng Bannere fir déi Iwwersetzungen z'ännere sinn",
@@ -11010,7 +11010,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-changed' => 'Vun <span class="cn-old-value">$1</span> op <span class="cn-new-value">$2</span> geännert',
 	'centralnotice-on' => 'un',
 	'centralnotice-off' => 'aus',
-	'centralnotice-added' => '<span class="cn-new-value">$1</span> derbäigesat',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> dobäigesat',
 	'centralnotice-removed' => '<span class="cn-old-value">$1</span> ewechgeholl',
 	'centralnotice-no-assignments' => 'kee Banner zougedeelt',
 	'centralnotice-talk-link' => 'Diskussioun',
