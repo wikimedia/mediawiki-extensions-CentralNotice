@@ -25,11 +25,16 @@ $specialPageAliases['en'] = array(
 /** Arabic (العربية) */
 $specialPageAliases['ar'] = array(
 	'CentralNotice' => array( 'ملاحظة_مركزية' ),
+	'CentralNoticeBanners' => array( 'إعلانات_الملاحظة_المركزية' ),
 	'CentralNoticeLogs' => array( 'سجلات_الملاحظة_المركزية' ),
+	'CNReporter' => array( 'مبلغ_م_م' ),
 	'NoticeTemplate' => array( 'قالب_الملاحظة' ),
+	'GlobalAllocation' => array( 'تخصيص_عام' ),
 	'BannerAllocation' => array( 'وضع_الإعلان' ),
 	'BannerController' => array( 'متحكم_الإعلان' ),
 	'BannerLoader' => array( 'محمل_الإعلان' ),
+	'BannerRandom' => array( 'إعلان_عشوائي' ),
+	'RecordImpression' => array( 'تسجيل_الانطباع' ),
 	'HideBanners' => array( 'إخفاء_الإعلان' ),
 );
 

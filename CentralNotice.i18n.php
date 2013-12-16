@@ -4015,6 +4015,7 @@ $messages['cu'] = array(
 );
 
 /** Welsh (Cymraeg)
+ * @author Cymrodor
  * @author Lcawte
  * @author Lloffiwr
  * @author Pwyll
@@ -4036,7 +4037,7 @@ Gall hefyd gael ei ddefnyddio i ychwanegu hen hysbysiadau neu eu tynnu i ffwrdd.
 	'centralnotice-enabled' => 'Wedi ei alluogi',
 	'centralnotice-modify' => 'Dangoser',
 	'centralnotice-view' => 'Gweler',
-	'centralnotice-save-banner' => 'Cadwer',
+	'centralnotice-save-banner' => 'Cadw',
 	'centralnotice-preview' => 'Rhagolwg ($1)',
 	'centralnotice-live-preview' => 'Gweld rhagolwg ar y wici',
 	'centralnotice-nopreview' => '(Dim rhagolwg ar gael)',
