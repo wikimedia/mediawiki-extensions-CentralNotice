@@ -366,6 +366,7 @@ $specialPageAliases['zh-hans'] = array(
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
 	'BannerLoader' => array( '横幅装载器' ),
+	'BannerRandom' => array( '随机横幅' ),
 	'HideBanners' => array( '隐藏横幅' ),
 );
 
