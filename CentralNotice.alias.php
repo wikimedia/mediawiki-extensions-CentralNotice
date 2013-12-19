@@ -162,13 +162,15 @@ $specialPageAliases['it'] = array(
 /** Japanese (日本語) */
 $specialPageAliases['ja'] = array(
 	'CentralNotice' => array( '中央管理通知' ),
+	'CentralNoticeBanners' => array( '中央管理通知バナー' ),
 	'CentralNoticeLogs' => array( '中央管理通知記録' ),
 	'NoticeTemplate' => array( '通知テンプレート' ),
 	'GlobalAllocation' => array( 'グローバル割り当て' ),
-	'BannerAllocation' => array( 'テンプレート割り当て' ),
-	'BannerController' => array( 'テンプレート制御' ),
-	'BannerLoader' => array( 'テンプレート読み込み' ),
-	'HideBanners' => array( 'バナーを隠す' ),
+	'BannerAllocation' => array( 'バナー割り当て' ),
+	'BannerController' => array( 'バナー制御' ),
+	'BannerLoader' => array( 'バナー読み込み' ),
+	'BannerRandom' => array( 'バナーおまかせ', 'バナーランダム' ),
+	'HideBanners' => array( 'バナー非表示', 'バナーを隠す' ),
 );
 
 /** Georgian (ქართული) */
