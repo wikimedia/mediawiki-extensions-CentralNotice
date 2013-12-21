@@ -7092,6 +7092,22 @@ Volyéd vêre http://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enf
 	'centralnotice-end-time' => 'Hora de fin (UTC)',
 );
 
+/** Western Frisian (Frysk)
+ * @author Kening Aldgilles
+ */
+$messages['fy'] = array(
+	'centralnotice-add-notice-button' => 'Oanmeitsje',
+	'centralnotice-add-notice-cancel-button' => 'Ofbrekke',
+	'centralnotice-clone-name' => 'Namme:',
+	'centralnotice-clone-cancel' => 'Ofbrekke',
+	'centralnotice-insert' => 'Ynfoegje: $1',
+	'centralnotice-close-title' => 'Slute',
+	'centralnotice-archive-banner-cancel' => 'Ofbrekke',
+	'centralnotice-archive-campaign' => 'Argyf',
+	'centralnotice-archive-campaign-cancel' => 'Ofbrekke',
+	'centralnotice-delete-banner-cancel' => 'Ofbrekke',
+);
+
 /** Irish (Gaeilge)
  * @author Alison
  * @author පසිඳු කාවින්ද
