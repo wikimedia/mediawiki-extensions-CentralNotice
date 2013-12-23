@@ -3709,7 +3709,7 @@ $messages['ce'] = array(
 	'centralnotice-manage' => 'Цхаьна дlахоуьйтуш леладо урхалла',
 	'centralnotice-add' => 'ТӀетоха',
 	'centralnotice-add-notice-cancel-button' => 'Цаоьшу',
-	'centralnotice-add-template' => 'Тlетоха кеп',
+	'centralnotice-add-template' => 'ТӀетоха кеп',
 	'centralnotice-translations' => 'Гочдинарш',
 	'centralnotice-translate-to' => 'Гочдар оцу',
 	'centralnotice-translate' => 'Гоч',
@@ -4965,8 +4965,8 @@ Dajo se teke wužywaś, aby se pśidali nowe powěźeńki abo wótpórali stare 
 	'centralnotice-enabled' => 'Zmóžnjony',
 	'centralnotice-modify' => 'Wótpósłaś',
 	'centralnotice-view' => 'Zwobrazniś',
-	'centralnotice-save-banner' => 'Chórgoj składowaś', # Fuzzy
-	'centralnotice-preview' => 'Pśeglěd', # Fuzzy
+	'centralnotice-save-banner' => 'Składowaś',
+	'centralnotice-preview' => 'Pśeglěd ($1)',
 	'centralnotice-nopreview' => '(Pśeglěd njejo k dispoziciji.)',
 	'centralnotice-add-new' => 'Nowu centralnu powěźeńku pśidaś',
 	'centralnotice-remove' => 'Wótwónoźeś',
@@ -5002,8 +5002,8 @@ Dajo se teke wužywaś, aby se pśidali nowe powěźeńki abo wótpórali stare 
 	'centralnotice-remove-notice-doesnt-exist' => 'Kampanja njeeksistěrujo.
 Njejo nic za wótpóranje.',
 	'centralnotice-banner-doesnt-exist' => 'Banaŕ njeeksistěrujo',
-	'centralnotice-template-still-bound' => 'Pśedłoga jo hyšći z powěźeńku zwězana.
-Žedno wótpóranje.', # Fuzzy
+	'centralnotice-template-still-bound' => 'Chórgoj "$1" njedajo se wótpóraś, dokulaž jo hyšći z powěsću zwězana.
+Njewótwónoźujo se.',
 	'centralnotice-template-body' => 'Tekst pśedłogi:',
 	'centralnotice-day' => 'Źeń',
 	'centralnotice-year' => 'Lěto',
@@ -5046,7 +5046,7 @@ Pśidaj jadnu.',
 	'centralnotice-clone' => 'Klonowaś',
 	'centralnotice-clone-notice' => 'Kopiju pśedłogi napóraś',
 	'centralnotice-clone-name' => 'Mě:',
-	'centralnotice-preview-all-template-translations' => 'Pśeglěd wšych k dispoziciji stojecych pśełožkow pśedłogi', # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'Pśeglěd wšych akceptěrowanych pśełožkow',
 	'centralnotice-insert' => 'Zasunuś: $1',
 	'centralnotice-close-button' => 'Tłocašk zacyniś',
 	'centralnotice-close-title' => 'Zacyniś',
@@ -5060,7 +5060,7 @@ Pśidaj jadnu.',
 	'centralnotice-banner-collapsible' => 'Fałdujobny',
 	'centralnotice-banner-fundraising' => 'To jo chórgoj za pósćiwańske akcije',
 	'centralnotice-banner-autolink' => 'Wótkaz k celowemu bokoju awtomatiski napóraś',
-	'centralnotice-banner-autolink-help' => 'Napór z $1 kokulku we wobłuku chórgoje a zapódaj jadnu celowy bok abo někotare celowe boki, ako na pśikład $2. Wótkaz napórajo se awtomatiski, gaž chórgoj se pokazujo.', # Fuzzy
+	'centralnotice-banner-autolink-help' => 'Jolic to jo zmóžnjone, centralna powěźeńka napórajo awtomatiski nowy lokalizěrowany wótkaz do $3 z pśipadnje wubranym celowym bokom. Musy element anchor z $1 w tekstowem źělu chórgoje eksistěrowaś.',
 	'centralnotice-banner-landing-pages' => 'Celowe boki (pśez komu źělone)',
 	'centralnotice-geo' => 'Geolokalizěrowany',
 	'centralnotice-countries' => 'Kraje',
@@ -5072,7 +5072,7 @@ Pśidaj jadnu.',
 	'centralnotice-projects' => 'Projekty',
 	'centralnotice-country' => 'Kraj',
 	'centralnotice-no-allocation' => 'Žedne banarje zrědowane.',
-	'centralnotice-allocation-description' => 'Zrědowanje banarja za $1.$2 w $3', # Fuzzy
+	'centralnotice-allocation-description' => 'Zrědowanje banarja za rěc: $1, projekt: $2, w kraju: $3, na rěźe $4',
 	'centralnotice-percentage' => 'Procentowa sajźba',
 	'centralnotice-documentwrite-error' => 'document.write() njedajo se w banarju wužywaś.
 Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.',
@@ -5105,8 +5105,8 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
 	'centralnotice-date' => 'Datum',
 	'centralnotice-apply-filters' => 'Filtry nałožyś',
 	'centralnotice-clear-filters' => 'Filtry lašowaś',
-	'centralnotice-banner-messages' => 'Chórgojowe powěźeńki', # Fuzzy
-	'centralnotice-filter-template-prompt' => 'Mě chórgoja wopśimujo:', # Fuzzy
+	'centralnotice-banner-messages' => 'Pśełožujobne chórgojowe powěźeńki',
+	'centralnotice-filter-template-prompt' => 'Chórgoje filtrowaś (na pś. Jimmy 2008)',
 	'centralnotice-filter-template-submit' => 'Filter nałožyś',
 	'centralnotice-filter-template-banner' => 'Chórgoje filtrowaś',
 	'centralnotice-priority-low' => 'niska',
@@ -5127,9 +5127,9 @@ Glědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije
 	'centralnotice-bucket-letter' => 'Wokolina "$1"',
 	'centralnotice-all' => 'Wšykne',
 	'centralnotice-all-except' => 'Wšykne mimo $1',
-	'centralnotice-start-date' => 'Startowy datum', # Fuzzy
+	'centralnotice-start-date' => 'Startowy datum (UTC)',
 	'centralnotice-start-time' => 'Startowy cas (UTC)',
-	'centralnotice-end-date' => 'Kóńcny datum', # Fuzzy
+	'centralnotice-end-date' => 'Kóńcny datum (UTC)',
 	'centralnotice-end-time' => 'Kóńcny cas (UTC)',
 );
 
