@@ -3716,6 +3716,7 @@ $messages['ce'] = array(
 	'centralnotice-english' => 'ингалсан',
 	'centralnotice-templates' => 'Кепаш',
 	'centralnotice-weight' => 'Шоралла',
+	'centralnotice-day' => 'Де',
 	'centralnotice-year' => 'Шо',
 	'centralnotice-hours' => 'Сахьт',
 	'centralnotice-project-lang' => 'Проектан мотт',
@@ -3735,6 +3736,7 @@ $messages['ce'] = array(
 	'centralnotice-timestamp' => 'Терахь/хан',
 	'centralnotice-action' => 'Дийраш',
 	'centralnotice-action-created' => 'кхоьллина',
+	'centralnotice-action-removed' => 'дӀаяьккхина',
 	'centralnotice-talk-link' => 'дийцаре',
 	'centralnotice-date' => 'Терахь',
 	'centralnotice-archive-banner-cancel' => 'Цаоьшу',
@@ -16699,6 +16701,13 @@ Nun junciutu',
 	'centralnotice-start-date' => "Data d'accuminzatina", # Fuzzy
 	'centralnotice-start-time' => "Ura d'accuminzatina (UTC)",
 	'centralnotice-end-date' => "Data d'accapata", # Fuzzy
+);
+
+/** Samogitian (žemaitėška)
+ * @author Hugo.arg
+ */
+$messages['sgs'] = array(
+	'centralnotice-languages' => 'Kalbas',
 );
 
 /** Serbo-Croatian (srpskohrvatski / српскохрватски)
