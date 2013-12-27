@@ -169,7 +169,7 @@ class CentralNotice extends SpecialPage {
 
 				// If there were no errors, reload the page to prevent duplicate form submission
 				if ( !$this->centralNoticeError ) {
-					$out->redirect( $this->getTitle()->getLocalUrl() );
+					$out->redirect( $this->getPageTitle()->getLocalUrl() );
 					return;
 				}
 			} else {
@@ -406,7 +406,7 @@ class CentralNotice extends SpecialPage {
 				// Name
 				$rowCells .= Html::rawElement( 'td', array(),
 					Linker::link(
-						$this->getTitle(),
+						$this->getPageTitle(),
 						htmlspecialchars( $row->not_name ),
 						array(),
 						array(
@@ -551,7 +551,7 @@ class CentralNotice extends SpecialPage {
 			// Form for adding a campaign
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-add-notice' )->text() );
-			$htmlOut .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+			$htmlOut .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 			$htmlOut .= Html::hidden( 'method', 'addCampaign' );
 
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
@@ -805,7 +805,7 @@ class CentralNotice extends SpecialPage {
 
 					// If there were no errors, reload the page to prevent duplicate form submission
 					if ( !$this->centralNoticeError ) {
-						$this->getOutput()->redirect( $this->getTitle()->getLocalUrl( array(
+						$this->getOutput()->redirect( $this->getPageTitle()->getLocalUrl( array(
 								'method' => 'listNoticeDetail',
 								'notice' => $notice
 						) ) );
@@ -826,7 +826,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' => $this->getTitle()->getLocalUrl( array(
+					'action' => $this->getPageTitle()->getLocalUrl( array(
 						'method' => 'listNoticeDetail',
 						'notice' => $notice
 					) )
