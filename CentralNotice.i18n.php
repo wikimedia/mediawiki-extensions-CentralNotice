@@ -4409,6 +4409,7 @@ Se http://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.
 	'centralnotice-fundraising' => 'Indsamling',
 	'centralnotice-autolink' => 'Automatisk link oprettelse',
 	'centralnotice-landingpages' => 'Destinationssider',
+	'centralnotice-controller_mixin' => 'Controller mixins',
 	'centralnotice-category' => 'Banner kategori',
 	'centralnotice-banner-content' => 'Banner indhold',
 	'centralnotice-banner-content-changed' => 'Ændret',
@@ -4772,7 +4773,7 @@ Ena panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.',
 	'centralnotice-add-notice-cancel-button' => 'Bıterkne',
 	'centralnotice-edit-notice' => 'Kampanya bıvurne',
 	'centralnotice-add-template' => 'Yew Sablon vırazê',
-	'centralnotice-show-notices' => 'İkaza bıasne',
+	'centralnotice-show-notices' => 'İqazan bımocne',
 	'centralnotice-list-templates' => 'Şablona liste ke',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'Çarnayişan',
@@ -6004,6 +6005,7 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-archive-campaign-confirm' => 'Arhiivimisega märgitakse teade jäädavalt ebaaktiivseks.',
 	'centralnotice-archive-campaign-cancel' => 'Loobu',
 	'centralnotice-archive-edit-prevented' => 'Selle teate muutmine on keelatud, sest see on kas lukustatud või arhiivitud. Muuda leheküljel [[Special:CentralNotice]] kumbagi olekut.',
+	'centralnotice-add-new-banner-title' => 'Uue malli lisamine',
 	'centralnotice-delete-banner' => 'Kustuta',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|Mall|Mallid}} kustutada?',
 	'centralnotice-delete-banner-confirm' => 'Kustutamine eemaldab kõik sätted ja sõnumid. Seda toimingut ei saa tagasi pöörata. Kaalu, kas soovid selle asemel arhiivida.',
@@ -10893,6 +10895,16 @@ $messages['ky'] = array(
 	'centralnotice-project-name' => 'Долбоордун аталышы',
 	'centralnotice-clone-cancel' => 'Жокко чыгаруу',
 	'centralnotice-close-title' => 'Жабуу',
+);
+
+/** Ladino (Ladino)
+ * @author Menachem.Moreira
+ */
+$messages['lad'] = array(
+	'centralnotice-english' => 'Inglez',
+	'centralnotice-day' => 'Dia',
+	'centralnotice-year' => 'Anyo',
+	'centralnotice-month' => 'Mez',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
