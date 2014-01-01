@@ -10901,10 +10901,19 @@ $messages['ky'] = array(
  * @author Menachem.Moreira
  */
 $messages['lad'] = array(
+	'centralnotice-add-notice-button' => 'Krear',
+	'centralnotice-translations' => 'Traduksiyones',
+	'centralnotice-translate-to' => 'Tradusir a',
+	'centralnotice-translate' => 'Tradusir',
 	'centralnotice-english' => 'Inglez',
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Anyo',
 	'centralnotice-month' => 'Mez',
+	'centralnotice-clone-name' => 'Nombre:',
+	'centralnotice-languages' => 'Lenguas',
+	'centralnotice-language' => 'Lengua',
+	'centralnotice-projects' => 'Projectos',
+	'centralnotice-all' => 'Todos',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
