@@ -2705,10 +2705,10 @@ $messages['be-tarask'] = array(
 	'centralnotice-banner-class' => 'Кляса', # Fuzzy
 	'centralnotice-templates-included' => 'Уключаныя шаблёны',
 	'centralnotice-archive-banner' => 'Заархіваваць',
-	'centralnotice-archive-banner-title' => 'Заархіваваць {{PLURAL:$1|банэр|банэры}}?',
+	'centralnotice-archive-banner-title' => 'Заархіваваць {{PLURAL:$1|1=банэр|банэры}}?', # Fuzzy
 	'centralnotice-archive-banner-cancel' => 'Скасаваць',
 	'centralnotice-delete-banner' => 'Выдаліць',
-	'centralnotice-delete-banner-title' => 'Выдаліць {{PLURAL:$1|банэр|банэры}}?',
+	'centralnotice-delete-banner-title' => 'Выдаліць {{PLURAL:$1|1=банэр|банэры}}?', # Fuzzy
 	'centralnotice-delete-banner-cancel' => 'Скасаваць',
 	'centralnotice-start-timestamp' => 'Пачатак (UTC)',
 	'centralnotice-end-timestamp' => 'Канец (UTC)',
@@ -16014,7 +16014,7 @@ $messages['ru'] = array(
 	'centralnotice-project-lang' => 'Язык проекта',
 	'centralnotice-select-all' => 'Выбрать все',
 	'centralnotice-remove-all' => 'Удалить все',
-	'centralnotice-items-selected' => '$1 {{PLURAL:$1|элемент выбран|элемента выбрана|элементов выбрано}}',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|элемент выбран|элементов выбрано|элемента выбрана}}', # Fuzzy
 	'centralnotice-project-name' => 'Название проекта',
 	'centralnotice-assigned-templates' => 'Установленные шаблоны',
 	'centralnotice-no-templates' => 'Не найдено шаблонов.
@@ -16151,18 +16151,18 @@ $messages['ru'] = array(
 	'centralnotice-banner-class-desc' => 'Объявления определенной категории используют общие переменные отслеживания и групповые параметры (например, куки скрытия и число отображений). Именами категорий могут быть «волшебные слова», такие как <nowiki>{{{campaign}}}</nowiki> или <nowiki>{{{banner}}}</nowiki>, которые будут автоматически преобразованы во время отображения. Значения должны быть буквенно-цифровым.',
 	'centralnotice-templates-included' => 'Включённые шаблоны',
 	'centralnotice-archive-banner' => 'Архивировать',
-	'centralnotice-archive-banner-title' => 'Добавить {{PLURAL:$1|баннер|баннеры}} в архив?',
+	'centralnotice-archive-banner-title' => 'Добавить {{PLURAL:$1|1=баннер|баннеры}} в архив?', # Fuzzy
 	'centralnotice-archive-banner-confirm' => 'Архивирование распространяется на все включённые шаблоны и устанавливает защиту страницы. Это не слишком простое действие для отмены.',
 	'centralnotice-archive-banner-cancel' => 'Отмена',
 	'centralnotice-archive-show' => 'Показать заархивированные уведомления',
 	'centralnotice-archive-campaign' => 'Архивировать',
-	'centralnotice-archive-campaign-title' => 'Заархивировать {{PLURAL:$1|уведомление|уведомления}}?',
+	'centralnotice-archive-campaign-title' => 'Заархивировать {{PLURAL:$1|1=уведомление|уведомления}}?', # Fuzzy
 	'centralnotice-archive-campaign-confirm' => 'Архивирование делает уведомление постоянно неактивным.',
 	'centralnotice-archive-campaign-cancel' => 'Отмена',
 	'centralnotice-archive-edit-prevented' => 'Редактирование этого уведомления отключено, поскольку она заблокирована или находится в архиве. Измените её статусу в [[Special:CentralNotice]].',
 	'centralnotice-add-new-banner-title' => 'Добавить новый баннер',
 	'centralnotice-delete-banner' => 'Удалить',
-	'centralnotice-delete-banner-title' => 'Удалить {{PLURAL:$1|баннер|баннеры}}?',
+	'centralnotice-delete-banner-title' => 'Удалить {{PLURAL:$1|1=баннер|баннеры}}?', # Fuzzy
 	'centralnotice-delete-banner-confirm' => 'Удаления стирает все параметры и сообщения. Это действие нельзя отменить. Подумайте об использовании архивирования вместо удаления.',
 	'centralnotice-delete-banner-cancel' => 'Отмена',
 	'centralnotice-messages-pending-approval' => 'Языки с сообщениями, в настоящее время ожидающими утверждения',
@@ -19992,7 +19992,7 @@ $messages['uk'] = array(
 	'centralnotice-banner-class-desc' => 'Банери певної категорії використовують відстежувані змінні і групові налаштування (напр., приховування cookies та частоту відображення банера.) Назви категорій можуть бути чарівними словами на кшталт <nowiki>{{{campaign}}}</nowiki> або <nowiki>{{{banner}}}</nowiki>, які будуть автоматично розширені у час відображення. Значення мають бути алфавітно-цифровими.',
 	'centralnotice-templates-included' => 'Включені шаблони',
 	'centralnotice-archive-banner' => 'Заархівувати',
-	'centralnotice-archive-banner-title' => 'Заархівувати {{PLURAL:$1|банер|банери}}?',
+	'centralnotice-archive-banner-title' => 'Заархівувати {{PLURAL:$1|1=банер|банери}}?',
 	'centralnotice-archive-banner-confirm' => 'Архівування розкриває усі включені шаблони і встановлює захист сторінки. Цю дію нелегко повернути назад.',
 	'centralnotice-archive-banner-cancel' => 'Скасувати',
 	'centralnotice-archive-show' => 'Показати архів кампаній',
@@ -20003,7 +20003,7 @@ $messages['uk'] = array(
 	'centralnotice-archive-edit-prevented' => 'Редагування цієї кампанії вимкнено, тому що вона заблокована або заархівована. Поміняйте на який-небудь статус з [[Special:CentralNotice]].',
 	'centralnotice-add-new-banner-title' => 'Додати новий банер',
 	'centralnotice-delete-banner' => 'Вилучити',
-	'centralnotice-delete-banner-title' => 'Вилучити {{PLURAL:$1|банер|банери}}?',
+	'centralnotice-delete-banner-title' => 'Вилучити {{PLURAL:$1|1=банер|банери}}?',
 	'centralnotice-delete-banner-confirm' => 'Вилучення видаляє усі налаштування і повідомлення. Ця дія не може бути відкинута. Розгляньте можливість архівування.',
 	'centralnotice-delete-banner-cancel' => 'Скасувати',
 	'centralnotice-messages-pending-approval' => 'Мови з повідомленнями, що в даний час очікують схвалення',
