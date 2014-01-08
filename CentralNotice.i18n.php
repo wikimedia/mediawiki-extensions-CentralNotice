@@ -8053,8 +8053,8 @@ $messages['hi'] = array(
 	'centralnotice-project-lang' => 'परियोजना भाषा',
 	'centralnotice-project-name' => 'प्रकल्प नाम',
 	'centralnotice-assigned-templates' => 'सौंपा गया बैनर',
-	'centralnotice-no-templates' => 'कोई बैनर नहीं मिली।
-कुछ जोड़ें!',
+	'centralnotice-no-templates' => 'कोई बैनर नहीं मिले।
+कुछ बैनर जोड़ें!',
 	'centralnotice-no-templates-assigned' => 'कोई बैनर अभियान के लिए सौंपा नहीं गया ।
 कुछ जोड़ें !',
 	'centralnotice-available-templates' => 'उपलब्ध बैनर',
@@ -15986,6 +15986,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
  * @author Okras
  * @author Ole Yves
  * @author Rubin
+ * @author Rubin16
  * @author Sabbah
  * @author Александр Сигачёв
  */
