@@ -3724,6 +3724,7 @@ $messages['ce'] = array(
 	'centralnotice-change-lang' => 'Хийца гоч даран мотт',
 	'centralnotice-null-string' => 'Цатарло баьсса могӀа теӀетоха. ТӀе ца кхета',
 	'centralnotice-number-uses' => 'Лелош ю',
+	'centralnotice-settings' => 'Параметраш',
 	'centralnotice-edit-template' => 'Нисйé кеп',
 	'centralnotice-message' => 'Хаам',
 	'centralnotice-clone-cancel' => 'Цаоьшу',
@@ -12595,16 +12596,16 @@ $messages['mr'] = array(
 	'centralnotice-archive-campaign-title' => '{{PLURAL:$1|अभियान|अभियाने}} दप्तरदाखल करायची?',
 	'centralnotice-archive-campaign-confirm' => "एखाद्या अभियानास दप्तरदाखल करण्याने, त्यास, 'कायमस्वरुपी निष्क्रिय' अशी खूण लागते.",
 	'centralnotice-archive-campaign-cancel' => 'रद्द करा',
-	'centralnotice-archive-edit-prevented' => 'या अभियानाचे संपादन अक्षम करण्यात आले आहे कारण एकतर तो ताळेबंद आहे किंवा दप्तरदाखल आहे. [[Special:केंद्रिय सूचना]] येथून यापैकी एक स्थिती बदला.', # Fuzzy
+	'centralnotice-archive-edit-prevented' => 'या अभियानाचे संपादन अक्षम करण्यात आले आहे कारण एकतर तो ताळेबंद आहे किंवा दप्तरदाखल आहे. [[Special:CentralNotice|केंद्रिय सूचना]] येथून यापैकी एक स्थिती बदला.',
 	'centralnotice-delete-banner' => 'वगळा',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|घोषणाफलक}} रद्द करायचे?',
 	'centralnotice-delete-banner-confirm' => 'रद्द करण्याने सर्व मांडण्या व संदेश काढल्या जातात.ही क्रिया परतवण्याजोगी नाही.त्याएवजी दप्तरदाखल करण्याबाबत विचार करा.',
 	'centralnotice-delete-banner-cancel' => 'रद्द करा',
 	'centralnotice-messages-pending-approval' => 'संदेश असलेल्या भाषांची मंजूरी सध्या प्रलंबित आहे',
 	'centralnotice-devices' => 'उपकरणांवरची दृष्यता',
-	'centralnotice-start-date' => 'सुरूवात दिनांक', # Fuzzy
+	'centralnotice-start-date' => 'सुरू केल्याचा दिनांक (युटीसीत)',
 	'centralnotice-start-time' => 'सुरू केल्याची वेळ (युटीसी)',
-	'centralnotice-end-date' => 'अंतिम दिनांक', # Fuzzy
+	'centralnotice-end-date' => 'समाप्ति दिनांक (यूटीसीत)',
 	'centralnotice-end-time' => 'समाप्ति समय (यूटीसीत)',
 );
 
