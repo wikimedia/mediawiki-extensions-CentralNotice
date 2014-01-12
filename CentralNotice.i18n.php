@@ -10951,6 +10951,7 @@ $messages['ky'] = array(
  * @author Menachem.Moreira
  */
 $messages['lad'] = array(
+	'centralnotice-add' => 'Anyadir',
 	'centralnotice-add-notice-button' => 'Krear',
 	'centralnotice-translations' => 'Traduksiyones',
 	'centralnotice-translate-to' => 'Tradusir a',
@@ -10959,11 +10960,17 @@ $messages['lad'] = array(
 	'centralnotice-day' => 'Dia',
 	'centralnotice-year' => 'Anyo',
 	'centralnotice-month' => 'Mez',
+	'centralnotice-hours' => 'Ora',
+	'centralnotice-min' => 'Minuto',
+	'centralnotice-project-lang' => 'Lengua del projecto',
 	'centralnotice-clone-name' => 'Nombre:',
 	'centralnotice-languages' => 'Lenguas',
 	'centralnotice-language' => 'Lengua',
 	'centralnotice-projects' => 'Projectos',
+	'centralnotice-user' => 'Usuario',
+	'centralnotice-date' => 'Data',
 	'centralnotice-all' => 'Todos',
+	'centralnotice-delete-banner' => 'Efasar',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -11401,6 +11408,7 @@ Zuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.'
 );
 
 /** لوری (لوری)
+ * @author Bonevarluri
  * @author Mogoeilor
  */
 $messages['lrc'] = array(
@@ -11528,6 +11536,7 @@ $messages['lrc'] = array(
 	'centralnotice-user-role-anonymous' => 'ناشناس',
 	'centralnotice-user-role-logged-in' => 'اومائه د سیستم',
 	'centralnotice-banner-class' => 'دسه',
+	'centralnotice-templates-included' => 'شامل قالویا',
 	'centralnotice-archive-banner' => 'آرشيو',
 	'centralnotice-archive-banner-cancel' => 'رد كردن',
 	'centralnotice-archive-campaign' => 'آرشيو',
