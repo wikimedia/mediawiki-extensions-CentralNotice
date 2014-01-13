@@ -17041,6 +17041,7 @@ $messages['si'] = array(
 /** Slovak (slovenčina)
  * @author Helix84
  * @author Rudko
+ * @author Sudo77(new)
  * @author Teslaton
  */
 $messages['sk'] = array(
@@ -17058,8 +17059,9 @@ Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
 	'centralnotice-enabled' => 'Zapnutá',
 	'centralnotice-modify' => 'Odoslať',
 	'centralnotice-view' => 'Zobraziť',
-	'centralnotice-save-banner' => 'Uložiť oznam', # Fuzzy
-	'centralnotice-preview' => 'Náhľad', # Fuzzy
+	'centralnotice-save-banner' => 'Uložiť',
+	'centralnotice-preview' => 'Náhľad ($1)',
+	'centralnotice-live-preview' => 'Náhľad na wiki',
 	'centralnotice-nopreview' => '(Náhľad nie je k dispozícii)',
 	'centralnotice-add-new' => 'Pridať nový centrálny oznam',
 	'centralnotice-remove' => 'Odstrániť',
@@ -17068,6 +17070,8 @@ Tiež ho môžete použiť na pridanie alebo odstránenie starých oznamov.',
 	'centralnotice-manage-templates' => 'Spravovať oznamy',
 	'centralnotice-add' => 'Pridať',
 	'centralnotice-add-notice' => 'Pridať oznam',
+	'centralnotice-add-notice-button' => 'Vytvoriť',
+	'centralnotice-add-notice-cancel-button' => 'Zrušiť',
 	'centralnotice-edit-notice' => 'Upraviť kampaň',
 	'centralnotice-add-template' => 'Pridať šablónu',
 	'centralnotice-show-notices' => 'Zobraziť oznamy',
@@ -17101,6 +17105,9 @@ Niet čo odstrániť.',
 	'centralnotice-hours' => 'Hodina',
 	'centralnotice-min' => 'Minúta',
 	'centralnotice-project-lang' => 'Jazyk projektu',
+	'centralnotice-select-all' => 'Vybrať všetko',
+	'centralnotice-remove-all' => 'Odstrániť všetko',
+	'centralnotice-items-selected' => '{{PLURAL:$1|Vybraná $1 položka|Vybrané $1 položky|Vybraných $1 položiek}}',
 	'centralnotice-project-name' => 'Názov projektu',
 	'centralnotice-assigned-templates' => 'Priradené šablóny',
 	'centralnotice-no-templates' => 'Neboli nájdené žiadne šablóny. Pridajte nejaké!',
@@ -17125,7 +17132,8 @@ Niet čo odstrániť.',
 	'centralnotice-clone' => 'Klonovať',
 	'centralnotice-clone-notice' => 'Vytvoriť kópiu šablóny',
 	'centralnotice-clone-name' => 'Názov:',
-	'centralnotice-preview-all-template-translations' => 'Náhľad všetkých dostupných verzií šablóny', # Fuzzy
+	'centralnotice-clone-cancel' => 'Zrušiť',
+	'centralnotice-preview-all-template-translations' => 'Náhľad všetkých schválených prekladov',
 	'centralnotice-insert' => 'Vložiť: $1',
 	'centralnotice-close-button' => 'Tlačidlo Zatvoriť',
 	'centralnotice-close-title' => 'Zatvoriť',
@@ -17185,6 +17193,10 @@ Niet čo odstrániť.',
 	'centralnotice-apply-filters' => 'Použiť filtre',
 	'centralnotice-clear-filters' => 'Vyčistiť filtre',
 	'centralnotice-banner-messages' => 'Správy bannerov', # Fuzzy
+	'centralnotice-priority-low' => 'nízka',
+	'centralnotice-priority-normal' => 'normálna',
+	'centralnotice-priority-high' => 'vysoká',
+	'centralnotice-all' => 'Všetko',
 	'centralnotice-start-date' => 'Dátum začatia', # Fuzzy
 	'centralnotice-start-time' => 'Čas začatia (UTC)',
 	'centralnotice-end-date' => 'Dátum ukončenia', # Fuzzy
