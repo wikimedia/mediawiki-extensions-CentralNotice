@@ -4943,7 +4943,7 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-user-role' => 'Rola karberi',
 	'centralnotice-user-role-anonymous' => 'Anonim',
 	'centralnotice-user-role-logged-in' => 'Qeydın',
-	'centralnotice-banner-class' => 'Kategori',
+	'centralnotice-banner-class' => 'Kategoriye',
 	'centralnotice-templates-included' => 'Şabloni dağili',
 	'centralnotice-archive-banner' => 'Arşiv',
 	'centralnotice-archive-banner-title' => 'Arşiva {{PLURAL:$1|baneri|baneran}}?',
@@ -17208,6 +17208,7 @@ Niet čo odstrániť.',
 
 /** Slovenian (slovenščina)
  * @author Dbc334
+ * @author Edinwiki
  * @author Eleassar
  */
 $messages['sl'] = array(
@@ -17753,6 +17754,7 @@ $messages['sr-ec'] = array(
 );
 
 /** Serbian (Latin script) (srpski (latinica)‎)
+ * @author Edinwiki
  * @author Michaello
  * @author Milicevic01
  */
