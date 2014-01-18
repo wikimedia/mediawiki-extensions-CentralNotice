@@ -3317,7 +3317,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-date' => 'Deiziad',
 	'centralnotice-apply-filters' => 'Arloañ ar siloù',
 	'centralnotice-clear-filters' => 'Riñsañ ar siloù',
-	'centralnotice-banner-messages' => 'Kemennadennoù er giton', # Fuzzy
+	'centralnotice-banner-messages' => "Kemennadennoù er giton a c'haller treiñ",
 	'centralnotice-filter-template-prompt' => 'anv ar giton zo ennañ :', # Fuzzy
 	'centralnotice-filter-template-submit' => 'Arloañ ar sil',
 	'centralnotice-filter-template-banner' => 'Sil gitonoù',
@@ -3347,6 +3347,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-archive-show' => "Diskouez ar c'houlzadoù diellaouet",
 	'centralnotice-archive-campaign' => 'Diell',
 	'centralnotice-archive-campaign-cancel' => 'Nullañ',
+	'centralnotice-add-new-banner-title' => 'Ouzhpennañ ur giton nevez',
 	'centralnotice-delete-banner' => 'Dilemel',
 	'centralnotice-delete-banner-title' => 'Dilemel {{PLURAL:$1|ar banniel|ar bannieloù}}?',
 	'centralnotice-delete-banner-cancel' => 'Nullañ',
