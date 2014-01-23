@@ -3705,6 +3705,7 @@ $messages['ce'] = array(
 	'bannerallocation' => 'Цхаьна дlахоуьйтуш леладо урхалла',
 	'right-centralnotice-admin' => 'цхаьна дlахоуьйтуш леладо урхалла',
 	'action-centralnotice-admin' => 'цхаьна дlахоуьйтуш леладо урхалла',
+	'centralnotice-desc' => 'ТӀетуху сайтан юкъара хаамаш',
 	'centralnotice-modify' => 'ДӀадахьийта',
 	'centralnotice-view' => 'Хьажа',
 	'centralnotice-preview' => 'Хьалха муха ю хьажар ($1)',
