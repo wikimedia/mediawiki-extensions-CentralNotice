@@ -12506,7 +12506,7 @@ $messages['mr'] = array(
 	'centralnotice-invalid-date-range' => 'दिनांकांचा अग्राह्य आवाका.
 अद्ययावत् करू नये.',
 	'centralnotice-null-string' => 'null string जोडता येत नाही
-जोडत नाही आहे.',
+जोडत नाही.',
 	'centralnotice-no-notices-exist' => 'मथळा अस्तित्वात नाही.
 एक मथळा खाली जोडा.',
 	'centralnotice-no-templates-translate' => 'भाषांतरे संपादीत करण्याकरिता कोणतेही मुखशीर्षक (बॅनर) उपलब्ध नाही',
