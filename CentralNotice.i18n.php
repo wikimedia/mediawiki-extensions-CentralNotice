@@ -116,7 +116,6 @@ Add one below.',
 	'centralnotice-clone-notice' => 'Create a copy of the banner',
 	'centralnotice-clone-name' => 'Name:',
 	'centralnotice-clone-cancel' => 'Cancel',
-	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'Preview all approved translations',
 	'centralnotice-insert' => 'Insert: $1',
 	'centralnotice-close-button' => 'Close button',
@@ -456,7 +455,6 @@ Preceded by one of the following fieldset labels:
 Preceded by the "Name" input box with the label {{msg-mw|Centralnotice-clone-name}}.
 {{Identical|Clone}}',
 	'centralnotice-clone-notice' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].',
-	'centralnotice-clone-banner' => 'Used as label for the banner in the form in [[Special:NoticeTemplate]].',
 	'centralnotice-clone-name' => 'Used as label for the "Name" input box in [[Special:NoticeTemplate]].
 
 Preceded by the fieldset label {{msg-mw|centralnotice-clone-notice}}.
@@ -11423,6 +11421,7 @@ $messages['lrc'] = array(
 	'bannerallocation' => 'خوردار بیئن وا مدیر مینجا',
 	'globalallocation' => 'خوردار بیئن وا مدیر مینجا',
 	'centralnoticelogs' => 'خوردار بیئن وا مدیر مینجا',
+	'right-centralnotice-admin' => 'وارسونه یا مینجایی نه دیوونداری بکید',
 	'centralnotice-notice-name' => 'نوم چالشت',
 	'centralnotice-enabled' => 'قادر بيه',
 	'centralnotice-modify' => 'كل كردن',
