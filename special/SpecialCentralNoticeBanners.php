@@ -191,7 +191,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// --- Add all the banners via the fancy pager object ---
 		$pager = new CNBannerPager(
-			$this->getTitle(),
+			$this->getPageTitle(),
 			'banner-list',
 			array(
 				 'applyTo' => array(
@@ -396,7 +396,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'section' => 'settings',
 			'type' => 'multiselect',
 			'disabled' => !$this->editable,
-			'label' => 'Display on',
+			'label-message' => 'centralnotice-banner-display-on',
 			'options' => $availableDevices,
 			'default' => $assignedDevices,
 			'cssclass' => 'separate-form-element',
@@ -496,7 +496,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'class' => 'HTMLInfoField',
 					'disabled' => !$this->editable,
 					'label-raw' => Linker::link(
-							$this->getTitle( "preview/{$this->bannerName}" ),
+							$this->getPageTitle( "preview/{$this->bannerName}" ),
 							$this->msg( 'centralnotice-preview-all-template-translations' )->escaped()
 						),
 					'default' => implode( ', ', $liveMessageNames ),
@@ -665,7 +665,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				}
 				try {
 					Banner::removeTemplate( $this->bannerName, $this->getUser() );
-					$this->getOutput()->redirect( $this->getTitle( '' )->getCanonicalURL() );
+					$this->getOutput()->redirect( $this->getPageTitle( '' )->getCanonicalURL() );
 					$this->bannerFormRedirectRequired = true;
 				} catch ( MWException $ex ) {
 					return $ex->getMessage() . " <br /> " . $this->msg( 'centralnotice-template-still-bound', $this->bannerName );
@@ -686,7 +686,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				$newBannerName = $formData[ 'cloneName' ];
 				Banner::fromName( $this->bannerName )->cloneBanner( $newBannerName, $this->getUser() );
 				$this->getOutput()->redirect(
-					$this->getTitle( "Edit/$newBannerName" )->getCanonicalURL()
+					$this->getPageTitle( "Edit/$newBannerName" )->getCanonicalURL()
 				);
 				$this->bannerFormRedirectRequired = true;
 				break;

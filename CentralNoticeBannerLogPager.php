@@ -187,10 +187,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			);
 		}
 
-		$details = $this->testBooleanChange( 'anon', $newrow, $oldrow );
-		$details .= $this->testBooleanChange( 'account', $newrow, $oldrow );
+		$details = $this->testBooleanChange2( 'anon', $newrow, $oldrow );
+		$details .= $this->testBooleanChange2( 'account', $newrow, $oldrow );
 		$details .= $this->testTextChange( 'category', $newrow, $oldrow );
-		$details .= $this->testBooleanChange( 'autolink', $newrow, $oldrow );
+		$details .= $this->testBooleanChange2( 'autolink', $newrow, $oldrow );
 		$details .= $this->testTextChange( 'landingpages', $newrow, $oldrow );
 		$details .= $this->testTextChange( 'controller_mixin', $newrow, $oldrow );
 		$details .= $this->testTextChange( 'prioritylangs', $newrow, $oldrow );
@@ -206,7 +206,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	private function testBooleanChange( $param, $newrow, $oldrow ) {
+	private function testBooleanChange2( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_'.$param;
 

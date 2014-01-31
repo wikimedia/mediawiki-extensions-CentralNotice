@@ -169,7 +169,7 @@ class CentralNotice extends SpecialPage {
 
 				// If there were no errors, reload the page to prevent duplicate form submission
 				if ( !$this->centralNoticeError ) {
-					$out->redirect( $this->getTitle()->getLocalUrl() );
+					$out->redirect( $this->getPageTitle()->getLocalUrl() );
 					return;
 				}
 			} else {
@@ -228,6 +228,17 @@ class CentralNotice extends SpecialPage {
 		} else {
 			return $this->getLanguage()->date( $timestamp );
 		}
+	}
+
+	protected function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
+		return Xml::tags(
+			'td',
+			array(
+				'dir' => 'ltr', // Time is left-to-right in all languages
+				'class' => 'cn-timepicker',
+			),
+			$this->timeSelector( $prefix, $editable, $timestamp )
+		);
 	}
 
 	protected function timeSelector( $prefix, $editable, $timestamp = null ) {
@@ -395,7 +406,7 @@ class CentralNotice extends SpecialPage {
 				// Name
 				$rowCells .= Html::rawElement( 'td', array(),
 					Linker::link(
-						$this->getTitle(),
+						$this->getPageTitle(),
 						htmlspecialchars( $row->not_name ),
 						array(),
 						array(
@@ -540,7 +551,7 @@ class CentralNotice extends SpecialPage {
 			// Form for adding a campaign
 			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 			$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-add-notice' )->text() );
-			$htmlOut .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+			$htmlOut .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 			$htmlOut .= Html::hidden( 'method', 'addCampaign' );
 
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
@@ -559,7 +570,7 @@ class CentralNotice extends SpecialPage {
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -794,7 +805,7 @@ class CentralNotice extends SpecialPage {
 
 					// If there were no errors, reload the page to prevent duplicate form submission
 					if ( !$this->centralNoticeError ) {
-						$this->getOutput()->redirect( $this->getTitle()->getLocalUrl( array(
+						$this->getOutput()->redirect( $this->getPageTitle()->getLocalUrl( array(
 								'method' => 'listNoticeDetail',
 								'notice' => $notice
 						) ) );
@@ -815,7 +826,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' => $this->getTitle()->getLocalUrl( array(
+					'action' => $this->getPageTitle()->getLocalUrl( array(
 						'method' => 'listNoticeDetail',
 						'notice' => $notice
 					) )
@@ -930,7 +941,7 @@ class CentralNotice extends SpecialPage {
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// End Date
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -940,7 +951,7 @@ class CentralNotice extends SpecialPage {
 			// End Time
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-end-time' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->timeSelector( 'end', $this->editable, $end ) );
+			$htmlOut .= $this->timeSelectorTd( 'end', $this->editable, $end );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Project
 			$htmlOut .= Xml::openElement( 'tr' );

@@ -25,11 +25,16 @@ $specialPageAliases['en'] = array(
 /** Arabic (العربية) */
 $specialPageAliases['ar'] = array(
 	'CentralNotice' => array( 'ملاحظة_مركزية' ),
+	'CentralNoticeBanners' => array( 'إعلانات_الملاحظة_المركزية' ),
 	'CentralNoticeLogs' => array( 'سجلات_الملاحظة_المركزية' ),
+	'CNReporter' => array( 'مبلغ_م_م' ),
 	'NoticeTemplate' => array( 'قالب_الملاحظة' ),
+	'GlobalAllocation' => array( 'تخصيص_عام' ),
 	'BannerAllocation' => array( 'وضع_الإعلان' ),
 	'BannerController' => array( 'متحكم_الإعلان' ),
 	'BannerLoader' => array( 'محمل_الإعلان' ),
+	'BannerRandom' => array( 'إعلان_عشوائي' ),
+	'RecordImpression' => array( 'تسجيل_الانطباع' ),
 	'HideBanners' => array( 'إخفاء_الإعلان' ),
 );
 
@@ -157,13 +162,15 @@ $specialPageAliases['it'] = array(
 /** Japanese (日本語) */
 $specialPageAliases['ja'] = array(
 	'CentralNotice' => array( '中央管理通知' ),
+	'CentralNoticeBanners' => array( '中央管理通知バナー' ),
 	'CentralNoticeLogs' => array( '中央管理通知記録' ),
 	'NoticeTemplate' => array( '通知テンプレート' ),
 	'GlobalAllocation' => array( 'グローバル割り当て' ),
-	'BannerAllocation' => array( 'テンプレート割り当て' ),
-	'BannerController' => array( 'テンプレート制御' ),
-	'BannerLoader' => array( 'テンプレート読み込み' ),
-	'HideBanners' => array( 'バナーを隠す' ),
+	'BannerAllocation' => array( 'バナー割り当て' ),
+	'BannerController' => array( 'バナー制御' ),
+	'BannerLoader' => array( 'バナー読み込み' ),
+	'BannerRandom' => array( 'バナーおまかせ', 'バナーランダム' ),
+	'HideBanners' => array( 'バナー非表示', 'バナーを隠す' ),
 );
 
 /** Georgian (ქართული) */
@@ -361,6 +368,7 @@ $specialPageAliases['zh-hans'] = array(
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
 	'BannerLoader' => array( '横幅装载器' ),
+	'BannerRandom' => array( '随机横幅' ),
 	'HideBanners' => array( '隐藏横幅' ),
 );
 
