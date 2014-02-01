@@ -350,9 +350,11 @@ The other headers are:
 	'centralnotice-banner-name' => 'Used as label for the "Banner name" ("Template name") input box in [[Special:NoticeTemplate]].',
 	'centralnotice-banner' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].
 
-Followed by {{msg-mw|Centralnotice-edit-template-summary}}.',
+Followed by {{msg-mw|Centralnotice-edit-template-summary}}.
+{{Identical|Banner}}',
 	'centralnotice-banner-heading' => 'Used as <code><nowiki><h2></nowiki></code> heading. Parameters:
-* $1 - current banner (current template)',
+* $1 - current banner (current template)
+{{Identical|Banner}}',
 	'centralnotice-templates' => '* Used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}}.
 * Used as column header of the table.
 * Used as link text. The link points to [[Special:NoticeTemplate]].',
@@ -456,7 +458,6 @@ Preceded by one of the following fieldset labels:
 Preceded by the "Name" input box with the label {{msg-mw|Centralnotice-clone-name}}.
 {{Identical|Clone}}',
 	'centralnotice-clone-notice' => 'Used as fieldset label in the form in [[Special:NoticeTemplate]].',
-	'centralnotice-clone-banner' => 'Used as label for the banner in the form in [[Special:NoticeTemplate]].',
 	'centralnotice-clone-name' => 'Used as label for the "Name" input box in [[Special:NoticeTemplate]].
 
 Preceded by the fieldset label {{msg-mw|centralnotice-clone-notice}}.
@@ -464,6 +465,8 @@ Preceded by the fieldset label {{msg-mw|centralnotice-clone-notice}}.
 The input box is followed by the Submit button. Its label is {{msg-mw|centralnotice-clone}}.
 {{Identical|Name}}',
 	'centralnotice-clone-cancel' => '{{Identical|Cancel}}',
+	'centralnotice-clone-banner' => 'Used as label for the banner in the form in [[Special:NoticeTemplate]].
+{{Identical|Banner}}',
 	'centralnotice-preview-all-template-translations' => 'Link to display all approved (currently available to use) translations for a banner.',
 	'centralnotice-insert' => 'Used in [[Special:NoticeTemplate]].
 
@@ -1702,6 +1705,7 @@ Amiesta una debaxo.',
 	'centralnotice-clone-notice' => 'Crear una copia del anunciu',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-clone-cancel' => 'Encaboxar',
+	'centralnotice-clone-banner' => 'Cartel',
 	'centralnotice-preview-all-template-translations' => 'Vista previa de toles traducciones aprobaes',
 	'centralnotice-insert' => 'Inxertar: $1',
 	'centralnotice-close-button' => 'Botón zarrar',
@@ -3255,6 +3259,7 @@ Ouzhpennit unan da heul.",
 	'centralnotice-clone-notice' => 'Krouiñ un eiladenn eus ar patrom',
 	'centralnotice-clone-name' => 'Anv :',
 	'centralnotice-clone-cancel' => 'Nullañ',
+	'centralnotice-clone-banner' => 'Giton',
 	'centralnotice-preview-all-template-translations' => 'Rakwelet an holl droidigezhioù aprouet',
 	'centralnotice-insert' => "Ensoc'hañ : $1",
 	'centralnotice-close-button' => 'Serriñ ar bouton',
@@ -3737,6 +3742,7 @@ $messages['ce'] = array(
 	'centralnotice-edit-template' => 'Нисйé кеп',
 	'centralnotice-message' => 'Хаам',
 	'centralnotice-clone-cancel' => 'Цаоьшу',
+	'centralnotice-clone-banner' => 'Баннер',
 	'centralnotice-insert' => 'Чудилла: $1',
 	'centralnotice-close-button' => 'Кнопка «ДӀачӀагӀа»',
 	'centralnotice-close-title' => 'ДӀачӀагӀа',
@@ -3800,6 +3806,7 @@ $messages['co'] = array(
  * @author Li-sung
  * @author Matěj Grabovský
  * @author Mormegil
+ * @author Paxt
  */
 $messages['cs'] = array(
 	'centralnotice' => 'Správa centralizovaných oznámení',
@@ -3896,6 +3903,7 @@ Níže můžete vytvořit nové.',
 	'centralnotice-clone-notice' => 'Vytvořit kopii šablony',
 	'centralnotice-clone-name' => 'Název:',
 	'centralnotice-clone-cancel' => 'Storno',
+	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'Náhled všech schválených překladů',
 	'centralnotice-insert' => 'Vložit: $1',
 	'centralnotice-close-button' => 'Zavírací tlačítko',
@@ -4604,6 +4612,7 @@ Füge eine hinzu.',
 	'centralnotice-clone-notice' => 'Erstelle eine Kopie der Vorlage',
 	'centralnotice-clone-name' => 'Name:',
 	'centralnotice-clone-cancel' => 'Abbrechen',
+	'centralnotice-clone-banner' => 'Vorlage',
 	'centralnotice-preview-all-template-translations' => 'Vorschau aller akzeptierten Übersetzungen',
 	'centralnotice-insert' => 'Einfügen: $1',
 	'centralnotice-close-button' => 'Schaltfläche schließen',
@@ -6027,8 +6036,8 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
 	'centralnotice-end-timestamp' => 'Lõppaeg (UTC)',
 	'centralnotice-start-date' => 'Alguskuupäev (UTC)',
 	'centralnotice-start-time' => 'Alguskellaaeg (UTC)',
-	'centralnotice-end-date' => 'Lõpukuupäev (UTC)',
-	'centralnotice-end-time' => 'Lõpukellaaeg (UTC)',
+	'centralnotice-end-date' => 'Lõppkuupäev (UTC)',
+	'centralnotice-end-time' => 'Lõppkellaaeg (UTC)',
 );
 
 /** Basque (euskara)
@@ -6135,6 +6144,7 @@ Ez da gehituko',
 
 /** Persian (فارسی)
  * @author Alireza
+ * @author Armin1392
  * @author Bersam
  * @author Ebraminio
  * @author Huji
@@ -6253,6 +6263,7 @@ $messages['fa'] = array(
 	'centralnotice-clone-notice' => 'ایجاد یک کپی از الگو',
 	'centralnotice-clone-name' => 'نام:',
 	'centralnotice-clone-cancel' => 'لغو',
+	'centralnotice-clone-banner' => 'علامت',
 	'centralnotice-preview-all-template-translations' => 'پیش‌نمایش همه ترجمه‌ها',
 	'centralnotice-insert' => 'درج: $1',
 	'centralnotice-close-button' => 'دکمه بستن',
@@ -6820,6 +6831,7 @@ Ajoutez-en ci-dessous.',
 	'centralnotice-clone-notice' => 'Créer une copie du modèle',
 	'centralnotice-clone-name' => 'Nom :',
 	'centralnotice-clone-cancel' => 'Annuler',
+	'centralnotice-clone-banner' => 'Bandeau',
 	'centralnotice-preview-all-template-translations' => 'Prévisualiser toutes les traductions approuvées',
 	'centralnotice-insert' => 'Insérer : $1',
 	'centralnotice-close-button' => 'Bouton fermer',
@@ -7259,6 +7271,7 @@ Engada algún embaixo.',
 	'centralnotice-clone-notice' => 'Crear unha copia do modelo',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-clone-cancel' => 'Cancelar',
+	'centralnotice-clone-banner' => 'Cartel',
 	'centralnotice-preview-all-template-translations' => 'Mostrar a vista previa de todas as traducións aprobadas',
 	'centralnotice-insert' => 'Inserir: $1',
 	'centralnotice-close-button' => 'Botón de pechar',
@@ -7874,6 +7887,7 @@ $messages['he'] = array(
 	'centralnotice-clone-notice' => 'יצירת עותק של הכרזה הזאת',
 	'centralnotice-clone-name' => 'שם:',
 	'centralnotice-clone-cancel' => 'ביטול',
+	'centralnotice-clone-banner' => 'כרזה',
 	'centralnotice-preview-all-template-translations' => 'תצוגה מקדימה של כל התרגומים שעברו הגהה',
 	'centralnotice-insert' => 'הוספה: $1',
 	'centralnotice-close-button' => 'לחצן סגירה',
@@ -8005,6 +8019,7 @@ $messages['he'] = array(
  * @author Kaustubh
  * @author Siddhartha Ghai
  * @author Suman
+ * @author Venky2834
  */
 $messages['hi'] = array(
 	'centralnotice' => 'केन्द्रीय सूचना प्रबन्धक',
@@ -8090,6 +8105,7 @@ $messages['hi'] = array(
 	'centralnotice-clone' => 'क्लोन',
 	'centralnotice-clone-notice' => 'बैनर की एक प्रतिलिपि बनाएँ',
 	'centralnotice-clone-name' => 'नाम:',
+	'centralnotice-clone-banner' => 'बैनर',
 	'centralnotice-preview-all-template-translations' => 'बैनर के सारे उपलब्ध अनुवादों का पूर्वावलोकन करें', # Fuzzy
 	'centralnotice-insert' => 'सम्मिलित करें: $1',
 	'centralnotice-close-button' => 'बंद करें बटन',
@@ -8834,6 +8850,7 @@ Adde un hic infra.',
 	'centralnotice-clone-notice' => 'Crear un copia del bandiera',
 	'centralnotice-clone-name' => 'Nomine:',
 	'centralnotice-clone-cancel' => 'Cancellar',
+	'centralnotice-clone-banner' => 'Bandiera',
 	'centralnotice-preview-all-template-translations' => 'Previsualisar tote le traductiones approbate',
 	'centralnotice-insert' => 'Inserer: $1',
 	'centralnotice-close-button' => 'Button "Clauder"',
@@ -9565,6 +9582,7 @@ Non aggiorno',
 	'centralnotice-clone-notice' => 'Crea una copia del template',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-clone-cancel' => 'Annulla',
+	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'Anteprima di tutte le traduzioni approvate',
 	'centralnotice-insert' => 'Inserisci: $1',
 	'centralnotice-close-button' => 'Pulsante di chiusura',
@@ -9796,6 +9814,7 @@ $messages['ja'] = array(
 	'centralnotice-clone-notice' => 'バナーの複製の作成',
 	'centralnotice-clone-name' => '名前:',
 	'centralnotice-clone-cancel' => '中止',
+	'centralnotice-clone-banner' => 'バナー',
 	'centralnotice-preview-all-template-translations' => 'すべての承認済みの翻訳をプレビュー',
 	'centralnotice-insert' => '挿入: $1',
 	'centralnotice-close-button' => '閉じるボタン',
@@ -11085,6 +11104,7 @@ Setzt eng hei ënnendrënner bei.',
 	'centralnotice-clone-notice' => 'Eng Kopie vum Banner maachen',
 	'centralnotice-clone-name' => 'Numm:',
 	'centralnotice-clone-cancel' => 'Ofbriechen',
+	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'All approuvéiert Iwwersetzunge weisen ouni ofzespäicheren',
 	'centralnotice-insert' => 'Drasetzen: $1',
 	'centralnotice-close-button' => "Knäppchen 'Zoumaachen'",
@@ -11423,6 +11443,7 @@ $messages['lrc'] = array(
 	'bannerallocation' => 'خوردار بیئن وا مدیر مینجا',
 	'globalallocation' => 'خوردار بیئن وا مدیر مینجا',
 	'centralnoticelogs' => 'خوردار بیئن وا مدیر مینجا',
+	'right-centralnotice-admin' => 'وارسونه یا مینجایی نه دیوونداری بکید',
 	'centralnotice-notice-name' => 'نوم چالشت',
 	'centralnotice-enabled' => 'قادر بيه',
 	'centralnotice-modify' => 'كل كردن',
@@ -11543,6 +11564,7 @@ $messages['lrc'] = array(
 	'centralnotice-devicetype-desktop' => 'میزکار کامپیتر',
 	'centralnotice-all' => 'همه',
 	'centralnotice-all-except' => 'همه وه جز $1',
+	'centralnotice-user-role' => 'جاگه کارور',
 	'centralnotice-user-role-anonymous' => 'ناشناس',
 	'centralnotice-user-role-logged-in' => 'اومائه د سیستم',
 	'centralnotice-banner-class' => 'دسه',
@@ -12086,6 +12108,7 @@ $messages['mk'] = array(
 	'centralnotice-clone-notice' => 'Создај копија на шаблонот',
 	'centralnotice-clone-name' => 'Име:',
 	'centralnotice-clone-cancel' => 'Откажи',
+	'centralnotice-clone-banner' => 'Плакат',
 	'centralnotice-preview-all-template-translations' => 'Преглед на сите одобрени преводи',
 	'centralnotice-insert' => 'Вметни: $1',
 	'centralnotice-close-button' => 'Копче за затворање',
@@ -14628,6 +14651,7 @@ Ch'a na gionta un-a sì-sota.",
 	'centralnotice-clone-notice' => 'Crea na còpia ëd lë stamp',
 	'centralnotice-clone-name' => 'Nòm:',
 	'centralnotice-clone-cancel' => 'Anulé',
+	'centralnotice-clone-banner' => 'Tilèt',
 	'centralnotice-preview-all-template-translations' => 'Previsualisé tute le tradussion aprovà',
 	'centralnotice-insert' => 'Anserì: $1',
 	'centralnotice-close-button' => 'Boton për boton',
@@ -15902,6 +15926,7 @@ Scaffáne une aqquà d'abbasce.",
 	'centralnotice-clone-notice' => "Creje 'na copie d'u banner",
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-clone-cancel' => 'Annulle',
+	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'Andeprime de totte le traduzione approvate',
 	'centralnotice-insert' => 'Mitte: $1',
 	'centralnotice-close-button' => 'Buttone de chiusure',
@@ -16076,9 +16101,9 @@ $messages['ru'] = array(
 	'centralnotice-add-notice-button' => 'Создать',
 	'centralnotice-add-notice-cancel-button' => 'Отмена',
 	'centralnotice-edit-notice' => 'Изменить кампанию',
-	'centralnotice-add-template' => 'Добавить шаблон',
+	'centralnotice-add-template' => 'Добавить баннер',
 	'centralnotice-show-notices' => 'Показать уведомления',
-	'centralnotice-list-templates' => 'Вывести список шаблонов',
+	'centralnotice-list-templates' => 'Вывести список баннеров',
 	'centralnotice-language-listing' => '$1 - $2',
 	'centralnotice-translations' => 'Переводы',
 	'centralnotice-translate-to' => 'Перевод на',
@@ -16087,10 +16112,10 @@ $messages['ru'] = array(
 	'centralnotice-banner-name' => 'Название баннера:',
 	'centralnotice-banner' => 'Баннер',
 	'centralnotice-banner-heading' => 'Баннер: $1',
-	'centralnotice-templates' => 'Шаблоны',
+	'centralnotice-templates' => 'Баннеры',
 	'centralnotice-throttle' => 'Ограничить трафик',
 	'centralnotice-throttle-amount' => 'Ограничение доли трафика от общего объёма',
-	'centralnotice-balanced' => 'Установить всем шаблонам равный вес',
+	'centralnotice-balanced' => 'Установить всем баннерам равный вес',
 	'centralnotice-weight' => 'Ширина',
 	'centralnotice-locked' => 'Заблокированный',
 	'centralnotice-notice' => 'Кампания',
@@ -16100,15 +16125,15 @@ $messages['ru'] = array(
 Не добавляется',
 	'centralnotice-no-language' => 'Не выбран язык для этой кампании. Не добавлено.',
 	'centralnotice-no-project' => 'Ни один проект не был выбран для проведения кампании. Не добавлено.',
-	'centralnotice-template-exists' => 'Шаблон уже существует.
-Не добавляется',
+	'centralnotice-template-exists' => 'Баннер уже существует.
+Не добавляется.',
 	'centralnotice-notice-doesnt-exist' => 'Кампания не существует.',
 	'centralnotice-remove-notice-doesnt-exist' => 'Кампания не существует.
 Нечего удалять.',
 	'centralnotice-banner-doesnt-exist' => 'Баннер не существует.',
 	'centralnotice-template-still-bound' => 'Не удаётся удалить баннер «$1», так как он по-прежнему привязан к кампании.
 Не удаляемый.',
-	'centralnotice-template-body' => 'Тело шаблона:',
+	'centralnotice-template-body' => 'Тело баннера:',
 	'centralnotice-day' => 'День',
 	'centralnotice-year' => 'Год',
 	'centralnotice-month' => 'Месяц',
@@ -16119,15 +16144,15 @@ $messages['ru'] = array(
 	'centralnotice-remove-all' => 'Удалить все',
 	'centralnotice-items-selected' => '$1 {{PLURAL:$1|элемент выбран|элементов выбрано|элемента выбрана}}',
 	'centralnotice-project-name' => 'Название проекта',
-	'centralnotice-assigned-templates' => 'Установленные шаблоны',
-	'centralnotice-no-templates' => 'Не найдено шаблонов.
+	'centralnotice-assigned-templates' => 'Установленные баннеры',
+	'centralnotice-no-templates' => 'Не найдено баннеров.
 Добавьте что-нибудь!',
-	'centralnotice-no-templates-assigned' => 'Нет связанных с уведомлением шаблонов.
-Добавьте какой-нибудь',
-	'centralnotice-available-templates' => 'Доступные шаблоны',
-	'centralnotice-template-already-exists' => 'Шаблон уже привязан.
-Не добавлен',
-	'centralnotice-preview-template' => 'Предпросмотр шаблона',
+	'centralnotice-no-templates-assigned' => 'Нет связанных с уведомлением баннеров.
+Добавьте какой-нибудьǃ',
+	'centralnotice-available-templates' => 'Доступные баннеры',
+	'centralnotice-template-already-exists' => 'Баннер уже привязан.
+Не добавлен.',
+	'centralnotice-preview-template' => 'Предпросмотр баннера',
 	'centralnotice-change-lang' => 'Изменить язык перевода',
 	'centralnotice-weights' => 'Веса',
 	'centralnotice-notice-is-locked' => 'Уведомление заблокировано.
@@ -16140,18 +16165,19 @@ $messages['ru'] = array(
 Не добавляется.',
 	'centralnotice-no-notices-exist' => 'Нет уведомлений.
 Можно добавить.',
-	'centralnotice-no-templates-translate' => 'Нет ни одного шаблона для правки перевода.',
+	'centralnotice-no-templates-translate' => 'Нет ни одного баннера для правки перевода.',
 	'centralnotice-number-uses' => 'Используются',
 	'centralnotice-settings' => 'Настройки',
-	'centralnotice-edit-template' => 'Править шаблон',
+	'centralnotice-edit-template' => 'Править баннер',
 	'centralnotice-edit-template-summary' => 'Чтобы создать локализуемое сообщение, заключите дефисную строку в три фигурные скобки, например {{{цитата-джимбо}}}.',
 	'centralnotice-edit-template-magicwords' => '«Волшебные слова», предоставленные «примесями» объявления: $1',
 	'centralnotice-message' => 'Сообщение',
 	'centralnotice-message-not-set' => 'Сообщение не установлено',
 	'centralnotice-clone' => 'Клонировать',
-	'centralnotice-clone-notice' => 'Создать копию шаблона',
+	'centralnotice-clone-notice' => 'Создать копию баннера',
 	'centralnotice-clone-name' => 'Имя:',
 	'centralnotice-clone-cancel' => 'Отмена',
+	'centralnotice-clone-banner' => 'Баннер',
 	'centralnotice-preview-all-template-translations' => 'Просмотреть все одобренные переводы',
 	'centralnotice-insert' => 'Вставка: $1',
 	'centralnotice-close-button' => 'Кнопка «Закрыть»',
@@ -16252,7 +16278,7 @@ $messages['ru'] = array(
 	'centralnotice-user-role-logged-in' => 'Вошедшие в систему',
 	'centralnotice-banner-class' => 'Категория',
 	'centralnotice-banner-class-desc' => 'Объявления определенной категории используют общие переменные отслеживания и групповые параметры (например, куки скрытия и число отображений). Именами категорий могут быть «волшебные слова», такие как <nowiki>{{{campaign}}}</nowiki> или <nowiki>{{{banner}}}</nowiki>, которые будут автоматически преобразованы во время отображения. Значения должны быть буквенно-цифровым.',
-	'centralnotice-templates-included' => 'Включённые шаблоны',
+	'centralnotice-templates-included' => 'Включённые баннеры',
 	'centralnotice-archive-banner' => 'Архивировать',
 	'centralnotice-archive-banner-title' => 'Добавить {{PLURAL:$1|1=баннер|баннеры}} в архив?',
 	'centralnotice-archive-banner-confirm' => 'Архивирование распространяется на все включённые шаблоны и устанавливает защиту страницы. Это не слишком простое действие для отмены.',
@@ -20008,6 +20034,7 @@ $messages['uk'] = array(
 	'centralnotice-clone-notice' => 'Створити копію шаблону',
 	'centralnotice-clone-name' => 'Назва:',
 	'centralnotice-clone-cancel' => 'Скасувати',
+	'centralnotice-clone-banner' => 'Банер',
 	'centralnotice-preview-all-template-translations' => 'Переглянути всі схвалені переклади',
 	'centralnotice-insert' => 'Вставити: $1',
 	'centralnotice-close-button' => 'Кнопка "Закрити"',
@@ -20639,6 +20666,7 @@ Hãy thêm vào!',
 	'centralnotice-clone-notice' => 'Tạo bản sao của bản mẫu',
 	'centralnotice-clone-name' => 'Tên:',
 	'centralnotice-clone-cancel' => 'Hủy bỏ',
+	'centralnotice-clone-banner' => 'Biểu ngữ',
 	'centralnotice-preview-all-template-translations' => 'Xem trước tất cả các bản dịch đã được duyệt',
 	'centralnotice-insert' => 'Chèn: $1',
 	'centralnotice-close-button' => 'Nút Đóng',
@@ -21167,6 +21195,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-clone-notice' => '创建一个模板的副本',
 	'centralnotice-clone-name' => '名称：',
 	'centralnotice-clone-cancel' => '取消',
+	'centralnotice-clone-banner' => '横幅',
 	'centralnotice-preview-all-template-translations' => '预览所有已批准的翻译',
 	'centralnotice-insert' => '插入：$1',
 	'centralnotice-close-button' => '关闭按钮',
@@ -21416,6 +21445,7 @@ $messages['zh-hant'] = array(
 	'centralnotice-clone-notice' => '建立建一個模板的副本',
 	'centralnotice-clone-name' => '名字：',
 	'centralnotice-clone-cancel' => '取消',
+	'centralnotice-clone-banner' => '橫幅',
 	'centralnotice-preview-all-template-translations' => '預覽所有可用翻譯',
 	'centralnotice-insert' => '插入：$1',
 	'centralnotice-close-button' => '關閉按鈕',
