@@ -4370,6 +4370,7 @@ Tilføj en nedenfor.',
 	'centralnotice-clone-notice' => 'Opret en kopi af banneret',
 	'centralnotice-clone-name' => 'Navn:',
 	'centralnotice-clone-cancel' => 'Afbryd',
+	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'Forhåndsvis alle godkendte oversættelser',
 	'centralnotice-insert' => 'Indsæt: $1',
 	'centralnotice-close-button' => 'Lukkeknap',
@@ -10485,6 +10486,7 @@ $messages['kn'] = array(
  * @author Hym411
  * @author Klutzy
  * @author Kwj2772
+ * @author Priviet
  * @author Yknok29
  * @author 아라
  */
@@ -10593,6 +10595,7 @@ $messages['ko'] = array(
 	'centralnotice-clone-notice' => '배너의 복사본 만들기',
 	'centralnotice-clone-name' => '이름:',
 	'centralnotice-clone-cancel' => '취소',
+	'centralnotice-clone-banner' => '배너',
 	'centralnotice-preview-all-template-translations' => '모든 승인된 번역 미리 보기',
 	'centralnotice-insert' => '삽입: $1',
 	'centralnotice-close-button' => '닫기 버튼',
@@ -13528,6 +13531,7 @@ $messages['ne'] = array(
 );
 
 /** Dutch (Nederlands)
+ * @author Arent
  * @author Effeietsanders
  * @author Flightmare
  * @author Konovalov
@@ -13646,6 +13650,7 @@ U kunt er hieronder een toevoegen.',
 	'centralnotice-clone-notice' => 'Een kopie van de sjabloon maken',
 	'centralnotice-clone-name' => 'Naam:',
 	'centralnotice-clone-cancel' => 'Annuleren',
+	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'Alle goedgekeurde vertalingen bekijken',
 	'centralnotice-insert' => 'Invoegen: $1',
 	'centralnotice-close-button' => '"Sluiten" toevoegen',
