@@ -12039,6 +12039,7 @@ $messages['mk'] = array(
 	'centralnotice-add-template' => 'Додај шаблон',
 	'centralnotice-show-notices' => 'Прикажи известувања',
 	'centralnotice-list-templates' => 'Наведи шаблони',
+	'centralnotice-language-listing' => '$1 — $2',
 	'centralnotice-translations' => 'Преводи',
 	'centralnotice-translate-to' => 'Преведи на',
 	'centralnotice-translate' => 'Преведи',
