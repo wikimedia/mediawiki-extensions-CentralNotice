@@ -1121,8 +1121,8 @@ $messages['ar'] = array(
 	'centralnotice-enabled' => 'مُفعّل',
 	'centralnotice-modify' => 'إرسال',
 	'centralnotice-view' => 'عرض',
-	'centralnotice-save-banner' => 'حفظ الشعار', # Fuzzy
-	'centralnotice-preview' => 'عرض مسبق', # Fuzzy
+	'centralnotice-save-banner' => 'حفظ',
+	'centralnotice-preview' => 'عرض مسبق ($1)',
 	'centralnotice-nopreview' => '(المعاينة غير متوفرة)',
 	'centralnotice-add-new' => 'أضف إخطار جديد مركزي',
 	'centralnotice-remove' => 'أزل',
@@ -1201,7 +1201,7 @@ $messages['ar'] = array(
 	'centralnotice-clone' => 'استنساخ',
 	'centralnotice-clone-notice' => 'أنشئ نسخة من القالب',
 	'centralnotice-clone-name' => 'الاسم:',
-	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات المتوفرة للقالب', # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات الموافق عليها',
 	'centralnotice-insert' => 'أدرج: $1',
 	'centralnotice-close-button' => 'زر الإغلاق',
 	'centralnotice-close-title' => 'أغلق',
@@ -1260,8 +1260,8 @@ $messages['ar'] = array(
 	'centralnotice-date' => 'تاريخ',
 	'centralnotice-apply-filters' => 'تطبيق المرشح',
 	'centralnotice-clear-filters' => 'مسح المرشحات',
-	'centralnotice-banner-messages' => 'رسائل لافتات', # Fuzzy
-	'centralnotice-filter-template-prompt' => 'اسم البانر يتضمن:', # Fuzzy
+	'centralnotice-banner-messages' => 'رسائل لافتات قابلة للترجمة',
+	'centralnotice-filter-template-prompt' => 'تصفية لافتات (مثال جيمي 2008)',
 	'centralnotice-filter-template-submit' => 'تطبيق المرشح',
 	'centralnotice-filter-template-banner' => 'إعلانات المرشحات',
 	'centralnotice-priority-low' => 'منخفض',
@@ -1274,9 +1274,9 @@ $messages['ar'] = array(
 	'centralnotice-country-a2' => 'مجهول/اتصال ساتلايت',
 	'centralnotice-country-o1' => 'مجهول/بلد أخرى',
 	'centralnotice-country-unknown' => 'مجهول/لا يمكن تحديد المكان',
-	'centralnotice-start-date' => 'تاريخ البدء', # Fuzzy
+	'centralnotice-start-date' => 'تاريخ البدء (ت ع م)',
 	'centralnotice-start-time' => 'وقت البداية (UTC)',
-	'centralnotice-end-date' => 'تاريخ الانتهاء', # Fuzzy
+	'centralnotice-end-date' => 'تاريخ الانتهاء (ت ع م)',
 	'centralnotice-end-time' => 'نهاية الوقت (بالتوقيت العالمي)',
 );
 
@@ -4764,11 +4764,11 @@ $messages['de-formal'] = array(
  * @author Xoser
  */
 $messages['diq'] = array(
-	'centralnotice' => 'İkaz merkeziya adminan',
-	'noticetemplate' => 'İkaz merkeziya adminan',
-	'bannerallocation' => 'İkaz merkeziya adminan',
-	'globalallocation' => 'İkaz merkeziya adminan',
-	'centralnoticelogs' => 'İkaz merkeziya adminan',
+	'centralnotice' => 'İdarekerê iqazê merkezi',
+	'noticetemplate' => 'İdarekerê iqazê merkezi',
+	'bannerallocation' => 'İdarekerê iqazê merkezi',
+	'globalallocation' => 'İdarekerê iqazê merkezi',
+	'centralnoticelogs' => 'İdarekerê iqazê merkezi',
 	'right-centralnotice-admin' => 'Îkazanê merkezî îdare bike',
 	'action-centralnotice-admin' => 'îkazanê merkezî îdare bike',
 	'centralnotice-desc' => 'Yew sitenoticeyê merkezî de keno',
@@ -6046,6 +6046,7 @@ Lisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.',
  * @author Joxemai
  * @author Kobazulo
  * @author Pi
+ * @author Subi
  * @author Theklan
  * @author Unai Fdz. de Betoño
  * @author පසිඳු කාවින්ද
@@ -6060,6 +6061,7 @@ $messages['eu'] = array(
 	'centralnotice-enabled' => 'Gaitua',
 	'centralnotice-modify' => 'Bidali',
 	'centralnotice-view' => 'Ikusi',
+	'centralnotice-save-banner' => 'Gorde',
 	'centralnotice-preview' => 'Aurrikusi', # Fuzzy
 	'centralnotice-add-new' => 'Mezu orokor berri bat gehitu',
 	'centralnotice-remove' => 'Ezabatu',
@@ -6067,6 +6069,8 @@ $messages['eu'] = array(
 	'centralnotice-manage' => 'Ohar nagusia kudeatu',
 	'centralnotice-add' => 'Gehitu',
 	'centralnotice-add-notice' => 'Gehitu ohar bat',
+	'centralnotice-add-notice-button' => 'Sortu',
+	'centralnotice-add-notice-cancel-button' => 'Utzi',
 	'centralnotice-edit-notice' => 'Kanpaina aldatu',
 	'centralnotice-add-template' => 'Txantiloi bat gehitu',
 	'centralnotice-show-notices' => 'Oharrak erakutsi',
@@ -6079,6 +6083,7 @@ $messages['eu'] = array(
 	'centralnotice-banner' => 'Bannerra',
 	'centralnotice-banner-heading' => 'Bannerra: $1',
 	'centralnotice-templates' => 'Txantiloiak',
+	'centralnotice-throttle' => 'Trafikoa mugatu',
 	'centralnotice-weight' => 'Pisua',
 	'centralnotice-locked' => 'Babesturik',
 	'centralnotice-notice' => 'Kanpaina',
@@ -6105,6 +6110,7 @@ Ez da gehituko',
 	'centralnotice-clone' => 'Klonatu',
 	'centralnotice-clone-notice' => 'Txantiloia honen kopia sortu',
 	'centralnotice-clone-name' => 'Izena:',
+	'centralnotice-clone-cancel' => 'Utzi',
 	'centralnotice-insert' => 'Txertatu: $1',
 	'centralnotice-close-button' => 'Itxi botoia',
 	'centralnotice-close-title' => 'Itxi',
