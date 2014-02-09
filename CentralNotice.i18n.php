@@ -10172,6 +10172,7 @@ Delok http://meta.wikimedia.org/wiki/Help:CentralNotice kanggo informasiné.',
  * @author Dawid Deutschland
  * @author ITshnik
  * @author Malafaya
+ * @author Tokoko
  * @author გიორგიმელა
  */
 $messages['ka'] = array(
@@ -10200,6 +10201,8 @@ $messages['ka'] = array(
 	'centralnotice-manage-templates' => 'ბანერების მართვა',
 	'centralnotice-add' => 'დამატება',
 	'centralnotice-add-notice' => 'შეტყობინების დამატება',
+	'centralnotice-add-notice-button' => 'შექმნა',
+	'centralnotice-add-notice-cancel-button' => 'გაუქმება',
 	'centralnotice-edit-notice' => 'კამპანიის რედაქტირება',
 	'centralnotice-add-template' => 'დაამატეთ თარგი',
 	'centralnotice-show-notices' => 'შეტყობინებების ჩვენება',
@@ -10270,6 +10273,8 @@ $messages['ka'] = array(
 	'centralnotice-clone' => 'კლონირება',
 	'centralnotice-clone-notice' => 'თარგის ასლის შექმნა',
 	'centralnotice-clone-name' => 'სახელი:',
+	'centralnotice-clone-cancel' => 'გაუქმება',
+	'centralnotice-clone-banner' => 'ბანერი',
 	'centralnotice-preview-all-template-translations' => 'ყველა დამტკიცებული თარგმანის ნახვა',
 	'centralnotice-insert' => 'ჩასვით: $1',
 	'centralnotice-close-button' => 'დახურვის ღილაკი',
@@ -10359,6 +10364,15 @@ $messages['ka'] = array(
 	'centralnotice-user-role' => 'მომხმარებლის როლი',
 	'centralnotice-user-role-anonymous' => 'ანონიმური',
 	'centralnotice-user-role-logged-in' => 'დამახსოვრება',
+	'centralnotice-banner-class' => 'კატეგორია',
+	'centralnotice-archive-banner' => 'დაარქივება',
+	'centralnotice-archive-banner-cancel' => 'გაუქმება',
+	'centralnotice-archive-show' => 'აჩვენე დაარქივებული კამპანიები',
+	'centralnotice-archive-campaign' => 'დაარქივება',
+	'centralnotice-archive-campaign-cancel' => 'გაუქმება',
+	'centralnotice-add-new-banner-title' => 'დაამატეთ ახალი ბანერი',
+	'centralnotice-delete-banner' => 'წაშლა',
+	'centralnotice-delete-banner-cancel' => 'გაუქმება',
 	'centralnotice-start-date' => 'დაწყების თარიღი (UTC)',
 	'centralnotice-start-time' => 'დაწყების დრო (UTC)',
 	'centralnotice-end-date' => 'დასრულების თარიღი (UTC)',
@@ -11172,6 +11186,7 @@ Kuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.
 	'centralnotice-fundraising' => 'Spendenopruff',
 	'centralnotice-autolink' => 'Automatesch Linke maachen',
 	'centralnotice-landingpages' => 'Zilsäiten',
+	'centralnotice-category' => 'Bannerkategorie',
 	'centralnotice-banner-content' => 'Inhalt vum Banner',
 	'centralnotice-banner-content-changed' => 'Geännert',
 	'centralnotice-filters' => 'Logbuch vun de Filteren',
