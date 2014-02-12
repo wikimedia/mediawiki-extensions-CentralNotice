@@ -1096,6 +1096,7 @@ Mire-se http://meta.wikimedia.org/wiki/Help:CentralNotice ta mas información.",
 /** Arabic (العربية)
  * @author Aiman titi
  * @author Alexknight12
+ * @author Asaifm
  * @author AwamerT
  * @author Bassem JARKAS
  * @author Ciphers
@@ -1123,6 +1124,7 @@ $messages['ar'] = array(
 	'centralnotice-view' => 'عرض',
 	'centralnotice-save-banner' => 'حفظ',
 	'centralnotice-preview' => 'عرض مسبق ($1)',
+	'centralnotice-live-preview' => 'معاينة في ويكي',
 	'centralnotice-nopreview' => '(المعاينة غير متوفرة)',
 	'centralnotice-add-new' => 'أضف إخطار جديد مركزي',
 	'centralnotice-remove' => 'أزل',
@@ -1131,6 +1133,8 @@ $messages['ar'] = array(
 	'centralnotice-manage-templates' => 'إدارة اللافتات',
 	'centralnotice-add' => 'أضف',
 	'centralnotice-add-notice' => 'إضافة إخطار',
+	'centralnotice-add-notice-button' => 'إنشاء',
+	'centralnotice-add-notice-cancel-button' => 'إلغاء',
 	'centralnotice-edit-notice' => 'تحرير الحملة',
 	'centralnotice-add-template' => 'إضافة قالب',
 	'centralnotice-show-notices' => 'إظهار الإخطارات',
@@ -1143,6 +1147,9 @@ $messages['ar'] = array(
 	'centralnotice-banner' => 'الشعار',
 	'centralnotice-banner-heading' => 'الشعار:$1',
 	'centralnotice-templates' => 'القوالب',
+	'centralnotice-throttle' => 'حد حركة المرور',
+	'centralnotice-throttle-amount' => 'حد حركة المرور لنسبة من الإجمالي',
+	'centralnotice-balanced' => 'أعطي كل اللافتات أوزان متساوية',
 	'centralnotice-weight' => 'الوزن',
 	'centralnotice-locked' => 'مغلق',
 	'centralnotice-notice' => 'حملة',
@@ -1201,6 +1208,8 @@ $messages['ar'] = array(
 	'centralnotice-clone' => 'استنساخ',
 	'centralnotice-clone-notice' => 'أنشئ نسخة من القالب',
 	'centralnotice-clone-name' => 'الاسم:',
+	'centralnotice-clone-cancel' => 'إلغاء',
+	'centralnotice-clone-banner' => 'لافتة',
 	'centralnotice-preview-all-template-translations' => 'عرض كل الترجمات الموافق عليها',
 	'centralnotice-insert' => 'أدرج: $1',
 	'centralnotice-close-button' => 'زر الإغلاق',
@@ -1214,6 +1223,7 @@ $messages['ar'] = array(
 	'centralnotice-banner-hidable' => 'ثابت/ مخفي',
 	'centralnotice-banner-collapsible' => 'قابلة للطي',
 	'centralnotice-banner-fundraising' => 'هذا هو شعار جمع التبرعات.',
+	'centralnotice-banner-display-on' => 'عرض على',
 	'centralnotice-banner-autolink' => 'إنشىء إرتباط الصفحة المطلوبة تلقائيا',
 	'centralnotice-banner-autolink-help' => 'إنشاء علامة ارتساء في نص الشعار مع معرف $1 وقم بإدخال واحد أو أكثر الصفحات المقصودة أدناه، على سبيل المثال، $2. سيتم إنشاء الرابط تلقائيا كلما تم عرض الشعار.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'الصفحات المقصودة (مفصولة بفواصل) :',
@@ -1274,6 +1284,12 @@ $messages['ar'] = array(
 	'centralnotice-country-a2' => 'مجهول/اتصال ساتلايت',
 	'centralnotice-country-o1' => 'مجهول/بلد أخرى',
 	'centralnotice-country-unknown' => 'مجهول/لا يمكن تحديد المكان',
+	'centralnotice-bucket' => 'دلو',
+	'centralnotice-bucket-letter' => 'دلو "$1"',
+	'centralnotice-all' => 'الكل',
+	'centralnotice-archive-banner' => 'أرشيف',
+	'centralnotice-archive-banner-cancel' => 'إلغاء',
+	'centralnotice-archive-campaign' => 'أرشيف',
 	'centralnotice-start-date' => 'تاريخ البدء (ت ع م)',
 	'centralnotice-start-time' => 'وقت البداية (UTC)',
 	'centralnotice-end-date' => 'تاريخ الانتهاء (ت ع م)',
