@@ -16975,6 +16975,13 @@ Nun junciutu',
 	'centralnotice-end-date' => "Data d'accapata", # Fuzzy
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'centralnotice-clone-banner' => 'Banner',
+);
+
 /** Samogitian (žemaitėška)
  * @author Hugo.arg
  */
