@@ -216,7 +216,7 @@ Add one below.',
 	'centralnotice-user-role-logged-in' => 'Logged-in',
 	'centralnotice-banner-messages' => 'Translatable banner messages',
 	'centralnotice-banner-class' => 'Category',
-	'centralnotice-banner-class-desc' => 'Banners of a specific category share tracking variables and group settings (e.g. hide cookies and impression counts.) Category names can be magic words like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> which will be automatically expanded at display time. Values must be alphanumeric.',
+	'centralnotice-banner-class-desc' => 'Banners of a specific category share tracking variables and group settings (e.g. hide cookies and impression counts). Category names can be magic words like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> which will be automatically expanded at display time. Values must be alphanumeric.',
 	'centralnotice-templates-included' => 'Included templates',
 
 	'centralnotice-archive-banner' => 'Archive',
