@@ -2778,6 +2778,7 @@ $messages['be-tarask'] = array(
 /** Bulgarian (български)
  * @author Borislav
  * @author DCLXVI
+ * @author Mitzev
  * @author Spiritia
  * @author Stanqo
  * @author Termininja
@@ -2932,6 +2933,7 @@ $messages['bg'] = array(
 	'centralnotice-priority-high' => 'високо',
 	'centralnotice-priority-emergency' => 'аварийни',
 	'centralnotice-country-o1' => 'Неизвестен/други страна',
+	'centralnotice-banner-class-desc' => 'Банери от определена категория споделят променливи и групови настройки (например Скрий бисквитки и брой показвния). Имената на категории могат да бъдеат магически думи като <nowiki>{{{кампания}}}</nowiki> или <nowiki>{{{банер}}}</nowiki> , които ще бъде автоматично заменени при показване на екрана. Стойностите трябва да са буквено-цифрени.',
 	'centralnotice-archive-banner' => 'Архивиране',
 	'centralnotice-delete-banner' => 'Изтриване',
 	'centralnotice-start-date' => 'Начална дата', # Fuzzy
@@ -5023,7 +5025,7 @@ Zaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .',
 	'centralnotice-archive-campaign' => 'Arşiv',
 	'centralnotice-archive-campaign-cancel' => 'Bıterkn',
 	'centralnotice-add-new-banner-title' => 'Yew baner vıraz',
-	'centralnotice-delete-banner' => 'Besterne',
+	'centralnotice-delete-banner' => 'Bestere',
 	'centralnotice-delete-banner-title' => '{{PLURAL:$1|baner|baneri}} wa besteneyi?',
 	'centralnotice-delete-banner-cancel' => 'Bıterkn',
 	'centralnotice-devices' => 'Ramıterdı bıasn',
@@ -8204,7 +8206,7 @@ $messages['hi'] = array(
 	'centralnotice-preferred' => 'पसंदीदा', # Fuzzy
 	'centralnotice-logs' => 'लॉग',
 	'centralnotice-view-logs' => 'लॉग देखें',
-	'centralnotice-timestamp' => 'टाइम मोहर',
+	'centralnotice-timestamp' => 'समय मुहर',
 	'centralnotice-user' => 'सदस्य',
 	'centralnotice-action' => 'कार्य',
 	'centralnotice-action-created' => 'बनाया गया',
@@ -8649,7 +8651,7 @@ Használhatod újak hozzáadására, vagy régiek eltávolítására is.',
 	'centralnotice-modify' => 'Elküldés',
 	'centralnotice-view' => 'Megtekintés',
 	'centralnotice-save-banner' => 'Mentés',
-	'centralnotice-preview' => 'Előnézet', # Fuzzy
+	'centralnotice-preview' => 'Előnézet ($1)',
 	'centralnotice-nopreview' => '(Előnézet nem áll rendelkezésre)',
 	'centralnotice-add-new' => 'Új központi üzenet hozzáadása',
 	'centralnotice-remove' => 'Eltávolítás',
@@ -10350,6 +10352,7 @@ $messages['ka'] = array(
 	'centralnotice-banner-autolink' => 'მიზნობრივი გვერდის ბმულის ავტომატურად შექმნა',
 	'centralnotice-banner-autolink-help' => 'When enabled CentralNotice will automatically create a localised link to $3 with a landing page selected at random. There must be an anchor tag with $1 in the banner body.',
 	'centralnotice-banner-landing-pages' => 'მიზნობრივი გვერდები (მძიმით გამოყოფილი):',
+	'centralnotice-banner-landing-pages-default' => 'მაგ. JimmyAppeal01',
 	'centralnotice-geo' => 'გეო-მიზნობრივი',
 	'centralnotice-countries' => 'ქვეყნები',
 	'centralnotice-global-allocation' => 'გლობალური გადანაწილება',
@@ -10390,6 +10393,7 @@ $messages['ka'] = array(
 	'centralnotice-fundraising' => 'შემოწირულობები',
 	'centralnotice-autolink' => 'ბმულის ავტომატური შექმნა',
 	'centralnotice-landingpages' => 'მიზნობრივი გვერდები',
+	'centralnotice-category' => 'ბანერის კატეგორია',
 	'centralnotice-banner-content' => 'ბანერის შინაარსი',
 	'centralnotice-banner-content-changed' => 'შეიცვალა',
 	'centralnotice-filters' => 'ჟურნალების ფილტრი',
@@ -17003,6 +17007,7 @@ Nun junciutu',
  */
 $messages['sco'] = array(
 	'centralnotice-clone-banner' => 'Banner',
+	'centralnotice-banner-class-desc' => 'Banners o ae speceefic categerie shair trackin variables an group settins (e.g. skauk cuikies an impression coonts). Categerie names can be magic wairds like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> an this will be autæmateecly expanded at display time. Values maun be alphanumeric.',
 );
 
 /** Samogitian (žemaitėška)
@@ -18750,8 +18755,8 @@ $messages['te'] = array(
 	'centralnotice-remove-notice-doesnt-exist' => 'ప్రచారోద్యమం లేనే లేదు.
 తొలగించాల్సింది ఏమీలేదు.',
 	'centralnotice-banner-doesnt-exist' => 'బ్యానరు ఉనికిలో లేదు.',
-	'centralnotice-template-still-bound' => 'ఈ బ్యానరు ఇంకా ప్రచారంలో భాగంగా ఉంది.
-తీసెయ్యడం లేదు.', # Fuzzy
+	'centralnotice-template-still-bound' => 'ఈ బ్యానరు "$1" ఇంకా ఓ ప్రచారంలో భాగంగా ఉంది.
+తీసెయ్యడం లేదు.',
 	'centralnotice-template-body' => 'మూస వివరణ:',
 	'centralnotice-day' => 'రోజు',
 	'centralnotice-year' => 'సంవత్సరం',
@@ -18761,6 +18766,7 @@ $messages['te'] = array(
 	'centralnotice-project-lang' => 'ప్రాజెక్టు భాష',
 	'centralnotice-select-all' => 'అన్నీ ఎంచుకో',
 	'centralnotice-remove-all' => 'అన్నీ తొలగించు',
+	'centralnotice-items-selected' => '$1 {{PLURAL:$1|అంశం|అంశాలు}} ఎంచుకోబడ్డాయి',
 	'centralnotice-project-name' => 'ప్రాజెక్టు పేరు',
 	'centralnotice-assigned-templates' => 'నిర్దేశించబడిన బ్యానర్లు',
 	'centralnotice-no-templates' => 'మూసలు ఏమీ లేవు.
@@ -18794,8 +18800,8 @@ $messages['te'] = array(
 	'centralnotice-clone-notice' => 'బ్యానరు యొక్క కాపీని సృష్టించు',
 	'centralnotice-clone-name' => 'పేరు:',
 	'centralnotice-clone-cancel' => 'రద్దుచేయి',
-	'centralnotice-clone-banner' => 'బ్యానరు',
-	'centralnotice-preview-all-template-translations' => 'బ్యానరుకు ఉన్న అనువాదాలన్నిటినీ మునుజూడు', # Fuzzy
+	'centralnotice-clone-banner' => 'పతాక',
+	'centralnotice-preview-all-template-translations' => 'ఆమోదించబడ్డ అనువాదాలన్నిటినీ మునుజూడు',
 	'centralnotice-insert' => 'చేర్చు: $1',
 	'centralnotice-close-button' => 'మూసివేయి బొత్తం',
 	'centralnotice-close-title' => 'మూసివేయి',
@@ -18807,6 +18813,8 @@ $messages['te'] = array(
 	'centralnotice-banner-type' => 'బ్యానరు రకం:',
 	'centralnotice-banner-hidable' => 'స్థిరం/దాచదగ్గది',
 	'centralnotice-banner-collapsible' => 'మూసివేయదగిన',
+	'centralnotice-banner-fundraising' => 'ఇది ధనసమీకరణకు సంబంధించిన పతాకము',
+	'centralnotice-banner-display-on' => 'ఎక్కడ చూపించాలి',
 	'centralnotice-countries' => 'దేశాలు',
 	'centralnotice-allocation' => 'కేటాయింపు',
 	'centralnotice-view-allocation' => 'బ్యానరు కేటాయింపును చూపించు',
@@ -18816,7 +18824,8 @@ $messages['te'] = array(
 	'centralnotice-projects' => 'ప్రాజెక్టులు',
 	'centralnotice-country' => 'దేశం',
 	'centralnotice-no-allocation' => 'బ్యానర్లేమీ కేటాయించలేదు.',
-	'centralnotice-allocation-description' => '$3 లో $1.$2 కోసం బ్యానరు కేటాయింపు:', # Fuzzy
+	'centralnotice-allocation-description' => 'బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, డివైసు $4 లో',
+	'centralnotice-historical-allocation-description' => 'బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, డివైసు $4 లో $5 సమయానికి',
 	'centralnotice-percentage' => 'శాతం',
 	'centralnotice-documentwrite-error' => 'బ్యానరు లోపల document.write() వాడజాలరు.
 మరింత సమాచారం కోసం http://meta.wikimedia.org/wiki/Help:CentralNotice చూడండి.',
@@ -18829,11 +18838,25 @@ $messages['te'] = array(
 	'centralnotice-action-created' => 'సృష్టించబడినది',
 	'centralnotice-action-modified' => 'మార్చబడినది',
 	'centralnotice-action-removed' => 'తొలగించబడింది',
+	'centralnotice-changed' => '<span class="cn-old-value">$1</span> నుండి <span class="cn-new-value">$2</span> కు మార్చబడింది',
+	'centralnotice-on' => 'ఆన్',
+	'centralnotice-off' => 'ఆఫ్',
+	'centralnotice-added' => '<span class="cn-new-value">$1</span> చేర్చబడింది',
+	'centralnotice-removed' => '<span class="cn-old-value">$1</span> తీసివెయ్యబడింది',
 	'centralnotice-talk-link' => 'చర్చ',
+	'centralnotice-banner-settings' => 'పతాక అమరికలు',
 	'centralnotice-fundraising' => 'నిధుల సేకరణ',
+	'centralnotice-category' => 'పతాక వర్గం',
+	'centralnotice-banner-content' => 'పతాక విషయం',
 	'centralnotice-banner-content-changed' => 'మార్చబడినది',
 	'centralnotice-filters' => 'చిట్టా వడపోతలు',
+	'centralnotice-damaged-log' => '$1 - (దెబ్బతిన్న లాగ్)',
 	'centralnotice-date' => 'తేదీ',
+	'centralnotice-apply-filters' => 'వడపోతలను అమలుచెయ్యి',
+	'centralnotice-clear-filters' => 'వడపోతలను తుడిచివెయ్యి',
+	'centralnotice-banner-messages' => 'అనువదించదగిన పతాక సందేశాలు',
+	'centralnotice-filter-template-submit' => 'వడపోతను అమలుచెయ్యి',
+	'centralnotice-filter-template-banner' => 'పతాకలను వడపోయి',
 	'centralnotice-priority-low' => 'తక్కువ',
 	'centralnotice-priority-normal' => 'మధ్యస్థం',
 	'centralnotice-priority-high' => 'ఎక్కువ',
@@ -18842,7 +18865,7 @@ $messages['te'] = array(
 	'centralnotice-all' => 'అన్నీ',
 	'centralnotice-all-except' => '$1 తప్ప మిగతావన్నీ',
 	'centralnotice-excluding-list' => '$1 ($2 మినహాయించి)',
-	'centralnotice-user-role' => 'వాడుకరి భాద్యతలు',
+	'centralnotice-user-role' => 'వాడుకరి పాత్ర',
 	'centralnotice-user-role-anonymous' => 'అజ్ఞాత',
 	'centralnotice-user-role-logged-in' => 'ప్రవేశించిన',
 	'centralnotice-banner-class' => 'వర్గం',
@@ -18850,10 +18873,11 @@ $messages['te'] = array(
 	'centralnotice-archive-banner-cancel' => 'రద్దుచేయి',
 	'centralnotice-archive-campaign' => 'అటకెక్కించు',
 	'centralnotice-archive-campaign-cancel' => 'రద్దుచేయి',
+	'centralnotice-add-new-banner-title' => 'కొత్త పతాకను చేర్చండి',
 	'centralnotice-delete-banner' => 'తొలగించు',
 	'centralnotice-delete-banner-cancel' => 'రద్దుచేయి',
-	'centralnotice-start-timestamp' => 'ప్రారంభ సమయం (UTC)',
-	'centralnotice-end-timestamp' => 'ముగింపు సమయం(UTC)',
+	'centralnotice-start-timestamp' => 'ప్రారంభం (UTC)',
+	'centralnotice-end-timestamp' => 'ముగింపు (UTC)',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ (UTC)',
 	'centralnotice-start-time' => 'ప్రారంభ సమయం (UTC)',
 	'centralnotice-end-date' => 'ముగింపు తేదీ (UTC)',
@@ -21443,7 +21467,7 @@ $messages['zh-hans'] = array(
 	'centralnotice-user-role-anonymous' => '匿名',
 	'centralnotice-user-role-logged-in' => '登录用户',
 	'centralnotice-banner-class' => '分类',
-	'centralnotice-banner-class-desc' => '特定类型中的横幅将共用追踪变数及组设置（如隐藏Cookie。）',
+	'centralnotice-banner-class-desc' => '特定类型中的横幅将共用追踪变数及组设置（如隐藏Cookie）。分类名如果能在指定时间内自动拓展就能成为像<nowiki>{{{campaign}}}</nowiki>或<nowiki>{{{banner}}}</nowiki>的魔术字。值必须是字母或数字。',
 	'centralnotice-templates-included' => '包含的模板',
 	'centralnotice-archive-banner' => '存档',
 	'centralnotice-archive-banner-title' => '存档{{PLURAL:$1|条幅}}吗？',
