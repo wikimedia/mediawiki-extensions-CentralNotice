@@ -205,10 +205,6 @@ function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
 	global $wgNoticeProject, $wgUser, $wgMemc;
 
-	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
-	// IP lookup fails we don't have any surprises.
-	$geo = array( 'city' => '', 'country' => '' );
-	$vars[ 'Geo' ] = $geo; // change this to wgGeo if Ops updates the variable name on their end
 	$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
 
 	// Output the user's registration date, total edit count, and past year's edit count.
