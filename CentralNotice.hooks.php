@@ -181,10 +181,13 @@ $wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgCentralHost;
+	global $wgCentralHost, $wgCentralGeoScriptURL;
+
 	// Insert the geoIP lookup
-	// TODO: Make this url configurable
-	$out->addHeadItem( 'geoip', '<script src="//bits.wikimedia.org/geoiplookup"></script>' );
+	if ( is_string( $wgCentralGeoScriptURL ) ) {
+		$out->addHeadItem( 'geoip', '<script src="' . htmlspecialchars( $wgCentralGeoScriptURL ) . '"></script>' );
+	}
+
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost ) {
 		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
