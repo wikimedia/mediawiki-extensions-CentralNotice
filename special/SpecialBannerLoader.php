@@ -79,11 +79,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 
-		// If we have a logged in user; do not cache (default for special pages)
-		// lest we capture a set-cookie header. Otherwise cache so we don't have
-		// too big of a DDoS hole.
 		if ( !$this->getUser()->isLoggedIn() ) {
+			// Public users get cached
 			header( "Cache-Control: public, s-maxage={$wgNoticeBannerMaxAge}, max-age=0" );
+		} else {
+			// Private users do not (we have to emit this because we've disabled output)
+			header( "Cache-Control: private, s-maxage=0, max-age=0" );
 		}
 	}
 

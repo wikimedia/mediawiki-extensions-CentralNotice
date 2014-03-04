@@ -181,10 +181,13 @@ $wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgCentralHost;
+	global $wgCentralHost, $wgCentralGeoScriptURL;
+
 	// Insert the geoIP lookup
-	// TODO: Make this url configurable
-	$out->addHeadItem( 'geoip', '<script src="//bits.wikimedia.org/geoiplookup"></script>' );
+	if ( is_string( $wgCentralGeoScriptURL ) ) {
+		$out->addHeadItem( 'geoip', '<script src="' . htmlspecialchars( $wgCentralGeoScriptURL ) . '"></script>' );
+	}
+
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost ) {
 		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
@@ -205,10 +208,6 @@ function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
 	global $wgNoticeProject, $wgUser, $wgMemc;
 
-	// Initialize global Javascript variables. We initialize Geo with empty values so if the geo
-	// IP lookup fails we don't have any surprises.
-	$geo = array( 'city' => '', 'country' => '' );
-	$vars[ 'Geo' ] = $geo; // change this to wgGeo if Ops updates the variable name on their end
 	$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
 
 	// Output the user's registration date, total edit count, and past year's edit count.

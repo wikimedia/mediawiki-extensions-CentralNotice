@@ -41,7 +41,17 @@ $specialPageAliases['ar'] = array(
 /** Egyptian Spoken Arabic (مصرى) */
 $specialPageAliases['arz'] = array(
 	'CentralNotice' => array( 'ملاحظة_مركزية' ),
+	'CentralNoticeBanners' => array( 'اعلانات_النوتيس_المركزيه' ),
+	'CentralNoticeLogs' => array( 'سجلات_النوتيس_المركزيه' ),
+	'CNReporter' => array( 'مبلغ_م_م' ),
 	'NoticeTemplate' => array( 'قالب_الملاحظة' ),
+	'GlobalAllocation' => array( 'تخصيص_عمومى' ),
+	'BannerAllocation' => array( 'وضع_البانر' ),
+	'BannerController' => array( 'متحكم_فى_البانر' ),
+	'BannerLoader' => array( 'محمل_البانر' ),
+	'BannerRandom' => array( 'بانر_عشوائى' ),
+	'RecordImpression' => array( 'تسجيل_الانطباع' ),
+	'HideBanners' => array( 'تخبيه-البانر' ),
 );
 
 /** Assamese (অসমীয়া) */
@@ -369,16 +379,22 @@ $specialPageAliases['zh-hans'] = array(
 	'BannerController' => array( '横幅控制器' ),
 	'BannerLoader' => array( '横幅装载器' ),
 	'BannerRandom' => array( '随机横幅' ),
+	'RecordImpression' => array( '记录印象' ),
 	'HideBanners' => array( '隐藏横幅' ),
 );
 
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
 	'CentralNotice' => array( '中央通告' ),
+	'CentralNoticeBanners' => array( '中央通告板' ),
 	'CentralNoticeLogs' => array( '中央通告日誌' ),
+	'CNReporter' => array( '中央通告匯報' ),
 	'NoticeTemplate' => array( '通告模板' ),
+	'GlobalAllocation' => array( '全域分配' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
 	'BannerLoader' => array( '橫幅裝載' ),
+	'BannerRandom' => array( '隨機橫幅' ),
+	'RecordImpression' => array( '記錄戳記' ),
 	'HideBanners' => array( '隱藏橫幅' ),
 );

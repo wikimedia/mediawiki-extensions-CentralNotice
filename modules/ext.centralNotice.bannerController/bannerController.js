@@ -36,6 +36,12 @@
 		}
 	}
 
+	if ( typeof window.Geo !== 'object' ) {
+		window.Geo = ( function ( match, country, city, lat, lon, af ) {
+			return { country: country, city: city, lat: lat, lon: lon, af: af };
+		} ).apply( null, document.cookie.match( /(?:\bGeoIP=)([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) );
+	}
+
 	mw.centralNotice = {
 		/**
 		 * Central Notice Required Data
@@ -171,6 +177,7 @@
 			// === Initialize things that don't come from MW itself ===
 			mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
 			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || window.Geo.country || 'XX';
+			mw.centralNotice.data.addressFamily = ( window.Geo.IPv6 || window.Geo.af === 'v6' ) ? 'IPv6' : 'IPv4';
 			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
 			mw.centralNotice.data.device = mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' );
 
@@ -191,10 +198,10 @@
 				'<div id="centralNotice"></div>'
 			);
 
-			// If the user has no counry assigned, we try a new lookup via
+			// If the user has no country assigned, we try a new lookup via
 			// geoiplookup.wikimedia.org. This hostname has no IPv6 address,
 			// so will force dual-stack users to fall back to IPv4.
-			if ( mw.centralNotice.data.country === 'XX' ) {
+			if ( mw.centralNotice.data.country === 'XX' && mw.centralNotice.data.addressFamily === 'IPv6' ) {
 				$.ajax({
 					url: '//geoiplookup.wikimedia.org/',
 					dataType: 'script',
