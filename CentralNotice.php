@@ -77,6 +77,10 @@ $wgCentralBannerRecorder = false;
 // when on a different subdomain than the wiki.
 $wgCentralHost = false;
 
+// URL of geolocation-data-laden script to inject via a <script> tag in <head>.
+// If false, do not inject a script tag.
+$wgCentralGeoScriptURL = '//bits.wikimedia.org/geoiplookup';
+
 // The script path on the wiki that hosts the CentralNotice infrastructure
 // For example 'http://meta.wikimedia.org/w/index.php'
 $wgCentralPagePath = false;
