@@ -36,6 +36,12 @@
 		}
 	}
 
+	if ( typeof window.Geo !== 'object' ) {
+		window.Geo = ( function ( match, country, city, lat, lon, af ) {
+			return { country: country, city: city, lat: lat, lon: lon, af: af };
+		} ).apply( null, document.cookie.match( /(?:\bGeoIP=)([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) );
+	}
+
 	mw.centralNotice = {
 		/**
 		 * Central Notice Required Data
