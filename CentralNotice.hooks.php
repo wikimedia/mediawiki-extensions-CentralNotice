@@ -181,7 +181,7 @@ $wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgCentralHost, $wgCentralGeoScriptURL;
+	global $wgCentralHost, $wgCentralGeoScriptURL, $wgServer;
 
 	// Insert the geoIP lookup
 	if ( is_string( $wgCentralGeoScriptURL ) ) {
@@ -189,7 +189,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 	}
 
 	// Insert DNS prefetch for banner loading
-	if ( $wgCentralHost ) {
+	if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {
 		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
 	}
 	// Insert the banner controller
