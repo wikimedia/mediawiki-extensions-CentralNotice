@@ -17029,7 +17029,7 @@ Nun junciutu',
  */
 $messages['sco'] = array(
 	'centralnotice-clone-banner' => 'Banner',
-	'centralnotice-banner-class-desc' => 'Banners o ae speceefic categerie shair trackin variables an group settins (e.g. skauk cuikies an impression coonts). Categerie names can be magic wairds like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> an this will be autæmateecly expanded at display time. Values maun be alphanumeric.',
+	'centralnotice-banner-class-desc' => 'Banners o ae speceefic categerie shair trackin variables n groop settins (e.g. skauk cuikies n impression coonts). Categerie names can be magic wairds like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> n this will be autæmateeclie expanded at displey time. Values maun be alphanumeric.',
 );
 
 /** Samogitian (žemaitėška)
