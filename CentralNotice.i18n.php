@@ -3796,7 +3796,7 @@ $messages['ce'] = array(
 	'centralnotice-null-string' => 'Цатарло баьсса могӀа теӀетоха. ТӀе ца кхета',
 	'centralnotice-number-uses' => 'Лелош ю',
 	'centralnotice-settings' => 'Параметраш',
-	'centralnotice-edit-template' => 'Нисйé кеп',
+	'centralnotice-edit-template' => 'Нисъе кеп',
 	'centralnotice-message' => 'Хаам',
 	'centralnotice-clone-cancel' => 'Цаоьшу',
 	'centralnotice-clone-banner' => 'Баннер',
@@ -5646,6 +5646,7 @@ Vidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.',
  * @author Peter17
  * @author Remember the dot
  * @author Sanbec
+ * @author Sporeunai
  * @author Translationista
  * @author Vivaelcelta
  */
@@ -5754,6 +5755,7 @@ Añade uno debajo',
 	'centralnotice-clone-notice' => 'Crear una copia de la plantilla',
 	'centralnotice-clone-name' => 'Nombre:',
 	'centralnotice-clone-cancel' => 'Cancelar',
+	'centralnotice-clone-banner' => 'Banner',
 	'centralnotice-preview-all-template-translations' => 'Previsualizar todas las traducciones aprobadas',
 	'centralnotice-insert' => 'Insertar: $1',
 	'centralnotice-close-button' => 'Botón cerrar',
@@ -6445,7 +6447,7 @@ $messages['fa'] = array(
 	'centralnotice-add-new-banner-title' => 'اضافه کردن بنر جدید',
 	'centralnotice-delete-banner' => 'حذف',
 	'centralnotice-delete-banner-title' => 'حذف  {{PLURAL:$1| بنر|بنر}}؟',
-	'centralnotice-delete-banner-confirm' => 'عملکرد حذف، تمامی تنظیمات و پیام های شما را پاک می کند و غیرقابل واگردانی است. پیشنهاد می شود از این موارد فایل پشتیبان تهیه نمایید.',
+	'centralnotice-delete-banner-confirm' => 'عملکرد حذف، تمامی تنظیمات و پیام‌های شما را پاک می‌کند و غیرقابل واگردانی است. پیشنهاد می‌شود از این موارد پرونده پشتیبان تهیه نمایید.',
 	'centralnotice-delete-banner-cancel' => 'انصراف',
 	'centralnotice-messages-pending-approval' => 'هم‌اکنون زبان‌ها با پیام‌ها منتظر تائیدند',
 	'centralnotice-devices' => 'نمایش در دستگاه‌ها',
@@ -9255,8 +9257,8 @@ $messages['ilo'] = array(
 	'right-centralnotice-admin' => 'Taripatuen dagiti tengnga a paammo',
 	'action-centralnotice-admin' => 'taripatuen dagiti tengnga a paammo',
 	'centralnotice-desc' => 'Agnayon kadagiti natengnga a paammo ti pagsaadan',
-	'centralnotice-summary' => 'Daytoy a module ket pakabaelan na ka ti agurnos kadagiti agdama a naikabil a natengngaan a paamo.
-Mabalin pay nga usaren a pag-nayon wenno pag-ikkat kadagiti daan a paammo.',
+	'centralnotice-summary' => 'Daytoy a modulo ket mangpakabael kenka ti agurnos kadagiti agdama a naikabil a natengngaan a paamo.
+Mabalin pay nga usaren a pag-nayon wenno pag-ikkat kadagiti daan a pakdaar.',
 	'centralnotice-query' => 'Baliwan dagiti agdama a kampania',
 	'centralnotice-notice-name' => 'Nagan ti kampania',
 	'centralnotice-enabled' => 'Napabalin',
@@ -9351,6 +9353,7 @@ Agnayon ti maysa dita baba.',
 	'centralnotice-clone-notice' => 'Agaramid ti kopia iti wagayway',
 	'centralnotice-clone-name' => 'Nagan:',
 	'centralnotice-clone-cancel' => 'Ukasen',
+	'centralnotice-clone-banner' => 'Wagayway',
 	'centralnotice-preview-all-template-translations' => 'Ipadas amin dagiti napasingkedan a patarus',
 	'centralnotice-insert' => 'Isengngat: $1',
 	'centralnotice-close-button' => 'Irekep ti buton',
@@ -15128,6 +15131,7 @@ $messages['ps'] = array(
  * @author Crazymadlover
  * @author Giro720
  * @author Hamilton Abreu
+ * @author Imperadeiro98
  * @author Lijealso
  * @author Luckas
  * @author Malafaya
@@ -15160,6 +15164,7 @@ Também pode ser usado para adicionar avisos novos ou remover antigos.',
 	'centralnotice-manage-templates' => 'Administrar modelos',
 	'centralnotice-add' => 'Adicionar',
 	'centralnotice-add-notice' => 'Adicionar um aviso',
+	'centralnotice-add-notice-button' => 'Criar',
 	'centralnotice-add-notice-cancel-button' => 'Cancelar',
 	'centralnotice-edit-notice' => 'Editar aviso',
 	'centralnotice-add-template' => 'Adicionar um modelo',
@@ -15173,6 +15178,7 @@ Também pode ser usado para adicionar avisos novos ou remover antigos.',
 	'centralnotice-banner' => 'Modelo',
 	'centralnotice-banner-heading' => 'Modelo: $1',
 	'centralnotice-templates' => 'Modelos',
+	'centralnotice-throttle' => 'Limitar tráfego',
 	'centralnotice-weight' => 'Peso',
 	'centralnotice-locked' => 'Bloqueado',
 	'centralnotice-notice' => 'Aviso',
@@ -15197,6 +15203,8 @@ Não será removido.', # Fuzzy
 	'centralnotice-hours' => 'Hora',
 	'centralnotice-min' => 'Minuto',
 	'centralnotice-project-lang' => 'Língua do projeto',
+	'centralnotice-select-all' => 'Selecionar tudo',
+	'centralnotice-remove-all' => 'Remover tudo',
 	'centralnotice-project-name' => 'Nome do projeto',
 	'centralnotice-assigned-templates' => 'Modelos atribuídos',
 	'centralnotice-no-templates' => 'Não foi encontrado nenhum modelo.
@@ -15230,7 +15238,7 @@ Adicione um, abaixo.',
 	'centralnotice-clone-notice' => 'Criar uma cópia do modelo',
 	'centralnotice-clone-name' => 'Nome:',
 	'centralnotice-clone-cancel' => 'Cancelar',
-	'centralnotice-preview-all-template-translations' => 'Antever todas as traduções disponíveis do modelo', # Fuzzy
+	'centralnotice-preview-all-template-translations' => 'Antever todas as traduções aprovadas',
 	'centralnotice-insert' => 'Inserir: $1',
 	'centralnotice-close-button' => 'Botão Fechar',
 	'centralnotice-close-title' => 'Fechar',
@@ -15243,6 +15251,7 @@ Adicione um, abaixo.',
 	'centralnotice-banner-hidable' => 'Estático/Ocultável',
 	'centralnotice-banner-collapsible' => 'Ocultável',
 	'centralnotice-banner-fundraising' => 'Este é um modelo de angariação de fundos',
+	'centralnotice-banner-display-on' => 'Apresentar em',
 	'centralnotice-banner-autolink' => 'Criar automaticamente o link da página de destino',
 	'centralnotice-banner-autolink-help' => 'Crie uma âncora no corpo do modelo com $1 e introduza abaixo uma ou mais páginas de destino. Por exemplo, $2. O link será construído automaticamente quando o modelo for visionado.', # Fuzzy
 	'centralnotice-banner-landing-pages' => 'Páginas de destino (separadas por vírgulas):',
@@ -15296,10 +15305,22 @@ Para mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNot
 	'centralnotice-priority-normal' => 'normal',
 	'centralnotice-priority-high' => 'alta',
 	'centralnotice-priority-emergency' => 'emergência',
+	'centralnotice-all' => 'Tudo',
 	'centralnotice-generic-error' => 'Você não tem as permissões corretas para executar a acção solicitada ou a acção em si era inválida.',
+	'centralnotice-all-except' => 'Tudo menos $1',
+	'centralnotice-excluding-list' => '$1 (excluindo $2)',
+	'centralnotice-user-role-anonymous' => 'Anónimo',
+	'centralnotice-user-role-logged-in' => 'Autenticado',
+	'centralnotice-banner-class' => 'Categoria',
+	'centralnotice-archive-banner' => 'Arquivo',
 	'centralnotice-archive-banner-cancel' => 'Cancelar',
+	'centralnotice-archive-campaign' => 'Arquivo',
+	'centralnotice-archive-campaign-title' => 'Arquivar {{PLURAL:$1|campanha|campanhas}}?',
 	'centralnotice-archive-campaign-cancel' => 'Cancelar',
+	'centralnotice-delete-banner' => 'Eliminar',
 	'centralnotice-delete-banner-cancel' => 'Cancelar',
+	'centralnotice-start-timestamp' => 'Hora de início (UTC)',
+	'centralnotice-end-timestamp' => 'Hora de fim (UTC)',
 	'centralnotice-start-date' => 'Data de início (UTC)',
 	'centralnotice-start-time' => 'Hora de início (UTC)',
 	'centralnotice-end-date' => 'Data de fim (UTC)',
@@ -17008,7 +17029,7 @@ Nun junciutu',
  */
 $messages['sco'] = array(
 	'centralnotice-clone-banner' => 'Banner',
-	'centralnotice-banner-class-desc' => 'Banners o ae speceefic categerie shair trackin variables an group settins (e.g. skauk cuikies an impression coonts). Categerie names can be magic wairds like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> an this will be autæmateecly expanded at display time. Values maun be alphanumeric.',
+	'centralnotice-banner-class-desc' => 'Banners o ae speceefic categerie shair trackin variables n groop settins (e.g. skauk cuikies n impression coonts). Categerie names can be magic wairds like <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> n this will be autæmateeclie expanded at displey time. Values maun be alphanumeric.',
 );
 
 /** Samogitian (žemaitėška)
@@ -18853,7 +18874,7 @@ $messages['te'] = array(
 	'centralnotice-campaign-settings' => 'ప్రచారం అమరికలు',
 	'centralnotice-banner-settings' => 'పతాక అమరికలు',
 	'centralnotice-anon' => 'అనామకులకు చూపించు',
-	'centralnotice-account' => 'ప్రవేశించిన వాడుకరులకే చూపించు',
+	'centralnotice-account' => 'లాగినైన వాడుకరులకే చూపించు',
 	'centralnotice-fundraising' => 'నిధుల సేకరణ',
 	'centralnotice-autolink' => 'యాంత్రిక లంకె సృష్టి',
 	'centralnotice-category' => 'పతాక వర్గం',
@@ -18877,7 +18898,7 @@ $messages['te'] = array(
 	'centralnotice-excluding-list' => '$1 ($2 మినహాయించి)',
 	'centralnotice-user-role' => 'వాడుకరి పాత్ర',
 	'centralnotice-user-role-anonymous' => 'అజ్ఞాత',
-	'centralnotice-user-role-logged-in' => 'ప్రవేశించిన',
+	'centralnotice-user-role-logged-in' => 'లాగినయిన',
 	'centralnotice-banner-class' => 'వర్గం',
 	'centralnotice-templates-included' => 'వాడిన మూసలు',
 	'centralnotice-archive-banner' => 'అటకెక్కించు',
