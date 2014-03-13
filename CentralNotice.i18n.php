@@ -16198,6 +16198,7 @@ Vide http://meta.wikimedia.org/wiki/Help:CentralNotice pe cchiù 'mbormaziune.",
  * @author Eugrus
  * @author Ferrer
  * @author G0rn
+ * @author Ilnur efende
  * @author Iluvatar
  * @author Kalan
  * @author Lockal
@@ -16258,7 +16259,7 @@ $messages['ru'] = array(
 	'centralnotice-locked' => 'Заблокированный',
 	'centralnotice-notice' => 'Кампания',
 	'centralnotice-notice-heading' => 'Кампания: $1',
-	'centralnotice-notices' => 'уведомления',
+	'centralnotice-notices' => 'Хәбәр',
 	'centralnotice-notice-exists' => 'Уведомление уже существует.
 Не добавляется',
 	'centralnotice-no-language' => 'Не выбран язык для этой кампании. Не добавлено.',
@@ -18893,6 +18894,12 @@ $messages['te'] = array(
 	'centralnotice-priority-high' => 'ఎక్కువ',
 	'centralnotice-priority-emergency' => 'అత్యవసరం',
 	'centralnotice-prioritylangs' => 'ప్రాధాన్య భాషలు',
+	'centralnotice-country-eu' => 'తెలియని/యూరోపియన్ యూనియన్ ప్రాంతం',
+	'centralnotice-country-ap' => 'తెలియని/ఆసియా పసిఫిక్ ప్రాంతం',
+	'centralnotice-country-a1' => 'తెలియని/అనామక ప్రాక్సీ',
+	'centralnotice-country-a2' => 'తెలియని/శాటిలైట్ ప్రొవైడర్',
+	'centralnotice-country-o1' => 'తెలియని/ఇతర దేశం',
+	'centralnotice-country-unknown' => 'తెలియని/గుర్తించలేని',
 	'centralnotice-all' => 'అన్నీ',
 	'centralnotice-all-except' => '$1 తప్ప మిగతావన్నీ',
 	'centralnotice-excluding-list' => '$1 ($2 మినహాయించి)',
@@ -18908,6 +18915,7 @@ $messages['te'] = array(
 	'centralnotice-add-new-banner-title' => 'కొత్త పతాకను చేర్చండి',
 	'centralnotice-delete-banner' => 'తొలగించు',
 	'centralnotice-delete-banner-cancel' => 'రద్దుచేయి',
+	'centralnotice-devices' => 'పరికరాల మీద చూపించు',
 	'centralnotice-start-timestamp' => 'ప్రారంభం (UTC)',
 	'centralnotice-end-timestamp' => 'ముగింపు (UTC)',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ (UTC)',
