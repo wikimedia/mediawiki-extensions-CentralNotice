@@ -36,11 +36,32 @@
 		}
 	}
 
-	if ( typeof window.Geo !== 'object' ) {
-		window.Geo = ( function ( match, country, city, lat, lon, af ) {
-			return { country: country, city: city, lat: lat, lon: lon, af: af };
-		} ).apply( null, document.cookie.match( /(?:\bGeoIP=)([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
+	function synthesizeGeoCookie() {
+		if ( !window.Geo || !window.Geo.country ) {
+			$.cookie( 'GeoIP', 'GeoIP=::::vx', { path: '/' } );
+			return;
+		}
+
+		var parts = [
+			window.Geo.country,
+			window.Geo.city.replace( /[^a-z]/i, '_' ),
+			window.Geo.lat,
+			window.Geo.lon,
+			( window.Geo.IP && window.Geo.IP.match(':') ) ? 'v6' : 'v4'
+		];
+
+		$.cookie( 'GeoIP', parts.join( ':' ), { path: '/' } );
 	}
+
+	window.Geo = ( function ( match, country, city, lat, lon, af ) {
+		return {
+			country: country,
+			city: city,
+			lat: lat && parseFloat( lat ),
+			lon: lon && parseFloat( lon ),
+			af: af
+		};
+	} ).apply( null, document.cookie.match( /(?:\bGeoIP=)([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ || [] ) );
 
 	mw.centralNotice = {
 		/**
@@ -201,20 +222,22 @@
 			// If the user has no country assigned, we try a new lookup via
 			// geoiplookup.wikimedia.org. This hostname has no IPv6 address,
 			// so will force dual-stack users to fall back to IPv4.
-			if ( mw.centralNotice.data.country === 'XX' && mw.centralNotice.data.addressFamily === 'IPv6' ) {
-				$.ajax({
+			if ( mw.centralNotice.data.country === 'XX' ) {
+				$.ajax( {
 					url: '//geoiplookup.wikimedia.org/',
 					dataType: 'script',
-					cache: true,
-					complete: function() {
-						if ( window.Geo.country ) {
-							mw.centralNotice.data.country = window.Geo.country;
-						} else {
-							mw.centralNotice.data.country = 'XX';
-						}
-						mw.centralNotice.loadBanner();
+					cache: true
+				} ).always( function () {
+					if ( window.Geo && window.Geo.country ) {
+						mw.centralNotice.data.country = window.Geo.country;
+					} else {
+						mw.centralNotice.data.country = 'XX';
 					}
-				});
+					// Set a session cookie so that subsequent page views neither trigger
+					// an IP lookup in Varnish nor an AJAX request to geoiplookup.
+					synthesizeGeoCookie();
+					mw.centralNotice.loadBanner();
+				} );
 			} else {
 				mw.centralNotice.loadBanner();
 			}
