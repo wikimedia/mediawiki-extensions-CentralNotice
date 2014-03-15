@@ -3190,6 +3190,7 @@ $messages['bn'] = array(
 
 /** Tibetan (བོད་ཡིག)
  * @author Freeyak
+ * @author Phurbutsering
  */
 $messages['bo'] = array(
 	'centralnotice-add' => 'ཁ་སྣོན།',
@@ -3201,7 +3202,7 @@ $messages['bo'] = array(
 	'centralnotice-project-name' => 'ལས་འཆར་གྱི་མིང་།',
 	'centralnotice-message' => 'སྐད།',
 	'centralnotice-country' => 'རྒྱལ་ཁབ།',
-	'centralnotice-start-date' => 'འགོ་འཛུགས་དུས་སྐབས།', # Fuzzy
+	'centralnotice-start-date' => 'འགོ་འཛུགས་དུས་སྐབས། (UTC)',
 );
 
 /** Breton (brezhoneg)
@@ -3779,6 +3780,7 @@ $messages['ce'] = array(
 	'centralnotice-manage' => 'Цхаьна дlахоуьйтуш леладо урхалла',
 	'centralnotice-add' => 'ТӀетоха',
 	'centralnotice-add-notice-cancel-button' => 'Цаоьшу',
+	'centralnotice-edit-notice' => 'Хийца кампани',
 	'centralnotice-add-template' => 'ТӀетоха кеп',
 	'centralnotice-translations' => 'Гочдинарш',
 	'centralnotice-translate-to' => 'Гочдар оцу',
@@ -18899,7 +18901,7 @@ $messages['te'] = array(
 	'centralnotice-country-a1' => 'తెలియని/అనామక ప్రాక్సీ',
 	'centralnotice-country-a2' => 'తెలియని/శాటిలైట్ ప్రొవైడర్',
 	'centralnotice-country-o1' => 'తెలియని/ఇతర దేశం',
-	'centralnotice-country-unknown' => 'తెలియని/గుర్తించలేని',
+	'centralnotice-country-unknown' => 'తెలియని/భౌగోళికస్థానం గుర్తించలేని',
 	'centralnotice-all' => 'అన్నీ',
 	'centralnotice-all-except' => '$1 తప్ప మిగతావన్నీ',
 	'centralnotice-excluding-list' => '$1 ($2 మినహాయించి)',
@@ -18915,7 +18917,7 @@ $messages['te'] = array(
 	'centralnotice-add-new-banner-title' => 'కొత్త పతాకను చేర్చండి',
 	'centralnotice-delete-banner' => 'తొలగించు',
 	'centralnotice-delete-banner-cancel' => 'రద్దుచేయి',
-	'centralnotice-devices' => 'పరికరాల మీద చూపించు',
+	'centralnotice-devices' => 'కింది డివైసులలో చూపించు',
 	'centralnotice-start-timestamp' => 'ప్రారంభం (UTC)',
 	'centralnotice-end-timestamp' => 'ముగింపు (UTC)',
 	'centralnotice-start-date' => 'ప్రారంభ తేదీ (UTC)',
