@@ -14630,6 +14630,7 @@ Więcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:Ce
 	'centralnotice-user-role-anonymous' => 'Anonimowy użytkownik',
 	'centralnotice-user-role-logged-in' => 'Zalogowany',
 	'centralnotice-banner-class' => 'Kategoria',
+	'centralnotice-archive-banner-title' => 'Zarchiwizować {{PLURAL:$1|baner|banery}}?',
 	'centralnotice-archive-banner-cancel' => 'Anuluj',
 	'centralnotice-archive-campaign-cancel' => 'Anuluj',
 	'centralnotice-add-new-banner-title' => 'Dodaj nowy baner',
