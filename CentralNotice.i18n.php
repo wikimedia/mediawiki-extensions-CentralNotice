@@ -1205,6 +1205,7 @@ $messages['ar'] = array(
 	'centralnotice-settings' => 'الإعدادات',
 	'centralnotice-edit-template' => 'حرّر قالبا',
 	'centralnotice-edit-template-summary' => 'لإنشاء الرسالة القابلة للترجمة، قم بإحاطة سلسلة النص بثلاث من الأقواس المعقوفة، مثل {{{jimbo-الإقتباس}}}.',
+	'centralnotice-edit-template-magicwords' => 'الكلمات السحرية المتوفرة من قبل خليط الشعار: $1',
 	'centralnotice-message' => 'الرسالة',
 	'centralnotice-message-not-set' => 'الرسالة غير مضبوطة',
 	'centralnotice-clone' => 'استنساخ',
@@ -1230,6 +1231,7 @@ $messages['ar'] = array(
 	'centralnotice-banner-autolink-help' => 'عند تفعيل الإشعارات المركزية سيتم إنشاء رابط محلي أوتوماتكياً ل$3 مع إختيار الصفحة المقصودة عشوائياً. يجب أن يكون هناك وسم رابط مع $1 في اللافتة.',
 	'centralnotice-banner-landing-pages' => 'الصفحات المقصودة (مفصولة بفواصل) :',
 	'centralnotice-banner-landing-pages-default' => 'على سبيل المثال التماس-جيمي-01',
+	'centralnotice-banner-mixins' => 'الخليط (القائمة مفصولة بفاصلة):',
 	'centralnotice-geo' => 'الاستهداف الجغرافي',
 	'centralnotice-countries' => 'الدول',
 	'centralnotice-global-allocation' => 'تخصيص شامل',
@@ -1268,6 +1270,7 @@ $messages['ar'] = array(
 	'centralnotice-fundraising' => 'جمع تبرعات',
 	'centralnotice-autolink' => 'إنشاء تلقائي للوصلة',
 	'centralnotice-landingpages' => 'صفحات الوصول',
+	'centralnotice-controller_mixin' => 'خليط التحكم',
 	'centralnotice-category' => 'تصنيف اللافتة',
 	'centralnotice-banner-content' => 'محتوى اللافتة',
 	'centralnotice-banner-content-changed' => 'غيرت',
@@ -1285,6 +1288,7 @@ $messages['ar'] = array(
 	'centralnotice-priority-high' => 'مرتفع',
 	'centralnotice-priority-emergency' => 'طوارئ',
 	'centralnotice-prioritylangs' => 'اللغات ذات الأولوية',
+	'centralnotice-prioritylangs-explain' => 'وسم لغة ما كمهمة سيجشع المترجمين للعمل على قائمة اللغات الموسومة أولاً.',
 	'centralnotice-aggregate-group-desc' => 'كل الرسائل في هذه المجموعة مضمنة في لافتات الإشعار المركزي.',
 	'centralnotice-country-eu' => 'مجهول/منطقة الاتحاد الأوروبي',
 	'centralnotice-country-ap' => 'مجهول/منطقة آسيا والمحيط الهادئ',
@@ -10447,6 +10451,20 @@ $messages['ka'] = array(
 	'centralnotice-start-time' => 'დაწყების დრო (UTC)',
 	'centralnotice-end-date' => 'დასრულების თარიღი (UTC)',
 	'centralnotice-end-time' => 'დასრულების დრო (UTC)',
+);
+
+/** Kazakh (Cyrillic script) (қазақша (кирил)‎)
+ * @author Arystanbek
+ */
+$messages['kk-cyrl'] = array(
+	'centralnotice' => 'Орталықтандырылған хабарландыру әкімшісі',
+	'noticetemplate' => 'Орталықтандырылған хабарландыру әкімшісі',
+	'bannerallocation' => 'Орталықтандырылған хабарландыру әкімшісі',
+	'globalallocation' => 'Орталықтандырылған хабарландыру әкімшісі',
+	'centralnoticelogs' => 'Орталықтандырылған хабарландыру әкімшісі',
+	'right-centralnotice-admin' => 'Орталықтандырылған хабарландыруларды басқару',
+	'action-centralnotice-admin' => 'Орталықтандырылған хабарландыруларды басқару',
+	'centralnotice-desc' => 'Орталықтандырылған сайт хабарландыру жарнамалары',
 );
 
 /** Khmer (ភាសាខ្មែរ)
