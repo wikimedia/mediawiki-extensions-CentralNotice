@@ -135,6 +135,7 @@
 	"centralnotice-banner-landing-pages": "Label for an input box. Landing pages are valid MediaWiki titles that donors are redirected to upon clicking a banner.",
 	"centralnotice-banner-landing-pages-default": "Example valid landing pages for an input box placeholder text.",
 	"centralnotice-banner-mixins": "Label for a list of banner \"[[mw:Extension:CentralNotice/Banner_mixins|mixins]]\", code components which can be reused between banners.",
+	"centralnotice-banner-mixins-help": "Help text for editing a list of \"[[mw:Extension:CentralNotice/Banner_mixins|banner mixins]]\", code components which can be reused between banners.",
 	"centralnotice-geo": "Used to label a checkbox which activates geotargeting",
 	"centralnotice-countries": "Used as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Country}}",
 	"centralnotice-global-allocation": "Tab for [[m:Special:GlobalAllocation|global allocation]] overview.",
