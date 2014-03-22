@@ -73,16 +73,20 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters-container' ) );
 
+			$collapsedImg = $this->getContext()->getLang()->isRtl() ?
+				'/CentralNotice/collapsed-rtl.png' :
+				'/CentralNotice/collapsed-ltr.png';
+
 			if ( $campaign || $user || $start || $end ) { // filters on
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
-					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
+					'<img src="'.$wgExtensionAssetsPath.$collapsedImg.'" id="cn-collapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
 					'</a>';
 				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), $this->msg( 'centralnotice-filters' )->escaped() );
 				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters' ) );
 			} else { // filters off
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
-					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
+					'<img src="'.$wgExtensionAssetsPath.$collapsedImg.'" id="cn-collapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
 					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
 					'</a>';
 				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), $this->msg( 'centralnotice-filters' )->escaped() );
