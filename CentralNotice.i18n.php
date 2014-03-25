@@ -3397,6 +3397,7 @@ Sellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc
 	'centralnotice-country-a1' => 'Dianav/Proksi dizanv',
 	'centralnotice-country-a2' => 'Dianav/Pourchaser dre loarell',
 	'centralnotice-country-o1' => 'Dianav / Bro all',
+	'centralnotice-country-unknown' => "Dianav/Ne c'hall ket bezañ lec'hiet",
 	'centralnotice-bucket' => 'Kelorn',
 	'centralnotice-bucket-letter' => 'Kelorn "$1"',
 	'centralnotice-devicetype-desktop' => 'Urzhiataer burev',
