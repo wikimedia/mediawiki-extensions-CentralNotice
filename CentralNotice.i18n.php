@@ -1888,6 +1888,7 @@ Llei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 /** Azerbaijani (azərbaycanca)
  * @author AZISS
  * @author Cekli829
+ * @author Interfase
  * @author PPerviz
  * @author Vago
  * @author Vugar 1981
@@ -1948,6 +1949,7 @@ $messages['az'] = array(
 	'centralnotice-fundraising' => 'İanələr',
 	'centralnotice-banner-content-changed' => 'Dəyişdi',
 	'centralnotice-date' => 'Tarix',
+	'centralnotice-archive-campaign' => 'Arxiv',
 	'centralnotice-start-date' => 'Başlanğıc tarixi', # Fuzzy
 	'centralnotice-start-time' => 'Başlanğıc tarixi (UTC)',
 	'centralnotice-end-date' => 'Son tarix', # Fuzzy
@@ -2937,7 +2939,7 @@ $messages['bg'] = array(
 	'centralnotice-priority-high' => 'високо',
 	'centralnotice-priority-emergency' => 'аварийни',
 	'centralnotice-country-o1' => 'Неизвестен/други страна',
-	'centralnotice-banner-class-desc' => 'Банери от определена категория споделят променливи и групови настройки (например Скрий бисквитки и брой показвния). Имената на категории могат да бъдеат магически думи като <nowiki>{{{кампания}}}</nowiki> или <nowiki>{{{банер}}}</nowiki> , които ще бъде автоматично заменени при показване на екрана. Стойностите трябва да са буквено-цифрени.',
+	'centralnotice-banner-class-desc' => 'Банерите от специфична категория споделят проследяващи променливи и групови настройки (напр. скрити бисквитки и брой импресии). Имената на категориите могат да са вълшебни думички като <nowiki>{{{campaign}}}</nowiki> или <nowiki>{{{banner}}}</nowiki>, които автоматично ще бъдат заменяни при показване. Стойностите трябва да са от букви и цифри.',
 	'centralnotice-archive-banner' => 'Архивиране',
 	'centralnotice-delete-banner' => 'Изтриване',
 	'centralnotice-start-date' => 'Начална дата', # Fuzzy
