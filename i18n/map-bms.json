@@ -1,0 +1,25 @@
+{
+    "@metadata": {
+        "authors": [
+            "StefanusRA"
+        ]
+    },
+    "centralnotice-year": "Taun",
+    "centralnotice-month": "Sasi",
+    "centralnotice-hours": "Jam",
+    "centralnotice-min": "Menit",
+    "centralnotice-project-lang": "Basa Proyek",
+    "centralnotice-project-name": "Jeneng Proyek",
+    "centralnotice-assigned-templates": "Cithakan sing digunakna",
+    "centralnotice-no-templates": "Ora ana cithakan sing ditemokna.\nAyo degawe!",
+    "centralnotice-no-templates-assigned": "Ora ana cithakan sing dienggo nang pangumuman.\nAyo degawe!",
+    "centralnotice-available-templates": "Cithakan-cithakan sing ana",
+    "centralnotice-template-already-exists": "Cithakan wis nggandheng nang kampanye.\nOra teyeng nambaih.",
+    "centralnotice-preview-template": "Deleng pratayang cithakan",
+    "centralnotice-change-lang": "Ngowaih basa terjemahan",
+    "centralnotice-weights": "Bobote",
+    "centralnotice-notice-is-locked": "Pangumuman dekunci.\nOra teyeng mbusek.",
+    "centralnotice-start-date": "Tanggal molai",
+    "centralnotice-start-time": "Tanggal molai (UTC)",
+    "centralnotice-end-time": "Tanggal akir (UTC)"
+}

@@ -1,0 +1,8 @@
+{
+    "@metadata": {
+        "authors": [
+            "Shirayuki"
+        ]
+    },
+    "centralnotice-edit-template-summary": "To create a localisable message, enclose a hyphenated string in three curly brackets, e.g. {{{jimbo-quote}}}."
+}

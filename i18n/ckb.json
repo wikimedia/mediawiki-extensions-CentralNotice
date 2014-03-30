@@ -1,0 +1,31 @@
+{
+    "@metadata": {
+        "authors": [
+            "Asoxor",
+            "Calak",
+            "Muhammed taha"
+        ]
+    },
+    "right-centralnotice-admin": "بەڕێوەبردنی ئاگادارییە ناوەندییەکان",
+    "centralnotice-modify": "ناردن",
+    "centralnotice-translations": "وەرگێڕانەکان",
+    "centralnotice-english": "ئینگلیزی",
+    "centralnotice-day": "ڕۆژ",
+    "centralnotice-year": "ساڵ",
+    "centralnotice-month": "مانگ",
+    "centralnotice-hours": "کاتژمێر",
+    "centralnotice-min": "خولەک",
+    "centralnotice-project-lang": "زمانی پرۆژە",
+    "centralnotice-clone-name": "ناو:",
+    "centralnotice-languages": "زمانەکان",
+    "centralnotice-projects": "پرۆژەکان",
+    "centralnotice-country": "وڵات",
+    "centralnotice-logs": "لۆگەکان",
+    "centralnotice-view-logs": "لۆگەکان ببینە",
+    "centralnotice-user": "بەکارھێنەر",
+    "centralnotice-action": "کردەوە",
+    "centralnotice-action-created": "دروست کرا",
+    "centralnotice-start-date": "کاتی دەستپێکردن (UTC)",
+    "centralnotice-start-time": "کاتی دەستپێکردن (UTC)",
+    "centralnotice-end-time": "کاتی کۆتایی (UTC)"
+}

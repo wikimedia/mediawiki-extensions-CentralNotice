@@ -1,0 +1,35 @@
+{
+    "@metadata": {
+        "authors": [
+            "Botuzhaleny-sodamo"
+        ]
+    },
+    "centralnotice-add": "Поладомс",
+    "centralnotice-add-template": "Поладомс лопа парцун",
+    "centralnotice-translations": "Ютавтомат",
+    "centralnotice-translate-to": "Ютавтомс $1 келентень",
+    "centralnotice-translate": "Ютавтомс",
+    "centralnotice-banner-name": "Баннеранть лемезэ:",
+    "centralnotice-templates": "Лопа парцунт",
+    "centralnotice-weight": "Сталмо",
+    "centralnotice-locked": "Сёлгозь",
+    "centralnotice-notice": "Кампания",
+    "centralnotice-template-body": "Лопа парцунонть рунгозо:",
+    "centralnotice-day": "Чи",
+    "centralnotice-year": "Ие",
+    "centralnotice-month": "Ков",
+    "centralnotice-hours": "Цяс",
+    "centralnotice-min": "Минут",
+    "centralnotice-project-name": "Проектэнть лемезэ",
+    "centralnotice-available-templates": "Кедь маласо лопа парцунт",
+    "centralnotice-edit-template": "Лопа парцунонть витнеме-петнеме",
+    "centralnotice-message": "Пачтамнэ",
+    "centralnotice-donate-button": "Лезксйармаконь повнэ",
+    "centralnotice-countries": "Масторт",
+    "centralnotice-languages": "Кельть",
+    "centralnotice-projects": "Проектт",
+    "centralnotice-country": "Мастор",
+    "centralnotice-start-date": "Ушодома чи (UTC)",
+    "centralnotice-start-time": "Ушодома шка",
+    "centralnotice-end-time": "Прядома шка"
+}

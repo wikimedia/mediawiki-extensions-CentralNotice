@@ -1,0 +1,21 @@
+{
+    "@metadata": {
+        "authors": [
+            "MF-Warburg"
+        ]
+    },
+    "centralnotice-remove": "Hasai",
+    "centralnotice-add": "Tau tan",
+    "centralnotice-translations": "Tradusaun sira",
+    "centralnotice-translate": "Tradús",
+    "centralnotice-english": "Inglés",
+    "centralnotice-day": "Loron",
+    "centralnotice-year": "Tinan",
+    "centralnotice-month": "Fulan",
+    "centralnotice-min": "Minutu",
+    "centralnotice-project-lang": "Lian projetu nian",
+    "centralnotice-project-name": "Naran projetu nian",
+    "centralnotice-number-uses": "Uza",
+    "centralnotice-clone-name": "Naran:",
+    "centralnotice-languages": "Lian sira"
+}

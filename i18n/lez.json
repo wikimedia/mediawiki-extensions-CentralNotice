@@ -1,0 +1,43 @@
+{
+    "@metadata": {
+        "authors": [
+            "Migraghvi",
+            "Namik"
+        ]
+    },
+    "centralnotice-modify": "Ракъурун",
+    "centralnotice-view": "Килигун",
+    "centralnotice-preview": "Сифтедин килигун",
+    "centralnotice-remove": "Алудун",
+    "centralnotice-add": "Алава авун",
+    "centralnotice-weight": "Заланвал",
+    "centralnotice-day": "Югъ",
+    "centralnotice-year": "Йис:",
+    "centralnotice-month": "Варз",
+    "centralnotice-hours": "Сят",
+    "centralnotice-min": "Декъикъа",
+    "centralnotice-project-lang": "Проектдин чIал",
+    "centralnotice-weights": "Заланвилер",
+    "centralnotice-number-uses": "Кардик кутазва",
+    "centralnotice-settings": "Тикlвирун",
+    "centralnotice-edit-template": "Баннер дуьзар хъувун",
+    "centralnotice-message": "Чар",
+    "centralnotice-clone": "Клон",
+    "centralnotice-clone-name": "Тlвар:",
+    "centralnotice-close-button": "\"КIевун\" дуьгме",
+    "centralnotice-close-title": "Агалун",
+    "centralnotice-countries": "Уьлквеяр",
+    "centralnotice-languages": "ЧIалар",
+    "centralnotice-language": "Чlал",
+    "centralnotice-projects": "Проектар",
+    "centralnotice-country": "Уьлкве",
+    "centralnotice-percentage": "Процент",
+    "centralnotice-user": "Уртах",
+    "centralnotice-action": "Кар",
+    "centralnotice-action-created": "ТуькIуьрнава",
+    "centralnotice-action-modified": "дегишарнава",
+    "centralnotice-action-removed": "алуднава",
+    "centralnotice-on": "кутуннава",
+    "centralnotice-off": "хкуднава",
+    "centralnotice-date": "Тарих"
+}
