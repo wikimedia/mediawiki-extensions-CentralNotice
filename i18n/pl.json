@@ -183,6 +183,7 @@
     "centralnotice-bucket-letter": "Grupa „$1”",
     "centralnotice-devicetype-desktop": "Komputer stacjonarny",
     "centralnotice-all": "Wszystko",
+    "centralnotice-all-except": "Wszystkie z wyjątkiem $1",
     "centralnotice-excluding-list": "$1 (z wyjątkiem $2)",
     "centralnotice-user-role-anonymous": "Anonimowy użytkownik",
     "centralnotice-user-role-logged-in": "Zalogowany",

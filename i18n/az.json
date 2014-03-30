@@ -6,7 +6,8 @@
             "PPerviz",
             "Vago",
             "Vugar 1981",
-            "Wertuose"
+            "Wertuose",
+            "Interfase"
         ]
     },
     "centralnotice": "Mərkəzi xəbərdarlıq idarəçisi",
@@ -63,6 +64,7 @@
     "centralnotice-fundraising": "İanələr",
     "centralnotice-banner-content-changed": "Dəyişdi",
     "centralnotice-date": "Tarix",
+    "centralnotice-archive-campaign": "Arxiv",
     "centralnotice-start-date": "Başlanğıc tarixi",
     "centralnotice-start-time": "Başlanğıc tarixi (UTC)",
     "centralnotice-end-date": "Son tarix",
