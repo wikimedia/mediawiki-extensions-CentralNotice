@@ -52,7 +52,18 @@ class BannerMessage {
 	function getContents( $lang ) {
 		if ( $this->existsInLang( $lang ) ) {
 			$dbKey = $this->getDbKey();
-			$msg = Revision::newFromTitle( $this->getTitle( $lang ) )->getContent()->getNativeData();
+			$rev = Revision::newFromTitle( $this->getTitle( $lang ) );
+
+			if ( !$rev ) {
+				// Try harder, might have just been created, otherwise the title wouldn't exist
+				$rev = Revision::newFromTitle( $this->getTitle( $lang ), Revision::READ_LATEST );
+			}
+
+			if ( !$rev ) {
+				return null;
+			}
+
+			$msg = $rev->getContent()->getNativeData();
 			if ( $msg === "&lt;{$dbKey}&gt;" ) {
 				$msg = '';
 			}
