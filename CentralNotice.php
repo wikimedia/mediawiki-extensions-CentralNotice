@@ -225,8 +225,8 @@ require_once $dir . '/CentralNotice.hooks.php';
 require_once $dir . '/CentralNotice.modules.php';
 
 // Register message files
-$wgMessagesDirs['SpecialCentralAuth'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['SpecialCentralAuth'] = __DIR__ . "/CentralAuth.i18n.php";
+$wgMessagesDirs['CentralNotice'] = __DIR__ . '/i18n';
+$wgExtensionMessagesFiles['CentralNotice'] = __DIR__ . "/CentralNotice.i18n.php";
 $wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . '/CentralNotice.alias.php';
 
 // Register user rights
