@@ -9,7 +9,8 @@
             "Jsoby",
             "Laaknor",
             "Nghtwlkr",
-            "Njardarlogar"
+            "Njardarlogar",
+            "Jeblad"
         ]
     },
     "centralnotice": "Administrasjon av sentrale beskjeder",
@@ -35,6 +36,8 @@
     "centralnotice-manage-templates": "Behandle bannere",
     "centralnotice-add": "Legg til",
     "centralnotice-add-notice": "Legg til en melding",
+    "centralnotice-add-notice-button": "Opprett",
+    "centralnotice-add-notice-cancel-button": "Avbryt",
     "centralnotice-edit-notice": "Rediger kampanje",
     "centralnotice-add-template": "Legg til en mal",
     "centralnotice-show-notices": "Vis kampanjer",
@@ -95,6 +98,7 @@
     "centralnotice-clone": "Klon",
     "centralnotice-clone-notice": "Lag en kopi av malen",
     "centralnotice-clone-name": "Navn:",
+    "centralnotice-clone-cancel": "Avbryt",
     "centralnotice-preview-all-template-translations": "Forhåndsvis alle tilgjengelige oversettelser av malen",
     "centralnotice-insert": "Sett inn: $1",
     "centralnotice-close-button": "Lukk-knapp",
@@ -164,6 +168,10 @@
     "centralnotice-priority-emergency": "kritisk",
     "centralnotice-prioritylangs": "Prioriterte språk",
     "centralnotice-prioritylangs-explain": "Merking av et språk som prioritert vil oppfordre oversettere til å oversette disse språk først.",
+    "centralnotice-archive-banner-cancel": "Avbryt",
+    "centralnotice-archive-campaign-cancel": "Avbryt",
+    "centralnotice-delete-banner": "Slett",
+    "centralnotice-delete-banner-cancel": "Avbryt",
     "centralnotice-start-date": "Startdato (UTC)",
     "centralnotice-start-time": "Starttid (UTC)",
     "centralnotice-end-date": "Sluttdato (UTC)",
