@@ -21,7 +21,7 @@ $wgExtensionCredits[ 'other' ][] = array(
 		'Matthew Walker',
 		'Adam Roses Wight',
 	),
-	'version'        => '2.3',
+	'version'        => '2.4.0',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 	'license-name' => 'GPLv2',
@@ -225,7 +225,8 @@ require_once $dir . '/CentralNotice.hooks.php';
 require_once $dir . '/CentralNotice.modules.php';
 
 // Register message files
-$wgExtensionMessagesFiles[ 'CentralNotice' ] = $dir . '/CentralNotice.i18n.php';
+$wgMessagesDirs['CentralNotice'] = __DIR__ . '/i18n';
+$wgExtensionMessagesFiles['CentralNotice'] = __DIR__ . "/CentralNotice.i18n.php";
 $wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . '/CentralNotice.alias.php';
 
 // Register user rights

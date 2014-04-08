@@ -85,12 +85,16 @@ $specialPageAliases['de'] = array(
 /** Zazaki (Zazaki) */
 $specialPageAliases['diq'] = array(
 	'CentralNotice' => array( 'MerkeziXeberdaren' ),
+	'CentralNoticeBanners' => array( 'MerkeziTebliğéAfişan' ),
 	'CentralNoticeLogs' => array( 'MerkeziİlanéRocekan' ),
+	'CNReporter' => array( 'CNRaportor' ),
 	'NoticeTemplate' => array( 'ŞablonéXeberdaren' ),
+	'GlobalAllocation' => array( 'GlobalTahsis' ),
 	'BannerAllocation' => array( 'TehsiséAfişan' ),
 	'BannerController' => array( 'KontrolkaréAfişan' ),
 	'BannerLoader' => array( 'BarkerdenéAfişan' ),
 	'BannerRandom' => array( 'RaştameyéBaner' ),
+	'RecordImpression' => array( 'TepıştekVinayış' ),
 	'HideBanners' => array( 'AfişanBınımn' ),
 );
 

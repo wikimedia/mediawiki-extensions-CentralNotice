@@ -1,0 +1,30 @@
+{
+    "@metadata": {
+        "authors": [
+            "Mostafadaneshvar"
+        ]
+    },
+    "noticetemplate": "تمپلت اعلان مرکزی",
+    "centralnotice-desc": "یک مرکزی اخطار سایت هور کنت",
+    "centralnotice-query": "عوض کتن نوکین اعلانات",
+    "centralnotice-notice-name": "اعلان ءِ نام",
+    "centralnotice-enabled": "فعال",
+    "centralnotice-modify": "دیم دهگ",
+    "centralnotice-preview": "پیشدارگ",
+    "centralnotice-add": "هور کتن",
+    "centralnotice-translations": "ترجمه هان",
+    "centralnotice-translate-to": "ترجمه په",
+    "centralnotice-translate": "ترجمه کتن",
+    "centralnotice-english": "انگریزی",
+    "centralnotice-weight": "وزن",
+    "centralnotice-locked": "کبل",
+    "centralnotice-notices": "اعلانات",
+    "centralnotice-day": "روچ",
+    "centralnotice-year": "سال",
+    "centralnotice-month": "ماه",
+    "centralnotice-hours": "ساعت",
+    "centralnotice-min": "دقیقه",
+    "centralnotice-null-string": "هالیکن رشتگی نه تونیت هور بیت.\nهوری نکنت",
+    "centralnotice-start-time": "وهد بنگیج",
+    "centralnotice-end-date": "وهد هلگ"
+}

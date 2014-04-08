@@ -1,0 +1,33 @@
+{
+    "@metadata": {
+        "authors": [
+            "Manuae"
+        ]
+    },
+    "centralnotice-remove": "Lesche",
+    "centralnotice-translate-heading": "Iwasedzung vun „$1“",
+    "centralnotice-translations": "Iwasedzunge",
+    "centralnotice-translate-to": "Iwasedze in",
+    "centralnotice-translate": "Iwasedze",
+    "centralnotice-english": "Englisch",
+    "centralnotice-locked": "Gschberd:",
+    "centralnotice-no-language": "S'isch kä Schbrooch gwähld worre un deswesche isch a nix bassierd.",
+    "centralnotice-day": "Daach",
+    "centralnotice-month": "Monad",
+    "centralnotice-hours": "Schdund",
+    "centralnotice-min": "Minud",
+    "centralnotice-weights": "Gwischd",
+    "centralnotice-notice-is-locked": "Die Nochrischd isch gschberd.\nSie werd doher ned g'leschd.",
+    "centralnotice-edit-template": "Vorlaach beabaide",
+    "centralnotice-message": "Nochrischd",
+    "centralnotice-donate-button": "Knobb fas Schbende",
+    "centralnotice-banner-collapsible": "Komma zuglabbe",
+    "centralnotice-countries": "Schdaade",
+    "centralnotice-languages": "Schbrooche",
+    "centralnotice-language": "Schbrooch",
+    "centralnotice-country": "Schdaad",
+    "centralnotice-percentage": "Brozend",
+    "centralnotice-off": "aus",
+    "centralnotice-talk-link": "Dischbediere",
+    "centralnotice-banner-content-changed": "Vaänad"
+}
