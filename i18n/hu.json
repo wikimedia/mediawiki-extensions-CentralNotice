@@ -59,7 +59,7 @@
     "centralnotice-no-language": "Nem választottál nyelvet a kapmányhoz. Nem történt hozzáadás.",
     "centralnotice-no-project": "Nincs projekt kiválasztva a kampányhoz. Nem lett hozzáadva.",
     "centralnotice-template-exists": "A hirdetés már létezik.\nNem történt hozzáadás.",
-    "centralnotice-notice-doesnt-exist": "Az hirdetés nem létezik.",
+    "centralnotice-notice-doesnt-exist": "A hirdetés nem létezik.",
     "centralnotice-remove-notice-doesnt-exist": "A kampány nem létezik.\nNincs mit eltávolítani.",
     "centralnotice-banner-doesnt-exist": "A hirdetés nem létezik.",
     "centralnotice-template-still-bound": "Nem lehet eltávolítani a \"$1\" hirdetés, mivel még mindig egy kampányhoz kapcsolódik.\nNem törölhető.",
