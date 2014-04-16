@@ -1,7 +1,5 @@
 {
-    "@metadata": {
-        "authors": []
-    },
-    "centralnotice-message": "Messaghju",
-    "centralnotice-clone-name": "Nome:"
+	"@metadata": [],
+	"centralnotice-message": "Messaghju",
+	"centralnotice-clone-name": "Nome:"
 }

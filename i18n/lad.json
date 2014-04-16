@@ -1,27 +1,27 @@
 {
-    "@metadata": {
-        "authors": [
-            "Menachem.Moreira"
-        ]
-    },
-    "centralnotice-add": "Anyadir",
-    "centralnotice-add-notice-button": "Krear",
-    "centralnotice-translations": "Traduksiyones",
-    "centralnotice-translate-to": "Tradusir a",
-    "centralnotice-translate": "Tradusir",
-    "centralnotice-english": "Inglez",
-    "centralnotice-day": "Dia",
-    "centralnotice-year": "Anyo",
-    "centralnotice-month": "Mez",
-    "centralnotice-hours": "Ora",
-    "centralnotice-min": "Minuto",
-    "centralnotice-project-lang": "Lengua del projecto",
-    "centralnotice-clone-name": "Nombre:",
-    "centralnotice-languages": "Lenguas",
-    "centralnotice-language": "Lengua",
-    "centralnotice-projects": "Projectos",
-    "centralnotice-user": "Usuario",
-    "centralnotice-date": "Data",
-    "centralnotice-all": "Todos",
-    "centralnotice-delete-banner": "Efasar"
+	"@metadata": {
+		"authors": [
+			"Menachem.Moreira"
+		]
+	},
+	"centralnotice-add": "Anyadir",
+	"centralnotice-add-notice-button": "Krear",
+	"centralnotice-translations": "Traduksiyones",
+	"centralnotice-translate-to": "Tradusir a",
+	"centralnotice-translate": "Tradusir",
+	"centralnotice-english": "Inglez",
+	"centralnotice-day": "Dia",
+	"centralnotice-year": "Anyo",
+	"centralnotice-month": "Mez",
+	"centralnotice-hours": "Ora",
+	"centralnotice-min": "Minuto",
+	"centralnotice-project-lang": "Lengua del projecto",
+	"centralnotice-clone-name": "Nombre:",
+	"centralnotice-languages": "Lenguas",
+	"centralnotice-language": "Lengua",
+	"centralnotice-projects": "Projectos",
+	"centralnotice-user": "Usuario",
+	"centralnotice-date": "Data",
+	"centralnotice-all": "Todos",
+	"centralnotice-delete-banner": "Efasar"
 }

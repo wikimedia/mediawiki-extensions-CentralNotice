@@ -1,26 +1,26 @@
 {
-    "@metadata": {
-        "authors": [
-            "Xqt"
-        ]
-    },
-    "centralnotice-preview": "Aagucke",
-    "centralnotice-add": "Dezu duh",
-    "centralnotice-list-templates": "Lischt vun Moddle",
-    "centralnotice-translations": "Iwwersetzinge",
-    "centralnotice-translate-to": "Iwwersetze in",
-    "centralnotice-translate": "Iwwersetze",
-    "centralnotice-english": "Englisch",
-    "centralnotice-templates": "Moddle",
-    "centralnotice-day": "Daag",
-    "centralnotice-year": "Yaahr",
-    "centralnotice-month": "Munet",
-    "centralnotice-hours": "Schtund",
-    "centralnotice-min": "Minudd",
-    "centralnotice-project-name": "Project-Naame",
-    "centralnotice-countries": "Lenner",
-    "centralnotice-languages": "Schprooche",
-    "centralnotice-language": "Schprooch",
-    "centralnotice-country": "Land",
-    "centralnotice-talk-link": "Dischbedutt"
+	"@metadata": {
+		"authors": [
+			"Xqt"
+		]
+	},
+	"centralnotice-preview": "Aagucke",
+	"centralnotice-add": "Dezu duh",
+	"centralnotice-list-templates": "Lischt vun Moddle",
+	"centralnotice-translations": "Iwwersetzinge",
+	"centralnotice-translate-to": "Iwwersetze in",
+	"centralnotice-translate": "Iwwersetze",
+	"centralnotice-english": "Englisch",
+	"centralnotice-templates": "Moddle",
+	"centralnotice-day": "Daag",
+	"centralnotice-year": "Yaahr",
+	"centralnotice-month": "Munet",
+	"centralnotice-hours": "Schtund",
+	"centralnotice-min": "Minudd",
+	"centralnotice-project-name": "Project-Naame",
+	"centralnotice-countries": "Lenner",
+	"centralnotice-languages": "Schprooche",
+	"centralnotice-language": "Schprooch",
+	"centralnotice-country": "Land",
+	"centralnotice-talk-link": "Dischbedutt"
 }

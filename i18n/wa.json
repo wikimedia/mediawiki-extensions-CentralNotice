@@ -1,13 +1,13 @@
 {
-    "@metadata": {
-        "authors": [
-            "Srtxg"
-        ]
-    },
-    "centralnotice-translations": "Ratournaedjes",
-    "centralnotice-translate-to": "Ratourner e",
-    "centralnotice-translate": "Ratourner",
-    "centralnotice-english": "inglès",
-    "centralnotice-number-uses": "Eployaedje",
-    "centralnotice-message": "Messaedje"
+	"@metadata": {
+		"authors": [
+			"Srtxg"
+		]
+	},
+	"centralnotice-translations": "Ratournaedjes",
+	"centralnotice-translate-to": "Ratourner e",
+	"centralnotice-translate": "Ratourner",
+	"centralnotice-english": "inglès",
+	"centralnotice-number-uses": "Eployaedje",
+	"centralnotice-message": "Messaedje"
 }

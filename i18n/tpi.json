@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Iketsi"
-        ]
-    },
-    "centralnotice-translations": "Ol tantok",
-    "centralnotice-translate-to": "Tantok long",
-    "centralnotice-translate": "Tantok",
-    "centralnotice-day": "De"
+	"@metadata": {
+		"authors": [
+			"Iketsi"
+		]
+	},
+	"centralnotice-translations": "Ol tantok",
+	"centralnotice-translate-to": "Tantok long",
+	"centralnotice-translate": "Tantok",
+	"centralnotice-day": "De"
 }

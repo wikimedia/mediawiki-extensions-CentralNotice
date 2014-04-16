@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Iltever"
-        ]
-    },
-    "centralnotice-banner-anonymous": "Анонимле",
-    "centralnotice-languages": "Тилле"
+	"@metadata": {
+		"authors": [
+			"Iltever"
+		]
+	},
+	"centralnotice-banner-anonymous": "Анонимле",
+	"centralnotice-languages": "Тилле"
 }

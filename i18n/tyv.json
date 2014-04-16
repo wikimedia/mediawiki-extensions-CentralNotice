@@ -1,16 +1,16 @@
 {
-    "@metadata": {
-        "authors": [
-            "Sborsody"
-        ]
-    },
-    "centralnotice-modify": "Күүcедири",
-    "centralnotice-preview": "Чижеглей көөрү",
-    "centralnotice-english": "Англи",
-    "centralnotice-day": "Хүн",
-    "centralnotice-year": "Чыл",
-    "centralnotice-month": "Ай",
-    "centralnotice-hours": "Шак",
-    "centralnotice-min": "Минут",
-    "centralnotice-clone-name": "Ат:"
+	"@metadata": {
+		"authors": [
+			"Sborsody"
+		]
+	},
+	"centralnotice-modify": "Күүcедири",
+	"centralnotice-preview": "Чижеглей көөрү",
+	"centralnotice-english": "Англи",
+	"centralnotice-day": "Хүн",
+	"centralnotice-year": "Чыл",
+	"centralnotice-month": "Ай",
+	"centralnotice-hours": "Шак",
+	"centralnotice-min": "Минут",
+	"centralnotice-clone-name": "Ат:"
 }

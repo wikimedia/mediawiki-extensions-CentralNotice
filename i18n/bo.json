@@ -1,18 +1,18 @@
 {
-    "@metadata": {
-        "authors": [
-            "Freeyak",
-            "Phurbutsering"
-        ]
-    },
-    "centralnotice-add": "ཁ་སྣོན།",
-    "centralnotice-day": "ཚེས་",
-    "centralnotice-year": "ལོ་",
-    "centralnotice-month": "ཟླ་བ་",
-    "centralnotice-hours": "དུས་ཚོད་",
-    "centralnotice-min": "སྐར་མ་",
-    "centralnotice-project-name": "ལས་འཆར་གྱི་མིང་།",
-    "centralnotice-message": "སྐད།",
-    "centralnotice-country": "རྒྱལ་ཁབ།",
-    "centralnotice-start-date": "འགོ་འཛུགས་དུས་སྐབས། (UTC)"
+	"@metadata": {
+		"authors": [
+			"Freeyak",
+			"Phurbutsering"
+		]
+	},
+	"centralnotice-add": "ཁ་སྣོན།",
+	"centralnotice-day": "ཚེས་",
+	"centralnotice-year": "ལོ་",
+	"centralnotice-month": "ཟླ་བ་",
+	"centralnotice-hours": "དུས་ཚོད་",
+	"centralnotice-min": "སྐར་མ་",
+	"centralnotice-project-name": "ལས་འཆར་གྱི་མིང་།",
+	"centralnotice-message": "སྐད།",
+	"centralnotice-country": "རྒྱལ་ཁབ།",
+	"centralnotice-start-date": "འགོ་འཛུགས་དུས་སྐབས། (UTC)"
 }

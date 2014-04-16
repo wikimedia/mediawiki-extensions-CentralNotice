@@ -1,28 +1,28 @@
 {
-    "@metadata": {
-        "authors": [
-            "Crazymadlover",
-            "Omnipaedista"
-        ]
-    },
-    "centralnotice-query": "Μετατροπία τρεχόντων σημειωμάτων",
-    "centralnotice-modify": "Ὑποβάλλειν",
-    "centralnotice-preview": "Προθεωρεῖν",
-    "centralnotice-remove": "Άφαιρεῖν",
-    "centralnotice-manage": "Διαχειρίζεσθαι κεντρικὸν σημείωμα",
-    "centralnotice-add": "Προστιθέναι",
-    "centralnotice-translate": "Μεταγλωττίζειν",
-    "centralnotice-english": "Ἀγγλιστί",
-    "centralnotice-weight": "Βάρος",
-    "centralnotice-locked": "Κεκλῃσμένη",
-    "centralnotice-notices": "Ἀναγγελίαι",
-    "centralnotice-template-body": "Σῶμα προτύπου:",
-    "centralnotice-preview-template": "Προθεωρεῖν πρότυπον",
-    "centralnotice-weights": "Βάρη",
-    "centralnotice-number-uses": "Χρήσεις",
-    "centralnotice-message": "Μήνυμα",
-    "centralnotice-clone": "Κλών",
-    "centralnotice-languages": "Γλῶτται",
-    "centralnotice-language": "Γλῶττα",
-    "centralnotice-preferred": "Προκρινομένη"
+	"@metadata": {
+		"authors": [
+			"Crazymadlover",
+			"Omnipaedista"
+		]
+	},
+	"centralnotice-query": "Μετατροπία τρεχόντων σημειωμάτων",
+	"centralnotice-modify": "Ὑποβάλλειν",
+	"centralnotice-preview": "Προθεωρεῖν",
+	"centralnotice-remove": "Άφαιρεῖν",
+	"centralnotice-manage": "Διαχειρίζεσθαι κεντρικὸν σημείωμα",
+	"centralnotice-add": "Προστιθέναι",
+	"centralnotice-translate": "Μεταγλωττίζειν",
+	"centralnotice-english": "Ἀγγλιστί",
+	"centralnotice-weight": "Βάρος",
+	"centralnotice-locked": "Κεκλῃσμένη",
+	"centralnotice-notices": "Ἀναγγελίαι",
+	"centralnotice-template-body": "Σῶμα προτύπου:",
+	"centralnotice-preview-template": "Προθεωρεῖν πρότυπον",
+	"centralnotice-weights": "Βάρη",
+	"centralnotice-number-uses": "Χρήσεις",
+	"centralnotice-message": "Μήνυμα",
+	"centralnotice-clone": "Κλών",
+	"centralnotice-languages": "Γλῶτται",
+	"centralnotice-language": "Γλῶττα",
+	"centralnotice-preferred": "Προκρινομένη"
 }

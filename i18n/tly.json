@@ -1,22 +1,22 @@
 {
-    "@metadata": {
-        "authors": [
-            "Erdemaslancan",
-            "Гусейн"
-        ]
-    },
-    "centralnotice-add": "Зијод кардеј",
-    "centralnotice-day": "Руж",
-    "centralnotice-year": "Сор",
-    "centralnotice-month": "Манг",
-    "centralnotice-hours": "Саат",
-    "centralnotice-min": "Дәғиғә",
-    "centralnotice-project-lang": "Нәхшә зывон",
-    "centralnotice-project-name": "Нәхшә ном",
-    "centralnotice-close-button": "Егәтәдыгмә «Жәј»",
-    "centralnotice-close-title": "Жәј",
-    "centralnotice-country": "Мәмләкәт",
-    "centralnotice-user": "Иштирокәкә",
-    "centralnotice-action": "Һәрәкәт",
-    "centralnotice-date": "Тарых"
+	"@metadata": {
+		"authors": [
+			"Erdemaslancan",
+			"Гусейн"
+		]
+	},
+	"centralnotice-add": "Зијод кардеј",
+	"centralnotice-day": "Руж",
+	"centralnotice-year": "Сор",
+	"centralnotice-month": "Манг",
+	"centralnotice-hours": "Саат",
+	"centralnotice-min": "Дәғиғә",
+	"centralnotice-project-lang": "Нәхшә зывон",
+	"centralnotice-project-name": "Нәхшә ном",
+	"centralnotice-close-button": "Егәтәдыгмә «Жәј»",
+	"centralnotice-close-title": "Жәј",
+	"centralnotice-country": "Мәмләкәт",
+	"centralnotice-user": "Иштирокәкә",
+	"centralnotice-action": "Һәрәкәт",
+	"centralnotice-date": "Тарых"
 }

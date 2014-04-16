@@ -1,18 +1,18 @@
 {
-    "@metadata": {
-        "authors": [
-            "Nayvik"
-        ]
-    },
-    "centralnotice-preview": "ಮುನ್ನೋಟ",
-    "centralnotice-add": "ಸೇರಿಸು",
-    "centralnotice-english": "ಆಂಗ್ಲ",
-    "centralnotice-day": "ದಿನ",
-    "centralnotice-year": "ವರ್ಷ",
-    "centralnotice-month": "ತಿಂಗಳು",
-    "centralnotice-hours": "ಘಂಟೆ",
-    "centralnotice-min": "ನಿಮಿಷ",
-    "centralnotice-project-lang": "ಪ್ರಾಜೆಕ್ಟ್ ಭಾಷೆ",
-    "centralnotice-project-name": "ಪ್ರಾಜೆಕ್ಟ್ ಹೆಸರು",
-    "centralnotice-message": "ಸಂದೇಶ"
+	"@metadata": {
+		"authors": [
+			"Nayvik"
+		]
+	},
+	"centralnotice-preview": "ಮುನ್ನೋಟ",
+	"centralnotice-add": "ಸೇರಿಸು",
+	"centralnotice-english": "ಆಂಗ್ಲ",
+	"centralnotice-day": "ದಿನ",
+	"centralnotice-year": "ವರ್ಷ",
+	"centralnotice-month": "ತಿಂಗಳು",
+	"centralnotice-hours": "ಘಂಟೆ",
+	"centralnotice-min": "ನಿಮಿಷ",
+	"centralnotice-project-lang": "ಪ್ರಾಜೆಕ್ಟ್ ಭಾಷೆ",
+	"centralnotice-project-name": "ಪ್ರಾಜೆಕ್ಟ್ ಹೆಸರು",
+	"centralnotice-message": "ಸಂದೇಶ"
 }

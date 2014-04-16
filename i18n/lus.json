@@ -1,18 +1,18 @@
 {
-    "@metadata": {
-        "authors": [
-            "RMizo"
-        ]
-    },
-    "centralnotice-day": "Ni",
-    "centralnotice-year": "Kum",
-    "centralnotice-month": "Thla",
-    "centralnotice-hours": "Dar",
-    "centralnotice-min": "Minit",
-    "centralnotice-project-lang": "Hna-hmachhawp ţawng",
-    "centralnotice-project-name": "Hna-hmachhawp hming",
-    "centralnotice-talk-link": "sawihona",
-    "centralnotice-start-date": "Ţan ni",
-    "centralnotice-start-time": "Ţah hun (UTC-in)",
-    "centralnotice-end-time": "Tàwp hun (UTC-in)"
+	"@metadata": {
+		"authors": [
+			"RMizo"
+		]
+	},
+	"centralnotice-day": "Ni",
+	"centralnotice-year": "Kum",
+	"centralnotice-month": "Thla",
+	"centralnotice-hours": "Dar",
+	"centralnotice-min": "Minit",
+	"centralnotice-project-lang": "Hna-hmachhawp ţawng",
+	"centralnotice-project-name": "Hna-hmachhawp hming",
+	"centralnotice-talk-link": "sawihona",
+	"centralnotice-start-date": "Ţan ni",
+	"centralnotice-start-time": "Ţah hun (UTC-in)",
+	"centralnotice-end-time": "Tàwp hun (UTC-in)"
 }

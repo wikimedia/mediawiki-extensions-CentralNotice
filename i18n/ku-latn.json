@@ -1,29 +1,29 @@
 {
-    "@metadata": {
-        "authors": [
-            "George Animal",
-            "Gomada"
-        ]
-    },
-    "centralnotice-modify": "Tomar bike",
-    "centralnotice-preview": "Pêşdîtin",
-    "centralnotice-add": "Zêde bike",
-    "centralnotice-translations": "Werger",
-    "centralnotice-translate": "Wergerîne",
-    "centralnotice-english": "Îngilîzî",
-    "centralnotice-locked": "Hate astengkirin",
-    "centralnotice-day": "Roj",
-    "centralnotice-year": "Sal",
-    "centralnotice-month": "Meh",
-    "centralnotice-hours": "Saet",
-    "centralnotice-min": "Deqîqe",
-    "centralnotice-project-lang": "Zimanê projeyê",
-    "centralnotice-project-name": "Navê projeyê",
-    "centralnotice-message": "Peyam",
-    "centralnotice-clone-name": "Nav:",
-    "centralnotice-languages": "Ziman",
-    "centralnotice-language": "Ziman",
-    "centralnotice-projects": "Proje",
-    "centralnotice-country": "Welat",
-    "centralnotice-user": "Bikarhêner"
+	"@metadata": {
+		"authors": [
+			"George Animal",
+			"Gomada"
+		]
+	},
+	"centralnotice-modify": "Tomar bike",
+	"centralnotice-preview": "Pêşdîtin",
+	"centralnotice-add": "Zêde bike",
+	"centralnotice-translations": "Werger",
+	"centralnotice-translate": "Wergerîne",
+	"centralnotice-english": "Îngilîzî",
+	"centralnotice-locked": "Hate astengkirin",
+	"centralnotice-day": "Roj",
+	"centralnotice-year": "Sal",
+	"centralnotice-month": "Meh",
+	"centralnotice-hours": "Saet",
+	"centralnotice-min": "Deqîqe",
+	"centralnotice-project-lang": "Zimanê projeyê",
+	"centralnotice-project-name": "Navê projeyê",
+	"centralnotice-message": "Peyam",
+	"centralnotice-clone-name": "Nav:",
+	"centralnotice-languages": "Ziman",
+	"centralnotice-language": "Ziman",
+	"centralnotice-projects": "Proje",
+	"centralnotice-country": "Welat",
+	"centralnotice-user": "Bikarhêner"
 }
