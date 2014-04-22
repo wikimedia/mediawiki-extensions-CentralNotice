@@ -19,7 +19,8 @@
 			"Rubin",
 			"Rubin16",
 			"Sabbah",
-			"Александр Сигачёв"
+			"Александр Сигачёв",
+			"Meshkov.a"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -133,7 +134,8 @@
 	"centralnotice-banner-autolink-help": "После включения CentralNotice автоматически создаст локализованную ссылку на $3 с целевой страницей, выбранной наугад. Там должен быть тег-якорь с $1 в теле баннера.",
 	"centralnotice-banner-landing-pages": "Целевые страницы (через запятую):",
 	"centralnotice-banner-landing-pages-default": "например, JimmyAppeal01",
-	"centralnotice-banner-mixins": "«Примеси» (через запятую):",
+	"centralnotice-banner-mixins": "«Примеси»:",
+	"centralnotice-banner-mixins-help": "Отметьте каждую «примесь», которую вы хотите включить при доставка баннера. ([https://mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Подробнее.])",
 	"centralnotice-geo": "Геопривязка",
 	"centralnotice-countries": "Страны",
 	"centralnotice-global-allocation": "Глобальное размещение",

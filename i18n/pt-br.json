@@ -12,7 +12,8 @@
 			"Pedroca cerebral",
 			"Rafael Vargas",
 			"Tuliouel",
-			"555"
+			"555",
+			"Agripinoduarte"
 		]
 	},
 	"centralnotice": "Administração de aviso centralizado",
@@ -116,6 +117,7 @@
 	"centralnotice-banner-autolink": "Criar automaticamente o link da página de destino",
 	"centralnotice-banner-autolink-help": "Crie uma âncora no corpo do banner com $1 e introduza abaixo uma ou mais páginas de destino. Por exemplo, $2.  O link será construído automaticamente cada vez que o banner for exibido.",
 	"centralnotice-banner-landing-pages": "Páginas de destino (separadas por vírgulas):",
+	"centralnotice-banner-mixins-help": "Marque cada mixin que você quer que seja incluído durante a entrega de banner.",
 	"centralnotice-geo": "Localizado geograficamente",
 	"centralnotice-countries": "Países",
 	"centralnotice-allocation": "Atribuição",

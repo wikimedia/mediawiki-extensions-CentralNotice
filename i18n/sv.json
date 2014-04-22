@@ -127,7 +127,7 @@
 	"centralnotice-banner-autolink-help": "När den är aktiverad kommer CentralNotice automatiskt skapa en lokaliserad länk till $3 med en slumpad landningssida. Det måste finnas en ankartagg med $1 i bannerns innehåll.",
 	"centralnotice-banner-landing-pages": "Målsidor (kommaseparerade):",
 	"centralnotice-banner-landing-pages-default": "t.ex. JimmyAppeal01",
-	"centralnotice-banner-mixins": "Mixins (kommaavgränsad):",
+	"centralnotice-banner-mixins": "Mixins:",
 	"centralnotice-geo": "Geografiskt fokuserat",
 	"centralnotice-countries": "Länder",
 	"centralnotice-global-allocation": "Global fördelning",

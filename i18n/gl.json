@@ -115,7 +115,7 @@
 	"centralnotice-banner-autolink-help": "Cando estea activado, CentralNotice creará automaticamente unha ligazón localizada cara a $3, cunha páxina de destino seleccionada ao chou. Debe haber unha etiqueta de ancoraxe con $1 no corpo do cartel.",
 	"centralnotice-banner-landing-pages": "Páxinas de destino (separadas por comas):",
 	"centralnotice-banner-landing-pages-default": "por exemplo, JimmyAppeal01",
-	"centralnotice-banner-mixins": "Mixins (separados por comas):",
+	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-geo": "Localizado xeograficamente",
 	"centralnotice-countries": "Países",
 	"centralnotice-global-allocation": "Asignación global",
