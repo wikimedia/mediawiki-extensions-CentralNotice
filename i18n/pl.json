@@ -14,7 +14,8 @@
 			"Przemub",
 			"Qblik",
 			"Sp5uhe",
-			"WTM"
+			"WTM",
+			"Alan ffm"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -32,6 +33,7 @@
 	"centralnotice-view": "Podgląd",
 	"centralnotice-save-banner": "Zapisz",
 	"centralnotice-preview": "Podgląd ($1)",
+	"centralnotice-live-preview": "Podgląd na wiki",
 	"centralnotice-nopreview": "(Podgląd niedostępny)",
 	"centralnotice-add-new": "Dodaj nowy wspólny komunikat",
 	"centralnotice-remove": "Usuń",
