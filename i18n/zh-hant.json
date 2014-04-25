@@ -17,7 +17,8 @@
 			"Shirayuki",
 			"Simon Shek",
 			"Waihorace",
-			"Wrightbus"
+			"Wrightbus",
+			"Cwlin0416"
 		]
 	},
 	"centralnotice": "中央通告管理",
@@ -130,7 +131,8 @@
 	"centralnotice-banner-autolink-help": "當啟用CentralNotice時將自動創建一條連至$3的本地化連結，而著陸頁則屬隨機。橫幅內必需有一個錨點$1。",
 	"centralnotice-banner-landing-pages": "登錄頁（逗號分隔）：",
 	"centralnotice-banner-landing-pages-default": "例如 JimmyAppeal01",
-	"centralnotice-banner-mixins": "Mixins（逗號分隔）：",
+	"centralnotice-banner-mixins": "混合位元",
+	"centralnotice-banner-mixins-help": "檢視您希望於橫幅遞送中包括的每個混合位元。（[https://mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins 更多資訊。]）",
 	"centralnotice-geo": "已地理定位的",
 	"centralnotice-countries": "國家",
 	"centralnotice-global-allocation": "全域分配",
@@ -150,7 +152,7 @@
 	"centralnotice-logs": "日誌",
 	"centralnotice-view-logs": "查看日誌",
 	"centralnotice-timestamp": "時間戳",
-	"centralnotice-user": "用戶",
+	"centralnotice-user": "使用者",
 	"centralnotice-action": "操作",
 	"centralnotice-action-created": "建立了",
 	"centralnotice-action-modified": "修改",
