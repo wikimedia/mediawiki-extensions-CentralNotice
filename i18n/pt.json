@@ -124,7 +124,7 @@
 	"centralnotice-banner-autolink-help": "Quando habilitado, o CentralNotice criará automaticamente uma ligação à $3 com uma página de destino seleccionada ao acaso. Deve haver uma marca de âncora com $1 no corpo da bandeira.",
 	"centralnotice-banner-landing-pages": "Páginas de destino (separadas por vírgulas):",
 	"centralnotice-banner-landing-pages-default": "ex. JimmyAppeal01",
-	"centralnotice-banner-mixins": "Mixins (separados por vírgulas):",
+	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-geo": "Com segmentação geográfica",
 	"centralnotice-countries": "Países",
 	"centralnotice-global-allocation": "Alocação global",
