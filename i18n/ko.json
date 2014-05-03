@@ -120,7 +120,7 @@
 	"centralnotice-banner-autolink-help": "활성화되면 중앙공지가 자동으로 임의로 선택한 랜딩 문서로 된 $3에 지역화된 링크를 만듭니다. 배너 본문에서 $1(으)로 된 앵커 태그가 있어야 합니다.",
 	"centralnotice-banner-landing-pages": "랜딩 페이지 (쉼표로 구분):",
 	"centralnotice-banner-landing-pages-default": "예를 들어 JimmyAppeal01",
-	"centralnotice-banner-mixins": "믹스인:",
+	"centralnotice-banner-mixins": "믹스인",
 	"centralnotice-geo": "특정 지역을 대상으로 공지",
 	"centralnotice-countries": "국가",
 	"centralnotice-global-allocation": "전역 할당",
