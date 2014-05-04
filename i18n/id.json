@@ -8,7 +8,8 @@
 			"IvanLanin",
 			"Iwan Novirion",
 			"Kenrick95",
-			"Rex"
+			"Rex",
+			"C5st4wr6ch"
 		]
 	},
 	"centralnotice": "Pengurus pengumuman sentral",
@@ -24,7 +25,7 @@
 	"centralnotice-enabled": "Diaktifkan",
 	"centralnotice-modify": "Kirim",
 	"centralnotice-view": "Lihat",
-	"centralnotice-save-banner": "Panji simpan",
+	"centralnotice-save-banner": "Simpan",
 	"centralnotice-preview": "Pratayang ($1)",
 	"centralnotice-nopreview": "(Pratayang tak tersedia)",
 	"centralnotice-add-new": "Buat pengumuman sentral baru",
@@ -46,6 +47,7 @@
 	"centralnotice-banner": "Spanduk",
 	"centralnotice-banner-heading": "Panji: $1",
 	"centralnotice-templates": "Templat",
+	"centralnotice-throttle": "Batasi lalu lintas",
 	"centralnotice-weight": "Bobot",
 	"centralnotice-locked": "Terkunci",
 	"centralnotice-notice": "Kampanye",

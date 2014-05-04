@@ -160,7 +160,7 @@
 	"centralnotice-action-created": "Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.\n{{Identical|Created}}",
 	"centralnotice-action-modified": "Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.\n{{Identical|Modified}}",
 	"centralnotice-action-removed": "Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.\n{{Identical|Removed}}",
-	"centralnotice-changed": "Parameters:\n* $1 is/are the old banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.\n* $2 is/are the new banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} or empty string is used.",
+	"centralnotice-changed": "Parameters:\n* $1 - the old banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} is used.\n* $2 - the new banner assignments (can be one or more). When nothing was set, {{msg-mw|centralnotice-no-assignments}} or empty string is used.",
 	"centralnotice-on": "indicates a notice is on air\n\n{{Identical|On}}",
 	"centralnotice-off": "indicates a notice is not on air\n{{Identical|Off}}",
 	"centralnotice-added": "Parameters:\n* $1 - list of projects/languages/countries which were added",
