@@ -125,7 +125,7 @@
 	"centralnotice-banner-landing-pages": "Zielseiten (durch Kommata getrennt):",
 	"centralnotice-banner-landing-pages-default": "z.&nbsp;B. JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixins",
-	"centralnotice-banner-mixins-help": "Überprüfe jedes Mixin, das du bei der Vorlagenverteilung einschließen möchtest ([https://mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins weitere Informationen]).",
+	"centralnotice-banner-mixins-help": "Überprüfe jedes Mixin, das du bei der Vorlagenverteilung einschließen möchtest ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins weitere Informationen]).",
 	"centralnotice-geo": "Geo-anvisiert",
 	"centralnotice-countries": "Staaten",
 	"centralnotice-global-allocation": "Globale Anordnung",

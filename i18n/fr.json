@@ -135,7 +135,7 @@
 	"centralnotice-banner-landing-pages": "Pages de destination (séparées par des virgules):",
 	"centralnotice-banner-landing-pages-default": "par exemple JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mélanges",
-	"centralnotice-banner-mixins-help": "Vérifier chaque mélange que vous voulez inclure lors de la livraison de la bannière. ([https://mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins En savoir plus.])",
+	"centralnotice-banner-mixins-help": "Vérifier chaque mélange que vous voulez inclure lors de la livraison de la bannière. ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins En savoir plus.])",
 	"centralnotice-geo": "Géolocalisé",
 	"centralnotice-countries": "Pays",
 	"centralnotice-global-allocation": "Allocation globale",

@@ -135,7 +135,7 @@
 	"centralnotice-banner-landing-pages": "Целевые страницы (через запятую):",
 	"centralnotice-banner-landing-pages-default": "например, JimmyAppeal01",
 	"centralnotice-banner-mixins": "«Примеси»:",
-	"centralnotice-banner-mixins-help": "Отметьте каждую «примесь», которую вы хотите включить при доставка баннера. ([https://mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Подробнее.])",
+	"centralnotice-banner-mixins-help": "Отметьте каждую «примесь», которую вы хотите включить при доставка баннера. ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Подробнее.])",
 	"centralnotice-geo": "Геопривязка",
 	"centralnotice-countries": "Страны",
 	"centralnotice-global-allocation": "Глобальное размещение",

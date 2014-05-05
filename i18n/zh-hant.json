@@ -132,7 +132,7 @@
 	"centralnotice-banner-landing-pages": "登錄頁（逗號分隔）：",
 	"centralnotice-banner-landing-pages-default": "例如 JimmyAppeal01",
 	"centralnotice-banner-mixins": "混合位元",
-	"centralnotice-banner-mixins-help": "檢視您希望於橫幅遞送中包括的每個混合位元。（[https://mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins 更多資訊。]）",
+	"centralnotice-banner-mixins-help": "檢視您希望於橫幅遞送中包括的每個混合位元。（[https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins 更多資訊。]）",
 	"centralnotice-geo": "已地理定位的",
 	"centralnotice-countries": "國家",
 	"centralnotice-global-allocation": "全域分配",
