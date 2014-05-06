@@ -139,7 +139,7 @@
 	"centralnotice-banner-landing-pages": "登录页（逗号分隔）：",
 	"centralnotice-banner-landing-pages-default": "例如 JimmyAppeal01",
 	"centralnotice-banner-mixins": "混合文本（Mixins）",
-	"centralnotice-banner-mixins-help": "检查您希望每次横幅递送时包括的每个混合文本。（[https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins 更多信息。]）",
+	"centralnotice-banner-mixins-help": "检查您希望每次横幅递送时包括的每个混合文本。（参见[https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins 横幅混合文本]获取更多信息。）",
 	"centralnotice-geo": "已地理定位的",
 	"centralnotice-countries": "国家",
 	"centralnotice-global-allocation": "全域分配",
