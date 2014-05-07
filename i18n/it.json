@@ -126,7 +126,7 @@
 	"centralnotice-banner-landing-pages": "Pagine di destinazione (separate da virgola):",
 	"centralnotice-banner-landing-pages-default": "ad esempio: JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixin",
-	"centralnotice-banner-mixins-help": "Controlla ogni mixin che vuoi includere durante l'invio dei banner. ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Ulteriori informazioni.])",
+	"centralnotice-banner-mixins-help": "Controlla ogni mixin che vuoi includere durante l'invio dei banner. (Vedi [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixin] per ulteriori informazioni.)",
 	"centralnotice-geo": "Basata sulla posizione geografica",
 	"centralnotice-countries": "Paesi",
 	"centralnotice-global-allocation": "Allocazione globale",

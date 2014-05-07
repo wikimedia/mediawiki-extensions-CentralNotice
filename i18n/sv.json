@@ -128,7 +128,7 @@
 	"centralnotice-banner-landing-pages": "Målsidor (kommaseparerade):",
 	"centralnotice-banner-landing-pages-default": "t.ex. JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixins:",
-	"centralnotice-banner-mixins-help": "Kontrollera varje mixin som du vill inkludera i leveransen av banner. ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Mer information].)",
+	"centralnotice-banner-mixins-help": "Kontrollera varje mixin som du vill inkludera i leveransen av banner. (Se [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] för mer information.)",
 	"centralnotice-geo": "Geografiskt fokuserat",
 	"centralnotice-countries": "Länder",
 	"centralnotice-global-allocation": "Global fördelning",
