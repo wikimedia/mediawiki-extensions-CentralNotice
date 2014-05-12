@@ -214,7 +214,7 @@
 	"centralnotice-user-role": "Label for a logged-in / anonymous user column",
 	"centralnotice-user-role-anonymous": "Label for the anonymous user role.\n{{Identical|Anonymous}}",
 	"centralnotice-user-role-logged-in": "Label for the logged-in user role",
-	"centralnotice-banner-class": "Used as label for a select box that allows a user to choose or create a label for the banner.\n\nThe help message for the select box is {{msg-mw|Centralnotice-banner-class-desc}}.",
+	"centralnotice-banner-class": "Used as label for a select box that allows a user to choose or create a label for the banner.\n\nThe help message for the select box is {{msg-mw|Centralnotice-banner-class-desc}}.\n{{Identical|Category}}",
 	"centralnotice-banner-class-desc": "Used as help message for the {{msg-mw|Centralnotice-banner-class}} select box which has the following options:\n\nA \"hide cookie\" is a cookie that is created when a user asks to hide a banner.\n\n\"Impression\" is an instance of showing the banner to a reader. For example, the banner was shown to the site readers a hundred times, then the impression count is 100.",
 	"centralnotice-templates-included": "Used as label for the list of included templates.",
 	"centralnotice-archive-banner": "Translate as a verb.{{Identical|Archive}}",
