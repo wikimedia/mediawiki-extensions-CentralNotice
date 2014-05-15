@@ -126,7 +126,7 @@
 	"centralnotice-banner-autolink-help": "Als ingeschakeld, maakt CentralNotice automatisch een taalspecifieke koppeling naar $3 met een willekeurige landingspagina. Er moet een ankerlabel met $1 in de inhoud van de banner aanwezig zijn.",
 	"centralnotice-banner-landing-pages": "Landingspagina's (kommagescheiden):",
 	"centralnotice-banner-landing-pages-default": "bijvoorbeeld JimmyAppeal01",
-	"centralnotice-banner-mixins": "Mixins (via komma's gescheiden):",
+	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-geo": "Geografisch bepaald",
 	"centralnotice-countries": "Landen",
 	"centralnotice-global-allocation": "Globale toewijzing",
