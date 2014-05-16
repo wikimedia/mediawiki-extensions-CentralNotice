@@ -15,7 +15,8 @@
 			"Qblik",
 			"Sp5uhe",
 			"WTM",
-			"Alan ffm"
+			"Alan ffm",
+			"Vengir"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -192,6 +193,8 @@
 	"centralnotice-user-role-anonymous": "Anonimowy użytkownik",
 	"centralnotice-user-role-logged-in": "Zalogowany",
 	"centralnotice-banner-class": "Kategoria",
+	"centralnotice-templates-included": "Dołączone szablony",
+	"centralnotice-archive-banner": "Archiwizuj",
 	"centralnotice-archive-banner-title": "Zarchiwizować {{PLURAL:$1|baner|banery}}?",
 	"centralnotice-archive-banner-cancel": "Anuluj",
 	"centralnotice-archive-campaign-cancel": "Anuluj",
