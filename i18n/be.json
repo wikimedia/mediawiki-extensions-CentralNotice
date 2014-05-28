@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Тест"
+			"Тест",
+			"Mikalai Udodau"
 		]
 	},
-	"centralnotice-add": "Дадаць"
+	"centralnotice-add": "Дадаць",
+	"centralnotice-languages": "Мовы"
 }
