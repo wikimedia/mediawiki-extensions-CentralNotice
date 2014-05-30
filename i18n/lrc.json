@@ -22,6 +22,7 @@
 	"centralnotice-add-new": "یه گل چالشت هنی اضاف بکید",
 	"centralnotice-remove": "ؤرداشتن",
 	"centralnotice-translate-heading": "لرسن سی $1",
+	"centralnotice-manage-templates": "دیوونداری بیرقیا",
 	"centralnotice-add": "اضاف كو",
 	"centralnotice-add-notice": "یه گل چالشت هنی اضاف بکید",
 	"centralnotice-add-notice-button": "راس كو",
@@ -150,5 +151,6 @@
 	"centralnotice-end-timestamp": "د حالت تمام بین(UTC)",
 	"centralnotice-start-date": "دمون شرو(یو تی سی)",
 	"centralnotice-start-time": "وخت شرو(UTC)",
-	"centralnotice-end-date": "وخت تموم بیئن(یو تی سی)"
+	"centralnotice-end-date": "وخت تموم بیئن(یو تی سی)",
+	"centralnotice-end-time": "وخت تموم بیئن(یو تی سی)"
 }
