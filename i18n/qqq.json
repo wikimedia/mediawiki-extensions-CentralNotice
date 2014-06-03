@@ -122,7 +122,7 @@
 	"centralnotice-close-title": "Used as tooltip for the action link to hide banner.\n{{Identical|Close}}",
 	"centralnotice-translate-button": "Unused at this time.",
 	"centralnotice-donate-button": "Unused at this time.",
-	"centralnotice-banner-display": "Checkboxes with the following messages comes after the colon:\n*{{msg-mw|Centralnotice-banner-anonymous}}\n*{{msg-mw|Centralnotice-banner-logged-in}}",
+	"centralnotice-banner-display": "Checkboxes with the following messages comes after\n*{{msg-mw|Centralnotice-banner-anonymous}}\n*{{msg-mw|Centralnotice-banner-logged-in}}",
 	"centralnotice-banner-anonymous": "{{Identical|Anonymous user}}",
 	"centralnotice-banner-logged-in": "{{Identical|Logged in user}}",
 	"centralnotice-banner-type": "Unused at this time.",
