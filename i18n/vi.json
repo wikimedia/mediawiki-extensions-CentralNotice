@@ -119,7 +119,7 @@
 	"centralnotice-banner-landing-pages": "Các trang đích (định giới bằng dấu phẩy):",
 	"centralnotice-banner-landing-pages-default": "ví dụ JimmyAppeal01",
 	"centralnotice-banner-mixins": "Các mixin:",
-	"centralnotice-banner-mixins-help": "Kiểm các mixin để bao gồm khi phát biểu ngữ ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins thêm chi tiết]).",
+	"centralnotice-banner-mixins-help": "Kiểm các mixin để bao gồm khi phát biểu ngữ. (Xem thêm chi tiết tại [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:CentralNotice/Banner_mixins?uselang=vi Banner mixins].)",
 	"centralnotice-geo": "Mục tiêu địa lý",
 	"centralnotice-countries": "Quốc gia",
 	"centralnotice-global-allocation": "Phân phối toàn cục",
