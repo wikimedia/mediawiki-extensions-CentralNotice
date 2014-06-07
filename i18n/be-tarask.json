@@ -111,7 +111,7 @@
 	"centralnotice-banner-collapsible": "Згортваемы",
 	"centralnotice-banner-fundraising": "Гэта банэр для збору ахвяраваньняў",
 	"centralnotice-banner-autolink": "Аўтаматычна ствараць спасылку на мэтавую старонку",
-	"centralnotice-banner-autolink-help": "Стварыце тэг прывязкі ў зьмесьце банэра з $1 і пазначце ніжэй адну ці некалькі мэтавых старонак, напрыклад, $2. Спасылка будзе створаная аўтаматычна незалежна ці будзе банэр праглядацца.",
+	"centralnotice-banner-autolink-help": "Пасьля ўключэньня CentralNotice аўтаматычна створыць лякалізаваную спасылку на $3 з мэтавай старонкай, абранай выпадкова. У целе банэру мусіць быць тэг-якар $1.",
 	"centralnotice-banner-landing-pages": "Мэтавыя старонкі (праз коску):",
 	"centralnotice-banner-landing-pages-default": "напр., JimmyAppeal01",
 	"centralnotice-banner-mixins": "Міксіны (праз коску):",

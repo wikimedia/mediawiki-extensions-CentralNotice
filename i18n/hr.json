@@ -7,7 +7,8 @@
 			"Ex13",
 			"Herr Mlinka",
 			"Roberta F.",
-			"SpeedyGonsales"
+			"SpeedyGonsales",
+			"MaGa"
 		]
 	},
 	"centralnotice": "Administracija središnjih obavijesti",
@@ -104,6 +105,7 @@
 	"centralnotice-view-allocation": "Prikaži raspodjelu obavijesti",
 	"centralnotice-allocation-instructions": "Odaberi okruženje za koje želite vidjeti dodjelu obavijesti:",
 	"centralnotice-languages": "Jezici",
+	"centralnotice-language": "Jezik",
 	"centralnotice-projects": "Projekti",
 	"centralnotice-country": "Država",
 	"centralnotice-no-allocation": "Nema dodijeljenih obavijesti.",
