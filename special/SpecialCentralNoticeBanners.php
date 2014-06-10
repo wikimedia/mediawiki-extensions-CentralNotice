@@ -337,7 +337,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	protected function generateBannerEditForm() {
-		global $wgNoticeUseTranslateExtension, $wgNoticeFundraisingUrl, $wgLanguageCode;
+		global $wgNoticeMixins, $wgNoticeUseTranslateExtension, $wgNoticeFundraisingUrl, $wgLanguageCode;
 
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
@@ -426,6 +426,20 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		if ( !$this->editable ) {
 			$formDescriptor[ 'landing-pages' ][ 'readonly' ] = true;
 		}
+
+		$mixinNames = array_keys( $wgNoticeMixins );
+		$availableMixins = array_combine( $mixinNames, $mixinNames );
+		$selectedMixins = array_keys( $banner->getMixins() );
+		$formDescriptor['mixins'] = array(
+			'section' => 'settings',
+			'type' => 'multiselect',
+			'disabled' => !$this->editable,
+			'label-message' => 'centralnotice-banner-mixins',
+			'help-message' => 'centralnotice-banner-mixins-help',
+			'cssclass' => 'separate-form-element',
+			'options' => $availableMixins,
+			'default' => $selectedMixins,
+		);
 
 		/* --- Translatable Messages Section --- */
 		$messages = $banner->getMessageFieldsFromCache( $banner->getBodyContent() );
@@ -744,11 +758,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
 		$banner->setAutoLink( $formData[ 'create-landingpage-link' ], $landingPages );
 
-		/* TODO: Mixins
-		$mixins = explode( ",", $mixins );
-		array_walk( $mixins, function ( &$x ) { $x = trim( $x ); } );
-		$banner->setMixins( $mixins );
-		*/
+		$banner->setMixins( $formData['mixins'] );
 
 		$banner->save( $this->getUser() );
 

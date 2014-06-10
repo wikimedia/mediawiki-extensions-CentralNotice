@@ -1,14 +1,14 @@
 {
-    "@metadata": {
-        "authors": [
-            "Teòtlalili"
-        ]
-    },
-    "centralnotice-translate-to": "Motlâtòlkuepas ìka",
-    "centralnotice-translate": "Motlâtòlkuepas",
-    "centralnotice-day": "Tònalli",
-    "centralnotice-year": "Xiwitl",
-    "centralnotice-month": "Mètztli",
-    "centralnotice-hours": "Ìmantli",
-    "centralnotice-project-lang": "Ìtlâtòl tlayekàntekitl"
+	"@metadata": {
+		"authors": [
+			"Teòtlalili"
+		]
+	},
+	"centralnotice-translate-to": "Motlâtòlkuepas ìka",
+	"centralnotice-translate": "Motlâtòlkuepas",
+	"centralnotice-day": "Tònalli",
+	"centralnotice-year": "Xiwitl",
+	"centralnotice-month": "Mètztli",
+	"centralnotice-hours": "Ìmantli",
+	"centralnotice-project-lang": "Ìtlâtòl tlayekàntekitl"
 }

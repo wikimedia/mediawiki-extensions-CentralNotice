@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Horacewai2",
-            "Shinjiman",
-            "Waihorace"
-        ]
-    },
-    "centralnotice": "統一通告管理",
-    "centralnotice-desc": "加入一個中央公告欄"
+	"@metadata": {
+		"authors": [
+			"Horacewai2",
+			"Shinjiman",
+			"Waihorace"
+		]
+	},
+	"centralnotice": "統一通告管理",
+	"centralnotice-desc": "加入一個中央公告欄"
 }

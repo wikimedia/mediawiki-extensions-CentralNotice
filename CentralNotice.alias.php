@@ -95,7 +95,7 @@ $specialPageAliases['diq'] = array(
 	'BannerLoader' => array( 'BarkerdenéAfişan' ),
 	'BannerRandom' => array( 'RaştameyéBaner' ),
 	'RecordImpression' => array( 'TepıştekVinayış' ),
-	'HideBanners' => array( 'AfişanBınımn' ),
+	'HideBanners' => array( 'AfişanBınımne' ),
 );
 
 /** Esperanto (Esperanto) */

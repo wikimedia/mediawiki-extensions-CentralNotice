@@ -118,7 +118,8 @@
 				db: mw.config.get( 'wgDBname' ),
 				project: mw.config.get( 'wgNoticeProject' ),
 				country: mw.centralNotice.data.country,
-				device: mw.centralNotice.data.device
+				device: mw.centralNotice.data.device,
+				debug: mw.centralNotice.data.getVars.debug
 			};
 
 			$.ajax({
@@ -137,7 +138,8 @@
 				bucket: mw.centralNotice.data.bucket,
 				country: mw.centralNotice.data.country,
 				device: mw.centralNotice.data.device,
-				slot: Math.floor( Math.random() * RAND_MAX ) + 1
+				slot: Math.floor( Math.random() * RAND_MAX ) + 1,
+				debug: mw.centralNotice.data.getVars.debug
 			};
 			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) + '?' + $.param( bannerDispatchQuery );
 

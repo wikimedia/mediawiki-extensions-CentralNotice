@@ -576,7 +576,7 @@ class Banner {
 	/**
 	 * Set the banner mixins to enable.
 	 *
-	 * @param string[]|string $mixins Names of mixins to enable on this banner. Valid values
+	 * @param array $mixins Names of mixins to enable on this banner. Valid values
 	 * come from @see $wgNoticeMixins
 	 *
 	 * @throws MWException
@@ -587,21 +587,19 @@ class Banner {
 
 		$this->populateMixinData();
 
-		$mixins = array_unique( array_values( (array)$mixins ) );
+		$mixins = array_unique( $mixins );
 		sort( $mixins );
 
-		if ( array_keys( $this->mixins ) != $mixins ) {
-			$this->mixins = array();
-			foreach ( $mixins as $mixin ) {
-				if ( !$mixin ) {
-					// Empty
-					continue;
-				} elseif ( !array_key_exists( $mixin, $wgNoticeMixins ) ) {
-					throw new MWException( "Mixin does not exist: {$mixin}" );
-				}
-				$this->mixins[$mixin] = $wgNoticeMixins[$mixin];
-			}
+		if ( $this->mixins != $mixins ) {
 			$this->markMixinDataDirty();
+		}
+
+		$this->mixins = array();
+		foreach ( $mixins as $mixin ) {
+			if ( !array_key_exists( $mixin, $wgNoticeMixins ) ) {
+				throw new MWException( "Mixin does not exist: {$mixin}" );
+			}
+			$this->mixins[$mixin] = $wgNoticeMixins[$mixin];
 		}
 
 		return $this;
@@ -901,15 +899,7 @@ class Banner {
 
 		// Also search the preload js for fields.
 		$renderer = new BannerRenderer( RequestContext::getMain(), $this );
-		$expanded .= $renderer->getPreloadJs();
-
-		/* FIXME: haven't decided if this is a terrrrible idea.
-		// And search magic word output
-		foreach ( $mixedin->getMagicWords() as $magic ) {
-			unset( $fields[$magic] );
-			$expanded .= $mixedin->renderMagicWord( $magic );
-		}
-		*/
+		$expanded .= $renderer->getPreloadJsRaw();
 
 		// Extract message fields from the banner body
 		$fields = array();
@@ -1087,7 +1077,7 @@ class Banner {
 		$destBanner->setCategory( $this->getCategory() );
 		$destBanner->setAutoLink( $this->isAutoLinked(), $this->getAutoLinks() );
 		$destBanner->setDevices( $this->getDevices() );
-		$destBanner->setMixins( $this->getMixins() );
+		$destBanner->setMixins( array_keys( $this->getMixins() ) );
 		$destBanner->setPriorityLanguages( $this->getPriorityLanguages() );
 
 		$destBanner->setBodyContent( $this->getBodyContent() );
@@ -1385,14 +1375,14 @@ class Banner {
 	 * @param $fundraising      integer flag for fundraising banner (optional)
 	 * @param $autolink         integer flag for automatically creating landing page links (optional)
 	 * @param $landingPages     string list of landing pages (optional)
-	 * @param $mixins           string list of mixins (optional)
+	 * @param $mixins           array list of mixins (optional)
 	 * @param $priorityLangs    array Array of priority languages for the translate extension
 	 * @param $devices          array Array of device names this banner is targeted at
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon, $displayAccount, $fundraising = 0,
-		$autolink = 0, $landingPages = '', $mixins = '', $priorityLangs = array(), $devices = array( 'desktop' )
+		$autolink = 0, $landingPages = '', $mixins = array(), $priorityLangs = array(), $devices = array( 'desktop' )
 	) {
 		if ( $name == '' || !Banner::isValidBannerName( $name ) || $body == '' ) {
 			return 'centralnotice-null-string';
@@ -1413,8 +1403,6 @@ class Banner {
 		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
 		$banner->setAutoLink( $autolink, $landingPages );
 
-		$mixins = explode( ",", $mixins );
-		array_walk( $mixins, function ( &$x ) { $x = trim( $x ); } );
 		$banner->setMixins( $mixins );
 
 		$banner->save( $user );

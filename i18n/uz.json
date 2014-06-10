@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "CoderSI"
-        ]
-    },
-    "centralnotice-translations": "Tarjimalar",
-    "centralnotice-languages": "Tillar"
+	"@metadata": {
+		"authors": [
+			"CoderSI"
+		]
+	},
+	"centralnotice-translations": "Tarjimalar",
+	"centralnotice-languages": "Tillar"
 }

@@ -1,17 +1,17 @@
 {
-    "@metadata": {
-        "authors": [
-            "Kening Aldgilles"
-        ]
-    },
-    "centralnotice-add-notice-button": "Oanmeitsje",
-    "centralnotice-add-notice-cancel-button": "Ofbrekke",
-    "centralnotice-clone-name": "Namme:",
-    "centralnotice-clone-cancel": "Ofbrekke",
-    "centralnotice-insert": "Ynfoegje: $1",
-    "centralnotice-close-title": "Slute",
-    "centralnotice-archive-banner-cancel": "Ofbrekke",
-    "centralnotice-archive-campaign": "Argyf",
-    "centralnotice-archive-campaign-cancel": "Ofbrekke",
-    "centralnotice-delete-banner-cancel": "Ofbrekke"
+	"@metadata": {
+		"authors": [
+			"Kening Aldgilles"
+		]
+	},
+	"centralnotice-add-notice-button": "Oanmeitsje",
+	"centralnotice-add-notice-cancel-button": "Ofbrekke",
+	"centralnotice-clone-name": "Namme:",
+	"centralnotice-clone-cancel": "Ofbrekke",
+	"centralnotice-insert": "Ynfoegje: $1",
+	"centralnotice-close-title": "Slute",
+	"centralnotice-archive-banner-cancel": "Ofbrekke",
+	"centralnotice-archive-campaign": "Argyf",
+	"centralnotice-archive-campaign-cancel": "Ofbrekke",
+	"centralnotice-delete-banner-cancel": "Ofbrekke"
 }

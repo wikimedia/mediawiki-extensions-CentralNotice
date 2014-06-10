@@ -109,6 +109,10 @@ class BannerRenderer {
 	}
 
 	function getPreloadJs() {
+		return $this->substituteMagicWords( $this->getPreloadJsRaw() );
+	}
+
+	function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
 		$bundled = array();
 		$bundled[] = 'var retval = true;';
@@ -123,7 +127,7 @@ class BannerRenderer {
 			}
 		}
 		$bundled[] = 'return retval;';
-		return $this->substituteMagicWords( implode( "\n", $bundled ) );
+		return implode( "\n", $bundled );
 	}
 
 	function getResourceLoaderHtml() {

@@ -1,21 +1,21 @@
 {
-    "@metadata": {
-        "authors": [
-            "Malafaya"
-        ]
-    },
-    "centralnotice-modify": "Sendez",
-    "centralnotice-add": "Adjuntar",
-    "centralnotice-add-notice": "Adjuntar avizo",
-    "centralnotice-add-template": "Adjuntar shablono",
-    "centralnotice-english": "Angliana",
-    "centralnotice-templates": "Shabloni",
-    "centralnotice-weight": "Pezo",
-    "centralnotice-notices": "Avizi",
-    "centralnotice-day": "Dio",
-    "centralnotice-year": "Yaro",
-    "centralnotice-month": "Monato",
-    "centralnotice-hours": "Horo",
-    "centralnotice-min": "Minuto",
-    "centralnotice-number-uses": "Uzadi"
+	"@metadata": {
+		"authors": [
+			"Malafaya"
+		]
+	},
+	"centralnotice-modify": "Sendez",
+	"centralnotice-add": "Adjuntar",
+	"centralnotice-add-notice": "Adjuntar avizo",
+	"centralnotice-add-template": "Adjuntar shablono",
+	"centralnotice-english": "Angliana",
+	"centralnotice-templates": "Shabloni",
+	"centralnotice-weight": "Pezo",
+	"centralnotice-notices": "Avizi",
+	"centralnotice-day": "Dio",
+	"centralnotice-year": "Yaro",
+	"centralnotice-month": "Monato",
+	"centralnotice-hours": "Horo",
+	"centralnotice-min": "Minuto",
+	"centralnotice-number-uses": "Uzadi"
 }

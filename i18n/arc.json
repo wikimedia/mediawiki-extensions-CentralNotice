@@ -1,32 +1,32 @@
 {
-    "@metadata": {
-        "authors": [
-            "Basharh"
-        ]
-    },
-    "centralnotice-modify": "ܫܕܪ",
-    "centralnotice-preview": "ܚܝܪܐ ܩܕܡܝܐ ($1)",
-    "centralnotice-add": "ܐܘܣܦ",
-    "centralnotice-add-template": "ܐܘܣܦ ܩܠܒܐ",
-    "centralnotice-translate-to": "ܬܪܓܡ ܠ",
-    "centralnotice-translate": "ܬܪܓܡ",
-    "centralnotice-weight": "ܬܘܩܠܐ",
-    "centralnotice-locked": "ܩܦܝܠܐ",
-    "centralnotice-day": "ܝܘܡܐ",
-    "centralnotice-year": "ܫܢܬܐ",
-    "centralnotice-month": "ܝܪܚܐ",
-    "centralnotice-hours": "ܫܥܬܐ",
-    "centralnotice-min": "ܩܛܝܢܬܐ",
-    "centralnotice-project-lang": "ܠܫܢܐ ܕܬܪܡܝܬܐ",
-    "centralnotice-project-name": "ܫܡܐ ܕܬܪܡܝܬܐ",
-    "centralnotice-weights": "ܬܘܩܠ̈ܐ",
-    "centralnotice-settings": "ܛܘܝܒ̈ܐ",
-    "centralnotice-edit-template": "ܫܚܠܦ ܩܠܒܐ",
-    "centralnotice-message": "ܐܓܪܬܐ",
-    "centralnotice-clone-name": "ܫܡܐ:",
-    "centralnotice-countries": "ܐܬܪ̈ܘܬܐ",
-    "centralnotice-languages": "ܠܫܢ̈ܐ",
-    "centralnotice-language": "ܠܫܢܐ",
-    "centralnotice-country": "ܐܬܪܐ",
-    "centralnotice-end-date": "ܣܝܩܘܡܐ ܕܫܘܠܡܐ (UTC)"
+	"@metadata": {
+		"authors": [
+			"Basharh"
+		]
+	},
+	"centralnotice-modify": "ܫܕܪ",
+	"centralnotice-preview": "ܚܝܪܐ ܩܕܡܝܐ ($1)",
+	"centralnotice-add": "ܐܘܣܦ",
+	"centralnotice-add-template": "ܐܘܣܦ ܩܠܒܐ",
+	"centralnotice-translate-to": "ܬܪܓܡ ܠ",
+	"centralnotice-translate": "ܬܪܓܡ",
+	"centralnotice-weight": "ܬܘܩܠܐ",
+	"centralnotice-locked": "ܩܦܝܠܐ",
+	"centralnotice-day": "ܝܘܡܐ",
+	"centralnotice-year": "ܫܢܬܐ",
+	"centralnotice-month": "ܝܪܚܐ",
+	"centralnotice-hours": "ܫܥܬܐ",
+	"centralnotice-min": "ܩܛܝܢܬܐ",
+	"centralnotice-project-lang": "ܠܫܢܐ ܕܬܪܡܝܬܐ",
+	"centralnotice-project-name": "ܫܡܐ ܕܬܪܡܝܬܐ",
+	"centralnotice-weights": "ܬܘܩܠ̈ܐ",
+	"centralnotice-settings": "ܛܘܝܒ̈ܐ",
+	"centralnotice-edit-template": "ܫܚܠܦ ܩܠܒܐ",
+	"centralnotice-message": "ܐܓܪܬܐ",
+	"centralnotice-clone-name": "ܫܡܐ:",
+	"centralnotice-countries": "ܐܬܪ̈ܘܬܐ",
+	"centralnotice-languages": "ܠܫܢ̈ܐ",
+	"centralnotice-language": "ܠܫܢܐ",
+	"centralnotice-country": "ܐܬܪܐ",
+	"centralnotice-end-date": "ܣܝܩܘܡܐ ܕܫܘܠܡܐ (UTC)"
 }

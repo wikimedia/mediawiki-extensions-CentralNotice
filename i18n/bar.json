@@ -1,11 +1,11 @@
 {
-    "@metadata": {
-        "authors": [
-            "Mucalexx"
-        ]
-    },
-    "centralnotice-translate-to": "Ywersetzen auf",
-    "centralnotice-translate": "Ywersetzen",
-    "centralnotice-english": "Englisch",
-    "centralnotice-logs": "Logbiacher"
+	"@metadata": {
+		"authors": [
+			"Mucalexx"
+		]
+	},
+	"centralnotice-translate-to": "Ywersetzen auf",
+	"centralnotice-translate": "Ywersetzen",
+	"centralnotice-english": "Englisch",
+	"centralnotice-logs": "Logbiacher"
 }

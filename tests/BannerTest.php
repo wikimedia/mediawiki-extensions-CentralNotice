@@ -96,7 +96,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 
 		// And the more advanced metadata
 		$banner->setDevices( 'desktop' );
-		$banner->setMixins( 'BannerDiet' );
+		$banner->setMixins( array('BannerDiet') );
 		$banner->setPriorityLanguages( array( 'en', 'ru' ) );
 
 		$banner->save();

@@ -1,16 +1,16 @@
 {
-    "@metadata": {
-        "authors": [
-            "Ariyo"
-        ]
-    },
-    "centralnotice-day": "Yawmo",
-    "centralnotice-year": "Şato",
-    "centralnotice-month": "Yarḥo",
-    "centralnotice-hours": "Sa3aye",
-    "centralnotice-min": "Daqaye",
-    "centralnotice-change-lang": "Mşaḥlaf uLeşono duTurjomo",
-    "centralnotice-languages": "Leşone",
-    "centralnotice-language": "Leşono",
-    "centralnotice-user": "Hadomo"
+	"@metadata": {
+		"authors": [
+			"Ariyo"
+		]
+	},
+	"centralnotice-day": "Yawmo",
+	"centralnotice-year": "Şato",
+	"centralnotice-month": "Yarḥo",
+	"centralnotice-hours": "Sa3aye",
+	"centralnotice-min": "Daqaye",
+	"centralnotice-change-lang": "Mşaḥlaf uLeşono duTurjomo",
+	"centralnotice-languages": "Leşone",
+	"centralnotice-language": "Leşono",
+	"centralnotice-user": "Hadomo"
 }
