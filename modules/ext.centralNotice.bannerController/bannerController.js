@@ -38,7 +38,7 @@
 
 	function synthesizeGeoCookie() {
 		if ( !window.Geo || !window.Geo.country ) {
-			$.cookie( 'GeoIP', 'GeoIP=::::vx', { path: '/' } );
+			$.cookie( 'GeoIP', '::::vx', { path: '/' } );
 			return;
 		}
 
