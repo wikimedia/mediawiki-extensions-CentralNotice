@@ -61,7 +61,7 @@
 			lon: lon && parseFloat( lon ),
 			af: af
 		};
-	} ).apply( null, document.cookie.match( /(?:\bGeoIP=)([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ || [] ) );
+	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ || [] ) );
 
 	mw.centralNotice = {
 		/**
