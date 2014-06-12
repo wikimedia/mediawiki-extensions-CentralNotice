@@ -186,7 +186,7 @@
 	"centralnotice-user-role": "Роля ўдзельніка",
 	"centralnotice-user-role-anonymous": "Ананім",
 	"centralnotice-user-role-logged-in": "Увайшоўшы",
-	"centralnotice-banner-class": "Кляса",
+	"centralnotice-banner-class": "Катэгорыя",
 	"centralnotice-templates-included": "Уключаныя шаблёны",
 	"centralnotice-archive-banner": "Заархіваваць",
 	"centralnotice-archive-banner-title": "Заархіваваць {{PLURAL:$1|1=банэр|банэры}}?",
