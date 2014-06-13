@@ -54,6 +54,17 @@
 	}
 
 	window.Geo = ( function ( match, country, city, lat, lon, af ) {
+		if ( typeof country !== 'string' || ( country.length !== 0 && country.length !== 2 ) ) {
+		    // 'country' is neither empty nor a country code (string of
+		    // length 2), so something is wrong with the cookie, and we
+		    // cannot rely on its value.
+		    $.removeCookie('GeoIP');
+		    country = '';
+		    city = '';
+		    lat = '';
+		    lon = '';
+		    af = 'vx';
+		}
 		return {
 			country: country,
 			city: city,
