@@ -132,6 +132,11 @@ $specialPageAliases['gl'] = array(
 	'NoticeTemplate' => array( 'Modelo_de_aviso' ),
 );
 
+/** Upper Sorbian (hornjoserbsce) */
+$specialPageAliases['hsb'] = array(
+	'CentralNotice' => array( 'Centralna_zdźělenka' ),
+);
+
 /** 湘语 (湘语) */
 $specialPageAliases['hsn'] = array(
 	'CentralNotice' => array( '中心公告' ),
