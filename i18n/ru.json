@@ -20,7 +20,8 @@
 			"Rubin16",
 			"Sabbah",
 			"Александр Сигачёв",
-			"Meshkov.a"
+			"Meshkov.a",
+			"Alexandr Efremov"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -70,7 +71,7 @@
 	"centralnotice-locked": "Заблокированный",
 	"centralnotice-notice": "Кампания",
 	"centralnotice-notice-heading": "Кампания: $1",
-	"centralnotice-notices": "Хәбәр",
+	"centralnotice-notices": "Кампания",
 	"centralnotice-notice-exists": "Уведомление уже существует.\nНе добавляется",
 	"centralnotice-no-language": "Не выбран язык для этой кампании. Не добавлено.",
 	"centralnotice-no-project": "Ни один проект не был выбран для проведения кампании. Не добавлено.",
