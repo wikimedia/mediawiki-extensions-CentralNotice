@@ -114,7 +114,7 @@
 	"centralnotice-banner-autolink-help": "Quando es activate, CentralNotice creara automaticamente un ligamine localisate a $3 con un pagina de destination seligite al hasardo. Il debe haber un etiquetta de ancora con $1 in le corpore del bandiera.",
 	"centralnotice-banner-landing-pages": "Paginas de arrivata (separate per commas):",
 	"centralnotice-banner-landing-pages-default": "p.ex. JimmyAppeal01",
-	"centralnotice-banner-mixins": "Mixins (separate per commas):",
+	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-geo": "Localisation geographic",
 	"centralnotice-countries": "Paises",
 	"centralnotice-global-allocation": "Allocation global",
