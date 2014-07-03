@@ -58,7 +58,7 @@
 		    // 'country' is neither empty nor a country code (string of
 		    // length 2), so something is wrong with the cookie, and we
 		    // cannot rely on its value.
-		    $.removeCookie('GeoIP');
+		    $.cookie( 'GeoIP', null, { path: '/' } );
 		    country = '';
 		    city = '';
 		    lat = '';
