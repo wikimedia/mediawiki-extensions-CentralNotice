@@ -115,6 +115,7 @@
 	"centralnotice-banner-landing-pages": "Paginas de arrivata (separate per commas):",
 	"centralnotice-banner-landing-pages-default": "p.ex. JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixins",
+	"centralnotice-banner-mixins-help": "Verifica cata componente \"mixin\" que tu vole includer durante le livration de bandiera. (Vide [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] pro plus information.)",
 	"centralnotice-geo": "Localisation geographic",
 	"centralnotice-countries": "Paises",
 	"centralnotice-global-allocation": "Allocation global",
