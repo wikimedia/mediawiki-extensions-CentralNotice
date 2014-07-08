@@ -14,9 +14,10 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgNoticeCookieLongExpiry;
+		global $wgNoticeCookieDurations;
 
-		$duration = $this->getRequest()->getInt( 'duration', $wgNoticeCookieLongExpiry );
+		$reason = 'donate'; //Once bannerController.js is fully deployed, get this from the query string
+		$duration = $this->getRequest()->getInt( 'duration', $wgNoticeCookieDurations[$reason] );
 		$category = $this->getRequest()->getText( 'category', 'fundraising' );
 		$category = Banner::sanitizeRenderedCategory( $category );
 		$this->setHideCookie( $category, $duration );
