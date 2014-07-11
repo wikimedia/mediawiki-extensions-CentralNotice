@@ -20,7 +20,8 @@
 			"Siebrand",
 			"The Evil IP address",
 			"Umherirrender",
-			"Yekrats"
+			"Yekrats",
+			"Liuxinyu970226"
 		]
 	},
 	"centralnotice": "{{doc-special|CentralNotice}}\n{{Identical|Central notice admin}}",
@@ -62,12 +63,12 @@
 	"centralnotice-banner-name": "Used as label for the \"Banner name\" (\"Template name\") input box in [[Special:NoticeTemplate]].",
 	"centralnotice-banner": "Used as fieldset label in the form in [[Special:NoticeTemplate]].\n\nFollowed by {{msg-mw|Centralnotice-edit-template-summary}}.\n{{Identical|Banner}}",
 	"centralnotice-banner-heading": "Used as <code><nowiki><h2></nowiki></code> heading. Parameters:\n* $1 - current banner (current template)\n{{Identical|Banner}}",
-	"centralnotice-templates": "* Used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}}.\n* Used as column header of the table.\n* Used as link text. The link points to [[Special:NoticeTemplate]].",
+	"centralnotice-templates": "* Used as <code>$1</code> in {{msg-mw|Centralnotice-log-label}}.\n* Used as column header of the table.\n* Used as link text. The link points to [[Special:NoticeTemplate]].\n{{Identical|Banner}}",
 	"centralnotice-throttle": "Label for a checkbox used to limit traffic to a campaign",
 	"centralnotice-throttle-amount": "Label for a dropdown menu listing the maximum percentage of traffic which will be allocated to a campaign",
 	"centralnotice-balanced": "Label for a checkbox which will cause all banners in a campaign to be given the same weight",
 	"centralnotice-weight": "Used in Notice Details page of [[meta:Special:CentralNotice|Central Notice]] special page.\n* Used as label for the \"Weight\" select box.\n* Used as column header of the table in [[Special:CentralNotice]].\n{{Identical|Weight}}",
-	"centralnotice-locked": "Refers to campaign.\n\nUsed as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}",
+	"centralnotice-locked": "Refers to campaign.\n\nUsed as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Locked}}",
 	"centralnotice-notice": "* Used as column header in the table (in multiple special pages).\n* Used as label for the \"Campaign\" input box in [[Special:CentralNoticeLogs]].\n{{Identical|Campaign}}",
 	"centralnotice-notice-heading": "Used as <code><nowiki><h2></nowiki></code> heading. Parameters:\n* $1 - campaign",
 	"centralnotice-notices": "Used as link text in the tab in [[Special:CentralNotice]]. The link points to [[Special:CentralNotice]].\n{{Identical|Campaign}}",
