@@ -16,11 +16,11 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgNoticeCookieDurations;
 
-		$reason = 'donate'; //Once bannerController.js is fully deployed, get this from the query string
+		$reason = $this->getRequest()->getText( 'reason', 'donate' );
 		$duration = $this->getRequest()->getInt( 'duration', $wgNoticeCookieDurations[$reason] );
 		$category = $this->getRequest()->getText( 'category', 'fundraising' );
 		$category = Banner::sanitizeRenderedCategory( $category );
-		$this->setHideCookie( $category, $duration );
+		$this->setHideCookie( $category, $duration, $reason );
 
 		$this->getOutput()->disable();
 		wfResetOutputBuffers();
@@ -35,16 +35,22 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	/**
 	 * Set the cookie for hiding fundraising banners.
 	 */
-	function setHideCookie( $category, $duration ) {
+	function setHideCookie( $category, $duration, $reason ) {
 		global $wgNoticeCookieDomain;
 
-		$exp = time() + $duration;
+		$created = time();
+		$exp = $created + $duration;
+		$value = array(
+			'v' => 1,
+			'created' => $created,
+			'reason' => $reason
+		);
 
 		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
 		}
-		setcookie( "centralnotice_hide_{$category}", 'hide', $exp, '/', $cookieDomain, false, false );
+		setcookie( "centralnotice_hide_{$category}", json_encode( $value ), $exp, '/', $cookieDomain, false, false );
 	}
 }
