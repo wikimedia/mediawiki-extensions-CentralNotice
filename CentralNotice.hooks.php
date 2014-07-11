@@ -285,7 +285,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
-		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieShortExpiry, $wgScript,
+		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
 		   $wgNoticeHideUrls;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
@@ -319,7 +319,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 	$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
-	$vars[ 'wgNoticeCookieShortExpiry' ] = $wgNoticeCookieShortExpiry;
+	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 
 	if ( $wgNoticeInfrastructure ) {
