@@ -132,6 +132,22 @@ $specialPageAliases['gl'] = array(
 	'NoticeTemplate' => array( 'Modelo_de_aviso' ),
 );
 
+/** Hebrew (עברית) */
+$specialPageAliases['he'] = array(
+	'CentralNotice' => array( 'הודעה_מרכזית' ),
+	'CentralNoticeBanners' => array( 'כרזות_הודעה_מרכזית' ),
+	'CentralNoticeLogs' => array( 'יומני_הודעה_מרכזית' ),
+	'CNReporter' => array( 'כתב_הודעה_מרכזית' ),
+	'NoticeTemplate' => array( 'תבנית_הודעה' ),
+	'GlobalAllocation' => array( 'הקצאה_גלובלית' ),
+	'BannerAllocation' => array( 'הקצאת_כרזה' ),
+	'BannerController' => array( 'בקר_כרזה' ),
+	'BannerLoader' => array( 'טוען_כרזות' ),
+	'BannerRandom' => array( 'כרזה_אקראית' ),
+	'RecordImpression' => array( 'תצוגות_שיא' ),
+	'HideBanners' => array( 'החבאת_כרזות' ),
+);
+
 /** Upper Sorbian (hornjoserbsce) */
 $specialPageAliases['hsb'] = array(
 	'CentralNotice' => array( 'Centralna_zdźělenka' ),
