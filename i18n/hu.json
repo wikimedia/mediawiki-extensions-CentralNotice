@@ -5,7 +5,8 @@
 			"Dani",
 			"Dj",
 			"Misibacsi",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Csega"
 		]
 	},
 	"centralnotice": "Központi üzenet adminisztráció",
@@ -178,6 +179,7 @@
 	"centralnotice-country-o1": "Ismeretlen/Más ország",
 	"centralnotice-country-unknown": "Ismeretlen/Hely nem meghatározható",
 	"centralnotice-devicetype-desktop": "Asztali számítógép",
+	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-all": "Mind",
 	"centralnotice-banner-name-error": "Érvénytelen hirdetési név. Érvényes nevek csak alfanumerikus és aláhúzás karaktert tartalmazhat.",
 	"centralnotice-all-except": "Mind, kivéve $1",

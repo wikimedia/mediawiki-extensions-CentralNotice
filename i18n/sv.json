@@ -197,6 +197,8 @@
 	"centralnotice-bucket": "Uppdelning",
 	"centralnotice-bucket-letter": "Uppdelning \"$1\"",
 	"centralnotice-devicetype-desktop": "Stationär dator",
+	"centralnotice-devicetype-android": "Android OS",
+	"centralnotice-devicetype-iphone": "Alla iPhone-versioner",
 	"centralnotice-all": "Alla",
 	"centralnotice-generic-error": "Du har inte rätt behörighet att utföra den begärda åtgärden eller själva handlingen var ogiltigt.",
 	"centralnotice-banner-name-error": "Ogiltig bannernamn angett. Giltiga namn innehåller endast alfanumeriska och understrecks-tecken.",
