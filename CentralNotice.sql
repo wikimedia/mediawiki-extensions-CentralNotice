@@ -1,5 +1,5 @@
 -- CentralNotice Schema Install File
--- Last Update: patch-centralnotice-2_3.sql
+-- Last Update: patch-add_devices.sql
 -- See documentation at http://www.mediawiki.org/wiki/Extension:CentralNotice/Database_schema
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_notices (
@@ -76,6 +76,10 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_known_devices (
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/dev_name ON /*_*/cn_known_devices (dev_name);
 INSERT INTO /*_*/cn_known_devices VALUES (0, 'desktop', '{{int:centralnotice-devicetype-desktop}}');
+INSERT INTO /*_*/cn_known_devices VALUES (1, 'android', '{{int:centralnotice-devicetype-android}}');
+INSERT INTO /*_*/cn_known_devices VALUES (2, 'iphone', '{{int:centralnotice-devicetype-iphone}}');
+INSERT INTO /*_*/cn_known_devices VALUES (3, 'ipad', '{{int:centralnotice-devicetype-ipad}}');
+INSERT INTO /*_*/cn_known_devices VALUES (4, 'unknown', '{{int:centralnotice-devicetype-unknown}}');
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_template_devices (
 	`tdev_id` int PRIMARY KEY AUTO_INCREMENT,

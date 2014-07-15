@@ -123,6 +123,13 @@ class CNDatabasePatcher {
 					 $base . '/patch-campaign_throttle.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					/* This is a hack... we're adding rows not modifying a field */
+					'modifyField', 'cn_known_devices', 'dev_name',
+					$base . '/patch-add_devices.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			$updater->addExtensionUpdate(
 				array(
