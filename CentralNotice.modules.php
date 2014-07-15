@@ -121,6 +121,7 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'position'      => 'top',
 	'dependencies'  => array(
 		'jquery.cookie',
+		'jquery.json',
 	),
 );
 $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
