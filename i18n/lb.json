@@ -173,6 +173,7 @@
 	"centralnotice-country-o1": "Onbekannt/Anert Land",
 	"centralnotice-country-unknown": "Onbekannt/Net ze lokaliséieren",
 	"centralnotice-devicetype-desktop": "Desktopcomputer",
+	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-all": "All",
 	"centralnotice-generic-error": "Dir hutt net déi richteg Rechter fir déi ugefrot Aktioun ze maachen oder d'Aktioun selwer war net valabel.",
 	"centralnotice-all-except": "All ausser $1",
