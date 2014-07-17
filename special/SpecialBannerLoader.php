@@ -96,6 +96,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @throw SpecialBannerLoaderException
 	 */
 	public function getJsNotice( $bannerName ) {
+		if ( $bannerName === null || $bannerName === '' ) {
+			throw new EmptyBannerException( $bannerName );
+		}
 		$banner = Banner::fromName( $bannerName );
 		if ( !$banner->exists() ) {
 			throw new EmptyBannerException( $bannerName );
