@@ -73,7 +73,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters-container' ) );
 
-			$collapsedImg = $this->getContext()->getLang()->isRtl() ?
+			$collapsedImg = $this->getContext()->getLanguage()->isRtl() ?
 				'/CentralNotice/collapsed-rtl.png' :
 				'/CentralNotice/collapsed-ltr.png';
 
