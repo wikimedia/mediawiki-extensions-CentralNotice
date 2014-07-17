@@ -104,6 +104,14 @@ function efCentralNoticeSetup() {
 	// Register mobile modules
 	$wgHooks['EnableMobileModules'][] = 'efEnableMobileModules';
 
+	// Tell the UserMerge extension where we store user ids
+	$wgHooks[ 'UserMergeAccountFields' ][] = function( &$updateFields ) {
+		// array( tableName, idField, textField )
+		$updateFields[] = array( 'cn_notice_log', 'notlog_user_id' );
+		$updateFields[] = array( 'cn_template_log', 'tmplog_user_id' );
+		return true;
+	};
+
 	// Register special pages
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
 	$wgSpecialPages[ 'BannerRandom' ] = 'SpecialBannerRandom';
