@@ -20,7 +20,8 @@
 			"Urhixidur",
 			"Verdy p",
 			"Wyz",
-			"Zebulon84"
+			"Zebulon84",
+			"Orikrin1998"
 		]
 	},
 	"centralnotice": "Administration des avis centraux",
@@ -205,6 +206,10 @@
 	"centralnotice-bucket": "Godet",
 	"centralnotice-bucket-letter": "Godet \"$1\"",
 	"centralnotice-devicetype-desktop": "Ordinateur de bureau",
+	"centralnotice-devicetype-android": "OS Android",
+	"centralnotice-devicetype-ipad": "Tous les appareils identifiés comme iPads mais pas comme iPhones",
+	"centralnotice-devicetype-iphone": "Toutes les versions d'iPhone",
+	"centralnotice-devicetype-unknown": "Appareils sur le site mobile qui ne sont pas des iPhones, des iPads, ou des Android — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Logique du sélecteur])",
 	"centralnotice-all": "Tous",
 	"centralnotice-generic-error": "Vous n’avez pas les autorisations appropriées pour exécuter l’opération demandée ou l’action elle-même n’était pas valide.",
 	"centralnotice-banner-name-error": "Nom de bannière fourni non valide. Les noms valides ne contiennent que des caractères alphanumériques et des caractères souligné.",

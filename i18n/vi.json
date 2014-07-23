@@ -4,7 +4,8 @@
 			"Cheers!",
 			"Minh Nguyen",
 			"Vinhtantran",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Trần Nguyễn Minh Huy"
 		]
 	},
 	"centralnotice": "Quản lý các thông báo chung",
@@ -24,7 +25,7 @@
 	"centralnotice-save-banner": "Lưu",
 	"centralnotice-preview": "Xem trước ($1)",
 	"centralnotice-live-preview": "Xem trước trên wiki",
-	"centralnotice-nopreview": "(Không có thể xem trước)",
+	"centralnotice-nopreview": "(Xem trước không khả dụng)",
 	"centralnotice-add-new": "Thêm thông báo chung mới",
 	"centralnotice-remove": "Dời",
 	"centralnotice-translate-heading": "Dịch $1",
@@ -134,7 +135,7 @@
 	"centralnotice-allocation-description": "Phân phối biểu ngữ cho ngôn ngữ $1, dự án $2, ở quốc gia $3, trên thiết bị $4",
 	"centralnotice-historical-allocation-description": "Phân phối biểu ngữ cho ngôn ngữ: $1, dự án: $2, ở quốc gia: $3, trên thiết bị $4, vào lúc $5",
 	"centralnotice-percentage": "Tỷ lệ",
-	"centralnotice-documentwrite-error": "Không có thể sử dụng document.write() trong bảng.\nXem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .",
+	"centralnotice-documentwrite-error": "Không thể sử dụng document.write() trong bảng.\nXem thêm chi tiết tại http://meta.wikimedia.org/wiki/Help:CentralNotice .",
 	"centralnotice-preferred": "Độ ưu tiên",
 	"centralnotice-logs": "Nhật trình",
 	"centralnotice-view-logs": "Xem nhật trình",

@@ -111,13 +111,20 @@ $wgNoticeBannerPreview = false;
 // Example: '.wikipedia.org'
 $wgNoticeCookieDomain = '';
 
-// The amount of time banners will be hidden by the close box.
-// Defaults to two weeks.
-$wgNoticeCookieShortExpiry = 1209600;
-
-// Amount of time the banners will hide after a successful donation.
-// Defaults to one year.
-$wgNoticeCookieLongExpiry = 31536000;
+/**
+ * @var string[] $wgNoticeCookieDurations How long to respect different types
+ * of banner hiding cookies, in seconds. bannerController.js selects one of
+ * these entries based on the  cookie's 'reason' element and adds that to the
+ * cookie's 'created' element to determine when to stop hiding the banner.
+ */
+$wgNoticeCookieDurations = array(
+	// The amount of time banners will be hidden by the close box.
+	// Defaults to two weeks.
+	'close' => 1209600,
+	// Amount of time the banners will hide after a successful donation.
+	// Defaults to one year.
+	'donate' => 31536000
+);
 
 /**
  * @var string[] $wgNoticeHideUrls Locations of Special:HideBanner targets to hit

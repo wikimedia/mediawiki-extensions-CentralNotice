@@ -12,7 +12,8 @@
 			"Mido",
 			"OsamaK",
 			"Ouda",
-			"زكريا"
+			"زكريا",
+			"محمد عصام"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
@@ -193,6 +194,7 @@
 	"centralnotice-bucket": "دلو",
 	"centralnotice-bucket-letter": "دلو \"$1\"",
 	"centralnotice-devicetype-desktop": "حاسوب مكتبي",
+	"centralnotice-devicetype-iphone": "جميع إصدارات آي فون",
 	"centralnotice-all": "الكل",
 	"centralnotice-generic-error": "ليس لديك الصلاحيات اللازمة لتنفيذ الإجراء المطلوب أو أن الإجراء غير صالح.",
 	"centralnotice-banner-name-error": "الإسم الذي تم توفيره للافتة غير صالح. الأسماء الصالحة يجب أن تتكون من حروف أبجدية عددية وشروط سفلية فقط.",

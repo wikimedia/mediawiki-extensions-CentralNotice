@@ -116,6 +116,7 @@
 	"centralnotice-banner-landing-pages": "Páxinas de destino (separadas por comas):",
 	"centralnotice-banner-landing-pages-default": "por exemplo, JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixins",
+	"centralnotice-banner-mixins-help": "Comprobe cada mixin que queira incluír durante a entrega do cartel. (Consulte a axuda sobre os [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins mixins dos carteis] para obter máis información.)",
 	"centralnotice-geo": "Localizado xeograficamente",
 	"centralnotice-countries": "Países",
 	"centralnotice-global-allocation": "Asignación global",

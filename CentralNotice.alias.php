@@ -132,6 +132,27 @@ $specialPageAliases['gl'] = array(
 	'NoticeTemplate' => array( 'Modelo_de_aviso' ),
 );
 
+/** Hebrew (עברית) */
+$specialPageAliases['he'] = array(
+	'CentralNotice' => array( 'הודעה_מרכזית' ),
+	'CentralNoticeBanners' => array( 'כרזות_הודעה_מרכזית' ),
+	'CentralNoticeLogs' => array( 'יומני_הודעה_מרכזית' ),
+	'CNReporter' => array( 'כתב_הודעה_מרכזית' ),
+	'NoticeTemplate' => array( 'תבנית_הודעה' ),
+	'GlobalAllocation' => array( 'הקצאה_גלובלית' ),
+	'BannerAllocation' => array( 'הקצאת_כרזה' ),
+	'BannerController' => array( 'בקר_כרזה' ),
+	'BannerLoader' => array( 'טוען_כרזות' ),
+	'BannerRandom' => array( 'כרזה_אקראית' ),
+	'RecordImpression' => array( 'תצוגות_שיא' ),
+	'HideBanners' => array( 'החבאת_כרזות' ),
+);
+
+/** Upper Sorbian (hornjoserbsce) */
+$specialPageAliases['hsb'] = array(
+	'CentralNotice' => array( 'Centralna_zdźělenka' ),
+);
+
 /** 湘语 (湘语) */
 $specialPageAliases['hsn'] = array(
 	'CentralNotice' => array( '中心公告' ),
@@ -378,7 +399,7 @@ $specialPageAliases['zh-hans'] = array(
 	'CentralNoticeLogs' => array( '中央通告日志' ),
 	'CNReporter' => array( '中央通告记录' ),
 	'NoticeTemplate' => array( '公告模板' ),
-	'GlobalAllocation' => array( '全局分配' ),
+	'GlobalAllocation' => array( '全域分配' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
 	'BannerLoader' => array( '横幅装载器' ),

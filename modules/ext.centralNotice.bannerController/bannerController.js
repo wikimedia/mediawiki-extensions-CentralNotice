@@ -54,6 +54,17 @@
 	}
 
 	window.Geo = ( function ( match, country, city, lat, lon, af ) {
+		if ( typeof country !== 'string' || ( country.length !== 0 && country.length !== 2 ) ) {
+		    // 'country' is neither empty nor a country code (string of
+		    // length 2), so something is wrong with the cookie, and we
+		    // cannot rely on its value.
+		    $.cookie( 'GeoIP', null, { path: '/' } );
+		    country = '';
+		    city = '';
+		    lat = '';
+		    lon = '';
+		    af = 'vx';
+		}
 		return {
 			country: country,
 			city: city,
@@ -262,7 +273,7 @@
 	//
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
-		var url, targets;
+		var url, targets, expiry, cookieVal;
 
 		var impressionData = {
 			country: mw.centralNotice.data.country,
@@ -293,21 +304,28 @@
 					result: 'hide',
 					reason: 'preload'
 				};
-			} else if (
-				mw.centralNotice.data.testing === false && /* And we want to see what we're testing! :) */
-				(
-					$.cookie( 'centralnotice_hide_' + mw.centralNotice.data.category ) === 'hide' ||
-					/* Legacy for long duration fundraising cookies; remove after Oct 1, 2014 */
-					$.cookie( 'centralnotice_' + mw.centralNotice.data.category ) === 'hide'
-				)
-			) {
-				// The banner was hidden by a category hide cookie and we're not testing
-				impressionResultData = {
-					result: 'hide',
-					reason: 'cookie'
-				};
-			} else {
-				// All conditions fulfilled, inject the banner
+			} else if ( mw.centralNotice.data.testing === false ) { /* And we want to see what we're testing! :) */
+				cookieVal = $.cookie( 'centralnotice_hide_' + mw.centralNotice.data.category );
+				expiry = mw.config.get( 'wgNoticeCookieDurations' );
+
+				if (
+					cookieVal === 'hide' ||
+					(
+						cookieVal !== null &&
+						cookieVal.indexOf( '{' ) === 0 &&
+						expiry[$.parseJSON( cookieVal ).reason] &&
+						$.parseJSON( cookieVal ).created + expiry[$.parseJSON( cookieVal ).reason] > new Date().getTime() / 1000
+					)
+				) {
+					// The banner was hidden by a category hide cookie and we're not testing
+					impressionResultData = {
+						result: 'hide',
+						reason: 'cookie'
+					};
+				}
+			}
+			if ( !impressionResultData ) {
+				// Not hidden yet, inject the banner
 				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;
 				$( 'div#centralNotice' )
 					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.category ) )
@@ -366,19 +384,24 @@
 	};
 
 	// Function for hiding banners when the user clicks the close button
-	// TODO: Make it call up to the special page for cross project hiding
 	window.hideBanner = function () {
 		var d = new Date(),
-			expiry = mw.config.get( 'wgNoticeCookieShortExpiry' );
+			cookieVal = {
+				v: 1,
+				created: Math.floor( d.getTime() / 1000 ),
+				reason: 'close'
+			},
+			expiry = mw.config.get( 'wgNoticeCookieDurations' ).close;
 
 		// Immediately hide the banner on the page
 		$( '#centralNotice' ).hide();
 
 		// Set a local hide cookie for this banner category
 		d.setSeconds( d.getSeconds() + expiry );
+
 		$.cookie(
 			'centralnotice_hide_' + mw.centralNotice.data.category,
-			'hide',
+			$.toJSON( cookieVal ),
 			{ expires: d, path: '/' }
 		);
 
@@ -387,7 +410,8 @@
 		$.each( mw.config.get( 'wgNoticeHideUrls' ), function( idx, value ) {
 			(new Image()).src = value + '?' + $.param( {
 				'duration': expiry,
-				'category': mw.centralNotice.data.category
+				'category': mw.centralNotice.data.category,
+				'reason' : 'close'
 			} );
 		} );
 

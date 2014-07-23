@@ -107,8 +107,12 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		if ( $row->notlog_action !== 'removed' ) {
+			$collapsedImg = $this->getLanguage()->isRtl() ?
+				'collapsed-rtl.png' :
+				'collapsed-ltr.png';
+
 			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$row->notlog_id.'\')">'.
-				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/collapsed.png" id="cn-collapsed-'.$row->notlog_id.'" style="display:block;"/>'.
+				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/'.$collapsedImg.'" id="cn-collapsed-'.$row->notlog_id.'" style="display:block;"/>'.
 				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->notlog_id.'" style="display:none;"/>'.
 				'</a>';
 		}

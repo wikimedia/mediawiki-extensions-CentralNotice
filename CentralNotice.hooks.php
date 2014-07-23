@@ -104,6 +104,14 @@ function efCentralNoticeSetup() {
 	// Register mobile modules
 	$wgHooks['EnableMobileModules'][] = 'efEnableMobileModules';
 
+	// Tell the UserMerge extension where we store user ids
+	$wgHooks[ 'UserMergeAccountFields' ][] = function( &$updateFields ) {
+		// array( tableName, idField, textField )
+		$updateFields[] = array( 'cn_notice_log', 'notlog_user_id' );
+		$updateFields[] = array( 'cn_template_log', 'tmplog_user_id' );
+		return true;
+	};
+
 	// Register special pages
 	$wgSpecialPages[ 'BannerLoader' ] = 'SpecialBannerLoader';
 	$wgSpecialPages[ 'BannerRandom' ] = 'SpecialBannerRandom';
@@ -285,7 +293,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
-		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieShortExpiry, $wgScript,
+		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
 		   $wgNoticeHideUrls;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
@@ -319,7 +327,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 	$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
-	$vars[ 'wgNoticeCookieShortExpiry' ] = $wgNoticeCookieShortExpiry;
+	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 
 	if ( $wgNoticeInfrastructure ) {

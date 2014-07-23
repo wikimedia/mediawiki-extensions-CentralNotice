@@ -205,6 +205,8 @@
 	"centralnotice-bucket": "Segmento",
 	"centralnotice-bucket-letter": "Segmento \"$1\"",
 	"centralnotice-devicetype-desktop": "Computadora de escritorio",
+	"centralnotice-devicetype-android": "SO Android",
+	"centralnotice-devicetype-iphone": "Todas las versiones de iPhone",
 	"centralnotice-all": "Todo",
 	"centralnotice-generic-error": "No tienes los permisos necesarios para realizar la acción solicitada, o la accion misma fue inválida.",
 	"centralnotice-banner-name-error": "Nombre de pancarta inválido. Los nombres válidos contienen sólo caracteres alfanuméricos y guiones bajos.",

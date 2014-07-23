@@ -20,7 +20,8 @@
 			"Rubin16",
 			"Sabbah",
 			"Александр Сигачёв",
-			"Meshkov.a"
+			"Meshkov.a",
+			"Alexandr Efremov"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -70,7 +71,7 @@
 	"centralnotice-locked": "Заблокированный",
 	"centralnotice-notice": "Кампания",
 	"centralnotice-notice-heading": "Кампания: $1",
-	"centralnotice-notices": "Хәбәр",
+	"centralnotice-notices": "Кампания",
 	"centralnotice-notice-exists": "Уведомление уже существует.\nНе добавляется",
 	"centralnotice-no-language": "Не выбран язык для этой кампании. Не добавлено.",
 	"centralnotice-no-project": "Ни один проект не был выбран для проведения кампании. Не добавлено.",
@@ -206,6 +207,10 @@
 	"centralnotice-bucket": "Ведро",
 	"centralnotice-bucket-letter": "Ведро «$1»",
 	"centralnotice-devicetype-desktop": "Настольный компьютер",
+	"centralnotice-devicetype-android": "Android",
+	"centralnotice-devicetype-ipad": "Все устройства, которые определены не как iPhone, а как iPad",
+	"centralnotice-devicetype-iphone": "Все версии iPhone",
+	"centralnotice-devicetype-unknown": "Мобильные устройства на платформах, отличных от iPhone, iPad или Android — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js логика определения])",
 	"centralnotice-all": "Все",
 	"centralnotice-generic-error": "У вас нет необходимых разрешений на выполнение запрошенного действия или само действие было некорректным.",
 	"centralnotice-banner-name-error": "Недопустимое имя баннера. Допустимые имена содержат только буквенно-цифровые символы и нижнее подчеркивание.",
