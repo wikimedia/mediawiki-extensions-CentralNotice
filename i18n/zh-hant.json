@@ -18,7 +18,8 @@
 			"Simon Shek",
 			"Waihorace",
 			"Wrightbus",
-			"Cwlin0416"
+			"Cwlin0416",
+			"LNDDYL"
 		]
 	},
 	"centralnotice": "中央通告管理",
@@ -164,7 +165,7 @@
 	"centralnotice-removed": "<span class=\"cn-old-value\">$1</span>已刪除",
 	"centralnotice-no-assignments": "沒有有已分配的橫幅",
 	"centralnotice-talk-link": "討論",
-	"centralnotice-campaign-settings": "活動設置",
+	"centralnotice-campaign-settings": "活動設定",
 	"centralnotice-banner-settings": "橫幅設置",
 	"centralnotice-anon": "向匿名用戶展示",
 	"centralnotice-account": "向已登錄用戶展示",
