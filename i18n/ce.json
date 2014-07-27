@@ -73,6 +73,8 @@
 	"centralnotice-removed": "ДӀаяьккхина <span class=\"cn-old-value\">$1</span>",
 	"centralnotice-talk-link": "дийцаре",
 	"centralnotice-date": "Терахь",
+	"centralnotice-devicetype-android": "Android",
+	"centralnotice-devicetype-iphone": "iPhone массо версеш",
 	"centralnotice-archive-banner-cancel": "Цаоьшу",
 	"centralnotice-archive-campaign-cancel": "Цаоьшу",
 	"centralnotice-delete-banner": "ДӀаяккха",
