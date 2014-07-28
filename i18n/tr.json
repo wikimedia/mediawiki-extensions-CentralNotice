@@ -9,7 +9,8 @@
 			"LuCKY",
 			"Srhat",
 			"Suelnur",
-			"Szoszv"
+			"Szoszv",
+			"Sayginer"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -183,6 +184,8 @@
 	"centralnotice-country-o1": "Bilinmeyen/Diğer Ülke",
 	"centralnotice-country-unknown": "Bilinmeyen/Coğrafik-Saptanamayan",
 	"centralnotice-devicetype-desktop": "Masaüstü bilgisayar",
+	"centralnotice-devicetype-android": "Android işletim sistemi",
+	"centralnotice-devicetype-iphone": "Tüm iPhone modelleri",
 	"centralnotice-all": "Hepsi",
 	"centralnotice-banner-name-error": "Geçersiz afiş adı sağlandı. Geçerli adlar sadece alfa-nümerik ve alt çizgi karakterlerini içerir.",
 	"centralnotice-all-except": "$1 dışında hepsi",
