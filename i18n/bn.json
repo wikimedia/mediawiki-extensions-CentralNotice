@@ -67,7 +67,7 @@
 	"centralnotice-project-lang": "প্রকল্পের ভাষা",
 	"centralnotice-select-all": "সবগুলো নির্বাচন",
 	"centralnotice-remove-all": "সবগুলো অপসারণ",
-	"centralnotice-items-selected": "$1 {{PLURAL:$1|আইটেম|আইটেম}} নির্বাচিত",
+	"centralnotice-items-selected": "$1টি {{PLURAL:$1|আইটেম}} নির্বাচিত",
 	"centralnotice-project-name": "প্রকল্পের নাম",
 	"centralnotice-assigned-templates": "নিয়োজিত ব্যানারসমূহ",
 	"centralnotice-no-templates": "কোনো ব্যানার পাওয়া যায়নি।\nযোগ করুন!",
