@@ -7,7 +7,8 @@
 			"TRYPPN",
 			"செல்வா",
 			"மதனாஹரன்",
-			"Kanags"
+			"Kanags",
+			"ElangoRamanujam"
 		]
 	},
 	"centralnotice": "மத்திய அறிவிப்பு நிர்வாகி",
@@ -153,6 +154,7 @@
 	"centralnotice-country-o1": "அறியப்படாதது/மற்ற நாடு",
 	"centralnotice-country-unknown": "அறியப்படாதது/புவியிடமறிய இயலாதது",
 	"centralnotice-bucket": "வாளி",
+	"centralnotice-devicetype-android": "அண்ட்ராய்டு OS",
 	"centralnotice-start-date": "தொடக்க நாள்",
 	"centralnotice-start-time": "தொடக்க நேரம் (UTC)",
 	"centralnotice-end-date": "முடிவுத்தேதி",

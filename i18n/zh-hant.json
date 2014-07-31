@@ -129,7 +129,7 @@
 	"centralnotice-banner-fundraising": "這是一個籌款橫幅",
 	"centralnotice-banner-display-on": "顯示於",
 	"centralnotice-banner-autolink": "自動創建登陸頁面的連結",
-	"centralnotice-banner-autolink-help": "當啟用CentralNotice時將自動創建一條連至$3的本地化連結，而著陸頁則屬隨機。橫幅內必需有一個錨點$1。",
+	"centralnotice-banner-autolink-help": "當啟用CentralNotice時將自動建立一條連至$3的在地化連結，而著陸頁則屬隨機。橫幅內必需有一個錨點$1。",
 	"centralnotice-banner-landing-pages": "登錄頁（逗號分隔）：",
 	"centralnotice-banner-landing-pages-default": "例如 JimmyAppeal01",
 	"centralnotice-banner-mixins": "混合位元",
