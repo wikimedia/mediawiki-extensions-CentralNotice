@@ -23,7 +23,10 @@
  * @file
  */
 ( function ( $, mw ) {
-	mw.centralNotice.adminUi.bannerManagement = {
+
+	var bm;
+
+	bm = mw.centralNotice.adminUi.bannerManagement = {
 		/**
 		 * State tracking variable for the number of items currently selected
 		 * @protected
@@ -90,7 +93,7 @@
 			dialogObj.dialog({
 				title: mw.message(
 					'centralnotice-delete-banner-title',
-					mw.centralNotice.adminUi.bannerManagement.selectedItemCount
+					bm.selectedItemCount
 				).text(),
 				resizable: false,
 				modal: true,
@@ -118,7 +121,7 @@
 			dialogObj.dialog({
 				title: mw.message(
 					'centralnotice-archive-banner-title',
-					mw.centralNotice.adminUi.bannerManagement.selectedItemCount
+					bm.selectedItemCount
 				).text(),
 				resizable: false,
 				modal: true,
@@ -132,14 +135,13 @@
 		checkAllStateAltered: function() {
 			var checkBoxes = $( 'input.cn-bannerlist-check-applyto' );
 			if ( $( '#mw-input-wpselectAllBanners' ).prop( 'checked' ) ) {
-				mw.centralNotice.adminUi.bannerManagement.selectedItemCount =
-					mw.centralNotice.adminUi.bannerManagement.totalSelectableItems;
+				bm.selectedItemCount = bm.totalSelectableItems;
 				checkBoxes.each( function() { $( this ).prop( 'checked', true ); } );
 			} else {
-				mw.centralNotice.adminUi.bannerManagement.selectedItemCount = 0;
+				bm.selectedItemCount = 0;
 				checkBoxes.each( function() { $( this ).prop( 'checked', false ); } );
 			}
-			mw.centralNotice.adminUi.bannerManagement.checkedCountUpdated();
+			bm.checkedCountUpdated();
 		},
 
 		/**
@@ -147,11 +149,11 @@
 		 */
 		selectCheckStateAltered: function() {
 			if ( $( this ).prop( 'checked' ) === true ) {
-				mw.centralNotice.adminUi.bannerManagement.selectedItemCount++;
+				bm.selectedItemCount++;
 			} else {
-				mw.centralNotice.adminUi.bannerManagement.selectedItemCount--;
+				bm.selectedItemCount--;
 			}
-			mw.centralNotice.adminUi.bannerManagement.checkedCountUpdated();
+			bm.checkedCountUpdated();
 		},
 
 		/**
@@ -161,14 +163,12 @@
 			var selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
 				deleteButton = $(' #mw-input-wpdeleteSelectedBanners' );
 
-			if ( mw.centralNotice.adminUi.bannerManagement.selectedItemCount ==
-				mw.centralNotice.adminUi.bannerManagement.totalSelectableItems
-			) {
+			if ( bm.selectedItemCount == bm.totalSelectableItems ) {
 				// Everything selected
 				selectAllCheck.prop( 'checked', true );
 				selectAllCheck.prop( 'indeterminate', false );
 				deleteButton.prop( 'disabled', false );
-			} else if ( mw.centralNotice.adminUi.bannerManagement.selectedItemCount === 0 ) {
+			} else if ( bm.selectedItemCount === 0 ) {
 				// Nothing selected
 				selectAllCheck.prop( 'checked', false );
 				selectAllCheck.prop( 'indeterminate', false );
@@ -179,21 +179,66 @@
 				selectAllCheck.prop( 'indeterminate', true );
 				deleteButton.prop( 'disabled', false );
 			}
+		},
+
+		/**
+		 * Reload the page with a URL query for the requested banner name
+		 * filter (or lack thereof).
+		 */
+		applyFilter: function() {
+
+			var newUri, filterStr;
+			filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
+			newUri = new mw.Uri();
+
+			// If there's a filter, reload with a filter query param.
+			// If there's no filter, reload with no such param.
+			if ( filterStr.length > 0 ) {
+				filterStr = bm.sanitizeFilterStr( filterStr );
+				newUri.extend( {filter: filterStr} );
+			} else {
+				delete newUri.query.filter;
+			}
+
+			window.location.replace( newUri.toString() );
+		},
+
+		/**
+		 * Filter text box keypress handler; applies the filter when enter is
+		 * pressed.
+		 */
+		filterTextBoxKeypress: function( e ) {
+			if ( e.which == 13 ) {
+				bm.applyFilter();
+				return false;
+			}
+		},
+
+		/**
+		 * Remove characters not allowed in banner names. See server-side
+		 * Banner::isValidBannerName() and
+		 * SpecialCentralNotice::sanitizeSearchTerms().
+		 */
+		sanitizeFilterStr: function( $origFilterStr ) {
+			return $origFilterStr.replace(/[^0-9a-zA-Z_\-]/g, '');
 		}
 	};
 
 	// Attach event handlers
-	$( '#mw-input-wpaddNewBanner' ).click( mw.centralNotice.adminUi.bannerManagement.doAddBannerDialog );
-	$( '#mw-input-wpdeleteSelectedBanners' ).click( mw.centralNotice.adminUi.bannerManagement.doRemoveBanners );
-	$( '#mw-input-wparchiveSelectedBanners' ).click( mw.centralNotice.adminUi.bannerManagement.doArchiveBanners );
-	$( '#mw-input-wpselectAllBanners' ).click( mw.centralNotice.adminUi.bannerManagement.checkAllStateAltered );
+	$( '#mw-input-wpaddNewBanner' ).click( bm.doAddBannerDialog );
+	$( '#mw-input-wpdeleteSelectedBanners' ).click( bm.doRemoveBanners );
+	$( '#mw-input-wparchiveSelectedBanners' ).click( bm.doArchiveBanners );
+	$( '#mw-input-wpselectAllBanners' ).click( bm.checkAllStateAltered );
+	$( '#mw-input-wpfilterApply' ).click( bm.applyFilter );
+	$( '#mw-input-wpbannerNameFilter' ).keypress( bm.filterTextBoxKeypress );
+
 	$( 'input.cn-bannerlist-check-applyto' ).each( function() {
-		$( this ).click( mw.centralNotice.adminUi.bannerManagement.selectCheckStateAltered );
-		mw.centralNotice.adminUi.bannerManagement.totalSelectableItems++;
+		$( this ).click( bm.selectCheckStateAltered );
+		bm.totalSelectableItems++;
 	} );
 
 	// Some initial display work
-	mw.centralNotice.adminUi.bannerManagement.checkAllStateAltered();
+	bm.checkAllStateAltered();
 	$( '#cn-js-error-warn' ).hide();
 
 } )( jQuery, mediaWiki );

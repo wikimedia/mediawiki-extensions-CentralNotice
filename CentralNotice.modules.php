@@ -67,7 +67,8 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.bannerManager' ] = array(
 	'remoteExtPath' => 'CentralNotice/modules',
 	'dependencies' => array(
 		'ext.centralNotice.adminUi',
-		'jquery.ui.dialog'
+		'jquery.ui.dialog',
+		'mediawiki.Uri'
 	),
 	'scripts'       => 'ext.centralNotice.adminUi.bannerManager/bannermanager.js',
 	'styles'        => 'ext.centralNotice.adminUi.bannerManager/bannermanager.css',
