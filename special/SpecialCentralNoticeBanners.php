@@ -23,15 +23,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		wfSetupSession();
 
 		// Load things that may have been serialized into the session
-		$this->bannerFilterString = $this->getCNSessionVar( 'bannerFilterString', '' );
 		$this->bannerLanguagePreview = $this->getCNSessionVar(
 			'bannerLanguagePreview',
 			$this->getLanguage()->getCode()
 		);
-	}
-
-	function __destruct() {
-		$this->setCNSessionVar( 'bannerFilterString', $this->bannerFilterString );
 	}
 
 	/**
@@ -136,17 +131,20 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 */
 	protected function generateBannerListForm( $filter = '' ) {
 		// --- Create the banner search form --- //
+
+		// Note: filter is normally set via JS, not form submission. But we
+		// leave the info in the submitted form, in any case.
 		$formDescriptor = array(
-			'bannerNameLike' => array(
+			'bannerNameFilter' => array(
 				'section' => 'header/banner-search',
 				'class' => 'HTMLTextField',
 				'placeholder' => wfMessage( 'centralnotice-filter-template-prompt' ),
 				'filter-callback' => array( $this, 'sanitizeSearchTerms' ),
 				'default' => $filter,
 			),
-			'filterSubmit' => array(
+			'filterApply' => array(
 				'section' => 'header/banner-search',
-				'class' => 'HTMLSubmitField',
+				'class' => 'HTMLButtonField',
 				'default' => wfMessage( 'centralnotice-filter-template-submit' )->text(),
 			)
 		);
@@ -191,7 +189,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// --- Add all the banners via the fancy pager object ---
 		$pager = new CNBannerPager(
-			$this->getPageTitle(),
+			$this,
 			'banner-list',
 			array(
 				 'applyTo' => array(
@@ -220,7 +218,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return null|string|array
 	 */
 	public function processBannerList( $formData ) {
-		$this->bannerFilterString = $formData[ 'bannerNameLike' ];
+
+		$this->setFilterFromUrl();
 
 		if ( $formData[ 'action' ] && $this->editable ) {
 			switch ( strtolower( $formData[ 'action' ] ) ) {
@@ -275,6 +274,16 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					}
 					if ( $failed ) {
 						return 'some banners were not deleted';
+
+					} else {
+
+						// Go back to the special banners page, including the
+						// same filter that was already set in the URL.
+						$this->getOutput()->redirect(
+							SpecialPage::getTitleFor( 'CentralNoticeBanners' )
+							->getFullURL( $this->getFilterUrlParamAsArray() ) );
+
+						$this->bannerFormRedirectRequired = true;
 					}
 					break;
 			}
@@ -284,6 +293,39 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Use a URL parameter to set the filter string for the banner list.
+	 */
+	protected function setFilterFromUrl() {
+
+		// This is the normal param on visible URLs.
+		$filterParam = $this->getRequest()->getVal( 'filter', null );
+
+		// If the form was posted the filter parameter'll have a different name.
+		if ( $filterParam === null ) {
+			$filterParam =
+				$this->getRequest()->getVal( 'wpbannerNameFilter', null );
+		}
+
+		// Clean, clean...
+		if ( $filterParam !== null ) {
+			$this->bannerFilterString
+				= static::sanitizeSearchTerms( $filterParam );
+		}
+	}
+
+	/**
+	 * Return an array for use in constructing a URL query part with or without
+	 * a filter parameter, as required.
+	 *
+	 * @return array
+	 */
+	public function getFilterUrlParamAsArray() {
+
+		return $this->bannerFilterString ?
+			array( 'filter' => $this->bannerFilterString ) : array();
 	}
 
 	/**
