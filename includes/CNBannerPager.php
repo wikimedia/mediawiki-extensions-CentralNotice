@@ -18,14 +18,15 @@ class CNBannerPager extends ReverseChronologicalPager {
 	protected $formSection = null;
 
 	/**
-	 * @param IContextSource $hostTitle
+	 * @param SpecialCentralNoticeBanners $hostSpecialPage
 	 * @param string         $formSection
 	 * @param array          $prependPrototypes
 	 * @param array          $appendPrototypes
 	 * @param string         $bannerFilter
 	 * @param bool           $editable
 	 */
-	function __construct( $hostTitle, $formSection = null, $prependPrototypes = array(),
+	function __construct( SpecialCentralNoticeBanners $hostSpecialPage,
+		$formSection = null, $prependPrototypes = array(),
 		$appendPrototypes = array(), $bannerFilter = '', $editable = false
 	) {
 		$this->editable = $editable;
@@ -36,8 +37,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$this->appendPrototypes = $appendPrototypes;
 		$this->formSection = $formSection;
 
-		$this->viewPage = $hostTitle;
-
+		$this->hostSpecialPage = $hostSpecialPage;
 		// Override paging defaults
 		list( $this->mLimit, $this->mOffset ) = $this->mRequest->getLimitOffset( 20, '' );
 		$this->mLimitsShown = array( 20, 50, 100 );
@@ -192,6 +192,20 @@ class CNBannerPager extends ReverseChronologicalPager {
 			// TODO: empty value
 		}
 		return $retval;
+	}
+
+	/**
+	 * Make a self-link. Overriding to add filter as a query parameter.
+	 * @see Pager::makeLink()
+	 */
+	public function makeLink( $text, array $query = null, $type = null ) {
+
+		$filterQuery = $this->hostSpecialPage->getFilterUrlParamAsArray();
+
+		$query = ( $query === null ) ?
+			$filterQuery : array_merge( $query, $filterQuery );
+
+		return parent::makeLink( $text, $query, $type );
 	}
 }
 

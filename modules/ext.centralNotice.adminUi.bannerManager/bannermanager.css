@@ -45,7 +45,7 @@
 
 /* Style the search sub form */
 #cn-formsection-header-banner-search,
-#mw-htmlform-banner-search .mw-htmlform-field-HTMLSubmitField {
+#mw-htmlform-banner-search .mw-htmlform-field-HTMLButtonField {
 	float: right;
 }
 #mw-htmlform-banner-search .mw-htmlform-field-HTMLTextField {
