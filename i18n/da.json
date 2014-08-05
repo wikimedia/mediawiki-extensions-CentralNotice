@@ -11,7 +11,8 @@
 			"Peter Alberti",
 			"Sarrus",
 			"Steenth",
-			"Tjernobyl"
+			"Tjernobyl",
+			"Thomsen"
 		]
 	},
 	"centralnotice": "Centralbeskeds-administration",
@@ -193,6 +194,9 @@
 	"centralnotice-bucket": "Spand",
 	"centralnotice-bucket-letter": "Spand \"$1\"",
 	"centralnotice-devicetype-desktop": "Stationær computer",
+	"centralnotice-devicetype-android": "Android OS",
+	"centralnotice-devicetype-ipad": "Alle enheder, der er identificeret som iPads, men ikke iPhones",
+	"centralnotice-devicetype-iphone": "Alle iPhone versioner",
 	"centralnotice-all": "Alle",
 	"centralnotice-generic-error": "Du har ikke de rette tilladelser til at udføre den anmodede handling eller selve handlingen er ugyldig.",
 	"centralnotice-banner-name-error": "Ugyldigt flagnavn opgivet. Gyldige navne indeholder kun alfanumeriske eller understregningskarakterer.",
