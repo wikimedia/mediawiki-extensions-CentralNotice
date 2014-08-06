@@ -139,7 +139,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notice_log (
 	`notlog_begin_weight` int DEFAULT NULL,
 	`notlog_end_weight` int DEFAULT NULL,
 	`notlog_begin_archived` tinyint DEFAULT NULL,
-	`notlog_end_archived` tinyint DEFAULT NULL
+	`notlog_end_archived` tinyint DEFAULT NULL,
+	`notlog_comment` varchar(255) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/notlog_timestamp ON /*_*/cn_notice_log (notlog_timestamp);
 CREATE INDEX /*i*/notlog_user_id ON /*_*/cn_notice_log (notlog_user_id, notlog_timestamp);
@@ -174,7 +175,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_template_log (
 	`tmplog_begin_controller_mixin` varbinary(4096) DEFAULT NULL,
 	`tmplog_end_controller_mixin` varbinary(4096) DEFAULT NULL,
 	`tmplog_begin_devices` varbinary(512) DEFAULT NULL,
-	`tmplog_end_devices` varbinary(512) DEFAULT NULL
+	`tmplog_end_devices` varbinary(512) DEFAULT NULL,
+	`tmplog_comment` varchar(255) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/tmplog_timestamp ON /*_*/cn_template_log (tmplog_timestamp);
 CREATE INDEX /*i*/tmplog_user_id ON /*_*/cn_template_log (tmplog_user_id, tmplog_timestamp);
