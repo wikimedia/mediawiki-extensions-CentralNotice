@@ -34,6 +34,24 @@ fieldset#cn-formsection-form-actions legend {
 	display: inline;
 }
 
+input#mw-input-wpsummary,
+.cn-change-summary-input {
+	float: left;
+	margin-left: 3px;
+}
+
+label[for=mw-input-wpsummary],
+.cn-change-summary-label {
+	float: left;
+	position: relative;
+	top: 0.15em;
+	font-weight: bold;
+}
+
+.cn-dialog-message {
+	margin-bottom: 0.6em;
+}
+
 /* --- Banner preview list --- */
 #mw-htmlform-banner-list {
 	margin-left: 0.9em;
@@ -53,6 +71,7 @@ fieldset#cn-formsection-form-actions legend {
 #mw-htmlform-banner-list .mw-label {
 	display: none;
 }
+
 
 /* --- Archival --- */
 .cn-archived-item {

@@ -62,6 +62,9 @@
 }
 #preferences table#cn-campaign-logs td.primary {
 	white-space: nowrap;
+}
+#preferences table#cn-campaign-logs td.primary,
+#preferences table#cn-campaign-logs td.primary-summary {
 	background-color: #F0F0F0;
 }
 #preferences .cn-new-value {

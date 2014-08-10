@@ -820,14 +820,20 @@ class Banner {
 		return (bool)wfSetVar( $this->dirtyFlags['content'], $dirty, true );
 	}
 
-	protected function saveBodyContent() {
+	protected function saveBodyContent( $summary = null ) {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $this->dirtyFlags['content'] ) {
 			$wikiPage = new WikiPage( $this->getTitle() );
 
+			if ( $summary === null ) {
+				$summary = '';
+			}
+
 			$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
-			$pageResult = $wikiPage->doEditContent( $contentObj, '', EDIT_FORCE_BOT );
+
+			$pageResult =
+				$wikiPage->doEditContent( $contentObj, $summary, EDIT_FORCE_BOT );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Get the revision and page ID of the page that was created/modified
@@ -962,12 +968,15 @@ class Banner {
 	/**
 	 * Saves any changes made to the banner object into the database
 	 *
-	 * @param null $user
+	 * @param User $user
+	 * @param string $summary Summary (comment) to associate with all changes,
+	 *   including banner content and messages (which are implemented as wiki
+	 *   pages).
 	 *
 	 * @return $this
 	 * @throws Exception
 	 */
-	public function save( $user = null ) {
+	public function save( $user = null, $summary = null ) {
 		global $wgUser;
 
 		$db = CNDatabase::getDb();
@@ -978,7 +987,8 @@ class Banner {
 		}
 
 		try {
-			$this->saveBodyContent(); // Do not move into saveBannerInternal -- cannot be in a transaction
+			// Don't move this to saveBannerInternal--can't be in a transaction
+			$this->saveBodyContent( $summary );
 
 			// Open a transaction so that everything is consistent
 			$db->begin( __METHOD__ );
@@ -988,7 +998,7 @@ class Banner {
 				$this->initializeDbForNewBanner( $db );
 			}
 			$this->saveBannerInternal( $db );
-			$this->logBannerChange( $action, $user );
+			$this->logBannerChange( $action, $user, array(), $summary );
 
 			$db->commit( __METHOD__ );
 
@@ -1063,7 +1073,7 @@ class Banner {
 		return $this;
 	}
 
-	public function cloneBanner( $destination, $user ) {
+	public function cloneBanner( $destination, $user, $summary = null ) {
 		if ( !$this->isValidBannerName( $destination ) ) {
 			throw new BannerDataException( "Banner name must be in format /^[A-Za-z0-9_]+$/" );
 		}
@@ -1089,13 +1099,14 @@ class Banner {
 			foreach ( $fields as $field => $count ) {
 				$text = $this->getMessageField( $field )->getContents( $lang );
 				if ( $text !== null ) {
-					$destBanner->getMessageField( $field )->update( $text, $lang, $user );
+					$destBanner->getMessageField( $field )
+						->update( $text, $lang, $user, $summary );
 				}
 			}
 		}
 
 		// Save it!
-		$destBanner->save( $user );
+		$destBanner->save( $user, $summary );
 		return $destBanner;
 	}
 
@@ -1107,7 +1118,7 @@ class Banner {
 		Banner::removeTemplate( $this->getName(), $user );
 	}
 
-	static function removeTemplate( $name, $user ) {
+	static function removeTemplate( $name, $user, $summary = null ) {
 		global $wgNoticeUseTranslateExtension;
 
 		$bannerObj = Banner::fromName( $name );
@@ -1120,7 +1131,7 @@ class Banner {
 		} else {
 			// Log the removal of the banner
 			// FIXME: this log line will display changes with inverted sense
-			$bannerObj->logBannerChange( 'removed', $user );
+			$bannerObj->logBannerChange( 'removed', $user, array(), $summary );
 
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
@@ -1136,7 +1147,11 @@ class Banner {
 				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
 			);
 			$pageId = $article->getPage()->getId();
-			$article->doDeleteArticle( 'CentralNotice automated removal' );
+
+			// TODO Inconsistency: deletion of banner content is not recorded
+			// as a bot edit, so it does not appear on the CN logs page. Also,
+			// related messages are not deleted.
+			$article->doDeleteArticle( $summary ? $summary : '' );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
@@ -1381,9 +1396,17 @@ class Banner {
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
-	static function addTemplate( $name, $body, $user, $displayAnon, $displayAccount, $fundraising = 0,
-		$autolink = 0, $landingPages = '', $mixins = array(), $priorityLangs = array(), $devices = array( 'desktop' )
+	static function addTemplate( $name, $body, $user, $displayAnon,
+		$displayAccount, $fundraising = 0, $autolink = 0, $landingPages = '',
+		$mixins = array(), $priorityLangs = array(), $devices = null,
+		$summary = null
 	) {
+
+		// Default initial value for devices
+		if ( $devices === null ) {
+			$devices = array( 'desktop' );
+		}
+
 		if ( $name == '' || !Banner::isValidBannerName( $name ) || $body == '' ) {
 			return 'centralnotice-null-string';
 		}
@@ -1405,17 +1428,20 @@ class Banner {
 
 		$banner->setMixins( $mixins );
 
-		$banner->save( $user );
+		$banner->save( $user, $summary );
 	}
 
 	/**
 	 * Log setting changes related to a banner
 	 *
-	 * @param $action        string: 'created', 'modified', or 'removed'
-	 * @param $user          User causing the change
-	 * @param $beginSettings array of banner settings before changes (optional)
+	 * @param string $action         'created', 'modified', or 'removed'
+	 * @param User   $user           The user causing the change
+	 * @param array  $beginSettings  Banner settings before changes (optional)
+	 * @param string $summary        Summary (comment) for this action
 	 */
-	function logBannerChange( $action, $user, $beginSettings = array() ) {
+	function logBannerChange(
+		$action, $user, $beginSettings = array(), $summary = null ) {
+
 		$endSettings = array();
 		if ( $action !== 'removed' ) {
 			$endSettings = Banner::getBannerSettings( $this->getName(), true );
@@ -1431,6 +1457,18 @@ class Banner {
 			'tmplog_template_name' => $this->getName(),
 			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
 		);
+
+		// TODO temporary code for soft dependency on schema change
+		// Note: MySQL-specific
+		global $wgDBtype;
+		if ( $wgDBtype === 'mysql' && $dbw->query(
+				'SHOW COLUMNS FROM ' .
+				$dbw->tableName( 'cn_template_log' )
+				. ' LIKE ' . $dbw->addQuotes( 'tmplog_comment' )
+			)->numRows() === 1 ) {
+
+			$log['tmplog_comment'] = $summary;
+		}
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {

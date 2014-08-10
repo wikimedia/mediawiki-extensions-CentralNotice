@@ -182,6 +182,22 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'disabled' => !$this->editable,
 				'label' => wfMessage( 'centralnotice-banner-name' )->text(),
 			),
+			'newBannerEditSummary' => array(
+				'section' => 'addBanner',
+				'class' => 'HTMLTextField',
+				'label-message' => 'centralnotice-change-summary-label',
+				'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+				'disabled' => !$this->editable,
+				'filter-callback' => array( $this, 'truncateSummaryField' )
+			),
+			'removeBannerEditSummary' => array(
+				'section' => 'removeBanner',
+				'class' => 'HTMLTextField',
+				'label-message' => 'centralnotice-change-summary-label',
+				'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+				'disabled' => !$this->editable,
+				'filter-callback' => array( $this, 'truncateSummaryField' )
+			),
 			'action' => array(
 				'type' => 'hidden',
 			)
@@ -240,7 +256,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							"<!-- Empty banner -->",
 							$this->getUser(),
 							false,
-							false
+							false,
+							// Default values of a zillion parameters...
+							0, 0, '', array(), array(), null,
+							$formData['newBannerEditSummary']
 						);
 
 						if ( $retval ) {
@@ -261,12 +280,16 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					break;
 
 				case 'remove':
+					$summary = $formData['removeBannerEditSummary'];
 					$failed = array();
 					foreach( $formData as $element => $value ) {
 						$parts = explode( '-', $element, 2 );
 						if ( ( $parts[0] === 'applyTo' ) && ( $value === true ) ) {
 							try {
-								Banner::removeTemplate( $parts[1], $this->getUser() );
+
+								Banner::removeTemplate(
+									$parts[1], $this->getUser(), $summary );
+
 							} catch ( Exception $ex ) {
 								$failed[] = $parts[1];
 							}
@@ -647,6 +670,15 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 
 		/* --- Form bottom options --- */
+		$formDescriptor[ 'summary' ] = array(
+			'section' => 'form-actions',
+			'class' => 'HTMLTextField',
+			'label-message' => 'centralnotice-change-summary-label',
+			'placeholder' => wfMessage( 'centralnotice-change-summary-prompt' ),
+			'disabled' => !$this->editable,
+			'filter-callback' => array( $this, 'truncateSummaryField' )
+		);
+
 		$formDescriptor[ 'save-button' ] = array(
 			'section' => 'form-actions',
 			'class' => 'HTMLSubmitField',
@@ -655,7 +687,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'cssclass' => 'cn-formbutton',
 			'hidelabel' => true,
 		);
-
 
 		$formDescriptor[ 'clone-button' ] = array(
 			'section' => 'form-actions',
@@ -694,6 +725,24 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'label-message' => 'centralnotice-clone-name',
 		);
 
+		$formDescriptor[ 'cloneEditSummary' ] = array(
+			'section' => 'clone-banner',
+			'class' => 'HTMLTextField',
+			'label-message' => 'centralnotice-change-summary-label',
+			'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+			'disabled' => !$this->editable,
+			'filter-callback' => array( $this, 'truncateSummaryField' )
+		);
+
+		$formDescriptor[ 'deleteEditSummary' ] = array(
+			'section' => 'delete-banner',
+			'class' => 'HTMLTextField',
+			'label-message' => 'centralnotice-change-summary-label',
+			'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+			'disabled' => !$this->editable,
+			'filter-callback' => array( $this, 'truncateSummaryField' )
+		);
+
 		$formDescriptor[ 'action' ] = array(
 			'section' => 'form-actions',
 			'type' => 'hidden',
@@ -720,7 +769,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				try {
-					Banner::removeTemplate( $this->bannerName, $this->getUser() );
+					Banner::removeTemplate(
+						$this->bannerName, $this->getUser(),
+						$formData[ 'deleteEditSummary' ] );
+
 					$this->getOutput()->redirect( $this->getPageTitle( '' )->getCanonicalURL() );
 					$this->bannerFormRedirectRequired = true;
 				} catch ( MWException $ex ) {
@@ -740,7 +792,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				$newBannerName = $formData[ 'cloneName' ];
-				Banner::fromName( $this->bannerName )->cloneBanner( $newBannerName, $this->getUser() );
+
+				Banner::fromName( $this->bannerName )->cloneBanner(
+					$newBannerName, $this->getUser(),
+					$formData[ 'cloneEditSummary' ]
+				);
+
 				$this->getOutput()->redirect(
 					$this->getPageTitle( "Edit/$newBannerName" )->getCanonicalURL()
 				);
@@ -751,7 +808,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				if ( !$this->editable ) {
 					return null;
 				}
-				return $this->processSaveBannerAction( $formData );
+
+				$ret = $this->processSaveBannerAction( $formData );
+
+				// Clear the edit summary field in the request so the form
+				// doesn't re-display the same value. Note: this is a hack :(
+				$this->getRequest()->setVal( 'wpsummary', '');
+
+				return $ret;
 				break;
 
 			default:
@@ -764,6 +828,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$banner = Banner::fromName( $this->bannerName );
+		$summary = $formData['summary'];
 
 		/* --- Update the translations --- */
 		// But only if we aren't using translate or if the preview language is the content language
@@ -772,7 +837,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				if ( strpos( $key, 'message-' ) === 0 ) {
 					$messageName = substr( $key, strlen( 'message-' ) );
 					$bannerMessage = $banner->getMessageField( $messageName );
-					$bannerMessage->update( $value, $this->bannerLanguagePreview, $this->getUser() );
+
+					$bannerMessage->update(
+						$value, $this->bannerLanguagePreview, $this->getUser(),
+						$summary );
 				}
 			}
 		}
@@ -801,8 +869,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$banner->setAutoLink( $formData[ 'create-landingpage-link' ], $landingPages );
 
 		$banner->setMixins( $formData['mixins'] );
-
-		$banner->save( $this->getUser() );
+		$banner->save( $this->getUser(), $summary );
 
 		return null;
 	}

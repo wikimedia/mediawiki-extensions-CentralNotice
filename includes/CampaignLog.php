@@ -9,6 +9,7 @@ class CampaignLog {
 		$begin = array();
 		$end = array();
 		if ( $row ) {
+
 			$comma_explode = function( $str ) { return explode( ", ", $str ); };
 			$json_decode = function( $json ) { return json_decode( $json, true ); };
 
@@ -39,6 +40,12 @@ class CampaignLog {
 		$this->campaign = $row->notlog_not_name;
 		$this->action = $row->notlog_action;
 		$this->timestamp = $row->notlog_timestamp;
+
+		// TODO temporary code for soft dependency on schema change
+		if ( property_exists( $row, 'notlog_comment' ) ) {
+			$this->comment = ( $row->notlog_comment !== null )
+				? $row->notlog_comment : '';
+		}
 	}
 
 	# TODO: use in logpager
