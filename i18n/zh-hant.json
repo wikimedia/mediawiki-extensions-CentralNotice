@@ -202,6 +202,7 @@
 	"centralnotice-bucket": "群組",
 	"centralnotice-bucket-letter": "群組 \"$1\"",
 	"centralnotice-devicetype-desktop": "桌上型電腦",
+	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "所有裝置均識別為 iPad，不做為 iPhones",
 	"centralnotice-devicetype-iphone": "所有 iPhone 版本",
 	"centralnotice-devicetype-unknown": "於行動網站上的裝置，不屬於 iPhones、iPads 或 Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Selector logic])",
