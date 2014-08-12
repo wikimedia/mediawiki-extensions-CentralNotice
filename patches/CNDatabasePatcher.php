@@ -130,6 +130,18 @@ class CNDatabasePatcher {
 					$base . '/patch-add_devices.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					 'addField', 'cn_template_log', 'template_logging_comments',
+					 $base . '/patch-template-logging-comments.sql', true
+				)
+			);;
+			$updater->addExtensionUpdate(
+				array(
+					 'addField', 'cn_notice_log', 'notice_logging_comments',
+					 $base . '/patch-notice-logging-comments.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			$updater->addExtensionUpdate(
 				array(
