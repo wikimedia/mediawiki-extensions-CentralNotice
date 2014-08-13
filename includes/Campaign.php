@@ -574,8 +574,9 @@ class Campaign {
 	 * @throws MWException
 	 * @return int|string noticeId on success, or message key for error
 	 */
-	static function addCampaign( $noticeName, $enabled, $startTs, $projects, $project_languages,
-		$geotargeted, $geo_countries, $throttle, $priority, $user
+	static function addCampaign( $noticeName, $enabled, $startTs, $projects,
+		$project_languages, $geotargeted, $geo_countries, $throttle, $priority,
+		$user, $summary = null
 	) {
 		$noticeName = trim( $noticeName );
 		if ( Campaign::campaignExists( $noticeName ) ) {
@@ -652,7 +653,7 @@ class Campaign {
 				'throttle'  => $throttle,
 			);
 			Campaign::logCampaignChange( 'created', $not_id, $user,
-				$beginSettings, $endSettings );
+				$beginSettings, $endSettings, array(), array(), $summary );
 
 			return $not_id;
 		}
@@ -669,6 +670,7 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function removeCampaign( $campaignName, $user ) {
+		// TODO This method is never used?
 		$dbr = CNDatabase::getDb();
 
 		$res = $dbr->select( 'cn_notices', 'not_name, not_locked',
@@ -1070,9 +1072,12 @@ class Campaign {
 	 *
 	 * @return integer: ID of log entry (or null)
 	 */
-	static function logCampaignChange( $action, $campaignId, $user, $beginSettings = array(),
-								$endSettings = array(), $beginAssignments = array(), $endAssignments = array()
+	static function logCampaignChange(
+		$action, $campaignId, $user, $beginSettings = array(),
+		$endSettings = array(), $beginAssignments = array(),
+		$endAssignments = array(), $summary = null
 	) {
+		// TODO prune unused parameters
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
 			$dbw = CNDatabase::getDb();
@@ -1084,6 +1089,18 @@ class Campaign {
 				'notlog_not_id'    => $campaignId,
 				'notlog_not_name'  => Campaign::getNoticeName( $campaignId )
 			);
+
+			// TODO temporary code for soft dependency on schema change
+			// Note: MySQL-specific
+			global $wgDBtype;
+			if ( $wgDBtype === 'mysql' && $dbw->query(
+					'SHOW COLUMNS FROM ' .
+					$dbw->tableName( 'cn_notice_log' )
+					. ' LIKE ' . $dbw->addQuotes( 'notlog_comment' )
+				)->numRows() === 1 ) {
+
+				$log['notlog_comment'] = $summary;
+			}
 
 			foreach ( $beginSettings as $key => $value ) {
 				$log[ 'notlog_begin_' . $key ] = $value;

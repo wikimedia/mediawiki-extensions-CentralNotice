@@ -37,11 +37,13 @@ form#cn-banner-editor .mw-input {
 	margin-left: 1em;
 }
 
-#cn-formsection-clone-banner {
+#cn-formsection-clone-banner,
+#cn-formsection-delete-banner {
 	border: none;
 	display: none;
 }
-#cn-formsection-clone-banner legend {
+#cn-formsection-clone-banner legend,
+#cn-formsection-delete-banner legend {
 	display: none;
 }
 

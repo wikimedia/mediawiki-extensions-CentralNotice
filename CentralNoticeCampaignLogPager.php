@@ -132,6 +132,16 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$campaignLink
 		);
+
+		// TODO temporary code for soft dependency on schema change
+		$summary = property_exists( $row, 'notlog_comment' ) ?
+			$row->notlog_comment : 'nbsp;';
+
+		$htmlOut .= Xml::tags( 'td',
+			array( 'valign' => 'top', 'class' => 'primary-summary' ),
+			$summary
+		);
+
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
 		);
@@ -146,7 +156,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				'&nbsp;' // force a table cell in older browsers
 			);
-			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '5' ) );
+			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '6' ) );
 			if ( $row->notlog_action == 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
 			} elseif ( $row->notlog_action == 'modified' ) {
@@ -464,6 +474,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		);
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
 			$this->msg( 'centralnotice-notice' )->text()
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 250px;' ),
+			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
