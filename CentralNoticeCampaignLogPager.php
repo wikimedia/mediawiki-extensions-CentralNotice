@@ -135,7 +135,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		// TODO temporary code for soft dependency on schema change
 		$summary = property_exists( $row, 'notlog_comment' ) ?
-			$row->notlog_comment : 'nbsp;';
+			$row->notlog_comment : '&nbsp;';
 
 		$htmlOut .= Xml::tags( 'td',
 			array( 'valign' => 'top', 'class' => 'primary-summary' ),
