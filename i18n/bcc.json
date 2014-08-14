@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mostafadaneshvar"
+			"Mostafadaneshvar",
+			"Baloch Afghanistan"
 		]
 	},
 	"noticetemplate": "تمپلت اعلان مرکزی",
@@ -25,6 +26,12 @@
 	"centralnotice-hours": "ساعت",
 	"centralnotice-min": "دقیقه",
 	"centralnotice-null-string": "هالیکن رشتگی نه تونیت هور بیت.\nهوری نکنت",
+	"centralnotice-change-summary-heading": "خلاصه",
+	"centralnotice-change-summary-label": "خلاصه",
+	"centralnotice-change-summary-prompt": "بی ای تغییراتانی موردا پیام (اختیاری)",
+	"centralnotice-change-summary-action-prompt": "بی ای عملی موردا پیام ( اختیاری )",
+	"centralnotice-delete-banner-title": "پاک کورتین {{جمع:$1|آگهی یان|آگهی یان}}",
+	"centralnotice-delete-banner-confirm": "هشدار:حذپ وپاک بوتین موچین تنظمات و پیامان. ای عمل پدا برگشت نداریت. بی نظر گیپتین ثپت کورتینا بی  جاها.",
 	"centralnotice-start-time": "وهد بنگیج",
 	"centralnotice-end-date": "وهد هلگ"
 }

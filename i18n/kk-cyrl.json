@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Arystanbek"
+			"Arystanbek",
+			"Balnur.s"
 		]
 	},
 	"centralnotice": "Орталықтандырылған хабарландыру әкімшісі",
@@ -11,5 +12,6 @@
 	"centralnoticelogs": "Орталықтандырылған хабарландыру әкімшісі",
 	"right-centralnotice-admin": "Орталықтандырылған хабарландыруларды басқару",
 	"action-centralnotice-admin": "Орталықтандырылған хабарландыруларды басқару",
-	"centralnotice-desc": "Орталықтандырылған сайт хабарландыру жарнамалары"
+	"centralnotice-desc": "Орталықтандырылған сайт хабарландыру жарнамалары",
+	"centralnotice-change-summary-heading": "Қорытынды"
 }
