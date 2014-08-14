@@ -21,7 +21,8 @@
 			"The Evil IP address",
 			"Umherirrender",
 			"Yekrats",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Robby"
 		]
 	},
 	"centralnotice": "{{doc-special|CentralNotice}}\n{{Identical|Central notice admin}}",
@@ -158,6 +159,7 @@
 	"centralnotice-timestamp": "Used as column header in the table.\n{{Identical|Timestamp}}",
 	"centralnotice-user": "* Used as column header in the table.\n* Used as label for the \"User\" input box.\n{{Identical|User}}",
 	"centralnotice-action": "Used as column header of the table.\n{{Identical|Action}}",
+	"centralnotice-change-summary-heading": "Column header for summary/comment field in log table\n{{Identical|Summary}}",
 	"centralnotice-action-created": "Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.\n{{Identical|Created}}",
 	"centralnotice-action-modified": "Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.\n{{Identical|Modified}}",
 	"centralnotice-action-removed": "Indicates which type of action was performed. Should be lower-case, as if it appeared in the middle of a sentence.\n{{Identical|Removed}}",
@@ -226,7 +228,7 @@
 	"centralnotice-archive-banner-title": "Used as title for the dialog box.\n\nFollowed by the confirmation message {{msg-mw|Centralnotice-archive-banner-confirm}}.\n\nParameters:\n* $1 - number of banners",
 	"centralnotice-archive-banner-confirm": "Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-banner-title}}.",
 	"centralnotice-archive-banner-cancel": "{{Identical|Cancel}}",
-	"centralnotice-change-summary-label": "Label before text field for summarizing changes",
+	"centralnotice-change-summary-label": "Label before text field for summarizing changes\n{{Identical|Summary}}",
 	"centralnotice-change-summary-prompt": "Prompt for text field for summarizing changes",
 	"centralnotice-change-summary-action-prompt": "Prompt for text field for summarizing a single action",
 	"centralnotice-archive-show": "Checkbox text that determines if archived campaigns are shown or hidden",
