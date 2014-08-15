@@ -132,13 +132,13 @@ class CNDatabasePatcher {
 			);
 			$updater->addExtensionUpdate(
 				array(
-					 'addField', 'cn_template_log', 'template_logging_comments',
+					 'addField', 'cn_template_log', 'tmplog_comment',
 					 $base . '/patch-template-logging-comments.sql', true
 				)
 			);;
 			$updater->addExtensionUpdate(
 				array(
-					 'addField', 'cn_notice_log', 'notice_logging_comments',
+					 'addField', 'cn_notice_log', 'notlog_comment',
 					 $base . '/patch-notice-logging-comments.sql', true
 				)
 			);
