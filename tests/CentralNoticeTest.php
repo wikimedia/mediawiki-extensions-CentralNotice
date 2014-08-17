@@ -19,7 +19,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 
 	protected $campaignArray;
 
-	var $campaignId;
+	public $campaignId;
 
 	protected function setUp() {
 		parent::setUp();

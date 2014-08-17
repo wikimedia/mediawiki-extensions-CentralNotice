@@ -8,9 +8,9 @@
  * that part of CN.
  */
 class TemplatePager extends ReverseChronologicalPager {
-	var $onRemoveChange, $viewPage, $special;
-	var $editable;
-	var $filter;
+	public $onRemoveChange, $viewPage, $special;
+	public $editable;
+	public $filter;
 
 	function __construct( $special, $filter = '' ) {
 		$this->special = $special;

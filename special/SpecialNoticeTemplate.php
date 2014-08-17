@@ -1,7 +1,7 @@
 <?php
 
 class SpecialNoticeTemplate extends CentralNotice {
-	var $editable, $centralNoticeError;
+	public $editable, $centralNoticeError;
 
 	function __construct() {
 		// Register special page
