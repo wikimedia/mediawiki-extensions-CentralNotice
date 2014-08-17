@@ -6,7 +6,7 @@ class CentralNotice extends SpecialPage {
 	const HIGH_PRIORITY = 2;
 	const EMERGENCY_PRIORITY = 3;
 
-	var $editable, $centralNoticeError;
+	public $editable, $centralNoticeError;
 
 	function __construct() {
 		// Register special page

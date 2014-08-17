@@ -1,7 +1,7 @@
 <?php
 
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
-	var $special;
+	public $special;
 
 	function __construct( $special ) {
 		$this->special = $special;
