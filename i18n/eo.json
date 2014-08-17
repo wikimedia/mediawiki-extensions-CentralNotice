@@ -4,7 +4,8 @@
 			"KuboF",
 			"Michawiki",
 			"Mihxil",
-			"Yekrats"
+			"Yekrats",
+			"Fitoschido"
 		]
 	},
 	"centralnotice": "Administranto de centrala notico",
@@ -125,6 +126,7 @@
 	"centralnotice-timestamp": "Tempindiko",
 	"centralnotice-user": "Uzanto",
 	"centralnotice-action": "Ago",
+	"centralnotice-change-summary-heading": "Resumo",
 	"centralnotice-action-created": "kreis",
 	"centralnotice-action-modified": "modifis",
 	"centralnotice-action-removed": "forigis",
@@ -163,6 +165,7 @@
 	"centralnotice-buckets": "Apartigante uzantojn en ujoj",
 	"centralnotice-bucket": "Ujo",
 	"centralnotice-bucket-letter": "Ujo \"$1\"",
+	"centralnotice-change-summary-label": "Resumo",
 	"centralnotice-start-date": "Komenca dato (UTC)",
 	"centralnotice-start-time": "Komenca tempo (UTC)",
 	"centralnotice-end-date": "Fina dato (UTC)",

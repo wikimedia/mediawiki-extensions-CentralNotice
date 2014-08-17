@@ -14,7 +14,8 @@
 			"Solde",
 			"Ssola",
 			"Toniher",
-			"Vriullop"
+			"Vriullop",
+			"Fitoschido"
 		]
 	},
 	"centralnotice": "Administrador d'avisos centrals",
@@ -134,6 +135,7 @@
 	"centralnotice-timestamp": "Marca horària",
 	"centralnotice-user": "Usuari",
 	"centralnotice-action": "Acció",
+	"centralnotice-change-summary-heading": "Resum",
 	"centralnotice-action-created": "creat",
 	"centralnotice-action-modified": "modificat",
 	"centralnotice-action-removed": "eliminat",
@@ -175,6 +177,9 @@
 	"centralnotice-all-except": "Tot excepte $1",
 	"centralnotice-excluding-list": "$1 (excloent $2)",
 	"centralnotice-user-role-anonymous": "Anònim",
+	"centralnotice-change-summary-label": "Resum",
+	"centralnotice-change-summary-action-prompt": "Missatge sobre aquesta acció (opcional)",
+	"centralnotice-delete-banner-title": "Suprimeix {{PLURAL:$1|el bàner|els bàners}}",
 	"centralnotice-start-date": "Data inicial (UTC)",
 	"centralnotice-start-time": "Hora d'inici (UTC)",
 	"centralnotice-end-date": "Data de finalització (UTC)",

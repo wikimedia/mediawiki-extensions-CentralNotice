@@ -11,7 +11,8 @@
 			"Protnet",
 			"Tifa93",
 			"ZaDiak",
-			"Απεργός"
+			"Απεργός",
+			"Geraki"
 		]
 	},
 	"centralnotice": "Διαχειριστής κεντρικών ειδοποιήσεων",
@@ -130,6 +131,7 @@
 	"centralnotice-timestamp": "Ημερομηνία",
 	"centralnotice-user": "Χρήστης",
 	"centralnotice-action": "Ενέργεια",
+	"centralnotice-change-summary-heading": "Περίληψη",
 	"centralnotice-action-created": "δημιουργήθηκε",
 	"centralnotice-action-modified": "τροποποιήθηκε",
 	"centralnotice-action-removed": "αφαιρέθηκε",
@@ -180,9 +182,13 @@
 	"centralnotice-templates-included": "Συμπεριλήφθηκαν πρότυπα",
 	"centralnotice-archive-banner": "Αρχείο",
 	"centralnotice-archive-banner-cancel": "Ακύρωση",
+	"centralnotice-change-summary-label": "Περίληψη",
+	"centralnotice-change-summary-prompt": "Μήνυμα σχετικά με αυτές τις αλλαγές (προαιρετικά)",
+	"centralnotice-change-summary-action-prompt": "Μήνυμα σχετικά με αυτήν την ενέργεια (προαιρετικό)",
 	"centralnotice-archive-campaign": "Αρχείο",
 	"centralnotice-archive-campaign-cancel": "Ακύρωση",
 	"centralnotice-delete-banner": "Διαγραφή",
+	"centralnotice-delete-banner-title": "Διαγραφή {{PLURAL:$1|banner|banners}}",
 	"centralnotice-delete-banner-cancel": "Ακύρωση",
 	"centralnotice-messages-pending-approval": "Γλώσσες με μηνύματα σε αναμονή έγκρισης επί του παρόντος",
 	"centralnotice-devices": "Εμφάνιση στις συσκευές",
