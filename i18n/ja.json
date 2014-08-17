@@ -11,7 +11,8 @@
 			"Schu",
 			"Shirayuki",
 			"Whym",
-			"青子守歌"
+			"青子守歌",
+			"Rxy"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -212,8 +213,8 @@
 	"centralnotice-archive-edit-prevented": "このキャンペーンはロックまたはアーカイブされているため、編集が無効になっています。[[Special:CentralNotice]] でいずれかの状態を変更してください。",
 	"centralnotice-add-new-banner-title": "新しいバナーの追加",
 	"centralnotice-delete-banner": "削除",
-	"centralnotice-delete-banner-title": "{{PLURAL:$1|バナー}}を削除しますか?",
-	"centralnotice-delete-banner-confirm": "削除すると、設定やメッセージがすべて除去されます。この操作は取り消せません。アーカイブすることを検討してください。",
+	"centralnotice-delete-banner-title": "{{PLURAL:$1|バナー}}の削除",
+	"centralnotice-delete-banner-confirm": "警告: 削除すると、設定やメッセージがすべて除去されます。この操作は取り消せません。アーカイブすることを検討してください。",
 	"centralnotice-delete-banner-cancel": "中止",
 	"centralnotice-messages-pending-approval": "承認保留中のメッセージが現在ある言語",
 	"centralnotice-devices": "表示するデバイス",

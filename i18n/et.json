@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Avjoska",
-			"Pikne"
+			"Pikne",
+			"Boxmein"
 		]
 	},
 	"centralnotice": "Keskuse teadete haldamine",
@@ -133,6 +134,7 @@
 	"centralnotice-timestamp": "Ajatempel",
 	"centralnotice-user": "Kasutaja",
 	"centralnotice-action": "Toiming",
+	"centralnotice-change-summary-heading": "Kokkuvõte",
 	"centralnotice-action-created": "loodud",
 	"centralnotice-action-modified": "muudetud",
 	"centralnotice-action-removed": "eemaldatud",
@@ -186,6 +188,9 @@
 	"centralnotice-archive-banner-title": "{{PLURAL:$1|Mall|Mallid}} arhiivida?",
 	"centralnotice-archive-banner-confirm": "Arhiivimisega hõrendatakse kõik kaasa arvatud mallid ja määratakse lehekülje kaitse. Seda toimingut ei ole lihtne tagasi pöörata.",
 	"centralnotice-archive-banner-cancel": "Loobu",
+	"centralnotice-change-summary-label": "Kokkuvõte",
+	"centralnotice-change-summary-prompt": "Sõnum nende muudatuste kohta (valikuline)",
+	"centralnotice-change-summary-action-prompt": "Sõnum selle toimingu kohta (valikuline",
 	"centralnotice-archive-show": "Näita arhiivitud teateid",
 	"centralnotice-archive-campaign": "Arhiivi",
 	"centralnotice-archive-campaign-title": "Arhiivida {{PLURAL:$1|teade|teated}}?",
