@@ -46,7 +46,7 @@ class BannerMessage {
 	/**
 	 * Obtain the raw contents of the message; stripping out the stupid <message-name> if it's blank
 	 *
-	 * @returns null|string Will be null if the message does not exist, otherwise will be
+	 * @return null|string Will be null if the message does not exist, otherwise will be
 	 * the contents of the message.
 	 */
 	function getContents( $lang ) {
