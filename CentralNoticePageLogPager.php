@@ -6,7 +6,7 @@
  * the log only goes back 30 days.
  */
 class CentralNoticePageLogPager extends ReverseChronologicalPager {
-	var $viewPage, $special, $logType;
+	public $viewPage, $special, $logType;
 
 	/**
 	 * Construct instance of class.
