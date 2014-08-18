@@ -15,7 +15,8 @@
 			"Sahim",
 			"Wayiran",
 			"ZxxZxxZ",
-			"پسر یاس"
+			"پسر یاس",
+			"Omid.koli"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -151,6 +152,7 @@
 	"centralnotice-timestamp": "برچسب زمان",
 	"centralnotice-user": "کاربر",
 	"centralnotice-action": "عملکرد",
+	"centralnotice-change-summary-heading": "خلاصه",
 	"centralnotice-action-created": "ایجاد شد",
 	"centralnotice-action-modified": "تغییر یافت",
 	"centralnotice-action-removed": "حذف شد",
@@ -215,6 +217,8 @@
 	"centralnotice-archive-banner-title": "آرشیو  {{PLURAL:$1| بنر|بنر}}؟",
 	"centralnotice-archive-banner-confirm": "بایگانی‌سازی شامل همهٔ الگوها و تنظیمات صفحه‌های محافظت‌شده می‌شود. این عمل به سختی معکوس می‌گردد.",
 	"centralnotice-archive-banner-cancel": "لغو",
+	"centralnotice-change-summary-label": "خلاصه",
+	"centralnotice-change-summary-action-prompt": "پیغام درباره این عمل (اختیاری)",
 	"centralnotice-archive-show": "نمایش کمپین‌های بایگانی‌شده",
 	"centralnotice-archive-campaign": "بایگانی",
 	"centralnotice-archive-campaign-title": "بایگانی‌کردن {{PLURAL:$1|کمپین|کمپین‌ها}}؟",

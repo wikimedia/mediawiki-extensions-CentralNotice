@@ -190,7 +190,7 @@
 	"centralnotice-archive-banner-cancel": "Loobu",
 	"centralnotice-change-summary-label": "Kokkuvõte",
 	"centralnotice-change-summary-prompt": "Sõnum nende muudatuste kohta (valikuline)",
-	"centralnotice-change-summary-action-prompt": "Sõnum selle toimingu kohta (valikuline",
+	"centralnotice-change-summary-action-prompt": "Sõnum selle toimingu kohta (valikuline)",
 	"centralnotice-archive-show": "Näita arhiivitud teateid",
 	"centralnotice-archive-campaign": "Arhiivi",
 	"centralnotice-archive-campaign-title": "Arhiivida {{PLURAL:$1|teade|teated}}?",
