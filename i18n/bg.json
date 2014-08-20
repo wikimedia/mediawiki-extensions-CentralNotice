@@ -10,7 +10,8 @@
 			"Turin",
 			"Vladimir Penov",
 			"පසිඳු කාවින්ද",
-			"Gazimagomedov"
+			"Gazimagomedov",
+			"StanProg"
 		]
 	},
 	"centralnotice": "Администратор на централизираните съобщения",
@@ -87,7 +88,7 @@
 	"centralnotice-no-notices-exist": "Няма текущи кампании. Добавете някоя.",
 	"centralnotice-no-templates-translate": "Няма шаблони, за които да се редактират преводите",
 	"centralnotice-number-uses": "Използва",
-	"centralnotice-settings": "Рекъезаби",
+	"centralnotice-settings": "Настройки",
 	"centralnotice-edit-template": "Редактиране на шаблон",
 	"centralnotice-edit-template-summary": "За да създадете локализируемо съобщение, включете между тройките фигурни скоби низ от думи, свързани с тирета, например {{{jimbo-quote}}}.",
 	"centralnotice-message": "Съобщение",

@@ -13,7 +13,8 @@
 			"Southparkfan",
 			"TBloemink",
 			"Tvdm",
-			"User555"
+			"User555",
+			"Sjoerddebruin"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -220,8 +221,8 @@
 	"centralnotice-archive-edit-prevented": "De mogelijkheid om deze campagne te bewerken is uitgeschakeld omdat deze vergrendeld of gearchiveerd is. Wijzig de status op [[Special:CentralNotice]].",
 	"centralnotice-add-new-banner-title": "Nieuwe banner toevoegen",
 	"centralnotice-delete-banner": "Verwijderen",
-	"centralnotice-delete-banner-title": "Banner{{PLURAL:$1||s}} verwijderen?",
-	"centralnotice-delete-banner-confirm": "Bij verwijderen worden alle instellingen en berichten verwijderd. Overweeg of archiveren beter is.",
+	"centralnotice-delete-banner-title": "Banner{{PLURAL:$1||s}} verwijderen",
+	"centralnotice-delete-banner-confirm": "Waarschuwing: bij verwijderen worden alle instellingen en berichten verwijderd. Overweeg of archiveren beter is.",
 	"centralnotice-delete-banner-cancel": "Annuleren",
 	"centralnotice-messages-pending-approval": "Talen met berichten die wachten op goedkeuring",
 	"centralnotice-devices": "Apparatenlijst",

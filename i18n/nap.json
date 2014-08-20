@@ -1,8 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chelin"
+			"Chelin",
+			"C.R."
 		]
 	},
-	"centralnotice-devicetype-android": "Android OS"
+	"centralnotice-change-summary-heading": "Énnece",
+	"centralnotice-devicetype-android": "Android OS",
+	"centralnotice-change-summary-label": "Énnece",
+	"centralnotice-change-summary-prompt": "Mmasciata ncopp'a sti cagnamiénte (ozzionale)",
+	"centralnotice-change-summary-action-prompt": "Mmasciata ncopp'a st'azione (ozzionale)",
+	"centralnotice-delete-banner-title": "Scancellà {{PLURAL:$1|'o|'e}} bbanner",
+	"centralnotice-delete-banner-confirm": "Attenziò: 'o scancellamiento lèva tutte 'e mpustaziune e le mmasciate. Chest'azione nun se pò ffà turnà arreto. Pienzace mméce a l'archiviazione."
 }
