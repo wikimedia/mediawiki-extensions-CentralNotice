@@ -5,7 +5,8 @@
 			"Thameera123",
 			"තඹරු විජේසේකර",
 			"පසිඳු කාවින්ද",
-			"බිඟුවා"
+			"බිඟුවා",
+			"Indunil Chamara"
 		]
 	},
 	"centralnotice": "ප්‍රධාන දැන්වීම් පාලක",
@@ -121,6 +122,7 @@
 	"centralnotice-timestamp": "කාලමුද්‍රාව",
 	"centralnotice-user": "පරිශීලක",
 	"centralnotice-action": "කාර්යය",
+	"centralnotice-change-summary-heading": "සාරාංශය",
 	"centralnotice-action-created": "තනන ලද",
 	"centralnotice-action-modified": "වෙනස් කරන ලද",
 	"centralnotice-action-removed": "ඉවත් කරන ලද",
@@ -161,6 +163,7 @@
 	"centralnotice-buckets": "පරිශීලක පනිට්ටුගත කිරීම",
 	"centralnotice-bucket": "පනිට්ටුව",
 	"centralnotice-bucket-letter": "පනිට්ටුව \"$1\"",
+	"centralnotice-change-summary-label": "සාරාංශය",
 	"centralnotice-start-date": "ආරම්භක දිනය (UTC)",
 	"centralnotice-start-time": "ඇරඹුම් දිනය (යූටීසී)",
 	"centralnotice-end-date": "අවසන් දිනය (UTC)",

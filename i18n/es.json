@@ -23,7 +23,8 @@
 			"Sporeunai",
 			"Translationista",
 			"Vivaelcelta",
-			"Amitie 10g"
+			"Amitie 10g",
+			"Macofe"
 		]
 	},
 	"centralnotice": "Sistema de administración de avisos centralizados",
@@ -235,7 +236,7 @@
 	"centralnotice-archive-edit-prevented": "Las ediciones de esta campaña están deshabilitadas porque está bloqueada o archivada. Cambie cualquier estado desde [[Special:CentralNotice]].",
 	"centralnotice-add-new-banner-title": "Añadir un ''banner'' nuevo",
 	"centralnotice-delete-banner": "Eliminar",
-	"centralnotice-delete-banner-title": "Borrar {{PLURAL:$1|pancarta|pancartas}}?",
+	"centralnotice-delete-banner-title": "¿Borrar {{PLURAL:$1|pancarta|pancartas}}?",
 	"centralnotice-delete-banner-confirm": "Atención: esto eliminará toda la configuración y los mensajes. Esta acción no se puede deshacer. Considera archivar los elementos en su lugar.",
 	"centralnotice-delete-banner-cancel": "Cancelar",
 	"centralnotice-messages-pending-approval": "Lenguajes con mensajes esperando aprobación",
