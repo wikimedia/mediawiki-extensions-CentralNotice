@@ -10,7 +10,8 @@
 			"Srhat",
 			"Suelnur",
 			"Szoszv",
-			"Sayginer"
+			"Sayginer",
+			"Sucsuzz"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -141,6 +142,7 @@
 	"centralnotice-timestamp": "Zaman damgası",
 	"centralnotice-user": "Kullanıcı",
 	"centralnotice-action": "Eylem",
+	"centralnotice-change-summary-heading": "Özet",
 	"centralnotice-action-created": "oluşturuldu",
 	"centralnotice-action-modified": "değiştirildi",
 	"centralnotice-action-removed": "kaldırıldı",
@@ -198,6 +200,7 @@
 	"centralnotice-archive-banner": "Arşiv",
 	"centralnotice-archive-banner-title": "{{PLURAL:$1|Afişi|Afişleri}} arşivle?",
 	"centralnotice-archive-banner-cancel": "İptal",
+	"centralnotice-change-summary-label": "Özet",
 	"centralnotice-archive-show": "Arşivlenmiş kampanyaları göster",
 	"centralnotice-archive-campaign": "Arşivle",
 	"centralnotice-archive-campaign-title": "{{PLURAL:$1|Kampanyayı|Kampanyaları}} arşivle?",

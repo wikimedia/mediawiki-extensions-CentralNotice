@@ -170,7 +170,7 @@
 	"centralnotice-archive-banner-cancel": "Prekliči",
 	"centralnotice-archive-campaign-cancel": "Prekliči",
 	"centralnotice-delete-banner": "Izbriši",
-	"centralnotice-delete-banner-title": "Izbrišem {{PLURAL:$1|pasico|pasici|pasice}}?",
+	"centralnotice-delete-banner-title": "Izbris {{PLURAL:$1|pasice|pasic}}",
 	"centralnotice-delete-banner-cancel": "Prekliči",
 	"centralnotice-devices": "Prikaži na napravah",
 	"centralnotice-start-timestamp": "Začetek (UTC)",

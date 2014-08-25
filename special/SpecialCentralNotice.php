@@ -50,6 +50,9 @@ class CentralNotice extends SpecialPage {
 		if ( $this->editable && $request->wasPosted() ) {
 			// Check authentication token
 			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
+
+				$summary = $this->getSummaryFromRequest( $request );
+
 				// Handle adding a campaign
 				if ( $method == 'addCampaign' ) {
 					$noticeName = $request->getVal( 'noticeName' );
@@ -63,7 +66,8 @@ class CentralNotice extends SpecialPage {
 					} else {
 						$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
 							$project_languages, $geotargeted, $geo_countries,
-							100, CentralNotice::NORMAL_PRIORITY, $this->getUser() );
+							100, CentralNotice::NORMAL_PRIORITY, $this->getUser(),
+							$summary );
 						if ( is_string( $result ) ) {
 							$this->showError( $result );
 						}
@@ -161,7 +165,9 @@ class CentralNotice extends SpecialPage {
 								$campaignId,
 								$this->getUser(),
 								$allInitialCampaignSettings[ $campaignName ],
-								$finalCampaignSettings
+								$finalCampaignSettings,
+								array(), array(),
+								$summary
 							);
 						}
 					}
@@ -514,6 +520,9 @@ class CentralNotice extends SpecialPage {
 
 			if ( $this->editable ) {
 				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons cn-formsection-emphasis' ) );
+
+				$htmlOut .= $this->makeSummaryField();
+
 				$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-modify' )->text(),
 					array(
 						'id'   => 'centralnoticesubmit',
@@ -606,6 +615,7 @@ class CentralNotice extends SpecialPage {
 			// Submit button
 			$htmlOut .= Xml::tags( 'div',
 				array( 'class' => 'cn-buttons' ),
+				$this->makeSummaryField( true ) .
 				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
 			);
 
@@ -800,8 +810,14 @@ class CentralNotice extends SpecialPage {
 
 					$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
 					$campaignId = Campaign::getNoticeId( $notice );
-					Campaign::logCampaignChange( 'modified', $campaignId, $this->getUser(),
-						$initialCampaignSettings, $finalCampaignSettings );
+
+					$summary = $this->getSummaryFromRequest( $request );
+
+					Campaign::logCampaignChange(
+						'modified', $campaignId, $this->getUser(),
+						$initialCampaignSettings, $finalCampaignSettings,
+						array(), array(),
+						$summary );
 
 					// If there were no errors, reload the page to prevent duplicate form submission
 					if ( !$this->centralNoticeError ) {
@@ -865,6 +881,8 @@ class CentralNotice extends SpecialPage {
 		}
 		if ( $this->editable ) {
 			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
+
+			$htmlOut .= $this->makeSummaryField();
 
 			// Submit button
 			$htmlOut .= Xml::tags( 'div',
@@ -1377,6 +1395,36 @@ class CentralNotice extends SpecialPage {
 		return $dropDown;
 	}
 
+	/**
+	 * Create a  string with summary label and text field.
+	 *
+	 * @param bool $action If true, use a placeholder message appropriate for
+	 *   a single action (such as creating a campaign).
+	 * @return string
+	 */
+	protected function makeSummaryField( $action = false ) {
+
+		$placeholderMsg = $action ? 'centralnotice-change-summary-action-prompt'
+			: 'centralnotice-change-summary-prompt';
+
+		return
+			Xml::element( 'label',
+				array( 'class' => 'cn-change-summary-label' ),
+				$this->msg( 'centralnotice-change-summary-label' )->escaped()
+			) . Xml::element( 'input',
+				array(
+					'class' => 'cn-change-summary-input',
+					'placeholder' => $this->msg( $placeholderMsg )->escaped(),
+					'size' => 45,
+					'name' => 'changeSummary'
+				)
+			);
+	}
+
+	protected function getSummaryFromRequest( $request ) {
+		return static::truncateSummaryField( $request->getVal( 'changeSummary' ) );
+	}
+
 	protected function paddedRange( $begin, $end ) {
 		$unpaddedRange = range( $begin, $end );
 		$paddedRange = array();
@@ -1458,6 +1506,14 @@ class CentralNotice extends SpecialPage {
 		}
 
 		return trim( $retval );
+	}
+
+	/**
+	 * Truncate the summary field in a linguistically appropriate way.
+	 */
+	public static function truncateSummaryField( $summary ) {
+		global $wgContLang;
+		return $wgContLang->truncate( $summary, 255 );
 	}
 
 	/**

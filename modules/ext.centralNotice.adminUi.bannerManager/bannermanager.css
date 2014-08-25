@@ -75,7 +75,8 @@ fieldset #cn-formsection-header-one-off {
 }
 
 /* --- Add banner dialog --- */
-#cn-formsection-addBanner {
+#cn-formsection-addBanner,
+#cn-formsection-removeBanner {
 	display: none;
 }
 .ui-dialog-content legend {

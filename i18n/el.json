@@ -12,7 +12,8 @@
 			"Tifa93",
 			"ZaDiak",
 			"Απεργός",
-			"Geraki"
+			"Geraki",
+			"Nikosguard"
 		]
 	},
 	"centralnotice": "Διαχειριστής κεντρικών ειδοποιήσεων",
@@ -189,6 +190,7 @@
 	"centralnotice-archive-campaign-cancel": "Ακύρωση",
 	"centralnotice-delete-banner": "Διαγραφή",
 	"centralnotice-delete-banner-title": "Διαγραφή {{PLURAL:$1|banner|banners}}",
+	"centralnotice-delete-banner-confirm": "Προειδοποίηση: Η διαγραφή αφαιρεί όλες τις ρυθμίσεις και τα μηνύματα. Αυτή η ενέργεια δεν μπορεί να αντιστραφεί. Εξετάστε το ενδεχόμενο αρχειοθέτησης αντί της διαγραφής.",
 	"centralnotice-delete-banner-cancel": "Ακύρωση",
 	"centralnotice-messages-pending-approval": "Γλώσσες με μηνύματα σε αναμονή έγκρισης επί του παρόντος",
 	"centralnotice-devices": "Εμφάνιση στις συσκευές",

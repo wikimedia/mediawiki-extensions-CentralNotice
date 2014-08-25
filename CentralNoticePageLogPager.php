@@ -160,6 +160,10 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				$language
 			);
 		}
+		$htmlOut .= Xml::tags( 'td',
+			array( 'valign' => 'top', 'class' => 'primary-summary' ),
+			htmlspecialchars( $row->rc_comment )
+		);
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
 		);
@@ -194,7 +198,18 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 100px;' ),
 				$this->msg( 'centralnotice-language' )->text()
 			);
+
+			$commentWidth = '120px';
+
+		} else {
+			$commentWidth = '250px';
 		}
+
+		$htmlOut .= Xml::element( 'th',
+			array( 'align' => 'left', 'style' => "width: {$commentWidth};" ),
+			$this->msg( 'centralnotice-change-summary-heading' )->text()
+		);
+
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
 		);

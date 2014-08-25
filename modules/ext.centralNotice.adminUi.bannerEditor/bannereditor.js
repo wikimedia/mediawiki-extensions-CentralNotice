@@ -38,13 +38,24 @@
 			// Implement the functionality
 			buttons[ cancelButtonText ] = function() { $(this).dialog("close"); };
 			buttons[ okButtonText ] = function() {
+
+				// We'll submit the real form (not the one in the dialog).
+				// Copy in values to that form before submitting.
 				var formobj = $('#cn-banner-editor')[0];
 				formobj.wpaction.value = 'clone';
 				formobj.wpcloneName.value = $(this)[0].wpcloneName.value;
+
+				formobj.wpcloneEditSummary.value =
+					$( this )[0].wpcloneEditSummary.value;
+
 				formobj.submit();
 			};
 
-			// Create the dialog by copying the textfield element into a new form
+			// Copy value of summary from main form into clone summary field
+			$( '#mw-input-wpcloneEditSummary' )
+				.val( $( '#mw-input-wpsummary' ).val() );
+
+			// Create the dialog by copying the text fields into a new form
 			dialogObj[0].name = 'addBannerDialog';
 			dialogObj.append( $( '#cn-formsection-clone-banner' ).children( 'div' ).clone().show() )
 				.dialog( {
@@ -76,25 +87,39 @@
 		 * the form with the 'remove' action.
 		 */
 		doDeleteBanner: function() {
-			var dialogObj = $( '<div></div>' ),
+			var dialogObj = $( '<form></form>' ),
+				dialogMessage = $( '<div class="cn-dialog-message" />' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
 				cancelButtonText = mw.message('centralnotice-delete-banner-cancel').text();
 
+			// We'll submit the real form (outside the dialog).
+			// Copy in values to that form before submitting.
 			buttons[ deleteText ] = function() {
 				var formobj = $('#cn-banner-editor')[0];
 				formobj.wpaction.value = 'delete';
+
+				formobj.wpdeleteEditSummary.value =
+					$( this )[0].wpdeleteEditSummary.value;
+
 				formobj.submit();
 			};
 			buttons[ cancelButtonText ] = function() {  $( this ).dialog( "close" ); };
 
-			dialogObj.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
-			dialogObj.dialog({
-				title: mw.message( 'centralnotice-delete-banner-title', 1 ).text(),
-				resizable: false,
-				modal: true,
-				buttons: buttons
-			});
+			// Copy value of summary from main form into delete summary field
+			$( '#mw-input-wpdeleteEditSummary' )
+				.val( $( '#mw-input-wpsummary' ).val() );
+
+			dialogObj.append( dialogMessage );
+			dialogMessage.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
+
+			dialogObj.append( $( '#cn-formsection-delete-banner' ).children( 'div' ).clone().show() )
+				.dialog( {
+					title: mw.message( 'centralnotice-delete-banner-title', 1 ).text(),
+					modal: true,
+					buttons: buttons,
+					width: '35em'
+				});
 		},
 
 		/**

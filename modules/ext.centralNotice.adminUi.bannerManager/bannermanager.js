@@ -51,10 +51,17 @@
 
 			// Implement the functionality
 			buttons[ cancelButtonText ] = function() { $(this).dialog("close"); };
+
+			// We'll submit the real form (outside the dialog).
+			// Copy in values to that form before submitting.
 			buttons[ okButtonText ] = function() {
 				var formobj = $('#cn-banner-manager')[0];
 				formobj.wpaction.value = 'create';
 				formobj.wpnewBannerName.value = $(this)[0].wpnewBannerName.value;
+
+				formobj.wpnewBannerEditSummary.value =
+					$( this )[0].wpnewBannerEditSummary.value;
+
 				formobj.submit();
 			};
 
@@ -77,28 +84,38 @@
 		 * the form with the 'remove' action.
 		 */
 		doRemoveBanners: function() {
-			var dialogObj = $( '<div></div>' ),
+			var dialogObj = $( '<form></form>' ),
+				dialogMessage = $( '<div class="cn-dialog-message" />' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-delete-banner-cancel' ).text();
 
+			// We'll submit the real form (outside the dialog).
+			// Copy in values to that form before submitting.
 			buttons[ deleteText ] = function() {
 				var formobj = $( '#cn-banner-manager' )[0];
 				formobj.wpaction.value = 'remove';
+
+				formobj.wpremoveBannerEditSummary.value =
+					$( this )[0].wpremoveBannerEditSummary.value;
+
 				formobj.submit();
 			};
 			buttons[ cancelButtonText ] = function() {  $( this ).dialog( "close" ); };
 
-			dialogObj.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
-			dialogObj.dialog({
-				title: mw.message(
-					'centralnotice-delete-banner-title',
-					bm.selectedItemCount
-				).text(),
-				resizable: false,
-				modal: true,
-				buttons: buttons
-			});
+			dialogObj.append( dialogMessage );
+			dialogMessage.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
+
+			dialogObj.append( $( '#cn-formsection-removeBanner' ).children( 'div' ).clone().show() )
+				.dialog({
+					title: mw.message(
+						'centralnotice-delete-banner-title',
+						bm.selectedItemCount
+					).text(),
+					width: '35em',
+					modal: true,
+					buttons: buttons
+				});
 		},
 
 		/**

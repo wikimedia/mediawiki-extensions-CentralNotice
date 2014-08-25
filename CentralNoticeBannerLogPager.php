@@ -80,6 +80,16 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$bannerLink
 		);
+
+		// TODO temporary code for soft dependency on schema change
+		$summary = property_exists( $row, 'tmplog_comment' ) ?
+			htmlspecialchars( $row->tmplog_comment ) : '&nbsp;';
+
+		$htmlOut .= Xml::tags( 'td',
+			array( 'valign' => 'top', 'class' => 'primary-summary' ),
+			$summary
+		);
+
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'
 		);
@@ -125,6 +135,9 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		);
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
 			$this->msg( 'centralnotice-banner' )->text()
+		);
+		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 250px;' ),
+			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
 		$htmlOut .= Xml::tags( 'td', array(),
 			'&nbsp;'

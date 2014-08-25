@@ -174,6 +174,7 @@
 	"centralnotice-country-a1": "Teadmata/Anonüümne proksi",
 	"centralnotice-country-o1": "Teadmata/Muu maa",
 	"centralnotice-devicetype-desktop": "Lauaarvuti",
+	"centralnotice-devicetype-iphone": "Kõik iPhone'i versioonid",
 	"centralnotice-all": "Kõik",
 	"centralnotice-generic-error": "Sul pole soovitud toimingu sooritamiseks vajalikku õigust või oli toiming ise vigane.",
 	"centralnotice-banner-name-error": "Malli nimi on vigane. Sobiv nimi sisaldab ainult tähti, numbreid ja allkriipse.",
