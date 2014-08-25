@@ -133,6 +133,7 @@ function efCentralNoticeSetup() {
 		$wgAutoloadClasses[ 'SpecialCentralNoticeBanners' ] = $specialDir . 'SpecialCentralNoticeBanners.php';
 		$wgAutoloadClasses[ 'CNBannerPager' ] = $includeDir . 'CNBannerPager.php';
 		$wgAutoloadClasses[ 'CNDeviceTarget' ] = $includeDir . 'CNDeviceTarget.php';
+		$wgAutoloadClasses[ 'CNCampaignPager' ] = $includeDir . 'CNCampaignPager.php';
 
 		if ( $wgNoticeUseTranslateExtension ) {
 			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';

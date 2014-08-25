@@ -90,6 +90,7 @@
     "centralnotice-edit-template-magicwords": "Magic words provided by banner mixins: $1",
     "centralnotice-message": "Message",
     "centralnotice-message-not-set": "Message not set",
+    "centralnotice-campaigns-using-banner": "Campaigns using this banner",
     "centralnotice-clone": "Clone",
     "centralnotice-clone-notice": "Create a copy of the banner",
     "centralnotice-clone-name": "Name:",

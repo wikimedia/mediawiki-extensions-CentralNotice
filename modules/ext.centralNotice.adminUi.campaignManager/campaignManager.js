@@ -57,14 +57,6 @@
 	}
 	$( '#balanced' ).click( updateWeightColumn );
 
-	$( '#centralnotice-showarchived' ).click( function() {
-		if ( $( this ).prop( 'checked' ) === true ) {
-			$( '.cn-archived-item' ).show();
-		} else {
-			$( '.cn-archived-item' ).hide();
-		}
-	});
-
 	updateThrottle();
 	updateWeightColumn();
 } )( jQuery );

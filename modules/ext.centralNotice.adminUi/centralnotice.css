@@ -7,7 +7,7 @@
  * @licence GNU General Public Licence 2.0 or later
  */
 
-#preferences fieldset.prefsection {
+fieldset.prefsection {
 	margin:0;
 	padding: 1em;
 	border-top: 1px solid;
@@ -15,7 +15,8 @@
 #preferences fieldset.prefsection:first-child {
 	border-top: none;
 }
-#preferences fieldset.prefsection h2 {
+#preferences fieldset.prefsection h2,
+h2.cn-special-section {
 	border:none;
 }
 #preferences div.cn-pager {
@@ -142,4 +143,17 @@ form .error {
 	padding: 0.5em;
 	background-color: #FFCCCC;
 	border: 2px solid #FF0000;
+}
+
+/* for campaign pager */
+
+/* Must override .mw-datatable td, rule in skins/common/shared.css */
+tr.cn-active-campaign td {
+	background-color: #ddffdd;
+}
+
+.cn-formsection-emphasis {
+	padding: 0.5em;
+	background-color: #FFFFFF;
+	border: 1px solid #2F6FAB;
 }
