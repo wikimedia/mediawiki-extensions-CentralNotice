@@ -16,7 +16,8 @@
 			"Wayiran",
 			"ZxxZxxZ",
 			"پسر یاس",
-			"Omid.koli"
+			"Omid.koli",
+			"Alirezaaa"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -227,8 +228,8 @@
 	"centralnotice-archive-edit-prevented": "ویرایش این کمپین عیرفعال‌شده به این دلیل که یا قفل شده یا بایگانی شده‌است. تغییر این وضعیت از [[Special:CentralNotice]].",
 	"centralnotice-add-new-banner-title": "اضافه کردن بنر جدید",
 	"centralnotice-delete-banner": "حذف",
-	"centralnotice-delete-banner-title": "حذف  {{PLURAL:$1| بنر|بنر}}؟",
-	"centralnotice-delete-banner-confirm": "عملکرد حذف، تمامی تنظیمات و پیام‌های شما را پاک می‌کند و غیرقابل واگردانی است. پیشنهاد می‌شود از این موارد پرونده پشتیبان تهیه نمایید.",
+	"centralnotice-delete-banner-title": "پاک‌کردن {{PLURAL:$1|پرچم|پرچم‌ها}}",
+	"centralnotice-delete-banner-confirm": "هشدار: پاک‌کردن همه تنظیمات و پیام‌ها را حذف می‌کند. این عمل نمی‌تواند برگردانده شود. به جای این بایگانی‌کردن را در نظر بگیرید.",
 	"centralnotice-delete-banner-cancel": "انصراف",
 	"centralnotice-messages-pending-approval": "هم‌اکنون زبان‌ها با پیام‌ها منتظر تائیدند",
 	"centralnotice-devices": "نمایش در دستگاه‌ها",
