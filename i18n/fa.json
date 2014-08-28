@@ -219,6 +219,7 @@
 	"centralnotice-archive-banner-confirm": "بایگانی‌سازی شامل همهٔ الگوها و تنظیمات صفحه‌های محافظت‌شده می‌شود. این عمل به سختی معکوس می‌گردد.",
 	"centralnotice-archive-banner-cancel": "لغو",
 	"centralnotice-change-summary-label": "خلاصه",
+	"centralnotice-change-summary-prompt": "پیام درباره این تغییرات (اختیاری)",
 	"centralnotice-change-summary-action-prompt": "پیغام درباره این عمل (اختیاری)",
 	"centralnotice-archive-show": "نمایش کمپین‌های بایگانی‌شده",
 	"centralnotice-archive-campaign": "بایگانی",
