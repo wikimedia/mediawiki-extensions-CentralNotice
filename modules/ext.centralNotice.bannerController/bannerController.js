@@ -273,7 +273,7 @@
 	//
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
-		var url, targets, expiry, cookieVal;
+		var url, targets, expiry, cookieName, cookieVal, deleteOld, now;
 
 		var impressionData = {
 			country: mw.centralNotice.data.country,
@@ -305,18 +305,23 @@
 					reason: 'preload'
 				};
 			} else if ( mw.centralNotice.data.testing === false ) { /* And we want to see what we're testing! :) */
-				cookieVal = $.cookie( 'centralnotice_hide_' + mw.centralNotice.data.category );
+				cookieName = 'centralnotice_hide_' + mw.centralNotice.data.category;
+				cookieVal = $.cookie( cookieName );
 				expiry = mw.config.get( 'wgNoticeCookieDurations' );
+				now = new Date().getTime() / 1000;
+				deleteOld = ( now > mw.config.get( 'wgNoticeOldCookieApocalypse' ) );
 
-				if (
-					cookieVal === 'hide' ||
-					(
-						cookieVal !== null &&
-						cookieVal.indexOf( '{' ) === 0 &&
-						expiry[JSON.parse( cookieVal ).reason] &&
-						JSON.parse( cookieVal ).created + expiry[JSON.parse( cookieVal ).reason] > new Date().getTime() / 1000
-					)
-				) {
+				if ( cookieVal === 'hide' && deleteOld ) {
+					// Delete old-style cookie
+					$.cookie( cookieName, null, { path: '/' } );
+				} else if (
+						cookieVal === 'hide' || (
+							cookieVal !== null &&
+							cookieVal.indexOf( '{' ) === 0 &&
+							expiry[JSON.parse( cookieVal ).reason] &&
+							now < JSON.parse( cookieVal ).created + expiry[JSON.parse( cookieVal ).reason]
+						)
+					) {
 					// The banner was hidden by a category hide cookie and we're not testing
 					impressionResultData = {
 						result: 'hide',

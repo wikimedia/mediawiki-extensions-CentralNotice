@@ -127,6 +127,11 @@ $wgNoticeCookieDurations = array(
 );
 
 /**
+ * @var int timestamp after which old-format 'hide' cookies are deleted
+ */
+$wgNoticeOldCookieApocalypse = strtotime( '2014-11-09' );
+
+/**
  * @var string[] $wgNoticeHideUrls Locations of Special:HideBanner targets to hit
  * when a banner close button is pressed. The hides will then be specific to each
  * domain specified by $wgNoticeCookieDomain on that wiki.
