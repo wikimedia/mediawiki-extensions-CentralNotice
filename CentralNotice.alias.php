@@ -410,16 +410,16 @@ $specialPageAliases['zh-hans'] = array(
 
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
-	'CentralNotice' => array( '中央通告' ),
-	'CentralNoticeBanners' => array( '中央通告板' ),
-	'CentralNoticeLogs' => array( '中央通告日誌' ),
-	'CNReporter' => array( '中央通告匯報' ),
-	'NoticeTemplate' => array( '通告模板' ),
+	'CentralNotice' => array( '中央公告' ),
+	'CentralNoticeBanners' => array( '中央公告橫幅' ),
+	'CentralNoticeLogs' => array( '中央公告日誌' ),
+	'CNReporter' => array( '中央公告回報者' ),
+	'NoticeTemplate' => array( '公告樣版' ),
 	'GlobalAllocation' => array( '全域分配' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
-	'BannerLoader' => array( '橫幅裝載' ),
+	'BannerLoader' => array( '橫幅讀取器' ),
 	'BannerRandom' => array( '隨機橫幅' ),
-	'RecordImpression' => array( '記錄戳記' ),
+	'RecordImpression' => array( '記錄印象' ),
 	'HideBanners' => array( '隱藏橫幅' ),
 );

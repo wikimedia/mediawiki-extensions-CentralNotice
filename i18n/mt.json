@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Chrisportelli",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Leli Forte"
 		]
 	},
 	"centralnotice": "Ġestjoni tal-avviż ċentrali",
@@ -119,6 +120,7 @@
 	"centralnotice-timestamp": "Data u ħin",
 	"centralnotice-user": "Utent",
 	"centralnotice-action": "Azzjoni",
+	"centralnotice-change-summary-heading": "Fil-qosor",
 	"centralnotice-action-created": "ħalaq",
 	"centralnotice-action-modified": "immodifika",
 	"centralnotice-action-removed": "neħħa",
@@ -150,6 +152,10 @@
 	"centralnotice-priority-normal": "normali",
 	"centralnotice-priority-high": "għoli",
 	"centralnotice-priority-emergency": "emerġenza",
+	"centralnotice-change-summary-label": "Fil-qosor",
+	"centralnotice-change-summary-prompt": "Messaġġ dwar dawn il-bidliet (jekk trid)",
+	"centralnotice-change-summary-action-prompt": "Messaġġ dwar din l-azzjoni (jekk trid)",
+	"centralnotice-delete-banner-confirm": "Attenzjoni: Meta tħassar tneħħi l-messaġġi u l-konfigurazzjonijiet kollha. Din l-azzjoni ma tistax titreġġa' lura. Ara tistax tarkivja, minflok.",
 	"centralnotice-start-date": "Data tal-bidu",
 	"centralnotice-start-time": "Ħin tal-bidu (UTC)",
 	"centralnotice-end-date": "Data tat-tmiem",
