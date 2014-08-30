@@ -420,6 +420,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$languages = array_flip( $languages );
 
 		$banner = Banner::fromName( $this->bannerName );
+		if ( !$banner->exists() ) {
+			return $this->getOutput()->showErrorPage(
+				'centralnotice-banner-not-found-title',
+				'centralnotice-banner-not-found-contents'
+			);
+		}
 		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = array();

@@ -251,5 +251,7 @@
 	"centralnotice-start-date": "Date without time.\n\nUsed in [[meta:Special:CentralNotice|Central Notice]] special page. Used as table column header and followed by {{msg-mw|Centralnotice-start-time}}.\n\n{{Related|Centralnotice-th}}\n{{Identical|Start date}}",
 	"centralnotice-start-time": "Used in Special:CentralNotice. UTC is \"[[w:Coordinated_Universal_Time|Coordinated Universal Time]]\"",
 	"centralnotice-end-date": "Date without time.\n\nUsed in [[meta:Special:CentralNotice|Central Notice]] special page as table column header and follows {{msg-mw|Centralnotice-start-date}}.\n{{Related|Centralnotice-th}}\n{{Identical|End date}}",
-	"centralnotice-end-time": "Used in Special:CentralNotice. UTC is \"[[w:Coordinated_Universal_Time|Coordinated Universal Time]]\""
+	"centralnotice-end-time": "Used in Special:CentralNotice. UTC is \"[[w:Coordinated_Universal_Time|Coordinated Universal Time]]\"",
+	"centralnotice-banner-not-found-title": "Page title and top header of Special:CentralNoticeBanners when the requested banner does not exist",
+	"centralnotice-banner-not-found-contents": "Used as the body content of SpecialCentral:NoticeBanners when the requested banner does not exist"
 }
