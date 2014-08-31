@@ -197,6 +197,8 @@
 	"centralnotice-bucket": "Groep",
 	"centralnotice-bucket-letter": "Groep \"$1\"",
 	"centralnotice-devicetype-desktop": "Desktopcomputer",
+	"centralnotice-devicetype-android": "Android-besturingssysteem",
+	"centralnotice-devicetype-iphone": "Alle iPhone-versies",
 	"centralnotice-all": "Alle",
 	"centralnotice-generic-error": "U hebt niet de juiste rechten om de gevraagde handeling uit te voeren of de handeling is incorrect.",
 	"centralnotice-banner-name-error": "Er is geen geldige bannernaam opgegeven. Geldige namen bevatten alleen alfanumerieke tekens en liggende streepjes (\"_\").",
