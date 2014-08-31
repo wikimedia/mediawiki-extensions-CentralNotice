@@ -74,14 +74,6 @@ class CentralNotice extends SpecialPage {
 					}
 				// Handle changing settings to existing campaigns
 				} else {
-					// Handle archiving campaigns
-					$toArchive = $request->getArray( 'archiveCampaigns' );
-					if ( $toArchive ) {
-						// Archive campaigns in list
-						foreach ( $toArchive as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
-						}
-					}
 
 					// Get all the initial campaign settings for logging
 					$allCampaignNames = Campaign::getAllCampaignNames();
@@ -89,6 +81,15 @@ class CentralNotice extends SpecialPage {
 					foreach ( $allCampaignNames as $campaignName ) {
 						$settings = Campaign::getCampaignSettings( $campaignName );
 						$allInitialCampaignSettings[ $campaignName ] = $settings;
+					}
+
+					// Handle archiving campaigns
+					$toArchive = $request->getArray( 'archiveCampaigns' );
+					if ( $toArchive ) {
+						// Archive campaigns in list
+						foreach ( $toArchive as $notice ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
+						}
 					}
 
 					// Handle locking/unlocking campaigns
