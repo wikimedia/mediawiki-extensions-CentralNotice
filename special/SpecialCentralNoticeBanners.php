@@ -7,6 +7,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var string Name of the banner we're currently editing */
 	protected $bannerName = '';
 
+	/** @var Banner Banner object we're currently editing */
+	protected $banner = null;
+
 	/** @var string Filter to apply to the banner search when generating the list */
 	protected $bannerFilterString = '';
 
@@ -399,6 +402,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			setDisplayFormat( 'div' )->
 			prepareForm()->
 			displayForm( $formResult );
+
+		$out->addHTML( Xml::element( 'h2',
+			array( 'class' => 'cn-special-section' ),
+			$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
+
+		$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
+		$out->addHTML( $pager->getBody() );
+		$out->addHTML( $pager->getNavigationBar() );
 	}
 
 	protected function generateBannerEditForm() {
@@ -751,6 +762,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			// and working and not have this issue.
 			'default' => 'save',
 		);
+
+		// Save the banner object in an instance variable
+		$this->banner = $banner;
 
 		return $formDescriptor;
 	}

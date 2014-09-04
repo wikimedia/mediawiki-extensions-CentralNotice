@@ -132,4 +132,18 @@ jQuery(document).ready( function ( $ ) {
             });
         }
 	} ).trigger( 'change' );
+
+	// If the Campaign pager is present, show or hide archived campaigns
+	var $showArchived = $( '#centralnotice-showarchived' );
+
+	if ( $showArchived.length > 0 ) {
+
+		$showArchived.click( function() {
+			if ( $( this ).prop( 'checked' ) === true ) {
+				$( '.cn-archived-item' ).show();
+			} else {
+				$( '.cn-archived-item' ).hide();
+			}
+		} );
+	}
 } );

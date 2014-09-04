@@ -22,19 +22,8 @@
  *
  * @file
  */
-
-.cn-formsection-emphasis {
-	padding: 0.5em;
-	background-color: #FFFFFF;
-	border: 1px solid #2F6FAB;
-}
-
 .cn-buttons {
 	text-align: right;
-}
-
-.cn-active-campaign {
-	background-color: #ddffdd;
 }
 
 #preferences .ui-slider {
