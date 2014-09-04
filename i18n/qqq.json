@@ -71,7 +71,7 @@
 	"centralnotice-weight": "Used in Notice Details page of [[meta:Special:CentralNotice|Central Notice]] special page.\n* Used as label for the \"Weight\" select box.\n* Used as column header of the table in [[Special:CentralNotice]].\n{{Identical|Weight}}",
 	"centralnotice-locked": "Refers to campaign.\n\nUsed as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Locked}}",
 	"centralnotice-notice": "* Used as column header in the table (in multiple special pages).\n* Used as label for the \"Campaign\" input box in [[Special:CentralNoticeLogs]].\n{{Identical|Campaign}}",
-	"centralnotice-notice-heading": "Used as <code><nowiki><h2></nowiki></code> heading. Parameters:\n* $1 - campaign",
+	"centralnotice-notice-heading": "Used as <code><nowiki><h2></nowiki></code> heading. Parameters:\n* $1 - campaign\n{{Identical|Campaign}}",
 	"centralnotice-notices": "Used as link text in the tab in [[Special:CentralNotice]]. The link points to [[Special:CentralNotice]].\n{{Identical|Campaign}}",
 	"centralnotice-notice-exists": "Error message displayed in Special:CentralNotice when trying to add a notice with the same name of another notice.",
 	"centralnotice-no-language": "Error message displayed in [[Special:CentralNotice]] when trying to add a notice.\n\nSee also:\n* {{msg-mw|Centralnotice-no-project}}",
