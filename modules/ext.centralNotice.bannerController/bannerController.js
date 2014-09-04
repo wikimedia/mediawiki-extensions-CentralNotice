@@ -313,8 +313,8 @@
 					(
 						cookieVal !== null &&
 						cookieVal.indexOf( '{' ) === 0 &&
-						expiry[$.parseJSON( cookieVal ).reason] &&
-						$.parseJSON( cookieVal ).created + expiry[$.parseJSON( cookieVal ).reason] > new Date().getTime() / 1000
+						expiry[JSON.parse( cookieVal ).reason] &&
+						JSON.parse( cookieVal ).created + expiry[JSON.parse( cookieVal ).reason] > new Date().getTime() / 1000
 					)
 				) {
 					// The banner was hidden by a category hide cookie and we're not testing
@@ -401,7 +401,7 @@
 
 		$.cookie(
 			'centralnotice_hide_' + mw.centralNotice.data.category,
-			$.toJSON( cookieVal ),
+			JSON.stringify( cookieVal ),
 			{ expires: d, path: '/' }
 		);
 
