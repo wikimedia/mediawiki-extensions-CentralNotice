@@ -164,7 +164,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 					'id' => 'centralnoticelogreset',
 					'name' => 'centralnoticelogreset',
 					'class' => 'cn-filter-buttons',
-					'onclick' => "window.location = '$link'; return false;",
+					'onclick' => "location.href = '$link'; return false;",
 				)
 			);
 			$htmlOut .= Xml::closeElement( 'td' );

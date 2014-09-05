@@ -10,5 +10,9 @@
 	"laxbreak": true,
 
 	"browser": true,
-	"jquery": true
+	"jquery": true,
+
+	"globals": {
+		"mediaWiki": false
+	}
 }

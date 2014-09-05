@@ -1,8 +1,9 @@
 /*
 Basic device detection module for mobile
 */
-( function( mw ) {
-	var ua = navigator.userAgent, name;
+( function ( mw ) {
+	var name,
+		ua = navigator.userAgent;
 
 	if ( ua.match( /iphone/i ) ) {
 		name = 'iphone';
