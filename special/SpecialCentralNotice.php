@@ -83,12 +83,30 @@ class CentralNotice extends SpecialPage {
 						$allInitialCampaignSettings[ $campaignName ] = $settings;
 					}
 
-					// Handle archiving campaigns
-					$toArchive = $request->getArray( 'archiveCampaigns' );
-					if ( $toArchive ) {
-						// Archive campaigns in list
-						foreach ( $toArchive as $notice ) {
+					// FIXME The following three blocks of code are similar.
+					// They might be refactored as part of a bigger refactoring
+					// of code for changing campaign settings via the list of
+					// campaigns. If not, refactor this following the current
+					// logic.
+
+					// Handle archiving/unarchiving campaigns
+					$archived = $request->getArray( 'archiveCampaigns' );
+					if ( $archived ) {
+						// Build list of campaigns to archive
+						$notArchived = array_diff( Campaign::getAllCampaignNames(), $archived );
+
+						// Set archived/not archived flag accordingly
+						foreach ( $archived as $notice ) {
 							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
+						}
+						foreach ( $notArchived as $notice ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
+						}
+						// Handle updates if no post content came through (all checkboxes unchecked)
+					} else {
+						$allNotices = Campaign::getAllCampaignNames();
+						foreach ( $allNotices as $notice ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
 						}
 					}
 
