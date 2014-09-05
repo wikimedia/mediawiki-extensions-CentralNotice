@@ -131,6 +131,7 @@
 	"centralnotice-percentage": "Dregantad",
 	"centralnotice-documentwrite-error": "N'hall ket document.write() bezañ implijet hep giton.\nSellet ouzh http://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc'h.",
 	"centralnotice-preferred": "Da gentañ",
+	"centralnotice-archived": "Diellaouet",
 	"centralnotice-logs": "Marilhoù",
 	"centralnotice-view-logs": "Gwelet ar marilhoù",
 	"centralnotice-timestamp": "Deiziad hag eur",

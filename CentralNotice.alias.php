@@ -250,6 +250,18 @@ $specialPageAliases['lb'] = array(
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
+/** Malagasy (Malagasy) */
+$specialPageAliases['mg'] = array(
+	'CentralNotice' => array( 'Ivom-pampandrenesana', 'Ivompampandrenesana' ),
+	'CentralNoticeBanners' => array( 'Banieran\'ivom-pampandrenesana', 'BanieranIvompampandrenesana' ),
+	'CentralNoticeLogs' => array( 'Laogin\'Ivom-pampandrenesana', 'LaoginIvom-pampandrenesana' ),
+	'NoticeTemplate' => array( 'EndrikaFampandrenesana' ),
+	'GlobalAllocation' => array( 'FanokananaManerantsehatra' ),
+	'BannerAllocation' => array( 'FanokananaBaniera' ),
+	'BannerController' => array( 'FampifehezanaBaniera' ),
+	'HideBanners' => array( 'HanafinaBaniera' ),
+);
+
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'CentralNotice' => array( 'ЦентралноИзвестување' ),

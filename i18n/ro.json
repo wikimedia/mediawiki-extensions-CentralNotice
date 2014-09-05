@@ -6,7 +6,8 @@
 			"KlaudiuMihaila",
 			"Mihai",
 			"Minisarm",
-			"Stelistcristi"
+			"Stelistcristi",
+			"XXN"
 		]
 	},
 	"centralnotice": "Administrarea anunțului central",
@@ -126,6 +127,7 @@
 	"centralnotice-percentage": "Procentaj",
 	"centralnotice-documentwrite-error": "document.write() nu poate fi folosit într-un banner.\nVedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe informații.",
 	"centralnotice-preferred": "Prioritate",
+	"centralnotice-archived": "Arhivat",
 	"centralnotice-logs": "Jurnale",
 	"centralnotice-view-logs": "Vezi jurnale",
 	"centralnotice-timestamp": "Data și ora",
