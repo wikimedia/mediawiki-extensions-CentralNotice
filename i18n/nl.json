@@ -144,6 +144,7 @@
 	"centralnotice-percentage": "Percentage",
 	"centralnotice-documentwrite-error": "\"document.write()\" kan niet worden gebruikt binnen een banner.\nZie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.",
 	"centralnotice-preferred": "Prioriteit",
+	"centralnotice-archived": "Gearchiveerd",
 	"centralnotice-logs": "Logboeken",
 	"centralnotice-view-logs": "Logboeken bekijken",
 	"centralnotice-timestamp": "Tijdstip",

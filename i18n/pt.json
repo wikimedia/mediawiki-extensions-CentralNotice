@@ -143,6 +143,7 @@
 	"centralnotice-percentage": "Percentagem",
 	"centralnotice-documentwrite-error": "document.write() não pode ser usado num modelo.\nPara mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Prioridade",
+	"centralnotice-archived": "Arquivada",
 	"centralnotice-logs": "Registos",
 	"centralnotice-view-logs": "Ver registos",
 	"centralnotice-timestamp": "Data e hora",
