@@ -203,7 +203,7 @@
 	"centralnotice-archive-campaign-cancel": "Nullañ",
 	"centralnotice-add-new-banner-title": "Ouzhpennañ ur giton nevez",
 	"centralnotice-delete-banner": "Dilemel",
-	"centralnotice-delete-banner-title": "Dilemel {{PLURAL:$1|ar banniel|ar bannieloù}}?",
+	"centralnotice-delete-banner-title": "Dilemel {{PLURAL:$1|ar banniel|ar bannieloù}}",
 	"centralnotice-delete-banner-cancel": "Nullañ",
 	"centralnotice-messages-pending-approval": "Yezhoù gant kemennadennoù a c'hortoz bezañ aprouet",
 	"centralnotice-devices": "Diskwel war an trobarzhelloù",
