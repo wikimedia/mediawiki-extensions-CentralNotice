@@ -295,7 +295,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
-		   $wgNoticeHideUrls;
+		   $wgNoticeHideUrls, $wgNoticeOldCookieApocalypse;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
 	// to be just right. We require them at all because MW will 302 page requests made to non localised
@@ -330,6 +330,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
+	$vars[ 'wgNoticeOldCookieApocalypse' ] = $wgNoticeOldCookieApocalypse;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
