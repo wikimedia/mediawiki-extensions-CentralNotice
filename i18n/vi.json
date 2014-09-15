@@ -8,11 +8,11 @@
 			"Trần Nguyễn Minh Huy"
 		]
 	},
-	"centralnotice": "Quản lý các thông báo chung",
-	"noticetemplate": "Quản lý các thông báo chung",
-	"bannerallocation": "Quản lý các thông báo chung",
-	"globalallocation": "Quản lý các thông báo chung",
-	"centralnoticelogs": "Quản lý các thông báo chung",
+	"centralnotice": "Quản lý các thông báo trung ương",
+	"noticetemplate": "Quản lý các thông báo trung ương",
+	"bannerallocation": "Quản lý các thông báo trung ương",
+	"globalallocation": "Quản lý các thông báo trung ương",
+	"centralnoticelogs": "Nhật trình thông báo trung ương",
 	"right-centralnotice-admin": "Quản lý thông báo chung",
 	"action-centralnotice-admin": "quản lý thông báo chung",
 	"centralnotice-desc": "Thêm thông báo ở đầu các trang tại hơn một wiki",
