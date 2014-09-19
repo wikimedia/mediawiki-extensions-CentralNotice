@@ -12,7 +12,8 @@
 			"Tarmo",
 			"Tofu II",
 			"VezonThunder",
-			"Wix"
+			"Wix",
+			"SMAUG"
 		]
 	},
 	"centralnotice": "Keskitettyjen tiedotteiden ylläpito",
@@ -66,7 +67,7 @@
 	"centralnotice-notice-doesnt-exist": "Kampanjaa ei ole olemassa.",
 	"centralnotice-remove-notice-doesnt-exist": "Kampanjaa ei ole olemassa.\nEi poistettavaa.",
 	"centralnotice-banner-doesnt-exist": "Banneria ei ole olemassa.",
-	"centralnotice-template-still-bound": "Banneri on vielä kytkettynä tiedotteeseen.\nEi poisteta.",
+	"centralnotice-template-still-bound": "Banneri \"$1\" on vielä kytkettynä tiedotteeseen.\nEi poisteta.",
 	"centralnotice-template-body": "Bannerin runko:",
 	"centralnotice-day": "Päivä",
 	"centralnotice-year": "Vuosi",
@@ -176,6 +177,9 @@
 	"centralnotice-country-o1": "Tuntematon/muu maa",
 	"centralnotice-country-unknown": "Tuntematon/ei paikannettavissa",
 	"centralnotice-devicetype-desktop": "Pöytätietokone",
+	"centralnotice-devicetype-android": "Android OS",
+	"centralnotice-devicetype-ipad": "Kaikki iPadeiksi tunnistetut laitteet, muttei iPhoneja",
+	"centralnotice-devicetype-iphone": "Kaikki iPhone-versiot",
 	"centralnotice-all": "Kaikki",
 	"centralnotice-generic-error": "Sinulla ei ole oikeuksia pyydetyn toiminnon suorittamiseen tai toiminto ei ole kelvollinen.",
 	"centralnotice-all-except": "Kaikki paitsi $1",
