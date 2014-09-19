@@ -301,10 +301,10 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	// to be just right. We require them at all because MW will 302 page requests made to non localised
 	// namespaces which results in wasteful extra calls.
 	if ( !$wgCentralBannerDispatcher ) {
-		$wgCentralBannerDispatcher = "{$wgScript}/{$wgContLang->specialPage( 'BannerRandom' )}";
+		$wgCentralBannerDispatcher = SpecialPage::getTitleFor( 'BannerRandom' )->getLocalUrl();
 	}
 	if ( !$wgCentralBannerRecorder ) {
-		$wgCentralBannerRecorder = "{$wgScript}/{$wgContLang->specialPage( 'RecordImpression' )}";
+		$wgCentralBannerRecorder = SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
 	}
 
 	// Mangle infrastructure URLs for mobile use -- this should always be last.
