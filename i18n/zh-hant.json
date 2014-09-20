@@ -109,6 +109,7 @@
 	"centralnotice-edit-template-magicwords": "由橫幅外掛提供的魔術字：$1",
 	"centralnotice-message": "訊息",
 	"centralnotice-message-not-set": "未設定訊息",
+	"centralnotice-campaigns-using-banner": "使用此橫幅的活動",
 	"centralnotice-clone": "複製",
 	"centralnotice-clone-notice": "建立橫幅的副本",
 	"centralnotice-clone-name": "名稱：",
