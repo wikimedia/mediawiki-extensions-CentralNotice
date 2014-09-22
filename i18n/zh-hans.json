@@ -25,7 +25,8 @@
 			"Yfdyh000",
 			"Zhuyifei1999",
 			"乌拉跨氪",
-			"阿pp"
+			"阿pp",
+			"Duolaimi"
 		]
 	},
 	"centralnotice": "中央通告管理",
@@ -215,7 +216,7 @@
 	"centralnotice-devicetype-android": "安卓系统",
 	"centralnotice-devicetype-ipad": "所有设备被识别为iPad但不是iPhone",
 	"centralnotice-devicetype-iphone": "所有iPhone版本",
-	"centralnotice-devicetype-unknown": "除iPhone、iPad或安卓以外移动站点的设备（[https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js 选择器逻辑]）",
+	"centralnotice-devicetype-unknown": "移动版网站上的非iPhone、iPad或Android设备（[https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js 选择器逻辑]）",
 	"centralnotice-all": "所有",
 	"centralnotice-generic-error": "您没有合法的权限来执行所请求的操作或操作本身是无效的。",
 	"centralnotice-banner-name-error": "提供的标题名称无效。有效的名称只包含字母、数字或下划线。",
