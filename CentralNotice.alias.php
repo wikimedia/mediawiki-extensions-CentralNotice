@@ -153,7 +153,7 @@ $specialPageAliases['hsb'] = array(
 	'CentralNotice' => array( 'Centralna_zdźělenka' ),
 );
 
-/** 湘语 (湘语) */
+/** Xiang Chinese (湘语) */
 $specialPageAliases['hsn'] = array(
 	'CentralNotice' => array( '中心公告' ),
 	'NoticeTemplate' => array( '公告样范' ),
