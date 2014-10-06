@@ -127,7 +127,7 @@
 	"centralnotice-banner-collapsible": "متلاشی‌پذیر",
 	"centralnotice-banner-fundraising": "این اعلانی برای جمع‌آوری کمک‌های مالی است",
 	"centralnotice-banner-display-on": "نمایش در",
-	"centralnotice-banner-autolink": "ایجاد خودکار پیوند صفحه مقصد",
+	"centralnotice-banner-autolink": "ایجاد خودکار پیوند صفحهٔ مقصد",
 	"centralnotice-banner-autolink-help": "زمانی که اطلاع‌رسانی مرکزی فعال شد به صورت خودکار پیوند محلی به  $3  ایجاد می‌کند و صفحه‌ای را به صورت تصادفی انتخاب می‌کند.باید یک برچسب لنگر به  $1 در بدنهٔ بنر  موجود باشد.",
 	"centralnotice-banner-landing-pages": "صفحه‌های فرود (با ویرگول جدا شوند):",
 	"centralnotice-banner-landing-pages-default": "مثال JimmyAppeal01",
