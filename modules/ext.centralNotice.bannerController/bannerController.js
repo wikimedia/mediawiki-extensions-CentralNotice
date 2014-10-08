@@ -273,7 +273,7 @@
 	//
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
-		var url, targets, expiry, cookieName, cookieVal, deleteOld, now;
+		var url, targets, expiry, cookieName, cookieVal, deleteOld, now, parsedCookie;
 
 		var impressionData = {
 			country: mw.centralNotice.data.country,
@@ -295,6 +295,11 @@
 				reason: 'empty'
 			};
 		} else {
+			impressionData = $.extend( impressionData, {
+					banner: bannerJson.bannerName,
+					campaign: bannerJson.campaign
+				} );
+
 			// Ok, we have a banner! Get the banner type for more queryness
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
 
@@ -314,19 +319,23 @@
 				if ( cookieVal === 'hide' && deleteOld ) {
 					// Delete old-style cookie
 					$.cookie( cookieName, null, { path: '/' } );
-				} else if (
-						cookieVal === 'hide' || (
-							cookieVal !== null &&
-							cookieVal.indexOf( '{' ) === 0 &&
-							expiry[JSON.parse( cookieVal ).reason] &&
-							now < JSON.parse( cookieVal ).created + expiry[JSON.parse( cookieVal ).reason]
-						)
-					) {
-					// The banner was hidden by a category hide cookie and we're not testing
+				} else if ( cookieVal === 'hide' ) {
+					// The banner was hidden by a legacy hide cookie.
 					impressionResultData = {
 						result: 'hide',
-						reason: 'cookie'
+						reason: 'cookie' // Or 'donate'? Legacy 'close' are gone by now
 					};
+				} else if ( cookieVal !== null && cookieVal.indexOf( '{' ) === 0 ) {
+					parsedCookie = JSON.parse( cookieVal );
+					if ( expiry[parsedCookie.reason]
+						&& now < parsedCookie.created + expiry[parsedCookie.reason]
+					) {
+						// The banner was hidden by a cookie with a reason
+						impressionResultData = {
+							result: 'hide',
+							reason: parsedCookie.reason
+						};
+					}
 				}
 			}
 			if ( !impressionResultData ) {
@@ -368,13 +377,12 @@
 				// ~~ as of 2012-11-27
 				if ( bannerShown ) {
 					impressionResultData = {
-						banner: bannerJson.bannerName,
-						campaign: bannerJson.campaign,
 						result: 'show'
 					};
 				} else {
 					impressionResultData = {
-						result: 'hide'
+						result: 'hide',
+						reason: 'alterImpressionData'
 					};
 				}
 			}
