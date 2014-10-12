@@ -406,11 +406,11 @@ $specialPageAliases['vi'] = array(
 
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
-	'CentralNotice' => array( '中央通告' ),
-	'CentralNoticeBanners' => array( '中央通告版' ),
-	'CentralNoticeLogs' => array( '中央通告日志' ),
-	'CNReporter' => array( '中央通告记录' ),
-	'NoticeTemplate' => array( '公告模板' ),
+	'CentralNotice' => array( '中心通告' ),
+	'CentralNoticeBanners' => array( '中心通告横幅' ),
+	'CentralNoticeLogs' => array( '中心通告日志' ),
+	'CNReporter' => array( '中心通告记者' ),
+	'NoticeTemplate' => array( '通告模板' ),
 	'GlobalAllocation' => array( '全域分配' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
