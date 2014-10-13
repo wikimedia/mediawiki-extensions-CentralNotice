@@ -240,7 +240,3 @@ require_once $dir . '/CentralNotice.modules.php';
 $wgMessagesDirs['CentralNotice'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['CentralNotice'] = __DIR__ . "/CentralNotice.i18n.php";
 $wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . '/CentralNotice.alias.php';
-
-// Register user rights
-$wgAvailableRights[] = 'centralnotice-admin';
-$wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops can make change

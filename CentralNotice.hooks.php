@@ -148,6 +148,10 @@ function efCentralNoticeSetup() {
 		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
 		$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
 		$wgSpecialPages[ 'CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
+
+		// Register user rights for editing
+		$wgAvailableRights[] = 'centralnotice-admin';
+		$wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops can make change
 	}
 }
 
