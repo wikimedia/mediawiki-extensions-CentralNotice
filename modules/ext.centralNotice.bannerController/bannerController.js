@@ -273,7 +273,7 @@
 	//
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
-		var url, targets, expiry, cookieVal;
+		var url, targets, durations, cookieName, cookieVal, deleteOld, now, parsedCookie;
 
 		var impressionData = {
 			country: mw.centralNotice.data.country,
@@ -285,46 +285,51 @@
 			device: mw.centralNotice.data.device
 		};
 
-		// This gets prepended to the impressionData at the end
-		var impressionResultData = null;
+		var hideBanner = false;
 
 		if ( !bannerJson ) {
 			// There was no banner returned from the server
-			impressionResultData = {
-				result: 'hide',
-				reason: 'empty'
-			};
+			hideBanner = true;
+			impressionData.reason = 'empty';
 		} else {
-			// Ok, we have a banner! Get the banner type for more queryness
+			// Ok, we have a banner!
+			impressionData.banner = bannerJson.bannerName;
+			impressionData.campaign = bannerJson.campaign;
+
+			// Get the banner type for more queryness
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
 
 			if ( typeof mw.centralNotice.bannerData.preload === 'function'
 					&& !mw.centralNotice.bannerData.preload() ) {
-				impressionResultData = {
-					result: 'hide',
-					reason: 'preload'
-				};
+				hideBanner = true;
+				impressionData.reason = 'preload';
 			} else if ( mw.centralNotice.data.testing === false ) { /* And we want to see what we're testing! :) */
-				cookieVal = $.cookie( 'centralnotice_hide_' + mw.centralNotice.data.category );
-				expiry = mw.config.get( 'wgNoticeCookieDurations' );
+				cookieName = 'centralnotice_hide_' + mw.centralNotice.data.category;
+				cookieVal = $.cookie( cookieName );
+				durations = mw.config.get( 'wgNoticeCookieDurations' );
+				now = new Date().getTime() / 1000;
+				deleteOld = ( now > mw.config.get( 'wgNoticeOldCookieApocalypse' ) );
 
-				if (
-					cookieVal === 'hide' ||
-					(
-						cookieVal !== null &&
-						cookieVal.indexOf( '{' ) === 0 &&
-						expiry[JSON.parse( cookieVal ).reason] &&
-						JSON.parse( cookieVal ).created + expiry[JSON.parse( cookieVal ).reason] > new Date().getTime() / 1000
-					)
-				) {
-					// The banner was hidden by a category hide cookie and we're not testing
-					impressionResultData = {
-						result: 'hide',
-						reason: 'cookie'
-					};
+				if ( cookieVal === 'hide' && deleteOld ) {
+					// Delete old-style cookie
+					$.cookie( cookieName, null, { path: '/' } );
+				} else if ( cookieVal === 'hide' ) {
+					// We'll hide the banner because of a legacy hide cookie.
+					hideBanner = true;
+					impressionData.reason = 'cookie';
+					// Or 'donate'? Legacy 'close' cookies are gone by now
+				} else if ( cookieVal !== null && cookieVal.indexOf( '{' ) === 0 ) {
+					parsedCookie = JSON.parse( cookieVal );
+					if ( durations[parsedCookie.reason]
+						&& now < parsedCookie.created + durations[parsedCookie.reason]
+					) {
+						// We'll hide the banner because of a cookie with a reason
+						hideBanner = true;
+						impressionData.reason = parsedCookie.reason;
+					}
 				}
 			}
-			if ( !impressionResultData ) {
+			if ( !hideBanner ) {
 				// Not hidden yet, inject the banner
 				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;
 				$( 'div#centralNotice' )
@@ -361,26 +366,19 @@
 				// the result, banner, campaign in that order. presently this is not
 				// possible without some rework of how the analytics scripts work.
 				// ~~ as of 2012-11-27
-				if ( bannerShown ) {
-					impressionResultData = {
-						banner: bannerJson.bannerName,
-						campaign: bannerJson.campaign,
-						result: 'show'
-					};
-				} else {
-					impressionResultData = {
-						result: 'hide'
-					};
+				if ( !bannerShown ) {
+					hideBanner = true;
+					impressionData.reason = 'alterImpressionData';
 				}
 			}
 		}
 
-		// Record whatever impression we made
-		impressionResultData = $.extend( impressionResultData, impressionData );
+		impressionData.result = hideBanner ? 'hide' : 'show';
+
 		if ( !mw.centralNotice.data.testing ) {
-			mw.centralNotice.recordImpression( impressionResultData );
+			mw.centralNotice.recordImpression( impressionData );
 		}
-		mw.centralNotice.deferredObjs.bannerLoaded.resolve( impressionResultData );
+		mw.centralNotice.deferredObjs.bannerLoaded.resolve( impressionData );
 	};
 
 	// Function for hiding banners when the user clicks the close button
@@ -391,13 +389,13 @@
 				created: Math.floor( d.getTime() / 1000 ),
 				reason: 'close'
 			},
-			expiry = mw.config.get( 'wgNoticeCookieDurations' ).close;
+			duration = mw.config.get( 'wgNoticeCookieDurations' ).close;
 
 		// Immediately hide the banner on the page
 		$( '#centralNotice' ).hide();
 
 		// Set a local hide cookie for this banner category
-		d.setSeconds( d.getSeconds() + expiry );
+		d.setSeconds( d.getSeconds() + duration );
 
 		$.cookie(
 			'centralnotice_hide_' + mw.centralNotice.data.category,
@@ -409,7 +407,7 @@
 		// wikis in a cluster
 		$.each( mw.config.get( 'wgNoticeHideUrls' ), function( idx, value ) {
 			(new Image()).src = value + '?' + $.param( {
-				'duration': expiry,
+				'duration': duration,
 				'category': mw.centralNotice.data.category,
 				'reason' : 'close'
 			} );

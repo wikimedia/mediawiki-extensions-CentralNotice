@@ -153,7 +153,7 @@ $specialPageAliases['hsb'] = array(
 	'CentralNotice' => array( 'Centralna_zdźělenka' ),
 );
 
-/** 湘语 (湘语) */
+/** Xiang Chinese (湘语) */
 $specialPageAliases['hsn'] = array(
 	'CentralNotice' => array( '中心公告' ),
 	'NoticeTemplate' => array( '公告样范' ),
@@ -248,6 +248,18 @@ $specialPageAliases['lb'] = array(
 	'BannerController' => array( 'Bannersteierung' ),
 	'BannerRandom' => array( 'Zoufällege_Banner' ),
 	'HideBanners' => array( 'Banner_verstoppen' ),
+);
+
+/** Malagasy (Malagasy) */
+$specialPageAliases['mg'] = array(
+	'CentralNotice' => array( 'Ivom-pampandrenesana', 'Ivompampandrenesana' ),
+	'CentralNoticeBanners' => array( 'Banieran\'ivom-pampandrenesana', 'BanieranIvompampandrenesana' ),
+	'CentralNoticeLogs' => array( 'Laogin\'Ivom-pampandrenesana', 'LaoginIvom-pampandrenesana' ),
+	'NoticeTemplate' => array( 'EndrikaFampandrenesana' ),
+	'GlobalAllocation' => array( 'FanokananaManerantsehatra' ),
+	'BannerAllocation' => array( 'FanokananaBaniera' ),
+	'BannerController' => array( 'FampifehezanaBaniera' ),
+	'HideBanners' => array( 'HanafinaBaniera' ),
 );
 
 /** Macedonian (македонски) */
@@ -394,11 +406,11 @@ $specialPageAliases['vi'] = array(
 
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
-	'CentralNotice' => array( '中央通告' ),
-	'CentralNoticeBanners' => array( '中央通告版' ),
-	'CentralNoticeLogs' => array( '中央通告日志' ),
-	'CNReporter' => array( '中央通告记录' ),
-	'NoticeTemplate' => array( '公告模板' ),
+	'CentralNotice' => array( '中心通告' ),
+	'CentralNoticeBanners' => array( '中心通告横幅' ),
+	'CentralNoticeLogs' => array( '中心通告日志' ),
+	'CNReporter' => array( '中心通告记者' ),
+	'NoticeTemplate' => array( '通告模板' ),
 	'GlobalAllocation' => array( '全域分配' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
@@ -410,16 +422,16 @@ $specialPageAliases['zh-hans'] = array(
 
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
-	'CentralNotice' => array( '中央通告' ),
-	'CentralNoticeBanners' => array( '中央通告板' ),
-	'CentralNoticeLogs' => array( '中央通告日誌' ),
-	'CNReporter' => array( '中央通告匯報' ),
-	'NoticeTemplate' => array( '通告模板' ),
+	'CentralNotice' => array( '中央公告' ),
+	'CentralNoticeBanners' => array( '中央公告橫幅' ),
+	'CentralNoticeLogs' => array( '中央公告日誌' ),
+	'CNReporter' => array( '中央公告回報者' ),
+	'NoticeTemplate' => array( '公告樣版' ),
 	'GlobalAllocation' => array( '全域分配' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
-	'BannerLoader' => array( '橫幅裝載' ),
+	'BannerLoader' => array( '橫幅讀取器' ),
 	'BannerRandom' => array( '隨機橫幅' ),
-	'RecordImpression' => array( '記錄戳記' ),
+	'RecordImpression' => array( '記錄印象' ),
 	'HideBanners' => array( '隱藏橫幅' ),
 );

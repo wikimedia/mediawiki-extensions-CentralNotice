@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chinneeb"
+			"Chinneeb",
+			"Wisdom"
 		]
 	},
 	"centralnotice-modify": "Явуулах",
-	"centralnotice-add": "Нэмэх"
+	"centralnotice-add": "Нэмэх",
+	"centralnotice-change-summary-heading": "Дүгнэлт",
+	"centralnotice-change-summary-label": "Дүгнэлт",
+	"centralnotice-delete-banner-title": "{{PLURAL:$1|Баннер|Баннер}} устгах",
+	"centralnotice-delete-banner-confirm": "Анхаар: Ингэж устгаснаар бүх мэдээ болон тохиргоог давхар устгах бөгөөд буцаах боломжгүй. Оронд нь архивлаж хийнэ үү."
 }

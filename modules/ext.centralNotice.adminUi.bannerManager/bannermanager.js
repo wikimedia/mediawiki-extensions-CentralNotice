@@ -203,8 +203,8 @@
 		 * filter (or lack thereof).
 		 */
 		applyFilter: function() {
-
 			var newUri, filterStr;
+
 			filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
 			newUri = new mw.Uri();
 
@@ -217,7 +217,7 @@
 				delete newUri.query.filter;
 			}
 
-			window.location.replace( newUri.toString() );
+			location.replace( newUri.toString() );
 		},
 
 		/**

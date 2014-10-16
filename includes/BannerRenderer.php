@@ -115,7 +115,7 @@ class BannerRenderer {
 	function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
 		$bundled = array();
-		$bundled[] = 'var retval = true;';
+		$bundled[] = 'var retval = 1;';
 
 		if ( $snippets ) {
 			foreach ( $snippets as $mixin => $code ) {
@@ -123,6 +123,7 @@ class BannerRenderer {
 					$code = JavaScriptMinifier::minify( $code );
 				}
 
+				// Uses bitwise AND to assert all snippets returned 1
 				$bundled[] = "/* {$mixin}: */ retval &= {$code}";
 			}
 		}

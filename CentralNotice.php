@@ -127,6 +127,11 @@ $wgNoticeCookieDurations = array(
 );
 
 /**
+ * @var int timestamp after which old-format 'hide' cookies are deleted
+ */
+$wgNoticeOldCookieApocalypse = strtotime( '2014-11-09' );
+
+/**
  * @var string[] $wgNoticeHideUrls Locations of Special:HideBanner targets to hit
  * when a banner close button is pressed. The hides will then be specific to each
  * domain specified by $wgNoticeCookieDomain on that wiki.
@@ -235,7 +240,3 @@ require_once $dir . '/CentralNotice.modules.php';
 $wgMessagesDirs['CentralNotice'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['CentralNotice'] = __DIR__ . "/CentralNotice.i18n.php";
 $wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . '/CentralNotice.alias.php';
-
-// Register user rights
-$wgAvailableRights[] = 'centralnotice-admin';
-$wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops can make change

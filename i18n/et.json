@@ -129,6 +129,7 @@
 	"centralnotice-percentage": "Protsent",
 	"centralnotice-documentwrite-error": "document.write()-i ei saa mallis kasutada.\nLisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Tähtsus",
+	"centralnotice-archived": "Arhiivitud",
 	"centralnotice-logs": "Logid",
 	"centralnotice-view-logs": "Logide vaatamine",
 	"centralnotice-timestamp": "Ajatempel",

@@ -267,6 +267,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testSetChange( 'projects', $row );
 		$details .= $this->testSetChange( 'languages', $row );
 		$details .= $this->testSetChange( 'countries', $row );
+		$details .= $this->testBooleanChange( 'archived', $row );
 		if ( $row->notlog_begin_banners !== $row->notlog_end_banners ) {
 			// Show changes to banner weights and assignment
 			$beginBannersObject = json_decode( $row->notlog_begin_banners, true );

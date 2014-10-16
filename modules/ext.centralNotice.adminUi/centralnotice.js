@@ -1,7 +1,8 @@
 /**
  * CentralNotice Administrative UI - Common Functions
  */
-window.mw.centralNotice.adminUi = {};
+( function ( mw ) {
+mw.centralNotice.adminUi = {};
 
 // Collapse and uncollapse detailed view for an individual log entry
 window.toggleLogDisplay = function ( logId ) {
@@ -38,7 +39,7 @@ window.toggleFilterDisplay = function () {
 // Switch among various log displays
 window.switchLogs = function ( baseUrl, logType ) {
 	encodeURIComponent( logType );
-	window.location = baseUrl + '?log=' + logType;
+	location.href = baseUrl + '?log=' + logType;
 };
 
 window.addEventListener( 'message', receiveMessage, false );
@@ -132,4 +133,19 @@ jQuery(document).ready( function ( $ ) {
             });
         }
 	} ).trigger( 'change' );
+
+	// If the Campaign pager is present, show or hide archived campaigns
+	var $showArchived = $( '#centralnotice-showarchived' );
+
+	if ( $showArchived.length > 0 ) {
+
+		$showArchived.click( function () {
+			if ( $( this ).prop( 'checked' ) ) {
+				$( '.cn-archived-item' ).show();
+			} else {
+				$( '.cn-archived-item' ).hide();
+			}
+		} );
+	}
 } );
+} )( mediaWiki );

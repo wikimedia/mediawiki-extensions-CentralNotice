@@ -74,14 +74,6 @@ class CentralNotice extends SpecialPage {
 					}
 				// Handle changing settings to existing campaigns
 				} else {
-					// Handle archiving campaigns
-					$toArchive = $request->getArray( 'archiveCampaigns' );
-					if ( $toArchive ) {
-						// Archive campaigns in list
-						foreach ( $toArchive as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
-						}
-					}
 
 					// Get all the initial campaign settings for logging
 					$allCampaignNames = Campaign::getAllCampaignNames();
@@ -89,6 +81,33 @@ class CentralNotice extends SpecialPage {
 					foreach ( $allCampaignNames as $campaignName ) {
 						$settings = Campaign::getCampaignSettings( $campaignName );
 						$allInitialCampaignSettings[ $campaignName ] = $settings;
+					}
+
+					// FIXME The following three blocks of code are similar.
+					// They might be refactored as part of a bigger refactoring
+					// of code for changing campaign settings via the list of
+					// campaigns. If not, refactor this following the current
+					// logic.
+
+					// Handle archiving/unarchiving campaigns
+					$archived = $request->getArray( 'archiveCampaigns' );
+					if ( $archived ) {
+						// Build list of campaigns to archive
+						$notArchived = array_diff( Campaign::getAllCampaignNames(), $archived );
+
+						// Set archived/not archived flag accordingly
+						foreach ( $archived as $notice ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
+						}
+						foreach ( $notArchived as $notice ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
+						}
+						// Handle updates if no post content came through (all checkboxes unchecked)
+					} else {
+						$allNotices = Campaign::getAllCampaignNames();
+						foreach ( $allNotices as $notice ) {
+							Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
+						}
 					}
 
 					// Handle locking/unlocking campaigns
@@ -183,11 +202,32 @@ class CentralNotice extends SpecialPage {
 			}
 		}
 
-		// Show list of campaigns
-		$this->listNotices();
+		$this->outputListOfNotices();
 
 		// End Campaigns tab content
 		$out->addHTML( Xml::closeElement( 'div' ) );
+	}
+
+	/**
+	 * Send the list of notices (campaigns) to output and, if appropriate,
+	 * the "Add campaign" form.
+	 */
+	protected function outputListOfNotices() {
+		// Show list of campaigns
+		$out = $this->getOutput();
+
+		$out->addHTML( Xml::element( 'h2',
+			array( 'class' => 'cn-special-section' ),
+			$this->msg( 'centralnotice-manage' )->text() ) );
+
+		$pager = new CNCampaignPager( $this, $this->editable );
+		$out->addHTML( $pager->getBody() );
+		$out->addHTML( $pager->getNavigationBar() );
+
+		// If the user has edit rights, show a form for adding a campaign
+		if ( $this->editable ) {
+			$this->addNoticeForm();
+		}
 	}
 
 	/**
@@ -275,7 +315,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @return string HTML for the select list
 	 */
-	protected function prioritySelector( $index, $editable, $priorityValue ) {
+	public function prioritySelector( $index, $editable, $priorityValue ) {
 		$priorities = array(
 			CentralNotice::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' )->escaped(),
 			CentralNotice::NORMAL_PRIORITY => wfMessage( 'centralnotice-priority-normal' )->escaped(),
@@ -328,302 +368,96 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Show all campaigns found in the database, show "Add a campaign" form
+	 * Output a form for adding a campaign.
 	 */
-	function listNotices() {
-		// Cache these commonly used properties
-		$readonly = array( 'disabled' => 'disabled' );
+	protected function addNoticeForm() {
+		$request = $this->getRequest();
+		// If there was an error, we'll need to restore the state of the form
+		if ( $request->wasPosted() && ( $request->getVal( 'method' ) == 'addCampaign' ) ) {
+			$start = $this->getDateTime( 'start' );
+			$noticeProjects = $request->getArray( 'projects', array() );
+			$noticeLanguages = $request->getArray( 'project_languages', array() );
+		} else { // Defaults
+			$start = null;
+			$noticeProjects = array();
+			$noticeLanguages = array();
+		}
 
-		//TODO: refactor to use Campaign::getCampaigns
-		// Get all campaigns from the database
-		$dbr = CNDatabase::getDb();
-		$res = $dbr->select( 'cn_notices',
-			array(
-				'not_name',
-				'not_start',
-				'not_end',
-				'not_enabled',
-				'not_preferred',
-				'not_geo',
-				'not_locked',
-				'not_archived'
-			),
-			array(),
-			__METHOD__,
-			array( 'ORDER BY' => 'not_id DESC' )
-		);
-
-		// Begin building HTML
 		$htmlOut = '';
 
-		// Begin Manage campaigns fieldset
+		// Section heading
+		$htmlOut .= Xml::element( 'h2',
+			array( 'class' => 'cn-special-section' ),
+			$this->msg( 'centralnotice-add-notice' )->text() );
+
+		// Begin Add a campaign fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
-		// If there are campaigns to show...
-		if ( $res->numRows() >= 1 ) {
-			if ( $this->editable ) {
-				$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
-				$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
-			}
-			$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-manage' )->text() );
+		// Form for adding a campaign
+		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
+		$htmlOut .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
+		$htmlOut .= Html::hidden( 'method', 'addCampaign' );
 
-			// Filters
-			$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-formsection-emphasis' ) );
-			$htmlOut .= Xml::checkLabel(
-				$this->msg( 'centralnotice-archive-show' )->text(),
-				'centralnotice-showarchived',
-				'centralnotice-showarchived',
-				false
-			);
-			$htmlOut .= Xml::closeElement( 'div' );
+		$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 
-			// Begin table of campaigns
-			$htmlOut .= Xml::openElement( 'table',
-				array(
-					'cellpadding' => 9,
-					'width'       => '100%',
-					'class'       => 'wikitable sortable'
-				)
-			);
+		// Name
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-notice-name' )->escaped() );
+		$htmlOut .= Xml::tags( 'td', array(),
+			Xml::input( 'noticeName', 25, $request->getVal( 'noticeName' ) ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		// Start Date
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-date' )->escaped() );
+		$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $start ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		// Start Time
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
+		$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		// Project
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$this->msg( 'centralnotice-projects' )->escaped() );
+		$htmlOut .= Xml::tags( 'td', array(), $this->projectMultiSelector( $noticeProjects ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		// Languages
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$this->msg( 'centralnotice-languages' )->escaped() );
+		$htmlOut .= Xml::tags( 'td', array(),
+			$this->languageMultiSelector( $noticeLanguages ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		// Countries
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', array(),
+			Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
+		$htmlOut .= Xml::tags( 'td', array(),
+			Xml::check( 'geotargeted', false, array( 'value' => 1, 'id' => 'geotargeted' ) ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Xml::openElement( 'tr',
+			array( 'id'=> 'geoMultiSelector', 'style'=> 'display:none;' ) );
+		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$this->msg( 'centralnotice-countries' )->escaped() );
+		$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector() );
+		$htmlOut .= Xml::closeElement( 'tr' );
 
-			// Table headers
-			$headers = array(
-				$this->msg( 'centralnotice-notice-name' )->escaped(),
-				$this->msg( 'centralnotice-projects' )->escaped(),
-				$this->msg( 'centralnotice-languages' )->escaped(),
-				$this->msg( 'centralnotice-countries' )->escaped(),
-				$this->msg( 'centralnotice-start-timestamp' )->escaped(),
-				$this->msg( 'centralnotice-end-timestamp' )->escaped(),
-				$this->msg( 'centralnotice-enabled' )->escaped(),
-				$this->msg( 'centralnotice-preferred' )->escaped(),
-				$this->msg( 'centralnotice-locked' )->escaped(),
-				$this->msg( 'centralnotice-archive-campaign' )->escaped()
-			);
-			$htmlOut .= $this->tableRow( $headers, 'th' );
+		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Html::hidden( 'change', 'weight' );
+		$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
 
-			// Table rows
-			foreach ( $res as $row ) {
-				$rowIsEnabled = ( $row->not_enabled == '1' );
-				$rowIsLocked = ( $row->not_locked == '1' );
-				$rowIsArchived = ( $row->not_archived == '1' );
+		// Submit button
+		$htmlOut .= Xml::tags( 'div',
+			array( 'class' => 'cn-buttons' ),
+			$this->makeSummaryField( true ) .
+			Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
+		);
 
-				$rowCells = '';
+		$htmlOut .= Xml::closeElement( 'form' );
 
-				// Name
-				$rowCells .= Html::rawElement( 'td', array(),
-					Linker::link(
-						$this->getPageTitle(),
-						htmlspecialchars( $row->not_name ),
-						array(),
-						array(
-							'method' => 'listNoticeDetail',
-							'notice' => $row->not_name
-						)
-					)
-				);
-
-				// Projects
-				$projects = Campaign::getNoticeProjects( $row->not_name );
-				$projectList = $this->listProjects( $projects );
-				$rowCells .= Html::rawElement( 'td', array(), $projectList );
-
-				// Languages
-				$project_langs = Campaign::getNoticeLanguages( $row->not_name );
-				$languageList = $this->listLanguages( $project_langs );
-				$rowCells .= Html::rawElement( 'td', array(), $languageList );
-
-				// Countries
-				if ( $row->not_geo ) {
-					$project_countries = Campaign::getNoticeCountries( $row->not_name );
-				} else {
-					$project_countries = array_keys( GeoTarget::getCountriesList( 'en' ) );
-				}
-				$countryList = $this->listCountries( $project_countries );
-				$rowCells .= Html::rawElement( 'td', array(), $countryList );
-
-				// Date and time calculations
-				$start_timestamp = wfTimestamp( TS_UNIX, $row->not_start );
-				$end_timestamp = wfTimestamp( TS_UNIX, $row->not_end );
-
-				// Start
-				$rowCells .= Html::rawElement( 'td', array( 'class' => 'cn-date-column' ),
-					date( '<\b>Y-m-d</\b> H:i', $start_timestamp )
-				);
-
-				// End
-				$rowCells .= Html::rawElement( 'td', array( 'class' => 'cn-date-column' ),
-					date( '<\b>Y-m-d</\b> H:i', $end_timestamp )
-				);
-
-				// Enabled
-				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$rowIsEnabled ),
-					Xml::check(
-						'enabled[]',
-						$rowIsEnabled,
-						array_replace(
-							( !$this->editable || $rowIsLocked || $rowIsArchived ) ? $readonly : array(),
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
-						)
-					)
-				);
-
-				// Preferred / Priority
-				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => $row->not_preferred ),
-					$this::prioritySelector(
-						$row->not_name,
-						$this->editable && !$rowIsLocked && !$rowIsArchived,
-						$row->not_preferred
-					)
-				);
-
-				// Locked
-				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$rowIsLocked ),
-					Xml::check(
-						'locked[]',
-						$rowIsLocked,
-						array_replace(
-							( !$this->editable || $rowIsArchived ) ? $readonly : array(),
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
-						)
-					)
-				);
-
-				// Archive
-				$rowCells .= Html::rawElement( 'td', array( 'data-sort-value' => (int)$rowIsArchived ),
-					Xml::check(
-						'archiveCampaigns[]',
-						$rowIsArchived,
-						array_replace(
-							( !$this->editable || $rowIsLocked || $rowIsEnabled ) ? $readonly : array(),
-							array( 'value' => $row->not_name, 'class' => 'noshiftselect mw-cn-input-check-sort' )
-						)
-					)
-				);
-
-				// If campaign is currently active, set special class on table row.
-				$classes = array();
-				if (
-					$rowIsEnabled &&
-					wfTimestamp() > wfTimestamp( TS_UNIX, $row->not_start ) &&
-					wfTimestamp() < wfTimestamp( TS_UNIX, $row->not_end )
-				) {
-					$classes[] = 'cn-active-campaign';
-				}
-				if ( $rowIsArchived ) {
-					$classes[] = 'cn-archived-item';
-				}
-
-				$htmlOut .= Html::rawElement( 'tr', array( 'class' => $classes ), $rowCells );
-			}
-			// End table of campaigns
-			$htmlOut .= Xml::closeElement( 'table' );
-
-			if ( $this->editable ) {
-				$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-buttons cn-formsection-emphasis' ) );
-
-				$htmlOut .= $this->makeSummaryField();
-
-				$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-modify' )->text(),
-					array(
-						'id'   => 'centralnoticesubmit',
-						'name' => 'centralnoticesubmit'
-					)
-				);
-				$htmlOut .= Xml::closeElement( 'div' );
-				$htmlOut .= Xml::closeElement( 'form' );
-			}
-
-		// No campaigns to show
-		} else {
-			$htmlOut .= $this->msg( 'centralnotice-no-notices-exist' )->escaped();
-		}
-
-		// End Manage Campaigns fieldset
+		// End Add a campaign fieldset
 		$htmlOut .= Xml::closeElement( 'fieldset' );
-
-		if ( $this->editable ) {
-			$request = $this->getRequest();
-			// If there was an error, we'll need to restore the state of the form
-			if ( $request->wasPosted() && ( $request->getVal( 'method' ) == 'addCampaign' ) ) {
-				$start = $this->getDateTime( 'start' );
-				$noticeProjects = $request->getArray( 'projects', array() );
-				$noticeLanguages = $request->getArray( 'project_languages', array() );
-			} else { // Defaults
-				$start = null;
-				$noticeProjects = array();
-				$noticeLanguages = array();
-			}
-
-			// Begin Add a campaign fieldset
-			$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
-
-			// Form for adding a campaign
-			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
-			$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-add-notice' )->text() );
-			$htmlOut .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-			$htmlOut .= Html::hidden( 'method', 'addCampaign' );
-
-			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
-
-			// Name
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-notice-name' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::input( 'noticeName', 25, $request->getVal( 'noticeName' ) ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
-			// Start Date
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $start ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
-			// Start Time
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
-			$htmlOut .= Xml::closeElement( 'tr' );
-			// Project
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$this->msg( 'centralnotice-projects' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->projectMultiSelector( $noticeProjects ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
-			// Languages
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$this->msg( 'centralnotice-languages' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(),
-				$this->languageMultiSelector( $noticeLanguages ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
-			// Countries
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
-			$htmlOut .= Xml::tags( 'td', array(),
-				Xml::check( 'geotargeted', false, array( 'value' => 1, 'id' => 'geotargeted' ) ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr',
-				array( 'id'=> 'geoMultiSelector', 'style'=> 'display:none;' ) );
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				$this->msg( 'centralnotice-countries' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->geoMultiSelector() );
-			$htmlOut .= Xml::closeElement( 'tr' );
-
-			$htmlOut .= Xml::closeElement( 'table' );
-			$htmlOut .= Html::hidden( 'change', 'weight' );
-			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
-
-			// Submit button
-			$htmlOut .= Xml::tags( 'div',
-				array( 'class' => 'cn-buttons' ),
-				$this->makeSummaryField( true ) .
-				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
-			);
-
-			$htmlOut .= Xml::closeElement( 'form' );
-
-			// End Add a campaign fieldset
-			$htmlOut .= Xml::closeElement( 'fieldset' );
-		}
 
 		// Output HTML
 		$this->getOutput()->addHTML( $htmlOut );
@@ -1402,7 +1236,7 @@ class CentralNotice extends SpecialPage {
 	 *   a single action (such as creating a campaign).
 	 * @return string
 	 */
-	protected function makeSummaryField( $action = false ) {
+	public function makeSummaryField( $action = false ) {
 
 		$placeholderMsg = $action ? 'centralnotice-change-summary-action-prompt'
 			: 'centralnotice-change-summary-prompt';

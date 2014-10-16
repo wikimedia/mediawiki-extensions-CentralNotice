@@ -11,7 +11,8 @@
 			"Suelnur",
 			"Szoszv",
 			"Sayginer",
-			"Sucsuzz"
+			"Sucsuzz",
+			"Violetanka"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -137,6 +138,7 @@
 	"centralnotice-percentage": "Yüzde",
 	"centralnotice-documentwrite-error": "document.write() afiş içinde kullanılamaz.\nDaha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.",
 	"centralnotice-preferred": "Öncelik",
+	"centralnotice-archived": "Arşivlenmiş",
 	"centralnotice-logs": "Kayıtlar",
 	"centralnotice-view-logs": "Günlüklerini görüntüle",
 	"centralnotice-timestamp": "Zaman damgası",

@@ -74,8 +74,9 @@
 		 * @returns {boolean}
 		 */
 		doSaveBanner: function() {
+			/*global alert */
 			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).indexOf( 'document.write' ) > -1 ) {
-				window.alert( mediaWiki.msg( 'centralnotice-documentwrite-error' ) );
+				alert( mw.msg( 'centralnotice-documentwrite-error' ) );
 			} else {
 				return true;
 			}
@@ -180,10 +181,10 @@
 			var bannerField = document.getElementById( 'mw-input-wpbanner-body' );
 			if ( buttonType === 'close' ) {
 				buttonValue = '<a href="#" title="'
-					+ mediaWiki.msg( 'centralnotice-close-title' )
+					+ mw.msg( 'centralnotice-close-title' )
 					+ '" onclick="mw.centralNotice.hideBanner();return false;">'
-					+ '<img border="0" src="' + mediaWiki.config.get( 'wgNoticeCloseButton' )
-					+ '" alt="' + mediaWiki.msg( 'centralnotice-close-title' )
+					+ '<img border="0" src="' + mw.config.get( 'wgNoticeCloseButton' )
+					+ '" alt="' + mw.msg( 'centralnotice-close-title' )
 					+ '" /></a>';
 			}
 			if ( document.selection ) {

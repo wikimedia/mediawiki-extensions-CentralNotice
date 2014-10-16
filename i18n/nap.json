@@ -2,9 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Chelin",
-			"C.R."
+			"C.R.",
+			"Candalua"
 		]
 	},
+	"centralnotice-save-banner": "Sarva",
+	"centralnotice-campaigns-using-banner": "Campagne ca stann'ausanno stu banner",
+	"centralnotice-archived": "Astipato",
 	"centralnotice-change-summary-heading": "Énnece",
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-change-summary-label": "Énnece",

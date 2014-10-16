@@ -155,6 +155,7 @@
 	"centralnotice-percentage": "Porcentaje",
 	"centralnotice-documentwrite-error": "No se puede usar document.write() dentro de un banner.\nVe http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.",
 	"centralnotice-preferred": "Prioridad",
+	"centralnotice-archived": "Archivado",
 	"centralnotice-logs": "Registros",
 	"centralnotice-view-logs": "Ver los registros",
 	"centralnotice-timestamp": "Fecha y hora",
