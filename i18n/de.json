@@ -237,5 +237,7 @@
 	"centralnotice-start-date": "Startdatum (UTC)",
 	"centralnotice-start-time": "Startzeitpunkt (UTC)",
 	"centralnotice-end-date": "Enddatum (UTC)",
-	"centralnotice-end-time": "Endzeitpunkt (UTC)"
+	"centralnotice-end-time": "Endzeitpunkt (UTC)",
+	"centralnotice-banner-not-found-title": "Vorlage nicht gefunden",
+	"centralnotice-banner-not-found-contents": "Es gibt keine Vorlage mit diesem genauen Namen."
 }
