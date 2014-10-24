@@ -235,5 +235,7 @@
 	"centralnotice-start-date": "תאריך ההתחלה (UTC)",
 	"centralnotice-start-time": "שעת ההתחלה (UTC)",
 	"centralnotice-end-date": "תאריך סיום (UTC)",
-	"centralnotice-end-time": "זמן הסיום (UTC)"
+	"centralnotice-end-time": "זמן הסיום (UTC)",
+	"centralnotice-banner-not-found-title": "הכּרזה לא נמצאה",
+	"centralnotice-banner-not-found-contents": "אין כרזה עם השם הזה."
 }

@@ -234,5 +234,7 @@
 	"centralnotice-start-date": "Datum začátku (UTC)",
 	"centralnotice-start-time": "Čas začátku (UTC)",
 	"centralnotice-end-date": "Datum konce (UTC)",
-	"centralnotice-end-time": "Čas konce (UTC)"
+	"centralnotice-end-time": "Čas konce (UTC)",
+	"centralnotice-banner-not-found-title": "Banner nenalezen",
+	"centralnotice-banner-not-found-contents": "Neexistuje banner, který by měl přesně tento název."
 }
