@@ -37,7 +37,8 @@ $wgHooks[ 'SkinTemplateNavigation::SpecialPage' ][ ] = array( 'CentralNotice::ad
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
 		   $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
-		   $wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules;
+		   $wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules,
+		   $wgAvailableRights, $wgGroupPermissions;
 
 	// If $wgCentralPagePath hasn't been set, set it to the local script path.
 	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
