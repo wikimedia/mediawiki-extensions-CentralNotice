@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"StephDC"
+			"StephDC",
+			"Jason924tw"
 		]
 	},
+	"centralnotice-language": "語",
 	"centralnotice-change-summary-heading": "概",
 	"centralnotice-change-summary-label": "概"
 }

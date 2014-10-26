@@ -230,5 +230,7 @@
 	"centralnotice-start-date": "Почетен датум (UTC)",
 	"centralnotice-start-time": "Време на почеток (UTC)",
 	"centralnotice-end-date": "Завршен датум (UTC)",
-	"centralnotice-end-time": "Време на завршување (UTC)"
+	"centralnotice-end-time": "Време на завршување (UTC)",
+	"centralnotice-banner-not-found-title": "Не го пронајдов заглавието",
+	"centralnotice-banner-not-found-contents": "Нема заглавие со точно тоа име."
 }
