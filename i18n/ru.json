@@ -90,7 +90,7 @@
 	"centralnotice-project-lang": "Язык проекта",
 	"centralnotice-select-all": "Выбрать все",
 	"centralnotice-remove-all": "Удалить все",
-	"centralnotice-items-selected": "$1 {{PLURAL:$1|элемент выбран|элементов выбрано|элемента выбрана}}",
+	"centralnotice-items-selected": "$1 {{PLURAL:$1|элемент выбран|элемента выбрана|элементов выбрано}}",
 	"centralnotice-project-name": "Название проекта",
 	"centralnotice-assigned-templates": "Установленные баннеры",
 	"centralnotice-no-templates": "Не найдено баннеров.\nДобавьте что-нибудь!",

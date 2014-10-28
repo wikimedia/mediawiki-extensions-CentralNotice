@@ -194,7 +194,7 @@
 	"centralnotice-filter-template-prompt": "Label for a banner name search string; terms are space delimited",
 	"centralnotice-filter-template-submit": "Button label: on click will apply a filter to the banners displayed.\n{{Identical|Apply filter}}",
 	"centralnotice-filter-template-banner": "Section heading label for the banner filter bar",
-	"centralnotice-priority-low": "Label for the lowest campaign priority setting. An adjective that describes the priority.",
+	"centralnotice-priority-low": "Label for the lowest campaign priority setting. An adjective that describes the priority.\n{{Identical|Low}}",
 	"centralnotice-priority-normal": "Label for a normal (medium) campaign priority setting. An adjective that describes the priority.\n{{Identical|Normal}}",
 	"centralnotice-priority-high": "Label for a high campaign priority setting. An adjective that describes the priority.\n{{Identical|High}}",
 	"centralnotice-priority-emergency": "Label for the highest campaign priority setting (to be used in emergencies). An adjective that describes the priority.",
