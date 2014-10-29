@@ -26,7 +26,10 @@
  */
 ( function ( $, mw ) {
 
-	var rPlus = /\+/g;
+	var rPlus = /\+/g,
+		bucketValidityFromServer = mw.config.get( 'wgNoticeNumberOfBuckets' )
+			+ '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
+
 	function decode( s ) {
 		try {
 			// decodeURIComponent can throw an exception for unknown char encodings.
@@ -183,20 +186,27 @@
 		getBucket: function() {
 			var dataString = $.cookie( 'centralnotice_bucket' ) || '',
 				bucket = dataString.split('-')[0],
-				validity = dataString.split('-')[1],
-				expValidity = mw.config.get( 'wgNoticeNumberOfBuckets' ) + '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
+				validity = dataString.split('-')[1];
 
-			if ( ( bucket === null ) || ( validity !== expValidity ) ) {
+			if ( ( bucket === null ) || ( validity !== bucketValidityFromServer ) ) {
 				bucket = Math.floor(
 					Math.random() * mw.config.get( 'wgNoticeNumberOfControllerBuckets' )
-				);
-				$.cookie(
-					'centralnotice_bucket', bucket + '-' + expValidity,
-					{ expires: mw.config.get( 'wgNoticeBucketExpiry' ), path: '/' }
 				);
 			}
 
 			return bucket;
+		},
+		/**
+		 * Puts the bucket in mw.centralNotice.data.bucket in a bucket cookie.
+		 * If such a cookie already exists, extends its expiry date as
+		 * indicated by wgNoticeBucketExpiry.
+		 */
+		storeBucket: function() {
+			$.cookie(
+				'centralnotice_bucket',
+				mw.centralNotice.data.bucket + '-' + bucketValidityFromServer,
+				{ expires: mw.config.get( 'wgNoticeBucketExpiry' ), path: '/' }
+			);
 		},
 		initialize: function () {
 			// === Do not allow CentralNotice to be re-initialized. ===
@@ -291,10 +301,16 @@
 			// There was no banner returned from the server
 			hideBanner = true;
 			impressionData.reason = 'empty';
+
 		} else {
 			// Ok, we have a banner!
 			impressionData.banner = bannerJson.bannerName;
 			impressionData.campaign = bannerJson.campaign;
+
+			// Store the bucket we used in a cookie. If it's already there, this
+			// should extend the bucket cookie's expiry the duration
+			// indicated by wgNoticeBucketExpiry.
+			mw.centralNotice.storeBucket();
 
 			// Get the banner type for more queryness
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
