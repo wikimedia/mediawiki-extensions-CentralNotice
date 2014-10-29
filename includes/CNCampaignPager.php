@@ -168,7 +168,7 @@ class CNCampaignPager extends TablePager {
 		switch ( $fieldName ) {
 			case 'not_name':
 				return Linker::link(
-					$this->getContext()->getTitle(),
+					SpecialPage::getTitleFor( 'CentralNotice' ),
 					htmlspecialchars( $value ),
 					array(),
 					array(
