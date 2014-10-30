@@ -3,6 +3,9 @@
 /**
  * Implementation of the query=centralnoticeallocations API call. This call returns the expected banner
  * allocation for the given project, country, and language.
+ *
+ * @todo: This needs some major cleanup to work more like the rest of the API,
+ * starting with "this is a JSON only call".
  */
 class ApiCentralNoticeAllocations extends ApiBase {
 
@@ -59,6 +62,8 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		global $wgNoticeNumberOfBuckets;
+
 		$params = array();
 
 		$params['project']  = ApiCentralNoticeAllocations::DEFAULT_PROJECT;
@@ -67,10 +72,21 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		$params['anonymous']= ApiCentralNoticeAllocations::DEFAULT_ANONYMOUS;
 		$params['device'] = ApiCentralNoticeAllocations::DEFAULT_DEVICE_NAME;
 		$params['bucket']   = ApiCentralNoticeAllocations::DEFAULT_BUCKET;
+		if ( defined( 'ApiBase::PARAM_HELP_MSG' ) ) {
+			$params['bucket'] = array(
+				ApiBase::PARAM_DFLT => ApiCentralNoticeAllocations::DEFAULT_BUCKET,
+				ApiBase::PARAM_HELP_MSG => array(
+					'apihelp-centralnoticeallocations-param-bucket', $wgNoticeNumberOfBuckets
+				),
+			);
+		}
 
 		return $params;
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		global $wgNoticeNumberOfBuckets;
 
@@ -86,21 +102,31 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		return $params;
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'Obtain the banner allocations for banners served by CentralNotice for all user types under the parametric filter. This is a JSON only call.';
-	}
-
-	public function getVersion() {
-		return 'CentralNoticeAllocations: 1.0';
 	}
 
 	/**
 	 * Example API calls.
 	 *
+	 * @deprecated since MediaWiki core 1.25
 	 * @return array|bool|string
 	 */
 	public function getExamples() {
 		return "api.php?action=centralnoticeallocations&format=json&project=wikipedia&country=US&anonymous=true&bucket=1&language=en";
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=centralnoticeallocations&project=wikipedia&country=US&anonymous=true&bucket=1&language=en'
+				=> 'apihelp-centralnoticeallocations-example-1',
+		);
 	}
 
 	/**

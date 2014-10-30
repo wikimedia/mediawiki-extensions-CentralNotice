@@ -238,5 +238,7 @@
 	"centralnotice-start-date": "Data di inizio (UTC)",
 	"centralnotice-start-time": "Ora di inizio (UTC)",
 	"centralnotice-end-date": "Data di fine (UTC)",
-	"centralnotice-end-time": "Ora fine (UTC)"
+	"centralnotice-end-time": "Ora fine (UTC)",
+	"centralnotice-banner-not-found-title": "Banner non trovato",
+	"centralnotice-banner-not-found-contents": "Non c'è alcun banner con questo nome esatto."
 }

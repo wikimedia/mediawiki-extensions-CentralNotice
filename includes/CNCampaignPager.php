@@ -71,6 +71,7 @@ class CNCampaignPager extends TablePager {
 						'not_end',
 						'not_enabled',
 						'not_preferred',
+						'not_throttle',
 						'not_geo',
 						'not_locked',
 						'not_archived'
@@ -93,6 +94,7 @@ class CNCampaignPager extends TablePager {
 					'not_end',
 					'not_enabled',
 					'not_preferred',
+					'not_throttle',
 					'not_geo',
 					'not_locked',
 					'not_archived'
@@ -117,6 +119,7 @@ class CNCampaignPager extends TablePager {
 				'not_end' => $this->msg( 'centralnotice-end-timestamp' )->text(),
 				'not_enabled' => $this->msg( 'centralnotice-enabled' )->text(),
 				'not_preferred' => $this->msg( 'centralnotice-preferred' )->text(),
+				'not_throttle' => $this->msg( 'centralnotice-throttle' )->text(),
 				'not_locked' => $this->msg( 'centralnotice-locked' )->text(),
 				'not_archived' => $this->msg( 'centralnotice-archive-campaign' )->text()
 			);
@@ -165,7 +168,7 @@ class CNCampaignPager extends TablePager {
 		switch ( $fieldName ) {
 			case 'not_name':
 				return Linker::link(
-					$this->getContext()->getTitle(),
+					SpecialPage::getTitleFor( 'CentralNotice' ),
 					htmlspecialchars( $value ),
 					array(),
 					array(
@@ -215,6 +218,13 @@ class CNCampaignPager extends TablePager {
 					$this->editable && !$rowIsLocked && !$rowIsArchived,
 					$value
 				);
+
+			case 'not_throttle':
+				if ( $value < 100) {
+					return $value . "%";
+				} else {
+					return '';
+				}
 
 			case 'not_locked':
 				return Xml::check(
@@ -291,6 +301,7 @@ class CNCampaignPager extends TablePager {
 
 			case 'not_enabled':
 			case 'not_preferred':
+			case 'not_throttle':
 			case 'not_locked':
 			case 'not_archived':
 				// These fields use the extra sort-value attribute for JS

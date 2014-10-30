@@ -12,7 +12,8 @@
 			"Shirayuki",
 			"Whym",
 			"青子守歌",
-			"Rxy"
+			"Rxy",
+			"SkyDaisy9"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -226,5 +227,7 @@
 	"centralnotice-start-date": "開始日 (UTC)",
 	"centralnotice-start-time": "開始時刻 (UTC)",
 	"centralnotice-end-date": "終了日 (UTC)",
-	"centralnotice-end-time": "終了時刻 (UTC)"
+	"centralnotice-end-time": "終了時刻 (UTC)",
+	"centralnotice-banner-not-found-title": "この項目のページが見つかりません",
+	"centralnotice-banner-not-found-contents": "この名称と一致するバナーはありません。"
 }

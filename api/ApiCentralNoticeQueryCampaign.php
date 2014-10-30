@@ -1,5 +1,6 @@
 <?php
 
+/** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeQueryCampaign extends ApiBase {
 
 	/**
@@ -45,6 +46,9 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 		return $params;
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		$params = array();
 
@@ -53,21 +57,31 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 		return $params;
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'Get all configuration settings for a campaign.';
-	}
-
-	public function getVersion() {
-		return 'CentralNoticeQueryCampaign: 1.0';
 	}
 
 	/**
 	 * Example API calls.
 	 *
+	 * @deprecated since MediaWiki core 1.25
 	 * @return array|bool|string
 	 */
 	public function getExamples() {
 		return "api.php?action=centralnoticequerycampaign&format=json&campaign=Plea_US";
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=centralnoticequerycampaign&format=json&campaign=Plea_US'
+				=> 'apihelp-centralnoticequerycampaign-example-1',
+		);
 	}
 
 	/**

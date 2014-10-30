@@ -253,5 +253,7 @@
 	"centralnotice-start-date": "开始日期 (UTC)",
 	"centralnotice-start-time": "开始时间（UTC）",
 	"centralnotice-end-date": "结束日期 (UTC)",
-	"centralnotice-end-time": "结束时间（UTC）"
+	"centralnotice-end-time": "结束时间（UTC）",
+	"centralnotice-banner-not-found-title": "找不到横幅",
+	"centralnotice-banner-not-found-contents": "没有匹配此名称的横幅。"
 }

@@ -2,6 +2,7 @@
 
 # TODO: bannerlogs
 
+/** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeLogs extends ApiQueryBase {
 
 	#XXX
@@ -52,6 +53,9 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 		);
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getParamDescription() {
 		$params = array();
 
@@ -65,21 +69,31 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 		return $params;
 	}
 
+	/**
+	 * @deprecated since MediaWiki core 1.25
+	 */
 	public function getDescription() {
 		return 'Get a log of campaign configuration changes.';
-	}
-
-	public function getVersion() {
-		return 'CentralNoticeLogs: 1.0';
 	}
 
 	/**
 	 * Example API calls.
 	 *
+	 * @deprecated since MediaWiki core 1.25
 	 * @return array|bool|string
 	 */
 	public function getExamples() {
 		return "api.php?action=query&list=centralnoticelogs&format=json";
+	}
+
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
+		return array(
+			'action=query&list=centralnoticelogs&format=json'
+				=> 'apihelp-query+centralnoticelogs-example-1',
+		);
 	}
 
 	/**
