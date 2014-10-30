@@ -21,7 +21,8 @@
 			"Verdy p",
 			"Wyz",
 			"Zebulon84",
-			"Orikrin1998"
+			"Orikrin1998",
+			"Windes"
 		]
 	},
 	"centralnotice": "Administration des avis centraux",
@@ -249,5 +250,10 @@
 	"centralnotice-start-date": "Date de début (UTC)",
 	"centralnotice-start-time": "Heure de début (UTC)",
 	"centralnotice-end-date": "Date de fin (UTC)",
-	"centralnotice-end-time": "Date de fin (UTC)"
+	"centralnotice-end-time": "Date de fin (UTC)",
+	"apihelp-centralnoticequerycampaign-param-campaign": "Nom de la campagne (optionnel). Séparez les valeurs multiples avec un \"|\" (barre verticale).",
+	"apihelp-query+centralnoticelogs-param-campaign": "Nom de la campagne (optionnel). Séparez les valeurs multiples avec un \"|\" (barre verticale).",
+	"apihelp-query+centralnoticelogs-param-user": "Nom d'utilisateur (facultatif).",
+	"apihelp-query+centralnoticelogs-param-limit": "Nombre maximum de lignes à renvoyer (optionnel).",
+	"apihelp-query+centralnoticelogs-example-1": "Afficher le journal"
 }

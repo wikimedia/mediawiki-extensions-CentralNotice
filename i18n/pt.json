@@ -235,5 +235,7 @@
 	"centralnotice-start-date": "Data de início (UTC)",
 	"centralnotice-start-time": "Hora de início (UTC)",
 	"centralnotice-end-date": "Data de fim (UTC)",
-	"centralnotice-end-time": "Hora de fim (UTC)"
+	"centralnotice-end-time": "Hora de fim (UTC)",
+	"apihelp-query+centralnoticelogs-param-limit": "Máximo de linhas a retornar (opcional).",
+	"apihelp-query+centralnoticelogs-example-1": "Mostrar registos"
 }

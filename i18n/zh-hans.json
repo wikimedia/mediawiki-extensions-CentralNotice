@@ -255,5 +255,13 @@
 	"centralnotice-end-date": "结束日期 (UTC)",
 	"centralnotice-end-time": "结束时间（UTC）",
 	"centralnotice-banner-not-found-title": "找不到横幅",
-	"centralnotice-banner-not-found-contents": "没有匹配此名称的横幅。"
+	"centralnotice-banner-not-found-contents": "没有匹配此名称的横幅。",
+	"apihelp-centralnoticeallocations-param-country": "要过滤的国家。",
+	"apihelp-centralnoticeallocations-param-language": "要过滤的语言。",
+	"apihelp-centralnoticeallocations-param-anonymous": "要过滤的登录状态（true|false）。",
+	"apihelp-centralnoticeallocations-param-device": "要过滤的设备名称。",
+	"apihelp-query+centralnoticelogs-param-user": "用户名（可选）。",
+	"apihelp-query+centralnoticelogs-param-start": "范围的开始时间（可选）。",
+	"apihelp-query+centralnoticelogs-param-end": "范围的结束时间（可选）。",
+	"apihelp-query+centralnoticelogs-example-1": "显示日志"
 }

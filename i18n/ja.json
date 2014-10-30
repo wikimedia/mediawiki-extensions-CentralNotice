@@ -229,5 +229,7 @@
 	"centralnotice-end-date": "終了日 (UTC)",
 	"centralnotice-end-time": "終了時刻 (UTC)",
 	"centralnotice-banner-not-found-title": "この項目のページが見つかりません",
-	"centralnotice-banner-not-found-contents": "この名称と一致するバナーはありません。"
+	"centralnotice-banner-not-found-contents": "この名称と一致するバナーはありません。",
+	"apihelp-centralnoticeallocations-description": "CentralNoticeが提供しているバナーの割り当てを、全ての利用者型を対象にパラメータにより抽出し取得します。\n\nこれはJSON only callです。",
+	"apihelp-centralnoticequerycampaign-example-1": " \"Plea_US\"キャンペーンを表示"
 }
