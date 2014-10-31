@@ -156,7 +156,7 @@
 	"centralnotice-documentwrite-error": "Used as error message shown by JavaScript function <code>alert()</code>.\n\n<code>document.write()</code> is JavaScript function name.",
 	"centralnotice-preferred": "A label of a list for selecting the priority of the campaign.\n\nUsed as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Priority}}",
 	"centralnotice-archived": "Label for archived field when displayed in logs\n{{Identical|Archived}}",
-	"centralnotice-logs": "Label for tab which displays a log of changes",
+	"centralnotice-logs": "Label for tab which displays a log of changes\n{{Identical|Log}}",
 	"centralnotice-view-logs": "Title of sub-page of [[meta:Special:CentralNoticeLogs|View Central Notice Logs]] special page.\n{{Identical|View log}}",
 	"centralnotice-timestamp": "Used as column header in the table.\n{{Identical|Timestamp}}",
 	"centralnotice-user": "* Used as column header in the table.\n* Used as label for the \"User\" input box.\n{{Identical|User}}",

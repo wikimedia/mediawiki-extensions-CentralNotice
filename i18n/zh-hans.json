@@ -260,6 +260,8 @@
 	"apihelp-centralnoticeallocations-param-language": "要过滤的语言。",
 	"apihelp-centralnoticeallocations-param-anonymous": "要过滤的登录状态（true|false）。",
 	"apihelp-centralnoticeallocations-param-device": "要过滤的设备名称。",
+	"apihelp-centralnoticeallocations-example-1": "显示一些分配",
+	"apihelp-centralnoticequerycampaign-example-1": "显示运动“Plea_US”",
 	"apihelp-query+centralnoticelogs-param-user": "用户名（可选）。",
 	"apihelp-query+centralnoticelogs-param-start": "范围的开始时间（可选）。",
 	"apihelp-query+centralnoticelogs-param-end": "范围的结束时间（可选）。",
