@@ -263,6 +263,7 @@
 	"apihelp-centralnoticeallocations-example-1": "显示一些分配",
 	"apihelp-centralnoticequerycampaign-example-1": "显示运动“Plea_US”",
 	"apihelp-query+centralnoticelogs-param-user": "用户名（可选）。",
+	"apihelp-query+centralnoticelogs-param-limit": "最大行数返回 （可选）。",
 	"apihelp-query+centralnoticelogs-param-start": "范围的开始时间（可选）。",
 	"apihelp-query+centralnoticelogs-param-end": "范围的结束时间（可选）。",
 	"apihelp-query+centralnoticelogs-example-1": "显示日志"
