@@ -169,5 +169,6 @@
 	"centralnotice-start-date": "دمون شرو(یو تی سی)",
 	"centralnotice-start-time": "وخت شرو(UTC)",
 	"centralnotice-end-date": "وخت تموم بیئن(یو تی سی)",
-	"centralnotice-end-time": "وخت تموم بیئن(یو تی سی)"
+	"centralnotice-end-time": "وخت تموم بیئن(یو تی سی)",
+	"apihelp-query+centralnoticelogs-example-1": "نشو دئن پهرستنومه یا"
 }
