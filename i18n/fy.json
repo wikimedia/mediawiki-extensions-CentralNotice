@@ -1,17 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kening Aldgilles"
+			"Kening Aldgilles",
+			"Robin0van0der0vliet"
 		]
 	},
 	"centralnotice-add-notice-button": "Oanmeitsje",
-	"centralnotice-add-notice-cancel-button": "Ofbrekke",
+	"centralnotice-add-notice-cancel-button": "Annulearje",
 	"centralnotice-clone-name": "Namme:",
-	"centralnotice-clone-cancel": "Ofbrekke",
+	"centralnotice-clone-cancel": "Annulearje",
 	"centralnotice-insert": "Ynfoegje: $1",
 	"centralnotice-close-title": "Slute",
-	"centralnotice-archive-banner-cancel": "Ofbrekke",
+	"centralnotice-languages": "Talen",
+	"centralnotice-language": "Taal",
+	"centralnotice-priority-normal": "normaal",
+	"centralnotice-archive-banner-cancel": "Annulearje",
 	"centralnotice-archive-campaign": "Argyf",
-	"centralnotice-archive-campaign-cancel": "Ofbrekke",
-	"centralnotice-delete-banner-cancel": "Ofbrekke"
+	"centralnotice-archive-campaign-cancel": "Annulearje",
+	"centralnotice-delete-banner-cancel": "Annulearje"
 }
