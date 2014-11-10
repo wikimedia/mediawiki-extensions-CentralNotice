@@ -123,7 +123,21 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'dependencies'  => array(
 		'jquery.cookie',
 		'json',
+		'ext.centralNotice.bannerController.lib',
+		'ext.centralNotice.bannerChoiceData'
 	),
+);
+$wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array(
+	// The following settings are brought in via this PHP class:
+	// 'position' => 'top',
+	// 'dependencies' => array( 'ext.centralNotice.bannerController.lib' )
+	'class'         => 'CNBannerChoiceDataResourceLoaderModule'
+);
+$wgResourceModules[ 'ext.centralNotice.bannerController.lib' ] = array(
+	'localBasePath' => $dir . '/modules/ext.centralNotice.bannerController',
+	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.bannerController',
+	'scripts'       => 'bannerController.lib.js',
+	'position'      => 'top'
 );
 $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 	'localBasePath' => $dir . '/modules',
