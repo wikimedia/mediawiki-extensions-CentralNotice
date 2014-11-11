@@ -85,6 +85,10 @@ $wgCentralGeoScriptURL = '//bits.wikimedia.org/geoiplookup';
 // For example 'http://meta.wikimedia.org/w/index.php'
 $wgCentralPagePath = false;
 
+// The wiki ID for direct database queries on the infrastructure wiki database.
+// Leave this set to false to use the Web API instead.
+$wgCentralNoticeInfrastructureId = false;
+
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
 // for cached content
