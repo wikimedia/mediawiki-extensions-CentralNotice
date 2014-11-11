@@ -7,7 +7,7 @@
  * @todo: This needs some major cleanup to work more like the rest of the API,
  * starting with "this is a JSON only call".
  */
-class ApiCentralNoticeAllocations extends ApiBase {
+class ApiCentralNoticeAllocations extends ApiCentralNoticeAllocationBase {
 
 	const DEFAULT_PROJECT = 'wikipedia';
 	const DEFAULT_COUNTRY = 'XX';
@@ -17,21 +17,9 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	const DEFAULT_BUCKET = null;
 
 	/**
-	 * @var string Pattern for alphanum w/ -
-	 */
-	const LANG_FILTER = '/[a-zA-Z0-9\-]+/';
-	/**
-	 * @var string Pattern for alphanum w/ _ & -
-	 */
-	const PROJECT_FILTER = '/[a-zA-Z0-9_\-]+/';
-	/**
 	 * @var string Pattern for 2 alphas
 	 */
 	const LOCATION_FILTER = '/[a-zA-Z][a-zA-Z0-9]/';
-	/**
-	 * @var string Pattern for bool
-	 */
-	const ANONYMOUS_FILTER = '/true|false/';
 	/**
 	 * @var string Pattern for a the requesting device type name, ie: desktop, iphone
 	 */
@@ -40,6 +28,12 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 * @var string Pattern for int
 	 */
 	const BUCKET_FILTER = '/[0-9]+/';
+
+	// TODO make the anon param a boolean and remove this?
+	/**
+	 * @var string Pattern for bool
+	 */
+	const ANONYMOUS_FILTER = '/true|false/';
 
 	public function execute() {
 		// Obtain the ApiResults object from the base
@@ -158,38 +152,38 @@ class ApiCentralNoticeAllocations extends ApiBase {
 	 * @return array
 	 */
 	public static function getBannerAllocation( $project, $country, $language, $anonymous, $device, $bucket = null ) {
-		$project = ApiCentralNoticeAllocations::sanitizeText(
+		$project = parent::sanitizeText(
 			$project,
-			self::PROJECT_FILTER,
+			parent::PROJECT_FILTER,
 			self::DEFAULT_PROJECT
 		);
 
-		$country = ApiCentralNoticeAllocations::sanitizeText(
+		$country = parent::sanitizeText(
 			$country,
 			self::LOCATION_FILTER,
 			self::DEFAULT_COUNTRY
 		);
 
-		$language = ApiCentralNoticeAllocations::sanitizeText(
+		$language = parent::sanitizeText(
 			$language,
-			self::LANG_FILTER,
+			parent::LANG_FILTER,
 			self::DEFAULT_LANGUAGE
 		);
 
-		$anonymous = ApiCentralNoticeAllocations::sanitizeText(
+		$anonymous = parent::sanitizeText(
 			$anonymous,
 			self::ANONYMOUS_FILTER,
 			self::DEFAULT_ANONYMOUS
 		);
 		$anonymous = ( $anonymous == 'true' );
 
-		$device = ApiCentralNoticeAllocations::sanitizeText(
+		$device = parent::sanitizeText(
 			$device,
-			static::DEVICE_NAME_FILTER,
-			static::DEFAULT_DEVICE_NAME
+			self::DEVICE_NAME_FILTER,
+			self::DEFAULT_DEVICE_NAME
 		);
 
-		$bucket = ApiCentralNoticeAllocations::sanitizeText(
+		$bucket = parent::sanitizeText(
 			$bucket,
 			self::BUCKET_FILTER,
 			self::DEFAULT_BUCKET
@@ -201,26 +195,5 @@ class ApiCentralNoticeAllocations extends ApiBase {
 		$banners = $chooser->getBanners();
 
 		return $banners;
-	}
-
-	/**
-	 * @static Obtains the parameter $param, sanitizes by returning the first match to $regex or
-	 * $default if there was no match.
-	 *
-	 * @params array    $params   Array of parameters to extract data from
-	 * @param string    $param    Name of GET/POST parameter
-	 * @param string    $regex    Sanitization regular expression
-	 * @param string    $default  Default value to return on error
-	 *
-	 * @return string The sanitized value
-	 */
-	private static function sanitizeText( $param, $regex, $default = null ) {
-		$matches = array();
-
-		if ( preg_match( $regex, $param, $matches ) ) {
-			return $matches[ 0 ];
-		} else {
-			return $default;
-		}
 	}
 }
