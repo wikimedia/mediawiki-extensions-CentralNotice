@@ -101,6 +101,7 @@
 	"centralnotice-language": "زون",
 	"centralnotice-projects": "پروجيا",
 	"centralnotice-country": "كشور",
+	"centralnotice-no-allocation": "هیچ بیرقی سیش نئ.",
 	"centralnotice-percentage": "درصد",
 	"centralnotice-archived": "مال دیاری بیه",
 	"centralnotice-logs": "نیسنن رخ ونیا",
@@ -172,5 +173,6 @@
 	"centralnotice-end-date": "وخت تموم بیئن(یو تی سی)",
 	"centralnotice-end-time": "وخت تموم بیئن(یو تی سی)",
 	"centralnotice-banner-not-found-title": "بیرق پیدا نبی",
+	"apihelp-query+centralnoticelogs-param-user": "نوم کاریاری(دل وه حایی).",
 	"apihelp-query+centralnoticelogs-example-1": "نشو دئن پهرستنومه یا"
 }
