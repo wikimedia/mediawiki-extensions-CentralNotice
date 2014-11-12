@@ -1,8 +1,5 @@
 <?php
 
-require_once 'CentralNoticeTestFixtures.php';
-require_once 'ComparisonUtil.php';
-
 /**
  * @group CentralNotice
  * @group medium

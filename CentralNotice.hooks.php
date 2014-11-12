@@ -54,8 +54,17 @@ function efCentralNoticeSetup() {
 
 	// Register files
 	$wgAutoloadClasses[ 'CentralNotice' ] = $specialDir . 'SpecialCentralNotice.php';
+	$wgAutoloadClasses[ 'CentralNoticeBannerLogPager' ] = $dir . 'CentralNoticeBannerLogPager.php';
+	$wgAutoloadClasses[ 'CentralNoticeCampaignLogPager' ] = $dir . 'CentralNoticeCampaignLogPager.php';
+	$wgAutoloadClasses[ 'CentralNoticePageLogPager' ] = $dir . 'CentralNoticePageLogPager.php';
+	$wgAutoloadClasses[ 'CentralNoticePager' ] = $dir . 'CentralNoticePager.php';
+	$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
 	$wgAutoloadClasses[ 'SpecialBannerLoader' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'SpecialBannerRandom' ] = $specialDir . 'SpecialBannerRandom.php';
+	$wgAutoloadClasses[ 'SpecialCentralNoticeBanners' ] = $specialDir . 'SpecialCentralNoticeBanners.php';
+	$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
+	$wgAutoloadClasses[ 'SpecialGlobalAllocation' ] = $specialDir . 'SpecialGlobalAllocation.php';
+	$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
 	$wgAutoloadClasses[ 'SpecialRecordImpression' ] = $specialDir . 'SpecialRecordImpression.php';
 	$wgAutoloadClasses[ 'SpecialHideBanners' ] = $specialDir . 'SpecialHideBanners.php';
 	$wgAutoloadClasses[ 'SpecialCNReporter' ] = $specialDir . 'SpecialCNReporter.php';
@@ -67,11 +76,15 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerContentException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerExistenceException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
+	$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
 	$wgAutoloadClasses[ 'BannerChoiceDataProvider' ] = $includeDir . 'BannerChoiceDataProvider.php';
 	$wgAutoloadClasses[ 'Campaign' ] = $includeDir . 'Campaign.php';
 	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
+	$wgAutoloadClasses[ 'CNBannerPager' ] = $includeDir . 'CNBannerPager.php';
+	$wgAutoloadClasses[ 'CNCampaignPager' ] = $includeDir . 'CNCampaignPager.php';
+	$wgAutoloadClasses[ 'CNDeviceTarget' ] = $includeDir . 'CNDeviceTarget.php';
 	$wgAutoloadClasses[ 'GeoTarget' ] = $includeDir . 'GeoTarget.php';
 	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
 	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
@@ -87,6 +100,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'ApiCentralNoticeBannerChoiceData' ] = $apiDir . 'ApiCentralNoticeBannerChoiceData.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
+	$wgAutoloadClasses[ 'TemplatePager' ] = $dir . 'TemplatePager.php';
 
 	$wgAutoloadClasses[ 'CNDatabase' ] = $includeDir . 'CNDatabase.php';
 	$wgAPIModules[ 'centralnoticebannerchoicedata' ] = 'ApiCentralNoticeBannerChoiceData';
@@ -126,22 +140,7 @@ function efCentralNoticeSetup() {
 
 	// If this is the wiki that hosts the management interface, load further components
 	if ( $wgNoticeInfrastructure ) {
-		$wgAutoloadClasses[ 'TemplatePager' ] = $dir . 'TemplatePager.php';
-		$wgAutoloadClasses[ 'CentralNoticePager' ] = $dir . 'CentralNoticePager.php';
-		$wgAutoloadClasses[ 'CentralNoticeCampaignLogPager' ] = $dir . 'CentralNoticeCampaignLogPager.php';
-		$wgAutoloadClasses[ 'CentralNoticeBannerLogPager' ] = $dir . 'CentralNoticeBannerLogPager.php';
-		$wgAutoloadClasses[ 'CentralNoticePageLogPager' ] = $dir . 'CentralNoticePageLogPager.php';
-		$wgAutoloadClasses[ 'SpecialNoticeTemplate' ] = $specialDir . 'SpecialNoticeTemplate.php';
-		$wgAutoloadClasses[ 'SpecialGlobalAllocation' ] = $specialDir . 'SpecialGlobalAllocation.php';
-		$wgAutoloadClasses[ 'SpecialBannerAllocation' ] = $specialDir . 'SpecialBannerAllocation.php';
-		$wgAutoloadClasses[ 'SpecialCentralNoticeLogs' ] = $specialDir . 'SpecialCentralNoticeLogs.php';
-		$wgAutoloadClasses[ 'SpecialCentralNoticeBanners' ] = $specialDir . 'SpecialCentralNoticeBanners.php';
-		$wgAutoloadClasses[ 'CNBannerPager' ] = $includeDir . 'CNBannerPager.php';
-		$wgAutoloadClasses[ 'CNDeviceTarget' ] = $includeDir . 'CNDeviceTarget.php';
-		$wgAutoloadClasses[ 'CNCampaignPager' ] = $includeDir . 'CNCampaignPager.php';
-
 		if ( $wgNoticeUseTranslateExtension ) {
-			$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
 			$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'BannerMessageGroup::registerGroupHook';
 			$wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = 'BannerMessageGroup::updateBannerGroupStateHook';
 		}
@@ -354,9 +353,15 @@ function efResourceLoaderGetConfigVars( &$vars ) {
  * @return bool
  */
 function efCentralNoticeUnitTests( &$files ) {
+	global $wgAutoloadClasses;
+
+	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
+	$wgAutoloadClasses['ComparisonUtil'] = __DIR__ . '/tests/ComparisonUtil.php';
+
 	$files[ ] = __DIR__ . '/tests/AllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
+	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
 	return true;
 }
