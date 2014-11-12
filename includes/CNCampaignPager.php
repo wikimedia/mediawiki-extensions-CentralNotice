@@ -62,10 +62,11 @@ class CNCampaignPager extends TablePager {
 			// Query for only campaigns associated with a specific banner id
 			return array(
 				'tables' => array(
-					'cn_notices', 'cn_assignments'
+					'notices' => 'cn_notices',
+					'assignments' => 'cn_assignments'
 				),
 				'fields' => array(
-						'cn_notices.not_id',
+						'notices.not_id',
 						'not_name',
 						'not_start',
 						'not_end',
@@ -77,8 +78,8 @@ class CNCampaignPager extends TablePager {
 						'not_archived'
 				),
 				'conds' => array(
-					'cn_notices.not_id = cn_assignments.not_id',
-					'cn_assignments.tmp_id = ' . (int)$this->assignedBannerId
+					'notices.not_id = assignments.not_id',
+					'assignments.tmp_id = ' . (int)$this->assignedBannerId
 				)
 			);
 
@@ -374,7 +375,7 @@ class CNCampaignPager extends TablePager {
 	 */
 	public function getDefaultSort() {
 		return $this->assignedBannerId === null ?
-			'not_id' : 'cn_notices.not_id';
+			'not_id' : 'notices.not_id';
 	}
 
 	/**
