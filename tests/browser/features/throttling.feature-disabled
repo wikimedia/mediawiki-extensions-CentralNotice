@@ -1,0 +1,16 @@
+@chrome @firefox
+Feature: Campaign throttling
+
+  Background:
+    Given the following campaigns exist:
+      | preferred | throttle | banners |
+      | normal    | 60       | one     |
+      | low       | 100      | two     |
+
+  Scenario: Throttled banner has higher priority
+    Given I roll 0.59 for banner choice
+    Then I see banner one
+
+  Scenario: Throttled banner yields some allocations
+    Given I roll 0.61 for banner choice
+    Then I see banner two
