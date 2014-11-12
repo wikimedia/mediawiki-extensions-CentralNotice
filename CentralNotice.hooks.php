@@ -369,6 +369,7 @@ function efCentralNoticeUnitTests( &$files ) {
 	$files[ ] = __DIR__ . '/tests/BannerAllocationCalculatorTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
+	$files[ ] = __DIR__ . '/tests/CNBannerChoicesResourceLoaderModuleTest.php';
 	return true;
 }
 
