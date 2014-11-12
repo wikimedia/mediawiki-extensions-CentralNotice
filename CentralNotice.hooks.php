@@ -72,6 +72,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerLoaderException' ] = $specialDir . 'SpecialBannerLoader.php';
 
 	$wgAutoloadClasses[ 'Banner' ] = $includeDir . 'Banner.php';
+	$wgAutoloadClasses[ 'BannerAllocationCalculator' ] = $includeDir . 'BannerAllocationCalculator.php';
 	$wgAutoloadClasses[ 'BannerDataException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerContentException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerExistenceException' ] = $includeDir . 'Banner.php';

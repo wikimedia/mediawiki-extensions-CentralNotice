@@ -36,7 +36,8 @@ class BannerChooser {
 			$this->banners = Banner::getCampaignBanners( $this->campaigns );
 		}
 		$this->filterBanners();
-		$this->allocate();
+		$this->banners = BannerAllocationCalculator::calculateAllocations( $this->banners );
+		$this->quantizeAllocationToSlots();
 	}
 
 	/**
@@ -138,70 +139,6 @@ class BannerChooser {
 				return ( $banner[$key] === $value );
 			}
 		);
-	}
-
-	/**
-	 * Calculate allocation proportions and store them in the banners.
-	 */
-	protected function allocate() {
-		// Normalize banners to a proportion of the total campaign weight.
-		$campaignTotalWeights = array();
-		foreach ( $this->banners as $banner ) {
-			if ( empty( $campaignTotalWeights[$banner['campaign']] ) ) {
-				$campaignTotalWeights[$banner['campaign']] = 0;
-			}
-			$campaignTotalWeights[$banner['campaign']] += $banner['weight'];
-		}
-		foreach ( $this->banners as &$banner ) {
-			// Adjust the maximum allocation for the banner according to
-			// campaign throttle settings.  The max_allocation would be
-			// this banner's allocation if only one campaign were present.
-			$banner['max_allocation'] = ( $banner['weight'] / $campaignTotalWeights[$banner['campaign']] )
-				* ( $banner['campaign_throttle'] / 100.0 );
-		}
-
-		// Collect banners by priority level, and determine total desired
-		// allocation for each level.
-		$priorityTotalAllocations = array();
-		$priorityBanners = array();
-		foreach ( $this->banners as &$banner ) {
-			$priorityBanners[$banner['campaign_z_index']][] = &$banner;
-
-			if ( empty( $priorityTotalAllocations[$banner['campaign_z_index']] ) ) {
-				$priorityTotalAllocations[$banner['campaign_z_index']] = 0;
-			}
-			$priorityTotalAllocations[$banner['campaign_z_index']] += $banner['max_allocation'];
-		}
-
-		// Distribute allocation by priority.
-		$remainingAllocation = 1.0;
-		// Order by priority, descending.
-		krsort( $priorityBanners );
-		foreach ( $priorityBanners as $z_index => $banners ) {
-			if ( $remainingAllocation <= 0.01 ) {
-				// Don't show banners at lower priority levels if we've used up
-				// the full 100% already.
-				foreach ( $banners as &$banner ) {
-					$banner[self::ALLOCATION_KEY] = 0;
-				}
-				continue;
-			}
-
-			if ( $priorityTotalAllocations[$z_index] > $remainingAllocation ) {
-				$scaling = $remainingAllocation / $priorityTotalAllocations[$z_index];
-				$remainingAllocation = 0;
-			} else {
-				$scaling = 1;
-				$remainingAllocation -= $priorityTotalAllocations[$z_index];
-			}
-			foreach ( $banners as &$banner ) {
-				$banner[self::ALLOCATION_KEY] = $banner['max_allocation'] * $scaling;
-			}
-
-		}
-
-		// To be deprecated by continuous allocation:
-		$this->quantizeAllocationToSlots();
 	}
 
 	/**
