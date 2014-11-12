@@ -76,22 +76,22 @@ class BannerChoiceDataProvider {
 		// Set up conditions
 		$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
 		$conds = array(
-			'cn_notices.not_start <= ' . $quotedNow,
-			'cn_notices.not_end >= ' . $quotedNow,
-			'cn_notices.not_enabled' => 1,
-			'cn_notices.not_archived' => 0,
-			'cn_notice_projects.np_project' => $this->project,
-			'cn_notice_languages.nl_language' => $this->language
+			'notices.not_start <= ' . $quotedNow,
+			'notices.not_end >= ' . $quotedNow,
+			'notices.not_enabled' => 1,
+			'notices.not_archived' => 0,
+			'notice_projects.np_project' => $this->project,
+			'notice_languages.nl_language' => $this->language
 		);
 
 		// Set the user status condition
 		switch ( $this->status ) {
 			case self::LOGGED_IN:
-				$conds['cn_templates.tmp_display_account'] = 1;
+				$conds['templates.tmp_display_account'] = 1;
 				break;
 
 			case self::ANONYMOUS:
-				$conds['cn_templates.tmp_display_anon'] = 1;
+				$conds['templates.tmp_display_anon'] = 1;
 				break;
 
 			default:
@@ -102,42 +102,42 @@ class BannerChoiceDataProvider {
 		// Query campaigns and banners at once
 		$dbRows = $dbr->select(
 			array(
-				'cn_notices',
-				'cn_assignments',
-				'cn_templates',
-				'cn_notice_projects',
-				'cn_notice_languages'
+				'notices' => 'cn_notices',
+				'assignments' => 'cn_assignments',
+				'templates' => 'cn_templates',
+				'notice_projects' => 'cn_notice_projects',
+				'notice_languages' => 'cn_notice_languages',
 			),
 			array(
-				'cn_notices.not_id',
-				'cn_notices.not_name',
-				'cn_notices.not_start',
-				'cn_notices.not_end',
-				'cn_notices.not_preferred',
-				'cn_notices.not_throttle',
-				'cn_notices.not_geo',
-				'cn_notices.not_buckets',
-				'cn_assignments.tmp_weight',
-				'cn_assignments.asn_bucket',
-				'cn_templates.tmp_id',
-				'cn_templates.tmp_name',
-				'cn_templates.tmp_category'
+				'notices.not_id',
+				'notices.not_name',
+				'notices.not_start',
+				'notices.not_end',
+				'notices.not_preferred',
+				'notices.not_throttle',
+				'notices.not_geo',
+				'notices.not_buckets',
+				'assignments.tmp_weight',
+				'assignments.asn_bucket',
+				'templates.tmp_id',
+				'templates.tmp_name',
+				'templates.tmp_category'
 			),
 			$conds,
 			__METHOD__,
 			array(),
 			array(
-				'cn_assignments' => array(
-						'INNER JOIN', 'cn_notices.not_id = cn_assignments.not_id'
+				'assignments' => array(
+						'INNER JOIN', 'notices.not_id = assignments.not_id'
 				),
-				'cn_templates' => array(
-						'INNER JOIN', 'cn_assignments.tmp_id = cn_templates.tmp_id'
+				'templates' => array(
+						'INNER JOIN', 'assignments.tmp_id = templates.tmp_id'
 				),
-				'cn_notice_projects' => array(
-						'INNER JOIN', 'cn_notices.not_id = cn_notice_projects.np_notice_id'
+				'notice_projects' => array(
+						'INNER JOIN', 'notices.not_id = notice_projects.np_notice_id'
 				),
-				'cn_notice_languages' => array(
-						'INNER JOIN', 'cn_notices.not_id = cn_notice_languages.nl_notice_id'
+				'notice_languages' => array(
+						'INNER JOIN', 'notices.not_id = notice_languages.nl_notice_id'
 				)
 			)
 		);
@@ -204,22 +204,22 @@ class BannerChoiceDataProvider {
 		// may have residual data in the cn_notice_countries table.
 		$dbRows = $dbr->select(
 			array(
-				'cn_notices',
-				'cn_notice_countries'
+				'notices' => 'cn_notices',
+				'notice_countries' => 'cn_notice_countries',
 			),
 			array(
-				'cn_notices.not_id',
-				'cn_notice_countries.nc_country'
+				'notices.not_id',
+				'notice_countries.nc_country'
 			),
 			array (
-				'cn_notices.not_geo' => 1,
-				'cn_notices.not_id' => array_keys( $choices )
+				'notices.not_geo' => 1,
+				'notices.not_id' => array_keys( $choices )
 			),
 			__METHOD__,
 			array(),
 			array(
-				'cn_notice_countries' => array(
-					'INNER JOIN', 'cn_notices.not_id = cn_notice_countries.nc_notice_id'
+				'notice_countries' => array(
+					'INNER JOIN', 'notices.not_id = notice_countries.nc_notice_id'
 				)
 			)
 		);
@@ -233,21 +233,21 @@ class BannerChoiceDataProvider {
 		// Fetch the devices
 		$dbRows = $dbr->select(
 			array(
-				'cn_template_devices',
-				'cn_known_devices'
+				'template_devices' => 'cn_template_devices',
+				'known_devices' => 'cn_known_devices',
 			),
 			array(
-				'cn_template_devices.tmp_id',
-				'cn_known_devices.dev_name'
+				'template_devices.tmp_id',
+				'known_devices.dev_name'
 			),
 			array(
-				'cn_template_devices.tmp_id' => $bannerIds
+				'template_devices.tmp_id' => $bannerIds
 			),
 			__METHOD__,
 			array(),
 			array(
-				'cn_known_devices' => array(
-					'INNER JOIN', 'cn_template_devices.dev_id = cn_known_devices.dev_id'
+				'known_devices' => array(
+					'INNER JOIN', 'template_devices.dev_id = known_devices.dev_id'
 				)
 			)
 		);
