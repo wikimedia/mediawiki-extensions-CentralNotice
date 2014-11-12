@@ -362,8 +362,8 @@ function efCentralNoticeUnitTests( &$files ) {
 	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
 	$wgAutoloadClasses['ComparisonUtil'] = __DIR__ . '/tests/ComparisonUtil.php';
 
-	$files[ ] = __DIR__ . '/tests/AllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
+	$files[ ] = __DIR__ . '/tests/BannerChooserTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerAllocationCalculatorTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
