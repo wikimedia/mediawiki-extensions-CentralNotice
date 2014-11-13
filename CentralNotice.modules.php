@@ -123,8 +123,6 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'dependencies'  => array(
 		'jquery.cookie',
 		'json',
-		'ext.centralNotice.bannerController.lib',
-		'ext.centralNotice.bannerChoiceData'
 	),
 );
 $wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array(
