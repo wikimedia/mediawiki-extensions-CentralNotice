@@ -77,6 +77,10 @@
 		};
 	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ || [] ) );
 
+	// FIXME Following the switch to client-side banner selection, it would
+	// make more sense for this to be defined in bannerController.lib. Before
+	// changing it and moving these methods to an inner property thereof,
+	// let's make very sure that won't cause problems, here or elsewhere.
 	mw.centralNotice = {
 		/**
 		 * Central Notice Required Data

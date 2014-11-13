@@ -80,6 +80,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
 	$wgAutoloadClasses[ 'BannerChoiceDataProvider' ] = $includeDir . 'BannerChoiceDataProvider.php';
+	$wgAutoloadClasses[ 'CNBannerChoiceDataResourceLoaderModule' ] = $includeDir . 'CNBannerChoiceDataResourceLoaderModule.php';
 	$wgAutoloadClasses[ 'Campaign' ] = $includeDir . 'Campaign.php';
 	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
 	$wgAutoloadClasses[ 'CNBannerPager' ] = $includeDir . 'CNBannerPager.php';
@@ -225,6 +226,8 @@ function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
 	global $wgNoticeProject, $wgUser, $wgMemc;
 
+	// FIXME Is this no longer used anywhere in JS following the switch to
+	// client-side banner selection? If so, remove it.
 	$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
 
 	// Output the user's registration date, total edit count, and past year's edit count.
