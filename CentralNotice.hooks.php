@@ -121,9 +121,9 @@ function efCentralNoticeSetup() {
 		$wgHooks[ 'BeforePageDisplay' ][ ] = 'efCentralNoticeLoader';
 		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
 		$wgHooks[ 'ResourceLoaderGetConfigVars' ][] = 'efResourceLoaderGetConfigVars';
+		// Register mobile modules
+		$wgHooks[ 'SkinMinervaDefaultModules' ][] = 'onSkinMinervaDefaultModules';
 	}
-	// Register mobile modules
-	$wgHooks['EnableMobileModules'][] = 'efEnableMobileModules';
 
 	// Tell the UserMerge extension where we store user ids
 	$wgHooks[ 'UserMergeAccountFields' ][] = function( &$updateFields ) {
@@ -371,19 +371,18 @@ function efCentralNoticeUnitTests( &$files ) {
 }
 
 /**
- * EnableMobileModules callback for placing the CN resourceloader
- * modules onto mobile pages.
+ * Place CentralNotice ResourceLoader modules onto mobile pages.
  *
- * @param OutputPage $out
- * @param $mode
+ * @param Skin $skin
+ * @param array $modules
  *
  * @return bool
  */
-function efEnableMobileModules( $out, $mode ) {
-	$names = array(
+function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
+	$modules[ 'centralnotice' ] = array(
 		'ext.centralNotice.bannerController.mobiledevice',
 		'ext.centralNotice.bannerController.mobile',
 	);
-	$out->addModules( $names );
+
 	return true;
 }
