@@ -21,6 +21,8 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 
 	public $campaignId;
 
+	protected $fixture;
+
 	protected function setUp() {
 		parent::setUp();
 		self::$centralNotice = new CentralNotice;
@@ -32,6 +34,9 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$geotargeted       = 1;
 		$geo_countries     = array( 'US', 'AF' );
 		$preferred         = 1;
+
+		$this->fixture = new CentralNoticeTestFixtures();
+		$this->fixture->addFixtures( array( 'campaigns' => array() ) );
 
 		$this->campaignArray = array(
 			'enabled' => '0',
@@ -84,6 +89,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
 		Banner::removeTemplate ( 'PHPUnitTestBanner', $this->userUser );
+		$this->fixture->removeFixtures();
 	}
 
 	public function testDropDownList() {

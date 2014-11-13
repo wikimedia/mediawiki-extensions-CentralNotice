@@ -3,6 +3,7 @@
 class CentralNoticeTestFixtures {
 	public $spec = array();
 	protected $user;
+	protected $fixtureDeviceId;
 
 	// Use exactly the api defaults where available
 	static public $defaultCampaign;
@@ -36,7 +37,7 @@ class CentralNoticeTestFixtures {
 	}
 
 	function addFixtures( $spec ) {
-		CNDeviceTarget::addDeviceTarget( 'desktop', '{{int:centralnotice-devicetype-desktop}}' );
+		$this->ensureDesktopDevice();
 
 		foreach ( $spec['campaigns'] as $campaignSpec ) {
 			$campaign = $campaignSpec + static::$defaultCampaign + array(
@@ -96,6 +97,46 @@ class CentralNoticeTestFixtures {
 
 				Campaign::removeCampaign( $campaign['name'], $this->user );
 			}
+		}
+
+		if ( $this->fixtureDeviceId ) {
+			$dbw = CNDatabase::getDb( DB_MASTER );
+			$dbw->delete(
+				'cn_known_devices',
+				array( 'dev_id' => $this->fixtureDeviceId ),
+				__METHOD__
+			);
+		}
+	}
+
+	protected function getDesktopDevice() {
+		$dbr = CNDatabase::getDb();
+
+		$res = $dbr->select(
+			array(
+				 'cn_known_devices'
+			),
+			array(
+				'dev_id',
+				'dev_name'
+			),
+			array(
+				'dev_name' => 'desktop',
+			)
+		);
+		$ids = array();
+		foreach ( $res as $row ) {
+			$ids[] = $row->dev_id;
+		}
+		return $ids;
+	}
+
+	protected function ensureDesktopDevice() {
+		$ids = $this->getDesktopDevice();
+		if ( !$ids ) {
+			CNDeviceTarget::addDeviceTarget( 'desktop', '{{int:centralnotice-devicetype-desktop}}' );
+			$ids = $this->getDesktopDevice();
+			$this->fixtureDeviceId = $ids[0];
 		}
 	}
 
