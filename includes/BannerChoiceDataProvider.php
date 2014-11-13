@@ -71,7 +71,7 @@ class BannerChoiceDataProvider {
 		}
 
 		// Note: CNDatabase can't guarantee that we get the slave connection
-		$dbr = wfGetDB( DB_SLAVE, $wikiId );
+		$dbr = wfGetDB( DB_SLAVE, array(), $wikiId );
 
 		// Set up conditions
 		$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
