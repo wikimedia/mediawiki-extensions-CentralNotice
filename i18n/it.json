@@ -240,5 +240,6 @@
 	"centralnotice-end-date": "Data di fine (UTC)",
 	"centralnotice-end-time": "Ora fine (UTC)",
 	"centralnotice-banner-not-found-title": "Banner non trovato",
-	"centralnotice-banner-not-found-contents": "Non c'è alcun banner con questo nome esatto."
+	"centralnotice-banner-not-found-contents": "Non c'è alcun banner con questo nome esatto.",
+	"apihelp-query+centralnoticelogs-param-user": "Nome utente (facoltativo)"
 }

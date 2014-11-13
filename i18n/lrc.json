@@ -68,6 +68,8 @@
 	"centralnotice-preview-template": "پیش سیل وادار",
 	"centralnotice-change-lang": "زون لرس نه آلشت کو",
 	"centralnotice-weights": "سنگينی",
+	"centralnotice-null-string": "نبوئه یه گل نیسسه نول اضاف بکیت. اضاف نبیه.",
+	"centralnotice-no-templates-translate": "ایچه هیچ بیرقی سی ویرایشت والرسه یا سی.... نئ.",
 	"centralnotice-number-uses": "کارورد",
 	"centralnotice-settings": "تنظيمات",
 	"centralnotice-edit-template": "ویرایشت وادار",
@@ -100,6 +102,7 @@
 	"centralnotice-language": "زون",
 	"centralnotice-projects": "پروجيا",
 	"centralnotice-country": "كشور",
+	"centralnotice-no-allocation": "هیچ بیرقی سیش نئ.",
 	"centralnotice-percentage": "درصد",
 	"centralnotice-archived": "مال دیاری بیه",
 	"centralnotice-logs": "نیسنن رخ ونیا",
@@ -169,5 +172,11 @@
 	"centralnotice-start-date": "دمون شرو(یو تی سی)",
 	"centralnotice-start-time": "وخت شرو(UTC)",
 	"centralnotice-end-date": "وخت تموم بیئن(یو تی سی)",
-	"centralnotice-end-time": "وخت تموم بیئن(یو تی سی)"
+	"centralnotice-end-time": "وخت تموم بیئن(یو تی سی)",
+	"centralnotice-banner-not-found-title": "بیرق پیدا نبی",
+	"apihelp-centralnoticeallocations-param-country": "ولات سی فیلتر بیین.",
+	"apihelp-centralnoticeallocations-param-language": "زون سی فیلتر بیین.",
+	"apihelp-centralnoticeallocations-param-device": "نوم اوزار سی فیلتر بیین.",
+	"apihelp-query+centralnoticelogs-param-user": "نوم کاریاری(دل وه حایی).",
+	"apihelp-query+centralnoticelogs-example-1": "نشو دئن پهرستنومه یا"
 }

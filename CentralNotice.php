@@ -85,6 +85,23 @@ $wgCentralGeoScriptURL = '//bits.wikimedia.org/geoiplookup';
 // For example 'http://meta.wikimedia.org/w/index.php'
 $wgCentralPagePath = false;
 
+// The wiki ID for direct database queries on the infrastructure wiki database.
+// Leave this set to false to use the Web API instead.
+$wgCentralNoticeInfrastructureId = false;
+
+// The API path on the wiki that hosts the CentralNotice infrastructure
+// For example 'http://meta.wikimedia.org/api.php'
+// This must be set if you enable the selection of banners on the client and
+// you don't have direct access to the infrastructure database (see
+// $wgCentralNoticeInfrastructureId).
+$wgCentralNoticeApiUrl = false;
+
+// How long to cache the banner choice data in memcached, in seconds
+$wgCentralNoticeBannerChoiceDataCacheExpiry = 300;
+
+// Enable the new mechanism for making the banner selection on the client
+$wgCentralNoticeChooseBannerOnClient = false;
+
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
 // for cached content

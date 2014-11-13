@@ -209,5 +209,6 @@
 	"centralnotice-start-time": "Ufankszäit (UTC)",
 	"centralnotice-end-date": "Schlussdatum (UTC)",
 	"centralnotice-end-time": "Schlusszäitpunkt (UTC)",
-	"centralnotice-banner-not-found-title": "Banner net fonnt"
+	"centralnotice-banner-not-found-title": "Banner net fonnt",
+	"apihelp-query+centralnoticelogs-param-user": "Benotzernumm (fakultativ)."
 }

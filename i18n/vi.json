@@ -5,7 +5,8 @@
 			"Minh Nguyen",
 			"Vinhtantran",
 			"පසිඳු කාවින්ද",
-			"Trần Nguyễn Minh Huy"
+			"Trần Nguyễn Minh Huy",
+			"Max20091"
 		]
 	},
 	"centralnotice": "Quản lý các thông báo trung ương",
@@ -234,5 +235,9 @@
 	"centralnotice-end-date": "Ngày kết thúc (UTC)",
 	"centralnotice-end-time": "Lúc kết thức (UTC)",
 	"centralnotice-banner-not-found-title": "Không tìm thấy biểu ngữ",
-	"centralnotice-banner-not-found-contents": "Không có biểu ngữ đúng tên này."
+	"centralnotice-banner-not-found-contents": "Không có biểu ngữ đúng tên này.",
+	"apihelp-centralnoticeallocations-param-device": "Tên thiết bị để lọc.",
+	"apihelp-centralnoticequerycampaign-example-1": "Hiển thị chiến dịch “Plea_US”",
+	"apihelp-query+centralnoticelogs-param-user": "Tên người dùng (tùy chọn).",
+	"apihelp-query+centralnoticelogs-example-1": "Xem nhật trình"
 }

@@ -5,11 +5,16 @@
  */
 class CNDatabase {
 	/**
-	 * Gets a database object. Will be the master if the user is logged in.
+	 * Gets a database object. Will be the DB_MASTER if the user has the
+	 * centralnotice-admin right. NOTE: $force is ignored for such users.
 	 *
-	 * @param int|bool    $force   If false will return a DB master/slave based on users permissions.
-	 *                             Set to DB_MASTER or DB_SLAVE to force that type.
-	 * @param string|bool $wiki    Wiki database to connect to, if false will be the Infrastructure DB
+	 * @param int|bool    $force   If false will return a DB master/slave based
+	 *                             on users permissions. Set to DB_MASTER or
+	 *                             DB_SLAVE to force that type for users that
+	 *                             don't have the centralnotice-admin right.
+	 *
+	 * @param string|bool $wiki    Wiki database to connect to, if false will be
+	 *                             the infrastructure DB.
 	 *
 	 * @return DatabaseBase
 	 */

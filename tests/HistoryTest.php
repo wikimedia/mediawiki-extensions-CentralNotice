@@ -1,7 +1,5 @@
 <?php
 
-require_once 'CentralNoticeTestFixtures.php';
-
 /**
  * @group CentralNotice
  * @group medium
