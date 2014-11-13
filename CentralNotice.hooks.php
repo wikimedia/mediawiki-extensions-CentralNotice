@@ -383,6 +383,8 @@ function efEnableMobileModules( $out, $mode ) {
 	$names = array(
 		'ext.centralNotice.bannerController.mobiledevice',
 		'ext.centralNotice.bannerController.mobile',
+		'ext.centralNotice.bannerController.lib',
+		'ext.centralNotice.bannerChoiceData',
 	);
 	$out->addModules( $names );
 	return true;
