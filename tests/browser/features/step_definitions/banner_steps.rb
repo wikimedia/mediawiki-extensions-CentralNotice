@@ -3,7 +3,7 @@ Given(/^I roll ([0-9.]+) for banner choice$/) do |pseudorandom|
 end
 
 When(/^I view an article$/) do
-  params = { article_name: "Special:Random" }
+  params = { article_name: 'Special:Random' }
   params[:query] = "random=#{@override_random}" if @override_random
 
   visit(ArticlePage, using_params: params)
