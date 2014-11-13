@@ -8,7 +8,7 @@ class CentralNoticeTestFixtures {
 	// Use exactly the api defaults where available
 	static public $defaultCampaign;
 	static public $defaultBanner;
-	
+
 	function __construct() {
 		$this->user = User::newFromName( 'UTSysop' );
 
@@ -16,11 +16,11 @@ class CentralNoticeTestFixtures {
 			'enabled' => 1,
 			// inclusive comparison is used, so this does not cause a race condition.
 			'startTs' => wfTimestamp( TS_MW ),
-			'projects' => array( ApiCentralNoticeAllocations::DEFAULT_PROJECT ),
-			'project_languages' => array( ApiCentralNoticeAllocations::DEFAULT_LANGUAGE ),
+			'projects' => array( CentralNoticeTestFixtures::getDefaultProject() ),
+			'project_languages' => array( CentralNoticeTestFixtures::getDefaultLanguage() ),
 			'preferred' => CentralNotice::NORMAL_PRIORITY,
 			'geotargetted' => 0,
-			'geo_countries' => array( ApiCentralNoticeAllocations::DEFAULT_COUNTRY ),
+			'geo_countries' => array( CentralNoticeTestFixtures::getDefaultCountry() ),
 			'throttle' => 100,
 			'banners' => array(),
 		);
@@ -34,6 +34,22 @@ class CentralNoticeTestFixtures {
 			'campaign_z_index' => 0,
 			'weight' => 25,
 		);
+	}
+
+	static function getDefaultLanguage() {
+		return ApiCentralNoticeAllocations::DEFAULT_LANGUAGE;
+	}
+
+	static function getDefaultProject() {
+		return ApiCentralNoticeAllocations::DEFAULT_PROJECT;
+	}
+
+	static function getDefaultCountry() {
+		return ApiCentralNoticeAllocations::DEFAULT_COUNTRY;
+	}
+
+	static function getDefaultDevice() {
+		return 'desktop';
 	}
 
 	function addFixtures( $spec ) {
@@ -145,10 +161,10 @@ class CentralNoticeTestFixtures {
 			CentralNoticeTestFixtures::completenessScenario(),
 			CentralNoticeTestFixtures::throttlingScenario(),
 			CentralNoticeTestFixtures::overallocationScenario(),
-			//CentralNoticeTestFixtures::blanksScenario(),
-			//CentralNoticeTestFixtures::priorityScenario(),
-			CentralNoticeTestFixtures::geoInUsaScenario(),
-			CentralNoticeTestFixtures::geoNotInUsaScenario(),
+			CentralNoticeTestFixtures::blanksScenario(),
+			CentralNoticeTestFixtures::priorityScenario(),
+			CentralNoticeTestFixtures::geoInCountryScenario(),
+			CentralNoticeTestFixtures::geoNotInCountryScenario(),
 			CentralNoticeTestFixtures::notInProjectScenario(),
 			CentralNoticeTestFixtures::notInLanguageScenario(),
 			CentralNoticeTestFixtures::notInTimeWindowScenario(),
@@ -174,6 +190,7 @@ class CentralNoticeTestFixtures {
 						'geo_countries' => array(
 							'FR',
 							'GR',
+							'XX',
 						),
 						'banners' => array(
 							array(
@@ -196,6 +213,7 @@ class CentralNoticeTestFixtures {
 					'countries' => array(
 						'FR',
 						'GR',
+						'XX',
 					),
 					'banners' => array(
 						array(
@@ -209,6 +227,10 @@ class CentralNoticeTestFixtures {
 						),
 					),
 				),
+			),
+			//alloc
+			array(
+				'b1' => '0.500',
 			),
 		);
 	}
@@ -273,6 +295,13 @@ class CentralNoticeTestFixtures {
 					),
 				),
 			),
+			//alloc
+			array(
+				'c1b1' => '0.300',
+				'c1b2' => '0.300',
+				'c2b1' => '0.200',
+				'c2b2' => '0.200',
+			),
 		);
 	}
 
@@ -319,10 +348,15 @@ class CentralNoticeTestFixtures {
 					),
 				),
 			),
+			//alloc
+			array(
+				'b1' => '0.024',
+				'b2' => '0.488',
+				'b3' => '0.488',
+			),
 		);
 	}
 
-	// FIXME: unused
 	static function blanksScenario() {
 		return array(
 			// input
@@ -331,7 +365,9 @@ class CentralNoticeTestFixtures {
 					array(
 						'throttle' => 10,
 						'banners' => array(
-							array(),
+							array(
+								'name' => 'b1',
+							),
 						),
 					),
 				),
@@ -339,13 +375,20 @@ class CentralNoticeTestFixtures {
 			// expected
 			array(
 				array(
-					'slots' => 3,
+					'banners' => array(
+						array(
+							'name' => 'b1',
+						),
+					),
 				),
-			)
+			),
+			//alloc
+			array(
+				'b1' => 0.100,
+			),
 		);
 	}
 
-	// FIXME: unused
 	static function priorityScenario() {
 		return array(
 			// input
@@ -355,14 +398,18 @@ class CentralNoticeTestFixtures {
 						'name' => 'c1',
 						'preferred' => CentralNotice::LOW_PRIORITY,
 						'banners' => array(
-							array(),
+							array(
+								'name' => 'c1b1',
+							),
 						),
 					),
 					array(
 						'name' => 'c2',
 						'preferred' => CentralNotice::NORMAL_PRIORITY,
 						'banners' => array(
-							array(),
+							array(
+								'name' => 'c2b1',
+							),
 						),
 					),
 				),
@@ -370,18 +417,21 @@ class CentralNoticeTestFixtures {
 			// expected
 			array(
 				array(
-					'campaign' => 'c1',
-					'slots' => 0,
+					'name' => 'c1',
 				),
 				array(
-					'campaign' => 'c2',
-					'slots' => 30,
+					'name' => 'c2',
 				),
+			),
+			//alloc
+			array(
+				'c1b1' => 0.000,
+				'c2b1' => 1.000,
 			),
 		);
 	}
 
-	static function geoInUsaScenario() {
+	static function geoInCountryScenario() {
 		return array(
 			// input
 			array(
@@ -390,7 +440,7 @@ class CentralNoticeTestFixtures {
 						'geotargetted' => true,
 						'geo_countries' => array(
 							'FR',
-							'US',
+							'XX',
 						),
 						'banners' => array(
 							array(
@@ -407,7 +457,7 @@ class CentralNoticeTestFixtures {
 					'geotargetted' => true,
 					'countries' => array(
 						'FR',
-						'US',
+						'XX',
 					),
 					'banners' => array(
 						array(
@@ -417,10 +467,14 @@ class CentralNoticeTestFixtures {
 					),
 				),
 			),
+			//alloc
+			array(
+				'b1' => 1.000,
+			),
 		);
 	}
 
-	static function geoNotInUsaScenario() {
+	static function geoNotInCountryScenario() {
 		return array(
 			// input
 			array(
@@ -456,6 +510,9 @@ class CentralNoticeTestFixtures {
 					),
 				),
 			),
+			//alloc
+			array(
+			),
 		);
 	}
 
@@ -476,6 +533,9 @@ class CentralNoticeTestFixtures {
 				),
 			),
 			// expected
+			array(
+			),
+			//alloc
 			array(
 			),
 		);
@@ -500,6 +560,9 @@ class CentralNoticeTestFixtures {
 			// expected
 			array(
 			),
+			//alloc
+			array(
+			),
 		);
 	}
 
@@ -520,6 +583,9 @@ class CentralNoticeTestFixtures {
 				),
 			),
 			// expected
+			array(
+			),
+			//alloc
 			array(
 			),
 		);
@@ -543,6 +609,9 @@ class CentralNoticeTestFixtures {
 				),
 			),
 			// expected
+			array(
+			),
+			//alloc
 			array(
 			),
 		);
