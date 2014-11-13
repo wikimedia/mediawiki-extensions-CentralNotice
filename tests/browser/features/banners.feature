@@ -1,4 +1,4 @@
-@chrome @firefox
+@chrome @en.wikipedia.beta.wmflabs.org @firefox
 Feature: Crude banner display
 
   Scenario: Banner one is displayed for low roll
