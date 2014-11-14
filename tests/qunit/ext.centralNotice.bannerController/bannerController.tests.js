@@ -22,13 +22,15 @@
 			// Prevent banner load during initialize().
 			mw.centralNotice.loadBanner = function () {};
 
-			$.extend( mw.centralNotice.data.getVars, {
-				// Suppress GeoIP call
-				country: 'US',
+			// Force to the first bucket.
+			mw.centralNotice.getBucket = function() { return 0; };
 
-				// Boring defaults, assumed by test fixtures
+			$.extend( mw.centralNotice.data.getVars, {
+				// Boring defaults, assumed by test fixtures.
 				// FIXME: move to tests that actually assume this.  Move the
 				// initialize() call as well.
+				// FIXME: see below
+				country: 'XX',
 				uselang: 'en',
 				project: 'wikipedia',
 				anonymous: true
@@ -37,6 +39,10 @@
 			// Remove any existing div#siteNotice, so we are not testing the skin.
 			// Do it before initialize, so nothing 
 			$( '#siteNotice' ).remove();
+
+			// Sigh.  Suppress the GeoIP call, and prevent any other side-
+			// effects, unless $.ajax is explictly mocked by a test case.
+			$.ajax = function() { return $.Deferred(); };
 
 			mw.centralNotice.initialize();
 
