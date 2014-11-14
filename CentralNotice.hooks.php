@@ -383,6 +383,8 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 	$modules[ 'centralnotice' ] = array(
 		'ext.centralNotice.bannerController.mobiledevice',
 		'ext.centralNotice.bannerController.mobile',
+		'ext.centralNotice.bannerController.lib',
+		'ext.centralNotice.bannerChoiceData',
 	);
 
 	return true;
