@@ -28,9 +28,9 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	protected function getChoices( ResourceLoaderContext $context ) {
 		global $wgNoticeProject,
 			$wgUser,
-			$wgCentralNoticeInfrastructureId,
 			$wgCentralNoticeApiUrl,
-			$wgCentralNoticeBannerChoiceDataCacheExpiry;
+			$wgCentralNoticeBannerChoiceDataCacheExpiry,
+			$wgCentralDBname;
 
 		$project = $wgNoticeProject;
 		$language = $context->getLanguage();
@@ -64,7 +64,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		// If something's amiss, we warn and return an empty array, but don't
 		// bring everything to a standstill.
 
-		if ( $wgCentralNoticeInfrastructureId ) {
+		if ( $wgCentralDBname ) {
 			 $choices = $this->getFromDb( $project, $language, $status );
 
 		} else if ( $wgCentralNoticeApiUrl ) {
@@ -95,7 +95,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 	/**
 	 * Get the banner choices data via a direct DB call using
-	 * $wgCentralNoticeInfrastructureId.
+	 * $wgCentralDBname.
 	 *
 	 * @param string $project
 	 * @param string $language
