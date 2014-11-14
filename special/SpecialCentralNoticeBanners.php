@@ -421,10 +421,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$banner = Banner::fromName( $this->bannerName );
 		if ( !$banner->exists() ) {
-			return $this->getOutput()->showErrorPage(
-				'centralnotice-banner-not-found-title',
-				'centralnotice-banner-not-found-contents'
-			);
+			throw new ErrorPageError( 'centralnotice-banner-not-found-title', 'centralnotice-banner-not-found-contents' );
 		}
 		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
 
