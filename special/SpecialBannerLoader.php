@@ -42,11 +42,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$bucket = intval( $this->getSanitized( 'bucket', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
 		$device = $this->getSanitized( 'device', ApiCentralNoticeAllocations::DEVICE_NAME_FILTER );
 
-		$this->siteName = $request->getText( 'sitename' );
-
 		$required_values = array(
-			$project, $language, $country, $anonymous, $bucket, $device,
-			$this->siteName,
+			$project, $language, $country, $anonymous, $bucket, $device
 		);
 		foreach ( $required_values as $value ) {
 			if ( is_null( $value ) ) {

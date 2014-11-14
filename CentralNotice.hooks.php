@@ -309,13 +309,17 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
-		   $wgNoticeHideUrls, $wgNoticeOldCookieApocalypse;
+		   $wgNoticeHideUrls, $wgNoticeOldCookieApocalypse,
+		   $wgCentralNoticeChooseBannerOnClient, $wgCentralSelectedBannerDispatcher;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
 	// to be just right. We require them at all because MW will 302 page requests made to non localised
 	// namespaces which results in wasteful extra calls.
 	if ( !$wgCentralBannerDispatcher ) {
 		$wgCentralBannerDispatcher = SpecialPage::getTitleFor( 'BannerRandom' )->getLocalUrl();
+	}
+	if ( !$wgCentralSelectedBannerDispatcher ) {
+		$wgCentralSelectedBannerDispatcher = SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 	}
 	if ( !$wgCentralBannerRecorder ) {
 		$wgCentralBannerRecorder = SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
@@ -345,6 +349,8 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 	$vars[ 'wgNoticeOldCookieApocalypse' ] = $wgNoticeOldCookieApocalypse;
+	$vars[ 'wgCentralNoticeChooseBannerOnClient' ] = $wgCentralNoticeChooseBannerOnClient;
+	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;

@@ -62,10 +62,8 @@ $wgNoticeInfrastructure = true;
 // The name of the database which hosts the centralized campaign data
 $wgCentralDBname = false;
 
-// URL where BannerRandom is hosted, where FALSE will default to the
-// Special:BannerRandom on the machine serving ResourceLoader requests (meta
-// in the case of WMF).  To use our reverse proxy, for example, set this
-// variable to 'http://banners.wikimedia.org/banner_load'.
+// URL where BannerRandom is hosted, where false will default to the
+// Special:BannerRandom on the machine serving ResourceLoader requests.
 $wgCentralBannerDispatcher = false;
 
 // URL which is hit after a banner is loaded, for compatibility with analytics.
@@ -97,6 +95,13 @@ $wgCentralNoticeBannerChoiceDataCacheExpiry = 300;
 
 // Enable the new mechanism for making the banner selection on the client
 $wgCentralNoticeChooseBannerOnClient = false;
+
+// URL for BannerLoader, for requests to fetch a banner that is already
+// known (using the banner URL param). If false, it will default to
+// Special:BannerLoader on the machine serving ResourceLoader requests. This
+// value is used when for fetching banners that are chosen on the client (i.e.,
+// when $wgCentralNoticeChooseBannerOnClient is set to true).
+$wgCentralSelectedBannerDispatcher = false;
 
 // Enable the loader itself
 // Allows to control the loader visibility, without destroying infrastructure
