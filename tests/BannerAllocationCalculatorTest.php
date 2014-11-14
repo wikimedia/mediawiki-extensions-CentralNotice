@@ -23,8 +23,8 @@ class BannerAllocationCalculatorTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider CentralNoticeTestFixtures::allocationsData
 	 */
-	public function testAllocations( $fixtures, $expectedChoices, $expectedAllocations ) {
-		$this->cnFixtures->addFixtures( $fixtures );
+	public function testAllocations( $data ) {
+		$this->cnFixtures->addFixtures( $data['fixture'] );
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::getDefaultProject(),
@@ -42,7 +42,7 @@ class BannerAllocationCalculatorTest extends MediaWikiTestCase {
 		$allocations = BannerAllocationCalculator::calculateAllocations( $banners );
 
 		$this->assertTrue(
-			ComparisonUtil::assertEqualAllocations( $allocations, $expectedAllocations )
+			ComparisonUtil::assertEqualAllocations( $allocations, $data['allocations'] )
 		);
 	}
 }
