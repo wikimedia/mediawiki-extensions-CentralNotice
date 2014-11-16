@@ -2,11 +2,42 @@
 	'use strict';
 
 	var realAjax = $.ajax,
+		realGetVars = mw.centralNotice.data.getVars,
 		bannerData = {
 			bannerName: 'test_banner',
 			campaign: 'test_campaign',
 			category: 'test',
 			bannerHtml: '<div id="test_banner"></div>'
+		},
+		nowSec = Date.now() / 1000,
+		equalChoicesCampaign = {
+			name: '50-50_fixture',
+			preferred: 1,
+			throttle: 100,
+			bucket_count: 1,
+			geotargeted: false,
+			start: nowSec - 1,
+			end: nowSec + 600,
+			banners: [
+				{
+					name: 'banner_A',
+					weight: 25,
+					bucket: 0,
+					category: 'fundraising',
+					devices: [ 'desktop' ],
+					display_anon: true,
+					display_account: true
+				},
+				{
+					name: 'banner_B',
+					weight: 25,
+					bucket: 0,
+					category: 'fundraising',
+					devices: [ 'desktop' ],
+					display_anon: true,
+					display_account: true
+				}
+			]
 		};
 
 	QUnit.module( 'ext.centralNotice.bannerController', QUnit.newMwEnvironment( {
@@ -25,7 +56,8 @@
 			// Force to the first bucket.
 			mw.centralNotice.getBucket = function() { return 0; };
 
-			$.extend( mw.centralNotice.data.getVars, {
+			mw.centralNotice.data.getVars = {};
+			$.extend( mw.centralNotice.data.getVars, realGetVars, {
 				// Boring defaults, assumed by test fixtures.
 				// FIXME: move to tests that actually assume this.  Move the
 				// initialize() call as well.
@@ -57,12 +89,13 @@
 			};
 
 			// Create normalized siteNotice.
-			$( "#qunit-fixture" ).append(
+			$( '#qunit-fixture' ).append(
 				'<div id=siteNotice><div id=centralNotice></div></div>'
 			);
 		},
 		teardown: function () {
 			$.ajax = realAjax;
+			mw.centralNotice.data.getVars = realGetVars;
 		}
 	} ) );
 
@@ -101,6 +134,26 @@
 		mw.centralNotice.loadBanner();
 
 		assert.ok( mw.centralNotice.data.testing );
+	} );
+
+	QUnit.test( 'random= override param', 2, function( assert ) {
+		mw.cnBannerControllerLib.setChoiceData( [ equalChoicesCampaign ] );
+
+		// Get the first banner
+		mw.centralNotice.data.getVars.random = 0.25;
+
+		$.ajax = function( params ) {
+			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner_A/ ) );
+		};
+		mw.centralNotice.loadBanner();
+
+		// Get the second banner
+		mw.centralNotice.data.getVars.random = 0.75;
+
+		$.ajax = function( params ) {
+			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner_B/ ) );
+		};
+		mw.centralNotice.loadBanner();
 	} );
 
 }( mediaWiki, jQuery ) );
