@@ -115,6 +115,7 @@
 	"centralnotice-action-created": "راست بيه",
 	"centralnotice-action-modified": "آلشت بیه",
 	"centralnotice-action-removed": "ؤرداشتن",
+	"centralnotice-changed": "آلشت دئن د<span class=\"cn-old-value\">$1</span> تا<span class=\"cn-new-value\">$2</span>",
 	"centralnotice-on": "روشنا",
 	"centralnotice-off": "كور",
 	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> اضاف بیه",
