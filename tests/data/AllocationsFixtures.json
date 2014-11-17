@@ -78,8 +78,9 @@
         "choices": [
             {
                 "name": "c1",
-                "throttle": 60,
                 "geotargetted": false,
+                "preferred": 3,
+                "throttle": 60,
                 "banners": [
                     {
                         "name": "c1b1",
@@ -95,6 +96,8 @@
             },
             {
                 "name": "c2",
+                "preferred": 1,
+                "throttle": 100,
                 "banners": [
                     {
                         "name": "c2b1",
@@ -179,6 +182,7 @@
         },
         "choices": [
             {
+                "throttle": 10,
                 "banners": [
                     { "name": "b1" }
                 ]
@@ -210,8 +214,20 @@
             ]
         },
         "choices": [
-            { "name": "c1" },
-            { "name": "c2" }
+            {
+                "name": "c1",
+                "preferred": 1,
+                "banners": [
+                    { "name": "c1b1" }
+                ]
+            },
+            {
+                "name": "c2",
+                "preferred": 2,
+                "banners": [
+                    { "name": "c2b1" }
+                ]
+            }
         ],
         "allocations": {
             "c1b1": 0.000,
