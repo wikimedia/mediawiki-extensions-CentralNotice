@@ -14,7 +14,6 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgCentralNoticeChooseBannerOnClient' => true,
-			'wgCentralNoticeBannerChoiceDataCacheExpiry' => 0,
 			'wgNoticeProject' => 'wikipedia',
 		) );
 		$this->cnFixtures = new CentralNoticeTestFixtures();
