@@ -111,7 +111,9 @@ function efCentralNoticeSetup() {
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
 	// Register hooks
-	$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
+	// TODO: replace ef- global functions with static methods in CentralNoticeHooks
+	$wgHooks['ResourceLoaderTestModules'][] = 'efCentralNoticeResourceLoaderTestModules';
+	$wgHooks['UnitTestsList'][] = 'efCentralNoticeUnitTests';
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
@@ -375,6 +377,53 @@ function efCentralNoticeUnitTests( &$files ) {
 
 /**
  * Place CentralNotice ResourceLoader modules onto mobile pages.
+ * ResourceLoaderTestModules hook handler
+ * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
+ *
+ * @param array $testModules
+ * @param ResourceLoader $resourceLoader
+ * @return bool
+ */
+function efCentralNoticeResourceLoaderTestModules( array &$testModules,
+	ResourceLoader $resourceLoader
+) {
+	global $wgResourceModules;
+
+	$testModuleBoilerplate = array(
+		'localBasePath' => __DIR__,
+		'remoteExtPath' => 'CentralNotice',
+	);
+
+	// TODO: Something similar should be provided by core.
+	// find test files for every RL module
+	$prefix = 'ext.centralNotice';
+	foreach ( $wgResourceModules as $key => $module ) {
+		if ( substr( $key, 0, strlen( $prefix ) ) === $prefix && isset( $module['scripts'] ) ) {
+			$testFiles = array();
+			foreach ( ((array) $module['scripts'] ) as $script ) {
+				$testFile = 'tests/qunit/' . $key . '/' . basename( $script );
+				$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
+				// if a test file exists for a given JS file, add it
+				if ( file_exists( __DIR__ . '/' . $testFile ) ) {
+					$testFiles[] = $testFile;
+				}
+			}
+			// if test files exist for given module, create a corresponding test module
+			if ( count( $testFiles ) > 0 ) {
+				$testModules['qunit']["$key.tests"] = $testModuleBoilerplate + array(
+					'dependencies' => array( $key ),
+					'scripts' => $testFiles,
+				);
+			}
+		}
+	}
+
+	return true;
+}
+
+/**
+ * EnableMobileModules callback for placing the CN resourceloader
+ * modules onto mobile pages.
  *
  * @param Skin $skin
  * @param array $modules
