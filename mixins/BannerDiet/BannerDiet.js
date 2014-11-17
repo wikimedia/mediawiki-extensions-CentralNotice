@@ -1,4 +1,4 @@
-(function () {
+( function( $ ) {
 	// Returns into a bit field (See BannerRenderer.php).
 
 	if ( location.search.match( /\breset=1/ ) ) {
@@ -13,4 +13,4 @@
 	} else {
 		return 0;
 	}
-})();
+} )( jQuery );

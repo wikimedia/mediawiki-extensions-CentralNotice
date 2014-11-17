@@ -111,7 +111,9 @@ function efCentralNoticeSetup() {
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
 	// Register hooks
-	$wgHooks[ 'UnitTestsList' ][ ] = 'efCentralNoticeUnitTests';
+	// TODO: replace ef- global functions with static methods in CentralNoticeHooks
+	$wgHooks['ResourceLoaderTestModules'][] = 'efCentralNoticeResourceLoaderTestModules';
+	$wgHooks['UnitTestsList'][] = 'efCentralNoticeUnitTests';
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
@@ -121,9 +123,9 @@ function efCentralNoticeSetup() {
 		$wgHooks[ 'BeforePageDisplay' ][ ] = 'efCentralNoticeLoader';
 		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
 		$wgHooks[ 'ResourceLoaderGetConfigVars' ][] = 'efResourceLoaderGetConfigVars';
+		// Register mobile modules
+		$wgHooks[ 'SkinMinervaDefaultModules' ][] = 'onSkinMinervaDefaultModules';
 	}
-	// Register mobile modules
-	$wgHooks['EnableMobileModules'][] = 'efEnableMobileModules';
 
 	// Tell the UserMerge extension where we store user ids
 	$wgHooks[ 'UserMergeAccountFields' ][] = function( &$updateFields ) {
@@ -307,13 +309,17 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
-		   $wgNoticeHideUrls, $wgNoticeOldCookieApocalypse;
+		   $wgNoticeHideUrls, $wgNoticeOldCookieApocalypse,
+		   $wgCentralNoticeChooseBannerOnClient, $wgCentralSelectedBannerDispatcher;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
 	// to be just right. We require them at all because MW will 302 page requests made to non localised
 	// namespaces which results in wasteful extra calls.
 	if ( !$wgCentralBannerDispatcher ) {
 		$wgCentralBannerDispatcher = SpecialPage::getTitleFor( 'BannerRandom' )->getLocalUrl();
+	}
+	if ( !$wgCentralSelectedBannerDispatcher ) {
+		$wgCentralSelectedBannerDispatcher = SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 	}
 	if ( !$wgCentralBannerRecorder ) {
 		$wgCentralBannerRecorder = SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
@@ -343,6 +349,8 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 	$vars[ 'wgNoticeOldCookieApocalypse' ] = $wgNoticeOldCookieApocalypse;
+	$vars[ 'wgCentralNoticeChooseBannerOnClient' ] = $wgCentralNoticeChooseBannerOnClient;
+	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
@@ -362,11 +370,60 @@ function efCentralNoticeUnitTests( &$files ) {
 	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
 	$wgAutoloadClasses['ComparisonUtil'] = __DIR__ . '/tests/ComparisonUtil.php';
 
-	$files[ ] = __DIR__ . '/tests/AllocationsTest.php';
 	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
+	$files[ ] = __DIR__ . '/tests/BannerChooserTest.php';
+	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeBannerChoiceDataTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
+	$files[ ] = __DIR__ . '/tests/BannerAllocationCalculatorTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
+	$files[ ] = __DIR__ . '/tests/CNBannerChoicesResourceLoaderModuleTest.php';
+	return true;
+}
+
+/**
+ * Place CentralNotice ResourceLoader modules onto mobile pages.
+ * ResourceLoaderTestModules hook handler
+ * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
+ *
+ * @param array $testModules
+ * @param ResourceLoader $resourceLoader
+ * @return bool
+ */
+function efCentralNoticeResourceLoaderTestModules( array &$testModules,
+	ResourceLoader $resourceLoader
+) {
+	global $wgResourceModules;
+
+	$testModuleBoilerplate = array(
+		'localBasePath' => __DIR__,
+		'remoteExtPath' => 'CentralNotice',
+	);
+
+	// TODO: Something similar should be provided by core.
+	// find test files for every RL module
+	$prefix = 'ext.centralNotice';
+	foreach ( $wgResourceModules as $key => $module ) {
+		if ( substr( $key, 0, strlen( $prefix ) ) === $prefix && isset( $module['scripts'] ) ) {
+			$testFiles = array();
+			foreach ( ((array) $module['scripts'] ) as $script ) {
+				$testFile = 'tests/qunit/' . $key . '/' . basename( $script );
+				$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
+				// if a test file exists for a given JS file, add it
+				if ( file_exists( __DIR__ . '/' . $testFile ) ) {
+					$testFiles[] = $testFile;
+				}
+			}
+			// if test files exist for given module, create a corresponding test module
+			if ( count( $testFiles ) > 0 ) {
+				$testModules['qunit']["$key.tests"] = $testModuleBoilerplate + array(
+					'dependencies' => array( $key ),
+					'scripts' => $testFiles,
+				);
+			}
+		}
+	}
+
 	return true;
 }
 
@@ -374,16 +431,18 @@ function efCentralNoticeUnitTests( &$files ) {
  * EnableMobileModules callback for placing the CN resourceloader
  * modules onto mobile pages.
  *
- * @param OutputPage $out
- * @param $mode
+ * @param Skin $skin
+ * @param array $modules
  *
  * @return bool
  */
-function efEnableMobileModules( $out, $mode ) {
-	$names = array(
+function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
+	$modules[ 'centralnotice' ] = array(
 		'ext.centralNotice.bannerController.mobiledevice',
 		'ext.centralNotice.bannerController.mobile',
+		'ext.centralNotice.bannerController.lib',
+		'ext.centralNotice.bannerChoiceData',
 	);
-	$out->addModules( $names );
+
 	return true;
 }

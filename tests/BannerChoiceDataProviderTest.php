@@ -23,8 +23,8 @@ class BannerChoiceDataProviderTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider CentralNoticeTestFixtures::allocationsData
 	 */
-	public function testProviderResponse( $fixtures, $expected ) {
-		$this->cnFixtures->addFixtures( $fixtures );
+	public function testProviderResponse( $data ) {
+		$this->cnFixtures->addFixtures( $data['fixture'] );
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::$defaultCampaign['projects'][0],
@@ -32,9 +32,9 @@ class BannerChoiceDataProviderTest extends MediaWikiTestCase {
 			BannerChoiceDataProvider::ANONYMOUS
 		);
 		$choices = $allocationsProvider->getChoices();
-		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $expected ) );
+		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $data['choices'] ) );
 
-		if ( empty( $expected ) ) {
+		if ( empty( $data['choices'] ) ) {
 			$this->assertEmpty( $choices );
 		}
 	}

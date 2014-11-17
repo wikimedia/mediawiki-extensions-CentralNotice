@@ -1,0 +1,399 @@
+[
+    [ {
+        "title": "completeness",
+        "fixture": {
+            "campaigns": [
+                {
+                    "category": "fundraising",
+                    "preferred": 1,
+                    "throttle": 50,
+                    "geotargetted": true,
+                    "geo_countries": [
+                        "FR",
+                        "GR",
+                        "XX"
+                    ],
+                    "banners": [
+                        {
+                            "name": "b1",
+                            "weight": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+            {
+                "preferred": 1,
+                "throttle": 50,
+                "bucket_count": 1,
+                "geotargetted": true,
+                "countries": [
+                    "FR",
+                    "GR",
+                    "XX"
+                ],
+                "banners": [
+                    {
+                        "name": "b1",
+                        "weight": 5,
+                        "bucket": 0,
+                        "category": "fundraising",
+                        "devices": [
+                            "desktop"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "allocations": {
+            "b1": "0.500"
+        }
+    } ],
+
+    [ {
+        "title": "throttling",
+        "fixture": {
+            "campaigns": [
+                {
+                    "name": "c1",
+                    "preferred": 3,
+                    "throttle": 60,
+                    "banners": [
+                        { "name": "c1b1" },
+                        { "name": "c1b2" }
+                    ]
+                },
+                {
+                    "name": "c2",
+                    "preferred": 1,
+                    "throttle": 100,
+                    "banners": [
+                        { "name": "c2b1" },
+                        { "name": "c2b2" }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+            {
+                "name": "c1",
+                "geotargetted": false,
+                "preferred": 3,
+                "throttle": 60,
+                "banners": [
+                    {
+                        "name": "c1b1",
+                        "weight": 25,
+                        "category": "fundraising"
+                    },
+                    {
+                        "name": "c1b2",
+                        "weight": 25,
+                        "category": "fundraising"
+                    }
+                ]
+            },
+            {
+                "name": "c2",
+                "preferred": 1,
+                "throttle": 100,
+                "banners": [
+                    {
+                        "name": "c2b1",
+                        "weight": 25,
+                        "category": "fundraising"
+                    },
+                    {
+                        "name": "c2b2",
+                        "weight": 25,
+                        "category": "fundraising"
+                    }
+                ]
+            }
+        ],
+        "allocations": {
+            "c1b1": "0.300",
+            "c1b2": "0.300",
+            "c2b1": "0.200",
+            "c2b2": "0.200"
+        }
+    } ],
+
+    [ {
+        "title": "overallocation",
+        "fixture": {
+            "campaigns": [
+                {
+                    "banners": [
+                        {
+                            "name": "b1",
+                            "weight": 5
+                        },
+                        {
+                            "name": "b2",
+                            "weight": 100
+                        },
+                        {
+                            "name": "b3",
+                            "weight": 100
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+            {
+                "throttle": 100,
+                "banners": [
+                    {
+                        "name": "b1",
+                        "weight": 5
+                    },
+                    {
+                        "name": "b2",
+                        "weight": 100
+                    },
+                    {
+                        "name": "b3",
+                        "weight": 100
+                    }
+                ]
+            }
+        ],
+        "allocations": {
+            "b1": "0.024",
+            "b2": "0.488",
+            "b3": "0.488"
+        }
+    } ],
+
+    [ {
+        "title": "blanks",
+        "fixture": {
+            "campaigns": [
+                {
+                    "throttle": 10,
+                    "banners": [
+                        { "name": "b1" }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+            {
+                "throttle": 10,
+                "banners": [
+                    { "name": "b1" }
+                ]
+            }
+        ],
+        "allocations": {
+            "b1": 0.100
+        }
+    } ],
+
+    [ {
+        "title": "priority",
+        "fixture": {
+            "campaigns": [
+                {
+                    "name": "c1",
+                    "preferred": 1,
+                    "banners": [
+                        { "name": "c1b1" }
+                    ]
+                },
+                {
+                    "name": "c2",
+                    "preferred": 2,
+                    "banners": [
+                        { "name": "c2b1" }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+            {
+                "name": "c1",
+                "preferred": 1,
+                "banners": [
+                    { "name": "c1b1" }
+                ]
+            },
+            {
+                "name": "c2",
+                "preferred": 2,
+                "banners": [
+                    { "name": "c2b1" }
+                ]
+            }
+        ],
+        "allocations": {
+            "c1b1": 0.000,
+            "c2b1": 1.000
+        }
+    } ],
+
+    [ {
+        "title": "geoInCountry",
+        "fixture": {
+            "campaigns": [
+                {
+                    "geotargetted": true,
+                    "geo_countries": [
+                        "FR",
+                        "XX"
+                    ],
+                    "banners": [
+                        {
+                            "name": "b1",
+                            "weight": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+            {
+                "geotargetted": true,
+                "countries": [
+                    "FR",
+                    "XX"
+                ],
+                "banners": [
+                    {
+                        "name": "b1",
+                        "weight": 5
+                    }
+                ]
+            }
+        ],
+        "allocations": {
+            "b1": 1.000
+        }
+    } ],
+
+    [ {
+        "title": "geoNotInCountry",
+        "fixture": {
+            "campaigns": [
+                {
+                    "geotargetted": true,
+                    "geo_countries": [
+                        "FR",
+                        "GR"
+                    ],
+                    "banners": [
+                        {
+                            "name": "b1",
+                            "weight": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+            {
+                "geotargetted": true,
+                "countries": [
+                    "FR",
+                    "GR"
+                ],
+                "banners": [
+                    {
+                        "name": "b1",
+                        "weight": 5
+                    }
+                ]
+            }
+        ],
+        "allocations": {
+        }
+    } ],
+
+    [ {
+        "title": "notInProject",
+        "fixture": {
+            "campaigns": [
+                {
+                    "projects": [ "wikisource" ],
+                    "banners": [
+                        {
+                            "name": "b1",
+                            "weight": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+        ],
+        "allocations": {
+        }
+    } ],
+
+    [ {
+        "title": "notInLanguage",
+        "fixture": {
+            "campaigns": [
+                {
+                    "project_languages": [ "zh" ],
+                    "banners": [
+                        {
+                            "name": "b1",
+                            "weight": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+        ],
+        "allocations": {
+        }
+    } ],
+
+    [ {
+        "title": "notInTimeWindow",
+        "fixture": {
+            "campaigns": [
+                {
+                    "startTs": "20010101123456",
+                    "banners": [
+                        {
+                            "name": "b1",
+                            "weight": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+        ],
+        "allocations": {
+        }
+    } ],
+
+    [ {
+        "title": "notAnonymous",
+        "fixture": {
+            "campaigns": [
+                {
+                    "banners": [
+                        {
+                            "displayAnon": false,
+                            "displayAccount": true,
+                            "name": "b1",
+                            "weight": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        "choices": [
+        ],
+        "allocations": {
+        }
+    } ]
+]

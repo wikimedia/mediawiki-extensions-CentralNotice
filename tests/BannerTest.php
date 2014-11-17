@@ -8,6 +8,8 @@
 class BannerTest extends PHPUnit_Framework_TestCase {
 	const TEST_BANNER_NAME = 'PhpUnitTestBanner';
 
+	protected $fixture;
+
 	public static function setUpBeforeClass() {
 		$banner = Banner::fromName( BannerTest::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
@@ -15,11 +17,18 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	protected function setUp() {
+		parent::setUp();
+		$this->fixture = new CentralNoticeTestFixtures();
+		$this->fixture->addFixtures( array( 'campaigns' => array() ) );
+	}
+
 	public function tearDown() {
 		$banner = Banner::fromName( BannerTest::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
 			$banner->remove();
 		}
+		$this->fixture->removeFixtures();
 	}
 
 	public function testNewFromName() {

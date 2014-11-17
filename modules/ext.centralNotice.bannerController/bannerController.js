@@ -140,6 +140,8 @@
 				debug: mw.centralNotice.data.getVars.debug
 			};
 
+			// TODO use the new $wgCentralSelectedBannerDispatcher here instead
+
 			$.ajax({
 				url: mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery ),
 				dataType: 'script',
@@ -147,25 +149,69 @@
 			});
 		},
 		loadRandomBanner: function () {
-			var RAND_MAX = 30;
-			var bannerDispatchQuery = {
-				uselang: mw.config.get( 'wgUserLanguage' ),
-				sitename: mw.config.get( 'wgSiteName' ),
-				project: mw.config.get( 'wgNoticeProject' ),
-				anonymous: mw.config.get( 'wgUserName' ) === null,
-				bucket: mw.centralNotice.data.bucket,
-				country: mw.centralNotice.data.country,
-				device: mw.centralNotice.data.device,
-				slot: Math.floor( Math.random() * RAND_MAX ) + 1,
-				debug: mw.centralNotice.data.getVars.debug
-			};
-			var scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) + '?' + $.param( bannerDispatchQuery );
 
-			$.ajax({
-				url: scriptUrl,
-				dataType: 'script',
-				cache: true
-			});
+			var fetchBannerQueryParams = {
+					uselang: mw.config.get( 'wgUserLanguage' ),
+					project: mw.config.get( 'wgNoticeProject' ),
+					anonymous: mw.config.get( 'wgUserName' ) === null,
+					bucket: mw.centralNotice.data.bucket,
+					country: mw.centralNotice.data.country,
+					device: mw.centralNotice.data.device,
+					debug: mw.centralNotice.data.getVars.debug
+				},
+				scriptUrl;
+
+			// Check if we're configured to get choose banners on the client,
+			// and do a few sanity checks.
+			if ( mw.config.get( 'wgCentralNoticeChooseBannerOnClient' ) &&
+				mw.cnBannerControllerLib &&
+				mw.cnBannerControllerLib.choiceData !== null ) {
+
+				// Filter choice data and calculate allocations
+				mw.cnBannerControllerLib.filterChoiceData();
+				mw.cnBannerControllerLib.calculateBannerAllocations();
+
+				// Get a random seed or use the random= parameter from the URL,
+				// and choose the banner.
+				var random = mw.centralNotice.data.getVars.random || Math.random();
+				mw.cnBannerControllerLib.chooseBanner( random );
+
+				// Only fetch a banner if we need to :)
+				if ( mw.centralNotice.data.banner ) {
+					fetchBannerQueryParams.banner = mw.centralNotice.data.banner;
+					fetchBannerQueryParams.campaign = mw.centralNotice.data.campaign;
+
+					scriptUrl = mw.config.get( 'wgCentralSelectedBannerDispatcher' ) +
+						'?' + $.param( fetchBannerQueryParams );
+
+					// This will call insertBanner() after the banner is retrieved
+					$.ajax( {
+						url: scriptUrl,
+						dataType: 'script',
+						cache: true
+					} );
+
+				} else {
+					// Call insertBanner to trigger a call to
+					// Special:RecordImpression to register the empty result.
+					// TODO Refactor and register that the banner wasn't even
+					// fetched.
+					mw.centralNotice.insertBanner( false );
+				}
+
+			} else {
+				var RAND_MAX = 30;
+				fetchBannerQueryParams.slot = Math.floor( Math.random() * RAND_MAX ) + 1;
+
+				scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) +
+					'?' + $.param( fetchBannerQueryParams );
+
+				$.ajax( {
+					url: scriptUrl,
+					dataType: 'script',
+					cache: true
+				} );
+			}
 		},
 		// TODO: move function definitions once controller cache has cleared
 		insertBanner: function( bannerJson ) {

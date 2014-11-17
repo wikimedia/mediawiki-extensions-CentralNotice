@@ -13,7 +13,7 @@ class BannerChoiceDataProvider {
 
 	/**
 	 * Query the infrastructure DB using the wiki ID in
-	 * $wgCentralNoticeInfrastructureId
+	 * $wgCentralDBname
 	 */
 	const USE_INFRASTRUCTURE_DB = 1;
 
@@ -51,7 +51,7 @@ class BannerChoiceDataProvider {
 	 *   are provided.
 	 */
 	public function getChoices() {
-		global $wgCentralNoticeInfrastructureId;
+		global $wgCentralDBname;
 
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
@@ -62,7 +62,7 @@ class BannerChoiceDataProvider {
 				break;
 
 			case self::USE_INFRASTRUCTURE_DB:
-				$wikiId = $wgCentralNoticeInfrastructureId;
+				$wikiId = $wgCentralDBname;
 				break;
 
 			default:

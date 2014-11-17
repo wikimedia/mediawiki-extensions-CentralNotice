@@ -1,6 +1,9 @@
 <?php
 
 class CentralNotice extends SpecialPage {
+
+	// Note: These values are not arbitrary. Higher priority is indicated by a
+	// higher value.
 	const LOW_PRIORITY = 0;
 	const NORMAL_PRIORITY = 1;
 	const HIGH_PRIORITY = 2;

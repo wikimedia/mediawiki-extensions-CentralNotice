@@ -1,7 +1,7 @@
 /**
  * CentralNotice Administrative UI - Common Functions
  */
-( function ( mw ) {
+( function( mw, $ ) {
 mw.centralNotice.adminUi = {};
 
 // Collapse and uncollapse detailed view for an individual log entry
@@ -147,5 +147,18 @@ jQuery(document).ready( function ( $ ) {
 			}
 		} );
 	}
+
+	// On the banner allocation page, we have an algorithm selector to toggle
+	// display of allocation rows between percentages calculated by BannerRandom
+	// (unchecked) and allocations from the new client-side algorithm (checked)
+	$( '#algorithm-selector' ).change( function () {
+		if ( $( this ).prop( 'checked' ) ) {
+			$( '.mw-centralnotice-row-banner-chooser' ).hide();
+			$( '.mw-centralnotice-row-allocation-calculator' ).show();
+		} else {
+			$( '.mw-centralnotice-row-allocation-calculator' ).hide();
+			$( '.mw-centralnotice-row-banner-chooser' ).show();
+		}
+	} );
 } );
-} )( mediaWiki );
+} )( mediaWiki, jQuery );
