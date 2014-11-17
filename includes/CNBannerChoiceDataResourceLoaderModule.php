@@ -5,9 +5,6 @@
  *
  * Note: this module does nothing if $wgCentralNoticeChooseBannerOnClient
  * is false.
- *
- * HTTP query and caching modeled after EventLogging's RemoteSchema class.
- * See https://github.com/wikimedia/mediawiki-extensions-EventLogging/blob/master/includes/RemoteSchema.php
  */
 class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
@@ -15,51 +12,32 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::targets
 	 */
 	protected $targets = array( 'desktop', 'mobile' );
+	protected $choices;
 
 	const API_REQUEST_TIMEOUT = 20;
-
-	protected $choices;
-	protected $key;
-
-	public function __construct() {
-		$this->http = new Http();
-	}
 
 	protected function getChoices( ResourceLoaderContext $context ) {
 		global $wgNoticeProject,
 			$wgUser,
 			$wgCentralNoticeApiUrl,
-			$wgCentralNoticeBannerChoiceDataCacheExpiry,
-			$wgCentralDBname;
+			$wgCentralDBname,
+			$wgCentralNoticeChooseBannerOnClient;
+
+		if ( $this->choices !== null ) {
+			return $this->choices;
+		}
+
+		if ( !$wgCentralNoticeChooseBannerOnClient ) {
+			return null;
+		}
 
 		$project = $wgNoticeProject;
 		$language = $context->getLanguage();
 
 		// TODO Find out what's up with $context->getUser()
 		$status = ( $wgUser->isAnon() ) ? 'anonymous' : 'loggedin';
-		$key = $wgNoticeProject . '|' . $language . '|' .  $status;
 
-		// Get via state variable if it's there and the key is the same
-		if ( ( $this->key === $key ) && $this->choices ) {
-			return $this->choices;
-		}
-
-		$this->key = $key;
-
-		// Hmmm, try the cache (if configured to)
-		$useCache = ( $wgCentralNoticeBannerChoiceDataCacheExpiry !== 0 );
-
-		if ( $useCache ) {
-
-			$cache = wfGetCache( CACHE_ANYTHING );
-			$this->choices = $cache->get( $key );
-
-			if ( $this->choices ) {
-				return $this->choices;
-			}
-		}
-
-		// OK, fetch the data via the DB or the API. Decide which to use based
+		// Fetch the data via the DB or the API. Decide which to use based
 		// on whether the appropriate global variables are set.
 		// If something's amiss, we warn and return an empty array, but don't
 		// bring everything to a standstill.
@@ -82,11 +60,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			// No way to get the choices?
 			wfLogWarning( 'No route to fetch banner choice data configured.' );
 			return array();
-		}
-
-		if ( $useCache ) {
-			$cache->set( $key, $choices,
-				$wgCentralNoticeBannerChoiceDataCacheExpiry );
 		}
 
 		$this->choices = $choices;
@@ -137,14 +110,19 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		);
 
 		$url = wfAppendQuery( $wgCentralNoticeApiUrl, $q );
-		$http = new Http();
-		$apiResult = $http->get( $url, self::API_REQUEST_TIMEOUT * 0.8 );
+		$apiResult = Http::get( $url, self::API_REQUEST_TIMEOUT * 0.8 );
 
 		if ( !$apiResult ) {
+			wfLogWarning( 'Couldn\'t get banner choice data via API.');
 			return false;
 		}
 
 		$parsedApiResult = FormatJson::parse( $apiResult ) ?: false;
+
+		if ( !$parsedApiResult ) {
+			wfLogWarning( 'Couldn\'t parse banner choice data from API.');
+			return false;
+		}
 
 		if ( !isset( $parsedApiResult->value ) ) {
 			wfLogWarning( 'Error fetching banner choice data via API: ' .
@@ -162,7 +140,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return false;
 		}
 
-		return $result; 
+		return $result;
 	}
 
 	/**
@@ -173,16 +151,13 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		global $wgCentralNoticeChooseBannerOnClient;
 
-		// Only send in data if we'll choose banners on the client
-		if ( $wgCentralNoticeChooseBannerOnClient ) {
-
-			return Xml::encodeJsCall( 'mw.cnBannerControllerLib.setChoiceData',
-					array( $this->getChoices( $context ) ) );
-
-		} else {
-			// Otherwise, make this a no-op
+		// If we don't choose banners on the client, this is a no-op
+		if ( !$wgCentralNoticeChooseBannerOnClient ) {
 			return '';
 		}
+
+		return Xml::encodeJsCall( 'mw.cnBannerControllerLib.setChoiceData',
+				array( $this->getChoices( $context ) ) );
 	}
 
 	/**
@@ -197,5 +172,19 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 */
 	public function getDependencies() {
 		return array( 'ext.centralNotice.bannerController.lib' );
+	}
+
+	/**
+	 * @see ResourceLoaderModule::getModifiedTime()
+	 */
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		return max( 1, $this->getHashMtime( $context ) );
+	}
+
+	/**
+	 * @see ResourceLoaderModule::getModifiedHash()
+	 */
+	public function getModifiedHash( ResourceLoaderContext $context ) {
+		return md5( serialize( $this->getChoices( $context ) ) );
 	}
 }

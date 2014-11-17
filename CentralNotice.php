@@ -14,14 +14,16 @@ $wgExtensionCredits[ 'other' ][] = array(
 	'path'           => __FILE__,
 	'name'           => 'CentralNotice',
 	'author'         => array(
-		'Brion Vibber',
+		'Elliott Eggleston',
 		'Tomasz Finc',
-		'Trevor Parscal',
+		'Andrew Russell Green',
 		'Ryan Kaldari',
+		'Trevor Parscal',
 		'Matthew Walker',
 		'Adam Roses Wight',
+		'Brion Vibber',
 	),
-	'version'        => '2.4.0',
+	'version'        => '2.5.0',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 	'license-name' => 'GPLv2',
@@ -89,9 +91,6 @@ $wgCentralPagePath = false;
 // you don't have direct access to the infrastructure database (see
 // $wgCentralDBname).
 $wgCentralNoticeApiUrl = false;
-
-// How long to cache the banner choice data in memcached, in seconds
-$wgCentralNoticeBannerChoiceDataCacheExpiry = 300;
 
 // Enable the new mechanism for making the banner selection on the client
 $wgCentralNoticeChooseBannerOnClient = false;

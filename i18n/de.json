@@ -139,6 +139,7 @@
 	"centralnotice-country": "Staat",
 	"centralnotice-no-allocation": "Es wurden keine Vorlagen angeordnet.",
 	"centralnotice-allocation-description": "Vorlagenanordnung für Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät $4",
+	"centralnotice-allocation-client-algorithm": "Anordnungen als kalkuliert durch clientseitigen Algorithmus anzeigen",
 	"centralnotice-historical-allocation-description": "Vorlagenanordnung für die Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät: $4, um: $5",
 	"centralnotice-percentage": "Prozentsatz",
 	"centralnotice-documentwrite-error": "document.write() kann nicht innerhalb einer Vorlage verwendet werden.\nMehr Informationen unter http://meta.wikimedia.org/wiki/Help:CentralNotice.",
