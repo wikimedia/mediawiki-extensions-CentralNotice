@@ -92,9 +92,6 @@ $wgCentralPagePath = false;
 // $wgCentralDBname).
 $wgCentralNoticeApiUrl = false;
 
-// How long to cache the banner choice data in memcached, in seconds
-$wgCentralNoticeBannerChoiceDataCacheExpiry = 300;
-
 // Enable the new mechanism for making the banner selection on the client
 $wgCentralNoticeChooseBannerOnClient = false;
 
