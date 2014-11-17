@@ -71,7 +71,7 @@ label[for=mw-input-wpsummary],
 #mw-htmlform-banner-list .mw-label {
 	display: none;
 }
-tr.mw-centralnotice-row-allocation-calculator, input#alogrithm-selector {
+tr.mw-centralnotice-row-allocation-calculator {
 	display: none;
 }
 
