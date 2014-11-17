@@ -204,9 +204,14 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
 		// Add a box to select which algorithm's allocation to display
-		$htmlOut .= Html::openElement( 'input', array(
+		$htmlOut .= Html::element( 'label', array(
+				'for' => 'algorithm-selector',
+			),
+			$this->msg( 'centralnotice-allocation-client-algorithm' )->text()
+		);
+		$htmlOut .= Html::element( 'input', array(
 			'type' => 'checkbox',
-			'id' => 'alogrithm-selector'
+			'id' => 'algorithm-selector'
 		) );
 		
 		// Given our project and language combination, get banner choice data
@@ -310,6 +315,16 @@ class SpecialBannerAllocation extends CentralNotice {
 		);
 		$htmlOut .= Html::element( 'h4', array(), $type );
 
+		if (count($banners) > 0) {
+			$htmlOut .= Html::openElement( 'tr' );
+			$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
+				$this->msg( 'centralnotice-percentage' )->text() );
+			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+				$this->msg( 'centralnotice-banner' )->text() );
+			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+				$this->msg( 'centralnotice-notice' )->text() );
+			$htmlOut .= Html::closeElement( 'tr' );
+		}
 		$htmlOut .= $this->createRows( $banners, 'mw-centralnotice-row-banner-chooser' );
 		$htmlOut .= $this->createRows( $providerBanners, 'mw-centralnotice-row-allocation-calculator' );
 
@@ -322,16 +337,6 @@ class SpecialBannerAllocation extends CentralNotice {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
 		if (count($banners) > 0) {
-
-			$htmlOut .= Html::openElement( 'tr', array( 'class' => $rowClass ) );
-			$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
-				$this->msg( 'centralnotice-percentage' )->text() );
-			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
-				$this->msg( 'centralnotice-banner' )->text() );
-			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
-				$this->msg( 'centralnotice-notice' )->text() );
-			$htmlOut .= Html::closeElement( 'tr' );
-
 			foreach ( $banners as $banner ) {
 				$percentage = sprintf( "%0.2f", round( $banner['allocation'] * 100, 2 ) );
 
