@@ -12,6 +12,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::targets
 	 */
 	protected $targets = array( 'desktop', 'mobile' );
+	protected $choices;
 
 	const API_REQUEST_TIMEOUT = 20;
 
@@ -19,7 +20,16 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		global $wgNoticeProject,
 			$wgUser,
 			$wgCentralNoticeApiUrl,
-			$wgCentralDBname;
+			$wgCentralDBname,
+			$wgCentralNoticeChooseBannerOnClient;
+
+		if ( $this->choices !== null ) {
+			return $this->choices;
+		}
+
+		if ( !$wgCentralNoticeChooseBannerOnClient ) {
+			return null;
+		}
 
 		$project = $wgNoticeProject;
 		$language = $context->getLanguage();
@@ -52,6 +62,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return array();
 		}
 
+		$this->choices = $choices;
 		return $choices;
 	}
 
@@ -161,5 +172,19 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 */
 	public function getDependencies() {
 		return array( 'ext.centralNotice.bannerController.lib' );
+	}
+
+	/**
+	 * @see ResourceLoaderModule::getModifiedTime()
+	 */
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		return max( 1, $this->getHashMtime( $context ) );
+	}
+
+	/**
+	 * @see ResourceLoaderModule::getModifiedHash()
+	 */
+	public function getModifiedHash( ResourceLoaderContext $context ) {
+		return md5( serialize( $this->getChoices( $context ) ) );
 	}
 }
