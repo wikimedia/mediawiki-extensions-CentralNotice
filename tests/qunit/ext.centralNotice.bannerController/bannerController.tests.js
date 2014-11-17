@@ -1,7 +1,8 @@
 ( function ( mw, $ ) {
 	'use strict';
 
-	var bannerJson = {
+	var realAjax = $.ajax,
+		bannerData = {
 			bannerName: 'test_banner',
 			campaign: 'test_campaign',
 			category: 'test',
@@ -12,9 +13,6 @@
 		setup: function () {
 			var realLoadBanner = mw.centralNotice.loadBanner;
 
-			// Remove any existing div#siteNotice, so we are not testing the skin.
-			$( '#siteNotice' ).remove();
-
 			// Reset in case the testing page itself ran CentralNotice.
 			mw.centralNotice.alreadyRan = false;
 
@@ -24,8 +22,21 @@
 			// Prevent banner load during initialize().
 			mw.centralNotice.loadBanner = function () {};
 
-			// Suppress GeoIP call
-			mw.centralNotice.data.getVars.country = 'US';
+			$.extend( mw.centralNotice.data.getVars, {
+				// Suppress GeoIP call
+				country: 'US',
+
+				// Boring defaults, assumed by test fixtures
+				// FIXME: move to tests that actually assume this.  Move the
+				// initialize() call as well.
+				uselang: 'en',
+				project: 'wikipedia',
+				anonymous: true
+			} );
+
+			// Remove any existing div#siteNotice, so we are not testing the skin.
+			// Do it before initialize, so nothing 
+			$( '#siteNotice' ).remove();
 
 			mw.centralNotice.initialize();
 
@@ -35,6 +46,9 @@
 			$( "#qunit-fixture" ).append(
 				'<div id=siteNotice><div id=centralNotice></div></div>'
 			);
+		},
+		teardown: function () {
+			$.ajax = realAjax;
 		}
 	} ) );
 
@@ -43,7 +57,7 @@
 	} );
 
 	QUnit.test( 'canInsertBanner', 1, function( assert ) {
-		mw.centralNotice.insertBanner( bannerJson );
+		mw.centralNotice.insertBanner( bannerData );
 		assert.equal( $( 'div#test_banner' ).length, 1 );
 	} );
 
@@ -52,7 +66,7 @@
 			return false;
 		};
 
-		mw.centralNotice.insertBanner( bannerJson );
+		mw.centralNotice.insertBanner( bannerData );
 		assert.equal( $( 'div#test_banner' ).length, 0 );
 	} );
 
@@ -61,8 +75,18 @@
 			return true;
 		};
 
-		mw.centralNotice.insertBanner( bannerJson );
+		mw.centralNotice.insertBanner( bannerData );
 		assert.equal( $( 'div#test_banner' ).length, 1 );
+	} );
+
+	QUnit.test( 'banner= override param', 2, function( assert ) {
+		mw.centralNotice.data.getVars.banner = 'test_banner';
+		$.ajax = function( params ) {
+			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/ ) );
+		};
+		mw.centralNotice.loadBanner();
+
+		assert.ok( mw.centralNotice.data.testing );
 	} );
 
 }( mediaWiki, jQuery ) );
