@@ -434,7 +434,11 @@
 				// ~~ as of 2012-11-27
 				if ( !bannerShown ) {
 					hideBanner = true;
-					impressionData.reason = 'alterImpressionData';
+					// alterImpressionData should set a reason, but we'll set a
+					// default if it didn't
+					if ( !impressionData.reason ) {
+						impressionData.reason = 'alterImpressionData';
+					}
 				}
 			}
 		}
