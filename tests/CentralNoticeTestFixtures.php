@@ -91,6 +91,8 @@ class CentralNoticeTestFixtures {
 					$banner['autolink'],
 					$banner['landingPages']
 				);
+
+				// FIXME Can't test buckets other than 0, the (!) default
 				Campaign::addTemplateTo(
 					$campaign['name'],
 					$banner['name'],

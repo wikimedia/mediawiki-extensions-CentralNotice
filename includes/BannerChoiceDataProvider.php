@@ -164,8 +164,8 @@ class BannerChoiceDataProvider {
 			if ( !isset ( $choices[$campaignId] ) ) {
 				$choices[$campaignId] = array(
 					'name' => $dbRow->not_name,
-					'start' => $dbRow->not_start,
-					'end' => $dbRow->not_end,
+					'start' => intval( wfTimestamp( TS_UNIX, $dbRow->not_start ) ),
+					'end' => intval( wfTimestamp( TS_UNIX, $dbRow->not_end ) ),
 					'preferred' => intval( $dbRow->not_preferred ),
 					'throttle' => intval( $dbRow->not_throttle ),
 					'bucket_count' => intval( $dbRow->not_buckets ),

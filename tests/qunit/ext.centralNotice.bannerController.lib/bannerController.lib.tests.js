@@ -18,7 +18,6 @@
 		setup: function() {
 			mw.centralNotice.data.country = 'XX';
 			mw.centralNotice.data.device = 'desktop';
-			mw.centralNotice.data.bucket = 0;
 		}
 	} ) );
 
@@ -35,23 +34,37 @@
 				var testCase = testCaseInputs[0],
 					lib = mw.cnBannerControllerLib,
 					choices,
+					choice,
 					i,
 					allocatedBanner;
 
 				// Flesh out choice data with some default values
 				// BOOM on priority case
-				choices = $.map( testCase.choices, function( campaign ) {
-					return $.extend( {}, defaultCampaignData, campaign, {
-						banners: $.map( campaign.banners, function( banner ) {
-							return $.extend( {}, defaultBannerData, banner );
-						} )
-					} );
+				choices = $.map( testCase.choices, function( campaign, index ) {
+					return $.extend(
+							{ name: index },
+							defaultCampaignData,
+							campaign,
+							{
+								banners: $.map( campaign.banners, function( banner ) {
+									return $.extend( {}, defaultBannerData, banner );
+								} )
+							} );
 				} );
+
+				// Set per-campaign buckets to 0 for all campaigns
+				// FIXME Allow testing of different buckets
+				lib.bucketsByCampaign = {};
+				for ( i = 0; i < choices.length; i++ ) {
+					choice = choices[i];
+					lib.bucketsByCampaign[choice.name] = { val: 0 };
+				}
 
 				// TODO: would like to declare individual tests here, but I
 				// haven't been able to make that work, yet.
 				lib.setChoiceData( choices );
-				lib.filterChoiceData();
+				lib.filterChoiceDataCountriesAndDevices();
+				lib.makePossibleBannersForBucketsAndDevice();
 				lib.calculateBannerAllocations();
 
 				// TODO: the errors will not reveal anything useful about

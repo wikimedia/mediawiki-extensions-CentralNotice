@@ -1,8 +1,17 @@
 ( function ( $, mw ) {
 
+	var bucketValidityFromServer = mw.config.get( 'wgNoticeNumberOfBuckets' )
+		+ '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
+
 	// FIXME Temporary location of this object on the mw hierarchy. See FIXME
 	// in bannerController.js.
 	mw.cnBannerControllerLib = {
+
+		BUCKET_COOKIE_NAME: 'centralnotice_buckets_by_campaign',
+
+		choiceData: null,
+		bucketsByCampaign: null,
+		possibleBanners: null,
 
 		/**
 		 * Set possible campaign and banner choices. Called by
@@ -12,33 +21,212 @@
 			this.choiceData = choices;
 		},
 
-		choiceData: null,
+		/**
+		 * Do all things bucket:
+		 *
+		 * - Go through choiceData and retrieve or generate buckets for all
+		 *   campaigns. If we don't already have a bucket for a campaign, but
+		 *   we still have legacy buckets, copy those in. Otherwise choose a
+		 *   random bucket. If we did already have a bucket for a campaign,
+		 *   check and possibly update its expiry date.
+		 *
+		 * - Go through all the buckets stored, purging expired buckets.
+		 *
+		 * - Store the updated bucket data in a cookie.
+		 */
+		processBuckets: function() {
 
-		possibleBanners: null,
+			var campaign, campaignName, bucket,
+				campaignStartDate, retrievedBucketEndDate, bucketEndDate,
+				now = new Date(),
+				bucketsModified = false,
+				val,
+				extension = mw.config.get( 'wgCentralNoticePerCampaignBucketExtension' ),
+				i;
+
+			this.retrieveBuckets();
+
+			for ( i = 0; i < this.choiceData.length; i++ ) {
+
+				campaign = this.choiceData[i];
+				campaignName = campaign.name;
+				campaignStartDate = new Date();
+				campaignStartDate.setTime( campaign.start * 1000  );
+
+				// Buckets should end the time indicated by extension after
+				// the campaign's end
+				bucketEndDate = new Date();
+				bucketEndDate.setTime( campaign.end * 1000 );
+				bucketEndDate.setUTCDate( bucketEndDate.getUTCDate() + extension );
+
+				bucket = this.bucketsByCampaign[campaignName];
+
+				// If we have a valid bucket for this campaign, just check
+				// and possibly update its expiry.
+				// Note that buckets that are expired but that are found in
+				// the cookie (because they didn't have the chance to get
+				// purged) are not considered valid. In that case, for
+				// consistency, we choose a new random bucket, just as if
+				// no bucket had been found.
+				if ( bucket && bucketEndDate > now ) {
+
+					retrievedBucketEndDate = new Date();
+					retrievedBucketEndDate.setTime( bucket.end * 1000 );
+
+					if ( retrievedBucketEndDate.getTime()
+						!== bucketEndDate.getTime() ) {
+
+						bucket.end = bucketEndDate.getTime() / 1000;
+						bucketsModified = true;
+					}
+
+				} else {
+
+					// First try to get a legacy bucket value. These are only
+					// expected to be around for one week after the activation
+					// of per-campaign buckets. Doing this eases the transition.
+					val = this.retrieveLegacyBucket();
+
+					if ( !val ) {
+						// We always use wgNoticeNumberOfControllerBuckets, and
+						// not the campaign's number of buckets, to determine
+						// how many possible buckets to randomly choose from. If
+						// the campaign actually has less buckets than that,
+						// the value is mapped down as necessary. This lets
+						// campaigns modify the number of buckets they use.
+						val = this.getRandomBucket();
+					}
+
+					this.bucketsByCampaign[campaignName] = {
+						val: val,
+						start: campaignStartDate.getTime() / 1000,
+						end: bucketEndDate.getTime() / 1000
+					};
+
+					bucketsModified = true;
+				}
+			}
+
+			// Purge any expired buckets
+			for ( campaignName in this.bucketsByCampaign ) {
+
+				bucketEndDate = new Date();
+				bucketEndDate.setTime( this.bucketsByCampaign[campaignName].end * 1000 );
+
+				if ( bucketEndDate < now ) {
+					delete this.bucketsByCampaign[campaignName];
+					bucketsModified = true;
+				}
+			}
+
+			// Store the buckets if there were changes
+			if ( bucketsModified ) {
+				this.storeBuckets();
+			}
+		},
 
 		/**
-		 * Filter the choice data and create a flat list of possible banners
-		 * to chose from. Add some additional data on to each banner entry. The
-		 * result is placed in possibleBanners.
-		 *
-		 * Note that if the same actual banner is assigned to more than one
-		 * campaign it can have more than one entry in that list. That's the
-		 * desired result; here "banners" would be more accurately called
-		 * "banner assignments".
-		 *
-		 * The procedure followed here closely resembles legacy PHP code in
-		 * BannerChooser and current PHP code in BannerAllocationCalculator.
-		 *
-		 * FIXME Re-organize code in all those places to make it easier to
-		 * understand.
+		 * Attempt to get buckets from the bucket cookie, and place them in
+		 * bucketsByCampaign. If there is no bucket cookie, set bucketsByCampaign
+		 * to an empty object.
 		 */
-		filterChoiceData: function() {
+		retrieveBuckets: function() {
+			var cookieVal = $.cookie( this.BUCKET_COOKIE_NAME );
 
-			var i, campaign, j, banner;
-			this.possibleBanners = [];
+			if ( cookieVal ) {
+				this.bucketsByCampaign = JSON.parse( cookieVal );
+			} else {
+				this.bucketsByCampaign = {};
+			}
+		},
+
+		/**
+		 * Store data in bucketsByCampaign in the bucket cookie. The cookie
+		 * will be set to expire after the all the buckets it contains
+		 * do.
+		 */
+		storeBuckets: function() {
+			var now = new Date(),
+				latestDate,
+				campaignName, bucketEndDate;
+
+			// Cycle thorugh the buckets to find the latest end date
+			latestDate = now;
+			for ( campaignName in this.bucketsByCampaign ) {
+
+				bucketEndDate = new Date();
+				bucketEndDate.setTime( this.bucketsByCampaign[campaignName].end * 1000 );
+
+				if ( bucketEndDate > latestDate ) {
+					latestDate = bucketEndDate;
+				}
+			}
+
+			latestDate.setDate( latestDate.getDate() + 1 );
+
+			// Store the buckets in the cookie
+			$.cookie( this.BUCKET_COOKIE_NAME,
+				JSON.stringify( this.bucketsByCampaign ),
+				{ expires: latestDate, path: '/' }
+			);
+		},
+
+		/**
+		 * Get a random bucket (integer greater or equal to 0 and less than
+		 * wgNoticeNumberOfControllerBuckets).
+		 *
+		 * @returns int
+		 */
+		getRandomBucket: function() {
+			return Math.floor(
+				Math.random() * mw.config.get( 'wgNoticeNumberOfControllerBuckets' )
+			);
+		},
+
+		/**
+		 * Retrieve the user's legacy global bucket from the legacy bucket
+		 * cookie. Follow the legacy procedure for determining validity. If a
+		 * valid bucket was available, return it, otherwise return null.
+		 */
+		retrieveLegacyBucket: function() {
+			var dataString = $.cookie( 'centralnotice_bucket' ) || '',
+				bucket = dataString.split('-')[0],
+				validity = dataString.split('-')[1];
+
+			if ( ( bucket === null ) || ( validity !== bucketValidityFromServer ) ) {
+				return null;
+			}
+
+			return bucket;
+		},
+
+		/**
+		 * Store the legacy bucket.
+		 * Puts the bucket in the legacy global bucket cookie.
+		 * If such a cookie already exists, extends its expiry date as
+		 * indicated by wgNoticeBucketExpiry.
+		 */
+		storeLegacyBucket: function( bucket ) {
+			$.cookie(
+				'centralnotice_bucket',
+				bucket + '-' + bucketValidityFromServer,
+				{ expires: mw.config.get( 'wgNoticeBucketExpiry' ), path: '/' }
+			);
+		},
+
+		/**
+		 * Filter choiceData on the user's country and device. Campaigns that
+		 * don't target the user's country or have no banners for their
+		 * device will be removed. We operate on this.choiceData.
+		 */
+		filterChoiceDataCountriesAndDevices: function() {
+
+			var i, campaign, j, keepCampaign,
+				filteredChoiceData = [];
 
 			for ( i = 0; i < this.choiceData.length; i++ ) {
 				campaign = this.choiceData[i];
+				keepCampaign = false;
 
 				// Filter for country if geotargetted
 				if ( campaign.geotargetted &&
@@ -49,26 +237,78 @@
 					continue;
 				}
 
-				// Now filter by banner properties
+				// Now filter by banner device.
+				// To make buckets work consistently even in for strangely
+				// configured campaigns, we won't chose buckets yet, so we'll
+				// filter on them a little later.
 				for ( j = 0; j < campaign.banners.length; j++ ) {
-					banner = campaign.banners[j];
 
 					// Device
 					if ( $.inArray(
-						mw.centralNotice.data.device, banner.devices ) === -1 ) {
+						mw.centralNotice.data.device,
+						campaign.banners[j].devices ) === -1 ) {
 						continue;
 					}
 
-					// Bucket
-					if ( parseInt( mw.centralNotice.data.bucket, 10) %
+					// We get here if the campaign targets the user's country
+					// and has at least one banner for the user's device.
+					keepCampaign = true;
+				}
+
+				if ( keepCampaign ) {
+					filteredChoiceData.push( campaign ) ;
+				}
+			}
+
+			this.choiceData = filteredChoiceData;
+		},
+
+		/**
+		 * Filter the choice data on the user's device and per-campaign buckets
+		 * (some banners that are not for the user's device may remain following
+		 * previous filters) and create a flat list of possible banners to chose
+		 * from. Add some extra data on to each banner entry. The result is
+		 * placed in possibleBanners.
+		 *
+		 * Note that if the same actual banner is assigned to more than one
+		 * campaign it can have more than one entry in that list. That's the
+		 * desired result; here "banners" would be more accurately called
+		 * "banner assignments".
+		 *
+		 * The procedure followed here resembles legacy PHP code in
+		 * BannerChooser and current PHP code in BannerAllocationCalculator.
+		 *
+		 * FIXME Re-organize code in all those places to make it easier to
+		 * understand.
+		 */
+		makePossibleBannersForBucketsAndDevice: function() {
+
+			var i, campaign, campaignName, j, banner;
+			this.possibleBanners = [];
+
+			for ( i = 0; i < this.choiceData.length; i++ ) {
+				campaign = this.choiceData[i];
+				campaignName = campaign.name;
+
+				for ( j = 0; j < campaign.banners.length; j++ ) {
+					banner = campaign.banners[j];
+
+					// Filter for bucket
+					if ( this.bucketsByCampaign[campaignName].val %
 						campaign.bucket_count !== banner.bucket ) {
+						continue;
+					}
+
+					// Filter for device
+					if ( $.inArray(
+						mw.centralNotice.data.device, banner.devices ) === -1 ) {
 						continue;
 					}
 
 					// Add in data about the campaign the banner is part of.
 					// This will be used in the calculateBannerAllocations(),
 					// the next step in choosing a banner.
-					banner.campaignName = campaign.name;
+					banner.campaignName = campaignName;
 					banner.campaignThrottle = campaign.throttle;
 					banner.campaignZIndex = campaign.preferred;
 
@@ -252,6 +492,7 @@
 			// choose the banner. Note that the order of the contents of
 			// possibleBanners is not guaranteed to be consistent between
 			// requests, but that shouldn't matter.
+
 			for ( i = 0; i < this.possibleBanners.length; i ++ ) {
 				banner = this.possibleBanners[i];
 				blockEnd = blockStart + banner.allocation;
@@ -266,7 +507,7 @@
 			}
 
 			// We get here if there is less than full allocation (including no
-			// allocation).
+			// allocation) and random points to the unallocated chunk.
 			mw.centralNotice.data.banner = null;
 		}
 	};
