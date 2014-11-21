@@ -205,8 +205,11 @@ $wgNoticeNumberOfBuckets = 4;
 // certain buckets after events happen.)
 $wgNoticeNumberOfControllerBuckets = 2;
 
-// How long, via the jQuery cookie expiry string, will the bucket last
+// How the legacy global bucket cookie for legacy global buckets will last, in days.
 $wgNoticeBucketExpiry = 7;
+
+// Extra time to keep per-campaign buckets after a campaign has ended, in days.
+$wgCentralNoticePerCampaignBucketExtension = 30;
 
 // When displaying a long list, display the complement "all except ~LIST" past a threshold,
 // given as a proportion of the "all" list length.
