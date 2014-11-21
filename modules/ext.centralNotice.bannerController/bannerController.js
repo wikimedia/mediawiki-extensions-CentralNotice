@@ -26,9 +26,7 @@
  */
 ( function ( $, mw ) {
 
-	var rPlus = /\+/g,
-		bucketValidityFromServer = mw.config.get( 'wgNoticeNumberOfBuckets' )
-			+ '.' + mw.config.get( 'wgNoticeNumberOfControllerBuckets' );
+	var rPlus = /\+/g;
 
 	function decode( s ) {
 		try {
@@ -75,7 +73,7 @@
 			lon: lon && parseFloat( lon ),
 			af: af
 		};
-	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ || [] ) );
+	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
 
 	// FIXME Following the switch to client-side banner selection, it would
 	// make more sense for this to be defined in bannerController.lib. Before
@@ -112,6 +110,17 @@
 		 * Deferred objects that link into promises in mw.centralNotice.events
 		 */
 		deferredObjs: {},
+
+		/**
+		 * Check if we're configured to choose banners on the client,
+		 * and do a few sanity checks. Since bannercontroller.lib and
+		 * bannerChoiceData are dependencies, it should be safe to assume that
+		 * everything's there by the time this module executes.
+		 */
+		chooseBannerOnClient:
+				mw.config.get( 'wgCentralNoticeChooseBannerOnClient' ) &&
+				mw.cnBannerControllerLib &&
+				( mw.cnBannerControllerLib.choiceData !== null ),
 
 		/** -- Functions! -- **/
 		loadBanner: function () {
@@ -154,21 +163,29 @@
 					uselang: mw.config.get( 'wgUserLanguage' ),
 					project: mw.config.get( 'wgNoticeProject' ),
 					anonymous: mw.config.get( 'wgUserName' ) === null,
-					bucket: mw.centralNotice.data.bucket,
 					country: mw.centralNotice.data.country,
 					device: mw.centralNotice.data.device,
 					debug: mw.centralNotice.data.getVars.debug
 				},
 				scriptUrl;
 
-			// Check if we're configured to get choose banners on the client,
-			// and do a few sanity checks.
-			if ( mw.config.get( 'wgCentralNoticeChooseBannerOnClient' ) &&
-				mw.cnBannerControllerLib &&
-				mw.cnBannerControllerLib.choiceData !== null ) {
+			// Either choose the banner on the client, or call the server to get
+			// a random banner.
+			if ( mw.centralNotice.chooseBannerOnClient ) {
 
-				// Filter choice data and calculate allocations
-				mw.cnBannerControllerLib.filterChoiceData();
+				// Filter choiceData on country and device. Only campaigns that
+				// target the user's country and have at least one banner for
+				// the user's device pass this filter.
+				mw.cnBannerControllerLib.filterChoiceDataCountriesAndDevices();
+
+				// Do all things bucket. Retrieve or generate buckets for all
+				// the campaigns remaining in choiceData. Then update expiry
+				// dates and remove expired buckets as necessary.
+				mw.cnBannerControllerLib.processBuckets();
+
+				// Create a flat list of possible banners available for the
+				// user's buckets and device, and calculate allocations.
+				mw.cnBannerControllerLib.makePossibleBannersForBucketsAndDevice();
 				mw.cnBannerControllerLib.calculateBannerAllocations();
 
 				// Get a random seed or use the random= parameter from the URL,
@@ -202,6 +219,7 @@
 			} else {
 				var RAND_MAX = 30;
 				fetchBannerQueryParams.slot = Math.floor( Math.random() * RAND_MAX ) + 1;
+				fetchBannerQueryParams.bucket = mw.centralNotice.data.bucket;
 
 				scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) +
 					'?' + $.param( fetchBannerQueryParams );
@@ -233,30 +251,26 @@
 				mw.centralNotice.data.getVars[decode( p1 )] = decode( p2 );
 			} );
 		},
+		/**
+		 * Legacy function for getting the legacy global bucket. Left here for
+		 * compatibility; may be deprecated soon.
+		 */
 		getBucket: function() {
-			var dataString = $.cookie( 'centralnotice_bucket' ) || '',
-				bucket = dataString.split('-')[0],
-				validity = dataString.split('-')[1];
-
-			if ( ( bucket === null ) || ( validity !== bucketValidityFromServer ) ) {
-				bucket = Math.floor(
-					Math.random() * mw.config.get( 'wgNoticeNumberOfControllerBuckets' )
-				);
+			var bucket = mw.cnBannerControllerLib.retrieveLegacyBucket();
+			if ( !bucket ) {
+				bucket = mw.cnBannerControllerLib.getRandomBucket();
 			}
-
 			return bucket;
 		},
 		/**
-		 * Puts the bucket in mw.centralNotice.data.bucket in a bucket cookie.
-		 * If such a cookie already exists, extends its expiry date as
-		 * indicated by wgNoticeBucketExpiry.
+		 * Legacy function for storing the legacy global bucket. Left here for
+		 * compatibility; may be deprecated soon. Stores
+		 * mw.centralNotice.data.bucket. See
+		 * mw.cnBannerControllerLib.storeLegacyBucket.
 		 */
 		storeBucket: function() {
-			$.cookie(
-				'centralnotice_bucket',
-				mw.centralNotice.data.bucket + '-' + bucketValidityFromServer,
-				{ expires: mw.config.get( 'wgNoticeBucketExpiry' ), path: '/' }
-			);
+			mw.cnBannerControllerLib.storeLegacyBucket(
+				mw.centralNotice.data.bucket );
 		},
 		initialize: function () {
 			// === Do not allow CentralNotice to be re-initialized. ===
@@ -269,11 +283,15 @@
 			mw.centralNotice.loadQueryStringVariables();
 
 			// === Initialize things that don't come from MW itself ===
-			mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
 			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || window.Geo.country || 'XX';
 			mw.centralNotice.data.addressFamily = ( window.Geo.IPv6 || window.Geo.af === 'v6' ) ? 'IPv6' : 'IPv4';
 			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
 			mw.centralNotice.data.device = mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' );
+
+			// Use legacy bucket if we're not choosing banners on the client
+			if ( !mw.centralNotice.chooseBannerOnClient ) {
+				mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
+			}
 
 			// === Do not actually load a banner on a special page ===
 			//     But we keep this after the above initialization for CentralNotice pages
@@ -333,17 +351,23 @@
 	//
 	// TODO: Migrate away from global functions
 	window.insertBanner = function ( bannerJson ) {
-		var url, targets, durations, cookieName, cookieVal, deleteOld, now, parsedCookie;
+		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
+			parsedCookie, bucket;
 
 		var impressionData = {
 			country: mw.centralNotice.data.country,
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			project: mw.config.get( 'wgNoticeProject' ),
 			db: mw.config.get( 'wgDBname' ),
-			bucket: mw.centralNotice.data.bucket,
 			anonymous: mw.config.get( 'wgUserName' ) === null,
 			device: mw.centralNotice.data.device
 		};
+
+		// If we're not choosing banners on the client, there's a global bucket
+		// we can send in.
+		if ( !mw.centralNotice.chooseBannerOnClient ) {
+			impressionData.bucket = mw.centralNotice.data.bucket;
+		}
 
 		var hideBanner = false;
 
@@ -357,10 +381,24 @@
 			impressionData.banner = bannerJson.bannerName;
 			impressionData.campaign = bannerJson.campaign;
 
-			// Store the bucket we used in a cookie. If it's already there, this
-			// should extend the bucket cookie's expiry the duration
+			// Bucket stuff varies depending on where we're choosing banners:
+
+			// Legacy bucket operation. If we're not choosing banners on the
+			// client, store the bucket we used in a cookie. If it's already
+			// there, this should extend the bucket cookie's expiry the duration
 			// indicated by wgNoticeBucketExpiry.
-			mw.centralNotice.storeBucket();
+			if ( !mw.centralNotice.chooseBannerOnClient ) {
+				mw.centralNotice.storeBucket();
+
+			} else {
+				// If we are choosing banners on the client, that means we
+				// haven't set the bucket in the impression data. Add it
+				// along with its start and end dates.
+				bucket = mw.cnBannerControllerLib.bucketsByCampaign[impressionData.campaign];
+				impressionData.bucket = bucket.val;
+				impressionData.bucketStart = bucket.start;
+				impressionData.bucketEnd = bucket.end;
+			}
 
 			// Get the banner type for more queryness
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
@@ -434,7 +472,11 @@
 				// ~~ as of 2012-11-27
 				if ( !bannerShown ) {
 					hideBanner = true;
-					impressionData.reason = 'alterImpressionData';
+					// alterImpressionData should set a reason, but we'll set a
+					// default if it didn't
+					if ( !impressionData.reason ) {
+						impressionData.reason = 'alterImpressionData';
+					}
 				}
 			}
 		}

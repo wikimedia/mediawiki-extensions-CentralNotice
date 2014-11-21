@@ -164,12 +164,12 @@ class BannerChoiceDataProvider {
 			if ( !isset ( $choices[$campaignId] ) ) {
 				$choices[$campaignId] = array(
 					'name' => $dbRow->not_name,
-					'start' => $dbRow->not_start,
-					'end' => $dbRow->not_end,
+					'start' => intval( wfTimestamp( TS_UNIX, $dbRow->not_start ) ),
+					'end' => intval( wfTimestamp( TS_UNIX, $dbRow->not_end ) ),
 					'preferred' => intval( $dbRow->not_preferred ),
 					'throttle' => intval( $dbRow->not_throttle ),
 					'bucket_count' => intval( $dbRow->not_buckets ),
-					'geotargetted' => (bool) $dbRow->not_geo,
+					'geotargeted' => (bool) $dbRow->not_geo,
 					'banners' => array()
 				);
 			}
@@ -200,7 +200,7 @@ class BannerChoiceDataProvider {
 		}
 
 		// Fetch countries.
-		// We have to eliminate notices that are not geotargetted, since they
+		// We have to eliminate notices that are not geotargeted, since they
 		// may have residual data in the cn_notice_countries table.
 		$dbRows = $dbr->select(
 			array(
@@ -287,7 +287,7 @@ class BannerChoiceDataProvider {
 
 			$c['banners'] = array_map( $uniqueDevFn, array_values( $c['banners'] ) );
 
-			if ( $c['geotargetted'] ) {
+			if ( $c['geotargeted'] ) {
 				$c['countries'] = array_unique( $c['countries'] );
 			}
 
@@ -304,15 +304,15 @@ class BannerChoiceDataProvider {
 	 *
 	 * @param string $country Country of interest
 	 * @return array An array of the form returned by @see BannerChoiceDataProvider::getChoices
-	 *   Omits all geotargetted campaigns not aimed at the given country
+	 *   Omits all geotargeted campaigns not aimed at the given country
 	 */
 	public function getChoicesForCountry( $country ) {
 		$choices = $this->getChoices();
 
 		$filteredChoices = array();
-		// Remove campaigns that are geotargetted but not to selected country
+		// Remove campaigns that are geotargeted but not to selected country
 		foreach( $choices as $campaign ) {
-			if ( !$campaign['geotargetted'] || in_array( $country, $campaign['countries'] ) ) {
+			if ( !$campaign['geotargeted'] || in_array( $country, $campaign['countries'] ) ) {
 				$filteredChoices[] = $campaign;
 			}
 		}

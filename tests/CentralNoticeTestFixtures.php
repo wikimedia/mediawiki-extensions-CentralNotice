@@ -21,7 +21,7 @@ class CentralNoticeTestFixtures {
 			'projects' => array( CentralNoticeTestFixtures::getDefaultProject() ),
 			'project_languages' => array( CentralNoticeTestFixtures::getDefaultLanguage() ),
 			'preferred' => CentralNotice::NORMAL_PRIORITY,
-			'geotargetted' => 0,
+			'geotargeted' => 0,
 			'geo_countries' => array( CentralNoticeTestFixtures::getDefaultCountry() ),
 			'throttle' => 100,
 			'banners' => array(),
@@ -68,7 +68,7 @@ class CentralNoticeTestFixtures {
 				$campaign['startTs'],
 				$campaign['projects'],
 				$campaign['project_languages'],
-				$campaign['geotargetted'],
+				$campaign['geotargeted'],
 				$campaign['geo_countries'],
 				$campaign['throttle'],
 				$campaign['preferred'],
@@ -91,6 +91,8 @@ class CentralNoticeTestFixtures {
 					$banner['autolink'],
 					$banner['landingPages']
 				);
+
+				// FIXME Can't test buckets other than 0, the (!) default
 				Campaign::addTemplateTo(
 					$campaign['name'],
 					$banner['name'],

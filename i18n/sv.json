@@ -240,5 +240,10 @@
 	"centralnotice-start-date": "Startdatum (UTC)",
 	"centralnotice-start-time": "Starttid (UTC)",
 	"centralnotice-end-date": "Slutdatum (UTC)",
-	"centralnotice-end-time": "Sluttid (UTC)"
+	"centralnotice-end-time": "Sluttid (UTC)",
+	"apihelp-query+centralnoticelogs-param-user": "Användarnamn (valfri).",
+	"apihelp-query+centralnoticelogs-param-limit": "Maximalt antal rader att returnera (valfri).",
+	"apihelp-query+centralnoticelogs-param-start": "Starttid för intervall (valfri).",
+	"apihelp-query+centralnoticelogs-param-end": "Sluttid för intervall (valfri).",
+	"apihelp-query+centralnoticelogs-example-1": "Visa loggar"
 }
