@@ -7,7 +7,7 @@
                     "category": "fundraising",
                     "preferred": 1,
                     "throttle": 50,
-                    "geotargetted": true,
+                    "geotargeted": true,
                     "geo_countries": [
                         "FR",
                         "GR",
@@ -27,7 +27,7 @@
                 "preferred": 1,
                 "throttle": 50,
                 "bucket_count": 1,
-                "geotargetted": true,
+                "geotargeted": true,
                 "countries": [
                     "FR",
                     "GR",
@@ -78,7 +78,7 @@
         "choices": [
             {
                 "name": "c1",
-                "geotargetted": false,
+                "geotargeted": false,
                 "preferred": 3,
                 "throttle": 60,
                 "banners": [
@@ -240,7 +240,7 @@
         "fixture": {
             "campaigns": [
                 {
-                    "geotargetted": true,
+                    "geotargeted": true,
                     "geo_countries": [
                         "FR",
                         "XX"
@@ -256,7 +256,7 @@
         },
         "choices": [
             {
-                "geotargetted": true,
+                "geotargeted": true,
                 "countries": [
                     "FR",
                     "XX"
@@ -279,7 +279,7 @@
         "fixture": {
             "campaigns": [
                 {
-                    "geotargetted": true,
+                    "geotargeted": true,
                     "geo_countries": [
                         "FR",
                         "GR"
@@ -295,7 +295,7 @@
         },
         "choices": [
             {
-                "geotargetted": true,
+                "geotargeted": true,
                 "countries": [
                     "FR",
                     "GR"

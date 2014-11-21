@@ -1,4 +1,4 @@
--- Update to allow for any number of geotargetted countries per notice.
+-- Update to allow for any number of geotargeted countries per notice.
 
 CREATE TABLE IF NOT EXISTS /*$wgDBprefix*/cn_notice_countries (
 	nc_notice_id int unsigned NOT NULL,

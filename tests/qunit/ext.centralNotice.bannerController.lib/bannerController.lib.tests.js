@@ -5,7 +5,7 @@
 		banners: [],
 		bucket_count: 1,
 		countries: [],
-		geotargetted: 0,
+		geotargeted: 0,
 		preferred: 1,
 		throttle: 100
 	}, defaultBannerData = {

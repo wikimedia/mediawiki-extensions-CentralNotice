@@ -150,7 +150,7 @@
 				latestDate,
 				campaignName, bucketEndDate;
 
-			// Cycle thorugh the buckets to find the latest end date
+			// Cycle through the buckets to find the latest end date
 			latestDate = now;
 			for ( campaignName in this.bucketsByCampaign ) {
 
@@ -228,8 +228,8 @@
 				campaign = this.choiceData[i];
 				keepCampaign = false;
 
-				// Filter for country if geotargetted
-				if ( campaign.geotargetted &&
+				// Filter for country if geotargeted
+				if ( campaign.geotargeted &&
 					( $.inArray(
 					mw.centralNotice.data.country, campaign.countries )
 					=== -1 ) ) {
