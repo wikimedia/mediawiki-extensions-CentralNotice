@@ -75,7 +75,7 @@
 			lon: lon && parseFloat( lon ),
 			af: af
 		};
-	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ || [] ) );
+	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
 
 	// FIXME Following the switch to client-side banner selection, it would
 	// make more sense for this to be defined in bannerController.lib. Before
