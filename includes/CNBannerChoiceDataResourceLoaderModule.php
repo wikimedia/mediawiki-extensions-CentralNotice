@@ -5,6 +5,10 @@
  *
  * Note: this module does nothing if $wgCentralNoticeChooseBannerOnClient
  * is false.
+ *
+ * Note: This class has been intentionally left stateless, due to how
+ * ResourceLoader works. This class has no expectation of having getScript() or
+ * getModifiedHash() called in the same request.
  */
 class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
@@ -12,7 +16,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::targets
 	 */
 	protected $targets = array( 'desktop', 'mobile' );
-	protected $choices;
 
 	const API_REQUEST_TIMEOUT = 20;
 
@@ -22,10 +25,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			$wgCentralNoticeApiUrl,
 			$wgCentralDBname,
 			$wgCentralNoticeChooseBannerOnClient;
-
-		if ( $this->choices !== null ) {
-			return $this->choices;
-		}
 
 		if ( !$wgCentralNoticeChooseBannerOnClient ) {
 			return null;
@@ -62,7 +61,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return array();
 		}
 
-		$this->choices = $choices;
 		return $choices;
 	}
 
@@ -117,21 +115,14 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return false;
 		}
 
-		$parsedApiResult = FormatJson::parse( $apiResult ) ?: false;
+		$parsedApiResult = FormatJson::parse( $apiResult );
 
-		if ( !$parsedApiResult ) {
+		if ( !$parsedApiResult->isGood() ) {
 			wfLogWarning( 'Couldn\'t parse banner choice data from API.');
 			return false;
 		}
 
-		if ( !isset( $parsedApiResult->value ) ) {
-			wfLogWarning( 'Error fetching banner choice data via API: ' .
-				'no "value" property in result object.' );
-
-			return false;
-		}
-
-		$result = $parsedApiResult->value;
+		$result = $parsedApiResult->getValue();
 
 		if ( isset( $result->error ) ) {
 			wfLogWarning( 'Error fetching banner choice data via API: ' .
@@ -140,7 +131,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return false;
 		}
 
-		return $result;
+		return $result->choices;
 	}
 
 	/**

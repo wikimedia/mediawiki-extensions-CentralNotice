@@ -197,7 +197,7 @@
 	"centralnotice-archive-campaign-cancel": "გაუქმება",
 	"centralnotice-add-new-banner-title": "დაამატეთ ახალი ბანერი",
 	"centralnotice-delete-banner": "წაშლა",
-	"centralnotice-delete-banner-title": "გსურთ წაშალოთ {{PLURAL:$1|ბანერი|ბანერები}}?",
+	"centralnotice-delete-banner-title": "{{PLURAL:$1|ბანერის|ბანერების}} წაშლა",
 	"centralnotice-delete-banner-cancel": "გაუქმება",
 	"centralnotice-start-date": "დაწყების თარიღი (UTC)",
 	"centralnotice-start-time": "დაწყების დრო (UTC)",
