@@ -5,6 +5,10 @@
  *
  * Note: this module does nothing if $wgCentralNoticeChooseBannerOnClient
  * is false.
+ *
+ * Note: This class has been intentionally left stateless, due to how
+ * ResourceLoader works. This class has no expectation of having getScript() or
+ * getModifiedHash() called in the same request.
  */
 class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
@@ -12,7 +16,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::targets
 	 */
 	protected $targets = array( 'desktop', 'mobile' );
-	protected $choices;
 
 	const API_REQUEST_TIMEOUT = 20;
 
@@ -22,10 +25,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			$wgCentralNoticeApiUrl,
 			$wgCentralDBname,
 			$wgCentralNoticeChooseBannerOnClient;
-
-		if ( $this->choices !== null ) {
-			return $this->choices;
-		}
 
 		if ( !$wgCentralNoticeChooseBannerOnClient ) {
 			return null;
@@ -62,7 +61,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return array();
 		}
 
-		$this->choices = $choices;
 		return $choices;
 	}
 
