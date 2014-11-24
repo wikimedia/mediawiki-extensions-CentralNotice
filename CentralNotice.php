@@ -93,7 +93,7 @@ $wgCentralPagePath = false;
 $wgCentralNoticeApiUrl = false;
 
 // Enable the new mechanism for making the banner selection on the client
-$wgCentralNoticeChooseBannerOnClient = false;
+$wgCentralNoticeChooseBannerOnClient = true;
 
 // URL for BannerLoader, for requests to fetch a banner that is already
 // known (using the banner URL param). If false, it will default to
