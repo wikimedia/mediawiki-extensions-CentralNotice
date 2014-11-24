@@ -117,21 +117,14 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return false;
 		}
 
-		$parsedApiResult = FormatJson::parse( $apiResult ) ?: false;
+		$parsedApiResult = FormatJson::parse( $apiResult );
 
-		if ( !$parsedApiResult ) {
+		if ( !$parsedApiResult->isGood() ) {
 			wfLogWarning( 'Couldn\'t parse banner choice data from API.');
 			return false;
 		}
 
-		if ( !isset( $parsedApiResult->value ) ) {
-			wfLogWarning( 'Error fetching banner choice data via API: ' .
-				'no "value" property in result object.' );
-
-			return false;
-		}
-
-		$result = $parsedApiResult->value;
+		$result = $parsedApiResult->getValue();
 
 		if ( isset( $result->error ) ) {
 			wfLogWarning( 'Error fetching banner choice data via API: ' .
@@ -140,7 +133,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			return false;
 		}
 
-		return $result;
+		return $result->choices;
 	}
 
 	/**
