@@ -48,6 +48,14 @@
 
 			mw.centralNotice.loadBanner = realLoadBanner;
 
+			// Mock out buckets
+			mw.cnBannerControllerLib.bucketsByCampaign = {};
+			mw.cnBannerControllerLib.bucketsByCampaign[bannerData.campaign] = {
+				val: 0,
+				start: 1419937200,
+				end: 1414754400
+			};
+
 			// Create normalized siteNotice.
 			$( "#qunit-fixture" ).append(
 				'<div id=siteNotice><div id=centralNotice></div></div>'
