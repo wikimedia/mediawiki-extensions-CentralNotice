@@ -311,12 +311,10 @@
 					}
 
 					// Filter for logged-in status
-					if ( mw.centralNotice.data.anonymous &&
-						( banner.display_anon != 1 ) ) {
+					if ( mw.centralNotice.data.anonymous && !banner.display_anon ) {
 						continue;
 					}
-					if ( !mw.centralNotice.data.anonymous &&
-						( banner.display_account != 1 ) ) {
+					if ( !mw.centralNotice.data.anonymous && !banner.display_account ) {
 						continue;
 					}
 
