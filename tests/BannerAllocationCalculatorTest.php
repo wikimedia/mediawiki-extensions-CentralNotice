@@ -28,14 +28,14 @@ class BannerAllocationCalculatorTest extends MediaWikiTestCase {
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::getDefaultProject(),
-			CentralNoticeTestFixtures::getDefaultLanguage(),
-			BannerChoiceDataProvider::ANONYMOUS
+			CentralNoticeTestFixtures::getDefaultLanguage()
 		);
 		$choices = $allocationsProvider->getChoicesForCountry(
 			CentralNoticeTestFixtures::getDefaultCountry()
 		);
 		$banners = BannerAllocationCalculator::filterAndTransformBanners(
 			$choices,
+			BannerAllocationCalculator::ANONYMOUS,
 			CentralNoticeTestFixtures::getDefaultDevice(),
 			0
 		);

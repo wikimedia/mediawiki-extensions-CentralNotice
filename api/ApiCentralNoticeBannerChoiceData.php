@@ -29,23 +29,8 @@ class ApiCentralNoticeBannerChoiceData extends ApiCentralNoticeAllocationBase {
 				parent::LANG_FILTER
 		);
 
-		$status = parent::sanitizeText(
-				$params['status'],
-				self::STATUS_FILTER
-		);
-
-		if ( $status === 'loggedin' ) {
-			$status = BannerChoiceDataProvider::LOGGED_IN;
-		} else if ( $status === 'anonymous' ) {
-			$status = BannerChoiceDataProvider::ANONYMOUS;
-		} else {
-			$this->dieUsage(
-				'Invalid status value: must be "loggedin" or "anonymous".',
-				'invalid-status');
-		}
-
 		$choicesProvider = new BannerChoiceDataProvider(
-			$project, $lang, $status, BannerChoiceDataProvider::USE_DEFAULT_DB );
+			$project, $lang, BannerChoiceDataProvider::USE_DEFAULT_DB );
 
 		$choices = $choicesProvider->getChoices();
 
@@ -68,17 +53,13 @@ class ApiCentralNoticeBannerChoiceData extends ApiCentralNoticeAllocationBase {
 			'language' => array(
 					ApiBase::PARAM_TYPE => 'string',
 					ApiBase::PARAM_REQUIRED => true
-			),
-			'status' => array(
-					ApiBase::PARAM_TYPE => 'string',
-					ApiBase::PARAM_REQUIRED => true
 			)
 		);
 	}
 
 	protected function getExamplesMessages() {
 		return array(
-			'action=centralnoticebannerchoicedata&project=wikpedia&language=en&status=anonymous'
+			'action=centralnoticebannerchoicedata&project=wikpedia&language=en'
 			=> 'apihelp-centralnoticebannerchoicedata-example-1'
 		);
 	}

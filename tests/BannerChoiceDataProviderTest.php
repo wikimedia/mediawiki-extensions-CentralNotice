@@ -28,8 +28,7 @@ class BannerChoiceDataProviderTest extends MediaWikiTestCase {
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::$defaultCampaign['projects'][0],
-			CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0],
-			BannerChoiceDataProvider::ANONYMOUS
+			CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0]
 		);
 		$choices = $allocationsProvider->getChoices();
 		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $data['choices'] ) );

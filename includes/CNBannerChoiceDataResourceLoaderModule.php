@@ -33,20 +33,17 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		$project = $wgNoticeProject;
 		$language = $context->getLanguage();
 
-		// TODO Find out what's up with $context->getUser()
-		$status = ( $wgUser->isAnon() ) ? 'anonymous' : 'loggedin';
-
 		// Fetch the data via the DB or the API. Decide which to use based
 		// on whether the appropriate global variables are set.
 		// If something's amiss, we warn and return an empty array, but don't
 		// bring everything to a standstill.
 
 		if ( $wgCentralDBname ) {
-			 $choices = $this->getFromDb( $project, $language, $status );
+			 $choices = $this->getFromDb( $project, $language );
 
 		} else if ( $wgCentralNoticeApiUrl ) {
 
-			$choices = $this->getFromApi( $project, $language, $status );
+			$choices = $this->getFromApi( $project, $language );
 
 			if ( !$choices ) {
 				wfLogWarning( 'Couldn\'t fetch banner choice data via API. ' .
@@ -70,16 +67,11 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 *
 	 * @param string $project
 	 * @param string $language
-	 * @param string $status Can be 'loggedin' or 'anonymous'
 	 */
-	protected function getFromDb( $project, $language, $status ) {
-
-		$status = ( $status === 'loggedin' ) ?
-			BannerChoiceDataProvider::LOGGED_IN :
-			BannerChoiceDataProvider::ANONYMOUS;
+	protected function getFromDb( $project, $language ) {
 
 		$choicesProvider = new BannerChoiceDataProvider(
-			$project, $language, $status,
+			$project, $language,
 			BannerChoiceDataProvider::USE_INFRASTRUCTURE_DB );
 
 		return $choicesProvider->getChoices();
@@ -91,11 +83,10 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 *
 	 * @param string $project
 	 * @param string $language
-	 * @param string $status Can be 'loggedin' or 'anonymous'
 	 *
 	 * @return array|boolean
 	 */
-	protected function getFromApi( $project, $language, $status ) {
+	protected function getFromApi( $project, $language ) {
 		global $wgCentralNoticeApiUrl;
 
 		// Make the URl
@@ -103,7 +94,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			'action' => 'centralnoticebannerchoicedata',
 			'project' => $project,
 			'language' => $language,
-			'status' => $status,
 			'format' => 'json'
 		);
 

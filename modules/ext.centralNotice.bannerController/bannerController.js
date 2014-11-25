@@ -175,8 +175,8 @@
 
 				// Filter choiceData on country and device. Only campaigns that
 				// target the user's country and have at least one banner for
-				// the user's device pass this filter.
-				mw.cnBannerControllerLib.filterChoiceDataCountriesAndDevices();
+				// the user's logged-in status and device pass this filter.
+				mw.cnBannerControllerLib.filterChoiceData();
 
 				// Do all things bucket. Retrieve or generate buckets for all
 				// the campaigns remaining in choiceData. Then update expiry
@@ -184,8 +184,9 @@
 				mw.cnBannerControllerLib.processBuckets();
 
 				// Create a flat list of possible banners available for the
-				// user's buckets and device, and calculate allocations.
-				mw.cnBannerControllerLib.makePossibleBannersForBucketsAndDevice();
+				// user's buckets, logged-in status and device, and calculate
+				// allocations.
+				mw.cnBannerControllerLib.makePossibleBanners();
 				mw.cnBannerControllerLib.calculateBannerAllocations();
 
 				// Get a random seed or use the random= parameter from the URL,
@@ -282,7 +283,8 @@
 			// === Attempt to load parameters from the query string ===
 			mw.centralNotice.loadQueryStringVariables();
 
-			// === Initialize things that don't come from MW itself ===
+			// === Initialize some data ===
+			mw.centralNotice.data.anonymous = ( mw.config.get( 'wgUserName' ) === null );
 			mw.centralNotice.data.country = mw.centralNotice.data.getVars.country || window.Geo.country || 'XX';
 			mw.centralNotice.data.addressFamily = ( window.Geo.IPv6 || window.Geo.af === 'v6' ) ? 'IPv6' : 'IPv4';
 			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
@@ -359,7 +361,7 @@
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			project: mw.config.get( 'wgNoticeProject' ),
 			db: mw.config.get( 'wgDBname' ),
-			anonymous: mw.config.get( 'wgUserName' ) === null,
+			anonymous: mw.centralNotice.data.anonymous,
 			device: mw.centralNotice.data.device
 		};
 

@@ -2,7 +2,7 @@
 
 /***
  * Provides a set of campaign and banner choices based on allocations for a
- * given project, language and anonymous/logged-in status.
+ * given project and language combination.
  */
 class BannerChoiceDataProvider {
 
@@ -17,27 +17,19 @@ class BannerChoiceDataProvider {
 	 */
 	const USE_INFRASTRUCTURE_DB = 1;
 
-	const LOGGED_IN = 0;
-	const ANONYMOUS = 1;
-
 	protected $project;
 	protected $language;
-	protected $status;
 	protected $whichDb;
 
 	/**
 	 * @param string $project The project to get choices for
 	 * @param string $language The language to get choices for
-	 * @param int $status Anonymous/logged-in status to get choices for. Can be
-	 *   BannerChoiceDataProvider::LOGGED_IN or
-	 *   BannerChoiceDataProvider::ANONYMOUS.
 	 */
-	public function __construct( $project, $language, $status,
+	public function __construct( $project, $language,
 		$whichDb=self::USE_DEFAULT_DB ) {
 
 		$this->project = $project;
 		$this->language = $language;
-		$this->status = $status;
 		$this->whichDb = $whichDb;
 	}
 
@@ -84,21 +76,6 @@ class BannerChoiceDataProvider {
 			'notice_languages.nl_language' => $this->language
 		);
 
-		// Set the user status condition
-		switch ( $this->status ) {
-			case self::LOGGED_IN:
-				$conds['templates.tmp_display_account'] = 1;
-				break;
-
-			case self::ANONYMOUS:
-				$conds['templates.tmp_display_anon'] = 1;
-				break;
-
-			default:
-				throw new MWException( $this->status . 'is not a valid status '
-					. 'for BannerChoiceDataProvider.' );
-		}
-
 		// Query campaigns and banners at once
 		$dbRows = $dbr->select(
 			array(
@@ -121,6 +98,8 @@ class BannerChoiceDataProvider {
 				'assignments.asn_bucket',
 				'templates.tmp_id',
 				'templates.tmp_name',
+				'templates.tmp_display_anon',
+				'templates.tmp_display_account',
 				'templates.tmp_category'
 			),
 			$conds,
@@ -183,6 +162,8 @@ class BannerChoiceDataProvider {
 				'bucket' => intval( $bucket ),
 				'weight' => intval( $dbRow->tmp_weight ),
 				'category' => $dbRow->tmp_category,
+				'display_anon' => (bool) $dbRow->tmp_display_anon,
+				'display_account' => (bool) $dbRow->tmp_display_account,
 				'devices' => array() // To be filled by the last query
 			);
 

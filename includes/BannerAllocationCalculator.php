@@ -20,6 +20,10 @@
  * Calculates banner allocation percentages
  */
 class BannerAllocationCalculator {
+
+	const LOGGED_IN = 0;
+	const ANONYMOUS = 1;
+
 	/**
 	 * Calculate banner allocations given a list of banners filtered to a single
 	 * device and bucket
@@ -93,19 +97,46 @@ class BannerAllocationCalculator {
 
 	/**
 	 * Allocation helper. Maps an array of campaigns with banners to a flattened
-	 * list of banners, omitting those not in the specified device and bucket.
+	 * list of banners, omitting those not available for the specified logged-in
+	 * status, device and bucket.
 	 *
 	 * @param array $campaigns campaigns with banners as returned by
 	 *   @see BannerChoiceDataProvider::getChoicesForCountry
+	 *
+	 * @param integer $status A status constant defined by this class (i.e.,
+	 *   BannerAllocationCalculator::ANONYMOUS or
+	 *   BannerAllocationCalculator::LOGGED_IN).
+	 *
 	 * @param string $device target device code
 	 * @param integer $bucket target bucket number
+	 *
 	 * @return array banners with properties suitable for
 	 *   @see BannerAllocationCalculator::calculateAllocations
 	 */
-	static function filterAndTransformBanners( $campaigns, $device, $bucket ) {
+	static function filterAndTransformBanners(
+		$campaigns, $status, $device, $bucket ) {
+
+		// Set which property we need to check to filter logged-in status
+		switch ( $status ) {
+			case self::ANONYMOUS:
+				$status_prop = 'display_anon';
+				break;
+
+			case self::LOGGED_IN:
+				$status_prop = 'display_account';
+				break;
+
+			default:
+				throw new MWException( $this->status . 'is not a valid status '
+						. 'for BannerAllocationsCalculator.' );
+		}
+
 		$banners = array();
 		foreach( $campaigns as $campaign ) {
 			foreach ( $campaign['banners'] as $banner ) {
+				if ( !$banner[$status_prop] ) {
+					continue;
+				}
 				if ( !in_array( $device, $banner['devices'] ) ) {
 					continue;
 				}

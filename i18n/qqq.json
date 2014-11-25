@@ -269,7 +269,6 @@
 	"apihelp-centralnoticebannerchoicedata-description": "{{doc-apihelp-description|centralnoticebannerchoicedata}}",
 	"apihelp-centralnoticebannerchoicedata-param-project": "{{doc-apihelp-param|centralnoticebannerchoicedata|project}}",
 	"apihelp-centralnoticebannerchoicedata-param-language": "{{doc-apihelp-param|centralnoticebannerchoicedata|language}}",
-	"apihelp-centralnoticebannerchoicedata-param-status": "{{doc-apihelp-param|centralnoticebannerchoicedata|status}}",
 	"apihelp-centralnoticebannerchoicedata-example-1": "{{doc-apihelp-example|centralnoticebannerchoicedata}}",
 	"apihelp-query+centralnoticelogs-description": "{{doc-apihelp-description|query+centralnoticelogs}}",
 	"apihelp-query+centralnoticelogs-param-campaign": "{{doc-apihelp-param|query+centralnoticelogs|campaign}}",
