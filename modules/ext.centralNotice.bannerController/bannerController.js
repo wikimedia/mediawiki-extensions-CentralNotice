@@ -390,10 +390,13 @@
 			if ( !mw.centralNotice.chooseBannerOnClient ) {
 				mw.centralNotice.storeBucket();
 
-			} else {
+			} else if ( !mw.centralNotice.data.getVars.banner ) {
+
 				// If we are choosing banners on the client, that means we
 				// haven't set the bucket in the impression data. Add it
 				// along with its start and end dates.
+				// However we won't do this when a banner is being forced via
+				// the banner URL param.
 				bucket = mw.cnBannerControllerLib.bucketsByCampaign[impressionData.campaign];
 				impressionData.bucket = bucket.val;
 				impressionData.bucketStart = bucket.start;
