@@ -16,8 +16,7 @@
                     "banners": [
                         {
                             "name": "b1",
-                            "weight": 5,
-                            "display_anon": 1
+                            "weight": 5
                         }
                     ]
                 }
