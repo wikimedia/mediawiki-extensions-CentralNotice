@@ -215,13 +215,14 @@
 		},
 
 		/**
-		 * Filter choiceData on the user's country and device. Campaigns that
-		 * don't target the user's country or have no banners for their
-		 * device will be removed. We operate on this.choiceData.
+		 * Filter choiceData on the user's country, logged-in status and device.
+		 * Campaigns that don't target the user's country or have no banners for
+		 * their logged-in status and device will be removed. We operate on
+		 * this.choiceData.
 		 */
-		filterChoiceDataCountriesAndDevices: function() {
+		filterChoiceData: function() {
 
-			var i, campaign, j, keepCampaign,
+			var i, campaign, j, banner, keepCampaign,
 				filteredChoiceData = [];
 
 			for ( i = 0; i < this.choiceData.length; i++ ) {
@@ -237,21 +238,31 @@
 					continue;
 				}
 
-				// Now filter by banner device.
-				// To make buckets work consistently even in for strangely
+				// Now filter by banner logged-in status and device.
+				// To make buckets work consistently even for strangely
 				// configured campaigns, we won't chose buckets yet, so we'll
 				// filter on them a little later.
 				for ( j = 0; j < campaign.banners.length; j++ ) {
+					banner = campaign.banners[j];
+
+					// Logged-in status
+					if ( mw.centralNotice.data.anonymous && !banner.display_anon ) {
+						continue;
+					}
+					if ( !mw.centralNotice.data.anonymous && !banner.display_account ) {
+						continue;
+					}
 
 					// Device
 					if ( $.inArray(
 						mw.centralNotice.data.device,
-						campaign.banners[j].devices ) === -1 ) {
+						banner.devices ) === -1 ) {
 						continue;
 					}
 
-					// We get here if the campaign targets the user's country
-					// and has at least one banner for the user's device.
+					// We get here if the campaign targets the user's country,
+					// and has at least one banner for the user's logged-in status
+					// and device.
 					keepCampaign = true;
 				}
 
@@ -264,11 +275,11 @@
 		},
 
 		/**
-		 * Filter the choice data on the user's device and per-campaign buckets
-		 * (some banners that are not for the user's device may remain following
-		 * previous filters) and create a flat list of possible banners to chose
-		 * from. Add some extra data on to each banner entry. The result is
-		 * placed in possibleBanners.
+		 * Filter the choice data on the user's logged-in status, device and
+		 * per-campaign buckets (some banners that are not for the user's status
+		 * or device may remain following previous filters) and create a flat
+		 * list of possible banners to chose from. Add some extra data on to
+		 * each banner entry. The result is placed in possibleBanners.
 		 *
 		 * Note that if the same actual banner is assigned to more than one
 		 * campaign it can have more than one entry in that list. That's the
@@ -281,7 +292,7 @@
 		 * FIXME Re-organize code in all those places to make it easier to
 		 * understand.
 		 */
-		makePossibleBannersForBucketsAndDevice: function() {
+		makePossibleBanners: function() {
 
 			var i, campaign, campaignName, j, banner;
 			this.possibleBanners = [];
@@ -296,6 +307,16 @@
 					// Filter for bucket
 					if ( this.bucketsByCampaign[campaignName].val %
 						campaign.bucket_count !== banner.bucket ) {
+						continue;
+					}
+
+					// Filter for logged-in status
+					if ( mw.centralNotice.data.anonymous &&
+						( banner.display_anon != 1 ) ) {
+						continue;
+					}
+					if ( !mw.centralNotice.data.anonymous &&
+						( banner.display_account != 1 ) ) {
 						continue;
 					}
 

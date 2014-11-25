@@ -11,13 +11,16 @@
 	}, defaultBannerData = {
 		bucket: 0,
 		devices: [ 'desktop' ],
-		weight: 25
+		weight: 25,
+		display_anon: true,
+		display_account: true
 	};
 
 	QUnit.module( 'ext.centralNotice.bannerController.lib', QUnit.newMwEnvironment( {
 		setup: function() {
 			mw.centralNotice.data.country = 'XX';
 			mw.centralNotice.data.device = 'desktop';
+			mw.centralNotice.data.anonymous = true;
 		}
 	} ) );
 
@@ -42,14 +45,14 @@
 				// BOOM on priority case
 				choices = $.map( testCase.choices, function( campaign, index ) {
 					return $.extend(
-							{ name: index },
-							defaultCampaignData,
-							campaign,
-							{
-								banners: $.map( campaign.banners, function( banner ) {
-									return $.extend( {}, defaultBannerData, banner );
-								} )
-							} );
+						{ name: index },
+						defaultCampaignData,
+						campaign,
+						{
+							banners: $.map( campaign.banners, function( banner ) {
+								return $.extend( {}, defaultBannerData, banner );
+							} )
+						} );
 				} );
 
 				// Set per-campaign buckets to 0 for all campaigns
@@ -63,8 +66,8 @@
 				// TODO: would like to declare individual tests here, but I
 				// haven't been able to make that work, yet.
 				lib.setChoiceData( choices );
-				lib.filterChoiceDataCountriesAndDevices();
-				lib.makePossibleBannersForBucketsAndDevice();
+				lib.filterChoiceData();
+				lib.makePossibleBanners();
 				lib.calculateBannerAllocations();
 
 				// TODO: the errors will not reveal anything useful about

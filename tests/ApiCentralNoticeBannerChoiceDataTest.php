@@ -29,8 +29,7 @@ class ApiCentralNoticeBannerChoiceDataTest extends ApiTestCase {
 		$ret = $this->doApiRequest( array(
 			'action' => 'centralnoticebannerchoicedata',
 			'project' => CentralNoticeTestFixtures::$defaultCampaign['projects'][0],
-			'language' => CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0],
-			'status' => 'anonymous',
+			'language' => CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0]
 		) );
 		$this->assertTrue( ComparisonUtil::assertSuperset( $ret[0]['choices'], $data['choices'] ) );
 	}

@@ -214,17 +214,11 @@ class SpecialBannerAllocation extends CentralNotice {
 			'id' => 'algorithm-selector'
 		) );
 		
-		// Given our project and language combination, get banner choice data
-		// for logged in and anonymous users.
-		$login_statuses = array(
-			BannerChoiceDataProvider::ANONYMOUS,
-			BannerChoiceDataProvider::LOGGED_IN
-		);
 
-		foreach ( $login_statuses as $provider_status ) {
-			$provider = new BannerChoiceDataProvider( $project, $language, $provider_status );
-			$choice_data[$provider_status] = $provider->getChoicesForCountry( $country );
-		}
+		// Given our project and language combination, get banner choice data,
+		// then filter on country
+		$provider = new BannerChoiceDataProvider( $project, $language );
+		$choice_data = $provider->getChoicesForCountry( $country );
 
 		// Iterate through each possible device type and get allocation information
 		$devices = CNDeviceTarget::getAvailableDevices();
@@ -276,16 +270,17 @@ class SpecialBannerAllocation extends CentralNotice {
 				);
 				if ( $target['anonymous'] === 'true' ) {
 					$label = $this->msg( 'centralnotice-banner-anonymous' )->text();
-					$provider_campaigns = $choice_data[BannerChoiceDataProvider::ANONYMOUS];
+					$status = BannerAllocationCalculator::ANONYMOUS;
 				} else {
 					$label = $this->msg( 'centralnotice-banner-logged-in' )->text();
-					$provider_campaigns = $choice_data[BannerChoiceDataProvider::LOGGED_IN];
+					$status = BannerAllocationCalculator::LOGGED_IN;
 				}
 				$label .= ' -- ' . $this->msg( 'centralnotice-bucket-letter' )->
 					rawParams( chr( $target['bucket'] + 65 ) )->text();
 
 				$provider_banners = BannerAllocationCalculator::filterAndTransformBanners(
-					$provider_campaigns,
+					$choice_data,
+					$status,
 					$device_data['header'],
 					intval( $target['bucket'] )
 				);
