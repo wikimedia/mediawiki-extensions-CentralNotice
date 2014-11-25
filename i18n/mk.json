@@ -248,7 +248,6 @@
 	"apihelp-centralnoticebannerchoicedata-description": "Дај ги податоците потребни за избор на заглавие за даден проект и јазик",
 	"apihelp-centralnoticebannerchoicedata-param-project": "За кој проект да се дадат податоците за избор на заглавие:",
 	"apihelp-centralnoticebannerchoicedata-param-language": "За кој јазик да се дадат податоците за избор на заглавие:",
-	"apihelp-centralnoticebannerchoicedata-param-status": "Најавниот статус за кој да се дадат податоците за избор на заглавие (највен|анонимен).",
 	"apihelp-centralnoticebannerchoicedata-example-1": "Дај ги податоците за избор на заглавие за македонски. Википедија и анонимни корисници.",
 	"apihelp-query+centralnoticelogs-description": "Добивање на дневник на измени во нагодувањата на поставките за кампањите.",
 	"apihelp-query+centralnoticelogs-param-campaign": "Назив на кампањата (незадолжително). Ако има повеќе, одделете ги со исправена црта („|“).",
