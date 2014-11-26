@@ -309,7 +309,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
-		   $wgNoticeHideUrls, $wgNoticeOldCookieApocalypse,
+		   $wgNoticeHideUrls, $wgNoticeOldCookieEpoch,
 		   $wgCentralNoticeChooseBannerOnClient, $wgCentralSelectedBannerDispatcher,
 		   $wgCentralNoticePerCampaignBucketExtension;
 
@@ -349,7 +349,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
-	$vars[ 'wgNoticeOldCookieApocalypse' ] = $wgNoticeOldCookieApocalypse;
+	$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
 	$vars[ 'wgCentralNoticeChooseBannerOnClient' ] = $wgCentralNoticeChooseBannerOnClient;
 	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;

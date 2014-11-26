@@ -144,9 +144,9 @@ $wgNoticeCookieDurations = array(
 );
 
 /**
- * @var int timestamp after which old-format 'hide' cookies are deleted
+ * @var string Timestamp after which old-format 'hide' cookies should be deleted
  */
-$wgNoticeOldCookieApocalypse = strtotime( '2014-11-09' );
+$wgNoticeOldCookieEpoch = '20141109000000';
 
 /**
  * @var string[] $wgNoticeHideUrls Locations of Special:HideBanner targets to hit
