@@ -136,6 +136,7 @@
 	"centralnotice-country": "Země",
 	"centralnotice-no-allocation": "Žádné bannery nejsou přiděleny.",
 	"centralnotice-allocation-description": "Přidělení bannerů pro jazyk $1, projekt $2 v zemi $3 na zařízení $4",
+	"centralnotice-allocation-client-algorithm": "Zobrazit přidělení tak, jak je počítá algoritmus na klientské straně.",
 	"centralnotice-historical-allocation-description": "Přidělení bannerů pro jazyk $1, projekt $2 v zemi $3 na zařízení $4 v čase $5",
 	"centralnotice-percentage": "Procenta",
 	"centralnotice-documentwrite-error": "V banneru nelze používat document.write().\nDalší informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:CentralNotice.",
