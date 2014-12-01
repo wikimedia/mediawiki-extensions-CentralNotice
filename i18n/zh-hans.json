@@ -263,6 +263,8 @@
 	"apihelp-centralnoticeallocations-example-1": "显示一些分配",
 	"apihelp-centralnoticequerycampaign-param-campaign": "活动名称。通过“|”（竖线）分割多个值。",
 	"apihelp-centralnoticequerycampaign-example-1": "显示运动“Plea_US”",
+	"apihelp-centralnoticebannerchoicedata-param-project": "要获取横幅选择数据的项目。",
+	"apihelp-centralnoticebannerchoicedata-param-language": "要获取横幅选择数据的语言。",
 	"apihelp-query+centralnoticelogs-param-campaign": "活动名称（可选）。通过“|”（竖线）分割多个值。",
 	"apihelp-query+centralnoticelogs-param-user": "用户名（可选）。",
 	"apihelp-query+centralnoticelogs-param-limit": "最大行数返回 （可选）。",
