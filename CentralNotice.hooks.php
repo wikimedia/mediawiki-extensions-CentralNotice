@@ -202,12 +202,7 @@ $wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgCentralHost, $wgCentralGeoScriptURL, $wgServer;
-
-	// Insert the geoIP lookup
-	if ( is_string( $wgCentralGeoScriptURL ) ) {
-		$out->addHeadItem( 'geoip', '<script src="' . htmlspecialchars( $wgCentralGeoScriptURL ) . '"></script>' );
-	}
+	global $wgCentralHost, $wgServer;
 
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {
