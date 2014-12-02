@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"बिप्लब आनन्द"
+		]
+	},
+	"centralnotice-day": "दिन",
+	"centralnotice-year": "बरख",
+	"centralnotice-month": "महिना",
+	"centralnotice-hours": "घंटा",
+	"centralnotice-min": "मिनट",
+	"centralnotice-project-lang": "परियोजना भाषा",
+	"centralnotice-remove-all": "सभटा मेटाउ",
+	"apihelp-query+centralnoticelogs-example-1": "वृतलेख देखाऊ"
+}
