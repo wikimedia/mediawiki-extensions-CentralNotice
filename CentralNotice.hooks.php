@@ -87,6 +87,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'CNBannerPager' ] = $includeDir . 'CNBannerPager.php';
 	$wgAutoloadClasses[ 'CNCampaignPager' ] = $includeDir . 'CNCampaignPager.php';
 	$wgAutoloadClasses[ 'CNDeviceTarget' ] = $includeDir . 'CNDeviceTarget.php';
+	$wgAutoloadClasses[ 'Experiment' ] = $includeDir . 'Experiment.php';
 	$wgAutoloadClasses[ 'GeoTarget' ] = $includeDir . 'GeoTarget.php';
 	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
 	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';

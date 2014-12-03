@@ -195,6 +195,8 @@ class CentralNotice extends SpecialPage {
 					}
 				}
 
+				// XXX check whether we should declare a new experiment.
+
 				// If there were no errors, reload the page to prevent duplicate form submission
 				if ( !$this->centralNoticeError ) {
 					$out->redirect( $this->getPageTitle()->getLocalUrl() );
@@ -675,6 +677,8 @@ class CentralNotice extends SpecialPage {
 		// Begin Campaign detail fieldset
 		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
+		$this->calculateCampaignWarnings( $c );
+
 		if ( $this->editable ) {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
@@ -733,6 +737,20 @@ class CentralNotice extends SpecialPage {
 		}
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 		$this->getOutput()->addHTML( $htmlOut );
+	}
+
+	/**
+	 */
+	function calculateCampaignWarnings( Campaign $campaign ) {
+		// TODO: test for campaign buckets without an assigned banner.
+
+		// If this campaign contains a new test, check that it has been given a
+		// name.
+		if ( true || /*$campaign->getCurrentExperiment()->getDescription()*/true ) {
+			$message = "This is a new test.  Please <input name=\"test_description\"
+			type=\"text\" value=\"describe\" /> what is under test.";
+			$this->getOutput()->wrapWikiMsg( "<div class='cn-warning'>\n$1\n</div>", $message );
+		}
 	}
 
 	/**

@@ -1071,6 +1071,8 @@ class Campaign {
 	 * @param $endAssignments   array of banner assignments after changes (optional)
 	 *
 	 * @return integer: ID of log entry (or null)
+	 *
+	 * TODO: call from a transactional CampaignStorage::save() handler.
 	 */
 	static function logCampaignChange(
 		$action, $campaignId, $user, $beginSettings = array(),
@@ -1079,6 +1081,7 @@ class Campaign {
 	) {
 		// TODO prune unused parameters
 		// Only log the change if it is done by an actual user (rather than a testing script)
+		/// FIXME: this should not be conditional on user.
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
 			$dbw = CNDatabase::getDb();
 
@@ -1152,6 +1155,17 @@ class Campaign {
 			$logs[] = array_merge( get_object_vars( $entry ), $entry->changes() );
 		}
 		return $logs;
+	}
+
+	/**
+	 * @return Experiment
+	 */
+	public function getCurrentExperiment() {
+		// select from cn_experiment
+		if ( !$experiment ) {
+			// warning
+			return Experiment::newFromCampaign( $this );
+		}
 	}
 }
 
