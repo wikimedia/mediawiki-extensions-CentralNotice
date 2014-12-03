@@ -25,6 +25,9 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_assignments (
 	`tmp_weight` int(11) NOT NULL,
 	`asn_bucket` tinyint(1) DEFAULT '0'
 ) /*$wgDBTableOptions*/;
+CREATE INDEX /*i*/asn_not ON /*_*/cn_assignments (not_id);
+CREATE INDEX /*i*/asn_tmp ON /*_*/cn_assignments (tmp_id);
+CREATE INDEX /*i*/asn_bucket ON /*_*/cn_assignments (asn_bucket);
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_templates (
 	`tmp_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,

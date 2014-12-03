@@ -135,14 +135,21 @@ class CNDatabasePatcher {
 					 'addField', 'cn_template_log', 'tmplog_comment',
 					 $base . '/patch-template-logging-comments.sql', true
 				)
-			);;
+			);
 			$updater->addExtensionUpdate(
 				array(
 					 'addField', 'cn_notice_log', 'notlog_comment',
 					 $base . '/patch-notice-logging-comments.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					 'addIndex', 'cn_assignments', 'asn_bucket',
+					 $base . '/patch-assignments_index.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
+			// Add the entire schema...
 			$updater->addExtensionUpdate(
 				array(
 					'addTable', 'cn_notices',
