@@ -11,6 +11,9 @@ class CentralNotice extends SpecialPage {
 
 	public $editable, $centralNoticeError;
 
+	protected $campaign;
+	protected $campaignWarnings = array();
+
 	function __construct() {
 		// Register special page
 		parent::__construct( 'CentralNotice' );
@@ -495,9 +498,9 @@ class CentralNotice extends SpecialPage {
 	function listNoticeDetail( $notice ) {
 		global $wgNoticeNumberOfBuckets;
 
-		$c = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
+		$this->campaign = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
 		try {
-			if ( $c->isArchived() || $c->isLocked() ) {
+			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
 				$this->getOutput()->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
 				$this->editable = false; // Todo: Fix this gross hack to prevent editing
 			}
@@ -732,7 +735,19 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
 		$htmlOut .= Xml::closeElement( 'fieldset' );
+
+		$this->displayCampaignWarnings();
+
 		$this->getOutput()->addHTML( $htmlOut );
+	}
+
+	/**
+	 * Output stored campaign warnings
+	 */
+	function displayCampaignWarnings() {
+		foreach ( $this->campaignWarnings as $message ) {
+			$this->getOutput()->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
+		}
 	}
 
 	/**
@@ -911,6 +926,9 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Create form for managing banners assigned to a campaign
+	 *
+	 * Common campaign misconfigurations will cause warnings to appear
+	 * at the top of this form.
 	 */
 	function assignedTemplatesForm( $notice ) {
 		global $wgNoticeNumberOfBuckets;
@@ -1026,6 +1044,33 @@ class CentralNotice extends SpecialPage {
 		}
 		$htmlOut .= XMl::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
+
+		// Sneak in some extra processing, to detect errors in bucket assignment.
+		// Test for campaign buckets without an assigned banner or with multiple banners.
+		$assignedBuckets = array();
+		$numBuckets = $this->campaign->getBuckets();
+		foreach ( $banners as $banner ) {
+			$bannerBucket = $banner->asn_bucket;
+			$bannerName = $banner->tmp_name;
+
+			// If this campaign uses bucketing, is more than one banner
+			// assigned to any bucket?
+			if ( $numBuckets > 1
+				&& array_key_exists( $bannerBucket, $assignedBuckets )
+			) {
+				$this->campaignWarnings[] = array(
+					'centralnotice-banner-overflowing-bucket', chr( $bannerBucket + ord( 'A' ) )
+				);
+			}
+			$assignedBuckets[$bannerBucket] = $bannerName;
+		}
+		// Do any buckets not have a banner assigned?
+		if ( count( $assignedBuckets ) < $numBuckets ) {
+			$this->campaignWarnings[] = array(
+				'centralnotice-banner-empty-bucket'
+			);
+		}
+
 		return $htmlOut;
 	}
 

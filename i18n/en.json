@@ -188,6 +188,8 @@
 	"centralnotice-buckets": "User bucketing",
 	"centralnotice-bucket": "Bucket",
 	"centralnotice-bucket-letter": "Bucket \"$1\"",
+	"centralnotice-banner-overflowing-bucket": "Bucket \"$1\" has too many banners assigned.",
+	"centralnotice-banner-empty-bucket": "Not all buckets have a banner assigned.",
 	"centralnotice-devicetype-desktop": "Desktop Computer",
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "All devices identified as iPads but not iPhones",
