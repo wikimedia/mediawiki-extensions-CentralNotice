@@ -356,10 +356,6 @@
 		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
-		if ( navigator.userAgent.match ( /bot|googlebot|crawler|spider|robot|crawling/i ) ) {
-			return;
-		}
-
 		var impressionData = {
 			country: mw.centralNotice.data.country,
 			uselang: mw.config.get( 'wgUserLanguage' ),
