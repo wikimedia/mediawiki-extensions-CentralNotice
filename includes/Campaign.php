@@ -180,11 +180,11 @@ class Campaign {
 	 * @return int
 	 */
 	public function getBuckets() {
-		if ( $this->priority === null ) {
+		if ( $this->buckets === null ) {
 			$this->loadBasicSettings();
 		}
 
-		return $this->priority;
+		return $this->buckets;
 	}
 
 	/**
@@ -224,6 +224,8 @@ class Campaign {
 			__METHOD__
 		);
 		if ( $row ) {
+			$this->id = $row->not_id;
+			$this->name = $row->not_name;
 			$this->start = new MWTimestamp( $row->not_start );
 			$this->end = new MWTimestamp( $row->not_end );
 			$this->enabled = (bool)$row->not_enabled;
@@ -412,7 +414,7 @@ class Campaign {
 		$campaign[ 'languages' ] = implode( ", ", $languages );
 		$campaign[ 'countries' ] = implode( ", ", $geo_countries );
 
-		$bannersIn = Banner::getCampaignBanners( $row->not_id, true );
+		$bannersIn = Banner::getCampaignBanners( $row->not_id );
 		$bannersOut = array();
 		// All we want are the banner names, weights, and buckets
 		foreach ( $bannersIn as $key => $row ) {
