@@ -202,12 +202,7 @@ $wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgCentralHost, $wgCentralGeoScriptURL, $wgServer;
-
-	// Insert the geoIP lookup
-	if ( is_string( $wgCentralGeoScriptURL ) ) {
-		$out->addHeadItem( 'geoip', '<script src="' . htmlspecialchars( $wgCentralGeoScriptURL ) . '"></script>' );
-	}
+	global $wgCentralHost, $wgServer;
 
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {
@@ -309,7 +304,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
-		   $wgNoticeHideUrls, $wgNoticeOldCookieApocalypse,
+		   $wgNoticeHideUrls, $wgNoticeOldCookieEpoch,
 		   $wgCentralNoticeChooseBannerOnClient, $wgCentralSelectedBannerDispatcher,
 		   $wgCentralNoticePerCampaignBucketExtension;
 
@@ -349,7 +344,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
-	$vars[ 'wgNoticeOldCookieApocalypse' ] = $wgNoticeOldCookieApocalypse;
+	$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
 	$vars[ 'wgCentralNoticeChooseBannerOnClient' ] = $wgCentralNoticeChooseBannerOnClient;
 	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;

@@ -1219,7 +1219,7 @@ class Banner {
 	/**
 	 * Given one or more campaign ids, return all banners bound to them
 	 *
-	 * @param array $campaigns list of campaign numeric IDs
+	 * @param integer|array $campaigns list of campaign numeric IDs
 	 *
 	 * @return array a 2D array of banners with associated weights and settings
 	 */

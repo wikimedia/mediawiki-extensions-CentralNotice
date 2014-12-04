@@ -23,8 +23,7 @@
  * @file
  */
 ( function ( $ ) {
-	var RAND_MAX = 30,
-		step_size = 100 / RAND_MAX;
+	var step_size = 1;
 	$( '#centralnotice-throttle-amount' ).slider( {
 		range: "min",
 		min: 0,
