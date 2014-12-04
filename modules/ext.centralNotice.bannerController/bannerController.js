@@ -443,7 +443,7 @@
 				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;
 				$( 'div#centralNotice' )
 					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.category ) )
-					.prepend( bannerJson.bannerHtml );
+					.prepend( '<!--googleoff: all-->' + bannerJson.bannerHtml + '<!--googleon: all-->' );
 
 				// Create landing page links if required
 				if ( bannerJson.autolink ) {
