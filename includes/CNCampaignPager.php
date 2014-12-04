@@ -56,6 +56,34 @@ class CNCampaignPager extends TablePager {
 	 * @see IndexPager::getQueryInfo()
 	 */
 	public function getQueryInfo() {
+		$db = CNDatabase::getDb();
+		/* FIXME: waiting for @Ic0a5db43727ed9c3ea13d0898a06009f5d94034c
+		 * $db->setSessionOptions( array(
+		 * 	'group_concat_max_len' => 10000,
+		 * ) );
+		 */
+		$db->query( 'SET SESSION group_concat_max_len = 10000' );
+
+		$join_fields = array(
+			$db->buildGroupConcatField(
+				',',
+				array( 'cn_notice_countries' ),
+				'nc_country',
+				'nc_notice_id = notices.not_id'
+			) . ' AS countries',
+			$db->buildGroupConcatField(
+				',',
+				array( 'cn_notice_languages' ),
+				'nl_language',
+				'nl_notice_id = notices.not_id'
+			) . ' AS languages',
+			$db->buildGroupConcatField(
+				',',
+				array( 'cn_notice_projects' ),
+				'np_project',
+				'np_notice_id = notices.not_id'
+			) . ' AS projects',
+		);
 
 		if ( $this->assignedBannerId ) {
 
@@ -65,7 +93,7 @@ class CNCampaignPager extends TablePager {
 					'notices' => 'cn_notices',
 					'assignments' => 'cn_assignments'
 				),
-				'fields' => array(
+				'fields' => array_merge( $join_fields, array(
 						'notices.not_id',
 						'not_name',
 						'not_start',
@@ -76,7 +104,7 @@ class CNCampaignPager extends TablePager {
 						'not_geo',
 						'not_locked',
 						'not_archived'
-				),
+				) ),
 				'conds' => array(
 					'notices.not_id = assignments.not_id',
 					'assignments.tmp_id = ' . (int)$this->assignedBannerId
@@ -84,11 +112,12 @@ class CNCampaignPager extends TablePager {
 			);
 
 		} else {
-
 			// Query for all campaigns
 			return array(
-				'tables' => 'cn_notices',
-				'fields' => array(
+				'tables' => array(
+					'notices' => 'cn_notices',
+				),
+				'fields' => array_merge( $join_fields, array(
 					'not_id',
 					'not_name',
 					'not_start',
@@ -98,9 +127,9 @@ class CNCampaignPager extends TablePager {
 					'not_throttle',
 					'not_geo',
 					'not_locked',
-					'not_archived'
-				),
-				'conds' => array()
+					'not_archived',
+				) ),
+				'conds' => array(),
 			);
 		}
 	}
@@ -179,17 +208,18 @@ class CNCampaignPager extends TablePager {
 				);
 
 			case 'projects':
-				$p = Campaign::getNoticeProjects( $name );
+				$p = explode( ',', $this->mCurrentRow->projects );
 				return $this->onSpecialCN->listProjects( $p );
 
 			case 'languages':
-				$l = Campaign::getNoticeLanguages( $name );
+				$l = explode( ',', $this->mCurrentRow->languages );
 				return $this->onSpecialCN->listLanguages( $l );
 
 			case 'countries':
 				if ( $this->mCurrentRow->not_geo ) {
-					$c = Campaign::getNoticeCountries( $name );
+					$c = explode( ',', $this->mCurrentRow->countries );
 				} else {
+					// FIXME: this is silly.
 					$c = array_keys( GeoTarget::getCountriesList( 'en' ) );
 				}
 
