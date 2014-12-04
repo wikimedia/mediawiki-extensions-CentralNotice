@@ -52,6 +52,15 @@ class BannerRenderer {
 		);
 	}
 
+	// TODO: consolidate with above function
+	public static function linkToBanner( $name ) {
+		return Linker::link(
+			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$name}" ),
+			htmlspecialchars( $name ),
+			array( 'class' => 'cn-banner-title' )
+		);
+	}
+
 	/**
 	 * Render the banner as an html fieldset
 	 */
