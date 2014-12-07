@@ -261,6 +261,7 @@
 	"apihelp-centralnoticeallocations-param-anonymous": "要过滤的登录状态（true|false）。",
 	"apihelp-centralnoticeallocations-param-device": "要过滤的设备名称。",
 	"apihelp-centralnoticeallocations-example-1": "显示一些分配",
+	"apihelp-centralnoticequerycampaign-description": "获取一则通过的所有配置设置。",
 	"apihelp-centralnoticequerycampaign-param-campaign": "活动名称。通过“|”（竖线）分割多个值。",
 	"apihelp-centralnoticequerycampaign-example-1": "显示运动“Plea_US”",
 	"apihelp-centralnoticebannerchoicedata-param-project": "要获取横幅选择数据的项目。",
