@@ -594,8 +594,9 @@ class CentralNotice extends SpecialPage {
 						$weight = $request->getArray( 'weight' );
 						foreach ( $templatesToAdd as $templateName ) {
 							$templateId = Banner::fromName( $templateName )->getId();
+							$bucket = $request->getInt( "bucket-{$templateName}" );
 							$result = Campaign::addTemplateTo(
-								$notice, $templateName, $weight[ $templateId ]
+								$notice, $templateName, $weight[$templateId], $bucket
 							);
 							if ( $result !== true ) {
 								$this->showError( $result );

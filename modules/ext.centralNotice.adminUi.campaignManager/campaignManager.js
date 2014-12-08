@@ -22,7 +22,7 @@
  *
  * @file
  */
-( function ( $ ) {
+( function ( $, mw ) {
 	var step_size = 1;
 	$( '#centralnotice-throttle-amount' ).slider( {
 		range: "min",
@@ -56,6 +56,20 @@
 	}
 	$( '#balanced' ).click( updateWeightColumn );
 
+	function updateBuckets() {
+		var numCampaignBuckets = $( 'select#buckets :checked' ).val();
+
+		if ( numCampaignBuckets ) {
+			for ( var i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
+				var isBucketDisabled = ( i >= numCampaignBuckets );
+
+				$( 'select.bucketSelector option[value=' + i + ']' ).prop( 'disabled', isBucketDisabled );
+			}
+		}
+	}
+	$( 'select#buckets' ).change( updateBuckets );
+
 	updateThrottle();
 	updateWeightColumn();
-} )( jQuery );
+	updateBuckets();
+} )( jQuery, mediaWiki );

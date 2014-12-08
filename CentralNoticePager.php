@@ -44,7 +44,10 @@ class CentralNoticePager extends TemplatePager {
 					'templates' => 'cn_templates',
 				),
 
-				'fields' => array( 'templates.tmp_name', 'templates.tmp_id' ),
+				'fields' => array(
+					'templates.tmp_name',
+					'templates.tmp_id',
+				),
 
 				'conds' => array(
 					'assignments.tmp_id IS NULL',
@@ -81,6 +84,12 @@ class CentralNoticePager extends TemplatePager {
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				Xml::check( 'addTemplates[]', '', array( 'value' => $row->tmp_name ) )
 			);
+
+			// Bucket
+			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+				$this->bucketDropDown( $row->tmp_name )
+			);
+
 			// Weight select
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'cn-weight' ),
 				Xml::listDropDown( "weight[$row->tmp_id]",
@@ -121,6 +130,9 @@ class CentralNoticePager extends TemplatePager {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( "centralnotice-add" )->text()
 			);
+			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+				$this->msg( 'centralnotice-bucket' )->text()
+			);
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 				$this->msg( 'centralnotice-weight' )->text()
 			);
@@ -139,5 +151,19 @@ class CentralNoticePager extends TemplatePager {
 	 */
 	function getEndBody() {
 		return Xml::closeElement( 'table' );
+	}
+
+	function bucketDropDown( $bannerName ) {
+		global $wgNoticeNumberOfBuckets;
+
+		$html = Html::openElement( 'select', array(
+			'name' => "bucket-{$bannerName}",
+			'class' => array( 'bucketSelector' ),
+		) );
+		foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
+			$html .= Xml::option( chr( $value + ord( 'A' ) ), $value, false, array() );
+		}
+		$html .= Html::closeElement( 'select' );
+		return $html;
 	}
 }

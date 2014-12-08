@@ -710,10 +710,11 @@ class Campaign {
 	 * Assign a banner to a campaign at a certain weight
 	 * @param $noticeName string
 	 * @param $templateName string
-	 * @param $weight
+	 * @param $weight integer
+	 * @param $bucket integer
 	 * @return bool|string True on success, string with message key for error
 	 */
-	static function addTemplateTo( $noticeName, $templateName, $weight ) {
+	static function addTemplateTo( $noticeName, $templateName, $weight, $bucket = 0 ) {
 		$dbw = CNDatabase::getDb();
 
 		$eNoticeName = htmlspecialchars( $noticeName );
@@ -736,7 +737,8 @@ class Campaign {
 			array(
 				'tmp_id'     => $templateId,
 				'tmp_weight' => $weight,
-				'not_id'     => $noticeId
+				'not_id'     => $noticeId,
+				'asn_bucket' => $bucket,
 			)
 		);
 		$dbw->commit();
