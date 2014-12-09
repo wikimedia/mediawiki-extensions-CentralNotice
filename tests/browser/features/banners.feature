@@ -1,4 +1,4 @@
-@chrome @en.m.wikipedia.beta.wmflabs.org @en.wikipedia.beta.wmflabs.org @firefox
+@chrome @firefox @safari @internet_explorer_10 @internet_explorer_11 @en.m.wikipedia.beta.wmflabs.org @en.wikipedia.beta.wmflabs.org
 Feature: Crude banner display
 
   Scenario: Banner three is displayed for low roll
