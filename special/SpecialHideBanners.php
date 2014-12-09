@@ -8,19 +8,30 @@
 class SpecialHideBanners extends UnlistedSpecialPage {
 	// Cache this blank response for a day or so (60 * 60 * 24 s.)
 	const CACHE_EXPIRY = 86400;
+	const P3P_SUBPAGE = 'P3P';
 
 	function __construct() {
 		parent::__construct( 'HideBanners' );
 	}
 
 	function execute( $par ) {
-		global $wgNoticeCookieDurations;
+		global $wgNoticeCookieDurations, $wgCentralNoticeHideBannersP3P;
+
+		// Handle /P3P subpage with explanation of invalid P3P header
+		if ( ( strval( $par ) === SpecialHideBanners::P3P_SUBPAGE ) &&
+			!$wgCentralNoticeHideBannersP3P ){
+
+			$this->setHeaders();
+			$this->getOutput()->addWikiMsg( 'centralnotice-specialhidebanners-p3p' );
+			return;
+		}
 
 		$reason = $this->getRequest()->getText( 'reason', 'donate' );
 		$duration = $this->getRequest()->getInt( 'duration', $wgNoticeCookieDurations[$reason] );
 		$category = $this->getRequest()->getText( 'category', 'fundraising' );
 		$category = Banner::sanitizeRenderedCategory( $category );
 		$this->setHideCookie( $category, $duration, $reason );
+		$this->setP3P();
 
 		$this->getOutput()->disable();
 		wfResetOutputBuffers();
@@ -52,5 +63,26 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 			$cookieDomain = $wgNoticeCookieDomain;
 		}
 		setcookie( "centralnotice_hide_{$category}", json_encode( $value ), $exp, '/', $cookieDomain, false, false );
+	}
+
+	/**
+	 * Set an invalid P3P policy header to make IE accept third-party hide cookies.
+	 */
+	protected function setP3P() {
+		global $wgCentralNoticeHideBannersP3P;
+
+		if ( !$wgCentralNoticeHideBannersP3P ) {
+
+			$url = SpecialPage::getTitleFor(
+				'HideBanners', SpecialHideBanners::P3P_SUBPAGE )
+				->getCanonicalURL();
+
+			$p3p = "CP=\"This is not a P3P policy! See $url for more info.\"";
+
+		} else {
+			$p3p = $wgCentralNoticeHideBannersP3P;
+		}
+
+		header( "P3P: $p3p", true );
 	}
 }
