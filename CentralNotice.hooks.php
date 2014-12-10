@@ -390,14 +390,24 @@ function efCentralNoticeUnitTests( &$files ) {
 function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 	ResourceLoader $resourceLoader
 ) {
-	global $wgResourceModules;
+	global $wgResourceModules, $wgAutoloadClasses;
+
+	// Set up test fixtures module, which is added as a dependency for all QUnit
+	// tests.
+	$testModules['qunit']['ext.centralNotice.testFixtures'] = array(
+			'class'         => 'CNTestFixturesResourceLoaderModule'
+	);
+
+	// These classes are only used here or in phpunit tests
+	$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] = __DIR__ . '/tests/CNTestFixturesResourceLoaderModule.php';
+	// Note: the following setting is repeated in efCentralNoticeUnitTests()
+	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
 	$testModuleBoilerplate = array(
 		'localBasePath' => __DIR__,
 		'remoteExtPath' => 'CentralNotice',
 	);
 
-	// TODO: Something similar should be provided by core.
 	// find test files for every RL module
 	$prefix = 'ext.centralNotice';
 	foreach ( $wgResourceModules as $key => $module ) {
@@ -414,7 +424,7 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 			// if test files exist for given module, create a corresponding test module
 			if ( count( $testFiles ) > 0 ) {
 				$testModules['qunit']["$key.tests"] = $testModuleBoilerplate + array(
-					'dependencies' => array( $key ),
+					'dependencies' => array( $key, 'ext.centralNotice.testFixtures' ),
 					'scripts' => $testFiles,
 				);
 			}

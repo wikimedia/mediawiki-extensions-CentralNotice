@@ -24,76 +24,71 @@
 		}
 	} ) );
 
-	QUnit.asyncTest( 'allocations test cases', function( assert ) {
-		$.ajax( {
-			url: mw.config.get( 'wgExtensionAssetsPath' )
-				+ '/CentralNotice/tests/data/AllocationsFixtures.json'
-		} ).done( function( testCases ) {
-			// Declare the number of test cases
-			assert.ok( testCases.length );
-			QUnit.expect( testCases.length + 1 );
+	QUnit.test( 'allocations test cases', function( assert ) {
 
-			$.each( testCases, function( index, testCaseInputs ) {
-				var testCase = testCaseInputs[0],
-					lib = mw.cnBannerControllerLib,
-					choices,
-					choice,
-					i,
-					allocatedBanner;
+		var testFixtures = mw.centralNoticeTestFixtures,
+			lib = mw.cnBannerControllerLib;
 
-				// Flesh out choice data with some default values
-				// BOOM on priority case
-				choices = $.map( testCase.choices, function( campaign, index ) {
-					return $.extend(
-						{ name: index },
-						defaultCampaignData,
-						campaign,
-						{
-							banners: $.map( campaign.banners, function( banner ) {
-								return $.extend( {}, defaultBannerData, banner );
-							} )
-						} );
-				} );
+		assert.ok( testFixtures.length );
+		QUnit.expect( testFixtures.length + 1 );
 
-				// Set per-campaign buckets to 0 for all campaigns
-				// FIXME Allow testing of different buckets
-				lib.bucketsByCampaign = {};
-				for ( i = 0; i < choices.length; i++ ) {
-					choice = choices[i];
-					lib.bucketsByCampaign[choice.name] = { val: 0 };
-				}
+		$.each( testFixtures, function( index, testFixturesInputs ) {
+			var testCase = testFixturesInputs[0],
+				choices,
+				choice,
+				i,
+				allocatedBanner;
 
-				// TODO: would like to declare individual tests here, but I
-				// haven't been able to make that work, yet.
-				lib.setChoiceData( choices );
-				lib.filterChoiceData();
-				lib.makePossibleBanners();
-				lib.calculateBannerAllocations();
-
-				// TODO: the errors will not reveal anything useful about
-				// which case this is, and what happened.  So we throw
-				// exceptions manually.  The horror!
-				try {
-					if ( lib.possibleBanners.length !== Object.keys( testCase.allocations ).length ) {
-						throw 'Wrong number of banners allocated in "' + testCase.title + '".';
-					}
-					for ( i = 0; i < lib.possibleBanners.length; i++ ) {
-						allocatedBanner = lib.possibleBanners[i];
-						if ( Math.abs( allocatedBanner.allocation - testCase.allocations[allocatedBanner.name] ) > 0.001 ) {
-							throw 'Banner ' + allocatedBanner.name + ' was misallocated in "' + testCase.title + '".';
-						}
-					}
-				} catch ( error ) {
-					assert.ok( false, error
-						+ " expected: " + QUnit.jsDump.parse( testCase.allocations )
-						+ ", actual: " + QUnit.jsDump.parse( lib.possibleBanners )
-					);
-					return;
-				}
-				assert.ok( true, 'Allocations match in "' + testCase.title + '"' );
+			// Flesh out choice data with some default values
+			// BOOM on priority case
+			choices = $.map( testCase.choices, function( campaign, index ) {
+				return $.extend(
+					{ name: index },
+					defaultCampaignData,
+					campaign,
+					{
+						banners: $.map( campaign.banners, function( banner ) {
+							return $.extend( {}, defaultBannerData, banner );
+						} )
+					} );
 			} );
 
-			QUnit.start();
+			// Set per-campaign buckets to 0 for all campaigns
+			// FIXME Allow testing of different buckets
+			lib.bucketsByCampaign = {};
+			for ( i = 0; i < choices.length; i++ ) {
+				choice = choices[i];
+				lib.bucketsByCampaign[choice.name] = { val: 0 };
+			}
+
+			// TODO: would like to declare individual tests here, but I
+			// haven't been able to make that work, yet.
+			lib.setChoiceData( choices );
+			lib.filterChoiceData();
+			lib.makePossibleBanners();
+			lib.calculateBannerAllocations();
+
+			// TODO: the errors will not reveal anything useful about
+			// which case this is, and what happened.  So we throw
+			// exceptions manually.  The horror!
+			try {
+				if ( lib.possibleBanners.length !== Object.keys( testCase.allocations ).length ) {
+					throw 'Wrong number of banners allocated in "' + testCase.title + '".';
+				}
+				for ( i = 0; i < lib.possibleBanners.length; i++ ) {
+					allocatedBanner = lib.possibleBanners[i];
+					if ( Math.abs( allocatedBanner.allocation - testCase.allocations[allocatedBanner.name] ) > 0.001 ) {
+						throw 'Banner ' + allocatedBanner.name + ' was misallocated in "' + testCase.title + '".';
+					}
+				}
+			} catch ( error ) {
+				assert.ok( false, error
+					+ " expected: " + QUnit.jsDump.parse( testCase.allocations )
+					+ ", actual: " + QUnit.jsDump.parse( lib.possibleBanners )
+				);
+				return;
+			}
+			assert.ok( true, 'Allocations match in "' + testCase.title + '"' );
 		} );
 	} );
 

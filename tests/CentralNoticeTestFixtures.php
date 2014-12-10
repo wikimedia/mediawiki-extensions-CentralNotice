@@ -160,11 +160,18 @@ class CentralNoticeTestFixtures {
 		}
 	}
 
-	static function allocationsData() {
-		$path = __DIR__ . '/' . CentralNoticeTestFixtures::FIXTURE_RELATIVE_PATH;
-		$json = file_get_contents( $path );
+	public static function allocationsData() {
+		$json = CentralNoticeTestFixtures::allocationsDataAsJson();
 		$data = FormatJson::decode( $json, true );
-
 		return $data;
+	}
+
+	/**
+	 * Return the raw JSON allocations data (from the file indicated by
+	 * CentralNoticeTestFixtures::FIXTURE_RELATIVE_PATH).
+	 */
+	public static function allocationsDataAsJson() {
+		$path = __DIR__ . '/' . CentralNoticeTestFixtures::FIXTURE_RELATIVE_PATH;
+		return file_get_contents( $path );
 	}
 }
