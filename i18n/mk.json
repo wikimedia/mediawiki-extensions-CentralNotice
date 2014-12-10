@@ -234,6 +234,8 @@
 	"centralnotice-end-time": "Време на завршување (UTC)",
 	"centralnotice-banner-not-found-title": "Не го пронајдов заглавието",
 	"centralnotice-banner-not-found-contents": "Нема заглавие со точно тоа име.",
+	"hidebanners": "Скриј плакати",
+	"centralnotice-specialhidebanners-p3p": "Некои прелистувачи бараат компактно правило за P3P за да постават колачиња во извесни ситуации. Меѓутоа, во моментов нема компактно правило. Погледајте го човечки-читливото правилото за лични податоци на мрежното место.",
 	"apihelp-centralnoticeallocations-description": "Добијте ги доделувањата на заглавијата на Централни известувања за сите типови корисници под параметарскиот филтер.\n\nОвој повик е само за JSON.",
 	"apihelp-centralnoticeallocations-param-project": "За кој проект да се добијат доделувањата.",
 	"apihelp-centralnoticeallocations-param-country": "Со која земја да се филтрира.",

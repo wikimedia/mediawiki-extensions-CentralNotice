@@ -239,6 +239,8 @@
 	"centralnotice-end-time": "זמן הסיום (UTC)",
 	"centralnotice-banner-not-found-title": "הכּרזה לא נמצאה",
 	"centralnotice-banner-not-found-contents": "אין כרזה עם השם הזה.",
+	"hidebanners": "הסתרת כרזות",
+	"centralnotice-specialhidebanners-p3p": "דפדפנים אחדים דורשים מדיניות קומפקטית של P3P כדי להגדיר עוגיות במצבים מסוימים. עם זאת, אין מדיניות קומפקטית זמינה. נא לבדוק את מדיניות הפרטיות האנושית של האתר.",
 	"apihelp-centralnoticeallocations-description": "קבלת הקצאות כרזות לכרזות שמשורתות באמצעות CentralNotice עבור כל סוגי המשתמשים תחת המסנן הפרמטרי.\n\nזוהי קריאה ב־JSON בלבד.",
 	"apihelp-centralnoticeallocations-param-project": "תחת איזה מיזם לקבל הקצאות.",
 	"apihelp-centralnoticeallocations-param-country": "לאיזו מדינה לסנן.",

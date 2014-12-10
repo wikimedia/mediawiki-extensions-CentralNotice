@@ -17,7 +17,8 @@
 			"Sodmy",
 			"Ytsukeng Fyvaprol",
 			"Ата",
-			"Тест"
+			"Тест",
+			"Ypryima"
 		]
 	},
 	"centralnotice": "Управління централізованими сповіщеннями",
@@ -246,5 +247,7 @@
 	"centralnotice-start-date": "Дата початку (UTC)",
 	"centralnotice-start-time": "Час початку (UTC)",
 	"centralnotice-end-date": "Дата завершення (UTC)",
-	"centralnotice-end-time": "Час закінчення (UTC)"
+	"centralnotice-end-time": "Час закінчення (UTC)",
+	"hidebanners": "Приховати банери",
+	"centralnotice-specialhidebanners-p3p": "Деякі браузери вимагають P3P compact policy встановити cookies у певних ситуаціях. Однак, не компактний політики в даний час доступна. Будь ласка, див. сайт удобочитаемое політики конфіденційності."
 }

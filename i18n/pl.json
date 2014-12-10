@@ -215,5 +215,6 @@
 	"centralnotice-start-time": "Czas rozpoczęcia (UTC)",
 	"centralnotice-end-date": "Data zakończenia (UTC)",
 	"centralnotice-end-time": "Czas zakończenia (UTC)",
-	"centralnotice-banner-not-found-title": "Nie znaleziono banera"
+	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
+	"hidebanners": "Ukryj banery"
 }
