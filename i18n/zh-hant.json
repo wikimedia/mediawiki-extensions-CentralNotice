@@ -219,10 +219,10 @@
 	"centralnotice-user-role-logged-in": "已登入",
 	"centralnotice-banner-class": "分類",
 	"centralnotice-banner-class-desc": "指定要共享追蹤變數與群組設定 (例如：隱藏 Cookies 與印象計數器) 的橫幅分類。 分類名稱可以為在顯示時會自動展開的魔術字，如  <nowiki>{{{campaign}}}</nowiki> 或 <nowiki>{{{banner}}}</nowiki>。\n數值必須為字母數字。",
-	"centralnotice-templates-included": "引用的樣版",
+	"centralnotice-templates-included": "引用的樣板",
 	"centralnotice-archive-banner": "封存",
 	"centralnotice-archive-banner-title": "將{{PLURAL:$1|橫幅}}封存？",
-	"centralnotice-archive-banner-confirm": "封存會展開所有引用的樣版並將頁面設為保護。 此動作較難還原。",
+	"centralnotice-archive-banner-confirm": "封存會展開所有引用的樣板並將頁面設為保護。此動作較難還原。",
 	"centralnotice-archive-banner-cancel": "取消",
 	"centralnotice-change-summary-label": "摘要",
 	"centralnotice-change-summary-prompt": "關於這些變更的摘要訊息 (選填)",
@@ -245,5 +245,12 @@
 	"centralnotice-start-date": "開始日期 (UTC)",
 	"centralnotice-start-time": "開始時間 (UTC)",
 	"centralnotice-end-date": "結束日期 (UTC)",
-	"centralnotice-end-time": "結束時間 (UTC)"
+	"centralnotice-end-time": "結束時間 (UTC)",
+	"centralnotice-banner-not-found-title": "查無橫幅",
+	"hidebanners": "隱藏橫幅",
+	"apihelp-query+centralnoticelogs-param-user": "使用者名稱 (選填)。",
+	"apihelp-query+centralnoticelogs-param-limit": "回傳的列數上限 (選填)。",
+	"apihelp-query+centralnoticelogs-param-start": "期間的開始時間 (選填)。",
+	"apihelp-query+centralnoticelogs-param-end": "期間的結束時間 (選填)。",
+	"apihelp-query+centralnoticelogs-example-1": "顯示日誌"
 }

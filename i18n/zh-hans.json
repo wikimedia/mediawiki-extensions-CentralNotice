@@ -256,6 +256,8 @@
 	"centralnotice-end-time": "结束时间（UTC）",
 	"centralnotice-banner-not-found-title": "找不到横幅",
 	"centralnotice-banner-not-found-contents": "没有匹配此名称的横幅。",
+	"hidebanners": "隐藏横幅",
+	"centralnotice-specialhidebanners-p3p": "一些浏览器需要P3P紧凑策略以设置某一情况的cookie。然而目前没有可用的紧凑策略。请参见网站的隐私政策。",
 	"apihelp-centralnoticeallocations-param-country": "要过滤的国家。",
 	"apihelp-centralnoticeallocations-param-language": "要过滤的语言。",
 	"apihelp-centralnoticeallocations-param-anonymous": "要过滤的登录状态（true|false）。",
