@@ -232,6 +232,8 @@
 	"centralnotice-end-time": "End time (UTC)",
 	"centralnotice-banner-not-found-title": "Banner not found",
 	"centralnotice-banner-not-found-contents": "There is no banner with this exact name.",
+	"hidebanners": "Hide banners",
+	"centralnotice-specialhidebanners-p3p": "Some browsers require a P3P compact policy to set cookies in certain situations. However, no compact policy is currently available. Please see the site's human-readable privacy policy.",
 	"apihelp-centralnoticeallocations-description": "Obtain the banner allocations for banners served by CentralNotice for all user types under the parametric filter.\n\nThis is a JSON only call.",
 	"apihelp-centralnoticeallocations-param-project": "The project to obtain allocations under.",
 	"apihelp-centralnoticeallocations-param-country": "The country to filter on.",

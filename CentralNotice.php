@@ -155,6 +155,13 @@ $wgNoticeOldCookieEpoch = '20141109000000';
  */
 $wgNoticeHideUrls = array();
 
+// A string to use in a P3P privacy policy header set by Special:HideBanners.
+// The header is needed to make IE keep third-party cookies in default privacy
+// mode. If this is set to false, a default invalid policy containing the URL of
+// Special:HideBanners/P3P will be used, and that subpage will contain a short
+// explanation.
+$wgCentralNoticeHideBannersP3P = false;
+
 // Server-side banner cache timeout in seconds
 $wgNoticeBannerMaxAge = 600;
 

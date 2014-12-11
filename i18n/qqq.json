@@ -255,6 +255,8 @@
 	"centralnotice-end-time": "Used in Special:CentralNotice. UTC is \"[[w:Coordinated_Universal_Time|Coordinated Universal Time]]\"",
 	"centralnotice-banner-not-found-title": "Page title and top header of Special:CentralNoticeBanners when the requested banner does not exist",
 	"centralnotice-banner-not-found-contents": "Used as the body content of SpecialCentral:NoticeBanners when the requested banner does not exist",
+	"hidebanners": "Human-readable title of Special:HideBanners, used in Special:HideBanners/P3P",
+	"centralnotice-specialhidebanners-p3p": "Explanation of default invalid P3P header for Special:HideBanners/P3P.",
 	"apihelp-centralnoticeallocations-description": "{{doc-apihelp-description|centralnoticeallocations}}",
 	"apihelp-centralnoticeallocations-param-project": "{{doc-apihelp-param|centralnoticeallocations|project}}",
 	"apihelp-centralnoticeallocations-param-country": "{{doc-apihelp-param|centralnoticeallocations|country}}",
