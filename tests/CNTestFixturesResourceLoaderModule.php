@@ -14,7 +14,8 @@ class CNTestFixturesResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::getScript()
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return 'mw.centralNoticeTestFixtures = ' .
-			CentralNoticeTestFixtures::allocationsDataAsJson();
+		return 'mediaWiki.centralNoticeTestFixtures = ' .
+			CentralNoticeTestFixtures::allocationsDataAsJson() .
+			';';
 	}
 }
