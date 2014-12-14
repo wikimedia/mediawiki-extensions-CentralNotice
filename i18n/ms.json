@@ -215,5 +215,7 @@
 	"centralnotice-start-date": "Tarikh mula (UTC)",
 	"centralnotice-start-time": "Waktu mula (UTC)",
 	"centralnotice-end-date": "Tarikh tamat (UTC)",
-	"centralnotice-end-time": "Waktu tamat (UTC)"
+	"centralnotice-end-time": "Waktu tamat (UTC)",
+	"hidebanners": "Sorokkan sepanduk",
+	"centralnotice-specialhidebanners-p3p": "Sesetengah pelayar memerlukan polisi padat P3P untuk menetapkan cookies dalam situasi-situasi tertentu. Bagaimanapun, tidak terdapatnya polisi padat buat masa ini. Sila baca dasar privasi terbaca insani laman ini."
 }

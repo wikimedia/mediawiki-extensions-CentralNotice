@@ -19,7 +19,8 @@
 			"Waihorace",
 			"Wrightbus",
 			"Cwlin0416",
-			"LNDDYL"
+			"LNDDYL",
+			"Cwek"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -219,10 +220,10 @@
 	"centralnotice-user-role-logged-in": "已登入",
 	"centralnotice-banner-class": "分類",
 	"centralnotice-banner-class-desc": "指定要共享追蹤變數與群組設定 (例如：隱藏 Cookies 與印象計數器) 的橫幅分類。 分類名稱可以為在顯示時會自動展開的魔術字，如  <nowiki>{{{campaign}}}</nowiki> 或 <nowiki>{{{banner}}}</nowiki>。\n數值必須為字母數字。",
-	"centralnotice-templates-included": "引用的樣板",
+	"centralnotice-templates-included": "引用的模板",
 	"centralnotice-archive-banner": "封存",
 	"centralnotice-archive-banner-title": "將{{PLURAL:$1|橫幅}}封存？",
-	"centralnotice-archive-banner-confirm": "封存會展開所有引用的樣板並將頁面設為保護。此動作較難還原。",
+	"centralnotice-archive-banner-confirm": "封存會展開所有引用的模板並將頁面設為保護。此動作較難還原。",
 	"centralnotice-archive-banner-cancel": "取消",
 	"centralnotice-change-summary-label": "摘要",
 	"centralnotice-change-summary-prompt": "關於這些變更的摘要訊息 (選填)",
