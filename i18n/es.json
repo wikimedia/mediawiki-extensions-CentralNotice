@@ -81,7 +81,7 @@
 	"centralnotice-notice-doesnt-exist": "La campaña no existe.",
 	"centralnotice-remove-notice-doesnt-exist": "La campaña no existe.\nNada que eliminar.",
 	"centralnotice-banner-doesnt-exist": "La pancarta no existe.",
-	"centralnotice-template-still-bound": "La plantilla ($1) todavía está enlazada a una campaña.\nNo se removerá.",
+	"centralnotice-template-still-bound": "La pancarta «$1» todavía está enlazada con una campaña.\nNo se eliminará.",
 	"centralnotice-template-body": "Cuerpo de la plantilla:",
 	"centralnotice-day": "Día",
 	"centralnotice-year": "Año",

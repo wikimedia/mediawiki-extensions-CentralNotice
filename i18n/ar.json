@@ -13,7 +13,8 @@
 			"OsamaK",
 			"Ouda",
 			"زكريا",
-			"محمد عصام"
+			"محمد عصام",
+			"Omda4wady"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
@@ -209,6 +210,7 @@
 	"centralnotice-archive-banner": "أرشيف",
 	"centralnotice-archive-banner-title": "أرشفة {{PLURAL:$1|اللافتة|اللافتات}}؟",
 	"centralnotice-archive-banner-cancel": "إلغاء",
+	"centralnotice-change-summary-label": "الملخص",
 	"centralnotice-archive-show": "أظهر الحملات المؤرشفة",
 	"centralnotice-archive-campaign": "أرشيف",
 	"centralnotice-archive-campaign-title": "أرشفة {{PLURAL:$1|الحملة|الحملات}}؟",
