@@ -5,11 +5,9 @@ class MixinController {
 
 	protected $magicWords = array();
 	protected $uiContext;
-	protected $allocContext;
 
-	function __construct( IContextSource $uiContext, $mixins, AllocationContext $allocContext = null ) {
+	function __construct( IContextSource $uiContext, $mixins ) {
 		$this->uiContext = $uiContext;
-		$this->allocContext = $allocContext;
 		$this->mixins = $mixins;
 
 		$this->loadPhp();
@@ -17,10 +15,6 @@ class MixinController {
 
 	function getContext() {
 		return $this->uiContext;
-	}
-
-	function getAllocContext() {
-		return $this->allocContext;
 	}
 
 	function getMagicWords() {
