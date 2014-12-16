@@ -247,5 +247,6 @@
 	"centralnotice-start-date": "Fecha de inicio (UTC)",
 	"centralnotice-start-time": "Hora de inicio (UTC)",
 	"centralnotice-end-date": "Fecha de finalización (UTC)",
-	"centralnotice-end-time": "Hora de finalización (UTC)"
+	"centralnotice-end-time": "Hora de finalización (UTC)",
+	"hidebanners": "Ocultar pancartas"
 }
