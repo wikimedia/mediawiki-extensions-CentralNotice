@@ -36,7 +36,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$preferred         = 1;
 
 		$this->fixture = new CentralNoticeTestFixtures();
-		$this->fixture->addFixtures( array( 'campaigns' => array() ) );
+		$this->fixture->setupTestCase( array( 'campaigns' => array() ) );
 
 		$this->campaignArray = array(
 			'enabled' => '0',
@@ -89,7 +89,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
 		Banner::removeTemplate ( 'PHPUnitTestBanner', $this->userUser );
-		$this->fixture->removeFixtures();
+		$this->fixture->tearDownTestCases();
 	}
 
 	public function testDropDownList() {

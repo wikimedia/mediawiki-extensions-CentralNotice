@@ -54,7 +54,7 @@ class CentralNoticeTestFixtures {
 		return 'desktop';
 	}
 
-	function addFixtures( $spec ) {
+	function setupTestCase( $spec ) {
 		$this->ensureDesktopDevice();
 
 		foreach ( $spec['campaigns'] as $campaignSpec ) {
@@ -107,7 +107,7 @@ class CentralNoticeTestFixtures {
 		}
 	}
 
-	function removeFixtures() {
+	function tearDownTestCases() {
 		if ( $this->spec ) {
 			foreach ( $this->spec['campaigns'] as $campaign ) {
 				foreach ( $campaign['banners'] as $banner ) {
@@ -129,6 +129,7 @@ class CentralNoticeTestFixtures {
 		}
 	}
 
+	//FIXME review, possibly trim and/or document device-related stuff here
 	protected function getDesktopDevice() {
 		$dbr = CNDatabase::getDb();
 
@@ -160,6 +161,27 @@ class CentralNoticeTestFixtures {
 		}
 	}
 
+	/**
+	 * Return an array containing arrays containing test cases, as needed for
+	 * PHPUnit data provision. (Each inner array is a list of arguments for
+	 * a test method.)
+	 */
+	public static function allocationsTestCasesProvision() {
+
+		$data = CentralNoticeTestFixtures::allocationsData();
+		$dataForTests = array();
+
+		foreach  ( $data['testCases'] as $name => $testCase ) {
+			$dataForTests[] = array( $name, $testCase );
+		}
+
+		return $dataForTests;
+	}
+
+	/**
+	 * Return allocations data as a PHP array where each element is a different
+	 * scenario for testing.
+	 */
 	public static function allocationsData() {
 		$json = CentralNoticeTestFixtures::allocationsDataAsJson();
 		$data = FormatJson::decode( $json, true );

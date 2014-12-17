@@ -27,23 +27,22 @@
 	QUnit.test( 'allocations test cases', function( assert ) {
 
 		var testFixtures = mw.centralNoticeTestFixtures,
+			testCases = testFixtures.testCases,
 			lib = mw.cnBannerControllerLib;
 
-		assert.ok( testFixtures.length );
-		QUnit.expect( testFixtures.length + 1 );
+		QUnit.expect( Object.keys( testCases ).length );
 
-		$.each( testFixtures, function( index, testFixturesInputs ) {
-			var testCase = testFixturesInputs[0],
-				choices,
+		$.each( testCases, function( testCaseName, testCase ) {
+			var choices,
 				choice,
 				i,
 				allocatedBanner;
 
 			// Flesh out choice data with some default values
 			// BOOM on priority case
-			choices = $.map( testCase.choices, function( campaign, index ) {
+			choices = $.map( testCase.choices, function( campaign ) {
 				return $.extend(
-					{ name: index },
+					{ },
 					defaultCampaignData,
 					campaign,
 					{

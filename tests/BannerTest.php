@@ -20,7 +20,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		parent::setUp();
 		$this->fixture = new CentralNoticeTestFixtures();
-		$this->fixture->addFixtures( array( 'campaigns' => array() ) );
+		$this->fixture->setupTestCase( array( 'campaigns' => array() ) );
 	}
 
 	public function tearDown() {
@@ -28,7 +28,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		if ( $banner->exists() ) {
 			$banner->remove();
 		}
-		$this->fixture->removeFixtures();
+		$this->fixture->tearDownTestCases();
 	}
 
 	public function testNewFromName() {

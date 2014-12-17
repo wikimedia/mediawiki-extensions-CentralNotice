@@ -16,12 +16,12 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		$this->cnFixtures->removeFixtures();
+		$this->cnFixtures->tearDownTestCases();
 		parent::tearDown();
 	}
 
 	public function testThrottlingCampaign() {
-		$this->cnFixtures->addFixtures( array(
+		$this->cnFixtures->setupTestCase( array(
 			'campaigns' => array(
 				array(
 					'preferred' => CentralNotice::NORMAL_PRIORITY,
@@ -80,7 +80,7 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	public function testOverAllocation() {
-		$this->cnFixtures->addFixtures( array(
+		$this->cnFixtures->setupTestCase( array(
 			'campaigns' => array(
 				array(
 					'banners' => array(
@@ -120,7 +120,7 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	public function testBlanks() {
-		$this->cnFixtures->addFixtures( array(
+		$this->cnFixtures->setupTestCase( array(
 			'campaigns' => array(
 				array(
 					'throttle' => 10,
@@ -148,7 +148,7 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	public function testPriority() {
-		$this->cnFixtures->addFixtures( array(
+		$this->cnFixtures->setupTestCase( array(
 			'campaigns' => array(
 				array(
 					'preferred' => CentralNotice::LOW_PRIORITY,

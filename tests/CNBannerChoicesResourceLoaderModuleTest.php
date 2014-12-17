@@ -29,7 +29,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 
 	protected function tearDown() {
 		if ( $this->cnFixtures ) {
-			$this->cnFixtures->removeFixtures();
+			$this->cnFixtures->tearDownTestCases();
 		}
 		parent::tearDown();
 	}
@@ -39,9 +39,9 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	}
 
 	protected function addSomeBanners() {
-		$scenarios = CentralNoticeTestFixtures::allocationsData();
-		$a_scenario = $scenarios[0][0];
-		$this->cnFixtures->addFixtures( $a_scenario['fixture'] );
+		$fixtures = CentralNoticeTestFixtures::allocationsData();
+		$completeness = $fixtures['testCases']['completeness'];
+		$this->cnFixtures->setupTestCase( $completeness['setup'] );
 	}
 
 	public function testDisabledByConfig() {
@@ -54,17 +54,17 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider CentralNoticeTestFixtures::allocationsData
+	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
-	public function testChoicesFromDb( $data ) {
+	public function testChoicesFromDb( $name, $testCase ) {
 		$this->setMwGlobals( 'wgCentralDBname', wfWikiID() );
 
-		$this->cnFixtures->addFixtures( $data['fixture'] );
+		$this->cnFixtures->setupTestCase( $testCase['setup'] );
 
 		$choices = $this->getProvider()->getChoicesForTesting( $this->rlContext );
-		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $data['choices'] ) );
+		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $testCase['choices'] ) );
 
-		if ( empty( $data['choices'] ) ) {
+		if ( empty( $testCase['choices'] ) ) {
 			$this->assertEmpty( $choices );
 		}
 	}
