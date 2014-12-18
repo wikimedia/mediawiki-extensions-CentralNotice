@@ -94,7 +94,7 @@
 	"centralnotice-number-uses": "사용 횟수",
 	"centralnotice-settings": "설정",
 	"centralnotice-edit-template": "배너 편집",
-	"centralnotice-edit-template-summary": "번역이 가능한 메세지를 만드려면, {{{jimbo-quote}}}와 같이 중괄호로 세 번 감싸주면 됩니다.",
+	"centralnotice-edit-template-summary": "지역화할 수 있는 메시지를 만드려면, {{{jimbo-quote}}}와 같이 중괄호로 세 번 감싸주면 됩니다.",
 	"centralnotice-edit-template-magicwords": "배너 믹스인이 제공하는 특수 명령: $1",
 	"centralnotice-message": "메시지",
 	"centralnotice-message-not-set": "메시지를 설정하지 않았습니다",
