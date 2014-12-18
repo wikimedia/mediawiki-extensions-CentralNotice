@@ -83,14 +83,23 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerChoiceDataProvider' ] = $includeDir . 'BannerChoiceDataProvider.php';
 	$wgAutoloadClasses[ 'CNBannerChoiceDataResourceLoaderModule' ] = $includeDir . 'CNBannerChoiceDataResourceLoaderModule.php';
 	$wgAutoloadClasses[ 'Campaign' ] = $includeDir . 'Campaign.php';
+	$wgAutoloadClasses['CampaignCriteria'] = $specialDir . 'SpecialGlobalAllocation.php';
+	$wgAutoloadClasses['CampaignExistenceException'] = $includeDir . 'Campaign.php';
 	$wgAutoloadClasses[ 'CampaignLog' ] = $includeDir . 'CampaignLog.php';
+	$wgAutoloadClasses['CentralNoticeHtmlForm'] = $specialDir . 'SpecialCentralNoticeBanners.php';
 	$wgAutoloadClasses[ 'CNBannerPager' ] = $includeDir . 'CNBannerPager.php';
 	$wgAutoloadClasses[ 'CNCampaignPager' ] = $includeDir . 'CNCampaignPager.php';
 	$wgAutoloadClasses[ 'CNDeviceTarget' ] = $includeDir . 'CNDeviceTarget.php';
+	$wgAutoloadClasses['EmptyBannerException'] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'GeoTarget' ] = $includeDir . 'GeoTarget.php';
+	$wgAutoloadClasses['HTMLBannerPagerNavigation'] = $includeDir . 'CNBannerPager.php';
+	$wgAutoloadClasses['HTMLLargeMultiSelectField'] = $specialDir . 'SpecialCentralNoticeBanners.php';
 	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
 	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
+	$wgAutoloadClasses['LanguageSelectHeaderElement'] = $specialDir . 'SpecialCentralNoticeBanners.php';
+	$wgAutoloadClasses['MissingRequiredParamsException'] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'MixinController' ] = $includeDir . 'MixinController.php';
+	$wgAutoloadClasses['MixinNotFoundException'] = $includeDir . 'MixinController.php';
 
 	$wgAutoloadClasses[ 'HTMLCentralNoticeBanner' ] = $htmlFormDir . 'HTMLCentralNoticeBanner.php';
 	$wgAutoloadClasses[ 'HTMLCentralNoticeBannerMessage' ] = $htmlFormDir . 'HTMLCentralNoticeBannerMessage.php';
