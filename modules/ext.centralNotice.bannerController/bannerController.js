@@ -96,6 +96,11 @@
 		bannerData: {},
 
 		/**
+		 * Data that will be returned with the RecordImpression request
+		 */
+		impressionData: {},
+
+		/**
 		 * Contains promise objects that other things can hook into
 		 */
 		events: {},
@@ -358,7 +363,7 @@
 		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
-		var impressionData = {
+		var impressionData = mw.centralNotice.impressionData = {
 			country: mw.centralNotice.data.country,
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			project: mw.config.get( 'wgNoticeProject' ),
@@ -411,9 +416,12 @@
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
 
 			if ( typeof mw.centralNotice.bannerData.preload === 'function'
-					&& !mw.centralNotice.bannerData.preload() ) {
+				&& !mw.centralNotice.bannerData.preload()
+			) {
 				hideBanner = true;
-				impressionData.reason = 'preload';
+				if ( !impressionData.reason ) {
+					impressionData.reason = 'preload';
+				}
 			} else if ( mw.centralNotice.data.testing === false ) { /* And we want to see what we're testing! :) */
 				cookieName = 'centralnotice_hide_' + mw.centralNotice.data.category;
 				cookieVal = $.cookie( cookieName );
