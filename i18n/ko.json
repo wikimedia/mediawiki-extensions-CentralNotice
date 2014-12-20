@@ -232,5 +232,14 @@
 	"centralnotice-start-date": "시작 날짜 (UTC)",
 	"centralnotice-start-time": "시작 시각 (UTC)",
 	"centralnotice-end-date": "종료 날짜 (UTC)",
-	"centralnotice-end-time": "종료 시각 (UTC)"
+	"centralnotice-end-time": "종료 시각 (UTC)",
+	"centralnotice-banner-not-found-title": "배너를 찾을 수 없음",
+	"centralnotice-banner-not-found-contents": "이 이름을 가진 배너가 없습니다.",
+	"hidebanners": "배너 숨기기",
+	"apihelp-centralnoticeallocations-param-country": "필터를 켤 국가",
+	"apihelp-centralnoticeallocations-param-language": "필터를 켤 언어",
+	"apihelp-centralnoticeallocations-param-anonymous": "로그인 상태에 따른 필터 활성화 여부 (예|아니오)",
+	"apihelp-centralnoticeallocations-param-device": "필터를 켤 기기 이름",
+	"apihelp-query+centralnoticelogs-param-user": "사용자 이름 (선택 사항).",
+	"apihelp-query+centralnoticelogs-example-1": "로그 보기"
 }
