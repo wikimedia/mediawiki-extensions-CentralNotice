@@ -469,6 +469,8 @@
 				var bannerShown = true;
 				if ( typeof mw.centralNotice.bannerData.alterImpressionData === 'function' ) {
 					bannerShown = mw.centralNotice.bannerData.alterImpressionData( impressionData );
+				} else {
+					impressionData.alterFunctionMissing = true;
 				}
 
 				// eventually we want to unify the ordering here and always return
