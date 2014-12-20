@@ -43,6 +43,7 @@
 	"centralnotice-preview": "Parameters:\n* $1 - language code of this preview\n{{Identical|Preview}}",
 	"centralnotice-live-preview": "Text for a live site preview/render of the current banner",
 	"centralnotice-nopreview": "{{Identical|Nopreview}}",
+	"centralnotice-edit-banner-onwiki": "Text for a link to edit a banner in the regular on-wiki interface.",
 	"centralnotice-add-new": "Unused at this time.",
 	"centralnotice-remove": "Used as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Remove}}",
 	"centralnotice-translate-heading": "Fieldset label. Parameters:\n* $1 - a name of a template",

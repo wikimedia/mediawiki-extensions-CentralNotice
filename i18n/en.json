@@ -20,6 +20,7 @@
 	"centralnotice-preview": "Preview ($1)",
 	"centralnotice-live-preview": "Preview on-wiki",
 	"centralnotice-nopreview": "(Preview not available)",
+	"centralnotice-edit-banner-onwiki": "Edit on-wiki",
 	"centralnotice-add-new": "Add a new campaign",
 	"centralnotice-remove": "Remove",
 	"centralnotice-translate-heading": "Translation for $1",

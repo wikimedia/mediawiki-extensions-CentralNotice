@@ -365,16 +365,28 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
 		}
 		$out->setPageTitle( $this->bannerName );
-		$out->setSubtitle( Linker::link(
-				SpecialPage::getTitleFor( 'Random' ),
-				$this->msg( 'centralnotice-live-preview' ),
-				array( 'class' => 'cn-banner-list-element-label-text' ),
-				array(
-					 'banner' => $this->bannerName,
-					 'uselang' => $this->bannerLanguagePreview,
-					 'force' => '1',
-				)
-			) );
+		$wikiPreviewLink = Linker::link(
+			SpecialPage::getTitleFor( 'Random' ),
+			$this->msg( 'centralnotice-live-preview' ),
+			array( 'class' => 'cn-banner-list-element-label-text' ),
+			array(
+				'banner' => $this->bannerName,
+				'uselang' => $this->bannerLanguagePreview,
+				'force' => '1',
+			)
+		);
+		$wikiEditLink = Linker::link(
+			Title::newFromText( "MediaWiki:Centralnotice-template-{$this->bannerName}" ),
+			$this->msg( 'centralnotice-edit-banner-onwiki' ),
+			array( 'class' => 'cn-banner-list-element-label-text' ),
+			array(
+				'action' => 'edit',
+			)
+		);
+		$out->setSubtitle( implode( ' | ', array(
+			$wikiPreviewLink,
+			$wikiEditLink
+		) ) );
 
 		// Generate the form
 		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
