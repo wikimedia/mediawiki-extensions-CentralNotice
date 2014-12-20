@@ -1,37 +1,42 @@
 <?php
 
 /**
- * Utility functions for CentralNotice that don't belong elsewhere
+ * Fetches the CentralNotice infrastructure database.
  */
 class CNDatabase {
 	/**
 	 * Gets a database object. Will be the DB_MASTER if the user has the
 	 * centralnotice-admin right. NOTE: $force is ignored for such users.
 	 *
-	 * @param int|bool    $force   If false will return a DB master/slave based
-	 *                             on users permissions. Set to DB_MASTER or
-	 *                             DB_SLAVE to force that type for users that
-	 *                             don't have the centralnotice-admin right.
+	 * We will either connect to the primary database, or a separate CentralNotice
+	 * infrastructure DB specified by $wgCentralDBname.  This is metawiki for
+	 * WMF sister projects.  Note that the infrastructure DB does not support
+	 * table prefixes if running in multi-database mode.
 	 *
-	 * @param string|bool $wiki    Wiki database to connect to, if false will be
-	 *                             the infrastructure DB.
+	 * @param int $target Set to DB_MASTER or DB_SLAVE to force a connection
+	 * to that database.  If no parameter is given, this will defaults to
+	 * master for CentralNotice admin users, and the slave connection
+	 * otherwise.
 	 *
 	 * @return DatabaseBase
 	 */
-	public static function getDb( $force = false, $wiki = false ) {
-		global $wgCentralDBname;
-		global $wgUser;
+	public static function getDb( $target = null ) {
+		global $wgCentralDBname,
+			$wgDBname,
+			$wgUser;
 
-		if ( $wgUser->isAllowed( 'centralnotice-admin' ) ) {
-			$dbmode = DB_MASTER;
-		} elseif ( $force === false ) {
-			$dbmode = DB_SLAVE;
-		} else {
-			$dbmode = $force;
+		if ( $target === null ) {
+			if ( $wgUser->isAllowed( 'centralnotice-admin' ) ) {
+				$target = DB_SLAVE;
+			} else {
+				$target = DB_MASTER;
+			}
 		}
 
-		$db = ( $wiki === false ) ? $wgCentralDBname : $wiki;
-
-		return wfGetDB( $dbmode, array(), $db );
+		if ( $wgCentralDBname === false || $wgCentralDBname === $wgDBname ) {
+			return wfGetDB( $target );
+		} else {
+			return wfGetDB( $target, array(), $wgCentralDBname );
+		}
 	}
 }

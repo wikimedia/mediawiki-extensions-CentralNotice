@@ -62,17 +62,14 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the banner choices data via a direct DB call using
-	 * $wgCentralDBname.
+	 * Get the banner choices data via a direct DB call to the infrastructure wiki
 	 *
 	 * @param string $project
 	 * @param string $language
 	 */
 	protected function getFromDb( $project, $language ) {
 
-		$choicesProvider = new BannerChoiceDataProvider(
-			$project, $language,
-			BannerChoiceDataProvider::USE_INFRASTRUCTURE_DB );
+		$choicesProvider = new BannerChoiceDataProvider( $project, $language );
 
 		return $choicesProvider->getChoices();
 	}

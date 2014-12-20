@@ -6,31 +6,17 @@
  */
 class BannerChoiceDataProvider {
 
-	/**
-	 * Query the default DB.
-	 */
-	const USE_DEFAULT_DB = 0;
-
-	/**
-	 * Query the infrastructure DB using the wiki ID in
-	 * $wgCentralDBname
-	 */
-	const USE_INFRASTRUCTURE_DB = 1;
-
 	protected $project;
 	protected $language;
-	protected $whichDb;
 
 	/**
 	 * @param string $project The project to get choices for
 	 * @param string $language The language to get choices for
 	 */
-	public function __construct( $project, $language,
-		$whichDb=self::USE_DEFAULT_DB ) {
+	public function __construct( $project, $language ) {
 
 		$this->project = $project;
 		$this->language = $language;
-		$this->whichDb = $whichDb;
 	}
 
 	/**
@@ -43,27 +29,10 @@ class BannerChoiceDataProvider {
 	 *   are provided.
 	 */
 	public function getChoices() {
-		global $wgCentralDBname;
-
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
 
-		switch ( $this->whichDb ) {
-			case self::USE_DEFAULT_DB:
-				$wikiId = false;
-				break;
-
-			case self::USE_INFRASTRUCTURE_DB:
-				$wikiId = $wgCentralDBname;
-				break;
-
-			default:
-				throw new MWException( $this->whichDb . 'is not a valid constant '
-					 . 'for selecting a DB for BannerChoiceDataProvider.' );
-		}
-
-		// Note: CNDatabase can't guarantee that we get the slave connection
-		$dbr = wfGetDB( DB_SLAVE, array(), $wikiId );
+		$dbr = CNDatabase::getDb( DB_SLAVE );
 
 		// Set up conditions
 		$quotedNow = $dbr->addQuotes( $dbr->timestamp() );

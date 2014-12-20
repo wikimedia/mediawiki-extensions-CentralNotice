@@ -29,8 +29,7 @@ class ApiCentralNoticeBannerChoiceData extends ApiCentralNoticeAllocationBase {
 				parent::LANG_FILTER
 		);
 
-		$choicesProvider = new BannerChoiceDataProvider(
-			$project, $lang, BannerChoiceDataProvider::USE_DEFAULT_DB );
+		$choicesProvider = new BannerChoiceDataProvider( $project, $lang );
 
 		$choices = $choicesProvider->getChoices();
 
