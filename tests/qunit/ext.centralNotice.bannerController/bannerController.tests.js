@@ -108,19 +108,15 @@
 		assert.equal( $( 'div#test_banner' ).length, 1 );
 	} );
 
-	QUnit.test( 'canPreloadHide', 1, function( assert ) {
-		mw.centralNotice.bannerData.preload = function () {
-			return false;
-		};
+	QUnit.test( 'canResultCauseHide', 1, function( assert ) {
+		mw.centralNotice.impressionData.result = 'hide';
 
 		mw.centralNotice.insertBanner( bannerData );
 		assert.equal( $( 'div#test_banner' ).length, 0 );
 	} );
 
-	QUnit.test( 'canPreloadShow', 1, function( assert ) {
-		mw.centralNotice.bannerData.preload = function () {
-			return true;
-		};
+	QUnit.test( 'canResultCauseShow', 1, function( assert ) {
+		mw.centralNotice.impressionData.result = 'show';
 
 		mw.centralNotice.insertBanner( bannerData );
 		assert.equal( $( 'div#test_banner' ).length, 1 );

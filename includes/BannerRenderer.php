@@ -147,7 +147,13 @@ class BannerRenderer {
 	 * @return string JS snippet.
 	 */
 	function getPreloadJs() {
-		return $this->substituteMagicWords( $this->getPreloadJsRaw() );
+		$code = $this->substituteMagicWords( $this->getPreloadJsRaw() );
+
+		// Minify the code, if any.
+		if ( !$this->debug && $code ) {
+			$code = JavaScriptMinifier::minify( $code );
+		}
+		return $code;
 	}
 
 	/**
@@ -158,21 +164,8 @@ class BannerRenderer {
 	 */
 	function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
-		$bundled = array();
-		$bundled[] = 'var retval = 1;';
 
-		if ( $snippets ) {
-			foreach ( $snippets as $mixin => $code ) {
-				if ( !$this->debug ) {
-					$code = JavaScriptMinifier::minify( $code );
-				}
-
-				// Uses bitwise AND to assert all snippets returned 1
-				$bundled[] = "/* {$mixin}: */ retval &= {$code}";
-			}
-		}
-		$bundled[] = 'return retval;';
-		return implode( "\n", $bundled );
+		return implode( "\n\n", $snippets );
 	}
 
 	/**
@@ -186,6 +179,7 @@ class BannerRenderer {
 	function getResourceLoaderHtml() {
 		$modules = $this->mixinController->getResourceLoaderModules();
 		if ( $modules ) {
+			// FIXME: Does the RL library already include a helper to do this?
 			$html = "<!-- " . implode( ", ", array_keys( $modules ) ) . " -->";
 			$html .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
