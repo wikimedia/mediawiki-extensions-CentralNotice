@@ -137,7 +137,7 @@
 			}
 		},
 		loadTestingBanner: function ( bannerName, campaign ) {
-			var bannerPageQuery;
+			var bannerPageQuery, url;
 
 			mw.centralNotice.data.testing = true;
 
@@ -152,8 +152,11 @@
 
 			// TODO use the new $wgCentralSelectedBannerDispatcher here instead
 
+			url = new mw.Uri( mw.config.get( 'wgCentralPagePath' ) );
+			url.extend( bannerPageQuery );
+
 			$.ajax({
-				url: mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery ),
+				url:  url.toString(),
 				dataType: 'script',
 				cache: true
 			});
@@ -197,12 +200,12 @@
 						debug: mw.centralNotice.data.getVars.debug
 					};
 
-					scriptUrl = mw.config.get( 'wgCentralSelectedBannerDispatcher' ) +
-						'?' + $.param( loadBannerQueryParams );
+					scriptUrl = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
+					scriptUrl.extend( loadBannerQueryParams );
 
 					// This will call insertBanner() after the banner is retrieved
 					$.ajax( {
-						url: scriptUrl,
+						url: scriptUrl.toString(),
 						dataType: 'script',
 						cache: true
 					} );
@@ -229,11 +232,11 @@
 					bucket: mw.centralNotice.data.bucket
 				};
 
-				scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) +
-					'?' + $.param( loadBannerQueryParams );
+				scriptUrl = new mw.Uri( mw.config.get( 'wgCentralBannerDispatcher' ) );
+				scriptUrl.extend( loadBannerQueryParams );
 
 				$.ajax( {
-					url: scriptUrl,
+					url: scriptUrl.toString,
 					dataType: 'script',
 					cache: true
 				} );
@@ -251,8 +254,9 @@
 		},
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
-			var url = mw.config.get( 'wgCentralBannerRecorder' ) + '?' + $.param( data );
-			(new Image()).src = url;
+			var url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
+			url.extend( data );
+			(new Image()).src = url.toString();
 		},
 		loadQueryStringVariables: function () {
 			document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
@@ -457,13 +461,13 @@
 
 				// Create landing page links if required
 				if ( bannerJson.autolink ) {
-					url = mw.config.get( 'wgNoticeFundraisingUrl' );
+					url = new mw.Uri( mw.config.get( 'wgNoticeFundraisingUrl' ) );
 					if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
 						targets = String( bannerJson.landingPages ).split( ',' );
 						if ( $.inArray( mw.centralNotice.data.country, mw.config.get( 'wgNoticeXXCountries' ) ) !== -1 ) {
 							mw.centralNotice.data.country = 'XX';
 						}
-						url += "?" + $.param( {
+						url.extend( {
 							landing_page: targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' ),
 							utm_medium: 'sitenotice',
 							utm_campaign: bannerJson.campaign,
@@ -471,7 +475,7 @@
 							language: mw.config.get( 'wgUserLanguage' ),
 							country: mw.centralNotice.data.country
 						} );
-						$( '#cn-landingpage-link' ).attr( 'href', url );
+						$( '#cn-landingpage-link' ).attr( 'href', url.toString() );
 					}
 				}
 
@@ -530,6 +534,7 @@
 
 		// Iterate over all configured URLs to hide this category of banner for all
 		// wikis in a cluster
+		// FIXME: can we rely on mw.Uri here?
 		$.each( mw.config.get( 'wgNoticeHideUrls' ), function( idx, value ) {
 			(new Image()).src = value + '?' + $.param( {
 				'duration': duration,
