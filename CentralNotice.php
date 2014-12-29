@@ -247,13 +247,7 @@ $wgNoticeTabifyPages = array(
 
 // Available banner mixins, usually provided by separate extensions.
 // See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
-$wgNoticeMixins = array(
-	'BannerDiet' => array(
-		'localBasePath' => __DIR__ . "/mixins/BannerDiet",
-
-		'preloadJs' => "BannerDiet.js",
-	),
-);
+$wgNoticeMixins = array();
 
 /* Setup */
 require_once $dir . '/CentralNotice.hooks.php';
