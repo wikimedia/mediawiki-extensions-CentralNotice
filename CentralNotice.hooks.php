@@ -330,6 +330,9 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$wgCentralBannerRecorder = SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
 	}
 
+	// FIXME Dicey code! It is likely that the following is never executed in
+	// the WMF's setup. Also getMobileUrl() may not work in some cases.
+
 	// Mangle infrastructure URLs for mobile use -- this should always be last.
 	if ( class_exists( 'MobileContext' ) ) {
 		// Where possible; make things mobile friendly
