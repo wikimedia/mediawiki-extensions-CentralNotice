@@ -59,6 +59,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	public function testChoicesFromDb( $name, $testCase ) {
 		$this->setMwGlobals( 'wgCentralDBname', wfWikiID() );
 
+		$this->cnFixtures->prepareTestcase( $testCase );
 		$this->cnFixtures->setupTestCase( $testCase['setup'] );
 
 		$choices = $this->getProvider()->getChoicesForTesting( $this->rlContext );

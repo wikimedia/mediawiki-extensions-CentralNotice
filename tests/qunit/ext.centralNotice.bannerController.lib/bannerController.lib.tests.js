@@ -1,21 +1,6 @@
 ( function( mw, $ ) {
 	'use strict';
 
-	var defaultCampaignData = {
-		banners: [],
-		bucket_count: 1,
-		countries: [],
-		geotargeted: 0,
-		preferred: 1,
-		throttle: 100
-	}, defaultBannerData = {
-		bucket: 0,
-		devices: [ 'desktop' ],
-		weight: 25,
-		display_anon: true,
-		display_account: true
-	};
-
 	QUnit.module( 'ext.centralNotice.bannerController.lib', QUnit.newMwEnvironment( {
 		setup: function() {
 			mw.centralNotice.data.country = 'XX';
@@ -38,19 +23,10 @@
 				i,
 				allocatedBanner;
 
-			// Flesh out choice data with some default values
-			// BOOM on priority case
-			choices = $.map( testCase.choices, function( campaign ) {
-				return $.extend(
-					{ },
-					defaultCampaignData,
-					campaign,
-					{
-						banners: $.map( campaign.banners, function( banner ) {
-							return $.extend( {}, defaultBannerData, banner );
-						} )
-					} );
-			} );
+			// BOOM on priority case FIXME ???
+
+			prepareTestCase( testCase );
+			choices = testCase.choices;
 
 			// Set per-campaign buckets to 0 for all campaigns
 			// FIXME Allow testing of different buckets
@@ -90,6 +66,39 @@
 			assert.ok( true, 'Allocations match in "' + testCase.title + '"' );
 		} );
 	} );
+
+	/**
+	 * Prepare a test case for use in a test. Currently just substitutes UNIX
+	 * timestamps for times in the fixtures, which are represented as offsets
+	 * in days from the current time. Note: this logic is repeated in PHP for
+	 * PHPUnit tests that use the same fixtures.
+	 *
+	 * @see CentralNoticeTestFixtures::prepareTestcase()
+	 */
+	function prepareTestCase( testCase ) {
+		var i, choice,
+			now = new Date();
+
+		for ( i = 0; i < testCase.choices.length; i++ ) {
+			choice = testCase.choices[i];
+			choice.start = makeTimestamp( now, choice.startDaysFromNow );
+			choice.end = makeTimestamp( now, choice.endDaysFromNow);
+		}
+	}
+
+	/**
+	 * Return a UNIX timestamp for refDate offset by the number of days
+	 * indicated.
+	 *
+	 * @param refDate Date The date to calculate the offset from
+	 * @param offsetInDays
+	 * @return int
+	 */
+	function makeTimestamp( refDate, offsetInDays ) {
+		var date = new Date();
+		date.setDate( refDate.getDate() + offsetInDays );
+		return Math.round( date.getTime() / 1000 );
+	}
 
 	// TODO: chooser tests
 

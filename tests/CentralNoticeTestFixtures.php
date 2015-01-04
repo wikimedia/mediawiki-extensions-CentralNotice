@@ -28,8 +28,8 @@ class CentralNoticeTestFixtures {
 		);
 		static::$defaultBanner = array(
 			'body' => 'testing',
-			'displayAnon' => ApiCentralNoticeAllocations::DEFAULT_ANONYMOUS === 'true',
-			'displayAccount' => ApiCentralNoticeAllocations::DEFAULT_ANONYMOUS === 'false',
+			'displayAnon' => true,
+			'displayAccount' => true,
 			'fundraising' => 1,
 			'autolink' => 0,
 			'landingPages' => 'JA1, JA2',
@@ -54,6 +54,48 @@ class CentralNoticeTestFixtures {
 		return 'desktop';
 	}
 
+	/**
+	 *
+	 * @see bannerController.lib.tests.js
+	 *
+	 * @param TS_UNIX $testCase
+	 */
+	function prepareTestcase( &$testCase ) {
+		$now = wfTimestamp();
+
+		foreach ( $testCase['setup']['campaigns'] as &$campaign ) {
+
+			$start = CentralNoticeTestFixtures::makeTimestamp(
+				$now, $campaign['startDaysFromNow'] );
+
+			$campaign['startTs'] = wfTimestamp( TS_MW, $start );
+
+			$end = CentralNoticeTestFixtures::makeTimestamp(
+					$now, $campaign['endDaysFromNow'] );
+
+			$campaign['endTs'] = wfTimestamp( TS_MW, $end );
+		}
+
+		foreach ( $testCase['choices'] as &$choice ) {
+
+			$choice['start'] = CentralNoticeTestFixtures::makeTimestamp(
+					$now, $choice['startDaysFromNow'] );
+
+			$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
+					$now, $choice['endDaysFromNow'] );
+
+			// Unset these special properties from choices, for tests that
+			// compare fixture choices to actual choices produced by the code
+			// under test.
+			unset( $choice['startDaysFromNow'] );
+			unset( $choice['endDaysFromNow'] );
+		}
+	}
+
+	private static function makeTimestamp( $now, $offsetInDays ) {
+		return $now + ( 86400 * $offsetInDays );
+	}
+
 	function setupTestCase( $spec ) {
 		$this->ensureDesktopDevice();
 
@@ -74,6 +116,15 @@ class CentralNoticeTestFixtures {
 				$campaign['preferred'],
 				$this->user
 			);
+
+			// Update notice end date only if that property was sent in.
+			// It may not be there since it's not in the defaults; not adding
+			// since defaults will soon be removed (for json-based test
+			// fixtures).
+			if ( isset( $campaign['endTs'] ) ) {
+				Campaign::updateNoticeDate( $campaign['name'],
+					$campaign['startTs'], $campaign['endTs'] );
+			}
 
 			$banners = array();
 			foreach ( $campaign['banners'] as $bannerSpec ) {

@@ -24,6 +24,8 @@ class BannerChoiceDataProviderTest extends MediaWikiTestCase {
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
 	public function testProviderResponse( $name, $testCase ) {
+
+		$this->cnFixtures->prepareTestcase( $testCase );
 		$this->cnFixtures->setupTestCase( $testCase['setup'] );
 
 		$allocationsProvider = new BannerChoiceDataProvider(

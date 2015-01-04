@@ -4,6 +4,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "category": "fundraising",
                         "preferred": 1,
                         "throttle": 50,
@@ -24,25 +27,30 @@
             },
             "choices": [
                 {
+                    "name": "c1",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
                     "preferred": 1,
                     "throttle": 50,
                     "bucket_count": 1,
                     "geotargeted": true,
-                    "countries": [
-                        "FR",
-                        "GR",
-                        "XX"
-                    ],
                     "banners": [
                         {
                             "name": "b1",
-                            "weight": 5,
                             "bucket": 0,
+                            "weight": 5,
                             "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
                             "devices": [
                                 "desktop"
                             ]
                         }
+                    ],
+                    "countries": [
+                        "FR",
+                        "GR",
+                        "XX"
                     ]
                 }
             ],
@@ -56,6 +64,8 @@
                 "campaigns": [
                     {
                         "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "preferred": 3,
                         "throttle": 60,
                         "banners": [
@@ -65,6 +75,8 @@
                     },
                     {
                         "name": "c2",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "banners": [
@@ -77,36 +89,67 @@
             "choices": [
                 {
                     "name": "c1",
-                    "geotargeted": false,
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
                     "preferred": 3,
                     "throttle": 60,
+                    "bucket_count": 1,
+                    "geotargeted": false,
                     "banners": [
                         {
                             "name": "c1b1",
+                            "bucket": 0,
                             "weight": 25,
-                            "category": "fundraising"
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         },
                         {
                             "name": "c1b2",
+                            "bucket": 0,
                             "weight": 25,
-                            "category": "fundraising"
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         }
                     ]
                 },
                 {
                     "name": "c2",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
                     "preferred": 1,
                     "throttle": 100,
+                    "bucket_count": 1,
+                    "geotargeted": false,
                     "banners": [
                         {
                             "name": "c2b1",
+                            "bucket": 0,
                             "weight": 25,
-                            "category": "fundraising"
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         },
                         {
                             "name": "c2b2",
+                            "bucket": 0,
                             "weight": 25,
-                            "category": "fundraising"
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         }
                     ]
                 }
@@ -123,6 +166,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "banners": [
                             {
                                 "name": "b1",
@@ -142,19 +188,46 @@
             },
             "choices": [
                 {
+                    "name": "c1",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
+                    "preferred": 1,
                     "throttle": 100,
+                    "bucket_count": 1,
+                    "geotargeted": false,
                     "banners": [
                         {
                             "name": "b1",
-                            "weight": 5
+                            "bucket": 0,
+                            "weight": 5,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         },
                         {
                             "name": "b2",
-                            "weight": 100
+                            "bucket": 0,
+                            "weight": 100,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         },
                         {
                             "name": "b3",
-                            "weight": 100
+                            "bucket": 0,
+                            "weight": 100,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         }
                     ]
                 }
@@ -170,6 +243,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "throttle": 10,
                         "banners": [
                             { "name": "b1" }
@@ -179,9 +255,25 @@
             },
             "choices": [
                 {
+                    "name": "c1",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
+                    "preferred": 1,
                     "throttle": 10,
+                    "bucket_count": 1,
+                    "geotargeted": false,
                     "banners": [
-                        { "name": "b1" }
+                        {
+                            "name": "b1",
+                            "bucket": 0,
+                            "weight": 25,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -195,6 +287,8 @@
                 "campaigns": [
                     {
                         "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "preferred": 1,
                         "banners": [
                             { "name": "c1b1" }
@@ -202,6 +296,8 @@
                     },
                     {
                         "name": "c2",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "preferred": 2,
                         "banners": [
                             { "name": "c2b1" }
@@ -212,16 +308,46 @@
             "choices": [
                 {
                     "name": "c1",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
                     "preferred": 1,
+                    "throttle": 100,
+                    "bucket_count": 1,
+                    "geotargeted": false,
                     "banners": [
-                        { "name": "c1b1" }
+                        {
+                            "name": "c1b1",
+                            "bucket": 0,
+                            "weight": 25,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
+                        }
                     ]
                 },
                 {
                     "name": "c2",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
                     "preferred": 2,
+                    "throttle": 100,
+                    "bucket_count": 1,
+                    "geotargeted": false,
                     "banners": [
-                        { "name": "c2b1" }
+                        {
+                            "name": "c2b1",
+                            "bucket": 0,
+                            "weight": 25,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
+                        }
                     ]
                 }
             ],
@@ -235,6 +361,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "geotargeted": true,
                         "geo_countries": [
                             "FR",
@@ -251,16 +380,29 @@
             },
             "choices": [
                 {
+                    "name": "c1",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
+                    "preferred": 1,
+                    "throttle": 100,
+                    "bucket_count": 1,
                     "geotargeted": true,
-                    "countries": [
-                        "FR",
-                        "XX"
-                    ],
                     "banners": [
                         {
                             "name": "b1",
-                            "weight": 5
+                            "weight": 5,
+                            "bucket": 0,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         }
+                    ],
+                    "countries": [
+                        "FR",
+                        "XX"
                     ]
                 }
             ],
@@ -273,6 +415,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "geotargeted": true,
                         "geo_countries": [
                             "FR",
@@ -289,16 +434,29 @@
             },
             "choices": [
                 {
+                    "name": "c1",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
+                    "preferred": 1,
+                    "throttle": 100,
+                    "bucket_count": 1,
                     "geotargeted": true,
-                    "countries": [
-                        "FR",
-                        "GR"
-                    ],
                     "banners": [
                         {
                             "name": "b1",
-                            "weight": 5
+                            "bucket": 0,
+                            "weight": 5,
+                            "category": "fundraising",
+                            "display_anon": true,
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         }
+                    ],
+                    "countries": [
+                        "FR",
+                        "GR"
                     ]
                 }
             ],
@@ -310,6 +468,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "projects": [ "wikisource" ],
                         "banners": [
                             {
@@ -330,6 +491,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "project_languages": [ "zh" ],
                         "banners": [
                             {
@@ -350,7 +514,9 @@
             "setup": {
                 "campaigns": [
                     {
-                        "startTs": "20010101123456",
+                        "name": "c1",
+                        "startDaysFromNow": 1,
+                        "endDaysFromNow": 2,
                         "banners": [
                             {
                                 "name": "b1",
@@ -370,6 +536,9 @@
             "setup": {
                 "campaigns": [
                     {
+                        "name": "c1",
+                        "startDaysFromNow": 0,
+                        "endDaysFromNow": 1,
                         "banners": [
                             {
                                 "displayAnon": false,
@@ -383,12 +552,24 @@
             },
             "choices": [
                 {
+                    "name": "c1",
+                    "startDaysFromNow": 0,
+                    "endDaysFromNow": 1,
+                    "preferred": 1,
+                    "throttle": 100,
+                    "bucket_count": 1,
+                    "geotargeted": false,
                     "banners": [
                         {
                             "name": "b1",
+                            "bucket": 0,
                             "weight": 5,
+                            "category": "fundraising",
                             "display_anon": false,
-                            "display_account": true
+                            "display_account": true,
+                            "devices": [
+                                "desktop"
+                            ]
                         }
                     ]
                 }

@@ -24,6 +24,8 @@ class ApiCentralNoticeBannerChoiceDataTest extends ApiTestCase {
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
 	public function testBannerChoiceResponse( $name, $testCase ) {
+
+		$this->cnFixtures->prepareTestcase( $testCase );
 		$this->cnFixtures->setupTestCase( $testCase['setup'] );
 
 		$ret = $this->doApiRequest( array(
