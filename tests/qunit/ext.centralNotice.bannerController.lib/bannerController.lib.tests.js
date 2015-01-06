@@ -9,15 +9,14 @@
 		}
 	} ) );
 
-	QUnit.test( 'allocations test cases', function( assert ) {
+	var testFixtures = mw.centralNoticeTestFixtures,
+		testCases = testFixtures.test_cases,
+		lib = mw.cnBannerControllerLib;
 
-		var testFixtures = mw.centralNoticeTestFixtures,
-			testCases = testFixtures.test_cases,
-			lib = mw.cnBannerControllerLib;
+	// FIXME: fail hard if there is no fixture data
 
-		QUnit.expect( Object.keys( testCases ).length );
-
-		$.each( testCases, function( testCaseName, testCase ) {
+	$.each( testCases, function( testCaseName, testCase ) {
+		QUnit.test( testCaseName, 1, function( assert ) {
 			var choices,
 				choice,
 				i,
