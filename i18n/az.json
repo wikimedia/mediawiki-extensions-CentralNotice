@@ -65,8 +65,8 @@
 	"centralnotice-banner-content-changed": "Dəyişdi",
 	"centralnotice-date": "Tarix",
 	"centralnotice-archive-campaign": "Arxiv",
-	"centralnotice-start-date": "Başlanğıc tarixi",
+	"centralnotice-start-date": "Başlanğıc tarixi (UTC)",
 	"centralnotice-start-time": "Başlanğıc tarixi (UTC)",
-	"centralnotice-end-date": "Son tarix",
+	"centralnotice-end-date": "Son tarix (UTC)",
 	"centralnotice-end-time": "Son tarix (UTC)"
 }
