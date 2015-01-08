@@ -167,5 +167,7 @@
 	"centralnotice-start-date": "Početni datum",
 	"centralnotice-start-time": "Početno vreme (UTC)",
 	"centralnotice-end-date": "Završni datum",
-	"centralnotice-end-time": "Završno vreme (UTC)"
+	"centralnotice-end-time": "Završno vreme (UTC)",
+	"centralnotice-banner-not-found-title": "Baner nije pronađen",
+	"centralnotice-banner-not-found-contents": "Ne postoji baner sa tačno ovakvim imenom."
 }

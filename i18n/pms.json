@@ -231,5 +231,7 @@
 	"centralnotice-end-date": "Data ëd fin (UTC)",
 	"centralnotice-end-time": "Ora ëd fin (UTC)",
 	"centralnotice-banner-not-found-title": "Tilèt nen trovà",
-	"centralnotice-banner-not-found-contents": "A-i é gnun tilèt con ës nòm precis."
+	"centralnotice-banner-not-found-contents": "A-i é gnun tilèt con ës nòm precis.",
+	"hidebanners": "Stërmé ij tilèt",
+	"centralnotice-specialhidebanners-p3p": "Vàire navigador a l'han damanca ëd na spessìfica P3P compata për definì ij bëscotin an chèiche situassion. Comsëssìa, gnun-a spessìfica compata a l'é al moment disponìbil. Për piasì, ch'a consulta le régole ëd confidensialità che lisìbij dël sit."
 }
