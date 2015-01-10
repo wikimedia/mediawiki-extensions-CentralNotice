@@ -99,6 +99,7 @@ class CNDeviceTarget {
 	 * @param int          $bannerId   Banner ID to modify
 	 * @param string|array $newDevices Single name, or array of names, of devices that should be
 	 *                                 associated with a banner
+	 * @throws RangeException
 	 */
 	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
 		$db = CNDatabase::getDb();
@@ -118,7 +119,7 @@ class CNDeviceTarget {
 			$modifyArray = array();
 			foreach ( $newDevices as $device ) {
 				if ( !array_key_exists( $device, $knownDevices ) ) {
-					throw new MWException( "Device name '$device' not known! Cannot add." );
+					throw new RangeException( "Device name '$device' not known! Cannot add." );
 				}
 				$modifyArray[ ] = array( 'tmp_id' => $bannerId, 'dev_id' => $knownDevices[ $device ][ 'id' ] );
 			}

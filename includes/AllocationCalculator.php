@@ -314,6 +314,9 @@ class AllocationCalculator {
 		return $possibleBannersAllCampaigns;
 	}
 
+	/**
+	 * @throws InvalidArgumentException
+	 */
 	public static function getLoggedInStatusFromString( $s ) {
 		switch ( $s ) {
 			case 'anonymous':
@@ -321,7 +324,7 @@ class AllocationCalculator {
 			case 'logged_in':
 				return AllocationCalculator::LOGGED_IN;
 			default:
-				throw new MWException( 'Invalid logged-in status.' );
+				throw new InvalidArgumentException( 'Invalid logged-in status.' );
 		}
 	}
 }

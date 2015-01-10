@@ -792,7 +792,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 					$this->getOutput()->redirect( $this->getPageTitle( '' )->getCanonicalURL() );
 					$this->bannerFormRedirectRequired = true;
-				} catch ( MWException $ex ) {
+				} catch ( Exception $ex ) {
 					return $ex->getMessage() . " <br /> " . $this->msg( 'centralnotice-template-still-bound', $this->bannerName );
 				}
 				break;
