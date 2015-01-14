@@ -203,6 +203,7 @@
 	"centralnotice-user-role-anonymous": "Anonimo",
 	"centralnotice-user-role-logged-in": "Trasuto/a",
 	"centralnotice-banner-class": "Categurìa",
+	"centralnotice-banner-class-desc": "'E banner 'e na categurìa specifica sparteno 'e variabbele 'e tracciamiento d' 'e mpustaziune d' 'o gruppo (p.e. scunne 'e cookie e 'e cunteggie d' 'a mpressione.) 'E nomme d' 'e categurìa ponno essere parole maggeche cumme <nowiki>{{{campaign}}}</nowiki> o <nowiki>{{{banner}}}</nowiki> 'e quale automaticamente se spanneno quanno se so' fatt'abbedè. 'E valure hanna essere alfanumerece.",
 	"centralnotice-templates-included": "Template ncluse",
 	"centralnotice-archive-banner": "Archivia",
 	"centralnotice-archive-banner-title": "Archivià {{PLURAL:$1|'o|'e}} banner?",
