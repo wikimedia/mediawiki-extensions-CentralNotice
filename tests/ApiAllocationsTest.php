@@ -24,16 +24,20 @@ class ApiAllocationsTest extends ApiTestCase {
 
 	public function testEqualAllocations() {
 		// Campaign has two banners, with default parameters
-		$this->cnFixtures->setupTestCase( array(
-			'campaigns' => array(
-				array(
-					'banners' => array(
-						array(),
-						array()
+		$this->cnFixtures->setupTestCaseWithDefaults(
+			array(
+				'setup' => array(
+					'campaigns' => array(
+						array(
+							'banners' => array(
+								array(),
+								array()
+							),
+						),
 					),
 				),
-			),
-		) );
+			) );
+
 		$expected = array(
 			'centralnoticeallocations' => array(
 				'banners' => array(

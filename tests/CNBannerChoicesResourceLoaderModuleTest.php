@@ -22,7 +22,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 			'modules' => 'ext.centralNotice.bannerChoiceData',
 			'skin' => 'fallback',
 			'user' => false,
-			'uselang' => CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0],
+			'uselang' => 'en' // Note: this is a temporary measure 
 		) );
 		$this->rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
 	}
@@ -41,7 +41,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	protected function addSomeBanners() {
 		$fixtures = CentralNoticeTestFixtures::allocationsData();
 		$completeness = $fixtures['testCases']['completeness'];
-		$this->cnFixtures->setupTestCase( $completeness['setup'] );
+		$this->cnFixtures->setupTestCaseFromFixtureData( $completeness );
 	}
 
 	public function testDisabledByConfig() {
@@ -59,8 +59,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	public function testChoicesFromDb( $name, $testCase ) {
 		$this->setMwGlobals( 'wgCentralDBname', wfWikiID() );
 
-		$this->cnFixtures->prepareTestcase( $testCase );
-		$this->cnFixtures->setupTestCase( $testCase['setup'] );
+		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		$choices = $this->getProvider()->getChoicesForTesting( $this->rlContext );
 		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $testCase['choices'] ) );

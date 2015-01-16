@@ -20,7 +20,9 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		parent::setUp();
 		$this->fixture = new CentralNoticeTestFixtures();
-		$this->fixture->setupTestCase( array( 'campaigns' => array() ) );
+
+		$this->fixture->setupTestCaseWithDefaults(
+			array( 'setup' => array( 'campaigns' => array() ) ) );
 	}
 
 	public function tearDown() {

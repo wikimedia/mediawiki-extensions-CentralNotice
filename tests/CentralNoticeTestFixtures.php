@@ -19,21 +19,21 @@ class CentralNoticeTestFixtures {
 			// inclusive comparison is used, so this does not cause a race condition.
 			'startTs' => wfTimestamp( TS_MW ),
 			'projects' => array( CentralNoticeTestFixtures::getDefaultProject() ),
-			'project_languages' => array( CentralNoticeTestFixtures::getDefaultLanguage() ),
+			'languages' => array( CentralNoticeTestFixtures::getDefaultLanguage() ),
 			'preferred' => CentralNotice::NORMAL_PRIORITY,
 			'geotargeted' => 0,
-			'geo_countries' => array( CentralNoticeTestFixtures::getDefaultCountry() ),
+			'countries' => array( CentralNoticeTestFixtures::getDefaultCountry() ),
 			'throttle' => 100,
 			'banners' => array(),
 		);
 		static::$defaultBanner = array(
+			'bucket' => 0,
 			'body' => 'testing',
 			'displayAnon' => true,
 			'displayAccount' => true,
 			'fundraising' => 1,
 			'autolink' => 0,
 			'landingPages' => 'JA1, JA2',
-			'campaign_z_index' => 0,
 			'weight' => 25,
 		);
 	}
@@ -55,18 +55,70 @@ class CentralNoticeTestFixtures {
 	}
 
 	/**
+	 * Set up a test case as required for shared JSON data. Process the special
+	 * startDaysFromNow and endDaysFromNow properties, ensure an empty
+	 * countries property for non-geotargetted campaigns, and add dummy
+	 * banner bodies.
 	 *
-	 * @see bannerController.lib.tests.js
-	 *
-	 * @param TS_UNIX $testCase
+	 * @param array $testCase A data structure with the test case specification
 	 */
-	function prepareTestcase( &$testCase ) {
+	function setupTestCaseFromFixtureData( &$testCase ) {
+		$this->setTestCaseStartEnd( $testCase );
+		$this->preprocessSetupCountriesProp( $testCase['setup'] );
+		$this->addDummyBannerBody( $testCase['setup'] );
+		$this->setupTestCase( $testCase['setup'] );
+	}
+
+	/**
+	 * Set up a test case with defaults, for legacy tests that don't use the
+	 * shared JSON fixture data.
+	 *
+	 * @param array $testCase A data structure with the test case specification
+	 */
+	function setupTestCaseWithDefaults( $testCase ) {
+		$this->addTestCaseDefaults( $testCase['setup'] );
+		$this->setupTestCase( $testCase['setup'] );
+	}
+
+	/**
+	 * Add defaults to the test case setup specification, for legacy tests that
+	 * don't use the shared JSON fixture data. 
+	 *
+	 * @param array $testCaseSetup A data structure with the setup section of a
+	 *  test case specification
+	 */
+	protected function addTestCaseDefaults( &$testCaseSetup ) {
+
+		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
+			$campaign = $campaign + static::$defaultCampaign + array(
+					'name' => 'TestCampaign_' . rand(),
+			);
+
+			foreach ( $campaign['banners'] as &$banner ) {
+				$banner = $banner + static::$defaultBanner + array(
+						'name' => 'TestBanner_' . rand(),
+				);
+			}
+		}
+	}
+
+	/**
+	 * Set campaign start and end times for test case fixtures using the
+	 * startDaysFromNow and endDaysFromNow properties.
+	 *
+	 * Note: this logic is repeated in client-side tests.
+	 * @see setTestCaseStartEnd() in bannerController.lib.tests.js
+	 *
+	 * @param array $testCase A data structure with the test case specification
+	 */
+	protected function setTestCaseStartEnd( &$testCase ) {
+
 		$now = wfTimestamp();
 
 		foreach ( $testCase['setup']['campaigns'] as &$campaign ) {
 
 			$start = CentralNoticeTestFixtures::makeTimestamp(
-				$now, $campaign['startDaysFromNow'] );
+					$now, $campaign['startDaysFromNow'] );
 
 			$campaign['startTs'] = wfTimestamp( TS_MW, $start );
 
@@ -92,67 +144,123 @@ class CentralNoticeTestFixtures {
 		}
 	}
 
-	private static function makeTimestamp( $now, $offsetInDays ) {
+	/**
+	 * For test case setup, provide an empty array of countries for
+	 * non-geotargeted campaigns, and check for mistakenly set countries for
+	 * such campaigns.
+	 *
+	 * @param array $testCaseSetup A data structure with the setup section of a
+	 *  test case specification
+	 */
+	protected function preprocessSetupCountriesProp( &$testCaseSetup ) {
+
+		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
+
+			if ( !$campaign['geotargeted'] ) {
+				if ( !isset( $campaign['countries'] ) ) {
+					$campaign['countries'] = array();
+				} else {
+					throw new MWException( "Campaign is not geotargetted but "
+							. "'countries' property is set." );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Add dummy banner properties throughout a test case setup specification. 
+	 *
+	 * @param array $testCaseSetup A data structure with the setup section of a
+	 *  test case specification
+	 */
+	protected function addDummyBannerBody( &$testCaseSetup ) {
+		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
+			foreach ( $campaign['banners'] as &$banner ) {
+				$banner['body'] = $banner['name'] . ' body';
+			}
+		}
+	}
+
+	/**
+	 * Make a timestamp offset from the current time by a number of days.
+	 *
+	 * @param MW_TS $now Timestamp of the current time
+	 * @param unknown $offsetInDays
+	 * @return MW_TS
+	 */
+	protected static function makeTimestamp( $now, $offsetInDays ) {
 		return $now + ( 86400 * $offsetInDays );
 	}
 
-	function setupTestCase( $spec ) {
+	/**
+	 * Create campaigns and related banners according to a test case setup
+	 * specification.
+	 *
+	 * @param array $testCaseSetup A data structure with the setup section of a
+	 *  test case specification
+	 */
+	protected function setupTestCase( $testCaseSetup ) {
 		$this->ensureDesktopDevice();
 
-		foreach ( $spec['campaigns'] as $campaignSpec ) {
-			$campaign = $campaignSpec + static::$defaultCampaign + array(
-				'name' => 'TestCampaign_' . rand(),
-			);
+		foreach ( $testCaseSetup['campaigns'] as $campaign ) {
 
 			$campaign['id'] = Campaign::addCampaign(
 				$campaign['name'],
 				$campaign['enabled'],
 				$campaign['startTs'],
 				$campaign['projects'],
-				$campaign['project_languages'],
+				$campaign['languages'],
 				$campaign['geotargeted'],
-				$campaign['geo_countries'],
+				$campaign['countries'],
 				$campaign['throttle'],
 				$campaign['preferred'],
 				$this->user
 			);
 
 			// Update notice end date only if that property was sent in.
-			// It may not be there since it's not in the defaults; not adding
-			// since defaults will soon be removed (for json-based test
-			// fixtures).
+			// It may not be there since it's not in the defaults
+			// (used by legacy tests).
 			if ( isset( $campaign['endTs'] ) ) {
 				Campaign::updateNoticeDate( $campaign['name'],
 					$campaign['startTs'], $campaign['endTs'] );
 			}
 
-			$banners = array();
+			// autolink and landingPage properties are not relevant to tests set
+			// up via fixture data and may not be provided. For those
+			// parameters, in that case, provide the default value in the
+			// Banner::addTemplate method signature.
 			foreach ( $campaign['banners'] as $bannerSpec ) {
-				$banner = $bannerSpec + static::$defaultBanner + array(
-					'name' => 'TestBanner_' . rand(),
-				);
-
 				Banner::addTemplate(
-					$banner['name'],
-					$banner['body'],
+					$bannerSpec['name'],
+					$bannerSpec['body'],
 					$this->user,
-					$banner['displayAnon'],
-					$banner['displayAccount'],
-					$banner['fundraising'],
-					$banner['autolink'],
-					$banner['landingPages']
+					$bannerSpec['displayAnon'],
+					$bannerSpec['displayAccount'],
+					$bannerSpec['fundraising'],
+					isset( $bannerSpec['autolink'] ) ? $bannerSpec['autolink'] : 0,
+					isset( $bannerSpec['landingPages'] ) ? $bannerSpec['landingPages'] : ''
 				);
 
-				// FIXME Can't test buckets other than 0, the (!) default
 				Campaign::addTemplateTo(
 					$campaign['name'],
-					$banner['name'],
-					$banner['weight']
+					$bannerSpec['name'],
+					$bannerSpec['weight']
 				);
 
-				$banners[] = $banner;
+				$bannerObj = Banner::fromName( $bannerSpec['name'] );
+				
+				if ( isset( $bannerSpec['bucket'] ) ) {
+					Campaign::updateBucket(
+						$campaign['name'],
+						$bannerObj->getId(),
+						$bannerSpec['bucket'] );
+				}
+
+				if ( isset( $bannerSpec['devices'] ) ) {
+					$bannerObj->setDevices( $bannerSpec['devices'] );
+					$bannerObj->save();
+				}
 			}
-			$campaign['banners'] = $banners;
 
 			$this->spec['campaigns'][] = $campaign;
 		}

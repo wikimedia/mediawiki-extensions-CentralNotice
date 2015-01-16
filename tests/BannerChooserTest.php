@@ -21,26 +21,30 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	public function testThrottlingCampaign() {
-		$this->cnFixtures->setupTestCase( array(
-			'campaigns' => array(
-				array(
-					'preferred' => CentralNotice::NORMAL_PRIORITY,
-					'throttle' => 60,
-					'banners' => array(
-						array(),
-						array()
+		$this->cnFixtures->setupTestCaseWithDefaults(
+			array(
+				'setup' => array(
+					'campaigns' => array(
+						array(
+							'preferred' => CentralNotice::NORMAL_PRIORITY,
+							'throttle' => 60,
+							'banners' => array(
+								array(),
+								array()
+							),
+						),
+						array(
+							'preferred' => CentralNotice::LOW_PRIORITY,
+							'throttle' => 100,
+							'banners' => array(
+								array(),
+								array()
+							),
+						),
 					),
-				),
-				array(
-					'preferred' => CentralNotice::LOW_PRIORITY,
-					'throttle' => 100,
-					'banners' => array(
-						array(),
-						array()
-					),
-				),
-			),
-		) );
+				)
+			) );
+
 		$expected = array(
 			array (
 				'name' => $this->cnFixtures->spec['campaigns'][1]['banners'][0]['name'],
@@ -80,23 +84,26 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	public function testOverAllocation() {
-		$this->cnFixtures->setupTestCase( array(
-			'campaigns' => array(
-				array(
-					'banners' => array(
+		$this->cnFixtures->setupTestCaseWithDefaults(
+			array(
+				'setup' => array(
+					'campaigns' => array(
 						array(
-							'weight' => 5,
-						),
-						array(
-							'weight' => 100,
-						),
-						array(
-							'weight' => 100,
+							'banners' => array(
+								array(
+									'weight' => 5,
+								),
+								array(
+									'weight' => 100,
+								),
+								array(
+									'weight' => 100,
+								),
+							),
 						),
 					),
-				),
-			),
-		) );
+				)
+			) );
 		$expected = array(
 			array (
 				'weight' => 5,
@@ -120,16 +127,19 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	public function testBlanks() {
-		$this->cnFixtures->setupTestCase( array(
-			'campaigns' => array(
-				array(
-					'throttle' => 10,
-					'banners' => array(
-						array(),
+		$this->cnFixtures->setupTestCaseWithDefaults(
+			array(
+				'setup' => array(
+					'campaigns' => array(
+						array(
+							'throttle' => 10,
+							'banners' => array(
+								array(),
+							),
+						),
 					),
-				),
-			),
-		) );
+				)
+			) );
 		$expected = array(
 			array(
 				'slots' => 3,
@@ -148,22 +158,26 @@ class AllocationsTest extends MediaWikiTestCase {
 	}
 
 	public function testPriority() {
-		$this->cnFixtures->setupTestCase( array(
-			'campaigns' => array(
-				array(
-					'preferred' => CentralNotice::LOW_PRIORITY,
-					'banners' => array(
-						array(),
+		$this->cnFixtures->setupTestCaseWithDefaults(
+			array(
+				'setup' => array(
+					'campaigns' => array(
+						array(
+							'preferred' => CentralNotice::LOW_PRIORITY,
+							'banners' => array(
+								array(),
+							),
+						),
+						array(
+							'preferred' => CentralNotice::NORMAL_PRIORITY,
+							'banners' => array(
+								array(),
+							),
+						),
 					),
-				),
-				array(
-					'preferred' => CentralNotice::NORMAL_PRIORITY,
-					'banners' => array(
-						array(),
-					),
-				),
-			),
-		) );
+				)
+			) );
+
 		$expected = array(
 			array(
 				'campaign' => $this->cnFixtures->spec['campaigns'][0]['name'],

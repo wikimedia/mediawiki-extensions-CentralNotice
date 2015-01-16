@@ -25,8 +25,7 @@ class BannerAllocationCalculatorTest extends MediaWikiTestCase {
 	 */
 	public function testAllocations( $name, $testCase ) {
 
-		$this->cnFixtures->prepareTestcase( $testCase );
-		$this->cnFixtures->setupTestCase( $testCase['setup'] );
+		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::getDefaultProject(),

@@ -25,12 +25,11 @@ class BannerChoiceDataProviderTest extends MediaWikiTestCase {
 	 */
 	public function testProviderResponse( $name, $testCase ) {
 
-		$this->cnFixtures->prepareTestcase( $testCase );
-		$this->cnFixtures->setupTestCase( $testCase['setup'] );
+		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::$defaultCampaign['projects'][0],
-			CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0]
+			CentralNoticeTestFixtures::$defaultCampaign['languages'][0]
 		);
 		$choices = $allocationsProvider->getChoices();
 		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $testCase['choices'] ) );

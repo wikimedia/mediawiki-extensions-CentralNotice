@@ -30,13 +30,14 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$enabled           = 0;
 		$startTs           = '20110718' . '235500';
 		$projects          = array( 'wikipedia', 'wikibooks' );
-		$project_languages = array( 'en', 'de' );
+		$languages = array( 'en', 'de' );
 		$geotargeted       = 1;
-		$geo_countries     = array( 'US', 'AF' );
+		$countries     = array( 'US', 'AF' );
 		$preferred         = 1;
 
 		$this->fixture = new CentralNoticeTestFixtures();
-		$this->fixture->setupTestCase( array( 'campaigns' => array() ) );
+		$this->fixture->setupTestCaseWithDefaults(
+			array( 'setup' => array( 'campaigns' => array() ) ) );
 
 		$this->campaignArray = array(
 			'enabled' => '0',
@@ -62,7 +63,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			$this->userUser->load();
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
-			$project_languages, $geotargeted, $geo_countries,
+			$languages, $geotargeted, $countries,
 			100, $preferred, $this->userUser );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );

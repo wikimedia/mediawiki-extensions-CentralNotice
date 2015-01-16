@@ -25,7 +25,7 @@
 
 			// BOOM on priority case FIXME ???
 
-			prepareTestCase( testCase );
+			setTestCaseStartEnd( testCase );
 			choices = testCase.choices;
 
 			// Set per-campaign buckets to 0 for all campaigns
@@ -73,16 +73,21 @@
 	 * in days from the current time. Note: this logic is repeated in PHP for
 	 * PHPUnit tests that use the same fixtures.
 	 *
-	 * @see CentralNoticeTestFixtures::prepareTestcase()
+	 * @see CentralNoticeTestFixtures::setTestCaseStartEnd()
 	 */
-	function prepareTestCase( testCase ) {
+	function setTestCaseStartEnd( testCaseSpec ) {
 		var i, choice,
 			now = new Date();
 
-		for ( i = 0; i < testCase.choices.length; i++ ) {
-			choice = testCase.choices[i];
+		for ( i = 0; i < testCaseSpec.choices.length; i++ ) {
+			choice = testCaseSpec.choices[i];
 			choice.start = makeTimestamp( now, choice.startDaysFromNow );
 			choice.end = makeTimestamp( now, choice.endDaysFromNow);
+
+			// Remove these special properties from choices, to make the
+			// choices data mirror the real data structure.
+			delete choice.startDaysFromNow;
+			delete choice.endDaysFromNow;
 		}
 	}
 
