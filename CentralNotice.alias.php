@@ -387,6 +387,7 @@ $specialPageAliases['uk'] = array(
 /** Urdu (اردو) */
 $specialPageAliases['ur'] = array(
 	'CentralNotice' => array( 'مرکزی_اعلان' ),
+	'NoticeTemplate' => array( 'نوٹس_سانچہ' ),
 );
 
 /** Vietnamese (Tiếng Việt) */
