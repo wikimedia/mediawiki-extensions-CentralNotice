@@ -242,6 +242,8 @@
 	"apihelp-centralnoticeallocations-param-anonymous": "'O stato d' 'e trasute a ffiltrà a ssicondo si fosse (true|false).",
 	"apihelp-centralnoticeallocations-param-device": "Nomme 'e ll'apparecchio 'a filtrà.",
 	"apihelp-centralnoticeallocations-example-1": "Mmusta cocche pizzo p' 'o veré",
+	"apihelp-centralnoticequerycampaign-description": "Acchiappa tutt' 'e date 'e mpustazione p' 'a campagna.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "Nomme d' 'a campagna. Valure separate 'e diverze c' 'a \"|\" ('o tubbo luongo verticale).",
 	"apihelp-centralnoticequerycampaign-example-1": "Mmusta 'a campagna \"Plea_US\"",
 	"apihelp-centralnoticebannerchoicedata-param-project": "'O pruggetto 'addò s'avess'a piglià 'e date 'e sceveta.",
 	"apihelp-centralnoticebannerchoicedata-param-language": "'A llengua addò s'avess'a piglià 'e date 'e sceveta.",

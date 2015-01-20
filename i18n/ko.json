@@ -193,7 +193,7 @@
 	"centralnotice-bucket": "버킷",
 	"centralnotice-bucket-letter": "\"$1\" 버킷",
 	"centralnotice-devicetype-desktop": "데스크톱 컴퓨터",
-	"centralnotice-devicetype-android": "안드로이드 OS",
+	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "iPad로 인식되지만 iPhone은 아닌 기기",
 	"centralnotice-devicetype-iphone": "모든 iPhone 버전",
 	"centralnotice-all": "모두",
