@@ -1,13 +1,13 @@
 {
-    "testCases": {
+    "test_cases": {
         "completeness": {
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 50,
                         "geotargeted": true,
@@ -23,8 +23,8 @@
                                 "name": "b1",
                                 "weight": 5,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -37,8 +37,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 50,
                     "bucket_count": 1,
@@ -74,8 +74,8 @@
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 3,
                         "throttle": 60,
                         "geotargeted": false,
@@ -86,8 +86,8 @@
                                 "name": "c1b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -97,8 +97,8 @@
                                 "name": "c1b2",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -109,8 +109,8 @@
                     {
                         "name": "c2",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
@@ -121,8 +121,8 @@
                                 "name": "c2b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -132,8 +132,8 @@
                                 "name": "c2b2",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -146,8 +146,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 3,
                     "throttle": 60,
                     "bucket_count": 1,
@@ -179,8 +179,8 @@
                 },
                 {
                     "name": "c2",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 100,
                     "bucket_count": 1,
@@ -225,8 +225,8 @@
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
@@ -237,8 +237,8 @@
                                 "name": "b1",
                                 "weight": 5,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -248,8 +248,8 @@
                                 "name": "b2",
                                 "weight": 100,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -259,8 +259,8 @@
                                 "name": "b3",
                                 "weight": 100,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -273,8 +273,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 100,
                     "bucket_count": 1,
@@ -329,8 +329,8 @@
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 10,
                         "geotargeted": false,
@@ -341,8 +341,8 @@
                                 "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1
                             }
                         ]
@@ -352,8 +352,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 10,
                     "bucket_count": 1,
@@ -384,8 +384,8 @@
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
@@ -396,8 +396,8 @@
                                 "name": "c1b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -408,8 +408,8 @@
                     {
                         "name": "c2",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 2,
                         "throttle": 100,
                         "geotargeted": false,
@@ -420,8 +420,8 @@
                                 "name": "c2b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -434,8 +434,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 100,
                     "bucket_count": 1,
@@ -456,8 +456,8 @@
                 },
                 {
                     "name": "c2",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 2,
                     "throttle": 100,
                     "bucket_count": 1,
@@ -483,14 +483,14 @@
             }
         },
 
-        "geoInCountry": {
+        "geo_in_country": {
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "projects": ["wikipedia"],
@@ -505,8 +505,8 @@
                                 "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -519,8 +519,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 100,
                     "bucket_count": 1,
@@ -549,14 +549,14 @@
             }
         },
 
-        "geoNotInCountry": {
+        "geo_not_in_country": {
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": true,
@@ -571,8 +571,8 @@
                                 "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -585,8 +585,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 100,
                     "bucket_count": 1,
@@ -614,14 +614,14 @@
             }
         },
 
-        "notInProject": {
+        "not_in_project": {
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
@@ -632,8 +632,8 @@
                                 "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -649,14 +649,14 @@
             }
         },
 
-        "notInLanguage": {
+        "not_in_language": {
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
@@ -667,8 +667,8 @@
                                 "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -684,14 +684,14 @@
             }
         },
 
-        "notInTimeWindow": {
+        "not_in_time_window": {
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 1,
-                        "endDaysFromNow": 2,
+                        "start_days_from_now": 1,
+                        "end_days_from_now": 2,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
@@ -702,8 +702,8 @@
                                 "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": true,
-                                "displayAccount": true,
+                                "display_anon": true,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -719,14 +719,14 @@
             }
         },
 
-        "notAnonymous": {
+        "not_anonymous": {
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
                         "enabled": 1,
-                        "startDaysFromNow": 0,
-                        "endDaysFromNow": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
@@ -737,8 +737,8 @@
                                 "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
-                                "displayAnon": false,
-                                "displayAccount": true,
+                                "display_anon": false,
+                                "display_account": true,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -751,8 +751,8 @@
             "choices": [
                 {
                     "name": "c1",
-                    "startDaysFromNow": 0,
-                    "endDaysFromNow": 1,
+                    "start_days_from_now": 0,
+                    "end_days_from_now": 1,
                     "preferred": 1,
                     "throttle": 100,
                     "bucket_count": 1,

@@ -12,7 +12,7 @@
 	QUnit.test( 'allocations test cases', function( assert ) {
 
 		var testFixtures = mw.centralNoticeTestFixtures,
-			testCases = testFixtures.testCases,
+			testCases = testFixtures.test_cases,
 			lib = mw.cnBannerControllerLib;
 
 		QUnit.expect( Object.keys( testCases ).length );
@@ -81,13 +81,13 @@
 
 		for ( i = 0; i < testCaseSpec.choices.length; i++ ) {
 			choice = testCaseSpec.choices[i];
-			choice.start = makeTimestamp( now, choice.startDaysFromNow );
-			choice.end = makeTimestamp( now, choice.endDaysFromNow);
+			choice.start = makeTimestamp( now, choice.start_days_from_now );
+			choice.end = makeTimestamp( now, choice.end_days_from_now);
 
 			// Remove these special properties from choices, to make the
 			// choices data mirror the real data structure.
-			delete choice.startDaysFromNow;
-			delete choice.endDaysFromNow;
+			delete choice.start_days_from_now;
+			delete choice.end_days_from_now;
 		}
 	}
 

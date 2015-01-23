@@ -40,7 +40,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 
 	protected function addSomeBanners() {
 		$fixtures = CentralNoticeTestFixtures::allocationsData();
-		$completeness = $fixtures['testCases']['completeness'];
+		$completeness = $fixtures['test_cases']['completeness'];
 		$this->cnFixtures->setupTestCaseFromFixtureData( $completeness );
 	}
 

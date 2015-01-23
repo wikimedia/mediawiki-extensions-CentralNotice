@@ -29,8 +29,8 @@ class CentralNoticeTestFixtures {
 		static::$defaultBanner = array(
 			'bucket' => 0,
 			'body' => 'testing',
-			'displayAnon' => true,
-			'displayAccount' => true,
+			'display_anon' => true,
+			'display_account' => true,
 			'fundraising' => 1,
 			'autolink' => 0,
 			'landingPages' => 'JA1, JA2',
@@ -56,7 +56,7 @@ class CentralNoticeTestFixtures {
 
 	/**
 	 * Set up a test case as required for shared JSON data. Process the special
-	 * startDaysFromNow and endDaysFromNow properties, ensure an empty
+	 * start_days_from_now and end_days_from_now properties, ensure an empty
 	 * countries property for non-geotargetted campaigns, and add dummy
 	 * banner bodies.
 	 *
@@ -104,7 +104,7 @@ class CentralNoticeTestFixtures {
 
 	/**
 	 * Set campaign start and end times for test case fixtures using the
-	 * startDaysFromNow and endDaysFromNow properties.
+	 * start_days_from_now and end_days_from_now properties.
 	 *
 	 * Note: this logic is repeated in client-side tests.
 	 * @see setTestCaseStartEnd() in bannerController.lib.tests.js
@@ -118,12 +118,12 @@ class CentralNoticeTestFixtures {
 		foreach ( $testCase['setup']['campaigns'] as &$campaign ) {
 
 			$start = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $campaign['startDaysFromNow'] );
+					$now, $campaign['start_days_from_now'] );
 
 			$campaign['startTs'] = wfTimestamp( TS_MW, $start );
 
 			$end = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $campaign['endDaysFromNow'] );
+					$now, $campaign['end_days_from_now'] );
 
 			$campaign['endTs'] = wfTimestamp( TS_MW, $end );
 		}
@@ -131,16 +131,16 @@ class CentralNoticeTestFixtures {
 		foreach ( $testCase['choices'] as &$choice ) {
 
 			$choice['start'] = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $choice['startDaysFromNow'] );
+					$now, $choice['start_days_from_now'] );
 
 			$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $choice['endDaysFromNow'] );
+					$now, $choice['end_days_from_now'] );
 
 			// Unset these special properties from choices, for tests that
 			// compare fixture choices to actual choices produced by the code
 			// under test.
-			unset( $choice['startDaysFromNow'] );
-			unset( $choice['endDaysFromNow'] );
+			unset( $choice['start_days_from_now'] );
+			unset( $choice['end_days_from_now'] );
 		}
 	}
 
@@ -234,8 +234,8 @@ class CentralNoticeTestFixtures {
 					$bannerSpec['name'],
 					$bannerSpec['body'],
 					$this->user,
-					$bannerSpec['displayAnon'],
-					$bannerSpec['displayAccount'],
+					$bannerSpec['display_anon'],
+					$bannerSpec['display_account'],
 					$bannerSpec['fundraising'],
 					isset( $bannerSpec['autolink'] ) ? $bannerSpec['autolink'] : 0,
 					isset( $bannerSpec['landingPages'] ) ? $bannerSpec['landingPages'] : ''
@@ -330,7 +330,7 @@ class CentralNoticeTestFixtures {
 		$data = CentralNoticeTestFixtures::allocationsData();
 		$dataForTests = array();
 
-		foreach  ( $data['testCases'] as $name => $testCase ) {
+		foreach  ( $data['test_cases'] as $name => $testCase ) {
 			$dataForTests[] = array( $name, $testCase );
 		}
 
