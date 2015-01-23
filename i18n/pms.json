@@ -253,5 +253,8 @@
 	"apihelp-query+centralnoticelogs-param-campaign": "Nòm ëd la campagna (opsional). Ch'a separa ij valor mùltipl con na \"|\" (sbara vertical).",
 	"apihelp-query+centralnoticelogs-param-user": "Stranòm (facoltativ).",
 	"apihelp-query+centralnoticelogs-param-limit": "Nùmer màssim ëd linie da smon-e (facoltativ).",
-	"apihelp-query+centralnoticelogs-param-offset": "Posission ant l'ansem dj'arzultà (facoltativ)."
+	"apihelp-query+centralnoticelogs-param-offset": "Posission ant l'ansem dj'arzultà (facoltativ).",
+	"apihelp-query+centralnoticelogs-param-start": "Ora d'achit ëd la pàgina (facoltativ).",
+	"apihelp-query+centralnoticelogs-param-end": "Ora ëd fin ëd la pàgina (facoltativ).",
+	"apihelp-query+centralnoticelogs-example-1": "Smon-e j'argistr"
 }

@@ -245,10 +245,12 @@
 	"apihelp-centralnoticequerycampaign-description": "Acchiappa tutt' 'e date 'e mpustazione p' 'a campagna.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nomme d' 'a campagna. Valure separate 'e diverze c' 'a \"|\" ('o tubbo luongo verticale).",
 	"apihelp-centralnoticequerycampaign-example-1": "Mmusta 'a campagna \"Plea_US\"",
+	"apihelp-centralnoticebannerchoicedata-description": "Piglia 'e date ca ce vonno pe scegliere nu banner pe' nu pruggetto dato e na lengua",
 	"apihelp-centralnoticebannerchoicedata-param-project": "'O pruggetto 'addò s'avess'a piglià 'e date 'e sceveta.",
 	"apihelp-centralnoticebannerchoicedata-param-language": "'A llengua addò s'avess'a piglià 'e date 'e sceveta.",
 	"apihelp-centralnoticebannerchoicedata-example-1": "Piglia 'e date pe' ne putè scegliere 'o banner pe' ll'utente d' 'a Wikipedia ngrese.",
 	"apihelp-query+centralnoticelogs-description": "Piglia nu riggistro 'e cuntroll'e cagnamiente 'e campagne.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Nomme d' 'a campagna (opzionale). Valure separate 'e diverze c' 'a \"|\" ('o tubbo luongo verticale).",
 	"apihelp-query+centralnoticelogs-param-user": "Nomme utente (facoltativo).",
 	"apihelp-query+centralnoticelogs-param-limit": "Massemo nummero 'e righe 'arrepiglià (opzionale).",
 	"apihelp-query+centralnoticelogs-example-1": "Fà veré 'e riggistre"
