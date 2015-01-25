@@ -56,6 +56,8 @@
 	"centralnotice-hours": "Ordu",
 	"centralnotice-min": "Minutu",
 	"centralnotice-project-lang": "Proiektuaren hizkuntza",
+	"centralnotice-select-all": "Denak hautatu",
+	"centralnotice-remove-all": "Denak ezabatu",
 	"centralnotice-project-name": "Proiektuaren izena",
 	"centralnotice-assigned-templates": "Ezarritako txantiloiak",
 	"centralnotice-preview-template": "Txantiloia aurreikusi",
@@ -101,8 +103,9 @@
 	"centralnotice-country-a1": "Ezezaguna/Proxy anonimoa",
 	"centralnotice-country-a2": "Ezezaguna/Satelite bidezko konexioa",
 	"centralnotice-country-o1": "Ezezaguna/Bestelako herrialdea",
-	"centralnotice-start-date": "Hasiera data",
+	"centralnotice-devicetype-desktop": "Mahaigaineko ordenagailua",
+	"centralnotice-start-date": "Hasiera data (UTC)",
 	"centralnotice-start-time": "Hasiera ordua (UTC)",
-	"centralnotice-end-date": "Bukaera data",
+	"centralnotice-end-date": "Bukaera data (UTC)",
 	"centralnotice-end-time": "Bukaera ordua (UTC)"
 }
