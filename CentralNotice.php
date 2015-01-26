@@ -26,7 +26,7 @@ $wgExtensionCredits[ 'other' ][] = array(
 	'version'        => '2.5.0',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
-	'license-name' => 'GPLv2',
+	'license-name' => 'GPL-2.0+',
 );
 
 $dir = __DIR__;
