@@ -33,10 +33,9 @@ $dir = __DIR__;
 
 /* Configuration */
 
-// $wgNoticeLang and $wgNoticeProject are used for targeting campaigns to specific wikis. These
-// should be overridden on each wiki with the appropriate values.
+// $wgNoticeProject is used for targeting campaigns to specific wikis. It
+// should be overridden on each wiki with the appropriate value.
 // Actual user language (wgUserLanguage) is used for banner localisation.
-$wgNoticeLang = $wgLanguageCode;
 $wgNoticeProject = 'wikipedia';
 
 // List of available projects
