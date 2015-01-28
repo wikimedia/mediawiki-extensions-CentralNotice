@@ -15,7 +15,8 @@
 			"زكريا",
 			"محمد عصام",
 			"Omda4wady",
-			"Abanima"
+			"Abanima",
+			"Khaled"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
@@ -237,6 +238,7 @@
 	"centralnotice-start-time": "وقت البداية (UTC)",
 	"centralnotice-end-date": "تاريخ الانتهاء (ت ع م)",
 	"centralnotice-end-time": "نهاية الوقت (بالتوقيت العالمي)",
+	"centralnotice-banner-not-found-title": "البانر غير موجود",
 	"apihelp-query+centralnoticelogs-param-campaign": "اسم الحملة",
 	"apihelp-query+centralnoticelogs-param-user": "اسم المستخدم (اختياري)",
 	"apihelp-query+centralnoticelogs-param-limit": "العدد الأقصى للسطور في النتيجة (اختياري)",

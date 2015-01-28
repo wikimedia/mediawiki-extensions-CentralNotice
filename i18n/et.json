@@ -212,5 +212,8 @@
 	"centralnotice-start-date": "Alguskuupäev (UTC)",
 	"centralnotice-start-time": "Alguskellaaeg (UTC)",
 	"centralnotice-end-date": "Lõppkuupäev (UTC)",
-	"centralnotice-end-time": "Lõppkellaaeg (UTC)"
+	"centralnotice-end-time": "Lõppkellaaeg (UTC)",
+	"centralnotice-banner-not-found-title": "Malli ei leitud",
+	"centralnotice-banner-not-found-contents": "Täpselt sellise nimega malli pole.",
+	"hidebanners": "Mallide peitmine"
 }
