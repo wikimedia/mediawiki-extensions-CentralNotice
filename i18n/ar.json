@@ -13,7 +13,10 @@
 			"OsamaK",
 			"Ouda",
 			"زكريا",
-			"محمد عصام"
+			"محمد عصام",
+			"Omda4wady",
+			"Abanima",
+			"Khaled"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
@@ -142,11 +145,13 @@
 	"centralnotice-percentage": "نسبة مئوية",
 	"centralnotice-documentwrite-error": "لا يمكن استخدام التعبير document.write() داخل الشعار.\nللحصول على مزيد من المعلومات راجع http://meta.wikimedia.org/wiki/Help:CentralNotice .",
 	"centralnotice-preferred": "أولوية",
+	"centralnotice-archived": "تمت الأرشفة",
 	"centralnotice-logs": "سجلات",
 	"centralnotice-view-logs": "عرض السجلات",
 	"centralnotice-timestamp": "طابع زمني",
 	"centralnotice-user": "مستخدم",
 	"centralnotice-action": "فعل",
+	"centralnotice-change-summary-heading": "خلاصة",
 	"centralnotice-action-created": "تم إنشاءها",
 	"centralnotice-action-modified": "تم تعديلها",
 	"centralnotice-action-removed": "تم حذفها",
@@ -194,6 +199,8 @@
 	"centralnotice-bucket": "دلو",
 	"centralnotice-bucket-letter": "دلو \"$1\"",
 	"centralnotice-devicetype-desktop": "حاسوب مكتبي",
+	"centralnotice-devicetype-android": "نظام تشغيل أندرويد",
+	"centralnotice-devicetype-ipad": "جميع الأجهزة التي تم التعرف عليها على أنها  iPad وليس iPhone",
 	"centralnotice-devicetype-iphone": "جميع إصدارات آي فون",
 	"centralnotice-all": "الكل",
 	"centralnotice-generic-error": "ليس لديك الصلاحيات اللازمة لتنفيذ الإجراء المطلوب أو أن الإجراء غير صالح.",
@@ -209,6 +216,9 @@
 	"centralnotice-archive-banner": "أرشيف",
 	"centralnotice-archive-banner-title": "أرشفة {{PLURAL:$1|اللافتة|اللافتات}}؟",
 	"centralnotice-archive-banner-cancel": "إلغاء",
+	"centralnotice-change-summary-label": "الملخص",
+	"centralnotice-change-summary-prompt": "رسالة عن هذه التغييرات (اختيارية)",
+	"centralnotice-change-summary-action-prompt": "رسالة عن هذا الفعل (اختيارية)",
 	"centralnotice-archive-show": "أظهر الحملات المؤرشفة",
 	"centralnotice-archive-campaign": "أرشيف",
 	"centralnotice-archive-campaign-title": "أرشفة {{PLURAL:$1|الحملة|الحملات}}؟",
@@ -227,5 +237,12 @@
 	"centralnotice-start-date": "تاريخ البدء (ت ع م)",
 	"centralnotice-start-time": "وقت البداية (UTC)",
 	"centralnotice-end-date": "تاريخ الانتهاء (ت ع م)",
-	"centralnotice-end-time": "نهاية الوقت (بالتوقيت العالمي)"
+	"centralnotice-end-time": "نهاية الوقت (بالتوقيت العالمي)",
+	"centralnotice-banner-not-found-title": "البانر غير موجود",
+	"apihelp-query+centralnoticelogs-param-campaign": "اسم الحملة",
+	"apihelp-query+centralnoticelogs-param-user": "اسم المستخدم (اختياري)",
+	"apihelp-query+centralnoticelogs-param-limit": "العدد الأقصى للسطور في النتيجة (اختياري)",
+	"apihelp-query+centralnoticelogs-param-start": "مجال وقت الابتداء (اختياري).",
+	"apihelp-query+centralnoticelogs-param-end": "مجال وقت الانتهاء (اختياري)",
+	"apihelp-query+centralnoticelogs-example-1": "اعرض السجلات"
 }

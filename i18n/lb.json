@@ -108,6 +108,7 @@
 	"centralnotice-banner-hidable": "Statesch/Ka verstoppt ginn",
 	"centralnotice-banner-collapsible": "Aklappbar",
 	"centralnotice-banner-fundraising": "Dëst ass e Banner vun enger Campagne fir Don'en ze sammelen",
+	"centralnotice-banner-display-on": "Weisen op",
 	"centralnotice-banner-autolink": "Link fir d'Zilsäit automatesch uleeën",
 	"centralnotice-banner-landing-pages": "Zilsäiten (mat Kommae getrennt):",
 	"centralnotice-banner-landing-pages-default": "z.Bsp. JimmyAppeal01",
@@ -193,6 +194,7 @@
 	"centralnotice-change-summary-label": "Resumé",
 	"centralnotice-change-summary-prompt": "Message iwwer dës Ännerungen (fakultativ)",
 	"centralnotice-change-summary-action-prompt": "Message iwwer dës Aktioun (fakultativ)",
+	"centralnotice-archive-show": "Archivéiert Kampagne weisen",
 	"centralnotice-archive-campaign": "Archivéieren",
 	"centralnotice-archive-campaign-title": "{{PLURAL:$1|Campagne|Campagnen}} archivéieren?",
 	"centralnotice-archive-campaign-cancel": "Ofbriechen",
@@ -210,5 +212,7 @@
 	"centralnotice-end-date": "Schlussdatum (UTC)",
 	"centralnotice-end-time": "Schlusszäitpunkt (UTC)",
 	"centralnotice-banner-not-found-title": "Banner net fonnt",
+	"hidebanners": "Bannere verstoppen",
+	"apihelp-centralnoticeallocations-param-language": "D'Sprooch op déi filtert gi soll.",
 	"apihelp-query+centralnoticelogs-param-user": "Benotzernumm (fakultativ)."
 }

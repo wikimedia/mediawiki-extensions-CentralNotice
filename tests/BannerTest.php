@@ -20,7 +20,9 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		parent::setUp();
 		$this->fixture = new CentralNoticeTestFixtures();
-		$this->fixture->addFixtures( array( 'campaigns' => array() ) );
+
+		$this->fixture->setupTestCaseWithDefaults(
+			array( 'setup' => array( 'campaigns' => array() ) ) );
 	}
 
 	public function tearDown() {
@@ -28,7 +30,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		if ( $banner->exists() ) {
 			$banner->remove();
 		}
-		$this->fixture->removeFixtures();
+		$this->fixture->tearDownTestCases();
 	}
 
 	public function testNewFromName() {
@@ -105,7 +107,6 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 
 		// And the more advanced metadata
 		$banner->setDevices( 'desktop' );
-		$banner->setMixins( array('BannerDiet') );
 		$banner->setPriorityLanguages( array( 'en', 'ru' ) );
 
 		$banner->save();
@@ -118,7 +119,6 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( array( 'testlink' ), $banner->getAutoLinks(), 'Failed autolinks retrieve from initial' );
 
 		$this->assertEquals( array( 'desktop' ), array_values( $banner->getDevices() ), 'Failed devices retrieve from initial' );
-		$this->assertEquals( array( 'BannerDiet' ), array_keys( $banner->getMixins() ), 'Failed mixins retrieve from initial' );
 		$this->assertEquals( array( 'en', 'ru' ), $banner->getPriorityLanguages(), "Failed prilang retrieve from initial" );
 
 		// Can we retrieve it from a different object
@@ -130,7 +130,6 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( array( 'testlink' ), $banner2->getAutoLinks(), "Failed autolinks from copy" );
 
 		$this->assertEquals( array( 'desktop' ), array_values( $banner2->getDevices() ), "Failed devices from copy" );
-		$this->assertEquals( array( 'BannerDiet' ), array_keys( $banner2->getMixins() ), "Failed mixins from copy" );
 
 		global $wgNoticeUseTranslateExtension;
 		if ( $wgNoticeUseTranslateExtension ) {

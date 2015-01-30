@@ -7,7 +7,8 @@
 			"ITshnik",
 			"Malafaya",
 			"Tokoko",
-			"გიორგიმელა"
+			"გიორგიმელა",
+			"MIKHEIL"
 		]
 	},
 	"centralnotice": "ცენტრალური შეტყობინების ადმინი",
@@ -202,5 +203,6 @@
 	"centralnotice-start-date": "დაწყების თარიღი (UTC)",
 	"centralnotice-start-time": "დაწყების დრო (UTC)",
 	"centralnotice-end-date": "დასრულების თარიღი (UTC)",
-	"centralnotice-end-time": "დასრულების დრო (UTC)"
+	"centralnotice-end-time": "დასრულების დრო (UTC)",
+	"hidebanners": "ბანერების დამალვა"
 }
