@@ -16,25 +16,24 @@ class BannerChoiceDataProviderTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		$this->cnFixtures->tearDownTestCases();
+		$this->cnFixtures->removeFixtures();
 		parent::tearDown();
 	}
 
 	/**
-	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
+	 * @dataProvider CentralNoticeTestFixtures::allocationsData
 	 */
-	public function testProviderResponse( $name, $testCase ) {
-
-		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
+	public function testProviderResponse( $data ) {
+		$this->cnFixtures->addFixtures( $data['fixture'] );
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::$defaultCampaign['projects'][0],
-			CentralNoticeTestFixtures::$defaultCampaign['languages'][0]
+			CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0]
 		);
 		$choices = $allocationsProvider->getChoices();
-		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $testCase['choices'] ) );
+		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $data['choices'] ) );
 
-		if ( empty( $testCase['choices'] ) ) {
+		if ( empty( $data['choices'] ) ) {
 			$this->assertEmpty( $choices );
 		}
 	}

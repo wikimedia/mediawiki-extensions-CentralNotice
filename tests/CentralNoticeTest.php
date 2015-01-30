@@ -30,14 +30,13 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$enabled           = 0;
 		$startTs           = '20110718' . '235500';
 		$projects          = array( 'wikipedia', 'wikibooks' );
-		$languages = array( 'en', 'de' );
+		$project_languages = array( 'en', 'de' );
 		$geotargeted       = 1;
-		$countries     = array( 'US', 'AF' );
+		$geo_countries     = array( 'US', 'AF' );
 		$preferred         = 1;
 
 		$this->fixture = new CentralNoticeTestFixtures();
-		$this->fixture->setupTestCaseWithDefaults(
-			array( 'setup' => array( 'campaigns' => array() ) ) );
+		$this->fixture->addFixtures( array( 'campaigns' => array() ) );
 
 		$this->campaignArray = array(
 			'enabled' => '0',
@@ -63,7 +62,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			$this->userUser->load();
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
-			$languages, $geotargeted, $countries,
+			$project_languages, $geotargeted, $geo_countries,
 			100, $preferred, $this->userUser );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
@@ -90,7 +89,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
 		Banner::removeTemplate ( 'PHPUnitTestBanner', $this->userUser );
-		$this->fixture->tearDownTestCases();
+		$this->fixture->removeFixtures();
 	}
 
 	public function testDropDownList() {

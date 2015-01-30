@@ -90,7 +90,6 @@
 	"centralnotice-edit-template-summary": "Lokaliseeritava sõnumi loomiseks ümbritse sidekriipsudega ühendatud sõne kolmekordsete looksulgudega, nt {{{jimbo-quote}}}.",
 	"centralnotice-message": "Sõnum",
 	"centralnotice-message-not-set": "Sõnumit ei ole seatud",
-	"centralnotice-campaigns-using-banner": "Teated, mis kasutavad seda malli",
 	"centralnotice-clone": "Kopeeri",
 	"centralnotice-clone-notice": "Loo mallist koopia",
 	"centralnotice-clone-name": "Nimi:",
@@ -212,8 +211,5 @@
 	"centralnotice-start-date": "Alguskuupäev (UTC)",
 	"centralnotice-start-time": "Alguskellaaeg (UTC)",
 	"centralnotice-end-date": "Lõppkuupäev (UTC)",
-	"centralnotice-end-time": "Lõppkellaaeg (UTC)",
-	"centralnotice-banner-not-found-title": "Malli ei leitud",
-	"centralnotice-banner-not-found-contents": "Täpselt sellise nimega malli pole.",
-	"hidebanners": "Mallide peitmine"
+	"centralnotice-end-time": "Lõppkellaaeg (UTC)"
 }

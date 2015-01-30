@@ -9,7 +9,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/** @var string Name of the campaign that the banner belongs to.*/
 	public $campaignName;
 
-	protected $debug;
+	public $allocContext = null;
 
 	function __construct() {
 		// Register special page
@@ -34,21 +34,30 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	function getParams() {
 		$request = $this->getRequest();
 
-		// FIXME: Don't allow a default language.
 		$language = $this->getLanguage()->getCode();
 
-		$this->campaignName = $request->getText( 'campaign' );
-		$this->bannerName = $request->getText( 'banner' );
-		$this->debug = $request->getFuzzyBool( 'debug' );
+		$project = $this->getSanitized( 'project', ApiCentralNoticeAllocations::PROJECT_FILTER );
+		$country = $this->getSanitized( 'country', ApiCentralNoticeAllocations::LOCATION_FILTER );
+		$anonymous = ( $this->getSanitized( 'anonymous', ApiCentralNoticeAllocations::ANONYMOUS_FILTER ) === 'true' );
+		$bucket = intval( $this->getSanitized( 'bucket', ApiCentralNoticeAllocations::BUCKET_FILTER ) );
+		$device = $this->getSanitized( 'device', ApiCentralNoticeAllocations::DEVICE_NAME_FILTER );
 
 		$required_values = array(
-			$this->campaignName, $this->bannerName, $language
+			$project, $language, $country, $anonymous, $bucket, $device
 		);
 		foreach ( $required_values as $value ) {
 			if ( is_null( $value ) ) {
 				throw new MissingRequiredParamsException();
 			}
 		}
+
+		$this->allocContext = new AllocationContext(
+			$country, $language, $project,
+			$anonymous, $device, $bucket
+		);
+
+		$this->campaignName = $request->getText( 'campaign' );
+		$this->bannerName = $request->getText( 'banner' );
 	}
 
 	function getSanitized( $param, $filter ) {
@@ -91,7 +100,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		if ( !$banner->exists() ) {
 			throw new EmptyBannerException( $bannerName );
 		}
-		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaignName, $this->debug );
+		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaignName, $this->allocContext );
 
 		$bannerHtml = $bannerRenderer->toHtml();
 

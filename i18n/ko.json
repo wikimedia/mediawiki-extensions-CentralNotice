@@ -94,7 +94,7 @@
 	"centralnotice-number-uses": "사용 횟수",
 	"centralnotice-settings": "설정",
 	"centralnotice-edit-template": "배너 편집",
-	"centralnotice-edit-template-summary": "지역화할 수 있는 메시지를 만드려면, {{{jimbo-quote}}}와 같이 중괄호로 세 번 감싸주면 됩니다.",
+	"centralnotice-edit-template-summary": "번역이 가능한 메세지를 만드려면, {{{jimbo-quote}}}와 같이 중괄호로 세 번 감싸주면 됩니다.",
 	"centralnotice-edit-template-magicwords": "배너 믹스인이 제공하는 특수 명령: $1",
 	"centralnotice-message": "메시지",
 	"centralnotice-message-not-set": "메시지를 설정하지 않았습니다",
@@ -193,7 +193,7 @@
 	"centralnotice-bucket": "버킷",
 	"centralnotice-bucket-letter": "\"$1\" 버킷",
 	"centralnotice-devicetype-desktop": "데스크톱 컴퓨터",
-	"centralnotice-devicetype-android": "Android OS",
+	"centralnotice-devicetype-android": "안드로이드 OS",
 	"centralnotice-devicetype-ipad": "iPad로 인식되지만 iPhone은 아닌 기기",
 	"centralnotice-devicetype-iphone": "모든 iPhone 버전",
 	"centralnotice-all": "모두",
@@ -232,14 +232,5 @@
 	"centralnotice-start-date": "시작 날짜 (UTC)",
 	"centralnotice-start-time": "시작 시각 (UTC)",
 	"centralnotice-end-date": "종료 날짜 (UTC)",
-	"centralnotice-end-time": "종료 시각 (UTC)",
-	"centralnotice-banner-not-found-title": "배너를 찾을 수 없음",
-	"centralnotice-banner-not-found-contents": "이 이름을 가진 배너가 없습니다.",
-	"hidebanners": "배너 숨기기",
-	"apihelp-centralnoticeallocations-param-country": "필터를 켤 국가",
-	"apihelp-centralnoticeallocations-param-language": "필터를 켤 언어",
-	"apihelp-centralnoticeallocations-param-anonymous": "로그인 상태에 따른 필터 활성화 여부 (예|아니오)",
-	"apihelp-centralnoticeallocations-param-device": "필터를 켤 기기 이름",
-	"apihelp-query+centralnoticelogs-param-user": "사용자 이름 (선택 사항).",
-	"apihelp-query+centralnoticelogs-example-1": "로그 보기"
+	"centralnotice-end-time": "종료 시각 (UTC)"
 }

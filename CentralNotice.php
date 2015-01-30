@@ -26,16 +26,17 @@ $wgExtensionCredits[ 'other' ][] = array(
 	'version'        => '2.5.0',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
-	'license-name' => 'GPL-2.0+',
+	'license-name' => 'GPLv2',
 );
 
 $dir = __DIR__;
 
 /* Configuration */
 
-// $wgNoticeProject is used for targeting campaigns to specific wikis. It
-// should be overridden on each wiki with the appropriate value.
+// $wgNoticeLang and $wgNoticeProject are used for targeting campaigns to specific wikis. These
+// should be overridden on each wiki with the appropriate values.
 // Actual user language (wgUserLanguage) is used for banner localisation.
+$wgNoticeLang = $wgLanguageCode;
 $wgNoticeProject = 'wikipedia';
 
 // List of available projects
@@ -246,7 +247,13 @@ $wgNoticeTabifyPages = array(
 
 // Available banner mixins, usually provided by separate extensions.
 // See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
-$wgNoticeMixins = array();
+$wgNoticeMixins = array(
+	'BannerDiet' => array(
+		'localBasePath' => __DIR__ . "/mixins/BannerDiet",
+
+		'preloadJs' => "BannerDiet.js",
+	),
+);
 
 /* Setup */
 require_once $dir . '/CentralNotice.hooks.php';

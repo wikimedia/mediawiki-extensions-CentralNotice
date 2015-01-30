@@ -5,8 +5,7 @@
 			"Lcawte",
 			"Lloffiwr",
 			"Pwyll",
-			"Xxglennxx",
-			"Robin Owain"
+			"Xxglennxx"
 		]
 	},
 	"centralnotice": "Gweinyddu hysbysiadau canolog",
@@ -191,7 +190,7 @@
 	"centralnotice-archive-campaign-cancel": "Diddymer",
 	"centralnotice-add-new-banner-title": "Ychwanegu baner newydd",
 	"centralnotice-delete-banner": "Dileu",
-	"centralnotice-delete-banner-title": "Dileu'r {{PLURAL:$1|faner|baneri}}",
+	"centralnotice-delete-banner-title": "Dileu'r {{PLURAL:$1|baner|faner|baneri}}?",
 	"centralnotice-delete-banner-confirm": "Bydd dileu yn tynnu pob gosodiad a'r holl negeseuon i ffwrdd. Ni ellir gwrthdroi'r weithred hon. Ystyriwch yn hytrach archifo.",
 	"centralnotice-delete-banner-cancel": "Canslo",
 	"centralnotice-messages-pending-approval": "Ieithoedd ag iddynt negeseuon yn disgwyl cael eu cymeradwyo",

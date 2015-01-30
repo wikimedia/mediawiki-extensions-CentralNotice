@@ -1,6 +1,21 @@
 ( function( mw, $ ) {
 	'use strict';
 
+	var defaultCampaignData = {
+		banners: [],
+		bucket_count: 1,
+		countries: [],
+		geotargeted: 0,
+		preferred: 1,
+		throttle: 100
+	}, defaultBannerData = {
+		bucket: 0,
+		devices: [ 'desktop' ],
+		weight: 25,
+		display_anon: true,
+		display_account: true
+	};
+
 	QUnit.module( 'ext.centralNotice.bannerController.lib', QUnit.newMwEnvironment( {
 		setup: function() {
 			mw.centralNotice.data.country = 'XX';
@@ -9,101 +24,78 @@
 		}
 	} ) );
 
-	QUnit.test( 'allocations test cases', function( assert ) {
+	QUnit.asyncTest( 'allocations test cases', function( assert ) {
+		$.ajax( {
+			url: mw.config.get( 'wgExtensionAssetsPath' )
+				+ '/CentralNotice/tests/data/AllocationsFixtures.json'
+		} ).done( function( testCases ) {
+			// Declare the number of test cases
+			assert.ok( testCases.length );
+			QUnit.expect( testCases.length + 1 );
 
-		var testFixtures = mw.centralNoticeTestFixtures,
-			testCases = testFixtures.test_cases,
-			lib = mw.cnBannerControllerLib;
+			$.each( testCases, function( index, testCaseInputs ) {
+				var testCase = testCaseInputs[0],
+					lib = mw.cnBannerControllerLib,
+					choices,
+					choice,
+					i,
+					allocatedBanner;
 
-		QUnit.expect( Object.keys( testCases ).length );
+				// Flesh out choice data with some default values
+				// BOOM on priority case
+				choices = $.map( testCase.choices, function( campaign, index ) {
+					return $.extend(
+						{ name: index },
+						defaultCampaignData,
+						campaign,
+						{
+							banners: $.map( campaign.banners, function( banner ) {
+								return $.extend( {}, defaultBannerData, banner );
+							} )
+						} );
+				} );
 
-		$.each( testCases, function( testCaseName, testCase ) {
-			var choices,
-				choice,
-				i,
-				allocatedBanner;
-
-			// BOOM on priority case FIXME ???
-
-			setTestCaseStartEnd( testCase );
-			choices = testCase.choices;
-
-			// Set per-campaign buckets to 0 for all campaigns
-			// FIXME Allow testing of different buckets
-			lib.bucketsByCampaign = {};
-			for ( i = 0; i < choices.length; i++ ) {
-				choice = choices[i];
-				lib.bucketsByCampaign[choice.name] = { val: 0 };
-			}
-
-			// TODO: would like to declare individual tests here, but I
-			// haven't been able to make that work, yet.
-			lib.setChoiceData( choices );
-			lib.filterChoiceData();
-			lib.makePossibleBanners();
-			lib.calculateBannerAllocations();
-
-			// TODO: the errors will not reveal anything useful about
-			// which case this is, and what happened.  So we throw
-			// exceptions manually.  The horror!
-			try {
-				if ( lib.possibleBanners.length !== Object.keys( testCase.allocations ).length ) {
-					throw 'Wrong number of banners allocated in "' + testCase.title + '".';
+				// Set per-campaign buckets to 0 for all campaigns
+				// FIXME Allow testing of different buckets
+				lib.bucketsByCampaign = {};
+				for ( i = 0; i < choices.length; i++ ) {
+					choice = choices[i];
+					lib.bucketsByCampaign[choice.name] = { val: 0 };
 				}
-				for ( i = 0; i < lib.possibleBanners.length; i++ ) {
-					allocatedBanner = lib.possibleBanners[i];
-					if ( Math.abs( allocatedBanner.allocation - testCase.allocations[allocatedBanner.name] ) > 0.001 ) {
-						throw 'Banner ' + allocatedBanner.name + ' was misallocated in "' + testCase.title + '".';
+
+				// TODO: would like to declare individual tests here, but I
+				// haven't been able to make that work, yet.
+				lib.setChoiceData( choices );
+				lib.filterChoiceData();
+				lib.makePossibleBanners();
+				lib.calculateBannerAllocations();
+
+				// TODO: the errors will not reveal anything useful about
+				// which case this is, and what happened.  So we throw
+				// exceptions manually.  The horror!
+				try {
+					if ( lib.possibleBanners.length !== Object.keys( testCase.allocations ).length ) {
+						throw 'Wrong number of banners allocated in "' + testCase.title + '".';
 					}
+					for ( i = 0; i < lib.possibleBanners.length; i++ ) {
+						allocatedBanner = lib.possibleBanners[i];
+						if ( Math.abs( allocatedBanner.allocation - testCase.allocations[allocatedBanner.name] ) > 0.001 ) {
+							throw 'Banner ' + allocatedBanner.name + ' was misallocated in "' + testCase.title + '".';
+						}
+					}
+				} catch ( error ) {
+					assert.ok( false, error
+						+ " expected: " + QUnit.jsDump.parse( testCase.allocations )
+						+ ", actual: " + QUnit.jsDump.parse( lib.possibleBanners )
+					);
+					return;
 				}
-			} catch ( error ) {
-				assert.ok( false, error
-					+ " expected: " + QUnit.jsDump.parse( testCase.allocations )
-					+ ", actual: " + QUnit.jsDump.parse( lib.possibleBanners )
-				);
-				return;
-			}
-			assert.ok( true, 'Allocations match in "' + testCase.title + '"' );
+				assert.ok( true, 'Allocations match in "' + testCase.title + '"' );
+			} );
+
+			QUnit.start();
 		} );
 	} );
-
-	/**
-	 * Prepare a test case for use in a test. Currently just substitutes UNIX
-	 * timestamps for times in the fixtures, which are represented as offsets
-	 * in days from the current time. Note: this logic is repeated in PHP for
-	 * PHPUnit tests that use the same fixtures.
-	 *
-	 * @see CentralNoticeTestFixtures::setTestCaseStartEnd()
-	 */
-	function setTestCaseStartEnd( testCaseSpec ) {
-		var i, choice,
-			now = new Date();
-
-		for ( i = 0; i < testCaseSpec.choices.length; i++ ) {
-			choice = testCaseSpec.choices[i];
-			choice.start = makeTimestamp( now, choice.start_days_from_now );
-			choice.end = makeTimestamp( now, choice.end_days_from_now);
-
-			// Remove these special properties from choices, to make the
-			// choices data mirror the real data structure.
-			delete choice.start_days_from_now;
-			delete choice.end_days_from_now;
-		}
-	}
-
-	/**
-	 * Return a UNIX timestamp for refDate offset by the number of days
-	 * indicated.
-	 *
-	 * @param refDate Date The date to calculate the offset from
-	 * @param offsetInDays
-	 * @return int
-	 */
-	function makeTimestamp( refDate, offsetInDays ) {
-		var date = new Date();
-		date.setDate( refDate.getDate() + offsetInDays );
-		return Math.round( date.getTime() / 1000 );
-	}
 
 	// TODO: chooser tests
 

@@ -96,11 +96,6 @@
 		bannerData: {},
 
 		/**
-		 * Data that will be returned with the RecordImpression request
-		 */
-		impressionData: {},
-
-		/**
 		 * Contains promise objects that other things can hook into
 		 */
 		events: {},
@@ -137,7 +132,7 @@
 			}
 		},
 		loadTestingBanner: function ( bannerName, campaign ) {
-			var bannerPageQuery, url;
+			var bannerPageQuery;
 
 			mw.centralNotice.data.testing = true;
 
@@ -147,23 +142,31 @@
 				banner: bannerName,
 				campaign: campaign,
 				uselang: mw.config.get( 'wgUserLanguage' ),
+				db: mw.config.get( 'wgDBname' ),
+				project: mw.config.get( 'wgNoticeProject' ),
+				country: mw.centralNotice.data.country,
+				device: mw.centralNotice.data.device,
 				debug: mw.centralNotice.data.getVars.debug
 			};
 
 			// TODO use the new $wgCentralSelectedBannerDispatcher here instead
 
-			url = new mw.Uri( mw.config.get( 'wgCentralPagePath' ) );
-			url.extend( bannerPageQuery );
-
 			$.ajax({
-				url:  url.toString(),
+				url: mw.config.get( 'wgCentralPagePath' ) + '?' + $.param( bannerPageQuery ),
 				dataType: 'script',
 				cache: true
 			});
 		},
 		loadRandomBanner: function () {
 
-			var loadBannerQueryParams,
+			var fetchBannerQueryParams = {
+					uselang: mw.config.get( 'wgUserLanguage' ),
+					project: mw.config.get( 'wgNoticeProject' ),
+					anonymous: mw.config.get( 'wgUserName' ) === null,
+					country: mw.centralNotice.data.country,
+					device: mw.centralNotice.data.device,
+					debug: mw.centralNotice.data.getVars.debug
+				},
 				scriptUrl;
 
 			// Either choose the banner on the client, or call the server to get
@@ -193,19 +196,15 @@
 
 				// Only fetch a banner if we need to :)
 				if ( mw.centralNotice.data.banner ) {
-					loadBannerQueryParams = {
-						banner: mw.centralNotice.data.banner,
-						campaign: mw.centralNotice.data.campaign,
-						uselang: mw.config.get( 'wgUserLanguage' ),
-						debug: mw.centralNotice.data.getVars.debug
-					};
+					fetchBannerQueryParams.banner = mw.centralNotice.data.banner;
+					fetchBannerQueryParams.campaign = mw.centralNotice.data.campaign;
 
-					scriptUrl = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
-					scriptUrl.extend( loadBannerQueryParams );
+					scriptUrl = mw.config.get( 'wgCentralSelectedBannerDispatcher' ) +
+						'?' + $.param( fetchBannerQueryParams );
 
 					// This will call insertBanner() after the banner is retrieved
 					$.ajax( {
-						url: scriptUrl.toString(),
+						url: scriptUrl,
 						dataType: 'script',
 						cache: true
 					} );
@@ -220,23 +219,14 @@
 
 			} else {
 				var RAND_MAX = 30;
+				fetchBannerQueryParams.slot = Math.floor( Math.random() * RAND_MAX ) + 1;
+				fetchBannerQueryParams.bucket = mw.centralNotice.data.bucket;
 
-				loadBannerQueryParams = {
-					uselang: mw.config.get( 'wgUserLanguage' ),
-					project: mw.config.get( 'wgNoticeProject' ),
-					anonymous: mw.config.get( 'wgUserName' ) === null,
-					country: mw.centralNotice.data.country,
-					device: mw.centralNotice.data.device,
-					debug: mw.centralNotice.data.getVars.debug,
-					slot: Math.floor( Math.random() * RAND_MAX ) + 1,
-					bucket: mw.centralNotice.data.bucket
-				};
-
-				scriptUrl = new mw.Uri( mw.config.get( 'wgCentralBannerDispatcher' ) );
-				scriptUrl.extend( loadBannerQueryParams );
+				scriptUrl = mw.config.get( 'wgCentralBannerDispatcher' ) +
+					'?' + $.param( fetchBannerQueryParams );
 
 				$.ajax( {
-					url: scriptUrl.toString,
+					url: scriptUrl,
 					dataType: 'script',
 					cache: true
 				} );
@@ -254,9 +244,8 @@
 		},
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
-			var url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
-			url.extend( data );
-			(new Image()).src = url.toString();
+			var url = mw.config.get( 'wgCentralBannerRecorder' ) + '?' + $.param( data );
+			(new Image()).src = url;
 		},
 		loadQueryStringVariables: function () {
 			document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
@@ -367,7 +356,7 @@
 		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
-		var impressionData = mw.centralNotice.impressionData = {
+		var impressionData = {
 			country: mw.centralNotice.data.country,
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			project: mw.config.get( 'wgNoticeProject' ),
@@ -420,12 +409,9 @@
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
 
 			if ( typeof mw.centralNotice.bannerData.preload === 'function'
-				&& !mw.centralNotice.bannerData.preload()
-			) {
+					&& !mw.centralNotice.bannerData.preload() ) {
 				hideBanner = true;
-				if ( !impressionData.reason ) {
-					impressionData.reason = 'preload';
-				}
+				impressionData.reason = 'preload';
 			} else if ( mw.centralNotice.data.testing === false ) { /* And we want to see what we're testing! :) */
 				cookieName = 'centralnotice_hide_' + mw.centralNotice.data.category;
 				cookieVal = $.cookie( cookieName );
@@ -461,13 +447,13 @@
 
 				// Create landing page links if required
 				if ( bannerJson.autolink ) {
-					url = new mw.Uri( mw.config.get( 'wgNoticeFundraisingUrl' ) );
+					url = mw.config.get( 'wgNoticeFundraisingUrl' );
 					if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
 						targets = String( bannerJson.landingPages ).split( ',' );
 						if ( $.inArray( mw.centralNotice.data.country, mw.config.get( 'wgNoticeXXCountries' ) ) !== -1 ) {
 							mw.centralNotice.data.country = 'XX';
 						}
-						url.extend( {
+						url += "?" + $.param( {
 							landing_page: targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' ),
 							utm_medium: 'sitenotice',
 							utm_campaign: bannerJson.campaign,
@@ -475,7 +461,7 @@
 							language: mw.config.get( 'wgUserLanguage' ),
 							country: mw.centralNotice.data.country
 						} );
-						$( '#cn-landingpage-link' ).attr( 'href', url.toString() );
+						$( '#cn-landingpage-link' ).attr( 'href', url );
 					}
 				}
 
@@ -534,7 +520,6 @@
 
 		// Iterate over all configured URLs to hide this category of banner for all
 		// wikis in a cluster
-		// FIXME: can we rely on mw.Uri here?
 		$.each( mw.config.get( 'wgNoticeHideUrls' ), function( idx, value ) {
 			(new Image()).src = value + '?' + $.param( {
 				'duration': duration,

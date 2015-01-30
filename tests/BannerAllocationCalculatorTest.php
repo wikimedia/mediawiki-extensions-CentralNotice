@@ -16,16 +16,15 @@ class BannerAllocationCalculatorTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		$this->cnFixtures->tearDownTestCases();
+		$this->cnFixtures->removeFixtures();
 		parent::tearDown();
 	}
 
 	/**
-	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
+	 * @dataProvider CentralNoticeTestFixtures::allocationsData
 	 */
-	public function testAllocations( $name, $testCase ) {
-
-		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
+	public function testAllocations( $data ) {
+		$this->cnFixtures->addFixtures( $data['fixture'] );
 
 		$allocationsProvider = new BannerChoiceDataProvider(
 			CentralNoticeTestFixtures::getDefaultProject(),
@@ -43,7 +42,7 @@ class BannerAllocationCalculatorTest extends MediaWikiTestCase {
 		$allocations = BannerAllocationCalculator::calculateAllocations( $banners );
 
 		$this->assertTrue(
-			ComparisonUtil::assertEqualAllocations( $allocations, $testCase['allocations'] )
+			ComparisonUtil::assertEqualAllocations( $allocations, $data['allocations'] )
 		);
 	}
 }

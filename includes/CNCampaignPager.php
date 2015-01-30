@@ -56,63 +56,54 @@ class CNCampaignPager extends TablePager {
 	 * @see IndexPager::getQueryInfo()
 	 */
 	public function getQueryInfo() {
-		$pagerQuery = array(
-			'tables' => array(
-				'notices' => 'cn_notices',
-			),
-			'fields' => array(
-				'notices.not_id',
-				'not_name',
-				'not_start',
-				'not_end',
-				'not_enabled',
-				'not_preferred',
-				'not_throttle',
-				'not_geo',
-				'not_locked',
-				'not_archived',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_countries',
-					'nc_country',
-					'nc_notice_id = notices.not_id'
-				) . ' AS countries',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_languages',
-					'nl_language',
-					'nl_notice_id = notices.not_id'
-				) . ' AS languages',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_projects',
-					'np_project',
-					'np_notice_id = notices.not_id'
-				) . ' AS projects',
-			),
-			'conds' => array(),
-		);
 
 		if ( $this->assignedBannerId ) {
-			// Query for only campaigns associated with a specific banner id.
-			$pagerQuery['tables']['assignments'] = 'cn_assignments';
-			$pagerQuery['conds'] = array(
-				'notices.not_id = assignments.not_id',
-				'assignments.tmp_id = ' . (int)$this->assignedBannerId
+
+			// Query for only campaigns associated with a specific banner id
+			return array(
+				'tables' => array(
+					'notices' => 'cn_notices',
+					'assignments' => 'cn_assignments'
+				),
+				'fields' => array(
+						'notices.not_id',
+						'not_name',
+						'not_start',
+						'not_end',
+						'not_enabled',
+						'not_preferred',
+						'not_throttle',
+						'not_geo',
+						'not_locked',
+						'not_archived'
+				),
+				'conds' => array(
+					'notices.not_id = assignments.not_id',
+					'assignments.tmp_id = ' . (int)$this->assignedBannerId
+				)
+			);
+
+		} else {
+
+			// Query for all campaigns
+			return array(
+				'tables' => 'cn_notices',
+				'fields' => array(
+					'not_id',
+					'not_name',
+					'not_start',
+					'not_end',
+					'not_enabled',
+					'not_preferred',
+					'not_throttle',
+					'not_geo',
+					'not_locked',
+					'not_archived'
+				),
+				'conds' => array()
 			);
 		}
-
-		return $pagerQuery;
 	}
-
-	public function doQuery() {
-		// group_concat output is limited to 1024 characters by default, increase
-		// the limit temporarily so the list of all languages can be rendered.
-		$this->getDatabase()->query( 'SET SESSION group_concat_max_len = 10000' );
-
-		parent::doQuery();
-	}
-
 
 	/**
 	 * @see TablePager::getFieldNames()
@@ -188,18 +179,17 @@ class CNCampaignPager extends TablePager {
 				);
 
 			case 'projects':
-				$p = explode( ',', $this->mCurrentRow->projects );
+				$p = Campaign::getNoticeProjects( $name );
 				return $this->onSpecialCN->listProjects( $p );
 
 			case 'languages':
-				$l = explode( ',', $this->mCurrentRow->languages );
+				$l = Campaign::getNoticeLanguages( $name );
 				return $this->onSpecialCN->listLanguages( $l );
 
 			case 'countries':
 				if ( $this->mCurrentRow->not_geo ) {
-					$c = explode( ',', $this->mCurrentRow->countries );
+					$c = Campaign::getNoticeCountries( $name );
 				} else {
-					// FIXME: this is silly.
 					$c = array_keys( GeoTarget::getCountriesList( 'en' ) );
 				}
 

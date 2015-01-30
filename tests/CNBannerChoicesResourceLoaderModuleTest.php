@@ -22,14 +22,14 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 			'modules' => 'ext.centralNotice.bannerChoiceData',
 			'skin' => 'fallback',
 			'user' => false,
-			'uselang' => 'en' // Note: this is a temporary measure 
+			'uselang' => CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0],
 		) );
 		$this->rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
 	}
 
 	protected function tearDown() {
 		if ( $this->cnFixtures ) {
-			$this->cnFixtures->tearDownTestCases();
+			$this->cnFixtures->removeFixtures();
 		}
 		parent::tearDown();
 	}
@@ -39,9 +39,9 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	}
 
 	protected function addSomeBanners() {
-		$fixtures = CentralNoticeTestFixtures::allocationsData();
-		$completeness = $fixtures['test_cases']['completeness'];
-		$this->cnFixtures->setupTestCaseFromFixtureData( $completeness );
+		$scenarios = CentralNoticeTestFixtures::allocationsData();
+		$a_scenario = $scenarios[0][0];
+		$this->cnFixtures->addFixtures( $a_scenario['fixture'] );
 	}
 
 	public function testDisabledByConfig() {
@@ -54,17 +54,17 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
+	 * @dataProvider CentralNoticeTestFixtures::allocationsData
 	 */
-	public function testChoicesFromDb( $name, $testCase ) {
+	public function testChoicesFromDb( $data ) {
 		$this->setMwGlobals( 'wgCentralDBname', wfWikiID() );
 
-		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
+		$this->cnFixtures->addFixtures( $data['fixture'] );
 
 		$choices = $this->getProvider()->getChoicesForTesting( $this->rlContext );
-		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $testCase['choices'] ) );
+		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $data['choices'] ) );
 
-		if ( empty( $testCase['choices'] ) ) {
+		if ( empty( $data['choices'] ) ) {
 			$this->assertEmpty( $choices );
 		}
 	}

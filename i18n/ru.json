@@ -253,6 +253,5 @@
 	"centralnotice-end-date": "Дата окончания (UTC)",
 	"centralnotice-end-time": "Время окончания (UTC)",
 	"centralnotice-banner-not-found-title": "Баннер не найден",
-	"centralnotice-banner-not-found-contents": "Нет баннера с точно таким именем.",
-	"hidebanners": "Скрыть баннеры"
+	"centralnotice-banner-not-found-contents": "Нет баннера с точно таким именем."
 }

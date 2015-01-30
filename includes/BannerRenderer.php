@@ -20,16 +20,24 @@ class BannerRenderer {
 
 	protected $mixinController = null;
 
-	protected $debug;
-
-	function __construct( IContextSource $context, Banner $banner, $campaignName = null, $debug = false ) {
+	function __construct( IContextSource $context, Banner $banner, $campaignName = null, AllocationContext $allocContext = null ) {
 		$this->context = $context;
 
 		$this->banner = $banner;
 		$this->campaignName = $campaignName;
-		$this->debug = $debug;
 
-		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
+		if ( $allocContext === null ) {
+			/**
+			 * This should only be used when banners are previewed in management forms.
+			 * TODO: set realistic context in the admin ui, drawn from the campaign
+			 * configuration and current translation settings.
+			 */
+			$this->allocContext = new AllocationContext( 'XX', 'en', 'wikipedia', true, 'desktop', 0 );
+		} else {
+			$this->allocContext = $allocContext;
+		}
+
+		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins(), $allocContext );
 
 		//FIXME: it should make sense to do this:
 		// $this->mixinController->registerMagicWord( 'campaign', array( $this, 'getCampaign' ) );
@@ -120,7 +128,7 @@ class BannerRenderer {
 
 		if ( $snippets ) {
 			foreach ( $snippets as $mixin => $code ) {
-				if ( !$this->debug ) {
+				if ( !$this->context->getRequest()->getFuzzyBool( 'debug' ) ) {
 					$code = JavaScriptMinifier::minify( $code );
 				}
 

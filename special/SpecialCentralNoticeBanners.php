@@ -917,8 +917,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$langContext = new DerivativeContext( $this->getContext() );
 
 		foreach ( $langs as $lang ) {
+			// HACK: We need to unify these two contexts...
 			$langContext->setLanguage( $lang );
-			$bannerRenderer = new BannerRenderer( $langContext, $banner, 'test' );
+			$allocContext = new AllocationContext( 'XX', $lang, 'wikipedia', true, 'desktop', 0 );
+			$bannerRenderer = new BannerRenderer( $langContext, $banner, 'test', $allocContext );
 
 			// Link and Preview all available translations
 			$htmlOut .= Xml::tags(
