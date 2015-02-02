@@ -1,139 +1,31 @@
 {
+    "mock_config_values": {
+        "wgNoticeNumberOfBuckets": 2
+    },
     "test_cases": {
-        "completeness": {
+        "single_full_anon": {
+            "comment": "A single, unthrottled, non-geotargeted campaign, with a banner for anonymous users on one device",
             "setup": {
                 "campaigns": [
                     {
                         "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 50,
-                        "geotargeted": true,
-                        "countries": [
-                            "FR",
-                            "GR",
-                            "XX"
-                        ],
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 5,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 50,
-                    "bucket_count": 1,
-                    "geotargeted": true,
-                    "banners": [
-                        {
-                            "name": "b1",
-                            "bucket": 0,
-                            "weight": 5,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        }
-                    ],
-                    "countries": [
-                        "FR",
-                        "GR",
-                        "XX"
-                    ]
-                }
-            ],
-            "allocations": {
-                "b1": 0.5
-            }
-        },
-
-        "throttling": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 3,
-                        "throttle": 60,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "c1b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            },
-                            {
-                                "name": "c1b2",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "c2",
                         "enabled": 1,
                         "start_days_from_now": 0,
                         "end_days_from_now": 1,
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
-                        "projects": ["wikipedia"],
+                        "projects": ["test_project"],
                         "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
                         "banners": [
                             {
-                                "name": "c2b1",
+                                "name": "b1",
                                 "weight": 25,
                                 "bucket": 0,
                                 "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            },
-                            {
-                                "name": "c2b2",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
+                                "display_account": false,
                                 "fundraising": 1,
                                 "devices": [
                                     "desktop"
@@ -143,478 +35,147 @@
                     }
                 ]
             },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 3,
-                    "throttle": 60,
-                    "bucket_count": 1,
-                    "geotargeted": false,
-                    "banners": [
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
                         {
-                            "name": "c1b1",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
                             ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
                         },
                         {
-                            "name": "c1b2",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
+                            "b1": 1
                         }
                     ]
                 },
-                {
-                    "name": "c2",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 100,
-                    "bucket_count": 1,
-                    "geotargeted": false,
-                    "banners": [
-                        {
-                            "name": "c2b1",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        },
-                        {
-                            "name": "c2b2",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "allocations": {
-                "c1b1": 0.300,
-                "c1b2": 0.300,
-                "c2b1": 0.200,
-                "c2b2": 0.200
-            }
-        },
-
-        "overallocation": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 100,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 5,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            },
-                            {
-                                "name": "b2",
-                                "weight": 100,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            },
-                            {
-                                "name": "b3",
-                                "weight": 100,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 100,
-                    "bucket_count": 1,
-                    "geotargeted": false,
-                    "banners": [
-                        {
-                            "name": "b1",
-                            "bucket": 0,
-                            "weight": 5,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        },
-                        {
-                            "name": "b2",
-                            "bucket": 0,
-                            "weight": 100,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        },
-                        {
-                            "name": "b3",
-                            "bucket": 0,
-                            "weight": 100,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "allocations": {
-                "b1": 0.024,
-                "b2": 0.488,
-                "b3": 0.488
-            }
-        },
-
-        "blanks": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 10,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 10,
-                    "bucket_count": 1,
-                    "geotargeted": false,
-                    "banners": [
-                        {
-                            "name": "b1",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "allocations": {
-                "b1": 0.100
-            }
-        },
-
-        "priority": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 100,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "c1b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
+                "untargeted_project": {
+                    "comment": "Not the project targeted by the campaign",
+                    "context": {
+                        "project": "test_project2",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
                     },
-                    {
-                        "name": "c2",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 2,
-                        "throttle": 100,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "c2b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 100,
-                    "bucket_count": 1,
-                    "geotargeted": false,
-                    "banners": [
-                        {
-                            "name": "c1b1",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        }
-                    ]
+                    "choices": [],
+                    "allocations": [{},{}]
                 },
-                {
-                    "name": "c2",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 2,
-                    "throttle": 100,
-                    "bucket_count": 1,
-                    "geotargeted": false,
-                    "banners": [
+                "untargeted_language": {
+                    "comment": "Not the language targeted by the campaign",
+                    "context": {
+                        "project": "test_project1",
+                        "language": "pt",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [],
+                    "allocations": [{},{}]
+                },
+                "untargeted_device": {
+                    "comment": "User is on a device for which the campaign has no banners",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "iphone",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
                         {
-                            "name": "c2b1",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "allocations": {
-                "c1b1": 0.000,
-                "c2b1": 1.000
-            }
-        },
-
-        "geo_in_country": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 100,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "geotargeted": true,
-                        "countries": [
-                            "FR",
-                            "XX"
-                        ],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 100,
-                    "bucket_count": 1,
-                    "geotargeted": true,
-                    "banners": [
-                        {
-                            "name": "b1",
-                            "weight": 25,
-                            "bucket": 0,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
                             ]
                         }
                     ],
-                    "countries": [
-                        "FR",
-                        "XX"
-                    ]
-                }
-            ],
-            "allocations": {
-                "b1": 1.000
-            }
-        },
-
-        "geo_not_in_country": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 100,
-                        "geotargeted": true,
-                        "countries": [
-                            "FR",
-                            "GR"
-                        ],
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 100,
-                    "bucket_count": 1,
-                    "geotargeted": true,
-                    "banners": [
+                    "allocations": [{},{}]
+                },
+                "untargeted_because_logged_in": {
+                    "comment": "User is logged in, and the campaign has no banners for logged-in users",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "logged_in"
+                    },
+                    "choices": [
                         {
-                            "name": "b1",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": true,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
                             ]
                         }
                     ],
-                    "countries": [
-                        "FR",
-                        "GR"
-                    ]
+                    "allocations": [{},{}]
                 }
-            ],
-            "allocations": {
             }
         },
-
-        "not_in_project": {
+        "single_full_logged_in": {
+            "comment": "A single, unthrottled, non-geotargeted campaign, with a banner for logged-in users on one device",
             "setup": {
                 "campaigns": [
                     {
@@ -625,113 +186,10 @@
                         "preferred": 1,
                         "throttle": 100,
                         "geotargeted": false,
-                        "projects": [ "wikisource" ],
+                        "projects": ["test_project"],
                         "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-            ],
-            "allocations": {
-            }
-        },
-
-        "not_in_language": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 100,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": [ "zh" ],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-            ],
-            "allocations": {
-            }
-        },
-
-        "not_in_time_window": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 1,
-                        "end_days_from_now": 2,
-                        "preferred": 1,
-                        "throttle": 100,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
-                        "banners": [
-                            {
-                                "name": "b1",
-                                "weight": 25,
-                                "bucket": 0,
-                                "display_anon": true,
-                                "display_account": true,
-                                "fundraising": 1,
-                                "devices": [
-                                    "desktop"
-                                 ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "choices": [
-            ],
-            "allocations": {
-            }
-        },
-
-        "not_anonymous": {
-            "setup": {
-                "campaigns": [
-                    {
-                        "name": "c1",
-                        "enabled": 1,
-                        "start_days_from_now": 0,
-                        "end_days_from_now": 1,
-                        "preferred": 1,
-                        "throttle": 100,
-                        "geotargeted": false,
-                        "projects": ["wikipedia"],
-                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
                         "banners": [
                             {
                                 "name": "b1",
@@ -748,31 +206,2244 @@
                     }
                 ]
             },
-            "choices": [
-                {
-                    "name": "c1",
-                    "start_days_from_now": 0,
-                    "end_days_from_now": 1,
-                    "preferred": 1,
-                    "throttle": 100,
-                    "bucket_count": 1,
-                    "geotargeted": false,
-                    "banners": [
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "logged_in"
+                    },
+                    "choices": [
                         {
-                            "name": "b1",
-                            "bucket": 0,
-                            "weight": 25,
-                            "category": "fundraising",
-                            "display_anon": false,
-                            "display_account": true,
-                            "devices": [
-                                "desktop"
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": false,
+                                    "display_account": true,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
                             ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
+                        },
+                        {
+                            "b1": 1
+                        }
+                    ]
+                },
+                "untargeted_because_anon": {
+                    "comment": "User is anonymous, and the campaign has no banners for anonymous users",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": false,
+                                    "display_account": true,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [{},{}]
+                }
+            }
+        },
+        "single_full_anon_and_logged_in": {
+            "comment": "A single, unthrottled, non-geotargeted campaign, with a banner for anonymous and logged-in users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": true,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted_anon": {
+                    "comment": "Context targeted by the campaign, anonymous user (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": true,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
+                        },
+                        {
+                            "b1": 1
+                        }
+                    ]
+                },
+                "as_targeted_logged_in": {
+                    "comment": "Context targeted by the campaign, logged-in user (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "logged_in"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": true,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
+                        },
+                        {
+                            "b1": 1
                         }
                     ]
                 }
-            ],
-            "allocations": {
+            }
+        },
+        "single_full_anon_geo": {
+            "comment": "A single, unthrottled, geotargeted campaign, with a banner for anonymous users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": true,
+                        "countries": ["LU"],
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
+                        },
+                        {
+                            "b1": 1
+                        }
+                    ]
+                },
+                "untargeted_country": {
+                    "comment": "User isn't in the targeted country",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "CA",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [{},{}]
+                }
+            }
+        },
+        "not_enabled": {
+            "comment": "A campaign that's not enabled, with a banner for anonymous users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 0,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_almost_targeted": {
+                    "comment": "Campaign not available even though this is the context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [],
+                    "allocations": [{},{}]
+                }
+            }
+        },
+        "archived": {
+            "comment": "An archived campaign, with a banner for anonymous users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": true,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_almost_targeted": {
+                    "comment": "Campaign not available even though this is the context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [],
+                    "allocations": [{},{}]
+                }
+            }
+        },
+        "ended": {
+            "comment": "A campaign that already ended, with a banner for anonymous users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": -2,
+                        "end_days_from_now": -1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_almost_targeted": {
+                    "comment": "Campaign not available even though this is the context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [],
+                    "allocations": [{},{}]
+                }
+            }
+        },
+        "not_started": {
+            "comment": "A campaign that hasn't started yet, with a banner for anonymous users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 1,
+                        "end_days_from_now": 2,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_almost_targeted": {
+                    "comment": "Campaign not available even though this is the context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [],
+                    "allocations": [{},{}]
+                }
+            }
+        },
+        "buckets": {
+            "comment": "A single, unthrottled, non-geotargeted campaign, with different banners for each bucket, for anonymous users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 2,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            },
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 1,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 2,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                },
+                                {
+                                    "name": "b2",
+                                    "bucket": 1,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
+                        },
+                        {
+                            "b2": 1
+                        }
+                    ]
+                }
+            }
+        },
+        "multiple_partially_overlapping_geo": {
+            "comment": "Multiple partially overlapping campaigns producing different allocations for different regions",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": true,
+                        "countries": ["CA", "BR", "LU"],
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": true,
+                        "countries": ["CA", "LU"],
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c3",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": true,
+                        "countries": ["LU"],
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b3",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "targeted_by_3": {
+                    "comment": "Country targeted by three campaigns",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "BR", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.333,
+                            "b2": 0.333,
+                            "b3": 0.333
+                        },
+                        {
+                            "b1": 0.333,
+                            "b2": 0.333,
+                            "b3": 0.333
+                        }
+                    ]
+                },
+                "targeted_by_2": {
+                    "comment": "Country targeted by three campaigns",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "CA",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["BR", "CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        },
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        }
+                    ]
+                },
+                "targeted_by_1": {
+                    "comment": "Country targeted by three campaigns",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "BR",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["BR", "CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
+                        },
+                        {
+                            "b1": 1
+                        }
+                    ]
+                },
+                "targeted_by_0": {
+                    "comment": "Country targeted by three campaigns",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "NE",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["BR", "CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [{},{}]
+                }
+            }
+        },
+        "multiple_partially_overlapping_geo_and_nongeo": {
+            "comment": "Multiple partially overlapping campaigns, including geo- and non-geo-targeted, producing different allocations for different regions",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": true,
+                        "countries": ["LU", "CA"],
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c3",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": true,
+                        "countries": ["LU"],
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b3",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "targeted_by_2_and_non_geo": {
+                    "comment": "Country targeted by three campaigns",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.333,
+                            "b2": 0.333,
+                            "b3": 0.333
+                        },
+                        {
+                            "b1": 0.333,
+                            "b2": 0.333,
+                            "b3": 0.333
+                        }
+                    ]
+                },
+                "targeted_by_1_and_non_geo": {
+                    "comment": "Country targeted by three campaigns",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "CA",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        },
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        }
+                    ]
+                },
+                "targeted_by_non_geo": {
+                    "comment": "Country targeted by three campaigns",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "BR",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["CA", "LU"],
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": ["LU"],
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 1
+                        },
+                        {
+                            "b1": 1
+                        }
+                    ]
+                }
+            }
+        },
+        "two_priorities_unthrottled": {
+            "comment": "Two unthrottled campaigns of different priorities; the higher priority eclipses the lower one",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 2,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 2,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0,
+                            "b2": 1
+                        },
+                        {
+                            "b1": 0,
+                            "b2": 1
+                        }
+                    ]
+                }
+            }
+        },
+        "single_throttled": {
+            "comment": "A single throttled campaign",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 50,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 50,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.5
+                        },
+                        {
+                            "b1": 0.5
+                        }
+                    ]
+                }
+            }
+        },
+        "two_priorities_throttled_leaving_space": {
+            "comment": "Two throttled campaigns of different priorities; both leave space.",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 25,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 2,
+                        "throttle": 50,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 25,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 2,
+                            "throttle": 50,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.25,
+                            "b2": 0.5
+                        },
+                        {
+                            "b1": 0.25,
+                            "b2": 0.5
+                        }
+                    ]
+                }
+            }
+        },
+        "two_priorities_throttled_no_space": {
+            "comment": "Two throttled campaigns of different priorities; no space is left over.",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 75,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 2,
+                        "throttle": 50,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 75,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 2,
+                            "throttle": 50,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        },
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        }
+                    ]
+                }
+            }
+        },
+        "multiple_banners_same_weights": {
+            "comment": "A single campaign with two banners of the same weight",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            },
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                },
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        },
+                        {
+                            "b1": 0.5,
+                            "b2": 0.5
+                        }
+                    ]
+                }
+            }
+        },
+        "multiple_banners_different_weights": {
+            "comment": "A single campaign with two banners of the different weights",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 40,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            },
+                            {
+                                "name": "b2",
+                                "weight": 10,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 40,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                },
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 10,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.8,
+                            "b2": 0.2
+                        },
+                        {
+                            "b1": 0.8,
+                            "b2": 0.2
+                        }
+                    ]
+                }
+            }
+        },
+        "priority_throttling_and_weights": {
+            "comment": "Two throttled campaigns of differnt priorities, each with two banners of the different weights",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 75,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 90,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            },
+                            {
+                                "name": "b2",
+                                "weight": 10,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 2,
+                        "throttle": 50,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b3",
+                                "weight": 40,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            },
+                            {
+                                "name": "b4",
+                                "weight": 10,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 75,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 90,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                },
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 10,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 2,
+                            "throttle": 50,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 40,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                },
+                                {
+                                    "name": "b4",
+                                    "bucket": 0,
+                                    "weight": 10,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": [
+                        {
+                            "b1": 0.45,
+                            "b2": 0.05,
+                            "b3": 0.4,
+                            "b4": 0.1
+                        },
+                        {
+                            "b1": 0.45,
+                            "b2": 0.05,
+                            "b3": 0.4,
+                            "b4": 0.1
+                        }
+                    ]
+                }
             }
         }
     }

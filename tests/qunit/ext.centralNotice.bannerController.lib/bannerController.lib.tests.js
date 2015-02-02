@@ -1,74 +1,103 @@
-( function( mw, $ ) {
+( function ( mw, $ ) {
 	'use strict';
-
-	QUnit.module( 'ext.centralNotice.bannerController.lib', QUnit.newMwEnvironment( {
-		setup: function() {
-			mw.centralNotice.data.country = 'XX';
-			mw.centralNotice.data.device = 'desktop';
-			mw.centralNotice.data.anonymous = true;
-		}
-	} ) );
 
 	var testFixtures = mw.centralNoticeTestFixtures,
 		testCases = testFixtures.test_cases,
+		numBuckets = testFixtures.mock_config_values.wgNoticeNumberOfBuckets,
 		lib = mw.cnBannerControllerLib;
 
 	// FIXME: fail hard if there is no fixture data
 
+	QUnit.module( 'ext.centralNotice.bannerController.lib', QUnit.newMwEnvironment( {
+		config: {
+			// Make this config available in tests
+			wgNoticeNumberOfBuckets: numBuckets
+		}
+	} ) );
+
+	// Cycle through test cases, contexts and outputs, and buckets and set up
+	// allocation tests. For JSLint-happiness, drizzle toasted closure sauce.
 	$.each( testCases, function( testCaseName, testCase ) {
-		QUnit.test( testCaseName, 1, function( assert ) {
-			var choices,
+		$.each( testCase.contexts_and_outputs, function ( cAndOName, cAndO ) {
+
+			var i, testName, allocationTestFunction;
+
+			// Note: numBuckets isn't available via mw.config here, only in tests
+			for (i = 0; i < numBuckets; i++ ) {
+				testName = testCaseName + '/' + cAndOName + '/bucket_' + i;
+				allocationTestFunction = makeAllocationTestFunction( cAndO, i );
+				QUnit.test( testName, allocationTestFunction );
+			}
+		} );
+	} );
+
+	/**
+	 * Return a function for an alloaction test, with the required values
+	 * closured in.
+	 */
+	function makeAllocationTestFunction( cAndO, bucket ) {
+		return function ( assert ) {
+				var choices = cAndO.choices,
+				expectedAllocations = cAndO.allocations[bucket],
 				choice,
 				expectedAllocationCount,
-				i,
+				j,
 				allocatedBanner,
 				roundedAllocation,
 				roundedExpcetedAllocation;
 
-			// BOOM on priority case FIXME ???
+			// Munge magic start and end properties into timestamps
+			setChoicesStartEnd( cAndO.choices );
 
-			setTestCaseStartEnd( testCase );
-			choices = testCase.choices;
-
-			// Set per-campaign buckets to 0 for all campaigns
-			// FIXME Allow testing of different buckets
+			// Set the bucket for all campaigns to the bucket we're on
 			lib.bucketsByCampaign = {};
-			for ( i = 0; i < choices.length; i++ ) {
-				choice = choices[i];
-				lib.bucketsByCampaign[choice.name] = { val: 0 };
+			for ( j = 0; j < choices.length; j++ ) {
+				choice = choices[j];
+				lib.bucketsByCampaign[choice.name] = { val: bucket };
 			}
 
-			// TODO: would like to declare individual tests here, but I
-			// haven't been able to make that work, yet.
+			// Set up context
+			mw.centralNotice.data.country = cAndO.context.country;
+			mw.centralNotice.data.device = cAndO.context.device;
+			mw.centralNotice.data.anonymous =
+				isAnonymousFromLoggedInStatus( cAndO.context.logged_in_status );
+
+			// TODO: make separate tests for each method
 			lib.setChoiceData( choices );
 			lib.filterChoiceData();
 			lib.makePossibleBanners();
 			lib.calculateBannerAllocations();
 
-			// Set expected number of allocations
-			expectedAllocationCount = Object.keys( testCase.allocations ).length;
-			assert.expect( 1 + expectedAllocationCount );
+			// Set expected number of allocations and test number of assertions
+			expectedAllocationCount = Object.keys( expectedAllocations ).length;
+			assert.expect( 1 + ( expectedAllocationCount * 2) );
 
-			assert.strictEqual( lib.possibleBanners.length, expectedAllocationCount );
+			assert.strictEqual( lib.possibleBanners.length,
+				expectedAllocationCount, 'Number of banners allocated.' );
 
-			for ( i = 0; i < expectedAllocationCount; i++ ) {
+			for ( j = 0; j < expectedAllocationCount; j++ ) {
 
-				allocatedBanner = lib.possibleBanners[i];
+				allocatedBanner = lib.possibleBanners[j];
 
-				// Test up to 3 decimal points because of innacuracies in
-				// real number arithmetic
+				// Test that the banner has any allocation at all. This assertion
+				// makes finding errors friendlier.
+				assert.ok( expectedAllocations.hasOwnProperty( allocatedBanner.name ),
+					'Banner ' + allocatedBanner.name + ' expected');
+
+				// Test allocation ammount only up to 3 decimal points because
+				// of innacuracies in real number arithmetic.
 				roundedAllocation = allocatedBanner.allocation.toFixed( 3 );
 				roundedExpcetedAllocation =
-					testCase.allocations[allocatedBanner.name].toFixed( 3 );
+					expectedAllocations[allocatedBanner.name].toFixed( 3 );
 
 				// Test as strings so failing results include banner name
 				assert.strictEqual(
-					allocatedBanner.name + ':' + roundedAllocation,
-					allocatedBanner.name + ':' + roundedExpcetedAllocation
+					roundedAllocation, roundedExpcetedAllocation,
+					'Expected allocaiton for ' + allocatedBanner.name
 				);
 			}
-		} );
-	} );
+		};
+	}
 
 	/**
 	 * Prepare a test case for use in a test. Currently just substitutes UNIX
@@ -78,12 +107,12 @@
 	 *
 	 * @see CentralNoticeTestFixtures::setTestCaseStartEnd()
 	 */
-	function setTestCaseStartEnd( testCaseSpec ) {
+	function setChoicesStartEnd( choices ) {
 		var i, choice,
 			now = new Date();
 
-		for ( i = 0; i < testCaseSpec.choices.length; i++ ) {
-			choice = testCaseSpec.choices[i];
+		for ( i = 0; i < choices.length; i++ ) {
+			choice = choices[i];
 			choice.start = makeTimestamp( now, choice.start_days_from_now );
 			choice.end = makeTimestamp( now, choice.end_days_from_now);
 
@@ -108,6 +137,17 @@
 		return Math.round( date.getTime() / 1000 );
 	}
 
-	// TODO: chooser tests
+	function isAnonymousFromLoggedInStatus( loggedInStatus ) {
+		switch ( loggedInStatus ) {
+			case 'anonymous':
+				return true;
+			case 'logged_in':
+				return false;
+			default:
+				throw 'Non-existent logged-in status.';
+		}
+	}
+
+	// TODO: tests for bannerController.lib.chooseBanner()
 
 } ( mediaWiki, jQuery ) );
