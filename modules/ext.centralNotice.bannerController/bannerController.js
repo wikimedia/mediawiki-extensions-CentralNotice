@@ -147,6 +147,10 @@
 				banner: bannerName,
 				campaign: campaign,
 				uselang: mw.config.get( 'wgUserLanguage' ),
+				db: mw.config.get( 'wgDBname' ),
+				project: mw.config.get( 'wgNoticeProject' ),
+				country: mw.centralNotice.data.country,
+				device: mw.centralNotice.data.device,
 				debug: mw.centralNotice.data.getVars.debug
 			};
 
@@ -163,7 +167,14 @@
 		},
 		loadRandomBanner: function () {
 
-			var loadBannerQueryParams,
+			var fetchBannerQueryParams = {
+					uselang: mw.config.get( 'wgUserLanguage' ),
+					project: mw.config.get( 'wgNoticeProject' ),
+					anonymous: mw.config.get( 'wgUserName' ) === null,
+					country: mw.centralNotice.data.country,
+					device: mw.centralNotice.data.device,
+					debug: mw.centralNotice.data.getVars.debug
+				},
 				scriptUrl;
 
 			// Either choose the banner on the client, or call the server to get
@@ -193,15 +204,11 @@
 
 				// Only fetch a banner if we need to :)
 				if ( mw.centralNotice.data.banner ) {
-					loadBannerQueryParams = {
-						banner: mw.centralNotice.data.banner,
-						campaign: mw.centralNotice.data.campaign,
-						uselang: mw.config.get( 'wgUserLanguage' ),
-						debug: mw.centralNotice.data.getVars.debug
-					};
+					fetchBannerQueryParams.banner = mw.centralNotice.data.banner;
+					fetchBannerQueryParams.campaign = mw.centralNotice.data.campaign;
 
 					scriptUrl = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
-					scriptUrl.extend( loadBannerQueryParams );
+					scriptUrl.extend( fetchBannerQueryParams );
 
 					// This will call insertBanner() after the banner is retrieved
 					$.ajax( {
@@ -220,20 +227,11 @@
 
 			} else {
 				var RAND_MAX = 30;
-
-				loadBannerQueryParams = {
-					uselang: mw.config.get( 'wgUserLanguage' ),
-					project: mw.config.get( 'wgNoticeProject' ),
-					anonymous: mw.config.get( 'wgUserName' ) === null,
-					country: mw.centralNotice.data.country,
-					device: mw.centralNotice.data.device,
-					debug: mw.centralNotice.data.getVars.debug,
-					slot: Math.floor( Math.random() * RAND_MAX ) + 1,
-					bucket: mw.centralNotice.data.bucket
-				};
+				fetchBannerQueryParams.slot = Math.floor( Math.random() * RAND_MAX ) + 1;
+				fetchBannerQueryParams.bucket = mw.centralNotice.data.bucket;
 
 				scriptUrl = new mw.Uri( mw.config.get( 'wgCentralBannerDispatcher' ) );
-				scriptUrl.extend( loadBannerQueryParams );
+				scriptUrl.extend( fetchBannerQueryParams );
 
 				$.ajax( {
 					url: scriptUrl.toString,
