@@ -19,8 +19,11 @@
 		QUnit.test( testCaseName, 1, function( assert ) {
 			var choices,
 				choice,
+				expectedAllocationCount,
 				i,
-				allocatedBanner;
+				allocatedBanner,
+				roundedAllocation,
+				roundedExpcetedAllocation;
 
 			// BOOM on priority case FIXME ???
 
@@ -42,27 +45,28 @@
 			lib.makePossibleBanners();
 			lib.calculateBannerAllocations();
 
-			// TODO: the errors will not reveal anything useful about
-			// which case this is, and what happened.  So we throw
-			// exceptions manually.  The horror!
-			try {
-				if ( lib.possibleBanners.length !== Object.keys( testCase.allocations ).length ) {
-					throw 'Wrong number of banners allocated in "' + testCase.title + '".';
-				}
-				for ( i = 0; i < lib.possibleBanners.length; i++ ) {
-					allocatedBanner = lib.possibleBanners[i];
-					if ( Math.abs( allocatedBanner.allocation - testCase.allocations[allocatedBanner.name] ) > 0.001 ) {
-						throw 'Banner ' + allocatedBanner.name + ' was misallocated in "' + testCase.title + '".';
-					}
-				}
-			} catch ( error ) {
-				assert.ok( false, error
-					+ " expected: " + QUnit.jsDump.parse( testCase.allocations )
-					+ ", actual: " + QUnit.jsDump.parse( lib.possibleBanners )
+			// Set expected number of allocations
+			expectedAllocationCount = Object.keys( testCase.allocations ).length;
+			assert.expect( 1 + expectedAllocationCount );
+
+			assert.strictEqual( lib.possibleBanners.length, expectedAllocationCount );
+
+			for ( i = 0; i < expectedAllocationCount; i++ ) {
+
+				allocatedBanner = lib.possibleBanners[i];
+
+				// Test up to 3 decimal points because of innacuracies in
+				// real number arithmetic
+				roundedAllocation = allocatedBanner.allocation.toFixed( 3 );
+				roundedExpcetedAllocation =
+					testCase.allocations[allocatedBanner.name].toFixed( 3 );
+
+				// Test as strings so failing results include banner name
+				assert.strictEqual(
+					allocatedBanner.name + ':' + roundedAllocation,
+					allocatedBanner.name + ':' + roundedExpcetedAllocation
 				);
-				return;
 			}
-			assert.ok( true, 'Allocations match in "' + testCase.title + '"' );
 		} );
 	} );
 
