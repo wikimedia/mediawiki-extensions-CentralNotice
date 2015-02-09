@@ -184,7 +184,9 @@ function efCentralNoticeSetup() {
  *
  * @return bool True if the hook completed successfully.
  */
-$wgHooks[ 'CanonicalNamespaces' ][ ] = function( &$namespaces ) {
+$wgHooks['CanonicalNamespaces'][] = 'efCentralNoticeCanonicalNamespaces';
+
+function efCentralNoticeCanonicalNamespaces( &$namespaces ) {
 	global $wgExtraNamespaces, $wgNamespacesWithSubpages, $wgTranslateMessageNamespaces;
 	global $wgNoticeUseTranslateExtension, $wgNoticeInfrastructure;
 
