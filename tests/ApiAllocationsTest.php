@@ -18,22 +18,26 @@ class ApiAllocationsTest extends ApiTestCase {
 	}
 
 	protected function tearDown() {
-		$this->cnFixtures->removeFixtures();
+		$this->cnFixtures->tearDownTestCases();
 		parent::tearDown();
 	}
 
 	public function testEqualAllocations() {
 		// Campaign has two banners, with default parameters
-		$this->cnFixtures->addFixtures( array(
-			'campaigns' => array(
-				array(
-					'banners' => array(
-						array(),
-						array()
+		$this->cnFixtures->setupTestCaseWithDefaults(
+			array(
+				'setup' => array(
+					'campaigns' => array(
+						array(
+							'banners' => array(
+								array(),
+								array()
+							),
+						),
 					),
 				),
-			),
-		) );
+			) );
+
 		$expected = array(
 			'centralnoticeallocations' => array(
 				'banners' => array(

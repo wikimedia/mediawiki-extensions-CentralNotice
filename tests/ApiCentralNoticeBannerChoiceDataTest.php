@@ -16,21 +16,22 @@ class ApiCentralNoticeBannerChoiceDataTest extends ApiTestCase {
 	}
 
 	protected function tearDown() {
-		$this->cnFixtures->removeFixtures();
+		$this->cnFixtures->tearDownTestCases();
 		parent::tearDown();
 	}
 
 	/**
-	 * @dataProvider CentralNoticeTestFixtures::allocationsData
+	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
-	public function testBannerChoiceResponse( $data ) {
-		$this->cnFixtures->addFixtures( $data['fixture'] );
+	public function testBannerChoiceResponse( $name, $testCase ) {
+
+		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		$ret = $this->doApiRequest( array(
 			'action' => 'centralnoticebannerchoicedata',
 			'project' => CentralNoticeTestFixtures::$defaultCampaign['projects'][0],
-			'language' => CentralNoticeTestFixtures::$defaultCampaign['project_languages'][0]
+			'language' => CentralNoticeTestFixtures::$defaultCampaign['languages'][0]
 		) );
-		$this->assertTrue( ComparisonUtil::assertSuperset( $ret[0]['choices'], $data['choices'] ) );
+		$this->assertTrue( ComparisonUtil::assertSuperset( $ret[0]['choices'], $testCase['choices'] ) );
 	}
 }

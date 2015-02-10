@@ -16,22 +16,25 @@ class HistoryTest extends CentralNoticeTest {
 	}
 
 	protected function tearDown() {
-		$this->cnFixtures->removeFixtures();
+		$this->cnFixtures->tearDownTestCases();
 		parent::tearDown();
 	}
 
 	public function testStaleHistoricalCampaigns() {
 		// Bug was that expired campaigns would still be included in the
 		// history, as long as they were enabled.
-		$this->cnFixtures->addFixtures( array(
-			'campaigns' => array(
-				array(
-					'banners' => array(
-						array()
+		$this->cnFixtures->setupTestCaseWithDefaults(
+			array(
+				'setup' => array(
+					'campaigns' => array(
+						array(
+							'banners' => array(
+								array()
+							),
+						),
 					),
-				),
-			),
-		) );
+				)
+			) );
 
 		$made_by_ts = wfTimestamp( TS_MW );
 		$this->assertEquals( 1, count( Campaign::getHistoricalCampaigns( $made_by_ts ) ) );

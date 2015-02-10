@@ -387,6 +387,7 @@ $specialPageAliases['uk'] = array(
 /** Urdu (اردو) */
 $specialPageAliases['ur'] = array(
 	'CentralNotice' => array( 'مرکزی_اعلان' ),
+	'NoticeTemplate' => array( 'نوٹس_سانچہ' ),
 );
 
 /** Vietnamese (Tiếng Việt) */
@@ -426,7 +427,7 @@ $specialPageAliases['zh-hant'] = array(
 	'CentralNoticeBanners' => array( '中央公告橫幅' ),
 	'CentralNoticeLogs' => array( '中央公告日誌' ),
 	'CNReporter' => array( '中央公告回報者' ),
-	'NoticeTemplate' => array( '公告樣板' ),
+	'NoticeTemplate' => array( '公告模板' ),
 	'GlobalAllocation' => array( '全域分配' ),
 	'BannerAllocation' => array( '横幅分配' ),
 	'BannerController' => array( '横幅控制器' ),
