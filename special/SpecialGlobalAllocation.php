@@ -72,19 +72,19 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$this->project = $sanitize(
 			$this->getRequest()->getText( 'project', $this->project ),
-			ApiCentralNoticeAllocations::PROJECT_FILTER
+			ApiCentralNoticeBannerChoiceData::PROJECT_FILTER
 		);
 		$this->language = $sanitize(
 			$this->getRequest()->getText( 'language', $this->language ),
-			ApiCentralNoticeAllocations::LANG_FILTER
+			ApiCentralNoticeBannerChoiceData::LANG_FILTER
 		);
 		$this->location = $sanitize(
 			$this->getRequest()->getText( 'country', $this->location ),
-			ApiCentralNoticeAllocations::LOCATION_FILTER
+			ApiCentralNoticeBannerChoiceData::LOCATION_FILTER
 		);
 		$this->device = $sanitize(
 			$this->getRequest()->getText( 'device', $this->device ),
-			ApiCentralNoticeAllocations::DEVICE_NAME_FILTER
+			ApiCentralNoticeBannerChoiceData::DEVICE_NAME_FILTER
 		);
 
 		$this->timestamp = wfTimestamp( TS_UNIX, $this->getDateTime( 'filter' ) );

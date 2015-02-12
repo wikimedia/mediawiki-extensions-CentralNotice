@@ -111,8 +111,6 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';
 
-	$wgAutoloadClasses[ 'ApiCentralNoticeAllocationBase' ] = $apiDir . 'ApiCentralNoticeAllocationBase.php';
-	$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeBannerChoiceData' ] = $apiDir . 'ApiCentralNoticeBannerChoiceData.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
@@ -120,7 +118,6 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses[ 'CNDatabase' ] = $includeDir . 'CNDatabase.php';
 	$wgAPIModules[ 'centralnoticebannerchoicedata' ] = 'ApiCentralNoticeBannerChoiceData';
-	$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
@@ -317,19 +314,16 @@ function efCentralNoticeDisplay( &$notice ) {
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
-		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
+		   $wgNoticeInfrastructure, $wgNoticeCloseButton,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
 		   $wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
-		   $wgCentralNoticeChooseBannerOnClient, $wgCentralSelectedBannerDispatcher,
+		   $wgCentralSelectedBannerDispatcher,
 		   $wgCentralNoticePerCampaignBucketExtension;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
 	// to be just right. We require them at all because MW will 302 page requests made to non localised
 	// namespaces which results in wasteful extra calls.
-	if ( !$wgCentralBannerDispatcher ) {
-		$wgCentralBannerDispatcher = SpecialPage::getTitleFor( 'BannerRandom' )->getLocalUrl();
-	}
 	if ( !$wgCentralSelectedBannerDispatcher ) {
 		$wgCentralSelectedBannerDispatcher = SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 	}
@@ -347,14 +341,12 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		if ( $mc->shouldDisplayMobileView() ) {
 			$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
 			$wgCentralPagePath = $mc->getMobileUrl( $wgCentralPagePath );
-			$wgCentralBannerDispatcher = $mc->getMobileUrl( $wgCentralBannerDispatcher );
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
 		}
 	}
 
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
 	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
-	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
@@ -365,7 +357,6 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 	$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
-	$vars[ 'wgCentralNoticeChooseBannerOnClient' ] = $wgCentralNoticeChooseBannerOnClient;
 	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
 
@@ -387,8 +378,6 @@ function efCentralNoticeUnitTests( &$files ) {
 	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
 	$wgAutoloadClasses['ComparisonUtil'] = __DIR__ . '/tests/ComparisonUtil.php';
 
-	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
-	$files[ ] = __DIR__ . '/tests/BannerChooserTest.php';
 	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeBannerChoiceDataTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerAllocationCalculatorTest.php';

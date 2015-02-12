@@ -203,18 +203,6 @@ class SpecialBannerAllocation extends CentralNotice {
 		// Begin Allocation list fieldset
 		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
-		// Add a box to select which algorithm's allocation to display
-		$htmlOut .= Html::element( 'label', array(
-				'for' => 'algorithm-selector',
-			),
-			$this->msg( 'centralnotice-allocation-client-algorithm' )->text()
-		);
-		$htmlOut .= Html::element( 'input', array(
-			'type' => 'checkbox',
-			'id' => 'algorithm-selector'
-		) );
-		
-
 		// Given our project and language combination, get banner choice data,
 		// then filter on country
 		$provider = new BannerChoiceDataProvider( $project, $language );
@@ -260,14 +248,6 @@ class SpecialBannerAllocation extends CentralNotice {
 			}
 
 			foreach ( $matrix as $target ) {
-				$banners = ApiCentralNoticeAllocations::getBannerAllocation(
-					$project,
-					$country,
-					$language,
-					$target['anonymous'],
-					$device_data['header'],
-					$target['bucket']
-				);
 				if ( $target['anonymous'] === 'true' ) {
 					$label = $this->msg( 'centralnotice-banner-anonymous' )->text();
 					$status = BannerAllocationCalculator::ANONYMOUS;
@@ -285,7 +265,7 @@ class SpecialBannerAllocation extends CentralNotice {
 					intval( $target['bucket'] )
 				);
 				$provider_banners = BannerAllocationCalculator::calculateAllocations( $provider_banners );
-				$htmlOut .= $this->getTable( $label, $banners, $provider_banners );
+				$htmlOut .= $this->getTable( $label, $provider_banners );
 			}
 
 			$htmlOut .= Html::closeElement( 'div' );
@@ -300,17 +280,16 @@ class SpecialBannerAllocation extends CentralNotice {
 	/**
 	 * Generate the HTML for an allocation table
 	 * @param $type string The title for the table
-	 * @param $banners array The banners allocated by BannerChooser
 	 * @param $providerBanners array The banners as allocated by BannerAllocationCalculator
 	 * @return string HTML for the table
 	 */
-	public function getTable( $type, $banners, $providerBanners ) {
+	public function getTable( $type, $providerBanners ) {
 		$htmlOut = Html::openElement( 'table',
 			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
 		);
 		$htmlOut .= Html::element( 'h4', array(), $type );
 
-		if (count($banners) > 0) {
+		if (count($providerBanners) > 0) {
 			$htmlOut .= Html::openElement( 'tr' );
 			$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
 				$this->msg( 'centralnotice-percentage' )->text() );
@@ -320,7 +299,6 @@ class SpecialBannerAllocation extends CentralNotice {
 				$this->msg( 'centralnotice-notice' )->text() );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}
-		$htmlOut .= $this->createRows( $banners, 'mw-centralnotice-row-banner-chooser' );
 		$htmlOut .= $this->createRows( $providerBanners, 'mw-centralnotice-row-allocation-calculator' );
 
 		$htmlOut .= Html::closeElement( 'table' );

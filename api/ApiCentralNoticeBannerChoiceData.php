@@ -7,7 +7,15 @@
  * from an infrastructure wiki, for cases in which direct cross-wiki DB
  * queries are not possible.
  */
-class ApiCentralNoticeBannerChoiceData extends ApiCentralNoticeAllocationBase {
+class ApiCentralNoticeBannerChoiceData extends ApiBase {
+
+	const LANG_FILTER = '/[a-zA-Z0-9\-]+/';
+
+	const PROJECT_FILTER = '/[a-zA-Z0-9_\-]+/';
+
+	const LOCATION_FILTER = '/[a-zA-Z0-9_\-]+/';
+
+	const DEVICE_NAME_FILTER = '/[a-zA-Z0-9_\-]+/';
 
 	/**
 	 * Regex for filtering values of the status parameter
@@ -19,14 +27,14 @@ class ApiCentralNoticeBannerChoiceData extends ApiCentralNoticeAllocationBase {
 		// Extract, sanitize and munge the parameters
 		$params = $this->extractRequestParams();
 
-		$project = parent::sanitizeText(
+		$project = self::sanitizeText(
 				$params['project'],
-				parent::PROJECT_FILTER
+				self::PROJECT_FILTER
 		);
 
-		$lang = parent::sanitizeText(
+		$lang = self::sanitizeText(
 				$params['language'],
-				parent::LANG_FILTER
+				self::LANG_FILTER
 		);
 
 		$choicesProvider = new BannerChoiceDataProvider( $project, $lang );
@@ -61,5 +69,25 @@ class ApiCentralNoticeBannerChoiceData extends ApiCentralNoticeAllocationBase {
 			'action=centralnoticebannerchoicedata&project=wikpedia&language=en'
 			=> 'apihelp-centralnoticebannerchoicedata-example-1'
 		);
+	}
+
+	/**
+	 * @static Obtains the parameter $param, sanitizes by returning the first match to $regex or
+	 * $default if there was no match.
+	 *
+	 * @param string    $param    Name of GET/POST parameter
+	 * @param string    $regex    Sanitization regular expression
+	 * @param string    $default  Default value to return on error
+	 *
+	 * @return string The sanitized value
+	 */
+	protected static function sanitizeText( $param, $regex, $default = null ) {
+		$matches = array();
+
+		if ( preg_match( $regex, $param, $matches ) ) {
+			return $matches[ 0 ];
+		} else {
+			return $default;
+		}
 	}
 }

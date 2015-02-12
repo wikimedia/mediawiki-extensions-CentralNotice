@@ -64,10 +64,6 @@ $wgNoticeInfrastructure = true;
 // we will default to using the primary database.
 $wgCentralDBname = false;
 
-// URL where BannerRandom is hosted, where false will default to the
-// Special:BannerRandom on the machine serving ResourceLoader requests.
-$wgCentralBannerDispatcher = false;
-
 // URL which is hit after a banner is loaded, for compatibility with analytics.
 $wgCentralBannerRecorder = false;
 
@@ -76,8 +72,6 @@ $wgCentralNoticeSampleRate = 1 / 100;
 
 // Protocol and host name of the wiki that hosts the CentralNotice infrastructure,
 // for example '//meta.wikimedia.org'. This is used for DNS prefetching.
-// NOTE: this should be the same host as wgCentralBannerDispatcher, above,
-// when on a different subdomain than the wiki.
 $wgCentralHost = false;
 
 // The script path on the wiki that hosts the CentralNotice infrastructure
@@ -92,14 +86,9 @@ $wgCentralPagePath = false;
 // database settings.
 $wgCentralNoticeApiUrl = false;
 
-// Enable the new mechanism for making the banner selection on the client
-$wgCentralNoticeChooseBannerOnClient = true;
-
 // URL for BannerLoader, for requests to fetch a banner that is already
 // known (using the banner URL param). If false, it will default to
-// Special:BannerLoader on the machine serving ResourceLoader requests. This
-// value is used when for fetching banners that are chosen on the client (i.e.,
-// when $wgCentralNoticeChooseBannerOnClient is set to true).
+// Special:BannerLoader on the machine serving ResourceLoader requests.
 $wgCentralSelectedBannerDispatcher = false;
 
 // Enable the loader itself

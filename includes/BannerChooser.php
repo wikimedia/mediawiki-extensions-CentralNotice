@@ -1,9 +1,7 @@
 <?php
 
 class BannerChooser {
-	const SLOTS_KEY = 'slots';
 	const ALLOCATION_KEY = 'allocation';
-	const RAND_MAX = 30;
 
 	protected $allocContext;
 
@@ -37,28 +35,6 @@ class BannerChooser {
 		}
 		$this->filterBanners();
 		$this->banners = BannerAllocationCalculator::calculateAllocations( $this->banners );
-		$this->quantizeAllocationToSlots();
-	}
-
-	/**
-	 * @param $rand [1-RAND_MAX]
-	 */
-	function chooseBanner( $slot ) {
-		// Convert slot to a float, [0-1]
-		$slot = intval( $slot );
-		if ( $slot < 1 || $slot > self::RAND_MAX ) {
-			wfDebugLog( 'CentralNotice', "Illegal banner slot: {$slot}" );
-			$slot = rand( 1, self::RAND_MAX );
-		}
-
-		// Choose a banner
-		$counter = 0;
-		foreach ( $this->banners as $banner ) {
-			$counter += $banner[ self::SLOTS_KEY ];
-			if ( $slot <= $counter ) {
-				return $banner;
-			}
-		}
 	}
 
 	protected function filterCampaigns() {
@@ -139,57 +115,6 @@ class BannerChooser {
 				return ( $banner[$key] === $value );
 			}
 		);
-	}
-
-	/**
-	 * Take banner allocations in [0, 1] real form and convert to slots.
-	 * Adjust the real form to reflect final slot numbers.
-	 */
-	function quantizeAllocationToSlots() {
-		// Sort the banners by weight, smallest to largest.  This helps
-		// prevent allocating zero slots to a banner, by rounding in
-		// favor of the banners with smallest allocations.
-		$alloc_key = self::ALLOCATION_KEY;
-		usort( $this->banners, function( $a, $b ) use ( $alloc_key ) {
-				return ( $a[$alloc_key] >= $b[$alloc_key] ) ? 1 : -1;
-			} );
-
-		// First pass: allocate the minimum number of slots to each banner,
-		// giving at least one slot per banner up to RAND_MAX slots.
-		$sum = 0;
-		foreach ( $this->banners as &$banner ) {
-			$slots = intval( max( floor( $banner[self::ALLOCATION_KEY] * self::RAND_MAX ), 1 ) );
-
-			// Don't give any slots if the banner is hidden due to e.g. priority level
-			if ( $banner[self::ALLOCATION_KEY] == 0 ) {
-				$slots = 0;
-			}
-
-			// Compensate for potential overallocation
-			if ( $slots + $sum > self::RAND_MAX ) {
-				$slots = self::RAND_MAX - $sum;
-			}
-
-			$banner[self::SLOTS_KEY] = $slots;
-			$sum += $slots;
-		}
-
-		// Second pass: allocate each remaining slot one at a time to each
-		// banner if they are underallocated
-		foreach ( $this->banners as &$banner ) {
-			if ( $sum >= self::RAND_MAX ) {
-				break;
-			}
-			if ( ( $banner[self::ALLOCATION_KEY] * self::RAND_MAX ) > $banner[self::SLOTS_KEY] ) {
-				$banner[self::SLOTS_KEY] += 1;
-				$sum += 1;
-			}
-		}
-
-		// Refresh allocation levels according to quantization
-		foreach ( $this->banners as &$banner ) {
-			$banner[self::ALLOCATION_KEY] = $banner[self::SLOTS_KEY] / self::RAND_MAX;
-		}
 	}
 
 	/**

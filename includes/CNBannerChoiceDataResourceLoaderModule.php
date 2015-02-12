@@ -3,9 +3,6 @@
 /***
  * ResourceLoader module for sending banner choices to the client.
  *
- * Note: this module does nothing if $wgCentralNoticeChooseBannerOnClient
- * is false.
- *
  * Note: This class has been intentionally left stateless, due to how
  * ResourceLoader works. This class has no expectation of having getScript() or
  * getModifiedHash() called in the same request.
@@ -23,12 +20,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		global $wgNoticeProject,
 			$wgUser,
 			$wgCentralNoticeApiUrl,
-			$wgCentralDBname,
-			$wgCentralNoticeChooseBannerOnClient;
-
-		if ( !$wgCentralNoticeChooseBannerOnClient ) {
-			return null;
-		}
+			$wgCentralDBname;
 
 		$project = $wgNoticeProject;
 		$language = $context->getLanguage();
@@ -112,18 +104,9 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * This is a no-op if $wgCentralNoticeChooseBannerOnClient is false
-	 *
 	 * @see ResourceLoaderModule::getScript()
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		global $wgCentralNoticeChooseBannerOnClient;
-
-		// If we don't choose banners on the client, this is a no-op
-		if ( !$wgCentralNoticeChooseBannerOnClient ) {
-			return '';
-		}
-
 		return Xml::encodeJsCall( 'mw.cnBannerControllerLib.setChoiceData',
 				array( $this->getChoices( $context ) ) );
 	}

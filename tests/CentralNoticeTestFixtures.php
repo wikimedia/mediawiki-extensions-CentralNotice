@@ -41,15 +41,15 @@ class CentralNoticeTestFixtures {
 	}
 
 	static function getDefaultLanguage() {
-		return ApiCentralNoticeAllocations::DEFAULT_LANGUAGE;
+		return 'en';
 	}
 
 	static function getDefaultProject() {
-		return ApiCentralNoticeAllocations::DEFAULT_PROJECT;
+		return 'wikipedia';
 	}
 
 	static function getDefaultCountry() {
-		return ApiCentralNoticeAllocations::DEFAULT_COUNTRY;
+		return 'XX';
 	}
 
 	static function getDefaultDevice() {

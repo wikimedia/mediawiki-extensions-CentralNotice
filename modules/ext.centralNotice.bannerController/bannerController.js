@@ -125,17 +125,6 @@
 		 */
 		deferredObjs: {},
 
-		/**
-		 * Check if we're configured to choose banners on the client,
-		 * and do a few sanity checks. Since bannercontroller.lib and
-		 * bannerChoiceData are dependencies, it should be safe to assume that
-		 * everything's there by the time this module executes.
-		 */
-		chooseBannerOnClient:
-				mw.config.get( 'wgCentralNoticeChooseBannerOnClient' ) &&
-				mw.cnBannerControllerLib &&
-				( mw.cnBannerControllerLib.choiceData !== null ),
-
 		/** -- Functions! -- **/
 		loadBanner: function () {
 			if ( mw.centralNotice.data.getVars.banner ) {
@@ -184,82 +173,68 @@
 					device: mw.centralNotice.data.device,
 					debug: mw.centralNotice.data.getVars.debug
 				},
-				scriptUrl;
+				scriptUrl,
+				random;
 
-			// Either choose the banner on the client, or call the server to get
-			// a random banner.
-			if ( mw.centralNotice.chooseBannerOnClient ) {
+			// Choose the banner on the client.
 
-				// Continue only if the server sent choices
+			// Continue only if the server sent choices
+			if ( mw.cnBannerControllerLib.choiceData
+				&& mw.cnBannerControllerLib.choiceData.length > 0
+			) {
+
+				// If the server did send one or more choices: let the
+				// processing begin!
+
+				// Filter choiceData on country and device. Only campaigns that
+				// target the user's country and have at least one banner for
+				// the user's logged-in status and device pass this filter.
+				mw.cnBannerControllerLib.filterChoiceData();
+
+				// Again check if there are choices available. This result may
+				// have changed following the above call to filterChoiceData().
 				if ( mw.cnBannerControllerLib.choiceData.length > 0 ) {
 
-					// If the server did send one or more choices: let the
-					// processing begin!
+					// Do all things bucket. Retrieve or generate buckets for all
+					// the campaigns remaining in choiceData. Then update expiry
+					// dates and remove expired buckets as necessary.
+					mw.cnBannerControllerLib.processBuckets();
 
-					// Filter choiceData on country and device. Only campaigns that
-					// target the user's country and have at least one banner for
-					// the user's logged-in status and device pass this filter.
-					mw.cnBannerControllerLib.filterChoiceData();
+					// Create a flat list of possible banners available for the
+					// user's buckets, logged-in status and device, and calculate
+					// allocations.
+					mw.cnBannerControllerLib.makePossibleBanners();
+					mw.cnBannerControllerLib.calculateBannerAllocations();
 
-					// Again check if there are choices available. This result may
-					// have changed following the above call to filterChoiceData().
-					if ( mw.cnBannerControllerLib.choiceData.length > 0 ) {
-
-						// Do all things bucket. Retrieve or generate buckets for all
-						// the campaigns remaining in choiceData. Then update expiry
-						// dates and remove expired buckets as necessary.
-						mw.cnBannerControllerLib.processBuckets();
-
-						// Create a flat list of possible banners available for the
-						// user's buckets, logged-in status and device, and calculate
-						// allocations.
-						mw.cnBannerControllerLib.makePossibleBanners();
-						mw.cnBannerControllerLib.calculateBannerAllocations();
-
-						// Get a random seed or use the random= parameter from the URL,
-						// and choose the banner.
-						var random = mw.centralNotice.data.getVars.random || Math.random();
-						mw.cnBannerControllerLib.chooseBanner( random );
-					}
+					// Get a random seed or use the random= parameter from the URL,
+					// and choose the banner.
+					random = mw.centralNotice.data.getVars.random || Math.random();
+					mw.cnBannerControllerLib.chooseBanner( random );
 				}
+			}
 
-				// Only fetch a banner if we need to :)
-				if ( mw.centralNotice.data.banner ) {
-					fetchBannerQueryParams.banner = mw.centralNotice.data.banner;
-					fetchBannerQueryParams.campaign = mw.centralNotice.data.campaign;
+			// Only fetch a banner if we need to :)
+			if ( mw.centralNotice.data.banner ) {
+				fetchBannerQueryParams.banner = mw.centralNotice.data.banner;
+				fetchBannerQueryParams.campaign = mw.centralNotice.data.campaign;
 
-					scriptUrl = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
-					scriptUrl.extend( fetchBannerQueryParams );
-
-					// This will call insertBanner() after the banner is retrieved
-					$.ajax( {
-						url: scriptUrl.toString(),
-						dataType: 'script',
-						cache: true
-					} );
-
-				} else {
-					// Call insertBanner and set the onlySampleRI flag to true
-					// to sample empty results and return them via
-					// Special:RecordImpression.
-					// TODO Refactor
-					mw.centralNotice.onlySampleRI = true;
-					mw.centralNotice.insertBanner( false );
-				}
-
-			} else {
-				var RAND_MAX = 30;
-				fetchBannerQueryParams.slot = Math.floor( Math.random() * RAND_MAX ) + 1;
-				fetchBannerQueryParams.bucket = mw.centralNotice.data.bucket;
-
-				scriptUrl = new mw.Uri( mw.config.get( 'wgCentralBannerDispatcher' ) );
+				scriptUrl = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
 				scriptUrl.extend( fetchBannerQueryParams );
 
+				// This will call insertBanner() after the banner is retrieved
 				$.ajax( {
-					url: scriptUrl.toString,
+					url: scriptUrl.toString(),
 					dataType: 'script',
 					cache: true
 				} );
+
+			} else {
+				// Call insertBanner and set the onlySampleRI flag to true
+				// to sample empty results and return them via
+				// Special:RecordImpression.
+				// TODO Refactor
+				mw.centralNotice.onlySampleRI = true;
+				mw.centralNotice.insertBanner( false );
 			}
 		},
 		// TODO: move function definitions once controller cache has cleared
@@ -310,7 +285,8 @@
 		},
 		/**
 		 * Legacy function for getting the legacy global bucket. Left here for
-		 * compatibility; may be deprecated soon.
+		 * compatibility.
+		 * @deprecated
 		 */
 		getBucket: function() {
 			var bucket = mw.cnBannerControllerLib.retrieveLegacyBucket();
@@ -321,9 +297,10 @@
 		},
 		/**
 		 * Legacy function for storing the legacy global bucket. Left here for
-		 * compatibility; may be deprecated soon. Stores
+		 * compatibility. Stores
 		 * mw.centralNotice.data.bucket. See
 		 * mw.cnBannerControllerLib.storeLegacyBucket.
+		 * @deprecated
 		 */
 		storeBucket: function() {
 			mw.cnBannerControllerLib.storeLegacyBucket(
@@ -345,11 +322,6 @@
 			mw.centralNotice.data.addressFamily = ( window.Geo.IPv6 || window.Geo.af === 'v6' ) ? 'IPv6' : 'IPv4';
 			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
 			mw.centralNotice.data.device = mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' );
-
-			// Use legacy bucket if we're not choosing banners on the client
-			if ( !mw.centralNotice.chooseBannerOnClient ) {
-				mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
-			}
 
 			// === Do not actually load a banner on a special page ===
 			//     But we keep this after the above initialization for CentralNotice pages
@@ -421,12 +393,6 @@
 			device: mw.centralNotice.data.device
 		} );
 
-		// If we're not choosing banners on the client, there's a global bucket
-		// we can send in.
-		if ( !mw.centralNotice.chooseBannerOnClient ) {
-			impressionData.bucket = mw.centralNotice.data.bucket;
-		}
-
 		if ( !bannerJson ) {
 			// There was no banner returned from the server
 			impressionData.result = 'hide';
@@ -439,20 +405,9 @@
 
 			// Bucket stuff varies depending on where we're choosing banners:
 
-			// Legacy bucket operation. If we're not choosing banners on the
-			// client, store the bucket we used in a cookie. If it's already
-			// there, this should extend the bucket cookie's expiry the duration
-			// indicated by wgNoticeBucketExpiry.
-			if ( !mw.centralNotice.chooseBannerOnClient ) {
-				mw.centralNotice.storeBucket();
-
-			} else if ( !mw.centralNotice.data.getVars.banner ) {
-
-				// If we are choosing banners on the client, that means we
-				// haven't set the bucket in the impression data. Add it
-				// along with its start and end dates.
-				// However we won't do this when a banner is being forced via
-				// the banner URL param.
+			// Set bucket info the impression data, unless a banner is being
+			// forced via the banner URL param.
+			if ( !mw.centralNotice.data.getVars.banner ) {
 				bucket = mw.cnBannerControllerLib.bucketsByCampaign[impressionData.campaign];
 				impressionData.bucket = bucket.val;
 				impressionData.bucketStart = bucket.start;

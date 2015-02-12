@@ -25,27 +25,6 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 		return new TestingCNBannerChoiceDataResourceLoaderModule();
 	}
 
-	public function testDisabledByConfig() {
-
-		// Disable choices on client but make sure a method for obtaining choices
-		// is configured (to be sure that if the test fails it's due to a
-		// failure of the choices-on-client config).
-		$this->setMwGlobals( array(
-			'wgCentralNoticeChooseBannerOnClient' => false,
-		) );
-
-		$fauxRequest = new FauxRequest( array(
-			'modules' => 'ext.centralNotice.bannerChoiceData',
-			'skin' => 'fallback',
-			'uselang' => 'en' // dummy value, just in case it makes a difference
-		) );
-
-		$rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
-		$script = $this->getProvider()->getScript( $rlContext );
-
-		$this->assertEmpty( $script );
-	}
-
 	/**
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
@@ -55,8 +34,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
 
 			$this->setMwGlobals( array(
-					'wgCentralNoticeChooseBannerOnClient' => true,
-					'wgNoticeProject' => $contextAndOutput['context']['project']
+					'wgNoticeProject' => $contextAndOutput['context']['project'],
 			) );
 
 			$fauxRequest = new FauxRequest( array(
