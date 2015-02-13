@@ -38,10 +38,10 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 	 */
 	protected function chooseBanner() {
 		// For debugging unexpected code execution
-		wfDebugLog( 'T89258', 'From backend: ' +
-			$this->getRequest()->getHeader('X-Cache') + "\n" +
-			'From URL: ' + $this->getRequest()->getRequestURL() + "\n" +
-			'Backtrace: ' + json_encode( debug_backtrace() ) );
+		wfDebugLog( 'T89258', 'From backend: ' .
+			$this->getRequest()->getHeader('X-Cache') . "\n" .
+			'From URL: ' . $this->getRequest()->getRequestURL() . "\n" .
+			'Backtrace: ' . json_encode( debug_backtrace() ) );
 	}
 
 	function sendHeaders() {
