@@ -122,6 +122,7 @@
 	"centralnotice-off": "كور",
 	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> اضاف بیه",
 	"centralnotice-removed": "<span class=\"cn-old-value\">$1</span> جا وه جا بیه",
+	"centralnotice-no-assignments": "هیچ بیرقی تیار نبیه",
 	"centralnotice-talk-link": "چك چنه",
 	"centralnotice-banner-settings": "میزونکاری بیرق",
 	"centralnotice-anon": "سی کاروریا ناشناس نشو بیه",

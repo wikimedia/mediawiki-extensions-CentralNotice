@@ -101,6 +101,13 @@
 		impressionData: {},
 
 		/**
+		 * Turn on sampling for calls to Special:RecordImpression.
+		 * If true, randomly select a sample at the rate indicated by
+		 * $wgCentralNoticeSampleRate. If false, make the call on every request.
+		 */
+		onlySampleRI: false,
+
+		/**
 		 * Contains promise objects that other things can hook into
 		 */
 		events: {},
@@ -181,26 +188,45 @@
 			// a random banner.
 			if ( mw.centralNotice.chooseBannerOnClient ) {
 
-				// Filter choiceData on country and device. Only campaigns that
-				// target the user's country and have at least one banner for
-				// the user's logged-in status and device pass this filter.
-				mw.cnBannerControllerLib.filterChoiceData();
+				// If the server sent no choices to begin with, set a flag
+				// so record impressions will only send a sample of results
+				if ( mw.cnBannerControllerLib.choiceData.length === 0 ) {
+					mw.centralNotice.onlySampleRI = true;
 
-				// Do all things bucket. Retrieve or generate buckets for all
-				// the campaigns remaining in choiceData. Then update expiry
-				// dates and remove expired buckets as necessary.
-				mw.cnBannerControllerLib.processBuckets();
+				} else {
 
-				// Create a flat list of possible banners available for the
-				// user's buckets, logged-in status and device, and calculate
-				// allocations.
-				mw.cnBannerControllerLib.makePossibleBanners();
-				mw.cnBannerControllerLib.calculateBannerAllocations();
+					// If the server did send one or more choices: let the
+					// processing begin!
 
-				// Get a random seed or use the random= parameter from the URL,
-				// and choose the banner.
-				var random = mw.centralNotice.data.getVars.random || Math.random();
-				mw.cnBannerControllerLib.chooseBanner( random );
+					// Filter choiceData on country and device. Only campaigns that
+					// target the user's country and have at least one banner for
+					// the user's logged-in status and device pass this filter.
+					mw.cnBannerControllerLib.filterChoiceData();
+
+					// Again check if there are choices available. If no, set
+					// record impressions to only sample. If yes, continue
+					// processing.
+					if ( mw.cnBannerControllerLib.choiceData.length === 0 ) {
+						mw.centralNotice.onlySampleRI = true;
+
+					} else {
+						// Do all things bucket. Retrieve or generate buckets for all
+						// the campaigns remaining in choiceData. Then update expiry
+						// dates and remove expired buckets as necessary.
+						mw.cnBannerControllerLib.processBuckets();
+
+						// Create a flat list of possible banners available for the
+						// user's buckets, logged-in status and device, and calculate
+						// allocations.
+						mw.cnBannerControllerLib.makePossibleBanners();
+						mw.cnBannerControllerLib.calculateBannerAllocations();
+
+						// Get a random seed or use the random= parameter from the URL,
+						// and choose the banner.
+						var random = mw.centralNotice.data.getVars.random || Math.random();
+						mw.cnBannerControllerLib.chooseBanner( random );
+					}
+				}
 
 				// Only fetch a banner if we need to :)
 				if ( mw.centralNotice.data.banner ) {
@@ -252,7 +278,14 @@
 		},
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
+
 			var url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
+
+			if ( mw.centralNotice.onlySampleRI &&
+				( Math.random() > mw.config.get( 'wgCentralNoticeSampleRate' ) ) ) {
+				return;
+			}
+
 			url.extend( data );
 			(new Image()).src = url.toString();
 		},

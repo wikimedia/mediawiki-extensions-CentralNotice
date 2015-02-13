@@ -70,6 +70,9 @@ $wgCentralBannerDispatcher = false;
 // URL which is hit after a banner is loaded, for compatibility with analytics.
 $wgCentralBannerRecorder = false;
 
+// Sample rate for recording impressions to the above URL.
+$wgCentralNoticeSampleRate = 1 / 100;
+
 // Protocol and host name of the wiki that hosts the CentralNotice infrastructure,
 // for example '//meta.wikimedia.org'. This is used for DNS prefetching.
 // NOTE: this should be the same host as wgCentralBannerDispatcher, above,
