@@ -32,14 +32,16 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 			'HTTP/1.1 410 ' . HttpStatus::getMessage( 410 ) );
 	}
 
+	/**
+	 * This is also deprecated. Well, the whole class is.
+	 * TODO Full removal coming soon.
+	 */
 	protected function chooseBanner() {
-		$chooser = new BannerChooser( $this->allocContext );
-		$banner = $chooser->chooseBanner( $this->slot );
-
-		if ( $banner ) {
-			$this->bannerName = $banner['name'];
-			$this->campaignName = $banner['campaign'];
-		}
+		// For debugging unexpected code execution
+		wfDebugLog( 'T89258', 'From backend: ' +
+			$this->getRequest()->getHeader('X-Cache') + "\n" +
+			'From URL: ' + $this->getRequest()->getRequestURL() + "\n" +
+			'Backtrace: ' + json_encode( debug_backtrace() ) );
 	}
 
 	function sendHeaders() {
