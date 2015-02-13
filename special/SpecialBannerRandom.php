@@ -23,6 +23,15 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 		$this->chooseBanner();
 	}
 
+	/**
+	 * This endpoint is deprecated.
+	 */
+	function execute( $par ) {
+		$this->getOutput()->disable();
+		$this->getRequest()->response()->header(
+			'HTTP/1.1 410 ' . HttpStatus::getMessage( 410 ) );
+	}
+
 	protected function chooseBanner() {
 		$chooser = new BannerChooser( $this->allocContext );
 		$banner = $chooser->chooseBanner( $this->slot );
