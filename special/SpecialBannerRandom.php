@@ -27,6 +27,12 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 	 * This endpoint is deprecated.
 	 */
 	function execute( $par ) {
+		// Find out what's up with unexpected requests
+		wfDebugLog( 'T89258', 'Call to execute(). From backend: ' .
+			$this->getRequest()->getHeader('X-Cache') . "\n" .
+			'From URL: ' . $this->getRequest()->getRequestURL() . "\n" .
+			'Backtrace: ' . json_encode( debug_backtrace() ) );
+
 		$this->getOutput()->disable();
 		$this->getRequest()->response()->header(
 			'HTTP/1.1 410 ' . HttpStatus::getMessage( 410 ) );
@@ -38,7 +44,7 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 	 */
 	protected function chooseBanner() {
 		// For debugging unexpected code execution
-		wfDebugLog( 'T89258', 'From backend: ' .
+		wfDebugLog( 'T89258', 'Call to chooseBanner(). From backend: ' .
 			$this->getRequest()->getHeader('X-Cache') . "\n" .
 			'From URL: ' . $this->getRequest()->getRequestURL() . "\n" .
 			'Backtrace: ' . json_encode( debug_backtrace() ) );
