@@ -5,7 +5,8 @@ class CentralNoticeTestFixtures {
 
 	public $spec = array();
 	protected $user;
-	protected $fixtureDeviceId;
+	protected $addedDeviceIds = array();
+	protected $knownDevices = null;
 
 	// For legacy test that don't use fixture data: use exactly the api defaults
 	// where available
@@ -222,6 +223,7 @@ class CentralNoticeTestFixtures {
 		// use this (but may be dependant on non-test config).
 		global $wgNoticeNumberOfBuckets;
 
+		// Needed due to hardcoded default desktop device hack in Banner
 		$this->ensureDesktopDevice();
 
 		foreach ( $testCaseSetup['campaigns'] as $campaign ) {
@@ -313,7 +315,9 @@ class CentralNoticeTestFixtures {
 				}
 
 				if ( isset( $bannerSpec['devices'] ) ) {
-					$bannerObj->setDevices( $bannerSpec['devices'] );
+					$devices = $bannerSpec['devices'];
+					$this->ensureDevices( $devices );
+					$bannerObj->setDevices( $devices );
 					$bannerObj->save();
 				}
 			}
@@ -334,11 +338,12 @@ class CentralNoticeTestFixtures {
 			}
 		}
 
-		if ( $this->fixtureDeviceId ) {
+		// Remove any devices we added
+		if ( !empty( $this->addedDeviceIds ) ) {
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->delete(
 				'cn_known_devices',
-				array( 'dev_id' => $this->fixtureDeviceId ),
+				array( 'dev_id' => $this->addedDeviceIds ),
 				__METHOD__
 			);
 		}
@@ -361,35 +366,42 @@ class CentralNoticeTestFixtures {
 		$testClass->assertEquals( $expected, $actual );
 	}
 
-	//FIXME review, possibly trim and/or document device-related stuff here
-	protected function getDesktopDevice() {
-		$dbr = CNDatabase::getDb();
-
-		$res = $dbr->select(
-			array(
-				 'cn_known_devices'
-			),
-			array(
-				'dev_id',
-				'dev_name'
-			),
-			array(
-				'dev_name' => 'desktop',
-			)
-		);
-		$ids = array();
-		foreach ( $res as $row ) {
-			$ids[] = $row->dev_id;
-		}
-		return $ids;
+	/**
+	 * Ensure there is a known device called "desktop". This is a workaround
+	 * for a hack (or maybe a hack for a workaround?) in Banner.
+	 */
+	protected function ensureDesktopDevice() {
+		$this->ensureDevices( array( 'desktop' ) );
 	}
 
-	protected function ensureDesktopDevice() {
-		$ids = $this->getDesktopDevice();
-		if ( !$ids ) {
-			CNDeviceTarget::addDeviceTarget( 'desktop', '{{int:centralnotice-devicetype-desktop}}' );
-			$ids = $this->getDesktopDevice();
-			$this->fixtureDeviceId = $ids[0];
+	/**
+	 * Ensure that among the known devices in the database are all those named
+	 * in $deviceNames.
+	 *
+	 * @param string[] $deviceNames
+	 */
+	protected function ensureDevices( $deviceNames ) {
+
+		if ( !$this->knownDevices ) {
+			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
+		}
+
+		$devicesChanged = false;
+
+		// Add any devices not in the database
+		foreach ( $deviceNames as $deviceName ) {
+			if ( !isset( $this->knownDevices[$deviceName] ) ) {
+
+				// Remember the IDs for teardown
+				$this->addedDeviceIds[] =
+					CNDeviceTarget::addDeviceTarget( $deviceName, $deviceName );
+				$devicesChanged = true;
+			}
+		}
+
+		// If necessary, update in-memory list of available devices
+		if ( $devicesChanged ) {
+			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
 		}
 	}
 

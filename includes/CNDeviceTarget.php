@@ -76,6 +76,7 @@ class CNDeviceTarget {
 	 *
 	 * @param string $deviceName   Name of the device as sent by the controller (read: MobileFrontEnd)
 	 * @param string $displayLabel Friendly wikitext name of the device
+	 * @return int The ID of the device added
 	 */
 	public static function addDeviceTarget( $deviceName, $displayLabel ) {
 		$db = CNDatabase::getDb();
@@ -88,6 +89,8 @@ class CNDeviceTarget {
 			),
 			__METHOD__
 		);
+
+		return $db->insertId();
 	}
 
 	/**
