@@ -55,17 +55,17 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
-		foreach ( $testCase['contexts_and_outputs'] as $context_and_output ) {
+		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
 
 			$this->setMwGlobals( array(
 					'wgCentralNoticeChooseBannerOnClient' => true,
-					'wgNoticeProject' => $context_and_output['context']['project']
+					'wgNoticeProject' => $contextAndOutput['context']['project']
 			) );
 
 			$fauxRequest = new FauxRequest( array(
 					'modules' => 'ext.centralNotice.bannerChoiceData',
 					'skin' => 'fallback',
-					'uselang' => $context_and_output['context']['language']
+					'lang' => $contextAndOutput['context']['language']
 			) );
 
 			$rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
@@ -73,7 +73,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 			$choices = $this->getProvider()->getChoicesForTesting( $rlContext );
 
 			$this->cnFixtures->assertChoicesEqual(
-				$this, $context_and_output['choices'], $choices );
+				$this, $contextAndOutput['choices'], $choices, $cAndOName );
 		}
 	}
 }

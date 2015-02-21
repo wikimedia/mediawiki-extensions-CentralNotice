@@ -356,14 +356,15 @@ class CentralNoticeTestFixtures {
 	 * @param array $expected Expected choices data structure
 	 * @param array $actual Actual choices data structure
 	 */
-	function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual ) {
+	function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
+			$message='' ) {
 
 		// The order of the numerically indexed arrays in this data structure
 		// shouldn't matter, so sort all of those by value.
 		ComparisonUtil::deepMultisort( $expected );
 		ComparisonUtil::deepMultisort( $actual );
 
-		$testClass->assertEquals( $expected, $actual );
+		$testClass->assertEquals( $expected, $actual, $message );
 	}
 
 	/**

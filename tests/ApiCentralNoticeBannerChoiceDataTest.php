@@ -27,16 +27,16 @@ class ApiCentralNoticeBannerChoiceDataTest extends ApiTestCase {
 
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
-		foreach ( $testCase['contexts_and_outputs'] as $context_and_output ) {
+		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
 
 			$ret = $this->doApiRequest( array(
 				'action' => 'centralnoticebannerchoicedata',
-				'project' => $context_and_output['context']['project'],
-				'language' => $context_and_output['context']['language']
+				'project' => $contextAndOutput['context']['project'],
+				'language' => $contextAndOutput['context']['language']
 			) );
 
 			$this->cnFixtures->assertChoicesEqual(
-				$this, $context_and_output['choices'], $ret[0]['choices'] );
+				$this, $contextAndOutput['choices'], $ret[0]['choices'], $cAndOName );
 		}
 	}
 }

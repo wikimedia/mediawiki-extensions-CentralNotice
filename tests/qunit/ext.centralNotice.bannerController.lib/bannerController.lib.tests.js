@@ -82,7 +82,7 @@
 				// Test that the banner has any allocation at all. This assertion
 				// makes finding errors friendlier.
 				assert.ok( expectedAllocations.hasOwnProperty( allocatedBanner.name ),
-					'Banner ' + allocatedBanner.name + ' expected');
+					'Allocated banner ' + allocatedBanner.name + ' was expected');
 
 				// Test allocation ammount only up to 3 decimal points because
 				// of innacuracies in real number arithmetic.
