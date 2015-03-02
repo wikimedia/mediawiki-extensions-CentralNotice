@@ -273,12 +273,24 @@
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
 
-			var url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
+			var sampleRate,
+				url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
 
-			if ( mw.centralNotice.onlySampleRI &&
-				( Math.random() > mw.config.get( 'wgCentralNoticeSampleRate' ) ) ) {
-				return;
+			if ( mw.centralNotice.onlySampleRI ) {
+
+				sampleRate = mw.config.get( 'wgCentralNoticeSampleRate' );
+
+				if ( Math.random() > sampleRate ) {
+					return;
+				}
+
+			} else {
+				sampleRate = 1;
 			}
+
+			// Record the sample rate to ensure the resulting data can be
+			// interpreted.
+			$.extend( data, { sampleRate: sampleRate } );
 
 			url.extend( data );
 			(new Image()).src = url.toString();
