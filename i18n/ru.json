@@ -22,7 +22,8 @@
 			"Александр Сигачёв",
 			"Meshkov.a",
 			"Alexandr Efremov",
-			"Gazimagomedov"
+			"Gazimagomedov",
+			"Seunei"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -107,7 +108,7 @@
 	"centralnotice-no-notices-exist": "Нет уведомлений.\nМожно добавить.",
 	"centralnotice-no-templates-translate": "Нет ни одного баннера для правки перевода.",
 	"centralnotice-number-uses": "Используются",
-	"centralnotice-settings": "Рекъезаби",
+	"centralnotice-settings": "Настройки",
 	"centralnotice-edit-template": "Править баннер",
 	"centralnotice-edit-template-summary": "Чтобы создать локализуемое сообщение, заключите дефисную строку в три фигурные скобки, например {{{цитата-джимбо}}}.",
 	"centralnotice-edit-template-magicwords": "«Волшебные слова», предоставленные «примесями» объявления: $1",
