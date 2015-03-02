@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Produce HTML and JSON output for a given banner and context
+ */
 class BannerRenderer {
 	/**
 	 * @var IContextSource $context
@@ -22,6 +25,18 @@ class BannerRenderer {
 
 	protected $debug;
 
+	/**
+	 * Creates a new renderer for a given banner and context
+	 *
+	 * @param IContextSource $context UI context, including language.
+	 *
+	 * @param Banner $banner Banner to be rendered.
+	 *
+	 * @param string $campaignName Which campaign we're serving.  This is
+	 * substituted in for {{{campaign}}} magic word.
+	 *
+	 * @param boolean $debug If false, minify the output.
+	 */
 	function __construct( IContextSource $context, Banner $banner, $campaignName = null, $debug = false ) {
 		$this->context = $context;
 
@@ -36,6 +51,11 @@ class BannerRenderer {
 		// $this->mixinController->registerMagicWord( 'banner', array( $this, 'getBanner' ) );
 	}
 
+	/**
+	 * Produce a link to edit the banner
+	 *
+	 * @return string Edit URL.
+	 */
 	function linkTo() {
 		return Linker::link(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$this->banner->getName()}" ),
@@ -44,7 +64,15 @@ class BannerRenderer {
 		);
 	}
 
-	// TODO: consolidate with above function
+	/**
+	 * Get the edit link for a banner (static version).
+	 *
+	 * TODO: consolidate with above function
+	 *
+	 * @param string $name Banner name.
+	 *
+	 * @return string Edit URL.
+	 */
 	public static function linkToBanner( $name ) {
 		return Linker::link(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$name}" ),
@@ -55,6 +83,8 @@ class BannerRenderer {
 
 	/**
 	 * Render the banner as an html fieldset
+	 *
+	 * @return string HTML fragment
 	 */
 	function previewFieldSet() {
 		global $wgNoticeBannerPreview;
@@ -91,6 +121,8 @@ class BannerRenderer {
 	 * Get the body of the banner, with all transformations applied.
 	 *
 	 * FIXME: "->inLanguage( $context->getLanguage() )" is necessary due to a bug in DerivativeContext
+	 *
+	 * @return string HTML fragment for the banner body.
 	 */
 	function toHtml() {
 		global $wgNoticeUseLanguageConversion;
@@ -109,10 +141,21 @@ class BannerRenderer {
 		return $bannerHtml;
 	}
 
+	/**
+	 * Render any preload javascript for this banner
+	 *
+	 * @return string JS snippet.
+	 */
 	function getPreloadJs() {
 		return $this->substituteMagicWords( $this->getPreloadJsRaw() );
 	}
 
+	/**
+	 * Unrendered blob of preload javascript snippets
+	 *
+	 * This is only used internally, and will be parsed for magic words
+	 * before use.
+	 */
 	function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
 		$bundled = array();
@@ -132,6 +175,14 @@ class BannerRenderer {
 		return implode( "\n", $bundled );
 	}
 
+	/**
+	 * Render any ResourceLoader modules
+	 *
+	 * If the banner includes RL mixins, render the JS (TODO: and CSS) and
+	 * return here.
+	 *
+	 * @return string HTML snippet.
+	 */
 	function getResourceLoaderHtml() {
 		$modules = $this->mixinController->getResourceLoaderModules();
 		if ( $modules ) {
@@ -146,6 +197,15 @@ class BannerRenderer {
 		return "";
 	}
 
+	/**
+	 * Replace magic word placeholders with their value
+	 *
+	 * We rely on $this->renderMagicWord to do the heavy lifting.
+	 *
+	 * @param string $contents Raw contents to be processed.
+	 *
+	 * @return string Rendered contents.
+	 */
 	function substituteMagicWords( $contents ) {
 		return preg_replace_callback(
 			'/{{{([^}:]+)(?:[:]([^}]*))?}}}/',
@@ -154,12 +214,29 @@ class BannerRenderer {
 		);
 	}
 
+	/**
+	 * Get a list of magic words provided or dependened upon by this banner
+	 *
+	 * @return array List of magic word names.
+	 */
 	function getMagicWords() {
 		$words = array( 'banner', 'campaign' );
 		$words = array_merge( $words, $this->mixinController->getMagicWords() );
 		return $words;
 	}
 
+	/**
+	 * Get the value for a magic word
+	 *
+	 * @param array $re_matches Funky PCRE callback param having the form,
+	 *     array(
+	 *         0 => full match, ignored,
+	 *         1 => magic word name,
+	 *         2 => optional arguments to the magic word replacement function
+	 *     );
+	 *
+	 * @return string HTML fragment with the resulting value.
+	 */
 	protected function renderMagicWord( $re_matches ) {
 		$field = $re_matches[1];
 		if ( $field === 'banner' ) {
