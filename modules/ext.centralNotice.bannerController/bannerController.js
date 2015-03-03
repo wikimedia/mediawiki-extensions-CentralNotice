@@ -291,9 +291,15 @@
 			// Record the sample rate to ensure the resulting data can be
 			// interpreted.
 			$.extend( data, { sampleRate: sampleRate } );
-
 			url.extend( data );
-			(new Image()).src = url.toString();
+
+			if ( navigator.sendBeacon ) {
+				navigator.sendBeacon( url.toString() );
+			} else {
+				setTimeout( function () {
+					document.createElement( 'img' ).src = url.toString();
+				}, 0 );
+			}
 		},
 		loadQueryStringVariables: function () {
 			document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g, function ( str, p1, p2 ) {
