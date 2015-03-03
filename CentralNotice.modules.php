@@ -41,6 +41,7 @@ $wgResourceModules[ 'jquery.ui.multiselect' ] = array(
 	),
 	'scripts'       => 'jquery.ui.multiselect/ui.multiselect.js',
 	'styles'        => 'jquery.ui.multiselect/ui.multiselect.css',
+	'position'      => 'top',
 );
 $wgResourceModules[ 'ext.centralNotice.adminUi' ] = array(
 	'localBasePath' => $dir . '/modules',

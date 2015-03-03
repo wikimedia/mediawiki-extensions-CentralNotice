@@ -188,12 +188,8 @@
 			// a random banner.
 			if ( mw.centralNotice.chooseBannerOnClient ) {
 
-				// If the server sent no choices to begin with, set a flag
-				// so record impressions will only send a sample of results
-				if ( mw.cnBannerControllerLib.choiceData.length === 0 ) {
-					mw.centralNotice.onlySampleRI = true;
-
-				} else {
+				// Continue only if the server sent choices
+				if ( mw.cnBannerControllerLib.choiceData.length > 0 ) {
 
 					// If the server did send one or more choices: let the
 					// processing begin!
@@ -203,13 +199,10 @@
 					// the user's logged-in status and device pass this filter.
 					mw.cnBannerControllerLib.filterChoiceData();
 
-					// Again check if there are choices available. If no, set
-					// record impressions to only sample. If yes, continue
-					// processing.
-					if ( mw.cnBannerControllerLib.choiceData.length === 0 ) {
-						mw.centralNotice.onlySampleRI = true;
+					// Again check if there are choices available. This result may
+					// have changed following the above call to filterChoiceData().
+					if ( mw.cnBannerControllerLib.choiceData.length > 0 ) {
 
-					} else {
 						// Do all things bucket. Retrieve or generate buckets for all
 						// the campaigns remaining in choiceData. Then update expiry
 						// dates and remove expired buckets as necessary.
@@ -244,10 +237,11 @@
 					} );
 
 				} else {
-					// Call insertBanner to trigger a call to
-					// Special:RecordImpression to register the empty result.
-					// TODO Refactor and register that the banner wasn't even
-					// fetched.
+					// Call insertBanner and set the onlySampleRI flag to true
+					// to sample empty results and return them via
+					// Special:RecordImpression.
+					// TODO Refactor
+					mw.centralNotice.onlySampleRI = true;
 					mw.centralNotice.insertBanner( false );
 				}
 
@@ -279,12 +273,24 @@
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
 
-			var url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
+			var sampleRate,
+				url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
 
-			if ( mw.centralNotice.onlySampleRI &&
-				( Math.random() > mw.config.get( 'wgCentralNoticeSampleRate' ) ) ) {
-				return;
+			if ( mw.centralNotice.onlySampleRI ) {
+
+				sampleRate = mw.config.get( 'wgCentralNoticeSampleRate' );
+
+				if ( Math.random() > sampleRate ) {
+					return;
+				}
+
+			} else {
+				sampleRate = 1;
 			}
+
+			// Record the sample rate to ensure the resulting data can be
+			// interpreted.
+			$.extend( data, { sampleRate: sampleRate } );
 
 			url.extend( data );
 			(new Image()).src = url.toString();

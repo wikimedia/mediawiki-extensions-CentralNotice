@@ -5,9 +5,11 @@ class CentralNoticeTestFixtures {
 
 	public $spec = array();
 	protected $user;
-	protected $fixtureDeviceId;
+	protected $addedDeviceIds = array();
+	protected $knownDevices = null;
 
-	// Use exactly the api defaults where available
+	// For legacy test that don't use fixture data: use exactly the api defaults
+	// where available
 	static public $defaultCampaign;
 	static public $defaultBanner;
 
@@ -55,10 +57,22 @@ class CentralNoticeTestFixtures {
 	}
 
 	/**
+	 * Get an associative array with data for setting mock global variables
+	 * as appropriate for fixture data.
+	 */
+	function getGlobalsFromFixtureData() {
+		$data = CentralNoticeTestFixtures::allocationsData();
+		return $data['mock_config_values'];
+	}
+
+	/**
 	 * Set up a test case as required for shared JSON data. Process the special
 	 * start_days_from_now and end_days_from_now properties, ensure an empty
 	 * countries property for non-geotargetted campaigns, and add dummy
 	 * banner bodies.
+	 *
+	 * Test classes that call this method should also set MW globals as per
+	 * getGlobalsFromFixtureData().
 	 *
 	 * @param array $testCase A data structure with the test case specification
 	 */
@@ -106,8 +120,8 @@ class CentralNoticeTestFixtures {
 	 * Set campaign start and end times for test case fixtures using the
 	 * start_days_from_now and end_days_from_now properties.
 	 *
-	 * Note: this logic is repeated in client-side tests.
-	 * @see setTestCaseStartEnd() in bannerController.lib.tests.js
+	 * Note: Some of this logic is repeated in client-side tests.
+	 * @see setChoicesStartEnd() in bannerController.lib.tests.js
 	 *
 	 * @param array $testCase A data structure with the test case specification
 	 */
@@ -128,19 +142,21 @@ class CentralNoticeTestFixtures {
 			$campaign['endTs'] = wfTimestamp( TS_MW, $end );
 		}
 
-		foreach ( $testCase['choices'] as &$choice ) {
+		foreach ( $testCase['contexts_and_outputs'] as &$context_and_output ) {
+			foreach ( $context_and_output['choices'] as &$choice ) {
 
-			$choice['start'] = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $choice['start_days_from_now'] );
+				$choice['start'] = CentralNoticeTestFixtures::makeTimestamp(
+						$now, $choice['start_days_from_now'] );
 
-			$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $choice['end_days_from_now'] );
+				$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
+						$now, $choice['end_days_from_now'] );
 
-			// Unset these special properties from choices, for tests that
-			// compare fixture choices to actual choices produced by the code
-			// under test.
-			unset( $choice['start_days_from_now'] );
-			unset( $choice['end_days_from_now'] );
+				// Unset these special properties from choices, for tests that
+				// compare fixture choices to actual choices produced by the code
+				// under test.
+				unset( $choice['start_days_from_now'] );
+				unset( $choice['end_days_from_now'] );
+			}
 		}
 	}
 
@@ -200,6 +216,14 @@ class CentralNoticeTestFixtures {
 	 *  test case specification
 	 */
 	protected function setupTestCase( $testCaseSetup ) {
+
+		// It is expected that when a test case is set up via fixture data,
+		// this global will already have been set via
+		// setupTestCaseFromFixtureData(). Legacy (non-fixture data) tests don't
+		// use this (but may be dependant on non-test config).
+		global $wgNoticeNumberOfBuckets;
+
+		// Needed due to hardcoded default desktop device hack in Banner
 		$this->ensureDesktopDevice();
 
 		foreach ( $testCaseSetup['campaigns'] as $campaign ) {
@@ -223,6 +247,34 @@ class CentralNoticeTestFixtures {
 			if ( isset( $campaign['endTs'] ) ) {
 				Campaign::updateNoticeDate( $campaign['name'],
 					$campaign['startTs'], $campaign['endTs'] );
+			}
+
+			// bucket_count and archived  are also only in test
+			// fixture data, not legacy tests.
+			if ( isset( $campaign['bucket_count'] ) ) {
+
+				$bucket_count = $campaign['bucket_count'];
+
+				if ( $bucket_count < 1 ||
+					$bucket_count > $wgNoticeNumberOfBuckets ) {
+						throw new MWException( 'Bucket count out of range.' );
+				}
+
+				Campaign::setNumericCampaignSetting(
+					$campaign['name'],
+					'buckets',
+					$bucket_count,
+					$wgNoticeNumberOfBuckets + 1,
+					1
+				);
+			}
+
+			if ( isset( $campaign['archived'] ) ) {
+				Campaign::setBooleanCampaignSetting(
+					$campaign['name'],
+					'archived',
+					$campaign['archived'] ? 1 : 0
+				);
 			}
 
 			// autolink and landingPage properties are not relevant to tests set
@@ -250,6 +302,12 @@ class CentralNoticeTestFixtures {
 				$bannerObj = Banner::fromName( $bannerSpec['name'] );
 				
 				if ( isset( $bannerSpec['bucket'] ) ) {
+
+					$bucket = $bannerSpec['bucket'];
+					if ( $bucket < 0 || $bucket > $wgNoticeNumberOfBuckets ) {
+						throw new MWException( 'Bucket out of range' );
+					}
+
 					Campaign::updateBucket(
 						$campaign['name'],
 						$bannerObj->getId(),
@@ -257,7 +315,9 @@ class CentralNoticeTestFixtures {
 				}
 
 				if ( isset( $bannerSpec['devices'] ) ) {
-					$bannerObj->setDevices( $bannerSpec['devices'] );
+					$devices = $bannerSpec['devices'];
+					$this->ensureDevices( $devices );
+					$bannerObj->setDevices( $devices );
 					$bannerObj->save();
 				}
 			}
@@ -278,47 +338,75 @@ class CentralNoticeTestFixtures {
 			}
 		}
 
-		if ( $this->fixtureDeviceId ) {
+		// Remove any devices we added
+		if ( !empty( $this->addedDeviceIds ) ) {
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->delete(
 				'cn_known_devices',
-				array( 'dev_id' => $this->fixtureDeviceId ),
+				array( 'dev_id' => $this->addedDeviceIds ),
 				__METHOD__
 			);
 		}
 	}
 
-	//FIXME review, possibly trim and/or document device-related stuff here
-	protected function getDesktopDevice() {
-		$dbr = CNDatabase::getDb();
+	/**
+	 * Assert that two choices data structures are equal
+	 *
+	 * @param MediaWikiTestCase $testClass
+	 * @param array $expected Expected choices data structure
+	 * @param array $actual Actual choices data structure
+	 */
+	function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
+			$message='' ) {
 
-		$res = $dbr->select(
-			array(
-				 'cn_known_devices'
-			),
-			array(
-				'dev_id',
-				'dev_name'
-			),
-			array(
-				'dev_name' => 'desktop',
-			)
-		);
-		$ids = array();
-		foreach ( $res as $row ) {
-			$ids[] = $row->dev_id;
-		}
-		return $ids;
+		// The order of the numerically indexed arrays in this data structure
+		// shouldn't matter, so sort all of those by value.
+		ComparisonUtil::deepMultisort( $expected );
+		ComparisonUtil::deepMultisort( $actual );
+
+		$testClass->assertEquals( $expected, $actual, $message );
 	}
 
+	/**
+	 * Ensure there is a known device called "desktop". This is a workaround
+	 * for a hack (or maybe a hack for a workaround?) in Banner.
+	 */
 	protected function ensureDesktopDevice() {
-		$ids = $this->getDesktopDevice();
-		if ( !$ids ) {
-			CNDeviceTarget::addDeviceTarget( 'desktop', '{{int:centralnotice-devicetype-desktop}}' );
-			$ids = $this->getDesktopDevice();
-			$this->fixtureDeviceId = $ids[0];
+		$this->ensureDevices( array( 'desktop' ) );
+	}
+
+	/**
+	 * Ensure that among the known devices in the database are all those named
+	 * in $deviceNames.
+	 *
+	 * @param string[] $deviceNames
+	 */
+	protected function ensureDevices( $deviceNames ) {
+
+		if ( !$this->knownDevices ) {
+			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
+		}
+
+		$devicesChanged = false;
+
+		// Add any devices not in the database
+		foreach ( $deviceNames as $deviceName ) {
+			if ( !isset( $this->knownDevices[$deviceName] ) ) {
+
+				// Remember the IDs for teardown
+				$this->addedDeviceIds[] =
+					CNDeviceTarget::addDeviceTarget( $deviceName, $deviceName );
+				$devicesChanged = true;
+			}
+		}
+
+		// If necessary, update in-memory list of available devices
+		if ( $devicesChanged ) {
+			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
 		}
 	}
+
+	// TODO refactor the next three method names
 
 	/**
 	 * Return an array containing arrays containing test cases, as needed for

@@ -11,20 +11,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-
-		$this->setMwGlobals( array(
-			'wgCentralNoticeChooseBannerOnClient' => true,
-			'wgNoticeProject' => 'wikipedia',
-		) );
 		$this->cnFixtures = new CentralNoticeTestFixtures();
-
-		$fauxRequest = new FauxRequest( array(
-			'modules' => 'ext.centralNotice.bannerChoiceData',
-			'skin' => 'fallback',
-			'user' => false,
-			'uselang' => 'en' // Note: this is a temporary measure 
-		) );
-		$this->rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
 	}
 
 	protected function tearDown() {
@@ -38,17 +25,24 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 		return new TestingCNBannerChoiceDataResourceLoaderModule();
 	}
 
-	protected function addSomeBanners() {
-		$fixtures = CentralNoticeTestFixtures::allocationsData();
-		$completeness = $fixtures['test_cases']['completeness'];
-		$this->cnFixtures->setupTestCaseFromFixtureData( $completeness );
-	}
-
 	public function testDisabledByConfig() {
-		$this->setMwGlobals( 'wgCentralNoticeChooseBannerOnClient', false );
 
-		$this->addSomeBanners();
-		$script = $this->getProvider()->getScript( $this->rlContext );
+		// Disable choices on client but make sure a method for obtaining choices
+		// is configured (to be sure that if the test fails it's due to a
+		// failure of the choices-on-client config).
+		$this->setMwGlobals( array(
+			'wgCentralNoticeChooseBannerOnClient' => false,
+			'wgCentralDBname' => wfWikiID()
+		) );
+
+		$fauxRequest = new FauxRequest( array(
+			'modules' => 'ext.centralNotice.bannerChoiceData',
+			'skin' => 'fallback',
+			'uselang' => 'en' // dummy value, just in case it makes a difference
+		) );
+
+		$rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
+		$script = $this->getProvider()->getScript( $rlContext );
 
 		$this->assertEmpty( $script );
 	}
@@ -61,11 +55,25 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
-		$choices = $this->getProvider()->getChoicesForTesting( $this->rlContext );
-		$this->assertTrue( ComparisonUtil::assertSuperset( $choices, $testCase['choices'] ) );
+		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
 
-		if ( empty( $testCase['choices'] ) ) {
-			$this->assertEmpty( $choices );
+			$this->setMwGlobals( array(
+					'wgCentralNoticeChooseBannerOnClient' => true,
+					'wgNoticeProject' => $contextAndOutput['context']['project']
+			) );
+
+			$fauxRequest = new FauxRequest( array(
+					'modules' => 'ext.centralNotice.bannerChoiceData',
+					'skin' => 'fallback',
+					'lang' => $contextAndOutput['context']['language']
+			) );
+
+			$rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
+
+			$choices = $this->getProvider()->getChoicesForTesting( $rlContext );
+
+			$this->cnFixtures->assertChoicesEqual(
+				$this, $contextAndOutput['choices'], $choices, $cAndOName );
 		}
 	}
 }

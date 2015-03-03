@@ -35,6 +35,20 @@ class ComparisonUtil {
 	}
 
 	/**
+	 * If $a is a numerically indexed array, sort it by value. Traverse the
+	 * array recursively and do the same for each value.
+	 */
+	public static function deepMultisort( array &$a ) {
+		array_multisort( $a );
+
+		foreach ( $a as &$v ) {
+			if ( is_array ( $v ) ) {
+				ComparisonUtil::deepMultisort( $v );
+			}
+		}
+	}
+
+	/**
 	 * Match banner allocations arrays, using lenient floating-point comparison
 	 */
 	public static function assertEqualAllocations( $allocations, $expected ) {

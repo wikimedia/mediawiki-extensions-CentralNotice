@@ -151,4 +151,15 @@ class BannerAllocationCalculator {
 		}
 		return $banners;
 	}
+
+	static public function getLoggedInStatusFromString( $s ) {
+		switch ( $s ) {
+			case 'anonymous':
+				return BannerAllocationCalculator::ANONYMOUS;
+			case 'logged_in':
+				return BannerAllocationCalculator::LOGGED_IN;
+			default:
+				throw new MWException( 'Invalid logged-in status.' );
+		}
+	}
 }
