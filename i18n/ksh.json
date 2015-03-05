@@ -180,6 +180,8 @@
 	"centralnotice-start-time": "De Aanfangszick (UTC)",
 	"centralnotice-end-date": "Et Dattum fum Engk",
 	"centralnotice-end-time": "De UTC Zick för et Engk",
+	"apihelp-centralnoticeallocations-param-country": "Et Land, öm dernoh ze söhke.",
+	"apihelp-centralnoticeallocations-param-language": "De schprohch, öm dernoh ze söhke.",
 	"apihelp-query+centralnoticelogs-param-user": "Metmaacher_Nahme (kann fott bliive)",
 	"apihelp-query+centralnoticelogs-example-1": "De Logböhscher zeije"
 }
