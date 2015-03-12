@@ -125,11 +125,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$bannerJson = FormatJson::encode( $bannerArray );
 
 		$preload = $bannerRenderer->getPreloadJs();
-		if ( $preload ) {
-			$preload = "mw.centralNotice.bannerData.preload = function() { {$preload} };";
-		}
 
-		$bannerJs = $preload . "mw.centralNotice.insertBanner( {$bannerJson} );";
+		$bannerJs = "{$preload}\nmw.centralNotice.insertBanner( {$bannerJson} );";
 
 		return $bannerJs;
 	}

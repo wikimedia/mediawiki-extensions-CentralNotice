@@ -98,7 +98,9 @@
 		/**
 		 * Data that will be returned with the RecordImpression request
 		 */
-		impressionData: {},
+		impressionData: {
+			result: 'show'
+		},
 
 		/**
 		 * Turn on sampling for calls to Special:RecordImpression.
@@ -410,14 +412,14 @@
 		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
-		var impressionData = mw.centralNotice.impressionData = {
+		var impressionData = $.extend( mw.centralNotice.impressionData, {
 			country: mw.centralNotice.data.country,
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			project: mw.config.get( 'wgNoticeProject' ),
 			db: mw.config.get( 'wgDBname' ),
 			anonymous: mw.centralNotice.data.anonymous,
 			device: mw.centralNotice.data.device
-		};
+		} );
 
 		// If we're not choosing banners on the client, there's a global bucket
 		// we can send in.
@@ -425,11 +427,9 @@
 			impressionData.bucket = mw.centralNotice.data.bucket;
 		}
 
-		var hideBanner = false;
-
 		if ( !bannerJson ) {
 			// There was no banner returned from the server
-			hideBanner = true;
+			impressionData.result = 'hide';
 			impressionData.reason = 'empty';
 
 		} else {
@@ -462,14 +462,9 @@
 			// Get the banner type for more queryness
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
 
-			if ( typeof mw.centralNotice.bannerData.preload === 'function'
-				&& !mw.centralNotice.bannerData.preload()
-			) {
-				hideBanner = true;
-				if ( !impressionData.reason ) {
-					impressionData.reason = 'preload';
-				}
-			} else if ( mw.centralNotice.data.testing === false ) { /* And we want to see what we're testing! :) */
+			// Do some builtin hide cookie things, unless we're testing.
+			// TODO: Push this into a mixin.
+			if ( impressionData.result !== 'hide' && mw.centralNotice.data.testing === false ) {
 				cookieName = 'centralnotice_hide_' + mw.centralNotice.data.category;
 				cookieVal = $.cookie( cookieName );
 				durations = mw.config.get( 'wgNoticeCookieDurations' );
@@ -481,7 +476,7 @@
 					$.cookie( cookieName, null, { path: '/' } );
 				} else if ( cookieVal === 'hide' ) {
 					// We'll hide the banner because of a legacy hide cookie.
-					hideBanner = true;
+					impressionData.result = 'hide';
 					impressionData.reason = 'cookie';
 					// Or 'donate'? Legacy 'close' cookies are gone by now
 				} else if ( cookieVal !== null && cookieVal.indexOf( '{' ) === 0 ) {
@@ -490,12 +485,13 @@
 						&& now < parsedCookie.created + durations[parsedCookie.reason]
 					) {
 						// We'll hide the banner because of a cookie with a reason
-						hideBanner = true;
+						impressionData.result = 'hide';
 						impressionData.reason = parsedCookie.reason;
 					}
 				}
 			}
-			if ( !hideBanner ) {
+
+			if ( impressionData.result === 'show' ) {
 				// Not hidden yet, inject the banner
 				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;
 				$( 'div#centralNotice' )
@@ -535,7 +531,7 @@
 				// possible without some rework of how the analytics scripts work.
 				// ~~ as of 2012-11-27
 				if ( !bannerShown ) {
-					hideBanner = true;
+					impressionData.result = 'hide';
 					// alterImpressionData should set a reason, but we'll set a
 					// default if it didn't
 					if ( !impressionData.reason ) {
@@ -544,8 +540,6 @@
 				}
 			}
 		}
-
-		impressionData.result = hideBanner ? 'hide' : 'show';
 
 		if ( !mw.centralNotice.data.testing ) {
 			mw.centralNotice.recordImpression( impressionData );
