@@ -215,7 +215,7 @@
 	"centralnotice-devicetype-android": "Dropdown selector label for identifying clients on the mobile site that identify as running Android OS",
 	"centralnotice-devicetype-ipad": "Dropdown selector label for identifying clients on the mobile site that identify using an iOS device that is not an iPhone",
 	"centralnotice-devicetype-iphone": "Dropdown selector label for identifying clients on the mobile site that identify using a device that identies as an iPhone",
-	"centralnotice-devicetype-unknown": "Dropdown selector label for identifying clients on the mobile site that is not iOS or android",
+	"centralnotice-devicetype-unknown": "Dropdown selector label for identifying clients on the mobile site that are not iOS or Android",
 	"centralnotice-all": "Used when a list contains all possible elements.\n{{Identical|All}}",
 	"centralnotice-generic-error": "Used as generic error message.",
 	"centralnotice-banner-name-error": "Used as error message when creating a banner.",
