@@ -38,12 +38,17 @@ function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
 		   $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
 		   $wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules,
-		   $wgAvailableRights, $wgGroupPermissions;
+		   $wgAvailableRights, $wgGroupPermissions, $wgCentralDBname, $wgDBname;
 
 	// If $wgCentralPagePath hasn't been set, set it to the local script path.
 	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
 	if ( $wgCentralPagePath === false ) {
 		$wgCentralPagePath = $wgScript;
+	}
+
+	// Default for a standalone wiki is that the CN tables are in the main database.
+	if ( $wgCentralDBname === false ) {
+		$wgCentralDBname = $wgDBname;
 	}
 
 	$dir = __DIR__ . '/';

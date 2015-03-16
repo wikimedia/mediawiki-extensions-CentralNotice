@@ -32,7 +32,6 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 		// failure of the choices-on-client config).
 		$this->setMwGlobals( array(
 			'wgCentralNoticeChooseBannerOnClient' => false,
-			'wgCentralDBname' => wfWikiID()
 		) );
 
 		$fauxRequest = new FauxRequest( array(
@@ -51,8 +50,6 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
 	public function testChoicesFromDb( $name, $testCase ) {
-		$this->setMwGlobals( 'wgCentralDBname', wfWikiID() );
-
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {

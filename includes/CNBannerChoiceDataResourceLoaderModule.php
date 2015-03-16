@@ -35,14 +35,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 		// Fetch the data via the DB or the API. Decide which to use based
 		// on whether the appropriate global variables are set.
-		// If something's amiss, we warn and return an empty array, but don't
-		// bring everything to a standstill.
-
-		if ( $wgCentralDBname ) {
-			 $choices = $this->getFromDb( $project, $language );
-
-		} else if ( $wgCentralNoticeApiUrl ) {
-
+		if ( $wgCentralNoticeApiUrl ) {
 			$choices = $this->getFromApi( $project, $language );
 
 			if ( !$choices ) {
@@ -51,11 +44,8 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 				return array();
 			}
-
 		} else {
-			// No way to get the choices?
-			wfLogWarning( 'No route to fetch banner choice data configured.' );
-			return array();
+			 $choices = $this->getFromDb( $project, $language );
 		}
 
 		return $choices;

@@ -60,7 +60,8 @@ $wgNoticeProjects = array(
 // Set to false for wikis that only use a sister site for the control.
 $wgNoticeInfrastructure = true;
 
-// The name of the database which hosts the centralized campaign data
+// The name of the database which hosts the centralized campaign data.  If false,
+// we will default to using the primary database.
 $wgCentralDBname = false;
 
 // URL where BannerRandom is hosted, where false will default to the
@@ -87,7 +88,8 @@ $wgCentralPagePath = false;
 // For example 'http://meta.wikimedia.org/api.php'
 // This must be set if you enable the selection of banners on the client and
 // you don't have direct access to the infrastructure database (see
-// $wgCentralDBname).
+// $wgCentralDBname).  Note that when this is set, it will override your
+// database settings.
 $wgCentralNoticeApiUrl = false;
 
 // Enable the new mechanism for making the banner selection on the client
