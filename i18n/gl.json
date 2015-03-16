@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Luckas",
-			"Toliño"
+			"Toliño",
+			"Banjo"
 		]
 	},
 	"centralnotice": "Administración do aviso central",
@@ -138,6 +139,7 @@
 	"centralnotice-timestamp": "Data e hora",
 	"centralnotice-user": "Usuario",
 	"centralnotice-action": "Acción",
+	"centralnotice-change-summary-heading": "Resumo",
 	"centralnotice-action-created": "creación",
 	"centralnotice-action-modified": "modificación",
 	"centralnotice-action-removed": "eliminación",
@@ -185,6 +187,8 @@
 	"centralnotice-bucket": "Selección",
 	"centralnotice-bucket-letter": "Selección \"$1\"",
 	"centralnotice-devicetype-desktop": "Ordenador de escritorio",
+	"centralnotice-devicetype-android": "Sistema operativo Android",
+	"centralnotice-devicetype-iphone": "Tódalas versións de iPhone",
 	"centralnotice-all": "Todos",
 	"centralnotice-generic-error": "Non ten os permisos necesarios para levar a cabo a acción solicitada ou a acción non é válida.",
 	"centralnotice-banner-name-error": "O nome de cartel achegado non é válido. Os nomes válidos só conteñen caracteres alfanuméricos e barras baixas.",
@@ -200,6 +204,7 @@
 	"centralnotice-archive-banner-title": "Quere arquivar {{PLURAL:$1|un cartel|os carteis}}?",
 	"centralnotice-archive-banner-confirm": "A acción de arquivar expande todos os modelos incluídos e establece a protección da páxina. Non é unha acción fácil de reverter.",
 	"centralnotice-archive-banner-cancel": "Cancelar",
+	"centralnotice-change-summary-label": "Resumo",
 	"centralnotice-archive-show": "Mostrar as campañas arquivadas",
 	"centralnotice-archive-campaign": "Arquivar",
 	"centralnotice-archive-campaign-title": "Quere arquivar {{PLURAL:$1|a campaña|as campañas}}?",
@@ -218,5 +223,6 @@
 	"centralnotice-start-date": "Data de inicio (UTC)",
 	"centralnotice-start-time": "Hora de inicio (UTC)",
 	"centralnotice-end-date": "Data de fin (UTC)",
-	"centralnotice-end-time": "Hora de fin (UTC)"
+	"centralnotice-end-time": "Hora de fin (UTC)",
+	"apihelp-query+centralnoticelogs-param-user": "Nome de usuario (opcional)."
 }
