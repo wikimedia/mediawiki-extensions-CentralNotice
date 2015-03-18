@@ -59,7 +59,7 @@
 	"centralnotice-notice-doesnt-exist": "Кампања не постоји.",
 	"centralnotice-remove-notice-doesnt-exist": "Кампања не постоји.\nНема шта да се обрише.",
 	"centralnotice-banner-doesnt-exist": "Плакат не постоји.",
-	"centralnotice-template-still-bound": "Шаблон је још везан за обавештење. Не уклања се.",
+	"centralnotice-template-still-bound": "Банер „$1“ није могуће уклонити зато што је још увек везан за кампању. \nНе уклања се.",
 	"centralnotice-template-body": "Тело шаблона:",
 	"centralnotice-day": "Дан",
 	"centralnotice-year": "Година",
