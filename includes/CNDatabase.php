@@ -27,9 +27,9 @@ class CNDatabase {
 
 		if ( $target === null ) {
 			if ( $wgUser->isAllowed( 'centralnotice-admin' ) ) {
-				$target = DB_SLAVE;
-			} else {
 				$target = DB_MASTER;
+			} else {
+				$target = DB_SLAVE;
 			}
 		}
 
