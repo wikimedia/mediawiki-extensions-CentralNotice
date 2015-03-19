@@ -93,6 +93,7 @@
 	"centralnotice-edit-template-magicwords": "Palabras máxicas achegadas polos mixins do modelo: $1",
 	"centralnotice-message": "Mensaxe",
 	"centralnotice-message-not-set": "Mensaxe sen fixar",
+	"centralnotice-campaigns-using-banner": "Campañas que empregan este banner",
 	"centralnotice-clone": "Clonar",
 	"centralnotice-clone-notice": "Crear unha copia do modelo",
 	"centralnotice-clone-name": "Nome:",
@@ -134,6 +135,7 @@
 	"centralnotice-percentage": "Porcentaxe",
 	"centralnotice-documentwrite-error": "document.write() non se pode empregar nos carteis.\nOlle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis información.",
 	"centralnotice-preferred": "Prioridade",
+	"centralnotice-archived": "Arquivado",
 	"centralnotice-logs": "Rexistros",
 	"centralnotice-view-logs": "Ver os rexistros",
 	"centralnotice-timestamp": "Data e hora",
@@ -224,5 +226,9 @@
 	"centralnotice-start-time": "Hora de inicio (UTC)",
 	"centralnotice-end-date": "Data de fin (UTC)",
 	"centralnotice-end-time": "Hora de fin (UTC)",
-	"apihelp-query+centralnoticelogs-param-user": "Nome de usuario (opcional)."
+	"centralnotice-banner-not-found-title": "Banner non atopado",
+	"centralnotice-banner-not-found-contents": "Non existe un banner con ese nome exacto.",
+	"hidebanners": "Agochar banners",
+	"apihelp-query+centralnoticelogs-param-user": "Nome de usuario (opcional).",
+	"apihelp-query+centralnoticelogs-example-1": "Amosar os rexistros"
 }
