@@ -148,6 +148,25 @@ class CNDatabasePatcher {
 					 $base . '/patch-assignments_index.sql', true
 				)
 			);
+			$updater->addExtensionUpdate(
+				array(
+					 'addTable', 'cn_notice_mixins',
+					 $base . '/patch-notice-mixins.sql', true
+				)
+			);
+			$updater->addExtensionUpdate(
+				array(
+					 'addTable', 'cn_notice_mixin_params',
+					 $base . '/patch-notice-mixins-params.sql', true
+				)
+			);
+			// This adds both notlog_begin_mixins and notlog_end_mixins fields
+			$updater->addExtensionUpdate(
+				array(
+					 'addField', 'cn_notice_log', 'notlog_begin_mixins',
+					 $base . '/patch-notice-mixins-log.sql', true
+				)
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			// Add the entire schema...
 			$updater->addExtensionUpdate(
