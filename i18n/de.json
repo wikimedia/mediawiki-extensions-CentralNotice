@@ -197,6 +197,8 @@
 	"centralnotice-buckets": "Benutzerumgebung",
 	"centralnotice-bucket": "Umgebung",
 	"centralnotice-bucket-letter": "Umgebung „$1“",
+	"centralnotice-banner-overflowing-bucket": "Die Umgebung „$1“ hat zu viele zugeordnete Vorlagen.",
+	"centralnotice-banner-empty-bucket": "Nicht alle Umgebungen haben eine zugeordnete Vorlage.",
 	"centralnotice-devicetype-desktop": "Desktoprechner",
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Alle Geräte, die als iPads, aber nicht als iPhones identifiziert wurden.",
