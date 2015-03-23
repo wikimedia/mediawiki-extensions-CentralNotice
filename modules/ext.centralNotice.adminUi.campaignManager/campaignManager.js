@@ -23,7 +23,15 @@
  * @file
  */
 ( function ( $, mw ) {
-	var step_size = 1;
+	var step_size = 1,
+		mixinDefs = mw.config.get( 'wgCentralNoticeCampaignMixins' ),
+		mixinParamsTemplate = mw.template.get(
+			'ext.centralNotice.adminUi.campaignManager',
+			'campaignMixinParamControls.mustache'
+		),
+		$mixinCheckboxes = $( 'input.noticeMixinCheck' ),
+		$submitBtn = $( '#noticeDetailSubmit' );
+
 	$( '#centralnotice-throttle-amount' ).slider( {
 		range: "min",
 		min: 0,
@@ -68,6 +76,191 @@
 		}
 	}
 	$( 'select#buckets' ).change( updateBuckets );
+
+	/**
+	 * Hide or display campaign mixin parameter controls based on checkbox state.
+	 * The mixin name and any existing parameter values are received as data
+	 * properties on the checkbox.
+	 */
+	function showOrHideCampaignMixinControls() {
+
+		var $checkBox = $( this ),
+			mixinName = $checkBox.data( 'mixin-name' ),
+			paramValues,
+			$paramControlSet = $( '#' + mixinParamControlsId( mixinName ) ),
+			$paramControls;
+
+		if ( $checkBox.prop( 'checked' ) ) {
+
+			// If the controls don't exist yet, create them
+			if ( $paramControlSet.length === 0 ) {
+
+				paramValues = $checkBox.data( 'mixin-param-values' );
+
+				$paramControlSet = makeMixinParamControlSet(
+					mixinName,
+					paramValues
+				);
+
+				$checkBox.next( 'label' ).after( $paramControlSet );
+
+				// Hook up handler for verification
+				$paramControls = $paramControlSet.find( 'input' );
+				$paramControls.on(
+					'keyup keydown change mouseup cut paste focus blur',
+					$.debounce( 100, verifyParamControl )
+				);
+
+			} else {
+				$paramControlSet.show();
+			}
+		} else if ( $paramControlSet.length !== 0 ) {
+			$paramControlSet.hide();
+		}
+	}
+
+	function mixinParamControlsId( mixinName ) {
+		return 'notice-mixin-' + mixinName + '-paramControls';
+	}
+
+	function makeNoticeMixinControlName( mixinName, paramName ) {
+		return 'notice-mixin-' + mixinName + '-' + paramName;
+	}
+
+	function makeMixinParamControlSet( mixinName, paramValues ) {
+
+		var paramDefs = mixinDefs[mixinName].parameters,
+			templateVars = {
+				divId: mixinParamControlsId( mixinName ),
+				params: []
+			};
+
+		$.each( paramDefs, function ( paramName, paramDef ) {
+
+			var paramTemplateVars =  {
+				labelMsg: mw.message( paramDef.labelMsg ).text(),
+				inputName: makeNoticeMixinControlName( mixinName, paramName ),
+				dataType: paramDef.type
+			};
+
+			switch ( paramDef.type ) {
+				case 'string':
+					paramTemplateVars.inputType = 'text';
+						paramTemplateVars.inputSizeFlagAndVar = {
+							inputSize: 30
+						};
+					break;
+
+				case 'integer':
+				case 'float':
+					paramTemplateVars.inputType = 'text';
+						paramTemplateVars.inputSizeFlagAndVar = {
+							inputSize: 5
+						};
+					break;
+
+				case 'boolean':
+					paramTemplateVars.inputType = 'checkbox';
+					paramTemplateVars.inputValue = paramName;
+					break;
+
+				default:
+					throw 'Invalid parameter definition type: ' + paramDef.type;
+			}
+
+			// If param values were provided, fill the form up with those
+			if ( paramValues ) {
+				switch ( paramDef.type ) {
+					case 'string':
+					case 'integer':
+					case 'float':
+						paramTemplateVars.inputValue = paramValues[paramName];
+						break;
+
+					case 'boolean':
+						if ( paramValues[paramName] ) {
+							paramTemplateVars.checkedFlagAndVar = {
+								checked: 'checked'
+							};
+						}
+						break;
+
+					default:
+						throw 'Invalid parameter definition type: ' + paramDef.type;
+				}
+
+			// No param values? Set some defaults
+			} else {
+				switch ( paramDef.type ) {
+					case 'string':
+						paramTemplateVars.inputValue = '';
+						break;
+
+					case 'integer':
+					case 'float':
+						paramTemplateVars.inputValue = '0';
+						break;
+
+					case 'boolean':
+						break;
+
+					default:
+						throw 'Invalid parameter definition type: ' + paramDef.type;
+				}
+			}
+
+			templateVars.params.push( paramTemplateVars );
+		} );
+
+		return $( mixinParamsTemplate.render( templateVars ) );
+	}
+
+	function verifyParamControl() {
+		var $input = $( this ),
+			val = $input.val();
+
+		switch( $input.data( 'data-type' ) ) {
+		case 'integer':
+			if ( $.trim( val ).match( /^-?\d+$/ ) ) {
+				setValidationError( false, $input );
+			} else {
+				setValidationError(
+					true, $input, 'centralnotice-notice-mixins-int-required' );
+			}
+			break;
+
+		case 'float':
+			if ( $.trim( val ).match( /^-?\d+\.?\d*$/ ) ) {
+				setValidationError( false, $input );
+			} else {
+				setValidationError(
+					true, $input, 'centralnotice-notice-mixins-float-required' );
+			}
+			break;
+		}
+	}
+
+	function setValidationError( error, $input, msgKey ) {
+
+		var $errorBox = $input.closest( 'p' ).prevAll( '.errorbox' );
+
+		if ( error ) {
+			$submitBtn.attr( 'disabled', 'disabled' );
+
+			if ( $errorBox.length === 0 ) {
+				$errorBox = $( '<p class="errorbox" />' );
+				$errorBox.text( mw.message( msgKey ).text() );
+				$input.closest( 'p' ).before( $errorBox );
+			}
+
+		} else {
+			$submitBtn.removeAttr( 'disabled' );
+			$errorBox.remove();
+		}
+	}
+
+	$mixinCheckboxes.each( showOrHideCampaignMixinControls );
+	$mixinCheckboxes.change( showOrHideCampaignMixinControls );
 
 	updateThrottle();
 	updateWeightColumn();

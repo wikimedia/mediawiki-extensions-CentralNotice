@@ -47,6 +47,9 @@
 	"centralnotice-balanced": "Give all banners equal weight",
 	"centralnotice-weight": "Weight",
 	"centralnotice-locked": "Locked",
+	"centralnotice-notice-mixins-fieldset": "Extra campaign features",
+	"centralnotice-notice-mixins-int-required": "Integer required",
+	"centralnotice-notice-mixins-float-required": "Floating point number required",
 	"centralnotice-notice": "Campaign",
 	"centralnotice-notice-heading": "Campaign: $1",
 	"centralnotice-notices": "Campaigns",
@@ -159,6 +162,7 @@
 	"centralnotice-autolink": "Automatic link creation",
 	"centralnotice-landingpages": "Landing pages",
 	"centralnotice-controller_mixin": "Controller mixins",
+	"centralnotice-campaign-mixins": "Campaign mixins",
 	"centralnotice-category": "Banner category",
 	"centralnotice-banner-content": "Banner content",
 	"centralnotice-banner-content-changed": "Changed",
@@ -257,5 +261,10 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Offset into result set (optional).",
 	"apihelp-query+centralnoticelogs-param-start": "Start time of range (optional).",
 	"apihelp-query+centralnoticelogs-param-end": "End time of range (optional).",
-	"apihelp-query+centralnoticelogs-example-1": "Show logs"
+	"apihelp-query+centralnoticelogs-example-1": "Show logs",
+	"centralnotice-placeholder-campaign-mixin-name": "Placeholder mixin",
+	"centralnotice-placeholder-campaign-mixin-string-placeholder": "String placeholder",
+	"centralnotice-placeholder-campaign-mixin-integer-placeholder": "Integer placeholder",
+	"centralnotice-placeholder-campaign-mixin-float-placeholder": "Float placeholder",
+	"centralnotice-placeholder-campaign-mixin-boolean-placeholder": "Boolean placeholder"
 }

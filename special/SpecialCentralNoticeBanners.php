@@ -413,7 +413,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	protected function generateBannerEditForm() {
-		global $wgNoticeMixins, $wgNoticeUseTranslateExtension, $wgNoticeFundraisingUrl, $wgLanguageCode;
+		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgNoticeFundraisingUrl, $wgLanguageCode;
 
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
@@ -506,7 +506,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$formDescriptor[ 'landing-pages' ][ 'readonly' ] = true;
 		}
 
-		$mixinNames = array_keys( $wgNoticeMixins );
+		$mixinNames = array_keys( $wgCentralNoticeBannerMixins );
 		$availableMixins = array_combine( $mixinNames, $mixinNames );
 		$selectedMixins = array_keys( $banner->getMixins() );
 		$formDescriptor['mixins'] = array(

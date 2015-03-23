@@ -211,7 +211,6 @@ class SpecialBannerAllocation extends CentralNotice {
 		// Iterate through each possible device type and get allocation information
 		$devices = CNDeviceTarget::getAvailableDevices();
 		foreach( $devices as $deviceId => $deviceData ) {
-
 			$htmlOut .= Html::openElement(
 				'div',
 				array(

@@ -268,6 +268,13 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testSetChange( 'languages', $row );
 		$details .= $this->testSetChange( 'countries', $row );
 		$details .= $this->testBooleanChange( 'archived', $row );
+
+		$details .= $this->testTextChange(
+			'campaign-mixins',
+			$row->notlog_end_mixins,
+			$row->notlog_begin_mixins
+		);
+
 		if ( $row->notlog_begin_banners !== $row->notlog_end_banners ) {
 			// Show changes to banner weights and assignment
 			$beginBannersObject = json_decode( $row->notlog_begin_banners, true );
@@ -452,6 +459,24 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 					$endMessage
 				)->text()
 			)->text() . "<br />";
+		}
+		return $result;
+	}
+
+	protected function testTextChange( $param, $newval, $oldval ) {
+
+		if ( $oldval !== $newval ) {
+			// Give grep a chance to find the usages: centralnotice-landingpages, centralnotice-prioritylangs,
+			// centralnotice-controller_mixin, centralnotice-category
+			$result .= $this->msg(
+				'centralnotice-log-label',
+				$this->msg( 'centralnotice-' . $param )->text(),
+				$this->msg(
+					'centralnotice-changed',
+					$oldval,
+					$newval
+				)->text()
+			)->text() . "<br/>";
 		}
 		return $result;
 	}

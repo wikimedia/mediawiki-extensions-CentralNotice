@@ -151,6 +151,8 @@ class CentralNoticeTestFixtures {
 				$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
 						$now, $choice['end_days_from_now'] );
 
+				$choice['mixins'] = array();
+
 				// Unset these special properties from choices, for tests that
 				// compare fixture choices to actual choices produced by the code
 				// under test.

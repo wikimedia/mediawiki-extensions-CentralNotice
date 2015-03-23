@@ -1,5 +1,21 @@
 ( function ( $, mw ) {
 
+	var Mixin;
+
+	/**
+	 * Class for campaign-associated mixins. Access via mw.cnBannerControllerLib.Mixin.
+	 */
+	Mixin = function( name ) {
+		this.name = name;
+	};
+
+	Mixin.prototype.setPreBannerHandler = function( handlerFunc ) {
+		this.preBannerHandler = handlerFunc;
+	};
+
+	Mixin.prototype.setPostBannerHandler = function( handlerFunc ) {
+		this.postBannerHandler = handlerFunc;
+	};
 
 	/**
 	 * Method used for choosing a campaign or banner from an array of
@@ -50,8 +66,8 @@
 		 */
 		CAMPAIGN_STALENESS_LEEWAY: 15,
 
+		campaignMixins: {},
 		choiceData: null,
-
 		/**
 		 * Once a campaign is chosen, this will receive a copy of the data for
 		 * that campaign. (This is different from mw.centralNotice.data.campaign,
@@ -60,6 +76,36 @@
 		campaign: null,
 		bucketsByCampaign: null,
 		possibleBanners: null,
+		/**
+		 * Base class for campaign-associated mixins (defined above).
+		 */
+		Mixin: Mixin,
+
+		/**
+		 * Register a campaign-associated mixin to make it available for campaigns
+		 * to use it. Should be called for every campaign-associated mixin.
+		 * @param mixin mw.cnBannerControllerLib.Mixin
+		 */
+		registerCampaginMixin: function( mixin ) {
+			this.campaignMixins[mixin.name] = mixin;
+		},
+
+		/**
+		 * Run pre-banner hook handlers registered by mixins for the selected
+		 * campaign. Campaign data (as provided by choiceData) should already
+		 * be set in this.campaign by campaign this.chooseCampaign(). Note that
+		 * we don't test for a null campaign (a possibility if there are empty
+		 * allocation blocks).
+		 */
+		runMixinsPreBannerHooks: function() {
+			var self = this;
+			$.each( this.campaign.mixins, function( mixinName, mixinParams ) {
+				var handler = self.campaignMixins[mixinName].preBannerHandler;
+				if ( typeof handler === 'function' ) {
+					handler( mixinParams );
+				}
+			} );
+		},
 
 		/**
 		 * Set possible campaign and banner choices. Called by
@@ -287,7 +333,6 @@
 					bucket.end = bucketEndDate.getTime() / 1000;
 					bucketsModified = true;
 				}
-
 			} else {
 
 				// We always use wgNoticeNumberOfControllerBuckets, and

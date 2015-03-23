@@ -76,16 +76,16 @@ class BannerChoiceDataProvider {
 			array(),
 			array(
 				'assignments' => array(
-						'INNER JOIN', 'notices.not_id = assignments.not_id'
+					'INNER JOIN', 'notices.not_id = assignments.not_id'
 				),
 				'templates' => array(
-						'INNER JOIN', 'assignments.tmp_id = templates.tmp_id'
+					'INNER JOIN', 'assignments.tmp_id = templates.tmp_id'
 				),
 				'notice_projects' => array(
-						'INNER JOIN', 'notices.not_id = notice_projects.np_notice_id'
+					'INNER JOIN', 'notices.not_id = notice_projects.np_notice_id'
 				),
 				'notice_languages' => array(
-						'INNER JOIN', 'notices.not_id = notice_languages.nl_notice_id'
+					'INNER JOIN', 'notices.not_id = notice_languages.nl_notice_id'
 				)
 			)
 		);
@@ -178,6 +178,14 @@ class BannerChoiceDataProvider {
 		// Note that PHP creates an empty array for countries as needed.
 		foreach ( $dbRows as $dbRow ) {
 			$choices[$dbRow->not_id]['countries'][] = $dbRow->nc_country;
+		}
+
+		// Add campaign-asociated mixins to the data structure
+		foreach ( $choices as &$campaignInfo ) {
+
+			//Get info for enabled mixins for this campaign
+			$campaignInfo['mixins'] =
+				Campaign::getCampaignMixins( $campaignInfo['name'], true );
 		}
 
 		// Fetch the devices

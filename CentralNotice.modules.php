@@ -150,10 +150,24 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 		'ext.centralNotice.adminUi',
 		'jquery.ui.dialog',
 		'jquery.ui.slider',
+		'mediawiki.template.mustache',
 	),
 	'scripts'       => 'ext.centralNotice.adminUi.campaignManager/campaignManager.js',
 	'styles'        => 'ext.centralNotice.adminUi.campaignManager/campaignManager.css',
-	'messages'      => array( )
+	'templates'     => array(
+		'campaignMixinParamControls.mustache' => 'ext.centralNotice.adminUi.campaignManager/campaignMixinParamControls.mustache'
+	),
+	'messages'      => array(
+		'centralnotice-notice-mixins-int-required',
+		'centralnotice-notice-mixins-float-required',
+
+		// Messages used for campaign mixin parameter labels (labelMsg).
+		// See CentralNotice.php.
+		'centralnotice-placeholder-campaign-mixin-string-placeholder',
+		'centralnotice-placeholder-campaign-mixin-integer-placeholder',
+		'centralnotice-placeholder-campaign-mixin-float-placeholder',
+		'centralnotice-placeholder-campaign-mixin-boolean-placeholder'
+	)
 );
 
 $wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array(
@@ -162,6 +176,18 @@ $wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array(
 	'position'      => 'top',
 	'targets'       => 'mobile',
 	'scripts'       => array( 'ext.centralNotice.bannerController/mobile/device.js' )
+);
+
+// This mixin module is just to make campaign mixins smoke testable. It'll be
+// removed before merging the campaign_mixnis feature branch to master.
+$wgResourceModules[ 'ext.centralNotice.placeholderCampaignMixin' ] = array(
+	'localBasePath' => $dir . '/modules/ext.centralNotice.placeholderCampaignMixin',
+	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.placeholderCampaignMixin',
+	'scripts'       => 'placeholderCampaignMixin.js',
+	// campaign mixin modules need this dependency, to be sure it is loaded first
+	'dependencies'  => array(
+		'ext.centralNotice.bannerController.lib',
+	)
 );
 $wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = array_merge_recursive(
 	array(

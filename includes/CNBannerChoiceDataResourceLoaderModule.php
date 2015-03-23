@@ -120,9 +120,42 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 	/**
 	 * @see ResourceLoaderModule::getDependencies()
+	 * Note: requires mediawiki-core change-id @Iee61e5b52
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return array( 'ext.centralNotice.bannerController.lib' );
+		global $wgCentralNoticeCampaignMixins;
+
+		// If this method is called with no context argument (the old method
+		// signature) emit a warning, but don't stop the show.
+		if ( !$context ) {
+			 wfLogWarning( '$context is required for campaign mixins.' );
+			 return array();
+		}
+
+		$dependencies = array();
+
+		// Get the choices (possible campaigns and banners) for this user
+		$choices = $this->getChoices( $context );
+
+		// Run through the choices to get all needed mixin RL modules
+		foreach ( $choices as $choice ) {
+			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
+
+				if ( !$wgCentralNoticeCampaignMixins[$mixinName]['module'] ) {
+					throw new MWException(
+						"No module for found campaign mixin {$mixinName}" );
+				}
+
+				$dependencies[] =
+					$wgCentralNoticeCampaignMixins[$mixinName]['module'];
+			}
+		}
+
+		$dependencies[] = 'ext.centralNotice.bannerController.lib';
+
+		// Since campaigns targeting the user could have the same mixin RL
+		// modules, remove any duplicates.
+		return array_unique( $dependencies );
 	}
 
 	/**

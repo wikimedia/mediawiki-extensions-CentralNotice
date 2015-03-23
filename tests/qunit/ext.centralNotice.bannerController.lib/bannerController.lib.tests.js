@@ -87,6 +87,7 @@
 			// The methods we're testing operate on lib.choiceData. That's where
 			// we'll look for the results to test.
 			// TODO: make separate tests for each method
+			lib.setChoiceData( choices );
 			lib.filterChoiceData();
 			lib.calculateCampaignAllocations();
 

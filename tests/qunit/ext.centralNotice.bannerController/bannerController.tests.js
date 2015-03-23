@@ -29,7 +29,8 @@
 						display_anon: true,
 						display_account: true
 					}
-				]
+				],
+				mixins: {}
 			},
 			{
 				name: 'campaign2',
@@ -49,7 +50,8 @@
 						display_anon: true,
 						display_account: true
 					}
-				]
+				],
+				mixins: {}
 			}
 		],
 		choiceData1Campaign2Banners = [
@@ -80,7 +82,8 @@
 						display_anon: true,
 						display_account: true
 					}
-				]
+				],
+				mixins: {}
 			}
 		];
 

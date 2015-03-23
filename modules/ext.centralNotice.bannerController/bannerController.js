@@ -130,15 +130,12 @@
 
 		/** -- Functions! -- **/
 		loadBanner: function () {
-
 			// If we're forcing a banner for testing, just load that.
 			if ( mw.centralNotice.data.getVars.banner ) {
-
 				// Sending an empty string as the campaign name will make the
 				// server skip checks on campaign validity.
 				mw.centralNotice.loadTestingBanner(
 					mw.centralNotice.data.getVars.banner, '' );
-
 			} else {
 				mw.centralNotice.loadRandomBanner();
 			}
@@ -255,6 +252,9 @@
 			if ( !mw.cnBannerControllerLib.isAnyCampaignChosen() ) {
 				return;
 			}
+
+			// Run campaign mixins pre-banner hooks for this campaign
+			mw.cnBannerControllerLib.runMixinsPreBannerHooks();
 
 			// Do all things bucket. Retrieve or generate a bucket for this
 			// campaign. Then, update expiry dates and remove expired buckets as

@@ -52,6 +52,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			'countries' => 'AF, US',
 			'archived' => 0,
 			'throttle' => 100,
+			'mixins' => '[]',
 		);
 
 		//get User

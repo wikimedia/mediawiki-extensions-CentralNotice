@@ -234,9 +234,44 @@ $wgNoticeTabifyPages = array(
 	),
 );
 
-// Available banner mixins, usually provided by separate extensions.
+// Available banner mixins
 // See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
-$wgNoticeMixins = array();
+$wgCentralNoticeBannerMixins = array();
+
+// Available campaign mixins. Mixins must declare at lesat a module and an i18n
+// key for their name. Allowed parameter types are 'string', 'integer',
+// 'float' and 'boolean'.
+
+// Note: i18n messages for parameter labels (labelMsg) should be added to the
+// ext.centralNotice.adminUi.campaignManager module in CentralNotice.modules.php
+
+// Note: this campaign mixin is just to make campaign mixins smoke testable.
+// It'll be removed before merging the campaign_mixnis feature branch to master.
+
+$wgCentralNoticeCampaignMixins = array(
+	'placeholderCampaignMixin' => array(
+		'module' => 'ext.centralNotice.placeholderCampaignMixin',
+		'nameMsg' => 'centralnotice-placeholder-campaign-mixin-name',
+		'parameters' => array(
+			'stringPlaceholder' => array(
+				'type' => 'string',
+				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-string-placeholder'
+			),
+			'integerPlaceholder' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-integer-placeholder'
+			),
+			'floatPlaceholder' => array(
+				'type' => 'float',
+				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-float-placeholder'
+			),
+			'booleanPlaceholder' => array(
+				'type' => 'boolean',
+				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-boolean-placeholder'
+			)
+		)
+	)
+);
 
 /* Setup */
 require_once $dir . '/CentralNotice.hooks.php';

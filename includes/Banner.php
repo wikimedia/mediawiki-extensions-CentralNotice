@@ -565,7 +565,7 @@ class Banner {
 	//<editor-fold desc="Mixin management">
 	/**
 	 * @return array Keys are names of enabled mixins; valeus are mixin params.
-	 * @see $wgNoticeMixins
+	 * @see $wgCentralNoticeBannerMixins
 	 */
 	public function getMixins() {
 		$this->populateMixinData();
@@ -576,13 +576,13 @@ class Banner {
 	 * Set the banner mixins to enable.
 	 *
 	 * @param array $mixins Names of mixins to enable on this banner. Valid values
-	 * come from @see $wgNoticeMixins
+	 * come from @see $wgCentralNoticeBannerMixins
 	 *
 	 * @throws RangeException
 	 * @return $this
 	 */
 	function setMixins( $mixins ) {
-		global $wgNoticeMixins;
+		global $wgCentralNoticeBannerMixins;
 
 		$this->populateMixinData();
 
@@ -595,10 +595,10 @@ class Banner {
 
 		$this->mixins = array();
 		foreach ( $mixins as $mixin ) {
-			if ( !array_key_exists( $mixin, $wgNoticeMixins ) ) {
+			if ( !array_key_exists( $mixin, $wgCentralNoticeBannerMixins ) ) {
 				throw new RangeException( "Mixin does not exist: {$mixin}" );
 			}
-			$this->mixins[$mixin] = $wgNoticeMixins[$mixin];
+			$this->mixins[$mixin] = $wgCentralNoticeBannerMixins[$mixin];
 		}
 
 		return $this;
@@ -608,7 +608,7 @@ class Banner {
 	 * Populates mixin data from the cn_template_mixins table.
 	 */
 	protected function populateMixinData() {
-		global $wgNoticeMixins;
+		global $wgCentralNoticeBannerMixins;
 
 		if ( $this->dirtyFlags['mixins'] !== null ) {
 			return;
@@ -625,7 +625,7 @@ class Banner {
 
 		$this->mixins = array();
 		foreach ( $result as $row ) {
-			if ( !array_key_exists( $row->mixin_name, $wgNoticeMixins ) ) {
+			if ( !array_key_exists( $row->mixin_name, $wgCentralNoticeBannerMixins ) ) {
 				// We only want to warn here otherwise we'd never be able to
 				// edit the banner to fix the issue! The editor should warn
 				// when a deprecated mixin is being used; but also when we
@@ -633,7 +633,7 @@ class Banner {
 				// it!
 				wfLogWarning( "Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}" );
 			}
-			$this->mixins[$row->mixin_name] = $wgNoticeMixins[$row->mixin_name];
+			$this->mixins[$row->mixin_name] = $wgCentralNoticeBannerMixins[$row->mixin_name];
 		}
 
 		$this->markMixinDataDirty( false );
