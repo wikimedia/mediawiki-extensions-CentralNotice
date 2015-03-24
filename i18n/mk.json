@@ -190,6 +190,8 @@
 	"centralnotice-buckets": "Приказ по кориснички групи",
 	"centralnotice-bucket": "Група",
 	"centralnotice-bucket-letter": "Група „$1“",
+	"centralnotice-banner-overflowing-bucket": "Групата „$1“ има премногу доделени плакати.",
+	"centralnotice-banner-empty-bucket": "Не сите групи имаат доделено плакати.",
 	"centralnotice-devicetype-desktop": "Столен сметач",
 	"centralnotice-devicetype-android": "Android",
 	"centralnotice-devicetype-ipad": "Сите уреди утврдени како iPad, но не и iPhone",

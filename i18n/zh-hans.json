@@ -213,6 +213,8 @@
 	"centralnotice-buckets": "用户群",
 	"centralnotice-bucket": "群组",
 	"centralnotice-bucket-letter": "群组“$1”",
+	"centralnotice-banner-overflowing-bucket": "桶“$1”分配了太多的横幅。",
+	"centralnotice-banner-empty-bucket": "不是所有桶都有分配一个横幅。",
 	"centralnotice-devicetype-desktop": "桌面计算机",
 	"centralnotice-devicetype-android": "安卓系统",
 	"centralnotice-devicetype-ipad": "所有设备被识别为iPad但不是iPhone",

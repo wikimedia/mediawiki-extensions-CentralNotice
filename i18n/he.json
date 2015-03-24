@@ -195,6 +195,8 @@
 	"centralnotice-buckets": "הקבצת משתמשים (bucketing)",
 	"centralnotice-bucket": "הקבצה",
 	"centralnotice-bucket-letter": "ההקבצה \"$1\"",
+	"centralnotice-banner-overflowing-bucket": "להקבצה \"$1\" מוקצות יותר מדי כרזות.",
+	"centralnotice-banner-empty-bucket": "לא לכל ההקבצות יש כזרה מוקצית.",
 	"centralnotice-devicetype-desktop": "מחשב שולחני",
 	"centralnotice-devicetype-android": "מערכת ההפעלה אנדרואיד",
 	"centralnotice-devicetype-ipad": "כל המכשירים שמזוהים בתור אייפאד, אבל לא מכשירי אייפון",

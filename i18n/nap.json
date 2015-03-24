@@ -189,6 +189,8 @@
 	"centralnotice-buckets": "Accucchiamiente 'utente",
 	"centralnotice-bucket": "Accucchiamiento",
 	"centralnotice-bucket-letter": "Accucchiamiento \"$1\"",
+	"centralnotice-banner-overflowing-bucket": "'O sicchio \"$1\" tene troppe banner ncuollo.",
+	"centralnotice-banner-empty-bucket": "Nun tutte 'e banner se so' mis' ncuoll'a cocche sicchio.",
 	"centralnotice-devicetype-desktop": "Computer 'e tavola",
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Tutte l'aparicchie s'identificano comme iPad ma nun comme iPhone",

@@ -32,7 +32,7 @@
 	"centralnoticelogs": "Title of Special:CentralNoticeLogs page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-logs.)\n{{Identical|Central notice admin}}",
 	"right-centralnotice-admin": "{{doc-right|centralnotice-admin}}",
 	"action-centralnotice-admin": "{{doc-action|centralnotice-admin}}",
-	"centralnotice-desc": "The [[mw:Extension:CentralNotice|Central Notice extension]] allows a notice to be posted centrally to several wikis.\n{{desc|name=Central Notice|url=http://www.mediawiki.org/wiki/Extension:CentralNotice}}",
+	"centralnotice-desc": "The [[mw:Extension:CentralNotice|Central Notice extension]] allows a notice to be posted centrally to several wikis.\n{{desc|name=Central Notice|url=https://www.mediawiki.org/wiki/Extension:CentralNotice}}",
 	"centralnotice-summary": "Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]",
 	"centralnotice-query": "Unused at this time.",
 	"centralnotice-notice-name": "Used as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Campaign name}}",

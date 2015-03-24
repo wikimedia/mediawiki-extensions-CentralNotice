@@ -210,6 +210,8 @@
 	"centralnotice-buckets": "Écopage utilisateur",
 	"centralnotice-bucket": "Godet",
 	"centralnotice-bucket-letter": "Godet \"$1\"",
+	"centralnotice-banner-overflowing-bucket": "Le godet « $1 » a trop de bannières qui lui sont assignées.",
+	"centralnotice-banner-empty-bucket": "Aucun godet n’a de bannière assignée.",
 	"centralnotice-devicetype-desktop": "Ordinateur de bureau",
 	"centralnotice-devicetype-android": "OS Android",
 	"centralnotice-devicetype-ipad": "Tous les appareils identifiés comme iPads mais pas comme iPhones",
