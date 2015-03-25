@@ -171,6 +171,7 @@
 	"centralnotice-country-a2": "Onbikannd / övver ene Sattellet",
 	"centralnotice-country-o1": "Onbikannd / uß söns enem Land",
 	"centralnotice-country-unknown": "Onbikannd / nit op de Ääd zohzeoodene",
+	"centralnotice-banner-overflowing-bucket": "Bucket \"$1\" has too many banners assigned.<!-- Knubbel? Pöngel? (Blohme)Ämmer? -->",
 	"centralnotice-devicetype-desktop": "Ene Kompjuhter om Desch",
 	"centralnotice-devicetype-android": "Et Bedriefssüßtehm <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„nohjemaate Minsch“\">Android </i>",
 	"centralnotice-devicetype-ipad": "Alle Apparahte, di mer als <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPad</i> ävver nit als <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">iPhone</i> äkänne kann",
