@@ -365,7 +365,7 @@ class SpecialBannerAllocation extends CentralNotice {
 						htmlspecialchars( $banner['campaign'] ),
 						array(),
 						array(
-							'method' => 'listNoticeDetail',
+							'subaction' => 'noticeDetail',
 							'notice' => $banner['campaign']
 						)
 					)

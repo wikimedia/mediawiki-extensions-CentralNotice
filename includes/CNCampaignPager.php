@@ -182,7 +182,7 @@ class CNCampaignPager extends TablePager {
 					htmlspecialchars( $value ),
 					array(),
 					array(
-						'method' => 'listNoticeDetail',
+						'subaction' => 'noticeDetail',
 						'notice' => $value
 					)
 				);
