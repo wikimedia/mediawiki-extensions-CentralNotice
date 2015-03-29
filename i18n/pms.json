@@ -188,6 +188,8 @@
 	"centralnotice-buckets": "Sëstin dl'utent",
 	"centralnotice-bucket": "Sëstin",
 	"centralnotice-bucket-letter": "Sëstin \"$1\"",
+	"centralnotice-banner-overflowing-bucket": "Ël contnidor $1 a l'ha tròpi tilèt assignà.",
+	"centralnotice-banner-empty-bucket": "Nen tuti ij contnidor a l'han un tilèt assignà.",
 	"centralnotice-devicetype-desktop": "Ordinator da scrivanìa",
 	"centralnotice-devicetype-android": "SO Android",
 	"centralnotice-devicetype-ipad": "Tuti j'angign identificà tanme iPads ma nen tanme iPhones",
