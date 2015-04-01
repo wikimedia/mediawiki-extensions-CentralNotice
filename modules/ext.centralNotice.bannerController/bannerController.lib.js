@@ -8,6 +8,7 @@
 	mw.cnBannerControllerLib = {
 
 		BUCKET_COOKIE_NAME: 'centralnotice_buckets_by_campaign',
+		CAMPAIGN_STALENESS_LEEWAY: 15, // Minutes leeway for checking stale choice data
 
 		choiceData: null,
 		bucketsByCampaign: null,
@@ -217,17 +218,39 @@
 		/**
 		 * Filter choiceData on the user's country, logged-in status and device.
 		 * Campaigns that don't target the user's country or have no banners for
-		 * their logged-in status and device will be removed. We operate on
-		 * this.choiceData.
+		 * their logged-in status and device will be removed.
+		 *
+		 * We also check for campaigns that are have already ended, which might
+		 * happen due to incorrect caching of choiceData between us and the user.
+		 * If that happens we just toss everything out because one stale campaign
+		 * spoils the basket. TODO: Log when this happens.
+		 *
+		 * We operate on this.choiceData.
 		 */
 		filterChoiceData: function() {
 
 			var i, campaign, j, banner, keepCampaign,
-				filteredChoiceData = [];
+				filteredChoiceData = [],
+				now = new Date(),
+				campaignEndDateWLeeway;
 
 			for ( i = 0; i < this.choiceData.length; i++ ) {
+
 				campaign = this.choiceData[i];
 				keepCampaign = false;
+
+				// Check choice data freshness
+				campaignEndDateWLeeway = new Date();
+				campaignEndDateWLeeway.setTime(
+					( campaign.end * 1000  ) +
+					( this.CAMPAIGN_STALENESS_LEEWAY * 60000 )
+				);
+
+				// Quick bow-out if the data is stale
+				if ( campaignEndDateWLeeway < now ) {
+					this.choiceData = [];
+					return;
+				}
 
 				// Filter for country if geotargeted
 				if ( campaign.geotargeted &&
