@@ -84,16 +84,16 @@ $specialPageAliases['de'] = array(
 
 /** Zazaki (Zazaki) */
 $specialPageAliases['diq'] = array(
-	'CentralNotice' => array( 'MerkeziXeberdaren' ),
-	'CentralNoticeBanners' => array( 'MerkeziTebliğéAfişan' ),
-	'CentralNoticeLogs' => array( 'MerkeziİlanéRocekan' ),
+	'CentralNotice' => array( 'MerkezêXeberdaren' ),
+	'CentralNoticeBanners' => array( 'MerkezÊTebliğêAfişan' ),
+	'CentralNoticeLogs' => array( 'MerkezêİlanêRocekan' ),
 	'CNReporter' => array( 'CNRaportor' ),
-	'NoticeTemplate' => array( 'ŞablonéXeberdaren' ),
-	'GlobalAllocation' => array( 'GlobalTahsis' ),
-	'BannerAllocation' => array( 'TehsiséAfişan' ),
-	'BannerController' => array( 'KontrolkaréAfişan' ),
-	'BannerLoader' => array( 'BarkerdenéAfişan' ),
-	'BannerRandom' => array( 'RaştameyéBaner' ),
+	'NoticeTemplate' => array( 'ŞablonêXeberdaren' ),
+	'GlobalAllocation' => array( 'TehsisoGlover' ),
+	'BannerAllocation' => array( 'TehsisêAfişan' ),
+	'BannerController' => array( 'KontrolkarêAfişan' ),
+	'BannerLoader' => array( 'BarkerdoğêAfişan' ),
+	'BannerRandom' => array( 'AfişoRastameye' ),
 	'RecordImpression' => array( 'TepıştekVinayış' ),
 	'HideBanners' => array( 'AfişanBınımne' ),
 );
