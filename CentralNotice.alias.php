@@ -250,6 +250,11 @@ $specialPageAliases['lb'] = array(
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
+/** لوری (لوری) */
+$specialPageAliases['lrc'] = array(
+	'CentralNotice' => array( 'ویرداری_مینجایی' ),
+);
+
 /** Malagasy (Malagasy) */
 $specialPageAliases['mg'] = array(
 	'CentralNotice' => array( 'Ivom-pampandrenesana', 'Ivompampandrenesana' ),

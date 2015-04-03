@@ -248,5 +248,7 @@
 	"centralnotice-start-time": "Hora de inicio (UTC)",
 	"centralnotice-end-date": "Fecha de finalización (UTC)",
 	"centralnotice-end-time": "Hora de finalización (UTC)",
-	"hidebanners": "Ocultar pancartas"
+	"hidebanners": "Ocultar pancartas",
+	"apihelp-query+centralnoticelogs-param-user": "Nombre de usuario (opcional).",
+	"apihelp-query+centralnoticelogs-example-1": "Mostrar registros"
 }

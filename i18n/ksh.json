@@ -141,6 +141,7 @@
 	"centralnotice-no-assignments": "Kein Banner_Schablohne zohjedeilt",
 	"centralnotice-talk-link": "klaafe",
 	"centralnotice-user-links": "$1&nbsp;($2)",
+	"centralnotice-log-label": "<span class=\"cn-log-label\">$1:</span> $2",
 	"centralnotice-campaign-settings": "Enshtällunge för di Kampannje",
 	"centralnotice-banner-settings": "Enschtällunge för de Banner_Schablohne",
 	"centralnotice-anon": "Aanzeije bei nameloose Medmaacher",
