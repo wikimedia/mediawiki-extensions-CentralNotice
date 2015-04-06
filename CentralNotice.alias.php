@@ -61,6 +61,22 @@ $specialPageAliases['as'] = array(
 	'NoticeTemplate' => array( 'জাননী_সাঁচ' ),
 );
 
+/** Western Balochi (بلوچی رخشانی) */
+$specialPageAliases['bgn'] = array(
+	'CentralNotice' => array( 'مرکزین_جار_یا_ئیلان' ),
+	'CentralNoticeBanners' => array( 'مرکزین_ئیلانی_بیراک_ئان' ),
+	'CentralNoticeLogs' => array( 'مرکزین_ئیلانی_سیاهه_ئان' ),
+	'CNReporter' => array( 'مرکزین_ئیلانی_راپور_دهوک' ),
+	'NoticeTemplate' => array( 'ئیلامیه_ئی_تراشوان' ),
+	'GlobalAllocation' => array( 'سراسرین_تخسیس' ),
+	'BannerAllocation' => array( 'نشانی_جاگه' ),
+	'BannerController' => array( 'نشانی_کنترول' ),
+	'BannerLoader' => array( 'نشانی_بُرز_کورتین' ),
+	'BannerRandom' => array( 'تسادوپین_نشان' ),
+	'RecordImpression' => array( 'اهساس_ئی_سبت_کورتین' ),
+	'HideBanners' => array( 'نشان_ئانی_چیهر_کورتین' ),
+);
+
 /** Breton (brezhoneg) */
 $specialPageAliases['br'] = array(
 	'HideBanners' => array( 'KuzhatBanniel' ),
