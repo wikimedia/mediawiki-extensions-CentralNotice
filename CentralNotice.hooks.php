@@ -388,7 +388,6 @@ function efCentralNoticeUnitTests( &$files ) {
 }
 
 /**
- * Place CentralNotice ResourceLoader modules onto mobile pages.
  * ResourceLoaderTestModules hook handler
  * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
  *
@@ -444,8 +443,7 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 }
 
 /**
- * EnableMobileModules callback for placing the CN resourceloader
- * modules onto mobile pages.
+ * Place CentralNotice ResourceLoader modules onto mobile pages.
  *
  * @param Skin $skin
  * @param array $modules
