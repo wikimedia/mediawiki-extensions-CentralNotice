@@ -269,6 +269,16 @@ $specialPageAliases['lb'] = array(
 /** لوری (لوری) */
 $specialPageAliases['lrc'] = array(
 	'CentralNotice' => array( 'ویرداری_مینجایی' ),
+	'CentralNoticeBanners' => array( 'بیرقیا_وارسکار_مینجایی' ),
+	'CentralNoticeLogs' => array( 'پهرستنومه_یا_وارسکار_مینجایی' ),
+	'CNReporter' => array( 'گزارشتکار_سی_ان' ),
+	'NoticeTemplate' => array( 'چوئه_وارسکار' ),
+	'GlobalAllocation' => array( 'گزینشت_کاری_جهونی' ),
+	'BannerAllocation' => array( 'گزینشت_کاری_بیرق' ),
+	'BannerController' => array( 'وارسکار_بیرق' ),
+	'BannerLoader' => array( 'بیرق_وادار' ),
+	'BannerRandom' => array( 'بیرق_بختکی' ),
+	'HideBanners' => array( 'نهوکردن_بیرقیا' ),
 );
 
 /** Malagasy (Malagasy) */
