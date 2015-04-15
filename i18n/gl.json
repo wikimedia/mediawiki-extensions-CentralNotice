@@ -195,6 +195,7 @@
 	"centralnotice-devicetype-android": "Sistema operativo Android",
 	"centralnotice-devicetype-ipad": "Todos os dispositivos identificados como iPads pero non iPhones",
 	"centralnotice-devicetype-iphone": "Tódalas versións de iPhone",
+	"centralnotice-devicetype-unknown": "Dispositivos no sitio móbil que non son iPhones, iPads ou Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Selector lóxico])",
 	"centralnotice-all": "Todos",
 	"centralnotice-generic-error": "Non ten os permisos necesarios para levar a cabo a acción solicitada ou a acción non é válida.",
 	"centralnotice-banner-name-error": "O nome de cartel achegado non é válido. Os nomes válidos só conteñen caracteres alfanuméricos e barras baixas.",
