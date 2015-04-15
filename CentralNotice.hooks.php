@@ -103,6 +103,7 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
 	$wgAutoloadClasses['LanguageSelectHeaderElement'] = $specialDir . 'SpecialCentralNoticeBanners.php';
 	$wgAutoloadClasses['MissingRequiredParamsException'] = $specialDir . 'SpecialBannerLoader.php';
+	$wgAutoloadClasses[ 'StaleCampaignException' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'MixinController' ] = $includeDir . 'MixinController.php';
 	$wgAutoloadClasses['MixinNotFoundException'] = $includeDir . 'MixinController.php';
 

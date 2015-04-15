@@ -8,7 +8,12 @@
 	mw.cnBannerControllerLib = {
 
 		BUCKET_COOKIE_NAME: 'centralnotice_buckets_by_campaign',
-		CAMPAIGN_STALENESS_LEEWAY: 15, // Minutes leeway for checking stale choice data
+
+		/**
+		 * Minutes leeway for checking stale choice data. Should be the same
+		 * as SpecialBannerLoader:CAMPAIGN_STALENESS_LEEWAY.
+		 */
+		CAMPAIGN_STALENESS_LEEWAY: 15,
 
 		choiceData: null,
 		bucketsByCampaign: null,

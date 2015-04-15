@@ -127,9 +127,15 @@
 
 		/** -- Functions! -- **/
 		loadBanner: function () {
+
+			// If we're forcing a banner for testing, just load that.
 			if ( mw.centralNotice.data.getVars.banner ) {
-				// If we're forcing one banner
-				mw.centralNotice.loadTestingBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
+
+				// Sending an empty string as the campaign name will make the
+				// server skip checks on campaign validity.
+				mw.centralNotice.loadTestingBanner(
+					mw.centralNotice.data.getVars.banner, '' );
+
 			} else {
 				mw.centralNotice.loadRandomBanner();
 			}
