@@ -32,7 +32,6 @@
  * - They have a concept of 'messages' which are translatable strings marked
  *   out by {{{name}}} in the banner body.
  *
- * @see BannerChooser
  * @see BannerMessage
  * @see BannerRenderer
  * @see BannerMixin
@@ -1375,7 +1374,7 @@ class Banner {
 		$banner['landing_pages'] = explode( ", ", $row->landing_pages );
 
 		//XXX
-		$banner['device'] = "desktop";
+		$banner['devices'] = array( "desktop" );
 		return $banner;
 	}
 
