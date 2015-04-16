@@ -71,9 +71,6 @@ label[for=mw-input-wpsummary],
 #mw-htmlform-banner-list .mw-label {
 	display: none;
 }
-tr.mw-centralnotice-row-allocation-calculator {
-	display: none;
-}
 
 /* --- Archival --- */
 .cn-archived-item {
