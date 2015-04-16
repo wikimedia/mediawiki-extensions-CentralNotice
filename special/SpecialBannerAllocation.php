@@ -258,14 +258,14 @@ class SpecialBannerAllocation extends CentralNotice {
 				$label .= ' -- ' . $this->msg( 'centralnotice-bucket-letter' )->
 					rawParams( chr( $target['bucket'] + 65 ) )->text();
 
-				$provider_banners = BannerAllocationCalculator::filterAndTransformBanners(
+				$banners = BannerAllocationCalculator::filterAndTransformBanners(
 					$choice_data,
 					$status,
 					$device_data['header'],
 					intval( $target['bucket'] )
 				);
-				$provider_banners = BannerAllocationCalculator::calculateAllocations( $provider_banners );
-				$htmlOut .= $this->getTable( $label, $provider_banners );
+				$banners = BannerAllocationCalculator::calculateAllocations( $banners );
+				$htmlOut .= $this->getTable( $label, $banners );
 			}
 
 			$htmlOut .= Html::closeElement( 'div' );
@@ -280,16 +280,16 @@ class SpecialBannerAllocation extends CentralNotice {
 	/**
 	 * Generate the HTML for an allocation table
 	 * @param $type string The title for the table
-	 * @param $providerBanners array The banners as allocated by BannerAllocationCalculator
+	 * @param $banners array The banners as allocated by BannerAllocationCalculator
 	 * @return string HTML for the table
 	 */
-	public function getTable( $type, $providerBanners ) {
+	public function getTable( $type, $banners ) {
 		$htmlOut = Html::openElement( 'table',
 			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
 		);
 		$htmlOut .= Html::element( 'h4', array(), $type );
 
-		if (count($providerBanners) > 0) {
+		if ( count( $banners ) > 0 ) {
 			$htmlOut .= Html::openElement( 'tr' );
 			$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
 				$this->msg( 'centralnotice-percentage' )->text() );
@@ -299,14 +299,14 @@ class SpecialBannerAllocation extends CentralNotice {
 				$this->msg( 'centralnotice-notice' )->text() );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}
-		$htmlOut .= $this->createRows( $providerBanners, 'mw-centralnotice-row-allocation-calculator' );
+		$htmlOut .= $this->createRows( $banners );
 
 		$htmlOut .= Html::closeElement( 'table' );
 
 		return $htmlOut;
 	}
 
-	public function createRows( $banners, $rowClass ) {
+	public function createRows( $banners ) {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
 		if (count($banners) > 0) {
@@ -314,7 +314,7 @@ class SpecialBannerAllocation extends CentralNotice {
 				$percentage = sprintf( "%0.2f", round( $banner['allocation'] * 100, 2 ) );
 
 				// Row begin
-				$htmlOut .= Html::openElement( 'tr', array( 'class'=>'mw-sp-centralnotice-allocationrow ' . $rowClass ) );
+				$htmlOut .= Html::openElement( 'tr', array( 'class' => 'mw-sp-centralnotice-allocationrow' ) );
 
 				// Percentage
 				$htmlOut .= Html::openElement( 'td', array( 'align' => 'right' ) );
@@ -354,9 +354,11 @@ class SpecialBannerAllocation extends CentralNotice {
 			}
 
 		} else {
-			$htmlOut .= Html::openElement('tr', array( 'class' => $rowClass ) );
-			$htmlOut .= Html::openElement('td');
+			$htmlOut .= Html::openElement( 'tr' );
+			$htmlOut .= Html::openElement( 'td' );
 			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->text() );
+			$htmlOut .= Html::closeElement( 'td' );
+			$htmlOut .= Html::closeElement( 'tr' );
 		}
 		return $htmlOut;
 	}
