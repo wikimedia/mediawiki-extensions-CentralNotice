@@ -236,6 +236,8 @@
 	"centralnotice-banner-not-found-title": "Banner non atopado",
 	"centralnotice-banner-not-found-contents": "Non existe un banner con ese nome exacto.",
 	"hidebanners": "Agochar banners",
+	"centralnotice-specialhidebanners-p3p": "Algúns navegadores requiren unha política P3P compacta para fixar as cookies en certas situacións. Pero actualmente non está dispoñible unha política compacta. Por favor, consulte a política de privacidade lexible do sitio.",
+	"apihelp-centralnoticeallocations-description": "Obter as localizacións dos anuncios servidos polo CentralNotice para todos os tipos de usuarios baixo o filtro parametrizado.\n\nIsto é unha chamada JSON únicamente.",
 	"apihelp-centralnoticeallocations-param-project": "Proxecto para o que obter as asignacións.",
 	"apihelp-centralnoticeallocations-param-country": "O país a filtrar.",
 	"apihelp-centralnoticeallocations-param-language": "A lingua a filtar.",
