@@ -151,10 +151,6 @@
 				banner: bannerName,
 				campaign: campaign,
 				uselang: mw.config.get( 'wgUserLanguage' ),
-				db: mw.config.get( 'wgDBname' ),
-				project: mw.config.get( 'wgNoticeProject' ),
-				country: mw.centralNotice.data.country,
-				device: mw.centralNotice.data.device,
 				debug: mw.centralNotice.data.getVars.debug
 			};
 
@@ -180,15 +176,10 @@
 
 				// A banner was chosen! Let's fetch it.
 
-				// TODO remove unneeded params
 				fetchBannerQueryParams = {
 					banner: mw.centralNotice.data.banner,
 					campaign: mw.centralNotice.data.campaign,
 					uselang: mw.config.get( 'wgUserLanguage' ),
-					project: mw.config.get( 'wgNoticeProject' ),
-					anonymous: mw.config.get( 'wgUserName' ) === null,
-					country: mw.centralNotice.data.country,
-					device: mw.centralNotice.data.device,
 					debug: mw.centralNotice.data.getVars.debug
 				};
 
