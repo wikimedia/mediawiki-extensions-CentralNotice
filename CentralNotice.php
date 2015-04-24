@@ -74,10 +74,6 @@ $wgCentralNoticeSampleRate = 1 / 100;
 // for example '//meta.wikimedia.org'. This is used for DNS prefetching.
 $wgCentralHost = false;
 
-// The script path on the wiki that hosts the CentralNotice infrastructure
-// For example 'http://meta.wikimedia.org/w/index.php'
-$wgCentralPagePath = false;
-
 // The API path on the wiki that hosts the CentralNotice infrastructure
 // For example 'http://meta.wikimedia.org/api.php'
 // This must be set if you enable the selection of banners on the client and
@@ -87,7 +83,7 @@ $wgCentralPagePath = false;
 $wgCentralNoticeApiUrl = false;
 
 // URL for BannerLoader, for requests to fetch a banner that is already
-// known (using the banner URL param). If false, it will default to
+// known (using the "banner" URL param). If false, it will default to
 // Special:BannerLoader on the machine serving ResourceLoader requests.
 $wgCentralSelectedBannerDispatcher = false;
 

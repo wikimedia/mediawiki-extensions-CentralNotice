@@ -36,15 +36,9 @@ $wgHooks[ 'SkinTemplateNavigation::SpecialPage' ][ ] = array( 'CentralNotice::ad
  */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
-		   $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
+		   $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgScript,
 		   $wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules,
 		   $wgAvailableRights, $wgGroupPermissions, $wgCentralDBname, $wgDBname;
-
-	// If $wgCentralPagePath hasn't been set, set it to the local script path.
-	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
-	if ( $wgCentralPagePath === false ) {
-		$wgCentralPagePath = $wgScript;
-	}
 
 	// Default for a standalone wiki is that the CN tables are in the main database.
 	if ( $wgCentralDBname === false ) {
@@ -312,7 +306,7 @@ function efCentralNoticeDisplay( &$notice ) {
  * @return bool
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
-	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
+	global $wgNoticeFundraisingUrl, $wgContLang, $wgNoticeXXCountries,
 		   $wgNoticeInfrastructure, $wgNoticeCloseButton,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
@@ -339,13 +333,12 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$mc = MobileContext::singleton();
 		if ( $mc->shouldDisplayMobileView() ) {
 			$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
-			$wgCentralPagePath = $mc->getMobileUrl( $wgCentralPagePath );
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
+			$wgCentralSelectedBannerDispatcher = $mc->getMobileUrl( $wgCentralSelectedBannerDispatcher );
 		}
 	}
 
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
-	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
