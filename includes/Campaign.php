@@ -476,9 +476,9 @@ class Campaign {
 					"languages" => "notlog_end_languages",
 					"countries" => "notlog_end_countries",
 					"preferred" => "notlog_end_preferred",
-					"geo" => "notlog_end_geo",
+					"geotargeted" => "notlog_end_geo",
 					"banners" => "notlog_end_banners",
-					"buckets" => "notlog_end_buckets",
+					"bucket_count" => "notlog_end_buckets",
 					"throttle" => "notlog_end_throttle",
 				),
 				array(
@@ -511,9 +511,9 @@ class Campaign {
 					}
 				}
 			}
-			if ( $campaign['buckets'] === null ) {
+			if ( $campaign['bucket_count'] === null ) {
 				// Fix for legacy logs before bucketing
-				$campaign['buckets'] = 1;
+				$campaign['bucket_count'] = 1;
 			}
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
@@ -524,7 +524,7 @@ class Campaign {
 					$historical_banner['label'] = wfMessage( 'centralnotice-damaged-log', $name );
 					$historical_banner['display_anon'] = $historical_banner['anon'];
 					$historical_banner['display_account'] = $historical_banner['account'];
-					$historical_banner['device'] = 'desktop';
+					$historical_banner['devices'] = array( 'desktop' );
 				}
 				$banner['name'] = $name;
 				$banner['label'] = $name;
@@ -532,7 +532,7 @@ class Campaign {
 				$campaign_info = array(
 					'campaign' => $campaign['name'],
 					'campaign_z_index' => $campaign['preferred'],
-					'campaign_num_buckets' => $campaign['buckets'],
+					'campaign_num_buckets' => $campaign['bucket_count'],
 					'campaign_throttle' => $campaign['throttle'],
 				);
 

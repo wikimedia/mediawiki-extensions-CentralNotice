@@ -17,10 +17,69 @@ Configuration values needed by test using the fixtures.
 Test Cases
 ---------
 
-comment: A brief explanation of the test
-setup: Data for setting up campaigns and banners in the database
-context_and_outputs: Contexts to test the campaigns and banners from,
-and expected output for each context.
+Some commented snippets of this data structure:
+
+// This key is the name of the whole test case
+"single_full_anon": {
+
+    // A brief explanation (JS comments aren't allowed in JSON)
+    "comment": "A single, unthrottled, non-geotargeted campaign...",
+
+    // Data for setting up campaigns and banners in the test database
+    "setup": {
+        ...
+    },
+
+    // Contexts to test the campaigns and banners from, and expected
+    // output for each context
+    "contexts_and_outputs": {
+
+        // This key is the name of this context
+        "as_targeted": {
+
+            // An explanation of this specific context
+            "comment": "Context targeted by the campaign...",
+
+            // Required user input values to determine banner and campaign
+            // selection (except buckets)
+            "context": {
+                ...
+            },
+
+            // Expected data from BannerChoiceDataProvider in this context.
+            // This data is also the input for client-side tests.
+            "choices": {
+                ...
+            },
+
+            // Expected banner and campaign allocations
+            "allocations": {
+
+                // The name of a campaign that is expected as an
+                // allocation result
+                "campaign1": {
+
+                    // The campaign's expected allocation (to 3 decimal points)
+                    "allocation": 0.5,
+
+                    // The banners expected to be allocated for this campaign
+                    // for each possible bucket. The index of each element in
+                    // the array is the number of the bucket that the banners
+                    // that the element contains are expected for.
+                    "banners": [
+                        {
+
+                            // Key is banner expected to be allocated for this
+                            // campaign, and the value is the expected
+                            // allocation (to 3 decimal points)
+                            "banner1": 1
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
 
 
 Special Date Properties

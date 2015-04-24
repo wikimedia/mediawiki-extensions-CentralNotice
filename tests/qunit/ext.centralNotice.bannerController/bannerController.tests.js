@@ -10,35 +10,79 @@
 			bannerHtml: '<div id="test_banner"></div>'
 		},
 		nowSec = Date.now() / 1000,
-		equalChoicesCampaign = {
-			name: '50-50_fixture',
-			preferred: 1,
-			throttle: 100,
-			bucket_count: 1,
-			geotargeted: false,
-			start: nowSec - 1,
-			end: nowSec + 600,
-			banners: [
-				{
-					name: 'banner_A',
-					weight: 25,
-					bucket: 0,
-					category: 'fundraising',
-					devices: [ 'desktop' ],
-					display_anon: true,
-					display_account: true
-				},
-				{
-					name: 'banner_B',
-					weight: 25,
-					bucket: 0,
-					category: 'fundraising',
-					devices: [ 'desktop' ],
-					display_anon: true,
-					display_account: true
-				}
-			]
-		};
+		choiceData2Campaigns = [
+			{
+				name: 'campaign1',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner1',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				]
+			},
+			{
+				name: 'campaign2',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner2',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				]
+			}
+		],
+		choiceData1Campaign2Banners = [
+			{
+				name: 'campaign1',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner1',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					},
+					{
+						name: 'banner2',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				]
+			}
+		];
 
 	QUnit.module( 'ext.centralNotice.bannerController', QUnit.newMwEnvironment( {
 		setup: function () {
@@ -52,9 +96,6 @@
 
 			// Prevent banner load during initialize().
 			mw.centralNotice.loadBanner = function () {};
-
-			// Force to the first bucket.
-			mw.centralNotice.getBucket = function() { return 0; };
 
 			mw.centralNotice.data.getVars = {};
 			$.extend( mw.centralNotice.data.getVars, realGetVars, {
@@ -132,22 +173,42 @@
 		assert.ok( mw.centralNotice.data.testing );
 	} );
 
-	QUnit.test( 'random= override param', 2, function( assert ) {
-		mw.cnBannerControllerLib.setChoiceData( [ equalChoicesCampaign ] );
+	QUnit.test( 'randomcampaign= override param', 2, function( assert ) {
+		mw.cnBannerControllerLib.setChoiceData( choiceData2Campaigns );
 
 		// Get the first banner
-		mw.centralNotice.data.getVars.random = 0.25;
+		mw.centralNotice.data.getVars.randomcampaign = 0.25;
 
 		$.ajax = function( params ) {
-			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner_A/ ) );
+			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
 		};
 		mw.centralNotice.loadBanner();
 
 		// Get the second banner
-		mw.centralNotice.data.getVars.random = 0.75;
+		mw.centralNotice.data.getVars.randomcampaign = 0.75;
 
 		$.ajax = function( params ) {
-			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner_B/ ) );
+			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
+		};
+		mw.centralNotice.loadBanner();
+	} );
+
+	QUnit.test( 'randombanner= override param', 2, function( assert ) {
+		mw.cnBannerControllerLib.setChoiceData( choiceData1Campaign2Banners );
+
+		// Get the first banner
+		mw.centralNotice.data.getVars.randombanner = 0.25;
+
+		$.ajax = function( params ) {
+			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
+		};
+		mw.centralNotice.loadBanner();
+
+		// Get the second banner
+		mw.centralNotice.data.getVars.randombanner = 0.75;
+
+		$.ajax = function( params ) {
+			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
 		};
 		mw.centralNotice.loadBanner();
 	} );

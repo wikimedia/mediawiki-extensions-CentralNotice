@@ -248,24 +248,4 @@ class BannerChoiceDataProvider {
 
 		return $choices;
 	}
-
-	/**
-	 * Gets banner choices filtered by country
-	 *
-	 * @param string $country Country of interest
-	 * @return array An array of the form returned by @see BannerChoiceDataProvider::getChoices
-	 *   Omits all geotargeted campaigns not aimed at the given country
-	 */
-	public function getChoicesForCountry( $country ) {
-		$choices = $this->getChoices();
-
-		$filteredChoices = array();
-		// Remove campaigns that are geotargeted but not to selected country
-		foreach( $choices as $campaign ) {
-			if ( !$campaign['geotargeted'] || in_array( $country, $campaign['countries'] ) ) {
-				$filteredChoices[] = $campaign;
-			}
-		}
-		return $filteredChoices;
-	}
 }

@@ -77,13 +77,12 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerLoaderException' ] = $specialDir . 'SpecialBannerLoader.php';
 
 	$wgAutoloadClasses[ 'Banner' ] = $includeDir . 'Banner.php';
-	$wgAutoloadClasses[ 'BannerAllocationCalculator' ] = $includeDir . 'BannerAllocationCalculator.php';
+	$wgAutoloadClasses[ 'AllocationCalculator' ] = $includeDir . 'AllocationCalculator.php';
 	$wgAutoloadClasses[ 'BannerDataException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerContentException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerExistenceException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
-	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
 	$wgAutoloadClasses[ 'BannerChoiceDataProvider' ] = $includeDir . 'BannerChoiceDataProvider.php';
 	$wgAutoloadClasses[ 'CNBannerChoiceDataResourceLoaderModule' ] = $includeDir . 'CNBannerChoiceDataResourceLoaderModule.php';
@@ -100,7 +99,6 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses['HTMLBannerPagerNavigation'] = $includeDir . 'CNBannerPager.php';
 	$wgAutoloadClasses['HTMLLargeMultiSelectField'] = $specialDir . 'SpecialCentralNoticeBanners.php';
 	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
-	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
 	$wgAutoloadClasses['LanguageSelectHeaderElement'] = $specialDir . 'SpecialCentralNoticeBanners.php';
 	$wgAutoloadClasses['MissingRequiredParamsException'] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'StaleCampaignException' ] = $specialDir . 'SpecialBannerLoader.php';
@@ -377,11 +375,10 @@ function efCentralNoticeUnitTests( &$files ) {
 	global $wgAutoloadClasses;
 
 	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
-	$wgAutoloadClasses['ComparisonUtil'] = __DIR__ . '/tests/ComparisonUtil.php';
 
 	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeBannerChoiceDataTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
-	$files[ ] = __DIR__ . '/tests/BannerAllocationCalculatorTest.php';
+	$files[ ] = __DIR__ . '/tests/AllocationCalculatorTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
 	$files[ ] = __DIR__ . '/tests/CNBannerChoicesResourceLoaderModuleTest.php';

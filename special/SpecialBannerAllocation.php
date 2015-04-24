@@ -206,15 +206,16 @@ class SpecialBannerAllocation extends CentralNotice {
 		// Given our project and language combination, get banner choice data,
 		// then filter on country
 		$provider = new BannerChoiceDataProvider( $project, $language );
-		$choice_data = $provider->getChoicesForCountry( $country );
+		$choiceData = $provider->getChoices();
 
 		// Iterate through each possible device type and get allocation information
 		$devices = CNDeviceTarget::getAvailableDevices();
-		foreach( $devices as $device_id => $device_data ) {
+		foreach( $devices as $deviceId => $deviceData ) {
+
 			$htmlOut .= Html::openElement(
 				'div',
 				array(
-					 'id' => "cn-allocation-{$project}-{$language}-{$country}-{$device_id}",
+					 'id' => "cn-allocation-{$project}-{$language}-{$country}-{$deviceId}",
 					 'class' => 'cn-allocation-group'
 				)
 			);
@@ -226,10 +227,11 @@ class SpecialBannerAllocation extends CentralNotice {
 					htmlspecialchars( $language ),
 					htmlspecialchars( $project ),
 					htmlspecialchars( $country ),
-					$this->getOutput()->parseInline( $device_data['label'] )
+					$this->getOutput()->parseInline( $deviceData['label'] )
 				)->text()
 			);
 
+			// FIXME Figure out the following comments and remove as needed
 			// FIXME bannerstats is toast
 			// Build campaign list for bannerstats.js
 			//$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
@@ -250,22 +252,20 @@ class SpecialBannerAllocation extends CentralNotice {
 			foreach ( $matrix as $target ) {
 				if ( $target['anonymous'] === 'true' ) {
 					$label = $this->msg( 'centralnotice-banner-anonymous' )->text();
-					$status = BannerAllocationCalculator::ANONYMOUS;
+					$status = AllocationCalculator::ANONYMOUS;
 				} else {
 					$label = $this->msg( 'centralnotice-banner-logged-in' )->text();
-					$status = BannerAllocationCalculator::LOGGED_IN;
+					$status = AllocationCalculator::LOGGED_IN;
 				}
 				$label .= ' -- ' . $this->msg( 'centralnotice-bucket-letter' )->
 					rawParams( chr( $target['bucket'] + 65 ) )->text();
 
-				$banners = BannerAllocationCalculator::filterAndTransformBanners(
-					$choice_data,
-					$status,
-					$device_data['header'],
-					intval( $target['bucket'] )
-				);
-				$banners = BannerAllocationCalculator::calculateAllocations( $banners );
-				$htmlOut .= $this->getTable( $label, $banners );
+				$possibleBannersAllCampaigns =
+					AllocationCalculator::filterAndAllocate( $country,
+					$status, $deviceData['header'], $target['bucket'],
+					$choiceData );
+
+				$htmlOut .= $this->getTable( $label, $possibleBannersAllCampaigns );
 			}
 
 			$htmlOut .= Html::closeElement( 'div' );
@@ -280,7 +280,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	/**
 	 * Generate the HTML for an allocation table
 	 * @param $type string The title for the table
-	 * @param $banners array The banners as allocated by BannerAllocationCalculator
+	 * @param $banners array The banners as allocated by AllocationCalculator
 	 * @return string HTML for the table
 	 */
 	public function getTable( $type, $banners ) {
