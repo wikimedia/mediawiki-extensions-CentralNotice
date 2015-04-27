@@ -23,7 +23,7 @@ $wgExtensionCredits[ 'other' ][] = array(
 		'Adam Roses Wight',
 		'Brion Vibber',
 	),
-	'version'        => '2.5.0',
+	'version'        => '2.5.1',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 	'license-name' => 'GPL-2.0+',
