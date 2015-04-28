@@ -217,6 +217,7 @@
 	"apihelp-centralnoticeallocations-param-country": "ولات سی فیلتر بیین.",
 	"apihelp-centralnoticeallocations-param-language": "زون سی فیلتر بیین.",
 	"apihelp-centralnoticeallocations-param-device": "نوم اوزار سی فیلتر بیین.",
+	"apihelp-centralnoticeallocations-example-1": "نشو دئن یه گل بهرکاریا",
 	"apihelp-centralnoticequerycampaign-example-1": "اعلان \"Plea_US\" نشو بیه",
 	"apihelp-centralnoticebannerchoicedata-param-project": "پروجه سی گرتن بیرق و انتخاو کردن گات سی وه.",
 	"apihelp-centralnoticebannerchoicedata-param-language": "زون سی گرتن بیرق و انتخاو کردن گات سی وه.",
