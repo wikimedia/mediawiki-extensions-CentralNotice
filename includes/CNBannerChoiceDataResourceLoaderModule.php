@@ -73,18 +73,21 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			'action' => 'centralnoticebannerchoicedata',
 			'project' => $project,
 			'language' => $language,
-			'format' => 'json'
+			'format' => 'json',
+			'formatversion' => 2 // Prevents stripping of false values 8p
 		);
 
 		$url = wfAppendQuery( $wgCentralNoticeApiUrl, $q );
-		$apiResult = Http::get( $url, self::API_REQUEST_TIMEOUT * 0.8 );
+
+		$apiResult = Http::get( $url,
+			array( 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ) );
 
 		if ( !$apiResult ) {
 			wfLogWarning( 'Couldn\'t get banner choice data via API.');
 			return false;
 		}
 
-		$parsedApiResult = FormatJson::parse( $apiResult );
+		$parsedApiResult = FormatJson::parse( $apiResult, FormatJson::FORCE_ASSOC );
 
 		if ( !$parsedApiResult->isGood() ) {
 			wfLogWarning( 'Couldn\'t parse banner choice data from API.');
@@ -93,14 +96,14 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 		$result = $parsedApiResult->getValue();
 
-		if ( isset( $result->error ) ) {
+		if ( isset( $result['error'] ) ) {
 			wfLogWarning( 'Error fetching banner choice data via API: ' .
-				$result->error->info . ': ' . $result->error->code );
+				$result['error']['info'] . ': ' . $result['error']['code'] );
 
 			return false;
 		}
 
-		return $result->choices;
+		return $result['choices'];
 	}
 
 	/**
