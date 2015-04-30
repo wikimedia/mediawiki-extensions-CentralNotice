@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ansumang",
-			"Shubha"
+			"Shubha",
+			"NehalDaveND"
 		]
 	},
 	"centralnotice": "केन्द्रीयसूचनाप्रबन्धकः",
@@ -76,7 +77,7 @@
 	"centralnotice-no-notices-exist": "किमपि अभियानं न विद्यते ।\nअधः एकं योज्यताम् ।",
 	"centralnotice-no-templates-translate": "अनुवादस्य विषये किमपि फलकं न विद्यते ।",
 	"centralnotice-number-uses": "उपयोगः",
-	"centralnotice-settings": "संरचनम्",
+	"centralnotice-settings": "अभिविन्यासाः",
 	"centralnotice-edit-template": "फलकं सम्पाद्यताम्",
 	"centralnotice-edit-template-summary": "स्थानीयसन्देशस्य सर्जनाय, सम्बन्धतन्तुः त्रिभिः वलितावरणैः संयोज्यताम्, उदा {{{jimbo-quote}}}।",
 	"centralnotice-message": "संदेश",
