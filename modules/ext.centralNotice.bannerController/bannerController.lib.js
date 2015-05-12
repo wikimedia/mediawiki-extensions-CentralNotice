@@ -1,6 +1,9 @@
 ( function ( $, mw ) {
 
-	var Mixin;
+	var Mixin, KVStorageContext,
+		KV_STORAGE_CN_PREFIX = 'CentralNotice',
+		KV_STORAGE_PREFIX_SEPARATOR = '|',
+		KV_STORAGE_ERROR_COOKIE_NAME = 'centralnotice_kv_storage_errors';
 
 	/**
 	 * Class for campaign-associated mixins. Access via mw.cnBannerControllerLib.Mixin.
@@ -16,6 +19,118 @@
 	Mixin.prototype.setPostBannerHandler = function( handlerFunc ) {
 		this.postBannerHandler = handlerFunc;
 	};
+
+	/**
+	 * A context for key-value storage.
+	 *
+	 * @class
+	 * @param {string} key A unique string to identify this context. Must not
+	 * contain KV_STORAGE_PREFIX_SEPARATOR.
+	 */
+	KVStorageContext = function( key ) {
+		this.key = key;
+	};
+
+	/**
+	 * Log a problem with key-value storage to the cookie and mw.log.
+	 *
+	 * The reason we log in a cookie is so that we can identify later which
+	 * clients may have goofy KVStorage data.
+	 *
+	 * @param {string} message A message about the error
+	 * @param {string} key
+	 * @param {*} value
+	 * @param {KVStorageContext} context
+	 */
+	function logKVStorageError( message, key, value, context ) {
+
+		// Try to get an existing cookie; if there is one, we'll append this
+		// error to it.
+		var errCookieRaw = $.cookie( KV_STORAGE_ERROR_COOKIE_NAME ),
+			errCookieVal,
+			err = {
+				message: message,
+				key: key,
+				// Limit the length of the value to store
+				value: JSON.stringify( value ).substring( 0, 50 ),
+				context: context.key,
+				time: Math.round( ( new Date() ).getTime() / 1000 )
+			};
+
+		// If we didn't get a cookie value, or if it wasn't an array, set it to
+		// an empty array.
+		if ( !errCookieRaw ) {
+			errCookieVal = [];
+		} else {
+			errCookieVal = JSON.parse( errCookieRaw );
+			if ( !Array.isArray( errCookieVal ) ) {
+				errCookieVal = [];
+			}
+		}
+
+		// If a campaign and/or a banner have been chosen, include their names in
+		// the error
+		err.campaign = mw.centralNotice.data.campaign || null;
+		err.banner = mw.centralNotice.data.banner || null;
+
+		errCookieVal.push( err );
+
+		// Don't let the cookie hold toooooooooo many errors
+		if ( errCookieVal.length > 5 ) {
+			errCookieVal.shift();
+		}
+
+		// Store in the cookie; 2 years expiry should be sufficient
+		$.cookie( KV_STORAGE_ERROR_COOKIE_NAME,
+			JSON.stringify( errCookieVal ),
+			{ expires: 730, path: '/' } );
+
+		mw.log( 'CentralNotice KV storage error: ' + JSON.stringify( err ) );
+	}
+
+	/**
+	 * Return the actual key to be used in localStorage for the given key and
+	 * context.
+	 *
+	 * The key returned should be unique among all localStorage keys used by
+	 * this site. It includes unique strings for centralNotice and context, and
+	 * may also include the campaign name or category.
+	 *
+	 * Note: when using CAMPAIGN and CATEGORY contexts, ensure that there are
+	 * values in mw.centralNotice.data.campaign and
+	 * mw.centralNotice.data.category, respectively. We don't check them here.
+	 *
+	 * @param {string} key
+	 * @param {*} value
+	 * @param {KVStorageContext} context
+	 * @return {string}
+	 */
+	function makeKVStorageKeyForLocalStorage( key, context ) {
+		var storageContexts = mw.cnBannerControllerLib.KVStorageContexts,
+			base = KV_STORAGE_CN_PREFIX + KV_STORAGE_PREFIX_SEPARATOR +
+				context.key + KV_STORAGE_PREFIX_SEPARATOR;
+
+		switch ( context.key ) {
+			case storageContexts.CAMPAIGN.key:
+				return base +
+					mw.centralNotice.data.campaign + KV_STORAGE_PREFIX_SEPARATOR +
+					key;
+
+			case storageContexts.CATEGORY.key:
+				return base +
+					mw.centralNotice.data.category + KV_STORAGE_PREFIX_SEPARATOR +
+					key;
+
+			case storageContexts.GLOBAL.key:
+				return base + key;
+
+			default:
+				logKVStorageError( 'Invalid KV storage context', key, null, context );
+				return base +
+					'invalidContext' + KV_STORAGE_PREFIX_SEPARATOR +
+					key;
+		}
+	}
 
 	/**
 	 * Method used for choosing a campaign or banner from an array of
@@ -66,6 +181,17 @@
 		 */
 		CAMPAIGN_STALENESS_LEEWAY: 15,
 
+		/**
+		 * Available key-value storage contexts
+		 * @enum
+		 * @readonly
+		 */
+		KVStorageContexts: {
+			CAMPAIGN: new KVStorageContext( 'campaign' ),
+			CATEGORY: new KVStorageContext( 'category' ),
+			GLOBAL: new KVStorageContext( 'global' )
+		},
+
 		campaignMixins: {},
 		choiceData: null,
 		/**
@@ -105,6 +231,111 @@
 					handler( mixinParams );
 				}
 			} );
+		},
+
+		/**
+		 * Does this browser support our KV storage mechanism?
+		 */
+		isKVStorageAvailable: function() {
+			return ( typeof window.localStorage === 'object' );
+		},
+
+		/**
+		 * Set the given value for the given key in the given context, using
+		 * localStorage. If the key already exists, its value will be
+		 * overwritten. Fails if localStorage is not available.
+		 *
+		 * Value can be any type; will be json-encoded.
+		 *
+		 * If the value was set, return true; if the value could not be set, we
+		 * log the error to mw.log and a cookie, and return false.
+		 *
+		 * Note: check isKVStorageAvailable() before calling.
+		 *
+		 * @param {string} key
+		 * @param {*} value
+		 * @param {KVStorageContext} context
+		 * @return {boolean}
+		 */
+		setKVStorageItem: function( key, value, context ) {
+
+			var lsKey, encodedValue;
+
+			// Check validity of key
+			if ( key.indexOf( KV_STORAGE_PREFIX_SEPARATOR ) !== -1 ) {
+				logKVStorageError( 'Invalid key', key, value, context );
+				return false;
+			}
+
+			lsKey = makeKVStorageKeyForLocalStorage( key, context );
+			encodedValue = JSON.stringify( value );
+
+			// Write the value
+			localStorage.setItem( lsKey, encodedValue );
+
+			// Check that it was written (it might not have been, if we're over
+			// the localStorage quota for this site, for example)
+			if ( localStorage.getItem( lsKey ) !== encodedValue ) {
+				logKVStorageError( 'Couldn\'t write value', key, value, context );
+				return false;
+			}
+
+			return true;
+		},
+
+		/**
+		 * Get the stored value for the given key in the given context.
+		 *
+		 * Note: check isKVStorageAvailable() before calling.
+		 *
+		 * @param {string} key
+		 * @param {KVStorageContext} context
+		 */
+		getKVStorageItem: function ( key, context ) {
+			var lsKey = makeKVStorageKeyForLocalStorage( key, context ),
+				rawValue, value;
+
+			try {
+				rawValue = localStorage.getItem( lsKey );
+				value = JSON.parse( rawValue );
+
+			} catch ( e ) {
+
+				// If the JSON couldn't be parsed, log and return null (which is
+				// the same value we'd get if the key were not set).
+				if ( e instanceof SyntaxError ) {
+
+					logKVStorageError(
+						'Couldn\'t parse value, removing. ' + e.message,
+						key, rawValue, context );
+
+					localStorage.removeItem( lsKey );
+					return null;
+
+				// For any other errors, log and re-throw
+				} else {
+					logKVStorageError(
+						'Couldn\'t read value ' + e.message,
+						key, rawValue, context );
+
+					throw e;
+				}
+			}
+
+			return value;
+		},
+
+		/**
+		 * Remove the stored value for the given key in the given context
+		 *
+		 * Note: check isKVStorageAvailable() before calling.
+		 *
+		 * @param {string} key
+		 * @param {KVStorageContext} context
+		 */
+		removeKVStorageItem: function ( key, context ) {
+			var lsKey = makeKVStorageKeyForLocalStorage( key, context );
+			localStorage.removeItem( lsKey );
 		},
 
 		/**
