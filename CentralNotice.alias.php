@@ -38,7 +38,7 @@ $specialPageAliases['ar'] = array(
 	'HideBanners' => array( 'إخفاء_الإعلان' ),
 );
 
-/** Egyptian Spoken Arabic (مصرى) */
+/** Egyptian Arabic (مصرى) */
 $specialPageAliases['arz'] = array(
 	'CentralNotice' => array( 'ملاحظة_مركزية' ),
 	'CentralNoticeBanners' => array( 'اعلانات_النوتيس_المركزيه' ),
@@ -266,7 +266,7 @@ $specialPageAliases['lb'] = array(
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
-/** لوری (لوری) */
+/** لوری مینجایی (لوری مینجایی) */
 $specialPageAliases['lrc'] = array(
 	'CentralNotice' => array( 'ویرداری_مینجایی' ),
 	'CentralNoticeBanners' => array( 'بیرقیا_وارسکار_مینجایی' ),
