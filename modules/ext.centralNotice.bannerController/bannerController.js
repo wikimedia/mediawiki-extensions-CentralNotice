@@ -147,16 +147,13 @@
 
 			// Get the requested banner
 			bannerPageQuery = {
-				title: 'Special:BannerLoader',
 				banner: bannerName,
 				campaign: campaign,
 				uselang: mw.config.get( 'wgUserLanguage' ),
 				debug: mw.centralNotice.data.getVars.debug
 			};
 
-			// TODO use the new $wgCentralSelectedBannerDispatcher here instead
-
-			url = new mw.Uri( mw.config.get( 'wgCentralPagePath' ) );
+			url = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
 			url.extend( bannerPageQuery );
 
 			$.ajax({
