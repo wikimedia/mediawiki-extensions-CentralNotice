@@ -8,7 +8,8 @@
 			"Priviet",
 			"Yknok29",
 			"아라",
-			"Revi"
+			"Revi",
+			"SeoJeongHo"
 		]
 	},
 	"centralnotice": "중앙 공지 관리",
@@ -192,6 +193,8 @@
 	"centralnotice-buckets": "사용자 버킷팅",
 	"centralnotice-bucket": "버킷",
 	"centralnotice-bucket-letter": "\"$1\" 버킷",
+	"centralnotice-banner-overflowing-bucket": "\"$1\" 버킷에 너무 많은 배너가 할당되어 있습니다.",
+	"centralnotice-banner-empty-bucket": "모든 버킷은 배너를 할당하지 않습니다.",
 	"centralnotice-devicetype-desktop": "데스크톱 컴퓨터",
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "iPad로 인식되지만 iPhone은 아닌 기기",
@@ -240,6 +243,7 @@
 	"apihelp-centralnoticeallocations-param-language": "필터를 켤 언어",
 	"apihelp-centralnoticeallocations-param-anonymous": "로그인 상태에 따른 필터 활성화 여부 (예|아니오)",
 	"apihelp-centralnoticeallocations-param-device": "필터를 켤 기기 이름",
+	"apihelp-centralnoticequerycampaign-example-1": "\"Plea_US\" 캠페인 보이기",
 	"apihelp-query+centralnoticelogs-param-user": "사용자 이름 (선택 사항).",
 	"apihelp-query+centralnoticelogs-example-1": "로그 보기"
 }

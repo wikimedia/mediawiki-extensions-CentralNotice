@@ -11,6 +11,9 @@ class CentralNotice extends SpecialPage {
 
 	public $editable, $centralNoticeError;
 
+	protected $campaign;
+	protected $campaignWarnings = array();
+
 	function __construct() {
 		// Register special page
 		parent::__construct( 'CentralNotice' );
@@ -36,16 +39,13 @@ class CentralNotice extends SpecialPage {
 		// Initialize error variable
 		$this->centralNoticeError = false;
 
-		// Begin Campaigns tab content
-		$out->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
+		$subaction = $request->getVal( 'subaction' );
 
-		$method = $request->getVal( 'method' );
-
-		// Switch to campaign detail interface if requested
-		if ( $method == 'listNoticeDetail' ) {
+		// Switch to campaign detail interface if requested.
+		// This will also handle post submissions from the detail interface.
+		if ( $subaction === 'noticeDetail' ) {
 			$notice = $request->getVal( 'notice' );
-			$this->listNoticeDetail( $notice );
-			$out->addHTML( Xml::closeElement( 'div' ) );
+			$this->outputNoticeDetail( $notice );
 			return;
 		}
 
@@ -56,143 +56,13 @@ class CentralNotice extends SpecialPage {
 
 				$summary = $this->getSummaryFromRequest( $request );
 
-				// Handle adding a campaign
-				if ( $method == 'addCampaign' ) {
-					$noticeName = $request->getVal( 'noticeName' );
-					$start = $this->getDateTime( 'start' );
-					$projects = $request->getArray( 'projects' );
-					$project_languages = $request->getArray( 'project_languages' );
-					$geotargeted = $request->getCheck( 'geotargeted' );
-					$geo_countries = $request->getArray( 'geo_countries' );
-					if ( $noticeName == '' ) {
-						$this->showError( 'centralnotice-null-string' );
-					} else {
-						$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
-							$project_languages, $geotargeted, $geo_countries,
-							100, CentralNotice::NORMAL_PRIORITY, $this->getUser(),
-							$summary );
-						if ( is_string( $result ) ) {
-							$this->showError( $result );
-						}
-					}
-				// Handle changing settings to existing campaigns
+				// Handle adding a campaign or changing existing campaign settings
+				// via the list interface. In either case, we'll retirect to the
+				// list view.
+				if ( $subaction === 'addCampaign' ) {
+					$this->handleAddCampaignPost();
 				} else {
-
-					// Get all the initial campaign settings for logging
-					$allCampaignNames = Campaign::getAllCampaignNames();
-					$allInitialCampaignSettings = array();
-					foreach ( $allCampaignNames as $campaignName ) {
-						$settings = Campaign::getCampaignSettings( $campaignName );
-						$allInitialCampaignSettings[ $campaignName ] = $settings;
-					}
-
-					// FIXME The following three blocks of code are similar.
-					// They might be refactored as part of a bigger refactoring
-					// of code for changing campaign settings via the list of
-					// campaigns. If not, refactor this following the current
-					// logic.
-
-					// Handle archiving/unarchiving campaigns
-					$archived = $request->getArray( 'archiveCampaigns' );
-					if ( $archived ) {
-						// Build list of campaigns to archive
-						$notArchived = array_diff( Campaign::getAllCampaignNames(), $archived );
-
-						// Set archived/not archived flag accordingly
-						foreach ( $archived as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
-						}
-						foreach ( $notArchived as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
-						}
-						// Handle updates if no post content came through (all checkboxes unchecked)
-					} else {
-						$allNotices = Campaign::getAllCampaignNames();
-						foreach ( $allNotices as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
-						}
-					}
-
-					// Handle locking/unlocking campaigns
-					$lockedNotices = $request->getArray( 'locked' );
-					if ( $lockedNotices ) {
-						// Build list of campaigns to lock
-						$unlockedNotices = array_diff( Campaign::getAllCampaignNames(), $lockedNotices );
-
-						// Set locked/unlocked flag accordingly
-						foreach ( $lockedNotices as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
-						}
-						foreach ( $unlockedNotices as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
-						}
-					// Handle updates if no post content came through (all checkboxes unchecked)
-					} else {
-						$allNotices = Campaign::getAllCampaignNames();
-						foreach ( $allNotices as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
-						}
-					}
-
-					// Handle enabling/disabling campaigns
-					$enabledNotices = $request->getArray( 'enabled' );
-					if ( $enabledNotices ) {
-						// Build list of campaigns to disable
-						$disabledNotices = array_diff( Campaign::getAllCampaignNames(), $enabledNotices );
-
-						// Set enabled/disabled flag accordingly
-						foreach ( $enabledNotices as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
-						}
-						foreach ( $disabledNotices as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
-						}
-					// Handle updates if no post content came through (all checkboxes unchecked)
-					} else {
-						$allNotices = Campaign::getAllCampaignNames();
-						foreach ( $allNotices as $notice ) {
-							Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
-						}
-					}
-
-					// Handle setting priority on campaigns
-					$preferredNotices = $request->getArray( 'priority' );
-					if ( $preferredNotices ) {
-						foreach ( $preferredNotices as $notice => $value ) {
-							Campaign::setNumericCampaignSetting(
-								$notice,
-								'preferred',
-								$value,
-								CentralNotice::EMERGENCY_PRIORITY,
-								CentralNotice::LOW_PRIORITY
-							);
-						}
-					}
-
-					// Get all the final campaign settings for potential logging
-					foreach ( $allCampaignNames as $campaignName ) {
-						$finalCampaignSettings = Campaign::getCampaignSettings( $campaignName );
-						if ( !$allInitialCampaignSettings[ $campaignName ] || !$finalCampaignSettings ) {
-							// Condition where the campaign has apparently disappeared mid operations
-							// -- possibly a delete call
-							$diffs = false;
-						} else {
-							$diffs = array_diff_assoc( $allInitialCampaignSettings[ $campaignName ], $finalCampaignSettings );
-						}
-						// If there are changes, log them
-						if ( $diffs ) {
-							$campaignId = Campaign::getNoticeId( $campaignName );
-							Campaign::logCampaignChange(
-								'modified',
-								$campaignId,
-								$this->getUser(),
-								$allInitialCampaignSettings[ $campaignName ],
-								$finalCampaignSettings,
-								array(), array(),
-								$summary
-							);
-						}
-					}
+					$this->handleNoticePostFromList();
 				}
 
 				// If there were no errors, reload the page to prevent duplicate form submission
@@ -206,9 +76,20 @@ class CentralNotice extends SpecialPage {
 		}
 
 		$this->outputListOfNotices();
+	}
 
-		// End Campaigns tab content
-		$out->addHTML( Xml::closeElement( 'div' ) );
+	/**
+	 * Output the start tag for the enclosing div we use on all subactions
+	 */
+	protected function outputEnclosingDivStartTag() {
+		$this->getOutput()->addHTML( Xml::openElement( 'div', array( 'id' => 'preferences' ) ) );
+	}
+
+	/**
+	 * Output the end tag for the enclosing dive we use on all subactions
+	 */
+	protected function outputEnclosingDivEndTag() {
+		$this->getOutput()->addHTML( Xml::closeElement( 'div' ) );
 	}
 
 	/**
@@ -216,7 +97,9 @@ class CentralNotice extends SpecialPage {
 	 * the "Add campaign" form.
 	 */
 	protected function outputListOfNotices() {
-		// Show list of campaigns
+
+		$this->outputEnclosingDivStartTag();
+
 		$out = $this->getOutput();
 
 		$out->addHTML( Xml::element( 'h2',
@@ -231,17 +114,128 @@ class CentralNotice extends SpecialPage {
 		if ( $this->editable ) {
 			$this->addNoticeForm();
 		}
+
+		$this->outputEnclosingDivEndTag();
 	}
 
-	/**
-	 * Build a table row. Needed since Xml::buildTableRow escapes all HTML.
-	 */
-	function tableRow( $fields, $element = 'td', $attribs = array() ) {
-		$cells = array();
-		foreach ( $fields as $field ) {
-			$cells[ ] = Xml::tags( $element, array(), $field );
+	protected function handleNoticePostFromList() {
+		$request = $this->getRequest();
+
+		// Get all the initial campaign settings for logging
+		$allCampaignNames = Campaign::getAllCampaignNames();
+		$allInitialCampaignSettings = array();
+		foreach ( $allCampaignNames as $campaignName ) {
+			$settings = Campaign::getCampaignSettings( $campaignName );
+			$allInitialCampaignSettings[ $campaignName ] = $settings;
 		}
-		return Xml::tags( 'tr', $attribs, implode( "\n", $cells ) ) . "\n";
+
+		// FIXME The following three blocks of code are similar.
+		// They might be refactored as part of a bigger refactoring
+		// of code for changing campaign settings via the list of
+		// campaigns. If not, refactor this following the current
+		// logic.
+
+		// Handle archiving/unarchiving campaigns
+		$archived = $request->getArray( 'archiveCampaigns' );
+		if ( $archived ) {
+			// Build list of campaigns to archive
+			$notArchived = array_diff( Campaign::getAllCampaignNames(), $archived );
+
+			// Set archived/not archived flag accordingly
+			foreach ( $archived as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
+			}
+			foreach ( $notArchived as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
+			}
+			// Handle updates if no post content came through (all checkboxes unchecked)
+		} else {
+			$allNotices = Campaign::getAllCampaignNames();
+			foreach ( $allNotices as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
+			}
+		}
+
+		// Handle locking/unlocking campaigns
+		$lockedNotices = $request->getArray( 'locked' );
+		if ( $lockedNotices ) {
+			// Build list of campaigns to lock
+			$unlockedNotices = array_diff( Campaign::getAllCampaignNames(), $lockedNotices );
+
+			// Set locked/unlocked flag accordingly
+			foreach ( $lockedNotices as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
+			}
+			foreach ( $unlockedNotices as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
+			}
+		// Handle updates if no post content came through (all checkboxes unchecked)
+		} else {
+			$allNotices = Campaign::getAllCampaignNames();
+			foreach ( $allNotices as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
+			}
+		}
+
+		// Handle enabling/disabling campaigns
+		$enabledNotices = $request->getArray( 'enabled' );
+		if ( $enabledNotices ) {
+			// Build list of campaigns to disable
+			$disabledNotices = array_diff( Campaign::getAllCampaignNames(), $enabledNotices );
+
+			// Set enabled/disabled flag accordingly
+			foreach ( $enabledNotices as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
+			}
+			foreach ( $disabledNotices as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
+			}
+		// Handle updates if no post content came through (all checkboxes unchecked)
+		} else {
+			$allNotices = Campaign::getAllCampaignNames();
+			foreach ( $allNotices as $notice ) {
+				Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
+			}
+		}
+
+		// Handle setting priority on campaigns
+		$preferredNotices = $request->getArray( 'priority' );
+		if ( $preferredNotices ) {
+			foreach ( $preferredNotices as $notice => $value ) {
+				Campaign::setNumericCampaignSetting(
+					$notice,
+					'preferred',
+					$value,
+					CentralNotice::EMERGENCY_PRIORITY,
+					CentralNotice::LOW_PRIORITY
+				);
+			}
+		}
+
+		// Get all the final campaign settings for potential logging
+		foreach ( $allCampaignNames as $campaignName ) {
+			$finalCampaignSettings = Campaign::getCampaignSettings( $campaignName );
+			if ( !$allInitialCampaignSettings[ $campaignName ] || !$finalCampaignSettings ) {
+				// Condition where the campaign has apparently disappeared mid operations
+				// -- possibly a delete call
+				$diffs = false;
+			} else {
+				$diffs = array_diff_assoc( $allInitialCampaignSettings[ $campaignName ], $finalCampaignSettings );
+			}
+			// If there are changes, log them
+			if ( $diffs ) {
+				$campaignId = Campaign::getNoticeId( $campaignName );
+				Campaign::logCampaignChange(
+					'modified',
+					$campaignId,
+					$this->getUser(),
+					$allInitialCampaignSettings[ $campaignName ],
+					$finalCampaignSettings,
+					array(), array(),
+					$summary
+				);
+			}
+		}
 	}
 
 	/**
@@ -376,7 +370,7 @@ class CentralNotice extends SpecialPage {
 	protected function addNoticeForm() {
 		$request = $this->getRequest();
 		// If there was an error, we'll need to restore the state of the form
-		if ( $request->wasPosted() && ( $request->getVal( 'method' ) == 'addCampaign' ) ) {
+		if ( $request->wasPosted() && ( $request->getVal( 'subaction' ) === 'addCampaign' ) ) {
 			$start = $this->getDateTime( 'start' );
 			$noticeProjects = $request->getArray( 'projects', array() );
 			$noticeLanguages = $request->getArray( 'project_languages', array() );
@@ -399,7 +393,7 @@ class CentralNotice extends SpecialPage {
 		// Form for adding a campaign
 		$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
 		$htmlOut .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$htmlOut .= Html::hidden( 'method', 'addCampaign' );
+		$htmlOut .= Html::hidden( 'subaction', 'addCampaign' );
 
 		$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 
@@ -466,6 +460,28 @@ class CentralNotice extends SpecialPage {
 		$this->getOutput()->addHTML( $htmlOut );
 	}
 
+	protected function handleAddCampaignPost() {
+		$request = $this->getRequest();
+		$noticeName = $request->getVal( 'noticeName' );
+		$start = $this->getDateTime( 'start' );
+		$projects = $request->getArray( 'projects' );
+		$project_languages = $request->getArray( 'project_languages' );
+		$geotargeted = $request->getCheck( 'geotargeted' );
+		$geo_countries = $request->getArray( 'geo_countries' );
+		if ( $noticeName == '' ) {
+			$this->showError( 'centralnotice-null-string' );
+		} else {
+			$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
+				$project_languages, $geotargeted, $geo_countries,
+				100, CentralNotice::NORMAL_PRIORITY, $this->getUser(),
+				$summary );
+			if ( is_string( $result ) ) {
+				// TODO Better error handling
+				$this->showError( $result );
+			}
+		}
+	}
+
 	/**
 	 * Retrieve jquery.ui.datepicker date and homebrew time,
 	 * and return as a MW timestamp string.
@@ -492,12 +508,12 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @param $notice string The name of the campaign to view
 	 */
-	function listNoticeDetail( $notice ) {
-		global $wgNoticeNumberOfBuckets;
+	function outputNoticeDetail( $notice ) {
+		$this->outputEnclosingDivStartTag();
 
-		$c = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
+		$this->campaign = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
 		try {
-			if ( $c->isArchived() || $c->isLocked() ) {
+			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
 				$this->getOutput()->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
 				$this->editable = false; // Todo: Fix this gross hack to prevent editing
 			}
@@ -505,169 +521,8 @@ class CentralNotice extends SpecialPage {
 			throw new ErrorPageError( 'centralnotice', 'centralnotice-notice-doesnt-exist' );
 		}
 
-		// Handle form submissions from campaign detail interface
-		$request = $this->getRequest();
-
-		if ( $this->editable && $request->wasPosted() ) {
-			// If what we're doing is actually serious (ie: not updating the banner
-			// filter); process the request. Recall that if the serious request
-			// succeeds, the page will be reloaded again.
-			if ( $request->getCheck( 'template-search' ) == false ) {
-
-				// Check authentication token
-				if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
-
-					// Handle removing campaign
-					if ( $request->getVal( 'archive' ) ) {
-						Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
-					}
-
-					$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
-
-					// Handle locking/unlocking campaign
-					if ( $request->getCheck( 'locked' ) ) {
-						Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
-					} else {
-						Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
-					}
-
-					// Handle enabling/disabling campaign
-					if ( $request->getCheck( 'enabled' ) ) {
-						Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
-					} else {
-						Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
-					}
-
-					// Set campaign traffic throttle
-					if ( $request->getCheck( 'throttle-enabled' ) ) {
-						$throttle = $request->getInt( 'throttle-cur', 100 );
-					} else {
-						$throttle = 100;
-					}
-					Campaign::setNumericCampaignSetting( $notice, 'throttle', $throttle, 100, 0 );
-
-					// Handle user bucketing setting for campaign
-					$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
-					$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
-
-					Campaign::setNumericCampaignSetting(
-						$notice,
-						'buckets',
-						$numCampaignBuckets,
-						$wgNoticeNumberOfBuckets,
-						1
-					);
-
-					// Handle setting campaign priority
-					Campaign::setNumericCampaignSetting(
-						$notice,
-						'preferred',
-						$request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
-						CentralNotice::EMERGENCY_PRIORITY,
-						CentralNotice::LOW_PRIORITY
-					);
-
-					// Handle updating geotargeting
-					if ( $request->getCheck( 'geotargeted' ) ) {
-						Campaign::setBooleanCampaignSetting( $notice, 'geo', 1 );
-						$countries = $request->getArray( 'geo_countries' );
-						if ( $countries ) {
-							Campaign::updateCountries( $notice, $countries );
-						}
-					} else {
-						Campaign::setBooleanCampaignSetting( $notice, 'geo', 0 );
-					}
-
-					// Handle updating the start and end settings
-					$start = $this->getDateTime( 'start' );
-					$end = $this->getDateTime( 'end' );
-					if ( $start && $end ) {
-						Campaign::updateNoticeDate( $notice, $start, $end );
-					}
-
-					// Handle adding of banners to the campaign
-					$templatesToAdd = $request->getArray( 'addTemplates' );
-					if ( $templatesToAdd ) {
-						$weight = $request->getArray( 'weight' );
-						foreach ( $templatesToAdd as $templateName ) {
-							$templateId = Banner::fromName( $templateName )->getId();
-							$result = Campaign::addTemplateTo(
-								$notice, $templateName, $weight[ $templateId ]
-							);
-							if ( $result !== true ) {
-								$this->showError( $result );
-							}
-						}
-					}
-
-					// Handle removing of banners from the campaign
-					$templateToRemove = $request->getArray( 'removeTemplates' );
-					if ( $templateToRemove ) {
-						foreach ( $templateToRemove as $template ) {
-							Campaign::removeTemplateFor( $notice, $template );
-						}
-					}
-
-					// Handle weight changes
-					$updatedWeights = $request->getArray( 'weight' );
-					$balanced = $request->getCheck( 'balanced' );
-					if ( $updatedWeights ) {
-						foreach ( $updatedWeights as $templateId => $weight ) {
-							if ( $balanced ) {
-								$weight = 25;
-							}
-							Campaign::updateWeight( $notice, $templateId, $weight );
-						}
-					}
-
-					// Handle bucket changes - keep in mind that the number of campaign buckets
-					// might have changed simultaneously (and might have happened server side)
-					$updatedBuckets = $request->getArray( 'bucket' );
-					if ( $updatedBuckets ) {
-						foreach ( $updatedBuckets as $templateId => $bucket ) {
-							Campaign::updateBucket(
-								$notice,
-								$templateId,
-								intval( $bucket ) % $numCampaignBuckets
-							);
-						}
-					}
-
-					// Handle new projects
-					$projects = $request->getArray( 'projects' );
-					if ( $projects ) {
-						Campaign::updateProjects( $notice, $projects );
-					}
-
-					// Handle new project languages
-					$projectLangs = $request->getArray( 'project_languages' );
-					if ( $projectLangs ) {
-						Campaign::updateProjectLanguages( $notice, $projectLangs );
-					}
-
-					$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
-					$campaignId = Campaign::getNoticeId( $notice );
-
-					$summary = $this->getSummaryFromRequest( $request );
-
-					Campaign::logCampaignChange(
-						'modified', $campaignId, $this->getUser(),
-						$initialCampaignSettings, $finalCampaignSettings,
-						array(), array(),
-						$summary );
-
-					// If there were no errors, reload the page to prevent duplicate form submission
-					if ( !$this->centralNoticeError ) {
-						$this->getOutput()->redirect( $this->getPageTitle()->getLocalUrl( array(
-								'method' => 'listNoticeDetail',
-								'notice' => $notice
-						) ) );
-						return;
-					}
-				} else {
-					$this->showError( 'sessionfailure' );
-				}
-			}
+		if ( $this->editable && $this->getRequest()->wasPosted() ) {
+			$this->handleNoticeDetailPost( $notice );
 		}
 
 		$htmlOut = '';
@@ -680,7 +535,7 @@ class CentralNotice extends SpecialPage {
 				array(
 					'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalUrl( array(
-						'method' => 'listNoticeDetail',
+						'subaction' => 'noticeDetail',
 						'notice' => $notice
 					) )
 				)
@@ -732,7 +587,186 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'form' );
 		}
 		$htmlOut .= Xml::closeElement( 'fieldset' );
+
+		$this->displayCampaignWarnings();
+
 		$this->getOutput()->addHTML( $htmlOut );
+		$this->outputEnclosingDivEndTag();
+	}
+
+	protected function handleNoticeDetailPost( $notice ) {
+		global $wgNoticeNumberOfBuckets;
+		$request = $this->getRequest();
+
+		// If what we're doing is actually serious (ie: not updating the banner
+		// filter); process the request. Recall that if the serious request
+		// succeeds, the page will be reloaded again.
+		if ( $request->getCheck( 'template-search' ) == false ) {
+
+			// Check authentication token
+			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
+
+				// Handle removing campaign
+				if ( $request->getVal( 'archive' ) ) {
+					Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
+				}
+
+				$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
+
+				// Handle locking/unlocking campaign
+				if ( $request->getCheck( 'locked' ) ) {
+					Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
+				} else {
+					Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
+				}
+
+				// Handle enabling/disabling campaign
+				if ( $request->getCheck( 'enabled' ) ) {
+					Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
+				} else {
+					Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
+				}
+
+				// Set campaign traffic throttle
+				if ( $request->getCheck( 'throttle-enabled' ) ) {
+					$throttle = $request->getInt( 'throttle-cur', 100 );
+				} else {
+					$throttle = 100;
+				}
+				Campaign::setNumericCampaignSetting( $notice, 'throttle', $throttle, 100, 0 );
+
+				// Handle user bucketing setting for campaign
+				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
+				$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
+
+				Campaign::setNumericCampaignSetting(
+					$notice,
+					'buckets',
+					$numCampaignBuckets,
+					$wgNoticeNumberOfBuckets,
+					1
+				);
+
+				// Handle setting campaign priority
+				Campaign::setNumericCampaignSetting(
+					$notice,
+					'preferred',
+					$request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
+					CentralNotice::EMERGENCY_PRIORITY,
+					CentralNotice::LOW_PRIORITY
+				);
+
+				// Handle updating geotargeting
+				if ( $request->getCheck( 'geotargeted' ) ) {
+					Campaign::setBooleanCampaignSetting( $notice, 'geo', 1 );
+					$countries = $request->getArray( 'geo_countries' );
+					if ( $countries ) {
+						Campaign::updateCountries( $notice, $countries );
+					}
+				} else {
+					Campaign::setBooleanCampaignSetting( $notice, 'geo', 0 );
+				}
+
+				// Handle updating the start and end settings
+				$start = $this->getDateTime( 'start' );
+				$end = $this->getDateTime( 'end' );
+				if ( $start && $end ) {
+					Campaign::updateNoticeDate( $notice, $start, $end );
+				}
+
+				// Handle adding of banners to the campaign
+				$templatesToAdd = $request->getArray( 'addTemplates' );
+				if ( $templatesToAdd ) {
+					$weight = $request->getArray( 'weight' );
+					foreach ( $templatesToAdd as $templateName ) {
+						$templateId = Banner::fromName( $templateName )->getId();
+						$bucket = $request->getInt( "bucket-{$templateName}" );
+						$result = Campaign::addTemplateTo(
+							$notice, $templateName, $weight[$templateId], $bucket
+						);
+						if ( $result !== true ) {
+							$this->showError( $result );
+						}
+					}
+				}
+
+				// Handle removing of banners from the campaign
+				$templateToRemove = $request->getArray( 'removeTemplates' );
+				if ( $templateToRemove ) {
+					foreach ( $templateToRemove as $template ) {
+						Campaign::removeTemplateFor( $notice, $template );
+					}
+				}
+
+				// Handle weight changes
+				$updatedWeights = $request->getArray( 'weight' );
+				$balanced = $request->getCheck( 'balanced' );
+				if ( $updatedWeights ) {
+					foreach ( $updatedWeights as $templateId => $weight ) {
+						if ( $balanced ) {
+							$weight = 25;
+						}
+						Campaign::updateWeight( $notice, $templateId, $weight );
+					}
+				}
+
+				// Handle bucket changes - keep in mind that the number of campaign buckets
+				// might have changed simultaneously (and might have happened server side)
+				$updatedBuckets = $request->getArray( 'bucket' );
+				if ( $updatedBuckets ) {
+					foreach ( $updatedBuckets as $templateId => $bucket ) {
+						Campaign::updateBucket(
+							$notice,
+							$templateId,
+							intval( $bucket ) % $numCampaignBuckets
+						);
+					}
+				}
+
+				// Handle new projects
+				$projects = $request->getArray( 'projects' );
+				if ( $projects ) {
+					Campaign::updateProjects( $notice, $projects );
+				}
+
+				// Handle new project languages
+				$projectLangs = $request->getArray( 'project_languages' );
+				if ( $projectLangs ) {
+					Campaign::updateProjectLanguages( $notice, $projectLangs );
+				}
+
+				$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
+				$campaignId = Campaign::getNoticeId( $notice );
+
+				$summary = $this->getSummaryFromRequest( $request );
+
+				Campaign::logCampaignChange(
+					'modified', $campaignId, $this->getUser(),
+					$initialCampaignSettings, $finalCampaignSettings,
+					array(), array(),
+					$summary );
+
+				// If there were no errors, reload the page to prevent duplicate form submission
+				if ( !$this->centralNoticeError ) {
+					$this->getOutput()->redirect( $this->getPageTitle()->getLocalUrl( array(
+						'subaction' => 'noticeDetail',
+						'notice' => $notice
+					) ) );
+					return;
+				}
+			} else {
+				$this->showError( 'sessionfailure' );
+			}
+		}
+	}
+
+	/**
+	 * Output stored campaign warnings
+	 */
+	function displayCampaignWarnings() {
+		foreach ( $this->campaignWarnings as $message ) {
+			$this->getOutput()->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
+		}
 	}
 
 	/**
@@ -911,6 +945,9 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Create form for managing banners assigned to a campaign
+	 *
+	 * Common campaign misconfigurations will cause warnings to appear
+	 * at the top of this form.
 	 */
 	function assignedTemplatesForm( $notice ) {
 		global $wgNoticeNumberOfBuckets;
@@ -1026,6 +1063,33 @@ class CentralNotice extends SpecialPage {
 		}
 		$htmlOut .= XMl::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
+
+		// Sneak in some extra processing, to detect errors in bucket assignment.
+		// Test for campaign buckets without an assigned banner or with multiple banners.
+		$assignedBuckets = array();
+		$numBuckets = $this->campaign->getBuckets();
+		foreach ( $banners as $banner ) {
+			$bannerBucket = $banner->asn_bucket;
+			$bannerName = $banner->tmp_name;
+
+			// If this campaign uses bucketing, is more than one banner
+			// assigned to any bucket?
+			if ( $numBuckets > 1
+				&& array_key_exists( $bannerBucket, $assignedBuckets )
+			) {
+				$this->campaignWarnings[] = array(
+					'centralnotice-banner-overflowing-bucket', chr( $bannerBucket + ord( 'A' ) )
+				);
+			}
+			$assignedBuckets[$bannerBucket] = $bannerName;
+		}
+		// Do any buckets not have a banner assigned?
+		if ( count( $assignedBuckets ) < $numBuckets ) {
+			$this->campaignWarnings[] = array(
+				'centralnotice-banner-empty-bucket'
+			);
+		}
+
 		return $htmlOut;
 	}
 
@@ -1217,10 +1281,6 @@ class CentralNotice extends SpecialPage {
 		return Xml::tags( 'select', $properties, $options );
 	}
 
-	function getProjectName( $value ) {
-		return $value; // @fixme -- use $this->msg()
-	}
-
 	public static function dropDownList( $text, $values ) {
 		$dropDown = "*{$text}\n";
 		foreach ( $values as $value ) {
@@ -1303,22 +1363,6 @@ class CentralNotice extends SpecialPage {
 		}
 
 		return Xml::tags( 'select', $properties, $options );
-	}
-
-	/**
-	 * @static Obtains the parameter $param, sanitizes by returning the first match to $regex or
-	 * $default if there was no match.
-	 * @param string    $param    Name of GET/POST parameter
-	 * @param string    $regex    Sanitization regular expression
-	 * @param string    $default  Default value to return on error
-	 * @return null|string The sanitized value
-	 */
-	protected function getTextAndSanitize( $param, $regex, $default = null ) {
-		if ( preg_match( $regex, $this->getRequest()->getText( $param ), $matches ) ) {
-			return $matches[0];
-		} else {
-			return $default;
-		}
 	}
 
 	/**

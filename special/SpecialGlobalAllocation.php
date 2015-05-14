@@ -72,19 +72,19 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$this->project = $sanitize(
 			$this->getRequest()->getText( 'project', $this->project ),
-			ApiCentralNoticeAllocations::PROJECT_FILTER
+			ApiCentralNoticeBannerChoiceData::PROJECT_FILTER
 		);
 		$this->language = $sanitize(
 			$this->getRequest()->getText( 'language', $this->language ),
-			ApiCentralNoticeAllocations::LANG_FILTER
+			ApiCentralNoticeBannerChoiceData::LANG_FILTER
 		);
 		$this->location = $sanitize(
 			$this->getRequest()->getText( 'country', $this->location ),
-			ApiCentralNoticeAllocations::LOCATION_FILTER
+			ApiCentralNoticeBannerChoiceData::LOCATION_FILTER
 		);
 		$this->device = $sanitize(
 			$this->getRequest()->getText( 'device', $this->device ),
-			ApiCentralNoticeAllocations::DEVICE_NAME_FILTER
+			ApiCentralNoticeBannerChoiceData::DEVICE_NAME_FILTER
 		);
 
 		$this->timestamp = wfTimestamp( TS_UNIX, $this->getDateTime( 'filter' ) );
@@ -252,16 +252,11 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$this->campaigns = Campaign::getHistoricalCampaigns( wfTimestamp( TS_MW, $this->timestamp ) );
 
-		//FIXME: static func or something to help with this
-		$allocContext = new AllocationContext(
-			$this->location, $this->language, $this->project,
-			null, null, null
-		);
-		$chooser = new BannerChooser( $allocContext, $this->campaigns );
-		$this->campaigns = $chooser->getCampaigns();
+		$this->campaigns = self::filterCampaigns(
+			$this->campaigns, $this->location, $this->language, $this->project );
 
 		foreach ( $this->campaigns as &$campaign ) {
-			if ( !$campaign['geo'] ) {
+			if ( !$campaign['geotargeted'] ) {
 				// fill out set according to flags, for symmetry with other criteria
 				$campaign['countries'] = array_keys( GeoTarget::getCountriesList( 'en' ) );
 			}
@@ -401,7 +396,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 						'a_country' => end( $result[0]['countries'] ),
 						'a_project' => end( $result[0]['projects'] ),
 						'a_language' => end( $result[0]['languages'] ),
-						'a_num_buckets' => $result[0]['buckets'],
+						'a_num_buckets' => $result[0]['bucket_count'],
 						'rows' => $rows,
 					);
 				}
@@ -452,7 +447,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * @param $numBuckets array Check allocations in this many buckets
 	 * @return string HTML for the table
 	 */
-	protected function getBannerAllocationsTable( $project, $location, $language, $numBuckets ) {
+	protected function getBannerAllocationsTable( $project, $country, $language, $numBuckets ) {
 		// This is annoying.  Within the campaign, banners usually vary by user
 		// logged-in status, and bucket.  Determine the allocations and
 		// collapse any dimensions which do not vary.
@@ -470,7 +465,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 					'bucket' => $banner['bucket'],
 					'campaign' => $campaign['name'],
 					'campaign_z_index' => $campaign['preferred'],
-					'campaign_num_buckets' => $campaign['buckets'],
+					'campaign_num_buckets' => $campaign['bucket_count'],
 					'display_anon' => $banner['display_anon'],
 					'display_account' => $banner['display_account'],
 				);
@@ -482,13 +477,16 @@ class SpecialGlobalAllocation extends CentralNotice {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
 				$device = 'desktop'; //XXX
 
-				$allocContext = new AllocationContext(
-					$location, $language, $project,
-					$isAnon, $device, $bucket
-				);
-				$chooser = new BannerChooser( $allocContext, $this->campaigns );
+				$status = $isAnon ?
+					AllocationCalculator::ANONYMOUS :
+					AllocationCalculator::LOGGED_IN;
 
-				$variations[$isAnon][$bucket] = $chooser->getBanners();
+				$campaigns = self::filterCampaigns(
+					$this->campaigns, $country, $language, $project);
+
+				$variations[$isAnon][$bucket] =
+					AllocationCalculator::filterAndAllocate( $country,
+					$status, $device, $bucket, $campaigns );
 
 				$allocSignatures = array();
 				foreach ( $variations[$isAnon][$bucket] as $banner ) {
@@ -606,7 +604,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 					htmlspecialchars( $banner['campaign'] ),
 					array(),
 					array(
-						'method' => 'listNoticeDetail',
+						'subaction' => 'noticeDetail',
 						'notice' => $banner['campaign']
 					)
 				)
@@ -620,6 +618,38 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'tr' );
 
 		return $htmlOut;
+	}
+
+	/**
+	 * Filter campaigns using criteria provided.
+	 *
+	 * @param array $campaigns campaings to filter
+	 * @param string $country
+	 * @param string $language
+	 * @param string $project
+	 */
+	protected static function filterCampaigns(
+		$campaigns, $country, $language, $project ) {
+
+		foreach ( $campaigns as $campaign ) {
+			$projectAllowed = (
+				!$project
+				or in_array( $project, $campaign['projects'] )
+			);
+			$languageAllowed = (
+				!$language
+				or in_array( $language, $campaign['languages'] )
+			);
+			$countryAllowed = (
+				!$country
+				or !$campaign['geotargeted']
+				or in_array( $country, $campaign['countries'] )
+			);
+			if ( $projectAllowed && $languageAllowed && $countryAllowed ) {
+				$filtered[] = $campaign;
+			}
+		}
+		return $filtered;
 	}
 }
 
@@ -639,7 +669,7 @@ class CampaignCriteria {
 				return false;
 			}
 		}
-		$intersection['buckets'] = max( $a['buckets'], $b['buckets'] );
+		$intersection['bucket_count'] = max( $a['bucket_count'], $b['bucket_count'] );
 		return $intersection;
 	}
 
@@ -661,7 +691,7 @@ class CampaignCriteria {
 
 		foreach ( $rows as $row ) {
 			$difference = $row;
-			$difference['buckets'] = max( $row['buckets'], $b['buckets'] );
+			$difference['bucket_count'] = max( $row['bucket_count'], $b['bucket_count'] );
 
 			foreach ( self::$criteria as $property ) {
 				$difference[$property] = array_diff( $row[$property], $b[$property] );

@@ -3,6 +3,13 @@
  * Renders banner contents as jsonp.
  */
 class SpecialBannerLoader extends UnlistedSpecialPage {
+
+	/**
+	 * Seconds leeway for checking stale choice data. Should be the same
+	 * as mw.cnBannerControllerLib.CAMPAIGN_STALENESS_LEEWAY.
+	 */
+	const CAMPAIGN_STALENESS_LEEWAY = 900;
+
 	/** @var string Name of the chosen banner */
 	public $bannerName;
 
@@ -84,6 +91,31 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @throw SpecialBannerLoaderException
 	 */
 	public function getJsNotice( $bannerName ) {
+
+		// If this wasn't a test of a banner, check that this is from a campaign
+		// that hasn't ended. We might get old campaigns due to forever-cached
+		// JS somewhere. Note that we include some leeway and don't consider
+		// archived or enabled status because the campaign might just have been
+		// updated and there is a normal caching lag.
+
+		// An empty campaign name is how bannerController indicates a test request.
+		if ( $this->campaignName !== '' ) {
+
+			// The following will throw a CampaignExistenceException if there's
+			// no such campaign.
+			$campaign = new Campaign( $this->campaignName );
+			$endTimePlusLeeway = wfTimestamp(
+				TS_UNIX,
+				$campaign->getEndTime()->getTimestamp() + self::CAMPAIGN_STALENESS_LEEWAY
+			);
+			$now = wfTimestamp();
+
+			if ( $endTimePlusLeeway < $now ) {
+				throw new StaleCampaignException(
+					$this->bannerName, "Campaign: {$this->campaignName}" );
+			}
+		}
+
 		if ( $bannerName === null || $bannerName === '' ) {
 			throw new EmptyBannerException( $bannerName );
 		}
@@ -114,22 +146,11 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			'landingPages' => explode( ", ", $settings['landingpages'] ),
 		);
 
-		try {
-			$campaignObj = new Campaign( $this->campaignName );
-			$priority = $campaignObj->getPriority();
-		} catch ( CampaignExistenceException $ex ) {
-			$priority = 0;
-		}
-		$bannerArray['priority'] = $priority;
-
 		$bannerJson = FormatJson::encode( $bannerArray );
 
 		$preload = $bannerRenderer->getPreloadJs();
-		if ( $preload ) {
-			$preload = "mw.centralNotice.bannerData.preload = function() { {$preload} };";
-		}
 
-		$bannerJs = $preload . "mw.centralNotice.insertBanner( {$bannerJson} );";
+		$bannerJs = "{$preload}\nmw.centralNotice.insertBanner( {$bannerJson} );";
 
 		return $bannerJs;
 	}
@@ -146,8 +167,11 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
  * @ingroup Exception
  */
 class BannerLoaderException extends MWException {
-	function __construct( $bannerName = '(none provided)' ) {
-		$this->message = get_called_class() . " while loading banner: '{$bannerName}'";
+	function __construct( $bannerName = '(none provided)', $extraMsg = null ) {
+
+		$this->message = get_called_class() .
+			" while loading banner: '{$bannerName}'" .
+			$extraMsg ? ". {$extraMsg}" : "";
 	}
 }
 
@@ -155,4 +179,7 @@ class EmptyBannerException extends BannerLoaderException {
 }
 
 class MissingRequiredParamsException extends BannerLoaderException {
+}
+
+class StaleCampaignException extends BannerLoaderException {
 }

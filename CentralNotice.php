@@ -60,12 +60,9 @@ $wgNoticeProjects = array(
 // Set to false for wikis that only use a sister site for the control.
 $wgNoticeInfrastructure = true;
 
-// The name of the database which hosts the centralized campaign data
+// The name of the database which hosts the centralized campaign data.  If false,
+// we will default to using the primary database.
 $wgCentralDBname = false;
-
-// URL where BannerRandom is hosted, where false will default to the
-// Special:BannerRandom on the machine serving ResourceLoader requests.
-$wgCentralBannerDispatcher = false;
 
 // URL which is hit after a banner is loaded, for compatibility with analytics.
 $wgCentralBannerRecorder = false;
@@ -75,29 +72,19 @@ $wgCentralNoticeSampleRate = 1 / 100;
 
 // Protocol and host name of the wiki that hosts the CentralNotice infrastructure,
 // for example '//meta.wikimedia.org'. This is used for DNS prefetching.
-// NOTE: this should be the same host as wgCentralBannerDispatcher, above,
-// when on a different subdomain than the wiki.
 $wgCentralHost = false;
-
-// The script path on the wiki that hosts the CentralNotice infrastructure
-// For example 'http://meta.wikimedia.org/w/index.php'
-$wgCentralPagePath = false;
 
 // The API path on the wiki that hosts the CentralNotice infrastructure
 // For example 'http://meta.wikimedia.org/api.php'
 // This must be set if you enable the selection of banners on the client and
 // you don't have direct access to the infrastructure database (see
-// $wgCentralDBname).
+// $wgCentralDBname).  Note that when this is set, it will override your
+// database settings.
 $wgCentralNoticeApiUrl = false;
 
-// Enable the new mechanism for making the banner selection on the client
-$wgCentralNoticeChooseBannerOnClient = true;
-
 // URL for BannerLoader, for requests to fetch a banner that is already
-// known (using the banner URL param). If false, it will default to
-// Special:BannerLoader on the machine serving ResourceLoader requests. This
-// value is used when for fetching banners that are chosen on the client (i.e.,
-// when $wgCentralNoticeChooseBannerOnClient is set to true).
+// known (using the "banner" URL param). If false, it will default to
+// Special:BannerLoader on the machine serving ResourceLoader requests.
 $wgCentralSelectedBannerDispatcher = false;
 
 // Enable the loader itself

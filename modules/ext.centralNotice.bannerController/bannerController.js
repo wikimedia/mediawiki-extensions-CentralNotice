@@ -98,7 +98,9 @@
 		/**
 		 * Data that will be returned with the RecordImpression request
 		 */
-		impressionData: {},
+		impressionData: {
+			result: 'show'
+		},
 
 		/**
 		 * Turn on sampling for calls to Special:RecordImpression.
@@ -123,22 +125,17 @@
 		 */
 		deferredObjs: {},
 
-		/**
-		 * Check if we're configured to choose banners on the client,
-		 * and do a few sanity checks. Since bannercontroller.lib and
-		 * bannerChoiceData are dependencies, it should be safe to assume that
-		 * everything's there by the time this module executes.
-		 */
-		chooseBannerOnClient:
-				mw.config.get( 'wgCentralNoticeChooseBannerOnClient' ) &&
-				mw.cnBannerControllerLib &&
-				( mw.cnBannerControllerLib.choiceData !== null ),
-
 		/** -- Functions! -- **/
 		loadBanner: function () {
+
+			// If we're forcing a banner for testing, just load that.
 			if ( mw.centralNotice.data.getVars.banner ) {
-				// If we're forcing one banner
-				mw.centralNotice.loadTestingBanner( mw.centralNotice.data.getVars.banner, 'none', 'testing' );
+
+				// Sending an empty string as the campaign name will make the
+				// server skip checks on campaign validity.
+				mw.centralNotice.loadTestingBanner(
+					mw.centralNotice.data.getVars.banner, '' );
+
 			} else {
 				mw.centralNotice.loadRandomBanner();
 			}
@@ -150,20 +147,13 @@
 
 			// Get the requested banner
 			bannerPageQuery = {
-				title: 'Special:BannerLoader',
 				banner: bannerName,
 				campaign: campaign,
 				uselang: mw.config.get( 'wgUserLanguage' ),
-				db: mw.config.get( 'wgDBname' ),
-				project: mw.config.get( 'wgNoticeProject' ),
-				country: mw.centralNotice.data.country,
-				device: mw.centralNotice.data.device,
 				debug: mw.centralNotice.data.getVars.debug
 			};
 
-			// TODO use the new $wgCentralSelectedBannerDispatcher here instead
-
-			url = new mw.Uri( mw.config.get( 'wgCentralPagePath' ) );
+			url = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
 			url.extend( bannerPageQuery );
 
 			$.ajax({
@@ -174,91 +164,122 @@
 		},
 		loadRandomBanner: function () {
 
-			var fetchBannerQueryParams = {
-					uselang: mw.config.get( 'wgUserLanguage' ),
-					project: mw.config.get( 'wgNoticeProject' ),
-					anonymous: mw.config.get( 'wgUserName' ) === null,
-					country: mw.centralNotice.data.country,
-					device: mw.centralNotice.data.device,
-					debug: mw.centralNotice.data.getVars.debug
-				},
+			var fetchBannerQueryParams,
 				scriptUrl;
 
-			// Either choose the banner on the client, or call the server to get
-			// a random banner.
-			if ( mw.centralNotice.chooseBannerOnClient ) {
+			mw.centralNotice.chooseRandomBanner();
 
-				// Continue only if the server sent choices
-				if ( mw.cnBannerControllerLib.choiceData.length > 0 ) {
+			if ( mw.centralNotice.data.banner ) {
 
-					// If the server did send one or more choices: let the
-					// processing begin!
+				// A banner was chosen! Let's fetch it.
 
-					// Filter choiceData on country and device. Only campaigns that
-					// target the user's country and have at least one banner for
-					// the user's logged-in status and device pass this filter.
-					mw.cnBannerControllerLib.filterChoiceData();
+				fetchBannerQueryParams = {
+					banner: mw.centralNotice.data.banner,
+					campaign: mw.centralNotice.data.campaign,
+					uselang: mw.config.get( 'wgUserLanguage' ),
+					debug: mw.centralNotice.data.getVars.debug
+				};
 
-					// Again check if there are choices available. This result may
-					// have changed following the above call to filterChoiceData().
-					if ( mw.cnBannerControllerLib.choiceData.length > 0 ) {
-
-						// Do all things bucket. Retrieve or generate buckets for all
-						// the campaigns remaining in choiceData. Then update expiry
-						// dates and remove expired buckets as necessary.
-						mw.cnBannerControllerLib.processBuckets();
-
-						// Create a flat list of possible banners available for the
-						// user's buckets, logged-in status and device, and calculate
-						// allocations.
-						mw.cnBannerControllerLib.makePossibleBanners();
-						mw.cnBannerControllerLib.calculateBannerAllocations();
-
-						// Get a random seed or use the random= parameter from the URL,
-						// and choose the banner.
-						var random = mw.centralNotice.data.getVars.random || Math.random();
-						mw.cnBannerControllerLib.chooseBanner( random );
-					}
-				}
-
-				// Only fetch a banner if we need to :)
-				if ( mw.centralNotice.data.banner ) {
-					fetchBannerQueryParams.banner = mw.centralNotice.data.banner;
-					fetchBannerQueryParams.campaign = mw.centralNotice.data.campaign;
-
-					scriptUrl = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
-					scriptUrl.extend( fetchBannerQueryParams );
-
-					// This will call insertBanner() after the banner is retrieved
-					$.ajax( {
-						url: scriptUrl.toString(),
-						dataType: 'script',
-						cache: true
-					} );
-
-				} else {
-					// Call insertBanner and set the onlySampleRI flag to true
-					// to sample empty results and return them via
-					// Special:RecordImpression.
-					// TODO Refactor
-					mw.centralNotice.onlySampleRI = true;
-					mw.centralNotice.insertBanner( false );
-				}
-
-			} else {
-				var RAND_MAX = 30;
-				fetchBannerQueryParams.slot = Math.floor( Math.random() * RAND_MAX ) + 1;
-				fetchBannerQueryParams.bucket = mw.centralNotice.data.bucket;
-
-				scriptUrl = new mw.Uri( mw.config.get( 'wgCentralBannerDispatcher' ) );
+				scriptUrl = new mw.Uri( mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
 				scriptUrl.extend( fetchBannerQueryParams );
 
+				// The returned javascript will call insertBanner() after the
+				// banner is retrieved.
 				$.ajax( {
-					url: scriptUrl.toString,
+					url: scriptUrl.toString(),
 					dataType: 'script',
 					cache: true
 				} );
+
+			} else {
+
+				// No banner for this user!
+
+				// Set the onlySampleRI flag to true to sample empty results
+				// and return them via Special:RecordImpression.
+				// TODO Refactor
+				mw.centralNotice.onlySampleRI = true;
+				mw.centralNotice.insertBanner( false );
 			}
+		},
+		/**
+		 * Choose a banner or no banner randomly (or based on the
+		 * randomcampaign and randombanner dev-only URL parameters, which may
+		 * be sent to force random values for development purposes). If a banner
+		 * is chosen its name will be put in mw.centralNotice.data.banner and
+		 * the campaign name will be put in mw.centralNotice.data.campaign.
+		 */
+		chooseRandomBanner: function () {
+
+			var randomCampaign, randomBanner;
+
+			// Sanity check, and don't stop the show if this happens
+			if ( !mw.cnBannerControllerLib.isChoiceDataSet() ) {
+				mw.log( 'No choice data received for CentralNotice banner selection.' );
+				return;
+			}
+
+			// If there are no choices, bow out
+			if ( !mw.cnBannerControllerLib.choicesAvailable() ) {
+				return;
+			}
+
+			// The server did send one or more choices: let the processing begin!
+
+			// Filter choiceData on country and device. Only campaigns that
+			// target the user's country and have at least one banner for
+			// the user's logged-in status and device pass this filter.
+			mw.cnBannerControllerLib.filterChoiceData();
+
+			// Again check if there are choices available. This result may
+			// have changed following the above call to filterChoiceData().
+			if ( !mw.cnBannerControllerLib.choicesAvailable() ) {
+				return;
+			}
+
+			// Calculate the user's probability of getting each campaign
+			mw.cnBannerControllerLib.calculateCampaignAllocations();
+
+			// Get a random seed or use the dev-only randomcampaign
+			// parameter from the URL, and choose the campaign.
+			randomCampaign =
+				mw.centralNotice.data.getVars.randomcampaign || Math.random();
+
+			mw.cnBannerControllerLib.chooseCampaign( randomCampaign );
+
+			// Check if a campaign was selected (we might have chosen an
+			// unallocated block).
+			if ( !mw.cnBannerControllerLib.isAnyCampaignChosen() ) {
+				return;
+			}
+
+			// Do all things bucket. Retrieve or generate a bucket for this
+			// campaign. Then, update expiry dates and remove expired buckets as
+			// necessary.
+			mw.cnBannerControllerLib.processBuckets();
+
+			// Create a list of possible banners available in this campaign for
+			// the user's bucket, logged-in status and device, and calculate
+			// allocations.
+			mw.cnBannerControllerLib.makePossibleBanners();
+
+			// Because of our wonky domain model, it's possible to have banners
+			// with different criteria (logged-in status, device) in different
+			// buckets in the same campaign. So we might be in a bucket with no
+			// banners for this user, which would mean no possible banners.
+			if ( !mw.cnBannerControllerLib.bannersAvailable() ) {
+				return;
+			}
+
+			// Calculate banner allocations.
+			mw.cnBannerControllerLib.calculateBannerAllocations();
+
+			// Get another random seed or use the randombanner= parameter
+			// from the URL, and choose the banner.
+			randomBanner =
+				mw.centralNotice.data.getVars.randombanner || Math.random();
+
+			mw.cnBannerControllerLib.chooseBanner( randomBanner );
 		},
 		// TODO: move function definitions once controller cache has cleared
 		insertBanner: function( bannerJson ) {
@@ -307,25 +328,21 @@
 			} );
 		},
 		/**
-		 * Legacy function for getting the legacy global bucket. Left here for
-		 * compatibility; may be deprecated soon.
+		 * Legacy function for getting the legacy global bucket. Left here
+		 * for paranoid JS-breakage avoidance debugging fun fun.
+		 * @deprecated
 		 */
 		getBucket: function() {
-			var bucket = mw.cnBannerControllerLib.retrieveLegacyBucket();
-			if ( !bucket ) {
-				bucket = mw.cnBannerControllerLib.getRandomBucket();
-			}
-			return bucket;
+			mw.log( 'Legacy mw.bannerController.getBucket() is deprecated no-op.' );
+			return 0;
 		},
 		/**
-		 * Legacy function for storing the legacy global bucket. Left here for
-		 * compatibility; may be deprecated soon. Stores
-		 * mw.centralNotice.data.bucket. See
-		 * mw.cnBannerControllerLib.storeLegacyBucket.
+		 * Legacy function for storing the legacy global bucket Left here
+		 * for paranoid JS-breakage avoidance.
+		 * @deprecated
 		 */
 		storeBucket: function() {
-			mw.cnBannerControllerLib.storeLegacyBucket(
-				mw.centralNotice.data.bucket );
+			mw.log( 'Legacy mw.bannerController.storeBucket() is deprecated no-op.' );
 		},
 		initialize: function () {
 			// === Do not allow CentralNotice to be re-initialized. ===
@@ -343,11 +360,6 @@
 			mw.centralNotice.data.addressFamily = ( window.Geo.IPv6 || window.Geo.af === 'v6' ) ? 'IPv6' : 'IPv4';
 			mw.centralNotice.isPreviewFrame = (mw.config.get( 'wgCanonicalSpecialPageName' ) === 'BannerPreview');
 			mw.centralNotice.data.device = mw.centralNotice.data.getVars.device || mw.config.get( 'wgMobileDeviceName', 'desktop' );
-
-			// Use legacy bucket if we're not choosing banners on the client
-			if ( !mw.centralNotice.chooseBannerOnClient ) {
-				mw.centralNotice.data.bucket = mw.centralNotice.getBucket();
-			}
 
 			// === Do not actually load a banner on a special page ===
 			//     But we keep this after the above initialization for CentralNotice pages
@@ -410,26 +422,18 @@
 		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
-		var impressionData = mw.centralNotice.impressionData = {
+		var impressionData = $.extend( mw.centralNotice.impressionData, {
 			country: mw.centralNotice.data.country,
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			project: mw.config.get( 'wgNoticeProject' ),
 			db: mw.config.get( 'wgDBname' ),
 			anonymous: mw.centralNotice.data.anonymous,
 			device: mw.centralNotice.data.device
-		};
-
-		// If we're not choosing banners on the client, there's a global bucket
-		// we can send in.
-		if ( !mw.centralNotice.chooseBannerOnClient ) {
-			impressionData.bucket = mw.centralNotice.data.bucket;
-		}
-
-		var hideBanner = false;
+		} );
 
 		if ( !bannerJson ) {
 			// There was no banner returned from the server
-			hideBanner = true;
+			impressionData.result = 'hide';
 			impressionData.reason = 'empty';
 
 		} else {
@@ -439,20 +443,9 @@
 
 			// Bucket stuff varies depending on where we're choosing banners:
 
-			// Legacy bucket operation. If we're not choosing banners on the
-			// client, store the bucket we used in a cookie. If it's already
-			// there, this should extend the bucket cookie's expiry the duration
-			// indicated by wgNoticeBucketExpiry.
-			if ( !mw.centralNotice.chooseBannerOnClient ) {
-				mw.centralNotice.storeBucket();
-
-			} else if ( !mw.centralNotice.data.getVars.banner ) {
-
-				// If we are choosing banners on the client, that means we
-				// haven't set the bucket in the impression data. Add it
-				// along with its start and end dates.
-				// However we won't do this when a banner is being forced via
-				// the banner URL param.
+			// Set bucket info the impression data, unless a banner is being
+			// forced via the banner URL param.
+			if ( !mw.centralNotice.data.getVars.banner ) {
 				bucket = mw.cnBannerControllerLib.bucketsByCampaign[impressionData.campaign];
 				impressionData.bucket = bucket.val;
 				impressionData.bucketStart = bucket.start;
@@ -462,14 +455,9 @@
 			// Get the banner type for more queryness
 			mw.centralNotice.data.category = encodeURIComponent( bannerJson.category );
 
-			if ( typeof mw.centralNotice.bannerData.preload === 'function'
-				&& !mw.centralNotice.bannerData.preload()
-			) {
-				hideBanner = true;
-				if ( !impressionData.reason ) {
-					impressionData.reason = 'preload';
-				}
-			} else if ( mw.centralNotice.data.testing === false ) { /* And we want to see what we're testing! :) */
+			// Do some builtin hide cookie things, unless we're testing.
+			// TODO: Push this into a mixin.
+			if ( impressionData.result !== 'hide' && mw.centralNotice.data.testing === false ) {
 				cookieName = 'centralnotice_hide_' + mw.centralNotice.data.category;
 				cookieVal = $.cookie( cookieName );
 				durations = mw.config.get( 'wgNoticeCookieDurations' );
@@ -481,7 +469,7 @@
 					$.cookie( cookieName, null, { path: '/' } );
 				} else if ( cookieVal === 'hide' ) {
 					// We'll hide the banner because of a legacy hide cookie.
-					hideBanner = true;
+					impressionData.result = 'hide';
 					impressionData.reason = 'cookie';
 					// Or 'donate'? Legacy 'close' cookies are gone by now
 				} else if ( cookieVal !== null && cookieVal.indexOf( '{' ) === 0 ) {
@@ -490,12 +478,13 @@
 						&& now < parsedCookie.created + durations[parsedCookie.reason]
 					) {
 						// We'll hide the banner because of a cookie with a reason
-						hideBanner = true;
+						impressionData.result = 'hide';
 						impressionData.reason = parsedCookie.reason;
 					}
 				}
 			}
-			if ( !hideBanner ) {
+
+			if ( impressionData.result === 'show' ) {
 				// Not hidden yet, inject the banner
 				mw.centralNotice.bannerData.bannerName = bannerJson.bannerName;
 				$( 'div#centralNotice' )
@@ -535,7 +524,7 @@
 				// possible without some rework of how the analytics scripts work.
 				// ~~ as of 2012-11-27
 				if ( !bannerShown ) {
-					hideBanner = true;
+					impressionData.result = 'hide';
 					// alterImpressionData should set a reason, but we'll set a
 					// default if it didn't
 					if ( !impressionData.reason ) {
@@ -544,8 +533,6 @@
 				}
 			}
 		}
-
-		impressionData.result = hideBanner ? 'hide' : 'show';
 
 		if ( !mw.centralNotice.data.testing ) {
 			mw.centralNotice.recordImpression( impressionData );

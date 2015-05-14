@@ -223,7 +223,8 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return bool
 	 */
 	public static function registerGroupHook( &$list ) {
-		$dbr = CNDatabase::getDb( DB_MASTER ); // Must be explicitly master for runs under a jobqueue
+		// Must be explicitly master for runs under a jobqueue
+		$dbr = CNDatabase::getDb( DB_MASTER );
 
 		// Create the base aggregate group
 		$conf = array();

@@ -97,7 +97,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			htmlspecialchars( $row->notlog_not_name ),
 			array(),
 			array(
-				'method' => 'listNoticeDetail',
+				'subaction' => 'noticeDetail',
 				'notice' => $row->notlog_not_name
 			)
 		);

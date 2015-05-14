@@ -41,15 +41,15 @@ class CentralNoticeTestFixtures {
 	}
 
 	static function getDefaultLanguage() {
-		return ApiCentralNoticeAllocations::DEFAULT_LANGUAGE;
+		return 'en';
 	}
 
 	static function getDefaultProject() {
-		return ApiCentralNoticeAllocations::DEFAULT_PROJECT;
+		return 'wikipedia';
 	}
 
 	static function getDefaultCountry() {
-		return ApiCentralNoticeAllocations::DEFAULT_COUNTRY;
+		return 'XX';
 	}
 
 	static function getDefaultDevice() {
@@ -361,10 +361,26 @@ class CentralNoticeTestFixtures {
 
 		// The order of the numerically indexed arrays in this data structure
 		// shouldn't matter, so sort all of those by value.
-		ComparisonUtil::deepMultisort( $expected );
-		ComparisonUtil::deepMultisort( $actual );
+		$this->deepMultisort( $expected );
+		$this->deepMultisort( $actual );
 
 		$testClass->assertEquals( $expected, $actual, $message );
+	}
+
+	/**
+	 * Convenience method used to compare choice data. Ensures that in a data
+	 * structure, numerically indexed arrays are sorted by value.
+	 * (If $a is a numerically indexed array, sort it by value. Traverse the
+	 * array recursively and do the same for each value.)
+	 */
+	protected function deepMultisort( array &$a ) {
+		array_multisort( $a );
+
+		foreach ( $a as &$v ) {
+			if ( is_array ( $v ) ) {
+				$this->deepMultisort( $v );
+			}
+		}
 	}
 
 	/**

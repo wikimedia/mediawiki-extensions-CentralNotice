@@ -38,7 +38,7 @@ $specialPageAliases['ar'] = array(
 	'HideBanners' => array( 'إخفاء_الإعلان' ),
 );
 
-/** Egyptian Spoken Arabic (مصرى) */
+/** Egyptian Arabic (مصرى) */
 $specialPageAliases['arz'] = array(
 	'CentralNotice' => array( 'ملاحظة_مركزية' ),
 	'CentralNoticeBanners' => array( 'اعلانات_النوتيس_المركزيه' ),
@@ -59,6 +59,22 @@ $specialPageAliases['as'] = array(
 	'CentralNotice' => array( 'কেন্দ্ৰীয়_জাননী' ),
 	'CentralNoticeLogs' => array( 'কেন্দ্ৰীয়_জাননী_অভিলেখসমূহ' ),
 	'NoticeTemplate' => array( 'জাননী_সাঁচ' ),
+);
+
+/** Western Balochi (بلوچی رخشانی) */
+$specialPageAliases['bgn'] = array(
+	'CentralNotice' => array( 'مرکزین_جار_یا_ئیلان' ),
+	'CentralNoticeBanners' => array( 'مرکزین_ئیلانی_بیراک_ئان' ),
+	'CentralNoticeLogs' => array( 'مرکزین_ئیلانی_سیاهه_ئان' ),
+	'CNReporter' => array( 'مرکزین_ئیلانی_راپور_دهوک' ),
+	'NoticeTemplate' => array( 'ئیلامیه_ئی_تراشوان' ),
+	'GlobalAllocation' => array( 'سراسرین_تخسیس' ),
+	'BannerAllocation' => array( 'نشانی_جاگه' ),
+	'BannerController' => array( 'نشانی_کنترول' ),
+	'BannerLoader' => array( 'نشانی_بُرز_کورتین' ),
+	'BannerRandom' => array( 'تسادوپین_نشان' ),
+	'RecordImpression' => array( 'اهساس_ئی_سبت_کورتین' ),
+	'HideBanners' => array( 'نشان_ئانی_چیهر_کورتین' ),
 );
 
 /** Breton (brezhoneg) */
@@ -84,16 +100,16 @@ $specialPageAliases['de'] = array(
 
 /** Zazaki (Zazaki) */
 $specialPageAliases['diq'] = array(
-	'CentralNotice' => array( 'MerkeziXeberdaren' ),
-	'CentralNoticeBanners' => array( 'MerkeziTebliğéAfişan' ),
-	'CentralNoticeLogs' => array( 'MerkeziİlanéRocekan' ),
+	'CentralNotice' => array( 'MerkezêXeberdaren' ),
+	'CentralNoticeBanners' => array( 'MerkezÊTebliğêAfişan' ),
+	'CentralNoticeLogs' => array( 'MerkezêİlanêRocekan' ),
 	'CNReporter' => array( 'CNRaportor' ),
-	'NoticeTemplate' => array( 'ŞablonéXeberdaren' ),
-	'GlobalAllocation' => array( 'GlobalTahsis' ),
-	'BannerAllocation' => array( 'TehsiséAfişan' ),
-	'BannerController' => array( 'KontrolkaréAfişan' ),
-	'BannerLoader' => array( 'BarkerdenéAfişan' ),
-	'BannerRandom' => array( 'RaştameyéBaner' ),
+	'NoticeTemplate' => array( 'ŞablonêXeberdaren' ),
+	'GlobalAllocation' => array( 'TehsisoGlover' ),
+	'BannerAllocation' => array( 'TehsisêAfişan' ),
+	'BannerController' => array( 'KontrolkarêAfişan' ),
+	'BannerLoader' => array( 'BarkerdoğêAfişan' ),
+	'BannerRandom' => array( 'AfişoRastameye' ),
 	'RecordImpression' => array( 'TepıştekVinayış' ),
 	'HideBanners' => array( 'AfişanBınımne' ),
 );
@@ -248,6 +264,21 @@ $specialPageAliases['lb'] = array(
 	'BannerController' => array( 'Bannersteierung' ),
 	'BannerRandom' => array( 'Zoufällege_Banner' ),
 	'HideBanners' => array( 'Banner_verstoppen' ),
+);
+
+/** لوری مینجایی (لوری مینجایی) */
+$specialPageAliases['lrc'] = array(
+	'CentralNotice' => array( 'ویرداری_مینجایی' ),
+	'CentralNoticeBanners' => array( 'بیرقیا_وارسکار_مینجایی' ),
+	'CentralNoticeLogs' => array( 'پهرستنومه_یا_وارسکار_مینجایی' ),
+	'CNReporter' => array( 'گزارشتکار_سی_ان' ),
+	'NoticeTemplate' => array( 'چوئه_وارسکار' ),
+	'GlobalAllocation' => array( 'گزینشت_کاری_جهونی' ),
+	'BannerAllocation' => array( 'گزینشت_کاری_بیرق' ),
+	'BannerController' => array( 'وارسکار_بیرق' ),
+	'BannerLoader' => array( 'بیرق_وادار' ),
+	'BannerRandom' => array( 'بیرق_بختکی' ),
+	'HideBanners' => array( 'نهوکردن_بیرقیا' ),
 );
 
 /** Malagasy (Malagasy) */

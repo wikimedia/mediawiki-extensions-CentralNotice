@@ -14,7 +14,8 @@
 			"TBloemink",
 			"Tvdm",
 			"User555",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"MedShot"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -197,6 +198,8 @@
 	"centralnotice-buckets": "Groepen gebruikers",
 	"centralnotice-bucket": "Groep",
 	"centralnotice-bucket-letter": "Groep \"$1\"",
+	"centralnotice-banner-overflowing-bucket": "Emmer \"$1\" heeft te veel banners toegewezen gekregen.",
+	"centralnotice-banner-empty-bucket": "Niet alle emmers hebben een banner toegewezen gekregen.",
 	"centralnotice-devicetype-desktop": "Desktopcomputer",
 	"centralnotice-devicetype-android": "Android-besturingssysteem",
 	"centralnotice-devicetype-iphone": "Alle iPhone-versies",

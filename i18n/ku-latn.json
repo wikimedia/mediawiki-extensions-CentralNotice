@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"George Animal",
-			"Gomada"
+			"Gomada",
+			"Bikarhêner"
 		]
 	},
 	"centralnotice-modify": "Tomar bike",
-	"centralnotice-preview": "Pêşdîtin",
+	"centralnotice-preview": "Pêşdîtin ($1)",
 	"centralnotice-add": "Zêde bike",
 	"centralnotice-translations": "Werger",
 	"centralnotice-translate": "Wergerîne",
