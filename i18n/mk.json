@@ -132,7 +132,6 @@
 	"centralnotice-country": "Земја",
 	"centralnotice-no-allocation": "Нема распределени плакати",
 	"centralnotice-allocation-description": "Распределба на плакати за јазикот: $1, проект: $2, во земјата: $3, на уредот $4",
-	"centralnotice-allocation-client-algorithm": "Прикажи доделувања според пресметаното од алгоритамот на клиентска страна",
 	"centralnotice-historical-allocation-description": "Доделен плакат за јавикот: $1, проект: $2, во земјата: $3, на уредот $4, време: $5",
 	"centralnotice-percentage": "Постоток",
 	"centralnotice-documentwrite-error": "document.write() не може да се користи во рамките на плаЗа повеќе информации, погледајте ја страницата http://meta.wikimedia.org/wiki/Help:CentralNotice",

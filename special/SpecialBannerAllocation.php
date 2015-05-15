@@ -203,30 +203,19 @@ class SpecialBannerAllocation extends CentralNotice {
 		// Begin Allocation list fieldset
 		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
-		// Add a box to select which algorithm's allocation to display
-		$htmlOut .= Html::element( 'label', array(
-				'for' => 'algorithm-selector',
-			),
-			$this->msg( 'centralnotice-allocation-client-algorithm' )->text()
-		);
-		$htmlOut .= Html::element( 'input', array(
-			'type' => 'checkbox',
-			'id' => 'algorithm-selector'
-		) );
-		
-
 		// Given our project and language combination, get banner choice data,
 		// then filter on country
 		$provider = new BannerChoiceDataProvider( $project, $language );
-		$choice_data = $provider->getChoicesForCountry( $country );
+		$choiceData = $provider->getChoices();
 
 		// Iterate through each possible device type and get allocation information
 		$devices = CNDeviceTarget::getAvailableDevices();
-		foreach( $devices as $device_id => $device_data ) {
+		foreach( $devices as $deviceId => $deviceData ) {
+
 			$htmlOut .= Html::openElement(
 				'div',
 				array(
-					 'id' => "cn-allocation-{$project}-{$language}-{$country}-{$device_id}",
+					 'id' => "cn-allocation-{$project}-{$language}-{$country}-{$deviceId}",
 					 'class' => 'cn-allocation-group'
 				)
 			);
@@ -238,10 +227,11 @@ class SpecialBannerAllocation extends CentralNotice {
 					htmlspecialchars( $language ),
 					htmlspecialchars( $project ),
 					htmlspecialchars( $country ),
-					$this->getOutput()->parseInline( $device_data['label'] )
+					$this->getOutput()->parseInline( $deviceData['label'] )
 				)->text()
 			);
 
+			// FIXME Figure out the following comments and remove as needed
 			// FIXME bannerstats is toast
 			// Build campaign list for bannerstats.js
 			//$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
@@ -260,32 +250,22 @@ class SpecialBannerAllocation extends CentralNotice {
 			}
 
 			foreach ( $matrix as $target ) {
-				$banners = ApiCentralNoticeAllocations::getBannerAllocation(
-					$project,
-					$country,
-					$language,
-					$target['anonymous'],
-					$device_data['header'],
-					$target['bucket']
-				);
 				if ( $target['anonymous'] === 'true' ) {
 					$label = $this->msg( 'centralnotice-banner-anonymous' )->text();
-					$status = BannerAllocationCalculator::ANONYMOUS;
+					$status = AllocationCalculator::ANONYMOUS;
 				} else {
 					$label = $this->msg( 'centralnotice-banner-logged-in' )->text();
-					$status = BannerAllocationCalculator::LOGGED_IN;
+					$status = AllocationCalculator::LOGGED_IN;
 				}
 				$label .= ' -- ' . $this->msg( 'centralnotice-bucket-letter' )->
 					rawParams( chr( $target['bucket'] + 65 ) )->text();
 
-				$provider_banners = BannerAllocationCalculator::filterAndTransformBanners(
-					$choice_data,
-					$status,
-					$device_data['header'],
-					intval( $target['bucket'] )
-				);
-				$provider_banners = BannerAllocationCalculator::calculateAllocations( $provider_banners );
-				$htmlOut .= $this->getTable( $label, $banners, $provider_banners );
+				$possibleBannersAllCampaigns =
+					AllocationCalculator::filterAndAllocate( $country,
+					$status, $deviceData['header'], $target['bucket'],
+					$choiceData );
+
+				$htmlOut .= $this->getTable( $label, $possibleBannersAllCampaigns );
 			}
 
 			$htmlOut .= Html::closeElement( 'div' );
@@ -300,17 +280,16 @@ class SpecialBannerAllocation extends CentralNotice {
 	/**
 	 * Generate the HTML for an allocation table
 	 * @param $type string The title for the table
-	 * @param $banners array The banners allocated by BannerChooser
-	 * @param $providerBanners array The banners as allocated by BannerAllocationCalculator
+	 * @param $banners array The banners as allocated by AllocationCalculator
 	 * @return string HTML for the table
 	 */
-	public function getTable( $type, $banners, $providerBanners ) {
+	public function getTable( $type, $banners ) {
 		$htmlOut = Html::openElement( 'table',
 			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
 		);
 		$htmlOut .= Html::element( 'h4', array(), $type );
 
-		if (count($banners) > 0) {
+		if ( count( $banners ) > 0 ) {
 			$htmlOut .= Html::openElement( 'tr' );
 			$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
 				$this->msg( 'centralnotice-percentage' )->text() );
@@ -320,15 +299,14 @@ class SpecialBannerAllocation extends CentralNotice {
 				$this->msg( 'centralnotice-notice' )->text() );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}
-		$htmlOut .= $this->createRows( $banners, 'mw-centralnotice-row-banner-chooser' );
-		$htmlOut .= $this->createRows( $providerBanners, 'mw-centralnotice-row-allocation-calculator' );
+		$htmlOut .= $this->createRows( $banners );
 
 		$htmlOut .= Html::closeElement( 'table' );
 
 		return $htmlOut;
 	}
 
-	public function createRows( $banners, $rowClass ) {
+	public function createRows( $banners ) {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
 		if (count($banners) > 0) {
@@ -336,7 +314,7 @@ class SpecialBannerAllocation extends CentralNotice {
 				$percentage = sprintf( "%0.2f", round( $banner['allocation'] * 100, 2 ) );
 
 				// Row begin
-				$htmlOut .= Html::openElement( 'tr', array( 'class'=>'mw-sp-centralnotice-allocationrow ' . $rowClass ) );
+				$htmlOut .= Html::openElement( 'tr', array( 'class' => 'mw-sp-centralnotice-allocationrow' ) );
 
 				// Percentage
 				$htmlOut .= Html::openElement( 'td', array( 'align' => 'right' ) );
@@ -365,7 +343,7 @@ class SpecialBannerAllocation extends CentralNotice {
 						htmlspecialchars( $banner['campaign'] ),
 						array(),
 						array(
-							'method' => 'listNoticeDetail',
+							'subaction' => 'noticeDetail',
 							'notice' => $banner['campaign']
 						)
 					)
@@ -376,9 +354,11 @@ class SpecialBannerAllocation extends CentralNotice {
 			}
 
 		} else {
-			$htmlOut .= Html::openElement('tr', array( 'class' => $rowClass ) );
-			$htmlOut .= Html::openElement('td');
+			$htmlOut .= Html::openElement( 'tr' );
+			$htmlOut .= Html::openElement( 'td' );
 			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->text() );
+			$htmlOut .= Html::closeElement( 'td' );
+			$htmlOut .= Html::closeElement( 'tr' );
 		}
 		return $htmlOut;
 	}

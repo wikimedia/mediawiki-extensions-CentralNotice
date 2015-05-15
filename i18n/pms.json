@@ -130,7 +130,6 @@
 	"centralnotice-country": "Nassion",
 	"centralnotice-no-allocation": "Gnun tilèt butà.",
 	"centralnotice-allocation-description": "Alocassion ëd tilèt për la lenga: $1, ël proget: $2, ël pais: $3, la periférica: $4",
-	"centralnotice-allocation-client-algorithm": "Smon-e j'alocassion coma calcolà da l'algoritm da la part dël client",
 	"centralnotice-historical-allocation-description": "Disposission dël tilèt për la lenga: $1, proget: $2, ant ël pais: $3, an sël terminal $4, al temp $5",
 	"centralnotice-percentage": "Përsentual",
 	"centralnotice-documentwrite-error": "document.write() a peul pa esse dovrà ant un tilèt.\nch'a lesa http://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi.",

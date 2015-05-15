@@ -69,14 +69,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "untargeted_project": {
                     "comment": "Not the project targeted by the campaign",
@@ -88,7 +93,7 @@
                         "logged_in_status": "anonymous"
                     },
                     "choices": [],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 },
                 "untargeted_language": {
                     "comment": "Not the language targeted by the campaign",
@@ -100,7 +105,7 @@
                         "logged_in_status": "anonymous"
                     },
                     "choices": [],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 },
                 "untargeted_device": {
                     "comment": "User is on a device for which the campaign has no banners",
@@ -135,7 +140,7 @@
                             ]
                         }
                     ],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 },
                 "untargeted_because_logged_in": {
                     "comment": "User is logged in, and the campaign has no banners for logged-in users",
@@ -170,7 +175,7 @@
                             ]
                         }
                     ],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -240,14 +245,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "untargeted_because_anon": {
                     "comment": "User is anonymous, and the campaign has no banners for anonymous users",
@@ -282,7 +292,7 @@
                             ]
                         }
                     ],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -352,14 +362,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "as_targeted_logged_in": {
                     "comment": "Context targeted by the campaign, logged-in user (country shouldn't matter)",
@@ -394,14 +409,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -473,14 +493,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "untargeted_country": {
                     "comment": "User isn't in the targeted country",
@@ -516,7 +541,7 @@
                             ]
                         }
                     ],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -563,7 +588,7 @@
                         "logged_in_status": "anonymous"
                     },
                     "choices": [],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -610,7 +635,7 @@
                         "logged_in_status": "anonymous"
                     },
                     "choices": [],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -657,7 +682,7 @@
                         "logged_in_status": "anonymous"
                     },
                     "choices": [],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -704,7 +729,7 @@
                         "logged_in_status": "anonymous"
                     },
                     "choices": [],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -796,14 +821,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b2": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -975,18 +1005,41 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.333,
-                            "b2": 0.333,
-                            "b3": 0.333
+                       "allocations": {
+                        "c1": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         },
-                        {
-                            "b1": 0.333,
-                            "b2": 0.333,
-                            "b3": 0.333
+                        "c2": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
+                        },
+                        "c3": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b3": 1
+                                },
+                                {
+                                    "b3": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_2": {
                     "comment": "Country targeted by three campaigns",
@@ -1068,16 +1121,30 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.5,
-                            "b2": 0.5
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         },
-                        {
-                            "b1": 0.5,
-                            "b2": 0.5
+                        "c2": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_1": {
                     "comment": "Country targeted by three campaigns",
@@ -1159,14 +1226,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_0": {
                     "comment": "Country targeted by three campaigns",
@@ -1248,7 +1320,7 @@
                             ]
                         }
                     ],
-                    "allocations": [{},{}]
+                    "allocations": {}
                 }
             }
         },
@@ -1418,18 +1490,41 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.333,
-                            "b2": 0.333,
-                            "b3": 0.333
+                       "allocations": {
+                        "c1": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         },
-                        {
-                            "b1": 0.333,
-                            "b2": 0.333,
-                            "b3": 0.333
+                        "c2": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
+                        },
+                        "c3": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b3": 1
+                                },
+                                {
+                                    "b3": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_1_and_non_geo": {
                     "comment": "Country targeted by three campaigns",
@@ -1510,16 +1605,30 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.5,
-                            "b2": 0.5
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         },
-                        {
-                            "b1": 0.5,
-                            "b2": 0.5
+                        "c2": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_non_geo": {
                     "comment": "Country targeted by three campaigns",
@@ -1600,14 +1709,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -1777,18 +1891,41 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.333,
-                            "b2": 0.333,
-                            "b3": 0.333
+                       "allocations": {
+                        "c1": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         },
-                        {
-                            "b1": 0.333,
-                            "b2": 0.333,
-                            "b3": 0.333
+                        "c2": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
+                        },
+                        "c3": {
+                            "allocation": 0.333,
+                            "banners": [
+                                {
+                                    "b3": 1
+                                },
+                                {
+                                    "b3": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_c1": {
                     "comment": "Targeted by campaign c1",
@@ -1869,14 +2006,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 1
-                        },
-                        {
-                            "b1": 1
+                       "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_c2": {
                     "comment": "Targeted by campaign c2",
@@ -1912,14 +2054,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b2": 1
-                        },
-                        {
-                            "b2": 1
+                       "allocations": {
+                        "c2": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 },
                 "targeted_by_c3": {
                     "comment": "Targeted by campaign c3",
@@ -2000,14 +2147,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b3": 1
-                        },
-                        {
-                            "b3": 1
+                       "allocations": {
+                        "c3": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b3": 1
+                                },
+                                {
+                                    "b3": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -2125,16 +2277,22 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0,
-                            "b2": 1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0
                         },
-                        {
-                            "b1": 0,
-                            "b2": 1
+                        "c2": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -2204,14 +2362,19 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.5
-                        },
-                        {
-                            "b1": 0.5
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -2329,16 +2492,30 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.25,
-                            "b2": 0.5
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.25,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
                         },
-                        {
-                            "b1": 0.25,
-                            "b2": 0.5
+                        "c2": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -2456,16 +2633,430 @@
                             ]
                         }
                     ],
-                    "allocations": [
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
+                        },
+                        "c2": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "throttled_and_not_throttled_same_priority": {
+            "comment": "Two campaigns, one of them throttled, at the same priority",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 50,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
                         {
-                            "b1": 0.5,
-                            "b2": 0.5
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 50,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
                         },
                         {
-                            "b1": 0.5,
-                            "b2": 0.5
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
                         }
-                    ]
+                    ],
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
+                        },
+                        "c2": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "multiple_throttled_and_not_throttled_different_priorities": {
+            "comment": "Four campaigns at two priorities, all throttled except one at the lower priority",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c2",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 10,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b2",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c3",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 2,
+                        "throttle": 25,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b3",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "c4",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 2,
+                        "throttle": 50,
+                        "geotargeted": false,
+                        "projects": ["test_project"],
+                        "languages": ["en"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b4",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": false,
+                                "fundraising": 1,
+                                "devices": [
+                                    "desktop"
+                                 ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign (country shouldn't matter)",
+                    "context": {
+                        "project": "test_project",
+                        "language": "en",
+                        "country": "LU",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c2",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 10,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b2",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c3",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 2,
+                            "throttle": 25,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b3",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "c4",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 2,
+                            "throttle": 50,
+                            "bucket_count": 1,
+                            "geotargeted": false,
+                            "banners": [
+                                {
+                                    "name": "b4",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": false,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.15,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
+                        },
+                        "c2": {
+                            "allocation": 0.1,
+                            "banners": [
+                                {
+                                    "b2": 1
+                                },
+                                {
+                                    "b2": 1
+                                }
+                            ]
+                        },
+                        "c3": {
+                            "allocation": 0.25,
+                            "banners": [
+                                {
+                                    "b3": 1
+                                },
+                                {
+                                    "b3": 1
+                                }
+                            ]
+                        },
+                        "c4": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b4": 1
+                                },
+                                {
+                                    "b4": 1
+                                }
+                            ]
+                        }
+                    }
                 }
             }
         },
@@ -2557,16 +3148,21 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.5,
-                            "b2": 0.5
-                        },
-                        {
-                            "b1": 0.5,
-                            "b2": 0.5
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 0.5,
+                                    "b2": 0.5
+                                },
+                                {
+                                    "b1": 0.5,
+                                    "b2": 0.5
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -2658,16 +3254,21 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.8,
-                            "b2": 0.2
-                        },
-                        {
-                            "b1": 0.8,
-                            "b2": 0.2
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 0.8,
+                                    "b2": 0.2
+                                },
+                                {
+                                    "b1": 0.8,
+                                    "b2": 0.2
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         },
@@ -2829,20 +3430,34 @@
                             ]
                         }
                     ],
-                    "allocations": [
-                        {
-                            "b1": 0.45,
-                            "b2": 0.05,
-                            "b3": 0.4,
-                            "b4": 0.1
+                    "allocations": {
+                        "c1": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b1": 0.9,
+                                    "b2": 0.1
+                                },
+                                {
+                                    "b1": 0.9,
+                                    "b2": 0.1
+                                }
+                            ]
                         },
-                        {
-                            "b1": 0.45,
-                            "b2": 0.05,
-                            "b3": 0.4,
-                            "b4": 0.1
+                        "c2": {
+                            "allocation": 0.5,
+                            "banners": [
+                                {
+                                    "b3": 0.8,
+                                    "b4": 0.2
+                                },
+                                {
+                                    "b3": 0.8,
+                                    "b4": 0.2
+                                }
+                            ]
                         }
-                    ]
+                    }
                 }
             }
         }

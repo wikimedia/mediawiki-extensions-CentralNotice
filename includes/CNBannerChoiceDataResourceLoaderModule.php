@@ -3,9 +3,6 @@
 /***
  * ResourceLoader module for sending banner choices to the client.
  *
- * Note: this module does nothing if $wgCentralNoticeChooseBannerOnClient
- * is false.
- *
  * Note: This class has been intentionally left stateless, due to how
  * ResourceLoader works. This class has no expectation of having getScript() or
  * getModifiedHash() called in the same request.
@@ -23,12 +20,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		global $wgNoticeProject,
 			$wgUser,
 			$wgCentralNoticeApiUrl,
-			$wgCentralDBname,
-			$wgCentralNoticeChooseBannerOnClient;
-
-		if ( !$wgCentralNoticeChooseBannerOnClient ) {
-			return null;
-		}
+			$wgCentralDBname;
 
 		$project = $wgNoticeProject;
 		$language = $context->getLanguage();
@@ -81,18 +73,21 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			'action' => 'centralnoticebannerchoicedata',
 			'project' => $project,
 			'language' => $language,
-			'format' => 'json'
+			'format' => 'json',
+			'formatversion' => 2 // Prevents stripping of false values 8p
 		);
 
 		$url = wfAppendQuery( $wgCentralNoticeApiUrl, $q );
-		$apiResult = Http::get( $url, self::API_REQUEST_TIMEOUT * 0.8 );
+
+		$apiResult = Http::get( $url,
+			array( 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ) );
 
 		if ( !$apiResult ) {
 			wfLogWarning( 'Couldn\'t get banner choice data via API.');
 			return false;
 		}
 
-		$parsedApiResult = FormatJson::parse( $apiResult );
+		$parsedApiResult = FormatJson::parse( $apiResult, FormatJson::FORCE_ASSOC );
 
 		if ( !$parsedApiResult->isGood() ) {
 			wfLogWarning( 'Couldn\'t parse banner choice data from API.');
@@ -101,29 +96,20 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 		$result = $parsedApiResult->getValue();
 
-		if ( isset( $result->error ) ) {
+		if ( isset( $result['error'] ) ) {
 			wfLogWarning( 'Error fetching banner choice data via API: ' .
-				$result->error->info . ': ' . $result->error->code );
+				$result['error']['info'] . ': ' . $result['error']['code'] );
 
 			return false;
 		}
 
-		return $result->choices;
+		return $result['choices'];
 	}
 
 	/**
-	 * This is a no-op if $wgCentralNoticeChooseBannerOnClient is false
-	 *
 	 * @see ResourceLoaderModule::getScript()
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		global $wgCentralNoticeChooseBannerOnClient;
-
-		// If we don't choose banners on the client, this is a no-op
-		if ( !$wgCentralNoticeChooseBannerOnClient ) {
-			return '';
-		}
-
 		return Xml::encodeJsCall( 'mw.cnBannerControllerLib.setChoiceData',
 				array( $this->getChoices( $context ) ) );
 	}

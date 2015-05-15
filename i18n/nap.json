@@ -131,7 +131,6 @@
 	"centralnotice-country": "Nazzione",
 	"centralnotice-no-allocation": "Nisciuno banner nzegnàto.",
 	"centralnotice-allocation-description": "Destinazione d' 'o banner p' 'a lengua: $1, pruggette: $2, int' 'a 'o paese: $3, ncopp'a ll'aparecchio $4",
-	"centralnotice-allocation-client-algorithm": "Fà vedé destinazione comme so' calcolate 'a ll'algoritmo 'e lato-cliente",
 	"centralnotice-historical-allocation-description": "Destinazione d' 'o banner p' 'a lengua: $1, pruggette: $2, int' 'a 'o paese: $3, ncopp'a ll'aparecchio $4, a ll'ore $5",
 	"centralnotice-percentage": "Percentuale",
 	"centralnotice-documentwrite-error": "document.write() nun se può ausà dint'a nu banner.\nVedite http://meta.wikimedia.org/wiki/Help:CentralNotice Pe n'avè cchiù nfurmaziune.",

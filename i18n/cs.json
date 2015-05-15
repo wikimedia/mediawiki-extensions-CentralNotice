@@ -136,7 +136,6 @@
 	"centralnotice-country": "Země",
 	"centralnotice-no-allocation": "Žádné bannery nejsou přiděleny.",
 	"centralnotice-allocation-description": "Přidělení bannerů pro jazyk $1, projekt $2 v zemi $3 na zařízení $4",
-	"centralnotice-allocation-client-algorithm": "Zobrazit přidělení tak, jak je počítá algoritmus na klientské straně.",
 	"centralnotice-historical-allocation-description": "Přidělení bannerů pro jazyk $1, projekt $2 v zemi $3 na zařízení $4 v čase $5",
 	"centralnotice-percentage": "Procenta",
 	"centralnotice-documentwrite-error": "V banneru nelze používat document.write().\nDalší informace naleznete na stránce http://meta.wikimedia.org/wiki/Help:CentralNotice.",
@@ -194,6 +193,8 @@
 	"centralnotice-buckets": "Seskupování uživatelů",
 	"centralnotice-bucket": "Skupina",
 	"centralnotice-bucket-letter": "Skupina „$1“",
+	"centralnotice-banner-overflowing-bucket": "Skupina „$1“ má přiděleno příliš mnoho bannerů.",
+	"centralnotice-banner-empty-bucket": "Ne každá skupina má přidělen banner.",
 	"centralnotice-devicetype-desktop": "Stolní počítač",
 	"centralnotice-devicetype-android": "OS Android",
 	"centralnotice-devicetype-ipad": "Všechna zařízení identifikovaná jako iPad kromě iPhonů",
@@ -237,5 +238,7 @@
 	"centralnotice-end-date": "Datum konce (UTC)",
 	"centralnotice-end-time": "Čas konce (UTC)",
 	"centralnotice-banner-not-found-title": "Banner nenalezen",
-	"centralnotice-banner-not-found-contents": "Neexistuje banner, který by měl přesně tento název."
+	"centralnotice-banner-not-found-contents": "Neexistuje banner, který by měl přesně tento název.",
+	"hidebanners": "Skrýt bannery",
+	"centralnotice-specialhidebanners-p3p": "Některé prohlížeče pro nastavování cookies v některých situacích vyžadují kompaktní zásady P3P. Avšak kompaktní zásady momentálně nejsou k dispozici. Přečtete si prosím lidsky čitelnou verzi pravidel ochrany osobních údajů na tomto projektu."
 }

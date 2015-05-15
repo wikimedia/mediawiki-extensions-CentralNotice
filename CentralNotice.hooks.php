@@ -36,15 +36,9 @@ $wgHooks[ 'SkinTemplateNavigation::SpecialPage' ][ ] = array( 'CentralNotice::ad
  */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
-		   $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgCentralPagePath, $wgScript,
+		   $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgScript,
 		   $wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules,
 		   $wgAvailableRights, $wgGroupPermissions, $wgCentralDBname, $wgDBname;
-
-	// If $wgCentralPagePath hasn't been set, set it to the local script path.
-	// We do this here since $wgScript isn't set until after LocalSettings.php loads.
-	if ( $wgCentralPagePath === false ) {
-		$wgCentralPagePath = $wgScript;
-	}
 
 	// Default for a standalone wiki is that the CN tables are in the main database.
 	if ( $wgCentralDBname === false ) {
@@ -77,13 +71,12 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerLoaderException' ] = $specialDir . 'SpecialBannerLoader.php';
 
 	$wgAutoloadClasses[ 'Banner' ] = $includeDir . 'Banner.php';
-	$wgAutoloadClasses[ 'BannerAllocationCalculator' ] = $includeDir . 'BannerAllocationCalculator.php';
+	$wgAutoloadClasses[ 'AllocationCalculator' ] = $includeDir . 'AllocationCalculator.php';
 	$wgAutoloadClasses[ 'BannerDataException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerContentException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerExistenceException' ] = $includeDir . 'Banner.php';
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
-	$wgAutoloadClasses[ 'BannerChooser' ] = $includeDir . 'BannerChooser.php';
 	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
 	$wgAutoloadClasses[ 'BannerChoiceDataProvider' ] = $includeDir . 'BannerChoiceDataProvider.php';
 	$wgAutoloadClasses[ 'CNBannerChoiceDataResourceLoaderModule' ] = $includeDir . 'CNBannerChoiceDataResourceLoaderModule.php';
@@ -100,9 +93,9 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses['HTMLBannerPagerNavigation'] = $includeDir . 'CNBannerPager.php';
 	$wgAutoloadClasses['HTMLLargeMultiSelectField'] = $specialDir . 'SpecialCentralNoticeBanners.php';
 	$wgAutoloadClasses[ 'IBannerMixin' ] = $includeDir . 'IBannerMixin.php';
-	$wgAutoloadClasses[ 'AllocationContext' ] = $includeDir . 'AllocationContext.php';
 	$wgAutoloadClasses['LanguageSelectHeaderElement'] = $specialDir . 'SpecialCentralNoticeBanners.php';
 	$wgAutoloadClasses['MissingRequiredParamsException'] = $specialDir . 'SpecialBannerLoader.php';
+	$wgAutoloadClasses[ 'StaleCampaignException' ] = $specialDir . 'SpecialBannerLoader.php';
 	$wgAutoloadClasses[ 'MixinController' ] = $includeDir . 'MixinController.php';
 	$wgAutoloadClasses['MixinNotFoundException'] = $includeDir . 'MixinController.php';
 
@@ -111,8 +104,6 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';
 
-	$wgAutoloadClasses[ 'ApiCentralNoticeAllocationBase' ] = $apiDir . 'ApiCentralNoticeAllocationBase.php';
-	$wgAutoloadClasses[ 'ApiCentralNoticeAllocations' ] = $apiDir . 'ApiCentralNoticeAllocations.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeBannerChoiceData' ] = $apiDir . 'ApiCentralNoticeBannerChoiceData.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
@@ -120,7 +111,6 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses[ 'CNDatabase' ] = $includeDir . 'CNDatabase.php';
 	$wgAPIModules[ 'centralnoticebannerchoicedata' ] = 'ApiCentralNoticeBannerChoiceData';
-	$wgAPIModules[ 'centralnoticeallocations' ] = 'ApiCentralNoticeAllocations';
 	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
@@ -316,20 +306,17 @@ function efCentralNoticeDisplay( &$notice ) {
  * @return bool
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
-	global $wgNoticeFundraisingUrl, $wgCentralPagePath, $wgContLang, $wgNoticeXXCountries,
-		   $wgNoticeInfrastructure, $wgNoticeCloseButton, $wgCentralBannerDispatcher,
+	global $wgNoticeFundraisingUrl, $wgContLang, $wgNoticeXXCountries,
+		   $wgNoticeInfrastructure, $wgNoticeCloseButton,
 		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
 		   $wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
-		   $wgCentralNoticeChooseBannerOnClient, $wgCentralSelectedBannerDispatcher,
+		   $wgCentralSelectedBannerDispatcher,
 		   $wgCentralNoticePerCampaignBucketExtension;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
 	// to be just right. We require them at all because MW will 302 page requests made to non localised
 	// namespaces which results in wasteful extra calls.
-	if ( !$wgCentralBannerDispatcher ) {
-		$wgCentralBannerDispatcher = SpecialPage::getTitleFor( 'BannerRandom' )->getLocalUrl();
-	}
 	if ( !$wgCentralSelectedBannerDispatcher ) {
 		$wgCentralSelectedBannerDispatcher = SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 	}
@@ -346,15 +333,12 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		$mc = MobileContext::singleton();
 		if ( $mc->shouldDisplayMobileView() ) {
 			$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
-			$wgCentralPagePath = $mc->getMobileUrl( $wgCentralPagePath );
-			$wgCentralBannerDispatcher = $mc->getMobileUrl( $wgCentralBannerDispatcher );
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
+			$wgCentralSelectedBannerDispatcher = $mc->getMobileUrl( $wgCentralSelectedBannerDispatcher );
 		}
 	}
 
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
-	$vars[ 'wgCentralPagePath' ] = $wgCentralPagePath;
-	$vars[ 'wgCentralBannerDispatcher' ] = $wgCentralBannerDispatcher;
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
@@ -365,7 +349,6 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 	$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
-	$vars[ 'wgCentralNoticeChooseBannerOnClient' ] = $wgCentralNoticeChooseBannerOnClient;
 	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
 
@@ -385,13 +368,10 @@ function efCentralNoticeUnitTests( &$files ) {
 	global $wgAutoloadClasses;
 
 	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
-	$wgAutoloadClasses['ComparisonUtil'] = __DIR__ . '/tests/ComparisonUtil.php';
 
-	$files[ ] = __DIR__ . '/tests/ApiAllocationsTest.php';
-	$files[ ] = __DIR__ . '/tests/BannerChooserTest.php';
 	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeBannerChoiceDataTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
-	$files[ ] = __DIR__ . '/tests/BannerAllocationCalculatorTest.php';
+	$files[ ] = __DIR__ . '/tests/AllocationCalculatorTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
 	$files[ ] = __DIR__ . '/tests/CNBannerChoicesResourceLoaderModuleTest.php';
@@ -399,7 +379,6 @@ function efCentralNoticeUnitTests( &$files ) {
 }
 
 /**
- * Place CentralNotice ResourceLoader modules onto mobile pages.
  * ResourceLoaderTestModules hook handler
  * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
  *
@@ -455,8 +434,7 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 }
 
 /**
- * EnableMobileModules callback for placing the CN resourceloader
- * modules onto mobile pages.
+ * Place CentralNotice ResourceLoader modules onto mobile pages.
  *
  * @param Skin $skin
  * @param array $modules

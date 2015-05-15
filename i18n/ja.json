@@ -13,7 +13,8 @@
 			"Whym",
 			"青子守歌",
 			"Rxy",
-			"SkyDaisy9"
+			"SkyDaisy9",
+			"W.CC"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -140,6 +141,7 @@
 	"centralnotice-percentage": "割合",
 	"centralnotice-documentwrite-error": "バナー内では document.write() は使用できません。\n詳細は http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。",
 	"centralnotice-preferred": "優先度",
+	"centralnotice-archived": "アーカイブ済み",
 	"centralnotice-logs": "記録",
 	"centralnotice-view-logs": "記録の閲覧",
 	"centralnotice-timestamp": "日時",
@@ -194,6 +196,9 @@
 	"centralnotice-bucket": "バケツ",
 	"centralnotice-bucket-letter": "バケツ「$1」",
 	"centralnotice-devicetype-desktop": "デスクトップ コンピューター",
+	"centralnotice-devicetype-android": "Android OS",
+	"centralnotice-devicetype-ipad": "iPhoneではなくiPadと特定された機器",
+	"centralnotice-devicetype-iphone": "すべてのiPhoneシリーズ",
 	"centralnotice-all": "すべて",
 	"centralnotice-generic-error": "あなたには指定した操作を実行する正当な権限がないか、または操作自体が無効です。",
 	"centralnotice-banner-name-error": "指定したバナー名は無効です。バナー名に使用できるのは半角の英数字およびアンダースコア文字のみです。",

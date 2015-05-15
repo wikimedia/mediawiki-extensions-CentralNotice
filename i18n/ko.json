@@ -243,6 +243,7 @@
 	"apihelp-centralnoticeallocations-param-language": "필터를 켤 언어",
 	"apihelp-centralnoticeallocations-param-anonymous": "로그인 상태에 따른 필터 활성화 여부 (예|아니오)",
 	"apihelp-centralnoticeallocations-param-device": "필터를 켤 기기 이름",
+	"apihelp-centralnoticequerycampaign-example-1": "\"Plea_US\" 캠페인 보이기",
 	"apihelp-query+centralnoticelogs-param-user": "사용자 이름 (선택 사항).",
 	"apihelp-query+centralnoticelogs-example-1": "로그 보기"
 }

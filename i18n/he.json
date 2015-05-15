@@ -137,7 +137,6 @@
 	"centralnotice-country": "ארץ",
 	"centralnotice-no-allocation": "לא הוקצו כרזות.",
 	"centralnotice-allocation-description": "הקצאת כזרות עבור שפה $1, מיזם: ,$2 במדינה: $3, במכשיר $4",
-	"centralnotice-allocation-client-algorithm": "להציג הקצאות כפי שהן חושבו באלגוריתם בצד הלקוח",
 	"centralnotice-historical-allocation-description": "הקצאת כרזה עבור שפה $1, מיזם: $2, במדינה $3, על מכשיר $4, בזמן $5",
 	"centralnotice-percentage": "אחוזים",
 	"centralnotice-documentwrite-error": "לא ניתן להשתמש ב־document.write()‎ בתוך כרזה.\nר' http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.",
