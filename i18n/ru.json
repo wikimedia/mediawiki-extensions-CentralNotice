@@ -255,5 +255,6 @@
 	"centralnotice-end-time": "Время окончания (UTC)",
 	"centralnotice-banner-not-found-title": "Баннер не найден",
 	"centralnotice-banner-not-found-contents": "Нет баннера с точно таким именем.",
-	"hidebanners": "Скрыть баннеры"
+	"hidebanners": "Скрыть баннеры",
+	"apihelp-query+centralnoticelogs-example-1": "Показать журналы"
 }
