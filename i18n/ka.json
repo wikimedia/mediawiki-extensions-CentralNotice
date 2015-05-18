@@ -222,6 +222,8 @@
 	"centralnotice-end-time": "დასრულების დრო (UTC)",
 	"centralnotice-banner-not-found-title": "ბანერი ვერ მოიძებნა",
 	"hidebanners": "ბანერების დამალვა",
+	"apihelp-centralnoticeallocations-param-country": "ქვეყანა ფილტრისთვის",
+	"apihelp-centralnoticeallocations-param-language": "ენა ფილტრისთვის",
 	"apihelp-centralnoticeallocations-example-1": "რამდენიმე შეზღუდვის ჩვენება",
 	"apihelp-query+centralnoticelogs-param-user": "მომხმარებლის სახელი (არასავალდებულო)",
 	"apihelp-query+centralnoticelogs-param-limit": "დაბრუნების მაქსიმალური რიგი (არასავალდებულო)",
