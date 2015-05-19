@@ -256,5 +256,8 @@
 	"centralnotice-banner-not-found-title": "Баннер не найден",
 	"centralnotice-banner-not-found-contents": "Нет баннера с точно таким именем.",
 	"hidebanners": "Скрыть баннеры",
+	"apihelp-centralnoticeallocations-param-country": "Страна для установки фильтрации.",
+	"apihelp-centralnoticeallocations-param-language": "Язык для установки фильтрации.",
+	"apihelp-centralnoticequerycampaign-example-1": "Показать кампанию «Plea_US»",
 	"apihelp-query+centralnoticelogs-example-1": "Показать журналы"
 }
