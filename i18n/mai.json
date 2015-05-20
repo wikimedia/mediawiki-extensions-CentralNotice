@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"बिप्लब आनन्द"
+			"बिप्लब आनन्द",
+			"Tulsi Bhagat"
 		]
 	},
 	"centralnotice": "केन्द्रीय सूचना प्रबन्धक",
@@ -42,6 +43,7 @@
 	"centralnotice-banner": "बैनर",
 	"centralnotice-banner-heading": "बैनर: $1",
 	"centralnotice-templates": "बैनर",
+	"centralnotice-throttle": "सीमा यातायात",
 	"centralnotice-weight": "वजन",
 	"centralnotice-locked": "अवरोधित",
 	"centralnotice-notice": "अभियान",
@@ -49,12 +51,39 @@
 	"centralnotice-notices": "अभियान",
 	"centralnotice-notice-exists": "अभियान पहिने सँ अछि । अखन नै जोडू ।",
 	"centralnotice-no-language": "अभियान कें लेल कोनो भाषा नै चुनल गेल अछि। जोडल नै अछि ।",
+	"centralnotice-notice-doesnt-exist": "अभियान मौजूद नैं अछि।",
+	"centralnotice-remove-notice-doesnt-exist": "अभियान मौजूद नैं अछि।\nनिकाले के लेल कुछ नैं यs ।",
+	"centralnotice-banner-doesnt-exist": "बैनर मौजूद नैं अछि।",
+	"centralnotice-template-body": "बैनर शरीर:",
 	"centralnotice-day": "दिन",
 	"centralnotice-year": "बरख",
 	"centralnotice-month": "महिना",
 	"centralnotice-hours": "घंटा",
 	"centralnotice-min": "मिनट",
 	"centralnotice-project-lang": "परियोजना भाषा",
+	"centralnotice-select-all": "सब चयन करु",
 	"centralnotice-remove-all": "सभटा मेटाउ",
+	"centralnotice-project-name": "परियोजना नाम",
+	"centralnotice-assigned-templates": "निरुपित बैनर सभ",
+	"centralnotice-no-templates": "कोई बैनर नैं मिल्ल।\nकनी जोड़ु!",
+	"centralnotice-number-uses": "उपयोग",
+	"centralnotice-settings": "सेटिंग्स",
+	"centralnotice-edit-template": "बैनर संपादित करु",
+	"centralnotice-message": "पत्र",
+	"centralnotice-message-not-set": "पत्र सेट नैं भेल",
+	"centralnotice-clone": "क्लोन",
+	"centralnotice-clone-name": "नाम:",
+	"centralnotice-clone-cancel": "रद्द करु",
+	"centralnotice-clone-banner": "बैनर",
+	"centralnotice-insert": "सम्मिलित करु: $1",
+	"centralnotice-close-button": "क्लोज बटन",
+	"centralnotice-close-title": "बंद करू",
+	"centralnotice-donate-button": "दान बटन",
+	"centralnotice-banner-display": "प्रदर्शित करे के लेल",
+	"centralnotice-banner-anonymous": "बेनामी प्रयोक्ता सभ",
+	"centralnotice-banner-logged-in": "लाँग इन प्रयोक्ता सभ",
+	"centralnotice-banner-type": "बैनर कs प्रकार:",
+	"centralnotice-banner-display-on": "पर प्रदर्शन",
+	"centralnotice-countries": "देश सभ",
 	"apihelp-query+centralnoticelogs-example-1": "वृतलेख देखाऊ"
 }
