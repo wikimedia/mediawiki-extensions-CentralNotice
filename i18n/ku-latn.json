@@ -3,7 +3,8 @@
 		"authors": [
 			"George Animal",
 			"Gomada",
-			"Bikarhêner"
+			"Bikarhêner",
+			"Ghybu"
 		]
 	},
 	"centralnotice-modify": "Tomar bike",
@@ -22,6 +23,7 @@
 	"centralnotice-project-name": "Navê projeyê",
 	"centralnotice-message": "Peyam",
 	"centralnotice-clone-name": "Nav:",
+	"centralnotice-insert": "Tevlî bike: $1",
 	"centralnotice-languages": "Ziman",
 	"centralnotice-language": "Ziman",
 	"centralnotice-projects": "Proje",

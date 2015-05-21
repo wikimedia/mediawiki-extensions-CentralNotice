@@ -233,5 +233,11 @@
 	"apihelp-centralnoticequerycampaign-description": "Pigghie tutte le 'mbostaziune d'a configurazione de 'na cambagne.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nome d'a cambagne. Divide le valore cu 'nu \"|\" (sbarre verticale).",
 	"apihelp-centralnoticequerycampaign-example-1": "Fà vedè 'a cambagne \"Plea_US\"",
+	"apihelp-query+centralnoticelogs-param-campaign": "Nome d'a cambagne (opzionale). Divide le valore cu 'nu \"|\" (sbarre verticale).",
+	"apihelp-query+centralnoticelogs-param-user": "Nome de l'utende (opzionale).",
+	"apihelp-query+centralnoticelogs-param-limit": "Numere massime de righe da turnà (opzionale).",
+	"apihelp-query+centralnoticelogs-param-offset": "Distanze d'u 'nzieme de resultate (opzionale).",
+	"apihelp-query+centralnoticelogs-param-start": "Orarie de inizie d'u 'ndervalle (opzionale).",
+	"apihelp-query+centralnoticelogs-param-end": "Orarie de fine d'u 'ndervalle (opzionale).",
 	"apihelp-query+centralnoticelogs-example-1": "Fà vedè l'archivije"
 }

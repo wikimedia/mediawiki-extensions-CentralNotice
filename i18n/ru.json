@@ -258,6 +258,13 @@
 	"hidebanners": "Скрыть баннеры",
 	"apihelp-centralnoticeallocations-param-country": "Страна для установки фильтрации.",
 	"apihelp-centralnoticeallocations-param-language": "Язык для установки фильтрации.",
+	"apihelp-centralnoticeallocations-param-device": "Название устройства для фильтрации.",
 	"apihelp-centralnoticequerycampaign-example-1": "Показать кампанию «Plea_US»",
+	"apihelp-query+centralnoticelogs-description": "Получить журнал изменений конфигурации кампании.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Название кампании (необязательно). Разделяйте значения с помощью «|» (вертикальной черты).",
+	"apihelp-query+centralnoticelogs-param-user": "Имя участника (необязательно).",
+	"apihelp-query+centralnoticelogs-param-limit": "Максимальное число возвращаемых строк (необязательно).",
+	"apihelp-query+centralnoticelogs-param-start": "Начальное время диапазона (необязательно).",
+	"apihelp-query+centralnoticelogs-param-end": "Конечное время диапазона (необязательно).",
 	"apihelp-query+centralnoticelogs-example-1": "Показать журналы"
 }
