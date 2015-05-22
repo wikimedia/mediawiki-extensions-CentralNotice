@@ -17,16 +17,13 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	const API_REQUEST_TIMEOUT = 20;
 
 	protected function getChoices( ResourceLoaderContext $context ) {
-		global $wgNoticeProject,
-			$wgUser,
-			$wgCentralNoticeApiUrl,
-			$wgCentralDBname;
+		global $wgNoticeProject, $wgCentralNoticeApiUrl;
 
 		$project = $wgNoticeProject;
 		$language = $context->getLanguage();
 
-		// Fetch the data via the DB or the API. Decide which to use based
-		// on whether the appropriate global variables are set.
+		// Only fetch the data via the API if $wgCentralNoticeApiUrl is set.
+		// Otherwise, use the DB.
 		if ( $wgCentralNoticeApiUrl ) {
 			$choices = $this->getFromApi( $project, $language );
 
