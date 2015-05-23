@@ -229,6 +229,7 @@
 	"hidebanners": "Scunne le banner",
 	"apihelp-centralnoticeallocations-param-country": "'U paese da filtrà.",
 	"apihelp-centralnoticeallocations-param-language": "'A lènghe da filtrà.",
+	"apihelp-centralnoticeallocations-param-device": "Nome d'u dispositive da filtrà.",
 	"apihelp-centralnoticeallocations-example-1": "Fà vedè quacche allocazione",
 	"apihelp-centralnoticequerycampaign-description": "Pigghie tutte le 'mbostaziune d'a configurazione de 'na cambagne.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nome d'a cambagne. Divide le valore cu 'nu \"|\" (sbarre verticale).",
