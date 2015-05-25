@@ -191,5 +191,6 @@
 	"apihelp-centralnoticeallocations-param-bucket": "Сүзгілеуге топ, санмен (0 .. $1, міндетті емес).",
 	"apihelp-centralnoticequerycampaign-example-1": "«Plea_US» хабарландыруын көру",
 	"apihelp-query+centralnoticelogs-param-user": "Қатысушы есімі (міндетті емес).",
-	"apihelp-query+centralnoticelogs-param-limit": "Қайтуға максимум қатарлар (міндетті емес)."
+	"apihelp-query+centralnoticelogs-param-limit": "Қайтуға максимум қатарлар (міндетті емес).",
+	"apihelp-query+centralnoticelogs-example-1": "Журналдарды көрсету"
 }
