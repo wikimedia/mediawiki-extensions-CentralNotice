@@ -273,6 +273,7 @@
 	"apihelp-query+centralnoticelogs-param-campaign": "Назва кампанії (необов'язково). Розділіть різні значення через \"|\" (вертикальна риска).",
 	"apihelp-query+centralnoticelogs-param-user": "Ім'я користувача (необов'язково).",
 	"apihelp-query+centralnoticelogs-param-limit": "Максимум рядків для виведення (необов'язково).",
+	"apihelp-query+centralnoticelogs-param-offset": "Зсув у результаті (необов'язково).",
 	"apihelp-query+centralnoticelogs-param-start": "Початковий час вибірки (необов'язково).",
 	"apihelp-query+centralnoticelogs-param-end": "Кінцевий час вибірки (необов'язково).",
 	"apihelp-query+centralnoticelogs-example-1": "Показати журнали"
