@@ -126,13 +126,6 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @see ResourceLoaderModule::getModifiedTime()
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return max( 1, $this->getHashMtime( $context ) );
-	}
-
-	/**
 	 * @see ResourceLoaderModule::getModifiedHash()
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
