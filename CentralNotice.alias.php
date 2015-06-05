@@ -268,17 +268,17 @@ $specialPageAliases['lb'] = array(
 
 /** Northern Luri (لوری مینجایی) */
 $specialPageAliases['lrc'] = array(
-	'CentralNotice' => array( 'ویرداری_مینجایی' ),
-	'CentralNoticeBanners' => array( 'بیرقیا_وارسکار_مینجایی' ),
-	'CentralNoticeLogs' => array( 'پهرستنومه_یا_وارسکار_مینجایی' ),
-	'CNReporter' => array( 'گزارشتکار_سی_ان' ),
-	'NoticeTemplate' => array( 'چوئه_وارسکار' ),
-	'GlobalAllocation' => array( 'گزینشت_کاری_جهونی' ),
-	'BannerAllocation' => array( 'گزینشت_کاری_بیرق' ),
-	'BannerController' => array( 'وارسکار_بیرق' ),
-	'BannerLoader' => array( 'بیرق_وادار' ),
-	'BannerRandom' => array( 'بیرق_بختکی' ),
-	'HideBanners' => array( 'نهوکردن_بیرقیا' ),
+	'CentralNotice' => array( 'ڤیرداری_مینجایی' ),
+	'CentralNoticeBanners' => array( 'بئیرأقیا_ڤارئسکار_مینجایی' ),
+	'CentralNoticeLogs' => array( 'پئھرئستنوٙمە_یا_ڤارئسکار_مینجایی' ),
+	'CNReporter' => array( 'گوزارئشتکار_سی_ئن' ),
+	'NoticeTemplate' => array( 'چوٙأ_ڤارئسکار' ),
+	'GlobalAllocation' => array( 'گوزینئشت_کاری_جأهوٙنی' ),
+	'BannerAllocation' => array( 'گوزینئشت_کاری_بئیرأق' ),
+	'BannerController' => array( 'ڤارئسکار_بئیرأق' ),
+	'BannerLoader' => array( 'بئیرأق_ڤادار' ),
+	'BannerRandom' => array( 'بئیرأق_بأختأکی' ),
+	'HideBanners' => array( 'نئھوٙکئردئن_بئیرأقیا' ),
 );
 
 /** Malagasy (Malagasy) */
