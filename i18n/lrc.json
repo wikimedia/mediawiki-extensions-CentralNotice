@@ -69,7 +69,7 @@
 	"centralnotice-project-lang": "زون پروجه",
 	"centralnotice-select-all": "همه نه انتخاو كو",
 	"centralnotice-remove-all": "همه نه پاك كو",
-	"centralnotice-items-selected": "{{PLURAL:$1|}}$1 {{جمی:$1|قلم|قلیما}}انتخاو بیه",
+	"centralnotice-items-selected": "{{PLURAL:$1|}}$1 {{PLURAL:$1|قلم|قلیما}}انتخاو بیه",
 	"centralnotice-project-name": "نوم پروجه",
 	"centralnotice-assigned-templates": "واداریا نشودار",
 	"centralnotice-no-templates": "هیژ واداری پیدا نبی.\nچن گل اضاف بکید!",

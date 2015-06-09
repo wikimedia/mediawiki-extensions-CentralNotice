@@ -7,7 +7,7 @@ class ArticlePage
 
   url_template = '<%= params[:article_name] %>' \
     '<%= "?#{params[:query]}" if params[:query] %>'
-  page_url URL.url(url_template)
+  page_url url_template
 
   div(:banner_name, id: 'centralnotice_testbanner_name')
 end

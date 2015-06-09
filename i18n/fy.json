@@ -5,13 +5,18 @@
 			"Robin0van0der0vliet"
 		]
 	},
+	"centralnotice-enabled": "Ynskeakele",
+	"centralnotice-modify": "Ferstjoere",
+	"centralnotice-save-banner": "Bewarje",
 	"centralnotice-add-notice-button": "Oanmeitsje",
 	"centralnotice-add-notice-cancel-button": "Annulearje",
 	"centralnotice-translations": "Oersettings",
+	"centralnotice-translate-to": "Oersette nei",
+	"centralnotice-translate": "Oersette",
 	"centralnotice-day": "Dei",
 	"centralnotice-year": "Jier",
 	"centralnotice-month": "Moanne",
-	"centralnotice-hours": "Oer",
+	"centralnotice-hours": "Oere",
 	"centralnotice-min": "Minút",
 	"centralnotice-settings": "Ynstellingen",
 	"centralnotice-clone-name": "Namme:",
@@ -23,10 +28,12 @@
 	"centralnotice-language": "Taal",
 	"centralnotice-projects": "Projekten",
 	"centralnotice-country": "Lân",
+	"centralnotice-user": "Brûker",
 	"centralnotice-priority-normal": "normaal",
 	"centralnotice-banner-class": "Kategory",
 	"centralnotice-archive-banner-cancel": "Annulearje",
 	"centralnotice-archive-campaign": "Argyf",
 	"centralnotice-archive-campaign-cancel": "Annulearje",
+	"centralnotice-delete-banner": "Fuortsmite",
 	"centralnotice-delete-banner-cancel": "Annulearje"
 }
