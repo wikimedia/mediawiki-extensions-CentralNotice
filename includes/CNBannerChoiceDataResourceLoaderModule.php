@@ -121,7 +121,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	/**
 	 * @see ResourceLoaderModule::getDependencies()
 	 */
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return array( 'ext.centralNotice.bannerController.lib' );
 	}
 
