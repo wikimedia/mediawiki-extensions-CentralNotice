@@ -39,12 +39,13 @@
 
 	function synthesizeGeoCookie() {
 		if ( !window.Geo || !window.Geo.country ) {
-			$.cookie( 'GeoIP', '::::vx', { path: '/' } );
+			$.cookie( 'GeoIP', ':::::vx', { path: '/' } );
 			return;
 		}
 
 		var parts = [
 			window.Geo.country,
+			window.Geo.region,
 			window.Geo.city.replace( /[^a-z]/i, '_' ),
 			window.Geo.lat,
 			window.Geo.lon,
@@ -54,13 +55,14 @@
 		$.cookie( 'GeoIP', parts.join( ':' ), { path: '/' } );
 	}
 
-	window.Geo = ( function ( match, country, city, lat, lon, af ) {
+	window.Geo = ( function ( match, country, region, city, lat, lon, af ) {
 		if ( typeof country !== 'string' || ( country.length !== 0 && country.length !== 2 ) ) {
 		    // 'country' is neither empty nor a country code (string of
 		    // length 2), so something is wrong with the cookie, and we
 		    // cannot rely on its value.
 		    $.cookie( 'GeoIP', null, { path: '/' } );
 		    country = '';
+		    region = '';
 		    city = '';
 		    lat = '';
 		    lon = '';
@@ -68,12 +70,13 @@
 		}
 		return {
 			country: country,
+			region: region,
 			city: city,
 			lat: lat && parseFloat( lat ),
 			lon: lon && parseFloat( lon ),
 			af: af
 		};
-	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
+	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
 
 	// FIXME Following the switch to client-side banner selection, it would
 	// make more sense for this to be defined in bannerController.lib. Before
