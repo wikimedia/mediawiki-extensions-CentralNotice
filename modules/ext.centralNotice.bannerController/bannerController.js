@@ -284,16 +284,6 @@
 
 			mw.cnBannerControllerLib.chooseBanner( randomBanner );
 		},
-		// TODO: move function definitions once controller cache has cleared
-		insertBanner: function( bannerJson ) {
-			window.insertBanner( bannerJson );
-		},
-		toggleNotice: function () {
-			window.toggleNotice();
-		},
-		hideBanner: function() {
-			window.hideBanner();
-		},
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
 
@@ -420,8 +410,7 @@
 	// banner was specifically requested via banner= the record impression call
 	// will NOT be made.
 	//
-	// TODO: Migrate away from global functions
-	window.insertBanner = function ( bannerJson ) {
+	mw.centralNotice.insertBanner = function ( bannerJson ) {
 		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
@@ -544,7 +533,7 @@
 	};
 
 	// Function for hiding banners when the user clicks the close button
-	window.hideBanner = function () {
+	mw.centralNotice.hideBanner = function () {
 		var d = new Date(),
 			cookieVal = {
 				v: 1,
@@ -580,9 +569,14 @@
 	};
 
 	// This function is deprecated
-	window.toggleNotice = function () {
-		window.hideBanner();
+	mw.centralNotice.toggleNotice = function () {
+		mw.centralNotice.hideBanner();
 	};
+
+	// Deprecation notices:
+	mw.log.deprecate( window, 'insertBanner', mw.centralNotice.insertBanner, 'Use mw.centralNotice method instead' );
+	mw.log.deprecate( window, 'hideBanner', mw.centralNotice.hideBanner, 'Use mw.centralNotice method instead' );
+	mw.log.deprecate( window, 'toggleNotice', mw.centralNotice.toggleNotice, 'Use mw.centralNotice method instead' );
 
 	// Initialize CentralNotice
 	$( function() {
