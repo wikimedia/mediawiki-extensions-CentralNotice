@@ -409,10 +409,12 @@ class SpecialGlobalAllocation extends CentralNotice {
 	/**
 	 * Return every (unordered) combination of $num elements from $list
 	 * TODO: don't use recursion.
+	 *
+	 * @throws InvalidArgumentException
 	 */
 	protected static function makeCombinations( array $list, $num ) {
 		if ( $num <= 0 or $num > count( $list ) ) {
-			throw new Exception( "bad arguments to makeCombinations" );
+			throw new InvalidArgumentException( "bad arguments to makeCombinations" );
 		}
 		if ( $num == count( $list ) ) {
 			return array( $list );
@@ -630,7 +632,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 */
 	protected static function filterCampaigns(
 		$campaigns, $country, $language, $project ) {
-
+		$filtered = array();
 		foreach ( $campaigns as $campaign ) {
 			$projectAllowed = (
 				!$project

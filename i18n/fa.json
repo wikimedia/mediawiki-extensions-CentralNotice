@@ -247,6 +247,8 @@
 	"centralnotice-start-time": "زمان آغاز",
 	"centralnotice-end-date": "تاریخ پایان (ساعت جهانی)",
 	"centralnotice-end-time": "زمان پایان (UTC)",
+	"centralnotice-banner-not-found-title": "بنر یافت نشد",
+	"hidebanners": "مخفی‌سازی بنرها",
 	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
 	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها"
 }

@@ -36,7 +36,7 @@ $wgHooks[ 'SkinTemplateNavigation::SpecialPage' ][ ] = array( 'CentralNotice::ad
  */
 function efCentralNoticeSetup() {
 	global $wgHooks, $wgNoticeInfrastructure, $wgAutoloadClasses, $wgSpecialPages,
-		   $wgCentralNoticeLoader, $wgSpecialPageGroups, $wgScript,
+		   $wgCentralNoticeLoader, $wgScript,
 		   $wgNoticeUseTranslateExtension, $wgAPIModules, $wgAPIListModules,
 		   $wgAvailableRights, $wgGroupPermissions, $wgCentralDBname, $wgDBname;
 
@@ -154,7 +154,6 @@ function efCentralNoticeSetup() {
 		}
 
 		$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
-		$wgSpecialPageGroups[ 'CentralNotice' ] = 'wiki'; // Wiki data and tools
 		$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
 		$wgSpecialPages[ 'GlobalAllocation' ] = 'SpecialGlobalAllocation';
 		$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';

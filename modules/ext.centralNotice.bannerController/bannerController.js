@@ -39,12 +39,13 @@
 
 	function synthesizeGeoCookie() {
 		if ( !window.Geo || !window.Geo.country ) {
-			$.cookie( 'GeoIP', '::::vx', { path: '/' } );
+			$.cookie( 'GeoIP', ':::::vx', { path: '/' } );
 			return;
 		}
 
 		var parts = [
 			window.Geo.country,
+			window.Geo.region,
 			window.Geo.city.replace( /[^a-z]/i, '_' ),
 			window.Geo.lat,
 			window.Geo.lon,
@@ -54,13 +55,14 @@
 		$.cookie( 'GeoIP', parts.join( ':' ), { path: '/' } );
 	}
 
-	window.Geo = ( function ( match, country, city, lat, lon, af ) {
+	window.Geo = ( function ( match, country, region, city, lat, lon, af ) {
 		if ( typeof country !== 'string' || ( country.length !== 0 && country.length !== 2 ) ) {
 		    // 'country' is neither empty nor a country code (string of
 		    // length 2), so something is wrong with the cookie, and we
 		    // cannot rely on its value.
 		    $.cookie( 'GeoIP', null, { path: '/' } );
 		    country = '';
+		    region = '';
 		    city = '';
 		    lat = '';
 		    lon = '';
@@ -68,12 +70,13 @@
 		}
 		return {
 			country: country,
+			region: region,
 			city: city,
 			lat: lat && parseFloat( lat ),
 			lon: lon && parseFloat( lon ),
 			af: af
 		};
-	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
+	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
 
 	// FIXME Following the switch to client-side banner selection, it would
 	// make more sense for this to be defined in bannerController.lib. Before
@@ -281,16 +284,6 @@
 
 			mw.cnBannerControllerLib.chooseBanner( randomBanner );
 		},
-		// TODO: move function definitions once controller cache has cleared
-		insertBanner: function( bannerJson ) {
-			window.insertBanner( bannerJson );
-		},
-		toggleNotice: function () {
-			window.toggleNotice();
-		},
-		hideBanner: function() {
-			window.hideBanner();
-		},
 		// Record banner impression using old-style URL
 		recordImpression: function( data ) {
 
@@ -417,8 +410,7 @@
 	// banner was specifically requested via banner= the record impression call
 	// will NOT be made.
 	//
-	// TODO: Migrate away from global functions
-	window.insertBanner = function ( bannerJson ) {
+	mw.centralNotice.insertBanner = function ( bannerJson ) {
 		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
@@ -541,7 +533,7 @@
 	};
 
 	// Function for hiding banners when the user clicks the close button
-	window.hideBanner = function () {
+	mw.centralNotice.hideBanner = function () {
 		var d = new Date(),
 			cookieVal = {
 				v: 1,
@@ -577,9 +569,14 @@
 	};
 
 	// This function is deprecated
-	window.toggleNotice = function () {
-		window.hideBanner();
+	mw.centralNotice.toggleNotice = function () {
+		mw.centralNotice.hideBanner();
 	};
+
+	// Deprecation notices:
+	mw.log.deprecate( window, 'insertBanner', mw.centralNotice.insertBanner, 'Use mw.centralNotice method instead' );
+	mw.log.deprecate( window, 'hideBanner', mw.centralNotice.hideBanner, 'Use mw.centralNotice method instead' );
+	mw.log.deprecate( window, 'toggleNotice', mw.centralNotice.toggleNotice, 'Use mw.centralNotice method instead' );
 
 	// Initialize CentralNotice
 	$( function() {

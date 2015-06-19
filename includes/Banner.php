@@ -578,7 +578,7 @@ class Banner {
 	 * @param array $mixins Names of mixins to enable on this banner. Valid values
 	 * come from @see $wgNoticeMixins
 	 *
-	 * @throws MWException
+	 * @throws RangeException
 	 * @return $this
 	 */
 	function setMixins( $mixins ) {
@@ -596,7 +596,7 @@ class Banner {
 		$this->mixins = array();
 		foreach ( $mixins as $mixin ) {
 			if ( !array_key_exists( $mixin, $wgNoticeMixins ) ) {
-				throw new MWException( "Mixin does not exist: {$mixin}" );
+				throw new RangeException( "Mixin does not exist: {$mixin}" );
 			}
 			$this->mixins[$mixin] = $wgNoticeMixins[$mixin];
 		}
@@ -606,8 +606,6 @@ class Banner {
 
 	/**
 	 * Populates mixin data from the cn_template_mixins table.
-	 *
-	 * @throws MWException
 	 */
 	protected function populateMixinData() {
 		global $wgNoticeMixins;
@@ -1126,7 +1124,7 @@ class Banner {
 		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
-			throw new MWException( 'Cannot remove a template still bound to a campaign!' );
+			throw new LogicException( 'Cannot remove a template still bound to a campaign!' );
 		} else {
 			// Log the removal of the banner
 			// FIXME: this log line will display changes with inverted sense
@@ -1174,13 +1172,13 @@ class Banner {
 	 * @param integer $revisionId ID of the revision
 	 * @param integer $pageId ID of the MediaWiki page for the banner
 	 * @param string $bannerId ID of banner this revtag belongs to
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	static function addTag( $tag, $revisionId, $pageId, $bannerId ) {
 		$dbw = CNDatabase::getDb();
 
 		if ( is_object( $revisionId ) ) {
-			throw new MWException( 'Got object, excepted id' );
+			throw new LogicException( 'Got object, excepted id' );
 		}
 
 		// There should only ever be one tag applied to a banner object
@@ -1203,7 +1201,7 @@ class Banner {
 	 * Make sure banner is not tagged with specified tag
 	 * @param string $tag The name of the tag
 	 * @param integer $pageId ID of the MediaWiki page for the banner
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	static protected function removeTag( $tag, $pageId ) {
 		$dbw = CNDatabase::getDb();
@@ -1295,11 +1293,12 @@ class Banner {
 	 * @param $detailed boolean if true, get some more expensive info
 	 *
 	 * @return array an array of banner settings
+	 * @throws RangeException
 	 */
 	static function getBannerSettings( $bannerName, $detailed = true ) {
 		$banner = Banner::fromName( $bannerName );
 		if ( !$banner->exists() ) {
-			throw new MWException( "Banner doesn't exist!" );
+			throw new RangeException( "Banner doesn't exist!" );
 		}
 
 		$details = array(
@@ -1517,6 +1516,6 @@ class Banner {
 	}
 }
 
-class BannerDataException extends MWException {}
+class BannerDataException extends Exception {}
 class BannerContentException extends BannerDataException {}
 class BannerExistenceException extends BannerDataException {}

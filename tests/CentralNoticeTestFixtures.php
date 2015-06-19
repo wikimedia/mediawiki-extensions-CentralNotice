@@ -176,7 +176,7 @@ class CentralNoticeTestFixtures {
 				if ( !isset( $campaign['countries'] ) ) {
 					$campaign['countries'] = array();
 				} else {
-					throw new MWException( "Campaign is not geotargetted but "
+					throw new LogicException( "Campaign is not geotargetted but "
 							. "'countries' property is set." );
 				}
 			}
@@ -257,7 +257,7 @@ class CentralNoticeTestFixtures {
 
 				if ( $bucket_count < 1 ||
 					$bucket_count > $wgNoticeNumberOfBuckets ) {
-						throw new MWException( 'Bucket count out of range.' );
+						throw new RangeException( 'Bucket count out of range.' );
 				}
 
 				Campaign::setNumericCampaignSetting(
@@ -305,7 +305,7 @@ class CentralNoticeTestFixtures {
 
 					$bucket = $bannerSpec['bucket'];
 					if ( $bucket < 0 || $bucket > $wgNoticeNumberOfBuckets ) {
-						throw new MWException( 'Bucket out of range' );
+						throw new RangeException( 'Bucket out of range' );
 					}
 
 					Campaign::updateBucket(

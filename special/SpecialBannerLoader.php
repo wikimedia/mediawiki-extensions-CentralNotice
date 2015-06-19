@@ -32,7 +32,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			echo $this->getJsNotice( $this->bannerName );
 		} catch ( EmptyBannerException $e ) {
 			echo "mw.centralNotice.insertBanner( false );";
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			wfDebugLog( 'CentralNotice', $e->getMessage() );
 			echo "mw.centralNotice.insertBanner( false /* due to internal exception */ );";
 		}
@@ -166,7 +166,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
  *
  * @ingroup Exception
  */
-class BannerLoaderException extends MWException {
+class BannerLoaderException extends Exception {
 	function __construct( $bannerName = '(none provided)', $extraMsg = null ) {
 
 		$this->message = get_called_class() .

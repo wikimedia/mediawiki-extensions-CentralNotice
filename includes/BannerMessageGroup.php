@@ -262,7 +262,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	public static function getLanguagesInState( $banner, $state ) {
 		if ( !BannerMessageGroup::isUsingGroupReview() ) {
-			throw new MWException( 'CentralNotice is not using group review. Cannot query group review state.' );
+			throw new LogicException( 'CentralNotice is not using group review. Cannot query group review state.' );
 		}
 
 		$groupName = BannerMessageGroup::getTranslateGroupName( $banner );

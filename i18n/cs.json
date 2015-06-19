@@ -7,7 +7,8 @@
 			"Li-sung",
 			"Matěj Grabovský",
 			"Mormegil",
-			"Paxt"
+			"Paxt",
+			"Vks"
 		]
 	},
 	"centralnotice": "Správa centralizovaných oznámení",
@@ -240,5 +241,6 @@
 	"centralnotice-banner-not-found-title": "Banner nenalezen",
 	"centralnotice-banner-not-found-contents": "Neexistuje banner, který by měl přesně tento název.",
 	"hidebanners": "Skrýt bannery",
-	"centralnotice-specialhidebanners-p3p": "Některé prohlížeče pro nastavování cookies v některých situacích vyžadují kompaktní zásady P3P. Avšak kompaktní zásady momentálně nejsou k dispozici. Přečtete si prosím lidsky čitelnou verzi pravidel ochrany osobních údajů na tomto projektu."
+	"centralnotice-specialhidebanners-p3p": "Některé prohlížeče pro nastavování cookies v některých situacích vyžadují kompaktní zásady P3P. Avšak kompaktní zásady momentálně nejsou k dispozici. Přečtete si prosím lidsky čitelnou verzi pravidel ochrany osobních údajů na tomto projektu.",
+	"apihelp-query+centralnoticelogs-example-1": "Zobrazit protokoly"
 }

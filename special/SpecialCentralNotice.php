@@ -1484,4 +1484,8 @@ class CentralNotice extends SpecialPage {
 		}
 		return $this->getContext()->getLanguage()->listToText( array_values( $list ) );
 	}
+
+	protected function getGroupName() {
+		return 'wiki';
+	}
 }

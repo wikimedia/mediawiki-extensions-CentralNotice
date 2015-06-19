@@ -573,7 +573,7 @@ class Campaign {
 	 * @param $priority          int: priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
 	 * @param $user              User adding the campaign
 	 *
-	 * @throws MWException
+	 * @throws RuntimeException
 	 * @return int|string noticeId on success, or message key for error
 	 */
 	static function addCampaign( $noticeName, $enabled, $startTs, $projects,
@@ -660,7 +660,7 @@ class Campaign {
 			return $not_id;
 		}
 
-		throw new MWException( 'insertId() did not return a value.' );
+		throw new RuntimeException( 'insertId() did not return a value.' );
 	}
 
 	/**
@@ -897,7 +897,7 @@ class Campaign {
 	 * @param int $settingValue Value to use
 	 * @param int $max The max that the value can take, default 1
 	 * @param int $min The min that the value can take, default 0
-	 * @throws MWException|RangeException
+	 * @throws InvalidArgumentException|RangeException
 	 */
 	static function setNumericCampaignSetting( $noticeName, $settingName, $settingValue, $max = 1, $min = 0 ) {
 		if ( $max <= $min ) {
@@ -905,7 +905,7 @@ class Campaign {
 		}
 
 		if ( !is_numeric( $settingValue ) ) {
-			throw new MWException( 'Setting value must be numeric.' );
+			throw new InvalidArgumentException( 'Setting value must be numeric.' );
 		}
 
 		if ( $settingValue > $max ) {
@@ -1159,4 +1159,4 @@ class Campaign {
 	}
 }
 
-class CampaignExistenceException extends MWException {}
+class CampaignExistenceException extends Exception {}

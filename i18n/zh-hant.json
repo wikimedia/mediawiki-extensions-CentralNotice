@@ -20,7 +20,8 @@
 			"Wrightbus",
 			"Cwlin0416",
 			"LNDDYL",
-			"Cwek"
+			"Cwek",
+			"Zhxy 519"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -199,7 +200,7 @@
 	"centralnotice-country-eu": "不明/歐盟地區",
 	"centralnotice-country-ap": "不明/亞太地區",
 	"centralnotice-country-a1": "不明/匿名的代理伺服器",
-	"centralnotice-country-a2": "不明/衛星通信業者",
+	"centralnotice-country-a2": "不明/衛星通訊業者",
 	"centralnotice-country-o1": "不明/其他國家",
 	"centralnotice-country-unknown": "不明/非地理位置",
 	"centralnotice-buckets": "使用者群組",
@@ -223,7 +224,7 @@
 	"centralnotice-templates-included": "引用的模板",
 	"centralnotice-archive-banner": "封存",
 	"centralnotice-archive-banner-title": "將{{PLURAL:$1|橫幅}}封存？",
-	"centralnotice-archive-banner-confirm": "封存會展開所有引用的樣板並將頁面設為保護。此動作較難還原。",
+	"centralnotice-archive-banner-confirm": "封存會展開所有引用的模板並將頁面設為保護。此動作較難還原。",
 	"centralnotice-archive-banner-cancel": "取消",
 	"centralnotice-change-summary-label": "摘要",
 	"centralnotice-change-summary-prompt": "關於這些變更的摘要訊息 (選填)",
