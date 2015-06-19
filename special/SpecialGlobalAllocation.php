@@ -632,7 +632,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 */
 	protected static function filterCampaigns(
 		$campaigns, $country, $language, $project ) {
-
+		$filtered = array();
 		foreach ( $campaigns as $campaign ) {
 			$projectAllowed = (
 				!$project
