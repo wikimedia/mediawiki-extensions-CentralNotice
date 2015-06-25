@@ -110,11 +110,6 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.bannerEditor' ] = array(
 		'centralnotice-delete-banner-cancel',
 	)
 );
-$wgResourceModules[ 'ext.centralNotice.bannerStats' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
-	'scripts'       => 'ext.centralNotice.bannerStats/bannerStats.js',
-);
 $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'localBasePath' => $dir . '/modules/ext.centralNotice.bannerController',
 	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.bannerController',

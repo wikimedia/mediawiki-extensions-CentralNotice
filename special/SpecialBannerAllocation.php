@@ -230,15 +230,6 @@ class SpecialBannerAllocation extends CentralNotice {
 				)->text()
 			);
 
-			// FIXME Figure out the following comments and remove as needed
-			// FIXME bannerstats is toast
-			// Build campaign list for bannerstats.js
-			//$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
-			//
-			//$campaignList = FormatJson::encode( $campaignsUsed );
-			//$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
-			//$htmlOut .= Html::inlineScript( $js );
-
 			// FIXME matrix is chosen dynamically based on more UI inputs
 			$matrix = array();
 			for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
