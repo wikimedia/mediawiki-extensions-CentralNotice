@@ -55,7 +55,7 @@
 		$.cookie( 'GeoIP', parts.join( ':' ), { path: '/' } );
 	}
 
-	window.Geo = ( function ( match, country, region, city, lat, lon, af ) {
+	function sanitizeGeoCookie( match, country, region, city, lat, lon, af ) {
 		if ( typeof country !== 'string' || ( country.length !== 0 && country.length !== 2 ) ) {
 		    // 'country' is neither empty nor a country code (string of
 		    // length 2), so something is wrong with the cookie, and we
@@ -68,6 +68,7 @@
 		    lon = '';
 		    af = 'vx';
 		}
+
 		return {
 			country: country,
 			region: region,
@@ -76,7 +77,24 @@
 			lon: lon && parseFloat( lon ),
 			af: af
 		};
-	} ).apply( null, ( $.cookie( 'GeoIP' ) || '' ).match( /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) || [] );
+	}
+
+	function parseGeoCookie() {
+		var geoCookie = $.cookie( 'GeoIP' ) || '',
+			geoCookieMatches = geoCookie.match( /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ )
+				|| geoCookie.match( /([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ )
+				|| [];
+
+		// When encountering the old cookie format, convert it to the new one with an empty region
+		if ( geoCookieMatches.length === 6 ) {
+			// Region field is missing, insert an empty one
+			geoCookieMatches = geoCookieMatches.slice( 0, 2 ).concat( [ '' ] ).concat( geoCookieMatches.slice( 2 ) );
+		}
+
+		return sanitizeGeoCookie.apply( null, geoCookieMatches );
+	}
+
+	window.Geo = parseGeoCookie();
 
 	// FIXME Following the switch to client-side banner selection, it would
 	// make more sense for this to be defined in bannerController.lib. Before
