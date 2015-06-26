@@ -128,6 +128,8 @@ function efCentralNoticeSetup() {
 		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
 		$wgHooks[ 'ResourceLoaderGetConfigVars' ][] = 'efResourceLoaderGetConfigVars';
 		// Register mobile modules
+		// TODO To remove in a subsequent patch, when we start adding
+		// ext.centralNotice.startUp to HTML instead of the current mix.
 		$wgHooks[ 'SkinMinervaDefaultModules' ][] = 'onSkinMinervaDefaultModules';
 	}
 
@@ -214,6 +216,8 @@ function efCentralNoticeLoader( $out, $skin ) {
 		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
 	}
 	// Insert the banner controller
+	// TODO Change this to startUp once it's determined that a rollback is not
+	// needed.
 	$out->addModules( 'ext.centralNotice.bannerController' );
 	return true;
 }
@@ -352,6 +356,8 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
+
+	// TODO Remove this after banner display refactor has been deployed
 	$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
 	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
@@ -417,22 +423,34 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 	// find test files for every RL module
 	$prefix = 'ext.centralNotice';
 	foreach ( $wgResourceModules as $key => $module ) {
-		if ( substr( $key, 0, strlen( $prefix ) ) === $prefix && isset( $module['scripts'] ) ) {
+
+		if ( substr( $key, 0, strlen( $prefix ) ) ===
+			$prefix && isset( $module['scripts'] ) ) {
+
 			$testFiles = array();
-			foreach ( ((array) $module['scripts'] ) as $script ) {
-				$testFile = 'tests/qunit/' . $key . '/' . basename( $script );
+
+			foreach ( ( ( array ) $module['scripts'] ) as $script ) {
+
+				$testFile = 'tests/qunit/' . $script;
 				$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
+
 				// if a test file exists for a given JS file, add it
 				if ( file_exists( __DIR__ . '/' . $testFile ) ) {
 					$testFiles[] = $testFile;
 				}
 			}
-			// if test files exist for given module, create a corresponding test module
+
+			// if test files exist for given module, create a corresponding test
+			// module
 			if ( count( $testFiles ) > 0 ) {
-				$testModules['qunit']["$key.tests"] = $testModuleBoilerplate + array(
-					'dependencies' => array( $key, 'ext.centralNotice.testFixtures' ),
-					'scripts' => $testFiles,
-				);
+
+				$testModules['qunit']["$key.tests"] = $testModuleBoilerplate +
+					array(
+						'dependencies' =>
+							array( $key, 'ext.centralNotice.testFixtures' ),
+
+						'scripts' => $testFiles,
+					);
 			}
 		}
 	}
@@ -440,6 +458,9 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 	return true;
 }
 
+// TODO To remove in a subsequent patch, when we start adding
+// ext.centralNotice.startUp to HTML instead of the current mix (once we
+// determine that a rollback won't be necessary).
 /**
  * Place CentralNotice ResourceLoader modules onto mobile pages.
  *

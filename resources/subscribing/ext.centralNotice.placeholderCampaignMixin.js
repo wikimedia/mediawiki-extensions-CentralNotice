@@ -5,7 +5,7 @@
  */
 ( function ( $, mw ) {
 
-	var mixin = new mw.cnBannerControllerLib.Mixin( 'placeholderCampaignMixin' );
+	var mixin = new mw.centralNotice.Mixin( 'placeholderCampaignMixin' );
 
 	mixin.setPreBannerHandler( function( params ) {
 		mw.log( params );
@@ -15,6 +15,6 @@
 		mw.log( params );
 	} );
 
-	mw.cnBannerControllerLib.registerCampaginMixin( mixin );
+	mw.centralNotice.registerCampaignMixin( mixin );
 
 } )( jQuery, mediaWiki );

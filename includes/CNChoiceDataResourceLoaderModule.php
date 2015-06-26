@@ -107,15 +107,21 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::getScript()
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.cnBannerControllerLib.setChoiceData',
-				array( $this->getChoices( $context ) ) );
-	}
 
-	/**
-	 * @see ResourceLoaderModule::getPosition()
-	 */
-	public function getPosition() {
-		return 'top';
+		$choices = $this->getChoices( $context );
+
+		if ( count( $choices ) === 0 ) {
+
+			// If there are no choices, this module will have no dependencies.
+			// We'll create the mw.centralNotice object here.
+			return 'mw.centralNotice = { choiceData: [] };';
+		} else {
+
+			// If there are choices, this module will depend on (at least)
+			// ext.centralNotice.display, which will create mw.centralNotice.
+			return 'mw.centralNotice.choiceData = ' .
+				Xml::encodeJsVar( $choices ) . ';';
+		}
 	}
 
 	/**
@@ -132,10 +138,15 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			 return array();
 		}
 
-		$dependencies = array();
-
 		// Get the choices (possible campaigns and banners) for this user
 		$choices = $this->getChoices( $context );
+
+		// If there are no choices, no dependencies
+		if ( count( $choices ) === 0 ) {
+			return array();
+		}
+
+		$dependencies = array();
 
 		// Run through the choices to get all needed mixin RL modules
 		foreach ( $choices as $choice ) {
@@ -151,7 +162,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			}
 		}
 
-		$dependencies[] = 'ext.centralNotice.bannerController.lib';
+		$dependencies[] = 'ext.centralNotice.display';
 
 		// Since campaigns targeting the user could have the same mixin RL
 		// modules, remove any duplicates.

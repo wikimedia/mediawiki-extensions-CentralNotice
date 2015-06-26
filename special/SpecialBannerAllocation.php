@@ -314,7 +314,7 @@ class SpecialBannerAllocation extends CentralNotice {
 				// Banner name
 				$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
 				$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
-				// The span class is used by bannerstats.js to find where to insert the stats
+
 				$htmlOut .= Html::openElement( 'span',
 					array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
 				$htmlOut .= Linker::link(

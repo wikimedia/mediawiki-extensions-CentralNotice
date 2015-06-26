@@ -29,9 +29,10 @@ global $wgResourceModules;
 $dir = __DIR__;
 
 // Register ResourceLoader modules
+
 $wgResourceModules[ 'jquery.ui.multiselect' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
 	'dependencies'  => array(
 		'jquery.ui.core',
 		'jquery.ui.sortable',
@@ -39,21 +40,22 @@ $wgResourceModules[ 'jquery.ui.multiselect' ] = array(
 		'jquery.ui.droppable',
 		'mediawiki.jqueryMsg'
 	),
-	'scripts'       => 'jquery.ui.multiselect/ui.multiselect.js',
-	'styles'        => 'jquery.ui.multiselect/ui.multiselect.css',
+	'scripts'       => 'vendor/jquery.ui.multiselect/ui.multiselect.js',
+	'styles'        => 'vendor/jquery.ui.multiselect/ui.multiselect.css',
 	'position'      => 'top',
 );
+
 $wgResourceModules[ 'ext.centralNotice.adminUi' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
 	'dependencies' => array(
 		'jquery.ui.datepicker',
 		'jquery.ui.multiselect'
 	),
-	'scripts'       => 'ext.centralNotice.adminUi/centralnotice.js',
+	'scripts'       => 'infrastructure/centralnotice.js',
 	'styles'        => array(
-		'ext.centralNotice.adminUi/centralnotice.css',
-		'ext.centralNotice.adminUi/adminui.common.css'
+		'infrastructure/centralnotice.css',
+		'infrastructure/adminui.common.css'
 	),
 	'messages'      => array(
 		'centralnotice-documentwrite-error',
@@ -63,16 +65,17 @@ $wgResourceModules[ 'ext.centralNotice.adminUi' ] = array(
 		'centralnotice-items-selected'
 	)
 );
+
 $wgResourceModules[ 'ext.centralNotice.adminUi.bannerManager' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
 	'dependencies' => array(
 		'ext.centralNotice.adminUi',
 		'jquery.ui.dialog',
 		'mediawiki.Uri'
 	),
-	'scripts'       => 'ext.centralNotice.adminUi.bannerManager/bannermanager.js',
-	'styles'        => 'ext.centralNotice.adminUi.bannerManager/bannermanager.css',
+	'scripts'       => 'infrastructure/bannermanager.js',
+	'styles'        => 'infrastructure/bannermanager.css',
 	'messages'      => array(
 		'centralnotice-add-notice-button',
 		'centralnotice-add-notice-cancel-button',
@@ -87,15 +90,16 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.bannerManager' ] = array(
 		'centralnotice-delete-banner-cancel',
 	)
 );
+
 $wgResourceModules[ 'ext.centralNotice.adminUi.bannerEditor' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
 	'dependencies' => array(
 		'ext.centralNotice.adminUi',
 		'jquery.ui.dialog'
 	),
-	'scripts'       => 'ext.centralNotice.adminUi.bannerEditor/bannereditor.js',
-	'styles'        => 'ext.centralNotice.adminUi.bannerEditor/bannereditor.css',
+	'scripts'       => 'infrastructure/bannereditor.js',
+	'styles'        => 'infrastructure/bannereditor.css',
 	'messages'      => array(
 		'centralnotice-clone',
 		'centralnotice-clone-notice',
@@ -110,47 +114,20 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.bannerEditor' ] = array(
 		'centralnotice-delete-banner-cancel',
 	)
 );
-$wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
-	'localBasePath' => $dir . '/modules/ext.centralNotice.bannerController',
-	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.bannerController',
-	'styles'        => 'bannerController.css',
-	'scripts'       => 'bannerController.js',
-	'position'      => 'top',
-	'dependencies'  => array(
-		'jquery.cookie',
-		'json',
-		'mediawiki.Uri',
-		'ext.centralNotice.choiceData',
-		'ext.centralNotice.bannerController.lib',
-	),
-);
-$wgResourceModules[ 'ext.centralNotice.choiceData' ] = array(
-	// The following settings are brought in via this PHP class:
-	// 'position' => 'top',
-	// 'dependencies' => array( 'ext.centralNotice.bannerController.lib' )
-	// 'targets' => array( 'desktop', 'mobile' ),
-	'class'         => 'CNChoiceDataResourceLoaderModule'
-);
-$wgResourceModules[ 'ext.centralNotice.bannerController.lib' ] = array(
-	'localBasePath' => $dir . '/modules/ext.centralNotice.bannerController',
-	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.bannerController',
-	'scripts'       => 'bannerController.lib.js',
-	'position'      => 'top',
-	'targets' => array( 'desktop', 'mobile' ),
-);
+
 $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'CentralNotice',
 	'dependencies' => array(
 		'ext.centralNotice.adminUi',
 		'jquery.ui.dialog',
 		'jquery.ui.slider',
 		'mediawiki.template.mustache',
 	),
-	'scripts'       => 'ext.centralNotice.adminUi.campaignManager/campaignManager.js',
-	'styles'        => 'ext.centralNotice.adminUi.campaignManager/campaignManager.css',
+	'scripts'       => 'resources/infrastructure/campaignManager.js',
+	'styles'        => 'resources/infrastructure/campaignManager.css',
 	'templates'     => array(
-		'campaignMixinParamControls.mustache' => 'ext.centralNotice.adminUi.campaignManager/campaignMixinParamControls.mustache'
+		'campaignMixinParamControls.mustache' => 'templates/campaignMixinParamControls.mustache'
 	),
 	'messages'      => array(
 		'centralnotice-notice-mixins-int-required',
@@ -165,32 +142,101 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 	)
 );
 
-$wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array(
-	'localBasePath' => $dir . '/modules',
-	'remoteExtPath' => 'CentralNotice/modules',
-	'position'      => 'top',
-	'targets'       => 'mobile',
-	'scripts'       => array( 'ext.centralNotice.bannerController/mobile/device.js' )
+$wgResourceModules[ 'ext.centralNotice.startUp' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.startUp.js',
+	'dependencies'  => array(
+		'ext.centralNotice.choiceData',
+		'mediawiki.util',
+	),
+	'targets'       => array( 'desktop', 'mobile' ),
 );
+
+$wgResourceModules[ 'ext.centralNotice.geoIP' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.geoIP.js',
+	'targets'       => array( 'desktop', 'mobile' ),
+	'dependencies'  => array(
+		'jquery.cookie',
+	),
+);
+
+$wgResourceModules[ 'ext.centralNotice.choiceData' ] = array(
+	// This module's dependencies are set dynamically based on context.
+	// The following settings are also brought in via the PHP class:
+	// 'targets' => array( 'desktop', 'mobile' )
+	'class'         => 'CNChoiceDataResourceLoaderModule'
+);
+
+$wgResourceModules[ 'ext.centralNotice.display' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => array(
+		'subscribing/ext.centralNotice.display.js',
+		'subscribing/ext.centralNotice.display.state.js',
+		'subscribing/ext.centralNotice.display.chooser.js',
+		'subscribing/ext.centralNotice.display.bucketer.js',
+		'subscribing/ext.centralNotice.display.hide.js',
+	),
+	'styles'        => 'subscribing/ext.centralNotice.display.css',
+	'dependencies'  => array(
+		'ext.centralNotice.geoIP',
+		'jquery.cookie',
+		'json',
+		'mediawiki.Uri',
+	),
+	'targets'       => array( 'desktop', 'mobile' ),
+);
+
+$wgResourceModules[ 'ext.centralNotice.kvStore' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.kvStore.js',
+	'targets'       => array( 'desktop', 'mobile' ),
+);
+
+// Deprecated, left here for cached HTML. Just brings in startUp and geoIP.
+$wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
+	'position'      => 'top',
+	'dependencies'  => array(
+		'ext.centralNotice.startUp',
+		'ext.centralNotice.geoIP'
+	),
+	'targets' => array( 'desktop' ),
+);
+
+// Deprecated, left here for cached HTML. Just brings in startUp and geoIP.
+$wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = array(
+	'position'      => 'top',
+	'dependencies'  => array(
+		'ext.centralNotice.startUp',
+		'ext.centralNotice.geoIP'
+	),
+	'targets' => array( 'mobile' ),
+);
+
+// Deprecated, left here for cached HTML.
+$wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array();
+
+// Deprecated, left here for cached HTML
+$wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array();
+
+// Deprecated, left here for cached HTML
+$wgResourceModules[ 'ext.centralNotice.bannerController.lib' ] = array();
 
 // This mixin module is just to make campaign mixins smoke testable. It'll be
 // removed before merging the campaign_mixnis feature branch to master.
 $wgResourceModules[ 'ext.centralNotice.placeholderCampaignMixin' ] = array(
-	'localBasePath' => $dir . '/modules/ext.centralNotice.placeholderCampaignMixin',
-	'remoteExtPath' => 'CentralNotice/modules/ext.centralNotice.placeholderCampaignMixin',
-	'scripts'       => 'placeholderCampaignMixin.js',
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.placeholderCampaignMixin.js',
 	// campaign mixin modules need this dependency, to be sure it is loaded first
 	'dependencies'  => array(
-		'ext.centralNotice.bannerController.lib',
+		'ext.centralNotice.kvStore',
+		// Mixins must depend on display to ensure the hook they use to
+		// register themselves is available when they run
+		'ext.centralNotice.display',
 	)
 );
-$wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = array_merge_recursive(
-	array(
-		 'targets' => 'mobile',
-		 'dependencies' => 'ext.centralNotice.bannerController.mobiledevice'
-	),
-	$wgResourceModules[ 'ext.centralNotice.bannerController' ]
-);
-
-// Deprecated, left here for cached HTML.
-$wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array();

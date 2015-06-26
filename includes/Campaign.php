@@ -673,7 +673,7 @@ class Campaign {
 
 	/**
 	 * Update enabled or disabled status and parameters for a campaign mixin,
-	 * for a given campagin.
+	 * for a given campaign.
 	 *
 	 * @param string $campaignName
 	 * @param string $mixinName

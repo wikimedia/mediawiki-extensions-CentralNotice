@@ -2,7 +2,8 @@
 	'use strict';
 
 	var realAjax = $.ajax,
-		realGetVars = mw.centralNotice.data.getVars,
+		realWindowGeo = window.Geo,
+		realGeoIP = mw.geoIP,
 		bannerData = {
 			bannerName: 'test_banner',
 			campaign: 'test_campaign',
@@ -87,133 +88,96 @@
 			}
 		];
 
-	QUnit.module( 'ext.centralNotice.bannerController', QUnit.newMwEnvironment( {
+	QUnit.module( 'ext.centralNotice.display', QUnit.newMwEnvironment( {
 		setup: function () {
-			var realLoadBanner = mw.centralNotice.loadBanner;
 
-			// Reset in case the testing page itself ran CentralNotice.
-			mw.centralNotice.alreadyRan = false;
-
-			// Fool code that prevents CentralNotice from running on Special pages.
-			mw.config.set( 'wgNamespaceNumber', 0 );
-
-			// Prevent banner load during initialize().
-			mw.centralNotice.loadBanner = function () {};
-
-			mw.centralNotice.data.getVars = {};
-			$.extend( mw.centralNotice.data.getVars, realGetVars, {
-				// Boring defaults, assumed by test fixtures.
-				// FIXME: move to tests that actually assume this.  Move the
-				// initialize() call as well.
-				// FIXME: see below
-				country: 'XX',
-				uselang: 'en',
-				project: 'wikipedia',
-				anonymous: true
-			} );
-
-			// Remove any existing div#siteNotice, so we are not testing the skin.
-			// Do it before initialize, so nothing 
 			$( '#siteNotice' ).remove();
 
-			// Sigh.  Suppress the GeoIP call, and prevent any other side-
-			// effects, unless $.ajax is explictly mocked by a test case.
+			// Suppress background calls
 			$.ajax = function() { return $.Deferred(); };
-
-			mw.centralNotice.initialize();
-
-			mw.centralNotice.loadBanner = realLoadBanner;
-
-			// Mock out buckets
-			mw.cnBannerControllerLib.bucketsByCampaign = {};
-			mw.cnBannerControllerLib.bucketsByCampaign[bannerData.campaign] = {
-				val: 0,
-				start: 1419937200,
-				end: 1414754400
-			};
 
 			// Create normalized siteNotice.
 			$( '#qunit-fixture' ).append(
 				'<div id=siteNotice><div id=centralNotice></div></div>'
 			);
+
+			// Mock window.Geo object and mw.geoIP
+			window.Geo = {};
+			mw.geoIP = {
+				getPromise: function() {
+					var deferred = $.Deferred();
+					deferred.resolve();
+					return deferred.promise();
+				}
+			};
 		},
 		teardown: function () {
 			$.ajax = realAjax;
-			mw.centralNotice.data.getVars = realGetVars;
+			mw.geoIP = realGeoIP;
+
+			if ( typeof realWindowGeo !== 'undefined' ) {
+				window.Geo = realWindowGeo;
+			}
 		}
 	} ) );
 
-	QUnit.test( 'hasAlreadyRan', 1, function( assert ) {
-		assert.ok( mw.centralNotice.alreadyRan );
-	} );
-
 	QUnit.test( 'canInsertBanner', 1, function( assert ) {
-		mw.centralNotice.insertBanner( bannerData );
-		assert.equal( $( 'div#test_banner' ).length, 1 );
-	} );
-
-	QUnit.test( 'canResultCauseHide', 1, function( assert ) {
-		mw.centralNotice.impressionData.result = 'hide';
-
-		mw.centralNotice.insertBanner( bannerData );
-		assert.equal( $( 'div#test_banner' ).length, 0 );
-	} );
-
-	QUnit.test( 'canResultCauseShow', 1, function( assert ) {
-		mw.centralNotice.impressionData.result = 'show';
+		mw.centralNotice.choiceData = choiceData2Campaigns;
+		mw.centralNotice.chooseAndMaybeDisplay();
 
 		mw.centralNotice.insertBanner( bannerData );
 		assert.equal( $( 'div#test_banner' ).length, 1 );
 	} );
 
 	QUnit.test( 'banner= override param', 2, function( assert ) {
-		mw.centralNotice.data.getVars.banner = 'test_banner';
+		mw.centralNotice.internal.state.urlParams.banner = 'test_banner';
 		$.ajax = function( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/ ) );
 		};
-		mw.centralNotice.loadBanner();
+		mw.centralNotice.displayTestingBanner();
 
-		assert.ok( mw.centralNotice.data.testing );
+		assert.ok( mw.centralNotice.data.testingBanner );
 	} );
 
 	QUnit.test( 'randomcampaign= override param', 2, function( assert ) {
-		mw.cnBannerControllerLib.setChoiceData( choiceData2Campaigns );
+
+		mw.centralNotice.choiceData = choiceData2Campaigns;
 
 		// Get the first banner
-		mw.centralNotice.data.getVars.randomcampaign = 0.25;
+		mw.centralNotice.internal.state.urlParams.randomcampaign = 0.25;
 
 		$.ajax = function( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
 		};
-		mw.centralNotice.loadBanner();
+		mw.centralNotice.chooseAndMaybeDisplay();
 
 		// Get the second banner
-		mw.centralNotice.data.getVars.randomcampaign = 0.75;
+		mw.centralNotice.internal.state.urlParams.randomcampaign = 0.75;
 
 		$.ajax = function( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
 		};
-		mw.centralNotice.loadBanner();
+		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
 	QUnit.test( 'randombanner= override param', 2, function( assert ) {
-		mw.cnBannerControllerLib.setChoiceData( choiceData1Campaign2Banners );
+		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 
 		// Get the first banner
-		mw.centralNotice.data.getVars.randombanner = 0.25;
+		mw.centralNotice.internal.state.urlParams.randombanner = 0.25;
 
 		$.ajax = function( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
 		};
-		mw.centralNotice.loadBanner();
+		mw.centralNotice.chooseAndMaybeDisplay();
 
 		// Get the second banner
-		mw.centralNotice.data.getVars.randombanner = 0.75;
+		mw.centralNotice.internal.state.urlParams.randombanner = 0.75;
 
 		$.ajax = function( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
 		};
-		mw.centralNotice.loadBanner();
+		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
 }( mediaWiki, jQuery ) );

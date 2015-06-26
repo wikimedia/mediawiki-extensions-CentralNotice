@@ -131,6 +131,7 @@ $wgNoticeCookieDurations = array(
 
 /**
  * @var string Timestamp after which old-format 'hide' cookies should be deleted
+ * TODO Remove this after banner display refactor has been deployed
  */
 $wgNoticeOldCookieEpoch = '20141109000000';
 
