@@ -120,16 +120,16 @@ $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 		'jquery.cookie',
 		'json',
 		'mediawiki.Uri',
-		'ext.centralNotice.bannerChoiceData',
+		'ext.centralNotice.choiceData',
 		'ext.centralNotice.bannerController.lib',
 	),
 );
-$wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array(
+$wgResourceModules[ 'ext.centralNotice.choiceData' ] = array(
 	// The following settings are brought in via this PHP class:
 	// 'position' => 'top',
 	// 'dependencies' => array( 'ext.centralNotice.bannerController.lib' )
 	// 'targets' => array( 'desktop', 'mobile' ),
-	'class'         => 'CNBannerChoiceDataResourceLoaderModule'
+	'class'         => 'CNChoiceDataResourceLoaderModule'
 );
 $wgResourceModules[ 'ext.centralNotice.bannerController.lib' ] = array(
 	'localBasePath' => $dir . '/modules/ext.centralNotice.bannerController',
@@ -192,3 +192,5 @@ $wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = array_merge_
 	$wgResourceModules[ 'ext.centralNotice.bannerController' ]
 );
 
+// Deprecated, left here for cached HTML.
+$wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array();

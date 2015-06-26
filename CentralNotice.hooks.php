@@ -78,8 +78,8 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
 	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
-	$wgAutoloadClasses[ 'BannerChoiceDataProvider' ] = $includeDir . 'BannerChoiceDataProvider.php';
-	$wgAutoloadClasses[ 'CNBannerChoiceDataResourceLoaderModule' ] = $includeDir . 'CNBannerChoiceDataResourceLoaderModule.php';
+	$wgAutoloadClasses[ 'ChoiceDataProvider' ] = $includeDir . 'ChoiceDataProvider.php';
+	$wgAutoloadClasses[ 'CNChoiceDataResourceLoaderModule' ] = $includeDir . 'CNChoiceDataResourceLoaderModule.php';
 	$wgAutoloadClasses[ 'Campaign' ] = $includeDir . 'Campaign.php';
 	$wgAutoloadClasses['CampaignCriteria'] = $specialDir . 'SpecialGlobalAllocation.php';
 	$wgAutoloadClasses['CampaignExistenceException'] = $includeDir . 'Campaign.php';
@@ -104,13 +104,13 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';
 
-	$wgAutoloadClasses[ 'ApiCentralNoticeBannerChoiceData' ] = $apiDir . 'ApiCentralNoticeBannerChoiceData.php';
+	$wgAutoloadClasses[ 'ApiCentralNoticeChoiceData' ] = $apiDir . 'ApiCentralNoticeChoiceData.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
 	$wgAutoloadClasses[ 'TemplatePager' ] = $dir . 'TemplatePager.php';
 
 	$wgAutoloadClasses[ 'CNDatabase' ] = $includeDir . 'CNDatabase.php';
-	$wgAPIModules[ 'centralnoticebannerchoicedata' ] = 'ApiCentralNoticeBannerChoiceData';
+	$wgAPIModules[ 'centralnoticechoicedata' ] = 'ApiCentralNoticeChoiceData';
 	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
@@ -371,12 +371,12 @@ function efCentralNoticeUnitTests( &$files ) {
 
 	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
-	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeBannerChoiceDataTest.php';
+	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
 	$files[ ] = __DIR__ . '/tests/AllocationCalculatorTest.php';
-	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
+	$files[ ] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
-	$files[ ] = __DIR__ . '/tests/CNBannerChoicesResourceLoaderModuleTest.php';
+	$files[ ] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
 	return true;
 }
 
@@ -448,7 +448,7 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		'ext.centralNotice.bannerController.mobiledevice',
 		'ext.centralNotice.bannerController.mobile',
 		'ext.centralNotice.bannerController.lib',
-		'ext.centralNotice.bannerChoiceData',
+		'ext.centralNotice.choiceData',
 	);
 
 	return true;

@@ -4,7 +4,7 @@
  * Provides a set of campaign and banner choices based on allocations for a
  * given project and language combination.
  */
-class BannerChoiceDataProvider {
+class ChoiceDataProvider {
 
 	protected $project;
 	protected $language;

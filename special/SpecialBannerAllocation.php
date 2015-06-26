@@ -205,7 +205,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		// Given our project and language combination, get banner choice data,
 		// then filter on country
-		$provider = new BannerChoiceDataProvider( $project, $language );
+		$provider = new ChoiceDataProvider( $project, $language );
 		$choiceData = $provider->getChoices();
 
 		// Iterate through each possible device type and get allocation information

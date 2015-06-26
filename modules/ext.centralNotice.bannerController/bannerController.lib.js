@@ -340,7 +340,7 @@
 
 		/**
 		 * Set possible campaign and banner choices. Called by
-		 * ext.centralNotice.bannerChoices.
+		 * ext.centralNotice.choiceData.
 		 */
 		setChoiceData: function( choiceData ) {
 			this.choiceData = choiceData;

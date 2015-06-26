@@ -38,7 +38,7 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 
 			// Get choices for this context, then filter and allocate campaigns
 
-			$allocationsProvider = new BannerChoiceDataProvider(
+			$allocationsProvider = new ChoiceDataProvider(
 				$cAndO['context']['project'],
 				$cAndO['context']['language']
 			);

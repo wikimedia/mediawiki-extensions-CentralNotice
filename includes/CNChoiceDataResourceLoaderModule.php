@@ -7,7 +7,7 @@
  * ResourceLoader works. This class has no expectation of having getScript() or
  * getModifiedHash() called in the same request.
  */
-class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
+class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 	/**
 	 * @see ResourceLoaderModule::targets
@@ -48,7 +48,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 */
 	protected function getFromDb( $project, $language ) {
 
-		$choicesProvider = new BannerChoiceDataProvider( $project, $language );
+		$choicesProvider = new ChoiceDataProvider( $project, $language );
 
 		return $choicesProvider->getChoices();
 	}
@@ -67,7 +67,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 		// Make the URl
 		$q = array(
-			'action' => 'centralnoticebannerchoicedata',
+			'action' => 'centralnoticechoicedata',
 			'project' => $project,
 			'language' => $language,
 			'format' => 'json',

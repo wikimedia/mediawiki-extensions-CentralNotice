@@ -46,7 +46,7 @@ Some commented snippets of this data structure:
                 ...
             },
 
-            // Expected data from BannerChoiceDataProvider in this context.
+            // Expected data from ChoiceDataProvider in this context.
             // This data is also the input for client-side tests.
             "choices": {
                 ...
