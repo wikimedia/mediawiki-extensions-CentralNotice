@@ -102,8 +102,18 @@ class ChoiceDataProvider {
 		foreach ( $dbRows as $dbRow ) {
 
 			$campaignId = $dbRow->not_id;
+			$campaignName = $dbRow->not_name;
 			$bannerId = $dbRow->tmp_id;
+			$bannerName = $dbRow->tmp_name;
 			$bucket = $dbRow->asn_bucket;
+
+			// FIXME Temporary hack to substitute the magic words {{{campaign}}}
+			// and {{{banner}}} in banner categories. (These are the magic
+			// words mentioned in the CN Admin UI.)
+			$category = $dbRow->tmp_category;
+			$category = str_replace( '{{{campaign}}}', $campaignName, $category);
+			$category = str_replace( '{{{banner}}}', $bannerName, $category);
+			$category = Banner::sanitizeRenderedCategory( $category );
 
 			// The first time we see any campaign, create the corresponding
 			// outer K/V entry. The campaign-specific properties should be
@@ -111,7 +121,7 @@ class ChoiceDataProvider {
 			// keys don't make it into data structure we return.
 			if ( !isset ( $choices[$campaignId] ) ) {
 				$choices[$campaignId] = array(
-					'name' => $dbRow->not_name,
+					'name' => $campaignName,
 					'start' => intval( wfTimestamp( TS_UNIX, $dbRow->not_start ) ),
 					'end' => intval( wfTimestamp( TS_UNIX, $dbRow->not_end ) ),
 					'preferred' => intval( $dbRow->not_preferred ),
@@ -127,10 +137,10 @@ class ChoiceDataProvider {
 			$assignmentKey = $bannerId . ':' . $bucket;
 
 			$choices[$campaignId]['banners'][$assignmentKey] = array(
-				'name' => $dbRow->tmp_name,
+				'name' => $bannerName,
 				'bucket' => intval( $bucket ),
 				'weight' => intval( $dbRow->tmp_weight ),
-				'category' => $dbRow->tmp_category,
+				'category' => $category,
 				'display_anon' => (bool) $dbRow->tmp_display_anon,
 				'display_account' => (bool) $dbRow->tmp_display_account,
 				'devices' => array() // To be filled by the last query
