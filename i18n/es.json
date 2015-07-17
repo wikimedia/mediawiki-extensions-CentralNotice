@@ -257,7 +257,7 @@
 	"centralnotice-banner-not-found-title": "Banner no encontrado",
 	"centralnotice-banner-not-found-contents": "No hay ningún banner con este nombre exacto.",
 	"hidebanners": "Ocultar pancartas",
-	"centralnotice-specialhidebanners-p3p": "Algunos navegadores requieren una política compacta P3P para configurar las cookies en ciertas situaciones. Sin embargo, no hay ninguna política compacta disponible en la actualidad. Por favor, consulta la política de privacidad de la web.",
+	"centralnotice-specialhidebanners-p3p": "Algunos navegadores requieren una política compacta de P3P para establecer cookies en ciertas situaciones. Sin embargo, no hay ninguna política compacta disponible en la actualidad. Consulta la política de privacidad del sitio.",
 	"apihelp-centralnoticeallocations-param-project": "El proyecto bajo el que obtener asignaciones.",
 	"apihelp-centralnoticeallocations-param-country": "El país que se va a filtrar.",
 	"apihelp-centralnoticeallocations-param-language": "El idioma que se va a filtrar.",
