@@ -96,15 +96,6 @@ jQuery(document).ready( function ( $ ) {
 		}
 	});
 
-	// Reveal the landing page interface when the autolink checkbox is checked
-	$( '#autolink' ).click(function () {
-		if ( $( '#autolink' ).prop( 'checked' ) ) {
-			$( '#autolinkInterface' ).fadeIn( 'fast' );
-		} else {
-			$( '#autolinkInterface' ).fadeOut( 'fast' );
-		}
-	});
-
 	// Special:CentralNotice; keep data-sort-value attributes for
 	// jquery.tablesorter in sync
 	$( '.mw-cn-input-check-sort' ).on( 'change click blur', function () {

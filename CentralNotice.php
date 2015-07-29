@@ -96,6 +96,7 @@ $wgCentralNoticeLoader = true;
 $wgNoticeEnableFundraising = true;
 
 // Base URL for default fundraiser landing page (without query string)
+// TODO Remove, no longer used
 $wgNoticeFundraisingUrl = 'https://donate.wikimedia.org/wiki/Special:LandingCheck';
 
 // Source for live counter information
@@ -182,6 +183,7 @@ $wgNoticeTranslateDeployStates = array(
 
 // These are countries that MaxMind will give out when information is a bit fuzzy. However,
 // fundraising code doesn't like non ISO countries so we map them to the fictional point case 'XX'
+// TODO No longer used, remove
 $wgNoticeXXCountries = array( 'XX', 'EU', 'AP', 'A1', 'A2', 'O1' );
 
 // String of space delimited domains that will be able to accept data via JS message event when

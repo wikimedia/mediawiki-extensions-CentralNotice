@@ -429,7 +429,7 @@
 	// will NOT be made.
 	//
 	mw.centralNotice.insertBanner = function ( bannerJson ) {
-		var url, targets, durations, cookieName, cookieVal, deleteOld, now,
+		var durations, cookieName, cookieVal, deleteOld, now,
 			parsedCookie, bucket;
 
 		var impressionData = $.extend( mw.centralNotice.impressionData, {
@@ -500,26 +500,6 @@
 				$( 'div#centralNotice' )
 					.attr( 'class', mw.html.escape( 'cn-' + mw.centralNotice.data.category ) )
 					.prepend( '<!--googleoff: all-->' + bannerJson.bannerHtml + '<!--googleon: all-->' );
-
-				// Create landing page links if required
-				if ( bannerJson.autolink ) {
-					url = new mw.Uri( mw.config.get( 'wgNoticeFundraisingUrl' ) );
-					if ( ( bannerJson.landingPages !== null ) && bannerJson.landingPages.length ) {
-						targets = String( bannerJson.landingPages ).split( ',' );
-						if ( $.inArray( mw.centralNotice.data.country, mw.config.get( 'wgNoticeXXCountries' ) ) !== -1 ) {
-							mw.centralNotice.data.country = 'XX';
-						}
-						url.extend( {
-							landing_page: targets[Math.floor( Math.random() * targets.length )].replace( /^\s+|\s+$/, '' ),
-							utm_medium: 'sitenotice',
-							utm_campaign: bannerJson.campaign,
-							utm_source: bannerJson.bannerName,
-							language: mw.config.get( 'wgUserLanguage' ),
-							country: mw.centralNotice.data.country
-						} );
-						$( '#cn-landingpage-link' ).attr( 'href', url.toString() );
-					}
-				}
 
 				// Query the initial impression state if the banner callback exists
 				var bannerShown = true;

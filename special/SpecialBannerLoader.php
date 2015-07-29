@@ -142,8 +142,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			'bannerHtml' => $bannerHtml,
 			'campaign' => $this->campaignName,
 			'category' => $category,
-			'autolink' => $settings['autolink'],
-			'landingPages' => explode( ", ", $settings['landingpages'] ),
 		);
 
 		$bannerJson = FormatJson::encode( $bannerArray );

@@ -171,6 +171,9 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			$this->msg( 'centralnotice-category' )->text(),
 			$row->tmplog_end_category
 		)->text() . "<br/>";
+
+		// Autolink/landing pages feature has been removed, but we might as
+		// well show any info about it in the logs.
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-autolink' )->text(),

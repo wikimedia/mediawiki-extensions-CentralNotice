@@ -97,8 +97,8 @@ Default Setup Properties
 
 For non-geotargeted campaigns, a default, empty countries property is
 added. Some properties that are not relevant to these tests are
-automatically given default values (autolink, landing page, banner
-body). An empty mixins property is added to choices for server-side tests.
+automatically given default values (bannerbody, campaign mixins for
+server-side tests).
 
 
 Issues

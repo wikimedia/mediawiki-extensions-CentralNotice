@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_templates (
 	`tmp_display_anon` tinyint(1) NOT NULL DEFAULT '1',
 	`tmp_display_account` tinyint(1) NOT NULL DEFAULT '1',
 	`tmp_fundraising` tinyint(1) NOT NULL DEFAULT '0',
-	`tmp_autolink` tinyint(1) NOT NULL DEFAULT '0',
-	`tmp_landing_pages` varchar(255) DEFAULT NULL,
+	`tmp_autolink` tinyint(1) NOT NULL DEFAULT '0', -- Note: no longer used
+	`tmp_landing_pages` varchar(255) DEFAULT NULL, -- Note: no longer used
 	`tmp_archived` tinyint(1) NOT NULL DEFAULT '0',
 	`tmp_category` varchar(255) DEFAULT NULL,
 	`tmp_preview_sandbox` tinyint(1) NOT NULL DEFAULT '0'

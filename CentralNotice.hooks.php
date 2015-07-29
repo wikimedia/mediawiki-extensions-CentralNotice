@@ -331,17 +331,22 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		// Where possible; make things mobile friendly
 		$mc = MobileContext::singleton();
 		if ( $mc->shouldDisplayMobileView() ) {
+			// TODO Remove $wgNoticeFundraisingUrl, no longer used
 			$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
 			$wgCentralSelectedBannerDispatcher = $mc->getMobileUrl( $wgCentralSelectedBannerDispatcher );
 		}
 	}
 
+	// TODO Remove, no longer used
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
+
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
+	// TODO Remove, no longer used
 	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
+
 	$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 	$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
