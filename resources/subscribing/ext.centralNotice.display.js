@@ -285,7 +285,7 @@
 		// Check the hide cookie and possibly cancel the banner
 		hide.processCookie();
 		if ( hide.shouldHide() ) {
-			cn.cancelBanner( hide.reason() );
+			state.cancelBanner( hide.getReason(), hide.getReasonCode() );
 			runPostBannerMixinHooks();
 			recordImpression();
 			return;
@@ -380,9 +380,11 @@
 		 * Call this from the preBannerMixinHook to prevent a banner from
 		 * being chosen and loaded.
 		 * @param {string} reason An explanation of why the banner was canceled.
+		 * @param {number} reasonCode A code corresponding to this reason
+		 *   (temporary measure, for use in minified banner history log).
 		 */
-		cancelBanner: function( reason ) {
-			cn.internal.state.cancelBanner( reason );
+		cancelBanner: function( reason, reasonCode ) {
+			cn.internal.state.cancelBanner( reason, reasonCode );
 		},
 
 		/**
@@ -539,6 +541,29 @@
 				return;
 			}
 			cn.kvStore.logNotAvailableError();
+		},
+
+		/**
+		 * Send the banner history log to the server, with a generated unique
+		 * log ID. Return a promise that resolves with the logId.
+		 *
+		 * Note: Should not be called from code in the top RL queue (or should
+		 * be delayed until the DOM is ready).
+		 *
+		 * Note: this unique ID must not be stored anywhere on the client. It
+		 * should be used only within the current browsing session to flag when
+		 * a banner history is associated with a donation. If a user clicks on a
+		 * banner to donate, it may be passed on to the WMF's donation sites via
+		 * a URL parameter. Those sites should never store it on the client.
+		 *
+		 * @returns {jQuery.Promise}
+		 */
+		sendBannerHistoryLog: function() {
+			if ( !cn.internal.bannerHistoryLogger ) {
+				mw.log( 'bannerHistoryLogger not loaded!' );
+				return;
+			}
+			return cn.internal.bannerHistoryLogger.sendLog();
 		}
 	};
 

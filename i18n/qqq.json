@@ -280,5 +280,9 @@
 	"apihelp-query+centralnoticelogs-param-offset": "{{doc-apihelp-param|query+centralnoticelogs|offset}}",
 	"apihelp-query+centralnoticelogs-param-start": "{{doc-apihelp-param|query+centralnoticelogs|start}}",
 	"apihelp-query+centralnoticelogs-param-end": "{{doc-apihelp-param|query+centralnoticelogs|end}}",
-	"apihelp-query+centralnoticelogs-example-1": "{{doc-apihelp-example|query+centralnoticelogs}}"
+	"apihelp-query+centralnoticelogs-example-1": "{{doc-apihelp-example|query+centralnoticelogs}}",
+	"centralnotice-banner-history-logger": "Name of the banner history logger campaign mixin, for adminsitration UI control",
+	"centralnotice-banner-history-logger-rate": "Label for the banner history logger campaign mixin sample rate control in the administration UI",
+	"centralnotice-banner-history-logger-max-entry-age": "Label for the banner history logger campaign mixin maximum entry age control in the administration UI",
+	"centralnotice-banner-history-logger-max-entries": "Label for the banner history logger campaign mixin maximum number of log entries control in the administration UI"
 }

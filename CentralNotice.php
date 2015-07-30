@@ -252,25 +252,21 @@ $wgCentralNoticeBannerMixins = array();
 // It'll be removed before merging the campaign_mixnis feature branch to master.
 
 $wgCentralNoticeCampaignMixins = array(
-	'placeholderCampaignMixin' => array(
-		'module' => 'ext.centralNotice.placeholderCampaignMixin',
-		'nameMsg' => 'centralnotice-placeholder-campaign-mixin-name',
+	'bannerHistoryLogger' => array(
+		'module' => 'ext.centralNotice.bannerHistoryLogger',
+		'nameMsg' => 'centralnotice-banner-history-logger',
 		'parameters' => array(
-			'stringPlaceholder' => array(
-				'type' => 'string',
-				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-string-placeholder'
-			),
-			'integerPlaceholder' => array(
-				'type' => 'integer',
-				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-integer-placeholder'
-			),
-			'floatPlaceholder' => array(
+			'rate' => array(
 				'type' => 'float',
-				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-float-placeholder'
+				'labelMsg' => 'centralnotice-banner-history-logger-rate',
 			),
-			'booleanPlaceholder' => array(
-				'type' => 'boolean',
-				'labelMsg' => 'centralnotice-placeholder-campaign-mixin-boolean-placeholder'
+			'maxEntryAge' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entry-age'
+			),
+			'maxEntries' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entries'
 			)
 		)
 	)

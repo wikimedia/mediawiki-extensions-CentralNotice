@@ -8,6 +8,7 @@
 		data = {},
 		campaign,
 		banner,
+		status,
 
 		UNKNOWN_COUNTRY_CODE = 'XX',
 
@@ -27,14 +28,19 @@
 		},
 
 		STATUSES = {
-			CAMPAIGN_NOT_CHOSEN:      'campaign_not_chosen',
-			CAMPAIGN_CHOSEN:          'campaign_chosen',
-			BANNER_CANCELED:          'banner_canceled',
-			NO_BANNER_AVAILABLE:      'no_banner_available',
-			BANNER_CHOSEN:            'banner_chosen',
-			BANNER_LOADED_BUT_HIDDEN: 'banner_loaded_but_hidden',
-			BANNER_SHOWN:             'banner_shown',
+			CAMPAIGN_NOT_CHOSEN:      new Status( 'campaign_not_chosen', 0 ),
+			CAMPAIGN_CHOSEN:          new Status( 'campaign_chosen', 1 ),
+			BANNER_CANCELED:          new Status( 'banner_canceled', 2 ),
+			NO_BANNER_AVAILABLE:      new Status( 'no_banner_available', 3 ),
+			BANNER_CHOSEN:            new Status( 'banner_chosen', 4 ),
+			BANNER_LOADED_BUT_HIDDEN: new Status( 'banner_loaded_but_hidden', 5 ),
+			BANNER_SHOWN:             new Status( 'banner_shown', 6 )
 		};
+
+	function Status( key, code ) {
+		this.key = key;
+		this.code = code;
+	}
 
 	/**
 	 * Get a code for the general category the user's device is in.
@@ -113,6 +119,13 @@
 		data.testingBanner = true;
 	}
 
+	function setStatus( s, reasonCode ) {
+		var reasonCodeStr = reasonCode ? '.' + reasonCode : '';
+		status = s;
+		data.status = s.key;
+		data.statusCode = s.code.toString() + reasonCodeStr;
+	}
+
 	/**
 	 * State object (intended for access from within this RL module)
 	 */
@@ -136,7 +149,7 @@
 
 		setUp: function() {
 			setInitialData();
-			data.status = STATUSES.CAMPAIGN_NOT_CHOSEN;
+			setStatus( STATUSES.CAMPAIGN_NOT_CHOSEN );
 		},
 
 		setUpForTestingBanner: function() {
@@ -147,7 +160,7 @@
 
 			// For testing, we'll set the status to what it normally is after
 			// a banner is chosen
-			data.status = STATUSES.BANNER_CHOSEN;
+			setStatus( STATUSES.BANNER_CHOSEN );
 		},
 
 		/**
@@ -183,7 +196,7 @@
 
 			campaign = c;
 			data.campaign = campaign.name;
-			data.status = STATUSES.CAMPAIGN_CHOSEN;
+			setStatus( STATUSES.CAMPAIGN_CHOSEN );
 
 			// Set the campaignCategory property if all the banners in this
 			// campaign have the same category. This is necessary so we can
@@ -215,7 +228,7 @@
 			banner = b;
 			data.banner = banner.name;
 			data.bannerCategory = banner.category;
-			data.status = STATUSES.BANNER_CHOSEN;
+			setStatus( STATUSES.BANNER_CHOSEN );
 		},
 
 		setBucket: function ( bucket ) {
@@ -226,9 +239,9 @@
 			data.bannerNotGuaranteedToDisplay = true;
 		},
 
-		cancelBanner: function( reason ) {
+		cancelBanner: function( reason, reasonCode ) {
 			data.bannerCanceledReason = reason;
-			data.status = STATUSES.BANNER_CANCELED;
+			setStatus( STATUSES.BANNER_CANCELED, reasonCode );
 
 			// Legacy fields for Special:RecordImpression
 			data.result = 'hide';
@@ -236,20 +249,20 @@
 		},
 
 		isBannerCanceled: function() {
-			return data.status === STATUSES.BANNER_CANCELED;
+			return status === STATUSES.BANNER_CANCELED;
 		},
 
 		setNoBannerAvailable: function() {
-			data.status = STATUSES.NO_BANNER_AVAILABLE;
+			setStatus( STATUSES.NO_BANNER_AVAILABLE );
 
 			// Legacy fields for Special:RecordImpression
 			data.result = 'hide';
 			data.reason = 'empty';
 		},
 
-		setBannerLoadedButHidden: function( reason ) {
-			data.status = STATUSES.BANNER_LOADED_BUT_HIDDEN;
+		setBannerLoadedButHidden: function( reason, reasonCode ) {
 			data.bannerLoadedButHiddenReason = reason;
+			setStatus( STATUSES.BANNER_LOADED_BUT_HIDDEN, reasonCode );
 
 			// Legacy fields for Special:RecordImpression
 			data.result = 'hide';
@@ -261,7 +274,7 @@
 		},
 
 		setBannerShown: function() {
-			data.status = STATUSES.BANNER_SHOWN;
+			setStatus( STATUSES.BANNER_SHOWN );
 
 			// Legacy field for Special:RecordImpression
 			data.result = 'show';

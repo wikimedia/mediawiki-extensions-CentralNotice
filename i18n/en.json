@@ -258,9 +258,8 @@
 	"apihelp-query+centralnoticelogs-param-start": "Start time of range (optional).",
 	"apihelp-query+centralnoticelogs-param-end": "End time of range (optional).",
 	"apihelp-query+centralnoticelogs-example-1": "Show logs",
-	"centralnotice-placeholder-campaign-mixin-name": "Placeholder mixin",
-	"centralnotice-placeholder-campaign-mixin-string-placeholder": "String placeholder",
-	"centralnotice-placeholder-campaign-mixin-integer-placeholder": "Integer placeholder",
-	"centralnotice-placeholder-campaign-mixin-float-placeholder": "Float placeholder",
-	"centralnotice-placeholder-campaign-mixin-boolean-placeholder": "Boolean placeholder"
+	"centralnotice-banner-history-logger": "Banner history logger",
+	"centralnotice-banner-history-logger-rate": "Sample rate",
+	"centralnotice-banner-history-logger-max-entry-age": "Maximum age of log entries (in days)",
+	"centralnotice-banner-history-logger-max-entries": "Maximum number of entries to keep in log"
 }

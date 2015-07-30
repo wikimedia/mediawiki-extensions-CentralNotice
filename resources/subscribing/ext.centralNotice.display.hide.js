@@ -8,13 +8,19 @@
 		cookieName,
 		shouldHide = false,
 		reason,
+		reasonCode,
 		durations = mw.config.get( 'wgNoticeCookieDurations' ),
 
 		HIDE_COOKIE_PREFIX = 'centralnotice_hide_',
 
 		REASONS = {
-			CLOSE: 'close'
+			CLOSE: new Reason( 'close', 1 )
 		};
+
+	function Reason( key, code ) {
+		this.key = key;
+		this.code = code;
+	}
 
 	function removeCookie() {
 		$.cookie( cookieName, null, { path: '/' } );
@@ -60,6 +66,7 @@
 			if ( now < hideData.created + durations[hideData.reason] ) {
 				shouldHide = true;
 				reason = hideData.reason;
+				reasonCode = hideData.reasonCode || '';
 			}
 		},
 
@@ -67,8 +74,12 @@
 			return shouldHide;
 		},
 
-		reason: function() {
+		getReason: function() {
 			return reason;
+		},
+
+		getReasonCode: function() {
+			return reasonCode;
 		},
 
 		setHideWithCloseButtonCookies: function() {
@@ -77,7 +88,8 @@
 				hideData = {
 					v: 1,
 					created: Math.floor( date.getTime() / 1000 ),
-					reason: REASONS.CLOSE
+					reason: REASONS.CLOSE.key,
+					reasonCode: REASONS.CLOSE.code
 				};
 
 			// Re-use the same date object to set the cookie's expiry time

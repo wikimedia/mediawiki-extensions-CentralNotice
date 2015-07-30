@@ -135,10 +135,9 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 
 		// Messages used for campaign mixin parameter labels (labelMsg).
 		// See CentralNotice.php.
-		'centralnotice-placeholder-campaign-mixin-string-placeholder',
-		'centralnotice-placeholder-campaign-mixin-integer-placeholder',
-		'centralnotice-placeholder-campaign-mixin-float-placeholder',
-		'centralnotice-placeholder-campaign-mixin-boolean-placeholder'
+		'centralnotice-banner-history-logger-rate',
+		'centralnotice-banner-history-logger-max-entry-age',
+		'centralnotice-banner-history-logger-max-entries'
 	)
 );
 
@@ -228,13 +227,14 @@ $wgResourceModules[ 'ext.centralNotice.bannerController.lib' ] = array();
 
 // This mixin module is just to make campaign mixins smoke testable. It'll be
 // removed before merging the campaign_mixnis feature branch to master.
-$wgResourceModules[ 'ext.centralNotice.placeholderCampaignMixin' ] = array(
+$wgResourceModules[ 'ext.centralNotice.bannerHistoryLogger' ] = array(
 	'localBasePath' => $dir . '/resources',
 	'remoteExtPath' => 'CentralNotice/resources',
-	'scripts'       => 'subscribing/ext.centralNotice.placeholderCampaignMixin.js',
+	'scripts'       => 'subscribing/ext.centralNotice.bannerHistoryLogger.js',
 	// campaign mixin modules need this dependency, to be sure it is loaded first
 	'dependencies'  => array(
 		'ext.centralNotice.kvStore',
+		'mediawiki.Uri',
 		// Mixins must depend on display to ensure the hook they use to
 		// register themselves is available when they run
 		'ext.centralNotice.display',

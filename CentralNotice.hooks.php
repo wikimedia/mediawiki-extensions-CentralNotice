@@ -118,6 +118,7 @@ function efCentralNoticeSetup() {
 	// TODO: replace ef- global functions with static methods in CentralNoticeHooks
 	$wgHooks['ResourceLoaderTestModules'][] = 'efCentralNoticeResourceLoaderTestModules';
 	$wgHooks['UnitTestsList'][] = 'efCentralNoticeUnitTests';
+	$wgHooks['EventLoggingRegisterSchemas'][] = 'efCentralNoticeEventLoggingRegisterSchemas';
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
@@ -477,5 +478,17 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		'ext.centralNotice.choiceData',
 	);
 
+	return true;
+}
+
+/**
+ * EventLoggingRegisterSchemas hook handler.
+ *
+ * @param array $schemas The schemas currently registered with the EventLogging
+ *  extension
+ * @return bool Always true
+ */
+function efCentralNoticeEventLoggingRegisterSchemas( &$schemas ) {
+	$schema['CentralNoticeBannerHistory'] = 13172419;
 	return true;
 }
