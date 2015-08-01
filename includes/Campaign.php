@@ -719,7 +719,8 @@ class Campaign {
 				'cn_notice_mixins',
 				'nmxn_id',
 				array(
-					'nmxn_not_id' => $noticeId
+					'nmxn_not_id' => $noticeId,
+					'nmxn_mixin_name' => $mixinName
 				)
 			)->nmxn_id;
 
