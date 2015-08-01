@@ -611,9 +611,18 @@ class Campaign {
 
 			$mixinName = $dbRow->nmxn_mixin_name;
 
+			// A mixin may have been removed from the code but may still
+			// leave stuff in the database. In that case, skip it!
+			if ( !isset( $wgCentralNoticeCampaignMixins[$mixinName] ) ) {
+				continue;
+			}
+
 			// First time we have a result row for this mixin?
 			if ( !isset( $campaignMixins[$mixinName] ) ) {
 
+				// We unset here because we reuse this variable through loop
+				// iterations, and need a different reference each time.
+				unset( $mixinParams );
 				$mixinParams = array();
 
 				// Data structure depends on $compact
@@ -660,8 +669,9 @@ class Campaign {
 						$paramVal = ( $dbRow->nmxnp_param_value === 'true' );
 						break;
 
-					throw new DomainException(
-						'Unknown parameter type ' . $paramType );
+					default:
+						throw new DomainException(
+							'Unknown parameter type ' . $paramType );
 				}
 			}
 
