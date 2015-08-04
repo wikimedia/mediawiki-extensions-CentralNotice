@@ -650,6 +650,12 @@ class Campaign {
 
 				$paramName = $dbRow->nmxnp_param_name;
 				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
+
+				// Handle mixin parameters being removed, too
+				if ( !isset( $mixinDef['parameters'][$paramName] ) ) {
+					continue;
+				}
+
 				$paramType = $mixinDef['parameters'][$paramName]['type'];
 
 				switch ( $paramType ) {
@@ -736,9 +742,21 @@ class Campaign {
 
 			foreach ( $params as $paramName => $paramVal ) {
 
+				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
+
+				// Handle an undefined parameter. Not likely to happen, maybe
+				// in the middle of a deploy that removes a parameter.
+				if ( !isset( $mixinDef['parameters'][$paramName] ) ) {
+
+					wfLogWarning( 'No definition found for the parameter '
+						. $paramName . ' for the campaign mixn ' .
+						$mixinName . '.' );
+
+					continue;
+				}
+
 				// Munge boolean params for database storage. (Other types
 				// should end up as strings, which will be fine.)
-				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
 				if ( $mixinDef['parameters'][$paramName]['type'] === 'boolean' ) {
 					$paramVal = ( $paramVal ? 'true' : 'false' );
 				}
