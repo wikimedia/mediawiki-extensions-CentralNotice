@@ -49,12 +49,12 @@
 				key: key,
 				// Limit the length of the value to store
 				value: JSON.stringify( value ).substring( 0, 50 ),
-				context: context.key,
+				context: context ? context.key : null,
 				time: Math.round( ( new Date() ).getTime() / 1000 )
 			};
 
-		// If a campaign and/or a banner name have been set, include their names in
-		// the error
+		// If a campaign and/or a banner name have been set, include their names
+		// in the error
 		err.campaign = campaignName;
 		err.banner = bannerName;
 
@@ -188,7 +188,7 @@
 		/**
 		 * Get the stored value for the given key in the given context.
 		 *
-		 * Note: check isKVStorageAvailable() before calling.
+		 * Note: check isAvailable() before calling.
 		 *
 		 * @param {string} key
 		 * @param {KVStorageContext} context
@@ -228,7 +228,7 @@
 		/**
 		 * Remove the stored value for the given key in the given context
 		 *
-		 * Note: check isKVStorageAvailable() before calling.
+		 * Note: check isAvailable() before calling.
 		 *
 		 * @param {string} key
 		 * @param {KVStorageContext} context
@@ -247,13 +247,25 @@
 			if ( !errCookieRaw ) {
 				errCookieVal = [];
 			} else {
-				errCookieVal = JSON.parse( errCookieRaw );
+				try {
+					errCookieVal = JSON.parse( errCookieRaw );
+				} catch ( e ) {
+					errCookieVal = [ {
+						message: 'Couldn\'t parse error log.',
+						time: Math.round( ( new Date() ).getTime() / 1000 )
+					} ];
+				}
+
 				if ( !Array.isArray( errCookieVal ) ) {
 					errCookieVal = [];
 				}
 			}
 
 			return errCookieVal;
+		},
+
+		logNotAvailableError: function() {
+			logError( 'LocalStorage not available.', null, null );
 		},
 
 		setCampaignName: function( cName ) {

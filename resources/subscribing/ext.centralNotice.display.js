@@ -535,6 +535,14 @@
 				return null;
 			}
 			return cn.kvStore.getErrorLog();
+		},
+
+		logKVStorageNotAvailableError: function() {
+			if ( !cn.kvStore ) {
+				mw.log( 'kvStore not loaded!' );
+				return;
+			}
+			cn.kvStore.logNotAvailableError();
 		}
 	};
 
