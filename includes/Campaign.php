@@ -620,28 +620,15 @@ class Campaign {
 			// First time we have a result row for this mixin?
 			if ( !isset( $campaignMixins[$mixinName] ) ) {
 
-				// We unset here because we reuse this variable through loop
-				// iterations, and need a different reference each time.
-				unset( $mixinParams );
-				$mixinParams = array();
-
 				// Data structure depends on $compact
 				if ( $compact ) {
-					$campaignMixins[$mixinName] = &$mixinParams;
+					$campaignMixins[$mixinName] = array();
 
 				} else {
 					$campaignMixins[$mixinName] = array(
 						'enabled' => (bool) $dbRow->nmxn_enabled,
-						'parameters' => &$mixinParams
+						'parameters' => array()
 					);
-				}
-
-			// Not the first time? Grab the existing array
-			} else {
-				if ( $compact )  {
-					$mixinParams = &$campaignMixins[$mixinName];
-				} else {
-					$mixinParams = &$campaignMixins[$mixinName]['parameters'];
 				}
 			}
 
@@ -679,9 +666,15 @@ class Campaign {
 						throw new DomainException(
 							'Unknown parameter type ' . $paramType );
 				}
-			}
 
-			$mixinParams[$paramName] = $paramVal;
+				// Again, data structure depends on $compact
+				if ( $compact )  {
+					$campaignMixins[$mixinName][$paramName] = $paramVal;
+				} else {
+					$campaignMixins[$mixinName]['parameters'][$paramName]
+						= $paramVal;
+				}
+			}
 		}
 
 		return $campaignMixins;
