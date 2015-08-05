@@ -479,14 +479,10 @@
 			cn.hideBannerWithCloseButton();
 		},
 
-		getBucket: function() {
-			// Note: we assume buckter has been initialized.
-			return cn.internal.bucketer.getBucket();
-		},
-
 		setBucket: function( bucket ) {
 			// Note: we assume buckter has been initialized.
 			cn.internal.bucketer.setBucket( bucket );
+			cn.internal.state.setBucket( bucket );
 		},
 
 		getKVStorageContexts: function() {
