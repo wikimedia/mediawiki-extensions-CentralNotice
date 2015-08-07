@@ -9,9 +9,6 @@
 		campaign,
 		banner,
 
-		// Cached regex to speed URL processing (see decode(), below)
-		rPlus = /\+/g,
-
 		UNKNOWN_COUNTRY_CODE = 'XX',
 
 		// Campaign category, a temporary hack due to our hiccupy data model, is
@@ -38,34 +35,6 @@
 			BANNER_LOADED_BUT_HIDDEN: 'banner_loaded_but_hidden',
 			BANNER_SHOWN:             'banner_shown',
 		};
-
-	/**
-	 * Return an object with URL query string parameters.
-	 * TODO Taken from legacy code. Is this the right way to do this?
-	 * @returns {Object}
-	 */
-	function setURLParams() {
-
-		document.location.search.replace( /\??(?:([^=]+)=([^&]*)&?)/g,
-			function ( str, p1, p2 ) {
-			state.urlParams[decode( p1 )] = decode( p2 );
-		} );
-	}
-
-	/**
-	 * '+'-replacer and try-catch wrapper for decodeURIComponent
-	 * TODO Taken from legacy code. Is this the right way to do this?
-	 * @param {string} s
-	 * @returns {string}
-	 */
-	function decode( s ) {
-		try {
-			// decodeURIComponent can throw an exception for unknown char encodings.
-			return decodeURIComponent( s.replace( rPlus, ' ' ) );
-		} catch ( e ) {
-			return '';
-		}
-	}
 
 	/**
 	 * Get a code for the general category the user's device is in.
@@ -102,7 +71,8 @@
 	 */
 	function setInitialData() {
 
-		var urlParams = state.urlParams;
+		// Keep existing properties of state.urlParams, which may be set by tests
+		var urlParams = $.extend( state.urlParams, ( new mw.Uri() ).query );
 
 		data.anonymous = ( mw.config.get( 'wgUserName' ) === null );
 		data.project = mw.config.get( 'wgNoticeProject' );
@@ -165,13 +135,11 @@
 		},
 
 		setUp: function() {
-			setURLParams();
 			setInitialData();
 			data.status = STATUSES.CAMPAIGN_NOT_CHOSEN;
 		},
 
 		setUpForTestingBanner: function() {
-			setURLParams();
 			setInitialData();
 
 			// Load banner and campaign URL params into data
