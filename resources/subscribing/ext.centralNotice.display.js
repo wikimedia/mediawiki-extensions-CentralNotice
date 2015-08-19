@@ -138,11 +138,8 @@
 
 	function injectBannerHTML( bannerHtml ) {
 
-		// Add the centralNotice div, if it isn't there already.
-		// (It might already have been added by ext.centralNotice.startUp.)
-		if ( $( 'div#centralNotice' ).length === 0 ) {
-			$( '#siteNotice' ).prepend( '<div id="centralNotice"></div>' );
-		}
+		// The centralNotice div should already have been added by
+		// ext.centralNotice.startUp.
 
 		// Inject the HTML
 		$( 'div#centralNotice' )
@@ -463,10 +460,10 @@
 
 		insertBanner: function( bannerJson ) {
 
-			// TODO After CN processing is moved out of the top RL module queue,
-			// remove most processing from DOM ready delay, and re-add the
-			// delay here.
-			reallyInsertBanner( bannerJson );
+			// Insert the banner only after the DOM is ready
+			$( function() {
+				reallyInsertBanner( bannerJson );
+			} );
 		},
 
 		hideBannerWithCloseButton: function() {
