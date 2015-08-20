@@ -116,7 +116,7 @@
 	}
 
 	// It's impossible to know whether mw.centralNotice has been initialized
-	mw.centralNotice = ( mw.CentralNotice || {} );
+	mw.centralNotice = ( mw.centralNotice || {} );
 
 	/**
 	 * kvStore object. Mostly, don't use this! In most cases, access via
