@@ -14,7 +14,10 @@
 		readyToLogPromise,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
-		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory';
+		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory',
+
+		// The maximum random shift applied to timestamps, for user privacy
+		TIMPESTAMP_RANDOM_SHIFT_MAX = 60;
 
 	/**
 	 * Load the banner history log from KV storage
@@ -42,7 +45,10 @@
 			// Randomly shift timestamp +/- 0 to 10 seconds, so logs can't be
 			// linked to specific Web requests. This is to strengthen user
 			// privacy.
-			randomTimeShift = Math.round( Math.random() * 20 ) - 10,
+			randomTimeShift =
+				Math.round( Math.random() * TIMPESTAMP_RANDOM_SHIFT_MAX ) -
+				( TIMPESTAMP_RANDOM_SHIFT_MAX / 2 ),
+
 			time = now + randomTimeShift,
 
 			logEntry = {
