@@ -13,6 +13,8 @@
 
 		HIDE_COOKIE_PREFIX = 'centralnotice_hide_',
 
+		// As a temporary measure, we minify banner history logs. Using a code
+		// for hide reasons helps us do that.
 		REASONS = {
 			CLOSE: new Reason( 'close', 1 )
 		};
