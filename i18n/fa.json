@@ -18,7 +18,8 @@
 			"پسر یاس",
 			"Omid.koli",
 			"Alirezaaa",
-			"Mehran"
+			"Mehran",
+			"Elham"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -107,7 +108,7 @@
 	"centralnotice-edit-template-summary": "برای ساختن یک پیغام قابل محلی‌سازی، یک رشتهٔ قابل شکستن را در سه کروشه قرار دهید. مانند {{{jimbo-quote}}}.",
 	"centralnotice-edit-template-magicwords": "حروف جادوئی برای بنرهای ترکیبی: $1",
 	"centralnotice-message": "پیام",
-	"centralnotice-message-not-set": "پیغام تنظیم نشده‌است",
+	"centralnotice-message-not-set": "پیغام تنظیم نشده است",
 	"centralnotice-campaigns-using-banner": "کمپین‌هایی که از این بنر استفاده می‌کنند",
 	"centralnotice-clone": "کلون",
 	"centralnotice-clone-notice": "ایجاد یک کپی از الگو",
@@ -119,7 +120,7 @@
 	"centralnotice-close-button": "دکمه بستن",
 	"centralnotice-close-title": "بستن",
 	"centralnotice-translate-button": "پیوند راهنمای ترجمه",
-	"centralnotice-donate-button": "دکمهٔ کمک مالی",
+	"centralnotice-donate-button": "دکمه اهدا",
 	"centralnotice-banner-display": "نمایش به",
 	"centralnotice-banner-anonymous": "کاربران ناشناس",
 	"centralnotice-banner-logged-in": "کاربران واردشده",

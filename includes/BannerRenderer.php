@@ -181,10 +181,8 @@ class BannerRenderer {
 		if ( $modules ) {
 			// FIXME: Does the RL library already include a helper to do this?
 			$html = "<!-- " . implode( ", ", array_keys( $modules ) ) . " -->";
-			$html .= Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array_values( $modules ) )
-				)
+			$html .= ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.load', array_values( $modules ) )
 			);
 			return $html;
 		}
