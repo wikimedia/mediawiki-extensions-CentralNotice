@@ -125,7 +125,10 @@
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
-		mw.centralNotice.insertBanner( bannerData );
+		// We call reallyInsertBanner() instead of insertBanner() to avoid
+		// the async DOM-waiting of the latter.
+		mw.centralNotice.reallyInsertBanner( bannerData );
+
 		assert.equal( $( 'div#test_banner' ).length, 1 );
 	} );
 

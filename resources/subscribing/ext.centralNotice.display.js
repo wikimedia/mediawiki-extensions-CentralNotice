@@ -150,55 +150,6 @@
 			);
 	}
 
-	function reallyInsertBanner( bannerJson ) {
-
-		var state = cn.internal.state,
-			shownAfterLoadingBanner = true,
-			bannerLoadedButHiddenReason,
-			tmpData;
-
-		// Inject the banner HTML into the DOM
-		injectBannerHTML( bannerJson.bannerHtml );
-
-		bannerLoadedDeferredObj.resolve( cn.internal.state.getData() );
-
-		// Process legacy hook for in-banner JS that hides banners after
-		// they're loaded and/or adds data to send to Special:RecordImpression.
-		// Only do this if bannerNotGuaranteedToDisplay is set.
-		if ( state.getData().bannerNotGuaranteedToDisplay ) {
-			if ( typeof cn.bannerData.alterImpressionData === 'function' ) {
-
-				// Data from state is considered read-only. This legacy hook
-				// may add a 'reason' property to the object it receives.
-				// So we send only a copy of the data and check the added
-				// 'reason' property.
-				tmpData = state.getDataCopy();
-
-				shownAfterLoadingBanner =
-					cn.bannerData.alterImpressionData( tmpData );
-
-				if ( !shownAfterLoadingBanner ) {
-					bannerLoadedButHiddenReason = tmpData.reason || '';
-					state.setBannerLoadedButHidden( bannerLoadedButHiddenReason );
-				}
-			} else {
-				state.setAlterFunctionMissing();
-			}
-		}
-
-		// Banner shown following load (normal scenario)
-		if ( shownAfterLoadingBanner ) {
-			state.setBannerShown();
-		}
-
-		// If we're testing a banner, don't call Special:RecordImpression or run
-		// mixin hooks.
-		if ( !state.getData().testingBanner ) {
-			runPostBannerMixinHooks();
-			recordImpression();
-		}
-	}
-
 	function recordImpression() {
 		var state = cn.internal.state,
 			url;
@@ -358,6 +309,62 @@
 	cn = {
 
 		/**
+		 * Really insert the banner (without waiting for the DOM to be ready).
+		 * Only exposed for use in tests.
+		 * @private
+		 */
+		reallyInsertBanner: function ( bannerJson ) {
+
+			var state = cn.internal.state,
+			shownAfterLoadingBanner = true,
+			bannerLoadedButHiddenReason,
+			tmpData;
+
+			// Inject the banner HTML into the DOM
+			injectBannerHTML( bannerJson.bannerHtml );
+
+			bannerLoadedDeferredObj.resolve( cn.internal.state.getData() );
+
+			// Process legacy hook for in-banner JS that hides banners after
+			// they're loaded and/or adds data to send to
+			// Special:RecordImpression. Only do this if
+			// bannerNotGuaranteedToDisplay is set.
+			if ( state.getData().bannerNotGuaranteedToDisplay ) {
+				if ( typeof cn.bannerData.alterImpressionData === 'function' ) {
+
+					// Data from state is considered read-only. This legacy hook
+					// may add a 'reason' property to the object it receives.
+					// So we send only a copy of the data and check the added
+					// 'reason' property.
+					tmpData = state.getDataCopy();
+
+					shownAfterLoadingBanner =
+						cn.bannerData.alterImpressionData( tmpData );
+
+					if ( !shownAfterLoadingBanner ) {
+						bannerLoadedButHiddenReason = tmpData.reason || '';
+						state.setBannerLoadedButHidden(
+							bannerLoadedButHiddenReason );
+					}
+				} else {
+					state.setAlterFunctionMissing();
+				}
+			}
+
+			// Banner shown following load (normal scenario)
+			if ( shownAfterLoadingBanner ) {
+				state.setBannerShown();
+			}
+
+			// If we're testing a banner, don't call Special:RecordImpression or
+			// run mixin hooks.
+			if ( !state.getData().testingBanner ) {
+				runPostBannerMixinHooks();
+				recordImpression();
+			}
+		},
+
+		/**
 		 * Attachment point for other objects in this module that are not meant
 		 * for outside use.
 		 */
@@ -464,7 +471,7 @@
 
 			// Insert the banner only after the DOM is ready
 			$( function() {
-				reallyInsertBanner( bannerJson );
+				cn.reallyInsertBanner( bannerJson );
 			} );
 		},
 
