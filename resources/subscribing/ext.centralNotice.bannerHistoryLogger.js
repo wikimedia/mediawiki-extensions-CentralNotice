@@ -11,6 +11,7 @@
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
 		now = Math.round( ( new Date() ).getTime() / 1000 ),
 		log,
+		readyToLogPromise,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
 		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory';
@@ -216,6 +217,15 @@
 				rate = urlQuery.bannerLoggerRate !== undefined ?
 					parseFloat( urlQuery.bannerLoggerRate ) : mixinParams.rate;
 
+			// Load needed resources in a leisurely manner, but ahead of a
+			// possible sendLog() call (expected to be called when the user
+			// navigates away from the page).
+			readyToLogPromise = mw.loader.using( [
+				'ext.eventLogging',
+				'mediawiki.user',
+				'schema.' + EVENT_LOGGING_SCHEMA
+			] );
+
 			// If KV storage works here, do our stuff
 			if ( cn.isKVStorageAvailable( ) ) {
 
@@ -237,13 +247,8 @@
 			// Send a sample to the server
 			if ( Math.random() < rate ) {
 
-				// Load the EventLogging RL module (if it's not already loaded).
-				// Note that this can't work in the top RL queue unless DOM-
-				// ready-wrapped (as here).
-				mw.loader.using( [
-					'ext.eventLogging',
-					'schema.' + EVENT_LOGGING_SCHEMA
-				] ).done( function() {
+				readyToLogPromise.done( function() {
+
 					mw.eventLog.logEvent(
 						EVENT_LOGGING_SCHEMA,
 						makeEventLoggingData( rate )
@@ -278,11 +283,8 @@
 
 			var deferred = $.Deferred();
 
-			mw.loader.using( [
-				'ext.eventLogging',
-				'mediawiki.user',
-				'schema.' + EVENT_LOGGING_SCHEMA
-			] ).done( function() {
+			// With luck, this promise will be resoved by the time we get here
+			readyToLogPromise.done( function() {
 
 				var logId = mw.user.generateRandomSessionId();
 
