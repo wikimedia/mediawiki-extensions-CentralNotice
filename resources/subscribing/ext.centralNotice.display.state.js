@@ -5,9 +5,6 @@
 ( function ( $, mw ) {
 
 	var state,
-		data = {},
-		campaign,
-		banner,
 		status,
 
 		UNKNOWN_COUNTRY_CODE = 'XX',
@@ -80,50 +77,50 @@
 		// Keep existing properties of state.urlParams, which may be set by tests
 		var urlParams = $.extend( state.urlParams, ( new mw.Uri() ).query );
 
-		data.anonymous = ( mw.config.get( 'wgUserName' ) === null );
-		data.project = mw.config.get( 'wgNoticeProject' );
-		data.db = mw.config.get( 'wgDBname' );
+		state.data.anonymous = ( mw.config.get( 'wgUserName' ) === null );
+		state.data.project = mw.config.get( 'wgNoticeProject' );
+		state.data.db = mw.config.get( 'wgDBname' );
 
 		// All of the following may be overridden by URL parameters (including
 		// language, which can be overridden by uselang).
-		data.uselang = mw.config.get( 'wgUserLanguage' );
-		data.device = urlParams.device || getDeviceCode();
+		state.data.uselang = mw.config.get( 'wgUserLanguage' );
+		state.data.device = urlParams.device || getDeviceCode();
 
 		// data.country may already have been set, if setInvalidGeoData() was
 		// called
-		data.country = urlParams.country || data.country ||
+		state.data.country = urlParams.country || state.data.country ||
 			( window.Geo && window.Geo.country ) || UNKNOWN_COUNTRY_CODE;
 
 		// Some parameters should get through even if they have falsey values
-		data.debug = urlParams.debug !== undefined ? true : false;
+		state.data.debug = urlParams.debug !== undefined ? true : false;
 
-		data.randomcampaign = urlParams.randomcampaign !== undefined ?
+		state.data.randomcampaign = urlParams.randomcampaign !== undefined ?
 			urlParams.randomcampaign : Math.random();
 
-		data.randombanner = urlParams.randombanner !== undefined ?
+		state.data.randombanner = urlParams.randombanner !== undefined ?
 			urlParams.randombanner : Math.random();
 
-		data.recordImpressionSampleRate =
+		state.data.recordImpressionSampleRate =
 			urlParams.recordImpressionSampleRate !== undefined ?
 			urlParams.recordImpressionSampleRate :
 			mw.config.get( 'wgCentralNoticeSampleRate' );
 
 		// Legacy code exposed urlParams at mw.centralNotice.data.getVars.
 		// TODO Is this still needed? Maybe deprecate?
-		data.getVars = urlParams;
+		state.data.getVars = urlParams;
 	}
 
 	function setTestingBannerData() {
-		data.campaign = state.urlParams.campaign;
-		data.banner = state.urlParams.banner;
-		data.testingBanner = true;
+		state.data.campaign = state.urlParams.campaign;
+		state.data.banner = state.urlParams.banner;
+		state.data.testingBanner = true;
 	}
 
 	function setStatus( s, reasonCode ) {
 		var reasonCodeStr = reasonCode ? '.' + reasonCode : '';
 		status = s;
-		data.status = s.key;
-		data.statusCode = s.code.toString() + reasonCodeStr;
+		state.data.status = s.key;
+		state.data.statusCode = s.code.toString() + reasonCodeStr;
 	}
 
 	/**
@@ -133,18 +130,35 @@
 
 		STATUSES: STATUSES,
 
+		// The following four properties are only exposed so QUnit
+		// tests can manipulate data
+
 		/**
-		 * This is only exposed so QUnit tests can manipulate data
 		 * @private
 		 */
 		urlParams: {},
+
+		/**
+		 * @private
+		 */
+		data: {},
+
+		/**
+		 * @private
+		 */
+		campaign: null,
+
+		/**
+		 * @private
+		 */
+		banner: null,
 
 		/**
 		 * Call this before calling setUp() or setUpForTestingBanner()
 		 * if window.Geo is known to be invalid.
 		 */
 		setInvalidGeoData: function() {
-			data.country = UNKNOWN_COUNTRY_CODE;
+			state.data.country = UNKNOWN_COUNTRY_CODE;
 		},
 
 		setUp: function() {
@@ -170,7 +184,7 @@
 		 * it.
 		 */
 		getData: function() {
-			return data;
+			return state.data;
 		},
 
 		/**
@@ -180,7 +194,7 @@
 		 */
 		getDataCopy: function( cleanForURLSerialization ) {
 
-			var dataCopy = $.extend( true, {}, data );
+			var dataCopy = $.extend( true, {}, state.data );
 
 			if ( cleanForURLSerialization ) {
 				delete dataCopy.getVars;
@@ -194,8 +208,8 @@
 				category,
 				campaignCategory = null;
 
-			campaign = c;
-			data.campaign = campaign.name;
+			state.campaign = c;
+			state.data.campaign = state.campaign.name;
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
 
 			// Set the campaignCategory property if all the banners in this
@@ -204,9 +218,9 @@
 			// cases, this won't be a problem.
 			// TODO Eventually, category should be a property of campaigns,
 			// not banners.
-			for ( i = 0; i < campaign.banners.length; i++ ) {
+			for ( i = 0; i < state.campaign.banners.length; i++ ) {
 
-				category = campaign.banners[i].category;
+				category = state.campaign.banners[i].category;
 
 				if ( campaignCategory === null ) {
 					campaignCategory = category;
@@ -217,35 +231,35 @@
 				}
 			}
 
-			data.campaignCategory = campaignCategory;
+			state.data.campaignCategory = campaignCategory;
 		},
 
 		getCampaign: function() {
-			return campaign;
+			return state.campaign;
 		},
 
 		setBanner: function ( b ) {
-			banner = b;
-			data.banner = banner.name;
-			data.bannerCategory = banner.category;
+			state.banner = b;
+			state.data.banner = state.banner.name;
+			state.data.bannerCategory = state.banner.category;
 			setStatus( STATUSES.BANNER_CHOSEN );
 		},
 
 		setBucket: function ( bucket ) {
-			data.bucket = bucket;
+			state.data.bucket = bucket;
 		},
 
 		setBannerNotGuaranteedToDisplay: function() {
-			data.bannerNotGuaranteedToDisplay = true;
+			state.data.bannerNotGuaranteedToDisplay = true;
 		},
 
 		cancelBanner: function( reason, reasonCode ) {
-			data.bannerCanceledReason = reason;
+			state.data.bannerCanceledReason = reason;
 			setStatus( STATUSES.BANNER_CANCELED, reasonCode );
 
 			// Legacy fields for Special:RecordImpression
-			data.result = 'hide';
-			data.reason = reason;
+			state.data.result = 'hide';
+			state.data.reason = reason;
 		},
 
 		isBannerCanceled: function() {
@@ -256,32 +270,32 @@
 			setStatus( STATUSES.NO_BANNER_AVAILABLE );
 
 			// Legacy fields for Special:RecordImpression
-			data.result = 'hide';
-			data.reason = 'empty';
+			state.data.result = 'hide';
+			state.data.reason = 'empty';
 		},
 
 		setBannerLoadedButHidden: function( reason, reasonCode ) {
-			data.bannerLoadedButHiddenReason = reason;
+			state.data.bannerLoadedButHiddenReason = reason;
 			setStatus( STATUSES.BANNER_LOADED_BUT_HIDDEN, reasonCode );
 
 			// Legacy fields for Special:RecordImpression
-			data.result = 'hide';
-			data.reason = reason;
+			state.data.result = 'hide';
+			state.data.reason = reason;
 		},
 
 		setAlterFunctionMissing: function() {
-			data.alterFunctionMissing = true;
+			state.data.alterFunctionMissing = true;
 		},
 
 		setBannerShown: function() {
 			setStatus( STATUSES.BANNER_SHOWN );
 
 			// Legacy field for Special:RecordImpression
-			data.result = 'show';
+			state.data.result = 'show';
 		},
 
 		setRecordImpressionSampleRate: function( rate ) {
-			data.recordImpressionSampleRate = rate;
+			state.data.recordImpressionSampleRate = rate;
 		}
 	};
 } )(  jQuery, mediaWiki );
