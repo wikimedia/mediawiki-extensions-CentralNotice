@@ -78,8 +78,8 @@ function efCentralNoticeSetup() {
 	$wgAutoloadClasses[ 'BannerMessage' ] = $includeDir . 'BannerMessage.php';
 	$wgAutoloadClasses[ 'BannerMessageGroup' ] = $includeDir . 'BannerMessageGroup.php';
 	$wgAutoloadClasses[ 'BannerRenderer' ] = $includeDir . 'BannerRenderer.php';
-	$wgAutoloadClasses[ 'BannerChoiceDataProvider' ] = $includeDir . 'BannerChoiceDataProvider.php';
-	$wgAutoloadClasses[ 'CNBannerChoiceDataResourceLoaderModule' ] = $includeDir . 'CNBannerChoiceDataResourceLoaderModule.php';
+	$wgAutoloadClasses[ 'ChoiceDataProvider' ] = $includeDir . 'ChoiceDataProvider.php';
+	$wgAutoloadClasses[ 'CNChoiceDataResourceLoaderModule' ] = $includeDir . 'CNChoiceDataResourceLoaderModule.php';
 	$wgAutoloadClasses[ 'Campaign' ] = $includeDir . 'Campaign.php';
 	$wgAutoloadClasses['CampaignCriteria'] = $specialDir . 'SpecialGlobalAllocation.php';
 	$wgAutoloadClasses['CampaignExistenceException'] = $includeDir . 'Campaign.php';
@@ -104,13 +104,13 @@ function efCentralNoticeSetup() {
 
 	$wgAutoloadClasses[ 'CNDatabasePatcher' ] = $dir . 'patches/CNDatabasePatcher.php';
 
-	$wgAutoloadClasses[ 'ApiCentralNoticeBannerChoiceData' ] = $apiDir . 'ApiCentralNoticeBannerChoiceData.php';
+	$wgAutoloadClasses[ 'ApiCentralNoticeChoiceData' ] = $apiDir . 'ApiCentralNoticeChoiceData.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeQueryCampaign' ] = $apiDir . 'ApiCentralNoticeQueryCampaign.php';
 	$wgAutoloadClasses[ 'ApiCentralNoticeLogs' ] = $apiDir . 'ApiCentralNoticeLogs.php';
 	$wgAutoloadClasses[ 'TemplatePager' ] = $dir . 'TemplatePager.php';
 
 	$wgAutoloadClasses[ 'CNDatabase' ] = $includeDir . 'CNDatabase.php';
-	$wgAPIModules[ 'centralnoticebannerchoicedata' ] = 'ApiCentralNoticeBannerChoiceData';
+	$wgAPIModules[ 'centralnoticechoicedata' ] = 'ApiCentralNoticeChoiceData';
 	$wgAPIModules[ 'centralnoticequerycampaign' ] = 'ApiCentralNoticeQueryCampaign';
 	$wgAPIListModules[ 'centralnoticelogs' ] = 'ApiCentralNoticeLogs';
 
@@ -118,6 +118,7 @@ function efCentralNoticeSetup() {
 	// TODO: replace ef- global functions with static methods in CentralNoticeHooks
 	$wgHooks['ResourceLoaderTestModules'][] = 'efCentralNoticeResourceLoaderTestModules';
 	$wgHooks['UnitTestsList'][] = 'efCentralNoticeUnitTests';
+	$wgHooks['EventLoggingRegisterSchemas'][] = 'efCentralNoticeEventLoggingRegisterSchemas';
 
 	// If CentralNotice banners should be shown on this wiki, load the components we need for
 	// showing banners. For discussion of banner loading strategies, see
@@ -128,6 +129,8 @@ function efCentralNoticeSetup() {
 		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
 		$wgHooks[ 'ResourceLoaderGetConfigVars' ][] = 'efResourceLoaderGetConfigVars';
 		// Register mobile modules
+		// TODO To remove in a subsequent patch, when we start adding
+		// ext.centralNotice.startUp to HTML instead of the current mix.
 		$wgHooks[ 'SkinMinervaDefaultModules' ][] = 'onSkinMinervaDefaultModules';
 	}
 
@@ -217,6 +220,8 @@ function efCentralNoticeLoader( $out, $skin ) {
 		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
 	}
 	// Insert the banner controller
+	// TODO Change this to startUp once it's determined that a rollback is not
+	// needed.
 	$out->addModules( 'ext.centralNotice.bannerController' );
 	return true;
 }
@@ -314,7 +319,7 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
 		   $wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
 		   $wgCentralSelectedBannerDispatcher,
-		   $wgCentralNoticePerCampaignBucketExtension;
+		   $wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins;
 
 	// Making these calls too soon will causes issues with the namespace localisation cache. This seems
 	// to be just right. We require them at all because MW will 302 page requests made to non localised
@@ -334,28 +339,38 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 		// Where possible; make things mobile friendly
 		$mc = MobileContext::singleton();
 		if ( $mc->shouldDisplayMobileView() ) {
+			// TODO Remove $wgNoticeFundraisingUrl, no longer used
 			$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
 			$wgCentralSelectedBannerDispatcher = $mc->getMobileUrl( $wgCentralSelectedBannerDispatcher );
 		}
 	}
 
+	// TODO Remove, no longer used
 	$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
+
 	$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 	$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
+	// TODO Remove, no longer used
 	$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
+
 	$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 	$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
 	$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
 	$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 	$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
+
+	// TODO Remove this after banner display refactor has been deployed
 	$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
 	$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
 
 	if ( $wgNoticeInfrastructure ) {
 		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
+
+		// Add campaign mixin defs for use in admin interface
+		$vars[ 'wgCentralNoticeCampaignMixins' ] = $wgCentralNoticeCampaignMixins;
 	}
 	return true;
 }
@@ -371,12 +386,12 @@ function efCentralNoticeUnitTests( &$files ) {
 
 	$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
-	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeBannerChoiceDataTest.php';
+	$files[ ] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
 	$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
 	$files[ ] = __DIR__ . '/tests/AllocationCalculatorTest.php';
-	$files[ ] = __DIR__ . '/tests/BannerChoiceDataProviderTest.php';
+	$files[ ] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
 	$files[ ] = __DIR__ . '/tests/BannerTest.php';
-	$files[ ] = __DIR__ . '/tests/CNBannerChoicesResourceLoaderModuleTest.php';
+	$files[ ] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
 	return true;
 }
 
@@ -412,22 +427,34 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 	// find test files for every RL module
 	$prefix = 'ext.centralNotice';
 	foreach ( $wgResourceModules as $key => $module ) {
-		if ( substr( $key, 0, strlen( $prefix ) ) === $prefix && isset( $module['scripts'] ) ) {
+
+		if ( substr( $key, 0, strlen( $prefix ) ) ===
+			$prefix && isset( $module['scripts'] ) ) {
+
 			$testFiles = array();
-			foreach ( ((array) $module['scripts'] ) as $script ) {
-				$testFile = 'tests/qunit/' . $key . '/' . basename( $script );
+
+			foreach ( ( ( array ) $module['scripts'] ) as $script ) {
+
+				$testFile = 'tests/qunit/' . $script;
 				$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
+
 				// if a test file exists for a given JS file, add it
 				if ( file_exists( __DIR__ . '/' . $testFile ) ) {
 					$testFiles[] = $testFile;
 				}
 			}
-			// if test files exist for given module, create a corresponding test module
+
+			// if test files exist for given module, create a corresponding test
+			// module
 			if ( count( $testFiles ) > 0 ) {
-				$testModules['qunit']["$key.tests"] = $testModuleBoilerplate + array(
-					'dependencies' => array( $key, 'ext.centralNotice.testFixtures' ),
-					'scripts' => $testFiles,
-				);
+
+				$testModules['qunit']["$key.tests"] = $testModuleBoilerplate +
+					array(
+						'dependencies' =>
+							array( $key, 'ext.centralNotice.testFixtures' ),
+
+						'scripts' => $testFiles,
+					);
 			}
 		}
 	}
@@ -435,6 +462,9 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 	return true;
 }
 
+// TODO To remove in a subsequent patch, when we start adding
+// ext.centralNotice.startUp to HTML instead of the current mix (once we
+// determine that a rollback won't be necessary).
 /**
  * Place CentralNotice ResourceLoader modules onto mobile pages.
  *
@@ -448,8 +478,20 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 		'ext.centralNotice.bannerController.mobiledevice',
 		'ext.centralNotice.bannerController.mobile',
 		'ext.centralNotice.bannerController.lib',
-		'ext.centralNotice.bannerChoiceData',
+		'ext.centralNotice.choiceData',
 	);
 
+	return true;
+}
+
+/**
+ * EventLoggingRegisterSchemas hook handler.
+ *
+ * @param array $schemas The schemas currently registered with the EventLogging
+ *  extension
+ * @return bool Always true
+ */
+function efCentralNoticeEventLoggingRegisterSchemas( &$schemas ) {
+	$schemas['CentralNoticeBannerHistory'] = 13172419;
 	return true;
 }

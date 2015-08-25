@@ -4,7 +4,7 @@
  * Provides a set of campaign and banner choices based on allocations for a
  * given project and language combination.
  */
-class BannerChoiceDataProvider {
+class ChoiceDataProvider {
 
 	protected $project;
 	protected $language;
@@ -76,16 +76,16 @@ class BannerChoiceDataProvider {
 			array(),
 			array(
 				'assignments' => array(
-						'INNER JOIN', 'notices.not_id = assignments.not_id'
+					'INNER JOIN', 'notices.not_id = assignments.not_id'
 				),
 				'templates' => array(
-						'INNER JOIN', 'assignments.tmp_id = templates.tmp_id'
+					'INNER JOIN', 'assignments.tmp_id = templates.tmp_id'
 				),
 				'notice_projects' => array(
-						'INNER JOIN', 'notices.not_id = notice_projects.np_notice_id'
+					'INNER JOIN', 'notices.not_id = notice_projects.np_notice_id'
 				),
 				'notice_languages' => array(
-						'INNER JOIN', 'notices.not_id = notice_languages.nl_notice_id'
+					'INNER JOIN', 'notices.not_id = notice_languages.nl_notice_id'
 				)
 			)
 		);
@@ -102,8 +102,18 @@ class BannerChoiceDataProvider {
 		foreach ( $dbRows as $dbRow ) {
 
 			$campaignId = $dbRow->not_id;
+			$campaignName = $dbRow->not_name;
 			$bannerId = $dbRow->tmp_id;
+			$bannerName = $dbRow->tmp_name;
 			$bucket = $dbRow->asn_bucket;
+
+			// FIXME Temporary hack to substitute the magic words {{{campaign}}}
+			// and {{{banner}}} in banner categories. (These are the magic
+			// words mentioned in the CN Admin UI.)
+			$category = $dbRow->tmp_category;
+			$category = str_replace( '{{{campaign}}}', $campaignName, $category);
+			$category = str_replace( '{{{banner}}}', $bannerName, $category);
+			$category = Banner::sanitizeRenderedCategory( $category );
 
 			// The first time we see any campaign, create the corresponding
 			// outer K/V entry. The campaign-specific properties should be
@@ -111,7 +121,7 @@ class BannerChoiceDataProvider {
 			// keys don't make it into data structure we return.
 			if ( !isset ( $choices[$campaignId] ) ) {
 				$choices[$campaignId] = array(
-					'name' => $dbRow->not_name,
+					'name' => $campaignName,
 					'start' => intval( wfTimestamp( TS_UNIX, $dbRow->not_start ) ),
 					'end' => intval( wfTimestamp( TS_UNIX, $dbRow->not_end ) ),
 					'preferred' => intval( $dbRow->not_preferred ),
@@ -127,10 +137,10 @@ class BannerChoiceDataProvider {
 			$assignmentKey = $bannerId . ':' . $bucket;
 
 			$choices[$campaignId]['banners'][$assignmentKey] = array(
-				'name' => $dbRow->tmp_name,
+				'name' => $bannerName,
 				'bucket' => intval( $bucket ),
 				'weight' => intval( $dbRow->tmp_weight ),
-				'category' => $dbRow->tmp_category,
+				'category' => $category,
 				'display_anon' => (bool) $dbRow->tmp_display_anon,
 				'display_account' => (bool) $dbRow->tmp_display_account,
 				'devices' => array() // To be filled by the last query
@@ -178,6 +188,14 @@ class BannerChoiceDataProvider {
 		// Note that PHP creates an empty array for countries as needed.
 		foreach ( $dbRows as $dbRow ) {
 			$choices[$dbRow->not_id]['countries'][] = $dbRow->nc_country;
+		}
+
+		// Add campaign-asociated mixins to the data structure
+		foreach ( $choices as &$campaignInfo ) {
+
+			//Get info for enabled mixins for this campaign
+			$campaignInfo['mixins'] =
+				Campaign::getCampaignMixins( $campaignInfo['name'], true );
 		}
 
 		// Fetch the devices

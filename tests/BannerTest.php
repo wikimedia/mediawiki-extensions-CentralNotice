@@ -44,8 +44,6 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( $banner->allocateToAnon(), 'Initial anonymous allocation is set to true' );
 		$this->assertFalse( $banner->allocateToLoggedIn(), 'Initial logged in allocation is set to true' );
 		$this->assertEquals( '{{{campaign}}}', $banner->getCategory(), 'Initial category is not equal to {{{campaign}}}' );
-		$this->assertFalse( $banner->isAutoLinked(), 'Initial banner is autolinked' );
-		$this->assertEquals( array(), $banner->getAutoLinks(), 'Initial banner has autolinks' );
 		$this->assertFalse( $banner->isArchived(), 'Initial banner is archived?' );
 
 		// More complex metadata should also be empty
@@ -79,8 +77,6 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( $banner->allocateToAnon(), 'Initial anonymous allocation is set to true' );
 		$this->assertFalse( $banner->allocateToLoggedIn(), 'Initial logged in allocation is set to true' );
 		$this->assertEquals( '{{{campaign}}}', $banner->getCategory(), 'Initial category is not equal to {{{campaign}}}' );
-		$this->assertFalse( $banner->isAutoLinked(), 'Initial banner is autolinked' );
-		$this->assertEquals( array(), $banner->getAutoLinks(), 'Initial banner has autolinks' );
 		$this->assertFalse( $banner->isArchived(), 'Initial banner is archived?' );
 
 		// More complex metadata should also be empty
@@ -102,8 +98,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 
 		// Attempt to populate basic metadata
 		$banner->setAllocation( true, true )->
-			     setCategory( 'testCategory' )->
-			     setAutoLink( true, array( 'testlink' ) );
+			     setCategory( 'testCategory' );
 
 		// And the more advanced metadata
 		$banner->setDevices( 'desktop' );
@@ -115,8 +110,6 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $banner->allocateToAnon(), "Failed retrieve anon allocation from initial" );
 		$this->assertTrue( $banner->allocateToLoggedIn(), "Failed retrieve logged in allocation from initial" );
 		$this->assertEquals( 'testCategory', $banner->getCategory(), "Failed retrieve category from initial" );
-		$this->assertTrue( $banner->isAutoLinked(), "Failed autolink retrieve from initial" );
-		$this->assertEquals( array( 'testlink' ), $banner->getAutoLinks(), 'Failed autolinks retrieve from initial' );
 
 		$this->assertEquals( array( 'desktop' ), array_values( $banner->getDevices() ), 'Failed devices retrieve from initial' );
 		$this->assertEquals( array( 'en', 'ru' ), $banner->getPriorityLanguages(), "Failed prilang retrieve from initial" );
@@ -126,8 +119,6 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $banner2->allocateToAnon(), "Failed anon allocation from copy" );
 		$this->assertTrue( $banner2->allocateToLoggedIn(), "Failed loggedin allocation from copy" );
 		$this->assertEquals( 'testCategory', $banner2->getCategory(), "Failed category from copy" );
-		$this->assertTrue( $banner2->isAutoLinked(), "Failed autolink from copy" );
-		$this->assertEquals( array( 'testlink' ), $banner2->getAutoLinks(), "Failed autolinks from copy" );
 
 		$this->assertEquals( array( 'desktop' ), array_values( $banner2->getDevices() ), "Failed devices from copy" );
 

@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\Instantiator\Exception\InvalidArgumentException;
+
 class Campaign {
 
 	protected $id = null;
@@ -366,7 +368,7 @@ class Campaign {
 	/**
 	 * Return settings for a campaign
 	 *
-	 * @param $campaignName string: The name of the campaign
+	 * @param string $campaignName The name of the campaign
 	 *
 	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
@@ -424,6 +426,8 @@ class Campaign {
 		}
 		// Encode into a JSON string for storage
 		$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
+		$campaign[ 'mixins' ] =
+			FormatJson::encode( Campaign::getCampaignMixins( $campaignName, true ) );
 
 		return $campaign;
 	}
@@ -542,6 +546,243 @@ class Campaign {
 			$campaigns[] = $campaign;
 		}
 		return $campaigns;
+	}
+
+	/**
+	 * Retrieve campaign mixins settings for this campaign.
+	 *
+	 * If $compact is true, retrieve only enabled mixins, and return a compact
+	 * data structure in which keys are mixin names and values are parameter
+	 * settings.
+	 *
+	 * If $compact is false, mixins that were once enabled for this campaign but
+	 * are now disabled will be included, showing their last parameter settings.
+	 * The data structure will be an array whose keys are mixin names and whose
+	 * values are arrays with 'enabled' and 'parameters' keys. Note that mixins
+	 * that were never enabled for this campaign will be omitted.
+	 *
+	 * @param string $campaignName
+	 * @param boolean $compact
+	 * @return array
+	 */
+	public static function getCampaignMixins( $campaignName, $compact = false ) {
+
+		global $wgCentralNoticeCampaignMixins;
+
+		$dbr = CNDatabase::getDb();
+
+		// Prepare query conditions
+		$conds = array( 'notices.not_name' => $campaignName );
+		if ( $compact ) {
+			$conds['notice_mixins.nmxn_enabled'] = 1;
+		}
+
+		$dbRows = $dbr->select(
+			array(
+				'notices' => 'cn_notices',
+				'notice_mixins' => 'cn_notice_mixins',
+				'notice_mixin_params' => 'cn_notice_mixin_params'
+			),
+			array(
+				'notice_mixins.nmxn_mixin_name',
+				'notice_mixins.nmxn_enabled',
+				'notice_mixin_params.nmxnp_param_name',
+				'notice_mixin_params.nmxnp_param_value'
+			),
+			$conds,
+			__METHOD__,
+			array(),
+			array(
+				'notice_mixins' => array(
+					'INNER JOIN', 'notices.not_id = notice_mixins.nmxn_not_id'
+				),
+				'notice_mixin_params' => array(
+					'LEFT OUTER JOIN', 'notice_mixins.nmxn_id = notice_mixin_params.nmxnp_notice_mixin_id'
+				)
+			)
+		);
+
+		// Build up the results
+		// We expect a row for every parameter name-value pair for every mixin,
+		// and maybe some with null name-value pairs (for mixins with no
+		// parameters).
+		$campaignMixins = array();
+		foreach ( $dbRows as $dbRow ) {
+
+			$mixinName = $dbRow->nmxn_mixin_name;
+
+			// A mixin may have been removed from the code but may still
+			// leave stuff in the database. In that case, skip it!
+			if ( !isset( $wgCentralNoticeCampaignMixins[$mixinName] ) ) {
+				continue;
+			}
+
+			// First time we have a result row for this mixin?
+			if ( !isset( $campaignMixins[$mixinName] ) ) {
+
+				// Data structure depends on $compact
+				if ( $compact ) {
+					$campaignMixins[$mixinName] = array();
+
+				} else {
+					$campaignMixins[$mixinName] = array(
+						'enabled' => (bool) $dbRow->nmxn_enabled,
+						'parameters' => array()
+					);
+				}
+			}
+
+			// If there are mixin params in this row, add them in
+			if ( !is_null( $dbRow->nmxnp_param_name ) ) {
+
+				$paramName = $dbRow->nmxnp_param_name;
+				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
+
+				// Handle mixin parameters being removed, too
+				if ( !isset( $mixinDef['parameters'][$paramName] ) ) {
+					continue;
+				}
+
+				$paramType = $mixinDef['parameters'][$paramName]['type'];
+
+				switch ( $paramType ) {
+					case 'string':
+						$paramVal = $dbRow->nmxnp_param_value;
+						break;
+
+					case 'integer':
+						$paramVal = intval( $dbRow->nmxnp_param_value );
+						break;
+
+					case 'float':
+						$paramVal = floatval( $dbRow->nmxnp_param_value );
+						break;
+
+					case 'boolean':
+						$paramVal = ( $dbRow->nmxnp_param_value === 'true' );
+						break;
+
+					default:
+						throw new DomainException(
+							'Unknown parameter type ' . $paramType );
+				}
+
+				// Again, data structure depends on $compact
+				if ( $compact )  {
+					$campaignMixins[$mixinName][$paramName] = $paramVal;
+				} else {
+					$campaignMixins[$mixinName]['parameters'][$paramName]
+						= $paramVal;
+				}
+			}
+		}
+
+		return $campaignMixins;
+	}
+
+	/**
+	 * Update enabled or disabled status and parameters for a campaign mixin,
+	 * for a given campaign.
+	 *
+	 * @param string $campaignName
+	 * @param string $mixinName
+	 * @param boolean $enable
+	 * @param array $params For mixins with no parameters, set to an empty array.
+	 */
+	public static function updateCampaignMixins(
+		$campaignName, $mixinName, $enable, $params = null ) {
+
+		global $wgCentralNoticeCampaignMixins;
+
+		// TODO Error handling!
+
+		$dbw = CNDatabase::getDb( DB_MASTER );
+
+		// Get the campaign ID
+		// Note: the need to fetch the ID here highlights the need for some
+		// kind of ORM.
+		$noticeId = $dbw->selectRow( 'cn_notices', 'not_id',
+			array( 'not_name' => $campaignName ) )->not_id;
+
+		if ( $enable ) {
+
+			if ( $params === null ) {
+				throw new InvalidArgumentException( 'Paremeters info required to enable mixin ' .
+					$mixinName . ' for campaign '. $campaignName );
+			}
+
+			$dbw->upsert(
+				'cn_notice_mixins',
+				array(
+					'nmxn_not_id' => $noticeId,
+					'nmxn_mixin_name' => $mixinName,
+					'nmxn_enabled' => 1
+				),
+				array( 'nmxn_not_id', 'nmxn_mixin_name' ),
+				array(
+					'nmxn_enabled' => 1
+				)
+			);
+
+			$noticeMixinId = $dbw->selectRow(
+				'cn_notice_mixins',
+				'nmxn_id',
+				array(
+					'nmxn_not_id' => $noticeId,
+					'nmxn_mixin_name' => $mixinName
+				)
+			)->nmxn_id;
+
+			foreach ( $params as $paramName => $paramVal ) {
+
+				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
+
+				// Handle an undefined parameter. Not likely to happen, maybe
+				// in the middle of a deploy that removes a parameter.
+				if ( !isset( $mixinDef['parameters'][$paramName] ) ) {
+
+					wfLogWarning( 'No definition found for the parameter '
+						. $paramName . ' for the campaign mixn ' .
+						$mixinName . '.' );
+
+					continue;
+				}
+
+				// Munge boolean params for database storage. (Other types
+				// should end up as strings, which will be fine.)
+				if ( $mixinDef['parameters'][$paramName]['type'] === 'boolean' ) {
+					$paramVal = ( $paramVal ? 'true' : 'false' );
+				}
+
+				$dbw->upsert(
+					'cn_notice_mixin_params',
+					array(
+						'nmxnp_notice_mixin_id' => $noticeMixinId,
+						'nmxnp_param_name' => $paramName,
+						'nmxnp_param_value' => $paramVal
+					),
+					array( 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ),
+					array(
+						'nmxnp_param_value' => $paramVal
+					)
+				);
+			}
+
+		} else {
+
+			// When we disable a mixin, just set enabled to false; since we keep
+			// the old parameter values in case the mixin is re-enabled, we also
+			// keep the row in this table, since the id is used in the param
+			// table.
+			$dbw->update(
+				'cn_notice_mixins',
+				array( 'nmxn_enabled' => 0 ),
+				array(
+					'nmxn_not_id' => $noticeId,
+					'nmxn_mixin_name' => $mixinName
+				)
+			);
+		}
 	}
 
 	/**

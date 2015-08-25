@@ -76,14 +76,6 @@ class Banner {
 	/** @var string Category that the banner belongs to. Will be special value expanded. */
 	protected $category = '{{{campaign}}}';
 
-	/** @var bool True if <a#cn-landingpage-link> will have it's href attribute set randomly from.
-	 * @see Banner->landingLinks
-	 */
-	protected $autolink = false;
-
-	/** @var string[] Array of href targets. See Banner->autolink */
-	protected $autolinks = array();
-
 	/** @var bool True if archived and hidden from default view. */
 	protected $archived = false;
 
@@ -292,53 +284,6 @@ class Banner {
 	}
 
 	/**
-	 * If true the banner renderer should replace the contents of the <a#cn-landingpage-link> href
-	 * with values from @see Banner->getAutoLinks()
-	 *
-	 * @return bool
-	 */
-	public function isAutoLinked() {
-		$this->populateBasicData();
-		return $this->autolink;
-	}
-
-	/**
-	 * Automatic linking values for the banner renderer to use.
-	 *
-	 * @see Banner->isAutoLinked()
-	 *
-	 * @return string[]
-	 */
-	public function getAutoLinks() {
-		$this->populateBasicData();
-		return $this->autolinks;
-	}
-
-	/**
-	 * Set autolinking behaviour. If enabled the banner renderer should replace the contents of
-	 * the <a#cn-landingpage-link> href with values from $links
-	 *
-	 * @param bool $enabled
-	 * @param string[] $links Array of raw href links. E.g. array( '//foo.bar.com/' )
-	 *
-	 * @return $this
-	 */
-	public function setAutoLink( $enabled, $links ) {
-		$this->populateBasicData();
-
-		$links = (array)$links;
-		array_walk( $links, function ( &$x ) { $x = trim( $x ); } );
-		sort( $links );
-		if ( ( $this->autolink !== $enabled ) || ( $this->autolinks != $links ) ) {
-			$this->setBasicDataDirty();
-			$this->autolink = $enabled;
-			$this->autolinks = $links;
-		}
-
-		return $this;
-	}
-
-	/**
 	 * Should the banner be considered archived and hidden from default view
 	 *
 	 * @return bool
@@ -378,8 +323,6 @@ class Banner {
 				 'tmp_name',
 				 'tmp_display_anon',
 				 'tmp_display_account',
-				 'tmp_autolink',
-				 'tmp_landing_pages',
 				 'tmp_archived',
 				 'tmp_category'
 			),
@@ -394,8 +337,6 @@ class Banner {
 			$this->name = $row->tmp_name;
 			$this->allocateAnon = (bool)$row->tmp_display_anon;
 			$this->allocateLoggedIn = (bool)$row->tmp_display_account;
-			$this->autolink = (bool)$row->tmp_autolink;
-			$this->autolinks = explode( ',', $row->tmp_landing_pages);
 			$this->archived = (bool)$row->tmp_archived;
 			$this->category = $row->tmp_category;
 		} else {
@@ -438,8 +379,6 @@ class Banner {
 				array(
 					 'tmp_display_anon'    => (int)$this->allocateAnon,
 					 'tmp_display_account' => (int)$this->allocateLoggedIn,
-					 'tmp_autolink'        => $this->autolink,
-					 'tmp_landing_pages'   => implode( ',', $this->autolinks ),
 					 'tmp_archived'        => $this->archived,
 					 'tmp_category'        => $this->category,
 				),
@@ -565,7 +504,7 @@ class Banner {
 	//<editor-fold desc="Mixin management">
 	/**
 	 * @return array Keys are names of enabled mixins; valeus are mixin params.
-	 * @see $wgNoticeMixins
+	 * @see $wgCentralNoticeBannerMixins
 	 */
 	public function getMixins() {
 		$this->populateMixinData();
@@ -576,13 +515,13 @@ class Banner {
 	 * Set the banner mixins to enable.
 	 *
 	 * @param array $mixins Names of mixins to enable on this banner. Valid values
-	 * come from @see $wgNoticeMixins
+	 * come from @see $wgCentralNoticeBannerMixins
 	 *
 	 * @throws RangeException
 	 * @return $this
 	 */
 	function setMixins( $mixins ) {
-		global $wgNoticeMixins;
+		global $wgCentralNoticeBannerMixins;
 
 		$this->populateMixinData();
 
@@ -595,10 +534,10 @@ class Banner {
 
 		$this->mixins = array();
 		foreach ( $mixins as $mixin ) {
-			if ( !array_key_exists( $mixin, $wgNoticeMixins ) ) {
+			if ( !array_key_exists( $mixin, $wgCentralNoticeBannerMixins ) ) {
 				throw new RangeException( "Mixin does not exist: {$mixin}" );
 			}
-			$this->mixins[$mixin] = $wgNoticeMixins[$mixin];
+			$this->mixins[$mixin] = $wgCentralNoticeBannerMixins[$mixin];
 		}
 
 		return $this;
@@ -608,7 +547,7 @@ class Banner {
 	 * Populates mixin data from the cn_template_mixins table.
 	 */
 	protected function populateMixinData() {
-		global $wgNoticeMixins;
+		global $wgCentralNoticeBannerMixins;
 
 		if ( $this->dirtyFlags['mixins'] !== null ) {
 			return;
@@ -625,7 +564,7 @@ class Banner {
 
 		$this->mixins = array();
 		foreach ( $result as $row ) {
-			if ( !array_key_exists( $row->mixin_name, $wgNoticeMixins ) ) {
+			if ( !array_key_exists( $row->mixin_name, $wgCentralNoticeBannerMixins ) ) {
 				// We only want to warn here otherwise we'd never be able to
 				// edit the banner to fix the issue! The editor should warn
 				// when a deprecated mixin is being used; but also when we
@@ -633,7 +572,7 @@ class Banner {
 				// it!
 				wfLogWarning( "Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}" );
 			}
-			$this->mixins[$row->mixin_name] = $wgNoticeMixins[$row->mixin_name];
+			$this->mixins[$row->mixin_name] = $wgCentralNoticeBannerMixins[$row->mixin_name];
 		}
 
 		$this->markMixinDataDirty( false );
@@ -1082,7 +1021,6 @@ class Banner {
 
 		$destBanner->setAllocation( $this->allocateToAnon(), $this->allocateToLoggedIn() );
 		$destBanner->setCategory( $this->getCategory() );
-		$destBanner->setAutoLink( $this->isAutoLinked(), $this->getAutoLinks() );
 		$destBanner->setDevices( $this->getDevices() );
 		$destBanner->setMixins( array_keys( $this->getMixins() ) );
 		$destBanner->setPriorityLanguages( $this->getPriorityLanguages() );
@@ -1241,8 +1179,6 @@ class Banner {
 					'tmp_display_anon',
 					'tmp_display_account',
 					'tmp_category',
-					'tmp_autolink',
-					'tmp_landing_pages',
 					'not_name',
 					'not_preferred',
 					'asn_bucket',
@@ -1272,8 +1208,6 @@ class Banner {
 					'display_anon'     => intval( $row->tmp_display_anon ), // display to anonymous users?
 					'display_account'  => intval( $row->tmp_display_account ), // display to logged in users?
 					'fundraising'      => intval( $row->tmp_category === 'fundraising' ), // fundraising banner?
-					'autolink'         => intval( $row->tmp_autolink ), // automatically create links?
-					'landing_pages'    => $row->tmp_landing_pages, // landing pages to link to
 					'device'           => $row->dev_name, // device this banner can target
 					'campaign'         => $row->not_name, // campaign the banner is assigned to
 					'campaign_z_index' => $row->not_preferred, // z level of the campaign
@@ -1306,8 +1240,6 @@ class Banner {
 			'account'          => (int)$banner->allocateToLoggedIn(),
 			'fundraising'      => (int)($banner->getCategory() === 'fundraising'), // TODO: Death to this!
 			'category'         => $banner->getCategory(),
-			'autolink'         => (int)$banner->isAutoLinked(),
-			'landingpages'     => implode( ',', $banner->getAutoLinks() ),
 			'controller_mixin' => implode( ",", array_keys( $banner->getMixins() ) ),
 			'devices'          => array_values( $banner->getDevices() ),
 		);
@@ -1326,8 +1258,6 @@ class Banner {
 	 *    display_anon: 0/1 whether the banner is displayed to anonymous users
 	 *    display_account: 0/1 same, for logged-in users
 	 *    fundraising: 0/1, is in the fundraising group
-	 *    autolink: make landing page autolink?
-	 *    landing_pages: array of landing page names
 	 *    device: device key
 	 */
 	static function getHistoricalBanner( $name, $ts ) {
@@ -1357,8 +1287,6 @@ class Banner {
 				"display_anon" => "tmplog_end_anon",
 				"display_account" => "tmplog_end_account",
 				"fundraising" => "tmplog_end_fundraising",
-				"autolink" => "tmplog_end_autolink",
-				"landing_pages" => "tmplog_end_landingpages",
 			),
 			array(
 				"tmplog_id = {$newestLog->log_id}",
@@ -1369,8 +1297,6 @@ class Banner {
 		$banner['display_account'] = (int) $row->display_account;
 
 		$banner['fundraising'] = (int) $row->fundraising;
-		$banner['autolink'] = (int) $row->autolink;
-		$banner['landing_pages'] = explode( ", ", $row->landing_pages );
 
 		//XXX
 		$banner['devices'] = array( "desktop" );
@@ -1386,8 +1312,6 @@ class Banner {
 	 * @param $displayAnon      integer flag for display to anonymous users
 	 * @param $displayAccount   integer flag for display to logged in users
 	 * @param $fundraising      integer flag for fundraising banner (optional)
-	 * @param $autolink         integer flag for automatically creating landing page links (optional)
-	 * @param $landingPages     string list of landing pages (optional)
 	 * @param $mixins           array list of mixins (optional)
 	 * @param $priorityLangs    array Array of priority languages for the translate extension
 	 * @param $devices          array Array of device names this banner is targeted at
@@ -1395,7 +1319,7 @@ class Banner {
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon,
-		$displayAccount, $fundraising = 0, $autolink = 0, $landingPages = '',
+		$displayAccount, $fundraising = 0,
 		$mixins = array(), $priorityLangs = array(), $devices = null,
 		$summary = null
 	) {
@@ -1419,10 +1343,6 @@ class Banner {
 		$banner->setDevices( $devices );
 		$banner->setPriorityLanguages( $priorityLangs );
 		$banner->setBodyContent( $body );
-
-		$landingPages = explode( ',', $landingPages );
-		array_walk( $landingPages, function ( &$x ) { $x = trim( $x ); } );
-		$banner->setAutoLink( $autolink, $landingPages );
 
 		$banner->setMixins( $mixins );
 

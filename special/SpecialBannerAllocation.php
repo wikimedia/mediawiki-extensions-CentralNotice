@@ -205,13 +205,12 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		// Given our project and language combination, get banner choice data,
 		// then filter on country
-		$provider = new BannerChoiceDataProvider( $project, $language );
+		$provider = new ChoiceDataProvider( $project, $language );
 		$choiceData = $provider->getChoices();
 
 		// Iterate through each possible device type and get allocation information
 		$devices = CNDeviceTarget::getAvailableDevices();
 		foreach( $devices as $deviceId => $deviceData ) {
-
 			$htmlOut .= Html::openElement(
 				'div',
 				array(
@@ -230,15 +229,6 @@ class SpecialBannerAllocation extends CentralNotice {
 					$this->getOutput()->parseInline( $deviceData['label'] )
 				)->text()
 			);
-
-			// FIXME Figure out the following comments and remove as needed
-			// FIXME bannerstats is toast
-			// Build campaign list for bannerstats.js
-			//$campaignsUsed = array_keys($anonCampaigns + $accountCampaigns);
-			//
-			//$campaignList = FormatJson::encode( $campaignsUsed );
-			//$js = "wgCentralNoticeAllocationCampaigns = $campaignList;";
-			//$htmlOut .= Html::inlineScript( $js );
 
 			// FIXME matrix is chosen dynamically based on more UI inputs
 			$matrix = array();
@@ -324,7 +314,7 @@ class SpecialBannerAllocation extends CentralNotice {
 				// Banner name
 				$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
 				$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
-				// The span class is used by bannerstats.js to find where to insert the stats
+
 				$htmlOut .= Html::openElement( 'span',
 					array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
 				$htmlOut .= Linker::link(

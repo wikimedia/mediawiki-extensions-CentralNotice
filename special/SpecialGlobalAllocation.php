@@ -72,19 +72,19 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$this->project = $sanitize(
 			$this->getRequest()->getText( 'project', $this->project ),
-			ApiCentralNoticeBannerChoiceData::PROJECT_FILTER
+			ApiCentralNoticeChoiceData::PROJECT_FILTER
 		);
 		$this->language = $sanitize(
 			$this->getRequest()->getText( 'language', $this->language ),
-			ApiCentralNoticeBannerChoiceData::LANG_FILTER
+			ApiCentralNoticeChoiceData::LANG_FILTER
 		);
 		$this->location = $sanitize(
 			$this->getRequest()->getText( 'country', $this->location ),
-			ApiCentralNoticeBannerChoiceData::LOCATION_FILTER
+			ApiCentralNoticeChoiceData::LOCATION_FILTER
 		);
 		$this->device = $sanitize(
 			$this->getRequest()->getText( 'device', $this->device ),
-			ApiCentralNoticeBannerChoiceData::DEVICE_NAME_FILTER
+			ApiCentralNoticeChoiceData::DEVICE_NAME_FILTER
 		);
 
 		$this->timestamp = wfTimestamp( TS_UNIX, $this->getDateTime( 'filter' ) );
@@ -589,7 +589,6 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 			// Banner name
 			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
-			// The span class is used by bannerstats.js to find where to insert the stats
 			$htmlOut .= Html::openElement( 'span',
 				array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
 			$htmlOut .= Linker::link(
