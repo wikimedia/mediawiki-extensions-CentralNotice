@@ -13,18 +13,12 @@
 			lon: -104.887,
 			region: "CO"
 		},
-		realAjax,
-		realCookie,
-		realDeferred,
-		realGeo;
+		realAjax = $.ajax,
+		realCookie = $.cookie( COOKIE_NAME ),
+		realDeferred = mw.geoIP.deferred,
+		realGeo = window.Geo;
 
 	QUnit.module( 'ext.centralNotice.geoIP', QUnit.newMwEnvironment( {
-		setup: function () {
-			realAjax = $.ajax;
-			realCookie = $.cookie( COOKIE_NAME );
-			realDeferred = mw.geoIP.deferred;
-			realGeo = window.Geo;
-		},
 		teardown: function () {
 			$.ajax = realAjax;
 			// This cookie is always set to '/' in prod and should be here too.
