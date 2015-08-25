@@ -217,17 +217,19 @@
 		// doing anything until the DOM is ready.
 		$( function() {
 
-			var urlQuery = ( new mw.Uri() ).query,
-
-				// URL param bannerLoggerRate can override rate, for debugging
-				rate = urlQuery.bannerLoggerRate !== undefined ?
-					parseFloat( urlQuery.bannerLoggerRate ) : mixinParams.rate;
-
 			// Load needed resources in a leisurely manner, but ahead of a
 			// possible sendLog() call (expected to be called when the user
 			// navigates away from the page).
+
+			// Note: we don't set the following up as RL dependencies because a
+			// lot of campaign filtering happens on the client, so many users
+			// see campaigns in choiceData that don't target them. If any of
+			// those campaigns were to use this mixin, all those users would
+			// needlessly get these dependencies.
+
 			readyToLogPromise = mw.loader.using( [
 				'ext.eventLogging',
+				'mediawiki.util',
 				'mediawiki.user',
 				'schema.' + EVENT_LOGGING_SCHEMA
 			] );
@@ -250,17 +252,23 @@
 				log = null;
 			}
 
-			// Send a sample to the server
-			if ( Math.random() < rate ) {
+			readyToLogPromise.done( function() {
 
-				readyToLogPromise.done( function() {
+				// URL param bannerLoggerRate can override rate, for debugging
+				var rateParam = mw.util.getParamValue( 'bannerLoggerRate' ),
+
+					rate = rateParam !== null ?
+						parseFloat( rateParam ) : mixinParams.rate;
+
+				// Send a sample to the server
+				if ( Math.random() < rate ) {
 
 					mw.eventLog.logEvent(
 						EVENT_LOGGING_SCHEMA,
 						makeEventLoggingData( rate )
 					);
-				} );
-			}
+				}
+			} );
 		} );
 	} );
 

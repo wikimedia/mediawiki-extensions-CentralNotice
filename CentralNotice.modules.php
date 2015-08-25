@@ -234,7 +234,6 @@ $wgResourceModules[ 'ext.centralNotice.bannerHistoryLogger' ] = array(
 	// campaign mixin modules need this dependency, to be sure it is loaded first
 	'dependencies'  => array(
 		'ext.centralNotice.kvStore',
-		'mediawiki.Uri',
 		// Mixins must depend on display to ensure the hook they use to
 		// register themselves is available when they run
 		'ext.centralNotice.display',
