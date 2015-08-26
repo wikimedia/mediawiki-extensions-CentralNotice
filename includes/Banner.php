@@ -283,7 +283,7 @@ class Banner {
 	 * Remove invalid characters from a category string that has been magic
 	 * word expanded.
 	 *
-	 * @param $cat Category string to sanitize
+	 * @param string $cat Category string to sanitize
 	 *
 	 * @return string
 	 */
