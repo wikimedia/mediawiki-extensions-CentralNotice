@@ -5,8 +5,10 @@
  */
 class CNDatabase {
 	/**
-	 * Gets a database object. Will be the DB_MASTER if the user has the
-	 * centralnotice-admin right. NOTE: $force is ignored for such users.
+	 * Get a DB handle. It will be DB_MASTER if the user has the centralnotice-admin
+	 * right and the the current context is an HTTP POST request; DB_SLAVE otherwise.
+	 *
+	 * NOTE: $force is ignored for such users.
 	 *
 	 * We will either connect to the primary database, or a separate CentralNotice
 	 * infrastructure DB specified by $wgCentralDBname.  This is metawiki for
@@ -21,12 +23,13 @@ class CNDatabase {
 	 * @return DatabaseBase
 	 */
 	public static function getDb( $target = null ) {
-		global $wgCentralDBname,
-			$wgDBname,
-			$wgUser;
+		global $wgCentralDBname, $wgDBname, $wgRequest, $wgUser;
 
 		if ( $target === null ) {
-			if ( $wgUser->isAllowed( 'centralnotice-admin' ) ) {
+			// Use the master in case some read-for-write update is happening.
+			// This happens for Special:CentralNotice form submissions.
+			// XXX: global state usage :(
+			if ( $wgRequest->wasPosted() && $wgUser->isAllowed( 'centralnotice-admin' ) ) {
 				$target = DB_MASTER;
 			} else {
 				$target = DB_SLAVE;

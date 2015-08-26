@@ -834,7 +834,7 @@ class Campaign {
 			$geo_countries = array();
 		}
 
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->begin();
 
 		$endTime = strtotime( '+1 hour', wfTimestamp( TS_UNIX, $startTs ) );
@@ -914,7 +914,7 @@ class Campaign {
 	 */
 	static function removeCampaign( $campaignName, $user ) {
 		// TODO This method is never used?
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getDb( DB_MASTER );
 
 		$res = $dbr->select( 'cn_notices', 'not_name, not_locked',
 			array( 'not_name' => $campaignName )
@@ -937,7 +937,7 @@ class Campaign {
 		$campaignId = Campaign::getNoticeId( $campaignName );
 		Campaign::logCampaignChange( 'removed', $campaignId, $user );
 
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->begin();
 		$dbw->delete( 'cn_assignments', array( 'not_id' => $campaignId ) );
 		$dbw->delete( 'cn_notices', array( 'not_name' => $campaignName ) );
@@ -956,7 +956,7 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function addTemplateTo( $noticeName, $templateName, $weight, $bucket = 0 ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 
 		$eNoticeName = htmlspecialchars( $noticeName );
 		$noticeId = Campaign::getNoticeId( $eNoticeName );
@@ -991,7 +991,7 @@ class Campaign {
 	 * Remove a banner assignment from a campaign
 	 */
 	static function removeTemplateFor( $noticeName, $templateName ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->begin();
 		$noticeId = Campaign::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
@@ -1082,7 +1082,7 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function updateNoticeDate( $noticeName, $start, $end ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 
 		// Start/end don't line up
 		if ( $start > $end || $end < $start ) {
@@ -1122,7 +1122,7 @@ class Campaign {
 			return;
 		} else {
 			$settingName = strtolower( $settingName );
-			$dbw = CNDatabase::getDb();
+			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->update( 'cn_notices',
 				array( 'not_' . $settingName => $settingValue ),
 				array( 'not_name' => $noticeName )
@@ -1162,7 +1162,7 @@ class Campaign {
 			return;
 		} else {
 			$settingName = strtolower( $settingName );
-			$dbw = CNDatabase::getDb();
+			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->update( 'cn_notices',
 				array( 'not_'.$settingName => $settingValue ),
 				array( 'not_name' => $noticeName )
@@ -1178,7 +1178,7 @@ class Campaign {
 	 * @param $weight       New banner weight
 	 */
 	static function updateWeight( $noticeName, $templateId, $weight ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$noticeId = Campaign::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			array( 'tmp_weight' => $weight ),
@@ -1198,7 +1198,7 @@ class Campaign {
 	 * @param $bucket       New bucket number
 	 */
 	static function updateBucket( $noticeName, $templateId, $bucket ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$noticeId = Campaign::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			array( 'asn_bucket' => $bucket ),
@@ -1211,7 +1211,7 @@ class Campaign {
 
 	// @todo FIXME: Unused.
 	static function updateProjectName( $notice, $projectName ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->update( 'cn_notices',
 			array( 'not_project' => $projectName ),
 			array(
@@ -1221,7 +1221,7 @@ class Campaign {
 	}
 
 	static function updateProjects( $notice, $newProjects ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->begin();
 
 		// Get the previously assigned projects
@@ -1250,7 +1250,7 @@ class Campaign {
 	}
 
 	static function updateProjectLanguages( $notice, $newLanguages ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->begin();
 
 		// Get the previously assigned languages
@@ -1279,7 +1279,7 @@ class Campaign {
 	}
 
 	static function updateCountries( $notice, $newCountries ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getDb( DB_MASTER );
 
 		// Get the previously assigned languages
 		$oldCountries = Campaign::getNoticeCountries( $notice );
@@ -1325,7 +1325,7 @@ class Campaign {
 		// TODO prune unused parameters
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
-			$dbw = CNDatabase::getDb();
+			$dbw = CNDatabase::getDb( DB_MASTER );
 
 			$log = array(
 				'notlog_timestamp' => $dbw->timestamp(),
