@@ -254,8 +254,8 @@
 
 			readyToLogPromise.done( function() {
 
-				// URL param bannerLoggerRate can override rate, for debugging
-				var rateParam = mw.util.getParamValue( 'bannerLoggerRate' ),
+				// URL param bannerHistoryLogRate can override rate, for debugging
+				var rateParam = mw.util.getParamValue( 'bannerHistoryLogRate' ),
 
 					rate = rateParam !== null ?
 						parseFloat( rateParam ) : mixinParams.rate;
