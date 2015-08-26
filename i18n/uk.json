@@ -18,7 +18,8 @@
 			"Ytsukeng Fyvaprol",
 			"Ата",
 			"Тест",
-			"Ypryima"
+			"Ypryima",
+			"Dars"
 		]
 	},
 	"centralnotice": "Управління централізованими сповіщеннями",
@@ -66,6 +67,8 @@
 	"centralnotice-balanced": "Надати всім банерам однакової ваги",
 	"centralnotice-weight": "Ширина",
 	"centralnotice-locked": "Заблокований",
+	"centralnotice-notice-mixins-int-required": "Потребується ціле число",
+	"centralnotice-notice-mixins-float-required": "Потребується число із із плаваючою комою",
 	"centralnotice-notice": "Кампанія",
 	"centralnotice-notice-heading": "Кампанія: $1",
 	"centralnotice-notices": "Кампанії",
@@ -129,10 +132,6 @@
 	"centralnotice-banner-collapsible": "Що згортається",
 	"centralnotice-banner-fundraising": "Це банер збору коштів",
 	"centralnotice-banner-display-on": "Показати на",
-	"centralnotice-banner-autolink": "Автоматично створити посилання на цільову сторінку",
-	"centralnotice-banner-autolink-help": "Коли CentralNotice увімкнено, він автоматично створює локалізоване посилання на $3 з довільно вибраною цільовою сторінкою. У тілі банера повинен бути тег якірця з $1.",
-	"centralnotice-banner-landing-pages": "Цільові сторінки (через кому):",
-	"centralnotice-banner-landing-pages-default": "напр., JimmyAppeal01",
 	"centralnotice-banner-mixins": "Домішки (mixins)",
 	"centralnotice-banner-mixins-help": "Відмітьте кожну домішку, яку Ви хочете включити при доставці банера. (Див. сторінку [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] для детальнішої інформації.)",
 	"centralnotice-geo": "Геоприв'язка",
@@ -276,5 +275,7 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Зсув у результаті (необов'язково).",
 	"apihelp-query+centralnoticelogs-param-start": "Початковий час вибірки (необов'язково).",
 	"apihelp-query+centralnoticelogs-param-end": "Кінцевий час вибірки (необов'язково).",
-	"apihelp-query+centralnoticelogs-example-1": "Показати журнали"
+	"apihelp-query+centralnoticelogs-example-1": "Показати журнали",
+	"centralnotice-banner-history-logger-max-entry-age": "Найбільший вік записів журналу (у днях)",
+	"centralnotice-banner-history-logger-max-entries": "Найбільша кількість записів, щоб зберігати в журналі"
 }
