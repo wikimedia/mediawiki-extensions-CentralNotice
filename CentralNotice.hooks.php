@@ -492,6 +492,6 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
  * @return bool Always true
  */
 function efCentralNoticeEventLoggingRegisterSchemas( &$schemas ) {
-	$schemas['CentralNoticeBannerHistory'] = 13172419;
+	$schemas['CentralNoticeBannerHistory'] = 13332718;
 	return true;
 }
