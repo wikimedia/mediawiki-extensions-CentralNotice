@@ -122,6 +122,7 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 		'ext.centralNotice.adminUi',
 		'jquery.ui.dialog',
 		'jquery.ui.slider',
+		'mediawiki.template',
 		'mediawiki.template.mustache',
 	),
 	'scripts'       => 'resources/infrastructure/campaignManager.js',
