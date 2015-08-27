@@ -88,7 +88,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @param $bannerName string
 	 * @return string of Javascript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
-	 * @throw SpecialBannerLoaderException
+	 * @throws EmptyBannerException
+	 * @throws StaleCampaignException
 	 */
 	public function getJsNotice( $bannerName ) {
 
@@ -106,7 +107,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$campaign = new Campaign( $this->campaignName );
 			$endTimePlusLeeway = wfTimestamp(
 				TS_UNIX,
-				$campaign->getEndTime()->getTimestamp() + self::CAMPAIGN_STALENESS_LEEWAY
+				(int)$campaign->getEndTime()->getTimestamp() + self::CAMPAIGN_STALENESS_LEEWAY
 			);
 			$now = wfTimestamp();
 
