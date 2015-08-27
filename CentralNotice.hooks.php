@@ -260,24 +260,6 @@ function efCentralNoticeDefaults( &$vars ) {
 				// Add the user's registration date (MediaWiki timestamp)
 				$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
 				$userData[ 'registration' ] = $registrationDate;
-
-				// Make sure UserDailyContribs extension is installed.
-				if ( function_exists( 'getUserEditCountSince' ) ) {
-
-					// Add the user's total edit count
-					if ( $wgUser->getEditCount() == null ) {
-						$userData[ 'editcount' ] = 0;
-					} else {
-						$userData[ 'editcount' ] = intval( $wgUser->getEditCount() );
-					}
-
-					// Add the user's edit count for the past year
-					$userData[ 'pastyearseditcount' ] = getUserEditCountSince(
-						time() - ( 365 * 24 * 3600 ), // from a year ago
-						$wgUser,
-						time() // until now
-					);
-				}
 			}
 
 			// Cache the data for 7 days
