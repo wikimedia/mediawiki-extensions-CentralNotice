@@ -6,14 +6,15 @@
 			"RajeshPandey",
 			"सरोज कुमार ढकाल",
 			"NehalDaveND",
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"बिप्लब आनन्द"
 		]
 	},
 	"centralnotice-enabled": "सकृय पारिएको",
 	"centralnotice-modify": "बुझाउने",
 	"centralnotice-view": "दृष्य",
-	"centralnotice-save-banner": "यस ब्यानरलाई संग्रह गर्ने",
-	"centralnotice-preview": "पूर्वावलोकन",
+	"centralnotice-save-banner": "सङ्ग्रह गर्ने",
+	"centralnotice-preview": "पूर्वावलोकन ($1)",
 	"centralnotice-nopreview": "(पूर्वरुप उपलब्ध छैन)",
 	"centralnotice-remove": "हटाउने",
 	"centralnotice-translate-heading": "$1को लागि अनुवाद",
@@ -74,7 +75,7 @@
 	"centralnotice-archive-campaign-cancel": "रद्द गर्ने",
 	"centralnotice-delete-banner": "हटाउने",
 	"centralnotice-delete-banner-cancel": "रद्द गर्ने",
-	"centralnotice-start-date": "सुरुको तिथि",
+	"centralnotice-start-date": "प्रारम्भ मिती (युटिसी)",
 	"centralnotice-start-time": "सुरुको तिथि (UTC)",
-	"centralnotice-end-date": "समाप्ति तिथि"
+	"centralnotice-end-date": "समाप्ति मिती (युटिसी)"
 }
