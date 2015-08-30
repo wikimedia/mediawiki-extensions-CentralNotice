@@ -398,6 +398,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	protected function showBannerEditor() {
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi.bannerEditor' );
+		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice', true );
 
 		if ( !Banner::isValidBannerName( $this->bannerName ) ) {
 			throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );

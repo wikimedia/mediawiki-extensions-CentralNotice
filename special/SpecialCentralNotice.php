@@ -36,6 +36,7 @@ class CentralNotice extends SpecialPage {
 
 		// Output ResourceLoader module for styling and javascript functions
 		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
+		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice', true );
 
 		// Check permissions
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
