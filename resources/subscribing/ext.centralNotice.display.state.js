@@ -294,6 +294,13 @@
 			state.data.result = 'show';
 		},
 
+		/**
+		 * Sets banner_count, a legacy field for Special:RecordImpression
+		 */
+		setBannerCount: function ( bannerCount ) {
+			state.data.banner_count = bannerCount;
+		},
+
 		setRecordImpressionSampleRate: function( rate ) {
 			state.data.recordImpressionSampleRate = rate;
 		}

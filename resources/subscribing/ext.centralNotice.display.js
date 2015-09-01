@@ -346,6 +346,11 @@
 						state.setBannerLoadedButHidden(
 							bannerLoadedButHiddenReason );
 					}
+
+					if ( tmpData.banner_count ) {
+						state.setBannerCount( tmpData.banner_count );
+					}
+
 				} else {
 					state.setAlterFunctionMissing();
 				}
