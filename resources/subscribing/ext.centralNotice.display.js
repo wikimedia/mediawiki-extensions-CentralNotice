@@ -328,8 +328,8 @@
 			// Process legacy hook for in-banner JS that hides banners after
 			// they're loaded and/or adds data to send to
 			// Special:RecordImpression. Only do this if
-			// bannerNotGuaranteedToDisplay is set.
-			if ( state.getData().bannerNotGuaranteedToDisplay ) {
+			// bannersNotGuaranteedToDisplay is set.
+			if ( state.getData().bannersNotGuaranteedToDisplay ) {
 				if ( typeof cn.bannerData.alterImpressionData === 'function' ) {
 
 					// Data from state is considered read-only. This legacy hook
@@ -379,10 +379,9 @@
 		 * Call this to indicate that banners in a campaign may not always
 		 * display to a user even if they're loaded, that is, that they may
 		 * contain logic that prevents them from showing after they're loaded.
-		 * Calling will also turn off sampling for Special:RecordImpression.
 		 */
-		setBannerNotGuaranteedToDisplay: function() {
-			cn.internal.state.setBannerNotGuaranteedToDisplay();
+		setBannersNotGuaranteedToDisplay: function() {
+			cn.internal.state.setBannersNotGuaranteedToDisplay();
 		},
 
 		/**
