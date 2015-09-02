@@ -2,6 +2,7 @@
  * CentralNotice Administrative UI - Common Functions
  */
 ( function( mw, $ ) {
+mw.centralNotice = mw.centralNotice || {};
 mw.centralNotice.adminUi = {};
 
 // Collapse and uncollapse detailed view for an individual log entry
