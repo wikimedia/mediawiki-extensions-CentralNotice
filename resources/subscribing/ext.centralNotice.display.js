@@ -490,8 +490,14 @@
 			cn.hideBannerWithCloseButton();
 		},
 
+		/**
+		 * Set and store this user's bucket for the current campaign. The
+		 * bucketer must be initialized first. However, code in campaign mixin
+		 * hook handlers and banners can safely assume that's the case.
+		 *
+		 * The current bucket can be read from mw.centralNotice.data.bucket
+		 */
 		setBucket: function( bucket ) {
-			// Note: we assume buckter has been initialized.
 			cn.internal.bucketer.setBucket( bucket );
 			cn.internal.state.setBucket( bucket );
 		},
