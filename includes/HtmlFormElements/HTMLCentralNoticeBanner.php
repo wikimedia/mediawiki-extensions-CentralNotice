@@ -66,11 +66,11 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 	}
 
 	public function getTableRow( $value ) {
-		throw new MWException( "getTableRow() is not implemented for HTMLCentralNoticeBanner" );
+		throw new BadMethodCallException( "getTableRow() is not implemented for HTMLCentralNoticeBanner" );
 	}
 
 	public function getRaw( $value ) {
-		throw new MWException( "getRaw() is not implemented for HTMLCentralNoticeBanner" );
+		throw new BadMethodCallException( "getRaw() is not implemented for HTMLCentralNoticeBanner" );
 	}
 
 	public function getDiv( $value ) {

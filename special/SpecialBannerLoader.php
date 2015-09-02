@@ -32,7 +32,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			echo $this->getJsNotice( $this->bannerName );
 		} catch ( EmptyBannerException $e ) {
 			echo "mw.centralNotice.insertBanner( false );";
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			wfDebugLog( 'CentralNotice', $e->getMessage() );
 			echo "mw.centralNotice.insertBanner( false /* due to internal exception */ );";
 		}
@@ -88,7 +88,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @param $bannerName string
 	 * @return string of Javascript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
-	 * @throw SpecialBannerLoaderException
+	 * @throws EmptyBannerException
+	 * @throws StaleCampaignException
 	 */
 	public function getJsNotice( $bannerName ) {
 
@@ -106,7 +107,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$campaign = new Campaign( $this->campaignName );
 			$endTimePlusLeeway = wfTimestamp(
 				TS_UNIX,
-				$campaign->getEndTime()->getTimestamp() + self::CAMPAIGN_STALENESS_LEEWAY
+				(int)$campaign->getEndTime()->getTimestamp() + self::CAMPAIGN_STALENESS_LEEWAY
 			);
 			$now = wfTimestamp();
 
@@ -142,8 +143,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			'bannerHtml' => $bannerHtml,
 			'campaign' => $this->campaignName,
 			'category' => $category,
-			'autolink' => $settings['autolink'],
-			'landingPages' => explode( ", ", $settings['landingpages'] ),
 		);
 
 		$bannerJson = FormatJson::encode( $bannerArray );
@@ -166,7 +165,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
  *
  * @ingroup Exception
  */
-class BannerLoaderException extends MWException {
+class BannerLoaderException extends Exception {
 	function __construct( $bannerName = '(none provided)', $extraMsg = null ) {
 
 		$this->message = get_called_class() .

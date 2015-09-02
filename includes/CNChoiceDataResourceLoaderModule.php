@@ -7,7 +7,7 @@
  * ResourceLoader works. This class has no expectation of having getScript() or
  * getModifiedHash() called in the same request.
  */
-class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
+class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 	/**
 	 * @see ResourceLoaderModule::targets
@@ -48,7 +48,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 */
 	protected function getFromDb( $project, $language ) {
 
-		$choicesProvider = new BannerChoiceDataProvider( $project, $language );
+		$choicesProvider = new ChoiceDataProvider( $project, $language );
 
 		return $choicesProvider->getChoices();
 	}
@@ -67,7 +67,7 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 		// Make the URl
 		$q = array(
-			'action' => 'centralnoticebannerchoicedata',
+			'action' => 'centralnoticechoicedata',
 			'project' => $project,
 			'language' => $language,
 			'format' => 'json',
@@ -107,22 +107,66 @@ class CNBannerChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::getScript()
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.cnBannerControllerLib.setChoiceData',
-				array( $this->getChoices( $context ) ) );
-	}
 
-	/**
-	 * @see ResourceLoaderModule::getPosition()
-	 */
-	public function getPosition() {
-		return 'top';
+		$choices = $this->getChoices( $context );
+
+		if ( count( $choices ) === 0 ) {
+
+			// If there are no choices, this module will have no dependencies.
+			// We'll create the mw.centralNotice object here.
+			return 'mw.centralNotice = { choiceData: [] };';
+		} else {
+
+			// If there are choices, this module will depend on (at least)
+			// ext.centralNotice.display, which will create mw.centralNotice.
+			return 'mw.centralNotice.choiceData = ' .
+				Xml::encodeJsVar( $choices ) . ';';
+		}
 	}
 
 	/**
 	 * @see ResourceLoaderModule::getDependencies()
+	 * Note: requires mediawiki-core change-id @Iee61e5b52
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		return array( 'ext.centralNotice.bannerController.lib' );
+		global $wgCentralNoticeCampaignMixins;
+
+		// If this method is called with no context argument (the old method
+		// signature) emit a warning, but don't stop the show.
+		if ( !$context ) {
+			 wfLogWarning( '$context is required for campaign mixins.' );
+			 return array();
+		}
+
+		// Get the choices (possible campaigns and banners) for this user
+		$choices = $this->getChoices( $context );
+
+		// If there are no choices, no dependencies
+		if ( count( $choices ) === 0 ) {
+			return array();
+		}
+
+		$dependencies = array();
+
+		// Run through the choices to get all needed mixin RL modules
+		foreach ( $choices as $choice ) {
+			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
+
+				if ( !$wgCentralNoticeCampaignMixins[$mixinName]['module'] ) {
+					throw new MWException(
+						"No module for found campaign mixin {$mixinName}" );
+				}
+
+				$dependencies[] =
+					$wgCentralNoticeCampaignMixins[$mixinName]['module'];
+			}
+		}
+
+		$dependencies[] = 'ext.centralNotice.display';
+
+		// Since campaigns targeting the user could have the same mixin RL
+		// modules, remove any duplicates.
+		return array_unique( $dependencies );
 	}
 
 	/**

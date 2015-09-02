@@ -18,7 +18,8 @@
 			"Ytsukeng Fyvaprol",
 			"Ата",
 			"Тест",
-			"Ypryima"
+			"Ypryima",
+			"Dars"
 		]
 	},
 	"centralnotice": "Управління централізованими сповіщеннями",
@@ -66,6 +67,8 @@
 	"centralnotice-balanced": "Надати всім банерам однакової ваги",
 	"centralnotice-weight": "Ширина",
 	"centralnotice-locked": "Заблокований",
+	"centralnotice-notice-mixins-int-required": "Потребується ціле число",
+	"centralnotice-notice-mixins-float-required": "Потребується число із із плаваючою комою",
 	"centralnotice-notice": "Кампанія",
 	"centralnotice-notice-heading": "Кампанія: $1",
 	"centralnotice-notices": "Кампанії",
@@ -129,10 +132,6 @@
 	"centralnotice-banner-collapsible": "Що згортається",
 	"centralnotice-banner-fundraising": "Це банер збору коштів",
 	"centralnotice-banner-display-on": "Показати на",
-	"centralnotice-banner-autolink": "Автоматично створити посилання на цільову сторінку",
-	"centralnotice-banner-autolink-help": "Коли CentralNotice увімкнено, він автоматично створює локалізоване посилання на $3 з довільно вибраною цільовою сторінкою. У тілі банера повинен бути тег якірця з $1.",
-	"centralnotice-banner-landing-pages": "Цільові сторінки (через кому):",
-	"centralnotice-banner-landing-pages-default": "напр., JimmyAppeal01",
 	"centralnotice-banner-mixins": "Домішки (mixins)",
 	"centralnotice-banner-mixins-help": "Відмітьте кожну домішку, яку Ви хочете включити при доставці банера. (Див. сторінку [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] для детальнішої інформації.)",
 	"centralnotice-geo": "Геоприв'язка",
@@ -265,10 +264,10 @@
 	"apihelp-centralnoticequerycampaign-description": "Отримати всі параметри конфігурації для кампанії.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Назва кампанії. Розділіть різні значення через \"|\" (вертикальна риска).",
 	"apihelp-centralnoticequerycampaign-example-1": "Показати кампанію «Plea_US»",
-	"apihelp-centralnoticebannerchoicedata-description": "Отримати дані, необхідні для вибору банера для даного проекту та мови",
-	"apihelp-centralnoticebannerchoicedata-param-project": "Проект, для якого отримати дані вибору банера.",
-	"apihelp-centralnoticebannerchoicedata-param-language": "Мова, для якої отримати дані вибору банера.",
-	"apihelp-centralnoticebannerchoicedata-example-1": "Отримати дані для вибору банера для користувачів англійської Вікіпедії.",
+	"apihelp-centralnoticechoicedata-description": "Отримати дані, необхідні для вибору банера для даного проекту та мови",
+	"apihelp-centralnoticechoicedata-param-project": "Проект, для якого отримати дані вибору банера.",
+	"apihelp-centralnoticechoicedata-param-language": "Мова, для якої отримати дані вибору банера.",
+	"apihelp-centralnoticechoicedata-example-1": "Отримати дані для вибору банера для користувачів англійської Вікіпедії.",
 	"apihelp-query+centralnoticelogs-description": "Отримати журнал змін конфугурації кампанії.",
 	"apihelp-query+centralnoticelogs-param-campaign": "Назва кампанії (необов'язково). Розділіть різні значення через \"|\" (вертикальна риска).",
 	"apihelp-query+centralnoticelogs-param-user": "Ім'я користувача (необов'язково).",
@@ -276,5 +275,7 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Зсув у результаті (необов'язково).",
 	"apihelp-query+centralnoticelogs-param-start": "Початковий час вибірки (необов'язково).",
 	"apihelp-query+centralnoticelogs-param-end": "Кінцевий час вибірки (необов'язково).",
-	"apihelp-query+centralnoticelogs-example-1": "Показати журнали"
+	"apihelp-query+centralnoticelogs-example-1": "Показати журнали",
+	"centralnotice-banner-history-logger-max-entry-age": "Найбільший вік записів журналу (у днях)",
+	"centralnotice-banner-history-logger-max-entries": "Найбільша кількість записів, щоб зберігати в журналі"
 }

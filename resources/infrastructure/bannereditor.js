@@ -149,18 +149,6 @@
 		},
 
 		/**
-		 * Shows or hides the landing pages edit box control based on the status of
-		 * the "Automatically create landing page link" check box.
-		 */
-		showHideLpEditBox: function() {
-			if ( $( '#mw-input-wpcreate-landingpage-link' ).prop( 'checked' ) ) {
-				$( '#mw-input-wplanding-pages' ).parent().parent().show();
-			} else {
-				$( '#mw-input-wplanding-pages' ).parent().parent().hide();
-			}
-		},
-
-		/**
 		 * Hook function from onclick of the translate language drop down -- will submit the
 		 * form in order to update the language of the preview and the displayed translations.
 		 */
@@ -212,9 +200,7 @@
 	$( '#mw-input-wpclone-button' ).click( mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
 	$( '#mw-input-wpsave-button' ).click( mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
 	$( '#mw-input-wptranslate-language' ).change( mw.centralNotice.adminUi.bannerEditor.updateLanguage );
-	$( '#mw-input-wpcreate-landingpage-link' ).change( mw.centralNotice.adminUi.bannerEditor.showHideLpEditBox );
 
 	// And do some initial form work
-	mw.centralNotice.adminUi.bannerEditor.showHideLpEditBox();
 	$( '#cn-js-error-warn' ).hide();
 } )( jQuery, mediaWiki );

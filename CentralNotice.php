@@ -23,7 +23,7 @@ $wgExtensionCredits[ 'other' ][] = array(
 		'Adam Roses Wight',
 		'Brion Vibber',
 	),
-	'version'        => '2.5.1',
+	'version'        => '2.6.0',
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:CentralNotice',
 	'descriptionmsg' => 'centralnotice-desc',
 	'license-name' => 'GPL-2.0+',
@@ -96,6 +96,7 @@ $wgCentralNoticeLoader = true;
 $wgNoticeEnableFundraising = true;
 
 // Base URL for default fundraiser landing page (without query string)
+// TODO Remove, no longer used
 $wgNoticeFundraisingUrl = 'https://donate.wikimedia.org/wiki/Special:LandingCheck';
 
 // Source for live counter information
@@ -130,6 +131,7 @@ $wgNoticeCookieDurations = array(
 
 /**
  * @var string Timestamp after which old-format 'hide' cookies should be deleted
+ * TODO Remove this after banner display refactor has been deployed
  */
 $wgNoticeOldCookieEpoch = '20141109000000';
 
@@ -182,6 +184,7 @@ $wgNoticeTranslateDeployStates = array(
 
 // These are countries that MaxMind will give out when information is a bit fuzzy. However,
 // fundraising code doesn't like non ISO countries so we map them to the fictional point case 'XX'
+// TODO No longer used, remove
 $wgNoticeXXCountries = array( 'XX', 'EU', 'AP', 'A1', 'A2', 'O1' );
 
 // String of space delimited domains that will be able to accept data via JS message event when
@@ -234,9 +237,55 @@ $wgNoticeTabifyPages = array(
 	),
 );
 
-// Available banner mixins, usually provided by separate extensions.
+// Available banner mixins
 // See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
-$wgNoticeMixins = array();
+$wgCentralNoticeBannerMixins = array();
+
+// Available campaign mixins. Mixins must declare at lesat a module and an i18n
+// key for their name. Allowed parameter types are 'string', 'integer',
+// 'float' and 'boolean'.
+
+// Note: i18n messages for parameter labels (labelMsg) should be added to the
+// ext.centralNotice.adminUi.campaignManager module in CentralNotice.modules.php
+
+$wgCentralNoticeCampaignMixins = array(
+	'bannerHistoryLogger' => array(
+		'module' => 'ext.centralNotice.bannerHistoryLogger',
+		'nameMsg' => 'centralnotice-banner-history-logger',
+		'parameters' => array(
+			'rate' => array(
+				'type' => 'float',
+				'labelMsg' => 'centralnotice-banner-history-logger-rate',
+			),
+			'maxEntryAge' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entry-age'
+			),
+			'maxEntries' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entries'
+			)
+		)
+	),
+	'legacySupport' => array(
+		'module' => 'ext.centralNotice.legacySupport',
+		'nameMsg' => 'centralnotice-legacy-support',
+		'parameters' => array(
+			'setSRISampleRate' => array(
+				'type' => 'boolean',
+				'labelMsg' => 'centralnotice-set-record-impression-sample-rate',
+			),
+			'sriSampleRate' => array(
+				'type' => 'float',
+				'labelMsg' => 'centralnotice-custom-record-impression-sample-rate'
+			),
+			'bannersNotGuaranteedToDisplay' => array(
+				'type' => 'boolean',
+				'labelMsg' => 'centralnotice-banners-not-guaranteed-to-display'
+			)
+		)
+	)
+);
 
 /* Setup */
 require_once $dir . '/CentralNotice.hooks.php';

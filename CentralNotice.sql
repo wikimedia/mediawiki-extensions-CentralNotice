@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_templates (
 	`tmp_display_anon` tinyint(1) NOT NULL DEFAULT '1',
 	`tmp_display_account` tinyint(1) NOT NULL DEFAULT '1',
 	`tmp_fundraising` tinyint(1) NOT NULL DEFAULT '0',
-	`tmp_autolink` tinyint(1) NOT NULL DEFAULT '0',
-	`tmp_landing_pages` varchar(255) DEFAULT NULL,
+	`tmp_autolink` tinyint(1) NOT NULL DEFAULT '0', -- Note: no longer used
+	`tmp_landing_pages` varchar(255) DEFAULT NULL, -- Note: no longer used
 	`tmp_archived` tinyint(1) NOT NULL DEFAULT '0',
 	`tmp_category` varchar(255) DEFAULT NULL,
 	`tmp_preview_sandbox` tinyint(1) NOT NULL DEFAULT '0'
@@ -71,6 +71,26 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_template_mixins (
 CREATE INDEX /*i*/tmxn_tmp_id ON /*_*/cn_template_mixins (tmp_id);
 CREATE INDEX /*i*/tmxn_page_id ON /*_*/cn_template_mixins (page_id);
 CREATE INDEX /*i*/tmxn_mixin_name ON /*_*/cn_template_mixins (mixin_name);
+
+CREATE TABLE IF NOT EXISTS /*_*/cn_notice_mixins (
+	`nmxn_id` int PRIMARY KEY AUTO_INCREMENT,
+	`nmxn_not_id` int(11) NOT NULL,
+	`nmxn_mixin_name` varchar(255) NOT NULL,
+	`nmxn_enabled` tinyint(1) NOT NULL DEFAULT '0'
+) /*$wgDBTableOptions*/;
+CREATE INDEX /*i*/nmxn_not_id_idx ON /*_*/cn_notice_mixins (nmxn_not_id);
+CREATE INDEX /*i*/nmxn_mixin_name_idx ON /*_*/cn_notice_mixins (nmxn_mixin_name);
+CREATE UNIQUE INDEX /*i*/nmxn_not_id_mixin_name ON /*_*/cn_notice_mixins (nmxn_not_id, nmxn_mixin_name);
+
+CREATE TABLE IF NOT EXISTS /*_*/cn_notice_mixin_params (
+	`nmxnp_id` int PRIMARY KEY AUTO_INCREMENT,
+	`nmxnp_notice_mixin_id` int(11) NOT NULL,
+	`nmxnp_param_name` varchar(255) NOT NULL,
+	`nmxnp_param_value` TEXT NOT NULL
+) /*$wgDBTableOptions*/;
+CREATE INDEX /*i*/nmxnp_notice_mixin_id_idx ON /*_*/cn_notice_mixin_params (nmxnp_notice_mixin_id);
+CREATE INDEX /*i*/nmxnp_param_name_value_idx ON /*_*/cn_notice_mixin_params (nmxnp_param_name, nmxnp_param_value(50));
+CREATE UNIQUE INDEX /*i*/nmxn_notice_mixin_id_param_name ON /*_*/cn_notice_mixin_params (nmxnp_notice_mixin_id, nmxnp_param_name);
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_known_devices (
 	`dev_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -143,6 +163,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notice_log (
 	`notlog_end_weight` int DEFAULT NULL,
 	`notlog_begin_archived` tinyint DEFAULT NULL,
 	`notlog_end_archived` tinyint DEFAULT NULL,
+	`notlog_begin_mixins` BLOB DEFAULT NULL,
+	`notlog_end_mixins` BLOB DEFAULT NULL,
 	`notlog_comment` varchar(255) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/notlog_timestamp ON /*_*/cn_notice_log (notlog_timestamp);

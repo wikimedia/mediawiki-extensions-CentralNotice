@@ -23,7 +23,8 @@
 			"Meshkov.a",
 			"Alexandr Efremov",
 			"Gazimagomedov",
-			"Seunei"
+			"Seunei",
+			"Translatobecomer"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -134,10 +135,6 @@
 	"centralnotice-banner-collapsible": "Сворачиваемый",
 	"centralnotice-banner-fundraising": "Это баннер сбора средств",
 	"centralnotice-banner-display-on": "Отображать на",
-	"centralnotice-banner-autolink": "Автоматически создать ссылку на целевую страницу",
-	"centralnotice-banner-autolink-help": "После включения CentralNotice автоматически создаст локализованную ссылку на $3 с целевой страницей, выбранной наугад. Там должен быть тег-якорь с $1 в теле баннера.",
-	"centralnotice-banner-landing-pages": "Целевые страницы (через запятую):",
-	"centralnotice-banner-landing-pages-default": "например, JimmyAppeal01",
 	"centralnotice-banner-mixins": "«Примеси»:",
 	"centralnotice-banner-mixins-help": "Отметьте каждую «примесь», которую вы хотите включить при доставка баннера. (См. [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] для получения дополнительной информации.)",
 	"centralnotice-geo": "Геопривязка",
@@ -266,5 +263,6 @@
 	"apihelp-query+centralnoticelogs-param-limit": "Максимальное число возвращаемых строк (необязательно).",
 	"apihelp-query+centralnoticelogs-param-start": "Начальное время диапазона (необязательно).",
 	"apihelp-query+centralnoticelogs-param-end": "Конечное время диапазона (необязательно).",
-	"apihelp-query+centralnoticelogs-example-1": "Показать журналы"
+	"apihelp-query+centralnoticelogs-example-1": "Показать журналы",
+	"centralnotice-banner-history-logger-max-entries": "Максимальное число записей, доступное для сохранения в журнале"
 }

@@ -14,7 +14,8 @@
 			"青子守歌",
 			"Rxy",
 			"SkyDaisy9",
-			"W.CC"
+			"W.CC",
+			"Sujiniku"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -121,10 +122,6 @@
 	"centralnotice-banner-collapsible": "折り畳み可能",
 	"centralnotice-banner-fundraising": "これは資金調達のバナーです",
 	"centralnotice-banner-display-on": "対象プラットフォーム",
-	"centralnotice-banner-autolink": "ランディング ページのリンクを自動作成",
-	"centralnotice-banner-autolink-help": "有効にすると、中央管理通知が $3 へのローカライズ済みリンクを、無作為に選んだランディングページを付けて、自動的に作成します。バナーの本文内に $1 を含むアンカータグが必要です。",
-	"centralnotice-banner-landing-pages": "ランディング ページ (カンマ区切り)",
-	"centralnotice-banner-landing-pages-default": "例: JimmyAppeal01",
 	"centralnotice-geo": "特定地域が対象",
 	"centralnotice-countries": "国",
 	"centralnotice-global-allocation": "グローバル割り当て",
@@ -236,5 +233,6 @@
 	"centralnotice-banner-not-found-title": "この項目のページが見つかりません。",
 	"centralnotice-banner-not-found-contents": "この名称と一致するバナーはありません。",
 	"apihelp-centralnoticeallocations-description": "CentralNoticeが提供しているバナーの割り当てを、全ての利用者型を対象にパラメータにより抽出し取得します。\n\nこれはJSON only callです。",
-	"apihelp-centralnoticequerycampaign-example-1": " \"Plea_US\"キャンペーンを表示"
+	"apihelp-centralnoticequerycampaign-example-1": " \"Plea_US\"キャンペーンを表示",
+	"centralnotice-banner-history-logger": "バナー履歴ロガー"
 }

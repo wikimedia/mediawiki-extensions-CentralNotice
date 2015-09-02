@@ -171,6 +171,9 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			$this->msg( 'centralnotice-category' )->text(),
 			$row->tmplog_end_category
 		)->text() . "<br/>";
+
+		// Autolink/landing pages feature has been removed, but we might as
+		// well show any info about it in the logs.
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-autolink' )->text(),
@@ -204,14 +207,14 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			);
 		}
 
-		$details = $this->testBooleanChange2( 'anon', $newrow, $oldrow );
-		$details .= $this->testBooleanChange2( 'account', $newrow, $oldrow );
-		$details .= $this->testTextChange( 'category', $newrow, $oldrow );
-		$details .= $this->testBooleanChange2( 'autolink', $newrow, $oldrow );
-		$details .= $this->testTextChange( 'landingpages', $newrow, $oldrow );
-		$details .= $this->testTextChange( 'controller_mixin', $newrow, $oldrow );
-		$details .= $this->testTextChange( 'prioritylangs', $newrow, $oldrow );
-		$details .= $this->testTextChange( 'devices', $newrow, $oldrow );
+		$details = $this->testBooleanBannerChange( 'anon', $newrow, $oldrow );
+		$details .= $this->testBooleanBannerChange( 'account', $newrow, $oldrow );
+		$details .= $this->testTextBannerChange( 'category', $newrow, $oldrow );
+		$details .= $this->testBooleanBannerChange( 'autolink', $newrow, $oldrow );
+		$details .= $this->testTextBannerChange( 'landingpages', $newrow, $oldrow );
+		$details .= $this->testTextBannerChange( 'controller_mixin', $newrow, $oldrow );
+		$details .= $this->testTextBannerChange( 'prioritylangs', $newrow, $oldrow );
+		$details .= $this->testTextBannerChange( 'devices', $newrow, $oldrow );
 		if ( $newrow->tmplog_content_change ) {
 			// Show changes to banner content
 			$details .= $this->msg (
@@ -223,7 +226,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	private function testBooleanChange2( $param, $newrow, $oldrow ) {
+	protected function testBooleanBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_'.$param;
 
@@ -245,26 +248,13 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $result;
 	}
 
-	private function testTextChange( $param, $newrow, $oldrow ) {
+	protected function testTextBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_'.$param;
 
 		$oldval = ( ( $oldrow ) ? $oldrow->$endField : '' ) ?: '';
 		$newval = ( $newrow->$endField ) ?: '';
 
-		if ( $oldval !== $newval ) {
-			// Give grep a chance to find the usages: centralnotice-landingpages, centralnotice-prioritylangs,
-			// centralnotice-controller_mixin, centralnotice-category
-			$result .= $this->msg(
-				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
-				$this->msg(
-					'centralnotice-changed',
-					$oldval,
-					$newval
-				)->text()
-			)->text() . "<br/>";
-		}
-		return $result;
+		return $this->testTextChange($param, $newval, $oldval);
 	}
 }

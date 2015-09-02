@@ -3,7 +3,8 @@
 		"authors": [
 			"CERminator",
 			"DzWiki",
-			"Palapa"
+			"Palapa",
+			"Semso98"
 		]
 	},
 	"centralnotice": "Uređivanje središnjeg obavještenja",
@@ -141,8 +142,8 @@
 	"centralnotice-all": "Sve",
 	"centralnotice-archive-banner": "Arhiva",
 	"centralnotice-archive-campaign-cancel": "Otkaži",
-	"centralnotice-start-date": "Početni datum",
+	"centralnotice-start-date": "Početni datum (UTC)",
 	"centralnotice-start-time": "Početno vrijeme (UTC)",
-	"centralnotice-end-date": "Krajnji datum",
+	"centralnotice-end-date": "Krajnji datum (UTC)",
 	"centralnotice-end-time": "Vrijeme završetka (UTC)"
 }

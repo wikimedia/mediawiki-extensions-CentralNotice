@@ -1,13 +1,13 @@
 <?php
 
 /***
- * Module for the centralnoticebannerchoicedata Web API.
+ * Module for the centralnoticechoicedata Web API.
  *
  * This is provided as a fallback mechanism for getting banner choice data
  * from an infrastructure wiki, for cases in which direct cross-wiki DB
  * queries are not possible.
  */
-class ApiCentralNoticeBannerChoiceData extends ApiBase {
+class ApiCentralNoticeChoiceData extends ApiBase {
 
 	const LANG_FILTER = '/[a-zA-Z0-9\-]+/';
 
@@ -37,7 +37,7 @@ class ApiCentralNoticeBannerChoiceData extends ApiBase {
 				self::LANG_FILTER
 		);
 
-		$choicesProvider = new BannerChoiceDataProvider( $project, $lang );
+		$choicesProvider = new ChoiceDataProvider( $project, $lang );
 
 		$choices = $choicesProvider->getChoices();
 
@@ -66,8 +66,8 @@ class ApiCentralNoticeBannerChoiceData extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return array(
-			'action=centralnoticebannerchoicedata&project=wikpedia&language=en'
-			=> 'apihelp-centralnoticebannerchoicedata-example-1'
+			'action=centralnoticechoicedata&project=wikpedia&language=en'
+			=> 'apihelp-centralnoticechoicedata-example-1'
 		);
 	}
 

@@ -86,7 +86,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Output the end tag for the enclosing dive we use on all subactions
+	 * Output the end tag for the enclosing div we use on all subactions
 	 */
 	protected function outputEnclosingDivEndTag() {
 		$this->getOutput()->addHTML( Xml::closeElement( 'div' ) );
@@ -579,7 +579,10 @@ class CentralNotice extends SpecialPage {
 			// Submit button
 			$htmlOut .= Xml::tags( 'div',
 				array( 'class' => 'cn-buttons' ),
-				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
+				Xml::submitButton(
+					$this->msg( 'centralnotice-modify' )->text(),
+					array( 'id' => 'noticeDetailSubmit' )
+				)
 			);
 		}
 
@@ -594,8 +597,14 @@ class CentralNotice extends SpecialPage {
 		$this->outputEnclosingDivEndTag();
 	}
 
+	/**
+	 * Process a post request from the campaign (notice) detail subaction. Make
+	 * changes to the campaign based on the post parameters.
+	 *
+	 * @param string $notice
+	 */
 	protected function handleNoticeDetailPost( $notice ) {
-		global $wgNoticeNumberOfBuckets;
+		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
 		$request = $this->getRequest();
 
 		// If what we're doing is actually serious (ie: not updating the banner
@@ -735,6 +744,52 @@ class CentralNotice extends SpecialPage {
 					Campaign::updateProjectLanguages( $notice, $projectLangs );
 				}
 
+				// Handle campaign-associated mixins
+				foreach ( $wgCentralNoticeCampaignMixins
+					as $mixinName => $mixinDef ) {
+
+					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
+
+					if ( $request->getCheck( $mixinControlName ) ) {
+
+						$params = array();
+
+						foreach ( $mixinDef['parameters'] as $paramName => $paramDef ) {
+
+							$requestParamName =
+								self::makeNoticeMixinControlName( $mixinName, $paramName );
+
+							switch( $paramDef['type'] ) {
+								case 'string':
+									$paramVal = Sanitizer::removeHTMLtags(
+										$request->getText( $requestParamName )
+									);
+									break;
+
+								case 'integer':
+									$paramVal = $request->getInt( $requestParamName );
+									break;
+
+								case 'float':
+									$paramVal = $request->getFloat( $requestParamName );
+									break;
+
+								case 'boolean':
+									$paramVal = $request->getCheck( $requestParamName );
+								break;
+							}
+
+							$params[$paramName] = $paramVal;
+						}
+
+						Campaign::updateCampaignMixins(
+							$notice, $mixinName, true, $params );
+
+					} else {
+						Campaign::updateCampaignMixins( $notice, $mixinName, false );
+					}
+				}
+
 				$finalCampaignSettings = Campaign::getCampaignSettings( $notice );
 				$campaignId = Campaign::getNoticeId( $notice );
 
@@ -773,7 +828,7 @@ class CentralNotice extends SpecialPage {
 	 * Create form for managing campaign settings (start date, end date, languages, etc.)
 	 */
 	function noticeDetailForm( $notice ) {
-		global $wgNoticeNumberOfBuckets;
+		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
 
 		if ( $this->editable ) {
 			$readonly = array();
@@ -937,10 +992,78 @@ class CentralNotice extends SpecialPage {
 				$htmlOut .= Xml::closeElement( 'tr' );
 			}
 			$htmlOut .= Xml::closeElement( 'table' );
+
+			// Create controls for campaign-associated mixins (if there are any)
+			if ( count( $wgCentralNoticeCampaignMixins > 0 ) ) {
+
+				$mixinsThisNotice = Campaign::getCampaignMixins( $notice );
+
+				$htmlOut .= Xml::fieldset(
+					$this->msg( 'centralnotice-notice-mixins-fieldset' )->text() );
+
+				foreach ( $wgCentralNoticeCampaignMixins
+					as $mixinName => $mixinDef ) {
+
+					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
+
+					$attribs = array(
+						'value' => $notice,
+						'class' => 'noticeMixinCheck',
+						'id' => $mixinControlName,
+						'data-mixin-name' => $mixinName
+					);
+
+					if ( isset( $mixinsThisNotice[$mixinName] ) ) {
+
+						// We have data on the mixin for this campaign, though
+						// it may not have been enabled.
+
+						$checked = $mixinsThisNotice[$mixinName]['enabled'];
+
+						$attribs['data-mixin-param-values'] =
+							FormatJson::encode(
+							$mixinsThisNotice[$mixinName]['parameters'] );
+
+					} else {
+
+						// No data; it's never been enabled for this campaign
+						// before. Note: default settings values are set on the
+						// client.
+						$checked = false;
+					}
+
+					$htmlOut .= Xml::openElement( 'div' );
+
+					$htmlOut .= Xml::check(
+						$mixinControlName,
+						$checked,
+						array_replace( $readonly, $attribs )
+					);
+
+					$htmlOut .= Xml::label(
+						$this->msg( $mixinDef['nameMsg'] )->text(),
+						$mixinControlName,
+						array( 'for' => $mixinControlName )
+					);
+
+					$htmlOut .= Xml::closeElement( 'div' );
+
+				}
+
+				$htmlOut .= Xml::closeElement( 'fieldset' );
+			}
+
 			return $htmlOut;
 		} else {
 			return '';
 		}
+	}
+
+	protected static function makeNoticeMixinControlName(
+			$mixinName, $mixinParam=null ) {
+
+		return 'notice-mixin-' . $mixinName .
+			( $mixinParam ? '-' . $mixinParam : '' );
 	}
 
 	/**

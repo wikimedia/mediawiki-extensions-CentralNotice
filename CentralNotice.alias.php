@@ -266,7 +266,7 @@ $specialPageAliases['lb'] = array(
 	'HideBanners' => array( 'Banner_verstoppen' ),
 );
 
-/** Northern Luri (لوری مینجایی) */
+/** Northern Luri (لۊری شومالی) */
 $specialPageAliases['lrc'] = array(
 	'CentralNotice' => array( 'ڤیرداری_مینجایی' ),
 	'CentralNoticeBanners' => array( 'بئیرأقیا_ڤارئسکار_مینجایی' ),

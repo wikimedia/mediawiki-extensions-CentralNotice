@@ -5,7 +5,7 @@
  * @group medium
  * @group Database
  */
-class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
+class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
@@ -22,7 +22,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 	}
 
 	protected function getProvider() {
-		return new TestingCNBannerChoiceDataResourceLoaderModule();
+		return new TestingCNChoiceDataResourceLoaderModule();
 	}
 
 	/**
@@ -38,7 +38,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 			) );
 
 			$fauxRequest = new FauxRequest( array(
-					'modules' => 'ext.centralNotice.bannerChoiceData',
+					'modules' => 'ext.centralNotice.choiceData',
 					'skin' => 'fallback',
 					'lang' => $contextAndOutput['context']['language']
 			) );
@@ -56,7 +56,7 @@ class CNBannerChoicesResourceLoaderModuleTest extends MediaWikiTestCase {
 /**
  * Wrapper to circumvent access control
  */
-class TestingCNBannerChoiceDataResourceLoaderModule extends CNBannerChoiceDataResourceLoaderModule {
+class TestingCNChoiceDataResourceLoaderModule extends CNChoiceDataResourceLoaderModule {
 	public function getChoicesForTesting( $rlContext ) {
 		return $this->getChoices( $rlContext );
 	}

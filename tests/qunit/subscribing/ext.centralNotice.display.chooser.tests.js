@@ -4,11 +4,11 @@
 	var testFixtures = mw.centralNoticeTestFixtures,
 		testCases = testFixtures.test_cases,
 		numBuckets = testFixtures.mock_config_values.wgNoticeNumberOfBuckets,
-		lib = mw.cnBannerControllerLib;
+		chooser = mw.centralNotice.internal.chooser;
 
 	// FIXME: fail hard if there is no fixture data
 
-	QUnit.module( 'ext.centralNotice.bannerController.lib', QUnit.newMwEnvironment( {
+	QUnit.module( 'ext.centralNotice.display.chooser', QUnit.newMwEnvironment( {
 		config: {
 			// Make this config available in tests
 			wgNoticeNumberOfBuckets: numBuckets
@@ -26,24 +26,32 @@
 			// Note: numBuckets isn't available via mw.config here, only in tests
 			for (i = 0; i < numBuckets; i++ ) {
 				testName = testCaseName + '/' + contextAndOutputName + '/bucket_' + i;
-				allocationTestFunction = makeAllocationTestFunction( contextAndOutput, i );
+
+				// Use a deep copy of contextAndOutput for each test, since
+				// properties get added in tests
+				allocationTestFunction = makeAllocationTestFunction(
+					$.extend( true, {}, contextAndOutput ), i );
+
 				QUnit.test( testName, allocationTestFunction );
 			}
 		} );
 	} );
 
 	/**
-	 * Return a function for an alloaction test, with the required values
+	 * Return a function for an allocation test, with the required values
 	 * closured in.
 	 */
 	function makeAllocationTestFunction( contextAndOutput, bucket ) {
 		return function ( assert ) {
-				var choices = contextAndOutput.choices,
+			var choices = contextAndOutput.choices,
 				expectedAssertCount,
+				anonymous,
+				context = contextAndOutput.context,
+				allocatedCampaignsCount,
 				j, expectedBanners,
 				expectedAllocations = contextAndOutput.allocations,
 				campaign, expectedCampaign, campaignName,
-				context = contextAndOutput.context,
+				allocatedBannersCount,
 				k, banner, bannerName;
 
 			// Calculate how many assertions to expect:
@@ -68,37 +76,34 @@
 			// Munge magic start and end properties into timestamps
 			setChoicesStartEnd( choices );
 
-			// Set the bucket for all campaigns to the bucket we're on
-			lib.bucketsByCampaign = {};
-			for ( j = 0; j < choices.length; j++ ) {
-				campaignName = choices[j].name;
-				lib.bucketsByCampaign[campaignName] = { val: bucket };
-			}
-
-			// Set up context
-			mw.centralNotice.data.country = context.country;
-			mw.centralNotice.data.device = context.device;
-			mw.centralNotice.data.anonymous =
+			anonymous =
 				isAnonymousFromLoggedInStatus( context.logged_in_status );
 
-			// Set up and filter choices, and allocate campaigns
-			lib.setChoiceData( choices );
+			// Instead of testing the return value of this method, we'll test
+			// the allocation properties that are set on the campaigns in
+			// choices.
+			// TODO Test return value, too.
+			chooser.chooseCampaign(
+				choices,
+				context.country,
+				anonymous,
+				context.device,
+				0
+			);
 
-			// The methods we're testing operate on lib.choiceData. That's where
-			// we'll look for the results to test.
-			// TODO: make separate tests for each method
-			lib.filterChoiceData();
-			lib.calculateCampaignAllocations();
-
-			// Test that the expected number of campaigns are in choices
-			assert.strictEqual( lib.choiceData.length,
-				Object.keys( expectedAllocations ).length,
-				'Number of campaigns allocated.' );
+			allocatedCampaignsCount = 0;
 
 			// Cycle through the campaigns in choices and test expected allocation
-			for ( j = 0; j < lib.choiceData.length; j++ ) {
-				campaign = lib.choiceData[j];
+			for ( j = 0; j < choices.length; j++ ) {
+				campaign = choices[j];
 				campaignName = campaign.name;
+
+				// Continue if this campaign wasn't allocated
+				if ( !( 'allocation' in campaign ) ) {
+					continue;
+				}
+
+				allocatedCampaignsCount++;
 
 				// Test that the campaign was expected and was correctly allocated
 				assert.ok( campaignName in expectedAllocations,
@@ -118,24 +123,33 @@
 					continue;
 				}
 
-				// "Choose" this campaign, make a list of possible banners, and
-				// allocate them.
-				lib.setCampaign( campaign );
-				lib.makePossibleBanners();
-				lib.calculateBannerAllocations();
+				// As above, instead of testing the return value of this method,
+				// we'll test the allocation properties that are set on the
+				// banners in campaign.
+				// TODO Test return value, too.
+				chooser.chooseBanner(
+					campaign,
+					bucket,
+					anonymous,
+					context.device,
+					0
+				);
 
 				expectedBanners = expectedCampaign.banners[bucket];
 
-				// Test that the expected number of banners for this campaign
-				// are in possibleBanners.
-				assert.strictEqual( lib.possibleBanners.length,
-					Object.keys( expectedBanners ).length,
-					'Number of banners allocated.' );
+				allocatedBannersCount = 0;
 
-				for ( k = 0; k < lib.possibleBanners.length; k++ ) {
+				for ( k = 0; k < campaign.banners.length; k++ ) {
 
-					banner = lib.possibleBanners[k];
+					banner = campaign.banners[k];
 					bannerName = banner.name;
+
+					// Continue if this banner wasn't allocated
+					if ( !( 'allocation' in banner ) ) {
+						continue;
+					}
+
+					allocatedBannersCount++;
 
 					// Test the banner was expected and was correctly allocated
 					assert.ok( bannerName in expectedBanners,
@@ -147,7 +161,19 @@
 						'Expected allocation for banner ' + bannerName
 					);
 				}
+
+				// Test that the expected number of banners for this campaign
+				// were allocated
+				assert.strictEqual( allocatedBannersCount,
+					Object.keys( expectedBanners ).length,
+					'Number of banners allocated.' );
+
 			}
+
+			// Test that the expected number of campaigns were allocated
+			assert.strictEqual( allocatedCampaignsCount,
+				Object.keys( expectedAllocations ).length,
+				'Number of campaigns allocated.' );
 		};
 	}
 
@@ -199,7 +225,4 @@
 				throw 'Non-existent logged-in status.';
 		}
 	}
-
-	// TODO: tests for bannerController.lib.chooseBanner()
-
 } ( mediaWiki, jQuery ) );

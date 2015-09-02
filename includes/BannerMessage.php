@@ -20,7 +20,7 @@ class BannerMessage {
 	 * @param int         $namespace Namespace to get key for
 	 *
 	 * @return string Message database key
-	 * @throws MWException
+	 * @throws RangeException
 	 */
 	function getDbKey( $lang = null, $namespace = NS_MEDIAWIKI ) {
 		global $wgLanguageCode;
@@ -32,7 +32,7 @@ class BannerMessage {
 		} elseif ( $namespace === NS_CN_BANNER ) {
 			return "{$this->banner_name}-{$this->name}/{$lang}";
 		} else {
-			throw new MWException( "Namespace '$namespace' not known for having CentralNotice messages." );
+			throw new RangeException( "Namespace '$namespace' not known for having CentralNotice messages." );
 		}
 	}
 

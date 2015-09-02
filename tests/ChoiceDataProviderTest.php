@@ -5,7 +5,7 @@
  * @group medium
  * @group Database
  */
-class ApiCentralNoticeBannerChoiceDataTest extends ApiTestCase {
+class ChoiceDataProviderTest extends MediaWikiTestCase {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
@@ -23,20 +23,21 @@ class ApiCentralNoticeBannerChoiceDataTest extends ApiTestCase {
 	/**
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
-	public function testBannerChoiceResponse( $name, $testCase ) {
+	public function testProviderResponse( $name, $testCase ) {
 
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
-		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
+		foreach ( $testCase['contexts_and_outputs'] as $cANdOName => $contextAndOutput ) {
 
-			$ret = $this->doApiRequest( array(
-				'action' => 'centralnoticebannerchoicedata',
-				'project' => $contextAndOutput['context']['project'],
-				'language' => $contextAndOutput['context']['language']
-			) );
+			$allocationsProvider = new ChoiceDataProvider(
+				$contextAndOutput['context']['project'],
+				$contextAndOutput['context']['language']
+			);
+
+			$choices = $allocationsProvider->getChoices();
 
 			$this->cnFixtures->assertChoicesEqual(
-				$this, $contextAndOutput['choices'], $ret[0]['choices'], $cAndOName );
+				$this, $contextAndOutput['choices'], $choices, $cANdOName );
 		}
 	}
 }

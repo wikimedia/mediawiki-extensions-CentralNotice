@@ -34,8 +34,6 @@ class CentralNoticeTestFixtures {
 			'display_anon' => true,
 			'display_account' => true,
 			'fundraising' => 1,
-			'autolink' => 0,
-			'landingPages' => 'JA1, JA2',
 			'weight' => 25,
 		);
 	}
@@ -151,6 +149,8 @@ class CentralNoticeTestFixtures {
 				$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
 						$now, $choice['end_days_from_now'] );
 
+				$choice['mixins'] = array();
+
 				// Unset these special properties from choices, for tests that
 				// compare fixture choices to actual choices produced by the code
 				// under test.
@@ -176,7 +176,7 @@ class CentralNoticeTestFixtures {
 				if ( !isset( $campaign['countries'] ) ) {
 					$campaign['countries'] = array();
 				} else {
-					throw new MWException( "Campaign is not geotargetted but "
+					throw new LogicException( "Campaign is not geotargetted but "
 							. "'countries' property is set." );
 				}
 			}
@@ -257,7 +257,7 @@ class CentralNoticeTestFixtures {
 
 				if ( $bucket_count < 1 ||
 					$bucket_count > $wgNoticeNumberOfBuckets ) {
-						throw new MWException( 'Bucket count out of range.' );
+						throw new RangeException( 'Bucket count out of range.' );
 				}
 
 				Campaign::setNumericCampaignSetting(
@@ -277,10 +277,6 @@ class CentralNoticeTestFixtures {
 				);
 			}
 
-			// autolink and landingPage properties are not relevant to tests set
-			// up via fixture data and may not be provided. For those
-			// parameters, in that case, provide the default value in the
-			// Banner::addTemplate method signature.
 			foreach ( $campaign['banners'] as $bannerSpec ) {
 				Banner::addTemplate(
 					$bannerSpec['name'],
@@ -288,9 +284,7 @@ class CentralNoticeTestFixtures {
 					$this->user,
 					$bannerSpec['display_anon'],
 					$bannerSpec['display_account'],
-					$bannerSpec['fundraising'],
-					isset( $bannerSpec['autolink'] ) ? $bannerSpec['autolink'] : 0,
-					isset( $bannerSpec['landingPages'] ) ? $bannerSpec['landingPages'] : ''
+					$bannerSpec['fundraising']
 				);
 
 				Campaign::addTemplateTo(
@@ -305,7 +299,7 @@ class CentralNoticeTestFixtures {
 
 					$bucket = $bannerSpec['bucket'];
 					if ( $bucket < 0 || $bucket > $wgNoticeNumberOfBuckets ) {
-						throw new MWException( 'Bucket out of range' );
+						throw new RangeException( 'Bucket out of range' );
 					}
 
 					Campaign::updateBucket(

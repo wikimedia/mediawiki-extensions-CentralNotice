@@ -31,13 +31,13 @@ class AllocationCalculator {
 
 	/**
 	 * Filter an array in the format output by
-	 * BannerChoiceDataProvider::getChoices(), based on country, logged-in
+	 * ChoiceDataProvider::getChoices(), based on country, logged-in
 	 * status and device. This method is the server-side equivalent of
 	 * mw.cnBannerControllerLib.filterChoiceData(). (However, this method does
 	 * not perform campaign freshness checks like the client-side one.)
 	 *
 	 * @param array $choiceData Campaigns with banners as returned by
-	 *   BannerChoiceDataProvider::getChoices(). This array will be modified.
+	 *   ChoiceDataProvider::getChoices(). This array will be modified.
 	 *
 	 * @param string $country Country of interest
 	 *
@@ -269,7 +269,7 @@ class AllocationCalculator {
 	 * @param int $bucket Bucket of interest
 	 *
 	 * @param array $campaigns Campaigns with banners as returned by
-	 *   BannerChoiceDataProvider::getChoices() or
+	 *   ChoiceDataProvider::getChoices() or
 	 *   Campaign::getHistoricalCampaigns
 	 *
 	 * @return array
@@ -314,6 +314,9 @@ class AllocationCalculator {
 		return $possibleBannersAllCampaigns;
 	}
 
+	/**
+	 * @throws InvalidArgumentException
+	 */
 	public static function getLoggedInStatusFromString( $s ) {
 		switch ( $s ) {
 			case 'anonymous':
@@ -321,7 +324,7 @@ class AllocationCalculator {
 			case 'logged_in':
 				return AllocationCalculator::LOGGED_IN;
 			default:
-				throw new MWException( 'Invalid logged-in status.' );
+				throw new InvalidArgumentException( 'Invalid logged-in status.' );
 		}
 	}
 }

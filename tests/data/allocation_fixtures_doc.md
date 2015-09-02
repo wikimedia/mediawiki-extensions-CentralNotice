@@ -46,7 +46,7 @@ Some commented snippets of this data structure:
                 ...
             },
 
-            // Expected data from BannerChoiceDataProvider in this context.
+            // Expected data from ChoiceDataProvider in this context.
             // This data is also the input for client-side tests.
             "choices": {
                 ...
@@ -97,8 +97,8 @@ Default Setup Properties
 
 For non-geotargeted campaigns, a default, empty countries property is
 added. Some properties that are not relevant to these tests are
-automatically given default values (autolink, landing page, banner
-body).
+automatically given default values (bannerbody, campaign mixins for
+server-side tests).
 
 
 Issues
