@@ -230,7 +230,7 @@
 			break;
 
 		case 'float':
-			if ( $.trim( val ).match( /^-?\d+\.?\d*$/ ) ) {
+			if ( $.trim( val ).match( /^-?\d+\.?\d*$|^-?\d*\.?\d+$/ ) ) {
 				setValidationError( false, $input );
 			} else {
 				setValidationError(
