@@ -249,8 +249,8 @@
 			state.data.bucket = bucket;
 		},
 
-		setBannerNotGuaranteedToDisplay: function() {
-			state.data.bannerNotGuaranteedToDisplay = true;
+		setBannersNotGuaranteedToDisplay: function() {
+			state.data.bannersNotGuaranteedToDisplay = true;
 		},
 
 		cancelBanner: function( reason, reasonCode ) {

@@ -62,8 +62,8 @@
 				status: data.status,
 				statusCode: data.statusCode,
 
-				bannerNotGuaranteedToDisplay:
-					data.bannerNotGuaranteedToDisplay ? true : false
+				bannersNotGuaranteedToDisplay:
+					data.bannersNotGuaranteedToDisplay ? true : false
 			};
 
 		if ( data.banner ) {

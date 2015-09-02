@@ -136,9 +136,16 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 
 		// Messages used for campaign mixin parameter labels (labelMsg).
 		// See CentralNotice.php.
+
+		// Banner history logger
 		'centralnotice-banner-history-logger-rate',
 		'centralnotice-banner-history-logger-max-entry-age',
-		'centralnotice-banner-history-logger-max-entries'
+		'centralnotice-banner-history-logger-max-entries',
+
+		// Legacy campaigns
+		'centralnotice-set-record-impression-sample-rate',
+		'centralnotice-custom-record-impression-sample-rate',
+		'centralnotice-banners-not-guaranteed-to-display',
 	)
 );
 
@@ -197,6 +204,30 @@ $wgResourceModules[ 'ext.centralNotice.kvStore' ] = array(
 	'targets'       => array( 'desktop', 'mobile' ),
 );
 
+$wgResourceModules[ 'ext.centralNotice.bannerHistoryLogger' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.bannerHistoryLogger.js',
+	'dependencies'  => array(
+		'ext.centralNotice.kvStore',
+		// Mixins must depend on display to ensure the hook they use to
+		// register themselves is available when they run
+		'ext.centralNotice.display',
+	),
+	'targets'       => array( 'desktop', 'mobile' ),
+);
+
+$wgResourceModules[ 'ext.centralNotice.legacySupport' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.legacySupport.js',
+	'dependencies'  => array(
+		// Mixins must depend on display
+		'ext.centralNotice.display',
+	),
+	'targets'       => array( 'desktop', 'mobile' ),
+);
+
 // Deprecated, left here for cached HTML. Just brings in startUp and geoIP.
 $wgResourceModules[ 'ext.centralNotice.bannerController' ] = array(
 	'position'      => 'top',
@@ -225,19 +256,3 @@ $wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array();
 
 // Deprecated, left here for cached HTML
 $wgResourceModules[ 'ext.centralNotice.bannerController.lib' ] = array();
-
-// This mixin module is just to make campaign mixins smoke testable. It'll be
-// removed before merging the campaign_mixnis feature branch to master.
-$wgResourceModules[ 'ext.centralNotice.bannerHistoryLogger' ] = array(
-	'localBasePath' => $dir . '/resources',
-	'remoteExtPath' => 'CentralNotice/resources',
-	'scripts'       => 'subscribing/ext.centralNotice.bannerHistoryLogger.js',
-	// campaign mixin modules need this dependency, to be sure it is loaded first
-	'dependencies'  => array(
-		'ext.centralNotice.kvStore',
-		// Mixins must depend on display to ensure the hook they use to
-		// register themselves is available when they run
-		'ext.centralNotice.display',
-	),
-	'targets'       => array( 'desktop', 'mobile' ),
-);

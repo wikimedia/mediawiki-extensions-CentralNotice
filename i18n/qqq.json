@@ -284,5 +284,9 @@
 	"centralnotice-banner-history-logger": "Name of the banner history logger campaign mixin, for adminsitration UI control",
 	"centralnotice-banner-history-logger-rate": "Label for the banner history logger campaign mixin sample rate control in the administration UI",
 	"centralnotice-banner-history-logger-max-entry-age": "Label for the banner history logger campaign mixin maximum entry age control in the administration UI",
-	"centralnotice-banner-history-logger-max-entries": "Label for the banner history logger campaign mixin maximum number of log entries control in the administration UI"
+	"centralnotice-banner-history-logger-max-entries": "Label for the banner history logger campaign mixin maximum number of log entries control in the administration UI",
+	"centralnotice-legacy-support": "Name of the legacy support campaign mixin, for administration UI control",
+	"centralnotice-set-record-impression-sample-rate": "Label for the control to activate setting the sample rate for Special:RecordImpression, for the legacy support campaign mixin",
+	"centralnotice-custom-record-impression-sample-rate": "Label for the control to determine the sample rate for Special:RecordImpression, for the legacy support campaign mixin",
+	"centralnotice-banners-not-guaranteed-to-display": "Label for the control to indicate that banners might not display, for the legacy support campaign mixin"
 }

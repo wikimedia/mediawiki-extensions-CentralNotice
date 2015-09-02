@@ -248,9 +248,6 @@ $wgCentralNoticeBannerMixins = array();
 // Note: i18n messages for parameter labels (labelMsg) should be added to the
 // ext.centralNotice.adminUi.campaignManager module in CentralNotice.modules.php
 
-// Note: this campaign mixin is just to make campaign mixins smoke testable.
-// It'll be removed before merging the campaign_mixnis feature branch to master.
-
 $wgCentralNoticeCampaignMixins = array(
 	'bannerHistoryLogger' => array(
 		'module' => 'ext.centralNotice.bannerHistoryLogger',
@@ -267,6 +264,24 @@ $wgCentralNoticeCampaignMixins = array(
 			'maxEntries' => array(
 				'type' => 'integer',
 				'labelMsg' => 'centralnotice-banner-history-logger-max-entries'
+			)
+		)
+	),
+	'legacySupport' => array(
+		'module' => 'ext.centralNotice.legacySupport',
+		'nameMsg' => 'centralnotice-legacy-support',
+		'parameters' => array(
+			'setSRISampleRate' => array(
+				'type' => 'boolean',
+				'labelMsg' => 'centralnotice-set-record-impression-sample-rate',
+			),
+			'sriSampleRate' => array(
+				'type' => 'float',
+				'labelMsg' => 'centralnotice-custom-record-impression-sample-rate'
+			),
+			'bannersNotGuaranteedToDisplay' => array(
+				'type' => 'boolean',
+				'labelMsg' => 'centralnotice-banners-not-guaranteed-to-display'
 			)
 		)
 	)
