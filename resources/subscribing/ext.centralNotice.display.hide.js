@@ -112,7 +112,7 @@
 					{
 						'duration': duration,
 						'category': category,
-						'reason' : REASONS.CLOSE
+						'reason' : REASONS.CLOSE.key
 					}
 				);
 
