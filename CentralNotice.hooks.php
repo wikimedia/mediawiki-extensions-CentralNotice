@@ -228,7 +228,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 /**
  * MakeGlobalVariablesScript hook handler
- * This function sets the psuedo-global Javascript variables that are used by CentralNotice
+ * This function sets the pseudo-global JavaScript variables that are used by CentralNotice
  *
  * @param $vars array
  * @return bool
