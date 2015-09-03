@@ -541,20 +541,20 @@
 			cn.kvStore.removeItem( key, context );
 		},
 
-		getKVStorageErrorLog: function() {
+		getKVStorageError: function() {
 			if ( !cn.kvStore ) {
 				mw.log( 'kvStore not loaded!' );
 				return null;
 			}
-			return cn.kvStore.getErrorLog();
+			return cn.kvStore.getError();
 		},
 
-		logKVStorageNotAvailableError: function() {
+		setKVStorageNotAvailableError: function() {
 			if ( !cn.kvStore ) {
 				mw.log( 'kvStore not loaded!' );
 				return;
 			}
-			cn.kvStore.logNotAvailableError();
+			cn.kvStore.setNotAvailableError();
 		},
 
 		/**
