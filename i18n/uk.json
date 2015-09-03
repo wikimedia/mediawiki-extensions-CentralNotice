@@ -277,5 +277,6 @@
 	"apihelp-query+centralnoticelogs-param-end": "Кінцевий час вибірки (необов'язково).",
 	"apihelp-query+centralnoticelogs-example-1": "Показати журнали",
 	"centralnotice-banner-history-logger-max-entry-age": "Найбільший вік записів журналу (у днях)",
-	"centralnotice-banner-history-logger-max-entries": "Найбільша кількість записів, щоб зберігати в журналі"
+	"centralnotice-banner-history-logger-max-entries": "Найбільша кількість записів, щоб зберігати в журналі",
+	"centralnotice-banners-not-guaranteed-to-display": "Банери можуть не відображатися, так як це визначено в JavaScript-і банера"
 }

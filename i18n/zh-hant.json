@@ -21,7 +21,8 @@
 			"Cwlin0416",
 			"LNDDYL",
 			"Cwek",
-			"Zhxy 519"
+			"Zhxy 519",
+			"MoonYaksha"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -131,10 +132,6 @@
 	"centralnotice-banner-collapsible": "可摺疊",
 	"centralnotice-banner-fundraising": "這是一個募資橫幅",
 	"centralnotice-banner-display-on": "顯示於",
-	"centralnotice-banner-autolink": "自動建立到達頁面連結",
-	"centralnotice-banner-autolink-help": "當開啟 CentralNotice 時會使用隨機選擇的到達頁面自動建立在地化連結至 $3。該頁面的橫幅內容中必須含有一個使用 $1 的連結標籤。",
-	"centralnotice-banner-landing-pages": "到達頁面 (逗號分隔)",
-	"centralnotice-banner-landing-pages-default": "例如 JimmyAppeal01",
 	"centralnotice-banner-mixins": "外掛",
 	"centralnotice-banner-mixins-help": "在發送橫幅時檢查所有您要引用的外掛。\n(請參考 [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] 以取得更多資訊。)",
 	"centralnotice-geo": "地理區隔",
@@ -254,5 +251,6 @@
 	"apihelp-query+centralnoticelogs-param-limit": "回傳的列數上限 (選填)。",
 	"apihelp-query+centralnoticelogs-param-start": "期間的開始時間 (選填)。",
 	"apihelp-query+centralnoticelogs-param-end": "期間的結束時間 (選填)。",
-	"apihelp-query+centralnoticelogs-example-1": "顯示日誌"
+	"apihelp-query+centralnoticelogs-example-1": "顯示日誌",
+	"centralnotice-legacy-support": "舊版支援"
 }
