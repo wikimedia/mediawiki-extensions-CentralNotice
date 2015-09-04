@@ -1,35 +1,102 @@
 /**
  * Storage, retrieval and other processing of buckets. Provides
  * cn.internal.bucketer.
+ *
+ * Bucket assignments are stored in a cookie named simply 'CN', to maximize
+ * concision. It consists of '*'-separated campaigns, each of which is made up
+ * for '!'-separated fields. The format is:
+ *
+ *  NAME!START!END!VALUE[*NAME!START!END!VALUE..]
+ *
+ * - Start is stored as a second offset from UNIX timestamp 1400000000
+ *   (March 2014).
+ * - End is stored as second offset from start.
+ *
+ * For example:
+ *
+ *  CN=WikiConference_USA!39942400!3729600
+ *
+ * ...would be deserialized to:
+ *
+ * { WikiConference_USA: { start: 1439942400, end: 1443672000 } }
+ *
  */
 ( function ( $, mw ) {
 
-	var BUCKET_COOKIE_NAME = 'centralnotice_buckets_by_campaign',
+		// Name of the old (pre-I2b39d153b) cookie for CentralNotice buckets.
+		// Its value is a JSON-encoded object, mapping campaign names to plain
+		// objects with 'start', 'end', and 'val' parameters.
+	var LEGACY_COOKIE = 'centralnotice_buckets_by_campaign',
 
 		// Bucket objects by campaign; properties are campaign names.
 		// Retrieved from bucket cookie, if available.
-		buckets,
+		buckets = null,
 
 		// The campaign we're working with.
 		campaign = null;
 
 	/**
+	 * Escape '*' and '!' in a campaign name to make it safe for serialization.
+	 */
+	function escapeCampaignName( name ) {
+		return name.replace( /[*!]/g, function ( match ) {
+			return '&#' + match.charCodeAt( 0 );
+		} );
+	}
+
+	/**
+	 * Decode any escaped '*' and '!' characters in a serialized campaign name.
+	 */
+	function decodeCampaignName( name ) {
+		return name.replace( /&#(33|42)/, function ( match, $1 ) {
+			return String.fromCharCode( $1 );
+		} );
+	}
+
+	/**
 	 * Attempt to get buckets from the bucket cookie. If there is no
-	 * bucket cookie, set buckets to an empty object.
+	 * bucket cookie, check for a 'legacy cookie' (i.e., a cookie with
+	 * the name and format used prior to I2b39d153b); if there is one,
+	 * migrate it to the newer cookie format. If neither cookie exists,
+	 * set buckets to an empty object.
 	 */
 	function loadBuckets() {
-		var cookieVal = $.cookie( BUCKET_COOKIE_NAME );
+		var cookieVal = $.cookie( 'CN' );
 
-		if ( cookieVal ) {
-			try {
-				buckets = JSON.parse( cookieVal );
-			} catch ( e ) {
-				// Very likely a syntax error due to corrupt cookie contents
-				buckets = {};
+		buckets = {};
+
+		if ( !cookieVal ) {
+			// Prior to I2b39d153be, the campaign cookie had a different
+			// (longer) name and used JSON encoding. If the user has such
+			// a cookie, migrate it to the new format.
+			cookieVal = $.cookie( LEGACY_COOKIE );
+			if ( cookieVal ) {
+				$.removeCookie( LEGACY_COOKIE, { path: '/' } );
+				try {
+					$.extend( buckets, JSON.parse( cookieVal ) );
+				} catch ( e ) {}
+				if ( !$.isEmptyObject( buckets ) ) {
+					storeBuckets();
+				}
 			}
-		} else {
-			buckets = {};
+			return;
 		}
+
+		$.each( cookieVal.split( '*' ), function ( idx, strBucket ) {
+			var parts = strBucket.split( '!' ),
+				key = decodeCampaignName( parts[0] ),
+				start = parseInt( parts[1], 10 ) + 14e8,
+				end = start + parseInt( parts[2], 10 ),
+				val = parts[3];
+
+			if ( key && start && end && val !== undefined ) {
+				buckets[ key ] = {
+					start: start,
+					end: end,
+					val: val
+				};
+			}
+		} );
 	}
 
 	/**
@@ -37,29 +104,27 @@
 	 * after the all the buckets it contains do.
 	 */
 	function storeBuckets() {
-		var now = new Date(),
-			latestDate,
-			campaignName, bucketEndDate;
+		var expires = Math.ceil( ( new Date() ) / 1000 ),
+			cookieVal = $.map( buckets, function ( opts, key ) {
+				var parts = [
+					escapeCampaignName( key ),
+					Math.floor( opts.start - 14e8 ),
+					Math.ceil( opts.end - opts.start ),
+					opts.val
+				];
 
-		// Cycle through the buckets to find the latest end date
-		latestDate = now;
-		for ( campaignName in buckets ) {
+				if ( opts.end > expires ) {
+					expires = Math.ceil( opts.end );
+				}
 
-			bucketEndDate = new Date();
-			bucketEndDate.setTime( buckets[campaignName].end * 1000 );
-
-			if ( bucketEndDate > latestDate ) {
-				latestDate = bucketEndDate;
-			}
-		}
-
-		latestDate.setDate( latestDate.getDate() + 1 );
+				return parts.join( '!' );
+			} ).join( '*' );
 
 		// Store the buckets in the cookie
-		$.cookie( BUCKET_COOKIE_NAME,
-			JSON.stringify( buckets ),
-			{ expires: latestDate, path: '/' }
-		);
+		$.cookie( 'CN', cookieVal, {
+			expires: new Date( expires * 1000 ),
+			path: '/',
+		} );
 	}
 
 	/**
@@ -206,5 +271,4 @@
 			storeBuckets();
 		}
 	};
-
 } )( jQuery, mediaWiki );

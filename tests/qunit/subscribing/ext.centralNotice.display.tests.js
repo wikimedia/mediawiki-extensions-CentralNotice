@@ -4,7 +4,7 @@
 	var realAjax = $.ajax,
 		realWindowGeo = window.Geo,
 		realGeoIP = mw.geoIP,
-		realBucketCookie = $.cookie( 'centralnotice_buckets_by_campaign' ),
+		realBucketCookie = $.cookie( 'CN' ),
 		realHideCookie = $.cookie( 'centralnotice_hide_fundraising' ),
 		bannerData = {
 			bannerName: 'test_banner',
@@ -133,7 +133,7 @@
 			$( '#siteNotice' ).remove();
 
 			$.removeCookie( 'centralnotice_hide_fundraising', { path: '/' } );
-			$.removeCookie( 'centralnotice_buckets_by_campaign', { path: '/' } );
+			$.removeCookie( 'CN', { path: '/' } );
 
 			// Suppress background calls
 			$.ajax = function() { return $.Deferred(); };
@@ -157,7 +157,7 @@
 			$.ajax = realAjax;
 			mw.geoIP = realGeoIP;
 			$.cookie( 'centralnotice_hide_fundraising', realHideCookie, { path: '/' } );
-			$.cookie( 'centralnotice_buckets_by_campaign', realBucketCookie, { path: '/' } );
+			$.cookie( 'CN', realBucketCookie, { path: '/' } );
 			mw.centralNotice.internal.state.data = {};
 			mw.centralNotice.internal.state.campaign = null;
 			mw.centralNotice.internal.state.banner = null;
