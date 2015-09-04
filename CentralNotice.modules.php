@@ -150,6 +150,16 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 		'centralnotice-set-record-impression-sample-rate',
 		'centralnotice-custom-record-impression-sample-rate',
 		'centralnotice-banners-not-guaranteed-to-display',
+
+		// Impression diet
+		'centralnotice-impression-diet-cookie-name',
+		'centralnotice-impression-diet-cookie-name-help',
+		'centralnotice-impression-diet-maximum-seen',
+		'centralnotice-impression-diet-maximum-seen-help',
+		'centralnotice-impression-diet-restart-cycle-delay',
+		'centralnotice-impression-diet-restart-cycle-delay-help',
+		'centralnotice-impression-diet-skip-initial',
+		'centralnotice-impression-diet-skip-initial-help',
 	)
 );
 
@@ -227,6 +237,16 @@ $wgResourceModules[ 'ext.centralNotice.bannerHistoryLogger' ] = array(
 		'ext.centralNotice.kvStore',
 		// Mixins must depend on display to ensure the hook they use to
 		// register themselves is available when they run
+		'ext.centralNotice.display',
+	),
+	'targets'       => array( 'desktop', 'mobile' ),
+);
+
+$wgResourceModules[ 'ext.centralNotice.impressionDiet' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.impressionDiet.js',
+	'dependencies'  => array(
 		'ext.centralNotice.display',
 	),
 	'targets'       => array( 'desktop', 'mobile' ),

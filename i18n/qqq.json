@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adamw",
 			"Amire80",
 			"Bennylin",
 			"Darth Kule",
@@ -294,5 +295,14 @@
 	"centralnotice-legacy-support-help": "Description of the legacy support feature",
 	"centralnotice-set-record-impression-sample-rate": "Label for the control to activate setting the sample rate for Special:RecordImpression, for the legacy support campaign mixin",
 	"centralnotice-custom-record-impression-sample-rate": "Label for the control to determine the sample rate for Special:RecordImpression, for the legacy support campaign mixin",
-	"centralnotice-banners-not-guaranteed-to-display": "Label for the control to indicate that banners might not display, for the legacy support campaign mixin"
+	"centralnotice-banners-not-guaranteed-to-display": "Label for the control to indicate that banners might not display, for the legacy support campaign mixin",
+	"centralnotice-impression-diet-cookie-name": "Label for the form control to set diet cookie name.",
+	"centralnotice-impression-diet-cookie-name-help": "Help text for form control.",
+	"centralnotice-impression-diet-count-group": "Label for the form control to set count group.",
+	"centralnotice-impression-diet-count-group-help": "Help text for form control.",
+	"centralnotice-impression-diet-maximum-seen": "Label for the form control to set maximum seen count.",
+	"centralnotice-impression-diet-maximum-seen-help": "Help text for form control.",
+	"centralnotice-impression-diet-restart-cycle-delay": "Label for the form control to set cycle restart delay",
+	"centralnotice-impression-diet-skip-initial": "Label for the form control to skip initial impressions.",
+	"centralnotice-impression-diet-skip-initial-help": "Help text for form control."
 }

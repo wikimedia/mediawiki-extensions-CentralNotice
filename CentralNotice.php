@@ -289,7 +289,33 @@ $wgCentralNoticeCampaignMixins = array(
 				'labelMsg' => 'centralnotice-banners-not-guaranteed-to-display'
 			)
 		)
-	)
+	),
+	'impressionDiet' => array(
+		'module' => 'ext.centralNotice.impressionDiet',
+		'nameMsg' => 'centralnotice-impression-diet',
+		'parameters' => array(
+			'cookieName' => array(
+				'type' => 'string',
+				'labelMsg' => 'centralnotice-impression-diet-cookie-name',
+				'helpMsg' => 'centralnotice-impression-diet-cookie-name-help',
+			),
+			'skipInitial' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-impression-diet-skip-initial',
+				'helpMsg' => 'centralnotice-impression-diet-skip-initial-help',
+			),
+			'maximumSeen' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-impression-diet-maximum-seen',
+				'helpMsg' => 'centralnotice-impression-diet-maximum-seen-help',
+			),
+			'restartCycleDelay' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-impression-diet-restart-cycle-delay',
+				'helpMsg' => 'centralnotice-impression-diet-restart-cycle-delay-help',
+			),
+		),
+	),
 );
 
 /* Setup */
