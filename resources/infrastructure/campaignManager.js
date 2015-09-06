@@ -209,6 +209,10 @@
 				}
 			}
 
+			if ( paramDef.helpMsg ) {
+				paramTemplateVars.help = mw.message( paramDef.helpMsg ).text();
+			}
+
 			templateVars.params.push( paramTemplateVars );
 		} );
 

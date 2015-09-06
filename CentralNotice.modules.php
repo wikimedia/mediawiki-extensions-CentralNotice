@@ -130,6 +130,7 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 	'templates'     => array(
 		'campaignMixinParamControls.mustache' => 'templates/campaignMixinParamControls.mustache'
 	),
+	// FIXME: Registering mixin messages in this central place is not modular.
 	'messages'      => array(
 		'centralnotice-notice-mixins-int-required',
 		'centralnotice-notice-mixins-float-required',
