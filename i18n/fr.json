@@ -285,7 +285,7 @@
 	"centralnotice-banner-history-logger-rate": "Taux d'échantillonnage (doit être entre 0 et 1 inclus)",
 	"centralnotice-banner-history-logger-max-entry-age": "Age maximum des entrées de journal (en jours)",
 	"centralnotice-banner-history-logger-max-entries": "Nombre maximal d'entrées à garder dans le journal",
-	"centralnotice-legacy-support": "Support du patrimoine",
+	"centralnotice-legacy-support": "Support propriétaire",
 	"centralnotice-set-record-impression-sample-rate": "Fixer le taux d’échantillonnage pour Special:RecordImpression",
 	"centralnotice-custom-record-impression-sample-rate": "Taux d’échantillonnage de Special:RecordImpression (doit être entre 0 et 1 inclus)",
 	"centralnotice-banners-not-guaranteed-to-display": "Les bannières peuvent ne pas s'afficher, selon ce qui est décidé par le JavaScript de la bannière"
