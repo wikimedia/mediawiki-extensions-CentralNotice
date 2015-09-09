@@ -17,7 +17,7 @@
 		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory',
 
 		// The maximum random shift applied to timestamps, for user privacy
-		TIMPESTAMP_RANDOM_SHIFT_MAX = 60;
+		TIMESTAMP_RANDOM_SHIFT_MAX = 60;
 
 	/**
 	 * Load the banner history log from KV storage
@@ -46,8 +46,8 @@
 			// linked to specific Web requests. This is to strengthen user
 			// privacy.
 			randomTimeShift =
-				Math.round( Math.random() * TIMPESTAMP_RANDOM_SHIFT_MAX ) -
-				( TIMPESTAMP_RANDOM_SHIFT_MAX / 2 ),
+				Math.round( Math.random() * TIMESTAMP_RANDOM_SHIFT_MAX ) -
+				( TIMESTAMP_RANDOM_SHIFT_MAX / 2 ),
 
 			time = now + randomTimeShift,
 

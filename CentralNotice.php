@@ -241,7 +241,7 @@ $wgNoticeTabifyPages = array(
 // See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
 $wgCentralNoticeBannerMixins = array();
 
-// Available campaign mixins. Mixins must declare at lesat a module and an i18n
+// Available campaign mixins. Mixins must declare at least a module and an i18n
 // key for their name. Allowed parameter types are 'string', 'integer',
 // 'float' and 'boolean'.
 
