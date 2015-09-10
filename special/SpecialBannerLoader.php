@@ -86,7 +86,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/**
 	 * Generate the JS for the requested banner
 	 * @param $bannerName string
-	 * @return string of Javascript containing a call to insertBanner()
+	 * @return string of JavaScript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
 	 * @throws EmptyBannerException
 	 * @throws StaleCampaignException

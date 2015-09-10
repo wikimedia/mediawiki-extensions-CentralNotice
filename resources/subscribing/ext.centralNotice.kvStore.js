@@ -10,9 +10,9 @@
 
 	var KVStorageContext,
 		kvStore,
+		error = null,
 		KV_STORAGE_CN_PREFIX = 'CentralNotice',
 		KV_STORAGE_PREFIX_SEPARATOR = '|',
-		KV_STORAGE_ERROR_COOKIE_NAME = 'centralnotice_kv_storage_errors',
 		campaignName = null,
 		bannerName = null,
 		category = null;
@@ -29,48 +29,29 @@
 	};
 
 	/**
-	 * Log a problem with key-value storage to the cookie and mw.log.
-	 *
-	 * The reason we log in a cookie is so that we can identify later which
-	 * clients may have goofy KVStorage data.
+	 * Flag that a problem with key-value storage occurred, and log via mw.log.
 	 *
 	 * @param {string} message A message about the error
 	 * @param {string} key
 	 * @param {*} value
 	 * @param {KVStorageContext} context
 	 */
-	function logError( message, key, value, context ) {
+	function setError( message, key, value, context ) {
 
-		// Try to get an existing cookie; if there is one, we'll append this
-		// error to it.
-		var errCookieVal = kvStore.getErrorLog(),
-			err = {
-				message: message,
-				key: key,
-				// Limit the length of the value to store
-				value: JSON.stringify( value ).substring( 0, 50 ),
-				context: context ? context.key : null,
-				time: Math.round( ( new Date() ).getTime() / 1000 )
-			};
+		error = {
+			message: message,
+			key: key,
+			value: value,
+			context: context ? context.key : null,
+			time: new Date()
+		};
 
 		// If a campaign and/or a banner name have been set, include their names
 		// in the error
-		err.campaign = campaignName;
-		err.banner = bannerName;
+		error.campaign = campaignName;
+		error.banner = bannerName;
 
-		errCookieVal.push( err );
-
-		// Don't let the cookie hold toooooooooo many errors
-		if ( errCookieVal.length > 5 ) {
-			errCookieVal.shift();
-		}
-
-		// Store in the cookie; 2 years expiry should be sufficient
-		$.cookie( KV_STORAGE_ERROR_COOKIE_NAME,
-			JSON.stringify( errCookieVal ),
-			{ expires: 730, path: '/' } );
-
-		mw.log( 'CentralNotice KV storage error: ' + JSON.stringify( err ) );
+		mw.log( 'CentralNotice KV storage error: ' + JSON.stringify( error ) );
 	}
 
 	/**
@@ -108,7 +89,7 @@
 				return base + key;
 
 			default:
-				logError( 'Invalid KV storage context', key, null, context );
+				setError( 'Invalid KV storage context', key, null, context );
 				return base +
 					'invalidContext' + KV_STORAGE_PREFIX_SEPARATOR +
 					key;
@@ -150,7 +131,8 @@
 		 * Value can be any type; will be json-encoded.
 		 *
 		 * If the value was set, return true; if the value could not be set, we
-		 * log the error to mw.log and a cookie, and return false.
+		 * log the error via mw.log and return false. The error will be
+		 * available via getError().
 		 *
 		 * Note: check isAvailable() before calling.
 		 *
@@ -165,7 +147,7 @@
 
 			// Check validity of key
 			if ( key.indexOf( KV_STORAGE_PREFIX_SEPARATOR ) !== -1 ) {
-				logError( 'Invalid key', key, value, context );
+				setError( 'Invalid key', key, value, context );
 				return false;
 			}
 
@@ -178,7 +160,7 @@
 			// Check that it was written (it might not have been, if we're over
 			// the localStorage quota for this site, for example)
 			if ( localStorage.getItem( lsKey ) !== encodedValue ) {
-				logError( 'Couldn\'t write value', key, value, context );
+				setError( 'Couldn\'t write value', key, value, context );
 				return false;
 			}
 
@@ -207,15 +189,15 @@
 				// the same value we'd get if the key were not set).
 				if ( e instanceof SyntaxError ) {
 
-					logError( 'Couldn\'t parse value, removing. ' + e.message,
+					setError( 'Couldn\'t parse value, removing. ' + e.message,
 						key, rawValue, context );
 
 					localStorage.removeItem( lsKey );
 					return null;
 
-				// For any other errors, log and re-throw
+				// For any other errors, set and re-throw
 				} else {
-					logError( 'Couldn\'t read value ' + e.message,
+					setError( 'Couldn\'t read value ' + e.message,
 						key, rawValue, context );
 
 					throw e;
@@ -238,34 +220,18 @@
 			localStorage.removeItem( lsKey );
 		},
 
-		getErrorLog: function() {
-			var errCookieRaw = $.cookie( KV_STORAGE_ERROR_COOKIE_NAME ),
-				errCookieVal;
-
-			// If we didn't get a cookie value, or if it wasn't an array, set it to
-			// an empty array.
-			if ( !errCookieRaw ) {
-				errCookieVal = [];
-			} else {
-				try {
-					errCookieVal = JSON.parse( errCookieRaw );
-				} catch ( e ) {
-					errCookieVal = [ {
-						message: 'Couldn\'t parse error log.',
-						time: Math.round( ( new Date() ).getTime() / 1000 )
-					} ];
-				}
-
-				if ( !Array.isArray( errCookieVal ) ) {
-					errCookieVal = [];
-				}
-			}
-
-			return errCookieVal;
+		/**
+		 * If a KVStore error has occurred (during this page view), return an
+		 * object with information about it. If no KVStore errors have occurred,
+		 * return null.
+		 * @returns {?Object}
+		 */
+		getError: function() {
+			return error;
 		},
 
-		logNotAvailableError: function() {
-			logError( 'LocalStorage not available.', null, null );
+		setNotAvailableError: function() {
+			setError( 'LocalStorage not available.', null, null );
 		},
 
 		setCampaignName: function( cName ) {

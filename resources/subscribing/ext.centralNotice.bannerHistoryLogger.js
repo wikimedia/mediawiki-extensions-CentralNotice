@@ -129,7 +129,7 @@
 	function makeEventLoggingData( rate, logId ) {
 
 		var elData = {},
-			kvErrorLog = cn.getKVStorageErrorLog(),
+			kvError = cn.getKVStorageError(),
 			i, logEntry, elLogEntry;
 
 		// sample rate
@@ -142,12 +142,9 @@
 			elData.i = logId;
 		}
 
-		// if applicable, time of last kv store error
-		if ( kvErrorLog.length > 0 ) {
-			elData.e = kvErrorLog[kvErrorLog.length - 1].time;
-		}
-
-		if ( !log ) {
+		// if applicable, the message from any kv store error
+		if ( kvError ) {
+			elData.e = kvError.message;
 			return elData;
 		}
 
@@ -234,9 +231,11 @@
 				'schema.' + EVENT_LOGGING_SCHEMA
 			] );
 
-			// If KV storage works here, do our stuff
-			if ( cn.isKVStorageAvailable( ) ) {
+			if ( !cn.isKVStorageAvailable() ) {
+				cn.setKVStorageNotAvailableError();
 
+			} else {
+				// If KV storage works here, do our stuff
 				loadLog();
 				log.push( makeLogEntry() );
 
@@ -244,12 +243,6 @@
 					mixinParams.maxEntries );
 
 				storeLog();
-
-			} else {
-
-				// No KV storage? Just log this to the cookie
-				cn.logKVStorageNotAvailableError();
-				log = null;
 			}
 
 			readyToLogPromise.done( function() {
@@ -281,9 +274,6 @@
 		/**
 		 * Send the banner history log to the server, with a generated unique
 		 * log ID. Return a promise that resolves with the logId.
-		 *
-		 * Note: Should not be called from code in the top RL queue (or should
-		 * be delayed until the DOM is ready).
 		 *
 		 * Note: this unique ID must not be stored anywhere on the client. It
 		 * should be used only within the current browsing session to flag when

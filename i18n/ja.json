@@ -15,7 +15,8 @@
 			"Rxy",
 			"SkyDaisy9",
 			"W.CC",
-			"Sujiniku"
+			"Sujiniku",
+			"Otokoume"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -61,6 +62,7 @@
 	"centralnotice-balanced": "すべてのバナーに同じ重要度を設定",
 	"centralnotice-weight": "重み",
 	"centralnotice-locked": "ロック済み",
+	"centralnotice-notice-mixins-int-required": "整数である必要があります",
 	"centralnotice-notice": "告知",
 	"centralnotice-notice-heading": "告知: $1",
 	"centralnotice-notices": "告知",

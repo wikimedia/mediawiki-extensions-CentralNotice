@@ -268,7 +268,11 @@
 	"apihelp-query+centralnoticelogs-param-end": "Endzeit des Bereichs (optional).",
 	"apihelp-query+centralnoticelogs-example-1": "Logbücher anzeigen",
 	"centralnotice-banner-history-logger": "Vorlagenverlaufsprotokollierung",
-	"centralnotice-banner-history-logger-rate": "Samplerate (sollte zwischen 0 und 1 sein)",
+	"centralnotice-banner-history-logger-rate": "Samplerate (sollte einschließlich zwischen 0 und 1 sein)",
 	"centralnotice-banner-history-logger-max-entry-age": "Maximales Alter der Logbucheinträge (in Tagen)",
-	"centralnotice-banner-history-logger-max-entries": "Maximale Anzahl der Einträge, die im Logbuch behalten werden sollen"
+	"centralnotice-banner-history-logger-max-entries": "Maximale Anzahl der Einträge, die im Logbuch behalten werden sollen",
+	"centralnotice-legacy-support": "Altunterstützung",
+	"centralnotice-set-record-impression-sample-rate": "Samplerate für „Spezial:Zugriffe zählen“ festlegen",
+	"centralnotice-custom-record-impression-sample-rate": "Samplerate von „Spezial:Zugriffe zählen“ (sollte einschließlich zwischen 0 und 1 sein)",
+	"centralnotice-banners-not-guaranteed-to-display": "Vorlagen könnten nicht angezeigt werden, wie von Vorlagen-Javascript festgelegt"
 }

@@ -16,7 +16,8 @@
 			"محمد عصام",
 			"Omda4wady",
 			"Abanima",
-			"Khaled"
+			"Khaled",
+			"Hiba Alshawi"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
@@ -125,10 +126,6 @@
 	"centralnotice-banner-collapsible": "قابلة للطي",
 	"centralnotice-banner-fundraising": "هذا هو شعار جمع التبرعات.",
 	"centralnotice-banner-display-on": "عرض على",
-	"centralnotice-banner-autolink": "إنشىء إرتباط الصفحة المطلوبة تلقائيا",
-	"centralnotice-banner-autolink-help": "عند تفعيل الإشعارات المركزية سيتم إنشاء رابط محلي أوتوماتكياً ل$3 مع إختيار الصفحة المقصودة عشوائياً. يجب أن يكون هناك وسم رابط مع $1 في اللافتة.",
-	"centralnotice-banner-landing-pages": "الصفحات المقصودة (مفصولة بفواصل) :",
-	"centralnotice-banner-landing-pages-default": "على سبيل المثال التماس-جيمي-01",
 	"centralnotice-banner-mixins": "الخليط (القائمة مفصولة بفاصلة):",
 	"centralnotice-geo": "الاستهداف الجغرافي",
 	"centralnotice-countries": "الدول",
@@ -244,5 +241,7 @@
 	"apihelp-query+centralnoticelogs-param-limit": "العدد الأقصى للسطور في النتيجة (اختياري)",
 	"apihelp-query+centralnoticelogs-param-start": "مجال وقت الابتداء (اختياري).",
 	"apihelp-query+centralnoticelogs-param-end": "مجال وقت الانتهاء (اختياري)",
-	"apihelp-query+centralnoticelogs-example-1": "اعرض السجلات"
+	"apihelp-query+centralnoticelogs-example-1": "اعرض السجلات",
+	"centralnotice-banner-history-logger-rate": "نسبة العينة (يجب أن تكون بين 0 و 1 مشتمل)",
+	"centralnotice-custom-record-impression-sample-rate": "خاص: طبعة السجل نسبة العينة  (يجب أن تشتمل بين 0 و 1 )"
 }

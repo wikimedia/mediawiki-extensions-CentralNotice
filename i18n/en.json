@@ -265,5 +265,5 @@
 	"centralnotice-legacy-support": "Legacy support",
 	"centralnotice-set-record-impression-sample-rate": "Set sample rate for Special:RecordImpression",
 	"centralnotice-custom-record-impression-sample-rate": "Special:RecordImpression sample rate (should be between 0 and 1 inclusive)",
-	"centralnotice-banners-not-guaranteed-to-display": "Banners might not display, as determined by in-banner Javascript"
+	"centralnotice-banners-not-guaranteed-to-display": "Banners might not display, as determined by in-banner JavaScript"
 }

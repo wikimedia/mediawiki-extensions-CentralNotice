@@ -261,7 +261,11 @@
 	"apihelp-query+centralnoticelogs-param-end": "Завршно врме на опсегот (незадолжително).",
 	"apihelp-query+centralnoticelogs-example-1": "Прикажи логоа",
 	"centralnotice-banner-history-logger": "Дневник на историјата на разгласот",
-	"centralnotice-banner-history-logger-rate": "Стапка на примерочење (треба да е меѓу 0 и 1)",
+	"centralnotice-banner-history-logger-rate": "Стапка на примерочење (треба да е меѓу 0 и 1, заклучно со него)",
 	"centralnotice-banner-history-logger-max-entry-age": "Најголема допуштена старост на дневничките ставки (во денови)",
-	"centralnotice-banner-history-logger-max-entries": "Најголем допуштен број на ставки во дневникот"
+	"centralnotice-banner-history-logger-max-entries": "Најголем допуштен број на ставки во дневникот",
+	"centralnotice-legacy-support": "Поддршка за стари верзии",
+	"centralnotice-set-record-impression-sample-rate": "Задај ја стапката на примерочење за „Специјална:ЗаведиВпечаток“",
+	"centralnotice-custom-record-impression-sample-rate": "Стапка на примерочење за „Специјална:ЗаведиВпечаток“ (треба да биде меѓу 0 и 1, заклучно со него)",
+	"centralnotice-banners-not-guaranteed-to-display": "Разгласите може да не се прикажат, зависно од одреденото во Javascript-от во нив"
 }

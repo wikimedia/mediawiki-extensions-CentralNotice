@@ -228,7 +228,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 /**
  * MakeGlobalVariablesScript hook handler
- * This function sets the psuedo-global Javascript variables that are used by CentralNotice
+ * This function sets the pseudo-global JavaScript variables that are used by CentralNotice
  *
  * @param $vars array
  * @return bool
@@ -474,6 +474,6 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
  * @return bool Always true
  */
 function efCentralNoticeEventLoggingRegisterSchemas( &$schemas ) {
-	$schemas['CentralNoticeBannerHistory'] = 13344761;
+	$schemas['CentralNoticeBannerHistory'] = 13447710;
 	return true;
 }

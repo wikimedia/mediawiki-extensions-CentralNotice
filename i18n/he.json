@@ -266,7 +266,11 @@
 	"apihelp-query+centralnoticelogs-param-end": "סוף טווח זמן (לא חובה).",
 	"apihelp-query+centralnoticelogs-example-1": "הצגת יומנים",
 	"centralnotice-banner-history-logger": "רושם יומן היסטוריית כרזה",
-	"centralnotice-banner-history-logger-rate": "קצב דגימה (אמור להיות בין 0 ל־1)",
+	"centralnotice-banner-history-logger-rate": "קצב דגימה (אמור להיות בין 0 ל־1, כולל)",
 	"centralnotice-banner-history-logger-max-entry-age": "הגיל המרבי של עיולי יומן (בימים)",
-	"centralnotice-banner-history-logger-max-entries": "המספר המרבי של עיולים לשמירה ביומן"
+	"centralnotice-banner-history-logger-max-entries": "המספר המרבי של עיולים לשמירה ביומן",
+	"centralnotice-legacy-support": "תמיכה באפשרויות מיושנות",
+	"centralnotice-set-record-impression-sample-rate": "הגדרת קצב דגימה עבור Special:RecordImpression",
+	"centralnotice-custom-record-impression-sample-rate": "קצב דגימה של Special:RecordImpression (אמור להיות בין 0 ל־1, כולל)",
+	"centralnotice-banners-not-guaranteed-to-display": "ייתכן שכרזות לא תוצגנה, כפי שמוגדר בג'אווה סקריפט בכרזה"
 }
