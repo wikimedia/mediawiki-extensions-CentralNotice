@@ -156,6 +156,7 @@ $wgResourceModules[ 'ext.centralNotice.startUp' ] = array(
 	'scripts'       => 'subscribing/ext.centralNotice.startUp.js',
 	'dependencies'  => array(
 		'ext.centralNotice.choiceData',
+		'ext.centralNotice.kvStoreMaintenance',
 		'mediawiki.util',
 	),
 	'targets'       => array( 'desktop', 'mobile' ),
@@ -202,6 +203,16 @@ $wgResourceModules[ 'ext.centralNotice.kvStore' ] = array(
 	'localBasePath' => $dir . '/resources',
 	'remoteExtPath' => 'CentralNotice/resources',
 	'scripts'       => 'subscribing/ext.centralNotice.kvStore.js',
+	'dependencies'  => array(
+		'ext.centralNotice.kvStoreMaintenance',
+	),
+	'targets'       => array( 'desktop', 'mobile' ),
+);
+
+$wgResourceModules[ 'ext.centralNotice.kvStoreMaintenance' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.kvStoreMaintenance.js',
 	'targets'       => array( 'desktop', 'mobile' ),
 );
 

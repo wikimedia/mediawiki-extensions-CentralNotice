@@ -112,9 +112,12 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 		if ( count( $choices ) === 0 ) {
 
-			// If there are no choices, this module will have no dependencies.
-			// We'll create the mw.centralNotice object here.
-			return 'mw.centralNotice = { choiceData: [] };';
+			// If there are no choices, this module will have no dependencies,
+			// but other modules that create mw.centralNotice may be brought
+			// in elsewhere. Let's the check for its existence here, too, for
+			// robustness.
+			return 'mw.centralNotice = ( mw.centralNotice || {} );' .
+				'mw.centralNotice.choiceData = [];';
 		} else {
 
 			// If there are choices, this module will depend on (at least)
@@ -138,15 +141,16 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			 return array();
 		}
 
+
+		$dependencies = array();
+
 		// Get the choices (possible campaigns and banners) for this user
 		$choices = $this->getChoices( $context );
 
 		// If there are no choices, no dependencies
 		if ( count( $choices ) === 0 ) {
-			return array();
+			return $dependencies;
 		}
-
-		$dependencies = array();
 
 		// Run through the choices to get all needed mixin RL modules
 		foreach ( $choices as $choice ) {
@@ -162,6 +166,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			}
 		}
 
+		// The display module is needed to process choices
 		$dependencies[] = 'ext.centralNotice.display';
 
 		// Since campaigns targeting the user could have the same mixin RL
