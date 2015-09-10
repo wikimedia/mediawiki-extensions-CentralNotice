@@ -28,10 +28,6 @@
  *
  * For an overview of how this all fits together, see
  * mw.centralNotice.reallyChooseAndMaybeDisplay() (below).
- *
- * We also provide access points for kvStore on mw.centralNotice, even though
- * kvStore is in a different RL module. Campaign mixins that need kvStore should
- * set it as a dependency and use the methods on mw.centralNotice.
  */
 ( function ( $, mw ) {
 
@@ -303,8 +299,11 @@
 	 *     events.bannerLoaded: Legacy location of bannerLoadedPromise.
 	 *
 	 *     kvStore: Key-value store object, added by ext.centralNotice.kvStore,
-	 *         if that module has been loaded. Note: for KV store operations,
-	 *         please use instead the methods provided below.
+	 *         if that module has been loaded.
+	 *
+	 *     bannerHistoryLogger: Banner history logging feature, added by
+	 *         ext.centralNotice.bannerHistoryLogger, if that module has been
+	 *         loaded.
 	 */
 	cn = {
 
@@ -499,85 +498,6 @@
 		setBucket: function( bucket ) {
 			cn.internal.bucketer.setBucket( bucket );
 			cn.internal.state.setBucket( bucket );
-		},
-
-		getKVStorageContexts: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return null;
-			}
-			return cn.kvStore.contexts;
-		},
-
-		isKVStorageAvailable: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return false;
-			}
-			return cn.kvStore.isAvailable();
-		},
-
-		setKVStorageItem: function( key, value, context ) {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return false;
-			}
-			return cn.kvStore.setItem( key, value, context );
-		},
-
-		getKVStorageItem: function( key, context ) {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return null;
-			}
-			return cn.kvStore.getItem( key, context );
-		},
-
-		removeKVStorageItem: function( key, context ) {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return;
-			}
-			cn.kvStore.removeItem( key, context );
-		},
-
-		getKVStorageError: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return null;
-			}
-			return cn.kvStore.getError();
-		},
-
-		setKVStorageNotAvailableError: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return;
-			}
-			cn.kvStore.setNotAvailableError();
-		},
-
-		/**
-		 * Send the banner history log to the server, with a generated unique
-		 * log ID. Return a promise that resolves with the logId.
-		 *
-		 * Note: Should not be called from code in the top RL queue (or should
-		 * be delayed until the DOM is ready).
-		 *
-		 * Note: this unique ID must not be stored anywhere on the client. It
-		 * should be used only within the current browsing session to flag when
-		 * a banner history is associated with a donation. If a user clicks on a
-		 * banner to donate, it may be passed on to the WMF's donation sites via
-		 * a URL parameter. Those sites should never store it on the client.
-		 *
-		 * @returns {jQuery.Promise}
-		 */
-		sendBannerHistoryLog: function() {
-			if ( !cn.internal.bannerHistoryLogger ) {
-				mw.log( 'bannerHistoryLogger not loaded!' );
-				return;
-			}
-			return cn.internal.bannerHistoryLogger.sendLog();
 		}
 	};
 

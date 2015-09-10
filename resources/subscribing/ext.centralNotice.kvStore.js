@@ -2,9 +2,7 @@
  * Module for key-value storage in localStorage, use by CentralNotice campaign
  * mixins and in-banner JS.
  *
- * This module is made available at mw.centralNotice.kvStore. However, for most
- * cases, it is preferable to call the related methods directly on
- * mw.centralNotice.
+ * This module is made available at mw.centralNotice.kvStore.
  */
 ( function ( $, mw ) {
 
@@ -100,8 +98,7 @@
 	mw.centralNotice = ( mw.centralNotice || {} );
 
 	/**
-	 * kvStore object. Mostly, don't use this! In most cases, access via
-	 * methods onmw.centralNotice is preferred.
+	 * Public API
 	 */
 	kvStore = mw.centralNotice.kvStore = {
 
