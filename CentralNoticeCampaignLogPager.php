@@ -464,7 +464,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	protected function testTextChange( $param, $newval, $oldval ) {
-
+		$result = '';
 		if ( $oldval !== $newval ) {
 			// Give grep a chance to find the usages: centralnotice-landingpages, centralnotice-prioritylangs,
 			// centralnotice-controller_mixin, centralnotice-category
