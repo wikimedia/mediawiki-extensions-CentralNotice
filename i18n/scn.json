@@ -4,7 +4,8 @@
 			"Aushulz",
 			"Gmelfi",
 			"Santu",
-			"Pippinu"
+			"Pippinu",
+			"Sarvaturi"
 		]
 	},
 	"centralnotice": "Gistioni di avvisu cintralizzatu",
@@ -35,7 +36,7 @@
 	"centralnotice-banner-name": "Nomu dû banner:",
 	"centralnotice-banner-heading": "Banner: $1",
 	"centralnotice-templates": "Template",
-	"centralnotice-balanced": "Duna stissu pisu a' tutti li banner",
+	"centralnotice-balanced": "Duna stissu pisu a tutti li banner",
 	"centralnotice-weight": "Pisu",
 	"centralnotice-locked": "Bluccatu",
 	"centralnotice-notices": "Nutizzî",
