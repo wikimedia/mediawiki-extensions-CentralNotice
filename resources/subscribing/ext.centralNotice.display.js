@@ -101,6 +101,27 @@
 	}
 
 	/**
+	 * Set up the legacy cn.data property using a getter, or a normal property
+	 * (for browsers that don't support getters).
+	 */
+	function setUpDataProperty() {
+
+		if ( typeof Object.defineProperty === 'function' ) {
+
+			Object.defineProperty( cn, 'data', {
+				get: function() { return cn.internal.state.getData(); }
+			} );
+
+		} else {
+
+			// FIXME For browsers that don't support defineProperty, we don't
+			// fully respect our internal contract with the state object to
+			// manage data, since we assume the object reference won't change.
+			cn.data = cn.internal.state.getData();
+		}
+	}
+
+	/**
 	 * Expose a promise object to be resolved when the banner is loaded.
 	 */
 	function setUpBannerLoadedPromise() {
@@ -183,6 +204,11 @@
 		// This will gather initial data needed for selection and display.
 		// We expose it above via a getter on the data property.
 		state.setUp();
+
+		// Because of browser limitations, and to maintain our contract among
+		// components of this module, we have to do this here.
+		// TODO do this some other way...
+		setUpDataProperty();
 
 		// Below, we explicitly pass information from state to other
 		// internal objects, which are not allowed to have dependencies.
@@ -466,6 +492,7 @@
 				.fail( cn.internal.state.setInvalidGeoData )
 				.always( function() {
 					cn.internal.state.setUpForTestingBanner();
+					setUpDataProperty();
 					setUpBannerLoadedPromise();
 					fetchBanner();
 				} );
@@ -591,11 +618,6 @@
 		$.extend( mw.centralNotice, cn );
 		cn = mw.centralNotice; // Update the closured-in local variable
 	}
-
-	// $.extend doesn't copy getters, so we have to add our getter like so
-	Object.defineProperty( cn, 'data', {
-		get: function() { return cn.internal.state.getData(); }
-	} );
 
 	// Set up deprecated access points and warnings
 	mw.log.deprecate( window, 'insertBanner', cn.insertBanner,
