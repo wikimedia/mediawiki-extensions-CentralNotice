@@ -14,6 +14,7 @@
 		readyToLogPromise,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
+		BANNER_HISTORY_LOG_ENTRY_VERSION = 1, // Update when log format changes
 		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory',
 
 		// The maximum random shift applied to timestamps, for user privacy
@@ -52,6 +53,7 @@
 			time = now + randomTimeShift,
 
 			logEntry = {
+				version: BANNER_HISTORY_LOG_ENTRY_VERSION,
 				language: data.uselang,
 				country: data.country,
 				isAnon: data.anonymous,
