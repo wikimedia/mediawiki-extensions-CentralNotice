@@ -289,7 +289,7 @@
 
 			var deferred = $.Deferred();
 
-			// With luck, this promise will be resoved by the time we get here
+			// With luck, this promise will be resolved by the time we get here
 			readyToLogPromise.done( function() {
 
 				var logId = mw.user.generateRandomSessionId();
@@ -297,9 +297,9 @@
 				mw.eventLog.logEvent(
 					EVENT_LOGGING_SCHEMA,
 					makeEventLoggingData( null, logId )
-				);
-
-				deferred.resolve( logId );
+				).always( function() {
+					deferred.resolve( logId );
+				} );
 			} );
 
 			return deferred.promise();
