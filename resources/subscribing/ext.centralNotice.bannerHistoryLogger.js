@@ -3,11 +3,11 @@
  * selected for the user (even if the banner is hidden). The log is kept in
  * LocalStorage (via CentralNotice's kvStore). A sample of logs are sent to the
  * server via EventLogging. Also allows triggering a call to EventLogging via
- * cn.internal.bannerHistoryLogger.sendLog().
+ * cn.bannerHistoryLogger.sendLog().
  */
 ( function ( $, mw ) {
 
-	var cn = mw.centralNotice,
+	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
 		now = Math.round( ( new Date() ).getTime() / 1000 ),
 		log,
@@ -25,9 +25,9 @@
 	 */
 	function loadLog() {
 
-		log = cn.getKVStorageItem(
+		log = cn.kvStore.getItem(
 			BANNER_HISTORY_KV_STORE_KEY,
-			cn.getKVStorageContexts().GLOBAL
+			cn.kvStore.contexts.GLOBAL
 		);
 
 		if ( !log ) {
@@ -110,10 +110,10 @@
 	 * Store the contents of the log variable in kvStorage
 	 */
 	function storeLog() {
-		cn.setKVStorageItem(
+		cn.kvStore.setItem(
 			BANNER_HISTORY_KV_STORE_KEY,
 			log,
-			cn.getKVStorageContexts().GLOBAL
+			cn.kvStore.contexts.GLOBAL
 		);
 	}
 
@@ -131,7 +131,7 @@
 	function makeEventLoggingData( rate, logId ) {
 
 		var elData = {},
-			kvError = cn.getKVStorageError(),
+			kvError = cn.kvStore.getError(),
 			i, logEntry, elLogEntry;
 
 		// sample rate
@@ -233,8 +233,8 @@
 				'schema.' + EVENT_LOGGING_SCHEMA
 			] );
 
-			if ( !cn.isKVStorageAvailable() ) {
-				cn.setKVStorageNotAvailableError();
+			if ( !cn.kvStore.isAvailable() ) {
+				cn.kvStore.setNotAvailableError();
 
 			} else {
 				// If KV storage works here, do our stuff
@@ -270,8 +270,8 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-	// Object for access by other CentralNotice RL modules
-	cn.internal.bannerHistoryLogger = {
+	// Object for public access
+	cn.bannerHistoryLogger = {
 
 		/**
 		 * Send the banner history log to the server, with a generated unique
