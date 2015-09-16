@@ -122,6 +122,11 @@
 			},
 		];
 
+	// Make this property configurable before the first time it's set,
+	// so the browser lets us define it again and again (since public objects
+	// aren't re-created between tests).
+	Object.defineProperty( mw.centralNotice, 'data', { configurable: true } );
+
 	QUnit.module( 'ext.centralNotice.display', QUnit.newMwEnvironment( {
 		setup: function () {
 
