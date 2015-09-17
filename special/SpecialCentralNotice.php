@@ -746,7 +746,8 @@ class CentralNotice extends SpecialPage {
 
 				// Handle campaign-associated mixins
 				foreach ( $wgCentralNoticeCampaignMixins
-					as $mixinName => $mixinDef ) {
+					as $mixinName => $mixinDef
+				) {
 
 					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
 
@@ -1045,6 +1046,13 @@ class CentralNotice extends SpecialPage {
 						$mixinControlName,
 						array( 'for' => $mixinControlName )
 					);
+
+					if ( !empty( $mixinDef['helpMsg'] ) ) {
+						$htmlOut .= Html::element( 'div',
+							array( 'class' => 'htmlform-help' ),
+							$this->msg( $mixinDef['helpMsg'] )->text()
+						);
+					}
 
 					$htmlOut .= Xml::closeElement( 'div' );
 

@@ -252,24 +252,29 @@ $wgCentralNoticeCampaignMixins = array(
 	'bannerHistoryLogger' => array(
 		'module' => 'ext.centralNotice.bannerHistoryLogger',
 		'nameMsg' => 'centralnotice-banner-history-logger',
+		'helpMsg' => 'centralnotice-banner-history-logger-help',
 		'parameters' => array(
 			'rate' => array(
 				'type' => 'float',
 				'labelMsg' => 'centralnotice-banner-history-logger-rate',
+				'helpMsg' => 'centralnotice-banner-history-logger-rate-help',
 			),
 			'maxEntryAge' => array(
 				'type' => 'integer',
-				'labelMsg' => 'centralnotice-banner-history-logger-max-entry-age'
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entry-age',
+				'helpMsg' => 'centralnotice-banner-history-logger-max-entry-age-help'
 			),
 			'maxEntries' => array(
 				'type' => 'integer',
-				'labelMsg' => 'centralnotice-banner-history-logger-max-entries'
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entries',
+				'helpMsg' => 'centralnotice-banner-history-logger-max-entries-help'
 			)
 		)
 	),
 	'legacySupport' => array(
 		'module' => 'ext.centralNotice.legacySupport',
 		'nameMsg' => 'centralnotice-legacy-support',
+		'helpMsg' => 'centralnotice-legacy-support-help',
 		'parameters' => array(
 			'setSRISampleRate' => array(
 				'type' => 'boolean',
