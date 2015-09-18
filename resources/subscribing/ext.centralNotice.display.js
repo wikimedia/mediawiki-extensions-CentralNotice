@@ -312,7 +312,8 @@
 	 *         object should be easily serializable to URL parameters (i.e.,
 	 *         not objects or arrays). Note: this should be seen as read-only
 	 *         for any code outside this module. No properties that code in this
-	 *         module reacts to are available on mw.centralNotice.data.
+	 *         module reacts to are available on mw.centralNotice.data. Also,
+	 *         it will be deprecated soon. Use getData( prop ) instead.
 	 *
 	 *     bannerLoadedPromise: A promise that resolves when a banner is loaded.
 	 *         This property is only set after a banner has been chosen.
@@ -525,6 +526,14 @@
 		setBucket: function( bucket ) {
 			cn.internal.bucketer.setBucket( bucket );
 			cn.internal.state.setBucket( bucket );
+		},
+
+		/**
+		 * Get the value of a property used in campaign/banner selection and
+		 * display, and for recording the results of that process.
+		 */
+		getData: function( prop ) {
+			return cn.internal.state.getData()[prop];
 		}
 	};
 
