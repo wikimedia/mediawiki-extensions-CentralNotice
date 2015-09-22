@@ -9,12 +9,20 @@
 	var KVStorageContext,
 		kvStore,
 		error = null,
-		PREFIX = 'CentralNoticeKVStore',
-		SEPARATOR = '|',
 		campaignName = null,
 		bannerName = null,
 		category = null,
-		maintenance = mw.centralNotice.kvStoreMaintenance;
+		now = Math.round( ( new Date() ).getTime() / 1000 ),
+
+		SEPARATOR = '|',
+		FIND_KEY_REGEX = /\|([^|]*)$/,
+
+		// Prefix for all localStorage keys. Must correspond with PREFIX_REGEX
+		// in ext.centralNotice.kvStoreMaintenance.js
+		PREFIX = 'CentralNoticeKV',
+
+		// TTL of KV store items is 1/2 year, in seconds
+		ITEM_TTL = 15768000;
 
 	/**
 	 * A context for key-value storage.
@@ -111,7 +119,7 @@
 		 * Does this browser support our KV storage mechanism?
 		 */
 		isAvailable: function() {
-			return ( typeof window.localStorage === 'object' );
+			return Boolean( window.localStorage );
 		},
 
 		/**
@@ -134,7 +142,7 @@
 		 */
 		setItem: function( key, value, context ) {
 
-			var lsKey, encodedValue;
+			var lsKey, encodedWrappedValue;
 
 			// Check validity of key
 			if ( key.indexOf( SEPARATOR ) !== -1 ) {
@@ -143,19 +151,21 @@
 			}
 
 			lsKey = makeKeyForLocalStorage( key, context );
-			encodedValue = JSON.stringify( value );
+			encodedWrappedValue = JSON.stringify( {
+				expiry: ITEM_TTL + now,
+				val: value
+			} );
 
 			// Write the value
-			localStorage.setItem( lsKey, encodedValue );
+			localStorage.setItem( lsKey, encodedWrappedValue );
 
 			// Check that it was written (it might not have been, if we're over
 			// the localStorage quota for this site, for example)
-			if ( localStorage.getItem( lsKey ) !== encodedValue ) {
+			if ( localStorage.getItem( lsKey ) !== encodedWrappedValue ) {
 				setError( 'Couldn\'t write value', key, value, context );
 				return false;
 			}
 
-			maintenance.touchItem( lsKey );
 			return true;
 		},
 
@@ -169,19 +179,16 @@
 		 */
 		getItem: function ( key, context ) {
 			var lsKey = makeKeyForLocalStorage( key, context ),
-				rawValue, value, maintenanceOK;
+				rawValue, wrappedValue;
 
-			if ( !maintenance.expiredItemsRemoved ) {
-				maintenanceOK = maintenance.removeExpiredItems();
-				if ( !maintenanceOK ) {
-					setError( 'Maintenance error', key, value, context );
-					return false;
-				}
+			rawValue = localStorage.getItem( lsKey );
+
+			if ( rawValue === null ) {
+				return null;
 			}
 
 			try {
-				rawValue = localStorage.getItem( lsKey );
-				value = JSON.parse( rawValue );
+				wrappedValue = JSON.parse( rawValue );
 
 			} catch ( e ) {
 
@@ -204,8 +211,11 @@
 				}
 			}
 
-			maintenance.touchItem( lsKey );
-			return value;
+			if ( !wrappedValue.expiry || wrappedValue.expiry < now ) {
+				return null;
+			}
+
+			return wrappedValue.val;
 		},
 
 		/**
@@ -219,7 +229,6 @@
 		removeItem: function ( key, context ) {
 			var lsKey = makeKeyForLocalStorage( key, context );
 			localStorage.removeItem( lsKey );
-			maintenance.removeItem( lsKey );
 		},
 
 		/**
@@ -234,6 +243,13 @@
 
 		setNotAvailableError: function() {
 			setError( 'LocalStorage not available.', null, null );
+		},
+
+		setMaintenanceError: function ( lsKey ) {
+			var m = lsKey.match( FIND_KEY_REGEX ),
+				key = m ? m[1] : null;
+
+			setError( 'Error during KVStore maintenance.', key, null );
 		},
 
 		setCampaignName: function( cName ) {

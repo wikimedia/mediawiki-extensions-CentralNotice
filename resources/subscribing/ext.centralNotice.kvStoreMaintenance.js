@@ -1,130 +1,133 @@
 /**
- * Module for maintenance of items in kvStore. Specifically, the module keeps
- * track of items' expiry date and remove expired items. It's separate from
- * kvStore because most of the time we only need these facilities, not the whole
- * kvStore.
+ * Module for maintenance of items in kvStore. During idle time, it checks the
+ * expiry times of items and removes those that expired a specified "leeway"
+ * time ago.
  *
  * This module provides an API at mw.centralNotice.kvStoreMaintenance.
  */
 ( function ( $, mw ) {
-	var METADATA_KEY = 'CentralNoticeKVMetadata',
+	var	now = Math.round( ( new Date() ).getTime() / 1000 ),
+		cn,
 
-	// TTL of KV store items is 1/2 year, in seconds
-	ITEM_TTL = 15768000,
-	metadata = null,
-	isAvailable = typeof window.localStorage === 'object',
-	now = Math.round( ( new Date() ).getTime() / 1000 ),
-	maintenance;
+		// Regex to find kvStore localStorage keys. Must correspond with PREFIX
+		// in ext.centralNotice.kvStore.js.
+		PREFIX_REGEX = /^CentralNoticeKV/,
 
-	/**
-	 * Convenience method for a check and load that we need in several methods.
-	 * @returns {boolean} true if localStorage is available and metadata is
-	 *   loaded; false if no localStorage or there was a problem loading
-	 *   metadata.
-	 */
-	function initialCheckAndLoad() {
-		if ( !isAvailable ) {
-			return false;
-		}
+		// Time past expiry before actually removing items: 1 day (in seconds).
+		// (This should prevent race conditions among browser tabs.)
+		LEEWAY_FOR_REMOVAL = 86400,
 
-		if ( !metadata ) {
-			if ( !loadMetadata() ) {
-				return false;
+		// Maximum number of keys to process at a time.
+		MAX_BATCH_SIZE = 10,
+
+		// Maximum number of items to process on any given pageview.
+		// This ensures we don't block the browser too much when we prepare the
+		// arrays of keys and batch functions.
+		MAX_ITEMS_TO_PROCESS = 60;
+
+	function makeRemoveExpiredBatchFunction( keys ) {
+		return function() {
+
+			var n, key, rawValue, value;
+
+			for ( n = 0; n < keys.length; n++ ) {
+				key = keys[n];
+
+				// Operate only on localStorage items used by the kvStore
+				if ( !PREFIX_REGEX.test( key ) ) {
+					continue;
+				}
+
+				rawValue = localStorage.getItem( key );
+
+				// The item might have been removed since we retrieved the key
+				if ( rawValue === null ) {
+					continue;
+				}
+
+				try {
+					value = JSON.parse( rawValue );
+				} catch ( e ) {
+					// Remove any unparseable items and maybe set an error
+					localStorage.removeItem( key );
+
+					if ( cn.kvStore ) {
+						cn.kvStore.setMaintenanceError( key );
+					}
+
+					continue;
+				}
+
+				if ( !value.expiry ||
+					( value.expiry + LEEWAY_FOR_REMOVAL ) < now ) {
+
+					localStorage.removeItem( key );
+				}
 			}
-		}
-
-		return true;
-	}
-
-	function loadMetadata() {
-		var rawValue = localStorage.getItem( METADATA_KEY );
-
-		if ( rawValue === null ) {
-			metadata = {};
-			return true;
-		}
-
-		try {
-			metadata = JSON.parse( rawValue );
-		} catch ( e ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	function saveMetadata() {
-		localStorage.setItem( METADATA_KEY, JSON.stringify( metadata ) );
+		};
 	}
 
 	// Don't assume mw.centralNotice has or hasn't been initialized
-	mw.centralNotice = ( mw.centralNotice || {} );
+	mw.centralNotice = cn = ( mw.centralNotice || {} );
 
 	/**
 	 * Public API
 	 */
-	maintenance = mw.centralNotice.kvStoreMaintenance = {
+	cn.kvStoreMaintenance = {
 
 		/**
-		 * This will be set to true once expired items have been removed.
+		 * Schedule the batched removal of expired KVStore items.
 		 */
-		expiredItemsRemoved: false,
+		removeExpiredItemsWhenIdle: function () {
 
-		/**
-		 * Update or create an item's metadata, giving it ITEM_TTL time to live.
-		 * @param {string} lsKey The full key used in localStorage
-		 * @returns {boolean} false if there was a problem, true otherwise
-		 */
-		touchItem: function ( lsKey ) {
+			var funcs, keys, i, stopBefore, key,
+				j = 0,
+				keysToProcess;
 
-			if ( !initialCheckAndLoad() ) {
-				return false;
+			if ( !window.localStorage || localStorage.length === 0) {
+				return;
 			}
 
-			metadata[lsKey] = now + ITEM_TTL;
-			saveMetadata();
-			return true;
-		},
+			// We don't know how many batches we'll get through before the user
+			// navigates away, and there may be more localStorage items than
+			// MAX_ITEMS_TO_PROCESS. So we choose a random key index to start
+			// at, and wrap around until we've collected all keys, or the
+			// maximum number.
+			// This way we're likely to get to all items eventually, even if
+			// there are a lot of them and/or each pageview is very quick.
+			i = Math.floor( Math.random() * localStorage.length );
+			stopBefore =
+				( i + Math.min( MAX_ITEMS_TO_PROCESS, localStorage.length ) )
+				% localStorage.length;
 
-		/**
-		 * Remove metadata for an item. This should be called when an item
-		 * is removed.
-		 * @param {string} lsKey The full key used in localStorage
-		 * @returns {boolean} false if there was a problem, true otherwise
-		 */
-		removeItem: function ( lsKey ) {
+			// Build an array of localStorage keys
+			keys = [];
+			do {
+				key = localStorage.key( i );
 
-			if ( !initialCheckAndLoad() ) {
-				return false;
-			}
-
-			delete metadata[lsKey];
-			saveMetadata();
-			return true;
-		},
-
-		/**
-		 * Remove expired KVStore items.
-		 * @returns {boolean} false if there was a problem, true otherwise.
-		 */
-		removeExpiredItems: function () {
-
-			var lsKey;
-
-			if ( !initialCheckAndLoad() ) {
-				return false;
-			}
-
-			for ( lsKey in metadata ) {
-				if ( metadata[lsKey] < now ) {
-					localStorage.removeItem( lsKey );
-					delete metadata[lsKey];
+				// Don't assume that the number of keys hasn't changed and that
+				// the key exists.
+				if ( key !== null ) {
+					keys.push( key );
 				}
+
+				i++;
+				if ( i === localStorage.length ) {
+					i = i - localStorage.length;
+				}
+			} while ( i !== stopBefore );
+
+			// Build an array of functions to process the keys in batches
+			funcs = [];
+			while ( j < keys.length ) {
+				keysToProcess = keys.slice( j,
+					Math.min( keys.length, j + MAX_BATCH_SIZE ) );
+
+				funcs.push( makeRemoveExpiredBatchFunction( keysToProcess ) );
+				j += MAX_BATCH_SIZE;
 			}
 
-			maintenance.expiredItemsRemoved = true;
-			saveMetadata();
-			return true;
+			cn.doIdleWork( funcs );
 		}
 	};
 
