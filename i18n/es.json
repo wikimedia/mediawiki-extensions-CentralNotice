@@ -227,7 +227,7 @@
 	"centralnotice-banner-class-desc": "Pancartas de una clase específica comparten variables de rastreo y configuraciones grupales (ej: esconder cookies y conteos de impresiones).",
 	"centralnotice-templates-included": "Plantillas incluídas",
 	"centralnotice-archive-banner": "Archivar",
-	"centralnotice-archive-banner-title": "Archivar {{PLURAL:$1|pancarta|pancartas}}?",
+	"centralnotice-archive-banner-title": "¿Archivar {{PLURAL:$1|pancarta|pancartas}}?",
 	"centralnotice-archive-banner-confirm": "Archivos expande todas las plantillas incluídas y protege la página. Esta acción no es fácil de revertir.",
 	"centralnotice-archive-banner-cancel": "Cancelar",
 	"centralnotice-change-summary-label": "Resumen",
