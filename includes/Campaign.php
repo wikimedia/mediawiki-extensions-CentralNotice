@@ -813,6 +813,7 @@ class Campaign {
 	 * @param $throttle          int: limit allocations, 0 - 100
 	 * @param $priority          int: priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
 	 * @param $user              User adding the campaign
+	 * @param $summary           string: Change summary provided by the user
 	 *
 	 * @throws RuntimeException
 	 * @return int|string noticeId on success, or message key for error
@@ -1314,6 +1315,7 @@ class Campaign {
 	 * @param $endSettings      array of campaign settings after changes (optional)
 	 * @param $beginAssignments array of banner assignments before changes (optional)
 	 * @param $endAssignments   array of banner assignments after changes (optional)
+	 * @param $summary          string Change summary provided by the user
 	 *
 	 * @return integer: ID of log entry (or null)
 	 */
