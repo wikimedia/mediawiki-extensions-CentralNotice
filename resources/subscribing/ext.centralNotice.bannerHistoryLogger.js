@@ -2,16 +2,19 @@
  * Banner history logger mixin. Records an event every time this campaign is
  * selected for the user (even if the banner is hidden). The log is kept in
  * LocalStorage (via CentralNotice's kvStore). A sample of logs are sent to the
- * server via EventLogging. Also allows triggering a call to EventLogging via
- * cn.bannerHistoryLogger.sendLog().
+ * server via EventLogging. Also allows forcing the log to be sent via
+ * cn.bannerHistoryLogger.ensureLogSent().
  */
 ( function ( $, mw ) {
 
 	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
+		bhLogger,
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
 		now = Math.round( ( new Date() ).getTime() / 1000 ),
 		log,
-		readyToLogPromise,
+		readyToLogDeferredObj = $.Deferred(),
+		logSent = false,
+		inSample,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
 		BANNER_HISTORY_LOG_ENTRY_VERSION = 1, // Update when log format changes
@@ -124,11 +127,9 @@
 	 * EventLogging payload limit.
 	 *
 	 * @param {number} rate The sampling rate used
-	 * @param {boolean} logId A unique identifier for this log. Note: this
-	 *    should not be persisted anywhere on the client (see below).
 	 * @returns {Object}
 	 */
-	function makeEventLoggingData( rate, logId ) {
+	function makeEventLoggingData( rate ) {
 
 		var elData = {},
 			kvError = cn.kvStore.getError(),
@@ -139,10 +140,9 @@
 			elData.r = rate;
 		}
 
-		// log ID
-		if ( logId ) {
-			elData.i = logId;
-		}
+		// Log ID: should be generated before this is called, and should not be
+		// persisted anywhere on the client (see below).
+		elData.i = bhLogger.id;
 
 		// if applicable, the message from any kv store error
 		if ( kvError ) {
@@ -212,26 +212,8 @@
 	// that campaign is chosen or not
 	mixin.setPostBannerHandler( function( mixinParams ) {
 
-		// Nothing here needs to happen right away. At least, be sure we're not
-		// doing anything until the DOM is ready.
-		$( function() {
-
-			// Load needed resources in a leisurely manner, but ahead of a
-			// possible sendLog() call (expected to be called when the user
-			// navigates away from the page).
-
-			// Note: we don't set the following up as RL dependencies because a
-			// lot of campaign filtering happens on the client, so many users
-			// see campaigns in choiceData that don't target them. If any of
-			// those campaigns were to use this mixin, all those users would
-			// needlessly get these dependencies.
-
-			readyToLogPromise = mw.loader.using( [
-				'ext.eventLogging',
-				'mediawiki.util',
-				'mediawiki.user',
-				'schema.' + EVENT_LOGGING_SCHEMA
-			] );
+		// Do this idly to avoid browser lock-ups
+		cn.doIdleWork( function() {
 
 			if ( !cn.kvStore.isAvailable() ) {
 				cn.kvStore.setNotAvailableError();
@@ -247,7 +229,24 @@
 				storeLog();
 			}
 
-			readyToLogPromise.done( function() {
+			// Load needed resources
+
+			// Note: we don't set the following up as RL dependencies because a
+			// lot of campaign filtering happens on the client, so many users
+			// see campaigns in choiceData that don't target them. If any of
+			// those campaigns were to use this mixin, all those users would
+			// needlessly get these dependencies. Also, they're not needed right
+			// away.
+
+			mw.loader.using( [
+				'ext.eventLogging',
+				'mediawiki.util',
+				'mediawiki.user',
+				'schema.' + EVENT_LOGGING_SCHEMA
+			] ).done( function() {
+
+				// We send back the temporary ID for all logs.
+				bhLogger.id = mw.user.generateRandomSessionId();
 
 				// URL param bannerHistoryLogRate can override rate, for debugging
 				var rateParam = mw.util.getParamValue( 'bannerHistoryLogRate' ),
@@ -262,7 +261,16 @@
 						EVENT_LOGGING_SCHEMA,
 						makeEventLoggingData( rate )
 					);
+
+					inSample = true;
+					logSent = true;
 				}
+
+				// By resolving only after sampling and possibly sending the
+				// log, we ensure that a sampled log would be sent first. That
+				// simplifies the logic for whether to send in other
+				// circumstances.
+				readyToLogDeferredObj.resolve();
 			} );
 		} );
 	} );
@@ -271,34 +279,41 @@
 	cn.registerCampaignMixin( mixin );
 
 	// Object for public access
-	cn.bannerHistoryLogger = {
+	cn.bannerHistoryLogger = bhLogger = {
 
 		/**
-		 * Send the banner history log to the server, with a generated unique
-		 * log ID. Return a promise that resolves with the logId.
+		 * A client-generated unique ID for the log (on this pageview), not
+		 * persisted in the log or anywhere else between pageviews.
 		 *
-		 * Note: this unique ID must not be stored anywhere on the client. It
+		 * Note: this unique ID should not be stored anywhere on the client. It
 		 * should be used only within the current browsing session to flag when
 		 * a banner history is associated with a donation. If a user clicks on a
 		 * banner to donate, it may be passed on to the WMF's donation sites via
 		 * a URL parameter. Those sites should never store it on the client.
-		 *
+		 */
+		id: null,
+
+		/**
+		 * Send the banner history log to the server, if it wasn't sent already.
 		 * @returns {jQuery.Promise}
 		 */
-		sendLog: function() {
+		ensureLogSent: function() {
 
 			var deferred = $.Deferred();
 
-			// With luck, this promise will be resolved by the time we get here
-			readyToLogPromise.done( function() {
+			// It's likely that this will be resolved by the time we get here
+			readyToLogDeferredObj.done( function() {
 
-				var logId = mw.user.generateRandomSessionId();
+				if ( logSent ) {
+					deferred.resolve();
+					return;
+				}
 
 				mw.eventLog.logEvent(
 					EVENT_LOGGING_SCHEMA,
-					makeEventLoggingData( null, logId )
+					makeEventLoggingData()
 				).always( function() {
-					deferred.resolve( logId );
+					deferred.resolve();
 				} );
 			} );
 
