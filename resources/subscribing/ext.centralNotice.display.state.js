@@ -32,6 +32,21 @@
 			BANNER_CHOSEN:            new Status( 'banner_chosen', 4 ),
 			BANNER_LOADED_BUT_HIDDEN: new Status( 'banner_loaded_but_hidden', 5 ),
 			BANNER_SHOWN:             new Status( 'banner_shown', 6 )
+		},
+
+		// As a temporary measure, we minify banner history logs. Using a code
+		// for hide reasons helps us do that.
+		REASONS = {
+			'other': 0,
+			'close': 1,
+			'waitdate': 2,
+			'waitimps': 3,
+			'waiterr': 4,
+			'belowMinEdits': 5,
+			'viewLimit': 6,
+			'seen-fullscreen': 7,
+			'cookies-disabled': 8,
+			'donate': 9
 		};
 
 	function Status( key, code ) {
@@ -116,8 +131,8 @@
 		state.data.testingBanner = true;
 	}
 
-	function setStatus( s, reasonCode ) {
-		var reasonCodeStr = reasonCode ? '.' + reasonCode : '';
+	function setStatus( s, reason ) {
+		var reasonCodeStr = reason ? '.' + state.getReasonCode( reason ) : '';
 		status = s;
 		state.data.status = s.key;
 		state.data.statusCode = s.code.toString() + reasonCodeStr;
@@ -253,9 +268,9 @@
 			state.data.bannersNotGuaranteedToDisplay = true;
 		},
 
-		cancelBanner: function( reason, reasonCode ) {
+		cancelBanner: function( reason ) {
 			state.data.bannerCanceledReason = reason;
-			setStatus( STATUSES.BANNER_CANCELED, reasonCode );
+			setStatus( STATUSES.BANNER_CANCELED, reason );
 
 			// Legacy fields for Special:RecordImpression
 			state.data.result = 'hide';
@@ -274,9 +289,9 @@
 			state.data.reason = 'empty';
 		},
 
-		setBannerLoadedButHidden: function( reason, reasonCode ) {
+		setBannerLoadedButHidden: function( reason ) {
 			state.data.bannerLoadedButHiddenReason = reason;
-			setStatus( STATUSES.BANNER_LOADED_BUT_HIDDEN, reasonCode );
+			setStatus( STATUSES.BANNER_LOADED_BUT_HIDDEN, reason );
 
 			// Legacy fields for Special:RecordImpression
 			state.data.result = 'hide';
@@ -303,6 +318,13 @@
 
 		setRecordImpressionSampleRate: function( rate ) {
 			state.data.recordImpressionSampleRate = rate;
+		},
+
+		getReasonCode: function( reasonName ) {
+			if ( reasonName in REASONS ) {
+				return REASONS[reasonName];
+			}
+			return REASONS.other;
 		}
 	};
 } )(  jQuery, mediaWiki );
