@@ -255,7 +255,7 @@
 		// Check the hide cookie and possibly cancel the banner
 		hide.processCookie();
 		if ( hide.shouldHide() ) {
-			state.cancelBanner( hide.getReason(), hide.getReasonCode() );
+			state.cancelBanner( hide.getReason() );
 			runPostBannerMixinHooks();
 			recordImpression();
 			return;
@@ -414,11 +414,9 @@
 		 * Call this from the preBannerMixinHook to prevent a banner from
 		 * being chosen and loaded.
 		 * @param {string} reason An explanation of why the banner was canceled.
-		 * @param {number} reasonCode A code corresponding to this reason
-		 *   (temporary measure, for use in minified banner history log).
 		 */
-		cancelBanner: function( reason, reasonCode ) {
-			cn.internal.state.cancelBanner( reason, reasonCode );
+		cancelBanner: function( reason ) {
+			cn.internal.state.cancelBanner( reason );
 		},
 
 		/**

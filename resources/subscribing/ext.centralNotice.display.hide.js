@@ -8,21 +8,9 @@
 		cookieName,
 		shouldHide = false,
 		reason,
-		reasonCode,
 		durations = mw.config.get( 'wgNoticeCookieDurations' ),
 
-		HIDE_COOKIE_PREFIX = 'centralnotice_hide_',
-
-		// As a temporary measure, we minify banner history logs. Using a code
-		// for hide reasons helps us do that.
-		REASONS = {
-			CLOSE: new Reason( 'close', 1 )
-		};
-
-	function Reason( key, code ) {
-		this.key = key;
-		this.code = code;
-	}
+		HIDE_COOKIE_PREFIX = 'centralnotice_hide_';
 
 	function removeCookie() {
 		$.cookie( cookieName, null, { path: '/' } );
@@ -68,7 +56,6 @@
 			if ( now < hideData.created + durations[hideData.reason] ) {
 				shouldHide = true;
 				reason = hideData.reason;
-				reasonCode = hideData.reasonCode || '';
 			}
 		},
 
@@ -80,18 +67,13 @@
 			return reason;
 		},
 
-		getReasonCode: function() {
-			return reasonCode;
-		},
-
 		setHideWithCloseButtonCookies: function() {
 			var duration = durations.close,
 				date = new Date(),
 				hideData = {
 					v: 1,
 					created: Math.floor( date.getTime() / 1000 ),
-					reason: REASONS.CLOSE.key,
-					reasonCode: REASONS.CLOSE.code
+					reason: 'close'
 				};
 
 			// Re-use the same date object to set the cookie's expiry time
@@ -112,7 +94,7 @@
 					{
 						'duration': duration,
 						'category': category,
-						'reason' : REASONS.CLOSE.key
+						'reason' : 'close'
 					}
 				);
 
