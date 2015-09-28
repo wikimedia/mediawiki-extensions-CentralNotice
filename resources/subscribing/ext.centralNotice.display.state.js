@@ -47,7 +47,10 @@
 			'viewLimit': 6,
 			'seen-fullscreen': 7,
 			'cookies-disabled': 8,
-			'donate': 9
+			'donate': 9,
+			'cookies': 10,
+			'seen': 11,
+			'empty': 12
 		};
 
 	function Status( key, code ) {
