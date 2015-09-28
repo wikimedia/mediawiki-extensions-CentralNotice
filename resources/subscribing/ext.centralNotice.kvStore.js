@@ -2,27 +2,26 @@
  * Module for key-value storage in localStorage, use by CentralNotice campaign
  * mixins and in-banner JS.
  *
- * This module is made available at mw.centralNotice.kvStore. However, for most
- * cases, it is preferable to call the related methods directly on
- * mw.centralNotice.
+ * This module is made available at mw.centralNotice.kvStore.
  */
 ( function ( $, mw ) {
 
 	var KVStorageContext,
 		kvStore,
 		error = null,
-		KV_STORAGE_CN_PREFIX = 'CentralNotice',
-		KV_STORAGE_PREFIX_SEPARATOR = '|',
+		PREFIX = 'CentralNoticeKVStore',
+		SEPARATOR = '|',
 		campaignName = null,
 		bannerName = null,
-		category = null;
+		category = null,
+		maintenance = mw.centralNotice.kvStoreMaintenance;
 
 	/**
 	 * A context for key-value storage.
 	 *
 	 * @class
 	 * @param {string} key A unique string to identify this context. Must not
-	 * contain KV_STORAGE_PREFIX_SEPARATOR.
+	 * contain SEPARATOR.
 	 */
 	KVStorageContext = function( key ) {
 		this.key = key;
@@ -71,37 +70,29 @@
 	 * @return {string}
 	 */
 	function makeKeyForLocalStorage( key, context ) {
-		var base = KV_STORAGE_CN_PREFIX + KV_STORAGE_PREFIX_SEPARATOR +
-				context.key + KV_STORAGE_PREFIX_SEPARATOR;
+		var base = PREFIX + SEPARATOR + context.key + SEPARATOR;
 
 		switch ( context.key ) {
 			case kvStore.contexts.CAMPAIGN.key:
-				return base +
-					campaignName + KV_STORAGE_PREFIX_SEPARATOR +
-					key;
+				return base + campaignName + SEPARATOR + key;
 
 			case kvStore.contexts.CATEGORY.key:
-				return base +
-					category + KV_STORAGE_PREFIX_SEPARATOR +
-					key;
+				return base + category + SEPARATOR + key;
 
 			case kvStore.contexts.GLOBAL.key:
 				return base + key;
 
 			default:
 				setError( 'Invalid KV storage context', key, null, context );
-				return base +
-					'invalidContext' + KV_STORAGE_PREFIX_SEPARATOR +
-					key;
+				return base + 'invalidContext' + SEPARATOR + key;
 		}
 	}
 
-	// It's impossible to know whether mw.centralNotice has been initialized
-	mw.centralNotice = ( mw.centralNotice || {} );
+	// We know mw.centralNotice has been initialized since we have as a
+	// dependency kvStoreMaintenance, which ensures it.
 
 	/**
-	 * kvStore object. Mostly, don't use this! In most cases, access via
-	 * methods onmw.centralNotice is preferred.
+	 * Public API
 	 */
 	kvStore = mw.centralNotice.kvStore = {
 
@@ -146,7 +137,7 @@
 			var lsKey, encodedValue;
 
 			// Check validity of key
-			if ( key.indexOf( KV_STORAGE_PREFIX_SEPARATOR ) !== -1 ) {
+			if ( key.indexOf( SEPARATOR ) !== -1 ) {
 				setError( 'Invalid key', key, value, context );
 				return false;
 			}
@@ -164,6 +155,7 @@
 				return false;
 			}
 
+			maintenance.touchItem( lsKey );
 			return true;
 		},
 
@@ -177,7 +169,15 @@
 		 */
 		getItem: function ( key, context ) {
 			var lsKey = makeKeyForLocalStorage( key, context ),
-				rawValue, value;
+				rawValue, value, maintenanceOK;
+
+			if ( !maintenance.expiredItemsRemoved ) {
+				maintenanceOK = maintenance.removeExpiredItems();
+				if ( !maintenanceOK ) {
+					setError( 'Maintenance error', key, value, context );
+					return false;
+				}
+			}
 
 			try {
 				rawValue = localStorage.getItem( lsKey );
@@ -204,6 +204,7 @@
 				}
 			}
 
+			maintenance.touchItem( lsKey );
 			return value;
 		},
 
@@ -218,6 +219,7 @@
 		removeItem: function ( key, context ) {
 			var lsKey = makeKeyForLocalStorage( key, context );
 			localStorage.removeItem( lsKey );
+			maintenance.removeItem( lsKey );
 		},
 
 		/**

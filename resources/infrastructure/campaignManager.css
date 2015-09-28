@@ -34,3 +34,10 @@
 	font-weight: bold;
 	line-height: 200%;
 }
+
+.htmlform-help {
+	font-size: small;
+	color: #666;
+	margin-bottom: 1.5em;
+	margin-left: 2em;
+}

@@ -4,7 +4,8 @@
 			"Aushulz",
 			"Gmelfi",
 			"Santu",
-			"Pippinu"
+			"Pippinu",
+			"Sarvaturi"
 		]
 	},
 	"centralnotice": "Gistioni di avvisu cintralizzatu",
@@ -35,7 +36,7 @@
 	"centralnotice-banner-name": "Nomu dû banner:",
 	"centralnotice-banner-heading": "Banner: $1",
 	"centralnotice-templates": "Template",
-	"centralnotice-balanced": "Duna stissu pisu a' tutti li banner",
+	"centralnotice-balanced": "Duna stissu pisu a tutti li banner",
 	"centralnotice-weight": "Pisu",
 	"centralnotice-locked": "Bluccatu",
 	"centralnotice-notices": "Nutizzî",
@@ -43,7 +44,7 @@
 	"centralnotice-template-exists": "Lu banner già esisti.\nNun veni agghiunciutu.",
 	"centralnotice-notice-doesnt-exist": "Sta campagna nun esisti.",
 	"centralnotice-banner-doesnt-exist": "Lu banner nun esisti.",
-	"centralnotice-template-still-bound": "Nun si po' livari lu banner «$1» picchì ancora è culligatu a na campagna.\nNun fu' livatu.",
+	"centralnotice-template-still-bound": "Nun si pò livari lu banner «$1» pirchì ancora è culligatu a na campagna.\nNun fu livatu.",
 	"centralnotice-template-body": "Lu corpu dû template",
 	"centralnotice-day": "Jornu",
 	"centralnotice-year": "Annu",

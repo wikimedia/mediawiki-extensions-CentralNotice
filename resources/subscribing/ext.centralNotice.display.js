@@ -28,10 +28,6 @@
  *
  * For an overview of how this all fits together, see
  * mw.centralNotice.reallyChooseAndMaybeDisplay() (below).
- *
- * We also provide access points for kvStore on mw.centralNotice, even though
- * kvStore is in a different RL module. Campaign mixins that need kvStore should
- * set it as a dependency and use the methods on mw.centralNotice.
  */
 ( function ( $, mw ) {
 
@@ -98,6 +94,27 @@
 
 	function runPostBannerMixinHooks() {
 		runMixinHooks( 'postBannerHandler' );
+	}
+
+	/**
+	 * Set up the legacy cn.data property using a getter, or a normal property
+	 * (for browsers that don't support getters).
+	 */
+	function setUpDataProperty() {
+
+		if ( typeof Object.defineProperty === 'function' ) {
+
+			Object.defineProperty( cn, 'data', {
+				get: function() { return cn.internal.state.getData(); }
+			} );
+
+		} else {
+
+			// FIXME For browsers that don't support defineProperty, we don't
+			// fully respect our internal contract with the state object to
+			// manage data, since we assume the object reference won't change.
+			cn.data = cn.internal.state.getData();
+		}
 	}
 
 	/**
@@ -183,6 +200,11 @@
 		// This will gather initial data needed for selection and display.
 		// We expose it above via a getter on the data property.
 		state.setUp();
+
+		// Because of browser limitations, and to maintain our contract among
+		// components of this module, we have to do this here.
+		// TODO do this some other way...
+		setUpDataProperty();
 
 		// Below, we explicitly pass information from state to other
 		// internal objects, which are not allowed to have dependencies.
@@ -290,7 +312,8 @@
 	 *         object should be easily serializable to URL parameters (i.e.,
 	 *         not objects or arrays). Note: this should be seen as read-only
 	 *         for any code outside this module. No properties that code in this
-	 *         module reacts to are available on mw.centralNotice.data.
+	 *         module reacts to are available on mw.centralNotice.data. Also,
+	 *         it will be deprecated soon. Use getData( prop ) instead.
 	 *
 	 *     bannerLoadedPromise: A promise that resolves when a banner is loaded.
 	 *         This property is only set after a banner has been chosen.
@@ -303,8 +326,11 @@
 	 *     events.bannerLoaded: Legacy location of bannerLoadedPromise.
 	 *
 	 *     kvStore: Key-value store object, added by ext.centralNotice.kvStore,
-	 *         if that module has been loaded. Note: for KV store operations,
-	 *         please use instead the methods provided below.
+	 *         if that module has been loaded.
+	 *
+	 *     bannerHistoryLogger: Banner history logging feature, added by
+	 *         ext.centralNotice.bannerHistoryLogger, if that module has been
+	 *         loaded.
 	 */
 	cn = {
 
@@ -466,6 +492,7 @@
 				.fail( cn.internal.state.setInvalidGeoData )
 				.always( function() {
 					cn.internal.state.setUpForTestingBanner();
+					setUpDataProperty();
 					setUpBannerLoadedPromise();
 					fetchBanner();
 				} );
@@ -501,83 +528,12 @@
 			cn.internal.state.setBucket( bucket );
 		},
 
-		getKVStorageContexts: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return null;
-			}
-			return cn.kvStore.contexts;
-		},
-
-		isKVStorageAvailable: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return false;
-			}
-			return cn.kvStore.isAvailable();
-		},
-
-		setKVStorageItem: function( key, value, context ) {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return false;
-			}
-			return cn.kvStore.setItem( key, value, context );
-		},
-
-		getKVStorageItem: function( key, context ) {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return null;
-			}
-			return cn.kvStore.getItem( key, context );
-		},
-
-		removeKVStorageItem: function( key, context ) {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return;
-			}
-			cn.kvStore.removeItem( key, context );
-		},
-
-		getKVStorageError: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return null;
-			}
-			return cn.kvStore.getError();
-		},
-
-		setKVStorageNotAvailableError: function() {
-			if ( !cn.kvStore ) {
-				mw.log( 'kvStore not loaded!' );
-				return;
-			}
-			cn.kvStore.setNotAvailableError();
-		},
-
 		/**
-		 * Send the banner history log to the server, with a generated unique
-		 * log ID. Return a promise that resolves with the logId.
-		 *
-		 * Note: Should not be called from code in the top RL queue (or should
-		 * be delayed until the DOM is ready).
-		 *
-		 * Note: this unique ID must not be stored anywhere on the client. It
-		 * should be used only within the current browsing session to flag when
-		 * a banner history is associated with a donation. If a user clicks on a
-		 * banner to donate, it may be passed on to the WMF's donation sites via
-		 * a URL parameter. Those sites should never store it on the client.
-		 *
-		 * @returns {jQuery.Promise}
+		 * Get the value of a property used in campaign/banner selection and
+		 * display, and for recording the results of that process.
 		 */
-		sendBannerHistoryLog: function() {
-			if ( !cn.internal.bannerHistoryLogger ) {
-				mw.log( 'bannerHistoryLogger not loaded!' );
-				return;
-			}
-			return cn.internal.bannerHistoryLogger.sendLog();
+		getData: function( prop ) {
+			return cn.internal.state.getData()[prop];
 		}
 	};
 
@@ -591,11 +547,6 @@
 		$.extend( mw.centralNotice, cn );
 		cn = mw.centralNotice; // Update the closured-in local variable
 	}
-
-	// $.extend doesn't copy getters, so we have to add our getter like so
-	Object.defineProperty( cn, 'data', {
-		get: function() { return cn.internal.state.getData(); }
-	} );
 
 	// Set up deprecated access points and warnings
 	mw.log.deprecate( window, 'insertBanner', cn.insertBanner,

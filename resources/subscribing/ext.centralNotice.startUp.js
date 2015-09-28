@@ -26,6 +26,16 @@
 		return;
 	}
 
+	/**
+	 * Temporary utility for doing non-time-critical work. See T111456.
+	 * Defined here 'cause it may be used by any CN subscribing modules.
+	 */
+	cn.doIdleWork = function ( func ) {
+		$( window ).on( 'load', function() {
+			setTimeout( function () { func(); }, 2000 );
+		} );
+	};
+
 	// Legacy support:
 	// Legacy code inserted the CN div everywhere (except on Special pages),
 	// even when there were no campaigns. Let's do the same thing for now, in
@@ -50,7 +60,13 @@
 		return;
 	}
 
-	// Nothing to do if there are no possible campaigns for this user
+	// Maintenance: clean old KV store keys whenever.
+	// If a campaign reads from the KV store before this is executed, the
+	// cleaning will happen at that time, and the following call to
+	// removeExpiredItems() will be a no-op.
+	cn.doIdleWork( cn.kvStoreMaintenance.removeExpiredItems );
+
+	// Nothing more to do if there are no possible campaigns for this user
 	if ( cn.choiceData.length === 0 ) {
 		return;
 	}

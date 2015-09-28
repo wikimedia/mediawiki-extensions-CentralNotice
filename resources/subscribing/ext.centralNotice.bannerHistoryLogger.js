@@ -3,30 +3,31 @@
  * selected for the user (even if the banner is hidden). The log is kept in
  * LocalStorage (via CentralNotice's kvStore). A sample of logs are sent to the
  * server via EventLogging. Also allows triggering a call to EventLogging via
- * cn.internal.bannerHistoryLogger.sendLog().
+ * cn.bannerHistoryLogger.sendLog().
  */
 ( function ( $, mw ) {
 
-	var cn = mw.centralNotice,
+	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
 		now = Math.round( ( new Date() ).getTime() / 1000 ),
 		log,
 		readyToLogPromise,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
+		BANNER_HISTORY_LOG_ENTRY_VERSION = 1, // Update when log format changes
 		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory',
 
 		// The maximum random shift applied to timestamps, for user privacy
-		TIMPESTAMP_RANDOM_SHIFT_MAX = 60;
+		TIMESTAMP_RANDOM_SHIFT_MAX = 60;
 
 	/**
 	 * Load the banner history log from KV storage
 	 */
 	function loadLog() {
 
-		log = cn.getKVStorageItem(
+		log = cn.kvStore.getItem(
 			BANNER_HISTORY_KV_STORE_KEY,
-			cn.getKVStorageContexts().GLOBAL
+			cn.kvStore.contexts.GLOBAL
 		);
 
 		if ( !log ) {
@@ -46,12 +47,13 @@
 			// linked to specific Web requests. This is to strengthen user
 			// privacy.
 			randomTimeShift =
-				Math.round( Math.random() * TIMPESTAMP_RANDOM_SHIFT_MAX ) -
-				( TIMPESTAMP_RANDOM_SHIFT_MAX / 2 ),
+				Math.round( Math.random() * TIMESTAMP_RANDOM_SHIFT_MAX ) -
+				( TIMESTAMP_RANDOM_SHIFT_MAX / 2 ),
 
 			time = now + randomTimeShift,
 
 			logEntry = {
+				version: BANNER_HISTORY_LOG_ENTRY_VERSION,
 				language: data.uselang,
 				country: data.country,
 				isAnon: data.anonymous,
@@ -108,10 +110,10 @@
 	 * Store the contents of the log variable in kvStorage
 	 */
 	function storeLog() {
-		cn.setKVStorageItem(
+		cn.kvStore.setItem(
 			BANNER_HISTORY_KV_STORE_KEY,
 			log,
-			cn.getKVStorageContexts().GLOBAL
+			cn.kvStore.contexts.GLOBAL
 		);
 	}
 
@@ -129,7 +131,7 @@
 	function makeEventLoggingData( rate, logId ) {
 
 		var elData = {},
-			kvError = cn.getKVStorageError(),
+			kvError = cn.kvStore.getError(),
 			i, logEntry, elLogEntry;
 
 		// sample rate
@@ -231,8 +233,8 @@
 				'schema.' + EVENT_LOGGING_SCHEMA
 			] );
 
-			if ( !cn.isKVStorageAvailable() ) {
-				cn.setKVStorageNotAvailableError();
+			if ( !cn.kvStore.isAvailable() ) {
+				cn.kvStore.setNotAvailableError();
 
 			} else {
 				// If KV storage works here, do our stuff
@@ -268,8 +270,8 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-	// Object for access by other CentralNotice RL modules
-	cn.internal.bannerHistoryLogger = {
+	// Object for public access
+	cn.bannerHistoryLogger = {
 
 		/**
 		 * Send the banner history log to the server, with a generated unique
@@ -287,7 +289,7 @@
 
 			var deferred = $.Deferred();
 
-			// With luck, this promise will be resoved by the time we get here
+			// With luck, this promise will be resolved by the time we get here
 			readyToLogPromise.done( function() {
 
 				var logId = mw.user.generateRandomSessionId();
@@ -295,9 +297,9 @@
 				mw.eventLog.logEvent(
 					EVENT_LOGGING_SCHEMA,
 					makeEventLoggingData( null, logId )
-				);
-
-				deferred.resolve( logId );
+				).always( function() {
+					deferred.resolve( logId );
+				} );
 			} );
 
 			return deferred.promise();
