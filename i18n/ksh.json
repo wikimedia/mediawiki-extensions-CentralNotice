@@ -21,6 +21,7 @@
 	"centralnotice-preview": "{{int:preview}} ($1)",
 	"centralnotice-live-preview": "{{int:preview}} em Wikki",
 	"centralnotice-nopreview": "(Kein Vör-Aansich ze hann)",
+	"centralnotice-edit-banner-onwiki": "Em Wikki beärrbeijde",
 	"centralnotice-add-new": "Donn en Kampannje dobei",
 	"centralnotice-remove": "Fottnämme",
 	"centralnotice-translate-heading": "Övversäzong för $1",
