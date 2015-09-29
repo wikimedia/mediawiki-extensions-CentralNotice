@@ -34,9 +34,10 @@
 			BANNER_SHOWN:             new Status( 'banner_shown', 6 )
 		},
 
-		// As a temporary measure, we minify banner history logs. Using a code
-		// for hide reasons helps us do that.
+		// Until T114078 is closed, we minify banner history logs. This lookup
+		// table maps from hide reason string to a numeric code.
 		REASONS = {
+			// Any reason not listed here will be stored as "other".
 			'other': 0,
 			'close': 1,
 			'waitdate': 2,
