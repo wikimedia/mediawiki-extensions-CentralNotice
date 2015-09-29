@@ -133,7 +133,7 @@
 	}
 
 	function setStatus( s, reason ) {
-		var reasonCodeStr = reason ? '.' + state.getReasonCode( reason ) : '';
+		var reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
 		status = s;
 		state.data.status = s.key;
 		state.data.statusCode = s.code.toString() + reasonCodeStr;
@@ -321,7 +321,7 @@
 			state.data.recordImpressionSampleRate = rate;
 		},
 
-		getReasonCode: function( reasonName ) {
+		lookupReasonCode: function( reasonName ) {
 			if ( reasonName in REASONS ) {
 				return REASONS[reasonName];
 			}
