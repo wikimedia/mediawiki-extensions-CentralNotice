@@ -278,7 +278,7 @@
 	"centralnotice-impression-diet-maximum-seen": "Maximum impressions any individual will see",
 	"centralnotice-impression-diet-maximum-seen-help": "If the cycle is configured to restart, this limits the number of impressions seen per cycle rather than the total number of impressions seen.",
 	"centralnotice-impression-diet-restart-cycle-delay": "How long to wait before restarting the cycle, in seconds (optional)",
-	"centralnotice-impression-diet-restart-cycle-delay-help": "Defaults to 0, which means readers will experience a single cycle, and then we stop displying banners.",
+	"centralnotice-impression-diet-restart-cycle-delay-help": "Defaults to 0, which means readers will experience a single cycle, and then we stop displaying banners.",
 	"centralnotice-impression-diet-skip-initial": "Number of initial impressions to skip (optional)",
 	"centralnotice-impression-diet-skip-initial-help": "Defaults to 0, which will not skip any impressions. When the cycle begins, we will skip this many potential impressions before displaying a banner."
 }
