@@ -168,5 +168,6 @@
 	"centralnotice-start-date": "Pradžios data (UTC)",
 	"centralnotice-start-time": "Pradžios laikas (UTC)",
 	"centralnotice-end-date": "Pabaigos data (UTC)",
-	"centralnotice-end-time": "Pabaigos laikas (UTC)"
+	"centralnotice-end-time": "Pabaigos laikas (UTC)",
+	"centralnotice-banner-history-logger-rate": "Ėmimo dažnis"
 }

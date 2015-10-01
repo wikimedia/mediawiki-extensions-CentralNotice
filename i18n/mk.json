@@ -269,9 +269,12 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Дневничките записи постари од наведеното ќе истечат и нема да му бидат испратени назад на опслужувачот.",
 	"centralnotice-banner-history-logger-max-entries": "Најголем допуштен број на ставки во дневникот",
 	"centralnotice-banner-history-logger-max-entries-help": "Доколку се заведе уште историја по испраќањето на дневникот, најстарите ставки ќе изчезнат.",
-	"centralnotice-legacy-support": "Поддршка за стари верзии",
+	"centralnotice-legacy-support": "Поддршка за скривање броење впечатоци на стар начин",
 	"centralnotice-legacy-support-help": "Поставки за складност со постари разгласи што се засноваат на Special:RecordImpression или во себе имаат JavaScript што го крие разгласот.",
 	"centralnotice-set-record-impression-sample-rate": "Задај ја стапката на примерочење за „Специјална:ЗаведиВпечаток“",
 	"centralnotice-custom-record-impression-sample-rate": "Стапка на примерочење за „Специјална:ЗаведиВпечаток“ (треба да биде меѓу 0 и 1, заклучно со него)",
-	"centralnotice-banners-not-guaranteed-to-display": "Разгласите може да не се прикажат, зависно од одреденото во Javascript-от во нив"
+	"centralnotice-banners-not-guaranteed-to-display": "Разгласите може да не се прикажат, зависно од одреденото во Javascript-от во нив",
+	"centralnotice-impression-diet": "Исхрана на впечатоците",
+	"centralnotice-impression-diet-cookie-name": "Скри име на колаче",
+	"centralnotice-impression-diet-maximum-seen": "Максимален број на впечатоци што може да види еден поединец"
 }
