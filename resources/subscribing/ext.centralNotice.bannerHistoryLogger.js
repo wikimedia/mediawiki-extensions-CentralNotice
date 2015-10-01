@@ -10,6 +10,7 @@
 	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		bhLogger,
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
+		doNotTrackEnabled = /1|yes/.test( navigator.doNotTrack ),
 		now = Math.round( ( new Date() ).getTime() / 1000 ),
 		log,
 		readyToLogDeferredObj = $.Deferred(),
@@ -221,12 +222,22 @@
 			} else {
 				// If KV storage works here, do our stuff
 				loadLog();
-				log.push( makeLogEntry() );
+
+				// Only don't accumulate log entries if DNT is enabled... But do
+				// purge old entries.
+				if ( !doNotTrackEnabled ) {
+					log.push( makeLogEntry() );
+				}
 
 				purgeOldLogEntries( mixinParams.maxEntryAge,
 					mixinParams.maxEntries );
 
 				storeLog();
+			}
+
+			// Bow out now if DNT
+			if ( doNotTrackEnabled ) {
+				return;
 			}
 
 			// Load needed resources
@@ -300,6 +311,12 @@
 		ensureLogSent: function() {
 
 			var deferred = $.Deferred();
+
+			// Bow out if DNT
+			if ( doNotTrackEnabled ) {
+				deferred.resolve();
+				return deferred.promise();
+			}
 
 			// It's likely that this will be resolved by the time we get here
 			readyToLogDeferredObj.done( function() {
