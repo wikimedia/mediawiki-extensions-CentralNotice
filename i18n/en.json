@@ -273,6 +273,7 @@
 	"centralnotice-custom-record-impression-sample-rate": "Special:RecordImpression sample rate (should be between 0 and 1 inclusive)",
 	"centralnotice-banners-not-guaranteed-to-display": "Banners might not display, as determined by in-banner JavaScript",
 	"centralnotice-impression-diet": "Impression diet",
+	"centralnotice-impression-diet-help": "Limit the number of banners seen by any one individual.",
 	"centralnotice-impression-diet-cookie-name": "Hide cookie name",
 	"centralnotice-impression-diet-cookie-name-help": "To share an impression counting threshold across campaigns, specify the same cookie name for each campaign.  If the cookie name is changed during a campaign, all counts to date will be lost.",
 	"centralnotice-impression-diet-maximum-seen": "Maximum impressions any individual will see",

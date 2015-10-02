@@ -293,6 +293,7 @@ $wgCentralNoticeCampaignMixins = array(
 	'impressionDiet' => array(
 		'module' => 'ext.centralNotice.impressionDiet',
 		'nameMsg' => 'centralnotice-impression-diet',
+		'helpMsg' => 'centralnotice-impression-diet-help',
 		'parameters' => array(
 			'cookieName' => array(
 				'type' => 'string',
