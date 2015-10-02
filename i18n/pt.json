@@ -122,10 +122,6 @@
 	"centralnotice-banner-collapsible": "Ocultável",
 	"centralnotice-banner-fundraising": "Este é um modelo de angariação de fundos",
 	"centralnotice-banner-display-on": "Apresentar em",
-	"centralnotice-banner-autolink": "Criar automaticamente o link da página de destino",
-	"centralnotice-banner-autolink-help": "Quando habilitado, o CentralNotice criará automaticamente uma ligação à $3 com uma página de destino seleccionada ao acaso. Deve haver uma marca de âncora com $1 no corpo da bandeira.",
-	"centralnotice-banner-landing-pages": "Páginas de destino (separadas por vírgulas):",
-	"centralnotice-banner-landing-pages-default": "ex. JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-banner-mixins-help": "Verifica cada mixin que deseja incluir na entrega de banner. (Veja [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] para mais informações.)",
 	"centralnotice-geo": "Com segmentação geográfica",
@@ -237,5 +233,6 @@
 	"centralnotice-end-date": "Data de fim (UTC)",
 	"centralnotice-end-time": "Hora de fim (UTC)",
 	"apihelp-query+centralnoticelogs-param-limit": "Máximo de linhas a retornar (opcional).",
-	"apihelp-query+centralnoticelogs-example-1": "Mostrar registos"
+	"apihelp-query+centralnoticelogs-example-1": "Mostrar registos",
+	"centralnotice-impression-diet-cookie-name": "Ocultar o nome do cookie"
 }

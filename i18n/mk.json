@@ -276,5 +276,11 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Разгласите може да не се прикажат, зависно од одреденото во Javascript-от во нив",
 	"centralnotice-impression-diet": "Исхрана на впечатоците",
 	"centralnotice-impression-diet-cookie-name": "Скри име на колаче",
-	"centralnotice-impression-diet-maximum-seen": "Максимален број на впечатоци што може да види еден поединец"
+	"centralnotice-impression-diet-cookie-name-help": "За да го распределите прагот на бројноста на впечатоците по сите походи, укажете го истиот назив на колачето кај секој од походите. Ако го измените називот во текот на походот, дотогаш изброеното ќе биде изгубено.",
+	"centralnotice-impression-diet-maximum-seen": "Максимален број на впечатоци што може да види еден поединец",
+	"centralnotice-impression-diet-maximum-seen-help": "Доколку кругот е поставен да почне одново, ова го ограничува бројот на впечатоци по круг наместо вкупниот број на видени впечатоци",
+	"centralnotice-impression-diet-restart-cycle-delay": "Колку да се чека пред кругот да почне одново, во секунди (незадолжително)",
+	"centralnotice-impression-diet-restart-cycle-delay-help": "По основно: 0, што значи дека читателите ќе наидат на еден круг, а потоа прикажувањето на разгласи ќе запре.",
+	"centralnotice-impression-diet-skip-initial": "Број на првични впечатоци за прескокнување (незадолжително)",
+	"centralnotice-impression-diet-skip-initial-help": "По основно: 0, што значи дека нема да се прескокне ниеден впечаток. Кога ќе почне кругот, ќе биде прескокнат олкав број на потенцијални впечатоци пред да се прикажуваат разгласи."
 }
