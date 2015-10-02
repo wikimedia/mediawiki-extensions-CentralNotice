@@ -291,6 +291,8 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Help text for the log expiration age field",
 	"centralnotice-banner-history-logger-max-entries": "Label for the banner history logger campaign mixin maximum number of log entries control in the administration UI",
 	"centralnotice-banner-history-logger-max-entries-help": "Help text for the maximum log size field",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Label for field for time limit to delay sending the log without sendBeacon, for the banner history logger campaign mixin",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Help text for field for time limit to delay sending the log without sendBeacon, for the banner history logger campaign mixin",
 	"centralnotice-legacy-support": "Name of the legacy support campaign mixin, for administration UI control",
 	"centralnotice-legacy-support-help": "Description of the legacy support feature",
 	"centralnotice-set-record-impression-sample-rate": "Label for the control to activate setting the sample rate for Special:RecordImpression, for the legacy support campaign mixin",

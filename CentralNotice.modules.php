@@ -145,6 +145,8 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 		'centralnotice-banner-history-logger-max-entry-age-help',
 		'centralnotice-banner-history-logger-max-entries',
 		'centralnotice-banner-history-logger-max-entries-help',
+		'centralnotice-banner-history-logger-wait-log-no-send-beacon',
+		'centralnotice-banner-history-logger-wait-log-no-send-beacon-help',
 
 		// Legacy campaigns
 		'centralnotice-set-record-impression-sample-rate',

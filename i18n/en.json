@@ -267,6 +267,8 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Log entries older than this will be expired and will not be sent back to the server.",
 	"centralnotice-banner-history-logger-max-entries": "Maximum number of entries to keep in log",
 	"centralnotice-banner-history-logger-max-entries-help": "If more history is recorded before the log is sent to the server, the oldest items will disappear.",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Timeout for sending the log without sendBeacon (in milliseconds)",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "To send the log immediately before navigating to a different page, in some browsers, we set a maximum time to wait before giving up on sending the log.",
 	"centralnotice-legacy-support": "Legacy hiding and impression counting support",
 	"centralnotice-legacy-support-help": "Settings for compatibility with older banners that rely on Special:RecordImpression or include JavaScript that hides the banner.",
 	"centralnotice-set-record-impression-sample-rate": "Set sample rate for Special:RecordImpression",

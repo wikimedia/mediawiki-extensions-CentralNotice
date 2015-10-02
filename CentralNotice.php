@@ -268,6 +268,11 @@ $wgCentralNoticeCampaignMixins = array(
 				'type' => 'integer',
 				'labelMsg' => 'centralnotice-banner-history-logger-max-entries',
 				'helpMsg' => 'centralnotice-banner-history-logger-max-entries-help'
+			),
+			'waitLogNoSendBeacon' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-banner-history-logger-wait-log-no-send-beacon',
+				'helpMsg' => 'centralnotice-banner-history-logger-wait-log-no-send-beacon-help'
 			)
 		)
 	),
