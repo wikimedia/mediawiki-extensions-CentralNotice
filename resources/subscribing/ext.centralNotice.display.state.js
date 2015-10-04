@@ -223,13 +223,24 @@
 		},
 
 		setCampaign: function( c ) {
-			var i,
+			var prop, i,
 				category,
 				campaignCategory = null;
 
 			state.campaign = c;
 			state.data.campaign = state.campaign.name;
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
+
+			// Provide the names of mixins enabled in this campaign
+			// Note: Object.keys() not available in IE8
+			// Another note: We expose an object to make testing for a specific
+			// mixin easy in IE8, too
+			state.data.mixins = {};
+			for ( prop in state.campaign.mixins ) {
+				if ( state.campaign.mixins.hasOwnProperty( prop ) ) {
+					state.data.mixins[prop] = true;
+				}
+			}
 
 			// Set the campaignCategory property if all the banners in this
 			// campaign have the same category. This is necessary so we can
