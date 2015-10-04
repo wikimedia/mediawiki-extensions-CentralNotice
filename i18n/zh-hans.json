@@ -298,6 +298,7 @@
 	"centralnotice-banners-not-guaranteed-to-display": "横幅可能不显示，这由横幅中的Javascript决定",
 	"centralnotice-impression-diet": "印象diet",
 	"centralnotice-impression-diet-cookie-name": "隐藏脚本名称",
+	"centralnotice-impression-diet-maximum-seen-help": "如果循环被配置为重启，这会限制每次循环看见的印象数量，而不是看见的印象总数。",
 	"centralnotice-impression-diet-restart-cycle-delay": "重新启动循环前的等待时间（秒）（可选）",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "默认为0，这意味着读者将经历一次单循环，此后我们会停止显示横幅。",
 	"centralnotice-impression-diet-skip-initial": "要跳过的最初印象数量（可选）"
