@@ -324,5 +324,4 @@ require_once $dir . '/CentralNotice.modules.php';
 
 // Register message files
 $wgMessagesDirs['CentralNotice'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['CentralNotice'] = __DIR__ . "/CentralNotice.i18n.php";
 $wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . '/CentralNotice.alias.php';
