@@ -530,7 +530,7 @@
 		 * Get the value of a property used in campaign/banner selection and
 		 * display, and for recording the results of that process.
 		 */
-		getData: function( prop ) {
+		getDataProperty: function( prop ) {
 			return cn.internal.state.getData()[prop];
 		}
 	};
