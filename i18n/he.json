@@ -280,6 +280,7 @@
 	"centralnotice-custom-record-impression-sample-rate": "קצב דגימה של Special:RecordImpression (אמור להיות בין 0 ל־1, כולל)",
 	"centralnotice-banners-not-guaranteed-to-display": "ייתכן שכרזות לא תוצגנה, כפי שמוגדר בג'אווה סקריפט בכרזה",
 	"centralnotice-impression-diet": "דיאטת הצגות",
+	"centralnotice-impression-diet-help": "להגביל את מספר הכרזות שרואה כל פרט.",
 	"centralnotice-impression-diet-cookie-name": "שם עוגיית ההסתרה",
 	"centralnotice-impression-diet-cookie-name-help": "כדי לשתף סף מניין הצגות בכמה מבצעי פרסום, יש לכתוב כאן את אותו שם העוגייה עבור כל מבצע. אם שם העוגייה משתנה במהלך המבצע, כל הספירה עד הזמן הזה תאבד.",
 	"centralnotice-impression-diet-maximum-seen": "המספר המרבי של ההצגות שכל גולש יראה",

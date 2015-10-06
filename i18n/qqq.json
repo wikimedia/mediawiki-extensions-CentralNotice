@@ -303,6 +303,7 @@
 	"centralnotice-impression-diet-maximum-seen": "Label for the form control to set maximum seen count",
 	"centralnotice-impression-diet-maximum-seen-help": "Help text for form control",
 	"centralnotice-impression-diet-restart-cycle-delay": "Label for the form control to set cycle restart delay",
+	"centralnotice-impression-diet-restart-cycle-delay-help": "Help text for form control.",
 	"centralnotice-impression-diet-skip-initial": "Label for the form control to skip initial impressions",
 	"centralnotice-impression-diet-skip-initial-help": "Help text for form control"
 }

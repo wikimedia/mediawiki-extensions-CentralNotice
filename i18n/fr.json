@@ -297,6 +297,7 @@
 	"centralnotice-custom-record-impression-sample-rate": "Taux d’échantillonnage de Special:RecordImpression (doit être entre 0 et 1 inclus)",
 	"centralnotice-banners-not-guaranteed-to-display": "Les bannières peuvent ne pas s'afficher, selon ce qui est décidé par le JavaScript de la bannière",
 	"centralnotice-impression-diet": "Allègement de l’impression",
+	"centralnotice-impression-diet-help": "Limiter le nombre de bannières vues par n'importe quel individu.",
 	"centralnotice-impression-diet-cookie-name": "Masquer le nom du cookie",
 	"centralnotice-impression-diet-cookie-name-help": "Pour partager un seuil de nombre d’impressions entre les campagnes, spécifier le même nom de cookie pour chaque campagne. Si le nom du cookie est modifié lors d’une campagne, tous les compteurs jusque-là seront perdus.",
 	"centralnotice-impression-diet-maximum-seen": "Le nombre maximal d’impressions que n’importe qui verra",

@@ -282,6 +282,7 @@
 	"centralnotice-custom-record-impression-sample-rate": "Samplerate von „Spezial:Zugriffe zählen“ (sollte einschließlich zwischen 0 und 1 sein)",
 	"centralnotice-banners-not-guaranteed-to-display": "Vorlagen könnten nicht angezeigt werden, wie von Vorlagen-Javascript festgelegt",
 	"centralnotice-impression-diet": "Eindrucksdiät",
+	"centralnotice-impression-diet-help": "Begrenzt die Anzahl der von jedem Einzelnen gesehenen Vorlagen.",
 	"centralnotice-impression-diet-cookie-name": "Cookie-Namen verstecken",
 	"centralnotice-impression-diet-cookie-name-help": "Um einen Eindruck zu teilen, der Schwellenwerte durch Kampagnen zählt, gibt den gleichen Cookie-Namen für jede Kampagne an. Falls der Cookie-Name während einer Kampagne geändert wird, gehen alle Zähler auf das Datum verloren.",
 	"centralnotice-impression-diet-maximum-seen": "Maximale Eindrücke, die jeder Einzelne sehen kann",
