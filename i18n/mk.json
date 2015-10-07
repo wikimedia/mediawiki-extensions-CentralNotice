@@ -269,6 +269,8 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Дневничките записи постари од наведеното ќе истечат и нема да му бидат испратени назад на опслужувачот.",
 	"centralnotice-banner-history-logger-max-entries": "Најголем допуштен број на ставки во дневникот",
 	"centralnotice-banner-history-logger-max-entries-help": "Доколку се заведе уште историја по испраќањето на дневникот, најстарите ставки ќе изчезнат.",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Истек на испраќањето на дневникот без sendBeacon (во милисекунди)",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "За да го испратите дневникот веднаш, без да одите на друга страна, кај некои прелистувачи, задаваме максимално време на чекање пред да се откаже испраќањето.",
 	"centralnotice-legacy-support": "Поддршка за скривање броење впечатоци на стар начин",
 	"centralnotice-legacy-support-help": "Поставки за складност со постари разгласи што се засноваат на Special:RecordImpression или во себе имаат JavaScript што го крие разгласот.",
 	"centralnotice-set-record-impression-sample-rate": "Задај ја стапката на примерочење за „Специјална:ЗаведиВпечаток“",

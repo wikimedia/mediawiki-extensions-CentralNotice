@@ -274,6 +274,8 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "עיולי יומן ישנים יותר מזה יפוגו ולא יישלחו חזרה לשרת.",
 	"centralnotice-banner-history-logger-max-entries": "המספר המרבי של עיולים לשמירה ביומן",
 	"centralnotice-banner-history-logger-max-entries-help": "אם עוד היסטוריה מוקלטת לפני שהיומן נשלח לשרת, הפריטים הישנים ביותר ייעלמו.",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "זמן תפוגה לשליחת רישום היומן ללא sendBeacon (במילישניות)",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "כדי לשלוח את היומן מיד לפני מעבר לדף אחר, בדפדפנים אחדים, יש לנו זמן מרבי להמתנה לפני שאנחנו מוותרים על שליחת רישום היומן.",
 	"centralnotice-legacy-support": "תמיכה באפשרויות המיושנות של הסתרה והצגות (impression)",
 	"centralnotice-legacy-support-help": "הגדרות לתאימות עם כרזות ישנות שמסתמכות על Special:RecordImpression או כוללות ג'אווה סקריפט שמסתיר את הכרזה.",
 	"centralnotice-set-record-impression-sample-rate": "הגדרת קצב דגימה עבור Special:RecordImpression",

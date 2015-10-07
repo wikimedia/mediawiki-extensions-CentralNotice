@@ -276,6 +276,8 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Logbucheinträge, die älter als dies sind, werden ablaufen und nicht an den Server zurückgesendet.",
 	"centralnotice-banner-history-logger-max-entries": "Maximale Anzahl der Einträge, die im Logbuch behalten werden sollen",
 	"centralnotice-banner-history-logger-max-entries-help": "Falls mehr Ereignisse aufgezeichnet werden, bevor das Logbuch an den Server gesandt wird, verschwinden die ältesten Einträge.",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Zeitüberschreitung für das Senden des Logbuchs ohne sendBeacon (in Millisekunden)",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Um das Logbuch sofort vor dem Navigieren auf eine andere Seite zu senden, haben wir in einigen Browsern eine Maximalzeit vor dem Aufgeben des Logbuchsendens festgelegt.",
 	"centralnotice-legacy-support": "Veraltete Versteck- und Eindruckszählerunterstützung",
 	"centralnotice-legacy-support-help": "Einstellungen für die Kompatibilität mit älteren Vorlagen, die sich auf „Special:RecordImpression“ stützen oder JavaScript beinhalten und die Vorlage verstecken.",
 	"centralnotice-set-record-impression-sample-rate": "Samplerate für „Spezial:Zugriffe zählen“ festlegen",
