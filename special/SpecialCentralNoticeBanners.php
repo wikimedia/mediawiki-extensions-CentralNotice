@@ -366,7 +366,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 		$out->setPageTitle( $this->bannerName );
 		$wikiPreviewLink = Linker::link(
-			SpecialPage::getTitleFor( 'Random' ),
+			SpecialPage::getTitleFor( 'Randompage' ),
 			$this->msg( 'centralnotice-live-preview' ),
 			array( 'class' => 'cn-banner-list-element-label-text' ),
 			array(

@@ -101,7 +101,7 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 				array( 'class' => 'cn-banner-list-element-label-text' )
 			);
 			$html .= ' (' . Linker::link(
-				SpecialPage::getTitleFor( 'Random' ),
+				SpecialPage::getTitleFor( 'Randompage' ),
 				$this->msg( 'centralnotice-live-preview' ),
 				array( 'class' => 'cn-banner-list-element-label-text' ),
 				array(
