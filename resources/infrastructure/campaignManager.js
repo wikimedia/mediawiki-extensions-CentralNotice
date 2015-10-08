@@ -102,7 +102,7 @@
 					paramValues
 				);
 
-				$checkBox.next( 'label' ).after( $paramControlSet );
+				$checkBox.parent( 'div' ).append( $paramControlSet );
 
 				// Hook up handler for verification
 				$paramControls = $paramControlSet.find( 'input' );

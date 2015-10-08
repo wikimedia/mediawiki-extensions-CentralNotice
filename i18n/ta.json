@@ -8,7 +8,8 @@
 			"செல்வா",
 			"மதனாஹரன்",
 			"Kanags",
-			"ElangoRamanujam"
+			"ElangoRamanujam",
+			"Anj.balaji"
 		]
 	},
 	"centralnotice": "மத்திய அறிவிப்பு நிர்வாகி",
@@ -101,7 +102,6 @@
 	"centralnotice-banner-hidable": "நிலையானது/மறைக்கக்கூடியது",
 	"centralnotice-banner-collapsible": "திறந்து மூடிக்கொள்பவை",
 	"centralnotice-banner-fundraising": "இது ஒரு நிதி திரட்டும் பதாகை",
-	"centralnotice-banner-autolink": "தானாக தரையிறங்கும் பக்க தொடர்பிணைப்பு உருவாக்கு",
 	"centralnotice-countries": "நாடுகள்",
 	"centralnotice-allocation": "ஒதுக்கீடு",
 	"centralnotice-view-allocation": "பதாகை ஒதுக்கீட்டைக் காண்",
@@ -158,5 +158,7 @@
 	"centralnotice-start-date": "தொடக்க நாள்",
 	"centralnotice-start-time": "தொடக்க நேரம் (UTC)",
 	"centralnotice-end-date": "முடிவுத்தேதி",
-	"centralnotice-end-time": "முடிவு நேரம் (UTC)"
+	"centralnotice-end-time": "முடிவு நேரம் (UTC)",
+	"centralnotice-banner-history-logger-rate": "மாதிரி நிலை",
+	"centralnotice-impression-diet-cookie-name": "குக்கீ பெயரை மறை"
 }

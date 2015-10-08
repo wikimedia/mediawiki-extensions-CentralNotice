@@ -5,7 +5,8 @@
 			"Mikullovci11",
 			"Olsi",
 			"Techlik",
-			"Vinie007"
+			"Vinie007",
+			"Kosovastar"
 		]
 	},
 	"centralnotice": "Menaxhimi e mesazheve qendrore",
@@ -70,7 +71,7 @@
 	"centralnotice-available-templates": "Stampat në dispozicion",
 	"centralnotice-template-already-exists": "Baneri është tashmë i lidhur për fushatën.\nNuk ka shtim.",
 	"centralnotice-preview-template": "Parapamje e stampës",
-	"centralnotice-change-lang": "Ndryshoni gjuhën përkthimi",
+	"centralnotice-change-lang": "Ndryshoni gjuhën e përkthimit",
 	"centralnotice-weights": "Peshësia",
 	"centralnotice-notice-is-locked": "Mesazhi është e bllokuar.\nKjo nuk mund të hiqet.",
 	"centralnotice-overlap": "Fushata përputhet me kohën e një fushate tjetër.\nNuk ka shtim.",
@@ -100,9 +101,6 @@
 	"centralnotice-banner-hidable": "Statik/I mundshëm për fshehje",
 	"centralnotice-banner-collapsible": "I mundshëm për zvogëlim",
 	"centralnotice-banner-fundraising": "Ky është një flamur për mbledhjen e fondeve",
-	"centralnotice-banner-autolink": "Krijo autmoatikish lidhje zbritëse faqeje",
-	"centralnotice-banner-autolink-help": "Krijo një etiketë ankorimi në trupin e banerit me $1 dhe shkruaj një ose më faqe zbritëse më poshtë, p.sh., $2. Lidhja do të ndërtohet automatikisht sapo baneri të jetë parë.",
-	"centralnotice-banner-landing-pages": "Faqet ulje (comma-ndarë):",
 	"centralnotice-geo": "Geo-objektiv",
 	"centralnotice-countries": "Shtetet",
 	"centralnotice-allocation": "Rregullimi",

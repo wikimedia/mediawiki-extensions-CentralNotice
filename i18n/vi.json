@@ -27,6 +27,7 @@
 	"centralnotice-preview": "Xem trước ($1)",
 	"centralnotice-live-preview": "Xem trước trên wiki",
 	"centralnotice-nopreview": "(Xem trước không khả dụng)",
+	"centralnotice-edit-banner-onwiki": "Sửa đổi trên wiki",
 	"centralnotice-add-new": "Thêm thông báo chung mới",
 	"centralnotice-remove": "Dời",
 	"centralnotice-translate-heading": "Dịch $1",
@@ -245,11 +246,14 @@
 	"apihelp-query+centralnoticelogs-param-user": "Tên người dùng (tùy chọn).",
 	"apihelp-query+centralnoticelogs-example-1": "Xem nhật trình",
 	"centralnotice-banner-history-logger": "Trình ghi lịch sử biểu ngữ",
-	"centralnotice-banner-history-logger-rate": "Tần số lấy mẫu (phải từ 0 đến 1)",
+	"centralnotice-banner-history-logger-rate": "Tần số lấy mẫu",
 	"centralnotice-banner-history-logger-max-entry-age": "Ngày tối đa để giữ các mục nhật trình",
 	"centralnotice-banner-history-logger-max-entries": "Số tối đa để giữ các mục nhật trình",
-	"centralnotice-legacy-support": "Hỗ trợ biểu ngữ cũ",
+	"centralnotice-legacy-support": "Hỗ trợ ẩn và đếm lượt xem các biểu ngữ cũ",
 	"centralnotice-set-record-impression-sample-rate": "Đặt tần số lấy mẫu cho Special:RecordImpression",
 	"centralnotice-custom-record-impression-sample-rate": "Tần số lấy mẫu Special:RecordImpression (phải từ 0 đến 1)",
-	"centralnotice-banners-not-guaranteed-to-display": "Các biểu ngữ có thể không xuất hiện tùy JavaScript ở trong biểu ngữ"
+	"centralnotice-banners-not-guaranteed-to-display": "Các biểu ngữ có thể không xuất hiện tùy JavaScript ở trong biểu ngữ",
+	"centralnotice-impression-diet-cookie-name": "Ẩn tên cookie",
+	"centralnotice-impression-diet-maximum-seen": "Số lượt xem tối đa của mỗi cá nhân",
+	"centralnotice-impression-diet-skip-initial": "Số lượt xem ban đầu để bỏ qua (tùy chọn)"
 }

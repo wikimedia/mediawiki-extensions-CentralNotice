@@ -124,10 +124,6 @@
 	"centralnotice-banner-collapsible": "Hopfällbar",
 	"centralnotice-banner-fundraising": "Detta är en insamlingsbanner",
 	"centralnotice-banner-display-on": "Visa på",
-	"centralnotice-banner-autolink": "Skapa automatiskt länk till landningssida",
-	"centralnotice-banner-autolink-help": "När den är aktiverad kommer CentralNotice automatiskt skapa en lokaliserad länk till $3 med en slumpad landningssida. Det måste finnas en ankartagg med $1 i bannerns innehåll.",
-	"centralnotice-banner-landing-pages": "Målsidor (kommaseparerade):",
-	"centralnotice-banner-landing-pages-default": "t.ex. JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixins:",
 	"centralnotice-banner-mixins-help": "Kontrollera varje mixin som du vill inkludera i leveransen av banner. (Se [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] för mer information.)",
 	"centralnotice-geo": "Geografiskt fokuserat",
@@ -259,5 +255,6 @@
 	"apihelp-query+centralnoticelogs-param-limit": "Maximalt antal rader att returnera (valfri).",
 	"apihelp-query+centralnoticelogs-param-start": "Starttid för intervall (valfri).",
 	"apihelp-query+centralnoticelogs-param-end": "Sluttid för intervall (valfri).",
-	"apihelp-query+centralnoticelogs-example-1": "Visa loggar"
+	"apihelp-query+centralnoticelogs-example-1": "Visa loggar",
+	"centralnotice-impression-diet-cookie-name": "Dölj cookienamn"
 }

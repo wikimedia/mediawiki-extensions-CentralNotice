@@ -474,6 +474,8 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
  * @return bool Always true
  */
 function efCentralNoticeEventLoggingRegisterSchemas( &$schemas ) {
+	// Coordinate with makeEventLoggingURL() in
+	// ext.centralNotice.bannerHistoryLogger.js
 	$schemas['CentralNoticeBannerHistory'] = 13447710;
 	return true;
 }

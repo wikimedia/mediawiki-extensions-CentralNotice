@@ -252,24 +252,34 @@ $wgCentralNoticeCampaignMixins = array(
 	'bannerHistoryLogger' => array(
 		'module' => 'ext.centralNotice.bannerHistoryLogger',
 		'nameMsg' => 'centralnotice-banner-history-logger',
+		'helpMsg' => 'centralnotice-banner-history-logger-help',
 		'parameters' => array(
 			'rate' => array(
 				'type' => 'float',
 				'labelMsg' => 'centralnotice-banner-history-logger-rate',
+				'helpMsg' => 'centralnotice-banner-history-logger-rate-help',
 			),
 			'maxEntryAge' => array(
 				'type' => 'integer',
-				'labelMsg' => 'centralnotice-banner-history-logger-max-entry-age'
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entry-age',
+				'helpMsg' => 'centralnotice-banner-history-logger-max-entry-age-help'
 			),
 			'maxEntries' => array(
 				'type' => 'integer',
-				'labelMsg' => 'centralnotice-banner-history-logger-max-entries'
+				'labelMsg' => 'centralnotice-banner-history-logger-max-entries',
+				'helpMsg' => 'centralnotice-banner-history-logger-max-entries-help'
+			),
+			'waitLogNoSendBeacon' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-banner-history-logger-wait-log-no-send-beacon',
+				'helpMsg' => 'centralnotice-banner-history-logger-wait-log-no-send-beacon-help'
 			)
 		)
 	),
 	'legacySupport' => array(
 		'module' => 'ext.centralNotice.legacySupport',
 		'nameMsg' => 'centralnotice-legacy-support',
+		'helpMsg' => 'centralnotice-legacy-support-help',
 		'parameters' => array(
 			'setSRISampleRate' => array(
 				'type' => 'boolean',
@@ -284,7 +294,34 @@ $wgCentralNoticeCampaignMixins = array(
 				'labelMsg' => 'centralnotice-banners-not-guaranteed-to-display'
 			)
 		)
-	)
+	),
+	'impressionDiet' => array(
+		'module' => 'ext.centralNotice.impressionDiet',
+		'nameMsg' => 'centralnotice-impression-diet',
+		'helpMsg' => 'centralnotice-impression-diet-help',
+		'parameters' => array(
+			'cookieName' => array(
+				'type' => 'string',
+				'labelMsg' => 'centralnotice-impression-diet-cookie-name',
+				'helpMsg' => 'centralnotice-impression-diet-cookie-name-help',
+			),
+			'skipInitial' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-impression-diet-skip-initial',
+				'helpMsg' => 'centralnotice-impression-diet-skip-initial-help',
+			),
+			'maximumSeen' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-impression-diet-maximum-seen',
+				'helpMsg' => 'centralnotice-impression-diet-maximum-seen-help',
+			),
+			'restartCycleDelay' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-impression-diet-restart-cycle-delay',
+				'helpMsg' => 'centralnotice-impression-diet-restart-cycle-delay-help',
+			),
+		),
+	),
 );
 
 /* Setup */
@@ -293,5 +330,4 @@ require_once $dir . '/CentralNotice.modules.php';
 
 // Register message files
 $wgMessagesDirs['CentralNotice'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['CentralNotice'] = __DIR__ . "/CentralNotice.i18n.php";
 $wgExtensionMessagesFiles[ 'CentralNoticeAliases' ] = $dir . '/CentralNotice.alias.php';

@@ -214,5 +214,7 @@
 	"centralnotice-end-date": "Data zakończenia (UTC)",
 	"centralnotice-end-time": "Czas zakończenia (UTC)",
 	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
-	"hidebanners": "Ukryj banery"
+	"hidebanners": "Ukryj banery",
+	"centralnotice-banner-history-logger-help": "Śledź kolejność banerów oglądanych przez czytelników i od czasu do czasu wysyłaj ją z powrotem do serwera.",
+	"centralnotice-impression-diet-restart-cycle-delay": "Jak długo należy odczekać przed ponownym uruchomieniem cyklu, w sekundach (opcjonalnie)"
 }

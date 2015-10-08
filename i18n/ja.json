@@ -16,7 +16,8 @@
 			"SkyDaisy9",
 			"W.CC",
 			"Sujiniku",
-			"Otokoume"
+			"Otokoume",
+			"2nd-player"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -236,5 +237,14 @@
 	"centralnotice-banner-not-found-contents": "この名称と一致するバナーはありません。",
 	"apihelp-centralnoticeallocations-description": "CentralNoticeが提供しているバナーの割り当てを、全ての利用者型を対象にパラメータにより抽出し取得します。\n\nこれはJSON only callです。",
 	"apihelp-centralnoticequerycampaign-example-1": " \"Plea_US\"キャンペーンを表示",
-	"centralnotice-banner-history-logger": "バナー履歴ロガー"
+	"centralnotice-banner-history-logger": "バナー履歴ロガー",
+	"centralnotice-banner-history-logger-help": "読者から見たバナーの順序を追跡し、ときおりサーバーに送信します。",
+	"centralnotice-banner-history-logger-rate-help": "データがサンプリングされ、サーバーに送信される確率。 0 (なし) と 1 (常に) との間。",
+	"centralnotice-banner-history-logger-max-entry-age-help": "これよりも古い記録項目は期限切れとなり、サーバーに送信されません。",
+	"centralnotice-banner-history-logger-max-entries-help": "ログがサーバに送信される前に、より多くの履歴が記録されている場合、最も古いアイテムが消えます。",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "sendBeacon せずにログを送信するためのタイムアウト (ミリ秒)",
+	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "別のページに navigating する前にログをすぐに送信するには、一部のブラウザでは、私たちは、ログを送信することをあきらめる前に待機する最大時間を設定します。",
+	"centralnotice-impression-diet-help": "個人によって見られるバナーの数を制限します。",
+	"centralnotice-impression-diet-cookie-name": "クッキー名を隠す",
+	"centralnotice-impression-diet-restart-cycle-delay": "サイクルを再開する前にどのくらい待機を長くするか、秒単位で (省略可能)"
 }

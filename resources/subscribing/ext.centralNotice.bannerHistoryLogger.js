@@ -10,6 +10,8 @@
 	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		bhLogger,
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
+		doNotTrackEnabled = /1|yes/.test( navigator.doNotTrack ),
+		waitLogNoSendBeacon,
 		now = Math.round( ( new Date() ).getTime() / 1000 ),
 		log,
 		readyToLogDeferredObj = $.Deferred(),
@@ -186,6 +188,54 @@
 	}
 
 	/**
+	 * Send the log. If sendBeacon is available, send normally via EventLogging.
+	 * If not, use $.ajax with a timeout as per waitLogNoSendBeacon. FIXME: In
+	 * that case, we also construct the EventLogging URL ourselves.
+	 *
+	 * Returns a promise that resolves as soon as the log is sent for users
+	 * with sendBeacon. For users without sendBeacon, if the log is sent before
+	 * the timeout, the promise resolves, otherwise it rejects.
+	 *
+	 * Note: Do Not Track is already handled at this module's entry points, as
+	 * well as by EventLogging.
+	 *
+	 * @param elData Event log data
+	 * @returns {jQuery.Promise}
+	 */
+	function sendLog( elData ) {
+		var deferred = $.Deferred(),
+			elPromise;
+
+		// If the browser has sendBeacon, use EventLogging and resolve however
+		// it does.
+		if ( navigator.sendBeacon ) {
+			elPromise = mw.eventLog.logEvent( EVENT_LOGGING_SCHEMA, elData );
+
+		} else {
+
+			// No sendBeacon? Do an ajax call and set a time limit to wait
+			// for it to return.
+			setTimeout( function () {
+				deferred.reject();
+			}, waitLogNoSendBeacon );
+
+			elPromise = $.ajax( {
+				url: makeEventLoggingURL( elData ),
+				timeout: waitLogNoSendBeacon,
+				method: 'POST'
+			} );
+		}
+
+		elPromise.then( function () {
+			deferred.resolve();
+		}, function () {
+			deferred.reject();
+		} );
+
+		return deferred.promise();
+	}
+
+	/**
 	 * Check the EventLogging URL we'd get from this data isn't too big. Here
 	 * we copy some of the same processes done by ext.eventLogging.
 	 *
@@ -194,23 +244,28 @@
 	 * @returns {boolean} true if the EL payload size is OK
 	 */
 	function checkEventLoggingURLSize( elData ) {
+		return ( makeEventLoggingURL( elData ).length <= mw.eventLog.maxUrlSize );
+	}
 
-		var fullElData = {
-				event    : elData,
-				revision : 13172419, // Coordinate with CentralNotice.hooks.php
-				schema   : EVENT_LOGGING_SCHEMA,
-				webHost  : location.hostname,
-				wiki     : mw.config.get( 'wgDBname' )
-			},
-
-			url = mw.eventLog.makeBeaconUrl( fullElData );
-
-		return ( url.length <= mw.eventLog.maxUrlSize );
+	/**
+	 * Make an EventLogging URL ourselves.
+	 * FIXME This is a temporary measure!
+	 */
+	function makeEventLoggingURL( elData ) {
+		return mw.eventLog.makeBeaconUrl( {
+			event    : elData,
+			revision : 13447710, // Coordinate with CentralNotice.hooks.php
+			schema   : EVENT_LOGGING_SCHEMA,
+			webHost  : location.hostname,
+			wiki     : mw.config.get( 'wgDBname' )
+		} );
 	}
 
 	// Set a function to run after a campaign is chosen and after a banner for
-	// that campaign is chosen or not
+	// that campaign is chosen or not.
 	mixin.setPostBannerHandler( function( mixinParams ) {
+
+		waitLogNoSendBeacon = mixinParams.waitLogNoSendBeacon;
 
 		// Do this idly to avoid browser lock-ups
 		cn.doIdleWork( function() {
@@ -221,12 +276,22 @@
 			} else {
 				// If KV storage works here, do our stuff
 				loadLog();
-				log.push( makeLogEntry() );
+
+				// Only don't accumulate log entries if DNT is enabled... But do
+				// purge old entries.
+				if ( !doNotTrackEnabled ) {
+					log.push( makeLogEntry() );
+				}
 
 				purgeOldLogEntries( mixinParams.maxEntryAge,
 					mixinParams.maxEntries );
 
 				storeLog();
+			}
+
+			// Bow out now if DNT
+			if ( doNotTrackEnabled ) {
+				return;
 			}
 
 			// Load needed resources
@@ -257,20 +322,23 @@
 				// Send a sample to the server
 				if ( Math.random() < rate ) {
 
-					mw.eventLog.logEvent(
-						EVENT_LOGGING_SCHEMA,
-						makeEventLoggingData( rate )
-					);
+					sendLog( makeEventLoggingData( rate ) ).always( function () {
 
-					inSample = true;
-					logSent = true;
+						inSample = true;
+						logSent = true;
+
+						// By resolving only after sampling and possibly
+						// sending the log, we ensure that a sampled log
+						// would be sent first. That simplifies the logic
+						// for whether to send in other circumstances.
+						readyToLogDeferredObj.resolve();
+					} );
+
+				} else {
+
+					// If not in the sample, ready right away
+					readyToLogDeferredObj.resolve();
 				}
-
-				// By resolving only after sampling and possibly sending the
-				// log, we ensure that a sampled log would be sent first. That
-				// simplifies the logic for whether to send in other
-				// circumstances.
-				readyToLogDeferredObj.resolve();
 			} );
 		} );
 	} );
@@ -301,20 +369,26 @@
 
 			var deferred = $.Deferred();
 
+			// Bow out if DNT
+			if ( doNotTrackEnabled ) {
+				deferred.resolve();
+				return deferred.promise();
+			}
+
 			// It's likely that this will be resolved by the time we get here
 			readyToLogDeferredObj.done( function() {
 
+				// This is included in the done() function to ensure a sampled
+				// log would be sent first (see above).
 				if ( logSent ) {
 					deferred.resolve();
-					return;
+				} else {
+					sendLog( makeEventLoggingData() ).then(function() {
+						deferred.resolve();
+					}, function () {
+						deferred.reject();
+					} );
 				}
-
-				mw.eventLog.logEvent(
-					EVENT_LOGGING_SCHEMA,
-					makeEventLoggingData()
-				).always( function() {
-					deferred.resolve();
-				} );
 			} );
 
 			return deferred.promise();

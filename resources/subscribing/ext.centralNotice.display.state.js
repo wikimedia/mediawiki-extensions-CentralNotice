@@ -37,6 +37,7 @@
 		// As a temporary measure, we minify banner history logs. Using a code
 		// for hide reasons helps us do that.
 		REASONS = {
+			// Any reason not listed here will be stored as "other".
 			'other': 0,
 			'close': 1,
 			'waitdate': 2,
@@ -46,7 +47,10 @@
 			'viewLimit': 6,
 			'seen-fullscreen': 7,
 			'cookies-disabled': 8,
-			'donate': 9
+			'donate': 9,
+			'cookies': 10,
+			'seen': 11,
+			'empty': 12
 		};
 
 	function Status( key, code ) {
@@ -132,7 +136,7 @@
 	}
 
 	function setStatus( s, reason ) {
-		var reasonCodeStr = reason ? '.' + state.getReasonCode( reason ) : '';
+		var reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
 		status = s;
 		state.data.status = s.key;
 		state.data.statusCode = s.code.toString() + reasonCodeStr;
@@ -219,13 +223,24 @@
 		},
 
 		setCampaign: function( c ) {
-			var i,
+			var prop, i,
 				category,
 				campaignCategory = null;
 
 			state.campaign = c;
 			state.data.campaign = state.campaign.name;
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
+
+			// Provide the names of mixins enabled in this campaign
+			// Note: Object.keys() not available in IE8
+			// Another note: We expose an object to make testing for a specific
+			// mixin easy in IE8, too
+			state.data.mixins = {};
+			for ( prop in state.campaign.mixins ) {
+				if ( state.campaign.mixins.hasOwnProperty( prop ) ) {
+					state.data.mixins[prop] = true;
+				}
+			}
 
 			// Set the campaignCategory property if all the banners in this
 			// campaign have the same category. This is necessary so we can
@@ -320,7 +335,7 @@
 			state.data.recordImpressionSampleRate = rate;
 		},
 
-		getReasonCode: function( reasonName ) {
+		lookupReasonCode: function( reasonName ) {
 			if ( reasonName in REASONS ) {
 				return REASONS[reasonName];
 			}

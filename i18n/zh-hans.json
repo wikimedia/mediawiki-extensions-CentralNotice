@@ -26,7 +26,8 @@
 			"Zhuyifei1999",
 			"乌拉跨氪",
 			"阿pp",
-			"Duolaimi"
+			"Duolaimi",
+			"Antonio"
 		]
 	},
 	"centralnotice": "中心通告管理",
@@ -47,6 +48,7 @@
 	"centralnotice-preview": "预览（$1）",
 	"centralnotice-live-preview": "wiki中预览",
 	"centralnotice-nopreview": "（无预览可用）",
+	"centralnotice-edit-banner-onwiki": "在wiki上编辑",
 	"centralnotice-add-new": "添加新活动",
 	"centralnotice-remove": "移除",
 	"centralnotice-translate-heading": "$1的翻译",
@@ -284,11 +286,21 @@
 	"apihelp-query+centralnoticelogs-param-end": "范围的结束时间（可选）。",
 	"apihelp-query+centralnoticelogs-example-1": "显示日志",
 	"centralnotice-banner-history-logger": "横幅历史记录器",
-	"centralnotice-banner-history-logger-rate": "抽样率（应介于0和1之间，包括0和1）",
+	"centralnotice-banner-history-logger-rate": "抽样率",
+	"centralnotice-banner-history-logger-rate-help": "数据被抽取并发回至服务器的可能性。值为0（从不）和1（总是）之间的十进制数字。",
 	"centralnotice-banner-history-logger-max-entry-age": "最长日志记录年龄（日）",
+	"centralnotice-banner-history-logger-max-entry-age-help": "早于此条记录的日志记录将失效，并将不会发回服务器。",
 	"centralnotice-banner-history-logger-max-entries": "要保持在日志的记录的最大数",
-	"centralnotice-legacy-support": "传统支持",
+	"centralnotice-banner-history-logger-max-entries-help": "如果更多历史在日志发送至服务器前被记录，最早的项目将被显示。",
+	"centralnotice-legacy-support": "传统隐藏和印象计数支持",
 	"centralnotice-set-record-impression-sample-rate": "为Special:RecordImpression设置抽样率",
 	"centralnotice-custom-record-impression-sample-rate": "Special:RecordImpression抽样率（应介于0和1之间，包括0和1）",
-	"centralnotice-banners-not-guaranteed-to-display": "横幅可能不显示，这由横幅中的Javascript决定"
+	"centralnotice-banners-not-guaranteed-to-display": "横幅可能不显示，这由横幅中的Javascript决定",
+	"centralnotice-impression-diet": "印象diet",
+	"centralnotice-impression-diet-cookie-name": "隐藏脚本名称",
+	"centralnotice-impression-diet-maximum-seen": "任何个人将会看到的印象最大值",
+	"centralnotice-impression-diet-maximum-seen-help": "如果循环被配置为重启，这会限制每次循环看见的印象数量，而不是看见的印象总数。",
+	"centralnotice-impression-diet-restart-cycle-delay": "重新启动循环前的等待时间（秒）（可选）",
+	"centralnotice-impression-diet-restart-cycle-delay-help": "默认为0，这意味着读者将经历一次单循环，此后我们会停止显示横幅。",
+	"centralnotice-impression-diet-skip-initial": "要跳过的最初印象数量（可选）"
 }
