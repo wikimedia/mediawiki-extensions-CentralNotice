@@ -5,6 +5,5 @@
 			"Kghbln"
 		]
 	},
-	"centralnotice-edit-template-summary": "Um eine zu übersetzende Nachricht zu erstellen, fügen Sie einen von drei geschweiften Klammern und mit Bindestrich umgebenen Text ein, z. B. {{{jimbo-zitat}}}.",
-	"centralnotice-banner-autolink-help": "Erstellen Sie mit $1 einen Anker innerhalb des Bannerkörpers und geben Sie eine oder mehrere Zielseiten, wie bspw. $2, an. Der Link wird automatisch beim Anzeigen des Banners erstellt."
+	"centralnotice-edit-template-summary": "Um eine zu übersetzende Nachricht zu erstellen, fügen Sie einen von drei geschweiften Klammern und mit Bindestrich umgebenen Text ein, z. B. {{{jimbo-zitat}}}."
 }

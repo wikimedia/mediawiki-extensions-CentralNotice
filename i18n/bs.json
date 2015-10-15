@@ -106,8 +106,6 @@
 	"centralnotice-banner-collapsible": "Moguće sakriti",
 	"centralnotice-banner-fundraising": "Ovo je plakat za donacije",
 	"centralnotice-banner-display-on": "Prikazati na",
-	"centralnotice-banner-autolink-help": "Pravi oznaku za uklapanje u tijelo banera sa $1 i unosi jedan ili više ciljnih članaka ispod, naprimjer, $2. Oznaka href za link će biti automatski napravljen.",
-	"centralnotice-banner-landing-pages": "Ciljne stranice (razdvojene zarezima):",
 	"centralnotice-geo": "Geociljano",
 	"centralnotice-countries": "Države",
 	"centralnotice-allocation": "Raspoređivanje",
