@@ -252,5 +252,5 @@
 	"apihelp-query+centralnoticelogs-param-start": "期間的開始時間 (選填)。",
 	"apihelp-query+centralnoticelogs-param-end": "期間的結束時間 (選填)。",
 	"apihelp-query+centralnoticelogs-example-1": "顯示日誌",
-	"centralnotice-legacy-support": "舊版支援"
+	"centralnotice-legacy-support": "舊版隱藏與印象計數支援"
 }

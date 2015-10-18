@@ -273,5 +273,11 @@
 	"centralnotice-custom-record-impression-sample-rate": "La frecuencia de muestra pa Special:RecordImpression (tien de tar ente 0 y 1 incluíos)",
 	"centralnotice-banners-not-guaranteed-to-display": "Los cartelos podríen nun apaecer, según determine'l Javascript incluíu nel mesmu",
 	"centralnotice-impression-diet": "Dieta d'impresiones",
-	"centralnotice-impression-diet-cookie-name": "Despintar el nome de la cookie"
+	"centralnotice-impression-diet-cookie-name": "Despintar el nome de la cookie",
+	"centralnotice-impression-diet-maximum-seen": "Máximu d'impresiones que cualquier individuu va ver",
+	"centralnotice-impression-diet-maximum-seen-help": "Si'l ciclu ta configuráu pa reaniciase, esto llenda'l númberu d'impresiones vistes per ciclu más que'l númberu total d'impresiones vistes.",
+	"centralnotice-impression-diet-restart-cycle-delay": "Cuánto tiempu hai qu'esperar antes de volver a aniciar el ciclu, en segundos (opcional)",
+	"centralnotice-impression-diet-restart-cycle-delay-help": "Predeterminao de 0, lo que quier dicir que los llectores esperimentarán un solu ciclu, y dexaremos d'amosar cartelos.",
+	"centralnotice-impression-diet-skip-initial": "Númberu d'impresiones iniciales qu'omitir (opcional)",
+	"centralnotice-impression-diet-skip-initial-help": "Predeterminao de 0, que nun saltará nenguna impresión. Cuando principia'l ciclu, saltaremos toes estes posibles impresiones antes d'amosar un cartelu."
 }
