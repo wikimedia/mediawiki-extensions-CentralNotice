@@ -87,9 +87,9 @@
 				key = decodeCampaignName( parts[0] ),
 				start = parseInt( parts[1], 10 ) + 14e8,
 				end = start + parseInt( parts[2], 10 ),
-				val = parts[3];
+				val = parseInt( parts[3], 10 );
 
-			if ( key && start && end && val !== undefined ) {
+			if ( key && start && end && !isNaN( val ) ) {
 				buckets[ key ] = {
 					start: start,
 					end: end,
@@ -123,7 +123,7 @@
 		// Store the buckets in the cookie
 		$.cookie( 'CN', cookieVal, {
 			expires: new Date( expires * 1000 ),
-			path: '/',
+			path: '/'
 		} );
 	}
 
@@ -254,6 +254,7 @@
 		 * setCampaign() and process() must have been called first. (Normally
 		 * they're called by mw.centralNotice.chooseAndMaybeDisplay(). Calls
 		 * to this method from mixin hooks don't have to worry about this.)
+		 * @returns {Number}
 		 */
 		getBucket: function() {
 			return buckets[campaign.name].val;
@@ -265,6 +266,7 @@
 		 * setCampaign() and process() must have been called first. (Normally
 		 * they're called by mw.centralNotice.chooseAndMaybeDisplay(). Calls
 		 * to this method from mixin hooks don't have to worry about this.)
+		 * @param {Number} val The numeric bucket value to store
 		 */
 		setBucket: function( val ) {
 			buckets[campaign.name].val = val;
