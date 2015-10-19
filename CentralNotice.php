@@ -322,6 +322,30 @@ $wgCentralNoticeCampaignMixins = array(
 			),
 		),
 	),
+	'largeBannerLimit' => array(
+		'module' => 'ext.centralNotice.largeBannerLimit',
+		'nameMsg' => 'centralnotice-large-banner-limit',
+		'helpMsg' => 'centralnotice-large-banner-limit-help',
+		'parameters' => array(
+			'days' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-large-banner-limit-days',
+				'helpMsg' => 'centralnotice-large-banner-limit-days-help',
+				'defaultValue' => 250,
+			),
+			'randomize' => array(
+				'type' => 'boolean',
+				'labelMsg' => 'centralnotice-large-banner-limit-randomize',
+				'helpMsg' => 'centralnotice-large-banner-limit-randomize-help',
+			),
+			'cookieName' => array(
+				'type' => 'string',
+				'labelMsg' => 'centralnotice-large-banner-limit-cookie-name',
+				'helpMsg' => 'centralnotice-large-banner-limit-cookie-name-help',
+				'defaultValue' => 'centralnotice-frbanner-seen-fullscreen',
+			),
+		),
+	),
 );
 
 /* Setup */

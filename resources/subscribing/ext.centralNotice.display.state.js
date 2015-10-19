@@ -296,6 +296,10 @@
 			return status === STATUSES.BANNER_CANCELED;
 		},
 
+		isBannerShown: function() {
+			return status === STATUSES.BANNER_SHOWN;
+		},
+
 		setNoBannerAvailable: function() {
 			setStatus( STATUSES.NO_BANNER_AVAILABLE );
 

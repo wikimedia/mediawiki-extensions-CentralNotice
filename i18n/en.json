@@ -283,5 +283,13 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "How long to wait before restarting the cycle, in seconds (optional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Defaults to 0, which means readers will experience a single cycle, and then we stop displaying banners.",
 	"centralnotice-impression-diet-skip-initial": "Number of initial impressions to skip (optional)",
-	"centralnotice-impression-diet-skip-initial-help": "Defaults to 0, which will not skip any impressions. When the cycle begins, we will skip this many potential impressions before displaying a banner."
+	"centralnotice-impression-diet-skip-initial-help": "Defaults to 0, which will not skip any impressions. When the cycle begins, we will skip this many potential impressions before displaying a banner.",
+	"centralnotice-large-banner-limit": "Large banner limit and switch",
+	"centralnotice-large-banner-limit-help": "Show a large banner once, then switch to small banners. Place large banners in buckets A and B and small banners in buckets C and D.",
+	"centralnotice-large-banner-limit-days": "Length of suppression",
+	"centralnotice-large-banner-limit-days-help": "Number of days to suppress large banner display after initial impression.",
+	"centralnotice-large-banner-limit-randomize": "Randomize bucket transition",
+	"centralnotice-large-banner-limit-randomize-help": "Normal bucket transition is A to C, B to D. When checked, readers will randomly move to buckets C or D.",
+	"centralnotice-large-banner-limit-cookie-name": "Large banner cookie name",
+	"centralnotice-large-banner-limit-cookie-name-help": "Large banner display is suppressed across campaigns with the same cookie. Default value 'centralnotice-frbanner-seen-fullscreen' is compatible with on-wiki fundraising scripts."
 }
