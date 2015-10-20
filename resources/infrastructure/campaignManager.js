@@ -135,6 +135,8 @@
 				params: []
 			};
 
+		paramValues = paramValues || {};
+
 		$.each( paramDefs, function ( paramName, paramDef ) {
 
 			var paramTemplateVars =  {
@@ -168,45 +170,49 @@
 					throw 'Invalid parameter definition type: ' + paramDef.type;
 			}
 
-			// If param values were provided, fill the form up with those
-			if ( paramValues ) {
-				switch ( paramDef.type ) {
-					case 'string':
-					case 'integer':
-					case 'float':
-						paramTemplateVars.inputValue = paramValues[paramName];
-						break;
+			// If parameter value was not provided, set a default
+			if ( !( paramName in paramValues ) ) {
+				if ( typeof paramDef.defaultValue !== 'undefined' ) {
+					paramValues[paramName] = paramDef.defaultValue;
+				} else {
+					switch ( paramDef.type ) {
+						case 'string':
+							paramValues[paramName] = '';
+							break;
 
-					case 'boolean':
-						if ( paramValues[paramName] ) {
-							paramTemplateVars.checkedFlagAndVar = {
-								checked: 'checked'
-							};
-						}
-						break;
+						case 'integer':
+						case 'float':
+							paramValues[paramName] = '0';
+							break;
 
-					default:
-						throw 'Invalid parameter definition type: ' + paramDef.type;
+						case 'boolean':
+							paramValues[paramName] = false;
+							break;
+
+						default:
+							throw 'Invalid parameter definition type: ' + paramDef.type;
+					}
 				}
+			}
 
-			// No param values? Set some defaults
-			} else {
-				switch ( paramDef.type ) {
-					case 'string':
-						paramTemplateVars.inputValue = '';
-						break;
+			// Set form control values
+			switch ( paramDef.type ) {
+				case 'string':
+				case 'integer':
+				case 'float':
+					paramTemplateVars.inputValue = paramValues[paramName];
+					break;
 
-					case 'integer':
-					case 'float':
-						paramTemplateVars.inputValue = '0';
-						break;
+				case 'boolean':
+					if ( paramValues[paramName] ) {
+						paramTemplateVars.checkedFlagAndVar = {
+							checked: 'checked'
+						};
+					}
+					break;
 
-					case 'boolean':
-						break;
-
-					default:
-						throw 'Invalid parameter definition type: ' + paramDef.type;
-				}
+				default:
+					throw 'Invalid parameter definition type: ' + paramDef.type;
 			}
 
 			if ( paramDef.helpMsg ) {
