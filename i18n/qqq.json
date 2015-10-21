@@ -212,7 +212,6 @@
 	"centralnotice-buckets": "Label for the option to enable user bucketing for a campaign, i.e. assigning users to groups that only see certain banners.",
 	"centralnotice-bucket": "Label for the select list that the campaign manager uses to assign a banner to a certain user bucket.",
 	"centralnotice-bucket-letter": "Label for specifying what bucket is being used. Parameters:\n* $1 - a bucket letter (uppercase alphabet)",
-	"centralnotice-banner-overflowing-bucket": "Warning that a campaign bucket is misconfigured and too many banners are assigned.\nParameters:\n* $1 - Letter name of misconfigured bucket.",
 	"centralnotice-banner-empty-bucket": "Warning that a campaign bucket is misconfigured and no banners are assigned.",
 	"centralnotice-devicetype-desktop": "Dropdown selector label for identifying clients using a desktop computer",
 	"centralnotice-devicetype-android": "Dropdown selector label for identifying clients on the mobile site that identify as running Android OS",

@@ -1177,15 +1177,6 @@ class CentralNotice extends SpecialPage {
 			$bannerBucket = $banner->asn_bucket;
 			$bannerName = $banner->tmp_name;
 
-			// If this campaign uses bucketing, is more than one banner
-			// assigned to any bucket?
-			if ( $numBuckets > 1
-				&& array_key_exists( $bannerBucket, $assignedBuckets )
-			) {
-				$this->campaignWarnings[] = array(
-					'centralnotice-banner-overflowing-bucket', chr( $bannerBucket + ord( 'A' ) )
-				);
-			}
 			$assignedBuckets[$bannerBucket] = $bannerName;
 		}
 		// Do any buckets not have a banner assigned?
