@@ -169,5 +169,6 @@
 	"centralnotice-start-time": "Pradžios laikas (UTC)",
 	"centralnotice-end-date": "Pabaigos data (UTC)",
 	"centralnotice-end-time": "Pabaigos laikas (UTC)",
-	"centralnotice-banner-history-logger-rate": "Ėmimo dažnis"
+	"centralnotice-banner-history-logger-rate": "Ėmimo dažnis",
+	"centralnotice-impression-diet-cookie-name": "Slėpti slapuko pavadinimą"
 }

@@ -272,7 +272,7 @@
 	"apihelp-query+centralnoticelogs-param-end": "Eindtijd van reeks (optioneel).",
 	"apihelp-query+centralnoticelogs-example-1": "Logboeken weergeven",
 	"centralnotice-banner-history-logger": "Bannergeschiedenis logger",
-	"centralnotice-banner-history-logger-rate": "Sample rate",
+	"centralnotice-banner-history-logger-rate": "Testfrequentie",
 	"centralnotice-banner-history-logger-max-entry-age": "Maximale leeftijd van logboekregels (in dagen)",
 	"centralnotice-banner-history-logger-max-entries": "Maximum te houden aantal regels in logboek"
 }
