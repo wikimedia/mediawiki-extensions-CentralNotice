@@ -307,5 +307,13 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Label for the form control to set cycle restart delay",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Help text for form control.",
 	"centralnotice-impression-diet-skip-initial": "Label for the form control to skip initial impressions",
-	"centralnotice-impression-diet-skip-initial-help": "Help text for form control"
+	"centralnotice-impression-diet-skip-initial-help": "Help text for form control",
+	"centralnotice-large-banner-limit": "Label for the large banner limit mixin",
+	"centralnotice-large-banner-limit-help": "Help text for the large banner limit mixin",
+	"centralnotice-large-banner-limit-days": "Label for the form control to set large banner suppression length",
+	"centralnotice-large-banner-limit-days-help": "Help text for the form control to set large banner suppression length",
+	"centralnotice-large-banner-limit-randomize": "Label for the form control to randomize bucket transition",
+	"centralnotice-large-banner-limit-randomize-help": "Help text for the form control to randomize bucket transition",
+	"centralnotice-large-banner-limit-cookie-name": "Label for the form control to set large banner cookie name",
+	"centralnotice-large-banner-limit-cookie-name-help": "Help text for the form control to set large banner cookie name"
 }
