@@ -290,5 +290,13 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "כמה זמן להמתין לפני התחלה מחדש של המחזור, בשניות (לא חובה)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "בררת המחדל היא 0, כלומר הקוראים יקבלו מחזור אחד, ואז אנחנו מפסיקים להציג כרזות.",
 	"centralnotice-impression-diet-skip-initial": "מספר ההצגות הראשוני לדלג עליו (לא חובה)",
-	"centralnotice-impression-diet-skip-initial-help": "בררת המחדל היא 0, כלומר לא לדלג על הצגות. כשהמחזור מתחיל, אנחנו נדלג על מספר כזה של הצגות אפשריות לפני שנציג כרזה."
+	"centralnotice-impression-diet-skip-initial-help": "בררת המחדל היא 0, כלומר לא לדלג על הצגות. כשהמחזור מתחיל, אנחנו נדלג על מספר כזה של הצגות אפשריות לפני שנציג כרזה.",
+	"centralnotice-large-banner-limit": "הגבלה והחלפה של כרזות גדולות",
+	"centralnotice-large-banner-limit-help": "להציג כרזה גדולה פים אחת, ואז לעבור לכרזות קטנות. לשים את הכרזות הגדולות בהקבצות A ו־B ואת הכרזות הקטנות בהקבצות C ו־D.",
+	"centralnotice-large-banner-limit-days": "אורך ההעלמה",
+	"centralnotice-large-banner-limit-days-help": "מספר הימים שבהם תועלם הכרזה הגדולה אחרי ההצגה הראשונה.",
+	"centralnotice-large-banner-limit-randomize": "להפוך את מעבר ההקבצה לאקראי",
+	"centralnotice-large-banner-limit-randomize-help": "מעבר הקבצה רגיל הוא A ל־C, ו־B ל־D. כשזה מסומן, הקוראים יועברו באופן אקראי ל־C או D.",
+	"centralnotice-large-banner-limit-cookie-name": "שם העוגייה של הכרזה הגדולה",
+	"centralnotice-large-banner-limit-cookie-name-help": "הכרזות הגדולות מועלמות בכרזות עם אותה העוגייה. בררת המחדל 'centralnotice-frbanner-seen-fullscreen' מתאימה לתסריטי התרמה בוויקי."
 }

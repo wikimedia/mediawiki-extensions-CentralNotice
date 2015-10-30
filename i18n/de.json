@@ -292,5 +292,13 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Wie lang vor dem Neustart des Kreises gewartet werden soll, in Sekunden (optional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Standard auf 0, was bedeutet, dass Leser einen einzelnen Kreis entdecken, und wir dann das Anzeigen von Vorlagen beenden.",
 	"centralnotice-impression-diet-skip-initial": "Anzahl der ersten zu überspringenden Eindrücke (optional)",
-	"centralnotice-impression-diet-skip-initial-help": "Standard auf 0, was keine Eindrücke überspringt. Wenn der Kreis beginnt, überspringen wir diese potentiellen Eindrücke, bevor eine Vorlage angezeigt wird."
+	"centralnotice-impression-diet-skip-initial-help": "Standard auf 0, was keine Eindrücke überspringt. Wenn der Kreis beginnt, überspringen wir diese potentiellen Eindrücke, bevor eine Vorlage angezeigt wird.",
+	"centralnotice-large-banner-limit": "Große Vorlagen begrenzen und umschalten",
+	"centralnotice-large-banner-limit-help": "Eine große Vorlage einmal anzeigen, dann auf kleine Vorlagen wechseln. Große Vorlagen in den Umgebungen A und B platzieren, kleine Vorlagen in C und D.",
+	"centralnotice-large-banner-limit-days": "Länge der Unterdrückung",
+	"centralnotice-large-banner-limit-days-help": "Anzahl der Tage zum Unterdrücken der Anzeige großer Vorlagen nach der ersten Sichtung.",
+	"centralnotice-large-banner-limit-randomize": "Zufälliger Umgebungsübergang",
+	"centralnotice-large-banner-limit-randomize-help": "Der normale Umgebungsübergang ist von A nach C und von B nach D. Falls ausgewählt, wechseln Leser zufällig zu den Umgebungen C oder D.",
+	"centralnotice-large-banner-limit-cookie-name": "Cookiename der großen Vorlage",
+	"centralnotice-large-banner-limit-cookie-name-help": "Die Anzeige großer Vorlagen ist kampagnenübergreifend mit dem gleichen Cookie unterdrückt. Der Standardwert „centralnotice-frbanner-seen-fullscreen“ ist mit Wiki-Spendensammlungs-Skripten kompatibel."
 }

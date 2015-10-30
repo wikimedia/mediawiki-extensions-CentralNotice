@@ -285,5 +285,13 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Колку да се чека пред кругот да почне одново, во секунди (незадолжително)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "По основно: 0, што значи дека читателите ќе наидат на еден круг, а потоа прикажувањето на разгласи ќе запре.",
 	"centralnotice-impression-diet-skip-initial": "Број на првични впечатоци за прескокнување (незадолжително)",
-	"centralnotice-impression-diet-skip-initial-help": "По основно: 0, што значи дека нема да се прескокне ниеден впечаток. Кога ќе почне кругот, ќе биде прескокнат олкав број на потенцијални впечатоци пред да се прикажуваат разгласи."
+	"centralnotice-impression-diet-skip-initial-help": "По основно: 0, што значи дека нема да се прескокне ниеден впечаток. Кога ќе почне кругот, ќе биде прескокнат олкав број на потенцијални впечатоци пред да се прикажуваат разгласи.",
+	"centralnotice-large-banner-limit": "Ограничување на голем разглас и преод",
+	"centralnotice-large-banner-limit-help": "Големиот разглас се прикажува еднаш, а потоа се преоѓа на помали разгласи. Ставјате ги големите разгласи во групите A и B, a малите во C и D.",
+	"centralnotice-large-banner-limit-days": "Времетраење на неприкажувањето",
+	"centralnotice-large-banner-limit-days-help": "Колку денови да не се прикажува големиот разглас по првичното истакнување.",
+	"centralnotice-large-banner-limit-randomize": "Произволно преоѓај од мал на голем разглас",
+	"centralnotice-large-banner-limit-randomize-help": "Нормалниот преод е од групата A на C, и од групата B на D. Ако е штиклирано, читателите произволно ќе преоѓаат на C или D.",
+	"centralnotice-large-banner-limit-cookie-name": "Назив на колачето на големиот разглас",
+	"centralnotice-large-banner-limit-cookie-name-help": "Неприкажување на голем разглас ширум походите со исто колаче. Основната вредност „centralnotice-frbanner-seen-fullscreen“ е складна со скриптита за прибирање средства на поединечните викија."
 }

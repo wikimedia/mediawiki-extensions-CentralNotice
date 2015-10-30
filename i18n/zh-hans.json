@@ -305,5 +305,13 @@
 	"centralnotice-impression-diet-maximum-seen-help": "如果循环被配置为重启，这会限制每次循环看见的印象数量，而不是看见的印象总数。",
 	"centralnotice-impression-diet-restart-cycle-delay": "重新启动循环前的等待时间（秒）（可选）",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "默认为0，这意味着读者将经历一次单循环，此后我们会停止显示横幅。",
-	"centralnotice-impression-diet-skip-initial": "要跳过的最初印象数量（可选）"
+	"centralnotice-impression-diet-skip-initial": "要跳过的最初印象数量（可选）",
+	"centralnotice-large-banner-limit": "大横幅限制和转换",
+	"centralnotice-large-banner-limit-help": "显示一次大横幅，之后转换至小横幅。将大横幅放置在桶A和B中，并将小横幅放置在桶C和D中。",
+	"centralnotice-large-banner-limit-days": "禁止长度",
+	"centralnotice-large-banner-limit-days-help": "禁止大横幅在最初印象之后显示的天数。",
+	"centralnotice-large-banner-limit-randomize": "随机化桶过渡",
+	"centralnotice-large-banner-limit-randomize-help": "一般桶转换是A至C，B至D。一旦勾选，读者将随机移动至桶C或D。",
+	"centralnotice-large-banner-limit-cookie-name": "大横幅cookie名称",
+	"centralnotice-large-banner-limit-cookie-name-help": "大横幅显示已禁止通过相同的cookie跨通告显示。默认值“centralnotice-frbanner-seen-fullscreen”与wiki中的筹款脚本相兼容。"
 }
