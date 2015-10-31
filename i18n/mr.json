@@ -141,7 +141,7 @@
 	"centralnotice-changed": "<span class=\"cn-old-value\">$1</span> पासून <span class=\"cn-new-value\">$2</span> असा बदल केला.",
 	"centralnotice-on": "चालू",
 	"centralnotice-off": "बंद",
-	"centralnotice-added": "वाढवले   <span class=\"cn-new-value\">$1</span>",
+	"centralnotice-added": "जोडले <span class=\"cn-new-value\">$1</span>",
 	"centralnotice-removed": "गाळले  <span class=\"cn-old-value\">$1</span>",
 	"centralnotice-no-assignments": "कोणताही घोषणाफलक नेमून दिलेला नाही",
 	"centralnotice-talk-link": "चर्चा",
