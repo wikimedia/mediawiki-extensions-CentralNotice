@@ -137,7 +137,7 @@
 	"centralnotice-action": "क्रिया",
 	"centralnotice-action-created": "तयार केले",
 	"centralnotice-action-modified": "बदलविले",
-	"centralnotice-action-removed": "काढले",
+	"centralnotice-action-removed": "हटविले",
 	"centralnotice-changed": "<span class=\"cn-old-value\">$1</span> पासून <span class=\"cn-new-value\">$2</span> असा बदल केला.",
 	"centralnotice-on": "चालू",
 	"centralnotice-off": "बंद",

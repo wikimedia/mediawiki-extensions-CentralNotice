@@ -270,5 +270,12 @@
 	"apihelp-query+centralnoticelogs-param-start": "Hora inicial do intervalo (opcional).",
 	"apihelp-query+centralnoticelogs-param-end": "Hora final do intervalo (opcional).",
 	"apihelp-query+centralnoticelogs-example-1": "Exibir registros",
-	"centralnotice-large-banner-limit-days": "Comprimento de supressão"
+	"centralnotice-large-banner-limit": "Grande limite bandeira e interruptor",
+	"centralnotice-large-banner-limit-help": "Mostra uma grande bandeira uma vez, em seguida, mudar para pequenas bandeiras. Coloque grandes banners em baldes A e B e pequenos banners em baldes C e D.",
+	"centralnotice-large-banner-limit-days": "Comprimento de supressão",
+	"centralnotice-large-banner-limit-days-help": "Número de dias para suprimir um  grande visor banner após impressão inicial.",
+	"centralnotice-large-banner-limit-randomize": "Embaralhar transição balde",
+	"centralnotice-large-banner-limit-randomize-help": "Normal transição balde é de A a C, B à D. Quando marcado, os leitores vão se mover aleatoriamente para C ou D.",
+	"centralnotice-large-banner-limit-cookie-name": "Grande bandeira nome de cookie",
+	"centralnotice-large-banner-limit-cookie-name-help": "Grande bandeira de exibição é suprimida através de campanhas com o mesmo cookie. Valor padrão 'centralnotice-vi-fullscreen frbanner \"é compatível com scripts de captação de recursos apresentadas no wiki."
 }
