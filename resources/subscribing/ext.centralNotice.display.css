@@ -3,3 +3,15 @@
 		display: none;
 	}
 }
+
+.cn-closeButton {
+	display: inline-block;
+	zoom: 1;
+	/* @embed */
+	background: url(CloseWindow19x19.png);
+	width: 19px;
+	height: 19px;
+	text-indent: 19px;
+	white-space: nowrap;
+	overflow: hidden;
+}

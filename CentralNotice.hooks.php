@@ -296,8 +296,8 @@ function efCentralNoticeDisplay( &$notice ) {
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgContLang, $wgNoticeXXCountries,
-		   $wgNoticeInfrastructure, $wgNoticeCloseButton,
-		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
+		   $wgNoticeInfrastructure, $wgCentralBannerRecorder, 
+		   $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
 		   $wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
 		   $wgCentralSelectedBannerDispatcher,
@@ -349,8 +349,6 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
 
 	if ( $wgNoticeInfrastructure ) {
-		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
-
 		// Add campaign mixin defs for use in admin interface
 		$vars[ 'wgCentralNoticeCampaignMixins' ] = $wgCentralNoticeCampaignMixins;
 	}

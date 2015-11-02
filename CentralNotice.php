@@ -103,9 +103,6 @@ $wgNoticeFundraisingUrl = 'https://donate.wikimedia.org/wiki/Special:LandingChec
 $wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
 $wgNoticeDailyCounterSource = 'http://wikimediafoundation.org/wiki/Special:DailyTotal?action=raw';
 
-// URL for a banner close button
-$wgNoticeCloseButton = '//upload.wikimedia.org/wikipedia/foundation/2/20/CloseWindow19x19.png';
-
 // URL prefix where banner screenshots are stored. False if this feature is disabled.
 // meta.wikimedia.org CentralNotice banners are archived at 'http://fundraising-archive.wmflabs.org/banner/'
 $wgNoticeBannerPreview = false;
