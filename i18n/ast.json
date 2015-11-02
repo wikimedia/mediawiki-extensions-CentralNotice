@@ -283,5 +283,13 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Cuánto tiempu hai qu'esperar antes de volver a aniciar el ciclu, en segundos (opcional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Predeterminao de 0, lo que quier dicir que los llectores esperimentarán un solu ciclu, y dexaremos d'amosar cartelos.",
 	"centralnotice-impression-diet-skip-initial": "Númberu d'impresiones iniciales qu'omitir (opcional)",
-	"centralnotice-impression-diet-skip-initial-help": "Predeterminao de 0, que nun saltará nenguna impresión. Cuando principia'l ciclu, saltaremos toes estes posibles impresiones antes d'amosar un cartelu."
+	"centralnotice-impression-diet-skip-initial-help": "Predeterminao de 0, que nun saltará nenguna impresión. Cuando principia'l ciclu, saltaremos toes estes posibles impresiones antes d'amosar un cartelu.",
+	"centralnotice-large-banner-limit": "Llende pa carteles grandes y conmutador",
+	"centralnotice-large-banner-limit-help": "Amuesa un cartel grande y, llueu, cambia a cartelos pequeños. Pon los cartelos grandes nos contenedores A y B y los pequeños nos contenedores C y D.",
+	"centralnotice-large-banner-limit-days": "Duración de la supresión",
+	"centralnotice-large-banner-limit-days-help": "Númberu de díes a suprimir l'amuesa de cartelos grandes después de la impresión inicial.",
+	"centralnotice-large-banner-limit-randomize": "Transición de contenedor al debalu",
+	"centralnotice-large-banner-limit-randomize-help": "La transición de contenedor normal ye de A a C y de B a D. Si ta marcao, los llectores cambiarán al debalu a los contenedores C o D.",
+	"centralnotice-large-banner-limit-cookie-name": "Nome de la cookie del cartelu grande",
+	"centralnotice-large-banner-limit-cookie-name-help": "L'amuesa de cartelos grandes suprímese ente campañes cola mesma cookie. El valor predetermináu 'centralnotice-frbanner-seen-fullscreen' ye compatible colos scripts de collecha de fondos de la wiki."
 }
