@@ -273,5 +273,6 @@
 	"centralnotice-impression-diet-cookie-name": "Ocultar o nome da cookie",
 	"centralnotice-impression-diet-maximum-seen": "Máximo de impresións que verá calquera persoa",
 	"centralnotice-impression-diet-restart-cycle-delay": "Cánto tempo esperar antes de reiniciar o ciclo, en segundos (opcional)",
-	"centralnotice-impression-diet-skip-initial": "Número de impresións iniciais a omitir (opcional)"
+	"centralnotice-impression-diet-skip-initial": "Número de impresións iniciais a omitir (opcional)",
+	"centralnotice-large-banner-limit-days": "Lonxitude da supresión"
 }
