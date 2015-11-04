@@ -102,19 +102,21 @@
 	 */
 	function setUpDataProperty() {
 
-		if ( typeof Object.defineProperty === 'function' ) {
-
+		// try/catch since some browsers don't support Object.defineProperty
+		// or don't support it fully
+		try {
 			Object.defineProperty( cn, 'data', {
 				get: function() { return cn.internal.state.getData(); }
 			} );
 
-		} else {
+			return;
 
-			// FIXME For browsers that don't support defineProperty, we don't
-			// fully respect our internal contract with the state object to
-			// manage data, since we assume the object reference won't change.
-			cn.data = cn.internal.state.getData();
-		}
+		} catch (e) {}
+
+		// FIXME For browsers that don't support defineProperty, we don't
+		// fully respect our internal contract with the state object to
+		// manage data, since we assume the object reference won't change.
+		cn.data = cn.internal.state.getData();
 	}
 
 	/**
