@@ -262,6 +262,15 @@
 			}
 
 			state.data.campaignCategory = campaignCategory;
+
+			// Is the campaign category among the categories configured to use
+			// legacy mechanisms?
+			state.data.campaignCategoryUsesLegacy = (
+				$.inArray(
+					campaignCategory,
+					mw.config.get( 'wgCentralNoticeCategoriesUsingLegacy' )
+				) !== -1
+			);
 		},
 
 		getCampaign: function() {

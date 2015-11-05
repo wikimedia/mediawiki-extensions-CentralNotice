@@ -235,11 +235,14 @@ function efCentralNoticeLoader( $out, $skin ) {
  */
 function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
-	global $wgNoticeProject, $wgUser, $wgMemc;
+	global $wgNoticeProject, $wgCentralNoticeCategoriesUsingLegacy,
+		$wgUser, $wgMemc;
 
 	// FIXME Is this no longer used anywhere in JS following the switch to
 	// client-side banner selection? If so, remove it.
 	$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
+	$vars[ 'wgCentralNoticeCategoriesUsingLegacy' ] =
+		$wgCentralNoticeCategoriesUsingLegacy;
 
 	// Output the user's registration date, total edit count, and past year's edit count.
 	// This is useful for banners that need to be targeted to specific types of users.
