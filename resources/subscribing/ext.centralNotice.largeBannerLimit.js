@@ -21,16 +21,6 @@
 		return ( currentBucket <= 1 );
 	}
 
-	function cookiesEnabled() {
-		var enabled;
-		// Set a cookie, then try to read it back
-		mw.cookie.set( 'cookieTest', 'lbl' );
-		enabled = ( mw.cookie.get( 'cookieTest' ) === 'lbl' );
-		// Clear it out
-		mw.cookie.set( 'cookieTest', null );
-		return enabled;
-	}
-
 	mixin.setPreBannerHandler( function( mixinParams ) {
 		var newBucket;
 
@@ -39,7 +29,7 @@
 		}
 
 		if ( isLarge() &&
-				( !cookiesEnabled() || mw.cookie.get( mixinParams.cookieName, '' ) )
+				( !cn.cookiesEnabled() || mw.cookie.get( mixinParams.cookieName, '' ) )
 			) {
 			// Move reader immediately into small banner bucket
 			if ( mixinParams.randomize ) {

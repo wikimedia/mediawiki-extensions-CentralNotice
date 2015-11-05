@@ -532,6 +532,22 @@
 		 */
 		getDataProperty: function( prop ) {
 			return cn.internal.state.getData()[prop];
+		},
+
+		/**
+		 * Are cookies enabled on this client?
+		 * TODO Should this go in core?
+		 */
+		cookiesEnabled: function() {
+			var enabled;
+			// Set a cookie, then try to read it back
+			// TODO Using jquery.cookie since it's already a dependency; switch
+			// to mw.cookie when we make a general switch.
+			$.cookie( 'cookieTest', 'testVal' );
+			enabled = ( $.cookie( 'cookieTest' ) === 'testVal' );
+			// Clear it out
+			$.removeCookie( 'cookieTest' );
+			return enabled;
 		}
 	};
 
