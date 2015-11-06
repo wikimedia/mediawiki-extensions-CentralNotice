@@ -302,10 +302,10 @@ $wgCentralNoticeCampaignMixins = array(
 		'nameMsg' => 'centralnotice-impression-diet',
 		'helpMsg' => 'centralnotice-impression-diet-help',
 		'parameters' => array(
-			'cookieName' => array(
+			'identifier' => array(
 				'type' => 'string',
-				'labelMsg' => 'centralnotice-impression-diet-cookie-name',
-				'helpMsg' => 'centralnotice-impression-diet-cookie-name-help',
+				'labelMsg' => 'centralnotice-impression-diet-identifier',
+				'helpMsg' => 'centralnotice-impression-diet-identifier-help',
 			),
 			'skipInitial' => array(
 				'type' => 'integer',

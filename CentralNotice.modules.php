@@ -154,8 +154,8 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 		'centralnotice-banners-not-guaranteed-to-display',
 
 		// Impression diet
-		'centralnotice-impression-diet-cookie-name',
-		'centralnotice-impression-diet-cookie-name-help',
+		'centralnotice-impression-diet-identifier',
+		'centralnotice-impression-diet-identifier-help',
 		'centralnotice-impression-diet-maximum-seen',
 		'centralnotice-impression-diet-maximum-seen-help',
 		'centralnotice-impression-diet-restart-cycle-delay',
@@ -257,6 +257,7 @@ $wgResourceModules[ 'ext.centralNotice.impressionDiet' ] = array(
 	'remoteExtPath' => 'CentralNotice/resources',
 	'scripts'       => 'subscribing/ext.centralNotice.impressionDiet.js',
 	'dependencies'  => array(
+		'ext.centralNotice.kvStore',
 		'ext.centralNotice.display',
 	),
 	'targets'       => array( 'desktop', 'mobile' ),
