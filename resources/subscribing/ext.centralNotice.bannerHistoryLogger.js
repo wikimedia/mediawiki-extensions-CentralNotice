@@ -19,6 +19,10 @@
 		inSample,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
+
+		// Maximum time (in days) that the banner history store KV store item
+		// will persist if no entries are added to it.
+		BANNER_HISTORY_KV_STORE_TTL = 365,
 		BANNER_HISTORY_LOG_ENTRY_VERSION = 1, // Update when log format changes
 		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory',
 
@@ -118,7 +122,8 @@
 		cn.kvStore.setItem(
 			BANNER_HISTORY_KV_STORE_KEY,
 			log,
-			cn.kvStore.contexts.GLOBAL
+			cn.kvStore.contexts.GLOBAL,
+			BANNER_HISTORY_KV_STORE_TTL
 		);
 	}
 
