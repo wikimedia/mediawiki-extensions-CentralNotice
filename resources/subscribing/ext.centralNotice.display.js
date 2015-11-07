@@ -182,7 +182,7 @@
 		url.extend( state.getDataCopy( true ) );
 
 		if ( navigator.sendBeacon ) {
-			navigator.sendBeacon( url.toString() );
+			try { navigator.sendBeacon( url.toString() ); } catch ( e ) {}
 		} else {
 			setTimeout( function () {
 				document.createElement( 'img' ).src = url.toString();
