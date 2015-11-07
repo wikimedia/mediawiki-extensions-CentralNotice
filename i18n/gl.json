@@ -270,7 +270,6 @@
 	"centralnotice-custom-record-impression-sample-rate": "Tasa de exemplo de Special:RecordImpression (debe estar entre 0 e 1 ambos incluídos)",
 	"centralnotice-banners-not-guaranteed-to-display": "Os avisos poderían non mostrarse, según estea indicado polo JavaScript do aviso",
 	"centralnotice-impression-diet-help": "Limitar o número de banner vistos por cada persoa.",
-	"centralnotice-impression-diet-cookie-name": "Ocultar o nome da cookie",
 	"centralnotice-impression-diet-maximum-seen": "Máximo de impresións que verá calquera persoa",
 	"centralnotice-impression-diet-restart-cycle-delay": "Cánto tempo esperar antes de reiniciar o ciclo, en segundos (opcional)",
 	"centralnotice-impression-diet-skip-initial": "Número de impresións iniciais a omitir (opcional)",
