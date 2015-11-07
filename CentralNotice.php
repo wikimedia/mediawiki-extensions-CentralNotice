@@ -342,10 +342,10 @@ $wgCentralNoticeCampaignMixins = array(
 				'labelMsg' => 'centralnotice-large-banner-limit-randomize',
 				'helpMsg' => 'centralnotice-large-banner-limit-randomize-help',
 			),
-			'cookieName' => array(
+			'identifier' => array(
 				'type' => 'string',
-				'labelMsg' => 'centralnotice-large-banner-limit-cookie-name',
-				'helpMsg' => 'centralnotice-large-banner-limit-cookie-name-help',
+				'labelMsg' => 'centralnotice-large-banner-limit-identifier',
+				'helpMsg' => 'centralnotice-large-banner-limit-identifier-help',
 				'defaultValue' => 'centralnotice-frbanner-seen-fullscreen',
 			),
 		),

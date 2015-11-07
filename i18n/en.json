@@ -290,6 +290,6 @@
 	"centralnotice-large-banner-limit-days-help": "Number of days to suppress large banner display after initial impression.",
 	"centralnotice-large-banner-limit-randomize": "Randomize bucket transition",
 	"centralnotice-large-banner-limit-randomize-help": "Normal bucket transition is A to C, B to D. When checked, readers will randomly move to buckets C or D.",
-	"centralnotice-large-banner-limit-cookie-name": "Large banner cookie name",
-	"centralnotice-large-banner-limit-cookie-name-help": "Large banner display is suppressed across campaigns with the same cookie. Default value 'centralnotice-frbanner-seen-fullscreen' is compatible with on-wiki fundraising scripts."
+	"centralnotice-large-banner-limit-identifier": "Large banner identifier/cookie name",
+	"centralnotice-large-banner-limit-identifier-help": "Large banner display is suppressed across campaigns with the same identifier. Depending on the campaign category, this may be implemented as a cookie. Default value 'centralnotice-frbanner-seen-fullscreen' is compatible with on-wiki fundraising scripts."
 }

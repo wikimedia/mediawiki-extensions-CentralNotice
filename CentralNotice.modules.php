@@ -168,8 +168,8 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 		'centralnotice-large-banner-limit-days-help',
 		'centralnotice-large-banner-limit-randomize',
 		'centralnotice-large-banner-limit-randomize-help',
-		'centralnotice-large-banner-limit-cookie-name',
-		'centralnotice-large-banner-limit-cookie-name-help',
+		'centralnotice-large-banner-limit-identifier',
+		'centralnotice-large-banner-limit-identifier-help',
 	)
 );
 
@@ -270,6 +270,7 @@ $wgResourceModules[ 'ext.centralNotice.largeBannerLimit' ] = array(
 	'dependencies'  => array(
 		'ext.centralNotice.display',
 		'mediawiki.cookie',
+		'ext.centralNotice.kvStore',
 	),
 	'targets'       => array( 'desktop', 'mobile' ),
 );

@@ -314,6 +314,6 @@
 	"centralnotice-large-banner-limit-days-help": "Help text for the form control to set large banner suppression length",
 	"centralnotice-large-banner-limit-randomize": "Label for the form control to randomize bucket transition",
 	"centralnotice-large-banner-limit-randomize-help": "Help text for the form control to randomize bucket transition",
-	"centralnotice-large-banner-limit-cookie-name": "Label for the form control to set large banner cookie name",
-	"centralnotice-large-banner-limit-cookie-name-help": "Help text for the form control to set large banner cookie name"
+	"centralnotice-large-banner-limit-identifier": "Label for the form control to set large banner identifier/cookie name",
+	"centralnotice-large-banner-limit-identifier-help": "Help text for the form control to set large banner identifier/cookie name"
 }
