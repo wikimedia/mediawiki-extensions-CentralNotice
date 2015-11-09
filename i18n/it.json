@@ -241,7 +241,7 @@
 	"centralnotice-banner-not-found-contents": "Non c'è alcun banner con questo nome esatto.",
 	"hidebanners": "Nascondi banner",
 	"apihelp-query+centralnoticelogs-param-user": "Nome utente (facoltativo)",
-	"centralnotice-impression-diet-identifier": "Identificatore/nascondi il nome del cookie",
+	"centralnotice-impression-diet-identifier": "Identifica/nascondi il nome del cookie",
 	"centralnotice-impression-diet-restart-cycle-delay": "Quanto tempo aspettare prima di riavviare il ciclo, in secondi (opzionale)",
 	"centralnotice-large-banner-limit-days": "Durata della soppressione",
 	"centralnotice-large-banner-limit-days-help": "Numero di giorni per cui sopprimere banner di grandi dimensioni dopo la visualizzazione iniziale."

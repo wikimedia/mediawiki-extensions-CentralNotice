@@ -289,5 +289,7 @@
 	"centralnotice-banner-history-logger-max-entries-help": "Якщо перед відправленням журналу на сервер буде записано більше історії, найстаріші елементи зникнуть.",
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Таймаут для відправки журналу без sendBeacon (у мілісекундах)",
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Щоб надіслати журнал безпосередньо перед переходом на іншу сторінку, в деяких браузерах, ми встановили максимальний час очікування перед відмовою від надсилання журналу.",
-	"centralnotice-banners-not-guaranteed-to-display": "Банери можуть не відображатися, так як це визначено в JavaScript-і банера"
+	"centralnotice-banners-not-guaranteed-to-display": "Банери можуть не відображатися, так як це визначено в JavaScript-і банера",
+	"centralnotice-large-banner-limit-cookie-name": "Назва куки великого банера",
+	"centralnotice-large-banner-limit-cookie-name-help": "Показування великого банера подавлене у кампаніях із тими ж куками. Значення за замовчуванням 'centralnotice-frbanner-seen-fullscreen' сумісне зі скриптами збору коштів у вікі."
 }
