@@ -302,7 +302,9 @@ $wgCentralNoticeCampaignMixins = array(
 		'nameMsg' => 'centralnotice-impression-diet',
 		'helpMsg' => 'centralnotice-impression-diet-help',
 		'parameters' => array(
-			'identifier' => array(
+			// Can't change cookieName param name, due to existing campaigns
+			// on production
+			'cookieName' => array(
 				'type' => 'string',
 				'labelMsg' => 'centralnotice-impression-diet-identifier',
 				'helpMsg' => 'centralnotice-impression-diet-identifier-help',

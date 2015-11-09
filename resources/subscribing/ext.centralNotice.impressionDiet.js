@@ -55,60 +55,63 @@
 			hide = null,
 			pastDate, waitForHideImps, waitForShowImps;
 
-		// Only use cookies for certain campaign on the legacy track
-		// Do this here since it's needed in for storageAvailable() (below)
+		// Only use cookies for certain campaigns on the legacy track
+		// Do this here since it's needed for storageAvailable() (below)
 		useCookies = cn.getDataProperty( 'campaignCategoryUsesLegacy' );
 
+		// URL forced a banner
 		if ( forceFlag ) {
-			// URL forced a banner.
+			return;
+		}
+
+		// Also just show a banner if we have no way to store counts
+		if ( !storageAvailable() ) {
+			return;
+		}
+
+		identifier = mixinParams.cookieName;
+		counts = getCounts();
+
+		// Compare counts against campaign settings and decide whether to
+		// show a banner
+		pastDate = counts.waitUntil < new Date().getTime();
+		waitForHideImps = counts.waitCount < mixinParams.skipInitial;
+		waitForShowImps = counts.waitSeenCount < mixinParams.maximumSeen;
+
+		if ( !pastDate ) {
+			// We're still waiting for the next cycle to begin.
+			hide = 'waitdate';
+			counts.waitCount += 1;
+		} else if ( pastDate && waitForHideImps ) {
+			// We're still skipping initial impressions.
+			hide = 'waitimps';
+			counts.waitCount += 1;
+		} else if ( pastDate && !waitForHideImps && waitForShowImps ) {
+			// Show a banner!
 			hide = false;
+			counts.waitSeenCount += 1;
+			counts.seenCount += 1;
 
-		} else if ( storageAvailable() ) {
-
-			identifier = mixinParams.identifier;
-			counts = getCounts();
-
-			// Compare counts against campaign settings and decide whether to
-			// show a banner
-			pastDate = counts.waitUntil < new Date().getTime();
-			waitForHideImps = counts.waitCount < mixinParams.skipInitial;
-			waitForShowImps = counts.waitSeenCount < mixinParams.maximumSeen;
-
-			if ( !pastDate ) {
-				// We're still waiting for the next cycle to begin.
-				hide = 'waitdate';
-				counts.waitCount += 1;
-			} else if ( pastDate && waitForHideImps ) {
-				// We're still skipping initial impressions.
-				hide = 'waitimps';
-				counts.waitCount += 1;
-			} else if ( pastDate && !waitForHideImps && waitForShowImps ) {
-				// Show a banner!
-				hide = false;
-				counts.waitSeenCount += 1;
-				counts.seenCount += 1;
-
-				if ( counts.waitSeenCount >= mixinParams.maximumSeen ) {
-					// We just completed a cycle.  Wait to restart.
-					counts.waitCount = 0;
-					counts.waitSeenCount = 0;
-					counts.waitUntil = new Date().getTime() +
-						( mixinParams.restartCycleDelay * 1000 );
-				}
-			}
-
-			if ( hide === null ) {
-				// All bets are off!
-				hide = 'waiterr';
+			if ( counts.waitSeenCount >= mixinParams.maximumSeen ) {
+				// We just completed a cycle.  Wait to restart.
 				counts.waitCount = 0;
 				counts.waitSeenCount = 0;
 				counts.waitUntil = new Date().getTime() +
 					( mixinParams.restartCycleDelay * 1000 );
 			}
-
-			// Bookkeeping.
-			storeCounts( counts );
 		}
+
+		if ( hide === null ) {
+			// All bets are off!
+			hide = 'waiterr';
+			counts.waitCount = 0;
+			counts.waitSeenCount = 0;
+			counts.waitUntil = new Date().getTime() +
+				( mixinParams.restartCycleDelay * 1000 );
+		}
+
+		// Bookkeeping.
+		storeCounts( counts );
 
 		// Hide based on the results.
 		if ( hide ) {
@@ -166,7 +169,7 @@
 				// Parse count data from the raw cookie. This should provide
 				// zeroed counts if the cookies are malformed or the second one
 				// isn't there.
-				waitData = ( rawWaitCookie ) || '' ) .split( /[|]/ );
+				waitData = ( rawWaitCookie || '' ) .split( /[|]/ );
 
 				return {
 					seenCount: parseInt( rawCookie ) || 0,
@@ -241,7 +244,7 @@
 
 			// If we don't have an identifier and are supposed to use cookies,
 			// we can't store the data. This is an error state, but we should
-			// hava already logged about it above, so do nothing.
+			// have already logged about it above, so do nothing.
 			return;
 		}
 
