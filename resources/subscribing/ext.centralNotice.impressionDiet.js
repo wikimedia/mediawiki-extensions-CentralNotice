@@ -92,13 +92,22 @@
 			counts.waitSeenCount += 1;
 			counts.seenCount += 1;
 
-			if ( counts.waitSeenCount >= mixinParams.maximumSeen ) {
-				// We just completed a cycle.  Wait to restart.
+			// For restartCycleDelay, 0 is a magic number that means, never
+			// restart
+			if ( ( mixinParams.restartCycleDelay !== 0) &&
+				( counts.waitSeenCount >= mixinParams.maximumSeen ) ) 	{
+
+				// We just completed a cycle. Wait to restart.
 				counts.waitCount = 0;
 				counts.waitSeenCount = 0;
 				counts.waitUntil = new Date().getTime() +
 					( mixinParams.restartCycleDelay * 1000 );
 			}
+
+		} else if ( ( mixinParams.restartCycleDelay === 0 ) &&
+			( pastDate && !waitForHideImps && !waitForShowImps ) ) {
+
+			hide = 'waitnorestart';
 		}
 
 		if ( hide === null ) {
