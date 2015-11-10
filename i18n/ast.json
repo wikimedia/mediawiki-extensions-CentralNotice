@@ -290,6 +290,6 @@
 	"centralnotice-large-banner-limit-days-help": "Númberu de díes a suprimir l'amuesa de cartelos grandes después de la impresión inicial.",
 	"centralnotice-large-banner-limit-randomize": "Transición de contenedor al debalu",
 	"centralnotice-large-banner-limit-randomize-help": "La transición de contenedor normal ye de A a C y de B a D. Si ta marcao, los llectores cambiarán al debalu a los contenedores C o D.",
-	"centralnotice-large-banner-limit-cookie-name": "Nome de la cookie del cartelu grande",
-	"centralnotice-large-banner-limit-cookie-name-help": "L'amuesa de cartelos grandes suprímese ente campañes cola mesma cookie. El valor predetermináu 'centralnotice-frbanner-seen-fullscreen' ye compatible colos scripts de collecha de fondos de la wiki."
+	"centralnotice-large-banner-limit-identifier": "Nome de la cookie del cartelu grande",
+	"centralnotice-large-banner-limit-identifier-help": "L'amuesa de cartelos grandes suprímese ente campañes cola mesma cookie. El valor predetermináu 'centralnotice-frbanner-seen-fullscreen' ye compatible colos scripts de collecha de fondos de la wiki."
 }

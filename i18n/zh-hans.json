@@ -314,6 +314,6 @@
 	"centralnotice-large-banner-limit-days-help": "禁止大横幅在最初印象之后显示的天数。",
 	"centralnotice-large-banner-limit-randomize": "随机化桶过渡",
 	"centralnotice-large-banner-limit-randomize-help": "一般桶转换是A至C，B至D。一旦勾选，读者将随机移动至桶C或D。",
-	"centralnotice-large-banner-limit-cookie-name": "大横幅cookie名称",
-	"centralnotice-large-banner-limit-cookie-name-help": "大横幅显示已禁止通过相同的cookie跨通告显示。默认值“centralnotice-frbanner-seen-fullscreen”与wiki中的筹款脚本相兼容。"
+	"centralnotice-large-banner-limit-identifier": "大横幅cookie名称",
+	"centralnotice-large-banner-limit-identifier-help": "大横幅显示已禁止通过相同的cookie跨通告显示。默认值“centralnotice-frbanner-seen-fullscreen”与wiki中的筹款脚本相兼容。"
 }

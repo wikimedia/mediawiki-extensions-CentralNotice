@@ -292,6 +292,6 @@
 	"centralnotice-large-banner-limit-days-help": "Колку денови да не се прикажува големиот разглас по првичното истакнување.",
 	"centralnotice-large-banner-limit-randomize": "Произволно преоѓај од мал на голем разглас",
 	"centralnotice-large-banner-limit-randomize-help": "Нормалниот преод е од групата A на C, и од групата B на D. Ако е штиклирано, читателите произволно ќе преоѓаат на C или D.",
-	"centralnotice-large-banner-limit-cookie-name": "Назив на колачето на големиот разглас",
-	"centralnotice-large-banner-limit-cookie-name-help": "Неприкажување на голем разглас ширум походите со исто колаче. Основната вредност „centralnotice-frbanner-seen-fullscreen“ е складна со скриптита за прибирање средства на поединечните викија."
+	"centralnotice-large-banner-limit-identifier": "Назив на колачето на големиот разглас",
+	"centralnotice-large-banner-limit-identifier-help": "Неприкажување на голем разглас ширум походите со исто колаче. Основната вредност „centralnotice-frbanner-seen-fullscreen“ е складна со скриптита за прибирање средства на поединечните викија."
 }
