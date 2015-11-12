@@ -313,5 +313,7 @@
 	"centralnotice-large-banner-limit-days": "Longueur de la suppression",
 	"centralnotice-large-banner-limit-days-help": "Nombre de jours avant la suppression de l’affichage de la grande bannière, après la première impression.",
 	"centralnotice-large-banner-limit-randomize": "Rendre aléatoire la transition de zone",
-	"centralnotice-large-banner-limit-randomize-help": "La transition normale de zone est de A vers C et de B vers D. Quand c’est coché, les lecteurs passeront aléatoirement aux zones C ou D."
+	"centralnotice-large-banner-limit-randomize-help": "La transition normale de zone est de A vers C et de B vers D. Quand c’est coché, les lecteurs passeront aléatoirement aux zones C ou D.",
+	"centralnotice-large-banner-limit-identifier": "Identifiant de grande bannière/nom du cookie",
+	"centralnotice-large-banner-limit-identifier-help": "L’affichage de la grande bannière est supprimé dans les campagnes ayant le même identifiant.\nSelon la catégorie de la campagne, cela peut être implémenté comme un cookie. La valeur par défaut 'centralnotice-frbanner-seen-fullscreen' est compatible avec les scripts de collecte de fonds dans le wiki."
 }
