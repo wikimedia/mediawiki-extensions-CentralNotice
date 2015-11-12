@@ -262,16 +262,19 @@
 	"apihelp-query+centralnoticelogs-param-end": "Tempo de finalización do rango (opcional).",
 	"apihelp-query+centralnoticelogs-example-1": "Amosar os rexistros",
 	"centralnotice-banner-history-logger": "Rexistro de historial de avisos",
+	"centralnotice-banner-history-logger-help": "Seguir a secuencia dos anuncios vistos polos lectores, e ocasionalmente devolvelo ao servidor.",
 	"centralnotice-banner-history-logger-rate": "Índice de exemplo",
+	"centralnotice-banner-history-logger-rate-help": "Probabilidade que os datos sexan mostrados e devoltos ao servidor. Decimal entre 0 (nunca) e 1 (sempre).",
 	"centralnotice-banner-history-logger-max-entry-age": "Antigüidade máxima das entradas de rexistro (en días)",
+	"centralnotice-banner-history-logger-max-entry-age-help": "As entradas do rexistro máis antigas que esta expirarán e non serán enviadas ó servidor.",
 	"centralnotice-banner-history-logger-max-entries": "Número máximo de entradas a manter no rexistro",
 	"centralnotice-legacy-support": "Ocultamento do legado e axuda do contador de impresión",
 	"centralnotice-set-record-impression-sample-rate": "Fixar a taxa de exemplo para Special:RecordImpression",
 	"centralnotice-custom-record-impression-sample-rate": "Tasa de exemplo de Special:RecordImpression (debe estar entre 0 e 1 ambos incluídos)",
 	"centralnotice-banners-not-guaranteed-to-display": "Os avisos poderían non mostrarse, según estea indicado polo JavaScript do aviso",
 	"centralnotice-impression-diet-help": "Limitar o número de banner vistos por cada persoa.",
-	"centralnotice-impression-diet-cookie-name": "Ocultar o nome da cookie",
 	"centralnotice-impression-diet-maximum-seen": "Máximo de impresións que verá calquera persoa",
 	"centralnotice-impression-diet-restart-cycle-delay": "Cánto tempo esperar antes de reiniciar o ciclo, en segundos (opcional)",
-	"centralnotice-impression-diet-skip-initial": "Número de impresións iniciais a omitir (opcional)"
+	"centralnotice-impression-diet-skip-initial": "Número de impresións iniciais a omitir (opcional)",
+	"centralnotice-large-banner-limit-days": "Lonxitude da supresión"
 }

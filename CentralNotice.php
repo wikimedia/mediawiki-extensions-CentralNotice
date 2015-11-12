@@ -103,9 +103,6 @@ $wgNoticeFundraisingUrl = 'https://donate.wikimedia.org/wiki/Special:LandingChec
 $wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
 $wgNoticeDailyCounterSource = 'http://wikimediafoundation.org/wiki/Special:DailyTotal?action=raw';
 
-// URL for a banner close button
-$wgNoticeCloseButton = '//upload.wikimedia.org/wikipedia/foundation/2/20/CloseWindow19x19.png';
-
 // URL prefix where banner screenshots are stored. False if this feature is disabled.
 // meta.wikimedia.org CentralNotice banners are archived at 'http://fundraising-archive.wmflabs.org/banner/'
 $wgNoticeBannerPreview = false;
@@ -210,6 +207,11 @@ $wgCentralNoticePerCampaignBucketExtension = 30;
 // given as a proportion of the "all" list length.
 $wgNoticeListComplementThreshold = 0.75;
 
+// Temporary measure: Campaigns whose banners are all set to this category will
+// use some legacy mechanisms (especially cookies instead of the KVStore).
+// TODO Fix and remove!
+$wgCentralNoticeCategoriesUsingLegacy = array( 'Fundraising' );
+
 /** @var $wgNoticeTabifyPages array Declare all pages that should be tabified as CN pages */
 $wgNoticeTabifyPages = array(
 	/* Left side 'namespace' tabs */
@@ -300,10 +302,12 @@ $wgCentralNoticeCampaignMixins = array(
 		'nameMsg' => 'centralnotice-impression-diet',
 		'helpMsg' => 'centralnotice-impression-diet-help',
 		'parameters' => array(
+			// Can't change cookieName param name, due to existing campaigns
+			// on production
 			'cookieName' => array(
 				'type' => 'string',
-				'labelMsg' => 'centralnotice-impression-diet-cookie-name',
-				'helpMsg' => 'centralnotice-impression-diet-cookie-name-help',
+				'labelMsg' => 'centralnotice-impression-diet-identifier',
+				'helpMsg' => 'centralnotice-impression-diet-identifier-help',
 			),
 			'skipInitial' => array(
 				'type' => 'integer',
@@ -319,6 +323,30 @@ $wgCentralNoticeCampaignMixins = array(
 				'type' => 'integer',
 				'labelMsg' => 'centralnotice-impression-diet-restart-cycle-delay',
 				'helpMsg' => 'centralnotice-impression-diet-restart-cycle-delay-help',
+			),
+		),
+	),
+	'largeBannerLimit' => array(
+		'module' => 'ext.centralNotice.largeBannerLimit',
+		'nameMsg' => 'centralnotice-large-banner-limit',
+		'helpMsg' => 'centralnotice-large-banner-limit-help',
+		'parameters' => array(
+			'days' => array(
+				'type' => 'integer',
+				'labelMsg' => 'centralnotice-large-banner-limit-days',
+				'helpMsg' => 'centralnotice-large-banner-limit-days-help',
+				'defaultValue' => 250,
+			),
+			'randomize' => array(
+				'type' => 'boolean',
+				'labelMsg' => 'centralnotice-large-banner-limit-randomize',
+				'helpMsg' => 'centralnotice-large-banner-limit-randomize-help',
+			),
+			'identifier' => array(
+				'type' => 'string',
+				'labelMsg' => 'centralnotice-large-banner-limit-identifier',
+				'helpMsg' => 'centralnotice-large-banner-limit-identifier-help',
+				'defaultValue' => 'centralnotice-frbanner-seen-fullscreen',
 			),
 		),
 	),

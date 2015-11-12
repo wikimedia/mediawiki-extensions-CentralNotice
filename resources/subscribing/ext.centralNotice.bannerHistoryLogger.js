@@ -19,6 +19,10 @@
 		inSample,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
+
+		// Maximum time (in days) that the banner history store KV store item
+		// will persist if no entries are added to it.
+		BANNER_HISTORY_KV_STORE_TTL = 365,
 		BANNER_HISTORY_LOG_ENTRY_VERSION = 1, // Update when log format changes
 		EVENT_LOGGING_SCHEMA = 'CentralNoticeBannerHistory',
 
@@ -118,7 +122,8 @@
 		cn.kvStore.setItem(
 			BANNER_HISTORY_KV_STORE_KEY,
 			log,
-			cn.kvStore.contexts.GLOBAL
+			cn.kvStore.contexts.GLOBAL,
+			BANNER_HISTORY_KV_STORE_TTL
 		);
 	}
 
@@ -137,14 +142,14 @@
 			kvError = cn.kvStore.getError(),
 			i, logEntry, elLogEntry;
 
+		// Log ID: should be generated before this is called, and should not be
+		// persisted anywhere on the client (see below).
+		elData.i = bhLogger.id;
+
 		// sample rate
 		if ( rate ) {
 			elData.r = rate;
 		}
-
-		// Log ID: should be generated before this is called, and should not be
-		// persisted anywhere on the client (see below).
-		elData.i = bhLogger.id;
 
 		// if applicable, the message from any kv store error
 		if ( kvError ) {
@@ -163,18 +168,14 @@
 		while ( i >= 0 ) {
 			logEntry = log[i];
 
-			elLogEntry = {
-				t: logEntry.time,
-				s: logEntry.statusCode
-			};
+			elLogEntry = [
+				logEntry.banner || '',
+				logEntry.campaign,
+				logEntry.time,
+				logEntry.statusCode
+			];
 
-			if ( logEntry.banner ) {
-				elLogEntry.b = logEntry.banner;
-			} else {
-				elLogEntry.c = logEntry.campaign;
-			}
-
-			elData.l.unshift ( elLogEntry );
+			elData.l.unshift ( elLogEntry.join( '|' ) );
 
 			if ( !checkEventLoggingURLSize( elData ) ) {
 				elData.l.shift();
@@ -254,7 +255,7 @@
 	function makeEventLoggingURL( elData ) {
 		return mw.eventLog.makeBeaconUrl( {
 			event    : elData,
-			revision : 13447710, // Coordinate with CentralNotice.hooks.php
+			revision : 14321636, // Coordinate with CentralNotice.hooks.php
 			schema   : EVENT_LOGGING_SCHEMA,
 			webHost  : location.hostname,
 			wiki     : mw.config.get( 'wgDBname' )

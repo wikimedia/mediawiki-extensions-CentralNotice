@@ -154,14 +154,22 @@ $wgResourceModules[ 'ext.centralNotice.adminUi.campaignManager' ] = array(
 		'centralnotice-banners-not-guaranteed-to-display',
 
 		// Impression diet
-		'centralnotice-impression-diet-cookie-name',
-		'centralnotice-impression-diet-cookie-name-help',
+		'centralnotice-impression-diet-identifier',
+		'centralnotice-impression-diet-identifier-help',
 		'centralnotice-impression-diet-maximum-seen',
 		'centralnotice-impression-diet-maximum-seen-help',
 		'centralnotice-impression-diet-restart-cycle-delay',
 		'centralnotice-impression-diet-restart-cycle-delay-help',
 		'centralnotice-impression-diet-skip-initial',
 		'centralnotice-impression-diet-skip-initial-help',
+
+		// Large banner limit
+		'centralnotice-large-banner-limit-days',
+		'centralnotice-large-banner-limit-days-help',
+		'centralnotice-large-banner-limit-randomize',
+		'centralnotice-large-banner-limit-randomize-help',
+		'centralnotice-large-banner-limit-identifier',
+		'centralnotice-large-banner-limit-identifier-help',
 	)
 );
 
@@ -249,7 +257,20 @@ $wgResourceModules[ 'ext.centralNotice.impressionDiet' ] = array(
 	'remoteExtPath' => 'CentralNotice/resources',
 	'scripts'       => 'subscribing/ext.centralNotice.impressionDiet.js',
 	'dependencies'  => array(
+		'ext.centralNotice.kvStore',
 		'ext.centralNotice.display',
+	),
+	'targets'       => array( 'desktop', 'mobile' ),
+);
+
+$wgResourceModules[ 'ext.centralNotice.largeBannerLimit' ] = array(
+	'localBasePath' => $dir . '/resources',
+	'remoteExtPath' => 'CentralNotice/resources',
+	'scripts'       => 'subscribing/ext.centralNotice.largeBannerLimit.js',
+	'dependencies'  => array(
+		'ext.centralNotice.display',
+		'mediawiki.cookie',
+		'ext.centralNotice.kvStore',
 	),
 	'targets'       => array( 'desktop', 'mobile' ),
 );

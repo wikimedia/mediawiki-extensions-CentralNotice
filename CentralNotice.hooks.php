@@ -235,11 +235,14 @@ function efCentralNoticeLoader( $out, $skin ) {
  */
 function efCentralNoticeDefaults( &$vars ) {
 	// Using global $wgUser for compatibility with 1.18
-	global $wgNoticeProject, $wgUser, $wgMemc;
+	global $wgNoticeProject, $wgCentralNoticeCategoriesUsingLegacy,
+		$wgUser, $wgMemc;
 
 	// FIXME Is this no longer used anywhere in JS following the switch to
 	// client-side banner selection? If so, remove it.
 	$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
+	$vars[ 'wgCentralNoticeCategoriesUsingLegacy' ] =
+		$wgCentralNoticeCategoriesUsingLegacy;
 
 	// Output the user's registration date, total edit count, and past year's edit count.
 	// This is useful for banners that need to be targeted to specific types of users.
@@ -296,8 +299,8 @@ function efCentralNoticeDisplay( &$notice ) {
  */
 function efResourceLoaderGetConfigVars( &$vars ) {
 	global $wgNoticeFundraisingUrl, $wgContLang, $wgNoticeXXCountries,
-		   $wgNoticeInfrastructure, $wgNoticeCloseButton,
-		   $wgCentralBannerRecorder, $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
+		   $wgNoticeInfrastructure, $wgCentralBannerRecorder, 
+		   $wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 		   $wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations, $wgScript,
 		   $wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
 		   $wgCentralSelectedBannerDispatcher,
@@ -349,8 +352,6 @@ function efResourceLoaderGetConfigVars( &$vars ) {
 	$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
 
 	if ( $wgNoticeInfrastructure ) {
-		$vars[ 'wgNoticeCloseButton' ] = $wgNoticeCloseButton;
-
 		// Add campaign mixin defs for use in admin interface
 		$vars[ 'wgCentralNoticeCampaignMixins' ] = $wgCentralNoticeCampaignMixins;
 	}
@@ -476,6 +477,6 @@ function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
 function efCentralNoticeEventLoggingRegisterSchemas( &$schemas ) {
 	// Coordinate with makeEventLoggingURL() in
 	// ext.centralNotice.bannerHistoryLogger.js
-	$schemas['CentralNoticeBannerHistory'] = 13447710;
+	$schemas['CentralNoticeBannerHistory'] = 14321636;
 	return true;
 }

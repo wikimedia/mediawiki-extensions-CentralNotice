@@ -102,19 +102,21 @@
 	 */
 	function setUpDataProperty() {
 
-		if ( typeof Object.defineProperty === 'function' ) {
-
+		// try/catch since some browsers don't support Object.defineProperty
+		// or don't support it fully
+		try {
 			Object.defineProperty( cn, 'data', {
 				get: function() { return cn.internal.state.getData(); }
 			} );
 
-		} else {
+			return;
 
-			// FIXME For browsers that don't support defineProperty, we don't
-			// fully respect our internal contract with the state object to
-			// manage data, since we assume the object reference won't change.
-			cn.data = cn.internal.state.getData();
-		}
+		} catch (e) {}
+
+		// FIXME For browsers that don't support defineProperty, we don't
+		// fully respect our internal contract with the state object to
+		// manage data, since we assume the object reference won't change.
+		cn.data = cn.internal.state.getData();
 	}
 
 	/**
@@ -161,7 +163,7 @@
 		// Inject the HTML
 		$( 'div#centralNotice' )
 			.attr( 'class',
-			mw.html.escape( 'cn-' + cn.internal.state.getData().category ) )
+			mw.html.escape( 'cn-' + cn.internal.state.getData().bannerCategory ) )
 			.prepend(
 				'<!--googleoff: all-->' + bannerHtml + '<!--googleon: all-->'
 			);
@@ -180,7 +182,7 @@
 		url.extend( state.getDataCopy( true ) );
 
 		if ( navigator.sendBeacon ) {
-			navigator.sendBeacon( url.toString() );
+			try { navigator.sendBeacon( url.toString() ); } catch ( e ) {}
 		} else {
 			setTimeout( function () {
 				document.createElement( 'img' ).src = url.toString();
@@ -532,6 +534,22 @@
 		 */
 		getDataProperty: function( prop ) {
 			return cn.internal.state.getData()[prop];
+		},
+
+		/**
+		 * Are cookies enabled on this client?
+		 * TODO Should this go in core?
+		 */
+		cookiesEnabled: function() {
+			var enabled;
+			// Set a cookie, then try to read it back
+			// TODO Using jquery.cookie since it's already a dependency; switch
+			// to mw.cookie when we make a general switch.
+			$.cookie( 'cookieTest', 'testVal' );
+			enabled = ( $.cookie( 'cookieTest' ) === 'testVal' );
+			// Clear it out
+			$.removeCookie( 'cookieTest' );
+			return enabled;
 		}
 	};
 

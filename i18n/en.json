@@ -276,12 +276,20 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Banners might not display, as determined by in-banner JavaScript",
 	"centralnotice-impression-diet": "Impression diet",
 	"centralnotice-impression-diet-help": "Limit the number of banners seen by any one individual.",
-	"centralnotice-impression-diet-cookie-name": "Hide cookie name",
-	"centralnotice-impression-diet-cookie-name-help": "To share an impression counting threshold across campaigns, specify the same cookie name for each campaign.  If the cookie name is changed during a campaign, all counts to date will be lost.",
+	"centralnotice-impression-diet-identifier": "Identifier/hide cookie name",
+	"centralnotice-impression-diet-identifier-help": "An identifier for persistent client-side data stored by this feature (such as impression counts). This field is optional for most campaigns. If you leave it blank, campaigns in the same category will share impression counts, or, if this campaign does not use the category feature, counts will be specific to this campaign. To share this data across several campaign categories, specify the same identifier for each campaign. Note: certain campaign categories are configured to use cookies for this feature. For campaigns in those categories, this identifier will be the cookie name, and is not optional. Also note that if the identifier is changed during a campaign, all counts to date will be lost.",
 	"centralnotice-impression-diet-maximum-seen": "Maximum impressions any individual will see",
 	"centralnotice-impression-diet-maximum-seen-help": "If the cycle is configured to restart, this limits the number of impressions seen per cycle rather than the total number of impressions seen.",
 	"centralnotice-impression-diet-restart-cycle-delay": "How long to wait before restarting the cycle, in seconds (optional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Defaults to 0, which means readers will experience a single cycle, and then we stop displaying banners.",
 	"centralnotice-impression-diet-skip-initial": "Number of initial impressions to skip (optional)",
-	"centralnotice-impression-diet-skip-initial-help": "Defaults to 0, which will not skip any impressions. When the cycle begins, we will skip this many potential impressions before displaying a banner."
+	"centralnotice-impression-diet-skip-initial-help": "Defaults to 0, which will not skip any impressions. When the cycle begins, we will skip this many potential impressions before displaying a banner.",
+	"centralnotice-large-banner-limit": "Large banner limit and switch",
+	"centralnotice-large-banner-limit-help": "Show a large banner once, then switch to small banners. Place large banners in buckets A and B and small banners in buckets C and D.",
+	"centralnotice-large-banner-limit-days": "Length of suppression",
+	"centralnotice-large-banner-limit-days-help": "Number of days to suppress large banner display after initial impression.",
+	"centralnotice-large-banner-limit-randomize": "Randomize bucket transition",
+	"centralnotice-large-banner-limit-randomize-help": "Normal bucket transition is A to C, B to D. When checked, readers will randomly move to buckets C or D.",
+	"centralnotice-large-banner-limit-identifier": "Large banner identifier/cookie name",
+	"centralnotice-large-banner-limit-identifier-help": "Large banner display is suppressed across campaigns with the same identifier. Depending on the campaign category, this may be implemented as a cookie. Default value 'centralnotice-frbanner-seen-fullscreen' is compatible with on-wiki fundraising scripts."
 }

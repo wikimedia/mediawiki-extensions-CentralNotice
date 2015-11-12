@@ -22,7 +22,7 @@
 		PREFIX = 'CentralNoticeKV',
 
 		// TTL of KV store items is 1/2 year, in seconds
-		ITEM_TTL = 15768000;
+		DEFAULT_ITEM_TTL = 15768000;
 
 	/**
 	 * A context for key-value storage.
@@ -138,9 +138,11 @@
 		 * @param {string} key
 		 * @param {*} value
 		 * @param {KVStorageContext} context
+		 * @param {number} [ttl] time to live for this item, in days; defaults
+		 *   to 1/2 a year.
 		 * @return {boolean}
 		 */
-		setItem: function( key, value, context ) {
+		setItem: function( key, value, context, ttl ) {
 
 			var lsKey, encodedWrappedValue;
 
@@ -152,7 +154,7 @@
 
 			lsKey = makeKeyForLocalStorage( key, context );
 			encodedWrappedValue = JSON.stringify( {
-				expiry: ITEM_TTL + now,
+				expiry: ttl ? ( ttl * 86400 ) + now : DEFAULT_ITEM_TTL + now,
 				val: value
 			} );
 

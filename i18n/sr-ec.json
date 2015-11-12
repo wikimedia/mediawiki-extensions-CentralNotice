@@ -5,7 +5,8 @@
 			"Millosh",
 			"Rancher",
 			"Јованвб",
-			"Михајло Анђелковић"
+			"Михајло Анђелковић",
+			"Сербијана"
 		]
 	},
 	"centralnotice": "Администратор централног обавештавања",
@@ -109,8 +110,6 @@
 	"centralnotice-banner-collapsible": "Скупљив",
 	"centralnotice-banner-fundraising": "Ово је плакат за прикупљање средстава",
 	"centralnotice-banner-display-on": "Приказати на",
-	"centralnotice-banner-autolink": "Аутоматски направи везу за циљну страницу",
-	"centralnotice-banner-landing-pages": "Циљне странице (одвојите запетом):",
 	"centralnotice-geo": "Геолоцирано",
 	"centralnotice-countries": "Земље",
 	"centralnotice-allocation": "Расподела",
@@ -121,7 +120,7 @@
 	"centralnotice-projects": "Пројекти",
 	"centralnotice-country": "Земља",
 	"centralnotice-no-allocation": "Нема додељених плаката.",
-	"centralnotice-allocation-description": "Додела плаката за $1.$2 у $3:",
+	"centralnotice-allocation-description": "Додела плаката за језик: $1, пројекат: $2, у земљи $3, на уређају $4",
 	"centralnotice-percentage": "Постотак",
 	"centralnotice-documentwrite-error": "document.write() не може бити употребљен унутар банера.\nВидите http://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.",
 	"centralnotice-preferred": "Приоритет",

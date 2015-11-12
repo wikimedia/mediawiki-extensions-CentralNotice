@@ -17,7 +17,8 @@
 			"Dianakc",
 			"Rodrigo codignoli",
 			"He7d3r",
-			"Araceletorres"
+			"Araceletorres",
+			"Eduardo Addad de Oliveira"
 		]
 	},
 	"centralnotice": "Administração de aviso centralizado",
@@ -127,10 +128,6 @@
 	"centralnotice-banner-collapsible": "Colapsável",
 	"centralnotice-banner-fundraising": "Este é um banner de angariação de fundos",
 	"centralnotice-banner-display-on": "Mostrar em",
-	"centralnotice-banner-autolink": "Criar automaticamente o link da página de destino",
-	"centralnotice-banner-autolink-help": "Quando habilitado, o CentralNotice criará automaticamente um link localizado para $3 com uma página de destino selecionada aleatoriamente. Deve haver uma etiqueta de âncora com $1 no corpo do banner.",
-	"centralnotice-banner-landing-pages": "Páginas de destino (separadas por vírgulas):",
-	"centralnotice-banner-landing-pages-default": "ex.: JimmyAppeal01",
 	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-banner-mixins-help": "Verifique cada mixin que você desejar inclur durante a entrega de banner.\n(Veja [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] para mais informações.)",
 	"centralnotice-geo": "Localizado geograficamente",
@@ -272,5 +269,13 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Posição dentro do conjunto de resultados (opcional).",
 	"apihelp-query+centralnoticelogs-param-start": "Hora inicial do intervalo (opcional).",
 	"apihelp-query+centralnoticelogs-param-end": "Hora final do intervalo (opcional).",
-	"apihelp-query+centralnoticelogs-example-1": "Exibir registros"
+	"apihelp-query+centralnoticelogs-example-1": "Exibir registros",
+	"centralnotice-large-banner-limit": "Grande limite bandeira e interruptor",
+	"centralnotice-large-banner-limit-help": "Mostra uma grande bandeira uma vez, em seguida, mudar para pequenas bandeiras. Coloque grandes banners em baldes A e B e pequenos banners em baldes C e D.",
+	"centralnotice-large-banner-limit-days": "Comprimento de supressão",
+	"centralnotice-large-banner-limit-days-help": "Número de dias para suprimir um  grande visor banner após impressão inicial.",
+	"centralnotice-large-banner-limit-randomize": "Embaralhar transição balde",
+	"centralnotice-large-banner-limit-randomize-help": "Normal transição balde é de A a C, B à D. Quando marcado, os leitores vão se mover aleatoriamente para C ou D.",
+	"centralnotice-large-banner-limit-cookie-name": "Grande bandeira nome de cookie",
+	"centralnotice-large-banner-limit-cookie-name-help": "Grande bandeira de exibição é suprimida através de campanhas com o mesmo cookie. Valor padrão 'centralnotice-vi-fullscreen frbanner \"é compatível com scripts de captação de recursos apresentadas no wiki."
 }

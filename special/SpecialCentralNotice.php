@@ -54,8 +54,6 @@ class CentralNotice extends SpecialPage {
 			// Check authentication token
 			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
 
-				$summary = $this->getSummaryFromRequest( $request );
-
 				// Handle adding a campaign or changing existing campaign settings
 				// via the list interface. In either case, we'll retirect to the
 				// list view.
@@ -232,7 +230,7 @@ class CentralNotice extends SpecialPage {
 					$allInitialCampaignSettings[ $campaignName ],
 					$finalCampaignSettings,
 					array(), array(),
-					$summary
+					$this->getSummaryFromRequest( $request )
 				);
 			}
 		}
@@ -474,7 +472,7 @@ class CentralNotice extends SpecialPage {
 			$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
 				$project_languages, $geotargeted, $geo_countries,
 				100, CentralNotice::NORMAL_PRIORITY, $this->getUser(),
-				$summary );
+				$this->getSummaryFromRequest( $request ) );
 			if ( is_string( $result ) ) {
 				// TODO Better error handling
 				$this->showError( $result );

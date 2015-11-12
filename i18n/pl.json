@@ -16,7 +16,8 @@
 			"Sp5uhe",
 			"WTM",
 			"Alan ffm",
-			"Vengir"
+			"Vengir",
+			"Saper"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -216,5 +217,6 @@
 	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
 	"hidebanners": "Ukryj banery",
 	"centralnotice-banner-history-logger-help": "Śledź kolejność banerów oglądanych przez czytelników i od czasu do czasu wysyłaj ją z powrotem do serwera.",
+	"centralnotice-impression-diet-cookie-name-help": "Podaj nazwę ciasteczka dla tych z kampanii, które mają mieć ten sam próg wyświetleń. Uzyskane pomiary wyświetleń zostaną utracone, jeśli zmienisz nazwę ciasteczka podczas trwania kampanii.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Jak długo należy odczekać przed ponownym uruchomieniem cyklu, w sekundach (opcjonalnie)"
 }

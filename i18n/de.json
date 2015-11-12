@@ -285,12 +285,20 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Vorlagen könnten nicht angezeigt werden, wie von Vorlagen-Javascript festgelegt",
 	"centralnotice-impression-diet": "Eindrucksdiät",
 	"centralnotice-impression-diet-help": "Begrenzt die Anzahl der von jedem Einzelnen gesehenen Vorlagen.",
-	"centralnotice-impression-diet-cookie-name": "Cookie-Namen verstecken",
-	"centralnotice-impression-diet-cookie-name-help": "Um einen Eindruck zu teilen, der Schwellenwerte durch Kampagnen zählt, gibt den gleichen Cookie-Namen für jede Kampagne an. Falls der Cookie-Name während einer Kampagne geändert wird, gehen alle Zähler auf das Datum verloren.",
+	"centralnotice-impression-diet-identifier": "Identifikator/Cookienamen verstecken",
+	"centralnotice-impression-diet-identifier-help": "Ein Identifikator für permanente clientseitige Daten, die von dieser Funktion gespeichert werden (wie Zugriffszähler). Dieses Feld ist für die meisten Kampagnen optional. Falls du es leer lässt, teilen sich Kampagnen der gleichen Kategorie die Zugriffszähler oder falls diese Kampagne die Kategorienfunktion nicht verwendet, sind Zähler spezifisch für diese Kampagne. Um diese Daten mit mehreren Kampagnenkategorien zu teilen, gib für jede Kampagne den gleichen Identifikator an. Hinweis: Bestimmte Kampagnenkategorien sind so konfiguriert, dass sie für diese Funktion Cookies verwenden. Für Kampagnen in diesen Kategorien ist der Identifikator der Cookiename und nicht optional. Bedenke auch, dass alle Zähler auf das Datum verloren gehen, falls der Identifikator während der Kampagne geändert wird.",
 	"centralnotice-impression-diet-maximum-seen": "Maximale Eindrücke, die jeder Einzelne sehen kann",
 	"centralnotice-impression-diet-maximum-seen-help": "Falls der Kreis zum Neustarten konfiguriert ist, begrenzt dies die Anzahl der Eindrücke, die pro Kreis eher gesehen werden als die Gesamtzahl der gesehenen Eindrücke.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Wie lang vor dem Neustart des Kreises gewartet werden soll, in Sekunden (optional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Standard auf 0, was bedeutet, dass Leser einen einzelnen Kreis entdecken, und wir dann das Anzeigen von Vorlagen beenden.",
 	"centralnotice-impression-diet-skip-initial": "Anzahl der ersten zu überspringenden Eindrücke (optional)",
-	"centralnotice-impression-diet-skip-initial-help": "Standard auf 0, was keine Eindrücke überspringt. Wenn der Kreis beginnt, überspringen wir diese potentiellen Eindrücke, bevor eine Vorlage angezeigt wird."
+	"centralnotice-impression-diet-skip-initial-help": "Standard auf 0, was keine Eindrücke überspringt. Wenn der Kreis beginnt, überspringen wir diese potentiellen Eindrücke, bevor eine Vorlage angezeigt wird.",
+	"centralnotice-large-banner-limit": "Große Vorlagen begrenzen und umschalten",
+	"centralnotice-large-banner-limit-help": "Eine große Vorlage einmal anzeigen, dann auf kleine Vorlagen wechseln. Große Vorlagen in den Umgebungen A und B platzieren, kleine Vorlagen in C und D.",
+	"centralnotice-large-banner-limit-days": "Länge der Unterdrückung",
+	"centralnotice-large-banner-limit-days-help": "Anzahl der Tage zum Unterdrücken der Anzeige großer Vorlagen nach der ersten Sichtung.",
+	"centralnotice-large-banner-limit-randomize": "Zufälliger Umgebungsübergang",
+	"centralnotice-large-banner-limit-randomize-help": "Der normale Umgebungsübergang ist von A nach C und von B nach D. Falls ausgewählt, wechseln Leser zufällig zu den Umgebungen C oder D.",
+	"centralnotice-large-banner-limit-identifier": "Identifikator der großen Vorlage/Cookiename",
+	"centralnotice-large-banner-limit-identifier-help": "Die Anzeige großer Vorlagen ist kampagnenübergreifend mit dem gleichen Identifikator unterdrückt. Abhängig von der Kampagnenkategorie, kann dies als Cookie implementiert werden. Der Standardwert „centralnotice-frbanner-seen-fullscreen“ ist mit Wiki-Spendensammlungs-Skripten kompatibel."
 }

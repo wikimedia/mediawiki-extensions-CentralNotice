@@ -283,12 +283,20 @@
 	"centralnotice-banners-not-guaranteed-to-display": "ייתכן שכרזות לא תוצגנה, כפי שמוגדר בג'אווה סקריפט בכרזה",
 	"centralnotice-impression-diet": "דיאטת הצגות",
 	"centralnotice-impression-diet-help": "להגביל את מספר הכרזות שרואה כל פרט.",
-	"centralnotice-impression-diet-cookie-name": "שם עוגיית ההסתרה",
-	"centralnotice-impression-diet-cookie-name-help": "כדי לשתף סף מניין הצגות בכמה מבצעי פרסום, יש לכתוב כאן את אותו שם העוגייה עבור כל מבצע. אם שם העוגייה משתנה במהלך המבצע, כל הספירה עד הזמן הזה תאבד.",
+	"centralnotice-impression-diet-identifier": "מזהה/הסתרת שם עוגייה",
+	"centralnotice-impression-diet-identifier-help": "מזהה לנתונים מתקיימים שהאפשרות הזאת שומרת בצד הלקוח (כגון מניין הצגות). אין חובה למלא את השדה הזה עבור רוב מבצעי הפרסום. אם הוא ריק, מבצעים באותה הקטגוריה ישתפו את מניין ההצגות, או, אם המבצע אינו משתמש בקטגוריות, מניינים שייחודיים למבצע הזה. כדי לשתף את הנתונים האלה במספר קטגוריות של מבצעי פרסום, יש לרשום את אותו המזהה לכל מבצע. יש לשים לב לכך שקטגוריות מבצעים מסוימות מוגדרות להשתמש בעוגיות בשביל האפשרות הזאת. עבור מבצעים בקטגוריות האלו המזהה הזה יהיה כמו שם העוגיה, ויהיה חובה למלא אותו. יש לשים לב גם לכך שאם המזהה משתנה במהלך מבצע פרסום, כל המניינים עד אז יאבדו.",
 	"centralnotice-impression-diet-maximum-seen": "המספר המרבי של ההצגות שכל גולש יראה",
 	"centralnotice-impression-diet-maximum-seen-help": "אם מחזור אמור להתחיל מחדש, זה מגביל את מספר ההצגות שנראות במחזור ולא סך ההצגות.",
 	"centralnotice-impression-diet-restart-cycle-delay": "כמה זמן להמתין לפני התחלה מחדש של המחזור, בשניות (לא חובה)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "בררת המחדל היא 0, כלומר הקוראים יקבלו מחזור אחד, ואז אנחנו מפסיקים להציג כרזות.",
 	"centralnotice-impression-diet-skip-initial": "מספר ההצגות הראשוני לדלג עליו (לא חובה)",
-	"centralnotice-impression-diet-skip-initial-help": "בררת המחדל היא 0, כלומר לא לדלג על הצגות. כשהמחזור מתחיל, אנחנו נדלג על מספר כזה של הצגות אפשריות לפני שנציג כרזה."
+	"centralnotice-impression-diet-skip-initial-help": "בררת המחדל היא 0, כלומר לא לדלג על הצגות. כשהמחזור מתחיל, אנחנו נדלג על מספר כזה של הצגות אפשריות לפני שנציג כרזה.",
+	"centralnotice-large-banner-limit": "הגבלה והחלפה של כרזות גדולות",
+	"centralnotice-large-banner-limit-help": "להציג כרזה גדולה פים אחת, ואז לעבור לכרזות קטנות. לשים את הכרזות הגדולות בהקבצות A ו־B ואת הכרזות הקטנות בהקבצות C ו־D.",
+	"centralnotice-large-banner-limit-days": "אורך ההעלמה",
+	"centralnotice-large-banner-limit-days-help": "מספר הימים שבהם תועלם הכרזה הגדולה אחרי ההצגה הראשונה.",
+	"centralnotice-large-banner-limit-randomize": "להפוך את מעבר ההקבצה לאקראי",
+	"centralnotice-large-banner-limit-randomize-help": "מעבר הקבצה רגיל הוא A ל־C, ו־B ל־D. כשזה מסומן, הקוראים יועברו באופן אקראי ל־C או D.",
+	"centralnotice-large-banner-limit-identifier": "המזהה או שם העוגייה של הכרזה הגדולה",
+	"centralnotice-large-banner-limit-identifier-help": "הכרזות הגדולות מועלמות בכרזות עם אותו המזהה. בהתאם לקטגוריית המבצע, זה יכול להיות ממומש בתור עוגייה. בררת המחדל 'centralnotice-frbanner-seen-fullscreen' מתאימה לתסריטי התרמה בוויקי."
 }

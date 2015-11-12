@@ -171,9 +171,8 @@
 				buttonValue = '<a href="#" title="'
 					+ mw.msg( 'centralnotice-close-title' )
 					+ '" onclick="mw.centralNotice.hideBanner();return false;">'
-					+ '<img border="0" src="' + mw.config.get( 'wgNoticeCloseButton' )
-					+ '" alt="' + mw.msg( 'centralnotice-close-title' )
-					+ '" /></a>';
+					+ '<div class="cn-closeButton">' + mw.msg( 'centralnotice-close-title' )
+					+ '</div></a>';
 			}
 			if ( document.selection ) {
 				// IE support

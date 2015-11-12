@@ -4,7 +4,8 @@
 			"Aftab1995",
 			"Bellayet",
 			"Nasir8891",
-			"Wikitanvir"
+			"Wikitanvir",
+			"Aftabuzzaman"
 		]
 	},
 	"centralnotice": "কেন্দ্রীয় নোটিশ প্রশাসক",
@@ -105,8 +106,6 @@
 	"centralnotice-banner-hidable": "স্ট্যাটিক/লুকানোযোগ্য",
 	"centralnotice-banner-collapsible": "ভাঁজযোগ্য",
 	"centralnotice-banner-fundraising": "অনুদান সংগ্রহের ব্যানার",
-	"centralnotice-banner-autolink": "সয়ংক্রিয়ভাবে ল্যান্ডিং পাতার লিংক তৈরী হয়েছে",
-	"centralnotice-banner-landing-pages": "ল্যান্ডিং পেজ (কমা দ্বারা আলাদা):",
 	"centralnotice-geo": "স্থানাংকলক্ষ্য",
 	"centralnotice-countries": "দেশ",
 	"centralnotice-allocation": "বরাদ্দ",

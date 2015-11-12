@@ -50,7 +50,8 @@
 			'donate': 9,
 			'cookies': 10,
 			'seen': 11,
-			'empty': 12
+			'empty': 12,
+			'waitnorestart': 13
 		};
 
 	function Status( key, code ) {
@@ -262,6 +263,15 @@
 			}
 
 			state.data.campaignCategory = campaignCategory;
+
+			// Is the campaign category among the categories configured to use
+			// legacy mechanisms?
+			state.data.campaignCategoryUsesLegacy = (
+				$.inArray(
+					campaignCategory,
+					mw.config.get( 'wgCentralNoticeCategoriesUsingLegacy' )
+				) !== -1
+			);
 		},
 
 		getCampaign: function() {
@@ -294,6 +304,10 @@
 
 		isBannerCanceled: function() {
 			return status === STATUSES.BANNER_CANCELED;
+		},
+
+		isBannerShown: function() {
+			return status === STATUSES.BANNER_SHOWN;
 		},
 
 		setNoBannerAvailable: function() {

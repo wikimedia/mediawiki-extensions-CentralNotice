@@ -300,12 +300,20 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Les bannières peuvent ne pas s'afficher, selon ce qui est décidé par le JavaScript de la bannière",
 	"centralnotice-impression-diet": "Allègement de l’impression",
 	"centralnotice-impression-diet-help": "Limiter le nombre de bannières vues par n'importe quel individu.",
-	"centralnotice-impression-diet-cookie-name": "Masquer le nom du cookie",
-	"centralnotice-impression-diet-cookie-name-help": "Pour partager un seuil de nombre d’impressions entre les campagnes, spécifier le même nom de cookie pour chaque campagne. Si le nom du cookie est modifié lors d’une campagne, tous les compteurs jusque-là seront perdus.",
+	"centralnotice-impression-diet-identifier": "Identifiant/masquer le nom du cookie",
+	"centralnotice-impression-diet-identifier-help": "Un identifiant pour les données persistantes côté client stockées par cette fonctionnalité (comme un compteur d’impressions). Ce champ est facultatif pour la plupart des campagnes. Si vous le laissez vide, les campagnes dans la même catégorie partageront les compteurs d’impression, ou, si cette campagne n’utilise par la fonctionnalité de catégorie, les compteurs seront spécifiques à cette campagne. Pour partager les données entre plusieurs catégories de campagne, spécifiez le même identifiant pour chaque campagne. Note : certaines catégories de campagne sont configurées pour utiliser les cookies pour cette fonctionnalité. Pour les campagnes dans ces catégories, cet identifiant sera le nom du cookie, et est donc obligatoire. Remarquez aussi que si l’identifiant est modifié au cours d’une campagne, tous les compteurs jusque-là seront perdus.",
 	"centralnotice-impression-diet-maximum-seen": "Le nombre maximal d’impressions que n’importe qui verra",
 	"centralnotice-impression-diet-maximum-seen-help": "Si le cycle est configuré pour redémarrer, cela limite le nombre d’impressions vues par cycle plutôt que leur nombre total.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Combien de temps attendre avant de redémarrer le cycle, en secondes (facultatif)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "0 par défaut, ce qui veut dire que les lecteurs feront l’expérience sur un unique cycle, puis nous arrêterons d’afficher les bannières.",
 	"centralnotice-impression-diet-skip-initial": "Nombre d’impressions initial à sauter (facultatif)",
-	"centralnotice-impression-diet-skip-initial-help": "0 par défaut, ce qui ne sautera aucune impression. Quand le cycle démarre, nous sauterons ce nombre potentiel d’impressions avant d’afficher une bannière."
+	"centralnotice-impression-diet-skip-initial-help": "0 par défaut, ce qui ne sautera aucune impression. Quand le cycle démarre, nous sauterons ce nombre potentiel d’impressions avant d’afficher une bannière.",
+	"centralnotice-large-banner-limit": "Limite de grande bannière et bascule",
+	"centralnotice-large-banner-limit-help": "Afficher une fois une grande bannière, puis basculer vers les petites bannières. Placer les grandes bannières dans les zones A et B, et les petites dans les zones C et D.",
+	"centralnotice-large-banner-limit-days": "Longueur de la suppression",
+	"centralnotice-large-banner-limit-days-help": "Nombre de jours avant la suppression de l’affichage de la grande bannière, après la première impression.",
+	"centralnotice-large-banner-limit-randomize": "Rendre aléatoire la transition de zone",
+	"centralnotice-large-banner-limit-randomize-help": "La transition normale de zone est de A vers C et de B vers D. Quand c’est coché, les lecteurs passeront aléatoirement aux zones C ou D.",
+	"centralnotice-large-banner-limit-identifier": "Identifiant de grande bannière/nom du cookie",
+	"centralnotice-large-banner-limit-identifier-help": "L’affichage de la grande bannière est supprimé dans les campagnes ayant le même identifiant.\nSelon la catégorie de la campagne, cela peut être implémenté comme un cookie. La valeur par défaut 'centralnotice-frbanner-seen-fullscreen' est compatible avec les scripts de collecte de fonds dans le wiki."
 }

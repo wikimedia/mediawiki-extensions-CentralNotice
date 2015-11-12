@@ -213,5 +213,6 @@
 	"hidebanners": "Bannere verstoppen",
 	"apihelp-centralnoticeallocations-param-language": "D'Sprooch op déi filtert gi soll.",
 	"apihelp-query+centralnoticelogs-param-user": "Benotzernumm (fakultativ).",
-	"centralnotice-impression-diet-cookie-name": "Numm vum Cookie verstoppen"
+	"centralnotice-large-banner-limit-days": "Dauer vun der Ënnerbriechung",
+	"centralnotice-large-banner-limit-cookie-name": "Numm vum Cookie vum grousse Banner"
 }
