@@ -163,7 +163,7 @@
 		// Inject the HTML
 		$( 'div#centralNotice' )
 			.attr( 'class',
-			mw.html.escape( 'cn-' + cn.internal.state.getData().category ) )
+			mw.html.escape( 'cn-' + cn.internal.state.getData().bannerCategory ) )
 			.prepend(
 				'<!--googleoff: all-->' + bannerHtml + '<!--googleon: all-->'
 			);
