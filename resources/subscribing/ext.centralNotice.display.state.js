@@ -50,7 +50,8 @@
 			'donate': 9,
 			'cookies': 10,
 			'seen': 11,
-			'empty': 12
+			'empty': 12,
+			'waitnorestart': 13
 		};
 
 	function Status( key, code ) {

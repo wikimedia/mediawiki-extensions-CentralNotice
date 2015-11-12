@@ -93,7 +93,7 @@
 			counts.seenCount += 1;
 
 			// For restartCycleDelay, 0 is a magic number that means, never
-			// restart
+			// restart. TODO Use a checkbox instead of a magic number.
 			if ( ( mixinParams.restartCycleDelay !== 0) &&
 				( counts.waitSeenCount >= mixinParams.maximumSeen ) ) 	{
 
