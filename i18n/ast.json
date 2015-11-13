@@ -277,7 +277,7 @@
 	"centralnotice-impression-diet": "Dieta d'impresiones",
 	"centralnotice-impression-diet-help": "Llendar el númberu de cartelos que verá cada persona.",
 	"centralnotice-impression-diet-identifier": "Identificador/tapecer el nome de cookie",
-	"centralnotice-impression-diet-identifier-help": "Un identificador pa los datos persistentes del llau del cliente guardaos por esta función (tales como cuentes d'impresión). Esti campu ye opcional pa la mayoría de campañes. Si lo dexes en blanco, les campañes de la mesma categoría compartirán les cuentes d'impresión. Pa compartir estos datos ente delles categoríes de campaña, especifica'l mesmu identificador pa cada campaña. Nota: ciertes categoríes de campaña tán configuraes pa usar cookies pa esta función. Pa les campañes d'eses categoríes, esti identificador sedrá'l nome de la cookie, y nun ye opcional. Nota tamién que si se cambia l'identificador demientres una campaña, perderánse toles cuentes hasta'l momentu actual.",
+	"centralnotice-impression-diet-identifier-help": "Un identificador pa los datos persistentes del llau del cliente guardaos por esta función (tales como cuentes d'impresión). Esti campu ye opcional pa la mayoría de campañes. Si lo dexes en blanco, les campañes de la mesma categoría compartirán les cuentes d'impresión o, si esta campaña nun usa la función de categoría, les cuentes sedrán específiques pa esta campaña. Pa compartir estos datos ente delles categoríes de campaña, especifica'l mesmu identificador pa cada campaña. Nota: ciertes categoríes de campaña tán configuraes pa usar cookies pa esta función. Pa les campañes d'eses categoríes, esti identificador sedrá'l nome de la cookie, y nun ye opcional. Nota tamién que si se cambia l'identificador demientres una campaña, perderánse toles cuentes hasta'l momentu actual.",
 	"centralnotice-impression-diet-maximum-seen": "Máximu d'impresiones que cualquier individuu va ver",
 	"centralnotice-impression-diet-maximum-seen-help": "Si'l ciclu ta configuráu pa reaniciase, esto llenda'l númberu d'impresiones vistes per ciclu más que'l númberu total d'impresiones vistes.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Cuánto tiempu hai qu'esperar antes de volver a aniciar el ciclu, en segundos (opcional)",
@@ -290,6 +290,6 @@
 	"centralnotice-large-banner-limit-days-help": "Númberu de díes a suprimir l'amuesa de cartelos grandes después de la impresión inicial.",
 	"centralnotice-large-banner-limit-randomize": "Transición de contenedor al debalu",
 	"centralnotice-large-banner-limit-randomize-help": "La transición de contenedor normal ye de A a C y de B a D. Si ta marcao, los llectores cambiarán al debalu a los contenedores C o D.",
-	"centralnotice-large-banner-limit-identifier": "Nome de la cookie del cartelu grande",
-	"centralnotice-large-banner-limit-identifier-help": "L'amuesa de cartelos grandes suprímese ente campañes cola mesma cookie. El valor predetermináu 'centralnotice-frbanner-seen-fullscreen' ye compatible colos scripts de collecha de fondos de la wiki."
+	"centralnotice-large-banner-limit-identifier": "Identificador/nome de la cookie del cartelu grande",
+	"centralnotice-large-banner-limit-identifier-help": "L'amuesa de cartelos grandes suprímese ente campañes col mesmu identificador. Dependiendo de la categoría de campaña, esto podría facese usando una cookie. El valor predetermináu 'centralnotice-frbanner-seen-fullscreen' ye compatible colos scripts de collecha de fondos de la wiki."
 }
