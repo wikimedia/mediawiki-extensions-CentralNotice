@@ -12,7 +12,8 @@
 			"Szoszv",
 			"Sayginer",
 			"Sucsuzz",
-			"Violetanka"
+			"Violetanka",
+			"HakanIST"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -216,5 +217,6 @@
 	"centralnotice-start-date": "Başlangıç tarihi (UTC)",
 	"centralnotice-start-time": "Başlangıç zamanı (UTC)",
 	"centralnotice-end-date": "Bitiş tarihi (UTC)",
-	"centralnotice-end-time": "Bitiş zamanı (UTC)"
+	"centralnotice-end-time": "Bitiş zamanı (UTC)",
+	"centralnotice-large-banner-limit-days": "Bası uzunluğu"
 }
