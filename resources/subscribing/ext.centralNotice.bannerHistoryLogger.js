@@ -269,7 +269,7 @@
 		waitLogNoSendBeacon = mixinParams.waitLogNoSendBeacon;
 
 		// Do this idly to avoid browser lock-ups
-		cn.doIdleWork( function() {
+		mw.requestIdleCallback( function() {
 
 			if ( !cn.kvStore.isAvailable() ) {
 				cn.kvStore.setNotAvailableError();

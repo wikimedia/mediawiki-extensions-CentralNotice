@@ -26,28 +26,6 @@
 		return;
 	}
 
-	/**
-	 * @callback idleWorkFunc Function for performing non-time-critical work.
-	 */
-
-	/**
-	 * Temporary utility for doing non-time-critical work. See T111456.
-	 * Defined here 'cause it may be used by any CN subscribing modules.
-	 * @param {(idleWorkFunc|idleWorkFunc[])} funcs
-	 */
-	cn.doIdleWork = function ( funcs ) {
-		funcs = $.isArray( funcs ) ? funcs : [ funcs ];
-
-		$( function() {
-			var i;
-
-			// Execute functions sequentially at intervals of 1 sec.
-			for ( i = 0; i < funcs.length; i++ ) {
-				setTimeout( funcs[i], 1000 * ( i + 1 ) );
-			}
-		} );
-	};
-
 	// Legacy support:
 	// Legacy code inserted the CN div everywhere (except on Special pages),
 	// even when there were no campaigns. Let's do the same thing for now, in
@@ -72,10 +50,9 @@
 		return;
 	}
 
-	// Maintenance: clean old KV store keys whenever.
-	// This schedules the removal of keys in batches. We call it via
-	// doIdleWork so the scheduling itself takes place when idle, too.
-	cn.doIdleWork( cn.kvStoreMaintenance.removeExpiredItemsWhenIdle );
+	// Maintenance: This schedules the removal of old KV keys.
+	// The schedule action itself is deferred, too, as it accesses localStorage.
+	mw.requestIdleCallback( cn.kvStoreMaintenance.removeExpiredItemsWhenIdle );
 
 	// Nothing more to do if there are no possible campaigns for this user
 	if ( cn.choiceData.length === 0 ) {
