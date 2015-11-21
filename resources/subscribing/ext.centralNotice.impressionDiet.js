@@ -147,7 +147,7 @@
 	 */
 	function getCounts() {
 
-		var rawCookie, rawWaitCookie, waitData;
+		var rawCookie, rawWaitCookie, waitData, kvStoreCounts;
 
 		// Reset counters on demand
 		if ( mw.util.getParamValue( 'reset' ) === '1' ) {
@@ -190,21 +190,27 @@
 
 			// Handling cases where there was an identifier but no cookie
 
-			// If the campaign doesn't use cookies, try the KV store
-			if ( !useCookies ) {
+			// Because of a previous error deployed to WMF production, there
+			// may be clients that are supposed to use cookies but are using
+			// the KV store. For only those clients, we'll keep using the
+			// KV store, rather than attempting a reverse migration. So, no
+			// matter what, if there's an identifier, we check the KV store.
+			kvStoreCounts = cn.kvStore.getItem(
+				IMPRESSION_DIET_KV_STORE_KEY + '_' + identifier,
+				cn.kvStore.contexts.GLOBAL
+			);
 
-				// Since there's an identifier, uses the global KV store context.
-				// If there's no data in the KV store, return zeroed counts.
-				return cn.kvStore.getItem(
-					IMPRESSION_DIET_KV_STORE_KEY + '_' + identifier,
-					cn.kvStore.contexts.GLOBAL
-				) || getZeroedCounts();
+			// If we are supposed to use cookies but have a KV store value,
+			// keep using that (in storeCounts(), below).
+			if ( kvStoreCounts && useCookies ) {
+				useCookies = false;
 			}
 
-			// We have an identifier, use cookies, but have no cookie value, so
-			// return zeroed counts.
-			return getZeroedCounts();
-
+			// If we have an identifier, didn't get a cookie value (above),
+			// then return either what was in the KV store, or zeroed counts,
+			// regardless of whether we are supposed to use cookies (see
+			// comment above about error deployed to WMF production).
+			return kvStoreCounts || getZeroedCounts();
 		}
 
 		// Handling all cases where there was no identifier
