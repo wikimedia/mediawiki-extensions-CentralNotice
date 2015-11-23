@@ -24,6 +24,7 @@
 	"centralnotice-preview": "Anteprimma ($1)",
 	"centralnotice-live-preview": "Pre-vire ncopp' 'a wiki",
 	"centralnotice-nopreview": "('Anteprimma nun se trova a disposizione)",
+	"centralnotice-edit-banner-onwiki": "Cagna ncopp-o-wiki",
 	"centralnotice-add-new": "Azzecca na campagna nova",
 	"centralnotice-remove": "Lèva",
 	"centralnotice-translate-heading": "Traduzione pe' $1",
@@ -50,6 +51,9 @@
 	"centralnotice-balanced": "Dàje tutt' 'e banner peso eguale",
 	"centralnotice-weight": "Peso",
 	"centralnotice-locked": "Bloccato",
+	"centralnotice-notice-mixins-fieldset": "Funziune extra 'e campagna",
+	"centralnotice-notice-mixins-int-required": "Nummero ntero ce vò",
+	"centralnotice-notice-mixins-float-required": "Nummero 'e punto flottante ca ce vulesse",
 	"centralnotice-notice": "Campagna",
 	"centralnotice-notice-heading": "Campagna: $1",
 	"centralnotice-notices": "Campagne",
@@ -156,6 +160,7 @@
 	"centralnotice-autolink": "Crijazione automateca d' 'o link",
 	"centralnotice-landingpages": "Paggene 'e destinazione",
 	"centralnotice-controller_mixin": "Cuntrullore d' 'o mixin",
+	"centralnotice-campaign-mixins": "Mmeschefrancesche 'e campagna",
 	"centralnotice-category": "Categurìa d' 'o banner",
 	"centralnotice-banner-content": "Cuntenuto d' 'o banner",
 	"centralnotice-banner-content-changed": "Cagnato",
@@ -254,5 +259,8 @@
 	"apihelp-query+centralnoticelogs-param-offset": "'O spustamento int' 'o nzieme 'e rizurtate (opzionale).",
 	"apihelp-query+centralnoticelogs-param-start": "Tiempo 'accummencio d' 'o filtro (opzionale).",
 	"apihelp-query+centralnoticelogs-param-end": "Tiempo 'e nchiusa d' 'o filtro (opzionale).",
-	"apihelp-query+centralnoticelogs-example-1": "Fà veré 'e riggistre"
+	"apihelp-query+centralnoticelogs-example-1": "Fà veré 'e riggistre",
+	"centralnotice-banner-history-logger": "Logger-trasitòre 'e cronologgia 'e banner",
+	"centralnotice-banner-history-logger-help": "Secutà buono 'e sequenze 'e banner vedute 'a 'e liggiture, e cocche vota mannate chiste arret' 'o server.",
+	"centralnotice-banner-history-logger-rate": "Frequenza 'e mmostra"
 }

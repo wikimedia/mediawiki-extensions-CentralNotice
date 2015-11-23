@@ -210,7 +210,7 @@ $wgNoticeListComplementThreshold = 0.75;
 // Temporary measure: Campaigns whose banners are all set to this category will
 // use some legacy mechanisms (especially cookies instead of the KVStore).
 // TODO Fix and remove!
-$wgCentralNoticeCategoriesUsingLegacy = array( 'Fundraising' );
+$wgCentralNoticeCategoriesUsingLegacy = array( 'Fundraising', 'fundraising' );
 
 /** @var $wgNoticeTabifyPages array Declare all pages that should be tabified as CN pages */
 $wgNoticeTabifyPages = array(
