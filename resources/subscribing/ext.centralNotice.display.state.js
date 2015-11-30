@@ -51,7 +51,8 @@
 			'cookies': 10,
 			'seen': 11,
 			'empty': 12,
-			'waitnorestart': 13
+			'waitnorestart': 13,
+			'waitnostorage': 14
 		};
 
 	function Status( key, code ) {
