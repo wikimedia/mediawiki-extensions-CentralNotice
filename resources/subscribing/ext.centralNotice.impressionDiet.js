@@ -64,63 +64,67 @@
 			return;
 		}
 
-		// Also just show a banner if we have no way to store counts
+		// Also just hide a banner if we have no way to store counts
 		if ( !storageAvailable() ) {
-			return;
-		}
+			hide = 'waitnostorage';
 
-		identifier = mixinParams.cookieName;
-		counts = getCounts();
+		} else {
 
-		// Compare counts against campaign settings and decide whether to
-		// show a banner
-		pastDate = counts.waitUntil < new Date().getTime();
-		waitForHideImps = counts.waitCount < mixinParams.skipInitial;
-		waitForShowImps = counts.waitSeenCount < mixinParams.maximumSeen;
+			// Normal code path: a means of storing counts is available
 
-		if ( !pastDate ) {
-			// We're still waiting for the next cycle to begin.
-			hide = 'waitdate';
-			counts.waitCount += 1;
-		} else if ( pastDate && waitForHideImps ) {
-			// We're still skipping initial impressions.
-			hide = 'waitimps';
-			counts.waitCount += 1;
-		} else if ( pastDate && !waitForHideImps && waitForShowImps ) {
-			// Show a banner!
-			hide = false;
-			counts.waitSeenCount += 1;
-			counts.seenCount += 1;
+			identifier = mixinParams.cookieName;
+			counts = getCounts();
 
-			// For restartCycleDelay, 0 is a magic number that means, never
-			// restart. TODO Use a checkbox instead of a magic number.
-			if ( ( mixinParams.restartCycleDelay !== 0) &&
-				( counts.waitSeenCount >= mixinParams.maximumSeen ) ) 	{
+			// Compare counts against campaign settings and decide whether to
+			// show a banner
+			pastDate = counts.waitUntil < new Date().getTime();
+			waitForHideImps = counts.waitCount < mixinParams.skipInitial;
+			waitForShowImps = counts.waitSeenCount < mixinParams.maximumSeen;
 
-				// We just completed a cycle. Wait to restart.
+			if ( !pastDate ) {
+				// We're still waiting for the next cycle to begin.
+				hide = 'waitdate';
+				counts.waitCount += 1;
+			} else if ( pastDate && waitForHideImps ) {
+				// We're still skipping initial impressions.
+				hide = 'waitimps';
+				counts.waitCount += 1;
+			} else if ( pastDate && !waitForHideImps && waitForShowImps ) {
+				// Show a banner!
+				hide = false;
+				counts.waitSeenCount += 1;
+				counts.seenCount += 1;
+
+				// For restartCycleDelay, 0 is a magic number that means, never
+				// restart. TODO Use a checkbox instead of a magic number.
+				if ( ( mixinParams.restartCycleDelay !== 0) &&
+					( counts.waitSeenCount >= mixinParams.maximumSeen ) ) 	{
+
+					// We just completed a cycle. Wait to restart.
+					counts.waitCount = 0;
+					counts.waitSeenCount = 0;
+					counts.waitUntil = new Date().getTime() +
+						( mixinParams.restartCycleDelay * 1000 );
+				}
+
+			} else if ( ( mixinParams.restartCycleDelay === 0 ) &&
+				( pastDate && !waitForHideImps && !waitForShowImps ) ) {
+
+				hide = 'waitnorestart';
+			}
+
+			if ( hide === null ) {
+				// All bets are off!
+				hide = 'waiterr';
 				counts.waitCount = 0;
 				counts.waitSeenCount = 0;
 				counts.waitUntil = new Date().getTime() +
 					( mixinParams.restartCycleDelay * 1000 );
 			}
 
-		} else if ( ( mixinParams.restartCycleDelay === 0 ) &&
-			( pastDate && !waitForHideImps && !waitForShowImps ) ) {
-
-			hide = 'waitnorestart';
+			// Bookkeeping.
+			storeCounts( counts );
 		}
-
-		if ( hide === null ) {
-			// All bets are off!
-			hide = 'waiterr';
-			counts.waitCount = 0;
-			counts.waitSeenCount = 0;
-			counts.waitUntil = new Date().getTime() +
-				( mixinParams.restartCycleDelay * 1000 );
-		}
-
-		// Bookkeeping.
-		storeCounts( counts );
 
 		// Hide based on the results.
 		if ( hide ) {
