@@ -52,7 +52,8 @@
 			'seen': 11,
 			'empty': 12,
 			'waitnorestart': 13,
-			'waitnostorage': 14
+			'waitnostorage': 14,
+			'namespace': 15
 		};
 
 	function Status( key, code ) {
