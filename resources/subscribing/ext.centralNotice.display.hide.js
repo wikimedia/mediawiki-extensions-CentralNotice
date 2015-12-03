@@ -4,13 +4,18 @@
  */
 ( function ( $, mw ) {
 
-	var category,
+	var hide,
+		category,
 		cookieName,
 		shouldHide = false,
 		reason,
 		durations = mw.config.get( 'wgNoticeCookieDurations' ),
 
-		HIDE_COOKIE_PREFIX = 'centralnotice_hide_';
+		HIDE_COOKIE_PREFIX = 'centralnotice_hide_',
+
+		// Maximum duration of hide cookies with reasons other than those
+		// configured in wgNoticeCookieDurations.
+		MAX_CUSTOM_HIDE_DURATION = 2592000;
 
 	function removeCookie() {
 		$.cookie( cookieName, null, { path: '/' } );
@@ -19,7 +24,7 @@
 	/**
 	 * Hide object (intended for access from within this RL module)
 	 */
-	mw.centralNotice.internal.hide = {
+	hide = mw.centralNotice.internal.hide = {
 
 		setCategory: function ( c ) {
 			category = c;
@@ -53,7 +58,21 @@
 
 			now = new Date().getTime() / 1000;
 
-			if ( now < hideData.created + durations[hideData.reason] ) {
+			// Duration isn't stored in the cookie. Cookies should expire
+			// after the duration is up, some hide reasons have server-side
+			// duration settings, which we check. This allows us to shorten the
+			// effective duration of hide cookies via server config, if
+			// necessary.
+
+			// For custom hide reasons with shorter durations than
+			// MAX_CUSTOM_HIDE_DURATION, the cookie itself should expire
+			// if the duration has been exceeded. In any case, don't allow
+			// the cookie to have any effect beyond MAX_CUSTOM_HIDE_DURATION.
+
+			// TODO Update and improve this server-side switch.
+
+			if ( now < hideData.created +
+				( durations[hideData.reason] || MAX_CUSTOM_HIDE_DURATION ) ) {
 				shouldHide = true;
 				reason = hideData.reason;
 			}
@@ -67,14 +86,27 @@
 			return reason;
 		},
 
-		setHideWithCloseButtonCookies: function() {
-			var duration = durations.close,
-				date = new Date(),
+		/**
+		 * Set a hide cookies for this domain and others in wgNoticeHideUrls
+		 * with the given reason and duration.
+		 *
+		 * @param {string} reason Reason to store in the hide cookie
+		 * @param {number} duration Cookie duration, in seconds
+		 */
+		setHideCookies: function ( reason, duration ) {
+			var date = new Date(),
 				hideData = {
 					v: 1,
 					created: Math.floor( date.getTime() / 1000 ),
-					reason: 'close'
+					reason: reason
 				};
+
+			// If this reason doesn't have an entry configured in
+			// wgNoticeCookieDurations, don't allow a longer duration than
+			// MAX_CUSTOM_HIDE_DURATION.
+			if ( !( reason in durations ) ) {
+				duration = Math.min( MAX_CUSTOM_HIDE_DURATION, duration );
+			}
 
 			// Re-use the same date object to set the cookie's expiry time
 			date.setSeconds( date.getSeconds() + duration );
@@ -94,13 +126,18 @@
 					{
 						'duration': duration,
 						'category': category,
-						'reason' : 'close'
+						'reason' : reason
 					}
 				);
 
 				// TODO Can we use sendBeacon here? Would it be worth it?
 				document.createElement( 'img' ).src = url.toString();
 			} );
+		},
+
+		setHideWithCloseButtonCookies: function() {
+			// 'close' must be in REASONS in ext.centralNotice.display.state
+			hide.setHideCookies( 'close', durations.close );
 		}
 	};
 } )( jQuery, mediaWiki );
