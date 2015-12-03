@@ -66,7 +66,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return array(
-			'action=centralnoticechoicedata&project=wikpedia&language=en'
+			'action=centralnoticechoicedata&project=wikipedia&language=en'
 			=> 'apihelp-centralnoticechoicedata-example-1'
 		);
 	}
