@@ -513,7 +513,9 @@
 		},
 
 		customHideBanner: function ( reason, duration ) {
-			cn.internal.hide.setHideCookies( reason, donation );
+			// Hide the banner element
+			$( '#centralNotice' ).hide();
+			cn.internal.hide.setHideCookies( reason, duration );
 		},
 
 		hideBanner: function() {
