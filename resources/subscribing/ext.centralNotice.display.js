@@ -512,6 +512,10 @@
 			cn.internal.hide.setHideWithCloseButtonCookies();
 		},
 
+		customHideBanner: function ( reason, duration ) {
+			cn.internal.hide.setHideCookies( reason, donation );
+		},
+
 		hideBanner: function() {
 			cn.hideBannerWithCloseButton();
 		},
