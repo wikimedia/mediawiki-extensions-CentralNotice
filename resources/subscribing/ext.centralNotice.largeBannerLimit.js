@@ -28,8 +28,8 @@
 
 		useCookies = cn.getDataProperty( 'campaignCategoryUsesLegacy' );
 
-		// Forced URL param prevents the bucket switch
-		if ( forced ) {
+		// Forced URL param or banner hidden already prevents bucket switch
+		if ( forced || cn.isBannerCanceled() ) {
 			return;
 		}
 
