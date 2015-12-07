@@ -245,19 +245,22 @@
 		bucketer.process();
 		state.setBucket( bucketer.getBucket() );
 
-		runPreBannerMixinHooks();
-
-		// Cancel banner, if that was requested by code in a pre-banner hook
-		if ( state.isBannerCanceled() ) {
+		// Check the hide cookie and possibly cancel the banner.
+		// We do this before running pre-banner hooks so that these can count
+		// stuff differently if there was a hide cookie.
+		hide.processCookie();
+		if ( hide.shouldHide() ) {
+			state.cancelBanner( hide.getReason() );
+			runPreBannerMixinHooks();
 			runPostBannerMixinHooks();
 			recordImpression();
 			return;
 		}
 
-		// Check the hide cookie and possibly cancel the banner
-		hide.processCookie();
-		if ( hide.shouldHide() ) {
-			state.cancelBanner( hide.getReason() );
+		runPreBannerMixinHooks();
+
+		// Cancel banner, if that was requested by code in a pre-banner hook
+		if ( state.isBannerCanceled() ) {
 			runPostBannerMixinHooks();
 			recordImpression();
 			return;
@@ -419,6 +422,10 @@
 		 */
 		cancelBanner: function( reason ) {
 			cn.internal.state.cancelBanner( reason );
+		},
+
+		isBannerCanceled: function () {
+			return cn.internal.state.isBannerCanceled();
 		},
 
 		/**

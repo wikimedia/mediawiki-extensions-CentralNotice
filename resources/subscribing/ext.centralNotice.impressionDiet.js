@@ -59,8 +59,8 @@
 		// Do this here since it's needed for storageAvailable() (below)
 		useCookies = cn.getDataProperty( 'campaignCategoryUsesLegacy' );
 
-		// URL forced a banner
-		if ( forceFlag ) {
+		// URL forced a banner, or banner was hidden already
+		if ( forceFlag || cn.isBannerCanceled() ) {
 			return;
 		}
 
