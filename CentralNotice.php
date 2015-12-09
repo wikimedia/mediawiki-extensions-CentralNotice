@@ -127,6 +127,15 @@ $wgNoticeCookieDurations = array(
 );
 
 /**
+ * Fallback hide cookie duration, for hide reasons without an entry in
+ * $wgNoticeCookieDurations, if no duration is specified in the request to
+ * Special:HideBanners.
+ * Note: This is just to keep things running in an unexpected edge case. It is
+ * recommended that this value not be intentionally relied on by banners.
+ */
+$wgCentralNoticeFallbackHideCookieDuration = 604800;
+
+/**
  * @var string Timestamp after which old-format 'hide' cookies should be deleted
  * TODO Remove this after banner display refactor has been deployed
  */
