@@ -219,7 +219,7 @@
 	"centralnotice-archive-campaign-title": "{{PLURAL:$1|공지}}를 보존하겠습니까?",
 	"centralnotice-archive-campaign-confirm": "보존은 공지를 영구적으로 비활성으로 표시합니다.",
 	"centralnotice-archive-campaign-cancel": "취소",
-	"centralnotice-archive-edit-prevented": "이 공지를 편집하는 것은 잠겨 있거나 보존되어 있기 때문에 비활성화되어 있습니다. [[Special:CentralNotice]]에서 상태를 바꾸세요.",
+	"centralnotice-archive-edit-prevented": "이 공지를 편집하는 것은 보호되어 있거나 보존되어 있기 때문에 비활성화되어 있습니다. [[Special:CentralNotice]]에서 상태를 바꾸세요.",
 	"centralnotice-add-new-banner-title": "새 배너 추가",
 	"centralnotice-delete-banner": "삭제",
 	"centralnotice-delete-banner-title": "{{PLURAL:$1|배너}}를 삭제합니까?",
@@ -242,6 +242,5 @@
 	"apihelp-centralnoticeallocations-param-device": "필터를 켤 기기 이름",
 	"apihelp-centralnoticequerycampaign-example-1": "\"Plea_US\" 캠페인 보이기",
 	"apihelp-query+centralnoticelogs-param-user": "사용자 이름 (선택 사항).",
-	"apihelp-query+centralnoticelogs-example-1": "로그 보기",
-	"centralnotice-impression-diet-cookie-name": "쿠키 이름 숨기기"
+	"apihelp-query+centralnoticelogs-example-1": "로그 보기"
 }
