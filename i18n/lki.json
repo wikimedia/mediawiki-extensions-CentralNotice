@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lakzon"
+			"Lakzon",
+			"Hosseinblue"
 		]
 	},
+	"centralnotice-translations": "زوون چاوواشاکردن/تةرجؤمة",
+	"centralnotice-translate-to": "چاوواشۀکِردن زوون ؤة",
+	"centralnotice-translate": "چاوواشۀکِردن زوون",
 	"centralnotice-template-body": "بدنه قالب:",
+	"centralnotice-month": "مانگ",
 	"centralnotice-banner-class": "رده/ڕِزگ"
 }

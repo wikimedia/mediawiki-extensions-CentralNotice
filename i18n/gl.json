@@ -284,7 +284,10 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Cánto tempo esperar antes de reiniciar o ciclo, en segundos (opcional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Por defecto a 0, o que indica que os lectores experimentarán un único ciclo, e despois pararemos de visualizar os banners (anuncios).",
 	"centralnotice-impression-diet-skip-initial": "Número de impresións iniciais a omitir (opcional)",
+	"centralnotice-impression-diet-skip-initial-help": "Por defecto a 0, non saltará ningunha impresión. Cando o ciclo comece, saltaremos este número potencial de impresións antes de mostrar un anuncio.",
+	"centralnotice-large-banner-limit-help": "Mostrar un anuncio grande unha vez, logo pasar a anuncios pequenos. Poñer os anuncios grandes nas zonas A e B e os anuncios pequenos nas zonas C e D.",
 	"centralnotice-large-banner-limit-days": "Lonxitude da supresión",
 	"centralnotice-large-banner-limit-days-help": "Número de días para suprimir a visualización do banner grande após da primeira visualización.",
+	"centralnotice-large-banner-limit-randomize": "Facer aleatoria a transición de zona",
 	"centralnotice-large-banner-limit-identifier": "Identificador de banner grande/nome da cookie"
 }
