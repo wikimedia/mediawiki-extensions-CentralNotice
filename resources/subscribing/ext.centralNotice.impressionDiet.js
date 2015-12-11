@@ -52,8 +52,7 @@
 
 	mixin.setPreBannerHandler( function( mixinParams ) {
 		var forceFlag = mw.util.getParamValue( 'force' ),
-			hide = null,
-			pastDate, waitForHideImps, waitForShowImps;
+			hide;
 
 		// Only use cookies for certain campaigns on the legacy track
 		// Do this here since it's needed for storageAvailable() (below)
@@ -64,8 +63,8 @@
 			return;
 		}
 
-		// Also just hide a banner if we have no way to store counts
 		if ( !storageAvailable() ) {
+			// Hide the banner if we have no way to store counts.
 			hide = 'waitnostorage';
 
 		} else {
@@ -75,61 +74,61 @@
 			identifier = mixinParams.cookieName;
 			counts = getCounts();
 
-			// Compare counts against campaign settings and decide whether to
-			// show a banner
-			pastDate = counts.waitUntil < new Date().getTime();
-			waitForHideImps = counts.waitCount < mixinParams.skipInitial;
-			waitForShowImps = counts.waitSeenCount < mixinParams.maximumSeen;
+			if ( counts.waitUntil < new Date().getTime()
+				&& counts.waitSeenCount >= mixinParams.maximumSeen
+			) {
+				// We're beyond the wait period, and have nothing to do except
+				// maybe start a new cycle.
 
-			if ( !pastDate ) {
-				// We're still waiting for the next cycle to begin.
-				hide = 'waitdate';
-				counts.waitCount += 1;
-			} else if ( pastDate && waitForHideImps ) {
-				// We're still skipping initial impressions.
-				hide = 'waitimps';
-				counts.waitCount += 1;
-			} else if ( pastDate && !waitForHideImps && waitForShowImps ) {
-				// Show a banner!
-				hide = false;
-				counts.waitSeenCount += 1;
-				counts.seenCount += 1;
-
-				// For restartCycleDelay, 0 is a magic number that means, never
-				// restart. TODO Use a checkbox instead of a magic number.
-				if ( ( mixinParams.restartCycleDelay !== 0) &&
-					( counts.waitSeenCount >= mixinParams.maximumSeen ) ) 	{
-
-					// We just completed a cycle. Wait to restart.
+				if ( mixinParams.restartCycleDelay !== 0 ) {
+					// Begin a new cycle by clearing counters.
 					counts.waitCount = 0;
 					counts.waitSeenCount = 0;
-					counts.waitUntil = new Date().getTime() +
-						( mixinParams.restartCycleDelay * 1000 );
 				}
-
-			} else if ( ( mixinParams.restartCycleDelay === 0 ) &&
-				( pastDate && !waitForHideImps && !waitForShowImps ) ) {
-
-				hide = 'waitnorestart';
 			}
 
-			if ( hide === null ) {
-				// All bets are off!
-				hide = 'waiterr';
-				counts.waitCount = 0;
-				counts.waitSeenCount = 0;
-				counts.waitUntil = new Date().getTime() +
-					( mixinParams.restartCycleDelay * 1000 );
-			}
+			// Compare counts against campaign settings and decide whether to
+			// show a banner
 
-			// Bookkeeping.
-			storeCounts( counts );
+			if ( counts.waitSeenCount < mixinParams.maximumSeen ) {
+				// You haven't seen the maximum count of banners per cycle!
+
+				if ( counts.waitCount < mixinParams.skipInitial ) {
+					// Skip initial impressions.
+					hide = 'waitimps';
+					// TODO: rename skippedThisCycle
+					counts.waitCount += 1;
+				} else {
+					// Show a banner--you win!
+					hide = false;
+				}
+			} else {
+				// Wait for the next cycle to begin.
+				hide = 'waitdate';
+			}
 		}
 
-		// Hide based on the results.
 		if ( hide ) {
+			// Hide based on the results.
 			cn.internal.state.cancelBanner( hide );
+		} else {
+			// Count shown impression.
+			// TODO: rename seenThisCycle
+			counts.waitSeenCount += 1;
+			counts.seenCount += 1;
+
+			// Reset the wait timer on every impression.  The configured delay
+			// is the minumum amount of time allowed between the final impression
+			// and the start of the next cycle.
+			//
+			// TODO: rename: nextCycleAt
+
+			counts.waitUntil = new Date().getTime() +
+				( mixinParams.restartCycleDelay * 1000 );
 		}
+
+		// More bookkeeping.
+		storeCounts( counts );
 	} );
 
 	function storageAvailable() {
