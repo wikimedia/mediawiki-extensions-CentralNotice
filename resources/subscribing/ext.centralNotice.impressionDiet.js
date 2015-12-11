@@ -26,12 +26,14 @@
 		/**
 		 * Object with data used to determine whether to hide the banner
 		 * Properties:
-		 *   seenCount:     Total number of impressions seen by this user
-		 *   waitCount:     Number of impressions we've waited for on this cycle
-		 *   waitUntil:     Timestamp (ms) until we can show another banner
-		 *   waitSeenCount: Number of impressions seen this cycle
+		 *   seenCount:        Total number of impressions seen by this user
+		 *   skippedThisCycle: Number of initial impressions we've skipped this cycle
+		 *   nextCycleStart:   Unix timestamp after which we can show more banners
+		 *   seenThisCycle:    Number of impressions seen this cycle
 		 */
 		counts,
+
+		now = new Date().getTime(),
 
 		STORAGE_KEY = 'impression_diet',
 
@@ -80,30 +82,29 @@
 			counts = getCounts();
 		}
 
-		if ( counts.waitUntil < new Date().getTime() &&
-			counts.waitSeenCount >= mixinParams.maximumSeen
+		if ( now > counts.nextCycleStart &&
+			counts.seenThisCycle >= mixinParams.maximumSeen
 		) {
 			// We're beyond the wait period, and have nothing to do except
 			// maybe start a new cycle.
 
 			if ( mixinParams.restartCycleDelay !== 0 ) {
 				// Begin a new cycle by clearing counters.
-				counts.waitCount = 0;
-				counts.waitSeenCount = 0;
+				counts.skippedThisCycle = 0;
+				counts.seenThisCycle = 0;
 			}
 		}
 
 		// Compare counts against campaign settings and decide whether to
 		// show a banner
 
-		if ( counts.waitSeenCount < mixinParams.maximumSeen ) {
+		if ( counts.seenThisCycle < mixinParams.maximumSeen ) {
 			// You haven't seen the maximum count of banners per cycle!
 
-			if ( counts.waitCount < mixinParams.skipInitial ) {
+			if ( counts.skippedThisCycle < mixinParams.skipInitial ) {
 				// Skip initial impressions.
 				hide = 'waitimps';
-				// TODO: rename skippedThisCycle
-				counts.waitCount += 1;
+				counts.skippedThisCycle += 1;
 			} else {
 				// Show a banner--you win!
 				hide = false;
@@ -118,17 +119,14 @@
 			cn.cancelBanner( hide );
 		} else {
 			// Count shown impression.
-			// TODO: rename seenThisCycle
-			counts.waitSeenCount += 1;
+			counts.seenThisCycle += 1;
 			counts.seenCount += 1;
 
 			// Reset the wait timer on every impression.  The configured delay
 			// is the minimum amount of time allowed between the final impression
 			// and the start of the next cycle.
-			//
-			// TODO: rename: nextCycleAt
 
-			counts.waitUntil = new Date().getTime() +
+			counts.nextCycleStart = now +
 				( mixinParams.restartCycleDelay * 1000 );
 		}
 
@@ -139,9 +137,28 @@
 	function getZeroedCounts() {
 		return {
 			seenCount: 0,
-			waitCount: 0,
-			waitUntil: 0,
-			waitSeenCount: 0
+			skippedThisCycle: 0,
+			nextCycleStart: 0,
+			seenThisCycle: 0
+		};
+	}
+
+	/**
+	 * TODO: Delete fix code a year after deploy
+	 * Update names of stored counts for clarity.
+	 * @param {Object} kvStoreCounts possibly using legacy names
+	 * @returns {Object} counts object using new names
+	 */
+	function fixCountNames( kvStoreCounts ) {
+		// If we get an object with new names, don't change it
+		if ( kvStoreCounts.skippedThisCycle !== undefined ) {
+			return kvStoreCounts;
+		}
+		return {
+			seenCount: kvStoreCounts.seenCount,
+			skippedThisCycle: kvStoreCounts.waitCount,
+			nextCycleStart: kvStoreCounts.waitUntil,
+			seenThisCycle: kvStoreCounts.waitSeenCount
 		};
 	}
 
@@ -165,9 +182,9 @@
 
 		cookieCounts = {
 			seenCount: parseInt( rawCookie, 10 ) || 0,
-			waitCount: parseInt( waitData[ 0 ], 10 ) || 0,
-			waitUntil: parseInt( waitData[ 1 ], 10 ) || 0,
-			waitSeenCount: parseInt( waitData[ 2 ], 10 ) || 0
+			skippedThisCycle: parseInt( waitData[ 0 ], 10 ) || 0,
+			nextCycleStart: parseInt( waitData[ 1 ], 10 ) || 0,
+			seenThisCycle: parseInt( waitData[ 2 ], 10 ) || 0
 		};
 
 		storeCounts( cookieCounts );
@@ -183,20 +200,24 @@
 	 * @return {Object} An object containing count data.
 	 */
 	function getCounts() {
+		var counts;
 
 		if ( identifier ) {
-			return cn.kvStore.getItem(
+			counts = cn.kvStore.getItem(
 				STORAGE_KEY + '_' + identifier,
 				cn.kvStore.contexts.GLOBAL,
 				multiStorageOption
-			) || getZeroedCounts();
+			);
+		} else {
+			counts = cn.kvStore.getItem(
+				STORAGE_KEY,
+				cn.kvStore.contexts.CATEGORY,
+				multiStorageOption
+			);
 		}
+		counts = counts || getZeroedCounts();
 
-		return cn.kvStore.getItem(
-			STORAGE_KEY,
-			cn.kvStore.contexts.CATEGORY,
-			multiStorageOption
-		) || getZeroedCounts();
+		return fixCountNames( counts );
 	}
 
 	/*
