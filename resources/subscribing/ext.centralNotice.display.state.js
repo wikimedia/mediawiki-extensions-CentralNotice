@@ -42,7 +42,7 @@
 			'close': 1,
 			'waitdate': 2,
 			'waitimps': 3,
-			'waiterr': 4,
+			'waiterr': 4, // Deprecated
 			'belowMinEdits': 5,
 			'viewLimit': 6,
 			'seen-fullscreen': 7,
@@ -51,7 +51,7 @@
 			'cookies': 10,
 			'seen': 11,
 			'empty': 12,
-			'waitnorestart': 13,
+			'waitnorestart': 13, // Deprecated
 			'waitnostorage': 14,
 			'namespace': 15
 		};
