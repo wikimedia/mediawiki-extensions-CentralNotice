@@ -38,7 +38,11 @@
 					continue;
 				}
 
-				rawValue = localStorage.getItem( key );
+				try {
+					rawValue = localStorage.getItem( key );
+				} catch ( e ) {
+					return;
+				}
 
 				// The item might have been removed since we retrieved the key
 				if ( rawValue === null ) {
@@ -84,7 +88,11 @@
 				j = 0,
 				keysToProcess;
 
-			if ( !window.localStorage || localStorage.length === 0) {
+			try {
+				if ( !window.localStorage || localStorage.length === 0) {
+					return;
+				}
+			} catch ( e ) {
 				return;
 			}
 

@@ -116,10 +116,20 @@
 		},
 
 		/**
-		 * Does this browser support our KV storage mechanism?
+		 * Is this feature available to calling code? (Browser
+		 * compatibility and certain user privacy options are required.)
 		 */
 		isAvailable: function() {
-			return Boolean( window.localStorage );
+
+			// For the KV store to work, the browser has to support
+			// localStorage, and not throw an error if we try to access it. (An
+			// error can be thrown if the user completely disables offline
+			// website data/cookies.)
+			try {
+				return Boolean( window.localStorage );
+			} catch ( e ) {
+				return false;
+			}
 		},
 
 		/**
@@ -159,16 +169,25 @@
 			} );
 
 			// Write the value
-			localStorage.setItem( lsKey, encodedWrappedValue );
+			try {
 
-			// Check that it was written (it might not have been, if we're over
-			// the localStorage quota for this site, for example)
-			if ( localStorage.getItem( lsKey ) !== encodedWrappedValue ) {
-				setError( 'Couldn\'t write value', key, value, context );
+				localStorage.setItem( lsKey, encodedWrappedValue );
+
+				// Check that it was written (it might not have been, if we're over
+				// the localStorage quota for this site, for example)
+				if ( localStorage.getItem( lsKey ) !== encodedWrappedValue ) {
+					setError( 'Couldn\'t write value', key, value, context );
+					return false;
+				}
+
+				return true;
+
+			} catch ( e ) {
+				setError( 'Couldn\'t write value due to LocalStorage exception ' +
+					e.toString(), key, value, context );
+
 				return false;
 			}
-
-			return true;
 		},
 
 		/**
@@ -183,7 +202,15 @@
 			var lsKey = makeKeyForLocalStorage( key, context ),
 				rawValue, wrappedValue;
 
-			rawValue = localStorage.getItem( lsKey );
+			try {
+				rawValue = localStorage.getItem( lsKey );
+
+			} catch ( e ) {
+				setError( 'Couldn\'t read value due to LocalStorage exception ' +
+					e.toString(), key, null, context );
+
+				return null;
+			}
 
 			if ( rawValue === null ) {
 				return null;
@@ -201,7 +228,13 @@
 					setError( 'Couldn\'t parse value, removing. ' + e.message,
 						key, rawValue, context );
 
-					localStorage.removeItem( lsKey );
+					try {
+						localStorage.removeItem( lsKey );
+					} catch ( e ) {
+						setError( 'Couldn\'t remove value due to LocalStorage exception ' +
+							e.toString(), key, rawValue, context );
+					}
+
 					return null;
 
 				// For any other errors, set and re-throw
@@ -230,7 +263,14 @@
 		 */
 		removeItem: function ( key, context ) {
 			var lsKey = makeKeyForLocalStorage( key, context );
-			localStorage.removeItem( lsKey );
+
+			try {
+				localStorage.removeItem( lsKey );
+
+			} catch ( e ) {
+				setError( 'Couldn\'t remove value due to LocalStorage exception ' +
+					e.toString(), key, rawValue, context );
+			}
 		},
 
 		/**
