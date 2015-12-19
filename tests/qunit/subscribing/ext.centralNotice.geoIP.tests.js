@@ -2,16 +2,16 @@
 	'use strict';
 
 	var
-		BAD_COOKIE = 'asdfasdf',
 		COOKIE_NAME = 'GeoIP',
+		BAD_COOKIE = 'asdfasdf',
 		GOOD_COOKIE = 'US:CO:Denver:39.6762:-104.887:v4',
 		GOOD_GEO = {
-			af: "v4",
-			city: "Denver",
-			country: "US",
+			af: 'v4',
+			city: 'Denver',
+			country: 'US',
 			lat: 39.6762,
 			lon: -104.887,
-			region: "CO"
+			region: 'CO'
 		},
 		realAjax = $.ajax,
 		realCookie = $.cookie( COOKIE_NAME ),
@@ -39,20 +39,14 @@
 
 		$.ajax = function () {
 			madeAjaxCall = true;
-			var p = $.Deferred();
-			p.resolve();
-			return p.promise();
+			return $.Deferred().resolve().promise();
 		};
 
-		$.when( mw.geoIP.getPromise() ).then( function () {
-			// Should not make a background call when cookie is present.
-			assert.equal( madeAjaxCall, false );
-			// Should re-add parsed geo info from cookie.
-			assert.deepEqual( window.Geo, GOOD_GEO );
-		} );
-
-		// Running should parse the cookie.
 		mw.geoIP.setWindowGeo();
+		mw.geoIP.getPromise().then( function () {
+			assert.equal( madeAjaxCall, false, 'no ajax call if cookie was valid' );
+			assert.deepEqual( window.Geo, GOOD_GEO, 'good geo was set' );
+		} );
 	} );
 
 	QUnit.test( 'restore geo if cookie is invalid', 3, function ( assert ) {
@@ -63,19 +57,16 @@
 
 		// setWindowGeo() should make an ajax call that restores window.Geo
 		$.ajax = function () {
-			assert.equal( window.Geo.af, 'vx' );
+			assert.equal( window.Geo.af, 'vx', 'geo filled with vx' );
 			window.Geo = GOOD_GEO;
-			var p = $.Deferred();
-			p.resolve();
-			return p.promise();
+			return $.Deferred().resolve().promise();
 		};
 
-		// Should restore the cookie.
-		$.when( mw.geoIP.getPromise() ).then( function () {
-			assert.equal( $.cookie( COOKIE_NAME ), GOOD_COOKIE );
-			assert.deepEqual( window.Geo, GOOD_GEO );
-		} );
 		mw.geoIP.setWindowGeo();
+		mw.geoIP.getPromise().then( function () {
+			assert.equal( $.cookie( COOKIE_NAME ), GOOD_COOKIE, 'cookie was restored' );
+			assert.deepEqual( window.Geo, GOOD_GEO, 'good geo was restored' );
+		} );
 	} );
 
 	QUnit.test( 'geo info unavailable', 2, function ( assert ) {
@@ -85,17 +76,14 @@
 
 		$.ajax = function () {
 			// Mock failed call, don't reset geo.
-			var p = $.Deferred();
-			p.reject();
-			return p.promise();
+			return $.Deferred().reject().promise();
 		};
 
-		$.when( mw.geoIP.getPromise() ).then( function () {
-		}, function () {
-			assert.equal( window.Geo.af, 'vx' );
-			assert.equal( $.cookie( COOKIE_NAME ), BAD_COOKIE );
-		});
 		mw.geoIP.setWindowGeo();
+		mw.geoIP.getPromise().fail( function () {
+			assert.equal( $.cookie( COOKIE_NAME ), BAD_COOKIE, 'cookie unchanged' );
+			assert.equal( window.Geo.af, 'vx', 'vx geo was set' );
+		} );
 	} );
 
 }( mediaWiki, jQuery ) );
