@@ -4,6 +4,7 @@
 	var
 		COOKIE_NAME = 'GeoIP',
 		BAD_COOKIE = 'asdfasdf',
+		UNKNOWN_IPV6_COOKIE = ':::::v6',
 		GOOD_COOKIE = 'US:CO:Denver:39.6762:-104.887:v4',
 		GOOD_GEO = {
 			af: 'v4',
@@ -83,6 +84,24 @@
 		mw.geoIP.getPromise().fail( function () {
 			assert.equal( $.cookie( COOKIE_NAME ), BAD_COOKIE, 'cookie unchanged' );
 			assert.equal( window.Geo.af, 'vx', 'vx geo was set' );
+		} );
+	} );
+
+	QUnit.test( 'unknown ipv6 cookie', 3, function ( assert ) {
+		$.cookie( COOKIE_NAME, UNKNOWN_IPV6_COOKIE, { path: '/' } );
+		mw.geoIP.deferred = $.Deferred();
+		window.Geo = null;
+
+		$.ajax = function () {
+			assert.equal( window.Geo.af, 'vx', 'geo filled with vx' );
+			window.Geo = GOOD_GEO;
+			return $.Deferred().resolve().promise();
+		};
+
+		mw.geoIP.setWindowGeo();
+		mw.geoIP.getPromise().done( function () {
+			assert.equal( $.cookie( COOKIE_NAME ), GOOD_COOKIE, 'cookie updated' );
+			assert.deepEqual( window.Geo, GOOD_GEO, 'good geo was loaded' );
 		} );
 	} );
 

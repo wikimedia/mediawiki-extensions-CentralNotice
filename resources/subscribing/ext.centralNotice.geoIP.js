@@ -12,6 +12,11 @@
 	 * Parse geo data in cookieValue and return an object with properties from
 	 * the fields therein. Returns null if the value couldn't be parsed.
 	 *
+	 * The cookie will look like one of the following:
+	 * - "US:CO:Denver:39.6762:-104.887:v4"
+	 * - ":::::v6"
+	 * - ""
+	 *
 	 * @param {string} cookieValue
 	 * @returns {?Object}
 	 */
@@ -77,13 +82,17 @@
 	 * @returns boolean
 	 */
 	function isGeoDataValid( geoObj ) {
-		// TODO: Verify that the following is correct, especially the check for
-		// an empty country string.
-		// Note: In refactoring, we added the check for geoObj.af !== 'vx',
-		// which wasn't in the previous version of the code. Following the
-		// refactor, it (or something similar) is necesssary, though.
+		// - Ensure 'country' is set to detect whether the cookie was succesfully
+		//   parsed by parseCookieValue().
+		// - Ensure 'country' is non-empty to detect empty values for when
+		//   geo lookup failed (typically on IPv6 connections). This check
+		//   is mandatory as otherwise the below code does not fallback to
+		//   geoiplookup.wikimedia.org (IPv4-powered).
+		// - The check for geoObj.af !== 'vx' became mandatory in recent
+		//   refactoring to account for the temporary Geo value for during the
+		//   lookup request. It (or something similar) is necesssary.
 		return ( typeof geoObj.country === 'string' &&
-			( geoObj.country.length === 2 || geoObj.country.length === 0 ) &&
+			geoObj.country.length > 0 &&
 			geoObj.af !== 'vx' );
 	}
 
