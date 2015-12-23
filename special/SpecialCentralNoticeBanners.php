@@ -523,7 +523,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		/* --- Translatable Messages Section --- */
-		$messages = $banner->getMessageFieldsFromCache( $banner->getBodyContent() );
+		$messages = $banner->getMessageFieldsFromCache();
 
 		if ( $messages ) {
 			// Only show this part of the form if messages exist
