@@ -180,9 +180,16 @@
 
 				cookieValue = serializeCookieValue( window.Geo );
 
-				// TODO The following *does not work* with the curent WMF setup
-				// because the server doesn't set Geo cookies on the full
-				// host domain (ex., 'en.wikipedia.org'), which is the default.
+				// Update the cookie so we don't need to fetch it next time.
+				// FIXME: This doesn't work in WMF production, because Varnish sets its initial
+				// Geo cookie with a wildcard domain (e.g. '.wikipedia.org'). This avoids sending
+				// the client a cookie for each domain. But, doesn't work with this function
+				// because cookies vary on path and domain. This doesn't update the '.wikipedia.org'
+				// cookie but creates a new 'en.wikipedia.org' cookie.
+				// TODO: Update retreival code above to bypass $.cookie() and use document.cookie
+				// directly to find the better entry instead of the first one. Both cookies will
+				// be available through document.cookie.
+				// http://blog.jasoncust.com/2012/01/problem-with-documentcookie.html
 				$.cookie( COOKIE_NAME, cookieValue, { path: '/' } );
 
 				mw.geoIP.deferred.resolve();

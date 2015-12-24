@@ -355,6 +355,40 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	/**
+	 * Returns array of navigation links to banner preview URL and
+	 * edit link to the banner's wikipage if the user is allowed.
+	 *
+	 * @return array
+	 */
+	private function getBannerPreviewEditLinks() {
+		$links = array(
+			Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Randompage' ),
+				$this->msg( 'centralnotice-live-preview' )->escaped(),
+				array( 'class' => 'cn-banner-list-element-label-text' ),
+				array(
+					 'banner' => $this->bannerName,
+					 'uselang' => $this->bannerLanguagePreview,
+					 'force' => '1',
+				)
+			)
+		);
+
+		$bannerTitle = Title::newFromText( "Centralnotice-template-{$this->bannerName}", NS_MEDIAWIKI );
+		// $bannerTitle can be null sometimes
+		if ( $bannerTitle && $this->getUser()->isAllowed( 'editinterface' ) ) {
+			$links[] = Linker::link(
+				$bannerTitle,
+				$this->msg( 'centralnotice-banner-edit-onwiki' )->escaped(),
+				array( 'class' => 'cn-banner-list-element-label-text' ),
+				array( 'action' => 'edit' )
+				);
+		}
+
+		return $links;
+	}
+
+	/**
 	 * Display the banner editor and process edits
 	 */
 	protected function showBannerEditor() {
@@ -365,28 +399,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
 		}
 		$out->setPageTitle( $this->bannerName );
-		$wikiPreviewLink = Linker::link(
-			SpecialPage::getTitleFor( 'Randompage' ),
-			$this->msg( 'centralnotice-live-preview' ),
-			array( 'class' => 'cn-banner-list-element-label-text' ),
-			array(
-				'banner' => $this->bannerName,
-				'uselang' => $this->bannerLanguagePreview,
-				'force' => '1',
-			)
+		$out->setSubtitle(
+			$this->getLanguage()->pipeList( $this->getBannerPreviewEditLinks() )
 		);
-		$wikiEditLink = Linker::link(
-			Title::newFromText( "MediaWiki:Centralnotice-template-{$this->bannerName}" ),
-			$this->msg( 'centralnotice-edit-banner-onwiki' ),
-			array( 'class' => 'cn-banner-list-element-label-text' ),
-			array(
-				'action' => 'edit',
-			)
-		);
-		$out->setSubtitle( implode( ' | ', array(
-			$wikiPreviewLink,
-			$wikiEditLink
-		) ) );
 
 		// Generate the form
 		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
@@ -508,7 +523,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		/* --- Translatable Messages Section --- */
-		$messages = $banner->getMessageFieldsFromCache( $banner->getBodyContent() );
+		$messages = $banner->getMessageFieldsFromCache();
 
 		if ( $messages ) {
 			// Only show this part of the form if messages exist

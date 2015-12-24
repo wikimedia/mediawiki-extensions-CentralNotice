@@ -779,7 +779,7 @@ class Banner {
 					$pageId = $revision->getPage();
 
 					// If the banner includes translatable messages, tag it for translation
-					$fields = $this->getMessageFieldsFromCache( $this->bodyContent );
+					$fields = $this->extractMessageFields();
 					if ( count( $fields ) > 0 ) {
 						// Tag the banner for translation
 						Banner::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
@@ -798,45 +798,43 @@ class Banner {
 
 	/**
 	 * Returns all the message fields in a banner
+	 *
+	 * Check the cache first, then calculate if necessary.  Will always prefer the cache.
 	 * @see Banner::extractMessageFields()
 	 *
-	 * @param bool|string $bodyContent If a string will regenerate cache object from the string
-	 *
-	 * @return array|mixed
+	 * @return array
 	 */
-	function getMessageFieldsFromCache( $bodyContent = false ) {
-		global $wgMemc;
-
-		$key = wfMemcKey( 'centralnotice', 'bannerfields', $this->getName() );
-		$data = false;
-		if ( $bodyContent === false ) {
-			$data = $wgMemc->get( $key );
-		}
+	public function getMessageFieldsFromCache() {
+		$data = ObjectCache::getMainStashInstance()
+			->get( $this->getMessageFieldsCacheKey() );
 
 		if ( $data !== false ) {
 			$data = json_decode( $data, true );
 		} else {
-			$data = $this->extractMessageFields( $bodyContent );
-			$wgMemc->set( $key, json_encode( $data ) );
+			$data = $this->extractMessageFields();
 		}
 
 		return $data;
 	}
 
+	protected function getMessageFieldsCacheKey() {
+		return ObjectCache::getMainStashInstance()
+			->makeKey( 'centralnotice', 'bannerfields', $this->getName() );
+	}
+
 	/**
 	 * Extract the raw fields and field names from the banner body source.
-	 * @param string $body The unparsed body source of the banner
+	 *
+	 * Always recalculate.  If you want the cached value, please use getMessageFieldsFromCache.
+	 *
 	 * @return array
 	 */
-	function extractMessageFields( $body = null ) {
+	public function extractMessageFields() {
 		global $wgParser;
 
-		if ( $body === null ) {
-			$body = $this->getBodyContent();
-		}
-
 		$expanded = $wgParser->parse(
-			$body, $this->getTitle(), ParserOptions::newFromContext( RequestContext::getMain() )
+			$this->getBodyContent(), $this->getTitle(),
+			ParserOptions::newFromContext( RequestContext::getMain() )
 		)->getText();
 
 		// Also search the preload js for fields.
@@ -856,6 +854,10 @@ class Banner {
 		$fields = array_intersect_key( array_count_values( $fields[1] ), $unique_fields );
 
 		$fields = array_diff_key( $fields, array_flip( $renderer->getMagicWords() ) );
+
+		// Save in the cache.
+		ObjectCache::getMainStashInstance()
+			->set( $this->getMessageFieldsCacheKey(), json_encode( $fields ) );
 
 		return $fields;
 	}
