@@ -289,5 +289,6 @@
 	"centralnotice-large-banner-limit-days": "Lonxitude da supresión",
 	"centralnotice-large-banner-limit-days-help": "Número de días para suprimir a visualización do banner grande após da primeira visualización.",
 	"centralnotice-large-banner-limit-randomize": "Facer aleatoria a transición de zona",
+	"centralnotice-large-banner-limit-randomize-help": "A transición normal de zona é de A a C e de B a D. Cando está comprobado, os lectores pasarán de forma aleatoria ás zonas C ou D.",
 	"centralnotice-large-banner-limit-identifier": "Identificador de banner grande/nome da cookie"
 }
