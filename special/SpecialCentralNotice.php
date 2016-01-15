@@ -19,6 +19,10 @@ class CentralNotice extends SpecialPage {
 		parent::__construct( 'CentralNotice' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Handle different types of page requests
 	 */
