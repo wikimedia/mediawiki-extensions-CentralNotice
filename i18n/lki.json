@@ -188,7 +188,7 @@
 	"centralnotice-devicetype-ipad": "همهٔ دستگاه‌های شناخته‌شده به عنوان آی‌پد ولی نه آی‌فون‌ها",
 	"centralnotice-devicetype-iphone": "تمام نسخه های آیفون",
 	"centralnotice-devicetype-unknown": "دستگاه‌هایی به غیر از آیفون، آیپد یا اندروید که بر روی تلفن‌همراه هستند ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js منطق انتخاب])",
-	"centralnotice-all": "کۆل",
+	"centralnotice-all": "کؤل(گشت)",
 	"centralnotice-generic-error": "شما مجوز صحیح را برای انجام عمل درخواست شده ندارید و یا عمل شما غیر معتبر است.",
 	"centralnotice-banner-name-error": "نام بنر نامعتبر ارائه شده‌است. نام معتبر تنها حاوی حرف و عددی و نویسهٔ زیرخط است.",
 	"centralnotice-all-except": "همه به جز $1",
