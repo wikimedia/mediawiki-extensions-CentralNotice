@@ -220,6 +220,7 @@
 
 			if ( cleanForURLSerialization ) {
 				delete dataCopy.getVars;
+				delete dataCopy.mixins;
 			}
 
 			return dataCopy;
