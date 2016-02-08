@@ -1,8 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"OC Ripper"
+			"OC Ripper",
+			"Conquistador"
 		]
 	},
-	"centralnotice-modify": "Unesi"
+	"centralnotice-modify": "Unesi",
+	"centralnotice-preview": "Pregled ($1)",
+	"centralnotice-add-notice-cancel-button": "Otkaži",
+	"centralnotice-clone-cancel": "Otkaži",
+	"centralnotice-archive-banner-cancel": "Otkaži",
+	"centralnotice-archive-campaign-cancel": "Otkaži",
+	"centralnotice-delete-banner-cancel": "Otkaži"
 }
