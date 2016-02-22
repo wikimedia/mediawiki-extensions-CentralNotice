@@ -19,7 +19,8 @@
 			"Ата",
 			"Тест",
 			"Ypryima",
-			"Dars"
+			"Dars",
+			"Piramidion"
 		]
 	},
 	"centralnotice": "Управління централізованими сповіщеннями",
@@ -290,6 +291,6 @@
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Таймаут для відправки журналу без sendBeacon (у мілісекундах)",
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Щоб надіслати журнал безпосередньо перед переходом на іншу сторінку, в деяких браузерах, ми встановили максимальний час очікування перед відмовою від надсилання журналу.",
 	"centralnotice-banners-not-guaranteed-to-display": "Банери можуть не відображатися, так як це визначено в JavaScript-і банера",
-	"centralnotice-large-banner-limit-identifier": "Назва куки великого банера",
-	"centralnotice-large-banner-limit-identifier-help": "Показування великого банера подавлене у кампаніях із тими ж куками. Значення за замовчуванням 'centralnotice-frbanner-seen-fullscreen' сумісне зі скриптами збору коштів у вікі."
+	"centralnotice-large-banner-limit-identifier": "Назва ідентифікатора/кук великого банера",
+	"centralnotice-large-banner-limit-identifier-help": "Показування великого банера подавлене у кампаніях із тим же ідентифікатором. Залежно від категорії кампанії, це може бути впроваджено як куки. Значення за замовчуванням 'centralnotice-frbanner-seen-fullscreen' сумісне зі скриптами збору коштів у вікі."
 }
