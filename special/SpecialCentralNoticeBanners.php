@@ -32,6 +32,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
 	 * @return Bool
