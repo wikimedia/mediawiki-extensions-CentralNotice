@@ -163,7 +163,7 @@
 	"centralnotice-country-unknown": "Desconegut/Pas Geolocalizable",
 	"centralnotice-bucket": "Godet",
 	"centralnotice-bucket-letter": "Godet \"$1\"",
-	"centralnotice-devicetype-desktop": "Ordenador de burèu",
+	"centralnotice-devicetype-desktop": "Ordinator de burèu",
 	"centralnotice-all": "Totes",
 	"centralnotice-all-except": "Totes levat $1",
 	"centralnotice-excluding-list": "$1 (a l’exclusion de $2)",
