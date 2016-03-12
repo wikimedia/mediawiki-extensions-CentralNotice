@@ -5,7 +5,8 @@
 			"Bellayet",
 			"Nasir8891",
 			"Wikitanvir",
-			"Aftabuzzaman"
+			"Aftabuzzaman",
+			"Bodhisattwa"
 		]
 	},
 	"centralnotice": "কেন্দ্রীয় নোটিশ প্রশাসক",
@@ -119,6 +120,7 @@
 	"centralnotice-percentage": "শতাংশ",
 	"centralnotice-documentwrite-error": "ব্যানারের জন্য document.write() ব্যবহার করা যাবে না।\nবিস্তারিত জানতে দেখুন http://meta.wikimedia.org/wiki/Help:CentralNotice।",
 	"centralnotice-preferred": "গুরুত্বপূর্ণ",
+	"centralnotice-archived": "আর্কাইভ করা হয়েছে",
 	"centralnotice-logs": "লগ",
 	"centralnotice-view-logs": "লগ দেখাও",
 	"centralnotice-timestamp": "সময়বার্তা",
@@ -156,6 +158,9 @@
 	"centralnotice-priority-normal": "সাধারণ",
 	"centralnotice-priority-high": "ভাল",
 	"centralnotice-priority-emergency": "জরুরী",
+	"centralnotice-country-eu": "অজানা/ইউরোপীয় ইউনিয়নের অঞ্চল",
+	"centralnotice-country-ap": "অজানা/এশীয় প্রশান্ত মহাসগরীয় অঞ্চল",
+	"centralnotice-country-o1": "অজানা/অন্য দেশ",
 	"centralnotice-devicetype-desktop": "ডেস্কটপ কম্পিউটার",
 	"centralnotice-all": "সমস্ত",
 	"centralnotice-banner-class": "বিষয়শ্রেণী",
