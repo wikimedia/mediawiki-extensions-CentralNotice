@@ -108,6 +108,8 @@ class CentralNotice extends SpecialPage {
 			array( 'class' => 'cn-special-section' ),
 			$this->msg( 'centralnotice-manage' )->text() ) );
 
+		$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
+
 		$pager = new CNCampaignPager( $this, $this->editable );
 		$out->addHTML( $pager->getBody() );
 		$out->addHTML( $pager->getNavigationBar() );

@@ -1,0 +1,14 @@
+/* Must override .mw-datatable td, rule in skins/common/shared.css */
+tr.cn-active-campaign td {
+	background-color: #ddffdd;
+}
+
+.cn-archived-item {
+	display: none;
+}
+
+.cn-formsection-emphasis {
+	padding: 0.5em;
+	background-color: #FFFFFF;
+	border: 1px solid #2F6FAB;
+}

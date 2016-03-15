@@ -439,6 +439,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
 
 		$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
+		$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
 		$out->addHTML( $pager->getBody() );
 		$out->addHTML( $pager->getNavigationBar() );
 	}

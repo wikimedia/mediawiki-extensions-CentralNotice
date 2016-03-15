@@ -71,8 +71,3 @@ label[for=mw-input-wpsummary],
 #mw-htmlform-banner-list .mw-label {
 	display: none;
 }
-
-/* --- Archival --- */
-.cn-archived-item {
-	display: none;
-}

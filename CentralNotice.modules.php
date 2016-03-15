@@ -66,6 +66,13 @@ $wgResourceModules[ 'ext.centralNotice.adminUi' ] = array(
 	)
 );
 
+$wgResourceModules[ 'ext.centralNotice.adminUi.campaignPager' ] = array(
+		'localBasePath' => $dir . '/resources',
+		'remoteExtPath' => 'CentralNotice/resources',
+		'scripts'       => 'infrastructure/ext.centralNotice.adminUi.campaignPager.js',
+		'styles'        => 'infrastructure/ext.centralNotice.adminUi.campaignPager.css',
+);
+
 $wgResourceModules[ 'ext.centralNotice.adminUi.bannerManager' ] = array(
 	'localBasePath' => $dir . '/resources',
 	'remoteExtPath' => 'CentralNotice/resources',
