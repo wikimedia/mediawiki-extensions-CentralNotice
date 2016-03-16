@@ -145,13 +145,14 @@ class CNCampaignPager extends TablePager {
 
 		$htmlOut = '';
 
-		$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
-
-		// If this is editable, make it a form
-		if ( $this->editable ) {
-			$htmlOut .= Xml::openElement( 'form', array( 'method' => 'post' ) );
-			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
-		}
+		$htmlOut .= Xml::openElement(
+			'fieldset',
+			array(
+				'class' => 'prefsection',
+				'id' => 'cn-campaign-pager',
+				'data-editable' => ( $this->editable ? 1 : 0 )
+			)
+		);
 
 		// Filters
 		$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-formsection-emphasis' ) );
@@ -209,15 +210,19 @@ class CNCampaignPager extends TablePager {
 			case 'not_end':
 				return date( '<\b>Y-m-d</\b> H:i', wfTimestamp( TS_UNIX, $value ) );
 
+			// Note: Names of controls and data attributes must coordinate with
+			// ext.centralNotice.adminUi.campaignPager.js
+
 			case 'not_enabled':
 				return Xml::check(
-					'enabled[]',
+					'enabled',
 					$rowIsEnabled,
 					array_replace(
 						( !$this->editable || $rowIsLocked || $rowIsArchived )
 						? $readonly : array(),
 						array(
-							'value' => $name,
+							'data-campaign-name' => $name,
+							'data-initial-value' => $rowIsEnabled,
 							'class' => 'noshiftselect mw-cn-input-check-sort'
 						)
 					)
@@ -239,13 +244,18 @@ class CNCampaignPager extends TablePager {
 
 			case 'not_locked':
 				return Xml::check(
-					'locked[]',
+					'locked',
 					$rowIsLocked,
 					array_replace(
-						( !$this->editable || $rowIsArchived )
+						// Note: Lockability should always be modifiable
+						// regardless of whether the camapgin is archived.
+						// Otherwise we create a dead-end state of locked and
+						// archived.
+						( !$this->editable )
 						? $readonly : array(),
 						array(
-							'value' => $name,
+							'data-campaign-name' => $name,
+							'data-initial-value' => $rowIsLocked,
 							'class' => 'noshiftselect mw-cn-input-check-sort'
 						)
 					)
@@ -253,13 +263,14 @@ class CNCampaignPager extends TablePager {
 
 			case 'not_archived':
 				return Xml::check(
-					'archiveCampaigns[]',
+					'archived',
 					$rowIsArchived,
 					array_replace(
 						( !$this->editable || $rowIsLocked || $rowIsEnabled )
 						? $readonly : array(),
 						array(
-							'value' => $name,
+							'data-campaign-name' => $name,
+							'data-initial-value' => $rowIsArchived,
 							'class' => 'noshiftselect mw-cn-input-check-sort'
 						)
 					)
@@ -337,16 +348,17 @@ class CNCampaignPager extends TablePager {
 
 			$htmlOut .= $this->onSpecialCN->makeSummaryField();
 
-			$htmlOut .=
-				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text(),
+			$htmlOut .= Xml::input(
+				'centralnoticesubmit',
+				false,
+				$this->msg( 'centralnotice-modify' )->text(),
 				array(
-					'id'   => 'centralnoticesubmit',
-					'name' => 'centralnoticesubmit'
+					'type' => 'button',
+					'id' => 'cn-campaign-pager-submit'
 				)
 			);
 
 			$htmlOut .= Xml::closeElement( 'div' );
-			$htmlOut .= Xml::closeElement( 'form' );
 		}
 
 		$htmlOut .= Xml::closeElement( 'fieldset' );
@@ -402,9 +414,8 @@ class CNCampaignPager extends TablePager {
 
 		parent::extractResultInfo( $isFirst, $limit, $res );
 
-		// Due to the way CentralNotice processes changes, editing and
-		// paging don't work together, causing data corruption. So we disable
-		// editing if there's more than one page of results.
+		// Disable editing if there's more than one page. (This is a legacy
+		// requirement; it might work even with paging now.)
 		if ( !$this->isWithinLimit() ) {
 			$this->editable = false;
 		}
