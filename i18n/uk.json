@@ -66,7 +66,7 @@
 	"centralnotice-throttle": "Обмеження трафіку",
 	"centralnotice-throttle-amount": "Обмеження трафіку з часткою від загальної",
 	"centralnotice-balanced": "Надати всім банерам однакової ваги",
-	"centralnotice-weight": "Ширина",
+	"centralnotice-weight": "Вага",
 	"centralnotice-locked": "Заблокована",
 	"centralnotice-notice-mixins-fieldset": "Додаткові характеристики кампанії",
 	"centralnotice-notice-mixins-int-required": "Має бути ціле число",
