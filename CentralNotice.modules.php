@@ -312,12 +312,3 @@ $wgResourceModules[ 'ext.centralNotice.bannerController.mobile' ] = array(
 	),
 	'targets' => array( 'mobile' ),
 );
-
-// Deprecated, left here for cached HTML.
-$wgResourceModules[ 'ext.centralNotice.bannerController.mobiledevice' ] = array();
-
-// Deprecated, left here for cached HTML
-$wgResourceModules[ 'ext.centralNotice.bannerChoiceData' ] = array();
-
-// Deprecated, left here for cached HTML
-$wgResourceModules[ 'ext.centralNotice.bannerController.lib' ] = array();
