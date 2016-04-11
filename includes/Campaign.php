@@ -836,7 +836,7 @@ class Campaign {
 		}
 
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
 		$endTime = strtotime( '+1 hour', wfTimestamp( TS_UNIX, $startTs ) );
 		$endTs = wfTimestamp( TS_MW, $endTime );
@@ -880,7 +880,7 @@ class Campaign {
 					__METHOD__, array( 'IGNORE' ) );
 			}
 
-			$dbw->commit( __METHOD__ );
+			$dbw->endAtomic( __METHOD__ );
 
 			// Log the creation of the campaign
 			$beginSettings = array();
@@ -939,13 +939,13 @@ class Campaign {
 		Campaign::logCampaignChange( 'removed', $campaignId, $user );
 
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 		$dbw->delete( 'cn_assignments', array( 'not_id' => $campaignId ) );
 		$dbw->delete( 'cn_notices', array( 'not_name' => $campaignName ) );
 		$dbw->delete( 'cn_notice_languages', array( 'nl_notice_id' => $campaignId ) );
 		$dbw->delete( 'cn_notice_projects', array( 'np_notice_id' => $campaignId ) );
 		$dbw->delete( 'cn_notice_countries', array( 'nc_notice_id' => $campaignId ) );
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 	}
 
 	/**
@@ -973,7 +973,6 @@ class Campaign {
 			return 'centralnotice-template-already-exists';
 		}
 
-		$dbw->begin( __METHOD__ );
 		$noticeId = Campaign::getNoticeId( $eNoticeName );
 		$dbw->insert( 'cn_assignments',
 			array(
@@ -983,7 +982,6 @@ class Campaign {
 				'asn_bucket' => $bucket,
 			)
 		);
-		$dbw->commit( __METHOD__ );
 
 		return true;
 	}
@@ -993,11 +991,9 @@ class Campaign {
 	 */
 	static function removeTemplateFor( $noticeName, $templateName ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$dbw->begin( __METHOD__ );
 		$noticeId = Campaign::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
 		$dbw->delete( 'cn_assignments', array( 'tmp_id' => $templateId, 'not_id' => $noticeId ) );
-		$dbw->commit( __METHOD__ );
 	}
 
 	/**
@@ -1223,7 +1219,7 @@ class Campaign {
 
 	static function updateProjects( $notice, $newProjects ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned projects
 		$oldProjects = Campaign::getNoticeProjects( $notice );
@@ -1247,12 +1243,12 @@ class Campaign {
 			);
 		}
 
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 	}
 
 	static function updateProjectLanguages( $notice, $newLanguages ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned languages
 		$oldLanguages = Campaign::getNoticeLanguages( $notice );
@@ -1276,11 +1272,12 @@ class Campaign {
 			);
 		}
 
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 	}
 
 	static function updateCountries( $notice, $newCountries ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
+		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned languages
 		$oldCountries = Campaign::getNoticeCountries( $notice );
@@ -1303,6 +1300,8 @@ class Campaign {
 				array( 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries )
 			);
 		}
+
+		$dbw->endAtomic( __METHOD__ );
 	}
 
 	/**
