@@ -3,7 +3,8 @@
 		"authors": [
 			"Asoxor",
 			"Calak",
-			"Muhammed taha"
+			"Muhammed taha",
+			"Sarchia"
 		]
 	},
 	"right-centralnotice-admin": "بەڕێوەبردنی ئاگادارییە ناوەندییەکان",
@@ -17,6 +18,7 @@
 	"centralnotice-min": "خولەک",
 	"centralnotice-project-lang": "زمانی پرۆژە",
 	"centralnotice-clone-name": "ناو:",
+	"centralnotice-banner-anonymous": "بەکارھێنەرە نەناسراوەکان",
 	"centralnotice-languages": "زمانەکان",
 	"centralnotice-projects": "پرۆژەکان",
 	"centralnotice-country": "وڵات",
