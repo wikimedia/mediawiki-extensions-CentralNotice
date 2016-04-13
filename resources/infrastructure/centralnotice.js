@@ -97,13 +97,6 @@ jQuery(document).ready( function ( $ ) {
 		}
 	});
 
-	// Special:CentralNotice; keep data-sort-value attributes for
-	// jquery.tablesorter in sync
-	$( '.mw-cn-input-check-sort' ).on( 'change click blur', function () {
-		$(this).parent( 'td' )
-			.data( 'sortValue', Number( this.checked ) );
-	} );
-
 	// Bucketing! Disable bucket selectors if #buckets is not checked.
 	$( '#buckets' ).change( function () {
         var numBuckets = parseInt( this[this.selectedIndex].value, 10 ),
@@ -125,19 +118,5 @@ jQuery(document).ready( function ( $ ) {
             });
         }
 	} ).trigger( 'change' );
-
-	// If the Campaign pager is present, show or hide archived campaigns
-	var $showArchived = $( '#centralnotice-showarchived' );
-
-	if ( $showArchived.length > 0 ) {
-
-		$showArchived.click( function () {
-			if ( $( this ).prop( 'checked' ) ) {
-				$( '.cn-archived-item' ).show();
-			} else {
-				$( '.cn-archived-item' ).hide();
-			}
-		} );
-	}
 } );
 } )( mediaWiki, jQuery );

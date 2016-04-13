@@ -9,11 +9,11 @@
 		]
 	},
 	"centralnotice": "การจัดการประกาศส่วนกลาง",
-	"noticetemplate": "แม่แบบประกาศของส่้วนกลาง",
+	"noticetemplate": "แม่แบบประกาศของส่วนกลาง",
 	"right-centralnotice-admin": "จัดการประกาศส่วนกลาง",
 	"action-centralnotice-admin": "จัดการประกาศส่วนกลาง",
 	"centralnotice-desc": "เพิ่มประกาศส่วนกลางของไซต์",
-	"centralnotice-summary": "คุณสามารถแก้ไขประกาศส่วนกลางปัจจุบันได้ โดยใช้เครื่องมือนี้\nคุณสามารถเพิ่มหรือนำประกาศเก่าออกได้เช่นกัน",
+	"centralnotice-summary": "คุณสามารถแก้ไขประกาศส่วนกลางปัจจุบันได้โดยใช้มอดูลนี้\nคุณสามารถเพิ่มหรือนำประกาศเก่าออกได้เช่นกัน",
 	"centralnotice-query": "แก้ไขประกาศปัจจุบัน",
 	"centralnotice-notice-name": "หัวข้อการประกาศ",
 	"centralnotice-enabled": "ถูกทำให้ใช้งานได้",

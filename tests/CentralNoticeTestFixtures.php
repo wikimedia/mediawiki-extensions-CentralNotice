@@ -119,7 +119,7 @@ class CentralNoticeTestFixtures {
 	 * start_days_from_now and end_days_from_now properties.
 	 *
 	 * Note: Some of this logic is repeated in client-side tests.
-	 * @see setChoicesStartEnd() in bannerController.lib.tests.js
+	 * @see setChoicesStartEnd() in ext.centralNotice.display.chooser.tests.js
 	 *
 	 * @param array $testCase A data structure with the test case specification
 	 */

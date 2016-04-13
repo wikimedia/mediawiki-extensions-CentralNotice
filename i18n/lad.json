@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Menachem.Moreira"
+			"Menachem.Moreira",
+			"Cedric31"
 		]
 	},
 	"centralnotice-add": "Anyadir",
 	"centralnotice-add-notice-button": "Krear",
 	"centralnotice-translations": "Traduksiyones",
 	"centralnotice-translate-to": "Tradusir a",
-	"centralnotice-translate": "Tradusir",
+	"centralnotice-translate": "Traduire",
 	"centralnotice-english": "Inglez",
 	"centralnotice-day": "Dia",
 	"centralnotice-year": "Anyo",

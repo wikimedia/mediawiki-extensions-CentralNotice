@@ -32,6 +32,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
 	 * @return Bool
@@ -435,6 +439,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
 
 		$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
+		$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
 		$out->addHTML( $pager->getBody() );
 		$out->addHTML( $pager->getNavigationBar() );
 	}
@@ -955,8 +960,9 @@ class LanguageSelectHeaderElement extends HTMLSelectField {
 		$html = Xml::openElement( 'table', array( 'class' => 'cn-message-table' ) );
 		$html .= Xml::openElement( 'tr' );
 
+		$code = $wgContLang->getCode();
 		$html .= Xml::element( 'td', array( 'class' => 'cn-message-text-origin-header' ),
-			$wgContLang->fetchLanguageName( $wgContLang->getCode() )
+			Language::fetchLanguageName( $code, $code )
 		);
 
 		$html .= Xml::openElement( 'td', array( 'class' => 'cn-message-text-native-header' ) );

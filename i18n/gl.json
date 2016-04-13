@@ -279,15 +279,18 @@
 	"centralnotice-impression-diet": "Redución de impresión",
 	"centralnotice-impression-diet-help": "Limitar o número de banner vistos por cada persoa.",
 	"centralnotice-impression-diet-identifier": "Identificar/ocultar o nome da cookie",
+	"centralnotice-impression-diet-identifier-help": "Un identificador para os datos persistentes do lado do cliente almacenados por esta funcionalidade (por exemplo un contador de impresións). Este campo é opcional para a maioría das campañas. Se o deixa a branco, as campañas na mesma categoría compartirán os contadores de impresión, ou, se estas campaña non usa a funcionalidade de categoría, os contadores serán específicos a esta campaña. Para compartir este datos entre varias categorías, especifique o mesmo identificador en cada campaña. Nota: certas categorías de campañas están configuradas para usar cookies para esta funcionalidade. Para as campañas nesas categorías, este identificador será o nome da cookie, e non é opcional. Tamén teña en conta que se o identificador se cambia durante a campaña, todos os contadores ata o momento perderanse.",
 	"centralnotice-impression-diet-maximum-seen": "Máximo de impresións que verá calquera persoa",
 	"centralnotice-impression-diet-maximum-seen-help": "Se o ciclo está configurado para rearrancar, isto limita o número de impresións vistas por ciclo máis que o número total.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Cánto tempo esperar antes de reiniciar o ciclo, en segundos (opcional)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Por defecto a 0, o que indica que os lectores experimentarán un único ciclo, e despois pararemos de visualizar os banners (anuncios).",
 	"centralnotice-impression-diet-skip-initial": "Número de impresións iniciais a omitir (opcional)",
 	"centralnotice-impression-diet-skip-initial-help": "Por defecto a 0, non saltará ningunha impresión. Cando o ciclo comece, saltaremos este número potencial de impresións antes de mostrar un anuncio.",
+	"centralnotice-large-banner-limit": "Límite de anuncio grande e cambio",
 	"centralnotice-large-banner-limit-help": "Mostrar un anuncio grande unha vez, logo pasar a anuncios pequenos. Poñer os anuncios grandes nas zonas A e B e os anuncios pequenos nas zonas C e D.",
 	"centralnotice-large-banner-limit-days": "Lonxitude da supresión",
 	"centralnotice-large-banner-limit-days-help": "Número de días para suprimir a visualización do banner grande após da primeira visualización.",
 	"centralnotice-large-banner-limit-randomize": "Facer aleatoria a transición de zona",
+	"centralnotice-large-banner-limit-randomize-help": "A transición normal de zona é de A a C e de B a D. Cando está comprobado, os lectores pasarán de forma aleatoria ás zonas C ou D.",
 	"centralnotice-large-banner-limit-identifier": "Identificador de banner grande/nome da cookie"
 }

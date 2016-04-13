@@ -19,6 +19,10 @@ class CentralNotice extends SpecialPage {
 		parent::__construct( 'CentralNotice' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	/**
 	 * Handle different types of page requests
 	 */
@@ -104,6 +108,8 @@ class CentralNotice extends SpecialPage {
 			array( 'class' => 'cn-special-section' ),
 			$this->msg( 'centralnotice-manage' )->text() ) );
 
+		$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
+
 		$pager = new CNCampaignPager( $this, $this->editable );
 		$out->addHTML( $pager->getBody() );
 		$out->addHTML( $pager->getNavigationBar() );
@@ -117,120 +123,69 @@ class CentralNotice extends SpecialPage {
 	}
 
 	protected function handleNoticePostFromList() {
+
 		$request = $this->getRequest();
+		$changes = json_decode( $request->getText( 'changes' ), true );
+		$summary = $this->getSummaryFromRequest( $request );
 
-		// Get all the initial campaign settings for logging
-		$allCampaignNames = Campaign::getAllCampaignNames();
-		$allInitialCampaignSettings = array();
-		foreach ( $allCampaignNames as $campaignName ) {
-			$settings = Campaign::getCampaignSettings( $campaignName );
-			$allInitialCampaignSettings[ $campaignName ] = $settings;
-		}
+		// Make the changes requested
+		foreach ( $changes as $campaignName => $campaignChanges ) {
 
-		// FIXME The following three blocks of code are similar.
-		// They might be refactored as part of a bigger refactoring
-		// of code for changing campaign settings via the list of
-		// campaigns. If not, refactor this following the current
-		// logic.
+			$initialSettings = Campaign::getCampaignSettings( $campaignName );
 
-		// Handle archiving/unarchiving campaigns
-		$archived = $request->getArray( 'archiveCampaigns' );
-		if ( $archived ) {
-			// Build list of campaigns to archive
-			$notArchived = array_diff( Campaign::getAllCampaignNames(), $archived );
+			// Next campaign if somehow this one doesn't exist
+			if ( !$initialSettings ) {
 
-			// Set archived/not archived flag accordingly
-			foreach ( $archived as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
-			}
-			foreach ( $notArchived as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
-			}
-			// Handle updates if no post content came through (all checkboxes unchecked)
-		} else {
-			$allNotices = Campaign::getAllCampaignNames();
-			foreach ( $allNotices as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'archived', 0 );
-			}
-		}
+				wfLogWarning( 'Change requested for non-existent campaign ' .
+					$campaignName );
 
-		// Handle locking/unlocking campaigns
-		$lockedNotices = $request->getArray( 'locked' );
-		if ( $lockedNotices ) {
-			// Build list of campaigns to lock
-			$unlockedNotices = array_diff( Campaign::getAllCampaignNames(), $lockedNotices );
+				continue;
+			}
 
-			// Set locked/unlocked flag accordingly
-			foreach ( $lockedNotices as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
-			}
-			foreach ( $unlockedNotices as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
-			}
-		// Handle updates if no post content came through (all checkboxes unchecked)
-		} else {
-			$allNotices = Campaign::getAllCampaignNames();
-			foreach ( $allNotices as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
-			}
-		}
+			// Set values as per $changes
+			if ( isset( $campaignChanges['archived'] ) ) {
 
-		// Handle enabling/disabling campaigns
-		$enabledNotices = $request->getArray( 'enabled' );
-		if ( $enabledNotices ) {
-			// Build list of campaigns to disable
-			$disabledNotices = array_diff( Campaign::getAllCampaignNames(), $enabledNotices );
+				Campaign::setBooleanCampaignSetting( $campaignName, 'archived',
+					$campaignChanges['archived'] ? 1 : 0 );
+			}
 
-			// Set enabled/disabled flag accordingly
-			foreach ( $enabledNotices as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
-			}
-			foreach ( $disabledNotices as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
-			}
-		// Handle updates if no post content came through (all checkboxes unchecked)
-		} else {
-			$allNotices = Campaign::getAllCampaignNames();
-			foreach ( $allNotices as $notice ) {
-				Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
-			}
-		}
+			if ( isset( $campaignChanges['locked'] ) ) {
 
-		// Handle setting priority on campaigns
-		$preferredNotices = $request->getArray( 'priority' );
-		if ( $preferredNotices ) {
-			foreach ( $preferredNotices as $notice => $value ) {
+				Campaign::setBooleanCampaignSetting( $campaignName, 'locked',
+					$campaignChanges['locked'] ? 1 : 0 );
+			}
+
+			if ( isset( $campaignChanges['enabled'] ) ) {
+
+				Campaign::setBooleanCampaignSetting( $campaignName, 'enabled',
+					$campaignChanges['enabled'] ? 1 : 0 );
+			}
+
+			if ( isset( $campaignChanges['priority'] ) ) {
+
 				Campaign::setNumericCampaignSetting(
-					$notice,
+					$campaignName,
 					'preferred',
-					$value,
+					intval( $campaignChanges['priority'] ),
 					CentralNotice::EMERGENCY_PRIORITY,
 					CentralNotice::LOW_PRIORITY
 				);
 			}
-		}
 
-		// Get all the final campaign settings for potential logging
-		foreach ( $allCampaignNames as $campaignName ) {
-			$finalCampaignSettings = Campaign::getCampaignSettings( $campaignName );
-			if ( !$allInitialCampaignSettings[ $campaignName ] || !$finalCampaignSettings ) {
-				// Condition where the campaign has apparently disappeared mid operations
-				// -- possibly a delete call
-				$diffs = false;
-			} else {
-				$diffs = array_diff_assoc( $allInitialCampaignSettings[ $campaignName ], $finalCampaignSettings );
-			}
-			// If there are changes, log them
+			// Log any differences in settings
+			$newSettings = Campaign::getCampaignSettings( $campaignName );
+			$diffs = array_diff_assoc( $initialSettings, $newSettings );
+
 			if ( $diffs ) {
 				$campaignId = Campaign::getNoticeId( $campaignName );
 				Campaign::logCampaignChange(
 					'modified',
 					$campaignId,
 					$this->getUser(),
-					$allInitialCampaignSettings[ $campaignName ],
-					$finalCampaignSettings,
+					$initialSettings,
+					$newSettings,
 					array(), array(),
-					$this->getSummaryFromRequest( $request )
+					$summary
 				);
 			}
 		}
@@ -319,20 +274,24 @@ class CentralNotice extends SpecialPage {
 		);
 
 		if ( $editable ) {
-			$itemName = 'priority';
-			if ( $index ) {
-				$itemName .= "[$index]";
-			}
 
 			$options = ''; // The HTML for the select list options
 			foreach ( $priorities as $key => $label ) {
 				$options .= XML::option( $label, $key, $priorityValue == $key );
 			}
 
+			// Data attributes set below (data-campaign-name and
+			// data-initial-value) must coordinate with CNCampaignPager and
+			// ext.centralNotice.adminUi.campaignPager.js
+
 			$selectAttribs = array(
-				'id' => $itemName,
-				'name' => $itemName,
+				'name' => 'priority',
+				'data-initial-value' => $priorityValue
 			);
+
+			if ( $index ) {
+				$selectAttribs['data-campaign-name'] = $index;
+			}
 
 			return Xml::openElement( 'select', $selectAttribs )
 				. "\n"

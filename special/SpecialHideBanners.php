@@ -15,7 +15,8 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgNoticeCookieDurations, $wgCentralNoticeHideBannersP3P;
+		global $wgNoticeCookieDurations, $wgCentralNoticeHideBannersP3P,
+			$wgCentralNoticeFallbackHideCookieDuration;
 
 		// Handle /P3P subpage with explanation of invalid P3P header
 		if ( ( strval( $par ) === SpecialHideBanners::P3P_SUBPAGE ) &&
@@ -27,7 +28,20 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		}
 
 		$reason = $this->getRequest()->getText( 'reason', 'donate' );
-		$duration = $this->getRequest()->getInt( 'duration', $wgNoticeCookieDurations[$reason] );
+
+		// No duration parameter for a custom reason is not expected; we have a
+		// fallback value, but we log that this happened.
+		$duration = $this->getRequest()->getInt( 'duration', 0 );
+		if ( !$duration ) {
+			if ( isset( $wgNoticeCookieDurations[$reason] ) ) {
+				$duration = $wgNoticeCookieDurations[$reason];
+			} else {
+				$duration = $wgCentralNoticeFallbackHideCookieDuration;
+				wfLogWarning( 'Missing or 0 duration for hide cookie reason '
+					. $reason . '.' );
+			}
+		}
+
 		$category = $this->getRequest()->getText( 'category', 'fundraising' );
 		$category = Banner::sanitizeRenderedCategory( $category );
 		$this->setHideCookie( $category, $duration, $reason );

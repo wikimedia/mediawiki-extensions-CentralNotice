@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Karthi.dr"
+			"Karthi.dr",
+			"Hosseinblue"
 		]
 	},
 	"centralnotice-modify": "Submit karo",
@@ -9,7 +10,7 @@
 	"centralnotice-preview": "Jhalak",
 	"centralnotice-remove": "Hatao",
 	"centralnotice-add": "Jorro",
-	"centralnotice-english": "English",
+	"centralnotice-english": "انگلیسی",
 	"centralnotice-year": "Saal",
 	"centralnotice-clone-name": "Naam:",
 	"centralnotice-close-title": "Band karo",

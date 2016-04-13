@@ -1072,12 +1072,10 @@ class Banner {
 
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
-			$dbw->begin();
 			$dbw->delete( 'cn_templates',
 				array( 'tmp_id' => $id ),
 				__METHOD__
 			);
-			$dbw->commit();
 
 			// Delete the MediaWiki page that contains the banner source
 			$article = new Article(
