@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Sapral Mikail",
-			"Умар"
+			"Умар",
+			"Adam-Yourist"
 		]
 	},
+	"centralnotice-view": "Хьажар",
 	"centralnotice-day": "Ди",
 	"centralnotice-year": "Шу",
 	"centralnotice-month": "Бутт",
