@@ -318,7 +318,7 @@
 	 *         not objects or arrays). Note: this should be seen as read-only
 	 *         for any code outside this module. No properties that code in this
 	 *         module reacts to are available on mw.centralNotice.data. Also,
-	 *         it will be deprecated soon. Use getData( prop ) instead.
+	 *         it will be deprecated soon. Use getDataProperty( prop ) instead.
 	 *
 	 *     bannerLoadedPromise: A promise that resolves when a banner is loaded.
 	 *         This property is only set after a banner has been chosen.
@@ -428,6 +428,10 @@
 			return cn.internal.state.isBannerCanceled();
 		},
 
+		isBannerShown: function() {
+			return cn.internal.state.isBannerShown();
+		},
+
 		/**
 		 * Indicate that a banner was hidden after being loaded, and provide
 		 * a reason.
@@ -534,7 +538,8 @@
 		 * bucketer must be initialized first. However, code in campaign mixin
 		 * hook handlers and banners can safely assume that's the case.
 		 *
-		 * The current bucket can be read from mw.centralNotice.data.bucket
+		 * The current bucket can be read using
+		 * mw.centralNotice.getDataProperty( 'bucket' )
 		 */
 		setBucket: function( bucket ) {
 			cn.internal.bucketer.setBucket( bucket );
@@ -547,22 +552,6 @@
 		 */
 		getDataProperty: function( prop ) {
 			return cn.internal.state.getData()[prop];
-		},
-
-		/**
-		 * Are cookies enabled on this client?
-		 * TODO Should this go in core?
-		 */
-		cookiesEnabled: function() {
-			var enabled;
-			// Set a cookie, then try to read it back
-			// TODO Using jquery.cookie since it's already a dependency; switch
-			// to mw.cookie when we make a general switch.
-			$.cookie( 'cookieTest', 'testVal' );
-			enabled = ( $.cookie( 'cookieTest' ) === 'testVal' );
-			// Clear it out
-			$.removeCookie( 'cookieTest' );
-			return enabled;
 		}
 	};
 

@@ -12,108 +12,149 @@
 ( function ( mw ) {
 	'use strict';
 
-	var cn = mw.centralNotice,
+	var identifier, days, multiStorageOption,
+		cn = mw.centralNotice,
 		forced = mw.util.getParamValue( 'force' ),
-		useCookies,
 		mixin = new cn.Mixin( 'largeBannerLimit' ),
-		KV_STORE_KEY = 'large_banner_limit';
+		STORAGE_KEY = 'large_banner_limit';
 
 	function isLarge() {
-		var currentBucket = cn.internal.bucketer.getBucket();
-		return ( currentBucket <= 1 );
+		return ( cn.getDataProperty( 'bucket' ) <= 1 );
+	}
+
+	/**
+	 * Check for a large-banner-seen flag in a legacy cookie. If one is found,
+	 * remove the cookie and store a non-legacy flag.
+	 */
+	function possiblyMigrateLegacyCookie() {
+
+		// Legacy cookie required an identifier
+		if ( !identifier ) {
+			return;
+		}
+
+		if ( mw.cookie.get( identifier, '' ) ) {
+
+			setFlag();
+
+			// Remove the legacy cookie
+			mw.cookie.set( identifier, null, {
+				path: '/',
+				prefix: ''
+			} );
+		}
+	}
+
+	/**
+	 * Check storage for a large-banner-seen flag
+	 * @returns {boolean} true if there's a flag
+	 */
+	function checkFlag() {
+
+		if ( identifier ) {
+			return Boolean( cn.kvStore.getItem(
+				STORAGE_KEY + '_' + identifier,
+				cn.kvStore.contexts.GLOBAL,
+				multiStorageOption
+			) );
+		}
+
+		return Boolean( cn.kvStore.getItem(
+			STORAGE_KEY,
+			cn.kvStore.contexts.CATEGORY,
+			multiStorageOption
+		) );
+	}
+
+	/**
+	 * Set a flag to remember the reader has just seen a large banner
+	 */
+	function setFlag() {
+
+		// Compact timestamp by removing ms
+		var nowTS = Math.round( Date.now() / 1000 );
+
+		if ( identifier ) {
+
+			cn.kvStore.setItem(
+				STORAGE_KEY + '_' + identifier,
+				nowTS,
+				cn.kvStore.contexts.GLOBAL,
+				days,
+				multiStorageOption
+			);
+
+		} else {
+
+			cn.kvStore.setItem(
+				STORAGE_KEY,
+				nowTS,
+				cn.kvStore.contexts.CATEGORY,
+				days,
+				multiStorageOption
+			);
+		}
 	}
 
 	mixin.setPreBannerHandler( function( mixinParams ) {
-		var newBucket;
 
-		useCookies = cn.getDataProperty( 'campaignCategoryUsesLegacy' );
-
-		// Forced URL param or banner hidden already prevents bucket switch
-		if ( forced || cn.isBannerCanceled() ) {
+		// Forced URL param. If we're showing a banner, it'll be the one for
+		// whichever bucket we're already in. No changes to storage.
+		if ( forced ) {
 			return;
 		}
 
-		// No need to switch if we're already on a non-large-banner buckets
-		if ( !isLarge() ) {
+		identifier = mixinParams.identifier;
+		days = mixinParams.days;
+
+		// Check if and how we can store a flag saying a large banner was shown
+		multiStorageOption = cn.kvStore.getMultiStorageOption(
+			cn.getDataProperty( 'campaignCategoryUsesLegacy' ) );
+
+		// In all cases, check for a legacy cookie and try to migrate
+		// if one was found
+		possiblyMigrateLegacyCookie();
+
+		// No need to switch if the banner's already hidden or we're already
+		// on a small banner bucket
+		if ( cn.isBannerCanceled() || !isLarge() ) {
 			return;
 		}
 
-		// Summary of the following conditionals: don't switch if there's no
-		// flag indicating the user already saw a large banner.
+		// If we can't store a flag, or if there is a flag, go to a small banner
 
-		// When using cookies: don't switch if cookies are enabled but there's
-		// no cookie indicating a large banner was seen before.
-		if ( useCookies && cn.cookiesEnabled() &&
-			!mw.cookie.get( mixinParams.identifier, '' ) ) {
-			return;
-		}
+		// Note: if there was a legacy cookie flag, either it was migrated (in
+		// which case checkFlag() will return true) or it was deleted and couldn't
+		// be set on the current system, due to having no storage options (in
+		// which case we'll always switch to small banners).
 
-		// When not using cookies: don't switch if KV storage is available, and
-		// there's no KV storage item indicating a large banner was seen before.
-		if ( !useCookies && cn.kvStore.isAvailable() ) {
-
-			// Note that we store the item differently depending on whether an
-			// identifier was provided.
-
-			if ( mixinParams.identifier &&
-				!cn.kvStore.getItem(
-					KV_STORE_KEY + '_' + mixinParams.identifier,
-					cn.kvStore.contexts.GLOBAL
-				)
-			) {
-				return;
-			}
-
-			if ( !mixinParams.identifier && !cn.kvStore.getItem(
-					KV_STORE_KEY,
-					cn.kvStore.contexts.CATEGORY
-			) ) {
-				return;
+		if (
+			multiStorageOption === cn.kvStore.multiStorageOptions.NO_STORAGE ||
+			checkFlag()
+		) {
+			if ( mixinParams.randomize ) {
+				cn.setBucket( Math.floor( Math.random() * 2 )  +  2 );
+			} else {
+				cn.setBucket( cn.getDataProperty( 'bucket' ) + 2 );
 			}
 		}
 
-		// In all other cases, move reader immediately into small banner bucket
-		if ( mixinParams.randomize ) {
-			newBucket = Math.floor( Math.random() * 2 )  +  2;
-		} else {
-			newBucket = cn.internal.bucketer.getBucket() + 2;
-		}
-
-		cn.setBucket( newBucket );
-
+		// Otherwise, a large banner can be shown! We'll check if it really
+		// gets shown, and set a flag, in the post banner handler.
 	} );
 
 	mixin.setPostBannerHandler( function( mixinParams ) {
 
-		if ( isLarge() && !forced && cn.internal.state.isBannerShown() ) {
-
-			// Set a flag to remember the reader has just seen a large banner.
-			// The next time they are set to see one, they will be moved into a
-			// small banner bucket by the pre-banner handler.
-
-			if ( useCookies ) {
-				mw.cookie.set( mixinParams.identifier, Date.now(), {
-					expires: mixinParams.days * 24 * 60 * 60,
-					path: '/',
-					prefix: '' // Do not prefix cookie with wiki name
-				} );
-
-			} else if ( mixinParams.identifier ) {
-				cn.kvStore.setItem(
-					KV_STORE_KEY + '_' + mixinParams.identifier,
-					Date.now(),
-					cn.kvStore.contexts.GLOBAL,
-					mixinParams.days
-				);
-
-			} else {
-				cn.kvStore.setItem(
-					KV_STORE_KEY,
-					Date.now(),
-					cn.kvStore.contexts.CATEGORY,
-					mixinParams.days
-				);
-			}
+		// If a large banner was shown, but not forced, set a flag to remember
+		// the reader has seen a large banner. The next time they might
+		// otherwise see one, they will be moved to a small banner bucket by
+		// the pre-banner handler.
+		if (
+			isLarge() &&
+			!forced &&
+			cn.isBannerShown()
+		) {
+			setFlag();
 		}
 	} );
 
