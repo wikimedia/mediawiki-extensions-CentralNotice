@@ -122,7 +122,8 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 			// If there are choices, this module will depend on (at least)
 			// ext.centralNotice.display, which will create mw.centralNotice.
-			return 'mw.centralNotice.choiceData = ' .
+			return 'mw.centralNotice = ( mw.centralNotice || {} );' .
+				'mw.centralNotice.choiceData = ' .
 				Xml::encodeJsVar( $choices ) . ';';
 		}
 	}
