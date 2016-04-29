@@ -190,6 +190,10 @@ class ChoiceDataProvider {
 			$choices[$dbRow->not_id]['countries'][] = $dbRow->nc_country;
 		}
 
+		if ( isset( $choices[$dbRow->not_id]['countries'] ) ) {
+			sort( $choices[$dbRow->not_id]['countries'] );
+		}
+
 		// Add campaign-asociated mixins to the data structure
 		foreach ( $choices as &$campaignInfo ) {
 
@@ -237,12 +241,17 @@ class ChoiceDataProvider {
 					$choices[$campaignId]['banners'][$assignmentKey]['devices'][] =
 						$dbRow->dev_name;
 				}
+
+				// Ensure consistent ordering (see comment below)
+				sort( $choices[$campaignId]['banners'][$assignmentKey]['devices'] );
 			}
 		}
 
 		// Make arrays that are associative into plain indexed ones, since the
 		// keys aren't used by the clients.
 		// Also make very sure we don't have duplicate devices or countries.
+		// Finally, ensure consistent ordering, since it's needed for
+		// CNChoiceDataResourceLoaderModule for consistent RL module hashes.
 
 		$choices = array_values( $choices );
 
@@ -251,18 +260,28 @@ class ChoiceDataProvider {
 			return $b;
 		};
 
-		$fixCampaignPropsFn = function ( $c ) use ( $uniqueDevFn ) {
+		$compareNames = function( $a, $b ) {
+			if ( $a['name'] == $b['name'] ) {
+				return 0;
+			}
+			return ( $a['name'] < $b['name'] ) ? -1 : 1;
+		};
+
+		$fixCampaignPropsFn = function ( $c ) use ( $uniqueDevFn, $compareNames ) {
 
 			$c['banners'] = array_map( $uniqueDevFn, array_values( $c['banners'] ) );
+			usort( $c['banners'], $compareNames );
 
 			if ( $c['geotargeted'] ) {
 				$c['countries'] = array_unique( $c['countries'] );
+				sort( $c['countries'] );
 			}
 
 			return $c;
 		};
 
 		$choices = array_map( $fixCampaignPropsFn, $choices );
+		usort( $choices, $compareNames );
 
 		return $choices;
 	}

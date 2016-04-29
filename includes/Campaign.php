@@ -677,6 +677,16 @@ class Campaign {
 			}
 		}
 
+		// Ensure consistent ordering, since it's needed for
+		// CNChoiceDataResourceLoaderModule (which gets this data via
+		// ChoiceDataProvider) for consistent RL module hashes.
+
+		array_walk( $campaignMixins, function ( &$campaignMixin ) {
+			ksort( $campaignMixin );
+		} );
+
+		ksort( $campaignMixins );
+
 		return $campaignMixins;
 	}
 
