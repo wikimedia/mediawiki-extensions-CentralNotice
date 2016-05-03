@@ -65,6 +65,15 @@
 		return;
 	}
 
+	// If there's some issue with RL causing ext.centralNotice.display not
+	// to load, don't fail hard
+	if ( !cn.chooseAndMaybeDisplay ) {
+		mw.log.warn( 'Possible campaign(s) received in choiceData, but ' +
+			'mw.centralNotice.chooseAndMaybeDisplay() is not available' );
+
+		return;
+	}
+
 	cn.chooseAndMaybeDisplay();
 
 	/**

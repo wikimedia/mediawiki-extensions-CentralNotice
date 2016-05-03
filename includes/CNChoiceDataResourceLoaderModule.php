@@ -120,8 +120,12 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 				'mw.centralNotice.choiceData = [];';
 		} else {
 
-			// If there are choices, this module will depend on (at least)
+			// If there are choices, this module should depend on (at least)
 			// ext.centralNotice.display, which will create mw.centralNotice.
+			// However, RL may experience errors that cause these dynamic
+			// dependencies to not be set as expected; so we check, just in case.
+			// In such an error state, ext.centralNotice.startUp.js logs to the
+			// console.
 			return 'mw.centralNotice = ( mw.centralNotice || {} );' .
 				'mw.centralNotice.choiceData = ' .
 				Xml::encodeJsVar( $choices ) . ';';
