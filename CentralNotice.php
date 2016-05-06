@@ -221,6 +221,8 @@ $wgNoticeListComplementThreshold = 0.75;
 // TODO Fix and remove!
 $wgCentralNoticeCategoriesUsingLegacy = array( 'Fundraising', 'fundraising' );
 
+$wgCentralNoticeCookiesToDelete = array();
+
 /** @var $wgNoticeTabifyPages array Declare all pages that should be tabified as CN pages */
 $wgNoticeTabifyPages = array(
 	/* Left side 'namespace' tabs */

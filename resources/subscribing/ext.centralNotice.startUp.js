@@ -15,7 +15,13 @@
  */
 ( function ( $, mw ) {
 
-	var cn = mw.centralNotice;
+	var cn = mw.centralNotice,
+		cookiesToDelete = mw.config.get( 'wgCentralNoticeCookiesToDelete' );
+
+	// Schedule the slurping of old defunct cookies
+	if ( cookiesToDelete && cookiesToDelete.length > 0 ) {
+		mw.requestIdleCallback( deleteOldCookies );
+	}
 
 	// Note: In legacy code, CentralNotice initialization was done after the DOM
 	// finished loading (via $( function() {...} )). Now, we only delay logic
@@ -60,5 +66,28 @@
 	}
 
 	cn.chooseAndMaybeDisplay();
+
+	/**
+	 * Run through cookiesToDelete to check for and delete old cookies
+	 */
+	function deleteOldCookies() {
+
+		// Ensure up our cookie library is present
+		mw.loader.using( 'mediawiki.cookie' ).done( function() {
+
+			// Wait for more idle time
+			mw.requestIdleCallback( function ( deadline ) {
+
+				// Stop if there are no more cookies to check or if there's too
+				// little idle time left.
+				while ( cookiesToDelete.length > 0 && deadline.timeRemaining() > 3) {
+					mw.cookie.set( cookiesToDelete.shift(), null, {
+						path: '/',
+						prefix: ''
+					} );
+				}
+			} );
+		} );
+	}
 
 } )(  jQuery, mediaWiki );
