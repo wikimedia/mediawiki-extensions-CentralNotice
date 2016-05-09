@@ -51,7 +51,7 @@
 
 	// Sanity check
 	if ( cn.choiceData === undefined ) {
-		mw.log( 'No choice data set for CentralNotice campaign ' +
+		mw.log.warn( 'No choice data set for CentralNotice campaign ' +
 			'and banner selection.' );
 		return;
 	}

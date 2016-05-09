@@ -67,7 +67,7 @@
 
 			// Sanity check
 			if ( !( mixinName in campaignMixins ) ) {
-				mw.log( 'Mixin ' + mixinName + ' not registered.' );
+				mw.log.warn( 'Mixin ' + mixinName + ' not registered.' );
 				return;
 			}
 
@@ -80,7 +80,7 @@
 
 			// Another sanity check
 			if ( typeof handler !== 'function' ) {
-				mw.log( hookPropertyName + ' for ' + mixinName + ' not a function.' );
+				mw.log.warn( hookPropertyName + ' for ' + mixinName + ' not a function.' );
 				return;
 			}
 

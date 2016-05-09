@@ -166,7 +166,7 @@
 				// Sanity check
 				if ( !window.Geo || typeof window.Geo !== 'object' ) {
 
-					mw.log( 'window.Geo cleared or ' +
+					mw.log.warn( 'window.Geo cleared or ' +
 						'incorrectly set by GeoIP lookup.' );
 
 					mw.geoIP.deferred.reject();
