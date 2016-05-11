@@ -278,7 +278,7 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Os avisos poderían non mostrarse, según estea indicado polo JavaScript do aviso",
 	"centralnotice-impression-diet": "Redución de impresión",
 	"centralnotice-impression-diet-help": "Limitar o número de banner vistos por cada persoa.",
-	"centralnotice-impression-diet-identifier": "Identificar/ocultar o nome da cookie",
+	"centralnotice-impression-diet-identifier": "Identificar para almacenar no cliente",
 	"centralnotice-impression-diet-identifier-help": "Un identificador para os datos persistentes do lado do cliente almacenados por esta funcionalidade (por exemplo un contador de impresións). Este campo é opcional para a maioría das campañas. Se o deixa a branco, as campañas na mesma categoría compartirán os contadores de impresión, ou, se estas campaña non usa a funcionalidade de categoría, os contadores serán específicos a esta campaña. Para compartir este datos entre varias categorías, especifique o mesmo identificador en cada campaña. Nota: certas categorías de campañas están configuradas para usar cookies para esta funcionalidade. Para as campañas nesas categorías, este identificador será o nome da cookie, e non é opcional. Tamén teña en conta que se o identificador se cambia durante a campaña, todos os contadores ata o momento perderanse.",
 	"centralnotice-impression-diet-maximum-seen": "Máximo de impresións que verá calquera persoa",
 	"centralnotice-impression-diet-maximum-seen-help": "Se o ciclo está configurado para rearrancar, isto limita o número de impresións vistas por ciclo máis que o número total.",
@@ -292,6 +292,6 @@
 	"centralnotice-large-banner-limit-days-help": "Número de días para suprimir a visualización do banner grande após da primeira visualización.",
 	"centralnotice-large-banner-limit-randomize": "Facer aleatoria a transición de zona",
 	"centralnotice-large-banner-limit-randomize-help": "A transición normal de zona é de A a C e de B a D. Cando está comprobado, os lectores pasarán de forma aleatoria ás zonas C ou D.",
-	"centralnotice-large-banner-limit-identifier": "Identificador de banner grande/nome da cookie",
+	"centralnotice-large-banner-limit-identifier": "Identificar para almacenar no cliente",
 	"centralnotice-large-banner-limit-identifier-help": "A visualización de anuncios grandes suprímese nas campañas co mesmo identificador. Dependendo da categoría da campaña, isto pode realizarse como unha cookie. O valor por defecto 'centralnotice-frbanner-seen-fullscreen' é compatible cos scripts de captación de fondos na wiki."
 }
