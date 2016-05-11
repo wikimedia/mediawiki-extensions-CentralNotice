@@ -52,7 +52,7 @@
 
 	// Maintenance: This schedules the removal of old KV keys.
 	// The schedule action itself is deferred, too, as it accesses localStorage.
-	mw.requestIdleCallback( cn.kvStoreMaintenance.removeExpiredItemsWhenIdle );
+	mw.requestIdleCallback( cn.kvStoreMaintenance.doMaintenance );
 
 	// Nothing more to do if there are no possible campaigns for this user
 	if ( cn.choiceData.length === 0 ) {

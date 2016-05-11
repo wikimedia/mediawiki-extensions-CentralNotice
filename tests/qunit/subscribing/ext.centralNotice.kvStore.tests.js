@@ -46,7 +46,7 @@
 			'item "Older" found in storage'
 		);
 
-		mw.centralNotice.kvStoreMaintenance.removeExpiredItemsWhenIdle().then( function () {
+		mw.centralNotice.kvStoreMaintenance.doMaintenance().then( function () {
 			assert.notEqual(
 				localStorage.getItem( 'CentralNoticeKV|global|unittest-New' ),
 				null,
