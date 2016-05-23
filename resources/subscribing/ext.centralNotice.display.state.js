@@ -221,6 +221,7 @@
 			if ( cleanForURLSerialization ) {
 				delete dataCopy.getVars;
 				delete dataCopy.mixins;
+				delete dataCopy.tests;
 			}
 
 			return dataCopy;
@@ -350,6 +351,26 @@
 
 		setRecordImpressionSampleRate: function( rate ) {
 			state.data.recordImpressionSampleRate = rate;
+		},
+
+		/**
+		 * Register that the current page view is included in a test.
+		 * @param {string} identifier A string to identify the test. Should not contain
+		 *   commas.
+		 */
+		registerTest( identifier ) {
+			var tests = state.data.tests = state.data.tests || [];
+
+			// Add if it isn't already registered.
+			if ( $.inArray( identifier, tests ) === -1 ) {
+				tests.push( identifier );
+
+				if ( tests.length === 1 ) {
+					state.data.testIdentifiers = identifier;
+				} else {
+					state.data.testIdentifiers.concat( ',' + identifier );
+				}
+			}
 		},
 
 		lookupReasonCode: function( reasonName ) {
