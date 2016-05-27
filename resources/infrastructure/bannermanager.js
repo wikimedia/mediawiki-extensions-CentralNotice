@@ -4,7 +4,6 @@
  * This file is part of the CentralNotice Extension to MediaWiki
  * https://www.mediawiki.org/wiki/Extension:CentralNotice
  *
- * @section LICENSE
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,8 +18,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
  */
 ( function ( $, mw ) {
 
@@ -41,39 +38,42 @@
 
 		/**
 		 * Display the 'Create Banner' dialog
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
-		doAddBannerDialog: function() {
+		doAddBannerDialog: function () {
 			var buttons = {},
-				okButtonText = mw.message('centralnotice-add-notice-button').text(),
-				cancelButtonText = mw.message('centralnotice-add-notice-cancel-button').text(),
-				dialogObj = $('<form></form>');
+				okButtonText = mw.message( 'centralnotice-add-notice-button' ).text(),
+				cancelButtonText = mw.message( 'centralnotice-add-notice-cancel-button' ).text(),
+				dialogObj = $( '<form></form>' );
 
 			// Implement the functionality
-			buttons[ cancelButtonText ] = function() { $(this).dialog("close"); };
+			buttons[ cancelButtonText ] = function () {
+				$( this ).dialog( 'close' );
+			};
 
 			// We'll submit the real form (outside the dialog).
 			// Copy in values to that form before submitting.
-			buttons[ okButtonText ] = function() {
-				var formobj = $('#cn-banner-manager')[0];
+			buttons[ okButtonText ] = function () {
+				var formobj = $( '#cn-banner-manager' )[ 0 ];
 				formobj.wpaction.value = 'create';
-				formobj.wpnewBannerName.value = $(this)[0].wpnewBannerName.value;
+				formobj.wpnewBannerName.value = $( this )[ 0 ].wpnewBannerName.value;
 
 				formobj.wpnewBannerEditSummary.value =
-					$( this )[0].wpnewBannerEditSummary.value;
+					$( this )[ 0 ].wpnewBannerEditSummary.value;
 
 				formobj.submit();
 			};
 
 			// Create the dialog by copying the textfield element into a new form
-			dialogObj[0].name = 'addBannerDialog';
+			dialogObj[ 0 ].name = 'addBannerDialog';
 			dialogObj.append( $( '#cn-formsection-addBanner' ).children( 'div' ).clone().show() )
 				.dialog( {
 					title: mw.message( 'centralnotice-add-new-banner-title' ).text(),
 					modal: true,
 					buttons: buttons,
 					width: 400
-				});
+				} );
 
 			// Do not submit the form... that's up to the ok button
 			return false;
@@ -83,7 +83,7 @@
 		 * Asks the user if they actually wish to delete the selected banners and if yes will submit
 		 * the form with the 'remove' action.
 		 */
-		doRemoveBanners: function() {
+		doRemoveBanners: function () {
 			var dialogObj = $( '<form></form>' ),
 				dialogMessage = $( '<div class="cn-dialog-message" />' ),
 				buttons = {},
@@ -92,22 +92,24 @@
 
 			// We'll submit the real form (outside the dialog).
 			// Copy in values to that form before submitting.
-			buttons[ deleteText ] = function() {
-				var formobj = $( '#cn-banner-manager' )[0];
+			buttons[ deleteText ] = function () {
+				var formobj = $( '#cn-banner-manager' )[ 0 ];
 				formobj.wpaction.value = 'remove';
 
 				formobj.wpremoveBannerEditSummary.value =
-					$( this )[0].wpremoveBannerEditSummary.value;
+					$( this )[ 0 ].wpremoveBannerEditSummary.value;
 
 				formobj.submit();
 			};
-			buttons[ cancelButtonText ] = function() {  $( this ).dialog( "close" ); };
+			buttons[ cancelButtonText ] = function () {
+				$( this ).dialog( 'close' );
+			};
 
 			dialogObj.append( dialogMessage );
 			dialogMessage.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
 
 			dialogObj.append( $( '#cn-formsection-removeBanner' ).children( 'div' ).clone().show() )
-				.dialog({
+				.dialog( {
 					title: mw.message(
 						'centralnotice-delete-banner-title',
 						bm.selectedItemCount
@@ -115,27 +117,29 @@
 					width: '35em',
 					modal: true,
 					buttons: buttons
-				});
+				} );
 		},
 
 		/**
 		 * Submits the form with the archive action.
 		 */
-		doArchiveBanners: function() {
+		doArchiveBanners: function () {
 			var dialogObj = $( '<div></div>' ),
 				buttons = {},
 				archiveText = mw.message( 'centralnotice-archive-banner' ).text(),
-				cancelButtonText = mw.message('centralnotice-archive-banner-cancel').text();
+				cancelButtonText = mw.message( 'centralnotice-archive-banner-cancel' ).text();
 
-			buttons[ archiveText ] = function() {
-				var formobj = $('#cn-banner-manager')[0];
+			buttons[ archiveText ] = function () {
+				var formobj = $( '#cn-banner-manager' )[ 0 ];
 				formobj.wpaction.value = 'archive';
 				formobj.submit();
 			};
-			buttons[ cancelButtonText ] = function() {  $( this ).dialog( "close" ); };
+			buttons[ cancelButtonText ] = function () {
+				$( this ).dialog( 'close' );
+			};
 
 			dialogObj.text( mw.message( 'centralnotice-archive-banner-confirm' ).text() );
-			dialogObj.dialog({
+			dialogObj.dialog( {
 				title: mw.message(
 					'centralnotice-archive-banner-title',
 					bm.selectedItemCount
@@ -143,20 +147,24 @@
 				resizable: false,
 				modal: true,
 				buttons: buttons
-			});
+			} );
 		},
 
 		/**
 		 * Updates all the banner check boxes when the 'checkAll' check box is clicked
 		 */
-		checkAllStateAltered: function() {
+		checkAllStateAltered: function () {
 			var checkBoxes = $( 'input.cn-bannerlist-check-applyto' );
 			if ( $( '#mw-input-wpselectAllBanners' ).prop( 'checked' ) ) {
 				bm.selectedItemCount = bm.totalSelectableItems;
-				checkBoxes.each( function() { $( this ).prop( 'checked', true ); } );
+				checkBoxes.each( function () {
+					$( this ).prop( 'checked', true );
+				} );
 			} else {
 				bm.selectedItemCount = 0;
-				checkBoxes.each( function() { $( this ).prop( 'checked', false ); } );
+				checkBoxes.each( function () {
+					$( this ).prop( 'checked', false );
+				} );
 			}
 			bm.checkedCountUpdated();
 		},
@@ -164,7 +172,7 @@
 		/**
 		 * Updates the 'checkAll' check box if any of the banner check boxes are checked
 		 */
-		selectCheckStateAltered: function() {
+		selectCheckStateAltered: function () {
 			if ( $( this ).prop( 'checked' ) === true ) {
 				bm.selectedItemCount++;
 			} else {
@@ -178,7 +186,7 @@
 		 */
 		checkedCountUpdated: function () {
 			var selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
-				deleteButton = $(' #mw-input-wpdeleteSelectedBanners' );
+				deleteButton = $( ' #mw-input-wpdeleteSelectedBanners' );
 
 			if ( bm.selectedItemCount == bm.totalSelectableItems ) {
 				// Everything selected
@@ -202,7 +210,7 @@
 		 * Reload the page with a URL query for the requested banner name
 		 * filter (or lack thereof).
 		 */
-		applyFilter: function() {
+		applyFilter: function () {
 			var newUri, filterStr;
 
 			filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
@@ -212,7 +220,7 @@
 			// If there's no filter, reload with no such param.
 			if ( filterStr.length > 0 ) {
 				filterStr = bm.sanitizeFilterStr( filterStr );
-				newUri.extend( {filter: filterStr} );
+				newUri.extend( { filter: filterStr } );
 			} else {
 				delete newUri.query.filter;
 			}
@@ -224,7 +232,7 @@
 		 * Filter text box keypress handler; applies the filter when enter is
 		 * pressed.
 		 */
-		filterTextBoxKeypress: function( e ) {
+		filterTextBoxKeypress: function ( e ) {
 			if ( e.which == 13 ) {
 				bm.applyFilter();
 				return false;
@@ -236,8 +244,8 @@
 		 * Banner::isValidBannerName() and
 		 * SpecialCentralNotice::sanitizeSearchTerms().
 		 */
-		sanitizeFilterStr: function( $origFilterStr ) {
-			return $origFilterStr.replace(/[^0-9a-zA-Z_\-]/g, '');
+		sanitizeFilterStr: function ( $origFilterStr ) {
+			return $origFilterStr.replace( /[^0-9a-zA-Z_\-]/g, '' );
 		}
 	};
 
@@ -249,7 +257,7 @@
 	$( '#mw-input-wpfilterApply' ).click( bm.applyFilter );
 	$( '#mw-input-wpbannerNameFilter' ).keypress( bm.filterTextBoxKeypress );
 
-	$( 'input.cn-bannerlist-check-applyto' ).each( function() {
+	$( 'input.cn-bannerlist-check-applyto' ).each( function () {
 		$( this ).click( bm.selectCheckStateAltered );
 		bm.totalSelectableItems++;
 	} );

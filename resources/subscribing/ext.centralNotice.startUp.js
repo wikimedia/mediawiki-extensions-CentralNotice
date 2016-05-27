@@ -37,13 +37,13 @@
 	// even when there were no campaigns. Let's do the same thing for now, in
 	// case other code has grown up around it.
 	// TODO Add this only if there's a banner one day?
-	$( function() {
+	$( function () {
 		$( '#siteNotice' ).prepend( '<div id="centralNotice"></div>' );
 	} );
 
 	// Testing banner
 	if ( mw.util.getParamValue( 'banner' ) ) {
-		mw.loader.using( 'ext.centralNotice.display' ).done( function() {
+		mw.loader.using( 'ext.centralNotice.display' ).done( function () {
 			cn.displayTestingBanner();
 		} );
 		return;
@@ -82,14 +82,14 @@
 	function deleteOldCookies() {
 
 		// Ensure up our cookie library is present
-		mw.loader.using( 'mediawiki.cookie' ).done( function() {
+		mw.loader.using( 'mediawiki.cookie' ).done( function () {
 
 			// Wait for more idle time
 			mw.requestIdleCallback( function ( deadline ) {
 
 				// Stop if there are no more cookies to check or if there's too
 				// little idle time left.
-				while ( cookiesToDelete.length > 0 && deadline.timeRemaining() > 3) {
+				while ( cookiesToDelete.length > 0 && deadline.timeRemaining() > 3 ) {
 					mw.cookie.set( cookiesToDelete.shift(), null, {
 						path: '/',
 						prefix: ''

@@ -1,7 +1,7 @@
 /**
  * CentralNotice Administrative UI - Campaign pager
  */
-( function( mw, $ ) {
+( function ( mw, $ ) {
 
 	var changes = {};
 
@@ -18,19 +18,19 @@
 
 			// The check for changes[campaignName] here shouldn't be necessary,
 			// but let's be safe
-			if ( ( changes[campaignName] !== undefined ) &&
-				( changes[campaignName][property] !== undefined ) ) {
+			if ( ( changes[ campaignName ] !== undefined ) &&
+				( changes[ campaignName ][ property ] !== undefined ) ) {
 
-				delete changes[campaignName][property];
+				delete changes[ campaignName ][ property ];
 
 				// Remove campaign object from changes, if empty
 				keysCount = 0;
-				for (k in changes[campaignName] ) {
+				for ( k in changes[ campaignName ] ) {
 					keysCount++;
 				}
 
 				if ( !keysCount ) {
-					delete changes[campaignName];
+					delete changes[ campaignName ];
 				}
 			}
 
@@ -38,11 +38,11 @@
 		}
 
 		// Ensure a campaign object in changes
-		if ( changes[campaignName] === undefined ) {
-			changes[campaignName] = {};
+		if ( changes[ campaignName ] === undefined ) {
+			changes[ campaignName ] = {};
 		}
 
-		changes[campaignName][property] = value;
+		changes[ campaignName ][ property ] = value;
 	}
 
 	/**
@@ -77,17 +77,19 @@
 	 * Click handler for faux submit button, to submit just what's changed
 	 */
 	function submitChanges() {
-		var $form = $( '<form method="post"></form>'),
+		var $form = $( '<form method="post"></form>' ),
 
-			$authtokenField =
-				$( '<input type="hidden" name="authtoken" value="' +
+			$authtokenField = $(
+				'<input type="hidden" name="authtoken" value="' +
 				mw.user.tokens.get( 'editToken' ) +
-				'"></input>' ),
+				'"></input>'
+			),
 
-			$summaryField =
-				$( '<input type="hidden" name="changeSummary" value="' +
+			$summaryField = $(
+				'<input type="hidden" name="changeSummary" value="' +
 				$( '#cn-campaign-pager input.cn-change-summary-input' ).val() +
-				'"></input>' ),
+				'"></input>'
+			),
 
 			$changesField =
 				$( '<input type="hidden" name="changes" ></input>' );
@@ -98,7 +100,7 @@
 		$form.submit();
 	}
 
-	jQuery(document).ready( function ( $ ) {
+	$( function () {
 
 		var CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ],
 			i, selector,
@@ -118,7 +120,7 @@
 
 		// Keep data-sort-value attributes for jquery.tablesorter in sync
 		$( '.mw-cn-input-check-sort' ).on( 'change click blur', function () {
-			$(this).parent( 'td' )
+			$( this ).parent( 'td' )
 				.data( 'sortValue', Number( this.checked ) );
 		} );
 
@@ -131,7 +133,7 @@
 				// Select enabled checkboxes with this name
 				// See CNCampaignPager::formatValue()
 				selector = '#cn-campaign-pager input[name="' +
-					CHECKBOX_NAMES[i] + '"]:not([disabled])';
+					CHECKBOX_NAMES[ i ] + '"]:not([disabled])';
 
 				// When checked or unchecked, update changes to send
 				$( selector ).change( updateCheckboxChanges );

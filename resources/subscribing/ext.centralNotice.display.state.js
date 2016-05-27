@@ -25,35 +25,35 @@
 		},
 
 		STATUSES = {
-			CAMPAIGN_NOT_CHOSEN:      new Status( 'campaign_not_chosen', 0 ),
-			CAMPAIGN_CHOSEN:          new Status( 'campaign_chosen', 1 ),
-			BANNER_CANCELED:          new Status( 'banner_canceled', 2 ),
-			NO_BANNER_AVAILABLE:      new Status( 'no_banner_available', 3 ),
-			BANNER_CHOSEN:            new Status( 'banner_chosen', 4 ),
+			CAMPAIGN_NOT_CHOSEN: new Status( 'campaign_not_chosen', 0 ),
+			CAMPAIGN_CHOSEN: new Status( 'campaign_chosen', 1 ),
+			BANNER_CANCELED: new Status( 'banner_canceled', 2 ),
+			NO_BANNER_AVAILABLE: new Status( 'no_banner_available', 3 ),
+			BANNER_CHOSEN: new Status( 'banner_chosen', 4 ),
 			BANNER_LOADED_BUT_HIDDEN: new Status( 'banner_loaded_but_hidden', 5 ),
-			BANNER_SHOWN:             new Status( 'banner_shown', 6 )
+			BANNER_SHOWN: new Status( 'banner_shown', 6 )
 		},
 
 		// Until T114078 is closed, we minify banner history logs. This lookup
 		// table maps from hide reason string to a numeric code.
 		REASONS = {
 			// Any reason not listed here will be stored as "other".
-			'other': 0,
-			'close': 1,
-			'waitdate': 2,
-			'waitimps': 3,
-			'waiterr': 4, // Deprecated
-			'belowMinEdits': 5,
-			'viewLimit': 6,
+			other: 0,
+			close: 1,
+			waitdate: 2,
+			waitimps: 3,
+			waiterr: 4, // Deprecated
+			belowMinEdits: 5,
+			viewLimit: 6,
 			'seen-fullscreen': 7,
 			'cookies-disabled': 8,
-			'donate': 9,
-			'cookies': 10,
-			'seen': 11,
-			'empty': 12,
-			'waitnorestart': 13, // Deprecated
-			'waitnostorage': 14,
-			'namespace': 15
+			donate: 9,
+			cookies: 10,
+			seen: 11,
+			empty: 12,
+			waitnorestart: 13, // Deprecated
+			waitnostorage: 14,
+			namespace: 15
 		};
 
 	function Status( key, code ) {
@@ -71,7 +71,7 @@
 		// TODO Fix this! Skin != device. Maybe screen width? P.S. Talk to users.
 		// TODO Make a test for this; it could stop working without notice.
 		// See also https://phabricator.wikimedia.org/T71366
-		if ( mw.config.get('skin') !== 'minerva' ) {
+		if ( mw.config.get( 'skin' ) !== 'minerva' ) {
 			return DEVICES.DESKTOP;
 		}
 
@@ -124,8 +124,8 @@
 
 		state.data.recordImpressionSampleRate =
 			urlParams.recordImpressionSampleRate !== undefined ?
-			urlParams.recordImpressionSampleRate :
-			mw.config.get( 'wgCentralNoticeSampleRate' );
+				urlParams.recordImpressionSampleRate :
+				mw.config.get( 'wgCentralNoticeSampleRate' );
 
 		// Legacy code exposed urlParams at mw.centralNotice.data.getVars.
 		// TODO Is this still needed? Maybe deprecate?
@@ -179,16 +179,16 @@
 		 * Call this before calling setUp() or setUpForTestingBanner()
 		 * if window.Geo is known to be invalid.
 		 */
-		setInvalidGeoData: function() {
+		setInvalidGeoData: function () {
 			state.data.country = UNKNOWN_COUNTRY_CODE;
 		},
 
-		setUp: function() {
+		setUp: function () {
 			setInitialData();
 			setStatus( STATUSES.CAMPAIGN_NOT_CHOSEN );
 		},
 
-		setUpForTestingBanner: function() {
+		setUpForTestingBanner: function () {
 			setInitialData();
 
 			// Load banner and campaign URL params into data
@@ -205,16 +205,17 @@
 		 * returned object should be considered read-only; i.e., don't modify
 		 * it.
 		 */
-		getData: function() {
+		getData: function () {
 			return state.data;
 		},
 
 		/**
 		 * Get a copy of the data object. If cleanForURLSerialization is true,
 		 * remove non-string properties.
+		 *
 		 * @param {boolean} cleanForURLSerialization
 		 */
-		getDataCopy: function( cleanForURLSerialization ) {
+		getDataCopy: function ( cleanForURLSerialization ) {
 
 			var dataCopy = $.extend( true, {}, state.data );
 
@@ -227,7 +228,7 @@
 			return dataCopy;
 		},
 
-		setCampaign: function( c ) {
+		setCampaign: function ( c ) {
 			var prop, i,
 				category,
 				campaignCategory = null;
@@ -243,7 +244,7 @@
 			state.data.mixins = {};
 			for ( prop in state.campaign.mixins ) {
 				if ( state.campaign.mixins.hasOwnProperty( prop ) ) {
-					state.data.mixins[prop] = true;
+					state.data.mixins[ prop ] = true;
 				}
 			}
 
@@ -255,7 +256,7 @@
 			// not banners.
 			for ( i = 0; i < state.campaign.banners.length; i++ ) {
 
-				category = state.campaign.banners[i].category;
+				category = state.campaign.banners[ i ].category;
 
 				if ( campaignCategory === null ) {
 					campaignCategory = category;
@@ -278,7 +279,7 @@
 			);
 		},
 
-		getCampaign: function() {
+		getCampaign: function () {
 			return state.campaign;
 		},
 
@@ -293,11 +294,11 @@
 			state.data.bucket = bucket;
 		},
 
-		setBannersNotGuaranteedToDisplay: function() {
+		setBannersNotGuaranteedToDisplay: function () {
 			state.data.bannersNotGuaranteedToDisplay = true;
 		},
 
-		cancelBanner: function( reason ) {
+		cancelBanner: function ( reason ) {
 			state.data.bannerCanceledReason = reason;
 			setStatus( STATUSES.BANNER_CANCELED, reason );
 
@@ -306,15 +307,15 @@
 			state.data.reason = reason;
 		},
 
-		isBannerCanceled: function() {
+		isBannerCanceled: function () {
 			return status === STATUSES.BANNER_CANCELED;
 		},
 
-		isBannerShown: function() {
+		isBannerShown: function () {
 			return status === STATUSES.BANNER_SHOWN;
 		},
 
-		setNoBannerAvailable: function() {
+		setNoBannerAvailable: function () {
 			setStatus( STATUSES.NO_BANNER_AVAILABLE );
 
 			// Legacy fields for Special:RecordImpression
@@ -322,7 +323,7 @@
 			state.data.reason = 'empty';
 		},
 
-		setBannerLoadedButHidden: function( reason ) {
+		setBannerLoadedButHidden: function ( reason ) {
 			state.data.bannerLoadedButHiddenReason = reason;
 			setStatus( STATUSES.BANNER_LOADED_BUT_HIDDEN, reason );
 
@@ -331,11 +332,11 @@
 			state.data.reason = reason;
 		},
 
-		setAlterFunctionMissing: function() {
+		setAlterFunctionMissing: function () {
 			state.data.alterFunctionMissing = true;
 		},
 
-		setBannerShown: function() {
+		setBannerShown: function () {
 			setStatus( STATUSES.BANNER_SHOWN );
 
 			// Legacy field for Special:RecordImpression
@@ -346,19 +347,21 @@
 		 * Sets banner_count, a legacy field for Special:RecordImpression
 		 */
 		setBannerCount: function ( bannerCount ) {
+			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 			state.data.banner_count = bannerCount;
 		},
 
-		setRecordImpressionSampleRate: function( rate ) {
+		setRecordImpressionSampleRate: function ( rate ) {
 			state.data.recordImpressionSampleRate = rate;
 		},
 
 		/**
 		 * Register that the current page view is included in a test.
+		 *
 		 * @param {string} identifier A string to identify the test. Should not contain
 		 *   commas.
 		 */
-		registerTest: function( identifier ) {
+		registerTest: function ( identifier ) {
 			var tests = state.data.tests = state.data.tests || [];
 
 			// Add if it isn't already registered.
@@ -373,11 +376,11 @@
 			}
 		},
 
-		lookupReasonCode: function( reasonName ) {
+		lookupReasonCode: function ( reasonName ) {
 			if ( reasonName in REASONS ) {
-				return REASONS[reasonName];
+				return REASONS[ reasonName ];
 			}
 			return REASONS.other;
 		}
 	};
-} )(  jQuery, mediaWiki );
+} )( jQuery, mediaWiki );

@@ -48,7 +48,8 @@
 
 	/**
 	 * Check storage for a large-banner-seen flag
-	 * @returns {boolean} true if there's a flag
+	 *
+	 * @return {boolean} true if there's a flag
 	 */
 	function checkFlag() {
 
@@ -97,7 +98,7 @@
 		}
 	}
 
-	mixin.setPreBannerHandler( function( mixinParams ) {
+	mixin.setPreBannerHandler( function ( mixinParams ) {
 
 		// Forced URL param. If we're showing a banner, it'll be the one for
 		// whichever bucket we're already in. No changes to storage.
@@ -144,7 +145,7 @@
 		// gets shown, and set a flag, in the post banner handler.
 	} );
 
-	mixin.setPostBannerHandler( function( mixinParams ) {
+	mixin.setPostBannerHandler( function ( mixinParams ) {
 
 		// If a large banner was shown, but not forced, set a flag to remember
 		// the reader has seen a large banner. The next time they might

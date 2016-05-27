@@ -90,9 +90,9 @@
 			r = new RegExp( '^' + PREFIX_AND_SEPARATOR_IN_COOKIES + '[^=]*(?=\=)' );
 
 		for ( i = 0; i < cookies.length; i++ ) {
-			matches = cookies[i].trim().match( r );
+			matches = cookies[ i ].trim().match( r );
 			if ( matches ) {
-				document.cookie = matches[0] +
+				document.cookie = matches[ 0 ] +
 					'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
 			}
 		}

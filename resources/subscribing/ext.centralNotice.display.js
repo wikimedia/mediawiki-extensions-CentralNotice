@@ -44,27 +44,29 @@
 	/**
 	 * Class for campaign-associated mixins. Access via mw.centralNotice.Mixin.
 	 */
-	Mixin = function( name ) {
+	Mixin = function ( name ) {
 		this.name = name;
 	};
 
-	Mixin.prototype.setPreBannerHandler = function( handlerFunc ) {
+	Mixin.prototype.setPreBannerHandler = function ( handlerFunc ) {
 		this.preBannerHandler = handlerFunc;
 	};
 
-	Mixin.prototype.setPostBannerHandler = function( handlerFunc ) {
+	Mixin.prototype.setPostBannerHandler = function ( handlerFunc ) {
 		this.postBannerHandler = handlerFunc;
 	};
 
 	/**
 	 * Run handlers stored in the mixin property indicated by hookPropertyName,
 	 * for all campaign mixins.
-	 * @param {string} The name of a Mixin property containing hook handlers
+	 *
+	 * @param {string} hookPropertyName The name of a Mixin property containing
+	 *  hook handlers
 	 */
 	function runMixinHooks( hookPropertyName ) {
 		var state = cn.internal.state;
-		$.each( state.getCampaign().mixins, function( mixinName, mixinParams ) {
-
+		$.each( state.getCampaign().mixins, function ( mixinName, mixinParams ) {
+			var handler;
 			// Sanity check
 			if ( !( mixinName in campaignMixins ) ) {
 				mw.log.warn( 'Mixin ' + mixinName + ' not registered.' );
@@ -72,11 +74,11 @@
 			}
 
 			// Mixins need not handle all hooks
-			if ( !( hookPropertyName in campaignMixins[mixinName] ) ) {
+			if ( !( hookPropertyName in campaignMixins[ mixinName ] ) ) {
 				return;
 			}
 
-			var handler = campaignMixins[mixinName][hookPropertyName];
+			handler = campaignMixins[ mixinName ][ hookPropertyName ];
 
 			// Another sanity check
 			if ( typeof handler !== 'function' ) {
@@ -106,12 +108,14 @@
 		// or don't support it fully
 		try {
 			Object.defineProperty( cn, 'data', {
-				get: function() { return cn.internal.state.getData(); }
+				get: function () {
+					return cn.internal.state.getData();
+				}
 			} );
 
 			return;
 
-		} catch (e) {}
+		} catch ( e ) {}
 
 		// FIXME For browsers that don't support defineProperty, we don't
 		// fully respect our internal contract with the state object to
@@ -136,7 +140,8 @@
 
 		var data = cn.internal.state.getData(),
 			url = new mw.Uri(
-				mw.config.get( 'wgCentralSelectedBannerDispatcher' ) );
+				mw.config.get( 'wgCentralSelectedBannerDispatcher' )
+			);
 
 		url.extend(
 			{
@@ -162,8 +167,10 @@
 
 		// Inject the HTML
 		$( 'div#centralNotice' )
-			.attr( 'class',
-			mw.html.escape( 'cn-' + cn.internal.state.getData().bannerCategory ) )
+			.attr(
+				'class',
+				mw.html.escape( 'cn-' + cn.internal.state.getData().bannerCategory )
+			)
 			.prepend(
 				'<!--googleoff: all-->' + bannerHtml + '<!--googleon: all-->'
 			);
@@ -182,7 +189,9 @@
 		url.extend( state.getDataCopy( true ) );
 
 		if ( navigator.sendBeacon ) {
-			try { navigator.sendBeacon( url.toString() ); } catch ( e ) {}
+			try {
+				navigator.sendBeacon( url.toString() );
+			} catch ( e ) {}
 		} else {
 			setTimeout( function () {
 				document.createElement( 'img' ).src = url.toString();
@@ -342,14 +351,15 @@
 		/**
 		 * Really insert the banner (without waiting for the DOM to be ready).
 		 * Only exposed for use in tests.
+		 *
 		 * @private
 		 */
 		reallyInsertBanner: function ( bannerJson ) {
 
 			var state = cn.internal.state,
-			shownAfterLoadingBanner = true,
-			bannerLoadedButHiddenReason,
-			tmpData;
+				shownAfterLoadingBanner = true,
+				bannerLoadedButHiddenReason,
+				tmpData;
 
 			// Inject the banner HTML into the DOM
 			injectBannerHTML( bannerJson.bannerHtml );
@@ -375,9 +385,11 @@
 					if ( !shownAfterLoadingBanner ) {
 						bannerLoadedButHiddenReason = tmpData.reason || '';
 						state.setBannerLoadedButHidden(
-							bannerLoadedButHiddenReason );
+							bannerLoadedButHiddenReason
+						);
 					}
 
+					// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 					if ( tmpData.banner_count ) {
 						state.setBannerCount( tmpData.banner_count );
 					}
@@ -411,16 +423,17 @@
 		 * display to a user even if they're loaded, that is, that they may
 		 * contain logic that prevents them from showing after they're loaded.
 		 */
-		setBannersNotGuaranteedToDisplay: function() {
+		setBannersNotGuaranteedToDisplay: function () {
 			cn.internal.state.setBannersNotGuaranteedToDisplay();
 		},
 
 		/**
 		 * Call this from the preBannerMixinHook to prevent a banner from
 		 * being chosen and loaded.
+		 *
 		 * @param {string} reason An explanation of why the banner was canceled.
 		 */
-		cancelBanner: function( reason ) {
+		cancelBanner: function ( reason ) {
 			cn.internal.state.cancelBanner( reason );
 		},
 
@@ -428,7 +441,7 @@
 			return cn.internal.state.isBannerCanceled();
 		},
 
-		isBannerShown: function() {
+		isBannerShown: function () {
 			return cn.internal.state.isBannerShown();
 		},
 
@@ -436,7 +449,7 @@
 		 * Indicate that a banner was hidden after being loaded, and provide
 		 * a reason.
 		 */
-		setBannerLoadedButHidden: function( reason ) {
+		setBannerLoadedButHidden: function ( reason ) {
 			cn.internal.state.setBannerLoadedButHidden( reason );
 		},
 
@@ -445,7 +458,7 @@
 		 * wgCentralNoticeSampleRate. Note that Special:RecordImpression will
 		 * not be called at all if a campaign was not chosen for this user.
 		 */
-		setRecordImpressionSampleRate: function( rate ) {
+		setRecordImpressionSampleRate: function ( rate ) {
 			cn.internal.state.setRecordImpressionSampleRate( rate );
 		},
 
@@ -467,10 +480,11 @@
 		/**
 		 * Register a campaign-associated mixin to make it available for campaigns
 		 * to use it. Should be called for every campaign-associated mixin.
+		 *
 		 * @param {mw.centralNotice.Mixin} mixin
 		 */
-		registerCampaignMixin: function( mixin ) {
-			campaignMixins[mixin.name] = mixin;
+		registerCampaignMixin: function ( mixin ) {
+			campaignMixins[ mixin.name ] = mixin;
 		},
 
 		/**
@@ -478,7 +492,7 @@
 		 * banner.
 		 * Note: cn.choiceData must be set before this is called
 		 */
-		chooseAndMaybeDisplay: function() {
+		chooseAndMaybeDisplay: function () {
 
 			// Make sure GeoIP info is available before processing
 
@@ -495,13 +509,13 @@
 				.always( reallyChooseAndMaybeDisplay );
 		},
 
-		displayTestingBanner: function() {
+		displayTestingBanner: function () {
 
 			// We gather the same data as for normal banner display, plus
 			// campaign and banner.
 			mw.geoIP.getPromise()
 				.fail( cn.internal.state.setInvalidGeoData )
-				.always( function() {
+				.always( function () {
 					cn.internal.state.setUpForTestingBanner();
 					setUpDataProperty();
 					setUpBannerLoadedPromise();
@@ -509,15 +523,15 @@
 				} );
 		},
 
-		insertBanner: function( bannerJson ) {
+		insertBanner: function ( bannerJson ) {
 
 			// Insert the banner only after the DOM is ready
-			$( function() {
+			$( function () {
 				cn.reallyInsertBanner( bannerJson );
 			} );
 		},
 
-		hideBannerWithCloseButton: function() {
+		hideBannerWithCloseButton: function () {
 			// Hide the banner element
 			$( '#centralNotice' ).hide();
 			cn.internal.hide.setHideWithCloseButtonCookies();
@@ -529,7 +543,7 @@
 			cn.internal.hide.setHideCookies( reason, duration );
 		},
 
-		hideBanner: function() {
+		hideBanner: function () {
 			cn.hideBannerWithCloseButton();
 		},
 
@@ -541,17 +555,18 @@
 		 * The current bucket can be read using
 		 * mw.centralNotice.getDataProperty( 'bucket' )
 		 */
-		setBucket: function( bucket ) {
+		setBucket: function ( bucket ) {
 			cn.internal.bucketer.setBucket( bucket );
 			cn.internal.state.setBucket( bucket );
 		},
 
 		/**
 		 * Register that the current page view is included in a test.
+		 *
 		 * @param {string} identifier A string to identify the test. Should not contain
 		 *   commas.
 		 */
-		registerTest: function( identifier ) {
+		registerTest: function ( identifier ) {
 			cn.internal.state.registerTest( identifier );
 		},
 
@@ -559,8 +574,8 @@
 		 * Get the value of a property used in campaign/banner selection and
 		 * display, and for recording the results of that process.
 		 */
-		getDataProperty: function( prop ) {
-			return cn.internal.state.getData()[prop];
+		getDataProperty: function ( prop ) {
+			return cn.internal.state.getData()[ prop ];
 		}
 	};
 
@@ -576,13 +591,19 @@
 	}
 
 	// Set up deprecated access points and warnings
-	mw.log.deprecate( window, 'insertBanner', cn.insertBanner,
-		'Use mw.centralNotice method instead' );
+	mw.log.deprecate(
+		window, 'insertBanner', cn.insertBanner,
+		'Use mw.centralNotice method instead'
+	);
 
-	mw.log.deprecate( window, 'hideBanner', cn.hideBanner,
-		'Use mw.centralNotice method instead' );
+	mw.log.deprecate(
+		window, 'hideBanner', cn.hideBanner,
+		'Use mw.centralNotice method instead'
+	);
 
-	mw.log.deprecate( window, 'toggleNotice', cn.hideBanner,
-		'Use mw.centralNotice method instead' );
+	mw.log.deprecate(
+		window, 'toggleNotice', cn.hideBanner,
+		'Use mw.centralNotice method instead'
+	);
 
 } )( jQuery, mediaWiki );
