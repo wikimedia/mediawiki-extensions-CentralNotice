@@ -551,7 +551,7 @@
 		 * @param {string} identifier A string to identify the test. Should not contain
 		 *   commas.
 		 */
-		registerTest( identifier ) {
+		registerTest: function( identifier ) {
 			cn.internal.state.registerTest( identifier );
 		},
 

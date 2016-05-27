@@ -164,10 +164,10 @@
 		waitData = ( rawWaitCookie || '' ) .split( /[|]/ );
 
 		cookieCounts = {
-			seenCount: parseInt( rawCookie ) || 0,
-			waitCount: parseInt( waitData[0] ) || 0,
-			waitUntil: parseInt( waitData[1] ) || 0,
-			waitSeenCount: parseInt( waitData[2] ) || 0
+			seenCount: parseInt( rawCookie, 10 ) || 0,
+			waitCount: parseInt( waitData[0], 10 ) || 0,
+			waitUntil: parseInt( waitData[1], 10 ) || 0,
+			waitSeenCount: parseInt( waitData[2], 10 ) || 0
 		};
 
 		storeCounts( cookieCounts );

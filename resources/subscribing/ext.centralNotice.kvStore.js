@@ -263,9 +263,9 @@
 
 				try {
 					localStorage.removeItem( lsKey );
-				} catch ( e ) {
+				} catch ( ex ) {
 					setError( 'Couldn\'t remove value due to LocalStorage exception ' +
-						e.toString(), key, rawValue, context );
+						ex.toString(), key, rawValue, context );
 				}
 
 				return null;
