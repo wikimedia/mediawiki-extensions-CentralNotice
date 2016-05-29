@@ -258,12 +258,12 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Các biểu ngữ có thể không xuất hiện tùy JavaScript ở trong biểu ngữ",
 	"centralnotice-impression-diet": "Hạn chế lượt xem",
 	"centralnotice-impression-diet-help": "Hạn chế số biểu ngữ được xem bởi một người nào đó.",
-	"centralnotice-impression-diet-identifier": "Định danh / tên cookie ẩn",
+	"centralnotice-impression-diet-identifier": "Định danh để lưu vào trình khách",
 	"centralnotice-impression-diet-maximum-seen": "Số lượt xem tối đa của mỗi cá nhân",
 	"centralnotice-impression-diet-restart-cycle-delay": "Thời gian chờ để bắt đầu lại chu kỳ, tính bằng giây (tùy chọn)",
 	"centralnotice-impression-diet-skip-initial": "Số lượt xem ban đầu để bỏ qua (tùy chọn)",
 	"centralnotice-large-banner-limit": "Giới hạn biểu ngữ lớn và đổi",
 	"centralnotice-large-banner-limit-days": "Thời gian cầm lại",
 	"centralnotice-large-banner-limit-randomize": "Làm ngẫu nhiên sự chuyển tiếp xô",
-	"centralnotice-large-banner-limit-identifier": "Định danh / tên cookie của biểu ngữ lớn"
+	"centralnotice-large-banner-limit-identifier": "Định danh để lưu vào trình khách"
 }

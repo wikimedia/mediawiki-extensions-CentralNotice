@@ -6,7 +6,8 @@
 			"Gorizon",
 			"Marmase",
 			"Mirzali",
-			"Xoser"
+			"Xoser",
+			"Kumkumuk"
 		]
 	},
 	"centralnotice": "İdarekerê iqazê merkezi",
@@ -105,7 +106,7 @@
 	"centralnotice-close-title": "Racnê",
 	"centralnotice-translate-button": "Greyê açarnayışi rê peşti bıdê",
 	"centralnotice-donate-button": "Butona bêc",
-	"centralnotice-banner-display": "Bımocne",
+	"centralnotice-banner-display": "Bıasene",
 	"centralnotice-banner-anonymous": "Karberê bênamey",
 	"centralnotice-banner-logged-in": "Karberê ke deqewte miyan",
 	"centralnotice-banner-type": "Babeta afişer:",
