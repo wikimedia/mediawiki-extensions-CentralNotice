@@ -80,21 +80,23 @@
 		var $form = $( '<form method="post"></form>' ),
 
 			$authtokenField = $(
-				'<input type="hidden" name="authtoken" value="' +
-				mw.user.tokens.get( 'editToken' ) +
-				'"></input>'
+				'<input type="hidden" name="authtoken" />'
 			),
 
 			$summaryField = $(
-				'<input type="hidden" name="changeSummary" value="' +
-				$( '#cn-campaign-pager input.cn-change-summary-input' ).val() +
-				'"></input>'
+				'<input type="hidden" name="changeSummary" />'
 			),
 
-			$changesField =
-				$( '<input type="hidden" name="changes" ></input>' );
+			$changesField = $(
+				'<input type="hidden" name="changes" />'
+			);
 
+		$authtokenField.val( mw.user.tokens.get( 'editToken' ) );
+		$summaryField.val(
+			$( '#cn-campaign-pager input.cn-change-summary-input' ).val()
+		);
 		$changesField.val( JSON.stringify( changes ) );
+
 		$form.append( $authtokenField, $summaryField, $changesField );
 		$( document.body ).append( $form );
 		$form.submit();
