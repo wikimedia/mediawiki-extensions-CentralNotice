@@ -542,15 +542,6 @@
 		},
 
 		/**
-		 * Register that the current page view is included in a test.
-		 * @param {string} identifier A string to identify the test. Should not contain
-		 *   commas.
-		 */
-		registerTest( identifier ) {
-			cn.internal.state.registerTest( identifier );
-		},
-
-		/**
 		 * Get the value of a property used in campaign/banner selection and
 		 * display, and for recording the results of that process.
 		 */
