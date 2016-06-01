@@ -13,7 +13,8 @@
 			"Nemo bis",
 			"Pietrodn",
 			"Viscontino",
-			"Ronald"
+			"Ronald",
+			"Matteocng"
 		]
 	},
 	"centralnotice": "Gestione avviso centralizzato",
@@ -242,6 +243,7 @@
 	"hidebanners": "Nascondi banner",
 	"apihelp-query+centralnoticelogs-param-user": "Nome utente (facoltativo)",
 	"centralnotice-impression-diet-identifier": "Identificatore per l'archiviazione lato client",
+	"centralnotice-impression-diet-identifier-help": "Un identificatore per i dati persistenti lato client memorizzati da questa funzione (come il numero di impressioni). Questo campo è facoltativo per la maggior parte delle campagne. Se lo lasci vuoto, le campagne nella stessa categoria condivideranno il numero di impressioni, oppure, se questa campagna non usa la funzione categoria, i conteggi saranno specifici per essa. Per condividere questi dati tra più categorie di campagne, specifica lo stesso identificatore per ogni campagna. Nota: alcune categorie di campagne, in passato, sono state configurate per usare i cookie per questa funzione. Per campagne in quelle categorie, l'identificatore era il nome del cookie; questi cookie obsoleti saranno migrati. Nota anche che se l'identificatore è modificato durante una campagna, tutti i conteggi alla data di modifica andranno persi.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Quanto tempo aspettare prima di riavviare il ciclo, in secondi (opzionale)",
 	"centralnotice-large-banner-limit-days": "Durata della soppressione",
 	"centralnotice-large-banner-limit-days-help": "Numero di giorni per cui sopprimere banner di grandi dimensioni dopo la visualizzazione iniziale.",
