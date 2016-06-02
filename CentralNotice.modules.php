@@ -50,7 +50,8 @@ $wgResourceModules[ 'ext.centralNotice.adminUi' ] = array(
 	'remoteExtPath' => 'CentralNotice/resources',
 	'dependencies' => array(
 		'jquery.ui.datepicker',
-		'jquery.ui.multiselect'
+		'jquery.ui.multiselect',
+		'json'
 	),
 	'scripts'       => 'infrastructure/centralnotice.js',
 	'styles'        => array(

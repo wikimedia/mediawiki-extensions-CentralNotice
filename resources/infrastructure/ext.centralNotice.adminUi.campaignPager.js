@@ -68,7 +68,7 @@
 		setChange(
 			$this.data( 'campaignName' ),
 			'priority',
-			parseInt( $this.val() ), // Munge to int for comparison needs
+			parseInt( $this.val(), 10 ), // Munge to int for comparison needs
 			$this.data( 'initialValue' ) // jQuery munges to int
 		);
 	}

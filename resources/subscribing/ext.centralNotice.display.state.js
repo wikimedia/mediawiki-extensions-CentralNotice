@@ -358,7 +358,7 @@
 		 * @param {string} identifier A string to identify the test. Should not contain
 		 *   commas.
 		 */
-		registerTest( identifier ) {
+		registerTest: function( identifier ) {
 			var tests = state.data.tests = state.data.tests || [];
 
 			// Add if it isn't already registered.

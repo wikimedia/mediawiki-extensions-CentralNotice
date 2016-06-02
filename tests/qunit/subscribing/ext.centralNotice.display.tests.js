@@ -119,7 +119,7 @@
 					}
 				],
 				mixins: { 'testMixin': [ 'arg1', 'arg2' ] }
-			},
+			}
 		];
 
 	// Make this property configurable before the first time it's set,
