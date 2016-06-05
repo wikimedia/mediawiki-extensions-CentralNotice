@@ -244,7 +244,7 @@
 	"hidebanners": "Nascondi banner",
 	"apihelp-centralnoticequerycampaign-example-1": "Mostra campagna \"Plea_US\"",
 	"apihelp-query+centralnoticelogs-param-user": "Nome utente (facoltativo)",
-	"apihelp-query+centralnoticelogs-param-limit": "Numero massimo di righe per il ritorno (opzionale).",
+	"apihelp-query+centralnoticelogs-param-limit": "Numero massimo di righe da restituire (opzionale).",
 	"apihelp-query+centralnoticelogs-example-1": "Mostra registri",
 	"centralnotice-banner-history-logger-rate": "Frequenza di campionamento",
 	"centralnotice-impression-diet-identifier": "Identificatore per l'archiviazione lato client",
@@ -252,5 +252,6 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Quanto tempo aspettare prima di riavviare il ciclo, in secondi (opzionale)",
 	"centralnotice-large-banner-limit-days": "Durata della soppressione",
 	"centralnotice-large-banner-limit-days-help": "Numero di giorni per cui sopprimere banner di grandi dimensioni dopo la visualizzazione iniziale.",
-	"centralnotice-large-banner-limit-identifier": "Identificatore per l'archiviazione lato client"
+	"centralnotice-large-banner-limit-identifier": "Identificatore per l'archiviazione lato client",
+	"centralnotice-large-banner-limit-identifier-help": "La visualizzazione di banner grandi non è permessa nelle campagne con lo stesso identificatore. Il valore predefinito 'centralnotice-frbanner-seen-fullscreen' può essere utilizzato per migrare i cookie obsoleti."
 }
