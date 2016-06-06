@@ -217,7 +217,7 @@ function efCentralNoticeLoader( $out, $skin ) {
 
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {
-		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
+		$out->addHeadItem( 'cn-dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
 	}
 	// Insert the banner controller
 	// TODO Change this to startUp once it's determined that a rollback is not
