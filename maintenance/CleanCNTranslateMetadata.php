@@ -26,6 +26,8 @@ class CleanCNTranslateMetadata extends Maintenance {
 		$this->cleanDuplicates();
 		$this->populateIDs();
 		$this->deleteOrphans();
+
+		ChoiceDataProvider::invalidateCache();
 	}
 
 	/**

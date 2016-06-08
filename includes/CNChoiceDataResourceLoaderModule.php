@@ -34,21 +34,10 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 				return array();
 			}
 		} else {
-			 $choices = $this->getFromDb( $project, $language );
+			 $choices = ChoiceDataProvider::getChoices( $project, $language );
 		}
 
 		return $choices;
-	}
-
-	/**
-	 * Get the banner choices data via a direct DB call to the infrastructure wiki
-	 *
-	 * @param string $project
-	 * @param string $language
-	 */
-	protected function getFromDb( $project, $language ) {
-		$choicesProvider = new ChoiceDataProvider( $project, $language );
-		return $choicesProvider->getChoices();
 	}
 
 	/**

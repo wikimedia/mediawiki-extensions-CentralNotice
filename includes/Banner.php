@@ -1360,6 +1360,8 @@ class Banner {
 	function logBannerChange(
 		$action, $user, $beginSettings = array(), $summary = null ) {
 
+		ChoiceDataProvider::invalidateCache();
+
 		$endSettings = array();
 		if ( $action !== 'removed' ) {
 			$endSettings = Banner::getBannerSettings( $this->getName(), true );

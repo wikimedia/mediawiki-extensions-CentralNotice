@@ -1333,6 +1333,8 @@ class Campaign {
 		$endSettings = array(), $beginAssignments = array(),
 		$endAssignments = array(), $summary = null
 	) {
+		ChoiceDataProvider::invalidateCache();
+
 		// TODO prune unused parameters
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users

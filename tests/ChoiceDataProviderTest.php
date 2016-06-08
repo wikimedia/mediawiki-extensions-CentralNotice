@@ -29,12 +29,10 @@ class ChoiceDataProviderTest extends MediaWikiTestCase {
 
 		foreach ( $testCase['contexts_and_outputs'] as $cANdOName => $contextAndOutput ) {
 
-			$allocationsProvider = new ChoiceDataProvider(
+			$choices = ChoiceDataProvider::getChoices(
 				$contextAndOutput['context']['project'],
 				$contextAndOutput['context']['language']
 			);
-
-			$choices = $allocationsProvider->getChoices();
 
 			$this->cnFixtures->assertChoicesEqual(
 				$this, $contextAndOutput['choices'], $choices, $cANdOName );

@@ -37,9 +37,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 				self::LANG_FILTER
 		);
 
-		$choicesProvider = new ChoiceDataProvider( $project, $lang );
-
-		$choices = $choicesProvider->getChoices();
+		$choices = ChoiceDataProvider::getChoices( $project, $lang );
 
 		// Get the result object for creating the output
 		$apiResult = $this->getResult();
