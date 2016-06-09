@@ -66,10 +66,10 @@
 
 		$.each( serialized.split( '*' ), function ( idx, strBucket ) {
 			var parts = strBucket.split( '!' ),
-				key = decodeCampaignName( parts[0] ),
-				start = parseInt( parts[1], 10 ) + 14e8,
-				end = start + parseInt( parts[2], 10 ),
-				val = parseInt( parts[3], 10 );
+				key = decodeCampaignName( parts[ 0 ] ),
+				start = parseInt( parts[ 1 ], 10 ) + 14e8,
+				end = start + parseInt( parts[ 2 ], 10 ),
+				val = parseInt( parts[ 3 ], 10 );
 
 			if ( key && start && end && !isNaN( val ) ) {
 				parsedBuckets[ key ] = {
@@ -87,7 +87,7 @@
 	 * Check legacy bucket cookie, and try to migrate. If a legacy cookie is
 	 * found, load buckets from there.
 	 *
-	 * @returns {boolean} true if a legacy cookie was migrated, false if not
+	 * @return {boolean} true if a legacy cookie was migrated, false if not
 	 */
 	function possiblyLoadAndMigrateLegacyBuckets() {
 
@@ -159,7 +159,7 @@
 	 * Get a random bucket (integer greater or equal to 0 and less than
 	 * wgNoticeNumberOfControllerBuckets).
 	 *
-	 * @returns int
+	 * @return {number}
 	 */
 	function getRandomBucket() {
 		return Math.floor(
@@ -188,7 +188,7 @@
 			bucketsModified = false;
 
 		campaignStartDate = new Date();
-		campaignStartDate.setTime( campaign.start * 1000  );
+		campaignStartDate.setTime( campaign.start * 1000 );
 
 		// Buckets should end the time indicated by extension after
 		// the campaign's end
@@ -210,7 +210,7 @@
 			loadBuckets();
 		}
 
-		bucket = buckets[campaignName];
+		bucket = buckets[ campaignName ];
 
 		// If we have a valid bucket, just check and possibly update its
 		// expiry.
@@ -246,7 +246,7 @@
 				end: bucketEndDate.getTime() / 1000
 			};
 
-			buckets[campaignName] = bucket;
+			buckets[ campaignName ] = bucket;
 			bucketsModified = true;
 		}
 
@@ -254,10 +254,10 @@
 		for ( campaignName in buckets ) {
 
 			bucketEndDate = new Date();
-			bucketEndDate.setTime( buckets[campaignName].end * 1000 );
+			bucketEndDate.setTime( buckets[ campaignName ].end * 1000 );
 
 			if ( bucketEndDate < now ) {
-				delete buckets[campaignName];
+				delete buckets[ campaignName ];
 				bucketsModified = true;
 			}
 		}
@@ -285,7 +285,7 @@
 		 * This should only be called once. setCampaign() must have been called
 		 * first.
 		 */
-		process: function() {
+		process: function () {
 			retrieveProcessAndGet();
 		},
 
@@ -294,10 +294,11 @@
 		 * setCampaign() and process() must have been called first. (Normally
 		 * they're called by mw.centralNotice.chooseAndMaybeDisplay(). Calls
 		 * to this method from mixin hooks don't have to worry about this.)
-		 * @returns {Number}
+		 *
+		 * @return {number}
 		 */
-		getBucket: function() {
-			return buckets[campaign.name].val;
+		getBucket: function () {
+			return buckets[ campaign.name ].val;
 		},
 
 		/**
@@ -306,10 +307,11 @@
 		 * setCampaign() and process() must have been called first. (Normally
 		 * they're called by mw.centralNotice.chooseAndMaybeDisplay(). Calls
 		 * to this method from mixin hooks don't have to worry about this.)
-		 * @param {Number} val The numeric bucket value to store
+		 *
+		 * @param {number} val The numeric bucket value to store
 		 */
-		setBucket: function( val ) {
-			buckets[campaign.name].val = val;
+		setBucket: function ( val ) {
+			buckets[ campaign.name ].val = val;
 			storeBuckets();
 		}
 	};

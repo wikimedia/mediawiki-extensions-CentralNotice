@@ -18,7 +18,7 @@
 	 * - ""
 	 *
 	 * @param {string} cookieValue
-	 * @returns {?Object}
+	 * @return {?Object}
 	 */
 	function parseCookieValue( cookieValue ) {
 
@@ -41,18 +41,18 @@
 		// If the matches were from the old cookie format, add an empty region
 		// element.
 		if ( matches.length === 6 ) {
-			matches = matches.slice( 0, 2 ).concat( [''] )
+			matches = matches.slice( 0, 2 ).concat( [ '' ] )
 				.concat( matches.slice( 2 ) );
 		}
 
 		// Return a juicy Geo object
 		return {
-			country: matches[1],
-			region: matches[2],
-			city: matches[3],
-			lat: matches[4] && parseFloat( matches[4] ),
-			lon: matches[5] && parseFloat( matches[5] ),
-			af: matches[6]
+			country: matches[ 1 ],
+			region: matches[ 2 ],
+			city: matches[ 3 ],
+			lat: matches[ 4 ] && parseFloat( matches[ 4 ] ),
+			lon: matches[ 5 ] && parseFloat( matches[ 5 ] ),
+			af: matches[ 6 ]
 		};
 	}
 
@@ -60,7 +60,7 @@
 	 * Serialize geoObj to store it in the cookie.
 	 *
 	 * @param {Object} geoObj
-	 * @returns {string}
+	 * @return {string}
 	 */
 	function serializeCookieValue( geoObj ) {
 
@@ -70,7 +70,7 @@
 			( geoObj.city && geoObj.city.replace( /[^a-z]/i, '_' ) ) || '',
 			geoObj.lat,
 			geoObj.lon,
-			( geoObj.IP && geoObj.IP.match(':') ) ? 'v6' : 'v4'
+			( geoObj.IP && geoObj.IP.match( ':' ) ) ? 'v6' : 'v4'
 		];
 
 		return parts.join( ':' );
@@ -78,8 +78,9 @@
 
 	/**
 	 * Can we rely on this geo data?
+	 *
 	 * @param {Object} geoObj
-	 * @returns boolean
+	 * @return {boolean}
 	 */
 	function isGeoDataValid( geoObj ) {
 		// - Ensure 'country' is set to detect whether the cookie was succesfully
@@ -111,9 +112,10 @@
 		 * Attempt to set window.Geo with data from the GeoIP cookie. If that fails,
 		 * make a background call that sets window.Geo, and attempt to set the
 		 * cookie.
+		 *
 		 * @private
 		 */
-		setWindowGeo: function() {
+		setWindowGeo: function () {
 
 			var cookieValue = $.cookie( COOKIE_NAME ),
 				geoObj;
@@ -201,9 +203,9 @@
 		 * it's usually available right away, it may not be if a background
 		 * call is needed.
 		 *
-		 * @returns {jQuery.Promise}
+		 * @return {jQuery.Promise}
 		 */
-		getPromise: function() {
+		getPromise: function () {
 			return mw.geoIP.deferred.promise();
 		}
 	};

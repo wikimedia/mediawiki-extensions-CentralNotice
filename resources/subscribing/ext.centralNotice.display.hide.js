@@ -31,7 +31,7 @@
 			cookieName = HIDE_COOKIE_PREFIX + category;
 		},
 
-		processCookie: function() {
+		processCookie: function () {
 			var rawCookieVal = $.cookie( cookieName ),
 				hideData,
 				now;
@@ -50,7 +50,7 @@
 			// Try to parse the cookie
 			try {
 				hideData = JSON.parse( rawCookieVal );
-			} catch ( e ){
+			} catch ( e ) {
 				// Corrupt cookie contents
 				removeCookie();
 				return;
@@ -72,17 +72,17 @@
 			// TODO Update and improve this server-side switch.
 
 			if ( now < hideData.created +
-				( durations[hideData.reason] || MAX_CUSTOM_HIDE_DURATION ) ) {
+				( durations[ hideData.reason ] || MAX_CUSTOM_HIDE_DURATION ) ) {
 				shouldHide = true;
 				reason = hideData.reason;
 			}
 		},
 
-		shouldHide: function() {
+		shouldHide: function () {
 			return shouldHide;
 		},
 
-		getReason: function() {
+		getReason: function () {
 			return reason;
 		},
 
@@ -119,14 +119,14 @@
 
 			// Iterate over all configured URLs to hide this category of banner
 			// for all wikis in a cluster
-			$.each( mw.config.get( 'wgNoticeHideUrls' ), function( i, val ) {
+			$.each( mw.config.get( 'wgNoticeHideUrls' ), function ( i, val ) {
 
 				var url = new mw.Uri( val );
 				url.extend(
 					{
-						'duration': duration,
-						'category': category,
-						'reason' : reason
+						duration: duration,
+						category: category,
+						reason: reason
 					}
 				);
 
@@ -135,7 +135,7 @@
 			} );
 		},
 
-		setHideWithCloseButtonCookies: function() {
+		setHideWithCloseButtonCookies: function () {
 			// 'close' must be in REASONS in ext.centralNotice.display.state
 			hide.setHideCookies( 'close', durations.close );
 		}

@@ -41,7 +41,7 @@
 		// Time to store impression-counting data, in days
 		COUNTS_STORAGE_TTL = 365;
 
-	mixin.setPreBannerHandler( function( mixinParams ) {
+	mixin.setPreBannerHandler( function ( mixinParams ) {
 		var hide;
 
 		// URL forced a banner
@@ -165,9 +165,9 @@
 
 		cookieCounts = {
 			seenCount: parseInt( rawCookie, 10 ) || 0,
-			waitCount: parseInt( waitData[0], 10 ) || 0,
-			waitUntil: parseInt( waitData[1], 10 ) || 0,
-			waitSeenCount: parseInt( waitData[2], 10 ) || 0
+			waitCount: parseInt( waitData[ 0 ], 10 ) || 0,
+			waitUntil: parseInt( waitData[ 1 ], 10 ) || 0,
+			waitSeenCount: parseInt( waitData[ 2 ], 10 ) || 0
 		};
 
 		storeCounts( cookieCounts );
@@ -179,7 +179,8 @@
 	/**
 	 * Get running impression counts from kvStore, if available, or return
 	 * zeroed counts.
-	 * @returns {Object} An object containing count data.
+	 *
+	 * @return {Object} An object containing count data.
 	 */
 	function getCounts() {
 

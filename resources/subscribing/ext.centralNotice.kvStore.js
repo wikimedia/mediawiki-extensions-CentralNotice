@@ -43,7 +43,7 @@
 	 *   when using cookies. Must not contain SEPARATOR_IN_COOKIES. (Distinct
 	 *   keys for cookies help keep cookies small, improving performance.)
 	 */
-	KVStorageContext = function( key, keyInCookies ) {
+	KVStorageContext = function ( key, keyInCookies ) {
 		this.key = key;
 		this.keyInCookies = keyInCookies;
 	};
@@ -288,7 +288,7 @@
 
 	function getCookieItem( key, context ) {
 
-		var storageKey = makeKeyForCookie( key, context),
+		var storageKey = makeKeyForCookie( key, context ),
 			rawCookie = $.cookie( storageKey );
 
 		try {
@@ -300,7 +300,7 @@
 		}
 	}
 
-	function removeLocalStorageItem( key, context) {
+	function removeLocalStorageItem( key, context ) {
 
 		try {
 			localStorage.removeItem( makeKeyForLocalStorage( key, context ) );
@@ -312,7 +312,7 @@
 	}
 
 	function removeCookieItem( key, context ) {
-		$.removeCookie( makeKeyForCookie( key, context), { path: '/' } );
+		$.removeCookie( makeKeyForCookie( key, context ), { path: '/' } );
 	}
 
 	// We know mw.centralNotice has been initialized since we have as a
@@ -376,7 +376,7 @@
 		 *
 		 * @return {boolean} true if the value could be set, false otherwise
 		 */
-		setItem: function( key, value, context, ttl, multiStorageOption ) {
+		setItem: function ( key, value, context, ttl, multiStorageOption ) {
 
 			// Check validity of key
 			if ( ( key.indexOf( SEPARATOR ) !== -1 ) ||
@@ -436,7 +436,6 @@
 					throw 'Unexpected multi-storage option';
 			}
 
-
 		},
 
 		/**
@@ -486,9 +485,9 @@
 		 * Determine the appropriate multi-storage option
 		 *
 		 * @param {boolean} cookieAllowed
-		 * @returns {string} A string key
+		 * @return {string} A string key
 		 */
-		getMultiStorageOption: function( cookieAllowed ) {
+		getMultiStorageOption: function ( cookieAllowed ) {
 
 			if ( isLocalStorageAvailable() ) {
 				return kvStore.multiStorageOptions.LOCAL_STORAGE;
@@ -505,32 +504,33 @@
 		 * If a KVStore error has occurred (during this page view), return an
 		 * object with information about it. If no KVStore errors have occurred,
 		 * return null.
-		 * @returns {?Object}
+		 *
+		 * @return {?Object}
 		 */
-		getError: function() {
+		getError: function () {
 			return error;
 		},
 
-		setNotAvailableError: function() {
+		setNotAvailableError: function () {
 			setError( 'LocalStorage not available.', null, null );
 		},
 
 		setMaintenanceError: function ( lsKey ) {
 			var m = lsKey.match( FIND_KEY_REGEX ),
-				key = m ? m[1] : null;
+				key = m ? m[ 1 ] : null;
 
 			setError( 'Error during KVStore maintenance.', key, null );
 		},
 
-		setCampaignName: function( cName ) {
+		setCampaignName: function ( cName ) {
 			campaignName = cName;
 		},
 
-		setBannerName:  function( bName ) {
+		setBannerName:  function ( bName ) {
 			bannerName = bName;
 		},
 
-		setCategory:  function( c ) {
+		setCategory:  function ( c ) {
 			category = c;
 		}
 	};

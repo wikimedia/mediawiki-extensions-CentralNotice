@@ -25,7 +25,7 @@
 	 * spoils the basket. (This freshness check is not performed in the
 	 * server-side method.) TODO: Log when this happens.
 	 *
-	 * @returns {Object}
+	 * @return {Array}
 	 */
 	function makeFilteredChoiceData( choiceData, country, anon, device ) {
 
@@ -36,7 +36,7 @@
 
 		for ( i = 0; i < choiceData.length; i++ ) {
 
-			campaign = choiceData[i];
+			campaign = choiceData[ i ];
 			keepCampaign = false;
 
 			// Check choice data freshness
@@ -59,9 +59,10 @@
 
 			// Now filter by banner logged-in status and device.
 			for ( j = 0; j < campaign.banners.length; j++ ) {
-				banner = campaign.banners[j];
+				banner = campaign.banners[ j ];
 
 				// Logged-in status
+				// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 				if ( anon && !banner.display_anon ) {
 					continue;
 				}
@@ -109,8 +110,8 @@
 
 		// Optimize for the common scenario of a single campaign
 		if ( filteredChoiceData.length === 1 ) {
-			filteredChoiceData[0].allocation = filteredChoiceData[0].throttle / 100;
-			 return;
+			filteredChoiceData[ 0 ].allocation = filteredChoiceData[ 0 ].throttle / 100;
+			return;
 		}
 
 		// Make an index of campaigns by priority level.
@@ -118,17 +119,17 @@
 		// and higher integers represent higher priority. These values are
 		// defined by class constants in the CentralNotice PHP class.
 
-		for ( i = 0; i < filteredChoiceData.length ; i ++ ) {
+		for ( i = 0; i < filteredChoiceData.length ; i++ ) {
 
-			campaign = filteredChoiceData[i];
+			campaign = filteredChoiceData[ i ];
 			campaignPriority = campaign.preferred;
 
 			// Initialize index the first time we hit this priority
-			if ( !campaignsByPriority[campaignPriority] ) {
-				campaignsByPriority[campaignPriority] = [];
+			if ( !campaignsByPriority[ campaignPriority ] ) {
+				campaignsByPriority[ campaignPriority ] = [];
 			}
 
-			campaignsByPriority[campaignPriority].push( campaign );
+			campaignsByPriority[ campaignPriority ].push( campaign );
 		}
 
 		// Make an array of priority levels and sort in descending order.
@@ -146,14 +147,14 @@
 
 		for ( i = 0; i < priorities.length; i++ ) {
 
-			campaignsAtThisPriority = campaignsByPriority[priorities[i]];
+			campaignsAtThisPriority = campaignsByPriority[ priorities[ i ] ];
 
 			// If we fully allocated at a previous level, set allocations
 			// at this level to zero. (We check with 0.01 instead of 0 in
 			// case of issues due to finite precision.)
 			if ( remainingAllocation < 0.01 ) {
 				for ( j = 0; j < campaignsAtThisPriority.length; j++ ) {
-					campaignsAtThisPriority[j].allocation = 0;
+					campaignsAtThisPriority[ j ].allocation = 0;
 				}
 				continue;
 			}
@@ -187,7 +188,7 @@
 			campaignsAtThisPriorityCount = campaignsAtThisPriority.length;
 			for ( j = 0; j < campaignsAtThisPriorityCount; j++ ) {
 
-				campaign = campaignsAtThisPriority[j];
+				campaign = campaignsAtThisPriority[ j ];
 
 				// Calculate the proportional, unthrottled allocation now
 				// available to a campaign at this level.
@@ -224,7 +225,7 @@
 		campaignName = campaign.name;
 
 		for ( i = 0; i < campaign.banners.length; i++ ) {
-			banner = campaign.banners[i];
+			banner = campaign.banners[ i ];
 
 			// Filter for bucket
 			if ( bucket % campaign.bucket_count !== banner.bucket ) {
@@ -263,18 +264,18 @@
 		// Optimize for just one banner available for the user in this
 		// campaign, by far our most common scenario.
 		if ( possibleBanners.length === 1 ) {
-			possibleBanners[0].allocation = 1;
+			possibleBanners[ 0 ].allocation = 1;
 			return;
 		}
 
 		// Find the sum of all banner weights
 		for ( i = 0; i < possibleBanners.length; i++ ) {
-			totalWeights += possibleBanners[i].weight;
+			totalWeights += possibleBanners[ i ].weight;
 		}
 
 		// Set allocation property to the normalized weight
 		for ( i = 0; i < possibleBanners.length; i++ ) {
-			banner = possibleBanners[i];
+			banner = possibleBanners[ i ];
 			banner.allocation = banner.weight / totalWeights;
 		}
 	}
@@ -288,10 +289,10 @@
 	 * object whose allocation block is indicated by a number greater than or
 	 * equal to 0 and less than 1.
 	 *
-	 * @param array allocatedArray
-	 * @param random float A random number, greater or equal to 0  and less
+	 * @param {number} random A random number, greater or equal to 0  and less
 	 *   than 1, to use in choosing an object.
-	 * @returns {Object} The selected element in the array
+	 * @param {Array} allocatedArray
+	 * @return {?Object} The selected element in the array
 	 */
 	function chooseObjInAllocatedArray( random, allocatedArray ) {
 		var blockStart = 0,
@@ -301,8 +302,8 @@
 		// the allocation pie they should get. When random is in the piece,
 		// choose the object.
 
-		for ( i = 0; i < allocatedArray.length; i ++ ) {
-			obj = allocatedArray[i];
+		for ( i = 0; i < allocatedArray.length; i++ ) {
+			obj = allocatedArray[ i ];
 			blockEnd = blockStart + obj.allocation;
 
 			if ( ( random >= blockStart ) && ( random < blockEnd ) ) {
@@ -321,7 +322,7 @@
 	 * Chooser object (intended for access from within this RL module)
 	 */
 	cn.internal.chooser = {
-		chooseCampaign: function( choiceData, country, anon, device, random ) {
+		chooseCampaign: function ( choiceData, country, anon, device, random ) {
 
 			// Filter choiceData on country and device. Only campaigns that
 			// target the user's country and have at least one banner for
@@ -341,7 +342,7 @@
 			return chooseObjInAllocatedArray( random, filteredChoiceData );
 		},
 
-		chooseBanner: function( campaign, bucket, anon, device, random ) {
+		chooseBanner: function ( campaign, bucket, anon, device, random ) {
 
 			// Make a list of possible banners. Because of our wonky data model,
 			// this call must filter on logged-in status and device again.

@@ -4,7 +4,6 @@
  * This file is part of the CentralNotice Extension to MediaWiki
  * https://www.mediawiki.org/wiki/Extension:CentralNotice
  *
- * @section LICENSE
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,10 +19,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @file
  */
 ( function ( $, mw ) {
-	var step_size = 1,
+	var stepSize = 1,
 		mixinDefs = mw.config.get( 'wgCentralNoticeCampaignMixins' ),
 		mixinParamsTemplate = mw.template.get(
 			'ext.centralNotice.adminUi.campaignManager',
@@ -33,16 +31,16 @@
 		$submitBtn = $( '#noticeDetailSubmit' );
 
 	$( '#centralnotice-throttle-amount' ).slider( {
-		range: "min",
+		range: 'min',
 		min: 0,
 		max: 100,
-		value: $( "#centralnotice-throttle-cur" ).val(),
-		step: step_size,
-		slide: function( event, element ) {
+		value: $( '#centralnotice-throttle-cur' ).val(),
+		step: stepSize,
+		slide: function ( event, element ) {
 			var val = Number( element.value ),
 				rounded = Math.round( val * 10 ) / 10;
-			$( "#centralnotice-throttle-echo" ).html( String( rounded ) + "%" );
-			$( "#centralnotice-throttle-cur" ).val( val );
+			$( '#centralnotice-throttle-echo' ).html( String( rounded ) + '%' );
+			$( '#centralnotice-throttle-cur' ).val( val );
 		}
 	} );
 
@@ -53,6 +51,7 @@
 			$( '.cn-throttle-amount' ).hide();
 		}
 	}
+
 	$( '#throttle-enabled' ).click( updateThrottle );
 
 	function updateWeightColumn() {
@@ -62,19 +61,23 @@
 			$( '.cn-weight' ).show();
 		}
 	}
+
 	$( '#balanced' ).click( updateWeightColumn );
 
 	function updateBuckets() {
-		var numCampaignBuckets = $( 'select#buckets :checked' ).val();
+		var numCampaignBuckets = $( 'select#buckets :checked' ).val(),
+			i,
+			isBucketDisabled;
 
 		if ( numCampaignBuckets ) {
-			for ( var i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
-				var isBucketDisabled = ( i >= numCampaignBuckets );
+			for ( i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
+				isBucketDisabled = ( i >= numCampaignBuckets );
 
 				$( 'select.bucketSelector option[value=' + i + ']' ).prop( 'disabled', isBucketDisabled );
 			}
 		}
 	}
+
 	$( 'select#buckets' ).change( updateBuckets );
 
 	/**
@@ -129,7 +132,7 @@
 
 	function makeMixinParamControlSet( mixinName, paramValues ) {
 
-		var paramDefs = mixinDefs[mixinName].parameters,
+		var paramDefs = mixinDefs[ mixinName ].parameters,
 			templateVars = {
 				divId: mixinParamControlsId( mixinName ),
 				params: []
@@ -139,7 +142,7 @@
 
 		$.each( paramDefs, function ( paramName, paramDef ) {
 
-			var paramTemplateVars =  {
+			var paramTemplateVars = {
 				labelMsg: mw.message( paramDef.labelMsg ).text(),
 				inputName: makeNoticeMixinControlName( mixinName, paramName ),
 				dataType: paramDef.type
@@ -148,17 +151,17 @@
 			switch ( paramDef.type ) {
 				case 'string':
 					paramTemplateVars.inputType = 'text';
-						paramTemplateVars.inputSizeFlagAndVar = {
-							inputSize: 30
-						};
+					paramTemplateVars.inputSizeFlagAndVar = {
+						inputSize: 30
+					};
 					break;
 
 				case 'integer':
 				case 'float':
 					paramTemplateVars.inputType = 'text';
-						paramTemplateVars.inputSizeFlagAndVar = {
-							inputSize: 5
-						};
+					paramTemplateVars.inputSizeFlagAndVar = {
+						inputSize: 5
+					};
 					break;
 
 				case 'boolean':
@@ -173,20 +176,20 @@
 			// If parameter value was not provided, set a default
 			if ( !( paramName in paramValues ) ) {
 				if ( typeof paramDef.defaultValue !== 'undefined' ) {
-					paramValues[paramName] = paramDef.defaultValue;
+					paramValues[ paramName ] = paramDef.defaultValue;
 				} else {
 					switch ( paramDef.type ) {
 						case 'string':
-							paramValues[paramName] = '';
+							paramValues[ paramName ] = '';
 							break;
 
 						case 'integer':
 						case 'float':
-							paramValues[paramName] = '0';
+							paramValues[ paramName ] = '0';
 							break;
 
 						case 'boolean':
-							paramValues[paramName] = false;
+							paramValues[ paramName ] = false;
 							break;
 
 						default:
@@ -200,11 +203,11 @@
 				case 'string':
 				case 'integer':
 				case 'float':
-					paramTemplateVars.inputValue = paramValues[paramName];
+					paramTemplateVars.inputValue = paramValues[ paramName ];
 					break;
 
 				case 'boolean':
-					if ( paramValues[paramName] ) {
+					if ( paramValues[ paramName ] ) {
 						paramTemplateVars.checkedFlagAndVar = {
 							checked: 'checked'
 						};
@@ -229,24 +232,26 @@
 		var $input = $( this ),
 			val = $input.val();
 
-		switch( $input.data( 'data-type' ) ) {
-		case 'integer':
-			if ( $.trim( val ).match( /^-?\d+$/ ) ) {
-				setValidationError( false, $input );
-			} else {
-				setValidationError(
-					true, $input, 'centralnotice-notice-mixins-int-required' );
-			}
-			break;
+		switch ( $input.data( 'data-type' ) ) {
+			case 'integer':
+				if ( $.trim( val ).match( /^-?\d+$/ ) ) {
+					setValidationError( false, $input );
+				} else {
+					setValidationError(
+						true, $input, 'centralnotice-notice-mixins-int-required'
+					);
+				}
+				break;
 
-		case 'float':
-			if ( $.trim( val ).match( /^-?\d+\.?\d*$|^-?\d*\.?\d+$/ ) ) {
-				setValidationError( false, $input );
-			} else {
-				setValidationError(
-					true, $input, 'centralnotice-notice-mixins-float-required' );
-			}
-			break;
+			case 'float':
+				if ( $.trim( val ).match( /^-?\d+\.?\d*$|^-?\d*\.?\d+$/ ) ) {
+					setValidationError( false, $input );
+				} else {
+					setValidationError(
+						true, $input, 'centralnotice-notice-mixins-float-required'
+					);
+				}
+				break;
 		}
 	}
 
