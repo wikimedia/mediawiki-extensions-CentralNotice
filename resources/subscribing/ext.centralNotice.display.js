@@ -171,9 +171,7 @@
 				'class',
 				mw.html.escape( 'cn-' + cn.internal.state.getData().bannerCategory )
 			)
-			.prepend(
-				'<!--googleoff: all-->' + bannerHtml + '<!--googleon: all-->'
-			);
+			.prepend( bannerHtml );
 	}
 
 	function recordImpression() {
