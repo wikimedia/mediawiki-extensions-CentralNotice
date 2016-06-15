@@ -771,6 +771,8 @@ class CentralNotice extends SpecialPage {
 					) ) );
 					return;
 				}
+
+				ChoiceDataProvider::invalidateCache();
 			} else {
 				$this->showError( 'sessionfailure' );
 			}
