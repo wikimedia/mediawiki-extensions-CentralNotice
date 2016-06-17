@@ -293,5 +293,5 @@
 	"centralnotice-large-banner-limit-randomize": "Facer aleatoria a transición de zona",
 	"centralnotice-large-banner-limit-randomize-help": "A transición normal de zona é de A a C e de B a D. Cando está comprobado, os lectores pasarán de forma aleatoria ás zonas C ou D.",
 	"centralnotice-large-banner-limit-identifier": "Identificar para almacenar no cliente",
-	"centralnotice-large-banner-limit-identifier-help": "A visualización de anuncios grandes suprímese nas campañas co mesmo identificador. Dependendo da categoría da campaña, isto pode realizarse como unha cookie. O valor por defecto 'centralnotice-frbanner-seen-fullscreen' é compatible cos scripts de captación de fondos na wiki."
+	"centralnotice-large-banner-limit-identifier-help": "A visualización de anuncios grandes suprímese nas campañas co mesmo identificador. O valor por defecto 'centralnotice-frbanner-seen-fullscreen' pode usarse para migrar as cookies históricas."
 }
