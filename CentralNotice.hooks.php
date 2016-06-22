@@ -36,7 +36,7 @@ class CentralNoticeHooks {
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname, $wgDBname;
 
 		// Default for a standalone wiki is that the CN tables are in the main database.
-		if ( $wgCentralDBname === false ) {
+		if ( !$wgCentralDBname ) {
 			$wgCentralDBname = $wgDBname;
 		}
 
@@ -53,20 +53,20 @@ class CentralNoticeHooks {
 		// If this is the wiki that hosts the management interface, load further components
 		if ( $wgNoticeInfrastructure ) {
 			if ( $wgNoticeUseTranslateExtension ) {
-				$wgHooks[ 'TranslatePostInitGroups' ][ ] = 'BannerMessageGroup::registerGroupHook';
-				$wgHooks[ 'TranslateEventMessageGroupStateChange' ][] = 'BannerMessageGroup::updateBannerGroupStateHook';
+				$wgHooks['TranslatePostInitGroups'][] = 'BannerMessageGroup::registerGroupHook';
+				$wgHooks['TranslateEventMessageGroupStateChange'][] = 'BannerMessageGroup::updateBannerGroupStateHook';
 			}
 
-			$wgSpecialPages[ 'CentralNotice' ] = 'CentralNotice';
-			$wgSpecialPages[ 'NoticeTemplate' ] = 'SpecialNoticeTemplate';
-			$wgSpecialPages[ 'GlobalAllocation' ] = 'SpecialGlobalAllocation';
-			$wgSpecialPages[ 'BannerAllocation' ] = 'SpecialBannerAllocation';
-			$wgSpecialPages[ 'CentralNoticeLogs' ] = 'SpecialCentralNoticeLogs';
-			$wgSpecialPages[ 'CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
+			$wgSpecialPages['CentralNotice'] = 'CentralNotice';
+			$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
+			$wgSpecialPages['GlobalAllocation'] = 'SpecialGlobalAllocation';
+			$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
+			$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
+			$wgSpecialPages['CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
 
 			// Register user rights for editing
 			$wgAvailableRights[] = 'centralnotice-admin';
-			$wgGroupPermissions[ 'sysop' ][ 'centralnotice-admin' ] = true; // Only sysops can make change
+			$wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
 		}
 	}
 
