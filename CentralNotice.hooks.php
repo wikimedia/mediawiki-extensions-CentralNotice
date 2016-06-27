@@ -209,10 +209,13 @@ function efCentralNoticeCanonicalNamespaces( &$namespaces ) {
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgCentralHost, $wgServer;
+	global $wgCentralHost, $wgServer, $wgRequest;
 
-	// If we're on a special page, just add the geoIP module and bow out
-	if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ) {
+	// If we're editing or we're on a special page, just add the geoIP module
+	// and bow out
+	if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
+		( $wgRequest->getText( 'action' ) === 'edit' ) ) {
+
 		$out->addModules( 'ext.centralNotice.geoIP' );
 		return true;
 	}
