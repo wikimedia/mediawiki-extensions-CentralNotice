@@ -202,7 +202,7 @@ function efCentralNoticeCanonicalNamespaces( &$namespaces ) {
 
 /**
  * BeforePageDisplay hook handler
- * This function adds the startUp and geoIP modules to the page
+ * This function adds the startUp and geoIP modules to the page (as needed)
  *
  * @param $out  OutputPage
  * @param $skin Skin
@@ -210,6 +210,12 @@ function efCentralNoticeCanonicalNamespaces( &$namespaces ) {
  */
 function efCentralNoticeLoader( $out, $skin ) {
 	global $wgCentralHost, $wgServer;
+
+	// If we're on a special page, just add the geoIP module and bow out
+	if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ) {
+		$out->addModules( 'ext.centralNotice.geoIP' );
+		return true;
+	}
 
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {

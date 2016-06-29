@@ -27,11 +27,6 @@
 	// finished loading (via $( function() {...} )). Now, we only delay logic
 	// that accesses DOM elements in that way, and run other code sooner.
 
-	// Nothing to do if we're on a special page.
-	if ( mw.config.get( 'wgNamespaceNumber' ) == -1 ) {
-		return;
-	}
-
 	// Legacy support:
 	// Legacy code inserted the CN div everywhere (except on Special pages),
 	// even when there were no campaigns. Let's do the same thing for now, in
