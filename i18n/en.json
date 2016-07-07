@@ -276,8 +276,8 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Banners might not display, as determined by in-banner JavaScript",
 	"centralnotice-impression-diet": "Impression diet",
 	"centralnotice-impression-diet-help": "Limit the number of banners seen by any one individual.",
-	"centralnotice-impression-diet-identifier": "Identifier/hide cookie name",
-	"centralnotice-impression-diet-identifier-help": "An identifier for persistent client-side data stored by this feature (such as impression counts). This field is optional for most campaigns. If you leave it blank, campaigns in the same category will share impression counts, or, if this campaign does not use the category feature, counts will be specific to this campaign. To share this data across several campaign categories, specify the same identifier for each campaign. Note: certain campaign categories are configured to use cookies for this feature. For campaigns in those categories, this identifier will be the cookie name, and is not optional. Also note that if the identifier is changed during a campaign, all counts to date will be lost.",
+	"centralnotice-impression-diet-identifier": "Identifier for client-side storage",
+	"centralnotice-impression-diet-identifier-help": "An identifier for persistent client-side data stored by this feature (such as impression counts). This field is optional for most campaigns. If you leave it blank, campaigns in the same category will share impression counts, or, if this campaign does not use the category feature, counts will be specific to this campaign. To share this data across several campaign categories, specify the same identifier for each campaign. Note: certain campaign categories used to be configured to use cookies for this feature. For campaigns in those categories, this identifier was the cookie name; such legacy cookies will be migrated. Also note that if the identifier is changed during a campaign, all counts to date will be lost.",
 	"centralnotice-impression-diet-maximum-seen": "Maximum impressions any individual will see",
 	"centralnotice-impression-diet-maximum-seen-help": "If the cycle is configured to restart, this limits the number of impressions seen per cycle rather than the total number of impressions seen.",
 	"centralnotice-impression-diet-restart-cycle-delay": "How long to wait before restarting the cycle, in seconds (optional)",
@@ -290,6 +290,6 @@
 	"centralnotice-large-banner-limit-days-help": "Number of days to suppress large banner display after initial impression.",
 	"centralnotice-large-banner-limit-randomize": "Randomize bucket transition",
 	"centralnotice-large-banner-limit-randomize-help": "Normal bucket transition is A to C, B to D. When checked, readers will randomly move to buckets C or D.",
-	"centralnotice-large-banner-limit-identifier": "Large banner identifier/cookie name",
-	"centralnotice-large-banner-limit-identifier-help": "Large banner display is suppressed across campaigns with the same identifier. Depending on the campaign category, this may be implemented as a cookie. Default value 'centralnotice-frbanner-seen-fullscreen' is compatible with on-wiki fundraising scripts."
+	"centralnotice-large-banner-limit-identifier": "Identifier for client-side storage",
+	"centralnotice-large-banner-limit-identifier-help": "Large banner display is suppressed across campaigns with the same identifier. Default value 'centralnotice-frbanner-seen-fullscreen' may be used to migrate legacy cookies."
 }

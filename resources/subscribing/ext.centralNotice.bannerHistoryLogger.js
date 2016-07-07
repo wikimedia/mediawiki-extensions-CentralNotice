@@ -46,7 +46,8 @@
 
 	/**
 	 * Return a log entry about the current campaign selection event.
-	 * @returns {Object}
+	 *
+	 * @return {Object}
 	 */
 	function makeLogEntry() {
 
@@ -95,6 +96,7 @@
 	/**
 	 * Remove log entries older than maxEntryAge (in days) and, if necessary,
 	 * remove entries to keep the total within maxEntries.
+	 *
 	 * @param {number} maxEntryAge
 	 * @param {number} maxEntries
 	 */
@@ -109,7 +111,7 @@
 		}
 
 		// Remove any remaining entries that are older than maxEntryAge
-		while ( i < log.length && log[i].time < cutoff ) {
+		while ( i < log.length && log[ i ].time < cutoff ) {
 			i++;
 		}
 		log = log.slice( i );
@@ -134,7 +136,7 @@
 	 * EventLogging payload limit.
 	 *
 	 * @param {number} rate The sampling rate used
-	 * @returns {Object}
+	 * @return {Object}
 	 */
 	function makeEventLoggingData( rate ) {
 
@@ -166,7 +168,7 @@
 		i = log.length - 1;
 
 		while ( i >= 0 ) {
-			logEntry = log[i];
+			logEntry = log[ i ];
 
 			elLogEntry = [
 				logEntry.banner || '',
@@ -175,7 +177,7 @@
 				logEntry.statusCode
 			];
 
-			elData.l.unshift ( elLogEntry.join( '|' ) );
+			elData.l.unshift( elLogEntry.join( '|' ) );
 
 			if ( !checkEventLoggingURLSize( elData ) ) {
 				elData.l.shift();
@@ -200,8 +202,8 @@
 	 * Note: Do Not Track is already handled at this module's entry points, as
 	 * well as by EventLogging.
 	 *
-	 * @param elData Event log data
-	 * @returns {jQuery.Promise}
+	 * @param {Object} elData Event log data
+	 * @return {jQuery.Promise}
 	 */
 	function sendLog( elData ) {
 		var deferred = $.Deferred(),
@@ -242,7 +244,7 @@
 	 *
 	 * FIXME This is a temporary measure!
 	 *
-	 * @returns {boolean} true if the EL payload size is OK
+	 * @return {boolean} true if the EL payload size is OK
 	 */
 	function checkEventLoggingURLSize( elData ) {
 		return ( makeEventLoggingURL( elData ).length <= mw.eventLog.maxUrlSize );
@@ -254,22 +256,22 @@
 	 */
 	function makeEventLoggingURL( elData ) {
 		return mw.eventLog.makeBeaconUrl( {
-			event    : elData,
-			revision : 14321636, // Coordinate with CentralNotice.hooks.php
-			schema   : EVENT_LOGGING_SCHEMA,
-			webHost  : location.hostname,
-			wiki     : mw.config.get( 'wgDBname' )
+			event: elData,
+			revision: 14321636, // Coordinate with CentralNotice.hooks.php
+			schema: EVENT_LOGGING_SCHEMA,
+			webHost: location.hostname,
+			wiki: mw.config.get( 'wgDBname' )
 		} );
 	}
 
 	// Set a function to run after a campaign is chosen and after a banner for
 	// that campaign is chosen or not.
-	mixin.setPostBannerHandler( function( mixinParams ) {
+	mixin.setPostBannerHandler( function ( mixinParams ) {
 
 		waitLogNoSendBeacon = mixinParams.waitLogNoSendBeacon;
 
 		// Do this idly to avoid browser lock-ups
-		cn.doIdleWork( function() {
+		mw.requestIdleCallback( function () {
 
 			if ( !cn.kvStore.isAvailable() ) {
 				cn.kvStore.setNotAvailableError();
@@ -284,8 +286,10 @@
 					log.push( makeLogEntry() );
 				}
 
-				purgeOldLogEntries( mixinParams.maxEntryAge,
-					mixinParams.maxEntries );
+				purgeOldLogEntries(
+					mixinParams.maxEntryAge,
+					mixinParams.maxEntries
+				);
 
 				storeLog();
 			}
@@ -309,16 +313,14 @@
 				'mediawiki.util',
 				'mediawiki.user',
 				'schema.' + EVENT_LOGGING_SCHEMA
-			] ).done( function() {
+			] ).done( function () {
+				// URL param bannerHistoryLogRate can override rate, for debugging
+				var rateParam = mw.util.getParamValue( 'bannerHistoryLogRate' ),
+					rate = rateParam !== null ?
+						parseFloat( rateParam ) : mixinParams.rate;
 
 				// We send back the temporary ID for all logs.
 				bhLogger.id = mw.user.generateRandomSessionId();
-
-				// URL param bannerHistoryLogRate can override rate, for debugging
-				var rateParam = mw.util.getParamValue( 'bannerHistoryLogRate' ),
-
-					rate = rateParam !== null ?
-						parseFloat( rateParam ) : mixinParams.rate;
 
 				// Send a sample to the server
 				if ( Math.random() < rate ) {
@@ -364,9 +366,10 @@
 
 		/**
 		 * Send the banner history log to the server, if it wasn't sent already.
-		 * @returns {jQuery.Promise}
+		 *
+		 * @return {jQuery.Promise}
 		 */
-		ensureLogSent: function() {
+		ensureLogSent: function () {
 
 			var deferred = $.Deferred();
 
@@ -377,14 +380,14 @@
 			}
 
 			// It's likely that this will be resolved by the time we get here
-			readyToLogDeferredObj.done( function() {
+			readyToLogDeferredObj.done( function () {
 
 				// This is included in the done() function to ensure a sampled
 				// log would be sent first (see above).
 				if ( logSent ) {
 					deferred.resolve();
 				} else {
-					sendLog( makeEventLoggingData() ).then(function() {
+					sendLog( makeEventLoggingData() ).then( function () {
 						deferred.resolve();
 					}, function () {
 						deferred.reject();

@@ -285,8 +285,8 @@
 	"centralnotice-banners-not-guaranteed-to-display": "Vorlagen könnten nicht angezeigt werden, wie von Vorlagen-Javascript festgelegt",
 	"centralnotice-impression-diet": "Eindrucksdiät",
 	"centralnotice-impression-diet-help": "Begrenzt die Anzahl der von jedem Einzelnen gesehenen Vorlagen.",
-	"centralnotice-impression-diet-identifier": "Identifikator/Cookienamen verstecken",
-	"centralnotice-impression-diet-identifier-help": "Ein Identifikator für permanente clientseitige Daten, die von dieser Funktion gespeichert werden (wie Zugriffszähler). Dieses Feld ist für die meisten Kampagnen optional. Falls du es leer lässt, teilen sich Kampagnen der gleichen Kategorie die Zugriffszähler oder falls diese Kampagne die Kategorienfunktion nicht verwendet, sind Zähler spezifisch für diese Kampagne. Um diese Daten mit mehreren Kampagnenkategorien zu teilen, gib für jede Kampagne den gleichen Identifikator an. Hinweis: Bestimmte Kampagnenkategorien sind so konfiguriert, dass sie für diese Funktion Cookies verwenden. Für Kampagnen in diesen Kategorien ist der Identifikator der Cookiename und nicht optional. Bedenke auch, dass alle Zähler auf das Datum verloren gehen, falls der Identifikator während der Kampagne geändert wird.",
+	"centralnotice-impression-diet-identifier": "Identifikator für die clientseitige Speicherung",
+	"centralnotice-impression-diet-identifier-help": "Ein Identifikator für permanente clientseitige Daten, die von dieser Funktion gespeichert werden (wie Zugriffszähler). Dieses Feld ist für die meisten Kampagnen optional. Falls du es leer lässt, teilen sich Kampagnen der gleichen Kategorie die Zugriffszähler oder falls diese Kampagne die Kategorienfunktion nicht verwendet, sind Zähler spezifisch für diese Kampagne. Um diese Daten mit mehreren Kampagnenkategorien zu teilen, gib für jede Kampagne den gleichen Identifikator an. Hinweis: Bestimmte verwendete Kampagnenkategorien sind so konfiguriert, dass sie für diese Funktion Cookies verwenden. Für Kampagnen in diesen Kategorien war der Identifikator der Cookiename; solche veralteten Cookies werden migriert. Bedenke auch, dass alle Zähler auf das Datum verloren gehen, falls der Identifikator während der Kampagne geändert wird.",
 	"centralnotice-impression-diet-maximum-seen": "Maximale Eindrücke, die jeder Einzelne sehen kann",
 	"centralnotice-impression-diet-maximum-seen-help": "Falls der Kreis zum Neustarten konfiguriert ist, begrenzt dies die Anzahl der Eindrücke, die pro Kreis eher gesehen werden als die Gesamtzahl der gesehenen Eindrücke.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Wie lang vor dem Neustart des Kreises gewartet werden soll, in Sekunden (optional)",
@@ -299,6 +299,6 @@
 	"centralnotice-large-banner-limit-days-help": "Anzahl der Tage zum Unterdrücken der Anzeige großer Vorlagen nach der ersten Sichtung.",
 	"centralnotice-large-banner-limit-randomize": "Zufälliger Umgebungsübergang",
 	"centralnotice-large-banner-limit-randomize-help": "Der normale Umgebungsübergang ist von A nach C und von B nach D. Falls ausgewählt, wechseln Leser zufällig zu den Umgebungen C oder D.",
-	"centralnotice-large-banner-limit-identifier": "Identifikator der großen Vorlage/Cookiename",
-	"centralnotice-large-banner-limit-identifier-help": "Die Anzeige großer Vorlagen ist kampagnenübergreifend mit dem gleichen Identifikator unterdrückt. Abhängig von der Kampagnenkategorie, kann dies als Cookie implementiert werden. Der Standardwert „centralnotice-frbanner-seen-fullscreen“ ist mit Wiki-Spendensammlungs-Skripten kompatibel."
+	"centralnotice-large-banner-limit-identifier": "Identifikator für die clientseitige Speicherung",
+	"centralnotice-large-banner-limit-identifier-help": "Die Anzeige großer Vorlagen ist kampagnenübergreifend mit dem gleichen Identifikator unterdrückt. Der Standardwert „centralnotice-frbanner-seen-fullscreen“ kann zur Migration von veralteten Cookies verwendet werden."
 }

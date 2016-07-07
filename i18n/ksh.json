@@ -29,7 +29,7 @@
 	"centralnotice-add": "Dobeidonn",
 	"centralnotice-add-notice": "En Kampannje dobei donn",
 	"centralnotice-add-notice-button": "Aanlähje",
-	"centralnotice-add-notice-cancel-button": "Ophüre!",
+	"centralnotice-add-notice-cancel-button": "Ophühre!",
 	"centralnotice-edit-notice": "En Kampannje ändere",
 	"centralnotice-add-template": "En Banner_Schablohn dobei donn",
 	"centralnotice-show-notices": "En Kampannje zeije",
@@ -200,7 +200,7 @@
 	"centralnotice-archive-campaign-cancel": "Ophüre",
 	"centralnotice-delete-banner": "Fottschmiiße",
 	"centralnotice-delete-banner-confirm": "Opjepaß: Fotschmiiße määd alle Enschtällong un alle Täxte un Hohreescht fott. Di kritt mer nit retuhr. Donn leever aschivehre.",
-	"centralnotice-delete-banner-cancel": "Ophüre",
+	"centralnotice-delete-banner-cancel": "Ophühre",
 	"centralnotice-messages-pending-approval": "Schprohche met Täxte udder Nohreeschte, di op en Beschtähtejong aam wahde sin.",
 	"centralnotice-devices": "Zeisch op de Apparahte <!--\nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Centralnotice-devices/en\n-->",
 	"centralnotice-start-timestamp": "Aanfang en <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Universal Time Controlled\">UTC</i>",
@@ -229,5 +229,6 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "De Aanzahl Sekonde för affzewahde, ih dat der nähkße Dorschjang kütt - kann och fott blihve.",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Der Schtandadd es 0. esu krijje de Lässer eine Dorschjang un dann es Schloß.",
 	"centralnotice-impression-diet-skip-initial": "De Aanzahl Affeohfe för am Aanfang ze övverjonn - kann och fott blihve.",
-	"centralnotice-large-banner-limit-days": "För wi vill Dähsch ußblände?"
+	"centralnotice-large-banner-limit-days": "För wi vill Dähsch ußblände?",
+	"centralnotice-large-banner-limit-identifier": "Kännong udder Nahme för et Schpeijschere om Metmaacher singem Compjuhter"
 }

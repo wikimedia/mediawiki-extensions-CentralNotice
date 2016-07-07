@@ -6,43 +6,78 @@
  */
 class ChoiceDataProvider {
 
-	protected $project;
-	protected $language;
+	/** @var string Common prefix for choice data cache keys */
+	const CACHE_KEY_NAMESPACE = 'CentralNoticeChoiceData';
+
+	/** @var int Time-to-live for choice data cache entries, in seconds */
+	const CACHE_TTL = 3600;
 
 	/**
-	 * @param string $project The project to get choices for
-	 * @param string $language The language to get choices for
+	 * Invalidate the shared global cache.
 	 */
-	public function __construct( $project, $language ) {
-
-		$this->project = $project;
-		$this->language = $language;
+	public static function invalidateCache() {
+		$cache = ObjectCache::getMainWANInstance();
+		return $cache->touchCheckKey(
+			$cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, 'check' ) );
 	}
+
 
 	/**
 	 * Get a data structure with the allocation choices.
 	 *
+	 * @param string $project The project to get choices for
+	 * @param string $language The language to get choices for
 	 * @return array A structure of arrays. The outer array contains associative
 	 *   arrays that represent campaigns. One campaign property is 'banners',
 	 *   which has as its value an array of asociative arrays that represent
 	 *   banners. Note that only some properties of campaigns and banners
 	 *   are provided.
 	 */
-	public function getChoices() {
+	public static function getChoices( $project, $language ) {
+		$cache = ObjectCache::getMainWANInstance();
+
+		$dataKey = $cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, $project, $language );
+		$checkKey = $cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, 'check' );
+
+		$choices = $cache->getWithSetCallback(
+			$dataKey,
+			self::CACHE_TTL,
+			function () use ( $project, $language ) {
+				return self::fetchChoices( $project, $language );
+			},
+			[
+				'checkKeys' => [ $checkKey ],
+				'pcTTL' => $cache::TTL_PROC_LONG,
+			]
+		);
+
+		// Filter out campaigns that have ended since we last queried the
+		// database or which have not started yet.
+		$now = time();
+		return array_filter( $choices, function ( $choice ) use ( $now ) {
+			return $choice['end'] >= $now && $choice['start'] <= $now;
+		} );
+	}
+
+	private static function fetchChoices( $project, $language ) {
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
 
 		$dbr = CNDatabase::getDb( DB_SLAVE );
+		$cache = ObjectCache::getMainWANInstance();
 
 		// Set up conditions
-		$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
+		// Choice data will be cached for up to an hour, so we want to include
+		// campaigns that will start during that interval.
+		$start = $dbr->timestamp( time() + self::CACHE_TTL );
+		$end = $dbr->timestamp();
 		$conds = array(
-			'notices.not_start <= ' . $quotedNow,
-			'notices.not_end >= ' . $quotedNow,
+			'notices.not_start <= ' . $dbr->addQuotes( $start ),
+			'notices.not_end >= ' . $dbr->addQuotes( $end ),
 			'notices.not_enabled' => 1,
 			'notices.not_archived' => 0,
-			'notice_projects.np_project' => $this->project,
-			'notice_languages.nl_language' => $this->language
+			'notice_projects.np_project' => $project,
+			'notice_languages.nl_language' => $language
 		);
 
 		// Query campaigns and banners at once

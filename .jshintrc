@@ -2,7 +2,8 @@
 	"predef": [
 		"jQuery",
 		"mediaWiki",
-		"QUnit"
+		"QUnit",
+		"JSON"
 	],
 
 	"undef": true,
@@ -11,5 +12,7 @@
 
 	"laxbreak": true,
 
-	"browser": true
+	"browser": true,
+
+	"es3": true
 }

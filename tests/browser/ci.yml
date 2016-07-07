@@ -1,0 +1,11 @@
+BROWSER:
+  - chrome
+  - firefox
+
+MEDIAWIKI_ENVIRONMENT:
+  - beta
+
+PLATFORM:
+  - Linux
+  - OS X 10.9
+  - Windows 7

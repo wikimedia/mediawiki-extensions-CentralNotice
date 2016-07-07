@@ -1,3 +1,4 @@
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 ( function ( mw, $ ) {
 	'use strict';
 
@@ -17,24 +18,26 @@
 
 	// Cycle through test cases, contexts and outputs, and buckets and set up
 	// allocation tests. For JSLint-happiness, drizzle toasted closure sauce.
-	$.each( testCases, function( testCaseName, testCase ) {
+	$.each( testCases, function ( testCaseName, testCase ) {
 		$.each( testCase.contexts_and_outputs,
 			function ( contextAndOutputName, contextAndOutput ) {
 
-			var i, testName, allocationTestFunction;
+				var i, testName, allocationTestFunction;
 
-			// Note: numBuckets isn't available via mw.config here, only in tests
-			for (i = 0; i < numBuckets; i++ ) {
-				testName = testCaseName + '/' + contextAndOutputName + '/bucket_' + i;
+				// Note: numBuckets isn't available via mw.config here, only in tests
+				for ( i = 0; i < numBuckets; i++ ) {
+					testName = testCaseName + '/' + contextAndOutputName + '/bucket_' + i;
 
-				// Use a deep copy of contextAndOutput for each test, since
-				// properties get added in tests
-				allocationTestFunction = makeAllocationTestFunction(
-					$.extend( true, {}, contextAndOutput ), i );
+					// Use a deep copy of contextAndOutput for each test, since
+					// properties get added in tests
+					allocationTestFunction = makeAllocationTestFunction(
+						$.extend( true, {}, contextAndOutput ), i
+					);
 
-				QUnit.test( testName, allocationTestFunction );
+					QUnit.test( testName, allocationTestFunction );
+				}
 			}
-		} );
+		);
 	} );
 
 	/**
@@ -60,12 +63,12 @@
 			// plus 1 (number of campaigns)... except if a campaign expects
 			// 0 allocation, in which case just 2 assertion per campaign.
 			expectedAssertCount = 1;
-			$.each( expectedAllocations, function( key, campaign ) {
+			$.each( expectedAllocations, function ( key, campaign ) {
 
-				if ( campaign.allocation === 0) {
+				if ( campaign.allocation === 0 ) {
 					expectedAssertCount += 2;
 				} else {
-					expectedBanners = campaign.banners[bucket];
+					expectedBanners = campaign.banners[ bucket ];
 					expectedAssertCount +=
 						3 + ( 2 * Object.keys( expectedBanners ).length );
 				}
@@ -95,7 +98,7 @@
 
 			// Cycle through the campaigns in choices and test expected allocation
 			for ( j = 0; j < choices.length; j++ ) {
-				campaign = choices[j];
+				campaign = choices[ j ];
 				campaignName = campaign.name;
 
 				// Continue if this campaign wasn't allocated
@@ -106,10 +109,12 @@
 				allocatedCampaignsCount++;
 
 				// Test that the campaign was expected and was correctly allocated
-				assert.ok( campaignName in expectedAllocations,
-					'Allocated campaign ' + campaignName + ' was expected.');
+				assert.ok(
+					campaignName in expectedAllocations,
+					'Allocated campaign ' + campaignName + ' was expected.'
+				);
 
-				expectedCampaign = expectedAllocations[campaignName];
+				expectedCampaign = expectedAllocations[ campaignName ];
 
 				assert.strictEqual(
 					campaign.allocation.toFixed( 3 ),
@@ -119,7 +124,7 @@
 
 				// By not testing banner allocation for unallocated campaigns,
 				// we make test fixtures more readable :)
-				if ( expectedCampaign.allocation === 0) {
+				if ( expectedCampaign.allocation === 0 ) {
 					continue;
 				}
 
@@ -135,13 +140,13 @@
 					0
 				);
 
-				expectedBanners = expectedCampaign.banners[bucket];
+				expectedBanners = expectedCampaign.banners[ bucket ];
 
 				allocatedBannersCount = 0;
 
 				for ( k = 0; k < campaign.banners.length; k++ ) {
 
-					banner = campaign.banners[k];
+					banner = campaign.banners[ k ];
 					bannerName = banner.name;
 
 					// Continue if this banner wasn't allocated
@@ -152,28 +157,34 @@
 					allocatedBannersCount++;
 
 					// Test the banner was expected and was correctly allocated
-					assert.ok( bannerName in expectedBanners,
-						'Allocated banner ' + bannerName + ' was expected.');
+					assert.ok(
+						bannerName in expectedBanners,
+						'Allocated banner ' + bannerName + ' was expected.'
+					);
 
 					assert.strictEqual(
 						banner.allocation.toFixed( 3 ),
-						expectedBanners[bannerName].toFixed( 3 ),
+						expectedBanners[ bannerName ].toFixed( 3 ),
 						'Expected allocation for banner ' + bannerName
 					);
 				}
 
 				// Test that the expected number of banners for this campaign
 				// were allocated
-				assert.strictEqual( allocatedBannersCount,
+				assert.strictEqual(
+					allocatedBannersCount,
 					Object.keys( expectedBanners ).length,
-					'Number of banners allocated.' );
+					'Number of banners allocated.'
+				);
 
 			}
 
 			// Test that the expected number of campaigns were allocated
-			assert.strictEqual( allocatedCampaignsCount,
+			assert.strictEqual(
+				allocatedCampaignsCount,
 				Object.keys( expectedAllocations ).length,
-				'Number of campaigns allocated.' );
+				'Number of campaigns allocated.'
+			);
 		};
 	}
 
@@ -190,9 +201,10 @@
 			now = new Date();
 
 		for ( i = 0; i < choices.length; i++ ) {
-			choice = choices[i];
+			choice = choices[ i ];
+
 			choice.start = makeTimestamp( now, choice.start_days_from_now );
-			choice.end = makeTimestamp( now, choice.end_days_from_now);
+			choice.end = makeTimestamp( now, choice.end_days_from_now );
 
 			// Remove these special properties from choices, to make the
 			// choices data mirror the real data structure.
@@ -205,9 +217,9 @@
 	 * Return a UNIX timestamp for refDate offset by the number of days
 	 * indicated.
 	 *
-	 * @param refDate Date The date to calculate the offset from
-	 * @param offsetInDays
-	 * @return int
+	 * @param {Date} refDate The date to calculate the offset from
+	 * @param {number} offsetInDays
+	 * @return {number}
 	 */
 	function makeTimestamp( refDate, offsetInDays ) {
 		var date = new Date();
@@ -225,4 +237,4 @@
 				throw 'Non-existent logged-in status.';
 		}
 	}
-} ( mediaWiki, jQuery ) );
+}( mediaWiki, jQuery ) );

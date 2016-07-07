@@ -1,3 +1,4 @@
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 ( function ( mw, $ ) {
 	'use strict';
 
@@ -86,7 +87,7 @@
 						display_account: true
 					}
 				],
-				mixins: { 'testMixin': [ 'arg1', 'arg2' ] }
+				mixins: { testMixin: [ 'arg1', 'arg2' ] }
 			}
 		],
 		choiceData1Campaign2Banners2Buckets = [
@@ -118,7 +119,7 @@
 						display_account: true
 					}
 				],
-				mixins: { 'testMixin': [ 'arg1', 'arg2' ] }
+				mixins: { testMixin: [ 'arg1', 'arg2' ] }
 			}
 		];
 
@@ -136,7 +137,9 @@
 			$.removeCookie( 'CN', { path: '/' } );
 
 			// Suppress background calls
-			$.ajax = function() { return $.Deferred(); };
+			$.ajax = function () {
+				return $.Deferred();
+			};
 
 			// Create normalized siteNotice.
 			$( '#qunit-fixture' ).append(
@@ -146,7 +149,7 @@
 			// Mock window.Geo object and mw.geoIP
 			window.Geo = {};
 			mw.geoIP = {
-				getPromise: function() {
+				getPromise: function () {
 					var deferred = $.Deferred();
 					deferred.resolve();
 					return deferred.promise();
@@ -168,7 +171,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'canInsertBanner', 1, function( assert ) {
+	QUnit.test( 'canInsertBanner', 1, function ( assert ) {
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
@@ -179,9 +182,9 @@
 		assert.equal( $( 'div#test_banner' ).length, 1 );
 	} );
 
-	QUnit.test( 'banner= override param', 2, function( assert ) {
+	QUnit.test( 'banner= override param', 2, function ( assert ) {
 		mw.centralNotice.internal.state.urlParams.banner = 'test_banner';
-		$.ajax = function( params ) {
+		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/ ) );
 		};
 		mw.centralNotice.displayTestingBanner();
@@ -189,14 +192,14 @@
 		assert.ok( mw.centralNotice.data.testingBanner );
 	} );
 
-	QUnit.test( 'randomcampaign= override param', 2, function( assert ) {
+	QUnit.test( 'randomcampaign= override param', 2, function ( assert ) {
 
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 
 		// Get the first banner
 		mw.centralNotice.internal.state.urlParams.randomcampaign = 0.25;
 
-		$.ajax = function( params ) {
+		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
@@ -204,19 +207,19 @@
 		// Get the second banner
 		mw.centralNotice.internal.state.urlParams.randomcampaign = 0.75;
 
-		$.ajax = function( params ) {
+		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
-	QUnit.test( 'randombanner= override param', 2, function( assert ) {
+	QUnit.test( 'randombanner= override param', 2, function ( assert ) {
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 
 		// Get the first banner
 		mw.centralNotice.internal.state.urlParams.randombanner = 0.25;
 
-		$.ajax = function( params ) {
+		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
@@ -224,72 +227,90 @@
 		// Get the second banner
 		mw.centralNotice.internal.state.urlParams.randombanner = 0.75;
 
-		$.ajax = function( params ) {
+		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
 	QUnit.test( 'runs hooks on banner shown', 3, function ( assert ) {
-		$.ajax = function() {
+		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+		$.ajax = function () {
 			mw.centralNotice.reallyInsertBanner( bannerData );
 		};
 
-		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
-		mixin.setPreBannerHandler( function( params ) {
-			assert.deepEqual( params, choiceData1Campaign2Banners[0].mixins.testMixin );
-		} );
-		mixin.setPostBannerHandler( function( params ) {
-			assert.deepEqual( params, choiceData1Campaign2Banners[0].mixins.testMixin );
-		} );
+		mixin.setPreBannerHandler(
+			function ( params ) {
+				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
+			}
+		);
+		mixin.setPostBannerHandler(
+			function ( params ) {
+				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
+			}
+		);
 
 		mw.centralNotice.registerCampaignMixin( mixin );
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
-		assert.equal( mw.centralNotice.data.status,
-			mw.centralNotice.internal.state.STATUSES.BANNER_SHOWN.key );
+		assert.equal(
+			mw.centralNotice.data.status,
+			mw.centralNotice.internal.state.STATUSES.BANNER_SHOWN.key
+		);
 	} );
 
 	QUnit.test( 'runs hooks on banner canceled', 5, function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
-		mixin.setPreBannerHandler( function( params ) {
-			assert.deepEqual( params, choiceData1Campaign2Banners[0].mixins.testMixin );
-			mw.centralNotice.cancelBanner( 'testReason' );
-		} );
-		mixin.setPostBannerHandler( function( params ) {
-			assert.deepEqual( params, choiceData1Campaign2Banners[0].mixins.testMixin );
-		} );
+		mixin.setPreBannerHandler(
+			function ( params ) {
+				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
+				mw.centralNotice.cancelBanner( 'testReason' );
+			}
+		);
+		mixin.setPostBannerHandler(
+			function ( params ) {
+				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
+			}
+		);
 
 		mw.centralNotice.registerCampaignMixin( mixin );
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
-		assert.equal( mw.centralNotice.data.status,
-			mw.centralNotice.internal.state.STATUSES.BANNER_CANCELED.key );
+		assert.equal(
+			mw.centralNotice.data.status,
+			mw.centralNotice.internal.state.STATUSES.BANNER_CANCELED.key
+		);
 		assert.equal( mw.centralNotice.data.bannerCanceledReason, 'testReason' );
 		assert.ok( mw.centralNotice.internal.state.isBannerCanceled() );
 	} );
 
 	QUnit.test( 'runs hooks on no banner available', 3, function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
-		mixin.setPreBannerHandler( function( params ) {
-			assert.deepEqual( params, choiceData1Campaign2Banners2Buckets[0].mixins.testMixin );
-		} );
-		mixin.setPostBannerHandler( function( params ) {
-			assert.deepEqual( params, choiceData1Campaign2Banners2Buckets[0].mixins.testMixin );
-		} );
+		mixin.setPreBannerHandler(
+			function ( params ) {
+				assert.deepEqual( params, choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin );
+			}
+		);
+		mixin.setPostBannerHandler(
+			function ( params ) {
+				assert.deepEqual( params, choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin );
+			}
+		);
 
 		mw.centralNotice.registerCampaignMixin( mixin );
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners2Buckets;
-		mw.centralNotice.internal.bucketer.setCampaign( choiceData1Campaign2Banners2Buckets[0] );
+		mw.centralNotice.internal.bucketer.setCampaign( choiceData1Campaign2Banners2Buckets[ 0 ] );
 		mw.centralNotice.internal.bucketer.process();
 		mw.centralNotice.internal.bucketer.setBucket( 0 );
 
 		mw.centralNotice.chooseAndMaybeDisplay();
 
-		assert.equal( mw.centralNotice.data.status,
-			mw.centralNotice.internal.state.STATUSES.NO_BANNER_AVAILABLE.key );
+		assert.equal(
+			mw.centralNotice.data.status,
+			mw.centralNotice.internal.state.STATUSES.NO_BANNER_AVAILABLE.key
+		);
 	} );
 
 }( mediaWiki, jQuery ) );

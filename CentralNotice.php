@@ -92,16 +92,9 @@ $wgCentralSelectedBannerDispatcher = false;
 // for cached content
 $wgCentralNoticeLoader = true;
 
-// Flag for turning on fundraising specific features
-$wgNoticeEnableFundraising = true;
-
 // Base URL for default fundraiser landing page (without query string)
 // TODO Remove, no longer used
 $wgNoticeFundraisingUrl = 'https://donate.wikimedia.org/wiki/Special:LandingCheck';
-
-// Source for live counter information
-$wgNoticeCounterSource = 'http://wikimediafoundation.org/wiki/Special:ContributionTotal?action=raw';
-$wgNoticeDailyCounterSource = 'http://wikimediafoundation.org/wiki/Special:DailyTotal?action=raw';
 
 // URL prefix where banner screenshots are stored. False if this feature is disabled.
 // meta.wikimedia.org CentralNotice banners are archived at 'http://fundraising-archive.wmflabs.org/banner/'
@@ -220,6 +213,8 @@ $wgNoticeListComplementThreshold = 0.75;
 // use some legacy mechanisms (especially cookies instead of the KVStore).
 // TODO Fix and remove!
 $wgCentralNoticeCategoriesUsingLegacy = array( 'Fundraising', 'fundraising' );
+
+$wgCentralNoticeCookiesToDelete = array();
 
 /** @var $wgNoticeTabifyPages array Declare all pages that should be tabified as CN pages */
 $wgNoticeTabifyPages = array(

@@ -223,6 +223,7 @@ $wgResourceModules[ 'ext.centralNotice.display' ] = array(
 	'styles'        => 'subscribing/ext.centralNotice.display.css',
 	'dependencies'  => array(
 		'ext.centralNotice.geoIP',
+		'ext.centralNotice.kvStore',
 		'jquery.cookie',
 		'json',
 		'mediawiki.Uri',

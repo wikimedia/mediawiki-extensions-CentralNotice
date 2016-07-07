@@ -38,12 +38,10 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 
 			// Get choices for this context, then filter and allocate campaigns
 
-			$allocationsProvider = new ChoiceDataProvider(
+			$choices = ChoiceDataProvider::getChoices(
 				$cAndO['context']['project'],
 				$cAndO['context']['language']
 			);
-
-			$choices = $allocationsProvider->getChoices();
 
 			$logged_in_status =
 				AllocationCalculator::getLoggedInStatusFromString(

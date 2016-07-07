@@ -15,7 +15,13 @@
  */
 ( function ( $, mw ) {
 
-	var cn = mw.centralNotice;
+	var cn = mw.centralNotice,
+		cookiesToDelete = mw.config.get( 'wgCentralNoticeCookiesToDelete' );
+
+	// Schedule the slurping of old defunct cookies
+	if ( cookiesToDelete && cookiesToDelete.length > 0 ) {
+		mw.requestIdleCallback( deleteOldCookies );
+	}
 
 	// Note: In legacy code, CentralNotice initialization was done after the DOM
 	// finished loading (via $( function() {...} )). Now, we only delay logic
@@ -26,40 +32,18 @@
 		return;
 	}
 
-	/**
-	 * @callback idleWorkFunc Function for performing non-time-critical work.
-	 */
-
-	/**
-	 * Temporary utility for doing non-time-critical work. See T111456.
-	 * Defined here 'cause it may be used by any CN subscribing modules.
-	 * @param {(idleWorkFunc|idleWorkFunc[])} funcs
-	 */
-	cn.doIdleWork = function ( funcs ) {
-		funcs = $.isArray( funcs ) ? funcs : [ funcs ];
-
-		$( function() {
-			var i;
-
-			// Execute functions sequentially at intervals of 1 sec.
-			for ( i = 0; i < funcs.length; i++ ) {
-				setTimeout( funcs[i], 1000 * ( i + 1 ) );
-			}
-		} );
-	};
-
 	// Legacy support:
 	// Legacy code inserted the CN div everywhere (except on Special pages),
 	// even when there were no campaigns. Let's do the same thing for now, in
 	// case other code has grown up around it.
 	// TODO Add this only if there's a banner one day?
-	$( function() {
+	$( function () {
 		$( '#siteNotice' ).prepend( '<div id="centralNotice"></div>' );
 	} );
 
 	// Testing banner
 	if ( mw.util.getParamValue( 'banner' ) ) {
-		mw.loader.using( 'ext.centralNotice.display' ).done( function() {
+		mw.loader.using( 'ext.centralNotice.display' ).done( function () {
 			cn.displayTestingBanner();
 		} );
 		return;
@@ -67,21 +51,52 @@
 
 	// Sanity check
 	if ( cn.choiceData === undefined ) {
-		mw.log( 'No choice data set for CentralNotice campaign ' +
+		mw.log.warn( 'No choice data set for CentralNotice campaign ' +
 			'and banner selection.' );
 		return;
 	}
 
-	// Maintenance: clean old KV store keys whenever.
-	// This schedules the removal of keys in batches. We call it via
-	// doIdleWork so the scheduling itself takes place when idle, too.
-	cn.doIdleWork( cn.kvStoreMaintenance.removeExpiredItemsWhenIdle );
+	// Maintenance: This schedules the removal of old KV keys.
+	// The schedule action itself is deferred, too, as it accesses localStorage.
+	mw.requestIdleCallback( cn.kvStoreMaintenance.doMaintenance );
 
 	// Nothing more to do if there are no possible campaigns for this user
 	if ( cn.choiceData.length === 0 ) {
 		return;
 	}
 
+	// If there's some issue with RL causing ext.centralNotice.display not
+	// to load, don't fail hard
+	if ( !cn.chooseAndMaybeDisplay ) {
+		mw.log.warn( 'Possible campaign(s) received in choiceData, but ' +
+			'mw.centralNotice.chooseAndMaybeDisplay() is not available' );
+
+		return;
+	}
+
 	cn.chooseAndMaybeDisplay();
+
+	/**
+	 * Run through cookiesToDelete to check for and delete old cookies
+	 */
+	function deleteOldCookies() {
+
+		// Ensure up our cookie library is present
+		mw.loader.using( 'mediawiki.cookie' ).done( function () {
+
+			// Wait for more idle time
+			mw.requestIdleCallback( function ( deadline ) {
+
+				// Stop if there are no more cookies to check or if there's too
+				// little idle time left.
+				while ( cookiesToDelete.length > 0 && deadline.timeRemaining() > 3 ) {
+					mw.cookie.set( cookiesToDelete.shift(), null, {
+						path: '/',
+						prefix: ''
+					} );
+				}
+			} );
+		} );
+	}
 
 } )(  jQuery, mediaWiki );

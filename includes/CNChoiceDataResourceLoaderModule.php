@@ -34,23 +34,10 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 				return array();
 			}
 		} else {
-			 $choices = $this->getFromDb( $project, $language );
+			 $choices = ChoiceDataProvider::getChoices( $project, $language );
 		}
 
 		return $choices;
-	}
-
-	/**
-	 * Get the banner choices data via a direct DB call to the infrastructure wiki
-	 *
-	 * @param string $project
-	 * @param string $language
-	 */
-	protected function getFromDb( $project, $language ) {
-
-		$choicesProvider = new ChoiceDataProvider( $project, $language );
-
-		return $choicesProvider->getChoices();
 	}
 
 	/**
@@ -109,9 +96,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 
 		$choices = $this->getChoices( $context );
-
-		if ( count( $choices ) === 0 ) {
-
+		if ( !$choices ) {
 			// If there are no choices, this module will have no dependencies,
 			// but other modules that create mw.centralNotice may be brought
 			// in elsewhere. Let's the check for its existence here, too, for
@@ -120,9 +105,14 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 				'mw.centralNotice.choiceData = [];';
 		} else {
 
-			// If there are choices, this module will depend on (at least)
+			// If there are choices, this module should depend on (at least)
 			// ext.centralNotice.display, which will create mw.centralNotice.
-			return 'mw.centralNotice.choiceData = ' .
+			// However, RL may experience errors that cause these dynamic
+			// dependencies to not be set as expected; so we check, just in case.
+			// In such an error state, ext.centralNotice.startUp.js logs to the
+			// console.
+			return 'mw.centralNotice = ( mw.centralNotice || {} );' .
+				'mw.centralNotice.choiceData = ' .
 				Xml::encodeJsVar( $choices ) . ';';
 		}
 	}
@@ -141,18 +131,15 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			 return array();
 		}
 
-
-		$dependencies = array();
-
 		// Get the choices (possible campaigns and banners) for this user
 		$choices = $this->getChoices( $context );
-
-		// If there are no choices, no dependencies
-		if ( count( $choices ) === 0 ) {
-			return $dependencies;
+		if ( !$choices ) {
+			// If there are no choices, no dependencies
+			return array();
 		}
 
 		// Run through the choices to get all needed mixin RL modules
+		$dependencies = array();
 		foreach ( $choices as $choice ) {
 			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
 

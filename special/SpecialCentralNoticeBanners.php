@@ -21,15 +21,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 	function __construct() {
 		SpecialPage::__construct( 'CentralNoticeBanners' );
-
-		// Make sure we have a session
-		wfSetupSession();
-
-		// Load things that may have been serialized into the session
-		$this->bannerLanguagePreview = $this->getCNSessionVar(
-			'bannerLanguagePreview',
-			$this->getLanguage()->getCode()
-		);
 	}
 
 	public function doesWrites() {
@@ -55,6 +46,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Do all the common setup
 		$this->setHeaders();
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
+		// Make sure we have a session
+		$this->getRequest()->getSession()->persist();
+
+		// Load things that may have been serialized into the session
+		$this->bannerLanguagePreview = $this->getCNSessionVar(
+			'bannerLanguagePreview',
+			$this->getLanguage()->getCode()
+		);
 
 		// User settable text for some custom message, like usage instructions
 		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );

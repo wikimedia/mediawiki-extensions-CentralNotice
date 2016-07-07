@@ -25,7 +25,9 @@
 			"Vivaelcelta",
 			"Amitie 10g",
 			"Macofe",
-			"Ryo567"
+			"Ryo567",
+			"Indiralena",
+			"Rubentl134"
 		]
 	},
 	"centralnotice": "Sistema de administración de avisos centralizados",
@@ -280,8 +282,10 @@
 	"apihelp-query+centralnoticelogs-param-start": "Hora inicial del intervalo (opcional).",
 	"apihelp-query+centralnoticelogs-param-end": "Hora final del intervalo (opcional).",
 	"apihelp-query+centralnoticelogs-example-1": "Mostrar registros",
+	"centralnotice-impression-diet-identifier-help": "Un identificador para los datos persistentes del lado del cliente por esta característica (tales como el conteo de impresiones). Este campo es opcional para la mayoría de las campañas. Si lo dejas en blanco, las campañas de la misma categoría compartirán cuentas de impresión. O, si esta campaña no usa la función de categoría, las cuentas serán específicas para esta campaña. Para compartir estos datos a través de varias categorías de campaña, especifica el mismo identificador para cada campaña. Nota: ciertas categorías de campaña se usan para configurar el uso de cookies para esta función. Para campañas en esas categorías, este identificador fue el nombre de la cookie; estas cookies legadas se migrarán. También nota que si el identificador se cambia durante una campaña, todas las cuentas a la fecha se perderán.",
 	"centralnotice-impression-diet-maximum-seen": "Máximo de impresiones que cualquier individuo verá",
 	"centralnotice-impression-diet-restart-cycle-delay": "Cuánto tiempo esperar antes de reiniciar el ciclo, en segundos (opcional)",
 	"centralnotice-impression-diet-skip-initial": "Número de impresiones iniciales que omitir (opcional)",
-	"centralnotice-large-banner-limit-days": "Longitud de la supresión"
+	"centralnotice-large-banner-limit-days": "Longitud de la supresión",
+	"centralnotice-large-banner-limit-identifier": "Identificador de almacenamiento del lado del cliente"
 }

@@ -8,7 +8,7 @@
 	var cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'legacySupport' );
 
-	mixin.setPreBannerHandler( function( mixinParams ) {
+	mixin.setPreBannerHandler( function ( mixinParams ) {
 
 		if ( mixinParams.setSRISampleRate ) {
 			cn.setRecordImpressionSampleRate( mixinParams.sriSampleRate );
