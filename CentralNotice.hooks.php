@@ -128,10 +128,6 @@ function efCentralNoticeSetup() {
 		$wgHooks[ 'BeforePageDisplay' ][ ] = 'efCentralNoticeLoader';
 		$wgHooks[ 'SiteNoticeAfter' ][ ] = 'efCentralNoticeDisplay';
 		$wgHooks[ 'ResourceLoaderGetConfigVars' ][] = 'efResourceLoaderGetConfigVars';
-		// Register mobile modules
-		// TODO To remove in a subsequent patch, when we start adding
-		// ext.centralNotice.startUp to HTML instead of the current mix.
-		$wgHooks[ 'SkinMinervaDefaultModules' ][] = 'onSkinMinervaDefaultModules';
 	}
 
 	// Tell the UserMerge extension where we store user ids
@@ -206,23 +202,35 @@ function efCentralNoticeCanonicalNamespaces( &$namespaces ) {
 
 /**
  * BeforePageDisplay hook handler
- * This function adds the banner controller and geoIP lookup to the page
+ * This function adds the startUp and geoIP modules to the page (as needed)
  *
  * @param $out  OutputPage
  * @param $skin Skin
  * @return bool
  */
 function efCentralNoticeLoader( $out, $skin ) {
-	global $wgCentralHost, $wgServer;
+	global $wgCentralHost, $wgServer, $wgRequest;
+
+	// If we're editing or we're on a special page, just add the geoIP module
+	// and bow out
+	if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
+		( $wgRequest->getText( 'action' ) === 'edit' ) ) {
+
+		$out->addModules( 'ext.centralNotice.geoIP' );
+		return true;
+	}
 
 	// Insert DNS prefetch for banner loading
 	if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {
-		$out->addHeadItem( 'dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
+		$out->addHeadItem( 'cn-dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
 	}
-	// Insert the banner controller
-	// TODO Change this to startUp once it's determined that a rollback is not
-	// needed.
-	$out->addModules( 'ext.centralNotice.bannerController' );
+
+	// Insert the startup and geoIP modules
+	// TODO Separate geoIP from CentralNotice
+	$out->addModules( array(
+		'ext.centralNotice.startUp',
+		'ext.centralNotice.geoIP'
+	) );
 	return true;
 }
 
@@ -444,26 +452,6 @@ function efCentralNoticeResourceLoaderTestModules( array &$testModules,
 			}
 		}
 	}
-
-	return true;
-}
-
-// TODO To remove in a subsequent patch, when we start adding
-// ext.centralNotice.startUp to HTML instead of the current mix (once we
-// determine that a rollback won't be necessary).
-/**
- * Place CentralNotice ResourceLoader modules onto mobile pages.
- *
- * @param Skin $skin
- * @param array $modules
- *
- * @return bool
- */
-function onSkinMinervaDefaultModules( Skin $skin, array &$modules ) {
-	$modules[ 'centralnotice' ] = array(
-		'ext.centralNotice.bannerController.mobile',
-		'ext.centralNotice.choiceData',
-	);
 
 	return true;
 }
