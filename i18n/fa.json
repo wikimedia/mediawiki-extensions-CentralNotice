@@ -248,6 +248,9 @@
 	"centralnotice-end-time": "زمان پایان (UTC)",
 	"centralnotice-banner-not-found-title": "بنر یافت نشد",
 	"hidebanners": "مخفی‌سازی بنرها",
+	"apihelp-centralnoticeallocations-param-country": "کشوری که بر روی آن فیلتر کند.",
+	"apihelp-centralnoticeallocations-param-language": "زبانی که بر روی آن فیلتر کند.",
 	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
-	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها"
+	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها",
+	"centralnotice-banner-history-logger-rate": "نرخ نمونه"
 }
