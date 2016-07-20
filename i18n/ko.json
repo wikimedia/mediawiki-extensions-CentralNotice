@@ -200,7 +200,7 @@
 	"centralnotice-all": "모두",
 	"centralnotice-generic-error": "요청한 동작을 수행할 권한이 없거나, 잘못된 동작을 요청하였습니다.",
 	"centralnotice-banner-name-error": "제공한 배너 이름이 잘못되었습니다. 배너 이름은 알파벳, 숫자와 밑줄 문자만 포함합니다.",
-	"centralnotice-all-except": "$1(을)를 모드 제외",
+	"centralnotice-all-except": "$1을(를) 제외한 모두",
 	"centralnotice-excluding-list": "$1 ($2 제외)",
 	"centralnotice-user-role": "사용자 역할",
 	"centralnotice-user-role-anonymous": "익명",
