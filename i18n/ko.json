@@ -214,7 +214,7 @@
 	"centralnotice-archive-banner-cancel": "취소",
 	"centralnotice-change-summary-label": "요약",
 	"centralnotice-change-summary-prompt": "이 변경에 대한 메시지 (선택)",
-	"centralnotice-change-summary-action-prompt": "이 행동에 대한 메시지 (선택)",
+	"centralnotice-change-summary-action-prompt": "이 동작에 대한 메시지 (선택)",
 	"centralnotice-archive-show": "보존된 공지 보기",
 	"centralnotice-archive-campaign": "보존",
 	"centralnotice-archive-campaign-title": "{{PLURAL:$1|공지}}를 보존하겠습니까?",
