@@ -101,7 +101,9 @@
 		"SpecialNoticeTemplate": "special/SpecialNoticeTemplate.php",
 		"SpecialRecordImpression": "special/SpecialRecordImpression.php",
 		"StaleCampaignException": "special/SpecialBannerLoader.php",
-		"TemplatePager": "TemplatePager.php"
+		"TemplatePager": "TemplatePager.php",
+		"CentralNoticeTestFixtures": "tests/phpunit/CentralNoticeTestFixtures.php",
+		"CNTestFixturesResourceLoaderModule": "tests/phpunit/CNTestFixturesResourceLoaderModule.php"
 	},
 	"ResourceModules": {
 		"jquery.ui.multiselect": {
@@ -448,9 +450,6 @@
 		],
 		"ResourceLoaderTestModules": [
 			"CentralNoticeHooks::onResourceLoaderTestModules"
-		],
-		"UnitTestsList": [
-			"CentralNoticeHooks::onUnitTestsList"
 		],
 		"UserMergeAccountFields": [
 			"CentralNoticeHooks::onUserMergeAccountFields"

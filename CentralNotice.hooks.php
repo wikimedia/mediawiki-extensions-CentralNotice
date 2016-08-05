@@ -347,27 +347,6 @@ class CentralNoticeHooks {
 	}
 
 	/**
-	 * UnitTestsList hook handler
-	 *
-	 * @param array &$files
-	 * @return bool
-	 */
-	public static function onUnitTestsList( &$files ) {
-		global $wgAutoloadClasses;
-
-		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
-			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
-
-		$files[] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
-		$files[] = __DIR__ . '/tests/CentralNoticeTest.php';
-		$files[] = __DIR__ . '/tests/AllocationCalculatorTest.php';
-		$files[] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
-		$files[] = __DIR__ . '/tests/BannerTest.php';
-		$files[] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
-		return true;
-	}
-
-	/**
 	 * ResourceLoaderTestModules hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
 	 *
@@ -383,15 +362,15 @@ class CentralNoticeHooks {
 		// Set up test fixtures module, which is added as a dependency for all QUnit
 		// tests.
 		$testModules['qunit']['ext.centralNotice.testFixtures'] = [
-				'class' => 'CNTestFixturesResourceLoaderModule'
+			'class' => 'CNTestFixturesResourceLoaderModule'
 		];
 
 		// These classes are only used here or in phpunit tests
 		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
-			__DIR__ . '/tests/CNTestFixturesResourceLoaderModule.php';
+			__DIR__ . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
 		// Note: the following setting is repeated in efCentralNoticeUnitTests()
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
-			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
+			__DIR__ . '/tests/phpunit/CentralNoticeTestFixtures.php';
 
 		$testModuleBoilerplate = [
 			'localBasePath' => __DIR__,
