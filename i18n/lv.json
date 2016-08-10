@@ -3,7 +3,8 @@
 		"authors": [
 			"Admresdeserv.",
 			"GreenZeb",
-			"Papuass"
+			"Papuass",
+			"Silraks"
 		]
 	},
 	"centralnotice-query": "Mainīt esošās kampaņas",
@@ -88,6 +89,7 @@
 	"centralnotice-view-logs": "Apskatīt ierakstus",
 	"centralnotice-user": "Dalībnieks",
 	"centralnotice-action": "Darbība",
+	"centralnotice-change-summary-heading": "Kopsavilkums",
 	"centralnotice-talk-link": "diskusija",
 	"centralnotice-campaign-settings": "Kampaņas iestatījumi",
 	"centralnotice-banner-settings": "Reklāmkaroga iestatījumi",
@@ -109,6 +111,7 @@
 	"centralnotice-country-unknown": "Nezināms/Nav nosakāms",
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-archive-banner-cancel": "Atcelt",
+	"centralnotice-archive-campaign": "Arhīvs",
 	"centralnotice-archive-campaign-cancel": "Atcelt",
 	"centralnotice-delete-banner": "Dzēst",
 	"centralnotice-delete-banner-cancel": "Atcelt",

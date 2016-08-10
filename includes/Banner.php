@@ -929,7 +929,7 @@ class Banner {
 			$this->saveBodyContent( $summary );
 
 			// Open a transaction so that everything is consistent
-			$db->begin( __METHOD__ );
+			$db->startAtomic( __METHOD__ );
 
 			if ( !$this->exists() ) {
 				$action = 'created';
@@ -938,7 +938,7 @@ class Banner {
 			$this->saveBannerInternal( $db );
 			$this->logBannerChange( $action, $user, array(), $summary );
 
-			$db->commit( __METHOD__ );
+			$db->endAtomic( __METHOD__ );
 
 			// Clear the dirty flags
 			foreach ( $this->dirtyFlags as $flag => &$value ) { $value = false; }
