@@ -97,11 +97,18 @@ class CentralNoticeHooks {
 	 */
 	public static function onCanonicalNamespaces( &$namespaces ) {
 		global $wgExtraNamespaces, $wgNamespacesWithSubpages, $wgTranslateMessageNamespaces;
-		global $wgNoticeUseTranslateExtension, $wgNoticeInfrastructure, $wgNoticeBannerNSID;
+		global $wgNoticeUseTranslateExtension, $wgNoticeInfrastructure;
 
+		// TODO XXX Old doc copied from legacy follows, verify accuracy!
+		// When using the group review feature of translate; this
+		// will be the namespace ID for the banner staging area -- ie: banners
+		// here are world editable and will not be moved to the MW namespace
+		// until they are in $wgNoticeTranslateDeployStates
+
+		// TODO This may be unnecessary. Must coordinate with extension.json
 		if ( !defined( 'NS_CN_BANNER' ) ) {
-			define( 'NS_CN_BANNER', $wgNoticeBannerNSID );
-			define( 'NS_CN_BANNER_TALK', $wgNoticeBannerNSID + 1 );
+			define( 'NS_CN_BANNER', 866 );
+			define( 'NS_CN_BANNER_TALK', 867 );
 		}
 
 		if ( $wgNoticeInfrastructure && $wgNoticeUseTranslateExtension ) {

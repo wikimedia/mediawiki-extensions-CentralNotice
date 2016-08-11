@@ -15,6 +15,20 @@
 	"descriptionmsg": "centralnotice-desc",
 	"license-name": "GPL-2.0+",
 	"type": "other",
+	"namespaces": [
+		{
+			"id": 866,
+			"constant": "NS_CN_BANNER",
+			"name": "CNBanner",
+			"conditional": true
+		},
+		{
+			"id": 867,
+			"constant": "NS_CN_BANNER_TALK",
+			"name": "CNBanner_talk",
+			"conditional": true
+		}
+	],
 	"callback": "CentralNoticeHooks::onRegistration",
 	"MessagesDirs": {
 		"CentralNotice": [
@@ -413,7 +427,6 @@
 		"NoticeBannerMaxAge": 600,
 		"NoticeUseTranslateExtension": false,
 		"NoticeUseLanguageConversion": false,
-		"NoticeBannerNSID": 866,
 		"NoticeProtectGroup": "sysop",
 		"NoticeTranslateDeployStates": [
 			"published"

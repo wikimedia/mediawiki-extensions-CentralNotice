@@ -123,12 +123,6 @@ Configuration
   language (zh for zh-cn, for example) instead.
   Default: false
 
-* $wgNoticeBannerNSID: When using the group review feature of translate; this
-  will be the namespace ID for the banner staging area -- ie: banners here are
-  world editable and will not be moved to the MW namespace until they are in
-  $wgNoticeTranslateDeployStates
-  Default: 866
-
 * $wgNoticeProtectGroup: When a banner is protected; what group is assigned.
   This is used for banners in the CNBanner namespace to protect origin
   messages.
