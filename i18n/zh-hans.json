@@ -248,7 +248,7 @@
 	"centralnotice-add-new-banner-title": "加入一个新横幅",
 	"centralnotice-delete-banner": "删除",
 	"centralnotice-delete-banner-title": "删除{{PLURAL:$1|横幅}}",
-	"centralnotice-delete-banner-confirm": "警告：删除会移除所有设置和消息。此操作无法撤消。请考虑改为存档。",
+	"centralnotice-delete-banner-confirm": "警告：删除会移除所有设置和消息。此操作无法撤销。请考虑改为存档。",
 	"centralnotice-delete-banner-cancel": "取消",
 	"centralnotice-messages-pending-approval": "有消息正在等待审核的语言",
 	"centralnotice-devices": "在设备上显示",
