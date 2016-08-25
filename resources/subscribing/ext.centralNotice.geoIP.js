@@ -1,21 +1,22 @@
 /**
- * Process location data and set up window.Geo.
- * Provides mw.centralNotice.setWindowGeo().
+ * Processes location data and sets up a promise that resolves with that data.
+ * Sets the global window.Geo and provides the public mw.geoIP object.
+ * TODO Deprecate global window.Geo
  * TODO Move this out of CentralNotice. See https://phabricator.wikimedia.org/T102848
  */
 ( function ( $, mw ) {
 
 	var COOKIE_NAME = 'GeoIP',
-		GEOIP_LOOKUP_URL = '//geoiplookup.wikimedia.org/';
+		geoPromise;
 
 	/**
 	 * Parse geo data in cookieValue and return an object with properties from
-	 * the fields therein. Returns null if the value couldn't be parsed.
+	 * the fields therein. Returns null if the value couldn't be parsed or
+	 * doesn't contain location data.
 	 *
 	 * The cookie will look like one of the following:
 	 * - "US:CO:Denver:39.6762:-104.887:v4"
-	 * - ":::::v6"
-	 * - ""
+	 * - ":::::v4"
 	 *
 	 * @param {string} cookieValue
 	 * @return {?Object}
@@ -45,6 +46,12 @@
 				.concat( matches.slice( 2 ) );
 		}
 
+		// There was no info found if there's no country field, or if it's
+		// empty
+		if ( ( typeof matches[ 1 ] !== 'string' ) || ( matches[ 1 ].length === 0 ) ) {
+			return null;
+		}
+
 		// Return a juicy Geo object
 		return {
 			country: matches[ 1 ],
@@ -57,44 +64,21 @@
 	}
 
 	/**
-	 * Serialize geoObj to store it in the cookie.
-	 *
-	 * @param {Object} geoObj
-	 * @return {string}
+	 * Serialize a geo object and store it in the cookie
+	 * @param {Object} geo
 	 */
-	function serializeCookieValue( geoObj ) {
-
+	function storeGeoInCookie( geo ) {
 		var parts = [
-			geoObj.country,
-			geoObj.region,
-			( geoObj.city && geoObj.city.replace( /[^a-z]/i, '_' ) ) || '',
-			geoObj.lat,
-			geoObj.lon,
-			( geoObj.IP && geoObj.IP.match( ':' ) ) ? 'v6' : 'v4'
-		];
+				geo.country,
+				geo.region || '',
+				( geo.city && geo.city.replace( /[^a-z]/i, '_' ) ) || '',
+				geo.lat || '',
+				geo.lon || '',
+				geo.af || ''
+			],
+			cookieValue = parts.join( ':' );
 
-		return parts.join( ':' );
-	}
-
-	/**
-	 * Can we rely on this geo data?
-	 *
-	 * @param {Object} geoObj
-	 * @return {boolean}
-	 */
-	function isGeoDataValid( geoObj ) {
-		// - Ensure 'country' is set to detect whether the cookie was succesfully
-		//   parsed by parseCookieValue().
-		// - Ensure 'country' is non-empty to detect empty values for when
-		//   geo lookup failed (typically on IPv6 connections). This check
-		//   is mandatory as otherwise the below code does not fallback to
-		//   geoiplookup.wikimedia.org (IPv4-powered).
-		// - The check for geoObj.af !== 'vx' became mandatory in recent
-		//   refactoring to account for the temporary Geo value for during the
-		//   lookup request. It (or something similar) is necesssary.
-		return ( typeof geoObj.country === 'string' &&
-			geoObj.country.length > 0 &&
-			geoObj.af !== 'vx' );
+		$.cookie( COOKIE_NAME, cookieValue, { path: '/' } );
 	}
 
 	/**
@@ -103,113 +87,84 @@
 	mw.geoIP = {
 
 		/**
-		 * Deferred object used to indicate when window.Geo is fully processed
-		 * @private
-		 */
-		deferred: $.Deferred(),
-
-		/**
-		 * Attempt to set window.Geo with data from the GeoIP cookie. If that fails,
-		 * make a background call that sets window.Geo, and attempt to set the
-		 * cookie.
+		 * Don't call this function! It is only exposed for tests.
 		 *
+		 * Set a promise that resolves with geo. First try to get data from the
+		 * GeoIP cookie. If that fails, and if a background lookup callback
+		 * module is configured, try the background lookup.
 		 * @private
 		 */
-		setWindowGeo: function () {
+		makeGeoWithPromise: function () {
 
 			var cookieValue = $.cookie( COOKIE_NAME ),
-				geoObj;
+				geo, deferred, lookupModule;
 
 			// Were we able to read the cookie?
 			if ( cookieValue ) {
-				geoObj = parseCookieValue( cookieValue );
+				geo = parseCookieValue( cookieValue );
 
-				// All good? Set window.Geo and get outta here.
-				if ( geoObj && isGeoDataValid( geoObj ) ) {
-					window.Geo = geoObj;
-					mw.geoIP.deferred.resolve();
+				// All good? Resolve with geo and get outta here.
+				if ( geo ) {
+					deferred = $.Deferred();
+					geoPromise = deferred.promise();
+					deferred.resolve( geo );
 					return;
 				}
 			}
 
 			// Handle no geo data from the cookie.
 
-			// First, set window.Geo to signal the lack of geo data.
-			// TODO Is this really how we want to do this?
-			// Note: This should coordinate with check for af !== 'vx' in
-			// isGeoDataValid().
-			window.Geo = {
-				country: '',
-				region: '',
-				city: '',
-				lat: '',
-				lon: '',
-				af: 'vx'
-			};
+			// If there's a background lookup to fall back to, do that
+			lookupModule =
+				mw.config.get( 'wgCentralNoticeGeoIPBackgroundLookupModule' );
 
-			// Try to get geo data via a background request.
-			// The WMF host used for this has no IPv6 address, so the request will
-			// force dual-stack users to fall back to IPv4. This is intentional;
-			// IPv4 lookups may succeed when a IPv6 one fails.
-			$.ajax( {
-				url: GEOIP_LOOKUP_URL,
-				dataType: 'script',
-				cache: true
-			} ).always( function () {
+			if ( lookupModule ) {
 
-				// The script should set window.Geo itself. Regardless of what
-				// happened, we'll store the contents of window.Geo in a cookie...
-				// If the call was unsuccessful, we'll just be storing the
-				// invalid data, which should trigger another attempt next
-				// time around. If it was successful and we have good data,
-				// subsequent page views should trigger neither an IP lookup in
-				// Varnish nor an AJAX request get the data.
+				geoPromise = mw.loader.using( lookupModule )
 
-				// Sanity check
-				if ( !window.Geo || typeof window.Geo !== 'object' ) {
+					// require arg needed for debug mode to work TODO fixed?
+					.then( function ( require ) {
+						var lookupCallback = require( lookupModule );
 
-					mw.log.warn( 'window.Geo cleared or ' +
-						'incorrectly set by GeoIP lookup.' );
+						// Chaining lookup: here, return the promise provided by
+						// lookupCallback(), so it controls the result of the
+						// new promise we get from then(). Also, the geo object
+						// returned by the lookup promise's then() handler will
+						// be passed on as an argument to the new promise's
+						// done() handlers.
+						return lookupCallback();
+					} );
 
-					mw.geoIP.deferred.reject();
-					return;
-				}
+				// If the lookup was successful, store geo in a cookie
+				geoPromise.done( function ( geo ) {
+					storeGeoInCookie( geo );
+				} );
 
-				if ( !isGeoDataValid( window.Geo ) ) {
-					mw.geoIP.deferred.reject();
-					return;
-				}
-
-				cookieValue = serializeCookieValue( window.Geo );
-
-				// Update the cookie so we don't need to fetch it next time.
-				// FIXME: This doesn't work in WMF production, because Varnish sets its initial
-				// Geo cookie with a wildcard domain (e.g. '.wikipedia.org'). This avoids sending
-				// the client a cookie for each domain. But, doesn't work with this function
-				// because cookies vary on path and domain. This doesn't update the '.wikipedia.org'
-				// cookie but creates a new 'en.wikipedia.org' cookie.
-				// TODO: Update retreival code above to bypass $.cookie() and use document.cookie
-				// directly to find the better entry instead of the first one. Both cookies will
-				// be available through document.cookie.
-				// http://blog.jasoncust.com/2012/01/problem-with-documentcookie.html
-				$.cookie( COOKIE_NAME, cookieValue, { path: '/' } );
-
-				mw.geoIP.deferred.resolve();
-			} );
+			// If no background lookup is available, we don't have geo data
+			} else {
+				deferred = $.Deferred();
+				geoPromise = deferred.promise();
+				deferred.reject();
+			}
 		},
 
 		/**
-		 * Returns a promise that resolves when window.Geo is available. While
+		 * Returns a promise that resolves with geo when it's available. While
 		 * it's usually available right away, it may not be if a background
-		 * call is needed.
+		 * call is performed.
 		 *
 		 * @return {jQuery.Promise}
 		 */
 		getPromise: function () {
-			return mw.geoIP.deferred.promise();
+			return geoPromise;
 		}
 	};
 
-	mw.geoIP.setWindowGeo();
+	mw.geoIP.makeGeoWithPromise();
+
+	// For legacy code, set global window.Geo TODO: deprecate
+	geoPromise.done( function ( geo ) {
+		window.Geo = geo;
+	} );
 
 } )(  jQuery, mediaWiki );

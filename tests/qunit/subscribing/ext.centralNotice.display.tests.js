@@ -3,7 +3,6 @@
 	'use strict';
 
 	var realAjax = $.ajax,
-		realWindowGeo = window.Geo,
 		realGeoIP = mw.geoIP,
 		realBucketCookie = $.cookie( 'CN' ),
 		realHideCookie = $.cookie( 'centralnotice_hide_fundraising' ),
@@ -146,12 +145,12 @@
 				'<div id=siteNotice><div id=centralNotice></div></div>'
 			);
 
-			// Mock window.Geo object and mw.geoIP
-			window.Geo = {};
+			// Mock mw.geoIP
 			mw.geoIP = {
 				getPromise: function () {
 					var deferred = $.Deferred();
-					deferred.resolve();
+					// Resolve with minimal valid geo object
+					deferred.resolve( { country: 'AQ' } );
 					return deferred.promise();
 				}
 			};
@@ -164,10 +163,6 @@
 			mw.centralNotice.internal.state.data = {};
 			mw.centralNotice.internal.state.campaign = null;
 			mw.centralNotice.internal.state.banner = null;
-
-			if ( typeof realWindowGeo !== 'undefined' ) {
-				window.Geo = realWindowGeo;
-			}
 		}
 	} ) );
 

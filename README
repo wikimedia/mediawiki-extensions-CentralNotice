@@ -196,3 +196,13 @@ Configuration
 	- largeBannerLimit
 
 * $wgNoticeTabifyPages: Declare all pages that should be tabified as CN pages
+
+* $wgCentralNoticeGeoIPBackgroundLookupModule: Optional name of a ResourceLoader
+  module to perfom a background GeoIP lookup via a third-party service. If no
+  GeoIP cookie is found, the module is used to call the service. It should
+  return geo via a promise. Here we provide an example implementation for
+  freegeoip.net (ext.centralNotice.freegeoipLookup), but modules for other
+  similar services should be easy to create. If this config setting is null, geo
+  data will only be set from the GeoIP cookie. In the WMF production, this
+  cookie should be set server-side from Varnish.
+  Default: null

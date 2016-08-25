@@ -3,7 +3,9 @@
 		"jQuery",
 		"mediaWiki",
 		"QUnit",
-		"JSON"
+		"JSON",
+		"module",
+		"require"
 	],
 
 	"undef": true,
