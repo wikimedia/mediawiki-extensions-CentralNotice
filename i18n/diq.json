@@ -39,7 +39,7 @@
 	"centralnotice-add-notice-cancel-button": "Bıtexelne",
 	"centralnotice-edit-notice": "Kampanya bıvurne",
 	"centralnotice-add-template": "Yew Sablon vırazê",
-	"centralnotice-show-notices": "İqazan bımosne",
+	"centralnotice-show-notices": "İqazan bımocne",
 	"centralnotice-list-templates": "Şablona liste ke",
 	"centralnotice-language-listing": "$1 - $2",
 	"centralnotice-translations": "Çarnayişan",
@@ -131,7 +131,7 @@
 	"centralnotice-preferred": "Tercihbiyaye",
 	"centralnotice-archived": "Arşivya yo",
 	"centralnotice-logs": "Qeydi",
-	"centralnotice-view-logs": "Qeyda bımosne",
+	"centralnotice-view-logs": "Qeydan bımocne",
 	"centralnotice-timestamp": "İmzay demi",
 	"centralnotice-user": "Karber",
 	"centralnotice-action": "Kerdış",
@@ -207,6 +207,6 @@
 	"centralnotice-end-timestamp": "Qedyin (UTC)",
 	"centralnotice-start-date": "Sertera demi (UTC)",
 	"centralnotice-start-time": "Seetê başli kerdişî  (UTC)",
-	"centralnotice-end-date": "Tarixê qediyayîşî (UTC)",
+	"centralnotice-end-date": "Demê qediyayışi (UTC)",
 	"centralnotice-end-time": "Kedyayış (UTC)"
 }
