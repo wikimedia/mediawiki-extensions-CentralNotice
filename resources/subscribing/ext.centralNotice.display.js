@@ -504,6 +504,7 @@
 
 			mw.geoIP.getPromise()
 				.fail( cn.internal.state.setInvalidGeoData )
+				.done( cn.internal.state.setGeoData )
 				.always( reallyChooseAndMaybeDisplay );
 		},
 
@@ -513,6 +514,7 @@
 			// campaign and banner.
 			mw.geoIP.getPromise()
 				.fail( cn.internal.state.setInvalidGeoData )
+				.done( cn.internal.state.setGeoData )
 				.always( function () {
 					cn.internal.state.setUpForTestingBanner();
 					setUpDataProperty();

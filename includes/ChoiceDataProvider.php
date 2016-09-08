@@ -42,10 +42,26 @@ class ChoiceDataProvider {
 		$choices = $cache->getWithSetCallback(
 			$dataKey,
 			self::CACHE_TTL,
-			function () use ( $project, $language ) {
-				return self::fetchChoices( $project, $language );
+			function ( $oldValue, &$ttl, array &$setOpts )
+				use ( $project, $language ) {
+
+				$dbr = CNDatabase::getDb( DB_SLAVE );
+
+				// Account for slave lag to prevent a race condition when
+				// campaigns are updated, the cache is invalidated, and
+				// a client queries a yet-unsynced slave DB. Also, gracefully
+				// fail if we're running an old version of core (<1.27).
+				if ( method_exists( 'Database', 'getCacheSetOptions') ) {
+					$setOpts += Database::getCacheSetOptions( $dbr );
+				}
+
+				return self::fetchChoices( $project, $language, $dbr );
 			},
 			[
+				// We don't bother with the lockTSE option because the only
+				// potentially high-volume requests that would ask for this
+				// object are heavily cached by Varnish, for all users. (Those
+				// requests are for load.php.)
 				'checkKeys' => [ $checkKey ],
 				'pcTTL' => $cache::TTL_PROC_LONG,
 			]
@@ -59,11 +75,12 @@ class ChoiceDataProvider {
 		} );
 	}
 
-	private static function fetchChoices( $project, $language ) {
+	private static function fetchChoices( $project, $language,
+		IDatabase $dbr ) {
+
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
 
-		$dbr = CNDatabase::getDb( DB_SLAVE );
 		$cache = ObjectCache::getMainWANInstance();
 
 		// Set up conditions

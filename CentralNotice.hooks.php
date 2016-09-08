@@ -136,12 +136,13 @@ class CentralNoticeHooks {
 	public static function onBeforePageDisplay( $out, $skin ) {
 		global $wgCentralHost, $wgServer, $wgRequest;
 
-		// If we're editing or we're on a special page, just add the geoIP module
-		// and bow out
+		// Always add geoIP
+		// TODO Separate geoIP from CentralNotice
+		$out->addModules( 'ext.centralNotice.geoIP' );
+
+		// If we're editing or we're on a special page, bow out now
 		if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
 			( $wgRequest->getText( 'action' ) === 'edit' ) ) {
-
-			$out->addModules( 'ext.centralNotice.geoIP' );
 			return true;
 		}
 
@@ -150,12 +151,9 @@ class CentralNoticeHooks {
 			$out->addHeadItem( 'cn-dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
 		}
 
-		// Insert the startup and geoIP modules
-		// TODO Separate geoIP from CentralNotice
-		$out->addModules( array(
-			'ext.centralNotice.startUp',
-			'ext.centralNotice.geoIP'
-		) );
+		// Insert the startup module
+		$out->addModules( 'ext.centralNotice.startUp' );
+
 		return true;
 	}
 
@@ -170,14 +168,23 @@ class CentralNoticeHooks {
 		// Using global $wgUser for compatibility with 1.18
 		global $wgNoticeProject, $wgCentralNoticeCookiesToDelete,
 			$wgCentralNoticeCategoriesUsingLegacy,
+			$wgCentralNoticeGeoIPBackgroundLookupModule,
 			$wgUser, $wgMemc;
 
 		// FIXME Is this no longer used anywhere in JS following the switch to
 		// client-side banner selection? If so, remove it.
 		$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
 		$vars[ 'wgCentralNoticeCookiesToDelete' ] = $wgCentralNoticeCookiesToDelete;
+
 		$vars[ 'wgCentralNoticeCategoriesUsingLegacy' ] =
 			$wgCentralNoticeCategoriesUsingLegacy;
+
+		// No need to provide this variable if it's null, because mw.config.get()
+		// will return null if it's not there.
+		if ( $wgCentralNoticeGeoIPBackgroundLookupModule ) {
+			$vars[ 'wgCentralNoticeGeoIPBackgroundLookupModule' ] =
+				$wgCentralNoticeGeoIPBackgroundLookupModule;
+		}
 
 		// Output the user's registration date, total edit count, and past year's edit count.
 		// This is useful for banners that need to be targeted to specific types of users.

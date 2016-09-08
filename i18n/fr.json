@@ -293,7 +293,7 @@
 	"centralnotice-banner-history-logger-max-entries-help": "Si davantage d’historique est enregistré avant que le journal soit envoyé au serveur, les éléments les plus anciens disparaîtront.",
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "Délai d’attente pour envoyer le journal sans sendBeacon (en millisecondes)",
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "Pour envoyer le journal immédiatement avant d’aller sur une autre page, dans certains navigateurs, nous fixons un temps d’attente maximal avant d’abandonner l’envoi du journal.",
-	"centralnotice-legacy-support": "Support du cache patrimonial et du compteur d'impression",
+	"centralnotice-legacy-support": "Prise en charge du cache patrimonial et du compteur d’impression",
 	"centralnotice-legacy-support-help": "Paramètres pour la compatibilité avec les anciennes bannières qui dépendent de Special:RecordImpression ou incluent du JavaScript qui masque la bannière.",
 	"centralnotice-set-record-impression-sample-rate": "Fixer le taux d’échantillonnage pour Special:RecordImpression",
 	"centralnotice-custom-record-impression-sample-rate": "Taux d’échantillonnage de Special:RecordImpression (doit être entre 0 et 1 inclus)",

@@ -331,6 +331,16 @@
 				"mobile"
 			]
 		},
+		"ext.centralNotice.freegeoipLookup": {
+			"scripts": "subscribing/ext.centralNotice.freegeoipLookup.js",
+			"dependencies": [
+				"ext.centralNotice.geoIP"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
 		"ext.centralNotice.bannerController": {
 			"position": "top",
 			"dependencies": [
@@ -571,7 +581,8 @@
 				"type": "views",
 				"message": "centralnotice-logs"
 			}
-		}
+		},
+		"CentralNoticeGeoIPBackgroundLookupModule": null
 	},
 	"manifest_version": 1
 }

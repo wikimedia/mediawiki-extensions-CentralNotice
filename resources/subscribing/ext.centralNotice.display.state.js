@@ -108,10 +108,9 @@
 		state.data.uselang = mw.config.get( 'wgUserLanguage' );
 		state.data.device = urlParams.device || getDeviceCode();
 
-		// data.country may already have been set, if setInvalidGeoData() was
-		// called
+		// data.country should already have been set
 		state.data.country = urlParams.country || state.data.country ||
-			( window.Geo && window.Geo.country ) || UNKNOWN_COUNTRY_CODE;
+			UNKNOWN_COUNTRY_CODE;
 
 		// Some parameters should get through even if they have falsey values
 		state.data.debug = urlParams.debug !== undefined ? true : false;
@@ -176,8 +175,16 @@
 		banner: null,
 
 		/**
+		 * Call this with geo data before calling setUp() or
+		 * setUpForTestingBanner().
+		 */
+		setGeoData: function ( geo ) {
+			state.data.country = ( geo && geo.country );
+		},
+
+		/**
 		 * Call this before calling setUp() or setUpForTestingBanner()
-		 * if window.Geo is known to be invalid.
+		 * if valid geo data is not available.
 		 */
 		setInvalidGeoData: function () {
 			state.data.country = UNKNOWN_COUNTRY_CODE;
