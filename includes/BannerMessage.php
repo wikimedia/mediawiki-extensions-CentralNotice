@@ -97,13 +97,8 @@ class BannerMessage {
 		$savePage = function( $title, $text ) use( $summary ) {
 			$wikiPage = new WikiPage( $title );
 
-			if ( class_exists( 'ContentHandler' ) ) {
-				// MediaWiki 1.21+
-				$content = ContentHandler::makeContent( $text, $title );
-				$result = $wikiPage->doEditContent( $content, $summary, EDIT_FORCE_BOT );
-			} else {
-				$wikiPage->doEdit( $translation, $summary, EDIT_FORCE_BOT );
-			}
+			$content = ContentHandler::makeContent( $text, $title );
+			$result = $wikiPage->doEditContent( $content, $summary, EDIT_FORCE_BOT );
 
 			return $wikiPage;
 		};
