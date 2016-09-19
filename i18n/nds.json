@@ -16,7 +16,7 @@
 	"centralnotice-enabled": "Aktiv",
 	"centralnotice-modify": "OK",
 	"centralnotice-view": "Ankieken",
-	"centralnotice-preview": "Vörschau",
+	"centralnotice-preview": "Vörschau ($1)",
 	"centralnotice-add-new": "Ne’e zentrale Sitenotice tofögen",
 	"centralnotice-remove": "Rutnehmen",
 	"centralnotice-translate-heading": "Översetten för $1",
