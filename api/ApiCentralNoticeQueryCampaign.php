@@ -47,34 +47,6 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	}
 
 	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getParamDescription() {
-		$params = array();
-
-		$params['campaign'] = "Campaign name. Separate multiple values with a \"|\" (vertical bar).";
-
-		return $params;
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getDescription() {
-		return 'Get all configuration settings for a campaign.';
-	}
-
-	/**
-	 * Example API calls.
-	 *
-	 * @deprecated since MediaWiki core 1.25
-	 * @return array|bool|string
-	 */
-	public function getExamples() {
-		return "api.php?action=centralnoticequerycampaign&format=json&campaign=Plea_US";
-	}
-
-	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {

@@ -54,39 +54,6 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 	}
 
 	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getParamDescription() {
-		$params = array();
-
-		$params['campaign'] = "Campaign name (optional). Separate multiple values with a \"|\" (vertical bar).";
-		$params['start'] = "Start time of range (optional).";
-		$params['end'] = "End time of range (optional).";
-		$params['user'] = "Username (optional)";
-		$params['limit'] = "Maximum rows to return (optional)";
-		$params['offset'] = "Offset into result set (optional)";
-
-		return $params;
-	}
-
-	/**
-	 * @deprecated since MediaWiki core 1.25
-	 */
-	public function getDescription() {
-		return 'Get a log of campaign configuration changes.';
-	}
-
-	/**
-	 * Example API calls.
-	 *
-	 * @deprecated since MediaWiki core 1.25
-	 * @return array|bool|string
-	 */
-	public function getExamples() {
-		return "api.php?action=query&list=centralnoticelogs&format=json";
-	}
-
-	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
