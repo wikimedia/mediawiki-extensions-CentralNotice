@@ -703,7 +703,7 @@ class Banner {
 	 * Returns an array of Title objects that have been included as templates
 	 * in this banner.
 	 *
-	 * @return Array of Title
+	 * @return array of Title
 	 */
 	public function getIncludedTemplates() {
 		return $this->getTitle()->getTemplateLinksFrom();
@@ -893,7 +893,6 @@ class Banner {
 		);
 		while ( $row = $result->fetchRow() ) {
 			if ( preg_match( "/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'], $matches ) ) {
-				$field = $matches[1];
 				if ( isset( $matches[2] ) ) {
 					$lang = $matches[2];
 				} else {
@@ -1321,7 +1320,7 @@ class Banner {
 	 * @param $devices          array Array of device names this banner is targeted at
 	 * @param $summary          string|null Optional summary of changes for logging
 	 *
-	 * @return bool true or false depending on whether banner was successfully added
+	 * @return string|null error message key or null on success
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon,
 		$displayAccount, $fundraising = false,
@@ -1391,7 +1390,7 @@ class Banner {
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$value = FormatJSON::encode( $value );
+				$value = FormatJson::encode( $value );
 			}
 
 			$log[ 'tmplog_end_' . $key ] = $value;

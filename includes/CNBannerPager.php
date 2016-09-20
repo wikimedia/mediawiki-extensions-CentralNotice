@@ -17,6 +17,9 @@ class CNBannerPager extends ReverseChronologicalPager {
 	/** @var string 'Section' attribute to apply to the banner elements generated */
 	protected $formSection = null;
 
+	/** @var SpecialCentralNoticeBanners the page on which we appear */
+	protected $hostSpecialPage;
+
 	/**
 	 * @param SpecialCentralNoticeBanners $hostSpecialPage
 	 * @param string         $formSection

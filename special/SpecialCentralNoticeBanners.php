@@ -409,7 +409,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		// Generate the form
-		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
+		$formDescriptor = $this->generateBannerEditForm();
 
 		// Now begin form processing
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext(), 'centralnotice' );
@@ -423,7 +423,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 
 		// Recreate the form because something could have changed
-		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
+		$formDescriptor = $this->generateBannerEditForm();
 
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext(), 'centralnotice' );
 		$htmlForm->setSubmitCallback( array( $this, 'processEditBanner' ) )->setId( 'cn-banner-editor' );
@@ -932,7 +932,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			);
 		}
 
-		$this->getOutput()->addHtml( $htmlOut );
+		$this->getOutput()->addHTML( $htmlOut );
 	}
 }
 

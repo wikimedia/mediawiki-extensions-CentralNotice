@@ -3,7 +3,7 @@
 class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	public $viewPage, $special;
 
-	function __construct( $special ) {
+	function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
 		parent::__construct();
 
