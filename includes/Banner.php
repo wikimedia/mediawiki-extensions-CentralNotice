@@ -1313,17 +1313,18 @@ class Banner {
 	 * @param $name             string name of banner
 	 * @param $body             string content of banner
 	 * @param $user             User causing the change
-	 * @param $displayAnon      integer flag for display to anonymous users
-	 * @param $displayAccount   integer flag for display to logged in users
-	 * @param $fundraising      integer flag for fundraising banner (optional)
+	 * @param $displayAnon      boolean flag for display to anonymous users
+	 * @param $displayAccount   boolean flag for display to logged in users
+	 * @param $fundraising      boolean flag for fundraising banner (optional)
 	 * @param $mixins           array list of mixins (optional)
 	 * @param $priorityLangs    array Array of priority languages for the translate extension
 	 * @param $devices          array Array of device names this banner is targeted at
+	 * @param $summary          string|null Optional summary of changes for logging
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon,
-		$displayAccount, $fundraising = 0,
+		$displayAccount, $fundraising = false,
 		$mixins = array(), $priorityLangs = array(), $devices = null,
 		$summary = null
 	) {
@@ -1343,7 +1344,7 @@ class Banner {
 		}
 
 		$banner->setAllocation( $displayAnon, $displayAccount );
-		$banner->setCategory( ( $fundraising == 1 ) ? 'fundraising' : '{{{campaign}}}' );
+		$banner->setCategory( $fundraising ? 'fundraising' : '{{{campaign}}}' );
 		$banner->setDevices( $devices );
 		$banner->setPriorityLanguages( $priorityLangs );
 		$banner->setBodyContent( $body );

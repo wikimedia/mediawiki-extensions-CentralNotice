@@ -264,7 +264,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							false,
 							false,
 							// Default values of a zillion parameters...
-							0, array(), array(), null,
+							false, array(), array(), null,
 							$formData['newBannerEditSummary']
 						);
 

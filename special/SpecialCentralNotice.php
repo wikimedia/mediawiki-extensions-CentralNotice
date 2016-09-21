@@ -151,19 +151,19 @@ class CentralNotice extends SpecialPage {
 			if ( isset( $campaignChanges['archived'] ) ) {
 
 				Campaign::setBooleanCampaignSetting( $campaignName, 'archived',
-					$campaignChanges['archived'] ? 1 : 0 );
+					$campaignChanges['archived'] );
 			}
 
 			if ( isset( $campaignChanges['locked'] ) ) {
 
 				Campaign::setBooleanCampaignSetting( $campaignName, 'locked',
-					$campaignChanges['locked'] ? 1 : 0 );
+					$campaignChanges['locked'] );
 			}
 
 			if ( isset( $campaignChanges['enabled'] ) ) {
 
 				Campaign::setBooleanCampaignSetting( $campaignName, 'enabled',
-					$campaignChanges['enabled'] ? 1 : 0 );
+					$campaignChanges['enabled'] );
 			}
 
 			if ( isset( $campaignChanges['priority'] ) ) {
@@ -433,7 +433,7 @@ class CentralNotice extends SpecialPage {
 		if ( $noticeName == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 		} else {
-			$result = Campaign::addCampaign( $noticeName, '0', $start, $projects,
+			$result = Campaign::addCampaign( $noticeName, false, $start, $projects,
 				$project_languages, $geotargeted, $geo_countries,
 				100, CentralNotice::NORMAL_PRIORITY, $this->getUser(),
 				$this->getSummaryFromRequest( $request ) );
@@ -579,24 +579,20 @@ class CentralNotice extends SpecialPage {
 
 				// Handle removing campaign
 				if ( $request->getVal( 'archive' ) ) {
-					Campaign::setBooleanCampaignSetting( $notice, 'archived', 1 );
+					Campaign::setBooleanCampaignSetting( $notice, 'archived', true );
 				}
 
 				$initialCampaignSettings = Campaign::getCampaignSettings( $notice );
 
 				// Handle locking/unlocking campaign
-				if ( $request->getCheck( 'locked' ) ) {
-					Campaign::setBooleanCampaignSetting( $notice, 'locked', 1 );
-				} else {
-					Campaign::setBooleanCampaignSetting( $notice, 'locked', 0 );
-				}
+				Campaign::setBooleanCampaignSetting(
+					$notice, 'locked', $request->getCheck( 'locked' )
+				);
 
 				// Handle enabling/disabling campaign
-				if ( $request->getCheck( 'enabled' ) ) {
-					Campaign::setBooleanCampaignSetting( $notice, 'enabled', 1 );
-				} else {
-					Campaign::setBooleanCampaignSetting( $notice, 'enabled', 0 );
-				}
+				Campaign::setBooleanCampaignSetting(
+					$notice, 'enabled', $request->getCheck( 'enabled' )
+				);
 
 				// Set campaign traffic throttle
 				if ( $request->getCheck( 'throttle-enabled' ) ) {
@@ -629,13 +625,13 @@ class CentralNotice extends SpecialPage {
 
 				// Handle updating geotargeting
 				if ( $request->getCheck( 'geotargeted' ) ) {
-					Campaign::setBooleanCampaignSetting( $notice, 'geo', 1 );
+					Campaign::setBooleanCampaignSetting( $notice, 'geo', true );
 					$countries = $request->getArray( 'geo_countries' );
 					if ( $countries ) {
 						Campaign::updateCountries( $notice, $countries );
 					}
 				} else {
-					Campaign::setBooleanCampaignSetting( $notice, 'geo', 0 );
+					Campaign::setBooleanCampaignSetting( $notice, 'geo', false );
 				}
 
 				// Handle updating the start and end settings
