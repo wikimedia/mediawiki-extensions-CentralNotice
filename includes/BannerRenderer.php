@@ -133,7 +133,9 @@ class BannerRenderer {
 
 		$bannerKey = $this->banner->getDbKey();
 		$bannerHtml = $this->context->msg( $bannerKey )->inLanguage( $parentLang )->text();
-		if ( $bannerHtml === "<$bannerKey>" ) {
+		if ( $bannerHtml === "<{$bannerKey}>"
+			|| $bannerHtml === "\u29fc{$bannerKey}\u29fd"
+		) {
 			// Translation subsystem failure
 			throw new RuntimeException(
 				"Banner message key $bannerKey could not be found in {$parentLang->getCode()}"
