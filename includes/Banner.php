@@ -362,18 +362,18 @@ class Banner {
 	/**
 	 * Helper function to initializeDbForNewBanner()
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function initializeDbBasicData( $db ) {
+	protected function initializeDbBasicData( IDatabase $db ) {
 		$db->insert( 'cn_templates', array( 'tmp_name' => $this->name ), __METHOD__ );
 		$this->id = $db->insertId();
 	}
 
 	/**
 	 * Helper function to saveBannerInternal() for saving basic banner metadata
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function saveBasicData( $db ) {
+	protected function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
 			$db->update( 'cn_templates',
 				array(
@@ -482,9 +482,9 @@ class Banner {
 	/**
 	 * Helper function to saveBannerInternal()
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function saveDeviceTargetData( $db ) {
+	protected function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
 			$db->delete( 'cn_template_devices', array( 'tmp_id' => $this->getId() ), __METHOD__ );
@@ -586,9 +586,9 @@ class Banner {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function saveMixinData( $db ) {
+	protected function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
 			$db->delete( 'cn_template_mixins',
 				array( 'tmp_id' => $this->getId() ),
@@ -971,9 +971,9 @@ class Banner {
 	 * being saved. Intended to create all table rows required such that any
 	 * additional operation can be an UPDATE statement.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function initializeDbForNewBanner( $db ) {
+	protected function initializeDbForNewBanner( IDatabase $db ) {
 		$this->initializeDbBasicData( $db );
 	}
 
@@ -987,11 +987,11 @@ class Banner {
 	 *
 	 * Dirty flags are not globally reset until after this function is called.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 *
 	 * @throws BannerExistenceException
 	 */
-	protected function saveBannerInternal( $db ) {
+	protected function saveBannerInternal( IDatabase $db ) {
 		$this->saveBasicData( $db );
 		$this->saveDeviceTargetData( $db );
 		$this->saveMixinData( $db );
