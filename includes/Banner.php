@@ -379,7 +379,7 @@ class Banner {
 				array(
 					 'tmp_display_anon'    => (int)$this->allocateAnon,
 					 'tmp_display_account' => (int)$this->allocateLoggedIn,
-					 'tmp_archived'        => $this->archived,
+					 'tmp_archived'        => (int)$this->archived,
 					 'tmp_category'        => $this->category,
 				),
 				array(
@@ -1362,6 +1362,11 @@ class Banner {
 
 		ChoiceDataProvider::invalidateCache();
 
+		// Summary shouldn't actually come in null, but just in case...
+		if ( $summary === null ) {
+			$summary = '';
+		}
+
 		$endSettings = array();
 		if ( $action !== 'removed' ) {
 			$endSettings = Banner::getBannerSettings( $this->getName(), true );
@@ -1376,19 +1381,8 @@ class Banner {
 			'tmplog_template_id'   => $this->getId(),
 			'tmplog_template_name' => $this->getName(),
 			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
+			'tmplog_comment'       => $summary,
 		);
-
-		// TODO temporary code for soft dependency on schema change
-		// Note: MySQL-specific
-		global $wgDBtype;
-		if ( $wgDBtype === 'mysql' && $dbw->query(
-				'SHOW COLUMNS FROM ' .
-				$dbw->tableName( 'cn_template_log' )
-				. ' LIKE ' . $dbw->addQuotes( 'tmplog_comment' )
-			)->numRows() === 1 ) {
-
-			$log['tmplog_comment'] = $summary;
-		}
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {

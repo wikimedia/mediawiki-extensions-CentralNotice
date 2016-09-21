@@ -230,14 +230,14 @@ class CentralNoticeTestFixtures {
 
 			$campaign['id'] = Campaign::addCampaign(
 				$campaign['name'],
-				$campaign['enabled'],
+				(int)$campaign['enabled'],
 				$campaign['startTs'],
 				$campaign['projects'],
 				$campaign['languages'],
-				$campaign['geotargeted'],
+				(int)$campaign['geotargeted'],
 				$campaign['countries'],
 				$campaign['throttle'],
-				$campaign['preferred'],
+				(int)$campaign['preferred'],
 				$this->user
 			);
 
@@ -273,7 +273,7 @@ class CentralNoticeTestFixtures {
 				Campaign::setBooleanCampaignSetting(
 					$campaign['name'],
 					'archived',
-					$campaign['archived'] ? 1 : 0
+					(int)$campaign['archived']
 				);
 			}
 
