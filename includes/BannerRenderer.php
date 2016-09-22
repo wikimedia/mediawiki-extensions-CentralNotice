@@ -132,15 +132,14 @@ class BannerRenderer {
 		}
 
 		$bannerKey = $this->banner->getDbKey();
-		$bannerHtml = $this->context->msg( $bannerKey )->inLanguage( $parentLang )->text();
-		if ( $bannerHtml === "<{$bannerKey}>"
-			|| $bannerHtml === "\u29fc{$bannerKey}\u29fd"
-		) {
+		$bannerContentMessage = $this->context->msg( $bannerKey )->inLanguage( $parentLang );
+		if ( !$bannerContentMessage->exists() ) {
 			// Translation subsystem failure
 			throw new RuntimeException(
 				"Banner message key $bannerKey could not be found in {$parentLang->getCode()}"
 			);
 		}
+		$bannerHtml = $bannerContentMessage->text();
 		$bannerHtml .= $this->getResourceLoaderHtml();
 		$bannerHtml = $this->substituteMagicWords( $bannerHtml );
 
