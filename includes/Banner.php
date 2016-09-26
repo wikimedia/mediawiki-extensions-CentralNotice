@@ -931,6 +931,7 @@ class Banner {
 
 		try {
 			// Don't move this to saveBannerInternal--can't be in a transaction
+			// TODO: explain why not.  Is text in another database?
 			$this->saveBodyContent( $summary );
 
 			// Open a transaction so that everything is consistent
@@ -1083,9 +1084,7 @@ class Banner {
 			);
 
 			// Delete the MediaWiki page that contains the banner source
-			$article = new Article(
-				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
-			);
+			$article = new Article( $bannerObj->getTitle() );
 			$pageId = $article->getPage()->getId();
 
 			// TODO Inconsistency: deletion of banner content is not recorded
