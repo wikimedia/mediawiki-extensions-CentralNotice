@@ -176,17 +176,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 					$wikiPage = new WikiPage(
 						Title::makeTitleSafe( NS_MEDIAWIKI, 'Centralnotice-' . $key . '/' . $code )
 					);
-					if ( class_exists( 'ContentHandler' ) ) {
-						// MediaWiki 1.21+
-						$wikiPage->doEditContent(
-							ContentHandler::makeContent( $text, $wikiPage->getTitle() ),
-							'Update from translation plugin',
-							EDIT_FORCE_BOT
-						);
-					} else {
-						// Legacy -- pre content handler
-						$wikiPage->doEdit( $text, 'Update from translation plugin', EDIT_FORCE_BOT );
-					}
+					$wikiPage->doEditContent(
+						ContentHandler::makeContent( $text, $wikiPage->getTitle() ),
+						'Update from translation plugin',
+						EDIT_FORCE_BOT
+					);
 				}
 			}
 		}
