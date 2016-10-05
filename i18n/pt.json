@@ -169,7 +169,7 @@
 	"centralnotice-banner-content": "Conteúdo do modelo",
 	"centralnotice-banner-content-changed": "Alterações",
 	"centralnotice-filters": "Filtros de registo",
-	"centralnotice-damaged-log": "$1 - (registro danificado)",
+	"centralnotice-damaged-log": "$1 - (registo danificado)",
 	"centralnotice-date": "Data",
 	"centralnotice-apply-filters": "Aplicar filtros",
 	"centralnotice-clear-filters": "Limpar filtros",
@@ -233,6 +233,5 @@
 	"centralnotice-end-date": "Data de fim (UTC)",
 	"centralnotice-end-time": "Hora de fim (UTC)",
 	"apihelp-query+centralnoticelogs-param-limit": "Máximo de linhas a retornar (opcional).",
-	"apihelp-query+centralnoticelogs-example-1": "Mostrar registos",
-	"centralnotice-impression-diet-cookie-name": "Ocultar o nome do cookie"
+	"apihelp-query+centralnoticelogs-example-1": "Mostrar registos"
 }
