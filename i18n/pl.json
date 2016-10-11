@@ -188,6 +188,7 @@
 	"centralnotice-bucket": "Grupa",
 	"centralnotice-bucket-letter": "Grupa „$1”",
 	"centralnotice-devicetype-desktop": "Komputer stacjonarny",
+	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-iphone": "Wszystkie wersje iPhone'a",
 	"centralnotice-all": "Wszystko",
 	"centralnotice-all-except": "Wszystkie z wyjątkiem $1",
@@ -216,7 +217,7 @@
 	"centralnotice-end-time": "Czas zakończenia (UTC)",
 	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
 	"hidebanners": "Ukryj banery",
+	"apihelp-query+centralnoticelogs-param-user": "Nazwa użytkownika (opcjonalne).",
 	"centralnotice-banner-history-logger-help": "Śledź kolejność banerów oglądanych przez czytelników i od czasu do czasu wysyłaj ją z powrotem do serwera.",
-	"centralnotice-impression-diet-cookie-name-help": "Podaj nazwę ciasteczka dla tych z kampanii, które mają mieć ten sam próg wyświetleń. Uzyskane pomiary wyświetleń zostaną utracone, jeśli zmienisz nazwę ciasteczka podczas trwania kampanii.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Jak długo należy odczekać przed ponownym uruchomieniem cyklu, w sekundach (opcjonalnie)"
 }
