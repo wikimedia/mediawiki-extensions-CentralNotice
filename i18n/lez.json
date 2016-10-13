@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Migraghvi",
-			"Namik"
+			"Namik",
+			"Soul Train"
 		]
 	},
 	"centralnotice-modify": "Ракъурун",
@@ -27,7 +28,7 @@
 	"centralnotice-close-button": "\"КIевун\" дуьгме",
 	"centralnotice-close-title": "Агалун",
 	"centralnotice-countries": "Уьлквеяр",
-	"centralnotice-languages": "ЧIалар",
+	"centralnotice-languages": "ЧӀалар",
 	"centralnotice-language": "Чlал",
 	"centralnotice-projects": "Проектар",
 	"centralnotice-country": "Уьлкве",
