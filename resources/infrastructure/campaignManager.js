@@ -39,7 +39,7 @@
 		slide: function ( event, element ) {
 			var val = Number( element.value ),
 				rounded = Math.round( val * 10 ) / 10;
-			$( '#centralnotice-throttle-echo' ).html( String( rounded ) + '%' );
+			$( '#centralnotice-throttle-echo' ).text( String( rounded ) + '%' );
 			$( '#centralnotice-throttle-cur' ).val( val );
 		}
 	} );

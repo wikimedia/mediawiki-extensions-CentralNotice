@@ -186,6 +186,7 @@
 				"ext.centralNotice.adminUi",
 				"jquery.ui.dialog",
 				"jquery.ui.slider",
+				"jquery.throttle-debounce",
 				"mediawiki.template",
 				"mediawiki.template.mustache"
 			],

@@ -356,7 +356,7 @@ class Banner {
 	 * Sets the flag which will save basic metadata on next save()
 	 */
 	protected function setBasicDataDirty( $dirty = true ) {
-		return (bool)wfSetVar( $this->dirtyFlags['basic'], $dirty, true );
+		$this->dirtyFlags['basic'] = $dirty;
 	}
 
 	/**
@@ -476,7 +476,7 @@ class Banner {
 	 * Sets the flag which will force saving of device targeting data on next save()
 	 */
 	protected function markDeviceTargetDataDirty( $dirty = true ) {
-		return (bool)wfSetVar( $this->dirtyFlags['devices'], $dirty, true );
+		$this->dirtyFlags['devices'] = $dirty;
 	}
 
 	/**
@@ -582,7 +582,7 @@ class Banner {
 	 * Sets the flag which will force saving of mixin data upon next save()
 	 */
 	protected function markMixinDataDirty( $dirty = true ) {
-		return (bool)wfSetVar( $this->dirtyFlags['mixins'], $dirty, true );
+		$this->dirtyFlags['mixins'] = $dirty;
 	}
 
 	/**
@@ -673,7 +673,7 @@ class Banner {
 	}
 
 	protected function markPriorityLanguageDataDirty( $dirty = true ) {
-		return (bool)wfSetVar( $this->dirtyFlags['prioritylang'], $dirty, true );
+		$this->dirtyFlags['prioritylang'] = $dirty;
 	}
 
 	protected function savePriorityLanguageData() {
@@ -752,8 +752,13 @@ class Banner {
 		$this->markBodyContentDirty( false );
 	}
 
+	/**
+	 * @param boolean $dirty If true, we're storing a flag that means the
+	 * in-memory banner content is newer than what's stored in the database.
+	 * If false, we're clearing that bit.
+	 */
 	protected function markBodyContentDirty( $dirty = true ) {
-		return (bool)wfSetVar( $this->dirtyFlags['content'], $dirty, true );
+		$this->dirtyFlags['content'] = $dirty;
 	}
 
 	protected function saveBodyContent( $summary = null ) {
@@ -926,6 +931,7 @@ class Banner {
 
 		try {
 			// Don't move this to saveBannerInternal--can't be in a transaction
+			// TODO: explain why not.  Is text in another database?
 			$this->saveBodyContent( $summary );
 
 			// Open a transaction so that everything is consistent
@@ -1078,9 +1084,7 @@ class Banner {
 			);
 
 			// Delete the MediaWiki page that contains the banner source
-			$article = new Article(
-				Title::newFromText( "centralnotice-template-{$name}", NS_MEDIAWIKI )
-			);
+			$article = new Article( $bannerObj->getTitle() );
 			$pageId = $article->getPage()->getId();
 
 			// TODO Inconsistency: deletion of banner content is not recorded

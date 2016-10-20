@@ -10,7 +10,8 @@
 			"Kenrick95",
 			"Rex",
 			"C5st4wr6ch",
-			"Rachmat.Wahidi"
+			"Rachmat.Wahidi",
+			"Mbrt"
 		]
 	},
 	"centralnotice": "Pengurus pengumuman sentral",
@@ -165,5 +166,6 @@
 	"centralnotice-start-date": "Tanggal mulai (UTC)",
 	"centralnotice-start-time": "Waktu mulai (UTC)",
 	"centralnotice-end-date": "Tanggal selesai (UTC)",
-	"centralnotice-end-time": "Waktu berakhir (UTC)"
+	"centralnotice-end-time": "Waktu berakhir (UTC)",
+	"centralnotice-banner-history-logger-rate": "Sample rate"
 }

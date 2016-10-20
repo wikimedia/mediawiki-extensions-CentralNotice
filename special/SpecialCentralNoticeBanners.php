@@ -377,7 +377,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			)
 		);
 
-		$bannerTitle = Title::newFromText( "Centralnotice-template-{$this->bannerName}", NS_MEDIAWIKI );
+		$bannerObj = Banner::fromName( $this->bannerName );
+		$bannerTitle = $bannerObj->getTitle();
 		// $bannerTitle can be null sometimes
 		if ( $bannerTitle && $this->getUser()->isAllowed( 'editinterface' ) ) {
 			$links[] = Linker::link(
