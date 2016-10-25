@@ -3,7 +3,8 @@
 		"authors": [
 			"Edinwiki",
 			"Michaello",
-			"Milicevic01"
+			"Milicevic01",
+			"Сербијана"
 		]
 	},
 	"centralnotice": "Administrator centralnog obaveštavanja",
@@ -83,7 +84,7 @@
 	"centralnotice-no-notices-exist": "Nema napomena.\nDodajte jednu ispod.",
 	"centralnotice-no-templates-translate": "Nema šablona na kom možete da uređujete prevod.",
 	"centralnotice-number-uses": "Korišćenje",
-	"centralnotice-settings": "Postavke",
+	"centralnotice-settings": "Podešavanja",
 	"centralnotice-edit-template": "Izmeni šablon",
 	"centralnotice-edit-template-summary": "Da biste napravili poruku koja može da se prevede, napišite nisku s crticama i stavite je u tri vitičaste zagrade, npr. {{{citat-džimbo}}}",
 	"centralnotice-message": "Poruka",
@@ -139,8 +140,8 @@
 	"centralnotice-talk-link": "razgovor",
 	"centralnotice-user-links": "$1 ($2)",
 	"centralnotice-log-label": "<span class=\"cn-log-label\">$1:</span> $2",
-	"centralnotice-campaign-settings": "Postavke kampanje",
-	"centralnotice-banner-settings": "Postavke plakata",
+	"centralnotice-campaign-settings": "Podešavanja kampanje",
+	"centralnotice-banner-settings": "Podešavanja plakata",
 	"centralnotice-anon": "Prikaži anonimnim korisnicima",
 	"centralnotice-account": "Prikaži prijavljenim korisnicima",
 	"centralnotice-fundraising": "Prikupljanje sredstava",
