@@ -153,10 +153,14 @@
 		);
 
 		// The returned javascript will call mw.centralNotice.insertBanner()
+		// or mw.centralNotice.handleBannerLoaderError() (if an error was
+		// handled on the server).
 		$.ajax( {
 			url: url.toString(),
 			dataType: 'script',
 			cache: true
+		} ).fail( function ( jqXHR, status, error ) {
+			cn.handleBannerLoaderError( status + ': ' + error );
 		} );
 	}
 
@@ -309,6 +313,20 @@
 	}
 
 	/**
+	 * Stuff we have to do following the call to fetch a banner (successful
+	 * or not)
+	 */
+	function processAfterBannerFetch() {
+
+		// If we're testing a banner, don't call Special:RecordImpression or
+		// run mixin hooks.
+		if ( !cn.internal.state.getData().testingBanner ) {
+			runPostBannerMixinHooks();
+			recordImpression();
+		}
+	}
+
+	/**
 	 * CentralNotice base public object, exposed as mw.centralNotice. Note:
 	 * other CN modules may add properties to this object, and we add some
 	 * dynamically. These additional properties are:
@@ -402,12 +420,7 @@
 				state.setBannerShown();
 			}
 
-			// If we're testing a banner, don't call Special:RecordImpression or
-			// run mixin hooks.
-			if ( !state.getData().testingBanner ) {
-				runPostBannerMixinHooks();
-				recordImpression();
-			}
+			processAfterBannerFetch();
 		},
 
 		/**
@@ -529,6 +542,16 @@
 			$( function () {
 				cn.reallyInsertBanner( bannerJson );
 			} );
+		},
+
+		/**
+		 * Handle a banner loader error, with an optional message
+		 * @param {string} [msg]
+		 */
+		handleBannerLoaderError: function ( msg ) {
+			cn.internal.state.setBannerLoaderError( msg );
+			bannerLoadedDeferredObj.reject( cn.internal.state.getData() );
+			processAfterBannerFetch();
 		},
 
 		hideBannerWithCloseButton: function () {

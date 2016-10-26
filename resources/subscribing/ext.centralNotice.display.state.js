@@ -31,7 +31,8 @@
 			NO_BANNER_AVAILABLE: new Status( 'no_banner_available', 3 ),
 			BANNER_CHOSEN: new Status( 'banner_chosen', 4 ),
 			BANNER_LOADED_BUT_HIDDEN: new Status( 'banner_loaded_but_hidden', 5 ),
-			BANNER_SHOWN: new Status( 'banner_shown', 6 )
+			BANNER_SHOWN: new Status( 'banner_shown', 6 ),
+			BANNER_LOADER_ERROR: new Status( 'banner_loader_error', 7 )
 		},
 
 		// Until T114078 is closed, we minify banner history logs. This lookup
@@ -360,6 +361,17 @@
 
 		setRecordImpressionSampleRate: function ( rate ) {
 			state.data.recordImpressionSampleRate = rate;
+		},
+
+		/**
+		 * Set a banner loader error, with an optional message
+		 * @param {string} [msg]
+		 */
+		setBannerLoaderError: function ( msg ) {
+			if ( msg ) {
+				state.data.errorMsg = msg;
+			}
+			setStatus( STATUSES.BANNER_LOADER_ERROR );
 		},
 
 		/**

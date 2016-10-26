@@ -181,6 +181,7 @@
 		mw.centralNotice.internal.state.urlParams.banner = 'test_banner';
 		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/ ) );
+			return $.Deferred();
 		};
 		mw.centralNotice.displayTestingBanner();
 
@@ -196,6 +197,7 @@
 
 		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
+			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
 
@@ -204,6 +206,7 @@
 
 		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
+			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
@@ -216,6 +219,7 @@
 
 		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
+			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
 
@@ -224,6 +228,7 @@
 
 		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
+			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
@@ -232,6 +237,7 @@
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
 		$.ajax = function () {
 			mw.centralNotice.reallyInsertBanner( bannerData );
+			return $.Deferred();
 		};
 
 		mixin.setPreBannerHandler(
