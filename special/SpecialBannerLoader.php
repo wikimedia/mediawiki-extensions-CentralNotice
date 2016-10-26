@@ -29,13 +29,20 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		try {
 			$this->getParams();
-			echo $this->getJsNotice( $this->bannerName );
+			$out = $this->getJsNotice( $this->bannerName );
+
 		} catch ( EmptyBannerException $e ) {
-			echo "mw.centralNotice.insertBanner( false );";
+			$out = "mw.centralNotice.handleBannerLoaderError( 'Empty banner' );";
+
 		} catch ( Exception $e ) {
-			wfDebugLog( 'CentralNotice', $e->getMessage() );
-			echo "mw.centralNotice.insertBanner( false /* due to internal exception */ );";
+			$msg = $e->getMessage();
+			$msgParamStr = $msg ? " '{$msg}' " : '';
+			$out = "mw.centralNotice.handleBannerLoaderError({$msgParamStr});";
+
+			wfDebugLog( 'CentralNotice', $msg );
 		}
+
+		echo $out;
 	}
 
 	function getParams() {
