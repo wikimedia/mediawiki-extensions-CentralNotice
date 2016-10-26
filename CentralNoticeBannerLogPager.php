@@ -203,7 +203,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				'*',
 				array( 'tmplog_template_id' => $newrow->tmplog_template_id, "tmplog_id < {$newrow->tmplog_id}" ),
 				__METHOD__,
-				array( 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => '1' )
+				array( 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => 1 )
 			);
 		}
 
