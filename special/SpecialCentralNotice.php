@@ -192,7 +192,6 @@ class CentralNotice extends SpecialPage {
 					$this->getUser(),
 					$initialSettings,
 					$newSettings,
-					array(), array(),
 					$summary
 				);
 			}
@@ -760,7 +759,6 @@ class CentralNotice extends SpecialPage {
 				Campaign::logCampaignChange(
 					'modified', $campaignId, $this->getUser(),
 					$initialCampaignSettings, $finalCampaignSettings,
-					array(), array(),
 					$summary );
 
 				// If there were no errors, reload the page to prevent duplicate form submission

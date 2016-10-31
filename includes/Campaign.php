@@ -905,7 +905,7 @@ class Campaign {
 				'throttle'  => $throttle,
 			);
 			Campaign::logCampaignChange( 'created', $not_id, $user,
-				$beginSettings, $endSettings, array(), array(), $summary );
+				$beginSettings, $endSettings, $summary );
 
 			return $not_id;
 		}
@@ -1322,16 +1322,13 @@ class Campaign {
 	 * @param $user             User causing the change
 	 * @param $beginSettings    array of campaign settings before changes (optional)
 	 * @param $endSettings      array of campaign settings after changes (optional)
-	 * @param $beginAssignments array of banner assignments before changes (optional)
-	 * @param $endAssignments   array of banner assignments after changes (optional)
 	 * @param $summary          string Change summary provided by the user
 	 *
 	 * @return integer: ID of log entry (or null)
 	 */
 	static function logCampaignChange(
 		$action, $campaignId, $user, $beginSettings = array(),
-		$endSettings = array(), $beginAssignments = array(),
-		$endAssignments = array(), $summary = null
+		$endSettings = array(), $summary = null
 	) {
 		ChoiceDataProvider::invalidateCache();
 
@@ -1340,7 +1337,6 @@ class Campaign {
 			$summary = '';
 		}
 
-		// TODO prune unused parameters
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
 			$dbw = CNDatabase::getDb( DB_MASTER );

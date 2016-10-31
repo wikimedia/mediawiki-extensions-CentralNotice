@@ -941,7 +941,7 @@ class Banner {
 				$this->initializeDbForNewBanner( $db );
 			}
 			$this->saveBannerInternal( $db );
-			$this->logBannerChange( $action, $user, array(), $summary );
+			$this->logBannerChange( $action, $user, $summary );
 
 			$db->endAtomic( __METHOD__ );
 
@@ -1073,7 +1073,7 @@ class Banner {
 		} else {
 			// Log the removal of the banner
 			// FIXME: this log line will display changes with inverted sense
-			$bannerObj->logBannerChange( 'removed', $user, array(), $summary );
+			$bannerObj->logBannerChange( 'removed', $user, $summary );
 
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
@@ -1351,6 +1351,7 @@ class Banner {
 		$banner->setMixins( $mixins );
 
 		$banner->save( $user, $summary );
+		return null;
 	}
 
 	/**
@@ -1358,11 +1359,9 @@ class Banner {
 	 *
 	 * @param string $action         'created', 'modified', or 'removed'
 	 * @param User   $user           The user causing the change
-	 * @param array  $beginSettings  Banner settings before changes (optional)
 	 * @param string $summary        Summary (comment) for this action
 	 */
-	function logBannerChange(
-		$action, $user, $beginSettings = array(), $summary = null ) {
+	function logBannerChange( $action, $user, $summary = null ) {
 
 		ChoiceDataProvider::invalidateCache();
 

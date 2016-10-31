@@ -160,7 +160,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		) {
 			// Finally an object we can deal with directly and it's in the right state!
 			$collection = $group->initCollection( $code );
-			$collection->loadTranslations( DB_MASTER );
+			$collection->loadTranslations();
 			$keys = $collection->getMessageKeys();
 
 			// Now copy each key into the MW namespace
