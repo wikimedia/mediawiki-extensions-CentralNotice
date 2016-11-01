@@ -235,7 +235,7 @@
 	"centralnotice-delete-banner-confirm": "Aviso: A eliminação remove todas as configurações e mensagens. Esta ação não pode ser revertida. Considere antes a possibilidade de arquivamento.",
 	"centralnotice-delete-banner-cancel": "Cancelar",
 	"centralnotice-messages-pending-approval": "Idiomas com mensagens pendentes de aprovação",
-	"centralnotice-devices": "Exibir em dispositivos",
+	"centralnotice-devices": "Mostrar nos dispositivos",
 	"centralnotice-start-timestamp": "Hora de início (UTC)",
 	"centralnotice-end-timestamp": "Hora de fim (UTC)",
 	"centralnotice-start-date": "Data de início (UTC)",
