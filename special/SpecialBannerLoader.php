@@ -3,7 +3,6 @@
  * Renders banner contents as jsonp.
  */
 class SpecialBannerLoader extends UnlistedSpecialPage {
-
 	/**
 	 * Seconds leeway for checking stale choice data. Should be the same
 	 * as mw.cnBannerControllerLib.CAMPAIGN_STALENESS_LEEWAY.
@@ -12,10 +11,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	/** @var string Name of the chosen banner */
 	public $bannerName;
-
 	/** @var string Name of the campaign that the banner belongs to.*/
 	public $campaignName;
-
+	/** @var bool */
 	protected $debug;
 
 	function __construct() {
@@ -99,7 +97,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * @throws StaleCampaignException
 	 */
 	public function getJsNotice( $bannerName ) {
-
 		// If this wasn't a test of a banner, check that this is from a campaign
 		// that hasn't ended. We might get old campaigns due to forever-cached
 		// JS somewhere. Note that we include some leeway and don't consider
@@ -108,7 +105,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		// An empty campaign name is how bannerController indicates a test request.
 		if ( $this->campaignName !== '' ) {
-
 			// The following will throw a CampaignExistenceException if there's
 			// no such campaign.
 			$campaign = new Campaign( $this->campaignName );
@@ -131,7 +127,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		if ( !$banner->exists() ) {
 			throw new EmptyBannerException( $bannerName );
 		}
-		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner, $this->campaignName, $this->debug );
+		$bannerRenderer = new BannerRenderer(
+			$this->getContext(), $banner, $this->campaignName, $this->debug );
 
 		$bannerHtml = $bannerRenderer->toHtml();
 
