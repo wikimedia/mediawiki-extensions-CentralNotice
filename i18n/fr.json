@@ -228,7 +228,7 @@
 	"centralnotice-user-role-anonymous": "Anonyme",
 	"centralnotice-user-role-logged-in": "Connecté",
 	"centralnotice-banner-class": "Classe",
-	"centralnotice-banner-class-desc": "Les bannières d’une classe particulière partagent des variables de suivi et des paramètres de groupe (par ex. masquer les cookies et les nombres d’impression). Les noms de classe peuvent être des mots magiques comme <nowiki>{{{campaign}}}</nowiki> ou <nowiki>{{{banner}}}</nowiki> qui seront interprétés automatiquement à l’affichage. Les valeurs doivent être alphanumériques.",
+	"centralnotice-banner-class-desc": "Les bannières d’une classe particulière partagent des variables de suivi et des paramètres de groupe (par ex. masquer les témoins (''cookies'') et les décomptes d’impression). Les noms de classe peuvent être des mots magiques comme <nowiki>{{{campaign}}}</nowiki> ou <nowiki>{{{banner}}}</nowiki> qui seront interprétés automatiquement à l’affichage. Les valeurs doivent être alphanumériques.",
 	"centralnotice-templates-included": "Modèles inclus",
 	"centralnotice-archive-banner": "Archive",
 	"centralnotice-archive-banner-title": "Archiver {{PLURAL:$1|la bannière|les bannières}} ?",
@@ -259,7 +259,7 @@
 	"centralnotice-banner-not-found-title": "Bannière non trouvée",
 	"centralnotice-banner-not-found-contents": "Il n’y a pas de bannière avec ce nom exact.",
 	"hidebanners": "Masquer les bannières",
-	"centralnotice-specialhidebanners-p3p": "Certains navigateurs nécessitent une politique P3P compacte pour définir les cookies dans certaines situations. Toutefois, aucune politique compacte n’est actuellement disponible. Veuillez consulter la politique de confidentialité lisible du site.",
+	"centralnotice-specialhidebanners-p3p": "Certains navigateurs nécessitent une politique P3P compacte pour définir les témoins (''cookies'') dans certaines situations. Toutefois, aucune politique compacte n’est actuellement disponible. Veuillez consulter la politique de confidentialité du site.",
 	"apihelp-centralnoticeallocations-description": "Obtenir les allocations de bannière pour les bannières provenant de CentralNotice pour tous les types d’utilisateur selon le filtre paramétré.\n\nCeci est un appel JSON uniquement.",
 	"apihelp-centralnoticeallocations-param-project": "Le projet pour lequel obtenir les allocations.",
 	"apihelp-centralnoticeallocations-param-country": "Le pays à filtrer.",
@@ -301,7 +301,7 @@
 	"centralnotice-impression-diet": "Allègement de l’impression",
 	"centralnotice-impression-diet-help": "Limiter le nombre de bannières vues par n'importe quel individu.",
 	"centralnotice-impression-diet-identifier": "Identifiant pour le stockage côté client",
-	"centralnotice-impression-diet-identifier-help": "Un identifiant pour les données persistantes côté client stockées par cette fonctionnalité (comme un compteur d’impressions). Ce champ est facultatif pour la plupart des campagnes. Si vous le laissez vide, les campagnes dans la même catégorie partageront les compteurs d’impression, ou, si cette campagne n’utilise par la fonctionnalité de catégorie, les compteurs seront spécifiques à cette campagne. Pour partager les données entre plusieurs catégories de campagne, spécifiez le même identifiant pour chaque campagne. Note : certaines catégories de campagne sont habituellement configurées pour utiliser les cookies pour cette fonctionnalité. Pour les campagnes dans ces catégories, cet identifiant était le nom du cookie ; de tels cookies historiques seront migrés. Remarquez aussi que si l’identifiant est modifié au cours d’une campagne, tous les compteurs jusque-là seront perdus.",
+	"centralnotice-impression-diet-identifier-help": "Un identifiant pour les données persistantes côté client stockées par cette fonctionnalité (comme un compteur d’impressions). Ce champ est facultatif pour la plupart des campagnes. Si vous le laissez vide, les campagnes dans la même catégorie partageront les compteurs d’impression, ou, si cette campagne n’utilise pas la fonctionnalité de catégorie, les compteurs seront spécifiques à cette campagne. Pour partager les données entre plusieurs catégories de campagne, spécifiez le même identifiant pour chaque campagne. Note : certaines catégories de campagne sont habituellement configurées pour utiliser les témoins (''cookies'') pour cette fonctionnalité. Pour les campagnes dans ces catégories, cet identifiant était le nom du témoin ; de tels témoins historiques seront migrés. Remarquez aussi que si l’identifiant est modifié au cours d’une campagne, tous les compteurs seront remis à zéro.",
 	"centralnotice-impression-diet-maximum-seen": "Le nombre maximal d’impressions que n’importe qui verra",
 	"centralnotice-impression-diet-maximum-seen-help": "Si le cycle est configuré pour redémarrer, cela limite le nombre d’impressions vues par cycle plutôt que leur nombre total.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Combien de temps attendre avant de redémarrer le cycle, en secondes (facultatif)",
@@ -315,5 +315,5 @@
 	"centralnotice-large-banner-limit-randomize": "Rendre aléatoire la transition de zone",
 	"centralnotice-large-banner-limit-randomize-help": "La transition normale de zone est de A vers C et de B vers D. Quand c’est coché, les lecteurs passeront aléatoirement aux zones C ou D.",
 	"centralnotice-large-banner-limit-identifier": "Identifiant pour le stockage côté client",
-	"centralnotice-large-banner-limit-identifier-help": "L’affichage de grande bannière est supprimé dans les campagnes ayant le même identifiant.\nLa valeur par défaut 'centralnotice-frbanner-seen-fullscreen' peut être utilisée pour migrer les cookies historiques."
+	"centralnotice-large-banner-limit-identifier-help": "L’affichage de grande bannière est supprimé dans les campagnes ayant le même identifiant.\nLa valeur par défaut 'centralnotice-frbanner-seen-fullscreen' peut être utilisée pour migrer les témoins (''cookies'') patrimoniaux."
 }

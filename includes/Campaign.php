@@ -1,7 +1,5 @@
 <?php
 
-use Doctrine\Instantiator\Exception\InvalidArgumentException;
-
 class Campaign {
 
 	protected $id = null;
@@ -814,11 +812,11 @@ class Campaign {
 	 * Add a new campaign to the database
 	 *
 	 * @param $noticeName        string: Name of the campaign
-	 * @param $enabled           int: Boolean setting, 0 or 1
+	 * @param $enabled           bool: Boolean setting, true or false
 	 * @param $startTs           string: Campaign start in UTC
 	 * @param $projects          array: Targeted project types (wikipedia, wikibooks, etc.)
 	 * @param $project_languages array: Targeted project languages (en, de, etc.)
-	 * @param $geotargeted       int: Boolean setting, 0 or 1
+	 * @param $geotargeted       bool: Boolean setting, true or false
 	 * @param $geo_countries     array: Targeted countries
 	 * @param $throttle          int: limit allocations, 0 - 100
 	 * @param $priority          int: priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
@@ -853,10 +851,10 @@ class Campaign {
 
 		$dbw->insert( 'cn_notices',
 			array( 'not_name'    => $noticeName,
-				'not_enabled' => $enabled,
+				'not_enabled' => (int)$enabled,
 				'not_start'   => $dbw->timestamp( $startTs ),
 				'not_end'     => $dbw->timestamp( $endTs ),
-				'not_geo'     => $geotargeted,
+				'not_geo'     => (int)$geotargeted,
 				'not_throttle' => $throttle,
 				'not_preferred' => $priority,
 			)
@@ -900,10 +898,10 @@ class Campaign {
 				'countries' => implode( ", ", $geo_countries ),
 				'start'     => $dbw->timestamp( $startTs ),
 				'end'       => $dbw->timestamp( $endTs ),
-				'enabled'   => $enabled,
+				'enabled'   => (int)$enabled,
 				'preferred' => 0,
 				'locked'    => 0,
-				'geo'       => $geotargeted,
+				'geo'       => (int)$geotargeted,
 				'throttle'  => $throttle,
 			);
 			Campaign::logCampaignChange( 'created', $not_id, $user,
@@ -1008,6 +1006,8 @@ class Campaign {
 
 	/**
 	 * Lookup the ID for a campaign based on the campaign name
+	 * @param string $noticeName
+	 * @return int|null
 	 */
 	static function getNoticeId( $noticeName ) {
 		$dbr = CNDatabase::getDb();
@@ -1121,7 +1121,7 @@ class Campaign {
 	 *
 	 * @param $noticeName string: Name of the campaign
 	 * @param $settingName string: Name of a boolean setting (enabled, locked, or geo)
-	 * @param $settingValue int: Value to use for the setting, 0 or 1
+	 * @param $settingValue bool: Value to use for the setting, true or false
 	 */
 	static function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
 		if ( !Campaign::campaignExists( $noticeName ) ) {
@@ -1131,7 +1131,7 @@ class Campaign {
 			$settingName = strtolower( $settingName );
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->update( 'cn_notices',
-				array( 'not_' . $settingName => $settingValue ),
+				array( 'not_' . $settingName => (int)$settingValue ),
 				array( 'not_name' => $noticeName )
 			);
 		}
@@ -1180,9 +1180,9 @@ class Campaign {
 	/**
 	 * Updates the weight of a banner in a campaign.
 	 *
-	 * @param $noticeName   Name of the campaign to update
-	 * @param $templateId   ID of the banner in the campaign
-	 * @param $weight       New banner weight
+	 * @param $noticeName   string Name of the campaign to update
+	 * @param $templateId   int ID of the banner in the campaign
+	 * @param $weight       int New banner weight
 	 */
 	static function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
@@ -1200,9 +1200,9 @@ class Campaign {
 	 * Updates the bucket of a banner in a campaign. Buckets alter what is shown to the end user
 	 * which can affect the relative weight of the banner in a campaign.
 	 *
-	 * @param $noticeName   Name of the campaign to update
-	 * @param $templateId   ID of the banner in the campaign
-	 * @param $bucket       New bucket number
+	 * @param $noticeName   string Name of the campaign to update
+	 * @param $templateId   int ID of the banner in the campaign
+	 * @param $bucket       int New bucket number
 	 */
 	static function updateBucket( $noticeName, $templateId, $bucket ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
@@ -1335,6 +1335,11 @@ class Campaign {
 	) {
 		ChoiceDataProvider::invalidateCache();
 
+		// Summary shouldn't actually come in null, but just in case...
+		if ( $summary === null ) {
+			$summary = '';
+		}
+
 		// TODO prune unused parameters
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
@@ -1345,20 +1350,9 @@ class Campaign {
 				'notlog_user_id'   => $user->getId(),
 				'notlog_action'    => $action,
 				'notlog_not_id'    => $campaignId,
-				'notlog_not_name'  => Campaign::getNoticeName( $campaignId )
+				'notlog_not_name'  => Campaign::getNoticeName( $campaignId ),
+				'notlog_comment'   => $summary,
 			);
-
-			// TODO temporary code for soft dependency on schema change
-			// Note: MySQL-specific
-			global $wgDBtype;
-			if ( $wgDBtype === 'mysql' && $dbw->query(
-					'SHOW COLUMNS FROM ' .
-					$dbw->tableName( 'cn_notice_log' )
-					. ' LIKE ' . $dbw->addQuotes( 'notlog_comment' )
-				)->numRows() === 1 ) {
-
-				$log['notlog_comment'] = $summary;
-			}
 
 			foreach ( $beginSettings as $key => $value ) {
 				$log[ 'notlog_begin_' . $key ] = $value;

@@ -123,7 +123,7 @@
 			counts.seenCount += 1;
 
 			// Reset the wait timer on every impression.  The configured delay
-			// is the minumum amount of time allowed between the final impression
+			// is the minimum amount of time allowed between the final impression
 			// and the start of the next cycle.
 			//
 			// TODO: rename: nextCycleAt

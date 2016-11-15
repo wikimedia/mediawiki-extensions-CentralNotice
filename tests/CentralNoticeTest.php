@@ -27,13 +27,13 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		parent::setUp();
 		self::$centralNotice = new CentralNotice;
 		$noticeName        = 'PHPUnitTestCampaign';
-		$enabled           = 0;
+		$enabled           = false;
 		$startTs           = '20110718' . '235500';
 		$projects          = array( 'wikipedia', 'wikibooks' );
 		$languages = array( 'en', 'de' );
-		$geotargeted       = 1;
+		$geotargeted       = true;
 		$countries     = array( 'US', 'AF' );
-		$preferred         = 1;
+		$priority         = 1;
 
 		$this->fixture = new CentralNoticeTestFixtures();
 		$this->fixture->setupTestCaseWithDefaults(
@@ -65,17 +65,16 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
 			$languages, $geotargeted, $countries,
-			100, $preferred, $this->userUser );
+			100, $priority, $this->userUser );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
 
 		self::$noticeTemplate = new SpecialNoticeTemplate;
 		$bannerName = 'PHPUnitTestBanner';
 		$body = 'testing';
-		$displayAnon = 1;
-		$displayAccount = 1;
-		$fundraising = 1;
-		$campaign_z_index = 1;
+		$displayAnon = true;
+		$displayAccount = true;
+		$fundraising = true;
 
 		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"device":"desktop","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"campaign_throttle":100,"bucket":0}]';
 

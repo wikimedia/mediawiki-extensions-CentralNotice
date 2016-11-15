@@ -362,24 +362,24 @@ class Banner {
 	/**
 	 * Helper function to initializeDbForNewBanner()
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function initializeDbBasicData( $db ) {
+	protected function initializeDbBasicData( IDatabase $db ) {
 		$db->insert( 'cn_templates', array( 'tmp_name' => $this->name ), __METHOD__ );
 		$this->id = $db->insertId();
 	}
 
 	/**
 	 * Helper function to saveBannerInternal() for saving basic banner metadata
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function saveBasicData( $db ) {
+	protected function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
 			$db->update( 'cn_templates',
 				array(
 					 'tmp_display_anon'    => (int)$this->allocateAnon,
 					 'tmp_display_account' => (int)$this->allocateLoggedIn,
-					 'tmp_archived'        => $this->archived,
+					 'tmp_archived'        => (int)$this->archived,
 					 'tmp_category'        => $this->category,
 				),
 				array(
@@ -482,9 +482,9 @@ class Banner {
 	/**
 	 * Helper function to saveBannerInternal()
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function saveDeviceTargetData( $db ) {
+	protected function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
 			$db->delete( 'cn_template_devices', array( 'tmp_id' => $this->getId() ), __METHOD__ );
@@ -586,9 +586,9 @@ class Banner {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function saveMixinData( $db ) {
+	protected function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
 			$db->delete( 'cn_template_mixins',
 				array( 'tmp_id' => $this->getId() ),
@@ -971,9 +971,9 @@ class Banner {
 	 * being saved. Intended to create all table rows required such that any
 	 * additional operation can be an UPDATE statement.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 */
-	protected function initializeDbForNewBanner( $db ) {
+	protected function initializeDbForNewBanner( IDatabase $db ) {
 		$this->initializeDbBasicData( $db );
 	}
 
@@ -987,11 +987,11 @@ class Banner {
 	 *
 	 * Dirty flags are not globally reset until after this function is called.
 	 *
-	 * @param DatabaseBase $db
+	 * @param IDatabase $db
 	 *
 	 * @throws BannerExistenceException
 	 */
-	protected function saveBannerInternal( $db ) {
+	protected function saveBannerInternal( IDatabase $db ) {
 		$this->saveBasicData( $db );
 		$this->saveDeviceTargetData( $db );
 		$this->saveMixinData( $db );
@@ -1313,17 +1313,18 @@ class Banner {
 	 * @param $name             string name of banner
 	 * @param $body             string content of banner
 	 * @param $user             User causing the change
-	 * @param $displayAnon      integer flag for display to anonymous users
-	 * @param $displayAccount   integer flag for display to logged in users
-	 * @param $fundraising      integer flag for fundraising banner (optional)
+	 * @param $displayAnon      boolean flag for display to anonymous users
+	 * @param $displayAccount   boolean flag for display to logged in users
+	 * @param $fundraising      boolean flag for fundraising banner (optional)
 	 * @param $mixins           array list of mixins (optional)
 	 * @param $priorityLangs    array Array of priority languages for the translate extension
 	 * @param $devices          array Array of device names this banner is targeted at
+	 * @param $summary          string|null Optional summary of changes for logging
 	 *
 	 * @return bool true or false depending on whether banner was successfully added
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon,
-		$displayAccount, $fundraising = 0,
+		$displayAccount, $fundraising = false,
 		$mixins = array(), $priorityLangs = array(), $devices = null,
 		$summary = null
 	) {
@@ -1343,7 +1344,7 @@ class Banner {
 		}
 
 		$banner->setAllocation( $displayAnon, $displayAccount );
-		$banner->setCategory( ( $fundraising == 1 ) ? 'fundraising' : '{{{campaign}}}' );
+		$banner->setCategory( $fundraising ? 'fundraising' : '{{{campaign}}}' );
 		$banner->setDevices( $devices );
 		$banner->setPriorityLanguages( $priorityLangs );
 		$banner->setBodyContent( $body );
@@ -1366,6 +1367,11 @@ class Banner {
 
 		ChoiceDataProvider::invalidateCache();
 
+		// Summary shouldn't actually come in null, but just in case...
+		if ( $summary === null ) {
+			$summary = '';
+		}
+
 		$endSettings = array();
 		if ( $action !== 'removed' ) {
 			$endSettings = Banner::getBannerSettings( $this->getName(), true );
@@ -1380,19 +1386,8 @@ class Banner {
 			'tmplog_template_id'   => $this->getId(),
 			'tmplog_template_name' => $this->getName(),
 			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
+			'tmplog_comment'       => $summary,
 		);
-
-		// TODO temporary code for soft dependency on schema change
-		// Note: MySQL-specific
-		global $wgDBtype;
-		if ( $wgDBtype === 'mysql' && $dbw->query(
-				'SHOW COLUMNS FROM ' .
-				$dbw->tableName( 'cn_template_log' )
-				. ' LIKE ' . $dbw->addQuotes( 'tmplog_comment' )
-			)->numRows() === 1 ) {
-
-			$log['tmplog_comment'] = $summary;
-		}
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {

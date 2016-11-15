@@ -273,7 +273,7 @@ class CentralNoticeTestFixtures {
 				Campaign::setBooleanCampaignSetting(
 					$campaign['name'],
 					'archived',
-					$campaign['archived'] ? 1 : 0
+					$campaign['archived']
 				);
 			}
 
