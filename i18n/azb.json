@@ -5,7 +5,8 @@
 			"E THP",
 			"Ebrahimi-amir",
 			"Mousa",
-			"Koroğlu"
+			"Koroğlu",
+			"Alp Er Tunqa"
 		]
 	},
 	"centralnotice": "مرکزی خبردارلیق ایداره‌چی‌سی",
@@ -121,7 +122,7 @@
 	"centralnotice-percentage": "یوز ده (درصد)",
 	"centralnotice-documentwrite-error": "document.write() آگهی ایچینده ایستیفاده ائدیله بیلمز.\nداها چوخ معلومات اوچون http://meta.wikimedia.org/wiki/Help:CentralNotice عنوانینا باخین.",
 	"centralnotice-preferred": "اولویت",
-	"centralnotice-logs": "قئیدلر",
+	"centralnotice-logs": "ژورناللار",
 	"centralnotice-view-logs": "گونده‌لیک‌لرینی باخ",
 	"centralnotice-timestamp": "واخت",
 	"centralnotice-user": "ایشلدن",
