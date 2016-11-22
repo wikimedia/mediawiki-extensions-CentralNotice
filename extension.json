@@ -116,8 +116,7 @@
 		"ext.centralNotice.adminUi": {
 			"dependencies": [
 				"jquery.ui.datepicker",
-				"jquery.ui.multiselect",
-				"json"
+				"jquery.ui.multiselect"
 			],
 			"scripts": "infrastructure/centralnotice.js",
 			"styles": [
@@ -263,7 +262,6 @@
 				"ext.centralNotice.geoIP",
 				"ext.centralNotice.kvStore",
 				"jquery.cookie",
-				"json",
 				"mediawiki.Uri"
 			],
 			"targets": [
