@@ -111,8 +111,14 @@ Configuration
   used, and that subpage will contain a short explanation.
   Default: false
 
-* $wgNoticeBannerMaxAge: Server-side banner cache timeout in seconds
+* $wgNoticeBannerMaxAge: Server-side banner cache timeout, in seconds, for
+  anonymous users.
   Default: 600
+
+* $wgNoticeBannerReducedMaxAge: Reduced server-side banner cache timeout, in
+  seconds, for anonymous users, when SpecialBannerLoader catches an exception.
+  We lower the expiry in the hope that the error will go away the next time this
+  resource is requested.
 
 * $wgNoticeUseTranslateExtension: Whether to use the Translation extension for
   banner message translation
