@@ -13,7 +13,8 @@
 			"ZaDiak",
 			"Απεργός",
 			"Geraki",
-			"Nikosguard"
+			"Nikosguard",
+			"Xaris333"
 		]
 	},
 	"centralnotice": "Διαχειριστής κεντρικών ειδοποιήσεων",
@@ -66,7 +67,7 @@
 	"centralnotice-template-still-bound": "Δεν μπορεί να αφαιρεθεί το banner \"$1\", όπως είναι ακόμα διασυνδεδεμένο με μια καμπάνια.\nΔεν αφαιρεί.",
 	"centralnotice-template-body": "Δομή προτύπου:",
 	"centralnotice-day": "Ημέρα",
-	"centralnotice-year": "Χρόνος",
+	"centralnotice-year": "Έτος",
 	"centralnotice-month": "Μήνας",
 	"centralnotice-hours": "Ώρα",
 	"centralnotice-min": "Λεπτό",
