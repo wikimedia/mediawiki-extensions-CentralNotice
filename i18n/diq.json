@@ -7,7 +7,8 @@
 			"Marmase",
 			"Mirzali",
 			"Xoser",
-			"Kumkumuk"
+			"Kumkumuk",
+			"1917 Ekim Devrimi"
 		]
 	},
 	"centralnotice": "İdarekerê iqazê merkezi",
@@ -145,7 +146,7 @@
 	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> vıraziya",
 	"centralnotice-removed": "<span class=\"cn-old-value\">$1</span> wederya",
 	"centralnotice-no-assignments": "afiş tede nêdebyayo",
-	"centralnotice-talk-link": "mesac",
+	"centralnotice-talk-link": "Behs",
 	"centralnotice-user-links": "$1 ($2)",
 	"centralnotice-log-label": "<span class=\"cn-log-label\">$1:</span> $2",
 	"centralnotice-campaign-settings": "Sazkerdışê kampnaya",
