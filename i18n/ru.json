@@ -24,7 +24,8 @@
 			"Alexandr Efremov",
 			"Gazimagomedov",
 			"Seunei",
-			"Translatobecomer"
+			"Translatobecomer",
+			"Kaganer"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -72,6 +73,7 @@
 	"centralnotice-balanced": "Установить всем баннерам равный вес",
 	"centralnotice-weight": "Ширина",
 	"centralnotice-locked": "Заблокированный",
+	"centralnotice-notice-mixins-fieldset": "Расширенные возможности управления кампанией",
 	"centralnotice-notice-mixins-int-required": "Должно быть целым числом",
 	"centralnotice-notice-mixins-float-required": "Должно быть числом с плавающей запятой",
 	"centralnotice-notice": "Кампания",
@@ -84,6 +86,7 @@
 	"centralnotice-notice-doesnt-exist": "Кампания не существует.",
 	"centralnotice-remove-notice-doesnt-exist": "Кампания не существует.\nНечего удалять.",
 	"centralnotice-banner-doesnt-exist": "Баннер не существует.",
+	"centralnotice-banner-edit-onwiki": "Редактировать баннер в вики",
 	"centralnotice-template-still-bound": "Не удаётся удалить баннер «$1», так как он по-прежнему привязан к кампании.\nНе удаляемый.",
 	"centralnotice-template-body": "Тело баннера:",
 	"centralnotice-day": "День",
@@ -182,6 +185,7 @@
 	"centralnotice-autolink": "Автоматическое создание ссылки",
 	"centralnotice-landingpages": "Целевые страницы",
 	"centralnotice-controller_mixin": "«Примеси» контроллера",
+	"centralnotice-campaign-mixins": "«Примеси» кампании",
 	"centralnotice-category": "Категория баннера",
 	"centralnotice-banner-content": "Содержание баннера",
 	"centralnotice-banner-content-changed": "Изменено",
@@ -208,8 +212,10 @@
 	"centralnotice-country-o1": "Неизвестно/Другие страны",
 	"centralnotice-country-unknown": "Неизвестно/Нелокализуемо",
 	"centralnotice-buckets": "Группирование участников",
-	"centralnotice-bucket": "Ведро",
-	"centralnotice-bucket-letter": "Ведро «$1»",
+	"centralnotice-bucket": "Выборка",
+	"centralnotice-bucket-letter": "Выборка «$1»",
+	"centralnotice-banner-overflowing-bucket": "Для выборки «$1» назначено слишком много баннеров.",
+	"centralnotice-banner-empty-bucket": "Не всем выборкам назначен баннер.",
 	"centralnotice-devicetype-desktop": "Настольный компьютер",
 	"centralnotice-devicetype-android": "Android",
 	"centralnotice-devicetype-ipad": "Все устройства, которые определены не как iPhone, а как iPad",
@@ -267,5 +273,11 @@
 	"apihelp-query+centralnoticelogs-param-start": "Начальное время диапазона (необязательно).",
 	"apihelp-query+centralnoticelogs-param-end": "Конечное время диапазона (необязательно).",
 	"apihelp-query+centralnoticelogs-example-1": "Показать журналы",
+	"centralnotice-banner-history-logger": "Регистрация истории баннера",
+	"centralnotice-banner-history-logger-help": "Отслеживать последовательность отображаемых для читателей баннеров и иногда и отправлять данные обратно на сервер.",
+	"centralnotice-banner-history-logger-rate": "Частота сбора данных",
+	"centralnotice-banner-history-logger-rate-help": "Вероятность, что данные будут отобраны и отправлены обратно на сервер. Десятичное число от 0 (никогда) и 1 (всегда).",
+	"centralnotice-banner-history-logger-max-entry-age": "Максимальный срок хранения записей журнала (в днях)",
+	"centralnotice-banner-history-logger-max-entry-age-help": "Записи в журнале старее, чем здесь задано, будут считаться недействительными и не будут отправлены обратно на сервер.",
 	"centralnotice-banner-history-logger-max-entries": "Максимальное число записей, доступное для сохранения в журнале"
 }
