@@ -186,7 +186,12 @@
 	"centralnotice-buckets": "Aggruppamento de usatores",
 	"centralnotice-bucket": "Gruppamento",
 	"centralnotice-bucket-letter": "Gruppamento \"$1\"",
+	"centralnotice-banner-overflowing-bucket": "Le gruppamento \"$1\" ha troppo de bandieras assignate.",
+	"centralnotice-banner-empty-bucket": "Non tote le gruppamentos ha un bandiera assignate.",
 	"centralnotice-devicetype-desktop": "Computator de scriptorio",
+	"centralnotice-devicetype-ipad": "Tote le apparatos identificate como iPads ma non iPhones",
+	"centralnotice-devicetype-iphone": "Tote le versiones de iPhone",
+	"centralnotice-devicetype-unknown": "Apparatos sur le sito mobile le quales non es iPhones, iPads o Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Logica del selector])",
 	"centralnotice-all": "Totes",
 	"centralnotice-generic-error": "Tu non ha le permissiones necessari pro exequer le action requestate o le action mesme non es valide.",
 	"centralnotice-banner-name-error": "Le nomine de bandiera fornite non es valide. Le nomines valide contine solmente characteres alpha-numeric e de sublineamento.",
@@ -202,6 +207,9 @@
 	"centralnotice-archive-banner-title": "Archivar {{PLURAL:$1|bandiera|bandieras}}?",
 	"centralnotice-archive-banner-confirm": "Le processo de archivamento expande tote le patronos includite e mitte le pagina sub protection. Iste action non es facile a disfacer.",
 	"centralnotice-archive-banner-cancel": "Cancellar",
+	"centralnotice-change-summary-label": "Summario",
+	"centralnotice-change-summary-prompt": "Message sur iste cambiamentos (optional)",
+	"centralnotice-change-summary-action-prompt": "Message sur iste action (optional)",
 	"centralnotice-archive-show": "Monstrar campanias archivate",
 	"centralnotice-archive-campaign": "Archivar",
 	"centralnotice-archive-campaign-title": "Archivar le {{PLURAL:$1|campania|campanias}}?",
@@ -220,5 +228,9 @@
 	"centralnotice-start-date": "Data de initio (UTC)",
 	"centralnotice-start-time": "Hora de initio (UTC)",
 	"centralnotice-end-date": "Data de fin (UTC)",
-	"centralnotice-end-time": "Hora de fin (UTC)"
+	"centralnotice-end-time": "Hora de fin (UTC)",
+	"centralnotice-banner-not-found-title": "Bandiera non trovate",
+	"centralnotice-banner-not-found-contents": "Non existe un bandiera con iste nomine exacte.",
+	"hidebanners": "Celar bandieras",
+	"centralnotice-specialhidebanners-p3p": "Alcun navigatores require un politica P3P compacte pro definir cookies in certe situationes, ma nulle politica compacte es disponibile in iste momento. Per favor vide le politica de confidentialitate del sito."
 }

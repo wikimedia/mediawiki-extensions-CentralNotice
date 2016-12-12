@@ -8,7 +8,8 @@
 			"Mirzali",
 			"Xoser",
 			"Kumkumuk",
-			"1917 Ekim Devrimi"
+			"1917 Ekim Devrimi",
+			"Gırd"
 		]
 	},
 	"centralnotice": "İdarekerê iqazê merkezi",
@@ -44,7 +45,7 @@
 	"centralnotice-list-templates": "Şablona liste ke",
 	"centralnotice-language-listing": "$1 - $2",
 	"centralnotice-translations": "Çarnayişan",
-	"centralnotice-translate-to": "Ci ra çarnayîş bike",
+	"centralnotice-translate-to": "bıçarn enê zıwani",
 	"centralnotice-translate": "Çarnayiş",
 	"centralnotice-english": "İngılızki",
 	"centralnotice-banner-name": "Nameyê Afişer:",
@@ -146,7 +147,7 @@
 	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> vıraziya",
 	"centralnotice-removed": "<span class=\"cn-old-value\">$1</span> wederya",
 	"centralnotice-no-assignments": "afiş tede nêdebyayo",
-	"centralnotice-talk-link": "Behs",
+	"centralnotice-talk-link": "Vatış",
 	"centralnotice-user-links": "$1 ($2)",
 	"centralnotice-log-label": "<span class=\"cn-log-label\">$1:</span> $2",
 	"centralnotice-campaign-settings": "Sazkerdışê kampnaya",

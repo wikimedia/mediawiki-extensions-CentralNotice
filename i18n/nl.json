@@ -247,7 +247,7 @@
 	"centralnotice-banner-not-found-title": "Banner niet gevonden",
 	"centralnotice-banner-not-found-contents": "Er is geen banner met deze exacte naam.",
 	"hidebanners": "Banners verbergen",
-	"centralnotice-specialhidebanners-p3p": "Sommige browsers vereisen een P3P compact beleid om cookies in te stellen in bepaalde situaties. Echter is er geen compact beleid momenteel beschikbaar. Zie de site voor het voor mensen leesbare privacybeleid.",
+	"centralnotice-specialhidebanners-p3p": "Sommige browsers vereisen een compact P3P-beleid om in bepaalde situaties cookies in te stellen. Momenteel is er echter geen compact beleid beschikbaar. Zie het privacy-beleid van de site.",
 	"apihelp-centralnoticeallocations-description": "Verkrijg de banner-toewijzingen geleverd door de CentralNotice voor alle gebruikerstypen onder het parametrische filter.\n\nDit is alleen een JSON call.",
 	"apihelp-centralnoticeallocations-param-project": "Het project om de allocaties van de verkrijgen.",
 	"apihelp-centralnoticeallocations-param-country": "Het land waar op gefilterd moet worden.",
