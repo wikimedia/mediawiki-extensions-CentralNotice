@@ -10,7 +10,8 @@
 			"Laaknor",
 			"Nghtwlkr",
 			"Njardarlogar",
-			"Jeblad"
+			"Jeblad",
+			"Jon Harald Søby"
 		]
 	},
 	"centralnotice": "Administrasjon av sentrale beskjeder",
@@ -26,7 +27,7 @@
 	"centralnotice-enabled": "Aktivert",
 	"centralnotice-modify": "Lagre",
 	"centralnotice-view": "Vis",
-	"centralnotice-save-banner": "Lagre banner",
+	"centralnotice-save-banner": "Lagre",
 	"centralnotice-preview": "Forhåndsvisning ($1)",
 	"centralnotice-nopreview": "(Forhåndsvisning ikke tilgjengelig)",
 	"centralnotice-add-new": "Legg til en ny sentralmelding",
@@ -99,7 +100,7 @@
 	"centralnotice-clone-notice": "Lag en kopi av malen",
 	"centralnotice-clone-name": "Navn:",
 	"centralnotice-clone-cancel": "Avbryt",
-	"centralnotice-preview-all-template-translations": "Forhåndsvis alle tilgjengelige oversettelser av malen",
+	"centralnotice-preview-all-template-translations": "Forhåndsvis alle godkjente oversettelser",
 	"centralnotice-insert": "Sett inn: $1",
 	"centralnotice-close-button": "Lukk-knapp",
 	"centralnotice-close-title": "Lukk",
@@ -155,8 +156,8 @@
 	"centralnotice-date": "Dato",
 	"centralnotice-apply-filters": "Bruk filtre",
 	"centralnotice-clear-filters": "Nullstill filtre",
-	"centralnotice-banner-messages": "Banner-meldinger",
-	"centralnotice-filter-template-prompt": "Bannernavn inneholder:",
+	"centralnotice-banner-messages": "Oversettbare bannerbeskjeder",
+	"centralnotice-filter-template-prompt": "Filtrer bannere (f.eks. Jimmy 2008)",
 	"centralnotice-filter-template-submit": "Bruk filter",
 	"centralnotice-filter-template-banner": "Filtrer bannere",
 	"centralnotice-priority-low": "lav",

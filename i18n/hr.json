@@ -113,6 +113,7 @@
 	"centralnotice-percentage": "Postotak",
 	"centralnotice-documentwrite-error": "document.write() ne može se rabiti unutar obavijesti.\nPogledajte http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.",
 	"centralnotice-preferred": "Prioritet",
+	"centralnotice-logs": "Evidencije",
 	"centralnotice-talk-link": "razgovor",
 	"centralnotice-date": "Datum",
 	"centralnotice-start-date": "Početni datum (UTC)",
