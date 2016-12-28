@@ -9,7 +9,8 @@
 			"Xoser",
 			"Kumkumuk",
 			"1917 Ekim Devrimi",
-			"Gırd"
+			"Gırd",
+			"Gambollar"
 		]
 	},
 	"centralnotice": "İdarekerê iqazê merkezi",
@@ -45,7 +46,7 @@
 	"centralnotice-list-templates": "Şablona liste ke",
 	"centralnotice-language-listing": "$1 - $2",
 	"centralnotice-translations": "Çarnayişan",
-	"centralnotice-translate-to": "bıçarn enê zıwani",
+	"centralnotice-translate-to": "Bıçarnê ena zıwan",
 	"centralnotice-translate": "Çarnayiş",
 	"centralnotice-english": "İngılızki",
 	"centralnotice-banner-name": "Nameyê Afişer:",
