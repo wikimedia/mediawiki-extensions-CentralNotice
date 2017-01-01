@@ -240,7 +240,7 @@
 	"centralnotice-archive-campaign-title": "Архівувати {{PLURAL:$1|1=кампанію|кампанії}}?",
 	"centralnotice-archive-campaign-confirm": "Архівний стан позначає кампанію як остаточно неактивну.",
 	"centralnotice-archive-campaign-cancel": "Скасувати",
-	"centralnotice-archive-edit-prevented": "Редагування цієї кампанії вимкнено, тому що вона заблокована або заархівована. Поміняйте на який-небудь статус з [[Special:CentralNotice]].",
+	"centralnotice-archive-edit-prevented": "Редагування цієї кампанії вимкнено, тому що вона заблокована або заархівована. Змінити кожен з цих статусів можна на [[Special:CentralNotice]].",
 	"centralnotice-add-new-banner-title": "Додати новий банер",
 	"centralnotice-delete-banner": "Вилучити",
 	"centralnotice-delete-banner-title": "Вилучити {{PLURAL:$1|1=банер|банери}}?",
