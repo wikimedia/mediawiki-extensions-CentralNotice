@@ -8,7 +8,8 @@
 			"Subi",
 			"Theklan",
 			"Unai Fdz. de Betoño",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Sator"
 		]
 	},
 	"centralnotice": "Ohar zentralizatuen administrazioa",
@@ -104,11 +105,16 @@
 	"centralnotice-country-a2": "Ezezaguna/Satelite bidezko konexioa",
 	"centralnotice-country-o1": "Ezezaguna/Bestelako herrialdea",
 	"centralnotice-devicetype-desktop": "Mahaigaineko ordenagailua",
+	"centralnotice-devicetype-android": "Android OS",
+	"centralnotice-user-role-anonymous": "Anonimoa",
+	"centralnotice-user-role-logged-in": "Saio hasita",
 	"centralnotice-banner-class": "Kategoria",
 	"centralnotice-archive-banner-cancel": "Utzi",
 	"centralnotice-archive-campaign-cancel": "Utzi",
 	"centralnotice-delete-banner": "Ezabatu",
 	"centralnotice-delete-banner-cancel": "Utzi",
+	"centralnotice-start-timestamp": "Hasiera (UTC)",
+	"centralnotice-end-timestamp": "Amaiera (UTC)",
 	"centralnotice-start-date": "Hasiera data (UTC)",
 	"centralnotice-start-time": "Hasiera ordua (UTC)",
 	"centralnotice-end-date": "Bukaera data (UTC)",
