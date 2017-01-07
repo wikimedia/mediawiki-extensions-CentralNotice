@@ -241,7 +241,14 @@
 	"apihelp-centralnoticeallocations-param-language": "필터를 켤 언어",
 	"apihelp-centralnoticeallocations-param-anonymous": "로그인 상태에 따른 필터 활성화 여부 (예|아니오)",
 	"apihelp-centralnoticeallocations-param-device": "필터를 켤 기기 이름",
+	"apihelp-centralnoticequerycampaign-description": "캠페인을 위한 모든 구성 설정을 가져옵니다.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "캠페인 이름입니다. \"|\"(수직 막대)로 여러 개의 값을 구분합니다.",
 	"apihelp-centralnoticequerycampaign-example-1": "\"Plea_US\" 캠페인 보이기",
+	"apihelp-centralnoticechoicedata-description": "지정된 프로젝트와 언어를 위한 배너 선택에 필요한 데이터를 가져옵니다",
+	"apihelp-centralnoticechoicedata-param-project": "배너 선택 데이터를 가져올 프로젝트입니다.",
+	"apihelp-centralnoticechoicedata-param-language": "배너 선택 데이터를 가져올 언어입니다.",
+	"apihelp-centralnoticechoicedata-example-1": "영어 위키백과 사용자의 배너 선택을 위한 데이터를 가져옵니다.",
+	"apihelp-query+centralnoticelogs-param-campaign": "캠페인 이름입니다. (선택 사항) \"|\"(수직 막대)로 여러 개의 값을 구분합니다.",
 	"apihelp-query+centralnoticelogs-param-user": "사용자 이름 (선택 사항).",
 	"apihelp-query+centralnoticelogs-example-1": "로그 보기"
 }
