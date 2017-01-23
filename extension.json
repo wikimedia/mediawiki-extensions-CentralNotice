@@ -411,7 +411,8 @@
 			"commons",
 			"meta",
 			"wikispecies",
-			"test"
+			"test",
+			"mediawiki"
 		],
 		"NoticeInfrastructure": true,
 		"CentralDBname": false,
