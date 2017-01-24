@@ -9,6 +9,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 */
 	const CAMPAIGN_STALENESS_LEEWAY = 900;
 
+	const MAX_CACHE_NORMAL = 0;
+	const MAX_CACHE_REDUCED = 1;
+
 	/** @var string Name of the chosen banner */
 	public $bannerName;
 	/** @var string Name of the campaign that the banner belongs to.*/
@@ -22,24 +25,28 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		$this->sendHeaders();
+
 		$this->getOutput()->disable();
 
 		try {
 			$this->getParams();
 			$out = $this->getJsNotice( $this->bannerName );
+			$cacheResponse = self::MAX_CACHE_NORMAL;
 
 		} catch ( EmptyBannerException $e ) {
 			$out = "mw.centralNotice.handleBannerLoaderError( 'Empty banner' );";
+			$cacheResponse = self::MAX_CACHE_REDUCED;
 
 		} catch ( Exception $e ) {
 			$msg = $e->getMessage();
 			$msgParamStr = $msg ? " '{$msg}' " : '';
 			$out = "mw.centralNotice.handleBannerLoaderError({$msgParamStr});";
+			$cacheResponse = self::MAX_CACHE_REDUCED;
 
 			wfDebugLog( 'CentralNotice', $msg );
 		}
 
+		$this->sendHeaders( $cacheResponse );
 		echo $out;
 	}
 
@@ -73,17 +80,27 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	/**
 	 * Generate the HTTP response headers for the banner file
+	 * @param cacheResponse int If the response will be cached, use the normal
+	 *   cache time ($wgNoticeBannerMaxAge) or the reduced time
+	 *   ($wgNoticeBannerReducedMaxAge).
 	 */
-	function sendHeaders() {
-		global $wgJsMimeType, $wgNoticeBannerMaxAge;
+	function sendHeaders( $cacheResponse = self::MAX_CACHE_NORMAL ) {
+		global $wgJsMimeType, $wgNoticeBannerMaxAge, $wgNoticeBannerReducedMaxAge;
 
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 
 		if ( !$this->getUser()->isLoggedIn() ) {
-			// Public users get cached
-			header( "Cache-Control: public, s-maxage={$wgNoticeBannerMaxAge}, max-age=0" );
+
+			// This header tells our front-end caches to retain the content for
+			// $sMaxAge seconds.
+			$sMaxAge = ( $cacheResponse === self::MAX_CACHE_NORMAL ) ?
+				$wgNoticeBannerMaxAge : $wgNoticeBannerReducedMaxAge;
+
+			header( "Cache-Control: public, s-maxage={$sMaxAge}, max-age=0" );
 		} else {
-			// Private users do not (we have to emit this because we've disabled output)
+			// Private users do not get cached (we have to emit this because
+			// we've disabled output)
+			// TODO Couldn't we cache for theses users? See T149873
 			header( "Cache-Control: private, s-maxage=0, max-age=0" );
 		}
 	}

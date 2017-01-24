@@ -20,6 +20,11 @@ require_once "$IP/maintenance/Maintenance.php";
 class CleanCNTranslateMetadata extends Maintenance {
 	protected $ttag;
 
+	public function __construct() {
+		parent::__construct();
+		$this->requireExtension( 'CentralNotice' );
+	}
+
 	public function execute() {
 		$this->ttag = RevTag::getType( 'banner:translate' );
 

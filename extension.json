@@ -434,6 +434,7 @@
 		"NoticeHideUrls": [],
 		"CentralNoticeHideBannersP3P": false,
 		"NoticeBannerMaxAge": 600,
+		"NoticeBannerReducedMaxAge": 120,
 		"NoticeUseTranslateExtension": false,
 		"NoticeUseLanguageConversion": false,
 		"NoticeProtectGroup": "sysop",
