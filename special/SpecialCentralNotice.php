@@ -535,9 +535,9 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= $this->msg( 'centralnotice-no-templates' )->escaped();
 			$htmlOut .= Xml::element( 'p' );
 			$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
-			$htmlOut .= Linker::link(
+			$htmlOut .= $this->getLinkRenderer()->makeLink(
 				$newPage,
-				$this->msg( 'centralnotice-add-template' )->escaped()
+				$this->msg( 'centralnotice-add-template' )->text()
 			);
 			$htmlOut .= Xml::element( 'p' );
 		} elseif ( $output_assigned == '' ) {

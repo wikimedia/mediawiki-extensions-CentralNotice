@@ -299,6 +299,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
 		if ( count( $banners ) > 0 ) {
+			$linkRenderer = $this->getLinkRenderer();
 			foreach ( $banners as $banner ) {
 				$percentage = sprintf( "%0.2f", round( $banner['allocation'] * 100, 2 ) );
 
@@ -316,9 +317,9 @@ class SpecialBannerAllocation extends CentralNotice {
 
 				$htmlOut .= Html::openElement( 'span',
 					[ 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ] );
-				$htmlOut .= Linker::link(
+				$htmlOut .= $linkRenderer->makeLink(
 					$viewBanner,
-					htmlspecialchars( $banner['name'] ),
+					$banner['name'],
 					[],
 					[ 'template' => $banner['name'] ]
 				);
@@ -327,9 +328,9 @@ class SpecialBannerAllocation extends CentralNotice {
 
 				// Campaign name
 				$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-					Linker::link(
+					$linkRenderer->makeLink(
 						$viewCampaign,
-						htmlspecialchars( $banner['campaign'] ),
+						$banner['campaign'],
 						[],
 						[
 							'subaction' => 'noticeDetail',
