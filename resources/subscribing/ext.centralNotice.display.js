@@ -142,24 +142,42 @@
 	function fetchBanner() {
 
 		var data = cn.internal.state.getData(),
-			url = new mw.Uri(
+			urlBase = new mw.Uri(
 				mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' )
-			);
+			),
 
-		url.extend(
-			{
-				campaign: data.campaign,
-				banner: data.banner,
-				uselang: data.uselang,
-				debug: data.debug
-			}
-		);
+			// For Varnish purges of banner content, we ensure query param order (thus we
+			// can't use the object-based facilities for params in mw.Uri).
+			// Rather, we use mw.Uri only to parse the URL set in config and to
+			// reconstruct the bits before the query.
+			// Param order must coordinate with CdnCacheUpdateBannerLoader in php.
+			urlQuery = [
+				'banner=' + mw.Uri.encode( data.banner ),
+				'uselang=' + mw.Uri.encode( data.uselang ),
+				'debug=' + ( !!data.debug ).toString()
+			];
+
+		// If this is a preview, there might not be a campaign
+		if ( data.campaign ) {
+			urlQuery.unshift( 'campaign=' + mw.Uri.encode( data.campaign ) );
+		}
+
+		// Only a title param (for ugly URL format) is allowed as a param on the
+		// configured banner dispatchers
+		if ( urlBase.query.title ) {
+			// As per mediawiki.Uri.js
+			urlQuery.unshift( 'title=' + mw.util.wikiUrlencode( urlBase.query.title ) );
+		}
+
+		// Remove any other query or fragment info parsed from the configured URL
+		urlBase.query = {};
+		urlBase.fragment = '';
 
 		// The returned javascript will call mw.centralNotice.insertBanner()
 		// or mw.centralNotice.handleBannerLoaderError() (if an error was
 		// handled on the server).
 		$.ajax( {
-			url: url.toString(),
+			url: urlBase.toString() + '?' + urlQuery.join( '&' ),
 			dataType: 'script',
 			cache: true
 		} ).fail( function ( jqXHR, status, error ) {

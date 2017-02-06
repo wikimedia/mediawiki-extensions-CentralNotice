@@ -920,6 +920,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$banner->setMixins( $formData['mixins'] );
 		$banner->save( $this->getUser(), $summary );
 
+		// Deferred update to purge CDN caches for banner content (for user's lang)
+		DeferredUpdates::addUpdate(
+			new CdnCacheUpdateBannerLoader( $this->getLanguage()->getCode(), $banner ),
+			DeferredUpdates::POSTSEND
+		);
+
 		return null;
 	}
 

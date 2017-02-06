@@ -705,6 +705,42 @@ class Banner {
 	}
 
 	/**
+	 * Return the names of campaigns that this banner is currently used in.
+	 *
+	 * @return string[]
+	 */
+	public function getCampaignNames() {
+
+		$dbr = CNDatabase::getDb();
+
+		$result = $dbr->select(
+			[
+				'notices' => 'cn_notices',
+				'assignments' => 'cn_assignments',
+			],
+			'notices.not_name',
+			[
+				'assignments.tmp_id' => $this->getId(),
+			],
+			__METHOD__,
+			[],
+			[
+				'assignments' =>
+				[
+					'INNER JOIN', 'notices.not_id = assignments.not_id'
+				]
+			]
+		);
+
+		$campaigns = [];
+		foreach ( $result as $row ) {
+			$campaigns[] = $row->not_name;
+		}
+
+		return $campaigns;
+	}
+
+	/**
 	 * Returns an array of Title objects that have been included as templates
 	 * in this banner.
 	 *

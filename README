@@ -46,7 +46,8 @@ Configuration
 
 * $wgCentralSelectedBannerDispatcher: URL for BannerLoader, for requests to
   fetch a banner that is already known (using the "banner" URL param). If
-  false, it will default to Special:BannerLoader.
+  false, it will default to Special:BannerLoader. Note: Ugly URL format is allowed,
+  but no other URL parameters or fragment identifiers may be used.
   Default: false
 
 * $wgCentralMobileSelectedBannerDispatcher: URL for BannerLoader on Mobile
