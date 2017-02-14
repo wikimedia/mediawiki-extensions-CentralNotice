@@ -23,7 +23,7 @@
 	"action-centralnotice-admin": "administrere sentrale meldinger",
 	"centralnotice-desc": "Legger til en sentral sidenotis",
 	"centralnotice-summary": "Denne modulen lar deg redigere din nåværende sentralmeldinger.\nDen kan også bli brukt for å legge til eller fjerne gamle meldinger.",
-	"centralnotice-query": "Endre nåværende kampanjer",
+	"centralnotice-query": "Endre gjeldende kampanjer",
 	"centralnotice-notice-name": "Meldingsnavn",
 	"centralnotice-enabled": "Aktivert",
 	"centralnotice-modify": "Lagre",
