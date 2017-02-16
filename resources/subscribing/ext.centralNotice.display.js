@@ -140,7 +140,7 @@
 
 		var data = cn.internal.state.getData(),
 			url = new mw.Uri(
-				mw.config.get( 'wgCentralSelectedBannerDispatcher' )
+				mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' )
 			);
 
 		url.extend(
