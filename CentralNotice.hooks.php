@@ -71,6 +71,28 @@ class CentralNoticeHooks {
 	}
 
 	/**
+	 * Initialization: set default values for some config globals. Invoked via
+	 * $wgExtensionFunctions.
+	 */
+	public static function initCentralNotice() {
+		global $wgCentralBannerRecorder, $wgCentralSelectedBannerDispatcher,
+			$wgCentralSelectedMobileBannerDispatcher;
+
+		// Defaults for infrastructure wiki URLs
+		if ( !$wgCentralBannerRecorder ) {
+			$wgCentralBannerRecorder = SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
+		}
+
+		if ( !$wgCentralSelectedBannerDispatcher ) {
+			$wgCentralSelectedBannerDispatcher = SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
+		}
+
+		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext') ) {
+			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
+		}
+	}
+
+	/**
 	 * Tell the UserMerge extension where we store user ids
 	 */
 	public static function onUserMergeAccountFields( &$updateFields ) {
@@ -240,42 +262,37 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgNoticeFundraisingUrl, $wgNoticeXXCountries,
+		global $wgNoticeXXCountries,
 			$wgNoticeInfrastructure, $wgCentralBannerRecorder,
 			$wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
 			$wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
-			$wgCentralSelectedBannerDispatcher,
+			$wgCentralSelectedBannerDispatcher, $wgCentralSelectedMobileBannerDispatcher,
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins;
 
+		// TODO Check if the following comment still applies
 		// Making these calls too soon will causes issues with the namespace localisation cache. This seems
 		// to be just right. We require them at all because MW will 302 page requests made to non localised
 		// namespaces which results in wasteful extra calls.
-		if ( !$wgCentralSelectedBannerDispatcher ) {
-			$wgCentralSelectedBannerDispatcher = SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
-		}
-		if ( !$wgCentralBannerRecorder ) {
-			$wgCentralBannerRecorder = SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
-		}
 
-		// FIXME Dicey code! It is likely that the following is never executed in
-		// the WMF's setup. Also getMobileUrl() may not work in some cases.
-
-		// Mangle infrastructure URLs for mobile use -- this should always be last.
+		// Set infrastructure URL variables, which change between mobile/desktop
 		if ( class_exists( 'MobileContext' ) ) {
-			// Where possible; make things mobile friendly
 			$mc = MobileContext::singleton();
-			if ( $mc->shouldDisplayMobileView() ) {
-				// TODO Remove $wgNoticeFundraisingUrl, no longer used
-				$wgNoticeFundraisingUrl = $mc->getMobileUrl( $wgNoticeFundraisingUrl );
-				$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
-				$wgCentralSelectedBannerDispatcher = $mc->getMobileUrl( $wgCentralSelectedBannerDispatcher );
-			}
+			$displayMobile = $mc->shouldDisplayMobileView();
+		} else {
+			$displayMobile = false;
 		}
 
-		// TODO Remove, no longer used
-		$vars[ 'wgNoticeFundraisingUrl' ] = $wgNoticeFundraisingUrl;
+		if ( $displayMobile ) {
+			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
+			$bannerDispatcher = $wgCentralSelectedMobileBannerDispatcher;
+		} else {
+			$bannerDispatcher = $wgCentralSelectedBannerDispatcher;
+		}
 
+		$vars[ 'wgCentralNoticeActiveBannerDispatcher' ] = $bannerDispatcher;
+		// TODO Temporary setting to support cached javascript following deploy; remove.
+		$vars[ 'wgCentralSelectedBannerDispatcher' ] = $bannerDispatcher;
 		$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 		$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
@@ -290,7 +307,6 @@ class CentralNoticeHooks {
 
 		// TODO Remove this after banner display refactor has been deployed
 		$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
-		$vars[ 'wgCentralSelectedBannerDispatcher' ] = $wgCentralSelectedBannerDispatcher;
 		$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
 
 		if ( $wgNoticeInfrastructure ) {

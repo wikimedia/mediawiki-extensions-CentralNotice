@@ -395,6 +395,9 @@
 			"CentralNoticeHooks::onUserMergeAccountFields"
 		]
 	},
+	"ExtensionFunctions": [
+		"CentralNoticeHooks::initCentralNotice"
+	],
 	"config": {
 		"NoticeProject": "wikipedia",
 		"NoticeProjects": [
@@ -421,8 +424,8 @@
 		"CentralHost": false,
 		"CentralNoticeApiUrl": false,
 		"CentralSelectedBannerDispatcher": false,
+		"CentralMobileSelectedBannerDispatcher": false,
 		"CentralNoticeLoader": true,
-		"NoticeFundraisingUrl": "https://donate.wikimedia.org/wiki/Special:LandingCheck",
 		"NoticeBannerPreview": false,
 		"NoticeCookieDomain": "",
 		"NoticeCookieDurations": {

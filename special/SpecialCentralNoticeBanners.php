@@ -446,7 +446,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	protected function generateBannerEditForm() {
-		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgNoticeFundraisingUrl, $wgLanguageCode;
+		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
