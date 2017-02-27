@@ -53,7 +53,6 @@
 	 * TODO Should this go in core?
 	 */
 	function areCookiesEnabled() {
-
 		// On the first call, set a cookie and try to read it back
 		if ( cookiesEnabled === null ) {
 
@@ -73,7 +72,6 @@
 	 * compatibility and certain user privacy options are required.)
 	 */
 	function isLocalStorageAvailable() {
-
 		if ( localStorageAvailable === null ) {
 
 			// For the KV store to work, the browser has to support
@@ -108,7 +106,6 @@
 	 * @param {KVStorageContext} context
 	 */
 	function setError( message, key, value, context ) {
-
 		error = {
 			message: message,
 			key: key,
@@ -138,7 +135,6 @@
 	 * @return {string}
 	 */
 	function makeKeyForLocalStorage( key, context ) {
-
 		var base = PREFIX + SEPARATOR + context.key + SEPARATOR;
 
 		switch ( context.key ) {
@@ -169,7 +165,6 @@
 	 * @return {string}
 	 */
 	function makeKeyForCookie( key, context ) {
-
 		var base = PREFIX_IN_COOKIES + SEPARATOR_IN_COOKIES +
 			context.keyInCookies + SEPARATOR_IN_COOKIES;
 
@@ -190,7 +185,6 @@
 	}
 
 	function setLocalStorageItem( key, value, context, ttl ) {
-
 		var lsKey, encodedWrappedValue;
 
 		lsKey = makeKeyForLocalStorage( key, context );
@@ -222,7 +216,6 @@
 	}
 
 	function setCookieItem( key, value, context, ttl ) {
-
 		return Boolean( $.cookie(
 			makeKeyForCookie( key, context ),
 			encodeURIComponent( JSON.stringify( value ) ),
@@ -231,7 +224,6 @@
 	}
 
 	function getLocalStorageItem( key, context ) {
-
 		var lsKey = makeKeyForLocalStorage( key, context ),
 			rawValue, wrappedValue;
 
@@ -253,6 +245,9 @@
 			wrappedValue = JSON.parse( rawValue );
 
 		} catch ( e ) {
+			// FIXME: Consider detecting out-of-space errors and perform
+			// garbage-collection immediately, starting by removing the oldest
+			// expired (and unexpired) keys older than a certain threshold.
 
 			// If the JSON couldn't be parsed, log and return null (which is
 			// the same value we'd get if the key were not set).
@@ -287,7 +282,6 @@
 	}
 
 	function getCookieItem( key, context ) {
-
 		var storageKey = makeKeyForCookie( key, context ),
 			rawCookie = $.cookie( storageKey );
 
@@ -301,7 +295,6 @@
 	}
 
 	function removeLocalStorageItem( key, context ) {
-
 		try {
 			localStorage.removeItem( makeKeyForLocalStorage( key, context ) );
 
@@ -377,7 +370,6 @@
 		 * @return {boolean} true if the value could be set, false otherwise
 		 */
 		setItem: function ( key, value, context, ttl, multiStorageOption ) {
-
 			// Check validity of key
 			if ( ( key.indexOf( SEPARATOR ) !== -1 ) ||
 				( key.indexOf( SEPARATOR_IN_COOKIES ) !== -1 ) ) {
@@ -417,7 +409,6 @@
 		 *   Defaults to kvStore.multiStorageOptions.LOCAL_STORAGE.
 		 */
 		getItem: function ( key, context, multiStorageOption ) {
-
 			multiStorageOption =
 				multiStorageOption || kvStore.multiStorageOptions.LOCAL_STORAGE;
 
@@ -450,7 +441,6 @@
 		 *   Defaults to kvStore.multiStorageOptions.LOCAL_STORAGE.
 		 */
 		removeItem: function ( key, context, multiStorageOption ) {
-
 			multiStorageOption =
 				multiStorageOption || kvStore.multiStorageOptions.LOCAL_STORAGE;
 
@@ -488,7 +478,6 @@
 		 * @return {string} A string key
 		 */
 		getMultiStorageOption: function ( cookieAllowed ) {
-
 			if ( isLocalStorageAvailable() ) {
 				return kvStore.multiStorageOptions.LOCAL_STORAGE;
 			}
@@ -526,11 +515,11 @@
 			campaignName = cName;
 		},
 
-		setBannerName:  function ( bName ) {
+		setBannerName: function ( bName ) {
 			bannerName = bName;
 		},
 
-		setCategory:  function ( c ) {
+		setCategory: function ( c ) {
 			category = c;
 		}
 	};
