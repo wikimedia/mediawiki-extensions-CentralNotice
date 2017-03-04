@@ -4,7 +4,8 @@
 			"CERminator",
 			"DzWiki",
 			"Palapa",
-			"Semso98"
+			"Semso98",
+			"Srdjan m"
 		]
 	},
 	"centralnotice": "Uređivanje središnjeg obavještenja",
@@ -51,7 +52,7 @@
 	"centralnotice-notice": "Kampanja",
 	"centralnotice-notice-heading": "Kampanja: $1",
 	"centralnotice-notices": "Obavještenja",
-	"centralnotice-notice-exists": "Obavještenje već postoji.\nNe može se dodati",
+	"centralnotice-notice-exists": "Obavještenje već postoji.\nNije dodano.",
 	"centralnotice-no-language": "Nije odabran jezik za kampanju. Ništa se ne dodaje.",
 	"centralnotice-no-project": "Nijedan jezik nije odabran za kampanju. Ništa se ne dodaje.",
 	"centralnotice-template-exists": "Šablon već postoji.\nNe dodaje se",
@@ -75,7 +76,7 @@
 	"centralnotice-preview-template": "Izgled šablona",
 	"centralnotice-change-lang": "Promjena jezika prijevoda",
 	"centralnotice-weights": "Težina",
-	"centralnotice-notice-is-locked": "Obavještenje je zaključano.\nNe može se ukloniti",
+	"centralnotice-notice-is-locked": "Obavještenje je zaključano.\nNije uklonjeno.",
 	"centralnotice-overlap": "Obavještenje se preklapa u toku vremena sa drugim obavještenjem.\nNe može se dodati",
 	"centralnotice-invalid-date-range": "Pogrešan vremenski period.\nNe može se ažurirati",
 	"centralnotice-null-string": "Ne može se dodati prazan string.\nObavještenje nije dodano",
