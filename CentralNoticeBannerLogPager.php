@@ -3,7 +3,7 @@
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	public $special;
 
-	function __construct( $special ) {
+	function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
 		parent::__construct($special);
 	}

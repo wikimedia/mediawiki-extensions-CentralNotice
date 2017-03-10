@@ -5,6 +5,9 @@ class CampaignLog {
 	static $list_fields = array( 'projects', 'languages', 'countries' );
 	static $map_fields = array( 'banners' );
 
+	/**
+	 * @param stdClass|null $row
+	 */
 	function __construct( $row = null ) {
 		$begin = array();
 		$end = array();

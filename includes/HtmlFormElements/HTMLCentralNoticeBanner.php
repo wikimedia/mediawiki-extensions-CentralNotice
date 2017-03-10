@@ -47,7 +47,7 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		}
 
 		$previewUrl = $wgNoticeBannerPreview . "/{$bannerName}/{$bannerName}_{$language}.png";
-		$preview = Html::Element(
+		$preview = Html::element(
 			'img',
 			array(
 				'src' => $previewUrl,

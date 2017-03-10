@@ -201,6 +201,8 @@ class AllocationCalculator {
 	 *   AllocationCalculator::LOGGED_IN).
 	 *
 	 * @param string $device target device code
+	 *
+	 * @return array of banner information as arrays
 	 */
 	public static function makePossibleBanners( $campaign, $bucket, $status, $device ) {
 
@@ -238,6 +240,9 @@ class AllocationCalculator {
 	 * Calculate the allocation of banners in a single campaign, based on
 	 * relative weights. The equivalent client-side method is
 	 * mw.cnBannerControllerLib.calculateBannerAllocations().
+	 *
+	 * @param $banners array of banner information as arrays.
+	 *  Each banner's 'allocation' property will be set.
 	 */
 	public static function calculateBannerAllocations( &$banners ) {
 

@@ -14,7 +14,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	/**
 	 * Constructor.
 	 *
-	 * @param string $id Unique id for this group.
+	 * @param int $namespace ID of the namespace holding CentralNotice messages
 	 * @param string $title The page name of the CentralNotice banner
 	 */
 	public function __construct( $namespace, $title ) {
