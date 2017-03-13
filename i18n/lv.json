@@ -94,11 +94,14 @@
 	"centralnotice-percentage": "Procenti",
 	"centralnotice-preferred": "Prioritāte",
 	"centralnotice-archived": "Arhivēts",
+	"centralnotice-logs": "Žurnāli",
 	"centralnotice-view-logs": "Apskatīt ierakstus",
 	"centralnotice-timestamp": "Laika zīmogs",
 	"centralnotice-user": "Dalībnieks",
 	"centralnotice-action": "Darbība",
 	"centralnotice-change-summary-heading": "Kopsavilkums",
+	"centralnotice-action-created": "Izveidots",
+	"centralnotice-action-removed": "noņemts",
 	"centralnotice-talk-link": "diskusija",
 	"centralnotice-campaign-settings": "Kampaņas iestatījumi",
 	"centralnotice-banner-settings": "Reklāmkaroga iestatījumi",
@@ -122,6 +125,8 @@
 	"centralnotice-all": "Visi",
 	"centralnotice-all-except": "Visi, izņemot $1",
 	"centralnotice-excluding-list": "$1 (izņemot $2)",
+	"centralnotice-user-role-anonymous": "Anonīms",
+	"centralnotice-banner-class": "Kategorija",
 	"centralnotice-archive-banner": "Arhivēt",
 	"centralnotice-archive-banner-cancel": "Atcelt",
 	"centralnotice-change-summary-label": "Kopsavilkums",
@@ -132,5 +137,6 @@
 	"centralnotice-start-date": "Sākuma datums (UTC)",
 	"centralnotice-start-time": "Sākuma laiks (UTC)",
 	"centralnotice-end-date": "Beigu datums (UTC)",
-	"centralnotice-end-time": "Beigu laiks (UTC)"
+	"centralnotice-end-time": "Beigu laiks (UTC)",
+	"apihelp-query+centralnoticelogs-example-1": "Rādīt žurnālus"
 }
