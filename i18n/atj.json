@@ -4,8 +4,13 @@
 			"Benoit Rochon"
 		]
 	},
+	"centralnotice-view": "Tapwatcike",
+	"centralnotice-remove": "Manina",
+	"centralnotice-banner-anonymous": "Nama kiskeritakosiw ka ki masinahak",
 	"centralnotice-change-summary-heading": "Nosem",
 	"centralnotice-talk-link": "ka ici arimowaniok",
 	"centralnotice-date": "Tatokonakisitc",
-	"centralnotice-change-summary-label": "Nosem"
+	"centralnotice-user-role-anonymous": "Nama kiskeritakosiw ka ki masinahak",
+	"centralnotice-change-summary-label": "Nosem",
+	"centralnotice-delete-banner": "Wepina"
 }
