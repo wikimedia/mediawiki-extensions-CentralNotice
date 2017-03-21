@@ -156,6 +156,7 @@ class CentralNoticePager extends TemplatePager {
 	function bucketDropDown( $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
+		// class should coordinate with CentralNotice::bucketDropDown()
 		$html = Html::openElement( 'select', array(
 			'name' => "bucket-{$bannerName}",
 			'class' => array( 'bucketSelector' ),

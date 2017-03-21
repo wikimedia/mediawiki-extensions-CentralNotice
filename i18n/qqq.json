@@ -314,5 +314,20 @@
 	"centralnotice-large-banner-limit-randomize": "Label for the form control to randomize bucket transition",
 	"centralnotice-large-banner-limit-randomize-help": "Help text for the form control to randomize bucket transition",
 	"centralnotice-large-banner-limit-identifier": "Label for the form control to set a large banner identifier/cookie name",
-	"centralnotice-large-banner-limit-identifier-help": "Help text for the form control to set large banner identifier/cookie name"
+	"centralnotice-large-banner-limit-identifier-help": "Help text for the form control to set large banner identifier/cookie name",
+	"centralnotice-banner-sequence": "Label for the banner sequence mixin",
+	"centralnotice-banner-sequence-help": "Help text for the banner sequence mixin",
+	"centralnotice-banner-sequence-days": "Label for the form control to set the number of days identifiers for suppressing steps will remain in effect.",
+	"centralnotice-banner-sequence-days-error": "Error message for invalid data entered in the form control to set the number of days that identifiers will remain in effect.",
+	"centralnotice-banner-sequence-days-help": "Help text for the form control to set the number of days identifiers for suppressing steps will remain in effect.",
+	"centralnotice-banner-sequence-bucket-seq": "Label for a sequence for a given bucket and total number of page views in the sequence. Parameters:\n* $1 - Alphabetic label for the bucket\n* $2 Number of page views in the sequence",
+	"centralnotice-banner-sequence-bucket-add-step": "Label for a button to add step to a banner sequence",
+	"centralnotice-banner-sequence-banner": "Label for a drop-down form control to select a banner for a step in a banner sequence",
+	"centralnotice-banner-sequence-page-views": "Label for a form control for the number of page views in a step in a banner sequence",
+	"centralnotice-banner-sequence-skip-with-id": "Label for a form control to set an identifier stored in a user's browser to prevent the repeated display of a step in a banner sequence",
+	"centralnotice-banner-sequence-banner-removed-error": "Error message to display below a form control to select a banner, if other controls on the page have been used to remove the banner or modify its bucket assignment.",
+	"centralnotice-banner-sequence-page-views-error": "Error message for invalid data entered in a form control for the number of page views of a step in a banner sequence",
+	"centralnotice-banner-sequence-skip-with-id-error": "Error message for invalid data entered in form control to set an identifier stored in a user's browser to prevent the repeated display of a step in a banner sequence",
+	"centralnotice-banner-sequence-no-banner": "Text for option in banner drop-down form control to show no banner for a step in a banner sequence",
+	"centralnotice-banner-sequence-detailed-help": "Help text for banner sequences"
 }

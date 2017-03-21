@@ -330,6 +330,43 @@
 				"mobile"
 			]
 		},
+		"ext.centralNotice.bannerSequence": {
+			"scripts": "subscribing/ext.centralNotice.bannerSequence.js",
+			"dependencies": [
+				"ext.centralNotice.display",
+				"ext.centralNotice.kvStore"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.centralNotice.adminUi.bannerSequence": {
+			"scripts": "infrastructure/ext.centralNotice.adminUi.bannerSequence.js",
+			"styles": "infrastructure/ext.centralNotice.adminUi.bannerSequence.less",
+			"dependencies": [
+				"ext.centralNotice.adminUi.campaignManager",
+				"oojs-ui",
+				"mediawiki.jqueryMsg"
+			],
+			"messages": [
+				"centralnotice-banner-sequence",
+				"centralnotice-banner-sequence-days",
+				"centralnotice-banner-sequence-days-error",
+				"centralnotice-banner-sequence-days-help",
+				"centralnotice-banner-sequence-help",
+				"centralnotice-banner-sequence-bucket-seq",
+				"centralnotice-banner-sequence-bucket-add-step",
+				"centralnotice-banner-sequence-banner",
+				"centralnotice-banner-sequence-page-views",
+				"centralnotice-banner-sequence-skip-with-id",
+				"centralnotice-banner-sequence-page-views-error",
+				"centralnotice-banner-sequence-skip-with-id-error",
+				"centralnotice-banner-sequence-banner-removed-error",
+				"centralnotice-banner-sequence-no-banner",
+				"centralnotice-banner-sequence-detailed-help"
+			]
+		},
 		"ext.centralNotice.freegeoipLookup": {
 			"scripts": "subscribing/ext.centralNotice.freegeoipLookup.js",
 			"dependencies": [
@@ -560,6 +597,20 @@
 						"labelMsg": "centralnotice-large-banner-limit-identifier",
 						"helpMsg": "centralnotice-large-banner-limit-identifier-help",
 						"defaultValue": "centralnotice-frbanner-seen-fullscreen"
+					}
+				}
+			},
+			"bannerSequence": {
+				"subscribingModule": "ext.centralNotice.bannerSequence",
+				"customAdminUIControlsModule": "ext.centralNotice.adminUi.bannerSequence",
+				"nameMsg": "centralnotice-banner-sequence",
+				"helpMsg": "centralnotice-banner-sequence-help",
+				"parameters": {
+					"days": {
+						"type": "integer"
+					},
+					"sequences": {
+						"type": "json"
 					}
 				}
 			}

@@ -53,8 +53,13 @@
 			seen: 11,
 			empty: 12,
 			waitnorestart: 13, // Deprecated
-			waitnostorage: 14,
-			namespace: 15
+			waitnostorage: 14, // TODO Switch impression diet to use just noStorage?
+			namespace: 15,
+			noStorage: 16,
+			requestedBannerNotAvailable: 17,
+			jsonParamError: 18,
+			bannerSequenceEmptyStep: 19,
+			bannerSequenceAllStepsSkipped: 20
 		};
 
 	function Status( key, code ) {
@@ -219,7 +224,7 @@
 
 		/**
 		 * Get a copy of the data object. If cleanForURLSerialization is true,
-		 * remove non-string properties.
+		 * remove non-string and redundant properties.
 		 *
 		 * @param {boolean} cleanForURLSerialization
 		 */
@@ -231,6 +236,7 @@
 				delete dataCopy.getVars;
 				delete dataCopy.mixins;
 				delete dataCopy.tests;
+				delete dataCopy.reducedBucket;
 			}
 
 			return dataCopy;
@@ -302,6 +308,10 @@
 			state.data.bucket = bucket;
 		},
 
+		setReducedBucket: function ( reducedBucket ) {
+			state.data.reducedBucket = reducedBucket;
+		},
+
 		setBannersNotGuaranteedToDisplay: function () {
 			state.data.bannersNotGuaranteedToDisplay = true;
 		},
@@ -329,6 +339,11 @@
 			// Legacy fields for Special:RecordImpression
 			state.data.result = 'hide';
 			state.data.reason = 'empty';
+		},
+
+		setRequestedBannerNotAvailable: function ( bannerName ) {
+			state.data.requestedBanner = bannerName;
+			setStatus( STATUSES.NO_BANNER_AVAILABLE, 'requestedBannerNotAvailable' );
 		},
 
 		setBannerLoadedButHidden: function ( reason ) {

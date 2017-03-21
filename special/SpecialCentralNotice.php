@@ -735,6 +735,7 @@ class CentralNotice extends SpecialPage {
 
 							switch( $paramDef['type'] ) {
 								case 'string':
+								case 'json':
 									$paramVal = Sanitizer::removeHTMLtags(
 										$request->getText( $requestParamName )
 									);
@@ -750,7 +751,11 @@ class CentralNotice extends SpecialPage {
 
 								case 'boolean':
 									$paramVal = $request->getCheck( $requestParamName );
-								break;
+									break;
+
+								default:
+									throw new DomainException(
+										'Unknown parameter type ' . $paramType );
 							}
 
 							$params[$paramName] = $paramVal;
@@ -1103,8 +1108,29 @@ class CentralNotice extends SpecialPage {
 		$isBalanced = ( count( array_unique( $weights ) ) === 1 );
 
 		// Build Assigned banners HTML
+
 		$htmlOut = Html::hidden( 'change', 'weight' );
-		$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
+
+		// Prepare data about assigned banners to provide to client-side code, and
+		// make it available within the fieldsset element.
+
+		$bannersForJS = array_map( function ( $banner ) {
+				return [
+					'bannerName' => $banner->tmp_name,
+					'bucket' => $banner->asn_bucket
+				];
+			},
+			$banners
+		);
+
+		$htmlOut .= Xml::fieldset(
+			$this->msg( 'centralnotice-assigned-templates' )->text(),
+			false,
+			[
+				'data-assigned-banners' => json_encode( $bannersForJS ),
+				'id' => 'centralnotice-assigned-banners'
+			]
+		);
 
 		// Equal weight banners
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -1140,7 +1166,10 @@ class CentralNotice extends SpecialPage {
 			if ( $this->editable ) {
 				// Remove
 				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					Xml::check( 'removeTemplates[]', false, array( 'value' => $row->tmp_name ) )
+					Xml::check( 'removeTemplates[]', false, [
+						'value' => $row->tmp_name,
+						'class' => 'bannerRemoveCheckbox'
+					] )
 				);
 			}
 
@@ -1155,7 +1184,8 @@ class CentralNotice extends SpecialPage {
 				$this->bucketDropDown(
 					"bucket[$row->tmp_id]",
 					( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
-					$numCampaignBuckets
+					$numCampaignBuckets,
+					$row->tmp_name
 				)
 			);
 
@@ -1204,7 +1234,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	function bucketDropDown( $name, $selected, $numberCampaignBuckets ) {
+	function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
 		$bucketLabel = function ( $val ) {
@@ -1217,9 +1247,12 @@ class CentralNotice extends SpecialPage {
 			}
 			$selected = $selected % $numberCampaignBuckets;
 
+			// bucketSelector class is for all bucket selectors (for assigned or
+			// unassigned banners). Coordinate with CentralNoticePager::bucketDropDown().
 			$html = Html::openElement( 'select', [
 				'name' => $name,
-				'class' => 'bucketSelector'
+				'class' => 'bucketSelector bucketSelectorForAssignedBanners',
+				'data-banner-name' => $bannerName
 			] );
 
 			foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {

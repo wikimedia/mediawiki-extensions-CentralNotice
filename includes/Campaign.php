@@ -660,6 +660,22 @@ class Campaign {
 						$paramVal = ( $dbRow->nmxnp_param_value === 'true' );
 						break;
 
+					case 'json':
+						$paramVal = json_decode( $dbRow->nmxnp_param_value );
+
+						if ( $paramVal === null ) {
+							wfLogWarning( 'Couldn\'t decode json param ' . $paramName
+								. ' for mixin ' . $mixinName . ' in campaign ' .
+								$campaignName . '.' );
+
+							// In this case, it's fine to emit a null value for the
+							// parameter. Both Admin UI and subscribing client-side
+							// code should handle it gracefully and warn in the console.
+							// TODO Handle this better, server-side.
+						}
+
+						break;
+
 					default:
 						throw new DomainException(
 							'Unknown parameter type ' . $paramType );

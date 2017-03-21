@@ -230,7 +230,7 @@
 			banner = campaign.banners[ i ];
 
 			// Filter for bucket
-			if ( bucket % campaign.bucket_count !== banner.bucket ) {
+			if ( bucket !== banner.bucket ) {
 				continue;
 			}
 
@@ -361,6 +361,35 @@
 			setBannerAllocations( possibleBanners );
 
 			return chooseObjInAllocatedArray( random, possibleBanners );
+		},
+
+		/**
+		 * Request a specific banner from among those available for this user
+		 *
+		 * @param {Object} campaign
+		 * @param {number} bucket
+		 * @param {boolean} anon
+		 * @param {string} device
+		 * @param {string} requestedBannerName
+		 * @returns {Object}
+		 */
+		requestBanner: function ( campaign, bucket, anon, device, requestedBannerName ) {
+
+			var i, possibleBanner,
+				// Make a list of possible banners.
+				possibleBanners =
+				makePossibleBanners( campaign, bucket, anon, device );
+
+			for ( i = 0; i < possibleBanners.length; i++ ) {
+
+				possibleBanner = possibleBanners[ i ];
+
+				if ( possibleBanner.name === requestedBannerName ) {
+					return possibleBanner;
+				}
+			}
+
+			return null;
 		}
 	};
 

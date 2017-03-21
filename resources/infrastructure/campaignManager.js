@@ -29,8 +29,39 @@
 		),
 		$form, $submitBtn,
 		MixinCustomUiController, MixinCustomWidget,
+		ErrorStateTracker,
 		mixinCustomUiControllerFactory = new OO.Factory(),
-		eventBus = new OO.EventEmitter();
+		errorStateTracker, eventBus, assignedBanners,
+		BUCKET_LABELS = [ 'A', 'B', 'C', 'D' ]; // TODO Fix for configs with more buckets
+
+	/* Event bus */
+
+	/**
+	 * eventBus: A simple object for subscribing to and emitting events.
+	 */
+
+	/**
+	 * @event bucket-change
+	 *
+	 * The control for the number of buckets in the campaign has changed.
+	 * @param {number} numBuckets
+	 */
+
+	/**
+	 * @event assigned-banners-change
+	 *
+	 * The controls for banner assignment (bucket assignements and banner removal
+	 * checkboxes) have changed. Note: This event does not fire when a checkbox for
+	 * adding a banner is checked.
+	 */
+	/**
+	 * @event error-state
+	 *
+	 * An error state is set or removed
+	 * @param {string} errorKey
+	 * @param {boolean} state true to set error, false to clear one.
+	 */
+	eventBus = new OO.EventEmitter();
 
 	/* MixinCustomUiController */
 
@@ -190,6 +221,56 @@
 
 	/* Event handlers (non-OOjs-UI) and related logic */
 
+	/**
+	 * Simple object for keeping track of validation errors.
+	 *
+	 * @class ErrorStateTracker
+	 * @constructor
+	 */
+	ErrorStateTracker = function () {
+		this.errors = {};
+	};
+
+	/**
+	 * Set or clear an error state.
+	 *
+	 * @param {string} errorKey A unique key identifying this error
+	 * @þaram {boolean} state true sets an error for this key, and false clear it
+	 */
+	ErrorStateTracker.prototype.setErrorState = function ( errorKey, state ) {
+		if ( state ) {
+			this.errors[ errorKey ] = true;
+		} else {
+			delete this.errors[ errorKey ];
+		}
+	};
+
+	/**
+	 * Is one or more error currently set?
+	 *
+	 * @returns {boolean}
+	 */
+	ErrorStateTracker.prototype.hasErrorState = function () {
+		return Object.keys( this.errors ).length > 0;
+	};
+
+	// General error state tracker for the page
+	errorStateTracker = new ErrorStateTracker();
+
+	// Connect handler for error-state events
+	eventBus.on( 'error-state', function ( errorKey, state ) {
+
+		// Pass state on to errorStateTracker
+		errorStateTracker.setErrorState( errorKey, state );
+
+		// Update the submit button
+		if ( errorStateTracker.hasErrorState() ) {
+			$submitBtn.prop( 'disabled', true );
+		} else {
+			$submitBtn.prop( 'disabled', false );
+		}
+	} );
+
 	function updateThrottle() {
 		if ( $( '#throttle-enabled' ).prop( 'checked' ) ) {
 			$( '.cn-throttle-amount' ).show();
@@ -207,10 +288,13 @@
 	}
 
 	function updateBuckets() {
-		var numBuckets = getNumBuckets(),
+		var i, isBucketDisabled,
+			numBuckets = getNumBuckets(),
 			maxNumBuckets = mw.config.get( 'wgNoticeNumberOfBuckets' ),
 			bucketSelectors = $( 'select.bucketSelector' ),
-			i, isBucketDisabled;
+
+			bucketSelectorUnassigned =
+				bucketSelectors.not( '.bucketSelectorForAssignedBanners' );
 
 		// Change selected value of bucket selectors to only available buckets
 		bucketSelectors.each( function () {
@@ -220,25 +304,35 @@
 			$selector.val( selectedVal % numBuckets );
 		} );
 
-		// If only one bucket is available, disable the selectors entirely
+		// If only one bucket is available, disable the selectors for unassigned banners,
+		// and enable them if more than one bucket is available.
+
+		// (If we disable selectors for assigned banners, then they won't send their
+		// values when the form is submitted. In that case, if the number of buckets were
+		// changed from a value greater than 1 to 1, the selectors would show all banners
+		// on bucket 0, but for any banners that were moved to bucket 0, the change would
+		// not be submitted to the server.)
+
 		if ( numBuckets === 1 ) {
-			bucketSelectors.prop( 'disabled', true );
-
+			bucketSelectorUnassigned.prop( 'disabled', true );
 		} else {
-			// If more than one bucket is available, enable selectors and set options to
-			// disabled or enabled, as appropriate
 			bucketSelectors.prop( 'disabled', false );
+		}
 
-			for ( i = 0; i < maxNumBuckets; i++ ) {
-				isBucketDisabled = ( i >= numBuckets );
+		// Enable or disable bucket options in drop-downs, as appropriate
+		for ( i = 0; i < maxNumBuckets; i++ ) {
+			isBucketDisabled = ( i >= numBuckets );
 
-				bucketSelectors.find( 'option[value=' + i + ']' )
-					.prop( 'disabled', isBucketDisabled );
-			}
+			bucketSelectors.find( 'option[value=' + i + ']' )
+				.prop( 'disabled', isBucketDisabled );
 		}
 
 		// Broadcast bucket change event
 		eventBus.emit( 'bucket-change', numBuckets );
+
+		// It's important to update assigned banners *after* emitting bucket-change so
+		// widgets first can adjust to the new bucket number.
+		updateAssignedBanners();
 	}
 
 	function getNumBuckets() {
@@ -348,6 +442,9 @@
 					paramTemplateVars.inputValue = paramName;
 					break;
 
+				case 'json':
+					throw 'json parameter type requires custom admin UI module.';
+
 				default:
 					throw 'Invalid parameter definition type: ' + paramDef.type;
 			}
@@ -439,18 +536,123 @@
 		var $errorBox = $input.closest( 'p' ).prevAll( '.errorbox' );
 
 		if ( error ) {
-			$submitBtn.attr( 'disabled', 'disabled' );
-
 			if ( $errorBox.length === 0 ) {
 				$errorBox = $( '<p class="errorbox" />' );
 				$errorBox.text( mw.message( msgKey ).text() );
 				$input.closest( 'p' ).before( $errorBox );
 			}
 
+			eventBus.emit( 'error-state', $input.attr( 'name' ), true );
+
 		} else {
-			$submitBtn.removeAttr( 'disabled' );
 			$errorBox.remove();
+			eventBus.emit( 'error-state', $input.attr( 'name' ), false );
 		}
+	}
+
+	/**
+	 * Create a by-bucket index of assigned banners using data received from the server.
+	 */
+	function setUpAssignedBanners() {
+		var assignedBannersFlat, i;
+
+		// Create outer array and inner arrays for all possible buckets
+		assignedBanners = [];
+
+		for ( i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
+			assignedBanners[ i ] = [];
+		}
+
+		// Get the data sent from the server
+		// If there are no assigned banners, the assigned banner fieldset isn't included
+		// in the page. In that case, jQuery will return undefined from data()
+		assignedBannersFlat =
+			$( '#centralnotice-assigned-banners' ).data( 'assigned-banners' ) || [];
+
+		// Fill up the index
+		for ( i = 0; i < assignedBannersFlat.length; i++ ) {
+			assignedBanners[ assignedBannersFlat[ i ].bucket ]
+				.push( assignedBannersFlat[ i ].bannerName );
+		}
+	}
+
+	/**
+	 * Update the by-bucket index of assigned banners when a remove banner checkbox or a
+	 * bucket selector for an assigned banner changes. Then, broadcast the
+	 * assigned-banner-change event.
+	 */
+	function updateAssignedBanners() {
+		var $removeCheckboxes = $( '.bannerRemoveCheckbox' ),
+			$selectors = $( '.bucketSelectorForAssignedBanners' ),
+			removedBanners = [];
+
+		// Create an array with the names of banners whose remove checkbox is checked
+		$removeCheckboxes.each( function () {
+			var $this = $( this );
+			if ( $this.prop( 'checked' ) ) {
+				removedBanners.push( $this.val() );
+			}
+		} );
+
+		// Iterate over the bucket selectors for assigned banners
+		$selectors.each( function () {
+			var i, bannerIdx,
+				$this = $( this ),
+				assignedBucket = parseInt( $this.find( ':selected' ).val(), 10 ),
+				bannerName = $this.data( 'banner-name' ),
+				removed = ( removedBanners.indexOf( bannerName ) !== -1 );
+
+			// Iterate over all buckets, adding banners to the index or removeing them,
+			// as needed. (assignedBanners has elements for all possible buckets.)
+			// TODO Make the order of banners the same as the order displayed in the UI
+			for ( i = 0; i < assignedBanners.length; i++ ) {
+
+				bannerIdx = assignedBanners[ i ].indexOf( bannerName );
+
+				// If the box is checked to remove, just ensure the banner is not there
+				if ( removed ) {
+					if ( bannerIdx !== -1 ) {
+						assignedBanners[ i ].splice( bannerIdx, 1 );
+					}
+					continue;
+				}
+
+				// If the banner is assigned to this bucket but not in the array, add it.
+				if ( i === assignedBucket && bannerIdx === -1 ) {
+					assignedBanners[ i ].push( bannerName );
+					continue;
+				}
+
+				// If the banner isn't assigned to this bucket but it is in the array,
+				// remove it.
+				if ( i !== assignedBucket && bannerIdx !== -1 ) {
+					assignedBanners[ i ].splice( bannerIdx, 1 );
+				}
+			}
+		} );
+
+		// Broadcast the event
+		eventBus.emit( 'assigned-banners-change' );
+	}
+
+	/**
+	 * Get an array of banners assigned to a specific bucket.
+	 *
+	 * @param {number} bucket
+	 * @returns {Array}
+	 */
+	function getAssignedBanners( bucket ) {
+		return assignedBanners[ bucket ];
+	}
+
+	/**
+	 * Get the human-friendly alphabetic label for a bucket number
+	 *
+	 * @param {number} bucket
+	 * @returns {string}
+	 */
+	function getBucketLabel( bucket ) {
+		return BUCKET_LABELS[ bucket ];
 	}
 
 	/* Exports */
@@ -472,6 +674,13 @@
 		MixinCustomWidget: MixinCustomWidget,
 
 		/**
+		 * Simple object for keeping track of validation errors.
+		 * @see ErrorStateTracker
+		 * @type {function}
+		 */
+		ErrorStateTracker: ErrorStateTracker,
+
+		/**
 		 * Factory for custom mixin UI controllers.
 		 * @type {OO.Factory}
 		 */
@@ -481,7 +690,30 @@
 		 * Centralized object for emitting and subscribing to events.
 		 * @type {OO.EventEmitter}
 		 */
-		eventBus: eventBus
+		eventBus: eventBus,
+
+		/**
+		 * Get the number of buckets currently set in the bucket input.
+		 * @function
+		 * @return {number}
+		 */
+		getNumBuckets: getNumBuckets,
+
+		/**
+		 * Get the human-friendly alphabetic label for a bucket number.
+		 * @function
+		 * @param {number} bucket
+		 * @returns {string}
+		 */
+		getBucketLabel: getBucketLabel,
+
+		/**
+		 * Get an array of banners assigned to a specific bucket.
+		 * @function
+		 * @param {number} bucket
+		 * @returns {Array}
+		 */
+		getAssignedBanners: getAssignedBanners
 	};
 
 	/* General setup */
@@ -511,11 +743,14 @@
 
 		updateThrottle();
 		updateWeightColumn();
+		setUpAssignedBanners();
 		updateBuckets();
 
 		$( '#throttle-enabled' ).click( updateThrottle );
 		$( '#balanced' ).click( updateWeightColumn );
 		$( 'select#buckets' ).change( updateBuckets );
+		$( '.bucketSelectorForAssignedBanners, .bannerRemoveCheckbox' )
+			.change( updateAssignedBanners );
 
 		$mixinCheckboxes.each( showOrHideCampaignMixinControls );
 		$mixinCheckboxes.change( showOrHideCampaignMixinControls );

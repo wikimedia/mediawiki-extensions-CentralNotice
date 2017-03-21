@@ -9,12 +9,7 @@
 
 	// FIXME: fail hard if there is no fixture data
 
-	QUnit.module( 'ext.centralNotice.display.chooser', QUnit.newMwEnvironment( {
-		config: {
-			// Make this config available in tests
-			wgNoticeNumberOfBuckets: numBuckets
-		}
-	} ) );
+	QUnit.module( 'ext.centralNotice.display.chooser', QUnit.newMwEnvironment() );
 
 	// Cycle through test cases, contexts and outputs, and buckets and set up
 	// allocation tests. For JSLint-happiness, drizzle toasted closure sauce.
@@ -134,7 +129,9 @@
 				// TODO Test return value, too.
 				chooser.chooseBanner(
 					campaign,
-					bucket,
+
+					// bucket argument mocks internal.bucketer.getReducedBucket()
+					bucket % campaign.bucket_count,
 					anonymous,
 					context.device,
 					0

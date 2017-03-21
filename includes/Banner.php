@@ -1408,6 +1408,8 @@ class Banner {
 	 * @return bool True if valid
 	 */
 	static function isValidBannerName( $name ) {
+		// Note: regex should coordinate with banner name validation
+		// in ext.centralNotice.adminUi.bannerSequence.js
 		return preg_match( '/^[A-Za-z0-9_]+$/', $name );
 	}
 

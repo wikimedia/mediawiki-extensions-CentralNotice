@@ -198,12 +198,14 @@ Configuration
   generated input elements, i18n messages for labels (set via labelMsg) and help text
   (helpMsg) should be added to the ext.centralNotice.adminUi.campaignManager module,
   in extension.json. Allowed parameter types are "string", "integer", "float" and
-  "boolean".
+  "boolean". Additionally, the "json" parameter type is available for custom admin
+  UI modules only.
   Default mixins (documented in context):
     - bannerHistoryLogger
     - legacySupport
 	- impressionDiet
 	- largeBannerLimit
+	- bannerSequence
 
 * $wgNoticeTabifyPages: Declare all pages that should be tabified as CN pages
 
