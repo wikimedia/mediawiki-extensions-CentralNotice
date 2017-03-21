@@ -471,11 +471,19 @@ class CentralNotice extends SpecialPage {
 	 * @param $notice string The name of the campaign to view
 	 */
 	function outputNoticeDetail( $notice ) {
+		global $wgCentralNoticeCampaignMixins;
 
 		$out = $this->getOutput();
 
 		// Output specific ResourceLoader module
 		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
+
+		// Output ResourceLoader modules for campaign mixins with custom controls
+		foreach ( $wgCentralNoticeCampaignMixins as $mixinConfig ) {
+			if ( !empty( $mixinConfig['customAdminUIControlsModule'] ) ) {
+				$out->addModules( $mixinConfig['customAdminUIControlsModule'] );
+			}
+		}
 
 		$this->outputEnclosingDivStartTag();
 
@@ -502,6 +510,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
+					'id' => 'centralnotice-notice-detail',
 					'action' => $this->getPageTitle()->getLocalURL( array(
 						'subaction' => 'noticeDetail',
 						'notice' => $notice

@@ -143,13 +143,13 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		foreach ( $choices as $choice ) {
 			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
 
-				if ( !$wgCentralNoticeCampaignMixins[$mixinName]['module'] ) {
+				if ( !$wgCentralNoticeCampaignMixins[$mixinName]['subscribingModule'] ) {
 					throw new MWException(
-						"No module for found campaign mixin {$mixinName}" );
+						"No subscribing module for found campaign mixin {$mixinName}" );
 				}
 
 				$dependencies[] =
-					$wgCentralNoticeCampaignMixins[$mixinName]['module'];
+					$wgCentralNoticeCampaignMixins[$mixinName]['subscribingModule'];
 			}
 		}
 
