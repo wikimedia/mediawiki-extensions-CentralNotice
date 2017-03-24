@@ -102,4 +102,4 @@
 		} );
 	}
 
-} )(  jQuery, mediaWiki );
+} )( jQuery, mediaWiki );

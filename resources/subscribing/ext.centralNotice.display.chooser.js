@@ -43,7 +43,7 @@
 			// Check choice data freshness
 			campaignEndDatePlusLeeway = new Date();
 			campaignEndDatePlusLeeway.setTime(
-				( campaign.end * 1000  ) +
+				( campaign.end * 1000 ) +
 				( CAMPAIGN_STALENESS_LEEWAY * 60000 )
 			);
 

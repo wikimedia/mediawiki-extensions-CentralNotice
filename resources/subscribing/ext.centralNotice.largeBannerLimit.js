@@ -134,7 +134,7 @@
 			checkFlag()
 		) {
 			if ( mixinParams.randomize ) {
-				cn.setBucket( Math.floor( Math.random() * 2 )  +  2 );
+				cn.setBucket( Math.floor( Math.random() * 2 ) + 2 );
 			} else {
 				cn.setBucket( cn.getDataProperty( 'bucket' ) + 2 );
 			}
