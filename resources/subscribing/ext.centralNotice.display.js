@@ -405,7 +405,7 @@
 						);
 					}
 
-					// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+					// eslint-disable-next-line camelcase
 					if ( tmpData.banner_count ) {
 						state.setBannerCount( tmpData.banner_count );
 					}

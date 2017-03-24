@@ -9,7 +9,7 @@
  * https://meta.wikimedia.org/wiki/MediaWiki:FR2014/Resources/ShowHideCheckFullscreen.js
  * https://meta.wikimedia.org/wiki/MediaWiki:FR2014/Resources/ChangeBucket-AtoC-BtoD.js
  */
-// jshint unused:false
+/* eslint-disable no-unused-vars */
 ( function ( mw ) {
 	'use strict';
 

@@ -355,7 +355,7 @@
 		 * Sets banner_count, a legacy field for Special:RecordImpression
 		 */
 		setBannerCount: function ( bannerCount ) {
-			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+			// eslint-disable-next-line camelcase
 			state.data.banner_count = bannerCount;
 		},
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*
  * Banner history logger mixin. Records an event every time this campaign is
  * selected for the user (even if the banner is hidden). The log is kept in

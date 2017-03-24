@@ -1,0 +1,26 @@
+{
+	"extends": "wikimedia",
+	"parserOptions": {
+		"ecmaVersion": 3
+	},
+	"env": {
+		"browser": true,
+		"jquery": true
+	},
+	"globals": {
+		"mediaWiki": false
+	},
+	"rules": {
+		"eqeqeq": 0,
+		"no-multi-spaces": 0,
+		"no-undef": 0,
+		"no-unneeded-ternary": 0,
+		"no-use-before-define": 0,
+		"no-whitespace-before-property": 0,
+		"operator-linebreak": 0,
+		"semi-spacing": 0,
+		"spaced-comment": 0,
+		"valid-jsdoc": 0,
+		"wrap-iife": 0
+	}
+}

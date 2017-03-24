@@ -1,4 +1,4 @@
-// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+/* eslint-disable camelcase */
 ( function ( mw, $ ) {
 	'use strict';
 

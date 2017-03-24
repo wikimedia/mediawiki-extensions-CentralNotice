@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Logic for selecting a campaign and a banner (or not). Provides
  * cn.internal.chooser.
@@ -62,10 +63,11 @@
 				banner = campaign.banners[ j ];
 
 				// Logged-in status
-				// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+				// eslint-disable-next-line camelcase
 				if ( anon && !banner.display_anon ) {
 					continue;
 				}
+				// eslint-disable-next-line camelcase
 				if ( !anon && !banner.display_account ) {
 					continue;
 				}

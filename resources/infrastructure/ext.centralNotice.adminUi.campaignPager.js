@@ -1,6 +1,7 @@
 /**
  * CentralNotice Administrative UI - Campaign pager
  */
+/* eslint-disable no-unused-vars */
 ( function ( mw, $ ) {
 
 	var changes = {};
