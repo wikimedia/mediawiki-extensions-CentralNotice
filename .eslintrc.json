@@ -11,7 +11,6 @@
 		"mediaWiki": false
 	},
 	"rules": {
-		"eqeqeq": 0,
 		"no-multi-spaces": 0,
 		"no-undef": 0,
 		"no-unneeded-ternary": 0,

@@ -187,7 +187,7 @@
 				bannerField.focus();
 				sel = document.selection.createRange();
 				sel.text = buttonValue;
-			} else if ( bannerField.selectionStart || bannerField.selectionStart == '0' ) {
+			} else if ( bannerField.selectionStart || bannerField.selectionStart === 0 ) {
 				// Mozilla support
 				startPos = bannerField.selectionStart;
 				endPos = bannerField.selectionEnd;

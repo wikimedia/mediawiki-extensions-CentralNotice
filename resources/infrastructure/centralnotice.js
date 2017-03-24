@@ -105,7 +105,7 @@
 			var numBuckets = parseInt( this[ this.selectedIndex ].value, 10 ),
 				buckets = $( 'select[id^="bucketSelector"]' );
 
-			if ( numBuckets == 1 ) {
+			if ( numBuckets === 1 ) {
 				buckets.prop( 'disabled', true );
 			} else {
 				buckets.prop( 'disabled', false );

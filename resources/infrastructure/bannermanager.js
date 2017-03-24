@@ -188,7 +188,7 @@
 			var selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
 				deleteButton = $( ' #mw-input-wpdeleteSelectedBanners' );
 
-			if ( bm.selectedItemCount == bm.totalSelectableItems ) {
+			if ( bm.selectedItemCount === bm.totalSelectableItems ) {
 				// Everything selected
 				selectAllCheck.prop( 'checked', true );
 				selectAllCheck.prop( 'indeterminate', false );
@@ -233,7 +233,7 @@
 		 * pressed.
 		 */
 		filterTextBoxKeypress: function ( e ) {
-			if ( e.which == 13 ) {
+			if ( e.which === 13 ) {
 				bm.applyFilter();
 				return false;
 			}
