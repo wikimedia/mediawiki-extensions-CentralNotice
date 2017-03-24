@@ -2,6 +2,7 @@
  * CentralNotice Administrative UI - Campaign pager
  */
 /* eslint-disable no-unused-vars */
+// TODO Check whether we can use Object.keys() now, to remove the unused k var and above rule.
 ( function ( mw, $ ) {
 
 	var changes = {};
