@@ -8,17 +8,14 @@
 		"jquery": true
 	},
 	"globals": {
-		"mediaWiki": false
+		"require": false,
+		"module": false,
+		"mediaWiki": false,
+		"OO": false
 	},
 	"rules": {
-		"no-undef": 0,
-		"no-unneeded-ternary": 0,
 		"no-use-before-define": 0,
-		"no-whitespace-before-property": 0,
-		"operator-linebreak": 0,
-		"semi-spacing": 0,
-		"spaced-comment": 0,
 		"valid-jsdoc": 0,
-		"wrap-iife": 0
+		"dot-notation": [ "error", { "allowKeywords": true } ]
 	}
 }

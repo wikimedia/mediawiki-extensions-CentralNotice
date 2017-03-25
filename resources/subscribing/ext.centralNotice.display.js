@@ -629,4 +629,4 @@
 		'Use mw.centralNotice method instead'
 	);
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

@@ -280,4 +280,4 @@
 	updateThrottle();
 	updateWeightColumn();
 	updateBuckets();
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

@@ -162,4 +162,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-} )( mediaWiki );
+}( mediaWiki ) );

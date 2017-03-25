@@ -80,8 +80,8 @@
 			counts = getCounts();
 		}
 
-		if ( counts.waitUntil < new Date().getTime()
-			&& counts.waitSeenCount >= mixinParams.maximumSeen
+		if ( counts.waitUntil < new Date().getTime() &&
+			counts.waitSeenCount >= mixinParams.maximumSeen
 		) {
 			// We're beyond the wait period, and have nothing to do except
 			// maybe start a new cycle.
@@ -161,7 +161,7 @@
 		}
 
 		rawWaitCookie = $.cookie( identifier + WAIT_COOKIE_SUFFIX );
-		waitData = ( rawWaitCookie || '' ) .split( /[|]/ );
+		waitData = ( rawWaitCookie || '' ).split( /[|]/ );
 
 		cookieCounts = {
 			seenCount: parseInt( rawCookie, 10 ) || 0,
@@ -229,4 +229,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

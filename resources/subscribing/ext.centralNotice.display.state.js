@@ -114,7 +114,7 @@
 			UNKNOWN_COUNTRY_CODE;
 
 		// Some parameters should get through even if they have falsey values
-		state.data.debug = urlParams.debug !== undefined ? true : false;
+		state.data.debug = ( urlParams.debug !== undefined );
 
 		state.data.randomcampaign = urlParams.randomcampaign !== undefined ?
 			urlParams.randomcampaign : Math.random();
@@ -402,4 +402,4 @@
 			return REASONS.other;
 		}
 	};
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

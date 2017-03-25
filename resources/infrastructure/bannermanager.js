@@ -266,4 +266,4 @@
 	bm.checkAllStateAltered();
 	$( '#cn-js-error-warn' ).hide();
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

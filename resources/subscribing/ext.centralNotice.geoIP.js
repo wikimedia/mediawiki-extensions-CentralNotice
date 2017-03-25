@@ -167,4 +167,4 @@
 		window.Geo = geo;
 	} );
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

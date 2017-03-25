@@ -85,7 +85,7 @@
 			}
 
 			if ( keepCampaign ) {
-				filteredChoiceData.push( campaign ) ;
+				filteredChoiceData.push( campaign );
 			}
 		}
 
@@ -121,7 +121,7 @@
 		// and higher integers represent higher priority. These values are
 		// defined by class constants in the CentralNotice PHP class.
 
-		for ( i = 0; i < filteredChoiceData.length ; i++ ) {
+		for ( i = 0; i < filteredChoiceData.length; i++ ) {
 
 			campaign = filteredChoiceData[ i ];
 			campaignPriority = campaign.preferred;
@@ -364,4 +364,4 @@
 		}
 	};
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

@@ -129,4 +129,4 @@
 		}
 	};
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

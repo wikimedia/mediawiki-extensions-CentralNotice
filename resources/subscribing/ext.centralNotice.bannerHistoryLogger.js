@@ -75,9 +75,7 @@
 				time: time,
 				status: data.status,
 				statusCode: data.statusCode,
-
-				bannersNotGuaranteedToDisplay:
-					data.bannersNotGuaranteedToDisplay ? true : false
+				bannersNotGuaranteedToDisplay: !!data.bannersNotGuaranteedToDisplay
 			};
 
 		if ( data.banner ) {
@@ -403,4 +401,4 @@
 		}
 	};
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

@@ -153,4 +153,4 @@
 			$( '#cn-campaign-pager-submit' ).click( submitChanges );
 		}
 	} );
-} )( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );
