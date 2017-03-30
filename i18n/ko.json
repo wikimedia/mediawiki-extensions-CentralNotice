@@ -206,7 +206,7 @@
 	"centralnotice-user-role-anonymous": "익명",
 	"centralnotice-user-role-logged-in": "로그인함",
 	"centralnotice-banner-class": "분류",
-	"centralnotice-banner-class-desc": "추적 변수와 그룹 설정을 공유하는 특정 분류의 배너 (예를 들어 쿠키 숨기기와 노출 수입니다.) 분류 이름은 보이는 시간에 자동으로 확장되는 <nowiki>{{{campaign}}}</nowiki>이나 <nowiki>{{{banner}}}</nowiki>와 같은 특수 명령을 사용할 수 있습니다. 값은 영숫자여야 합니다.",
+	"centralnotice-banner-class-desc": "추적 변수와 그룹 설정을 공유하는 특정 분류의 배너. (예를 들어 쿠키 숨기기와 노출 수입니다) 분류 이름은 표시되는 시간에 자동으로 확장되는 <nowiki>{{{campaign}}}</nowiki>이나 <nowiki>{{{banner}}}</nowiki>와 같은 특수 명령을 사용할 수 있습니다. 값은 영숫자여야 합니다.",
 	"centralnotice-templates-included": "포함된 틀",
 	"centralnotice-archive-banner": "보존",
 	"centralnotice-archive-banner-title": "{{PLURAL:$1|배너}}를 보존하겠습니까?",
