@@ -461,6 +461,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor = array();
 
 		/* --- Banner Preview Section --- */
+		// FIXME Unused? See T161907
 		$formDescriptor[ 'preview' ] = array(
 			'section' => 'preview',
 			'class' => 'HTMLCentralNoticeBanner',

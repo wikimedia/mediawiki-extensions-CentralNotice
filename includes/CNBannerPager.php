@@ -1,5 +1,7 @@
 <?php
 
+// FIXME Unused? See T161907
+
 class CNBannerPager extends ReverseChronologicalPager {
 
 	/** @var bool True if the form is to be created with editable elements */
