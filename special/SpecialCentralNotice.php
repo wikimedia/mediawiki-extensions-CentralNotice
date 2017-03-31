@@ -1213,7 +1213,11 @@ class CentralNotice extends SpecialPage {
 			}
 			$selected = $selected % $numberCampaignBuckets;
 
-			$html = Html::openElement( 'select', array( 'name' => $name, 'id' => 'bucketSelector' ) );
+			$html = Html::openElement( 'select', [
+				'name' => $name,
+				'class' => 'bucketSelector'
+			] );
+
 			foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
 				$attribs = array();
 				if ( $value >= $numberCampaignBuckets ) {
