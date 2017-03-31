@@ -27,22 +27,7 @@
 			'ext.centralNotice.adminUi.campaignManager',
 			'campaignMixinParamControls.mustache'
 		),
-		$mixinCheckboxes = $( 'input.noticeMixinCheck' ),
-		$submitBtn = $( '#noticeDetailSubmit' );
-
-	$( '#centralnotice-throttle-amount' ).slider( {
-		range: 'min',
-		min: 0,
-		max: 100,
-		value: $( '#centralnotice-throttle-cur' ).val(),
-		step: stepSize,
-		slide: function ( event, element ) {
-			var val = Number( element.value ),
-				rounded = Math.round( val * 10 ) / 10;
-			$( '#centralnotice-throttle-echo' ).text( String( rounded ) + '%' );
-			$( '#centralnotice-throttle-cur' ).val( val );
-		}
-	} );
+		$mixinCheckboxes, $submitBtn;
 
 	function updateThrottle() {
 		if ( $( '#throttle-enabled' ).prop( 'checked' ) ) {
@@ -52,8 +37,6 @@
 		}
 	}
 
-	$( '#throttle-enabled' ).click( updateThrottle );
-
 	function updateWeightColumn() {
 		if ( $( '#balanced' ).prop( 'checked' ) ) {
 			$( '.cn-weight' ).hide();
@@ -61,8 +44,6 @@
 			$( '.cn-weight' ).show();
 		}
 	}
-
-	$( '#balanced' ).click( updateWeightColumn );
 
 	function updateBuckets() {
 		var numBuckets = getNumBuckets(),
@@ -99,8 +80,6 @@
 	function getNumBuckets() {
 		return parseInt( $( 'select#buckets :selected' ).val(), 10 );
 	}
-
-	$( 'select#buckets' ).change( updateBuckets );
 
 	/**
 	 * Hide or display campaign mixin parameter controls based on checkbox state.
@@ -296,14 +275,37 @@
 		}
 	}
 
-	$mixinCheckboxes.each( showOrHideCampaignMixinControls );
-	$mixinCheckboxes.change( showOrHideCampaignMixinControls );
-
-	updateThrottle();
-	updateWeightColumn();
-
+	// Execute code that requires document ready: setup slider, set handlers, set variables
+	// for jQuery elements
 	$( function () {
+
+		$( '#centralnotice-throttle-amount' ).slider( {
+			range: 'min',
+			min: 0,
+			max: 100,
+			value: $( '#centralnotice-throttle-cur' ).val(),
+			step: stepSize,
+			slide: function ( event, element ) {
+				var val = Number( element.value ),
+					rounded = Math.round( val * 10 ) / 10;
+				$( '#centralnotice-throttle-echo' ).text( String( rounded ) + '%' );
+				$( '#centralnotice-throttle-cur' ).val( val );
+			}
+		} );
+
+		$submitBtn = $( '#noticeDetailSubmit' );
+
+		updateThrottle();
+		updateWeightColumn();
 		updateBuckets();
+
+		$( '#throttle-enabled' ).click( updateThrottle );
+		$( '#balanced' ).click( updateWeightColumn );
+		$( 'select#buckets' ).change( updateBuckets );
+
+		$mixinCheckboxes = $( 'input.noticeMixinCheck' );
+		$mixinCheckboxes.each( showOrHideCampaignMixinControls );
+		$mixinCheckboxes.change( showOrHideCampaignMixinControls );
 	} );
 
 }( jQuery, mediaWiki ) );
