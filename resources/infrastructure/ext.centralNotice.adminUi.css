@@ -1,11 +1,11 @@
-/* Stylesheet for the CentralNotice extension.
- *
- * @file
- * @ingroup Extensions
- * @author Ryan Kaldari <rkaldari@wikimedia.org>
- * @copyright © 2010 by Ryan Kaldari
+/* Common styles CentralNotice extension admin UI
  * @licence GNU General Public Licence 2.0 or later
+ *
+ * FIXME This file combines styles previously in centralnotice.css and adminui.common.css.
+ * Check for coherence.
  */
+
+ /* Styles previously in centralnotice.css */
 
 fieldset.prefsection {
 	margin:0;
@@ -143,4 +143,80 @@ form .error {
 	padding: 0.5em;
 	background-color: #FFCCCC;
 	border: 2px solid #FF0000;
+}
+
+/* Styles previously in adminui.common.css */
+
+#cn-js-error-warn {
+	padding: 0.5em;
+	background-color: #FFCCCC;
+	border: 2px solid #FF0000;
+	margin-bottom: 0.5em;
+	font-weight: bold;
+	text-align: center;
+}
+
+#cn-formsection-preview {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+#cn-formsection-preview legend {
+	display: none;
+}
+
+div.separate-form-element {
+	margin: 0.5em 0;
+}
+
+fieldset#cn-formsection-form-actions {
+	padding: 0.5em;
+	background-color: #F9F9F9;
+	border: 1px solid #2F6FAB;
+}
+fieldset#cn-formsection-form-actions legend {
+	display: none;
+}
+.cn-formbutton {
+	clear: none;
+	float: right;
+	display: inline;
+}
+
+input#mw-input-wpsummary,
+.cn-change-summary-input {
+	float: left;
+	margin-left: 3px;
+}
+
+label[for=mw-input-wpsummary],
+.cn-change-summary-label {
+	float: left;
+	position: relative;
+	top: 0.15em;
+	font-weight: bold;
+}
+
+.cn-dialog-message {
+	margin-bottom: 0.6em;
+}
+
+/* --- Banner preview list --- */
+#mw-htmlform-banner-list {
+	margin-left: 0.9em;
+}
+.cn-banner-list-element {
+	margin: 0.25em 0 0.5em 0.25em;
+}
+.cn-banner-preview-div {
+	border: 1px solid #A7D7F9;
+	padding: 1em;
+	margin-top: 0.5em;
+}
+#mw-htmlform-banner-list .mw-htmlform-field-HTMLCheckField {
+	display: inline-block;
+	float: left;
+}
+#mw-htmlform-banner-list .mw-label {
+	display: none;
 }

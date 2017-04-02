@@ -120,8 +120,7 @@
 			],
 			"scripts": "infrastructure/centralnotice.js",
 			"styles": [
-				"infrastructure/centralnotice.css",
-				"infrastructure/adminui.common.css"
+				"infrastructure/ext.centralNotice.adminUi.css"
 			],
 			"messages": [
 				"centralnotice-documentwrite-error",
