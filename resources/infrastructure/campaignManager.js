@@ -1,5 +1,5 @@
 /**
- * Backing JS for Special:CentralNotice, the campaign list view form.
+ * JS for campaign editor (handled by Special:CentralNotice)
  *
  * This file is part of the CentralNotice Extension to MediaWiki
  * https://www.mediawiki.org/wiki/Extension:CentralNotice

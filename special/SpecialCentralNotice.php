@@ -37,8 +37,6 @@ class CentralNotice extends SpecialPage {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 
-		// Output ResourceLoader module for styling and javascript functions
-		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
 		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice', true );
 
 		// Check permissions
@@ -473,12 +471,18 @@ class CentralNotice extends SpecialPage {
 	 * @param $notice string The name of the campaign to view
 	 */
 	function outputNoticeDetail( $notice ) {
+
+		$out = $this->getOutput();
+
+		// Output specific ResourceLoader module
+		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
+
 		$this->outputEnclosingDivStartTag();
 
 		$this->campaign = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
 		try {
 			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
-				$this->getOutput()->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
+				$out->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
 				$this->editable = false; // Todo: Fix this gross hack to prevent editing
 			}
 		} catch ( CampaignExistenceException $ex ) {
@@ -557,7 +561,7 @@ class CentralNotice extends SpecialPage {
 
 		$this->displayCampaignWarnings();
 
-		$this->getOutput()->addHTML( $htmlOut );
+		$out->addHTML( $htmlOut );
 		$this->outputEnclosingDivEndTag();
 	}
 

@@ -1,8 +1,8 @@
 /* Common styles CentralNotice extension admin UI
  * @licence GNU General Public Licence 2.0 or later
  *
- * FIXME This file combines styles previously in centralnotice.css and adminui.common.css.
- * Check for coherence.
+ * FIXME This file combines styles previously in centralnotice.css and adminui.common.css,
+ * as well as one from campaignManager.css. Check for coherence.
  */
 
  /* Styles previously in centralnotice.css */
@@ -219,4 +219,10 @@ label[for=mw-input-wpsummary],
 }
 #mw-htmlform-banner-list .mw-label {
 	display: none;
+}
+
+/* Styles from campaignManager.css */
+
+.cn-buttons {
+	text-align: right;
 }
