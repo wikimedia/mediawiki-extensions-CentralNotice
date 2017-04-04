@@ -104,28 +104,5 @@
 				$( '#geoMultiSelector' ).fadeOut( 'fast' );
 			}
 		} );
-
-		// Bucketing! Disable bucket selectors if #buckets is not checked.
-		$( '#buckets' ).change( function () {
-			var numBuckets = parseInt( this[ this.selectedIndex ].value, 10 ),
-				buckets = $( 'select[id^="bucketSelector"]' );
-
-			if ( numBuckets === 1 ) {
-				buckets.prop( 'disabled', true );
-			} else {
-				buckets.prop( 'disabled', false );
-				// Go through and modify all the options -- disabling inappropriate ones
-				// and remapping the rings
-				buckets.each( function () {
-					var curBucket = parseInt( this[ this.selectedIndex ].value, 10 ),
-						i;
-					$( this ).val( curBucket % numBuckets );
-
-					for ( i = 0; i < this.options.length; i++ ) {
-						$( this.options[ i ] ).prop( 'disabled', ( i >= numBuckets ) );
-					}
-				} );
-			}
-		} ).trigger( 'change' );
 	} );
 }( mediaWiki, jQuery ) );

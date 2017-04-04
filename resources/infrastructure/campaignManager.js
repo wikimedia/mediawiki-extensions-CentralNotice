@@ -65,17 +65,39 @@
 	$( '#balanced' ).click( updateWeightColumn );
 
 	function updateBuckets() {
-		var numCampaignBuckets = $( 'select#buckets :checked' ).val(),
-			i,
-			isBucketDisabled;
+		var numBuckets = getNumBuckets(),
+			maxNumBuckets = mw.config.get( 'wgNoticeNumberOfBuckets' ),
+			bucketSelectors = $( 'select.bucketSelector' ),
+			i, isBucketDisabled;
 
-		if ( numCampaignBuckets ) {
-			for ( i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
-				isBucketDisabled = ( i >= numCampaignBuckets );
+		// Change selected value of bucket selectors to only available buckets
+		bucketSelectors.each( function () {
+			var $selector = $( this ),
+				selectedVal = $selector.val();
 
-				$( 'select.bucketSelector option[value=' + i + ']' ).prop( 'disabled', isBucketDisabled );
+			$selector.val( selectedVal % numBuckets );
+		} );
+
+		// If only one bucket is available, disable the selectors entirely
+		if ( numBuckets === 1 ) {
+			bucketSelectors.prop( 'disabled', true );
+
+		} else {
+			// If more than one bucket is available, enable selectors and set options to
+			// disabled or enabled, as appropriate
+			bucketSelectors.prop( 'disabled', false );
+
+			for ( i = 0; i < maxNumBuckets; i++ ) {
+				isBucketDisabled = ( i >= numBuckets );
+
+				bucketSelectors.find( 'option[value=' + i + ']' )
+					.prop( 'disabled', isBucketDisabled );
 			}
 		}
+	}
+
+	function getNumBuckets() {
+		return parseInt( $( 'select#buckets :selected' ).val(), 10 );
 	}
 
 	$( 'select#buckets' ).change( updateBuckets );
@@ -279,5 +301,9 @@
 
 	updateThrottle();
 	updateWeightColumn();
-	updateBuckets();
+
+	$( function () {
+		updateBuckets();
+	} );
+
 }( jQuery, mediaWiki ) );
