@@ -22,6 +22,8 @@
  * @file
  */
 
+// FIXME Unused? See T161907
+
 /**
  * Produces a banner preview DIV that can be embedded in an HTMLForm.
  *

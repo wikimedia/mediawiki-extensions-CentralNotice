@@ -43,6 +43,7 @@
 		location.href = baseUrl + '?log=' + logType;
 	};
 
+	// FIXME Unused? See T161907
 	window.addEventListener( 'message', receiveMessage, false );
 	function receiveMessage( event ) {
 		var remoteData = JSON.parse( event.data );
