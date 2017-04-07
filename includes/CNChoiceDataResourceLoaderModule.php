@@ -162,9 +162,13 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @see ResourceLoaderModule::getModifiedHash()
+	 * @see ResourceLoaderModule::getDefinitionSummary()
 	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( $this->getChoices( $context ) ) );
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$summary = parent::getDefinitionSummary( $context );
+		$summary[] = [
+			'choices' => $this->getChoices( $context ),
+		];
+		return $summary;
 	}
 }
