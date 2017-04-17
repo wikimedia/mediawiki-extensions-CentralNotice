@@ -5,52 +5,52 @@
  * as well as one from campaignManager.css. Check for coherence.
  */
 
- /* Styles previously in centralnotice.css */
+/* Styles previously in centralnotice.css */
 
 fieldset.prefsection {
-	margin:0;
+	margin: 0;
 	padding: 1em;
 	border-top: 1px solid;
 }
 #preferences fieldset.prefsection:first-child {
-	border-top: none;
+	border-top: 0;
 }
 #preferences fieldset.prefsection h2,
 h2.cn-special-section {
-	border:none;
+	border: 0;
 }
 #preferences div.cn-pager {
-	margin:1em 0;
+	margin: 1em 0;
 }
 #preferences div.cn-error {
-	color:#AA0000;
-	margin:1em;
+	color: #a00;
+	margin: 1em;
 }
 #preferences fieldset.prefsection div.cn-error {
-	margin:0;
+	margin: 0;
 }
 #preferences table#envpicker {
 	margin-bottom: 1em;
 }
 #preferences table#envpicker td {
-	white-space:nowrap;
+	white-space: nowrap;
 }
 #preferences .cn-date-column {
-	white-space:nowrap;
+	white-space: nowrap;
 }
 #preferences td.cn-timepicker {
 	text-align: left; /* To ensure RTL flipping */
 }
 #preferences input#clone {
-	margin-left:0.25em;
+	margin-left: 0.25em;
 }
 #preferences fieldset.prefsection fieldset.cn-bannerpreview {
 	border: 1px solid;
 	margin-top: 0;
 }
 #preferences div#fundraisingInterface {
-	margin-left:1.6em;
-	margin-right:1.6em;
+	margin-left: 1.6em;
+	margin-right: 1.6em;
 }
 #preferences div#cn-log-filters-container {
 	margin: 1em 0;
@@ -66,13 +66,13 @@ h2.cn-special-section {
 }
 #preferences table#cn-campaign-logs td.primary,
 #preferences table#cn-campaign-logs td.primary-summary {
-	background-color: #F0F0F0;
+	background-color: #f0f0f0;
 }
 #preferences .cn-new-value {
 	color: #006400;
 }
 #preferences .cn-old-value {
-	color: #8B0000;
+	color: #8b0000;
 }
 #preferences .cn-log-label {
 	font-weight: bold;
@@ -84,18 +84,19 @@ h2.cn-special-section {
 	margin-right: 1em;
 }
 #preferences #cn-template-searchbox {
-    border: 1px solid #CCCCCC;
-    line-height: 1.5em;
-    margin: 1em 0;
-    padding: 0 1em 1em;
-    display: block;
+	border: 1px solid #ccc;
+	line-height: 1.5em;
+	margin: 1em 0;
+	padding: 0 1em 1em;
+	display: block;
 }
 #preferences #cn-template-searchbox legend {
-    font-size: 95%;
-    color: black;
+	font-size: 95%;
+	color: #000;
 }
-#preferences #cn-template-searchbox label,input {
-    margin-right: 0.25em;
+#preferences #cn-template-searchbox label,
+#preferences #cn-template-searchbox input {
+	margin-right: 0.25em;
 }
 #preferences a.cn-banner-title {
 	font-size: large;
@@ -107,7 +108,7 @@ h2.cn-special-section {
 	/* Leaving room for the background image. */
 	padding-left: 17px !important;
 	/* @embed */
-	background: url('down-arrow-ltr.png') no-repeat scroll left center transparent;
+	background: url( down-arrow-ltr.png ) no-repeat scroll left center transparent;
 }
 
 .select-hint {
@@ -115,7 +116,7 @@ h2.cn-special-section {
 	/* Leaving room for the background image. */
 	padding-left: 17px !important;
 	/* @embed */
-	background: url('up-arrow-ltr.png') no-repeat scroll left top transparent;
+	background: url( up-arrow-ltr.png ) no-repeat scroll left top transparent;
 }
 
 select.cn-multiselect {
@@ -125,39 +126,39 @@ select.cn-multiselect {
 
 /* Vector-specific definitions */
 body.skin-vector #preferences fieldset.prefsection {
-	border-color:#CCCCCC;
+	border-color: #ccc;
 }
 body.skin-vector #preferences fieldset.prefsection fieldset.cn-bannerpreview {
-	border-color:#CCCCCC;
+	border-color: #ccc;
 }
 
 /* Monobook-specific definitions */
 body.skin-monobook #preferences fieldset.prefsection {
-	border-color:#AAAAAA;
+	border-color: #aaa;
 }
 
 /* For HTMLForm generated forms */
 form .error {
-	color: #000000;
+	color: #000;
 	margin: 0 0 0.5em 0;
 	padding: 0.5em;
-	background-color: #FFCCCC;
-	border: 2px solid #FF0000;
+	background-color: #fcc;
+	border: 2px solid #f00;
 }
 
 /* Styles previously in adminui.common.css */
 
 #cn-js-error-warn {
 	padding: 0.5em;
-	background-color: #FFCCCC;
-	border: 2px solid #FF0000;
+	background-color: #fcc;
+	border: 2px solid #f00;
 	margin-bottom: 0.5em;
 	font-weight: bold;
 	text-align: center;
 }
 
 #cn-formsection-preview {
-	border: none;
+	border: 0;
 	margin: 0;
 	padding: 0;
 }
@@ -171,8 +172,8 @@ div.separate-form-element {
 
 fieldset#cn-formsection-form-actions {
 	padding: 0.5em;
-	background-color: #F9F9F9;
-	border: 1px solid #2F6FAB;
+	background-color: #f9f9f9;
+	border: 1px solid #2f6fab;
 }
 fieldset#cn-formsection-form-actions legend {
 	display: none;
@@ -189,7 +190,7 @@ input#mw-input-wpsummary,
 	margin-left: 3px;
 }
 
-label[for=mw-input-wpsummary],
+label[for='mw-input-wpsummary'],
 .cn-change-summary-label {
 	float: left;
 	position: relative;
@@ -209,7 +210,7 @@ label[for=mw-input-wpsummary],
 	margin: 0.25em 0 0.5em 0.25em;
 }
 .cn-banner-preview-div {
-	border: 1px solid #A7D7F9;
+	border: 1px solid #a7d7f9;
 	padding: 1em;
 	margin-top: 0.5em;
 }

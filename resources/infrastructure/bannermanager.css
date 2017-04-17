@@ -27,7 +27,7 @@
 /* --- General Form Elements --- */
 /* Restyle the fieldsets to make them less annoying */
 #cn-banner-manager fieldset {
-	border: none;
+	border: 0;
 	margin: 0;
 	padding: 0;
 }
@@ -39,8 +39,8 @@
 /* General header */
 #cn-banner-manager #cn-formsection-header {
 	padding: 0.5em;
-	background-color: #F9F9F9;
-	border: 1px solid #2F6FAB;
+	background-color: #f9f9f9;
+	border: 1px solid #2f6fab;
 }
 
 /* Style the search sub form */
