@@ -44,6 +44,11 @@
 
 	/**
 	 * Base class for custom campaign mixin UI controllers.
+	 *
+	 * Provides facilities for setting hidden form input elements for mixin parameter
+	 * values. This lets custom mixins provide interactive interfaces that are not input
+	 * elements, and send data to the server via these hidden inputs.
+	 *
 	 * Note: Subclasses are expected to be singletons.
 	 *
 	 * @abstract
@@ -87,7 +92,7 @@
 	MixinCustomUiController.prototype.init = null;
 
 	/**
-	 * Set the (string-encoded) value of a parameter for the mixin.
+	 * Set the (string-encoded) value of a mixin parameter via a hidden input element.
 	 *
 	 * @param {string} name The name of the parameter.
 	 * @param {string} value The value (formatted as appropriate for form submission).
@@ -99,7 +104,7 @@
 	};
 
 	/**
-	 * Remove a parameter for the mixin.
+	 * Remove a mixin parameter's hidden input element, if it exists.
 	 *
 	 * @param {string} name The name of the parameter
 	 */
@@ -112,7 +117,7 @@
 	};
 
 	/**
-	 * Get the input element for a mixin parameter, if it exists. If requested,
+	 * Get the hidden input element for a mixin parameter, if it exists. If requested,
 	 * create it if it doesn't exist.
 	 *
 	 * @private
@@ -517,12 +522,18 @@
 	}
 
 	// We have to wait for document ready and for custom controls modules to be loaded
-	// before initializing everyhting
+	// before initializing everything
 	$( function () {
 		var customControlsModules = $.map( mixinDefs, function ( mixinDef ) {
 			return mixinDef.customAdminUIControlsModule;
 		} );
 
+		// Custom mixin control modules depend on this module so they can access base
+		// classes here when they declare subclasses. So, this module can't depend on
+		// them. However, we need those modules to be loaded when we first call
+		// showOrHideCampaignMixinControls() (from initialize(), above). Since the
+		// custom control modules are added server-side, the following call to
+		// mw.loader.using() should be quick.
 		mw.loader.using( customControlsModules ).done( initialize );
 	} );
 
