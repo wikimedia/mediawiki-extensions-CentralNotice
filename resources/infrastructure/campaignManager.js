@@ -266,7 +266,7 @@
 				paramValues = $checkBox.data( 'mixin-param-values' );
 
 				// If the mixin uses a custom UI to set params, instantiate that
-				if ( mixinDefs[ mixinName ].customAdminUIControls ) {
+				if ( mixinDefs[ mixinName ].customAdminUIControlsModule ) {
 
 					mixinCustomUiController = mixinCustomUiControllerFactory
 						.create( mixinName );

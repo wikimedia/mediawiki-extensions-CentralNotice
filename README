@@ -192,10 +192,13 @@ Configuration
   Default: []
 
 * $wgCentralNoticeCampaignMixins: Available campaign mixins. Mixins must
-  declare at least a module and an i18n key for their name. Allowed parameter
-  types are "string", "integer", "float" and "boolean".
-  Note: i18n messages for parameter labels (labelMsg) should be added to the
-  ext.centralNotice.adminUi.campaignManager module in CentralNotice.modules.php
+  declare at least a module and an i18n key for their name. They may also provide
+  a module for custom admin UI elements. If no custom admin UI module is provided,
+  input elements for all parameters are generated automatically in the admin UI. For such
+  generated input elements, i18n messages for labels (set via labelMsg) and help text
+  (helpMsg) should be added to the ext.centralNotice.adminUi.campaignManager module,
+  in extension.json. Allowed parameter types are "string", "integer", "float" and
+  "boolean".
   Default mixins (documented in context):
     - bannerHistoryLogger
     - legacySupport
