@@ -182,6 +182,7 @@
 			"remoteExtPath": "CentralNotice",
 			"dependencies": [
 				"ext.centralNotice.adminUi",
+				"oojs-ui",
 				"jquery.ui.dialog",
 				"jquery.ui.slider",
 				"jquery.throttle-debounce",
@@ -466,7 +467,7 @@
 		"CentralNoticeBannerMixins": [],
 		"CentralNoticeCampaignMixins": {
 			"bannerHistoryLogger": {
-				"module": "ext.centralNotice.bannerHistoryLogger",
+				"subscribingModule": "ext.centralNotice.bannerHistoryLogger",
 				"nameMsg": "centralnotice-banner-history-logger",
 				"helpMsg": "centralnotice-banner-history-logger-help",
 				"parameters": {
@@ -493,7 +494,7 @@
 				}
 			},
 			"legacySupport": {
-				"module": "ext.centralNotice.legacySupport",
+				"subscribingModule": "ext.centralNotice.legacySupport",
 				"nameMsg": "centralnotice-legacy-support",
 				"helpMsg": "centralnotice-legacy-support-help",
 				"parameters": {
@@ -512,7 +513,7 @@
 				}
 			},
 			"impressionDiet": {
-				"module": "ext.centralNotice.impressionDiet",
+				"subscribingModule": "ext.centralNotice.impressionDiet",
 				"nameMsg": "centralnotice-impression-diet",
 				"helpMsg": "centralnotice-impression-diet-help",
 				"parameters": {
@@ -539,7 +540,7 @@
 				}
 			},
 			"largeBannerLimit": {
-				"module": "ext.centralNotice.largeBannerLimit",
+				"subscribingModule": "ext.centralNotice.largeBannerLimit",
 				"nameMsg": "centralnotice-large-banner-limit",
 				"helpMsg": "centralnotice-large-banner-limit-help",
 				"parameters": {
