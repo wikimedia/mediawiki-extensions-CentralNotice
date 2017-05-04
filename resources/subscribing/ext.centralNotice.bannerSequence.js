@@ -2,7 +2,7 @@
  * Banner sequence mixin. Displays banners in a sequence in which banners may repeat
  * for a set number of page views. Sequence steps may also include no banner display.
  * Allows flags in the user's browser to skip a step if it was seen before, or if a
- * diffferent step that uses the same identifier (in this or another sequence) was seen
+ * different step that uses the same identifier (in this or another sequence) was seen
  * before.
  *
  * Page view counter may be reset with the URL parameter reset=1.
@@ -70,7 +70,7 @@
 			this.seqTotalPageViews += this.sequence[ i ].numPageViews;
 		}
 
-		// If the current page view is beyond the seqence length, that means the sequence
+		// If the current page view is beyond the sequence length, that means the sequence
 		// has been shortened since last time we were here. In that case, start
 		// over.
 		this.currentPageView = ( this.currentPageView < this.seqTotalPageViews ) ?
@@ -133,14 +133,14 @@
 
 	/**
 	 * Process data as needed following a successful display of a banner (or no banner)
-	 * within the seqeunce. Set this.nextPageView and, if needed, this.identifierToSet.
+	 * within the sequence. Set this.nextPageView and, if needed, this.identifierToSet.
 	 */
 	SequenceManager.prototype.processPageView = function () {
 		var nextStep = ( this.currentStep + 1 ) % this.sequence.length;
 
 		this.nextPageView = ( this.currentPageView + 1 ) % this.seqTotalPageViews;
 
-		// If we just finishd a step, there might be an identifier to set
+		// If we just finished a step, there might be an identifier to set
 		if ( this.nextPageView === this.stepStarts[ nextStep ] ) {
 
 			// If there is no identifier for this step, this will be null
@@ -187,7 +187,7 @@
 	function getFlag( identifier ) {
 
 		// Also check flags set by the large banner limit mixin...
-		// TODO Refactor to unify code for setting flags for baners seen?
+		// TODO Refactor to unify code for setting flags for banners seen?
 		return Boolean( cn.kvStore.getItem(
 			FLAG_STORAGE_KEY + '_' + identifier,
 			cn.kvStore.contexts.GLOBAL,

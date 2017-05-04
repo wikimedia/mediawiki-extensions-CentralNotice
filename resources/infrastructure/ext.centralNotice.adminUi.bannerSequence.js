@@ -44,7 +44,7 @@
  * mixin's subscribing module, ext.centralNotice.bannerSequence. Here is the structure:
  *
  *   // Outer array; each element is a sequence for a bucket. The element's index
- *   // correspondes to the bucket number.
+ *   // corresponds to the bucket number.
  *   [
  *
  *     // Inner arrays are sequences; each element corresponds to a step in the sequence.
@@ -126,7 +126,7 @@
 			campaignManager.getNumBuckets()
 		);
 
-		// On instantation, the widget will create subwidgets in accordance with the model
+		// On instantiation, the widget will create subwidgets in accordance with the model
 		/**
 		 * The enclosing view widget
 		 * @property {BannerSequenceWidget}
@@ -785,7 +785,7 @@
 		// Create widgets and set values based on data from the model
 		this.updateFromModel();
 
-		// Flag for supressing some actions in change handlers when changes are not due to
+		// Flag for suppressing some actions in change handlers when changes are not due to
 		// user intervention
 		this.updating = false;
 
@@ -893,7 +893,7 @@
 	};
 
 	/**
-	 * Tell the sequence conatiner for a bucket to set missing banner errors for one or
+	 * Tell the sequence container for a bucket to set missing banner errors for one or
 	 * more steps.
 	 * @param {number} bucket
 	 * @param {number[]} stepsWithMissingBanners
@@ -906,7 +906,7 @@
 	};
 
 	/**
-	 * Tell the sequence conatiner for a bucket to update banners in drop-down inputs.
+	 * Tell the sequence container for a bucket to update banners in drop-down inputs.
 	 */
 	BannerSequenceWidget.prototype.updateBannersForDropDownsForBucket = function (
 		bucket,
@@ -916,7 +916,7 @@
 	};
 
 	/**
-	 * Tell the sequence conatiner for a bucket to re-calculate total page views in the
+	 * Tell the sequence container for a bucket to re-calculate total page views in the
 	 * sequence.
 	 */
 	BannerSequenceWidget.prototype.updateTotalPageViewsForBucket = function ( bucket ) {
@@ -1175,7 +1175,7 @@
 		this.model = model;
 		this.bucket = bucket;
 
-		// Flag for supressing some actions in event handlers when changes to widgets
+		// Flag for suppressing some actions in event handlers when changes to widgets
 		// are not due to user intervention.
 		this.updating = false;
 
@@ -1200,7 +1200,7 @@
 
 		this.$group.append( this.$handle );
 
-		// Dragable mixin constructor
+		// Draggable mixin constructor
 		OO.ui.mixin.DraggableElement.call(
 			this, $.extend( {}, config, { $handle: this.$handle } ) );
 
@@ -1449,7 +1449,7 @@
 
 	/**
 	 * Refresh the list of banners shown in the banner drop-down menu
-	 * @param {string[]} Names of banners available for this bucket
+	 * @param {string[]} banners Names of banners available for this bucket
 	 */
 	StepWidget.prototype.updateBannersDropDown = function ( banners ) {
 
@@ -1494,7 +1494,7 @@
 		var i,
 			dropDownMenuItems = [];
 
-		// First option is alwways no banner
+		// First option is always no banner
 		dropDownMenuItems.push( new OO.ui.MenuOptionWidget( {
 			data: this.constructor.static.NO_BANNER_FLAG,
 			label: mw.message( 'centralnotice-banner-sequence-no-banner' ).text()
@@ -1514,6 +1514,7 @@
 	 * @private
 	 * @param {string} errorStateKey A local key (unique only within this StepWidget
 	 * instance, to distinguish controls with an error state)
+	 * @param {boolean} state True when an error exists, false otherwise
 	 */
 	StepWidget.prototype.setErrorState = function ( errorStateKey, state ) {
 		this.errorStateTracker.setErrorState( errorStateKey, state );

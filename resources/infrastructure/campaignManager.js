@@ -50,7 +50,7 @@
 	/**
 	 * @event assigned-banners-change
 	 *
-	 * The controls for banner assignment (bucket assignements and banner removal
+	 * The controls for banner assignment (bucket assignments and banner removal
 	 * checkboxes) have changed. Note: This event does not fire when a checkbox for
 	 * adding a banner is checked.
 	 */
@@ -235,7 +235,7 @@
 	 * Set or clear an error state.
 	 *
 	 * @param {string} errorKey A unique key identifying this error
-	 * @þaram {boolean} state true sets an error for this key, and false clear it
+	 * @param {boolean} state true sets an error for this key, and false clear it
 	 */
 	ErrorStateTracker.prototype.setErrorState = function ( errorKey, state ) {
 		if ( state ) {
