@@ -197,7 +197,6 @@
 	"centralnotice-buckets": "Benutzerumgebung",
 	"centralnotice-bucket": "Umgebung",
 	"centralnotice-bucket-letter": "Umgebung „$1“",
-	"centralnotice-banner-overflowing-bucket": "Die Umgebung „$1“ hat zu viele zugeordnete Vorlagen.",
 	"centralnotice-banner-empty-bucket": "Nicht alle Umgebungen haben eine zugeordnete Vorlage.",
 	"centralnotice-devicetype-desktop": "Desktoprechner",
 	"centralnotice-devicetype-android": "Android OS",
@@ -300,5 +299,18 @@
 	"centralnotice-large-banner-limit-randomize": "Zufälliger Umgebungsübergang",
 	"centralnotice-large-banner-limit-randomize-help": "Der normale Umgebungsübergang ist von A nach C und von B nach D. Falls ausgewählt, wechseln Leser zufällig zu den Umgebungen C oder D.",
 	"centralnotice-large-banner-limit-identifier": "Identifikator für die clientseitige Speicherung",
-	"centralnotice-large-banner-limit-identifier-help": "Die Anzeige großer Vorlagen ist kampagnenübergreifend mit dem gleichen Identifikator unterdrückt. Der Standardwert „centralnotice-frbanner-seen-fullscreen“ kann zur Migration von veralteten Cookies verwendet werden."
+	"centralnotice-large-banner-limit-identifier-help": "Die Anzeige großer Vorlagen ist kampagnenübergreifend mit dem gleichen Identifikator unterdrückt. Der Standardwert „centralnotice-frbanner-seen-fullscreen“ kann zur Migration von veralteten Cookies verwendet werden.",
+	"centralnotice-banner-sequence": "Vorlagensequenz",
+	"centralnotice-banner-sequence-help": "Mehrere Vorlagen zur Anzeige in einer speziellen Reihenfolge festlegen.",
+	"centralnotice-banner-sequence-days": "Länge der Unterdrückung (Tage)",
+	"centralnotice-banner-sequence-days-error": "Muss eine Ganzzahl größer als null sein.",
+	"centralnotice-banner-sequence-bucket-seq": "Umgebung-$1-Sequenz ({{PLURAL:$2|Ein Seitenaufruf|$2 Seitenaufrufe}})",
+	"centralnotice-banner-sequence-bucket-add-step": "Einen Schritt hinzufügen",
+	"centralnotice-banner-sequence-banner": "Vorlage",
+	"centralnotice-banner-sequence-page-views": "Seitenaufrufe",
+	"centralnotice-banner-sequence-skip-with-id": "Mit Identifikator überspringen",
+	"centralnotice-banner-sequence-banner-removed-error": "Die Vorlagenauswahl für diesen Schritt wurde zurückgesetzt, da die Vorlage zur Entfernung festgelegt oder auf eine andere Umgebung umgestellt wurde. Bitte treffe eine andere Auswahl.",
+	"centralnotice-banner-sequence-page-views-error": "Der Schritt muss mindestens einen Seitenaufruf haben.",
+	"centralnotice-banner-sequence-skip-with-id-error": "Der Identifikator kann nicht „|“ enthalten.",
+	"centralnotice-banner-sequence-no-banner": "(Keine Vorlage)"
 }
