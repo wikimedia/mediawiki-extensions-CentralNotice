@@ -322,7 +322,7 @@
 	"centralnotice-banner-sequence-days-help": "Help text for the form control to set the number of days identifiers for suppressing steps will remain in effect.",
 	"centralnotice-banner-sequence-bucket-seq": "Label for a sequence for a given bucket and total number of page views in the sequence. Parameters:\n* $1 - Alphabetic label for the bucket\n* $2 Number of page views in the sequence",
 	"centralnotice-banner-sequence-bucket-add-step": "Label for a button to add step to a banner sequence",
-	"centralnotice-banner-sequence-banner": "Label for a drop-down form control to select a banner for a step in a banner sequence",
+	"centralnotice-banner-sequence-banner": "Label for a drop-down form control to select a banner for a step in a banner sequence\n{{Identical|Banner}}",
 	"centralnotice-banner-sequence-page-views": "Label for a form control for the number of page views in a step in a banner sequence",
 	"centralnotice-banner-sequence-skip-with-id": "Label for a form control to set an identifier stored in a user's browser to prevent the repeated display of a step in a banner sequence",
 	"centralnotice-banner-sequence-banner-removed-error": "Error message to display below a form control to select a banner, if other controls on the page have been used to remove the banner or modify its bucket assignment.",

@@ -118,5 +118,7 @@
 	"centralnotice-start-date": "Hasiera data (UTC)",
 	"centralnotice-start-time": "Hasiera ordua (UTC)",
 	"centralnotice-end-date": "Bukaera data (UTC)",
-	"centralnotice-end-time": "Bukaera ordua (UTC)"
+	"centralnotice-end-time": "Bukaera ordua (UTC)",
+	"centralnotice-banner-sequence-days-error": "Zero baino zenbaki oso handiagoa izan behar du.",
+	"centralnotice-banner-sequence-bucket-add-step": "Gehitu urratsa"
 }
