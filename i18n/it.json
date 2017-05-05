@@ -253,5 +253,9 @@
 	"centralnotice-large-banner-limit-days": "Durata della soppressione",
 	"centralnotice-large-banner-limit-days-help": "Numero di giorni per cui sopprimere banner di grandi dimensioni dopo la visualizzazione iniziale.",
 	"centralnotice-large-banner-limit-identifier": "Identificatore per l'archiviazione lato client",
-	"centralnotice-large-banner-limit-identifier-help": "La visualizzazione di banner grandi non è permessa nelle campagne con lo stesso identificatore. Il valore predefinito 'centralnotice-frbanner-seen-fullscreen' può essere utilizzato per migrare i cookie obsoleti."
+	"centralnotice-large-banner-limit-identifier-help": "La visualizzazione di banner grandi non è permessa nelle campagne con lo stesso identificatore. Il valore predefinito 'centralnotice-frbanner-seen-fullscreen' può essere utilizzato per migrare i cookie obsoleti.",
+	"centralnotice-banner-sequence-days": "Durata della soppressione (giorni)",
+	"centralnotice-banner-sequence-days-error": "Deve essere un numero intero maggiore di zero.",
+	"centralnotice-banner-sequence-banner": "Banner",
+	"centralnotice-banner-sequence-page-views": "Visualizzazioni di pagina"
 }

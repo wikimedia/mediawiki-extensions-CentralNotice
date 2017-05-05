@@ -304,6 +304,7 @@
 	"centralnotice-banner-sequence-help": "Mehrere Vorlagen zur Anzeige in einer speziellen Reihenfolge festlegen.",
 	"centralnotice-banner-sequence-days": "Länge der Unterdrückung (Tage)",
 	"centralnotice-banner-sequence-days-error": "Muss eine Ganzzahl größer als null sein.",
+	"centralnotice-banner-sequence-days-help": "Anzahl der Tage, die faktisch für über „Mit Identifikator überspringen“-Felder (unten) festgelegte Markierungen verbleiben, gefolgt durch die erste Anzeige aller Seitenaufrufe in dem Schritt.",
 	"centralnotice-banner-sequence-bucket-seq": "Umgebung-$1-Sequenz ({{PLURAL:$2|Ein Seitenaufruf|$2 Seitenaufrufe}})",
 	"centralnotice-banner-sequence-bucket-add-step": "Einen Schritt hinzufügen",
 	"centralnotice-banner-sequence-banner": "Vorlage",
@@ -312,5 +313,6 @@
 	"centralnotice-banner-sequence-banner-removed-error": "Die Vorlagenauswahl für diesen Schritt wurde zurückgesetzt, da die Vorlage zur Entfernung festgelegt oder auf eine andere Umgebung umgestellt wurde. Bitte treffe eine andere Auswahl.",
 	"centralnotice-banner-sequence-page-views-error": "Der Schritt muss mindestens einen Seitenaufruf haben.",
 	"centralnotice-banner-sequence-skip-with-id-error": "Der Identifikator kann nicht „|“ enthalten.",
-	"centralnotice-banner-sequence-no-banner": "(Keine Vorlage)"
+	"centralnotice-banner-sequence-no-banner": "(Keine Vorlage)",
+	"centralnotice-banner-sequence-detailed-help": "Sequenzen werden für jede Umgebung separat festgelegt. Für jeden Schritt werden nur Vorlagen den Sequenzumgebungen zugewiesen, die verfügbar sind. Um immer einen Schritt anzuzeigen, lasse das Feld „Mit Identifikator überspringen“ leer. Wenn ein Identifikator festgelegt ist und einmal der Schritt abgeschlossen wurde, wird eine Markierung im Browser des Benutzers gespeichert, die diesen Identifikator benutzt und das nächste Mal, wenn der Benutzer einen Schritt mit dem gleichen Identifikator erreicht, wird er übersprungen. Identifikatoren vom Mixin „Große Vorlagen begrenzen und umschalten“ sind kompatibel und werden auch in das Benutzerkonto übernommen. Wenn eine Sequenz einmal beendet wird, startet sie neu vom Anfang (um eine Sequenz von der Wiederholung abzuhalten, verwende das Mixin „Zugriffsdiät“, um Zugriffe zu begrenzen)."
 }
