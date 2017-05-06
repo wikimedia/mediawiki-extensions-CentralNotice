@@ -9,7 +9,8 @@
 			"Suman",
 			"Venky2834",
 			"Hindustanilanguage",
-			"NehalDaveND"
+			"NehalDaveND",
+			"Sfic"
 		]
 	},
 	"centralnotice": "केन्द्रीय सूचना प्रबन्धक",
@@ -205,5 +206,8 @@
 	"centralnotice-start-date": "प्रारंभ तिथि",
 	"centralnotice-start-time": "प्रारंभ समय (UTC)",
 	"centralnotice-end-date": "शेष दिनांक",
-	"centralnotice-end-time": "अंत समय (UTC)"
+	"centralnotice-end-time": "अंत समय (UTC)",
+	"centralnotice-banner-sequence-banner": "बैनर",
+	"centralnotice-banner-sequence-page-views": "पृष्ठ दृश्य",
+	"centralnotice-banner-sequence-no-banner": "(कोई बैनर नहीं)"
 }

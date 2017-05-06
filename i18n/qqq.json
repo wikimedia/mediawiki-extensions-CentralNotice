@@ -319,7 +319,7 @@
 	"centralnotice-banner-sequence-help": "Help text for the banner sequence mixin",
 	"centralnotice-banner-sequence-days": "Label for the form control to set the number of days identifiers for suppressing steps will remain in effect.",
 	"centralnotice-banner-sequence-days-error": "Error message for invalid data entered in the form control to set the number of days that identifiers will remain in effect.",
-	"centralnotice-banner-sequence-days-help": "Help text for the form control to set the number of days identifiers for suppressing steps will remain in effect.",
+	"centralnotice-banner-sequence-days-help": "Help text for the form control to set the number of days identifiers for suppressing steps will remain in effect.\n\n* \"Skip with identifier\" is {{msg-mw|Centralnotice-banner-sequence-skip-with-id}}",
 	"centralnotice-banner-sequence-bucket-seq": "Label for a sequence for a given bucket and total number of page views in the sequence. Parameters:\n* $1 - Alphabetic label for the bucket\n* $2 Number of page views in the sequence",
 	"centralnotice-banner-sequence-bucket-add-step": "Label for a button to add step to a banner sequence",
 	"centralnotice-banner-sequence-banner": "Label for a drop-down form control to select a banner for a step in a banner sequence\n{{Identical|Banner}}",
@@ -329,5 +329,5 @@
 	"centralnotice-banner-sequence-page-views-error": "Error message for invalid data entered in a form control for the number of page views of a step in a banner sequence",
 	"centralnotice-banner-sequence-skip-with-id-error": "Error message for invalid data entered in form control to set an identifier stored in a user's browser to prevent the repeated display of a step in a banner sequence",
 	"centralnotice-banner-sequence-no-banner": "Text for option in banner drop-down form control to show no banner for a step in a banner sequence",
-	"centralnotice-banner-sequence-detailed-help": "Help text for banner sequences"
+	"centralnotice-banner-sequence-detailed-help": "Help text for banner sequences.\n\n* \"Skip with identifier\" is {{msg-mw|Centralnotice-banner-sequence-skip-with-id}}\n* \"Large banner limit and switch\" is {{msg-mw|Centralnotice-large-banner-limit}}\n* \"Impression diet\" is {{msg-mw|Centralnotice-impression-diet}}"
 }

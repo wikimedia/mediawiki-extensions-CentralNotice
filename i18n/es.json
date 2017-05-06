@@ -293,5 +293,8 @@
 	"centralnotice-impression-diet-skip-initial": "Número de impresiones iniciales que omitir (opcional)",
 	"centralnotice-impression-diet-skip-initial-help": "El valor predeterminado es 0, lo que indica que no se omitirá ninguna impresión. Cuando comience el ciclo, omitiremos ese número de impresiones potenciales antes de mostrar un anuncio.",
 	"centralnotice-large-banner-limit-days": "Longitud de la supresión",
-	"centralnotice-large-banner-limit-identifier": "Identificador de almacenamiento del lado del cliente"
+	"centralnotice-large-banner-limit-identifier": "Identificador de almacenamiento del lado del cliente",
+	"centralnotice-banner-sequence-days-error": "Debe ser un entero mayor que cero.",
+	"centralnotice-banner-sequence-bucket-add-step": "Añadir un paso",
+	"centralnotice-banner-sequence-skip-with-id-error": "El identificador no puede contener \"|\"."
 }

@@ -14,7 +14,8 @@
 			"Najami",
 			"Stefan2",
 			"Tobulos1",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Umeaboy"
 		]
 	},
 	"centralnotice": "Centralmeddelande-administration",
@@ -256,5 +257,5 @@
 	"apihelp-query+centralnoticelogs-param-start": "Starttid för intervall (valfri).",
 	"apihelp-query+centralnoticelogs-param-end": "Sluttid för intervall (valfri).",
 	"apihelp-query+centralnoticelogs-example-1": "Visa loggar",
-	"centralnotice-impression-diet-cookie-name": "Dölj cookienamn"
+	"centralnotice-banner-sequence-bucket-add-step": "Lägg till ett steg"
 }
