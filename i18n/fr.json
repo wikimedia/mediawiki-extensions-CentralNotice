@@ -328,5 +328,6 @@
 	"centralnotice-banner-sequence-banner-removed-error": "La sélection de la bannière pour cette étape a été réinitialisée, car la bannière a été marquée pour être supprimée ou a été basculée dans un autre paquet. Veuillez faire un autre choix.",
 	"centralnotice-banner-sequence-page-views-error": "L'étape doit avoir au moins une page à afficher.",
 	"centralnotice-banner-sequence-skip-with-id-error": "« | » non autorisé pour un identifiant.",
-	"centralnotice-banner-sequence-no-banner": "(Pas de bannière)"
+	"centralnotice-banner-sequence-no-banner": "(Pas de bannière)",
+	"centralnotice-banner-sequence-detailed-help": "Les séquences sont initialisées séparément pour chaque série. Pour chaque étape, uniquement les bannières assignées à des numéros de séquence de série sont disponibles. Afin de toujours afficher une étape, laisser à vide le champ « Sauter avec un identifiant ». Si un identifiant est fourni, alors une fois l'étape terminée, un indicateur lié à cet identifiant sera sauvegardé dans le navigateur de l'utilisateur et la prochaine fois que l'utilisateur atteindra une étape avec le même identifiant, elle sera sautée. Les identifiants du mixin « limite de bannière et commutateur élargis » sont compatibles et seront aussi pris en compte. Une fois qu'une séquence est terminée, elle reprend depuis le début. (Pour empêcher une séquence de boucler, utiliser le mixin « Impression régime » pour limiter les impressions.)"
 }
