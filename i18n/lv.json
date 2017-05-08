@@ -138,5 +138,10 @@
 	"centralnotice-start-time": "Sākuma laiks (UTC)",
 	"centralnotice-end-date": "Beigu datums (UTC)",
 	"centralnotice-end-time": "Beigu laiks (UTC)",
-	"apihelp-query+centralnoticelogs-example-1": "Rādīt žurnālus"
+	"apihelp-query+centralnoticelogs-example-1": "Rādīt žurnālus",
+	"centralnotice-banner-sequence-bucket-add-step": "Pievienot soli",
+	"centralnotice-banner-sequence-banner": "Baneris",
+	"centralnotice-banner-sequence-page-views": "Lapu skatījumi",
+	"centralnotice-banner-sequence-skip-with-id-error": "Identifikators nevar saturēt \"|\".",
+	"centralnotice-banner-sequence-no-banner": "(Nav banera)"
 }
