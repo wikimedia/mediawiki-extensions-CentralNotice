@@ -1,5 +1,5 @@
 /* Styles for banner sequence controls */
-@import "mediawiki.mixins";
+@import 'mediawiki.mixins';
 @import 'mediawiki.ui/variables';
 
 @stepHandleWidth: 1.4em;
@@ -12,10 +12,8 @@
 	margin-top: 0.8em !important;
 }
 
-.centralNoticeBannerSeqDaysLayout
-.oo-ui-fieldLayout-header,
-.centralNoticeBannerSeqDaysLayout
-.oo-ui-fieldLayout-field  {
+.centralNoticeBannerSeqDaysLayout .oo-ui-fieldLayout-header,
+.centralNoticeBannerSeqDaysLayout .oo-ui-fieldLayout-field {
 	width: inherit !important;
 	margin-right: 2em !important;
 }
@@ -27,7 +25,7 @@
 }
 
 .centralNoticeBannerSeqSequenceContainer {
-	margin: 0.3em 0 1.1em 0
+	margin: 0.3em 0 1.1em 0;
 }
 
 .centralNoticeBannerSeqHelpContainer {
@@ -76,13 +74,12 @@
 }
 
 // Combined selector required to override default style
-.centralNoticeBannerSeqStep + .oo-ui-fieldsetLayout{
-	margin: 0.6em 0 0.6em 0
+.centralNoticeBannerSeqStep + .oo-ui-fieldsetLayout {
+	margin: 0.6em 0 0.6em 0;
 }
 
 // Needed for vertical alignment with labels on top in HorizontalLayout
-.centralNoticeBannerSeqStep
-.oo-ui-fieldLayout {
+.centralNoticeBannerSeqStep .oo-ui-fieldLayout {
 	vertical-align: top;
 }
 
