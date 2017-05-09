@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Dim Grits",
-			"Gazeb"
+			"Gazeb",
+			"KHMELNYTSKYIA"
 		]
 	},
 	"centralnotice": "Адміністрація централізованых повідомлїнь",
@@ -149,5 +150,6 @@
 	"centralnotice-start-date": "Датум початку (UTC)",
 	"centralnotice-start-time": "Час початку (UTC)",
 	"centralnotice-end-date": "Дата закінчіня (UTC)",
-	"centralnotice-end-time": "Час кінце (UTC)"
+	"centralnotice-end-time": "Час кінце (UTC)",
+	"centralnotice-banner-sequence-banner": "Банер"
 }
