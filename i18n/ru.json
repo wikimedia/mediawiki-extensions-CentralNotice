@@ -25,7 +25,8 @@
 			"Gazimagomedov",
 			"Seunei",
 			"Translatobecomer",
-			"Kaganer"
+			"Kaganer",
+			"Redredsonia"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -214,7 +215,6 @@
 	"centralnotice-buckets": "Группирование участников",
 	"centralnotice-bucket": "Выборка",
 	"centralnotice-bucket-letter": "Выборка «$1»",
-	"centralnotice-banner-overflowing-bucket": "Для выборки «$1» назначено слишком много баннеров.",
 	"centralnotice-banner-empty-bucket": "Не всем выборкам назначен баннер.",
 	"centralnotice-devicetype-desktop": "Настольный компьютер",
 	"centralnotice-devicetype-android": "Android",
@@ -279,5 +279,7 @@
 	"centralnotice-banner-history-logger-rate-help": "Вероятность, что данные будут отобраны и отправлены обратно на сервер. Десятичное число от 0 (никогда) и 1 (всегда).",
 	"centralnotice-banner-history-logger-max-entry-age": "Максимальный срок хранения записей журнала (в днях)",
 	"centralnotice-banner-history-logger-max-entry-age-help": "Записи в журнале старее, чем здесь задано, будут считаться недействительными и не будут отправлены обратно на сервер.",
-	"centralnotice-banner-history-logger-max-entries": "Максимальное число записей, доступное для сохранения в журнале"
+	"centralnotice-banner-history-logger-max-entries": "Максимальное число записей, доступное для сохранения в журнале",
+	"centralnotice-banner-sequence-banner": "Баннер",
+	"centralnotice-banner-sequence-page-views": "Просмотров страниц"
 }

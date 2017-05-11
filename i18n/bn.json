@@ -182,5 +182,7 @@
 	"centralnotice-start-time": "শুরুর সময় (ইউটিসি)",
 	"centralnotice-end-date": "শেষের তারিখ (ইউটিসি)",
 	"centralnotice-end-time": "শেষ সময় (ইউটিসি)",
-	"apihelp-query+centralnoticelogs-example-1": "লগ দেখান"
+	"apihelp-query+centralnoticelogs-example-1": "লগ দেখান",
+	"centralnotice-banner-sequence-banner": "ব্যানার",
+	"centralnotice-banner-sequence-page-views": "পাতা দর্শন"
 }
