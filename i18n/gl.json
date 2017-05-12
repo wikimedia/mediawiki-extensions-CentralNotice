@@ -293,7 +293,13 @@
 	"centralnotice-large-banner-limit-randomize-help": "A transición normal de zona é de A a C e de B a D. Cando está comprobado, os lectores pasarán de forma aleatoria ás zonas C ou D.",
 	"centralnotice-large-banner-limit-identifier": "Identificar para almacenar no cliente",
 	"centralnotice-large-banner-limit-identifier-help": "A visualización de anuncios grandes suprímese nas campañas co mesmo identificador. O valor por defecto 'centralnotice-frbanner-seen-fullscreen' pode usarse para migrar as cookies históricas.",
+	"centralnotice-banner-sequence": "Secuencia dos anuncios",
+	"centralnotice-banner-sequence-help": "Definir varios anuncios para visualizarse nunha orde particular.",
+	"centralnotice-banner-sequence-days": "Duración da supresión (días)",
 	"centralnotice-banner-sequence-days-error": "Debe ser un enteiro maior que cero.",
 	"centralnotice-banner-sequence-bucket-add-step": "Engadir un paso",
-	"centralnotice-banner-sequence-skip-with-id-error": "O identificador non pode conter \"|\"."
+	"centralnotice-banner-sequence-banner": "Anuncio",
+	"centralnotice-banner-sequence-page-views": "Número de páxinas vistas",
+	"centralnotice-banner-sequence-skip-with-id-error": "O identificador non pode conter \"|\".",
+	"centralnotice-banner-sequence-no-banner": "(Sen anuncio)"
 }
