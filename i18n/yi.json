@@ -172,5 +172,7 @@
 	"centralnotice-end-time": "סוף צייַט (UTC)",
 	"apihelp-query+centralnoticelogs-param-user": "באניצער־נאמען (אפציאנאל)",
 	"apihelp-query+centralnoticelogs-example-1": "ווײַזן לאגביכער",
-	"centralnotice-banner-sequence-bucket-add-step": "צולייגן א שטאפל"
+	"centralnotice-banner-sequence-bucket-add-step": "צולייגן א שטאפל",
+	"centralnotice-banner-sequence-banner": "פֿאנע",
+	"centralnotice-banner-sequence-page-views": "בלאט באקוקן"
 }
