@@ -14,6 +14,7 @@
 	'use strict';
 
 	var multiStorageOption, days, SequenceManager, sequenceManager,
+		preBannerHandler, postBannerHandler,
 		cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'bannerSequence' ),
 
@@ -47,8 +48,9 @@
 
 		this.sequence = sequence;
 
-		// Starts out at the page view before the banner is shown, and will be moved
-		// along as needed
+		// The page view in the sequence that we will display. (This will be updated if
+		// we have to skip this step or if the sequence length has been reduced and
+		// we're beyond the new limit.)
 		this.currentPageView = currentPageView;
 
 		// Track how many steps have been skipped due to stored flags
@@ -151,7 +153,7 @@
 	/**
 	 * Get the current page view for this sequence, as stored in the browser.
 	 * Note: The page view skips ahead if we skip a step because of an identifier, and
-	 * rolls over when we re-start a sequence, so it's not an accurate count of pageviews
+	 * rolls over when we re-start a sequence, so it's not an accurate count of page views
 	 * in the campaign.
 	 *
 	 * @returns {number}
@@ -206,7 +208,7 @@
 	 */
 	function setFlag( identifier ) {
 
-		// Value is timestamp for now. Flag expires in as per the days mixin param.
+		// Value is timestamp for now. Flag expires as per the days mixin param.
 		cn.kvStore.setItem(
 			FLAG_STORAGE_KEY + '_' + identifier,
 			Math.round( Date.now() / 1000 ),
@@ -216,7 +218,7 @@
 		);
 	}
 
-	mixin.setPreBannerHandler( function ( mixinParams ) {
+	preBannerHandler = function ( mixinParams ) {
 
 		var identifier, sequence, banner, pageView;
 
@@ -235,7 +237,7 @@
 		}
 
 		// Determine if, and if so, how we can store data in the browser. This will try
-		// to use localstorage and will fall back to cookies if the campaign's category
+		// to use localStorage and will fall back to cookies if the campaign's category
 		// allows it.
 		multiStorageOption = cn.kvStore.getMultiStorageOption(
 			cn.getDataProperty( 'campaignCategoryUsesLegacy' ) );
@@ -288,9 +290,9 @@
 
 		// Request the banner
 		cn.requestBanner( banner );
-	} );
+	};
 
-	mixin.setPostBannerHandler( function () {
+	postBannerHandler = function () {
 
 		// If a banner was shown, or we showed no banner as part of an empty step, move to
 		// the next page view in the sequence. If necessary, set a flag.
@@ -303,9 +305,21 @@
 				setFlag( sequenceManager.identifierToSet );
 			}
 		}
-	} );
+	};
 
-	// Register the mixin
+	// Register the handlers and mixin
+	mixin.setPreBannerHandler( preBannerHandler );
+	mixin.setPostBannerHandler( postBannerHandler );
 	cn.registerCampaignMixin( mixin );
+
+	// Exports are for use in unit tests only
+	module.exports = { 'private': {
+		SequenceManager: SequenceManager,
+		PAGE_VIEW_STORAGE_KEY: PAGE_VIEW_STORAGE_KEY,
+		FLAG_STORAGE_KEY: FLAG_STORAGE_KEY,
+		LARGE_BANNER_LIMIT_STORAGE_KEY: LARGE_BANNER_LIMIT_STORAGE_KEY,
+		preBannerHandler: preBannerHandler,
+		postBannerHandler: postBannerHandler
+	} };
 
 }( mediaWiki ) );
