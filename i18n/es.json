@@ -296,5 +296,5 @@
 	"centralnotice-large-banner-limit-identifier": "Identificador de almacenamiento del lado del cliente",
 	"centralnotice-banner-sequence-days-error": "Debe ser un entero mayor que cero.",
 	"centralnotice-banner-sequence-bucket-add-step": "Añadir un paso",
-	"centralnotice-banner-sequence-skip-with-id-error": "El identificador no puede contener \"|\"."
+	"centralnotice-banner-sequence-skip-with-id-error": "El identificador no puede contener «|»."
 }
