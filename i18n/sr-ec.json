@@ -6,7 +6,8 @@
 			"Rancher",
 			"Јованвб",
 			"Михајло Анђелковић",
-			"Сербијана"
+			"Сербијана",
+			"Obsuser"
 		]
 	},
 	"centralnotice": "Администратор централног обавештавања",
@@ -191,5 +192,20 @@
 	"centralnotice-end-date": "Датум краја (UTC)",
 	"centralnotice-end-time": "Завршно време (UTC)",
 	"centralnotice-banner-not-found-title": "Банер није пронађен",
-	"centralnotice-banner-not-found-contents": "Не постоји банер са тачно оваквим именом."
+	"centralnotice-banner-not-found-contents": "Не постоји банер са тачно оваквим именом.",
+	"centralnotice-banner-sequence": "Низ банера",
+	"centralnotice-banner-sequence-help": "Подешавање више банера за приказ у одређеном редоследу.",
+	"centralnotice-banner-sequence-days": "Трајање супресије (дани)",
+	"centralnotice-banner-sequence-days-error": "Мора да буде цели број већи од нуле.",
+	"centralnotice-banner-sequence-days-help": "Број дана које ознаке постављају преко поља „Прескочи са идентификатором” остаће ефективан, након првобитног приказа прегледа странице у кораку.",
+	"centralnotice-banner-sequence-bucket-seq": "Низ групе $1 ($2 {{PLURAL:$2|преглед странице|прегледа странице}})",
+	"centralnotice-banner-sequence-bucket-add-step": "Додај корак",
+	"centralnotice-banner-sequence-banner": "Банер",
+	"centralnotice-banner-sequence-page-views": "Прегледи странице",
+	"centralnotice-banner-sequence-skip-with-id": "Прескочи са идентификатором",
+	"centralnotice-banner-sequence-banner-removed-error": "Одабир банера у овом кораку је ресетован, зато што је банер подешен да буде уклоњен или замењен за другу групу. Извршите други избор.",
+	"centralnotice-banner-sequence-page-views-error": "Корак мора да има најмање један преглед странице.",
+	"centralnotice-banner-sequence-skip-with-id-error": "Идентификатор не може да садржи „|”.",
+	"centralnotice-banner-sequence-no-banner": "(Без банера)",
+	"centralnotice-banner-sequence-detailed-help": "Низови се подешавају засебно за сваку групу. За било који корак, доступни су само банери придружени групи низа. Да би се корак увек приказао, оставите празно поље „Прескочи са идентификатором”. Ако је идентификатор одређен, онда када се корак заврши белешка са употребљеним тим идентификатором ће бити спремљена у корисниковом претраживачу, и следећи пут када корисник дође до корака са идентификатором у питању исти ће бити прескоче. Идентификатори од миксина „Large banner limit and switch” (Лимит и прекидач великог банера) компатибилни су и такође се узимати у обзир. Када се низ заврши, почиње поново од почетка. (Да би се спречило понављање, користити „Дијета утиска” како би се утисци ограничили.)"
 }

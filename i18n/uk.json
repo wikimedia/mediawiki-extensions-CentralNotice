@@ -316,5 +316,10 @@
 	"centralnotice-banner-sequence": "Послідовність банерів",
 	"centralnotice-banner-sequence-help": "Встановіть показ декількох банерів у певному порядку.",
 	"centralnotice-banner-sequence-days": "Тривалість приховування (у днях)",
-	"centralnotice-banner-sequence-days-error": "Це має бути ціле число, більше за нуль."
+	"centralnotice-banner-sequence-days-error": "Це має бути ціле число, більше за нуль.",
+	"centralnotice-banner-sequence-bucket-add-step": "Додати крок",
+	"centralnotice-banner-sequence-banner": "Банер",
+	"centralnotice-banner-sequence-page-views": "Перегляди сторінки",
+	"centralnotice-banner-sequence-skip-with-id": "Пропустити за допомогою ідентифікатора",
+	"centralnotice-banner-sequence-no-banner": "(Без банера)"
 }
