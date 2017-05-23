@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"AnakngAraw"
+			"AnakngAraw",
+			"Leeheonjin"
 		]
 	},
 	"centralnotice": "Tagapangasiwa ng pangunahing pabatid",
@@ -152,5 +153,7 @@
 	"centralnotice-start-date": "Petsa ng pagsisimula",
 	"centralnotice-start-time": "Oras ng simula (UTC)",
 	"centralnotice-end-date": "Pangwakas na petsa",
-	"centralnotice-end-time": "Katapusang oras (UTC)"
+	"centralnotice-end-time": "Katapusang oras (UTC)",
+	"centralnotice-banner-sequence-days-error": "Dapat ay isang kabuuan (integer) na higit pa sa sero.",
+	"centralnotice-banner-sequence-bucket-add-step": "Magdagdag ng hakbang"
 }
