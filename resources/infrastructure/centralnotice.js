@@ -1,6 +1,10 @@
 /**
  * CentralNotice Administrative UI - Common Functions
  */
+
+// FIXME Encapsulate logic specific to Special:CentralNoticeLogs
+// FIXME Global functions
+
 ( function ( mw, $ ) {
 	mw.centralNotice = mw.centralNotice || {};
 	mw.centralNotice.adminUi = {};
@@ -43,6 +47,7 @@
 		location.href = baseUrl + '?log=' + logType;
 	};
 
+	// FIXME Unused? See T161907
 	window.addEventListener( 'message', receiveMessage, false );
 	function receiveMessage( event ) {
 		var remoteData = JSON.parse( event.data );
@@ -80,8 +85,8 @@
 		);
 
 		// Do the fancy multiselector; but we have to wait for some arbitrary time until the
-		// CSS has been applied... Yes, this is an egregious hack until I rewrite the mutliselector
-		// to NOT suck -- e.g. make it dynamic... whoo...
+		// CSS has been applied.
+		// FIXME This is a hack.
 		setTimeout( function () {
 			$( 'select[multiple="multiple"]' ).multiselect(
 				{ sortable: false, dividerLocation: 0.5 }
@@ -99,28 +104,5 @@
 				$( '#geoMultiSelector' ).fadeOut( 'fast' );
 			}
 		} );
-
-		// Bucketing! Disable bucket selectors if #buckets is not checked.
-		$( '#buckets' ).change( function () {
-			var numBuckets = parseInt( this[ this.selectedIndex ].value, 10 ),
-				buckets = $( 'select[id^="bucketSelector"]' );
-
-			if ( numBuckets == 1 ) {
-				buckets.prop( 'disabled', true );
-			} else {
-				buckets.prop( 'disabled', false );
-				// Go through and modify all the options -- disabling inappropriate ones
-				// and remapping the rings
-				buckets.each( function () {
-					var curBucket = parseInt( this[ this.selectedIndex ].value, 10 ),
-						i;
-					$( this ).val( curBucket % numBuckets );
-
-					for ( i = 0; i < this.options.length; i++ ) {
-						$( this.options[ i ] ).prop( 'disabled', ( i >= numBuckets ) );
-					}
-				} );
-			}
-		} ).trigger( 'change' );
 	} );
-} )( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );

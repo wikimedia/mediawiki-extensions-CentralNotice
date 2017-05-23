@@ -49,7 +49,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-view-logs' )->text() );
 		$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-switcher' ) );
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
-		$fullUrl = wfExpandUrl( $title->getFullUrl(), PROTO_CURRENT );
+		$fullUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 
 		// Build the radio buttons for switching the log type
 		$htmlOut .= $this->getLogSwitcher( 'campaignsettings', 'campaignSettings',
@@ -73,7 +73,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters-container' ) );
 
-			$collapsedImg = $this->getContext()->getLanguage()->isRtl() ?
+			$collapsedImg = $this->getContext()->getLanguage()->isRTL() ?
 				'/CentralNotice/collapsed-rtl.png' :
 				'/CentralNotice/collapsed-ltr.png';
 
@@ -158,7 +158,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 					'class' => 'cn-filter-buttons',
 				)
 			);
-			$link = $title->getLinkUrl();
+			$link = $title->getLinkURL();
 			$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-clear-filters' )->text(),
 				array(
 					'id' => 'centralnoticelogreset',

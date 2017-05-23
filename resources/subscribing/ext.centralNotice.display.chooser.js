@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Logic for selecting a campaign and a banner (or not). Provides
  * cn.internal.chooser.
@@ -42,7 +43,7 @@
 			// Check choice data freshness
 			campaignEndDatePlusLeeway = new Date();
 			campaignEndDatePlusLeeway.setTime(
-				( campaign.end * 1000  ) +
+				( campaign.end * 1000 ) +
 				( CAMPAIGN_STALENESS_LEEWAY * 60000 )
 			);
 
@@ -62,10 +63,11 @@
 				banner = campaign.banners[ j ];
 
 				// Logged-in status
-				// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+				// eslint-disable-next-line camelcase
 				if ( anon && !banner.display_anon ) {
 					continue;
 				}
+				// eslint-disable-next-line camelcase
 				if ( !anon && !banner.display_account ) {
 					continue;
 				}
@@ -83,7 +85,7 @@
 			}
 
 			if ( keepCampaign ) {
-				filteredChoiceData.push( campaign ) ;
+				filteredChoiceData.push( campaign );
 			}
 		}
 
@@ -119,7 +121,7 @@
 		// and higher integers represent higher priority. These values are
 		// defined by class constants in the CentralNotice PHP class.
 
-		for ( i = 0; i < filteredChoiceData.length ; i++ ) {
+		for ( i = 0; i < filteredChoiceData.length; i++ ) {
 
 			campaign = filteredChoiceData[ i ];
 			campaignPriority = campaign.preferred;
@@ -362,4 +364,4 @@
 		}
 	};
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

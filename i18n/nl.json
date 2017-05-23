@@ -16,7 +16,8 @@
 			"User555",
 			"Sjoerddebruin",
 			"MedShot",
-			"Esketti"
+			"Esketti",
+			"Mainframe98"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -65,6 +66,7 @@
 	"centralnotice-locked": "Afgesloten",
 	"centralnotice-notice-mixins-fieldset": "Extra campagnefuncties",
 	"centralnotice-notice-mixins-int-required": "Geheel getal vereist",
+	"centralnotice-notice-mixins-float-required": "Kommagetal vereist",
 	"centralnotice-notice": "Campagne",
 	"centralnotice-notice-heading": "Campagne: $1",
 	"centralnotice-notices": "Sitenotices",

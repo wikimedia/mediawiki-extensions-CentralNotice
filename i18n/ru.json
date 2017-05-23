@@ -226,7 +226,7 @@
 	"centralnotice-banner-name-error": "Недопустимое имя баннера. Допустимые имена содержат только буквенно-цифровые символы и нижнее подчеркивание.",
 	"centralnotice-all-except": "Все, кроме $1",
 	"centralnotice-excluding-list": "$1 (исключая $2)",
-	"centralnotice-user-role": "Роль пользователя",
+	"centralnotice-user-role": "Роль участника",
 	"centralnotice-user-role-anonymous": "Аноним",
 	"centralnotice-user-role-logged-in": "Вошедшие в систему",
 	"centralnotice-banner-class": "Категория",

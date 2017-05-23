@@ -98,7 +98,7 @@ class BannerMessage {
 			$wikiPage = new WikiPage( $title );
 
 			$content = ContentHandler::makeContent( $text, $title );
-			$result = $wikiPage->doEditContent( $content, $summary, EDIT_FORCE_BOT );
+			$wikiPage->doEditContent( $content, $summary, EDIT_FORCE_BOT );
 
 			return $wikiPage;
 		};

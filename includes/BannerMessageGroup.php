@@ -14,7 +14,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	/**
 	 * Constructor.
 	 *
-	 * @param string $id Unique id for this group.
+	 * @param int $namespace ID of the namespace holding CentralNotice messages
 	 * @param string $title The page name of the CentralNotice banner
 	 */
 	public function __construct( $namespace, $title ) {
@@ -160,7 +160,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		) {
 			// Finally an object we can deal with directly and it's in the right state!
 			$collection = $group->initCollection( $code );
-			$collection->loadTranslations( DB_MASTER );
+			$collection->loadTranslations();
 			$keys = $collection->getMessageKeys();
 
 			// Now copy each key into the MW namespace

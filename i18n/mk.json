@@ -257,7 +257,7 @@
 	"apihelp-query+centralnoticelogs-param-campaign": "Назив на походот (незадолжително). Ако има повеќе, одделете ги со исправена црта („|“).",
 	"apihelp-query+centralnoticelogs-param-user": "Корисничко име (незадолжително).",
 	"apihelp-query+centralnoticelogs-param-limit": "Максимум редови во изводот (незадолжително)",
-	"apihelp-query+centralnoticelogs-param-offset": "Отстапка во множеството резултати (незадолжително).",
+	"apihelp-query+centralnoticelogs-param-offset": "Отстапка во множеството исходни ставки (незадолжително).",
 	"apihelp-query+centralnoticelogs-param-start": "Почетно врме на опсегот (незадолжително).",
 	"apihelp-query+centralnoticelogs-param-end": "Завршно врме на опсегот (незадолжително).",
 	"apihelp-query+centralnoticelogs-example-1": "Прикажи логоа",

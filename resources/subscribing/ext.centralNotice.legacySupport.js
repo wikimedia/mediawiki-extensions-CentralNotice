@@ -22,4 +22,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

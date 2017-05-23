@@ -29,7 +29,7 @@ class ChoiceDataProvider {
 	 * @param string $language The language to get choices for
 	 * @return array A structure of arrays. The outer array contains associative
 	 *   arrays that represent campaigns. One campaign property is 'banners',
-	 *   which has as its value an array of asociative arrays that represent
+	 *   which has as its value an array of associative arrays that represent
 	 *   banners. Note that only some properties of campaigns and banners
 	 *   are provided.
 	 */
@@ -80,8 +80,6 @@ class ChoiceDataProvider {
 
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
-
-		$cache = ObjectCache::getMainWANInstance();
 
 		// Set up conditions
 		// Choice data will be cached for up to an hour, so we want to include
@@ -242,11 +240,12 @@ class ChoiceDataProvider {
 			$choices[$dbRow->not_id]['countries'][] = $dbRow->nc_country;
 		}
 
+		// FIXME: looks like this is only sorting the last banner's list!
 		if ( isset( $choices[$dbRow->not_id]['countries'] ) ) {
 			sort( $choices[$dbRow->not_id]['countries'] );
 		}
 
-		// Add campaign-asociated mixins to the data structure
+		// Add campaign-associated mixins to the data structure
 		foreach ( $choices as &$campaignInfo ) {
 
 			//Get info for enabled mixins for this campaign
@@ -295,6 +294,7 @@ class ChoiceDataProvider {
 				}
 
 				// Ensure consistent ordering (see comment below)
+				// FIXME: only sorting list for last assignmentKey?
 				sort( $choices[$campaignId]['banners'][$assignmentKey]['devices'] );
 			}
 		}

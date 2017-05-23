@@ -409,7 +409,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		// Generate the form
-		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
+		$formDescriptor = $this->generateBannerEditForm();
 
 		// Now begin form processing
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext(), 'centralnotice' );
@@ -423,7 +423,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 
 		// Recreate the form because something could have changed
-		$formDescriptor = $this->generateBannerEditForm( $this->bannerName );
+		$formDescriptor = $this->generateBannerEditForm();
 
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext(), 'centralnotice' );
 		$htmlForm->setSubmitCallback( array( $this, 'processEditBanner' ) )->setId( 'cn-banner-editor' );
@@ -446,7 +446,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	protected function generateBannerEditForm() {
-		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgNoticeFundraisingUrl, $wgLanguageCode;
+		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
@@ -461,6 +461,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor = array();
 
 		/* --- Banner Preview Section --- */
+		// FIXME Unused? See T161907
 		$formDescriptor[ 'preview' ] = array(
 			'section' => 'preview',
 			'class' => 'HTMLCentralNoticeBanner',
@@ -932,7 +933,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			);
 		}
 
-		$this->getOutput()->addHtml( $htmlOut );
+		$this->getOutput()->addHTML( $htmlOut );
 	}
 }
 

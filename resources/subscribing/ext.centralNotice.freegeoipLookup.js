@@ -16,10 +16,10 @@
 		} ).then( function ( data ) {
 
 			var geo = {
-				// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+				// eslint-disable-next-line camelcase
 				country: data.country_code,
+				// eslint-disable-next-line camelcase
 				region: data.region_code,
-				// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 				city: data.city,
 				lat: data.latitude,
 				lon: data.longitude
@@ -30,4 +30,4 @@
 		} );
 	};
 
-} )( jQuery );
+}( jQuery ) );

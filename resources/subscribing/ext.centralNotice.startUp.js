@@ -53,6 +53,14 @@
 
 	// Maintenance: This schedules the removal of old KV keys.
 	// The schedule action itself is deferred, too, as it accesses localStorage.
+	// - FIXME: Consider doing this behind a random sample instead of every page view
+	//   (e.g. 50% or 20%). Or, instead of sampling:
+	// - FIXME: Use sessionStorage (mw.storage.session) to not schedule multiple
+	//   maintenance windows simultaneously and to not schedule maintenance too
+	//   often (e.g. no more once every 6 hours). It may be attractive to do
+	//   "No more than once per session" but a time-bound is still needed as
+	//   sessions often never end due to save-on-quit and restore-on-reopen features
+	//   in many products.
 	mw.requestIdleCallback( cn.kvStoreMaintenance.doMaintenance );
 
 	// Nothing more to do if there are no possible campaigns for this user
@@ -94,4 +102,4 @@
 		} );
 	}
 
-} )(  jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

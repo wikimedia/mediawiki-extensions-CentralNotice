@@ -114,7 +114,7 @@
 			UNKNOWN_COUNTRY_CODE;
 
 		// Some parameters should get through even if they have falsey values
-		state.data.debug = urlParams.debug !== undefined ? true : false;
+		state.data.debug = ( urlParams.debug !== undefined );
 
 		state.data.randomcampaign = urlParams.randomcampaign !== undefined ?
 			urlParams.randomcampaign : Math.random();
@@ -355,7 +355,7 @@
 		 * Sets banner_count, a legacy field for Special:RecordImpression
 		 */
 		setBannerCount: function ( bannerCount ) {
-			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+			// eslint-disable-next-line camelcase
 			state.data.banner_count = bannerCount;
 		},
 
@@ -402,4 +402,4 @@
 			return REASONS.other;
 		}
 	};
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

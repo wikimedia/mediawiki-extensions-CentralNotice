@@ -140,4 +140,4 @@
 			hide.setHideCookies( 'close', durations.close );
 		}
 	};
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

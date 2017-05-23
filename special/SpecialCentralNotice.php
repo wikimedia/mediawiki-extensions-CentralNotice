@@ -11,6 +11,9 @@ class CentralNotice extends SpecialPage {
 
 	public $editable, $centralNoticeError;
 
+	/**
+	 * @var Campaign
+	 */
 	protected $campaign;
 	protected $campaignWarnings = array();
 
@@ -34,8 +37,6 @@ class CentralNotice extends SpecialPage {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 
-		// Output ResourceLoader module for styling and javascript functions
-		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
 		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice', true );
 
 		// Check permissions
@@ -74,7 +75,7 @@ class CentralNotice extends SpecialPage {
 
 				// If there were no errors, reload the page to prevent duplicate form submission
 				if ( !$this->centralNoticeError ) {
-					$out->redirect( $this->getPageTitle()->getLocalUrl() );
+					$out->redirect( $this->getPageTitle()->getLocalURL() );
 					return;
 				}
 			} else {
@@ -189,7 +190,6 @@ class CentralNotice extends SpecialPage {
 					$this->getUser(),
 					$initialSettings,
 					$newSettings,
-					array(), array(),
 					$summary
 				);
 			}
@@ -282,7 +282,7 @@ class CentralNotice extends SpecialPage {
 
 			$options = ''; // The HTML for the select list options
 			foreach ( $priorities as $key => $label ) {
-				$options .= XML::option( $label, $key, $priorityValue == $key );
+				$options .= Xml::option( $label, $key, $priorityValue == $key );
 			}
 
 			// Data attributes set below (data-campaign-name and
@@ -471,12 +471,18 @@ class CentralNotice extends SpecialPage {
 	 * @param $notice string The name of the campaign to view
 	 */
 	function outputNoticeDetail( $notice ) {
+
+		$out = $this->getOutput();
+
+		// Output specific ResourceLoader module
+		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
+
 		$this->outputEnclosingDivStartTag();
 
 		$this->campaign = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
 		try {
 			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
-				$this->getOutput()->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
+				$out->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
 				$this->editable = false; // Todo: Fix this gross hack to prevent editing
 			}
 		} catch ( CampaignExistenceException $ex ) {
@@ -496,7 +502,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' => $this->getPageTitle()->getLocalUrl( array(
+					'action' => $this->getPageTitle()->getLocalURL( array(
 						'subaction' => 'noticeDetail',
 						'notice' => $notice
 					) )
@@ -506,7 +512,7 @@ class CentralNotice extends SpecialPage {
 
 		$output_detail = $this->noticeDetailForm( $notice );
 		$output_assigned = $this->assignedTemplatesForm( $notice );
-		$output_templates = $this->addTemplatesForm( $notice );
+		$output_templates = $this->addTemplatesForm();
 
 		$htmlOut .= $output_detail;
 
@@ -555,7 +561,7 @@ class CentralNotice extends SpecialPage {
 
 		$this->displayCampaignWarnings();
 
-		$this->getOutput()->addHTML( $htmlOut );
+		$out->addHTML( $htmlOut );
 		$this->outputEnclosingDivEndTag();
 	}
 
@@ -757,12 +763,11 @@ class CentralNotice extends SpecialPage {
 				Campaign::logCampaignChange(
 					'modified', $campaignId, $this->getUser(),
 					$initialCampaignSettings, $finalCampaignSettings,
-					array(), array(),
 					$summary );
 
 				// If there were no errors, reload the page to prevent duplicate form submission
 				if ( !$this->centralNoticeError ) {
-					$this->getOutput()->redirect( $this->getPageTitle()->getLocalUrl( array(
+					$this->getOutput()->redirect( $this->getPageTitle()->getLocalURL( array(
 						'subaction' => 'noticeDetail',
 						'notice' => $notice
 					) ) );
@@ -1152,7 +1157,7 @@ class CentralNotice extends SpecialPage {
 
 			$htmlOut .= Xml::closeElement( 'tr' );
 		}
-		$htmlOut .= XMl::closeElement( 'table' );
+		$htmlOut .= Xml::closeElement( 'table' );
 		$htmlOut .= Xml::closeElement( 'fieldset' );
 
 		// Sneak in some extra processing, to detect errors in bucket assignment.
@@ -1212,7 +1217,11 @@ class CentralNotice extends SpecialPage {
 			}
 			$selected = $selected % $numberCampaignBuckets;
 
-			$html = Html::openElement( 'select', array( 'name' => $name, 'id' => 'bucketSelector' ) );
+			$html = Html::openElement( 'select', [
+				'name' => $name,
+				'class' => 'bucketSelector'
+			] );
+
 			foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
 				$attribs = array();
 				if ( $value >= $numberCampaignBuckets ) {
@@ -1250,8 +1259,9 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Create form for adding banners to a campaign
+	 * @return string
 	 */
-	function addTemplatesForm( $notice ) {
+	function addTemplatesForm() {
 		// Sanitize input on search key and split out terms
 		$searchTerms = $this->sanitizeSearchTerms( $this->getRequest()->getText( 'tplsearchkey' ) );
 
@@ -1301,11 +1311,10 @@ class CentralNotice extends SpecialPage {
 	 * Generates a multiple select list of all languages.
 	 *
 	 * @param $selected array The language codes of the selected languages
-	 * @param $customisedOnly bool If true only languages which have some content are listed
 	 *
-	 * @return multiple select list
+	 * @return string multiple select list
 	 */
-	function languageMultiSelector( $selected = array(), $customisedOnly = true ) {
+	function languageMultiSelector( $selected = array() ) {
 		global $wgLanguageCode;
 
 		// Retrieve the list of languages in user's language
@@ -1345,7 +1354,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @param $selected array The name of the selected project type
 	 *
-	 * @return multiple select list
+	 * @return string multiple select list
 	 */
 	function projectMultiSelector( $selected = array() ) {
 		global $wgNoticeProjects;
@@ -1406,7 +1415,7 @@ class CentralNotice extends SpecialPage {
 			);
 	}
 
-	protected function getSummaryFromRequest( $request ) {
+	protected function getSummaryFromRequest( WebRequest $request ) {
 		return static::truncateSummaryField( $request->getVal( 'changeSummary' ) );
 	}
 
@@ -1429,7 +1438,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @param $selected array The country codes of the selected countries
 	 *
-	 * @return multiple select list
+	 * @return string multiple select list
 	 */
 	function geoMultiSelector( $selected = array() ) {
 		$userLanguageCode = $this->getLanguage()->getCode();

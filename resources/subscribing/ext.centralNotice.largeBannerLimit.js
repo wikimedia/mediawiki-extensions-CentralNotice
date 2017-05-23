@@ -9,7 +9,6 @@
  * https://meta.wikimedia.org/wiki/MediaWiki:FR2014/Resources/ShowHideCheckFullscreen.js
  * https://meta.wikimedia.org/wiki/MediaWiki:FR2014/Resources/ChangeBucket-AtoC-BtoD.js
  */
-// jshint unused:false
 ( function ( mw ) {
 	'use strict';
 
@@ -135,7 +134,7 @@
 			checkFlag()
 		) {
 			if ( mixinParams.randomize ) {
-				cn.setBucket( Math.floor( Math.random() * 2 )  +  2 );
+				cn.setBucket( Math.floor( Math.random() * 2 ) + 2 );
 			} else {
 				cn.setBucket( cn.getDataProperty( 'bucket' ) + 2 );
 			}
@@ -145,7 +144,7 @@
 		// gets shown, and set a flag, in the post banner handler.
 	} );
 
-	mixin.setPostBannerHandler( function ( mixinParams ) {
+	mixin.setPostBannerHandler( function () {
 
 		// If a large banner was shown, but not forced, set a flag to remember
 		// the reader has seen a large banner. The next time they might
@@ -163,4 +162,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-} )( mediaWiki );
+}( mediaWiki ) );

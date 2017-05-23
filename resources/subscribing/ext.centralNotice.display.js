@@ -140,7 +140,7 @@
 
 		var data = cn.internal.state.getData(),
 			url = new mw.Uri(
-				mw.config.get( 'wgCentralSelectedBannerDispatcher' )
+				mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' )
 			);
 
 		url.extend(
@@ -405,7 +405,7 @@
 						);
 					}
 
-					// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+					// eslint-disable-next-line camelcase
 					if ( tmpData.banner_count ) {
 						state.setBannerCount( tmpData.banner_count );
 					}
@@ -629,4 +629,4 @@
 		'Use mw.centralNotice method instead'
 	);
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

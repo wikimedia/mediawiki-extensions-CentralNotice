@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+// TODO Remove above directive once inSample var is used.
 /*
  * Banner history logger mixin. Records an event every time this campaign is
  * selected for the user (even if the banner is hidden). The log is kept in
@@ -73,9 +75,7 @@
 				time: time,
 				status: data.status,
 				statusCode: data.statusCode,
-
-				bannersNotGuaranteedToDisplay:
-					data.bannersNotGuaranteedToDisplay ? true : false
+				bannersNotGuaranteedToDisplay: !!data.bannersNotGuaranteedToDisplay
 			};
 
 		if ( data.banner ) {
@@ -399,4 +399,4 @@
 		}
 	};
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

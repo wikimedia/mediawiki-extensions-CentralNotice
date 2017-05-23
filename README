@@ -46,19 +46,20 @@ Configuration
 
 * $wgCentralSelectedBannerDispatcher: URL for BannerLoader, for requests to
   fetch a banner that is already known (using the "banner" URL param). If
-  false, it will default to Special:BannerLoader on the machine serving
-  ResourceLoader requests.
+  false, it will default to Special:BannerLoader.
+  Default: false
+
+* $wgCentralMobileSelectedBannerDispatcher: URL for BannerLoader on Mobile
+  sites. See $wgCentralSelectedBannerDispatcher. If false, and if
+  MobileFrontEnd is enabled for this site, this defaults to the same
+  value as $wgCentralSelectedBannerDispatcher. (This is a temporary
+  solution; see bug T156847.).
   Default: false
 
 * $wgCentralNoticeLoader: Enable the loader itself
   Allows control over the loader visibility, without destroying infrastructure
   for cached content
   Default: true
-
-* $wgNoticeFundraisingUrl: Base URL for default fundraiser landing page
-  (without query string)
-  TODO Remove, no longer used
-  Default: "https://donate.wikimedia.org/wiki/Special:LandingCheck"
 
 * $wgNoticeBannerPreview: URL prefix where banner screenshots are stored. False
   if this feature is disabled.  meta.wikimedia.org CentralNotice banners are

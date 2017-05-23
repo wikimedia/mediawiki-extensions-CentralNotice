@@ -13,7 +13,8 @@
 			"Sayginer",
 			"Sucsuzz",
 			"Violetanka",
-			"HakanIST"
+			"HakanIST",
+			"Vito Genovese"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -137,7 +138,7 @@
 	"centralnotice-documentwrite-error": "document.write() afiş içinde kullanılamaz.\nDaha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.",
 	"centralnotice-preferred": "Öncelik",
 	"centralnotice-archived": "Arşivlenmiş",
-	"centralnotice-logs": "Kayıtlar",
+	"centralnotice-logs": "Günlükler",
 	"centralnotice-view-logs": "Günlüklerini görüntüle",
 	"centralnotice-timestamp": "Zaman damgası",
 	"centralnotice-user": "Kullanıcı",

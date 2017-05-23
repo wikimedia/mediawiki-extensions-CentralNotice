@@ -1,5 +1,5 @@
 /**
- * Styles specific to Special:CentralNotice
+ * Styles for campaign editor (handled by Special:CentralNotice)
  *
  * This file is part of the CentralNotice Extension to MediaWiki
  * https://www.mediawiki.org/wiki/Extension:CentralNotice
@@ -22,9 +22,6 @@
  *
  * @file
  */
-.cn-buttons {
-	text-align: right;
-}
 
 #preferences .ui-slider {
 	width: 50%;

@@ -75,7 +75,7 @@
 		 * @return {boolean}
 		 */
 		doSaveBanner: function () {
-			/*global alert */
+			/* global alert */
 			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).indexOf( 'document.write' ) > -1 ) {
 				alert( mw.msg( 'centralnotice-documentwrite-error' ) );
 			} else {
@@ -176,24 +176,24 @@
 				startPos,
 				endPos;
 			if ( buttonType === 'close' ) {
-				buttonValue = '<a href="#" title="'
-					+ mw.msg( 'centralnotice-close-title' )
-					+ '" onclick="mw.centralNotice.hideBanner();return false;">'
-					+ '<div class="cn-closeButton">' + mw.msg( 'centralnotice-close-title' )
-					+ '</div></a>';
+				buttonValue = '<a href="#" title="' +
+					mw.msg( 'centralnotice-close-title' ) +
+					'" onclick="mw.centralNotice.hideBanner();return false;">' +
+					'<div class="cn-closeButton">' + mw.msg( 'centralnotice-close-title' ) +
+					'</div></a>';
 			}
 			if ( document.selection ) {
 				// IE support
 				bannerField.focus();
 				sel = document.selection.createRange();
 				sel.text = buttonValue;
-			} else if ( bannerField.selectionStart || bannerField.selectionStart == '0' ) {
+			} else if ( bannerField.selectionStart || bannerField.selectionStart === 0 ) {
 				// Mozilla support
 				startPos = bannerField.selectionStart;
 				endPos = bannerField.selectionEnd;
-				bannerField.value = bannerField.value.substring( 0, startPos )
-					+ buttonValue
-					+ bannerField.value.substring( endPos, bannerField.value.length );
+				bannerField.value = bannerField.value.substring( 0, startPos ) +
+					buttonValue +
+					bannerField.value.substring( endPos, bannerField.value.length );
 			} else {
 				bannerField.value += buttonValue;
 			}
@@ -210,4 +210,4 @@
 
 	// And do some initial form work
 	$( '#cn-js-error-warn' ).hide();
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

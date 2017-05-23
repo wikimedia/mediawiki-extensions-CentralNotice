@@ -703,7 +703,7 @@ class Banner {
 	 * Returns an array of Title objects that have been included as templates
 	 * in this banner.
 	 *
-	 * @return Array of Title
+	 * @return array of Title
 	 */
 	public function getIncludedTemplates() {
 		return $this->getTitle()->getTemplateLinksFrom();
@@ -893,7 +893,6 @@ class Banner {
 		);
 		while ( $row = $result->fetchRow() ) {
 			if ( preg_match( "/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'], $matches ) ) {
-				$field = $matches[1];
 				if ( isset( $matches[2] ) ) {
 					$lang = $matches[2];
 				} else {
@@ -942,7 +941,7 @@ class Banner {
 				$this->initializeDbForNewBanner( $db );
 			}
 			$this->saveBannerInternal( $db );
-			$this->logBannerChange( $action, $user, array(), $summary );
+			$this->logBannerChange( $action, $user, $summary );
 
 			$db->endAtomic( __METHOD__ );
 
@@ -1074,7 +1073,7 @@ class Banner {
 		} else {
 			// Log the removal of the banner
 			// FIXME: this log line will display changes with inverted sense
-			$bannerObj->logBannerChange( 'removed', $user, array(), $summary );
+			$bannerObj->logBannerChange( 'removed', $user, $summary );
 
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
@@ -1321,7 +1320,7 @@ class Banner {
 	 * @param $devices          array Array of device names this banner is targeted at
 	 * @param $summary          string|null Optional summary of changes for logging
 	 *
-	 * @return bool true or false depending on whether banner was successfully added
+	 * @return string|null error message key or null on success
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon,
 		$displayAccount, $fundraising = false,
@@ -1352,6 +1351,7 @@ class Banner {
 		$banner->setMixins( $mixins );
 
 		$banner->save( $user, $summary );
+		return null;
 	}
 
 	/**
@@ -1359,11 +1359,9 @@ class Banner {
 	 *
 	 * @param string $action         'created', 'modified', or 'removed'
 	 * @param User   $user           The user causing the change
-	 * @param array  $beginSettings  Banner settings before changes (optional)
 	 * @param string $summary        Summary (comment) for this action
 	 */
-	function logBannerChange(
-		$action, $user, $beginSettings = array(), $summary = null ) {
+	function logBannerChange( $action, $user, $summary = null ) {
 
 		ChoiceDataProvider::invalidateCache();
 
@@ -1391,7 +1389,7 @@ class Banner {
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {
-				$value = FormatJSON::encode( $value );
+				$value = FormatJson::encode( $value );
 			}
 
 			$log[ 'tmplog_end_' . $key ] = $value;

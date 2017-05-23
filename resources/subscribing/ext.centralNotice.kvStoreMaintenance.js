@@ -52,9 +52,8 @@
 	/**
 	 * @return {jQuery.Promise}
 	 */
-	function processKeys( keys ) {
+	function processKeys( queue ) {
 		return $.Deferred( function ( d ) {
-			var queue = keys.slice();
 			mw.requestIdleCallback( function iterate( deadline ) {
 				var key, rawValue, value;
 				while ( queue[ 0 ] !== undefined && deadline.timeRemaining() > MIN_WORK_TIME ) {
@@ -130,4 +129,4 @@
 		}
 	};
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

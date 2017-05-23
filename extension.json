@@ -120,8 +120,7 @@
 			],
 			"scripts": "infrastructure/centralnotice.js",
 			"styles": [
-				"infrastructure/centralnotice.css",
-				"infrastructure/adminui.common.css"
+				"infrastructure/ext.centralNotice.adminUi.css"
 			],
 			"messages": [
 				"centralnotice-documentwrite-error",
@@ -395,6 +394,9 @@
 			"CentralNoticeHooks::onUserMergeAccountFields"
 		]
 	},
+	"ExtensionFunctions": [
+		"CentralNoticeHooks::initCentralNotice"
+	],
 	"config": {
 		"NoticeProject": "wikipedia",
 		"NoticeProjects": [
@@ -421,8 +423,8 @@
 		"CentralHost": false,
 		"CentralNoticeApiUrl": false,
 		"CentralSelectedBannerDispatcher": false,
+		"CentralMobileSelectedBannerDispatcher": false,
 		"CentralNoticeLoader": true,
-		"NoticeFundraisingUrl": "https://donate.wikimedia.org/wiki/Special:LandingCheck",
 		"NoticeBannerPreview": false,
 		"NoticeCookieDomain": "",
 		"NoticeCookieDurations": {

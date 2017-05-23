@@ -1,5 +1,5 @@
 /**
- * Backing JS for Special:CentralNotice, the campaign list view form.
+ * JS for campaign editor (handled by Special:CentralNotice)
  *
  * This file is part of the CentralNotice Extension to MediaWiki
  * https://www.mediawiki.org/wiki/Extension:CentralNotice
@@ -27,22 +27,7 @@
 			'ext.centralNotice.adminUi.campaignManager',
 			'campaignMixinParamControls.mustache'
 		),
-		$mixinCheckboxes = $( 'input.noticeMixinCheck' ),
-		$submitBtn = $( '#noticeDetailSubmit' );
-
-	$( '#centralnotice-throttle-amount' ).slider( {
-		range: 'min',
-		min: 0,
-		max: 100,
-		value: $( '#centralnotice-throttle-cur' ).val(),
-		step: stepSize,
-		slide: function ( event, element ) {
-			var val = Number( element.value ),
-				rounded = Math.round( val * 10 ) / 10;
-			$( '#centralnotice-throttle-echo' ).text( String( rounded ) + '%' );
-			$( '#centralnotice-throttle-cur' ).val( val );
-		}
-	} );
+		$mixinCheckboxes, $submitBtn;
 
 	function updateThrottle() {
 		if ( $( '#throttle-enabled' ).prop( 'checked' ) ) {
@@ -52,8 +37,6 @@
 		}
 	}
 
-	$( '#throttle-enabled' ).click( updateThrottle );
-
 	function updateWeightColumn() {
 		if ( $( '#balanced' ).prop( 'checked' ) ) {
 			$( '.cn-weight' ).hide();
@@ -62,23 +45,41 @@
 		}
 	}
 
-	$( '#balanced' ).click( updateWeightColumn );
-
 	function updateBuckets() {
-		var numCampaignBuckets = $( 'select#buckets :checked' ).val(),
-			i,
-			isBucketDisabled;
+		var numBuckets = getNumBuckets(),
+			maxNumBuckets = mw.config.get( 'wgNoticeNumberOfBuckets' ),
+			bucketSelectors = $( 'select.bucketSelector' ),
+			i, isBucketDisabled;
 
-		if ( numCampaignBuckets ) {
-			for ( i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
-				isBucketDisabled = ( i >= numCampaignBuckets );
+		// Change selected value of bucket selectors to only available buckets
+		bucketSelectors.each( function () {
+			var $selector = $( this ),
+				selectedVal = $selector.val();
 
-				$( 'select.bucketSelector option[value=' + i + ']' ).prop( 'disabled', isBucketDisabled );
+			$selector.val( selectedVal % numBuckets );
+		} );
+
+		// If only one bucket is available, disable the selectors entirely
+		if ( numBuckets === 1 ) {
+			bucketSelectors.prop( 'disabled', true );
+
+		} else {
+			// If more than one bucket is available, enable selectors and set options to
+			// disabled or enabled, as appropriate
+			bucketSelectors.prop( 'disabled', false );
+
+			for ( i = 0; i < maxNumBuckets; i++ ) {
+				isBucketDisabled = ( i >= numBuckets );
+
+				bucketSelectors.find( 'option[value=' + i + ']' )
+					.prop( 'disabled', isBucketDisabled );
 			}
 		}
 	}
 
-	$( 'select#buckets' ).change( updateBuckets );
+	function getNumBuckets() {
+		return parseInt( $( 'select#buckets :selected' ).val(), 10 );
+	}
 
 	/**
 	 * Hide or display campaign mixin parameter controls based on checkbox state.
@@ -274,10 +275,37 @@
 		}
 	}
 
-	$mixinCheckboxes.each( showOrHideCampaignMixinControls );
-	$mixinCheckboxes.change( showOrHideCampaignMixinControls );
+	// Execute code that requires document ready: setup slider, set handlers, set variables
+	// for jQuery elements
+	$( function () {
 
-	updateThrottle();
-	updateWeightColumn();
-	updateBuckets();
-} )( jQuery, mediaWiki );
+		$( '#centralnotice-throttle-amount' ).slider( {
+			range: 'min',
+			min: 0,
+			max: 100,
+			value: $( '#centralnotice-throttle-cur' ).val(),
+			step: stepSize,
+			slide: function ( event, element ) {
+				var val = Number( element.value ),
+					rounded = Math.round( val * 10 ) / 10;
+				$( '#centralnotice-throttle-echo' ).text( String( rounded ) + '%' );
+				$( '#centralnotice-throttle-cur' ).val( val );
+			}
+		} );
+
+		$submitBtn = $( '#noticeDetailSubmit' );
+
+		updateThrottle();
+		updateWeightColumn();
+		updateBuckets();
+
+		$( '#throttle-enabled' ).click( updateThrottle );
+		$( '#balanced' ).click( updateWeightColumn );
+		$( 'select#buckets' ).change( updateBuckets );
+
+		$mixinCheckboxes = $( 'input.noticeMixinCheck' );
+		$mixinCheckboxes.each( showOrHideCampaignMixinControls );
+		$mixinCheckboxes.change( showOrHideCampaignMixinControls );
+	} );
+
+}( jQuery, mediaWiki ) );

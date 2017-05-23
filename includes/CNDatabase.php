@@ -22,10 +22,10 @@ class CNDatabase {
 	 * to that database.  If no parameter is given, we attempt to choose a
 	 * sane default (see above).
 	 *
-	 * @return DatabaseBase
+	 * @return Database
 	 */
 	public static function getDb( $target = null ) {
-		global $wgCentralDBname, $wgDBname, $wgRequest, $wgUser;
+		global $wgCentralDBname, $wgDBname, $wgRequest;
 
 		// If target is null, and the request was POSTed, force DB_MASTER.
 		// This is because changes are normally expected to come through

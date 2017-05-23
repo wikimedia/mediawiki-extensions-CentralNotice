@@ -19,7 +19,7 @@ class CentralNoticePager extends TemplatePager {
 		// When the filter comes in it is space delimited, so break that...
 		$likeArray = preg_split( '/\s/', $this->filter );
 
-		// ...and then insert all the wildcards betwean search terms
+		// ...and then insert all the wildcards between search terms
 		if ( empty( $likeArray ) ) {
 			$likeArray = $dbr->anyString();
 		} else {

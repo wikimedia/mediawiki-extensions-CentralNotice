@@ -22,6 +22,8 @@
  * @file
  */
 
+// FIXME Unused? See T161907
+
 /**
  * Produces a banner preview DIV that can be embedded in an HTMLForm.
  *
@@ -47,7 +49,7 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		}
 
 		$previewUrl = $wgNoticeBannerPreview . "/{$bannerName}/{$bannerName}_{$language}.png";
-		$preview = Html::Element(
+		$preview = Html::element(
 			'img',
 			array(
 				'src' => $previewUrl,

@@ -315,4 +315,4 @@
 			storeBuckets();
 		}
 	};
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );
