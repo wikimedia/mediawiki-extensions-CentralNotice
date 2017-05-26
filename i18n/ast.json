@@ -294,5 +294,11 @@
 	"centralnotice-banner-sequence": "Secuencia de cartelos",
 	"centralnotice-banner-sequence-help": "Configura dellos cartelos pa que se vean nun orde determináu.",
 	"centralnotice-banner-sequence-days": "Duración de la supresión (díes)",
-	"centralnotice-banner-sequence-days-error": "Tien de ser un enteru mayor que cero."
+	"centralnotice-banner-sequence-days-error": "Tien de ser un enteru mayor que cero.",
+	"centralnotice-banner-sequence-bucket-add-step": "Añadir un pasu",
+	"centralnotice-banner-sequence-banner": "Cartel",
+	"centralnotice-banner-sequence-page-views": "Vistes de la páxina",
+	"centralnotice-banner-sequence-skip-with-id": "Saltar con identificador",
+	"centralnotice-banner-sequence-skip-with-id-error": "L'identificador nun puede contener «|».",
+	"centralnotice-banner-sequence-no-banner": "(Sin cartel)"
 }
