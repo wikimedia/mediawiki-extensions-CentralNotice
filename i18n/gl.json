@@ -300,6 +300,7 @@
 	"centralnotice-banner-sequence-bucket-add-step": "Engadir un paso",
 	"centralnotice-banner-sequence-banner": "Anuncio",
 	"centralnotice-banner-sequence-page-views": "Número de páxinas vistas",
+	"centralnotice-banner-sequence-skip-with-id": "Saltar con identificador",
 	"centralnotice-banner-sequence-skip-with-id-error": "O identificador non pode conter \"|\".",
 	"centralnotice-banner-sequence-no-banner": "(Sen anuncio)"
 }
