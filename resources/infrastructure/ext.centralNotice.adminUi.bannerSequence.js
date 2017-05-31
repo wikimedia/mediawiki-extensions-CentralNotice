@@ -1228,7 +1228,7 @@
 		} );
 
 		this.removeBtn = new OO.ui.ButtonWidget( {
-			icon: 'remove',
+			icon: 'trash',
 			flags: 'destructive'
 		} );
 
