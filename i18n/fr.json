@@ -205,7 +205,7 @@
 	"centralnotice-aggregate-group-desc": "Tous les messages de ce groupe sont inclus dans les bannières d’avis centraux.",
 	"centralnotice-country-eu": "Inconnu/Région Union Européenne",
 	"centralnotice-country-ap": "Inconnu/Région Asie-Pacifique",
-	"centralnotice-country-a1": "Inconnu/Proxy anonyme",
+	"centralnotice-country-a1": "Inconnu/Mandataire anonyme",
 	"centralnotice-country-a2": "Inconnu/Fournisseur par satellite",
 	"centralnotice-country-o1": "Inconnu/Autre pays",
 	"centralnotice-country-unknown": "Inconnu/Non-Géolocalisable",
