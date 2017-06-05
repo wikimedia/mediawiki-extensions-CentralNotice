@@ -86,7 +86,7 @@
 	"centralnotice-no-project": "Ningún proyecto fue seleccionado para la campaña. No añadido.",
 	"centralnotice-template-exists": "La plantilla ya exixte.\nNo se ha añadido",
 	"centralnotice-notice-doesnt-exist": "La campaña no existe.",
-	"centralnotice-remove-notice-doesnt-exist": "La campaña no existe.\nNada que eliminar.",
+	"centralnotice-remove-notice-doesnt-exist": "La campaña no existe.\nNo hay nada que eliminar.",
 	"centralnotice-banner-doesnt-exist": "La pancarta no existe.",
 	"centralnotice-banner-edit-onwiki": "Editar la pancarta en el wiki",
 	"centralnotice-template-still-bound": "La pancarta «$1» todavía está enlazada con una campaña.\nNo se eliminará.",
