@@ -1144,7 +1144,7 @@ class Banner {
 	 * @param integer $pageId ID of the MediaWiki page for the banner
 	 * @throws Exception
 	 */
-	static protected function removeTag( $tag, $pageId ) {
+	protected static function removeTag( $tag, $pageId ) {
 		$dbw = CNDatabase::getDb();
 
 		$conds = array(
