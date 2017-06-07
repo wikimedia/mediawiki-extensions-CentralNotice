@@ -56,7 +56,9 @@ class CleanCNTranslateMetadata extends Maintenance {
 		);
 
 		foreach ( $res as $row ) {
-			if ( (int)$row->count === 1 ) continue;
+			if ( (int)$row->count === 1 ) {
+				continue;
+			}
 
 			$db->delete(
 				'revtag',
