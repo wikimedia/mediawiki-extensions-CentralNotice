@@ -322,6 +322,7 @@
 	"centralnotice-banner-sequence-help": "设置多个横幅以便按特定顺序显示。",
 	"centralnotice-banner-sequence-days": "屏蔽长度（日）",
 	"centralnotice-banner-sequence-days-error": "必须是大于零的整数。",
+	"centralnotice-banner-sequence-days-help": "通过下方的“跳过标识符”字段设置的天数仍将有效，以下是步骤中所有页面访问时的最初显示。",
 	"centralnotice-banner-sequence-bucket-seq": "群组$1顺序（$2次{{PLURAL:$2|页面访问}}）",
 	"centralnotice-banner-sequence-bucket-add-step": "添加步骤",
 	"centralnotice-banner-sequence-banner": "横幅",
