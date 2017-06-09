@@ -34,7 +34,9 @@
  */
 class HTMLCentralNoticeBanner extends HTMLInfoField {
 	/** Empty - no validation can be done on a banner */
-	function validate( $value, $alldata ) { return true; }
+	function validate( $value, $alldata ) {
+		return true;
+	}
 
 	/** Get a preview of the banner */
 	public function getInputHTML( $value ) {
@@ -68,7 +70,7 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 	}
 
 	public function getTableRow( $value ) {
-		throw new BadMethodCallException( 
+		throw new BadMethodCallException(
 			"getTableRow() is not implemented for HTMLCentralNoticeBanner"
 		);
 	}

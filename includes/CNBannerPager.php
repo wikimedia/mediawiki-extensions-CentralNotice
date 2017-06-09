@@ -87,8 +87,8 @@ class CNBannerPager extends ReverseChronologicalPager {
 			$anyStringToken = $this->mDb->anyString();
 			$tempArray = [ $anyStringToken ];
 			foreach ( $likeArray as $likePart ) {
-				$tempArray[ ] = $likePart;
-				$tempArray[ ] = $anyStringToken;
+				$tempArray[] = $likePart;
+				$tempArray[] = $anyStringToken;
 			}
 			$likeArray = $tempArray;
 		}
@@ -96,7 +96,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		return [
 			'tables' => [ 'templates' => 'cn_templates' ],
 			'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
-			'conds'  => [ 'templates.tmp_name' . $this->mDb->buildLike( $likeArray ) ],
+			'conds' => [ 'templates.tmp_name' . $this->mDb->buildLike( $likeArray ) ],
 		];
 	}
 

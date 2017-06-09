@@ -123,8 +123,10 @@ class CNDeviceTarget {
 				if ( !array_key_exists( $device, $knownDevices ) ) {
 					throw new RangeException( "Device name '$device' not known! Cannot add." );
 				}
-				$modifyArray[ ] = [ 'tmp_id' => $bannerId,
-					'dev_id' => $knownDevices[ $device ][ 'id' ] ];
+				$modifyArray[] = [
+					'tmp_id' => $bannerId,
+					'dev_id' => $knownDevices[$device]['id']
+				];
 			}
 			$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
 		}

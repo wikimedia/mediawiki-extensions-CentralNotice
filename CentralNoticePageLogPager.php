@@ -185,7 +185,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::element( 'th', [ 'style' => 'width: 20px;' ] );
 		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
-			$this->msg ( 'centralnotice-timestamp' )->text()
+			$this->msg( 'centralnotice-timestamp' )->text()
 		);
 		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-user' )->text()

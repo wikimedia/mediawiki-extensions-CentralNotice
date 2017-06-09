@@ -1218,7 +1218,7 @@ class Banner {
 			);
 
 			foreach ( $res as $row ) {
-				$banners[ ] = [
+				$banners[] = [
 					// name of the banner
 					'name'             => $row->tmp_name,
 					// weight assigned to the banner

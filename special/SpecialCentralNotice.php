@@ -1475,7 +1475,7 @@ class CentralNotice extends SpecialPage {
 		$unpaddedRange = range( $begin, $end );
 		$paddedRange = [];
 		foreach ( $unpaddedRange as $number ) {
-			$paddedRange[ ] = sprintf( "%02d", $number ); // pad number with 0 if needed
+			$paddedRange[] = sprintf( "%02d", $number ); // pad number with 0 if needed
 		}
 		return $paddedRange;
 	}

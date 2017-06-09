@@ -93,7 +93,7 @@ class CentralNoticeHooks {
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 		}
 
-		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext') ) {
+		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext' ) ) {
 			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
 		}
 	}
@@ -338,12 +338,12 @@ class CentralNoticeHooks {
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
 			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
-		$files[ ] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
-		$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
-		$files[ ] = __DIR__ . '/tests/AllocationCalculatorTest.php';
-		$files[ ] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
-		$files[ ] = __DIR__ . '/tests/BannerTest.php';
-		$files[ ] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
+		$files[] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
+		$files[] = __DIR__ . '/tests/CentralNoticeTest.php';
+		$files[] = __DIR__ . '/tests/AllocationCalculatorTest.php';
+		$files[] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
+		$files[] = __DIR__ . '/tests/BannerTest.php';
+		$files[] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
 		return true;
 	}
 
@@ -387,7 +387,7 @@ class CentralNoticeHooks {
 
 				$testFiles = [];
 
-				foreach ( ( ( array ) $module['scripts'] ) as $script ) {
+				foreach ( ( (array)$module['scripts'] ) as $script ) {
 
 					$testFile = 'tests/qunit/' . $script;
 					$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );

@@ -26,8 +26,8 @@ class CentralNoticePager extends TemplatePager {
 			$anyStringToken = $dbr->anyString();
 			$tempArray = [ $anyStringToken ];
 			foreach ( $likeArray as $likePart ) {
-				$tempArray[ ] = $likePart;
-				$tempArray[ ] = $anyStringToken;
+				$tempArray[] = $likePart;
+				$tempArray[] = $anyStringToken;
 			}
 			$likeArray = $tempArray;
 		}
@@ -65,9 +65,9 @@ class CentralNoticePager extends TemplatePager {
 		} else {
 			// Return all the banners in the database
 			return [
-				'tables' => [ 'templates' => 'cn_templates'],
+				'tables' => [ 'templates' => 'cn_templates' ],
 				'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
-				'conds'  => [ 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ],
+				'conds' => [ 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ],
 			];
 		}
 	}

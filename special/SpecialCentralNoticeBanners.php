@@ -679,7 +679,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$buttons = [];
 		// TODO: Fix this gawdawful method of inserting the close button
-		$buttons[ ] =
+		$buttons[] =
 			'<a href="#" onclick="mw.centralNotice.adminUi.bannerEditor.insertButton(\'close\');' .
 				'return false;">' . $this->msg( 'centralnotice-close-button' )->text() . '</a>';
 		$formDescriptor[ 'banner-insert-button' ] = [

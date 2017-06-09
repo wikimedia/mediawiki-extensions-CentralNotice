@@ -5,7 +5,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
-		parent::__construct($special);
+		parent::__construct( $special );
 	}
 
 	/**
@@ -164,12 +164,12 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-anon' )->text(),
-			($row->tmplog_end_anon ? 'on' : 'off')
+			( $row->tmplog_end_anon ? 'on' : 'off' )
 		)->text() . "<br/>";
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-account' )->text(),
-			($row->tmplog_end_account ? 'on' : 'off')
+			( $row->tmplog_end_account ? 'on' : 'off' )
 		)->text() . "<br/>";
 		$details .= $this->msg(
 			'centralnotice-log-label',
@@ -182,7 +182,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-autolink' )->text(),
-			($row->tmplog_end_autolink ? 'on' : 'off')
+			( $row->tmplog_end_autolink ? 'on' : 'off' )
 		)->text() . "<br/>";
 		if ( $row->tmplog_end_landingpages ) {
 			$details .= $this->msg(
@@ -223,7 +223,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->testTextBannerChange( 'devices', $newrow, $oldrow );
 		if ( $newrow->tmplog_content_change ) {
 			// Show changes to banner content
-			$details .= $this->msg (
+			$details .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-banner-content' )->text(),
 				$this->msg( 'centralnotice-banner-content-changed' )->text()
@@ -266,6 +266,6 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$oldval = ( ( $oldrow ) ? $oldrow->$endField : '' ) ?: '';
 		$newval = ( $newrow->$endField ) ?: '';
 
-		return $this->testTextChange($param, $newval, $oldval);
+		return $this->testTextChange( $param, $newval, $oldval );
 	}
 }

@@ -5,7 +5,6 @@
 /** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeLogs extends ApiQueryBase {
 
-	#XXX
 	const USER_FILTER = '/[a-zA-Z0-9_.]+/';
 	const CAMPAIGNS_FILTER = '/[a-zA-Z0-9_|\-]+/';
 

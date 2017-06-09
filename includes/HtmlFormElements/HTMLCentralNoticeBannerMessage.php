@@ -44,7 +44,9 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 	}
 
 	/** Empty - no validation can be done on a banner message */
-	function validate( $value, $alldata ) { return true; }
+	function validate( $value, $alldata ) {
+		return true;
+	}
 
 	/** Get a preview of the banner message */
 	public function getInputHTML( $value ) {

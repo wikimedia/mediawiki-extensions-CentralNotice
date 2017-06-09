@@ -312,16 +312,16 @@ class Campaign {
 		if ( $project ) {
 			$tables[ 'notice_projects' ] = 'cn_notice_projects';
 
-			$conds[ ] = 'np_notice_id = notices.not_id';
-			$conds[ 'np_project' ] = $project;
+			$conds[] = 'np_notice_id = notices.not_id';
+			$conds['np_project'] = $project;
 		}
 
 		// common components: language
 		if ( $language ) {
-			$tables[ 'notice_languages' ] = 'cn_notice_languages';
+			$tables['notice_languages'] = 'cn_notice_languages';
 
-			$conds[ ] = 'nl_notice_id = notices.not_id';
-			$conds[ 'nl_language' ] = $language;
+			$conds[] = 'nl_notice_id = notices.not_id';
+			$conds['nl_language'] = $language;
 		}
 
 		if ( $location ) {
@@ -336,16 +336,16 @@ class Campaign {
 			__METHOD__
 		);
 		foreach ( $res as $row ) {
-			$notices[ ] = $row->not_id;
+			$notices[] = $row->not_id;
 		}
 
 		// If a location is passed, also pull geotargeted campaigns that match the location
 		if ( $location ) {
 			$tables[ 'notice_countries' ] = 'cn_notice_countries';
 
-			$conds[ ] = 'nc_notice_id = notices.not_id';
-			$conds[ 'nc_country' ] = $location;
-			$conds[ 'not_geo' ] = 1;
+			$conds[] = 'nc_notice_id = notices.not_id';
+			$conds['nc_country'] = $location;
+			$conds['not_geo'] = 1;
 
 			// Pull the notice IDs
 			$res = $dbr->select(
@@ -357,7 +357,7 @@ class Campaign {
 
 			// Loop through result set and return ids
 			foreach ( $res as $row ) {
-				$notices[ ] = $row->not_id;
+				$notices[] = $row->not_id;
 			}
 		}
 
@@ -821,7 +821,7 @@ class Campaign {
 		$res = $dbr->select( 'cn_notices', 'not_name', null, __METHOD__ );
 		$notices = [];
 		foreach ( $res as $row ) {
-			$notices[ ] = $row->not_name;
+			$notices[] = $row->not_name;
 		}
 		return $notices;
 	}
@@ -883,7 +883,7 @@ class Campaign {
 			// Do multi-row insert for campaign projects
 			$insertArray = [];
 			foreach ( $projects as $project ) {
-				$insertArray[ ] = [ 'np_notice_id' => $not_id, 'np_project' => $project ];
+				$insertArray[] = [ 'np_notice_id' => $not_id, 'np_project' => $project ];
 			}
 			$dbw->insert( 'cn_notice_projects', $insertArray,
 				__METHOD__, [ 'IGNORE' ] );
@@ -891,7 +891,7 @@ class Campaign {
 			// Do multi-row insert for campaign languages
 			$insertArray = [];
 			foreach ( $project_languages as $code ) {
-				$insertArray[ ] = [ 'nl_notice_id' => $not_id, 'nl_language' => $code ];
+				$insertArray[] = [ 'nl_notice_id' => $not_id, 'nl_language' => $code ];
 			}
 			$dbw->insert( 'cn_notice_languages', $insertArray,
 				__METHOD__, [ 'IGNORE' ] );
@@ -900,7 +900,7 @@ class Campaign {
 				// Do multi-row insert for campaign countries
 				$insertArray = [];
 				foreach ( $geo_countries as $code ) {
-					$insertArray[ ] = [ 'nc_notice_id' => $not_id, 'nc_country' => $code ];
+					$insertArray[] = [ 'nc_notice_id' => $not_id, 'nc_country' => $code ];
 				}
 				$dbw->insert( 'cn_notice_countries', $insertArray,
 					__METHOD__, [ 'IGNORE' ] );
@@ -1061,7 +1061,7 @@ class Campaign {
 			$res = $dbr->select( 'cn_notice_projects', 'np_project',
 				[ 'np_notice_id' => $row->not_id ] );
 			foreach ( $res as $projectRow ) {
-				$projects[ ] = $projectRow->np_project;
+				$projects[] = $projectRow->np_project;
 			}
 		}
 		sort( $projects );
@@ -1077,7 +1077,7 @@ class Campaign {
 			$res = $dbr->select( 'cn_notice_languages', 'nl_language',
 				[ 'nl_notice_id' => $row->not_id ] );
 			foreach ( $res as $langRow ) {
-				$languages[ ] = $langRow->nl_language;
+				$languages[] = $langRow->nl_language;
 			}
 		}
 		sort( $languages );
@@ -1093,7 +1093,7 @@ class Campaign {
 			$res = $dbr->select( 'cn_notice_countries', 'nc_country',
 				[ 'nc_notice_id' => $row->not_id ] );
 			foreach ( $res as $countryRow ) {
-				$countries[ ] = $countryRow->nc_country;
+				$countries[] = $countryRow->nc_country;
 			}
 		}
 		sort( $countries );
@@ -1261,7 +1261,7 @@ class Campaign {
 		$addProjects = array_diff( $newProjects, $oldProjects );
 		$insertArray = [];
 		foreach ( $addProjects as $project ) {
-			$insertArray[ ] = [ 'np_notice_id' => $row->not_id, 'np_project' => $project ];
+			$insertArray[] = [ 'np_notice_id' => $row->not_id, 'np_project' => $project ];
 		}
 		$dbw->insert( 'cn_notice_projects', $insertArray, __METHOD__, [ 'IGNORE' ] );
 
@@ -1290,7 +1290,7 @@ class Campaign {
 		$addLanguages = array_diff( $newLanguages, $oldLanguages );
 		$insertArray = [];
 		foreach ( $addLanguages as $code ) {
-			$insertArray[ ] = [ 'nl_notice_id' => $row->not_id, 'nl_language' => $code ];
+			$insertArray[] = [ 'nl_notice_id' => $row->not_id, 'nl_language' => $code ];
 		}
 		$dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, [ 'IGNORE' ] );
 
@@ -1319,7 +1319,7 @@ class Campaign {
 		$addCountries = array_diff( $newCountries, $oldCountries );
 		$insertArray = [];
 		foreach ( $addCountries as $code ) {
-			$insertArray[ ] = [ 'nc_notice_id' => $row->not_id, 'nc_country' => $code ];
+			$insertArray[] = [ 'nc_notice_id' => $row->not_id, 'nc_country' => $code ];
 		}
 		$dbw->insert( 'cn_notice_countries', $insertArray, __METHOD__, [ 'IGNORE' ] );
 

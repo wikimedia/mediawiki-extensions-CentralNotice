@@ -97,7 +97,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 			__METHOD__
 		);
 
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$this->output( " -- Associating banner id {$row->tmp_id} " .
 				"with revtag with page id {$row->rt_page}\n" );
 			$db->update(

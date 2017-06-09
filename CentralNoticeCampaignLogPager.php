@@ -201,7 +201,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$this->msg( 'centralnotice-projects' )->text(),
 			$row->notlog_end_projects
 		)->text() . "<br />";
-		$language_count = count( explode ( ', ', $row->notlog_end_languages ) );
+		$language_count = count( explode( ', ', $row->notlog_end_languages ) );
 		$languageList = '';
 		if ( $language_count > 15 ) {
 			$languageList = $this->msg( 'centralnotice-multiple-languages' )
@@ -217,10 +217,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-geo' )->text(),
-			($row->notlog_end_geo ? 'on' : 'off')
+			( $row->notlog_end_geo ? 'on' : 'off' )
 		)->text() . "<br />";
 		if ( $row->notlog_end_geo ) {
-			$country_count = count( explode ( ', ', $row->notlog_end_countries ) );
+			$country_count = count( explode( ', ', $row->notlog_end_countries ) );
 			$countryList = '';
 			if ( $country_count > 20 ) {
 				$countryList = $this->msg( 'centralnotice-multiple-countries' )
@@ -294,7 +294,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$endBannersObject = json_decode( $row->notlog_end_banners, true );
 			$beginBanners = [];
 			$endBanners = [];
-			foreach( $beginBannersObject as $key => $params ) {
+			foreach ( $beginBannersObject as $key => $params ) {
 				if ( is_array( $params ) ) {
 					$weight = $params['weight'];
 					$bucket = chr( 65 + $params['bucket'] );
@@ -305,7 +305,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				}
 				$beginBanners[$key] = "$key ($bucket, $weight)";
 			}
-			foreach( $endBannersObject as $key => $params ) {
+			foreach ( $endBannersObject as $key => $params ) {
 				if ( is_array( $params ) ) {
 					$weight = $params['weight'];
 					$bucket = chr( 65 + $params['bucket'] );
@@ -329,7 +329,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$details .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-templates' )->text(),
-				$this->msg( 'centralnotice-changed', $before, $after)->text()
+				$this->msg( 'centralnotice-changed', $before, $after )->text()
 			)->text() . "<br />";
 		}
 		return $details;
