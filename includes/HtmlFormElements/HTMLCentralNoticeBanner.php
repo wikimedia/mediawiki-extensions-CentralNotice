@@ -68,11 +68,15 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 	}
 
 	public function getTableRow( $value ) {
-		throw new BadMethodCallException( "getTableRow() is not implemented for HTMLCentralNoticeBanner" );
+		throw new BadMethodCallException( 
+			"getTableRow() is not implemented for HTMLCentralNoticeBanner"
+		);
 	}
 
 	public function getRaw( $value ) {
-		throw new BadMethodCallException( "getRaw() is not implemented for HTMLCentralNoticeBanner" );
+		throw new BadMethodCallException(
+			"getRaw() is not implemented for HTMLCentralNoticeBanner"
+		);
 	}
 
 	public function getDiv( $value ) {
@@ -93,7 +97,8 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 			)
 		);
 
-		// Make the label; this consists of a text link to the banner editor, and a series of status icons
+		// Make the label; this consists of a text link to the banner editor,
+		// and a series of status icons
 		if ( array_key_exists( 'withlabel', $this->mParams ) ) {
 			$bannerName =  $this->mParams['banner'];
 			$html .= Xml::openElement( 'div', array( 'class' => 'cn-banner-list-element-label' ) );

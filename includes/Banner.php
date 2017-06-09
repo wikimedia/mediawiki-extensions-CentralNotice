@@ -79,7 +79,8 @@ class Banner {
 	/** @var bool True if archived and hidden from default view. */
 	protected $archived = false;
 
-	/** @var string[] Devices this banner should be allocated to in the form {Device ID => Device header name} */
+	/** @var string[] Devices this banner should be allocated to in the form
+	 * {Device ID => Device header name} */
 	protected $devices = array();
 
 	/** @var string[] Names of enabled mixins  */
@@ -345,7 +346,9 @@ class Banner {
 				$keystr[] = "{$key} = {$value}";
 			}
 			$keystr = implode( " AND ", $keystr );
-			throw new BannerExistenceException( "No banner exists where {$keystr}. Could not load." );
+			throw new BannerExistenceException(
+				"No banner exists where {$keystr}. Could not load."
+			);
 		}
 
 		// Set the dirty flag to not dirty because we just loaded clean data
@@ -570,7 +573,9 @@ class Banner {
 				// when a deprecated mixin is being used; but also when we
 				// do deprecate something we should make sure nothing is using
 				// it!
-				wfLogWarning( "Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}" );
+				wfLogWarning(
+					"Mixin does not exist: {$row->mixin_name}, included from banner {$this->name}"
+				);
 			}
 			$this->mixins[$row->mixin_name] = $wgCentralNoticeBannerMixins[$row->mixin_name];
 		}
@@ -880,7 +885,8 @@ class Banner {
 		$availableLangs = array();
 
 		// Bit of an ugly hack to get just the banner prefix
-		$prefix = $this->getMessageField( '' )->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
+		$prefix = $this->getMessageField( '' )
+			->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
 
 		$db = CNDatabase::getDb();
 		$result = $db->select( 'page',
@@ -892,7 +898,12 @@ class Banner {
 			__METHOD__
 		);
 		while ( $row = $result->fetchRow() ) {
-			if ( preg_match( "/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'], $matches ) ) {
+			if (
+				preg_match(
+					"/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'],
+					$matches
+				)
+			) {
 				if ( isset( $matches[2] ) ) {
 					$lang = $matches[2];
 				} else {
@@ -1206,17 +1217,26 @@ class Banner {
 
 			foreach ( $res as $row ) {
 				$banners[ ] = array(
-					'name'             => $row->tmp_name, // name of the banner
-					'weight'           => intval( $row->tmp_weight ), // weight assigned to the banner
-					'display_anon'     => intval( $row->tmp_display_anon ), // display to anonymous users?
-					'display_account'  => intval( $row->tmp_display_account ), // display to logged in users?
-					'fundraising'      => intval( $row->tmp_category === 'fundraising' ), // fundraising banner?
-					'device'           => $row->dev_name, // device this banner can target
-					'campaign'         => $row->not_name, // campaign the banner is assigned to
-					'campaign_z_index' => $row->not_preferred, // z level of the campaign
+					// name of the banner
+					'name'             => $row->tmp_name,
+					// weight assigned to the banner
+					'weight'           => intval( $row->tmp_weight ),
+					// display to anonymous users?
+					'display_anon'     => intval( $row->tmp_display_anon ),
+					// display to logged in users?
+					'display_account'  => intval( $row->tmp_display_account ),
+					// fundraising banner?
+					'fundraising'      => intval( $row->tmp_category === 'fundraising' ),
+					// device this banner can target
+					'device'           => $row->dev_name,
+					// campaign the banner is assigned to
+					'campaign'         => $row->not_name,
+					// z level of the campaign
+					'campaign_z_index' => $row->not_preferred,
 					'campaign_num_buckets' => intval( $row->not_buckets ),
 					'campaign_throttle' => intval( $row->not_throttle ),
-					'bucket'           => ( intval( $row->not_buckets ) == 1 ) ? 0 : intval( $row->asn_bucket ),
+					'bucket'           => ( intval( $row->not_buckets ) == 1 )
+						? 0 : intval( $row->asn_bucket ),
 				);
 			}
 		}
@@ -1241,7 +1261,8 @@ class Banner {
 		$details = array(
 			'anon'             => (int)$banner->allocateToAnon(),
 			'account'          => (int)$banner->allocateToLoggedIn(),
-			'fundraising'      => (int)($banner->getCategory() === 'fundraising'), // TODO: Death to this!
+			// TODO: Death to this!
+			'fundraising'      => (int)($banner->getCategory() === 'fundraising'),
 			'category'         => $banner->getCategory(),
 			'controller_mixin' => implode( ",", array_keys( $banner->getMixins() ) ),
 			'devices'          => array_values( $banner->getDevices() ),
@@ -1426,7 +1447,9 @@ class Banner {
 		} elseif ( $this->id !== null ) {
 			$selector = array( 'tmp_id' => $this->id );
 		} else {
-			throw new BannerDataException( 'Cannot determine banner existence without name or ID.' );
+			throw new BannerDataException(
+				'Cannot determine banner existence without name or ID.'
+			);
 		}
 		$row = $db->selectRow( 'cn_templates', 'tmp_name', $selector );
 		if ( $row ) {

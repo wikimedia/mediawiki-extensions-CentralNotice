@@ -1,7 +1,9 @@
 <?php
 
 class CampaignLog {
-	private static $basic_fields = array( 'start', 'end', 'enabled', 'preferred', 'locked', 'geo', 'buckets' );
+	private static $basic_fields = array(
+		'start', 'end', 'enabled', 'preferred', 'locked', 'geo', 'buckets'
+	);
 	private static $list_fields = array( 'projects', 'languages', 'countries' );
 	private static $map_fields = array( 'banners' );
 

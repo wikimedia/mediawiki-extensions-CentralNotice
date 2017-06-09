@@ -237,7 +237,8 @@ class Campaign {
 			$this->throttle = (int)$row->not_throttle;
 		} else {
 			throw new CampaignExistenceException(
-				"Campaign could not be retrieved from database with id '{$this->id}' or name '{$this->name}'"
+				"Campaign could not be retrieved from database " .
+					"with id '{$this->id}' or name '{$this->name}'"
 			);
 		}
 	}
@@ -595,7 +596,8 @@ class Campaign {
 					'INNER JOIN', 'notices.not_id = notice_mixins.nmxn_not_id'
 				),
 				'notice_mixin_params' => array(
-					'LEFT OUTER JOIN', 'notice_mixins.nmxn_id = notice_mixin_params.nmxnp_notice_mixin_id'
+					'LEFT OUTER JOIN',
+					'notice_mixins.nmxn_id = notice_mixin_params.nmxnp_notice_mixin_id'
 				)
 			)
 		);
@@ -1163,7 +1165,9 @@ class Campaign {
 	 * @param int $min The min that the value can take, default 0
 	 * @throws InvalidArgumentException|RangeException
 	 */
-	static function setNumericCampaignSetting( $noticeName, $settingName, $settingValue, $max = 1, $min = 0 ) {
+	static function setNumericCampaignSetting(
+		$noticeName, $settingName, $settingValue, $max = 1, $min = 0
+	) {
 		if ( $max <= $min ) {
 			throw new RangeException( 'Max must be greater than min.' );
 		}
@@ -1381,8 +1385,9 @@ class Campaign {
 		}
 	}
 
-	static function campaignLogs( $campaign=false, $username=false, $start=false, $end=false, $limit=50, $offset=0 ) {
-
+	static function campaignLogs(
+		$campaign=false, $username=false, $start=false, $end=false, $limit=50, $offset=0
+	) {
 		$conds = array();
 		if ( $start ) {
 			$conds[] = "notlog_timestamp >= $start";

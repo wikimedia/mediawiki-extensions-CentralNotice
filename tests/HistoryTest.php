@@ -39,7 +39,8 @@ class HistoryTest extends CentralNoticeTest {
 		$made_by_ts = wfTimestamp( TS_MW );
 		$this->assertEquals( 1, count( Campaign::getHistoricalCampaigns( $made_by_ts ) ) );
 
-		$initialSettings = Campaign::getCampaignSettings( $this->cnFixtures->spec['campaigns'][0]['name'] );
+		$initialSettings = Campaign::getCampaignSettings(
+			$this->cnFixtures->spec['campaigns'][0]['name'] );
 
 		sleep( 2 );
 

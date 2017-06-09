@@ -121,7 +121,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 */
 	static function getTranslateGroupName( $bannerName ) {
 		if ( strpos( $bannerName, 'Centralnotice-template' ) === 0 ) {
-			return str_replace( 'Centralnotice-template', BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE, $bannerName );
+			return str_replace(
+				'Centralnotice-template',
+				BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
+				$bannerName
+			);
 		} else {
 			return BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
 		}
@@ -152,7 +156,8 @@ class BannerMessageGroup extends WikiMessageGroup {
 			// Deal with an aggregate group object having changed
 			$groups = $group->getGroups();
 			foreach ( $groups as $subgroup ) {
-				BannerMessageGroup::updateBannerGroupStateHook( $subgroup, $code, $currentState, $newState );
+				BannerMessageGroup::updateBannerGroupStateHook(
+					$subgroup, $code, $currentState, $newState );
 			}
 		}
 		elseif ( ( $group instanceof BannerMessageGroup )
@@ -201,7 +206,8 @@ class BannerMessageGroup extends WikiMessageGroup {
 				array( 'ready', array( 'PROOFREAD' => 'MAX' ) ),
 				array( 'proofreading', array( 'TRANSLATED' => 'MAX' ) ),
 				array( 'progress', array( 'UNTRANSLATED' => 'NONZERO' ) ),
-				array( 'unset', array( 'UNTRANSLATED' => 'MAX', 'OUTDATED' => 'ZERO', 'TRANSLATED' => 'ZERO' ) ),
+				array( 'unset', array( 'UNTRANSLATED' => 'MAX', 'OUTDATED' => 'ZERO',
+					'TRANSLATED' => 'ZERO' ) ),
 			),
 		);
 
@@ -256,7 +262,9 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	public static function getLanguagesInState( $banner, $state ) {
 		if ( !BannerMessageGroup::isUsingGroupReview() ) {
-			throw new LogicException( 'CentralNotice is not using group review. Cannot query group review state.' );
+			throw new LogicException(
+				'CentralNotice is not using group review. Cannot query group review state.'
+			);
 		}
 
 		$groupName = BannerMessageGroup::getTranslateGroupName( $banner );
