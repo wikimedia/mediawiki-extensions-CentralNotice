@@ -48,7 +48,7 @@ class BannerRenderer {
 
 		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
 
-		//FIXME: it should make sense to do this:
+		// FIXME: it should make sense to do this:
 		// $this->mixinController->registerMagicWord( 'campaign', array( $this, 'getCampaign' ) );
 		// $this->mixinController->registerMagicWord( 'banner', array( $this, 'getBanner' ) );
 	}

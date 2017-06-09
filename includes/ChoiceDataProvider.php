@@ -21,7 +21,6 @@ class ChoiceDataProvider {
 			$cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, 'check' ) );
 	}
 
-
 	/**
 	 * Get a data structure with the allocation choices.
 	 *
@@ -51,7 +50,7 @@ class ChoiceDataProvider {
 				// campaigns are updated, the cache is invalidated, and
 				// a client queries a yet-unsynced slave DB. Also, gracefully
 				// fail if we're running an old version of core (<1.27).
-				if ( method_exists( 'Database', 'getCacheSetOptions') ) {
+				if ( method_exists( 'Database', 'getCacheSetOptions' ) ) {
 					$setOpts += Database::getCacheSetOptions( $dbr );
 				}
 
@@ -161,8 +160,8 @@ class ChoiceDataProvider {
 			// and {{{banner}}} in banner categories. (These are the magic
 			// words mentioned in the CN Admin UI.)
 			$category = $dbRow->tmp_category;
-			$category = str_replace( '{{{campaign}}}', $campaignName, $category);
-			$category = str_replace( '{{{banner}}}', $bannerName, $category);
+			$category = str_replace( '{{{campaign}}}', $campaignName, $category );
+			$category = str_replace( '{{{banner}}}', $bannerName, $category );
 			$category = Banner::sanitizeRenderedCategory( $category );
 
 			// The first time we see any campaign, create the corresponding
@@ -205,7 +204,7 @@ class ChoiceDataProvider {
 		}
 
 		// If there's nothing, return the empty array now
-		if ( count ( $choices ) === 0 ) {
+		if ( count( $choices ) === 0 ) {
 			return $choices;
 		}
 
@@ -221,7 +220,7 @@ class ChoiceDataProvider {
 				'notices.not_id',
 				'notice_countries.nc_country'
 			),
-			array (
+			array(
 				'notices.not_geo' => 1,
 				'notices.not_id' => array_keys( $choices )
 			),
@@ -248,7 +247,7 @@ class ChoiceDataProvider {
 		// Add campaign-associated mixins to the data structure
 		foreach ( $choices as &$campaignInfo ) {
 
-			//Get info for enabled mixins for this campaign
+			// Get info for enabled mixins for this campaign
 			$campaignInfo['mixins'] =
 				Campaign::getCampaignMixins( $campaignInfo['name'], true );
 		}

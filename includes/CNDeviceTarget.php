@@ -23,7 +23,7 @@ class CNDeviceTarget {
 			array( 'dev_id', 'dev_name', 'dev_display_label' )
 		);
 
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			if ( $flip ) {
 				$devices[ $row->dev_name ] = array(
 					'label' => $row->dev_display_label,
@@ -66,7 +66,7 @@ class CNDeviceTarget {
 			__METHOD__
 		);
 
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$devices[ intval( $row->dev_id ) ] = $row->dev_name;
 		}
 

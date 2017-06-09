@@ -49,7 +49,8 @@ class MixinController {
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['preloadJs'] ) ) {
 				$filename = $info['localBasePath'] . DIRECTORY_SEPARATOR . $info['preloadJs'];
-				if ( !( $snippet = file_get_contents( $filename ) ) ) {
+				$snippet = file_get_contents( $filename );
+				if ( !$snippet ) {
 					throw new MixinNotFoundException( $name );
 				}
 				$snippets[$name] = $snippet;

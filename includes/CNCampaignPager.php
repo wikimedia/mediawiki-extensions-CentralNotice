@@ -113,7 +113,6 @@ class CNCampaignPager extends TablePager {
 		parent::doQuery();
 	}
 
-
 	/**
 	 * @see TablePager::getFieldNames()
 	 */
@@ -236,7 +235,7 @@ class CNCampaignPager extends TablePager {
 				);
 
 			case 'not_throttle':
-				if ( $value < 100) {
+				if ( $value < 100 ) {
 					return $value . "%";
 				} else {
 					return '';

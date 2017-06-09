@@ -94,7 +94,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		}
 
 		return array(
-			'tables' => array( 'templates' => 'cn_templates'),
+			'tables' => array( 'templates' => 'cn_templates' ),
 			'fields' => array( 'templates.tmp_name', 'templates.tmp_id' ),
 			'conds'  => array( 'templates.tmp_name' . $this->mDb->buildLike( $likeArray ) ),
 		);
@@ -123,7 +123,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$bannerName = $row->tmp_name;
 
 		// Add the prepend prototypes
-		foreach( $this->prependPrototypes as $prototypeName => $prototypeValues ) {
+		foreach ( $this->prependPrototypes as $prototypeName => $prototypeValues ) {
 			$retval[ "{$prototypeName}-{$bannerName}" ] = $prototypeValues;
 			if ( array_key_exists( 'id', $prototypeValues ) ) {
 				$retval[ "{$prototypeName}-{$bannerId}" ][ 'id' ] .= "-$bannerName";
@@ -141,7 +141,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		}
 
 		// Append prototypes
-		foreach( $this->appendPrototypes as $prototypeName => $prototypeValues ) {
+		foreach ( $this->appendPrototypes as $prototypeName => $prototypeValues ) {
 			$retval[ $prototypeName . "-$bannerId" ] = $prototypeValues;
 			if ( array_key_exists( 'id', $prototypeValues ) ) {
 				$retval[ $prototypeName . "-$bannerId" ][ 'id' ] .= "-$bannerId";
@@ -150,7 +150,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		// Set the disabled attribute
 		if ( !$this->editable ) {
-			foreach( $retval as $prototypeName => $prototypeValues ) {
+			foreach ( $retval as $prototypeName => $prototypeValues ) {
 				$retval[ $prototypeName ][ 'disabled' ] = true;
 			}
 		}
@@ -216,7 +216,9 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 class HTMLBannerPagerNavigation extends HTMLFormField {
 	/** Empty - no validation can be done on a navigation element */
-	function validate( $value, $alldata ) { return true; }
+	function validate( $value, $alldata ) {
+		return true;
+	}
 
 	public function getInputHTML( $value ) {
 		return $this->mParams['value'];
