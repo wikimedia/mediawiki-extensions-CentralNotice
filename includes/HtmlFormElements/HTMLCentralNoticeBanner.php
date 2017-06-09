@@ -51,18 +51,18 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		$previewUrl = $wgNoticeBannerPreview . "/{$bannerName}/{$bannerName}_{$language}.png";
 		$preview = Html::element(
 			'img',
-			array(
+			[
 				'src' => $previewUrl,
 				'alt' => $bannerName,
-			)
+			]
 		);
 
 		return Xml::tags(
 			'div',
-			array(
+			[
 				 'id' => Sanitizer::escapeId( "cn-banner-preview-$bannerName" ),
 				 'class' => 'cn-banner-preview-div',
-			),
+			],
 			$preview
 		);
 	}
@@ -91,34 +91,34 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 
 		$html = Xml::openElement(
 			'div',
-			array(
+			[
 				 'id' =>  Sanitizer::escapeId( "cn-banner-list-element-{$this->mParams['banner']}" ),
 				 'class' => "cn-banner-list-element",
-			)
+			]
 		);
 
 		// Make the label; this consists of a text link to the banner editor,
 		// and a series of status icons
 		if ( array_key_exists( 'withlabel', $this->mParams ) ) {
 			$bannerName =  $this->mParams['banner'];
-			$html .= Xml::openElement( 'div', array( 'class' => 'cn-banner-list-element-label' ) );
+			$html .= Xml::openElement( 'div', [ 'class' => 'cn-banner-list-element-label' ] );
 			$html .= Linker::link(
 				SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/$bannerName" ),
 				htmlspecialchars( $bannerName ),
-				array( 'class' => 'cn-banner-list-element-label-text' )
+				[ 'class' => 'cn-banner-list-element-label-text' ]
 			);
 			$html .= ' (' . Linker::link(
 				SpecialPage::getTitleFor( 'Randompage' ),
 				$this->msg( 'centralnotice-live-preview' ),
-				array( 'class' => 'cn-banner-list-element-label-text' ),
-				array(
+				[ 'class' => 'cn-banner-list-element-label-text' ],
+				[
 					 'banner' => $bannerName,
 					 'uselang' => $language,
 					 'force' => '1'
-				)
+				]
 			) . ')';
 			// TODO: Output status icons
-			$html .= Xml::tags( 'div', array( 'class' => 'cn-banner-list-element-label-icons' ), '' );
+			$html .= Xml::tags( 'div', [ 'class' => 'cn-banner-list-element-label-icons' ], '' );
 			$html .= Xml::closeElement( 'div' );
 		}
 

@@ -32,27 +32,27 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * Pull log entries from the database
 	 */
 	function getQueryInfo() {
-		$conds = array(
+		$conds = [
 			'rc_bot' => 1, // include bot edits (all edits made by CentralNotice are bot edits)
 			'rc_namespace' => 8, // only MediaWiki pages
-		);
+		];
 		if ( $this->logType == 'bannercontent' ) {
 			// Add query contitions for banner content log
-			$conds += array(
+			$conds += [
 				"rc_title LIKE 'Centralnotice-template-%'", // get banner content
-			);
+			];
 		} else {
 			// Add query contitions for banner messages log
-			$conds += array(
+			$conds += [
 				"rc_title LIKE 'Centralnotice-%'", // get banner messages
 				"rc_title NOT LIKE 'Centralnotice-template-%'", // exclude normal banner content
-			);
+			];
 		}
-		return array(
-			'tables' => array( 'recentchanges' ),
+		return [
+			'tables' => [ 'recentchanges' ],
 			'fields' => '*',
 			'conds' => $conds, // WHERE conditions
-		);
+		];
 	}
 
 	/**
@@ -93,8 +93,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$bannerLink = Linker::linkKnown(
 			$this->viewPage,
 			htmlspecialchars( $banner ),
-			array(),
-			array( 'template' => $banner )
+			[],
+			[ 'template' => $banner ]
 		);
 
 		// Create title object
@@ -106,11 +106,11 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			if ( $row->rc_new ) {
 				$bannerCell = $bannerLink;
 			} else {
-				$querydiff = array(
+				$querydiff = [
 					'curid' => $row->rc_cur_id,
 					'diff' => $row->rc_this_oldid,
 					'oldid' => $row->rc_last_oldid
-				);
+				];
 				$diffUrl = htmlspecialchars( $title->getLinkUrl( $querydiff ) );
 				// Should "diff" be localised? It appears not to be elsewhere in the interface.
 				// See ChangesList->preCacheMessages() for example.
@@ -127,11 +127,11 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			if ( $row->rc_new ) {
 				$messageCell = $messageLink;
 			} else {
-				$querydiff = array(
+				$querydiff = [
 					'curid' => $row->rc_cur_id,
 					'diff' => $row->rc_this_oldid,
 					'oldid' => $row->rc_last_oldid
-				);
+				];
 				$diffUrl = htmlspecialchars( $title->getLinkUrl( $querydiff ) );
 				// Should "diff" be localised? It appears not to be elsewhere in the interface.
 				// See ChangesList->preCacheMessages() for example.
@@ -143,30 +143,30 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$lang = $this->getLanguage();
 		$htmlOut = Xml::openElement( 'tr' );
 
-		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
+		$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
 		$htmlOut .= Xml::closeElement( 'td' );
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->rc_timestamp ) . ' ' . $lang->time( $row->rc_timestamp )
 		);
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$bannerCell
 		);
 		if ( $this->logType == 'bannermessages' ) {
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 				$messageCell
 			);
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 				$language
 			);
 		}
 		$htmlOut .= Xml::tags( 'td',
-			array( 'valign' => 'top', 'class' => 'primary-summary' ),
+			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			htmlspecialchars( $row->rc_comment )
 		);
-		$htmlOut .= Xml::tags( 'td', array(),
+		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
 		);
 
@@ -181,23 +181,23 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 */
 	function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ) );
+		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::element( 'th', array( 'style' => 'width: 20px;' ) );
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'style' => 'width: 20px;' ] );
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
 			$this->msg ( 'centralnotice-timestamp' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-user' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-banner' )->text()
 		);
 		if ( $this->logType == 'bannermessages' ) {
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 				$this->msg( 'centralnotice-message' )->text()
 			);
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 100px;' ),
+			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 100px;' ],
 				$this->msg( 'centralnotice-language' )->text()
 			);
 
@@ -208,11 +208,11 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		}
 
 		$htmlOut .= Xml::element( 'th',
-			array( 'align' => 'left', 'style' => "width: {$commentWidth};" ),
+			[ 'align' => 'left', 'style' => "width: {$commentWidth};" ],
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
 
-		$htmlOut .= Xml::tags( 'td', array(),
+		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
 		);
 		$htmlOut .= Xml::closeElement( 'tr' );

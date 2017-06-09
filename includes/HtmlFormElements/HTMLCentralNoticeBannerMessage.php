@@ -52,18 +52,18 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 
 		$message = new BannerMessage( $this->mParams[ 'banner' ], $this->mParams[ 'message' ] );
 
-		$html = Xml::openElement( 'table', array( 'class' => 'cn-message-table' ) );
+		$html = Xml::openElement( 'table', [ 'class' => 'cn-message-table' ] );
 		$html .= Xml::openElement( 'tr' );
 
 		$originText = $message->getContents( $wgContLang->getCode() );
 		$html .= Xml::element(
 			'td',
-			array( 'class' => 'cn-message-text-origin' ),
+			[ 'class' => 'cn-message-text-origin' ],
 			$originText
 		);
 
 		$this->mParams[ 'placeholder' ] = $originText;
-		$html .= Xml::openElement( 'td', array( 'class' => 'cn-message-text-native' ) );
+		$html .= Xml::openElement( 'td', [ 'class' => 'cn-message-text-native' ] );
 		$html .= parent::getInputHTML( $message->getContents( $this->mParams[ 'language' ] ) );
 		$html .= Xml::closeElement( 'td' );
 

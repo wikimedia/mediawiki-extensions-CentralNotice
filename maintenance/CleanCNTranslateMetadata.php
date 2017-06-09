@@ -45,14 +45,14 @@ class CleanCNTranslateMetadata extends Maintenance {
 
 		$res = $db->select(
 			'revtag',
-			array(
+			[
 				'rt_page',
 				'maxrev' => 'max(rt_revision)',
 				'count' => 'count(*)'
-			),
-			array( 'rt_type' => $this->ttag ),
+			],
+			[ 'rt_type' => $this->ttag ],
 			__METHOD__,
-			array( 'GROUP BY' => 'rt_page' )
+			[ 'GROUP BY' => 'rt_page' ]
 		);
 
 		foreach ( $res as $row ) {
@@ -62,11 +62,11 @@ class CleanCNTranslateMetadata extends Maintenance {
 
 			$db->delete(
 				'revtag',
-				array(
+				[
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
 					"rt_revision != {$row->maxrev}"
-				),
+				],
 				__METHOD__
 			);
 			$numRows = $db->affectedRows();
@@ -85,15 +85,15 @@ class CleanCNTranslateMetadata extends Maintenance {
 		$db = CNDatabase::getDb( DB_MASTER );
 
 		$res = $db->select(
-			array( 'revtag' => 'revtag', 'page' => 'page', 'cn_templates' => 'cn_templates' ),
-			array( 'rt_page', 'rt_revision', 'page_title', 'tmp_id' ),
-			array(
+			[ 'revtag' => 'revtag', 'page' => 'page', 'cn_templates' => 'cn_templates' ],
+			[ 'rt_page', 'rt_revision', 'page_title', 'tmp_id' ],
+			[
 				'rt_type' => $this->ttag,
 				'rt_page=page_id',
 				'rt_value is null',
 				# Length of "centralnotice-template-"
 				'tmp_name=substr(page_title, 24)'
-			),
+			],
 			__METHOD__
 		);
 
@@ -102,12 +102,12 @@ class CleanCNTranslateMetadata extends Maintenance {
 				"with revtag with page id {$row->rt_page}\n" );
 			$db->update(
 				'revtag',
-				array( 'rt_value' => $row->tmp_id ),
-				array(
+				[ 'rt_value' => $row->tmp_id ],
+				[
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
 					'rt_value is null'
-				),
+				],
 				__METHOD__
 			);
 		}
@@ -122,8 +122,8 @@ class CleanCNTranslateMetadata extends Maintenance {
 
 		$res = $db->select(
 			'revtag',
-			array( 'rt_page', 'rt_revision' ),
-			array( 'rt_type' => $this->ttag, 'rt_value is null' ),
+			[ 'rt_page', 'rt_revision' ],
+			[ 'rt_type' => $this->ttag, 'rt_value is null' ],
 			__METHOD__
 		);
 
@@ -131,12 +131,12 @@ class CleanCNTranslateMetadata extends Maintenance {
 			$this->output( " -- Deleting orphan row {$row->rt_page}:{$row->rt_revision}\n" );
 			$db->delete(
 				'revtag',
-				array(
+				[
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
 					'rt_revision' => $row->rt_revision,
 					'rt_value is null' // Just in case something updated it
-				),
+				],
 				__METHOD__
 			);
 		}

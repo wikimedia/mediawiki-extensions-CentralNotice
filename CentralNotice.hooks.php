@@ -105,8 +105,8 @@ class CentralNoticeHooks {
 		global $wgNoticeInfrastructure;
 		if ( $wgNoticeInfrastructure ) {
 			// array( tableName, idField, textField )
-			$updateFields[] = array( 'cn_notice_log', 'notlog_user_id' );
-			$updateFields[] = array( 'cn_template_log', 'tmplog_user_id' );
+			$updateFields[] = [ 'cn_notice_log', 'notlog_user_id' ];
+			$updateFields[] = [ 'cn_template_log', 'tmplog_user_id' ];
 		}
 		return true;
 	}
@@ -231,7 +231,7 @@ class CentralNoticeHooks {
 				if ( $wgUser->isAllowed( 'bot' ) ) {
 					$userData = false;
 				} else {
-					$userData = array();
+					$userData = [];
 
 					// Add the user's registration date (MediaWiki timestamp)
 					$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
@@ -362,9 +362,9 @@ class CentralNoticeHooks {
 
 		// Set up test fixtures module, which is added as a dependency for all QUnit
 		// tests.
-		$testModules['qunit']['ext.centralNotice.testFixtures'] = array(
+		$testModules['qunit']['ext.centralNotice.testFixtures'] = [
 				'class' => 'CNTestFixturesResourceLoaderModule'
-		);
+		];
 
 		// These classes are only used here or in phpunit tests
 		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
@@ -373,10 +373,10 @@ class CentralNoticeHooks {
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
 			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
-		$testModuleBoilerplate = array(
+		$testModuleBoilerplate = [
 			'localBasePath' => __DIR__,
 			'remoteExtPath' => 'CentralNotice',
-		);
+		];
 
 		// find test files for every RL module
 		$prefix = 'ext.centralNotice';
@@ -385,7 +385,7 @@ class CentralNoticeHooks {
 			if ( substr( $key, 0, strlen( $prefix ) ) ===
 				$prefix && isset( $module['scripts'] ) ) {
 
-				$testFiles = array();
+				$testFiles = [];
 
 				foreach ( ( ( array ) $module['scripts'] ) as $script ) {
 
@@ -403,12 +403,12 @@ class CentralNoticeHooks {
 				if ( count( $testFiles ) > 0 ) {
 
 					$testModules['qunit']["$key.tests"] = $testModuleBoilerplate +
-						array(
+						[
 							'dependencies' =>
-								array( $key, 'ext.centralNotice.testFixtures' ),
+								[ $key, 'ext.centralNotice.testFixtures' ],
 
 							'scripts' => $testFiles,
-						);
+						];
 				}
 			}
 		}
