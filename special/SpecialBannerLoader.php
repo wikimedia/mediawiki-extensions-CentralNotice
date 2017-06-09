@@ -60,9 +60,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$this->bannerName = $request->getText( 'banner' );
 		$this->debug = $request->getFuzzyBool( 'debug' );
 
-		$required_values = array(
+		$required_values = [
 			$this->campaignName, $this->bannerName, $language
-		);
+		];
 		foreach ( $required_values as $value ) {
 			if ( is_null( $value ) ) {
 				throw new MissingRequiredParamsException();
@@ -71,7 +71,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	function getSanitized( $param, $filter ) {
-		$matches = array();
+		$matches = [];
 		if ( preg_match( $filter, $this->getRequest()->getText( $param ), $matches ) ) {
 			return $matches[0];
 		}
@@ -159,12 +159,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$category = $bannerRenderer->substituteMagicWords( $settings['category'] );
 		$category = Banner::sanitizeRenderedCategory( $category );
 
-		$bannerArray = array(
+		$bannerArray = [
 			'bannerName' => $bannerName,
 			'bannerHtml' => $bannerHtml,
 			'campaign' => $this->campaignName,
 			'category' => $category,
-		);
+		];
 
 		$bannerJson = FormatJson::encode( $bannerArray );
 

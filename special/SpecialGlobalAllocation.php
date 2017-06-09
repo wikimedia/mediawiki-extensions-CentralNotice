@@ -68,7 +68,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	protected function getRequestParams() {
 		$sanitize = function( $param, $regex ) {
 			return filter_var( $param, FILTER_VALIDATE_REGEXP,
-				array( 'options' => array( 'regexp' => $regex ) ) );
+				[ 'options' => [ 'regexp' => $regex ] ] );
 		};
 
 		$this->project = $sanitize(
@@ -106,9 +106,9 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$this->setHeaders();
 
 		// Output ResourceLoader module for styling and javascript functions
-		$out->addModules( array(
+		$out->addModules( [
 			'ext.centralNotice.adminUi',
-		) );
+		] );
 
 		// Initialize error variable
 		$this->centralNoticeError = false;
@@ -117,26 +117,26 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$out->addWikiMsg( 'centralnotice-summary' );
 
 		// Begin Banners tab content
-		$out->addHTML( Html::openElement( 'div', array( 'id' => 'preferences' ) ) );
+		$out->addHTML( Html::openElement( 'div', [ 'id' => 'preferences' ] ) );
 
 		$htmlOut = '';
 
 		// Begin Allocation selection fieldset
-		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		$htmlOut .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
 
-		$htmlOut .= Html::openElement( 'form', array( 'method' => 'get' ) );
-		$htmlOut .= Html::element( 'h2', array(),
+		$htmlOut .= Html::openElement( 'form', [ 'method' => 'get' ] );
+		$htmlOut .= Html::element( 'h2', [],
 			$this->msg( 'centralnotice-view-allocation' )->text() );
 		$htmlOut .= Xml::tags( 'p', null,
 			$this->msg( 'centralnotice-allocation-instructions' )->text() );
 
-		$htmlOut .= Html::openElement( 'table', array( 'id' => 'envpicker', 'cellpadding' => 7 ) );
+		$htmlOut .= Html::openElement( 'table', [ 'id' => 'envpicker', 'cellpadding' => 7 ] );
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
-			array( 'style' => 'width: 20%;' ),
+			[ 'style' => 'width: 20%;' ],
 			$this->msg( 'centralnotice-project-name' )->text() );
 		$htmlOut .= Html::openElement( 'td' );
-		$htmlOut .= Html::openElement( 'select', array( 'name' => 'project' ) );
+		$htmlOut .= Html::openElement( 'select', [ 'name' => 'project' ] );
 
 		$htmlOut .= Xml::option(
 			$this->msg( 'centralnotice-all' )->text(), '', '' === $this->project );
@@ -149,7 +149,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'tr' );
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
-			array( 'valign' => 'top' ),
+			[ 'valign' => 'top' ],
 			$this->msg( 'centralnotice-project-lang' )->text() );
 		$htmlOut .= Html::openElement( 'td' );
 
@@ -163,7 +163,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		ksort( $languages );
 
-		$htmlOut .= Html::openElement( 'select', array( 'name' => 'language' ) );
+		$htmlOut .= Html::openElement( 'select', [ 'name' => 'language' ] );
 
 		$htmlOut .= Xml::option(
 			$this->msg( 'centralnotice-all' )->text(), '', '' === $this->language );
@@ -177,13 +177,13 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::closeElement( 'tr' );
 		$htmlOut .= Html::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-country' )->text() );
+		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-country' )->text() );
 		$htmlOut .= Html::openElement( 'td' );
 
 		$userLanguageCode = $this->getLanguage()->getCode();
 		$countries = GeoTarget::getCountriesList( $userLanguageCode );
 
-		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
+		$htmlOut .= Html::openElement( 'select', [ 'name' => 'country' ] );
 
 		$htmlOut .= Xml::option(
 			$this->msg( 'centralnotice-all' )->text(), '', '' === $this->location );
@@ -208,7 +208,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'table' );
 
 		$htmlOut .= Xml::tags( 'div',
-			array( 'class' => 'cn-buttons' ),
+			[ 'class' => 'cn-buttons' ],
 			Xml::submitButton( $this->msg( 'centralnotice-apply-filters' )->text() )
 		);
 		$htmlOut .= Html::closeElement( 'form' );
@@ -232,7 +232,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut = '';
 
 		// Begin Allocation list fieldset
-		$htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		$htmlOut .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
 
 		$languageLabel = $this->language ?
 			htmlspecialchars( $this->language ) : $this->msg( 'centralnotice-all' )->text();
@@ -276,24 +276,24 @@ class SpecialGlobalAllocation extends CentralNotice {
 		 */
 
 		foreach ( $groupings as $grouping ) {
-			$htmlOut .= Html::element( 'h2', array(),
+			$htmlOut .= Html::element( 'h2', [],
 				$this->msg( 'centralnotice-notice-heading', $grouping['label'] )->text() );
 
 			$htmlOut .= Html::openElement( 'table',
-				array( 'cellpadding' => 9, 'class' => 'wikitable', 'style' => 'margin: 1em 0;' )
+				[ 'cellpadding' => 9, 'class' => 'wikitable', 'style' => 'margin: 1em 0;' ]
 			);
 			$htmlOut .= Html::openElement( 'tr' );
-			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
 				$this->msg( 'centralnotice-projects' )->text() );
-			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
 				$this->msg( 'centralnotice-languages' )->text() );
-			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
 				$this->msg( 'centralnotice-countries' )->text() );
 			$htmlOut .= Html::closeElement( 'tr' );
 
 			foreach ( $grouping['rows'] as $row ) {
 				$htmlOut .= Html::openElement( 'tr',
-					array( 'class'=>'mw-sp-centralnotice-allocationrow' ) );
+					[ 'class'=>'mw-sp-centralnotice-allocationrow' ] );
 
 				$htmlOut .= Html::openElement( 'td' );
 				$htmlOut .= $row['projects_label'];
@@ -341,7 +341,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * rows: Cx,y = ({a}, {2}) + ({b}, {1, 2}).
 	 */
 	protected function analyzeGroupings() {
-		$groupings = array();
+		$groupings = [];
 
 		// starting with the intersection of all campaigns, working towards the
 		// portion of each campaign which does not intersect any others, record
@@ -353,8 +353,8 @@ class SpecialGlobalAllocation extends CentralNotice {
 				$excludeKeys = array_diff( $campaignKeys, $intersectingKeys );
 
 				$result = $this->campaigns[$intersectingKeys[0]];
-				$contributing = array();
-				$excluding = array();
+				$contributing = [];
+				$excluding = [];
 
 				foreach ( $intersectingKeys as $key ) {
 					$result = CampaignCriteria::intersect( $result, $this->campaigns[$key] );
@@ -365,7 +365,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 				if ( !$result ) {
 					continue;
 				}
-				$result = array( $result );
+				$result = [ $result ];
 
 				foreach ( $excludeKeys as $key ) {
 					foreach ( $result as $row ) {
@@ -391,22 +391,22 @@ class SpecialGlobalAllocation extends CentralNotice {
 					}
 
 					// Optimization: compact by rendering as text
-					$rows = array();
+					$rows = [];
 					foreach ( $result as $row ) {
-						$rows[] = array(
+						$rows[] = [
 							'countries_label' => $this->listCountries( $row['countries'] ),
 							'projects_label' => $this->listProjects( $row['projects'] ),
 							'languages_label' => $this->listLanguages( $row['languages'] ),
-						);
+						];
 					}
-					$groupings[] = array(
+					$groupings[] = [
 						'label' => $label,
 						'a_country' => end( $result[0]['countries'] ),
 						'a_project' => end( $result[0]['projects'] ),
 						'a_language' => end( $result[0]['languages'] ),
 						'a_num_buckets' => $result[0]['bucket_count'],
 						'rows' => $rows,
-					);
+					];
 				}
 			}
 		}
@@ -425,7 +425,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 			throw new InvalidArgumentException( "bad arguments to makeCombinations" );
 		}
 		if ( $num == count( $list ) ) {
-			return array( $list );
+			return [ $list ];
 		}
 
 		$initialElement = array_shift( $list );
@@ -435,7 +435,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		// those including the first element
 		if ( $num == 1 ) {
-			$combinations[] = array( $initialElement );
+			$combinations[] = [ $initialElement ];
 		} else {
 			foreach ( self::makeCombinations( $list, $num - 1 ) as $innerCombination ) {
 				array_unshift( $innerCombination, $initialElement );
@@ -463,12 +463,12 @@ class SpecialGlobalAllocation extends CentralNotice {
 		// collapse any dimensions which do not vary.
 		// TODO: the allocation hash should also be used to collapse groupings which
 		// are identical because of e.g. z-index
-		$campaignIds = array();
-		$banners = array();
+		$campaignIds = [];
+		$banners = [];
 		foreach ( $this->campaigns as $campaign ) {
 			$campaignIds[] = $campaign['id'];
 			foreach ( $campaign['banners'] as $name => $banner ) {
-				$banners[] = array(
+				$banners[] = [
 					'name' => $name,
 					'weight' => $banner['weight'],
 					'bucket' => $banner['bucket'],
@@ -477,12 +477,12 @@ class SpecialGlobalAllocation extends CentralNotice {
 					'campaign_num_buckets' => $campaign['bucket_count'],
 					'display_anon' => $banner['display_anon'],
 					'display_account' => $banner['display_account'],
-				);
+				];
 			}
 		}
 		$device = 'desktop'; // XXX
-		$hashes = array();
-		foreach ( array( true, false ) as $isAnon ) {
+		$hashes = [];
+		foreach ( [ true, false ] as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
 				$device = 'desktop'; // XXX
 
@@ -497,7 +497,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 					AllocationCalculator::filterAndAllocate( $country,
 					$status, $device, $bucket, $campaigns );
 
-				$allocSignatures = array();
+				$allocSignatures = [];
 				foreach ( $variations[$isAnon][$bucket] as $banner ) {
 					$allocSignatures[] = "{$banner['name']}:{$banner['allocation']}";
 				}
@@ -519,22 +519,22 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$variesBucket = ( $numBuckets > 1 );
 
 		$htmlOut = Html::openElement( 'table',
-			array( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
+			[ 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' ]
 		);
 		// $htmlOut .= Html::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $caption );
 
 		$htmlOut .= Html::openElement( 'tr' );
-		$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
+		$htmlOut .= Html::element( 'th', [ 'width' => '5%' ],
 			$this->msg( 'centralnotice-user-role' )->text() );
 		if ( $variesBucket ) {
-			$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
+			$htmlOut .= Html::element( 'th', [ 'width' => '5%' ],
 				$this->msg( 'centralnotice-bucket' )->text() );
 		}
-		$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
+		$htmlOut .= Html::element( 'th', [ 'width' => '5%' ],
 			$this->msg( 'centralnotice-percentage' )->text() );
-		$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+		$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
 			$this->msg( 'centralnotice-banner' )->text() );
-		$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
+		$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
 			$this->msg( 'centralnotice-notice' )->text() );
 		$htmlOut .= Html::closeElement( 'tr' );
 
@@ -568,7 +568,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
 		// Row begin
-		$htmlOut .= Html::openElement( 'tr', array( 'class'=>'mw-sp-centralnotice-allocationrow' ) );
+		$htmlOut .= Html::openElement( 'tr', [ 'class'=>'mw-sp-centralnotice-allocationrow' ] );
 
 		if ( !$variesAnon ) {
 			$anonLabel = $this->msg( 'centralnotice-all' )->text();
@@ -599,9 +599,9 @@ class SpecialGlobalAllocation extends CentralNotice {
 			$htmlOut .= Html::closeElement( 'td' );
 
 			// Banner name
-			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
+			$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
 			$htmlOut .= Html::openElement( 'span',
-				array( 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ) );
+				[ 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ] );
 			$htmlOut .= Linker::link(
 				$viewBanner,
 				htmlspecialchars( $banner['label'] )
@@ -610,15 +610,15 @@ class SpecialGlobalAllocation extends CentralNotice {
 			$htmlOut .= Html::closeElement( 'td' );
 
 			// Campaign name
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				Linker::link(
 					$viewCampaign,
 					htmlspecialchars( $banner['campaign'] ),
-					array(),
-					array(
+					[],
+					[
 						'subaction' => 'noticeDetail',
 						'notice' => $banner['campaign']
-					)
+					]
 				)
 			);
 		} else {
@@ -642,7 +642,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 */
 	protected static function filterCampaigns(
 		$campaigns, $country, $language, $project ) {
-		$filtered = array();
+		$filtered = [];
 		foreach ( $campaigns as $campaign ) {
 			$projectAllowed = (
 				!$project
@@ -666,9 +666,9 @@ class SpecialGlobalAllocation extends CentralNotice {
 }
 
 class CampaignCriteria {
-	static protected $criteria = array(
+	static protected $criteria = [
 		'projects', 'languages', 'countries'
-	);
+	];
 
 	public static function intersect( $a, $b ) {
 		if ( !$a or !$b ) {
@@ -699,7 +699,7 @@ class CampaignCriteria {
 			return $rows;
 		}
 
-		$newRows = array();
+		$newRows = [];
 
 		foreach ( $rows as $row ) {
 			$difference = $row;

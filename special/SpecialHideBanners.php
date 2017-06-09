@@ -65,13 +65,13 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		$created = time();
 		$exp = $created + $duration;
-		$value = array(
+		$value = [
 			'v' => 1,
 			'created' => $created,
 			'reason' => $reason
-		);
+		];
 
-		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
+		if ( is_callable( [ 'CentralAuthUser', 'getCookieDomain' ] ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
