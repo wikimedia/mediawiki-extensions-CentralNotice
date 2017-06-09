@@ -94,7 +94,7 @@ class CentralNoticeTestFixtures {
 
 	/**
 	 * Add defaults to the test case setup specification, for legacy tests that
-	 * don't use the shared JSON fixture data. 
+	 * don't use the shared JSON fixture data.
 	 *
 	 * @param array $testCaseSetup A data structure with the setup section of a
 	 *  test case specification
@@ -184,7 +184,7 @@ class CentralNoticeTestFixtures {
 	}
 
 	/**
-	 * Add dummy banner properties throughout a test case setup specification. 
+	 * Add dummy banner properties throughout a test case setup specification.
 	 *
 	 * @param array $testCaseSetup A data structure with the setup section of a
 	 *  test case specification
@@ -294,9 +294,8 @@ class CentralNoticeTestFixtures {
 				);
 
 				$bannerObj = Banner::fromName( $bannerSpec['name'] );
-				
-				if ( isset( $bannerSpec['bucket'] ) ) {
 
+				if ( isset( $bannerSpec['bucket'] ) ) {
 					$bucket = $bannerSpec['bucket'];
 					if ( $bucket < 0 || $bucket > $wgNoticeNumberOfBuckets ) {
 						throw new RangeException( 'Bucket out of range' );
@@ -351,7 +350,8 @@ class CentralNoticeTestFixtures {
 	 * @param array $actual Actual choices data structure
 	 */
 	function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
-			$message='' ) {
+		$message=''
+	) {
 
 		// The order of the numerically indexed arrays in this data structure
 		// shouldn't matter, so sort all of those by value.
@@ -371,7 +371,7 @@ class CentralNoticeTestFixtures {
 		array_multisort( $a );
 
 		foreach ( $a as &$v ) {
-			if ( is_array ( $v ) ) {
+			if ( is_array( $v ) ) {
 				$this->deepMultisort( $v );
 			}
 		}
@@ -392,7 +392,6 @@ class CentralNoticeTestFixtures {
 	 * @param string[] $deviceNames
 	 */
 	protected function ensureDevices( $deviceNames ) {
-
 		if ( !$this->knownDevices ) {
 			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
 		}
@@ -424,11 +423,10 @@ class CentralNoticeTestFixtures {
 	 * a test method.)
 	 */
 	public static function allocationsTestCasesProvision() {
-
 		$data = CentralNoticeTestFixtures::allocationsData();
 		$dataForTests = array();
 
-		foreach  ( $data['test_cases'] as $name => $testCase ) {
+		foreach ( $data['test_cases'] as $name => $testCase ) {
 			$dataForTests[] = array( $name, $testCase );
 		}
 

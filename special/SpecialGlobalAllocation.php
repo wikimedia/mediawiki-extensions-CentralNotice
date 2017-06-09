@@ -130,7 +130,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Xml::tags( 'p', null,
 			$this->msg( 'centralnotice-allocation-instructions' )->text() );
 
-		$htmlOut .= Html::openElement( 'table', array ( 'id' => 'envpicker', 'cellpadding' => 7 ) );
+		$htmlOut .= Html::openElement( 'table', array( 'id' => 'envpicker', 'cellpadding' => 7 ) );
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			array( 'style' => 'width: 20%;' ),
@@ -157,7 +157,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
-		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
+		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
 
@@ -167,7 +167,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$htmlOut .= Xml::option(
 			$this->msg( 'centralnotice-all' )->text(), '', '' === $this->language );
-		foreach( $languages as $code => $name ) {
+		foreach ( $languages as $code => $name ) {
 			$htmlOut .= Xml::option(
 				$this->msg( 'centralnotice-language-listing', $code, $name )->text(),
 				$code, $code === $this->language );
@@ -187,7 +187,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$htmlOut .= Xml::option(
 			$this->msg( 'centralnotice-all' )->text(), '', '' === $this->location );
-		foreach( $countries as $code => $name ) {
+		foreach ( $countries as $code => $name ) {
 			$htmlOut .= Xml::option( $name, $code, $code === $this->location );
 		}
 
@@ -280,7 +280,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 				$this->msg( 'centralnotice-notice-heading', $grouping['label'] )->text() );
 
 			$htmlOut .= Html::openElement( 'table',
-				array ( 'cellpadding' => 9, 'class' => 'wikitable', 'style' => 'margin: 1em 0;' )
+				array( 'cellpadding' => 9, 'class' => 'wikitable', 'style' => 'margin: 1em 0;' )
 			);
 			$htmlOut .= Html::openElement( 'tr' );
 			$htmlOut .= Html::element( 'th', array( 'width' => '30%' ),
@@ -315,7 +315,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 				$grouping['a_project'],
 				$grouping['a_country'],
 				$grouping['a_language'],
-				$grouping['a_num_buckets'] //XXX
+				$grouping['a_num_buckets'] // XXX
 			);
 		}
 
@@ -368,7 +368,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 				$result = array( $result );
 
 				foreach ( $excludeKeys as $key ) {
-					foreach( $result as $row ) {
+					foreach ( $result as $row ) {
 						if ( CampaignCriteria::intersect( $row, $this->campaigns[$key] ) ) {
 							$excluding[] = $this->campaigns[$key]['name'];
 							$result = CampaignCriteria::difference(
@@ -461,7 +461,6 @@ class SpecialGlobalAllocation extends CentralNotice {
 		// This is annoying.  Within the campaign, banners usually vary by user
 		// logged-in status, and bucket.  Determine the allocations and
 		// collapse any dimensions which do not vary.
-		//
 		// TODO: the allocation hash should also be used to collapse groupings which
 		// are identical because of e.g. z-index
 		$campaignIds = array();
@@ -481,18 +480,18 @@ class SpecialGlobalAllocation extends CentralNotice {
 				);
 			}
 		}
-		$device = 'desktop'; //XXX
+		$device = 'desktop'; // XXX
 		$hashes = array();
 		foreach ( array( true, false ) as $isAnon ) {
 			for ( $bucket = 0; $bucket < $numBuckets; $bucket++ ) {
-				$device = 'desktop'; //XXX
+				$device = 'desktop'; // XXX
 
 				$status = $isAnon ?
 					AllocationCalculator::ANONYMOUS :
 					AllocationCalculator::LOGGED_IN;
 
 				$campaigns = self::filterCampaigns(
-					$this->campaigns, $country, $language, $project);
+					$this->campaigns, $country, $language, $project );
 
 				$variations[$isAnon][$bucket] =
 					AllocationCalculator::filterAndAllocate( $country,
@@ -520,9 +519,9 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$variesBucket = ( $numBuckets > 1 );
 
 		$htmlOut = Html::openElement( 'table',
-			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
+			array( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
 		);
-		//$htmlOut .= Html::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $caption );
+		// $htmlOut .= Html::element( 'caption', array( 'style' => 'font-size: 1.2em;' ), $caption );
 
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Html::element( 'th', array( 'width' => '5%' ),
@@ -623,7 +622,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 				)
 			);
 		} else {
-			$htmlOut .= Html::openElement('td');
+			$htmlOut .= Html::openElement( 'td' );
 			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->text() );
 		}
 

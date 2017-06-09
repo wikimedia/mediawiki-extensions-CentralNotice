@@ -192,7 +192,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut .= Xml::closeElement( 'form' );
 
 		// End log selection fieldset
-		//$htmlOut .= Xml::closeElement( 'fieldset' );
+		// $htmlOut .= Xml::closeElement( 'fieldset' );
 
 		$out->addHTML( $htmlOut );
 
@@ -245,7 +245,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut = '';
 
 		// Begin log fieldset
-		//$htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		// $htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
 		// Show paginated list of log entries
 		$htmlOut .= Xml::tags( 'div',

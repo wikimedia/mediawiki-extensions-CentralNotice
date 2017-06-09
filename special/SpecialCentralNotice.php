@@ -209,7 +209,7 @@ class CentralNotice extends SpecialPage {
 			if ( $timestamp === -1 ) {
 				$ts = '';
 			} else {
-				$ts = wfTimestamp(TS_MW, $timestamp);
+				$ts = wfTimestamp( TS_MW, $timestamp );
 			}
 
 			$out = Html::element( 'input',
@@ -740,7 +740,7 @@ class CentralNotice extends SpecialPage {
 							$requestParamName =
 								self::makeNoticeMixinControlName( $mixinName, $paramName );
 
-							switch( $paramDef['type'] ) {
+							switch ( $paramDef['type'] ) {
 								case 'string':
 								case 'json':
 									$paramVal = Sanitizer::removeHTMLtags(
@@ -856,7 +856,7 @@ class CentralNotice extends SpecialPage {
 				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = Campaign::getNoticeCountries( $notice );
 			}
-			$isThrottled = ($throttle < 100);
+			$isThrottled = ( $throttle < 100 );
 
 			// Build Html
 			$htmlOut = '';
@@ -1126,7 +1126,8 @@ class CentralNotice extends SpecialPage {
 		// Prepare data about assigned banners to provide to client-side code, and
 		// make it available within the fieldsset element.
 
-		$bannersForJS = array_map( function ( $banner ) {
+		$bannersForJS = array_map(
+			function ( $banner ) {
 				return [
 					'bannerName' => $banner->tmp_name,
 					'bucket' => $banner->asn_bucket
@@ -1233,7 +1234,7 @@ class CentralNotice extends SpecialPage {
 	}
 
 	function weightDropDown( $name, $selected ) {
-		$selected = intval($selected);
+		$selected = intval( $selected );
 
 		if ( $this->editable ) {
 			$html = Html::openElement( 'select', array( 'name' => $name ) );
@@ -1624,11 +1625,11 @@ class CentralNotice extends SpecialPage {
 
 	protected function makeShortList( $all, $list ) {
 		global $wgNoticeListComplementThreshold;
-		//TODO ellipsis and js/css expansion
-		if ( count($list) == count($all)  ) {
+		// TODO ellipsis and js/css expansion
+		if ( count( $list ) == count( $all ) ) {
 			return $this->getContext()->msg( 'centralnotice-all' )->text();
 		}
-		if ( count($list) > $wgNoticeListComplementThreshold * count($all) ) {
+		if ( count( $list ) > $wgNoticeListComplementThreshold * count( $all ) ) {
 			$inverse = array_values( array_diff( $all, $list ) );
 			$txt = $this->getContext()->getLanguage()->listToText( $inverse );
 			return $this->getContext()->msg( 'centralnotice-all-except', $txt )->text();

@@ -121,7 +121,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor = $this->generateBannerListForm( $this->bannerFilterString );
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
 
-		$htmlForm->setId('cn-banner-manager')->
+		$htmlForm->setId( 'cn-banner-manager' )->
 			suppressDefaultSubmit()->
 			setDisplayFormat( 'div' )->
 			prepareForm()->
@@ -283,13 +283,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					break;
 
 				case 'archive':
-					return ('Archiving not yet implemented!');
+					return 'Archiving not yet implemented!';
 					break;
 
 				case 'remove':
 					$summary = $formData['removeBannerEditSummary'];
 					$failed = array();
-					foreach( $formData as $element => $value ) {
+					foreach ( $formData as $element => $value ) {
 						$parts = explode( '-', $element, 2 );
 						if ( ( $parts[0] === 'applyTo' ) && ( $value === true ) ) {
 							try {
@@ -455,7 +455,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
-		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
+		array_walk(
+			$languages,
+			function( &$val, $index ) {
+				$val = "$index - $val";
+			}
+		);
 		$languages = array_flip( $languages );
 
 		$banner = Banner::fromName( $this->bannerName );
@@ -490,8 +495,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		$selected = array();
-		if ( $bannerSettings[ 'anon' ] === 1 ) { $selected[] = 'anonymous'; }
-		if ( $bannerSettings[ 'account' ] === 1 ) { $selected[] = 'registered'; }
+		if ( $bannerSettings[ 'anon' ] === 1 ) {
+			$selected[] = 'anonymous';
+		}
+		if ( $bannerSettings[ 'account' ] === 1 ) {
+			$selected[] = 'registered';
+		}
 		$formDescriptor[ 'display-to' ] = array(
 			'section' => 'settings',
 			'type' => 'multiselect',
@@ -696,7 +705,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		$links = array();
-		foreach( $banner->getIncludedTemplates() as $titleObj ) {
+		foreach ( $banner->getIncludedTemplates() as $titleObj ) {
 			$links[] = Linker::link( $titleObj );
 		}
 		if ( $links ) {
@@ -857,7 +866,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 				// Clear the edit summary field in the request so the form
 				// doesn't re-display the same value. Note: this is a hack :(
-				$this->getRequest()->setVal( 'wpsummary', '');
+				$this->getRequest()->setVal( 'wpsummary', '' );
 
 				return $ret;
 				break;
@@ -877,7 +886,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		/* --- Update the translations --- */
 		// But only if we aren't using translate or if the preview language is the content language
 		if ( !$wgNoticeUseTranslateExtension || $this->bannerLanguagePreview === $wgLanguageCode ) {
-			foreach( $formData as $key => $value ) {
+			foreach ( $formData as $key => $value ) {
 				if ( strpos( $key, 'message-' ) === 0 ) {
 					$messageName = substr( $key, strlen( 'message-' ) );
 					$bannerMessage = $banner->getMessageField( $messageName );

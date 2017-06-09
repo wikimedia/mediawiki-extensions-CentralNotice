@@ -55,7 +55,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 			'mixins' => '[]',
 		);
 
-		//get User
+		// get User
 		$this->userUser = User::newFromName( 'TestUser' );
 		if ( !$this->userUser->getID() ) {
 			$this->userUser = User::createNew( 'TestUser', array(
@@ -90,13 +90,13 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		parent::tearDown();
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
-		Banner::removeTemplate ( 'PHPUnitTestBanner', $this->userUser );
+		Banner::removeTemplate( 'PHPUnitTestBanner', $this->userUser );
 		$this->fixture->tearDownTestCases();
 	}
 
 	public function testDropDownList() {
 		$text = 'Weight';
-		$values = range ( 0, 50, 10 );
+		$values = range( 0, 50, 10 );
 		$this->assertEquals(
 			"*Weight\n**0\n**10\n**20\n**30\n**40\n**50\n",
 			CentralNotice::dropDownList( $text, $values ) );
@@ -106,7 +106,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$projects = Campaign::getNoticeProjects( 'PHPUnitTestCampaign' );
 		sort( $projects );
 		$this->assertEquals(
-			array ( 'wikibooks', 'wikipedia' ),
+			array( 'wikibooks', 'wikipedia' ),
 			$projects
 		);
 	}
@@ -115,7 +115,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$languages = Campaign::getNoticeLanguages( 'PHPUnitTestCampaign' );
 		sort( $languages );
 		$this->assertEquals(
-			array ( 'de', 'en' ),
+			array( 'de', 'en' ),
 			$languages
 		);
 	}
@@ -124,7 +124,7 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$countries = Campaign::getNoticeCountries( 'PHPUnitTestCampaign' );
 		sort( $countries );
 		$this->assertEquals(
-			array ( 'AF', 'US' ),
+			array( 'AF', 'US' ),
 			$countries
 		);
 	}

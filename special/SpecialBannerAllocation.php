@@ -105,7 +105,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::element( 'h2', array(), $this->msg( 'centralnotice-view-allocation' )->text() );
 		$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-allocation-instructions' )->text() );
 
-		$htmlOut .= Html::openElement( 'table', array ( 'id' => 'envpicker', 'cellpadding' => 7 ) );
+		$htmlOut .= Html::openElement( 'table', array( 'id' => 'envpicker', 'cellpadding' => 7 ) );
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			array( 'style' => 'width: 20%;' ),
@@ -130,7 +130,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
-		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
+		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
 
@@ -138,7 +138,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		$htmlOut .= Html::openElement( 'select', array( 'name' => 'language' ) );
 
-		foreach( $languages as $code => $name ) {
+		foreach ( $languages as $code => $name ) {
 			$htmlOut .= Xml::option(
 				$this->msg( 'centralnotice-language-listing', $code, $name )->text(),
 				$code, $code === $this->language );
@@ -156,7 +156,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		$htmlOut .= Html::openElement( 'select', array( 'name' => 'country' ) );
 
-		foreach( $countries as $code => $name ) {
+		foreach ( $countries as $code => $name ) {
 			$htmlOut .= Xml::option( $name, $code, $code === $this->location );
 		}
 
@@ -193,9 +193,9 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		// Obtain all banners & campaigns
 		$request = $this->getRequest();
-		$project = $request->getText('project');
-		$country = $request->getText('country');
-		$language = $request->getText('language');
+		$project = $request->getText( 'project' );
+		$country = $request->getText( 'country' );
+		$language = $request->getText( 'language' );
 
 		// Begin building HTML
 		$htmlOut = '';
@@ -209,7 +209,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		// Iterate through each possible device type and get allocation information
 		$devices = CNDeviceTarget::getAvailableDevices();
-		foreach( $devices as $deviceId => $deviceData ) {
+		foreach ( $devices as $deviceId => $deviceData ) {
 			$htmlOut .= Html::openElement(
 				'div',
 				array(
@@ -274,7 +274,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 */
 	public function getTable( $type, $banners ) {
 		$htmlOut = Html::openElement( 'table',
-			array ( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
+			array( 'cellpadding' => 9, 'class' => 'wikitable sortable', 'style' => 'margin: 1em 0;' )
 		);
 		$htmlOut .= Html::element( 'h4', array(), $type );
 
@@ -298,7 +298,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	public function createRows( $banners ) {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
-		if (count($banners) > 0) {
+		if ( count( $banners ) > 0 ) {
 			foreach ( $banners as $banner ) {
 				$percentage = sprintf( "%0.2f", round( $banner['allocation'] * 100, 2 ) );
 
