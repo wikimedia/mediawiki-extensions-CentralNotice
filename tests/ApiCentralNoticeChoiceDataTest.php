@@ -29,11 +29,11 @@ class ApiCentralNoticeChoiceDataTest extends ApiTestCase {
 
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
 
-			$ret = $this->doApiRequest( array(
+			$ret = $this->doApiRequest( [
 				'action' => 'centralnoticechoicedata',
 				'project' => $contextAndOutput['context']['project'],
 				'language' => $contextAndOutput['context']['language']
-			) );
+			] );
 
 			$this->cnFixtures->assertChoicesEqual(
 				$this, $contextAndOutput['choices'], $ret[0]['choices'], $cAndOName );

@@ -3,9 +3,9 @@
 class CentralNoticeTestFixtures {
 	const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
 
-	public $spec = array();
+	public $spec = [];
 	protected $user;
-	protected $addedDeviceIds = array();
+	protected $addedDeviceIds = [];
 	protected $knownDevices = null;
 
 	// For legacy test that don't use fixture data: use exactly the api defaults
@@ -16,26 +16,26 @@ class CentralNoticeTestFixtures {
 	function __construct() {
 		$this->user = User::newFromName( 'UTSysop' );
 
-		static::$defaultCampaign = array(
+		static::$defaultCampaign = [
 			'enabled' => 1,
 			// inclusive comparison is used, so this does not cause a race condition.
 			'startTs' => wfTimestamp( TS_MW ),
-			'projects' => array( CentralNoticeTestFixtures::getDefaultProject() ),
-			'languages' => array( CentralNoticeTestFixtures::getDefaultLanguage() ),
+			'projects' => [ CentralNoticeTestFixtures::getDefaultProject() ],
+			'languages' => [ CentralNoticeTestFixtures::getDefaultLanguage() ],
 			'preferred' => CentralNotice::NORMAL_PRIORITY,
 			'geotargeted' => 0,
-			'countries' => array( CentralNoticeTestFixtures::getDefaultCountry() ),
+			'countries' => [ CentralNoticeTestFixtures::getDefaultCountry() ],
 			'throttle' => 100,
-			'banners' => array(),
-		);
-		static::$defaultBanner = array(
+			'banners' => [],
+		];
+		static::$defaultBanner = [
 			'bucket' => 0,
 			'body' => 'testing',
 			'display_anon' => true,
 			'display_account' => true,
 			'fundraising' => 1,
 			'weight' => 25,
-		);
+		];
 	}
 
 	static function getDefaultLanguage() {
@@ -102,14 +102,14 @@ class CentralNoticeTestFixtures {
 	protected function addTestCaseDefaults( &$testCaseSetup ) {
 
 		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
-			$campaign = $campaign + static::$defaultCampaign + array(
+			$campaign = $campaign + static::$defaultCampaign + [
 					'name' => 'TestCampaign_' . rand(),
-			);
+			];
 
 			foreach ( $campaign['banners'] as &$banner ) {
-				$banner = $banner + static::$defaultBanner + array(
+				$banner = $banner + static::$defaultBanner + [
 						'name' => 'TestBanner_' . rand(),
-				);
+				];
 			}
 		}
 	}
@@ -149,7 +149,7 @@ class CentralNoticeTestFixtures {
 				$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
 						$now, $choice['end_days_from_now'] );
 
-				$choice['mixins'] = array();
+				$choice['mixins'] = [];
 
 				// Unset these special properties from choices, for tests that
 				// compare fixture choices to actual choices produced by the code
@@ -174,7 +174,7 @@ class CentralNoticeTestFixtures {
 
 			if ( !$campaign['geotargeted'] ) {
 				if ( !isset( $campaign['countries'] ) ) {
-					$campaign['countries'] = array();
+					$campaign['countries'] = [];
 				} else {
 					throw new LogicException( "Campaign is not geotargetted but "
 							. "'countries' property is set." );
@@ -336,7 +336,7 @@ class CentralNoticeTestFixtures {
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->delete(
 				'cn_known_devices',
-				array( 'dev_id' => $this->addedDeviceIds ),
+				[ 'dev_id' => $this->addedDeviceIds ],
 				__METHOD__
 			);
 		}
@@ -382,7 +382,7 @@ class CentralNoticeTestFixtures {
 	 * for a hack (or maybe a hack for a workaround?) in Banner.
 	 */
 	protected function ensureDesktopDevice() {
-		$this->ensureDevices( array( 'desktop' ) );
+		$this->ensureDevices( [ 'desktop' ] );
 	}
 
 	/**
@@ -424,10 +424,10 @@ class CentralNoticeTestFixtures {
 	 */
 	public static function allocationsTestCasesProvision() {
 		$data = CentralNoticeTestFixtures::allocationsData();
-		$dataForTests = array();
+		$dataForTests = [];
 
 		foreach ( $data['test_cases'] as $name => $testCase ) {
-			$dataForTests[] = array( $name, $testCase );
+			$dataForTests[] = [ $name, $testCase ];
 		}
 
 		return $dataForTests;

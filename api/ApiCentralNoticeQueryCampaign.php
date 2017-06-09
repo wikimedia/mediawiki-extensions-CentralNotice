@@ -34,12 +34,12 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 				$settings['geo'] = $settings['geo'] == '1';
 			}
 
-			$result->addValue( array( $this->getModuleName() ), $campaign, $settings );
+			$result->addValue( [ $this->getModuleName() ], $campaign, $settings );
 		}
 	}
 
 	public function getAllowedParams() {
-		$params = array();
+		$params = [];
 
 		$params['campaign'] = '';
 
@@ -50,10 +50,10 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=centralnoticequerycampaign&format=json&campaign=Plea_US'
 				=> 'apihelp-centralnoticequerycampaign-example-1',
-		);
+		];
 	}
 
 	/**
@@ -67,7 +67,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	 * @return string The sanitized value
 	 */
 	private static function sanitizeText( $value, $regex, $default = null ) {
-		$matches = array();
+		$matches = [];
 
 		if ( preg_match( $regex, $value, $matches ) ) {
 			return $matches[ 0 ];

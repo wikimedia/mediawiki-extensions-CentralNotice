@@ -50,23 +50,23 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'project' => array(
+		return [
+			'project' => [
 					ApiBase::PARAM_TYPE => 'string',
 					ApiBase::PARAM_REQUIRED => true
-			),
-			'language' => array(
+			],
+			'language' => [
 					ApiBase::PARAM_TYPE => 'string',
 					ApiBase::PARAM_REQUIRED => true
-			)
-		);
+			]
+		];
 	}
 
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=centralnoticechoicedata&project=wikipedia&language=en'
 			=> 'apihelp-centralnoticechoicedata-example-1'
-		);
+		];
 	}
 
 	/**
@@ -80,7 +80,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	 * @return string The sanitized value
 	 */
 	protected static function sanitizeText( $param, $regex, $default = null ) {
-		$matches = array();
+		$matches = [];
 
 		if ( preg_match( $regex, $param, $matches ) ) {
 			return $matches[ 0 ];

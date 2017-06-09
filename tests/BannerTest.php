@@ -22,7 +22,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->fixture = new CentralNoticeTestFixtures();
 
 		$this->fixture->setupTestCaseWithDefaults(
-			array( 'setup' => array( 'campaigns' => array() ) ) );
+			[ 'setup' => [ 'campaigns' => [] ] ] );
 	}
 
 	public function tearDown() {
@@ -53,11 +53,11 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 			'Initial banner is archived?' );
 
 		// More complex metadata should also be empty
-		$this->assertEquals( array(), $banner->getDevices(),
+		$this->assertEquals( [], $banner->getDevices(),
 			'Initial banner has associated device targets' );
-		$this->assertEquals( array(), $banner->getMixins(),
+		$this->assertEquals( [], $banner->getMixins(),
 			'Initial banner has associated mixins' );
-		$this->assertEquals( array(), $banner->getPriorityLanguages(),
+		$this->assertEquals( [], $banner->getPriorityLanguages(),
 			'Initial banner has priority languages' );
 
 		// And the body content should also be empty
@@ -94,11 +94,11 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( $banner->isArchived(), 'Initial banner is archived?' );
 
 		// More complex metadata should also be empty
-		$this->assertEquals( array(), $banner->getDevices(),
+		$this->assertEquals( [], $banner->getDevices(),
 			'Initial banner has associated device targets' );
-		$this->assertEquals( array(), $banner->getMixins(),
+		$this->assertEquals( [], $banner->getMixins(),
 			'Initial banner has associated mixins' );
-		$this->assertEquals( array(), $banner->getPriorityLanguages(),
+		$this->assertEquals( [], $banner->getPriorityLanguages(),
 			'Initial banner has priority languages' );
 
 		// And the body content should also be empty
@@ -120,7 +120,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 
 		// And the more advanced metadata
 		$banner->setDevices( 'desktop' );
-		$banner->setPriorityLanguages( array( 'en', 'ru' ) );
+		$banner->setPriorityLanguages( [ 'en', 'ru' ] );
 
 		$banner->save();
 
@@ -132,9 +132,9 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'testCategory', $banner->getCategory(),
 			"Failed retrieve category from initial" );
 
-		$this->assertEquals( array( 'desktop' ), array_values( $banner->getDevices() ),
+		$this->assertEquals( [ 'desktop' ], array_values( $banner->getDevices() ),
 			'Failed devices retrieve from initial' );
-		$this->assertEquals( array( 'en', 'ru' ), $banner->getPriorityLanguages(),
+		$this->assertEquals( [ 'en', 'ru' ], $banner->getPriorityLanguages(),
 			"Failed prilang retrieve from initial" );
 
 		// Can we retrieve it from a different object
@@ -143,12 +143,12 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( $banner2->allocateToLoggedIn(), "Failed loggedin allocation from copy" );
 		$this->assertEquals( 'testCategory', $banner2->getCategory(), "Failed category from copy" );
 
-		$this->assertEquals( array( 'desktop' ), array_values( $banner2->getDevices() ),
+		$this->assertEquals( [ 'desktop' ], array_values( $banner2->getDevices() ),
 			"Failed devices from copy" );
 
 		global $wgNoticeUseTranslateExtension;
 		if ( $wgNoticeUseTranslateExtension ) {
-			$this->assertEquals( array( 'en', 'ru' ), $banner2->getPriorityLanguages(),
+			$this->assertEquals( [ 'en', 'ru' ], $banner2->getPriorityLanguages(),
 				"Failed languages from copy" );
 		}
 	}
@@ -172,11 +172,11 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function providerSetAllocation() {
-		return array(
-			array( false, false ),
-			array( true, false ),
-			array( false, true ),
-			array( true, true )
-		);
+		return [
+			[ false, false ],
+			[ true, false ],
+			[ false, true ],
+			[ true, true ]
+		];
 	}
 }

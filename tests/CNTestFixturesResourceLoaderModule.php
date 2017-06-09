@@ -8,7 +8,7 @@ class CNTestFixturesResourceLoaderModule extends ResourceLoaderModule {
 	 *
 	 * @see ResourceLoaderModule::targets
 	 */
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @see ResourceLoaderModule::getScript()
