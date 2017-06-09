@@ -137,8 +137,8 @@ class BannerMessage {
 			$var = false;
 
 			$page->doUpdateRestrictions(
-				array( 'edit' => $wgNoticeProtectGroup, 'move' => $wgNoticeProtectGroup ),
-				array( 'edit' => 'infinity', 'move' => 'infinity' ),
+				[ 'edit' => $wgNoticeProtectGroup, 'move' => $wgNoticeProtectGroup ],
+				[ 'edit' => 'infinity', 'move' => 'infinity' ],
 				$var,
 				'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.',
 				$user

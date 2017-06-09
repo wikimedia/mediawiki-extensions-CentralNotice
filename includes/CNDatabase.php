@@ -58,7 +58,7 @@ class CNDatabase {
 		if ( $wgCentralDBname === false || $wgCentralDBname === $wgDBname ) {
 			return wfGetDB( $target );
 		} else {
-			return wfGetDB( $target, array(), $wgCentralDBname );
+			return wfGetDB( $target, [], $wgCentralDBname );
 		}
 	}
 }
