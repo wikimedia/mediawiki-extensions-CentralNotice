@@ -133,7 +133,8 @@ class CentralNoticePager extends TemplatePager {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( 'centralnotice-bucket' )->text()
 			);
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
+			$htmlOut .= Xml::element( 'th',
+				array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 				$this->msg( 'centralnotice-weight' )->text()
 			);
 		}

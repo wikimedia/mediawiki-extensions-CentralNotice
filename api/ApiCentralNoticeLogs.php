@@ -15,7 +15,11 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 
 		$params = $this->extractRequestParams();
 
-		list ( $start, $end, $limit, $offset ) = array( $params['start'], $params['end'], $params['limit'], $params['offset'] );
+		$start = $params['start'];
+		$end = $params['end'];
+		$limit = $params['limit'];
+		$offset = $params['offset'];
+
 		$user = $this->sanitizeText( $params['user'], self::USER_FILTER );
 		# TODO: multiple
 		$campaign = $this->sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER );

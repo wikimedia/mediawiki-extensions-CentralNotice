@@ -76,7 +76,15 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
 		}
-		setcookie( "centralnotice_hide_{$category}", json_encode( $value ), $exp, '/', $cookieDomain, false, false );
+		setcookie(
+			"centralnotice_hide_{$category}",
+			json_encode( $value ),
+			$exp,
+			'/',
+			$cookieDomain,
+			false,
+			false
+		);
 	}
 
 	/**

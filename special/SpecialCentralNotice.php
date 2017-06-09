@@ -37,7 +37,10 @@ class CentralNotice extends SpecialPage {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 
-		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice', true );
+		$this->addHelpLink(
+			'//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice',
+			true
+		);
 
 		// Check permissions
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
@@ -273,9 +276,11 @@ class CentralNotice extends SpecialPage {
 	public function prioritySelector( $index, $editable, $priorityValue ) {
 		$priorities = array(
 			CentralNotice::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' )->escaped(),
-			CentralNotice::NORMAL_PRIORITY => wfMessage( 'centralnotice-priority-normal' )->escaped(),
+			CentralNotice::NORMAL_PRIORITY =>
+				wfMessage( 'centralnotice-priority-normal' )->escaped(),
 			CentralNotice::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' )->escaped(),
-			CentralNotice::EMERGENCY_PRIORITY => wfMessage( 'centralnotice-priority-emergency' )->escaped(),
+			CentralNotice::EMERGENCY_PRIORITY =>
+				wfMessage( 'centralnotice-priority-emergency' )->escaped(),
 		);
 
 		if ( $editable ) {
@@ -487,7 +492,8 @@ class CentralNotice extends SpecialPage {
 
 		$this->outputEnclosingDivStartTag();
 
-		$this->campaign = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
+		// Todo: Convert the rest of this page to use this object
+		$this->campaign = new Campaign( $notice );
 		try {
 			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
 				$out->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
@@ -618,7 +624,8 @@ class CentralNotice extends SpecialPage {
 				Campaign::setNumericCampaignSetting( $notice, 'throttle', $throttle, 100, 0 );
 
 				// Handle user bucketing setting for campaign
-				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
+				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ),
+					$wgNoticeNumberOfBuckets );
 				$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
 				Campaign::setNumericCampaignSetting(
@@ -853,14 +860,16 @@ class CentralNotice extends SpecialPage {
 
 			// Build Html
 			$htmlOut = '';
-			$htmlOut .= Xml::tags( 'h2', null, $this->msg( 'centralnotice-notice-heading', $notice )->text() );
+			$htmlOut .= Xml::tags( 'h2', null,
+				$this->msg( 'centralnotice-notice-heading', $notice )->text() );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 
 			// Rows
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= Xml::tags( 'td', array(),
+				$this->dateSelector( 'start', $this->editable, $start ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -945,8 +954,10 @@ class CentralNotice extends SpecialPage {
 			$throttleLabel = strval( $throttle ) . "%";
 			if ( $this->editable ) {
 				$htmlOut .= Xml::tags( 'td', array(),
-					Xml::span( $throttleLabel, 'cn-throttle', array( 'id' => 'centralnotice-throttle-echo' ) ) .
-					Html::hidden( 'throttle-cur', $throttle, array( 'id' => 'centralnotice-throttle-cur' ) ) .
+					Xml::span( $throttleLabel, 'cn-throttle',
+						array( 'id' => 'centralnotice-throttle-echo' ) ) .
+					Html::hidden( 'throttle-cur', $throttle,
+						array( 'id' => 'centralnotice-throttle-cur' ) ) .
 					Xml::tags( 'div', array( 'id' => 'centralnotice-throttle-amount' ), '' ) );
 			} else {
 				$htmlOut .= Xml::tags( 'td', array(), $throttleLabel );
@@ -965,7 +976,8 @@ class CentralNotice extends SpecialPage {
 				// Locked
 				$htmlOut .= Xml::openElement( 'tr' );
 				$htmlOut .= Xml::tags( 'td', array(),
-					Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' ) );
+					Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' )
+				);
 				$htmlOut .= Xml::tags( 'td', array(),
 					Xml::check( 'archive', $isArchived,
 						array( 'value' => $notice, 'id' => 'archive' ) ) );
@@ -1152,7 +1164,8 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( "centralnotice-remove" )->text() );
 		}
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
+		$htmlOut .= Xml::element( 'th',
+			array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 			$this->msg( 'centralnotice-weight' )->text() );
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 			$this->msg( 'centralnotice-bucket' )->text() );
@@ -1260,7 +1273,9 @@ class CentralNotice extends SpecialPage {
 				if ( $value >= $numberCampaignBuckets ) {
 					$attribs['disabled'] = 'disabled';
 				}
-				$html .= Xml::option( $bucketLabel( $value ), $value, $value === $selected, $attribs );
+				$html .= Xml::option(
+					$bucketLabel( $value ), $value, $value === $selected, $attribs
+				);
 			}
 			$html .= Html::closeElement( 'select' );
 			return $html;
@@ -1305,9 +1320,12 @@ class CentralNotice extends SpecialPage {
 
 		// Banner search box
 		$htmlOut .= Html::openElement( 'fieldset', array( 'id' => 'cn-template-searchbox' ) );
-		$htmlOut .= Html::element( 'legend', null, $this->msg( 'centralnotice-filter-template-banner' )->text() );
+		$htmlOut .= Html::element(
+			'legend', null, $this->msg( 'centralnotice-filter-template-banner' )->text()
+		);
 
-		$htmlOut .= Html::element( 'label', array( 'for' => 'tplsearchkey' ), $this->msg( 'centralnotice-filter-template-prompt' )->text() );
+		$htmlOut .= Html::element( 'label', array( 'for' => 'tplsearchkey' ),
+			$this->msg( 'centralnotice-filter-template-prompt' )->text() );
 		$htmlOut .= Html::input( 'tplsearchkey', $searchTerms );
 		$htmlOut .= Html::element(
 			'input',

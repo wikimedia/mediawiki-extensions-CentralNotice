@@ -70,7 +70,9 @@ class CleanCNTranslateMetadata extends Maintenance {
 				__METHOD__
 			);
 			$numRows = $db->affectedRows();
-			$this->output( " -- Deleted {$numRows} rows for banner with page id {$row->rt_page}\n" );
+			$this->output(
+				" -- Deleted {$numRows} rows for banner with page id {$row->rt_page}\n"
+			);
 		}
 	}
 
@@ -96,7 +98,8 @@ class CleanCNTranslateMetadata extends Maintenance {
 		);
 
 		foreach( $res as $row ) {
-			$this->output( " -- Associating banner id {$row->tmp_id} with revtag with page id {$row->rt_page}\n" );
+			$this->output( " -- Associating banner id {$row->tmp_id} " .
+				"with revtag with page id {$row->rt_page}\n" );
 			$db->update(
 				'revtag',
 				array( 'rt_value' => $row->tmp_id ),
