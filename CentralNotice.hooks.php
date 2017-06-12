@@ -44,17 +44,20 @@ class CentralNoticeHooks {
 		// showing banners. For discussion of banner loading strategies, see
 		// http://wikitech.wikimedia.org/view/CentralNotice/Optimizing_banner_loading
 		if ( $wgCentralNoticeLoader ) {
-			$wgHooks['MakeGlobalVariablesScript'][] = 'CentralNoticeHooks::onMakeGlobalVariablesScript';
+			$wgHooks['MakeGlobalVariablesScript'][] =
+				'CentralNoticeHooks::onMakeGlobalVariablesScript';
 			$wgHooks['BeforePageDisplay'][] = 'CentralNoticeHooks::onBeforePageDisplay';
 			$wgHooks['SiteNoticeAfter'][] = 'CentralNoticeHooks::onSiteNoticeAfter';
-			$wgHooks['ResourceLoaderGetConfigVars'][] = 'CentralNoticeHooks::onResourceLoaderGetConfigVars';
+			$wgHooks['ResourceLoaderGetConfigVars'][] =
+				'CentralNoticeHooks::onResourceLoaderGetConfigVars';
 		}
 
 		// If this is the wiki that hosts the management interface, load further components
 		if ( $wgNoticeInfrastructure ) {
 			if ( $wgNoticeUseTranslateExtension ) {
 				$wgHooks['TranslatePostInitGroups'][] = 'BannerMessageGroup::registerGroupHook';
-				$wgHooks['TranslateEventMessageGroupStateChange'][] = 'BannerMessageGroup::updateBannerGroupStateHook';
+				$wgHooks['TranslateEventMessageGroupStateChange'][] =
+					'BannerMessageGroup::updateBannerGroupStateHook';
 			}
 
 			$wgSpecialPages['CentralNotice'] = 'CentralNotice';
@@ -66,7 +69,8 @@ class CentralNoticeHooks {
 
 			// Register user rights for editing
 			$wgAvailableRights[] = 'centralnotice-admin';
-			$wgGroupPermissions['sysop']['centralnotice-admin'] = true; // Only sysops can make change
+			// Only sysops can make change
+			$wgGroupPermissions['sysop']['centralnotice-admin'] = true;
 		}
 	}
 
@@ -80,11 +84,13 @@ class CentralNoticeHooks {
 
 		// Defaults for infrastructure wiki URLs
 		if ( !$wgCentralBannerRecorder ) {
-			$wgCentralBannerRecorder = SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
+			$wgCentralBannerRecorder =
+				SpecialPage::getTitleFor( 'RecordImpression' )->getLocalUrl();
 		}
 
 		if ( !$wgCentralSelectedBannerDispatcher ) {
-			$wgCentralSelectedBannerDispatcher = SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
+			$wgCentralSelectedBannerDispatcher =
+				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 		}
 
 		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext') ) {
@@ -170,7 +176,10 @@ class CentralNoticeHooks {
 
 		// Insert DNS prefetch for banner loading
 		if ( $wgCentralHost && $wgCentralHost !== $wgServer ) {
-			$out->addHeadItem( 'cn-dns-prefetch', '<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />' );
+			$out->addHeadItem(
+				'cn-dns-prefetch',
+				'<link rel="dns-prefetch" href="' . htmlspecialchars( $wgCentralHost ) . '" />'
+			);
 		}
 
 		// Insert the startup module
@@ -271,9 +280,9 @@ class CentralNoticeHooks {
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins;
 
 		// TODO Check if the following comment still applies
-		// Making these calls too soon will causes issues with the namespace localisation cache. This seems
-		// to be just right. We require them at all because MW will 302 page requests made to non localised
-		// namespaces which results in wasteful extra calls.
+		// Making these calls too soon will causes issues with the namespace localisation cache.
+		// This seems to be just right. We require them at all because MW will 302 page requests
+		// made to non localised namespaces which results in wasteful extra calls.
 
 		// Set infrastructure URL variables, which change between mobile/desktop
 		if ( class_exists( 'MobileContext' ) ) {
@@ -307,7 +316,8 @@ class CentralNoticeHooks {
 
 		// TODO Remove this after banner display refactor has been deployed
 		$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
-		$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] = $wgCentralNoticePerCampaignBucketExtension;
+		$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] =
+			$wgCentralNoticePerCampaignBucketExtension;
 
 		if ( $wgNoticeInfrastructure ) {
 			// Add campaign mixin defs for use in admin interface
@@ -325,7 +335,8 @@ class CentralNoticeHooks {
 	public static function onUnitTestsList( &$files ) {
 		global $wgAutoloadClasses;
 
-		$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
+		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
+			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
 		$files[ ] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
 		$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
@@ -356,9 +367,11 @@ class CentralNoticeHooks {
 		);
 
 		// These classes are only used here or in phpunit tests
-		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] = __DIR__ . '/tests/CNTestFixturesResourceLoaderModule.php';
+		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
+			__DIR__ . '/tests/CNTestFixturesResourceLoaderModule.php';
 		// Note: the following setting is repeated in efCentralNoticeUnitTests()
-		$wgAutoloadClasses['CentralNoticeTestFixtures'] = __DIR__ . '/tests/CentralNoticeTestFixtures.php';
+		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
+			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
 		$testModuleBoilerplate = array(
 			'localBasePath' => __DIR__,

@@ -273,8 +273,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							return wfMessage( $retval )->text();
 						} else {
 							$this->getOutput()->redirect(
-								SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$this->bannerName}" )->
-									getFullURL()
+								SpecialPage::getTitleFor(
+									'CentralNoticeBanners', "edit/{$this->bannerName}"
+								)->getFullURL()
 							);
 							$this->bannerFormRedirectRequired = true;
 						}
@@ -398,7 +399,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	protected function showBannerEditor() {
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi.bannerEditor' );
-		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice', true );
+		$this->addHelpLink(
+			'//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice',
+			true
+		);
 
 		if ( !Banner::isValidBannerName( $this->bannerName ) ) {
 			throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
@@ -412,7 +416,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor = $this->generateBannerEditForm();
 
 		// Now begin form processing
-		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext(), 'centralnotice' );
+		$htmlForm = new CentralNoticeHtmlForm(
+			$formDescriptor, $this->getContext(), 'centralnotice' );
 		$htmlForm->setSubmitCallback( array( $this, 'processEditBanner' ) );
 		$htmlForm->loadData();
 
@@ -425,7 +430,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Recreate the form because something could have changed
 		$formDescriptor = $this->generateBannerEditForm();
 
-		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext(), 'centralnotice' );
+		$htmlForm = new CentralNoticeHtmlForm(
+			$formDescriptor, $this->getContext(), 'centralnotice' );
 		$htmlForm->setSubmitCallback( array( $this, 'processEditBanner' ) )->setId( 'cn-banner-editor' );
 
 		// Push the form back to the user
@@ -454,7 +460,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$banner = Banner::fromName( $this->bannerName );
 		if ( !$banner->exists() ) {
-			throw new ErrorPageError( 'centralnotice-banner-not-found-title', 'centralnotice-banner-not-found-contents' );
+			throw new ErrorPageError( 'centralnotice-banner-not-found-title',
+				'centralnotice-banner-not-found-contents' );
 		}
 		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
 
@@ -498,7 +505,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'cssclass' => 'separate-form-element',
 		);
 
-		$assignedDevices = array_values( CNDeviceTarget::getDevicesAssociatedWithBanner( $banner->getId() ) );
+		$assignedDevices = array_values(
+			CNDeviceTarget::getDevicesAssociatedWithBanner( $banner->getId() )
+		);
 		$availableDevices = array();
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
 			$header = $value[ 'header' ];
@@ -545,7 +554,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			);
 
 			$messageReadOnly = false;
-			if ( $wgNoticeUseTranslateExtension && ( $this->bannerLanguagePreview !== $wgLanguageCode ) ) {
+			if ( $wgNoticeUseTranslateExtension &&
+				( $this->bannerLanguagePreview !== $wgLanguageCode )
+			) {
 				$messageReadOnly = true;
 			}
 			foreach ( $messages as $messageName => $count ) {
@@ -553,8 +564,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					// Create per message link to the translate extension
 					$title = SpecialPage::getTitleFor( 'Translate' );
 					$label = Xml::tags( 'td', null,
-						Linker::link( $title, htmlspecialchars( $messageName ), array(), array(
-								'group' => BannerMessageGroup::getTranslateGroupName( $banner->getName() ),
+						Linker::link(
+							$title,
+							htmlspecialchars( $messageName ),
+							array(),
+							array(
+								'group' => BannerMessageGroup::getTranslateGroupName(
+									$banner->getName()
+								),
 								'task' => 'view'
 							)
 						)
@@ -654,8 +671,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$buttons = array();
 		// TODO: Fix this gawdawful method of inserting the close button
 		$buttons[ ] =
-			'<a href="#" onclick="mw.centralNotice.adminUi.bannerEditor.insertButton(\'close\');return false;">' .
-				$this->msg( 'centralnotice-close-button' )->text() . '</a>';
+			'<a href="#" onclick="mw.centralNotice.adminUi.bannerEditor.insertButton(\'close\');' .
+				'return false;">' . $this->msg( 'centralnotice-close-button' )->text() . '</a>';
 		$formDescriptor[ 'banner-insert-button' ] = array(
 			'section' => 'edit-template',
 			'class' => 'HTMLInfoField',
@@ -802,7 +819,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					$this->getOutput()->redirect( $this->getPageTitle( '' )->getCanonicalURL() );
 					$this->bannerFormRedirectRequired = true;
 				} catch ( Exception $ex ) {
-					return $ex->getMessage() . " <br /> " . $this->msg( 'centralnotice-template-still-bound', $this->bannerName );
+					return $ex->getMessage() . " <br /> " .
+						$this->msg( 'centralnotice-template-still-bound', $this->bannerName );
 				}
 				break;
 
@@ -858,7 +876,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		/* --- Update the translations --- */
 		// But only if we aren't using translate or if the preview language is the content language
-		if ( !$wgNoticeUseTranslateExtension || ( $this->bannerLanguagePreview === $wgLanguageCode ) ) {
+		if ( !$wgNoticeUseTranslateExtension || $this->bannerLanguagePreview === $wgLanguageCode ) {
 			foreach( $formData as $key => $value ) {
 				if ( strpos( $key, 'message-' ) === 0 ) {
 					$messageName = substr( $key, strlen( 'message-' ) );
@@ -904,7 +922,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		if ( !Banner::isValidBannerName( $this->bannerName ) ) {
 			$out->addHTML(
-				Xml::element( 'div', array( 'class' => 'error' ), wfMessage( 'centralnotice-generic-error' ) )
+				Xml::element( 'div', array( 'class' => 'error' ),
+					wfMessage( 'centralnotice-generic-error' ) )
 			);
 			return;
 		}

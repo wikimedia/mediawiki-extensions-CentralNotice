@@ -16,10 +16,15 @@
 		cn = mw.centralNotice,
 		forced = mw.util.getParamValue( 'force' ),
 		mixin = new cn.Mixin( 'largeBannerLimit' ),
-		STORAGE_KEY = 'large_banner_limit';
+
+		// We also check global identifiers from the banner sequence mixin.
+		// Coordinate both storage keys with ext.centralNotice.bannerSequence.js.
+		// TODO Maybe find a better way to do this?
+		STORAGE_KEY = 'large_banner_limit',
+		BANNER_SEQUENCE_FLAG_STORAGE_KEY = 'banner_sequence_step_seen';
 
 	function isLarge() {
-		return ( cn.getDataProperty( 'bucket' ) <= 1 );
+		return ( cn.getDataProperty( 'reducedBucket' ) <= 1 );
 	}
 
 	/**
@@ -52,9 +57,16 @@
 	 */
 	function checkFlag() {
 
+		// Also check flags set by banner sequence (only global context check needed)
+		// TODO Refactor?
 		if ( identifier ) {
 			return Boolean( cn.kvStore.getItem(
 				STORAGE_KEY + '_' + identifier,
+				cn.kvStore.contexts.GLOBAL,
+				multiStorageOption
+
+			) ) || Boolean( cn.kvStore.getItem(
+				BANNER_SEQUENCE_FLAG_STORAGE_KEY + '_' + identifier,
 				cn.kvStore.contexts.GLOBAL,
 				multiStorageOption
 			) );

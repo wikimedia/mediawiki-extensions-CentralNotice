@@ -32,7 +32,9 @@ class BannerMessage {
 		} elseif ( $namespace === NS_CN_BANNER ) {
 			return "{$this->banner_name}-{$this->name}/{$lang}";
 		} else {
-			throw new RangeException( "Namespace '$namespace' not known for having CentralNotice messages." );
+			throw new RangeException(
+				"Namespace '$namespace' not known for having CentralNotice messages."
+			);
 		}
 	}
 

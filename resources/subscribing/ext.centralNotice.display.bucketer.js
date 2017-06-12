@@ -24,10 +24,12 @@
  */
 ( function ( $, mw ) {
 
-	// Bucket objects by campaign; properties are campaign names.
-	// Retrieved from kvStore (which uses LocalStorage or a fallback cookie)
-	// or from a legacy cookie.
-	var buckets = null,
+	var bucketer,
+
+		// Bucket objects by campaign; properties are campaign names.
+		// Retrieved from kvStore (which uses LocalStorage or a fallback cookie)
+		// or from a legacy cookie.
+		buckets = null,
 
 		// The campaign we're working with.
 		campaign = null,
@@ -271,7 +273,7 @@
 	/**
 	 * Bucketer object (intended for access from within this RL module).
 	 */
-	mw.centralNotice.internal.bucketer = {
+	bucketer = mw.centralNotice.internal.bucketer = {
 
 		/**
 		 * @param {Object} c A campaign object. Note: we don't check that the
@@ -295,10 +297,20 @@
 		 * they're called by mw.centralNotice.chooseAndMaybeDisplay(). Calls
 		 * to this method from mixin hooks don't have to worry about this.)
 		 *
-		 * @return {number}
+		 * @returns {number}
 		 */
 		getBucket: function () {
 			return buckets[ campaign.name ].val;
+		},
+
+		/**
+		 * Return the bucket pared down to fit within the number of buckets in the
+		 * campaign. Note: setCampaign() must have been called first.
+		 *
+		 * @returns {number}
+		 */
+		getReducedBucket: function () {
+			return bucketer.getBucket() % campaign.bucket_count;
 		},
 
 		/**

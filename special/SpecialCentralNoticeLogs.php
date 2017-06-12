@@ -78,26 +78,38 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 				'/CentralNotice/collapsed-ltr.png';
 
 			if ( $campaign || $user || $start || $end ) { // filters on
-				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
-					'<img src="'.$wgExtensionAssetsPath.$collapsedImg.'" id="cn-collapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
-					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
+				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">' .
+					'<img src="' . $wgExtensionAssetsPath.$collapsedImg . '" ' .
+					'id="cn-collapsed-filter-arrow" ' .
+					'style="display:none;position:relative;top:-2px;"/>' .
+					'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
+					'id="cn-uncollapsed-filter-arrow" ' .
+					'style="display:inline-block;position:relative;top:-2px;"/>' .
 					'</a>';
-				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), $this->msg( 'centralnotice-filters' )->escaped() );
+				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ),
+					$this->msg( 'centralnotice-filters' )->escaped() );
 				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters' ) );
 			} else { // filters off
-				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">'.
-					'<img src="'.$wgExtensionAssetsPath.$collapsedImg.'" id="cn-collapsed-filter-arrow" style="display:inline-block;position:relative;top:-2px;"/>'.
-					'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-filter-arrow" style="display:none;position:relative;top:-2px;"/>'.
+				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">' .
+					'<img src="' . $wgExtensionAssetsPath.$collapsedImg . '" ' .
+					'id="cn-collapsed-filter-arrow" ' .
+					'style="display:inline-block;position:relative;top:-2px;"/>' .
+					'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
+					'id="cn-uncollapsed-filter-arrow" ' .
+					'style="display:none;position:relative;top:-2px;"/>' .
 					'</a>';
-				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ), $this->msg( 'centralnotice-filters' )->escaped() );
-				$htmlOut .= Xml::openElement( 'div', array( 'id' => 'cn-log-filters', 'style' => 'display:none;' ) );
+				$htmlOut .= Xml::tags( 'span', array( 'style' => 'margin-left: 0.3em;' ),
+					$this->msg( 'centralnotice-filters' )->escaped() );
+				$htmlOut .= Xml::openElement( 'div',
+					array( 'id' => 'cn-log-filters', 'style' => 'display:none;' ) );
 			}
 
 			$htmlOut .= Xml::openElement( 'table' );
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( $this->msg( 'centralnotice-start-date' )->text(), 'month', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label( $this->msg( 'centralnotice-start-date' )->text(), 'month',
+				array( 'class' => 'cn-log-filter-label' ) );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			if ( $reset ) {
@@ -111,7 +123,8 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( $this->msg( 'centralnotice-end-date' )->text(), 'month', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label( $this->msg( 'centralnotice-end-date' )->text(), 'month',
+				array( 'class' => 'cn-log-filter-label' ) );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			if ( $reset ) {
@@ -125,7 +138,8 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$htmlOut .= Xml::openElement( 'tr' );
 
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( $this->msg( 'centralnotice-notice' )->text(), 'campaign', array( 'class' => 'cn-log-filter-label' ) );
+			$htmlOut .= Xml::label( $this->msg( 'centralnotice-notice' )->text(), 'campaign',
+				array( 'class' => 'cn-log-filter-label' ) );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
 			$htmlOut .= Xml::input( 'campaign', 25, ( $reset ? '' : $campaign ) );

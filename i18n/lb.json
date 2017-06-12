@@ -214,5 +214,10 @@
 	"apihelp-centralnoticeallocations-param-language": "D'Sprooch op déi filtert gi soll.",
 	"apihelp-query+centralnoticelogs-param-user": "Benotzernumm (fakultativ).",
 	"centralnotice-large-banner-limit-days": "Dauer vun der Ënnerbriechung",
-	"centralnotice-large-banner-limit-identifier": "Identifikatioun fir d'Späicheren op der säit vum Client"
+	"centralnotice-large-banner-limit-identifier": "Identifikatioun fir d'Späicheren op der säit vum Client",
+	"centralnotice-banner-sequence": "Sequenz vun de Banneren",
+	"centralnotice-banner-sequence-days-error": "Muss eng ganz Zuel sinn déi méi grouss wéi null ass.",
+	"centralnotice-banner-sequence-bucket-add-step": "E Schrëtt derbäisetzen",
+	"centralnotice-banner-sequence-banner": "Banner",
+	"centralnotice-banner-sequence-no-banner": "(Kee Banner)"
 }

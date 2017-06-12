@@ -7,9 +7,11 @@ class CNDeviceTarget {
 	/**
 	 * Get a listing of all known targetable devices.
 	 *
-	 * @param bool $flip If true will return {<header string value>: {'id': <id>, 'label': <wiki text label>}}
+	 * @param bool $flip If true will return
+	 *   {<header string value>: {'id': <id>, 'label': <wiki text label>}}
 	 *
-	 * @return array Array of devices in format {id: {'header': <internal string value>, 'label': <wiki text label>}}
+	 * @return array Array of devices in format
+	 *   {id: {'header': <internal string value>, 'label': <wiki text label>}}
 	 */
 	public static function getAvailableDevices( $flip = false ) {
 		$dbr = CNDatabase::getDb();
@@ -121,7 +123,8 @@ class CNDeviceTarget {
 				if ( !array_key_exists( $device, $knownDevices ) ) {
 					throw new RangeException( "Device name '$device' not known! Cannot add." );
 				}
-				$modifyArray[ ] = array( 'tmp_id' => $bannerId, 'dev_id' => $knownDevices[ $device ][ 'id' ] );
+				$modifyArray[ ] = array( 'tmp_id' => $bannerId,
+					'dev_id' => $knownDevices[ $device ][ 'id' ] );
 			}
 			$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
 		}

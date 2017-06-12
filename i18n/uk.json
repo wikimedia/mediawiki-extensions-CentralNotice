@@ -210,7 +210,6 @@
 	"centralnotice-buckets": "Розподіл користувачів",
 	"centralnotice-bucket": "Група",
 	"centralnotice-bucket-letter": "Група «$1»",
-	"centralnotice-banner-overflowing-bucket": "Групі «$1» призначено забагато банерів.",
 	"centralnotice-banner-empty-bucket": "Не усім групам призначено банер.",
 	"centralnotice-devicetype-desktop": "Настільний комп'ютер",
 	"centralnotice-devicetype-android": "Android OS",
@@ -313,5 +312,14 @@
 	"centralnotice-large-banner-limit-randomize": "Випадковий перехід між групами",
 	"centralnotice-large-banner-limit-randomize-help": "Звичайний перехід між групами відбувається в напрямку від A до C, та від B до D. Коли поставлено галочку, читачі переміщатимуться до груп C або D у випадковому порядку.",
 	"centralnotice-large-banner-limit-identifier": "Ідентифікатор для сховища на стороні клієнта",
-	"centralnotice-large-banner-limit-identifier-help": "Показ великого банера подалено в кампаніях із тим же ідентифікатором. Значення за замовчуванням «centralnotice-frbanner-seen-fullscreen» може використовуватись для мігрування застарілих кук."
+	"centralnotice-large-banner-limit-identifier-help": "Показ великого банера подалено в кампаніях із тим же ідентифікатором. Значення за замовчуванням «centralnotice-frbanner-seen-fullscreen» може використовуватись для мігрування застарілих кук.",
+	"centralnotice-banner-sequence": "Послідовність банерів",
+	"centralnotice-banner-sequence-help": "Встановіть показ декількох банерів у певному порядку.",
+	"centralnotice-banner-sequence-days": "Тривалість приховування (у днях)",
+	"centralnotice-banner-sequence-days-error": "Це має бути ціле число, більше за нуль.",
+	"centralnotice-banner-sequence-bucket-add-step": "Додати крок",
+	"centralnotice-banner-sequence-banner": "Банер",
+	"centralnotice-banner-sequence-page-views": "Перегляди сторінки",
+	"centralnotice-banner-sequence-skip-with-id": "Пропустити за допомогою ідентифікатора",
+	"centralnotice-banner-sequence-no-banner": "(Без банера)"
 }

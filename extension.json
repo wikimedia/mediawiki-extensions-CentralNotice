@@ -182,6 +182,7 @@
 			"remoteExtPath": "CentralNotice",
 			"dependencies": [
 				"ext.centralNotice.adminUi",
+				"oojs-ui",
 				"jquery.ui.dialog",
 				"jquery.ui.slider",
 				"jquery.throttle-debounce",
@@ -329,6 +330,44 @@
 				"mobile"
 			]
 		},
+		"ext.centralNotice.bannerSequence": {
+			"scripts": "subscribing/ext.centralNotice.bannerSequence.js",
+			"dependencies": [
+				"ext.centralNotice.display",
+				"ext.centralNotice.kvStore"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
+		},
+		"ext.centralNotice.adminUi.bannerSequence": {
+			"scripts": "infrastructure/ext.centralNotice.adminUi.bannerSequence.js",
+			"styles": "infrastructure/ext.centralNotice.adminUi.bannerSequence.less",
+			"dependencies": [
+				"ext.centralNotice.adminUi.campaignManager",
+				"oojs-ui",
+				"oojs-ui.styles.icons-moderation",
+				"mediawiki.jqueryMsg"
+			],
+			"messages": [
+				"centralnotice-banner-sequence",
+				"centralnotice-banner-sequence-days",
+				"centralnotice-banner-sequence-days-error",
+				"centralnotice-banner-sequence-days-help",
+				"centralnotice-banner-sequence-help",
+				"centralnotice-banner-sequence-bucket-seq",
+				"centralnotice-banner-sequence-bucket-add-step",
+				"centralnotice-banner-sequence-banner",
+				"centralnotice-banner-sequence-page-views",
+				"centralnotice-banner-sequence-skip-with-id",
+				"centralnotice-banner-sequence-page-views-error",
+				"centralnotice-banner-sequence-skip-with-id-error",
+				"centralnotice-banner-sequence-banner-removed-error",
+				"centralnotice-banner-sequence-no-banner",
+				"centralnotice-banner-sequence-detailed-help"
+			]
+		},
 		"ext.centralNotice.freegeoipLookup": {
 			"scripts": "subscribing/ext.centralNotice.freegeoipLookup.js",
 			"dependencies": [
@@ -466,7 +505,7 @@
 		"CentralNoticeBannerMixins": [],
 		"CentralNoticeCampaignMixins": {
 			"bannerHistoryLogger": {
-				"module": "ext.centralNotice.bannerHistoryLogger",
+				"subscribingModule": "ext.centralNotice.bannerHistoryLogger",
 				"nameMsg": "centralnotice-banner-history-logger",
 				"helpMsg": "centralnotice-banner-history-logger-help",
 				"parameters": {
@@ -493,7 +532,7 @@
 				}
 			},
 			"legacySupport": {
-				"module": "ext.centralNotice.legacySupport",
+				"subscribingModule": "ext.centralNotice.legacySupport",
 				"nameMsg": "centralnotice-legacy-support",
 				"helpMsg": "centralnotice-legacy-support-help",
 				"parameters": {
@@ -512,7 +551,7 @@
 				}
 			},
 			"impressionDiet": {
-				"module": "ext.centralNotice.impressionDiet",
+				"subscribingModule": "ext.centralNotice.impressionDiet",
 				"nameMsg": "centralnotice-impression-diet",
 				"helpMsg": "centralnotice-impression-diet-help",
 				"parameters": {
@@ -539,7 +578,7 @@
 				}
 			},
 			"largeBannerLimit": {
-				"module": "ext.centralNotice.largeBannerLimit",
+				"subscribingModule": "ext.centralNotice.largeBannerLimit",
 				"nameMsg": "centralnotice-large-banner-limit",
 				"helpMsg": "centralnotice-large-banner-limit-help",
 				"parameters": {
@@ -559,6 +598,20 @@
 						"labelMsg": "centralnotice-large-banner-limit-identifier",
 						"helpMsg": "centralnotice-large-banner-limit-identifier-help",
 						"defaultValue": "centralnotice-frbanner-seen-fullscreen"
+					}
+				}
+			},
+			"bannerSequence": {
+				"subscribingModule": "ext.centralNotice.bannerSequence",
+				"customAdminUIControlsModule": "ext.centralNotice.adminUi.bannerSequence",
+				"nameMsg": "centralnotice-banner-sequence",
+				"helpMsg": "centralnotice-banner-sequence-help",
+				"parameters": {
+					"days": {
+						"type": "integer"
+					},
+					"sequences": {
+						"type": "json"
 					}
 				}
 			}

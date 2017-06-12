@@ -37,7 +37,10 @@
 		campaignMixins = {},
 
 		// For providing a jQuery.Promise to signal when a banner has loaded
-		bannerLoadedDeferredObj;
+		bannerLoadedDeferredObj,
+
+		// Name of a requested banner; see cn.requestBanner(), below
+		requestedBannerName = null;
 
 	// TODO: make data.result options explicit via constants
 
@@ -255,6 +258,7 @@
 		// Get a bucket
 		bucketer.process();
 		state.setBucket( bucketer.getBucket() );
+		state.setReducedBucket( bucketer.getReducedBucket() );
 
 		// Check the hide cookie and possibly cancel the banner.
 		// We do this before running pre-banner hooks so that these can count
@@ -277,19 +281,45 @@
 			return;
 		}
 
-		// Choose a banner
-		banner = chooser.chooseBanner(
-			campaign,
-			state.getData().bucket,
-			state.getData().anonymous,
-			state.getData().device,
-			state.getData().randombanner
-		);
+		// Choose a banner. Because of how campaign and banner settings are organized, we
+		// need to check logged-in status and device again. (This seems to indicate a
+		// problem with our domain model.)
 
-		// Wonky domain model alert! After all that, this user might still
-		// not get a banner.
+		// If a specific banner has been requested from a pre-banner hook, try to choose
+		// it.
+		if ( requestedBannerName ) {
+
+			banner = chooser.requestBanner(
+				campaign,
+				state.getData().reducedBucket,
+				state.getData().anonymous,
+				state.getData().device,
+				requestedBannerName
+			);
+
+			if ( !banner ) {
+				state.setRequestedBannerNotAvailable( requestedBannerName );
+			}
+
+		} else {
+			// Otherwise, use a random number and banner weights to choose from among
+			// banners available to the user in this campiagn, in this bucket. (Most
+			// of the time, there's only one.)
+			banner = chooser.chooseBanner(
+				campaign,
+				state.getData().reducedBucket,
+				state.getData().anonymous,
+				state.getData().device,
+				state.getData().randombanner
+			);
+
+			if ( !banner ) {
+				state.setNoBannerAvailable();
+			}
+		}
+
+		// In either of the above cases, if no banner was selected, bow out.
 		if ( !banner ) {
-			state.setNoBannerAvailable();
 			runPostBannerMixinHooks();
 			recordImpression();
 			return;
@@ -581,6 +611,21 @@
 		setBucket: function ( bucket ) {
 			cn.internal.bucketer.setBucket( bucket );
 			cn.internal.state.setBucket( bucket );
+			cn.internal.state.setReducedBucket( cn.internal.bucketer.getReducedBucket() );
+		},
+
+		/**
+		 * Request a specific banner be displayed. This may be called before a banner
+		 * has been selected (for example, from a pre-banner hook). To be shown, the
+		 * banner must be among the banners assigned to the user's bucket for the
+		 * selected campaign, and must be available for the user's logged in status
+		 * and device. If the requested banner can't be displayed, no banner will be
+		 * shown.
+		 *
+		 * @param {string} banner The name of the banner to request
+		 */
+		requestBanner: function ( banner ) {
+			requestedBannerName = banner;
 		},
 
 		/**

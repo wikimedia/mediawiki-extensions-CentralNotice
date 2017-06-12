@@ -37,7 +37,9 @@ class BannerRenderer {
 	 *
 	 * @param boolean $debug If false, minify the output.
 	 */
-	function __construct( IContextSource $context, Banner $banner, $campaignName = null, $debug = false ) {
+	function __construct(
+		IContextSource $context, Banner $banner, $campaignName = null, $debug = false
+	) {
 		$this->context = $context;
 
 		$this->banner = $banner;
@@ -120,7 +122,8 @@ class BannerRenderer {
 	/**
 	 * Get the body of the banner, with all transformations applied.
 	 *
-	 * FIXME: "->inLanguage( $context->getLanguage() )" is necessary due to a bug in DerivativeContext
+	 * FIXME: "->inLanguage( $context->getLanguage() )" is necessary due to a bug
+	 *   in DerivativeContext
 	 *
 	 * @return string HTML fragment for the banner body.
 	 */

@@ -80,7 +80,9 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			// Split the title into banner, message, and language
 			$titlePieces = explode( "/", $row->rc_title, 2 );
 			$titleBase = $titlePieces[0];
-			if ( array_key_exists( 1, $titlePieces ) ) $language = $titlePieces[1];
+			if ( array_key_exists( 1, $titlePieces ) ) {
+				$language = $titlePieces[1];
+			}
 			$pattern = '/Centralnotice-([^-]*)-(.*)/';
 			preg_match( $pattern, $titleBase, $matches );
 			$banner = $matches[1];

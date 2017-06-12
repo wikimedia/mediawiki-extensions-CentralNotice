@@ -75,8 +75,6 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * @return string HTML
 	 */
 	function formatRow( $row ) {
-		global $wgLanguageCode;
-
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
 

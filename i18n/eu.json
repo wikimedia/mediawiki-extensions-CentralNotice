@@ -110,6 +110,7 @@
 	"centralnotice-user-role-logged-in": "Saio hasita",
 	"centralnotice-banner-class": "Kategoria",
 	"centralnotice-archive-banner-cancel": "Utzi",
+	"centralnotice-change-summary-label": "Laburpena",
 	"centralnotice-archive-campaign-cancel": "Utzi",
 	"centralnotice-delete-banner": "Ezabatu",
 	"centralnotice-delete-banner-cancel": "Utzi",
@@ -118,5 +119,7 @@
 	"centralnotice-start-date": "Hasiera data (UTC)",
 	"centralnotice-start-time": "Hasiera ordua (UTC)",
 	"centralnotice-end-date": "Bukaera data (UTC)",
-	"centralnotice-end-time": "Bukaera ordua (UTC)"
+	"centralnotice-end-time": "Bukaera ordua (UTC)",
+	"centralnotice-banner-sequence-days-error": "Zero baino zenbaki oso handiagoa izan behar du.",
+	"centralnotice-banner-sequence-bucket-add-step": "Gehitu urratsa"
 }

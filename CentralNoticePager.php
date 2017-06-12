@@ -133,7 +133,8 @@ class CentralNoticePager extends TemplatePager {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( 'centralnotice-bucket' )->text()
 			);
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
+			$htmlOut .= Xml::element( 'th',
+				array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 				$this->msg( 'centralnotice-weight' )->text()
 			);
 		}
@@ -156,6 +157,7 @@ class CentralNoticePager extends TemplatePager {
 	function bucketDropDown( $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
+		// class should coordinate with CentralNotice::bucketDropDown()
 		$html = Html::openElement( 'select', array(
 			'name' => "bucket-{$bannerName}",
 			'class' => array( 'bucketSelector' ),

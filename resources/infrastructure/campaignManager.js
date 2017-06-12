@@ -27,7 +27,249 @@
 			'ext.centralNotice.adminUi.campaignManager',
 			'campaignMixinParamControls.mustache'
 		),
-		$mixinCheckboxes, $submitBtn;
+		$form, $submitBtn,
+		MixinCustomUiController, MixinCustomWidget,
+		ErrorStateTracker,
+		mixinCustomUiControllerFactory = new OO.Factory(),
+		errorStateTracker, eventBus, assignedBanners,
+		BUCKET_LABELS = [ 'A', 'B', 'C', 'D' ]; // TODO Fix for configs with more buckets
+
+	/* Event bus */
+
+	/**
+	 * eventBus: A simple object for subscribing to and emitting events.
+	 */
+
+	/**
+	 * @event bucket-change
+	 *
+	 * The control for the number of buckets in the campaign has changed.
+	 * @param {number} numBuckets
+	 */
+
+	/**
+	 * @event assigned-banners-change
+	 *
+	 * The controls for banner assignment (bucket assignments and banner removal
+	 * checkboxes) have changed. Note: This event does not fire when a checkbox for
+	 * adding a banner is checked.
+	 */
+	/**
+	 * @event error-state
+	 *
+	 * An error state is set or removed
+	 * @param {string} errorKey
+	 * @param {boolean} state true to set error, false to clear one.
+	 */
+	eventBus = new OO.EventEmitter();
+
+	/* MixinCustomUiController */
+
+	// Note: the following code uses two completely distinct meanings of
+	// "mixin". One is "campaign mixin", bits of JS code that can run in the
+	// browsers of users in specific campaigns. The other is the OOjs concept
+	// of mixin, that is, a bit of functionality that can be added to a
+	// javascript class. For example, the MixinCustomWidget class provides a
+	// bit of UI for a campaign mixin, and it mixes in, in the OOjs sense,
+	// functionality from OO.ui.mixin.GroupElement.
+
+	/**
+	 * Base class for custom campaign mixin UI controllers.
+	 *
+	 * Provides facilities for setting hidden form input elements for mixin parameter
+	 * values. This lets custom mixins provide interactive interfaces that are not input
+	 * elements, and send data to the server via these hidden inputs.
+	 *
+	 * Note: Subclasses are expected to be singletons.
+	 *
+	 * @abstract
+	 * @class MixinCustomUiController
+	 * @constructor
+	 */
+	MixinCustomUiController = function () {
+
+		// Declare the abstract property here, but don't force it to null, in case the
+		// subclass decides to set it before calling the constructor.
+		/**
+		 * The element of the corresponding MixinCustomWidget.
+		 * @abstract
+		 * @property {jQuery}
+		 */
+		this.$widgetElement = this.$widgetElement || null;
+	};
+
+	OO.initClass( MixinCustomUiController );
+
+	/**
+	 * The name of the campaign mixin that this control group sets the parameters for.
+	 *
+	 * @abstract
+	 * @inheritable
+	 * @static
+	 * @property {string}
+	 */
+	MixinCustomUiController.static.name = null;
+
+	/**
+	 * Initialize the controller with the data provided.
+	 *
+	 * @method
+	 * @abstract
+	 * @param {Object} data Object in which properties and their values are mixin
+	 *   parameter names and values. Format should coordinate with the format sent
+	 *   to the client via the 'mixin-param-values' data value on the checkbox that
+	 *   enables the mixin.
+	 */
+	MixinCustomUiController.prototype.init = null;
+
+	/**
+	 * Set the (string-encoded) value of a mixin parameter via a hidden input element.
+	 *
+	 * @param {string} name The name of the parameter.
+	 * @param {string} value The value (formatted as appropriate for form submission).
+	 */
+	MixinCustomUiController.prototype.setParam = function ( name, value ) {
+		var $input = this.getParamInputEl( name, true );
+
+		$input.val( value );
+	};
+
+	/**
+	 * Remove a mixin parameter's hidden input element, if it exists.
+	 *
+	 * @param {string} name The name of the parameter
+	 */
+	MixinCustomUiController.prototype.removeParam = function ( name ) {
+		var $input = this.getParamInputEl( name, false );
+
+		if ( $input.length ) {
+			$input.remove();
+		}
+	};
+
+	/**
+	 * Get the hidden input element for a mixin parameter, if it exists. If requested,
+	 * create it if it doesn't exist.
+	 *
+	 * @private
+	 * @param {string} name The name of the parameter
+	 * @param {boolean} create Create the element if it doesn't exist
+	 * @return {jQuery|null}
+	 */
+	MixinCustomUiController.prototype.getParamInputEl = function ( name, create ) {
+		var inputName = makeNoticeMixinControlName( this.constructor.static.name, name ),
+			$input = $form.find( 'input[name="' + inputName + '"]' );
+
+		if ( create && !( $input.length ) ) {
+
+			$input = $( '<input />' ).attr( {
+				name: inputName,
+				type: 'hidden'
+			} );
+
+			$form.append( $input );
+		}
+
+		return $input;
+	};
+
+	/* MixinCustomWidget */
+
+	/**
+	 * Base class for custom campaign mixin widgets.
+	 *
+	 * @abstract
+	 * @class MixinCustomWidget
+	 * @extends OO.ui.Widget
+	 * @mixins OO.ui.mixin.GroupWidget
+	 * @constructor
+	 *
+	 * @param {MixinCustomUiController} controller
+	 * @param {Object} [config] Configuration options
+	 */
+	MixinCustomWidget = function ( controller, config ) {
+
+		var $element = $( '<fieldset></fieldset>' ),
+			$group = $( '<div></div>' );
+
+		// Set up config with elements, CSS class and id. This should coordinate with
+		// makeMixinParamControlSet() (below) and
+		// templates/campaignMixinParamControls.mustache (used for the automatic creation
+		// of mixin param controls).
+		config = $.extend( {
+			$element: $element,
+
+			// This works because controller classes are singletons.
+			id: mixinParamControlsId( controller.constructor.static.name )
+		}, config );
+
+		$group.addClass( 'campaignMixinControls' );
+		$element.append( $group );
+
+		// Call parent constructor
+		MixinCustomWidget.parent.call( this, config );
+
+		// Call mixin constructor
+		OO.ui.mixin.GroupElement.call(
+			this,
+			$.extend( {}, config, { $group: $group } )
+		);
+	};
+
+	OO.inheritClass( MixinCustomWidget, OO.ui.Widget );
+	OO.mixinClass( MixinCustomWidget, OO.ui.mixin.GroupElement );
+
+	/* Event handlers (non-OOjs-UI) and related logic */
+
+	/**
+	 * Simple object for keeping track of validation errors.
+	 *
+	 * @class ErrorStateTracker
+	 * @constructor
+	 */
+	ErrorStateTracker = function () {
+		this.errors = {};
+	};
+
+	/**
+	 * Set or clear an error state.
+	 *
+	 * @param {string} errorKey A unique key identifying this error
+	 * @param {boolean} state true sets an error for this key, and false clear it
+	 */
+	ErrorStateTracker.prototype.setErrorState = function ( errorKey, state ) {
+		if ( state ) {
+			this.errors[ errorKey ] = true;
+		} else {
+			delete this.errors[ errorKey ];
+		}
+	};
+
+	/**
+	 * Is one or more error currently set?
+	 *
+	 * @returns {boolean}
+	 */
+	ErrorStateTracker.prototype.hasErrorState = function () {
+		return Object.keys( this.errors ).length > 0;
+	};
+
+	// General error state tracker for the page
+	errorStateTracker = new ErrorStateTracker();
+
+	// Connect handler for error-state events
+	eventBus.on( 'error-state', function ( errorKey, state ) {
+
+		// Pass state on to errorStateTracker
+		errorStateTracker.setErrorState( errorKey, state );
+
+		// Update the submit button
+		if ( errorStateTracker.hasErrorState() ) {
+			$submitBtn.prop( 'disabled', true );
+		} else {
+			$submitBtn.prop( 'disabled', false );
+		}
+	} );
 
 	function updateThrottle() {
 		if ( $( '#throttle-enabled' ).prop( 'checked' ) ) {
@@ -46,10 +288,13 @@
 	}
 
 	function updateBuckets() {
-		var numBuckets = getNumBuckets(),
+		var i, isBucketDisabled,
+			numBuckets = getNumBuckets(),
 			maxNumBuckets = mw.config.get( 'wgNoticeNumberOfBuckets' ),
 			bucketSelectors = $( 'select.bucketSelector' ),
-			i, isBucketDisabled;
+
+			bucketSelectorUnassigned =
+				bucketSelectors.not( '.bucketSelectorForAssignedBanners' );
 
 		// Change selected value of bucket selectors to only available buckets
 		bucketSelectors.each( function () {
@@ -59,22 +304,35 @@
 			$selector.val( selectedVal % numBuckets );
 		} );
 
-		// If only one bucket is available, disable the selectors entirely
+		// If only one bucket is available, disable the selectors for unassigned banners,
+		// and enable them if more than one bucket is available.
+
+		// (If we disable selectors for assigned banners, then they won't send their
+		// values when the form is submitted. In that case, if the number of buckets were
+		// changed from a value greater than 1 to 1, the selectors would show all banners
+		// on bucket 0, but for any banners that were moved to bucket 0, the change would
+		// not be submitted to the server.)
+
 		if ( numBuckets === 1 ) {
-			bucketSelectors.prop( 'disabled', true );
-
+			bucketSelectorUnassigned.prop( 'disabled', true );
 		} else {
-			// If more than one bucket is available, enable selectors and set options to
-			// disabled or enabled, as appropriate
 			bucketSelectors.prop( 'disabled', false );
-
-			for ( i = 0; i < maxNumBuckets; i++ ) {
-				isBucketDisabled = ( i >= numBuckets );
-
-				bucketSelectors.find( 'option[value=' + i + ']' )
-					.prop( 'disabled', isBucketDisabled );
-			}
 		}
+
+		// Enable or disable bucket options in drop-downs, as appropriate
+		for ( i = 0; i < maxNumBuckets; i++ ) {
+			isBucketDisabled = ( i >= numBuckets );
+
+			bucketSelectors.find( 'option[value=' + i + ']' )
+				.prop( 'disabled', isBucketDisabled );
+		}
+
+		// Broadcast bucket change event
+		eventBus.emit( 'bucket-change', numBuckets );
+
+		// It's important to update assigned banners *after* emitting bucket-change so
+		// widgets first can adjust to the new bucket number.
+		updateAssignedBanners();
 	}
 
 	function getNumBuckets() {
@@ -92,7 +350,7 @@
 			mixinName = $checkBox.data( 'mixin-name' ),
 			paramValues,
 			$paramControlSet = $( '#' + mixinParamControlsId( mixinName ) ),
-			$paramControls;
+			mixinCustomUiController, $paramControls;
 
 		if ( $checkBox.prop( 'checked' ) ) {
 
@@ -101,19 +359,33 @@
 
 				paramValues = $checkBox.data( 'mixin-param-values' );
 
-				$paramControlSet = makeMixinParamControlSet(
-					mixinName,
-					paramValues
-				);
+				// If the mixin uses a custom UI to set params, instantiate that
+				if ( mixinDefs[ mixinName ].customAdminUIControlsModule ) {
 
+					mixinCustomUiController = mixinCustomUiControllerFactory
+						.create( mixinName );
+
+					mixinCustomUiController.init( paramValues );
+					$paramControlSet = mixinCustomUiController.$widgetElement;
+
+				} else {
+
+					// Otherwise, create generic controls using a template
+					$paramControlSet = makeMixinParamControlSet(
+						mixinName,
+						paramValues
+					);
+
+					// Hook up handler for verification
+					$paramControls = $paramControlSet.find( 'input' );
+					$paramControls.on(
+						'keyup keydown change mouseup cut paste focus blur',
+						$.debounce( 100, verifyParamControl )
+					);
+				}
+
+				// Attach the controls
 				$checkBox.parent( 'div' ).append( $paramControlSet );
-
-				// Hook up handler for verification
-				$paramControls = $paramControlSet.find( 'input' );
-				$paramControls.on(
-					'keyup keydown change mouseup cut paste focus blur',
-					$.debounce( 100, verifyParamControl )
-				);
 
 			} else {
 				$paramControlSet.show();
@@ -169,6 +441,9 @@
 					paramTemplateVars.inputType = 'checkbox';
 					paramTemplateVars.inputValue = paramName;
 					break;
+
+				case 'json':
+					throw 'json parameter type requires custom admin UI module.';
 
 				default:
 					throw 'Invalid parameter definition type: ' + paramDef.type;
@@ -261,23 +536,193 @@
 		var $errorBox = $input.closest( 'p' ).prevAll( '.errorbox' );
 
 		if ( error ) {
-			$submitBtn.attr( 'disabled', 'disabled' );
-
 			if ( $errorBox.length === 0 ) {
 				$errorBox = $( '<p class="errorbox" />' );
 				$errorBox.text( mw.message( msgKey ).text() );
 				$input.closest( 'p' ).before( $errorBox );
 			}
 
+			eventBus.emit( 'error-state', $input.attr( 'name' ), true );
+
 		} else {
-			$submitBtn.removeAttr( 'disabled' );
 			$errorBox.remove();
+			eventBus.emit( 'error-state', $input.attr( 'name' ), false );
 		}
 	}
 
-	// Execute code that requires document ready: setup slider, set handlers, set variables
-	// for jQuery elements
-	$( function () {
+	/**
+	 * Create a by-bucket index of assigned banners using data received from the server.
+	 */
+	function setUpAssignedBanners() {
+		var assignedBannersFlat, i;
+
+		// Create outer array and inner arrays for all possible buckets
+		assignedBanners = [];
+
+		for ( i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
+			assignedBanners[ i ] = [];
+		}
+
+		// Get the data sent from the server
+		// If there are no assigned banners, the assigned banner fieldset isn't included
+		// in the page. In that case, jQuery will return undefined from data()
+		assignedBannersFlat =
+			$( '#centralnotice-assigned-banners' ).data( 'assigned-banners' ) || [];
+
+		// Fill up the index
+		for ( i = 0; i < assignedBannersFlat.length; i++ ) {
+			assignedBanners[ assignedBannersFlat[ i ].bucket ]
+				.push( assignedBannersFlat[ i ].bannerName );
+		}
+	}
+
+	/**
+	 * Update the by-bucket index of assigned banners when a remove banner checkbox or a
+	 * bucket selector for an assigned banner changes. Then, broadcast the
+	 * assigned-banner-change event.
+	 */
+	function updateAssignedBanners() {
+		var $removeCheckboxes = $( '.bannerRemoveCheckbox' ),
+			$selectors = $( '.bucketSelectorForAssignedBanners' ),
+			removedBanners = [];
+
+		// Create an array with the names of banners whose remove checkbox is checked
+		$removeCheckboxes.each( function () {
+			var $this = $( this );
+			if ( $this.prop( 'checked' ) ) {
+				removedBanners.push( $this.val() );
+			}
+		} );
+
+		// Iterate over the bucket selectors for assigned banners
+		$selectors.each( function () {
+			var i, bannerIdx,
+				$this = $( this ),
+				assignedBucket = parseInt( $this.find( ':selected' ).val(), 10 ),
+				bannerName = $this.data( 'banner-name' ),
+				removed = ( removedBanners.indexOf( bannerName ) !== -1 );
+
+			// Iterate over all buckets, adding banners to the index or removeing them,
+			// as needed. (assignedBanners has elements for all possible buckets.)
+			// TODO Make the order of banners the same as the order displayed in the UI
+			for ( i = 0; i < assignedBanners.length; i++ ) {
+
+				bannerIdx = assignedBanners[ i ].indexOf( bannerName );
+
+				// If the box is checked to remove, just ensure the banner is not there
+				if ( removed ) {
+					if ( bannerIdx !== -1 ) {
+						assignedBanners[ i ].splice( bannerIdx, 1 );
+					}
+					continue;
+				}
+
+				// If the banner is assigned to this bucket but not in the array, add it.
+				if ( i === assignedBucket && bannerIdx === -1 ) {
+					assignedBanners[ i ].push( bannerName );
+					continue;
+				}
+
+				// If the banner isn't assigned to this bucket but it is in the array,
+				// remove it.
+				if ( i !== assignedBucket && bannerIdx !== -1 ) {
+					assignedBanners[ i ].splice( bannerIdx, 1 );
+				}
+			}
+		} );
+
+		// Broadcast the event
+		eventBus.emit( 'assigned-banners-change' );
+	}
+
+	/**
+	 * Get an array of banners assigned to a specific bucket.
+	 *
+	 * @param {number} bucket
+	 * @returns {Array}
+	 */
+	function getAssignedBanners( bucket ) {
+		return assignedBanners[ bucket ];
+	}
+
+	/**
+	 * Get the human-friendly alphabetic label for a bucket number
+	 *
+	 * @param {number} bucket
+	 * @returns {string}
+	 */
+	function getBucketLabel( bucket ) {
+		return BUCKET_LABELS[ bucket ];
+	}
+
+	/* Exports */
+
+	module.exports = {
+
+		/**
+		 * Base class for custom campaign mixin UI controllers.
+		 * @see MixinCustomUiController
+		 * @type {function}
+		 */
+		MixinCustomUiController: MixinCustomUiController,
+
+		/**
+		 * Base class for custom campaign mixin widgets.
+		 * @see MixinCustomWidget
+		 * @type {function}
+		 */
+		MixinCustomWidget: MixinCustomWidget,
+
+		/**
+		 * Simple object for keeping track of validation errors.
+		 * @see ErrorStateTracker
+		 * @type {function}
+		 */
+		ErrorStateTracker: ErrorStateTracker,
+
+		/**
+		 * Factory for custom mixin UI controllers.
+		 * @type {OO.Factory}
+		 */
+		mixinCustomUiControllerFactory: mixinCustomUiControllerFactory,
+
+		/**
+		 * Centralized object for emitting and subscribing to events.
+		 * @type {OO.EventEmitter}
+		 */
+		eventBus: eventBus,
+
+		/**
+		 * Get the number of buckets currently set in the bucket input.
+		 * @function
+		 * @return {number}
+		 */
+		getNumBuckets: getNumBuckets,
+
+		/**
+		 * Get the human-friendly alphabetic label for a bucket number.
+		 * @function
+		 * @param {number} bucket
+		 * @returns {string}
+		 */
+		getBucketLabel: getBucketLabel,
+
+		/**
+		 * Get an array of banners assigned to a specific bucket.
+		 * @function
+		 * @param {number} bucket
+		 * @returns {Array}
+		 */
+		getAssignedBanners: getAssignedBanners
+	};
+
+	/* General setup */
+
+	/**
+	 * Finalize setup: initialize slider, set handlers, set variables for jQuery elements
+	 */
+	function initialize() {
+		var $mixinCheckboxes = $( 'input.noticeMixinCheck' );
 
 		$( '#centralnotice-throttle-amount' ).slider( {
 			range: 'min',
@@ -294,18 +739,37 @@
 		} );
 
 		$submitBtn = $( '#noticeDetailSubmit' );
+		$form = $( '#centralnotice-notice-detail' );
 
 		updateThrottle();
 		updateWeightColumn();
+		setUpAssignedBanners();
 		updateBuckets();
 
 		$( '#throttle-enabled' ).click( updateThrottle );
 		$( '#balanced' ).click( updateWeightColumn );
 		$( 'select#buckets' ).change( updateBuckets );
+		$( '.bucketSelectorForAssignedBanners, .bannerRemoveCheckbox' )
+			.change( updateAssignedBanners );
 
-		$mixinCheckboxes = $( 'input.noticeMixinCheck' );
 		$mixinCheckboxes.each( showOrHideCampaignMixinControls );
 		$mixinCheckboxes.change( showOrHideCampaignMixinControls );
+	}
+
+	// We have to wait for document ready and for custom controls modules to be loaded
+	// before initializing everything
+	$( function () {
+		var customControlsModules = $.map( mixinDefs, function ( mixinDef ) {
+			return mixinDef.customAdminUIControlsModule;
+		} );
+
+		// Custom mixin control modules depend on this module so they can access base
+		// classes here when they declare subclasses. So, this module can't depend on
+		// them. However, we need those modules to be loaded when we first call
+		// showOrHideCampaignMixinControls() (from initialize(), above). Since the
+		// custom control modules are added server-side, the following call to
+		// mw.loader.using() should be quick.
+		mw.loader.using( customControlsModules ).done( initialize );
 	} );
 
 }( jQuery, mediaWiki ) );

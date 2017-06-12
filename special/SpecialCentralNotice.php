@@ -37,7 +37,10 @@ class CentralNotice extends SpecialPage {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 
-		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice', true );
+		$this->addHelpLink(
+			'//meta.wikimedia.org/wiki/Special:MyLanguage/Help:CentralNotice',
+			true
+		);
 
 		// Check permissions
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
@@ -273,9 +276,11 @@ class CentralNotice extends SpecialPage {
 	public function prioritySelector( $index, $editable, $priorityValue ) {
 		$priorities = array(
 			CentralNotice::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' )->escaped(),
-			CentralNotice::NORMAL_PRIORITY => wfMessage( 'centralnotice-priority-normal' )->escaped(),
+			CentralNotice::NORMAL_PRIORITY =>
+				wfMessage( 'centralnotice-priority-normal' )->escaped(),
 			CentralNotice::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' )->escaped(),
-			CentralNotice::EMERGENCY_PRIORITY => wfMessage( 'centralnotice-priority-emergency' )->escaped(),
+			CentralNotice::EMERGENCY_PRIORITY =>
+				wfMessage( 'centralnotice-priority-emergency' )->escaped(),
 		);
 
 		if ( $editable ) {
@@ -471,15 +476,24 @@ class CentralNotice extends SpecialPage {
 	 * @param $notice string The name of the campaign to view
 	 */
 	function outputNoticeDetail( $notice ) {
+		global $wgCentralNoticeCampaignMixins;
 
 		$out = $this->getOutput();
 
 		// Output specific ResourceLoader module
 		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
 
+		// Output ResourceLoader modules for campaign mixins with custom controls
+		foreach ( $wgCentralNoticeCampaignMixins as $mixinConfig ) {
+			if ( !empty( $mixinConfig['customAdminUIControlsModule'] ) ) {
+				$out->addModules( $mixinConfig['customAdminUIControlsModule'] );
+			}
+		}
+
 		$this->outputEnclosingDivStartTag();
 
-		$this->campaign = new Campaign( $notice ); // Todo: Convert the rest of this page to use this object
+		// Todo: Convert the rest of this page to use this object
+		$this->campaign = new Campaign( $notice );
 		try {
 			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
 				$out->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
@@ -502,6 +516,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'form',
 				array(
 					'method' => 'post',
+					'id' => 'centralnotice-notice-detail',
 					'action' => $this->getPageTitle()->getLocalURL( array(
 						'subaction' => 'noticeDetail',
 						'notice' => $notice
@@ -609,7 +624,8 @@ class CentralNotice extends SpecialPage {
 				Campaign::setNumericCampaignSetting( $notice, 'throttle', $throttle, 100, 0 );
 
 				// Handle user bucketing setting for campaign
-				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ), $wgNoticeNumberOfBuckets );
+				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ),
+					$wgNoticeNumberOfBuckets );
 				$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
 				Campaign::setNumericCampaignSetting(
@@ -726,6 +742,7 @@ class CentralNotice extends SpecialPage {
 
 							switch( $paramDef['type'] ) {
 								case 'string':
+								case 'json':
 									$paramVal = Sanitizer::removeHTMLtags(
 										$request->getText( $requestParamName )
 									);
@@ -741,7 +758,11 @@ class CentralNotice extends SpecialPage {
 
 								case 'boolean':
 									$paramVal = $request->getCheck( $requestParamName );
-								break;
+									break;
+
+								default:
+									throw new DomainException(
+										'Unknown parameter type ' . $paramType );
 							}
 
 							$params[$paramName] = $paramVal;
@@ -839,14 +860,16 @@ class CentralNotice extends SpecialPage {
 
 			// Build Html
 			$htmlOut = '';
-			$htmlOut .= Xml::tags( 'h2', null, $this->msg( 'centralnotice-notice-heading', $notice )->text() );
+			$htmlOut .= Xml::tags( 'h2', null,
+				$this->msg( 'centralnotice-notice-heading', $notice )->text() );
 			$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
 
 			// Rows
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', array(), $this->msg( 'centralnotice-start-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', array(), $this->dateSelector( 'start', $this->editable, $start ) );
+			$htmlOut .= Xml::tags( 'td', array(),
+				$this->dateSelector( 'start', $this->editable, $start ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Start Time
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -931,8 +954,10 @@ class CentralNotice extends SpecialPage {
 			$throttleLabel = strval( $throttle ) . "%";
 			if ( $this->editable ) {
 				$htmlOut .= Xml::tags( 'td', array(),
-					Xml::span( $throttleLabel, 'cn-throttle', array( 'id' => 'centralnotice-throttle-echo' ) ) .
-					Html::hidden( 'throttle-cur', $throttle, array( 'id' => 'centralnotice-throttle-cur' ) ) .
+					Xml::span( $throttleLabel, 'cn-throttle',
+						array( 'id' => 'centralnotice-throttle-echo' ) ) .
+					Html::hidden( 'throttle-cur', $throttle,
+						array( 'id' => 'centralnotice-throttle-cur' ) ) .
 					Xml::tags( 'div', array( 'id' => 'centralnotice-throttle-amount' ), '' ) );
 			} else {
 				$htmlOut .= Xml::tags( 'td', array(), $throttleLabel );
@@ -951,7 +976,8 @@ class CentralNotice extends SpecialPage {
 				// Locked
 				$htmlOut .= Xml::openElement( 'tr' );
 				$htmlOut .= Xml::tags( 'td', array(),
-					Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' ) );
+					Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' )
+				);
 				$htmlOut .= Xml::tags( 'td', array(),
 					Xml::check( 'archive', $isArchived,
 						array( 'value' => $notice, 'id' => 'archive' ) ) );
@@ -1094,8 +1120,29 @@ class CentralNotice extends SpecialPage {
 		$isBalanced = ( count( array_unique( $weights ) ) === 1 );
 
 		// Build Assigned banners HTML
+
 		$htmlOut = Html::hidden( 'change', 'weight' );
-		$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
+
+		// Prepare data about assigned banners to provide to client-side code, and
+		// make it available within the fieldsset element.
+
+		$bannersForJS = array_map( function ( $banner ) {
+				return [
+					'bannerName' => $banner->tmp_name,
+					'bucket' => $banner->asn_bucket
+				];
+			},
+			$banners
+		);
+
+		$htmlOut .= Xml::fieldset(
+			$this->msg( 'centralnotice-assigned-templates' )->text(),
+			false,
+			[
+				'data-assigned-banners' => json_encode( $bannersForJS ),
+				'id' => 'centralnotice-assigned-banners'
+			]
+		);
 
 		// Equal weight banners
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -1117,7 +1164,8 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 				$this->msg( "centralnotice-remove" )->text() );
 		}
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
+		$htmlOut .= Xml::element( 'th',
+			array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
 			$this->msg( 'centralnotice-weight' )->text() );
 		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
 			$this->msg( 'centralnotice-bucket' )->text() );
@@ -1131,7 +1179,10 @@ class CentralNotice extends SpecialPage {
 			if ( $this->editable ) {
 				// Remove
 				$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-					Xml::check( 'removeTemplates[]', false, array( 'value' => $row->tmp_name ) )
+					Xml::check( 'removeTemplates[]', false, [
+						'value' => $row->tmp_name,
+						'class' => 'bannerRemoveCheckbox'
+					] )
 				);
 			}
 
@@ -1146,7 +1197,8 @@ class CentralNotice extends SpecialPage {
 				$this->bucketDropDown(
 					"bucket[$row->tmp_id]",
 					( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
-					$numCampaignBuckets
+					$numCampaignBuckets,
+					$row->tmp_name
 				)
 			);
 
@@ -1168,15 +1220,6 @@ class CentralNotice extends SpecialPage {
 			$bannerBucket = $banner->asn_bucket;
 			$bannerName = $banner->tmp_name;
 
-			// If this campaign uses bucketing, is more than one banner
-			// assigned to any bucket?
-			if ( $numBuckets > 1
-				&& array_key_exists( $bannerBucket, $assignedBuckets )
-			) {
-				$this->campaignWarnings[] = array(
-					'centralnotice-banner-overflowing-bucket', chr( $bannerBucket + ord( 'A' ) )
-				);
-			}
 			$assignedBuckets[$bannerBucket] = $bannerName;
 		}
 		// Do any buckets not have a banner assigned?
@@ -1204,7 +1247,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	function bucketDropDown( $name, $selected, $numberCampaignBuckets ) {
+	function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
 		$bucketLabel = function ( $val ) {
@@ -1217,9 +1260,12 @@ class CentralNotice extends SpecialPage {
 			}
 			$selected = $selected % $numberCampaignBuckets;
 
+			// bucketSelector class is for all bucket selectors (for assigned or
+			// unassigned banners). Coordinate with CentralNoticePager::bucketDropDown().
 			$html = Html::openElement( 'select', [
 				'name' => $name,
-				'class' => 'bucketSelector'
+				'class' => 'bucketSelector bucketSelectorForAssignedBanners',
+				'data-banner-name' => $bannerName
 			] );
 
 			foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
@@ -1227,7 +1273,9 @@ class CentralNotice extends SpecialPage {
 				if ( $value >= $numberCampaignBuckets ) {
 					$attribs['disabled'] = 'disabled';
 				}
-				$html .= Xml::option( $bucketLabel( $value ), $value, $value === $selected, $attribs );
+				$html .= Xml::option(
+					$bucketLabel( $value ), $value, $value === $selected, $attribs
+				);
 			}
 			$html .= Html::closeElement( 'select' );
 			return $html;
@@ -1272,9 +1320,12 @@ class CentralNotice extends SpecialPage {
 
 		// Banner search box
 		$htmlOut .= Html::openElement( 'fieldset', array( 'id' => 'cn-template-searchbox' ) );
-		$htmlOut .= Html::element( 'legend', null, $this->msg( 'centralnotice-filter-template-banner' )->text() );
+		$htmlOut .= Html::element(
+			'legend', null, $this->msg( 'centralnotice-filter-template-banner' )->text()
+		);
 
-		$htmlOut .= Html::element( 'label', array( 'for' => 'tplsearchkey' ), $this->msg( 'centralnotice-filter-template-prompt' )->text() );
+		$htmlOut .= Html::element( 'label', array( 'for' => 'tplsearchkey' ),
+			$this->msg( 'centralnotice-filter-template-prompt' )->text() );
 		$htmlOut .= Html::input( 'tplsearchkey', $searchTerms );
 		$htmlOut .= Html::element(
 			'input',

@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kandar"
+			"Kandar",
+			"Uchup19"
 		]
 	},
-	"centralnotice-desc": "Nambah émbaran puseur"
+	"centralnotice-desc": "Nambah émbaran puseur",
+	"centralnotice-add-notice-cancel-button": "Bolay",
+	"centralnotice-clone-cancel": "Bolay",
+	"centralnotice-archive-banner-cancel": "Bolay",
+	"centralnotice-archive-campaign-cancel": "Bolay",
+	"centralnotice-delete-banner-cancel": "Bolay"
 }

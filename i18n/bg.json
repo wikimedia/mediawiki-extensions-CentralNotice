@@ -175,5 +175,8 @@
 	"centralnotice-end-date": "Крайна дата (UTC)",
 	"centralnotice-end-time": "Краен час (UTC)",
 	"centralnotice-banner-not-found-title": "Банерът не е открит",
-	"centralnotice-banner-not-found-contents": "Не съществува банер с точно това име."
+	"centralnotice-banner-not-found-contents": "Не съществува банер с точно това име.",
+	"centralnotice-banner-sequence-bucket-add-step": "Добавяне на стъпка",
+	"centralnotice-banner-sequence-banner": "Банер",
+	"centralnotice-banner-sequence-page-views": "Прегледи на страницата"
 }

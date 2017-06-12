@@ -5,7 +5,14 @@
 			"Aursani"
 		]
 	},
+	"centralnotice-add-notice-cancel-button": "رد",
 	"centralnotice-english": "انگريزي",
 	"centralnotice-notice-mixins-int-required": "انگ گھربل آهي",
+	"centralnotice-clone-cancel": "رد",
+	"centralnotice-insert": "وجھو: $1",
+	"centralnotice-close-title": "بند ڪريو",
+	"centralnotice-archive-banner-cancel": "رد",
+	"centralnotice-archive-campaign-cancel": "رد",
+	"centralnotice-delete-banner-cancel": "رد",
 	"centralnotice-large-banner-limit-days": "تسلط جي ڊيگھہ"
 }

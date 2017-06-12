@@ -59,9 +59,13 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				'collapsed-rtl.png' :
 				'collapsed-ltr.png';
 
-			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$row->tmplog_id.'\')">'.
-				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/'.$collapsedImg.'" id="cn-collapsed-'.$row->tmplog_id.'" style="display:block;vertical-align:baseline;"/>'.
-				'<img src="'.$wgExtensionAssetsPath.'/CentralNotice/uncollapsed.png" id="cn-uncollapsed-'.$row->tmplog_id.'" style="display:none;vertical-align:baseline;"/>'.
+			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$row->tmplog_id.'\')">' .
+				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/' . $collapsedImg . '" ' .
+				'id="cn-collapsed-' . $row->tmplog_id . '" ' .
+				'style="display:block;vertical-align:baseline;"/>' .
+				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
+				'id="cn-uncollapsed-' . $row->tmplog_id . '" ' .
+				'style="display:none;vertical-align:baseline;"/>' .
 				'</a>';
 		}
 		$htmlOut .= Xml::closeElement( 'td' );
@@ -99,7 +103,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 		if ( $row->tmplog_action !== 'removed' ) {
 			// Begin log entry secondary row
-			$htmlOut .= Xml::openElement( 'tr', array( 'id' => 'cn-log-details-'.$row->tmplog_id, 'style' => 'display:none;' ) );
+			$htmlOut .= Xml::openElement( 'tr',
+				array( 'id' => 'cn-log-details-'.$row->tmplog_id, 'style' => 'display:none;' ) );
 
 			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
 				'&nbsp;' // force a table cell in older browsers
@@ -201,7 +206,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			$oldrow = $db->selectRow(
 				array( 'cn_template_log' => 'cn_template_log' ),
 				'*',
-				array( 'tmplog_template_id' => $newrow->tmplog_template_id, "tmplog_id < {$newrow->tmplog_id}" ),
+				array( 'tmplog_template_id' => $newrow->tmplog_template_id,
+					"tmplog_id < {$newrow->tmplog_id}" ),
 				__METHOD__,
 				array( 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => 1 )
 			);
@@ -234,14 +240,19 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 		if ( $oldval !== $newrow->$endField ) {
 			// Give grep a chance to find the usages:
-			// centralnotice-anon, centralnotice-account, centralnotice-fundraising, centralnotice-autolink
+			// centralnotice-anon, centralnotice-account, centralnotice-fundraising,
+			// centralnotice-autolink
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
-					( $oldval ? $this->msg( 'centralnotice-on' )->text() : $this->msg( 'centralnotice-off' )->text() ),
-					( $newrow->$endField ? $this->msg( 'centralnotice-on' )->text() : $this->msg( 'centralnotice-off' )->text() )
+					( $oldval
+						? $this->msg( 'centralnotice-on' )->text()
+						: $this->msg( 'centralnotice-off' )->text() ),
+					( $newrow->$endField
+						? $this->msg( 'centralnotice-on' )->text()
+						: $this->msg( 'centralnotice-off' )->text() )
 				)->text()
 			)->text() . "<br/>";
 		}

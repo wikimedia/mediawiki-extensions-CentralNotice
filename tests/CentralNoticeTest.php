@@ -76,7 +76,10 @@ class CentralNoticeTest extends PHPUnit_Framework_TestCase {
 		$displayAccount = true;
 		$fundraising = true;
 
-		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,"display_account":1,"fundraising":1,"device":"desktop","campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,"campaign_throttle":100,"bucket":0}]';
+		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,' .
+			'"display_account":1,"fundraising":1,"device":"desktop",' .
+			'"campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,' .
+			'"campaign_throttle":100,"bucket":0}]';
 
 		Banner::addTemplate( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
 			$fundraising );
