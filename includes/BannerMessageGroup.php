@@ -278,8 +278,8 @@ class BannerMessageGroup extends WikiMessageGroup {
 		);
 
 		$langs = [];
-		while ( $row = $result->fetchRow() ) {
-			$langs[] = $row['tgr_lang'];
+		foreach ( $result as $row ) {
+			$langs[] = $row->tgr_lang;
 		}
 		return $langs;
 	}

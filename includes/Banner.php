@@ -897,10 +897,10 @@ class Banner {
 			],
 			__METHOD__
 		);
-		while ( $row = $result->fetchRow() ) {
+		foreach ( $result as $row ) {
 			if (
 				preg_match(
-					"/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'],
+					"/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row->page_title,
 					$matches
 				)
 			) {
