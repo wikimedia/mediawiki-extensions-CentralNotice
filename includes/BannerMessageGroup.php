@@ -74,8 +74,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$msgDefKeyPrefix = "Centralnotice-{$this->bannerName}-";
 		if ( $this->namespace == NS_CN_BANNER ) {
 			$msgKeyPrefix = $this->bannerName . '-';
-		}
-		else {
+		} else {
 			$msgKeyPrefix = $msgDefKeyPrefix;
 		}
 
@@ -159,9 +158,8 @@ class BannerMessageGroup extends WikiMessageGroup {
 				BannerMessageGroup::updateBannerGroupStateHook(
 					$subgroup, $code, $currentState, $newState );
 			}
-		}
-		elseif ( ( $group instanceof BannerMessageGroup )
-				 && in_array( $newState, $wgNoticeTranslateDeployStates )
+		} elseif ( ( $group instanceof BannerMessageGroup )
+			&& in_array( $newState, $wgNoticeTranslateDeployStates )
 		) {
 			// Finally an object we can deal with directly and it's in the right state!
 			$collection = $group->initCollection( $code );
@@ -188,8 +186,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 					);
 				}
 			}
-		}
-		else {
+		} else {
 			// We do nothing; we don't care about this type of group; or it's in the wrong state
 		}
 

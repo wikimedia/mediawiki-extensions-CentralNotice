@@ -14,16 +14,22 @@ class CampaignLog {
 		$begin = array();
 		$end = array();
 		if ( $row ) {
+			$comma_explode = function( $str ) {
+				return explode( ", ", $str );
+			};
 
-			$comma_explode = function( $str ) { return explode( ", ", $str ); };
-			$json_decode = function( $json ) { return json_decode( $json, true ); };
+			$json_decode = function( $json ) {
+				return json_decode( $json, true );
+			};
 
 			$store = function( $name, $decode = null ) use ( $row, &$begin, &$end ) {
 				$beginField = 'notlog_begin_' . $name;
 				$endField = 'notlog_end_' . $name;
 
 				if ( !$decode ) {
-					$decode = function($v) { return $v; };
+					$decode = function( $v ) {
+						return $v;
+					};
 				}
 				$begin[ $name ] = $decode( $row->$beginField );
 				$end[ $name ] = $decode( $row->$endField );

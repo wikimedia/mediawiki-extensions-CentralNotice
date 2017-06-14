@@ -206,7 +206,7 @@ class Campaign {
 
 		// Get campaign info from database
 		$row = $db->selectRow(
-			array('notices' => 'cn_notices'),
+			array( 'notices' => 'cn_notices' ),
 			array(
 				 'not_id',
 				 'not_name',
@@ -376,7 +376,7 @@ class Campaign {
 
 		// Get campaign info from database
 		$row = $dbr->selectRow(
-			array('notices' => 'cn_notices'),
+			array( 'notices' => 'cn_notices' ),
 			array(
 				'not_id',
 				'not_start',
@@ -506,7 +506,7 @@ class Campaign {
 				$campaign['banners'] = FormatJson::decode( $campaign['banners'], true );
 				if ( !is_array( current( $campaign['banners'] ) ) ) {
 					// Old log format; only had weight
-					foreach( $campaign['banners'] as $key => &$value ) {
+					foreach ( $campaign['banners'] as $key => &$value ) {
 						$value = array(
 							'weight' => $value,
 							'bucket' => 0
@@ -522,7 +522,7 @@ class Campaign {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
 
 				if ( $historical_banner === null ) {
-					//FIXME: crazy hacks
+					// FIXME: crazy hacks
 					$historical_banner = Banner::getBannerSettings( $name );
 					$historical_banner['label'] = wfMessage( 'centralnotice-damaged-log', $name );
 					$historical_banner['display_anon'] = $historical_banner['anon'];
@@ -1424,4 +1424,5 @@ class Campaign {
 	}
 }
 
-class CampaignExistenceException extends Exception {}
+class CampaignExistenceException extends Exception {
+}

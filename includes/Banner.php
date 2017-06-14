@@ -57,7 +57,7 @@ class Banner {
 		'prioritylang' => null,
 	);
 
-	//<editor-fold desc="Properties">
+	// <editor-fold desc="Properties">
 	// !!! NOTE !!! It is not recommended to use directly. It is almost always more
 	//              correct to use the accessor/setter function.
 
@@ -93,9 +93,9 @@ class Banner {
 	protected $bodyContent = '';
 
 	protected $runTranslateJob = false;
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Constructors">
+	// <editor-fold desc="Constructors">
 	/**
 	 * Create a banner object from a known ID. Must already be
 	 * an object in the database. If a fully new banner is to be created
@@ -153,9 +153,9 @@ class Banner {
 
 		return $obj;
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Basic metadata getters/setters">
+	// <editor-fold desc="Basic metadata getters/setters">
 	/**
 	 * Get the unique ID for this banner.
 	 *
@@ -392,9 +392,9 @@ class Banner {
 			);
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Device targeting">
+	// <editor-fold desc="Device targeting">
 	/**
 	 * Get the devices that this banner should be allocated to.
 	 *
@@ -468,7 +468,7 @@ class Banner {
 			__METHOD__
 		);
 
-		foreach( $rowObj as $row ) {
+		foreach ( $rowObj as $row ) {
 			$this->devices[ intval( $row->dev_id ) ] = $row->dev_name;
 		}
 
@@ -502,9 +502,9 @@ class Banner {
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Mixin management">
+	// <editor-fold desc="Mixin management">
 	/**
 	 * @return array Keys are names of enabled mixins; valeus are mixin params.
 	 * @see $wgCentralNoticeBannerMixins
@@ -616,9 +616,9 @@ class Banner {
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Priority languages">
+	// <editor-fold desc="Priority languages">
 	/**
 	 * Returns language codes that are considered a priority for translations.
 	 *
@@ -692,9 +692,9 @@ class Banner {
 			);
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Banner body content">
+	// <editor-fold desc="Banner body content">
 	public function getDbKey() {
 		$name = $this->getName();
 		return "Centralnotice-template-{$name}";
@@ -799,9 +799,9 @@ class Banner {
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Banner message fields">
+	// <editor-fold desc="Banner message fields">
 	function getMessageField( $field_name ) {
 		return new BannerMessage( $this->getName(), $field_name );
 	}
@@ -914,10 +914,10 @@ class Banner {
 		}
 		return array_keys( $availableLangs );
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Banner actions">
-	//<editor-fold desc="Saving">
+	// <editor-fold desc="Banner actions">
+	// <editor-fold desc="Saving">
 	/**
 	 * Saves any changes made to the banner object into the database
 	 *
@@ -957,7 +957,9 @@ class Banner {
 			$db->endAtomic( __METHOD__ );
 
 			// Clear the dirty flags
-			foreach ( $this->dirtyFlags as $flag => &$value ) { $value = false; }
+			foreach ( $this->dirtyFlags as $flag => &$value ) {
+				$value = false;
+			}
 
 			if ( $this->runTranslateJob ) {
 				// Must be run after banner has finished saving due to some dependencies that
@@ -1007,7 +1009,7 @@ class Banner {
 		$this->saveMixinData( $db );
 		$this->savePriorityLanguageData();
 	}
-	//</editor-fold>
+	// </editor-fold>
 
 	/**
 	 * Archive a banner.
@@ -1115,9 +1117,9 @@ class Banner {
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc=" Random stuff that still needs to die a hideous horrible death">
+	// <editor-fold desc=" Random stuff that still needs to die a hideous horrible death">
 	/**
 	 * Add a revision tag for the banner
 	 * @param string $tag The name of the tag
@@ -1262,7 +1264,7 @@ class Banner {
 			'anon'             => (int)$banner->allocateToAnon(),
 			'account'          => (int)$banner->allocateToLoggedIn(),
 			// TODO: Death to this!
-			'fundraising'      => (int)($banner->getCategory() === 'fundraising'),
+			'fundraising'      => (int)( $banner->getCategory() === 'fundraising' ),
 			'category'         => $banner->getCategory(),
 			'controller_mixin' => implode( ",", array_keys( $banner->getMixins() ) ),
 			'devices'          => array_values( $banner->getDevices() ),
@@ -1322,7 +1324,6 @@ class Banner {
 
 		$banner['fundraising'] = (int) $row->fundraising;
 
-		//XXX
 		$banner['devices'] = array( "desktop" );
 		return $banner;
 	}
@@ -1418,7 +1419,7 @@ class Banner {
 
 		$dbw->insert( 'cn_template_log', $log );
 	}
-	//</editor-fold>
+	// </editor-fold>
 
 	/**
 	 * Validation function for banner names. Will return true iff the name fits
@@ -1460,6 +1461,11 @@ class Banner {
 	}
 }
 
-class BannerDataException extends Exception {}
-class BannerContentException extends BannerDataException {}
-class BannerExistenceException extends BannerDataException {}
+class BannerDataException extends Exception {
+}
+
+class BannerContentException extends BannerDataException {
+}
+
+class BannerExistenceException extends BannerDataException {
+}

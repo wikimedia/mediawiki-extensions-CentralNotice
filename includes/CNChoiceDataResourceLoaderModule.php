@@ -67,14 +67,14 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			array( 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ) );
 
 		if ( !$apiResult ) {
-			wfLogWarning( 'Couldn\'t get banner choice data via API.');
+			wfLogWarning( 'Couldn\'t get banner choice data via API.' );
 			return false;
 		}
 
 		$parsedApiResult = FormatJson::parse( $apiResult, FormatJson::FORCE_ASSOC );
 
 		if ( !$parsedApiResult->isGood() ) {
-			wfLogWarning( 'Couldn\'t parse banner choice data from API.');
+			wfLogWarning( 'Couldn\'t parse banner choice data from API.' );
 			return false;
 		}
 
