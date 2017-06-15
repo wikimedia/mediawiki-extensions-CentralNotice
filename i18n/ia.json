@@ -186,7 +186,6 @@
 	"centralnotice-buckets": "Aggruppamento de usatores",
 	"centralnotice-bucket": "Gruppamento",
 	"centralnotice-bucket-letter": "Gruppamento \"$1\"",
-	"centralnotice-banner-overflowing-bucket": "Le gruppamento \"$1\" ha troppo de bandieras assignate.",
 	"centralnotice-banner-empty-bucket": "Non tote le gruppamentos ha un bandiera assignate.",
 	"centralnotice-devicetype-desktop": "Computator de scriptorio",
 	"centralnotice-devicetype-ipad": "Tote le apparatos identificate como iPads ma non iPhones",
@@ -232,5 +231,6 @@
 	"centralnotice-banner-not-found-title": "Bandiera non trovate",
 	"centralnotice-banner-not-found-contents": "Non existe un bandiera con iste nomine exacte.",
 	"hidebanners": "Celar bandieras",
-	"centralnotice-specialhidebanners-p3p": "Alcun navigatores require un politica P3P compacte pro definir cookies in certe situationes, ma nulle politica compacte es disponibile in iste momento. Per favor vide le politica de confidentialitate del sito."
+	"centralnotice-specialhidebanners-p3p": "Alcun navigatores require un politica P3P compacte pro definir cookies in certe situationes, ma nulle politica compacte es disponibile in iste momento. Per favor vide le politica de confidentialitate del sito.",
+	"apihelp-query+centralnoticelogs-summary": "Obtener un registro de cambiamentos de configuration de campania."
 }
