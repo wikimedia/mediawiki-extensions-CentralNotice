@@ -49,7 +49,7 @@ class AllocationCalculator {
 	 */
 	public static function filterChoiceData( &$choiceData, $country, $status, $device ) {
 
-		$filteredChoiceData = array();
+		$filteredChoiceData = [];
 
 		foreach ( $choiceData as $campaign ) {
 
@@ -110,7 +110,7 @@ class AllocationCalculator {
 		// and higher integers represent higher priority. These values are
 		// defined by class constants in CentralNotice.
 
-		$campaignsByPriority = array();
+		$campaignsByPriority = [];
 		foreach ( $filteredChoiceData as &$campaign ) {
 			$priority = $campaign['preferred'];
 			$campaignsByPriority[$priority][] = &$campaign;
@@ -206,7 +206,7 @@ class AllocationCalculator {
 	 */
 	public static function makePossibleBanners( $campaign, $bucket, $status, $device ) {
 
-		$banners = array();
+		$banners = [];
 
 		foreach ( $campaign['banners'] as $banner ) {
 
@@ -294,7 +294,7 @@ class AllocationCalculator {
 
 		// Go through all campaings to make a flat list of banners from all of
 		// them, and calculate overall relative allocations.
-		$possibleBannersAllCampaigns = array();
+		$possibleBannersAllCampaigns = [];
 		foreach ( $campaigns as $campaign ) {
 
 			$possibleBanners = AllocationCalculator::makePossibleBanners(

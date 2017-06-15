@@ -10,9 +10,9 @@ class GeoTarget {
 	 * @return array
 	 */
 	static function getCountriesList( $code ) {
-		$countries = array();
+		$countries = [];
 
-		if ( is_callable( array( 'CountryNames', 'getNames' ) ) ) {
+		if ( is_callable( [ 'CountryNames', 'getNames' ] ) ) {
 			// Retrieve the list of countries in user's language (via CLDR)
 			$countries = CountryNames::getNames( $code );
 		}
@@ -20,7 +20,7 @@ class GeoTarget {
 		// If not via CLDR, we have our own list
 		if ( !$countries ) {
 			// Use this as fallback if CLDR extension is not enabled
-			$countries = array(
+			$countries = [
 				'AF'=> 'Afghanistan',
 				'AL'=> 'Albania',
 				'DZ'=> 'Algeria',
@@ -262,7 +262,7 @@ class GeoTarget {
 				'YE'=> 'Yemen',
 				'ZM'=> 'Zambia',
 				'ZW'=> 'Zimbabwe'
-			);
+			];
 		}
 
 		// And we need to add MaxMind specific countries: http://www.maxmind.com/en/iso3166

@@ -1,18 +1,18 @@
 <?php
 
 class CampaignLog {
-	private static $basic_fields = array(
+	private static $basic_fields = [
 		'start', 'end', 'enabled', 'preferred', 'locked', 'geo', 'buckets'
-	);
-	private static $list_fields = array( 'projects', 'languages', 'countries' );
-	private static $map_fields = array( 'banners' );
+	];
+	private static $list_fields = [ 'projects', 'languages', 'countries' ];
+	private static $map_fields = [ 'banners' ];
 
 	/**
 	 * @param stdClass|null $row
 	 */
 	function __construct( $row = null ) {
-		$begin = array();
-		$end = array();
+		$begin = [];
+		$end = [];
 		if ( $row ) {
 			$comma_explode = function( $str ) {
 				return explode( ", ", $str );
@@ -61,8 +61,8 @@ class CampaignLog {
 
 	# TODO: use in logpager
 	function changes() {
-		$removed = array();
-		$added = array();
+		$removed = [];
+		$added = [];
 
 		# XXX cannot use "this" in closures until php 5.4
 		$begin =& $this->begin;
@@ -81,11 +81,11 @@ class CampaignLog {
 		$diff_list = function( $name ) use ( &$removed, &$added, &$begin, &$end ) {
 			if ( $begin[ $name ] !== $end[ $name ] ) {
 				$removed[ $name ] = array_diff( $begin[ $name ], $end[ $name ] );
-				if ( !$removed[ $name ] || $removed[ $name ] === array( "" ) ) {
+				if ( !$removed[ $name ] || $removed[ $name ] === [ "" ] ) {
 					unset( $removed[ $name ] );
 				}
 				$added[ $name ] = array_diff( $end[ $name ], $begin[ $name ] );
-				if ( !$added[ $name ] || $added[ $name ] === array( "" ) ) {
+				if ( !$added[ $name ] || $added[ $name ] === [ "" ] ) {
 					unset( $added[ $name ] );
 				}
 			}
@@ -124,6 +124,6 @@ class CampaignLog {
 			$diff_map( $name );
 		}
 
-		return array( 'removed' => $removed, 'added' => $added );
+		return [ 'removed' => $removed, 'added' => $added ];
 	}
 }

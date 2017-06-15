@@ -37,7 +37,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return array
 	 */
 	public function getKeys() {
-		$keys = array();
+		$keys = [];
 
 		$banner = Banner::fromName( $this->bannerName );
 		$fields = $banner->getMessageFieldsFromCache();
@@ -63,7 +63,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return array Array of message keys with definitions.
 	 */
 	public function getDefinitions() {
-		$definitions = array();
+		$definitions = [];
 
 		$banner = Banner::fromName( $this->bannerName );
 		$fields = $banner->getMessageFieldsFromCache();
@@ -194,19 +194,19 @@ class BannerMessageGroup extends WikiMessageGroup {
 	}
 
 	public function getMessageGroupStates() {
-		$conf = array(
-			'progress' => array( 'color' => 'E00' ),
-			'proofreading' => array( 'color' => 'FFBF00' ),
-			'ready' => array( 'color' => 'FF0' ),
-			'published' => array( 'color' => 'AEA', 'right' => 'centralnotice-admin' ),
-			'state conditions' => array(
-				array( 'ready', array( 'PROOFREAD' => 'MAX' ) ),
-				array( 'proofreading', array( 'TRANSLATED' => 'MAX' ) ),
-				array( 'progress', array( 'UNTRANSLATED' => 'NONZERO' ) ),
-				array( 'unset', array( 'UNTRANSLATED' => 'MAX', 'OUTDATED' => 'ZERO',
-					'TRANSLATED' => 'ZERO' ) ),
-			),
-		);
+		$conf = [
+			'progress' => [ 'color' => 'E00' ],
+			'proofreading' => [ 'color' => 'FFBF00' ],
+			'ready' => [ 'color' => 'FF0' ],
+			'published' => [ 'color' => 'AEA', 'right' => 'centralnotice-admin' ],
+			'state conditions' => [
+				[ 'ready', [ 'PROOFREAD' => 'MAX' ] ],
+				[ 'proofreading', [ 'TRANSLATED' => 'MAX' ] ],
+				[ 'progress', [ 'UNTRANSLATED' => 'NONZERO' ] ],
+				[ 'unset', [ 'UNTRANSLATED' => 'MAX', 'OUTDATED' => 'ZERO',
+					'TRANSLATED' => 'ZERO' ] ],
+			],
+		];
 
 		return new MessageGroupStates( $conf );
 	}
@@ -224,22 +224,22 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$dbr = CNDatabase::getDb( DB_MASTER );
 
 		// Create the base aggregate group
-		$conf = array();
-		$conf['BASIC'] = array(
+		$conf = [];
+		$conf['BASIC'] = [
 			'id' => BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
 			'label' => 'CentralNotice Banners',
 			'description' => '{{int:centralnotice-aggregate-group-desc}}',
 			'meta' => 1,
 			'class' => 'AggregateMessageGroup',
 			'namespace' => NS_CN_BANNER,
-		);
-		$conf['GROUPS'] = array();
+		];
+		$conf['GROUPS'] = [];
 
 		// Find all the banners marked for translation
-		$tables = array( 'page', 'revtag' );
-		$vars   = array( 'page_id', 'page_namespace', 'page_title', );
-		$conds  = array( 'page_id=rt_page', 'rt_type' => RevTag::getType( 'banner:translate' ) );
-		$options = array( 'GROUP BY' => 'rt_page' );
+		$tables = [ 'page', 'revtag' ];
+		$vars   = [ 'page_id', 'page_namespace', 'page_title', ];
+		$conds  = [ 'page_id=rt_page', 'rt_type' => RevTag::getType( 'banner:translate' ) ];
+		$options = [ 'GROUP BY' => 'rt_page' ];
 		$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
 
 		foreach ( $res as $r ) {
@@ -270,14 +270,14 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$result = $db->select(
 			'translate_groupreviews',
 			'tgr_lang',
-			array(
+			[
 				 'tgr_group' => $groupName,
 				 'tgr_state' => $state,
-			),
+			],
 			__METHOD__
 		);
 
-		$langs = array();
+		$langs = [];
 		while ( $row = $result->fetchRow() ) {
 			$langs[] = $row['tgr_lang'];
 		}

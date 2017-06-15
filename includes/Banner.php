@@ -48,14 +48,14 @@ class Banner {
 	 *
 	 * @var null|bool[]
 	 */
-	protected $dirtyFlags = array(
+	protected $dirtyFlags = [
 		'content' => null,
 		'messages' => null,
 		'basic' => null,
 		'devices' => null,
 		'mixins' => null,
 		'prioritylang' => null,
-	);
+	];
 
 	// <editor-fold desc="Properties">
 	// !!! NOTE !!! It is not recommended to use directly. It is almost always more
@@ -81,13 +81,13 @@ class Banner {
 
 	/** @var string[] Devices this banner should be allocated to in the form
 	 * {Device ID => Device header name} */
-	protected $devices = array();
+	protected $devices = [];
 
 	/** @var string[] Names of enabled mixins  */
-	protected $mixins = array();
+	protected $mixins = [];
 
 	/** @var string[] Language codes considered a priority for translation.  */
-	protected $priorityLanguages = array();
+	protected $priorityLanguages = [];
 
 	/** @var string Wikitext content of the banner */
 	protected $bodyContent = '';
@@ -262,10 +262,10 @@ class Banner {
 			'tmp_category',
 			'',
 			__METHOD__,
-			array( 'DISTINCT', 'ORDER BY tmp_category ASC' )
+			[ 'DISTINCT', 'ORDER BY tmp_category ASC' ]
 		);
 
-		$categories = array();
+		$categories = [];
 		foreach ( $res as $row ) {
 			$categories[$row->tmp_category] = $row->tmp_category;
 		}
@@ -309,24 +309,24 @@ class Banner {
 
 		// What are we using to select on?
 		if ( $this->name !== null ) {
-			$selector = array( 'tmp_name' => $this->name );
+			$selector = [ 'tmp_name' => $this->name ];
 		} elseif ( $this->id !== null ) {
-			$selector = array( 'tmp_id' => $this->id );
+			$selector = [ 'tmp_id' => $this->id ];
 		} else {
 			throw new BannerDataException( 'Cannot retrieve banner data without name or ID.' );
 		}
 
 		// Query!
 		$rowRes = $db->select(
-			array( 'templates' => 'cn_templates' ),
-			array(
+			[ 'templates' => 'cn_templates' ],
+			[
 				 'tmp_id',
 				 'tmp_name',
 				 'tmp_display_anon',
 				 'tmp_display_account',
 				 'tmp_archived',
 				 'tmp_category'
-			),
+			],
 			$selector,
 			__METHOD__
 		);
@@ -341,7 +341,7 @@ class Banner {
 			$this->archived = (bool)$row->tmp_archived;
 			$this->category = $row->tmp_category;
 		} else {
-			$keystr = array();
+			$keystr = [];
 			foreach ( $selector as $key => $value ) {
 				$keystr[] = "{$key} = {$value}";
 			}
@@ -368,7 +368,7 @@ class Banner {
 	 * @param IDatabase $db
 	 */
 	protected function initializeDbBasicData( IDatabase $db ) {
-		$db->insert( 'cn_templates', array( 'tmp_name' => $this->name ), __METHOD__ );
+		$db->insert( 'cn_templates', [ 'tmp_name' => $this->name ], __METHOD__ );
 		$this->id = $db->insertId();
 	}
 
@@ -379,15 +379,15 @@ class Banner {
 	protected function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
 			$db->update( 'cn_templates',
-				array(
+				[
 					 'tmp_display_anon'    => (int)$this->allocateAnon,
 					 'tmp_display_account' => (int)$this->allocateLoggedIn,
 					 'tmp_archived'        => (int)$this->archived,
 					 'tmp_category'        => $this->category,
-				),
-				array(
+				],
+				[
 					 'tmp_id'              => $this->id
-				),
+				],
 				__METHOD__
 			);
 		}
@@ -425,7 +425,7 @@ class Banner {
 		sort( $devices );
 
 		if ( $devices != $this->devices ) {
-			$this->devices = array();
+			$this->devices = [];
 
 			foreach ( $devices as $device ) {
 				if ( !$device ) {
@@ -456,15 +456,15 @@ class Banner {
 		$db = CNDatabase::getDb();
 
 		$rowObj = $db->select(
-			array(
+			[
 				 'tdev' => 'cn_template_devices',
 				 'devices' => 'cn_known_devices'
-			),
-			array( 'devices.dev_id', 'dev_name' ),
-			array(
+			],
+			[ 'devices.dev_id', 'dev_name' ],
+			[
 				 'tdev.tmp_id' => $this->getId(),
 				 'tdev.dev_id = devices.dev_id'
-			),
+			],
 			__METHOD__
 		);
 
@@ -490,13 +490,13 @@ class Banner {
 	protected function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
-			$db->delete( 'cn_template_devices', array( 'tmp_id' => $this->getId() ), __METHOD__ );
+			$db->delete( 'cn_template_devices', [ 'tmp_id' => $this->getId() ], __METHOD__ );
 
 			// Add the new device mappings
 			if ( $this->devices ) {
-				$modifyArray = array();
+				$modifyArray = [];
 				foreach ( $this->devices as $deviceId => $deviceName ) {
-					$modifyArray[] = array( 'tmp_id' => $this->getId(), 'dev_id' => $deviceId );
+					$modifyArray[] = [ 'tmp_id' => $this->getId(), 'dev_id' => $deviceId ];
 				}
 				$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
 			}
@@ -535,7 +535,7 @@ class Banner {
 			$this->markMixinDataDirty();
 		}
 
-		$this->mixins = array();
+		$this->mixins = [];
 		foreach ( $mixins as $mixin ) {
 			if ( !array_key_exists( $mixin, $wgCentralNoticeBannerMixins ) ) {
 				throw new RangeException( "Mixin does not exist: {$mixin}" );
@@ -559,13 +559,13 @@ class Banner {
 		$dbr = CNDatabase::getDb();
 
 		$result = $dbr->select( 'cn_template_mixins', 'mixin_name',
-			array(
+			[
 				 "tmp_id" => $this->getId(),
-			),
+			],
 			__METHOD__
 		);
 
-		$this->mixins = array();
+		$this->mixins = [];
 		foreach ( $result as $row ) {
 			if ( !array_key_exists( $row->mixin_name, $wgCentralNoticeBannerMixins ) ) {
 				// We only want to warn here otherwise we'd never be able to
@@ -596,7 +596,7 @@ class Banner {
 	protected function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
 			$db->delete( 'cn_template_mixins',
-				array( 'tmp_id' => $this->getId() ),
+				[ 'tmp_id' => $this->getId() ],
 				__METHOD__
 			);
 
@@ -606,11 +606,11 @@ class Banner {
 					continue;
 				}
 				$db->insert( 'cn_template_mixins',
-					array(
+					[
 						 'tmp_id' => $this->getId(),
 						 'page_id' => 0,	// TODO: What were we going to use this for again?
 						 'mixin_name' => $name,
-					),
+					],
 					__METHOD__
 				);
 			}
@@ -852,7 +852,7 @@ class Banner {
 		$expanded .= $renderer->getPreloadJsRaw();
 
 		// Extract message fields from the banner body
-		$fields = array();
+		$fields = [];
 		$allowedChars = Title::legalChars();
 		// We're using a janky custom syntax to pass arguments to a field message:
 		// "{{{fieldname:arg1|arg2}}}"
@@ -882,7 +882,7 @@ class Banner {
 	 */
 	function getAvailableLanguages( $inTranslation = false ) {
 		global $wgLanguageCode;
-		$availableLangs = array();
+		$availableLangs = [];
 
 		// Bit of an ugly hack to get just the banner prefix
 		$prefix = $this->getMessageField( '' )
@@ -891,10 +891,10 @@ class Banner {
 		$db = CNDatabase::getDb();
 		$result = $db->select( 'page',
 			'page_title',
-			array(
+			[
 				 'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
 				 'page_title' . $db->buildLike( $prefix, $db->anyString() ),
-			),
+			],
 			__METHOD__
 		);
 		while ( $row = $result->fetchRow() ) {
@@ -1079,7 +1079,7 @@ class Banner {
 		$bannerObj = Banner::fromName( $name );
 		$id = $bannerObj->getId();
 		$dbr = CNDatabase::getDb();
-		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
+		$res = $dbr->select( 'cn_assignments', 'asn_id', [ 'tmp_id' => $id ], __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
 			throw new LogicException( 'Cannot remove a template still bound to a campaign!' );
@@ -1091,7 +1091,7 @@ class Banner {
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
 			$dbw->delete( 'cn_templates',
-				array( 'tmp_id' => $id ),
+				[ 'tmp_id' => $id ],
 				__METHOD__
 			);
 
@@ -1138,11 +1138,11 @@ class Banner {
 		// There should only ever be one tag applied to a banner object
 		Banner::removeTag( $tag, $pageId );
 
-		$conds = array(
+		$conds = [
 			'rt_page' => $pageId,
 			'rt_type' => RevTag::getType( $tag ),
 			'rt_revision' => $revisionId
-		);
+		];
 
 		if ( $bannerId !== null ) {
 			$conds['rt_value'] = $bannerId;
@@ -1160,10 +1160,10 @@ class Banner {
 	protected static function removeTag( $tag, $pageId ) {
 		$dbw = CNDatabase::getDb();
 
-		$conds = array(
+		$conds = [
 			'rt_page' => $pageId,
 			'rt_type' => RevTag::getType( $tag )
-		);
+		];
 		$dbw->delete( 'revtag', $conds, __METHOD__ );
 	}
 
@@ -1177,19 +1177,19 @@ class Banner {
 	static function getCampaignBanners( $campaigns ) {
 		$dbr = CNDatabase::getDb();
 
-		$banners = array();
+		$banners = [];
 
 		if ( $campaigns ) {
 			$res = $dbr->select(
 				// Aliases (keys) are needed to avoid problems with table prefixes
-				array(
+				[
 					'notices' => 'cn_notices',
 					'templates' => 'cn_templates',
 					'known_devices' => 'cn_known_devices',
 					'template_devices' => 'cn_template_devices',
 					'assignments' => 'cn_assignments',
-				),
-				array(
+				],
+				[
 					'tmp_name',
 					'tmp_weight',
 					'tmp_display_anon',
@@ -1201,24 +1201,24 @@ class Banner {
 					'not_buckets',
 					'not_throttle',
 					'dev_name',
-				),
-				array(
+				],
+				[
 					'notices.not_id' => $campaigns,
 					'notices.not_id = assignments.not_id',
 					'known_devices.dev_id = template_devices.dev_id',
 					'assignments.tmp_id = templates.tmp_id'
-				),
+				],
 				__METHOD__,
-				array(),
-				array(
-					 'template_devices' => array(
+				[],
+				[
+					 'template_devices' => [
 						 'LEFT JOIN', 'template_devices.tmp_id = assignments.tmp_id'
-					 )
-				)
+					 ]
+				]
 			);
 
 			foreach ( $res as $row ) {
-				$banners[ ] = array(
+				$banners[ ] = [
 					// name of the banner
 					'name'             => $row->tmp_name,
 					// weight assigned to the banner
@@ -1239,7 +1239,7 @@ class Banner {
 					'campaign_throttle' => intval( $row->not_throttle ),
 					'bucket'           => ( intval( $row->not_buckets ) == 1 )
 						? 0 : intval( $row->asn_bucket ),
-				);
+				];
 			}
 		}
 		return $banners;
@@ -1260,7 +1260,7 @@ class Banner {
 			throw new RangeException( "Banner doesn't exist!" );
 		}
 
-		$details = array(
+		$details = [
 			'anon'             => (int)$banner->allocateToAnon(),
 			'account'          => (int)$banner->allocateToLoggedIn(),
 			// TODO: Death to this!
@@ -1268,7 +1268,7 @@ class Banner {
 			'category'         => $banner->getCategory(),
 			'controller_mixin' => implode( ",", array_keys( $banner->getMixins() ) ),
 			'devices'          => array_values( $banner->getDevices() ),
-		);
+		];
 
 		if ( $detailed ) {
 			$details['prioritylangs'] = $banner->getPriorityLanguages();
@@ -1293,13 +1293,13 @@ class Banner {
 
 		$newestLog = $dbr->selectRow(
 			"cn_template_log",
-			array(
+			[
 				"log_id" => "MAX(tmplog_id)",
-			),
-			array(
+			],
+			[
 				"tmplog_timestamp <= $ts",
 				"tmplog_template_id = $id",
-			),
+			],
 			__METHOD__
 		);
 
@@ -1309,14 +1309,14 @@ class Banner {
 
 		$row = $dbr->selectRow(
 			"cn_template_log",
-			array(
+			[
 				"display_anon" => "tmplog_end_anon",
 				"display_account" => "tmplog_end_account",
 				"fundraising" => "tmplog_end_fundraising",
-			),
-			array(
+			],
+			[
 				"tmplog_id = {$newestLog->log_id}",
-			),
+			],
 			__METHOD__
 		);
 		$banner['display_anon'] = (int) $row->display_anon;
@@ -1324,7 +1324,7 @@ class Banner {
 
 		$banner['fundraising'] = (int) $row->fundraising;
 
-		$banner['devices'] = array( "desktop" );
+		$banner['devices'] = [ "desktop" ];
 		return $banner;
 	}
 
@@ -1346,13 +1346,13 @@ class Banner {
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon,
 		$displayAccount, $fundraising = false,
-		$mixins = array(), $priorityLangs = array(), $devices = null,
+		$mixins = [], $priorityLangs = [], $devices = null,
 		$summary = null
 	) {
 
 		// Default initial value for devices
 		if ( $devices === null ) {
-			$devices = array( 'desktop' );
+			$devices = [ 'desktop' ];
 		}
 
 		if ( $name == '' || !Banner::isValidBannerName( $name ) || $body == '' ) {
@@ -1392,14 +1392,14 @@ class Banner {
 			$summary = '';
 		}
 
-		$endSettings = array();
+		$endSettings = [];
 		if ( $action !== 'removed' ) {
 			$endSettings = Banner::getBannerSettings( $this->getName(), true );
 		}
 
 		$dbw = CNDatabase::getDb();
 
-		$log = array(
+		$log = [
 			'tmplog_timestamp'     => $dbw->timestamp(),
 			'tmplog_user_id'       => $user->getId(),
 			'tmplog_action'        => $action,
@@ -1407,7 +1407,7 @@ class Banner {
 			'tmplog_template_name' => $this->getName(),
 			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
 			'tmplog_comment'       => $summary,
-		);
+		];
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {
@@ -1444,9 +1444,9 @@ class Banner {
 	public function exists() {
 		$db = CNDatabase::getDb();
 		if ( $this->name !== null ) {
-			$selector = array( 'tmp_name' => $this->name );
+			$selector = [ 'tmp_name' => $this->name ];
 		} elseif ( $this->id !== null ) {
-			$selector = array( 'tmp_id' => $this->id );
+			$selector = [ 'tmp_id' => $this->id ];
 		} else {
 			throw new BannerDataException(
 				'Cannot determine banner existence without name or ID.'
