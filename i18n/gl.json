@@ -238,6 +238,7 @@
 	"hidebanners": "Agochar banners",
 	"centralnotice-specialhidebanners-p3p": "Algúns navegadores requiren unha política P3P compacta para fixar as cookies en certas situacións. Pero actualmente non está dispoñible unha política compacta. Por favor, consulte a política de privacidade lexible do sitio.",
 	"apihelp-centralnoticeallocations-description": "Obter as localizacións dos anuncios servidos polo CentralNotice para todos os tipos de usuarios baixo o filtro parametrizado.\n\nIsto é unha chamada JSON únicamente.",
+	"apihelp-centralnoticeallocations-extended-description": "Esta chamada é só para JSON.",
 	"apihelp-centralnoticeallocations-param-project": "Proxecto para o que obter as asignacións.",
 	"apihelp-centralnoticeallocations-param-country": "O país a filtrar.",
 	"apihelp-centralnoticeallocations-param-language": "A lingua a filtar.",
@@ -301,10 +302,12 @@
 	"centralnotice-banner-sequence-days": "Duración da supresión (días)",
 	"centralnotice-banner-sequence-days-error": "Debe ser un enteiro maior que cero.",
 	"centralnotice-banner-sequence-days-help": "Número de días que as bandeiras postas vía \"Saltar con identifier\" campos (abaixo) ficará en efecto, seguindo a exhibición inicial de todas as vistas de páxina no paso.",
+	"centralnotice-banner-sequence-bucket-seq": "Secuencia do paquete $1 ($2 {{PLURAL:$2|visita á páxina|visitas á páxina}})",
 	"centralnotice-banner-sequence-bucket-add-step": "Engadir un paso",
 	"centralnotice-banner-sequence-banner": "Anuncio",
 	"centralnotice-banner-sequence-page-views": "Número de páxinas vistas",
 	"centralnotice-banner-sequence-skip-with-id": "Saltar con identificador",
+	"centralnotice-banner-sequence-page-views-error": "A etapa debe ter polo menos unha visita de páxina.",
 	"centralnotice-banner-sequence-skip-with-id-error": "O identificador non pode conter \"|\".",
 	"centralnotice-banner-sequence-no-banner": "(Sen anuncio)"
 }
