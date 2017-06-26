@@ -130,7 +130,7 @@
 	"centralnotice-allocation-description": "Banner allocation for language: $1, project: $2, in country: $3, on device $4",
 	"centralnotice-historical-allocation-description": "Banner allocation for language: $1, project: $2, in country: $3, on device $4, at time $5",
 	"centralnotice-percentage": "Percentage",
-	"centralnotice-documentwrite-error": "document.write() cannot be used within a banner.\nSee http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
+	"centralnotice-documentwrite-error": "document.write() cannot be used within a banner.\nSee https://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	"centralnotice-preferred": "Priority",
 	"centralnotice-archived": "Archived",
 	"centralnotice-logs": "Logs",
