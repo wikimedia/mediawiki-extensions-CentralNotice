@@ -127,7 +127,7 @@
 	"centralnotice-no-allocation": "Өлгеләр куелмаган",
 	"centralnotice-allocation-description": "$4 җиһазында $1 теле, $2 проекты, $3 иле өчен өлге өстәү",
 	"centralnotice-percentage": "Процент",
-	"centralnotice-documentwrite-error": "document.write() өлгедә кулланырга ярамый.\nТулырак мәгълүмат: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].",
+	"centralnotice-documentwrite-error": "document.write() өлгедә кулланырга ярамый.\nТулырак мәгълүмат: [https://meta.wikimedia.org/wiki/Help:CentralNotice https://meta.wikimedia.org/wiki/Help:CentralNotice].",
 	"centralnotice-preferred": "Өстенлек",
 	"centralnotice-archived": "Архивланган",
 	"centralnotice-logs": "Көндәлекләр",

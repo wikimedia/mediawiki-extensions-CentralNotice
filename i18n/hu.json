@@ -128,7 +128,7 @@
 	"centralnotice-allocation-description": "A(z) nyelv: $1, projekt: $2 számára kiosztott hirdetések a következő országban: $3, a következő eszközön: $4",
 	"centralnotice-historical-allocation-description": "A(z) nyelv: $1, projekt: $2 számára kiosztott hirdetések a következő országban: $3, a következő eszközön: $4, ekkor: $5",
 	"centralnotice-percentage": "Százalék",
-	"centralnotice-documentwrite-error": "A document.write() nem használható hirdetéseken belül.\nTovábbi információkat a http://meta.wikimedia.org/wiki/Help:CentralNotice lapon olvashatsz.",
+	"centralnotice-documentwrite-error": "A document.write() nem használható hirdetéseken belül.\nTovábbi információkat a https://meta.wikimedia.org/wiki/Help:CentralNotice lapon olvashatsz.",
 	"centralnotice-preferred": "Prioritás",
 	"centralnotice-logs": "Rendszernaplók",
 	"centralnotice-view-logs": "Rendszernapló megtekintése",

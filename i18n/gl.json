@@ -134,7 +134,7 @@
 	"centralnotice-allocation-description": "Asignación do modelo para a lingua: $1; proxecto: $2; no país: $3; nos dispositivos $4",
 	"centralnotice-historical-allocation-description": "Asignación do modelo para a lingua: $1; proxecto: $2; no país: $3; nos dispositivos $4; ás $5",
 	"centralnotice-percentage": "Porcentaxe",
-	"centralnotice-documentwrite-error": "document.write() non se pode empregar nos carteis.\nOlle http://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis información.",
+	"centralnotice-documentwrite-error": "document.write() non se pode empregar nos carteis.\nOlle https://meta.wikimedia.org/wiki/Help:CentralNotice para obter máis información.",
 	"centralnotice-preferred": "Prioridade",
 	"centralnotice-archived": "Arquivado",
 	"centralnotice-logs": "Rexistros",

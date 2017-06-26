@@ -126,7 +126,7 @@
 	"centralnotice-no-allocation": "എഴുത്തുപട്ടകൾക്ക് ഇടയനുവദിച്ചിട്ടില്ല.",
 	"centralnotice-allocation-description": "$1.$2 സംരംഭത്തിൽ അനുവദിച്ചിരിക്കുന്ന എഴുത്തുപട്ട (രാജ്യം: $3):",
 	"centralnotice-percentage": "ശതമാനം",
-	"centralnotice-documentwrite-error": "എഴുത്തുപട്ടയിൽ document.write() ഉപയോഗിക്കാനാവില്ല.\nകൂടുതൽ വിവരങ്ങൾക്ക് http://meta.wikimedia.org/wiki/Help:CentralNotice കാണുക",
+	"centralnotice-documentwrite-error": "എഴുത്തുപട്ടയിൽ document.write() ഉപയോഗിക്കാനാവില്ല.\nകൂടുതൽ വിവരങ്ങൾക്ക് https://meta.wikimedia.org/wiki/Help:CentralNotice കാണുക",
 	"centralnotice-preferred": "പ്രാധാന്യം",
 	"centralnotice-logs": "പ്രവർത്തനരേഖകൾ",
 	"centralnotice-view-logs": "പ്രവർത്തനരേഖകൾ കാണുക",

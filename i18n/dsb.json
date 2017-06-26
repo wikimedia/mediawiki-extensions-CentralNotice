@@ -111,7 +111,7 @@
 	"centralnotice-no-allocation": "Žedne banarje zrědowane.",
 	"centralnotice-allocation-description": "Zrědowanje banarja za rěc: $1, projekt: $2, w kraju: $3, na rěźe $4",
 	"centralnotice-percentage": "Procentowa sajźba",
-	"centralnotice-documentwrite-error": "document.write() njedajo se w banarju wužywaś.\nGlědaj http://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.",
+	"centralnotice-documentwrite-error": "document.write() njedajo se w banarju wužywaś.\nGlědaj https://meta.wikimedia.org/wiki/Help:CentralNotice za dalšne informacije.",
 	"centralnotice-preferred": "Priorita",
 	"centralnotice-logs": "Protokole",
 	"centralnotice-view-logs": "Protokole se woglědaś",

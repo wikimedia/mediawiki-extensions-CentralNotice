@@ -124,7 +124,7 @@
 	"centralnotice-no-allocation": "Ñiqinchasqa unanchakunaqa manam kanchu.",
 	"centralnotice-allocation-description": "Unancha ñiqinchay kay rimaypaq: $1, kay ruraykamay: $2, kay mama llaqtapi: $3, kay antapi: $4",
 	"centralnotice-percentage": "Pachakmanta",
-	"centralnotice-documentwrite-error": "document.write() nisqaqa unanchapi manam llamk'anchu.\nhttp://meta.wikimedia.org/wiki/Help:CentralNotice nisqapi qhaway willasunaykipaq.",
+	"centralnotice-documentwrite-error": "document.write() nisqaqa unanchapi manam llamk'anchu.\nhttps://meta.wikimedia.org/wiki/Help:CentralNotice nisqapi qhaway willasunaykipaq.",
 	"centralnotice-preferred": "Astawan munakusqa",
 	"centralnotice-logs": "Hallch'asqakuna",
 	"centralnotice-view-logs": "Hallch'asqakunata qhaway",

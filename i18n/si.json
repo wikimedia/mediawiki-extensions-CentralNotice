@@ -113,7 +113,7 @@
 	"centralnotice-no-allocation": "බැනර වෙන්කර නැත",
 	"centralnotice-allocation-description": "$3 හි $1.$2 සඳහා බෙැනර වෙන්කිරීම",
 	"centralnotice-percentage": "ප්‍රතිශත",
-	"centralnotice-documentwrite-error": "බැනරය තුළ document.write() යොදාගත නොහැකිය.\nවැඩි විස්තර සඳහා http://meta.wikimedia.org/wiki/Help:CentralNotice බලන්න.",
+	"centralnotice-documentwrite-error": "බැනරය තුළ document.write() යොදාගත නොහැකිය.\nවැඩි විස්තර සඳහා https://meta.wikimedia.org/wiki/Help:CentralNotice බලන්න.",
 	"centralnotice-preferred": "ප්‍රමුඛත්වය",
 	"centralnotice-logs": "සටහන්",
 	"centralnotice-view-logs": "සටහන් බලන්",

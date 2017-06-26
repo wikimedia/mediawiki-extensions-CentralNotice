@@ -142,7 +142,7 @@
 	"centralnotice-allocation-description": "Destinazione dei banner per lingua: $1, progetto: $2, paese: $3, dispositivo: $4",
 	"centralnotice-historical-allocation-description": "Destinazione dei banner per lingua: $1, progetto: $2, paese: $3, dispositivo: $4, alle $5",
 	"centralnotice-percentage": "Percentuale",
-	"centralnotice-documentwrite-error": "Non è possibile usare document.write() dentro un banner.\nVedi http://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.",
+	"centralnotice-documentwrite-error": "Non è possibile usare document.write() dentro un banner.\nVedi https://meta.wikimedia.org/wiki/Help:CentralNotice per maggiori informazioni.",
 	"centralnotice-preferred": "Priorità",
 	"centralnotice-archived": "Archiviato",
 	"centralnotice-logs": "Registri",

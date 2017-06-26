@@ -124,7 +124,7 @@
 	"centralnotice-allocation-description": "Banderang alokasyon para sa lengguwahe: $1, proyekto: $2, sa nasyon: $3, sa aparato $4",
 	"centralnotice-historical-allocation-description": "Banderang alokasyon para sa lengguwahe: $1, proyekto: $2, sa nasyon: $3, sa aparato $4, sa oras na $5",
 	"centralnotice-percentage": "Porsiyentahe",
-	"centralnotice-documentwrite-error": "An document.write()dae makakagamit sa laog kan sarong bandera.\nHilngon an http://meta.wikimedia.org/wiki/Help:CentralNotice para sa kadagdagang impormasyon.",
+	"centralnotice-documentwrite-error": "An document.write()dae makakagamit sa laog kan sarong bandera.\nHilngon an https://meta.wikimedia.org/wiki/Help:CentralNotice para sa kadagdagang impormasyon.",
 	"centralnotice-preferred": "Prayoridad",
 	"centralnotice-logs": "Mga katalaanan",
 	"centralnotice-view-logs": "Tanawon an mga katalaanan",

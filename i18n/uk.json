@@ -152,7 +152,7 @@
 	"centralnotice-allocation-description": "Розміщення банеру для мови: $1, проекту: $2, у країні $3, на пристрої $4",
 	"centralnotice-historical-allocation-description": "Розподіл банерів для мови: $1, проекту: $2, країни: $3, пристрою $4, у період $5",
 	"centralnotice-percentage": "Відсоток",
-	"centralnotice-documentwrite-error": "document.write() не може бути використано в банері.\nДивіться http://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.",
+	"centralnotice-documentwrite-error": "document.write() не може бути використано в банері.\nДивіться https://meta.wikimedia.org/wiki/Help:CentralNotice для отримання додаткової інформації.",
 	"centralnotice-preferred": "Пріоритет",
 	"centralnotice-archived": "Заархівовано",
 	"centralnotice-logs": "Журнали",

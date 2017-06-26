@@ -141,7 +141,7 @@
 	"centralnotice-allocation-description": "Vorlagenanordnung für Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät $4",
 	"centralnotice-historical-allocation-description": "Vorlagenanordnung für die Sprache: $1, Projekt: $2, in Staat: $3, auf Gerät: $4, um: $5",
 	"centralnotice-percentage": "Prozentsatz",
-	"centralnotice-documentwrite-error": "document.write() kann nicht innerhalb einer Vorlage verwendet werden.\nMehr Informationen unter http://meta.wikimedia.org/wiki/Help:CentralNotice.",
+	"centralnotice-documentwrite-error": "document.write() kann nicht innerhalb einer Vorlage verwendet werden.\nMehr Informationen unter https://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Priorität",
 	"centralnotice-archived": "Archiviert",
 	"centralnotice-logs": "Logbücher",

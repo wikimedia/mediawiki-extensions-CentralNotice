@@ -110,7 +110,7 @@
 	"centralnotice-no-allocation": "Kei Banner aagordnet.",
 	"centralnotice-allocation-description": "Banneraaornig fir $1.$2 in $3:",
 	"centralnotice-percentage": "Prozäntsatz",
-	"centralnotice-documentwrite-error": "document.write() cha nit in eme Banner brucht wäre.\nLueg http://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.",
+	"centralnotice-documentwrite-error": "document.write() cha nit in eme Banner brucht wäre.\nLueg https://meta.wikimedia.org/wiki/Help:CentralNotice fir meh Informatione.",
 	"centralnotice-preferred": "Prioritet",
 	"centralnotice-logs": "Logbiecher",
 	"centralnotice-view-logs": "Logbiecher aaluege",

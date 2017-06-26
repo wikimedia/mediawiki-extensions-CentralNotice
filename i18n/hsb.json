@@ -126,7 +126,7 @@
 	"centralnotice-allocation-description": "Rozrjadowanje chorhoje za rěč: $1, projekt: $2, w kraju: $3, na graće $4",
 	"centralnotice-historical-allocation-description": "Rozrjadowanje chorhoje za rěč: $1, projekt: $2, w kraju: $3, na graće $4, čas: $5",
 	"centralnotice-percentage": "Procentowa sadźba",
-	"centralnotice-documentwrite-error": "document.write() njeda so znutřka chorhoje wužiwać.\nHlej http://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.",
+	"centralnotice-documentwrite-error": "document.write() njeda so znutřka chorhoje wužiwać.\nHlej https://meta.wikimedia.org/wiki/Help:CentralNotice za dalše informacije.",
 	"centralnotice-preferred": "Priorita",
 	"centralnotice-logs": "Protokole",
 	"centralnotice-view-logs": "Protokole sej wobhladać",

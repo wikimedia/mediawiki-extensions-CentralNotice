@@ -128,7 +128,7 @@
 	"centralnotice-no-allocation": "कोई बैनर आवंटित नहीं है ।",
 	"centralnotice-allocation-description": "$1.$2 in $3: के लिए बैनर आवंटित",
 	"centralnotice-percentage": "प्रतिशत",
-	"centralnotice-documentwrite-error": "दस्तावेज़.लेख() बैनर के अंदर इस्तेमाल नहीं हो सकता ।\nदेखो http://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
+	"centralnotice-documentwrite-error": "दस्तावेज़.लेख() बैनर के अंदर इस्तेमाल नहीं हो सकता ।\nदेखो https://meta.wikimedia.org/wiki/Help:CentralNotice for more information.",
 	"centralnotice-preferred": "प्राथमिकता",
 	"centralnotice-archived": "पृष्ठस्मारक",
 	"centralnotice-logs": "लॉग",

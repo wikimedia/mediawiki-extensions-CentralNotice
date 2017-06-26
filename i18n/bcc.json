@@ -51,7 +51,7 @@
 	"centralnotice-allocation-description": "اختصاص آگهی برای زبان $1، پروژه: $2 در کشور: $3، بر روی دستگاه $4",
 	"centralnotice-historical-allocation-description": "بنر تخصیص برای زبان:  $1 ، پروژه:  $2 ، در کشور:  $3 ، دستگاه  $4 ، در زمان$5",
 	"centralnotice-percentage": "درصد",
-	"centralnotice-documentwrite-error": "دستور document.write()&lrm; نمی‌تواند درون یک آگهی استفاده شود.\nبرای اطلاعات بیشتر http://meta.wikimedia.org/wiki/Help:CentralNotice را ببینید.",
+	"centralnotice-documentwrite-error": "دستور document.write()&lrm; نمی‌تواند درون یک آگهی استفاده شود.\nبرای اطلاعات بیشتر https://meta.wikimedia.org/wiki/Help:CentralNotice را ببینید.",
 	"centralnotice-preferred": "اولویت",
 	"centralnotice-archived": "بایگانی‌شده",
 	"centralnotice-logs": "سیاهه‌ها",

@@ -125,7 +125,7 @@
 	"centralnotice-no-allocation": "No hi ha pancartes assignades.",
 	"centralnotice-allocation-description": "Assignació de pancarta per $1.$2 a $3:",
 	"centralnotice-percentage": "Percentatge",
-	"centralnotice-documentwrite-error": "document.write () no pot ser utilitzat dins d'una pancarta\n Veure http://meta.wikimedia.org/wiki/Help:CentralNotice per a més informació.",
+	"centralnotice-documentwrite-error": "document.write () no pot ser utilitzat dins d'una pancarta\n Veure https://meta.wikimedia.org/wiki/Help:CentralNotice per a més informació.",
 	"centralnotice-preferred": "Prioritat",
 	"centralnotice-logs": "Registres",
 	"centralnotice-view-logs": "Vegeu registres",

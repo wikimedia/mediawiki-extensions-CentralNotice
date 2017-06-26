@@ -155,7 +155,7 @@
 	"centralnotice-allocation-description": "Disposition de bannière pour la langue: $1, le projet: $2, le pays: $3, le périphérique: $4",
 	"centralnotice-historical-allocation-description": "Disposition de la bannière pour la langue : $1, projet : $2, dans le pays : $3, sur le terminal $4, à $5",
 	"centralnotice-percentage": "Pourcentage",
-	"centralnotice-documentwrite-error": "document.write() ne peut pas être utilisé dans une bannière.\nVeuillez consulter http://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d’informations.",
+	"centralnotice-documentwrite-error": "document.write() ne peut pas être utilisé dans une bannière.\nVeuillez consulter https://meta.wikimedia.org/wiki/Help:CentralNotice pour plus d’informations.",
 	"centralnotice-preferred": "Priorité",
 	"centralnotice-archived": "Archivé",
 	"centralnotice-logs": "Journaux",

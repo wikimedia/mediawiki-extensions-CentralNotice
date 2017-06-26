@@ -108,7 +108,7 @@
 	"centralnotice-no-allocation": "No i hai anuncios asignaus.",
 	"centralnotice-allocation-description": "Asignación d'anuncios ta $1.$2 en $3:",
 	"centralnotice-percentage": "Porcentache",
-	"centralnotice-documentwrite-error": "No se puede fer servir document.write() dintro d'un banner.\nMire-se http://meta.wikimedia.org/wiki/Help:CentralNotice ta mas información.",
+	"centralnotice-documentwrite-error": "No se puede fer servir document.write() dintro d'un banner.\nMire-se https://meta.wikimedia.org/wiki/Help:CentralNotice ta mas información.",
 	"centralnotice-preferred": "Preferiu",
 	"centralnotice-logs": "Rechistros",
 	"centralnotice-view-logs": "Veyer os rechistros",

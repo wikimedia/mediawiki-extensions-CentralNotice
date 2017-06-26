@@ -131,7 +131,7 @@
 	"centralnotice-no-allocation": "Hêç afiş nêabıryayo.",
 	"centralnotice-allocation-description": "Qandé tahsisda baneran zıwan: $1, proce: $2, dıwél: $3, cihaz $4",
 	"centralnotice-percentage": "Sera",
-	"centralnotice-documentwrite-error": "document.write() afiş miyan dı nêkarêno.\nZaf malumati rê şı rê http://meta.wikimedia.org/wiki/Help:CentralNotice .",
+	"centralnotice-documentwrite-error": "document.write() afiş miyan dı nêkarêno.\nZaf malumati rê şı rê https://meta.wikimedia.org/wiki/Help:CentralNotice .",
 	"centralnotice-preferred": "Tercihbiyaye",
 	"centralnotice-archived": "Arşivya yo",
 	"centralnotice-logs": "Qeydi",

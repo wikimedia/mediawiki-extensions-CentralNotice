@@ -132,7 +132,7 @@
 	"centralnotice-no-allocation": "ბანერები არ განაწილდა.",
 	"centralnotice-allocation-description": "ბანერთა განაწილება ენისათვის: $1, პროექტი: $2, ქვეყანაში: $3, მოწყობილობაზე $4",
 	"centralnotice-percentage": "პროცენტი",
-	"centralnotice-documentwrite-error": "document.write() არ შეიძლება გამოყენებული იქნას ბანერის შიგნით.\nიხილეთ http://meta.wikimedia.org/wiki/Help:CentralNotice მეტი ინფორმაციისათვის.",
+	"centralnotice-documentwrite-error": "document.write() არ შეიძლება გამოყენებული იქნას ბანერის შიგნით.\nიხილეთ https://meta.wikimedia.org/wiki/Help:CentralNotice მეტი ინფორმაციისათვის.",
 	"centralnotice-preferred": "პრიორიტეტი",
 	"centralnotice-archived": "დაარქივებული",
 	"centralnotice-logs": "ჟურნალები",

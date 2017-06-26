@@ -124,7 +124,7 @@
 	"centralnotice-allocation-description": "Peruntukan sepanduk untuk bahasa: $1, projek: $2, di negara: $3, pada peranti $4",
 	"centralnotice-historical-allocation-description": "Peruntukan sepanduk untuk bahasa: $1, projek: $2, di negara: $3, pada peranti $4, pada waktu $5",
 	"centralnotice-percentage": "Peratusan",
-	"centralnotice-documentwrite-error": "document.write() tidak boleh digunakan di dalam sepanduk.\nRujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.",
+	"centralnotice-documentwrite-error": "document.write() tidak boleh digunakan di dalam sepanduk.\nRujuk https://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.",
 	"centralnotice-preferred": "Keutamaan",
 	"centralnotice-logs": "Log",
 	"centralnotice-view-logs": "Lihat log",

@@ -122,7 +122,7 @@
 	"centralnotice-allocation-description": "Destinassion dei banner par lengua: $1, progeto: $2, paese: $3, dispositivo: $4",
 	"centralnotice-historical-allocation-description": "Alocasion dei banner par lengua: $1, progeto: $2, paese: $3, dispositivo: $4, a le ore $5",
 	"centralnotice-percentage": "Persentuale",
-	"centralnotice-documentwrite-error": "document.write() no se pol dopararlo drento un banner.\nVarda http://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.",
+	"centralnotice-documentwrite-error": "document.write() no se pol dopararlo drento un banner.\nVarda https://meta.wikimedia.org/wiki/Help:CentralNotice par informassion.",
 	"centralnotice-preferred": "Priorità",
 	"centralnotice-logs": "Registri",
 	"centralnotice-view-logs": "Varda i registri",

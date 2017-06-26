@@ -124,7 +124,7 @@
 	"centralnotice-allocation-description": "Dispositioun vum Banner fir d'Sprooch $1, de Projet $2 am Land $3, op $4",
 	"centralnotice-historical-allocation-description": "Banner Zoudeelung fir d'Sprooch: $1, de Projet: $2, am Lnad: $3 op $4, ëm $5 Auer",
 	"centralnotice-percentage": "Prozentsaz",
-	"centralnotice-documentwrite-error": "document.write() kann net bannen an engem Banner benotzt ginn.\nKuckt http://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.",
+	"centralnotice-documentwrite-error": "document.write() kann net bannen an engem Banner benotzt ginn.\nKuckt https://meta.wikimedia.org/wiki/Help:CentralNotice fir méi Informatiounen.",
 	"centralnotice-preferred": "Prioritéit",
 	"centralnotice-archived": "Archivéiert",
 	"centralnotice-logs": "Logbicher",

@@ -115,7 +115,7 @@
 	"centralnotice-no-allocation": "Nobena pasica ni dodeljena.",
 	"centralnotice-allocation-description": "Dodelitev pasice v jeziku: $1, na projektu: $2, v državi: $3, na napravi $4",
 	"centralnotice-percentage": "Odstotek",
-	"centralnotice-documentwrite-error": "document.write() ni mogoče uporabiti v pasici.\nOglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.",
+	"centralnotice-documentwrite-error": "document.write() ni mogoče uporabiti v pasici.\nOglejte si https://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.",
 	"centralnotice-preferred": "Prioriteta",
 	"centralnotice-logs": "Dnevniki",
 	"centralnotice-view-logs": "Ogled dnevnikov",

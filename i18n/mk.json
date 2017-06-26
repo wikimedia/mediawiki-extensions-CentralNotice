@@ -134,7 +134,7 @@
 	"centralnotice-allocation-description": "Распределба на разгласи за јазикот: $1, проект: $2, во земјата: $3, на уредот $4",
 	"centralnotice-historical-allocation-description": "Доделен разглас за јазикот: $1, проект: $2, во земјата: $3, на уредот $4, време: $5",
 	"centralnotice-percentage": "Постоток",
-	"centralnotice-documentwrite-error": "document.write() не може да се користи во рамките на плаЗа повеќе информации, погледајте ја страницата http://meta.wikimedia.org/wiki/Help:CentralNotice",
+	"centralnotice-documentwrite-error": "document.write() не може да се користи во рамките на плаЗа повеќе информации, погледајте ја страницата https://meta.wikimedia.org/wiki/Help:CentralNotice",
 	"centralnotice-preferred": "Приоритет",
 	"centralnotice-archived": "Архивирано",
 	"centralnotice-logs": "Дневници",

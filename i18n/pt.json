@@ -142,7 +142,7 @@
 	"centralnotice-allocation-description": "Atribuição de modelos na língua: $1, projeto: $2, no país: $3, no dispositivo $4",
 	"centralnotice-historical-allocation-description": "Atribuição de modelos na língua: $1, projeto: $2, no país: $3, no dispositivo $4, à hora $5",
 	"centralnotice-percentage": "Percentagem",
-	"centralnotice-documentwrite-error": "document.write() não pode ser usado num modelo.\nPara mais informações, consulte http://meta.wikimedia.org/wiki/Help:CentralNotice.",
+	"centralnotice-documentwrite-error": "document.write() não pode ser usado num modelo.\nPara mais informações, consulte https://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Prioridade",
 	"centralnotice-archived": "Arquivado",
 	"centralnotice-logs": "Registos",

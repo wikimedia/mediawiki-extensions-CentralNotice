@@ -128,7 +128,7 @@
 	"centralnotice-allocation-description": "بهرکاری بیرق سی زون $1، پروجه: $2 د ولات: $3، د ری دسگا $4",
 	"centralnotice-historical-allocation-description": "بهرکاری بیرق سی زون $1، پروجه: $2 د ولات: $3، د ری دسگا $4، د گات $5",
 	"centralnotice-percentage": "درصد",
-	"centralnotice-documentwrite-error": "دستور document.write()&lrm; نمی تونه د مینجا یه گل بیرق وه کار گرته با.\nسی دونسمنیا بیشتر http://meta.wikimedia.org/wiki/Help:CentralNotice نه سیل بکیت.",
+	"centralnotice-documentwrite-error": "دستور document.write()&lrm; نمی تونه د مینجا یه گل بیرق وه کار گرته با.\nسی دونسمنیا بیشتر https://meta.wikimedia.org/wiki/Help:CentralNotice نه سیل بکیت.",
 	"centralnotice-preferred": "چیا مهمتر",
 	"centralnotice-archived": "مال دیاری بیه",
 	"centralnotice-logs": "نیسنن رخ ونیا",

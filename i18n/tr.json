@@ -135,7 +135,7 @@
 	"centralnotice-allocation-description": "Afiş tahsisi, dil: $1, proje: $2, ülke: $3, cihaz $4",
 	"centralnotice-historical-allocation-description": "Afiş tahsisi, dil: $1, proje: $2, ülke: $3, cihaz $4, $5 tarihinde",
 	"centralnotice-percentage": "Yüzde",
-	"centralnotice-documentwrite-error": "document.write() afiş içinde kullanılamaz.\nDaha fazla bilgi için http://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.",
+	"centralnotice-documentwrite-error": "document.write() afiş içinde kullanılamaz.\nDaha fazla bilgi için https://meta.wikimedia.org/wiki/Help:CentralNotice adresine bakın.",
 	"centralnotice-preferred": "Öncelik",
 	"centralnotice-archived": "Arşivlenmiş",
 	"centralnotice-logs": "Günlükler",

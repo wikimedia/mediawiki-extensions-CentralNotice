@@ -123,7 +123,7 @@
 	"centralnotice-no-allocation": "Нема додељених плаката.",
 	"centralnotice-allocation-description": "Додела плаката за језик: $1, пројекат: $2, у земљи $3, на уређају $4",
 	"centralnotice-percentage": "Постотак",
-	"centralnotice-documentwrite-error": "document.write() не може бити употребљен унутар банера.\nВидите http://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.",
+	"centralnotice-documentwrite-error": "document.write() не може бити употребљен унутар банера.\nВидите https://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.",
 	"centralnotice-preferred": "Приоритет",
 	"centralnotice-archived": "Архивирано",
 	"centralnotice-logs": "Историје",

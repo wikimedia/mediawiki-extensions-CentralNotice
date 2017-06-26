@@ -139,7 +139,7 @@
 	"centralnotice-allocation-description": "הקצאת כזרות עבור שפה $1, מיזם: ,$2 במדינה: $3, במכשיר $4",
 	"centralnotice-historical-allocation-description": "הקצאת כרזה עבור שפה $1, מיזם: $2, במדינה $3, על מכשיר $4, בזמן $5",
 	"centralnotice-percentage": "אחוזים",
-	"centralnotice-documentwrite-error": "לא ניתן להשתמש ב־document.write()‎ בתוך כרזה.\nר' http://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.",
+	"centralnotice-documentwrite-error": "לא ניתן להשתמש ב־document.write()‎ בתוך כרזה.\nר' https://meta.wikimedia.org/wiki/Help:CentralNotice למידע נוסף.",
 	"centralnotice-preferred": "עדיפות",
 	"centralnotice-archived": "מאורכב",
 	"centralnotice-logs": "יומנים",

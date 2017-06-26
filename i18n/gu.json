@@ -117,7 +117,7 @@
 	"centralnotice-no-allocation": "કોઈ પણ જાહેરાત ફલક આવંટિત ન થયું",
 	"centralnotice-allocation-description": "ભાષા: $1, પરિયોજના: $2, માટે $3 દેશમાં, $4 સાધન પર જાહેરાત ફલક ફાળવણી",
 	"centralnotice-percentage": "ટકાવારી",
-	"centralnotice-documentwrite-error": "બેનરમાં document.write() વાપરી શકાશે નહીં.\nવધુ માહિતી માટે http://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.",
+	"centralnotice-documentwrite-error": "બેનરમાં document.write() વાપરી શકાશે નહીં.\nવધુ માહિતી માટે https://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.",
 	"centralnotice-preferred": "અગ્રતા",
 	"centralnotice-logs": "લૉગ",
 	"centralnotice-view-logs": "લૉગ્સ જુઓ",

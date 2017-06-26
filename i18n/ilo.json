@@ -127,7 +127,7 @@
 	"centralnotice-allocation-description": "Nakailasinan ti banderola para iti pagsasao: $1, gandat: $2, iti pagilian: $3, iti ramit ti $4",
 	"centralnotice-historical-allocation-description": "Nakailasinan ti banderola para iti pagsasao: $1, gandat: $2, iti pagilian: $3, iti ramit ti $4, iti panawen ti $5",
 	"centralnotice-percentage": "Porsiento",
-	"centralnotice-documentwrite-error": "ti document.write() ket saan a mabalin a mausar iti kaunegan ti banderola.\nKitaen ti http://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a pakaammo.",
+	"centralnotice-documentwrite-error": "ti document.write() ket saan a mabalin a mausar iti kaunegan ti banderola.\nKitaen ti https://meta.wikimedia.org/wiki/Help:CentralNotice iti adu pay a pakaammo.",
 	"centralnotice-preferred": "Prioridad",
 	"centralnotice-archived": "Naarkibo",
 	"centralnotice-logs": "Dagiti listaan",

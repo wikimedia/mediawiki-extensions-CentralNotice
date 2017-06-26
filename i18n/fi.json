@@ -129,7 +129,7 @@
 	"centralnotice-no-allocation": "Ei kohdistettuja bannereita.",
 	"centralnotice-allocation-description": "Bannerin kohdistaminen kieleen: $1, projektiin: $2, maahan: $3, laitteeseen: $4",
 	"centralnotice-percentage": "Prosenttiosuus",
-	"centralnotice-documentwrite-error": "document.write() -komentoa ei voi käyttää bannerin sisällä.\nSivulla http://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.",
+	"centralnotice-documentwrite-error": "document.write() -komentoa ei voi käyttää bannerin sisällä.\nSivulla https://meta.wikimedia.org/wiki/Help:CentralNotice on lisätietoja.",
 	"centralnotice-preferred": "Prioriteetti",
 	"centralnotice-logs": "Lokit",
 	"centralnotice-view-logs": "Näytä lokit",

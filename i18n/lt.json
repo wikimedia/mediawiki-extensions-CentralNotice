@@ -124,7 +124,7 @@
 	"centralnotice-projects": "Projektai",
 	"centralnotice-country": "Valstybė",
 	"centralnotice-percentage": "Procentinė dalis",
-	"centralnotice-documentwrite-error": "document.write() negali būti naudojamas su baneriu.\nŽiūrėkite http://meta.wikimedia.org/wiki/Help:CentralNotice dėl daugiau informacijos.",
+	"centralnotice-documentwrite-error": "document.write() negali būti naudojamas su baneriu.\nŽiūrėkite https://meta.wikimedia.org/wiki/Help:CentralNotice dėl daugiau informacijos.",
 	"centralnotice-preferred": "Prioritetas",
 	"centralnotice-archived": "Archyvuotas",
 	"centralnotice-logs": "Veiksmų sąrašas",

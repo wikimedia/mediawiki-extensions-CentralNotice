@@ -131,7 +131,7 @@
 	"centralnotice-no-allocation": "Ora ana spanduk sing dialokasèkaké.",
 	"centralnotice-allocation-description": "Alokasi spanduk kanggo $1.$2 nèng $3:",
 	"centralnotice-percentage": "Persèntasé",
-	"centralnotice-documentwrite-error": "document.write() ora bisa dianggo nèng njero spanduk.\nDelok http://meta.wikimedia.org/wiki/Help:CentralNotice kanggo informasiné.",
+	"centralnotice-documentwrite-error": "document.write() ora bisa dianggo nèng njero spanduk.\nDelok https://meta.wikimedia.org/wiki/Help:CentralNotice kanggo informasiné.",
 	"centralnotice-preferred": "Prioritas",
 	"centralnotice-archived": "Diarsipaké",
 	"centralnotice-logs": "Log",

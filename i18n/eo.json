@@ -117,7 +117,7 @@
 	"centralnotice-no-allocation": "Neniuj rekamrubandoj estas asignitaj.",
 	"centralnotice-allocation-description": "Asignado de reklamrubando por $1.$2 en $3",
 	"centralnotice-percentage": "Procento",
-	"centralnotice-documentwrite-error": "Ne  povas uzi document.write() en reklamrubando.\nVidu http://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.",
+	"centralnotice-documentwrite-error": "Ne  povas uzi document.write() en reklamrubando.\nVidu https://meta.wikimedia.org/wiki/Help:CentralNotic por plia informo.",
 	"centralnotice-preferred": "Prioritato",
 	"centralnotice-logs": "Protokoloj",
 	"centralnotice-view-logs": "Rigardi protokolojn",

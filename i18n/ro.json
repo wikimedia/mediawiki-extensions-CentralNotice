@@ -125,7 +125,7 @@
 	"centralnotice-allocation-description": "Alocare de banner pentru limba: $1, proiectul: $2, în țara $3, pe dispozitiv: $4",
 	"centralnotice-historical-allocation-description": "Alocare de banner pentru limba: $1, proiectul: $2, în țara $3, pe dispozitiv: $4, la: $5",
 	"centralnotice-percentage": "Procentaj",
-	"centralnotice-documentwrite-error": "document.write() nu poate fi folosit într-un banner.\nVedeți http://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe informații.",
+	"centralnotice-documentwrite-error": "document.write() nu poate fi folosit într-un banner.\nVedeți https://meta.wikimedia.org/wiki/Help:CentralNotice pentru mai multe informații.",
 	"centralnotice-preferred": "Prioritate",
 	"centralnotice-archived": "Arhivat",
 	"centralnotice-logs": "Jurnale",

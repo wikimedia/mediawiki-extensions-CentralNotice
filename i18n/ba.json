@@ -136,7 +136,7 @@
 	"centralnotice-allocation-description": "$4 ҡорамалында $3 илендә $2 проектының $1 теле өсөн баннер урынлаштырыу",
 	"centralnotice-historical-allocation-description": "$5-тә $4 ҡорамалында $3 илендә $2 проектында $1 теле өсөн иғлан урынлаштырыу",
 	"centralnotice-percentage": "Процент",
-	"centralnotice-documentwrite-error": "Был баннерҙа document.write() ҡулланыла алмай.\nТулыраҡ мәғлүмәт өсөн http://meta.wikimedia.org/wiki/Help:CentralNotice ҡарағыҙ.",
+	"centralnotice-documentwrite-error": "Был баннерҙа document.write() ҡулланыла алмай.\nТулыраҡ мәғлүмәт өсөн https://meta.wikimedia.org/wiki/Help:CentralNotice ҡарағыҙ.",
 	"centralnotice-preferred": "Өҫтөнлөк",
 	"centralnotice-archived": "Архивланған",
 	"centralnotice-logs": "Журналдар",

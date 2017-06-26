@@ -146,7 +146,7 @@
 	"centralnotice-allocation-description": "Bannertoewijzing voor taal: $1, project: $2, in land: $3, op apparaat $4",
 	"centralnotice-historical-allocation-description": "Bannertoewijzing voor taal: $1, project: $2, in land: $3, op apparaat $4, per $5",
 	"centralnotice-percentage": "Percentage",
-	"centralnotice-documentwrite-error": "\"document.write()\" kan niet worden gebruikt binnen een banner.\nZie http://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.",
+	"centralnotice-documentwrite-error": "\"document.write()\" kan niet worden gebruikt binnen een banner.\nZie https://meta.wikimedia.org/wiki/Help:CentralNotice voor meer informatie.",
 	"centralnotice-preferred": "Prioriteit",
 	"centralnotice-archived": "Gearchiveerd",
 	"centralnotice-logs": "Logboeken",

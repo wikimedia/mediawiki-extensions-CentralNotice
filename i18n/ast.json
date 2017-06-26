@@ -132,7 +132,7 @@
 	"centralnotice-allocation-description": "Distribución de cartelos pa la llingua: $1, proyeutu: $2, del país: $3, nel preséu $4",
 	"centralnotice-historical-allocation-description": "Distribución de cartelos pa la llingua: $1, proyeutu: $2, del país: $3, nel preséu $4, nel horariu $5",
 	"centralnotice-percentage": "Porcentaxe",
-	"centralnotice-documentwrite-error": "document.write () nun se pue utilizar dientro d'una pancarta.\nLlei http://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
+	"centralnotice-documentwrite-error": "document.write () nun se pue utilizar dientro d'una pancarta.\nLlei https://meta.wikimedia.org/wiki/Help:CentralNotice pa más información.",
 	"centralnotice-preferred": "Prioridá",
 	"centralnotice-archived": "Archiváu",
 	"centralnotice-logs": "Rexistros",

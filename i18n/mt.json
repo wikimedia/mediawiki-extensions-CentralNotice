@@ -110,7 +110,7 @@
 	"centralnotice-no-allocation": "L-ebda ''banner'' allokata.",
 	"centralnotice-allocation-description": "Allokazzjoni tal-''banner'' għal $1.$2 bil-kodiċi $3:",
 	"centralnotice-percentage": "Perċentwal",
-	"centralnotice-documentwrite-error": "document.write() ma tistax tiġi wżata f'''banner''.\nAra http://meta.wikimedia.org/wiki/Help:CentralNotice għal aktar informazzjoni.",
+	"centralnotice-documentwrite-error": "document.write() ma tistax tiġi wżata f'''banner''.\nAra https://meta.wikimedia.org/wiki/Help:CentralNotice għal aktar informazzjoni.",
 	"centralnotice-preferred": "Prijorità",
 	"centralnotice-logs": "Reġistru",
 	"centralnotice-view-logs": "Uri r-reġistru",

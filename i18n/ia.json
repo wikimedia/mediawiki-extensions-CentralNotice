@@ -131,7 +131,7 @@
 	"centralnotice-allocation-description": "Allocation de bandieras pro lingua: $1, projecto: $2, in pais: $3, sur apparato $4",
 	"centralnotice-historical-allocation-description": "Allocation de bandieras pro lingua: $1, projecto: $2, in pais: $3, sur apparato $4, al hora $5",
 	"centralnotice-percentage": "Percentage",
-	"centralnotice-documentwrite-error": "document.write() non pote esser usate intra un bandiera.\nVide http://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.",
+	"centralnotice-documentwrite-error": "document.write() non pote esser usate intra un bandiera.\nVide https://meta.wikimedia.org/wiki/Help:CentralNotice pro plus informationes.",
 	"centralnotice-preferred": "Prioritate",
 	"centralnotice-archived": "Archivate",
 	"centralnotice-logs": "Registros",
