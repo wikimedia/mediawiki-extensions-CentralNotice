@@ -128,7 +128,7 @@
 	"centralnotice-allocation-description": "Alocassion ëd tilèt për la lenga: $1, ël proget: $2, ël pais: $3, la periférica: $4",
 	"centralnotice-historical-allocation-description": "Disposission dël tilèt për la lenga: $1, proget: $2, ant ël pais: $3, an sël terminal $4, al temp $5",
 	"centralnotice-percentage": "Përsentual",
-	"centralnotice-documentwrite-error": "document.write() a peul pa esse dovrà ant un tilèt.\nch'a lesa https://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi.",
+	"centralnotice-documentwrite-error": "document.write() a peul pa esse dovrà ant un tilèt.\nCh'a lesa https://meta.wikimedia.org/wiki/Help:CentralNotice për savèjne ëd pi.",
 	"centralnotice-preferred": "Priorità",
 	"centralnotice-archived": "Archivià",
 	"centralnotice-logs": "Registr",

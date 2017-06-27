@@ -158,7 +158,7 @@
 	"centralnotice-allocation-description": "横幅分配对语言：$1，项目：$2，在国家：$3 的 $4 设备上",
 	"centralnotice-historical-allocation-description": "语言分配：$1，项目分配：$2，地区分配：$3，装置分配：$4，时间分配：$5",
 	"centralnotice-percentage": "百分比",
-	"centralnotice-documentwrite-error": "document.write() 不能在横幅中使用。\n更多信息请参见 https://meta.wikimedia.org/wiki/Help:CentralNotice 。",
+	"centralnotice-documentwrite-error": "document.write() 不能在横幅中使用。更多信息请参见 https://meta.wikimedia.org/wiki/Help:CentralNotice 。",
 	"centralnotice-preferred": "优先级",
 	"centralnotice-archived": "已存档",
 	"centralnotice-logs": "日志",
