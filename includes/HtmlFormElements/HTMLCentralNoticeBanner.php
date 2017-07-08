@@ -62,8 +62,8 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		return Xml::tags(
 			'div',
 			[
-				 'id' => Sanitizer::escapeId( "cn-banner-preview-$bannerName" ),
-				 'class' => 'cn-banner-preview-div',
+				'id' => Sanitizer::escapeId( "cn-banner-preview-$bannerName" ),
+				'class' => 'cn-banner-preview-div',
 			],
 			$preview
 		);
@@ -94,8 +94,8 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		$html = Xml::openElement(
 			'div',
 			[
-				 'id' =>  Sanitizer::escapeId( "cn-banner-list-element-{$this->mParams['banner']}" ),
-				 'class' => "cn-banner-list-element",
+				'id' =>  Sanitizer::escapeId( "cn-banner-list-element-{$this->mParams['banner']}" ),
+				'class' => "cn-banner-list-element",
 			]
 		);
 
@@ -114,9 +114,9 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 				$this->msg( 'centralnotice-live-preview' ),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[
-					 'banner' => $bannerName,
-					 'uselang' => $language,
-					 'force' => '1'
+					'banner' => $bannerName,
+					'uselang' => $language,
+					'force' => '1'
 				]
 			) . ')';
 			// TODO: Output status icons

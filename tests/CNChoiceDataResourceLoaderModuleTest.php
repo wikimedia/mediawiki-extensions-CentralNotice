@@ -32,7 +32,6 @@ class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
-
 			$this->setMwGlobals( [
 					'wgNoticeProject' => $contextAndOutput['context']['project'],
 			] );

@@ -33,7 +33,6 @@ class SpecialCNReporter extends UnlistedSpecialPage {
 </script></body></html>
 EOT;
 		print $script;
-
 	}
 
 	/**

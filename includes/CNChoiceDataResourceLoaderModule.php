@@ -34,7 +34,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 				return [];
 			}
 		} else {
-			 $choices = ChoiceDataProvider::getChoices( $project, $language );
+			$choices = ChoiceDataProvider::getChoices( $project, $language );
 		}
 
 		return $choices;
@@ -94,7 +94,6 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::getScript()
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-
 		$choices = $this->getChoices( $context );
 		if ( !$choices ) {
 			// If there are no choices, this module will have no dependencies,
@@ -127,8 +126,8 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		// If this method is called with no context argument (the old method
 		// signature) emit a warning, but don't stop the show.
 		if ( !$context ) {
-			 wfLogWarning( '$context is required for campaign mixins.' );
-			 return [];
+			wfLogWarning( '$context is required for campaign mixins.' );
+			return [];
 		}
 
 		// Get the choices (possible campaigns and banners) for this user
@@ -142,7 +141,6 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		$dependencies = [];
 		foreach ( $choices as $choice ) {
 			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
-
 				if ( !$wgCentralNoticeCampaignMixins[$mixinName]['subscribingModule'] ) {
 					throw new MWException(
 						"No subscribing module for found campaign mixin {$mixinName}" );

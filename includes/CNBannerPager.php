@@ -204,7 +204,6 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * @see Pager::makeLink()
 	 */
 	public function makeLink( $text, array $query = null, $type = null ) {
-
 		$filterQuery = $this->hostSpecialPage->getFilterUrlParamAsArray();
 
 		$query = ( $query === null ) ?

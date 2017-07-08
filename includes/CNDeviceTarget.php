@@ -55,13 +55,13 @@ class CNDeviceTarget {
 
 		$res = $dbr->select(
 			[
-				 'tdev' => 'cn_template_devices',
-				 'devices' => 'cn_known_devices'
+				'tdev' => 'cn_template_devices',
+				'devices' => 'cn_known_devices'
 			],
 			[ 'devices.dev_id', 'dev_name' ],
 			[
-				 'tdev.tmp_id' => $bannerId,
-				 'tdev.dev_id = devices.dev_id'
+				'tdev.tmp_id' => $bannerId,
+				'tdev.dev_id = devices.dev_id'
 			],
 			__METHOD__
 		);
@@ -86,8 +86,8 @@ class CNDeviceTarget {
 		$db->insert(
 			'cn_known_devices',
 			[
-				 'dev_name' => $deviceName,
-				 'dev_display_label' => $displayLabel
+				'dev_name' => $deviceName,
+				'dev_display_label' => $displayLabel
 			],
 			__METHOD__
 		);
@@ -106,7 +106,7 @@ class CNDeviceTarget {
 	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
 		$db = CNDatabase::getDb();
 
-		$knownDevices = CNDeviceTarget::getAvailableDevices( true );
+		$knownDevices = self::getAvailableDevices( true );
 		$newDevices = (array)$newDevices;
 
 		// Remove all entries from the table for this banner

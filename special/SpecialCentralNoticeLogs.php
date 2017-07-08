@@ -64,7 +64,6 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut .= Xml::closeElement( 'div' );
 
 		if ( $this->logType == 'campaignsettings' ) {
-
 			$reset = $request->getVal( 'centralnoticelogreset' );
 			$campaign = $request->getVal( 'campaign' );
 			$user = $request->getVal( 'user' );

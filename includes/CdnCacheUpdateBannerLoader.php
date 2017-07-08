@@ -27,7 +27,6 @@ class CdnCacheUpdateBannerLoader implements DeferrableUpdate {
 	 * Purges the banner loader URls for the language and banner passed to the constructor.
 	 */
 	public function doUpdate() {
-
 		global $wgCentralSelectedBannerDispatcher,
 		$wgCentralSelectedMobileBannerDispatcher;
 
@@ -55,7 +54,6 @@ class CdnCacheUpdateBannerLoader implements DeferrableUpdate {
 		$campaignNames = $this->banner->getCampaignNames();
 
 		foreach ( $campaignNames as $campaignName ) {
-
 			$paramPerms[] = [
 				'campaign' => $campaignName,
 				'banner' => $bannerName,
@@ -80,7 +78,6 @@ class CdnCacheUpdateBannerLoader implements DeferrableUpdate {
 		// Create the full URLs
 		$urlsToPurge = [];
 		foreach ( $paramPerms as $params ) {
-
 			$urlsToPurge[] = wfAppendQuery(
 				$wgCentralSelectedBannerDispatcher,
 				$params

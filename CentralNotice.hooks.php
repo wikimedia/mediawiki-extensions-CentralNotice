@@ -170,7 +170,8 @@ class CentralNoticeHooks {
 
 		// If we're editing or we're on a special page, bow out now
 		if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
-			( $wgRequest->getText( 'action' ) === 'edit' ) ) {
+			( $wgRequest->getText( 'action' ) === 'edit' )
+		) {
 			return true;
 		}
 
@@ -221,7 +222,6 @@ class CentralNoticeHooks {
 		// This is useful for banners that need to be targeted to specific types of users.
 		// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
 		if ( $wgUser->isLoggedIn() ) {
-
 			$cacheKey = wfMemcKey( 'CentralNotice', 'UserData', $wgUser->getId() );
 			$userData = $wgMemc->get( $cacheKey );
 
@@ -381,14 +381,12 @@ class CentralNoticeHooks {
 		// find test files for every RL module
 		$prefix = 'ext.centralNotice';
 		foreach ( $wgResourceModules as $key => $module ) {
-
 			if ( substr( $key, 0, strlen( $prefix ) ) ===
-				$prefix && isset( $module['scripts'] ) ) {
-
+				$prefix && isset( $module['scripts'] )
+			) {
 				$testFiles = [];
 
 				foreach ( ( (array)$module['scripts'] ) as $script ) {
-
 					$testFile = 'tests/qunit/' . $script;
 					$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
 
@@ -401,7 +399,6 @@ class CentralNoticeHooks {
 				// if test files exist for given module, create a corresponding test
 				// module
 				if ( count( $testFiles ) > 0 ) {
-
 					$testModules['qunit']["$key.tests"] = $testModuleBoilerplate +
 						[
 							'dependencies' =>

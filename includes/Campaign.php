@@ -208,17 +208,17 @@ class Campaign {
 		$row = $db->selectRow(
 			[ 'notices' => 'cn_notices' ],
 			[
-				 'not_id',
-				 'not_name',
-				 'not_start',
-				 'not_end',
-				 'not_enabled',
-				 'not_preferred',
-				 'not_locked',
-				 'not_archived',
-				 'not_geo',
-				 'not_buckets',
-				 'not_throttle',
+				'not_id',
+				'not_name',
+				'not_start',
+				'not_end',
+				'not_enabled',
+				'not_preferred',
+				'not_locked',
+				'not_archived',
+				'not_geo',
+				'not_buckets',
+				'not_throttle',
 			],
 			$selector,
 			__METHOD__
@@ -274,7 +274,8 @@ class Campaign {
 	 * @return array Array of campaign IDs that matched the filter.
 	 */
 	static function getCampaigns( $project = null, $language = null, $location = null, $date = null,
-	                              $enabled = true, $archived = false ) {
+		$enabled = true, $archived = false
+	) {
 		$notices = [];
 
 		// Database setup
@@ -408,9 +409,9 @@ class Campaign {
 			return false;
 		}
 
-		$projects = Campaign::getNoticeProjects( $campaignName );
-		$languages = Campaign::getNoticeLanguages( $campaignName );
-		$geo_countries = Campaign::getNoticeCountries( $campaignName );
+		$projects = self::getNoticeProjects( $campaignName );
+		$languages = self::getNoticeLanguages( $campaignName );
+		$geo_countries = self::getNoticeCountries( $campaignName );
 		$campaign[ 'projects' ] = implode( ", ", $projects );
 		$campaign[ 'languages' ] = implode( ", ", $languages );
 		$campaign[ 'countries' ] = implode( ", ", $geo_countries );
@@ -426,7 +427,7 @@ class Campaign {
 		// Encode into a JSON string for storage
 		$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );
 		$campaign[ 'mixins' ] =
-			FormatJson::encode( Campaign::getCampaignMixins( $campaignName, true ) );
+			FormatJson::encode( self::getCampaignMixins( $campaignName, true ) );
 
 		return $campaign;
 	}
@@ -565,7 +566,6 @@ class Campaign {
 	 * @return array
 	 */
 	public static function getCampaignMixins( $campaignName, $compact = false ) {
-
 		global $wgCentralNoticeCampaignMixins;
 
 		$dbr = CNDatabase::getDb();
@@ -608,7 +608,6 @@ class Campaign {
 		// parameters).
 		$campaignMixins = [];
 		foreach ( $dbRows as $dbRow ) {
-
 			$mixinName = $dbRow->nmxn_mixin_name;
 
 			// A mixin may have been removed from the code but may still
@@ -619,14 +618,13 @@ class Campaign {
 
 			// First time we have a result row for this mixin?
 			if ( !isset( $campaignMixins[$mixinName] ) ) {
-
 				// Data structure depends on $compact
 				if ( $compact ) {
 					$campaignMixins[$mixinName] = [];
 
 				} else {
 					$campaignMixins[$mixinName] = [
-						'enabled' => (bool) $dbRow->nmxn_enabled,
+						'enabled' => (bool)$dbRow->nmxn_enabled,
 						'parameters' => []
 					];
 				}
@@ -634,7 +632,6 @@ class Campaign {
 
 			// If there are mixin params in this row, add them in
 			if ( !is_null( $dbRow->nmxnp_param_name ) ) {
-
 				$paramName = $dbRow->nmxnp_param_name;
 				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
 
@@ -684,7 +681,7 @@ class Campaign {
 				}
 
 				// Again, data structure depends on $compact
-				if ( $compact )  {
+				if ( $compact ) {
 					$campaignMixins[$mixinName][$paramName] = $paramVal;
 				} else {
 					$campaignMixins[$mixinName]['parameters'][$paramName]
@@ -716,8 +713,8 @@ class Campaign {
 	 * @param array $params For mixins with no parameters, set to an empty array.
 	 */
 	public static function updateCampaignMixins(
-		$campaignName, $mixinName, $enable, $params = null ) {
-
+		$campaignName, $mixinName, $enable, $params = null
+	) {
 		global $wgCentralNoticeCampaignMixins;
 
 		// TODO Error handling!
@@ -731,7 +728,6 @@ class Campaign {
 			[ 'not_name' => $campaignName ] )->not_id;
 
 		if ( $enable ) {
-
 			if ( $params === null ) {
 				throw new InvalidArgumentException( 'Paremeters info required to enable mixin ' .
 					$mixinName . ' for campaign '. $campaignName );
@@ -760,13 +756,11 @@ class Campaign {
 			)->nmxn_id;
 
 			foreach ( $params as $paramName => $paramVal ) {
-
 				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
 
 				// Handle an undefined parameter. Not likely to happen, maybe
 				// in the middle of a deploy that removes a parameter.
 				if ( !isset( $mixinDef['parameters'][$paramName] ) ) {
-
 					wfLogWarning( 'No definition found for the parameter '
 						. $paramName . ' for the campaign mixn ' .
 						$mixinName . '.' );
@@ -849,7 +843,7 @@ class Campaign {
 		$user, $summary = null
 	) {
 		$noticeName = trim( $noticeName );
-		if ( Campaign::campaignExists( $noticeName ) ) {
+		if ( self::campaignExists( $noticeName ) ) {
 			return 'centralnotice-notice-exists';
 		} elseif ( empty( $projects ) ) {
 			return 'centralnotice-no-project';
@@ -922,7 +916,7 @@ class Campaign {
 				'geo'       => (int)$geotargeted,
 				'throttle'  => $throttle,
 			];
-			Campaign::logCampaignChange( 'created', $not_id, $user,
+			self::logCampaignChange( 'created', $not_id, $user,
 				$beginSettings, $endSettings, $summary );
 
 			return $not_id;
@@ -954,15 +948,15 @@ class Campaign {
 			return 'centralnotice-notice-is-locked';
 		}
 
-		Campaign::removeCampaignByName( $campaignName, $user );
+		self::removeCampaignByName( $campaignName, $user );
 
 		return true;
 	}
 
 	private static function removeCampaignByName( $campaignName, $user ) {
 		// Log the removal of the campaign
-		$campaignId = Campaign::getNoticeId( $campaignName );
-		Campaign::logCampaignChange( 'removed', $campaignId, $user );
+		$campaignId = self::getNoticeId( $campaignName );
+		self::logCampaignChange( 'removed', $campaignId, $user );
 
 		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
@@ -986,7 +980,7 @@ class Campaign {
 		$dbw = CNDatabase::getDb( DB_MASTER );
 
 		$eNoticeName = htmlspecialchars( $noticeName );
-		$noticeId = Campaign::getNoticeId( $eNoticeName );
+		$noticeId = self::getNoticeId( $eNoticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
 		$res = $dbw->select( 'cn_assignments', 'asn_id',
 			[
@@ -999,7 +993,7 @@ class Campaign {
 			return 'centralnotice-template-already-exists';
 		}
 
-		$noticeId = Campaign::getNoticeId( $eNoticeName );
+		$noticeId = self::getNoticeId( $eNoticeName );
 		$dbw->insert( 'cn_assignments',
 			[
 				'tmp_id'     => $templateId,
@@ -1017,7 +1011,7 @@ class Campaign {
 	 */
 	static function removeTemplateFor( $noticeName, $templateName ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$noticeId = Campaign::getNoticeId( $noticeName );
+		$noticeId = self::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
 		$dbw->delete( 'cn_assignments', [ 'tmp_id' => $templateId, 'not_id' => $noticeId ] );
 	}
@@ -1115,7 +1109,7 @@ class Campaign {
 		}
 
 		// Invalid campaign name
-		if ( !Campaign::campaignExists( $noticeName ) ) {
+		if ( !self::campaignExists( $noticeName ) ) {
 			return 'centralnotice-notice-doesnt-exist';
 		}
 
@@ -1142,7 +1136,7 @@ class Campaign {
 	 * @param $settingValue bool: Value to use for the setting, true or false
 	 */
 	static function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
-		if ( !Campaign::campaignExists( $noticeName ) ) {
+		if ( !self::campaignExists( $noticeName ) ) {
 			// Exit quietly since campaign may have been deleted at the same time.
 			return;
 		} else {
@@ -1184,7 +1178,7 @@ class Campaign {
 			$settingValue = $min;
 		}
 
-		if ( !Campaign::campaignExists( $noticeName ) ) {
+		if ( !self::campaignExists( $noticeName ) ) {
 			// Exit quietly since campaign may have been deleted at the same time.
 			return;
 		} else {
@@ -1206,7 +1200,7 @@ class Campaign {
 	 */
 	static function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$noticeId = Campaign::getNoticeId( $noticeName );
+		$noticeId = self::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			[ 'tmp_weight' => $weight ],
 			[
@@ -1226,7 +1220,7 @@ class Campaign {
 	 */
 	static function updateBucket( $noticeName, $templateId, $bucket ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
-		$noticeId = Campaign::getNoticeId( $noticeName );
+		$noticeId = self::getNoticeId( $noticeName );
 		$dbw->update( 'cn_assignments',
 			[ 'asn_bucket' => $bucket ],
 			[
@@ -1252,7 +1246,7 @@ class Campaign {
 		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned projects
-		$oldProjects = Campaign::getNoticeProjects( $notice );
+		$oldProjects = self::getNoticeProjects( $notice );
 
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $notice ] );
@@ -1281,7 +1275,7 @@ class Campaign {
 		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned languages
-		$oldLanguages = Campaign::getNoticeLanguages( $notice );
+		$oldLanguages = self::getNoticeLanguages( $notice );
 
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $notice ] );
@@ -1310,7 +1304,7 @@ class Campaign {
 		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned languages
-		$oldCountries = Campaign::getNoticeCountries( $notice );
+		$oldCountries = self::getNoticeCountries( $notice );
 
 		// Get the notice id
 		$row = $dbw->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $notice ] );
@@ -1366,7 +1360,7 @@ class Campaign {
 				'notlog_user_id'   => $user->getId(),
 				'notlog_action'    => $action,
 				'notlog_not_id'    => $campaignId,
-				'notlog_not_name'  => Campaign::getNoticeName( $campaignId ),
+				'notlog_not_name'  => self::getNoticeName( $campaignId ),
 				'notlog_comment'   => $summary,
 			];
 
@@ -1386,7 +1380,7 @@ class Campaign {
 	}
 
 	static function campaignLogs(
-		$campaign=false, $username=false, $start=false, $end=false, $limit=50, $offset=0
+		$campaign = false, $username = false, $start = false, $end = false, $limit = 50, $offset = 0
 	) {
 		$conds = [];
 		if ( $start ) {

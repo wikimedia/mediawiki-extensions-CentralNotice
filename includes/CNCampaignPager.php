@@ -28,8 +28,8 @@ class CNCampaignPager extends TablePager {
 	 *   associated with this banner id.
 	 */
 	public function __construct( CentralNotice $onSpecialCN,
-		$editable = false, $assignedBannerId = null ) {
-
+		$editable = false, $assignedBannerId = null
+	) {
 		$this->onSpecialCN = $onSpecialCN;
 		$this->assignedBannerId = $assignedBannerId;
 		$this->editable = $editable;
@@ -117,7 +117,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getFieldNames()
 	 */
 	public function getFieldNames() {
-
 		if ( !$this->fieldNames ) {
 			$this->fieldNames = [
 				'not_name' => $this->msg( 'centralnotice-notice-name' )->text(),
@@ -141,7 +140,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getStartBody()
 	 */
 	public function getStartBody() {
-
 		$htmlOut = '';
 
 		$htmlOut .= Xml::openElement(
@@ -167,7 +165,6 @@ class CNCampaignPager extends TablePager {
 	}
 
 	public function formatValue( $fieldName, $value ) {
-
 		// These are used in a few cases below.
 		$rowIsEnabled = ( $this->mCurrentRow->not_enabled == '1' );
 		$rowIsLocked = ( $this->mCurrentRow->not_locked == '1' );
@@ -283,7 +280,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getRowClass()
 	 */
 	public function getRowClass( $row ) {
-
 		$enabled = ( $row->not_enabled == '1' );
 		$archived = ( $row->not_archived == '1' );
 
@@ -308,7 +304,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getCellAttrs()
 	 */
 	public function getCellAttrs( $field, $value ) {
-
 		$attrs = parent::getCellAttrs( $field, $value );
 
 		switch ( $field ) {
@@ -337,7 +332,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getEndBody()
 	 */
 	public function getEndBody() {
-
 		$htmlOut = '';
 
 		if ( $this->editable ) {
@@ -369,7 +363,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::isFieldSortable()
 	 */
 	public function isFieldSortable( $field ) {
-
 		// If this is the only page shown, we'll sort via JS, which works on all
 		// columns.
 		if ( $this->isWithinLimit() ) {
@@ -410,7 +403,6 @@ class CNCampaignPager extends TablePager {
 	 * @see IndexPager::extractResultInfo()
 	 */
 	function extractResultInfo( $isFirst, $limit, ResultWrapper $res ) {
-
 		parent::extractResultInfo( $isFirst, $limit, $res );
 
 		// Disable editing if there's more than one page. (This is a legacy

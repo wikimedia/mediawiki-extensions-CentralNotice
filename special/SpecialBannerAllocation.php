@@ -77,7 +77,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$this->location = $locationSubmitted ? $locationSubmitted : $this->location;
 
 		// Convert submitted location to boolean value. If it true, showList() will be called.
-		$locationSubmitted = (boolean) $locationSubmitted;
+		$locationSubmitted = (bool)$locationSubmitted;
 
 		// Begin output
 		$this->setHeaders();
@@ -213,8 +213,8 @@ class SpecialBannerAllocation extends CentralNotice {
 			$htmlOut .= Html::openElement(
 				'div',
 				[
-					 'id' => "cn-allocation-{$project}-{$language}-{$country}-{$deviceId}",
-					 'class' => 'cn-allocation-group'
+					'id' => "cn-allocation-{$project}-{$language}-{$country}-{$deviceId}",
+					'class' => 'cn-allocation-group'
 				]
 			);
 

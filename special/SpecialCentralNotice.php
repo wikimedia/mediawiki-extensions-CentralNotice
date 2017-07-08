@@ -66,7 +66,6 @@ class CentralNotice extends SpecialPage {
 
 			// Check authentication token
 			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
-
 				// Handle adding a campaign or changing existing campaign settings
 				// via the list interface. In either case, we'll retirect to the
 				// list view.
@@ -108,7 +107,6 @@ class CentralNotice extends SpecialPage {
 	 * the "Add campaign" form.
 	 */
 	protected function outputListOfNotices() {
-
 		$this->outputEnclosingDivStartTag();
 
 		$out = $this->getOutput();
@@ -132,19 +130,16 @@ class CentralNotice extends SpecialPage {
 	}
 
 	protected function handleNoticePostFromList() {
-
 		$request = $this->getRequest();
 		$changes = json_decode( $request->getText( 'changes' ), true );
 		$summary = $this->getSummaryFromRequest( $request );
 
 		// Make the changes requested
 		foreach ( $changes as $campaignName => $campaignChanges ) {
-
 			$initialSettings = Campaign::getCampaignSettings( $campaignName );
 
 			// Next campaign if somehow this one doesn't exist
 			if ( !$initialSettings ) {
-
 				wfLogWarning( 'Change requested for non-existent campaign ' .
 					$campaignName );
 
@@ -153,31 +148,27 @@ class CentralNotice extends SpecialPage {
 
 			// Set values as per $changes
 			if ( isset( $campaignChanges['archived'] ) ) {
-
 				Campaign::setBooleanCampaignSetting( $campaignName, 'archived',
 					$campaignChanges['archived'] );
 			}
 
 			if ( isset( $campaignChanges['locked'] ) ) {
-
 				Campaign::setBooleanCampaignSetting( $campaignName, 'locked',
 					$campaignChanges['locked'] );
 			}
 
 			if ( isset( $campaignChanges['enabled'] ) ) {
-
 				Campaign::setBooleanCampaignSetting( $campaignName, 'enabled',
 					$campaignChanges['enabled'] );
 			}
 
 			if ( isset( $campaignChanges['priority'] ) ) {
-
 				Campaign::setNumericCampaignSetting(
 					$campaignName,
 					'preferred',
 					intval( $campaignChanges['priority'] ),
-					CentralNotice::EMERGENCY_PRIORITY,
-					CentralNotice::LOW_PRIORITY
+					self::EMERGENCY_PRIORITY,
+					self::LOW_PRIORITY
 				);
 			}
 
@@ -275,16 +266,15 @@ class CentralNotice extends SpecialPage {
 	 */
 	public function prioritySelector( $index, $editable, $priorityValue ) {
 		$priorities = [
-			CentralNotice::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' )->escaped(),
-			CentralNotice::NORMAL_PRIORITY =>
+			self::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' )->escaped(),
+			self::NORMAL_PRIORITY =>
 				wfMessage( 'centralnotice-priority-normal' )->escaped(),
-			CentralNotice::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' )->escaped(),
-			CentralNotice::EMERGENCY_PRIORITY =>
+			self::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' )->escaped(),
+			self::EMERGENCY_PRIORITY =>
 				wfMessage( 'centralnotice-priority-emergency' )->escaped(),
 		];
 
 		if ( $editable ) {
-
 			$options = ''; // The HTML for the select list options
 			foreach ( $priorities as $key => $label ) {
 				$options .= Xml::option( $label, $key, $priorityValue == $key );
@@ -324,7 +314,7 @@ class CentralNotice extends SpecialPage {
 		foreach ( $fields as $data ) {
 			list( $field, $label, $set, $current ) = $data;
 			$out .= Xml::listDropDown( "{$prefix}[{$field}]",
-				CentralNotice::dropDownList( $this->msg( $label )->text(), $set ),
+				self::dropDownList( $this->msg( $label )->text(), $set ),
 				'',
 				$current );
 		}
@@ -401,7 +391,7 @@ class CentralNotice extends SpecialPage {
 			Xml::check( 'geotargeted', false, [ 'value' => 1, 'id' => 'geotargeted' ] ) );
 		$htmlOut .= Xml::closeElement( 'tr' );
 		$htmlOut .= Xml::openElement( 'tr',
-			[ 'id'=> 'geoMultiSelector', 'style'=> 'display:none;' ] );
+			[ 'id' => 'geoMultiSelector', 'style' => 'display:none;' ] );
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 			$this->msg( 'centralnotice-countries' )->escaped() );
 		$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelector() );
@@ -440,7 +430,7 @@ class CentralNotice extends SpecialPage {
 		} else {
 			$result = Campaign::addCampaign( $noticeName, false, $start, $projects,
 				$project_languages, $geotargeted, $geo_countries,
-				100, CentralNotice::NORMAL_PRIORITY, $this->getUser(),
+				100, self::NORMAL_PRIORITY, $this->getUser(),
 				$this->getSummaryFromRequest( $request ) );
 			if ( is_string( $result ) ) {
 				// TODO Better error handling
@@ -594,10 +584,8 @@ class CentralNotice extends SpecialPage {
 		// filter); process the request. Recall that if the serious request
 		// succeeds, the page will be reloaded again.
 		if ( $request->getCheck( 'template-search' ) == false ) {
-
 			// Check authentication token
 			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
-
 				// Handle removing campaign
 				if ( $request->getVal( 'archive' ) ) {
 					Campaign::setBooleanCampaignSetting( $notice, 'archived', true );
@@ -640,9 +628,9 @@ class CentralNotice extends SpecialPage {
 				Campaign::setNumericCampaignSetting(
 					$notice,
 					'preferred',
-					$request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY ),
-					CentralNotice::EMERGENCY_PRIORITY,
-					CentralNotice::LOW_PRIORITY
+					$request->getInt( 'priority', self::NORMAL_PRIORITY ),
+					self::EMERGENCY_PRIORITY,
+					self::LOW_PRIORITY
 				);
 
 				// Handle updating geotargeting
@@ -728,15 +716,12 @@ class CentralNotice extends SpecialPage {
 				foreach ( $wgCentralNoticeCampaignMixins
 					as $mixinName => $mixinDef
 				) {
-
 					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
 
 					if ( $request->getCheck( $mixinControlName ) ) {
-
 						$params = [];
 
 						foreach ( $mixinDef['parameters'] as $paramName => $paramDef ) {
-
 							$requestParamName =
 								self::makeNoticeMixinControlName( $mixinName, $paramName );
 
@@ -833,7 +818,7 @@ class CentralNotice extends SpecialPage {
 				$start = $this->getDateTime( 'start' );
 				$end = $this->getDateTime( 'end' );
 				$isEnabled = $request->getCheck( 'enabled' );
-				$priority = $request->getInt( 'priority', CentralNotice::NORMAL_PRIORITY );
+				$priority = $request->getInt( 'priority', self::NORMAL_PRIORITY );
 				$throttle = $request->getInt( 'throttle', 100 );
 				$isLocked = $request->getCheck( 'locked' );
 				$isArchived = $request->getCheck( 'archived' );
@@ -910,7 +895,7 @@ class CentralNotice extends SpecialPage {
 						$readonly,
 						[ 'value' => $notice, 'id' => 'geotargeted' ] ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr', [ 'id'=> 'geoMultiSelector' ] );
+			$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'geoMultiSelector' ] );
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				$this->msg( 'centralnotice-countries' )->escaped() );
 			$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelector( $countries ) );
@@ -987,7 +972,6 @@ class CentralNotice extends SpecialPage {
 
 			// Create controls for campaign-associated mixins (if there are any)
 			if ( !empty( $wgCentralNoticeCampaignMixins ) ) {
-
 				$mixinsThisNotice = Campaign::getCampaignMixins( $notice );
 
 				$htmlOut .= Xml::fieldset(
@@ -995,7 +979,6 @@ class CentralNotice extends SpecialPage {
 
 				foreach ( $wgCentralNoticeCampaignMixins
 					as $mixinName => $mixinDef ) {
-
 					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
 
 					$attribs = [
@@ -1006,7 +989,6 @@ class CentralNotice extends SpecialPage {
 					];
 
 					if ( isset( $mixinsThisNotice[$mixinName] ) ) {
-
 						// We have data on the mixin for this campaign, though
 						// it may not have been enabled.
 
@@ -1059,8 +1041,8 @@ class CentralNotice extends SpecialPage {
 	}
 
 	protected static function makeNoticeMixinControlName(
-			$mixinName, $mixinParam=null ) {
-
+		$mixinName, $mixinParam = null
+	) {
 		return 'notice-mixin-' . $mixinName .
 			( $mixinParam ? '-' . $mixinParam : '' );
 	}
@@ -1331,8 +1313,8 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Html::element(
 			'input',
 			[
-				'type'=> 'submit',
-				'name'=> 'template-search',
+				'type' => 'submit',
+				'name' => 'template-search',
 				'value' => $this->msg( 'centralnotice-filter-template-submit' )->text()
 			]
 		);
@@ -1341,7 +1323,6 @@ class CentralNotice extends SpecialPage {
 
 		// And now the banners, if any
 		if ( $pager->getNumRows() > 0 ) {
-
 			// Show paginated list of banners
 			$htmlOut .= Xml::tags( 'div',
 				[ 'class' => 'cn-pager' ],
@@ -1449,7 +1430,6 @@ class CentralNotice extends SpecialPage {
 	 * @return string
 	 */
 	public function makeSummaryField( $action = false ) {
-
 		$placeholderMsg = $action ? 'centralnotice-change-summary-action-prompt'
 			: 'centralnotice-change-summary-prompt';
 

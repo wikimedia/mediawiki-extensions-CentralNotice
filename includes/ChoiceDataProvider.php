@@ -43,7 +43,6 @@ class ChoiceDataProvider {
 			self::CACHE_TTL,
 			function ( $oldValue, &$ttl, array &$setOpts )
 				use ( $project, $language ) {
-
 				$dbr = CNDatabase::getDb( DB_SLAVE );
 
 				// Account for slave lag to prevent a race condition when
@@ -75,8 +74,8 @@ class ChoiceDataProvider {
 	}
 
 	private static function fetchChoices( $project, $language,
-		IDatabase $dbr ) {
-
+		IDatabase $dbr
+	) {
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
 
@@ -149,7 +148,6 @@ class ChoiceDataProvider {
 		$assignmentKeysByBannerIdAndCampaignId = [];
 
 		foreach ( $dbRows as $dbRow ) {
-
 			$campaignId = $dbRow->not_id;
 			$campaignName = $dbRow->not_name;
 			$bannerId = $dbRow->tmp_id;
@@ -176,7 +174,7 @@ class ChoiceDataProvider {
 					'preferred' => intval( $dbRow->not_preferred ),
 					'throttle' => intval( $dbRow->not_throttle ),
 					'bucket_count' => intval( $dbRow->not_buckets ),
-					'geotargeted' => (bool) $dbRow->not_geo,
+					'geotargeted' => (bool)$dbRow->not_geo,
 					'banners' => []
 				];
 			}
@@ -190,8 +188,8 @@ class ChoiceDataProvider {
 				'bucket' => intval( $bucket ),
 				'weight' => intval( $dbRow->tmp_weight ),
 				'category' => $category,
-				'display_anon' => (bool) $dbRow->tmp_display_anon,
-				'display_account' => (bool) $dbRow->tmp_display_account,
+				'display_anon' => (bool)$dbRow->tmp_display_anon,
+				'display_account' => (bool)$dbRow->tmp_display_account,
 				'devices' => [] // To be filled by the last query
 			];
 
@@ -246,7 +244,6 @@ class ChoiceDataProvider {
 
 		// Add campaign-associated mixins to the data structure
 		foreach ( $choices as &$campaignInfo ) {
-
 			// Get info for enabled mixins for this campaign
 			$campaignInfo['mixins'] =
 				Campaign::getCampaignMixins( $campaignInfo['name'], true );
@@ -276,7 +273,6 @@ class ChoiceDataProvider {
 
 		// Add devices to the data structure.
 		foreach ( $dbRows as $dbRow ) {
-
 			$bannerId = $dbRow->tmp_id;
 
 			// Traverse the data structure to add in devices
@@ -285,8 +281,8 @@ class ChoiceDataProvider {
 				$assignmentKeysByBannerIdAndCampaignId[$bannerId];
 
 			foreach ( $assignmentKeysByCampaignId
-				as $campaignId => $assignmentKeys ) {
-
+				as $campaignId => $assignmentKeys
+			) {
 				foreach ( $assignmentKeys as $assignmentKey ) {
 					$choices[$campaignId]['banners'][$assignmentKey]['devices'][] =
 						$dbRow->dev_name;
@@ -311,7 +307,7 @@ class ChoiceDataProvider {
 			return $b;
 		};
 
-		$compareNames = function( $a, $b ) {
+		$compareNames = function ( $a, $b ) {
 			if ( $a['name'] == $b['name'] ) {
 				return 0;
 			}
@@ -319,7 +315,6 @@ class ChoiceDataProvider {
 		};
 
 		$fixCampaignPropsFn = function ( $c ) use ( $uniqueDevFn, $compareNames ) {
-
 			$c['banners'] = array_map( $uniqueDevFn, array_values( $c['banners'] ) );
 			usort( $c['banners'], $compareNames );
 
