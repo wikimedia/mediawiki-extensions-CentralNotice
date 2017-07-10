@@ -394,6 +394,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Display the banner editor and process edits
 	 */
 	protected function showBannerEditor() {
+		global $wgUseSquid;
+
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi.bannerEditor' );
 		$this->addHelpLink(
@@ -437,6 +439,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			setDisplayFormat( 'div' )->
 			prepareForm()->
 			displayForm( $formResult );
+
+		// Controls to purge banner loader URLs from CDN caches for a given language.
+		if ( $wgUseSquid ) {
+			$out->addHTML( $this->generateCdnPurgeSection() );
+		}
 
 		$out->addHTML( Xml::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
@@ -802,6 +809,64 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$this->banner = $banner;
 
 		return $formDescriptor;
+	}
+
+	/**
+	 * Generate a string with the HTML for controls to request a front-end (CDN) cache
+	 * purge of banner content for a language.
+	 *
+	 * @return string
+	 */
+	protected function generateCdnPurgeSection() {
+		$purgeControls = Xml::element( 'h2',
+			[ 'class' => 'cn-special-section' ],
+			$this->msg( 'centralnotice-banner-cdn-controls' )->escaped() );
+
+		$purgeControls .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
+
+		$purgeControls .= Html::openElement( 'label' );
+		$purgeControls .=
+			$this->msg( 'centralnotice-banner-cdn-label' )->escaped() . ' ';
+
+		$disabledAttr = $this->editable ? [] : [ 'disabled' => true ];
+
+		$purgeControls .= Html::openElement( 'select',
+			$disabledAttr + [ 'id' => 'cn-cdn-cache-language' ] );
+
+		// Retrieve the list of languages in user's language
+		// FIXME Similar code in SpecialBannerAllocation::execute(), maybe switch
+		// to language selector?
+		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
+		ksort( $languages );
+
+		foreach ( $languages as $code => $name ) {
+			$purgeControls .= Xml::option(
+				$this->msg( 'centralnotice-language-listing', $code, $name )->text(),
+				$code );
+		}
+
+		$purgeControls .= Html::closeElement( 'select' );
+		$purgeControls .= Html::closeElement( 'label' );
+
+		$purgeControls .= ' ' . Html::openElement( 'button', $disabledAttr + [
+			'id' => 'cn-cdn-cache-purge',
+			'data-banner-name' => $this->bannerName
+		] );
+
+		$purgeControls .=
+			$this->msg( 'centralnotice-banner-cdn-button' )->escaped();
+
+		$purgeControls .= Html::closeElement( 'button' );
+
+		$purgeControls .= Html::element(
+			'div',
+			[ 'class' => 'htmlform-help' ],
+			$this->msg( 'centralnotice-banner-cdn-help' )->escaped()
+		);
+
+		$purgeControls .= Html::closeElement( 'fieldset' );
+
+		return $purgeControls;
 	}
 
 	public function processEditBanner( $formData ) {

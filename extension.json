@@ -40,13 +40,15 @@
 	},
 	"APIModules": {
 		"centralnoticechoicedata": "ApiCentralNoticeChoiceData",
-		"centralnoticequerycampaign": "ApiCentralNoticeQueryCampaign"
+		"centralnoticequerycampaign": "ApiCentralNoticeQueryCampaign",
+		"centralnoticecdncacheupdatebanner": "ApiCentralNoticeCdnCacheUpdateBanner"
 	},
 	"APIListModules": {
 		"centralnoticelogs": "ApiCentralNoticeLogs"
 	},
 	"AutoloadClasses": {
 		"AllocationCalculator": "includes/AllocationCalculator.php",
+		"ApiCentralNoticeCdnCacheUpdateBanner": "api/ApiCentralNoticeCdnCacheUpdateBanner.php",
 		"ApiCentralNoticeChoiceData": "api/ApiCentralNoticeChoiceData.php",
 		"ApiCentralNoticeLogs": "api/ApiCentralNoticeLogs.php",
 		"ApiCentralNoticeQueryCampaign": "api/ApiCentralNoticeQueryCampaign.php",
@@ -160,7 +162,8 @@
 		"ext.centralNotice.adminUi.bannerEditor": {
 			"dependencies": [
 				"ext.centralNotice.adminUi",
-				"jquery.ui.dialog"
+				"jquery.ui.dialog",
+				"mediawiki.api"
 			],
 			"scripts": "infrastructure/bannereditor.js",
 			"styles": "infrastructure/bannereditor.css",
@@ -175,7 +178,12 @@
 				"centralnotice-delete-banner",
 				"centralnotice-delete-banner-title",
 				"centralnotice-delete-banner-confirm",
-				"centralnotice-delete-banner-cancel"
+				"centralnotice-delete-banner-cancel",
+				"centralnotice-banner-cdn-dialog-waiting-text",
+				"centralnotice-banner-cdn-dialog-title",
+				"centralnotice-banner-cdn-dialog-ok",
+				"centralnotice-banner-cdn-dialog-error",
+				"centralnotice-banner-cdn-dialog-success"
 			]
 		},
 		"ext.centralNotice.adminUi.campaignManager": {
