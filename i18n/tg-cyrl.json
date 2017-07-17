@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ibrahim"
+			"Ibrahim",
+			"ToJack"
 		]
 	},
 	"centralnotice": "Мудири эълони мутамарказ",
@@ -27,7 +28,7 @@
 	"centralnotice-translations": "Тарҷумаҳо",
 	"centralnotice-translate-to": "Тарҷума ба",
 	"centralnotice-translate": "Тарҷума",
-	"centralnotice-english": "Англисӣ",
+	"centralnotice-english": "англисӣ",
 	"centralnotice-banner-name": "Унвони шаблон",
 	"centralnotice-templates": "Шаблонҳо",
 	"centralnotice-weight": "Вазн",
