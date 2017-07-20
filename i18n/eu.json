@@ -9,7 +9,8 @@
 			"Theklan",
 			"Unai Fdz. de Betoño",
 			"පසිඳු කාවින්ද",
-			"Sator"
+			"Sator",
+			"Mikel Ibaiba"
 		]
 	},
 	"centralnotice": "Ohar zentralizatuen administrazioa",
@@ -83,6 +84,7 @@
 	"centralnotice-projects": "Proiektuak",
 	"centralnotice-country": "Herrialdea",
 	"centralnotice-percentage": "Ehunekoa",
+	"centralnotice-documentwrite-error": "dokumentua.idatzi() ezin da erabili banner batekin. Ikusi https://meta.wikimedia.org/wiki/Help:CentralNotice informazio gehiago lortzeko.",
 	"centralnotice-preferred": "Lehentasuna",
 	"centralnotice-logs": "Erregistroak",
 	"centralnotice-user": "Erabiltzailea",
