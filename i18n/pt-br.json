@@ -254,6 +254,7 @@
 	"hidebanners": "Ocultar banners",
 	"centralnotice-specialhidebanners-p3p": "Alguns navegadores requerem uma política compacta P3P para definir cookies em certas situações. Entretanto, nenhuma política compacta está disponível atualmente. Por favor, veja a política de privacidade do site.",
 	"apihelp-centralnoticeallocations-description": "Obter as alocações de banner para banners servidos pelo CentralNotice para todos os tipos de usuários sob o filtro paramétrico.\n\nIsto é apenas um convite do JSON.",
+	"apihelp-centralnoticeallocations-extended-description": "Esta é uma chamada exclusiva JSON.",
 	"apihelp-centralnoticeallocations-param-project": "O projeto para o qual obter alocações.",
 	"apihelp-centralnoticeallocations-param-country": "O país para filtrar.",
 	"apihelp-centralnoticeallocations-param-language": "O idioma para filtrar.",
