@@ -11,7 +11,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	protected $fixture;
 
 	public static function setUpBeforeClass() {
-		$banner = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::fromName( self::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
 			$banner->remove();
 		}
@@ -26,7 +26,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function tearDown() {
-		$banner = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::fromName( self::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
 			$banner->remove();
 		}
@@ -35,13 +35,13 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 
 	public function testNewFromName() {
 		// Create what should be a new empty banner
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$this->assertFalse( $banner->exists(), 'Test precondition failed! Banner already exists!' );
 
 		// Run down the basic metadata and ensure it is in fact empty
 		$this->assertEquals( null, $banner->getId(),
 			'New banner ID is not null; probably already exists!' );
-		$this->assertEquals( BannerTest::TEST_BANNER_NAME, $banner->getName(),
+		$this->assertEquals( self::TEST_BANNER_NAME, $banner->getName(),
 			'Banner name did not get set' );
 		$this->assertFalse( $banner->allocateToAnon(),
 			'Initial anonymous allocation is set to true' );
@@ -77,13 +77,13 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	 * @depends testNewFromName
 	 */
 	public function testEmptyFromName() {
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$banner->save();
 		$this->assertTrue( $banner->exists(), 'Test banner that should exist does not!' );
 
 		// Run down the basic metadata and ensure it is in fact empty
 		$this->assertNotEquals( -1, $banner->getId(), 'Test banner has no ID' );
-		$this->assertEquals( BannerTest::TEST_BANNER_NAME, $banner->getName(),
+		$this->assertEquals( self::TEST_BANNER_NAME, $banner->getName(),
 			'Banner name did not get saved' );
 		$this->assertFalse( $banner->allocateToAnon(),
 			'Initial anonymous allocation is set to true' );
@@ -110,13 +110,12 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	 * @depends testEmptyFromName
 	 */
 	public function testBasicSave() {
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$banner->save();
 		$this->assertTrue( $banner->exists() );
 
 		// Attempt to populate basic metadata
-		$banner->setAllocation( true, true )->
-			     setCategory( 'testCategory' );
+		$banner->setAllocation( true, true )->setCategory( 'testCategory' );
 
 		// And the more advanced metadata
 		$banner->setDevices( 'desktop' );
@@ -138,7 +137,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 			"Failed prilang retrieve from initial" );
 
 		// Can we retrieve it from a different object
-		$banner2 = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner2 = Banner::fromName( self::TEST_BANNER_NAME );
 		$this->assertTrue( $banner2->allocateToAnon(), "Failed anon allocation from copy" );
 		$this->assertTrue( $banner2->allocateToLoggedIn(), "Failed loggedin allocation from copy" );
 		$this->assertEquals( 'testCategory', $banner2->getCategory(), "Failed category from copy" );
@@ -158,14 +157,14 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider providerSetAllocation
 	 */
 	public function testSetAllocation( $anon, $loggedIn ) {
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$banner->setAllocation( $anon, $loggedIn );
 		$banner->save();
 		$this->assertEquals( $anon, $banner->allocateToAnon(), "Testing initial anon" );
 		$this->assertEquals( $loggedIn, $banner->allocateToLoggedIn(),
 			"Testing initial logged in" );
 
-		$banner2 = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner2 = Banner::fromName( self::TEST_BANNER_NAME );
 		$this->assertEquals( $anon, $banner2->allocateToAnon(), "Testing post save anon" );
 		$this->assertEquals( $loggedIn, $banner2->allocateToLoggedIn(),
 			"Testing post save logged in" );

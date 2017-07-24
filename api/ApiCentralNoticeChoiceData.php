@@ -23,7 +23,6 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	const STATUS_FILTER = '/loggedin|anonymous/';
 
 	public function execute() {
-
 		// Extract, sanitize and munge the parameters
 		$params = $this->extractRequestParams();
 
@@ -46,7 +45,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 			null,
 			'choices',
 			$choices
-		 );
+		);
 	}
 
 	public function getAllowedParams() {

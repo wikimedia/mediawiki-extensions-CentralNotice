@@ -214,11 +214,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$this,
 			'banner-list',
 			[
-				 'applyTo' => [
-					 'section' => 'banner-list',
-					 'class' => 'HTMLCheckField',
-					 'cssclass' => 'cn-bannerlist-check-applyto',
-				 ]
+				'applyTo' => [
+					'section' => 'banner-list',
+					'class' => 'HTMLCheckField',
+					'cssclass' => 'cn-bannerlist-check-applyto',
+				]
 			],
 			[],
 			$filter,
@@ -240,7 +240,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return null|string|array
 	 */
 	public function processBannerList( $formData ) {
-
 		$this->setFilterFromUrl();
 
 		if ( $formData[ 'action' ] && $this->editable ) {
@@ -329,7 +328,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Use a URL parameter to set the filter string for the banner list.
 	 */
 	protected function setFilterFromUrl() {
-
 		// This is the normal param on visible URLs.
 		$filterParam = $this->getRequest()->getVal( 'filter', null );
 
@@ -353,7 +351,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return array
 	 */
 	public function getFilterUrlParamAsArray() {
-
 		return $this->bannerFilterString ?
 			[ 'filter' => $this->bannerFilterString ] : [];
 	}
@@ -371,9 +368,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				$this->msg( 'centralnotice-live-preview' )->escaped(),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[
-					 'banner' => $this->bannerName,
-					 'uselang' => $this->bannerLanguagePreview,
-					 'force' => '1',
+					'banner' => $this->bannerName,
+					'uselang' => $this->bannerLanguagePreview,
+					'force' => '1',
 				]
 			)
 		];
@@ -457,7 +454,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		array_walk(
 			$languages,
-			function( &$val, $index ) {
+			function ( &$val, $index ) {
 				$val = "$index - $val";
 			}
 		);
@@ -490,7 +487,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'help-message' => 'centralnotice-banner-class-desc',
 			'options' => Banner::getAllUsedCategories(),
 			'size' => 30,
-			'maxlength'=> 255,
+			'maxlength' => 255,
 			'default' => $banner->getCategory(),
 		];
 

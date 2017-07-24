@@ -26,7 +26,7 @@ class BannerMessage {
 		global $wgLanguageCode;
 
 		if ( $namespace === NS_MEDIAWIKI ) {
-			return ( $lang === null or $lang === $wgLanguageCode ) ?
+			return ( $lang === null || $lang === $wgLanguageCode ) ?
 				"Centralnotice-{$this->banner_name}-{$this->name}" :
 				"Centralnotice-{$this->banner_name}-{$this->name}/{$lang}";
 		} elseif ( $namespace === NS_CN_BANNER ) {
@@ -96,7 +96,7 @@ class BannerMessage {
 			$summary = '/* CN admin */';
 		}
 
-		$savePage = function( $title, $text ) use( $summary ) {
+		$savePage = function ( $title, $text ) use( $summary ) {
 			$wikiPage = new WikiPage( $title );
 
 			$content = ContentHandler::makeContent( $text, $title );

@@ -66,7 +66,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	}
 
 	protected function getRequestParams() {
-		$sanitize = function( $param, $regex ) {
+		$sanitize = function ( $param, $regex ) {
 			return filter_var( $param, FILTER_VALIDATE_REGEXP,
 				[ 'options' => [ 'regexp' => $regex ] ] );
 		};
@@ -293,7 +293,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 			foreach ( $grouping['rows'] as $row ) {
 				$htmlOut .= Html::openElement( 'tr',
-					[ 'class'=>'mw-sp-centralnotice-allocationrow' ] );
+					[ 'class' =>'mw-sp-centralnotice-allocationrow' ] );
 
 				$htmlOut .= Html::openElement( 'td' );
 				$htmlOut .= $row['projects_label'];
@@ -421,7 +421,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * @throws InvalidArgumentException
 	 */
 	protected static function makeCombinations( array $list, $num ) {
-		if ( $num <= 0 or $num > count( $list ) ) {
+		if ( $num <= 0 || $num > count( $list ) ) {
 			throw new InvalidArgumentException( "bad arguments to makeCombinations" );
 		}
 		if ( $num == count( $list ) ) {
@@ -568,7 +568,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
 		// Row begin
-		$htmlOut .= Html::openElement( 'tr', [ 'class'=>'mw-sp-centralnotice-allocationrow' ] );
+		$htmlOut .= Html::openElement( 'tr', [ 'class' =>'mw-sp-centralnotice-allocationrow' ] );
 
 		if ( !$variesAnon ) {
 			$anonLabel = $this->msg( 'centralnotice-all' )->text();
@@ -641,21 +641,22 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * @param string $project
 	 */
 	protected static function filterCampaigns(
-		$campaigns, $country, $language, $project ) {
+		$campaigns, $country, $language, $project
+	) {
 		$filtered = [];
 		foreach ( $campaigns as $campaign ) {
 			$projectAllowed = (
 				!$project
-				or in_array( $project, $campaign['projects'] )
+				|| in_array( $project, $campaign['projects'] )
 			);
 			$languageAllowed = (
 				!$language
-				or in_array( $language, $campaign['languages'] )
+				|| in_array( $language, $campaign['languages'] )
 			);
 			$countryAllowed = (
 				!$country
-				or !$campaign['geotargeted']
-				or in_array( $country, $campaign['countries'] )
+				|| !$campaign['geotargeted']
+				|| in_array( $country, $campaign['countries'] )
 			);
 			if ( $projectAllowed && $languageAllowed && $countryAllowed ) {
 				$filtered[] = $campaign;
@@ -671,7 +672,7 @@ class CampaignCriteria {
 	];
 
 	public static function intersect( $a, $b ) {
-		if ( !$a or !$b ) {
+		if ( !$a || !$b ) {
 			return false;
 		}
 		foreach ( self::$criteria as $property ) {

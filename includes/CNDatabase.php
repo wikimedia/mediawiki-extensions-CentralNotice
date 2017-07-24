@@ -40,7 +40,8 @@ class CNDatabase {
 		// XXX: preventive hack for meandering code
 
 		if ( ( $target === null ) &&
-			( $wgRequest->wasPosted() || self::$masterUsedBefore ) ) {
+			( $wgRequest->wasPosted() || self::$masterUsedBefore )
+		) {
 			$target = DB_MASTER;
 		}
 

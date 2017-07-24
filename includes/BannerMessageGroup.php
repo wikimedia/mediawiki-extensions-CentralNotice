@@ -18,7 +18,6 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @param string $title The page name of the CentralNotice banner
 	 */
 	public function __construct( $namespace, $title ) {
-
 		$titleObj = Title::makeTitle( $namespace, $title );
 		$this->id = static::getTranslateGroupName( $title );
 
@@ -95,7 +94,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		static $useGroupReview = null;
 
 		if ( $useGroupReview === null ) {
-			$group = MessageGroups::getGroup( BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE );
+			$group = MessageGroups::getGroup( self::TRANSLATE_GROUP_NAME_BASE );
 			if ( $group && $group->getMessageGroupStates() ) {
 				$useGroupReview = true;
 			} else {
@@ -122,11 +121,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 		if ( strpos( $bannerName, 'Centralnotice-template' ) === 0 ) {
 			return str_replace(
 				'Centralnotice-template',
-				BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
+				self::TRANSLATE_GROUP_NAME_BASE,
 				$bannerName
 			);
 		} else {
-			return BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
+			return self::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
 		}
 	}
 
@@ -147,7 +146,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		global $wgNoticeTranslateDeployStates;
 
 		// We only need to run this if we're actually using group review
-		if ( !BannerMessageGroup::isUsingGroupReview() ) {
+		if ( !self::isUsingGroupReview() ) {
 			return true;
 		}
 
@@ -155,7 +154,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 			// Deal with an aggregate group object having changed
 			$groups = $group->getGroups();
 			foreach ( $groups as $subgroup ) {
-				BannerMessageGroup::updateBannerGroupStateHook(
+				self::updateBannerGroupStateHook(
 					$subgroup, $code, $currentState, $newState );
 			}
 		} elseif ( ( $group instanceof BannerMessageGroup )
@@ -226,7 +225,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		// Create the base aggregate group
 		$conf = [];
 		$conf['BASIC'] = [
-			'id' => BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
+			'id' => self::TRANSLATE_GROUP_NAME_BASE,
 			'label' => 'CentralNotice Banners',
 			'description' => '{{int:centralnotice-aggregate-group-desc}}',
 			'meta' => 1,
@@ -258,21 +257,21 @@ class BannerMessageGroup extends WikiMessageGroup {
 	}
 
 	public static function getLanguagesInState( $banner, $state ) {
-		if ( !BannerMessageGroup::isUsingGroupReview() ) {
+		if ( !self::isUsingGroupReview() ) {
 			throw new LogicException(
 				'CentralNotice is not using group review. Cannot query group review state.'
 			);
 		}
 
-		$groupName = BannerMessageGroup::getTranslateGroupName( $banner );
+		$groupName = self::getTranslateGroupName( $banner );
 
 		$db = CNDatabase::getDb();
 		$result = $db->select(
 			'translate_groupreviews',
 			'tgr_lang',
 			[
-				 'tgr_group' => $groupName,
-				 'tgr_state' => $state,
+				'tgr_group' => $groupName,
+				'tgr_state' => $state,
 			],
 			__METHOD__
 		);

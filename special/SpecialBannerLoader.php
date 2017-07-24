@@ -25,7 +25,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-
 		$this->getOutput()->disable();
 
 		try {
@@ -90,7 +89,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 
 		if ( !$this->getUser()->isLoggedIn() ) {
-
 			// This header tells our front-end caches to retain the content for
 			// $sMaxAge seconds.
 			$sMaxAge = ( $cacheResponse === self::MAX_CACHE_NORMAL ) ?
@@ -188,7 +186,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
  */
 class BannerLoaderException extends Exception {
 	function __construct( $bannerName = '(none provided)', $extraMsg = null ) {
-
 		$this->message = get_called_class() .
 			" while loading banner: '{$bannerName}'";
 		if ( $extraMsg ) {

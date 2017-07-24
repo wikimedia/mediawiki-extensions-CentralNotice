@@ -102,8 +102,8 @@ class BannerRenderer {
 		$preview = Html::element(
 			'img',
 			[
-				 'src' => $previewUrl,
-				 'alt' => $bannerName,
+				'src' => $previewUrl,
+				'alt' => $bannerName,
 			]
 		);
 
@@ -113,8 +113,8 @@ class BannerRenderer {
 			$label,
 			$preview,
 			[
-				 'class' => 'cn-bannerpreview',
-				 'id' => Sanitizer::escapeId( "cn-banner-preview-{$this->banner->getName()}" ),
+				'class' => 'cn-bannerpreview',
+				'id' => Sanitizer::escapeId( "cn-banner-preview-{$this->banner->getName()}" ),
 			]
 		);
 	}

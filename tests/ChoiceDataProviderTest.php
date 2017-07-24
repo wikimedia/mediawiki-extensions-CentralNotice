@@ -24,11 +24,9 @@ class ChoiceDataProviderTest extends MediaWikiTestCase {
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
 	public function testProviderResponse( $name, $testCase ) {
-
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		foreach ( $testCase['contexts_and_outputs'] as $cANdOName => $contextAndOutput ) {
-
 			$choices = ChoiceDataProvider::getChoices(
 				$contextAndOutput['context']['project'],
 				$contextAndOutput['context']['language']

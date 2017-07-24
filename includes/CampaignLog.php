@@ -14,20 +14,20 @@ class CampaignLog {
 		$begin = [];
 		$end = [];
 		if ( $row ) {
-			$comma_explode = function( $str ) {
+			$comma_explode = function ( $str ) {
 				return explode( ", ", $str );
 			};
 
-			$json_decode = function( $json ) {
+			$json_decode = function ( $json ) {
 				return json_decode( $json, true );
 			};
 
-			$store = function( $name, $decode = null ) use ( $row, &$begin, &$end ) {
+			$store = function ( $name, $decode = null ) use ( $row, &$begin, &$end ) {
 				$beginField = 'notlog_begin_' . $name;
 				$endField = 'notlog_end_' . $name;
 
 				if ( !$decode ) {
-					$decode = function( $v ) {
+					$decode = function ( $v ) {
 						return $v;
 					};
 				}
@@ -68,7 +68,7 @@ class CampaignLog {
 		$begin =& $this->begin;
 		$end =& $this->end;
 
-		$diff_basic = function( $name ) use ( &$removed, &$added, &$begin, &$end ) {
+		$diff_basic = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
 			if ( $begin[ $name ] !== $end[ $name ] ) {
 				if ( $begin[ $name ] !== null ) {
 					$removed[ $name ] = $begin[ $name ];
@@ -78,7 +78,7 @@ class CampaignLog {
 				}
 			}
 		};
-		$diff_list = function( $name ) use ( &$removed, &$added, &$begin, &$end ) {
+		$diff_list = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
 			if ( $begin[ $name ] !== $end[ $name ] ) {
 				$removed[ $name ] = array_diff( $begin[ $name ], $end[ $name ] );
 				if ( !$removed[ $name ] || $removed[ $name ] === [ "" ] ) {
@@ -90,7 +90,7 @@ class CampaignLog {
 				}
 			}
 		};
-		$diff_map = function( $name ) use ( &$removed, &$added, &$begin, &$end ) {
+		$diff_map = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
 			$removed[ $name ] = $begin[ $name ];
 			$added[ $name ] = $end[ $name ];
 
