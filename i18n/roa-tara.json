@@ -49,6 +49,8 @@
 	"centralnotice-balanced": "Dèje a tutte le strisciune 'u stesse pese",
 	"centralnotice-weight": "Pese",
 	"centralnotice-locked": "Bloccate",
+	"centralnotice-notice-mixins-fieldset": "Funziune de extra cambagne",
+	"centralnotice-notice-mixins-int-required": "Indere richieste",
 	"centralnotice-notice": "Cambagne",
 	"centralnotice-notice-heading": "Cambagne: $1",
 	"centralnotice-notices": "Cambagne",
