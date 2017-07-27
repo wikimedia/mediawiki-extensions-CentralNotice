@@ -70,7 +70,7 @@ class ApiCentralNoticeCdnCacheUpdateBanner extends ApiBase {
 	 */
 	protected function getExamplesMessages() {
 		return [
-			'action=centralnoticecdncacheupdatebanner&banner=Banner1&language=en'
+			'action=centralnoticecdncacheupdatebanner&token=ABC123&banner=Banner1&language=en'
 			=> 'apihelp-centralnoticecdncacheupdatebanner-example-1'
 		];
 	}

@@ -36,16 +36,24 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	/**
-	 * Handle all the different types of page requests determined by $action
+	 * Handle all the different types of page requests determined by the first subpage
+	 * level after the special page title. If needed, the second subpage level is the
+	 * banner name.
 	 *
 	 * Valid actions are:
-	 *    Null      - Display a list of banners
-	 *    Edit      - Edits an existing banner
+	 *    (none)    - Display a list of banners
+	 *    edit      - Edits an existing banner
+	 *
+	 * TODO Preview action (for previewing translated messages) is broken. See T105558
+	 * TODO Change method of indicating action to something more standard.
+	 *
+	 * @param string|null $subPage
 	 */
-	public function execute( $page ) {
+	public function execute( $subPage ) {
 		// Do all the common setup
 		$this->setHeaders();
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
+
 		// Make sure we have a session
 		$this->getRequest()->getSession()->persist();
 
@@ -59,9 +67,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );
 		$this->getOutput()->addWikiMsg( 'centralnotice-summary' );
 
-		// Now figure out wth to display
-		$parts = explode( '/', $page );
+		// Now figure out what to display
+		// TODO Use only params instead of subpage to indicate action
+		$parts = explode( '/', $subPage );
 		$action = ( isset( $parts[0] ) && $parts[0] ) ? $parts[0]: 'list';
+		$this->bannerName = array_key_exists( 1, $parts ) ? $parts[1] : null;
 
 		switch ( strtolower( $action ) ) {
 			case 'list':
@@ -71,19 +81,18 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 			case 'edit':
 				// Display the banner editor form
-				if ( array_key_exists( 1, $parts ) ) {
-					$this->bannerName = $parts[1];
+				if ( $this->bannerName ) {
 					$this->showBannerEditor();
 				} else {
 					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
 				}
 				break;
 
+			// TODO Feature is broken. Remove or fix? See T105558
 			case 'preview':
 				// Preview all available translations
 				// Display the banner editor form
-				if ( array_key_exists( 1, $parts ) ) {
-					$this->bannerName = $parts[1];
+				if ( $this->bannerName ) {
 					$this->showAllLanguages();
 				} else {
 					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
