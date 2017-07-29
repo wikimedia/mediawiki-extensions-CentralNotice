@@ -110,6 +110,7 @@ class CentralNotice extends SpecialPage {
 		$this->outputEnclosingDivStartTag();
 
 		$out = $this->getOutput();
+		$out->addModules( 'ext.centralNotice.adminUi' );
 
 		$out->addHTML( Xml::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
