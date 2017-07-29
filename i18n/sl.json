@@ -3,7 +3,8 @@
 		"authors": [
 			"Dbc334",
 			"Edinwiki",
-			"Eleassar"
+			"Eleassar",
+			"HairyFotr"
 		]
 	},
 	"centralnotice": "Upravljanje osrednjega obvestila",
@@ -103,6 +104,8 @@
 	"centralnotice-banner-hidable": "Statična/Skrita",
 	"centralnotice-banner-collapsible": "Zložljiva",
 	"centralnotice-banner-fundraising": "To je donatorska pasica",
+	"centralnotice-banner-cdn-button": "Počisti",
+	"centralnotice-banner-cdn-dialog-ok": "V redu",
 	"centralnotice-geo": "Geociljano",
 	"centralnotice-countries": "Države",
 	"centralnotice-allocation": "Dodelitev",
