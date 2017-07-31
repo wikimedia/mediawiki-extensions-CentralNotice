@@ -8,7 +8,8 @@
 			"Herr Mlinka",
 			"Roberta F.",
 			"SpeedyGonsales",
-			"MaGa"
+			"MaGa",
+			"Wumbolo"
 		]
 	},
 	"centralnotice": "Administrator središnjih obavjesnica",
@@ -107,6 +108,10 @@
 	"centralnotice-banner-type": "Tip obavijesti:",
 	"centralnotice-banner-hidable": "Statični/Dinamični",
 	"centralnotice-banner-collapsible": "Moguće sakriti",
+	"centralnotice-banner-cdn-controls": "Cache od strane klijenta",
+	"centralnotice-banner-cdn-button": "Očisti",
+	"centralnotice-banner-cdn-dialog-title": "Očisti cache od strane klijenta",
+	"centralnotice-banner-cdn-dialog-ok": "U redu",
 	"centralnotice-geo": "Geociljano",
 	"centralnotice-countries": "Države",
 	"centralnotice-allocation": "Dodjela",

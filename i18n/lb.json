@@ -112,6 +112,7 @@
 	"centralnotice-banner-display-on": "Weisen op",
 	"centralnotice-banner-cdn-button": "Botzen",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
+	"apierror-centralnotice-cdn-lang-code-error": "Falsche Sproochcode.",
 	"apierror-centralnotice-cdn-banner-not-found": "Banner net fonnt",
 	"centralnotice-geo": "Geographesch geziilt",
 	"centralnotice-countries": "Länner",

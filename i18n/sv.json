@@ -131,6 +131,8 @@
 	"centralnotice-banner-display-on": "Visa på",
 	"centralnotice-banner-mixins": "Mixins:",
 	"centralnotice-banner-mixins-help": "Kontrollera varje mixin som du vill inkludera i leveransen av banner. (Se [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] för mer information.)",
+	"centralnotice-banner-cdn-button": "Rensa",
+	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geografiskt fokuserat",
 	"centralnotice-countries": "Länder",
 	"centralnotice-global-allocation": "Global fördelning",
