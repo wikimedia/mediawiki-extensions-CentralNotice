@@ -60,7 +60,7 @@
 	"centralnotice-no-allocation": "Cha deach bratach a shònrachadh.",
 	"centralnotice-allocation-description": "Sònrachadh na brataich airson a' chànain: $1, pròiseact: $2, san dùthaich: $3, air uidheaman $4",
 	"centralnotice-historical-allocation-description": "Sònrachadh na brataich airson a' chànain: $1, pròiseact: $2, san dùthaich: $3, air uidheaman $4, airson an ùine $5",
-	"centralnotice-documentwrite-error": "Chan fhaod thu document.write() a chleachdadh am broinn brataich.\nFaic http://meta.wikimedia.org/wiki/Help:CentralNotice airson barrachd fiosrachaidh.",
+	"centralnotice-documentwrite-error": "Chan fhaod thu document.write() a chleachdadh am broinn brataich.\nFaic https://meta.wikimedia.org/wiki/Help:CentralNotice airson barrachd fiosrachaidh.",
 	"centralnotice-no-assignments": "cha deach bratach a shònrachadh",
 	"centralnotice-campaign-settings": "Roghainnean nan iomairt",
 	"centralnotice-banner-settings": "Roghainnean nam bratach",

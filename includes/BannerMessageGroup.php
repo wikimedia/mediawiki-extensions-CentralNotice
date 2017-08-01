@@ -18,7 +18,6 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @param string $title The page name of the CentralNotice banner
 	 */
 	public function __construct( $namespace, $title ) {
-
 		$titleObj = Title::makeTitle( $namespace, $title );
 		$this->id = static::getTranslateGroupName( $title );
 
@@ -37,7 +36,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return array
 	 */
 	public function getKeys() {
-		$keys = array();
+		$keys = [];
 
 		$banner = Banner::fromName( $this->bannerName );
 		$fields = $banner->getMessageFieldsFromCache();
@@ -63,7 +62,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return array Array of message keys with definitions.
 	 */
 	public function getDefinitions() {
-		$definitions = array();
+		$definitions = [];
 
 		$banner = Banner::fromName( $this->bannerName );
 		$fields = $banner->getMessageFieldsFromCache();
@@ -74,8 +73,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$msgDefKeyPrefix = "Centralnotice-{$this->bannerName}-";
 		if ( $this->namespace == NS_CN_BANNER ) {
 			$msgKeyPrefix = $this->bannerName . '-';
-		}
-		else {
+		} else {
 			$msgKeyPrefix = $msgDefKeyPrefix;
 		}
 
@@ -96,7 +94,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		static $useGroupReview = null;
 
 		if ( $useGroupReview === null ) {
-			$group = MessageGroups::getGroup( BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE );
+			$group = MessageGroups::getGroup( self::TRANSLATE_GROUP_NAME_BASE );
 			if ( $group && $group->getMessageGroupStates() ) {
 				$useGroupReview = true;
 			} else {
@@ -123,11 +121,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 		if ( strpos( $bannerName, 'Centralnotice-template' ) === 0 ) {
 			return str_replace(
 				'Centralnotice-template',
-				BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
+				self::TRANSLATE_GROUP_NAME_BASE,
 				$bannerName
 			);
 		} else {
-			return BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
+			return self::TRANSLATE_GROUP_NAME_BASE . '-' . $bannerName;
 		}
 	}
 
@@ -148,7 +146,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		global $wgNoticeTranslateDeployStates;
 
 		// We only need to run this if we're actually using group review
-		if ( !BannerMessageGroup::isUsingGroupReview() ) {
+		if ( !self::isUsingGroupReview() ) {
 			return true;
 		}
 
@@ -156,12 +154,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 			// Deal with an aggregate group object having changed
 			$groups = $group->getGroups();
 			foreach ( $groups as $subgroup ) {
-				BannerMessageGroup::updateBannerGroupStateHook(
+				self::updateBannerGroupStateHook(
 					$subgroup, $code, $currentState, $newState );
 			}
-		}
-		elseif ( ( $group instanceof BannerMessageGroup )
-				 && in_array( $newState, $wgNoticeTranslateDeployStates )
+		} elseif ( ( $group instanceof BannerMessageGroup )
+			&& in_array( $newState, $wgNoticeTranslateDeployStates )
 		) {
 			// Finally an object we can deal with directly and it's in the right state!
 			$collection = $group->initCollection( $code );
@@ -188,8 +185,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 					);
 				}
 			}
-		}
-		else {
+		} else {
 			// We do nothing; we don't care about this type of group; or it's in the wrong state
 		}
 
@@ -197,19 +193,19 @@ class BannerMessageGroup extends WikiMessageGroup {
 	}
 
 	public function getMessageGroupStates() {
-		$conf = array(
-			'progress' => array( 'color' => 'E00' ),
-			'proofreading' => array( 'color' => 'FFBF00' ),
-			'ready' => array( 'color' => 'FF0' ),
-			'published' => array( 'color' => 'AEA', 'right' => 'centralnotice-admin' ),
-			'state conditions' => array(
-				array( 'ready', array( 'PROOFREAD' => 'MAX' ) ),
-				array( 'proofreading', array( 'TRANSLATED' => 'MAX' ) ),
-				array( 'progress', array( 'UNTRANSLATED' => 'NONZERO' ) ),
-				array( 'unset', array( 'UNTRANSLATED' => 'MAX', 'OUTDATED' => 'ZERO',
-					'TRANSLATED' => 'ZERO' ) ),
-			),
-		);
+		$conf = [
+			'progress' => [ 'color' => 'E00' ],
+			'proofreading' => [ 'color' => 'FFBF00' ],
+			'ready' => [ 'color' => 'FF0' ],
+			'published' => [ 'color' => 'AEA', 'right' => 'centralnotice-admin' ],
+			'state conditions' => [
+				[ 'ready', [ 'PROOFREAD' => 'MAX' ] ],
+				[ 'proofreading', [ 'TRANSLATED' => 'MAX' ] ],
+				[ 'progress', [ 'UNTRANSLATED' => 'NONZERO' ] ],
+				[ 'unset', [ 'UNTRANSLATED' => 'MAX', 'OUTDATED' => 'ZERO',
+					'TRANSLATED' => 'ZERO' ] ],
+			],
+		];
 
 		return new MessageGroupStates( $conf );
 	}
@@ -227,22 +223,22 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$dbr = CNDatabase::getDb( DB_MASTER );
 
 		// Create the base aggregate group
-		$conf = array();
-		$conf['BASIC'] = array(
-			'id' => BannerMessageGroup::TRANSLATE_GROUP_NAME_BASE,
+		$conf = [];
+		$conf['BASIC'] = [
+			'id' => self::TRANSLATE_GROUP_NAME_BASE,
 			'label' => 'CentralNotice Banners',
 			'description' => '{{int:centralnotice-aggregate-group-desc}}',
 			'meta' => 1,
 			'class' => 'AggregateMessageGroup',
 			'namespace' => NS_CN_BANNER,
-		);
-		$conf['GROUPS'] = array();
+		];
+		$conf['GROUPS'] = [];
 
 		// Find all the banners marked for translation
-		$tables = array( 'page', 'revtag' );
-		$vars   = array( 'page_id', 'page_namespace', 'page_title', );
-		$conds  = array( 'page_id=rt_page', 'rt_type' => RevTag::getType( 'banner:translate' ) );
-		$options = array( 'GROUP BY' => 'rt_page' );
+		$tables = [ 'page', 'revtag' ];
+		$vars   = [ 'page_id', 'page_namespace', 'page_title', ];
+		$conds  = [ 'page_id=rt_page', 'rt_type' => RevTag::getType( 'banner:translate' ) ];
+		$options = [ 'GROUP BY' => 'rt_page' ];
 		$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
 
 		foreach ( $res as $r ) {
@@ -261,28 +257,28 @@ class BannerMessageGroup extends WikiMessageGroup {
 	}
 
 	public static function getLanguagesInState( $banner, $state ) {
-		if ( !BannerMessageGroup::isUsingGroupReview() ) {
+		if ( !self::isUsingGroupReview() ) {
 			throw new LogicException(
 				'CentralNotice is not using group review. Cannot query group review state.'
 			);
 		}
 
-		$groupName = BannerMessageGroup::getTranslateGroupName( $banner );
+		$groupName = self::getTranslateGroupName( $banner );
 
 		$db = CNDatabase::getDb();
 		$result = $db->select(
 			'translate_groupreviews',
 			'tgr_lang',
-			array(
-				 'tgr_group' => $groupName,
-				 'tgr_state' => $state,
-			),
+			[
+				'tgr_group' => $groupName,
+				'tgr_state' => $state,
+			],
 			__METHOD__
 		);
 
-		$langs = array();
-		while ( $row = $result->fetchRow() ) {
-			$langs[] = $row['tgr_lang'];
+		$langs = [];
+		foreach ( $result as $row ) {
+			$langs[] = $row->tgr_lang;
 		}
 		return $langs;
 	}

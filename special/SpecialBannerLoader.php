@@ -25,7 +25,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-
 		$this->getOutput()->disable();
 
 		try {
@@ -60,9 +59,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$this->bannerName = $request->getText( 'banner' );
 		$this->debug = $request->getFuzzyBool( 'debug' );
 
-		$required_values = array(
+		$required_values = [
 			$this->campaignName, $this->bannerName, $language
-		);
+		];
 		foreach ( $required_values as $value ) {
 			if ( is_null( $value ) ) {
 				throw new MissingRequiredParamsException();
@@ -71,7 +70,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	}
 
 	function getSanitized( $param, $filter ) {
-		$matches = array();
+		$matches = [];
 		if ( preg_match( $filter, $this->getRequest()->getText( $param ), $matches ) ) {
 			return $matches[0];
 		}
@@ -90,7 +89,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		header( "Content-type: $wgJsMimeType; charset=utf-8" );
 
 		if ( !$this->getUser()->isLoggedIn() ) {
-
 			// This header tells our front-end caches to retain the content for
 			// $sMaxAge seconds.
 			$sMaxAge = ( $cacheResponse === self::MAX_CACHE_NORMAL ) ?
@@ -159,12 +157,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$category = $bannerRenderer->substituteMagicWords( $settings['category'] );
 		$category = Banner::sanitizeRenderedCategory( $category );
 
-		$bannerArray = array(
+		$bannerArray = [
 			'bannerName' => $bannerName,
 			'bannerHtml' => $bannerHtml,
 			'campaign' => $this->campaignName,
 			'category' => $category,
-		);
+		];
 
 		$bannerJson = FormatJson::encode( $bannerArray );
 
@@ -188,7 +186,6 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
  */
 class BannerLoaderException extends Exception {
 	function __construct( $bannerName = '(none provided)', $extraMsg = null ) {
-
 		$this->message = get_called_class() .
 			" while loading banner: '{$bannerName}'";
 		if ( $extraMsg ) {

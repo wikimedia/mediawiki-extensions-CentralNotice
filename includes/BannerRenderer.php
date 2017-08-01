@@ -48,7 +48,7 @@ class BannerRenderer {
 
 		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
 
-		//FIXME: it should make sense to do this:
+		// FIXME: it should make sense to do this:
 		// $this->mixinController->registerMagicWord( 'campaign', array( $this, 'getCampaign' ) );
 		// $this->mixinController->registerMagicWord( 'banner', array( $this, 'getBanner' ) );
 	}
@@ -62,7 +62,7 @@ class BannerRenderer {
 		return Linker::link(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$this->banner->getName()}" ),
 			htmlspecialchars( $this->banner->getName() ),
-			array( 'class' => 'cn-banner-title' )
+			[ 'class' => 'cn-banner-title' ]
 		);
 	}
 
@@ -79,7 +79,7 @@ class BannerRenderer {
 		return Linker::link(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$name}" ),
 			htmlspecialchars( $name ),
-			array( 'class' => 'cn-banner-title' )
+			[ 'class' => 'cn-banner-title' ]
 		);
 	}
 
@@ -101,10 +101,10 @@ class BannerRenderer {
 		$previewUrl = $wgNoticeBannerPreview . "{$bannerName}/{$bannerName}_{$lang}.png";
 		$preview = Html::element(
 			'img',
-			array(
-				 'src' => $previewUrl,
-				 'alt' => $bannerName,
-			)
+			[
+				'src' => $previewUrl,
+				'alt' => $bannerName,
+			]
 		);
 
 		$label = $this->context->msg( 'centralnotice-preview', $lang )->text();
@@ -112,10 +112,10 @@ class BannerRenderer {
 		return Xml::fieldset(
 			$label,
 			$preview,
-			array(
-				 'class' => 'cn-bannerpreview',
-				 'id' => Sanitizer::escapeId( "cn-banner-preview-{$this->banner->getName()}" ),
-			)
+			[
+				'class' => 'cn-bannerpreview',
+				'id' => Sanitizer::escapeId( "cn-banner-preview-{$this->banner->getName()}" ),
+			]
 		);
 	}
 
@@ -212,7 +212,7 @@ class BannerRenderer {
 	function substituteMagicWords( $contents ) {
 		return preg_replace_callback(
 			'/{{{([^}:]+)(?:[:]([^}]*))?}}}/',
-			array( $this, 'renderMagicWord' ),
+			[ $this, 'renderMagicWord' ],
 			$contents
 		);
 	}
@@ -223,7 +223,7 @@ class BannerRenderer {
 	 * @return array List of magic word names.
 	 */
 	function getMagicWords() {
-		$words = array( 'banner', 'campaign' );
+		$words = [ 'banner', 'campaign' ];
 		$words = array_merge( $words, $this->mixinController->getMagicWords() );
 		return $words;
 	}
@@ -247,7 +247,7 @@ class BannerRenderer {
 		} elseif ( $field === 'campaign' ) {
 			return $this->campaignName;
 		}
-		$params = array();
+		$params = [];
 		if ( isset( $re_matches[2] ) ) {
 			$params = explode( "|", $re_matches[2] );
 		}

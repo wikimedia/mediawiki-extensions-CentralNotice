@@ -125,7 +125,7 @@
 	"centralnotice-allocation-description": "Баанньары угуу. Тылга: $1, бырайыакка: $2, дойдуга: $3, $4 тэрилгэ",
 	"centralnotice-historical-allocation-description": "Баанньары туруоруу. Тылга: $1, бырайыакка: $2, дойдуга: $3, $4 тэрилгэ, кэмэ: $5",
 	"centralnotice-percentage": "Бырыһыан",
-	"centralnotice-documentwrite-error": "document.write() диэни бааннерга туттар сатаммат.\nСиһилии: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].",
+	"centralnotice-documentwrite-error": "document.write() диэни бааннерга туттар сатаммат.\nСиһилии: [https://meta.wikimedia.org/wiki/Help:CentralNotice https://meta.wikimedia.org/wiki/Help:CentralNotice].",
 	"centralnotice-preferred": "Бэрт буолуо этэ",
 	"centralnotice-archived": "Архыыптаммыт",
 	"centralnotice-logs": "Сурунааллар",

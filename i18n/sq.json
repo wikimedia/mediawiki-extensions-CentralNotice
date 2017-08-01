@@ -113,7 +113,7 @@
 	"centralnotice-no-allocation": "As një stampë e caktuar.",
 	"centralnotice-allocation-description": "Caktimi e stampës për $1.$2 në $3:",
 	"centralnotice-percentage": "Përqindje",
-	"centralnotice-documentwrite-error": "document.write() nuk mund të përdoret brenda një \"banneri\".\nShikoni http://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë informacion.",
+	"centralnotice-documentwrite-error": "document.write() nuk mund të përdoret brenda një \"banneri\".\nShikoni https://meta.wikimedia.org/wiki/Help:CentralNotice për më shumë informacion.",
 	"centralnotice-preferred": "Prioriteti",
 	"centralnotice-logs": "Regjistrat",
 	"centralnotice-view-logs": "Shiko regjistrat",

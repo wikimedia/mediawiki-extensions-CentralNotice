@@ -121,7 +121,7 @@
 	"centralnotice-projects": "Проекти",
 	"centralnotice-country": "Страна",
 	"centralnotice-percentage": "Процент",
-	"centralnotice-documentwrite-error": "document.write() не може да се използва в рамките на банер.\nЗа повече информация вижте http://meta.wikimedia.org/wiki/Help:CentralNotice.",
+	"centralnotice-documentwrite-error": "document.write() не може да се използва в рамките на банер.\nЗа повече информация вижте https://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Приоритет",
 	"centralnotice-logs": "Дневници",
 	"centralnotice-view-logs": "Преглед на дневниците",

@@ -141,7 +141,7 @@
 	"centralnotice-no-allocation": "لا يوجد شعارات مخصصة.",
 	"centralnotice-allocation-description": "الشعار المخصص للغة: $1، مشروع: $2، في البلد: $3، على الجهاز $4",
 	"centralnotice-percentage": "نسبة مئوية",
-	"centralnotice-documentwrite-error": "لا يمكن استخدام التعبير document.write() داخل الشعار.\nللحصول على مزيد من المعلومات راجع http://meta.wikimedia.org/wiki/Help:CentralNotice .",
+	"centralnotice-documentwrite-error": "لا يمكن استخدام التعبير document.write() داخل الشعار.\nللحصول على مزيد من المعلومات راجع https://meta.wikimedia.org/wiki/Help:CentralNotice .",
 	"centralnotice-preferred": "أولوية",
 	"centralnotice-archived": "تمت الأرشفة",
 	"centralnotice-logs": "سجلات",

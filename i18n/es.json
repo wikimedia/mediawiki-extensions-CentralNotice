@@ -158,7 +158,7 @@
 	"centralnotice-allocation-description": "Asignación de pancartas para idioma $1, proyecto $2, país $3, dispositivo $4",
 	"centralnotice-historical-allocation-description": "Asignación de pancartas para idioma $1, proyecto $2, país $3, dispositivo $4, tiempo $5",
 	"centralnotice-percentage": "Porcentaje",
-	"centralnotice-documentwrite-error": "No se puede usar document.write() dentro de un banner.\nVe http://meta.wikimedia.org/wiki/Help:CentralNotice para más información.",
+	"centralnotice-documentwrite-error": "No se puede usar document.write() dentro de un banner.\nVe https://meta.wikimedia.org/wiki/Help:CentralNotice para más información.",
 	"centralnotice-preferred": "Prioridad",
 	"centralnotice-archived": "Archivado",
 	"centralnotice-logs": "Registros",

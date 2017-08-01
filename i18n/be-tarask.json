@@ -124,7 +124,7 @@
 	"centralnotice-no-allocation": "Няма разьмешчаных банэраў.",
 	"centralnotice-allocation-description": "Разьмяшчэньне банэра для мовы $1, праекту $2, у краіне $3, на прыладах $4",
 	"centralnotice-percentage": "Адсоткаў",
-	"centralnotice-documentwrite-error": "document.write() не магчыма выкарыстоўваць у банэре.\nПадрабязнасьці глядзіце на http://meta.wikimedia.org/wiki/Help:CentralNotice.",
+	"centralnotice-documentwrite-error": "document.write() не магчыма выкарыстоўваць у банэре.\nПадрабязнасьці глядзіце на https://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Прыярытэт",
 	"centralnotice-logs": "Журналы падзеяў",
 	"centralnotice-view-logs": "Паказаць журнал падзеяў",

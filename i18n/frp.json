@@ -108,7 +108,7 @@
 	"centralnotice-no-allocation": "Gins de baniére balyê.",
 	"centralnotice-allocation-description": "Alocacion de baniére por $1.$2 en $3 :",
 	"centralnotice-percentage": "Porcentâjo",
-	"centralnotice-documentwrite-error": "document.write() pôt pas étre utilisâ dens una baniére.\nVolyéd vêre http://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enformacions.",
+	"centralnotice-documentwrite-error": "document.write() pôt pas étre utilisâ dens una baniére.\nVolyéd vêre https://meta.wikimedia.org/wiki/Help:CentralNotice por més d’enformacions.",
 	"centralnotice-preferred": "Prioritât",
 	"centralnotice-logs": "Jornals",
 	"centralnotice-view-logs": "Vêre los jornals",

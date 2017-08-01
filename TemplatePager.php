@@ -20,7 +20,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 		// Override paging defaults
 		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
-		$this->mLimitsShown = array( 20, 50, 100 );
+		$this->mLimitsShown = [ 20, 50, 100 ];
 
 		$msg = Xml::encodeJsVar( $this->msg( 'centralnotice-confirm-delete' )->text() );
 		$this->onRemoveChange = "if( this.checked ) { this.checked = confirm( $msg ) }";
@@ -43,19 +43,19 @@ class TemplatePager extends ReverseChronologicalPager {
 			$likeArray = $dbr->anyString();
 		} else {
 			$anyStringToken = $dbr->anyString();
-			$tempArray = array( $anyStringToken );
+			$tempArray = [ $anyStringToken ];
 			foreach ( $likeArray as $likePart ) {
-				$tempArray[ ] = $likePart;
-				$tempArray[ ] = $anyStringToken;
+				$tempArray[] = $likePart;
+				$tempArray[] = $anyStringToken;
 			}
 			$likeArray = $tempArray;
 		}
 
-		return array(
-			'tables' => array( 'templates' => 'cn_templates'),
-			'fields' => array( 'templates.tmp_name', 'templates.tmp_id' ),
-			'conds'  => array( 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ),
-		);
+		return [
+			'tables' => [ 'templates' => 'cn_templates' ],
+			'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
+			'conds' => [ 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ],
+		];
 	}
 
 	/**
@@ -80,12 +80,12 @@ class TemplatePager extends ReverseChronologicalPager {
 
 		if ( $this->editable ) {
 			// Remove box
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				Xml::check( 'removeTemplates[]', false,
-					array(
+					[
 						'value'    => $row->tmp_name,
 						'onchange' => $this->onRemoveChange
-					)
+					]
 				)
 			);
 		}
@@ -94,7 +94,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		$banner = Banner::fromName( $row->tmp_name );
 		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner );
 
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 			$bannerRenderer->linkTo() . "<br>" . $bannerRenderer->previewFieldSet()
 		);
 
@@ -111,14 +111,14 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
+		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
 		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( 'centralnotice-remove' )->text()
 			);
 		}
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left' ],
 			$this->msg( 'centralnotice-templates' )->text()
 		);
 		$htmlOut .= Xml::closeElement( 'tr' );
@@ -136,7 +136,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		if ( $this->editable ) {
 			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
 			$htmlOut .= Xml::tags( 'div',
-				array( 'class' => 'cn-buttons' ),
+				[ 'class' => 'cn-buttons' ],
 				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
 			);
 		}

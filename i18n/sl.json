@@ -3,7 +3,8 @@
 		"authors": [
 			"Dbc334",
 			"Edinwiki",
-			"Eleassar"
+			"Eleassar",
+			"HairyFotr"
 		]
 	},
 	"centralnotice": "Upravljanje osrednjega obvestila",
@@ -103,6 +104,8 @@
 	"centralnotice-banner-hidable": "Statična/Skrita",
 	"centralnotice-banner-collapsible": "Zložljiva",
 	"centralnotice-banner-fundraising": "To je donatorska pasica",
+	"centralnotice-banner-cdn-button": "Počisti",
+	"centralnotice-banner-cdn-dialog-ok": "V redu",
 	"centralnotice-geo": "Geociljano",
 	"centralnotice-countries": "Države",
 	"centralnotice-allocation": "Dodelitev",
@@ -115,7 +118,7 @@
 	"centralnotice-no-allocation": "Nobena pasica ni dodeljena.",
 	"centralnotice-allocation-description": "Dodelitev pasice v jeziku: $1, na projektu: $2, v državi: $3, na napravi $4",
 	"centralnotice-percentage": "Odstotek",
-	"centralnotice-documentwrite-error": "document.write() ni mogoče uporabiti v pasici.\nOglejte si http://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.",
+	"centralnotice-documentwrite-error": "document.write() ni mogoče uporabiti v pasici.\nOglejte si https://meta.wikimedia.org/wiki/Help:CentralNotice za več informacij.",
 	"centralnotice-preferred": "Prioriteta",
 	"centralnotice-logs": "Dnevniki",
 	"centralnotice-view-logs": "Ogled dnevnikov",

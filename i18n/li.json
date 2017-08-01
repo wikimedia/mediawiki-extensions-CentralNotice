@@ -110,7 +110,7 @@
 	"centralnotice-no-allocation": "Geine vaan toegeweze.",
 	"centralnotice-allocation-description": "Vaantoewiezing veur $1.$2 in $3:",
 	"centralnotice-percentage": "Percentage",
-	"centralnotice-documentwrite-error": "document.write() kin neet zónger de vaan gebroek waere.\nZuuch http://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.",
+	"centralnotice-documentwrite-error": "document.write() kin neet zónger de vaan gebroek waere.\nZuuch https://meta.wikimedia.org/wiki/Help:CentralNotice veur mieër informatie.",
 	"centralnotice-preferred": "Prifferensies",
 	"centralnotice-logs": "Logbeuk",
 	"centralnotice-view-logs": "Bekiek logbeuk",

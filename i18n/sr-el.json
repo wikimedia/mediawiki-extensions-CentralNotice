@@ -119,7 +119,7 @@
 	"centralnotice-no-allocation": "Nema dodeljenih plakata.",
 	"centralnotice-allocation-description": "Dodela plakata za $1.$2 u $3:",
 	"centralnotice-percentage": "Postotak",
-	"centralnotice-documentwrite-error": "document.write() ne može biti upotrebljen unutar banera.\nVidite http://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.",
+	"centralnotice-documentwrite-error": "document.write() ne može biti upotrebljen unutar banera.\nVidite https://meta.wikimedia.org/wiki/Help:CentralNotice za više informacija.",
 	"centralnotice-preferred": "Prioritet",
 	"centralnotice-archived": "Arhivirano",
 	"centralnotice-logs": "Istorije",

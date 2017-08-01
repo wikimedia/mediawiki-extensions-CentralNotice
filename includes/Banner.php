@@ -48,18 +48,18 @@ class Banner {
 	 *
 	 * @var null|bool[]
 	 */
-	protected $dirtyFlags = array(
+	protected $dirtyFlags = [
 		'content' => null,
 		'messages' => null,
 		'basic' => null,
 		'devices' => null,
 		'mixins' => null,
 		'prioritylang' => null,
-	);
+	];
 
-	//<editor-fold desc="Properties">
+	// <editor-fold desc="Properties">
 	// !!! NOTE !!! It is not recommended to use directly. It is almost always more
-	//              correct to use the accessor/setter function.
+	// correct to use the accessor/setter function.
 
 	/** @var int Unique database identifier key. */
 	protected $id = null;
@@ -81,21 +81,21 @@ class Banner {
 
 	/** @var string[] Devices this banner should be allocated to in the form
 	 * {Device ID => Device header name} */
-	protected $devices = array();
+	protected $devices = [];
 
 	/** @var string[] Names of enabled mixins  */
-	protected $mixins = array();
+	protected $mixins = [];
 
 	/** @var string[] Language codes considered a priority for translation.  */
-	protected $priorityLanguages = array();
+	protected $priorityLanguages = [];
 
 	/** @var string Wikitext content of the banner */
 	protected $bodyContent = '';
 
 	protected $runTranslateJob = false;
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Constructors">
+	// <editor-fold desc="Constructors">
 	/**
 	 * Create a banner object from a known ID. Must already be
 	 * an object in the database. If a fully new banner is to be created
@@ -122,7 +122,7 @@ class Banner {
 	 * @throws BannerDataException
 	 */
 	public static function fromName( $name ) {
-		if ( !Banner::isValidBannerName( $name ) ) {
+		if ( !self::isValidBannerName( $name ) ) {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
 
@@ -140,7 +140,7 @@ class Banner {
 	 * @throws BannerDataException
 	 */
 	public static function newFromName( $name ) {
-		if ( !Banner::isValidBannerName( $name ) ) {
+		if ( !self::isValidBannerName( $name ) ) {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
 
@@ -153,9 +153,9 @@ class Banner {
 
 		return $obj;
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Basic metadata getters/setters">
+	// <editor-fold desc="Basic metadata getters/setters">
 	/**
 	 * Get the unique ID for this banner.
 	 *
@@ -262,10 +262,10 @@ class Banner {
 			'tmp_category',
 			'',
 			__METHOD__,
-			array( 'DISTINCT', 'ORDER BY tmp_category ASC' )
+			[ 'DISTINCT', 'ORDER BY tmp_category ASC' ]
 		);
 
-		$categories = array();
+		$categories = [];
 		foreach ( $res as $row ) {
 			$categories[$row->tmp_category] = $row->tmp_category;
 		}
@@ -309,24 +309,24 @@ class Banner {
 
 		// What are we using to select on?
 		if ( $this->name !== null ) {
-			$selector = array( 'tmp_name' => $this->name );
+			$selector = [ 'tmp_name' => $this->name ];
 		} elseif ( $this->id !== null ) {
-			$selector = array( 'tmp_id' => $this->id );
+			$selector = [ 'tmp_id' => $this->id ];
 		} else {
 			throw new BannerDataException( 'Cannot retrieve banner data without name or ID.' );
 		}
 
 		// Query!
 		$rowRes = $db->select(
-			array( 'templates' => 'cn_templates' ),
-			array(
-				 'tmp_id',
-				 'tmp_name',
-				 'tmp_display_anon',
-				 'tmp_display_account',
-				 'tmp_archived',
-				 'tmp_category'
-			),
+			[ 'templates' => 'cn_templates' ],
+			[
+				'tmp_id',
+				'tmp_name',
+				'tmp_display_anon',
+				'tmp_display_account',
+				'tmp_archived',
+				'tmp_category'
+			],
 			$selector,
 			__METHOD__
 		);
@@ -341,7 +341,7 @@ class Banner {
 			$this->archived = (bool)$row->tmp_archived;
 			$this->category = $row->tmp_category;
 		} else {
-			$keystr = array();
+			$keystr = [];
 			foreach ( $selector as $key => $value ) {
 				$keystr[] = "{$key} = {$value}";
 			}
@@ -368,7 +368,7 @@ class Banner {
 	 * @param IDatabase $db
 	 */
 	protected function initializeDbBasicData( IDatabase $db ) {
-		$db->insert( 'cn_templates', array( 'tmp_name' => $this->name ), __METHOD__ );
+		$db->insert( 'cn_templates', [ 'tmp_name' => $this->name ], __METHOD__ );
 		$this->id = $db->insertId();
 	}
 
@@ -379,22 +379,22 @@ class Banner {
 	protected function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
 			$db->update( 'cn_templates',
-				array(
-					 'tmp_display_anon'    => (int)$this->allocateAnon,
-					 'tmp_display_account' => (int)$this->allocateLoggedIn,
-					 'tmp_archived'        => (int)$this->archived,
-					 'tmp_category'        => $this->category,
-				),
-				array(
-					 'tmp_id'              => $this->id
-				),
+				[
+					'tmp_display_anon'    => (int)$this->allocateAnon,
+					'tmp_display_account' => (int)$this->allocateLoggedIn,
+					'tmp_archived'        => (int)$this->archived,
+					'tmp_category'        => $this->category,
+				],
+				[
+					'tmp_id'              => $this->id
+				],
 				__METHOD__
 			);
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Device targeting">
+	// <editor-fold desc="Device targeting">
 	/**
 	 * Get the devices that this banner should be allocated to.
 	 *
@@ -425,7 +425,7 @@ class Banner {
 		sort( $devices );
 
 		if ( $devices != $this->devices ) {
-			$this->devices = array();
+			$this->devices = [];
 
 			foreach ( $devices as $device ) {
 				if ( !$device ) {
@@ -456,19 +456,19 @@ class Banner {
 		$db = CNDatabase::getDb();
 
 		$rowObj = $db->select(
-			array(
-				 'tdev' => 'cn_template_devices',
-				 'devices' => 'cn_known_devices'
-			),
-			array( 'devices.dev_id', 'dev_name' ),
-			array(
-				 'tdev.tmp_id' => $this->getId(),
-				 'tdev.dev_id = devices.dev_id'
-			),
+			[
+				'tdev' => 'cn_template_devices',
+				'devices' => 'cn_known_devices'
+			],
+			[ 'devices.dev_id', 'dev_name' ],
+			[
+				'tdev.tmp_id' => $this->getId(),
+				'tdev.dev_id = devices.dev_id'
+			],
 			__METHOD__
 		);
 
-		foreach( $rowObj as $row ) {
+		foreach ( $rowObj as $row ) {
 			$this->devices[ intval( $row->dev_id ) ] = $row->dev_name;
 		}
 
@@ -490,21 +490,21 @@ class Banner {
 	protected function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
-			$db->delete( 'cn_template_devices', array( 'tmp_id' => $this->getId() ), __METHOD__ );
+			$db->delete( 'cn_template_devices', [ 'tmp_id' => $this->getId() ], __METHOD__ );
 
 			// Add the new device mappings
 			if ( $this->devices ) {
-				$modifyArray = array();
+				$modifyArray = [];
 				foreach ( $this->devices as $deviceId => $deviceName ) {
-					$modifyArray[] = array( 'tmp_id' => $this->getId(), 'dev_id' => $deviceId );
+					$modifyArray[] = [ 'tmp_id' => $this->getId(), 'dev_id' => $deviceId ];
 				}
 				$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Mixin management">
+	// <editor-fold desc="Mixin management">
 	/**
 	 * @return array Keys are names of enabled mixins; valeus are mixin params.
 	 * @see $wgCentralNoticeBannerMixins
@@ -535,7 +535,7 @@ class Banner {
 			$this->markMixinDataDirty();
 		}
 
-		$this->mixins = array();
+		$this->mixins = [];
 		foreach ( $mixins as $mixin ) {
 			if ( !array_key_exists( $mixin, $wgCentralNoticeBannerMixins ) ) {
 				throw new RangeException( "Mixin does not exist: {$mixin}" );
@@ -559,13 +559,13 @@ class Banner {
 		$dbr = CNDatabase::getDb();
 
 		$result = $dbr->select( 'cn_template_mixins', 'mixin_name',
-			array(
-				 "tmp_id" => $this->getId(),
-			),
+			[
+				"tmp_id" => $this->getId(),
+			],
 			__METHOD__
 		);
 
-		$this->mixins = array();
+		$this->mixins = [];
 		foreach ( $result as $row ) {
 			if ( !array_key_exists( $row->mixin_name, $wgCentralNoticeBannerMixins ) ) {
 				// We only want to warn here otherwise we'd never be able to
@@ -596,7 +596,7 @@ class Banner {
 	protected function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
 			$db->delete( 'cn_template_mixins',
-				array( 'tmp_id' => $this->getId() ),
+				[ 'tmp_id' => $this->getId() ],
 				__METHOD__
 			);
 
@@ -606,19 +606,19 @@ class Banner {
 					continue;
 				}
 				$db->insert( 'cn_template_mixins',
-					array(
-						 'tmp_id' => $this->getId(),
-						 'page_id' => 0,	// TODO: What were we going to use this for again?
-						 'mixin_name' => $name,
-					),
+					[
+						'tmp_id' => $this->getId(),
+						'page_id' => 0,	// TODO: What were we going to use this for again?
+						'mixin_name' => $name,
+					],
 					__METHOD__
 				);
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Priority languages">
+	// <editor-fold desc="Priority languages">
 	/**
 	 * Returns language codes that are considered a priority for translations.
 	 *
@@ -692,9 +692,9 @@ class Banner {
 			);
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Banner body content">
+	// <editor-fold desc="Banner body content">
 	public function getDbKey() {
 		$name = $this->getName();
 		return "Centralnotice-template-{$name}";
@@ -702,6 +702,41 @@ class Banner {
 
 	public function getTitle() {
 		return Title::newFromText( $this->getDbKey(), NS_MEDIAWIKI );
+	}
+
+	/**
+	 * Return the names of campaigns that this banner is currently used in.
+	 *
+	 * @return string[]
+	 */
+	public function getCampaignNames() {
+		$dbr = CNDatabase::getDb();
+
+		$result = $dbr->select(
+			[
+				'notices' => 'cn_notices',
+				'assignments' => 'cn_assignments',
+			],
+			'notices.not_name',
+			[
+				'assignments.tmp_id' => $this->getId(),
+			],
+			__METHOD__,
+			[],
+			[
+				'assignments' =>
+				[
+					'INNER JOIN', 'notices.not_id = assignments.not_id'
+				]
+			]
+		);
+
+		$campaigns = [];
+		foreach ( $result as $row ) {
+			$campaigns[] = $row->not_name;
+		}
+
+		return $campaigns;
 	}
 
 	/**
@@ -792,16 +827,16 @@ class Banner {
 					$fields = $this->extractMessageFields();
 					if ( count( $fields ) > 0 ) {
 						// Tag the banner for translation
-						Banner::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
+						self::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
 						$this->runTranslateJob = true;
 					}
 				}
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Banner message fields">
+	// <editor-fold desc="Banner message fields">
 	function getMessageField( $field_name ) {
 		return new BannerMessage( $this->getName(), $field_name );
 	}
@@ -852,7 +887,7 @@ class Banner {
 		$expanded .= $renderer->getPreloadJsRaw();
 
 		// Extract message fields from the banner body
-		$fields = array();
+		$fields = [];
 		$allowedChars = Title::legalChars();
 		// We're using a janky custom syntax to pass arguments to a field message:
 		// "{{{fieldname:arg1|arg2}}}"
@@ -882,7 +917,7 @@ class Banner {
 	 */
 	function getAvailableLanguages( $inTranslation = false ) {
 		global $wgLanguageCode;
-		$availableLangs = array();
+		$availableLangs = [];
 
 		// Bit of an ugly hack to get just the banner prefix
 		$prefix = $this->getMessageField( '' )
@@ -891,16 +926,16 @@ class Banner {
 		$db = CNDatabase::getDb();
 		$result = $db->select( 'page',
 			'page_title',
-			array(
-				 'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
-				 'page_title' . $db->buildLike( $prefix, $db->anyString() ),
-			),
+			[
+				'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
+				'page_title' . $db->buildLike( $prefix, $db->anyString() ),
+			],
 			__METHOD__
 		);
-		while ( $row = $result->fetchRow() ) {
+		foreach ( $result as $row ) {
 			if (
 				preg_match(
-					"/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row['page_title'],
+					"/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row->page_title,
 					$matches
 				)
 			) {
@@ -914,10 +949,10 @@ class Banner {
 		}
 		return array_keys( $availableLangs );
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc="Banner actions">
-	//<editor-fold desc="Saving">
+	// <editor-fold desc="Banner actions">
+	// <editor-fold desc="Saving">
 	/**
 	 * Saves any changes made to the banner object into the database
 	 *
@@ -957,7 +992,9 @@ class Banner {
 			$db->endAtomic( __METHOD__ );
 
 			// Clear the dirty flags
-			foreach ( $this->dirtyFlags as $flag => &$value ) { $value = false; }
+			foreach ( $this->dirtyFlags as $flag => &$value ) {
+				$value = false;
+			}
 
 			if ( $this->runTranslateJob ) {
 				// Must be run after banner has finished saving due to some dependencies that
@@ -1007,7 +1044,7 @@ class Banner {
 		$this->saveMixinData( $db );
 		$this->savePriorityLanguageData();
 	}
-	//</editor-fold>
+	// </editor-fold>
 
 	/**
 	 * Archive a banner.
@@ -1032,7 +1069,7 @@ class Banner {
 			throw new BannerDataException( "Banner name must be in format /^[A-Za-z0-9_]+$/" );
 		}
 
-		$destBanner = Banner::newFromName( $destination );
+		$destBanner = self::newFromName( $destination );
 		if ( $destBanner->exists() ) {
 			throw new BannerExistenceException( "Banner by that name already exists!" );
 		}
@@ -1068,16 +1105,16 @@ class Banner {
 		if ( $user === null ) {
 			$user = $wgUser;
 		}
-		Banner::removeTemplate( $this->getName(), $user );
+		self::removeTemplate( $this->getName(), $user );
 	}
 
 	static function removeTemplate( $name, $user, $summary = null ) {
 		global $wgNoticeUseTranslateExtension;
 
-		$bannerObj = Banner::fromName( $name );
+		$bannerObj = self::fromName( $name );
 		$id = $bannerObj->getId();
 		$dbr = CNDatabase::getDb();
-		$res = $dbr->select( 'cn_assignments', 'asn_id', array( 'tmp_id' => $id ), __METHOD__ );
+		$res = $dbr->select( 'cn_assignments', 'asn_id', [ 'tmp_id' => $id ], __METHOD__ );
 
 		if ( $dbr->numRows( $res ) > 0 ) {
 			throw new LogicException( 'Cannot remove a template still bound to a campaign!' );
@@ -1089,7 +1126,7 @@ class Banner {
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
 			$dbw->delete( 'cn_templates',
-				array( 'tmp_id' => $id ),
+				[ 'tmp_id' => $id ],
 				__METHOD__
 			);
 
@@ -1104,7 +1141,7 @@ class Banner {
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
-				Banner::removeTag( 'banner:translate', $pageId );
+				self::removeTag( 'banner:translate', $pageId );
 
 				// And the preferred language metadata if it exists
 				TranslateMetadata::set(
@@ -1115,9 +1152,9 @@ class Banner {
 			}
 		}
 	}
-	//</editor-fold>
+	// </editor-fold>
 
-	//<editor-fold desc=" Random stuff that still needs to die a hideous horrible death">
+	// <editor-fold desc=" Random stuff that still needs to die a hideous horrible death">
 	/**
 	 * Add a revision tag for the banner
 	 * @param string $tag The name of the tag
@@ -1134,13 +1171,13 @@ class Banner {
 		}
 
 		// There should only ever be one tag applied to a banner object
-		Banner::removeTag( $tag, $pageId );
+		self::removeTag( $tag, $pageId );
 
-		$conds = array(
+		$conds = [
 			'rt_page' => $pageId,
 			'rt_type' => RevTag::getType( $tag ),
 			'rt_revision' => $revisionId
-		);
+		];
 
 		if ( $bannerId !== null ) {
 			$conds['rt_value'] = $bannerId;
@@ -1158,10 +1195,10 @@ class Banner {
 	protected static function removeTag( $tag, $pageId ) {
 		$dbw = CNDatabase::getDb();
 
-		$conds = array(
+		$conds = [
 			'rt_page' => $pageId,
 			'rt_type' => RevTag::getType( $tag )
-		);
+		];
 		$dbw->delete( 'revtag', $conds, __METHOD__ );
 	}
 
@@ -1175,19 +1212,19 @@ class Banner {
 	static function getCampaignBanners( $campaigns ) {
 		$dbr = CNDatabase::getDb();
 
-		$banners = array();
+		$banners = [];
 
 		if ( $campaigns ) {
 			$res = $dbr->select(
 				// Aliases (keys) are needed to avoid problems with table prefixes
-				array(
+				[
 					'notices' => 'cn_notices',
 					'templates' => 'cn_templates',
 					'known_devices' => 'cn_known_devices',
 					'template_devices' => 'cn_template_devices',
 					'assignments' => 'cn_assignments',
-				),
-				array(
+				],
+				[
 					'tmp_name',
 					'tmp_weight',
 					'tmp_display_anon',
@@ -1199,24 +1236,24 @@ class Banner {
 					'not_buckets',
 					'not_throttle',
 					'dev_name',
-				),
-				array(
+				],
+				[
 					'notices.not_id' => $campaigns,
 					'notices.not_id = assignments.not_id',
 					'known_devices.dev_id = template_devices.dev_id',
 					'assignments.tmp_id = templates.tmp_id'
-				),
+				],
 				__METHOD__,
-				array(),
-				array(
-					 'template_devices' => array(
-						 'LEFT JOIN', 'template_devices.tmp_id = assignments.tmp_id'
-					 )
-				)
+				[],
+				[
+					'template_devices' => [
+						'LEFT JOIN', 'template_devices.tmp_id = assignments.tmp_id'
+					]
+				]
 			);
 
 			foreach ( $res as $row ) {
-				$banners[ ] = array(
+				$banners[] = [
 					// name of the banner
 					'name'             => $row->tmp_name,
 					// weight assigned to the banner
@@ -1237,7 +1274,7 @@ class Banner {
 					'campaign_throttle' => intval( $row->not_throttle ),
 					'bucket'           => ( intval( $row->not_buckets ) == 1 )
 						? 0 : intval( $row->asn_bucket ),
-				);
+				];
 			}
 		}
 		return $banners;
@@ -1253,20 +1290,20 @@ class Banner {
 	 * @throws RangeException
 	 */
 	static function getBannerSettings( $bannerName, $detailed = true ) {
-		$banner = Banner::fromName( $bannerName );
+		$banner = self::fromName( $bannerName );
 		if ( !$banner->exists() ) {
 			throw new RangeException( "Banner doesn't exist!" );
 		}
 
-		$details = array(
+		$details = [
 			'anon'             => (int)$banner->allocateToAnon(),
 			'account'          => (int)$banner->allocateToLoggedIn(),
 			// TODO: Death to this!
-			'fundraising'      => (int)($banner->getCategory() === 'fundraising'),
+			'fundraising'      => (int)( $banner->getCategory() === 'fundraising' ),
 			'category'         => $banner->getCategory(),
 			'controller_mixin' => implode( ",", array_keys( $banner->getMixins() ) ),
 			'devices'          => array_values( $banner->getDevices() ),
-		);
+		];
 
 		if ( $detailed ) {
 			$details['prioritylangs'] = $banner->getPriorityLanguages();
@@ -1285,19 +1322,19 @@ class Banner {
 	 *    device: device key
 	 */
 	static function getHistoricalBanner( $name, $ts ) {
-		$id = Banner::fromName( $name )->getId();
+		$id = self::fromName( $name )->getId();
 
 		$dbr = CNDatabase::getDb();
 
 		$newestLog = $dbr->selectRow(
 			"cn_template_log",
-			array(
+			[
 				"log_id" => "MAX(tmplog_id)",
-			),
-			array(
+			],
+			[
 				"tmplog_timestamp <= $ts",
 				"tmplog_template_id = $id",
-			),
+			],
 			__METHOD__
 		);
 
@@ -1307,23 +1344,22 @@ class Banner {
 
 		$row = $dbr->selectRow(
 			"cn_template_log",
-			array(
+			[
 				"display_anon" => "tmplog_end_anon",
 				"display_account" => "tmplog_end_account",
 				"fundraising" => "tmplog_end_fundraising",
-			),
-			array(
+			],
+			[
 				"tmplog_id = {$newestLog->log_id}",
-			),
+			],
 			__METHOD__
 		);
-		$banner['display_anon'] = (int) $row->display_anon;
-		$banner['display_account'] = (int) $row->display_account;
+		$banner['display_anon'] = (int)$row->display_anon;
+		$banner['display_account'] = (int)$row->display_account;
 
-		$banner['fundraising'] = (int) $row->fundraising;
+		$banner['fundraising'] = (int)$row->fundraising;
 
-		//XXX
-		$banner['devices'] = array( "desktop" );
+		$banner['devices'] = [ "desktop" ];
 		return $banner;
 	}
 
@@ -1345,20 +1381,19 @@ class Banner {
 	 */
 	static function addTemplate( $name, $body, $user, $displayAnon,
 		$displayAccount, $fundraising = false,
-		$mixins = array(), $priorityLangs = array(), $devices = null,
+		$mixins = [], $priorityLangs = [], $devices = null,
 		$summary = null
 	) {
-
 		// Default initial value for devices
 		if ( $devices === null ) {
-			$devices = array( 'desktop' );
+			$devices = [ 'desktop' ];
 		}
 
-		if ( $name == '' || !Banner::isValidBannerName( $name ) || $body == '' ) {
+		if ( $name == '' || !self::isValidBannerName( $name ) || $body == '' ) {
 			return 'centralnotice-null-string';
 		}
 
-		$banner = Banner::newFromName( $name );
+		$banner = self::newFromName( $name );
 		if ( $banner->exists() ) {
 			return 'centralnotice-template-exists';
 		}
@@ -1383,7 +1418,6 @@ class Banner {
 	 * @param string $summary        Summary (comment) for this action
 	 */
 	function logBannerChange( $action, $user, $summary = null ) {
-
 		ChoiceDataProvider::invalidateCache();
 
 		// Summary shouldn't actually come in null, but just in case...
@@ -1391,14 +1425,14 @@ class Banner {
 			$summary = '';
 		}
 
-		$endSettings = array();
+		$endSettings = [];
 		if ( $action !== 'removed' ) {
-			$endSettings = Banner::getBannerSettings( $this->getName(), true );
+			$endSettings = self::getBannerSettings( $this->getName(), true );
 		}
 
 		$dbw = CNDatabase::getDb();
 
-		$log = array(
+		$log = [
 			'tmplog_timestamp'     => $dbw->timestamp(),
 			'tmplog_user_id'       => $user->getId(),
 			'tmplog_action'        => $action,
@@ -1406,7 +1440,7 @@ class Banner {
 			'tmplog_template_name' => $this->getName(),
 			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
 			'tmplog_comment'       => $summary,
-		);
+		];
 
 		foreach ( $endSettings as $key => $value ) {
 			if ( is_array( $value ) ) {
@@ -1418,7 +1452,7 @@ class Banner {
 
 		$dbw->insert( 'cn_template_log', $log );
 	}
-	//</editor-fold>
+	// </editor-fold>
 
 	/**
 	 * Validation function for banner names. Will return true iff the name fits
@@ -1443,9 +1477,9 @@ class Banner {
 	public function exists() {
 		$db = CNDatabase::getDb();
 		if ( $this->name !== null ) {
-			$selector = array( 'tmp_name' => $this->name );
+			$selector = [ 'tmp_name' => $this->name ];
 		} elseif ( $this->id !== null ) {
-			$selector = array( 'tmp_id' => $this->id );
+			$selector = [ 'tmp_id' => $this->id ];
 		} else {
 			throw new BannerDataException(
 				'Cannot determine banner existence without name or ID.'
@@ -1460,6 +1494,11 @@ class Banner {
 	}
 }
 
-class BannerDataException extends Exception {}
-class BannerContentException extends BannerDataException {}
-class BannerExistenceException extends BannerDataException {}
+class BannerDataException extends Exception {
+}
+
+class BannerContentException extends BannerDataException {
+}
+
+class BannerExistenceException extends BannerDataException {
+}

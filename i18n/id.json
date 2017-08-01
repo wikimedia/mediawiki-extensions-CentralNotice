@@ -11,7 +11,8 @@
 			"Rex",
 			"C5st4wr6ch",
 			"Rachmat.Wahidi",
-			"Mbrt"
+			"Mbrt",
+			"Rachmat04"
 		]
 	},
 	"centralnotice": "Pengurus pengumuman sentral",
@@ -127,7 +128,7 @@
 	"centralnotice-no-allocation": "Tidak ada pengumuman yang dialokasikan.",
 	"centralnotice-allocation-description": "Alokasi pengumuman untuk $1.$2 di $3:",
 	"centralnotice-percentage": "Persentase",
-	"centralnotice-documentwrite-error": "document.write() tidak dapat digunakan di dalam pengumuman.\nLihat http://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih lanjut.",
+	"centralnotice-documentwrite-error": "document.write() tidak dapat digunakan di dalam pengumuman.\nLihat https://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih lanjut.",
 	"centralnotice-preferred": "Prioritas",
 	"centralnotice-logs": "Log",
 	"centralnotice-view-logs": "Lihat log",

@@ -48,30 +48,29 @@ class AllocationCalculator {
 	 * @param string $device target device code
 	 */
 	public static function filterChoiceData( &$choiceData, $country, $status, $device ) {
-
-		$filteredChoiceData = array();
+		$filteredChoiceData = [];
 
 		foreach ( $choiceData as $campaign ) {
-
 			$keepCampaign = false;
 
 			// Filter for country if geotargeted
 			if ( $campaign['geotargeted'] &&
-				!in_array( $country, $campaign['countries'] ) ) {
-
+				!in_array( $country, $campaign['countries'] )
+			) {
 				continue;
 			}
 
 			// Now filter by banner logged-in status and device
 			foreach ( $campaign['banners'] as $banner ) {
-
 				// Logged-in status
-				if ( $status === AllocationCalculator::ANONYMOUS &&
-					!$banner['display_anon'] ) {
+				if ( $status === self::ANONYMOUS &&
+					!$banner['display_anon']
+				) {
 					continue;
 				}
-				if ( $status === AllocationCalculator::LOGGED_IN &&
-					!$banner['display_account'] ) {
+				if ( $status === self::LOGGED_IN &&
+					!$banner['display_account']
+				) {
 					continue;
 				}
 
@@ -104,13 +103,12 @@ class AllocationCalculator {
 	 *   filteredChoiceData().
 	 */
 	public static function calculateCampaignAllocations( &$filteredChoiceData ) {
-
 		// Make an index of campaigns by priority level.
 		// Note that the actual values of priority levels are integers,
 		// and higher integers represent higher priority. These values are
 		// defined by class constants in CentralNotice.
 
-		$campaignsByPriority = array();
+		$campaignsByPriority = [];
 		foreach ( $filteredChoiceData as &$campaign ) {
 			$priority = $campaign['preferred'];
 			$campaignsByPriority[$priority][] = &$campaign;
@@ -128,7 +126,6 @@ class AllocationCalculator {
 		$remainingAllocation = 1;
 
 		foreach ( $campaignsByPriority as $priority => &$campaignsAtThisPriority ) {
-
 			// If we fully allocated at a previous level, set allocations
 			// at this level to zero. (We check with 0.01 instead of 0 in
 			// case of issues due to finite precision.)
@@ -167,7 +164,6 @@ class AllocationCalculator {
 
 			$campaignsAtThisPriorityCount = count( $campaignsAtThisPriority );
 			foreach ( $campaignsAtThisPriority as $i => &$campaign ) {
-
 				// Calculate the proportional, unthrottled allocation now
 				// available to a campaign at this level.
 				$currentFullAllocation =
@@ -205,23 +201,23 @@ class AllocationCalculator {
 	 * @return array of banner information as arrays
 	 */
 	public static function makePossibleBanners( $campaign, $bucket, $status, $device ) {
-
-		$banners = array();
+		$banners = [];
 
 		foreach ( $campaign['banners'] as $banner ) {
-
 			// Filter for bucket
 			if ( $bucket % $campaign['bucket_count'] != $banner['bucket'] ) {
 				continue;
 			}
 
 			// Filter for logged-in status
-			if ( $status === AllocationCalculator::ANONYMOUS &&
-				!$banner['display_anon'] ) {
+			if ( $status === self::ANONYMOUS &&
+				!$banner['display_anon']
+			) {
 				continue;
 			}
-			if ( $status === AllocationCalculator::LOGGED_IN &&
-				!$banner['display_account'] ) {
+			if ( $status === self::LOGGED_IN &&
+				!$banner['display_account']
+			) {
 				continue;
 			}
 
@@ -245,7 +241,6 @@ class AllocationCalculator {
 	 *  Each banner's 'allocation' property will be set.
 	 */
 	public static function calculateBannerAllocations( &$banners ) {
-
 		$totalWeights = 0;
 
 		// Find the sum of all banner weights
@@ -280,31 +275,30 @@ class AllocationCalculator {
 	 * @return array
 	 */
 	public static function filterAndAllocate(
-		$country, $status, $device, $bucket, $campaigns ) {
-
+		$country, $status, $device, $bucket, $campaigns
+	) {
 		// Filter and determine campaign allocation
-		AllocationCalculator::filterChoiceData(
+		self::filterChoiceData(
 			$campaigns,
 			$country,
 			$status,
 			$device
 		);
 
-		AllocationCalculator::calculateCampaignAllocations( $campaigns );
+		self::calculateCampaignAllocations( $campaigns );
 
 		// Go through all campaings to make a flat list of banners from all of
 		// them, and calculate overall relative allocations.
-		$possibleBannersAllCampaigns = array();
+		$possibleBannersAllCampaigns = [];
 		foreach ( $campaigns as $campaign ) {
-
-			$possibleBanners = AllocationCalculator::makePossibleBanners(
+			$possibleBanners = self::makePossibleBanners(
 				$campaign,
 				$bucket,
 				$status,
 				$device
 			);
 
-			AllocationCalculator::calculateBannerAllocations( $possibleBanners );
+			self::calculateBannerAllocations( $possibleBanners );
 
 			foreach ( $possibleBanners as $banner ) {
 				$banner['campaign'] = $campaign['name'];
@@ -325,9 +319,9 @@ class AllocationCalculator {
 	public static function getLoggedInStatusFromString( $s ) {
 		switch ( $s ) {
 			case 'anonymous':
-				return AllocationCalculator::ANONYMOUS;
+				return self::ANONYMOUS;
 			case 'logged_in':
-				return AllocationCalculator::LOGGED_IN;
+				return self::LOGGED_IN;
 			default:
 				throw new InvalidArgumentException( 'Invalid logged-in status.' );
 		}

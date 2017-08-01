@@ -40,7 +40,8 @@ class CNDatabase {
 		// XXX: preventive hack for meandering code
 
 		if ( ( $target === null ) &&
-			( $wgRequest->wasPosted() || self::$masterUsedBefore ) ) {
+			( $wgRequest->wasPosted() || self::$masterUsedBefore )
+		) {
 			$target = DB_MASTER;
 		}
 
@@ -58,7 +59,7 @@ class CNDatabase {
 		if ( $wgCentralDBname === false || $wgCentralDBname === $wgDBname ) {
 			return wfGetDB( $target );
 		} else {
-			return wfGetDB( $target, array(), $wgCentralDBname );
+			return wfGetDB( $target, [], $wgCentralDBname );
 		}
 	}
 }

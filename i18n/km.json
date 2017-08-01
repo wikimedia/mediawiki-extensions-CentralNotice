@@ -86,7 +86,7 @@
 	"centralnotice-projects": "គំរោង",
 	"centralnotice-country": "ប្រទេស",
 	"centralnotice-percentage": "ភាគរយ",
-	"centralnotice-documentwrite-error": "document.write() មិនអាចប្រើបានទេក្នុងបដាមួយ។\nសូមមើល http://meta.wikimedia.org/wiki/Help:CentralNotice សំរាប់ព័ត៌មានបន្ថែម។",
+	"centralnotice-documentwrite-error": "document.write() មិនអាចប្រើបានទេក្នុងបដាមួយ។\nសូមមើល https://meta.wikimedia.org/wiki/Help:CentralNotice សំរាប់ព័ត៌មានបន្ថែម។",
 	"centralnotice-preferred": "អាទិភាព",
 	"centralnotice-logs": "កំណត់ហេតុ",
 	"centralnotice-view-logs": "មើលកំណត់ហេតុ",

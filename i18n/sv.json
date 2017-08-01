@@ -145,7 +145,7 @@
 	"centralnotice-allocation-description": "Bannertilldelning för språk: $1, projekt: $2 i landet $3, på enheten $4:",
 	"centralnotice-historical-allocation-description": "Bannertilldelning för språk: $1, projekt: $2 i landet: $3, på enheten $4, vid tiden $5",
 	"centralnotice-percentage": "Procent",
-	"centralnotice-documentwrite-error": "document.write() kan inte användas inom en banner.\nSe http://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.",
+	"centralnotice-documentwrite-error": "document.write() kan inte användas inom en banner.\nSe https://meta.wikimedia.org/wiki/Help:CentralNotice för mer information.",
 	"centralnotice-preferred": "Prioritet",
 	"centralnotice-archived": "Arkiverad",
 	"centralnotice-logs": "Loggar",

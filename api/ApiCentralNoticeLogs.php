@@ -5,7 +5,6 @@
 /** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeLogs extends ApiQueryBase {
 
-	#XXX
 	const USER_FILTER = '/[a-zA-Z0-9_.]+/';
 	const CAMPAIGNS_FILTER = '/[a-zA-Z0-9_|\-]+/';
 
@@ -26,45 +25,45 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 
 		$logs = Campaign::campaignLogs( $campaign, $user, $start, $end, $limit, $offset );
 
-		$result->addValue( array( 'query', $this->getModuleName() ), 'logs', $logs );
+		$result->addValue( [ 'query', $this->getModuleName() ], 'logs', $logs );
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'campaign' => array(
+		return [
+			'campaign' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'user' => array(
+			],
+			'user' => [
 				ApiBase::PARAM_TYPE => 'string',
-			),
-			'limit' => array(
+			],
+			'limit' => [
 				ApiBase::PARAM_DFLT => 50,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN  => 1,
 				ApiBase::PARAM_MAX  => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
-			),
-			'offset' => array(
+			],
+			'offset' => [
 				ApiBase::PARAM_DFLT => 0,
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'start' => array(
+			],
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-			),
-			'end' => array(
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
-			),
-		);
+			],
+		];
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=centralnoticelogs&format=json'
 				=> 'apihelp-query+centralnoticelogs-example-1',
-		);
+		];
 	}
 
 	/**
@@ -78,7 +77,7 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 	 * @return string The sanitized value
 	 */
 	private static function sanitizeText( $value, $regex, $default = null ) {
-		$matches = array();
+		$matches = [];
 
 		if ( preg_match( $regex, $value, $matches ) ) {
 			return $matches[ 0 ];

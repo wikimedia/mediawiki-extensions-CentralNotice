@@ -28,8 +28,8 @@ class CNCampaignPager extends TablePager {
 	 *   associated with this banner id.
 	 */
 	public function __construct( CentralNotice $onSpecialCN,
-		$editable = false, $assignedBannerId = null ) {
-
+		$editable = false, $assignedBannerId = null
+	) {
 		$this->onSpecialCN = $onSpecialCN;
 		$this->assignedBannerId = $assignedBannerId;
 		$this->editable = $editable;
@@ -56,11 +56,11 @@ class CNCampaignPager extends TablePager {
 	 * @see IndexPager::getQueryInfo()
 	 */
 	public function getQueryInfo() {
-		$pagerQuery = array(
-			'tables' => array(
+		$pagerQuery = [
+			'tables' => [
 				'notices' => 'cn_notices',
-			),
-			'fields' => array(
+			],
+			'fields' => [
 				'notices.not_id',
 				'not_name',
 				'not_start',
@@ -89,17 +89,17 @@ class CNCampaignPager extends TablePager {
 					'np_project',
 					'np_notice_id = notices.not_id'
 				) . ' AS projects',
-			),
-			'conds' => array(),
-		);
+			],
+			'conds' => [],
+		];
 
 		if ( $this->assignedBannerId ) {
 			// Query for only campaigns associated with a specific banner id.
 			$pagerQuery['tables']['assignments'] = 'cn_assignments';
-			$pagerQuery['conds'] = array(
+			$pagerQuery['conds'] = [
 				'notices.not_id = assignments.not_id',
 				'assignments.tmp_id = ' . (int)$this->assignedBannerId
-			);
+			];
 		}
 
 		return $pagerQuery;
@@ -113,14 +113,12 @@ class CNCampaignPager extends TablePager {
 		parent::doQuery();
 	}
 
-
 	/**
 	 * @see TablePager::getFieldNames()
 	 */
 	public function getFieldNames() {
-
 		if ( !$this->fieldNames ) {
-			$this->fieldNames = array(
+			$this->fieldNames = [
 				'not_name' => $this->msg( 'centralnotice-notice-name' )->text(),
 				'projects' => $this->msg( 'centralnotice-projects' )->text(),
 				'languages' => $this->msg( 'centralnotice-languages' )->text(),
@@ -132,7 +130,7 @@ class CNCampaignPager extends TablePager {
 				'not_throttle' => $this->msg( 'centralnotice-throttle' )->text(),
 				'not_locked' => $this->msg( 'centralnotice-locked' )->text(),
 				'not_archived' => $this->msg( 'centralnotice-archive-campaign' )->text()
-			);
+			];
 		}
 
 		return $this->fieldNames;
@@ -142,20 +140,19 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getStartBody()
 	 */
 	public function getStartBody() {
-
 		$htmlOut = '';
 
 		$htmlOut .= Xml::openElement(
 			'fieldset',
-			array(
+			[
 				'class' => 'prefsection',
 				'id' => 'cn-campaign-pager',
 				'data-editable' => ( $this->editable ? 1 : 0 )
-			)
+			]
 		);
 
 		// Filters
-		$htmlOut .= Xml::openElement( 'div', array( 'class' => 'cn-formsection-emphasis' ) );
+		$htmlOut .= Xml::openElement( 'div', [ 'class' => 'cn-formsection-emphasis' ] );
 		$htmlOut .= Xml::checkLabel(
 			$this->msg( 'centralnotice-archive-show' )->text(),
 			'centralnotice-showarchived',
@@ -168,24 +165,23 @@ class CNCampaignPager extends TablePager {
 	}
 
 	public function formatValue( $fieldName, $value ) {
-
 		// These are used in a few cases below.
 		$rowIsEnabled = ( $this->mCurrentRow->not_enabled == '1' );
 		$rowIsLocked = ( $this->mCurrentRow->not_locked == '1' );
 		$rowIsArchived = ( $this->mCurrentRow->not_archived == '1' );
 		$name = $this->mCurrentRow->not_name;
-		$readonly = array( 'disabled' => 'disabled' );
+		$readonly = [ 'disabled' => 'disabled' ];
 
 		switch ( $fieldName ) {
 			case 'not_name':
 				return Linker::link(
 					SpecialPage::getTitleFor( 'CentralNotice' ),
 					htmlspecialchars( $value ),
-					array(),
-					array(
+					[],
+					[
 						'subaction' => 'noticeDetail',
 						'notice' => $value
-					)
+					]
 				);
 
 			case 'projects':
@@ -219,12 +215,12 @@ class CNCampaignPager extends TablePager {
 					$rowIsEnabled,
 					array_replace(
 						( !$this->editable || $rowIsLocked || $rowIsArchived )
-						? $readonly : array(),
-						array(
+						? $readonly : [],
+						[
 							'data-campaign-name' => $name,
 							'data-initial-value' => $rowIsEnabled,
 							'class' => 'noshiftselect mw-cn-input-check-sort'
-						)
+						]
 					)
 				);
 
@@ -236,7 +232,7 @@ class CNCampaignPager extends TablePager {
 				);
 
 			case 'not_throttle':
-				if ( $value < 100) {
+				if ( $value < 100 ) {
 					return $value . "%";
 				} else {
 					return '';
@@ -252,12 +248,12 @@ class CNCampaignPager extends TablePager {
 						// Otherwise we create a dead-end state of locked and
 						// archived.
 						( !$this->editable )
-						? $readonly : array(),
-						array(
+						? $readonly : [],
+						[
 							'data-campaign-name' => $name,
 							'data-initial-value' => $rowIsLocked,
 							'class' => 'noshiftselect mw-cn-input-check-sort'
-						)
+						]
 					)
 				);
 
@@ -267,12 +263,12 @@ class CNCampaignPager extends TablePager {
 					$rowIsArchived,
 					array_replace(
 						( !$this->editable || $rowIsLocked || $rowIsEnabled )
-						? $readonly : array(),
-						array(
+						? $readonly : [],
+						[
 							'data-campaign-name' => $name,
 							'data-initial-value' => $rowIsArchived,
 							'class' => 'noshiftselect mw-cn-input-check-sort'
-						)
+						]
 					)
 				);
 		}
@@ -284,7 +280,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getRowClass()
 	 */
 	public function getRowClass( $row ) {
-
 		$enabled = ( $row->not_enabled == '1' );
 		$archived = ( $row->not_archived == '1' );
 
@@ -309,7 +304,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getCellAttrs()
 	 */
 	public function getCellAttrs( $field, $value ) {
-
 		$attrs = parent::getCellAttrs( $field, $value );
 
 		switch ( $field ) {
@@ -338,13 +332,12 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::getEndBody()
 	 */
 	public function getEndBody() {
-
 		$htmlOut = '';
 
 		if ( $this->editable ) {
 			$htmlOut .=
 				Xml::openElement( 'div',
-				array( 'class' => 'cn-buttons cn-formsection-emphasis' ) );
+				[ 'class' => 'cn-buttons cn-formsection-emphasis' ] );
 
 			$htmlOut .= $this->onSpecialCN->makeSummaryField();
 
@@ -352,10 +345,10 @@ class CNCampaignPager extends TablePager {
 				'centralnoticesubmit',
 				false,
 				$this->msg( 'centralnotice-modify' )->text(),
-				array(
+				[
 					'type' => 'button',
 					'id' => 'cn-campaign-pager-submit'
-				)
+				]
 			);
 
 			$htmlOut .= Xml::closeElement( 'div' );
@@ -370,7 +363,6 @@ class CNCampaignPager extends TablePager {
 	 * @see TablePager::isFieldSortable()
 	 */
 	public function isFieldSortable( $field ) {
-
 		// If this is the only page shown, we'll sort via JS, which works on all
 		// columns.
 		if ( $this->isWithinLimit() ) {
@@ -411,7 +403,6 @@ class CNCampaignPager extends TablePager {
 	 * @see IndexPager::extractResultInfo()
 	 */
 	function extractResultInfo( $isFirst, $limit, ResultWrapper $res ) {
-
 		parent::extractResultInfo( $isFirst, $limit, $res );
 
 		// Disable editing if there's more than one page. (This is a legacy

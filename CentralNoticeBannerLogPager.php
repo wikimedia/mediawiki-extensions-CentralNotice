@@ -5,7 +5,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
-		parent::__construct($special);
+		parent::__construct( $special );
 	}
 
 	/**
@@ -19,10 +19,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Pull log entries from the database
 	 */
 	function getQueryInfo() {
-		return array(
-			'tables' => array( 'template_log' => 'cn_template_log' ),
+		return [
+			'tables' => [ 'template_log' => 'cn_template_log' ],
 			'fields' => '*',
-		);
+		];
 	}
 
 	/**
@@ -53,7 +53,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		// Begin log entry primary row
 		$htmlOut = Xml::openElement( 'tr' );
 
-		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
+		$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
 		if ( $row->tmplog_action !== 'removed' ) {
 			$collapsedImg = $this->getLanguage()->isRtl() ?
 				'collapsed-rtl.png' :
@@ -69,19 +69,19 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				'</a>';
 		}
 		$htmlOut .= Xml::closeElement( 'td' );
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->tmplog_timestamp ) . ' ' . $lang->time( $row->tmplog_timestamp )
 		);
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()
 		);
 		// Give grep a chance to find the usages:
 		// centralnotice-action-created, centralnotice-action-modified,
 		// centralnotice-action-removed
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-action-'.$row->tmplog_action )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$bannerLink
 		);
 
@@ -90,11 +90,11 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			htmlspecialchars( $row->tmplog_comment ) : '&nbsp;';
 
 		$htmlOut .= Xml::tags( 'td',
-			array( 'valign' => 'top', 'class' => 'primary-summary' ),
+			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			$summary
 		);
 
-		$htmlOut .= Xml::tags( 'td', array(),
+		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
 		);
 
@@ -104,12 +104,12 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		if ( $row->tmplog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr',
-				array( 'id' => 'cn-log-details-'.$row->tmplog_id, 'style' => 'display:none;' ) );
+				[ 'id' => 'cn-log-details-'.$row->tmplog_id, 'style' => 'display:none;' ] );
 
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
 			);
-			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '5' ) );
+			$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top', 'colspan' => '5' ] );
 			if ( $row->tmplog_action == 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
 			} elseif ( $row->tmplog_action == 'modified' ) {
@@ -126,25 +126,25 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ) );
+		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::element( 'th', array( 'style' => 'width: 20px;' ) );
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'style' => 'width: 20px;' ] );
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
 			$this->msg( 'centralnotice-timestamp' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-user' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 100px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 100px;' ],
 			$this->msg( 'centralnotice-action' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-banner' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 250px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 250px;' ],
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', array(),
+		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
 		);
 		$htmlOut .= Xml::closeElement( 'tr' );
@@ -164,12 +164,12 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-anon' )->text(),
-			($row->tmplog_end_anon ? 'on' : 'off')
+			( $row->tmplog_end_anon ? 'on' : 'off' )
 		)->text() . "<br/>";
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-account' )->text(),
-			($row->tmplog_end_account ? 'on' : 'off')
+			( $row->tmplog_end_account ? 'on' : 'off' )
 		)->text() . "<br/>";
 		$details .= $this->msg(
 			'centralnotice-log-label',
@@ -182,7 +182,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-autolink' )->text(),
-			($row->tmplog_end_autolink ? 'on' : 'off')
+			( $row->tmplog_end_autolink ? 'on' : 'off' )
 		)->text() . "<br/>";
 		if ( $row->tmplog_end_landingpages ) {
 			$details .= $this->msg(
@@ -204,12 +204,12 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		if ( $newrow->tmplog_action === 'modified' ) {
 			$db = CNDatabase::getDb();
 			$oldrow = $db->selectRow(
-				array( 'cn_template_log' => 'cn_template_log' ),
+				[ 'cn_template_log' => 'cn_template_log' ],
 				'*',
-				array( 'tmplog_template_id' => $newrow->tmplog_template_id,
-					"tmplog_id < {$newrow->tmplog_id}" ),
+				[ 'tmplog_template_id' => $newrow->tmplog_template_id,
+					"tmplog_id < {$newrow->tmplog_id}" ],
 				__METHOD__,
-				array( 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => 1 )
+				[ 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => 1 ]
 			);
 		}
 
@@ -223,7 +223,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$details .= $this->testTextBannerChange( 'devices', $newrow, $oldrow );
 		if ( $newrow->tmplog_content_change ) {
 			// Show changes to banner content
-			$details .= $this->msg (
+			$details .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-banner-content' )->text(),
 				$this->msg( 'centralnotice-banner-content-changed' )->text()
@@ -266,6 +266,6 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$oldval = ( ( $oldrow ) ? $oldrow->$endField : '' ) ?: '';
 		$newval = ( $newrow->$endField ) ?: '';
 
-		return $this->testTextChange($param, $newval, $oldval);
+		return $this->testTextChange( $param, $newval, $oldval );
 	}
 }

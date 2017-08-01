@@ -125,7 +125,7 @@
 	"centralnotice-no-allocation": "Δεν διατίθενται πανό.",
 	"centralnotice-allocation-description": "Διατίθεται πανό για το $1.$2 στο $3:",
 	"centralnotice-percentage": "Ποσοστό",
-	"centralnotice-documentwrite-error": "Δεν μπορεί να χρησιμοποιηθεί το document.write() μέσα σε ένα πανό.\nΔείτε το http://meta.wikimedia.org/wiki/Help:CentralNotice για περισσότερες πληροφορίες.",
+	"centralnotice-documentwrite-error": "Δεν μπορεί να χρησιμοποιηθεί το document.write() μέσα σε ένα πανό.\nΔείτε το https://meta.wikimedia.org/wiki/Help:CentralNotice για περισσότερες πληροφορίες.",
 	"centralnotice-preferred": "Προτεραιότητα",
 	"centralnotice-logs": "Καταγραφές γεγονότων",
 	"centralnotice-view-logs": "Προβολή αρχείων καταγραφών",

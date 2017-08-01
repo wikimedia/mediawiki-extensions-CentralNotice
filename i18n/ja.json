@@ -139,7 +139,7 @@
 	"centralnotice-allocation-description": "国 $3 での言語 $1 版のプロジェクト $2 へのデバイス $4 向けバナーの割り当て:",
 	"centralnotice-historical-allocation-description": "国 $3 での言語 $1 版のプロジェクト $2 へのデバイス $4 向けバナーの $5 時点の割り当て:",
 	"centralnotice-percentage": "割合",
-	"centralnotice-documentwrite-error": "バナー内では document.write() は使用できません。\n詳細は http://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。",
+	"centralnotice-documentwrite-error": "バナー内では document.write() は使用できません。\n詳細は https://meta.wikimedia.org/wiki/Help:CentralNotice を参照してください。",
 	"centralnotice-preferred": "優先度",
 	"centralnotice-archived": "アーカイブ済み",
 	"centralnotice-logs": "記録",
@@ -245,6 +245,5 @@
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "sendBeacon せずにログを送信するためのタイムアウト (ミリ秒)",
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "別のページに navigating する前にログをすぐに送信するには、一部のブラウザでは、私たちは、ログを送信することをあきらめる前に待機する最大時間を設定します。",
 	"centralnotice-impression-diet-help": "個人によって見られるバナーの数を制限します。",
-	"centralnotice-impression-diet-cookie-name": "クッキー名を隠す",
 	"centralnotice-impression-diet-restart-cycle-delay": "サイクルを再開する前にどのくらい待機を長くするか、秒単位で (省略可能)"
 }

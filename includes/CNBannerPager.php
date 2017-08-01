@@ -11,10 +11,10 @@ class CNBannerPager extends ReverseChronologicalPager {
 	protected $filter = '';
 
 	/** @var array HTMLFormFields to add to the results before every banner entry */
-	protected $prependPrototypes = array();
+	protected $prependPrototypes = [];
 
 	/** @var array HTMLFormFields to add to the results after every banner entry */
-	protected $appendPrototypes = array();
+	protected $appendPrototypes = [];
 
 	/** @var string 'Section' attribute to apply to the banner elements generated */
 	protected $formSection = null;
@@ -31,8 +31,8 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * @param bool           $editable
 	 */
 	function __construct( SpecialCentralNoticeBanners $hostSpecialPage,
-		$formSection = null, $prependPrototypes = array(),
-		$appendPrototypes = array(), $bannerFilter = '', $editable = false
+		$formSection = null, $prependPrototypes = [],
+		$appendPrototypes = [], $bannerFilter = '', $editable = false
 	) {
 		$this->editable = $editable;
 		$this->filter = $bannerFilter;
@@ -45,7 +45,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$this->hostSpecialPage = $hostSpecialPage;
 		// Override paging defaults
 		list( $this->mLimit, $this->mOffset ) = $this->mRequest->getLimitOffset( 20, '' );
-		$this->mLimitsShown = array( 20, 50, 100 );
+		$this->mLimitsShown = [ 20, 50, 100 ];
 
 		// Get the database object
 		$this->mDb = CNDatabase::getDb();
@@ -59,10 +59,10 @@ class CNBannerPager extends ReverseChronologicalPager {
 		// Sets mNavigation bar with the default text which we will then wrap
 		parent::getNavigationBar();
 
-		$this->mNavigationBar = array(
+		$this->mNavigationBar = [
 			'class' => 'HTMLBannerPagerNavigation',
 			'value' => $this->mNavigationBar
-		);
+		];
 
 		if ( $this->formSection ) {
 			$this->mNavigationBar['section'] = $this->formSection;
@@ -85,19 +85,19 @@ class CNBannerPager extends ReverseChronologicalPager {
 			$likeArray = $this->mDb->anyString();
 		} else {
 			$anyStringToken = $this->mDb->anyString();
-			$tempArray = array( $anyStringToken );
+			$tempArray = [ $anyStringToken ];
 			foreach ( $likeArray as $likePart ) {
-				$tempArray[ ] = $likePart;
-				$tempArray[ ] = $anyStringToken;
+				$tempArray[] = $likePart;
+				$tempArray[] = $anyStringToken;
 			}
 			$likeArray = $tempArray;
 		}
 
-		return array(
-			'tables' => array( 'templates' => 'cn_templates'),
-			'fields' => array( 'templates.tmp_name', 'templates.tmp_id' ),
-			'conds'  => array( 'templates.tmp_name' . $this->mDb->buildLike( $likeArray ) ),
-		);
+		return [
+			'tables' => [ 'templates' => 'cn_templates' ],
+			'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
+			'conds' => [ 'templates.tmp_name' . $this->mDb->buildLike( $likeArray ) ],
+		];
 	}
 
 	/**
@@ -117,13 +117,13 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * @return array HTMLFormElement classes
 	 */
 	function formatRow( $row ) {
-		$retval = array();
+		$retval = [];
 
 		$bannerId = $row->tmp_id;
 		$bannerName = $row->tmp_name;
 
 		// Add the prepend prototypes
-		foreach( $this->prependPrototypes as $prototypeName => $prototypeValues ) {
+		foreach ( $this->prependPrototypes as $prototypeName => $prototypeValues ) {
 			$retval[ "{$prototypeName}-{$bannerName}" ] = $prototypeValues;
 			if ( array_key_exists( 'id', $prototypeValues ) ) {
 				$retval[ "{$prototypeName}-{$bannerId}" ][ 'id' ] .= "-$bannerName";
@@ -131,17 +131,17 @@ class CNBannerPager extends ReverseChronologicalPager {
 		}
 
 		// Now do the banner
-		$retval["cn-banner-list-element-$bannerId"] = array(
+		$retval["cn-banner-list-element-$bannerId"] = [
 			'class' => 'HTMLCentralNoticeBanner',
 			'banner' => $bannerName,
 			'withlabel' => true,
-		);
+		];
 		if ( $this->formSection ) {
 			$retval["cn-banner-list-element-$bannerId"]['section'] = $this->formSection;
 		}
 
 		// Append prototypes
-		foreach( $this->appendPrototypes as $prototypeName => $prototypeValues ) {
+		foreach ( $this->appendPrototypes as $prototypeName => $prototypeValues ) {
 			$retval[ $prototypeName . "-$bannerId" ] = $prototypeValues;
 			if ( array_key_exists( 'id', $prototypeValues ) ) {
 				$retval[ $prototypeName . "-$bannerId" ][ 'id' ] .= "-$bannerId";
@@ -150,7 +150,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		// Set the disabled attribute
 		if ( !$this->editable ) {
-			foreach( $retval as $prototypeName => $prototypeValues ) {
+			foreach ( $retval as $prototypeName => $prototypeValues ) {
 				$retval[ $prototypeName ][ 'disabled' ] = true;
 			}
 		}
@@ -177,7 +177,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		# Don't use any extra rows returned by the query
 		$numRows = min( $this->mResult->numRows(), $this->mLimit );
 
-		$retval = array();
+		$retval = [];
 
 		if ( $numRows ) {
 			if ( $this->mIsBackwards ) {
@@ -204,7 +204,6 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * @see Pager::makeLink()
 	 */
 	public function makeLink( $text, array $query = null, $type = null ) {
-
 		$filterQuery = $this->hostSpecialPage->getFilterUrlParamAsArray();
 
 		$query = ( $query === null ) ?
@@ -216,7 +215,9 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 class HTMLBannerPagerNavigation extends HTMLFormField {
 	/** Empty - no validation can be done on a navigation element */
-	function validate( $value, $alldata ) { return true; }
+	function validate( $value, $alldata ) {
+		return true;
+	}
 
 	public function getInputHTML( $value ) {
 		return $this->mParams['value'];
@@ -225,7 +226,7 @@ class HTMLBannerPagerNavigation extends HTMLFormField {
 	public function getDiv( $value ) {
 		$html = Xml::openElement(
 			'div',
-			array( 'class' => "cn-banner-list-pager-nav", )
+			[ 'class' => "cn-banner-list-pager-nav", ]
 		);
 		$html .= $this->getInputHTML( $value );
 		$html .= Xml::closeElement( 'div' );

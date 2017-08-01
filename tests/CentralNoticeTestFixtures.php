@@ -3,9 +3,9 @@
 class CentralNoticeTestFixtures {
 	const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
 
-	public $spec = array();
+	public $spec = [];
 	protected $user;
-	protected $addedDeviceIds = array();
+	protected $addedDeviceIds = [];
 	protected $knownDevices = null;
 
 	// For legacy test that don't use fixture data: use exactly the api defaults
@@ -16,26 +16,26 @@ class CentralNoticeTestFixtures {
 	function __construct() {
 		$this->user = User::newFromName( 'UTSysop' );
 
-		static::$defaultCampaign = array(
+		static::$defaultCampaign = [
 			'enabled' => 1,
 			// inclusive comparison is used, so this does not cause a race condition.
 			'startTs' => wfTimestamp( TS_MW ),
-			'projects' => array( CentralNoticeTestFixtures::getDefaultProject() ),
-			'languages' => array( CentralNoticeTestFixtures::getDefaultLanguage() ),
+			'projects' => [ self::getDefaultProject() ],
+			'languages' => [ self::getDefaultLanguage() ],
 			'preferred' => CentralNotice::NORMAL_PRIORITY,
 			'geotargeted' => 0,
-			'countries' => array( CentralNoticeTestFixtures::getDefaultCountry() ),
+			'countries' => [ self::getDefaultCountry() ],
 			'throttle' => 100,
-			'banners' => array(),
-		);
-		static::$defaultBanner = array(
+			'banners' => [],
+		];
+		static::$defaultBanner = [
 			'bucket' => 0,
 			'body' => 'testing',
 			'display_anon' => true,
 			'display_account' => true,
 			'fundraising' => 1,
 			'weight' => 25,
-		);
+		];
 	}
 
 	static function getDefaultLanguage() {
@@ -59,7 +59,7 @@ class CentralNoticeTestFixtures {
 	 * as appropriate for fixture data.
 	 */
 	function getGlobalsFromFixtureData() {
-		$data = CentralNoticeTestFixtures::allocationsData();
+		$data = self::allocationsData();
 		return $data['mock_config_values'];
 	}
 
@@ -94,22 +94,21 @@ class CentralNoticeTestFixtures {
 
 	/**
 	 * Add defaults to the test case setup specification, for legacy tests that
-	 * don't use the shared JSON fixture data. 
+	 * don't use the shared JSON fixture data.
 	 *
 	 * @param array $testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
 	protected function addTestCaseDefaults( &$testCaseSetup ) {
-
 		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
-			$campaign = $campaign + static::$defaultCampaign + array(
-					'name' => 'TestCampaign_' . rand(),
-			);
+			$campaign = $campaign + static::$defaultCampaign + [
+				'name' => 'TestCampaign_' . rand(),
+			];
 
 			foreach ( $campaign['banners'] as &$banner ) {
-				$banner = $banner + static::$defaultBanner + array(
-						'name' => 'TestBanner_' . rand(),
-				);
+				$banner = $banner + static::$defaultBanner + [
+					'name' => 'TestBanner_' . rand(),
+				];
 			}
 		}
 	}
@@ -124,32 +123,33 @@ class CentralNoticeTestFixtures {
 	 * @param array $testCase A data structure with the test case specification
 	 */
 	protected function setTestCaseStartEnd( &$testCase ) {
-
 		$now = wfTimestamp();
 
 		foreach ( $testCase['setup']['campaigns'] as &$campaign ) {
-
-			$start = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $campaign['start_days_from_now'] );
+			$start = self::makeTimestamp(
+				$now, $campaign['start_days_from_now']
+			);
 
 			$campaign['startTs'] = wfTimestamp( TS_MW, $start );
 
-			$end = CentralNoticeTestFixtures::makeTimestamp(
-					$now, $campaign['end_days_from_now'] );
+			$end = self::makeTimestamp(
+				$now, $campaign['end_days_from_now']
+			);
 
 			$campaign['endTs'] = wfTimestamp( TS_MW, $end );
 		}
 
 		foreach ( $testCase['contexts_and_outputs'] as &$context_and_output ) {
 			foreach ( $context_and_output['choices'] as &$choice ) {
+				$choice['start'] = self::makeTimestamp(
+					$now, $choice['start_days_from_now']
+				);
 
-				$choice['start'] = CentralNoticeTestFixtures::makeTimestamp(
-						$now, $choice['start_days_from_now'] );
+				$choice['end'] = self::makeTimestamp(
+					$now, $choice['end_days_from_now']
+				);
 
-				$choice['end'] = CentralNoticeTestFixtures::makeTimestamp(
-						$now, $choice['end_days_from_now'] );
-
-				$choice['mixins'] = array();
+				$choice['mixins'] = [];
 
 				// Unset these special properties from choices, for tests that
 				// compare fixture choices to actual choices produced by the code
@@ -169,22 +169,20 @@ class CentralNoticeTestFixtures {
 	 *  test case specification
 	 */
 	protected function preprocessSetupCountriesProp( &$testCaseSetup ) {
-
 		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
-
 			if ( !$campaign['geotargeted'] ) {
 				if ( !isset( $campaign['countries'] ) ) {
-					$campaign['countries'] = array();
+					$campaign['countries'] = [];
 				} else {
 					throw new LogicException( "Campaign is not geotargetted but "
-							. "'countries' property is set." );
+						. "'countries' property is set." );
 				}
 			}
 		}
 	}
 
 	/**
-	 * Add dummy banner properties throughout a test case setup specification. 
+	 * Add dummy banner properties throughout a test case setup specification.
 	 *
 	 * @param array $testCaseSetup A data structure with the setup section of a
 	 *  test case specification
@@ -216,7 +214,6 @@ class CentralNoticeTestFixtures {
 	 *  test case specification
 	 */
 	protected function setupTestCase( $testCaseSetup ) {
-
 		// It is expected that when a test case is set up via fixture data,
 		// this global will already have been set via
 		// setupTestCaseFromFixtureData(). Legacy (non-fixture data) tests don't
@@ -227,7 +224,6 @@ class CentralNoticeTestFixtures {
 		$this->ensureDesktopDevice();
 
 		foreach ( $testCaseSetup['campaigns'] as $campaign ) {
-
 			$campaign['id'] = Campaign::addCampaign(
 				$campaign['name'],
 				$campaign['enabled'],
@@ -252,12 +248,12 @@ class CentralNoticeTestFixtures {
 			// bucket_count and archived  are also only in test
 			// fixture data, not legacy tests.
 			if ( isset( $campaign['bucket_count'] ) ) {
-
 				$bucket_count = $campaign['bucket_count'];
 
 				if ( $bucket_count < 1 ||
-					$bucket_count > $wgNoticeNumberOfBuckets ) {
-						throw new RangeException( 'Bucket count out of range.' );
+					$bucket_count > $wgNoticeNumberOfBuckets
+				) {
+					throw new RangeException( 'Bucket count out of range.' );
 				}
 
 				Campaign::setNumericCampaignSetting(
@@ -294,9 +290,8 @@ class CentralNoticeTestFixtures {
 				);
 
 				$bannerObj = Banner::fromName( $bannerSpec['name'] );
-				
-				if ( isset( $bannerSpec['bucket'] ) ) {
 
+				if ( isset( $bannerSpec['bucket'] ) ) {
 					$bucket = $bannerSpec['bucket'];
 					if ( $bucket < 0 || $bucket > $wgNoticeNumberOfBuckets ) {
 						throw new RangeException( 'Bucket out of range' );
@@ -305,7 +300,8 @@ class CentralNoticeTestFixtures {
 					Campaign::updateBucket(
 						$campaign['name'],
 						$bannerObj->getId(),
-						$bannerSpec['bucket'] );
+						$bannerSpec['bucket']
+					);
 				}
 
 				if ( isset( $bannerSpec['devices'] ) ) {
@@ -337,7 +333,7 @@ class CentralNoticeTestFixtures {
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->delete(
 				'cn_known_devices',
-				array( 'dev_id' => $this->addedDeviceIds ),
+				[ 'dev_id' => $this->addedDeviceIds ],
 				__METHOD__
 			);
 		}
@@ -351,8 +347,8 @@ class CentralNoticeTestFixtures {
 	 * @param array $actual Actual choices data structure
 	 */
 	function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
-			$message='' ) {
-
+		$message = ''
+	) {
 		// The order of the numerically indexed arrays in this data structure
 		// shouldn't matter, so sort all of those by value.
 		$this->deepMultisort( $expected );
@@ -371,7 +367,7 @@ class CentralNoticeTestFixtures {
 		array_multisort( $a );
 
 		foreach ( $a as &$v ) {
-			if ( is_array ( $v ) ) {
+			if ( is_array( $v ) ) {
 				$this->deepMultisort( $v );
 			}
 		}
@@ -382,7 +378,7 @@ class CentralNoticeTestFixtures {
 	 * for a hack (or maybe a hack for a workaround?) in Banner.
 	 */
 	protected function ensureDesktopDevice() {
-		$this->ensureDevices( array( 'desktop' ) );
+		$this->ensureDevices( [ 'desktop' ] );
 	}
 
 	/**
@@ -392,7 +388,6 @@ class CentralNoticeTestFixtures {
 	 * @param string[] $deviceNames
 	 */
 	protected function ensureDevices( $deviceNames ) {
-
 		if ( !$this->knownDevices ) {
 			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
 		}
@@ -402,7 +397,6 @@ class CentralNoticeTestFixtures {
 		// Add any devices not in the database
 		foreach ( $deviceNames as $deviceName ) {
 			if ( !isset( $this->knownDevices[$deviceName] ) ) {
-
 				// Remember the IDs for teardown
 				$this->addedDeviceIds[] =
 					CNDeviceTarget::addDeviceTarget( $deviceName, $deviceName );
@@ -424,12 +418,11 @@ class CentralNoticeTestFixtures {
 	 * a test method.)
 	 */
 	public static function allocationsTestCasesProvision() {
+		$data = self::allocationsData();
+		$dataForTests = [];
 
-		$data = CentralNoticeTestFixtures::allocationsData();
-		$dataForTests = array();
-
-		foreach  ( $data['test_cases'] as $name => $testCase ) {
-			$dataForTests[] = array( $name, $testCase );
+		foreach ( $data['test_cases'] as $name => $testCase ) {
+			$dataForTests[] = [ $name, $testCase ];
 		}
 
 		return $dataForTests;
@@ -440,7 +433,7 @@ class CentralNoticeTestFixtures {
 	 * scenario for testing.
 	 */
 	public static function allocationsData() {
-		$json = CentralNoticeTestFixtures::allocationsDataAsJson();
+		$json = self::allocationsDataAsJson();
 		$data = FormatJson::decode( $json, true );
 		return $data;
 	}
@@ -450,7 +443,7 @@ class CentralNoticeTestFixtures {
 	 * CentralNoticeTestFixtures::FIXTURE_RELATIVE_PATH).
 	 */
 	public static function allocationsDataAsJson() {
-		$path = __DIR__ . '/' . CentralNoticeTestFixtures::FIXTURE_RELATIVE_PATH;
+		$path = __DIR__ . '/' . self::FIXTURE_RELATIVE_PATH;
 		return file_get_contents( $path );
 	}
 }

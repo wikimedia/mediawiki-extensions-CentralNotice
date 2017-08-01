@@ -1,29 +1,35 @@
 <?php
 
 class CampaignLog {
-	private static $basic_fields = array(
+	private static $basic_fields = [
 		'start', 'end', 'enabled', 'preferred', 'locked', 'geo', 'buckets'
-	);
-	private static $list_fields = array( 'projects', 'languages', 'countries' );
-	private static $map_fields = array( 'banners' );
+	];
+	private static $list_fields = [ 'projects', 'languages', 'countries' ];
+	private static $map_fields = [ 'banners' ];
 
 	/**
 	 * @param stdClass|null $row
 	 */
 	function __construct( $row = null ) {
-		$begin = array();
-		$end = array();
+		$begin = [];
+		$end = [];
 		if ( $row ) {
+			$comma_explode = function ( $str ) {
+				return explode( ", ", $str );
+			};
 
-			$comma_explode = function( $str ) { return explode( ", ", $str ); };
-			$json_decode = function( $json ) { return json_decode( $json, true ); };
+			$json_decode = function ( $json ) {
+				return json_decode( $json, true );
+			};
 
-			$store = function( $name, $decode = null ) use ( $row, &$begin, &$end ) {
+			$store = function ( $name, $decode = null ) use ( $row, &$begin, &$end ) {
 				$beginField = 'notlog_begin_' . $name;
 				$endField = 'notlog_end_' . $name;
 
 				if ( !$decode ) {
-					$decode = function($v) { return $v; };
+					$decode = function ( $v ) {
+						return $v;
+					};
 				}
 				$begin[ $name ] = $decode( $row->$beginField );
 				$end[ $name ] = $decode( $row->$endField );
@@ -55,14 +61,14 @@ class CampaignLog {
 
 	# TODO: use in logpager
 	function changes() {
-		$removed = array();
-		$added = array();
+		$removed = [];
+		$added = [];
 
 		# XXX cannot use "this" in closures until php 5.4
 		$begin =& $this->begin;
 		$end =& $this->end;
 
-		$diff_basic = function( $name ) use ( &$removed, &$added, &$begin, &$end ) {
+		$diff_basic = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
 			if ( $begin[ $name ] !== $end[ $name ] ) {
 				if ( $begin[ $name ] !== null ) {
 					$removed[ $name ] = $begin[ $name ];
@@ -72,19 +78,19 @@ class CampaignLog {
 				}
 			}
 		};
-		$diff_list = function( $name ) use ( &$removed, &$added, &$begin, &$end ) {
+		$diff_list = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
 			if ( $begin[ $name ] !== $end[ $name ] ) {
 				$removed[ $name ] = array_diff( $begin[ $name ], $end[ $name ] );
-				if ( !$removed[ $name ] || $removed[ $name ] === array( "" ) ) {
+				if ( !$removed[ $name ] || $removed[ $name ] === [ "" ] ) {
 					unset( $removed[ $name ] );
 				}
 				$added[ $name ] = array_diff( $end[ $name ], $begin[ $name ] );
-				if ( !$added[ $name ] || $added[ $name ] === array( "" ) ) {
+				if ( !$added[ $name ] || $added[ $name ] === [ "" ] ) {
 					unset( $added[ $name ] );
 				}
 			}
 		};
-		$diff_map = function( $name ) use ( &$removed, &$added, &$begin, &$end ) {
+		$diff_map = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
 			$removed[ $name ] = $begin[ $name ];
 			$added[ $name ] = $end[ $name ];
 
@@ -118,6 +124,6 @@ class CampaignLog {
 			$diff_map( $name );
 		}
 
-		return array( 'removed' => $removed, 'added' => $added );
+		return [ 'removed' => $removed, 'added' => $added ];
 	}
 }

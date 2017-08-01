@@ -19,9 +19,9 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 			$wgCentralNoticeFallbackHideCookieDuration;
 
 		// Handle /P3P subpage with explanation of invalid P3P header
-		if ( ( strval( $par ) === SpecialHideBanners::P3P_SUBPAGE ) &&
-			!$wgCentralNoticeHideBannersP3P ){
-
+		if ( ( strval( $par ) === self::P3P_SUBPAGE ) &&
+			!$wgCentralNoticeHideBannersP3P
+		) {
 			$this->setHeaders();
 			$this->getOutput()->addWikiMsg( 'centralnotice-specialhidebanners-p3p' );
 			return;
@@ -52,7 +52,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		header( 'Content-Type: image/png' );
 		if ( !$this->getUser()->isLoggedIn() ) {
-			$expiry = SpecialHideBanners::CACHE_EXPIRY;
+			$expiry = self::CACHE_EXPIRY;
 			header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
 		}
 	}
@@ -65,13 +65,13 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 		$created = time();
 		$exp = $created + $duration;
-		$value = array(
+		$value = [
 			'v' => 1,
 			'created' => $created,
 			'reason' => $reason
-		);
+		];
 
-		if ( is_callable( array( 'CentralAuthUser', 'getCookieDomain' ) ) ) {
+		if ( is_callable( [ 'CentralAuthUser', 'getCookieDomain' ] ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
@@ -94,9 +94,8 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		global $wgCentralNoticeHideBannersP3P;
 
 		if ( !$wgCentralNoticeHideBannersP3P ) {
-
 			$url = SpecialPage::getTitleFor(
-				'HideBanners', SpecialHideBanners::P3P_SUBPAGE )
+				'HideBanners', self::P3P_SUBPAGE )
 				->getCanonicalURL();
 
 			$p3p = "CP=\"This is not a P3P policy! See $url for more info.\"";

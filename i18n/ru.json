@@ -26,7 +26,8 @@
 			"Seunei",
 			"Translatobecomer",
 			"Kaganer",
-			"Redredsonia"
+			"Redredsonia",
+			"Facenapalm"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -157,7 +158,7 @@
 	"centralnotice-allocation-description": "Размещение баннера для языка: $1, проекта: $2, в стране: $3, на устройстве $4",
 	"centralnotice-historical-allocation-description": "Установка объявления для языка $1, проекта: $2, в стране: $3, на устройстве $4, в $5",
 	"centralnotice-percentage": "Процент",
-	"centralnotice-documentwrite-error": "document.write() нельзя использовать в баннере.\nПодробности: [http://meta.wikimedia.org/wiki/Help:CentralNotice http://meta.wikimedia.org/wiki/Help:CentralNotice].",
+	"centralnotice-documentwrite-error": "document.write() нельзя использовать в баннере.\nПодробности: [https://meta.wikimedia.org/wiki/Help:CentralNotice https://meta.wikimedia.org/wiki/Help:CentralNotice].",
 	"centralnotice-preferred": "Приоритет",
 	"centralnotice-archived": "Архивировано",
 	"centralnotice-logs": "Журналы",
@@ -281,5 +282,7 @@
 	"centralnotice-banner-history-logger-max-entry-age-help": "Записи в журнале старее, чем здесь задано, будут считаться недействительными и не будут отправлены обратно на сервер.",
 	"centralnotice-banner-history-logger-max-entries": "Максимальное число записей, доступное для сохранения в журнале",
 	"centralnotice-banner-sequence-banner": "Баннер",
-	"centralnotice-banner-sequence-page-views": "Просмотров страниц"
+	"centralnotice-banner-sequence-page-views": "Просмотров страниц",
+	"centralnotice-banner-sequence-skip-with-id-error": "Идентификатор не может содержать «|».",
+	"centralnotice-banner-sequence-no-banner": "(нет баннера)"
 }

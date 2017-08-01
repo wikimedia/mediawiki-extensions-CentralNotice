@@ -136,7 +136,7 @@
 	"centralnotice-no-allocation": "Brak przypisanych banerów.",
 	"centralnotice-allocation-description": "Przydział banera dla języka $1, projektu $2, w kraju $3 na urządzeniu $4",
 	"centralnotice-percentage": "Procentowo",
-	"centralnotice-documentwrite-error": "Nie można korzystać z document.write() w banerze.\nWięcej informacji odnajdziesz na stronie http://meta.wikimedia.org/wiki/Help:CentralNotice",
+	"centralnotice-documentwrite-error": "Nie można korzystać z document.write() w banerze.\nWięcej informacji odnajdziesz na stronie https://meta.wikimedia.org/wiki/Help:CentralNotice",
 	"centralnotice-preferred": "Priorytet",
 	"centralnotice-archived": "Zarchiwizowane",
 	"centralnotice-logs": "Rejestr operacji",

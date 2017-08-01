@@ -93,7 +93,7 @@ class CentralNoticeHooks {
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 		}
 
-		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext') ) {
+		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext' ) ) {
 			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
 		}
 	}
@@ -105,8 +105,8 @@ class CentralNoticeHooks {
 		global $wgNoticeInfrastructure;
 		if ( $wgNoticeInfrastructure ) {
 			// array( tableName, idField, textField )
-			$updateFields[] = array( 'cn_notice_log', 'notlog_user_id' );
-			$updateFields[] = array( 'cn_template_log', 'tmplog_user_id' );
+			$updateFields[] = [ 'cn_notice_log', 'notlog_user_id' ];
+			$updateFields[] = [ 'cn_template_log', 'tmplog_user_id' ];
 		}
 		return true;
 	}
@@ -170,7 +170,8 @@ class CentralNoticeHooks {
 
 		// If we're editing or we're on a special page, bow out now
 		if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
-			( $wgRequest->getText( 'action' ) === 'edit' ) ) {
+			( $wgRequest->getText( 'action' ) === 'edit' )
+		) {
 			return true;
 		}
 
@@ -221,7 +222,6 @@ class CentralNoticeHooks {
 		// This is useful for banners that need to be targeted to specific types of users.
 		// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
 		if ( $wgUser->isLoggedIn() ) {
-
 			$cacheKey = wfMemcKey( 'CentralNotice', 'UserData', $wgUser->getId() );
 			$userData = $wgMemc->get( $cacheKey );
 
@@ -231,7 +231,7 @@ class CentralNoticeHooks {
 				if ( $wgUser->isAllowed( 'bot' ) ) {
 					$userData = false;
 				} else {
-					$userData = array();
+					$userData = [];
 
 					// Add the user's registration date (MediaWiki timestamp)
 					$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
@@ -338,12 +338,12 @@ class CentralNoticeHooks {
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
 			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
-		$files[ ] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
-		$files[ ] = __DIR__ . '/tests/CentralNoticeTest.php';
-		$files[ ] = __DIR__ . '/tests/AllocationCalculatorTest.php';
-		$files[ ] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
-		$files[ ] = __DIR__ . '/tests/BannerTest.php';
-		$files[ ] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
+		$files[] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
+		$files[] = __DIR__ . '/tests/CentralNoticeTest.php';
+		$files[] = __DIR__ . '/tests/AllocationCalculatorTest.php';
+		$files[] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
+		$files[] = __DIR__ . '/tests/BannerTest.php';
+		$files[] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
 		return true;
 	}
 
@@ -362,9 +362,9 @@ class CentralNoticeHooks {
 
 		// Set up test fixtures module, which is added as a dependency for all QUnit
 		// tests.
-		$testModules['qunit']['ext.centralNotice.testFixtures'] = array(
+		$testModules['qunit']['ext.centralNotice.testFixtures'] = [
 				'class' => 'CNTestFixturesResourceLoaderModule'
-		);
+		];
 
 		// These classes are only used here or in phpunit tests
 		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
@@ -373,22 +373,20 @@ class CentralNoticeHooks {
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
 			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
 
-		$testModuleBoilerplate = array(
+		$testModuleBoilerplate = [
 			'localBasePath' => __DIR__,
 			'remoteExtPath' => 'CentralNotice',
-		);
+		];
 
 		// find test files for every RL module
 		$prefix = 'ext.centralNotice';
 		foreach ( $wgResourceModules as $key => $module ) {
-
 			if ( substr( $key, 0, strlen( $prefix ) ) ===
-				$prefix && isset( $module['scripts'] ) ) {
+				$prefix && isset( $module['scripts'] )
+			) {
+				$testFiles = [];
 
-				$testFiles = array();
-
-				foreach ( ( ( array ) $module['scripts'] ) as $script ) {
-
+				foreach ( ( (array)$module['scripts'] ) as $script ) {
 					$testFile = 'tests/qunit/' . $script;
 					$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
 
@@ -401,14 +399,13 @@ class CentralNoticeHooks {
 				// if test files exist for given module, create a corresponding test
 				// module
 				if ( count( $testFiles ) > 0 ) {
-
 					$testModules['qunit']["$key.tests"] = $testModuleBoilerplate +
-						array(
+						[
 							'dependencies' =>
-								array( $key, 'ext.centralNotice.testFixtures' ),
+								[ $key, 'ext.centralNotice.testFixtures' ],
 
 							'scripts' => $testFiles,
-						);
+						];
 				}
 			}
 		}

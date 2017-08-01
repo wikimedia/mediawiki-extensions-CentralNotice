@@ -10,9 +10,9 @@ class GeoTarget {
 	 * @return array
 	 */
 	static function getCountriesList( $code ) {
-		$countries = array();
+		$countries = [];
 
-		if ( is_callable( array( 'CountryNames', 'getNames' ) ) ) {
+		if ( is_callable( [ 'CountryNames', 'getNames' ] ) ) {
 			// Retrieve the list of countries in user's language (via CLDR)
 			$countries = CountryNames::getNames( $code );
 		}
@@ -20,7 +20,7 @@ class GeoTarget {
 		// If not via CLDR, we have our own list
 		if ( !$countries ) {
 			// Use this as fallback if CLDR extension is not enabled
-			$countries = array(
+			$countries = [
 				'AF'=> 'Afghanistan',
 				'AL'=> 'Albania',
 				'DZ'=> 'Algeria',
@@ -262,20 +262,20 @@ class GeoTarget {
 				'YE'=> 'Yemen',
 				'ZM'=> 'Zambia',
 				'ZW'=> 'Zimbabwe'
-			);
+			];
 		}
 
 		// And we need to add MaxMind specific countries: http://www.maxmind.com/en/iso3166
-		$countries['EU'] = wfMessage('centralnotice-country-eu')->inContentLanguage()->text();
-		$countries['AP'] = wfMessage('centralnotice-country-ap')->inContentLanguage()->text();
-		$countries['A1'] = wfMessage('centralnotice-country-a1')->inContentLanguage()->text();
-		$countries['A2'] = wfMessage('centralnotice-country-a2')->inContentLanguage()->text();
-		$countries['O1'] = wfMessage('centralnotice-country-o1')->inContentLanguage()->text();
+		$countries['EU'] = wfMessage( 'centralnotice-country-eu' )->inContentLanguage()->text();
+		$countries['AP'] = wfMessage( 'centralnotice-country-ap' )->inContentLanguage()->text();
+		$countries['A1'] = wfMessage( 'centralnotice-country-a1' )->inContentLanguage()->text();
+		$countries['A2'] = wfMessage( 'centralnotice-country-a2' )->inContentLanguage()->text();
+		$countries['O1'] = wfMessage( 'centralnotice-country-o1' )->inContentLanguage()->text();
 
 		// We will also add country 'XX' which is a MW specific 'fake' country for when GeoIP
 		// does not return any results at all or when something else odd has happened (IE: we
 		// fail to parse the country.)
-		$countries['XX'] = wfMessage('centralnotice-country-unknown')->inContentLanguage()->text();
+		$countries['XX'] = wfMessage( 'centralnotice-country-unknown' )->inContentLanguage()->text();
 
 		asort( $countries );
 

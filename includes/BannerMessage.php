@@ -26,7 +26,7 @@ class BannerMessage {
 		global $wgLanguageCode;
 
 		if ( $namespace === NS_MEDIAWIKI ) {
-			return ( $lang === null or $lang === $wgLanguageCode ) ?
+			return ( $lang === null || $lang === $wgLanguageCode ) ?
 				"Centralnotice-{$this->banner_name}-{$this->name}" :
 				"Centralnotice-{$this->banner_name}-{$this->name}/{$lang}";
 		} elseif ( $namespace === NS_CN_BANNER ) {
@@ -96,7 +96,7 @@ class BannerMessage {
 			$summary = '/* CN admin */';
 		}
 
-		$savePage = function( $title, $text ) use( $summary ) {
+		$savePage = function ( $title, $text ) use( $summary ) {
 			$wikiPage = new WikiPage( $title );
 
 			$content = ContentHandler::makeContent( $text, $title );
@@ -137,8 +137,8 @@ class BannerMessage {
 			$var = false;
 
 			$page->doUpdateRestrictions(
-				array( 'edit' => $wgNoticeProtectGroup, 'move' => $wgNoticeProtectGroup ),
-				array( 'edit' => 'infinity', 'move' => 'infinity' ),
+				[ 'edit' => $wgNoticeProtectGroup, 'move' => $wgNoticeProtectGroup ],
+				[ 'edit' => 'infinity', 'move' => 'infinity' ],
 				$var,
 				'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.',
 				$user

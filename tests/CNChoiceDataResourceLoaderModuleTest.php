@@ -32,16 +32,15 @@ class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
-
-			$this->setMwGlobals( array(
+			$this->setMwGlobals( [
 					'wgNoticeProject' => $contextAndOutput['context']['project'],
-			) );
+			] );
 
-			$fauxRequest = new FauxRequest( array(
+			$fauxRequest = new FauxRequest( [
 					'modules' => 'ext.centralNotice.choiceData',
 					'skin' => 'fallback',
 					'lang' => $contextAndOutput['context']['language']
-			) );
+			] );
 
 			$rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
 

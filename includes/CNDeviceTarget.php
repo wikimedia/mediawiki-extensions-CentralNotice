@@ -16,24 +16,24 @@ class CNDeviceTarget {
 	public static function getAvailableDevices( $flip = false ) {
 		$dbr = CNDatabase::getDb();
 
-		$devices = array();
+		$devices = [];
 
 		$res = $dbr->select(
-			array( 'known_devices' => 'cn_known_devices' ),
-			array( 'dev_id', 'dev_name', 'dev_display_label' )
+			[ 'known_devices' => 'cn_known_devices' ],
+			[ 'dev_id', 'dev_name', 'dev_display_label' ]
 		);
 
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			if ( $flip ) {
-				$devices[ $row->dev_name ] = array(
+				$devices[ $row->dev_name ] = [
 					'label' => $row->dev_display_label,
 					'id' => intval( $row->dev_id ),
-				);
+				];
 			} else {
-				$devices[ intval( $row->dev_id ) ] = array(
+				$devices[ intval( $row->dev_id ) ] = [
 					'header' => $row->dev_name,
 					'label' => $row->dev_display_label,
-				);
+				];
 			}
 
 		}
@@ -51,22 +51,22 @@ class CNDeviceTarget {
 	public static function getDevicesAssociatedWithBanner( $bannerId ) {
 		$dbr = CNDatabase::getDb();
 
-		$devices = array();
+		$devices = [];
 
 		$res = $dbr->select(
-			array(
-				 'tdev' => 'cn_template_devices',
-				 'devices' => 'cn_known_devices'
-			),
-			array( 'devices.dev_id', 'dev_name' ),
-			array(
-				 'tdev.tmp_id' => $bannerId,
-				 'tdev.dev_id = devices.dev_id'
-			),
+			[
+				'tdev' => 'cn_template_devices',
+				'devices' => 'cn_known_devices'
+			],
+			[ 'devices.dev_id', 'dev_name' ],
+			[
+				'tdev.tmp_id' => $bannerId,
+				'tdev.dev_id = devices.dev_id'
+			],
 			__METHOD__
 		);
 
-		foreach( $res as $row ) {
+		foreach ( $res as $row ) {
 			$devices[ intval( $row->dev_id ) ] = $row->dev_name;
 		}
 
@@ -85,10 +85,10 @@ class CNDeviceTarget {
 
 		$db->insert(
 			'cn_known_devices',
-			array(
-				 'dev_name' => $deviceName,
-				 'dev_display_label' => $displayLabel
-			),
+			[
+				'dev_name' => $deviceName,
+				'dev_display_label' => $displayLabel
+			],
 			__METHOD__
 		);
 
@@ -106,25 +106,27 @@ class CNDeviceTarget {
 	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
 		$db = CNDatabase::getDb();
 
-		$knownDevices = CNDeviceTarget::getAvailableDevices( true );
+		$knownDevices = self::getAvailableDevices( true );
 		$newDevices = (array)$newDevices;
 
 		// Remove all entries from the table for this banner
 		$db->delete(
 			'cn_template_devices',
-			array( 'tmp_id' => $bannerId ),
+			[ 'tmp_id' => $bannerId ],
 			__METHOD__
 		);
 
 		// Add the new device mappings
 		if ( $newDevices ) {
-			$modifyArray = array();
+			$modifyArray = [];
 			foreach ( $newDevices as $device ) {
 				if ( !array_key_exists( $device, $knownDevices ) ) {
 					throw new RangeException( "Device name '$device' not known! Cannot add." );
 				}
-				$modifyArray[ ] = array( 'tmp_id' => $bannerId,
-					'dev_id' => $knownDevices[ $device ][ 'id' ] );
+				$modifyArray[] = [
+					'tmp_id' => $bannerId,
+					'dev_id' => $knownDevices[$device]['id']
+				];
 			}
 			$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
 		}

@@ -128,7 +128,7 @@
 	"centralnotice-allocation-description": "भाषा: $1, प्रकल्प: $2, देश:$3 व उपकरण:$4 साठी घोषणाफलकांचे वाटप",
 	"centralnotice-historical-allocation-description": "भाषा: $1, प्रकल्प: $2, देश:$3 व उपकरण:$4 साठी $5 वेळी घोषणाफलकांचे वाटप",
 	"centralnotice-percentage": "टक्केवारी",
-	"centralnotice-documentwrite-error": "दस्तावेज. घोषणाफलकासमवेत लिहा() वापरू शकत नाही.\nअधिक माहितीसाठी http://meta.wikimedia.org/wiki/Help:CentralNotice बघा.",
+	"centralnotice-documentwrite-error": "दस्तावेज. घोषणाफलकासमवेत लिहा() वापरू शकत नाही.\nअधिक माहितीसाठी https://meta.wikimedia.org/wiki/Help:CentralNotice बघा.",
 	"centralnotice-preferred": "प्राथम्य",
 	"centralnotice-logs": "नोंदी",
 	"centralnotice-view-logs": "नोंदी पहा",

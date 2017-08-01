@@ -36,16 +36,24 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	/**
-	 * Handle all the different types of page requests determined by $action
+	 * Handle all the different types of page requests determined by the first subpage
+	 * level after the special page title. If needed, the second subpage level is the
+	 * banner name.
 	 *
 	 * Valid actions are:
-	 *    Null      - Display a list of banners
-	 *    Edit      - Edits an existing banner
+	 *    (none)    - Display a list of banners
+	 *    edit      - Edits an existing banner
+	 *
+	 * TODO Preview action (for previewing translated messages) is broken. See T105558
+	 * TODO Change method of indicating action to something more standard.
+	 *
+	 * @param string|null $subPage
 	 */
-	public function execute( $page ) {
+	public function execute( $subPage ) {
 		// Do all the common setup
 		$this->setHeaders();
 		$this->editable = $this->getUser()->isAllowed( 'centralnotice-admin' );
+
 		// Make sure we have a session
 		$this->getRequest()->getSession()->persist();
 
@@ -59,9 +67,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );
 		$this->getOutput()->addWikiMsg( 'centralnotice-summary' );
 
-		// Now figure out wth to display
-		$parts = explode( '/', $page );
+		// Now figure out what to display
+		// TODO Use only params instead of subpage to indicate action
+		$parts = explode( '/', $subPage );
 		$action = ( isset( $parts[0] ) && $parts[0] ) ? $parts[0]: 'list';
+		$this->bannerName = array_key_exists( 1, $parts ) ? $parts[1] : null;
 
 		switch ( strtolower( $action ) ) {
 			case 'list':
@@ -71,19 +81,18 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 			case 'edit':
 				// Display the banner editor form
-				if ( array_key_exists( 1, $parts ) ) {
-					$this->bannerName = $parts[1];
+				if ( $this->bannerName ) {
 					$this->showBannerEditor();
 				} else {
 					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
 				}
 				break;
 
+			// TODO Feature is broken. Remove or fix? See T105558
 			case 'preview':
 				// Preview all available translations
 				// Display the banner editor form
-				if ( array_key_exists( 1, $parts ) ) {
-					$this->bannerName = $parts[1];
+				if ( $this->bannerName ) {
 					$this->showAllLanguages();
 				} else {
 					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
@@ -108,7 +117,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Process the form that we sent out
 		$formDescriptor = $this->generateBannerListForm( $this->bannerFilterString );
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
-		$htmlForm->setSubmitCallback( array( $this, 'processBannerList' ) );
+		$htmlForm->setSubmitCallback( [ $this, 'processBannerList' ] );
 		$htmlForm->loadData();
 		$formResult = $htmlForm->trySubmit();
 
@@ -121,7 +130,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor = $this->generateBannerListForm( $this->bannerFilterString );
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
 
-		$htmlForm->setId('cn-banner-manager')->
+		$htmlForm->setId( 'cn-banner-manager' )->
 			suppressDefaultSubmit()->
 			setDisplayFormat( 'div' )->
 			prepareForm()->
@@ -140,28 +149,28 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// Note: filter is normally set via JS, not form submission. But we
 		// leave the info in the submitted form, in any case.
-		$formDescriptor = array(
-			'bannerNameFilter' => array(
+		$formDescriptor = [
+			'bannerNameFilter' => [
 				'section' => 'header/banner-search',
 				'class' => 'HTMLTextField',
 				'placeholder' => wfMessage( 'centralnotice-filter-template-prompt' ),
-				'filter-callback' => array( $this, 'sanitizeSearchTerms' ),
+				'filter-callback' => [ $this, 'sanitizeSearchTerms' ],
 				'default' => $filter,
-			),
-			'filterApply' => array(
+			],
+			'filterApply' => [
 				'section' => 'header/banner-search',
 				'class' => 'HTMLButtonField',
 				'default' => wfMessage( 'centralnotice-filter-template-submit' )->text(),
-			)
-		);
+			]
+		];
 
 		// --- Create the management options --- //
-		$formDescriptor += array(
-			'selectAllBanners' => array(
+		$formDescriptor += [
+			'selectAllBanners' => [
 				'section' => 'header/banner-bulk-manage',
 				'class' => 'HTMLCheckField',
 				'disabled' => !$this->editable,
-			),
+			],
 			/* TODO: Actually enable this feature
 			'archiveSelectedBanners' => array(
 				'section' => 'header/banner-bulk-manage',
@@ -170,57 +179,57 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'disabled' => !$this->editable,
 			),
 			*/
-			'deleteSelectedBanners' => array(
+			'deleteSelectedBanners' => [
 				'section' => 'header/banner-bulk-manage',
 				'class' => 'HTMLButtonField',
 				'default' => wfMessage( 'centralnotice-remove' )->text(),
 				'disabled' => !$this->editable,
-			),
-			'addNewBanner' => array(
+			],
+			'addNewBanner' => [
 				'section' => 'header/one-off',
 				'class' => 'HTMLButtonField',
 				'default' => wfMessage( 'centralnotice-add-template' )->text(),
 				'disabled' => !$this->editable,
-			),
-			'newBannerName' => array(
+			],
+			'newBannerName' => [
 				'section' => 'addBanner',
 				'class' => 'HTMLTextField',
 				'disabled' => !$this->editable,
 				'label' => wfMessage( 'centralnotice-banner-name' )->text(),
-			),
-			'newBannerEditSummary' => array(
+			],
+			'newBannerEditSummary' => [
 				'section' => 'addBanner',
 				'class' => 'HTMLTextField',
 				'label-message' => 'centralnotice-change-summary-label',
 				'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
 				'disabled' => !$this->editable,
-				'filter-callback' => array( $this, 'truncateSummaryField' )
-			),
-			'removeBannerEditSummary' => array(
+				'filter-callback' => [ $this, 'truncateSummaryField' ]
+			],
+			'removeBannerEditSummary' => [
 				'section' => 'removeBanner',
 				'class' => 'HTMLTextField',
 				'label-message' => 'centralnotice-change-summary-label',
 				'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
 				'disabled' => !$this->editable,
-				'filter-callback' => array( $this, 'truncateSummaryField' )
-			),
-			'action' => array(
+				'filter-callback' => [ $this, 'truncateSummaryField' ]
+			],
+			'action' => [
 				'type' => 'hidden',
-			)
-		);
+			]
+		];
 
 		// --- Add all the banners via the fancy pager object ---
 		$pager = new CNBannerPager(
 			$this,
 			'banner-list',
-			array(
-				 'applyTo' => array(
-					 'section' => 'banner-list',
-					 'class' => 'HTMLCheckField',
-					 'cssclass' => 'cn-bannerlist-check-applyto',
-				 )
-			),
-			array(),
+			[
+				'applyTo' => [
+					'section' => 'banner-list',
+					'class' => 'HTMLCheckField',
+					'cssclass' => 'cn-bannerlist-check-applyto',
+				]
+			],
+			[],
 			$filter,
 			$this->editable
 		);
@@ -240,7 +249,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return null|string|array
 	 */
 	public function processBannerList( $formData ) {
-
 		$this->setFilterFromUrl();
 
 		if ( $formData[ 'action' ] && $this->editable ) {
@@ -264,7 +272,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							false,
 							false,
 							// Default values of a zillion parameters...
-							false, array(), array(), null,
+							false, [], [], null,
 							$formData['newBannerEditSummary']
 						);
 
@@ -283,13 +291,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					break;
 
 				case 'archive':
-					return ('Archiving not yet implemented!');
+					return 'Archiving not yet implemented!';
 					break;
 
 				case 'remove':
 					$summary = $formData['removeBannerEditSummary'];
-					$failed = array();
-					foreach( $formData as $element => $value ) {
+					$failed = [];
+					foreach ( $formData as $element => $value ) {
 						$parts = explode( '-', $element, 2 );
 						if ( ( $parts[0] === 'applyTo' ) && ( $value === true ) ) {
 							try {
@@ -329,7 +337,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Use a URL parameter to set the filter string for the banner list.
 	 */
 	protected function setFilterFromUrl() {
-
 		// This is the normal param on visible URLs.
 		$filterParam = $this->getRequest()->getVal( 'filter', null );
 
@@ -353,9 +360,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return array
 	 */
 	public function getFilterUrlParamAsArray() {
-
 		return $this->bannerFilterString ?
-			array( 'filter' => $this->bannerFilterString ) : array();
+			[ 'filter' => $this->bannerFilterString ] : [];
 	}
 
 	/**
@@ -365,18 +371,18 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return array
 	 */
 	private function getBannerPreviewEditLinks() {
-		$links = array(
+		$links = [
 			Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Randompage' ),
 				$this->msg( 'centralnotice-live-preview' )->escaped(),
-				array( 'class' => 'cn-banner-list-element-label-text' ),
-				array(
-					 'banner' => $this->bannerName,
-					 'uselang' => $this->bannerLanguagePreview,
-					 'force' => '1',
-				)
+				[ 'class' => 'cn-banner-list-element-label-text' ],
+				[
+					'banner' => $this->bannerName,
+					'uselang' => $this->bannerLanguagePreview,
+					'force' => '1',
+				]
 			)
-		);
+		];
 
 		$bannerObj = Banner::fromName( $this->bannerName );
 		$bannerTitle = $bannerObj->getTitle();
@@ -385,8 +391,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$links[] = Linker::link(
 				$bannerTitle,
 				$this->msg( 'centralnotice-banner-edit-onwiki' )->escaped(),
-				array( 'class' => 'cn-banner-list-element-label-text' ),
-				array( 'action' => 'edit' )
+				[ 'class' => 'cn-banner-list-element-label-text' ],
+				[ 'action' => 'edit' ]
 				);
 		}
 
@@ -397,6 +403,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Display the banner editor and process edits
 	 */
 	protected function showBannerEditor() {
+		global $wgUseSquid;
+
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi.bannerEditor' );
 		$this->addHelpLink(
@@ -418,7 +426,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Now begin form processing
 		$htmlForm = new CentralNoticeHtmlForm(
 			$formDescriptor, $this->getContext(), 'centralnotice' );
-		$htmlForm->setSubmitCallback( array( $this, 'processEditBanner' ) );
+		$htmlForm->setSubmitCallback( [ $this, 'processEditBanner' ] );
 		$htmlForm->loadData();
 
 		$formResult = $htmlForm->tryAuthorizedSubmit();
@@ -432,7 +440,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$htmlForm = new CentralNoticeHtmlForm(
 			$formDescriptor, $this->getContext(), 'centralnotice' );
-		$htmlForm->setSubmitCallback( array( $this, 'processEditBanner' ) )->setId( 'cn-banner-editor' );
+		$htmlForm->setSubmitCallback( [ $this, 'processEditBanner' ] )->setId( 'cn-banner-editor' );
 
 		// Push the form back to the user
 		$htmlForm->suppressDefaultSubmit()->
@@ -441,8 +449,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			prepareForm()->
 			displayForm( $formResult );
 
+		// Controls to purge banner loader URLs from CDN caches for a given language.
+		if ( $wgUseSquid ) {
+			$out->addHTML( $this->generateCdnPurgeSection() );
+		}
+
 		$out->addHTML( Xml::element( 'h2',
-			array( 'class' => 'cn-special-section' ),
+			[ 'class' => 'cn-special-section' ],
 			$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
 
 		$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
@@ -455,7 +468,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
-		array_walk( $languages, function( &$val, $index ) { $val = "$index - $val"; } );
+		array_walk(
+			$languages,
+			function ( &$val, $index ) {
+				$val = "$index - $val";
+			}
+		);
 		$languages = array_flip( $languages );
 
 		$banner = Banner::fromName( $this->bannerName );
@@ -465,19 +483,19 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
 
-		$formDescriptor = array();
+		$formDescriptor = [];
 
 		/* --- Banner Preview Section --- */
 		// FIXME Unused? See T161907
-		$formDescriptor[ 'preview' ] = array(
+		$formDescriptor[ 'preview' ] = [
 			'section' => 'preview',
 			'class' => 'HTMLCentralNoticeBanner',
 			'banner' => $this->bannerName,
 			'language' => $this->bannerLanguagePreview,
-		);
+		];
 
 		/* --- Banner Settings --- */
-		$formDescriptor['banner-class'] = array(
+		$formDescriptor['banner-class'] = [
 			'section' => 'settings',
 			'type' => 'selectorother',
 			'disabled' => !$this->editable,
@@ -485,36 +503,40 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'help-message' => 'centralnotice-banner-class-desc',
 			'options' => Banner::getAllUsedCategories(),
 			'size' => 30,
-			'maxlength'=> 255,
+			'maxlength' => 255,
 			'default' => $banner->getCategory(),
-		);
+		];
 
-		$selected = array();
-		if ( $bannerSettings[ 'anon' ] === 1 ) { $selected[] = 'anonymous'; }
-		if ( $bannerSettings[ 'account' ] === 1 ) { $selected[] = 'registered'; }
-		$formDescriptor[ 'display-to' ] = array(
+		$selected = [];
+		if ( $bannerSettings[ 'anon' ] === 1 ) {
+			$selected[] = 'anonymous';
+		}
+		if ( $bannerSettings[ 'account' ] === 1 ) {
+			$selected[] = 'registered';
+		}
+		$formDescriptor[ 'display-to' ] = [
 			'section' => 'settings',
 			'type' => 'multiselect',
 			'disabled' => !$this->editable,
 			'label-message' => 'centralnotice-banner-display',
-			'options' => array(
+			'options' => [
 				$this->msg( 'centralnotice-banner-logged-in' )->text() => 'registered',
 				$this->msg( 'centralnotice-banner-anonymous' )->text() => 'anonymous'
-			),
+			],
 			'default' => $selected,
 			'cssclass' => 'separate-form-element',
-		);
+		];
 
 		$assignedDevices = array_values(
 			CNDeviceTarget::getDevicesAssociatedWithBanner( $banner->getId() )
 		);
-		$availableDevices = array();
+		$availableDevices = [];
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
 			$header = $value[ 'header' ];
 			$label = $this->getOutput()->parseInline( $value[ 'label' ] );
 			$availableDevices[ "($header) $label" ] = $header;
 		}
-		$formDescriptor[ 'device-classes' ] = array(
+		$formDescriptor[ 'device-classes' ] = [
 			'section' => 'settings',
 			'type' => 'multiselect',
 			'disabled' => !$this->editable,
@@ -522,12 +544,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'options' => $availableDevices,
 			'default' => $assignedDevices,
 			'cssclass' => 'separate-form-element',
-		);
+		];
 
 		$mixinNames = array_keys( $wgCentralNoticeBannerMixins );
 		$availableMixins = array_combine( $mixinNames, $mixinNames );
 		$selectedMixins = array_keys( $banner->getMixins() );
-		$formDescriptor['mixins'] = array(
+		$formDescriptor['mixins'] = [
 			'section' => 'settings',
 			'type' => 'multiselect',
 			'disabled' => !$this->editable,
@@ -536,7 +558,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'cssclass' => 'separate-form-element',
 			'options' => $availableMixins,
 			'default' => $selectedMixins,
-		);
+		];
 
 		/* --- Translatable Messages Section --- */
 		$messages = $banner->getMessageFieldsFromCache();
@@ -544,14 +566,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		if ( $messages ) {
 			// Only show this part of the form if messages exist
 
-			$formDescriptor[ 'translate-language' ] = array(
+			$formDescriptor[ 'translate-language' ] = [
 				'section' => 'banner-messages',
 				'class' => 'LanguageSelectHeaderElement',
 				'label-message' => 'centralnotice-language',
 				'options' => $languages,
 				'default' => $this->bannerLanguagePreview,
 				'cssclass' => 'separate-form-element',
-			);
+			];
 
 			$messageReadOnly = false;
 			if ( $wgNoticeUseTranslateExtension &&
@@ -567,20 +589,20 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 						Linker::link(
 							$title,
 							htmlspecialchars( $messageName ),
-							array(),
-							array(
+							[],
+							[
 								'group' => BannerMessageGroup::getTranslateGroupName(
 									$banner->getName()
 								),
 								'task' => 'view'
-							)
+							]
 						)
 					);
 				} else {
 					$label = htmlspecialchars( $messageName );
 				}
 
-				$formDescriptor[ "message-$messageName" ] = array(
+				$formDescriptor[ "message-$messageName" ] = [
 					'section' => 'banner-messages',
 					'class' => 'HTMLCentralNoticeBannerMessage',
 					'label-raw' => $label,
@@ -588,7 +610,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'message' => $messageName,
 					'language' => $this->bannerLanguagePreview,
 					'cssclass' => 'separate-form-element',
-				);
+				];
 
 				if ( !$this->editable || $messageReadOnly ) {
 					$formDescriptor[ "message-$messageName" ][ 'readonly' ] = true;
@@ -596,7 +618,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			}
 
 			if ( $wgNoticeUseTranslateExtension ) {
-				$formDescriptor[ 'priority-langs' ] = array(
+				$formDescriptor[ 'priority-langs' ] = [
 					'section' => 'banner-messages',
 					'class' => 'HTMLLargeMultiSelectField',
 					'disabled' => !$this->editable,
@@ -605,12 +627,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'default' => $bannerSettings[ 'prioritylangs' ],
 					'help-message' => 'centralnotice-prioritylangs-explain',
 					'cssclass' => 'separate-form-element cn-multiselect',
-				);
+				];
 			}
 
 			$liveMessageNames = $banner->getAvailableLanguages();
 			if ( $liveMessageNames ) {
-				$formDescriptor[ 'approved-languages' ] = array(
+				$formDescriptor[ 'approved-languages' ] = [
 					'section' => 'banner-messages',
 					'class' => 'HTMLInfoField',
 					'disabled' => !$this->editable,
@@ -620,7 +642,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 						),
 					'default' => implode( ', ', $liveMessageNames ),
 					'cssclass' => 'separate-form-element',
-				);
+				];
 			}
 
 			if ( $wgNoticeUseTranslateExtension && BannerMessageGroup::isUsingGroupReview() ) {
@@ -630,35 +652,35 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				);
 
 				if ( $readyStateLangs ) {
-					$formDescriptor[ 'pending-languages' ] = array(
+					$formDescriptor[ 'pending-languages' ] = [
 						'section' => 'banner-messages',
 						'class' => 'HTMLInfoField',
 						'disabled' => !$this->editable,
 						'label-message' => 'centralnotice-messages-pending-approval',
 						'default' => implode( ', ', $readyStateLangs ),
 						'cssclass' => 'separate-form-element',
-					);
+					];
 				}
 			}
 		}
 
 		/* -- The banner editor -- */
-		$formDescriptor[ 'banner-magic-words' ] = array(
+		$formDescriptor[ 'banner-magic-words' ] = [
 			'section' => 'edit-template',
 			'class' => 'HTMLInfoField',
 			'default' => Html::rawElement(
 				'div',
-				array( 'class' => 'separate-form-element' ),
+				[ 'class' => 'separate-form-element' ],
 				$this->msg( 'centralnotice-edit-template-summary' )->escaped() ),
 			'rawrow' => true,
-		);
+		];
 
 		$renderer = new BannerRenderer( $this->getContext(), $banner );
 		$magicWords = $renderer->getMagicWords();
 		foreach ( $magicWords as &$word ) {
 			$word = '{{{' . $word . '}}}';
 		}
-		$formDescriptor[ 'banner-mixin-words' ] = array(
+		$formDescriptor[ 'banner-mixin-words' ] = [
 			'section' => 'edit-template',
 			'type' => 'info',
 			'default' => $this->msg(
@@ -666,26 +688,26 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					$this->getLanguage()->listToText( $magicWords )
 				)->text(),
 			'rawrow' => true,
-		);
+		];
 
-		$buttons = array();
+		$buttons = [];
 		// TODO: Fix this gawdawful method of inserting the close button
-		$buttons[ ] =
+		$buttons[] =
 			'<a href="#" onclick="mw.centralNotice.adminUi.bannerEditor.insertButton(\'close\');' .
 				'return false;">' . $this->msg( 'centralnotice-close-button' )->text() . '</a>';
-		$formDescriptor[ 'banner-insert-button' ] = array(
+		$formDescriptor[ 'banner-insert-button' ] = [
 			'section' => 'edit-template',
 			'class' => 'HTMLInfoField',
 			'rawrow' => true,
 			'default' => Html::rawElement(
 				'div',
-				array( 'class' => 'banner-editing-top-hint separate-form-element' ),
+				[ 'class' => 'banner-editing-top-hint separate-form-element' ],
 				$this->msg( 'centralnotice-insert' )->
 					rawParams( $this->getLanguage()->commaList( $buttons ) )->
 					escaped() ),
-		);
+		];
 
-		$formDescriptor[ 'banner-body' ] = array(
+		$formDescriptor[ 'banner-body' ] = [
 			'section' => 'edit-template',
 			'type' => 'textarea',
 			'readonly' => !$this->editable,
@@ -693,49 +715,49 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'placeholder' => '<!-- blank banner -->',
 			'default' => $banner->getBodyContent(),
 			'cssclass' => 'separate-form-element'
-		);
+		];
 
-		$links = array();
-		foreach( $banner->getIncludedTemplates() as $titleObj ) {
+		$links = [];
+		foreach ( $banner->getIncludedTemplates() as $titleObj ) {
 			$links[] = Linker::link( $titleObj );
 		}
 		if ( $links ) {
-			$formDescriptor[ 'links' ] = array(
+			$formDescriptor[ 'links' ] = [
 				'section' => 'edit-template',
 				'type' => 'info',
 				'label-message' => 'centralnotice-templates-included',
 				'default' => implode( '<br />', $links ),
 				'raw' => true
-			);
+			];
 		}
 
 		/* --- Form bottom options --- */
-		$formDescriptor[ 'summary' ] = array(
+		$formDescriptor[ 'summary' ] = [
 			'section' => 'form-actions',
 			'class' => 'HTMLTextField',
 			'label-message' => 'centralnotice-change-summary-label',
 			'placeholder' => wfMessage( 'centralnotice-change-summary-prompt' ),
 			'disabled' => !$this->editable,
-			'filter-callback' => array( $this, 'truncateSummaryField' )
-		);
+			'filter-callback' => [ $this, 'truncateSummaryField' ]
+		];
 
-		$formDescriptor[ 'save-button' ] = array(
+		$formDescriptor[ 'save-button' ] = [
 			'section' => 'form-actions',
 			'class' => 'HTMLSubmitField',
 			'default' => $this->msg( 'centralnotice-save-banner' )->text(),
 			'disabled' => !$this->editable,
 			'cssclass' => 'cn-formbutton',
 			'hidelabel' => true,
-		);
+		];
 
-		$formDescriptor[ 'clone-button' ] = array(
+		$formDescriptor[ 'clone-button' ] = [
 			'section' => 'form-actions',
 			'class' => 'HTMLButtonField',
 			'default' => $this->msg( 'centralnotice-clone' )->text(),
 			'disabled' => !$this->editable,
 			'cssclass' => 'cn-formbutton',
 			'hidelabel' => true,
-		);
+		];
 
 		/* TODO: Add this back in when we can actually support it
 		$formDescriptor[ 'archive-button' ] = array(
@@ -748,54 +770,112 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 		*/
 
-		$formDescriptor[ 'delete-button' ] = array(
+		$formDescriptor[ 'delete-button' ] = [
 			'section' => 'form-actions',
 			'class' => 'HTMLButtonField',
 			'default' => $this->msg( 'centralnotice-delete-banner' )->text(),
 			'disabled' => !$this->editable,
 			'cssclass' => 'cn-formbutton',
 			'hidelabel' => true,
-		);
+		];
 
 		/* --- Hidden fields and such --- */
-		$formDescriptor[ 'cloneName' ] = array(
+		$formDescriptor[ 'cloneName' ] = [
 			'section' => 'clone-banner',
 			'type' => 'text',
 			'disabled' => !$this->editable,
 			'label-message' => 'centralnotice-clone-name',
-		);
+		];
 
-		$formDescriptor[ 'cloneEditSummary' ] = array(
+		$formDescriptor[ 'cloneEditSummary' ] = [
 			'section' => 'clone-banner',
 			'class' => 'HTMLTextField',
 			'label-message' => 'centralnotice-change-summary-label',
 			'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
 			'disabled' => !$this->editable,
-			'filter-callback' => array( $this, 'truncateSummaryField' )
-		);
+			'filter-callback' => [ $this, 'truncateSummaryField' ]
+		];
 
-		$formDescriptor[ 'deleteEditSummary' ] = array(
+		$formDescriptor[ 'deleteEditSummary' ] = [
 			'section' => 'delete-banner',
 			'class' => 'HTMLTextField',
 			'label-message' => 'centralnotice-change-summary-label',
 			'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
 			'disabled' => !$this->editable,
-			'filter-callback' => array( $this, 'truncateSummaryField' )
-		);
+			'filter-callback' => [ $this, 'truncateSummaryField' ]
+		];
 
-		$formDescriptor[ 'action' ] = array(
+		$formDescriptor[ 'action' ] = [
 			'section' => 'form-actions',
 			'type' => 'hidden',
 			// The default is save so that we can still save the banner/form if the banner
 			// preview has seriously borked JS. Maybe one day we'll be able to get Caja up
 			// and working and not have this issue.
 			'default' => 'save',
-		);
+		];
 
 		// Save the banner object in an instance variable
 		$this->banner = $banner;
 
 		return $formDescriptor;
+	}
+
+	/**
+	 * Generate a string with the HTML for controls to request a front-end (CDN) cache
+	 * purge of banner content for a language.
+	 *
+	 * @return string
+	 */
+	protected function generateCdnPurgeSection() {
+		$purgeControls = Xml::element( 'h2',
+			[ 'class' => 'cn-special-section' ],
+			$this->msg( 'centralnotice-banner-cdn-controls' )->escaped() );
+
+		$purgeControls .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
+
+		$purgeControls .= Html::openElement( 'label' );
+		$purgeControls .=
+			$this->msg( 'centralnotice-banner-cdn-label' )->escaped() . ' ';
+
+		$disabledAttr = $this->editable ? [] : [ 'disabled' => true ];
+
+		$purgeControls .= Html::openElement( 'select',
+			$disabledAttr + [ 'id' => 'cn-cdn-cache-language' ] );
+
+		// Retrieve the list of languages in user's language
+		// FIXME Similar code in SpecialBannerAllocation::execute(), maybe switch
+		// to language selector?
+		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
+		ksort( $languages );
+
+		foreach ( $languages as $code => $name ) {
+			$purgeControls .= Xml::option(
+				$this->msg( 'centralnotice-language-listing', $code, $name )->text(),
+				$code );
+		}
+
+		$purgeControls .= Html::closeElement( 'select' );
+		$purgeControls .= Html::closeElement( 'label' );
+
+		$purgeControls .= ' ' . Html::openElement( 'button', $disabledAttr + [
+			'id' => 'cn-cdn-cache-purge',
+			'data-banner-name' => $this->bannerName
+		] );
+
+		$purgeControls .=
+			$this->msg( 'centralnotice-banner-cdn-button' )->escaped();
+
+		$purgeControls .= Html::closeElement( 'button' );
+
+		$purgeControls .= Html::element(
+			'div',
+			[ 'class' => 'htmlform-help' ],
+			$this->msg( 'centralnotice-banner-cdn-help' )->escaped()
+		);
+
+		$purgeControls .= Html::closeElement( 'fieldset' );
+
+		return $purgeControls;
 	}
 
 	public function processEditBanner( $formData ) {
@@ -857,7 +937,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 				// Clear the edit summary field in the request so the form
 				// doesn't re-display the same value. Note: this is a hack :(
-				$this->getRequest()->setVal( 'wpsummary', '');
+				$this->getRequest()->setVal( 'wpsummary', '' );
 
 				return $ret;
 				break;
@@ -877,7 +957,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		/* --- Update the translations --- */
 		// But only if we aren't using translate or if the preview language is the content language
 		if ( !$wgNoticeUseTranslateExtension || $this->bannerLanguagePreview === $wgLanguageCode ) {
-			foreach( $formData as $key => $value ) {
+			foreach ( $formData as $key => $value ) {
 				if ( strpos( $key, 'message-' ) === 0 ) {
 					$messageName = substr( $key, strlen( 'message-' ) );
 					$bannerMessage = $banner->getMessageField( $messageName );
@@ -893,10 +973,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		if ( array_key_exists( 'priority-langs', $formData ) ) {
 			$prioLang = $formData[ 'priority-langs' ];
 			if ( !is_array( $prioLang ) ) {
-				$prioLang = array( $prioLang );
+				$prioLang = [ $prioLang ];
 			}
 		} else {
-			$prioLang = array();
+			$prioLang = [];
 		}
 
 		$banner->setAllocation(
@@ -911,6 +991,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$banner->setMixins( $formData['mixins'] );
 		$banner->save( $this->getUser(), $summary );
 
+		// Deferred update to purge CDN caches for banner content (for user's lang)
+		DeferredUpdates::addUpdate(
+			new CdnCacheUpdateBannerLoader( $this->getLanguage()->getCode(), $banner ),
+			DeferredUpdates::POSTSEND
+		);
+
 		return null;
 	}
 
@@ -922,7 +1008,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		if ( !Banner::isValidBannerName( $this->bannerName ) ) {
 			$out->addHTML(
-				Xml::element( 'div', array( 'class' => 'error' ),
+				Xml::element( 'div', [ 'class' => 'error' ],
 					wfMessage( 'centralnotice-generic-error' ) )
 			);
 			return;
@@ -947,7 +1033,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			// Link and Preview all available translations
 			$htmlOut .= Xml::tags(
 				'td',
-				array( 'valign' => 'top' ),
+				[ 'valign' => 'top' ],
 				$bannerRenderer->previewFieldSet()
 			);
 		}
@@ -978,15 +1064,15 @@ class LanguageSelectHeaderElement extends HTMLSelectField {
 	public function getInputHTML( $value ) {
 		global $wgContLang;
 
-		$html = Xml::openElement( 'table', array( 'class' => 'cn-message-table' ) );
+		$html = Xml::openElement( 'table', [ 'class' => 'cn-message-table' ] );
 		$html .= Xml::openElement( 'tr' );
 
 		$code = $wgContLang->getCode();
-		$html .= Xml::element( 'td', array( 'class' => 'cn-message-text-origin-header' ),
+		$html .= Xml::element( 'td', [ 'class' => 'cn-message-text-origin-header' ],
 			Language::fetchLanguageName( $code, $code )
 		);
 
-		$html .= Xml::openElement( 'td', array( 'class' => 'cn-message-text-native-header' ) );
+		$html .= Xml::openElement( 'td', [ 'class' => 'cn-message-text-native-header' ] );
 		$html .= parent::getInputHTML( $value );
 		$html .= Xml::closeElement( 'td' );
 
@@ -1000,7 +1086,7 @@ class LanguageSelectHeaderElement extends HTMLSelectField {
 class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
 	public function getInputHTML( $value ) {
 		if ( !is_array( $value ) ) {
-			$value = array( $value );
+			$value = [ $value ];
 		}
 
 		$options = "\n";
@@ -1012,11 +1098,11 @@ class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
 			) . "\n";
 		}
 
-		$properties = array(
+		$properties = [
 			'multiple' => 'multiple',
 			'id' => $this->mID,
 			'name' => "$this->mName[]",
-		);
+		];
 
 		if ( !empty( $this->mParams[ 'disabled' ] ) ) {
 			$properties[ 'disabled' ] = 'disabled';

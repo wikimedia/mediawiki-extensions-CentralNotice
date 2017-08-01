@@ -110,7 +110,7 @@
 	"centralnotice-no-allocation": "Жадны банеры не суть придїлены.",
 	"centralnotice-allocation-description": "Придїлїня банерів про язык $1, проєкт $2 в країнї $3 на пристрой $4",
 	"centralnotice-percentage": "Процента",
-	"centralnotice-documentwrite-error": "В банері ся не дасть хосновати document.write().\nДалшы інформації найдете на сторінцї http://meta.wikimedia.org/wiki/Help:CentralNotice.",
+	"centralnotice-documentwrite-error": "В банері ся не дасть хосновати document.write().\nДалшы інформації найдете на сторінцї https://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Пріоріта",
 	"centralnotice-logs": "Лоґы",
 	"centralnotice-view-logs": "Видїти лоґы",

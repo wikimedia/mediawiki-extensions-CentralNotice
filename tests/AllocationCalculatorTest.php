@@ -24,7 +24,6 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
 	public function testAllocations( $name, $testCase ) {
-
 		global $wgNoticeNumberOfBuckets;
 
 		// Set up database with campaigns and banners from fixtures
@@ -33,7 +32,6 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 		// Run through the contexts and outputs to calculate and test
 		// allocations for each.
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $cAndO ) {
-
 			$fixtureIdMsg = "Test case: {$name}. Context: {$cAndOName}.";
 
 			// Get choices for this context, then filter and allocate campaigns
@@ -66,7 +64,6 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 			);
 
 			foreach ( $choices as $campaign ) {
-
 				$campaignName = $campaign['name'];
 
 				// Test that the campaign was expected and was correctly allocated
@@ -78,7 +75,7 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 				$expectedCampaign = $expectedAllocations[$campaignName];
 
 				$this->assertEquals(
-					round( $expectedCampaign['allocation'], 3),
+					round( $expectedCampaign['allocation'], 3 ),
 					round( $campaign['allocation'], 3 ),
 					$fixtureIdMsg . " Campaign {$campaignName} allocation."
 				);
@@ -91,7 +88,6 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 
 				// Cycle through buckets and allocate banners for each
 				for ( $bucket = 0; $bucket < $wgNoticeNumberOfBuckets; $bucket++ ) {
-
 					$expectedBanners = $expectedCampaign['banners'][$bucket];
 
 					$banners = AllocationCalculator::makePossibleBanners(
@@ -111,12 +107,11 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 					);
 
 					foreach ( $banners as $banner ) {
-
 						$bannerName = $banner['name'];
 
 						// Test the banner was expected and was correctly allocated
 						$this->assertTrue(
-							array_key_exists( $bannerName, $expectedBanners),
+							array_key_exists( $bannerName, $expectedBanners ),
 							$fixtureIdMsg .
 								" Banner ${bannerName} for " .
 								"campaign {$campaignName} not expected."

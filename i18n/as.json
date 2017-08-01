@@ -113,7 +113,7 @@
 	"centralnotice-no-allocation": "কোনো বেনাৰ আবণ্টন কৰা নাই।",
 	"centralnotice-allocation-description": "$1.$2ৰ বাবে $3ত বেনাৰ আবণ্টন:",
 	"centralnotice-percentage": "শতাংশ",
-	"centralnotice-documentwrite-error": "document.write()ক বেনাৰৰ মাজত ব্যৱহাৰ কৰিব নোৱাৰি।\nঅধিক তথ্যৰ বাবে http://meta.wikimedia.org/wiki/Help:CentralNotice চাওক।",
+	"centralnotice-documentwrite-error": "document.write()ক বেনাৰৰ মাজত ব্যৱহাৰ কৰিব নোৱাৰি।\nঅধিক তথ্যৰ বাবে https://meta.wikimedia.org/wiki/Help:CentralNotice চাওক।",
 	"centralnotice-preferred": "প্ৰাথমিকতা",
 	"centralnotice-logs": "ল'গ",
 	"centralnotice-view-logs": "ল'গ চাওক",

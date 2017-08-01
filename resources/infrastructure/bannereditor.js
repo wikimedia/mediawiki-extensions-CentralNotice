@@ -21,6 +21,66 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 ( function ( $, mw ) {
+
+	function doPurgeCache() {
+		var $dialogEl = $( '<div />' ),
+			waiting;
+
+		// Do nothing if the button was disabled (from lack of CN admin rights)
+		if ( $( '#cn-cdn-cache-purge' ).prop( 'disabled' ) ) {
+			return;
+		}
+
+		$dialogEl.dialog( {
+			title: mw.message( 'centralnotice-banner-cdn-dialog-title' ).text(),
+			autoOpen: false
+		} );
+
+		// Show dialog with info if the background call takes a while to return
+		waiting = setTimeout( function() {
+			$dialogEl.text(
+				mw.message( 'centralnotice-banner-cdn-dialog-waiting-text' ).text() );
+
+			$dialogEl.dialog( 'open' );
+		}, 300 );
+
+		new mw.Api().postWithToken( 'csrf', {
+			action: 'centralnoticecdncacheupdatebanner',
+			banner: $( '#cn-cdn-cache-purge' ).data( 'bannerName' ),
+			language: $( '#cn-cdn-cache-language :selected' ).val()
+		}, {
+			timeout: 2000
+		} ).always( function () {
+			clearTimeout( waiting );
+			$dialogEl.dialog( {
+				buttons: [ {
+					text: mw.message( 'centralnotice-banner-cdn-dialog-ok' ).text(),
+					click: function() {
+						$( this ).dialog( 'close' );
+					}
+				} ]
+			} );
+
+		} ).fail( function ( code, result ) {
+			var text = mw.message( 'centralnotice-banner-cdn-dialog-error' ).text();
+
+			if ( result && result.error && result.error.info ) {
+				text += ' (' + result.error.info + ')';
+			} else if ( result && result.exception ) {
+				text += ' (' + result.exception + ')';
+			}
+
+			$dialogEl.text( text );
+			$dialogEl.dialog( 'open' );
+
+		} ).done( function () {
+			$dialogEl.text( mw.message( 'centralnotice-banner-cdn-dialog-success' ).text() );
+			$dialogEl.dialog( 'open' );
+
+		} );
+	}
+
+	// TODO Several functions exposed aren't used elsewhere, so they should be private
 	mw.centralNotice.adminUi.bannerEditor = {
 		/**
 		 * Display the 'Create Banner' dialog
@@ -201,13 +261,16 @@
 		}
 	};
 
-	// Attach event handlers
-	$( '#mw-input-wpdelete-button' ).click( mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
-	$( '#mw-input-wparchive-button' ).click( mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
-	$( '#mw-input-wpclone-button' ).click( mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
-	$( '#mw-input-wpsave-button' ).click( mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
-	$( '#mw-input-wptranslate-language' ).change( mw.centralNotice.adminUi.bannerEditor.updateLanguage );
+	// Attach handlers and initialize stuff after document ready
+	$( function () {
+		$( '#mw-input-wpdelete-button' ).click( mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
+		$( '#mw-input-wparchive-button' ).click( mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
+		$( '#mw-input-wpclone-button' ).click( mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
+		$( '#mw-input-wpsave-button' ).click( mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
+		$( '#mw-input-wptranslate-language' ).change( mw.centralNotice.adminUi.bannerEditor.updateLanguage );
+		$( '#cn-cdn-cache-purge' ).click( doPurgeCache );
 
-	// And do some initial form work
-	$( '#cn-js-error-warn' ).hide();
+		$( '#cn-js-error-warn' ).hide();
+	} );
+
 }( jQuery, mediaWiki ) );

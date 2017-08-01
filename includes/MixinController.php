@@ -3,7 +3,7 @@
 class MixinController {
 	protected $mixins;
 
-	protected $magicWords = array();
+	protected $magicWords = [];
 	protected $uiContext;
 
 	function __construct( IContextSource $uiContext, $mixins ) {
@@ -45,11 +45,12 @@ class MixinController {
 	}
 
 	function getPreloadJsSnippets() {
-		$snippets = array();
+		$snippets = [];
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['preloadJs'] ) ) {
 				$filename = $info['localBasePath'] . DIRECTORY_SEPARATOR . $info['preloadJs'];
-				if ( !( $snippet = file_get_contents( $filename ) ) ) {
+				$snippet = file_get_contents( $filename );
+				if ( !$snippet ) {
 					throw new MixinNotFoundException( $name );
 				}
 				$snippets[$name] = $snippet;
@@ -59,7 +60,7 @@ class MixinController {
 	}
 
 	function getResourceLoaderModules() {
-		$modules = array();
+		$modules = [];
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['resourceLoader'] ) ) {
 				$modules[$name] = $info['resourceLoader'];
@@ -72,7 +73,7 @@ class MixinController {
 		$this->magicWords[$word] = $callback;
 	}
 
-	function renderMagicWord( $word, $params = array() ) {
+	function renderMagicWord( $word, $params = [] ) {
 		if ( array_key_exists( $word, $this->magicWords ) ) {
 			$callback = $this->magicWords[$word];
 			if ( is_callable( $callback ) ) {

@@ -11,7 +11,7 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	protected $fixture;
 
 	public static function setUpBeforeClass() {
-		$banner = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::fromName( self::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
 			$banner->remove();
 		}
@@ -22,11 +22,11 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->fixture = new CentralNoticeTestFixtures();
 
 		$this->fixture->setupTestCaseWithDefaults(
-			array( 'setup' => array( 'campaigns' => array() ) ) );
+			[ 'setup' => [ 'campaigns' => [] ] ] );
 	}
 
 	public function tearDown() {
-		$banner = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::fromName( self::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
 			$banner->remove();
 		}
@@ -35,13 +35,13 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 
 	public function testNewFromName() {
 		// Create what should be a new empty banner
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$this->assertFalse( $banner->exists(), 'Test precondition failed! Banner already exists!' );
 
 		// Run down the basic metadata and ensure it is in fact empty
 		$this->assertEquals( null, $banner->getId(),
 			'New banner ID is not null; probably already exists!' );
-		$this->assertEquals( BannerTest::TEST_BANNER_NAME, $banner->getName(),
+		$this->assertEquals( self::TEST_BANNER_NAME, $banner->getName(),
 			'Banner name did not get set' );
 		$this->assertFalse( $banner->allocateToAnon(),
 			'Initial anonymous allocation is set to true' );
@@ -53,11 +53,11 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 			'Initial banner is archived?' );
 
 		// More complex metadata should also be empty
-		$this->assertEquals( array(), $banner->getDevices(),
+		$this->assertEquals( [], $banner->getDevices(),
 			'Initial banner has associated device targets' );
-		$this->assertEquals( array(), $banner->getMixins(),
+		$this->assertEquals( [], $banner->getMixins(),
 			'Initial banner has associated mixins' );
-		$this->assertEquals( array(), $banner->getPriorityLanguages(),
+		$this->assertEquals( [], $banner->getPriorityLanguages(),
 			'Initial banner has priority languages' );
 
 		// And the body content should also be empty
@@ -77,13 +77,13 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	 * @depends testNewFromName
 	 */
 	public function testEmptyFromName() {
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$banner->save();
 		$this->assertTrue( $banner->exists(), 'Test banner that should exist does not!' );
 
 		// Run down the basic metadata and ensure it is in fact empty
 		$this->assertNotEquals( -1, $banner->getId(), 'Test banner has no ID' );
-		$this->assertEquals( BannerTest::TEST_BANNER_NAME, $banner->getName(),
+		$this->assertEquals( self::TEST_BANNER_NAME, $banner->getName(),
 			'Banner name did not get saved' );
 		$this->assertFalse( $banner->allocateToAnon(),
 			'Initial anonymous allocation is set to true' );
@@ -94,11 +94,11 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertFalse( $banner->isArchived(), 'Initial banner is archived?' );
 
 		// More complex metadata should also be empty
-		$this->assertEquals( array(), $banner->getDevices(),
+		$this->assertEquals( [], $banner->getDevices(),
 			'Initial banner has associated device targets' );
-		$this->assertEquals( array(), $banner->getMixins(),
+		$this->assertEquals( [], $banner->getMixins(),
 			'Initial banner has associated mixins' );
-		$this->assertEquals( array(), $banner->getPriorityLanguages(),
+		$this->assertEquals( [], $banner->getPriorityLanguages(),
 			'Initial banner has priority languages' );
 
 		// And the body content should also be empty
@@ -110,17 +110,16 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	 * @depends testEmptyFromName
 	 */
 	public function testBasicSave() {
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$banner->save();
 		$this->assertTrue( $banner->exists() );
 
 		// Attempt to populate basic metadata
-		$banner->setAllocation( true, true )->
-			     setCategory( 'testCategory' );
+		$banner->setAllocation( true, true )->setCategory( 'testCategory' );
 
 		// And the more advanced metadata
 		$banner->setDevices( 'desktop' );
-		$banner->setPriorityLanguages( array( 'en', 'ru' ) );
+		$banner->setPriorityLanguages( [ 'en', 'ru' ] );
 
 		$banner->save();
 
@@ -132,23 +131,23 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'testCategory', $banner->getCategory(),
 			"Failed retrieve category from initial" );
 
-		$this->assertEquals( array( 'desktop' ), array_values( $banner->getDevices() ),
+		$this->assertEquals( [ 'desktop' ], array_values( $banner->getDevices() ),
 			'Failed devices retrieve from initial' );
-		$this->assertEquals( array( 'en', 'ru' ), $banner->getPriorityLanguages(),
+		$this->assertEquals( [ 'en', 'ru' ], $banner->getPriorityLanguages(),
 			"Failed prilang retrieve from initial" );
 
 		// Can we retrieve it from a different object
-		$banner2 = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner2 = Banner::fromName( self::TEST_BANNER_NAME );
 		$this->assertTrue( $banner2->allocateToAnon(), "Failed anon allocation from copy" );
 		$this->assertTrue( $banner2->allocateToLoggedIn(), "Failed loggedin allocation from copy" );
 		$this->assertEquals( 'testCategory', $banner2->getCategory(), "Failed category from copy" );
 
-		$this->assertEquals( array( 'desktop' ), array_values( $banner2->getDevices() ),
+		$this->assertEquals( [ 'desktop' ], array_values( $banner2->getDevices() ),
 			"Failed devices from copy" );
 
 		global $wgNoticeUseTranslateExtension;
 		if ( $wgNoticeUseTranslateExtension ) {
-			$this->assertEquals( array( 'en', 'ru' ), $banner2->getPriorityLanguages(),
+			$this->assertEquals( [ 'en', 'ru' ], $banner2->getPriorityLanguages(),
 				"Failed languages from copy" );
 		}
 	}
@@ -158,25 +157,25 @@ class BannerTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider providerSetAllocation
 	 */
 	public function testSetAllocation( $anon, $loggedIn ) {
-		$banner = Banner::newFromName( BannerTest::TEST_BANNER_NAME );
+		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
 		$banner->setAllocation( $anon, $loggedIn );
 		$banner->save();
 		$this->assertEquals( $anon, $banner->allocateToAnon(), "Testing initial anon" );
 		$this->assertEquals( $loggedIn, $banner->allocateToLoggedIn(),
 			"Testing initial logged in" );
 
-		$banner2 = Banner::fromName( BannerTest::TEST_BANNER_NAME );
+		$banner2 = Banner::fromName( self::TEST_BANNER_NAME );
 		$this->assertEquals( $anon, $banner2->allocateToAnon(), "Testing post save anon" );
 		$this->assertEquals( $loggedIn, $banner2->allocateToLoggedIn(),
 			"Testing post save logged in" );
 	}
 
 	public function providerSetAllocation() {
-		return array(
-			array( false, false ),
-			array( true, false ),
-			array( false, true ),
-			array( true, true )
-		);
+		return [
+			[ false, false ],
+			[ true, false ],
+			[ false, true ],
+			[ true, true ]
+		];
 	}
 }

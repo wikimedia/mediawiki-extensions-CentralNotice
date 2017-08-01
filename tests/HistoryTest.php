@@ -24,17 +24,17 @@ class HistoryTest extends CentralNoticeTest {
 		// Bug was that expired campaigns would still be included in the
 		// history, as long as they were enabled.
 		$this->cnFixtures->setupTestCaseWithDefaults(
-			array(
-				'setup' => array(
-					'campaigns' => array(
-						array(
-							'banners' => array(
-								array()
-							),
-						),
-					),
-				)
-			) );
+			[
+				'setup' => [
+					'campaigns' => [
+						[
+							'banners' => [
+								[]
+							],
+						],
+					],
+				]
+			] );
 
 		$made_by_ts = wfTimestamp( TS_MW );
 		$this->assertEquals( 1, count( Campaign::getHistoricalCampaigns( $made_by_ts ) ) );
@@ -45,9 +45,9 @@ class HistoryTest extends CentralNoticeTest {
 		sleep( 2 );
 
 		// FIXME: Campaign::updateSettings
-		$newSettings = array(
+		$newSettings = [
 			'end' => $made_by_ts,
-		) + $initialSettings;
+		] + $initialSettings;
 		Campaign::updateNoticeDate(
 			$this->cnFixtures->spec['campaigns'][0]['name'],
 			$newSettings['start'],

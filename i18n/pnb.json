@@ -108,7 +108,7 @@
 	"centralnotice-no-allocation": "کوئی نشان نئیں دتا گیا",
 	"centralnotice-allocation-description": "نشان دی لاٹمنٹ $1۔$2 لئی $3 چ:",
 	"centralnotice-percentage": "٪",
-	"centralnotice-documentwrite-error": "ڈوکومنٹ۔لکھو () اک نشان دے اندر نئیں ورتی جاسکدی۔\nہور جانکاری لئی ویکھو http://meta.wikimedia.org/wiki/Help:CentralNotice",
+	"centralnotice-documentwrite-error": "ڈوکومنٹ۔لکھو () اک نشان دے اندر نئیں ورتی جاسکدی۔\nہور جانکاری لئی ویکھو https://meta.wikimedia.org/wiki/Help:CentralNotice",
 	"centralnotice-preferred": "چونواں",
 	"centralnotice-logs": "لاگز",
 	"centralnotice-view-logs": "لاگز ویکھو",

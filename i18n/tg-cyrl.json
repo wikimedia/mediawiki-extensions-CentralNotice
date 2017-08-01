@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ibrahim"
+			"Ibrahim",
+			"ToJack"
 		]
 	},
 	"centralnotice": "Мудири эълони мутамарказ",
@@ -27,7 +28,7 @@
 	"centralnotice-translations": "Тарҷумаҳо",
 	"centralnotice-translate-to": "Тарҷума ба",
 	"centralnotice-translate": "Тарҷума",
-	"centralnotice-english": "Англисӣ",
+	"centralnotice-english": "англисӣ",
 	"centralnotice-banner-name": "Унвони шаблон",
 	"centralnotice-templates": "Шаблонҳо",
 	"centralnotice-weight": "Вазн",
@@ -67,6 +68,7 @@
 	"centralnotice-clone-notice": "Эҷоди як нусхаи ин шаблон",
 	"centralnotice-preview-all-template-translations": "Пешнамоиши ҳамаи тарҷумаҳои дастраси шаблон",
 	"centralnotice-preferred": "Тарҷиҳи додашуда",
+	"centralnotice-banner-class": "Гурӯҳ",
 	"centralnotice-start-date": "Санаи шурӯъ",
 	"centralnotice-start-time": "Замони шурӯъ (UTC)",
 	"centralnotice-end-date": "Санаи охир"

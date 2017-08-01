@@ -124,7 +124,7 @@
 	"centralnotice-allocation-description": "Üles seatud mallid: keel: $1, projekt: $2, maa: $3, seade: $4",
 	"centralnotice-historical-allocation-description": "Üles seatud mallid: keel: $1, projekt: $2, maa: $3, seade: $4, kellaaeg: $5",
 	"centralnotice-percentage": "Protsent",
-	"centralnotice-documentwrite-error": "document.write()-i ei saa mallis kasutada.\nLisateave: http://meta.wikimedia.org/wiki/Help:CentralNotice.",
+	"centralnotice-documentwrite-error": "document.write()-i ei saa mallis kasutada.\nLisateave: https://meta.wikimedia.org/wiki/Help:CentralNotice.",
 	"centralnotice-preferred": "Tähtsus",
 	"centralnotice-archived": "Arhiivitud",
 	"centralnotice-logs": "Logid",

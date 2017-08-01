@@ -12,7 +12,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	/**
 	 * @see ResourceLoaderModule::targets
 	 */
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	const API_REQUEST_TIMEOUT = 20;
 
@@ -31,10 +31,10 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 				wfLogWarning( 'Couldn\'t fetch banner choice data via API. ' .
 					'$$wgCentralNoticeApiUrl = ' . $wgCentralNoticeApiUrl );
 
-				return array();
+				return [];
 			}
 		} else {
-			 $choices = ChoiceDataProvider::getChoices( $project, $language );
+			$choices = ChoiceDataProvider::getChoices( $project, $language );
 		}
 
 		return $choices;
@@ -53,28 +53,28 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		global $wgCentralNoticeApiUrl;
 
 		// Make the URl
-		$q = array(
+		$q = [
 			'action' => 'centralnoticechoicedata',
 			'project' => $project,
 			'language' => $language,
 			'format' => 'json',
 			'formatversion' => 2 // Prevents stripping of false values 8p
-		);
+		];
 
 		$url = wfAppendQuery( $wgCentralNoticeApiUrl, $q );
 
 		$apiResult = Http::get( $url,
-			array( 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ) );
+			[ 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ] );
 
 		if ( !$apiResult ) {
-			wfLogWarning( 'Couldn\'t get banner choice data via API.');
+			wfLogWarning( 'Couldn\'t get banner choice data via API.' );
 			return false;
 		}
 
 		$parsedApiResult = FormatJson::parse( $apiResult, FormatJson::FORCE_ASSOC );
 
 		if ( !$parsedApiResult->isGood() ) {
-			wfLogWarning( 'Couldn\'t parse banner choice data from API.');
+			wfLogWarning( 'Couldn\'t parse banner choice data from API.' );
 			return false;
 		}
 
@@ -94,7 +94,6 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @see ResourceLoaderModule::getScript()
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-
 		$choices = $this->getChoices( $context );
 		if ( !$choices ) {
 			// If there are no choices, this module will have no dependencies,
@@ -127,22 +126,21 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		// If this method is called with no context argument (the old method
 		// signature) emit a warning, but don't stop the show.
 		if ( !$context ) {
-			 wfLogWarning( '$context is required for campaign mixins.' );
-			 return array();
+			wfLogWarning( '$context is required for campaign mixins.' );
+			return [];
 		}
 
 		// Get the choices (possible campaigns and banners) for this user
 		$choices = $this->getChoices( $context );
 		if ( !$choices ) {
 			// If there are no choices, no dependencies
-			return array();
+			return [];
 		}
 
 		// Run through the choices to get all needed mixin RL modules
-		$dependencies = array();
+		$dependencies = [];
 		foreach ( $choices as $choice ) {
 			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
-
 				if ( !$wgCentralNoticeCampaignMixins[$mixinName]['subscribingModule'] ) {
 					throw new MWException(
 						"No subscribing module for found campaign mixin {$mixinName}" );

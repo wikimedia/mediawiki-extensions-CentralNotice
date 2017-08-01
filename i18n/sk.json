@@ -122,7 +122,7 @@
 	"centralnotice-no-allocation": "Nie sú alokované žiadne oznamy.",
 	"centralnotice-allocation-description": "Alokácia oznamu $1.$2 v $3:",
 	"centralnotice-percentage": "Percent",
-	"centralnotice-documentwrite-error": "document.write() nie je možné použiť v rámci odkazu.\nĎalšie informácie nájdete na http://meta.wikimedia.org/wiki/Help:CentralNotice",
+	"centralnotice-documentwrite-error": "document.write() nie je možné použiť v rámci odkazu.\nĎalšie informácie nájdete na https://meta.wikimedia.org/wiki/Help:CentralNotice",
 	"centralnotice-preferred": "Priorita",
 	"centralnotice-logs": "Záznamy",
 	"centralnotice-view-logs": "Zobraziť záznamy",

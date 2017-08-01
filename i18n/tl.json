@@ -110,7 +110,7 @@
 	"centralnotice-no-allocation": "Walang bandera ibinahagi.",
 	"centralnotice-allocation-description": "Ang banderang kabahagi para sa $1.$2 sa loob ng $3:",
 	"centralnotice-percentage": "Kabahagdanan",
-	"centralnotice-documentwrite-error": "Hindi magagamit ang kasulatan.sulat() sa loob ng isang bandera.\nTingnan ang http://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas maraming kabatiran.",
+	"centralnotice-documentwrite-error": "Hindi magagamit ang kasulatan.sulat() sa loob ng isang bandera.\nTingnan ang https://meta.wikimedia.org/wiki/Help:CentralNotice para sa mas maraming kabatiran.",
 	"centralnotice-preferred": "Dapat unahin",
 	"centralnotice-logs": "Mga pagtatala",
 	"centralnotice-view-logs": "Tingnan ang mga pagtatala",

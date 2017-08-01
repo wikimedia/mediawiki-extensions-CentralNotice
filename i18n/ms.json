@@ -4,7 +4,8 @@
 			"Anakmalaysia",
 			"Aurora",
 			"Aviator",
-			"Izzudin"
+			"Izzudin",
+			"Jeluang Terluang"
 		]
 	},
 	"centralnotice": "Pentadbiran pemberitahuan pusat",
@@ -124,7 +125,7 @@
 	"centralnotice-allocation-description": "Peruntukan sepanduk untuk bahasa: $1, projek: $2, di negara: $3, pada peranti $4",
 	"centralnotice-historical-allocation-description": "Peruntukan sepanduk untuk bahasa: $1, projek: $2, di negara: $3, pada peranti $4, pada waktu $5",
 	"centralnotice-percentage": "Peratusan",
-	"centralnotice-documentwrite-error": "document.write() tidak boleh digunakan di dalam sepanduk.\nRujuk http://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.",
+	"centralnotice-documentwrite-error": "document.write() tidak boleh digunakan di dalam sepanduk.\nRujuk https://meta.wikimedia.org/wiki/Help:CentralNotice untuk maklumat lanjut.",
 	"centralnotice-preferred": "Keutamaan",
 	"centralnotice-logs": "Log",
 	"centralnotice-view-logs": "Lihat log",
@@ -180,7 +181,7 @@
 	"centralnotice-devicetype-android": "Android",
 	"centralnotice-devicetype-iphone": "Semua versi iPhone",
 	"centralnotice-all": "Semua",
-	"centralnotice-generic-error": "Anda tidak mempunyai izin-izin yang betul untuk melakukan tindakan yang dipohon, ataupun tindakan itu sendiri adalah tidak sah.",
+	"centralnotice-generic-error": "Anda tidak mempunyai kebenaran-kebenaran yang betul untuk melakukan tindakan yang dipohon, ataupun tindakan itu sendiri adalah tidak sah.",
 	"centralnotice-banner-name-error": "Nama sepanduk yang diberikan tidak sah. Nama yang sah hanya terdiri daripada huruf abjad, angka dan aksara garis bawah (_).",
 	"centralnotice-all-except": "Semua kecuali $1",
 	"centralnotice-excluding-list": "$1 (kecuali $2)",

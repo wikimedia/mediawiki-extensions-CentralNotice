@@ -120,7 +120,7 @@
 	"centralnotice-no-allocation": "هئچ بیر آگهی تخصیص ائدیلممیش دیر.",
 	"centralnotice-allocation-description": "$1 اوچون آگهی تسی‌سی. $2 $3 ده:",
 	"centralnotice-percentage": "یوز ده (درصد)",
-	"centralnotice-documentwrite-error": "document.write() آگهی ایچینده ایستیفاده ائدیله بیلمز.\nداها چوخ معلومات اوچون http://meta.wikimedia.org/wiki/Help:CentralNotice عنوانینا باخین.",
+	"centralnotice-documentwrite-error": "document.write() آگهی ایچینده ایستیفاده ائدیله بیلمز.\nداها چوخ معلومات اوچون https://meta.wikimedia.org/wiki/Help:CentralNotice عنوانینا باخین.",
 	"centralnotice-preferred": "اولویت",
 	"centralnotice-logs": "ژورناللار",
 	"centralnotice-view-logs": "گونده‌لیک‌لرینی باخ",

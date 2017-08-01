@@ -9,7 +9,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		// Override paging defaults
 		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
-		$this->mLimitsShown = array( 20, 50, 100 );
+		$this->mLimitsShown = [ 20, 50, 100 ];
 
 		$this->viewPage = SpecialPage::getTitleFor( 'CentralNotice' );
 	}
@@ -42,11 +42,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$filterUser = $request->getVal( 'user' );
 		$reset = $request->getVal( 'centralnoticelogreset' );
 
-		$info = array(
-			'tables' => array( 'notice_log' => 'cn_notice_log' ),
+		$info = [
+			'tables' => [ 'notice_log' => 'cn_notice_log' ],
 			'fields' => '*',
-			'conds' => array()
-		);
+			'conds' => []
+		];
 
 		if ( !$reset ) {
 			if ( $filterStartDate > 0 ) {
@@ -96,17 +96,17 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$campaignLink = Linker::linkKnown(
 			$this->viewPage,
 			htmlspecialchars( $row->notlog_not_name ),
-			array(),
-			array(
+			[],
+			[
 				'subaction' => 'noticeDetail',
 				'notice' => $row->notlog_not_name
-			)
+			]
 		);
 
 		// Begin log entry primary row
 		$htmlOut = Xml::openElement( 'tr' );
 
-		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
+		$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
 		if ( $row->notlog_action !== 'removed' ) {
 			$collapsedImg = $this->getLanguage()->isRtl() ?
 				'collapsed-rtl.png' :
@@ -120,20 +120,20 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'</a>';
 		}
 		$htmlOut .= Xml::closeElement( 'td' );
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->notlog_timestamp ) . $this->msg( 'word-separator' )->plain() .
 				$lang->time( $row->notlog_timestamp )
 		);
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()
 		);
 		// Give grep a chance to find the usages:
 		// centralnotice-action-created, centralnotice-action-modified,
 		// centralnotice-action-removed
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-action-'.$row->notlog_action )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$campaignLink
 		);
 
@@ -142,11 +142,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$row->notlog_comment : '&nbsp;';
 
 		$htmlOut .= Xml::tags( 'td',
-			array( 'valign' => 'top', 'class' => 'primary-summary' ),
+			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			$summary
 		);
 
-		$htmlOut .= Xml::tags( 'td', array(),
+		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
 		);
 
@@ -156,12 +156,12 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		if ( $row->notlog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr',
-				array( 'id' => 'cn-log-details-'.$row->notlog_id, 'style' => 'display:none;' ) );
+				[ 'id' => 'cn-log-details-'.$row->notlog_id, 'style' => 'display:none;' ] );
 
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
 			);
-			$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top', 'colspan' => '6' ) );
+			$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top', 'colspan' => '6' ] );
 			if ( $row->notlog_action == 'created' ) {
 				$htmlOut .= $this->showInitialSettings( $row );
 			} elseif ( $row->notlog_action == 'modified' ) {
@@ -201,7 +201,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$this->msg( 'centralnotice-projects' )->text(),
 			$row->notlog_end_projects
 		)->text() . "<br />";
-		$language_count = count( explode ( ', ', $row->notlog_end_languages ) );
+		$language_count = count( explode( ', ', $row->notlog_end_languages ) );
 		$languageList = '';
 		if ( $language_count > 15 ) {
 			$languageList = $this->msg( 'centralnotice-multiple-languages' )
@@ -217,10 +217,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->msg(
 			'centralnotice-log-label',
 			$this->msg( 'centralnotice-geo' )->text(),
-			($row->notlog_end_geo ? 'on' : 'off')
+			( $row->notlog_end_geo ? 'on' : 'off' )
 		)->text() . "<br />";
 		if ( $row->notlog_end_geo ) {
-			$country_count = count( explode ( ', ', $row->notlog_end_countries ) );
+			$country_count = count( explode( ', ', $row->notlog_end_countries ) );
 			$countryList = '';
 			if ( $country_count > 20 ) {
 				$countryList = $this->msg( 'centralnotice-multiple-countries' )
@@ -292,9 +292,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// Show changes to banner weights and assignment
 			$beginBannersObject = json_decode( $row->notlog_begin_banners, true );
 			$endBannersObject = json_decode( $row->notlog_end_banners, true );
-			$beginBanners = array();
-			$endBanners = array();
-			foreach( $beginBannersObject as $key => $params ) {
+			$beginBanners = [];
+			$endBanners = [];
+			foreach ( $beginBannersObject as $key => $params ) {
 				if ( is_array( $params ) ) {
 					$weight = $params['weight'];
 					$bucket = chr( 65 + $params['bucket'] );
@@ -305,7 +305,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				}
 				$beginBanners[$key] = "$key ($bucket, $weight)";
 			}
-			foreach( $endBannersObject as $key => $params ) {
+			foreach ( $endBannersObject as $key => $params ) {
 				if ( is_array( $params ) ) {
 					$weight = $params['weight'];
 					$bucket = chr( 65 + $params['bucket'] );
@@ -329,7 +329,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$details .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-templates' )->text(),
-				$this->msg( 'centralnotice-changed', $before, $after)->text()
+				$this->msg( 'centralnotice-changed', $before, $after )->text()
 			)->text() . "<br />";
 		}
 		return $details;
@@ -371,8 +371,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		if ( $row->$beginField !== $row->$endField ) {
 			$lang = $this->getLanguage();
-			$beginSet = array();
-			$endSet = array();
+			$beginSet = [];
+			$endSet = [];
 			if ( $row->$beginField ) {
 				$beginSet = explode( ', ', $row->$beginField );
 			}
@@ -507,25 +507,25 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 */
 	function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', array( 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ) );
+		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::element( 'th', array( 'style' => 'width: 20px;' ) );
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 130px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'style' => 'width: 20px;' ] );
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
 			$this->msg( 'centralnotice-timestamp' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-user' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 100px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 100px;' ],
 			$this->msg( 'centralnotice-action' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 160px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-notice' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'style' => 'width: 250px;' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 250px;' ],
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', array(),
+		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
 		);
 		$htmlOut .= Xml::closeElement( 'tr' );

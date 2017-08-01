@@ -24,10 +24,10 @@ class CentralNoticePager extends TemplatePager {
 			$likeArray = $dbr->anyString();
 		} else {
 			$anyStringToken = $dbr->anyString();
-			$tempArray = array( $anyStringToken );
+			$tempArray = [ $anyStringToken ];
 			foreach ( $likeArray as $likePart ) {
-				$tempArray[ ] = $likePart;
-				$tempArray[ ] = $anyStringToken;
+				$tempArray[] = $likePart;
+				$tempArray[] = $anyStringToken;
 			}
 			$likeArray = $tempArray;
 		}
@@ -38,37 +38,37 @@ class CentralNoticePager extends TemplatePager {
 
 		if ( $noticeId ) {
 			// Return all the banners not already assigned to the current campaign
-			return array(
-				'tables' => array(
+			return [
+				'tables' => [
 					'assignments' => 'cn_assignments',
 					'templates' => 'cn_templates',
-				),
+				],
 
-				'fields' => array(
+				'fields' => [
 					'templates.tmp_name',
 					'templates.tmp_id',
-				),
+				],
 
-				'conds' => array(
+				'conds' => [
 					'assignments.tmp_id IS NULL',
 					'tmp_name' . $dbr->buildLike( $likeArray )
-				),
+				],
 
-				'join_conds' => array(
-					'assignments' => array(
+				'join_conds' => [
+					'assignments' => [
 						'LEFT JOIN',
 						"assignments.tmp_id = templates.tmp_id " .
 							"AND assignments.not_id = $noticeId"
-					)
-				)
-			);
+					]
+				]
+			];
 		} else {
 			// Return all the banners in the database
-			return array(
-				'tables' => array( 'templates' => 'cn_templates'),
-				'fields' => array( 'templates.tmp_name', 'templates.tmp_id' ),
-				'conds'  => array( 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ),
-			);
+			return [
+				'tables' => [ 'templates' => 'cn_templates' ],
+				'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
+				'conds' => [ 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ],
+			];
 		}
 	}
 
@@ -81,17 +81,17 @@ class CentralNoticePager extends TemplatePager {
 
 		if ( $this->editable ) {
 			// Add box
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
-				Xml::check( 'addTemplates[]', '', array( 'value' => $row->tmp_name ) )
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+				Xml::check( 'addTemplates[]', '', [ 'value' => $row->tmp_name ] )
 			);
 
 			// Bucket
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				$this->bucketDropDown( $row->tmp_name )
 			);
 
 			// Weight select
-			$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'cn-weight' ),
+			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
 				Xml::listDropDown( "weight[$row->tmp_id]",
 					CentralNotice::dropDownList(
 						$this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 )
@@ -107,7 +107,7 @@ class CentralNoticePager extends TemplatePager {
 		$banner = Banner::fromName( $row->tmp_name );
 		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner );
 
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top' ),
+		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 			$bannerRenderer->linkTo() . "<br>" . $bannerRenderer->previewFieldSet()
 		);
 
@@ -124,21 +124,21 @@ class CentralNoticePager extends TemplatePager {
 	 */
 	function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', array( 'cellpadding' => 9 ) );
+		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
 		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( "centralnotice-add" )->text()
 			);
-			$htmlOut .= Xml::element( 'th', array( 'align' => 'left', 'width' => '5%' ),
+			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( 'centralnotice-bucket' )->text()
 			);
 			$htmlOut .= Xml::element( 'th',
-				array( 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ),
+				[ 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ],
 				$this->msg( 'centralnotice-weight' )->text()
 			);
 		}
-		$htmlOut .= Xml::element( 'th', array( 'align' => 'left' ),
+		$htmlOut .= Xml::element( 'th', [ 'align' => 'left' ],
 			$this->msg( 'centralnotice-templates' )->text()
 		);
 		$htmlOut .= Xml::closeElement( 'tr' );
@@ -158,12 +158,12 @@ class CentralNoticePager extends TemplatePager {
 		global $wgNoticeNumberOfBuckets;
 
 		// class should coordinate with CentralNotice::bucketDropDown()
-		$html = Html::openElement( 'select', array(
+		$html = Html::openElement( 'select', [
 			'name' => "bucket-{$bannerName}",
-			'class' => array( 'bucketSelector' ),
-		) );
+			'class' => [ 'bucketSelector' ],
+		] );
 		foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
-			$html .= Xml::option( chr( $value + ord( 'A' ) ), $value, false, array() );
+			$html .= Xml::option( chr( $value + ord( 'A' ) ), $value, false, [] );
 		}
 		$html .= Html::closeElement( 'select' );
 		return $html;

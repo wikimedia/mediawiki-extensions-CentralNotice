@@ -21,7 +21,6 @@ class ChoiceDataProvider {
 			$cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, 'check' ) );
 	}
 
-
 	/**
 	 * Get a data structure with the allocation choices.
 	 *
@@ -44,14 +43,13 @@ class ChoiceDataProvider {
 			self::CACHE_TTL,
 			function ( $oldValue, &$ttl, array &$setOpts )
 				use ( $project, $language ) {
-
 				$dbr = CNDatabase::getDb( DB_SLAVE );
 
 				// Account for slave lag to prevent a race condition when
 				// campaigns are updated, the cache is invalidated, and
 				// a client queries a yet-unsynced slave DB. Also, gracefully
 				// fail if we're running an old version of core (<1.27).
-				if ( method_exists( 'Database', 'getCacheSetOptions') ) {
+				if ( method_exists( 'Database', 'getCacheSetOptions' ) ) {
 					$setOpts += Database::getCacheSetOptions( $dbr );
 				}
 
@@ -76,8 +74,8 @@ class ChoiceDataProvider {
 	}
 
 	private static function fetchChoices( $project, $language,
-		IDatabase $dbr ) {
-
+		IDatabase $dbr
+	) {
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
 
@@ -86,25 +84,25 @@ class ChoiceDataProvider {
 		// campaigns that will start during that interval.
 		$start = $dbr->timestamp( time() + self::CACHE_TTL );
 		$end = $dbr->timestamp();
-		$conds = array(
+		$conds = [
 			'notices.not_start <= ' . $dbr->addQuotes( $start ),
 			'notices.not_end >= ' . $dbr->addQuotes( $end ),
 			'notices.not_enabled' => 1,
 			'notices.not_archived' => 0,
 			'notice_projects.np_project' => $project,
 			'notice_languages.nl_language' => $language
-		);
+		];
 
 		// Query campaigns and banners at once
 		$dbRows = $dbr->select(
-			array(
+			[
 				'notices' => 'cn_notices',
 				'assignments' => 'cn_assignments',
 				'templates' => 'cn_templates',
 				'notice_projects' => 'cn_notice_projects',
 				'notice_languages' => 'cn_notice_languages',
-			),
-			array(
+			],
+			[
 				'notices.not_id',
 				'notices.not_name',
 				'notices.not_start',
@@ -120,24 +118,24 @@ class ChoiceDataProvider {
 				'templates.tmp_display_anon',
 				'templates.tmp_display_account',
 				'templates.tmp_category'
-			),
+			],
 			$conds,
 			__METHOD__,
-			array(),
-			array(
-				'assignments' => array(
+			[],
+			[
+				'assignments' => [
 					'INNER JOIN', 'notices.not_id = assignments.not_id'
-				),
-				'templates' => array(
+				],
+				'templates' => [
 					'INNER JOIN', 'assignments.tmp_id = templates.tmp_id'
-				),
-				'notice_projects' => array(
+				],
+				'notice_projects' => [
 					'INNER JOIN', 'notices.not_id = notice_projects.np_notice_id'
-				),
-				'notice_languages' => array(
+				],
+				'notice_languages' => [
 					'INNER JOIN', 'notices.not_id = notice_languages.nl_notice_id'
-				)
-			)
+				]
+			]
 		);
 
 		// Pare it down into a nicer data structure and prepare the next queries.
@@ -145,12 +143,11 @@ class ChoiceDataProvider {
 		// data together. But before returning it, we'll change associative
 		// arrays to indexed ones at levels where the keys are not needed by the
 		// client.
-		$choices = array();
-		$bannerIds = array();
-		$assignmentKeysByBannerIdAndCampaignId = array();
+		$choices = [];
+		$bannerIds = [];
+		$assignmentKeysByBannerIdAndCampaignId = [];
 
 		foreach ( $dbRows as $dbRow ) {
-
 			$campaignId = $dbRow->not_id;
 			$campaignName = $dbRow->not_name;
 			$bannerId = $dbRow->tmp_id;
@@ -161,8 +158,8 @@ class ChoiceDataProvider {
 			// and {{{banner}}} in banner categories. (These are the magic
 			// words mentioned in the CN Admin UI.)
 			$category = $dbRow->tmp_category;
-			$category = str_replace( '{{{campaign}}}', $campaignName, $category);
-			$category = str_replace( '{{{banner}}}', $bannerName, $category);
+			$category = str_replace( '{{{campaign}}}', $campaignName, $category );
+			$category = str_replace( '{{{banner}}}', $bannerName, $category );
 			$category = Banner::sanitizeRenderedCategory( $category );
 
 			// The first time we see any campaign, create the corresponding
@@ -170,31 +167,31 @@ class ChoiceDataProvider {
 			// repeated on every row for any campaign. Note that these
 			// keys don't make it into data structure we return.
 			if ( !isset ( $choices[$campaignId] ) ) {
-				$choices[$campaignId] = array(
+				$choices[$campaignId] = [
 					'name' => $campaignName,
 					'start' => intval( wfTimestamp( TS_UNIX, $dbRow->not_start ) ),
 					'end' => intval( wfTimestamp( TS_UNIX, $dbRow->not_end ) ),
 					'preferred' => intval( $dbRow->not_preferred ),
 					'throttle' => intval( $dbRow->not_throttle ),
 					'bucket_count' => intval( $dbRow->not_buckets ),
-					'geotargeted' => (bool) $dbRow->not_geo,
-					'banners' => array()
-				);
+					'geotargeted' => (bool)$dbRow->not_geo,
+					'banners' => []
+				];
 			}
 
 			// A temporary assignment key so we can get back to this part of the
 			// data structure quickly and add in devices.
 			$assignmentKey = $bannerId . ':' . $bucket;
 
-			$choices[$campaignId]['banners'][$assignmentKey] = array(
+			$choices[$campaignId]['banners'][$assignmentKey] = [
 				'name' => $bannerName,
 				'bucket' => intval( $bucket ),
 				'weight' => intval( $dbRow->tmp_weight ),
 				'category' => $category,
-				'display_anon' => (bool) $dbRow->tmp_display_anon,
-				'display_account' => (bool) $dbRow->tmp_display_account,
-				'devices' => array() // To be filled by the last query
-			);
+				'display_anon' => (bool)$dbRow->tmp_display_anon,
+				'display_account' => (bool)$dbRow->tmp_display_account,
+				'devices' => [] // To be filled by the last query
+			];
 
 			$bannerIds[] = $bannerId;
 
@@ -205,7 +202,7 @@ class ChoiceDataProvider {
 		}
 
 		// If there's nothing, return the empty array now
-		if ( count ( $choices ) === 0 ) {
+		if ( count( $choices ) === 0 ) {
 			return $choices;
 		}
 
@@ -213,25 +210,25 @@ class ChoiceDataProvider {
 		// We have to eliminate notices that are not geotargeted, since they
 		// may have residual data in the cn_notice_countries table.
 		$dbRows = $dbr->select(
-			array(
+			[
 				'notices' => 'cn_notices',
 				'notice_countries' => 'cn_notice_countries',
-			),
-			array(
+			],
+			[
 				'notices.not_id',
 				'notice_countries.nc_country'
-			),
-			array (
+			],
+			[
 				'notices.not_geo' => 1,
 				'notices.not_id' => array_keys( $choices )
-			),
+			],
 			__METHOD__,
-			array(),
-			array(
-				'notice_countries' => array(
+			[],
+			[
+				'notice_countries' => [
 					'INNER JOIN', 'notices.not_id = notice_countries.nc_notice_id'
-				)
-			)
+				]
+			]
 		);
 
 		// Add countries to our data structure.
@@ -247,37 +244,35 @@ class ChoiceDataProvider {
 
 		// Add campaign-associated mixins to the data structure
 		foreach ( $choices as &$campaignInfo ) {
-
-			//Get info for enabled mixins for this campaign
+			// Get info for enabled mixins for this campaign
 			$campaignInfo['mixins'] =
 				Campaign::getCampaignMixins( $campaignInfo['name'], true );
 		}
 
 		// Fetch the devices
 		$dbRows = $dbr->select(
-			array(
+			[
 				'template_devices' => 'cn_template_devices',
 				'known_devices' => 'cn_known_devices',
-			),
-			array(
+			],
+			[
 				'template_devices.tmp_id',
 				'known_devices.dev_name'
-			),
-			array(
+			],
+			[
 				'template_devices.tmp_id' => $bannerIds
-			),
+			],
 			__METHOD__,
-			array(),
-			array(
-				'known_devices' => array(
+			[],
+			[
+				'known_devices' => [
 					'INNER JOIN', 'template_devices.dev_id = known_devices.dev_id'
-				)
-			)
+				]
+			]
 		);
 
 		// Add devices to the data structure.
 		foreach ( $dbRows as $dbRow ) {
-
 			$bannerId = $dbRow->tmp_id;
 
 			// Traverse the data structure to add in devices
@@ -286,8 +281,8 @@ class ChoiceDataProvider {
 				$assignmentKeysByBannerIdAndCampaignId[$bannerId];
 
 			foreach ( $assignmentKeysByCampaignId
-				as $campaignId => $assignmentKeys ) {
-
+				as $campaignId => $assignmentKeys
+			) {
 				foreach ( $assignmentKeys as $assignmentKey ) {
 					$choices[$campaignId]['banners'][$assignmentKey]['devices'][] =
 						$dbRow->dev_name;
@@ -312,7 +307,7 @@ class ChoiceDataProvider {
 			return $b;
 		};
 
-		$compareNames = function( $a, $b ) {
+		$compareNames = function ( $a, $b ) {
 			if ( $a['name'] == $b['name'] ) {
 				return 0;
 			}
@@ -320,7 +315,6 @@ class ChoiceDataProvider {
 		};
 
 		$fixCampaignPropsFn = function ( $c ) use ( $uniqueDevFn, $compareNames ) {
-
 			$c['banners'] = array_map( $uniqueDevFn, array_values( $c['banners'] ) );
 			usort( $c['banners'], $compareNames );
 

@@ -32,8 +32,7 @@ class SpecialCNReporter extends UnlistedSpecialPage {
 	window.parent.postMessage(data, '$wgNoticeReporterDomains');
 </script></body></html>
 EOT;
-		print( $script );
-
+		print $script;
 	}
 
 	/**

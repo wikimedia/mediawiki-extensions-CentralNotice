@@ -113,7 +113,7 @@
 	"centralnotice-no-allocation": "ସୂଚନା ଫଳକଟିଏ ଦିଆଯାଇନାହିଁ ।",
 	"centralnotice-allocation-description": "$3ରେ $1.$2 ର ସୂଚନା ଫଳକ ସଜାଣି ନିମନ୍ତେ:",
 	"centralnotice-percentage": "ଶତକଡ଼ା",
-	"centralnotice-documentwrite-error": "document.write() ଏକ ସୂଚନା ଫଳକ ଭିତରେ ବ୍ୟବହାର ହୋଇପାରିବ ନାହିଁ ।\nଅଧିକ ଜାଣିବା ପାଇଁ http://meta.wikimedia.org/wiki/Help:CentralNotice ଦେଖନ୍ତୁ ।",
+	"centralnotice-documentwrite-error": "document.write() ଏକ ସୂଚନା ଫଳକ ଭିତରେ ବ୍ୟବହାର ହୋଇପାରିବ ନାହିଁ ।\nଅଧିକ ଜାଣିବା ପାଇଁ https://meta.wikimedia.org/wiki/Help:CentralNotice ଦେଖନ୍ତୁ ।",
 	"centralnotice-preferred": "ଅଧିକ ଦରକାରୀ",
 	"centralnotice-logs": "ଲଗସବୁ",
 	"centralnotice-view-logs": "ଇତିହାସ ଦେଖିବେ",
