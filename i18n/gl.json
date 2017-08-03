@@ -131,6 +131,7 @@
 	"apierror-centralnotice-cdn-permissions-error": "O usuario non ten permiso para purgar o contido de anuncios no cliente.",
 	"apierror-centralnotice-cdn-lang-code-error": "Código de lingua malformado.",
 	"apierror-centralnotice-cdn-banner-name-error": "Nome de anuncio malformado.",
+	"apierror-centralnotice-cdn-banner-not-found": "Banner non atopado",
 	"centralnotice-geo": "Localizado xeograficamente",
 	"centralnotice-countries": "Países",
 	"centralnotice-global-allocation": "Asignación global",
