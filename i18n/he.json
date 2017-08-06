@@ -134,6 +134,8 @@
 	"centralnotice-banner-cdn-dialog-ok": "אישור",
 	"centralnotice-banner-cdn-dialog-error": "שגיאה בבקשת ניקוד מטמון צד־לקוח.",
 	"centralnotice-banner-cdn-dialog-success": "נשלחה בקשה לניקוי מטמון צד־לקוח.",
+	"apierror-centralnotice-cdn-permissions-error": "למשתמש אין הרשאות לנקות תוכן כרזת צד לקוח.",
+	"apierror-centralnotice-cdn-banner-not-found": "‏ ‏כרזה לא נמצאה",
 	"centralnotice-geo": "ממוקד גאוגרפית",
 	"centralnotice-countries": "מדינות",
 	"centralnotice-global-allocation": "הקצאה גלובלית",

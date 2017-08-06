@@ -132,6 +132,7 @@
 	"centralnotice-banner-display-on": "Weergave op",
 	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-banner-mixins-help": "Controleer elke mixin dat u wilt laten opnemen tijdens de banner-levering. (Zie [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] voor meer informatie.)",
+	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geografisch bepaald",
 	"centralnotice-countries": "Landen",
 	"centralnotice-global-allocation": "Globale toewijzing",
@@ -279,5 +280,7 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Hoe lang moet er gewacht worden voordat de cyclus herstart wordt, in seconden (optioneel)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Default is 0, wat betekent dat lezers slechts één cyclus zien en daarna de banners niet meer getoond worden.",
 	"centralnotice-impression-diet-skip-initial": "Aantal bekeken pagina's die overgeslagen moeten worden (optioneel)",
-	"centralnotice-impression-diet-skip-initial-help": "Default is 0, wat betekent dat er geen bekeken pagina's overgeslagen worden. Wanneer een cyclus begint, zal dit aantal bekeken pagina's eerst worden overgeslagen voordat de banner getoond wordt."
+	"centralnotice-impression-diet-skip-initial-help": "Default is 0, wat betekent dat er geen bekeken pagina's overgeslagen worden. Wanneer een cyclus begint, zal dit aantal bekeken pagina's eerst worden overgeslagen voordat de banner getoond wordt.",
+	"centralnotice-banner-sequence-days-error": "Moet een integer groter dan nul zijn.",
+	"centralnotice-banner-sequence-bucket-add-step": "Een stap toevoegen"
 }
