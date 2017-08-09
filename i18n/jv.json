@@ -91,7 +91,7 @@
 	"centralnotice-no-notices-exist": "Durung ana cathetan.\nTambahaké ing ngisor",
 	"centralnotice-no-templates-translate": "Ora ana umbul-umbul sing pertalané bisa dibesut.",
 	"centralnotice-number-uses": "Guna",
-	"centralnotice-settings": "Pangaturan",
+	"centralnotice-settings": "Setèlan",
 	"centralnotice-edit-template": "Besut tunggul",
 	"centralnotice-edit-template-summary": "Untuk membuat pesan yang dapat dilokalisasi, sertakan string ditulis dengan tanda penghubung di tiga kurung, misalnya {{{jimbo-quote}}}.",
 	"centralnotice-edit-template-magicwords": "Tembung ajaib sing dicepakaké déning miksin umbul-umbul: $1",
