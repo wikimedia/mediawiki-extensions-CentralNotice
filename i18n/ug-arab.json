@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sahran"
+			"Sahran",
+			"Uzdil"
 		]
 	},
 	"centralnotice": "مەركىزى ئۇقتۇرۇش باشقۇرغۇچى",
@@ -59,7 +60,7 @@
 	"centralnotice-hours": "سائەت",
 	"centralnotice-min": "مىنۇت",
 	"centralnotice-project-lang": "قۇرۇلۇش تىلى",
-	"centralnotice-project-name": "قۇرۇلۇش ئاتى",
+	"centralnotice-project-name": "پىلان نامى",
 	"centralnotice-assigned-templates": "تەقسىملەنگەن لۇزۇنكالار",
 	"centralnotice-no-templates": "لوزۇنكا تېپىلمىدى.\nبىر قانچىنى قوشۇڭ!",
 	"centralnotice-no-templates-assigned": "پائالىيەت ئۇقتۇرۇشىغا ھېچقانداق لوزۇنكا بەلگىلەنمىگەن.\nبىر قانچىنى قوشۇڭ!",
