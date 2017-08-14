@@ -15,7 +15,8 @@
 			"Viscontino",
 			"Ronald",
 			"Matteocng",
-			"JackLantern"
+			"JackLantern",
+			"Greis"
 		]
 	},
 	"centralnotice": "Gestione avviso centralizzato",
@@ -129,6 +130,7 @@
 	"centralnotice-banner-mixins": "Mixin",
 	"centralnotice-banner-mixins-help": "Controlla ogni mixin che vuoi includere durante l'invio dei banner. (Vedi [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixin] per ulteriori informazioni.)",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
+	"apierror-centralnotice-cdn-banner-not-found": "Banner non trovato",
 	"centralnotice-geo": "Basata sulla posizione geografica",
 	"centralnotice-countries": "Paesi",
 	"centralnotice-global-allocation": "Allocazione globale",
