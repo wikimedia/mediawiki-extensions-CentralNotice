@@ -58,6 +58,8 @@
 	"centralnotice-balanced": "모든 배너에 같은 비중을 두기",
 	"centralnotice-weight": "중요도",
 	"centralnotice-locked": "잠김",
+	"centralnotice-notice-mixins-int-required": "정수가 필요합니다",
+	"centralnotice-notice-mixins-float-required": "부동 소수점 수가 필요합니다",
 	"centralnotice-notice": "공지",
 	"centralnotice-notice-heading": "공지: $1",
 	"centralnotice-notices": "공지",
