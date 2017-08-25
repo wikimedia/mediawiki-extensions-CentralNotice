@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tokoabibi"
+			"Tokoabibi",
+			"Bunukwiki"
 		]
 	},
-	"centralnotice-banner-cdn-dialog-ok": "kapahtu"
+	"centralnotice-banner-cdn-dialog-ok": "kapahtu",
+	"centralnotice-languages": "kamu"
 }
