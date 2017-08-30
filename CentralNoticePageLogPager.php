@@ -48,11 +48,31 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				"rc_title NOT LIKE 'Centralnotice-template-%'", // exclude normal banner content
 			];
 		}
-		return [
+		$ret = [
 			'tables' => [ 'recentchanges' ],
-			'fields' => '*',
+			'fields' => [
+				'rc_timestamp',
+				'rc_user',
+				'rc_title',
+				'rc_new',
+				'rc_cur_id',
+				'rc_this_oldid',
+				'rc_last_oldid',
+			],
 			'conds' => $conds, // WHERE conditions
+			'joins' => [],
 		];
+
+		if ( class_exists( CommentStore::class ) ) {
+			$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
+			$ret['tables'] += $commentQuery['tables'];
+			$ret['fields'] += $commentQuery['fields'];
+			$ret['joins'] += $commentQuery['joins'];
+		} else {
+			$ret['fields'][] = 'rc_comment';
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -164,7 +184,11 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		}
 		$htmlOut .= Xml::tags( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
-			htmlspecialchars( $row->rc_comment )
+			htmlspecialchars(
+				class_exists( CommentStore::class )
+					? CommentStore::newKey( 'rc_comment' )->getComment( $row )->text
+					: $row->rc_comment
+			)
 		);
 		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
