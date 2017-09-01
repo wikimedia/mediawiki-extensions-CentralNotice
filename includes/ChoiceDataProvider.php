@@ -166,7 +166,7 @@ class ChoiceDataProvider {
 			// outer K/V entry. The campaign-specific properties should be
 			// repeated on every row for any campaign. Note that these
 			// keys don't make it into data structure we return.
-			if ( !isset ( $choices[$campaignId] ) ) {
+			if ( !isset( $choices[$campaignId] ) ) {
 				$choices[$campaignId] = [
 					'name' => $campaignName,
 					'start' => intval( wfTimestamp( TS_UNIX, $dbRow->not_start ) ),

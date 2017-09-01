@@ -76,7 +76,7 @@ class CNDeviceTarget {
 	/**
 	 * Add a new device target to the database
 	 *
-	 * @param string $deviceName   Name of the device as sent by the controller (read: MobileFrontEnd)
+	 * @param string $deviceName Name of the device as sent by the controller (read: MobileFrontEnd)
 	 * @param string $displayLabel Friendly wikitext name of the device
 	 * @return int The ID of the device added
 	 */
@@ -98,7 +98,7 @@ class CNDeviceTarget {
 	/**
 	 * Sets the associated devices with a banner
 	 *
-	 * @param int          $bannerId   Banner ID to modify
+	 * @param int $bannerId Banner ID to modify
 	 * @param string|array $newDevices Single name, or array of names, of devices that should be
 	 *                                 associated with a banner
 	 * @throws RangeException

@@ -262,14 +262,14 @@ class Campaign {
 	 * By default returns only enabled and active campaigns in all projects, languages and
 	 * countries.
 	 *
-	 * @param null|string $project  The name of the project, ie: 'wikipedia'; if null select all
+	 * @param null|string $project The name of the project, ie: 'wikipedia'; if null select all
 	 *                              projects.
 	 * @param null|string $language ISO language code, if null select all languages
 	 * @param null|string $location ISO country code, if null select all campaigns
-	 * @param null|date   $date     Campaigns must start before and end after this date
+	 * @param null|date $date Campaigns must start before and end after this date
 	 *                              If the parameter is null, it takes the current date/time
-	 * @param bool        $enabled  If true, select only active campaigns. If false select all.
-	 * @param bool        $archived If true: only archived; false: only active; null; all.
+	 * @param bool $enabled If true, select only active campaigns. If false select all.
+	 * @param bool $archived If true: only archived; false: only active; null; all.
 	 *
 	 * @return array Array of campaign IDs that matched the filter.
 	 */
@@ -562,7 +562,7 @@ class Campaign {
 	 * that were never enabled for this campaign will be omitted.
 	 *
 	 * @param string $campaignName
-	 * @param boolean $compact
+	 * @param bool $compact
 	 * @return array
 	 */
 	public static function getCampaignMixins( $campaignName, $compact = false ) {
@@ -709,7 +709,7 @@ class Campaign {
 	 *
 	 * @param string $campaignName
 	 * @param string $mixinName
-	 * @param boolean $enable
+	 * @param bool $enable
 	 * @param array $params For mixins with no parameters, set to an empty array.
 	 */
 	public static function updateCampaignMixins(
@@ -1338,7 +1338,7 @@ class Campaign {
 	 * @param $endSettings      array of campaign settings after changes (optional)
 	 * @param $summary          string Change summary provided by the user
 	 *
-	 * @return integer: ID of log entry (or null)
+	 * @return int ID of log entry (or null)
 	 */
 	static function logCampaignChange(
 		$action, $campaignId, $user, $beginSettings = [],

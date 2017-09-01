@@ -35,7 +35,7 @@ class BannerRenderer {
 	 * @param string $campaignName Which campaign we're serving.  This is
 	 * substituted in for {{{campaign}}} magic word.
 	 *
-	 * @param boolean $debug If false, minify the output.
+	 * @param bool $debug If false, minify the output.
 	 */
 	function __construct(
 		IContextSource $context, Banner $banner, $campaignName = null, $debug = false

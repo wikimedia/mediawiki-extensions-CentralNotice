@@ -41,7 +41,7 @@ class AllocationCalculator {
 	 *
 	 * @param string $country Country of interest
 	 *
-	 * @param integer $status A status constant defined by this class (i.e.,
+	 * @param int $status A status constant defined by this class (i.e.,
 	 *   AllocationCalculator::ANONYMOUS or
 	 *   AllocationCalculator::LOGGED_IN).
 	 *
@@ -192,7 +192,7 @@ class AllocationCalculator {
 	 *
 	 * @param int $bucket Bucket of interest
 	 *
-	 * @param integer $status A status constant defined by this class (i.e.,
+	 * @param int $status A status constant defined by this class (i.e.,
 	 *   AllocationCalculator::ANONYMOUS or
 	 *   AllocationCalculator::LOGGED_IN).
 	 *
@@ -260,7 +260,7 @@ class AllocationCalculator {
 	 *
 	 * @param string $country Country of interest
 	 *
-	 * @param integer $status A status constant defined by this class (i.e.,
+	 * @param int $status A status constant defined by this class (i.e.,
 	 *   AllocationCalculator::ANONYMOUS or
 	 *   AllocationCalculator::LOGGED_IN).
 	 *

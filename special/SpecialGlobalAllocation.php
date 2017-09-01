@@ -293,7 +293,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 			foreach ( $grouping['rows'] as $row ) {
 				$htmlOut .= Html::openElement( 'tr',
-					[ 'class' =>'mw-sp-centralnotice-allocationrow' ] );
+					[ 'class' => 'mw-sp-centralnotice-allocationrow' ] );
 
 				$htmlOut .= Html::openElement( 'td' );
 				$htmlOut .= $row['projects_label'];
@@ -568,7 +568,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
 		// Row begin
-		$htmlOut .= Html::openElement( 'tr', [ 'class' =>'mw-sp-centralnotice-allocationrow' ] );
+		$htmlOut .= Html::openElement( 'tr', [ 'class' => 'mw-sp-centralnotice-allocationrow' ] );
 
 		if ( !$variesAnon ) {
 			$anonLabel = $this->msg( 'centralnotice-all' )->text();

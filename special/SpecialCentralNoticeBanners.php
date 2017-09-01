@@ -70,7 +70,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Now figure out what to display
 		// TODO Use only params instead of subpage to indicate action
 		$parts = explode( '/', $subPage );
-		$action = ( isset( $parts[0] ) && $parts[0] ) ? $parts[0]: 'list';
+		$action = ( isset( $parts[0] ) && $parts[0] ) ? $parts[0] : 'list';
 		$this->bannerName = array_key_exists( 1, $parts ) ? $parts[1] : null;
 
 		switch ( strtolower( $action ) ) {

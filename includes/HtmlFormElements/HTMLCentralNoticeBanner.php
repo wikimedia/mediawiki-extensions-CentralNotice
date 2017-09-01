@@ -94,7 +94,7 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		$html = Xml::openElement(
 			'div',
 			[
-				'id' =>  Sanitizer::escapeId( "cn-banner-list-element-{$this->mParams['banner']}" ),
+				'id' => Sanitizer::escapeId( "cn-banner-list-element-{$this->mParams['banner']}" ),
 				'class' => "cn-banner-list-element",
 			]
 		);
@@ -102,7 +102,7 @@ class HTMLCentralNoticeBanner extends HTMLInfoField {
 		// Make the label; this consists of a text link to the banner editor,
 		// and a series of status icons
 		if ( array_key_exists( 'withlabel', $this->mParams ) ) {
-			$bannerName =  $this->mParams['banner'];
+			$bannerName = $this->mParams['banner'];
 			$html .= Xml::openElement( 'div', [ 'class' => 'cn-banner-list-element-label' ] );
 			$html .= Linker::link(
 				SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/$bannerName" ),

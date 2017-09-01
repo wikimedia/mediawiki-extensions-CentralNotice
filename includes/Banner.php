@@ -793,7 +793,7 @@ class Banner {
 	}
 
 	/**
-	 * @param boolean $dirty If true, we're storing a flag that means the
+	 * @param bool $dirty If true, we're storing a flag that means the
 	 * in-memory banner content is newer than what's stored in the database.
 	 * If false, we're clearing that bit.
 	 */
@@ -1158,8 +1158,8 @@ class Banner {
 	/**
 	 * Add a revision tag for the banner
 	 * @param string $tag The name of the tag
-	 * @param integer $revisionId ID of the revision
-	 * @param integer $pageId ID of the MediaWiki page for the banner
+	 * @param int $revisionId ID of the revision
+	 * @param int $pageId ID of the MediaWiki page for the banner
 	 * @param string $bannerId ID of banner this revtag belongs to
 	 * @throws Exception
 	 */
@@ -1189,7 +1189,7 @@ class Banner {
 	/**
 	 * Make sure banner is not tagged with specified tag
 	 * @param string $tag The name of the tag
-	 * @param integer $pageId ID of the MediaWiki page for the banner
+	 * @param int $pageId ID of the MediaWiki page for the banner
 	 * @throws Exception
 	 */
 	protected static function removeTag( $tag, $pageId ) {
@@ -1205,7 +1205,7 @@ class Banner {
 	/**
 	 * Given one or more campaign ids, return all banners bound to them
 	 *
-	 * @param integer|array $campaigns list of campaign numeric IDs
+	 * @param int|array $campaigns list of campaign numeric IDs
 	 *
 	 * @return array a 2D array of banners with associated weights and settings
 	 */
@@ -1413,9 +1413,9 @@ class Banner {
 	/**
 	 * Log setting changes related to a banner
 	 *
-	 * @param string $action         'created', 'modified', or 'removed'
-	 * @param User   $user           The user causing the change
-	 * @param string $summary        Summary (comment) for this action
+	 * @param string $action 'created', 'modified', or 'removed'
+	 * @param User $user The user causing the change
+	 * @param string $summary Summary (comment) for this action
 	 */
 	function logBannerChange( $action, $user, $summary = null ) {
 		ChoiceDataProvider::invalidateCache();
@@ -1438,7 +1438,7 @@ class Banner {
 			'tmplog_action'        => $action,
 			'tmplog_template_id'   => $this->getId(),
 			'tmplog_template_name' => $this->getName(),
-			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
+			'tmplog_content_change' => (int)$this->dirtyFlags['content'],
 			'tmplog_comment'       => $summary,
 		];
 

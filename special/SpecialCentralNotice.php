@@ -260,8 +260,8 @@ class CentralNotice extends SpecialPage {
 	 * Construct the priority select list for a campaign
 	 *
 	 * @param string|bool $index The name of the campaign (or false if it isn't needed)
-	 * @param boolean $editable Whether or not the form is editable by the user
-	 * @param integer $priorityValue The current priority value for this campaign
+	 * @param bool $editable Whether or not the form is editable by the user
+	 * @param int $priorityValue The current priority value for this campaign
 	 *
 	 * @return string HTML for the select list
 	 */
@@ -1372,7 +1372,7 @@ class CentralNotice extends SpecialPage {
 
 		$properties = [
 			'multiple' => 'multiple',
-			'id' =>'project_languages',
+			'id' => 'project_languages',
 			'name' => 'project_languages[]',
 			'class' => 'cn-multiselect'
 		];
@@ -1404,7 +1404,7 @@ class CentralNotice extends SpecialPage {
 
 		$properties = [
 			'multiple' => 'multiple',
-			'id' =>'projects',
+			'id' => 'projects',
 			'name' => 'projects[]',
 			'class' => 'cn-multiselect'
 		];
@@ -1531,10 +1531,10 @@ class CentralNotice extends SpecialPage {
 	 * Adds CentralNotice specific navigation tabs to the UI.
 	 * Implementation of SkinTemplateNavigation::SpecialPage hook.
 	 *
-	 * @param Skin  $skin Reference to the Skin object
+	 * @param Skin $skin Reference to the Skin object
 	 * @param array $tabs Any current skin tabs
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function addNavigationTabs( Skin $skin, array &$tabs ) {
 		global $wgNoticeTabifyPages;
@@ -1583,7 +1583,7 @@ class CentralNotice extends SpecialPage {
 	 * session does not exist for the user.
 	 *
 	 * @param string $variable Name of the variable
-	 * @param object $value    Value for the variable
+	 * @param object $value Value for the variable
 	 */
 	public function setCNSessionVar( $variable, $value ) {
 		$this->getRequest()->setSessionData( "centralnotice-{$variable}", $value );
