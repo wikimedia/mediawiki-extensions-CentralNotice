@@ -2,9 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Tokoabibi",
-			"Bunukwiki"
+			"Bunukwiki",
+			"Benel"
 		]
 	},
+	"centralnotice-view": "ciwsace",
+	"centralnotice-add": "cunusen",
+	"centralnotice-notice": "saungay nu binawlan",
+	"centralnotice-notices": "saungay nu binawlan",
+	"centralnotice-number-uses": "misaungayay",
 	"centralnotice-banner-cdn-dialog-ok": "kapahtu",
-	"centralnotice-languages": "kamu"
+	"centralnotice-languages": "kamu",
+	"centralnotice-timestamp": "nisulitan nu takukian"
 }
