@@ -38,7 +38,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		} catch ( Exception $e ) {
 			$msg = $e->getMessage();
-			$msgParamStr = $msg ? " '{$msg}' " : '';
+			$msgParamStr = $msg ? Xml::encodeJsVar( $msg ) : '';
 			$out = "mw.centralNotice.handleBannerLoaderError({$msgParamStr});";
 			$cacheResponse = self::MAX_CACHE_REDUCED;
 
