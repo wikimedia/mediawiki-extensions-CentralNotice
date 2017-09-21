@@ -66,11 +66,15 @@ class ChoiceDataProvider {
 		);
 
 		// Filter out campaigns that have ended since we last queried the
-		// database or which have not started yet.
+		// database or which have not started yet. array_values re-orders numeric
+		// keys, in case elements were removed.
 		$now = time();
-		return array_filter( $choices, function ( $choice ) use ( $now ) {
-			return $choice['end'] >= $now && $choice['start'] <= $now;
-		} );
+		return array_values( array_filter(
+			$choices,
+			function ( $choice ) use ( $now ) {
+				return $choice['end'] >= $now && $choice['start'] <= $now;
+			}
+		) );
 	}
 
 	private static function fetchChoices( $project, $language,
