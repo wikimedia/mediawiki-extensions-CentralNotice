@@ -225,7 +225,8 @@
 			elPromise = $.ajax( {
 				url: makeEventLoggingURL( elData ),
 				timeout: waitLogNoSendBeacon,
-				method: 'POST'
+				dataType: 'script', // Helps prevent CORS issues? See T174719
+				cache: true // Prevent JQuery from adding a timestamp to the URL
 			} );
 		}
 
