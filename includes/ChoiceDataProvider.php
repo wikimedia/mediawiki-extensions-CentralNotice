@@ -43,11 +43,11 @@ class ChoiceDataProvider {
 			self::CACHE_TTL,
 			function ( $oldValue, &$ttl, array &$setOpts )
 				use ( $project, $language ) {
-				$dbr = CNDatabase::getDb( DB_SLAVE );
+				$dbr = CNDatabase::getDb( DB_REPLICA );
 
-				// Account for slave lag to prevent a race condition when
+				// Account for replica lag to prevent a race condition when
 				// campaigns are updated, the cache is invalidated, and
-				// a client queries a yet-unsynced slave DB. Also, gracefully
+				// a client queries a yet-unsynced replica DB. Also, gracefully
 				// fail if we're running an old version of core (<1.27).
 				if ( method_exists( 'Database', 'getCacheSetOptions' ) ) {
 					$setOpts += Database::getCacheSetOptions( $dbr );
