@@ -77,7 +77,7 @@
 	"centralnotice-weight": "Altura",
 	"centralnotice-locked": "Bloqueado",
 	"centralnotice-notice-mixins-int-required": "Se requiere un entero",
-	"centralnotice-notice-mixins-float-required": "Se requiere un número de punto flotante",
+	"centralnotice-notice-mixins-float-required": "Se necesita un número de coma flotante",
 	"centralnotice-notice": "Campaña",
 	"centralnotice-notice-heading": "Campaña: $1",
 	"centralnotice-notices": "Avisos",
