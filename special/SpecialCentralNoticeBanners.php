@@ -244,7 +244,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Callback function from the showBannerList() form that actually processes the
 	 * response data.
 	 *
-	 * @param $formData
+	 * @param array $formData
 	 *
 	 * @return null|string|array
 	 */

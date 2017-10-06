@@ -36,7 +36,7 @@ class AllocationCalculator {
 	 * mw.cnBannerControllerLib.filterChoiceData(). (However, this method does
 	 * not perform campaign freshness checks like the client-side one.)
 	 *
-	 * @param array $choiceData Campaigns with banners as returned by
+	 * @param array &$choiceData Campaigns with banners as returned by
 	 *   ChoiceDataProvider::getChoices(). This array will be modified.
 	 *
 	 * @param string $country Country of interest
@@ -99,7 +99,7 @@ class AllocationCalculator {
 	 * campaign priority and throttling. The equivalent client-side method
 	 * is mw.cnBannerControllerLib.calculateCampaignAllocations().
 	 *
-	 * @param array $filteredChoiceData Data in the format provided by
+	 * @param array &$filteredChoiceData Data in the format provided by
 	 *   filteredChoiceData().
 	 */
 	public static function calculateCampaignAllocations( &$filteredChoiceData ) {
@@ -237,7 +237,7 @@ class AllocationCalculator {
 	 * relative weights. The equivalent client-side method is
 	 * mw.cnBannerControllerLib.calculateBannerAllocations().
 	 *
-	 * @param $banners array of banner information as arrays.
+	 * @param array &$banners array of banner information as arrays.
 	 *  Each banner's 'allocation' property will be set.
 	 */
 	public static function calculateBannerAllocations( &$banners ) {

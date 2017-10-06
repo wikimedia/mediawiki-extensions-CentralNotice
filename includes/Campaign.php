@@ -246,7 +246,7 @@ class Campaign {
 	/**
 	 * See if a given campaign exists in the database
 	 *
-	 * @param $campaignName string
+	 * @param string $campaignName
 	 *
 	 * @return bool
 	 */
@@ -823,17 +823,17 @@ class Campaign {
 	/**
 	 * Add a new campaign to the database
 	 *
-	 * @param $noticeName        string: Name of the campaign
-	 * @param $enabled           bool: Boolean setting, true or false
-	 * @param $startTs           string: Campaign start in UTC
-	 * @param $projects          array: Targeted project types (wikipedia, wikibooks, etc.)
-	 * @param $project_languages array: Targeted project languages (en, de, etc.)
-	 * @param $geotargeted       bool: Boolean setting, true or false
-	 * @param $geo_countries     array: Targeted countries
-	 * @param $throttle          int: limit allocations, 0 - 100
-	 * @param $priority          int: priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
-	 * @param $user              User adding the campaign
-	 * @param $summary           string: Change summary provided by the user
+	 * @param string $noticeName Name of the campaign
+	 * @param bool $enabled Boolean setting, true or false
+	 * @param string $startTs Campaign start in UTC
+	 * @param array $projects Targeted project types (wikipedia, wikibooks, etc.)
+	 * @param array $project_languages Targeted project languages (en, de, etc.)
+	 * @param bool $geotargeted Boolean setting, true or false
+	 * @param array $geo_countries Targeted countries
+	 * @param int $throttle limit allocations, 0 - 100
+	 * @param int $priority priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
+	 * @param User $user User adding the campaign
+	 * @param string $summary Change summary provided by the user
 	 *
 	 * @throws RuntimeException
 	 * @return int|string noticeId on success, or message key for error
@@ -928,8 +928,8 @@ class Campaign {
 	/**
 	 * Remove a campaign from the database
 	 *
-	 * @param $campaignName string: Name of the campaign
-	 * @param $user User removing the campaign
+	 * @param string $campaignName Name of the campaign
+	 * @param User $user User removing the campaign
 	 *
 	 * @return bool|string True on success, string with message key for error
 	 */
@@ -970,10 +970,10 @@ class Campaign {
 
 	/**
 	 * Assign a banner to a campaign at a certain weight
-	 * @param $noticeName string
-	 * @param $templateName string
-	 * @param $weight integer
-	 * @param $bucket integer
+	 * @param string $noticeName
+	 * @param string $templateName
+	 * @param int $weight
+	 * @param int $bucket
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function addTemplateTo( $noticeName, $templateName, $weight, $bucket = 0 ) {
@@ -1095,9 +1095,9 @@ class Campaign {
 	}
 
 	/**
-	 * @param $noticeName string
-	 * @param $start string Date
-	 * @param $end string Date
+	 * @param string $noticeName
+	 * @param string $start Date
+	 * @param string $end Date
 	 * @return bool|string True on success, string with message key for error
 	 */
 	static function updateNoticeDate( $noticeName, $start, $end ) {
@@ -1131,9 +1131,9 @@ class Campaign {
 	/**
 	 * Update a boolean setting on a campaign
 	 *
-	 * @param $noticeName string: Name of the campaign
-	 * @param $settingName string: Name of a boolean setting (enabled, locked, or geo)
-	 * @param $settingValue bool: Value to use for the setting, true or false
+	 * @param string $noticeName Name of the campaign
+	 * @param string $settingName Name of a boolean setting (enabled, locked, or geo)
+	 * @param bool $settingValue Value to use for the setting, true or false
 	 */
 	static function setBooleanCampaignSetting( $noticeName, $settingName, $settingValue ) {
 		if ( !self::campaignExists( $noticeName ) ) {
@@ -1194,9 +1194,9 @@ class Campaign {
 	/**
 	 * Updates the weight of a banner in a campaign.
 	 *
-	 * @param $noticeName   string Name of the campaign to update
-	 * @param $templateId   int ID of the banner in the campaign
-	 * @param $weight       int New banner weight
+	 * @param string $noticeName Name of the campaign to update
+	 * @param int $templateId ID of the banner in the campaign
+	 * @param int $weight New banner weight
 	 */
 	static function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
@@ -1214,9 +1214,9 @@ class Campaign {
 	 * Updates the bucket of a banner in a campaign. Buckets alter what is shown to the end user
 	 * which can affect the relative weight of the banner in a campaign.
 	 *
-	 * @param $noticeName   string Name of the campaign to update
-	 * @param $templateId   int ID of the banner in the campaign
-	 * @param $bucket       int New bucket number
+	 * @param string $noticeName Name of the campaign to update
+	 * @param int $templateId ID of the banner in the campaign
+	 * @param int $bucket New bucket number
 	 */
 	static function updateBucket( $noticeName, $templateId, $bucket ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
@@ -1331,12 +1331,12 @@ class Campaign {
 	/**
 	 * Log any changes related to a campaign
 	 *
-	 * @param $action           string: 'created', 'modified', or 'removed'
-	 * @param $campaignId       int: ID of campaign
-	 * @param $user             User causing the change
-	 * @param $beginSettings    array of campaign settings before changes (optional)
-	 * @param $endSettings      array of campaign settings after changes (optional)
-	 * @param $summary          string Change summary provided by the user
+	 * @param string $action 'created', 'modified', or 'removed'
+	 * @param int $campaignId ID of campaign
+	 * @param User $user User causing the change
+	 * @param array $beginSettings array of campaign settings before changes (optional)
+	 * @param array $endSettings array of campaign settings after changes (optional)
+	 * @param string $summary Change summary provided by the user
 	 *
 	 * @return int ID of log entry (or null)
 	 */

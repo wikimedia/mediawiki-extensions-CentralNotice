@@ -79,7 +79,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	/**
 	 * Generate the HTTP response headers for the banner file
-	 * @param cacheResponse int If the response will be cached, use the normal
+	 * @param int $cacheResponse If the response will be cached, use the normal
 	 *   cache time ($wgNoticeBannerMaxAge) or the reduced time
 	 *   ($wgNoticeBannerReducedMaxAge).
 	 */
@@ -105,7 +105,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 	/**
 	 * Generate the JS for the requested banner
-	 * @param $bannerName string
+	 * @param string $bannerName
 	 * @return string of JavaScript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
 	 * @throws EmptyBannerException

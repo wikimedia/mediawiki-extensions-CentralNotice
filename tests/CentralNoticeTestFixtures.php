@@ -72,7 +72,7 @@ class CentralNoticeTestFixtures {
 	 * Test classes that call this method should also set MW globals as per
 	 * getGlobalsFromFixtureData().
 	 *
-	 * @param array $testCase A data structure with the test case specification
+	 * @param array &$testCase A data structure with the test case specification
 	 */
 	function setupTestCaseFromFixtureData( &$testCase ) {
 		$this->setTestCaseStartEnd( $testCase );
@@ -96,7 +96,7 @@ class CentralNoticeTestFixtures {
 	 * Add defaults to the test case setup specification, for legacy tests that
 	 * don't use the shared JSON fixture data.
 	 *
-	 * @param array $testCaseSetup A data structure with the setup section of a
+	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
 	protected function addTestCaseDefaults( &$testCaseSetup ) {
@@ -120,7 +120,7 @@ class CentralNoticeTestFixtures {
 	 * Note: Some of this logic is repeated in client-side tests.
 	 * @see setChoicesStartEnd() in ext.centralNotice.display.chooser.tests.js
 	 *
-	 * @param array $testCase A data structure with the test case specification
+	 * @param array &$testCase A data structure with the test case specification
 	 */
 	protected function setTestCaseStartEnd( &$testCase ) {
 		$now = wfTimestamp();
@@ -165,7 +165,7 @@ class CentralNoticeTestFixtures {
 	 * non-geotargeted campaigns, and check for mistakenly set countries for
 	 * such campaigns.
 	 *
-	 * @param array $testCaseSetup A data structure with the setup section of a
+	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
 	protected function preprocessSetupCountriesProp( &$testCaseSetup ) {
@@ -184,7 +184,7 @@ class CentralNoticeTestFixtures {
 	/**
 	 * Add dummy banner properties throughout a test case setup specification.
 	 *
-	 * @param array $testCaseSetup A data structure with the setup section of a
+	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
 	protected function addDummyBannerBody( &$testCaseSetup ) {

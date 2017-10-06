@@ -119,7 +119,7 @@ class CentralNoticeHooks {
 	 * the language object is initialized before all namespaces are registered -- which would
 	 * be the case if we just used the wgExtensionFunctions hook system.
 	 *
-	 * @param array $namespaces Modifiable list of namespaces -- similar to $wgExtraNamespaces
+	 * @param array &$namespaces Modifiable list of namespaces -- similar to $wgExtraNamespaces
 	 *
 	 * @return bool True if the hook completed successfully.
 	 */
@@ -157,8 +157,8 @@ class CentralNoticeHooks {
 	 * BeforePageDisplay hook handler
 	 * This function adds the startUp and geoIP modules to the page (as needed)
 	 *
-	 * @param $out  OutputPage
-	 * @param $skin Skin
+	 * @param OutputPage $out
+	 * @param Skin $skin
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
@@ -193,7 +193,7 @@ class CentralNoticeHooks {
 	 * MakeGlobalVariablesScript hook handler
 	 * This function sets the pseudo-global JavaScript variables that are used by CentralNotice
 	 *
-	 * @param $vars array
+	 * @param array &$vars
 	 * @return bool
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars ) {
@@ -254,7 +254,7 @@ class CentralNoticeHooks {
 	 * SiteNoticeAfter hook handler
 	 * This function outputs the siteNotice div that the banners are loaded into.
 	 *
-	 * @param $notice string
+	 * @param string &$notice
 	 * @return bool
 	 */
 	public static function onSiteNoticeAfter( &$notice ) {
@@ -267,7 +267,7 @@ class CentralNoticeHooks {
 	 * ResourceLoaderGetConfigVars hook handler
 	 * Send php config vars to js via ResourceLoader
 	 *
-	 * @param &$vars: variables to be added to the output of the startup module
+	 * @param array &$vars variables to be added to the output of the startup module
 	 * @return bool
 	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
@@ -329,7 +329,7 @@ class CentralNoticeHooks {
 	/**
 	 * UnitTestsList hook handler
 	 *
-	 * @param $files array
+	 * @param array &$files
 	 * @return bool
 	 */
 	public static function onUnitTestsList( &$files ) {
@@ -351,7 +351,7 @@ class CentralNoticeHooks {
 	 * ResourceLoaderTestModules hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
 	 *
-	 * @param array $testModules
+	 * @param array &$testModules
 	 * @param ResourceLoader $resourceLoader
 	 * @return bool
 	 */
@@ -416,7 +416,7 @@ class CentralNoticeHooks {
 	/**
 	 * EventLoggingRegisterSchemas hook handler.
 	 *
-	 * @param array $schemas The schemas currently registered with the EventLogging
+	 * @param array &$schemas The schemas currently registered with the EventLogging
 	 *  extension
 	 * @return bool Always true
 	 */

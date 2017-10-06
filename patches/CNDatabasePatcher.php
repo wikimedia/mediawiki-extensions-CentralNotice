@@ -14,7 +14,7 @@ class CNDatabasePatcher {
 	 * LoadExtensionSchemaUpdates hook handler
 	 * This function makes sure that the database schema is up to date.
 	 *
-	 * @param $updater DatabaseUpdater|null
+	 * @param DatabaseUpdater|null $updater
 	 * @return bool
 	 */
 	public static function applyUpdates( $updater = null ) {

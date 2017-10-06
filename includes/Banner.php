@@ -116,7 +116,7 @@ class Banner {
 	 * an object in the database. If a fully new banner is to be created
 	 * use @see newFromName().
 	 *
-	 * @param $name
+	 * @param string $name
 	 *
 	 * @return Banner
 	 * @throws BannerDataException
@@ -134,7 +134,7 @@ class Banner {
 	/**
 	 * Create a brand new banner object.
 	 *
-	 * @param $name
+	 * @param string $name
 	 *
 	 * @return Banner
 	 * @throws BannerDataException
@@ -1283,8 +1283,8 @@ class Banner {
 	/**
 	 * Return settings for a banner
 	 *
-	 * @param $bannerName string name of banner
-	 * @param $detailed boolean if true, get some more expensive info
+	 * @param string $bannerName name of banner
+	 * @param bool $detailed if true, get some more expensive info
 	 *
 	 * @return array an array of banner settings
 	 * @throws RangeException
@@ -1366,16 +1366,16 @@ class Banner {
 	/**
 	 * Create a new banner
 	 *
-	 * @param $name             string name of banner
-	 * @param $body             string content of banner
-	 * @param $user             User causing the change
-	 * @param $displayAnon      boolean flag for display to anonymous users
-	 * @param $displayAccount   boolean flag for display to logged in users
-	 * @param $fundraising      boolean flag for fundraising banner (optional)
-	 * @param $mixins           array list of mixins (optional)
-	 * @param $priorityLangs    array Array of priority languages for the translate extension
-	 * @param $devices          array Array of device names this banner is targeted at
-	 * @param $summary          string|null Optional summary of changes for logging
+	 * @param string $name name of banner
+	 * @param string $body content of banner
+	 * @param User $user User causing the change
+	 * @param bool $displayAnon flag for display to anonymous users
+	 * @param bool $displayAccount flag for display to logged in users
+	 * @param bool $fundraising flag for fundraising banner (optional)
+	 * @param array $mixins list of mixins (optional)
+	 * @param array $priorityLangs Array of priority languages for the translate extension
+	 * @param array $devices Array of device names this banner is targeted at
+	 * @param string|null $summary Optional summary of changes for logging
 	 *
 	 * @return string|null error message key or null on success
 	 */

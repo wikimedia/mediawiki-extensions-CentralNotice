@@ -215,7 +215,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * Add banner message groups to the list of message groups that should be
 	 * translated through the Translate extension.
 	 *
-	 * @param array $list
+	 * @param array &$list
 	 * @return bool
 	 */
 	public static function registerGroupHook( &$list ) {

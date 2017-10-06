@@ -10,8 +10,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Construct instance of class.
-	 * @param $special object calling object
-	 * @param $type string type of log - 'bannercontent' or 'bannermessages' (optional)
+	 * @param SpecialPage $special object calling object
+	 * @param string $type type of log - 'bannercontent' or 'bannermessages' (optional)
 	 */
 	function __construct( $special, $type = 'bannercontent' ) {
 		$this->special = $special;

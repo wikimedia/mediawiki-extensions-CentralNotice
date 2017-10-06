@@ -306,8 +306,8 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Build a set of select lists. Used by timeSelector.
-	 * @param $prefix string to identify selector set, for example, 'start' or 'end'
-	 * @param $fields array of select lists to build
+	 * @param string $prefix string to identify selector set, for example, 'start' or 'end'
+	 * @param array $fields array of select lists to build
 	 * @return string
 	 */
 	protected function createSelector( $prefix, $fields ) {
@@ -464,7 +464,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Show the interface for viewing/editing an individual campaign
 	 *
-	 * @param $notice string The name of the campaign to view
+	 * @param string $notice The name of the campaign to view
 	 */
 	function outputNoticeDetail( $notice ) {
 		global $wgCentralNoticeCampaignMixins;
@@ -1344,7 +1344,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Generates a multiple select list of all languages.
 	 *
-	 * @param $selected array The language codes of the selected languages
+	 * @param array $selected The language codes of the selected languages
 	 *
 	 * @return string multiple select list
 	 */
@@ -1386,7 +1386,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Generates a multiple select list of all project types.
 	 *
-	 * @param $selected array The name of the selected project type
+	 * @param array $selected The name of the selected project type
 	 *
 	 * @return string multiple select list
 	 */
@@ -1469,7 +1469,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Generates a multiple select list of all countries.
 	 *
-	 * @param $selected array The country codes of the selected countries
+	 * @param array $selected The country codes of the selected countries
 	 *
 	 * @return string multiple select list
 	 */
@@ -1501,7 +1501,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Sanitizes template search terms by removing non alpha and ensuring space delimiting.
 	 *
-	 * @param $terms string Search terms to sanitize
+	 * @param string $terms Search terms to sanitize
 	 *
 	 * @return string Space delimited string
 	 */
@@ -1532,7 +1532,7 @@ class CentralNotice extends SpecialPage {
 	 * Implementation of SkinTemplateNavigation::SpecialPage hook.
 	 *
 	 * @param Skin $skin Reference to the Skin object
-	 * @param array $tabs Any current skin tabs
+	 * @param array &$tabs Any current skin tabs
 	 *
 	 * @return bool
 	 */
