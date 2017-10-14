@@ -21,7 +21,8 @@
 			"Mehran",
 			"Elham",
 			"Hosseinblue",
-			"Calak"
+			"Calak",
+			"Ladsgroup"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -255,6 +256,8 @@
 	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
 	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها",
 	"centralnotice-banner-history-logger-rate": "نرخ نمونه",
+	"centralnotice-banner-sequence-bucket-add-step": "افزودن یک قدم",
 	"centralnotice-banner-sequence-banner": "پرچم",
-	"centralnotice-banner-sequence-page-views": "بازدیدهای صفحه"
+	"centralnotice-banner-sequence-page-views": "بازدیدهای صفحه",
+	"centralnotice-banner-sequence-no-banner": "(بدون بنر)"
 }
