@@ -204,7 +204,7 @@
 	"centralnotice-archive-campaign-cancel": "Bıtexelne",
 	"centralnotice-add-new-banner-title": "Yew baner vıraz",
 	"centralnotice-delete-banner": "Bestere",
-	"centralnotice-delete-banner-title": "{{PLURAL:$1|baner|baneri}} bestern",
+	"centralnotice-delete-banner-title": "{{PLURAL:$1|Vala|Valeyan}} bestere",
 	"centralnotice-delete-banner-cancel": "Bıtexelne",
 	"centralnotice-devices": "Ramıterdı bıasn",
 	"centralnotice-start-timestamp": "Serterin (UTC)",
