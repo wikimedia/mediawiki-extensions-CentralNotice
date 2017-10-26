@@ -39,8 +39,11 @@
 		// For providing a jQuery.Promise to signal when a banner has loaded
 		bannerLoadedDeferredObj,
 
-		// Name of a requested banner; see cn.requestBanner(), below
-		requestedBannerName = null;
+		// Name of a requested banner; see cn.requestBanner(), below.
+		requestedBannerName = null,
+
+		// Maximum time to delay the record impression call, in milliseconds
+		MAX_RECORD_IMPRESSION_DELAY = 250;
 
 	// TODO: make data.result options explicit via constants
 
@@ -199,7 +202,44 @@
 			.prepend( bannerHtml );
 	}
 
+	/**
+	 * Adds reallyRecordImpression() as the last handler for cn.recordImpressionDeferredObj,
+	 * then resolves.
+	 */
+	function resolveRecordImpressionDeferred() {
+		cn.recordImpressionDeferredObj.done( reallyRecordImpression );
+		cn.recordImpressionDeferredObj.resolve();
+	}
+
 	function recordImpression() {
+		var timeout,
+			timeoutHasRun = false;
+
+		if ( cn.recordImpressionDelayPromises.length === 0 ) {
+			reallyRecordImpression();
+			return;
+		}
+
+		// If there are promises in cn.recordImpressionDelayPromises, then
+		// cn.recordImpressionDeferredObj (used in resolveRecordImpressionDeferred())
+		// should already have been set.
+
+		timeout = setTimeout( function() {
+			timeoutHasRun = true;
+			resolveRecordImpressionDeferred();
+		}, MAX_RECORD_IMPRESSION_DELAY );
+
+		// This function can only run once, so checking that the timeout hasn't run yet
+		// should be sufficient to prevent extra record impression calls.
+		$.when.apply( $, cn.recordImpressionDelayPromises ).always( function () {
+			if ( !timeoutHasRun ) {
+				clearTimeout( timeout );
+				resolveRecordImpressionDeferred();
+			}
+		} );
+	}
+
+	function reallyRecordImpression() {
 		var state = cn.internal.state,
 			url;
 
@@ -321,7 +361,7 @@
 
 		} else {
 			// Otherwise, use a random number and banner weights to choose from among
-			// banners available to the user in this campiagn, in this bucket. (Most
+			// banners available to the user in this campaign, in this bucket. (Most
 			// of the time, there's only one.)
 			banner = chooser.chooseBanner(
 				campaign,
@@ -343,7 +383,7 @@
 			return;
 		}
 
-		// Pass more info about following banner selection
+		// Pass more info following banner selection
 		state.setBanner( banner );
 
 		if ( cn.kvStore ) {
@@ -470,6 +510,21 @@
 
 			processAfterBannerFetch();
 		},
+
+		/**
+		 * Promises to delay the record impression call, if possible; see
+		 * cn.requestRecordImpressionDelay(), below. Only exposed for use in tests.
+		 *
+		 * @private
+		 */
+		recordImpressionDelayPromises: [],
+
+		/**
+		 * For providing a jQuery.Promise to signal when the record impression call is
+		 * about to be sent. (Value will be set to a new deferred object only as needed.)
+		 * @private
+		 */
+		recordImpressionDeferredObj: null,
 
 		/**
 		 * Attachment point for other objects in this module that are not meant
@@ -654,6 +709,24 @@
 		 */
 		registerTest: function ( identifier ) {
 			cn.internal.state.registerTest( identifier );
+		},
+
+		/**
+		 * Request that, if possible, the record impression call be delayed until a
+		 * promise is resolved. If the promise does not resolve before
+		 * MAX_RECORD_IMPRESSION_DELAY milliseconds after the banner is injected,
+		 * the call will be made in any case.
+		 *
+		 * Returns another promise that will resolve immediately before the record
+		 * impression call is made.
+		 *
+		 * @param {jquery.Promise} promise
+		 * @returns {jquery.Promise}
+		 */
+		requestRecordImpressionDelay: function ( promise ) {
+			cn.recordImpressionDelayPromises.push( promise );
+			cn.recordImpressionDeferredObj = cn.recordImpressionDeferredObj || $.Deferred();
+			return cn.recordImpressionDeferredObj.promise();
 		},
 
 		/**
