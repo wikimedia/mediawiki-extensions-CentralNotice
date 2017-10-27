@@ -17,7 +17,8 @@
 			"Sjoerddebruin",
 			"MedShot",
 			"Esketti",
-			"Mainframe98"
+			"Mainframe98",
+			"Optilete"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -134,7 +135,7 @@
 	"centralnotice-banner-mixins-help": "Controleer elke mixin dat u wilt laten opnemen tijdens de banner-levering. (Zie [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] voor meer informatie.)",
 	"centralnotice-banner-cdn-label": "Purge front-end cache voor de volgende taal",
 	"centralnotice-banner-cdn-button": "Vernieuwen",
-	"centralnotice-banner-cdn-help": "Verwijder bannerinhoud die opgeslagen is in de front-end cache voor anonieme gebruikers voor de geseclteerde taal. (Banners worden voor ingelogde gebruikers niet gecacht.)",
+	"centralnotice-banner-cdn-help": "Verwijder bannerinhoud die opgeslagen is in de front-end cache voor anonieme gebruikers voor de geselecteerde taal. (Banners worden voor ingelogde gebruikers niet gecacht.)",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geografisch bepaald",
 	"centralnotice-countries": "Landen",
