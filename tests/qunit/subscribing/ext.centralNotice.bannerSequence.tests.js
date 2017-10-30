@@ -155,7 +155,7 @@
 	for ( i = 0; i < expectedSequenceStates.length; i++ ) {
 
 		QUnit.test(
-			'sequence manager state, page view ' + i, 3,
+			'sequence manager state, page view ' + i,
 			makeSeqManagerStateTestFunction( expectedSequenceStates[ i ], i )
 		);
 	}
@@ -171,6 +171,7 @@
 
 		return function ( assert ) {
 			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
+			assert.expect( 3 );
 
 			assert.strictEqual(
 				sequenceManager.currentStep,
@@ -196,7 +197,7 @@
 	for ( i = 0; i < expectedProcessPageViewResults.length; i++ ) {
 
 		QUnit.test(
-			'processPageView(), page view ' + i, 2,
+			'processPageView(), page view ' + i,
 			makeProcessPageViewTestFunction( expectedProcessPageViewResults[ i ], i )
 		);
 	}
@@ -212,6 +213,7 @@
 
 		return function ( assert ) {
 			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
+			assert.expect( 2 );
 
 			sequenceManager.processPageView();
 
@@ -233,7 +235,7 @@
 	for ( i = 0; i < expectedStatesAfterSkip.length; i++ ) {
 
 		QUnit.test(
-			'skipToNextStep(), page view ' + i, 2,
+			'skipToNextStep(), page view ' + i,
 			makeSkipToNextStepTestFunction( expectedStatesAfterSkip[ i ], i )
 		);
 	}
@@ -249,6 +251,7 @@
 
 		return function ( assert ) {
 			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
+			assert.expect( 2 );
 
 			sequenceManager.skipToNextStep();
 
@@ -268,7 +271,7 @@
 
 	// Test that skipToNextStep() initially returns true, then false when we run out of
 	// steps
-	QUnit.test( 'skipToNextStep() return values', 3, function ( assert ) {
+	QUnit.test( 'skipToNextStep() return values', function ( assert ) {
 		var sequenceManager = new bannerSequence.SequenceManager( sequence, 0 );
 
 		assert.ok(
@@ -288,7 +291,7 @@
 	} );
 
 	// Test that the current page view is reset if it's beyond the sequence limit
-	QUnit.test( 'reset current page view if beyond limit', 1, function ( assert ) {
+	QUnit.test( 'reset current page view if beyond limit', function ( assert ) {
 		var sequenceManager = new bannerSequence.SequenceManager( sequence, 7 );
 
 		assert.strictEqual(
@@ -300,8 +303,8 @@
 
 	QUnit.test(
 		'pre-banner handler uses bucket and stored page view, requests banner',
-		3,
 		function ( assert ) {
+			assert.expect( 3 );
 
 			// Mock required API bits
 
@@ -357,8 +360,8 @@
 
 	QUnit.test(
 		'pre-banner handler uses stored identifier and hides banner on empty step',
-		2,
 		function ( assert ) {
+		assert.expect( 2 );
 
 		// Mock required API bits
 
@@ -418,8 +421,8 @@
 	} );
 
 	QUnit.test( 'post-banner handler checks banner shown, sets identifier and page view',
-		3,
 		function ( assert ) {
+		assert.expect( 3 );
 
 		// Mock required API bits
 

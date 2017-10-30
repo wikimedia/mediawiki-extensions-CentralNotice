@@ -26,7 +26,8 @@
 		}
 	} ) );
 
-	QUnit.test( 'parse geo from valid cookie', 1, function ( assert ) {
+	QUnit.test( 'parse geo from valid cookie', function ( assert ) {
+		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, GOOD_COOKIE, { path: '/' } );
 
 		mw.geoIP.makeGeoWithPromise();
@@ -38,7 +39,8 @@
 		} );
 	} );
 
-	QUnit.test( 'cookie invalid', 1, function ( assert ) {
+	QUnit.test( 'cookie invalid', function ( assert ) {
+		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, BAD_COOKIE, { path: '/' } );
 
 		mw.geoIP.makeGeoWithPromise();
@@ -49,7 +51,8 @@
 		} );
 	} );
 
-	QUnit.test( 'cookie valid but unknown location', 1, function ( assert ) {
+	QUnit.test( 'cookie valid but unknown location', function ( assert ) {
+		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, UNKNOWN_COOKIE, { path: '/' } );
 
 		mw.geoIP.makeGeoWithPromise();

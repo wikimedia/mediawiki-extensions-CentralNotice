@@ -166,7 +166,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'canInsertBanner', 1, function ( assert ) {
+	QUnit.test( 'canInsertBanner', function ( assert ) {
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
@@ -177,7 +177,8 @@
 		assert.equal( $( 'div#test_banner' ).length, 1 );
 	} );
 
-	QUnit.test( 'banner= override param', 2, function ( assert ) {
+	QUnit.test( 'banner= override param', function ( assert ) {
+		assert.expect( 2 );
 		mw.centralNotice.internal.state.urlParams.banner = 'test_banner';
 		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/ ) );
@@ -188,8 +189,8 @@
 		assert.ok( mw.centralNotice.data.testingBanner );
 	} );
 
-	QUnit.test( 'randomcampaign= override param', 2, function ( assert ) {
-
+	QUnit.test( 'randomcampaign= override param', function ( assert ) {
+		assert.expect( 2 );
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 
 		// Get the first banner
@@ -211,7 +212,8 @@
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
-	QUnit.test( 'randombanner= override param', 2, function ( assert ) {
+	QUnit.test( 'randombanner= override param', function ( assert ) {
+		assert.expect( 2 );
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 
 		// Get the first banner
@@ -233,8 +235,10 @@
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
-	QUnit.test( 'runs hooks on banner shown', 3, function ( assert ) {
+	QUnit.test( 'runs hooks on banner shown', function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+		assert.expect( 3 );
+
 		$.ajax = function () {
 			mw.centralNotice.reallyInsertBanner( bannerData );
 			return $.Deferred();
@@ -261,8 +265,10 @@
 		);
 	} );
 
-	QUnit.test( 'runs hooks on banner canceled', 5, function ( assert ) {
+	QUnit.test( 'runs hooks on banner canceled', function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+		assert.expect( 5 );
+
 		mixin.setPreBannerHandler(
 			function ( params ) {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
@@ -287,8 +293,10 @@
 		assert.ok( mw.centralNotice.internal.state.isBannerCanceled() );
 	} );
 
-	QUnit.test( 'runs hooks on no banner available', 3, function ( assert ) {
+	QUnit.test( 'runs hooks on no banner available', function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+		assert.expect( 3 );
+
 		mixin.setPreBannerHandler(
 			function ( params ) {
 				assert.deepEqual( params, choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin );
