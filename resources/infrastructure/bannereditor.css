@@ -49,7 +49,7 @@ form#cn-banner-editor .mw-input {
 
 /* === === */
 .cn-message-table {
-	font-family: monospace;
+	font-family: monospace, monospace; /* Support: Blink, Gecko, Webkit, see T176636 */
 	font-size: 1em;
 	width: 100%;
 }

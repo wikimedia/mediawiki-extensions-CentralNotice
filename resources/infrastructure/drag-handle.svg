@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 20 30">
-    <g fill="#b1b7be">
-        <path id="rect4591" d="M5 6h12v1H5z"/>
-        <path id="rect4643" d="M5 10h12v1H5z"/>
-        <path id="rect4645" d="M5 14h12v1H5z"/>
-        <path id="rect4647" d="M5 18h12v1H5z"/>
-        <path id="rect4649" d="M5 22h12v1H5z"/>
-    </g>
+	<g fill="#222">
+		<path d="M5 10h12v1H5z"/>
+		<path d="M5 6h12v1H5z"/>
+		<path d="M5 14h12v1H5z"/>
+		<path d="M5 18h12v1H5z"/>
+		<path d="M5 22h12v1H5z"/>
+	</g>
 </svg>

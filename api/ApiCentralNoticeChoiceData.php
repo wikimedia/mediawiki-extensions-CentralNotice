@@ -72,9 +72,9 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	 * @static Obtains the parameter $param, sanitizes by returning the first match to $regex or
 	 * $default if there was no match.
 	 *
-	 * @param string    $param    Name of GET/POST parameter
-	 * @param string    $regex    Sanitization regular expression
-	 * @param string    $default  Default value to return on error
+	 * @param string $param Name of GET/POST parameter
+	 * @param string $regex Sanitization regular expression
+	 * @param string $default Default value to return on error
 	 *
 	 * @return string The sanitized value
 	 */

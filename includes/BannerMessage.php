@@ -16,8 +16,8 @@ class BannerMessage {
 	 *  -- except for the content language which is stored without the /{lang} extension
 	 *  - in the CN Banner namespace messages are {banner name}-{message name}/{lang}
 	 *
-	 * @param string|null $lang      Language code
-	 * @param int         $namespace Namespace to get key for
+	 * @param string|null $lang Language code
+	 * @param int $namespace Namespace to get key for
 	 *
 	 * @return string Message database key
 	 * @throws RangeException
@@ -128,7 +128,7 @@ class BannerMessage {
 	 * because those messages are set via the CN UI; not the translate UI.
 	 *
 	 * @param WikiPage $page Page containing the message to protect
-	 * @param User     $user User doing the protection (ie: the last one to edit the page)
+	 * @param User $user User doing the protection (ie: the last one to edit the page)
 	 */
 	protected function protectMessageInCnNamespaces( $page, $user ) {
 		global $wgNoticeProtectGroup;

@@ -226,7 +226,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 	/**
 	 * Show a log of changes.
-	 * @param $logType string: which type of log to show
+	 * @param string $logType which type of log to show
 	 */
 	function showLog( $logType ) {
 		switch ( $logType ) {

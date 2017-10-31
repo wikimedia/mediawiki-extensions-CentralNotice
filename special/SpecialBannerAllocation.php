@@ -268,8 +268,8 @@ class SpecialBannerAllocation extends CentralNotice {
 
 	/**
 	 * Generate the HTML for an allocation table
-	 * @param $type string The title for the table
-	 * @param $banners array The banners as allocated by AllocationCalculator
+	 * @param string $type The title for the table
+	 * @param array $banners The banners as allocated by AllocationCalculator
 	 * @return string HTML for the table
 	 */
 	public function getTable( $type, $banners ) {

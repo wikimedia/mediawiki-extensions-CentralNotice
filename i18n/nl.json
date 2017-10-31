@@ -17,7 +17,8 @@
 			"Sjoerddebruin",
 			"MedShot",
 			"Esketti",
-			"Mainframe98"
+			"Mainframe98",
+			"Optilete"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -132,6 +133,10 @@
 	"centralnotice-banner-display-on": "Weergave op",
 	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-banner-mixins-help": "Controleer elke mixin dat u wilt laten opnemen tijdens de banner-levering. (Zie [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] voor meer informatie.)",
+	"centralnotice-banner-cdn-label": "Purge front-end cache voor de volgende taal",
+	"centralnotice-banner-cdn-button": "Vernieuwen",
+	"centralnotice-banner-cdn-help": "Verwijder bannerinhoud die opgeslagen is in de front-end cache voor anonieme gebruikers voor de geselecteerde taal. (Banners worden voor ingelogde gebruikers niet gecacht.)",
+	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geografisch bepaald",
 	"centralnotice-countries": "Landen",
 	"centralnotice-global-allocation": "Globale toewijzing",
@@ -276,8 +281,13 @@
 	"centralnotice-banner-history-logger-rate": "Testfrequentie",
 	"centralnotice-banner-history-logger-max-entry-age": "Maximale leeftijd van logboekregels (in dagen)",
 	"centralnotice-banner-history-logger-max-entries": "Maximum te houden aantal regels in logboek",
+	"centralnotice-impression-diet-maximum-seen": "Maximum aantal weergaven dat een individu zal zien",
+	"centralnotice-impression-diet-maximum-seen-help": "Als de cyclus is geconfigureerd om opnieuw te starten, beperkt dit het aantal vertoningen per cyclus, in plaats van het totale aantal vertoningen dat wordt gezien.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Hoe lang moet er gewacht worden voordat de cyclus herstart wordt, in seconden (optioneel)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Default is 0, wat betekent dat lezers slechts één cyclus zien en daarna de banners niet meer getoond worden.",
 	"centralnotice-impression-diet-skip-initial": "Aantal bekeken pagina's die overgeslagen moeten worden (optioneel)",
-	"centralnotice-impression-diet-skip-initial-help": "Default is 0, wat betekent dat er geen bekeken pagina's overgeslagen worden. Wanneer een cyclus begint, zal dit aantal bekeken pagina's eerst worden overgeslagen voordat de banner getoond wordt."
+	"centralnotice-impression-diet-skip-initial-help": "Default is 0, wat betekent dat er geen bekeken pagina's overgeslagen worden. Wanneer een cyclus begint, zal dit aantal bekeken pagina's eerst worden overgeslagen voordat de banner getoond wordt.",
+	"centralnotice-banner-sequence-days-error": "Moet een integer groter dan nul zijn.",
+	"centralnotice-banner-sequence-bucket-add-step": "Een stap toevoegen",
+	"centralnotice-banner-sequence-page-views": "Pagina weergaven"
 }

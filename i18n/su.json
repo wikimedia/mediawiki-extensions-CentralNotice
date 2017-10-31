@@ -6,8 +6,11 @@
 		]
 	},
 	"centralnotice-desc": "Nambah émbaran puseur",
+	"centralnotice-remove": "Pupus",
 	"centralnotice-add-notice-cancel-button": "Bolay",
+	"centralnotice-remove-all": "Pupus kabéh",
 	"centralnotice-clone-cancel": "Bolay",
+	"centralnotice-action-removed": "dipupus",
 	"centralnotice-archive-banner-cancel": "Bolay",
 	"centralnotice-archive-campaign-cancel": "Bolay",
 	"centralnotice-delete-banner-cancel": "Bolay"

@@ -177,7 +177,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param $row
+	 * @param object $row
 	 * @return string
 	 */
 	function showInitialSettings( $row ) {
@@ -238,7 +238,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param $row
+	 * @param object $row
 	 * @return string
 	 */
 	function showChanges( $row ) {
@@ -336,8 +336,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param $param
-	 * @param $row
+	 * @param string $param
+	 * @param object $row
 	 * @return string
 	 */
 	private function testBooleanChange( $param, $row ) {
@@ -406,8 +406,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Test for changes to campaign priority
-	 * @param $param
-	 * @param $row
+	 * @param string $param
+	 * @param object $row
 	 * @return string
 	 */
 	private function testPriorityChange( $param, $row ) {
@@ -459,8 +459,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Test for changes to a property interpreted as a percentage
-	 * @param $param name
-	 * @param $row settings
+	 * @param string $param name
+	 * @param object $row settings
 	 * @return string
 	 */
 	protected function testPercentageChange( $param, $row ) {

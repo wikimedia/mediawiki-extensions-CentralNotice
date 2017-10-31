@@ -24,11 +24,11 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param SpecialCentralNoticeBanners $hostSpecialPage
-	 * @param string         $formSection
-	 * @param array          $prependPrototypes
-	 * @param array          $appendPrototypes
-	 * @param string         $bannerFilter
-	 * @param bool           $editable
+	 * @param string $formSection
+	 * @param array $prependPrototypes
+	 * @param array $appendPrototypes
+	 * @param string $bannerFilter
+	 * @param bool $editable
 	 */
 	function __construct( SpecialCentralNoticeBanners $hostSpecialPage,
 		$formSection = null, $prependPrototypes = [],
@@ -112,7 +112,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	/**
 	 * Generate the contents of the table pager; intended to be consumed by the HTMLForm
 	 *
-	 * @param $row object: database row
+	 * @param object $row database row
 	 *
 	 * @return array HTMLFormElement classes
 	 */

@@ -417,7 +417,17 @@ $specialPageAliases['uk'] = [
 /** Urdu (اردو) */
 $specialPageAliases['ur'] = [
 	'CentralNotice' => [ 'مرکزی_اعلان' ],
-	'NoticeTemplate' => [ 'نوٹس_سانچہ' ],
+	'CentralNoticeBanners' => [ 'مرکزی_اعلان_کے_بینر' ],
+	'CentralNoticeLogs' => [ 'مرکزی_اعلان_کے_نوشتے' ],
+	'CNReporter' => [ 'مرکزی_اعلان_کا_نامہ_نگار' ],
+	'NoticeTemplate' => [ 'سانچہ_اعلان', 'نوٹس_سانچہ' ],
+	'GlobalAllocation' => [ 'عالمی_تخصیص' ],
+	'BannerAllocation' => [ 'تخصیص_بینر' ],
+	'BannerController' => [ 'ناظم_بینر' ],
+	'BannerLoader' => [ 'بینر_لوڈر' ],
+	'BannerRandom' => [ 'جستہ_جست_ہبینر' ],
+	'RecordImpression' => [ 'اندراج_تاثر' ],
+	'HideBanners' => [ 'اخفائے_بینر' ],
 ];
 
 /** Vietnamese (Tiếng Việt) */

@@ -47,7 +47,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @param string $project
 	 * @param string $language
 	 *
-	 * @return array|boolean
+	 * @return array|bool
 	 */
 	protected function getFromApi( $project, $language ) {
 		global $wgCentralNoticeApiUrl;

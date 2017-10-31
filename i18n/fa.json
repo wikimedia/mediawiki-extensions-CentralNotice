@@ -21,7 +21,8 @@
 			"Mehran",
 			"Elham",
 			"Hosseinblue",
-			"Calak"
+			"Calak",
+			"Ladsgroup"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -133,6 +134,8 @@
 	"centralnotice-banner-display-on": "نمایش در",
 	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-banner-mixins-help": "هر mixin که می‌خواهید در این رساندن پیام شامل کنید بررسی کنید. ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins mixinهای پیام‌ها] را برای اطلاعات بیشتر ببینید.)",
+	"centralnotice-banner-cdn-button": "پاک‌سازی میانگیر",
+	"centralnotice-banner-cdn-dialog-ok": "تأیید",
 	"centralnotice-geo": "دارای تخصیص جغرفیایی",
 	"centralnotice-countries": "کشورها",
 	"centralnotice-global-allocation": "تخصیص سراسری",
@@ -252,5 +255,9 @@
 	"apihelp-centralnoticeallocations-param-language": "زبانی که بر روی آن فیلتر کند.",
 	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
 	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها",
-	"centralnotice-banner-history-logger-rate": "نرخ نمونه"
+	"centralnotice-banner-history-logger-rate": "نرخ نمونه",
+	"centralnotice-banner-sequence-bucket-add-step": "افزودن یک قدم",
+	"centralnotice-banner-sequence-banner": "پرچم",
+	"centralnotice-banner-sequence-page-views": "بازدیدهای صفحه",
+	"centralnotice-banner-sequence-no-banner": "(بدون بنر)"
 }

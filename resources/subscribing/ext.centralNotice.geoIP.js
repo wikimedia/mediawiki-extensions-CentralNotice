@@ -122,8 +122,7 @@
 
 				geoPromise = mw.loader.using( lookupModule )
 
-					// require arg needed for debug mode to work TODO fixed?
-					.then( function ( require ) {
+					.then( function () {
 						var lookupCallback = require( lookupModule );
 
 						// Chaining lookup: here, return the promise provided by

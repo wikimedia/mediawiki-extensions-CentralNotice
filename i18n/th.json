@@ -84,6 +84,7 @@
 	"centralnotice-preferred": "แบบที่เลือก",
 	"centralnotice-logs": "ปูม",
 	"centralnotice-view-logs": "ดูปูม",
+	"centralnotice-timestamp": "วัน-เวลา",
 	"centralnotice-changed": "เปลี่ยนจาก <span class=\"cn-old-value\">$1</span> เป็น <span class=\"cn-new-value\">$2</span>",
 	"centralnotice-on": "เปิด",
 	"centralnotice-off": "ปิด",

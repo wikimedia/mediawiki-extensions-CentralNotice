@@ -116,7 +116,7 @@ class Banner {
 	 * an object in the database. If a fully new banner is to be created
 	 * use @see newFromName().
 	 *
-	 * @param $name
+	 * @param string $name
 	 *
 	 * @return Banner
 	 * @throws BannerDataException
@@ -134,7 +134,7 @@ class Banner {
 	/**
 	 * Create a brand new banner object.
 	 *
-	 * @param $name
+	 * @param string $name
 	 *
 	 * @return Banner
 	 * @throws BannerDataException
@@ -793,7 +793,7 @@ class Banner {
 	}
 
 	/**
-	 * @param boolean $dirty If true, we're storing a flag that means the
+	 * @param bool $dirty If true, we're storing a flag that means the
 	 * in-memory banner content is newer than what's stored in the database.
 	 * If false, we're clearing that bit.
 	 */
@@ -1158,8 +1158,8 @@ class Banner {
 	/**
 	 * Add a revision tag for the banner
 	 * @param string $tag The name of the tag
-	 * @param integer $revisionId ID of the revision
-	 * @param integer $pageId ID of the MediaWiki page for the banner
+	 * @param int $revisionId ID of the revision
+	 * @param int $pageId ID of the MediaWiki page for the banner
 	 * @param string $bannerId ID of banner this revtag belongs to
 	 * @throws Exception
 	 */
@@ -1189,7 +1189,7 @@ class Banner {
 	/**
 	 * Make sure banner is not tagged with specified tag
 	 * @param string $tag The name of the tag
-	 * @param integer $pageId ID of the MediaWiki page for the banner
+	 * @param int $pageId ID of the MediaWiki page for the banner
 	 * @throws Exception
 	 */
 	protected static function removeTag( $tag, $pageId ) {
@@ -1205,7 +1205,7 @@ class Banner {
 	/**
 	 * Given one or more campaign ids, return all banners bound to them
 	 *
-	 * @param integer|array $campaigns list of campaign numeric IDs
+	 * @param int|array $campaigns list of campaign numeric IDs
 	 *
 	 * @return array a 2D array of banners with associated weights and settings
 	 */
@@ -1283,8 +1283,8 @@ class Banner {
 	/**
 	 * Return settings for a banner
 	 *
-	 * @param $bannerName string name of banner
-	 * @param $detailed boolean if true, get some more expensive info
+	 * @param string $bannerName name of banner
+	 * @param bool $detailed if true, get some more expensive info
 	 *
 	 * @return array an array of banner settings
 	 * @throws RangeException
@@ -1366,16 +1366,16 @@ class Banner {
 	/**
 	 * Create a new banner
 	 *
-	 * @param $name             string name of banner
-	 * @param $body             string content of banner
-	 * @param $user             User causing the change
-	 * @param $displayAnon      boolean flag for display to anonymous users
-	 * @param $displayAccount   boolean flag for display to logged in users
-	 * @param $fundraising      boolean flag for fundraising banner (optional)
-	 * @param $mixins           array list of mixins (optional)
-	 * @param $priorityLangs    array Array of priority languages for the translate extension
-	 * @param $devices          array Array of device names this banner is targeted at
-	 * @param $summary          string|null Optional summary of changes for logging
+	 * @param string $name name of banner
+	 * @param string $body content of banner
+	 * @param User $user User causing the change
+	 * @param bool $displayAnon flag for display to anonymous users
+	 * @param bool $displayAccount flag for display to logged in users
+	 * @param bool $fundraising flag for fundraising banner (optional)
+	 * @param array $mixins list of mixins (optional)
+	 * @param array $priorityLangs Array of priority languages for the translate extension
+	 * @param array $devices Array of device names this banner is targeted at
+	 * @param string|null $summary Optional summary of changes for logging
 	 *
 	 * @return string|null error message key or null on success
 	 */
@@ -1413,9 +1413,9 @@ class Banner {
 	/**
 	 * Log setting changes related to a banner
 	 *
-	 * @param string $action         'created', 'modified', or 'removed'
-	 * @param User   $user           The user causing the change
-	 * @param string $summary        Summary (comment) for this action
+	 * @param string $action 'created', 'modified', or 'removed'
+	 * @param User $user The user causing the change
+	 * @param string $summary Summary (comment) for this action
 	 */
 	function logBannerChange( $action, $user, $summary = null ) {
 		ChoiceDataProvider::invalidateCache();
@@ -1438,7 +1438,7 @@ class Banner {
 			'tmplog_action'        => $action,
 			'tmplog_template_id'   => $this->getId(),
 			'tmplog_template_name' => $this->getName(),
-			'tmplog_content_change'=> (int)$this->dirtyFlags['content'],
+			'tmplog_content_change' => (int)$this->dirtyFlags['content'],
 			'tmplog_comment'       => $summary,
 		];
 

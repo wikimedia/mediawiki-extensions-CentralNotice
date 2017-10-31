@@ -293,7 +293,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 			foreach ( $grouping['rows'] as $row ) {
 				$htmlOut .= Html::openElement( 'tr',
-					[ 'class' =>'mw-sp-centralnotice-allocationrow' ] );
+					[ 'class' => 'mw-sp-centralnotice-allocationrow' ] );
 
 				$htmlOut .= Html::openElement( 'td' );
 				$htmlOut .= $row['projects_label'];
@@ -451,10 +451,10 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * Given a specific campaign-level criteria, display all unique allocations
 	 * variations caused by banner displayAnon, etc. criteria.
 	 *
-	 * @param $project string Use these campaign-level criteria...
-	 * @param $country string
-	 * @param $language string
-	 * @param $numBuckets array Check allocations in this many buckets
+	 * @param string $project Use these campaign-level criteria...
+	 * @param string $country
+	 * @param string $language
+	 * @param array $numBuckets Check allocations in this many buckets
 	 * @return string HTML for the table
 	 */
 	protected function getBannerAllocationsTable( $project, $country, $language, $numBuckets ) {
@@ -568,7 +568,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 
 		// Row begin
-		$htmlOut .= Html::openElement( 'tr', [ 'class' =>'mw-sp-centralnotice-allocationrow' ] );
+		$htmlOut .= Html::openElement( 'tr', [ 'class' => 'mw-sp-centralnotice-allocationrow' ] );
 
 		if ( !$variesAnon ) {
 			$anonLabel = $this->msg( 'centralnotice-all' )->text();
@@ -692,8 +692,8 @@ class CampaignCriteria {
 	 * Taking multiple criteria as an argument helps us do an array_reduce--
 	 * The result of a subtraction is usually multiple disjoint sets.
 	 *
-	 * @param $rows array of CampaignCriteria
-	 * @param $b single CampaignCriteria
+	 * @param array $rows array of CampaignCriteria
+	 * @param array $b single CampaignCriteria
 	 */
 	public static function difference( $rows, $b ) {
 		if ( !$b ) {

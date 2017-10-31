@@ -260,8 +260,8 @@ class CentralNotice extends SpecialPage {
 	 * Construct the priority select list for a campaign
 	 *
 	 * @param string|bool $index The name of the campaign (or false if it isn't needed)
-	 * @param boolean $editable Whether or not the form is editable by the user
-	 * @param integer $priorityValue The current priority value for this campaign
+	 * @param bool $editable Whether or not the form is editable by the user
+	 * @param int $priorityValue The current priority value for this campaign
 	 *
 	 * @return string HTML for the select list
 	 */
@@ -306,8 +306,8 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Build a set of select lists. Used by timeSelector.
-	 * @param $prefix string to identify selector set, for example, 'start' or 'end'
-	 * @param $fields array of select lists to build
+	 * @param string $prefix string to identify selector set, for example, 'start' or 'end'
+	 * @param array $fields array of select lists to build
 	 * @return string
 	 */
 	protected function createSelector( $prefix, $fields ) {
@@ -464,7 +464,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Show the interface for viewing/editing an individual campaign
 	 *
-	 * @param $notice string The name of the campaign to view
+	 * @param string $notice The name of the campaign to view
 	 */
 	function outputNoticeDetail( $notice ) {
 		global $wgCentralNoticeCampaignMixins;
@@ -1344,7 +1344,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Generates a multiple select list of all languages.
 	 *
-	 * @param $selected array The language codes of the selected languages
+	 * @param array $selected The language codes of the selected languages
 	 *
 	 * @return string multiple select list
 	 */
@@ -1372,7 +1372,7 @@ class CentralNotice extends SpecialPage {
 
 		$properties = [
 			'multiple' => 'multiple',
-			'id' =>'project_languages',
+			'id' => 'project_languages',
 			'name' => 'project_languages[]',
 			'class' => 'cn-multiselect'
 		];
@@ -1386,7 +1386,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Generates a multiple select list of all project types.
 	 *
-	 * @param $selected array The name of the selected project type
+	 * @param array $selected The name of the selected project type
 	 *
 	 * @return string multiple select list
 	 */
@@ -1404,7 +1404,7 @@ class CentralNotice extends SpecialPage {
 
 		$properties = [
 			'multiple' => 'multiple',
-			'id' =>'projects',
+			'id' => 'projects',
 			'name' => 'projects[]',
 			'class' => 'cn-multiselect'
 		];
@@ -1469,7 +1469,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Generates a multiple select list of all countries.
 	 *
-	 * @param $selected array The country codes of the selected countries
+	 * @param array $selected The country codes of the selected countries
 	 *
 	 * @return string multiple select list
 	 */
@@ -1501,7 +1501,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Sanitizes template search terms by removing non alpha and ensuring space delimiting.
 	 *
-	 * @param $terms string Search terms to sanitize
+	 * @param string $terms Search terms to sanitize
 	 *
 	 * @return string Space delimited string
 	 */
@@ -1531,10 +1531,10 @@ class CentralNotice extends SpecialPage {
 	 * Adds CentralNotice specific navigation tabs to the UI.
 	 * Implementation of SkinTemplateNavigation::SpecialPage hook.
 	 *
-	 * @param Skin  $skin Reference to the Skin object
-	 * @param array $tabs Any current skin tabs
+	 * @param Skin $skin Reference to the Skin object
+	 * @param array &$tabs Any current skin tabs
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function addNavigationTabs( Skin $skin, array &$tabs ) {
 		global $wgNoticeTabifyPages;
@@ -1583,7 +1583,7 @@ class CentralNotice extends SpecialPage {
 	 * session does not exist for the user.
 	 *
 	 * @param string $variable Name of the variable
-	 * @param object $value    Value for the variable
+	 * @param object $value Value for the variable
 	 */
 	public function setCNSessionVar( $variable, $value ) {
 		$this->getRequest()->setSessionData( "centralnotice-{$variable}", $value );

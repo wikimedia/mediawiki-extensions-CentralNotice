@@ -18,7 +18,8 @@
 			"Abanima",
 			"Khaled",
 			"Hiba Alshawi",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"ديفيد"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
@@ -243,7 +244,7 @@
 	"apihelp-query+centralnoticelogs-param-start": "مجال وقت الابتداء (اختياري).",
 	"apihelp-query+centralnoticelogs-param-end": "مجال وقت الانتهاء (اختياري)",
 	"apihelp-query+centralnoticelogs-example-1": "اعرض السجلات",
-	"centralnotice-banner-history-logger-rate": "نسبة العينة (يجب أن تكون بين 0 و 1 مشتمل)",
+	"centralnotice-banner-history-logger-rate": "معدل العينة",
 	"centralnotice-custom-record-impression-sample-rate": "خاص: طبعة السجل نسبة العينة  (يجب أن تشتمل بين 0 و 1 )",
 	"centralnotice-banner-sequence-page-views": "عدد مشاهدات الصفحة"
 }
