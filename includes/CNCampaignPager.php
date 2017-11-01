@@ -108,7 +108,10 @@ class CNCampaignPager extends TablePager {
 	public function doQuery() {
 		// group_concat output is limited to 1024 characters by default, increase
 		// the limit temporarily so the list of all languages can be rendered.
-		$this->getDatabase()->query( 'SET SESSION group_concat_max_len = 10000' );
+		$db = $this->getDatabase();
+		if ( $db->getType() === 'mysql' ) {
+			$db->query( 'SET SESSION group_concat_max_len = 10000', __METHOD__ );
+		}
 
 		parent::doQuery();
 	}
