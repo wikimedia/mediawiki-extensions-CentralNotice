@@ -69,6 +69,7 @@
 	"centralnotice-balanced": "اختصاص وژن برابر به همهٔ تبلیغات",
 	"centralnotice-weight": "وزن",
 	"centralnotice-locked": "قفل شده",
+	"centralnotice-notice-mixins-int-required": "عدد نیاز است",
 	"centralnotice-notice": "کمپین",
 	"centralnotice-notice-heading": "کمپین: $1",
 	"centralnotice-notices": "اعلانات",
