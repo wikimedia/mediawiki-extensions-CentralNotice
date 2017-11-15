@@ -43,7 +43,7 @@
 	"centralnotice-summary": "Este módulo te permite editar los parámetros actuales de los avisos centrales.\nTambién puede usarse para añadir o borrar avisos antiguos.",
 	"centralnotice-query": "Modificar avisos actuales",
 	"centralnotice-notice-name": "Nombre del aviso",
-	"centralnotice-enabled": "Habilitado",
+	"centralnotice-enabled": "Activado",
 	"centralnotice-modify": "Enviar",
 	"centralnotice-view": "Ver",
 	"centralnotice-save-banner": "Guardar",
