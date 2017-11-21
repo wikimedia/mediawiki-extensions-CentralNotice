@@ -40,6 +40,7 @@
 
 		if ( mw.cookie.get( identifier, '' ) ) {
 
+			cn.setDebugInfo( 'lbl: setting flag from legacy cookie' );
 			setFlag();
 
 			// Remove the legacy cookie
@@ -111,6 +112,8 @@
 
 	mixin.setPreBannerHandler( function ( mixinParams ) {
 
+		var switchToHigherBucket = false;
+
 		// Forced URL param. If we're showing a banner, it'll be the one for
 		// whichever bucket we're already in. No changes to storage.
 		if ( forced ) {
@@ -130,21 +133,34 @@
 
 		// No need to switch if the banner's already hidden or we're already
 		// on a small banner bucket
-		if ( cn.isBannerCanceled() || !isLarge() ) {
+		if ( cn.isBannerCanceled() ) {
+			cn.setDebugInfo( 'lbl: hidden' );
+			return;
+		}
+
+		if ( !isLarge() ) {
+			cn.setDebugInfo( 'lbl: previously switched' );
 			return;
 		}
 
 		// If we can't store a flag, or if there is a flag, go to a small banner
 
-		// Note: if there was a legacy cookie flag, either it was migrated (in
-		// which case checkFlag() will return true) or it was deleted and couldn't
-		// be set on the current system, due to having no storage options (in
-		// which case we'll always switch to small banners).
+		if ( multiStorageOption === cn.kvStore.multiStorageOptions.NO_STORAGE ) {
+			cn.setDebugInfo( 'lbl: no storage, switching' );
+			switchToHigherBucket = true;
 
-		if (
-			multiStorageOption === cn.kvStore.multiStorageOptions.NO_STORAGE ||
-			checkFlag()
-		) {
+		} else if ( checkFlag() ) {
+
+			// Note: if there was a legacy cookie flag, either it was migrated (in
+			// which case checkFlag() will return true) or it was deleted and couldn't
+			// be set on the current system, due to having no storage options (in
+			// which case we'll always switch to small banners).
+
+			cn.setDebugInfo( 'lbl: flag found, switching' );
+			switchToHigherBucket = true;
+		}
+
+		if ( switchToHigherBucket ) {
 			if ( mixinParams.randomize ) {
 				cn.setBucket( Math.floor( Math.random() * 2 ) + 2 );
 			} else {
@@ -167,6 +183,7 @@
 			!forced &&
 			cn.isBannerShown()
 		) {
+			cn.setDebugInfo( 'lbl: setting flag' );
 			setFlag();
 		}
 	} );
