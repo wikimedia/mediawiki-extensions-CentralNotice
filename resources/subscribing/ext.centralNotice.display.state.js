@@ -405,8 +405,23 @@
 				if ( tests.length === 1 ) {
 					state.data.testIdentifiers = identifier;
 				} else {
-					state.data.testIdentifiers.concat( ',' + identifier );
+					state.data.testIdentifiers += ',' + identifier;
 				}
+			}
+		},
+
+		/**
+		 * Set a string with information for debugging. (All strings set here will be
+		 * added to state data).
+		 *
+		 * @param {string} str A string with the debugging information; should not
+		 *   contain pipe characters ('|').
+		 */
+		setDebugInfo: function ( str ) {
+			if ( !state.data.debugInfo ) {
+				state.data.debugInfo = str;
+			} else {
+				state.data.debugInfo += '|' + str;
 			}
 		},
 

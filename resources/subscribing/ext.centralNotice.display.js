@@ -712,6 +712,17 @@
 		},
 
 		/**
+		 * Set a string with information for debugging. (All strings set here will be
+		 * sent to the server via the debugInfo parameter on the record impression call).
+		 *
+		 * @param {string} str A string with the debugging information; should not
+		 *   contain pipe characters ('|').
+		 */
+		setDebugInfo: function ( str ) {
+			cn.internal.state.setDebugInfo( str );
+		},
+
+		/**
 		 * Request that, if possible, the record impression call be delayed until a
 		 * promise is resolved. If the promise does not resolve before
 		 * MAX_RECORD_IMPRESSION_DELAY milliseconds after the banner is injected,
