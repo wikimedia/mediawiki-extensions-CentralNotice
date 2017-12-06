@@ -271,6 +271,7 @@
 	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "Name der Vorlage, deren Inhalt gelöscht werden soll.",
 	"apihelp-centralnoticecdncacheupdatebanner-example-1": "Löscht den Inhalt von „Vorlage1“ aus dem CDN-Cache für Deutsch",
 	"apihelp-centralnoticequerycampaign-description": "Alle Konfigurationseinstellungen für eine Kampagne erhalten.",
+	"apihelp-centralnoticequerycampaign-summary": "Ruft alle Konfigurationseinstellungen für eine Kampagne ab.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Name der Kampagne. Mehrere Werte mit einem senkrechten Strich („|“) trennen.",
 	"apihelp-centralnoticequerycampaign-example-1": "Kampagne „Plea_US“ anzeigen",
 	"apihelp-centralnoticechoicedata-description": "Ruft Daten ab, die gebraucht werden, um eine Vorlage für ein bestimmtes Projekt und eine bestimmte Sprache auszuwählen",
