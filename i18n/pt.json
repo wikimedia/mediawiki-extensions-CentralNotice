@@ -179,7 +179,7 @@
 	"centralnotice-anon": "Apresentar a utilizadores anónimos",
 	"centralnotice-account": "Apresentar a utilizadores autenticados",
 	"centralnotice-fundraising": "Angariação de fundos",
-	"centralnotice-autolink": "Criação automática de links",
+	"centralnotice-autolink": "Criação automática de hiperligações",
 	"centralnotice-landingpages": "Páginas de chegada",
 	"centralnotice-controller_mixin": "Elementos partilhados (<i>mixins</i>) do controlador",
 	"centralnotice-campaign-mixins": "Elementos partilhados (<i>mixins</i>) de avisos",
