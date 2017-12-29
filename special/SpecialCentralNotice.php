@@ -1434,8 +1434,7 @@ class CentralNotice extends SpecialPage {
 		$placeholderMsg = $action ? 'centralnotice-change-summary-action-prompt'
 			: 'centralnotice-change-summary-prompt';
 
-		return
-			Xml::element( 'label',
+		return Xml::element( 'label',
 				[ 'class' => 'cn-change-summary-label' ],
 				$this->msg( 'centralnotice-change-summary-label' )->escaped()
 			) . Xml::element( 'input',
