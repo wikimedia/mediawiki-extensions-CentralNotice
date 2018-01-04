@@ -13,7 +13,7 @@
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:CentralNotice",
 	"descriptionmsg": "centralnotice-desc",
-	"license-name": "GPL-2.0+",
+	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"namespaces": [
 		{
