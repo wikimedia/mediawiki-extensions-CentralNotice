@@ -135,6 +135,7 @@
 	"centralnotice-banner-display-on": "نمایش در",
 	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-banner-mixins-help": "هر mixin که می‌خواهید در این رساندن پیام شامل کنید بررسی کنید. ([https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins mixinهای پیام‌ها] را برای اطلاعات بیشتر ببینید.)",
+	"centralnotice-banner-cdn-controls": "کاشه جلویی",
 	"centralnotice-banner-cdn-button": "پاک‌سازی میانگیر",
 	"centralnotice-banner-cdn-dialog-ok": "تأیید",
 	"apierror-centralnotice-cdn-banner-not-found": "بنر پیدا نشد",

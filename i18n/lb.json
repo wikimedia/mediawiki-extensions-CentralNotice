@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Les Meloures"
 		]
 	},
 	"centralnotice": "Administratioun vun den zentrale Matdeelungen",
@@ -221,7 +222,7 @@
 	"centralnotice-large-banner-limit-identifier": "Identifikatioun fir d'Späicheren op der säit vum Client",
 	"centralnotice-banner-sequence": "Sequenz vun de Banneren",
 	"centralnotice-banner-sequence-days-error": "Muss eng ganz Zuel sinn déi méi grouss wéi null ass.",
-	"centralnotice-banner-sequence-bucket-add-step": "E Schrëtt dobäisetzen",
+	"centralnotice-banner-sequence-bucket-add-step": "E Schrëtt derbäisetzen",
 	"centralnotice-banner-sequence-banner": "Banner",
 	"centralnotice-banner-sequence-no-banner": "(Kee Banner)"
 }
