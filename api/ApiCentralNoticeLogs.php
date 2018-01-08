@@ -57,7 +57,7 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 	}
 
 	/**
-	 * @see ApiBase::getExamplesMessages()
+	 * @inheritDoc
 	 */
 	protected function getExamplesMessages() {
 		return [

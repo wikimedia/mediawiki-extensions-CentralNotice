@@ -100,6 +100,8 @@ class CentralNoticeHooks {
 
 	/**
 	 * Tell the UserMerge extension where we store user ids
+	 * @param array[] &$updateFields
+	 * @return true
 	 */
 	public static function onUserMergeAccountFields( &$updateFields ) {
 		global $wgNoticeInfrastructure;

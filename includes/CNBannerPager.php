@@ -201,7 +201,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 	/**
 	 * Make a self-link. Overriding to add filter as a query parameter.
-	 * @see Pager::makeLink()
+	 * @inheritDoc
 	 */
 	public function makeLink( $text, array $query = null, $type = null ) {
 		$filterQuery = $this->hostSpecialPage->getFilterUrlParamAsArray();
@@ -214,8 +214,8 @@ class CNBannerPager extends ReverseChronologicalPager {
 }
 
 class HTMLBannerPagerNavigation extends HTMLFormField {
-	/** Empty - no validation can be done on a navigation element */
 	function validate( $value, $alldata ) {
+		// Empty - no validation can be done on a navigation element
 		return true;
 	}
 

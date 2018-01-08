@@ -23,6 +23,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Sort the log list by timestamp
+	 * @return string
 	 */
 	function getIndexField() {
 		return 'rc_timestamp';
@@ -30,6 +31,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Pull log entries from the database
+	 * @return array[]
 	 */
 	function getQueryInfo() {
 		$conds = [
@@ -77,6 +79,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Generate the content of each table row (1 row = 1 log entry)
+	 * @param stdClass $row
+	 * @return string HTML
 	 */
 	function formatRow( $row ) {
 		// Create a user object so we can pull the name, user page, etc.

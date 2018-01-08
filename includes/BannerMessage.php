@@ -40,6 +40,8 @@ class BannerMessage {
 
 	/**
 	 * Return the whether the message exists, without language fallback.
+	 * @param string|null $lang
+	 * @return bool
 	 */
 	function existsInLang( $lang ) {
 		return $this->getTitle( $lang )->exists();
@@ -48,6 +50,7 @@ class BannerMessage {
 	/**
 	 * Obtain the raw contents of the message; stripping out the stupid <message-name> if it's blank
 	 *
+	 * @param null|string $lang
 	 * @return null|string Will be null if the message does not exist, otherwise will be
 	 * the contents of the message.
 	 */
@@ -86,6 +89,10 @@ class BannerMessage {
 
 	/**
 	 * Add or update message contents
+	 * @param string $translation
+	 * @param string|null $lang
+	 * @param User $user
+	 * @param string|null $summary
 	 */
 	function update( $translation, $lang, $user, $summary = null ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;

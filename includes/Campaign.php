@@ -435,6 +435,7 @@ class Campaign {
 	/**
 	 * Get all campaign configurations as of timestamp $ts
 	 *
+	 * @param int $ts
 	 * @return array of settings structs having the following properties:
 	 *     id
 	 *     name
@@ -1008,6 +1009,8 @@ class Campaign {
 
 	/**
 	 * Remove a banner assignment from a campaign
+	 * @param string $noticeName
+	 * @param string $templateName
 	 */
 	static function removeTemplateFor( $noticeName, $templateName ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
@@ -1034,6 +1037,8 @@ class Campaign {
 
 	/**
 	 * Lookup the name of a campaign based on the campaign ID
+	 * @param int $noticeId
+	 * @return null|string
 	 */
 	static function getNoticeName( $noticeId ) {
 		$dbr = CNDatabase::getDb();

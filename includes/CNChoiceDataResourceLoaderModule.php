@@ -91,7 +91,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @see ResourceLoaderModule::getScript()
+	 * @inheritDoc
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$choices = $this->getChoices( $context );
@@ -117,7 +117,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @see ResourceLoaderModule::getDependencies()
+	 * @inheritDoc
 	 * Note: requires mediawiki-core change-id @Iee61e5b52
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
@@ -160,7 +160,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @see ResourceLoaderModule::getDefinitionSummary()
+	 * @inheritDoc
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );

@@ -14,6 +14,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 	/**
 	 * Handle different types of page requests
+	 * @param string|null $sub
 	 */
 	function execute( $sub ) {
 		global $wgExtensionAssetsPath;
@@ -203,6 +204,10 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 	/**
 	 * Render a field suitable for jquery.ui datepicker
+	 * @param string $prefix
+	 * @param bool $editable
+	 * @param string $date
+	 * @return string HTML
 	 */
 	protected function dateSelector( $prefix, $editable = true, $date = '' ) {
 		$out = Html::element( 'input',
@@ -263,6 +268,8 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 	/**
 	 * Returns the jquery.ui datepicker value, or null if the field is blank.
+	 * @param string $name
+	 * @return null|string
 	 */
 	public function getDateValue( $name ) {
 		$manual_entry = $this->getRequest()->getVal( "{$name}Date" );
