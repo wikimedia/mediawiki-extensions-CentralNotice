@@ -12,7 +12,8 @@
 			"පසිඳු කාවින්ද",
 			"Gazimagomedov",
 			"StanProg",
-			"Vodnokon4e"
+			"Vodnokon4e",
+			"ShockD"
 		]
 	},
 	"centralnotice": "Администратор на централизираните съобщения",
@@ -33,7 +34,7 @@
 	"centralnotice-preview": "Предварителен преглед ($1)",
 	"centralnotice-live-preview": "Предварителен преглед в уики",
 	"centralnotice-nopreview": "(Не е наличен предварителен преглед)",
-	"centralnotice-add-new": "Добавяне на ново кампания",
+	"centralnotice-add-new": "Добавяне на нова кампания",
 	"centralnotice-remove": "Премахване",
 	"centralnotice-translate-heading": "Превод за $1",
 	"centralnotice-manage": "Управление на кампании",
