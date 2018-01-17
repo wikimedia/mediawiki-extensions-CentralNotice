@@ -279,6 +279,7 @@
 	"apihelp-centralnoticechoicedata-param-language": "Die Sprache, für die die Vorlagenwahldaten abgerufen werden sollen.",
 	"apihelp-centralnoticechoicedata-example-1": "Ruft die Daten für die Wahl einer Vorlage für englischsprachige Wikipedia-Benutzer ab.",
 	"apihelp-query+centralnoticelogs-description": "Ruft ein Logbuch mit Kampagnenkonfigurationsänderungen ab.",
+	"apihelp-query+centralnoticelogs-summary": "Ruft ein Logbuch der Änderungen an Kampagnenkonfigurationen ab.",
 	"apihelp-query+centralnoticelogs-param-campaign": "Name der Kampagne (optional). Mehrere Werte mit einem senkrechten Strich („|“) trennen.",
 	"apihelp-query+centralnoticelogs-param-user": "Benutzername (optional).",
 	"apihelp-query+centralnoticelogs-param-limit": "Maximale Anzahl zurückzugebender Zeilen (optional).",
