@@ -275,6 +275,7 @@
 	"apihelp-centralnoticequerycampaign-param-campaign": "Name der Kampagne. Mehrere Werte mit einem senkrechten Strich („|“) trennen.",
 	"apihelp-centralnoticequerycampaign-example-1": "Kampagne „Plea_US“ anzeigen",
 	"apihelp-centralnoticechoicedata-description": "Ruft Daten ab, die gebraucht werden, um eine Vorlage für ein bestimmtes Projekt und eine bestimmte Sprache auszuwählen",
+	"apihelp-centralnoticechoicedata-summary": "Ruft erforderliche Daten zur Auswahl einer Vorlage für ein angegebenes Projekt und eine Sprache ab",
 	"apihelp-centralnoticechoicedata-param-project": "Das Projekt, für das die Vorlagenwahldaten abgerufen werden sollen.",
 	"apihelp-centralnoticechoicedata-param-language": "Die Sprache, für die die Vorlagenwahldaten abgerufen werden sollen.",
 	"apihelp-centralnoticechoicedata-example-1": "Ruft die Daten für die Wahl einer Vorlage für englischsprachige Wikipedia-Benutzer ab.",
