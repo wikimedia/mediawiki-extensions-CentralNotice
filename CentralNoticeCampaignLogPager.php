@@ -16,6 +16,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Sort the log list by timestamp
+	 * @return string
 	 */
 	function getIndexField() {
 		return 'notlog_timestamp';
@@ -23,6 +24,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Pull log entries from the database
+	 * @return array[]
 	 */
 	function getQueryInfo() {
 		$request = $this->getRequest();
@@ -74,6 +76,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Generate the content of each table row (1 row = 1 log entry)
+	 * @param stdClass $row
+	 * @return string HTML
 	 */
 	function formatRow( $row ) {
 		global $wgExtensionAssetsPath;
@@ -504,6 +508,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Specify table headers
+	 * @return string HTML
 	 */
 	function getStartBody() {
 		$htmlOut = '';
@@ -534,6 +539,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Close table
+	 * @return strint HTML
 	 */
 	function getEndBody() {
 		$htmlOut = '';

@@ -11,6 +11,7 @@ class CentralNoticePager extends TemplatePager {
 
 	/**
 	 * Pull banners from the database
+	 * @return array[]
 	 */
 	function getQueryInfo() {
 		$dbr = CNDatabase::getDb();
@@ -74,6 +75,8 @@ class CentralNoticePager extends TemplatePager {
 
 	/**
 	 * Generate the content of each table row (1 row = 1 banner)
+	 * @param stdClass $row
+	 * @return string HTML
 	 */
 	function formatRow( $row ) {
 		// Begin banner row

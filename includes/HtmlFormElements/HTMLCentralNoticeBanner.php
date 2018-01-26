@@ -33,12 +33,16 @@
  * - 'withlabel' - Presence of this attribute causes a label to be shown
  */
 class HTMLCentralNoticeBanner extends HTMLInfoField {
-	/** Empty - no validation can be done on a banner */
 	function validate( $value, $alldata ) {
+		// Empty - no validation can be done on a banner
 		return true;
 	}
 
-	/** Get a preview of the banner */
+	/**
+	 * Get a preview of the banner
+	 * @param string $value
+	 * @return string HTML
+	 */
 	public function getInputHTML( $value ) {
 		global $wgOut,
 			$wgNoticeBannerPreview;

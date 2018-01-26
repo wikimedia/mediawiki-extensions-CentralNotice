@@ -59,6 +59,9 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 
 	/**
 	 * Set the cookie for hiding fundraising banners.
+	 * @param string $category
+	 * @param int $duration
+	 * @param string $reason
 	 */
 	function setHideCookie( $category, $duration, $reason ) {
 		global $wgNoticeCookieDomain;

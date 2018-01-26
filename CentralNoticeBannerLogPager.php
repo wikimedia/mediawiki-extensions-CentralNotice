@@ -10,6 +10,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	/**
 	 * Sort the log list by timestamp
+	 * @return string
 	 */
 	function getIndexField() {
 		return 'tmplog_timestamp';
@@ -17,6 +18,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	/**
 	 * Pull log entries from the database
+	 * @return array
 	 */
 	function getQueryInfo() {
 		return [
@@ -27,6 +29,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	/**
 	 * Generate the content of each table row (1 row = 1 log entry)
+	 * @param stdClass $row
+	 * @return string HTML
 	 */
 	function formatRow( $row ) {
 		global $wgExtensionAssetsPath;

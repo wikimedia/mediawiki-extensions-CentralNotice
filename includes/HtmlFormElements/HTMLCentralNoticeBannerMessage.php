@@ -43,12 +43,16 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 		parent::__construct( $params );
 	}
 
-	/** Empty - no validation can be done on a banner message */
 	function validate( $value, $alldata ) {
+		// Empty - no validation can be done on a banner message
 		return true;
 	}
 
-	/** Get a preview of the banner message */
+	/**
+	 * Get a preview of the banner message
+	 * @param string $value
+	 * @return string HTML
+	 */
 	public function getInputHTML( $value ) {
 		global $wgContLang;
 

@@ -12,8 +12,6 @@ class BannerMessageGroup extends WikiMessageGroup {
 	protected $namespace = NS_CN_BANNER;
 
 	/**
-	 * Constructor.
-	 *
 	 * @param int $namespace ID of the namespace holding CentralNotice messages
 	 * @param string $title The page name of the CentralNotice banner
 	 */
@@ -89,6 +87,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	/**
 	 * Determine if the CentralNotice banner group is using the group review feature of translate
+	 * @return bool
 	 */
 	static function isUsingGroupReview() {
 		static $useGroupReview = null;

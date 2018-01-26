@@ -314,6 +314,8 @@ class AllocationCalculator {
 	}
 
 	/**
+	 * @param string $s
+	 * @return int
 	 * @throws InvalidArgumentException
 	 */
 	public static function getLoggedInStatusFromString( $s ) {
