@@ -858,7 +858,7 @@
 	BannerSequenceWidget.prototype.updateFromModelForBucket = function ( bucket ) {
 
 		var sequence = this.model.getBktSequences()[ bucket ],
-			seqContainer = this.getItemFromData( bucket );
+			seqContainer = this.findItemFromData( bucket );
 
 		// If we don't have a sequence container for this bucket it, create it
 		if ( !seqContainer ) {
@@ -887,7 +887,7 @@
 	 * Tell the sequence container for a bucket to remove a step
 	 */
 	BannerSequenceWidget.prototype.removeStepForBucket = function ( bucket, stepNum ) {
-		var seqContainerWidget = this.getItemFromData( bucket );
+		var seqContainerWidget = this.findItemFromData( bucket );
 
 		seqContainerWidget.removeStep( stepNum );
 	};
@@ -902,7 +902,7 @@
 		bucket,
 		stepsWithMissingBanners
 	) {
-		this.getItemFromData( bucket ).setMissingBannerErrors( stepsWithMissingBanners );
+		this.findItemFromData( bucket ).setMissingBannerErrors( stepsWithMissingBanners );
 	};
 
 	/**
@@ -912,7 +912,7 @@
 		bucket,
 		banners
 	) {
-		this.getItemFromData( bucket ).updateBannersForDropDowns( banners );
+		this.findItemFromData( bucket ).updateBannersForDropDowns( banners );
 	};
 
 	/**
@@ -920,7 +920,7 @@
 	 * sequence.
 	 */
 	BannerSequenceWidget.prototype.updateTotalPageViewsForBucket = function ( bucket ) {
-		this.getItemFromData( bucket ).updateTotalPageViews();
+		this.findItemFromData( bucket ).updateTotalPageViews();
 	};
 
 	/* BucketSeqContainerWidget */
@@ -1007,7 +1007,7 @@
 		// Go through steps in model, adding or updating widgets as needed
 		for ( i = 0; i < this.model.length; i++ ) {
 			stepModel = this.model[ i ];
-			stepWidget = this.bucketSeqWidget.getItemFromData( i );
+			stepWidget = this.bucketSeqWidget.findItemFromData( i );
 
 			if ( !stepWidget ) {
 				this.addStepWidget( stepModel, i );
@@ -1080,7 +1080,7 @@
 
 	BucketSeqContainerWidget.prototype.removeStep = function ( stepNum ) {
 
-		var stepWidget = this.bucketSeqWidget.getItemFromData( stepNum );
+		var stepWidget = this.bucketSeqWidget.findItemFromData( stepNum );
 
 		stepWidget.clearFromGeneralErrorState();
 		this.bucketSeqWidget.removeItems( [ stepWidget ] );
@@ -1101,7 +1101,7 @@
 		for ( i = 0; i < stepsWithMissingBanners.length; i++ ) {
 
 			this.bucketSeqWidget
-				.getItemFromData( stepsWithMissingBanners[ i ] )
+				.findItemFromData( stepsWithMissingBanners[ i ] )
 				.setMissingBannerError( true );
 		}
 	};
