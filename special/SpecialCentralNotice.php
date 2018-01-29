@@ -515,6 +515,7 @@ class CentralNotice extends SpecialPage {
 				[
 					'method' => 'post',
 					'id' => 'centralnotice-notice-detail',
+					'autocomplete' => 'off',
 					'action' => $this->getPageTitle()->getLocalURL( [
 						'subaction' => 'noticeDetail',
 						'notice' => $notice
@@ -1385,7 +1386,8 @@ class CentralNotice extends SpecialPage {
 			'multiple' => 'multiple',
 			'id' => 'project_languages',
 			'name' => 'project_languages[]',
-			'class' => 'cn-multiselect'
+			'class' => 'cn-multiselect',
+			'autocomplete' => 'off'
 		];
 		if ( !$this->editable ) {
 			$properties['disabled'] = 'disabled';
@@ -1417,7 +1419,8 @@ class CentralNotice extends SpecialPage {
 			'multiple' => 'multiple',
 			'id' => 'projects',
 			'name' => 'projects[]',
-			'class' => 'cn-multiselect'
+			'class' => 'cn-multiselect',
+			'autocomplete' => 'off'
 		];
 		if ( !$this->editable ) {
 			$properties['disabled'] = 'disabled';
@@ -1499,7 +1502,8 @@ class CentralNotice extends SpecialPage {
 			'multiple' => 'multiple',
 			'id'       => 'geo_countries',
 			'name'     => 'geo_countries[]',
-			'class'    => 'cn-multiselect'
+			'class'    => 'cn-multiselect',
+			'autocomplete' => 'off'
 		];
 		if ( !$this->editable ) {
 			$properties['disabled'] = 'disabled';
