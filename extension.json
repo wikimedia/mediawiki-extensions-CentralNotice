@@ -113,8 +113,7 @@
 				"mediawiki.jqueryMsg"
 			],
 			"scripts": "vendor/jquery.ui.multiselect/ui.multiselect.js",
-			"styles": "vendor/jquery.ui.multiselect/ui.multiselect.css",
-			"position": "top"
+			"styles": "vendor/jquery.ui.multiselect/ui.multiselect.css"
 		},
 		"ext.centralNotice.adminUi": {
 			"dependencies": [
@@ -388,7 +387,6 @@
 			]
 		},
 		"ext.centralNotice.bannerController": {
-			"position": "top",
 			"dependencies": [
 				"ext.centralNotice.startUp",
 				"ext.centralNotice.geoIP"
@@ -398,7 +396,6 @@
 			]
 		},
 		"ext.centralNotice.bannerController.mobile": {
-			"position": "top",
 			"dependencies": [
 				"ext.centralNotice.startUp",
 				"ext.centralNotice.geoIP"
