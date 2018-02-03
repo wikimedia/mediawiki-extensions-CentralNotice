@@ -1192,7 +1192,7 @@
 
 		// Set drag handle
 		// Note: Adding the oo-uiwidget class is a hack, apparently needed due to an issue
-		// in OOjs-ui styles.
+		// in OOUI styles.
 		// TODO Check this out; possible mistaken change to DraggableElement.less in
 		// f6be5b2f1f0ef67ab0efeaa25568976587435d95 ?
 		this.$handle = $( '<div />' ).addClass(
