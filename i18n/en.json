@@ -61,6 +61,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Campaign does not exist.\nNothing to remove.",
 	"centralnotice-banner-doesnt-exist": "Banner does not exist.",
 	"centralnotice-banner-edit-onwiki": "Edit banner on-wiki",
+	"centralnotice-banner-history": "View banner history",
 	"centralnotice-template-still-bound": "Cannot remove banner \"$1\" as it is still bound to a campaign.\nNot removing.",
 	"centralnotice-template-body": "Banner body:",
 	"centralnotice-day": "Day",

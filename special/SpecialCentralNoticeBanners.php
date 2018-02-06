@@ -394,8 +394,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[ 'action' => 'edit' ]
 				);
+			$links[] = Linker::link(
+				$bannerTitle,
+				$this->msg( 'centralnotice-banner-history' )->escaped(),
+				[ 'class' => 'cn-banner-list-element-label-text' ],
+				[ 'action' => 'history' ]
+				);
 		}
-
 		return $links;
 	}
 
