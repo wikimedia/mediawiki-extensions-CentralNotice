@@ -14,6 +14,7 @@ class ChoiceDataProvider {
 
 	/**
 	 * Invalidate the shared global cache.
+	 * @return bool
 	 */
 	public static function invalidateCache() {
 		$cache = ObjectCache::getMainWANInstance();

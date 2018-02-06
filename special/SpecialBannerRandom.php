@@ -12,6 +12,7 @@ class SpecialBannerRandom extends SpecialBannerLoader {
 
 	/**
 	 * This endpoint is deprecated.
+	 * @param string|null $par
 	 */
 	function execute( $par ) {
 		$this->getOutput()->disable();

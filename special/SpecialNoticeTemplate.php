@@ -14,6 +14,7 @@ class SpecialNoticeTemplate extends CentralNotice {
 
 	/**
 	 * Handle different types of page requests
+	 * @param string|null $sub
 	 */
 	public function execute( $sub ) {
 		if ( $sub == 'view' ) {

@@ -28,6 +28,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Handle different types of page requests
+	 * @param string|null $sub
 	 */
 	function execute( $sub ) {
 		// Begin output
@@ -193,6 +194,10 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Render a field suitable for jquery.ui datepicker
+	 * @param string $name
+	 * @param bool $editable
+	 * @param string|null $timestamp
+	 * @return string
 	 */
 	protected function dateSelector( $name, $editable, $timestamp = null ) {
 		if ( $editable ) {
@@ -443,6 +448,8 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Retrieve jquery.ui.datepicker date and homebrew time,
 	 * and return as a MW timestamp string.
+	 * @param string $prefix
+	 * @return null|string
 	 */
 	function getDateTime( $prefix ) {
 		global $wgRequest;
@@ -799,6 +806,8 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Create form for managing campaign settings (start date, end date, languages, etc.)
+	 * @param string $notice
+	 * @return string HTML
 	 */
 	function noticeDetailForm( $notice ) {
 		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
@@ -1053,6 +1062,8 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * Common campaign misconfigurations will cause warnings to appear
 	 * at the top of this form.
+	 * @param string $notice
+	 * @return string HTML
 	 */
 	function assignedTemplatesForm( $notice ) {
 		global $wgNoticeNumberOfBuckets;
@@ -1434,8 +1445,7 @@ class CentralNotice extends SpecialPage {
 		$placeholderMsg = $action ? 'centralnotice-change-summary-action-prompt'
 			: 'centralnotice-change-summary-prompt';
 
-		return
-			Xml::element( 'label',
+		return Xml::element( 'label',
 				[ 'class' => 'cn-change-summary-label' ],
 				$this->msg( 'centralnotice-change-summary-label' )->escaped()
 			) . Xml::element( 'input',
@@ -1521,6 +1531,8 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Truncate the summary field in a linguistically appropriate way.
+	 * @param string $summary
+	 * @return string
 	 */
 	public static function truncateSummaryField( $summary ) {
 		global $wgContLang;

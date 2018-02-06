@@ -8,10 +8,10 @@
 	display: inline-block;
 	zoom: 1;
 	/* @embed */
-	background: url( CloseWindow19x19.png );
-	width: 19px;
-	height: 19px;
-	text-indent: 19px;
+	background: url( close.png ) no-repeat;
+	width: 20px;
+	height: 20px;
+	text-indent: 20px;
 	white-space: nowrap;
 	overflow: hidden;
 }

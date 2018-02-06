@@ -219,7 +219,7 @@
 	OO.inheritClass( MixinCustomWidget, OO.ui.Widget );
 	OO.mixinClass( MixinCustomWidget, OO.ui.mixin.GroupElement );
 
-	/* Event handlers (non-OOjs-UI) and related logic */
+	/* Event handlers (non-OOUI) and related logic */
 
 	/**
 	 * Simple object for keeping track of validation errors.

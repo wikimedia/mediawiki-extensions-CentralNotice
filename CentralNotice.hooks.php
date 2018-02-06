@@ -100,6 +100,8 @@ class CentralNoticeHooks {
 
 	/**
 	 * Tell the UserMerge extension where we store user ids
+	 * @param array[] &$updateFields
+	 * @return true
 	 */
 	public static function onUserMergeAccountFields( &$updateFields ) {
 		global $wgNoticeInfrastructure;
@@ -168,9 +170,12 @@ class CentralNoticeHooks {
 		// TODO Separate geoIP from CentralNotice
 		$out->addModules( 'ext.centralNotice.geoIP' );
 
-		// If we're editing or we're on a special page, bow out now
+		// If we're on a special page, editing, viewing history or a diff, bow out now
+		// This is to reduce chance of bad misclicks from delayed banner loading
 		if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
-			( $wgRequest->getText( 'action' ) === 'edit' )
+			( $wgRequest->getText( 'action' ) === 'edit' ) ||
+			( $wgRequest->getText( 'action' ) === 'history' ) ||
+			$wgRequest->getCheck( 'diff' )
 		) {
 			return true;
 		}

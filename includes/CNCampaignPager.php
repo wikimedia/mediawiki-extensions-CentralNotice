@@ -53,7 +53,7 @@ class CNCampaignPager extends TablePager {
 	}
 
 	/**
-	 * @see IndexPager::getQueryInfo()
+	 * @inheritDoc
 	 */
 	public function getQueryInfo() {
 		$pagerQuery = [
@@ -108,13 +108,16 @@ class CNCampaignPager extends TablePager {
 	public function doQuery() {
 		// group_concat output is limited to 1024 characters by default, increase
 		// the limit temporarily so the list of all languages can be rendered.
-		$this->getDatabase()->query( 'SET SESSION group_concat_max_len = 10000' );
+		$db = $this->getDatabase();
+		if ( $db->getType() === 'mysql' ) {
+			$db->query( 'SET SESSION group_concat_max_len = 10000', __METHOD__ );
+		}
 
 		parent::doQuery();
 	}
 
 	/**
-	 * @see TablePager::getFieldNames()
+	 * @inheritDoc
 	 */
 	public function getFieldNames() {
 		if ( !$this->fieldNames ) {
@@ -137,7 +140,7 @@ class CNCampaignPager extends TablePager {
 	}
 
 	/**
-	 * @see TablePager::getStartBody()
+	 * @inheritDoc
 	 */
 	public function getStartBody() {
 		$htmlOut = '';
@@ -277,7 +280,7 @@ class CNCampaignPager extends TablePager {
 	/**
 	 * Set special CSS classes for active and archived campaigns.
 	 *
-	 * @see TablePager::getRowClass()
+	 * @inheritDoc
 	 */
 	public function getRowClass( $row ) {
 		$enabled = ( $row->not_enabled == '1' );
@@ -301,7 +304,7 @@ class CNCampaignPager extends TablePager {
 	}
 
 	/**
-	 * @see TablePager::getCellAttrs()
+	 * @inheritDoc
 	 */
 	public function getCellAttrs( $field, $value ) {
 		$attrs = parent::getCellAttrs( $field, $value );
@@ -329,7 +332,7 @@ class CNCampaignPager extends TablePager {
 	}
 
 	/**
-	 * @see TablePager::getEndBody()
+	 * @inheritDoc
 	 */
 	public function getEndBody() {
 		$htmlOut = '';
@@ -360,7 +363,7 @@ class CNCampaignPager extends TablePager {
 	}
 
 	/**
-	 * @see TablePager::isFieldSortable()
+	 * @inheritDoc
 	 */
 	public function isFieldSortable( $field ) {
 		// If this is the only page shown, we'll sort via JS, which works on all
@@ -385,7 +388,7 @@ class CNCampaignPager extends TablePager {
 	}
 
 	/**
-	 * @see TablePager::getDefaultSort()
+	 * @inheritDoc
 	 */
 	public function getDefaultSort() {
 		return $this->assignedBannerId === null ?
@@ -394,13 +397,14 @@ class CNCampaignPager extends TablePager {
 
 	/**
 	 * Returns true if this is the only page of results there is to show.
+	 * @return bool
 	 */
 	protected function isWithinLimit() {
 		return $this->mIsFirst && $this->mIsLast;
 	}
 
 	/**
-	 * @see IndexPager::extractResultInfo()
+	 * @inheritDoc
 	 */
 	function extractResultInfo( $isFirst, $limit, ResultWrapper $res ) {
 		parent::extractResultInfo( $isFirst, $limit, $res );
@@ -413,7 +417,7 @@ class CNCampaignPager extends TablePager {
 	}
 
 	/**
-	 * @see TablePager::getTableClass()
+	 * @inheritDoc
 	 */
 	public function getTableClass() {
 		$jsSortable = $this->isWithinLimit() ? ' sortable' : '';

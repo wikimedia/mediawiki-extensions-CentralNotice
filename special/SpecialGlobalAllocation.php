@@ -95,6 +95,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * Handle page requests
 	 *
 	 * Without filters, this will display the allocation of all active banners.
+	 * @param string|null $sub
 	 */
 	public function execute( $sub ) {
 		global $wgNoticeProjects, $wgLanguageCode;
@@ -339,6 +340,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * and Dx,y = ({a}, {1, 3}).  The intersection will be CDx,y = ({a}, {1}),
 	 * and to represent the remaining grouping C-CD will take two cross-product
 	 * rows: Cx,y = ({a}, {2}) + ({b}, {1, 2}).
+	 * @return array[]
 	 */
 	protected function analyzeGroupings() {
 		$groupings = [];
@@ -418,6 +420,9 @@ class SpecialGlobalAllocation extends CentralNotice {
 	 * Return every (unordered) combination of $num elements from $list
 	 * TODO: don't use recursion.
 	 *
+	 * @param array $list
+	 * @param int $num
+	 * @return array[]
 	 * @throws InvalidArgumentException
 	 */
 	protected static function makeCombinations( array $list, $num ) {
@@ -558,6 +563,12 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 	/**
 	 * Print one line of banner allocations.
+	 * @param array $banner
+	 * @param bool $variesAnon
+	 * @param bool $variesBucket
+	 * @param bool $isAnon
+	 * @param string $bucket
+	 * @return string HTML
 	 */
 	function getBannerAllocationsVariantRow(
 		$banner, $variesAnon, $variesBucket, $isAnon, $bucket
@@ -635,10 +646,11 @@ class SpecialGlobalAllocation extends CentralNotice {
 	/**
 	 * Filter campaigns using criteria provided.
 	 *
-	 * @param array $campaigns campaings to filter
+	 * @param array[] $campaigns campaings to filter
 	 * @param string $country
 	 * @param string $language
 	 * @param string $project
+	 * @return array[]
 	 */
 	protected static function filterCampaigns(
 		$campaigns, $country, $language, $project
@@ -692,8 +704,9 @@ class CampaignCriteria {
 	 * Taking multiple criteria as an argument helps us do an array_reduce--
 	 * The result of a subtraction is usually multiple disjoint sets.
 	 *
-	 * @param array $rows array of CampaignCriteria
+	 * @param array[] $rows array of CampaignCriteria
 	 * @param array $b single CampaignCriteria
+	 * @return array[]
 	 */
 	public static function difference( $rows, $b ) {
 		if ( !$b ) {

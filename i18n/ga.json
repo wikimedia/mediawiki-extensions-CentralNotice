@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Alison",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Nmacu"
 		]
 	},
 	"noticetemplate": "Teimpléad fógra lárnach",
@@ -12,6 +13,7 @@
 	"centralnotice-month": "Mí",
 	"centralnotice-message": "Teachtaireacht",
 	"centralnotice-clone-name": "Ainm:",
+	"centralnotice-insert": "Ionsáigh: $1",
 	"centralnotice-close-title": "Dún",
 	"centralnotice-language": "Teanga",
 	"centralnotice-user": "Úsáideoir",

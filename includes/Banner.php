@@ -357,6 +357,7 @@ class Banner {
 
 	/**
 	 * Sets the flag which will save basic metadata on next save()
+	 * @param bool $dirty
 	 */
 	protected function setBasicDataDirty( $dirty = true ) {
 		$this->dirtyFlags['basic'] = $dirty;
@@ -477,6 +478,7 @@ class Banner {
 
 	/**
 	 * Sets the flag which will force saving of device targeting data on next save()
+	 * @param bool $dirty
 	 */
 	protected function markDeviceTargetDataDirty( $dirty = true ) {
 		$this->dirtyFlags['devices'] = $dirty;
@@ -585,6 +587,7 @@ class Banner {
 
 	/**
 	 * Sets the flag which will force saving of mixin data upon next save()
+	 * @param bool $dirty
 	 */
 	protected function markMixinDataDirty( $dirty = true ) {
 		$this->dirtyFlags['mixins'] = $dirty;
@@ -1315,6 +1318,8 @@ class Banner {
 	/**
 	 * FIXME: a little thin, it's just enough to get the job done
 	 *
+	 * @param string $name
+	 * @param int $ts
 	 * @return array|null banner settings as an associative array, with these properties:
 	 *    display_anon: 0/1 whether the banner is displayed to anonymous users
 	 *    display_account: 0/1 same, for logged-in users

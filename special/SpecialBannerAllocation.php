@@ -49,9 +49,6 @@ class SpecialBannerAllocation extends CentralNotice {
 	 */
 	public $location = 'US';
 
-	/**
-	 * Constructor
-	 */
 	public function __construct() {
 		// Register special page
 		SpecialPage::__construct( 'BannerAllocation' );
@@ -63,6 +60,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 	/**
 	 * Handle different types of page requests
+	 * @param string|null $sub
 	 */
 	public function execute( $sub ) {
 		global $wgNoticeProjects, $wgLanguageCode, $wgNoticeProject;

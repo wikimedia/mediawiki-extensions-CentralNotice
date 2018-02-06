@@ -99,6 +99,7 @@
 	"centralnotice-prioritylangs": "Приоритетан меттанаш",
 	"centralnotice-devicetype-android": "Android",
 	"centralnotice-devicetype-iphone": "iPhone массо версеш",
+	"centralnotice-all": "Ерриге",
 	"centralnotice-banner-class": "Категори",
 	"centralnotice-archive-banner-cancel": "Цаоьшу",
 	"centralnotice-change-summary-label": "Цунах лаьцна",
@@ -113,6 +114,5 @@
 	"centralnotice-start-date": "Долина хан (UTC)",
 	"centralnotice-start-time": "Долина хан (UTC)",
 	"centralnotice-end-date": "Чаккхенна хан (UTC)",
-	"centralnotice-end-time": "Чаккхенна хан (UTC)",
-	"centralnotice-impression-diet-cookie-name": "Къайлаяккха куки цӀе"
+	"centralnotice-end-time": "Чаккхенна хан (UTC)"
 }

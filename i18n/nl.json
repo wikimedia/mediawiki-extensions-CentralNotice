@@ -18,7 +18,8 @@
 			"MedShot",
 			"Esketti",
 			"Mainframe98",
-			"Optilete"
+			"Optilete",
+			"Mar(c)"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -267,7 +268,7 @@
 	"apihelp-centralnoticequerycampaign-example-1": "Campagne \"Plea_US\" weergeven",
 	"apihelp-centralnoticechoicedata-description": "Voor gegevens die nodig zijn om een banner kiezen voor een bepaald project en taal",
 	"apihelp-centralnoticechoicedata-param-project": "Het project te krijgen banner keuze data voor.",
-	"apihelp-centralnoticechoicedata-param-language": "De taal te krijgen banner keuze data voor.",
+	"apihelp-centralnoticechoicedata-param-language": "De taal waarvoor bannerkeuzegegevens moeten worden opgehaald.",
 	"apihelp-centralnoticechoicedata-example-1": "De gegevens voor het kiezen van een banner voor engelse Wikipedia-gebruikers.",
 	"apihelp-query+centralnoticelogs-description": "Krijg een logboek van de configuratiewijzigingen van de campagne.",
 	"apihelp-query+centralnoticelogs-param-campaign": "Campagne naam (optioneel). Scheid meerdere waarden met een \"|\" (verticale balk).",

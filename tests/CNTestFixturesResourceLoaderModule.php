@@ -7,11 +7,12 @@ class CNTestFixturesResourceLoaderModule extends ResourceLoaderModule {
 	 * QUnitTestResources).
 	 *
 	 * @see ResourceLoaderModule::targets
+	 * @var string[]
 	 */
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
-	 * @see ResourceLoaderModule::getScript()
+	 * @inheritDoc
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return 'mediaWiki.centralNoticeTestFixtures = ' .

@@ -172,6 +172,7 @@ class BannerRenderer {
 	 *
 	 * This is only used internally, and will be parsed for magic words
 	 * before use.
+	 * @return string
 	 */
 	function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();

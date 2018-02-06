@@ -57,6 +57,7 @@ class CentralNoticeTestFixtures {
 	/**
 	 * Get an associative array with data for setting mock global variables
 	 * as appropriate for fixture data.
+	 * @return array
 	 */
 	function getGlobalsFromFixtureData() {
 		$data = self::allocationsData();
@@ -345,6 +346,7 @@ class CentralNoticeTestFixtures {
 	 * @param MediaWikiTestCase $testClass
 	 * @param array $expected Expected choices data structure
 	 * @param array $actual Actual choices data structure
+	 * @param string $message
 	 */
 	function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
 		$message = ''
@@ -362,6 +364,7 @@ class CentralNoticeTestFixtures {
 	 * structure, numerically indexed arrays are sorted by value.
 	 * (If $a is a numerically indexed array, sort it by value. Traverse the
 	 * array recursively and do the same for each value.)
+	 * @param array &$a
 	 */
 	protected function deepMultisort( array &$a ) {
 		array_multisort( $a );
@@ -416,6 +419,7 @@ class CentralNoticeTestFixtures {
 	 * Return an array containing arrays containing test cases, as needed for
 	 * PHPUnit data provision. (Each inner array is a list of arguments for
 	 * a test method.)
+	 * @return array[]
 	 */
 	public static function allocationsTestCasesProvision() {
 		$data = self::allocationsData();
@@ -431,6 +435,7 @@ class CentralNoticeTestFixtures {
 	/**
 	 * Return allocations data as a PHP array where each element is a different
 	 * scenario for testing.
+	 * @return array
 	 */
 	public static function allocationsData() {
 		$json = self::allocationsDataAsJson();
@@ -441,6 +446,7 @@ class CentralNoticeTestFixtures {
 	/**
 	 * Return the raw JSON allocations data (from the file indicated by
 	 * CentralNoticeTestFixtures::FIXTURE_RELATIVE_PATH).
+	 * @return string
 	 */
 	public static function allocationsDataAsJson() {
 		$path = __DIR__ . '/' . self::FIXTURE_RELATIVE_PATH;

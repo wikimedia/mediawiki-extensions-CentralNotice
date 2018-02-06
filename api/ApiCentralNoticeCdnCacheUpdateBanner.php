@@ -8,7 +8,7 @@
 class ApiCentralNoticeCdnCacheUpdateBanner extends ApiBase {
 
 	/**
-	 * @see ApiBase::execute()
+	 * @inheritDoc
 	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
@@ -43,7 +43,7 @@ class ApiCentralNoticeCdnCacheUpdateBanner extends ApiBase {
 	}
 
 	/**
-	 * @see ApiBase::getAllowedParams()
+	 * @inheritDoc
 	 */
 	public function getAllowedParams() {
 		return [
@@ -59,14 +59,14 @@ class ApiCentralNoticeCdnCacheUpdateBanner extends ApiBase {
 	}
 
 	/**
-	 * @see ApiBase::needsToken()
+	 * @inheritDoc
 	 */
 	public function needsToken() {
 		return 'csrf';
 	}
 
 	/**
-	 * @see ApiBase::getExamplesMessages()
+	 * @inheritDoc
 	 */
 	protected function getExamplesMessages() {
 		return [
