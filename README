@@ -31,6 +31,10 @@ Configuration
   above URL.
   Default: 1 / 100
 
+* $CentralNoticeImpressionEventSampleRate: Sample rate for recording impressions
+  using EventLogging (meant to supersede custom URL for impression recording).
+  Default: 0
+
 * $wgCentralHost: Protocol and host name of the wiki that hosts the
   CentralNotice infrastructure, for example "//meta.wikimedia.org". This is
   used for DNS prefetching.

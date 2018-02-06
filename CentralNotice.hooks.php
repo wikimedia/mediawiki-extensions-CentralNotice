@@ -281,6 +281,7 @@ class CentralNoticeHooks {
 			$wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
 			$wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
+			$wgCentralNoticeImpressionEventSampleRate,
 			$wgCentralSelectedBannerDispatcher, $wgCentralSelectedMobileBannerDispatcher,
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins;
 
@@ -309,6 +310,9 @@ class CentralNoticeHooks {
 		$vars[ 'wgCentralSelectedBannerDispatcher' ] = $bannerDispatcher;
 		$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 		$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
+
+		$vars[ 'wgCentralNoticeImpressionEventSampleRate' ] =
+			$wgCentralNoticeImpressionEventSampleRate;
 
 		// TODO Remove, no longer used
 		$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
@@ -415,20 +419,6 @@ class CentralNoticeHooks {
 			}
 		}
 
-		return true;
-	}
-
-	/**
-	 * EventLoggingRegisterSchemas hook handler.
-	 *
-	 * @param array &$schemas The schemas currently registered with the EventLogging
-	 *  extension
-	 * @return bool Always true
-	 */
-	public static function onEventLoggingRegisterSchemas( &$schemas ) {
-		// Coordinate with makeEventLoggingURL() in
-		// ext.centralNotice.bannerHistoryLogger.js
-		$schemas['CentralNoticeBannerHistory'] = 14321636;
 		return true;
 	}
 }

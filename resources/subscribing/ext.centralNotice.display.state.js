@@ -1,6 +1,10 @@
 /**
  * Stores data for campaign/banner processing and data related to the state of
  * that processing. Provides cn.internal.state and cn.data.
+ *
+ * Note: Coordinate with CentralNoticeImpression schema; all data properties must
+ * either be in the schema and have the correct data type, or must be removed by
+ * calling getDataCopy( true ).
  */
 ( function ( $, mw ) {
 
@@ -132,6 +136,11 @@
 				urlParams.recordImpressionSampleRate :
 				mw.config.get( 'wgCentralNoticeSampleRate' );
 
+		state.data.impressionEventSampleRate =
+			urlParams.impressionEventSampleRate !== undefined ?
+				urlParams.impressionEventSampleRate :
+				mw.config.get( 'wgCentralNoticeImpressionEventSampleRate' );
+
 		// Legacy code exposed urlParams at mw.centralNotice.data.getVars.
 		// TODO Is this still needed? Maybe deprecate?
 		state.data.getVars = urlParams;
@@ -223,16 +232,22 @@
 		},
 
 		/**
-		 * Get a copy of the data object. If cleanForURLSerialization is true,
-		 * remove non-string and redundant properties.
+		 * Get a copy of the data object. If cleanForLogging is true, remove
+		 * properties or those that are not strings, numbers or booleans,
+		 * to provide an object with properties appropriate to send as URL
+		 * params (for legacy impression recordings) or as an impression event
+		 * (via EventLogging).
 		 *
-		 * @param {boolean} cleanForURLSerialization
+		 * Note: Coordinate with CentralNoticeImpression schema; remove any
+		 * data properties that do not conform to that schema.
+		 *
+		 * @param {boolean} cleanForLogging
 		 */
-		getDataCopy: function ( cleanForURLSerialization ) {
+		getDataCopy: function ( cleanForLogging ) {
 
 			var dataCopy = $.extend( true, {}, state.data );
 
-			if ( cleanForURLSerialization ) {
+			if ( cleanForLogging ) {
 				delete dataCopy.getVars;
 				delete dataCopy.mixins;
 				delete dataCopy.tests;
@@ -376,6 +391,10 @@
 
 		setRecordImpressionSampleRate: function ( rate ) {
 			state.data.recordImpressionSampleRate = rate;
+		},
+
+		setImpressionEventSampleRate: function( rate ) {
+			state.data.impressionEventSampleRate = rate;
 		},
 
 		/**
