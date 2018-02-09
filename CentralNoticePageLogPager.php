@@ -62,14 +62,14 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				'rc_last_oldid',
 			],
 			'conds' => $conds, // WHERE conditions
-			'joins' => [],
+			'join_conds' => [],
 		];
 
 		if ( class_exists( CommentStore::class ) ) {
 			$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
 			$ret['tables'] += $commentQuery['tables'];
 			$ret['fields'] += $commentQuery['fields'];
-			$ret['joins'] += $commentQuery['joins'];
+			$ret['join_conds'] += $commentQuery['joins'];
 		} else {
 			$ret['fields'][] = 'rc_comment';
 		}
