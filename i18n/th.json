@@ -90,7 +90,7 @@
 	"centralnotice-off": "ปิด",
 	"centralnotice-added": "เพิ่ม <span class=\"cn-new-value\">$1</span>",
 	"centralnotice-removed": "นำออก <span class=\"cn-old-value\">$1</span>",
-	"centralnotice-talk-link": "พูดคุย",
+	"centralnotice-talk-link": "คุย",
 	"centralnotice-anon": "แสดงต่อผู้ใช้นิรนาม",
 	"centralnotice-fundraising": "ระดมทุน",
 	"centralnotice-filters": "ตัวกรองปูม",
