@@ -91,7 +91,7 @@
 						});
 					},
 					receive: function(event, ui) {
-						ui.item.data('optionLink').attr('selected', true);
+						ui.item.data('optionLink').prop('selected', true);
 						// increment count
 						that.count += 1;
 						that._updateCount();
@@ -119,7 +119,7 @@
 
 			// batch actions
 			this.container.find(".remove-all").click(function() {
-				that._populateLists(that.element.find('option').removeAttr('selected'));
+				that._populateLists(that.element.find('option').prop('selected', false));
 				return false;
 			});
 
@@ -127,10 +127,10 @@
 				var options = that.element.find('option').not(":selected");
 				if (that.availableList.children('li:hidden').length > 1) {
 					that.availableList.children('li').each(function(i) {
-						if ($(this).is(":visible")) $(options[i-1]).attr('selected', 'selected');
+						if ($(this).is(":visible")) $(options[i-1]).prop('selected', true);
 					});
 				} else {
-					options.attr('selected', 'selected');
+					options.prop('selected', true);
 				}
 				that._populateLists(that.element.find('option'));
 				return false;
@@ -180,7 +180,7 @@
 			return clone;
 		},
 		_setSelected: function(item, selected) {
-			item.data('optionLink').attr('selected', selected);
+			item.data('optionLink').prop('selected', selected);
 
 			if (selected) {
 				var selectedItem = this._cloneWithData(item);

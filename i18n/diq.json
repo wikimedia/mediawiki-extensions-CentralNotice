@@ -193,7 +193,7 @@
 	"centralnotice-user-role": "Rolê karberi",
 	"centralnotice-user-role-anonymous": "Anonim",
 	"centralnotice-user-role-logged-in": "Qeydın",
-	"centralnotice-banner-class": "Kategori",
+	"centralnotice-banner-class": "Kategoriye",
 	"centralnotice-templates-included": "Şabloni dağili",
 	"centralnotice-archive-banner": "Arşiv",
 	"centralnotice-archive-banner-title": "Arşiva {{PLURAL:$1|baneri|baneran}}?",
