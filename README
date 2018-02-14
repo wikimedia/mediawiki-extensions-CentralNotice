@@ -96,11 +96,6 @@ Configuration
   recommended that this value not be intentionally relied on by banners.
   Default: 604800
 
-* $wgNoticeOldCookieEpoch: Timestamp after which old-format "hide" cookies
-  should be deleted
-  TODO Remove this after banner display refactor has been deployed
-  Default: "20141109000000"
-
 * $wgNoticeHideUrls: Locations of Special:HideBanner targets to hit
   when a banner close button is pressed. The hides will then be specific to
   each domain specified by $wgNoticeCookieDomain on that wiki.
