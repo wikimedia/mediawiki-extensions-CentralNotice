@@ -72,6 +72,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Die Meldung ist nicht vorhanden.\nEntfernen nicht möglich.",
 	"centralnotice-banner-doesnt-exist": "Die Vorlage ist nicht vorhanden.",
 	"centralnotice-banner-edit-onwiki": "Vorlage auf dem Wiki bearbeiten",
+	"centralnotice-banner-history": "Vorlagenverlauf ansehen",
 	"centralnotice-template-still-bound": "Die Vorlage „$1“ kann nicht entfernt werden und ist noch an eine Meldung gebunden.\nEntfernung nicht möglich.",
 	"centralnotice-template-body": "Vorlagentext:",
 	"centralnotice-day": "Tag",
