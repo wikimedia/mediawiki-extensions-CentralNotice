@@ -756,7 +756,7 @@ class CentralNotice extends SpecialPage {
 
 								default:
 									throw new DomainException(
-										'Unknown parameter type ' . $paramType );
+										"Unknown parameter type: '{$paramDef['type']}'" );
 							}
 
 							$params[$paramName] = $paramVal;
