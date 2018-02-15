@@ -5,7 +5,7 @@
  * @group Database
  * @group CentralNotice
  */
-class BannerTest extends PHPUnit_Framework_TestCase {
+class BannerTest extends PHPUnit\Framework\TestCase {
 	const TEST_BANNER_NAME = 'PhpUnitTestBanner';
 
 	protected $fixture;
