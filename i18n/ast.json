@@ -63,6 +63,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "La campaña nun esiste.\nNun hai qué desaniciar.",
 	"centralnotice-banner-doesnt-exist": "El cartel nun esiste.",
 	"centralnotice-banner-edit-onwiki": "Editar el cartel na wiki",
+	"centralnotice-banner-history": "Ver l'historial del cartel",
 	"centralnotice-template-still-bound": "Nun pue desaniciase'l cartel \"$1\" porque inda ta enllazáu a una campaña.\nNun se desanicia.",
 	"centralnotice-template-body": "Cuerpu del cartel:",
 	"centralnotice-day": "Día",
