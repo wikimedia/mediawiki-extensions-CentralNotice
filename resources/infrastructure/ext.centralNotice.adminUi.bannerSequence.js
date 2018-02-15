@@ -365,7 +365,7 @@
 	/* BannerSequenceUiModel */
 
 	/**
-	 * Singleton model for  the banner sequence administration UI.
+	 * Singleton model for the banner sequence administration UI.
 	 *
 	 * @class BannerSequenceUiModel
 	 * @constructor

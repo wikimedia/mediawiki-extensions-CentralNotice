@@ -135,8 +135,8 @@
 		 * @return {boolean}
 		 */
 		doSaveBanner: function () {
-			/* global alert */
 			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).indexOf( 'document.write' ) > -1 ) {
+				// eslint-disable-next-line no-alert
 				alert( mw.msg( 'centralnotice-documentwrite-error' ) );
 			} else {
 				return true;
@@ -237,9 +237,9 @@
 				endPos;
 			if ( buttonType === 'close' ) {
 				buttonValue = '<a href="#" title="' +
-					mw.msg( 'centralnotice-close-title' ) +
+					mw.message( 'centralnotice-close-title' ).escaped() +
 					'" onclick="mw.centralNotice.hideBanner();return false;">' +
-					'<div class="cn-closeButton">' + mw.msg( 'centralnotice-close-title' ) +
+					'<div class="cn-closeButton">' + mw.message( 'centralnotice-close-title' ).escaped() +
 					'</div></a>';
 			}
 			if ( document.selection ) {
