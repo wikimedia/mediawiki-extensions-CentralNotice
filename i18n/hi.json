@@ -10,7 +10,8 @@
 			"Venky2834",
 			"Hindustanilanguage",
 			"NehalDaveND",
-			"Sfic"
+			"Sfic",
+			"Nitin1485"
 		]
 	},
 	"centralnotice": "केन्द्रीय सूचना प्रबन्धक",
@@ -66,6 +67,7 @@
 	"centralnotice-notice-doesnt-exist": "अभियान मौजूद नहीं है।",
 	"centralnotice-remove-notice-doesnt-exist": "अभियान मौजूद नहीं है । निकालनेको कुछ नहीं ।",
 	"centralnotice-banner-doesnt-exist": "बैनर मौजूद नहीं है।",
+	"centralnotice-banner-history": "बैनर इतिहास देखें",
 	"centralnotice-template-still-bound": "बैनर \"$1\" नहीं हटाया जा सकता क्योंकि ये अभी भी एक अभियान से बंधा है।\nनहीं हटाया जा रहा।",
 	"centralnotice-template-body": "बैनर शरीर:",
 	"centralnotice-day": "दिन",
