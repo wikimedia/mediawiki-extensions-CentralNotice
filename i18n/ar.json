@@ -19,12 +19,13 @@
 			"Khaled",
 			"Hiba Alshawi",
 			"محمد أحمد عبد الفتاح",
-			"ديفيد"
+			"ديفيد",
+			"Elbasyouny"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
 	"noticetemplate": "إداري الإخطار المركزي",
-	"bannerallocation": "أخطار الإداري المركزي",
+	"bannerallocation": "إداري الإخطار المركزي",
 	"globalallocation": "إداري الإخطار المركزي",
 	"centralnoticelogs": "إداري الإخطار المركزي",
 	"right-centralnotice-admin": "أدر الإخطارات المركزية",
