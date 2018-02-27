@@ -101,13 +101,15 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		$htmlOut .= Html::openElement( 'form', [ 'method' => 'get' ] );
 		$htmlOut .= Html::element( 'h2', [], $this->msg( 'centralnotice-view-allocation' )->text() );
-		$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-allocation-instructions' )->text() );
+		$htmlOut .= Xml::tags(
+			'p', null, $this->msg( 'centralnotice-allocation-instructions' )->parse()
+		);
 
 		$htmlOut .= Html::openElement( 'table', [ 'id' => 'envpicker', 'cellpadding' => 7 ] );
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			[ 'style' => 'width: 20%;' ],
-			$this->msg( 'centralnotice-project-name' )->text() );
+			$this->msg( 'centralnotice-project-name' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
 		$htmlOut .= Html::openElement( 'select', [ 'name' => 'project' ] );
 
@@ -121,7 +123,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			[ 'valign' => 'top' ],
-			$this->msg( 'centralnotice-project-lang' )->text() );
+			$this->msg( 'centralnotice-project-lang' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
 
 		// Retrieve the list of languages in user's language
@@ -146,7 +148,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::closeElement( 'tr' );
 		$htmlOut .= Html::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-country' )->text() );
+		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-country' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
 
 		$userLanguageCode = $this->getLanguage()->getCode();
@@ -220,11 +222,11 @@ class SpecialBannerAllocation extends CentralNotice {
 				'h3', null,
 				$this->msg(
 					'centralnotice-allocation-description',
-					htmlspecialchars( $language ),
-					htmlspecialchars( $project ),
-					htmlspecialchars( $country ),
-					$this->getOutput()->parseInline( $deviceData['label'] )
-				)->text()
+					wfEscapeWikiText( $language ),
+					wfEscapeWikiText( $project ),
+					wfEscapeWikiText( $country ),
+					$deviceData['label']
+				)->parse()
 			);
 
 			// FIXME matrix is chosen dynamically based on more UI inputs
@@ -279,11 +281,11 @@ class SpecialBannerAllocation extends CentralNotice {
 		if ( count( $banners ) > 0 ) {
 			$htmlOut .= Html::openElement( 'tr' );
 			$htmlOut .= Html::element( 'th', [ 'width' => '5%' ],
-				$this->msg( 'centralnotice-percentage' )->text() );
+				$this->msg( 'centralnotice-percentage' )->parse() );
 			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
-				$this->msg( 'centralnotice-banner' )->text() );
+				$this->msg( 'centralnotice-banner' )->parse() );
 			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
-				$this->msg( 'centralnotice-notice' )->text() );
+				$this->msg( 'centralnotice-notice' )->parse() );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}
 		$htmlOut .= $this->createRows( $banners );
@@ -343,7 +345,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		} else {
 			$htmlOut .= Html::openElement( 'tr' );
 			$htmlOut .= Html::openElement( 'td' );
-			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->text() );
+			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->parse() );
 			$htmlOut .= Html::closeElement( 'td' );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}

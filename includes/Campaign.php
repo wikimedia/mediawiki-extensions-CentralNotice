@@ -526,7 +526,7 @@ class Campaign {
 				if ( $historical_banner === null ) {
 					// FIXME: crazy hacks
 					$historical_banner = Banner::getBannerSettings( $name );
-					$historical_banner['label'] = wfMessage( 'centralnotice-damaged-log', $name );
+					$historical_banner['label'] = wfMessage( 'centralnotice-damaged-log', $name )->text();
 					$historical_banner['display_anon'] = $historical_banner['anon'];
 					$historical_banner['display_account'] = $historical_banner['account'];
 					$historical_banner['devices'] = [ 'desktop' ];
