@@ -128,13 +128,13 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::element( 'h2', [],
 			$this->msg( 'centralnotice-view-allocation' )->text() );
 		$htmlOut .= Xml::tags( 'p', null,
-			$this->msg( 'centralnotice-allocation-instructions' )->text() );
+			$this->msg( 'centralnotice-allocation-instructions' )->parse() );
 
 		$htmlOut .= Html::openElement( 'table', [ 'id' => 'envpicker', 'cellpadding' => 7 ] );
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			[ 'style' => 'width: 20%;' ],
-			$this->msg( 'centralnotice-project-name' )->text() );
+			$this->msg( 'centralnotice-project-name' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
 		$htmlOut .= Html::openElement( 'select', [ 'name' => 'project' ] );
 
@@ -150,7 +150,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td',
 			[ 'valign' => 'top' ],
-			$this->msg( 'centralnotice-project-lang' )->text() );
+			$this->msg( 'centralnotice-project-lang' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
 
 		// Retrieve the list of languages in user's language
@@ -177,7 +177,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::closeElement( 'tr' );
 		$htmlOut .= Html::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-country' )->text() );
+		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-country' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
 
 		$userLanguageCode = $this->getLanguage()->getCode();
@@ -197,7 +197,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Html::openElement( 'td' );
-		$htmlOut .= $this->msg( 'centralnotice-date' );
+		$htmlOut .= $this->msg( 'centralnotice-date' )->parse();
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::openElement( 'td' );
 		$htmlOut .= $this->dateSelector( 'filter', true, $this->timestamp );
@@ -235,13 +235,13 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
 
 		$languageLabel = $this->language ?
-			htmlspecialchars( $this->language ) : $this->msg( 'centralnotice-all' )->text();
-		$projectLabel = $this->language ?
-			htmlspecialchars( $this->project ) : $this->msg( 'centralnotice-all' )->text();
+			 $this->language : $this->msg( 'centralnotice-all' )->text();
+		$projectLabel = $this->project ?
+			 $this->project : $this->msg( 'centralnotice-all' )->text();
 		$countryLabel = $this->location ?
-			htmlspecialchars( $this->location ) : $this->msg( 'centralnotice-all' )->text();
+			 $this->location : $this->msg( 'centralnotice-all' )->text();
 		$deviceLabel = $this->device ?
-			htmlspecialchars( $this->device ) : $this->msg( 'centralnotice-all' )->text();
+			 $this->device : $this->msg( 'centralnotice-all' )->text();
 
 		$htmlOut .= Xml::tags( 'p', null,
 			$this->msg(
@@ -251,7 +251,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 				$countryLabel,
 				$deviceLabel,
 				wfTimestamp( TS_ISO_8601, $this->timestamp )
-			)->text()
+			)->parse()
 		);
 
 		$this->campaigns = Campaign::getHistoricalCampaigns(
@@ -296,15 +296,15 @@ class SpecialGlobalAllocation extends CentralNotice {
 					[ 'class' => 'mw-sp-centralnotice-allocationrow' ] );
 
 				$htmlOut .= Html::openElement( 'td' );
-				$htmlOut .= $row['projects_label'];
+				$htmlOut .= htmlspecialchars( $row['projects_label'] );
 				$htmlOut .= Html::closeElement( 'td' );
 
 				$htmlOut .= Html::openElement( 'td' );
-				$htmlOut .= $row['languages_label'];
+				$htmlOut .= htmlspecialchars( $row['languages_label'] );
 				$htmlOut .= Html::closeElement( 'td' );
 
 				$htmlOut .= Html::openElement( 'td' );
-				$htmlOut .= $row['countries_label'];
+				$htmlOut .= htmlspecialchars( $row['countries_label'] );
 				$htmlOut .= Html::closeElement( 'td' );
 
 				$htmlOut .= Html::closeElement( 'tr' );
@@ -571,11 +571,11 @@ class SpecialGlobalAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'tr', [ 'class' => 'mw-sp-centralnotice-allocationrow' ] );
 
 		if ( !$variesAnon ) {
-			$anonLabel = $this->msg( 'centralnotice-all' )->text();
+			$anonLabel = $this->msg( 'centralnotice-all' )->parse();
 		} elseif ( $isAnon ) {
-			$anonLabel = $this->msg( 'centralnotice-user-role-anonymous' )->text();
+			$anonLabel = $this->msg( 'centralnotice-user-role-anonymous' )->parse();
 		} else {
-			$anonLabel = $this->msg( 'centralnotice-user-role-logged-in' )->text();
+			$anonLabel = $this->msg( 'centralnotice-user-role-logged-in' )->parse();
 		}
 
 		$htmlOut .= Html::openElement( 'td' );
@@ -586,7 +586,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 			$bucketLabel = chr( $bucket + 65 );
 
 			$htmlOut .= Html::openElement( 'td' );
-			$htmlOut .= $bucketLabel;
+			$htmlOut .= htmlspecialchars( $bucketLabel );
 			$htmlOut .= Html::closeElement( 'td' );
 		}
 
@@ -623,7 +623,7 @@ class SpecialGlobalAllocation extends CentralNotice {
 			);
 		} else {
 			$htmlOut .= Html::openElement( 'td' );
-			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->text() );
+			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->parse() );
 		}
 
 		// Row end

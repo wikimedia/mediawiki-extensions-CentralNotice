@@ -177,7 +177,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 					'id' => 'centralnoticelogreset',
 					'name' => 'centralnoticelogreset',
 					'class' => 'cn-filter-buttons',
-					'onclick' => "location.href = '$link'; return false;",
+					'onclick' => "location.href = " . Xml::encodeJsVar( $link ) . "; return false;",
 				]
 			);
 			$htmlOut .= Xml::closeElement( 'td' );
@@ -277,12 +277,14 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	 * Build a radio button that switches the log type when you click it
 	 */
 	private function getLogSwitcher( $type, $id, $message, $fullUrl ) {
+		$fullUrlEnc = Xml::encodeJsVar( $fullUrl );
+		$typeEnc = Xml::encodeJsVar( $type );
 		$htmlOut = '';
 		$htmlOut .= Xml::radio(
 			'log_type',
 			$id,
 			( $this->logType == $type ? true : false ),
-			[ 'onclick' => "switchLogs( '".$fullUrl."', '".$type."' )" ]
+			[ 'onclick' => "switchLogs( " .$fullUrlEnc.", ".$typeEnc." )" ]
 		);
 		$htmlOut .= Xml::label( $this->msg( $message )->text(), $id );
 		return $htmlOut;

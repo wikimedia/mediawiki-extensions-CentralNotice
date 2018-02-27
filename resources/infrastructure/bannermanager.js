@@ -69,7 +69,7 @@
 			dialogObj[ 0 ].name = 'addBannerDialog';
 			dialogObj.append( $( '#cn-formsection-addBanner' ).children( 'div' ).clone().show() )
 				.dialog( {
-					title: mw.message( 'centralnotice-add-new-banner-title' ).text(),
+					title: mw.message( 'centralnotice-add-new-banner-title' ).escaped(),
 					modal: true,
 					buttons: buttons,
 					width: 400
@@ -113,7 +113,7 @@
 					title: mw.message(
 						'centralnotice-delete-banner-title',
 						bm.selectedItemCount
-					).text(),
+					).escaped(),
 					width: '35em',
 					modal: true,
 					buttons: buttons
@@ -143,7 +143,7 @@
 				title: mw.message(
 					'centralnotice-archive-banner-title',
 					bm.selectedItemCount
-				).text(),
+				).escaped(),
 				resizable: false,
 				modal: true,
 				buttons: buttons

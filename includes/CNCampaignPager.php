@@ -186,11 +186,11 @@ class CNCampaignPager extends TablePager {
 
 			case 'projects':
 				$p = explode( ',', $this->mCurrentRow->projects );
-				return $this->onSpecialCN->listProjects( $p );
+				return htmlspecialchars( $this->onSpecialCN->listProjects( $p ) );
 
 			case 'languages':
 				$l = explode( ',', $this->mCurrentRow->languages );
-				return $this->onSpecialCN->listLanguages( $l );
+				return htmlspecialchars( $this->onSpecialCN->listLanguages( $l ) );
 
 			case 'countries':
 				if ( $this->mCurrentRow->not_geo ) {
@@ -200,7 +200,7 @@ class CNCampaignPager extends TablePager {
 					$c = array_keys( GeoTarget::getCountriesList( 'en' ) );
 				}
 
-				return $this->onSpecialCN->listCountries( $c );
+				return htmlspecialchars( $this->onSpecialCN->listCountries( $c ) );
 
 			case 'not_start':
 			case 'not_end':
@@ -233,7 +233,7 @@ class CNCampaignPager extends TablePager {
 
 			case 'not_throttle':
 				if ( $value < 100 ) {
-					return $value . "%";
+					return htmlspecialchars( $value . "%" );
 				} else {
 					return '';
 				}
