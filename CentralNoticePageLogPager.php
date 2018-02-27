@@ -63,7 +63,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
 		$userLink = Linker::linkKnown( $loggedUser->getUserPage(),
-			$loggedUser->getName() );
+			htmlspecialchars( $loggedUser->getName() ) );
 		$userTalkLink = Linker::linkKnown(
 			$loggedUser->getTalkPage(),
 			$this->msg( 'centralnotice-talk-link' )->escaped()
@@ -143,11 +143,13 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 		$htmlOut .= Xml::openElement( 'td', array( 'valign' => 'top' ) );
 		$htmlOut .= Xml::closeElement( 'td' );
-		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
+		$htmlOut .= Xml::element( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$lang->date( $row->rc_timestamp ) . ' ' . $lang->time( $row->rc_timestamp )
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
-			$this->msg( 'centralnotice-user-links', $userLink, $userTalkLink )->text()
+			$this->msg( 'centralnotice-user-links' )
+				->rawParams( $userLink, $userTalkLink )
+				->parse()
 		);
 		$htmlOut .= Xml::tags( 'td', array( 'valign' => 'top', 'class' => 'primary' ),
 			$bannerCell

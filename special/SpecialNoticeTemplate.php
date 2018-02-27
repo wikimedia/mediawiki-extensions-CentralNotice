@@ -21,14 +21,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 			$banner = $this->getRequest()->getText( 'template' );
 
 			$this->getOutput()->redirect(
-				Title::makeTitle( NS_SPECIAL, "CentralNoticeBanners/edit/$banner" )->
-					getCanonicalURL(),
+				Title::makeTitleSafe( NS_SPECIAL, "CentralNoticeBanners/edit/$banner" )->
+					getFullUrlForRedirect(),
 				301
 			);
 		} else {
 			// don't know where they were trying to go, redirect them to the new list form
 			$this->getOutput()->redirect(
-				Title::makeTitle( NS_SPECIAL, 'CentralNoticeBanners' )->getCanonicalURL(),
+				Title::makeTitle( NS_SPECIAL, 'CentralNoticeBanners' )->getFullUrlForRedirect(),
 				301
 			);
 		}
