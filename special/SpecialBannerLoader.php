@@ -84,9 +84,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 *   ($wgNoticeBannerReducedMaxAge).
 	 */
 	function sendHeaders( $cacheResponse = self::MAX_CACHE_NORMAL ) {
-		global $wgJsMimeType, $wgNoticeBannerMaxAge, $wgNoticeBannerReducedMaxAge;
+		global $wgNoticeBannerMaxAge, $wgNoticeBannerReducedMaxAge;
 
-		header( "Content-type: $wgJsMimeType; charset=utf-8" );
+		header( "Content-type: text/javascript; charset=utf-8" );
 
 		if ( !$this->getUser()->isLoggedIn() ) {
 			// This header tells our front-end caches to retain the content for
