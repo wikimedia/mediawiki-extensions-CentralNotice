@@ -1264,6 +1264,7 @@ class Banner {
 		$id = Banner::fromName( $name )->getId();
 
 		$dbr = CNDatabase::getDb();
+		$tsEnc = $dbr->addQuotes( $ts );
 
 		$newestLog = $dbr->selectRow(
 			"cn_template_log",
@@ -1271,7 +1272,7 @@ class Banner {
 				"log_id" => "MAX(tmplog_id)",
 			),
 			array(
-				"tmplog_timestamp <= $ts",
+				"tmplog_timestamp <= $tsEnc",
 				"tmplog_template_id = $id",
 			),
 			__METHOD__
@@ -1289,7 +1290,7 @@ class Banner {
 				"fundraising" => "tmplog_end_fundraising",
 			),
 			array(
-				"tmplog_id = {$newestLog->log_id}",
+				"tmplog_id" => $newestLog->log_id,
 			),
 			__METHOD__
 		);
