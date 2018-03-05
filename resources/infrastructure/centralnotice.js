@@ -43,8 +43,9 @@
 
 	// Switch among various log displays
 	window.switchLogs = function ( baseUrl, logType ) {
+		var url = new mw.Uri( baseUrl );
 		encodeURIComponent( logType );
-		location.href = baseUrl + '?log=' + logType;
+		location.href = url.extend( { log: logType } ).toString();
 	};
 
 	// FIXME Unused? See T161907
