@@ -118,7 +118,8 @@
 		"ext.centralNotice.adminUi": {
 			"dependencies": [
 				"jquery.ui.datepicker",
-				"jquery.ui.multiselect"
+				"jquery.ui.multiselect",
+				"mediawiki.Uri"
 			],
 			"scripts": "infrastructure/centralnotice.js",
 			"styles": [
