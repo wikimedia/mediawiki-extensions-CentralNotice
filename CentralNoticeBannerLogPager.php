@@ -205,10 +205,11 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$oldrow = false;
 		if ( $newrow->tmplog_action === 'modified' ) {
 			$db = CNDatabase::getDb();
+			$tmplogId = (int)$newrow->tmplog_id;
 			$oldrow = $db->selectRow(
 				array( 'cn_template_log' => 'cn_template_log' ),
 				'*',
-				array( 'tmplog_template_id' => $newrow->tmplog_template_id, "tmplog_id < {$newrow->tmplog_id}" ),
+				array( 'tmplog_template_id' => $newrow->tmplog_template_id, "tmplog_id < {$tmplogId}" ),
 				__METHOD__,
 				array( 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => 1 )
 			);

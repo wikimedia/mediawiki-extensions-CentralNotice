@@ -57,8 +57,10 @@ class CentralNoticePager extends TemplatePager {
 				'join_conds' => array(
 					'assignments' => array(
 						'LEFT JOIN',
-						"assignments.tmp_id = templates.tmp_id " .
-							"AND assignments.not_id = $noticeId"
+						array(
+							"assignments.tmp_id = templates.tmp_id ",
+							"assignments.not_id" => $noticeId,
+						)
 					)
 				)
 			);
