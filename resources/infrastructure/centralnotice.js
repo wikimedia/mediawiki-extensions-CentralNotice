@@ -39,8 +39,9 @@ window.toggleFilterDisplay = function () {
 
 // Switch among various log displays
 window.switchLogs = function ( baseUrl, logType ) {
+	var url = new mw.Uri( baseUrl );
 	encodeURIComponent( logType );
-	location.href = baseUrl + '?log=' + logType;
+	location.href = url.extend( { log: logType } ).toString();
 };
 
 window.addEventListener( 'message', receiveMessage, false );
