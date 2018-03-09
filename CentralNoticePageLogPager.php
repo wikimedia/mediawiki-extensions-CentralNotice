@@ -50,28 +50,39 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				"rc_title NOT LIKE 'Centralnotice-template-%'", // exclude normal banner content
 			];
 		}
-		$ret = [
-			'tables' => [ 'recentchanges' ],
-			'fields' => [
-				'rc_timestamp',
-				'rc_user',
-				'rc_title',
-				'rc_new',
-				'rc_cur_id',
-				'rc_this_oldid',
-				'rc_last_oldid',
-			],
-			'conds' => $conds, // WHERE conditions
-			'join_conds' => [],
-		];
 
-		if ( class_exists( CommentStore::class ) ) {
-			$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
-			$ret['tables'] += $commentQuery['tables'];
-			$ret['fields'] += $commentQuery['fields'];
-			$ret['join_conds'] += $commentQuery['joins'];
+		if ( is_callable( RecentChange::class, 'getQueryInfo' ) ) {
+			$rcQuery = RecentChange::getQueryInfo();
+			$ret = [
+				'tables' => $rcQuery['tables'],
+				'fields' => $rcQuery['fields'],
+				'conds' => $conds, // WHERE conditions
+				'join_conds' => $rcQuery['joins'],
+			];
 		} else {
-			$ret['fields'][] = 'rc_comment';
+			$ret = [
+				'tables' => [ 'recentchanges' ],
+				'fields' => [
+					'rc_timestamp',
+					'rc_user',
+					'rc_title',
+					'rc_new',
+					'rc_cur_id',
+					'rc_this_oldid',
+					'rc_last_oldid',
+				],
+				'conds' => $conds, // WHERE conditions
+				'join_conds' => [],
+			];
+
+			if ( class_exists( CommentStore::class ) ) {
+				$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
+				$ret['tables'] += $commentQuery['tables'];
+				$ret['fields'] += $commentQuery['fields'];
+				$ret['join_conds'] += $commentQuery['joins'];
+			} else {
+				$ret['fields'][] = 'rc_comment';
+			}
 		}
 
 		return $ret;
