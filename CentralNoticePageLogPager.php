@@ -66,7 +66,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		];
 
 		if ( class_exists( CommentStore::class ) ) {
-			$commentQuery = CommentStore::newKey( 'rc_comment' )->getJoin();
+			$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
 			$ret['tables'] += $commentQuery['tables'];
 			$ret['fields'] += $commentQuery['fields'];
 			$ret['join_conds'] += $commentQuery['joins'];
@@ -192,7 +192,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			htmlspecialchars(
 				class_exists( CommentStore::class )
-					? CommentStore::newKey( 'rc_comment' )->getComment( $row )->text
+					? CommentStore::getStore()->getComment( 'rc_comment', $row )->text
 					: $row->rc_comment
 			)
 		);
