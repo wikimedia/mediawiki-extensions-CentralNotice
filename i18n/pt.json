@@ -74,6 +74,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "O aviso não existe.\nNão há nada para remover.",
 	"centralnotice-banner-doesnt-exist": "O modelo não existe.",
 	"centralnotice-banner-edit-onwiki": "Editar o modelo na wiki",
+	"centralnotice-banner-history": "Ver histórico do modelo",
 	"centralnotice-template-still-bound": "Não é possível remover o modelo \"$1\", pois ainda está ligado a um aviso.\nNão será removido.",
 	"centralnotice-template-body": "Conteúdo do modelo:",
 	"centralnotice-day": "Dia",

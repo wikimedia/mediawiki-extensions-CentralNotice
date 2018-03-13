@@ -65,6 +65,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Походот не постои.\nНема што да се отстранува.",
 	"centralnotice-banner-doesnt-exist": "Разгласот не постои",
 	"centralnotice-banner-edit-onwiki": "Уреди го разгласот на вики",
+	"centralnotice-banner-history": "Погл. историја на разгласот",
 	"centralnotice-template-still-bound": "Не можам да го отстранам разгласот „$1“ бидејќи сè уште е врзан за поход.\nПреместувањето нема да се изврши.",
 	"centralnotice-template-body": "Тело на шаблонот:",
 	"centralnotice-day": "Ден",

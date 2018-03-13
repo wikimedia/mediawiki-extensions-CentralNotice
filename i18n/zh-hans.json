@@ -89,6 +89,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "通告不存在。没有要移除的东西。",
 	"centralnotice-banner-doesnt-exist": "横幅不存在。",
 	"centralnotice-banner-edit-onwiki": "在wiki上编辑横幅",
+	"centralnotice-banner-history": "查看横幅历史",
 	"centralnotice-template-still-bound": "不能移除横幅“$1”，因为它仍绑定在一个活动中。\n没有被移除。",
 	"centralnotice-template-body": "模板主体：",
 	"centralnotice-day": "日",

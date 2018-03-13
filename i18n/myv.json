@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Botuzhaleny-sodamo"
+			"Botuzhaleny-sodamo",
+			"Rueter"
 		]
 	},
 	"centralnotice-add": "Поладомс",
@@ -22,7 +23,7 @@
 	"centralnotice-min": "Минут",
 	"centralnotice-project-name": "Проектэнть лемезэ",
 	"centralnotice-available-templates": "Кедь маласо лопа парцунт",
-	"centralnotice-edit-template": "Лопа парцунонть витнеме-петнеме",
+	"centralnotice-edit-template": "Витнемс-петнемс баннерэнть",
 	"centralnotice-message": "Пачтамнэ",
 	"centralnotice-donate-button": "Лезксйармаконь повнэ",
 	"centralnotice-countries": "Масторт",

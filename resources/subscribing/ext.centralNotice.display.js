@@ -43,7 +43,15 @@
 		requestedBannerName = null,
 
 		// Maximum time to delay the record impression call, in milliseconds
-		MAX_RECORD_IMPRESSION_DELAY = 250;
+		MAX_RECORD_IMPRESSION_DELAY = 250,
+
+		// EventLogging schema name for logging impressions
+		IMPRESSION_EVENT_LOGGING_SCHEMA = 'CentralNoticeImpression',
+
+		// EventLogging schema revision. Coordinate with on-wiki schema.
+		// Note: We don't register this in extension.json because we don't need the
+		// client-side schema module.
+		IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION = 17712479;
 
 	// TODO: make data.result options explicit via constants
 
@@ -241,23 +249,53 @@
 
 	function reallyRecordImpression() {
 		var state = cn.internal.state,
-			url;
+			random = Math.random(),
+			url, dataCopy, elBaseUrl, elData, elQueryString;
 
-		// Sample as directed
-		if ( Math.random() > state.getData().recordImpressionSampleRate ) {
-			return;
+		// Legacy record impression
+		if ( random <= state.getData().recordImpressionSampleRate ) {
+			url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
+			dataCopy = state.getDataCopy( true );
+			url.extend( dataCopy );
+			sendBeacon( url.toString() );
 		}
 
-		url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
-		url.extend( state.getDataCopy( true ) );
+		// Impression event
+		// NOTE: Coordinate with EventLogging extension!
+		// Specifically, ensure that EventLoggingHooks.php always provides
+		// wgEventLoggingBaseUri to JavaScript, and that the URL constructed here is
+		// equivalent to the one normally sent by ext.EventLogging.core.js.
+		if ( random <= state.getData().impressionEventSampleRate ) {
+			elBaseUrl = mw.config.get( 'wgEventLoggingBaseUri' );
 
+			// If this is not set, it should mean EventLogging isn't installed.
+			if ( elBaseUrl ) {
+				dataCopy = dataCopy || state.getDataCopy( true );
+
+				// Coordinate with mw.eventLogging.prepare()
+				elData = {
+					event: dataCopy,
+					revision: IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION,
+					schema: IMPRESSION_EVENT_LOGGING_SCHEMA,
+					webHost: location.hostname,
+					wiki: mw.config.get( 'wgDBname' )
+				};
+
+				// As per mw.eventLogging.makeBeaconUrl()
+				elQueryString = encodeURIComponent( JSON.stringify( elData ) );
+				sendBeacon( elBaseUrl + '?' + elQueryString + ';' );
+			}
+		}
+	}
+
+	function sendBeacon( urlStr ) {
 		if ( navigator.sendBeacon ) {
 			try {
-				navigator.sendBeacon( url.toString() );
+				navigator.sendBeacon( urlStr );
 			} catch ( e ) {}
 		} else {
 			setTimeout( function () {
-				document.createElement( 'img' ).src = url.toString();
+				document.createElement( 'img' ).src = urlStr;
 			}, 0 );
 		}
 	}
@@ -574,6 +612,14 @@
 		 */
 		setRecordImpressionSampleRate: function ( rate ) {
 			cn.internal.state.setRecordImpressionSampleRate( rate );
+		},
+
+		/**
+		 * Set the sample rate for the logging of impression events. Default is
+		 * wgCentralNoticeImpressionEventSampleRate.
+		 */
+		setImpressionEventSampleRate: function( rate ) {
+			cn.internal.state.setImpressionEventSampleRate( rate );
 		},
 
 		/**

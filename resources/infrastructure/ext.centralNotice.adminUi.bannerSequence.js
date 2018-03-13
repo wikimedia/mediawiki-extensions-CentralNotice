@@ -365,7 +365,7 @@
 	/* BannerSequenceUiModel */
 
 	/**
-	 * Singleton model for  the banner sequence administration UI.
+	 * Singleton model for the banner sequence administration UI.
 	 *
 	 * @class BannerSequenceUiModel
 	 * @constructor
@@ -1454,7 +1454,7 @@
 	StepWidget.prototype.updateBannersDropDown = function ( banners ) {
 
 		var dropDownMenu = this.bannersDropDown.getMenu(),
-			selectedItem = dropDownMenu.getSelectedItem(),
+			selectedItem = dropDownMenu.findSelectedItem(),
 			selectedBanner = selectedItem ? selectedItem.getData() : null;
 
 		this.updating = true;

@@ -76,6 +76,7 @@
 	"centralnotice-balanced": "Dar todas los banners del mismo cargo",
 	"centralnotice-weight": "Altura",
 	"centralnotice-locked": "Bloqueado",
+	"centralnotice-notice-mixins-fieldset": "Características extra para la campaña",
 	"centralnotice-notice-mixins-int-required": "Se requiere un entero",
 	"centralnotice-notice-mixins-float-required": "Se necesita un número de coma flotante",
 	"centralnotice-notice": "Campaña",
@@ -89,6 +90,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "La campaña no existe.\nNo hay nada que eliminar.",
 	"centralnotice-banner-doesnt-exist": "La pancarta no existe.",
 	"centralnotice-banner-edit-onwiki": "Editar la pancarta en el wiki",
+	"centralnotice-banner-history": "Ver historial de la plantilla",
 	"centralnotice-template-still-bound": "La pancarta «$1» todavía está enlazada con una campaña.\nNo se eliminará.",
 	"centralnotice-template-body": "Cuerpo de la plantilla:",
 	"centralnotice-day": "Día",
@@ -147,6 +149,8 @@
 	"centralnotice-banner-cdn-button": "Purgar",
 	"centralnotice-banner-cdn-dialog-ok": "Aceptar",
 	"apierror-centralnotice-cdn-lang-code-error": "Código de idioma incorrecto.",
+	"apierror-centralnotice-cdn-banner-name-error": "El nombre del anuncio es incorrecto.",
+	"apierror-centralnotice-cdn-banner-not-found": "Plantilla no encontrada",
 	"centralnotice-geo": "Geosegmentado",
 	"centralnotice-countries": "Países",
 	"centralnotice-global-allocation": "Asignación global",
@@ -301,5 +305,8 @@
 	"centralnotice-large-banner-limit-identifier": "Identificador de almacenamiento del lado del cliente",
 	"centralnotice-banner-sequence-days-error": "Debe ser un entero mayor que cero.",
 	"centralnotice-banner-sequence-bucket-add-step": "Añadir un paso",
-	"centralnotice-banner-sequence-skip-with-id-error": "El identificador no puede contener «|»."
+	"centralnotice-banner-sequence-banner": "Plantilla",
+	"centralnotice-banner-sequence-page-views": "Vistas de la página",
+	"centralnotice-banner-sequence-skip-with-id-error": "El identificador no puede contener «|».",
+	"centralnotice-banner-sequence-no-banner": "(Ninguna plantilla)"
 }

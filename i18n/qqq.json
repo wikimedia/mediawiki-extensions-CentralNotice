@@ -85,6 +85,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Error message displayed in [[Special:NoticeTemplate]] when trying to remove a template.",
 	"centralnotice-banner-doesnt-exist": "Error message displayed in [[Special:NoticeTemplate]] when trying to view a banner (a template).",
 	"centralnotice-banner-edit-onwiki": "Label for navigation link to the edit mode of wikipage for the banner. Shown in subtitle of Special:CentralNoticeBanners",
+	"centralnotice-banner-history": "Label for navigation link to the history of the wikipage where the banner is hosted. Shown in subtitle of Special:CentralNoticeBanners",
 	"centralnotice-template-still-bound": "Error message displayed when a banner (name: $1) cannot be removed because it is still in use.\n\nParameters:\n* $1 - banner name (template name)",
 	"centralnotice-template-body": "Unused at this time.",
 	"centralnotice-day": "{{Identical|Day}}",
@@ -351,5 +352,8 @@
 	"centralnotice-banner-sequence-page-views-error": "Error message for invalid data entered in a form control for the number of page views of a step in a banner sequence",
 	"centralnotice-banner-sequence-skip-with-id-error": "Error message for invalid data entered in form control to set an identifier stored in a user's browser to prevent the repeated display of a step in a banner sequence",
 	"centralnotice-banner-sequence-no-banner": "Text for option in banner drop-down form control to show no banner for a step in a banner sequence",
-	"centralnotice-banner-sequence-detailed-help": "Help text for banner sequences.\n\n* \"Skip with identifier\" is {{msg-mw|Centralnotice-banner-sequence-skip-with-id}}\n* \"Large banner limit and switch\" is {{msg-mw|Centralnotice-large-banner-limit}}\n* \"Impression diet\" is {{msg-mw|Centralnotice-impression-diet}}"
+	"centralnotice-banner-sequence-detailed-help": "Help text for banner sequences.\n\n* \"Skip with identifier\" is {{msg-mw|Centralnotice-banner-sequence-skip-with-id}}\n* \"Large banner limit and switch\" is {{msg-mw|Centralnotice-large-banner-limit}}\n* \"Impression diet\" is {{msg-mw|Centralnotice-impression-diet}}",
+	"centralnotice-impression-events-sample-rate": "Label for impression events sample rate mixin",
+	"centralnotice-impression-events-sample-rate-help": "Help text for impression events sample rate mixin",
+	"centralnotice-impression-events-sample-rate-field": "Label for the control to set the sample rate for impression events"
 }

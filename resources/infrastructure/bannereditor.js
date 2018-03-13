@@ -32,7 +32,7 @@
 		}
 
 		$dialogEl.dialog( {
-			title: mw.message( 'centralnotice-banner-cdn-dialog-title' ).text(),
+			title: mw.message( 'centralnotice-banner-cdn-dialog-title' ).escaped(),
 			autoOpen: false
 		} );
 
@@ -119,7 +119,7 @@
 			dialogObj[ 0 ].name = 'addBannerDialog';
 			dialogObj.append( $( '#cn-formsection-clone-banner' ).children( 'div' ).clone().show() )
 				.dialog( {
-					title: mw.message( 'centralnotice-clone-notice' ).text(),
+					title: mw.message( 'centralnotice-clone-notice' ).escaped(),
 					modal: true,
 					buttons: buttons,
 					width: 'auto'
@@ -135,8 +135,8 @@
 		 * @return {boolean}
 		 */
 		doSaveBanner: function () {
-			/* global alert */
 			if ( $( '#mw-input-wpbanner-body' ).prop( 'value' ).indexOf( 'document.write' ) > -1 ) {
+				// eslint-disable-next-line no-alert
 				alert( mw.msg( 'centralnotice-documentwrite-error' ) );
 			} else {
 				return true;
@@ -179,7 +179,7 @@
 
 			dialogObj.append( $( '#cn-formsection-delete-banner' ).children( 'div' ).clone().show() )
 				.dialog( {
-					title: mw.message( 'centralnotice-delete-banner-title', 1 ).text(),
+					title: mw.message( 'centralnotice-delete-banner-title', 1 ).escaped(),
 					modal: true,
 					buttons: buttons,
 					width: '35em'
@@ -206,7 +206,7 @@
 
 			dialogObj.text( mw.message( 'centralnotice-archive-banner-confirm' ).text() );
 			dialogObj.dialog( {
-				title: mw.message( 'centralnotice-archive-banner-title', 1 ).text(),
+				title: mw.message( 'centralnotice-archive-banner-title', 1 ).escaped(),
 				resizable: false,
 				modal: true,
 				buttons: buttons
@@ -237,9 +237,9 @@
 				endPos;
 			if ( buttonType === 'close' ) {
 				buttonValue = '<a href="#" title="' +
-					mw.msg( 'centralnotice-close-title' ) +
+					mw.message( 'centralnotice-close-title' ).escaped() +
 					'" onclick="mw.centralNotice.hideBanner();return false;">' +
-					'<div class="cn-closeButton">' + mw.msg( 'centralnotice-close-title' ) +
+					'<div class="cn-closeButton">' + mw.message( 'centralnotice-close-title' ).escaped() +
 					'</div></a>';
 			}
 			if ( document.selection ) {

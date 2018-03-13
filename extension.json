@@ -118,7 +118,8 @@
 		"ext.centralNotice.adminUi": {
 			"dependencies": [
 				"jquery.ui.datepicker",
-				"jquery.ui.multiselect"
+				"jquery.ui.multiselect",
+				"mediawiki.Uri"
 			],
 			"scripts": "infrastructure/centralnotice.js",
 			"styles": [
@@ -229,7 +230,10 @@
 				"centralnotice-large-banner-limit-randomize",
 				"centralnotice-large-banner-limit-randomize-help",
 				"centralnotice-large-banner-limit-identifier",
-				"centralnotice-large-banner-limit-identifier-help"
+				"centralnotice-large-banner-limit-identifier-help",
+				"centralnotice-impression-events-sample-rate",
+				"centralnotice-impression-events-sample-rate-help",
+				"centralnotice-impression-events-sample-rate-field"
 			]
 		},
 		"ext.centralNotice.startUp": {
@@ -403,6 +407,16 @@
 			"targets": [
 				"mobile"
 			]
+		},
+		"ext.centralNotice.impressionEventsSampleRate": {
+			"scripts": "subscribing/ext.centralNotice.impressionEventsSampleRate.js",
+			"dependencies": [
+				"ext.centralNotice.display"
+			],
+			"targets": [
+				"desktop",
+				"mobile"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -431,9 +445,6 @@
 		],
 		"UnitTestsList": [
 			"CentralNoticeHooks::onUnitTestsList"
-		],
-		"EventLoggingRegisterSchemas": [
-			"CentralNoticeHooks::onEventLoggingRegisterSchemas"
 		],
 		"UserMergeAccountFields": [
 			"CentralNoticeHooks::onUserMergeAccountFields"
@@ -465,6 +476,7 @@
 		"CentralDBname": false,
 		"CentralBannerRecorder": false,
 		"CentralNoticeSampleRate": 0.01,
+		"CentralNoticeImpressionEventSampleRate": 0,
 		"CentralHost": false,
 		"CentralNoticeApiUrl": false,
 		"CentralSelectedBannerDispatcher": false,
@@ -620,6 +632,18 @@
 						"type": "json"
 					}
 				}
+			},
+			"impressionEventsSampleRate": {
+				"subscribingModule": "ext.centralNotice.impressionEventsSampleRate",
+				"nameMsg": "centralnotice-impression-events-sample-rate",
+				"helpMsg": "centralnotice-impression-events-sample-rate-help",
+				"parameters": {
+					"rate": {
+						"type": "float",
+						"labelMsg": "centralnotice-impression-events-sample-rate-field",
+						"defaultValue": 0
+					}
+				}
 			}
 		},
 		"NoticeTabifyPages": {
@@ -645,6 +669,9 @@
 			}
 		},
 		"CentralNoticeGeoIPBackgroundLookupModule": null
+	},
+	"EventLoggingSchemas": {
+		"CentralNoticeBannerHistory": 14321636
 	},
 	"manifest_version": 1
 }

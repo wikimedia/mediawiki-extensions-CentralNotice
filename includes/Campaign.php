@@ -253,8 +253,7 @@ class Campaign {
 	static function campaignExists( $campaignName ) {
 		$dbr = CNDatabase::getDb();
 
-		$eCampaignName = htmlspecialchars( $campaignName );
-		return (bool)$dbr->selectRow( 'cn_notices', 'not_name', [ 'not_name' => $eCampaignName ] );
+		return (bool)$dbr->selectRow( 'cn_notices', 'not_name', [ 'not_name' => $campaignName ] );
 	}
 
 	/**
@@ -455,13 +454,15 @@ class Campaign {
 	 */
 	static function getHistoricalCampaigns( $ts ) {
 		$dbr = CNDatabase::getDb();
+		$tsEnc = $dbr->addQuotes( $dbr->timestamp( $ts ) );
+
 		$res = $dbr->select(
 			"cn_notice_log",
 			[
 				"log_id" => "MAX(notlog_id)",
 			],
 			[
-				"notlog_timestamp <= $ts",
+				"notlog_timestamp <= $tsEnc",
 			],
 			__METHOD__,
 			[
@@ -471,7 +472,7 @@ class Campaign {
 
 		$campaigns = [];
 		foreach ( $res as $row ) {
-			$singleRes = $dbr->select(
+			$campaignRow = $dbr->selectRow(
 				"cn_notice_log",
 				[
 					"id" => "notlog_not_id",
@@ -487,18 +488,18 @@ class Campaign {
 					"throttle" => "notlog_end_throttle",
 				],
 				[
-					"notlog_id = {$row->log_id}",
-					"notlog_end_start <= $ts",
-					"notlog_end_end >= $ts",
+					"notlog_id" => $row->log_id,
+					"notlog_end_start <= $tsEnc",
+					"notlog_end_end >= $tsEnc",
 					"notlog_end_enabled = 1",
 				],
 				__METHOD__
 			);
 
-			$campaign = $singleRes->fetchRow();
-			if ( !$campaign ) {
+			if ( !$campaignRow ) {
 				continue;
 			}
+			$campaign = (array)$campaignRow;
 			$campaign['projects'] = explode( ", ", $campaign['projects'] );
 			$campaign['languages'] = explode( ", ", $campaign['languages'] );
 			$campaign['countries'] = explode( ", ", $campaign['countries'] );
@@ -526,7 +527,7 @@ class Campaign {
 				if ( $historical_banner === null ) {
 					// FIXME: crazy hacks
 					$historical_banner = Banner::getBannerSettings( $name );
-					$historical_banner['label'] = wfMessage( 'centralnotice-damaged-log', $name );
+					$historical_banner['label'] = wfMessage( 'centralnotice-damaged-log', $name )->text();
 					$historical_banner['display_anon'] = $historical_banner['anon'];
 					$historical_banner['display_account'] = $historical_banner['account'];
 					$historical_banner['devices'] = [ 'desktop' ];
@@ -980,8 +981,7 @@ class Campaign {
 	static function addTemplateTo( $noticeName, $templateName, $weight, $bucket = 0 ) {
 		$dbw = CNDatabase::getDb( DB_MASTER );
 
-		$eNoticeName = htmlspecialchars( $noticeName );
-		$noticeId = self::getNoticeId( $eNoticeName );
+		$noticeId = self::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
 		$res = $dbw->select( 'cn_assignments', 'asn_id',
 			[
@@ -994,7 +994,6 @@ class Campaign {
 			return 'centralnotice-template-already-exists';
 		}
 
-		$noticeId = self::getNoticeId( $eNoticeName );
 		$dbw->insert( 'cn_assignments',
 			[
 				'tmp_id'     => $templateId,
@@ -1026,8 +1025,7 @@ class Campaign {
 	 */
 	static function getNoticeId( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$eNoticeName = htmlspecialchars( $noticeName );
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $eNoticeName ] );
+		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ] );
 		if ( $row ) {
 			return $row->not_id;
 		} else {
@@ -1053,8 +1051,7 @@ class Campaign {
 
 	static function getNoticeProjects( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$eNoticeName = htmlspecialchars( $noticeName );
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $eNoticeName ] );
+		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ] );
 		$projects = [];
 		if ( $row ) {
 			$res = $dbr->select( 'cn_notice_projects', 'np_project',
@@ -1069,8 +1066,7 @@ class Campaign {
 
 	static function getNoticeLanguages( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$eNoticeName = htmlspecialchars( $noticeName );
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $eNoticeName ] );
+		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ] );
 		$languages = [];
 		if ( $row ) {
 			$res = $dbr->select( 'cn_notice_languages', 'nl_language',
@@ -1085,8 +1081,7 @@ class Campaign {
 
 	static function getNoticeCountries( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$eNoticeName = htmlspecialchars( $noticeName );
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $eNoticeName ] );
+		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ] );
 		$countries = [];
 		if ( $row ) {
 			$res = $dbr->select( 'cn_notice_countries', 'nc_country',
@@ -1146,6 +1141,9 @@ class Campaign {
 			return;
 		} else {
 			$settingName = strtolower( $settingName );
+			if ( !self::settingNameIsValid( $settingName ) ) {
+				throw new InvalidArgumentException( "Invalid setting name" );
+			}
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->update( 'cn_notices',
 				[ 'not_' . $settingName => (int)$settingValue ],
@@ -1188,6 +1186,9 @@ class Campaign {
 			return;
 		} else {
 			$settingName = strtolower( $settingName );
+			if ( !self::settingNameIsValid( $settingName ) ) {
+				throw new InvalidArgumentException( "Invalid setting name" );
+			}
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->update( 'cn_notices',
 				[ 'not_'.$settingName => $settingValue ],
@@ -1370,9 +1371,15 @@ class Campaign {
 			];
 
 			foreach ( $beginSettings as $key => $value ) {
+				if ( !self::settingNameIsValid( $key ) ) {
+					throw new InvalidArgumentException( "Invalid setting name" );
+				}
 				$log[ 'notlog_begin_' . $key ] = $value;
 			}
 			foreach ( $endSettings as $key => $value ) {
+				if ( !self::settingNameIsValid( $key ) ) {
+					throw new InvalidArgumentException( "Invalid setting name" );
+				}
 				$log[ 'notlog_end_' . $key ] = $value;
 			}
 
@@ -1384,28 +1391,42 @@ class Campaign {
 		}
 	}
 
+	/**
+	 * Check that a string is a valid setting name.
+	 * @param string $settingName
+	 * @return bool
+	 */
+	protected static function settingNameIsValid( $settingName ) {
+		return ( preg_match( '/^[a-z_]*$/', $settingName ) === 1 );
+	}
+
 	static function campaignLogs(
 		$campaign = false, $username = false, $start = false, $end = false, $limit = 50, $offset = 0
 	) {
+		// Read from the master database to avoid concurrency problems
+		$dbr = CNDatabase::getDb();
 		$conds = [];
 		if ( $start ) {
-			$conds[] = "notlog_timestamp >= $start";
+			$conds[] = "notlog_timestamp >= " . $dbr->addQuotes( $start );
 		}
 		if ( $end ) {
-			$conds[] = "notlog_timestamp < $end";
+			$conds[] = "notlog_timestamp < " . $dbr->addQuotes( $end );
 		}
 		if ( $campaign ) {
-			$conds[] = "notlog_not_name LIKE '$campaign'";
+			// This used to be a LIKE, but that was undocumented,
+			// and filters prevented the % and \ character from being
+			// used. The one character _ wildcard could have been used
+			// from the api, but that was completely undocumented.
+			// This was sketchy security wise, so the LIKE was removed.
+			$conds["notlog_not_name"] = $campaign;
 		}
 		if ( $username ) {
 			$user = User::newFromName( $username );
 			if ( $user ) {
-				$conds[] = "notlog_user_id = {$user->getId()}";
+				$conds["notlog_user_id"] = $user->getId();
 			}
 		}
 
-		// Read from the master database to avoid concurrency problems
-		$dbr = CNDatabase::getDb();
 		$res = $dbr->select( 'cn_notice_log', '*', $conds,
 			__METHOD__,
 			[

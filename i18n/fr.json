@@ -24,7 +24,8 @@
 			"Orikrin1998",
 			"Windes",
 			"Wladek92",
-			"Orlodrim"
+			"Orlodrim",
+			"Envlh"
 		]
 	},
 	"centralnotice": "Administration des avis centraux",
@@ -86,6 +87,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "La campagne n’existe pas.\nRien à supprimer.",
 	"centralnotice-banner-doesnt-exist": "La bannière n’existe pas.",
 	"centralnotice-banner-edit-onwiki": "Modifier la bannière dans le wiki",
+	"centralnotice-banner-history": "Afficher l’historique de la bannière",
 	"centralnotice-template-still-bound": "Impossible de supprimer la bannière \" $1 \" car celle-ci est toujours liée à une campagne. !N !Ne pas retirer.",
 	"centralnotice-template-body": "Corps du modèle :",
 	"centralnotice-day": "Jour",
@@ -322,7 +324,7 @@
 	"centralnotice-impression-diet": "Allègement de l’impression",
 	"centralnotice-impression-diet-help": "Limiter le nombre de bannières vues par n'importe quel individu.",
 	"centralnotice-impression-diet-identifier": "Identifiant pour le stockage côté client",
-	"centralnotice-impression-diet-identifier-help": "Un identifiant pour les données persistantes côté client stockées par cette fonctionnalité (comme un compteur d’impressions). Ce champ est facultatif pour la plupart des campagnes. Si vous le laissez vide, les campagnes dans la même catégorie partageront les compteurs d’impression, ou, si cette campagne n’utilise pas la fonctionnalité de catégorie, les compteurs seront spécifiques à cette campagne. Pour partager les données entre plusieurs catégories de campagne, spécifiez le même identifiant pour chaque campagne. Note : certaines catégories de campagne sont habituellement configurées pour utiliser les témoins (''cookies'') pour cette fonctionnalité. Pour les campagnes dans ces catégories, cet identifiant était le nom du témoin ; de tels témoins historiques seront migrés. Remarquez aussi que si l’identifiant est modifié au cours d’une campagne, tous les compteurs seront remis à zéro.",
+	"centralnotice-impression-diet-identifier-help": "Un identifiant pour les données persistantes côté client stockées par cette fonctionnalité (comme un compteur d’impressions). Ce champ est facultatif pour la plupart des campagnes. Si vous le laissez vide, les campagnes dans la même catégorie partageront les compteurs d’impression, ou, si cette campagne n’utilise pas la fonctionnalité de catégorie, les compteurs seront spécifiques à cette campagne. Pour partager les données entre plusieurs catégories de campagne, spécifiez le même identifiant pour chaque campagne. Note : certaines catégories de campagne sont habituellement configurées pour utiliser les cookies pour cette fonctionnalité. Pour les campagnes dans ces catégories, cet identifiant était le nom du cookie ; de tels cookies historiques seront migrés. Remarquez aussi que si l’identifiant est modifié au cours d’une campagne, tous les compteurs seront remis à zéro.",
 	"centralnotice-impression-diet-maximum-seen": "Le nombre maximal d’impressions que n’importe qui verra",
 	"centralnotice-impression-diet-maximum-seen-help": "Si le cycle est configuré pour redémarrer, cela limite le nombre d’impressions vues par cycle plutôt que leur nombre total.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Combien de temps attendre avant de redémarrer le cycle, en secondes (facultatif)",

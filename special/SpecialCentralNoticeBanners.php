@@ -153,7 +153,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'bannerNameFilter' => [
 				'section' => 'header/banner-search',
 				'class' => 'HTMLTextField',
-				'placeholder' => wfMessage( 'centralnotice-filter-template-prompt' ),
+				'placeholder-message' => 'centralnotice-filter-template-prompt',
 				'filter-callback' => [ $this, 'sanitizeSearchTerms' ],
 				'default' => $filter,
 			],
@@ -201,7 +201,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'section' => 'addBanner',
 				'class' => 'HTMLTextField',
 				'label-message' => 'centralnotice-change-summary-label',
-				'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+				'placeholder-message' => 'centralnotice-change-summary-action-prompt',
 				'disabled' => !$this->editable,
 				'filter-callback' => [ $this, 'truncateSummaryField' ]
 			],
@@ -209,7 +209,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'section' => 'removeBanner',
 				'class' => 'HTMLTextField',
 				'label-message' => 'centralnotice-change-summary-label',
-				'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+				'placeholder-message' => 'centralnotice-change-summary-action-prompt',
 				'disabled' => !$this->editable,
 				'filter-callback' => [ $this, 'truncateSummaryField' ]
 			],
@@ -257,13 +257,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					// Attempt to create a new banner and redirect; we validate here because it's
 					// a hidden field and that doesn't work so well with the form
 					if ( !Banner::isValidBannerName( $formData[ 'newBannerName' ] ) ) {
-						return wfMessage( 'centralnotice-banner-name-error' );
+						return wfMessage( 'centralnotice-banner-name-error' )->parse();
 					} else {
 						$this->bannerName = $formData[ 'newBannerName' ];
 					}
 
 					if ( Banner::fromName( $this->bannerName )->exists() ) {
-						return wfMessage( 'centralnotice-template-exists' )->text();
+						return wfMessage( 'centralnotice-template-exists' )->parse();
 					} else {
 						$retval = Banner::addTemplate(
 							$this->bannerName,
@@ -278,7 +278,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 						if ( $retval ) {
 							// Something failed; display error to user
-							return wfMessage( $retval )->text();
+							return wfMessage( $retval )->parse();
 						} else {
 							$this->getOutput()->redirect(
 								SpecialPage::getTitleFor(
@@ -327,7 +327,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			}
 		} elseif ( $formData[ 'action' ] ) {
 			// Oh noes! The l33t hakorz are here...
-			return wfMessage( 'centralnotice-generic-error' )->text();
+			return wfMessage( 'centralnotice-generic-error' )->parse();
 		}
 
 		return null;
@@ -394,8 +394,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[ 'action' => 'edit' ]
 				);
+			$links[] = Linker::link(
+				$bannerTitle,
+				$this->msg( 'centralnotice-banner-history' )->escaped(),
+				[ 'class' => 'cn-banner-list-element-label-text' ],
+				[ 'action' => 'history' ]
+				);
 		}
-
 		return $links;
 	}
 
@@ -520,8 +525,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'disabled' => !$this->editable,
 			'label-message' => 'centralnotice-banner-display',
 			'options' => [
-				$this->msg( 'centralnotice-banner-logged-in' )->text() => 'registered',
-				$this->msg( 'centralnotice-banner-anonymous' )->text() => 'anonymous'
+				$this->msg( 'centralnotice-banner-logged-in' )->escaped() => 'registered',
+				$this->msg( 'centralnotice-banner-anonymous' )->escaped() => 'anonymous'
 			],
 			'default' => $selected,
 			'cssclass' => 'separate-form-element',
@@ -532,7 +537,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 		$availableDevices = [];
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
-			$header = $value[ 'header' ];
+			$header = htmlspecialchars( $value[ 'header' ] );
 			$label = $this->getOutput()->parseInline( $value[ 'label' ] );
 			$availableDevices[ "($header) $label" ] = $header;
 		}
@@ -685,8 +690,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'type' => 'info',
 			'default' => $this->msg(
 					'centralnotice-edit-template-magicwords',
-					$this->getLanguage()->listToText( $magicWords )
-				)->text(),
+					wfEscapeWikiText( $this->getLanguage()->listToText( $magicWords ) )
+				)->parse(),
 			'rawrow' => true,
 		];
 
@@ -694,7 +699,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// TODO: Fix this gawdawful method of inserting the close button
 		$buttons[] =
 			'<a href="#" onclick="mw.centralNotice.adminUi.bannerEditor.insertButton(\'close\');' .
-				'return false;">' . $this->msg( 'centralnotice-close-button' )->text() . '</a>';
+				'return false;">' . $this->msg( 'centralnotice-close-button' )->escaped() . '</a>';
 		$formDescriptor[ 'banner-insert-button' ] = [
 			'section' => 'edit-template',
 			'class' => 'HTMLInfoField',
@@ -800,7 +805,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'section' => 'delete-banner',
 			'class' => 'HTMLTextField',
 			'label-message' => 'centralnotice-change-summary-label',
-			'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+			'placeholder-message' => 'centralnotice-change-summary-action-prompt',
 			'disabled' => !$this->editable,
 			'filter-callback' => [ $this, 'truncateSummaryField' ]
 		];
@@ -829,7 +834,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	protected function generateCdnPurgeSection() {
 		$purgeControls = Xml::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
-			$this->msg( 'centralnotice-banner-cdn-controls' )->escaped() );
+			$this->msg( 'centralnotice-banner-cdn-controls' )->text() );
 
 		$purgeControls .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
 
@@ -870,7 +875,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$purgeControls .= Html::element(
 			'div',
 			[ 'class' => 'htmlform-help' ],
-			$this->msg( 'centralnotice-banner-cdn-help' )->escaped()
+			$this->msg( 'centralnotice-banner-cdn-help' )->text()
 		);
 
 		$purgeControls .= Html::closeElement( 'fieldset' );
@@ -899,8 +904,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					$this->getOutput()->redirect( $this->getPageTitle( '' )->getCanonicalURL() );
 					$this->bannerFormRedirectRequired = true;
 				} catch ( Exception $ex ) {
-					return $ex->getMessage() . " <br /> " .
-						$this->msg( 'centralnotice-template-still-bound', $this->bannerName );
+					return htmlspecialchars( $ex->getMessage() ) . " <br /> " .
+						$this->msg( 'centralnotice-template-still-bound', $this->bannerName )->parse();
 				}
 				break;
 
@@ -1009,7 +1014,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		if ( !Banner::isValidBannerName( $this->bannerName ) ) {
 			$out->addHTML(
 				Xml::element( 'div', [ 'class' => 'error' ],
-					wfMessage( 'centralnotice-generic-error' ) )
+					wfMessage( 'centralnotice-generic-error' )->text() )
 			);
 			return;
 		}

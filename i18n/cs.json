@@ -8,7 +8,8 @@
 			"Matěj Grabovský",
 			"Mormegil",
 			"Paxt",
-			"Vks"
+			"Vks",
+			"Ilimanaq29"
 		]
 	},
 	"centralnotice": "Správa centralizovaných oznámení",
@@ -66,6 +67,7 @@
 	"centralnotice-notice-doesnt-exist": "Kampaň neexistuje.",
 	"centralnotice-remove-notice-doesnt-exist": "Kampaň neexistuje.\nNení co odstranit.",
 	"centralnotice-banner-doesnt-exist": "Banner neexistuje.",
+	"centralnotice-banner-history": "Zobrazit historii šablony",
 	"centralnotice-template-still-bound": "Šablona „$1“ je stále navázána na oznámení. Nebude odstraněna.",
 	"centralnotice-template-body": "Tělo šablony:",
 	"centralnotice-day": "Den",

@@ -5,7 +5,7 @@
  * @group Database
  * @group CentralNotice
  */
-class CentralNoticeTest extends PHPUnit_Framework_TestCase {
+class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @var CentralNotice
 	 */

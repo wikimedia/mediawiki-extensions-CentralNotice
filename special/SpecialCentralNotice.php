@@ -227,7 +227,7 @@ class CentralNotice extends SpecialPage {
 			);
 			return $out;
 		} else {
-			return $this->getLanguage()->date( $timestamp );
+			return htmlspecialchars( $this->getLanguage()->date( $timestamp ) );
 		}
 	}
 
@@ -257,7 +257,7 @@ class CentralNotice extends SpecialPage {
 
 			return $this->createSelector( $prefix, $fields );
 		} else {
-			return $this->getLanguage()->time( $timestamp );
+			return htmlspecialchars( $this->getLanguage()->time( $timestamp ) );
 		}
 	}
 
@@ -756,7 +756,7 @@ class CentralNotice extends SpecialPage {
 
 								default:
 									throw new DomainException(
-										'Unknown parameter type ' . $paramType );
+										"Unknown parameter type: '{$paramDef['type']}'" );
 							}
 
 							$params[$paramName] = $paramVal;
@@ -857,7 +857,7 @@ class CentralNotice extends SpecialPage {
 			// Build Html
 			$htmlOut = '';
 			$htmlOut .= Xml::tags( 'h2', null,
-				$this->msg( 'centralnotice-notice-heading', $notice )->text() );
+				$this->msg( 'centralnotice-notice-heading', $notice )->parse() );
 			$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
 
 			// Rows
@@ -1450,11 +1450,11 @@ class CentralNotice extends SpecialPage {
 
 		return Xml::element( 'label',
 				[ 'class' => 'cn-change-summary-label' ],
-				$this->msg( 'centralnotice-change-summary-label' )->escaped()
+				$this->msg( 'centralnotice-change-summary-label' )->text()
 			) . Xml::element( 'input',
 				[
 					'class' => 'cn-change-summary-input',
-					'placeholder' => $this->msg( $placeholderMsg )->escaped(),
+					'placeholder' => $this->msg( $placeholderMsg )->text(),
 					'size' => 45,
 					'name' => 'changeSummary'
 				]
@@ -1568,7 +1568,7 @@ class CentralNotice extends SpecialPage {
 		// Now add our own
 		foreach ( $wgNoticeTabifyPages as $page => $keys ) {
 			$tabs[ $keys[ 'type' ] ][ $page ] = [
-				'text' => wfMessage( $keys[ 'message' ] ),
+				'text' => wfMessage( $keys[ 'message' ] )->parse(),
 				'href' => SpecialPage::getTitleFor( $page )->getFullURL(),
 				'class' => ( $alias === $page ) ? 'selected' : '',
 			];

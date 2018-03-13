@@ -81,6 +81,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "O aviso não existe.\nNão há nada para remover.",
 	"centralnotice-banner-doesnt-exist": "O banner não existe.",
 	"centralnotice-banner-edit-onwiki": "Editar banner on-wiki",
+	"centralnotice-banner-history": "Ver histórico do modelo",
 	"centralnotice-template-still-bound": "Não é possível remover a faixa \"$1\" uma vez que está ainda sendo utilizada por uma campanha.\nNão foi removida.",
 	"centralnotice-template-body": "Conteúdo do modelo:",
 	"centralnotice-day": "Dia",
