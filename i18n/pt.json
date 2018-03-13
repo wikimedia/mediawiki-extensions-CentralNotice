@@ -74,7 +74,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "O aviso não existe.\nNão há nada para remover.",
 	"centralnotice-banner-doesnt-exist": "O modelo não existe.",
 	"centralnotice-banner-edit-onwiki": "Editar o modelo na wiki",
-	"centralnotice-banner-history": "Ver histórico do modelo",
+	"centralnotice-banner-history": "Ver historial do modelo",
 	"centralnotice-template-still-bound": "Não é possível remover o modelo \"$1\", pois ainda está ligado a um aviso.\nNão será removido.",
 	"centralnotice-template-body": "Conteúdo do modelo:",
 	"centralnotice-day": "Dia",
@@ -218,7 +218,7 @@
 	"centralnotice-devicetype-android": "Sistema operativo Android",
 	"centralnotice-devicetype-ipad": "Todos os dispositivos identificados como iPads, mas não como iPhones",
 	"centralnotice-devicetype-iphone": "Todas as versões do iPhone",
-	"centralnotice-devicetype-unknown": "Dispositivos no sítio móvel que não são iPhones, iPads ou Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Lógica do seletor])",
+	"centralnotice-devicetype-unknown": "Dispositivos no sítio móvel que não são iPhones, iPads nem Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Lógica do seletor])",
 	"centralnotice-all": "Tudo",
 	"centralnotice-generic-error": "Não tem as permissões corretas para executar a operação solicitada ou a operação em si mesma era inválida.",
 	"centralnotice-banner-name-error": "Foi fornecido um nome de modelo inválido. Nomes válidos contêm somente caracteres alfanuméricos e sublinhado.",
@@ -305,7 +305,7 @@
 	"centralnotice-legacy-support": "Suporte de ocultação e contagem de impressões em modelos antigos",
 	"centralnotice-legacy-support-help": "Configuração para compatibilidade com modelos antigos que dependem de Special:RecordImpression ou incluem JavaScript que oculta o modelo.",
 	"centralnotice-set-record-impression-sample-rate": "Definir a taxa de amostragem para Special:RecordImpression",
-	"centralnotice-custom-record-impression-sample-rate": "Taxa de amostragem de Special:RecordImpression (deve estar entre 0 e 1, ambos inclusive)",
+	"centralnotice-custom-record-impression-sample-rate": "Taxa de amostragem de Special:RecordImpression (deve ser entre 0 e 1 inclusive)",
 	"centralnotice-banners-not-guaranteed-to-display": "Os modelos podem não ser apresentados, conforme determinado pelo JavaScript incluído no modelo",
 	"centralnotice-impression-diet": "Limitação de impressão",
 	"centralnotice-impression-diet-help": "Limita o número de modelos que são vistos por cada pessoa.",
@@ -339,5 +339,8 @@
 	"centralnotice-banner-sequence-page-views-error": "O passo tem de ter pelo menos uma visita à página.",
 	"centralnotice-banner-sequence-skip-with-id-error": "O identificador não pode conter \"|\".",
 	"centralnotice-banner-sequence-no-banner": "(Sem modelo)",
-	"centralnotice-banner-sequence-detailed-help": "As sequências são definidas em separado para cada segmento. Em cada passo, só estão disponíveis os modelos atribuídos a esse segmento da sequência. Para mostrar sempre um passo, deixe o campo \"Saltar com identificador\" vazio. Se for definido um identificador, então, após o passo ter sido completado, será armazenada uma indicação no browser do utilizador e, na próxima vez em que o utilizador atingir um passo com o mesmo identificador, este passo será saltado. Os identificadores do elemento partilhável \"Limitar modelos grandes e mudar\" são compatíveis e também serão levados em consideração. Quando uma sequência termina, ela recomeça desde o início (para impedir que uma sequência seja reiniciada, use o elemento partilhável \"limitação de impressão\" para limitar as impressões)."
+	"centralnotice-banner-sequence-detailed-help": "As sequências são definidas em separado para cada segmento. Em cada passo, só estão disponíveis os modelos atribuídos a esse segmento da sequência. Para mostrar sempre um passo, deixe o campo \"Saltar com identificador\" vazio. Se for definido um identificador, então, após o passo ter sido completado, será armazenada uma indicação no browser do utilizador e, na próxima vez em que o utilizador atingir um passo com o mesmo identificador, este passo será saltado. Os identificadores do elemento partilhável \"Limitar modelos grandes e mudar\" são compatíveis e também serão levados em consideração. Quando uma sequência termina, ela recomeça desde o início (para impedir que uma sequência seja reiniciada, use o elemento partilhável \"limitação de impressão\" para limitar as impressões).",
+	"centralnotice-impression-events-sample-rate": "Taxa de amostragem para operações de impressão",
+	"centralnotice-impression-events-sample-rate-help": "Definir uma taxa de amostragem não padronizada para o registo das operações de impressão.",
+	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 1 inclusive)"
 }
