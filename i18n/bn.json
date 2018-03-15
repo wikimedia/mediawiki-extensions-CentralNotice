@@ -41,7 +41,7 @@
 	"centralnotice-show-notices": "বিজ্ঞপ্তি দেখান",
 	"centralnotice-list-templates": "ব্যানার তালিকা",
 	"centralnotice-translations": "অনুবাদসমূহ",
-	"centralnotice-translate-to": "যে ভাষায় অনুবাদ করা হচ্ছে তা হল",
+	"centralnotice-translate-to": "অনুবাদের ভাষা",
 	"centralnotice-translate": "অনুবাদ",
 	"centralnotice-english": "ইংরেজি",
 	"centralnotice-banner-name": "ব্যানারের নাম:",
@@ -185,6 +185,7 @@
 	"centralnotice-start-time": "শুরুর সময় (ইউটিসি)",
 	"centralnotice-end-date": "শেষের তারিখ (ইউটিসি)",
 	"centralnotice-end-time": "শেষ সময় (ইউটিসি)",
+	"hidebanners": "ব্যানার লুকান",
 	"apihelp-query+centralnoticelogs-example-1": "লগ দেখান",
 	"centralnotice-banner-sequence-banner": "ব্যানার",
 	"centralnotice-banner-sequence-page-views": "পাতা দর্শন"
