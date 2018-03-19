@@ -1,13 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Malafaya"
+			"Malafaya",
+			"Joao Xavier"
 		]
 	},
 	"centralnotice-modify": "Sendez",
 	"centralnotice-add": "Adjuntar",
 	"centralnotice-add-notice": "Adjuntar avizo",
 	"centralnotice-add-template": "Adjuntar shablono",
+	"centralnotice-translations": "Tradukuri",
 	"centralnotice-english": "Angliana",
 	"centralnotice-templates": "Shabloni",
 	"centralnotice-weight": "Pezo",

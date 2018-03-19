@@ -146,6 +146,7 @@
 	"centralnotice-banner-display-on": "Mostrar en",
 	"centralnotice-banner-mixins": "Mixins",
 	"centralnotice-banner-mixins-help": "Comprueba cada mixin que deseas incluir en la entrega de bandera.\n(Mira [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] para ver más información.)",
+	"centralnotice-banner-cdn-controls": "Antememoria de interfaz",
 	"centralnotice-banner-cdn-button": "Purgar",
 	"centralnotice-banner-cdn-dialog-ok": "Aceptar",
 	"apierror-centralnotice-cdn-lang-code-error": "Código de idioma incorrecto.",
