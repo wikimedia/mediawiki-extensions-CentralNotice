@@ -223,3 +223,12 @@ Configuration
   data will only be set from the GeoIP cookie. In the WMF production, this
   cookie should be set server-side from Varnish.
   Default: null
+
+* $wgCentralNoticeContentSecurityPolicy: Optional setting to help detect banner
+  content that may violate users' privacy. When this is set, its value will be
+  used on banner preview pages as a content-security-policy header, and a small
+  script will be added to detect content security policy violations and show an
+  alert message. An example value that alerts on all third party requests but
+  does not break mediawiki is:
+    "default-src data: blob: 'unsafe-inline' 'unsafe-eval' 'self';"
+  Default: false

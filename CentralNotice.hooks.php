@@ -157,14 +157,16 @@ class CentralNoticeHooks {
 
 	/**
 	 * BeforePageDisplay hook handler
-	 * This function adds the startUp and geoIP modules to the page (as needed)
+	 * This function adds the startUp and geoIP modules to the page as needed,
+	 * and if there is a forced banner preview, add CSP headers and violation
+	 * reporting javascript.
 	 *
 	 * @param OutputPage $out
 	 * @param Skin $skin
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralHost, $wgServer, $wgRequest;
+		global $wgCentralHost, $wgServer, $wgRequest, $wgCentralNoticeContentSecurityPolicy;
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
@@ -191,6 +193,17 @@ class CentralNoticeHooks {
 		// Insert the startup module
 		$out->addModules( 'ext.centralNotice.startUp' );
 
+		// FIXME: as soon as I80f6f469ba4c0b60 is available in core, get rid
+		// of $wgCentralNoticeContentSecurityPolicy and use their stuff.
+		if (
+			$wgCentralNoticeContentSecurityPolicy &&
+			$wgRequest->getVal( 'banner' )
+		) {
+			$wgRequest->response()->header(
+				"content-security-policy: $wgCentralNoticeContentSecurityPolicy"
+			);
+			$out->addModules( 'ext.centralNotice.cspViolationAlert' );
+		}
 		return true;
 	}
 
