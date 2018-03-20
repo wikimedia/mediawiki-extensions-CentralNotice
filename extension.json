@@ -417,6 +417,12 @@
 				"desktop",
 				"mobile"
 			]
+		},
+		"ext.centralNotice.cspViolationAlert" : {
+			"scripts": "subscribing/ext.centralNotice.cspViolationAlert.js",
+			"messages": [
+				"centralnotice-csp-violation-alert"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -667,7 +673,8 @@
 				"message": "centralnotice-logs"
 			}
 		},
-		"CentralNoticeGeoIPBackgroundLookupModule": null
+		"CentralNoticeGeoIPBackgroundLookupModule": null,
+		"CentralNoticeContentSecurityPolicy": false
 	},
 	"EventLoggingSchemas": {
 		"CentralNoticeBannerHistory": 14321636
