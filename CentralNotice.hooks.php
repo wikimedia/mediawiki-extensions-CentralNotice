@@ -280,7 +280,7 @@ class CentralNoticeHooks {
 			$wgNoticeInfrastructure, $wgCentralBannerRecorder,
 			$wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
-			$wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
+			$wgNoticeHideUrls, $wgCentralNoticeSampleRate,
 			$wgCentralNoticeImpressionEventSampleRate,
 			$wgCentralSelectedBannerDispatcher, $wgCentralSelectedMobileBannerDispatcher,
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins;
@@ -323,8 +323,6 @@ class CentralNoticeHooks {
 		$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 		$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 
-		// TODO Remove this after banner display refactor has been deployed
-		$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
 		$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] =
 			$wgCentralNoticePerCampaignBucketExtension;
 

@@ -490,7 +490,6 @@
 			"_merge_strategy": "array_plus"
 		},
 		"CentralNoticeFallbackHideCookieDuration": 604800,
-		"NoticeOldCookieEpoch": "20141109000000",
 		"NoticeHideUrls": [],
 		"CentralNoticeHideBannersP3P": false,
 		"NoticeBannerMaxAge": 600,
