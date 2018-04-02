@@ -188,7 +188,7 @@ Configuration
   Default: []
 
 * $wgCentralNoticeBannerMixins: Available banner mixins
-  See http://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
+  See https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
   Default: []
 
 * $wgCentralNoticeCampaignMixins: Available campaign mixins. Mixins must
