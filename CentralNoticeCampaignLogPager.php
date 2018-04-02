@@ -87,19 +87,19 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->notlog_user_id );
 		// Create the user page link
-		$userLink = Linker::linkKnown(
+		$userLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$loggedUser->getUserPage(),
-			htmlspecialchars( $loggedUser->getName() )
+			$loggedUser->getName()
 		);
-		$userTalkLink = Linker::linkKnown(
+		$userTalkLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$loggedUser->getTalkPage(),
-			$this->msg( 'centralnotice-talk-link' )->escaped()
+			$this->msg( 'centralnotice-talk-link' )->text()
 		);
 
 		// Create the campaign link
-		$campaignLink = Linker::linkKnown(
+		$campaignLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$this->viewPage,
-			htmlspecialchars( $row->notlog_not_name ),
+			$row->notlog_not_name,
 			[],
 			[
 				'subaction' => 'noticeDetail',

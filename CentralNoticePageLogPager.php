@@ -97,11 +97,13 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
-		$userLink = Linker::linkKnown( $loggedUser->getUserPage(),
-			htmlspecialchars( $loggedUser->getName() ) );
-		$userTalkLink = Linker::linkKnown(
+		$userLink = $this->special->getLinkRenderer()->makeKnownLink(
+			$loggedUser->getUserPage(),
+			$loggedUser->getName()
+		);
+		$userTalkLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$loggedUser->getTalkPage(),
-			$this->msg( 'centralnotice-talk-link' )->escaped()
+			$this->msg( 'centralnotice-talk-link' )->text()
 		);
 
 		$language = 'en'; // English is the default for CentralNotice messages
@@ -125,9 +127,9 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		}
 
 		// Create banner link
-		$bannerLink = Linker::linkKnown(
+		$bannerLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$this->viewPage,
-			htmlspecialchars( $banner ),
+			$banner,
 			[],
 			[ 'template' => $banner ]
 		);
@@ -155,7 +157,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell = $bannerLink;
 
 			// Create the message link
-			$messageLink = Linker::linkKnown( $title, htmlspecialchars( $message ) );
+			$messageLink = $this->special->getLinkRenderer()->makeKnownLink( $title, $message );
 
 			// If the message was just created, show a link to the message. If the message was
 			// edited, show a link to the message and a link to the diff.
