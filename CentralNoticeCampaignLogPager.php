@@ -542,7 +542,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Close table
-	 * @return strint HTML
+	 * @return string HTML
 	 */
 	function getEndBody() {
 		$htmlOut = '';
