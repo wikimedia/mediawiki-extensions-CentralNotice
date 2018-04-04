@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * A pager for viewing lists of CentralNotice campaigns. Optionally allows
  * modification of some campaign properties. It is expected that this will only
