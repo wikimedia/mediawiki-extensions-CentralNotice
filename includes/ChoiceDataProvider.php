@@ -1,5 +1,8 @@
 <?php
 
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
+
 /***
  * Provides a set of campaign and banner choices based on allocations for a
  * given project and language combination.
@@ -50,7 +53,7 @@ class ChoiceDataProvider {
 				// campaigns are updated, the cache is invalidated, and
 				// a client queries a yet-unsynced replica DB. Also, gracefully
 				// fail if we're running an old version of core (<1.27).
-				if ( method_exists( 'Database', 'getCacheSetOptions' ) ) {
+				if ( method_exists( Database::class, 'getCacheSetOptions' ) ) {
 					$setOpts += Database::getCacheSetOptions( $dbr );
 				}
 
