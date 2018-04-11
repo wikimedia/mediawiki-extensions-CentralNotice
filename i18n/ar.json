@@ -265,6 +265,7 @@
 	"centralnotice-end-time": "نهاية الوقت (بالتوقيت العالمي)",
 	"centralnotice-banner-not-found-title": "البانر غير موجود",
 	"centralnotice-banner-not-found-contents": "ليست هناك لافتة مع هذا الاسم الدقيق.",
+	"centralnotice-csp-violation-alert": "تم اكتشاف انتهاك لسياسة أمان المحتوى! حاول تحميل شيء من $1.",
 	"hidebanners": "إخفاء اللافتات",
 	"centralnotice-specialhidebanners-p3p": "تتطلب بعض المتصفحات سياسة P3P المدمجة لتعيين ملفات تعريف الارتباط في حالات معينة، ومع ذلك، لا توجد سياسة مدمجة متاحة حاليا، يُرجَى الاطلاع على سياسة الخصوصية القابلة للقراءة البشرية في الموقع.",
 	"apihelp-centralnoticeallocations-description": "الحصول على مخصصات اللافتات التي يخدمها CentralNotice لجميع أنواع المستخدمين تحت مرشح حدودي.\n\nهذا اتصال جسون فقط.",

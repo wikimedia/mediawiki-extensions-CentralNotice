@@ -246,6 +246,7 @@
 	"centralnotice-end-time": "종료 시각 (UTC)",
 	"centralnotice-banner-not-found-title": "배너를 찾을 수 없음",
 	"centralnotice-banner-not-found-contents": "이 이름을 가진 배너가 없습니다.",
+	"centralnotice-csp-violation-alert": "내용 보안 정책 위반이 발견되었습니다! $1에서 무언가를 불러오려고 시도했습니다.",
 	"hidebanners": "배너 숨기기",
 	"apihelp-centralnoticeallocations-extended-description": "이것은 JSON 전용 호출입니다.",
 	"apihelp-centralnoticeallocations-param-country": "필터를 켤 국가",

@@ -272,6 +272,7 @@
 	"centralnotice-end-time": "Date de fin (UTC)",
 	"centralnotice-banner-not-found-title": "Bannière non trouvée",
 	"centralnotice-banner-not-found-contents": "Il n’y a pas de bannière avec ce nom exact.",
+	"centralnotice-csp-violation-alert": "Violation de la politique de sécurité du contenu détectée ! Essai de chargement de quelque chose depuis $1.",
 	"hidebanners": "Masquer les bannières",
 	"centralnotice-specialhidebanners-p3p": "Certains navigateurs nécessitent une politique P3P compacte pour définir les témoins (''cookies'') dans certaines situations. Toutefois, aucune politique compacte n’est actuellement disponible. Veuillez consulter la politique de confidentialité du site.",
 	"apihelp-centralnoticeallocations-description": "Obtenir les allocations de bannière pour les bannières provenant de CentralNotice pour tous les types d’utilisateur selon le filtre paramétré.\n\nCeci est un appel JSON uniquement.",
