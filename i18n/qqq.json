@@ -115,7 +115,7 @@
 	"centralnotice-number-uses": "The header of a narrow column in the table with sitenotice campaign information. The values in the column are the numbers of times that a message enclosed in three curly brackets appears in the banner's code. The width of the column is 5% of the total width of the table, so the message should be accordingly short.\n\nIn English this is a short form of \"Number of uses\".",
 	"centralnotice-settings": "{{Identical|Settings}}",
 	"centralnotice-edit-template": "Used as fieldset label in the form in [[Special:NoticeTemplate]].\n\nFollowed by {{msg-mw|Centralnotice-edit-template-summary}}.",
-	"centralnotice-edit-template-summary": "Used as summary of the form in [[Special:NoticeTemplate]].\n\nPreceded by one of the following fieldset labels:\n* {{msg-mw|Centralnotice-banner}}\n* {{msg-mw|Centralnotice-edit-template}}",
+	"centralnotice-edit-template-summary": "Used as summary of the text area for editing banner content in [[Special:NoticeTemplate]].",
 	"centralnotice-edit-template-magicwords": "List of available magic words. Parameters:\n* $1 - magic words",
 	"centralnotice-message": "The header of a table of translatable messages. Translatable messages are represented in the template code by strings enclosed in three curly brackets.\n\n* {{msg-mw|centralnotice-number-uses}}\n* {{msg-mw|centralnotice-english}}\n* (the name of a language to which the banner is being translated)\n\n{{Identical|Message}}",
 	"centralnotice-message-not-set": "Used if the native text of the banner message is not set, in [[Special:NoticeTemplate]].",

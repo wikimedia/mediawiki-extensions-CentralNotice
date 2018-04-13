@@ -676,7 +676,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'default' => Html::rawElement(
 				'div',
 				[ 'class' => 'separate-form-element' ],
-				$this->msg( 'centralnotice-edit-template-summary' )->escaped() ),
+				$this->msg( 'centralnotice-edit-template-summary' )->parse() ),
 			'rawrow' => true,
 		];
 
