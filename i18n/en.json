@@ -91,7 +91,7 @@
 	"centralnotice-number-uses": "Uses",
 	"centralnotice-settings": "Settings",
 	"centralnotice-edit-template": "Edit banner",
-	"centralnotice-edit-template-summary": "To create a localisable message, enclose a hyphenated string in three curly brackets, e.g. {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Warning: Loading external resources into a banner can compromise user privacy.\n\nTo create a localisable message, enclose a hyphenated string in three curly brackets, e.g. <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Magic words provided by banner mixins: $1",
 	"centralnotice-message": "Message",
 	"centralnotice-message-not-set": "Message not set",
