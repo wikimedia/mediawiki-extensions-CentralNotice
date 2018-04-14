@@ -267,6 +267,7 @@
 	"centralnotice-end-time": "Hora de fim (UTC)",
 	"centralnotice-banner-not-found-title": "Banner não encontrado",
 	"centralnotice-banner-not-found-contents": "Não existe banner com este nome exato.",
+	"centralnotice-csp-violation-alert": "Foi detetada uma violação das normas de segurança do conteúdo! Tentou carregar uma coisa de $1.",
 	"hidebanners": "Ocultar banners",
 	"centralnotice-specialhidebanners-p3p": "Alguns navegadores requerem uma política compacta P3P para definir cookies em certas situações. Entretanto, nenhuma política compacta está disponível atualmente. Por favor, veja a política de privacidade do site.",
 	"apihelp-centralnoticeallocations-description": "Obter as alocações de banner para banners servidos pelo CentralNotice para todos os tipos de usuários sob o filtro paramétrico.\n\nIsto é apenas um convite do JSON.",
