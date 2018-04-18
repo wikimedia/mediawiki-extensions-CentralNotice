@@ -100,7 +100,7 @@
 	"centralnotice-number-uses": "מופעים",
 	"centralnotice-settings": "הגדרות",
 	"centralnotice-edit-template": "עריכת הכּרזה",
-	"centralnotice-edit-template-summary": "כדי ליצור הודעה שאפשר לתרגם, יש לתחום מחרוזות עם מקפים בשלושה סוגריים מסולסלים, למשל {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "אזהרה: טעינת משאבים חיצוניים בכרזה עלולה לפגוע בפרטיות המשתמשים.\n\nכדי ליצור הודעה שאפשר לתרגם, יש לתחום מחרוזות עם מקפים בשלושה סוגריים מסולסלים, למשל <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "מילות קסם: $1",
 	"centralnotice-message": "הודעה",
 	"centralnotice-message-not-set": "לא הוגדרה הודעה",
