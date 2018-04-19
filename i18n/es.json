@@ -120,7 +120,7 @@
 	"centralnotice-number-uses": "Usos",
 	"centralnotice-settings": "Ajustes",
 	"centralnotice-edit-template": "Editar plantilla",
-	"centralnotice-edit-template-summary": "Para crear un mensaje traducible, encierra una cadena con guion dentro de tres llaves, por ejemplo: {{{cita-jimbo}}}.",
+	"centralnotice-edit-template-summary": "Atención: cargar recursos externos en un anuncio puede poner en peligro la privacidad de los usuarios.\n\nPara crear un mensaje traducible, encierra una cadena con guiones dentro de tres llaves, por ejemplo: <nowiki>{{{cita-jimbo}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Palabras máginas provistas por la plantilla mixins: $1",
 	"centralnotice-message": "Mensaje",
 	"centralnotice-message-not-set": "No se ha establecido un mensaje",

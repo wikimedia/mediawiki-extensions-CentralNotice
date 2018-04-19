@@ -117,7 +117,7 @@
 	"centralnotice-number-uses": "Utilisations",
 	"centralnotice-settings": "Configuration",
 	"centralnotice-edit-template": "Modifier le modèle",
-	"centralnotice-edit-template-summary": "Pour créer un message localisable, entourez une chaîne à trait d’union de trois accolades, par exemple {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Avertissement : Charger des ressources externes dans une bannière peut compromettre la confidentialité.\n\nPour créer un message localisable, entourez une chaîne à trait d’union de trois accolades, par exemple <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Mots magiques fournis par les mélanges de bannière : $1",
 	"centralnotice-message": "Message",
 	"centralnotice-message-not-set": "Message non renseigné",

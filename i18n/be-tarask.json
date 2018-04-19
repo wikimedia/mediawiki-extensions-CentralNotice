@@ -89,7 +89,7 @@
 	"centralnotice-number-uses": "Выкарыстоўвае",
 	"centralnotice-settings": "Налады",
 	"centralnotice-edit-template": "Рэдагаваць паведамленьне",
-	"centralnotice-edit-template-summary": "Каб стварыць лякалізуемае паведамленьне, атачыце дэфісны радок у тры фігурныя дужкі, напрыклад, {{{цытата-джымба}}}.",
+	"centralnotice-edit-template-summary": "Папярэджаньне: загрузка вонкавых рэсурсаў у банэр можа скампрамэтаваць прыватнасьць удзельнікаў.\n\nКаб стварыць паведамленьне для лякалізацыі, атачыце дэфісны радок трыма фігурнымі дужкамі, напрыклад, <nowiki>{{{цытата-джымба}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Магічныя слова, прапанаваныя праз міксіны банэра: $1",
 	"centralnotice-message": "Паведамленьне",
 	"centralnotice-message-not-set": "Паведамленьне не ўсталяванае",

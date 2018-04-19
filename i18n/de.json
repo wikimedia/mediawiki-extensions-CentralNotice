@@ -102,7 +102,7 @@
 	"centralnotice-number-uses": "Nutzungen",
 	"centralnotice-settings": "Einstellungen",
 	"centralnotice-edit-template": "Vorlage bearbeiten",
-	"centralnotice-edit-template-summary": "Um eine zu übersetzende Nachricht zu erstellen, füge einen von drei geschweiften Klammern und mit Bindestrich umgebenen Text ein, z. B. {{{jimbo-zitat}}}.",
+	"centralnotice-edit-template-summary": "Warnung: Das Laden externer Ressourcen in eine Vorlage kann die Privatsphäre von Benutzern beeinträchtigen.\n\nUm eine lokalisierbare Nachricht zu erstellen, füge eine mit Bindestrichen versehene Zeichenfolge mit drei geschweiften Klammern bei, z.&nbsp;B. <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Magische Wörter von Vorlagenmixins: $1",
 	"centralnotice-message": "Nachricht",
 	"centralnotice-message-not-set": "Nachricht nicht gesetzt",

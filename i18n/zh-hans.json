@@ -119,7 +119,7 @@
 	"centralnotice-number-uses": "使用",
 	"centralnotice-settings": "设置",
 	"centralnotice-edit-template": "编辑模板",
-	"centralnotice-edit-template-summary": "欲创建一个可本地化的消息，请用三对花括号分隔含连字符的字符串，例如{{{jimbo-quote}}}。",
+	"centralnotice-edit-template-summary": "警告：加载外部资源至横幅会威胁用户隐私。\n\n要创建一个可本地化的消息，请用三对花括号包裹带连字符的字符串，例如<nowiki>{{{jimbo-quote}}}</nowiki>。",
 	"centralnotice-edit-template-magicwords": "横幅Mixins提供的魔术字：$1",
 	"centralnotice-message": "信息",
 	"centralnotice-message-not-set": "没有设置消息",
