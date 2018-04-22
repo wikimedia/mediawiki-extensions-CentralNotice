@@ -2,9 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Тест",
-			"Mikalai Udodau"
+			"Mikalai Udodau",
+			"Artsiom91"
 		]
 	},
 	"centralnotice-add": "Дадаць",
-	"centralnotice-languages": "Мовы"
+	"centralnotice-translations": "Пераклады",
+	"centralnotice-close-title": "Закрыць",
+	"centralnotice-languages": "Мовы",
+	"centralnotice-date": "Дата"
 }
