@@ -111,7 +111,7 @@
 	"centralnotice-number-uses": "Usos",
 	"centralnotice-settings": "Configurações",
 	"centralnotice-edit-template": "Editar modelo",
-	"centralnotice-edit-template-summary": "Para criar uma mensagem localizável, coloque entre três chaves um texto que contenha um hífen; por exemplo, {{{texto-citado}}}.",
+	"centralnotice-edit-template-summary": "Aviso: Carregar os recursos externos num modelo pode comprometer a privacidade do usuário.\n\nPara criar uma mensagem localizável, coloque entre três chavetas um texto que contenha um hífen; por exemplo, <nowiki>{{{citar-jimbo}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Palavras mágicas fornecidas pelo banner mixins: $1",
 	"centralnotice-message": "Mensagem",
 	"centralnotice-message-not-set": "Mensagem não estabelecida",
