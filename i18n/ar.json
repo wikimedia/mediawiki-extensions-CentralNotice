@@ -111,7 +111,7 @@
 	"centralnotice-number-uses": "الاستخدامات",
 	"centralnotice-settings": "الإعدادات",
 	"centralnotice-edit-template": "حرّر قالبا",
-	"centralnotice-edit-template-summary": "لإنشاء الرسالة القابلة للترجمة، قم بإحاطة سلسلة النص بثلاث من الأقواس المعقوفة، مثل {{{jimbo-الإقتباس}}}.",
+	"centralnotice-edit-template-summary": "تحذير: يمكن أن يؤدي تحميل الموارد الخارجية إلى إعلان بانتهاك إلى انتهاك خصوصية المستخدم،\n\nلإنشاء رسالة قابلة للترجمة; قم بتضمين سلسلة وصلة في ثلاثة أقواس معقوفة، على سبيل المثال <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "الكلمات السحرية المتوفرة من قبل خليط الشعار: $1",
 	"centralnotice-message": "الرسالة",
 	"centralnotice-message-not-set": "الرسالة غير مضبوطة",
