@@ -9,7 +9,8 @@
 			"Сербијана",
 			"Obsuser",
 			"Милан Јелисавчић",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"BadDog"
 		]
 	},
 	"centralnotice": "Администратор централног обавештавања",
@@ -153,7 +154,7 @@
 	"centralnotice-anon": "Прикажи анонимним корисницима",
 	"centralnotice-account": "Прикажи пријављеним корисницима",
 	"centralnotice-fundraising": "Прикупљање средстава",
-	"centralnotice-autolink": "Аутоматско стварање веза",
+	"centralnotice-autolink": "Аутоматско прављење веза",
 	"centralnotice-landingpages": "Циљне странице",
 	"centralnotice-banner-content": "Садржај плаката",
 	"centralnotice-banner-content-changed": "Измењено",
