@@ -93,7 +93,7 @@
 	"centralnotice-number-uses": "Usos",
 	"centralnotice-settings": "Configuración",
 	"centralnotice-edit-template": "Editar cartel",
-	"centralnotice-edit-template-summary": "Pa crear un mensaxe traducible, pon una cadena de testu con guión dientro de trés llaves , por exemplu: {{{cites-jimbo}}}.",
+	"centralnotice-edit-template-summary": "Atención: cargar recursos esternos nun anunciu puede poner en peligru la privacidá de los usuarios.\n\nPa crear un mensaxe llocalizable, pon una cadena de testu con guión dientro de trés llaves , por casu: <nowiki>{{{cites-jimbo}}}.",
 	"centralnotice-edit-template-magicwords": "Pallabres máxiques qu'ufren los mixins del anunciu: $1",
 	"centralnotice-message": "Mensaxe",
 	"centralnotice-message-not-set": "Mensaxe ensin configurar",
