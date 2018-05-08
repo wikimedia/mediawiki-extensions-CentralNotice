@@ -22,6 +22,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * CentralNotice banner object. Banners are pieces of rendered wikimarkup
  * injected as HTML onto MediaWiki pages via the sitenotice hook.

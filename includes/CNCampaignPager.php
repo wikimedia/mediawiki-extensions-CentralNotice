@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IResultWrapper;
+
 /**
  * A pager for viewing lists of CentralNotice campaigns. Optionally allows
  * modification of some campaign properties. It is expected that this will only
@@ -406,7 +408,7 @@ class CNCampaignPager extends TablePager {
 	/**
 	 * @inheritDoc
 	 */
-	function extractResultInfo( $isFirst, $limit, ResultWrapper $res ) {
+	function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
 		parent::extractResultInfo( $isFirst, $limit, $res );
 
 		// Disable editing if there's more than one page. (This is a legacy

@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * Fetches the CentralNotice infrastructure database.
  */
@@ -22,7 +24,7 @@ class CNDatabase {
 	 * to that database.  If no parameter is given, we attempt to choose a
 	 * sane default (see above).
 	 *
-	 * @return Database
+	 * @return IDatabase
 	 */
 	public static function getDb( $target = null ) {
 		global $wgCentralDBname, $wgDBname, $wgRequest;

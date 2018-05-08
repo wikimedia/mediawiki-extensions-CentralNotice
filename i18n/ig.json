@@ -4,10 +4,12 @@
 			"Ukabia"
 		]
 	},
-	"centralnotice-modify": "Dànyé",
+	"centralnotice-modify": "Zibànye",
+	"centralnotice-save-banner": "Dònye",
 	"centralnotice-preview": "Lètú",
 	"centralnotice-remove": "Wéfù",
 	"centralnotice-add": "Tinyé",
+	"centralnotice-add-notice-cancel-button": "Hapụ̀",
 	"centralnotice-translations": "Nkuwaria na asụsụ ozor",
 	"centralnotice-translate-to": "Kuwaria na",
 	"centralnotice-translate": "Tụ̀wári ásụ̀sụ̀",
@@ -22,5 +24,12 @@
 	"centralnotice-project-name": "Áhà orürü",
 	"centralnotice-message": "Ozi",
 	"centralnotice-clone-name": "Áhà:",
+	"centralnotice-clone-cancel": "Hapụ̀",
+	"centralnotice-user": "Òjìème",
+	"centralnotice-talk-link": "nkàta",
+	"centralnotice-banner-class": "Ụdàkọ",
+	"centralnotice-archive-banner-cancel": "Hapụ̀",
+	"centralnotice-archive-campaign-cancel": "Hapụ̀",
+	"centralnotice-delete-banner-cancel": "Hapụ̀",
 	"centralnotice-start-date": "Bìdó ubochi"
 }

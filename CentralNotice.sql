@@ -1,6 +1,6 @@
 -- CentralNotice Schema Install File
 -- Last Update: patch-add_devices.sql
--- See documentation at http://www.mediawiki.org/wiki/Extension:CentralNotice/Database_schema
+-- See documentation at https://www.mediawiki.org/wiki/Extension:CentralNotice/Database_schema
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_notices (
 	`not_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,

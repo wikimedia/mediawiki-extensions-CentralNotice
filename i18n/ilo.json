@@ -87,7 +87,7 @@
 	"centralnotice-number-uses": "Us-usar",
 	"centralnotice-settings": "Dagiti pannakaisaad",
 	"centralnotice-edit-template": "Urnosen ti banderola",
-	"centralnotice-edit-template-summary": "Ti agpartuat ti malokalisado a mensahe, rikpan addan ti hyphen a kuerdas iti tallo a kulot a pangrikep, a kas daytoy {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Ballaag: Ti panangikarga kadagiti akinruar a rekurso iti banderola ket mabalin a mangkomprimiso ti kinapribado ti agar-aramat.\n\nTapno makapartuat iti maipatarus a mensahe, rikpan ti naikkan iti pangrangtay a kuerdas kadagiti tallo a kulot a pangrikep, kas ti <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Dagiti salamangka a balikas nga inted babaen ti banderola ti mixins: $1",
 	"centralnotice-message": "Mensahe",
 	"centralnotice-message-not-set": "Saan a naisaad ti mensahe",

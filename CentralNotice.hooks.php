@@ -293,7 +293,7 @@ class CentralNoticeHooks {
 			$wgNoticeInfrastructure, $wgCentralBannerRecorder,
 			$wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
-			$wgNoticeHideUrls, $wgNoticeOldCookieEpoch, $wgCentralNoticeSampleRate,
+			$wgNoticeHideUrls, $wgCentralNoticeSampleRate,
 			$wgCentralNoticeImpressionEventSampleRate,
 			$wgCentralSelectedBannerDispatcher, $wgCentralSelectedMobileBannerDispatcher,
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins;
@@ -336,8 +336,6 @@ class CentralNoticeHooks {
 		$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 		$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
 
-		// TODO Remove this after banner display refactor has been deployed
-		$vars[ 'wgNoticeOldCookieApocalypse' ] = (int)wfTimestamp( TS_UNIX, $wgNoticeOldCookieEpoch );
 		$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] =
 			$wgCentralNoticePerCampaignBucketExtension;
 
@@ -345,27 +343,6 @@ class CentralNoticeHooks {
 			// Add campaign mixin defs for use in admin interface
 			$vars[ 'wgCentralNoticeCampaignMixins' ] = $wgCentralNoticeCampaignMixins;
 		}
-		return true;
-	}
-
-	/**
-	 * UnitTestsList hook handler
-	 *
-	 * @param array &$files
-	 * @return bool
-	 */
-	public static function onUnitTestsList( &$files ) {
-		global $wgAutoloadClasses;
-
-		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
-			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
-
-		$files[] = __DIR__ . '/tests/ApiCentralNoticeChoiceDataTest.php';
-		$files[] = __DIR__ . '/tests/CentralNoticeTest.php';
-		$files[] = __DIR__ . '/tests/AllocationCalculatorTest.php';
-		$files[] = __DIR__ . '/tests/ChoiceDataProviderTest.php';
-		$files[] = __DIR__ . '/tests/BannerTest.php';
-		$files[] = __DIR__ . '/tests/CNChoiceDataResourceLoaderModuleTest.php';
 		return true;
 	}
 
@@ -385,15 +362,15 @@ class CentralNoticeHooks {
 		// Set up test fixtures module, which is added as a dependency for all QUnit
 		// tests.
 		$testModules['qunit']['ext.centralNotice.testFixtures'] = [
-				'class' => 'CNTestFixturesResourceLoaderModule'
+			'class' => 'CNTestFixturesResourceLoaderModule'
 		];
 
 		// These classes are only used here or in phpunit tests
 		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
-			__DIR__ . '/tests/CNTestFixturesResourceLoaderModule.php';
+			__DIR__ . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
 		// Note: the following setting is repeated in efCentralNoticeUnitTests()
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
-			__DIR__ . '/tests/CentralNoticeTestFixtures.php';
+			__DIR__ . '/tests/phpunit/CentralNoticeTestFixtures.php';
 
 		$testModuleBoilerplate = [
 			'localBasePath' => __DIR__,

@@ -102,7 +102,7 @@
 	"centralnotice-number-uses": "Nutzungen",
 	"centralnotice-settings": "Einstellungen",
 	"centralnotice-edit-template": "Vorlage bearbeiten",
-	"centralnotice-edit-template-summary": "Um eine zu übersetzende Nachricht zu erstellen, füge einen von drei geschweiften Klammern und mit Bindestrich umgebenen Text ein, z. B. {{{jimbo-zitat}}}.",
+	"centralnotice-edit-template-summary": "Warnung: Das Laden externer Ressourcen in eine Vorlage kann die Privatsphäre von Benutzern beeinträchtigen.\n\nUm eine lokalisierbare Nachricht zu erstellen, füge eine mit Bindestrichen versehene Zeichenfolge mit drei geschweiften Klammern bei, z.&nbsp;B. <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Magische Wörter von Vorlagenmixins: $1",
 	"centralnotice-message": "Nachricht",
 	"centralnotice-message-not-set": "Nachricht nicht gesetzt",
@@ -256,6 +256,7 @@
 	"centralnotice-end-time": "Endzeitpunkt (UTC)",
 	"centralnotice-banner-not-found-title": "Vorlage nicht gefunden",
 	"centralnotice-banner-not-found-contents": "Es gibt keine Vorlage mit diesem genauen Namen.",
+	"centralnotice-csp-violation-alert": "Verletzung der Content Security Policy entdeckt! Es wurde versucht, etwas von $1 zu laden.",
 	"hidebanners": "Vorlagen ausblenden",
 	"centralnotice-specialhidebanners-p3p": "Einige Browser erfordern eine P3P-kompakte Richtlinie, um Cookies in bestimmten Situationen zu setzen. Es ist jedoch derzeit keine kompakte Richtlinie verfügbar. Bitte lies die menschenlesbare Datenschutzrichtlinie der Website.",
 	"apihelp-centralnoticeallocations-description": "Ruft die Vorlagenanordnungen für Vorlagen von CentralNotice für alle Benutzertypen unter dem parametrischen Filter ab.\n\nDies ist ein Nur-JSON-Aufruf.",
@@ -336,5 +337,8 @@
 	"centralnotice-banner-sequence-page-views-error": "Der Schritt muss mindestens einen Seitenaufruf haben.",
 	"centralnotice-banner-sequence-skip-with-id-error": "Der Identifikator kann nicht „|“ enthalten.",
 	"centralnotice-banner-sequence-no-banner": "(Keine Vorlage)",
-	"centralnotice-banner-sequence-detailed-help": "Sequenzen werden für jede Umgebung separat festgelegt. Für jeden Schritt werden nur Vorlagen den Sequenzumgebungen zugewiesen, die verfügbar sind. Um immer einen Schritt anzuzeigen, lasse das Feld „Mit Identifikator überspringen“ leer. Wenn ein Identifikator festgelegt ist und einmal der Schritt abgeschlossen wurde, wird eine Markierung im Browser des Benutzers gespeichert, die diesen Identifikator benutzt und das nächste Mal, wenn der Benutzer einen Schritt mit dem gleichen Identifikator erreicht, wird er übersprungen. Identifikatoren vom Mixin „Große Vorlagen begrenzen und umschalten“ sind kompatibel und werden auch in das Benutzerkonto übernommen. Wenn eine Sequenz einmal beendet wird, startet sie neu vom Anfang (um eine Sequenz von der Wiederholung abzuhalten, verwende das Mixin „Zugriffsdiät“, um Zugriffe zu begrenzen)."
+	"centralnotice-banner-sequence-detailed-help": "Sequenzen werden für jede Umgebung separat festgelegt. Für jeden Schritt werden nur Vorlagen den Sequenzumgebungen zugewiesen, die verfügbar sind. Um immer einen Schritt anzuzeigen, lasse das Feld „Mit Identifikator überspringen“ leer. Wenn ein Identifikator festgelegt ist und einmal der Schritt abgeschlossen wurde, wird eine Markierung im Browser des Benutzers gespeichert, die diesen Identifikator benutzt und das nächste Mal, wenn der Benutzer einen Schritt mit dem gleichen Identifikator erreicht, wird er übersprungen. Identifikatoren vom Mixin „Große Vorlagen begrenzen und umschalten“ sind kompatibel und werden auch in das Benutzerkonto übernommen. Wenn eine Sequenz einmal beendet wird, startet sie neu vom Anfang (um eine Sequenz von der Wiederholung abzuhalten, verwende das Mixin „Zugriffsdiät“, um Zugriffe zu begrenzen).",
+	"centralnotice-impression-events-sample-rate": "Eindrucksereignis-Samplerate",
+	"centralnotice-impression-events-sample-rate-help": "Legt eine Nicht-Standard-Samplerate zur Protokollierung von Eindrucksereignissen fest.",
+	"centralnotice-impression-events-sample-rate-field": "Eindrucksereignis-Samplerate (sollte zwischen 0 und einschließlich 1 sein)"
 }

@@ -239,5 +239,8 @@
 	"centralnotice-banner-not-found-contents": "Neexistuje banner, který by měl přesně tento název.",
 	"hidebanners": "Skrýt bannery",
 	"centralnotice-specialhidebanners-p3p": "Některé prohlížeče pro nastavování cookies v některých situacích vyžadují kompaktní zásady P3P. Avšak kompaktní zásady momentálně nejsou k dispozici. Přečtete si prosím lidsky čitelnou verzi pravidel ochrany osobních údajů na tomto projektu.",
-	"apihelp-query+centralnoticelogs-example-1": "Zobrazit protokoly"
+	"apihelp-query+centralnoticelogs-example-1": "Zobrazit protokoly",
+	"centralnotice-impression-events-sample-rate": "Zobrazení vzorkového hodnocení událostí",
+	"centralnotice-impression-events-sample-rate-help": "Zvolit nevýchozí vzorkové hodnocení k protokolování dojmu z událostí.",
+	"centralnotice-impression-events-sample-rate-field": "Zobrazení vzorkového hodnocení událostí (mělo by být mezi 0 a 1, včetně)"
 }

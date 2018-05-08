@@ -147,7 +147,7 @@
 	"centralnotice-banner-cdn-help": "Help text for controls to purge front-end cache for the selected lanaguage",
 	"centralnotice-banner-cdn-dialog-waiting-text": "Text shown on front-end cache purge dialog if the request is for the purge is slow.",
 	"centralnotice-banner-cdn-dialog-title": "Title of front-end cache purge dialog",
-	"centralnotice-banner-cdn-dialog-ok": "Button to dismiss front-end cache purge dialog (just closes the dialog).{{Identical|Ok}}",
+	"centralnotice-banner-cdn-dialog-ok": "Button to dismiss front-end cache purge dialog (just closes the dialog).\n{{Identical|OK}}",
 	"centralnotice-banner-cdn-dialog-error": "Error message shown in front-end cache purge dalog",
 	"centralnotice-banner-cdn-dialog-success": "Successful purge request shown in front-end cache purge dalog",
 	"apierror-centralnotice-cdn-permissions-error": "{{doc-apierror}}\nError message in API response if user attempts to purge banner contents from front-end cache without appropriate rights.",

@@ -43,11 +43,14 @@
 		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, BAD_COOKIE, { path: '/' } );
 
+		// Make sure that we don't fall back
+		mw.config.set( 'wgCentralNoticeGeoIPBackgroundLookupModule', false );
+
 		mw.geoIP.makeGeoWithPromise();
 		mw.geoIP.getPromise().fail( function () {
-			assert.ok( true, 'geoIP promise fails' );
+			assert.ok( true, 'geoIP promise fails, as expected' );
 		} ).done( function () {
-			assert.ok( false, 'geoIP promise fails' );
+			assert.ok( false, 'geoIP promise succeeded, but should not have' );
 		} );
 	} );
 
@@ -55,11 +58,14 @@
 		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, UNKNOWN_COOKIE, { path: '/' } );
 
+		// Make sure that we don't fall back
+		mw.config.set( 'wgCentralNoticeGeoIPBackgroundLookupModule', false );
+
 		mw.geoIP.makeGeoWithPromise();
 		mw.geoIP.getPromise().fail( function () {
-			assert.ok( true, 'geoIP promise fails' );
+			assert.ok( true, 'geoIP promise fails, as expected' );
 		} ).done( function () {
-			assert.ok( false, 'geoIP promise fails' );
+			assert.ok( false, 'geoIP promise succeeded, but should not have' );
 		} );
 	} );
 

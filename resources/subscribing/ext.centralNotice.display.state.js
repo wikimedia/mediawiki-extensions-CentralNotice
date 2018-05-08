@@ -11,7 +11,7 @@
 	var state,
 		status,
 
-		UNKNOWN_COUNTRY_CODE = 'XX',
+		UNKNOWN_GEO_CODE = 'XX',
 
 		// Campaign category, a temporary hack due to our hiccupy data model, is
 		// gleaned from the categories of all the banners in a campaign. In the
@@ -118,9 +118,13 @@
 		state.data.uselang = mw.config.get( 'wgUserLanguage' );
 		state.data.device = urlParams.device || getDeviceCode();
 
-		// data.country should already have been set
-		state.data.country = urlParams.country || state.data.country ||
-			UNKNOWN_COUNTRY_CODE;
+		// data.country already have been set
+		state.data.country = urlParams.country || state.data.country || UNKNOWN_GEO_CODE;
+
+		// data.region should also already have been set, though it might be empty
+		state.data.region = urlParams.region ||
+			( state.data.region !== undefined ? state.data.region : false ) ||
+			UNKNOWN_GEO_CODE;
 
 		// Some parameters should get through even if they have falsey values
 		state.data.debug = ( urlParams.debug !== undefined );
@@ -194,7 +198,10 @@
 		 * setUpForTestingBanner().
 		 */
 		setGeoData: function ( geo ) {
-			state.data.country = ( geo && geo.country );
+			if ( geo ) {
+				state.data.country = geo.country;
+				state.data.region = geo.region;
+			}
 		},
 
 		/**
@@ -202,7 +209,8 @@
 		 * if valid geo data is not available.
 		 */
 		setInvalidGeoData: function () {
-			state.data.country = UNKNOWN_COUNTRY_CODE;
+			state.data.country = UNKNOWN_GEO_CODE;
+			state.data.region = UNKNOWN_GEO_CODE;
 		},
 
 		setUp: function () {

@@ -117,7 +117,7 @@
 	"centralnotice-number-uses": "Utilisations",
 	"centralnotice-settings": "Configuration",
 	"centralnotice-edit-template": "Modifier le modèle",
-	"centralnotice-edit-template-summary": "Pour créer un message localisable, entourez une chaîne à trait d’union de trois accolades, par exemple {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Avertissement : Charger des ressources externes dans une bannière peut compromettre la confidentialité.\n\nPour créer un message localisable, entourez une chaîne à trait d’union de trois accolades, par exemple <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Mots magiques fournis par les mélanges de bannière : $1",
 	"centralnotice-message": "Message",
 	"centralnotice-message-not-set": "Message non renseigné",
@@ -272,6 +272,7 @@
 	"centralnotice-end-time": "Date de fin (UTC)",
 	"centralnotice-banner-not-found-title": "Bannière non trouvée",
 	"centralnotice-banner-not-found-contents": "Il n’y a pas de bannière avec ce nom exact.",
+	"centralnotice-csp-violation-alert": "Violation de la politique de sécurité du contenu détectée ! Essai de chargement de quelque chose depuis $1.",
 	"hidebanners": "Masquer les bannières",
 	"centralnotice-specialhidebanners-p3p": "Certains navigateurs nécessitent une politique P3P compacte pour définir les témoins (''cookies'') dans certaines situations. Toutefois, aucune politique compacte n’est actuellement disponible. Veuillez consulter la politique de confidentialité du site.",
 	"apihelp-centralnoticeallocations-description": "Obtenir les allocations de bannière pour les bannières provenant de CentralNotice pour tous les types d’utilisateur selon le filtre paramétré.\n\nCeci est un appel JSON uniquement.",
@@ -353,5 +354,8 @@
 	"centralnotice-banner-sequence-page-views-error": "L'étape doit avoir au moins une page à afficher.",
 	"centralnotice-banner-sequence-skip-with-id-error": "« | » non autorisé pour un identifiant.",
 	"centralnotice-banner-sequence-no-banner": "(Pas de bannière)",
-	"centralnotice-banner-sequence-detailed-help": "Les séquences sont initialisées séparément pour chaque série. Pour chaque étape, uniquement les bannières assignées à des numéros de séquence de série sont disponibles. Afin de toujours afficher une étape, laisser à vide le champ « Sauter avec un identifiant ». Si un identifiant est fourni, alors une fois l'étape terminée, un indicateur lié à cet identifiant sera sauvegardé dans le navigateur de l'utilisateur et la prochaine fois que l'utilisateur atteindra une étape avec le même identifiant, elle sera sautée. Les identifiants du mixin « limite de bannière et commutateur élargis » sont compatibles et seront aussi pris en compte. Une fois qu'une séquence est terminée, elle reprend depuis le début. (Pour empêcher une séquence de boucler, utiliser le mixin « Impression régime » pour limiter les impressions.)"
+	"centralnotice-banner-sequence-detailed-help": "Les séquences sont initialisées séparément pour chaque série. Pour chaque étape, uniquement les bannières assignées à des numéros de séquence de série sont disponibles. Afin de toujours afficher une étape, laisser à vide le champ « Sauter avec un identifiant ». Si un identifiant est fourni, alors une fois l'étape terminée, un indicateur lié à cet identifiant sera sauvegardé dans le navigateur de l'utilisateur et la prochaine fois que l'utilisateur atteindra une étape avec le même identifiant, elle sera sautée. Les identifiants du mixin « limite de bannière et commutateur élargis » sont compatibles et seront aussi pris en compte. Une fois qu'une séquence est terminée, elle reprend depuis le début. (Pour empêcher une séquence de boucler, utiliser le mixin « Impression régime » pour limiter les impressions.)",
+	"centralnotice-impression-events-sample-rate": "Taux des échantillons des événements d'impression",
+	"centralnotice-impression-events-sample-rate-help": "Définir un taux d'échantillonnage dédié pour enregistrer les événements d'impression dans le journal.",
+	"centralnotice-impression-events-sample-rate-field": "Taux d'échantillonnage des événements d'impression (doit être entre 0 et 1 bornes incluses)"
 }
