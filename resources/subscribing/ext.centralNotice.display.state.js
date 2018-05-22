@@ -10,6 +10,7 @@
 
 	var state,
 		status,
+		impressionEventSampleRateOverridden = false,
 
 		UNKNOWN_GEO_CODE = 'XX',
 
@@ -107,7 +108,8 @@
 	function setInitialData() {
 
 		// Keep existing properties of state.urlParams, which may be set by tests
-		var urlParams = $.extend( state.urlParams, ( new mw.Uri() ).query );
+		var urlParams = $.extend( state.urlParams, ( new mw.Uri() ).query ),
+			impressionEventSampleRateFromUrl;
 
 		state.data.anonymous = ( mw.config.get( 'wgUserName' ) === null );
 		state.data.project = mw.config.get( 'wgNoticeProject' );
@@ -126,28 +128,43 @@
 			( state.data.region !== undefined ? state.data.region : false ) ||
 			UNKNOWN_GEO_CODE;
 
-		// Some parameters should get through even if they have falsey values
+		// debug should be set no matter what
 		state.data.debug = ( urlParams.debug !== undefined );
 
-		state.data.randomcampaign = urlParams.randomcampaign !== undefined ?
-			urlParams.randomcampaign : Math.random();
+		// The following four parameters should be used if they're numbers
+		state.data.randomcampaign =
+			numericalUrlParamOrVal( urlParams.randomcampaign, Math.random() );
 
-		state.data.randombanner = urlParams.randombanner !== undefined ?
-			urlParams.randombanner : Math.random();
+		state.data.randombanner =
+			numericalUrlParamOrVal( urlParams.randombanner, Math.random() );
 
-		state.data.recordImpressionSampleRate =
-			urlParams.recordImpressionSampleRate !== undefined ?
-				urlParams.recordImpressionSampleRate :
-				mw.config.get( 'wgCentralNoticeSampleRate' );
+		state.data.recordImpressionSampleRate = numericalUrlParamOrVal(
+			urlParams.recordImpressionSampleRate,
+			mw.config.get( 'wgCentralNoticeSampleRate' )
+		);
 
-		state.data.impressionEventSampleRate =
-			urlParams.impressionEventSampleRate !== undefined ?
-				urlParams.impressionEventSampleRate :
+		// In the case of impressionEventSampleRate, also remember if it's overridden by
+		// a URL param
+		impressionEventSampleRateFromUrl =
+			numericalUrlParamOrVal( urlParams.impressionEventSampleRate, null );
+
+		if ( impressionEventSampleRateFromUrl !== null ) {
+			state.data.impressionEventSampleRate = impressionEventSampleRateFromUrl;
+			impressionEventSampleRateOverridden = true;
+
+		} else {
+			state.data.impressionEventSampleRate =
 				mw.config.get( 'wgCentralNoticeImpressionEventSampleRate' );
+		}
 
 		// Legacy code exposed urlParams at mw.centralNotice.data.getVars.
 		// TODO Is this still needed? Maybe deprecate?
 		state.data.getVars = urlParams;
+	}
+
+	function numericalUrlParamOrVal( urlParam, val ) {
+		var urlParamAsFloat = parseFloat( urlParam );
+		return !isNaN( urlParamAsFloat ) ? urlParamAsFloat : val;
 	}
 
 	function setTestingBannerData() {
@@ -401,8 +418,14 @@
 			state.data.recordImpressionSampleRate = rate;
 		},
 
+		/**
+		 * Sets impression event sample rate (unless it was overridden by a URL parameter,
+		 * in which that takes precedence).
+		 */
 		setImpressionEventSampleRate: function( rate ) {
-			state.data.impressionEventSampleRate = rate;
+			if ( !impressionEventSampleRateOverridden ) {
+				state.data.impressionEventSampleRate = rate;
+			}
 		},
 
 		/**
