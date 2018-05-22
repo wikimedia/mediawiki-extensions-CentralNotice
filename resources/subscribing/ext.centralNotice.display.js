@@ -615,7 +615,8 @@
 		},
 
 		/**
-		 * Set the sample rate for the logging of impression events. Default is
+		 * Set the sample rate for the logging of impression events (unless it was
+		 * overridden by a URL parameter, in which that takes precedence). Default is
 		 * wgCentralNoticeImpressionEventSampleRate.
 		 */
 		setImpressionEventSampleRate: function( rate ) {
