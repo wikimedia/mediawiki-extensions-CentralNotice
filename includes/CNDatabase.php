@@ -20,7 +20,7 @@ class CNDatabase {
 	 * metawiki for WMF sister projects. Note that the infrastructure DB does
 	 * not support table prefixes if running in multi-database mode.
 	 *
-	 * @param int $target Set to DB_MASTER or DB_REPLICA to force a connection
+	 * @param int|null $target Set to DB_MASTER or DB_REPLICA to force a connection
 	 * to that database.  If no parameter is given, we attempt to choose a
 	 * sane default (see above).
 	 *

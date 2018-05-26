@@ -24,7 +24,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param SpecialCentralNoticeBanners $hostSpecialPage
-	 * @param string $formSection
+	 * @param string|null $formSection
 	 * @param array $prependPrototypes
 	 * @param array $appendPrototypes
 	 * @param string $bannerFilter

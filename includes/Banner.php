@@ -964,8 +964,8 @@ class Banner {
 	/**
 	 * Saves any changes made to the banner object into the database
 	 *
-	 * @param User $user
-	 * @param string $summary Summary (comment) to associate with all changes,
+	 * @param User|null $user
+	 * @param string|null $summary Summary (comment) to associate with all changes,
 	 *   including banner content and messages (which are implemented as wiki
 	 *   pages).
 	 *
@@ -1385,7 +1385,7 @@ class Banner {
 	 * @param bool $fundraising flag for fundraising banner (optional)
 	 * @param array $mixins list of mixins (optional)
 	 * @param array $priorityLangs Array of priority languages for the translate extension
-	 * @param array $devices Array of device names this banner is targeted at
+	 * @param array|null $devices Array of device names this banner is targeted at
 	 * @param string|null $summary Optional summary of changes for logging
 	 *
 	 * @return string|null error message key or null on success
@@ -1426,7 +1426,7 @@ class Banner {
 	 *
 	 * @param string $action 'created', 'modified', or 'removed'
 	 * @param User $user The user causing the change
-	 * @param string $summary Summary (comment) for this action
+	 * @param string|null $summary Summary (comment) for this action
 	 */
 	function logBannerChange( $action, $user, $summary = null ) {
 		ChoiceDataProvider::invalidateCache();

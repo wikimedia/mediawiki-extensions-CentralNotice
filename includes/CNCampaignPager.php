@@ -26,7 +26,7 @@ class CNCampaignPager extends TablePager {
 	/**
 	 * @param CentralNotice $onSpecialCN The CentralNotice special page we're on
 	 * @param string $editable Whether or not to make the list editable
-	 * @param string $assignedBannerId Set this to show only the campaigns
+	 * @param string|null $assignedBannerId Set this to show only the campaigns
 	 *   associated with this banner id.
 	 */
 	public function __construct( CentralNotice $onSpecialCN,

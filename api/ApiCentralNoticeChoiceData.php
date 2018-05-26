@@ -74,7 +74,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	 *
 	 * @param string $param Name of GET/POST parameter
 	 * @param string $regex Sanitization regular expression
-	 * @param string $default Default value to return on error
+	 * @param string|null $default Default value to return on error
 	 *
 	 * @return string The sanitized value
 	 */

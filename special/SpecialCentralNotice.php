@@ -1581,7 +1581,7 @@ class CentralNotice extends SpecialPage {
 	 * Loads a CentralNotice variable from session data.
 	 *
 	 * @param string $variable Name of the variable
-	 * @param object $default Default value of the variable
+	 * @param object|null $default Default value of the variable
 	 *
 	 * @return object Stored variable or default
 	 */

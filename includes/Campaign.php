@@ -715,7 +715,7 @@ class Campaign {
 	 * @param string $campaignName
 	 * @param string $mixinName
 	 * @param bool $enable
-	 * @param array $params For mixins with no parameters, set to an empty array.
+	 * @param array|null $params For mixins with no parameters, set to an empty array.
 	 */
 	public static function updateCampaignMixins(
 		$campaignName, $mixinName, $enable, $params = null
@@ -838,7 +838,7 @@ class Campaign {
 	 * @param int $throttle limit allocations, 0 - 100
 	 * @param int $priority priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
 	 * @param User $user User adding the campaign
-	 * @param string $summary Change summary provided by the user
+	 * @param string|null $summary Change summary provided by the user
 	 *
 	 * @throws RuntimeException
 	 * @return int|string noticeId on success, or message key for error
@@ -1345,7 +1345,7 @@ class Campaign {
 	 * @param User $user User causing the change
 	 * @param array $beginSettings array of campaign settings before changes (optional)
 	 * @param array $endSettings array of campaign settings after changes (optional)
-	 * @param string $summary Change summary provided by the user
+	 * @param string|null $summary Change summary provided by the user
 	 *
 	 * @return int ID of log entry (or null)
 	 */
