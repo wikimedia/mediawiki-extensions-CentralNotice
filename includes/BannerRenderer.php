@@ -32,7 +32,7 @@ class BannerRenderer {
 	 *
 	 * @param Banner $banner Banner to be rendered.
 	 *
-	 * @param string $campaignName Which campaign we're serving.  This is
+	 * @param string|null $campaignName Which campaign we're serving.  This is
 	 * substituted in for {{{campaign}}} magic word.
 	 *
 	 * @param bool $debug If false, minify the output.
