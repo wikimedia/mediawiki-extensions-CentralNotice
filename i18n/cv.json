@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chuvash2014"
+			"Chuvash2014",
+			"Chuvash"
 		]
 	},
 	"centralnotice-enabled": "Хускатнă",
@@ -12,5 +13,6 @@
 	"centralnotice-country": "Çĕршыв",
 	"centralnotice-logs": "Логсем",
 	"centralnotice-user": "Хутшăнакан",
+	"centralnotice-filters": "Логсен фильтрĕсем",
 	"centralnotice-banner-class": "Категори"
 }
