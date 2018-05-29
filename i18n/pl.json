@@ -223,6 +223,7 @@
 	"apihelp-query+centralnoticelogs-param-user": "Nazwa użytkownika (opcjonalne).",
 	"centralnotice-banner-history-logger-help": "Śledź kolejność banerów oglądanych przez czytelników i od czasu do czasu wysyłaj ją z powrotem do serwera.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Jak długo należy odczekać przed ponownym uruchomieniem cyklu, w sekundach (opcjonalnie)",
+	"centralnotice-banner-sequence-bucket-add-step": "Dodaj krok",
 	"centralnotice-banner-sequence-banner": "Baner",
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)"
 }
