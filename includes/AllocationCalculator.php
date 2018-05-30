@@ -18,10 +18,10 @@
 
 /**
  * Calculates banner and campaign allocation percentages for use in
- * Special:BannerAllocation and Special:GlobalAllocation. The actual
- * calculations used to decide which banner is shown are performed on the
- * client. Most methods here closely mirror the client-side methods for that,
- * found in ext.centralNotice.display.chooser.js (exposed in JS as
+ * Special:BannerAllocation. The actual calculations used to decide
+ * which banner is shown are performed on the client. Most methods
+ * here closely mirror the client-side methods for that, found in
+ * ext.centralNotice.display.chooser.js (exposed in JS as
  * cn.internal.chooser).
  */
 class AllocationCalculator {

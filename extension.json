@@ -60,7 +60,6 @@
 		"BannerMessageGroup": "includes/BannerMessageGroup.php",
 		"BannerMessage": "includes/BannerMessage.php",
 		"BannerRenderer": "includes/BannerRenderer.php",
-		"CampaignCriteria": "special/SpecialGlobalAllocation.php",
 		"CampaignExistenceException": "includes/Campaign.php",
 		"Campaign": "includes/Campaign.php",
 		"CampaignLog": "includes/CampaignLog.php",
@@ -96,7 +95,6 @@
 		"SpecialCentralNoticeBanners": "special/SpecialCentralNoticeBanners.php",
 		"SpecialCentralNoticeLogs": "special/SpecialCentralNoticeLogs.php",
 		"SpecialCNReporter": "special/SpecialCNReporter.php",
-		"SpecialGlobalAllocation": "special/SpecialGlobalAllocation.php",
 		"SpecialHideBanners": "special/SpecialHideBanners.php",
 		"SpecialNoticeTemplate": "special/SpecialNoticeTemplate.php",
 		"SpecialRecordImpression": "special/SpecialRecordImpression.php",
@@ -662,10 +660,6 @@
 			"BannerAllocation": {
 				"type": "views",
 				"message": "centralnotice-allocation"
-			},
-			"GlobalAllocation": {
-				"type": "views",
-				"message": "centralnotice-global-allocation"
 			},
 			"CentralNoticeLogs": {
 				"type": "views",
