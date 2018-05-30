@@ -12,7 +12,6 @@ $specialPageAliases['en'] = [
 	'CentralNoticeLogs' => [ 'CentralNoticeLogs' ],
 	'CNReporter' => [ 'CNReporter' ],
 	'NoticeTemplate' => [ 'NoticeTemplate' ],
-	'GlobalAllocation' => [ 'GlobalAllocation' ],
 	'BannerAllocation' => [ 'BannerAllocation' ],
 	'BannerController' => [ 'BannerController' ],
 	'BannerLoader' => [ 'BannerLoader' ],

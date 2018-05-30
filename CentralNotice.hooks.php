@@ -62,7 +62,6 @@ class CentralNoticeHooks {
 
 			$wgSpecialPages['CentralNotice'] = 'CentralNotice';
 			$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
-			$wgSpecialPages['GlobalAllocation'] = 'SpecialGlobalAllocation';
 			$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
 			$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
 			$wgSpecialPages['CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
