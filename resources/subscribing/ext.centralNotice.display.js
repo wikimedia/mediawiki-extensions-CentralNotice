@@ -208,6 +208,10 @@
 				mw.html.escape( 'cn-' + cn.internal.state.getData().bannerCategory )
 			)
 			.prepend( bannerHtml );
+
+		if ( window.performance && performance.mark ) {
+			performance.mark( 'mwCentralNoticeBanner' );
+		}
 	}
 
 	/**
