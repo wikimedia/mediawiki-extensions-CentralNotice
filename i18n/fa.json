@@ -80,6 +80,7 @@
 	"centralnotice-notice-doesnt-exist": "کمپین وجود ندارد.",
 	"centralnotice-remove-notice-doesnt-exist": "کمپین وجود ندارد.\nچیزی برای حذف نیست.",
 	"centralnotice-banner-doesnt-exist": "آگهی وجود ندارد.",
+	"centralnotice-banner-history": "نمایش تاریخچه بنر",
 	"centralnotice-template-still-bound": "نمی‌توان بنز  \"$1\" را حذف کرد چون هنوز در اتصال با یک اعلان است.",
 	"centralnotice-template-body": "بدنه قالب:",
 	"centralnotice-day": "روز",
