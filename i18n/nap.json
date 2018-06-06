@@ -3,7 +3,8 @@
 		"authors": [
 			"Chelin",
 			"C.R.",
-			"Candalua"
+			"Candalua",
+			"Ruthven"
 		]
 	},
 	"centralnotice": "Ammenistrazione d'avvise centrale",
@@ -171,7 +172,7 @@
 	"centralnotice-filter-template-prompt": "Filtro d' 'e banner (p.e. Giuanne 2008)",
 	"centralnotice-filter-template-submit": "Applica 'o filtro",
 	"centralnotice-filter-template-banner": "Filtra 'e banner",
-	"centralnotice-priority-low": "vascio",
+	"centralnotice-priority-low": "vascia",
 	"centralnotice-priority-normal": "nurmale",
 	"centralnotice-priority-high": "aveto",
 	"centralnotice-priority-emergency": "emergenza",
