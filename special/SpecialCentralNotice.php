@@ -1540,7 +1540,7 @@ class CentralNotice extends SpecialPage {
 	 */
 	public static function truncateSummaryField( $summary ) {
 		global $wgContLang;
-		return $wgContLang->truncate( $summary, 255 );
+		return $wgContLang->truncateForDatabase( $summary, 255 );
 	}
 
 	/**
