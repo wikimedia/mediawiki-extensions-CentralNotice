@@ -14,6 +14,9 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:CentralNotice",
 	"descriptionmsg": "centralnotice-desc",
 	"license-name": "GPL-2.0-or-later",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
 	"type": "other",
 	"namespaces": [
 		{
