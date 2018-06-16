@@ -13,7 +13,8 @@
 			"Rhaijin",
 			"SandroHc",
 			"Vitorvicentevalente",
-			"Athena in Wonderland"
+			"Athena in Wonderland",
+			"Eduardo Addad de Oliveira"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -199,7 +200,7 @@
 	"centralnotice-priority-normal": "normal",
 	"centralnotice-priority-high": "alta",
 	"centralnotice-priority-emergency": "emergência",
-	"centralnotice-prioritylangs": "Línguas prioritárias",
+	"centralnotice-prioritylangs": "Idiomas prioritários",
 	"centralnotice-prioritylangs-explain": "Marcar uma língua como prioritária irá incentivar os tradutores a traduzir estas línguas em primeiro lugar.",
 	"centralnotice-aggregate-group-desc": "Todas as mensagens neste grupo estão incluídas nos modelos dos Avisos Centralizados.",
 	"centralnotice-country-eu": "Desconhecido/Região da União Europeia",
