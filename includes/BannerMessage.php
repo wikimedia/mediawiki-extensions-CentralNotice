@@ -1,6 +1,12 @@
 <?php
 
 class BannerMessage {
+
+	/** @var string */
+	private $banner_name;
+	/** @var string */
+	private $name;
+
 	function __construct( $banner_name, $name ) {
 		$this->banner_name = $banner_name;
 		$this->name = $name;
