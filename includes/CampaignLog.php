@@ -7,6 +7,19 @@ class CampaignLog {
 	private static $list_fields = [ 'projects', 'languages', 'countries' ];
 	private static $map_fields = [ 'banners' ];
 
+	/** @var string[]|int[] */
+	private $begin;
+	/** @var string[]|int[] */
+	private $end;
+	/** @var string */
+	private $campaign;
+	/** @var string */
+	private $action;
+	/** @var string|int */
+	private $timestamp;
+	/** @var string|null */
+	private $comment;
+
 	/**
 	 * @param stdClass|null $row
 	 */
