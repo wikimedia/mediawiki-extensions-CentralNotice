@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"A2093064"
 		]
 	},
 	"centralnotice-banner-anonymous": "匿名用戶",
-	"centralnotice-user": "用戶"
+	"centralnotice-user": "用戶",
+	"centralnotice-user-role": "用戶角色"
 }
