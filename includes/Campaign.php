@@ -29,6 +29,9 @@ class Campaign {
 	/** @var int The number of buckets in this campaign */
 	protected $buckets = null;
 
+	/** @var int */
+	protected $throttle = null;
+
 	/**
 	 * Construct a lazily loaded CentralNotice campaign object
 	 *
@@ -265,7 +268,7 @@ class Campaign {
 	 *                              projects.
 	 * @param null|string $language ISO language code, if null select all languages
 	 * @param null|string $location ISO country code, if null select all campaigns
-	 * @param null|date $date Campaigns must start before and end after this date
+	 * @param null|string|int $date Campaigns must start before and end after this date
 	 *                              If the parameter is null, it takes the current date/time
 	 * @param bool $enabled If true, select only active campaigns. If false select all.
 	 * @param bool $archived If true: only archived; false: only active; null; all.
