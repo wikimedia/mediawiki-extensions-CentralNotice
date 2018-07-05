@@ -111,7 +111,7 @@
 	"centralnotice-number-uses": "Використання",
 	"centralnotice-settings": "Налаштування",
 	"centralnotice-edit-template": "Редагувати банер",
-	"centralnotice-edit-template-summary": "Щоб створити повідомлення, яке можна локалізувати, укладіть рядок з дефісом у три фігурні дужки, наприклад {{{цитата-джимбо}}}.",
+	"centralnotice-edit-template-summary": "Увага: Завантаження зовнішніх ресурсів у банер може піддати ризику приватність користувачів.\n\nЩоб створити повідомлення, яке можна локалізувати, укладіть рядок з дефісом у три фігурні дужки, наприклад <nowiki>{{{цитата-джимбо}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Магічні слова, передбачені у домішках (mixins) банера: $1",
 	"centralnotice-message": "Повідомлення",
 	"centralnotice-message-not-set": "Повідомлення не встановлено",
