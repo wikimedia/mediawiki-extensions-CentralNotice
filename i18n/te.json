@@ -134,7 +134,7 @@
 	"centralnotice-changed": "<span class=\"cn-old-value\">$1</span> నుండి <span class=\"cn-new-value\">$2</span> కు మార్చబడింది",
 	"centralnotice-on": "ఆన్",
 	"centralnotice-off": "ఆఫ్",
-	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> చేర్చబడింది",
+	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> చేర్చాం",
 	"centralnotice-removed": "<span class=\"cn-old-value\">$1</span> తీసివెయ్యబడింది",
 	"centralnotice-talk-link": "చర్చ",
 	"centralnotice-campaign-settings": "ప్రచారం అమరికలు",
