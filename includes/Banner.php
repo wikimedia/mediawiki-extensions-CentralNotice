@@ -1501,12 +1501,3 @@ class Banner {
 		}
 	}
 }
-
-class BannerDataException extends Exception {
-}
-
-class BannerContentException extends BannerDataException {
-}
-
-class BannerExistenceException extends BannerDataException {
-}
