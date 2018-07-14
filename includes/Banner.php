@@ -1515,12 +1515,3 @@ class Banner {
 		return new BannerMessage( $bannerName, $messageName );
 	}
 }
-
-class BannerDataException extends Exception {
-}
-
-class BannerContentException extends BannerDataException {
-}
-
-class BannerExistenceException extends BannerDataException {
-}
