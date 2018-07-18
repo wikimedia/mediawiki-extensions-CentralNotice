@@ -65,6 +65,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// User settable text for some custom message, like usage instructions
 		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );
+
+		// Allow users to add a custom nav bar (T138284)
+		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
+		if ( !$navBar->isDisabled() ) {
+			$this->getOutput()->addHTML( $navBar->parseAsBlock() );
+		}
 		$this->getOutput()->addWikiMsg( 'centralnotice-summary' );
 
 		// Now figure out what to display
