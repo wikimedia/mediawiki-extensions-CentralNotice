@@ -371,10 +371,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return array
 	 */
 	private function getBannerPreviewEditLinks() {
+		$linkRenderer = $this->getLinkRenderer();
 		$links = [
-			Linker::linkKnown(
+			$linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Randompage' ),
-				$this->msg( 'centralnotice-live-preview' )->escaped(),
+				$this->msg( 'centralnotice-live-preview' )->text(),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[
 					'banner' => $this->bannerName,
@@ -388,18 +389,18 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$bannerTitle = $bannerObj->getTitle();
 		// $bannerTitle can be null sometimes
 		if ( $bannerTitle && $this->getUser()->isAllowed( 'editinterface' ) ) {
-			$links[] = Linker::link(
+			$links[] = $linkRenderer->makeLink(
 				$bannerTitle,
-				$this->msg( 'centralnotice-banner-edit-onwiki' )->escaped(),
+				$this->msg( 'centralnotice-banner-edit-onwiki' )->text(),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[ 'action' => 'edit' ]
-				);
-			$links[] = Linker::link(
+			);
+			$links[] = $linkRenderer->makeLink(
 				$bannerTitle,
-				$this->msg( 'centralnotice-banner-history' )->escaped(),
+				$this->msg( 'centralnotice-banner-history' )->text(),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[ 'action' => 'history' ]
-				);
+			);
 		}
 		return $links;
 	}
@@ -568,6 +569,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		/* --- Translatable Messages Section --- */
 		$messages = $banner->getMessageFieldsFromCache();
 
+		$linkRenderer = $this->getLinkRenderer();
 		if ( $messages ) {
 			// Only show this part of the form if messages exist
 
@@ -591,9 +593,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					// Create per message link to the translate extension
 					$title = SpecialPage::getTitleFor( 'Translate' );
 					$label = Xml::tags( 'td', null,
-						Linker::link(
+						$linkRenderer->makeLink(
 							$title,
-							htmlspecialchars( $messageName ),
+							$messageName,
 							[],
 							[
 								'group' => BannerMessageGroup::getTranslateGroupName(
@@ -641,10 +643,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'section' => 'banner-messages',
 					'class' => 'HTMLInfoField',
 					'disabled' => !$this->editable,
-					'label-raw' => Linker::link(
-							$this->getPageTitle( "preview/{$this->bannerName}" ),
-							$this->msg( 'centralnotice-preview-all-template-translations' )->escaped()
-						),
+					'label-raw' => $linkRenderer->makeLink(
+						$this->getPageTitle( "preview/{$this->bannerName}" ),
+						$this->msg( 'centralnotice-preview-all-template-translations' )->text()
+					),
 					'default' => implode( ', ', $liveMessageNames ),
 					'cssclass' => 'separate-form-element',
 				];
@@ -724,7 +726,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$links = [];
 		foreach ( $banner->getIncludedTemplates() as $titleObj ) {
-			$links[] = Linker::link( $titleObj );
+			$links[] = $linkRenderer->makeLink( $titleObj );
 		}
 		if ( $links ) {
 			$formDescriptor[ 'links' ] = [
