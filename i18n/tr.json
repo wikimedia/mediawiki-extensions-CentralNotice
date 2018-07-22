@@ -14,7 +14,8 @@
 			"Sucsuzz",
 			"Violetanka",
 			"HakanIST",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Hedda"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -217,5 +218,6 @@
 	"centralnotice-start-time": "Başlangıç zamanı (UTC)",
 	"centralnotice-end-date": "Bitiş tarihi (UTC)",
 	"centralnotice-end-time": "Bitiş zamanı (UTC)",
+	"hidebanners": "Bannerları gizle",
 	"centralnotice-large-banner-limit-days": "Bası uzunluğu"
 }
