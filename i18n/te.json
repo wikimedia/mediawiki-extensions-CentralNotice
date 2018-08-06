@@ -187,5 +187,6 @@
 	"centralnotice-start-date": "ప్రారంభ తేదీ (UTC)",
 	"centralnotice-start-time": "ప్రారంభ సమయం (UTC)",
 	"centralnotice-end-date": "ముగింపు తేదీ (UTC)",
-	"centralnotice-end-time": "ముగింపు సమయం (UTC)"
+	"centralnotice-end-time": "ముగింపు సమయం (UTC)",
+	"apihelp-query+centralnoticelogs-param-user": "వాడుకరిపేరు (ఐచ్ఛికం)"
 }

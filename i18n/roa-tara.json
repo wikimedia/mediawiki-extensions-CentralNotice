@@ -89,7 +89,7 @@
 	"centralnotice-number-uses": "Ause",
 	"centralnotice-settings": "'Mbostaziune",
 	"centralnotice-edit-template": "Cange 'u banner",
-	"centralnotice-edit-template-summary": "Pè crijà 'nu messagge localizzabbele, racchiude 'na stringhe de trattine jndre ttrè parendese graffe e.g. {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Attenziò: 'U carecamende de resorse de fore jndr'à 'nu banner pò combromettere 'a privacy de l'utende.\n\nPè ccrejà 'nu messagge localizzabbele, racchiude 'na stringhe de trattine jndre ttrè parendese graffe e.g. <nowiki>{{{jimbo-quote}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Parole maggeche date da 'u banner mescolande: $1",
 	"centralnotice-message": "Messàgge",
 	"centralnotice-message-not-set": "Messagge none 'mbostate",

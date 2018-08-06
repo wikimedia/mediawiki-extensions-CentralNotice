@@ -29,7 +29,8 @@
 			"Indiralena",
 			"Rubentl134",
 			"Sophivorus",
-			"Dgstranz"
+			"Dgstranz",
+			"Jelou"
 		]
 	},
 	"centralnotice": "Sistema de administración de avisos centralizados",
@@ -173,7 +174,7 @@
 	"centralnotice-archived": "Archivado",
 	"centralnotice-logs": "Registros",
 	"centralnotice-view-logs": "Ver los registros",
-	"centralnotice-timestamp": "Fecha y hora",
+	"centralnotice-timestamp": "Marca de tiempo",
 	"centralnotice-user": "Usuario",
 	"centralnotice-action": "Acción",
 	"centralnotice-change-summary-heading": "Resumen",
