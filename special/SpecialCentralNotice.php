@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class CentralNotice extends SpecialPage {
 
 	// Note: These values are not arbitrary. Higher priority is indicated by a
@@ -1556,7 +1558,12 @@ class CentralNotice extends SpecialPage {
 		global $wgNoticeTabifyPages;
 
 		$title = $skin->getTitle();
-		list( $alias, $sub ) = SpecialPageFactory::resolveAlias( $title->getText() );
+		if ( method_exists( MediaWikiServices::class, 'getSpecialPageFactory' ) ) {
+			list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+				resolveAlias( $title->getText() );
+		} else {
+			list( $alias, $sub ) = SpecialPageFactory::resolveAlias( $title->getText() );
+		}
 
 		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
 			return true;
