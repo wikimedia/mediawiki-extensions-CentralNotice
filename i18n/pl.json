@@ -220,6 +220,7 @@
 	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
 	"hidebanners": "Ukryj banery",
 	"apihelp-query+centralnoticelogs-param-user": "Nazwa użytkownika (opcjonalne).",
+	"apihelp-query+centralnoticelogs-example-1": "Pokaż rejestry",
 	"centralnotice-banner-history-logger-help": "Śledź kolejność banerów oglądanych przez czytelników i od czasu do czasu wysyłaj ją z powrotem do serwera.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Jak długo należy odczekać przed ponownym uruchomieniem cyklu, w sekundach (opcjonalnie)",
 	"centralnotice-banner-sequence-bucket-add-step": "Dodaj krok",

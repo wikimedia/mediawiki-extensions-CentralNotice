@@ -12,7 +12,8 @@
 			"Sarrus",
 			"Steenth",
 			"Tjernobyl",
-			"Thomsen"
+			"Thomsen",
+			"Saederup92"
 		]
 	},
 	"centralnotice": "Centralbeskeds-administration",
@@ -121,6 +122,7 @@
 	"centralnotice-banner-fundraising": "Dette er et indsamlingsbanner",
 	"centralnotice-banner-display-on": "Vis på",
 	"centralnotice-banner-mixins": "Blandinger (kommaseparerede):",
+	"centralnotice-banner-cdn-dialog-ok": "O.k.",
 	"centralnotice-geo": "Geografisks fokuseret",
 	"centralnotice-countries": "Lande",
 	"centralnotice-allocation": "Tildeling",
@@ -224,5 +226,6 @@
 	"centralnotice-start-date": "Startdato (UTC)",
 	"centralnotice-start-time": "Starttid (UTC)",
 	"centralnotice-end-date": "Slutdato (UTC)",
-	"centralnotice-end-time": "Sluttid (UTC)"
+	"centralnotice-end-time": "Sluttid (UTC)",
+	"apihelp-query+centralnoticelogs-param-user": "Brugernavn (valgfrit)."
 }
