@@ -33,6 +33,11 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		// Initialize error variable
 		$this->centralNoticeError = false;
 
+		// Allow users to add a custom nav bar (T138284)
+		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
+		if ( !$navBar->isDisabled() ) {
+			$out->addHTML( $navBar->parseAsBlock() );
+		}
 		// Show summary
 		$out->addWikiMsg( 'centralnotice-summary' );
 

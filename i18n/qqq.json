@@ -354,5 +354,6 @@
 	"centralnotice-banner-sequence-detailed-help": "Help text for banner sequences.\n\n* \"Skip with identifier\" is {{msg-mw|Centralnotice-banner-sequence-skip-with-id}}\n* \"Large banner limit and switch\" is {{msg-mw|Centralnotice-large-banner-limit}}\n* \"Impression diet\" is {{msg-mw|Centralnotice-impression-diet}}",
 	"centralnotice-impression-events-sample-rate": "Label for impression events sample rate mixin",
 	"centralnotice-impression-events-sample-rate-help": "Help text for impression events sample rate mixin",
-	"centralnotice-impression-events-sample-rate-field": "Label for the control to set the sample rate for impression events"
+	"centralnotice-impression-events-sample-rate-field": "Label for the control to set the sample rate for impression events",
+	"centralnotice-navbar": "{{notranslate}} Shown prior to {{mw-msg|centralnotice-summary}}. Meant to allow end users to customize the CentralNotice interface with a custom header."
 }

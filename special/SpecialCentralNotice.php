@@ -1637,4 +1637,13 @@ class CentralNotice extends SpecialPage {
 	protected function getGroupName() {
 		return 'wiki';
 	}
+
+	function outputHeader( $summaryMsg = '' ) {
+		// Allow users to add a custom nav bar (T138284)
+		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
+		if ( !$navBar->isDisabled() ) {
+			$this->getOutput()->addHTML( $navBar->parseAsBlock() );
+		}
+		return parent::outputHeader( $summaryMsg );
+	}
 }
