@@ -23,7 +23,8 @@
 			"Umherirrender",
 			"Yekrats",
 			"Liuxinyu970226",
-			"Robby"
+			"Robby",
+			"Metalhead64"
 		]
 	},
 	"centralnotice": "{{doc-special|CentralNotice}}\n{{Identical|Central notice admin}}",
@@ -355,5 +356,5 @@
 	"centralnotice-impression-events-sample-rate": "Label for impression events sample rate mixin",
 	"centralnotice-impression-events-sample-rate-help": "Help text for impression events sample rate mixin",
 	"centralnotice-impression-events-sample-rate-field": "Label for the control to set the sample rate for impression events",
-	"centralnotice-navbar": "{{notranslate}} Shown prior to {{mw-msg|centralnotice-summary}}. Meant to allow end users to customize the CentralNotice interface with a custom header."
+	"centralnotice-navbar": "{{notranslate}} Shown prior to {{msg-mw|centralnotice-summary}}. Meant to allow end users to customize the CentralNotice interface with a custom header."
 }
