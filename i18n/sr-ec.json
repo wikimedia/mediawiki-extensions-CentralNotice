@@ -21,7 +21,7 @@
 	"action-centralnotice-admin": "управљате централним обавештењима",
 	"centralnotice-desc": "Централизовано обавештавање",
 	"centralnotice-summary": "Овај модул вам омогућава да уређујете тренутно постављена централна обавештења.\nМоже да се користи и за додавање или уклањање старих обавештења.",
-	"centralnotice-query": "Измени тренутна обавештења",
+	"centralnotice-query": "Измени актуелна обавештења",
 	"centralnotice-notice-name": "Назив обавештења",
 	"centralnotice-enabled": "Омогућено",
 	"centralnotice-modify": "Пошаљи",
