@@ -1446,6 +1446,3 @@ class Campaign {
 		return $logs;
 	}
 }
-
-class CampaignExistenceException extends Exception {
-}
