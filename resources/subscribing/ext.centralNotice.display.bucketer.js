@@ -38,7 +38,7 @@
 		multiStorageOption,
 
 		// Name of the legacy cookie for CentralNotice buckets. Its value is
-		// a compact serialization of buckets in the the same format as is
+		// a compact serialization of buckets in the same format as is
 		// currently used here.
 		LEGACY_COOKIE = 'CN',
 

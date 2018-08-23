@@ -313,7 +313,7 @@
 				// Mock to get page view
 				getItem: function ( key ) {
 					if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
-						assert.ok( true, 'Retreive page view' );
+						assert.ok( true, 'Retrieve page view' );
 						return 1;
 					}
 
@@ -371,7 +371,7 @@
 			getItem: function ( key ) {
 
 				if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
-					assert.ok( true, 'Retreive identifier' );
+					assert.ok( true, 'Retrieve identifier' );
 					return true;
 				}
 
