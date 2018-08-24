@@ -4,6 +4,7 @@
  * @group CentralNotice
  * @group medium
  * @group Database
+ * @covers CNChoiceDataResourceLoaderModule
  */
 class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
 	/** @var CentralNoticeTestFixtures */

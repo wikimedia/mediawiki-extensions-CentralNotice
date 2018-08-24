@@ -4,6 +4,7 @@
  * @group CentralNotice
  * @group medium
  * @group Database
+ * @covers ApiCentralNoticeChoiceData
  */
 class ApiCentralNoticeChoiceDataTest extends ApiTestCase {
 	/** @var CentralNoticeTestFixtures */

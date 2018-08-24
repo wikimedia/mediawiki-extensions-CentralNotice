@@ -4,6 +4,7 @@
  * @group Fundraising
  * @group Database
  * @group CentralNotice
+ * @covers Banner
  */
 class BannerTest extends PHPUnit\Framework\TestCase {
 	const TEST_BANNER_NAME = 'PhpUnitTestBanner';
