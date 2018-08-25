@@ -285,11 +285,11 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		if ( count( $banners ) > 0 ) {
 			$htmlOut .= Html::openElement( 'tr' );
-			$htmlOut .= Html::element( 'th', [ 'width' => '5%' ],
+			$htmlOut .= Html::rawElement( 'th', [ 'width' => '5%' ],
 				$this->msg( 'centralnotice-percentage' )->parse() );
-			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
+			$htmlOut .= Html::rawElement( 'th', [ 'width' => '30%' ],
 				$this->msg( 'centralnotice-banner' )->parse() );
-			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
+			$htmlOut .= Html::rawElement( 'th', [ 'width' => '30%' ],
 				$this->msg( 'centralnotice-notice' )->parse() );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}
