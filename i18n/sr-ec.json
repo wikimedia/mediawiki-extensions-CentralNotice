@@ -10,7 +10,8 @@
 			"Obsuser",
 			"Милан Јелисавчић",
 			"Acamicamacaraca",
-			"BadDog"
+			"BadDog",
+			"Zoranzoki21"
 		]
 	},
 	"centralnotice": "Администратор централног обавештавања",
@@ -92,7 +93,7 @@
 	"centralnotice-number-uses": "Употребе",
 	"centralnotice-settings": "Подешавања",
 	"centralnotice-edit-template": "Уреди шаблон",
-	"centralnotice-edit-template-summary": "Да бисте направили поруку која може да се преведе, напишите ниску с цртицама и ставите је у три витичасте заграде, нпр. {{{цитат-џимбо}}}",
+	"centralnotice-edit-template-summary": "Упозорење: Преузимање спољашњих извора у банер може компромитовати приватност корисника.\n\nДа бисте направили поруку која може да се преведе, напишите ниску с цртицама и ставите је у три витичасте заграде, нпр. <nowiki>{{{цитат-џимбо}}}</nowiki>",
 	"centralnotice-message": "Порука",
 	"centralnotice-message-not-set": "Порука није постављена",
 	"centralnotice-clone": "Клонирај",
@@ -163,7 +164,7 @@
 	"centralnotice-apply-filters": "Примени филтере",
 	"centralnotice-clear-filters": "Очисти филтере",
 	"centralnotice-banner-messages": "Преводиве поруке на плакату",
-	"centralnotice-filter-template-prompt": "Назив плаката садржи:",
+	"centralnotice-filter-template-prompt": "Филтер банера (нпр. Џими 2008)",
 	"centralnotice-filter-template-submit": "Примени филтер",
 	"centralnotice-filter-template-banner": "Филтрирање плаката",
 	"centralnotice-priority-low": "низак",
