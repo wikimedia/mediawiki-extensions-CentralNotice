@@ -3,7 +3,8 @@
 		"authors": [
 			"Kening Aldgilles",
 			"Robin0van0der0vliet",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"PiefPafPier"
 		]
 	},
 	"centralnotice-enabled": "Ynskeakele",
@@ -31,6 +32,7 @@
 	"centralnotice-country": "Lân",
 	"centralnotice-user": "Brûker",
 	"centralnotice-priority-normal": "normaal",
+	"centralnotice-devicetype-desktop": "Fêste kompjûter",
 	"centralnotice-banner-class": "Kategory",
 	"centralnotice-archive-banner-cancel": "Annulearje",
 	"centralnotice-archive-campaign": "Argyf",
