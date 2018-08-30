@@ -7,6 +7,7 @@
 		var message = mw.message(
 			'centralnotice-csp-violation-alert', e.blockedURI
 		);
+		// eslint-disable-next-line no-alert
 		alert( message );
 	} );
 }( mediaWiki ) );

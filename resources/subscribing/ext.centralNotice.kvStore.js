@@ -393,7 +393,7 @@
 					return false;
 
 				default:
-					throw 'Unexpected multi-storage option';
+					throw new Error( 'Unexpected multi-storage option' );
 			}
 		},
 
@@ -424,7 +424,7 @@
 					return null;
 
 				default:
-					throw 'Unexpected multi-storage option';
+					throw new Error( 'Unexpected multi-storage option' );
 			}
 
 		},
@@ -458,7 +458,7 @@
 					return;
 
 				default:
-					throw 'Unexpected multi-storage option';
+					throw new Error( 'Unexpected multi-storage option' );
 			}
 		},
 

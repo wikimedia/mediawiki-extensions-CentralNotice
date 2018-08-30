@@ -185,7 +185,7 @@
 		this.setSequencesInputParam();
 	};
 
-	BannerSequenceUiController.prototype.onAssignedBannersChange = function() {
+	BannerSequenceUiController.prototype.onAssignedBannersChange = function () {
 		this.verifyAndFixBanners();
 		this.setSequencesInputParam();
 	};
@@ -334,7 +334,7 @@
 		return this.model.validateSkipWithIdentifier( identifier );
 	};
 
-	BannerSequenceUiController.prototype.canAddAStep = function( bucket ) {
+	BannerSequenceUiController.prototype.canAddAStep = function ( bucket ) {
 		return this.model.canAddAStep( bucket );
 	};
 
@@ -636,6 +636,7 @@
 	 * @returns {boolean}
 	 */
 	BannerSequenceUiModel.prototype.validateStep = function ( step ) {
+		var hasOwn = Object.prototype.hasOwnProperty;
 
 		// Check the step object
 		if ( ( step === null ) || ( typeof step !== 'object' ) ) {
@@ -644,17 +645,17 @@
 
 		// Check that the properties exist and validate their values
 
-		if ( !step.hasOwnProperty( 'banner' ) || !this.validateBanner( step.banner ) ) {
+		if ( !hasOwn.call( step, 'banner' ) || !this.validateBanner( step.banner ) ) {
 			return false;
 		}
 
-		if ( !step.hasOwnProperty( 'numPageViews' ) ||
+		if ( !hasOwn.call( step, 'numPageViews' ) ||
 				!this.validateNumPageViews( step.numPageViews ) ) {
 
 			return false;
 		}
 
-		if ( !step.hasOwnProperty( 'skipWithIdentifier' ) ||
+		if ( !hasOwn.call( step, 'skipWithIdentifier' ) ||
 			!this.validateSkipWithIdentifier( step.skipWithIdentifier ) ) {
 
 			return false;
@@ -1109,7 +1110,7 @@
 	/**
 	 * Update banners shown in drop-down input menus.
 	 */
-	BucketSeqContainerWidget.prototype.updateBannersForDropDowns = function( banners ) {
+	BucketSeqContainerWidget.prototype.updateBannersForDropDowns = function ( banners ) {
 		var i,
 			stepWidgets = this.bucketSeqWidget.getItems();
 
@@ -1398,7 +1399,7 @@
 	/**
 	 * Update input values with data from the model.
 	 */
-	StepWidget.prototype.updateFromModel = function() {
+	StepWidget.prototype.updateFromModel = function () {
 
 		this.updating = true;
 
@@ -1490,7 +1491,7 @@
 	/**
 	 * @private
 	 */
-	StepWidget.prototype.makeDropMenuItems = function( banners ) {
+	StepWidget.prototype.makeDropMenuItems = function ( banners ) {
 		var i,
 			dropDownMenuItems = [];
 

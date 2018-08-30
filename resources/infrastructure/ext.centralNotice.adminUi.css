@@ -190,7 +190,7 @@ input#mw-input-wpsummary,
 	margin-left: 3px;
 }
 
-label[for='mw-input-wpsummary'],
+label[ for='mw-input-wpsummary' ],
 .cn-change-summary-label {
 	float: left;
 	position: relative;

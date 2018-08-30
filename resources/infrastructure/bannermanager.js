@@ -245,7 +245,7 @@
 		 * SpecialCentralNotice::sanitizeSearchTerms().
 		 */
 		sanitizeFilterStr: function ( $origFilterStr ) {
-			return $origFilterStr.replace( /[^0-9a-zA-Z_\-]/g, '' );
+			return $origFilterStr.replace( /[^0-9a-zA-Z_-]/g, '' );
 		}
 	};
 

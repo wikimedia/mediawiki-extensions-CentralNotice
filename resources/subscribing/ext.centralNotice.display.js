@@ -232,7 +232,7 @@
 		// cn.recordImpressionDeferredObj (used in resolveRecordImpressionDeferred())
 		// should already have been set.
 
-		timeout = setTimeout( function() {
+		timeout = setTimeout( function () {
 			timeoutHasRun = true;
 			resolveRecordImpressionDeferred();
 		}, MAX_RECORD_IMPRESSION_DELAY );
@@ -619,7 +619,7 @@
 		 * overridden by a URL parameter, in which that takes precedence). Default is
 		 * wgCentralNoticeImpressionEventSampleRate.
 		 */
-		setImpressionEventSampleRate: function( rate ) {
+		setImpressionEventSampleRate: function ( rate ) {
 			cn.internal.state.setImpressionEventSampleRate( rate );
 		},
 

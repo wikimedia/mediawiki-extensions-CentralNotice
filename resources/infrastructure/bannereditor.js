@@ -37,7 +37,7 @@
 		} );
 
 		// Show dialog with info if the background call takes a while to return
-		waiting = setTimeout( function() {
+		waiting = setTimeout( function () {
 			$dialogEl.text(
 				mw.message( 'centralnotice-banner-cdn-dialog-waiting-text' ).text() );
 
@@ -55,7 +55,7 @@
 			$dialogEl.dialog( {
 				buttons: [ {
 					text: mw.message( 'centralnotice-banner-cdn-dialog-ok' ).text(),
-					click: function() {
+					click: function () {
 						$( this ).dialog( 'close' );
 					}
 				} ]
