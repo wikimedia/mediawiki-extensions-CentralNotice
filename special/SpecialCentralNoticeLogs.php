@@ -84,7 +84,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 			if ( $campaign || $user || $start || $end ) { // filters on
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">' .
-					'<img src="' . $wgExtensionAssetsPath.$collapsedImg . '" ' .
+					'<img src="' . $wgExtensionAssetsPath . $collapsedImg . '" ' .
 					'id="cn-collapsed-filter-arrow" ' .
 					'style="display:none;position:relative;top:-2px;"/>' .
 					'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
@@ -96,7 +96,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 				$htmlOut .= Xml::openElement( 'div', [ 'id' => 'cn-log-filters' ] );
 			} else { // filters off
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">' .
-					'<img src="' . $wgExtensionAssetsPath.$collapsedImg . '" ' .
+					'<img src="' . $wgExtensionAssetsPath . $collapsedImg . '" ' .
 					'id="cn-collapsed-filter-arrow" ' .
 					'style="display:inline-block;position:relative;top:-2px;"/>' .
 					'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
@@ -296,7 +296,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			'log_type',
 			$id,
 			( $this->logType == $type ? true : false ),
-			[ 'onclick' => "switchLogs( " .$fullUrlEnc.", ".$typeEnc." )" ]
+			[ 'onclick' => "switchLogs( " . $fullUrlEnc . ", " . $typeEnc . " )" ]
 		);
 		$htmlOut .= Xml::label( $this->msg( $message )->text(), $id );
 		return $htmlOut;

@@ -64,7 +64,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				'collapsed-ltr.png';
 
 			$tmplogId = (int)$row->tmplog_id;
-			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$tmplogId.'\')">' .
+			$htmlOut .= '<a href="javascript:toggleLogDisplay(\'' . $tmplogId . '\')">' .
 				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/' . $collapsedImg . '" ' .
 				'id="cn-collapsed-' . $tmplogId . '" ' .
 				'style="display:block;vertical-align:baseline;"/>' .
@@ -86,7 +86,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		// centralnotice-action-created, centralnotice-action-modified,
 		// centralnotice-action-removed
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
-			$this->msg( 'centralnotice-action-'.$row->tmplog_action )->text()
+			$this->msg( 'centralnotice-action-' . $row->tmplog_action )->text()
 		);
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$bannerLink
@@ -111,7 +111,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		if ( $row->tmplog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr',
-				[ 'id' => 'cn-log-details-'.$tmplogId, 'style' => 'display:none;' ] );
+				[ 'id' => 'cn-log-details-' . $tmplogId, 'style' => 'display:none;' ] );
 
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
@@ -242,7 +242,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	protected function testBooleanBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
-		$endField = 'tmplog_end_'.$param;
+		$endField = 'tmplog_end_' . $param;
 
 		$oldval = ( $oldrow ) ? $oldrow->$endField : 0;
 		if ( $oldval !== $newrow->$endField ) {
@@ -268,7 +268,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	protected function testTextBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
-		$endField = 'tmplog_end_'.$param;
+		$endField = 'tmplog_end_' . $param;
 
 		$oldval = ( ( $oldrow ) ? $oldrow->$endField : '' ) ?: '';
 		$newval = ( $newrow->$endField ) ?: '';

@@ -735,7 +735,7 @@ class Campaign {
 		if ( $enable ) {
 			if ( $params === null ) {
 				throw new InvalidArgumentException( 'Paremeters info required to enable mixin ' .
-					$mixinName . ' for campaign '. $campaignName );
+					$mixinName . ' for campaign ' . $campaignName );
 			}
 
 			$dbw->upsert(
@@ -1194,7 +1194,7 @@ class Campaign {
 			}
 			$dbw = CNDatabase::getDb( DB_MASTER );
 			$dbw->update( 'cn_notices',
-				[ 'not_'.$settingName => $settingValue ],
+				[ 'not_' . $settingName => $settingValue ],
 				[ 'not_name' => $noticeName ]
 			);
 		}

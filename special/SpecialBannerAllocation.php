@@ -321,7 +321,7 @@ class SpecialBannerAllocation extends CentralNotice {
 				$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
 
 				$htmlOut .= Html::openElement( 'span',
-					[ 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ] );
+					[ 'class' => 'cn-' . $banner['campaign'] . '-' . $banner['name'] ] );
 				$htmlOut .= $linkRenderer->makeLink(
 					$viewBanner,
 					$banner['name'],

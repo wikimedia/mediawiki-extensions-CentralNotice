@@ -52,11 +52,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		if ( !$reset ) {
 			if ( $filterStartDate > 0 ) {
-				$filterStartDate = intval( $filterStartDate.'000000' );
+				$filterStartDate = intval( $filterStartDate . '000000' );
 				$info['conds'][] = "notlog_timestamp >= $filterStartDate";
 			}
 			if ( $filterEndDate > 0 ) {
-				$filterEndDate = intval( $filterEndDate.'000000' );
+				$filterEndDate = intval( $filterEndDate . '000000' );
 				$info['conds'][] = "notlog_timestamp < $filterEndDate";
 			}
 			if ( $filterCampaign ) {
@@ -117,7 +117,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'collapsed-rtl.png' :
 				'collapsed-ltr.png';
 
-			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$notlogId.'\')">' .
+			$htmlOut .= '<a href="javascript:toggleLogDisplay(\'' . $notlogId . '\')">' .
 				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/' . $collapsedImg . '" ' .
 				'id="cn-collapsed-' . $notlogId . '" style="display:block;"/>' .
 				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
@@ -138,7 +138,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		// centralnotice-action-created, centralnotice-action-modified,
 		// centralnotice-action-removed
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
-			$this->msg( 'centralnotice-action-'.$row->notlog_action )->text()
+			$this->msg( 'centralnotice-action-' . $row->notlog_action )->text()
 		);
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$campaignLink
@@ -163,7 +163,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		if ( $row->notlog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr',
-				[ 'id' => 'cn-log-details-'.$notlogId, 'style' => 'display:none;' ] );
+				[ 'id' => 'cn-log-details-' . $notlogId, 'style' => 'display:none;' ] );
 
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
@@ -356,7 +356,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// centralnotice-enabled, centralnotice-locked, centralnotice-geo, centralnotice-buckets
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					( $row->$beginField
@@ -373,8 +373,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	private function testSetChange( $param, $row ) {
 		$result = '';
-		$beginField = 'notlog_begin_'.$param;
-		$endField = 'notlog_end_'.$param;
+		$beginField = 'notlog_begin_' . $param;
+		$endField = 'notlog_end_' . $param;
 
 		if ( $row->$beginField !== $row->$endField ) {
 			$lang = $this->getLanguage();
@@ -404,7 +404,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// centralnotice-projects, centralnotice-languages, centralnotice-countries
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$differences
 			)->parse() . "<br />";
 		}
@@ -453,7 +453,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// Give grep a chance to find the usages: centralnotice-preferred
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					$beginMessage,
@@ -480,7 +480,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// Give grep a chance to find the usages: centralnotice-throttle
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					$beginMessage,
