@@ -304,8 +304,6 @@
 	QUnit.test(
 		'pre-banner handler uses bucket and stored page view, requests banner',
 		function ( assert ) {
-			assert.expect( 3 );
-
 			// Mock required API bits
 
 			cn.kvStore = {
@@ -317,7 +315,7 @@
 						return 1;
 					}
 
-					throw 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()';
+					throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()' );
 				},
 
 				// Stubs, not under test here
@@ -339,7 +337,7 @@
 					return;
 				}
 
-				throw 'Incorrect property ' + property + ' in call to cn.getDataProperty()';
+				throw new Error( 'Incorrect property ' + property + ' in call to cn.getDataProperty()' );
 			};
 
 			// Mock to request banner
@@ -361,7 +359,6 @@
 	QUnit.test(
 		'pre-banner handler uses stored identifier and hides banner on empty step',
 		function ( assert ) {
-		assert.expect( 2 );
 
 		// Mock required API bits
 
@@ -380,7 +377,7 @@
 					return 3;
 				}
 
-				throw 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()';
+				throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()' );
 			},
 
 			// Stubs
@@ -401,7 +398,7 @@
 				return 0;
 			}
 
-			throw 'Incorrect property ' + property + ' in call to getDataProperty()';
+			throw new Error( 'Incorrect property ' + property + ' in call to getDataProperty()' );
 		};
 
 		// Mock to cancel banner (empty step)
@@ -422,7 +419,6 @@
 
 	QUnit.test( 'post-banner handler checks banner shown, sets identifier and page view',
 		function ( assert ) {
-		assert.expect( 3 );
 
 		// Mock required API bits
 
@@ -432,16 +428,12 @@
 			setItem: function ( key, value ) {
 				if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
 					assert.strictEqual( value, 5, 'Set next page view' );
-					return;
-				}
-
-				if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
+				} else if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
 					// Value only needs to be truthy
 					assert.ok( value, 'Set identifier' );
-					return;
+				} else {
+					throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.setItem()' );
 				}
-
-				throw 'Incorrect key ' + key + ' in call to cn.kvStore.setItem()';
 			},
 
 			// Mock and stubs not under test here
@@ -458,7 +450,7 @@
 					return false;
 				}
 
-				throw 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()';
+				throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()' );
 			},
 
 			contexts: {},
@@ -484,7 +476,7 @@
 				return 0;
 			}
 
-			throw 'Incorrect property ' + property + ' in call to getDataProperty()';
+			throw new Error( 'Incorrect property ' + property + ' in call to getDataProperty()' );
 		};
 
 		// Stubs
