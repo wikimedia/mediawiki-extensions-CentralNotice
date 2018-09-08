@@ -278,7 +278,7 @@
 	"centralnotice-banner-history-logger": "Rexistro de historial de avisos",
 	"centralnotice-banner-history-logger-help": "Seguir a secuencia dos anuncios vistos polos lectores, e ocasionalmente devolvelo ao servidor.",
 	"centralnotice-banner-history-logger-rate": "Índice de exemplo",
-	"centralnotice-banner-history-logger-rate-help": "Probabilidade que os datos sexan mostrados e devoltos ao servidor. Decimal entre 0 (nunca) e 1 (sempre).",
+	"centralnotice-banner-history-logger-rate-help": "Probabilidade que os datos sexan amosados e devoltos ao servidor. Decimal entre 0 (nunca) e 1 (sempre).",
 	"centralnotice-banner-history-logger-max-entry-age": "Antigüidade máxima das entradas de rexistro (en días)",
 	"centralnotice-banner-history-logger-max-entry-age-help": "As entradas do rexistro máis antigas que esta expirarán e non serán enviadas ó servidor.",
 	"centralnotice-banner-history-logger-max-entries": "Número máximo de entradas a manter no rexistro",
