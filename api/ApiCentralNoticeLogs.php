@@ -67,7 +67,7 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 	}
 
 	/**
-	 * @static Obtains the parameter $param, sanitizes by returning the first match to $regex or
+	 * Obtains the parameter $param, sanitizes by returning the first match to $regex or
 	 * $default if there was no match.
 	 *
 	 * @param string    $value    Incoming value
