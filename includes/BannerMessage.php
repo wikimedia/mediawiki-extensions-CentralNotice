@@ -180,7 +180,7 @@ class BannerMessage {
 	/**
 	 * Protects a message entry in the CNBanner namespace.
 	 * The protection lasts for infinity and acts for group
-	 * @ref $wgNoticeProtectGroup
+	 * @see $wgNoticeProtectGroup
 	 *
 	 * This really is intended only for use on the original source language
 	 * because those messages are set via the CN UI; not the translate UI.
