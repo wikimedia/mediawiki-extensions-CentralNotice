@@ -108,7 +108,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			default:
 				// Something went wrong; display error page
 				throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
-				break;
 		}
 	}
 
@@ -298,7 +297,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 				case 'archive':
 					return 'Archiving not yet implemented!';
-					break;
 
 				case 'remove':
 					$summary = $formData['removeBannerEditSummary'];
@@ -922,7 +920,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				return 'Archiving currently does not work';
-				break;
 
 			case 'clone':
 				if ( !$this->editable ) {
@@ -953,7 +950,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				$this->getRequest()->setVal( 'wpsummary', '' );
 
 				return $ret;
-				break;
 
 			default:
 				// Nothing was requested, so do nothing
