@@ -60,12 +60,13 @@ class CleanCNTranslateMetadata extends Maintenance {
 				continue;
 			}
 
+			$maxRev = (int)$row->maxrev;
 			$db->delete(
 				'revtag',
 				[
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
-					"rt_revision != {$row->maxrev}"
+					"rt_revision != $maxRev"
 				],
 				__METHOD__
 			);

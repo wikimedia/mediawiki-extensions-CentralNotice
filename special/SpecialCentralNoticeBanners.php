@@ -689,14 +689,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$renderer = new BannerRenderer( $this->getContext(), $banner );
 		$magicWords = $renderer->getMagicWords();
 		foreach ( $magicWords as &$word ) {
-			$word = '{{{' . $word . '}}}';
+			$word = wfEscapeWikiText( '{{{' . $word . '}}}' );
 		}
 		$formDescriptor[ 'banner-mixin-words' ] = [
 			'section' => 'edit-template',
 			'type' => 'info',
 			'default' => $this->msg(
 					'centralnotice-edit-template-magicwords',
-					wfEscapeWikiText( $this->getLanguage()->listToText( $magicWords ) )
+					$this->getLanguage()->listToText( $magicWords )
 				)->parse(),
 			'rawrow' => true,
 		];
