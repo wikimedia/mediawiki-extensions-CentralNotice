@@ -323,7 +323,12 @@
 	"centralnotice-banner-sequence-banner": "Cartel",
 	"centralnotice-banner-sequence-page-views": "Vistes de la páxina",
 	"centralnotice-banner-sequence-skip-with-id": "Saltar con identificador",
+	"centralnotice-banner-sequence-banner-removed-error": "Reanicióse la seleición del cartelu pa esti pasu o porque'l cartelu marcóse pa desaniciar o porque'l mesmu cambióse a un contenedor distintu. Fai otra seleición.",
 	"centralnotice-banner-sequence-page-views-error": "El pasu tien de tener polo menos una visita a la páxina.",
 	"centralnotice-banner-sequence-skip-with-id-error": "L'identificador nun puede contener «|».",
-	"centralnotice-banner-sequence-no-banner": "(Sin cartel)"
+	"centralnotice-banner-sequence-no-banner": "(Sin cartel)",
+	"centralnotice-banner-sequence-detailed-help": "Les secuencies configúrense de mou separáu pa cada contenedor. Pa cada pasu, sólo tán disponibles los cartelos asinaos al contenedor de la secuencia. P'amosar siempre un pasu, dexa'l campu «Saltar con identificador» en blancu. Si se pon un indicador, en completando'l pasu, guárdase una marca nel restolador del usuariu qu'usa esi identificador, y la siguiente vez que llegue al pasu col mesmu identificador, el pasu saltaráse. los identificadores de «Llende pa carteles grandes y conmutador» tiŕnrnse tamién en cuenta. Cuando acaba una secuencia, vuelve al principiu. (Pa torgar la repetición d'una secuencia, usa «Dieta d'impresiones» pa llendar les impresiones.)",
+	"centralnotice-impression-events-sample-rate": "Tasa de repetición d'actividaes d'impresión",
+	"centralnotice-impression-events-sample-rate-help": "Configurar una tasa de repetición non predeterminada pal rexistru d'actividaes d'impresión",
+	"centralnotice-impression-events-sample-rate-field": "Tasa de repetición d'actividaes d'impresión (tien de tar ente 0 y 1, inclusive)"
 }
