@@ -256,6 +256,7 @@
 	"hidebanners": "مخفی‌سازی بنرها",
 	"apihelp-centralnoticeallocations-param-country": "کشوری که بر روی آن فیلتر کند.",
 	"apihelp-centralnoticeallocations-param-language": "زبانی که بر روی آن فیلتر کند.",
+	"apihelp-centralnoticeallocations-param-device": "نام دستگاه برای فیلترکردن",
 	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
 	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها",
 	"centralnotice-banner-history-logger": "سیاهه تاریخچه بنر",
