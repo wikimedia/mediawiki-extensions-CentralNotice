@@ -278,7 +278,7 @@
 	"apihelp-centralnoticeallocations-param-country": "要篩選的國家。",
 	"apihelp-centralnoticeallocations-param-language": "要篩選的語言。",
 	"apihelp-centralnoticeallocations-param-anonymous": "要篩選的登入狀態（true|false）。",
-	"apihelp-centralnoticeallocations-param-device": "要篩選的設備名稱。",
+	"apihelp-centralnoticeallocations-param-device": "欲篩選的裝置名稱。",
 	"apihelp-centralnoticeallocations-param-bucket": "按數字（0 .. $1，可選用）來篩選分群。",
 	"apihelp-centralnoticeallocations-example-1": "顯示部份分配",
 	"apihelp-centralnoticecdncacheupdatebanner-summary": "在請求橫幅與語言中，為匿名使用者請求清除儲存在 CDN（前端）快取的橫幅內容",

@@ -17,7 +17,8 @@
 			"WTM",
 			"Alan ffm",
 			"Vengir",
-			"Saper"
+			"Saper",
+			"Railfail536"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -123,6 +124,7 @@
 	"centralnotice-banner-hidable": "Statyczny czy ukrywalny",
 	"centralnotice-banner-collapsible": "Zwijalny",
 	"centralnotice-banner-fundraising": "Baner zbiórki pieniędzy",
+	"centralnotice-banner-display-on": "Wyświetlaj na",
 	"centralnotice-banner-cdn-button": "Wyczyść",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"apierror-centralnotice-cdn-banner-not-found": "Nie znaleziono banera",
