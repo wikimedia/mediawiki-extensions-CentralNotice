@@ -1005,7 +1005,7 @@ class Banner {
 				// Must be run after banner has finished saving due to some dependencies that
 				// exist in the render job.
 				// TODO: This will go away if we start tracking messages in database :)
-				MessageGroups::clearCache();
+				MessageGroups::singleton()->recache();
 				MessageIndexRebuildJob::newJob()->run();
 				$this->runTranslateJob = false;
 			}
