@@ -34,7 +34,9 @@ class CentralNoticeHooks {
 		global $wgHooks, $wgNoticeInfrastructure, $wgSpecialPages,
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
-			$wgDBname, $wgCentralNoticeAdminGroup;
+			$wgDBname, $wgCentralNoticeAdminGroup, $wgNoticeProtectGroup,
+			$wgCentralNoticeMessageProtectRight, $wgCascadingRestrictionLevels,
+			$wgRestrictionLevels;
 
 		// Default for a standalone wiki is that the CN tables are in the main database.
 		if ( !$wgCentralDBname ) {
@@ -74,6 +76,25 @@ class CentralNoticeHooks {
 				// Grant admin permissions to this group
 				$wgGroupPermissions[$wgCentralNoticeAdminGroup]['centralnotice-admin'] = true;
 			}
+		}
+
+		// Transitional measure, delete me in a year. Copy any custom value
+		// from old variable to new one, unless new var is also customized.
+		if (
+			$wgNoticeProtectGroup &&
+			$wgCentralNoticeMessageProtectRight !== 'centralnotice-admin'
+		) {
+			wfLogWarning(
+				'$wgNoticeProtectGroup is deprecated - please use ' .
+				'$wgCentralNoticeMessageProtectRight instead.'
+			);
+			$wgCentralNoticeMessageProtectRight = $wgNoticeProtectGroup;
+		}
+		if ( !in_array( $wgCentralNoticeMessageProtectRight, $wgRestrictionLevels ) ) {
+			$wgRestrictionLevels[] = $wgCentralNoticeMessageProtectRight;
+		}
+		if ( !in_array( $wgCentralNoticeMessageProtectRight, $wgCascadingRestrictionLevels ) ) {
+			$wgCascadingRestrictionLevels[] = $wgCentralNoticeMessageProtectRight;
 		}
 	}
 

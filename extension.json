@@ -503,7 +503,7 @@
 		"NoticeBannerReducedMaxAge": 120,
 		"NoticeUseTranslateExtension": false,
 		"NoticeUseLanguageConversion": false,
-		"NoticeProtectGroup": "sysop",
+		"NoticeProtectGroup": false,
 		"NoticeTranslateDeployStates": [
 			"published"
 		],
@@ -672,7 +672,8 @@
 		},
 		"CentralNoticeGeoIPBackgroundLookupModule": null,
 		"CentralNoticeContentSecurityPolicy": false,
-		"CentralNoticeAdminGroup": "sysop"
+		"CentralNoticeAdminGroup": "sysop",
+		"CentralNoticeMessageProtectRight": "centralnotice-admin"
 	},
 	"EventLoggingSchemas": {
 		"CentralNoticeBannerHistory": 14321636
