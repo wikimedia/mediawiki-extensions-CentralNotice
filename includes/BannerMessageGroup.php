@@ -129,10 +129,12 @@ class BannerMessageGroup extends WikiMessageGroup {
 	}
 
 	/**
-	 * Hook to handle message group review state changes. If the $newState for a group is equal to
-	 * @see $wgNoticeTranslateDeployStates then this function will copy from the CNBanners namespace
-	 * into the MW namespace. This implies that the user calling this hook must have site-edit
-	 * permissions.
+	 * Hook to handle message group review state changes. If the $newState
+	 * for a group is equal to @see $wgNoticeTranslateDeployStates then this
+	 * function will copy from the CNBanners namespace into the MW namespace
+	 * and protect them with right $wgCentralNoticeMessageProtectRight. This
+	 * implies that the user calling this hook must have site-edit permissions
+	 * and the $wgCentralNoticeMessageProtectRight granted.
 	 *
 	 * @param object $group Effected group object
 	 * @param string $code Language code that was modified
@@ -163,6 +165,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 			$collection = $group->initCollection( $code );
 			$collection->loadTranslations();
 			$keys = $collection->getMessageKeys();
+			$user = RequestContext::getMain()->getUser();
 
 			// Now copy each key into the MW namespace
 			foreach ( $keys as $key ) {
@@ -182,6 +185,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 						'Update from translation plugin',
 						EDIT_FORCE_BOT
 					);
+					Banner::protectBannerContent( $wikiPage, $user, true );
 				}
 			}
 		} else {
