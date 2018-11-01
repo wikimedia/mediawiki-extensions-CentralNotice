@@ -671,7 +671,8 @@
 			}
 		},
 		"CentralNoticeGeoIPBackgroundLookupModule": null,
-		"CentralNoticeContentSecurityPolicy": false
+		"CentralNoticeContentSecurityPolicy": false,
+		"CentralNoticeAdminGroup": "sysop"
 	},
 	"EventLoggingSchemas": {
 		"CentralNoticeBannerHistory": 14321636

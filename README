@@ -227,3 +227,9 @@ Configuration
   does not break mediawiki is:
     "default-src data: blob: 'unsafe-inline' 'unsafe-eval' 'self';"
   Default: false
+
+* $wgCentralNoticeAdminGroup: This group will be granted centralnotice-admin
+  rights. You can always specify additional groups in $wgGroupPermissions. A
+  false-y value means only groups explicitly specified in $wgGroupPermissions
+  will have the right.
+  Default: sysop

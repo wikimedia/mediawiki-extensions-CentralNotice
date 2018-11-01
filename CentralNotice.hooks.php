@@ -33,7 +33,8 @@ class CentralNoticeHooks {
 	public static function onRegistration() {
 		global $wgHooks, $wgNoticeInfrastructure, $wgSpecialPages,
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
-			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname, $wgDBname;
+			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
+			$wgDBname, $wgCentralNoticeAdminGroup;
 
 		// Default for a standalone wiki is that the CN tables are in the main database.
 		if ( !$wgCentralDBname ) {
@@ -68,8 +69,11 @@ class CentralNoticeHooks {
 
 			// Register user rights for editing
 			$wgAvailableRights[] = 'centralnotice-admin';
-			// Only sysops can make change
-			$wgGroupPermissions['sysop']['centralnotice-admin'] = true;
+
+			if ( $wgCentralNoticeAdminGroup ) {
+				// Grant admin permissions to this group
+				$wgGroupPermissions[$wgCentralNoticeAdminGroup]['centralnotice-admin'] = true;
+			}
 		}
 	}
 
