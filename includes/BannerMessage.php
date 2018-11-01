@@ -179,8 +179,8 @@ class BannerMessage {
 
 	/**
 	 * Protects a message entry in the CNBanner namespace.
-	 * The protection lasts for infinity and acts for group
-	 * @see $wgNoticeProtectGroup
+	 * The protection lasts for infinity and requires the right
+	 * @see $wgCentralNoticeMessageProtectRight
 	 *
 	 * This really is intended only for use on the original source language
 	 * because those messages are set via the CN UI; not the translate UI.
@@ -189,13 +189,14 @@ class BannerMessage {
 	 * @param User $user User doing the protection (ie: the last one to edit the page)
 	 */
 	protected function protectMessageInCnNamespaces( $page, $user ) {
-		global $wgNoticeProtectGroup;
+		global $wgCentralNoticeMessageProtectRight;
 
 		if ( !$page->getTitle()->getRestrictions( 'edit' ) ) {
 			$var = false;
 
 			$page->doUpdateRestrictions(
-				[ 'edit' => $wgNoticeProtectGroup, 'move' => $wgNoticeProtectGroup ],
+				// phpcs:ignore Generic.Files.LineLength
+				[ 'edit' => $wgCentralNoticeMessageProtectRight, 'move' => $wgCentralNoticeMessageProtectRight ],
 				[ 'edit' => 'infinity', 'move' => 'infinity' ],
 				$var,
 				'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.',

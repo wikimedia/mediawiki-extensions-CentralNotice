@@ -130,10 +130,8 @@ Configuration
   language (zh for zh-cn, for example) instead.
   Default: false
 
-* $wgNoticeProtectGroup: When a banner is protected; what group is assigned.
-  This is used for banners in the CNBanner namespace to protect origin
-  messages.
-  Default: "sysop"
+* $wgNoticeProtectGroup: *** Deprecated, see $wgCentralNoticeMessageProtectRight.
+  Default: false
 
 * $wgNoticeTranslateDeployStates: When using the group review feature of the
   translate extension, only message groups with these group review states will
@@ -233,3 +231,10 @@ Configuration
   false-y value means only groups explicitly specified in $wgGroupPermissions
   will have the right.
   Default: sysop
+
+* $wgCentralNoticeMessageProtectRight: This right will be used to apply cascading
+  protection to banner messages. It will be added to $wgRestrictionLevels and
+  $wgCascadingRestrictionLevels if not present. As a transitional measure, if
+  any customized value has been set for $wgNoticeProtectGroup, this variable
+  will take that value.
+  Default: centralnotice-admin
