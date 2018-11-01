@@ -185,6 +185,7 @@
 	"centralnotice-start-time": "শুরুর সময় (ইউটিসি)",
 	"centralnotice-end-date": "শেষের তারিখ (ইউটিসি)",
 	"centralnotice-end-time": "শেষ সময় (ইউটিসি)",
+	"centralnotice-csp-violation-alert": "সামগ্রী নিরাপত্তা নীতির লঙ্ঘন সনাক্ত হয়েছে। $1 থেকে কিছু লোড করার চেষ্টা করা হয়েছে।",
 	"hidebanners": "ব্যানার লুকান",
 	"apihelp-query+centralnoticelogs-example-1": "লগ দেখান",
 	"centralnotice-banner-sequence-banner": "ব্যানার",
