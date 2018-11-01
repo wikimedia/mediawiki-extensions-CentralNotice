@@ -806,7 +806,7 @@ class Banner {
 		$this->dirtyFlags['content'] = $dirty;
 	}
 
-	protected function saveBodyContent( $summary = null ) {
+	protected function saveBodyContent( $summary = null, User $user ) {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $this->dirtyFlags['content'] ) {
@@ -820,6 +820,8 @@ class Banner {
 
 			$pageResult =
 				$wikiPage->doEditContent( $contentObj, $summary, EDIT_FORCE_BOT );
+
+			self::protectBannerContent( $wikiPage, $user );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Get the revision and page ID of the page that was created/modified
@@ -985,7 +987,7 @@ class Banner {
 		try {
 			// Don't move this to saveBannerInternal--can't be in a transaction
 			// TODO: explain why not.  Is text in another database?
-			$this->saveBodyContent( $summary );
+			$this->saveBodyContent( $summary, $user );
 
 			// Open a transaction so that everything is consistent
 			$db->startAtomic( __METHOD__ );
@@ -1515,5 +1517,45 @@ class Banner {
 	 */
 	public static function getMessageFieldForBanner( $bannerName, $messageName ) {
 		return new BannerMessage( $bannerName, $messageName );
+	}
+
+	/**
+	 * Apply cascading protection to the banner template or message
+	 *
+	 * @param WikiPage $wikiPage
+	 * @param User $user
+	 * @param bool $isTranslatedMessage if true, protect with $wgCentralNoticeMessageProtectRight
+	 * @throws BannerContentException
+	 */
+	public static function protectBannerContent(
+		WikiPage $wikiPage, User $user, $isTranslatedMessage = false
+	) {
+		if ( $isTranslatedMessage ) {
+			global $wgCentralNoticeMessageProtectRight;
+			if ( empty( $wgCentralNoticeMessageProtectRight ) ) {
+				return;
+			}
+			$protectionRight = $wgCentralNoticeMessageProtectRight;
+		} else {
+			$protectionRight = 'centralnotice-admin';
+		}
+		$limits = [
+			'edit' => $protectionRight,
+			'move' => $protectionRight,
+		];
+		$expiry = [
+			'edit' => 'infinity',
+			'move' => 'infinity',
+		];
+		$cascade = 1;
+		$reason = 'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.';
+		$status = $wikiPage->doUpdateRestrictions(
+			$limits, $expiry, $cascade, $reason, $user
+		);
+		if ( !$status->isGood() || !$cascade ) {
+			throw new BannerContentException(
+				'Unable to protect banner' . $status->getMessage()
+			);
+		}
 	}
 }

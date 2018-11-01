@@ -163,45 +163,16 @@ class BannerMessage {
 			return $wikiPage;
 		};
 
-		$savePage( $this->getTitle( $lang ), $translation );
+		$page = $savePage( $this->getTitle( $lang ), $translation );
+		Banner::protectBannerContent( $page, $user );
 
 		// If we're using translate : group review; create and protect the english page
 		if ( $wgNoticeUseTranslateExtension
 			&& ( $lang === $wgLanguageCode )
 			&& BannerMessageGroup::isUsingGroupReview()
 		) {
-			$this->protectMessageInCnNamespaces(
-				$savePage( $this->getTitle( $lang, NS_CN_BANNER ), $translation ),
-				$user
-			);
-		}
-	}
-
-	/**
-	 * Protects a message entry in the CNBanner namespace.
-	 * The protection lasts for infinity and requires the right
-	 * @see $wgCentralNoticeMessageProtectRight
-	 *
-	 * This really is intended only for use on the original source language
-	 * because those messages are set via the CN UI; not the translate UI.
-	 *
-	 * @param WikiPage $page Page containing the message to protect
-	 * @param User $user User doing the protection (ie: the last one to edit the page)
-	 */
-	protected function protectMessageInCnNamespaces( $page, $user ) {
-		global $wgCentralNoticeMessageProtectRight;
-
-		if ( !$page->getTitle()->getRestrictions( 'edit' ) ) {
-			$var = false;
-
-			$page->doUpdateRestrictions(
-				// phpcs:ignore Generic.Files.LineLength
-				[ 'edit' => $wgCentralNoticeMessageProtectRight, 'move' => $wgCentralNoticeMessageProtectRight ],
-				[ 'edit' => 'infinity', 'move' => 'infinity' ],
-				$var,
-				'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.',
-				$user
-			);
+			$page = $savePage( $this->getTitle( $lang, NS_CN_BANNER ), $translation );
+			Banner::protectBannerContent( $page, $user );
 		}
 	}
 }
