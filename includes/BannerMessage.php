@@ -7,6 +7,9 @@ class BannerMessage {
 	/** @var string */
 	private $name;
 
+	const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
+	const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
+
 	function __construct( $banner_name, $name ) {
 		$this->banner_name = $banner_name;
 		$this->name = $name;
@@ -90,7 +93,49 @@ class BannerMessage {
 		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
 			$lang = $lang->getParentLanguage();
 		}
-		return $context->msg( $this->getDbKey() )->inLanguage( $lang )->text();
+
+		$text = $context->msg( $this->getDbKey() )->inLanguage( $lang )->text();
+
+		// Sanitizaiton
+		// First, remove any occurrences of the placeholders used to preserve span tags.
+		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_START, '',  $text );
+		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_END, '',  $text );
+
+		// Remove and save <span> tags so they don't get removed by sanitization; allow
+		// only class attributes.
+		$spanTags = [];
+		$text = preg_replace_callback(
+			'/(<\/?span\s*(?:class\s?=\s?([\'"])[a-zA-Z0-9_-]+(\2))?\s*>)/',
+			function ( $matches ) use ( &$spanTags ) {
+				$spanTags[] = $matches[ 1 ];
+				return BannerMessage::SPAN_TAG_PLACEHOLDER_START .
+					( count( $spanTags ) - 1 ) .
+					BannerMessage::SPAN_TAG_PLACEHOLDER_END;
+			},
+			$text
+		);
+
+		$text = Sanitizer::stripAllTags( $text );
+		$text = Sanitizer::escapeHtmlAllowEntities( $text );
+
+		// Restore span tags
+		$text = preg_replace_callback(
+			'/(?:' . self::SPAN_TAG_PLACEHOLDER_START . '(\d+)' .
+				self::SPAN_TAG_PLACEHOLDER_END . ')/',
+
+			function ( $matches ) use ( $spanTags ) {
+				$index = (int)$matches[ 1 ];
+				// This should never happen, but let's be safe.
+				if ( !isset( $spanTags[ $index ] ) ) {
+					return '';
+				}
+				return $spanTags[ $index ];
+			},
+
+			$text
+		);
+
+		return $text;
 	}
 
 	/**
