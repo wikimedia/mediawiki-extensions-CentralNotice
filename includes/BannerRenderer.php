@@ -211,6 +211,9 @@ class BannerRenderer {
 	 * @return string Rendered contents.
 	 */
 	function substituteMagicWords( $contents ) {
+		// FIXME The syntax {{{magicword:param1|param2}}} for magic words does not work,
+		// since it is munged by core before we get it here. It was part of the in-banner
+		// mixin system, currently unused.
 		return preg_replace_callback(
 			'/{{{([^}:]+)(?:[:]([^}]*))?}}}/',
 			[ $this, 'renderMagicWord' ],
@@ -237,6 +240,7 @@ class BannerRenderer {
 	 *         0 => full match, ignored,
 	 *         1 => magic word name,
 	 *         2 => optional arguments to the magic word replacement function
+	 *              FIXME Doesn't work, unused
 	 *     );
 	 *
 	 * @return string HTML fragment with the resulting value.
@@ -248,6 +252,8 @@ class BannerRenderer {
 		} elseif ( $field === 'campaign' ) {
 			return $this->campaignName;
 		}
+
+		// FIXME This doesn't work; part of the unused in-banner mixin system.
 		$params = [];
 		if ( isset( $re_matches[2] ) ) {
 			$params = explode( "|", $re_matches[2] );
@@ -258,7 +264,20 @@ class BannerRenderer {
 			return $value;
 		}
 
-		$bannerMessage = $this->banner->getMessageField( $field );
+		// Treat anything else as a translatable message
+		$messageFields = explode( ',', $field, 2 );
+		if ( isset( $messageFields[ 1 ] ) ) {
+			// A translatable message from a named banner. String before the comma is the
+			// banner that defines the message, and the rest is the name of the
+			// translatable message from that banner.
+			$bannerMessage = Banner::getMessageFieldForBanner(
+				trim( $messageFields[ 0 ] ),
+				trim( $messageFields[ 1 ] )
+			);
+		} else {
+			$bannerMessage = $this->banner->getMessageField( $field );
+		}
+
 		return $bannerMessage->toHtml( $this->context );
 	}
 }
