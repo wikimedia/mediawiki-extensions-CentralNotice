@@ -894,9 +894,12 @@ class Banner {
 		// Extract message fields from the banner body
 		$fields = [];
 		$allowedChars = Title::legalChars();
-		// We're using a janky custom syntax to pass arguments to a field message:
-		// "{{{fieldname:arg1|arg2}}}"
-		$allowedChars = str_replace( ':', '', $allowedChars );
+		// Janky custom syntax to pass arguments to a message, broken and unused:
+		// "{{{fieldname:arg1|arg2}}}". This is why ':' is forbidden. FIXME: Remove.
+		// Also forbid ',' so we can use it as a separator between banner name and
+		// message name in banner content, and thus insert messages from other banners.
+		// ' ' is forbidden to avoid problems in the UI.
+		$allowedChars = str_replace( [ ':', ',', ' ' ], '', $allowedChars );
 		preg_match_all( "/{{{([$allowedChars]+)(:[^}]*)?}}}/u", $expanded, $fields );
 
 		// Remove duplicate keys and count occurrences
@@ -1499,6 +1502,17 @@ class Banner {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Get BannerMessage defined in a specific banner.
+	 *
+	 * @param string $bannerName
+	 * @param string $messageName
+	 * @return BannerMessage
+	 */
+	public static function getMessageFieldForBanner( $bannerName, $messageName ) {
+		return new BannerMessage( $bannerName, $messageName );
 	}
 }
 
