@@ -16,7 +16,7 @@
  * Flow chart: https://commons.wikimedia.org/wiki/File:CentralNotice_-_wait_cookie_code_flow.png
  * (FIXME: update ^^ with new parameter names)
  */
-( function ( $, mw ) {
+( function () {
 	'use strict';
 
 	var identifier, multiStorageOption,
@@ -250,4 +250,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-}( jQuery, mediaWiki ) );
+}() );

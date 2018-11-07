@@ -9,7 +9,7 @@
  * https://meta.wikimedia.org/wiki/MediaWiki:FR2014/Resources/ShowHideCheckFullscreen.js
  * https://meta.wikimedia.org/wiki/MediaWiki:FR2014/Resources/ChangeBucket-AtoC-BtoD.js
  */
-( function ( mw ) {
+( function () {
 	'use strict';
 
 	var identifier, days, multiStorageOption,
@@ -191,4 +191,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-}( mediaWiki ) );
+}() );

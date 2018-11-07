@@ -7,7 +7,7 @@
  * server via EventLogging. Also allows forcing the log to be sent via
  * cn.bannerHistoryLogger.ensureLogSent().
  */
-( function ( $, mw ) {
+( function () {
 
 	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		bhLogger,
@@ -402,4 +402,4 @@
 		}
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

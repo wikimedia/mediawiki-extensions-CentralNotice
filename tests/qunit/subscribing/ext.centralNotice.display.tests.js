@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var realAjax = $.ajax,
@@ -502,4 +502,4 @@
 		);
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

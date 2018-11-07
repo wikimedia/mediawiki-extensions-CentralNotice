@@ -5,7 +5,7 @@
  * so.
  * TODO Move this out of CentralNotice. See https://phabricator.wikimedia.org/T102848
  */
-( function ( $ ) {
+( function () {
 	var GEOIP_LOOKUP_URL = '//freegeoip.net/json/';
 
 	module.exports = function () {
@@ -30,4 +30,4 @@
 		} );
 	};
 
-}( jQuery ) );
+}() );

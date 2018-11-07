@@ -1,7 +1,7 @@
 /**
  * Allows setting a custom sample rate for the logging of impression events.
  */
-( function ( $, mw ) {
+( function () {
 
 	var cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'impressionEventsSampleRate' );
@@ -13,4 +13,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-}( jQuery, mediaWiki ) );
+}() );

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var testFixtures = mw.centralNoticeTestFixtures,
@@ -234,4 +234,4 @@
 				throw new Error( 'Non-existent logged-in status.' );
 		}
 	}
-}( mediaWiki, jQuery ) );
+}() );

@@ -20,7 +20,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
-( function ( $, mw ) {
+( function () {
 	var stepSize = 1,
 		mixinDefs = mw.config.get( 'wgCentralNoticeCampaignMixins' ),
 		mixinParamsTemplate = mw.template.get(
@@ -772,4 +772,4 @@
 		mw.loader.using( customControlsModules ).done( initialize );
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

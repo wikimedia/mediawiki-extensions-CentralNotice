@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function () {
 	QUnit.module( 'ext.centralNotice.kvStore', QUnit.newMwEnvironment( {
 		teardown: function () {
 			var key, i = localStorage.length;
@@ -67,4 +67,4 @@
 		} );
 	} );
 
-}( mediaWiki ) );
+}() );

@@ -5,7 +5,7 @@
 // FIXME Encapsulate logic specific to Special:CentralNoticeLogs
 // FIXME Global functions
 
-( function ( mw, $ ) {
+( function () {
 	mw.centralNotice = mw.centralNotice || {};
 	mw.centralNotice.adminUi = {};
 
@@ -106,4 +106,4 @@
 			}
 		} );
 	} );
-}( mediaWiki, jQuery ) );
+}() );

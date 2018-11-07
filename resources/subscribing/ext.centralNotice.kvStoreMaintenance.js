@@ -5,7 +5,7 @@
  *
  * This module provides an API at mw.centralNotice.kvStoreMaintenance.
  */
-( function ( $, mw ) {
+( function () {
 	var	cn,
 		now = new Date().getTime() / 1000,
 
@@ -129,4 +129,4 @@
 		}
 	};
 
-}( jQuery, mediaWiki ) );
+}() );
