@@ -19,7 +19,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var bool If true, form execution must stop and the page will be redirected */
 	protected $bannerFormRedirectRequired = false;
 
-	function __construct() {
+	public function __construct() {
 		SpecialPage::__construct( 'CentralNoticeBanners' );
 	}
 

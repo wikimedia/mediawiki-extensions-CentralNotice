@@ -3,7 +3,7 @@
 class SpecialCentralNoticeLogs extends CentralNotice {
 	public $logType = 'campaignsettings';
 
-	function __construct() {
+	public function __construct() {
 		// Register special page
 		SpecialPage::__construct( "CentralNoticeLogs" );
 	}
@@ -16,7 +16,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	 * Handle different types of page requests
 	 * @param string|null $sub
 	 */
-	function execute( $sub ) {
+	public function execute( $sub ) {
 		global $wgExtensionAssetsPath;
 
 		$out = $this->getOutput();
@@ -238,7 +238,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	 * Show a log of changes.
 	 * @param string $logType which type of log to show
 	 */
-	function showLog( $logType ) {
+	private function showLog( $logType ) {
 		switch ( $logType ) {
 			case 'bannersettings':
 				$pager = new CentralNoticeBannerLogPager( $this );

@@ -3,7 +3,7 @@
 class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	public $viewPage, $special;
 
-	function __construct( SpecialCentralNoticeLogs $special ) {
+	public function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
 		parent::__construct();
 
@@ -18,7 +18,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Sort the log list by timestamp
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'notlog_timestamp';
 	}
 
@@ -26,7 +26,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Pull log entries from the database
 	 * @return array[]
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$request = $this->getRequest();
 
 		$filterStartDate = 0;
@@ -79,7 +79,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		global $wgExtensionAssetsPath;
 
 		$lang = $this->getLanguage();
@@ -187,7 +187,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param object $row
 	 * @return string
 	 */
-	function showInitialSettings( $row ) {
+	public function showInitialSettings( $row ) {
 		$lang = $this->getLanguage();
 		$details = '';
 		$wordSeparator = $this->msg( 'word-separator' )->plain();
@@ -248,7 +248,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param object $row
 	 * @return string
 	 */
-	function showChanges( $row ) {
+	public function showChanges( $row ) {
 		$lang = $this->getLanguage();
 		$details = '';
 		$wordSeparator = $this->msg( 'word-separator' )->plain();
@@ -513,7 +513,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Specify table headers
 	 * @return string HTML
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -544,7 +544,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Close table
 	 * @return string HTML
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::closeElement( 'table' );
 		return $htmlOut;

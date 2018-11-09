@@ -12,7 +12,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	public $editable;
 	public $filter;
 
-	function __construct( $special, $filter = '' ) {
+	public function __construct( $special, $filter = '' ) {
 		$this->special = $special;
 		$this->editable = $special->editable;
 		$this->filter = $filter;
@@ -32,7 +32,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 *
 	 * @return array of query settings
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$dbr = CNDatabase::getDb();
 
 		// When the filter comes in it is space delimited, so break that...
@@ -63,7 +63,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 *
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'templates.tmp_id';
 	}
 
@@ -74,7 +74,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 *
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
 
@@ -109,7 +109,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 *
 	 * @return string HTML
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -130,7 +130,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 *
 	 * @return string HTML
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::closeElement( 'table' );
 		if ( $this->editable ) {

@@ -422,7 +422,7 @@ class CNCampaignPager extends TablePager {
 	/**
 	 * @inheritDoc
 	 */
-	function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
+	public function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
 		parent::extractResultInfo( $isFirst, $limit, $res );
 
 		// Disable editing if there's more than one page. (This is a legacy

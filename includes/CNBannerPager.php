@@ -30,7 +30,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * @param string $bannerFilter
 	 * @param bool $editable
 	 */
-	function __construct( SpecialCentralNoticeBanners $hostSpecialPage,
+	public function __construct( SpecialCentralNoticeBanners $hostSpecialPage,
 		$formSection = null, $prependPrototypes = [],
 		$appendPrototypes = [], $bannerFilter = '', $editable = false
 	) {
@@ -51,7 +51,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$this->mDb = CNDatabase::getDb();
 	}
 
-	function getNavigationBar() {
+	public function getNavigationBar() {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
@@ -76,7 +76,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 *
 	 * @return array of query settings
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		// When the filter comes in it is space delimited, so break that...
 		$likeArray = preg_split( '/\s/', $this->filter );
 
@@ -105,7 +105,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 *
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'templates.tmp_id';
 	}
 
@@ -116,7 +116,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 *
 	 * @return array HTMLFormElement classes
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$retval = [];
 
 		$bannerId = $row->tmp_id;

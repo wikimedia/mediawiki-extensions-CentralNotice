@@ -13,7 +13,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * @param SpecialPage $special object calling object
 	 * @param string $type type of log - 'bannercontent' or 'bannermessages' (optional)
 	 */
-	function __construct( $special, $type = 'bannercontent' ) {
+	public function __construct( $special, $type = 'bannercontent' ) {
 		$this->special = $special;
 		parent::__construct();
 
@@ -25,7 +25,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * Sort the log list by timestamp
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'rc_timestamp';
 	}
 
@@ -33,7 +33,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * Pull log entries from the database
 	 * @return array[]
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$conds = [
 			'rc_bot' => 1, // include bot edits (all edits made by CentralNotice are bot edits)
 			'rc_namespace' => 8, // only MediaWiki pages
@@ -93,7 +93,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->rc_user );
 		// Create the user page link
@@ -222,7 +222,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	/**
 	 * @return String
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -266,7 +266,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * Close table
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		return Xml::closeElement( 'table' );
 	}
 }

@@ -527,7 +527,7 @@ class Banner {
 	 * @throws RangeException
 	 * @return $this
 	 */
-	function setMixins( $mixins ) {
+	public function setMixins( $mixins ) {
 		global $wgCentralNoticeBannerMixins;
 
 		$this->populateMixinData();
@@ -844,7 +844,7 @@ class Banner {
 	// </editor-fold>
 
 	// <editor-fold desc="Banner message fields">
-	function getMessageField( $field_name ) {
+	public function getMessageField( $field_name ) {
 		return new BannerMessage( $this->getName(), $field_name );
 	}
 
@@ -925,7 +925,7 @@ class Banner {
 	 *
 	 * @return array A list of languages with existing field translations
 	 */
-	function getAvailableLanguages( $inTranslation = false ) {
+	public function getAvailableLanguages( $inTranslation = false ) {
 		global $wgLanguageCode;
 		$availableLangs = [];
 
@@ -1118,7 +1118,7 @@ class Banner {
 		self::removeTemplate( $this->getName(), $user );
 	}
 
-	static function removeTemplate( $name, $user, $summary = null ) {
+	public static function removeTemplate( $name, $user, $summary = null ) {
 		global $wgNoticeUseTranslateExtension;
 
 		$bannerObj = self::fromName( $name );
@@ -1173,7 +1173,7 @@ class Banner {
 	 * @param string $bannerId ID of banner this revtag belongs to
 	 * @throws Exception
 	 */
-	static function addTag( $tag, $revisionId, $pageId, $bannerId ) {
+	public static function addTag( $tag, $revisionId, $pageId, $bannerId ) {
 		$dbw = CNDatabase::getDb();
 
 		if ( is_object( $revisionId ) ) {
@@ -1219,7 +1219,7 @@ class Banner {
 	 *
 	 * @return array a 2D array of banners with associated weights and settings
 	 */
-	static function getCampaignBanners( $campaigns ) {
+	public static function getCampaignBanners( $campaigns ) {
 		$dbr = CNDatabase::getDb();
 
 		$banners = [];
@@ -1299,7 +1299,7 @@ class Banner {
 	 * @return array an array of banner settings
 	 * @throws RangeException
 	 */
-	static function getBannerSettings( $bannerName, $detailed = true ) {
+	public static function getBannerSettings( $bannerName, $detailed = true ) {
 		$banner = self::fromName( $bannerName );
 		if ( !$banner->exists() ) {
 			throw new RangeException( "Banner doesn't exist!" );
@@ -1333,7 +1333,7 @@ class Banner {
 	 *    fundraising: 0/1, is in the fundraising group
 	 *    device: device key
 	 */
-	static function getHistoricalBanner( $name, $ts ) {
+	public static function getHistoricalBanner( $name, $ts ) {
 		$id = self::fromName( $name )->getId();
 
 		$dbr = CNDatabase::getDb();
@@ -1392,7 +1392,7 @@ class Banner {
 	 *
 	 * @return string|null error message key or null on success
 	 */
-	static function addTemplate( $name, $body, $user, $displayAnon,
+	public static function addTemplate( $name, $body, $user, $displayAnon,
 		$displayAccount, $fundraising = false,
 		$mixins = [], $priorityLangs = [], $devices = null,
 		$summary = null
@@ -1432,7 +1432,7 @@ class Banner {
 	 * @param User $user The user causing the change
 	 * @param string|null $summary Summary (comment) for this action
 	 */
-	function logBannerChange( $action, $user, $summary = null ) {
+	public function logBannerChange( $action, $user, $summary = null ) {
 		ChoiceDataProvider::invalidateCache();
 
 		// Summary shouldn't actually come in null, but just in case...
@@ -1477,7 +1477,7 @@ class Banner {
 	 *
 	 * @return bool True if valid
 	 */
-	static function isValidBannerName( $name ) {
+	public static function isValidBannerName( $name ) {
 		// Note: regex should coordinate with banner name validation
 		// in ext.centralNotice.adminUi.bannerSequence.js
 		return preg_match( '/^[A-Za-z0-9_]+$/', $name );

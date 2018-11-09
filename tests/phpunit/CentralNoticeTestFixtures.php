@@ -13,7 +13,7 @@ class CentralNoticeTestFixtures {
 	static public $defaultCampaign;
 	static public $defaultBanner;
 
-	function __construct() {
+	public function __construct() {
 		$this->user = User::newFromName( 'UTSysop' );
 
 		static::$defaultCampaign = [
@@ -38,19 +38,19 @@ class CentralNoticeTestFixtures {
 		];
 	}
 
-	static function getDefaultLanguage() {
+	public static function getDefaultLanguage() {
 		return 'en';
 	}
 
-	static function getDefaultProject() {
+	public static function getDefaultProject() {
 		return 'wikipedia';
 	}
 
-	static function getDefaultCountry() {
+	public static function getDefaultCountry() {
 		return 'XX';
 	}
 
-	static function getDefaultDevice() {
+	public static function getDefaultDevice() {
 		return 'desktop';
 	}
 
@@ -59,7 +59,7 @@ class CentralNoticeTestFixtures {
 	 * as appropriate for fixture data.
 	 * @return array
 	 */
-	function getGlobalsFromFixtureData() {
+	public function getGlobalsFromFixtureData() {
 		$data = self::allocationsData();
 		return $data['mock_config_values'];
 	}
@@ -75,7 +75,7 @@ class CentralNoticeTestFixtures {
 	 *
 	 * @param array &$testCase A data structure with the test case specification
 	 */
-	function setupTestCaseFromFixtureData( &$testCase ) {
+	public function setupTestCaseFromFixtureData( &$testCase ) {
 		$this->setTestCaseStartEnd( $testCase );
 		$this->preprocessSetupCountriesProp( $testCase['setup'] );
 		$this->addDummyBannerBody( $testCase['setup'] );
@@ -88,7 +88,7 @@ class CentralNoticeTestFixtures {
 	 *
 	 * @param array $testCase A data structure with the test case specification
 	 */
-	function setupTestCaseWithDefaults( $testCase ) {
+	public function setupTestCaseWithDefaults( $testCase ) {
 		$this->addTestCaseDefaults( $testCase['setup'] );
 		$this->setupTestCase( $testCase['setup'] );
 	}
@@ -317,7 +317,7 @@ class CentralNoticeTestFixtures {
 		}
 	}
 
-	function tearDownTestCases() {
+	public function tearDownTestCases() {
 		if ( $this->spec ) {
 			foreach ( $this->spec['campaigns'] as $campaign ) {
 				foreach ( $campaign['banners'] as $banner ) {
@@ -348,7 +348,7 @@ class CentralNoticeTestFixtures {
 	 * @param array $actual Actual choices data structure
 	 * @param string $message
 	 */
-	function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
+	public function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
 		$message = ''
 	) {
 		// The order of the numerically indexed arrays in this data structure

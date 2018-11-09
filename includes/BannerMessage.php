@@ -10,12 +10,12 @@ class BannerMessage {
 	const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
 	const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
 
-	function __construct( $banner_name, $name ) {
+	public function __construct( $banner_name, $name ) {
 		$this->banner_name = $banner_name;
 		$this->name = $name;
 	}
 
-	function getTitle( $lang, $namespace = NS_MEDIAWIKI ) {
+	public function getTitle( $lang, $namespace = NS_MEDIAWIKI ) {
 		return Title::newFromText( $this->getDbKey( $lang, $namespace ), $namespace );
 	}
 
@@ -31,7 +31,7 @@ class BannerMessage {
 	 * @return string Message database key
 	 * @throws RangeException
 	 */
-	function getDbKey( $lang = null, $namespace = NS_MEDIAWIKI ) {
+	public function getDbKey( $lang = null, $namespace = NS_MEDIAWIKI ) {
 		global $wgLanguageCode;
 
 		if ( $namespace === NS_MEDIAWIKI ) {
@@ -52,7 +52,7 @@ class BannerMessage {
 	 * @param string|null $lang
 	 * @return bool
 	 */
-	function existsInLang( $lang ) {
+	public function existsInLang( $lang ) {
 		return $this->getTitle( $lang )->exists();
 	}
 
@@ -63,7 +63,7 @@ class BannerMessage {
 	 * @return null|string Will be null if the message does not exist, otherwise will be
 	 * the contents of the message.
 	 */
-	function getContents( $lang ) {
+	public function getContents( $lang ) {
 		if ( $this->existsInLang( $lang ) ) {
 			$dbKey = $this->getDbKey();
 			$rev = Revision::newFromTitle( $this->getTitle( $lang ) );
@@ -87,7 +87,7 @@ class BannerMessage {
 		}
 	}
 
-	function toHtml( IContextSource $context ) {
+	public function toHtml( IContextSource $context ) {
 		global $wgNoticeUseLanguageConversion;
 		$lang = $context->getLanguage();
 		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
@@ -145,7 +145,7 @@ class BannerMessage {
 	 * @param User $user
 	 * @param string|null $summary
 	 */
-	function update( $translation, $lang, $user, $summary = null ) {
+	public function update( $translation, $lang, $user, $summary = null ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		if ( $summary === null ) {

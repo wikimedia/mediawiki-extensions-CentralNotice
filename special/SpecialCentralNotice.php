@@ -19,7 +19,7 @@ class CentralNotice extends SpecialPage {
 	protected $campaign;
 	protected $campaignWarnings = [];
 
-	function __construct() {
+	public function __construct() {
 		// Register special page
 		parent::__construct( 'CentralNotice' );
 	}
@@ -32,7 +32,7 @@ class CentralNotice extends SpecialPage {
 	 * Handle different types of page requests
 	 * @param string|null $sub
 	 */
-	function execute( $sub ) {
+	public function execute( $sub ) {
 		// Begin output
 		$this->setHeaders();
 		$this->outputHeader();
@@ -453,7 +453,7 @@ class CentralNotice extends SpecialPage {
 	 * @param string $prefix
 	 * @return null|string
 	 */
-	function getDateTime( $prefix ) {
+	private function getDateTime( $prefix ) {
 		global $wgRequest;
 		// Check whether the user left the date field blank.
 		// Interpret any form of "empty" as a blank value.
@@ -475,7 +475,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @param string $notice The name of the campaign to view
 	 */
-	function outputNoticeDetail( $notice ) {
+	private function outputNoticeDetail( $notice ) {
 		global $wgCentralNoticeCampaignMixins;
 
 		$out = $this->getOutput();
@@ -801,7 +801,7 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Output stored campaign warnings
 	 */
-	function displayCampaignWarnings() {
+	private function displayCampaignWarnings() {
 		foreach ( $this->campaignWarnings as $message ) {
 			$this->getOutput()->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
 		}
@@ -812,7 +812,7 @@ class CentralNotice extends SpecialPage {
 	 * @param string $notice
 	 * @return string HTML
 	 */
-	function noticeDetailForm( $notice ) {
+	private function noticeDetailForm( $notice ) {
 		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
 
 		if ( $this->editable ) {
@@ -1068,7 +1068,7 @@ class CentralNotice extends SpecialPage {
 	 * @param string $notice
 	 * @return string HTML
 	 */
-	function assignedTemplatesForm( $notice ) {
+	private function assignedTemplatesForm( $notice ) {
 		global $wgNoticeNumberOfBuckets;
 
 		$dbr = CNDatabase::getDb();
@@ -1230,7 +1230,7 @@ class CentralNotice extends SpecialPage {
 		return $htmlOut;
 	}
 
-	function weightDropDown( $name, $selected ) {
+	private function weightDropDown( $name, $selected ) {
 		$selected = intval( $selected );
 
 		if ( $this->editable ) {
@@ -1245,7 +1245,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
+	private function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
 		$bucketLabel = function ( $val ) {
@@ -1285,7 +1285,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	function numBucketsDropDown( $numBuckets, $selected ) {
+	private function numBucketsDropDown( $numBuckets, $selected ) {
 		if ( $selected === null ) {
 			$selected = 1;
 		}
@@ -1307,7 +1307,7 @@ class CentralNotice extends SpecialPage {
 	 * Create form for adding banners to a campaign
 	 * @return string
 	 */
-	function addTemplatesForm() {
+	private function addTemplatesForm() {
 		// Sanitize input on search key and split out terms
 		$searchTerms = $this->sanitizeSearchTerms( $this->getRequest()->getText( 'tplsearchkey' ) );
 
@@ -1362,7 +1362,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @return string multiple select list
 	 */
-	function languageMultiSelector( $selected = [] ) {
+	private function languageMultiSelector( $selected = [] ) {
 		global $wgLanguageCode;
 
 		// Retrieve the list of languages in user's language
@@ -1405,7 +1405,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @return string multiple select list
 	 */
-	function projectMultiSelector( $selected = [] ) {
+	private function projectMultiSelector( $selected = [] ) {
 		global $wgNoticeProjects;
 
 		$options = "\n";
@@ -1476,7 +1476,7 @@ class CentralNotice extends SpecialPage {
 		return $paddedRange;
 	}
 
-	function showError( $message ) {
+	private function showError( $message ) {
 		$this->getOutput()->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
 		$this->centralNoticeError = true;
 	}
@@ -1488,7 +1488,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @return string multiple select list
 	 */
-	function geoMultiSelector( $selected = [] ) {
+	private function geoMultiSelector( $selected = [] ) {
 		$userLanguageCode = $this->getLanguage()->getCode();
 		$countries = GeoTarget::getCountriesList( $userLanguageCode );
 		$options = "\n";
@@ -1645,7 +1645,7 @@ class CentralNotice extends SpecialPage {
 		return 'wiki';
 	}
 
-	function outputHeader( $summaryMsg = '' ) {
+	public function outputHeader( $summaryMsg = '' ) {
 		// Allow users to add a custom nav bar (T138284)
 		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
 		if ( !$navBar->isDisabled() ) {

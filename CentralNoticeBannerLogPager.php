@@ -3,7 +3,7 @@
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	public $special;
 
-	function __construct( SpecialCentralNoticeLogs $special ) {
+	public function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
 		parent::__construct( $special );
 	}
@@ -12,7 +12,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Sort the log list by timestamp
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'tmplog_timestamp';
 	}
 
@@ -20,7 +20,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Pull log entries from the database
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'template_log' => 'cn_template_log' ],
 			'fields' => '*',
@@ -32,7 +32,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		global $wgExtensionAssetsPath;
 		$lang = $this->getLanguage();
 
@@ -131,7 +131,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $htmlOut;
 	}
 
-	function getStartBody() {
+	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -162,11 +162,11 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Close table
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		return Xml::closeElement( 'table' );
 	}
 
-	function showInitialSettings( $row ) {
+	public function showInitialSettings( $row ) {
 		$details = '';
 		$details .= $this->msg(
 			'centralnotice-log-label',
@@ -206,7 +206,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	function showChanges( $newrow ) {
+	public function showChanges( $newrow ) {
 		$oldrow = false;
 		if ( $newrow->tmplog_action === 'modified' ) {
 			$db = CNDatabase::getDb();

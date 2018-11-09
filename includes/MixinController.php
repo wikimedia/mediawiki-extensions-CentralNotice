@@ -6,18 +6,18 @@ class MixinController {
 	protected $magicWords = [];
 	protected $uiContext;
 
-	function __construct( IContextSource $uiContext, $mixins ) {
+	public function __construct( IContextSource $uiContext, $mixins ) {
 		$this->uiContext = $uiContext;
 		$this->mixins = $mixins;
 
 		$this->loadPhp();
 	}
 
-	function getContext() {
+	public function getContext() {
 		return $this->uiContext;
 	}
 
-	function getMagicWords() {
+	public function getMagicWords() {
 		$words = array_keys( $this->magicWords );
 		sort( $words );
 		return $words;
@@ -26,7 +26,7 @@ class MixinController {
 	/**
 	 * Initialize php modules.
 	 */
-	function loadPhp() {
+	public function loadPhp() {
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['php'] ) ) {
 				// The module must register itself with this controller.
@@ -44,7 +44,7 @@ class MixinController {
 		}
 	}
 
-	function getPreloadJsSnippets() {
+	public function getPreloadJsSnippets() {
 		$snippets = [];
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['preloadJs'] ) ) {
@@ -59,7 +59,7 @@ class MixinController {
 		return $snippets;
 	}
 
-	function getResourceLoaderModules() {
+	public function getResourceLoaderModules() {
 		$modules = [];
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['resourceLoader'] ) ) {
@@ -69,11 +69,11 @@ class MixinController {
 		return $modules;
 	}
 
-	function registerMagicWord( $word, $callback ) {
+	public function registerMagicWord( $word, $callback ) {
 		$this->magicWords[$word] = $callback;
 	}
 
-	function renderMagicWord( $word, $params = [] ) {
+	public function renderMagicWord( $word, $params = [] ) {
 		if ( array_key_exists( $word, $this->magicWords ) ) {
 			$callback = $this->magicWords[$word];
 			if ( is_callable( $callback ) ) {

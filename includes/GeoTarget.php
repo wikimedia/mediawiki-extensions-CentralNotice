@@ -9,7 +9,7 @@ class GeoTarget {
 	 *
 	 * @return array
 	 */
-	static function getCountriesList( $code ) {
+	public static function getCountriesList( $code ) {
 		$countries = [];
 
 		if ( is_callable( [ 'CountryNames', 'getNames' ] ) ) {

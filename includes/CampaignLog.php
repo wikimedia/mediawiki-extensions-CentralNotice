@@ -23,7 +23,7 @@ class CampaignLog {
 	/**
 	 * @param stdClass|null $row
 	 */
-	function __construct( $row = null ) {
+	public function __construct( $row = null ) {
 		$begin = [];
 		$end = [];
 		if ( $row ) {
@@ -73,7 +73,7 @@ class CampaignLog {
 	}
 
 	# TODO: use in logpager
-	function changes() {
+	public function changes() {
 		$removed = [];
 		$added = [];
 
