@@ -102,7 +102,7 @@
 	"centralnotice-number-uses": "Usi",
 	"centralnotice-settings": "Impostazioni",
 	"centralnotice-edit-template": "Modifica banner",
-	"centralnotice-edit-template-summary": "Attenzione: il caricamento di risorse esterne in un banner può compromettere la privacy dell'utente.\n\nPer creare un messaggio localizzabile, racchiudere tra tre parentesi graffe una stringa con trattino, ad esempio <nowiki>{{{jimbo-quote}}}</nowiki>.",
+	"centralnotice-edit-template-summary": "Attenzione: il caricamento di risorse esterne in un banner può compromettere la privacy dell'utente.\n\nPer creare un messaggio localizzabile, racchiudere tra tre parentesi graffe una stringa, ad esempio <nowiki>{{{message_name}}}</nowiki>. Per utilizzare un messaggio localizzabile da un altro banner, includi il nome del banner seguito da una virgola, poi il nome del messaggio, ad esempio <nowiki>{{{banner_name,message_name}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Magic word fornite da banner mixin: $1",
 	"centralnotice-message": "Messaggio",
 	"centralnotice-message-not-set": "Messaggio non impostato",

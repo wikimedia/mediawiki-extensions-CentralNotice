@@ -115,7 +115,7 @@
 	"centralnotice-number-uses": "使用",
 	"centralnotice-settings": "設定",
 	"centralnotice-edit-template": "編輯橫幅",
-	"centralnotice-edit-template-summary": "警告：載入外部資源至橫幅會有影響使用者隱私的情況。\n\n要建立本地化的訊息，請使用並使用三個大括號將連字字串給括起。例如：<nowiki>{{{jimbo-quote}}}</nowiki>。",
+	"centralnotice-edit-template-summary": "警告：載入外部資源至橫幅會有影響使用者隱私的情況。\n\n要建立本地化的訊息，請使用並使用三個大括號將字串給括起。例如：<nowiki>{{{message_name}}}</nowiki>。要從其它橫幅使用可本地化的訊息，請以橫幅名稱後方加上逗號，然後接上訊息名稱的順序來括起，例如：<nowiki>{{{banner_name,message_name}}}",
 	"centralnotice-edit-template-magicwords": "由橫幅外掛提供的魔術字：$1",
 	"centralnotice-message": "訊息",
 	"centralnotice-message-not-set": "未設定訊息",

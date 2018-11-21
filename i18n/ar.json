@@ -110,7 +110,7 @@
 	"centralnotice-number-uses": "الاستخدامات",
 	"centralnotice-settings": "الإعدادات",
 	"centralnotice-edit-template": "حرّر قالبا",
-	"centralnotice-edit-template-summary": "تحذير: يمكن أن يؤدي تحميل الموارد الخارجية إلى إعلان بانتهاك إلى انتهاك خصوصية المستخدم،\n\nلإنشاء رسالة قابلة للترجمة; قم بتضمين سلسلة وصلة في ثلاثة أقواس معقوفة، على سبيل المثال <nowiki>{{{jimbo-quote}}}</nowiki>.",
+	"centralnotice-edit-template-summary": "تحذير: يمكن أن يؤدي تحميل الموارد الخارجية إلى إعلان بانتهاك إلى انتهاك خصوصية المستخدم،\n\nلإنشاء رسالة قابلة للتغيير; ضع سلسلة في ثلاثة أقواس معقوفة، على سبيل المثال <nowiki>{{{message_name}}}</nowiki> لاستخدام رسالة قابلة للتغيير من لافتة أخرى; قم بتضمين اسم الشعار متبوعا بفاصلة، ثم اسم الرسالة، على سبيل المثال، <nowiki>{{{banner_name,message_name}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "الكلمات السحرية المتوفرة من قبل خليط الشعار: $1",
 	"centralnotice-message": "الرسالة",
 	"centralnotice-message-not-set": "الرسالة غير مضبوطة",

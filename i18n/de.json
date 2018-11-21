@@ -101,7 +101,7 @@
 	"centralnotice-number-uses": "Nutzungen",
 	"centralnotice-settings": "Einstellungen",
 	"centralnotice-edit-template": "Vorlage bearbeiten",
-	"centralnotice-edit-template-summary": "Warnung: Das Laden externer Ressourcen in eine Vorlage kann die Privatsphäre von Benutzern beeinträchtigen.\n\nUm eine lokalisierbare Nachricht zu erstellen, füge eine mit Bindestrichen versehene Zeichenfolge mit drei geschweiften Klammern bei, z.&nbsp;B. <nowiki>{{{jimbo-quote}}}</nowiki>.",
+	"centralnotice-edit-template-summary": "Warnung: Das Laden externer Ressourcen in eine Vorlage kann die Privatsphäre von Benutzern beeinträchtigen.\n\nUm eine lokalisierbare Nachricht zu erstellen, gib eine Zeichenfolge mit drei geschweiften Klammern an, z.&nbsp;B. <nowiki>{{{Name_der_Nachricht}}}</nowiki>. Um eine lokalisierbare Nachricht von einer anderen Vorlage zu verwenden, gib den Namen der Vorlage an, gefolgt durch ein Komma und den Namen der Nachricht, z.&nbsp;B. <nowiki>{{{Name_der_Vorlage,Name_der_Nachricht}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Magische Wörter von Vorlagenmixins: $1",
 	"centralnotice-message": "Nachricht",
 	"centralnotice-message-not-set": "Nachricht nicht gesetzt",

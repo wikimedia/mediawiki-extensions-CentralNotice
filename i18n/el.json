@@ -14,7 +14,8 @@
 			"Απεργός",
 			"Geraki",
 			"Nikosguard",
-			"Xaris333"
+			"Xaris333",
+			"KATRINE1993"
 		]
 	},
 	"centralnotice": "Διαχειριστής κεντρικών ειδοποιήσεων",
@@ -92,7 +93,7 @@
 	"centralnotice-number-uses": "Χρήσεις",
 	"centralnotice-settings": "Ρυθμίσεις",
 	"centralnotice-edit-template": "Επεξεργασία προτύπου",
-	"centralnotice-edit-template-summary": "Για να δημιουργήσετε ένα τοπικοποιημένο μήνυμα, επισυνάψτε μια γραμμή με σύμβολα σε τρεις αγκύλες, π.χ. {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Για να δημιουργήσετε ένα μήνυμα τοπικοποίησης, επισυνάψτε μια γραμμή με σύμβολα σε τρεις αγκύλες, π.χ. {{{jimbo-quote}}}.",
 	"centralnotice-message": "Μήνυμα",
 	"centralnotice-message-not-set": "Μη ρυθμισμένο μήνυμα",
 	"centralnotice-clone": "Κλώνος",
