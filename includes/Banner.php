@@ -1543,16 +1543,21 @@ class Banner {
 		} else {
 			$protectionRight = 'centralnotice-admin';
 		}
+
 		$limits = [
 			'edit' => $protectionRight,
 			'move' => $protectionRight,
 		];
+
 		$expiry = [
 			'edit' => 'infinity',
 			'move' => 'infinity',
 		];
+
 		$cascade = 1;
-		$reason = 'Auto protected by CentralNotice -- Only edit via Special:CentralNotice.';
+		$reason = wfMessage( 'centralnotice-banner-protection-log-reason' )
+			->inContentLanguage()->text();
+
 		$status = $wikiPage->doUpdateRestrictions(
 			$limits, $expiry, $cascade, $reason, $user
 		);

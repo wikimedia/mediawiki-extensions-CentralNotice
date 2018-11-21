@@ -331,5 +331,6 @@
 	"centralnotice-impression-events-sample-rate": "Impression events sample rate",
 	"centralnotice-impression-events-sample-rate-help": "Set a non-default sample rate for logging impression events.",
 	"centralnotice-impression-events-sample-rate-field": "Impression events sample rate (should be between 0 and 1, inclusive)",
-	"centralnotice-navbar": "-"
+	"centralnotice-navbar": "-",
+	"centralnotice-banner-protection-log-reason": "Automatically protected by CentralNotice; only edit via [[Special:CentralNotice]] or [[Special:Translate]]."
 }

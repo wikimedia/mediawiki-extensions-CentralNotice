@@ -356,5 +356,6 @@
 	"centralnotice-impression-events-sample-rate": "Label for impression events sample rate mixin",
 	"centralnotice-impression-events-sample-rate-help": "Help text for impression events sample rate mixin",
 	"centralnotice-impression-events-sample-rate-field": "Label for the control to set the sample rate for impression events",
-	"centralnotice-navbar": "{{notranslate}} Shown prior to {{msg-mw|centralnotice-summary}}. Meant to allow end users to customize the CentralNotice interface with a custom header."
+	"centralnotice-navbar": "{{notranslate}} Shown prior to {{msg-mw|centralnotice-summary}}. Meant to allow end users to customize the CentralNotice interface with a custom header.",
+	"centralnotice-banner-protection-log-reason": "Protection reason as displayed on [[Special:Log/protect]] and in other logs."
 }
