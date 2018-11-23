@@ -20,7 +20,8 @@
 			"2nd-player",
 			"Yusuke1109",
 			"Penn Station",
-			"Suyama"
+			"Suyama",
+			"Omotecho"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -105,7 +106,7 @@
 	"centralnotice-number-uses": "使用",
 	"centralnotice-settings": "設定",
 	"centralnotice-edit-template": "バナーの編集",
-	"centralnotice-edit-template-summary": "地域化できるメッセージを作成するには、ハイフンで連結した文字列を 3 つの波括弧で囲みます。例: {{{jimbo-quote}}}",
+	"centralnotice-edit-template-summary": "警告：バナーに外部のリソースをアップロードすると利用者のプライバシーをが脆弱になる恐れがあります。\n\n地域化できるメッセージを作成するには、ハイフンで連結した文字列を 3 つの波括弧で囲みます。例：<nowiki>{{{message_name}}}</nowiki>。他のバナーから地域化対象のメッセージを取り込むには先の例に加筆し、<nowiki>{{{banner_name,message_name}}}</nowiki>のとおりバナーの名称に半角カンマとメッセージ名あるいは該当する文字列を続けて入力します。",
 	"centralnotice-message": "メッセージ",
 	"centralnotice-message-not-set": "メッセージ未指定",
 	"centralnotice-clone": "複製",
