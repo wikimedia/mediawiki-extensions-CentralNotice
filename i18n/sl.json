@@ -84,7 +84,7 @@
 	"centralnotice-number-uses": "Uporabe",
 	"centralnotice-settings": "Nastavitve",
 	"centralnotice-edit-template": "Uredi pasico",
-	"centralnotice-edit-template-summary": "Opozorilo: Nalaganje zunanjih virov v pasico lahko ogrozi uporabnikovo zasebnost.\n\nDa ustvarite prevedljivo sporočilo, obdajte niz, povezan z vezaji, v tri zavite oklepaje, npr. <nowiki>{{{jimbo-quote}}}</nowiki>.",
+	"centralnotice-edit-template-summary": "Opozorilo: Nalaganje zunanjih virov v pasico lahko ogrozi uporabnikovo zasebnost.\n\nDa ustvarite prevedljivo sporočilo, obdajte niz s tremi zavitimi oklepaji, npr. <nowiki>{{{message_name}}}</nowiki>. Da uporabite prevedljivo sporočilo iz druge pasice, vključite ime pasice, vejico in nato ime sporočila, npr. <nowiki>{{{banner_name,message_name}}}</nowiki>.",
 	"centralnotice-message": "Sporočilo",
 	"centralnotice-message-not-set": "Sporočilo ni določeno",
 	"centralnotice-clone": "Kloniraj",

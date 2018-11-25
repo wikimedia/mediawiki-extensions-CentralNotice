@@ -90,7 +90,7 @@
 	"centralnotice-number-uses": "Usos",
 	"centralnotice-settings": "Configurationes",
 	"centralnotice-edit-template": "Modificar bandiera",
-	"centralnotice-edit-template-summary": "Pro crear un message localisabile, include un texto con tracto de union in tres accolladas, p.ex. {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Attention: Cargar ressources externe in un bandiera pote nocer al vita private del usator.\n\nPro crear un message localisabile, include un texto in tres accolladas, p.ex. {{{nomine_del_message}}}. Pro usar un message localisabile ab un altere bandiera, include le nomine del bandiera sequite per un comma e le nomine del message, p.ex. <nowiki>{{{nomine_del_bandiera,nomine_del_message}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Parolas magic fornite per modulos de bandiera: $1",
 	"centralnotice-message": "Message",
 	"centralnotice-message-not-set": "Message non definite",
