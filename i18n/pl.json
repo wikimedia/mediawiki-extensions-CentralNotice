@@ -18,7 +18,8 @@
 			"Alan ffm",
 			"Vengir",
 			"Saper",
-			"Railfail536"
+			"Railfail536",
+			"CiaPan"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -102,7 +103,7 @@
 	"centralnotice-number-uses": "Zastosowania",
 	"centralnotice-settings": "Ustawienia",
 	"centralnotice-edit-template": "Edycja szablonu",
-	"centralnotice-edit-template-summary": "Lokalizowalny komunikat należy tworzyć poprzez zapisanie ciągu znaków rozdzielanych znakiem odejmowania w trzech nawiasach klamrowych, np {{{cytat-jimbo}}}.",
+	"centralnotice-edit-template-summary": "Ostrzeżenie: Ładowanie zasobów zewnętrznych do banera może zagrozić prywatności użytkownika.\n\nAby utworzyć lokalizowalny komunikat, umieść jego nazwę w potrójnych nawiasach klamrowych, np. <nowiki>{{{nazwa_komunikatu}}}</nowiki>. Aby użyć lokalizowalnego komunikatu z innego banera, umieść nazwę bannera przed nazwą komunikatu i oddziel je przecinkiem, np. <nowiki>{{{nazwa_bannera,nazwa_komunikatu}}}</nowiki>.",
 	"centralnotice-message": "Wiadomość",
 	"centralnotice-message-not-set": "Wiadomość nie jest ustawiona",
 	"centralnotice-campaigns-using-banner": "Kampanie wykorzystujące ten baner",
