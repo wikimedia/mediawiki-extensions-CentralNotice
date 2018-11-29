@@ -14,7 +14,8 @@
 			"VezonThunder",
 			"Wix",
 			"SMAUG",
-			"Pyscowicz"
+			"Pyscowicz",
+			"Valtlait"
 		]
 	},
 	"centralnotice": "Keskitettyjen tiedotteiden ylläpito",
@@ -69,7 +70,7 @@
 	"centralnotice-notice-doesnt-exist": "Kampanjaa ei ole olemassa.",
 	"centralnotice-remove-notice-doesnt-exist": "Kampanjaa ei ole olemassa.\nEi poistettavaa.",
 	"centralnotice-banner-doesnt-exist": "Banneria ei ole olemassa.",
-	"centralnotice-template-still-bound": "Banneri \"$1\" on vielä kytkettynä tiedotteeseen.\nEi poisteta.",
+	"centralnotice-template-still-bound": "Banneri ”$1” on vielä kytkettynä tiedotteeseen.\nEi poisteta.",
 	"centralnotice-template-body": "Bannerin runko:",
 	"centralnotice-day": "Päivä",
 	"centralnotice-year": "Vuosi",
