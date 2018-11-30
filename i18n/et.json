@@ -86,7 +86,7 @@
 	"centralnotice-number-uses": "Kasutusi",
 	"centralnotice-settings": "Sätted",
 	"centralnotice-edit-template": "Malli muutmine",
-	"centralnotice-edit-template-summary": "Hoiatus: Välisressursside laadimine teatesse võib kasutaja privaatsuse ohtu seada.\n\nEt koostada lokaliseeritav sõnum, ümbritse sidekriipsudega ühendatud sõne kolmekordsete looksulgudega, nt <nowiki>{{{jimbo-quote}}}</nowiki>.",
+	"centralnotice-edit-template-summary": "Hoiatus: Välisressursside laadimine teatesse võib kasutaja privaatsuse ohtu seada.\n\nEt koostada lokaliseeritav sõnum, ümbritse sõne kolmekordsete looksulgudega, nt <nowiki>{{{sõnumi nimi}}}</nowiki>. Et kasutada lokaliseeritavat sõnumit teisest mallist, lisa malli nimi, millele järgneb koma ja seejärel sõnumi nimi, nt <nowiki>{{{malli_nimi,sõnumi_nimi}}}</nowiki>.",
 	"centralnotice-message": "Sõnum",
 	"centralnotice-message-not-set": "Sõnumit ei ole seatud",
 	"centralnotice-campaigns-using-banner": "Teated, mis kasutavad seda malli",
