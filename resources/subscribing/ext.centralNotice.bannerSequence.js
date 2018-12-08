@@ -10,7 +10,7 @@
  * For an explanation of the data structure for the sequences mixin parameter, please
  * see ext.centralNotice.adminUi.bannerSequence.js.
  */
-( function ( mw ) {
+( function () {
 	'use strict';
 
 	var multiStorageOption, days, SequenceManager, sequenceManager,
@@ -322,4 +322,4 @@
 		postBannerHandler: postBannerHandler
 	} };
 
-}( mediaWiki ) );
+}() );

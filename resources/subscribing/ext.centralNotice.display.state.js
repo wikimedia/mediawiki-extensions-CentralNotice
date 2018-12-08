@@ -6,7 +6,7 @@
  * either be in the schema and have the correct data type, or must be removed by
  * calling getDataCopy( true ).
  */
-( function ( $, mw ) {
+( function () {
 
 	var state,
 		status,
@@ -482,4 +482,4 @@
 			return REASONS.other;
 		}
 	};
-}( jQuery, mediaWiki ) );
+}() );

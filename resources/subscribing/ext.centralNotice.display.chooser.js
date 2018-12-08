@@ -3,7 +3,7 @@
  * Logic for selecting a campaign and a banner (or not). Provides
  * cn.internal.chooser.
  */
-( function ( $, mw ) {
+( function () {
 
 	var cn = mw.centralNotice,
 
@@ -393,4 +393,4 @@
 		}
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

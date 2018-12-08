@@ -4,7 +4,7 @@
  *
  * This module is made available at mw.centralNotice.kvStore.
  */
-( function ( $, mw ) {
+( function () {
 
 	var KVStorageContext,
 		kvStore,
@@ -524,4 +524,4 @@
 		}
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

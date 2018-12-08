@@ -29,7 +29,7 @@
  * For an overview of how this all fits together, see
  * mw.centralNotice.reallyChooseAndMaybeDisplay() (below).
  */
-( function ( $, mw ) {
+( function () {
 
 	var cn, Mixin,
 
@@ -827,4 +827,4 @@
 		'Use mw.centralNotice method instead'
 	);
 
-}( jQuery, mediaWiki ) );
+}() );

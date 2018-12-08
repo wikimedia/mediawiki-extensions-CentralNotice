@@ -20,7 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
-( function ( $, mw ) {
+( function () {
 
 	function doPurgeCache() {
 		var $dialogEl = $( '<div />' ),
@@ -273,4 +273,4 @@
 		$( '#cn-js-error-warn' ).hide();
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

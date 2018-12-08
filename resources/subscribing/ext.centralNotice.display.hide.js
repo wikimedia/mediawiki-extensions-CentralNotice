@@ -2,7 +2,7 @@
  * Retrieves, processes and stores 'hide' cookies, which prevent banners from
  * showing in certain circumstances. Provides cn.internal.hide.
  */
-( function ( $, mw ) {
+( function () {
 
 	var hide,
 		category,
@@ -140,4 +140,4 @@
 			hide.setHideCookies( 'close', durations.close );
 		}
 	};
-}( jQuery, mediaWiki ) );
+}() );

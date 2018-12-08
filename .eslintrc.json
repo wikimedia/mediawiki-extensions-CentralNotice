@@ -4,13 +4,13 @@
 		"ecmaVersion": 3
 	},
 	"env": {
-		"browser": true,
-		"jquery": true
+		"browser": true
 	},
 	"globals": {
 		"require": false,
 		"module": false,
-		"mediaWiki": false,
+		"mw": false,
+		"$": false,
 		"OO": false
 	},
 	"rules": {

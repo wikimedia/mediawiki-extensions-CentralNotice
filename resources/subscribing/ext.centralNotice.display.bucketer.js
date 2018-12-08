@@ -22,7 +22,7 @@
  * { WikiConference_USA: { start: 1439942400, end: 1443672000, val: 2 } }
  *
  */
-( function ( $, mw ) {
+( function () {
 
 	var bucketer,
 
@@ -327,4 +327,4 @@
 			storeBuckets();
 		}
 	};
-}( jQuery, mediaWiki ) );
+}() );
