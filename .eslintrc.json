@@ -1,27 +1,18 @@
 {
 	"root": true,
-	"extends": "wikimedia",
-	"parserOptions": {
-		"ecmaVersion": 3
-	},
-	"env": {
-		"browser": true
-	},
+	"extends": [
+		"wikimedia/client",
+		"wikimedia/jquery"
+	],
 	"globals": {
 		"require": false,
 		"module": false,
 		"mw": false,
-		"$": false,
 		"OO": false
 	},
 	"rules": {
-		"no-use-before-define": 0,
-		"valid-jsdoc": 0,
-		"dot-notation": [
-			"error",
-			{
-				"allowKeywords": true
-			}
-		]
+		"no-use-before-define": "off",
+		"valid-jsdoc": "off",
+		"jquery/no-global-selector": "off"
 	}
 }

@@ -54,7 +54,7 @@
 
 			// Filter for country if geotargeted
 			if ( campaign.geotargeted &&
-				( $.inArray( country, campaign.countries ) === -1 ) ) {
+				( campaign.countries.indexOf( country ) === -1 ) ) {
 				continue;
 			}
 
@@ -63,17 +63,15 @@
 				banner = campaign.banners[ j ];
 
 				// Logged-in status
-				// eslint-disable-next-line camelcase
 				if ( anon && !banner.display_anon ) {
 					continue;
 				}
-				// eslint-disable-next-line camelcase
 				if ( !anon && !banner.display_account ) {
 					continue;
 				}
 
 				// Device
-				if ( $.inArray( device, banner.devices ) === -1 ) {
+				if ( banner.devices.indexOf( device ) === -1 ) {
 					continue;
 				}
 
@@ -243,7 +241,7 @@
 			}
 
 			// Filter for device
-			if ( $.inArray( device, banner.devices ) === -1 ) {
+			if ( banner.devices.indexOf( device ) === -1 ) {
 				continue;
 			}
 

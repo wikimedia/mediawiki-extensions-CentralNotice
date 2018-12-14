@@ -325,12 +325,8 @@
 
 			// Is the campaign category among the categories configured to use
 			// legacy mechanisms?
-			state.data.campaignCategoryUsesLegacy = (
-				$.inArray(
-					campaignCategory,
-					mw.config.get( 'wgCentralNoticeCategoriesUsingLegacy' )
-				) !== -1
-			);
+			state.data.campaignCategoryUsesLegacy =
+				mw.config.get( 'wgCentralNoticeCategoriesUsingLegacy' ).indexOf( campaignCategory ) !== -1;
 		},
 
 		getCampaign: function () {
@@ -449,7 +445,7 @@
 			var tests = state.data.tests = state.data.tests || [];
 
 			// Add if it isn't already registered.
-			if ( $.inArray( identifier, tests ) === -1 ) {
+			if ( tests.indexOf( identifier ) === -1 ) {
 				tests.push( identifier );
 
 				if ( tests.length === 1 ) {

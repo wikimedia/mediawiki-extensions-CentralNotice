@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 ( function () {
 	'use strict';
 
@@ -13,7 +12,9 @@
 
 	// Cycle through test cases, contexts and outputs, and buckets and set up
 	// allocation tests. For JSLint-happiness, drizzle toasted closure sauce.
+	// eslint-disable-next-line jquery/no-each-util
 	$.each( testCases, function ( testCaseName, testCase ) {
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( testCase.contexts_and_outputs,
 			function ( contextAndOutputName, contextAndOutput ) {
 
@@ -58,6 +59,7 @@
 			// plus 1 (number of campaigns)... except if a campaign expects
 			// 0 allocation, in which case just 2 assertion per campaign.
 			expectedAssertCount = 1;
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( expectedAllocations, function ( key, campaign ) {
 
 				if ( campaign.allocation === 0 ) {

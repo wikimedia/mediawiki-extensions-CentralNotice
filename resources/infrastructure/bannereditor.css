@@ -32,6 +32,7 @@ form#cn-banner-editor .mw-input.mw-htmlform-nolabel {
 	font-weight: bold;
 	margin-left: 0;
 }
+
 form#cn-banner-editor .mw-input {
 	/* Everything else */
 	margin-left: 1em;
@@ -42,6 +43,7 @@ form#cn-banner-editor .mw-input {
 	border: 0;
 	display: none;
 }
+
 #cn-formsection-clone-banner legend,
 #cn-formsection-delete-banner legend {
 	display: none;
@@ -53,6 +55,7 @@ form#cn-banner-editor .mw-input {
 	font-size: 1em;
 	width: 100%;
 }
+
 .cn-message-text-origin,
 .cn-message-text-native,
 .cn-message-text-origin-header,
@@ -60,10 +63,12 @@ form#cn-banner-editor .mw-input {
 	width: 50%;
 	vertical-align: top;
 }
+
 .cn-message-text-origin {
 	padding: 0;
 	margin: 0;
 }
+
 .cn-message-text-native {
 	padding: 0;
 	margin: 0.2em;

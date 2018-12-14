@@ -31,6 +31,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 #cn-banner-manager legend {
 	display: none;
 }
@@ -48,9 +49,11 @@
 #mw-htmlform-banner-search .mw-htmlform-field-HTMLButtonField {
 	float: right;
 }
+
 #mw-htmlform-banner-search .mw-htmlform-field-HTMLTextField {
 	float: left;
 }
+
 #mw-input-wpbannerNameLike {
 	width: 17em;
 }
@@ -59,6 +62,7 @@
 #cn-formsection-header-banner-bulk-manage {
 	float: left;
 }
+
 #cn-formsection-header-banner-bulk-manage div {
 	display: inline;
 }
@@ -79,6 +83,7 @@ fieldset #cn-formsection-header-one-off {
 #cn-formsection-removeBanner {
 	display: none;
 }
+
 .ui-dialog-content legend {
 	display: none;
 }

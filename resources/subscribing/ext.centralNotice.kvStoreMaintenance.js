@@ -6,7 +6,7 @@
  * This module provides an API at mw.centralNotice.kvStoreMaintenance.
  */
 ( function () {
-	var	cn,
+	var cn,
 		now = new Date().getTime() / 1000,
 
 		// Regex to find kvStore localStorage keys. Must correspond with PREFIX

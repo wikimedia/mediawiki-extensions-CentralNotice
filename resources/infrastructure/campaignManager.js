@@ -413,6 +413,7 @@
 
 		paramValues = paramValues || {};
 
+		// eslint-disable-next-line jquery/no-each-util
 		$.each( paramDefs, function ( paramName, paramDef ) {
 
 			var paramTemplateVars = {
@@ -510,7 +511,7 @@
 
 		switch ( $input.data( 'data-type' ) ) {
 			case 'integer':
-				if ( $.trim( val ).match( /^-?\d+$/ ) ) {
+				if ( val.trim().match( /^-?\d+$/ ) ) {
 					setValidationError( false, $input );
 				} else {
 					setValidationError(
@@ -520,7 +521,7 @@
 				break;
 
 			case 'float':
-				if ( $.trim( val ).match( /^-?\d+\.?\d*$|^-?\d*\.?\d+$/ ) ) {
+				if ( val.trim().match( /^-?\d+\.?\d*$|^-?\d*\.?\d+$/ ) ) {
 					setValidationError( false, $input );
 				} else {
 					setValidationError(
@@ -537,7 +538,7 @@
 
 		if ( error ) {
 			if ( $errorBox.length === 0 ) {
-				$errorBox = $( '<p class="errorbox" />' );
+				$errorBox = $( '<p>' ).addClass( 'errorbox' );
 				$errorBox.text( mw.message( msgKey ).text() );
 				$input.closest( 'p' ).before( $errorBox );
 			}
@@ -746,19 +747,20 @@
 		setUpAssignedBanners();
 		updateBuckets();
 
-		$( '#throttle-enabled' ).click( updateThrottle );
-		$( '#balanced' ).click( updateWeightColumn );
-		$( 'select#buckets' ).change( updateBuckets );
+		$( '#throttle-enabled' ).on( 'click', updateThrottle );
+		$( '#balanced' ).on( 'click', updateWeightColumn );
+		$( 'select#buckets' ).on( 'change', updateBuckets );
 		$( '.bucketSelectorForAssignedBanners, .bannerRemoveCheckbox' )
-			.change( updateAssignedBanners );
+			.on( 'change', updateAssignedBanners );
 
 		$mixinCheckboxes.each( showOrHideCampaignMixinControls );
-		$mixinCheckboxes.change( showOrHideCampaignMixinControls );
+		$mixinCheckboxes.on( 'change', showOrHideCampaignMixinControls );
 	}
 
 	// We have to wait for document ready and for custom controls modules to be loaded
 	// before initializing everything
 	$( function () {
+		// eslint-disable-next-line jquery/no-map-util
 		var customControlsModules = $.map( mixinDefs, function ( mixinDef ) {
 			return mixinDef.customAdminUIControlsModule;
 		} );
