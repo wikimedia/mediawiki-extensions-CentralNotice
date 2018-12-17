@@ -138,6 +138,7 @@
 	"centralnotice-percentage": "Procentdel",
 	"centralnotice-documentwrite-error": "Document.write() kan ikke bruges i et banner.\nSe https://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.",
 	"centralnotice-preferred": "Prioritet",
+	"centralnotice-archived": "Arkiveret",
 	"centralnotice-logs": "Loglister",
 	"centralnotice-view-logs": "Se loglister",
 	"centralnotice-timestamp": "Tidsstempel",

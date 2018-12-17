@@ -4,7 +4,8 @@
 			"Edinwiki",
 			"Michaello",
 			"Milicevic01",
-			"Сербијана"
+			"Сербијана",
+			"Zoranzoki21"
 		]
 	},
 	"centralnotice": "Administrator centralnog obaveštavanja",
@@ -89,6 +90,7 @@
 	"centralnotice-edit-template-summary": "Da biste napravili poruku koja može da se prevede, napišite nisku s crticama i stavite je u tri vitičaste zagrade, npr. {{{citat-džimbo}}}",
 	"centralnotice-message": "Poruka",
 	"centralnotice-message-not-set": "Poruka nije podešena",
+	"centralnotice-campaigns-using-banner": "Kampanje koje koriste ovaj baner",
 	"centralnotice-clone": "Kloniraj",
 	"centralnotice-clone-notice": "Napravi primerak šablona",
 	"centralnotice-clone-name": "Ime:",
@@ -161,6 +163,7 @@
 	"centralnotice-all": "Sve",
 	"centralnotice-all-except": "Sve osim $1",
 	"centralnotice-banner-class": "Kategorija",
+	"centralnotice-templates-included": "Uključeni šabloni",
 	"centralnotice-archive-banner": "Arhiva",
 	"centralnotice-archive-show": "Prikaži arhivirana obaveštenja",
 	"centralnotice-archive-campaign": "Arhiva",
