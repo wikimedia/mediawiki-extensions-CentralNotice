@@ -183,7 +183,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 					$wikiPage->doEditContent(
 						ContentHandler::makeContent( $text, $wikiPage->getTitle() ),
 						'Update from translation plugin',
-						EDIT_FORCE_BOT
+						EDIT_FORCE_BOT,
+						false,
+						null,
+						null,
+						[ 'centralnotice translation' ]
 					);
 					Banner::protectBannerContent( $wikiPage, $user, true );
 				}
