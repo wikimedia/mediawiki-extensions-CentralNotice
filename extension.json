@@ -447,17 +447,17 @@
 		"CNReporter": "SpecialCNReporter"
 	},
 	"Hooks": {
-		"LoadExtensionSchemaUpdates": [
-			"CNDatabasePatcher::applyUpdates"
-		],
-		"SkinTemplateNavigation::SpecialPage": [
-			"CentralNotice::addNavigationTabs"
-		],
 		"CanonicalNamespaces": [
 			"CentralNoticeHooks::onCanonicalNamespaces"
 		],
+		"LoadExtensionSchemaUpdates": [
+			"CNDatabasePatcher::applyUpdates"
+		],
 		"ResourceLoaderTestModules": [
 			"CentralNoticeHooks::onResourceLoaderTestModules"
+		],
+		"SkinTemplateNavigation::SpecialPage": [
+			"CentralNotice::addNavigationTabs"
 		],
 		"UserMergeAccountFields": [
 			"CentralNoticeHooks::onUserMergeAccountFields"
