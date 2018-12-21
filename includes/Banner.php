@@ -1075,7 +1075,7 @@ class Banner {
 	}
 
 	public function cloneBanner( $destination, $user, $summary = null ) {
-		if ( !$this->isValidBannerName( $destination ) ) {
+		if ( !self::isValidBannerName( $destination ) ) {
 			throw new BannerDataException( "Banner name must be in format /^[A-Za-z0-9_]+$/" );
 		}
 
