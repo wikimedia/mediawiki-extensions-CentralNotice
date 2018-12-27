@@ -228,5 +228,7 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Jak długo należy odczekać przed ponownym uruchomieniem cyklu, w sekundach (opcjonalnie)",
 	"centralnotice-banner-sequence-bucket-add-step": "Dodaj krok",
 	"centralnotice-banner-sequence-banner": "Baner",
+	"centralnotice-banner-sequence-page-views": "Wyświetlenia strony",
+	"centralnotice-banner-sequence-skip-with-id-error": "Identyfikator nie może zawierać „|”.",
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)"
 }

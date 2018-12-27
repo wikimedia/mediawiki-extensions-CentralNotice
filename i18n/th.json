@@ -5,7 +5,8 @@
 			"Horus",
 			"Manop",
 			"Octahedron80",
-			"Passawuth"
+			"Passawuth",
+			"Geonuch"
 		]
 	},
 	"centralnotice": "การจัดการประกาศส่วนกลาง",
@@ -67,7 +68,7 @@
 	"centralnotice-no-templates-translate": "ไม่มีแม่แบบใด ๆ ที่จะแก้ไขการแปล",
 	"centralnotice-number-uses": "การใช้งาน",
 	"centralnotice-edit-template": "แก้ไขแม่แบบ",
-	"centralnotice-message": "ข้อความ",
+	"centralnotice-message": "สาร",
 	"centralnotice-message-not-set": "ข้อความยังไม่ได้ถูกตั้งค่า",
 	"centralnotice-clone": "สำเนา",
 	"centralnotice-clone-notice": "สร้างสำเนาของแม่แบบ",
