@@ -806,7 +806,11 @@ class Banner {
 		$this->dirtyFlags['content'] = $dirty;
 	}
 
-	protected function saveBodyContent( $summary = null, User $user ) {
+	/**
+	 * @param string|null $summary
+	 * @param User $user
+	 */
+	protected function saveBodyContent( $summary, User $user ) {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $this->dirtyFlags['content'] ) {
