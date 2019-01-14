@@ -7,6 +7,8 @@
 	"bannerallocation": "Central notice admin",
 	"centralnoticelogs": "Central notice admin",
 	"right-centralnotice-admin": "Manage central notices",
+	"protect-level-centralnotice-admin": "Allow only central notice administrators",
+	"restriction-level-centralnotice-admin": "central notice administrator protected",
 	"action-centralnotice-admin": "manage central notices",
 	"centralnotice-desc": "Adds a central sitenotice",
 	"centralnotice-summary": "This module allows you to edit your currently setup central notices.\nIt can also be used to add or remove old notices.",
