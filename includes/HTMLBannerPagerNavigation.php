@@ -1,7 +1,7 @@
 <?php
 
 class HTMLBannerPagerNavigation extends HTMLFormField {
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		// Empty - no validation can be done on a navigation element
 		return true;
 	}

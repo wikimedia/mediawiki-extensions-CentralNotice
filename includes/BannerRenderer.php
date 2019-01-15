@@ -37,7 +37,7 @@ class BannerRenderer {
 	 *
 	 * @param bool $debug If false, minify the output.
 	 */
-	function __construct(
+	public function __construct(
 		IContextSource $context, Banner $banner, $campaignName = null, $debug = false
 	) {
 		$this->context = $context;
@@ -58,7 +58,7 @@ class BannerRenderer {
 	 *
 	 * @return string Edit URL.
 	 */
-	function linkTo() {
+	public function linkTo() {
 		return Linker::link(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$this->banner->getName()}" ),
 			htmlspecialchars( $this->banner->getName() ),
@@ -88,7 +88,7 @@ class BannerRenderer {
 	 *
 	 * @return string HTML fragment
 	 */
-	function previewFieldSet() {
+	public function previewFieldSet() {
 		global $wgNoticeBannerPreview;
 
 		if ( !$wgNoticeBannerPreview ) {
@@ -127,7 +127,7 @@ class BannerRenderer {
 	 *
 	 * @return string HTML fragment for the banner body.
 	 */
-	function toHtml() {
+	public function toHtml() {
 		global $wgNoticeUseLanguageConversion;
 		$parentLang = $lang = $this->context->getLanguage();
 		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
@@ -157,7 +157,7 @@ class BannerRenderer {
 	 *
 	 * @return string JS snippet.
 	 */
-	function getPreloadJs() {
+	public function getPreloadJs() {
 		$code = $this->substituteMagicWords( $this->getPreloadJsRaw() );
 
 		// Minify the code, if any.
@@ -174,7 +174,7 @@ class BannerRenderer {
 	 * before use.
 	 * @return string
 	 */
-	function getPreloadJsRaw() {
+	public function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
 
 		return implode( "\n\n", $snippets );
@@ -188,7 +188,7 @@ class BannerRenderer {
 	 *
 	 * @return string HTML snippet.
 	 */
-	function getResourceLoaderHtml() {
+	public function getResourceLoaderHtml() {
 		$modules = $this->mixinController->getResourceLoaderModules();
 		if ( $modules ) {
 			// FIXME: Does the RL library already include a helper to do this?
@@ -210,7 +210,7 @@ class BannerRenderer {
 	 *
 	 * @return string Rendered contents.
 	 */
-	function substituteMagicWords( $contents ) {
+	public function substituteMagicWords( $contents ) {
 		// FIXME The syntax {{{magicword:param1|param2}}} for magic words does not work,
 		// since it is munged by core before we get it here. It was part of the in-banner
 		// mixin system, currently unused.
@@ -226,7 +226,7 @@ class BannerRenderer {
 	 *
 	 * @return array List of magic word names.
 	 */
-	function getMagicWords() {
+	public function getMagicWords() {
 		$words = [ 'banner', 'campaign' ];
 		$words = array_merge( $words, $this->mixinController->getMagicWords() );
 		return $words;

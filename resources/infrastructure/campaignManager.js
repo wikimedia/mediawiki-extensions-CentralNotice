@@ -20,7 +20,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
-( function ( $, mw ) {
+( function () {
 	var stepSize = 1,
 		mixinDefs = mw.config.get( 'wgCentralNoticeCampaignMixins' ),
 		mixinParamsTemplate = mw.template.get(
@@ -443,10 +443,10 @@
 					break;
 
 				case 'json':
-					throw 'json parameter type requires custom admin UI module.';
+					throw new Error( 'json parameter type requires custom admin UI module.' );
 
 				default:
-					throw 'Invalid parameter definition type: ' + paramDef.type;
+					throw new Error( 'Invalid parameter definition type: ' + paramDef.type );
 			}
 
 			// If parameter value was not provided, set a default
@@ -469,7 +469,7 @@
 							break;
 
 						default:
-							throw 'Invalid parameter definition type: ' + paramDef.type;
+							throw new Error( 'Invalid parameter definition type: ' + paramDef.type );
 					}
 				}
 			}
@@ -491,7 +491,7 @@
 					break;
 
 				default:
-					throw 'Invalid parameter definition type: ' + paramDef.type;
+					throw new Error( 'Invalid parameter definition type: ' + paramDef.type );
 			}
 
 			if ( paramDef.helpMsg ) {
@@ -772,4 +772,4 @@
 		mw.loader.using( customControlsModules ).done( initialize );
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

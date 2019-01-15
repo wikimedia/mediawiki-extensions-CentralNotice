@@ -12,13 +12,14 @@
 			"Sarrus",
 			"Steenth",
 			"Tjernobyl",
-			"Thomsen"
+			"Thomsen",
+			"Saederup92",
+			"Kranix"
 		]
 	},
 	"centralnotice": "Centralbeskeds-administration",
 	"noticetemplate": "Centralbeskeds-administration",
 	"bannerallocation": "Centralbeskeds-administration",
-	"globalallocation": "Centralbeskeds-administration",
 	"centralnoticelogs": "Centralbeskeds-administration",
 	"right-centralnotice-admin": "Administrere centrale meddelelser",
 	"action-centralnotice-admin": "administrere centrale beskeder",
@@ -122,9 +123,9 @@
 	"centralnotice-banner-fundraising": "Dette er et indsamlingsbanner",
 	"centralnotice-banner-display-on": "Vis på",
 	"centralnotice-banner-mixins": "Blandinger (kommaseparerede):",
+	"centralnotice-banner-cdn-dialog-ok": "O.k.",
 	"centralnotice-geo": "Geografisks fokuseret",
 	"centralnotice-countries": "Lande",
-	"centralnotice-global-allocation": "Global fordeling",
 	"centralnotice-allocation": "Tildeling",
 	"centralnotice-view-allocation": "Vis bannertildeling",
 	"centralnotice-allocation-instructions": "Vælg det miljø, du vil have vist bannertildeling for:",
@@ -138,6 +139,7 @@
 	"centralnotice-percentage": "Procentdel",
 	"centralnotice-documentwrite-error": "Document.write() kan ikke bruges i et banner.\nSe https://meta.wikimedia.org/wiki/Help:CentralNotice for yderligere oplysninger.",
 	"centralnotice-preferred": "Prioritet",
+	"centralnotice-archived": "Arkiveret",
 	"centralnotice-logs": "Loglister",
 	"centralnotice-view-logs": "Se loglister",
 	"centralnotice-timestamp": "Tidsstempel",
@@ -226,5 +228,8 @@
 	"centralnotice-start-date": "Startdato (UTC)",
 	"centralnotice-start-time": "Starttid (UTC)",
 	"centralnotice-end-date": "Slutdato (UTC)",
-	"centralnotice-end-time": "Sluttid (UTC)"
+	"centralnotice-end-time": "Sluttid (UTC)",
+	"apihelp-query+centralnoticelogs-param-user": "Brugernavn (valgfrit).",
+	"centralnotice-banner-sequence-days-error": "Skal være et heltal større end nul.",
+	"centralnotice-banner-sequence-bucket-add-step": "Tilføj et trin"
 }

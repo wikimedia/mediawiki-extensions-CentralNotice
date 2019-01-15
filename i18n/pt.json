@@ -13,13 +13,14 @@
 			"Rhaijin",
 			"SandroHc",
 			"Vitorvicentevalente",
-			"Athena in Wonderland"
+			"Athena in Wonderland",
+			"Eduardo Addad de Oliveira",
+			"Ldacosta"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
 	"noticetemplate": "Administração de avisos centralizados",
 	"bannerallocation": "Administração de avisos centralizados",
-	"globalallocation": "Administração de avisos centralizados",
 	"centralnoticelogs": "Administração de avisos centralizados",
 	"right-centralnotice-admin": "Gerir avisos centralizados",
 	"action-centralnotice-admin": "gerir avisos centralizados",
@@ -104,7 +105,7 @@
 	"centralnotice-number-uses": "Utilizações",
 	"centralnotice-settings": "Configurações",
 	"centralnotice-edit-template": "Editar modelo",
-	"centralnotice-edit-template-summary": "Aviso: Carregar os recursos externos num modelo pode comprometer a privacidade do utilizador.\n\nPara criar uma mensagem localizável, coloque entre três chavetas um texto que contenha um hífen; por exemplo, <nowiki>{{{citar-jimbo}}}</nowiki>.",
+	"centralnotice-edit-template-summary": "Aviso: Carregar os recursos externos num modelo pode comprometer a privacidade do utilizador.\n\nPara criar uma mensagem localizável, coloque um texto entre três chavetas; por exemplo, <nowiki>{{{nome_da_mensagem}}}</nowiki>. Para usar uma mensagem localizável noutro modelo, inclua o nome do modelo seguido de uma vírgula e do nome da mensagem; por exemplo, <nowiki>{{{nome_do_modelo,nome_da_mensagem}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Palavras mágicas fornecidas por elementos partilháveis (<i>mixins</i>): $1",
 	"centralnotice-message": "Mensagem",
 	"centralnotice-message-not-set": "Mensagem não definida",
@@ -145,7 +146,6 @@
 	"apierror-centralnotice-cdn-banner-not-found": "O modelo não foi encontrado",
 	"centralnotice-geo": "Com segmentação geográfica",
 	"centralnotice-countries": "Países",
-	"centralnotice-global-allocation": "Atribuição global",
 	"centralnotice-allocation": "Atribuição",
 	"centralnotice-view-allocation": "Ver atribuição de modelos",
 	"centralnotice-allocation-instructions": "Escolha o ambiente para o qual deseja ver a atribuição de modelos:",

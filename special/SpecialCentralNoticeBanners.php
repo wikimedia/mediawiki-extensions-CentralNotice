@@ -19,7 +19,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var bool If true, form execution must stop and the page will be redirected */
 	protected $bannerFormRedirectRequired = false;
 
-	function __construct() {
+	public function __construct() {
 		SpecialPage::__construct( 'CentralNoticeBanners' );
 	}
 
@@ -65,6 +65,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// User settable text for some custom message, like usage instructions
 		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );
+
+		// Allow users to add a custom nav bar (T138284)
+		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
+		if ( !$navBar->isDisabled() ) {
+			$this->getOutput()->addHTML( $navBar->parseAsBlock() );
+		}
 		$this->getOutput()->addWikiMsg( 'centralnotice-summary' );
 
 		// Now figure out what to display
@@ -102,7 +108,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			default:
 				// Something went wrong; display error page
 				throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
-				break;
 		}
 	}
 
@@ -292,7 +297,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 				case 'archive':
 					return 'Archiving not yet implemented!';
-					break;
 
 				case 'remove':
 					$summary = $formData['removeBannerEditSummary'];
@@ -371,10 +375,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return array
 	 */
 	private function getBannerPreviewEditLinks() {
+		$linkRenderer = $this->getLinkRenderer();
 		$links = [
-			Linker::linkKnown(
+			$linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Randompage' ),
-				$this->msg( 'centralnotice-live-preview' )->escaped(),
+				$this->msg( 'centralnotice-live-preview' )->text(),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[
 					'banner' => $this->bannerName,
@@ -388,18 +393,18 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$bannerTitle = $bannerObj->getTitle();
 		// $bannerTitle can be null sometimes
 		if ( $bannerTitle && $this->getUser()->isAllowed( 'editinterface' ) ) {
-			$links[] = Linker::link(
+			$links[] = $linkRenderer->makeLink(
 				$bannerTitle,
-				$this->msg( 'centralnotice-banner-edit-onwiki' )->escaped(),
+				$this->msg( 'centralnotice-banner-edit-onwiki' )->text(),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[ 'action' => 'edit' ]
-				);
-			$links[] = Linker::link(
+			);
+			$links[] = $linkRenderer->makeLink(
 				$bannerTitle,
-				$this->msg( 'centralnotice-banner-history' )->escaped(),
+				$this->msg( 'centralnotice-banner-history' )->text(),
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[ 'action' => 'history' ]
-				);
+			);
 		}
 		return $links;
 	}
@@ -568,6 +573,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		/* --- Translatable Messages Section --- */
 		$messages = $banner->getMessageFieldsFromCache();
 
+		$linkRenderer = $this->getLinkRenderer();
 		if ( $messages ) {
 			// Only show this part of the form if messages exist
 
@@ -591,9 +597,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					// Create per message link to the translate extension
 					$title = SpecialPage::getTitleFor( 'Translate' );
 					$label = Xml::tags( 'td', null,
-						Linker::link(
+						$linkRenderer->makeLink(
 							$title,
-							htmlspecialchars( $messageName ),
+							$messageName,
 							[],
 							[
 								'group' => BannerMessageGroup::getTranslateGroupName(
@@ -641,10 +647,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'section' => 'banner-messages',
 					'class' => 'HTMLInfoField',
 					'disabled' => !$this->editable,
-					'label-raw' => Linker::link(
-							$this->getPageTitle( "preview/{$this->bannerName}" ),
-							$this->msg( 'centralnotice-preview-all-template-translations' )->escaped()
-						),
+					'label-raw' => $linkRenderer->makeLink(
+						$this->getPageTitle( "preview/{$this->bannerName}" ),
+						$this->msg( 'centralnotice-preview-all-template-translations' )->text()
+					),
 					'default' => implode( ', ', $liveMessageNames ),
 					'cssclass' => 'separate-form-element',
 				];
@@ -683,14 +689,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$renderer = new BannerRenderer( $this->getContext(), $banner );
 		$magicWords = $renderer->getMagicWords();
 		foreach ( $magicWords as &$word ) {
-			$word = '{{{' . $word . '}}}';
+			$word = wfEscapeWikiText( '{{{' . $word . '}}}' );
 		}
 		$formDescriptor[ 'banner-mixin-words' ] = [
 			'section' => 'edit-template',
 			'type' => 'info',
 			'default' => $this->msg(
 					'centralnotice-edit-template-magicwords',
-					wfEscapeWikiText( $this->getLanguage()->listToText( $magicWords ) )
+					$this->getLanguage()->listToText( $magicWords )
 				)->parse(),
 			'rawrow' => true,
 		];
@@ -724,7 +730,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$links = [];
 		foreach ( $banner->getIncludedTemplates() as $titleObj ) {
-			$links[] = Linker::link( $titleObj );
+			$links[] = $linkRenderer->makeLink( $titleObj );
 		}
 		if ( $links ) {
 			$formDescriptor[ 'links' ] = [
@@ -914,7 +920,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				return 'Archiving currently does not work';
-				break;
 
 			case 'clone':
 				if ( !$this->editable ) {
@@ -945,7 +950,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				$this->getRequest()->setVal( 'wpsummary', '' );
 
 				return $ret;
-				break;
 
 			default:
 				// Nothing was requested, so do nothing

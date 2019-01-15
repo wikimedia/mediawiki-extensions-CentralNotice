@@ -3,13 +3,13 @@
 		"authors": [
 			"Bjankuloski06",
 			"Brest",
-			"Rancher"
+			"Rancher",
+			"Vlad5250"
 		]
 	},
 	"centralnotice": "Администратор на централниот разглас",
 	"noticetemplate": "Администратор на централниот разглас",
 	"bannerallocation": "Администратор на централниот разглас",
-	"globalallocation": "Администратор на централниот разглас",
 	"centralnoticelogs": "Администратор на централни известувања",
 	"right-centralnotice-admin": "Раководење со централни известувања",
 	"action-centralnotice-admin": "раководење со централни известувања",
@@ -95,7 +95,7 @@
 	"centralnotice-number-uses": "Користи",
 	"centralnotice-settings": "Нагодувања",
 	"centralnotice-edit-template": "Уреди шаблон",
-	"centralnotice-edit-template-summary": "За да создадете порака што ќе може да се преведе, напишете низа со цртичка и ставете ја во три кадрави загради, на пр. {{{цитат-џимбо}}}.",
+	"centralnotice-edit-template-summary": "Предупредување: Вчитувањето на надворешни ресурси во разгласот може да ја загрози корисничката приватност.\n\nЗа да направите местојазично прилагодлива страница, напишете низа со меѓузборовни цртички и ставете ја во три кадрави загради, на пр. {{{назив_на_пораката}}}</nowiki>. За да употребите местојазично прилагодлива порака од друг разглас, ставете го називот на разгласот со запирка по него, па називот на пораката; на пр. <nowiki>{{{назив_на_разгласот,назив_на_пораката}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Волшебни зборови од разгласните примеси: $1",
 	"centralnotice-message": "Порака",
 	"centralnotice-message-not-set": "Порката не е поставена",
@@ -136,7 +136,6 @@
 	"apierror-centralnotice-cdn-banner-not-found": "Не го пронајдов разгласот",
 	"centralnotice-geo": "Геоозначено",
 	"centralnotice-countries": "Земји",
-	"centralnotice-global-allocation": "Глобална распределба",
 	"centralnotice-allocation": "Распределба",
 	"centralnotice-view-allocation": "Преглед на распределбата на разгласи",
 	"centralnotice-allocation-instructions": "Одберете во која околина сакате да ја погледате распределбата на разгласи:",

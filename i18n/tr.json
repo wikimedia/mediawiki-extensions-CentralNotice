@@ -14,13 +14,14 @@
 			"Sucsuzz",
 			"Violetanka",
 			"HakanIST",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Hedda",
+			"Rapsar"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
 	"noticetemplate": "Merkezi uyarı yöneticisi",
 	"bannerallocation": "Merkezi uyarı yöneticisi",
-	"globalallocation": "Merkezi uyarı yöneticisi",
 	"centralnoticelogs": "Merkezi uyarı yöneticisi",
 	"right-centralnotice-admin": "Merkezi uyarıları yönet",
 	"action-centralnotice-admin": "merkezi uyarıları yönet",
@@ -33,7 +34,7 @@
 	"centralnotice-view": "Görüntüle",
 	"centralnotice-save-banner": "Kaydet",
 	"centralnotice-preview": "Ön izleme ($1)",
-	"centralnotice-live-preview": "Vikide öz izle",
+	"centralnotice-live-preview": "Vikide önizle",
 	"centralnotice-nopreview": "(Ön izleme mevcut değil)",
 	"centralnotice-add-new": "Yeni bir merkezi uyarı ekle",
 	"centralnotice-remove": "Çıkar",
@@ -123,7 +124,6 @@
 	"centralnotice-banner-display-on": "Şurada görüntüle",
 	"centralnotice-geo": "Geo-hedefli",
 	"centralnotice-countries": "Ülkeler",
-	"centralnotice-global-allocation": "Küresel ayırma",
 	"centralnotice-allocation": "Tahsis",
 	"centralnotice-view-allocation": "Afiş tahsisini gör",
 	"centralnotice-allocation-instructions": "Afiş tahsisini görmek istediğiniz çevreyi seçin:",
@@ -219,5 +219,6 @@
 	"centralnotice-start-time": "Başlangıç zamanı (UTC)",
 	"centralnotice-end-date": "Bitiş tarihi (UTC)",
 	"centralnotice-end-time": "Bitiş zamanı (UTC)",
+	"hidebanners": "Bannerları gizle",
 	"centralnotice-large-banner-limit-days": "Bası uzunluğu"
 }

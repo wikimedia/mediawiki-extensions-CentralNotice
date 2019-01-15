@@ -3,7 +3,7 @@
 class SpecialNoticeTemplate extends CentralNotice {
 	public $editable, $centralNoticeError;
 
-	function __construct() {
+	public function __construct() {
 		// Register special page
 		SpecialPage::__construct( 'NoticeTemplate' );
 	}

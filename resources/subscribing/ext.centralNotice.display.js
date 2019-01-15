@@ -29,7 +29,7 @@
  * For an overview of how this all fits together, see
  * mw.centralNotice.reallyChooseAndMaybeDisplay() (below).
  */
-( function ( $, mw ) {
+( function () {
 
 	var cn, Mixin,
 
@@ -236,7 +236,7 @@
 		// cn.recordImpressionDeferredObj (used in resolveRecordImpressionDeferred())
 		// should already have been set.
 
-		timeout = setTimeout( function() {
+		timeout = setTimeout( function () {
 			timeoutHasRun = true;
 			resolveRecordImpressionDeferred();
 		}, MAX_RECORD_IMPRESSION_DELAY );
@@ -623,7 +623,7 @@
 		 * overridden by a URL parameter, in which that takes precedence). Default is
 		 * wgCentralNoticeImpressionEventSampleRate.
 		 */
-		setImpressionEventSampleRate: function( rate ) {
+		setImpressionEventSampleRate: function ( rate ) {
 			cn.internal.state.setImpressionEventSampleRate( rate );
 		},
 
@@ -827,4 +827,4 @@
 		'Use mw.centralNotice method instead'
 	);
 
-}( jQuery, mediaWiki ) );
+}() );

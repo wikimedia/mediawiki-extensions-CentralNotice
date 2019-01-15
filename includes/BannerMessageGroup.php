@@ -89,7 +89,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * Determine if the CentralNotice banner group is using the group review feature of translate
 	 * @return bool
 	 */
-	static function isUsingGroupReview() {
+	public static function isUsingGroupReview() {
 		static $useGroupReview = null;
 
 		if ( $useGroupReview === null ) {
@@ -116,7 +116,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 *
 	 * @return string Canonical translate group name
 	 */
-	static function getTranslateGroupName( $bannerName ) {
+	public static function getTranslateGroupName( $bannerName ) {
 		if ( strpos( $bannerName, 'Centralnotice-template' ) === 0 ) {
 			return str_replace(
 				'Centralnotice-template',
@@ -143,7 +143,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 *
 	 * @return bool
 	 */
-	static function updateBannerGroupStateHook( $group, $code, $currentState, $newState ) {
+	public static function updateBannerGroupStateHook( $group, $code, $currentState, $newState ) {
 		global $wgNoticeTranslateDeployStates;
 
 		// We only need to run this if we're actually using group review

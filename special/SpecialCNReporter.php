@@ -3,12 +3,12 @@
  * Null endpoint.  This is a workaround to simplify analytics.
  */
 class SpecialCNReporter extends UnlistedSpecialPage {
-	function __construct() {
+	public function __construct() {
 		// Register special page
 		parent::__construct( "CNReporter" );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		global $wgNoticeReporterDomains;
 
 		$this->getOutput()->disable();
@@ -38,7 +38,7 @@ EOT;
 	/**
 	 * Generate the HTTP response headers for the banner file
 	 */
-	function sendHeaders() {
+	private function sendHeaders() {
 		$expiry = SpecialRecordImpression::CACHE_EXPIRY;
 
 		// If we have a logged in user; do not cache (default for special pages)

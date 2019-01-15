@@ -20,7 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
-( function ( $, mw ) {
+( function () {
 
 	function doPurgeCache() {
 		var $dialogEl = $( '<div />' ),
@@ -37,7 +37,7 @@
 		} );
 
 		// Show dialog with info if the background call takes a while to return
-		waiting = setTimeout( function() {
+		waiting = setTimeout( function () {
 			$dialogEl.text(
 				mw.message( 'centralnotice-banner-cdn-dialog-waiting-text' ).text() );
 
@@ -55,7 +55,7 @@
 			$dialogEl.dialog( {
 				buttons: [ {
 					text: mw.message( 'centralnotice-banner-cdn-dialog-ok' ).text(),
-					click: function() {
+					click: function () {
 						$( this ).dialog( 'close' );
 					}
 				} ]
@@ -273,4 +273,4 @@
 		$( '#cn-js-error-warn' ).hide();
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

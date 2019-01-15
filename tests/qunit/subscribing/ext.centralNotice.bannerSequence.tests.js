@@ -1,5 +1,4 @@
-/* eslint indent: 0 */
-( function ( mw ) {
+( function () {
 	'use strict';
 
 	var i,
@@ -304,8 +303,6 @@
 	QUnit.test(
 		'pre-banner handler uses bucket and stored page view, requests banner',
 		function ( assert ) {
-			assert.expect( 3 );
-
 			// Mock required API bits
 
 			cn.kvStore = {
@@ -313,11 +310,11 @@
 				// Mock to get page view
 				getItem: function ( key ) {
 					if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
-						assert.ok( true, 'Retreive page view' );
+						assert.ok( true, 'Retrieve page view' );
 						return 1;
 					}
 
-					throw 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()';
+					throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()' );
 				},
 
 				// Stubs, not under test here
@@ -339,7 +336,7 @@
 					return;
 				}
 
-				throw 'Incorrect property ' + property + ' in call to cn.getDataProperty()';
+				throw new Error( 'Incorrect property ' + property + ' in call to cn.getDataProperty()' );
 			};
 
 			// Mock to request banner
@@ -361,141 +358,135 @@
 	QUnit.test(
 		'pre-banner handler uses stored identifier and hides banner on empty step',
 		function ( assert ) {
-		assert.expect( 2 );
 
-		// Mock required API bits
+			// Mock required API bits
 
-		cn.kvStore = {
+			cn.kvStore = {
 
-			// Mock to get page view and identifier
-			getItem: function ( key ) {
+				// Mock to get page view and identifier
+				getItem: function ( key ) {
 
-				if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
-					assert.ok( true, 'Retreive identifier' );
-					return true;
+					if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
+						assert.ok( true, 'Retrieve identifier' );
+						return true;
+					}
+
+					// The call to get the page view is not under test here
+					if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
+						return 3;
+					}
+
+					throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()' );
+				},
+
+				// Stubs
+				contexts: {},
+				getMultiStorageOption: function () { return 'stubStorageOption'; },
+				multiStorageOptions: {}
+			};
+
+			// Mock needed to run code (calls to this function are not under test here)
+			cn.getDataProperty = function ( property ) {
+
+				// These calls are not under test here
+				if ( property === 'campaignCategoryUsesLegacy' ) {
+					return;
 				}
 
-				// The call to get the page view is not under test here
-				if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
-					return 3;
+				if ( property === 'reducedBucket' ) {
+					return 0;
 				}
 
-				throw 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()';
-			},
+				throw new Error( 'Incorrect property ' + property + ' in call to getDataProperty()' );
+			};
 
-			// Stubs
-			contexts: {},
-			getMultiStorageOption: function () { return 'stubStorageOption'; },
-			multiStorageOptions: {}
-		};
+			// Mock to cancel banner (empty step)
+			cn.cancelBanner = function ( reason ) {
+				assert.strictEqual(
+					reason,
+					'bannerSequenceEmptyStep',
+					'Cancel banner for empty step'
+				);
+			};
 
-		// Mock needed to run code (calls to this function are not under test here)
-		cn.getDataProperty = function ( property ) {
+			// Stub
+			cn.isBannerCanceled = function () {};
 
-			// These calls are not under test here
-			if ( property === 'campaignCategoryUsesLegacy' ) {
-				return;
-			}
-
-			if ( property === 'reducedBucket' ) {
-				return 0;
-			}
-
-			throw 'Incorrect property ' + property + ' in call to getDataProperty()';
-		};
-
-		// Mock to cancel banner (empty step)
-		cn.cancelBanner = function ( reason ) {
-			assert.strictEqual(
-				reason,
-				'bannerSequenceEmptyStep',
-				'Cancel banner for empty step'
-			);
-		};
-
-		// Stub
-		cn.isBannerCanceled = function () {};
-
-		// Call the function under test
-		bannerSequence.preBannerHandler( { sequences: [ sequence ] } );
-	} );
+			// Call the function under test
+			bannerSequence.preBannerHandler( { sequences: [ sequence ] } );
+		} );
 
 	QUnit.test( 'post-banner handler checks banner shown, sets identifier and page view',
 		function ( assert ) {
-		assert.expect( 3 );
 
-		// Mock required API bits
+			// Mock required API bits
 
-		cn.kvStore = {
+			cn.kvStore = {
 
-			// Mock setItem() to test calls
-			setItem: function ( key, value ) {
-				if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
-					assert.strictEqual( value, 5, 'Set next page view' );
+				// Mock setItem() to test calls
+				setItem: function ( key, value ) {
+					if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
+						assert.strictEqual( value, 5, 'Set next page view' );
+					} else if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
+						// Value only needs to be truthy
+						assert.ok( value, 'Set identifier' );
+					} else {
+						throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.setItem()' );
+					}
+				},
+
+				// Mock and stubs not under test here
+
+				getItem: function ( key ) {
+					if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
+						return 4;
+					}
+
+					if ( ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) ||
+						( key ===
+						bannerSequence.LARGE_BANNER_LIMIT_STORAGE_KEY + '_identifier' ) ) {
+
+						return false;
+					}
+
+					throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()' );
+				},
+
+				contexts: {},
+				getMultiStorageOption: function () { return 'stubStorageOption'; },
+				multiStorageOptions: {}
+			};
+
+			// Mock for isBannerShown()
+			cn.isBannerShown = function () {
+				assert.ok( true, 'Call to isBannerShown()' );
+				return true;
+			};
+
+			// Mock needed to run code (calls to this function are not under test here)
+			cn.getDataProperty = function ( property ) {
+
+				// These calls are not under test here
+				if ( property === 'campaignCategoryUsesLegacy' ) {
 					return;
 				}
 
-				if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
-					// Value only needs to be truthy
-					assert.ok( value, 'Set identifier' );
-					return;
+				if ( property === 'reducedBucket' ) {
+					return 0;
 				}
 
-				throw 'Incorrect key ' + key + ' in call to cn.kvStore.setItem()';
-			},
+				throw new Error( 'Incorrect property ' + property + ' in call to getDataProperty()' );
+			};
 
-			// Mock and stubs not under test here
+			// Stubs
+			cn.requestBanner = function () {};
+			cn.isBannerCanceled = function () {};
 
-			getItem: function ( key ) {
-				if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
-					return 4;
-				}
+			// Call to pre-banner handler required for call to post-banner handler to work
+			bannerSequence.preBannerHandler( { sequences: [ sequence ] } );
 
-				if ( ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) ||
-					( key ===
-					bannerSequence.LARGE_BANNER_LIMIT_STORAGE_KEY + '_identifier' ) ) {
+			// Call the function under test
+			bannerSequence.postBannerHandler();
+		} );
 
-					return false;
-				}
-
-				throw 'Incorrect key ' + key + ' in call to cn.kvStore.getItem()';
-			},
-
-			contexts: {},
-			getMultiStorageOption: function () { return 'stubStorageOption'; },
-			multiStorageOptions: {}
-		};
-
-		// Mock for isBannerShown()
-		cn.isBannerShown = function () {
-			assert.ok( true, 'Call to isBannerShown()' );
-			return true;
-		};
-
-		// Mock needed to run code (calls to this function are not under test here)
-		cn.getDataProperty = function ( property ) {
-
-			// These calls are not under test here
-			if ( property === 'campaignCategoryUsesLegacy' ) {
-				return;
-			}
-
-			if ( property === 'reducedBucket' ) {
-				return 0;
-			}
-
-			throw 'Incorrect property ' + property + ' in call to getDataProperty()';
-		};
-
-		// Stubs
-		cn.requestBanner = function () {};
-		cn.isBannerCanceled = function () {};
-
-		// Call to pre-banner handler required for call to post-banner handler to work
-		bannerSequence.preBannerHandler( { sequences: [ sequence ] } );
-
-		// Call the function under test
-		bannerSequence.postBannerHandler();
-	} );
-
-}( mediaWiki, jQuery ) );
+}() );

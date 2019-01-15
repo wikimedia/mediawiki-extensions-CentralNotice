@@ -13,7 +13,7 @@
  * ext.centralNotice.choiceData. If there are campaigns in choiceData,
  * that module will depend on any other modules needed for further processing.
  */
-( function ( $, mw ) {
+( function () {
 
 	var cn = mw.centralNotice,
 		cookiesToDelete = mw.config.get( 'wgCentralNoticeCookiesToDelete' );
@@ -102,4 +102,4 @@
 		} );
 	}
 
-}( jQuery, mediaWiki ) );
+}() );

@@ -169,6 +169,20 @@ class CNCampaignPager extends TablePager {
 		return $htmlOut . parent::getStartBody();
 	}
 
+	/**
+	 * Format the data in the pager
+	 *
+	 * This calls a method which calls Language::listToText. Language
+	 * uses ->escaped() messages for commas, so this triggers a double
+	 * escape warning in phan. However in terms of double escaping, a
+	 * comma message doesn't matter that much, and it would be difficult
+	 * to avoid without rewriting how all these classes work, so we
+	 * suppress this for now, and leave fixing it as a future FIXME.
+	 * @suppress SecurityCheck-DoubleEscaped
+	 * @param string $fieldName While field are we formatting
+	 * @param string $value The value for the field
+	 * @return string HTML
+	 */
 	public function formatValue( $fieldName, $value ) {
 		// These are used in a few cases below.
 		$rowIsEnabled = ( $this->mCurrentRow->not_enabled == '1' );
@@ -408,7 +422,7 @@ class CNCampaignPager extends TablePager {
 	/**
 	 * @inheritDoc
 	 */
-	function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
+	public function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
 		parent::extractResultInfo( $isFirst, $limit, $res );
 
 		// Disable editing if there's more than one page. (This is a legacy

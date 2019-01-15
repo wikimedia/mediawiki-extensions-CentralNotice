@@ -3,7 +3,7 @@
 class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	public $viewPage, $special;
 
-	function __construct( SpecialCentralNoticeLogs $special ) {
+	public function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
 		parent::__construct();
 
@@ -18,7 +18,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Sort the log list by timestamp
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'notlog_timestamp';
 	}
 
@@ -26,7 +26,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Pull log entries from the database
 	 * @return array[]
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$request = $this->getRequest();
 
 		$filterStartDate = 0;
@@ -52,11 +52,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 		if ( !$reset ) {
 			if ( $filterStartDate > 0 ) {
-				$filterStartDate = intval( $filterStartDate.'000000' );
+				$filterStartDate = intval( $filterStartDate . '000000' );
 				$info['conds'][] = "notlog_timestamp >= $filterStartDate";
 			}
 			if ( $filterEndDate > 0 ) {
-				$filterEndDate = intval( $filterEndDate.'000000' );
+				$filterEndDate = intval( $filterEndDate . '000000' );
 				$info['conds'][] = "notlog_timestamp < $filterEndDate";
 			}
 			if ( $filterCampaign ) {
@@ -79,7 +79,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		global $wgExtensionAssetsPath;
 
 		$lang = $this->getLanguage();
@@ -87,19 +87,19 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->notlog_user_id );
 		// Create the user page link
-		$userLink = Linker::linkKnown(
+		$userLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$loggedUser->getUserPage(),
-			htmlspecialchars( $loggedUser->getName() )
+			$loggedUser->getName()
 		);
-		$userTalkLink = Linker::linkKnown(
+		$userTalkLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$loggedUser->getTalkPage(),
-			$this->msg( 'centralnotice-talk-link' )->escaped()
+			$this->msg( 'centralnotice-talk-link' )->text()
 		);
 
 		// Create the campaign link
-		$campaignLink = Linker::linkKnown(
+		$campaignLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$this->viewPage,
-			htmlspecialchars( $row->notlog_not_name ),
+			$row->notlog_not_name,
 			[],
 			[
 				'subaction' => 'noticeDetail',
@@ -117,7 +117,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'collapsed-rtl.png' :
 				'collapsed-ltr.png';
 
-			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$notlogId.'\')">' .
+			$htmlOut .= '<a href="javascript:toggleLogDisplay(\'' . $notlogId . '\')">' .
 				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/' . $collapsedImg . '" ' .
 				'id="cn-collapsed-' . $notlogId . '" style="display:block;"/>' .
 				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
@@ -138,7 +138,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		// centralnotice-action-created, centralnotice-action-modified,
 		// centralnotice-action-removed
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
-			$this->msg( 'centralnotice-action-'.$row->notlog_action )->text()
+			$this->msg( 'centralnotice-action-' . $row->notlog_action )->text()
 		);
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$campaignLink
@@ -163,7 +163,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		if ( $row->notlog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr',
-				[ 'id' => 'cn-log-details-'.$notlogId, 'style' => 'display:none;' ] );
+				[ 'id' => 'cn-log-details-' . $notlogId, 'style' => 'display:none;' ] );
 
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
@@ -187,7 +187,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param object $row
 	 * @return string
 	 */
-	function showInitialSettings( $row ) {
+	public function showInitialSettings( $row ) {
 		$lang = $this->getLanguage();
 		$details = '';
 		$wordSeparator = $this->msg( 'word-separator' )->plain();
@@ -248,7 +248,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param object $row
 	 * @return string
 	 */
-	function showChanges( $row ) {
+	public function showChanges( $row ) {
 		$lang = $this->getLanguage();
 		$details = '';
 		$wordSeparator = $this->msg( 'word-separator' )->plain();
@@ -356,7 +356,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// centralnotice-enabled, centralnotice-locked, centralnotice-geo, centralnotice-buckets
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					( $row->$beginField
@@ -373,8 +373,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	private function testSetChange( $param, $row ) {
 		$result = '';
-		$beginField = 'notlog_begin_'.$param;
-		$endField = 'notlog_end_'.$param;
+		$beginField = 'notlog_begin_' . $param;
+		$endField = 'notlog_end_' . $param;
 
 		if ( $row->$beginField !== $row->$endField ) {
 			$lang = $this->getLanguage();
@@ -404,7 +404,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// centralnotice-projects, centralnotice-languages, centralnotice-countries
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$differences
 			)->parse() . "<br />";
 		}
@@ -453,7 +453,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// Give grep a chance to find the usages: centralnotice-preferred
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					$beginMessage,
@@ -480,7 +480,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			// Give grep a chance to find the usages: centralnotice-throttle
 			$result .= $this->msg(
 				'centralnotice-log-label',
-				$this->msg( 'centralnotice-'.$param )->text(),
+				$this->msg( 'centralnotice-' . $param )->text(),
 				$this->msg(
 					'centralnotice-changed',
 					$beginMessage,
@@ -513,7 +513,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Specify table headers
 	 * @return string HTML
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -544,7 +544,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * Close table
 	 * @return string HTML
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::closeElement( 'table' );
 		return $htmlOut;

@@ -6,7 +6,7 @@
  * either be in the schema and have the correct data type, or must be removed by
  * calling getDataCopy( true ).
  */
-( function ( $, mw ) {
+( function () {
 
 	var state,
 		status,
@@ -297,7 +297,7 @@
 			// mixin easy in IE8, too
 			state.data.mixins = {};
 			for ( prop in state.campaign.mixins ) {
-				if ( state.campaign.mixins.hasOwnProperty( prop ) ) {
+				if ( Object.prototype.hasOwnProperty.call( state.campaign.mixins, prop ) ) {
 					state.data.mixins[ prop ] = true;
 				}
 			}
@@ -422,7 +422,7 @@
 		 * Sets impression event sample rate (unless it was overridden by a URL parameter,
 		 * in which that takes precedence).
 		 */
-		setImpressionEventSampleRate: function( rate ) {
+		setImpressionEventSampleRate: function ( rate ) {
 			if ( !impressionEventSampleRateOverridden ) {
 				state.data.impressionEventSampleRate = rate;
 			}
@@ -482,4 +482,4 @@
 			return REASONS.other;
 		}
 	};
-}( jQuery, mediaWiki ) );
+}() );

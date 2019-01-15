@@ -34,7 +34,7 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 	const DEFAULT_COLS = 45;
 	const DEFAULT_ROWS = 1;
 
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		if ( !array_key_exists( 'default', $params ) ) {
 			$message = new BannerMessage( $this->mParams[ 'banner' ], $this->mParams[ 'message' ] );
 			$params[ 'default' ] = $message->getContents( $this->mParams[ 'language' ] );
@@ -43,7 +43,7 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 		parent::__construct( $params );
 	}
 
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		// Empty - no validation can be done on a banner message
 		return true;
 	}

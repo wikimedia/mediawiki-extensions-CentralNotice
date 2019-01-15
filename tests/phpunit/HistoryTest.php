@@ -20,6 +20,9 @@ class HistoryTest extends CentralNoticeTest {
 		parent::tearDown();
 	}
 
+	/**
+	 * @covers Campaign::getHistoricalCampaigns
+	 */
 	public function testStaleHistoricalCampaigns() {
 		// Bug was that expired campaigns would still be included in the
 		// history, as long as they were enabled.

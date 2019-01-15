@@ -3,13 +3,13 @@
 		"authors": [
 			"Chelin",
 			"C.R.",
-			"Candalua"
+			"Candalua",
+			"Ruthven"
 		]
 	},
 	"centralnotice": "Ammenistrazione d'avvise centrale",
 	"noticetemplate": "Ammenistrazione d'avvise centrale",
 	"bannerallocation": "Ammenistrazione d'avvise centrale",
-	"globalallocation": "Ammenistrazione d'avvise centrale",
 	"centralnoticelogs": "Ammenistrazione d'avvise centrale",
 	"right-centralnotice-admin": "Gestisce l'avvise centrale",
 	"action-centralnotice-admin": "gestisce 'e l'avvise centrale",
@@ -121,7 +121,6 @@
 	"centralnotice-banner-mixins-help": "Cuntrullate ogne mixin ca vulisseve miette pe' tramente ca se manna 'o banner (Vedite [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Mixin 'e Banner] pe' n'avé cchiù nfurmaziune.)",
 	"centralnotice-geo": "Geo referenziate",
 	"centralnotice-countries": "Paìse",
-	"centralnotice-global-allocation": "Posizione globbale",
 	"centralnotice-allocation": "Pizzo 'e destinaziona",
 	"centralnotice-view-allocation": "Vide 'o pizzo 'e destinaziona d' 'o banner",
 	"centralnotice-allocation-instructions": "Sciglite l'ambiente addò vulite vedè 'o pizzo d' 'o banner",
@@ -173,7 +172,7 @@
 	"centralnotice-filter-template-prompt": "Filtro d' 'e banner (p.e. Giuanne 2008)",
 	"centralnotice-filter-template-submit": "Applica 'o filtro",
 	"centralnotice-filter-template-banner": "Filtra 'e banner",
-	"centralnotice-priority-low": "vascio",
+	"centralnotice-priority-low": "vascia",
 	"centralnotice-priority-normal": "nurmale",
 	"centralnotice-priority-high": "aveto",
 	"centralnotice-priority-emergency": "emergenza",

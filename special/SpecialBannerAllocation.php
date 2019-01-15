@@ -88,6 +88,11 @@ class SpecialBannerAllocation extends CentralNotice {
 		// Initialize error variable
 		$this->centralNoticeError = false;
 
+		// Allow users to add a custom nav bar (T138284)
+		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
+		if ( !$navBar->isDisabled() ) {
+			$out->addHTML( $navBar->parseAsBlock() );
+		}
 		// Show summary
 		$out->addWikiMsg( 'centralnotice-summary' );
 
@@ -280,11 +285,11 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		if ( count( $banners ) > 0 ) {
 			$htmlOut .= Html::openElement( 'tr' );
-			$htmlOut .= Html::element( 'th', [ 'width' => '5%' ],
+			$htmlOut .= Html::rawElement( 'th', [ 'width' => '5%' ],
 				$this->msg( 'centralnotice-percentage' )->parse() );
-			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
+			$htmlOut .= Html::rawElement( 'th', [ 'width' => '30%' ],
 				$this->msg( 'centralnotice-banner' )->parse() );
-			$htmlOut .= Html::element( 'th', [ 'width' => '30%' ],
+			$htmlOut .= Html::rawElement( 'th', [ 'width' => '30%' ],
 				$this->msg( 'centralnotice-notice' )->parse() );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}
@@ -299,6 +304,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
 		if ( count( $banners ) > 0 ) {
+			$linkRenderer = $this->getLinkRenderer();
 			foreach ( $banners as $banner ) {
 				$percentage = sprintf( "%0.2f", round( $banner['allocation'] * 100, 2 ) );
 
@@ -315,10 +321,10 @@ class SpecialBannerAllocation extends CentralNotice {
 				$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
 
 				$htmlOut .= Html::openElement( 'span',
-					[ 'class' => 'cn-'.$banner['campaign'].'-'.$banner['name'] ] );
-				$htmlOut .= Linker::link(
+					[ 'class' => 'cn-' . $banner['campaign'] . '-' . $banner['name'] ] );
+				$htmlOut .= $linkRenderer->makeLink(
 					$viewBanner,
-					htmlspecialchars( $banner['name'] ),
+					$banner['name'],
 					[],
 					[ 'template' => $banner['name'] ]
 				);
@@ -327,9 +333,9 @@ class SpecialBannerAllocation extends CentralNotice {
 
 				// Campaign name
 				$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-					Linker::link(
+					$linkRenderer->makeLink(
 						$viewCampaign,
-						htmlspecialchars( $banner['campaign'] ),
+						$banner['campaign'],
 						[],
 						[
 							'subaction' => 'noticeDetail',

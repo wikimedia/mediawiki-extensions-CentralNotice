@@ -19,12 +19,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/** @var bool */
 	protected $debug;
 
-	function __construct() {
+	public function __construct() {
 		// Register special page
 		parent::__construct( "BannerLoader" );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->getOutput()->disable();
 
 		try {
@@ -49,7 +49,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		echo $out;
 	}
 
-	function getParams() {
+	public function getParams() {
 		$request = $this->getRequest();
 
 		// FIXME: Don't allow a default language.
@@ -69,7 +69,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		}
 	}
 
-	function getSanitized( $param, $filter ) {
+	public function getSanitized( $param, $filter ) {
 		$matches = [];
 		if ( preg_match( $filter, $this->getRequest()->getText( $param ), $matches ) ) {
 			return $matches[0];
@@ -83,7 +83,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 *   cache time ($wgNoticeBannerMaxAge) or the reduced time
 	 *   ($wgNoticeBannerReducedMaxAge).
 	 */
-	function sendHeaders( $cacheResponse = self::MAX_CACHE_NORMAL ) {
+	private function sendHeaders( $cacheResponse = self::MAX_CACHE_NORMAL ) {
 		global $wgNoticeBannerMaxAge, $wgNoticeBannerReducedMaxAge;
 
 		header( "Content-type: text/javascript; charset=utf-8" );

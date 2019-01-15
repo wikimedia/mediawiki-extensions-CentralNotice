@@ -1,10 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Malafaya"
+			"Malafaya",
+			"Robin van der Vliet"
 		]
 	},
 	"centralnotice-day": "Dia",
 	"centralnotice-year": "Anio",
-	"centralnotice-hours": "Ora"
+	"centralnotice-hours": "Ora",
+	"centralnotice-languages": "Linguas",
+	"centralnotice-language": "Lingua",
+	"centralnotice-projects": "Projetas"
 }

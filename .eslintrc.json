@@ -1,21 +1,27 @@
 {
+	"root": true,
 	"extends": "wikimedia",
 	"parserOptions": {
 		"ecmaVersion": 3
 	},
 	"env": {
-		"browser": true,
-		"jquery": true
+		"browser": true
 	},
 	"globals": {
 		"require": false,
 		"module": false,
-		"mediaWiki": false,
+		"mw": false,
+		"$": false,
 		"OO": false
 	},
 	"rules": {
 		"no-use-before-define": 0,
 		"valid-jsdoc": 0,
-		"dot-notation": [ "error", { "allowKeywords": true } ]
+		"dot-notation": [
+			"error",
+			{
+				"allowKeywords": true
+			}
+		]
 	}
 }

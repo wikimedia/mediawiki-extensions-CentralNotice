@@ -9,9 +9,11 @@
 	"centralnotice-view": "Хьажар",
 	"centralnotice-preview": "Хьалххе бIаргтохар ($1)",
 	"centralnotice-add-notice-button": "Хьакхолла",
+	"centralnotice-translations": "Таржамаш",
 	"centralnotice-day": "Ди",
 	"centralnotice-year": "Шу",
 	"centralnotice-month": "Бутт",
 	"centralnotice-hours": "Сахьат",
-	"centralnotice-min": "Минот"
+	"centralnotice-min": "Минот",
+	"centralnotice-user": "Доакъашхо"
 }

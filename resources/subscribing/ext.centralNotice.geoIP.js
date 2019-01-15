@@ -4,7 +4,7 @@
  * TODO Deprecate global window.Geo
  * TODO Move this out of CentralNotice. See https://phabricator.wikimedia.org/T102848
  */
-( function ( $, mw ) {
+( function () {
 
 	var COOKIE_NAME = 'GeoIP',
 		geoPromise;
@@ -166,4 +166,4 @@
 		window.Geo = geo;
 	} );
 
-}( jQuery, mediaWiki ) );
+}() );

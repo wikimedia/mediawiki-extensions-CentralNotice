@@ -1,4 +1,6 @@
-( function ( mw ) {
+( function () {
+	var realIdleCallback = mw.requestIdleCallback;
+
 	QUnit.module( 'ext.centralNotice.kvStore', QUnit.newMwEnvironment( {
 		teardown: function () {
 			var key, i = localStorage.length;
@@ -10,6 +12,7 @@
 					localStorage.removeItem( key );
 				}
 			}
+			mw.requestIdleCallback = realIdleCallback;
 		}
 	} ) );
 
@@ -29,6 +32,20 @@
 		var kvStore = mw.centralNotice.kvStore,
 			context = kvStore.contexts.GLOBAL,
 			done = assert.async();
+		// Mock requestIdleCallback so it always returns 10 seconds left.
+		// Mostly copied from shim in mediawiki core file
+		// resources/src/startup/mediawiki.requestIdleCallback.js
+		mw.requestIdleCallback = function ( callback ) {
+			setTimeout( function () {
+				callback( {
+					didTimeout: false,
+					timeRemaining: function () {
+						// Plenty of time left!
+						return 10000;
+					}
+				} );
+			}, 1 );
+		};
 		kvStore.setItem( 'unittest-New', 'x', context, 1 );
 		kvStore.setItem( 'unittest-Old', 'x', context, -2 );
 		kvStore.setItem( 'unittest-Older', 'x', context, -3 );
@@ -67,4 +84,4 @@
 		} );
 	} );
 
-}( mediaWiki ) );
+}() );

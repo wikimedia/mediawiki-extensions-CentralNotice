@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var realAjax = $.ajax,
@@ -181,7 +181,7 @@
 		// the async DOM-waiting of the latter.
 		mw.centralNotice.reallyInsertBanner( bannerData );
 
-		assert.equal( $( 'div#test_banner' ).length, 1 );
+		assert.strictEqual( $( 'div#test_banner' ).length, 1 );
 	} );
 
 	/**
@@ -200,7 +200,6 @@
 	}
 
 	QUnit.test( 'call record impression', function ( assert ) {
-		assert.expect( 2 );
 
 		// Mock navigator.sendBeacon to capture calls and check data points sent
 		navigator.sendBeacon = function ( urlString ) {
@@ -222,8 +221,6 @@
 		var deferred = $.Deferred(),
 			recordImpresionPromise,
 			signalTestDone = assert.async();
-
-		assert.expect( 3 );
 
 		// Mock navigator.sendBeacon to check record impression doesn't fire early
 		navigator.sendBeacon = function () {
@@ -272,7 +269,6 @@
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
 			signalTestDone = assert.async();
 
-		assert.expect( 4 );
 		setupForRecordImpressionCall();
 
 		// Request a delay and capture the promise that should run right before the
@@ -322,7 +318,6 @@
 			recordImpresionPromise,
 			signalTestDone = assert.async();
 
-		assert.expect( 2 );
 		setupForRecordImpressionCall();
 
 		// Request a delay and capture the promise that should run right before the
@@ -348,7 +343,7 @@
 		// to call record impression has run. By starting this timeout after the record
 		// impression timeout (above) and making it a bit longer, we ensure it runs second.
 		setTimeout( function () {
-			assert.equal(
+			assert.strictEqual(
 				recordImpresionPromise.state(),
 				'resolved',
 				'record impression call was from timeout'
@@ -359,11 +354,10 @@
 			deferred.resolve();
 		}, MAX_RECORD_IMPRESSION_DELAY + 1 );
 
-		setTimeout( signalTestDone, MAX_RECORD_IMPRESSION_DELAY + 2 );
+		setTimeout( function () { signalTestDone(); }, MAX_RECORD_IMPRESSION_DELAY + 2 );
 	} );
 
 	QUnit.test( 'banner= override param', function ( assert ) {
-		assert.expect( 2 );
 		mw.centralNotice.internal.state.urlParams.banner = 'test_banner';
 		$.ajax = function ( params ) {
 			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/ ) );
@@ -375,7 +369,6 @@
 	} );
 
 	QUnit.test( 'randomcampaign= override param', function ( assert ) {
-		assert.expect( 2 );
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 
 		// Get the first campaign
@@ -398,7 +391,6 @@
 	} );
 
 	QUnit.test( 'randombanner= override param', function ( assert ) {
-		assert.expect( 2 );
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 
 		// Get the first banner
@@ -422,7 +414,6 @@
 
 	QUnit.test( 'runs hooks on banner shown', function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
-		assert.expect( 3 );
 
 		$.ajax = function () {
 			mw.centralNotice.reallyInsertBanner( bannerData );
@@ -444,7 +435,7 @@
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
-		assert.equal(
+		assert.strictEqual(
 			mw.centralNotice.data.status,
 			mw.centralNotice.internal.state.STATUSES.BANNER_SHOWN.key
 		);
@@ -452,7 +443,6 @@
 
 	QUnit.test( 'runs hooks on banner canceled', function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
-		assert.expect( 5 );
 
 		mixin.setPreBannerHandler(
 			function ( params ) {
@@ -470,26 +460,31 @@
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
-		assert.equal(
+		assert.strictEqual(
 			mw.centralNotice.data.status,
 			mw.centralNotice.internal.state.STATUSES.BANNER_CANCELED.key
 		);
-		assert.equal( mw.centralNotice.data.bannerCanceledReason, 'testReason' );
+		assert.strictEqual( mw.centralNotice.data.bannerCanceledReason, 'testReason' );
 		assert.ok( mw.centralNotice.internal.state.isBannerCanceled() );
 	} );
 
 	QUnit.test( 'runs hooks on no banner available', function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
-		assert.expect( 3 );
 
 		mixin.setPreBannerHandler(
 			function ( params ) {
-				assert.deepEqual( params, choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin );
+				assert.deepEqual(
+					params,
+					choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin
+				);
 			}
 		);
 		mixin.setPostBannerHandler(
 			function ( params ) {
-				assert.deepEqual( params, choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin );
+				assert.deepEqual(
+					params,
+					choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin
+				);
 			}
 		);
 
@@ -501,10 +496,10 @@
 
 		mw.centralNotice.chooseAndMaybeDisplay();
 
-		assert.equal(
+		assert.strictEqual(
 			mw.centralNotice.data.status,
 			mw.centralNotice.internal.state.STATUSES.NO_BANNER_AVAILABLE.key
 		);
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );

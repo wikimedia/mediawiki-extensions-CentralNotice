@@ -29,13 +29,13 @@
 			"Indiralena",
 			"Rubentl134",
 			"Sophivorus",
-			"Dgstranz"
+			"Dgstranz",
+			"Jelou"
 		]
 	},
 	"centralnotice": "Sistema de administración de avisos centralizados",
 	"noticetemplate": "Sistema de administración de avisos centralizados",
 	"bannerallocation": "Sistema de administración de avisos centralizados",
-	"globalallocation": "Avisos de administración centrales",
 	"centralnoticelogs": "Sistema de administración de avisos centralizados",
 	"right-centralnotice-admin": "Administrar avisos centrales",
 	"action-centralnotice-admin": "administrar avisos centrales",
@@ -158,7 +158,6 @@
 	"apierror-centralnotice-cdn-banner-not-found": "Plantilla no encontrada",
 	"centralnotice-geo": "Geosegmentado",
 	"centralnotice-countries": "Países",
-	"centralnotice-global-allocation": "Asignación global",
 	"centralnotice-allocation": "Asignación",
 	"centralnotice-view-allocation": "Asignación de visualización de pancarta",
 	"centralnotice-allocation-instructions": "Elige el entorno en el que quieres ver la asignación de pancartas:",
@@ -175,7 +174,7 @@
 	"centralnotice-archived": "Archivado",
 	"centralnotice-logs": "Registros",
 	"centralnotice-view-logs": "Ver los registros",
-	"centralnotice-timestamp": "Fecha y hora",
+	"centralnotice-timestamp": "Marca de tiempo",
 	"centralnotice-user": "Usuario",
 	"centralnotice-action": "Acción",
 	"centralnotice-change-summary-heading": "Resumen",

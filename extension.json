@@ -278,7 +278,8 @@
 				"ext.centralNotice.geoIP",
 				"ext.centralNotice.kvStore",
 				"jquery.cookie",
-				"mediawiki.Uri"
+				"mediawiki.Uri",
+				"mediawiki.util"
 			],
 			"targets": [
 				"desktop",
@@ -306,7 +307,9 @@
 			"scripts": "subscribing/ext.centralNotice.bannerHistoryLogger.js",
 			"dependencies": [
 				"ext.centralNotice.kvStore",
-				"ext.centralNotice.display"
+				"ext.centralNotice.display",
+				"mediawiki.user",
+				"mediawiki.util"
 			],
 			"targets": [
 				"desktop",
@@ -317,7 +320,8 @@
 			"scripts": "subscribing/ext.centralNotice.impressionDiet.js",
 			"dependencies": [
 				"ext.centralNotice.kvStore",
-				"ext.centralNotice.display"
+				"ext.centralNotice.display",
+				"mediawiki.util"
 			],
 			"targets": [
 				"desktop",
@@ -328,8 +332,9 @@
 			"scripts": "subscribing/ext.centralNotice.largeBannerLimit.js",
 			"dependencies": [
 				"ext.centralNotice.display",
+				"ext.centralNotice.kvStore",
 				"mediawiki.cookie",
-				"ext.centralNotice.kvStore"
+				"mediawiki.util"
 			],
 			"targets": [
 				"desktop",
@@ -350,7 +355,8 @@
 			"scripts": "subscribing/ext.centralNotice.bannerSequence.js",
 			"dependencies": [
 				"ext.centralNotice.display",
-				"ext.centralNotice.kvStore"
+				"ext.centralNotice.kvStore",
+				"mediawiki.util"
 			],
 			"targets": [
 				"desktop",
@@ -441,17 +447,17 @@
 		"CNReporter": "SpecialCNReporter"
 	},
 	"Hooks": {
-		"LoadExtensionSchemaUpdates": [
-			"CNDatabasePatcher::applyUpdates"
-		],
-		"SkinTemplateNavigation::SpecialPage": [
-			"CentralNotice::addNavigationTabs"
-		],
 		"CanonicalNamespaces": [
 			"CentralNoticeHooks::onCanonicalNamespaces"
 		],
+		"LoadExtensionSchemaUpdates": [
+			"CNDatabasePatcher::applyUpdates"
+		],
 		"ResourceLoaderTestModules": [
 			"CentralNoticeHooks::onResourceLoaderTestModules"
+		],
+		"SkinTemplateNavigation::SpecialPage": [
+			"CentralNotice::addNavigationTabs"
 		],
 		"UserMergeAccountFields": [
 			"CentralNoticeHooks::onUserMergeAccountFields"

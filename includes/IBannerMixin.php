@@ -9,5 +9,5 @@ interface IBannerMixin {
 	 * be taken through the controller is to declare magic words.
 	 * @param MixinController $controller
 	 */
-	function register( MixinController $controller );
+	public function register( MixinController $controller );
 }

@@ -4,6 +4,7 @@
  * @group Fundraising
  * @group Database
  * @group CentralNotice
+ * @covers CentralNotice
  */
 class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 	/**

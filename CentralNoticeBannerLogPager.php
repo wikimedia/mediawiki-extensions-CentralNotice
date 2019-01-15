@@ -3,7 +3,7 @@
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	public $special;
 
-	function __construct( SpecialCentralNoticeLogs $special ) {
+	public function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
 		parent::__construct( $special );
 	}
@@ -12,7 +12,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Sort the log list by timestamp
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'tmplog_timestamp';
 	}
 
@@ -20,7 +20,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Pull log entries from the database
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'template_log' => 'cn_template_log' ],
 			'fields' => '*',
@@ -32,26 +32,26 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		global $wgExtensionAssetsPath;
 		$lang = $this->getLanguage();
 
 		// Create a user object so we can pull the name, user page, etc.
 		$loggedUser = User::newFromId( $row->tmplog_user_id );
 		// Create the user page link
-		$userLink = Linker::linkKnown(
+		$userLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$loggedUser->getUserPage(),
-			htmlspecialchars( $loggedUser->getName() )
+			$loggedUser->getName()
 		);
-		$userTalkLink = Linker::linkKnown(
+		$userTalkLink = $this->special->getLinkRenderer()->makeKnownLink(
 			$loggedUser->getTalkPage(),
-			wfMessage( 'centralnotice-talk-link' )->escaped()
+			$this->msg( 'centralnotice-talk-link' )->text()
 		);
 
 		// Create the banner link
-		$bannerLink = Linker::linkKnown(
+		$bannerLink = $this->special->getLinkRenderer()->makeKnownLink(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$row->tmplog_template_name}" ),
-			htmlspecialchars( $row->tmplog_template_name )
+			$row->tmplog_template_name
 		);
 
 		// Begin log entry primary row
@@ -64,7 +64,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				'collapsed-ltr.png';
 
 			$tmplogId = (int)$row->tmplog_id;
-			$htmlOut .= '<a href="javascript:toggleLogDisplay(\''.$tmplogId.'\')">' .
+			$htmlOut .= '<a href="javascript:toggleLogDisplay(\'' . $tmplogId . '\')">' .
 				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/' . $collapsedImg . '" ' .
 				'id="cn-collapsed-' . $tmplogId . '" ' .
 				'style="display:block;vertical-align:baseline;"/>' .
@@ -86,7 +86,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		// centralnotice-action-created, centralnotice-action-modified,
 		// centralnotice-action-removed
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
-			$this->msg( 'centralnotice-action-'.$row->tmplog_action )->text()
+			$this->msg( 'centralnotice-action-' . $row->tmplog_action )->text()
 		);
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$bannerLink
@@ -111,7 +111,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		if ( $row->tmplog_action !== 'removed' ) {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr',
-				[ 'id' => 'cn-log-details-'.$tmplogId, 'style' => 'display:none;' ] );
+				[ 'id' => 'cn-log-details-' . $tmplogId, 'style' => 'display:none;' ] );
 
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
@@ -131,7 +131,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $htmlOut;
 	}
 
-	function getStartBody() {
+	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -162,11 +162,11 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	 * Close table
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		return Xml::closeElement( 'table' );
 	}
 
-	function showInitialSettings( $row ) {
+	public function showInitialSettings( $row ) {
 		$details = '';
 		$details .= $this->msg(
 			'centralnotice-log-label',
@@ -206,7 +206,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	function showChanges( $newrow ) {
+	public function showChanges( $newrow ) {
 		$oldrow = false;
 		if ( $newrow->tmplog_action === 'modified' ) {
 			$db = CNDatabase::getDb();
@@ -242,7 +242,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	protected function testBooleanBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
-		$endField = 'tmplog_end_'.$param;
+		$endField = 'tmplog_end_' . $param;
 
 		$oldval = ( $oldrow ) ? $oldrow->$endField : 0;
 		if ( $oldval !== $newrow->$endField ) {
@@ -268,7 +268,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 	protected function testTextBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
-		$endField = 'tmplog_end_'.$param;
+		$endField = 'tmplog_end_' . $param;
 
 		$oldval = ( ( $oldrow ) ? $oldrow->$endField : '' ) ?: '';
 		$newval = ( $newrow->$endField ) ?: '';

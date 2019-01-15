@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 20 30">
-	<g fill="#fff">
-		<path d="M5 6h12v1H5z"/>
-		<path d="M5 10h12v1H5z"/>
-		<path d="M5 14h12v1H5z"/>
-		<path d="M5 18h12v1H5z"/>
-		<path d="M5 22h12v1H5z"/>
-	</g>
+	<path fill="#fff" d="M5 6h12v1H5zm0 4h12v1H5zm0 4h12v1H5zm0 4h12v1H5zm0 4h12v1H5z"/>
 </svg>

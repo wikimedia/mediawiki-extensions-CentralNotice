@@ -1,16 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chuvash2014"
+			"Chuvash2014",
+			"Chuvash"
 		]
 	},
 	"centralnotice-enabled": "Хускатнă",
 	"centralnotice-close-title": "Хуп",
+	"apierror-centralnotice-cdn-banner-not-found": "Баннерĕ тупăнмарĕ",
 	"centralnotice-languages": "Чĕлхесем",
 	"centralnotice-language": "Чĕлхе",
 	"centralnotice-projects": "Проектсем",
 	"centralnotice-country": "Çĕршыв",
 	"centralnotice-logs": "Логсем",
 	"centralnotice-user": "Хутшăнакан",
-	"centralnotice-banner-class": "Категори"
+	"centralnotice-filters": "Логсен фильтрĕсем",
+	"centralnotice-banner-class": "Категори",
+	"centralnotice-banner-not-found-title": "Баннерĕ тумăнмарĕ"
 }

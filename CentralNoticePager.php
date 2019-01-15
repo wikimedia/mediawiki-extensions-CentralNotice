@@ -5,7 +5,7 @@ class CentralNoticePager extends TemplatePager {
 	public $editable;
 	public $filter;
 
-	function __construct( $special, $filter = '' ) {
+	public function __construct( $special, $filter = '' ) {
 		parent::__construct( $special, $filter );
 	}
 
@@ -13,7 +13,7 @@ class CentralNoticePager extends TemplatePager {
 	 * Pull banners from the database
 	 * @return array[]
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$dbr = CNDatabase::getDb();
 
 		// First we must construct the filter before we pull banners
@@ -80,7 +80,7 @@ class CentralNoticePager extends TemplatePager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		// Begin banner row
 		$htmlOut = Xml::openElement( 'tr' );
 
@@ -127,7 +127,7 @@ class CentralNoticePager extends TemplatePager {
 	 *
 	 * @return string
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
 		$htmlOut .= Xml::openElement( 'tr' );
@@ -155,11 +155,11 @@ class CentralNoticePager extends TemplatePager {
 	 *
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		return Xml::closeElement( 'table' );
 	}
 
-	function bucketDropDown( $bannerName ) {
+	private function bucketDropDown( $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
 		// class should coordinate with CentralNotice::bucketDropDown()

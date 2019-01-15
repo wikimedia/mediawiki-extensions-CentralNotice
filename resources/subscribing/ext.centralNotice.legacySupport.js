@@ -3,7 +3,7 @@
  * - set a rate for Special:RecordImpression that's different from the default; and
  * - signal that banners are not guaranteed to display.
  */
-( function ( $, mw ) {
+( function () {
 
 	var cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'legacySupport' );
@@ -22,4 +22,4 @@
 	// Register the mixin
 	cn.registerCampaignMixin( mixin );
 
-}( jQuery, mediaWiki ) );
+}() );

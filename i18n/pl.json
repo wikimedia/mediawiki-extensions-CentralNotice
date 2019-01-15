@@ -17,7 +17,9 @@
 			"WTM",
 			"Alan ffm",
 			"Vengir",
-			"Saper"
+			"Saper",
+			"Railfail536",
+			"CiaPan"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -101,7 +103,7 @@
 	"centralnotice-number-uses": "Zastosowania",
 	"centralnotice-settings": "Ustawienia",
 	"centralnotice-edit-template": "Edycja szablonu",
-	"centralnotice-edit-template-summary": "Lokalizowalny komunikat należy tworzyć poprzez zapisanie ciągu znaków rozdzielanych znakiem odejmowania w trzech nawiasach klamrowych, np {{{cytat-jimbo}}}.",
+	"centralnotice-edit-template-summary": "Ostrzeżenie: Ładowanie zasobów zewnętrznych do banera może zagrozić prywatności użytkownika.\n\nAby utworzyć lokalizowalny komunikat, umieść jego nazwę w potrójnych nawiasach klamrowych, np. <nowiki>{{{nazwa_komunikatu}}}</nowiki>. Aby użyć lokalizowalnego komunikatu z innego banera, umieść nazwę bannera przed nazwą komunikatu i oddziel je przecinkiem, np. <nowiki>{{{nazwa_bannera,nazwa_komunikatu}}}</nowiki>.",
 	"centralnotice-message": "Wiadomość",
 	"centralnotice-message-not-set": "Wiadomość nie jest ustawiona",
 	"centralnotice-campaigns-using-banner": "Kampanie wykorzystujące ten baner",
@@ -123,12 +125,12 @@
 	"centralnotice-banner-hidable": "Statyczny czy ukrywalny",
 	"centralnotice-banner-collapsible": "Zwijalny",
 	"centralnotice-banner-fundraising": "Baner zbiórki pieniędzy",
+	"centralnotice-banner-display-on": "Wyświetlaj na",
 	"centralnotice-banner-cdn-button": "Wyczyść",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"apierror-centralnotice-cdn-banner-not-found": "Nie znaleziono banera",
 	"centralnotice-geo": "Geograficznie nakierowane",
 	"centralnotice-countries": "Kraje",
-	"centralnotice-global-allocation": "Alokacja globalna",
 	"centralnotice-allocation": "Przydział",
 	"centralnotice-view-allocation": "Zobacz przydziały dla banera",
 	"centralnotice-allocation-instructions": "Określ środowisko, w którym chcesz zobaczyć baner",
@@ -221,8 +223,12 @@
 	"centralnotice-banner-not-found-title": "Nie znaleziono banera",
 	"hidebanners": "Ukryj banery",
 	"apihelp-query+centralnoticelogs-param-user": "Nazwa użytkownika (opcjonalne).",
+	"apihelp-query+centralnoticelogs-example-1": "Pokaż rejestry",
 	"centralnotice-banner-history-logger-help": "Śledź kolejność banerów oglądanych przez czytelników i od czasu do czasu wysyłaj ją z powrotem do serwera.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Jak długo należy odczekać przed ponownym uruchomieniem cyklu, w sekundach (opcjonalnie)",
+	"centralnotice-banner-sequence-bucket-add-step": "Dodaj krok",
 	"centralnotice-banner-sequence-banner": "Baner",
+	"centralnotice-banner-sequence-page-views": "Wyświetlenia strony",
+	"centralnotice-banner-sequence-skip-with-id-error": "Identyfikator nie może zawierać „|”.",
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)"
 }

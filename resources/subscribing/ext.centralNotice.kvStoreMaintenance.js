@@ -5,7 +5,7 @@
  *
  * This module provides an API at mw.centralNotice.kvStoreMaintenance.
  */
-( function ( $, mw ) {
+( function () {
 	var	cn,
 		now = new Date().getTime() / 1000,
 
@@ -86,7 +86,7 @@
 	function purgeFallbackCookies() {
 		var cookies = document.cookie.split( ';' ),
 			i, matches,
-			r = new RegExp( '^' + PREFIX_AND_SEPARATOR_IN_COOKIES + '[^=]*(?=\=)' );
+			r = new RegExp( '^' + PREFIX_AND_SEPARATOR_IN_COOKIES + '[^=]*(?==)' );
 
 		for ( i = 0; i < cookies.length; i++ ) {
 			matches = cookies[ i ].trim().match( r );
@@ -129,4 +129,4 @@
 		}
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

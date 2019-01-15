@@ -4,6 +4,7 @@
  * @group CentralNotice
  * @group medium
  * @group Database
+ * @covers AllocationCalculator
  */
 class AllocationCalculatorTest extends MediaWikiTestCase {
 	/** @var CentralNoticeTestFixtures */

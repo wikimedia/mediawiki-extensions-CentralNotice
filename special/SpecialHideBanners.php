@@ -10,11 +10,11 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	const CACHE_EXPIRY = 86400;
 	const P3P_SUBPAGE = 'P3P';
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'HideBanners' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		global $wgNoticeCookieDurations, $wgCentralNoticeHideBannersP3P,
 			$wgCentralNoticeFallbackHideCookieDuration;
 
@@ -63,7 +63,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	 * @param int $duration
 	 * @param string $reason
 	 */
-	function setHideCookie( $category, $duration, $reason ) {
+	private function setHideCookie( $category, $duration, $reason ) {
 		global $wgNoticeCookieDomain;
 
 		$created = time();

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var testFixtures = mw.centralNoticeTestFixtures,
@@ -231,7 +231,7 @@
 			case 'logged_in':
 				return false;
 			default:
-				throw 'Non-existent logged-in status.';
+				throw new Error( 'Non-existent logged-in status.' );
 		}
 	}
-}( mediaWiki, jQuery ) );
+}() );

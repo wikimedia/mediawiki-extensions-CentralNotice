@@ -22,6 +22,7 @@ class ChoiceDataProviderTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
+	 * @covers ChoiceDataProvider::getChoices
 	 */
 	public function testProviderResponse( $name, $testCase ) {
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );

@@ -1,4 +1,3 @@
-/* eslint indent: 0 */
 /**
  * Custom UI for banner sequence campaign mixin administration.
  *
@@ -75,7 +74,7 @@
 // as what we're submitting? Given the complexity of this code, it's not inconceivable
 // that a bug could cause different data to display than what be submitted.
 
-( function ( $, mw ) {
+( function () {
 
 	var BannerSequenceUiController, BannerSequenceUiModel,
 		BannerSequenceWidget, BucketSeqContainerWidget, BucketSeqWidget,
@@ -185,7 +184,7 @@
 		this.setSequencesInputParam();
 	};
 
-	BannerSequenceUiController.prototype.onAssignedBannersChange = function() {
+	BannerSequenceUiController.prototype.onAssignedBannersChange = function () {
 		this.verifyAndFixBanners();
 		this.setSequencesInputParam();
 	};
@@ -270,14 +269,13 @@
 	 */
 	BannerSequenceUiController.prototype.setErrorState =
 		function ( errorStateKey, state ) {
-
-		// Broadcast an event to the rest of the UI
-		campaignManager.eventBus.emit(
-			'error-state',
-			'banner-sequence-' + errorStateKey,
-			state
-		);
-	};
+			// Broadcast an event to the rest of the UI
+			campaignManager.eventBus.emit(
+				'error-state',
+				'banner-sequence-' + errorStateKey,
+				state
+			);
+		};
 
 	/**
 	 * Move a step to a new location, within the sequence of the bucket indicated.
@@ -291,37 +289,34 @@
 	 */
 	BannerSequenceUiController.prototype.moveStepNoWidgetUpdate =
 		function ( bucket, newStepNum, oldStepNum ) {
-
-		this.model.moveStep( bucket, newStepNum, oldStepNum );
-		this.setSequencesInputParam();
-	};
+			this.model.moveStep( bucket, newStepNum, oldStepNum );
+			this.setSequencesInputParam();
+		};
 
 	BannerSequenceUiController.prototype.setBanner =
 		function ( bucket, stepNum, banner, stepWidget ) {
-
-		this.model.setBanner( bucket, stepNum, banner );
-		this.setSequencesInputParam();
-		stepWidget.model = this.model.getBktSequences()[ bucket ][ stepNum ];
-		stepWidget.updateFromModel();
-	};
+			this.model.setBanner( bucket, stepNum, banner );
+			this.setSequencesInputParam();
+			stepWidget.model = this.model.getBktSequences()[ bucket ][ stepNum ];
+			stepWidget.updateFromModel();
+		};
 
 	BannerSequenceUiController.prototype.setNumPageViews =
 		function ( bucket, stepNum, numPageViews, stepWidget ) {
-
-		this.model.setNumPageViews( bucket, stepNum, numPageViews );
-		this.setSequencesInputParam();
-		stepWidget.model = this.model.getBktSequences()[ bucket ][ stepNum ];
-		stepWidget.updateFromModel();
-		this.widget.updateTotalPageViewsForBucket( bucket );
-	};
+			this.model.setNumPageViews( bucket, stepNum, numPageViews );
+			this.setSequencesInputParam();
+			stepWidget.model = this.model.getBktSequences()[ bucket ][ stepNum ];
+			stepWidget.updateFromModel();
+			this.widget.updateTotalPageViewsForBucket( bucket );
+		};
 
 	BannerSequenceUiController.prototype.setSkipWithIdentifier =
 		function ( bucket, stepNum, skipWithIdentifier, stepWidget ) {
-		this.model.setSkipWithIdentifier( bucket, stepNum, skipWithIdentifier );
-		this.setSequencesInputParam();
-		stepWidget.model = this.model.getBktSequences()[ bucket ][ stepNum ];
-		stepWidget.updateFromModel();
-	};
+			this.model.setSkipWithIdentifier( bucket, stepNum, skipWithIdentifier );
+			this.setSequencesInputParam();
+			stepWidget.model = this.model.getBktSequences()[ bucket ][ stepNum ];
+			stepWidget.updateFromModel();
+		};
 
 	BannerSequenceUiController.prototype.setDays = function ( days ) {
 		this.model.setDays( days );
@@ -330,11 +325,10 @@
 
 	BannerSequenceUiController.prototype.validateSkipWithIdentifier =
 		function ( identifier ) {
+			return this.model.validateSkipWithIdentifier( identifier );
+		};
 
-		return this.model.validateSkipWithIdentifier( identifier );
-	};
-
-	BannerSequenceUiController.prototype.canAddAStep = function( bucket ) {
+	BannerSequenceUiController.prototype.canAddAStep = function ( bucket ) {
 		return this.model.canAddAStep( bucket );
 	};
 
@@ -481,15 +475,13 @@
 
 	BannerSequenceUiModel.prototype.setNumPageViews =
 		function ( bucket, stepNum, numPageViews ) {
-
-		this.bucketSequences[ bucket ][ stepNum ].numPageViews = numPageViews;
-	};
+			this.bucketSequences[ bucket ][ stepNum ].numPageViews = numPageViews;
+		};
 
 	BannerSequenceUiModel.prototype.setSkipWithIdentifier =
 		function ( bucket, stepNum, skipWithIdentifier ) {
-
-		this.bucketSequences[ bucket ][ stepNum ].skipWithIdentifier = skipWithIdentifier;
-	};
+			this.bucketSequences[ bucket ][ stepNum ].skipWithIdentifier = skipWithIdentifier;
+		};
 
 	BannerSequenceUiModel.prototype.removeStep = function ( bucket, stepNum ) {
 		this.bucketSequences[ bucket ].splice( stepNum, 1 );
@@ -506,21 +498,19 @@
 	 */
 	BannerSequenceUiModel.prototype.moveStep =
 		function ( bucket, newStepNum, oldStepNum ) {
+			var step = this.bucketSequences[ bucket ][ oldStepNum ];
 
-		var step = this.bucketSequences[ bucket ][ oldStepNum ];
+			newStepNum = ( newStepNum > oldStepNum ) ? newStepNum - 1 : newStepNum;
 
-		newStepNum = ( newStepNum > oldStepNum ) ? newStepNum - 1 : newStepNum;
-
-		this.bucketSequences[ bucket ].splice( oldStepNum, 1 );
-		this.bucketSequences[ bucket ].splice( newStepNum, 0, step );
-	};
+			this.bucketSequences[ bucket ].splice( oldStepNum, 1 );
+			this.bucketSequences[ bucket ].splice( newStepNum, 0, step );
+		};
 
 	/**
 	 * Get an array of sequences for all currently active buckets.
 	 * @returns {Object[]}
 	 */
 	BannerSequenceUiModel.prototype.getBktSequences = function () {
-
 		// Sliced in case it has data on buckets that have been de-activated
 		return this.bucketSequences.slice( 0, this.numBuckets );
 	};
@@ -636,6 +626,7 @@
 	 * @returns {boolean}
 	 */
 	BannerSequenceUiModel.prototype.validateStep = function ( step ) {
+		var hasOwn = Object.prototype.hasOwnProperty;
 
 		// Check the step object
 		if ( ( step === null ) || ( typeof step !== 'object' ) ) {
@@ -644,17 +635,17 @@
 
 		// Check that the properties exist and validate their values
 
-		if ( !step.hasOwnProperty( 'banner' ) || !this.validateBanner( step.banner ) ) {
+		if ( !hasOwn.call( step, 'banner' ) || !this.validateBanner( step.banner ) ) {
 			return false;
 		}
 
-		if ( !step.hasOwnProperty( 'numPageViews' ) ||
+		if ( !hasOwn.call( step, 'numPageViews' ) ||
 				!this.validateNumPageViews( step.numPageViews ) ) {
 
 			return false;
 		}
 
-		if ( !step.hasOwnProperty( 'skipWithIdentifier' ) ||
+		if ( !hasOwn.call( step, 'skipWithIdentifier' ) ||
 			!this.validateSkipWithIdentifier( step.skipWithIdentifier ) ) {
 
 			return false;
@@ -689,7 +680,6 @@
 	 * @private
 	 */
 	BannerSequenceUiModel.prototype.validateIntOneOrGreater = function ( n ) {
-
 		return typeof n === 'number' &&
 			isFinite( n ) &&
 			Math.floor( n ) === n &&
@@ -764,22 +754,22 @@
 
 		// Prepend help text and days input so they come before $group, in reverse order
 		this.$element.prepend(
-			$( '<div/>' )
-			.addClass( 'htmlform-help' )
-			.text( mw.message( 'centralnotice-banner-sequence-days-help' ).text() )
+			$( '<div>' )
+				.addClass( 'htmlform-help' )
+				.text( mw.message( 'centralnotice-banner-sequence-days-help' ).text() )
 		);
 
 		this.$element.prepend( this.daysLayout.$element );
 
 		// Append help text for sequences, so it comes after $group
 		this.$element.append(
-			$( '<div/>' )
-			.addClass( 'centralNoticeBannerSeqHelpContainer' )
-			.append(
-				$( '<div/>' )
-				.addClass( 'htmlform-help' )
-				.text( mw.message( 'centralnotice-banner-sequence-detailed-help' ).text() )
-			)
+			$( '<div>' )
+				.addClass( 'centralNoticeBannerSeqHelpContainer' )
+				.append(
+					$( '<div>' )
+						.addClass( 'htmlform-help' )
+						.text( mw.message( 'centralnotice-banner-sequence-detailed-help' ).text() )
+				)
 		);
 
 		// Create widgets and set values based on data from the model
@@ -952,7 +942,7 @@
 
 		// Heading text
 		this.$heading = $( '<div />' )
-		.addClass( 'centralNoticeBannerSeqBucketSeqTitle' );
+			.addClass( 'centralNoticeBannerSeqBucketSeqTitle' );
 
 		// Add stuff to config before calling parent constructor
 		config = $.extend( {}, config, {
@@ -1109,7 +1099,7 @@
 	/**
 	 * Update banners shown in drop-down input menus.
 	 */
-	BucketSeqContainerWidget.prototype.updateBannersForDropDowns = function( banners ) {
+	BucketSeqContainerWidget.prototype.updateBannersForDropDowns = function ( banners ) {
 		var i,
 			stepWidgets = this.bucketSeqWidget.getItems();
 
@@ -1398,7 +1388,7 @@
 	/**
 	 * Update input values with data from the model.
 	 */
-	StepWidget.prototype.updateFromModel = function() {
+	StepWidget.prototype.updateFromModel = function () {
 
 		this.updating = true;
 
@@ -1490,7 +1480,7 @@
 	/**
 	 * @private
 	 */
-	StepWidget.prototype.makeDropMenuItems = function( banners ) {
+	StepWidget.prototype.makeDropMenuItems = function ( banners ) {
 		var i,
 			dropDownMenuItems = [];
 
@@ -1542,4 +1532,4 @@
 	// Register controller class with factory
 	campaignManager.mixinCustomUiControllerFactory.register( BannerSequenceUiController );
 
-}( jQuery, mediaWiki ) );
+}() );

@@ -22,7 +22,7 @@
  * { WikiConference_USA: { start: 1439942400, end: 1443672000, val: 2 } }
  *
  */
-( function ( $, mw ) {
+( function () {
 
 	var bucketer,
 
@@ -38,7 +38,7 @@
 		multiStorageOption,
 
 		// Name of the legacy cookie for CentralNotice buckets. Its value is
-		// a compact serialization of buckets in the the same format as is
+		// a compact serialization of buckets in the same format as is
 		// currently used here.
 		LEGACY_COOKIE = 'CN',
 
@@ -327,4 +327,4 @@
 			storeBuckets();
 		}
 	};
-}( jQuery, mediaWiki ) );
+}() );

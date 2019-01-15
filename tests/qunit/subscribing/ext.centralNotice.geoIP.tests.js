@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var
@@ -27,7 +27,6 @@
 	} ) );
 
 	QUnit.test( 'parse geo from valid cookie', function ( assert ) {
-		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, GOOD_COOKIE, { path: '/' } );
 
 		mw.geoIP.makeGeoWithPromise();
@@ -40,7 +39,6 @@
 	} );
 
 	QUnit.test( 'cookie invalid', function ( assert ) {
-		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, BAD_COOKIE, { path: '/' } );
 
 		// Make sure that we don't fall back
@@ -55,7 +53,6 @@
 	} );
 
 	QUnit.test( 'cookie valid but unknown location', function ( assert ) {
-		assert.expect( 1 );
 		$.cookie( COOKIE_NAME, UNKNOWN_COOKIE, { path: '/' } );
 
 		// Make sure that we don't fall back
@@ -69,4 +66,4 @@
 		} );
 	} );
 
-}( mediaWiki, jQuery ) );
+}() );
