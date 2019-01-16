@@ -55,11 +55,6 @@ h2.cn-special-section {
 	margin-left: 0.25em;
 }
 
-#preferences fieldset.prefsection fieldset.cn-bannerpreview {
-	border: 1px solid;
-	margin-top: 0;
-}
-
 #preferences div#fundraisingInterface {
 	margin-left: 1.6em;
 	margin-right: 1.6em;
@@ -155,10 +150,6 @@ body.skin-vector #preferences fieldset.prefsection {
 	border-color: #c8ccd1;
 }
 
-body.skin-vector #preferences fieldset.prefsection fieldset.cn-bannerpreview {
-	border-color: #c8ccd1;
-}
-
 /* Monobook-specific definitions */
 body.skin-monobook #preferences fieldset.prefsection {
 	border-color: #a2a9b1;
@@ -182,16 +173,6 @@ form .error {
 	margin-bottom: 0.5em;
 	font-weight: bold;
 	text-align: center;
-}
-
-#cn-formsection-preview {
-	border: 0;
-	margin: 0;
-	padding: 0;
-}
-
-#cn-formsection-preview legend {
-	display: none;
 }
 
 div.separate-form-element {
@@ -232,7 +213,7 @@ label[ for='mw-input-wpsummary' ],
 	margin-bottom: 0.6em;
 }
 
-/* --- Banner preview list --- */
+/* --- Banner list --- */
 #mw-htmlform-banner-list {
 	margin-left: 0.9em;
 }

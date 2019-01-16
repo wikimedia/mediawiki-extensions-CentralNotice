@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Produce HTML and JSON output for a given banner and context
  */
@@ -84,37 +86,25 @@ class BannerRenderer {
 	}
 
 	/**
-	 * Render the banner as an html fieldset
+	 * Return a rendered link to the Special:Random banner preview.
 	 *
-	 * @return string HTML fragment
+	 * @return string HTML anchor tag
 	 */
-	public function previewFieldSet() {
-		global $wgNoticeBannerPreview;
+	public function getPreviewLink() {
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
-		if ( !$wgNoticeBannerPreview ) {
-			return '';
-		}
+		// FIXME: Need a reusable way to get a known target language.  We want
+		// to set uselang= so that the banner is rendered using an available
+		// translation.  banner->getPriorityLanguages isn't reliable.
 
-		$bannerName = $this->banner->getName();
-		$lang = $this->context->getLanguage()->getCode();
-
-		$previewUrl = $wgNoticeBannerPreview . "{$bannerName}/{$bannerName}_{$lang}.png";
-		$preview = Html::element(
-			'img',
+		return $linkRenderer->makeKnownLink(
+			SpecialPage::getTitleFor( 'Randompage' ),
+			$this->context->msg( 'centralnotice-live-preview' )->text(),
+			[ 'class' => 'cn-banner-list-element-label-text' ],
 			[
-				'src' => $previewUrl,
-				'alt' => $bannerName,
-			]
-		);
-
-		$label = $this->context->msg( 'centralnotice-preview', $lang )->text();
-
-		return Xml::fieldset(
-			$label,
-			$preview,
-			[
-				'class' => 'cn-bannerpreview',
-				'id' => Sanitizer::escapeId( "cn-banner-preview-{$this->banner->getName()}" ),
+				'banner' => $this->banner->getName(),
+				// TODO: 'uselang' => $language,
+				'force' => '1',
 			]
 		);
 	}

@@ -48,15 +48,6 @@
 		location.href = url.extend( { log: logType } ).toString();
 	};
 
-	// FIXME Unused? See T161907
-	window.addEventListener( 'message', receiveMessage, false );
-	function receiveMessage( event ) {
-		var remoteData = JSON.parse( event.data );
-		if ( remoteData.banner && remoteData.height ) {
-			$( '#cn-banner-preview-' + remoteData.banner + ' iframe' ).height( remoteData.height );
-		}
-	}
-
 	$( function () {
 		// Render jquery.ui.datepicker on appropriate fields
 		$( '.centralnotice-datepicker' ).each( function () {

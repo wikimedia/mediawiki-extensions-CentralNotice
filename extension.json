@@ -84,7 +84,6 @@
 		"EmptyBannerException": "special/EmptyBannerException.php",
 		"GeoTarget": "includes/GeoTarget.php",
 		"HTMLBannerPagerNavigation": "includes/HTMLBannerPagerNavigation.php",
-		"HTMLCentralNoticeBanner": "includes/HtmlFormElements/HTMLCentralNoticeBanner.php",
 		"HTMLCentralNoticeBannerMessage": "includes/HtmlFormElements/HTMLCentralNoticeBannerMessage.php",
 		"HTMLLargeMultiSelectField": "special/HTMLLargeMultiSelectField.php",
 		"IBannerMixin": "includes/IBannerMixin.php",
@@ -501,7 +500,6 @@
 		"CentralSelectedBannerDispatcher": false,
 		"CentralMobileSelectedBannerDispatcher": false,
 		"CentralNoticeLoader": true,
-		"NoticeBannerPreview": false,
 		"NoticeCookieDomain": "",
 		"NoticeCookieDurations": {
 			"close": 1209600,
