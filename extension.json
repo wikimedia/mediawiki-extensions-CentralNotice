@@ -387,9 +387,6 @@
 		"NoticeUseLanguageConversion": {
 			"value": false
 		},
-		"NoticeProtectGroup": {
-			"value": false
-		},
 		"NoticeTranslateDeployStates": {
 			"value": [
 				"published"
