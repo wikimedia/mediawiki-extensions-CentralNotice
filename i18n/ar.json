@@ -28,6 +28,8 @@
 	"bannerallocation": "إداري الإخطار المركزي",
 	"centralnoticelogs": "إداري الإخطار المركزي",
 	"right-centralnotice-admin": "أدر الإخطارات المركزية",
+	"protect-level-centralnotice-admin": "اسمح لإداريي الإشعارات المركزية فقط",
+	"restriction-level-centralnotice-admin": "إداري الإشعار المركزي",
 	"action-centralnotice-admin": "التحكم بالإعلانات المركزية",
 	"centralnotice-desc": "يضيف إعلانا مركزيا للموقع",
 	"centralnotice-summary": "هذه الوحدة تسمح لك بتعديل إعدادات الإخطار المركزي الحالية.\nيمكن أن تستخدم أيضا لإضافة أو إزالة إخطارات قديمة.",
@@ -348,5 +350,6 @@
 	"centralnotice-banner-sequence-detailed-help": "يتم ضبط التسلسلات بشكل منفصل لكل مجموعة، لأية خطوة، لا تتوفر سوى لافتات مخصصة لدلو التسلسل، لإظهار خطوة دائما; اترك الحقل \"تخطٍ مع المعرف\" فارغا، إذا تم تعيين معرف، فبمجرد الانتهاء من الخطوة، سيتم تخزين علامة في متصفح المستخدم باستخدام ذلك المعرف، وفي المرة التالية التي يصل فيها المستخدم إلى خطوة بنفس المعرف، سيتم تخطيها، تتطابق المعرفات التي تم الحصول عليها من المزج \"Large banner limit and switch\" وستُؤخَذ بعين الاعتبار أيضًا، بمجرد انتهاء التسلسل، يبدأ مرة أخرى من البداية. (لمنع التسلسل من التكرار; استخدم mix \"Impression diet\" للحد من عدد مرات الظهور.)",
 	"centralnotice-impression-events-sample-rate": "معدل عينة أحداث الانطباع",
 	"centralnotice-impression-events-sample-rate-help": "تعيين معدل عينة غير افتراضي لتسجيل أحداث الانطباع.",
-	"centralnotice-impression-events-sample-rate-field": "معدل عينة أحداث الظهور (يجب أن يتراوح بين 0 و1، شاملاً)"
+	"centralnotice-impression-events-sample-rate-field": "معدل عينة أحداث الظهور (يجب أن يتراوح بين 0 و1، شاملاً)",
+	"centralnotice-banner-protection-log-reason": "محمية تلقائيا من قبل الإشعار المركزي; التحرير فقط عبر [[Special:CentralNotice]] أو [[Special:Translate]]."
 }

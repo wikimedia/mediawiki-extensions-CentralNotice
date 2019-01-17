@@ -11,6 +11,7 @@
 	"bannerallocation": "Administratioun vun den zentrale Matdeelungen",
 	"centralnoticelogs": "Gestioun vun den zentrale Matdeelungen",
 	"right-centralnotice-admin": "Zentralmatdeelunge geréieren",
+	"protect-level-centralnotice-admin": "Nëmme fir 'central notice' Administrateuren",
 	"action-centralnotice-admin": "Zentralmatdeelungen ze geréieren",
 	"centralnotice-desc": "Setzt eng zentral Matdeelung iwwer de Site dobäi",
 	"centralnotice-summary": "Dës Erweiderung erlaabt et Är aktuell Parameter vun den zentrale Matdeelungen z'änneren.\nSe kann och benotzt gi fir Matdeelunge dobäizesetzen oder aler ewechzehuelen.",

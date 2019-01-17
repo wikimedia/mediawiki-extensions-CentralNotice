@@ -33,6 +33,8 @@
 	"bannerallocation": "Administration des avis centraux",
 	"centralnoticelogs": "Administrateur des avis centraux",
 	"right-centralnotice-admin": "Gérer les avis centraux",
+	"protect-level-centralnotice-admin": "Autoriser seulement les administrateurs d’annonce centrale",
+	"restriction-level-centralnotice-admin": "protégé par un administrateur d’annonce centrale",
 	"action-centralnotice-admin": "gérer les avis centraux",
 	"centralnotice-desc": "Ajoute un avis central du site",
 	"centralnotice-summary": "Ce module vous permet de modifier vos paramètres d’avis centraux.\nIl peut aussi être utilisé pour ajouter des avis ou en enlever les plus anciens.",
@@ -355,5 +357,6 @@
 	"centralnotice-banner-sequence-detailed-help": "Les séquences sont initialisées séparément pour chaque série. Pour chaque étape, uniquement les bannières assignées à des numéros de séquence de série sont disponibles. Afin de toujours afficher une étape, laisser à vide le champ « Sauter avec un identifiant ». Si un identifiant est fourni, alors une fois l'étape terminée, un indicateur lié à cet identifiant sera sauvegardé dans le navigateur de l'utilisateur et la prochaine fois que l'utilisateur atteindra une étape avec le même identifiant, elle sera sautée. Les identifiants du mixin « limite de bannière et commutateur élargis » sont compatibles et seront aussi pris en compte. Une fois qu'une séquence est terminée, elle reprend depuis le début. (Pour empêcher une séquence de boucler, utiliser le mixin « Impression régime » pour limiter les impressions.)",
 	"centralnotice-impression-events-sample-rate": "Taux des échantillons des événements d'impression",
 	"centralnotice-impression-events-sample-rate-help": "Définir un taux d'échantillonnage dédié pour enregistrer les événements d'impression dans le journal.",
-	"centralnotice-impression-events-sample-rate-field": "Taux d'échantillonnage des événements d'impression (doit être entre 0 et 1 bornes incluses)"
+	"centralnotice-impression-events-sample-rate-field": "Taux d'échantillonnage des événements d'impression (doit être entre 0 et 1 bornes incluses)",
+	"centralnotice-banner-protection-log-reason": "Protégé automatiquement par CentralNotice; modifiable seulement par [[Special:CentralNotice]] ou [[Special:Translate]]."
 }

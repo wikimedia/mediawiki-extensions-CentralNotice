@@ -23,6 +23,8 @@
 	"bannerallocation": "Administraton av centralmeddelande",
 	"centralnoticelogs": "Administration av centralmeddelande",
 	"right-centralnotice-admin": "Hantera centralmeddelanden",
+	"protect-level-centralnotice-admin": "Tillåt endast CentralNotice-administratörer",
+	"restriction-level-centralnotice-admin": "endast CentralNotice-administratörer",
 	"action-centralnotice-admin": "hantera centralmeddelanden",
 	"centralnotice-desc": "Lägger till en central sitenotice",
 	"centralnotice-summary": "Denna modul låter dig redigera din nuvarande uppsättning centralmeddelanden.\nDen kan också användas för att lägga till eller ta bort gamla meddelanden.",

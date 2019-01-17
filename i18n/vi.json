@@ -6,7 +6,8 @@
 			"Vinhtantran",
 			"පසිඳු කාවින්ද",
 			"Trần Nguyễn Minh Huy",
-			"Max20091"
+			"Max20091",
+			"Leduyquang753"
 		]
 	},
 	"centralnotice": "Quản lý các thông báo trung ương",
@@ -14,6 +15,7 @@
 	"bannerallocation": "Quản lý các thông báo trung ương",
 	"centralnoticelogs": "Nhật trình thông báo trung ương",
 	"right-centralnotice-admin": "Quản lý thông báo chung",
+	"protect-level-centralnotice-admin": "Chỉ cho phép các quản trị viên thông báo trung tâm",
 	"action-centralnotice-admin": "quản lý thông báo chung",
 	"centralnotice-desc": "Thêm thông báo ở đầu các trang tại hơn một wiki",
 	"centralnotice-summary": "Dùng phần này, bạn có thể sửa đổi các thông báo chung đã được thiết lập, cũng như thêm thông báo mới hoặc dời thông báo cũ.",

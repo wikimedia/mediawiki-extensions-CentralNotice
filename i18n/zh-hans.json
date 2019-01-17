@@ -28,7 +28,8 @@
 			"阿pp",
 			"Duolaimi",
 			"Antonio",
-			"Wmr"
+			"Wmr",
+			"A Chinese Wikipedian"
 		]
 	},
 	"centralnotice": "中心通告管理",
@@ -36,6 +37,8 @@
 	"bannerallocation": "中心通告管理",
 	"centralnoticelogs": "中心通告管理",
 	"right-centralnotice-admin": "管理中心通告",
+	"protect-level-centralnotice-admin": "只允许中央通知管理员",
+	"restriction-level-centralnotice-admin": "中央通知管理员保护",
 	"action-centralnotice-admin": "管理中心通告",
 	"centralnotice-desc": "在页面的顶部增加統一的公告栏位",
 	"centralnotice-summary": "该模块允许您编辑您当前设置的中心通告。它也可以用于添加或移除旧的通告。",

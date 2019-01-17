@@ -13,7 +13,8 @@
 			"Gazimagomedov",
 			"StanProg",
 			"Vodnokon4e",
-			"ShockD"
+			"ShockD",
+			"Vlad5250"
 		]
 	},
 	"centralnotice": "Администратор на централизираните съобщения",
@@ -21,6 +22,8 @@
 	"bannerallocation": "Администратор на централизираните съобщения",
 	"centralnoticelogs": "Администратор на централизираните съобщения",
 	"right-centralnotice-admin": "Управление на централизираните съобщения",
+	"protect-level-centralnotice-admin": "Разрешено само за администратори на централизираните съобщения",
+	"restriction-level-centralnotice-admin": "защитено от администратор на централизираните съобщения",
 	"action-centralnotice-admin": "управление на централизираните съобщения",
 	"centralnotice-desc": "Добавя главнa сайтова бележка",
 	"centralnotice-summary": "Този интерфейс позволява да редактирате текущо съществуващите централизирани съобщения.\nТой може да се използва и за прибавяне на нови и премахване на стари съобщения.",
@@ -180,5 +183,6 @@
 	"hidebanners": "Скриване на банерите",
 	"centralnotice-banner-sequence-bucket-add-step": "Добавяне на стъпка",
 	"centralnotice-banner-sequence-banner": "Банер",
-	"centralnotice-banner-sequence-page-views": "Прегледи на страницата"
+	"centralnotice-banner-sequence-page-views": "Прегледи на страницата",
+	"centralnotice-banner-protection-log-reason": "Автоматично защитено от Централно известие; се редактира само чрез [[Special:CentralNotice]] или [[Special:Translate]]."
 }
