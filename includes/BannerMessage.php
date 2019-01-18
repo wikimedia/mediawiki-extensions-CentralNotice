@@ -158,7 +158,9 @@ class BannerMessage {
 			$wikiPage = new WikiPage( $title );
 
 			$content = ContentHandler::makeContent( $text, $title );
-			$wikiPage->doEditContent( $content, $summary, EDIT_FORCE_BOT );
+			$tags = [ 'centralnotice' ];
+			$wikiPage->doEditContent(
+				$content, $summary, EDIT_FORCE_BOT, false, null, null, $tags );
 
 			return $wikiPage;
 		};

@@ -822,8 +822,9 @@ class Banner {
 
 			$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
 
-			$pageResult =
-				$wikiPage->doEditContent( $contentObj, $summary, EDIT_FORCE_BOT );
+			$tags = [ 'centralnotice' ];
+			$pageResult = $wikiPage->doEditContent(
+				$contentObj, $summary, EDIT_FORCE_BOT, false, null, null, $tags );
 
 			self::protectBannerContent( $wikiPage, $user );
 

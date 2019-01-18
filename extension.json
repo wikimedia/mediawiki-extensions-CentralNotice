@@ -450,6 +450,12 @@
 		"CanonicalNamespaces": [
 			"CentralNoticeHooks::onCanonicalNamespaces"
 		],
+		"ChangeTagsListActive": [
+			"CentralNoticeHooks::onListDefinedTags"
+		],
+		"ListDefinedTags": [
+			"CentralNoticeHooks::onListDefinedTags"
+		],
 		"LoadExtensionSchemaUpdates": [
 			"CNDatabasePatcher::applyUpdates"
 		],

@@ -443,4 +443,14 @@ class CentralNoticeHooks {
 
 		return true;
 	}
+
+	/**
+	 * Add tags defined by this extension to list of defined and active tags.
+	 *
+	 * @param array &$tags List of defined or active tags
+	 */
+	public static function onListDefinedTags( &$tags ) {
+		$tags[] = 'centralnotice';
+		$tags[] = 'centralnotice translation';
+	}
 }
