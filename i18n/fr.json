@@ -358,5 +358,9 @@
 	"centralnotice-impression-events-sample-rate": "Taux des échantillons des événements d'impression",
 	"centralnotice-impression-events-sample-rate-help": "Définir un taux d'échantillonnage dédié pour enregistrer les événements d'impression dans le journal.",
 	"centralnotice-impression-events-sample-rate-field": "Taux d'échantillonnage des événements d'impression (doit être entre 0 et 1 bornes incluses)",
-	"centralnotice-banner-protection-log-reason": "Protégé automatiquement par CentralNotice; modifiable seulement par [[Special:CentralNotice]] ou [[Special:Translate]]."
+	"centralnotice-banner-protection-log-reason": "Protégé automatiquement par CentralNotice; modifiable seulement par [[Special:CentralNotice]] ou [[Special:Translate]].",
+	"tag-centralnotice": "Central Notice",
+	"tag-centralnotice-description": "Modification créée par l'IHM administrateur de CentralNotice",
+	"tag-centralnotice_translation": "Traduction de Central Notice",
+	"tag-centralnotice_translation-description": "Modification de contenu CentralNotice créée par l'extension Translate"
 }
