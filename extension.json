@@ -519,14 +519,6 @@
 		"NoticeTranslateDeployStates": [
 			"published"
 		],
-		"NoticeXXCountries": [
-			"XX",
-			"EU",
-			"AP",
-			"A1",
-			"A2",
-			"O1"
-		],
 		"NoticeReporterDomains": "https://donate.wikimedia.org",
 		"NoticeNumberOfBuckets": 4,
 		"NoticeNumberOfControllerBuckets": 2,

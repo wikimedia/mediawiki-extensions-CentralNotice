@@ -140,12 +140,6 @@ Configuration
   permissions.
   Default: [ "published" ]
 
-* $wgNoticeXXCountries: These are countries that MaxMind will give out when
-  information is a bit fuzzy. However, fundraising code doesn't like non ISO
-  countries so we map them to the fictional point case 'XX'
-  TODO No longer used, remove
-  Default: [ "XX", "EU", "AP", "A1", "A2", "O1" ]
-
 * $wgNoticeReporterDomains: String of space delimited domains that will be able
   to accept data via JS message event when calling Special:CNReporter.
   Default: "https://donate.wikimedia.org"

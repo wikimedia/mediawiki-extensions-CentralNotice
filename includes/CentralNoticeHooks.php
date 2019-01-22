@@ -323,8 +323,7 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgNoticeXXCountries,
-			$wgNoticeInfrastructure, $wgCentralBannerRecorder,
+		global $wgNoticeInfrastructure, $wgCentralBannerRecorder,
 			$wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
 			$wgNoticeHideUrls, $wgCentralNoticeSampleRate,
@@ -360,9 +359,6 @@ class CentralNoticeHooks {
 
 		$vars[ 'wgCentralNoticeImpressionEventSampleRate' ] =
 			$wgCentralNoticeImpressionEventSampleRate;
-
-		// TODO Remove, no longer used
-		$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
 
 		$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 		$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
