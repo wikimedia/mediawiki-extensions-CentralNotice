@@ -12,7 +12,8 @@
 			"V.narsikar",
 			"Vinayak.kulkarni11",
 			"कोल्हापुरी",
-			"संतोष दहिवळ"
+			"संतोष दहिवळ",
+			"Sureshkhole"
 		]
 	},
 	"centralnotice": "प्रचालकाकडून केन्द्रीय सुचना",
@@ -180,7 +181,7 @@
 	"centralnotice-all-except": "$1 शिवाय सर्व",
 	"centralnotice-excluding-list": "$1 ($2 वगळून)",
 	"centralnotice-user-role-anonymous": "अनामिक",
-	"centralnotice-user-role-logged-in": "सनोंद-प्रवेशित",
+	"centralnotice-user-role-logged-in": "आल्याची नोंद केली",
 	"centralnotice-banner-class": "श्रेणी",
 	"centralnotice-templates-included": "अंतर्भूत साचे",
 	"centralnotice-archive-banner": "दप्तरदाखल",

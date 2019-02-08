@@ -16,7 +16,9 @@
 ( function () {
 
 	var cn = mw.centralNotice,
-		cookiesToDelete = mw.config.get( 'wgCentralNoticeCookiesToDelete' );
+		cookiesToDelete = mw.config.get( 'wgCentralNoticeCookiesToDelete' ),
+		testingBannerName = mw.util.getParamValue( 'banner' ),
+		NULL_BANNER_NAME = 'null';
 
 	// Schedule the slurping of old defunct cookies
 	if ( cookiesToDelete && cookiesToDelete.length > 0 ) {
@@ -36,8 +38,11 @@
 		$( '#siteNotice' ).prepend( '<div id="centralNotice"></div>' );
 	} );
 
-	// Testing banner
-	if ( mw.util.getParamValue( 'banner' ) ) {
+	// Testing banner or forced no banner
+	if ( testingBannerName ) {
+		if ( testingBannerName === NULL_BANNER_NAME ) {
+			return;
+		}
 		mw.loader.using( 'ext.centralNotice.display' ).done( function () {
 			cn.displayTestingBanner();
 		} );

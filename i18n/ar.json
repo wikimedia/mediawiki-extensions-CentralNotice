@@ -28,6 +28,8 @@
 	"bannerallocation": "إداري الإخطار المركزي",
 	"centralnoticelogs": "إداري الإخطار المركزي",
 	"right-centralnotice-admin": "أدر الإخطارات المركزية",
+	"protect-level-centralnotice-admin": "اسمح لإداريي الإشعارات المركزية فقط",
+	"restriction-level-centralnotice-admin": "إداري الإشعار المركزي",
 	"action-centralnotice-admin": "التحكم بالإعلانات المركزية",
 	"centralnotice-desc": "يضيف إعلانا مركزيا للموقع",
 	"centralnotice-summary": "هذه الوحدة تسمح لك بتعديل إعدادات الإخطار المركزي الحالية.\nيمكن أن تستخدم أيضا لإضافة أو إزالة إخطارات قديمة.",
@@ -223,7 +225,7 @@
 	"centralnotice-devicetype-android": "نظام تشغيل أندرويد",
 	"centralnotice-devicetype-ipad": "جميع الأجهزة التي تم التعرف عليها على أنها  iPad وليس iPhone",
 	"centralnotice-devicetype-iphone": "جميع إصدارات آي فون",
-	"centralnotice-devicetype-unknown": "الأجهزة على موقع الجوال التي ليست أجهزة آيفون أو آييباد أو أندرويد، ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js منطق محدد])",
+	"centralnotice-devicetype-unknown": "الأجهزة على موقع المحمول التي ليست أجهزة آيفون أو آييباد أو أندرويد، ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js منطق محدد])",
 	"centralnotice-all": "الكل",
 	"centralnotice-generic-error": "ليس لديك الصلاحيات اللازمة لتنفيذ الإجراء المطلوب أو أن الإجراء غير صالح.",
 	"centralnotice-banner-name-error": "الإسم الذي تم توفيره للافتة غير صالح. الأسماء الصالحة يجب أن تتكون من حروف أبجدية عددية وشروط سفلية فقط.",
@@ -348,5 +350,10 @@
 	"centralnotice-banner-sequence-detailed-help": "يتم ضبط التسلسلات بشكل منفصل لكل مجموعة، لأية خطوة، لا تتوفر سوى لافتات مخصصة لدلو التسلسل، لإظهار خطوة دائما; اترك الحقل \"تخطٍ مع المعرف\" فارغا، إذا تم تعيين معرف، فبمجرد الانتهاء من الخطوة، سيتم تخزين علامة في متصفح المستخدم باستخدام ذلك المعرف، وفي المرة التالية التي يصل فيها المستخدم إلى خطوة بنفس المعرف، سيتم تخطيها، تتطابق المعرفات التي تم الحصول عليها من المزج \"Large banner limit and switch\" وستُؤخَذ بعين الاعتبار أيضًا، بمجرد انتهاء التسلسل، يبدأ مرة أخرى من البداية. (لمنع التسلسل من التكرار; استخدم mix \"Impression diet\" للحد من عدد مرات الظهور.)",
 	"centralnotice-impression-events-sample-rate": "معدل عينة أحداث الانطباع",
 	"centralnotice-impression-events-sample-rate-help": "تعيين معدل عينة غير افتراضي لتسجيل أحداث الانطباع.",
-	"centralnotice-impression-events-sample-rate-field": "معدل عينة أحداث الظهور (يجب أن يتراوح بين 0 و1، شاملاً)"
+	"centralnotice-impression-events-sample-rate-field": "معدل عينة أحداث الظهور (يجب أن يتراوح بين 0 و1، شاملاً)",
+	"centralnotice-banner-protection-log-reason": "محمية تلقائيا من قبل الإشعار المركزي; التحرير فقط عبر [[Special:CentralNotice]] أو [[Special:Translate]].",
+	"tag-centralnotice": "إشعار مركزي",
+	"tag-centralnotice-description": "التعديل تم عمله من خلال واجهة المستخدم الإدارية للإشعار المركزي",
+	"tag-centralnotice_translation": "ترجمة الإشعار المركزي",
+	"tag-centralnotice_translation-description": "تعديل لمحتوى الإشعار المركزي تم عمله من خلال امتداد الترجمة"
 }

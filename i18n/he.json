@@ -17,6 +17,8 @@
 	"bannerallocation": "ניהול ההודעה המרכזית",
 	"centralnoticelogs": "ניהול ההודעה המרכזית",
 	"right-centralnotice-admin": "ניהול הודעות מרכזיות",
+	"protect-level-centralnotice-admin": "לאפשר רק למנהלי הודעה מרכזית",
+	"restriction-level-centralnotice-admin": "מוגן רק למנהלי הודעה מרכזית",
 	"action-centralnotice-admin": "לנהל הודעות מרכזיות",
 	"centralnotice-desc": "הוספת הודעה בראש הדף משרת מרכזי",
 	"centralnotice-summary": "המודול הזה מאפשר לך לערוך את ההודעות המרכזיות המוגדרות כעת.\nניתן להשתמש בו גם כדי להוסיף ולהסיר הודעות ישנות.",
@@ -337,5 +339,10 @@
 	"centralnotice-banner-sequence-detailed-help": "סדרות מוגדרות בנפרד לכל הקבצה. לכל צעד, זמינות רק כרזות שמשויכות להקבצה של הסדרה. כדי להראות צעד תמיד, יש להשאיר את השדה \"דילוג באמצעות מזהה\" ריק. אם מוגדר מזהה, אז כאשר הצעד יושלם, יאוחסן דגל בדפדפן של המשתמש עם המזהה הזה, ופעם הבאה שהמשתמש יגיע לצעד עם אותו המזהה, הוא ידלג עליו. מזהים מהתוספת \"הגבלה והחלפה של כרזות גדולות\" תואמים וגם יילקחו בחשבון. כאשר מסתיימת סדרה, היא מתחילה שוב מההתחלה. (כדי למנוע מסדרה לחזור, יש להשתמש בתוספת \"דיאטת הצגות\" כדי להגביל הצגות.)",
 	"centralnotice-impression-events-sample-rate": "קצב הדגימה של פעולות ההצגה",
 	"centralnotice-impression-events-sample-rate-help": "הגדרת קצב הדגימה של תיעוד פעולות ההצגה.",
-	"centralnotice-impression-events-sample-rate-field": "קצב הדגימה של פעולות ההצגה (צריך להיות בין 0 ל־1, כולל)"
+	"centralnotice-impression-events-sample-rate-field": "קצב הדגימה של פעולות ההצגה (צריך להיות בין 0 ל־1, כולל)",
+	"centralnotice-banner-protection-log-reason": "מוגן אוטומטית על־ידי Central Notice; אפשר לערוך רק דרך [[Special:CentralNotice]] או [[Special:Translate]].",
+	"tag-centralnotice": "הודעה מרכזית",
+	"tag-centralnotice-description": "עריכה שנוצרה באמצעות ממשק המשתמש של ניהול ההודעה המרכזית",
+	"tag-centralnotice_translation": "תרגום הודעה מרכזית",
+	"tag-centralnotice_translation-description": "עריכת תוכן הודעה מרכזית שנוצר באמצעות ההרחבה Translate"
 }

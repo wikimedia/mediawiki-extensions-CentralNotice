@@ -33,6 +33,8 @@
 	"bannerallocation": "中央公告管理",
 	"centralnoticelogs": "中央公告管理",
 	"right-centralnotice-admin": "管理中央公告",
+	"protect-level-centralnotice-admin": "僅允許中央通知管理員",
+	"restriction-level-centralnotice-admin": "中央通知管理員已保護",
 	"action-centralnotice-admin": "管理中央公告",
 	"centralnotice-desc": "增加中央網站公告",
 	"centralnotice-summary": "此模組允許您編輯您目前的中央公告。\n也可以用來新增或移除舊的公告。",
@@ -353,5 +355,10 @@
 	"centralnotice-banner-sequence-detailed-help": "任一分群會各自設定序列。在任何步驟中，僅有分配到序列分群的橫幅可用。要永遠顯示步驟，請在「跳過識別」欄位留空。若有設定了識別，一旦步驟完成後，標記會儲存使用該識別使用者的瀏覽器裡，並且會在使用者下一次來到同樣識別的步驟時，將其給略過掉。來自「大橫幅限制與轉換」識別的混合方式會被相容，並會採用在帳號裡。一旦序列結束後，會再次重新開始。（要防止序列重複的話，請使用「節制印象」混合方式來限制印象。）",
 	"centralnotice-impression-events-sample-rate": "印象事件取樣率",
 	"centralnotice-impression-events-sample-rate-help": "為日誌印象事件設定非預設的取樣率。",
-	"centralnotice-impression-events-sample-rate-field": "印象事件取樣率（應介於包含在 0 與 1 之間）"
+	"centralnotice-impression-events-sample-rate-field": "印象事件取樣率（應介於包含在 0 與 1 之間）",
+	"centralnotice-banner-protection-log-reason": "由 CentralNotice 做出自動保護，僅可透過 [[Special:CentralNotice]] 或 [[Special:Translate]] 來編輯。",
+	"tag-centralnotice": "中央公告",
+	"tag-centralnotice-description": "透過中央公告管理使用介面建立的編輯",
+	"tag-centralnotice_translation": "中央公告翻譯",
+	"tag-centralnotice_translation-description": "透過翻譯擴充功能建立的中央公告內容編輯"
 }

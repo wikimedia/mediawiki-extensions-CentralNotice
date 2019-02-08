@@ -7,7 +7,8 @@
 			"सरोज कुमार ढकाल",
 			"NehalDaveND",
 			"राम प्रसाद जोशी",
-			"बिप्लब आनन्द"
+			"बिप्लब आनन्द",
+			"पर्वत सुबेदी"
 		]
 	},
 	"centralnotice-enabled": "सकृय पारिएको",
@@ -77,5 +78,6 @@
 	"centralnotice-delete-banner-cancel": "रद्द गर्ने",
 	"centralnotice-start-date": "प्रारम्भ मिती (युटिसी)",
 	"centralnotice-start-time": "सुरुको तिथि (UTC)",
-	"centralnotice-end-date": "समाप्ति मिती (युटिसी)"
+	"centralnotice-end-date": "समाप्ति मिती (युटिसी)",
+	"tag-centralnotice": "केन्द्रीय सूचना"
 }

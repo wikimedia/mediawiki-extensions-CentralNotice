@@ -1588,9 +1588,9 @@ class CentralNotice extends SpecialPage {
 	 * Loads a CentralNotice variable from session data.
 	 *
 	 * @param string $variable Name of the variable
-	 * @param object|null $default Default value of the variable
+	 * @param mixed|null $default Default value of the variable
 	 *
-	 * @return object Stored variable or default
+	 * @return mixed Stored variable or default
 	 */
 	public function getCNSessionVar( $variable, $default = null ) {
 		$val = $this->getRequest()->getSessionData( "centralnotice-$variable" );
@@ -1606,7 +1606,7 @@ class CentralNotice extends SpecialPage {
 	 * session does not exist for the user.
 	 *
 	 * @param string $variable Name of the variable
-	 * @param object $value Value for the variable
+	 * @param mixed $value Value for the variable
 	 */
 	public function setCNSessionVar( $variable, $value ) {
 		$this->getRequest()->setSessionData( "centralnotice-{$variable}", $value );

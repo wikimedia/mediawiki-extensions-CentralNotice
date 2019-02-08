@@ -10,8 +10,8 @@ class CentralNoticeTestFixtures {
 
 	// For legacy test that don't use fixture data: use exactly the api defaults
 	// where available
-	static public $defaultCampaign;
-	static public $defaultBanner;
+	public static $defaultCampaign;
+	public static $defaultBanner;
 
 	public function __construct() {
 		$this->user = User::newFromName( 'UTSysop' );

@@ -32,6 +32,8 @@
 	"bannerallocation": "Title of Special:BannerAllocation page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-allocation.)\n{{Identical|Central notice admin}}",
 	"centralnoticelogs": "Title of Special:CentralNoticeLogs page, should be identical to centralnotice message.  (Since the extension uses a secondary tab interface, the effective page title is actually centralnotice-view-logs.)\n{{Identical|Central notice admin}}",
 	"right-centralnotice-admin": "{{doc-right|centralnotice-admin}}",
+	"protect-level-centralnotice-admin": "Description of a protection level, used in protection log entries and in form to set protection levels.",
+	"restriction-level-centralnotice-admin": "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'.",
 	"action-centralnotice-admin": "{{doc-action|centralnotice-admin}}",
 	"centralnotice-desc": "The [[mw:Extension:CentralNotice|CentralNotice extension]] allows a notice to be posted centrally to several wikis.\n{{desc|name=CentralNotice|url=https://www.mediawiki.org/wiki/Extension:CentralNotice}}",
 	"centralnotice-summary": "Used as summary in [[meta:Special:CentralNotice|CentralNotice]] special page for [[mw:Extension:CentralNotice]]",
@@ -357,5 +359,9 @@
 	"centralnotice-impression-events-sample-rate-help": "Help text for impression events sample rate mixin",
 	"centralnotice-impression-events-sample-rate-field": "Label for the control to set the sample rate for impression events",
 	"centralnotice-navbar": "{{notranslate}} Shown prior to {{msg-mw|centralnotice-summary}}. Meant to allow end users to customize the CentralNotice interface with a custom header.",
-	"centralnotice-banner-protection-log-reason": "Protection reason as displayed on [[Special:Log/protect]] and in other logs."
+	"centralnotice-banner-protection-log-reason": "Protection reason as displayed on [[Special:Log/protect]] and in other logs.",
+	"tag-centralnotice": "Display name for 'centralnotice' revision tag",
+	"tag-centralnotice-description": "Description for 'centralnotice' revision tag",
+	"tag-centralnotice_translation": "Display name for 'centralnotice translation' revision tag",
+	"tag-centralnotice_translation-description": "Description for 'centralnotice translation' revision tag"
 }
