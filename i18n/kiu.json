@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kumkumuk"
+			"Kumkumuk",
+			"Mirzali"
 		]
 	},
-	"centralnotice-archive-banner-cancel": "Bıtexelne"
+	"centralnotice-add-notice-cancel-button": "Bıtexelne",
+	"centralnotice-clone-cancel": "Bıtexelne",
+	"centralnotice-archive-banner-cancel": "Bıtexelne",
+	"centralnotice-archive-campaign-cancel": "Bıtexelne",
+	"centralnotice-delete-banner-cancel": "Bıtexelne"
 }
