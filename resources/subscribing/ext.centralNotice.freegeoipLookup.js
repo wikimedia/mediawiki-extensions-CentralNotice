@@ -16,9 +16,7 @@
 		} ).then( function ( data ) {
 
 			var geo = {
-				// eslint-disable-next-line camelcase
 				country: data.country_code,
-				// eslint-disable-next-line camelcase
 				region: data.region_code,
 				city: data.city,
 				lat: data.latitude,

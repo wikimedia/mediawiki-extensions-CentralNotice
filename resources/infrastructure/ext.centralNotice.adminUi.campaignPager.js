@@ -79,19 +79,10 @@
 	 * Click handler for faux submit button, to submit just what's changed
 	 */
 	function submitChanges() {
-		var $form = $( '<form method="post"></form>' ),
-
-			$authtokenField = $(
-				'<input type="hidden" name="authtoken" />'
-			),
-
-			$summaryField = $(
-				'<input type="hidden" name="changeSummary" />'
-			),
-
-			$changesField = $(
-				'<input type="hidden" name="changes" />'
-			);
+		var $form = $( '<form>' ).attr( 'method', 'post' ),
+			$authtokenField = $( '<input>' ).attr( { type: 'hidden', name: 'authtoken' } ),
+			$summaryField = $( '<input>' ).attr( { type: 'hidden', name: 'changeSummary' } ),
+			$changesField = $( '<input>' ).attr( { type: 'hidden', name: 'changes' } );
 
 		$authtokenField.val( mw.user.tokens.get( 'editToken' ) );
 		$summaryField.val(
@@ -101,7 +92,7 @@
 
 		$form.append( $authtokenField, $summaryField, $changesField );
 		$( document.body ).append( $form );
-		$form.submit();
+		$form.trigger( 'submit' );
 	}
 
 	$( function () {
@@ -113,7 +104,7 @@
 		// Show or hide archived campaigns
 		if ( $showArchived.length > 0 ) {
 
-			$showArchived.click( function () {
+			$showArchived.on( 'click', function () {
 				if ( $( this ).prop( 'checked' ) ) {
 					$( '.cn-archived-item' ).show();
 				} else {
@@ -140,17 +131,17 @@
 					CHECKBOX_NAMES[ i ] + '"]:not([disabled])';
 
 				// When checked or unchecked, update changes to send
-				$( selector ).change( updateCheckboxChanges );
+				$( selector ).on( 'change', updateCheckboxChanges );
 			}
 
 			// Attach handler to priority dropdowns
 			// See CentralNotice::prioritySelector()
 			$( '#cn-campaign-pager select[name="priority"]:not([disabled])' )
-				.change( updatePriorityChanges );
+				.on( 'change', updatePriorityChanges );
 
 			// Attach handler to "Submit" button
 			// See CNCampaignPager::getEndBody()
-			$( '#cn-campaign-pager-submit' ).click( submitChanges );
+			$( '#cn-campaign-pager-submit' ).on( 'click', submitChanges );
 		}
 	} );
 }() );

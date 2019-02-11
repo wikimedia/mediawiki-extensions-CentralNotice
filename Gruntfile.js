@@ -8,6 +8,9 @@ module.exports = function ( grunt ) {
 
 	grunt.initConfig( {
 		eslint: {
+			options: {
+				reportUnusedDisableDirectives: true
+			},
 			all: [
 				'*.js',
 				'**/*.js',
@@ -40,7 +43,7 @@ module.exports = function ( grunt ) {
 		svgmin: {
 			options: {
 				js2svg: {
-					indent: '	',
+					indent: '\t',
 					pretty: true
 				},
 				multipass: true,

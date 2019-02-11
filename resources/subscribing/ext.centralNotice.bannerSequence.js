@@ -313,7 +313,7 @@
 	cn.registerCampaignMixin( mixin );
 
 	// Exports are for use in unit tests only
-	module.exports = { 'private': {
+	module.exports = { private: {
 		SequenceManager: SequenceManager,
 		PAGE_VIEW_STORAGE_KEY: PAGE_VIEW_STORAGE_KEY,
 		FLAG_STORAGE_KEY: FLAG_STORAGE_KEY,

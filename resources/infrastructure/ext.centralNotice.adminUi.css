@@ -12,77 +12,100 @@ fieldset.prefsection {
 	padding: 1em;
 	border-top: 1px solid;
 }
+
 #preferences fieldset.prefsection:first-child {
 	border-top: 0;
 }
+
 #preferences fieldset.prefsection h2,
 h2.cn-special-section {
 	border: 0;
 }
+
 #preferences div.cn-pager {
 	margin: 1em 0;
 }
+
 #preferences div.cn-error {
 	color: #d33;
 	margin: 1em;
 }
+
 #preferences fieldset.prefsection div.cn-error {
 	margin: 0;
 }
+
 #preferences table#envpicker {
 	margin-bottom: 1em;
 }
+
 #preferences table#envpicker td {
 	white-space: nowrap;
 }
+
 #preferences .cn-date-column {
 	white-space: nowrap;
 }
+
 #preferences td.cn-timepicker {
 	text-align: left; /* To ensure RTL flipping */
 }
+
 #preferences input#clone {
 	margin-left: 0.25em;
 }
+
 #preferences fieldset.prefsection fieldset.cn-bannerpreview {
 	border: 1px solid;
 	margin-top: 0;
 }
+
 #preferences div#fundraisingInterface {
 	margin-left: 1.6em;
 	margin-right: 1.6em;
 }
+
 #preferences div#cn-log-filters-container {
 	margin: 1em 0;
 }
+
 #preferences table {
 	width: auto;
 }
+
 #preferences div#cn-log-filters table td {
 	padding: 0.5em;
 }
+
 #preferences table#cn-campaign-logs td.primary {
 	white-space: nowrap;
 }
+
 #preferences table#cn-campaign-logs td.primary,
 #preferences table#cn-campaign-logs td.primary-summary {
 	background-color: #f8f9fc;
 }
+
 #preferences .cn-new-value {
 	color: #006400;
 }
+
 #preferences .cn-old-value {
 	color: #8b0000;
 }
+
 #preferences .cn-log-label {
 	font-weight: bold;
 }
+
 #preferences .cn-filter-buttons {
 	margin-right: 0.5em;
 }
+
 #preferences #cn-log-switcher label {
 	margin-right: 1em;
 }
+
 #preferences #cn-template-searchbox {
 	border: 1px solid #c8ccd1;
 	line-height: 1.5em;
@@ -90,14 +113,17 @@ h2.cn-special-section {
 	padding: 0 1em 1em;
 	display: block;
 }
+
 #preferences #cn-template-searchbox legend {
 	font-size: 95%;
 	color: #000;
 }
+
 #preferences #cn-template-searchbox label,
 #preferences #cn-template-searchbox input {
 	margin-right: 0.25em;
 }
+
 #preferences a.cn-banner-title {
 	font-size: large;
 	margin-top: 1em;
@@ -128,6 +154,7 @@ select.cn-multiselect {
 body.skin-vector #preferences fieldset.prefsection {
 	border-color: #c8ccd1;
 }
+
 body.skin-vector #preferences fieldset.prefsection fieldset.cn-bannerpreview {
 	border-color: #c8ccd1;
 }
@@ -162,6 +189,7 @@ form .error {
 	margin: 0;
 	padding: 0;
 }
+
 #cn-formsection-preview legend {
 	display: none;
 }
@@ -175,9 +203,11 @@ fieldset#cn-formsection-form-actions {
 	background-color: #f8f9fa;
 	border: 1px solid #2a4b8d;
 }
+
 fieldset#cn-formsection-form-actions legend {
 	display: none;
 }
+
 .cn-formbutton {
 	clear: none;
 	float: right;
@@ -206,18 +236,22 @@ label[ for='mw-input-wpsummary' ],
 #mw-htmlform-banner-list {
 	margin-left: 0.9em;
 }
+
 .cn-banner-list-element {
 	margin: 0.25em 0 0.5em 0.25em;
 }
+
 .cn-banner-preview-div {
 	border: 1px solid #eaf3ff;
 	padding: 1em;
 	margin-top: 0.5em;
 }
+
 #mw-htmlform-banner-list .mw-htmlform-field-HTMLCheckField {
 	display: inline-block;
 	float: left;
 }
+
 #mw-htmlform-banner-list .mw-label {
 	display: none;
 }

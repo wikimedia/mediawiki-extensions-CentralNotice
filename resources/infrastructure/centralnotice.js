@@ -96,12 +96,18 @@
 
 		// Reveal the geoMultiSelector when the geotargeted checkbox is checked
 		if ( !$( '#geotargeted' ).prop( 'checked' ) ) {
+			// FIXME: Use CSS transition
+			// eslint-disable-next-line jquery/no-fade
 			$( '#geoMultiSelector' ).fadeOut( 'fast' );
 		}
-		$( '#geotargeted' ).click( function () {
+		$( '#geotargeted' ).on( 'click', function () {
 			if ( this.checked ) {
+				// FIXME: Use CSS transition
+				// eslint-disable-next-line jquery/no-fade
 				$( '#geoMultiSelector' ).fadeIn( 'fast' );
 			} else {
+				// FIXME: Use CSS transition
+				// eslint-disable-next-line jquery/no-fade
 				$( '#geoMultiSelector' ).fadeOut( 'fast' );
 			}
 		} );

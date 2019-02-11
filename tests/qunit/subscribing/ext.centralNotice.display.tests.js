@@ -354,7 +354,9 @@
 			deferred.resolve();
 		}, MAX_RECORD_IMPRESSION_DELAY + 1 );
 
-		setTimeout( function () { signalTestDone(); }, MAX_RECORD_IMPRESSION_DELAY + 2 );
+		setTimeout( function () {
+			signalTestDone();
+		}, MAX_RECORD_IMPRESSION_DELAY + 2 );
 	} );
 
 	QUnit.test( 'banner= override param', function ( assert ) {
