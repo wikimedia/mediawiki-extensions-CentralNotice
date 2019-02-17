@@ -11,7 +11,8 @@
 			"1917 Ekim Devrimi",
 			"Gırd",
 			"Gambollar",
-			"Archaeodontosaurus"
+			"Archaeodontosaurus",
+			"Orbot707"
 		]
 	},
 	"centralnotice": "İdarekerê iqazê merkezi",
@@ -45,7 +46,7 @@
 	"centralnotice-show-notices": "İqazan bımotne",
 	"centralnotice-list-templates": "Şablona liste ke",
 	"centralnotice-language-listing": "$1 - $2",
-	"centralnotice-translations": "Çarnayişan",
+	"centralnotice-translations": "Açarnayışi",
 	"centralnotice-translate-to": "Bıçarnê ena zıwan",
 	"centralnotice-translate": "Çarnayiş",
 	"centralnotice-english": "İngılızki",
@@ -139,7 +140,7 @@
 	"centralnotice-action": "Kerdış",
 	"centralnotice-change-summary-heading": "Xulasa",
 	"centralnotice-action-created": "vıraziya",
-	"centralnotice-action-modified": "Timar be",
+	"centralnotice-action-modified": "vurniya",
 	"centralnotice-action-removed": "wedariya",
 	"centralnotice-changed": "<span class=\"cn-old-value\">$1</span> ra nata <span class=\"cn-new-value\">$2</span> vurnayışi",
 	"centralnotice-on": "Akerde",
