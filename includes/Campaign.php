@@ -368,6 +368,68 @@ class Campaign {
 	}
 
 	/**
+	 * @return array An array of currently active campaigns, whose elements are
+	 *   arrays with campaign name and an array of associated banners.
+	 */
+	public static function getActiveCampaignsAndBanners() {
+		$dbr = CNDatabase::getDb( DB_REPLICA );
+		$time = $dbr->timestamp();
+
+		// Query campaigns and banners at once
+		$dbRows = $dbr->select(
+			[
+				'notices' => 'cn_notices',
+				'assignments' => 'cn_assignments',
+				'templates' => 'cn_templates'
+			],
+			[
+				'notices.not_id',
+				'notices.not_name',
+				'templates.tmp_name'
+			],
+			[
+			'notices.not_start <= ' . $dbr->addQuotes( $time ),
+			'notices.not_end >= ' . $dbr->addQuotes( $time ),
+			'notices.not_enabled' => 1,
+			'notices.not_archived' => 0
+			],
+			__METHOD__,
+			[],
+			[
+				'assignments' => [
+					'LEFT OUTER JOIN', 'notices.not_id = assignments.not_id'
+				],
+				'templates' => [
+					'LEFT OUTER JOIN', 'assignments.tmp_id = templates.tmp_id'
+				]
+			]
+		);
+
+		$campaigns = [];
+
+		foreach ( $dbRows as $dbRow ) {
+			$campaignId = $dbRow->not_id;
+			$campaignName = $dbRow->not_name;
+			$bannerName = $dbRow->tmp_name;
+
+			// The first time we see any campaign, create the corresponding outer K/V
+			// entry. Note that these keys don't make it into data structure we return.
+			if ( !isset( $campaigns[$campaignId] ) ) {
+				$campaigns[$campaignId] = [
+					'name' => $campaignName
+				];
+			}
+
+			// Automagically PHP creates the inner array as needed
+			if ( $bannerName ) {
+				$campaigns[$campaignId]['banners'][] = $bannerName;
+			}
+		}
+
+		return array_values( $campaigns );
+	}
+
+	/**
 	 * Return settings for a campaign
 	 *
 	 * @param string $campaignName The name of the campaign

@@ -47,13 +47,15 @@
 		"centralnoticecdncacheupdatebanner": "ApiCentralNoticeCdnCacheUpdateBanner"
 	},
 	"APIListModules": {
-		"centralnoticelogs": "ApiCentralNoticeLogs"
+		"centralnoticelogs": "ApiCentralNoticeLogs",
+		"centralnoticeactivecampaigns": "ApiCentralNoticeQueryActiveCampaigns"
 	},
 	"AutoloadClasses": {
 		"AllocationCalculator": "includes/AllocationCalculator.php",
 		"ApiCentralNoticeCdnCacheUpdateBanner": "api/ApiCentralNoticeCdnCacheUpdateBanner.php",
 		"ApiCentralNoticeChoiceData": "api/ApiCentralNoticeChoiceData.php",
 		"ApiCentralNoticeLogs": "api/ApiCentralNoticeLogs.php",
+		"ApiCentralNoticeQueryActiveCampaigns": "api/ApiCentralNoticeQueryActiveCampaigns.php",
 		"ApiCentralNoticeQueryCampaign": "api/ApiCentralNoticeQueryCampaign.php",
 		"BannerContentException": "includes/BannerContentException.php",
 		"BannerDataException": "includes/BannerDataException.php",
