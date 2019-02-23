@@ -7,9 +7,9 @@ class CampaignLog {
 	private static $list_fields = [ 'projects', 'languages', 'countries' ];
 	private static $map_fields = [ 'banners' ];
 
-	/** @var string[]|int[] */
+	/** @var mixed[] */
 	private $begin;
-	/** @var string[]|int[] */
+	/** @var mixed[] */
 	private $end;
 	/** @var string */
 	private $campaign;
@@ -24,8 +24,8 @@ class CampaignLog {
 	 * @param stdClass|null $row
 	 */
 	public function __construct( $row = null ) {
-		$begin = [];
-		$end = [];
+		$this->begin = [];
+		$this->end = [];
 		if ( $row ) {
 			$comma_explode = function ( $str ) {
 				return explode( ", ", $str );
@@ -35,7 +35,7 @@ class CampaignLog {
 				return json_decode( $json, true );
 			};
 
-			$store = function ( $name, $decode = null ) use ( $row, &$begin, &$end ) {
+			$store = function ( $name, $decode = null ) use ( $row ) {
 				$beginField = 'notlog_begin_' . $name;
 				$endField = 'notlog_end_' . $name;
 
@@ -44,8 +44,8 @@ class CampaignLog {
 						return $v;
 					};
 				}
-				$begin[ $name ] = $decode( $row->$beginField );
-				$end[ $name ] = $decode( $row->$endField );
+				$this->begin[ $name ] = $decode( $row->$beginField );
+				$this->end[ $name ] = $decode( $row->$endField );
 			};
 
 			foreach ( static::$basic_fields as $name ) {
@@ -58,8 +58,6 @@ class CampaignLog {
 				$store( $name, $json_decode );
 			}
 		}
-		$this->begin = $begin;
-		$this->end = $end;
 
 		$this->campaign = $row->notlog_not_name;
 		$this->action = $row->notlog_action;
@@ -77,42 +75,38 @@ class CampaignLog {
 		$removed = [];
 		$added = [];
 
-		# XXX cannot use "this" in closures until php 5.4
-		$begin =& $this->begin;
-		$end =& $this->end;
-
-		$diff_basic = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
-			if ( $begin[ $name ] !== $end[ $name ] ) {
-				if ( $begin[ $name ] !== null ) {
-					$removed[ $name ] = $begin[ $name ];
+		$diff_basic = function ( $name ) use ( &$removed, &$added ) {
+			if ( $this->begin[ $name ] !== $this->end[ $name ] ) {
+				if ( $this->begin[ $name ] !== null ) {
+					$removed[ $name ] = $this->begin[ $name ];
 				}
-				if ( $end[ $name ] !== null ) {
-					$added[ $name ] = $end[ $name ];
+				if ( $this->end[ $name ] !== null ) {
+					$added[ $name ] = $this->end[ $name ];
 				}
 			}
 		};
-		$diff_list = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
-			if ( $begin[ $name ] !== $end[ $name ] ) {
-				$removed[ $name ] = array_diff( $begin[ $name ], $end[ $name ] );
+		$diff_list = function ( $name ) use ( &$removed, &$added ) {
+			if ( $this->begin[ $name ] !== $this->end[ $name ] ) {
+				$removed[ $name ] = array_diff( $this->begin[ $name ], $this->end[ $name ] );
 				if ( !$removed[ $name ] || $removed[ $name ] === [ "" ] ) {
 					unset( $removed[ $name ] );
 				}
-				$added[ $name ] = array_diff( $end[ $name ], $begin[ $name ] );
+				$added[ $name ] = array_diff( $this->end[ $name ], $this->begin[ $name ] );
 				if ( !$added[ $name ] || $added[ $name ] === [ "" ] ) {
 					unset( $added[ $name ] );
 				}
 			}
 		};
-		$diff_map = function ( $name ) use ( &$removed, &$added, &$begin, &$end ) {
-			$removed[ $name ] = $begin[ $name ];
-			$added[ $name ] = $end[ $name ];
+		$diff_map = function ( $name ) use ( &$removed, &$added ) {
+			$removed[ $name ] = $this->begin[ $name ];
+			$added[ $name ] = $this->end[ $name ];
 
-			if ( $begin[ $name ] && $end[ $name ] ) {
-				$all_keys = array_keys( array_merge( $begin[ $name ], $end[ $name ] ) );
+			if ( $this->begin[ $name ] && $this->end[ $name ] ) {
+				$all_keys = array_keys( array_merge( $this->begin[ $name ], $this->end[ $name ] ) );
 				foreach ( $all_keys as $item ) {
 					# simplification: match contents, but diff at item level
-					if ( array_key_exists( $item, $begin[ $name ] )
-						&& array_key_exists( $item, $end[ $name ] )
+					if ( array_key_exists( $item, $this->begin[ $name ] )
+						&& array_key_exists( $item, $this->end[ $name ] )
 						&& $added[ $name ][ $item ] === $removed[ $name ][ $item ]
 					) {
 						unset( $added[ $name ][ $item ] );
