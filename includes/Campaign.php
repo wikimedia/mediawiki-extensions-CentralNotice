@@ -980,6 +980,7 @@ class Campaign {
 				'enabled'   => (int)$enabled,
 				'preferred' => 0,
 				'locked'    => 0,
+				'archived'  => 0,
 				'geo'       => (int)$geotargeted,
 				'throttle'  => $throttle,
 			];
@@ -1406,8 +1407,10 @@ class Campaign {
 	 * @param int $campaignId ID of the campaign
 	 * @param string $campaignName Name of the campaign
 	 * @param User $user User causing the change
-	 * @param array $beginSettings array of campaign settings before changes (optional)
-	 * @param array $endSettings array of campaign settings after changes (optional)
+	 * @param array $beginSettings array of campaign settings before changes (optional).
+	 *   If provided, it should include at least start, end, enabled and archived.
+	 * @param array $endSettings array of campaign settings after changes (optional).
+	 *   If provided, it should include at least start, end, enabled and archived.
 	 * @param string|null $summary Change summary provided by the user
 	 */
 	public static function processAfterCampaignChange(
@@ -1421,35 +1424,88 @@ class Campaign {
 			$summary = '';
 		}
 
+		$dbw = CNDatabase::getDb( DB_MASTER );
+		$time = $dbw->timestamp();
+
+		$log = [
+			'notlog_timestamp' => $time,
+			'notlog_user_id'   => $user->getId(),
+			'notlog_action'    => $action,
+			'notlog_not_id'    => $campaignId,
+			'notlog_not_name'  => $campaignName,
+			'notlog_comment'   => $summary,
+		];
+
+		foreach ( $beginSettings as $key => $value ) {
+			if ( !self::settingNameIsValid( $key ) ) {
+				throw new InvalidArgumentException( "Invalid setting name" );
+			}
+				$log[ 'notlog_begin_' . $key ] = $value;
+		}
+
+		foreach ( $endSettings as $key => $value ) {
+			if ( !self::settingNameIsValid( $key ) ) {
+				throw new InvalidArgumentException( "Invalid setting name" );
+			}
+				$log[ 'notlog_end_' . $key ] = $value;
+		}
+
+		Hooks::runWithoutAbort(
+			'CentralNoticeCampaignChange',
+			[
+				$action,
+				$time,
+				$campaignName,
+				$user,
+				self::processSettingsForHook( $beginSettings ),
+				self::processSettingsForHook( $endSettings ),
+				$summary
+			]
+		);
+
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		// FIXME There must be a cleaner way to do this?
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
-			$dbw = CNDatabase::getDb( DB_MASTER );
-
-			$log = [
-				'notlog_timestamp' => $dbw->timestamp(),
-				'notlog_user_id'   => $user->getId(),
-				'notlog_action'    => $action,
-				'notlog_not_id'    => $campaignId,
-				'notlog_not_name'  => $campaignName,
-				'notlog_comment'   => $summary,
-			];
-
-			foreach ( $beginSettings as $key => $value ) {
-				if ( !self::settingNameIsValid( $key ) ) {
-					throw new InvalidArgumentException( "Invalid setting name" );
-				}
-				$log[ 'notlog_begin_' . $key ] = $value;
-			}
-			foreach ( $endSettings as $key => $value ) {
-				if ( !self::settingNameIsValid( $key ) ) {
-					throw new InvalidArgumentException( "Invalid setting name" );
-				}
-				$log[ 'notlog_end_' . $key ] = $value;
-			}
-
 			$dbw->insert( 'cn_notice_log', $log );
 		}
+	}
+
+	/**
+	 * Prepare campaign settings to be sent to the CampaignChange hook. This is necessary
+	 * since the settings provided to processAfterCampaignChange() are in a format
+	 * that is appropriate for the cn_notice_log table, but not for the hook.
+	 *
+	 * @param array $settings
+	 * @return array
+	 */
+	private static function processSettingsForHook( $settings ) {
+		if ( !$settings ) {
+			return null;
+		}
+
+		if ( isset( $settings[ 'banners' ] ) ) {
+			$banners = json_decode( $settings[ 'banners' ] );
+
+			// This should never happen, since the string should just have been json-encoded
+			// in getCampaignSettings().
+			if ( $banners === null ) {
+				throw new UnexpectedValueException( 'Json decoding error for banner settings' );
+			}
+
+			// Names of banners are object properties
+			$banners = array_keys( (array)$banners );
+
+		} else {
+			$banners = [];
+		}
+
+		return [
+			'start' => $settings[ 'start' ],
+			'end' => $settings[ 'end' ],
+			'enabled' => (bool)$settings[ 'enabled' ],
+			'archived' => (bool)$settings[ 'archived' ],
+			'banners' => $banners,
+		];
 	}
 
 	/**
