@@ -921,7 +921,7 @@ class Campaign {
 				'geo'       => (int)$geotargeted,
 				'throttle'  => $throttle,
 			];
-			self::logCampaignChange( 'created', $not_id, $user,
+			self::processAfterCampaignChange( 'created', $not_id, $noticeName, $user,
 				$beginSettings, $endSettings, $summary );
 
 			return $not_id;
@@ -961,7 +961,7 @@ class Campaign {
 	private static function removeCampaignByName( $campaignName, $user ) {
 		// Log the removal of the campaign
 		$campaignId = self::getNoticeId( $campaignName );
-		self::logCampaignChange( 'removed', $campaignId, $user );
+		self::processAfterCampaignChange( 'removed', $campaignId, $campaignName, $user );
 
 		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
@@ -1341,16 +1341,15 @@ class Campaign {
 	 * Log any changes related to a campaign
 	 *
 	 * @param string $action 'created', 'modified', or 'removed'
-	 * @param int $campaignId ID of campaign
+	 * @param int $campaignId ID of the campaign
+	 * @param string $campaignName Name of the campaign
 	 * @param User $user User causing the change
 	 * @param array $beginSettings array of campaign settings before changes (optional)
 	 * @param array $endSettings array of campaign settings after changes (optional)
 	 * @param string|null $summary Change summary provided by the user
-	 *
-	 * @return int ID of log entry (or null)
 	 */
-	public static function logCampaignChange(
-		$action, $campaignId, $user, $beginSettings = [],
+	public static function processAfterCampaignChange(
+		$action, $campaignId, $campaignName, $user, $beginSettings = [],
 		$endSettings = [], $summary = null
 	) {
 		ChoiceDataProvider::invalidateCache();
@@ -1361,6 +1360,7 @@ class Campaign {
 		}
 
 		// Only log the change if it is done by an actual user (rather than a testing script)
+		// FIXME There must be a cleaner way to do this?
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
 			$dbw = CNDatabase::getDb( DB_MASTER );
 
@@ -1369,7 +1369,7 @@ class Campaign {
 				'notlog_user_id'   => $user->getId(),
 				'notlog_action'    => $action,
 				'notlog_not_id'    => $campaignId,
-				'notlog_not_name'  => self::getNoticeName( $campaignId ),
+				'notlog_not_name'  => $campaignName,
 				'notlog_comment'   => $summary,
 			];
 
@@ -1387,10 +1387,6 @@ class Campaign {
 			}
 
 			$dbw->insert( 'cn_notice_log', $log );
-			$log_id = $dbw->insertId();
-			return $log_id;
-		} else {
-			return null;
 		}
 	}
 
