@@ -70,7 +70,7 @@ class CdnCacheUpdateBannerLoader implements DeferrableUpdate {
 		}
 
 		// Determine if we should add mobile URLs, too
-		$addMobile = ( class_exists( 'MobileContext' ) &&
+		$addMobile = ( class_exists( MobileContext::class ) &&
 			( $wgCentralSelectedBannerDispatcher !==
 				$wgCentralSelectedMobileBannerDispatcher )
 			);

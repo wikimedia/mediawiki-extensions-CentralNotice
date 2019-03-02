@@ -125,7 +125,7 @@ class CentralNoticeHooks {
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 		}
 
-		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext' ) ) {
+		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( MobileContext::class ) ) {
 			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
 		}
 	}
@@ -336,7 +336,7 @@ class CentralNoticeHooks {
 		// made to non localised namespaces which results in wasteful extra calls.
 
 		// Set infrastructure URL variables, which change between mobile/desktop
-		if ( class_exists( 'MobileContext' ) ) {
+		if ( class_exists( MobileContext::class ) ) {
 			$mc = MobileContext::singleton();
 			$displayMobile = $mc->shouldDisplayMobileView();
 		} else {
