@@ -29,7 +29,8 @@
 			"Redredsonia",
 			"Facenapalm",
 			"Stjn",
-			"Vlad5250"
+			"Vlad5250",
+			"Romanko Mikhail"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -48,7 +49,7 @@
 	"centralnotice-modify": "Отправить",
 	"centralnotice-view": "Просмотр",
 	"centralnotice-save-banner": "Сохранить",
-	"centralnotice-live-preview": "Предварительный просмотр в вики",
+	"centralnotice-live-preview": "Предварительный просмотр",
 	"centralnotice-add-new": "Добавить новое централизованное уведомление",
 	"centralnotice-remove": "Удалить",
 	"centralnotice-translate-heading": "Перевод для $1",
