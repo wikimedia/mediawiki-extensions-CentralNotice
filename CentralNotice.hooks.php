@@ -125,7 +125,9 @@ class CentralNoticeHooks {
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 		}
 
-		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( MobileContext::class ) ) {
+		if ( !$wgCentralSelectedMobileBannerDispatcher &&
+			ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' )
+		) {
 			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
 		}
 	}
