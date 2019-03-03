@@ -23,6 +23,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * CentralNotice banner object. Banners are pieces of rendered wikimarkup
@@ -842,6 +843,7 @@ class Banner {
 						self::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
 						$this->runTranslateJob = true;
 					}
+					$this->invalidateCache( $fields );
 				}
 			}
 		}
@@ -862,21 +864,44 @@ class Banner {
 	 * @return array
 	 */
 	public function getMessageFieldsFromCache() {
-		$data = ObjectCache::getMainStashInstance()
-			->get( $this->getMessageFieldsCacheKey() );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $this->getMessageFieldsCacheKey( $cache );
 
-		if ( $data !== false ) {
-			$data = json_decode( $data, true );
-		} else {
-			$data = $this->extractMessageFields();
-		}
-
-		return $data;
+		return $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_MONTH,
+			function () {
+				return $this->extractMessageFields();
+			},
+			[ 'checkKeys' => [ $key ], 'lockTSE' => 60 ]
+		);
 	}
 
-	protected function getMessageFieldsCacheKey() {
-		return ObjectCache::getMainStashInstance()
-			->makeKey( 'centralnotice', 'bannerfields', $this->getName() );
+	/**
+	 * @param array|null $newFields Optional new result of the extractMessageFields()
+	 */
+	public function invalidateCache( $newFields = null ) {
+		// Update cache after the DB transaction finishes
+		CNDatabase::getDb()->onTransactionCommitOrIdle(
+			function () use ( $newFields ) {
+				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+				$key = $this->getMessageFieldsCacheKey( $cache );
+
+				$cache->touchCheckKey( $key );
+				if ( $newFields !== null ) {
+					// May as well set the new volatile cache value in the local datacenter
+					$cache->set( $key, $cache::TTL_MONTH, $newFields );
+				}
+			}
+		);
+	}
+
+	/**
+	 * @param WANObjectCache $cache
+	 * @return mixed
+	 */
+	protected function getMessageFieldsCacheKey( $cache ) {
+		return $cache->makeKey( 'centralnotice', 'bannerfields', $this->getName() );
 	}
 
 	/**
@@ -914,10 +939,6 @@ class Banner {
 		$fields = array_intersect_key( array_count_values( $fields[1] ), $unique_fields );
 
 		$fields = array_diff_key( $fields, array_flip( $renderer->getMagicWords() ) );
-
-		// Save in the cache.
-		ObjectCache::getMainStashInstance()
-			->set( $this->getMessageFieldsCacheKey(), json_encode( $fields ) );
 
 		return $fields;
 	}
@@ -1112,6 +1133,8 @@ class Banner {
 
 		// Save it!
 		$destBanner->save( $user, $summary );
+		$this->invalidateCache( $fields );
+
 		return $destBanner;
 	}
 
