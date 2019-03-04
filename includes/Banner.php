@@ -890,7 +890,7 @@ class Banner {
 				$cache->touchCheckKey( $key );
 				if ( $newFields !== null ) {
 					// May as well set the new volatile cache value in the local datacenter
-					$cache->set( $key, $cache::TTL_MONTH, $newFields );
+					$cache->set( $key, $newFields, $cache::TTL_MONTH );
 				}
 			}
 		);
