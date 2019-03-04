@@ -21,7 +21,8 @@
 			"Ypryima",
 			"Dars",
 			"Piramidion",
-			"Максим Підліснюк"
+			"Максим Підліснюк",
+			"Vlad5250"
 		]
 	},
 	"centralnotice": "Адміністрування централізованими сповіщеннями",
@@ -40,7 +41,7 @@
 	"centralnotice-modify": "Відправити",
 	"centralnotice-view": "Перегляд",
 	"centralnotice-save-banner": "Зберегти",
-	"centralnotice-live-preview": "Попередній перегляд у вікі",
+	"centralnotice-live-preview": "Попередній перегляд",
 	"centralnotice-add-new": "Додати нову кампанію",
 	"centralnotice-remove": "Вилучити",
 	"centralnotice-translate-heading": "Переклад для $1",
