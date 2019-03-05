@@ -105,7 +105,7 @@ class BannerMessage {
 		// only class attributes.
 		$spanTags = [];
 		$text = preg_replace_callback(
-			'/(<\/?span\s*(?:class\s?=\s?([\'"])[a-zA-Z0-9_-]+(\2))?\s*>)/',
+			'/(<\/?span\s*(?:class\s?=\s?([\'"])[a-zA-Z0-9_ -]+(\2))?\s*>)/',
 			function ( $matches ) use ( &$spanTags ) {
 				$spanTags[] = $matches[ 1 ];
 				return BannerMessage::SPAN_TAG_PLACEHOLDER_START .
