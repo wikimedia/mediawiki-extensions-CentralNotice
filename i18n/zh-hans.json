@@ -29,7 +29,8 @@
 			"Duolaimi",
 			"Antonio",
 			"Wmr",
-			"A Chinese Wikipedian"
+			"A Chinese Wikipedian",
+			"Zazzzz"
 		]
 	},
 	"centralnotice": "中心通告管理",
@@ -48,7 +49,7 @@
 	"centralnotice-modify": "提交",
 	"centralnotice-view": "查看",
 	"centralnotice-save-banner": "保存",
-	"centralnotice-live-preview": "wiki中预览",
+	"centralnotice-live-preview": "预览",
 	"centralnotice-add-new": "添加新活动",
 	"centralnotice-remove": "移除",
 	"centralnotice-translate-heading": "$1的翻译",
