@@ -9,7 +9,8 @@
 			"Mormegil",
 			"Paxt",
 			"Vks",
-			"Ilimanaq29"
+			"Ilimanaq29",
+			"Patriccck"
 		]
 	},
 	"centralnotice": "Správa centralizovaných oznámení",
@@ -236,5 +237,6 @@
 	"apihelp-query+centralnoticelogs-example-1": "Zobrazit protokoly",
 	"centralnotice-impression-events-sample-rate": "Zobrazení vzorkového hodnocení událostí",
 	"centralnotice-impression-events-sample-rate-help": "Zvolit nevýchozí vzorkové hodnocení k protokolování dojmu z událostí.",
-	"centralnotice-impression-events-sample-rate-field": "Zobrazení vzorkového hodnocení událostí (mělo by být mezi 0 a 1, včetně)"
+	"centralnotice-impression-events-sample-rate-field": "Zobrazení vzorkového hodnocení událostí (mělo by být mezi 0 a 1, včetně)",
+	"tag-centralnotice": "Centralizovaná oznámení"
 }
