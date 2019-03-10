@@ -11,7 +11,8 @@
 			"Nghtwlkr",
 			"Njardarlogar",
 			"Jeblad",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Kingu"
 		]
 	},
 	"centralnotice": "Administrasjon av sentrale beskjeder",
@@ -211,7 +212,7 @@
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Alle enheter som identifiseres som Ipad men ikke Iphone",
 	"centralnotice-devicetype-iphone": "Alle Iphone-versjoner",
-	"centralnotice-devicetype-unknown": "Enheter på mobilsiden som ikke er Iphone, Ipad eller ANdroid – ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Utvalgslogikk])",
+	"centralnotice-devicetype-unknown": "Enheter på mobilsiden annet enn iPhone, iPad eller Android – ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Utvalgslogikk])",
 	"centralnotice-all": "Alle",
 	"centralnotice-generic-error": "Du har ikke de rette tillatelsene til å utføre den ønskede handlingen, eller selve handlingen var ugyldig.",
 	"centralnotice-banner-name-error": "Ugyldig bannernavn oppgitt. Gyldige navn inneholder bare alfanumeriske tegn og understreker.",
