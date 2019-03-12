@@ -286,7 +286,7 @@ class CentralNoticeHooks {
 					$userData = [];
 
 					// Add the user's registration date (MediaWiki timestamp)
-					$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
+					$registrationDate = $wgUser->getRegistration() ?: 0;
 					$userData[ 'registration' ] = $registrationDate;
 				}
 

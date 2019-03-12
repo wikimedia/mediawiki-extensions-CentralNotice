@@ -72,7 +72,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		// If the form has been submitted, the country code should be passed along.
 		$locationSubmitted = $request->getVal( 'country' );
-		$this->location = $locationSubmitted ? $locationSubmitted : $this->location;
+		$this->location = $locationSubmitted ?: $this->location;
 
 		// Convert submitted location to boolean value. If it true, showList() will be called.
 		$locationSubmitted = (bool)$locationSubmitted;

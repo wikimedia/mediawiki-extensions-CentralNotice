@@ -1175,7 +1175,7 @@ class Banner {
 			// TODO Inconsistency: deletion of banner content is not recorded
 			// as a bot edit, so it does not appear on the CN logs page. Also,
 			// related messages are not deleted.
-			$article->doDeleteArticle( $summary ? $summary : '' );
+			$article->doDeleteArticle( $summary ?: '' );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
