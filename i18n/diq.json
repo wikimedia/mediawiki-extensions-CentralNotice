@@ -24,7 +24,7 @@
 	"centralnotice-desc": "Yew sitenoticeyê merkezî de keno",
 	"centralnotice-summary": "Ena panel ti ra yardim keno ke ti eşkeno îkazanê merkezî bivurne.\nEna panel eyni zeman de eşkeno îkazanê kihanî de biko ya zi wedaro.",
 	"centralnotice-query": "Îkazê peniyî bivurne",
-	"centralnotice-notice-name": "Nameyê îkazî",
+	"centralnotice-notice-name": "Nameyê kampanya",
 	"centralnotice-enabled": "Feal",
 	"centralnotice-modify": "Bırışe",
 	"centralnotice-view": "Bıvêne",
@@ -54,7 +54,7 @@
 	"centralnotice-templates": "ŞAbloni",
 	"centralnotice-throttle": "Limita trafiki",
 	"centralnotice-weight": "Ehemiyet",
-	"centralnotice-locked": "Kafilnaye",
+	"centralnotice-locked": "Kılitbiyaye",
 	"centralnotice-notice": "Kampanya",
 	"centralnotice-notice-heading": "Qampanya: $1",
 	"centralnotice-notices": "İkazi",
@@ -204,8 +204,8 @@
 	"centralnotice-devices": "Ramıterdı bıasn",
 	"centralnotice-start-timestamp": "Serterin (UTC)",
 	"centralnotice-end-timestamp": "Qedyin (UTC)",
-	"centralnotice-start-date": "Sertera demi (UTC)",
+	"centralnotice-start-date": "Tarixê destpêkerdışi (UTC)",
 	"centralnotice-start-time": "Seetê başli kerdişî  (UTC)",
-	"centralnotice-end-date": "Demê qediyayışi (UTC)",
+	"centralnotice-end-date": "Tarixê qediyayışi (UTC)",
 	"centralnotice-end-time": "Kedyayış (UTC)"
 }
