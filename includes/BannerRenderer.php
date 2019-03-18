@@ -115,24 +115,39 @@ class BannerRenderer {
 	 * FIXME: "->inLanguage( $context->getLanguage() )" is necessary due to a bug
 	 *   in DerivativeContext
 	 *
+	 * @param null $bannerContent override banner content for preview
+	 *
 	 * @return string HTML fragment for the banner body.
 	 */
-	public function toHtml() {
+	public function toHtml( $bannerContent = null ) {
 		global $wgNoticeUseLanguageConversion;
+
 		$parentLang = $lang = $this->context->getLanguage();
 		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
 			$parentLang = $lang->getParentLanguage();
 		}
 
-		$bannerKey = $this->banner->getDbKey();
-		$bannerContentMessage = $this->context->msg( $bannerKey )->inLanguage( $parentLang );
-		if ( !$bannerContentMessage->exists() ) {
-			// Translation subsystem failure
-			throw new RuntimeException(
-				"Banner message key $bannerKey could not be found in {$parentLang->getCode()}"
+		if ( !empty( $bannerContent ) ) {
+			// Preview mode, banner content is ephemeral
+			$bannerHtml = MessageCache::singleton()->transform(
+				$bannerContent,
+				false,
+				$parentLang
 			);
+			$bannerHtml .= ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.load', [ 'ext.centralNotice.display' ] ) );
+		} else {
+			// Normal mode, banner content is stored as message
+			$bannerKey = $this->banner->getDbKey();
+			$bannerContentMessage = $this->context->msg( $bannerKey )->inLanguage( $parentLang );
+			if ( !$bannerContentMessage->exists() ) {
+				// Translation subsystem failure
+				throw new RuntimeException(
+					"Banner message key $bannerKey could not be found in {$parentLang->getCode()}" );
+			}
+			$bannerHtml = $bannerContentMessage->text();
 		}
-		$bannerHtml = $bannerContentMessage->text();
+
 		$bannerHtml .= $this->getResourceLoaderHtml();
 		$bannerHtml = $this->substituteMagicWords( $bannerHtml );
 
@@ -270,4 +285,5 @@ class BannerRenderer {
 
 		return $bannerMessage->toHtml( $this->context );
 	}
+
 }

@@ -16,6 +16,10 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	public $bannerName;
 	/** @var string Name of the campaign that the banner belongs to.*/
 	public $campaignName;
+	/** @var string|null Content of the banner to be previewed */
+	public $bannerContent;
+	/** @var string[] Message for substitution */
+	public $bannerMessages;
 	/** @var bool */
 	protected $debug;
 
@@ -29,7 +33,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		try {
 			$this->getParams();
-			$out = $this->getJsNotice( $this->bannerName );
+			$out = $this->getJsNotice( $this->bannerName, $this->bannerContent );
 			$cacheResponse = self::MAX_CACHE_NORMAL;
 
 		} catch ( EmptyBannerException $e ) {
@@ -58,6 +62,12 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$this->campaignName = $request->getText( 'campaign' );
 		$this->bannerName = $request->getText( 'banner' );
 		$this->debug = $request->getFuzzyBool( 'debug' );
+
+		// Respect the `bannercontent` and `bannermessages` parameters only if the viewer is a CN editor
+		if ( $this->getUser()->isAllowed( 'centralnotice-admin' ) ) {
+			$this->bannerContent = $request->getText( 'bannercontent', null );
+			$this->bannerMessages = $request->getArray( 'bannermessages', null );
+		}
 
 		$required_values = [
 			$this->campaignName, $this->bannerName, $language
@@ -106,17 +116,20 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/**
 	 * Generate the JS for the requested banner
 	 * @param string $bannerName
+	 * @param string|null $bannerContent
 	 * @return string of JavaScript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
 	 * @throws EmptyBannerException
 	 * @throws StaleCampaignException
 	 */
-	public function getJsNotice( $bannerName ) {
+	public function getJsNotice( $bannerName, $bannerContent = null ) {
 		// If this wasn't a test of a banner, check that this is from a campaign
 		// that hasn't ended. We might get old campaigns due to forever-cached
 		// JS somewhere. Note that we include some leeway and don't consider
 		// archived or enabled status because the campaign might just have been
 		// updated and there is a normal caching lag.
+
+		$isPreview = !empty( $bannerContent ) && $this->getRequest()->wasPosted();
 
 		// An empty campaign name is how bannerController indicates a test request.
 		if ( $this->campaignName !== '' ) {
@@ -138,14 +151,29 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		if ( $bannerName === null || $bannerName === '' ) {
 			throw new EmptyBannerException( $bannerName );
 		}
+
 		$banner = Banner::fromName( $bannerName );
-		if ( !$banner->exists() ) {
+		if ( !$banner->exists() && !$isPreview ) {
 			throw new EmptyBannerException( $bannerName );
 		}
-		$bannerRenderer = new BannerRenderer(
-			$this->getContext(), $banner, $this->campaignName, $this->debug );
 
-		$bannerHtml = $bannerRenderer->toHtml();
+		if ( $isPreview ) {
+			// Replace messages in preview content with values provided in params
+			if ( $this->bannerMessages && count( $this->bannerMessages ) ) {
+				$this->bannerContent = $this->replaceMessages(
+					$this->bannerContent,
+					$this->bannerMessages
+				);
+			}
+		}
+
+		$bannerRenderer = new BannerRenderer(
+			$this->getContext(),
+			$banner,
+			$this->campaignName,
+			$this->debug
+		);
+		$bannerHtml = $bannerRenderer->toHtml( $this->bannerContent );
 
 		if ( !$bannerHtml ) {
 			throw new EmptyBannerException( $bannerName );
@@ -168,8 +196,40 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		$preload = $bannerRenderer->getPreloadJs();
 
-		$bannerJs = "{$preload}\nmw.centralNotice.insertBanner( {$bannerJson} );";
+		if ( $isPreview ) {
+			$bannerJs = "{$preload}\n" .
+						"mw.centralNotice.adminUi.bannerEditor.updateBannerPreview( {$bannerJson} );";
+		} else {
+			$bannerJs = "{$preload}\nmw.centralNotice.insertBanner( {$bannerJson} );";
+		}
 
 		return $bannerJs;
 	}
+
+	/**
+	 * Replaces {{{x}}} with message strings,
+	 * perhaps need to be reworked or replaced.
+	 *
+	 * @note the method is static to allow SpecialBannerLoader::getJsNotice() to call
+	 * it during in-page previews, perhaps it would be better to organize things into a
+	 * sepearte class or integrate into renderer/banner somehow
+	 *
+	 * @param string $text Base text
+	 * @param string[] $messages Messages array
+	 *
+	 * @return string
+	 */
+	private function replaceMessages( $text, $messages ) {
+		if ( count( $messages ) ) {
+			foreach ( $messages as $message => $value ) {
+				$text = str_replace(
+					'{{{' . $message . '}}}',
+					MessageCache::singleton()->transform( $value ),
+					$text
+				);
+			}
+		}
+		return $text;
+	}
+
 }

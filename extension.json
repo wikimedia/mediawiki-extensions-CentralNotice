@@ -189,7 +189,8 @@
 				"centralnotice-banner-cdn-dialog-title",
 				"centralnotice-banner-cdn-dialog-ok",
 				"centralnotice-banner-cdn-dialog-error",
-				"centralnotice-banner-cdn-dialog-success"
+				"centralnotice-banner-cdn-dialog-success",
+				"centralnotice-fieldset-preview"
 			]
 		},
 		"ext.centralNotice.adminUi.campaignManager": {

@@ -119,6 +119,8 @@
 	"centralnotice-message": "The header of a table of translatable messages. Translatable messages are represented in the template code by strings enclosed in three curly brackets.\n\n* {{msg-mw|centralnotice-number-uses}}\n* {{msg-mw|centralnotice-english}}\n* (the name of a language to which the banner is being translated)\n\n{{Identical|Message}}",
 	"centralnotice-message-not-set": "Used if the native text of the banner message is not set, in [[Special:NoticeTemplate]].",
 	"centralnotice-campaigns-using-banner": "On the banner edit page, title of subsection showing campaigns associated with the banner.",
+	"centralnotice-fieldset-preview": "Used as a title for banner preview section on banner editing screen",
+	"centralnotice-preview": "Used as label for banner preview action button",
 	"centralnotice-clone": "Used as label for the Submit button in [[Special:NoticeTemplate]].\n\nPreceded by the \"Name\" input box with the label {{msg-mw|Centralnotice-clone-name}}.\n{{Identical|Clone}}",
 	"centralnotice-clone-notice": "Used as fieldset label in the form in [[Special:NoticeTemplate]].",
 	"centralnotice-clone-name": "Used as label for the \"Name\" input box in [[Special:NoticeTemplate]].\n\nPreceded by the fieldset label {{msg-mw|centralnotice-clone-notice}}.\n\nThe input box is followed by the Submit button. Its label is {{msg-mw|centralnotice-clone}}.\n{{Identical|Name}}",
