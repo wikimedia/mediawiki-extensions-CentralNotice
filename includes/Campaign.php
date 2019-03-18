@@ -1161,6 +1161,43 @@ class Campaign {
 	}
 
 	/**
+	 * Returns a Title object to use in obtaining the URL of a campaign.
+	 * @return Title
+	 */
+	public static function getTitleForURL() {
+		return SpecialPage::getTitleFor( 'CentralNotice' );
+	}
+
+	/**
+	 * Returns an array with key/value pairs for a query string, to use in obtaining the
+	 * URL of the campaign with the specified name.
+	 *
+	 * @param string $campaignName
+	 * @return string[]
+	 */
+	public static function getQueryForURL( $campaignName ) {
+		return [
+			'subaction' => 'noticeDetail',
+			'notice' => $campaignName
+		];
+	}
+
+	/**
+	 * Returns the canonical URL for campaign with the specified name (as returned by
+	 * Title::getCanonicalURL()).
+	 *
+	 * Usage note: This method should be considered part of CentralNotice's public API.
+	 * It's called from outside the extension in EventBus::onCentralNoticeCampaignChange().
+	 *
+	 * @param string $campaignName
+	 * @return string
+	 */
+	public static function getCanonicalURL( $campaignName ) {
+		return self::getTitleForURL()->getCanonicalURL(
+			self::getQueryForURL( $campaignName ) );
+	}
+
+	/**
 	 * @param string $noticeName
 	 * @param string $start Date
 	 * @param string $end Date
