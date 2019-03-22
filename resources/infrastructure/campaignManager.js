@@ -413,7 +413,7 @@
 
 		paramValues = paramValues || {};
 
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( paramDefs, function ( paramName, paramDef ) {
 
 			var paramTemplateVars = {
@@ -760,7 +760,7 @@
 	// We have to wait for document ready and for custom controls modules to be loaded
 	// before initializing everything
 	$( function () {
-		// eslint-disable-next-line jquery/no-map-util
+		// eslint-disable-next-line no-jquery/no-map-util
 		var customControlsModules = $.map( mixinDefs, function ( mixinDef ) {
 			return mixinDef.customAdminUIControlsModule;
 		} );

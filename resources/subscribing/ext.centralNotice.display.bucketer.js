@@ -132,7 +132,7 @@
 	 */
 	function storeBuckets() {
 		var expires = Math.ceil( ( new Date() ) / 1000 ),
-			// eslint-disable-next-line jquery/no-map-util
+			// eslint-disable-next-line no-jquery/no-map-util
 			serialized = $.map( buckets, function ( opts, key ) {
 				var parts = [
 					escapeCampaignName( key ),

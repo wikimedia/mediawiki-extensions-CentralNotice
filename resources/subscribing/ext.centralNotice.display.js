@@ -79,7 +79,7 @@
 	 */
 	function runMixinHooks( hookPropertyName ) {
 		var state = cn.internal.state;
-		// eslint-disable-next-line jquery/no-each-util
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( state.getCampaign().mixins, function ( mixinName, mixinParams ) {
 			var handler;
 			// Sanity check
