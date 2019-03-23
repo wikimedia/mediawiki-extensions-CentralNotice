@@ -287,6 +287,7 @@
 	"apihelp-query+centralnoticelogs-param-end": "Endzeit des Bereichs (optional).",
 	"apihelp-query+centralnoticelogs-example-1": "Logbücher anzeigen",
 	"apihelp-query+centralnoticeactivecampaigns-description": "Ruft eine Liste aktuell aktiver Kampagnen und zugehöriger Vorlagen ab.",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "Ruft eine Liste derzeit aktiver Kampagnen und zugehöriger Vorlagen ab.",
 	"centralnotice-banner-history-logger": "Vorlagenverlaufsprotokollierung",
 	"centralnotice-banner-history-logger-help": "Verfolgt die Sequenz an Vorlagen, die von Lesern gesehen werden und sendet sie gelegentlich an den Server zurück.",
 	"centralnotice-banner-history-logger-rate": "Samplerate",
