@@ -85,8 +85,15 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				break;
 
 			case 'edit':
-				// Display the banner editor form
-				if ( $this->bannerName ) {
+				// FIXME: extrapolate conditional into separate method?
+				if ( $this->bannerName && Banner::isValidBannerName( $this->bannerName ) ) {
+					// Assign value to instance variable to be used in showBannerEditor
+					$this->banner = Banner::fromName( $this->bannerName );
+					if ( !$this->banner->exists() ) {
+						throw new ErrorPageError( 'centralnotice-banner-not-found-title',
+							'centralnotice-banner-not-found-contents' );
+					}
+					// Display the banner editor form
 					$this->showBannerEditor();
 				} else {
 					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
@@ -379,8 +386,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			)
 		];
 
-		$bannerObj = Banner::fromName( $this->bannerName );
-		$bannerTitle = $bannerObj->getTitle();
+		$bannerTitle = $this->banner->getTitle();
 		// $bannerTitle can be null sometimes
 		if ( $bannerTitle && $this->getUser()->isAllowed( 'editinterface' ) ) {
 			$links[] = $linkRenderer->makeLink(
@@ -412,9 +418,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			true
 		);
 
-		if ( !Banner::isValidBannerName( $this->bannerName ) ) {
-			throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
-		}
 		$out->setPageTitle( $this->bannerName );
 		$out->setSubtitle(
 			$this->getLanguage()->pipeList( $this->getBannerPreviewEditLinks() )
@@ -476,12 +479,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 		$languages = array_flip( $languages );
 
-		$banner = Banner::fromName( $this->bannerName );
-		if ( !$banner->exists() ) {
-			throw new ErrorPageError( 'centralnotice-banner-not-found-title',
-				'centralnotice-banner-not-found-contents' );
-		}
-		$bannerSettings = $banner->getBannerSettings( $this->bannerName, true );
+		$bannerSettings = $this->banner->getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = [];
 
@@ -495,7 +493,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'options' => Banner::getAllUsedCategories(),
 			'size' => 30,
 			'maxlength' => 255,
-			'default' => $banner->getCategory(),
+			'default' => $this->banner->getCategory(),
 		];
 
 		$selected = [];
@@ -519,7 +517,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		];
 
 		$assignedDevices = array_values(
-			CNDeviceTarget::getDevicesAssociatedWithBanner( $banner->getId() )
+			CNDeviceTarget::getDevicesAssociatedWithBanner( $this->banner->getId() )
 		);
 		$availableDevices = [];
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
@@ -539,7 +537,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$mixinNames = array_keys( $wgCentralNoticeBannerMixins );
 		$availableMixins = array_combine( $mixinNames, $mixinNames );
-		$selectedMixins = array_keys( $banner->getMixins() );
+		$selectedMixins = array_keys( $this->banner->getMixins() );
 		$formDescriptor['mixins'] = [
 			'section' => 'settings',
 			'type' => 'multiselect',
@@ -552,7 +550,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		];
 
 		/* --- Translatable Messages Section --- */
-		$messages = $banner->getMessageFieldsFromCache();
+		$messages = $this->banner->getMessageFieldsFromCache();
 
 		$linkRenderer = $this->getLinkRenderer();
 		if ( $messages ) {
@@ -584,7 +582,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 							[],
 							[
 								'group' => BannerMessageGroup::getTranslateGroupName(
-									$banner->getName()
+									$this->banner->getName()
 								),
 								'task' => 'view'
 							]
@@ -652,7 +650,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'rawrow' => true,
 		];
 
-		$renderer = new BannerRenderer( $this->getContext(), $banner );
+		$renderer = new BannerRenderer( $this->getContext(), $this->banner );
 		$magicWords = $renderer->getMagicWords();
 		foreach ( $magicWords as &$word ) {
 			$word = wfEscapeWikiText( '{{{' . $word . '}}}' );
@@ -690,12 +688,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'readonly' => !$this->editable,
 			'hidelabel' => true,
 			'placeholder' => '<!-- blank banner -->',
-			'default' => $banner->getBodyContent(),
+			'default' => $this->banner->getBodyContent(),
 			'cssclass' => 'separate-form-element'
 		];
 
 		$links = [];
-		foreach ( $banner->getIncludedTemplates() as $titleObj ) {
+		foreach ( $this->banner->getIncludedTemplates() as $titleObj ) {
 			$links[] = $linkRenderer->makeLink( $titleObj );
 		}
 		if ( $links ) {
@@ -788,9 +786,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			// The default is to save for historical reasons.  TODO: review.
 			'default' => 'save',
 		];
-
-		// Save the banner object in an instance variable
-		$this->banner = $banner;
 
 		return $formDescriptor;
 	}
