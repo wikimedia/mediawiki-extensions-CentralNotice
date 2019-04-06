@@ -106,10 +106,10 @@ class Banner {
 	 *
 	 * @param int $id Unique database ID of the banner
 	 *
-	 * @return Banner
+	 * @return self
 	 */
 	public static function fromId( $id ) {
-		$obj = new Banner();
+		$obj = new self();
 		$obj->id = $id;
 		return $obj;
 	}
@@ -121,7 +121,7 @@ class Banner {
 	 *
 	 * @param string $name
 	 *
-	 * @return Banner
+	 * @return self
 	 * @throws BannerDataException
 	 */
 	public static function fromName( $name ) {
@@ -129,7 +129,7 @@ class Banner {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
 
-		$obj = new Banner();
+		$obj = new self();
 		$obj->name = $name;
 		return $obj;
 	}
@@ -139,7 +139,7 @@ class Banner {
 	 *
 	 * @param string $name
 	 *
-	 * @return Banner
+	 * @return self
 	 * @throws BannerDataException
 	 */
 	public static function newFromName( $name ) {
@@ -147,7 +147,7 @@ class Banner {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
 
-		$obj = new Banner();
+		$obj = new self();
 		$obj->name = $name;
 
 		foreach ( $obj->dirtyFlags as $flag => &$value ) {
