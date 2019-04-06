@@ -401,13 +401,13 @@ class CentralNoticeHooks {
 
 		// These classes are only used here or in phpunit tests
 		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
-			__DIR__ . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
+			dirname( __DIR__ ) . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
 		// Note: the following setting is repeated in efCentralNoticeUnitTests()
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
-			__DIR__ . '/tests/phpunit/CentralNoticeTestFixtures.php';
+			dirname( __DIR__ ) . '/tests/phpunit/CentralNoticeTestFixtures.php';
 
 		$testModuleBoilerplate = [
-			'localBasePath' => __DIR__,
+			'localBasePath' => dirname( __DIR__ ),
 			'remoteExtPath' => 'CentralNotice',
 		];
 
@@ -424,7 +424,7 @@ class CentralNoticeHooks {
 					$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
 
 					// if a test file exists for a given JS file, add it
-					if ( file_exists( __DIR__ . '/' . $testFile ) ) {
+					if ( file_exists( dirname( __DIR__ ) . '/' . $testFile ) ) {
 						$testFiles[] = $testFile;
 					}
 				}
