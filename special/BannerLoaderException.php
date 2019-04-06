@@ -8,7 +8,7 @@
  */
 class BannerLoaderException extends Exception {
 	public function __construct( $bannerName = '(none provided)', $extraMsg = null ) {
-		$this->message = get_called_class() .
+		$this->message = static::class .
 			" while loading banner: '{$bannerName}'";
 		if ( $extraMsg ) {
 			$this->message .= ". {$extraMsg}";
