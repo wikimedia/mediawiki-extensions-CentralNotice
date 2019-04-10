@@ -246,7 +246,13 @@
 			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
 			"packageFiles": [
 				"index.js",
-				"kvStoreMaintenance.js"
+				"kvStoreMaintenance.js",
+				{
+					"name": "config.json",
+					"config": {
+						"cookiesToDelete": "CentralNoticeCookiesToDelete"
+					}
+				}
 			],
 			"dependencies": [
 				"ext.centralNotice.choiceData",
