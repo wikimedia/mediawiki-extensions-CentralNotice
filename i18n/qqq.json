@@ -305,6 +305,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "{{doc-apihelp-example|query+centralnoticelogs}}",
 	"apihelp-query+centralnoticeactivecampaigns-description": "{{doc-apihelp-description|query+centralnoticeactivecampaigns}}",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "{{doc-apihelp-summary|query+centralnoticeactivecampaigns}}",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "{{doc-apihelp-param|query+centralnoticeactivecampaigns|includefuture}}",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "{{doc-apihelp-example|query+centralnoticeactivecampaigns}}",
 	"centralnotice-banner-history-logger": "Name of the banner history logger campaign mixin, for adminsitration UI control",
 	"centralnotice-banner-history-logger-help": "Description of the banner history feature",

@@ -13,18 +13,24 @@ class ApiCentralNoticeQueryActiveCampaigns extends ApiQueryBase {
 	}
 
 	public function execute() {
+		$params = $this->extractRequestParams();
+
 		// Obtain the ApiResults object from the base class
 		$result = $this->getResult();
 
 		$result->addValue(
 			[ 'query', $this->getModuleName() ],
 			'campaigns',
-			Campaign::getActiveCampaignsAndBanners()
+			Campaign::getActiveCampaignsAndBanners( $params[ 'includefuture' ] )
 		 );
 	}
 
 	public function getAllowedParams() {
-		return [];
+		return [
+			'includefuture' => [
+				ApiBase::PARAM_TYPE => 'boolean'
+			]
+		];
 	}
 
 	/**

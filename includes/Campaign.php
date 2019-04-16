@@ -368,12 +368,26 @@ class Campaign {
 	}
 
 	/**
-	 * @return array An array of currently active campaigns, whose elements are
-	 *   arrays with campaign name and an array of associated banners.
+	 * Get a list of active/active-and-future campaigns and associated banners.
+	 *
+	 * @param bool $includeFuture Include campaigns that haven't started yet, too.
+	 *
+	 * @return array An array of campaigns, whose elements are arrays with campaign name
+	 * and an array of associated banners.
 	 */
-	public static function getActiveCampaignsAndBanners() {
+	public static function getActiveCampaignsAndBanners( $includeFuture = false ) {
 		$dbr = CNDatabase::getDb( DB_REPLICA );
 		$time = $dbr->timestamp();
+
+		$conds = [
+			'notices.not_end >= ' . $dbr->addQuotes( $time ),
+			'notices.not_enabled' => 1,
+			'notices.not_archived' => 0
+		];
+
+		if ( !$includeFuture ) {
+			$conds[] = 'notices.not_start <= ' . $dbr->addQuotes( $time );
+		}
 
 		// Query campaigns and banners at once
 		$dbRows = $dbr->select(
@@ -387,12 +401,7 @@ class Campaign {
 				'notices.not_name',
 				'templates.tmp_name'
 			],
-			[
-			'notices.not_start <= ' . $dbr->addQuotes( $time ),
-			'notices.not_end >= ' . $dbr->addQuotes( $time ),
-			'notices.not_enabled' => 1,
-			'notices.not_archived' => 0
-			],
+			$conds,
 			__METHOD__,
 			[],
 			[
