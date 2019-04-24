@@ -242,7 +242,11 @@
 			]
 		},
 		"ext.centralNotice.startUp": {
-			"scripts": "subscribing/ext.centralNotice.startUp.js",
+			"localBasePath": "resources/ext.centralNotice.startUp",
+			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
+			"packageFiles": [
+				"index.js"
+			],
 			"dependencies": [
 				"ext.centralNotice.choiceData",
 				"ext.centralNotice.kvStoreMaintenance",
