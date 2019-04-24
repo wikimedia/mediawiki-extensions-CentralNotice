@@ -18,7 +18,11 @@
 	var cn = mw.centralNotice,
 		cookiesToDelete = mw.config.get( 'wgCentralNoticeCookiesToDelete' ),
 		testingBannerName = mw.util.getParamValue( 'banner' ),
+		kvStoreMaintenance = require( './kvStoreMaintenance.js' ),
 		NULL_BANNER_NAME = 'null';
+
+	// For use by kvStore.js, export this globally.
+	cn.kvStoreMaintenance = kvStoreMaintenance;
 
 	// Schedule the slurping of old defunct cookies
 	if ( cookiesToDelete && cookiesToDelete.length > 0 ) {
@@ -66,7 +70,7 @@
 	//   "No more than once per session" but a time-bound is still needed as
 	//   sessions often never end due to save-on-quit and restore-on-reopen features
 	//   in many products.
-	mw.requestIdleCallback( cn.kvStoreMaintenance.doMaintenance );
+	mw.requestIdleCallback( kvStoreMaintenance.doMaintenance );
 
 	// Nothing more to do if there are no possible campaigns for this user
 	if ( cn.choiceData.length === 0 ) {

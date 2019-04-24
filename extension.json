@@ -245,11 +245,11 @@
 			"localBasePath": "resources/ext.centralNotice.startUp",
 			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
 			"packageFiles": [
-				"index.js"
+				"index.js",
+				"kvStoreMaintenance.js"
 			],
 			"dependencies": [
 				"ext.centralNotice.choiceData",
-				"ext.centralNotice.kvStoreMaintenance",
 				"mediawiki.util"
 			],
 			"targets": [
@@ -294,15 +294,8 @@
 		"ext.centralNotice.kvStore": {
 			"scripts": "subscribing/ext.centralNotice.kvStore.js",
 			"dependencies": [
-				"ext.centralNotice.kvStoreMaintenance"
+				"ext.centralNotice.startUp"
 			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.centralNotice.kvStoreMaintenance": {
-			"scripts": "subscribing/ext.centralNotice.kvStoreMaintenance.js",
 			"targets": [
 				"desktop",
 				"mobile"
