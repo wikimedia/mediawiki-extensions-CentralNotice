@@ -372,8 +372,8 @@ class Campaign {
 	 *
 	 * @param bool $includeFuture Include campaigns that haven't started yet, too.
 	 *
-	 * @return array An array of campaigns, whose elements are arrays with campaign name
-	 * and an array of associated banners.
+	 * @return array An array of campaigns, whose elements are arrays with campaign name,
+	 * an array of associated banners, and campaign start and end times.
 	 */
 	public static function getActiveCampaignsAndBanners( $includeFuture = false ) {
 		$dbr = CNDatabase::getDb( DB_REPLICA );
@@ -399,6 +399,8 @@ class Campaign {
 			[
 				'notices.not_id',
 				'notices.not_name',
+				'notices.not_start',
+				'notices.not_end',
 				'templates.tmp_name'
 			],
 			$conds,
@@ -418,17 +420,18 @@ class Campaign {
 
 		foreach ( $dbRows as $dbRow ) {
 			$campaignId = $dbRow->not_id;
-			$campaignName = $dbRow->not_name;
-			$bannerName = $dbRow->tmp_name;
 
 			// The first time we see any campaign, create the corresponding outer K/V
 			// entry. Note that these keys don't make it into data structure we return.
 			if ( !isset( $campaigns[$campaignId] ) ) {
 				$campaigns[$campaignId] = [
-					'name' => $campaignName
+					'name' => $dbRow->not_name,
+					'start' => $dbRow->not_start,
+					'end' => $dbRow->not_end,
 				];
 			}
 
+			$bannerName = $dbRow->tmp_name;
 			// Automagically PHP creates the inner array as needed
 			if ( $bannerName ) {
 				$campaigns[$campaignId]['banners'][] = $bannerName;
