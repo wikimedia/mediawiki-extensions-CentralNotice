@@ -305,6 +305,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "Afficher le journal",
 	"apihelp-query+centralnoticeactivecampaigns-description": "Obtenir une liste des campagnes actuellement actives et des bannières associées.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "Obtenir une liste des campagnes actuellement actives et des bannières associées.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Inclure les campagnes activées futures (en même temps que les campagnes actives actuellement).",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "Obtenir une liste des campagnes actuellement actives et des bannières associées.",
 	"centralnotice-banner-history-logger": "Trace de l’historique des bannières",
 	"centralnotice-banner-history-logger-help": "Tracer la séquence des bannières vues par les lecteurs, et à l’occasion, les renvoyer au serveur.",

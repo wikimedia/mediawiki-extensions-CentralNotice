@@ -283,6 +283,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "Прикажи логоа",
 	"apihelp-query+centralnoticeactivecampaigns-description": "Дај список на тековно активни походи и поврзани разгласи.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "Дај список на тековно активни походи и поврзани разгласи.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Вклучи ги и овозможените идни погоди (како и тековно активните походи).",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "Дај список на тековно активни походи и поврзани разгласи.",
 	"centralnotice-banner-history-logger": "Дневник на историјата на разгласот",
 	"centralnotice-banner-history-logger-help": "Следи ја низата разгласи што им се прикажува на читателите и повремено испраќај му ги назад на опслужувачот.",

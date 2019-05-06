@@ -298,6 +298,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "اعرض السجلات",
 	"apihelp-query+centralnoticeactivecampaigns-description": "احصل على قائمة بالحملات النشطة حاليا واللافتات المرتبطة بها.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "احصل على قائمة بالحملات النشطة حاليا واللافتات المرتبطة بها.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "تضمين الحملات المستقبلية الممكَّنة (وكذلك الحملات النشطة حاليا).",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "احصل على قائمة بالحملات النشطة حاليا واللافتات المرتبطة بها.",
 	"centralnotice-banner-history-logger": "مسجل تاريخ البانر",
 	"centralnotice-banner-history-logger-help": "تتبع تسلسل لافتات ينظر إليها القراء، وأحيانا إرسالها مرة أخرى إلى الخادم.",

@@ -293,6 +293,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "Mostrar registos",
 	"apihelp-query+centralnoticeactivecampaigns-description": "Obter uma lista dos avisos que estão ativos e dos modelos associados.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "Obter uma lista dos avisos que estão ativos e dos modelos associados.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Incluir avisos futuros ativos (assim como avisos correntes ativos)",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "Obter uma lista dos avisos que estão ativos e dos modelos associados.",
 	"centralnotice-banner-history-logger": "Registador do historial dos modelos",
 	"centralnotice-banner-history-logger-help": "Monitorizar a sequência de modelos vistos por leitores e ocasionalmente enviá-la ao servidor.",

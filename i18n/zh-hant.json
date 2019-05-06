@@ -303,6 +303,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "顯示日誌",
 	"apihelp-query+centralnoticeactivecampaigns-description": "取得目前有效活動與所分配橫幅的清單。",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "取得目前有效活動與所分配橫幅的清單。",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "包含啟用的特色活動（如同目前的有效活動）。",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "取得目前有效活動與所分配橫幅的清單。",
 	"centralnotice-banner-history-logger": "橫幅歷史日誌器",
 	"centralnotice-banner-history-logger-help": "追蹤被讀者所見的橫幅序列，並不定時回傳至伺服器。",
