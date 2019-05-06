@@ -524,7 +524,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$availableDevices = [];
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
 			$header = htmlspecialchars( $value[ 'header' ] );
-			$label = $this->getOutput()->parseInline( $value[ 'label' ] );
+			$output = $this->getOutput();
+			if ( method_exists( $output, 'parseInlineAsInterface' ) ) {
+				// MW >= 1.32
+				$label = $this->getOutput()->parseInlineAsInterface( $value[ 'label' ] );
+			} else {
+				$label = $this->getOutput()->parseInline( $value[ 'label' ] );
+			}
 			$availableDevices[ "($header) $label" ] = $header;
 		}
 		$formDescriptor[ 'device-classes' ] = [
