@@ -145,6 +145,8 @@
 			mw.config.get( 'wgCentralNoticeSampleRate' )
 		);
 
+		state.data.preview = ( urlParams.preview !== undefined );
+
 		// In the case of impressionEventSampleRate, also remember if it's overridden by
 		// a URL param
 		impressionEventSampleRateFromUrl =
