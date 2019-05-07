@@ -144,5 +144,5 @@ class CleanCNTranslateMetadata extends Maintenance {
 	}
 }
 
-$maintClass = 'CleanCNTranslateMetadata';
+$maintClass = CleanCNTranslateMetadata::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

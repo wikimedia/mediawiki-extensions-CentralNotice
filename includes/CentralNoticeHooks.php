@@ -125,7 +125,9 @@ class CentralNoticeHooks {
 				SpecialPage::getTitleFor( 'BannerLoader' )->getLocalUrl();
 		}
 
-		if ( !$wgCentralSelectedMobileBannerDispatcher && class_exists( 'MobileContext' ) ) {
+		if ( !$wgCentralSelectedMobileBannerDispatcher &&
+			ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' )
+		) {
 			$wgCentralSelectedMobileBannerDispatcher = $wgCentralSelectedBannerDispatcher;
 		}
 	}
@@ -284,7 +286,7 @@ class CentralNoticeHooks {
 					$userData = [];
 
 					// Add the user's registration date (MediaWiki timestamp)
-					$registrationDate = $wgUser->getRegistration() ? $wgUser->getRegistration() : 0;
+					$registrationDate = $wgUser->getRegistration() ?: 0;
 					$userData[ 'registration' ] = $registrationDate;
 				}
 
@@ -321,8 +323,7 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onResourceLoaderGetConfigVars( &$vars ) {
-		global $wgNoticeXXCountries,
-			$wgNoticeInfrastructure, $wgCentralBannerRecorder,
+		global $wgNoticeInfrastructure, $wgCentralBannerRecorder,
 			$wgNoticeNumberOfBuckets, $wgNoticeBucketExpiry,
 			$wgNoticeNumberOfControllerBuckets, $wgNoticeCookieDurations,
 			$wgNoticeHideUrls, $wgCentralNoticeSampleRate,
@@ -336,7 +337,7 @@ class CentralNoticeHooks {
 		// made to non localised namespaces which results in wasteful extra calls.
 
 		// Set infrastructure URL variables, which change between mobile/desktop
-		if ( class_exists( 'MobileContext' ) ) {
+		if ( class_exists( MobileContext::class ) ) {
 			$mc = MobileContext::singleton();
 			$displayMobile = $mc->shouldDisplayMobileView();
 		} else {
@@ -358,9 +359,6 @@ class CentralNoticeHooks {
 
 		$vars[ 'wgCentralNoticeImpressionEventSampleRate' ] =
 			$wgCentralNoticeImpressionEventSampleRate;
-
-		// TODO Remove, no longer used
-		$vars[ 'wgNoticeXXCountries' ] = $wgNoticeXXCountries;
 
 		$vars[ 'wgNoticeNumberOfBuckets' ] = $wgNoticeNumberOfBuckets;
 		$vars[ 'wgNoticeBucketExpiry' ] = $wgNoticeBucketExpiry;
@@ -399,13 +397,13 @@ class CentralNoticeHooks {
 
 		// These classes are only used here or in phpunit tests
 		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
-			__DIR__ . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
+			dirname( __DIR__ ) . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
 		// Note: the following setting is repeated in efCentralNoticeUnitTests()
 		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
-			__DIR__ . '/tests/phpunit/CentralNoticeTestFixtures.php';
+			dirname( __DIR__ ) . '/tests/phpunit/CentralNoticeTestFixtures.php';
 
 		$testModuleBoilerplate = [
-			'localBasePath' => __DIR__,
+			'localBasePath' => dirname( __DIR__ ),
 			'remoteExtPath' => 'CentralNotice',
 		];
 
@@ -422,7 +420,7 @@ class CentralNoticeHooks {
 					$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
 
 					// if a test file exists for a given JS file, add it
-					if ( file_exists( __DIR__ . '/' . $testFile ) ) {
+					if ( file_exists( dirname( __DIR__ ) . '/' . $testFile ) ) {
 						$testFiles[] = $testFile;
 					}
 				}

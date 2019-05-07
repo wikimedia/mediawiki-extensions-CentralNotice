@@ -79,6 +79,7 @@
 	 */
 	function runMixinHooks( hookPropertyName ) {
 		var state = cn.internal.state;
+		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( state.getCampaign().mixins, function ( mixinName, mixinParams ) {
 			var handler;
 			// Sanity check
@@ -535,7 +536,6 @@
 						);
 					}
 
-					// eslint-disable-next-line camelcase
 					if ( tmpData.banner_count ) {
 						state.setBannerCount( tmpData.banner_count );
 					}

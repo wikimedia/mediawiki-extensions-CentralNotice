@@ -44,8 +44,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 *    (none)    - Display a list of banners
 	 *    edit      - Edits an existing banner
 	 *
-	 * TODO Preview action (for previewing translated messages) is broken. See T105558
-	 * TODO Change method of indicating action to something more standard.
+	 * TODO: Use the "?action=" convention rather than parsing the URL subpath.
 	 *
 	 * @param string|null $subPage
 	 */
@@ -89,17 +88,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				// Display the banner editor form
 				if ( $this->bannerName ) {
 					$this->showBannerEditor();
-				} else {
-					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
-				}
-				break;
-
-			// TODO Feature is broken. Remove or fix? See T105558
-			case 'preview':
-				// Preview all available translations
-				// Display the banner editor form
-				if ( $this->bannerName ) {
-					$this->showAllLanguages();
 				} else {
 					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
 				}
@@ -372,6 +360,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Returns array of navigation links to banner preview URL and
 	 * edit link to the banner's wikipage if the user is allowed.
 	 *
+	 * TODO: This looks reusable, maybe move to BannerRenderer.
+	 *
 	 * @return array
 	 */
 	private function getBannerPreviewEditLinks() {
@@ -495,15 +485,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$formDescriptor = [];
 
-		/* --- Banner Preview Section --- */
-		// FIXME Unused? See T161907
-		$formDescriptor[ 'preview' ] = [
-			'section' => 'preview',
-			'class' => 'HTMLCentralNoticeBanner',
-			'banner' => $this->bannerName,
-			'language' => $this->bannerLanguagePreview,
-		];
-
 		/* --- Banner Settings --- */
 		$formDescriptor['banner-class'] = [
 			'section' => 'settings',
@@ -543,7 +524,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$availableDevices = [];
 		foreach ( CNDeviceTarget::getAvailableDevices() as $k => $value ) {
 			$header = htmlspecialchars( $value[ 'header' ] );
-			$label = $this->getOutput()->parseInline( $value[ 'label' ] );
+			$output = $this->getOutput();
+			if ( method_exists( $output, 'parseInlineAsInterface' ) ) {
+				// MW >= 1.32
+				$label = $this->getOutput()->parseInlineAsInterface( $value[ 'label' ] );
+			} else {
+				$label = $this->getOutput()->parseInline( $value[ 'label' ] );
+			}
 			$availableDevices[ "($header) $label" ] = $header;
 		}
 		$formDescriptor[ 'device-classes' ] = [
@@ -638,21 +625,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					'default' => $bannerSettings[ 'prioritylangs' ],
 					'help-message' => 'centralnotice-prioritylangs-explain',
 					'cssclass' => 'separate-form-element cn-multiselect',
-				];
-			}
-
-			$liveMessageNames = $banner->getAvailableLanguages();
-			if ( $liveMessageNames ) {
-				$formDescriptor[ 'approved-languages' ] = [
-					'section' => 'banner-messages',
-					'class' => 'HTMLInfoField',
-					'disabled' => !$this->editable,
-					'label-raw' => $linkRenderer->makeLink(
-						$this->getPageTitle( "preview/{$this->bannerName}" ),
-						$this->msg( 'centralnotice-preview-all-template-translations' )->text()
-					),
-					'default' => implode( ', ', $liveMessageNames ),
-					'cssclass' => 'separate-form-element',
 				];
 			}
 
@@ -819,9 +791,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor[ 'action' ] = [
 			'section' => 'form-actions',
 			'type' => 'hidden',
-			// The default is save so that we can still save the banner/form if the banner
-			// preview has seriously borked JS. Maybe one day we'll be able to get Caja up
-			// and working and not have this issue.
+			// The default is to save for historical reasons.  TODO: review.
 			'default' => 'save',
 		];
 
@@ -1007,46 +977,5 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		return null;
-	}
-
-	/**
-	 * Preview all available translations of a banner
-	 */
-	protected function showAllLanguages() {
-		$out = $this->getOutput();
-
-		if ( !Banner::isValidBannerName( $this->bannerName ) ) {
-			$out->addHTML(
-				Xml::element( 'div', [ 'class' => 'error' ],
-					wfMessage( 'centralnotice-generic-error' )->text() )
-			);
-			return;
-		}
-		$out->setPageTitle( $this->bannerName );
-
-		// Large amounts of memory apparently required to do this
-		ini_set( 'memory_limit', '120M' );
-
-		$banner = Banner::fromName( $this->bannerName );
-
-		// Pull all available text for a banner
-		$langs = $banner->getAvailableLanguages();
-		$htmlOut = '';
-
-		$langContext = new DerivativeContext( $this->getContext() );
-
-		foreach ( $langs as $lang ) {
-			$langContext->setLanguage( $lang );
-			$bannerRenderer = new BannerRenderer( $langContext, $banner, 'test' );
-
-			// Link and Preview all available translations
-			$htmlOut .= Xml::tags(
-				'td',
-				[ 'valign' => 'top' ],
-				$bannerRenderer->previewFieldSet()
-			);
-		}
-
-		$this->getOutput()->addHTML( $htmlOut );
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"name": "CentralNotice",
-	"version": "2.6.0",
+	"version": "2.6.1",
 	"author": [
 		"Elliott Eggleston",
 		"Tomasz Finc",
@@ -47,13 +47,15 @@
 		"centralnoticecdncacheupdatebanner": "ApiCentralNoticeCdnCacheUpdateBanner"
 	},
 	"APIListModules": {
-		"centralnoticelogs": "ApiCentralNoticeLogs"
+		"centralnoticelogs": "ApiCentralNoticeLogs",
+		"centralnoticeactivecampaigns": "ApiCentralNoticeQueryActiveCampaigns"
 	},
 	"AutoloadClasses": {
 		"AllocationCalculator": "includes/AllocationCalculator.php",
 		"ApiCentralNoticeCdnCacheUpdateBanner": "api/ApiCentralNoticeCdnCacheUpdateBanner.php",
 		"ApiCentralNoticeChoiceData": "api/ApiCentralNoticeChoiceData.php",
 		"ApiCentralNoticeLogs": "api/ApiCentralNoticeLogs.php",
+		"ApiCentralNoticeQueryActiveCampaigns": "api/ApiCentralNoticeQueryActiveCampaigns.php",
 		"ApiCentralNoticeQueryCampaign": "api/ApiCentralNoticeQueryCampaign.php",
 		"BannerContentException": "includes/BannerContentException.php",
 		"BannerDataException": "includes/BannerDataException.php",
@@ -69,7 +71,7 @@
 		"CdnCacheUpdateBannerLoader": "includes/CdnCacheUpdateBannerLoader.php",
 		"CentralNoticeBannerLogPager": "CentralNoticeBannerLogPager.php",
 		"CentralNoticeCampaignLogPager": "CentralNoticeCampaignLogPager.php",
-		"CentralNoticeHooks": "CentralNotice.hooks.php",
+		"CentralNoticeHooks": "includes/CentralNoticeHooks.php",
 		"CentralNoticeHtmlForm": "special/CentralNoticeHtmlForm.php",
 		"CentralNoticePageLogPager": "CentralNoticePageLogPager.php",
 		"CentralNoticePager": "CentralNoticePager.php",
@@ -84,7 +86,6 @@
 		"EmptyBannerException": "special/EmptyBannerException.php",
 		"GeoTarget": "includes/GeoTarget.php",
 		"HTMLBannerPagerNavigation": "includes/HTMLBannerPagerNavigation.php",
-		"HTMLCentralNoticeBanner": "includes/HtmlFormElements/HTMLCentralNoticeBanner.php",
 		"HTMLCentralNoticeBannerMessage": "includes/HtmlFormElements/HTMLCentralNoticeBannerMessage.php",
 		"HTMLLargeMultiSelectField": "special/HTMLLargeMultiSelectField.php",
 		"IBannerMixin": "includes/IBannerMixin.php",
@@ -501,7 +502,6 @@
 		"CentralSelectedBannerDispatcher": false,
 		"CentralMobileSelectedBannerDispatcher": false,
 		"CentralNoticeLoader": true,
-		"NoticeBannerPreview": false,
 		"NoticeCookieDomain": "",
 		"NoticeCookieDurations": {
 			"close": 1209600,
@@ -518,14 +518,6 @@
 		"NoticeProtectGroup": false,
 		"NoticeTranslateDeployStates": [
 			"published"
-		],
-		"NoticeXXCountries": [
-			"XX",
-			"EU",
-			"AP",
-			"A1",
-			"A2",
-			"O1"
 		],
 		"NoticeReporterDomains": "https://donate.wikimedia.org",
 		"NoticeNumberOfBuckets": 4,

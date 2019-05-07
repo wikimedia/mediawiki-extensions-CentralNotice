@@ -149,8 +149,8 @@
 		 * the form with the 'remove' action.
 		 */
 		doDeleteBanner: function () {
-			var dialogObj = $( '<form></form>' ),
-				dialogMessage = $( '<div class="cn-dialog-message" />' ),
+			var dialogObj = $( '<form>' ),
+				dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-delete-banner-cancel' ).text();
@@ -263,12 +263,12 @@
 
 	// Attach handlers and initialize stuff after document ready
 	$( function () {
-		$( '#mw-input-wpdelete-button' ).click( mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
-		$( '#mw-input-wparchive-button' ).click( mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
-		$( '#mw-input-wpclone-button' ).click( mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
-		$( '#mw-input-wpsave-button' ).click( mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
-		$( '#mw-input-wptranslate-language' ).change( mw.centralNotice.adminUi.bannerEditor.updateLanguage );
-		$( '#cn-cdn-cache-purge' ).click( doPurgeCache );
+		$( '#mw-input-wpdelete-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
+		$( '#mw-input-wparchive-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
+		$( '#mw-input-wpclone-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
+		$( '#mw-input-wpsave-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
+		$( '#mw-input-wptranslate-language' ).on( 'change', mw.centralNotice.adminUi.bannerEditor.updateLanguage );
+		$( '#cn-cdn-cache-purge' ).on( 'click', doPurgeCache );
 
 		$( '#cn-js-error-warn' ).hide();
 	} );

@@ -12,7 +12,11 @@
 	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		bhLogger,
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
-		doNotTrackEnabled = /1|yes/.test( navigator.doNotTrack ),
+		doNotTrackEnabled =
+			// Support: Firefox < 32 (yes/no)
+			/1|yes/.test( navigator.doNotTrack ) ||
+			// Support: IE 11, Safari 7.1.3+ (window.doNotTrack)
+			window.doNotTrack === '1',
 		waitLogNoSendBeacon,
 		now = Math.round( ( new Date() ).getTime() / 1000 ),
 		log,

@@ -48,15 +48,6 @@
 		location.href = url.extend( { log: logType } ).toString();
 	};
 
-	// FIXME Unused? See T161907
-	window.addEventListener( 'message', receiveMessage, false );
-	function receiveMessage( event ) {
-		var remoteData = JSON.parse( event.data );
-		if ( remoteData.banner && remoteData.height ) {
-			$( '#cn-banner-preview-' + remoteData.banner + ' iframe' ).height( remoteData.height );
-		}
-	}
-
 	$( function () {
 		// Render jquery.ui.datepicker on appropriate fields
 		$( '.centralnotice-datepicker' ).each( function () {
@@ -96,12 +87,18 @@
 
 		// Reveal the geoMultiSelector when the geotargeted checkbox is checked
 		if ( !$( '#geotargeted' ).prop( 'checked' ) ) {
+			// FIXME: Use CSS transition
+			// eslint-disable-next-line no-jquery/no-fade
 			$( '#geoMultiSelector' ).fadeOut( 'fast' );
 		}
-		$( '#geotargeted' ).click( function () {
+		$( '#geotargeted' ).on( 'click', function () {
 			if ( this.checked ) {
+				// FIXME: Use CSS transition
+				// eslint-disable-next-line no-jquery/no-fade
 				$( '#geoMultiSelector' ).fadeIn( 'fast' );
 			} else {
+				// FIXME: Use CSS transition
+				// eslint-disable-next-line no-jquery/no-fade
 				$( '#geoMultiSelector' ).fadeOut( 'fast' );
 			}
 		} );

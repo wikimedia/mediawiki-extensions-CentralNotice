@@ -368,6 +368,80 @@ class Campaign {
 	}
 
 	/**
+	 * Get a list of active/active-and-future campaigns and associated banners.
+	 *
+	 * @param bool $includeFuture Include campaigns that haven't started yet, too.
+	 *
+	 * @return array An array of campaigns, whose elements are arrays with campaign name,
+	 * an array of associated banners, and campaign start and end times.
+	 */
+	public static function getActiveCampaignsAndBanners( $includeFuture = false ) {
+		$dbr = CNDatabase::getDb( DB_REPLICA );
+		$time = $dbr->timestamp();
+
+		$conds = [
+			'notices.not_end >= ' . $dbr->addQuotes( $time ),
+			'notices.not_enabled' => 1,
+			'notices.not_archived' => 0
+		];
+
+		if ( !$includeFuture ) {
+			$conds[] = 'notices.not_start <= ' . $dbr->addQuotes( $time );
+		}
+
+		// Query campaigns and banners at once
+		$dbRows = $dbr->select(
+			[
+				'notices' => 'cn_notices',
+				'assignments' => 'cn_assignments',
+				'templates' => 'cn_templates'
+			],
+			[
+				'notices.not_id',
+				'notices.not_name',
+				'notices.not_start',
+				'notices.not_end',
+				'templates.tmp_name'
+			],
+			$conds,
+			__METHOD__,
+			[],
+			[
+				'assignments' => [
+					'LEFT OUTER JOIN', 'notices.not_id = assignments.not_id'
+				],
+				'templates' => [
+					'LEFT OUTER JOIN', 'assignments.tmp_id = templates.tmp_id'
+				]
+			]
+		);
+
+		$campaigns = [];
+
+		foreach ( $dbRows as $dbRow ) {
+			$campaignId = $dbRow->not_id;
+
+			// The first time we see any campaign, create the corresponding outer K/V
+			// entry. Note that these keys don't make it into data structure we return.
+			if ( !isset( $campaigns[$campaignId] ) ) {
+				$campaigns[$campaignId] = [
+					'name' => $dbRow->not_name,
+					'start' => $dbRow->not_start,
+					'end' => $dbRow->not_end,
+				];
+			}
+
+			$bannerName = $dbRow->tmp_name;
+			// Automagically PHP creates the inner array as needed
+			if ( $bannerName ) {
+				$campaigns[$campaignId]['banners'][] = $bannerName;
+			}
+		}
+
+		return array_values( $campaigns );
+	}
+
+	/**
 	 * Return settings for a campaign
 	 *
 	 * @param string $campaignName The name of the campaign
@@ -918,10 +992,11 @@ class Campaign {
 				'enabled'   => (int)$enabled,
 				'preferred' => 0,
 				'locked'    => 0,
+				'archived'  => 0,
 				'geo'       => (int)$geotargeted,
 				'throttle'  => $throttle,
 			];
-			self::logCampaignChange( 'created', $not_id, $user,
+			self::processAfterCampaignChange( 'created', $not_id, $noticeName, $user,
 				$beginSettings, $endSettings, $summary );
 
 			return $not_id;
@@ -961,7 +1036,7 @@ class Campaign {
 	private static function removeCampaignByName( $campaignName, $user ) {
 		// Log the removal of the campaign
 		$campaignId = self::getNoticeId( $campaignName );
-		self::logCampaignChange( 'removed', $campaignId, $user );
+		self::processAfterCampaignChange( 'removed', $campaignId, $campaignName, $user );
 
 		$dbw = CNDatabase::getDb( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
@@ -1095,6 +1170,43 @@ class Campaign {
 		}
 		sort( $countries );
 		return $countries;
+	}
+
+	/**
+	 * Returns a Title object to use in obtaining the URL of a campaign.
+	 * @return Title
+	 */
+	public static function getTitleForURL() {
+		return SpecialPage::getTitleFor( 'CentralNotice' );
+	}
+
+	/**
+	 * Returns an array with key/value pairs for a query string, to use in obtaining the
+	 * URL of the campaign with the specified name.
+	 *
+	 * @param string $campaignName
+	 * @return string[]
+	 */
+	public static function getQueryForURL( $campaignName ) {
+		return [
+			'subaction' => 'noticeDetail',
+			'notice' => $campaignName
+		];
+	}
+
+	/**
+	 * Returns the canonical URL for campaign with the specified name (as returned by
+	 * Title::getCanonicalURL()).
+	 *
+	 * Usage note: This method should be considered part of CentralNotice's public API.
+	 * It's called from outside the extension in EventBus::onCentralNoticeCampaignChange().
+	 *
+	 * @param string $campaignName
+	 * @return string
+	 */
+	public static function getCanonicalURL( $campaignName ) {
+		return self::getTitleForURL()->getCanonicalURL(
+			self::getQueryForURL( $campaignName ) );
 	}
 
 	/**
@@ -1341,16 +1453,17 @@ class Campaign {
 	 * Log any changes related to a campaign
 	 *
 	 * @param string $action 'created', 'modified', or 'removed'
-	 * @param int $campaignId ID of campaign
+	 * @param int $campaignId ID of the campaign
+	 * @param string $campaignName Name of the campaign
 	 * @param User $user User causing the change
-	 * @param array $beginSettings array of campaign settings before changes (optional)
-	 * @param array $endSettings array of campaign settings after changes (optional)
+	 * @param array $beginSettings array of campaign settings before changes (optional).
+	 *   If provided, it should include at least start, end, enabled and archived.
+	 * @param array $endSettings array of campaign settings after changes (optional).
+	 *   If provided, it should include at least start, end, enabled and archived.
 	 * @param string|null $summary Change summary provided by the user
-	 *
-	 * @return int ID of log entry (or null)
 	 */
-	public static function logCampaignChange(
-		$action, $campaignId, $user, $beginSettings = [],
+	public static function processAfterCampaignChange(
+		$action, $campaignId, $campaignName, $user, $beginSettings = [],
 		$endSettings = [], $summary = null
 	) {
 		ChoiceDataProvider::invalidateCache();
@@ -1360,38 +1473,88 @@ class Campaign {
 			$summary = '';
 		}
 
-		// Only log the change if it is done by an actual user (rather than a testing script)
-		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
-			$dbw = CNDatabase::getDb( DB_MASTER );
+		$dbw = CNDatabase::getDb( DB_MASTER );
+		$time = $dbw->timestamp();
 
-			$log = [
-				'notlog_timestamp' => $dbw->timestamp(),
-				'notlog_user_id'   => $user->getId(),
-				'notlog_action'    => $action,
-				'notlog_not_id'    => $campaignId,
-				'notlog_not_name'  => self::getNoticeName( $campaignId ),
-				'notlog_comment'   => $summary,
-			];
+		$log = [
+			'notlog_timestamp' => $time,
+			'notlog_user_id'   => $user->getId(),
+			'notlog_action'    => $action,
+			'notlog_not_id'    => $campaignId,
+			'notlog_not_name'  => $campaignName,
+			'notlog_comment'   => $summary,
+		];
 
-			foreach ( $beginSettings as $key => $value ) {
-				if ( !self::settingNameIsValid( $key ) ) {
-					throw new InvalidArgumentException( "Invalid setting name" );
-				}
+		foreach ( $beginSettings as $key => $value ) {
+			if ( !self::settingNameIsValid( $key ) ) {
+				throw new InvalidArgumentException( "Invalid setting name" );
+			}
 				$log[ 'notlog_begin_' . $key ] = $value;
-			}
-			foreach ( $endSettings as $key => $value ) {
-				if ( !self::settingNameIsValid( $key ) ) {
-					throw new InvalidArgumentException( "Invalid setting name" );
-				}
-				$log[ 'notlog_end_' . $key ] = $value;
-			}
+		}
 
+		foreach ( $endSettings as $key => $value ) {
+			if ( !self::settingNameIsValid( $key ) ) {
+				throw new InvalidArgumentException( "Invalid setting name" );
+			}
+				$log[ 'notlog_end_' . $key ] = $value;
+		}
+
+		Hooks::runWithoutAbort(
+			'CentralNoticeCampaignChange',
+			[
+				$action,
+				$time,
+				$campaignName,
+				$user,
+				self::processSettingsForHook( $beginSettings ),
+				self::processSettingsForHook( $endSettings ),
+				$summary
+			]
+		);
+
+		// Only log the change if it is done by an actual user (rather than a testing script)
+		// FIXME There must be a cleaner way to do this?
+		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
 			$dbw->insert( 'cn_notice_log', $log );
-			$log_id = $dbw->insertId();
-			return $log_id;
-		} else {
+		}
+	}
+
+	/**
+	 * Prepare campaign settings to be sent to the CampaignChange hook. This is necessary
+	 * since the settings provided to processAfterCampaignChange() are in a format
+	 * that is appropriate for the cn_notice_log table, but not for the hook.
+	 *
+	 * @param array $settings
+	 * @return array
+	 */
+	private static function processSettingsForHook( $settings ) {
+		if ( !$settings ) {
 			return null;
 		}
+
+		if ( isset( $settings[ 'banners' ] ) ) {
+			$banners = json_decode( $settings[ 'banners' ] );
+
+			// This should never happen, since the string should just have been json-encoded
+			// in getCampaignSettings().
+			if ( $banners === null ) {
+				throw new UnexpectedValueException( 'Json decoding error for banner settings' );
+			}
+
+			// Names of banners are object properties
+			$banners = array_keys( (array)$banners );
+
+		} else {
+			$banners = [];
+		}
+
+		return [
+			'start' => $settings[ 'start' ],
+			'end' => $settings[ 'end' ],
+			'enabled' => (bool)$settings[ 'enabled' ],
+			'archived' => (bool)$settings[ 'archived' ],
+			'banners' => $banners,
+		];
 	}
 
 	/**

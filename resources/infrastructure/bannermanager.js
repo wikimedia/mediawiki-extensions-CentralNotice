@@ -84,8 +84,8 @@
 		 * the form with the 'remove' action.
 		 */
 		doRemoveBanners: function () {
-			var dialogObj = $( '<form></form>' ),
-				dialogMessage = $( '<div class="cn-dialog-message" />' ),
+			var dialogObj = $( '<form>' ),
+				dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-delete-banner-cancel' ).text();
@@ -250,15 +250,15 @@
 	};
 
 	// Attach event handlers
-	$( '#mw-input-wpaddNewBanner' ).click( bm.doAddBannerDialog );
-	$( '#mw-input-wpdeleteSelectedBanners' ).click( bm.doRemoveBanners );
-	$( '#mw-input-wparchiveSelectedBanners' ).click( bm.doArchiveBanners );
-	$( '#mw-input-wpselectAllBanners' ).click( bm.checkAllStateAltered );
-	$( '#mw-input-wpfilterApply' ).click( bm.applyFilter );
-	$( '#mw-input-wpbannerNameFilter' ).keypress( bm.filterTextBoxKeypress );
+	$( '#mw-input-wpaddNewBanner' ).on( 'click', bm.doAddBannerDialog );
+	$( '#mw-input-wpdeleteSelectedBanners' ).on( 'click', bm.doRemoveBanners );
+	$( '#mw-input-wparchiveSelectedBanners' ).on( 'click', bm.doArchiveBanners );
+	$( '#mw-input-wpselectAllBanners' ).on( 'click', bm.checkAllStateAltered );
+	$( '#mw-input-wpfilterApply' ).on( 'click', bm.applyFilter );
+	$( '#mw-input-wpbannerNameFilter' ).on( 'keypress', bm.filterTextBoxKeypress );
 
 	$( 'input.cn-bannerlist-check-applyto' ).each( function () {
-		$( this ).click( bm.selectCheckStateAltered );
+		$( this ).on( 'click', bm.selectCheckStateAltered );
 		bm.totalSelectableItems++;
 	} );
 

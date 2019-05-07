@@ -303,8 +303,7 @@ class AllocationCalculator {
 			foreach ( $possibleBanners as $banner ) {
 				$banner['campaign'] = $campaign['name'];
 
-				$banner['allocation'] =
-					$banner['allocation'] * $campaign['allocation'];
+				$banner['allocation'] *= $campaign['allocation'];
 
 				$possibleBannersAllCampaigns[] = $banner;
 			}

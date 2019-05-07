@@ -1,6 +1,8 @@
 <?php
 
 // FIXME Unused? See T161907
+// It's not unused, see Special:CentralNoticeBanners.  Probably needs to be
+// merged with TemplatePager.
 
 class CNBannerPager extends ReverseChronologicalPager {
 
@@ -130,11 +132,15 @@ class CNBannerPager extends ReverseChronologicalPager {
 			}
 		}
 
+		$banner = Banner::fromId( $bannerId );
+		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner );
+		$rowText = $bannerRenderer->linkTo();
+
 		// Now do the banner
 		$retval["cn-banner-list-element-$bannerId"] = [
-			'class' => 'HTMLCentralNoticeBanner',
-			'banner' => $bannerName,
-			'withlabel' => true,
+			'class' => 'HTMLInfoField',
+			'default' => $rowText . " (" . $bannerRenderer->getPreviewLink() . ")",
+			'raw' => true,
 		];
 		if ( $this->formSection ) {
 			$retval["cn-banner-list-element-$bannerId"]['section'] = $this->formSection;

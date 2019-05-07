@@ -30,7 +30,7 @@
 	"centralnotice-language": "Taal",
 	"centralnotice-projects": "Projekten",
 	"centralnotice-country": "Lân",
-	"centralnotice-user": "Brûker",
+	"centralnotice-user": "Meidogger",
 	"centralnotice-priority-normal": "normaal",
 	"centralnotice-devicetype-desktop": "Fêste kompjûter",
 	"centralnotice-banner-class": "Kategory",
@@ -38,5 +38,7 @@
 	"centralnotice-archive-campaign": "Argyf",
 	"centralnotice-archive-campaign-cancel": "Annulearje",
 	"centralnotice-delete-banner": "Fuortsmite",
-	"centralnotice-delete-banner-cancel": "Annulearje"
+	"centralnotice-delete-banner-cancel": "Annulearje",
+	"tag-centralnotice-description": "Bewurking dien út de CentralNotice-beheardersomjouwing wei",
+	"tag-centralnotice_translation-description": "Bewurking fan CentralNotice-ynhâld dien mei de oersetútwreiding"
 }

@@ -182,9 +182,10 @@ class CentralNotice extends SpecialPage {
 
 			if ( $diffs ) {
 				$campaignId = Campaign::getNoticeId( $campaignName );
-				Campaign::logCampaignChange(
+				Campaign::processAfterCampaignChange(
 					'modified',
 					$campaignId,
+					$campaignName,
 					$this->getUser(),
 					$initialSettings,
 					$newSettings,
@@ -777,8 +778,8 @@ class CentralNotice extends SpecialPage {
 
 				$summary = $this->getSummaryFromRequest( $request );
 
-				Campaign::logCampaignChange(
-					'modified', $campaignId, $this->getUser(),
+				Campaign::processAfterCampaignChange(
+					'modified', $campaignId, $notice, $this->getUser(),
 					$initialCampaignSettings, $finalCampaignSettings,
 					$summary );
 

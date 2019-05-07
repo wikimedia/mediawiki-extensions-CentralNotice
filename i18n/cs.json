@@ -9,7 +9,8 @@
 			"Mormegil",
 			"Paxt",
 			"Vks",
-			"Ilimanaq29"
+			"Ilimanaq29",
+			"Patriccck"
 		]
 	},
 	"centralnotice": "Správa centralizovaných oznámení",
@@ -26,9 +27,7 @@
 	"centralnotice-modify": "Odeslat",
 	"centralnotice-view": "Zobrazit",
 	"centralnotice-save-banner": "Uložit",
-	"centralnotice-preview": "Náhled ($1)",
-	"centralnotice-live-preview": "Náhled na wiki",
-	"centralnotice-nopreview": "(Náhled není dostupný)",
+	"centralnotice-live-preview": "Náhled",
 	"centralnotice-add-new": "Přidat nové centrální oznámení",
 	"centralnotice-remove": "Odstranit",
 	"centralnotice-translate-heading": "Překlad šablony „$1“",
@@ -84,7 +83,6 @@
 	"centralnotice-no-templates-assigned": "K oznámení nebyly přiřazeny žádné šablony. Přidejte nějaké!",
 	"centralnotice-available-templates": "Dostupné šablony",
 	"centralnotice-template-already-exists": "Šablona už byla s kampaní svázána.\nNebude přidána.",
-	"centralnotice-preview-template": "Náhled šablony",
 	"centralnotice-change-lang": "Změnit překládaný jazyk",
 	"centralnotice-weights": "Váhy",
 	"centralnotice-notice-is-locked": "Oznámení je uzamčeno. Nebude odstraněno.",
@@ -106,7 +104,6 @@
 	"centralnotice-clone-name": "Název:",
 	"centralnotice-clone-cancel": "Storno",
 	"centralnotice-clone-banner": "Banner",
-	"centralnotice-preview-all-template-translations": "Náhled všech schválených překladů",
 	"centralnotice-insert": "Vložit: $1",
 	"centralnotice-close-button": "Zavírací tlačítko",
 	"centralnotice-close-title": "Zavřít",
@@ -240,5 +237,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "Zobrazit protokoly",
 	"centralnotice-impression-events-sample-rate": "Zobrazení vzorkového hodnocení událostí",
 	"centralnotice-impression-events-sample-rate-help": "Zvolit nevýchozí vzorkové hodnocení k protokolování dojmu z událostí.",
-	"centralnotice-impression-events-sample-rate-field": "Zobrazení vzorkového hodnocení událostí (mělo by být mezi 0 a 1, včetně)"
+	"centralnotice-impression-events-sample-rate-field": "Zobrazení vzorkového hodnocení událostí (mělo by být mezi 0 a 1, včetně)",
+	"tag-centralnotice": "Centralizovaná oznámení",
+	"tag-centralnotice_translation": "Překlady Centralizovaných oznámení"
 }

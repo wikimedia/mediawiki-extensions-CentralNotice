@@ -194,13 +194,10 @@ class CNCampaignPager extends TablePager {
 		switch ( $fieldName ) {
 			case 'not_name':
 				return Linker::link(
-					SpecialPage::getTitleFor( 'CentralNotice' ),
+					Campaign::getTitleForURL(),
 					htmlspecialchars( $value ),
 					[],
-					[
-						'subaction' => 'noticeDetail',
-						'notice' => $value
-					]
+					Campaign::getQueryForURL( $value )
 				);
 
 			case 'projects':

@@ -23,6 +23,7 @@
  */
 
 use Wikimedia\Rdbms\IDatabase;
+use MediaWiki\MediaWikiServices;
 
 /**
  * CentralNotice banner object. Banners are pieces of rendered wikimarkup
@@ -105,10 +106,10 @@ class Banner {
 	 *
 	 * @param int $id Unique database ID of the banner
 	 *
-	 * @return Banner
+	 * @return self
 	 */
 	public static function fromId( $id ) {
-		$obj = new Banner();
+		$obj = new self();
 		$obj->id = $id;
 		return $obj;
 	}
@@ -120,7 +121,7 @@ class Banner {
 	 *
 	 * @param string $name
 	 *
-	 * @return Banner
+	 * @return self
 	 * @throws BannerDataException
 	 */
 	public static function fromName( $name ) {
@@ -128,7 +129,7 @@ class Banner {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
 
-		$obj = new Banner();
+		$obj = new self();
 		$obj->name = $name;
 		return $obj;
 	}
@@ -138,7 +139,7 @@ class Banner {
 	 *
 	 * @param string $name
 	 *
-	 * @return Banner
+	 * @return self
 	 * @throws BannerDataException
 	 */
 	public static function newFromName( $name ) {
@@ -146,7 +147,7 @@ class Banner {
 			throw new BannerDataException( "Invalid banner name supplied." );
 		}
 
-		$obj = new Banner();
+		$obj = new self();
 		$obj->name = $name;
 
 		foreach ( $obj->dirtyFlags as $flag => &$value ) {
@@ -842,6 +843,7 @@ class Banner {
 						self::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
 						$this->runTranslateJob = true;
 					}
+					$this->invalidateCache( $fields );
 				}
 			}
 		}
@@ -862,21 +864,44 @@ class Banner {
 	 * @return array
 	 */
 	public function getMessageFieldsFromCache() {
-		$data = ObjectCache::getMainStashInstance()
-			->get( $this->getMessageFieldsCacheKey() );
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $this->getMessageFieldsCacheKey( $cache );
 
-		if ( $data !== false ) {
-			$data = json_decode( $data, true );
-		} else {
-			$data = $this->extractMessageFields();
-		}
-
-		return $data;
+		return $cache->getWithSetCallback(
+			$key,
+			$cache::TTL_MONTH,
+			function () {
+				return $this->extractMessageFields();
+			},
+			[ 'checkKeys' => [ $key ], 'lockTSE' => 60 ]
+		);
 	}
 
-	protected function getMessageFieldsCacheKey() {
-		return ObjectCache::getMainStashInstance()
-			->makeKey( 'centralnotice', 'bannerfields', $this->getName() );
+	/**
+	 * @param array|null $newFields Optional new result of the extractMessageFields()
+	 */
+	public function invalidateCache( $newFields = null ) {
+		// Update cache after the DB transaction finishes
+		CNDatabase::getDb()->onTransactionCommitOrIdle(
+			function () use ( $newFields ) {
+				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+				$key = $this->getMessageFieldsCacheKey( $cache );
+
+				$cache->touchCheckKey( $key );
+				if ( $newFields !== null ) {
+					// May as well set the new volatile cache value in the local datacenter
+					$cache->set( $key, $newFields, $cache::TTL_MONTH );
+				}
+			}
+		);
+	}
+
+	/**
+	 * @param WANObjectCache $cache
+	 * @return mixed
+	 */
+	protected function getMessageFieldsCacheKey( $cache ) {
+		return $cache->makeKey( 'centralnotice', 'bannerfields', $this->getName() );
 	}
 
 	/**
@@ -914,10 +939,6 @@ class Banner {
 		$fields = array_intersect_key( array_count_values( $fields[1] ), $unique_fields );
 
 		$fields = array_diff_key( $fields, array_flip( $renderer->getMagicWords() ) );
-
-		// Save in the cache.
-		ObjectCache::getMainStashInstance()
-			->set( $this->getMessageFieldsCacheKey(), json_encode( $fields ) );
 
 		return $fields;
 	}
@@ -1112,6 +1133,8 @@ class Banner {
 
 		// Save it!
 		$destBanner->save( $user, $summary );
+		$this->invalidateCache( $fields );
+
 		return $destBanner;
 	}
 
@@ -1152,7 +1175,7 @@ class Banner {
 			// TODO Inconsistency: deletion of banner content is not recorded
 			// as a bot edit, so it does not appear on the CN logs page. Also,
 			// related messages are not deleted.
-			$article->doDeleteArticle( $summary ? $summary : '' );
+			$article->doDeleteArticle( $summary ?: '' );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner

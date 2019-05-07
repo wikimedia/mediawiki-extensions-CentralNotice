@@ -108,12 +108,12 @@ class CentralNoticePager extends TemplatePager {
 			);
 		}
 
-		// Link and Preview
+		// Render banner row.
 		$banner = Banner::fromName( $row->tmp_name );
 		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner );
 
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-			$bannerRenderer->linkTo() . "<br>" . $bannerRenderer->previewFieldSet()
+			$bannerRenderer->linkTo()
 		);
 
 		// End banner row

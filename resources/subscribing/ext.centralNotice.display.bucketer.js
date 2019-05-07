@@ -66,7 +66,7 @@
 
 		var parsedBuckets = {};
 
-		$.each( serialized.split( '*' ), function ( idx, strBucket ) {
+		serialized.split( '*' ).forEach( function ( strBucket ) {
 			var parts = strBucket.split( '!' ),
 				key = decodeCampaignName( parts[ 0 ] ),
 				start = parseInt( parts[ 1 ], 10 ) + 14e8,
@@ -132,6 +132,7 @@
 	 */
 	function storeBuckets() {
 		var expires = Math.ceil( ( new Date() ) / 1000 ),
+			// eslint-disable-next-line no-jquery/no-map-util
 			serialized = $.map( buckets, function ( opts, key ) {
 				var parts = [
 					escapeCampaignName( key ),

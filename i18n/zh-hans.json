@@ -29,7 +29,9 @@
 			"Duolaimi",
 			"Antonio",
 			"Wmr",
-			"A Chinese Wikipedian"
+			"A Chinese Wikipedian",
+			"Zazzzz",
+			"佛壁灯"
 		]
 	},
 	"centralnotice": "中心通告管理",
@@ -48,9 +50,7 @@
 	"centralnotice-modify": "提交",
 	"centralnotice-view": "查看",
 	"centralnotice-save-banner": "保存",
-	"centralnotice-preview": "预览（$1）",
-	"centralnotice-live-preview": "wiki中预览",
-	"centralnotice-nopreview": "（无预览可用）",
+	"centralnotice-live-preview": "预览",
 	"centralnotice-add-new": "添加新活动",
 	"centralnotice-remove": "移除",
 	"centralnotice-translate-heading": "$1的翻译",
@@ -109,7 +109,6 @@
 	"centralnotice-no-templates-assigned": "没有模板分配到通告。\n添加一些！",
 	"centralnotice-available-templates": "可用模板",
 	"centralnotice-template-already-exists": "模板已经绑定到营销。\n没有添加",
-	"centralnotice-preview-template": "预览模板",
 	"centralnotice-change-lang": "改变翻译语言",
 	"centralnotice-weights": "权重",
 	"centralnotice-notice-is-locked": "通告已经锁定。\n没有移除",
@@ -121,7 +120,7 @@
 	"centralnotice-number-uses": "使用",
 	"centralnotice-settings": "设置",
 	"centralnotice-edit-template": "编辑模板",
-	"centralnotice-edit-template-summary": "警告：加载外部资源至横幅会威胁用户隐私。\n\n要创建一个可本地化的消息，请用三对花括号包裹带连字符的字符串，例如<nowiki>{{{jimbo-quote}}}</nowiki>。",
+	"centralnotice-edit-template-summary": "警告：加载外部资源至横幅将损害用户隐私。\n\n要创建可被本地化的消息，请在三对花括号内输入字符串，例如<<nowiki>{{{message_name}}}</nowiki>。要使用来自其他横幅的本地化信息，请在信息名前加上横幅名称并用点连接，如<nowiki>{{{banner_name,message_name}}}</nowiki>。",
 	"centralnotice-edit-template-magicwords": "横幅Mixins提供的魔术字：$1",
 	"centralnotice-message": "信息",
 	"centralnotice-message-not-set": "没有设置消息",
@@ -131,7 +130,6 @@
 	"centralnotice-clone-name": "名称：",
 	"centralnotice-clone-cancel": "取消",
 	"centralnotice-clone-banner": "横幅",
-	"centralnotice-preview-all-template-translations": "预览所有已批准的翻译",
 	"centralnotice-insert": "插入：$1",
 	"centralnotice-close-button": "关闭按钮",
 	"centralnotice-close-title": "关闭",
@@ -310,6 +308,9 @@
 	"apihelp-query+centralnoticelogs-param-start": "范围的开始时间（可选）。",
 	"apihelp-query+centralnoticelogs-param-end": "范围的结束时间（可选）。",
 	"apihelp-query+centralnoticelogs-example-1": "显示日志",
+	"apihelp-query+centralnoticeactivecampaigns-description": "获取活跃活动及其相关横幅的列表。",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "获取活跃活动及其相关横幅的列表。",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "获取活跃活动及其相关横幅的列表。",
 	"centralnotice-banner-history-logger": "横幅历史记录器",
 	"centralnotice-banner-history-logger-help": "追踪被读者看到的横幅序列，并不定期将其发送回服务器。",
 	"centralnotice-banner-history-logger-rate": "抽样率",
@@ -361,5 +362,9 @@
 	"centralnotice-impression-events-sample-rate": "印象事件抽样率",
 	"centralnotice-impression-events-sample-rate-help": "为日志记录印象事件设置非默认抽样率。",
 	"centralnotice-impression-events-sample-rate-field": "印象事件抽样率，应为0~1（包含）之间的数",
-	"tag-centralnotice_translation": "中央通知翻译"
+	"centralnotice-banner-protection-log-reason": "被 CentralNotice 自动保护，编者仅可通过 [[Special:CentralNotice]] 或 [[Special:Translate]] 进行编辑。",
+	"tag-centralnotice": "中央通知",
+	"tag-centralnotice-description": "通过 CentralNotice 管理界面创建的编辑",
+	"tag-centralnotice_translation": "中央通知翻译",
+	"tag-centralnotice_translation-description": "通过翻译扩展创建的 CentralNotice 内容编辑"
 }

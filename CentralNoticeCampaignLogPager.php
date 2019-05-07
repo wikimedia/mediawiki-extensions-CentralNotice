@@ -11,7 +11,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
 		$this->mLimitsShown = [ 20, 50, 100 ];
 
-		$this->viewPage = SpecialPage::getTitleFor( 'CentralNotice' );
+		$this->viewPage = Campaign::getTitleForURL();
 	}
 
 	/**
@@ -101,10 +101,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$this->viewPage,
 			$row->notlog_not_name,
 			[],
-			[
-				'subaction' => 'noticeDetail',
-				'notice' => $row->notlog_not_name
-			]
+			Campaign::getQueryForURL( $row->notlog_not_name )
 		);
 
 		// Begin log entry primary row

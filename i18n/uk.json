@@ -21,7 +21,8 @@
 			"Ypryima",
 			"Dars",
 			"Piramidion",
-			"Максим Підліснюк"
+			"Максим Підліснюк",
+			"Vlad5250"
 		]
 	},
 	"centralnotice": "Адміністрування централізованими сповіщеннями",
@@ -40,9 +41,7 @@
 	"centralnotice-modify": "Відправити",
 	"centralnotice-view": "Перегляд",
 	"centralnotice-save-banner": "Зберегти",
-	"centralnotice-preview": "Попередній перегляд ($1)",
-	"centralnotice-live-preview": "Попередній перегляд у вікі",
-	"centralnotice-nopreview": "(Попередній перегляд недоступний)",
+	"centralnotice-live-preview": "Попередній перегляд",
 	"centralnotice-add-new": "Додати нову кампанію",
 	"centralnotice-remove": "Вилучити",
 	"centralnotice-translate-heading": "Переклад для $1",
@@ -102,7 +101,6 @@
 	"centralnotice-no-templates-assigned": "Немає пов'язаних з кампанією банерів.\nДодайте який-небудь!",
 	"centralnotice-available-templates": "Доступні банери",
 	"centralnotice-template-already-exists": "Банер уже прив'язаний до кампанії.\nНе доданий.",
-	"centralnotice-preview-template": "Попередній перегляд банера",
 	"centralnotice-change-lang": "Змінити мову перекладу",
 	"centralnotice-weights": "Ваги",
 	"centralnotice-notice-is-locked": "Кампанію заблоковано.\nНе вилучається.",
@@ -124,7 +122,6 @@
 	"centralnotice-clone-name": "Назва:",
 	"centralnotice-clone-cancel": "Скасувати",
 	"centralnotice-clone-banner": "Банер",
-	"centralnotice-preview-all-template-translations": "Переглянути всі схвалені переклади",
 	"centralnotice-insert": "Вставити: $1",
 	"centralnotice-close-button": "Кнопка «Закрити»",
 	"centralnotice-close-title": "Закрити",

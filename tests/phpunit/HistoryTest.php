@@ -56,9 +56,10 @@ class HistoryTest extends CentralNoticeTest {
 			$newSettings['start'],
 			$newSettings['end']
 		);
-		Campaign::logCampaignChange(
+		Campaign::processAfterCampaignChange(
 			'modified',
 			$this->cnFixtures->spec['campaigns'][0]['id'],
+			$this->cnFixtures->spec['campaigns'][0]['name'],
 			$this->userUser,
 			$initialSettings,
 			$newSettings

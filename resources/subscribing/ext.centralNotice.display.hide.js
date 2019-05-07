@@ -119,7 +119,7 @@
 
 			// Iterate over all configured URLs to hide this category of banner
 			// for all wikis in a cluster
-			$.each( mw.config.get( 'wgNoticeHideUrls' ), function ( i, val ) {
+			mw.config.get( 'wgNoticeHideUrls' ).forEach( function ( val ) {
 
 				var url = new mw.Uri( val );
 				url.extend(
