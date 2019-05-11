@@ -35,7 +35,8 @@
 	"callback": "CentralNoticeHooks::onRegistration",
 	"MessagesDirs": {
 		"CentralNotice": [
-			"i18n"
+			"i18n",
+			"i18n/api"
 		]
 	},
 	"ExtensionMessagesFiles": {
