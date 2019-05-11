@@ -16,7 +16,8 @@
 ( function () {
 
 	var cn = mw.centralNotice,
-		cookiesToDelete = mw.config.get( 'wgCentralNoticeCookiesToDelete' ),
+		config = require( './config.json' ),
+		cookiesToDelete = config.cookiesToDelete,
 		testingBannerName = mw.util.getParamValue( 'banner' ),
 		kvStoreMaintenance = require( './kvStoreMaintenance.js' ),
 		NULL_BANNER_NAME = 'null';
