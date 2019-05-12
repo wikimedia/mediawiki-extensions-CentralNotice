@@ -114,6 +114,7 @@
 	"centralnotice-banner-collapsible": "Şeno teng bo",
 	"centralnotice-banner-fundraising": "Na afiş jew sernameya",
 	"centralnotice-banner-display-on": "Tiya dı bımotne",
+	"centralnotice-banner-cdn-dialog-ok": "TEMAM",
 	"centralnotice-geo": "Geo-menzili",
 	"centralnotice-countries": "Dewleti",
 	"centralnotice-allocation": "Tahsis",
@@ -207,5 +208,6 @@
 	"centralnotice-start-date": "Tarixê destpêkerdışi (UTC)",
 	"centralnotice-start-time": "Seetê başli kerdişî  (UTC)",
 	"centralnotice-end-date": "Tarixê qediyayışi (UTC)",
-	"centralnotice-end-time": "Kedyayış (UTC)"
+	"centralnotice-end-time": "Kedyayış (UTC)",
+	"tag-centralnotice_translation": "Açarnayışê Merkezê İqazi"
 }
