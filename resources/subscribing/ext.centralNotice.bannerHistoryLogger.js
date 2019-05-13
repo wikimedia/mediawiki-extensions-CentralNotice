@@ -262,7 +262,7 @@
 	function makeEventLoggingURL( elData ) {
 		return mw.eventLog.makeBeaconUrl( {
 			event: elData,
-			revision: 14321636, // Coordinate with extension.json
+			revision: 19079897, // Coordinate with extension.json
 			schema: EVENT_LOGGING_SCHEMA,
 			webHost: location.hostname,
 			wiki: mw.config.get( 'wgDBname' )

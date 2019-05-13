@@ -683,7 +683,7 @@
 		"CentralNoticeMessageProtectRight": "centralnotice-admin"
 	},
 	"EventLoggingSchemas": {
-		"CentralNoticeBannerHistory": 14321636
+		"CentralNoticeBannerHistory": 19079897
 	},
 	"manifest_version": 1
 }
