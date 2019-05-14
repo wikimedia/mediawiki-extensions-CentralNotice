@@ -23,8 +23,8 @@
 
 		FIND_KEY_REGEX = /\|([^|]*)$/,
 
-		// Prefix for all localStorage keys. Must correspond with PREFIX_REGEX
-		// in ext.centralNotice.kvStoreMaintenance.js
+		// Prefix for all localStorage keys.
+		// Must correspond with PREFIX_REGEX from kvStoreMaintenance.
 		PREFIX = 'CentralNoticeKV',
 
 		// In cookies, keep it short
