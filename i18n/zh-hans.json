@@ -31,7 +31,8 @@
 			"Wmr",
 			"A Chinese Wikipedian",
 			"Zazzzz",
-			"佛壁灯"
+			"佛壁灯",
+			"科劳"
 		]
 	},
 	"centralnotice": "中心通告管理",
@@ -308,9 +309,9 @@
 	"apihelp-query+centralnoticelogs-param-start": "范围的开始时间（可选）。",
 	"apihelp-query+centralnoticelogs-param-end": "范围的结束时间（可选）。",
 	"apihelp-query+centralnoticelogs-example-1": "显示日志",
-	"apihelp-query+centralnoticeactivecampaigns-description": "获取活跃活动及其相关横幅的列表。",
-	"apihelp-query+centralnoticeactivecampaigns-summary": "获取活跃活动及其相关横幅的列表。",
-	"apihelp-query+centralnoticeactivecampaigns-example-1": "获取活跃活动及其相关横幅的列表。",
+	"apihelp-query+centralnoticeactivecampaigns-description": "获取当前活动列表，包括活动的起止日期和活动相关的横幅通知",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "获取当前活动列表，包括活动的起止日期和活动相关的横幅通知",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "获取当前活动列表，包括活动的起止日期和活动相关的横幅通知",
 	"centralnotice-banner-history-logger": "横幅历史记录器",
 	"centralnotice-banner-history-logger-help": "追踪被读者看到的横幅序列，并不定期将其发送回服务器。",
 	"centralnotice-banner-history-logger-rate": "抽样率",
