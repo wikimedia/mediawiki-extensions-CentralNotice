@@ -6,7 +6,7 @@
  * This module provides an API at mw.centralNotice.kvStoreMaintenance.
  */
 ( function () {
-	var kvStoreMaintenance,
+	var cn,
 		now = new Date().getTime() / 1000,
 
 		// Regex to find kvStore localStorage keys. Must correspond with PREFIX
@@ -68,8 +68,8 @@
 						}
 					} catch ( e ) {
 						localStorage.removeItem( key );
-						if ( mw.centralNotice && mw.centralNotice.kvStore ) {
-							mw.centralNotice.kvStore.setMaintenanceError( key );
+						if ( cn.kvStore ) {
+							cn.kvStore.setMaintenanceError( key );
 						}
 					}
 				}
@@ -97,10 +97,13 @@
 		}
 	}
 
+	// Don't assume mw.centralNotice has or hasn't been initialized
+	mw.centralNotice = cn = ( mw.centralNotice || {} );
+
 	/**
 	 * Public API
 	 */
-	kvStoreMaintenance = {
+	cn.kvStoreMaintenance = {
 
 		/**
 		 * Start the removal of expired KVStore items. Also check for fallback
@@ -125,7 +128,5 @@
 			return getKeys().then( processKeys );
 		}
 	};
-
-	module.exports = kvStoreMaintenance;
 
 }() );

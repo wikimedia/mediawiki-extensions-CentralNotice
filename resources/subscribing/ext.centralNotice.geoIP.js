@@ -97,7 +97,7 @@
 		makeGeoWithPromise: function () {
 
 			var cookieValue = $.cookie( COOKIE_NAME ),
-				geo, lookupModule;
+				geo, deferred, lookupModule;
 
 			// Were we able to read the cookie?
 			if ( cookieValue ) {
@@ -105,7 +105,9 @@
 
 				// All good? Resolve with geo and get outta here.
 				if ( geo ) {
-					geoPromise = $.Deferred().resolve( geo ).promise();
+					deferred = $.Deferred();
+					geoPromise = deferred.promise();
+					deferred.resolve( geo );
 					return;
 				}
 			}
@@ -119,24 +121,29 @@
 			if ( lookupModule ) {
 
 				geoPromise = mw.loader.using( lookupModule )
+
 					.then( function () {
 						var lookupCallback = require( lookupModule );
 
-						// Chaining lookup: here we return the promise provided by
-						// lookupCallback(). The result of that promise (geo object)
-						// will be what then() resolves to, and what future then()
-						// handlers get.
+						// Chaining lookup: here, return the promise provided by
+						// lookupCallback(), so it controls the result of the
+						// new promise we get from then(). Also, the geo object
+						// returned by the lookup promise's then() handler will
+						// be passed on as an argument to the new promise's
+						// done() handlers.
 						return lookupCallback();
 					} );
 
 				// If the lookup was successful, store geo in a cookie
-				geoPromise.then( function ( geo ) {
+				geoPromise.done( function ( geo ) {
 					storeGeoInCookie( geo );
 				} );
 
 			// If no background lookup is available, we don't have geo data
 			} else {
-				geoPromise = $.Deferred().reject().promise();
+				deferred = $.Deferred();
+				geoPromise = deferred.promise();
+				deferred.reject();
 			}
 		},
 
