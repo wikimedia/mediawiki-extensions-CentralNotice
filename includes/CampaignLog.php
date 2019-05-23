@@ -62,12 +62,8 @@ class CampaignLog {
 		$this->campaign = $row->notlog_not_name;
 		$this->action = $row->notlog_action;
 		$this->timestamp = $row->notlog_timestamp;
-
 		// TODO temporary code for soft dependency on schema change
-		if ( property_exists( $row, 'notlog_comment' ) ) {
-			$this->comment = ( $row->notlog_comment !== null )
-				? $row->notlog_comment : '';
-		}
+		$this->comment = $row->notlog_comment ?? '';
 	}
 
 	# TODO: use in logpager
