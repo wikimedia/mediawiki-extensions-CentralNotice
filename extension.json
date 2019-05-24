@@ -284,7 +284,13 @@
 				"state.js",
 				"chooser.js",
 				"bucketer.js",
-				"hide.js"
+				"hide.js",
+				{
+					"name": "config.json",
+					"config": {
+						"categoriesUsingLegacy": "CentralNoticeCategoriesUsingLegacy"
+					}
+				}
 			],
 			"styles": "display.css",
 			"dependencies": [
