@@ -277,14 +277,16 @@
 			"class": "CNChoiceDataResourceLoaderModule"
 		},
 		"ext.centralNotice.display": {
-			"scripts": [
-				"subscribing/ext.centralNotice.display.js",
-				"subscribing/ext.centralNotice.display.state.js",
-				"subscribing/ext.centralNotice.display.chooser.js",
-				"subscribing/ext.centralNotice.display.bucketer.js",
-				"subscribing/ext.centralNotice.display.hide.js"
+			"localBasePath": "resources/ext.centralNotice.display",
+			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.display",
+			"packageFiles": [
+				"index.js",
+				"state.js",
+				"chooser.js",
+				"bucketer.js",
+				"hide.js"
 			],
-			"styles": "subscribing/ext.centralNotice.display.css",
+			"styles": "display.css",
 			"dependencies": [
 				"ext.centralNotice.geoIP",
 				"ext.centralNotice.kvStore",
