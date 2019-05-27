@@ -51,7 +51,7 @@
 		// EventLogging schema revision. Coordinate with on-wiki schema.
 		// Note: We don't register this in extension.json because we don't need the
 		// client-side schema module.
-		IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION = 17995347;
+		IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION = 19108542;
 
 	// TODO: make data.result options explicit via constants
 
