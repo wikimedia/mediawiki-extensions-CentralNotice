@@ -300,11 +300,9 @@
 		"ext.centralNotice.kvStore": {
 			"localBasePath": "resources/ext.centralNotice.kvStore",
 			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.kvStore",
-			"scripts": [
+			"packageFiles": [
+				"index.js",
 				"kvStore.js"
-			],
-			"dependencies": [
-				"ext.centralNotice.startUp"
 			],
 			"targets": [
 				"desktop",
