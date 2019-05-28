@@ -298,7 +298,11 @@
 			]
 		},
 		"ext.centralNotice.kvStore": {
-			"scripts": "subscribing/ext.centralNotice.kvStore.js",
+			"localBasePath": "resources/ext.centralNotice.kvStore",
+			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.kvStore",
+			"scripts": [
+				"kvStore.js"
+			],
 			"dependencies": [
 				"ext.centralNotice.startUp"
 			],
