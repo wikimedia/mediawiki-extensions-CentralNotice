@@ -10,11 +10,11 @@
 		now = new Date().getTime() / 1000,
 
 		// Regex to find kvStore localStorage keys. Must correspond with PREFIX
-		// in ext.centralNotice.kvStore.js.
+		// in ext.centralNotice.kvStore.
 		PREFIX_REGEX = /^CentralNoticeKV/,
 
 		// Must coordinate with PREFIX_IN_COOKIES and SEPARATOR_IN_COOKIES in
-		// ext.centralNotice.kvStore.js.
+		// ext.centralNotice.kvStore.
 		PREFIX_AND_SEPARATOR_IN_COOKIES = 'CN!',
 
 		// Time past expiry before actually removing items: 1 day (in seconds).
@@ -68,9 +68,7 @@
 						}
 					} catch ( e ) {
 						localStorage.removeItem( key );
-						if ( mw.centralNotice && mw.centralNotice.kvStore ) {
-							mw.centralNotice.kvStore.setMaintenanceError( key );
-						}
+						mw.log.warn( 'CentralNotice kvStoreMaintenance error for key ' + key, e );
 					}
 				}
 				if ( queue[ 0 ] !== undefined ) {

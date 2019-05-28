@@ -22,7 +22,7 @@
 		kvStoreMaintenance = require( './kvStoreMaintenance.js' ),
 		NULL_BANNER_NAME = 'null';
 
-	// For use by kvStore.js, export this globally.
+	// For back-compat and debugging, export globally.
 	cn.kvStoreMaintenance = kvStoreMaintenance;
 
 	// Schedule the slurping of old defunct cookies

@@ -1,8 +1,8 @@
 /**
- * Module for key-value storage in localStorage, use by CentralNotice campaign
+ * Module for key-value storage in localStorage, used by CentralNotice campaign
  * mixins and in-banner JS.
  *
- * This module is made available at mw.centralNotice.kvStore.
+ * This class is made available at mw.centralNotice.kvStore
  */
 ( function () {
 
@@ -308,13 +308,10 @@
 		$.removeCookie( makeKeyForCookie( key, context ), { path: '/' } );
 	}
 
-	// We know mw.centralNotice has been initialized since we have as a
-	// dependency kvStoreMaintenance, which ensures it.
-
 	/**
 	 * Public API
 	 */
-	kvStore = mw.centralNotice.kvStore = {
+	kvStore = {
 
 		/**
 		 * Available key-value storage contexts
@@ -523,5 +520,7 @@
 			category = c;
 		}
 	};
+
+	module.exports = kvStore;
 
 }() );

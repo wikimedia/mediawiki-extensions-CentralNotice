@@ -8,7 +8,8 @@
 			"Minisarm",
 			"Stelistcristi",
 			"XXN",
-			"Strainu"
+			"Strainu",
+			"Andrei Stroe"
 		]
 	},
 	"centralnotice": "Administrarea anunțului central",
@@ -25,7 +26,7 @@
 	"centralnotice-modify": "Trimite",
 	"centralnotice-view": "Vizualizare",
 	"centralnotice-save-banner": "Salvare",
-	"centralnotice-live-preview": "Previzualizare pe wiki",
+	"centralnotice-live-preview": "Previzualizare",
 	"centralnotice-add-new": "Adaugă un anunț central nou",
 	"centralnotice-remove": "Șterge",
 	"centralnotice-translate-heading": "Traducere pentru $1",
@@ -93,7 +94,7 @@
 	"centralnotice-number-uses": "Utilizări",
 	"centralnotice-settings": "Setări",
 	"centralnotice-edit-template": "Modifică format",
-	"centralnotice-edit-template-summary": "Pentru a crea un mesaj localizabil, includeți un șir de caractere între trei acolade, de exemplu {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Atenție: Încărcarea unor resurse externe într-un banner poate compromite anonimitatea utilizatorului.\n\nPentru a crea un mesaj localizabil, includeți un șir de caractere între trei acolade, de exemplu <nowiki>{{{nume_mesaj}}}</nowiki>. Pentru a folosi un mesaj localizabil din alt banner, includeți numele bannerului urmat de o virgulă, apoi numele mesajului, de exemplu <nowiki>{{{nume_banner,nume_mesaj}}}</nowiki>.",
 	"centralnotice-message": "Mesaj",
 	"centralnotice-message-not-set": "Mesajul nu este setat",
 	"centralnotice-campaigns-using-banner": "Campanii care utilizează acest banner",

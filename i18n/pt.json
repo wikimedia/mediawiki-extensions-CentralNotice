@@ -15,7 +15,8 @@
 			"Vitorvicentevalente",
 			"Athena in Wonderland",
 			"Eduardo Addad de Oliveira",
-			"Ldacosta"
+			"Ldacosta",
+			"Tks4Fish"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -60,7 +61,7 @@
 	"centralnotice-throttle-amount": "Limitar o tráfego à proporção do total",
 	"centralnotice-balanced": "Dar a todos os modelos o mesmo peso",
 	"centralnotice-weight": "Peso",
-	"centralnotice-locked": "Bloqueado",
+	"centralnotice-locked": "Travado",
 	"centralnotice-notice-mixins-fieldset": "Características extra do aviso",
 	"centralnotice-notice-mixins-int-required": "É necessário um inteiro",
 	"centralnotice-notice-mixins-float-required": "É necessário um número de vírgula flutuante",

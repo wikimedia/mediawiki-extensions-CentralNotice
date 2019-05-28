@@ -22,7 +22,7 @@
 	"bannerallocation": "Администратор на централизираните съобщения",
 	"centralnoticelogs": "Администратор на централизираните съобщения",
 	"right-centralnotice-admin": "Управление на централизираните съобщения",
-	"protect-level-centralnotice-admin": "Разрешено само за администратори на централизираните съобщения",
+	"protect-level-centralnotice-admin": "Разрешава само за администратори на централизирани съобщения",
 	"restriction-level-centralnotice-admin": "защитено от администратор на централизираните съобщения",
 	"action-centralnotice-admin": "управление на централизираните съобщения",
 	"centralnotice-desc": "Добавя главнa сайтова бележка",
@@ -180,9 +180,9 @@
 	"centralnotice-banner-sequence-bucket-add-step": "Добавяне на стъпка",
 	"centralnotice-banner-sequence-banner": "Банер",
 	"centralnotice-banner-sequence-page-views": "Прегледи на страницата",
-	"centralnotice-banner-protection-log-reason": "Автоматично защитено от Централно известие; се редактира само чрез [[Special:CentralNotice]] или [[Special:Translate]].",
+	"centralnotice-banner-protection-log-reason": "Автоматично защитено от Централно известие; редактирайте се само чрез [[Special:CentralNotice]] или [[Special:Translate]].",
 	"tag-centralnotice": "Централизирани съобщения",
 	"tag-centralnotice-description": "Редакцията е направена чрез администраторския интерфейс на Централизираните съобщения",
-	"tag-centralnotice_translation": "Превеждане на централизираните съобщения",
+	"tag-centralnotice_translation": "Превод на централизирано съобщение",
 	"tag-centralnotice_translation-description": "Редакция на съдържанието в Централизираните съобщения, направена чрез разширението „Превод“"
 }

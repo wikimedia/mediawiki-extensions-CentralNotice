@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Michawiki"
+			"Michawiki",
+			"J budissin"
 		]
 	},
 	"centralnotice": "Administrator centralnych powěsćow",
@@ -64,7 +65,7 @@
 	"centralnotice-min": "Mjeńšina",
 	"centralnotice-project-lang": "Projektowa rěč",
 	"centralnotice-select-all": "Wšo wubrać",
-	"centralnotice-remove-all": "Wšo wotstronić",
+	"centralnotice-remove-all": "Wšě wotstronić",
 	"centralnotice-items-selected": "$1 {{PLURAL:$1|zapisk wubrany|zapiskaj wubranej|zapiski wubrane|zapiskow wubranych}}",
 	"centralnotice-project-name": "Projektowe mjeno",
 	"centralnotice-assigned-templates": "Připokazane předłohi",
