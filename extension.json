@@ -242,10 +242,20 @@
 			]
 		},
 		"ext.centralNotice.startUp": {
-			"scripts": "subscribing/ext.centralNotice.startUp.js",
+			"localBasePath": "resources/ext.centralNotice.startUp",
+			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
+			"packageFiles": [
+				"index.js",
+				"kvStoreMaintenance.js",
+				{
+					"name": "config.json",
+					"config": {
+						"cookiesToDelete": "CentralNoticeCookiesToDelete"
+					}
+				}
+			],
 			"dependencies": [
 				"ext.centralNotice.choiceData",
-				"ext.centralNotice.kvStoreMaintenance",
 				"mediawiki.util"
 			],
 			"targets": [
@@ -290,15 +300,8 @@
 		"ext.centralNotice.kvStore": {
 			"scripts": "subscribing/ext.centralNotice.kvStore.js",
 			"dependencies": [
-				"ext.centralNotice.kvStoreMaintenance"
+				"ext.centralNotice.startUp"
 			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"ext.centralNotice.kvStoreMaintenance": {
-			"scripts": "subscribing/ext.centralNotice.kvStoreMaintenance.js",
 			"targets": [
 				"desktop",
 				"mobile"
@@ -680,7 +683,7 @@
 		"CentralNoticeMessageProtectRight": "centralnotice-admin"
 	},
 	"EventLoggingSchemas": {
-		"CentralNoticeBannerHistory": 14321636
+		"CentralNoticeBannerHistory": 19079897
 	},
 	"manifest_version": 1
 }

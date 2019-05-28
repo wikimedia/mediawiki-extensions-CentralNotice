@@ -250,15 +250,13 @@ class CentralNoticeHooks {
 	 */
 	public static function onMakeGlobalVariablesScript( &$vars ) {
 		// Using global $wgUser for compatibility with 1.18
-		global $wgNoticeProject, $wgCentralNoticeCookiesToDelete,
-			$wgCentralNoticeCategoriesUsingLegacy,
+		global $wgNoticeProject, $wgCentralNoticeCategoriesUsingLegacy,
 			$wgCentralNoticeGeoIPBackgroundLookupModule,
 			$wgUser, $wgMemc;
 
 		// FIXME Is this no longer used anywhere in JS following the switch to
 		// client-side banner selection? If so, remove it.
 		$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
-		$vars[ 'wgCentralNoticeCookiesToDelete' ] = $wgCentralNoticeCookiesToDelete;
 
 		$vars[ 'wgCentralNoticeCategoriesUsingLegacy' ] =
 			$wgCentralNoticeCategoriesUsingLegacy;

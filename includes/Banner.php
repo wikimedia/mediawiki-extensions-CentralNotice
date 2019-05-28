@@ -1395,13 +1395,13 @@ class Banner {
 			],
 			__METHOD__
 		);
-		$banner['display_anon'] = (int)$row->display_anon;
-		$banner['display_account'] = (int)$row->display_account;
 
-		$banner['fundraising'] = (int)$row->fundraising;
-
-		$banner['devices'] = [ "desktop" ];
-		return $banner;
+		return [
+			'display_anon' => (int)$row->display_anon,
+			'display_account' => (int)$row->display_account,
+			'fundraising' => (int)$row->fundraising,
+			'devices' => [ 'desktop' ],
+		];
 	}
 
 	/**
