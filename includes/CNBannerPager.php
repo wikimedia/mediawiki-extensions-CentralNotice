@@ -53,6 +53,11 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$this->mDb = CNDatabase::getDb();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @suppress PhanTypeMismatchProperty
+	 * @suppress PhanTypeMismatchDimAssignment
+	 */
 	public function getNavigationBar() {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
@@ -117,6 +122,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * @param object $row database row
 	 *
 	 * @return array HTMLFormElement classes
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function formatRow( $row ) {
 		$retval = [];
@@ -169,6 +175,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * getEndBody(), concatenates the results and returns them.
 	 *
 	 * @return array
+	 * @suppress PhanParamSignatureMismatch
 	 */
 	public function getBody() {
 		if ( !$this->mQueryDone ) {
