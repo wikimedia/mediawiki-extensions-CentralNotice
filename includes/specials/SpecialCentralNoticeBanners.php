@@ -457,6 +457,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$out->addHTML( $this->generateCdnPurgeSection() );
 		}
 
+		// Send banner name into page for access from JS
+		$out->addHTML( Xml::element( 'span',
+			[
+				'id' => 'centralnotice-data-container',
+				'data-banner-name' => $this->bannerName
+			]
+		) );
+
 		$out->addHTML( Xml::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
@@ -843,8 +851,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$purgeControls .= Html::closeElement( 'label' );
 
 		$purgeControls .= ' ' . Html::openElement( 'button', $disabledAttr + [
-			'id' => 'cn-cdn-cache-purge',
-			'data-banner-name' => $this->bannerName
+			'id' => 'cn-cdn-cache-purge'
 		] );
 
 		$purgeControls .=

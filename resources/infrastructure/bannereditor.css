@@ -75,12 +75,12 @@ form#cn-banner-editor .mw-input {
 }
 
 /* Preview fieldset title link margin */
-.cn-banner-preview-placeholder legend a {
+.cn-banner-preview-fieldset legend a {
 	margin-left: 4px;
 }
 
 /* Loading animation background for preview panel */
-.cn-banner-preview-placeholder:disabled {
+.cn-banner-preview-fieldset:disabled {
 	background-image: repeating-linear-gradient( -45deg, transparent, transparent 1rem, #f7f7f7 1rem, #f7f7f7 2rem );
 	background-size: 200% 200%;
 	animation: barberpole 10s linear infinite;
