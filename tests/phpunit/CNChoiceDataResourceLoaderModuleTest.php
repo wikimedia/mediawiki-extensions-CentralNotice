@@ -43,7 +43,10 @@ class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
 					'lang' => $contextAndOutput['context']['language']
 			] );
 
-			$rlContext = new ResourceLoaderContext( new ResourceLoader(), $fauxRequest );
+			$rlContext = new ResourceLoaderContext(
+				$this->createMock( ResourceLoader::class ),
+				$fauxRequest
+			);
 
 			$choices = $this->getProvider()->getChoicesForTesting( $rlContext );
 
