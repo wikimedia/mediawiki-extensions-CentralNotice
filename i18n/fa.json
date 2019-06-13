@@ -22,7 +22,8 @@
 			"Elham",
 			"Hosseinblue",
 			"Calak",
-			"Ladsgroup"
+			"Ladsgroup",
+			"FarsiNevis"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -39,7 +40,7 @@
 	"centralnotice-modify": "ارسال",
 	"centralnotice-view": "مشاهده",
 	"centralnotice-save-banner": "ذخیره",
-	"centralnotice-live-preview": "پیش‌نمایش در ویکی",
+	"centralnotice-live-preview": "پیش‌نمایش",
 	"centralnotice-add-new": "افزودن یک اعلان متمرکز تازه",
 	"centralnotice-remove": "حذف",
 	"centralnotice-translate-heading": "ترجمه از $1",
