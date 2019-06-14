@@ -525,6 +525,7 @@
 		},
 		"CentralNoticeGeoIPBackgroundLookupModule": null,
 		"CentralNoticeContentSecurityPolicy": false,
+		"CentralNoticeMaxIterations": 100,
 		"CentralNoticeAdminGroup": "sysop",
 		"CentralNoticeMessageProtectRight": "centralnotice-admin"
 	},

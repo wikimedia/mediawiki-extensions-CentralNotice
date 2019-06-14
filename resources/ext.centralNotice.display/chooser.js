@@ -13,72 +13,14 @@
 		CAMPAIGN_STALENESS_LEEWAY = 15;
 
 	/**
-	 * Return a version of choiceData filtered on the user's country, logged-in
-	 * status and device. Campaigns that don't target the user's country or have
-	 * no banners for their logged-in status and device will be removed.
-	 *
-	 * The server-side equivalent of this method is
-	 * AllocationCalculator::filterChoiceData().
-	 *
-	 * @return {Array}
-	 */
-	function makeFilteredChoiceData( choiceData, country, anon, device ) {
-
-		var i, campaign, j, banner, keepCampaign,
-			filteredChoiceData = [];
-
-		for ( i = 0; i < choiceData.length; i++ ) {
-
-			campaign = choiceData[ i ];
-			keepCampaign = false;
-
-			// Filter for country if geotargeted
-			if ( campaign.geotargeted &&
-				( campaign.countries.indexOf( country ) === -1 ) ) {
-				continue;
-			}
-
-			// Now filter by banner logged-in status and device.
-			for ( j = 0; j < campaign.banners.length; j++ ) {
-				banner = campaign.banners[ j ];
-
-				// Logged-in status
-				if ( anon && !banner.display_anon ) {
-					continue;
-				}
-				if ( !anon && !banner.display_account ) {
-					continue;
-				}
-
-				// Device
-				if ( banner.devices.indexOf( device ) === -1 ) {
-					continue;
-				}
-
-				// We get here if the campaign targets the user's country,
-				// and has at least one banner for the user's logged-in status
-				// and device.
-				keepCampaign = true;
-				break;
-			}
-
-			if ( keepCampaign ) {
-				filteredChoiceData.push( campaign );
-			}
-		}
-
-		return filteredChoiceData;
-	}
-
-	/**
 	 * For targeted users (users meeting the same logged-in status, country,
 	 * and language criteria as this user) calculate the probability that
-	 * of receiving each campaign in filteredChoiceData, and set the probability
+	 * of receiving each campaign in availableCampaigns, and set the probability
 	 * on the allocation property of each campaign. This takes into account
 	 * campaign priority and throttling. The equivalent server-side method
 	 * is AllocationCalculator::calculateCampaignAllocations().
 	 */
-	function setCampaignAllocations( filteredChoiceData ) {
+	function setCampaignAllocations( availableCampaigns ) {
 
 		var i, campaign, campaignPriority,
 			campaignsByPriority = [],
@@ -89,8 +31,8 @@
 			actualAllocation;
 
 		// Optimize for the common scenario of a single campaign
-		if ( filteredChoiceData.length === 1 ) {
-			filteredChoiceData[ 0 ].allocation = filteredChoiceData[ 0 ].throttle / 100;
+		if ( availableCampaigns.length === 1 ) {
+			availableCampaigns[ 0 ].allocation = availableCampaigns[ 0 ].throttle / 100;
 			return;
 		}
 
@@ -99,9 +41,9 @@
 		// and higher integers represent higher priority. These values are
 		// defined by class constants in the CentralNotice PHP class.
 
-		for ( i = 0; i < filteredChoiceData.length; i++ ) {
+		for ( i = 0; i < availableCampaigns.length; i++ ) {
 
-			campaign = filteredChoiceData[ i ];
+			campaign = availableCampaigns[ i ];
 			campaignPriority = campaign.preferred;
 
 			// Initialize index the first time we hit this priority
@@ -304,6 +246,67 @@
 	cn.internal.chooser = {
 
 		/**
+		 * Filter choiceData on country, logged-in status and device.
+		 * Only campaigns that target the user's country and have at least
+		 * one banner for the user's logged-in status and device pass this filter.
+		 *
+		 * Campaigns that don't target the user's country or have
+		 * no banners for their logged-in status and device will be removed.
+		 *
+		 * The server-side equivalent of this method is
+		 * AllocationCalculator::makeAvailableCampaigns().
+		 *
+		 * @return {Array}
+		 */
+		makeAvailableCampaigns: function ( choiceData, country, anon, device ) {
+
+			var i, campaign, j, banner, keepCampaign,
+				availableCampaigns = [];
+
+			for ( i = 0; i < choiceData.length; i++ ) {
+
+				campaign = choiceData[ i ];
+				keepCampaign = false;
+
+				// Filter for country if geotargeted
+				if ( campaign.geotargeted &&
+					( campaign.countries.indexOf( country ) === -1 ) ) {
+					continue;
+				}
+
+				// Now filter by banner logged-in status and device.
+				for ( j = 0; j < campaign.banners.length; j++ ) {
+					banner = campaign.banners[ j ];
+
+					// Logged-in status
+					if ( anon && !banner.display_anon ) {
+						continue;
+					}
+					if ( !anon && !banner.display_account ) {
+						continue;
+					}
+
+					// Device
+					if ( banner.devices.indexOf( device ) === -1 ) {
+						continue;
+					}
+
+					// We get here if the campaign targets the user's country,
+					// and has at least one banner for the user's logged-in status
+					// and device.
+					keepCampaign = true;
+					break;
+				}
+
+				if ( keepCampaign ) {
+					availableCampaigns.push( campaign );
+				}
+			}
+
+			return availableCampaigns;
+		},
+
+		/**
 		 * Check for campaigns that are have already ended, which might happen due to
 		 * incorrect caching of choiceData between us and the user. This check can easily
 		 * result in false positives.
@@ -331,24 +334,18 @@
 			return true;
 		},
 
-		chooseCampaign: function ( choiceData, country, anon, device, random ) {
+		chooseCampaign: function ( availableCampaigns, random ) {
 
-			// Filter choiceData on country and device. Only campaigns that
-			// target the user's country and have at least one banner for
-			// the user's logged-in status and device pass this filter.
-			var filteredChoiceData =
-				makeFilteredChoiceData( choiceData, country, anon, device );
-
-			if ( filteredChoiceData.length === 0 ) {
+			if ( availableCampaigns.length === 0 ) {
 				return null;
 			}
 
 			// Calculate the user's probability of getting each campaign. This
 			// will set allocation properties on the elements in
-			// filteredChoiceData.
-			setCampaignAllocations( filteredChoiceData );
+			// availableCampaigns.
+			setCampaignAllocations( availableCampaigns );
 
-			return chooseObjInAllocatedArray( random, filteredChoiceData );
+			return chooseObjInAllocatedArray( random, availableCampaigns );
 		},
 
 		chooseBanner: function ( campaign, bucket, anon, device, random ) {

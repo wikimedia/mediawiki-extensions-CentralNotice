@@ -162,6 +162,12 @@
 		// Legacy code exposed urlParams at mw.centralNotice.data.getVars.
 		// TODO Is this still needed? Maybe deprecate?
 		state.data.getVars = urlParams;
+
+		// Contains list of available campaigns
+		state.data.availableCampaigns = [];
+
+		// Contains list of campaigns statuses
+		state.data.campaignStatuses = [];
 	}
 
 	function numericalUrlParamOrVal( urlParam, val ) {
@@ -177,10 +183,35 @@
 	}
 
 	function setStatus( s, reason ) {
-		var reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
+		var cIndex, reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
 		status = s;
 		state.data.status = s.key;
 		state.data.statusCode = s.code.toString() + reasonCodeStr;
+		// Update campaign status (only if there is a campaign set)
+		if ( state.data.campaign && state.data.campaignStatuses.length ) {
+			// Find campaign object index by name
+			cIndex = state.data.campaignStatuses.map( function ( c ) {
+				return c.campaign;
+			} ).indexOf( state.data.campaign );
+			// We don't need to check the cIndex since we know the campaign is on the list
+			state.data.campaignStatuses[ cIndex ].statusCode = s.key;
+		}
+	}
+
+	/**
+	 * Fails currently selected campaign by removing it from availableCampaigns array
+	 * The function should not be called until after setAvailableCampaigns and setCampaign
+	 * have been called
+	 */
+	function failCampaign() {
+		var cIndex;
+		// Remove campaign from available campaigns list
+		// Find campaign object index by name
+		cIndex = state.data.availableCampaigns.map( function ( c ) {
+			return c.name;
+		} ).indexOf( state.data.campaign );
+		// We don't need to check the cIndex since we know the campaign is on the list
+		state.data.availableCampaigns.splice( cIndex, 1 );
 	}
 
 	/**
@@ -269,29 +300,65 @@
 		 * Note: Coordinate with CentralNoticeImpression schema; remove any
 		 * data properties that do not conform to that schema.
 		 *
-		 * @param {boolean} cleanForLogging
+		 * @param {boolean} prepareForLogging
 		 */
-		getDataCopy: function ( cleanForLogging ) {
+		getDataCopy: function ( prepareForLogging ) {
 
 			var dataCopy = $.extend( true, {}, state.data );
 
-			if ( cleanForLogging ) {
+			if ( prepareForLogging ) {
 				delete dataCopy.getVars;
 				delete dataCopy.mixins;
 				delete dataCopy.tests;
 				delete dataCopy.reducedBucket;
+				delete dataCopy.availableCampaigns;
+				// Serialized as JSON string for b/c, later, when we switch fully to EventLogging
+				// instead of the custom beacon/impression, the serialization could be removed
+				dataCopy.campaignStatuses = JSON.stringify( dataCopy.campaignStatuses );
 			}
 
 			return dataCopy;
 		},
 
+		/**
+		 * Set campaigns available
+		 */
+		setAvailableCampaigns: function ( availableCampaigns ) {
+			state.data.availableCampaigns = availableCampaigns;
+		},
+
+		/**
+		 * Sets the campaign that will be used by the state as current
+		 * @param {Object} c the campaign object, must be from the list of available campaigns
+		 */
 		setCampaign: function ( c ) {
 			var prop, i,
 				category,
-				campaignCategory = null;
+				campaignCategory = null,
+				check;
+
+			check = state.data.availableCampaigns.map( function ( availableCampaign ) {
+				return availableCampaign.name;
+			} ).indexOf( c.name );
+
+			if ( check === -1 ) {
+				throw new Error( 'The campaign being set is not in available campaigns list' );
+			}
+
+			// Resetting previously set flags (if any)
+			delete state.data.result;
+			delete state.data.reason;
 
 			state.campaign = c;
 			state.data.campaign = state.campaign.name;
+
+			// Push to campaign statuses array
+			state.data.campaignStatuses.push( {
+				statusCode: null,
+				campaign: state.data.campaign, // name
+				bannersCount: state.campaign.banners.length
+			} );
+
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
 
 			// Provide the names of mixins enabled in this campaign
@@ -355,6 +422,12 @@
 			state.data.bannersNotGuaranteedToDisplay = true;
 		},
 
+		/**
+		 * As a side effect this will remove the currently chosen campaign from the list
+		 * of available campaigns, so it can't be chosen again
+		 *
+		 * @param reason
+		 */
 		cancelBanner: function ( reason ) {
 			state.data.bannerCanceledReason = reason;
 			setStatus( STATUSES.BANNER_CANCELED, reason );
@@ -362,6 +435,8 @@
 			// Legacy fields for Special:RecordImpression
 			state.data.result = 'hide';
 			state.data.reason = reason;
+
+			failCampaign();
 		},
 
 		isBannerCanceled: function () {
@@ -413,16 +488,26 @@
 			state.data.banner_count = bannerCount;
 		},
 
-		setRecordImpressionSampleRate: function ( rate ) {
-			state.data.recordImpressionSampleRate = rate;
+		/**
+		 * Sets minimal impression sample rate, the highest rate set will be used
+		 */
+		setMinRecordImpressionSampleRate: function ( rate ) {
+			// Update rate only if supplied rate is higher than current one
+			if ( rate > state.data.recordImpressionSampleRate ) {
+				state.data.recordImpressionSampleRate = rate;
+			}
 		},
 
 		/**
-		 * Sets impression event sample rate (unless it was overridden by a URL parameter,
-		 * in which that takes precedence).
+		 * Sets minimal impression event sample rate, the highest rate set will be used
+		 * (unless it was overridden by a URL parameter, in which that takes precedence).
 		 */
-		setImpressionEventSampleRate: function ( rate ) {
-			if ( !impressionEventSampleRateOverridden ) {
+		setMinImpressionEventSampleRate: function ( rate ) {
+			if (
+				!impressionEventSampleRateOverridden &&
+				// Update rate only if supplied rate is higher than current one
+				rate > state.data.impressionEventSampleRate
+			) {
 				state.data.impressionEventSampleRate = rate;
 			}
 		},
@@ -486,6 +571,14 @@
 				return REASONS[ reasonName ];
 			}
 			return REASONS.other;
+		},
+
+		/**
+		 * Returns number of campaigns were chosen
+		 * @returns {number}
+		 */
+		countCampaignsAttempted: function () {
+			return state.data.campaignStatuses.length;
 		}
 	};
 }() );
