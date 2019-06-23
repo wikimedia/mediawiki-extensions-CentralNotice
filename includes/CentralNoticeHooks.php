@@ -81,10 +81,16 @@ class CentralNoticeHooks {
 					'scripts' => 'vendor/jquery.ui.multiselect/ui.multiselect.js',
 					'styles' => 'vendor/jquery.ui.multiselect/ui.multiselect.css'
 				],
+				'jquery.plugin.jstree' => $moduleTemplate + [
+					'scripts' => 'vendor/jquery.jstree/jstree.js',
+					'styles' => 'vendor/jquery.jstree/themes/default/style.css'
+				],
 				'ext.centralNotice.adminUi' => $moduleTemplate + [
 					'dependencies' => [
 						'jquery.ui',
 						'jquery.ui.multiselect',
+						'jquery.plugin.jstree',
+						'jquery.throttle-debounce',
 						'mediawiki.Uri'
 					],
 					'scripts' => 'infrastructure/centralnotice.js',
@@ -96,7 +102,8 @@ class CentralNoticeHooks {
 						'centralnotice-close-title',
 						'centralnotice-select-all',
 						'centralnotice-remove-all',
-						'centralnotice-items-selected'
+						'centralnotice-items-selected',
+						'centralnotice-geo-status'
 					]
 				],
 				'ext.centralNotice.adminUi.campaignPager' => $moduleTemplate + [
@@ -167,8 +174,6 @@ class CentralNoticeHooks {
 					'dependencies' => [
 						'ext.centralNotice.adminUi',
 						'oojs-ui',
-						'jquery.ui',
-						'jquery.throttle-debounce',
 						'mediawiki.template',
 						'mediawiki.template.mustache'
 					],

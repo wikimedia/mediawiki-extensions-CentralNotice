@@ -49,6 +49,10 @@
 	};
 
 	$( function () {
+		var $geoRegionsInput = $( '#geo_regions_value' ),
+			$geoCountriesInput = $( '#geo_countries_value' ),
+			$geoStatus = $( '.cn-tree-status' );
+
 		// Render jquery.ui.datepicker on appropriate fields
 		$( '.centralnotice-datepicker' ).each( function () {
 			var altFormat = 'yymmdd000000',
@@ -76,30 +80,74 @@
 			}
 		);
 
-		// Do the fancy multiselector; but we have to wait for some arbitrary time until the
-		// CSS has been applied.
-		// FIXME This is a hack.
-		setTimeout( function () {
-			$( 'select[multiple="multiple"]' ).multiselect(
-				{ sortable: false, dividerLocation: 0.5 }
-			);
-		}, 250 );
+		$( 'select[multiple="multiple"]' ).multiselect(
+			{ sortable: false, dividerLocation: 0.5 }
+		);
+
+		// Initialize the geopicking tree
+		$( '.cn-tree' ).jstree( {
+			plugins: [ 'checkbox', 'search', 'types' ],
+			types: {
+				country: {
+					icon: 'jstree-icon jstree-country'
+				},
+				region: {
+					icon: 'jstree-icon jstree-region'
+				}
+			},
+			search: {
+				fuzzy: false,
+				// eslint-disable-next-line camelcase
+				show_only_matches: true,
+				// eslint-disable-next-line camelcase
+				show_only_matches_children: true
+			}
+		} ).on( 'changed.jstree', function ( e, data ) {
+			var i, type, node, countries = [], regions = [],
+				selected = data.instance.get_top_selected( false );
+			for ( i = 0; i < selected.length; i++ ) {
+				node = data.instance.get_node( selected[ i ], false );
+				type = node.data.jstree.type;
+				if ( type === 'country' ) {
+					countries.push( node.id );
+				} else {
+					regions.push( node.id );
+				}
+			}
+			$geoCountriesInput.val( countries.join( ',' ) );
+			$geoRegionsInput.val( regions.join( ',' ) );
+
+			$geoStatus.html( mw.msg( 'centralnotice-geo-status', countries.length, regions.length ) );
+
+		} );
+
+		// Search input for geotree
+		$( '.cn-tree-search' ).on( 'keyup', $.debounce( 250, function () {
+			$( '.cn-tree' ).jstree( true ).search( $( '.cn-tree-search' ).val() );
+		} ) );
+
+		// Clear button for search input
+		$( '.cn-tree-clear' ).on( 'click', function ( e ) {
+			e.preventDefault();
+			$( '.cn-tree-search' ).val( '' );
+			$( '.cn-tree-search' ).trigger( 'keyup' );
+		} );
 
 		// Reveal the geoMultiSelector when the geotargeted checkbox is checked
 		if ( !$( '#geotargeted' ).prop( 'checked' ) ) {
 			// FIXME: Use CSS transition
 			// eslint-disable-next-line no-jquery/no-fade
-			$( '#geoMultiSelector' ).fadeOut( 'fast' );
+			$( '#centralnotice-geo-region-multiselector' ).fadeOut( 'fast' );
 		}
 		$( '#geotargeted' ).on( 'click', function () {
 			if ( this.checked ) {
 				// FIXME: Use CSS transition
 				// eslint-disable-next-line no-jquery/no-fade
-				$( '#geoMultiSelector' ).fadeIn( 'fast' );
+				$( '#centralnotice-geo-region-multiselector' ).fadeIn( 'fast' );
 			} else {
 				// FIXME: Use CSS transition
 				// eslint-disable-next-line no-jquery/no-fade
-				$( '#geoMultiSelector' ).fadeOut( 'fast' );
+				$( '#centralnotice-geo-region-multiselector' ).fadeOut( 'fast' );
 			}
 		} );
 	} );

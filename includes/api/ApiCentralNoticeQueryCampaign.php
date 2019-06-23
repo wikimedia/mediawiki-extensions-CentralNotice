@@ -26,6 +26,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 				# TODO this should probably be pushed down:
 				$settings['projects'] = explode( ', ', $settings['projects'] );
 				$settings['countries'] = explode( ', ', $settings['countries'] );
+				$settings['regions'] = explode( ', ', $settings['regions'] );
 				$settings['languages'] = explode( ', ', $settings['languages'] );
 
 				$settings['enabled'] = $settings['enabled'] == '1';

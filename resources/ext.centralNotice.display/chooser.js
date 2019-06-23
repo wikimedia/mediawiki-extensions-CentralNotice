@@ -246,7 +246,7 @@
 	cn.internal.chooser = {
 
 		/**
-		 * Filter choiceData on country, logged-in status and device.
+		 * Filter choiceData on country, region, logged-in status and device.
 		 * Only campaigns that target the user's country and have at least
 		 * one banner for the user's logged-in status and device pass this filter.
 		 *
@@ -258,7 +258,7 @@
 		 *
 		 * @return {Array}
 		 */
-		makeAvailableCampaigns: function ( choiceData, country, anon, device ) {
+		makeAvailableCampaigns: function ( choiceData, country, region, anon, device ) {
 
 			var i, campaign, j, banner, keepCampaign,
 				availableCampaigns = [];
@@ -269,8 +269,10 @@
 				keepCampaign = false;
 
 				// Filter for country if geotargeted
-				if ( campaign.geotargeted &&
-					( campaign.countries.indexOf( country ) === -1 ) ) {
+				if ( campaign.geotargeted && (
+					campaign.countries.indexOf( country ) === -1 && // No country wide match
+					campaign.regions.indexOf( country + '_' + region ) === -1 // And no region match
+				) ) {
 					continue;
 				}
 

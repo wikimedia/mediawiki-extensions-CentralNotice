@@ -25,6 +25,7 @@ class CentralNoticeTestFixtures {
 			'preferred' => CentralNotice::NORMAL_PRIORITY,
 			'geotargeted' => 0,
 			'countries' => [ self::getDefaultCountry() ],
+			'regions' => [ self::getDefaultRegion() ],
 			'throttle' => 100,
 			'banners' => [],
 		];
@@ -47,6 +48,10 @@ class CentralNoticeTestFixtures {
 	}
 
 	public static function getDefaultCountry() {
+		return 'XX';
+	}
+
+	public static function getDefaultRegion() {
 		return 'XX';
 	}
 
@@ -78,6 +83,7 @@ class CentralNoticeTestFixtures {
 	public function setupTestCaseFromFixtureData( &$testCase ) {
 		$this->setTestCaseStartEnd( $testCase );
 		$this->preprocessSetupCountriesProp( $testCase['setup'] );
+		$this->preprocessSetupRegionsProp( $testCase['setup'] );
 		$this->addDummyBannerBody( $testCase['setup'] );
 		$this->setupTestCase( $testCase['setup'] );
 	}
@@ -183,6 +189,27 @@ class CentralNoticeTestFixtures {
 	}
 
 	/**
+	 * For test case setup, provide an empty array of regions for
+	 * non-geotargeted campaigns, and check for mistakenly set regions for
+	 * such campaigns.
+	 *
+	 * @param array &$testCaseSetup A data structure with the setup section of a
+	 *  test case specification
+	 */
+	protected function preprocessSetupRegionsProp( &$testCaseSetup ) {
+		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
+			if ( !$campaign['geotargeted'] ) {
+				if ( !isset( $campaign['regions'] ) ) {
+					$campaign['regions'] = [];
+				} else {
+					throw new LogicException( "Campaign is not geotargetted but "
+											  . "'regions' property is set." );
+				}
+			}
+		}
+	}
+
+	/**
 	 * Add dummy banner properties throughout a test case setup specification.
 	 *
 	 * @param array &$testCaseSetup A data structure with the setup section of a
@@ -233,6 +260,7 @@ class CentralNoticeTestFixtures {
 				$campaign['languages'],
 				$campaign['geotargeted'],
 				$campaign['countries'],
+				$campaign['regions'],
 				$campaign['throttle'],
 				$campaign['preferred'],
 				$this->user

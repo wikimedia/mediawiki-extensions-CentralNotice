@@ -4,7 +4,7 @@ class CampaignLog {
 	private static $basic_fields = [
 		'start', 'end', 'enabled', 'preferred', 'locked', 'geo', 'buckets'
 	];
-	private static $list_fields = [ 'projects', 'languages', 'countries' ];
+	private static $list_fields = [ 'projects', 'languages', 'countries', 'regions' ];
 	private static $map_fields = [ 'banners' ];
 
 	/** @var mixed[] */

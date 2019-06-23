@@ -41,13 +41,22 @@ class SpecialBannerAllocation extends CentralNotice {
 	public $language = 'en';
 
 	/**
-	 * The location being used for banner allocation.
+	 * The country being used for banner allocation.
 	 *
-	 * This should always be an uppercase country code.
+	 * This should always be an uppercase country code or the empty string.
 	 *
-	 * @var string $location
+	 * @var string $locationCountry
 	 */
-	public $location = 'US';
+	public $locationCountry = 'US';
+
+	/**
+	 * The region being used for banner allocation.
+	 *
+	 * This should always be an uppercase region code or the empty string.
+	 *
+	 * @var string $locationRegion
+	 */
+	public $locationRegion = '';
 
 	public function __construct() {
 		// Register special page
@@ -70,12 +79,14 @@ class SpecialBannerAllocation extends CentralNotice {
 		$this->project = $request->getText( 'project', $wgNoticeProject );
 		$this->language = $request->getText( 'language', $wgLanguageCode );
 
-		// If the form has been submitted, the country code should be passed along.
-		$locationSubmitted = $request->getVal( 'country' );
-		$this->location = $locationSubmitted ?: $this->location;
+		// If the form has been submitted, the country code or region code should be passed along.
+		$locationCountrySubmitted = $request->getVal( 'country' );
+		$locationRegionSubmitted = $request->getVal( 'region' );
+		$this->locationCountry = $locationCountrySubmitted ?: $this->locationCountry;
+		$this->locationRegion = $locationRegionSubmitted ?: $this->locationRegion;
 
 		// Convert submitted location to boolean value. If it true, showList() will be called.
-		$locationSubmitted = (bool)$locationSubmitted;
+		$locationSubmitted = ( $locationCountrySubmitted || $locationRegionSubmitted );
 
 		// Begin output
 		$this->setHeaders();
@@ -152,6 +163,8 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'select' );
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::closeElement( 'tr' );
+
+		// Country dropdown
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-country' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
@@ -161,13 +174,40 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		$htmlOut .= Html::openElement( 'select', [ 'name' => 'country' ] );
 
-		foreach ( $countries as $code => $name ) {
-			$htmlOut .= Xml::option( $name, $code, $code === $this->location );
+		foreach ( $countries as $code => $country ) {
+			$htmlOut .= Xml::option( $country->getName(), $code, $code === $this->locationCountry );
 		}
 
 		$htmlOut .= Html::closeElement( 'select' );
 		$htmlOut .= Html::closeElement( 'td' );
 		$htmlOut .= Html::closeElement( 'tr' );
+		// End Country dropdown
+
+		// Region dropdown
+		// TODO: rework flat list into something better
+		$htmlOut .= Html::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-region' )->parse() );
+		$htmlOut .= Html::openElement( 'td' );
+		$htmlOut .= Html::openElement( 'select', [ 'name' => 'region' ] );
+
+		$htmlOut .= Xml::option( '', null, false );
+		foreach ( $countries as $code => $country ) {
+			$opts = '';
+			foreach ( $country->getRegions() as $regionCode => $regionName ) {
+				$opts .= Xml::option(
+					$regionName,
+					$regionCode,
+					$regionCode === $this->locationRegion
+				);
+			}
+			$htmlOut .= Xml::tags( 'optgroup', [ 'label' => $country->getName() ], $opts );
+		}
+
+		$htmlOut .= Html::closeElement( 'select' );
+		$htmlOut .= Html::closeElement( 'td' );
+		$htmlOut .= Html::closeElement( 'tr' );
+		// End Region dropdown
+
 		$htmlOut .= Html::closeElement( 'table' );
 
 		$htmlOut .= Xml::tags( 'div',
@@ -200,6 +240,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		$request = $this->getRequest();
 		$project = $request->getText( 'project' );
 		$country = $request->getText( 'country' );
+		$region = $request->getText( 'region' );
 		$language = $request->getText( 'language' );
 
 		// Begin building HTML
@@ -256,7 +297,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 				$possibleBannersAllCampaigns =
 					AllocationCalculator::filterAndAllocate( $country,
-					$status, $deviceData['header'], $target['bucket'],
+					$region, $status, $deviceData['header'], $target['bucket'],
 					$choiceData );
 
 				$htmlOut .= $this->getTable( $label, $possibleBannersAllCampaigns );

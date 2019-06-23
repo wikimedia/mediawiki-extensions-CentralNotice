@@ -242,3 +242,37 @@ label[ for='mw-input-wpsummary' ],
 .cn-buttons {
 	text-align: right;
 }
+
+/* Style for geolocation input tree */
+
+.cn-tree {
+	max-height: 500px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: solid 1px #ccc;
+}
+
+.cn-tree-search {
+	width: 100%;
+	margin: 0 5px 0 5px;
+	padding: 4px;
+}
+
+.cn-tree-search-label {
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.jstree-icon.jstree-country {
+	background: url( ../vendor/jquery.jstree/themes/default/country_icon_32px.png ) center center no-repeat;
+	background-size: 20px 20px;
+}
+
+.jstree-icon.jstree-region {
+	background: url( ../vendor/jquery.jstree/themes/default/region_icon_32px.png ) 3px center no-repeat;
+	background-size: 15px 20px;
+}
+
+.cn-tree-status {
+	margin: 10px 0;
+}

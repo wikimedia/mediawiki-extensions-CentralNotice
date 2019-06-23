@@ -27,14 +27,15 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		self::$centralNotice = new CentralNotice;
-		$noticeName        = 'PHPUnitTestCampaign';
-		$enabled           = false;
-		$startTs           = '20110718' . '235500';
-		$projects          = [ 'wikipedia', 'wikibooks' ];
+		$noticeName = 'PHPUnitTestCampaign';
+		$enabled = false;
+		$startTs = '20110718' . '235500';
+		$projects = [ 'wikipedia', 'wikibooks' ];
 		$languages = [ 'en', 'de' ];
-		$geotargeted       = true;
-		$countries     = [ 'US', 'AF' ];
-		$priority         = 1;
+		$geotargeted = true;
+		$countries = [ 'US', 'AF' ];
+		$regions = [];
+		$priority = 1;
 
 		$this->fixture = new CentralNoticeTestFixtures();
 		$this->fixture->setupTestCaseWithDefaults(
@@ -51,6 +52,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 			'projects' => 'wikibooks, wikipedia',
 			'languages' => 'de, en',
 			'countries' => 'AF, US',
+			'regions' => '',
 			'archived' => 0,
 			'throttle' => 100,
 			'mixins' => '[]',
@@ -65,7 +67,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 			$this->userUser->load();
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
-			$languages, $geotargeted, $countries,
+			$languages, $geotargeted, $countries, $regions,
 			100, $priority, $this->userUser );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );

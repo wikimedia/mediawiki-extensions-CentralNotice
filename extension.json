@@ -82,6 +82,7 @@
 		"CNBannerPager": "includes/CNBannerPager.php",
 		"CNCampaignPager": "includes/CNCampaignPager.php",
 		"CNChoiceDataResourceLoaderModule": "includes/CNChoiceDataResourceLoaderModule.php",
+		"CNCountry": "includes/CNCountry.php",
 		"CNDatabase": "includes/CNDatabase.php",
 		"CNDatabasePatcher": "patches/CNDatabasePatcher.php",
 		"CNDeviceTarget": "includes/CNDeviceTarget.php",

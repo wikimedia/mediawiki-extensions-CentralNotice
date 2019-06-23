@@ -49,6 +49,7 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 			AllocationCalculator::makeAvailableCampaigns(
 				$choices,
 				$cAndO['context']['country'],
+				$cAndO['context']['region'],
 				$logged_in_status,
 				$cAndO['context']['device']
 			);

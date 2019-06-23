@@ -338,6 +338,7 @@
 		state.setAvailableCampaigns( chooser.makeAvailableCampaigns(
 			cn.choiceData,
 			state.getData().country,
+			state.getData().region,
 			state.getData().anonymous,
 			state.getData().device
 		) );
