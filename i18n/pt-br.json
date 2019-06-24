@@ -19,7 +19,8 @@
 			"He7d3r",
 			"Araceletorres",
 			"Eduardo Addad de Oliveira",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"McDutchie"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -357,5 +358,5 @@
 	"tag-centralnotice": "Aviso Central",
 	"tag-centralnotice-description": "Editar criado por meio da interface do usuário do CentralNotice Admin",
 	"tag-centralnotice_translation": "Tradução do aviso central",
-	"tag-centralnotice_translation-description": "Edição do conteúdo do CentralNotice criado por meio da extensão do Google Tradutor"
+	"tag-centralnotice_translation-description": "Edição do conteúdo do CentralNotice criado por meio da extensão Tradução"
 }
