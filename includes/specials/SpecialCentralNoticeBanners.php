@@ -550,6 +550,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'cssclass' => 'separate-form-element',
 		];
 
+		// TODO Remove. See T225831.
 		$mixinNames = array_keys( $wgCentralNoticeBannerMixins );
 		$availableMixins = array_combine( $mixinNames, $mixinNames );
 		$selectedMixins = array_keys( $this->banner->getMixins() );

@@ -8,7 +8,7 @@
 	var cn = mw.centralNotice,
 
 		// Minutes leeway for checking stale choice data. Should be the same
-		// as SpecialBannerLoader:CAMPAIGN_STALENESS_LEEWAY.
+		// as SpecialBannerLoader::CAMPAIGN_STALENESS_LEEWAY.
 		// TODO Make this a global config variable.
 		CAMPAIGN_STALENESS_LEEWAY = 15;
 

@@ -120,10 +120,8 @@
 		$.post( url.toString(),
 			{
 				banner: bannerName,
-				bannercontent: $bannerContentTextArea.val(),
-				bannermessages: bannerMessagesCache,
-				force: 1,
-				debug: true
+				previewcontent: $bannerContentTextArea.val(),
+				previewmessages: bannerMessagesCache
 			}, function () {
 				// De-activate the barbershop "loading" animation
 				$previewFieldSet.attr( 'disabled', false );
