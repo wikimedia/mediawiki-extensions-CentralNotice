@@ -10,6 +10,7 @@
 
 	var state,
 		status,
+		config = require( './config.json' ),
 		impressionEventSampleRateOverridden = false,
 
 		UNKNOWN_GEO_CODE = 'XX',
@@ -326,7 +327,7 @@
 			// Is the campaign category among the categories configured to use
 			// legacy mechanisms?
 			state.data.campaignCategoryUsesLegacy =
-				mw.config.get( 'wgCentralNoticeCategoriesUsingLegacy' ).indexOf( campaignCategory ) !== -1;
+				config.categoriesUsingLegacy.indexOf( campaignCategory ) !== -1;
 		},
 
 		getCampaign: function () {

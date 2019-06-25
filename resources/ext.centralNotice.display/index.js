@@ -827,4 +827,10 @@
 		'Use mw.centralNotice method instead'
 	);
 
+	// Execute the other files
+	// TODO: Convert to using module.exports
+	require( './state.js' );
+	require( './chooser.js' );
+	require( './bucketer.js' );
+	require( './hide.js' );
 }() );

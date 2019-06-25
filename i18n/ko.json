@@ -272,5 +272,9 @@
 	"centralnotice-banner-sequence-page-views": "문서 조회수",
 	"centralnotice-banner-sequence-page-views-error": "단계에는 적어도 한 건의 조회수가 있어야 합니다.",
 	"centralnotice-banner-sequence-skip-with-id-error": "식별자는 \"|\"를 포함할 수 없습니다.",
-	"centralnotice-banner-sequence-no-banner": "(배너 없음)"
+	"centralnotice-banner-sequence-no-banner": "(배너 없음)",
+	"tag-centralnotice": "중앙 공지",
+	"tag-centralnotice-description": "CentralNotice Admin UI를 통해 만든 편집",
+	"tag-centralnotice_translation": "중앙 공지 번역",
+	"tag-centralnotice_translation-description": "번역 확장 기능을 통해 만든 CentralNotice 내용 편집"
 }

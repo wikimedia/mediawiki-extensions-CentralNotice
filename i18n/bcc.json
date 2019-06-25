@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mostafadaneshvar",
-			"Baloch Afghanistan"
+			"Baloch Afghanistan",
+			"Sultanselim baloch"
 		]
 	},
 	"noticetemplate": "تمپلت اعلان مرکزی",
@@ -13,9 +14,9 @@
 	"centralnotice-modify": "دیم دهگ",
 	"centralnotice-add": "هور کتن",
 	"centralnotice-add-notice-cancel-button": "کنسیل",
-	"centralnotice-translations": "ترجمه هان",
-	"centralnotice-translate-to": "ترجمه په",
-	"centralnotice-translate": "ترجمه کتن",
+	"centralnotice-translations": "رجانکاں",
+	"centralnotice-translate-to": "رجانک پہ",
+	"centralnotice-translate": "رجَگ",
 	"centralnotice-english": "انگریزی",
 	"centralnotice-banner-name": "نام پرچم:",
 	"centralnotice-banner": "پرچم",

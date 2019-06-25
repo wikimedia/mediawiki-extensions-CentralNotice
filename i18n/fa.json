@@ -22,7 +22,8 @@
 			"Elham",
 			"Hosseinblue",
 			"Calak",
-			"Ladsgroup"
+			"Ladsgroup",
+			"FarsiNevis"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -39,7 +40,7 @@
 	"centralnotice-modify": "ارسال",
 	"centralnotice-view": "مشاهده",
 	"centralnotice-save-banner": "ذخیره",
-	"centralnotice-live-preview": "پیش‌نمایش در ویکی",
+	"centralnotice-live-preview": "پیش‌نمایش",
 	"centralnotice-add-new": "افزودن یک اعلان متمرکز تازه",
 	"centralnotice-remove": "حذف",
 	"centralnotice-translate-heading": "ترجمه از $1",
@@ -100,7 +101,7 @@
 	"centralnotice-weights": "وزن‌ها",
 	"centralnotice-notice-is-locked": "اعلان قفل شده‌است.\nافزوده نشد",
 	"centralnotice-overlap": "اعلان با زمان یک اعلان دیگر تداخل دارد.\nافزوده نشد",
-	"centralnotice-invalid-date-range": "بازهٔ زمانی نامجاز.\nبه روز نمی‌شود.",
+	"centralnotice-invalid-date-range": "بازهٔ زمانی نامعتبر.\nروزآمد نمی‌شود.",
 	"centralnotice-null-string": "رشتهٔ خالی را نمی‌توان افزود.\nافزوده نشد",
 	"centralnotice-no-notices-exist": "اعلانی وجود ندارد.\nیکی اضافه کنید",
 	"centralnotice-no-templates-translate": "الگویی وجود ندارد که ترجمه‌اش را ویرایش کنید",

@@ -9,7 +9,8 @@
 			"Rotemliss",
 			"YaronSh",
 			"אור שפירא",
-			"חיים"
+			"חיים",
+			"Steeve815"
 		]
 	},
 	"centralnotice": "ניהול ההודעה המרכזית",
@@ -287,7 +288,7 @@
 	"apihelp-query+centralnoticelogs-example-1": "הצגת יומנים",
 	"apihelp-query+centralnoticeactivecampaigns-description": "קבלת רשימה של מבצעי פרסום פעילים כעת ושל הכרזות המשויכות.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "קבלת רשימה של מבצעי פרסום פעילים כעת עם תאריכי התחלה וסוף ושל הכּרזות המשויכות.",
-	"apihelp-query+centralnoticeactivecampaigns-example-1": "קבלת רשימה של מבצעי פרסום פעילים כעת ושל הכרזות המשויכות.",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "קבלת רשימה של מבצעי פרסום פעילים כעת, עם תאריכי התחלה וסיום, ושל הכרזות המשויכות.",
 	"centralnotice-banner-history-logger": "רושם יומן היסטוריית כרזה",
 	"centralnotice-banner-history-logger-help": "מעקב אחר סדר הכרזות שרואים הקוראים ומדי פעם לשלוח אותו לשרת.",
 	"centralnotice-banner-history-logger-rate": "קצב דגימה",

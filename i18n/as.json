@@ -5,7 +5,8 @@
 			"Bishnu Saikia",
 			"Chaipau",
 			"Gitartha.bordoloi",
-			"Nilamdyuti"
+			"Nilamdyuti",
+			"Simbu123"
 		]
 	},
 	"centralnotice": "কেন্দ্ৰীয় জাননী প্ৰশাসক",
@@ -15,7 +16,7 @@
 	"right-centralnotice-admin": "কেন্দ্ৰীয় জাননীৰ ব্যৱস্থাপনা কৰক",
 	"action-centralnotice-admin": "কেন্দ্ৰীয় জাননীৰ ব্যৱস্থাপনা কৰক",
 	"centralnotice-desc": "এখন কেন্দ্ৰীয় চাইটজাননী যোগ কৰে",
-	"centralnotice-summary": "এই ম'ডিউলে আপোনাক আপোনাৰ বৰ্তমান ছেটআপ কৰা কেন্দ্ৰীয় জাননী সম্পাদনা কৰিবলৈ অনুমতি দিব।\nইয়াক পুৰণি জাননী যোগ বা আঁতৰ কৰিবলৈও ব্যৱহাৰ কৰিব পাৰি।",
+	"centralnotice-summary": "এই মডিউলে আপোনাক আপোনাৰ বৰ্তমান ছেটআপ কৰা কেন্দ্ৰীয় জাননী সম্পাদনা কৰিবলৈ অনুমতি দিব।\nইয়াক পুৰণি জাননী যোগ বা আঁতৰ কৰিবলৈও ব্যৱহাৰ কৰিব পাৰি।",
 	"centralnotice-query": "বৰ্তমানৰ প্ৰচাৰ পৰিৱৰ্তন কৰক",
 	"centralnotice-notice-name": "প্ৰচাৰৰ নাম",
 	"centralnotice-enabled": "সক্ৰিয়",
