@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16",
+			"Greis",
+			"JackLantern"
+		]
+	},
+	"apierror-centralnotice-cdn-banner-not-found": "Banner non trovato",
+	"apihelp-centralnoticequerycampaign-example-1": "Mostra campagna \"Plea_US\"",
+	"apihelp-query+centralnoticelogs-param-user": "Nome utente (facoltativo)",
+	"apihelp-query+centralnoticelogs-param-limit": "Numero massimo di righe da restituire (opzionale).",
+	"apihelp-query+centralnoticelogs-example-1": "Mostra registri"
+}

@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ooswesthoesbes"
+		]
+	},
+	"apierror-centralnotice-cdn-permissions-error": "Gebroekers höbbe gein rechte veur veurkantjvaaninhawd te vernuje.",
+	"apierror-centralnotice-cdn-lang-code-error": "Verkieërdj getikdje spraokcode.",
+	"apierror-centralnotice-cdn-banner-name-error": "Verkieërdj getikdje vaannaam.",
+	"apierror-centralnotice-cdn-banner-not-found": "Vaan neet gevónje"
+}

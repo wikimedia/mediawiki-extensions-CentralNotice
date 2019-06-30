@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"C.R."
+		]
+	},
+	"apihelp-centralnoticeallocations-description": "Uttenè 'e pizze p' 'e banner dàte 'a CentralNotice pe' tutt' 'e tipe utente pe' sott'o filtro 'e parametre",
+	"apihelp-centralnoticeallocations-param-project": "'O pruggetto p' 'o quale s'avesser'a uttenì 'e pizze",
+	"apihelp-centralnoticeallocations-param-country": "'O paese p' 'o putè filtra'.",
+	"apihelp-centralnoticeallocations-param-language": "'A lengua ca s'avess'a filtrà.",
+	"apihelp-centralnoticeallocations-param-anonymous": "'O stato d' 'e trasute a ffiltrà a ssicondo si fosse (true|false).",
+	"apihelp-centralnoticeallocations-param-device": "Nomme 'e ll'apparecchio 'a filtrà.",
+	"apihelp-centralnoticeallocations-param-bucket": "'O cuofeno addò s'avess'a filtrà pe' nummero (0 .. $1, optional).",
+	"apihelp-centralnoticeallocations-example-1": "Mmusta cocche pizzo p' 'o veré",
+	"apihelp-centralnoticequerycampaign-description": "Acchiappa tutt' 'e date 'e mpustazione p' 'a campagna.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "Nomme d' 'a campagna. Valure separate 'e diverze c' 'a \"|\" ('o tubbo luongo verticale).",
+	"apihelp-centralnoticequerycampaign-example-1": "Mmusta 'a campagna \"Plea_US\"",
+	"apihelp-centralnoticechoicedata-description": "Piglia 'e date ca ce vonno pe scegliere nu banner pe' nu pruggetto dato e na lengua",
+	"apihelp-centralnoticechoicedata-param-project": "'O pruggetto 'addò s'avess'a piglià 'e date 'e sceveta.",
+	"apihelp-centralnoticechoicedata-param-language": "'A llengua addò s'avess'a piglià 'e date 'e sceveta.",
+	"apihelp-centralnoticechoicedata-example-1": "Piglia 'e date pe' ne putè scegliere 'o banner pe' ll'utente d' 'a Wikipedia ngrese.",
+	"apihelp-query+centralnoticelogs-description": "Piglia nu riggistro 'e cuntroll'e cagnamiente 'e campagne.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Nomme d' 'a campagna (opzionale). Valure separate 'e diverze c' 'a \"|\" ('o tubbo luongo verticale).",
+	"apihelp-query+centralnoticelogs-param-user": "Nomme utente (facoltativo).",
+	"apihelp-query+centralnoticelogs-param-limit": "Massemo nummero 'e righe 'arrepiglià (opzionale).",
+	"apihelp-query+centralnoticelogs-param-offset": "'O spustamento int' 'o nzieme 'e rizurtate (opzionale).",
+	"apihelp-query+centralnoticelogs-param-start": "Tiempo 'accummencio d' 'o filtro (opzionale).",
+	"apihelp-query+centralnoticelogs-param-end": "Tiempo 'e nchiusa d' 'o filtro (opzionale).",
+	"apihelp-query+centralnoticelogs-example-1": "Fà veré 'e riggistre"
+}

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Max20091",
+			"Minh Nguyen"
+		]
+	},
+	"apihelp-centralnoticeallocations-param-device": "Tên thiết bị để lọc.",
+	"apihelp-centralnoticequerycampaign-example-1": "Hiển thị chiến dịch “Plea_US”",
+	"apihelp-query+centralnoticelogs-param-user": "Tên người dùng (tùy chọn).",
+	"apihelp-query+centralnoticelogs-example-1": "Xem nhật trình"
+}

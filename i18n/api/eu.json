@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mikel Ibaiba"
+		]
+	},
+	"apierror-centralnotice-cdn-permissions-error": "Erabiltzaileak ez dauka baimenik aurreko aldeko banerraren edukia berrizteko.",
+	"apierror-centralnotice-cdn-lang-code-error": "Txarto osatutako hizkuntza kodea.",
+	"apierror-centralnotice-cdn-banner-name-error": "Txarto osatutako banner izena.",
+	"apierror-centralnotice-cdn-banner-not-found": "Ez da bannerra aurkitu",
+	"apihelp-centralnoticecdncacheupdatebanner-param-language": "Bannerraren edukiaren hizkuntza berrizteke",
+	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "Berriztu behar den edukiaren bannerraren izena."
+}

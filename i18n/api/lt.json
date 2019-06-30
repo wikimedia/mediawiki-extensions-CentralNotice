@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eitvys200"
+		]
+	},
+	"apihelp-centralnoticequerycampaign-description": "Gauti visus kampanijos konfigūracijos nustatymus.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "Kampanijos pavadinimas. Atskirti skirtas reikšmes su „|“ (vertikaliu brūkšniu).",
+	"apihelp-centralnoticequerycampaign-example-1": "Rodyti kampaniją „Plea_US“",
+	"apihelp-centralnoticechoicedata-description": "Gauti duomenis, reikalingus banerio pasirinkimui pateiktam projektui ir kalbai",
+	"apihelp-centralnoticechoicedata-param-project": "Projektas, kuriam gauti banerio pasirinkimo duomenis.",
+	"apihelp-centralnoticechoicedata-param-language": "Kalba, kuriai gauti banerio pasirinkimo duomenis.",
+	"apihelp-centralnoticechoicedata-example-1": "Gauti duomenis, banerio pasirinkimui Angliškosios Vikipedijos vartotojams.",
+	"apihelp-query+centralnoticelogs-description": "Gauti kampanijos konfigūracijos pakeitimų žurnalą.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Kampanijos pavadinimas (nebūtina). Atskirti kelias reikšmes su „|“ (vertikaliu brūkšniu).",
+	"apihelp-query+centralnoticelogs-param-user": "Vartotojo vardas (nebūtina).",
+	"apihelp-query+centralnoticelogs-param-limit": "Maksimalus gražinamų eilučių skaičius (nebūtina).",
+	"apihelp-query+centralnoticelogs-example-1": "Rodyti žurnalus"
+}

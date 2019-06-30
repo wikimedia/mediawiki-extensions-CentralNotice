@@ -1,0 +1,38 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido",
+			"Macofe",
+			"MarcoAurelio",
+			"Ryo567"
+		]
+	},
+	"apierror-centralnotice-cdn-permissions-error": "El usuario no cuenta con el permiso para purgar el contenido del anuncio de la interfaz.",
+	"apierror-centralnotice-cdn-lang-code-error": "Código de idioma incorrecto.",
+	"apierror-centralnotice-cdn-banner-name-error": "El nombre del anuncio es incorrecto.",
+	"apierror-centralnotice-cdn-banner-not-found": "Plantilla no encontrada",
+	"apihelp-centralnoticeallocations-description": "Obtener las ubicaciones de las pancartas provistas por CentralNotice para todos los tipos de usuario con el filtro paramétrico.\n\nEsta es una llamada solo para JSON.",
+	"apihelp-centralnoticeallocations-extended-description": "Esta es una llamada exclusiva de JSON.",
+	"apihelp-centralnoticeallocations-param-project": "El proyecto bajo el que obtener asignaciones.",
+	"apihelp-centralnoticeallocations-param-country": "El país que se va a filtrar.",
+	"apihelp-centralnoticeallocations-param-language": "El idioma que se va a filtrar.",
+	"apihelp-centralnoticeallocations-param-anonymous": "El estado de inicio de sesión que se filtrará (true|false).",
+	"apihelp-centralnoticeallocations-param-device": "Nombre del dispositivo a filtrar.",
+	"apihelp-centralnoticeallocations-param-bucket": "El cubo a filtrar, por número (0 .. $1, opcional).",
+	"apihelp-centralnoticeallocations-example-1": "Mostrar algunas asignaciones",
+	"apihelp-centralnoticequerycampaign-description": "Obtener todos los ajustes de configuración para una campaña.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "Nombre de la campaña. Separa los valores con una \"|\" (barra vertical).",
+	"apihelp-centralnoticequerycampaign-example-1": "Mostrar la campaña \"Plea_US\"",
+	"apihelp-centralnoticechoicedata-description": "Obtener los datos necesarios para elegir un banner para un determinado proyecto e idioma.",
+	"apihelp-centralnoticechoicedata-param-project": "El proyecto para el que se va a elegir banner.",
+	"apihelp-centralnoticechoicedata-param-language": "El idioma para el que se va a elegir banner.",
+	"apihelp-centralnoticechoicedata-example-1": "Obtener los datos para elegir un banner para los usuarios de Wikipedia en español.",
+	"apihelp-query+centralnoticelogs-description": "Obtener un registro de cambios de configuración de campaña.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Nombre de la campaña (opcional). Separa los valores con una pleca («|»).",
+	"apihelp-query+centralnoticelogs-param-user": "Nombre de usuario (opcional).",
+	"apihelp-query+centralnoticelogs-param-limit": "Número máximo de filas a devolver (opcional).",
+	"apihelp-query+centralnoticelogs-param-offset": "Desplazamiento en el conjunto de resultados (opcional).",
+	"apihelp-query+centralnoticelogs-param-start": "Hora inicial del intervalo (opcional).",
+	"apihelp-query+centralnoticelogs-param-end": "Hora final del intervalo (opcional).",
+	"apihelp-query+centralnoticelogs-example-1": "Mostrar registros"
+}

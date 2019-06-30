@@ -108,7 +108,6 @@
 	"centralnotice-banner-display-on": "যেখানে প্রদর্শিত হবে",
 	"centralnotice-banner-cdn-button": "পুনঃসতেজ",
 	"centralnotice-banner-cdn-dialog-ok": "ঠিক আছে",
-	"apierror-centralnotice-cdn-banner-not-found": "ব্যানার পাওয়া যায়নি",
 	"centralnotice-geo": "স্থানাংকলক্ষ্য",
 	"centralnotice-countries": "দেশ",
 	"centralnotice-allocation": "বরাদ্দ",
@@ -183,7 +182,6 @@
 	"centralnotice-end-time": "শেষ সময় (ইউটিসি)",
 	"centralnotice-csp-violation-alert": "সামগ্রী নিরাপত্তা নীতির লঙ্ঘন সনাক্ত হয়েছে। $1 থেকে কিছু লোড করার চেষ্টা করা হয়েছে।",
 	"hidebanners": "ব্যানার লুকান",
-	"apihelp-query+centralnoticelogs-example-1": "লগ দেখান",
 	"centralnotice-banner-sequence-banner": "ব্যানার",
 	"centralnotice-banner-sequence-page-views": "পাতা দর্শন"
 }

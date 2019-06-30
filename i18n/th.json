@@ -116,7 +116,6 @@
 	"centralnotice-start-time": "เวลาที่เริ่ม (เวลาสากลกรีนิช UTC)",
 	"centralnotice-end-date": "วันหมดอายุ",
 	"centralnotice-end-time": "เวลาสิ้นสุด (UTC)",
-	"apihelp-query+centralnoticelogs-example-1": "แสดงรายการบันทึก",
 	"centralnotice-banner-history-logger": "ตัวทำรายการบันทึกประวัติแบนเนอร์",
 	"centralnotice-banner-history-logger-max-entries": "จำนวนหน่วยสูงสุดที่จะเก็บในรายการบันทึก"
 }

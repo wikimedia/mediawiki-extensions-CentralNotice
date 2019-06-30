@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Okras",
+			"Stjn",
+			"Vlad5250"
+		]
+	},
+	"apierror-centralnotice-cdn-permissions-error": "Участник не имеет права очистить кэш фронтэнда.",
+	"apierror-centralnotice-cdn-lang-code-error": "Испорченный языковой код.",
+	"apierror-centralnotice-cdn-banner-name-error": "Испорченное название баннера.",
+	"apierror-centralnotice-cdn-banner-not-found": "Баннер не найден",
+	"apihelp-centralnoticeallocations-description": "Получите назначения для баннеров CentralNotice всем типам участников по фильтру параметров.\n\nЭтот вызов только для JSON.",
+	"apihelp-centralnoticeallocations-summary": "Получите назначения для баннеров CentralNotice всем типам участников по фильтру параметров.",
+	"apihelp-centralnoticeallocations-extended-description": "Это вызов, предусмотренный только для JSON.",
+	"apihelp-centralnoticeallocations-param-country": "Страна для установки фильтрации.",
+	"apihelp-centralnoticeallocations-param-language": "Язык для установки фильтрации.",
+	"apihelp-centralnoticeallocations-param-device": "Название устройства для фильтрации.",
+	"apihelp-centralnoticequerycampaign-description": "Получить все настройки по кампании.",
+	"apihelp-centralnoticequerycampaign-example-1": "Показать кампанию «Plea_US»",
+	"apihelp-query+centralnoticelogs-description": "Получить журнал изменений конфигурации кампании.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Название кампании (необязательно). Разделяйте значения с помощью «|» (вертикальной черты).",
+	"apihelp-query+centralnoticelogs-param-user": "Имя участника (необязательно).",
+	"apihelp-query+centralnoticelogs-param-limit": "Максимальное число возвращаемых строк (необязательно).",
+	"apihelp-query+centralnoticelogs-param-start": "Начальное время диапазона (необязательно).",
+	"apihelp-query+centralnoticelogs-param-end": "Конечное время диапазона (необязательно).",
+	"apihelp-query+centralnoticelogs-example-1": "Показать журналы"
+}

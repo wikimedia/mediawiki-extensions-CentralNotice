@@ -189,7 +189,5 @@
 	"centralnotice-start-date": "ആരംഭിക്കുന്ന തീയതി (യു.റ്റി.സി.)",
 	"centralnotice-start-time": "ആരംഭിക്കുന്ന സമയം (UTC)",
 	"centralnotice-end-date": "അവസാനിക്കുന്ന തീയതി (യു.റ്റി.സി.)",
-	"centralnotice-end-time": "അവസാനിക്കുന്ന സമയം (യു.റ്റി.സി.)",
-	"apihelp-query+centralnoticelogs-param-user": "ഉപയോക്തൃനാമം (നിർബന്ധമല്ല).",
-	"apihelp-query+centralnoticelogs-example-1": "രേഖകൾ പ്രദർശിപ്പിക്കുക"
+	"centralnotice-end-time": "അവസാനിക്കുന്ന സമയം (യു.റ്റി.സി.)"
 }

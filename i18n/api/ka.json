@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Otogi"
+		]
+	},
+	"apihelp-centralnoticeallocations-param-country": "ქვეყანა ფილტრისთვის",
+	"apihelp-centralnoticeallocations-param-language": "ენა ფილტრისთვის",
+	"apihelp-centralnoticeallocations-example-1": "რამდენიმე შეზღუდვის ჩვენება",
+	"apihelp-query+centralnoticelogs-param-user": "მომხმარებლის სახელი (არასავალდებულო)",
+	"apihelp-query+centralnoticelogs-param-limit": "დაბრუნების მაქსიმალური რიგი (არასავალდებულო)",
+	"apihelp-query+centralnoticelogs-param-offset": "განტოტება შედეგის დაყენებაში (არასავალდებულო)",
+	"apihelp-query+centralnoticelogs-param-start": "დიაპაზონის დაწყების დრო (არასავალდებულო)",
+	"apihelp-query+centralnoticelogs-param-end": "დიაპაზონის დასრულების დრო (არასავალდებულო)",
+	"apihelp-query+centralnoticelogs-example-1": "ჟურნალების ჩვენება"
+}

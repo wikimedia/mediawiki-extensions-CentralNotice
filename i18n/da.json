@@ -225,7 +225,6 @@
 	"centralnotice-start-time": "Starttid (UTC)",
 	"centralnotice-end-date": "Slutdato (UTC)",
 	"centralnotice-end-time": "Sluttid (UTC)",
-	"apihelp-query+centralnoticelogs-param-user": "Brugernavn (valgfrit).",
 	"centralnotice-banner-sequence-days-error": "Skal være et heltal større end nul.",
 	"centralnotice-banner-sequence-bucket-add-step": "Tilføj et trin"
 }

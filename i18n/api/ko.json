@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Revi",
+			"Ykhwong",
+			"아라"
+		]
+	},
+	"apierror-centralnotice-cdn-permissions-error": "사용자는 프론트엔드 배너 내용을 새로 고칠 권한이 없습니다.",
+	"apierror-centralnotice-cdn-banner-not-found": "배너를 찾을 수 없음",
+	"apihelp-centralnoticeallocations-extended-description": "이것은 JSON 전용 호출입니다.",
+	"apihelp-centralnoticeallocations-param-country": "필터를 켤 국가",
+	"apihelp-centralnoticeallocations-param-language": "필터를 켤 언어",
+	"apihelp-centralnoticeallocations-param-anonymous": "로그인 상태에 따른 필터 활성화 여부 (예|아니오)",
+	"apihelp-centralnoticeallocations-param-device": "필터를 켤 기기 이름",
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "익명 사용자, 요청된 배너, 그리고 언어와 관련하여 CDN(프론트엔드) 캐시에 저장된 배너 콘텐츠의 새로 고침을 요청합니다",
+	"apihelp-centralnoticecdncacheupdatebanner-param-language": "새로 고칠 배너 내용의 언어",
+	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "내용을 새로 고칠 배너의 이름",
+	"apihelp-centralnoticecdncacheupdatebanner-example-1": "CDN 캐시의 'Banner1'의 내용을 새로 고침 (영어의 경우)",
+	"apihelp-centralnoticequerycampaign-description": "캠페인을 위한 모든 구성 설정을 가져옵니다.",
+	"apihelp-centralnoticequerycampaign-summary": "캠페인을 위한 모든 구성 설정을 가져옵니다.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "캠페인 이름입니다. \"|\"(수직 막대)로 여러 개의 값을 구분합니다.",
+	"apihelp-centralnoticequerycampaign-example-1": "\"Plea_US\" 캠페인 보이기",
+	"apihelp-centralnoticechoicedata-description": "지정된 프로젝트와 언어를 위한 배너 선택에 필요한 데이터를 가져옵니다",
+	"apihelp-centralnoticechoicedata-summary": "지정된 프로젝트와 언어를 위한 배너 선택에 필요한 데이터를 가져옵니다",
+	"apihelp-centralnoticechoicedata-param-project": "배너 선택 데이터를 가져올 프로젝트입니다.",
+	"apihelp-centralnoticechoicedata-param-language": "배너 선택 데이터를 가져올 언어입니다.",
+	"apihelp-centralnoticechoicedata-example-1": "영어 위키백과 사용자의 배너 선택을 위한 데이터를 가져옵니다.",
+	"apihelp-query+centralnoticelogs-param-campaign": "캠페인 이름입니다. (선택 사항) \"|\"(수직 막대)로 여러 개의 값을 구분합니다.",
+	"apihelp-query+centralnoticelogs-param-user": "사용자 이름 (선택 사항).",
+	"apihelp-query+centralnoticelogs-example-1": "로그 보기"
+}

@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lam-ang"
+		]
+	},
+	"apihelp-centralnoticeallocations-description": "Mangala kadagiti pannakailasin ti banderola nga inserbi babaen ti CentralNotice para kadagiti amin a kita ti agar-aramat babaen ti parametriko a sagat.\n\nDaytoy ket JSON laeng a panagtawag.",
+	"apihelp-centralnoticeallocations-param-project": "Ti gandat nga ayan ti panagala kadagiti pannakailasin.",
+	"apihelp-centralnoticeallocations-param-country": "Ti pagilian a pagsagatan.",
+	"apihelp-centralnoticeallocations-param-language": "Ti pagsasao a pagsagatan.",
+	"apihelp-centralnoticeallocations-param-anonymous": "Ti kasasaad ti panagserrek a pagsagatan (true|false).",
+	"apihelp-centralnoticeallocations-param-device": "Nagan ti ramit a pagsagatan.",
+	"apihelp-centralnoticeallocations-param-bucket": "Ti timba a pagsagatan, babaen ti bilang (0 .. $1, pagpilian).",
+	"apihelp-centralnoticeallocations-example-1": "Agipakita kadagiti pannakailasin",
+	"apihelp-centralnoticequerycampaign-description": "Alaen amin dagiti pannakaisaad ti konpigurasion para iti kampania.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "Nagan ti kampania. Isina dagiti nadumaduma a pateg iti \"|\" (bertikal baras).",
+	"apihelp-centralnoticequerycampaign-example-1": "Ipakita ti kampania ti \"Plea_US\"",
+	"apihelp-centralnoticechoicedata-description": "Mangala ti datos a masapul iti panagpili ti banderola para iti naited a gandat ken pagsasao",
+	"apihelp-centralnoticechoicedata-param-project": "Ti gandat a pagalaan para iti pagpilian ti datos ti banderola.",
+	"apihelp-centralnoticechoicedata-param-language": "Ti pagsasao a pagalaan para iti pagpilian ti datos ti banderola.",
+	"apihelp-centralnoticechoicedata-example-1": "Alaen ti datos para iti panagpili ti banderola para kadagiti agar-aramat ti Ingles a Wikipedia.",
+	"apihelp-query+centralnoticelogs-description": "Mangala ti listaan kadagiti panagbaliw ti konpigurasion ti kampania.",
+	"apihelp-query+centralnoticelogs-param-campaign": "Nagan ti kampania (pagpilian). Isina dagiti nadumaduma a pateg iti \"|\" (bertikal baras).",
+	"apihelp-query+centralnoticelogs-param-user": "Nagan ti agar-aramat (pagpilian).",
+	"apihelp-query+centralnoticelogs-param-limit": "Kaadu dagiti aray a maipasubli (pagpilia).",
+	"apihelp-query+centralnoticelogs-param-offset": "Timbengan iti agasmang ti (pagpilian).",
+	"apihelp-query+centralnoticelogs-param-start": "Oras a panagrugi ti sakop (pagpilian).",
+	"apihelp-query+centralnoticelogs-param-end": "Oras a patingga ti sakop (pagpilian).",
+	"apihelp-query+centralnoticelogs-example-1": "Ipakita dagiti listaan"
+}

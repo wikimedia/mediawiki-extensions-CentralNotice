@@ -113,7 +113,6 @@
 	"centralnotice-banner-cdn-dialog-ok": "U redu",
 	"centralnotice-banner-cdn-dialog-error": "Greška prilikom zahtjeva pročišćivanja međuspremnika prijednice",
 	"centralnotice-banner-cdn-dialog-success": "Zahtjev pročišćivanja međuspremnika prijednice je poslat.",
-	"apierror-centralnotice-cdn-permissions-error": "Korisnik nema dozvolu za pročišćivanje međuspremnika prijednice.",
 	"centralnotice-archive-banner-cancel": "Otkaži",
 	"centralnotice-archive-campaign-cancel": "Otkaži",
 	"centralnotice-delete-banner-cancel": "Otkaži"

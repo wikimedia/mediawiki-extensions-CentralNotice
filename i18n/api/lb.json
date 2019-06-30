@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"apierror-centralnotice-cdn-lang-code-error": "Falsche Sproochcode.",
+	"apierror-centralnotice-cdn-banner-not-found": "Banner net fonnt",
+	"apihelp-centralnoticeallocations-param-language": "D'Sprooch op déi filtert gi soll.",
+	"apihelp-query+centralnoticelogs-param-user": "Benotzernumm (fakultativ)."
+}

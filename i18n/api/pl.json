@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps"
+		]
+	},
+	"apierror-centralnotice-cdn-banner-not-found": "Nie znaleziono banera",
+	"apihelp-query+centralnoticelogs-param-user": "Nazwa użytkownika (opcjonalne).",
+	"apihelp-query+centralnoticelogs-example-1": "Pokaż rejestry"
+}
