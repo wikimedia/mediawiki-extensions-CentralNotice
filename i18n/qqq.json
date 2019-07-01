@@ -43,7 +43,7 @@
 	"centralnotice-modify": "Submit button on:\n* \"change translation language\" dialog box on [[m:Special:NoticeTemplate]].\n* \"add campaign\" form on [[m:Special:CentralNotice]] (only when sufficent access rights).\n\n{{Identical|Submit}}",
 	"centralnotice-view": "Submit button on:\n* \"view banner allocation\" on [[m:Special:BannerAllocation]].\n{{Identical|View}}",
 	"centralnotice-save-banner": "Label for the submit button which saves a CentralNotice banner.\n{{Identical|Save}}",
-	"centralnotice-live-preview": "Text for a live site preview/render of the current banner",
+	"centralnotice-live-preview": "Text for a live site preview/render of the most recent saved version current banner",
 	"centralnotice-add-new": "Unused at this time.",
 	"centralnotice-remove": "Used as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Remove}}",
 	"centralnotice-translate-heading": "Fieldset label. Parameters:\n* $1 - a name of a template",
