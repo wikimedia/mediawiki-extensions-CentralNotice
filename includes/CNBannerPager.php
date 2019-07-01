@@ -138,14 +138,11 @@ class CNBannerPager extends ReverseChronologicalPager {
 			}
 		}
 
-		$banner = Banner::fromId( $bannerId );
-		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner );
-		$rowText = $bannerRenderer->linkTo();
-
 		// Now do the banner
+		$rowText = BannerRenderer::linkToBanner( $bannerName );
 		$retval["cn-banner-list-element-$bannerId"] = [
 			'class' => 'HTMLInfoField',
-			'default' => $rowText . " (" . $bannerRenderer->getPreviewLink() . ")",
+			'default' => $rowText . " (" . BannerRenderer::getPreviewLink( $bannerName ) . ")",
 			'raw' => true,
 		];
 		if ( $this->formSection ) {
