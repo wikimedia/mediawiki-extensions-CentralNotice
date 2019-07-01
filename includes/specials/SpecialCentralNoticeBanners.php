@@ -770,15 +770,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'hidelabel' => true,
 		];
 
-		$formDescriptor[ 'preview-button' ] = [
-			'section' => 'form-actions',
-			'class' => 'HTMLButtonField',
-			'default' => $this->msg( 'centralnotice-preview' )->text(),
-			'disabled' => !$this->editable,
-			'cssclass' => 'cn-formbutton',
-			'hidelabel' => true,
-		];
-
 		/* --- Hidden fields and such --- */
 		$formDescriptor[ 'cloneName' ] = [
 			'section' => 'clone-banner',
