@@ -295,6 +295,8 @@
 	"centralnotice-impression-events-sample-rate-field": "Impression events sample rate (should be between 0 and 1, inclusive)",
 	"centralnotice-navbar": "-",
 	"centralnotice-banner-protection-log-reason": "Automatically protected by CentralNotice; only edit via [[Special:CentralNotice]] or [[Special:Translate]].",
+	"centralnotice-multiple-countries": "Multiple countries",
+	"centralnotice-multiple-languages": "Multiple languages",
 	"tag-centralnotice": "Central Notice",
 	"tag-centralnotice-description": "Edit created via the CentralNotice Admin UI",
 	"tag-centralnotice_translation": "Central Notice Translation",
