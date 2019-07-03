@@ -162,5 +162,7 @@
 	"centralnotice-start-date": "ଆରମ୍ଭ ତାରିଖ",
 	"centralnotice-start-time": "ଆରମ୍ଭ ସମୟ (UTC)",
 	"centralnotice-end-date": "ଶେଷ ତାରିଖ",
-	"centralnotice-end-time": "ଶେଷ ସମୟ (UTC)"
+	"centralnotice-end-time": "ଶେଷ ସମୟ (UTC)",
+	"centralnotice-multiple-countries": "ଏକାଧିକ ($1)",
+	"centralnotice-multiple-languages": "ଏକାଧିକ ($1)"
 }

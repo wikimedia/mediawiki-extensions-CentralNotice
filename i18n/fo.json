@@ -94,5 +94,7 @@
 	"centralnotice-start-date": "Byrjunardagur (UTC)",
 	"centralnotice-start-time": "Byrjar kl. (UTC)",
 	"centralnotice-end-date": "Endar dag (UTC)",
-	"centralnotice-end-time": "Endar kl. (UTC)"
+	"centralnotice-end-time": "Endar kl. (UTC)",
+	"centralnotice-multiple-countries": "Fleiri ($1)",
+	"centralnotice-multiple-languages": "Fleiri ($1)"
 }

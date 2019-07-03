@@ -230,5 +230,7 @@
 	"centralnotice-banner-not-found-title": "Баннер табылманы",
 	"centralnotice-banner-not-found-contents": "Аныҡ шундай атамалы баннер юҡ",
 	"hidebanners": "Баннерҙы йәшерергә",
-	"centralnotice-banner-history-logger-max-entries": "Журналда һаҡлау мөмкин булған яҙмаларҙың максималь һаны"
+	"centralnotice-banner-history-logger-max-entries": "Журналда һаҡлау мөмкин булған яҙмаларҙың максималь һаны",
+	"centralnotice-multiple-countries": "бер нисә ($1)",
+	"centralnotice-multiple-languages": "бер нисә ($1)"
 }

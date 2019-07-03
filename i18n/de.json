@@ -303,6 +303,8 @@
 	"centralnotice-impression-events-sample-rate-help": "Legt eine Nicht-Standard-Samplerate zur Protokollierung von Eindrucksereignissen fest.",
 	"centralnotice-impression-events-sample-rate-field": "Eindrucksereignis-Samplerate (sollte zwischen 0 und einschließlich 1 sein)",
 	"centralnotice-banner-protection-log-reason": "Automatisch durch CentralNotice geschützt; nur über [[Special:CentralNotice]] oder [[Special:Translate]] bearbeiten.",
+	"centralnotice-multiple-countries": "mehrere ($1)",
+	"centralnotice-multiple-languages": "mehrere ($1)",
 	"tag-centralnotice": "Zentrale Meldung",
 	"tag-centralnotice-description": "Bearbeitung erstellt über die CentralNotice-Administratoroberfläche",
 	"tag-centralnotice_translation": "Zentrale-Meldungs-Übersetzung",

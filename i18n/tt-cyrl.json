@@ -174,5 +174,6 @@
 	"centralnotice-start-date": "Башлау датасы (UTC)",
 	"centralnotice-start-time": "Башлау сәгате (UTC)",
 	"centralnotice-end-date": "Бетү датасы (UTC)",
-	"centralnotice-end-time": "Бетү вакыты (UTC)"
+	"centralnotice-end-time": "Бетү вакыты (UTC)",
+	"centralnotice-multiple-languages": "берничә ($1)"
 }

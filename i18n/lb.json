@@ -215,5 +215,7 @@
 	"centralnotice-banner-sequence-days-error": "Muss eng ganz Zuel sinn déi méi grouss wéi null ass.",
 	"centralnotice-banner-sequence-bucket-add-step": "E Schrëtt derbäisetzen",
 	"centralnotice-banner-sequence-banner": "Banner",
-	"centralnotice-banner-sequence-no-banner": "(Kee Banner)"
+	"centralnotice-banner-sequence-no-banner": "(Kee Banner)",
+	"centralnotice-multiple-countries": "Méi ($1)",
+	"centralnotice-multiple-languages": "méi ($1)"
 }

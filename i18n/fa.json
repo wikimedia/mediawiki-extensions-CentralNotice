@@ -255,5 +255,7 @@
 	"centralnotice-banner-sequence-bucket-add-step": "افزودن یک قدم",
 	"centralnotice-banner-sequence-banner": "پرچم",
 	"centralnotice-banner-sequence-page-views": "بازدیدهای صفحه",
-	"centralnotice-banner-sequence-no-banner": "(بدون بنر)"
+	"centralnotice-banner-sequence-no-banner": "(بدون بنر)",
+	"centralnotice-multiple-countries": "چندگانه ($1)",
+	"centralnotice-multiple-languages": "چندگانه ($1)"
 }

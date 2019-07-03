@@ -31,7 +31,8 @@
 			"Stjn",
 			"Vlad5250",
 			"Romanko Mikhail",
-			"Diralik"
+			"Diralik",
+			"Alexander Istomin"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -298,5 +299,7 @@
 	"centralnotice-banner-sequence-banner": "Баннер",
 	"centralnotice-banner-sequence-page-views": "Просмотров страниц",
 	"centralnotice-banner-sequence-skip-with-id-error": "Идентификатор не может содержать «|».",
-	"centralnotice-banner-sequence-no-banner": "(нет баннера)"
+	"centralnotice-banner-sequence-no-banner": "(нет баннера)",
+	"centralnotice-multiple-countries": "Несколько стран",
+	"centralnotice-multiple-languages": "Несколько языков"
 }

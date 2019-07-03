@@ -325,6 +325,8 @@
 	"centralnotice-impression-events-sample-rate-help": "为日志记录印象事件设置非默认抽样率。",
 	"centralnotice-impression-events-sample-rate-field": "印象事件抽样率，应为0~1（包含）之间的数",
 	"centralnotice-banner-protection-log-reason": "被 CentralNotice 自动保护，编者仅可通过 [[Special:CentralNotice]] 或 [[Special:Translate]] 进行编辑。",
+	"centralnotice-multiple-countries": "多条（$1）",
+	"centralnotice-multiple-languages": "较多($1)",
 	"tag-centralnotice": "中央通知",
 	"tag-centralnotice-description": "通过 CentralNotice 管理界面创建的编辑",
 	"tag-centralnotice_translation": "中央通知翻译",

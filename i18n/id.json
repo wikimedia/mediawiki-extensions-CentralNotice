@@ -163,5 +163,7 @@
 	"centralnotice-start-time": "Waktu mulai (UTC)",
 	"centralnotice-end-date": "Tanggal selesai (UTC)",
 	"centralnotice-end-time": "Waktu berakhir (UTC)",
-	"centralnotice-banner-history-logger-rate": "Sample rate"
+	"centralnotice-banner-history-logger-rate": "Sample rate",
+	"centralnotice-multiple-countries": "Beberapa ($1)",
+	"centralnotice-multiple-languages": "ganda ($1)"
 }

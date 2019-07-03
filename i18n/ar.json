@@ -312,6 +312,8 @@
 	"centralnotice-impression-events-sample-rate-help": "تعيين معدل عينة غير افتراضي لتسجيل أحداث الانطباع.",
 	"centralnotice-impression-events-sample-rate-field": "معدل عينة أحداث الظهور (يجب أن يتراوح بين 0 و1، شاملاً)",
 	"centralnotice-banner-protection-log-reason": "محمية تلقائيا من قبل الإشعار المركزي; التحرير فقط عبر [[Special:CentralNotice]] أو [[Special:Translate]].",
+	"centralnotice-multiple-countries": "بلدان متعددة",
+	"centralnotice-multiple-languages": "لغات متعددة",
 	"tag-centralnotice": "إشعار مركزي",
 	"tag-centralnotice-description": "التعديل تم عمله من خلال واجهة المستخدم الإدارية للإشعار المركزي",
 	"tag-centralnotice_translation": "ترجمة الإشعار المركزي",

@@ -162,5 +162,7 @@
 	"centralnotice-start-date": "Startowy datum (UTC)",
 	"centralnotice-start-time": "Startowy cas (UTC)",
 	"centralnotice-end-date": "Kóńcny datum (UTC)",
-	"centralnotice-end-time": "Kóńcny cas (UTC)"
+	"centralnotice-end-time": "Kóńcny cas (UTC)",
+	"centralnotice-multiple-countries": "Někotare ($1)",
+	"centralnotice-multiple-languages": "někotare ($1)"
 }

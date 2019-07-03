@@ -217,5 +217,7 @@
 	"centralnotice-end-time": "Ora terminării (UTC)",
 	"centralnotice-banner-not-found-title": "Bannerul nu a fost găsit",
 	"centralnotice-banner-not-found-contents": "Nu există niciun banner cu acest nume.",
-	"hidebanners": "Ascunde bannerele"
+	"hidebanners": "Ascunde bannerele",
+	"centralnotice-multiple-countries": "Multiple ($1)",
+	"centralnotice-multiple-languages": "multiple ($1)"
 }

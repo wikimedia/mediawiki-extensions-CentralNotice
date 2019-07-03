@@ -216,5 +216,7 @@
 	"centralnotice-banner-history-logger-max-entries-help": "Jei įrašoma daugiau istorijos prieš žurnalo išsiuntimą į serverį, tai seniausi objektai išnyks.",
 	"centralnotice-impression-diet-help": "Apriboti banerį, kurios mato vienas individas, skaičių.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Kiek ilgai lauki prieš pradedant ciklą iš naujo, sekundėmis (nebūtina)",
-	"centralnotice-impression-diet-restart-cycle-delay-help": "Numatytoji reikšmė yra 0, tai reiškia, kad skaitytojai patirs vieną ciklą ir tada baneriai nebebus rodomi."
+	"centralnotice-impression-diet-restart-cycle-delay-help": "Numatytoji reikšmė yra 0, tai reiškia, kad skaitytojai patirs vieną ciklą ir tada baneriai nebebus rodomi.",
+	"centralnotice-multiple-countries": "Kelias ( $1 )",
+	"centralnotice-multiple-languages": "Kelias ( $1 )"
 }

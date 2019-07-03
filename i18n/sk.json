@@ -162,5 +162,7 @@
 	"centralnotice-start-date": "Dátum začiatku (UTC)",
 	"centralnotice-start-time": "Čas začatia (UTC)",
 	"centralnotice-end-date": "Dátum ukončenia (UTC)",
-	"centralnotice-end-time": "Čas ukončenia (UTC)"
+	"centralnotice-end-time": "Čas ukončenia (UTC)",
+	"centralnotice-multiple-countries": "viaceré ($1)",
+	"centralnotice-multiple-languages": "viaceré ($1)"
 }

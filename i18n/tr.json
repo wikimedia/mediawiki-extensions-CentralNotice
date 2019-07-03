@@ -248,5 +248,7 @@
 	"hidebanners": "Afişleri gizle",
 	"centralnotice-banner-history-logger": "Afiş geçmişi günlüğü",
 	"centralnotice-banner-history-logger-help": "Okuyucular tarafından görülen afişlerin sırasını izleyin ve ara sıra sunucuya geri gönderin.",
-	"centralnotice-large-banner-limit-days": "Bası uzunluğu"
+	"centralnotice-large-banner-limit-days": "Bası uzunluğu",
+	"centralnotice-multiple-countries": "Çoklu ($1)",
+	"centralnotice-multiple-languages": "Çoklu ($1)"
 }

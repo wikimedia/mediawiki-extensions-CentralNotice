@@ -293,6 +293,8 @@
 	"centralnotice-impression-events-sample-rate-help": "Definir un taxa de monstra non standard pro registrar le eventos de impression.",
 	"centralnotice-impression-events-sample-rate-field": "Taxa de monstra pro eventos de impression (debe esser inter 0 e 1, inclusive)",
 	"centralnotice-banner-protection-log-reason": "Automaticamente protegite per CentralNotice; modificabile solmente via [[Special:CentralNotice]] o [[Special:Translate]].",
+	"centralnotice-multiple-countries": "Multiple ($1)",
+	"centralnotice-multiple-languages": "multiple ($1)",
 	"tag-centralnotice": "Aviso central",
 	"tag-centralnotice-description": "Modification create per le interfacie administrative de Avisos Central",
 	"tag-centralnotice_translation": "Traduction de aviso central",

@@ -48,5 +48,7 @@
 	"centralnotice-start-date": "Tanggal bamula",
 	"centralnotice-start-time": "Wayah bamula (UTC)",
 	"centralnotice-end-date": "Tanggal tuntung",
-	"centralnotice-end-time": "Wayah bahabis (UTC)"
+	"centralnotice-end-time": "Wayah bahabis (UTC)",
+	"centralnotice-multiple-countries": "Pangalian ($1)",
+	"centralnotice-multiple-languages": "Pangalian ($1)"
 }

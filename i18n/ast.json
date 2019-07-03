@@ -290,5 +290,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Les secuencies configúrense de mou separáu pa cada contenedor. Pa cada pasu, sólo tán disponibles los cartelos asinaos al contenedor de la secuencia. P'amosar siempre un pasu, dexa'l campu «Saltar con identificador» en blancu. Si se pon un indicador, en completando'l pasu, guárdase una marca nel restolador del usuariu qu'usa esi identificador, y la siguiente vez que llegue al pasu col mesmu identificador, el pasu saltaráse. los identificadores de «Llende pa carteles grandes y conmutador» tiŕnrnse tamién en cuenta. Cuando acaba una secuencia, vuelve al principiu. (Pa torgar la repetición d'una secuencia, usa «Dieta d'impresiones» pa llendar les impresiones.)",
 	"centralnotice-impression-events-sample-rate": "Tasa de repetición d'actividaes d'impresión",
 	"centralnotice-impression-events-sample-rate-help": "Configurar una tasa de repetición non predeterminada pal rexistru d'actividaes d'impresión",
-	"centralnotice-impression-events-sample-rate-field": "Tasa de repetición d'actividaes d'impresión (tien de tar ente 0 y 1, inclusive)"
+	"centralnotice-impression-events-sample-rate-field": "Tasa de repetición d'actividaes d'impresión (tien de tar ente 0 y 1, inclusive)",
+	"centralnotice-multiple-countries": "Múltiples ($1)",
+	"centralnotice-multiple-languages": "Múltiples ($1)"
 }

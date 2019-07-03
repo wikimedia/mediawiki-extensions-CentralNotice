@@ -42,8 +42,8 @@
 	"apihelp-query+centralnoticelogs-param-start": "期間的開始時間 (選填)。",
 	"apihelp-query+centralnoticelogs-param-end": "期間的結束時間 (選填)。",
 	"apihelp-query+centralnoticelogs-example-1": "顯示日誌",
-	"apihelp-query+centralnoticeactivecampaigns-description": "取得目前有效活動與所分配橫幅的清單。",
-	"apihelp-query+centralnoticeactivecampaigns-summary": "取得目前有效活動與所分配橫幅的清單。",
+	"apihelp-query+centralnoticeactivecampaigns-description": "取得帶有起始日期的目前有效活動與所分配橫幅之清單。",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "取得帶有起始日期的目前有效活動與所分配橫幅之清單。",
 	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "包含啟用的特色活動（如同目前的有效活動）。",
-	"apihelp-query+centralnoticeactivecampaigns-example-1": "取得目前有效活動與所分配橫幅的清單。"
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "取得帶有起始日期的目前有效活動與所分配橫幅之清單。"
 }

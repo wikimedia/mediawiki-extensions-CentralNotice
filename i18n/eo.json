@@ -170,5 +170,7 @@
 	"centralnotice-start-date": "Komenca dato (UTC)",
 	"centralnotice-start-time": "Komenca tempo (UTC)",
 	"centralnotice-end-date": "Fina dato (UTC)",
-	"centralnotice-end-time": "Fina tempo (UTC)"
+	"centralnotice-end-time": "Fina tempo (UTC)",
+	"centralnotice-multiple-countries": "Multelande ($1)",
+	"centralnotice-multiple-languages": "multlingve ($1)"
 }

@@ -223,5 +223,7 @@
 	"centralnotice-banner-not-found-title": "Tilèt nen trovà",
 	"centralnotice-banner-not-found-contents": "A-i é gnun tilèt con ës nòm precis.",
 	"hidebanners": "Stërmé ij tilèt",
-	"centralnotice-specialhidebanners-p3p": "Vàire navigador a l'han damanca ëd na spessìfica P3P compata për definì ij bëscotin an chèiche situassion. Comsëssìa, gnun-a spessìfica compata a l'é al moment disponìbil. Për piasì, ch'a consulta le régole ëd confidensialità che lisìbij dël sit."
+	"centralnotice-specialhidebanners-p3p": "Vàire navigador a l'han damanca ëd na spessìfica P3P compata për definì ij bëscotin an chèiche situassion. Comsëssìa, gnun-a spessìfica compata a l'é al moment disponìbil. Për piasì, ch'a consulta le régole ëd confidensialità che lisìbij dël sit.",
+	"centralnotice-multiple-countries": "Mùltipl ($1)",
+	"centralnotice-multiple-languages": "mùltipl ($1)"
 }

@@ -183,5 +183,7 @@
 	"centralnotice-csp-violation-alert": "সামগ্রী নিরাপত্তা নীতির লঙ্ঘন সনাক্ত হয়েছে। $1 থেকে কিছু লোড করার চেষ্টা করা হয়েছে।",
 	"hidebanners": "ব্যানার লুকান",
 	"centralnotice-banner-sequence-banner": "ব্যানার",
-	"centralnotice-banner-sequence-page-views": "পাতা দর্শন"
+	"centralnotice-banner-sequence-page-views": "পাতা দর্শন",
+	"centralnotice-multiple-countries": "একাধিক ($1)",
+	"centralnotice-multiple-languages": "একাধিক ($1)"
 }

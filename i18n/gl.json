@@ -285,5 +285,7 @@
 	"centralnotice-banner-sequence-skip-with-id": "Saltar con identificador",
 	"centralnotice-banner-sequence-page-views-error": "A etapa debe ter polo menos unha visita de páxina.",
 	"centralnotice-banner-sequence-skip-with-id-error": "O identificador non pode conter \"|\".",
-	"centralnotice-banner-sequence-no-banner": "(Sen anuncio)"
+	"centralnotice-banner-sequence-no-banner": "(Sen anuncio)",
+	"centralnotice-multiple-countries": "Múltiples ($1)",
+	"centralnotice-multiple-languages": "Múltiples ($1)"
 }

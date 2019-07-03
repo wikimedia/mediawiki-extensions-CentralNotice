@@ -98,5 +98,6 @@
 	"centralnotice-start-date": "Başlangyç senesi",
 	"centralnotice-start-time": "Başlangyç wagty (UTC)",
 	"centralnotice-end-date": "Gutaryş senesi",
-	"centralnotice-end-time": "Gutarýan wagty (UTC)"
+	"centralnotice-end-time": "Gutarýan wagty (UTC)",
+	"centralnotice-multiple-languages": "köpsanly ($1)"
 }

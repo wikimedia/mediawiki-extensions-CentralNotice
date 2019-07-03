@@ -261,5 +261,7 @@
 	"centralnotice-impression-diet-skip-initial-help": "Default is 0, wat betekent dat er geen bekeken pagina's overgeslagen worden. Wanneer een cyclus begint, zal dit aantal bekeken pagina's eerst worden overgeslagen voordat de banner getoond wordt.",
 	"centralnotice-banner-sequence-days-error": "Moet een integer groter dan nul zijn.",
 	"centralnotice-banner-sequence-bucket-add-step": "Een stap toevoegen",
-	"centralnotice-banner-sequence-page-views": "Pagina weergaven"
+	"centralnotice-banner-sequence-page-views": "Pagina weergaven",
+	"centralnotice-multiple-countries": "Meerdere ($1)",
+	"centralnotice-multiple-languages": "meerdere ($1)"
 }

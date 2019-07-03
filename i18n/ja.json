@@ -245,5 +245,7 @@
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon-help": "別のページに navigating する前にログをすぐに送信するには、一部のブラウザでは、私たちは、ログを送信することをあきらめる前に待機する最大時間を設定します。",
 	"centralnotice-impression-diet-help": "個人によって見られるバナーの数を制限します。",
 	"centralnotice-impression-diet-restart-cycle-delay": "サイクルを再開する前にどのくらい待機を長くするか、秒単位で (省略可能)",
-	"centralnotice-banner-sequence-banner": "バナー"
+	"centralnotice-banner-sequence-banner": "バナー",
+	"centralnotice-multiple-countries": "複数 ($1)",
+	"centralnotice-multiple-languages": "複数 ($1)"
 }

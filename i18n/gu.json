@@ -161,5 +161,7 @@
 	"centralnotice-start-date": "આરંભ તારીખ (UTC)",
 	"centralnotice-start-time": "આરંભ સમય (UTC)",
 	"centralnotice-end-date": "અંતિમ તારીખ (UTC)",
-	"centralnotice-end-time": "અંત સમય (UTC)"
+	"centralnotice-end-time": "અંત સમય (UTC)",
+	"centralnotice-multiple-countries": "વિવિધ ($1)",
+	"centralnotice-multiple-languages": "વિવિધ ($1)"
 }

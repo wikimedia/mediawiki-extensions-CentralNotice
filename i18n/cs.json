@@ -237,6 +237,8 @@
 	"centralnotice-impression-events-sample-rate": "Zobrazení vzorkového hodnocení událostí",
 	"centralnotice-impression-events-sample-rate-help": "Zvolit nevýchozí vzorkové hodnocení k protokolování dojmu z událostí.",
 	"centralnotice-impression-events-sample-rate-field": "Zobrazení vzorkového hodnocení událostí (mělo by být mezi 0 a 1, včetně)",
+	"centralnotice-multiple-countries": "Vícero ($1)",
+	"centralnotice-multiple-languages": "více ($1)",
 	"tag-centralnotice": "Centralizovaná oznámení",
 	"tag-centralnotice_translation": "Překlady Centralizovaných oznámení"
 }

@@ -142,5 +142,7 @@
 	"centralnotice-start-date": "باشلاش چېسلاسى",
 	"centralnotice-start-time": "باشلاش ۋاقتى (UTC)",
 	"centralnotice-end-date": "ئاخىرلىشىش ۋاقتى",
-	"centralnotice-end-time": "ئاخىرلىشىش ۋاقتى (UTC)"
+	"centralnotice-end-time": "ئاخىرلىشىش ۋاقتى (UTC)",
+	"centralnotice-multiple-countries": "كۆپ ($1)",
+	"centralnotice-multiple-languages": "كۆپ ($1)"
 }

@@ -308,6 +308,8 @@
 	"centralnotice-impression-events-sample-rate-help": "Definir uma taxa de amostragem não padronizada para o registo das operações de impressão.",
 	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 1 inclusive)",
 	"centralnotice-banner-protection-log-reason": "Protegido automaticamente pela Central de Avisos; editar só em [[Special:CentralNotice]] ou [[Special:Translate]].",
+	"centralnotice-multiple-countries": "Múltiplos ($1)",
+	"centralnotice-multiple-languages": "Múltiplas ($1)",
 	"tag-centralnotice": "Central de Avisos",
 	"tag-centralnotice-description": "Edição criada através da interface de administração da Central de Avisos",
 	"tag-centralnotice_translation": "Tradução da Central de Avisos",

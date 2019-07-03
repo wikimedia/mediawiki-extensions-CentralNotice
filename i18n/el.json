@@ -195,5 +195,7 @@
 	"centralnotice-start-date": "Ημερομηνία έναρξης (UTC)",
 	"centralnotice-start-time": "Χρόνος εκκίνησης (UTC)",
 	"centralnotice-end-date": "Ημερομηνία λήξης (UTC)",
-	"centralnotice-end-time": "Ώρα τερματισμού (UTC)"
+	"centralnotice-end-time": "Ώρα τερματισμού (UTC)",
+	"centralnotice-multiple-countries": "Πολλαπλό ($1)",
+	"centralnotice-multiple-languages": "Πολλαπλές ($1)"
 }

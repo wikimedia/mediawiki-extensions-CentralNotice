@@ -201,5 +201,7 @@
 	"centralnotice-start-date": "Sjtartdatum",
 	"centralnotice-start-time": "Sjtarttied (UTC)",
 	"centralnotice-end-date": "Einddatum",
-	"centralnotice-end-time": "Èndjtied (UTC)"
+	"centralnotice-end-time": "Èndjtied (UTC)",
+	"centralnotice-multiple-countries": "meerdere ($1)",
+	"centralnotice-multiple-languages": "meerdere ($1)"
 }

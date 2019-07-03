@@ -207,5 +207,7 @@
 	"centralnotice-end-time": "Amser y daw i ben (UTC)",
 	"centralnotice-banner-not-found-title": "Methwyd a dod o hyd i'r faner",
 	"centralnotice-banner-not-found-contents": "Nid oes baner gyda'r union enw yma.",
-	"hidebanners": "Cuddio'r baneri"
+	"hidebanners": "Cuddio'r baneri",
+	"centralnotice-multiple-countries": "Nifer ($1)",
+	"centralnotice-multiple-languages": "Nifer ($1)"
 }

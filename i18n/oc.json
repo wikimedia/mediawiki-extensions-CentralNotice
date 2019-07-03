@@ -181,5 +181,7 @@
 	"centralnotice-start-date": "Data de començament (UTC)",
 	"centralnotice-start-time": "Ora de començament (UTC)",
 	"centralnotice-end-date": "Data de fin (UTC)",
-	"centralnotice-end-time": "Ora finala (UTC)"
+	"centralnotice-end-time": "Ora finala (UTC)",
+	"centralnotice-multiple-countries": "Multiple ($1)",
+	"centralnotice-multiple-languages": "multiple ($1)"
 }

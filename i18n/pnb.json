@@ -138,5 +138,7 @@
 	"centralnotice-start-date": "ٹرن دیہاڑہ",
 	"centralnotice-start-time": "ٹرن دا ویلا (UTC)",
 	"centralnotice-end-date": "انت تریخ",
-	"centralnotice-end-time": "مکن دا ویلا (UTC)"
+	"centralnotice-end-time": "مکن دا ویلا (UTC)",
+	"centralnotice-multiple-countries": "کافی سارے ($1)",
+	"centralnotice-multiple-languages": "کافی سارے ($1)"
 }

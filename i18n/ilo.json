@@ -219,5 +219,7 @@
 	"centralnotice-end-date": "Patingga a petsa (UTC)",
 	"centralnotice-end-time": "Oras a pannakalippas (UTC)",
 	"centralnotice-banner-not-found-title": "Saan a nabirukan ti banderola",
-	"centralnotice-banner-not-found-contents": "Awan ti banderola iti daytoy nga eksakto a nagan."
+	"centralnotice-banner-not-found-contents": "Awan ti banderola iti daytoy nga eksakto a nagan.",
+	"centralnotice-multiple-countries": "Sabsabali a ($1)",
+	"centralnotice-multiple-languages": "Sabsabali a ($1)"
 }

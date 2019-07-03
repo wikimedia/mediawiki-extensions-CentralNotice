@@ -263,5 +263,7 @@
 	"centralnotice-banner-sequence-skip-with-id": "Hoppa över med identifierare",
 	"centralnotice-banner-sequence-page-views-error": "Steget måste ha minst en sidvisning.",
 	"centralnotice-banner-sequence-skip-with-id-error": "Identifieraren kan inte innehålla \"|\".",
-	"centralnotice-banner-sequence-no-banner": "(Ingen banner)"
+	"centralnotice-banner-sequence-no-banner": "(Ingen banner)",
+	"centralnotice-multiple-countries": "Flera ($1)",
+	"centralnotice-multiple-languages": "flera ($1)"
 }

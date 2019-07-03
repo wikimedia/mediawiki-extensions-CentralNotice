@@ -282,5 +282,7 @@
 	"centralnotice-banner-sequence-banner": "Plantilla",
 	"centralnotice-banner-sequence-page-views": "Vistas de la página",
 	"centralnotice-banner-sequence-skip-with-id-error": "El identificador no puede contener «|».",
-	"centralnotice-banner-sequence-no-banner": "(Ninguna plantilla)"
+	"centralnotice-banner-sequence-no-banner": "(Ninguna plantilla)",
+	"centralnotice-multiple-countries": "Múltiples países",
+	"centralnotice-multiple-languages": "múltiples lenguas"
 }

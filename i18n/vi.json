@@ -256,5 +256,7 @@
 	"centralnotice-large-banner-limit": "Giới hạn biểu ngữ lớn và đổi",
 	"centralnotice-large-banner-limit-days": "Thời gian cầm lại",
 	"centralnotice-large-banner-limit-randomize": "Làm ngẫu nhiên sự chuyển tiếp xô",
-	"centralnotice-large-banner-limit-identifier": "Định danh để lưu vào trình khách"
+	"centralnotice-large-banner-limit-identifier": "Định danh để lưu vào trình khách",
+	"centralnotice-multiple-countries": "Đa quốc gia ($1)",
+	"centralnotice-multiple-languages": "đa ngữ ($1)"
 }

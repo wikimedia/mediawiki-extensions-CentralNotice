@@ -173,5 +173,7 @@
 	"centralnotice-start-date": "Datum začetka (UTC)",
 	"centralnotice-start-time": "Čas začetka (UTC)",
 	"centralnotice-end-date": "Datum zaključka (UTC)",
-	"centralnotice-end-time": "Čas zaključka (UTC)"
+	"centralnotice-end-time": "Čas zaključka (UTC)",
+	"centralnotice-multiple-countries": "Več ($1)",
+	"centralnotice-multiple-languages": "več ($1)"
 }

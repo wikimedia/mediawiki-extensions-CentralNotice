@@ -161,5 +161,7 @@
 	"centralnotice-start-date": "ආරම්භක දිනය (UTC)",
 	"centralnotice-start-time": "ඇරඹුම් දිනය (යූටීසී)",
 	"centralnotice-end-date": "අවසන් දිනය (UTC)",
-	"centralnotice-end-time": "අවසන් දිනය (යූටීසී)"
+	"centralnotice-end-time": "අවසන් දිනය (යූටීසී)",
+	"centralnotice-multiple-countries": "බහු ($1)",
+	"centralnotice-multiple-languages": "බහු ($1)"
 }

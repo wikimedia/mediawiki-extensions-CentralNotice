@@ -151,5 +151,7 @@
 	"centralnotice-end-date": "Pangwakas na petsa",
 	"centralnotice-end-time": "Katapusang oras (UTC)",
 	"centralnotice-banner-sequence-days-error": "Dapat ay isang kabuuan (integer) na higit pa sa sero.",
-	"centralnotice-banner-sequence-bucket-add-step": "Magdagdag ng hakbang"
+	"centralnotice-banner-sequence-bucket-add-step": "Magdagdag ng hakbang",
+	"centralnotice-multiple-countries": "Maramihan ($1)",
+	"centralnotice-multiple-languages": "maramihan ($1)"
 }

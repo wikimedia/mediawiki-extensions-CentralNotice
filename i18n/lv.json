@@ -151,5 +151,7 @@
 	"centralnotice-banner-sequence-banner": "Baneris",
 	"centralnotice-banner-sequence-page-views": "Lapu skatījumi",
 	"centralnotice-banner-sequence-skip-with-id-error": "Identifikators nevar saturēt \"|\".",
-	"centralnotice-banner-sequence-no-banner": "(Nav banera)"
+	"centralnotice-banner-sequence-no-banner": "(Nav banera)",
+	"centralnotice-multiple-countries": "Vairākas ($1)",
+	"centralnotice-multiple-languages": "Vairākas ($1)"
 }

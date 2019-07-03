@@ -138,5 +138,7 @@
 	"centralnotice-start-date": "Calendata de prencipio",
 	"centralnotice-start-time": "Hora d'inicio (UTC)",
 	"centralnotice-end-date": "Calendata final",
-	"centralnotice-end-time": "Hora de finalización (UTC)"
+	"centralnotice-end-time": "Hora de finalización (UTC)",
+	"centralnotice-multiple-countries": "Multiple ($1)",
+	"centralnotice-multiple-languages": "multiples ($1)"
 }

@@ -168,5 +168,7 @@
 	"centralnotice-end-time": "סוף צייַט (UTC)",
 	"centralnotice-banner-sequence-bucket-add-step": "צולייגן א שטאפל",
 	"centralnotice-banner-sequence-banner": "פֿאנע",
-	"centralnotice-banner-sequence-page-views": "בלאט באקוקן"
+	"centralnotice-banner-sequence-page-views": "בלאט באקוקן",
+	"centralnotice-multiple-countries": "מערערע ($1)",
+	"centralnotice-multiple-languages": "מערערע ($1)"
 }

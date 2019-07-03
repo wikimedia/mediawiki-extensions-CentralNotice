@@ -302,6 +302,8 @@
 	"centralnotice-impression-events-sample-rate-help": "הגדרת קצב הדגימה של תיעוד פעולות ההצגה.",
 	"centralnotice-impression-events-sample-rate-field": "קצב הדגימה של פעולות ההצגה (צריך להיות בין 0 ל־1, כולל)",
 	"centralnotice-banner-protection-log-reason": "מוגן אוטומטית על־ידי Central Notice; אפשר לערוך רק דרך [[Special:CentralNotice]] או [[Special:Translate]].",
+	"centralnotice-multiple-countries": "מדינות מרובות",
+	"centralnotice-multiple-languages": "שפות מרובות",
 	"tag-centralnotice": "הודעה מרכזית",
 	"tag-centralnotice-description": "עריכה שנוצרה באמצעות ממשק המשתמש של ניהול ההודעה המרכזית",
 	"tag-centralnotice_translation": "תרגום הודעה מרכזית",

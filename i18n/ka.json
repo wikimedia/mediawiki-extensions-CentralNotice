@@ -212,5 +212,7 @@
 	"centralnotice-end-date": "დასრულების თარიღი (UTC)",
 	"centralnotice-end-time": "დასრულების დრო (UTC)",
 	"centralnotice-banner-not-found-title": "ბანერი ვერ მოიძებნა",
-	"hidebanners": "ბანერების დამალვა"
+	"hidebanners": "ბანერების დამალვა",
+	"centralnotice-multiple-countries": "რამდენიმე ($1)",
+	"centralnotice-multiple-languages": "მრავალი ($1)"
 }

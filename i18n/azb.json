@@ -157,5 +157,7 @@
 	"centralnotice-start-date": "باشلانماق تاریخی (UTC)",
 	"centralnotice-start-time": "باشلانغیج تاریخی(UTC)",
 	"centralnotice-end-date": "سون تاریخ",
-	"centralnotice-end-time": "سون تاریخ(UTC)"
+	"centralnotice-end-time": "سون تاریخ(UTC)",
+	"centralnotice-multiple-countries": "بیر نئچه ($1)",
+	"centralnotice-multiple-languages": "بیر نئچه ($1)"
 }

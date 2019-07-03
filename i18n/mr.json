@@ -199,5 +199,7 @@
 	"centralnotice-start-date": "सुरू केल्याचा दिनांक (युटीसीत)",
 	"centralnotice-start-time": "सुरू केल्याची वेळ (युटीसी)",
 	"centralnotice-end-date": "समाप्ति दिनांक (यूटीसीत)",
-	"centralnotice-end-time": "समाप्ति समय (यूटीसीत)"
+	"centralnotice-end-time": "समाप्ति समय (यूटीसीत)",
+	"centralnotice-multiple-countries": "अनेक  ($1)",
+	"centralnotice-multiple-languages": "अनेक  ($1)"
 }

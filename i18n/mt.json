@@ -152,5 +152,7 @@
 	"centralnotice-start-date": "Data tal-bidu",
 	"centralnotice-start-time": "Ħin tal-bidu (UTC)",
 	"centralnotice-end-date": "Data tat-tmiem",
-	"centralnotice-end-time": "Ħin tat-tmiem (UTC)"
+	"centralnotice-end-time": "Ħin tat-tmiem (UTC)",
+	"centralnotice-multiple-countries": "Diversi ($1)",
+	"centralnotice-multiple-languages": "Diversi ($1)"
 }

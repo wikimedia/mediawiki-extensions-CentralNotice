@@ -317,6 +317,8 @@
 	"centralnotice-impression-events-sample-rate-help": "Встановіть нестандартну частоту дискретизації для відображень при вході в систему.",
 	"centralnotice-impression-events-sample-rate-field": "Частота дискретизації відображень (має бути між 0 та 1, включно)",
 	"centralnotice-banner-protection-log-reason": "Автоматично захищено через CentralNotice; редагування можливе лише через [[Special:CentralNotice]] або [[Special:Translate]].",
+	"centralnotice-multiple-countries": "Декілька ($1)",
+	"centralnotice-multiple-languages": "декілька ($1)",
 	"tag-centralnotice": "Централізовані оповіщення",
 	"tag-centralnotice-description": "Редагування створено через інтерфейс адміністрування CentralNotice",
 	"tag-centralnotice_translation": "Переклад централізованих оповіщень",

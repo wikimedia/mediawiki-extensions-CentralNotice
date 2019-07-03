@@ -220,5 +220,7 @@
 	"centralnotice-banner-sequence-banner": "Umbul-umbul",
 	"centralnotice-banner-sequence-page-views": "Pandelengé kaca",
 	"centralnotice-banner-sequence-skip-with-id": "Lumpati mawa pangenal",
-	"centralnotice-banner-sequence-no-banner": "(Tanpa umbul-umbul)"
+	"centralnotice-banner-sequence-no-banner": "(Tanpa umbul-umbul)",
+	"centralnotice-multiple-countries": "Dobel ($1)",
+	"centralnotice-multiple-languages": "Dobel ($1)"
 }
