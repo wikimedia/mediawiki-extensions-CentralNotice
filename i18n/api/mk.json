@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Vlad5250"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "Корисникот нема дозвола да го пречистува меѓускладот на предницата.",
@@ -39,7 +40,7 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Отстапка во множеството исходни ставки (незадолжително).",
 	"apihelp-query+centralnoticelogs-param-start": "Почетно врме на опсегот (незадолжително).",
 	"apihelp-query+centralnoticelogs-param-end": "Завршно врме на опсегот (незадолжително).",
-	"apihelp-query+centralnoticelogs-example-1": "Прикажи логоа",
+	"apihelp-query+centralnoticelogs-example-1": "Прикажи дневници",
 	"apihelp-query+centralnoticeactivecampaigns-description": "Дај список на тековно активни походи  со почетни и завршни датуми и поврзаните разгласи.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "Дај список на тековно активни походи со почетни и завршни датуми и поврзани разгласи.",
 	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Вклучи ги и овозможените идни погоди (како и тековно активните походи).",

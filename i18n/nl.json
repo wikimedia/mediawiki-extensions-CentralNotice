@@ -262,6 +262,6 @@
 	"centralnotice-banner-sequence-days-error": "Moet een integer groter dan nul zijn.",
 	"centralnotice-banner-sequence-bucket-add-step": "Een stap toevoegen",
 	"centralnotice-banner-sequence-page-views": "Pagina weergaven",
-	"centralnotice-multiple-countries": "Meerdere ($1)",
+	"centralnotice-multiple-countries": "Meerdere landen",
 	"centralnotice-multiple-languages": "meerdere ($1)"
 }

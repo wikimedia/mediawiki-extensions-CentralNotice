@@ -209,6 +209,6 @@
 	"centralnotice-banner-not-found-title": "Malli ei leitud",
 	"centralnotice-banner-not-found-contents": "Täpselt sellise nimega malli pole.",
 	"hidebanners": "Mallide peitmine",
-	"centralnotice-multiple-countries": "Mitmed ($1)",
-	"centralnotice-multiple-languages": "Mitmed ($1)"
+	"centralnotice-multiple-countries": "Mitu riiki",
+	"centralnotice-multiple-languages": "Mitu keelt"
 }

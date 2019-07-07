@@ -227,6 +227,6 @@
 	"centralnotice-end-time": "Sluttid (UTC)",
 	"centralnotice-banner-sequence-days-error": "Skal være et heltal større end nul.",
 	"centralnotice-banner-sequence-bucket-add-step": "Tilføj et trin",
-	"centralnotice-multiple-countries": "Flere ($1)",
-	"centralnotice-multiple-languages": "Flere ($1)"
+	"centralnotice-multiple-countries": "Flere lande",
+	"centralnotice-multiple-languages": "Flere sprog"
 }
