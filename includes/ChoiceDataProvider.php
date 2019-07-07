@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -20,7 +21,7 @@ class ChoiceDataProvider {
 	 * @return bool
 	 */
 	public static function invalidateCache() {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->touchCheckKey(
 			$cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, 'check' ) );
 	}
@@ -37,7 +38,7 @@ class ChoiceDataProvider {
 	 *   are provided.
 	 */
 	public static function getChoices( $project, $language ) {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 		$dataKey = $cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, $project, $language );
 		$checkKey = $cache->makeGlobalKey( self::CACHE_KEY_NAMESPACE, 'check' );
