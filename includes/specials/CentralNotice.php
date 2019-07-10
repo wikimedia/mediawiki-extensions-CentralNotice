@@ -275,18 +275,20 @@ class CentralNotice extends SpecialPage {
 	 */
 	public function prioritySelector( $index, $editable, $priorityValue ) {
 		$priorities = [
-			self::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' )->escaped(),
+			self::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' ),
 			self::NORMAL_PRIORITY =>
-				wfMessage( 'centralnotice-priority-normal' )->escaped(),
-			self::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' )->escaped(),
+				wfMessage( 'centralnotice-priority-normal' ),
+			self::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' ),
 			self::EMERGENCY_PRIORITY =>
-				wfMessage( 'centralnotice-priority-emergency' )->escaped(),
+				wfMessage( 'centralnotice-priority-emergency' ),
 		];
 
 		if ( $editable ) {
 			$options = ''; // The HTML for the select list options
-			foreach ( $priorities as $key => $label ) {
-				$options .= Xml::option( $label, $key, $priorityValue == $key );
+			foreach ( $priorities as $key => $labelMsg ) {
+				// @phan-suppress-next-next-line SecurityCheck-DoubleEscaped False positive,
+				// taint-check thinks that $key is double escaped
+				$options .= Xml::option( $labelMsg->text(), $key, $priorityValue == $key );
 			}
 
 			// Data attributes set below (data-campaign-name and
@@ -308,7 +310,7 @@ class CentralNotice extends SpecialPage {
 				. "\n"
 				. Xml::closeElement( 'select' );
 		} else {
-			return $priorities[$priorityValue];
+			return $priorities[$priorityValue]->escaped();
 		}
 	}
 
