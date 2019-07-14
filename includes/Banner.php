@@ -99,6 +99,7 @@ class Banner {
 	// </editor-fold>
 
 	// <editor-fold desc="Constructors">
+
 	/**
 	 * Create a banner object from a known ID. Must already be
 	 * an object in the database. If a fully new banner is to be created
@@ -156,9 +157,11 @@ class Banner {
 
 		return $obj;
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc="Basic metadata getters/setters">
+
 	/**
 	 * Get the unique ID for this banner.
 	 *
@@ -396,9 +399,11 @@ class Banner {
 			);
 		}
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc="Device targeting">
+
 	/**
 	 * Get the devices that this banner should be allocated to.
 	 *
@@ -507,9 +512,11 @@ class Banner {
 			}
 		}
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc="Mixin management">
+
 	/**
 	 * @return array Keys are names of enabled mixins; valeus are mixin params.
 	 * @see $wgCentralNoticeBannerMixins
@@ -622,9 +629,11 @@ class Banner {
 			}
 		}
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc="Priority languages">
+
 	/**
 	 * Returns language codes that are considered a priority for translations.
 	 *
@@ -698,6 +707,7 @@ class Banner {
 			);
 		}
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc="Banner body content">
@@ -848,6 +858,7 @@ class Banner {
 			}
 		}
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc="Banner message fields">
@@ -985,10 +996,12 @@ class Banner {
 		}
 		return array_keys( $availableLangs );
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc="Banner actions">
 	// <editor-fold desc="Saving">
+
 	/**
 	 * Saves any changes made to the banner object into the database
 	 *
@@ -1080,6 +1093,7 @@ class Banner {
 		$this->saveMixinData( $db );
 		$this->savePriorityLanguageData();
 	}
+
 	// </editor-fold>
 
 	/**
@@ -1190,9 +1204,11 @@ class Banner {
 			}
 		}
 	}
+
 	// </editor-fold>
 
 	// <editor-fold desc=" Random stuff that still needs to die a hideous horrible death">
+
 	/**
 	 * Add a revision tag for the banner
 	 * @param string $tag The name of the tag
@@ -1495,6 +1511,7 @@ class Banner {
 
 		$dbw->insert( 'cn_template_log', $log );
 	}
+
 	// </editor-fold>
 
 	/**
