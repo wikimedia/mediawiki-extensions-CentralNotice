@@ -38,7 +38,8 @@
 			BANNER_CHOSEN: new Status( 'banner_chosen', 4 ),
 			BANNER_LOADED_BUT_HIDDEN: new Status( 'banner_loaded_but_hidden', 5 ),
 			BANNER_SHOWN: new Status( 'banner_shown', 6 ),
-			BANNER_LOADER_ERROR: new Status( 'banner_loader_error', 7 )
+			BANNER_LOADER_ERROR: new Status( 'banner_loader_error', 7 ),
+			CHOICE_DATA_STALE: new Status( 'choice_data_stale', 8 )
 		},
 
 		// Until T114078 is closed, we minify banner history logs. This lookup
@@ -434,6 +435,13 @@
 				state.data.errorMsg = msg;
 			}
 			setStatus( STATUSES.BANNER_LOADER_ERROR );
+		},
+
+		/**
+		 * Set a status indicating stale choice data was received.
+		 */
+		setChoiceDataStale: function () {
+			setStatus( STATUSES.CHOICE_DATA_STALE );
 		},
 
 		/**
