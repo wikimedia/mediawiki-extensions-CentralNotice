@@ -316,8 +316,7 @@
 			mw.loader.using( [
 				'ext.eventLogging',
 				'mediawiki.util',
-				'mediawiki.user',
-				'schema.' + EVENT_LOGGING_SCHEMA
+				'mediawiki.user'
 			] ).done( function () {
 				// URL param bannerHistoryLogRate can override rate, for debugging
 				var rateParam = mw.util.getParamValue( 'bannerHistoryLogRate' ),
