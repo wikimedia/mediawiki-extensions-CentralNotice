@@ -178,6 +178,6 @@
 	"centralnotice-start-time": "Hora d'inici (UTC)",
 	"centralnotice-end-date": "Data de finalització (UTC)",
 	"centralnotice-end-time": "Hora de finalització (UTC)",
-	"centralnotice-multiple-countries": "Múltiples ( $1 )",
-	"centralnotice-multiple-languages": "Múltiple ($1)"
+	"centralnotice-multiple-countries": "Diversos països",
+	"centralnotice-multiple-languages": "Diverses llengües"
 }
