@@ -923,9 +923,9 @@ class Banner {
 	 * @return array
 	 */
 	public function extractMessageFields() {
-		global $wgParser;
+		$parser = MediaWikiServices::getInstance()->getParser();
 
-		$expanded = $wgParser->parse(
+		$expanded = $parser->parse(
 			$this->getBodyContent(), $this->getTitle(),
 			ParserOptions::newFromContext( RequestContext::getMain() )
 		)->getText();

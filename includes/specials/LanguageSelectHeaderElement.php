@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Acts as a header to the translatable banner message list
  *
@@ -7,12 +9,10 @@
  */
 class LanguageSelectHeaderElement extends HTMLSelectField {
 	public function getInputHTML( $value ) {
-		global $wgContLang;
-
 		$html = Xml::openElement( 'table', [ 'class' => 'cn-message-table' ] );
 		$html .= Xml::openElement( 'tr' );
 
-		$code = $wgContLang->getCode();
+		$code = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
 		$html .= Xml::element( 'td', [ 'class' => 'cn-message-text-origin-header' ],
 			Language::fetchLanguageName( $code, $code )
 		);

@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Produces a preview div of a banner message that can be included in an HTMLForm
  *
@@ -54,14 +56,14 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 	 * @return string HTML
 	 */
 	public function getInputHTML( $value ) {
-		global $wgContLang;
-
 		$message = new BannerMessage( $this->mParams[ 'banner' ], $this->mParams[ 'message' ] );
 
 		$html = Xml::openElement( 'table', [ 'class' => 'cn-message-table' ] );
 		$html .= Xml::openElement( 'tr' );
 
-		$originText = $message->getContents( $wgContLang->getCode() );
+		$originText = $message->getContents(
+			MediaWikiServices::getInstance()->getContentLanguage()->getCode()
+		);
 		$html .= Xml::element(
 			'td',
 			[ 'class' => 'cn-message-text-origin' ],
