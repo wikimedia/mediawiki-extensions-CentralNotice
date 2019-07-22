@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ильнар"
+			"Ильнар",
+			"Ерней"
 		]
 	},
 	"centralnotice": "Хәбәрләр белән  идарә итү үзәге",
@@ -18,7 +19,7 @@
 	"centralnotice-modify": "Җибәрү",
 	"centralnotice-view": "Карау",
 	"centralnotice-save-banner": "Саклау",
-	"centralnotice-live-preview": "Викида алдан карау",
+	"centralnotice-live-preview": "Алдан карау",
 	"centralnotice-add-new": "Яңа үзәк белдерү өстәү",
 	"centralnotice-remove": "Бетерү",
 	"centralnotice-translate-heading": "$1 өчен тәрҗемә",
@@ -175,5 +176,5 @@
 	"centralnotice-start-time": "Башлау сәгате (UTC)",
 	"centralnotice-end-date": "Бетү датасы (UTC)",
 	"centralnotice-end-time": "Бетү вакыты (UTC)",
-	"centralnotice-multiple-languages": "берничә ($1)"
+	"centralnotice-multiple-languages": "Берничә тел"
 }
