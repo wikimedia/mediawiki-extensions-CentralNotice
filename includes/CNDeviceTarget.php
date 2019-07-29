@@ -81,7 +81,7 @@ class CNDeviceTarget {
 	 * @return int The ID of the device added
 	 */
 	public static function addDeviceTarget( $deviceName, $displayLabel ) {
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getDb( DB_MASTER );
 
 		$db->insert(
 			'cn_known_devices',
@@ -102,6 +102,8 @@ class CNDeviceTarget {
 	 * @param string|array $newDevices Single name, or array of names, of devices that should be
 	 *                                 associated with a banner
 	 * @throws RangeException
+	 *
+	 * FIXME Unused, remove
 	 */
 	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
 		$db = CNDatabase::getDb();
