@@ -454,6 +454,26 @@
 		"localBasePath": "/resources",
 		"remoteExtPath": "CentralNotice/resources"
 	},
+	"QUnitTestModule": {
+		"localBasePath": "",
+		"remoteExtPath": "CentralNotice",
+		"scripts": [
+			"tests/qunit/ext.centralNotice.display/index.tests.js",
+			"tests/qunit/ext.centralNotice.display/chooser.tests.js",
+			"tests/qunit/ext.centralNotice.kvStore/kvStore.tests.js",
+			"tests/qunit/ext.centralNotice.startUp/kvStoreMaintenance.tests.js",
+			"tests/qunit/subscribing/ext.centralNotice.bannerSequence.tests.js",
+			"tests/qunit/subscribing/ext.centralNotice.geoIP.tests.js"
+		],
+		"dependencies": [
+			"ext.centralNotice.testFixtures",
+			"ext.centralNotice.startUp",
+			"ext.centralNotice.display",
+			"ext.centralNotice.kvStore",
+			"ext.centralNotice.bannerSequence",
+			"ext.centralNotice.geoIP"
+		]
+	},
 	"SpecialPages": {
 		"BannerLoader": "SpecialBannerLoader",
 		"BannerRandom": "SpecialBannerRandom",
@@ -462,27 +482,13 @@
 		"CNReporter": "SpecialCNReporter"
 	},
 	"Hooks": {
-		"CanonicalNamespaces": [
-			"CentralNoticeHooks::onCanonicalNamespaces"
-		],
-		"ChangeTagsListActive": [
-			"CentralNoticeHooks::onListDefinedTags"
-		],
-		"ListDefinedTags": [
-			"CentralNoticeHooks::onListDefinedTags"
-		],
-		"LoadExtensionSchemaUpdates": [
-			"CNDatabasePatcher::applyUpdates"
-		],
-		"ResourceLoaderTestModules": [
-			"CentralNoticeHooks::onResourceLoaderTestModules"
-		],
-		"SkinTemplateNavigation::SpecialPage": [
-			"CentralNotice::addNavigationTabs"
-		],
-		"UserMergeAccountFields": [
-			"CentralNoticeHooks::onUserMergeAccountFields"
-		]
+		"CanonicalNamespaces": "CentralNoticeHooks::onCanonicalNamespaces",
+		"ChangeTagsListActive": "CentralNoticeHooks::onListDefinedTags",
+		"ListDefinedTags": "CentralNoticeHooks::onListDefinedTags",
+		"LoadExtensionSchemaUpdates": "CNDatabasePatcher::applyUpdates",
+		"SkinTemplateNavigation::SpecialPage": "CentralNotice::addNavigationTabs",
+		"ResourceLoaderRegisterModules": "CentralNoticeHooks::onResourceLoaderRegisterModules",
+		"UserMergeAccountFields": "CentralNoticeHooks::onUserMergeAccountFields"
 	},
 	"ExtensionFunctions": [
 		"CentralNoticeHooks::initCentralNotice"
