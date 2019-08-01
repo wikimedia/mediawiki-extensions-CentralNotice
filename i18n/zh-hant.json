@@ -180,7 +180,7 @@
 	"centralnotice-added": "已新增 <span class=\"cn-new-value\">$1</span>",
 	"centralnotice-removed": "已刪除 <span class=\"cn-old-value\">$1</span>",
 	"centralnotice-no-assignments": "沒有有已分配的橫幅",
-	"centralnotice-talk-link": "對話",
+	"centralnotice-talk-link": "討論",
 	"centralnotice-campaign-settings": "活動設定",
 	"centralnotice-banner-settings": "橫幅設定",
 	"centralnotice-anon": "向匿名使用者顯示",
