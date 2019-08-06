@@ -47,7 +47,7 @@
 		new mw.Api().postWithToken( 'csrf', {
 			action: 'centralnoticecdncacheupdatebanner',
 			banner: $( '#cn-cdn-cache-purge' ).data( 'bannerName' ),
-			language: $( '#cn-cdn-cache-language :selected' ).val()
+			language: $( '#cn-cdn-cache-language' ).val()
 		}, {
 			timeout: 2000
 		} ).always( function () {

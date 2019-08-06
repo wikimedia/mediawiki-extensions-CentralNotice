@@ -3,7 +3,6 @@ module.exports = function ( grunt ) {
 	var conf = grunt.file.readJSON( 'extension.json' );
 
 	grunt.loadNpmTasks( 'grunt-eslint' );
-	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-svgmin' );
@@ -12,25 +11,18 @@ module.exports = function ( grunt ) {
 		eslint: {
 			options: {
 				reportUnusedDisableDirectives: true,
+				extensions: [ '.js', '.json' ],
 				cache: true
 			},
 			all: [
-				'*.js',
-				'**/*.js',
+				'*.{js,json}',
+				'**/*.{js,json}',
 				'!node_modules/**',
 				'!vendor/**',
 				'!resources/vendor/**'
 			]
 		},
 		banana: conf.MessagesDirs,
-		jsonlint: {
-			all: [
-				'*.json',
-				'**/*.json',
-				'!node_modules/**',
-				'!vendor/**'
-			]
-		},
 		stylelint: {
 			all: [
 				'**/*.css',
@@ -79,6 +71,6 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.registerTask( 'minify', 'svgmin' );
-	grunt.registerTask( 'test', [ 'eslint', 'jsonlint', 'banana', 'stylelint' ] );
+	grunt.registerTask( 'test', [ 'eslint', 'banana', 'stylelint' ] );
 	grunt.registerTask( 'default', [ 'minify', 'test' ] );
 };
