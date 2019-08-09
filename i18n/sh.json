@@ -6,6 +6,10 @@
 			"Vlad5250"
 		]
 	},
+	"centralnotice": "Administrator središnjeg obavještenja",
+	"noticetemplate": "Administrator središnjeg obavještenja",
+	"bannerallocation": "Administrator središnjeg obavještenja",
+	"centralnoticelogs": "Administrator središnjeg obavještenja",
 	"centralnotice-desc": "Staje središnju obavijest",
 	"centralnotice-summary": "Ovaj modul vam omogućuje uređivanje Vaših obavijesti trenutno postavljenih u središnjoj obavijesti.\nTakođer se može koristiti za dodavanje ili uklanjanje starih obavijesti.",
 	"centralnotice-query": "Izmijeni trenutna obavještenja",
@@ -117,6 +121,7 @@
 	"centralnotice-countries": "Države",
 	"centralnotice-allocation": "Raspodjela",
 	"centralnotice-view-allocation": "Pregled raspodjele obavijesti",
+	"centralnotice-allocation-instructions": "Odaberite u kojem okruženju želite pogledati dodjelu obavještenja:",
 	"centralnotice-languages": "Jezici",
 	"centralnotice-language": "Jezik",
 	"centralnotice-projects": "Projekti",
@@ -185,6 +190,19 @@
 	"centralnotice-archive-banner-confirm": "Arhiviranje proširuje sve uključene šablone i zadaje zaštitu stranice. Ovaj postupak nije lako povraćati.",
 	"centralnotice-archive-banner-cancel": "Otkaži",
 	"centralnotice-change-summary-label": "Sažetak",
+	"centralnotice-archive-show": "Prik. arhivirane pothvate",
+	"centralnotice-archive-campaign": "Arhiviraj",
+	"centralnotice-archive-campaign-title": "Arhivirati {{PLURAL:$1|pothvat|pothvate}}?",
+	"centralnotice-archive-campaign-confirm": "Arhivirajući ga, pohtvat označavate kao trajno neaktivan.",
 	"centralnotice-archive-campaign-cancel": "Otkaži",
-	"centralnotice-delete-banner-cancel": "Otkaži"
+	"centralnotice-add-new-banner-title": "Stavi novu obavijest",
+	"centralnotice-delete-banner": "Izbriši",
+	"centralnotice-delete-banner-title": "Obrisati {{PLURAL:$1|obavijest|obavijeste}}?",
+	"centralnotice-delete-banner-cancel": "Otkaži",
+	"centralnotice-banner-not-found-contents": "Ne postoji zaglavlje sa tačno tim imenom.",
+	"hidebanners": "Sakrij obavijeste",
+	"centralnotice-banner-sequence-bucket-add-step": "Dodaj korak",
+	"centralnotice-banner-sequence-banner": "Baner",
+	"centralnotice-banner-sequence-page-views": "Posjete",
+	"centralnotice-banner-sequence-no-banner": "(bez obavijesti)"
 }
