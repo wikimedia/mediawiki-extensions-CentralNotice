@@ -1412,7 +1412,7 @@
             },
             "contexts_and_outputs": {
                 "targeted_by_2_and_non_geo": {
-                    "comment": "Country targeted by three campaigns",
+                    "comment": "Country targeted by two geotargeted campaigns and one non-geotargeted campaign",
                     "context": {
                         "project": "test_project",
                         "language": "en",
@@ -1527,7 +1527,7 @@
                     }
                 },
                 "targeted_by_1_and_non_geo": {
-                    "comment": "Country targeted by three campaigns",
+                    "comment": "Country targeted by one geotargeted campaign and one non-geotargeted campaign",
                     "context": {
                         "project": "test_project",
                         "language": "en",
@@ -1631,7 +1631,7 @@
                     }
                 },
                 "targeted_by_non_geo": {
-                    "comment": "Country targeted by three campaigns",
+                    "comment": "Country targeted only by non-geotargeted campaign",
                     "context": {
                         "project": "test_project",
                         "language": "en",
