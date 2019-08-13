@@ -30,6 +30,9 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/** @var string[]|null Unsaved messages for substitution in preview banner content */
 	private $previewMessages;
 
+	/** @var string[]|null */
+	private $editToken;
+
 	/** @var bool */
 	private $debug;
 
@@ -58,9 +61,22 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$this->cacheResponse = self::MAX_CACHE_REDUCED;
 
 		} catch ( Exception $e ) {
-			$msg = $e->getMessage();
+			if ( $e instanceof ILocalizedException ) {
+				$msg = $e->getMessageObject()->escaped();
+			} else {
+				$msg = $e->getMessage();
+			}
+
 			$msgParamStr = $msg ? Xml::encodeJsVar( $msg ) : '';
-			$out = "mw.centralNotice.handleBannerLoaderError({$msgParamStr});";
+
+			// For preview requests, a different error callback is needed.
+			if ( $this->requestType === self::PREVIEW_UNSAVED_REQUEST ) {
+				$callback = 'mw.centralNotice.adminUi.bannerEditor.handleBannerLoaderError';
+			} else {
+				$callback = 'mw.centralNotice.handleBannerLoaderError';
+			}
+
+			$out = "$callback({$msgParamStr});";
 
 			// Force reduced cache time
 			$this->cacheResponse = self::MAX_CACHE_REDUCED;
@@ -82,6 +98,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$this->debug = $request->getFuzzyBool( 'debug' );
 		$this->previewContent = $request->getText( 'previewcontent', null );
 		$this->previewMessages = $request->getArray( 'previewmessages', null );
+		$this->editToken = $request->getVal( 'token' );
 
 		// All request types should have at least a non-empty banner name
 		if ( !$this->bannerName ) {
@@ -89,13 +106,20 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		}
 
 		// Only render preview content and messages for users with CN admin rights, on
-		// requests that were POSTed. This is to limit the contexts in which we reflect
-		// back unsanitized parameters.
-		if ( $this->getUser()->isAllowed( 'centralnotice-admin' ) &&
-			$this->getRequest()->wasPosted() &&
-			$this->previewContent ) {
+		// requests that were POSTed, with the correct edit token. This is to prevent
+		// malicious use of the reflection of unsanitized parameters.
+		if ( $this->getRequest()->wasPosted() && $this->previewContent ) {
 
 			$this->requestType = self::PREVIEW_UNSAVED_REQUEST;
+
+			// Check credentials
+			if (
+				!$this->getUser()->isAllowed( 'centralnotice-admin' ) ||
+				!$this->editToken ||
+				!$this->getUser()->matchEditToken( $this->editToken )
+			) {
+				throw new BannerPreviewPermissionsException( $this->bannerName );
+			}
 
 			// Note: We don't set $this->cacheResponse since there's no caching for
 			// logged-in users anyway.
