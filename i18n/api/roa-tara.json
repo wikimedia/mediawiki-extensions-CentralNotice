@@ -4,6 +4,9 @@
 			"Joetaras"
 		]
 	},
+	"apierror-centralnotice-cdn-permissions-error": "L'utende non ge tène 'u permesse pe sdevacà 'u condenute d'u striscione front-end.",
+	"apierror-centralnotice-cdn-lang-code-error": "Codece d'a lènghe formate male.",
+	"apierror-centralnotice-cdn-banner-name-error": "Nome d'u striscione formate male.",
 	"apierror-centralnotice-cdn-banner-not-found": "Banner non acchiate",
 	"apihelp-centralnoticeallocations-param-country": "'U paese da filtrà.",
 	"apihelp-centralnoticeallocations-param-language": "'A lènghe da filtrà.",
