@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pyscowicz"
+		]
+	},
+	"apihelp-query+centralnoticelogs-param-user": "Käyttäjänimi (valinnainen)"
+}

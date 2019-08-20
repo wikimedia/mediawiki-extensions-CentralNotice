@@ -146,5 +146,7 @@
 	"centralnotice-start-date": "Dâta de comencement",
 	"centralnotice-start-time": "Hora de comencement (UTC)",
 	"centralnotice-end-date": "Dâta de fin",
-	"centralnotice-end-time": "Hora de fin (UTC)"
+	"centralnotice-end-time": "Hora de fin (UTC)",
+	"centralnotice-multiple-countries": "Un mouél ($1)",
+	"centralnotice-multiple-languages": "un mouél ($1)"
 }

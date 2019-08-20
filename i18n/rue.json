@@ -147,5 +147,7 @@
 	"centralnotice-start-time": "Час початку (UTC)",
 	"centralnotice-end-date": "Дата закінчіня (UTC)",
 	"centralnotice-end-time": "Час кінце (UTC)",
-	"centralnotice-banner-sequence-banner": "Банер"
+	"centralnotice-banner-sequence-banner": "Банер",
+	"centralnotice-multiple-countries": "Дакілько ($1)",
+	"centralnotice-multiple-languages": "веце ($1)"
 }

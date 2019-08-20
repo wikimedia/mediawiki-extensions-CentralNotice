@@ -1544,8 +1544,8 @@ class CentralNotice extends SpecialPage {
 	 * @return string
 	 */
 	public static function truncateSummaryField( $summary ) {
-		global $wgContLang;
-		return $wgContLang->truncateForDatabase( $summary, 255 );
+		return MediaWikiServices::getInstance()->getContentLanguage()
+			->truncateForDatabase( $summary, 255 );
 	}
 
 	/**

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hosseinblue"
+		]
+	},
+	"apihelp-centralnoticeallocations-param-country": "کشورةل ئةرا فیلتر بیین.",
+	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
+	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها"
+}

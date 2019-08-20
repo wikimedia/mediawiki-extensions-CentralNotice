@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Praveenp"
+		]
+	},
+	"apihelp-query+centralnoticelogs-param-user": "ഉപയോക്തൃനാമം (നിർബന്ധമല്ല).",
+	"apihelp-query+centralnoticelogs-example-1": "രേഖകൾ പ്രദർശിപ്പിക്കുക"
+}

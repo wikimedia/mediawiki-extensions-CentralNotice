@@ -196,5 +196,7 @@
 	"centralnotice-start-date": "Qallarisqanpa p'unchawnin (UTC)",
 	"centralnotice-start-time": "Qallarisqanpa pachan (UTC)",
 	"centralnotice-end-date": "Puchukana p'unchaw (UTC)",
-	"centralnotice-end-time": "Puchukay pacha (UTC)"
+	"centralnotice-end-time": "Puchukay pacha (UTC)",
+	"centralnotice-multiple-countries": "Imaymana ($1)",
+	"centralnotice-multiple-languages": "imaymana ($1)"
 }

@@ -129,5 +129,6 @@
 	"centralnotice-start-date": "Početni datum (UTC)",
 	"centralnotice-start-time": "Početno vrijeme (UTC)",
 	"centralnotice-end-date": "Završni datum (UTC)",
-	"centralnotice-end-time": "Vrijeme završetka (UTC)"
+	"centralnotice-end-time": "Vrijeme završetka (UTC)",
+	"centralnotice-multiple-languages": "više ($1)"
 }

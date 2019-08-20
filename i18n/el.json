@@ -15,7 +15,8 @@
 			"Geraki",
 			"Nikosguard",
 			"Xaris333",
-			"KATRINE1993"
+			"KATRINE1993",
+			"Panos78"
 		]
 	},
 	"centralnotice": "Διαχειριστής κεντρικών ειδοποιήσεων",
@@ -195,5 +196,7 @@
 	"centralnotice-start-date": "Ημερομηνία έναρξης (UTC)",
 	"centralnotice-start-time": "Χρόνος εκκίνησης (UTC)",
 	"centralnotice-end-date": "Ημερομηνία λήξης (UTC)",
-	"centralnotice-end-time": "Ώρα τερματισμού (UTC)"
+	"centralnotice-end-time": "Ώρα τερματισμού (UTC)",
+	"centralnotice-multiple-countries": "Πολλαπλές χώρες",
+	"centralnotice-multiple-languages": "Πολλαπλές γλώσσες"
 }

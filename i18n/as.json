@@ -161,5 +161,7 @@
 	"centralnotice-start-date": "আৰম্ভ কৰা তাৰিখ",
 	"centralnotice-start-time": "আৰম্ভ কৰা সময় (UTC)",
 	"centralnotice-end-date": "শেষ হোৱা তাৰিখ",
-	"centralnotice-end-time": "শেষ হোৱা সময় (UTC)"
+	"centralnotice-end-time": "শেষ হোৱা সময় (UTC)",
+	"centralnotice-multiple-countries": "একাধিক ($1)",
+	"centralnotice-multiple-languages": "একাধিক ($1)"
 }

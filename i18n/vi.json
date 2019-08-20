@@ -236,10 +236,6 @@
 	"centralnotice-banner-not-found-contents": "Không có biểu ngữ đúng tên này.",
 	"hidebanners": "Ẩn biểu ngữ",
 	"centralnotice-specialhidebanners-p3p": "Một số trình duyệt cần một chính sách P3P ngắn để đặt cookie trong một số trường hợp. Tuy nhiên, không có sẵn chính sách ngắn nào. Xin vui lòng xem chính sách cho người đọc của trang này.",
-	"apihelp-centralnoticeallocations-param-device": "Tên thiết bị để lọc.",
-	"apihelp-centralnoticequerycampaign-example-1": "Hiển thị chiến dịch “Plea_US”",
-	"apihelp-query+centralnoticelogs-param-user": "Tên người dùng (tùy chọn).",
-	"apihelp-query+centralnoticelogs-example-1": "Xem nhật trình",
 	"centralnotice-banner-history-logger": "Trình ghi lịch sử biểu ngữ",
 	"centralnotice-banner-history-logger-help": "Theo dõi dãy biểu ngữ được xem bởi độc giả và đôi khi gửi nó lại máy chủ.",
 	"centralnotice-banner-history-logger-rate": "Tần số lấy mẫu",
@@ -260,5 +256,7 @@
 	"centralnotice-large-banner-limit": "Giới hạn biểu ngữ lớn và đổi",
 	"centralnotice-large-banner-limit-days": "Thời gian cầm lại",
 	"centralnotice-large-banner-limit-randomize": "Làm ngẫu nhiên sự chuyển tiếp xô",
-	"centralnotice-large-banner-limit-identifier": "Định danh để lưu vào trình khách"
+	"centralnotice-large-banner-limit-identifier": "Định danh để lưu vào trình khách",
+	"centralnotice-multiple-countries": "Đa quốc gia ($1)",
+	"centralnotice-multiple-languages": "đa ngữ ($1)"
 }

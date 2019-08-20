@@ -336,7 +336,7 @@
 	}
 
 	function getNumBuckets() {
-		return parseInt( $( 'select#buckets :selected' ).val(), 10 );
+		return +$( 'select#buckets' ).val();
 	}
 
 	/**
@@ -599,7 +599,7 @@
 		$selectors.each( function () {
 			var i, bannerIdx,
 				$this = $( this ),
-				assignedBucket = parseInt( $this.find( ':selected' ).val(), 10 ),
+				assignedBucket = +$this.val(),
 				bannerName = $this.data( 'banner-name' ),
 				removed = ( removedBanners.indexOf( bannerName ) !== -1 );
 

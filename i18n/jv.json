@@ -216,18 +216,11 @@
 	"centralnotice-banner-not-found-title": "Umbul-umbul ora ana",
 	"centralnotice-banner-not-found-contents": "Ora ana umbul-umbul mawa jeneng persis mangkéné.",
 	"hidebanners": "Dhelikaké umbul-umbul",
-	"apihelp-centralnoticeallocations-param-country": "Nagara sing arep disaring.",
-	"apihelp-centralnoticeallocations-param-language": "Basa sing arep disaring.",
-	"apihelp-centralnoticeallocations-param-anonymous": "Status mlebu log sing arep disaring (bener|salah).",
-	"apihelp-centralnoticeallocations-param-device": "Jeneng piranti sing arep disaring.",
-	"apihelp-centralnoticeallocations-example-1": "Tuduhaké alokasi liyané",
-	"apihelp-centralnoticequerycampaign-description": "Jupuk kabèh setèlan konfigurasi kanggo kampanye.",
-	"apihelp-query+centralnoticelogs-param-user": "Jeneng panganggo (manasuka).",
-	"apihelp-query+centralnoticelogs-param-limit": "Larik maksimum sing bisa dibalèkaké (manasuka).",
-	"apihelp-query+centralnoticelogs-example-1": "Tuduhaké log",
 	"centralnotice-banner-sequence-bucket-add-step": "Tambah lampah",
 	"centralnotice-banner-sequence-banner": "Umbul-umbul",
 	"centralnotice-banner-sequence-page-views": "Pandelengé kaca",
 	"centralnotice-banner-sequence-skip-with-id": "Lumpati mawa pangenal",
-	"centralnotice-banner-sequence-no-banner": "(Tanpa umbul-umbul)"
+	"centralnotice-banner-sequence-no-banner": "(Tanpa umbul-umbul)",
+	"centralnotice-multiple-countries": "Dobel ($1)",
+	"centralnotice-multiple-languages": "Dobel ($1)"
 }

@@ -194,5 +194,7 @@
 	"centralnotice-start-date": "Data de scominsio (UTC)",
 	"centralnotice-start-time": "Ora de scominsio (UTC)",
 	"centralnotice-end-date": "Data de fine (UTC)",
-	"centralnotice-end-time": "Data de fine (UTC)"
+	"centralnotice-end-time": "Data de fine (UTC)",
+	"centralnotice-multiple-countries": "Vari ($1)",
+	"centralnotice-multiple-languages": "multipli ($1)"
 }

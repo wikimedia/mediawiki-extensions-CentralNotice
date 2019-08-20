@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mogoeilor"
+		]
+	},
+	"apihelp-centralnoticeallocations-param-country": "ولات سی فیلتر بیین.",
+	"apihelp-centralnoticeallocations-param-language": "زون سی فیلتر بیین.",
+	"apihelp-centralnoticeallocations-param-device": "نوم اوزار سی فیلتر بیین.",
+	"apihelp-centralnoticeallocations-example-1": "نشو دئن یه گل بهرکاریا",
+	"apihelp-centralnoticequerycampaign-example-1": "اعلان \"Plea_US\" نشو بیه",
+	"apihelp-centralnoticechoicedata-param-project": "پروجه سی گرتن بیرق و انتخاو کردن گات سی وه.",
+	"apihelp-centralnoticechoicedata-param-language": "زون سی گرتن بیرق و انتخاو کردن گات سی وه.",
+	"apihelp-query+centralnoticelogs-param-user": "نوم کاریاری(دل وه حایی).",
+	"apihelp-query+centralnoticelogs-param-start": "راساگه جا شرو گات(دل وه حاییه).",
+	"apihelp-query+centralnoticelogs-param-end": "راساگه جا گات تموم بیین(دل وه حاییه).",
+	"apihelp-query+centralnoticelogs-example-1": "نشو دئن پهرستنومه یا"
+}

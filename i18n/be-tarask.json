@@ -189,5 +189,7 @@
 	"centralnotice-start-date": "Дата пачатку (UTC)",
 	"centralnotice-start-time": "Час пачатку (UTC)",
 	"centralnotice-end-date": "Дата заканчэньня (UTC)",
-	"centralnotice-end-time": "Час сканчэньня (UTC)"
+	"centralnotice-end-time": "Час сканчэньня (UTC)",
+	"centralnotice-multiple-countries": "Некалькі краінаў",
+	"centralnotice-multiple-languages": "Некалькі моваў"
 }

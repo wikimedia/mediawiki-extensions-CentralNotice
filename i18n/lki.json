@@ -221,8 +221,5 @@
 	"centralnotice-end-time": "وخت تموم بیئن(یو تی سی)",
 	"centralnotice-banner-not-found-title": "بنر یافت نشد",
 	"centralnotice-banner-not-found-contents": "ائرة پرچمئ وة  نؤم راستکانی نیة.",
-	"hidebanners": "مخفی‌سازی بنرها",
-	"apihelp-centralnoticeallocations-param-country": "کشورةل ئةرا فیلتر بیین.",
-	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
-	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها"
+	"hidebanners": "مخفی‌سازی بنرها"
 }

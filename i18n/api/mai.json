@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tulsi Bhagat",
+			"बिप्लब आनन्द"
+		]
+	},
+	"apihelp-centralnoticeallocations-param-country": "देश पे फिल्टर करे के लेल।",
+	"apihelp-centralnoticeallocations-param-language": "भाषा पे फिल्टर करे के लेल।",
+	"apihelp-centralnoticeallocations-param-device": "डिवाइस नाम पे फिल्टर करे के लेल।",
+	"apihelp-query+centralnoticelogs-param-user": "प्रयोक्तानाम (वैकल्पिक)।",
+	"apihelp-query+centralnoticelogs-example-1": "वृतलेख देखाऊ"
+}

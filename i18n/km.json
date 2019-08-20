@@ -100,5 +100,7 @@
 	"centralnotice-start-date": "កាលបរិច្ឆេទចាប់ផ្ដើម (UTC)",
 	"centralnotice-start-time": "ម៉ោង​ចាប់ផ្តើម (UTC)",
 	"centralnotice-end-date": "កាលបរិច្ឆេទបញ្ចប់ (UTC)",
-	"centralnotice-end-time": "ម៉ោងបញ្ចប់ (UTC)"
+	"centralnotice-end-time": "ម៉ោងបញ្ចប់ (UTC)",
+	"centralnotice-multiple-countries": "ច្រើនភាសា($1)",
+	"centralnotice-multiple-languages": "ច្រើនភាសា($1)"
 }

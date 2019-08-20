@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"З. ӘЙЛЕ"
+		]
+	},
+	"apihelp-centralnoticeallocations-param-country": "Фильтр урынлаштырыу өсөн ил.",
+	"apihelp-centralnoticeallocations-param-language": "Фильтрация ҡуйыу өсөн тел.",
+	"apihelp-centralnoticeallocations-param-device": "Фильтр өсөн ҡоролма атамаһы.",
+	"apihelp-centralnoticequerycampaign-description": "Кампания буйынса барлыҡ көйләүҙәрҙе алырға.",
+	"apihelp-centralnoticequerycampaign-example-1": "«Plea_US» кампанияһын күрһәтеү",
+	"apihelp-query+centralnoticelogs-description": "Кампания конфигурацияһы үҙгәреүе журналы",
+	"apihelp-query+centralnoticelogs-param-campaign": "Кампания атамаһы (мотлаҡ түгел). Мәғәнәләрҙе «|» (вертикаль  һыҙыҡ) ярҙамында айырығыҙ.",
+	"apihelp-query+centralnoticelogs-param-user": "Ҡатнашыусы исеме (мотлаҡ түгел).",
+	"apihelp-query+centralnoticelogs-param-limit": "Кире ҡайтарылыусы юлдарҙың максималь күләме (мотлаҡ түгел).",
+	"apihelp-query+centralnoticelogs-param-start": "Диапазондың башланыу ваҡыты (мотлаҡ түгел).",
+	"apihelp-query+centralnoticelogs-param-end": "Диапазондың тамамланыу ваҡыты (мотлаҡ түгел).",
+	"apihelp-query+centralnoticelogs-example-1": "Журналдарҙы күрһәтергә"
+}

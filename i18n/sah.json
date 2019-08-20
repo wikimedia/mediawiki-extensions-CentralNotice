@@ -159,5 +159,7 @@
 	"centralnotice-start-date": "Саҕаламмыт ыйа-күнэ",
 	"centralnotice-start-time": "Саҕаламмыт кэмэ (UTC)",
 	"centralnotice-end-date": "Түмүктэнии күнэ-дьыла",
-	"centralnotice-end-time": "Бүтүүтэ (UTC)"
+	"centralnotice-end-time": "Бүтүүтэ (UTC)",
+	"centralnotice-multiple-countries": "Хас да ($1)",
+	"centralnotice-multiple-languages": "хас да ($1)"
 }

@@ -118,9 +118,6 @@
 	"centralnotice-banner-display-on": "Afișează pentru",
 	"centralnotice-banner-cdn-button": "Regenerează",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
-	"apierror-centralnotice-cdn-lang-code-error": "Cod de limbă greșit.",
-	"apierror-centralnotice-cdn-banner-name-error": "Nume de banner greșit.",
-	"apierror-centralnotice-cdn-banner-not-found": "Bannerul nu a fost găsit",
 	"centralnotice-geo": "Geolocalizat",
 	"centralnotice-countries": "Țări",
 	"centralnotice-allocation": "Alocare",
@@ -221,5 +218,6 @@
 	"centralnotice-banner-not-found-title": "Bannerul nu a fost găsit",
 	"centralnotice-banner-not-found-contents": "Nu există niciun banner cu acest nume.",
 	"hidebanners": "Ascunde bannerele",
-	"apihelp-query+centralnoticelogs-example-1": "Arată logurile"
+	"centralnotice-multiple-countries": "Multiple ($1)",
+	"centralnotice-multiple-languages": "multiple ($1)"
 }

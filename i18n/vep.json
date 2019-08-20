@@ -80,5 +80,6 @@
 	"centralnotice-start-date": "Augotišen dat",
 	"centralnotice-start-time": "Augotišen dat (UTC)",
 	"centralnotice-end-date": "Lopdat",
-	"centralnotice-end-time": "Lopindan aig (UTC)"
+	"centralnotice-end-time": "Lopindan aig (UTC)",
+	"centralnotice-multiple-languages": "Äjad ($1)"
 }

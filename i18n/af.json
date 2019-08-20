@@ -152,5 +152,7 @@
 	"centralnotice-start-date": "Begindatum",
 	"centralnotice-start-time": "Begintyd (UTC)",
 	"centralnotice-end-date": "Einddatum",
-	"centralnotice-end-time": "Eindtyd (UTC)"
+	"centralnotice-end-time": "Eindtyd (UTC)",
+	"centralnotice-multiple-countries": "Verskeie ($1)",
+	"centralnotice-multiple-languages": "verskeie ($1)"
 }

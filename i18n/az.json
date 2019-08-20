@@ -69,5 +69,7 @@
 	"centralnotice-start-date": "Başlanğıc tarixi (UTC)",
 	"centralnotice-start-time": "Başlanğıc tarixi (UTC)",
 	"centralnotice-end-date": "Son tarix (UTC)",
-	"centralnotice-end-time": "Son tarix (UTC)"
+	"centralnotice-end-time": "Son tarix (UTC)",
+	"centralnotice-multiple-countries": "Bir neçə ($1)",
+	"centralnotice-multiple-languages": "Bir neçə ($1)"
 }

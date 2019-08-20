@@ -5,7 +5,8 @@
 			"Rudko",
 			"Sudo77(new)",
 			"Teslaton",
-			"Kusavica"
+			"Kusavica",
+			"Vegetator"
 		]
 	},
 	"centralnotice": "Centrálny oznam",
@@ -147,7 +148,7 @@
 	"centralnotice-date": "Dátum",
 	"centralnotice-apply-filters": "Použiť filtre",
 	"centralnotice-clear-filters": "Vyčistiť filtre",
-	"centralnotice-banner-messages": "Správy bannerov",
+	"centralnotice-banner-messages": "Preložiteľné správy v banneroch",
 	"centralnotice-filter-template-submit": "Použiť filtre",
 	"centralnotice-priority-low": "nízka",
 	"centralnotice-priority-normal": "normálna",
@@ -162,5 +163,7 @@
 	"centralnotice-start-date": "Dátum začiatku (UTC)",
 	"centralnotice-start-time": "Čas začatia (UTC)",
 	"centralnotice-end-date": "Dátum ukončenia (UTC)",
-	"centralnotice-end-time": "Čas ukončenia (UTC)"
+	"centralnotice-end-time": "Čas ukončenia (UTC)",
+	"centralnotice-multiple-countries": "viaceré ($1)",
+	"centralnotice-multiple-languages": "viaceré ($1)"
 }

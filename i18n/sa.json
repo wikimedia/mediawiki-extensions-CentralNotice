@@ -162,5 +162,6 @@
 	"centralnotice-start-time": "आरम्भसमयः (UTC)",
 	"centralnotice-end-date": "अन्तिमदिनाङ्कः",
 	"centralnotice-end-time": "समाप्तिसमयः (UTC)",
-	"apihelp-query+centralnoticelogs-param-user": "सदस्यनाम (ऐच्छितम्)"
+	"centralnotice-multiple-countries": "विभिन्नाः ( $1 )",
+	"centralnotice-multiple-languages": "विभिन्नाः ( $1 )"
 }

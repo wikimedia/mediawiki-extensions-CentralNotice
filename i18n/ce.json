@@ -109,5 +109,7 @@
 	"centralnotice-start-date": "Долина хан (UTC)",
 	"centralnotice-start-time": "Долина хан (UTC)",
 	"centralnotice-end-date": "Чаккхенна хан (UTC)",
-	"centralnotice-end-time": "Чаккхенна хан (UTC)"
+	"centralnotice-end-time": "Чаккхенна хан (UTC)",
+	"centralnotice-multiple-countries": "масех ($1)",
+	"centralnotice-multiple-languages": "масех ($1)"
 }

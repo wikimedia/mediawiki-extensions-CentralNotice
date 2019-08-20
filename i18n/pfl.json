@@ -29,5 +29,7 @@
 	"centralnotice-percentage": "Brozend",
 	"centralnotice-off": "aus",
 	"centralnotice-talk-link": "Dischbediere",
-	"centralnotice-banner-content-changed": "Vaänad"
+	"centralnotice-banner-content-changed": "Vaänad",
+	"centralnotice-multiple-countries": "mearare ($1)",
+	"centralnotice-multiple-languages": "mearare ($1)"
 }

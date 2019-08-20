@@ -409,7 +409,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Display the banner editor and process edits
 	 */
 	protected function showBannerEditor() {
-		global $wgUseSquid;
+		global $wgUseCdn;
 
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi.bannerEditor' );
@@ -453,7 +453,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			displayForm( $formResult );
 
 		// Controls to purge banner loader URLs from CDN caches for a given language.
-		if ( $wgUseSquid ) {
+		if ( $wgUseCdn ) {
 			$out->addHTML( $this->generateCdnPurgeSection() );
 		}
 

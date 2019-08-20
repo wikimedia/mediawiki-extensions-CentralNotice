@@ -150,5 +150,7 @@
 	"centralnotice-start-date": "Data e fillimit",
 	"centralnotice-start-time": "Koha e fillimit (UTC)",
 	"centralnotice-end-date": "Data e përfundimit",
-	"centralnotice-end-time": "Koha e përfundimit"
+	"centralnotice-end-time": "Koha e përfundimit",
+	"centralnotice-multiple-countries": "Më shumë ($1)",
+	"centralnotice-multiple-languages": "Më shumë ($1)"
 }

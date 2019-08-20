@@ -329,6 +329,12 @@
 		// objects to access state for themselves, disallowing it ensures
 		// their scope is limited and keeps the information flow visible.
 
+		// Bow out and show no banners if choice data seems stale
+		if ( !chooser.choiceDataSeemsFresh( cn.choiceData ) ) {
+			state.setChoiceDataStale();
+			return;
+		}
+
 		// Choose a campaign or no campaign for this user.
 		campaign = chooser.chooseCampaign(
 			cn.choiceData,

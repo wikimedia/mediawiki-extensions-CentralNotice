@@ -147,10 +147,11 @@
 	"centralnotice-end-date": "Beigu datums (UTC)",
 	"centralnotice-end-time": "Beigu laiks (UTC)",
 	"hidebanners": "Paslēpt paziņojumus",
-	"apihelp-query+centralnoticelogs-example-1": "Rādīt žurnālus",
 	"centralnotice-banner-sequence-bucket-add-step": "Pievienot soli",
 	"centralnotice-banner-sequence-banner": "Baneris",
 	"centralnotice-banner-sequence-page-views": "Lapu skatījumi",
 	"centralnotice-banner-sequence-skip-with-id-error": "Identifikators nevar saturēt \"|\".",
-	"centralnotice-banner-sequence-no-banner": "(Nav banera)"
+	"centralnotice-banner-sequence-no-banner": "(Nav banera)",
+	"centralnotice-multiple-countries": "Vairākas ($1)",
+	"centralnotice-multiple-languages": "Vairākas ($1)"
 }

@@ -202,5 +202,7 @@
 	"centralnotice-start-date": "Deiziad kregiñ (UTC)",
 	"centralnotice-start-time": "Eur kregiñ (UTC)",
 	"centralnotice-end-date": "Deiziad echuiñ (UTC)",
-	"centralnotice-end-time": "Deiziad fin (UTC)"
+	"centralnotice-end-time": "Deiziad fin (UTC)",
+	"centralnotice-multiple-countries": "Lies ($1)",
+	"centralnotice-multiple-languages": "lies ($1)"
 }

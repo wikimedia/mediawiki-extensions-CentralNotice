@@ -7,7 +7,8 @@
 			"Wikitanvir",
 			"Aftabuzzaman",
 			"Bodhisattwa",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Masumrezarock100"
 		]
 	},
 	"centralnotice": "কেন্দ্রীয় বিজ্ঞপ্তি প্রশাসক",
@@ -24,7 +25,7 @@
 	"centralnotice-modify": "জমা দিন",
 	"centralnotice-view": "দেখাও",
 	"centralnotice-save-banner": "সংরক্ষণ",
-	"centralnotice-live-preview": "উইকি প্রাকদর্শন",
+	"centralnotice-live-preview": "প্রাকদর্শন",
 	"centralnotice-add-new": "নতুন একটি ক্যাম্পেইন যোগ",
 	"centralnotice-remove": "অপসারণ",
 	"centralnotice-translate-heading": "$1 এর জন্য অনুবাদ",
@@ -108,7 +109,6 @@
 	"centralnotice-banner-display-on": "যেখানে প্রদর্শিত হবে",
 	"centralnotice-banner-cdn-button": "পুনঃসতেজ",
 	"centralnotice-banner-cdn-dialog-ok": "ঠিক আছে",
-	"apierror-centralnotice-cdn-banner-not-found": "ব্যানার পাওয়া যায়নি",
 	"centralnotice-geo": "স্থানাংকলক্ষ্য",
 	"centralnotice-countries": "দেশ",
 	"centralnotice-allocation": "বরাদ্দ",
@@ -141,7 +141,7 @@
 	"centralnotice-talk-link": "আলোচনা",
 	"centralnotice-campaign-settings": "ক্যাম্পেইন সেটিংস",
 	"centralnotice-banner-settings": "ব্যানার সেটিং",
-	"centralnotice-anon": "বেনামী ব্যবহারকারীদের দেখাও",
+	"centralnotice-anon": "বেনামী ব্যবহারকারীদের কাছে দেখান",
 	"centralnotice-account": "প্রবেশকৃত ব্যবহারকারীদের দেখাও",
 	"centralnotice-fundraising": "তহবিল সংগ্রহ",
 	"centralnotice-autolink": "স্বয়ংক্রিয় সংযোগ তৈরি",
@@ -183,7 +183,8 @@
 	"centralnotice-end-time": "শেষ সময় (ইউটিসি)",
 	"centralnotice-csp-violation-alert": "সামগ্রী নিরাপত্তা নীতির লঙ্ঘন সনাক্ত হয়েছে। $1 থেকে কিছু লোড করার চেষ্টা করা হয়েছে।",
 	"hidebanners": "ব্যানার লুকান",
-	"apihelp-query+centralnoticelogs-example-1": "লগ দেখান",
 	"centralnotice-banner-sequence-banner": "ব্যানার",
-	"centralnotice-banner-sequence-page-views": "পাতা দর্শন"
+	"centralnotice-banner-sequence-page-views": "পাতা দর্শন",
+	"centralnotice-multiple-countries": "একাধিক ($1)",
+	"centralnotice-multiple-languages": "একাধিক ($1)"
 }

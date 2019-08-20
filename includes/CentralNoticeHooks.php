@@ -371,69 +371,27 @@ class CentralNoticeHooks {
 	}
 
 	/**
-	 * ResourceLoaderTestModules hook handler
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderTestModules
+	 * Conditionally register resource loader modules.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
 	 *
-	 * @param array &$testModules
 	 * @param ResourceLoader $resourceLoader
-	 * @return bool
 	 */
-	public static function onResourceLoaderTestModules( array &$testModules,
-		ResourceLoader $resourceLoader
-	) {
-		global $wgResourceModules, $wgAutoloadClasses;
+	public static function onResourceLoaderRegisterModules( ResourceLoader $resourceLoader ) {
+		global $wgEnableJavaScriptTest, $wgAutoloadClasses;
 
-		// Set up test fixtures module, which is added as a dependency for all QUnit
-		// tests.
-		$testModules['qunit']['ext.centralNotice.testFixtures'] = [
-			'class' => 'CNTestFixturesResourceLoaderModule'
-		];
+		if ( $wgEnableJavaScriptTest ) {
+			// These classes are only used here or in phpunit tests
+			$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
+				dirname( __DIR__ ) . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
+			$wgAutoloadClasses['CentralNoticeTestFixtures'] =
+				dirname( __DIR__ ) . '/tests/phpunit/CentralNoticeTestFixtures.php';
 
-		// These classes are only used here or in phpunit tests
-		$wgAutoloadClasses['CNTestFixturesResourceLoaderModule'] =
-			dirname( __DIR__ ) . '/tests/phpunit/CNTestFixturesResourceLoaderModule.php';
-		// Note: the following setting is repeated in efCentralNoticeUnitTests()
-		$wgAutoloadClasses['CentralNoticeTestFixtures'] =
-			dirname( __DIR__ ) . '/tests/phpunit/CentralNoticeTestFixtures.php';
-
-		$testModuleBoilerplate = [
-			'localBasePath' => dirname( __DIR__ ),
-			'remoteExtPath' => 'CentralNotice',
-		];
-
-		// find test files for every RL module
-		$prefix = 'ext.centralNotice';
-		foreach ( $wgResourceModules as $key => $module ) {
-			if ( substr( $key, 0, strlen( $prefix ) ) ===
-				$prefix && isset( $module['scripts'] )
-			) {
-				$testFiles = [];
-
-				foreach ( ( (array)$module['scripts'] ) as $script ) {
-					$testFile = 'tests/qunit/' . $script;
-					$testFile = preg_replace( '/.js$/', '.tests.js', $testFile );
-
-					// if a test file exists for a given JS file, add it
-					if ( file_exists( dirname( __DIR__ ) . '/' . $testFile ) ) {
-						$testFiles[] = $testFile;
-					}
-				}
-
-				// if test files exist for given module, create a corresponding test
-				// module
-				if ( count( $testFiles ) > 0 ) {
-					$testModules['qunit']["$key.tests"] = $testModuleBoilerplate +
-						[
-							'dependencies' =>
-								[ $key, 'ext.centralNotice.testFixtures' ],
-
-							'scripts' => $testFiles,
-						];
-				}
-			}
+			// Set up test fixtures module, which is added as a dependency for all QUnit
+			// tests.
+			$resourceLoader->register( 'ext.centralNotice.testFixtures', [
+				'class' => 'CNTestFixturesResourceLoaderModule'
+			] );
 		}
-
-		return true;
 	}
 
 	/**

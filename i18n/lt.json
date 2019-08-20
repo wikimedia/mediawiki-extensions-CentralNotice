@@ -209,18 +209,6 @@
 	"centralnotice-banner-not-found-title": "Baneris nerastas",
 	"centralnotice-banner-not-found-contents": "Nėra baneriu su tiksliai tokiu pavadinimu.",
 	"hidebanners": "Slėpti banerius",
-	"apihelp-centralnoticequerycampaign-description": "Gauti visus kampanijos konfigūracijos nustatymus.",
-	"apihelp-centralnoticequerycampaign-param-campaign": "Kampanijos pavadinimas. Atskirti skirtas reikšmes su „|“ (vertikaliu brūkšniu).",
-	"apihelp-centralnoticequerycampaign-example-1": "Rodyti kampaniją „Plea_US“",
-	"apihelp-centralnoticechoicedata-description": "Gauti duomenis, reikalingus banerio pasirinkimui pateiktam projektui ir kalbai",
-	"apihelp-centralnoticechoicedata-param-project": "Projektas, kuriam gauti banerio pasirinkimo duomenis.",
-	"apihelp-centralnoticechoicedata-param-language": "Kalba, kuriai gauti banerio pasirinkimo duomenis.",
-	"apihelp-centralnoticechoicedata-example-1": "Gauti duomenis, banerio pasirinkimui Angliškosios Vikipedijos vartotojams.",
-	"apihelp-query+centralnoticelogs-description": "Gauti kampanijos konfigūracijos pakeitimų žurnalą.",
-	"apihelp-query+centralnoticelogs-param-campaign": "Kampanijos pavadinimas (nebūtina). Atskirti kelias reikšmes su „|“ (vertikaliu brūkšniu).",
-	"apihelp-query+centralnoticelogs-param-user": "Vartotojo vardas (nebūtina).",
-	"apihelp-query+centralnoticelogs-param-limit": "Maksimalus gražinamų eilučių skaičius (nebūtina).",
-	"apihelp-query+centralnoticelogs-example-1": "Rodyti žurnalus",
 	"centralnotice-banner-history-logger": "Banerio istorijos seklys",
 	"centralnotice-banner-history-logger-rate": "Ėmimo dažnis",
 	"centralnotice-banner-history-logger-max-entry-age": "Maksimalus žurnalo įrašų amžius (dienomis)",
@@ -228,5 +216,7 @@
 	"centralnotice-banner-history-logger-max-entries-help": "Jei įrašoma daugiau istorijos prieš žurnalo išsiuntimą į serverį, tai seniausi objektai išnyks.",
 	"centralnotice-impression-diet-help": "Apriboti banerį, kurios mato vienas individas, skaičių.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Kiek ilgai lauki prieš pradedant ciklą iš naujo, sekundėmis (nebūtina)",
-	"centralnotice-impression-diet-restart-cycle-delay-help": "Numatytoji reikšmė yra 0, tai reiškia, kad skaitytojai patirs vieną ciklą ir tada baneriai nebebus rodomi."
+	"centralnotice-impression-diet-restart-cycle-delay-help": "Numatytoji reikšmė yra 0, tai reiškia, kad skaitytojai patirs vieną ciklą ir tada baneriai nebebus rodomi.",
+	"centralnotice-multiple-countries": "Kelias ( $1 )",
+	"centralnotice-multiple-languages": "Kelias ( $1 )"
 }

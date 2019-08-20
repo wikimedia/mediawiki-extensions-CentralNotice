@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ladsgroup",
+			"Mehran",
+			"Reza1615"
+		]
+	},
+	"apierror-centralnotice-cdn-banner-not-found": "بنر پیدا نشد",
+	"apihelp-centralnoticeallocations-extended-description": "این یک پیام فقط JSON است.",
+	"apihelp-centralnoticeallocations-param-country": "کشوری که بر روی آن فیلتر کند.",
+	"apihelp-centralnoticeallocations-param-language": "زبانی که بر روی آن فیلتر کند.",
+	"apihelp-centralnoticeallocations-param-device": "نام دستگاه برای فیلترکردن",
+	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
+	"apihelp-query+centralnoticelogs-param-start": "زمان شروع باز (اختیاری)",
+	"apihelp-query+centralnoticelogs-param-end": "زمان پایان بازه (اختیاری)",
+	"apihelp-query+centralnoticelogs-example-1": "نمایش سیاهه‌ها"
+}

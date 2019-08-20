@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Purodha"
+		]
+	},
+	"apihelp-centralnoticeallocations-param-country": "Et Land, öm dernoh ze söhke.",
+	"apihelp-centralnoticeallocations-param-language": "De schprohch, öm dernoh ze söhke.",
+	"apihelp-centralnoticeallocations-param-anonymous": "Ennjelogg udder nit, söhk uß met „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">true</code>“ udder „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">false</code>“.",
+	"apihelp-centralnoticeallocations-example-1": "Zeijsch e paa Zoh'ohdenonge",
+	"apihelp-centralnoticequerycampaign-description": "Holl alle Enschtällonge för en Kampannje.",
+	"apihelp-centralnoticequerycampaign-param-campaign": "De Nahme för de Kampannje. Donn e „|“-Zeijsche zwesche de eijnzel Nahme.",
+	"apihelp-centralnoticequerycampaign-example-1": "Zeijsch de Kampannje „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Plea_US</code>“ aan",
+	"apihelp-query+centralnoticelogs-description": "Holl en Leß met de Änderonge aan Kampannje.",
+	"apihelp-query+centralnoticelogs-param-campaign": "De Nahme för de Kampannje. Kann fott blihve. Donn e „|“-Zeijsche zwesche de eijnzel Nahme.",
+	"apihelp-query+centralnoticelogs-param-user": "Metmaacher_Nahme (kann fott bliive)",
+	"apihelp-query+centralnoticelogs-param-limit": "De Bovverjränß för de Aanzahl Reihje zom Ußjävve, kann fott blihve.",
+	"apihelp-query+centralnoticelogs-param-offset": "De Nummer vun de Reih, vun woh aan Ußjävve, kann fott blihve.",
+	"apihelp-query+centralnoticelogs-param-start": "Der Bejenn, vun woh aan Ußjävve, kann fott blihve.",
+	"apihelp-query+centralnoticelogs-param-end": "Et Ängk, bes woh hen Ußjävve, kann fott blihve.",
+	"apihelp-query+centralnoticelogs-example-1": "De Logböhscher zeije"
+}

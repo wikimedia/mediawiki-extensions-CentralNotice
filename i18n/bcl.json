@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Geopoet"
+			"Geopoet",
+			"Brazal.dang"
 		]
 	},
 	"centralnotice": "Administrasyon kan sentral na abiso",
@@ -18,7 +19,7 @@
 	"centralnotice-modify": "Isumite",
 	"centralnotice-view": "Tanawon",
 	"centralnotice-save-banner": "Itagama",
-	"centralnotice-live-preview": "Patanaw sa-wiki",
+	"centralnotice-live-preview": "Patânaw",
 	"centralnotice-add-new": "Magdugang nin sarong baguhong kampanya",
 	"centralnotice-remove": "Tangkason",
 	"centralnotice-translate-heading": "Dakit-taramon para sa $1",

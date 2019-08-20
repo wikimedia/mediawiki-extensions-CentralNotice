@@ -20,37 +20,17 @@
 	 * The server-side equivalent of this method is
 	 * AllocationCalculator::filterChoiceData().
 	 *
-	 * We also check for campaigns that are have already ended, which might
-	 * happen due to incorrect caching of choiceData between us and the user.
-	 * If that happens we just toss everything out because one stale campaign
-	 * spoils the basket. (This freshness check is not performed in the
-	 * server-side method.) TODO: Log when this happens.
-	 *
 	 * @return {Array}
 	 */
 	function makeFilteredChoiceData( choiceData, country, anon, device ) {
 
 		var i, campaign, j, banner, keepCampaign,
-			filteredChoiceData = [],
-			now = new Date(),
-			campaignEndDatePlusLeeway;
+			filteredChoiceData = [];
 
 		for ( i = 0; i < choiceData.length; i++ ) {
 
 			campaign = choiceData[ i ];
 			keepCampaign = false;
-
-			// Check choice data freshness
-			campaignEndDatePlusLeeway = new Date();
-			campaignEndDatePlusLeeway.setTime(
-				( campaign.end * 1000 ) +
-				( CAMPAIGN_STALENESS_LEEWAY * 60000 )
-			);
-
-			// Quick bow-out if the data is stale
-			if ( campaignEndDatePlusLeeway < now ) {
-				return [];
-			}
 
 			// Filter for country if geotargeted
 			if ( campaign.geotargeted &&
@@ -322,6 +302,35 @@
 	 * Chooser object (intended for access from within this RL module)
 	 */
 	cn.internal.chooser = {
+
+		/**
+		 * Check for campaigns that are have already ended, which might happen due to
+		 * incorrect caching of choiceData between us and the user. This check can easily
+		 * result in false positives.
+		 */
+		choiceDataSeemsFresh: function ( choiceData ) {
+
+			var i, campaign,
+				now = new Date(),
+				campaignEndDatePlusLeeway;
+
+			for ( i = 0; i < choiceData.length; i++ ) {
+				campaign = choiceData[ i ];
+				campaignEndDatePlusLeeway = new Date();
+
+				campaignEndDatePlusLeeway.setTime(
+					( campaign.end * 1000 ) +
+					( CAMPAIGN_STALENESS_LEEWAY * 60000 )
+				);
+
+				if ( campaignEndDatePlusLeeway < now ) {
+					return false;
+				}
+			}
+
+			return true;
+		},
+
 		chooseCampaign: function ( choiceData, country, anon, device, random ) {
 
 			// Filter choiceData on country and device. Only campaigns that

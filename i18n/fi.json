@@ -201,9 +201,10 @@
 	"centralnotice-start-time": "Alkamisaika (UTC)",
 	"centralnotice-end-date": "Lopetuspäivä (UTC)",
 	"centralnotice-end-time": "Lopetusaika (UTC)",
-	"apihelp-query+centralnoticelogs-param-user": "Käyttäjänimi (valinnainen)",
 	"centralnotice-banner-sequence-days-error": "Arvon tulee olla kokonaisluku suurempi kuin nolla.",
 	"centralnotice-banner-sequence-bucket-add-step": "Lisää vaihe",
 	"centralnotice-banner-sequence-banner": "Banneri",
-	"centralnotice-banner-sequence-page-views": "Näyttökerrat"
+	"centralnotice-banner-sequence-page-views": "Näyttökerrat",
+	"centralnotice-multiple-countries": "Useita maita",
+	"centralnotice-multiple-languages": "Useita kieliä"
 }

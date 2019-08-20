@@ -114,7 +114,6 @@
 	"centralnotice-banner-display-on": "प्रदर्शित करना आरंभ करें",
 	"centralnotice-banner-mixins": "मिक्सिन्स",
 	"centralnotice-banner-cdn-dialog-ok": "ठीक है",
-	"apierror-centralnotice-cdn-banner-not-found": "बैनर नहीं मिला",
 	"centralnotice-geo": "भूलक्षित",
 	"centralnotice-countries": "देशों",
 	"centralnotice-allocation": "आवंटन",
@@ -207,5 +206,7 @@
 	"centralnotice-end-time": "अंत समय (UTC)",
 	"centralnotice-banner-sequence-banner": "बैनर",
 	"centralnotice-banner-sequence-page-views": "पृष्ठ दृश्य",
-	"centralnotice-banner-sequence-no-banner": "(कोई बैनर नहीं)"
+	"centralnotice-banner-sequence-no-banner": "(कोई बैनर नहीं)",
+	"centralnotice-multiple-countries": "विभिन्न ($1)",
+	"centralnotice-multiple-languages": "विभिन्न ($1)"
 }

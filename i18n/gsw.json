@@ -147,5 +147,7 @@
 	"centralnotice-start-date": "Startdatum",
 	"centralnotice-start-time": "Startzyt (UTC)",
 	"centralnotice-end-date": "Änddatum",
-	"centralnotice-end-time": "Ändzytpunkt (UTC)"
+	"centralnotice-end-time": "Ändzytpunkt (UTC)",
+	"centralnotice-multiple-countries": "mehreri ($1)",
+	"centralnotice-multiple-languages": "mehreri ($1)"
 }

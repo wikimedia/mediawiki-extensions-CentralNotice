@@ -208,5 +208,7 @@
 	"centralnotice-start-date": "Startowy datum (UTC)",
 	"centralnotice-start-time": "Startowy čas (UTC)",
 	"centralnotice-end-date": "Kónčny datum (UTC)",
-	"centralnotice-end-time": "Kónčny čas (UTC)"
+	"centralnotice-end-time": "Kónčny čas (UTC)",
+	"centralnotice-multiple-countries": "wjacore ($1)",
+	"centralnotice-multiple-languages": "wjacore ($1)"
 }
