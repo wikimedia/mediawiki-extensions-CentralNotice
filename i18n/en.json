@@ -94,6 +94,8 @@
 	"centralnotice-message": "Message",
 	"centralnotice-message-not-set": "Message not set",
 	"centralnotice-campaigns-using-banner": "Campaigns using this banner",
+	"centralnotice-fieldset-preview": "Live preview",
+	"centralnotice-preview": "Preview",
 	"centralnotice-clone": "Clone",
 	"centralnotice-clone-notice": "Create a copy of the banner",
 	"centralnotice-clone-name": "Name:",

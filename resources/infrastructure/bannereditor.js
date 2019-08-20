@@ -82,6 +82,9 @@
 
 	// TODO Several functions exposed aren't used elsewhere, so they should be private
 	mw.centralNotice.adminUi.bannerEditor = {
+
+		previewDirty: true,
+
 		/**
 		 * Display the 'Create Banner' dialog
 		 *
@@ -214,6 +217,92 @@
 		},
 
 		/**
+		 * Renders banner content preview in live preview section
+		 */
+		doPreviewBanner: function () {
+			var contentField = $( '#mw-input-wpbanner-body' ),
+				editSection = $( '#cn-formsection-edit-template' ),
+				previewPlaceholder = $( '.cn-banner-preview-placeholder' ),
+				bannerName = mw.config.get( 'wgTitle' ).split( '/' ).pop(),
+				bannerMessagesCache = this.getUnsavedMessagesValues(),
+				previewLegend;
+
+			this.previewDirty = false;
+
+			if ( !previewPlaceholder.length ) {
+				previewPlaceholder = $( '<fieldset/>' );
+				previewPlaceholder.addClass( 'cn-banner-preview-placeholder' );
+				previewLegend = $( '<legend/>' );
+				previewLegend.append( $( '<span>' ).text( mw.msg( 'centralnotice-fieldset-preview' ) ) );
+				previewPlaceholder.append( previewLegend );
+				previewPlaceholder.append( $( '<div/>' ).addClass( 'cn-banner-preview-placeholder-content' ) );
+				previewPlaceholder.insertBefore( editSection );
+			}
+
+			previewPlaceholder.attr( 'disabled', true );
+
+			$.post( mw.Title.newFromText( 'BannerLoader', -1 ).getUrl(),
+				{
+					banner: bannerName,
+					bannercontent: contentField.val(),
+					bannermessages: bannerMessagesCache,
+					force: 1,
+					debug: true
+				}, function () {
+					previewPlaceholder.attr( 'disabled', false );
+				}
+			);
+
+		},
+
+		/**
+		 * Updates banner preview render
+		 * @param data
+		 */
+		updateBannerPreview: function ( data ) {
+			var previewContent = $( '.cn-banner-preview-placeholder-content' );
+			previewContent.html( data.bannerHtml );
+		},
+
+		/**
+		 * Throttles preview calls on banner content changes
+		 */
+		doPreviewBannerThrottle: function () {
+			if ( typeof this.previewTimer !== 'undefined' ) {
+				clearTimeout( this.previewTimer );
+			}
+			this.previewTimer = setTimeout( this.doPreviewBanner.bind( this ), 250 );
+		},
+
+		markPreviewDirty: function () {
+			this.previewDirty = true;
+		},
+
+		/**
+		 * Collects unsaved messages values from banner editing form (if any)
+		 * @return {object}
+		 */
+		getUnsavedMessagesValues: function () {
+			var bannerMessagesCache = {},
+				bannerMessagesContainer = $( '#mw-htmlform-banner-messages' ),
+				bannerMessages;
+
+			// Collect banner messages (if any)
+			bannerMessages = bannerMessagesContainer.find(
+				'.mw-htmlform-field-HTMLCentralNoticeBannerMessage' );
+
+			if ( bannerMessages.length ) {
+				bannerMessages.each( function ( i, message ) {
+					var label = $( message ).find( 'label' ).text(),
+						value = $( message ).find( 'textarea' ).val();
+					bannerMessagesCache[ label ] = value;
+				} );
+			}
+
+			return bannerMessagesCache;
+		},
+
+		/**
 		 * Hook function from onclick of the translate language drop down -- will submit the
 		 * form in order to update the language of the preview and the displayed translations.
 		 */
@@ -258,6 +347,8 @@
 				bannerField.value += buttonValue;
 			}
 			bannerField.focus();
+			// Trigger preview on close button insertion
+			this.doPreviewBanner();
 		}
 	};
 
@@ -266,11 +357,25 @@
 		$( '#mw-input-wpdelete-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
 		$( '#mw-input-wparchive-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
 		$( '#mw-input-wpclone-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
+		$( '#mw-input-wppreview-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doPreviewBanner.bind( mw.centralNotice.adminUi.bannerEditor ) );
 		$( '#mw-input-wpsave-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
 		$( '#mw-input-wptranslate-language' ).on( 'change', mw.centralNotice.adminUi.bannerEditor.updateLanguage );
 		$( '#cn-cdn-cache-purge' ).on( 'click', doPurgeCache );
 
+		$( '#mw-input-wpbanner-body' ).on( 'keyup input propertychange',
+			mw.centralNotice.adminUi.bannerEditor.markPreviewDirty.bind(
+				mw.centralNotice.adminUi.bannerEditor
+			) );
+
+		$( '#mw-htmlform-banner-messages textarea' ).on( 'keyup input propertychange',
+			mw.centralNotice.adminUi.bannerEditor.markPreviewDirty.bind(
+				mw.centralNotice.adminUi.bannerEditor
+			) );
+
 		$( '#cn-js-error-warn' ).hide();
+
+		// Trigger preview right away
+		mw.centralNotice.adminUi.bannerEditor.doPreviewBanner();
 	} );
 
 }() );
