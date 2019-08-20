@@ -18,10 +18,22 @@ class BannerRenderer {
 
 	/**
 	 * Campaign in which context the rendering is taking place.  Empty during preview.
-	 *
 	 * @var string $campaignName
 	 */
 	protected $campaignName = "";
+
+	/**
+	 * Unsaved raw banner content to use for rendering an unsaved preview.
+	 * @var string|null
+	 */
+	protected $previewContent;
+
+	/**
+	 * Associative array of banner message names and values, for rendering an unsaved
+	 * preview.
+	 * @var array|null
+	 */
+	protected $previewMessages;
 
 	protected $mixinController = null;
 
@@ -31,21 +43,29 @@ class BannerRenderer {
 	 * Creates a new renderer for a given banner and context
 	 *
 	 * @param IContextSource $context UI context, including language.
-	 *
 	 * @param Banner $banner Banner to be rendered.
-	 *
 	 * @param string|null $campaignName Which campaign we're serving.  This is
-	 * substituted in for {{{campaign}}} magic word.
-	 *
+	 *   substituted in for {{{campaign}}} magic word.
+	 * @param string|null $previewContent Unsaved raw banner content to use for rendering
+	 *   an unsaved preview.
+	 * @param array|null $previewMessages Associative array of banner message names and
+	 *   and values, for rendering unsaved preview.
 	 * @param bool $debug If false, minify the output.
 	 */
 	public function __construct(
-		IContextSource $context, Banner $banner, $campaignName = null, $debug = false
+		IContextSource $context,
+		Banner $banner,
+		$campaignName = null,
+		$previewContent = null,
+		$previewMessages = null,
+		$debug = false
 	) {
 		$this->context = $context;
 
 		$this->banner = $banner;
 		$this->campaignName = $campaignName;
+		$this->previewContent = $previewContent;
+		$this->previewMessages = $previewMessages;
 		$this->debug = $debug;
 
 		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
@@ -104,11 +124,9 @@ class BannerRenderer {
 	 * FIXME: "->inLanguage( $context->getLanguage() )" is necessary due to a bug
 	 *   in DerivativeContext
 	 *
-	 * @param null $bannerContent override banner content for preview
-	 *
 	 * @return string HTML fragment for the banner body.
 	 */
-	public function toHtml( $bannerContent = null ) {
+	public function toHtml() {
 		global $wgNoticeUseLanguageConversion;
 
 		$parentLang = $lang = $this->context->getLanguage();
@@ -116,15 +134,16 @@ class BannerRenderer {
 			$parentLang = $lang->getParentLanguage();
 		}
 
-		if ( !empty( $bannerContent ) ) {
+		if ( !is_null( $this->previewContent ) ) {
 			// Preview mode, banner content is ephemeral
+			// TODO Double-check that this is the correct way to get process as a i18n
+			// message, and add documentation to the core method.
 			$bannerHtml = MessageCache::singleton()->transform(
-				$bannerContent,
+				$this->previewContent,
 				false,
 				$parentLang
 			);
-			$bannerHtml .= ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', [ 'ext.centralNotice.display' ] ) );
+
 		} else {
 			// Normal mode, banner content is stored as message
 			$bannerKey = $this->banner->getDbKey();
@@ -148,8 +167,9 @@ class BannerRenderer {
 
 	/**
 	 * Render any preload javascript for this banner
-	 *
 	 * @return string JS snippet.
+	 *
+	 * TODO Remove/refactor. See T225831.
 	 */
 	public function getPreloadJs() {
 		$code = $this->substituteMagicWords( $this->getPreloadJsRaw() );
@@ -167,6 +187,8 @@ class BannerRenderer {
 	 * This is only used internally, and will be parsed for magic words
 	 * before use.
 	 * @return string
+	 *
+	 * TODO Remove/refactor. See T225831.
 	 */
 	public function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
@@ -268,6 +290,18 @@ class BannerRenderer {
 				trim( $messageFields[ 0 ] ),
 				trim( $messageFields[ 1 ] )
 			);
+
+		} elseif ( !is_null( $this->previewMessages ) &&
+			array_key_exists( $field, $this->previewMessages ) ) {
+			// If we're rendering an unsaved preview and the field is provided as an
+			// unsaved preview message, transform as a messages, sanitize and return that.
+
+			// TODO As above, double-check that this is the correct way to get process as
+			// a i18n message.
+
+			return MessageCache::singleton()->transform(
+				BannerMessage::sanitize( $this->previewMessages[ $field ] ) );
+
 		} else {
 			$bannerMessage = $this->banner->getMessageField( $field );
 		}
