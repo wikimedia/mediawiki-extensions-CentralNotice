@@ -51,7 +51,11 @@
 		// EventLogging schema revision. Coordinate with on-wiki schema.
 		// Note: We don't register this in extension.json because we don't need the
 		// client-side schema module.
-		IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION = 19108542;
+		IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION = 19108542,
+
+		// Prefix for key used to store banner preview content for external preview.
+		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in bannereditor.js
+		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
 
 	// TODO: make data.result options explicit via constants
 
@@ -151,13 +155,36 @@
 		cn.events.bannerLoaded = cn.bannerLoadedPromise;
 	}
 
+	function fetchOrRetrieveBanner() {
+		var previewBannerContent,
+			data = cn.internal.state.getData();
+
+		// If this is a preview of an unsaved version, retrieve and inject the banner as
+		// soon as the DOM's ready.
+		if ( data.preview ) {
+			$( function () {
+				previewBannerContent = cn.kvStore.getItem(
+					PREVIEW_STORAGE_KEY_PREFIX + data.banner,
+					cn.kvStore.contexts.GLOBAL
+				);
+
+				if ( previewBannerContent === null ) {
+					mw.log.warn( 'Could not retrieve preview banner ' + data.banner );
+				} else {
+					injectBannerHTML( previewBannerContent );
+				}
+			} );
+		} else {
+			fetchBanner();
+		}
+	}
+
 	function fetchBanner() {
 
 		var data = cn.internal.state.getData(),
 			urlBase = new mw.Uri(
 				mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' )
 			),
-			key = 'cn-banner-preview-' + data.banner,
 
 			// For Varnish purges of banner content, we ensure query param order (thus we
 			// can't use the object-based facilities for params in mw.Uri).
@@ -170,17 +197,7 @@
 				'debug=' + ( !!data.debug ).toString()
 			];
 
-		if ( data.preview ) {
-			// If it's a preview - fallback to banner display right away
-			$( function () { // act same way as cn.insertBanner()
-				injectBannerHTML(
-					cn.kvStore.getItem( key, cn.kvStore.contexts.GLOBAL )
-				);
-			} );
-			return;
-		}
-
-		// If this is a preview, there might not be a campaign
+		// If this is a test display, there might not be a campaign
 		if ( data.campaign ) {
 			urlQuery.unshift( 'campaign=' + mw.Uri.encode( data.campaign ) );
 		}
@@ -703,7 +720,7 @@
 					cn.internal.state.setUpForTestingBanner();
 					setUpDataProperty();
 					setUpBannerLoadedPromise();
-					fetchBanner();
+					fetchOrRetrieveBanner();
 				} );
 		},
 

@@ -170,7 +170,9 @@
 				"ext.centralNotice.adminUi",
 				"jquery.ui.dialog",
 				"ext.centralNotice.kvStore",
-				"mediawiki.api"
+				"mediawiki.api",
+				"mediawiki.Uri",
+				"mediawiki.Title"
 			],
 			"scripts": "infrastructure/bannereditor.js",
 			"styles": "infrastructure/bannereditor.css",
