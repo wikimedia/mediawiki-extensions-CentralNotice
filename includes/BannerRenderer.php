@@ -56,26 +56,12 @@ class BannerRenderer {
 	}
 
 	/**
-	 * Produce a link to edit the banner
-	 *
-	 * @return string Edit URL.
-	 */
-	public function linkTo() {
-		return Linker::link(
-			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$this->banner->getName()}" ),
-			htmlspecialchars( $this->banner->getName() ),
-			[ 'class' => 'cn-banner-title' ]
-		);
-	}
-
-	/**
 	 * Get the edit link for a banner (static version).
 	 *
-	 * TODO: consolidate with above function
-	 *
 	 * @param string $name Banner name.
-	 *
 	 * @return string Edit URL.
+	 *
+	 * TODO Move the following method somewhere more appropriate.
 	 */
 	public static function linkToBanner( $name ) {
 		return Linker::link(
@@ -88,9 +74,12 @@ class BannerRenderer {
 	/**
 	 * Return a rendered link to the Special:Random banner preview.
 	 *
+	 * @param string $name Banner name
 	 * @return string HTML anchor tag
+	 *
+	 * TODO Move this method somewhere more appropriate.
 	 */
-	public function getPreviewLink() {
+	public static function getPreviewLink( $name ) {
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		// FIXME: Need a reusable way to get a known target language.  We want
@@ -99,10 +88,10 @@ class BannerRenderer {
 
 		return $linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Randompage' ),
-			$this->context->msg( 'centralnotice-live-preview' )->text(),
+			wfMessage( 'centralnotice-live-preview' )->text(),
 			[ 'class' => 'cn-banner-list-element-label-text' ],
 			[
-				'banner' => $this->banner->getName(),
+				'banner' => $name,
 				// TODO: 'uselang' => $language,
 				'force' => '1',
 			]

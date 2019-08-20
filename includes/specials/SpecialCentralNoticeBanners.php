@@ -367,7 +367,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Returns array of navigation links to banner preview URL and
 	 * edit link to the banner's wikipage if the user is allowed.
 	 *
-	 * TODO: This looks reusable, maybe move to BannerRenderer.
+	 * FIXME Some of this code is repeated in BannerRenderer, but probably
+	 * should be elsewhere.
 	 *
 	 * @return array
 	 */

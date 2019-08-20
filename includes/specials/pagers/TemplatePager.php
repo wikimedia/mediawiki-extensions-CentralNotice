@@ -91,11 +91,8 @@ class TemplatePager extends ReverseChronologicalPager {
 		}
 
 		// Render banner row.
-		$banner = Banner::fromName( $row->tmp_name );
-		$bannerRenderer = new BannerRenderer( $this->getContext(), $banner );
-
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-			$bannerRenderer->linkTo()
+			BannerRenderer::linkToBanner( $row->tmp_name )
 		);
 
 		// End banner row
