@@ -219,12 +219,13 @@
 		/**
 		 * Renders banner content preview in live preview section
 		 */
-		doPreviewBanner: function () {
+		doPreviewBanner: function ( callback ) {
 			var contentField = $( '#mw-input-wpbanner-body' ),
 				editSection = $( '#cn-formsection-edit-template' ),
 				previewPlaceholder = $( '.cn-banner-preview-placeholder' ),
 				bannerName = mw.config.get( 'wgTitle' ).split( '/' ).pop(),
 				bannerMessagesCache = this.getUnsavedMessagesValues(),
+				previewLink,
 				previewLegend;
 
 			this.previewDirty = false;
@@ -234,6 +235,12 @@
 				previewPlaceholder.addClass( 'cn-banner-preview-placeholder' );
 				previewLegend = $( '<legend/>' );
 				previewLegend.append( $( '<span>' ).text( mw.msg( 'centralnotice-fieldset-preview' ) ) );
+
+				previewLink = $( '<a/>' );
+				previewLink.text( mw.msg( 'centralnotice-preview-page' ) );
+				previewLink.on( 'click', this.doPreviewExternal.bind( this ) );
+				previewLegend.append( previewLink );
+
 				previewPlaceholder.append( previewLegend );
 				previewPlaceholder.append( $( '<div/>' ).addClass( 'cn-banner-preview-placeholder-content' ) );
 				previewPlaceholder.insertBefore( editSection );
@@ -250,9 +257,28 @@
 					debug: true
 				}, function () {
 					previewPlaceholder.attr( 'disabled', false );
+					if ( typeof callback === 'function' ) {
+						callback();
+					}
 				}
 			);
 
+		},
+
+		/**
+		 * Opens new window with banner contents preview
+		 */
+		doPreviewExternal: function () {
+			var targetPage = mw.Title.makeTitle( -1, 'Random' ),
+				bannerName = mw.config.get( 'wgTitle' ).split( '/' ).pop();
+
+			this.doPreviewBanner( function () {
+				window.open( targetPage.getUrl( {
+					banner: bannerName,
+					force: 1,
+					preview: 1
+				} ) );
+			} );
 		},
 
 		/**
@@ -262,6 +288,12 @@
 		updateBannerPreview: function ( data ) {
 			var previewContent = $( '.cn-banner-preview-placeholder-content' );
 			previewContent.html( data.bannerHtml );
+			this.savePreviewCache( data.bannerName, data.bannerHtml );
+		},
+
+		savePreviewCache: function ( bannerName, bannerHtml ) {
+			var key = 'cn-banner-preview-' + bannerName;
+			mw.centralNotice.kvStore.setItem( key, bannerHtml, mw.centralNotice.kvStore.contexts.GLOBAL, 60 );
 		},
 
 		/**

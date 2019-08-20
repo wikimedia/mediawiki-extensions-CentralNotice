@@ -157,6 +157,7 @@
 			urlBase = new mw.Uri(
 				mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' )
 			),
+			key = 'cn-banner-preview-' + data.banner,
 
 			// For Varnish purges of banner content, we ensure query param order (thus we
 			// can't use the object-based facilities for params in mw.Uri).
@@ -168,6 +169,16 @@
 				'uselang=' + mw.Uri.encode( data.uselang ),
 				'debug=' + ( !!data.debug ).toString()
 			];
+
+		if ( data.preview ) {
+			// If it's a preview - fallback to banner display right away
+			$( function () { // act same way as cn.insertBanner()
+				injectBannerHTML(
+					cn.kvStore.getItem( key, cn.kvStore.contexts.GLOBAL )
+				);
+			} );
+			return;
+		}
 
 		// If this is a preview, there might not be a campaign
 		if ( data.campaign ) {

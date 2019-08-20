@@ -169,6 +169,7 @@
 			"dependencies": [
 				"ext.centralNotice.adminUi",
 				"jquery.ui.dialog",
+				"ext.centralNotice.kvStore",
 				"mediawiki.api"
 			],
 			"scripts": "infrastructure/bannereditor.js",
@@ -190,7 +191,8 @@
 				"centralnotice-banner-cdn-dialog-ok",
 				"centralnotice-banner-cdn-dialog-error",
 				"centralnotice-banner-cdn-dialog-success",
-				"centralnotice-fieldset-preview"
+				"centralnotice-fieldset-preview",
+				"centralnotice-preview-page"
 			]
 		},
 		"ext.centralNotice.adminUi.campaignManager": {
@@ -300,7 +302,8 @@
 				"ext.centralNotice.kvStore",
 				"jquery.cookie",
 				"mediawiki.Uri",
-				"mediawiki.util"
+				"mediawiki.util",
+				"mediawiki.storage"
 			],
 			"targets": [
 				"desktop",
