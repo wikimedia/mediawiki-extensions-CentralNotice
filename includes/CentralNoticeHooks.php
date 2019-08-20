@@ -35,7 +35,7 @@ class CentralNoticeHooks {
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
 			$wgDBname, $wgCentralNoticeAdminGroup, $wgNoticeProtectGroup,
-			$wgCentralNoticeMessageProtectRight;
+			$wgCentralNoticeMessageProtectRight, $wgResourceModules;
 
 		// Default for a standalone wiki is that the CN tables are in the main database.
 		if ( !$wgCentralDBname ) {
@@ -67,6 +67,181 @@ class CentralNoticeHooks {
 			$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
 			$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
 			$wgSpecialPages['CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
+
+			$moduleTemplate = [
+				'localBasePath' => dirname( __DIR__ ) . '/resources',
+				'remoteExtPath' => 'CentralNotice/resources',
+			];
+			$wgResourceModules += [
+				'jquery.ui.multiselect' => $moduleTemplate + [
+					'dependencies' => [
+						'jquery.ui.core',
+						'jquery.ui.sortable',
+						'jquery.ui.draggable',
+						'jquery.ui.droppable',
+						'mediawiki.jqueryMsg'
+					],
+					'scripts' => 'vendor/jquery.ui.multiselect/ui.multiselect.js',
+					'styles' => 'vendor/jquery.ui.multiselect/ui.multiselect.css'
+				],
+				'ext.centralNotice.adminUi' => $moduleTemplate + [
+					'dependencies' => [
+						'jquery.ui.datepicker',
+						'jquery.ui.multiselect',
+						'mediawiki.Uri'
+					],
+					'scripts' => 'infrastructure/centralnotice.js',
+					'styles' => [
+						'infrastructure/ext.centralNotice.adminUi.css'
+					],
+					'messages' => [
+						'centralnotice-documentwrite-error',
+						'centralnotice-close-title',
+						'centralnotice-select-all',
+						'centralnotice-remove-all',
+						'centralnotice-items-selected'
+					]
+				],
+				'ext.centralNotice.adminUi.campaignPager' => $moduleTemplate + [
+					'scripts' => 'infrastructure/ext.centralNotice.adminUi.campaignPager.js',
+					'styles' => 'infrastructure/ext.centralNotice.adminUi.campaignPager.css'
+				],
+				'ext.centralNotice.adminUi.bannerManager' => $moduleTemplate + [
+					'dependencies' => [
+						'ext.centralNotice.adminUi',
+						'jquery.ui.dialog',
+						'mediawiki.Uri'
+					],
+					'scripts' => 'infrastructure/bannermanager.js',
+					'styles' => 'infrastructure/bannermanager.css',
+					'messages' => [
+						'centralnotice-add-notice-button',
+						'centralnotice-add-notice-cancel-button',
+						'centralnotice-archive-banner',
+						'centralnotice-archive-banner-title',
+						'centralnotice-archive-banner-confirm',
+						'centralnotice-archive-banner-cancel',
+						'centralnotice-add-new-banner-title',
+						'centralnotice-delete-banner',
+						'centralnotice-delete-banner-title',
+						'centralnotice-delete-banner-confirm',
+						'centralnotice-delete-banner-cancel'
+					]
+				],
+				'ext.centralNotice.adminUi.bannerEditor' => $moduleTemplate + [
+					'dependencies' => [
+						'ext.centralNotice.adminUi',
+						'jquery.ui.dialog',
+						'ext.centralNotice.kvStore',
+						'mediawiki.api',
+						'mediawiki.Uri',
+						'mediawiki.Title',
+						'mediawiki.user',
+					],
+					'scripts' => 'infrastructure/bannereditor.js',
+					'styles' => 'infrastructure/bannereditor.css',
+					'messages' => [
+						'centralnotice-clone',
+						'centralnotice-clone-notice',
+						'centralnotice-clone-cancel',
+						'centralnotice-archive-banner',
+						'centralnotice-archive-banner-title',
+						'centralnotice-archive-banner-confirm',
+						'centralnotice-archive-banner-cancel',
+						'centralnotice-delete-banner',
+						'centralnotice-delete-banner-title',
+						'centralnotice-delete-banner-confirm',
+						'centralnotice-delete-banner-cancel',
+						'centralnotice-banner-cdn-dialog-waiting-text',
+						'centralnotice-banner-cdn-dialog-title',
+						'centralnotice-banner-cdn-dialog-ok',
+						'centralnotice-banner-cdn-dialog-error',
+						'centralnotice-banner-cdn-dialog-success',
+						'centralnotice-fieldset-preview',
+						'centralnotice-preview-page',
+						'centralnotice-update-preview',
+						'centralnotice-preview-loader-error-dialog-title',
+						'centralnotice-preview-loader-error-dialog-ok'
+					]
+				],
+				'ext.centralNotice.adminUi.campaignManager' => [
+					'localBasePath' => dirname( __DIR__ ),
+					'remoteExtPath' => 'CentralNotice',
+					'dependencies' => [
+						'ext.centralNotice.adminUi',
+						'oojs-ui',
+						'jquery.ui.dialog',
+						'jquery.ui.slider',
+						'jquery.throttle-debounce',
+						'mediawiki.template',
+						'mediawiki.template.mustache'
+					],
+					'scripts' => 'resources/infrastructure/campaignManager.js',
+					'styles' => 'resources/infrastructure/campaignManager.css',
+					'templates' => [
+						'campaignMixinParamControls.mustache' => 'templates/campaignMixinParamControls.mustache'
+					],
+					'messages' => [
+						'centralnotice-notice-mixins-int-required',
+						'centralnotice-notice-mixins-float-required',
+						'centralnotice-banner-history-logger-rate',
+						'centralnotice-banner-history-logger-rate-help',
+						'centralnotice-banner-history-logger-max-entry-age',
+						'centralnotice-banner-history-logger-max-entry-age-help',
+						'centralnotice-banner-history-logger-max-entries',
+						'centralnotice-banner-history-logger-max-entries-help',
+						'centralnotice-banner-history-logger-wait-log-no-send-beacon',
+						'centralnotice-banner-history-logger-wait-log-no-send-beacon-help',
+						'centralnotice-set-record-impression-sample-rate',
+						'centralnotice-custom-record-impression-sample-rate',
+						'centralnotice-banners-not-guaranteed-to-display',
+						'centralnotice-impression-diet-identifier',
+						'centralnotice-impression-diet-identifier-help',
+						'centralnotice-impression-diet-maximum-seen',
+						'centralnotice-impression-diet-maximum-seen-help',
+						'centralnotice-impression-diet-restart-cycle-delay',
+						'centralnotice-impression-diet-restart-cycle-delay-help',
+						'centralnotice-impression-diet-skip-initial',
+						'centralnotice-impression-diet-skip-initial-help',
+						'centralnotice-large-banner-limit-days',
+						'centralnotice-large-banner-limit-days-help',
+						'centralnotice-large-banner-limit-randomize',
+						'centralnotice-large-banner-limit-randomize-help',
+						'centralnotice-large-banner-limit-identifier',
+						'centralnotice-large-banner-limit-identifier-help',
+						'centralnotice-impression-events-sample-rate',
+						'centralnotice-impression-events-sample-rate-help',
+						'centralnotice-impression-events-sample-rate-field'
+					]
+				],
+				'ext.centralNotice.adminUi.bannerSequence' => $moduleTemplate + [
+					'scripts' => 'infrastructure/ext.centralNotice.adminUi.bannerSequence.js',
+					'styles' => 'infrastructure/ext.centralNotice.adminUi.bannerSequence.less',
+					'dependencies' => [
+						'ext.centralNotice.adminUi.campaignManager',
+						'oojs-ui',
+						'oojs-ui.styles.icons-moderation',
+						'mediawiki.jqueryMsg'
+					],
+					'messages' => [
+						'centralnotice-banner-sequence',
+						'centralnotice-banner-sequence-days',
+						'centralnotice-banner-sequence-days-error',
+						'centralnotice-banner-sequence-days-help',
+						'centralnotice-banner-sequence-help',
+						'centralnotice-banner-sequence-bucket-seq',
+						'centralnotice-banner-sequence-bucket-add-step',
+						'centralnotice-banner-sequence-banner',
+						'centralnotice-banner-sequence-page-views',
+						'centralnotice-banner-sequence-skip-with-id',
+						'centralnotice-banner-sequence-page-views-error',
+						'centralnotice-banner-sequence-skip-with-id-error',
+						'centralnotice-banner-sequence-banner-removed-error',
+						'centralnotice-banner-sequence-no-banner',
+						'centralnotice-banner-sequence-detailed-help'
+					]
+				],
+			];
 
 			// Register user rights for editing
 			$wgAvailableRights[] = 'centralnotice-admin';
