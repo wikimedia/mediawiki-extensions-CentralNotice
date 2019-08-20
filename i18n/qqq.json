@@ -120,7 +120,7 @@
 	"centralnotice-message-not-set": "Used if the native text of the banner message is not set, in [[Special:NoticeTemplate]].",
 	"centralnotice-campaigns-using-banner": "On the banner edit page, title of subsection showing campaigns associated with the banner.",
 	"centralnotice-fieldset-preview": "Used as a title for banner preview section on banner editing screen",
-	"centralnotice-preview": "Used as label for banner preview action button",
+	"centralnotice-update-preview": "Used as label for update banner preview button",
 	"centralnotice-preview-page": "Text for link to open a new tab with an in-page preview of the currently edited banner",
 	"centralnotice-clone": "Used as label for the Submit button in [[Special:NoticeTemplate]].\n\nPreceded by the \"Name\" input box with the label {{msg-mw|Centralnotice-clone-name}}.\n{{Identical|Clone}}",
 	"centralnotice-clone-notice": "Used as fieldset label in the form in [[Special:NoticeTemplate]].",
