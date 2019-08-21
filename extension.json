@@ -65,6 +65,7 @@
 		"BannerLoaderException": "includes/specials/BannerLoaderException.php",
 		"BannerMessageGroup": "includes/BannerMessageGroup.php",
 		"BannerMessage": "includes/BannerMessage.php",
+		"BannerPreviewPermissionsException": "includes/specials/BannerPreviewPermissionsException.php",
 		"BannerRenderer": "includes/BannerRenderer.php",
 		"CampaignExistenceException": "includes/CampaignExistenceException.php",
 		"Campaign": "includes/Campaign.php",
@@ -172,7 +173,8 @@
 				"ext.centralNotice.kvStore",
 				"mediawiki.api",
 				"mediawiki.Uri",
-				"mediawiki.Title"
+				"mediawiki.Title",
+				"mediawiki.user"
 			],
 			"scripts": "infrastructure/bannereditor.js",
 			"styles": "infrastructure/bannereditor.css",
@@ -195,7 +197,9 @@
 				"centralnotice-banner-cdn-dialog-success",
 				"centralnotice-fieldset-preview",
 				"centralnotice-preview-page",
-				"centralnotice-update-preview"
+				"centralnotice-update-preview",
+				"centralnotice-preview-loader-error-dialog-title",
+				"centralnotice-preview-loader-error-dialog-ok"
 			]
 		},
 		"ext.centralNotice.adminUi.campaignManager": {

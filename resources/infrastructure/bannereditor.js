@@ -23,6 +23,7 @@
 ( function () {
 
 	var bannerEditor, bannerName, $previewFieldSet, $previewContent, $bannerMessages,
+		fileScopedOpenExternalPreview,
 
 		// Prefix for key used to store banner preview content for external preview.
 		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in ext.centralNotice.display.js
@@ -105,12 +106,18 @@
 	}
 
 	/**
-	 * Renders banner content preview in live preview section
+	 * Renders banner content preview in live preview section.
+	 *
+	 * @param boolean openExternalPreview
 	 */
 	function fetchAndUpdateBannerPreview( openExternalPreview ) {
 		var $bannerContentTextArea = $( '#mw-input-wpbanner-body' ),
 			bannerMessagesCache = getUnsavedMessagesValues(),
 			url = new mw.Uri( mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' ) );
+
+		// Set this file-scoped variable so the callback knows whether to open the
+		// external preview.
+		fileScopedOpenExternalPreview = openExternalPreview;
 
 		// Activate the barbershop "loading" animation
 		$previewFieldSet.attr( 'disabled', true );
@@ -121,29 +128,15 @@
 			{
 				banner: bannerName,
 				previewcontent: $bannerContentTextArea.val(),
-				previewmessages: bannerMessagesCache
-			}, function () {
-				// De-activate the barbershop "loading" animation
-				$previewFieldSet.attr( 'disabled', false );
-
-				if ( openExternalPreview ) {
-					// Put the rendered banner content in LocalStorage, for use
-					// by the external preview.
-					mw.centralNotice.kvStore.setItem(
-						PREVIEW_STORAGE_KEY_PREFIX + bannerName,
-						$previewContent.html(),
-						mw.centralNotice.kvStore.contexts.GLOBAL,
-						60
-					);
-
-					window.open( mw.Title.makeTitle( -1, 'Random' ).getUrl( {
-						banner: bannerName,
-						force: 1,
-						preview: 1
-					} ) );
-				}
+				previewmessages: bannerMessagesCache,
+				token: mw.user.tokens.get( 'editToken' )
 			}
-		);
+		).fail( function ( jqXHR, status, error ) {
+			bannerEditor.handleBannerLoaderError( status + ': ' + error );
+		} ).always( function () {
+			// De-activate the barbershop "loading" animation
+			$previewFieldSet.attr( 'disabled', false );
+		} );
 	}
 
 	// TODO Several functions exposed aren't used elsewhere, so they should be private
@@ -282,10 +275,45 @@
 
 		/**
 		 * Updates banner preview render
+		 *
 		 * @param data
 		 */
 		updateBannerPreview: function ( data ) {
-			$previewContent.html( data.bannerHtml );
+			var bannerHtml = data.bannerHtml;
+			$previewContent.html( bannerHtml );
+
+			if ( fileScopedOpenExternalPreview ) {
+				// Put the rendered banner content in LocalStorage, for use
+				// by the external preview.
+				mw.centralNotice.kvStore.setItem(
+					PREVIEW_STORAGE_KEY_PREFIX + bannerName,
+					bannerHtml,
+					mw.centralNotice.kvStore.contexts.GLOBAL,
+					1
+				);
+
+				window.open( mw.Title.makeTitle( -1, 'Random' ).getUrl( {
+					banner: bannerName,
+					force: 1,
+					preview: 1
+				} ) );
+			}
+		},
+
+		handleBannerLoaderError: function ( msg ) {
+			var $dialogEl = $( '<div />' );
+
+			$dialogEl.text( msg );
+
+			$dialogEl.dialog( {
+				title: mw.msg( 'centralnotice-preview-loader-error-dialog-title' ),
+				buttons: [ {
+					text: mw.msg( 'centralnotice-preview-loader-error-dialog-ok' ),
+					click: function () {
+						$( this ).dialog( 'close' );
+					}
+				} ]
+			} );
 		},
 
 		/**
