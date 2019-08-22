@@ -125,7 +125,7 @@
 	"centralnotice-preview-page": "[Aperçu sur le wiki]",
 	"centralnotice-preview-loader-error-dialog-title": "Erreur au chargement de l’aperçu de la bannière",
 	"centralnotice-preview-loader-error-dialog-ok": "OK",
-	"centralnotice-preview-loader-permissions-error": "Vous n’êtes pas autorisé à apercevoir les bannières, ou votre jeton de modification a expiré. Veuillez essayer de vous reconnecter ou rechargez la page.",
+	"centralnotice-preview-loader-permissions-error": "Vous n’êtes pas autorisé à prévisualiser les bannières, ou votre jeton de modification a expiré. Veuillez essayer de vous reconnecter ou de rechargez la page.",
 	"centralnotice-clone": "Dupliquer",
 	"centralnotice-clone-notice": "Créer une copie du modèle",
 	"centralnotice-clone-name": "Nom :",
