@@ -32,7 +32,8 @@
 			"Vlad5250",
 			"Romanko Mikhail",
 			"Diralik",
-			"Alexander Istomin"
+			"Alexander Istomin",
+			"Movses"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -51,7 +52,7 @@
 	"centralnotice-modify": "Отправить",
 	"centralnotice-view": "Просмотр",
 	"centralnotice-save-banner": "Сохранить",
-	"centralnotice-live-preview": "Предварительный просмотр",
+	"centralnotice-live-preview": "Предварительный просмотр последней сохранённой версии",
 	"centralnotice-add-new": "Добавить новое централизованное уведомление",
 	"centralnotice-remove": "Удалить",
 	"centralnotice-translate-heading": "Перевод для $1",

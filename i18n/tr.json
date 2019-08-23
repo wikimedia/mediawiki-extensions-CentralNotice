@@ -16,7 +16,8 @@
 			"HakanIST",
 			"Vito Genovese",
 			"Hedda",
-			"Rapsar"
+			"Rapsar",
+			"Suvarioglu"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -35,7 +36,7 @@
 	"centralnotice-modify": "Gönder",
 	"centralnotice-view": "Görüntüle",
 	"centralnotice-save-banner": "Kaydet",
-	"centralnotice-live-preview": "Önizleme",
+	"centralnotice-live-preview": "Kaydedilmiş son versiyonu önizle",
 	"centralnotice-add-new": "Yeni bir merkezi uyarı ekle",
 	"centralnotice-remove": "Çıkar",
 	"centralnotice-translate-heading": "$1 için çeviri",
@@ -109,6 +110,10 @@
 	"centralnotice-message": "Mesaj",
 	"centralnotice-message-not-set": "Mesaj ayarlanmadı",
 	"centralnotice-campaigns-using-banner": "Bu afişi kullanan kampanyalar",
+	"centralnotice-fieldset-preview": "Güncel önizleme",
+	"centralnotice-update-preview": "Önizlemeyi güncelle",
+	"centralnotice-preview-page": "[ Wiki'de önizle ]",
+	"centralnotice-preview-loader-error-dialog-ok": "Tamam",
 	"centralnotice-clone": "Klonla",
 	"centralnotice-clone-notice": "Şablonun kopyasını oluştur",
 	"centralnotice-clone-name": "Adı:",
