@@ -5,6 +5,8 @@
 			"Joao Xavier"
 		]
 	},
+	"centralnotice-notice-name": "Nomo dil avizo",
+	"centralnotice-enabled": "Permisata",
 	"centralnotice-modify": "Sendez",
 	"centralnotice-add": "Adjuntar",
 	"centralnotice-add-notice": "Adjuntar avizo",
@@ -13,6 +15,7 @@
 	"centralnotice-english": "Angliana",
 	"centralnotice-templates": "Shabloni",
 	"centralnotice-weight": "Pezo",
+	"centralnotice-locked": "klozata",
 	"centralnotice-notices": "Avizi",
 	"centralnotice-day": "Dio",
 	"centralnotice-year": "Yaro",
