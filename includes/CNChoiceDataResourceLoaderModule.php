@@ -17,19 +17,19 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	const API_REQUEST_TIMEOUT = 20;
 
 	protected function getChoices( ResourceLoaderContext $context ) {
-		global $wgNoticeProject, $wgCentralNoticeApiUrl;
-
-		$project = $wgNoticeProject;
+		$config = $this->getConfig();
+		$project = $config->get( 'NoticeProject' );
 		$language = $context->getLanguage();
 
 		// Only fetch the data via the API if $wgCentralNoticeApiUrl is set.
 		// Otherwise, use the DB.
-		if ( $wgCentralNoticeApiUrl ) {
+		$apiUrl = $config->get( 'CentralNoticeApiUrl' );
+		if ( $apiUrl ) {
 			$choices = $this->getFromApi( $project, $language );
 
 			if ( !$choices ) {
 				wfLogWarning( 'Couldn\'t fetch banner choice data via API. ' .
-					'$$wgCentralNoticeApiUrl = ' . $wgCentralNoticeApiUrl );
+					'wgCentralNoticeApiUrl = ' . $apiUrl );
 
 				return [];
 			}
@@ -50,9 +50,9 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @return array|bool
 	 */
 	protected function getFromApi( $project, $language ) {
-		global $wgCentralNoticeApiUrl;
+		$cnApiUrl = $this->getConfig()->get( 'CentralNoticeApiUrl' );
 
-		// Make the URl
+		// Make the URL
 		$q = [
 			'action' => 'centralnoticechoicedata',
 			'project' => $project,
@@ -61,7 +61,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 			'formatversion' => 2 // Prevents stripping of false values 8p
 		];
 
-		$url = wfAppendQuery( $wgCentralNoticeApiUrl, $q );
+		$url = wfAppendQuery( $cnApiUrl, $q );
 
 		$apiResult = Http::get( $url,
 			[ 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ] );
@@ -121,7 +121,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * Note: requires mediawiki-core change-id @Iee61e5b52
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		global $wgCentralNoticeCampaignMixins;
+		$cnCampaignMixins = $this->getConfig()->get( 'CentralNoticeCampaignMixins' );
 
 		// If this method is called with no context argument (the old method
 		// signature) emit a warning, but don't stop the show.
@@ -141,13 +141,13 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 		$dependencies = [];
 		foreach ( $choices as $choice ) {
 			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
-				if ( !$wgCentralNoticeCampaignMixins[$mixinName]['subscribingModule'] ) {
+				if ( !$cnCampaignMixins[$mixinName]['subscribingModule'] ) {
 					throw new MWException(
 						"No subscribing module for found campaign mixin {$mixinName}" );
 				}
 
 				$dependencies[] =
-					$wgCentralNoticeCampaignMixins[$mixinName]['subscribingModule'];
+					$cnCampaignMixins[$mixinName]['subscribingModule'];
 			}
 		}
 
