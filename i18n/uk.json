@@ -22,7 +22,8 @@
 			"Dars",
 			"Piramidion",
 			"Максим Підліснюк",
-			"Vlad5250"
+			"Vlad5250",
+			"Movses"
 		]
 	},
 	"centralnotice": "Адміністрування централізованими сповіщеннями",
@@ -41,7 +42,7 @@
 	"centralnotice-modify": "Відправити",
 	"centralnotice-view": "Перегляд",
 	"centralnotice-save-banner": "Зберегти",
-	"centralnotice-live-preview": "Попередній перегляд",
+	"centralnotice-live-preview": "Попередній перегляд останньої збереженої версії",
 	"centralnotice-add-new": "Додати нову кампанію",
 	"centralnotice-remove": "Вилучити",
 	"centralnotice-translate-heading": "Переклад для $1",
