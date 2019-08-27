@@ -269,6 +269,8 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		$this->getOutput()->addHTML( $htmlOut );
+		$this->getOutput()->addModuleStyles( 'jquery.tablesorter.styles' );
+		$this->getOutput()->addModules( 'jquery.tablesorter' );
 	}
 
 	/**
