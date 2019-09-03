@@ -127,6 +127,8 @@
 	"centralnotice-message": "信息",
 	"centralnotice-message-not-set": "没有设置消息",
 	"centralnotice-campaigns-using-banner": "使用此横幅的通告",
+	"centralnotice-preview-loader-error-dialog-ok": "完成",
+	"centralnotice-preview-loader-permissions-error": "您无权预览横幅，或者您的编辑令牌已过期。请尝试再次登录或重新加载页面。",
 	"centralnotice-clone": "建立副本",
 	"centralnotice-clone-notice": "创建一个模板的副本",
 	"centralnotice-clone-name": "名称：",

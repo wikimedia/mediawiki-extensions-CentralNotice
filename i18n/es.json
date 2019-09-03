@@ -123,6 +123,7 @@
 	"centralnotice-message": "Mensaje",
 	"centralnotice-message-not-set": "No se ha establecido un mensaje",
 	"centralnotice-campaigns-using-banner": "Campañas que utilizan este banner",
+	"centralnotice-preview-loader-error-dialog-ok": "Aceptar",
 	"centralnotice-clone": "Clonar",
 	"centralnotice-clone-notice": "Crear una copia de la plantilla",
 	"centralnotice-clone-name": "Nombre:",

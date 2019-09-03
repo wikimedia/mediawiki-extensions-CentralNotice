@@ -95,6 +95,7 @@
 	"centralnotice-edit-template-summary": "Per a crear missatges traduïbles, envolteu en tres claus una cadena de text amb un guionet, per exemple: {{{citacions-jimbo}}}.",
 	"centralnotice-message": "Missatge",
 	"centralnotice-message-not-set": "Missatge no fixat",
+	"centralnotice-preview-loader-error-dialog-ok": "D’acord",
 	"centralnotice-clone": "Duplica",
 	"centralnotice-clone-notice": "Crea una còpia de la plantilla",
 	"centralnotice-clone-name": "Nom:",
