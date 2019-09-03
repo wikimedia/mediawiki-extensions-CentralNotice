@@ -48,11 +48,6 @@
 		// EventLogging schema name for logging impressions
 		IMPRESSION_EVENT_LOGGING_SCHEMA = 'CentralNoticeImpression',
 
-		// EventLogging schema revision. Coordinate with on-wiki schema.
-		// Note: We don't register this in extension.json because we don't need the
-		// client-side schema module.
-		IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION = 19108542,
-
 		// Prefix for key used to store banner preview content for external preview.
 		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in bannereditor.js
 		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
@@ -283,7 +278,7 @@
 	function reallyRecordImpression() {
 		var state = cn.internal.state,
 			random = Math.random(),
-			url, dataCopy, elBaseUrl, elData, elQueryString;
+			url, dataCopy;
 
 		// Legacy record impression
 		if ( random <= state.getData().recordImpressionSampleRate ) {
@@ -294,30 +289,9 @@
 		}
 
 		// Impression event
-		// NOTE: Coordinate with EventLogging extension!
-		// Specifically, ensure that EventLoggingHooks.php always provides
-		// wgEventLoggingBaseUri to JavaScript, and that the URL constructed here is
-		// equivalent to the one normally sent by ext.EventLogging.core.js.
 		if ( random <= state.getData().impressionEventSampleRate ) {
-			elBaseUrl = mw.config.get( 'wgEventLoggingBaseUri' );
-
-			// If this is not set, it should mean EventLogging isn't installed.
-			if ( elBaseUrl ) {
-				dataCopy = dataCopy || state.getDataCopy( true );
-
-				// Coordinate with mw.eventLogging.prepare()
-				elData = {
-					event: dataCopy,
-					revision: IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION,
-					schema: IMPRESSION_EVENT_LOGGING_SCHEMA,
-					webHost: location.hostname,
-					wiki: mw.config.get( 'wgDBname' )
-				};
-
-				// As per mw.eventLogging.makeBeaconUrl()
-				elQueryString = encodeURIComponent( JSON.stringify( elData ) );
-				sendBeacon( elBaseUrl + '?' + elQueryString + ';' );
-			}
+			dataCopy = dataCopy || state.getDataCopy( true );
+			mw.eventLog.logEvent( IMPRESSION_EVENT_LOGGING_SCHEMA, dataCopy );
 		}
 	}
 
