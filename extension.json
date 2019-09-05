@@ -166,6 +166,7 @@
 			"dependencies": [
 				"ext.centralNotice.geoIP",
 				"ext.centralNotice.kvStore",
+				"ext.eventLogging",
 				"jquery.cookie",
 				"mediawiki.Uri",
 				"mediawiki.util",
@@ -193,6 +194,7 @@
 			"dependencies": [
 				"ext.centralNotice.kvStore",
 				"ext.centralNotice.display",
+				"ext.eventLogging",
 				"mediawiki.user",
 				"mediawiki.util"
 			],
@@ -527,7 +529,8 @@
 		"CentralNoticeMessageProtectRight": "centralnotice-admin"
 	},
 	"EventLoggingSchemas": {
-		"CentralNoticeBannerHistory": 19079897
+		"CentralNoticeBannerHistory": 19079897,
+		"CentralNoticeImpression": 19108542
 	},
 	"manifest_version": 1
 }

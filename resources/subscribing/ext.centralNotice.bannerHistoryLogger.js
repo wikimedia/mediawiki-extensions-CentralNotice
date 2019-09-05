@@ -314,7 +314,6 @@
 			// away.
 
 			mw.loader.using( [
-				'ext.eventLogging',
 				'mediawiki.util',
 				'mediawiki.user'
 			] ).done( function () {
