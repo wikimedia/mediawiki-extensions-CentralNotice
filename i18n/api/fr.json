@@ -3,7 +3,8 @@
 		"authors": [
 			"Gomoko",
 			"Windes",
-			"Wladek92"
+			"Wladek92",
+			"Thibaut120094"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "L’utilisateur n’a pas le droit de purger le contenu de la bannière côté utilisateur.",
@@ -27,7 +28,7 @@
 	"apihelp-centralnoticequerycampaign-description": "Obtenir tous les paramètres de configuration pour une campagne.",
 	"apihelp-centralnoticequerycampaign-summary": "Obtenir tous les paramètres de configuration d'une campagne.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nom de la campagne (optionnel). Séparez les valeurs multiples avec un \"|\" (barre verticale).",
-	"apihelp-centralnoticequerycampaign-example-1": "Afficher la campagne « Plea_US »",
+	"apihelp-centralnoticequerycampaign-example-1": "Afficher la campagne « Plea_US »",
 	"apihelp-centralnoticechoicedata-description": "Obtenir les données nécessaires pour choisir une bannière pour un projet et une langue donnés",
 	"apihelp-centralnoticechoicedata-summary": "Obtenir les données nécessaires pour choisir une bannière pour un projet et une langue donnés",
 	"apihelp-centralnoticechoicedata-param-project": "Le projet pour lequel choisir la bannière",
