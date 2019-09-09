@@ -96,7 +96,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					// Display the banner editor form
 					$this->showBannerEditor();
 				} else {
-					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
+					throw new ErrorPageError( 'noticetemplate', 'centralnotice-banner-name-error' );
 				}
 				break;
 

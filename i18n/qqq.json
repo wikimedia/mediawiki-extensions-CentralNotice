@@ -233,7 +233,7 @@
 	"centralnotice-devicetype-unknown": "Dropdown selector label for identifying clients on the mobile site that are not iOS or Android",
 	"centralnotice-all": "Used when a list contains all possible elements.\n{{Identical|All}}",
 	"centralnotice-generic-error": "Used as generic error message.",
-	"centralnotice-banner-name-error": "Used as error message when creating a banner.",
+	"centralnotice-banner-name-error": "Used as error message when creating a banner or navigating to an invalid banner name.",
 	"centralnotice-all-except": "A list which nearly contains every possible element, by only listing what is excluded. Parameters:\n* $1 - a comma-separated list of excluded elements",
 	"centralnotice-excluding-list": "A list followed by what has been excluded. Parameters:\n* $1 - a comma-separated list of included elements\n* $2 - a comma-separated list of excluded elements",
 	"centralnotice-user-role": "Label for a logged-in / anonymous user column",
