@@ -1017,7 +1017,7 @@ class Banner {
 				// exist in the render job.
 				// TODO: This will go away if we start tracking messages in database :)
 				MessageGroups::singleton()->recache();
-				MessageIndexRebuildJob::newJob()->run();
+				MessageIndexRebuildJob::newJob()->insertIntoJobQueue();
 				$this->runTranslateJob = false;
 			}
 
