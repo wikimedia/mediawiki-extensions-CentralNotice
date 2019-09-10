@@ -48,10 +48,9 @@
 		// EventLogging schema name for logging impressions
 		IMPRESSION_EVENT_LOGGING_SCHEMA = 'CentralNoticeImpression',
 
-		// EventLogging schema revision. Coordinate with on-wiki schema.
-		// Note: We don't register this in extension.json because we don't need the
-		// client-side schema module.
-		IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION = 19108542;
+		// Prefix for key used to store banner preview content for external preview.
+		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in bannereditor.js
+		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
 
 	// TODO: make data.result options explicit via constants
 
@@ -151,6 +150,30 @@
 		cn.events.bannerLoaded = cn.bannerLoadedPromise;
 	}
 
+	function fetchOrRetrieveBanner() {
+		var previewBannerContent,
+			data = cn.internal.state.getData();
+
+		// If this is a preview of an unsaved version, retrieve and inject the banner as
+		// soon as the DOM's ready.
+		if ( data.preview ) {
+			$( function () {
+				previewBannerContent = cn.kvStore.getItem(
+					PREVIEW_STORAGE_KEY_PREFIX + data.banner,
+					cn.kvStore.contexts.GLOBAL
+				);
+
+				if ( previewBannerContent === null ) {
+					mw.log.warn( 'Could not retrieve preview banner ' + data.banner );
+				} else {
+					injectBannerHTML( previewBannerContent );
+				}
+			} );
+		} else {
+			fetchBanner();
+		}
+	}
+
 	function fetchBanner() {
 
 		var data = cn.internal.state.getData(),
@@ -169,7 +192,7 @@
 				'debug=' + ( !!data.debug ).toString()
 			];
 
-		// If this is a preview, there might not be a campaign
+		// If this is a test display, there might not be a campaign
 		if ( data.campaign ) {
 			urlQuery.unshift( 'campaign=' + mw.Uri.encode( data.campaign ) );
 		}
@@ -255,7 +278,7 @@
 	function reallyRecordImpression() {
 		var state = cn.internal.state,
 			random = Math.random(),
-			url, dataCopy, elBaseUrl, elData, elQueryString;
+			url, dataCopy;
 
 		// Legacy record impression
 		if ( random <= state.getData().recordImpressionSampleRate ) {
@@ -266,30 +289,9 @@
 		}
 
 		// Impression event
-		// NOTE: Coordinate with EventLogging extension!
-		// Specifically, ensure that EventLoggingHooks.php always provides
-		// wgEventLoggingBaseUri to JavaScript, and that the URL constructed here is
-		// equivalent to the one normally sent by ext.EventLogging.core.js.
 		if ( random <= state.getData().impressionEventSampleRate ) {
-			elBaseUrl = mw.config.get( 'wgEventLoggingBaseUri' );
-
-			// If this is not set, it should mean EventLogging isn't installed.
-			if ( elBaseUrl ) {
-				dataCopy = dataCopy || state.getDataCopy( true );
-
-				// Coordinate with mw.eventLogging.prepare()
-				elData = {
-					event: dataCopy,
-					revision: IMPRESSION_EVENT_LOGGING_SCHEMA_REVISION,
-					schema: IMPRESSION_EVENT_LOGGING_SCHEMA,
-					webHost: location.hostname,
-					wiki: mw.config.get( 'wgDBname' )
-				};
-
-				// As per mw.eventLogging.makeBeaconUrl()
-				elQueryString = encodeURIComponent( JSON.stringify( elData ) );
-				sendBeacon( elBaseUrl + '?' + elQueryString + ';' );
-			}
+			dataCopy = dataCopy || state.getDataCopy( true );
+			mw.eventLog.logEvent( IMPRESSION_EVENT_LOGGING_SCHEMA, dataCopy );
 		}
 	}
 
@@ -692,7 +694,7 @@
 					cn.internal.state.setUpForTestingBanner();
 					setUpDataProperty();
 					setUpBannerLoadedPromise();
-					fetchBanner();
+					fetchOrRetrieveBanner();
 				} );
 		},
 

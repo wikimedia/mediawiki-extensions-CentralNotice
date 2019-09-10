@@ -32,7 +32,8 @@
 			"Vlad5250",
 			"Romanko Mikhail",
 			"Diralik",
-			"Alexander Istomin"
+			"Alexander Istomin",
+			"Movses"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -51,7 +52,7 @@
 	"centralnotice-modify": "Отправить",
 	"centralnotice-view": "Просмотр",
 	"centralnotice-save-banner": "Сохранить",
-	"centralnotice-live-preview": "Предварительный просмотр",
+	"centralnotice-live-preview": "Предварительный просмотр последней сохранённой версии",
 	"centralnotice-add-new": "Добавить новое централизованное уведомление",
 	"centralnotice-remove": "Удалить",
 	"centralnotice-translate-heading": "Перевод для $1",
@@ -127,6 +128,10 @@
 	"centralnotice-message": "Сообщение",
 	"centralnotice-message-not-set": "Сообщение не установлено",
 	"centralnotice-campaigns-using-banner": "Кампании, использующие этот баннер",
+	"centralnotice-fieldset-preview": "Предпросмотр страницы",
+	"centralnotice-update-preview": "Обновить предпросмотр",
+	"centralnotice-preview-page": "[ Предпросмотр в вики ]",
+	"centralnotice-preview-loader-error-dialog-ok": "OK",
 	"centralnotice-clone": "Клонировать",
 	"centralnotice-clone-notice": "Создать копию баннера",
 	"centralnotice-clone-name": "Имя:",

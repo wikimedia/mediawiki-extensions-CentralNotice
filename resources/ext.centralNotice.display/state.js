@@ -173,6 +173,7 @@
 		state.data.campaign = state.urlParams.campaign;
 		state.data.banner = state.urlParams.banner;
 		state.data.testingBanner = true;
+		state.data.preview = ( state.urlParams.preview !== undefined );
 	}
 
 	function setStatus( s, reason ) {

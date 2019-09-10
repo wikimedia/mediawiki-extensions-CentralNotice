@@ -22,6 +22,13 @@
  */
 ( function () {
 
+	var bannerEditor, bannerName, $previewFieldSet, $previewContent, $bannerMessages,
+		fileScopedOpenExternalPreview,
+
+		// Prefix for key used to store banner preview content for external preview.
+		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in ext.centralNotice.display.js
+		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
+
 	function doPurgeCache() {
 		var $dialogEl = $( '<div />' ),
 			waiting;
@@ -46,7 +53,7 @@
 
 		new mw.Api().postWithToken( 'csrf', {
 			action: 'centralnoticecdncacheupdatebanner',
-			banner: $( '#cn-cdn-cache-purge' ).data( 'bannerName' ),
+			banner: bannerName,
 			language: $( '#cn-cdn-cache-language' ).val()
 		}, {
 			timeout: 2000
@@ -80,8 +87,61 @@
 		} );
 	}
 
+	/**
+	 * Collects unsaved messages values from banner editing form (if any)
+	 * @return {object}
+	 */
+	function getUnsavedMessagesValues() {
+		var bannerMessagesCache = {};
+
+		if ( $bannerMessages.length ) {
+			$bannerMessages.each( function ( i, message ) {
+				var label = $( message ).find( 'label' ).text(),
+					value = $( message ).find( 'textarea' ).val();
+				bannerMessagesCache[ label ] = value;
+			} );
+		}
+
+		return bannerMessagesCache;
+	}
+
+	/**
+	 * Renders banner content preview in live preview section.
+	 *
+	 * @param boolean openExternalPreview
+	 */
+	function fetchAndUpdateBannerPreview( openExternalPreview ) {
+		var $bannerContentTextArea = $( '#mw-input-wpbanner-body' ),
+			bannerMessagesCache = getUnsavedMessagesValues(),
+			url = new mw.Uri( mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' ) );
+
+		// Set this file-scoped variable so the callback knows whether to open the
+		// external preview.
+		fileScopedOpenExternalPreview = openExternalPreview;
+
+		// Activate the barbershop "loading" animation
+		$previewFieldSet.attr( 'disabled', true );
+
+		// Send the raw unsaved banner content and messages for server-side rendering.
+		// This will call bannerEditor.updateBannerPreview().
+		$.post( url.toString(),
+			{
+				banner: bannerName,
+				previewcontent: $bannerContentTextArea.val(),
+				previewmessages: bannerMessagesCache,
+				token: mw.user.tokens.get( 'editToken' )
+			}
+		).fail( function ( jqXHR, status, error ) {
+			bannerEditor.handleBannerLoaderError( status + ': ' + error );
+		} ).always( function () {
+			// De-activate the barbershop "loading" animation
+			$previewFieldSet.attr( 'disabled', false );
+		} );
+	}
+
 	// TODO Several functions exposed aren't used elsewhere, so they should be private
-	mw.centralNotice.adminUi.bannerEditor = {
+	mw.centralNotice.adminUi.bannerEditor = bannerEditor = {
+
 		/**
 		 * Display the 'Create Banner' dialog
 		 *
@@ -214,6 +274,49 @@
 		},
 
 		/**
+		 * Updates banner preview render
+		 *
+		 * @param data
+		 */
+		updateBannerPreview: function ( data ) {
+			var bannerHtml = data.bannerHtml;
+			$previewContent.html( bannerHtml );
+
+			if ( fileScopedOpenExternalPreview ) {
+				// Put the rendered banner content in LocalStorage, for use
+				// by the external preview.
+				mw.centralNotice.kvStore.setItem(
+					PREVIEW_STORAGE_KEY_PREFIX + bannerName,
+					bannerHtml,
+					mw.centralNotice.kvStore.contexts.GLOBAL,
+					1
+				);
+
+				window.open( mw.Title.makeTitle( -1, 'Random' ).getUrl( {
+					banner: bannerName,
+					force: 1,
+					preview: 1
+				} ) );
+			}
+		},
+
+		handleBannerLoaderError: function ( msg ) {
+			var $dialogEl = $( '<div />' );
+
+			$dialogEl.text( msg );
+
+			$dialogEl.dialog( {
+				title: mw.msg( 'centralnotice-preview-loader-error-dialog-title' ),
+				buttons: [ {
+					text: mw.msg( 'centralnotice-preview-loader-error-dialog-ok' ),
+					click: function () {
+						$( this ).dialog( 'close' );
+					}
+				} ]
+			} );
+		},
+
+		/**
 		 * Hook function from onclick of the translate language drop down -- will submit the
 		 * form in order to update the language of the preview and the displayed translations.
 		 */
@@ -258,19 +361,67 @@
 				bannerField.value += buttonValue;
 			}
 			bannerField.focus();
+
+			// Trigger preview on close button insertion
+			fetchAndUpdateBannerPreview( false );
 		}
 	};
 
 	// Attach handlers and initialize stuff after document ready
 	$( function () {
-		$( '#mw-input-wpdelete-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doDeleteBanner );
-		$( '#mw-input-wparchive-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doArchiveBanner );
-		$( '#mw-input-wpclone-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doCloneBannerDialog );
-		$( '#mw-input-wpsave-button' ).on( 'click', mw.centralNotice.adminUi.bannerEditor.doSaveBanner );
-		$( '#mw-input-wptranslate-language' ).on( 'change', mw.centralNotice.adminUi.bannerEditor.updateLanguage );
-		$( '#cn-cdn-cache-purge' ).on( 'click', doPurgeCache );
+		var $editSection = $( '#cn-formsection-edit-template' ),
+			$previewLink = $( '<a/>' ),
+			$previewLegend = $( '<legend/>' ),
+			$previewUpdateButton = $( '<button/>' );
 
+		// Create and attach banner preview elements
+		$previewFieldSet = $( '<fieldset/>' );
+		$previewFieldSet.addClass( 'cn-banner-preview-fieldset' );
+		$previewLegend.append( $( '<span>' ).text( mw.msg( 'centralnotice-fieldset-preview' ) ) );
+
+		$previewLink.text( mw.msg( 'centralnotice-preview-page' ) );
+		$previewLegend.append( $previewLink );
+		$previewFieldSet.append( $previewLegend );
+
+		$previewContent = $( '<div/>' ).addClass( 'cn-banner-preview-content' );
+		$previewFieldSet.append( $previewContent );
+
+		// Preview button: use same css classes as are generated by PHP form
+		$previewUpdateButton.addClass( 'cn-formbutton' )
+			.addClass( 'webfonts-changed' )
+			.attr( 'type', 'button' )
+			.text( mw.msg( 'centralnotice-update-preview' ) );
+
+		$previewFieldSet.append( $previewUpdateButton );
+
+		$previewFieldSet.insertBefore( $editSection );
+
+		// Find banner message form elements (if any)
+		$bannerMessages = $( '#mw-htmlform-banner-messages' ).find(
+			'.mw-htmlform-field-HTMLCentralNoticeBannerMessage' );
+
+		// Attach handlers
+		$previewLink.on( 'click', function () {
+			fetchAndUpdateBannerPreview( true );
+		} );
+
+		$previewUpdateButton.on( 'click', function () {
+			fetchAndUpdateBannerPreview( false );
+		} );
+
+		$( '#mw-input-wpdelete-button' ).on( 'click', bannerEditor.doDeleteBanner );
+		$( '#mw-input-wparchive-button' ).on( 'click', bannerEditor.doArchiveBanner );
+		$( '#mw-input-wpclone-button' ).on( 'click', bannerEditor.doCloneBannerDialog );
+		$( '#mw-input-wpsave-button' ).on( 'click', bannerEditor.doSaveBanner );
+		$( '#mw-input-wptranslate-language' ).on( 'change', bannerEditor.updateLanguage );
+		$( '#cn-cdn-cache-purge' ).on( 'click', doPurgeCache );
 		$( '#cn-js-error-warn' ).hide();
+
+		// Retrieve banner name sent via data attribute
+		bannerName = $( '#centralnotice-data-container' ).data( 'banner-name' );
+
+		// Trigger preview right away
+		fetchAndUpdateBannerPreview( false );
 	} );
 
 }() );

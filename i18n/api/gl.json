@@ -3,7 +3,8 @@
 		"authors": [
 			"Banjo",
 			"Elisardojm",
-			"Navhy"
+			"Navhy",
+			"Iváns"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "O usuario non ten permiso para purgar o contido de anuncios no cliente.",

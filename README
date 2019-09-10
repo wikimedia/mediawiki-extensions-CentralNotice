@@ -13,7 +13,7 @@ Configuration
   Default: "wikipedia"
 
 * $wgNoticeProjects: List of available projects.
-  Default: all WMF wikis
+  Default: []
 
 * $wgNoticeInfrastructure: Enable the campaign hosting infrastructure on this wiki...
   Set to false for wikis that only use a sister site for the control.
@@ -202,7 +202,7 @@ Configuration
 * $wgNoticeTabifyPages: Declare all pages that should be tabified as CN pages
 
 * $wgCentralNoticeGeoIPBackgroundLookupModule: Optional name of a ResourceLoader
-  module to perfom a background GeoIP lookup via a third-party service. If no
+  module to perform a background GeoIP lookup via a third-party service. If no
   GeoIP cookie is found, the module is used to call the service. It should
   return geo via a promise. Here we provide an example implementation for
   freegeoip.net (ext.centralNotice.freegeoipLookup), but modules for other

@@ -5,19 +5,42 @@
 class SpecialBannerLoader extends UnlistedSpecialPage {
 	/**
 	 * Seconds leeway for checking stale choice data. Should be the same
-	 * as mw.cnBannerControllerLib.CAMPAIGN_STALENESS_LEEWAY.
+	 * as CAMPAIGN_STALENESS_LEEWAY in ext.centralNotice.display.chooser.js.
 	 */
 	const CAMPAIGN_STALENESS_LEEWAY = 900;
 
+	/* Possible values for $this->cacheResponse */
 	const MAX_CACHE_NORMAL = 0;
 	const MAX_CACHE_REDUCED = 1;
 
+	/* Possible values for $this->requestType */
+	const USER_DISPLAY_REQUEST = 0;
+	const TESTING_SAVED_REQUEST = 1;
+	const PREVIEW_UNSAVED_REQUEST = 2;
+
 	/** @var string Name of the chosen banner */
-	public $bannerName;
-	/** @var string Name of the campaign that the banner belongs to.*/
-	public $campaignName;
+	private $bannerName;
+
+	/** @var string|null Name of the campaign that the banner belongs to.*/
+	private $campaignName;
+
+	/** @var string|null Content of the banner to be previewed */
+	private $previewContent;
+
+	/** @var string[]|null Unsaved messages for substitution in preview banner content */
+	private $previewMessages;
+
+	/** @var string[]|null */
+	private $editToken;
+
 	/** @var bool */
-	protected $debug;
+	private $debug;
+
+	/** @var int Type of caching to set (see constants, above) */
+	private $cacheResponse;
+
+	/** @var int Request type (see constants, above) */
+	private $requestType;
 
 	public function __construct() {
 		// Register special page
@@ -28,148 +51,186 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		$this->getOutput()->disable();
 
 		try {
-			$this->getParams();
-			$out = $this->getJsNotice( $this->bannerName );
-			$cacheResponse = self::MAX_CACHE_NORMAL;
+			$this->getParamsAndSetState();
+			$out = $this->getJsNotice();
 
 		} catch ( EmptyBannerException $e ) {
 			$out = "mw.centralNotice.handleBannerLoaderError( 'Empty banner' );";
-			$cacheResponse = self::MAX_CACHE_REDUCED;
+
+			// Force reduced cache time
+			$this->cacheResponse = self::MAX_CACHE_REDUCED;
 
 		} catch ( Exception $e ) {
-			$msg = $e->getMessage();
+			if ( $e instanceof ILocalizedException ) {
+				$msg = $e->getMessageObject()->escaped();
+			} else {
+				$msg = $e->getMessage();
+			}
+
 			$msgParamStr = $msg ? Xml::encodeJsVar( $msg ) : '';
-			$out = "mw.centralNotice.handleBannerLoaderError({$msgParamStr});";
-			$cacheResponse = self::MAX_CACHE_REDUCED;
+
+			// For preview requests, a different error callback is needed.
+			if ( $this->requestType === self::PREVIEW_UNSAVED_REQUEST ) {
+				$callback = 'mw.centralNotice.adminUi.bannerEditor.handleBannerLoaderError';
+			} else {
+				$callback = 'mw.centralNotice.handleBannerLoaderError';
+			}
+
+			$out = "$callback({$msgParamStr});";
+
+			// Force reduced cache time
+			$this->cacheResponse = self::MAX_CACHE_REDUCED;
 
 			wfDebugLog( 'CentralNotice', $msg );
 		}
 
-		$this->sendHeaders( $cacheResponse );
+		// We have to call this since we've disabled output.
+		// TODO See if there's a better way to do this, maybe OutputPage::setCdnMaxage()?
+		$this->sendHeaders();
 		echo $out;
 	}
 
-	public function getParams() {
+	public function getParamsAndSetState() {
 		$request = $this->getRequest();
 
-		// FIXME: Don't allow a default language.
-		$language = $this->getLanguage()->getCode();
-
-		$this->campaignName = $request->getText( 'campaign' );
-		$this->bannerName = $request->getText( 'banner' );
+		$this->campaignName = $request->getText( 'campaign', null );
+		$this->bannerName = $request->getText( 'banner', null );
 		$this->debug = $request->getFuzzyBool( 'debug' );
+		$this->previewContent = $request->getText( 'previewcontent', null );
+		$this->previewMessages = $request->getArray( 'previewmessages', null );
+		$this->editToken = $request->getVal( 'token' );
 
-		$required_values = [
-			$this->campaignName, $this->bannerName, $language
-		];
-		foreach ( $required_values as $value ) {
-			if ( is_null( $value ) ) {
-				throw new MissingRequiredParamsException();
+		// All request types should have at least a non-empty banner name
+		if ( !$this->bannerName ) {
+			throw new MissingRequiredParamsException();
+		}
+
+		// Only render preview content and messages for users with CN admin rights, on
+		// requests that were POSTed, with the correct edit token. This is to prevent
+		// malicious use of the reflection of unsanitized parameters.
+		if ( $this->getRequest()->wasPosted() && $this->previewContent ) {
+
+			$this->requestType = self::PREVIEW_UNSAVED_REQUEST;
+
+			// Check credentials
+			if (
+				!$this->getUser()->isAllowed( 'centralnotice-admin' ) ||
+				!$this->editToken ||
+				!$this->getUser()->matchEditToken( $this->editToken )
+			) {
+				throw new BannerPreviewPermissionsException( $this->bannerName );
 			}
-		}
-	}
 
-	public function getSanitized( $param, $filter ) {
-		$matches = [];
-		if ( preg_match( $filter, $this->getRequest()->getText( $param ), $matches ) ) {
-			return $matches[0];
+			// Note: We don't set $this->cacheResponse since there's no caching for
+			// logged-in users anyway.
+
+		// Distinguish a testing request for a saved banner by the absence of a campaign
+		} elseif ( !$this->campaignName ) {
+			$this->requestType = self::TESTING_SAVED_REQUEST;
+			$this->cacheResponse = self::MAX_CACHE_REDUCED;
+
+		// We have at least a campaign name and a banner name, which means this is a
+		// normal request for a banner to display to a user.
+		} else {
+			$this->requestType = self::USER_DISPLAY_REQUEST;
+			$this->cacheResponse = self::MAX_CACHE_NORMAL;
 		}
-		return null;
 	}
 
 	/**
-	 * Generate the HTTP response headers for the banner file
-	 * @param int $cacheResponse If the response will be cached, use the normal
-	 *   cache time ($wgNoticeBannerMaxAge) or the reduced time
-	 *   ($wgNoticeBannerReducedMaxAge).
+	 * Generate the HTTP response headers for the banner file, setting maxage cache time
+	 * for front-send cache as appropriate.
+	 *
+	 * For anonymous users, set cache as per $this->cacheResponse, $wgNoticeBannerMaxAge
+	 * and $wgNoticeBannerReducedMaxAge. Never cache for logged-in users.
+	 *
+	 * TODO Couldn't we cache for logged-in users? See T149873
 	 */
-	private function sendHeaders( $cacheResponse = self::MAX_CACHE_NORMAL ) {
+	private function sendHeaders() {
 		global $wgNoticeBannerMaxAge, $wgNoticeBannerReducedMaxAge;
 
 		header( "Content-type: text/javascript; charset=utf-8" );
 
 		if ( !$this->getUser()->isLoggedIn() ) {
-			// This header tells our front-end caches to retain the content for
-			// $sMaxAge seconds.
-			$sMaxAge = ( $cacheResponse === self::MAX_CACHE_NORMAL ) ?
+			// Header tells front-end caches to retain the content for $sMaxAge seconds.
+			$sMaxAge = ( $this->cacheResponse === self::MAX_CACHE_NORMAL ) ?
 				$wgNoticeBannerMaxAge : $wgNoticeBannerReducedMaxAge;
 
-			header( "Cache-Control: public, s-maxage={$sMaxAge}, max-age=0" );
 		} else {
-			// Private users do not get cached (we have to emit this because
-			// we've disabled output)
-			// TODO Couldn't we cache for theses users? See T149873
-			header( "Cache-Control: private, s-maxage=0, max-age=0" );
+			$sMaxAge = 0;
 		}
+
+		header( "Cache-Control: public, s-maxage={$sMaxAge}, max-age=0" );
 	}
 
 	/**
 	 * Generate the JS for the requested banner
-	 * @param string $bannerName
 	 * @return string of JavaScript containing a call to insertBanner()
 	 *   with JSON containing the banner content as the parameter
 	 * @throws EmptyBannerException
 	 * @throws StaleCampaignException
 	 */
-	public function getJsNotice( $bannerName ) {
-		// If this wasn't a test of a banner, check that this is from a campaign
-		// that hasn't ended. We might get old campaigns due to forever-cached
-		// JS somewhere. Note that we include some leeway and don't consider
-		// archived or enabled status because the campaign might just have been
-		// updated and there is a normal caching lag.
+	public function getJsNotice() {
+		$banner = Banner::fromName( $this->bannerName );
 
-		// An empty campaign name is how bannerController indicates a test request.
-		if ( $this->campaignName !== '' ) {
+		if ( $this->requestType === self::USER_DISPLAY_REQUEST ) {
+
 			// The following will throw a CampaignExistenceException if there's
 			// no such campaign.
 			$campaign = new Campaign( $this->campaignName );
+
+			// Check that this is from a campaign that hasn't ended. We might get old
+			// campaigns due to forever-cached JS somewhere. Note that we include some
+			// leeway and don't consider archived or enabled status because the
+			// campaign might just have been updated and there is a normal caching lag for
+			// the data about campaigns sent to browsers.
 			$endTimePlusLeeway = wfTimestamp(
 				TS_UNIX,
 				(int)$campaign->getEndTime()->getTimestamp() + self::CAMPAIGN_STALENESS_LEEWAY
 			);
-			$now = wfTimestamp();
 
+			$now = wfTimestamp();
 			if ( $endTimePlusLeeway < $now ) {
 				throw new StaleCampaignException(
 					$this->bannerName, "Campaign: {$this->campaignName}" );
 			}
 		}
 
-		if ( $bannerName === null || $bannerName === '' ) {
-			throw new EmptyBannerException( $bannerName );
+		if ( $this->requestType === self::PREVIEW_UNSAVED_REQUEST ) {
+
+			$bannerRenderer = new BannerRenderer(
+				$this->getContext(),
+				$banner,
+				$this->campaignName,
+				$this->previewContent,
+				$this->previewMessages,
+				$this->debug
+			);
+
+			$jsCallbackFn = 'mw.centralNotice.adminUi.bannerEditor.updateBannerPreview';
+
+		} else {
+			if ( !$banner->exists() ) {
+				throw new EmptyBannerException( $this->bannerName );
+			}
+
+			$bannerRenderer = new BannerRenderer(
+				$this->getContext(),
+				$banner,
+				$this->campaignName,
+				null,
+				null,
+				$this->debug
+			);
+
+			$jsCallbackFn = 'mw.centralNotice.insertBanner';
 		}
-		$banner = Banner::fromName( $bannerName );
-		if ( !$banner->exists() ) {
-			throw new EmptyBannerException( $bannerName );
-		}
-		$bannerRenderer = new BannerRenderer(
-			$this->getContext(), $banner, $this->campaignName, $this->debug );
 
 		$bannerHtml = $bannerRenderer->toHtml();
-
-		if ( !$bannerHtml ) {
-			throw new EmptyBannerException( $bannerName );
-		}
-
-		// TODO: these are BannerRenderer duties:
-		$settings = Banner::getBannerSettings( $bannerName, false );
-
-		$category = $bannerRenderer->substituteMagicWords( $settings['category'] );
-		$category = Banner::sanitizeRenderedCategory( $category );
-
-		$bannerArray = [
-			'bannerName' => $bannerName,
-			'bannerHtml' => $bannerHtml,
-			'campaign' => $this->campaignName,
-			'category' => $category,
-		];
-
+		$bannerArray = [ 'bannerHtml' => $bannerHtml ];
 		$bannerJson = FormatJson::encode( $bannerArray );
-
 		$preload = $bannerRenderer->getPreloadJs();
 
-		$bannerJs = "{$preload}\nmw.centralNotice.insertBanner( {$bannerJson} );";
-
-		return $bannerJs;
+		return "{$preload}\n{$jsCallbackFn}( {$bannerJson} );";
 	}
 }

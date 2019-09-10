@@ -19,7 +19,8 @@
 			"Esketti",
 			"Mainframe98",
 			"Optilete",
-			"Mar(c)"
+			"Mar(c)",
+			"RadioAzureus"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -36,7 +37,7 @@
 	"centralnotice-modify": "Opslaan",
 	"centralnotice-view": "Bekijken",
 	"centralnotice-save-banner": "Opslaan",
-	"centralnotice-live-preview": "Voorvertoning",
+	"centralnotice-live-preview": "Voorvertoning laatst bewaarde versie",
 	"centralnotice-add-new": "Nieuwe centrale sitenotice toevoegen",
 	"centralnotice-remove": "Verwijderen",
 	"centralnotice-translate-heading": "Vertaling voor $1",
@@ -109,6 +110,7 @@
 	"centralnotice-message": "Bericht",
 	"centralnotice-message-not-set": "Het bericht is niet ingesteld",
 	"centralnotice-campaigns-using-banner": "Campagnes die deze banner gebruiken",
+	"centralnotice-preview-loader-error-dialog-ok": "OK",
 	"centralnotice-clone": "Kopiëren",
 	"centralnotice-clone-notice": "Een kopie van de sjabloon maken",
 	"centralnotice-clone-name": "Naam:",

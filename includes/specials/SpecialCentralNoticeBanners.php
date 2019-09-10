@@ -85,24 +85,40 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				break;
 
 			case 'edit':
-				// FIXME: extrapolate conditional into separate method?
-				if ( $this->bannerName && Banner::isValidBannerName( $this->bannerName ) ) {
-					// Assign value to instance variable to be used in showBannerEditor
-					$this->banner = Banner::fromName( $this->bannerName );
-					if ( !$this->banner->exists() ) {
-						throw new ErrorPageError( 'centralnotice-banner-not-found-title',
-							'centralnotice-banner-not-found-contents' );
-					}
-					// Display the banner editor form
+				if ( $this->bannerName ) {
+					$this->ensureBanner( $this->bannerName );
 					$this->showBannerEditor();
 				} else {
-					throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
+					throw new ErrorPageError( 'noticetemplate', 'centralnotice-banner-name-error' );
 				}
 				break;
 
 			default:
 				// Something went wrong; display error page
 				throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
+		}
+	}
+
+	/**
+	 * Ensure that $this->banner is assigned.
+	 *
+	 * @param string $bannerName
+	 * @throws ErrorPageError
+	 */
+	private function ensureBanner( $bannerName ) {
+		if ( !Banner::isValidBannerName( $bannerName ) ) {
+			throw new ErrorPageError( 'noticetemplate', 'centralnotice-generic-error' );
+		}
+
+		if ( $this->banner ) {
+			return;
+		}
+
+		$this->banner = Banner::fromName( $this->bannerName );
+
+		if ( !$this->banner->exists() ) {
+			throw new ErrorPageError( 'centralnotice-banner-not-found-title',
+				'centralnotice-banner-not-found-contents' );
 		}
 	}
 
@@ -367,7 +383,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * Returns array of navigation links to banner preview URL and
 	 * edit link to the banner's wikipage if the user is allowed.
 	 *
-	 * TODO: This looks reusable, maybe move to BannerRenderer.
+	 * FIXME Some of this code is repeated in BannerRenderer, but probably
+	 * should be elsewhere.
 	 *
 	 * @return array
 	 */
@@ -457,6 +474,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$out->addHTML( $this->generateCdnPurgeSection() );
 		}
 
+		// Send banner name into page for access from JS
+		$out->addHTML( Xml::element( 'span',
+			[
+				'id' => 'centralnotice-data-container',
+				'data-banner-name' => $this->bannerName
+			]
+		) );
+
 		$out->addHTML( Xml::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
@@ -541,6 +566,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'cssclass' => 'separate-form-element',
 		];
 
+		// TODO Remove. See T225831.
 		$mixinNames = array_keys( $wgCentralNoticeBannerMixins );
 		$availableMixins = array_combine( $mixinNames, $mixinNames );
 		$selectedMixins = array_keys( $this->banner->getMixins() );
@@ -834,8 +860,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$purgeControls .= Html::closeElement( 'label' );
 
 		$purgeControls .= ' ' . Html::openElement( 'button', $disabledAttr + [
-			'id' => 'cn-cdn-cache-purge',
-			'data-banner-name' => $this->bannerName
+			'id' => 'cn-cdn-cache-purge'
 		] );
 
 		$purgeControls .=
@@ -925,7 +950,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	protected function processSaveBannerAction( $formData ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
-		$banner = Banner::fromName( $this->bannerName );
+		$this->ensureBanner( $this->bannerName );
 		$summary = $formData['summary'];
 
 		/* --- Update the translations --- */
@@ -934,7 +959,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			foreach ( $formData as $key => $value ) {
 				if ( strpos( $key, 'message-' ) === 0 ) {
 					$messageName = substr( $key, strlen( 'message-' ) );
-					$bannerMessage = $banner->getMessageField( $messageName );
+					$bannerMessage = $this->banner->getMessageField( $messageName );
 
 					$bannerMessage->update(
 						$value, $this->bannerLanguagePreview, $this->getUser(),
@@ -953,21 +978,21 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$prioLang = [];
 		}
 
-		$banner->setAllocation(
+		$this->banner->setAllocation(
 			in_array( 'anonymous', $formData[ 'display-to' ] ),
 			in_array( 'registered', $formData[ 'display-to' ] )
 		);
-		$banner->setCategory( $formData[ 'banner-class' ] );
-		$banner->setDevices( $formData[ 'device-classes' ] );
-		$banner->setPriorityLanguages( $prioLang );
-		$banner->setBodyContent( $formData[ 'banner-body' ] );
+		$this->banner->setCategory( $formData[ 'banner-class' ] );
+		$this->banner->setDevices( $formData[ 'device-classes' ] );
+		$this->banner->setPriorityLanguages( $prioLang );
+		$this->banner->setBodyContent( $formData[ 'banner-body' ] );
 
-		$banner->setMixins( $formData['mixins'] );
-		$banner->save( $this->getUser(), $summary );
+		$this->banner->setMixins( $formData['mixins'] );
+		$this->banner->save( $this->getUser(), $summary );
 
 		// Deferred update to purge CDN caches for banner content (for user's lang)
 		DeferredUpdates::addUpdate(
-			new CdnCacheUpdateBannerLoader( $this->getLanguage()->getCode(), $banner ),
+			new CdnCacheUpdateBannerLoader( $this->getLanguage()->getCode(), $this->banner ),
 			DeferredUpdates::POSTSEND
 		);
 
