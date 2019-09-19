@@ -16,7 +16,8 @@
 			"Athena in Wonderland",
 			"Eduardo Addad de Oliveira",
 			"Ldacosta",
-			"Tks4Fish"
+			"Tks4Fish",
+			"Mansil alfalb"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -35,7 +36,7 @@
 	"centralnotice-modify": "Enviar",
 	"centralnotice-view": "Ver",
 	"centralnotice-save-banner": "Gravar",
-	"centralnotice-live-preview": "Antevisão",
+	"centralnotice-live-preview": "Pré-visualizar a última sessão guardada",
 	"centralnotice-add-new": "Adicionar um aviso centralizado",
 	"centralnotice-remove": "Remover",
 	"centralnotice-translate-heading": "Tradução para $1",
@@ -308,8 +309,8 @@
 	"centralnotice-impression-events-sample-rate-help": "Definir uma taxa de amostragem não padronizada para o registo das operações de impressão.",
 	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 1 inclusive)",
 	"centralnotice-banner-protection-log-reason": "Protegido automaticamente pela Central de Avisos; editar só em [[Special:CentralNotice]] ou [[Special:Translate]].",
-	"centralnotice-multiple-countries": "Múltiplos ($1)",
-	"centralnotice-multiple-languages": "Múltiplas ($1)",
+	"centralnotice-multiple-countries": "Múltiplos países",
+	"centralnotice-multiple-languages": "Múltiplos idiomas",
 	"tag-centralnotice": "Central de Avisos",
 	"tag-centralnotice-description": "Edição criada através da interface de administração da Central de Avisos",
 	"tag-centralnotice_translation": "Tradução da Central de Avisos",

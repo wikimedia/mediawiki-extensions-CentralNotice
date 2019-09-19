@@ -10,7 +10,8 @@
 			"Paxt",
 			"Vks",
 			"Ilimanaq29",
-			"Patriccck"
+			"Patriccck",
+			"MrJaroslavik"
 		]
 	},
 	"centralnotice": "Správa centralizovaných oznámení",
@@ -27,7 +28,7 @@
 	"centralnotice-modify": "Odeslat",
 	"centralnotice-view": "Zobrazit",
 	"centralnotice-save-banner": "Uložit",
-	"centralnotice-live-preview": "Náhled",
+	"centralnotice-live-preview": "Náhled poslední uložené verze",
 	"centralnotice-add-new": "Přidat nové centrální oznámení",
 	"centralnotice-remove": "Odstranit",
 	"centralnotice-translate-heading": "Překlad šablony „$1“",
@@ -237,8 +238,8 @@
 	"centralnotice-impression-events-sample-rate": "Zobrazení vzorkového hodnocení událostí",
 	"centralnotice-impression-events-sample-rate-help": "Zvolit nevýchozí vzorkové hodnocení k protokolování dojmu z událostí.",
 	"centralnotice-impression-events-sample-rate-field": "Zobrazení vzorkového hodnocení událostí (mělo by být mezi 0 a 1, včetně)",
-	"centralnotice-multiple-countries": "Vícero ($1)",
-	"centralnotice-multiple-languages": "více ($1)",
+	"centralnotice-multiple-countries": "Více zemí",
+	"centralnotice-multiple-languages": "Více jazyků",
 	"tag-centralnotice": "Centralizovaná oznámení",
 	"tag-centralnotice_translation": "Překlady Centralizovaných oznámení"
 }
