@@ -239,6 +239,7 @@
 	"centralnotice-banner-not-found-contents": "Non ge stè 'nu banner cu stu nome satte-satte.",
 	"hidebanners": "Scunne le banner",
 	"centralnotice-banner-history-logger-max-entry-age": "Età massime de le vôsce de l'archivije (pe sciurne)",
+	"centralnotice-large-banner-limit-days": "Lunghezze d'a soppressione",
 	"centralnotice-banner-sequence": "Sequenze d'u striscione",
 	"centralnotice-banner-sequence-bucket-add-step": "Aggiunge 'nu passe",
 	"centralnotice-banner-sequence-banner": "Banner",

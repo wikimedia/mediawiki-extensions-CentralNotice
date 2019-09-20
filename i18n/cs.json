@@ -95,7 +95,7 @@
 	"centralnotice-number-uses": "Použití",
 	"centralnotice-settings": "Nastavení",
 	"centralnotice-edit-template": "Upravit šablonu",
-	"centralnotice-edit-template-summary": "Lokalizovatelnou zprávu vytvoříte uzavřením identifikátoru se spojovníky do složených závorek, např. {{{citát-jimbo}}}.",
+	"centralnotice-edit-template-summary": "Upozornění: Načtení externích zdrojů do banneru může ohrozit soukromí uživatele.\n\nChcete-li vytvořit lokalizovatelnou zprávu, uzavřete řetězec do tří složených závorek, např. <nowiki>{{{message_name}}}</nowiki>. Chcete-li použít lokalizovatelnou zprávu z jiného banneru, zadejte název banneru následovaný čárkou, poté název zprávy, např. <nowiki>{{{banner_name,message_name}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Kouzelná slova poskytovaná bannerovými mixiny: $1",
 	"centralnotice-message": "Zpráva",
 	"centralnotice-message-not-set": "Zpráva nebyla nastavena",
