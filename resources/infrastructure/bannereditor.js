@@ -129,7 +129,7 @@
 				banner: bannerName,
 				previewcontent: $bannerContentTextArea.val(),
 				previewmessages: bannerMessagesCache,
-				token: mw.user.tokens.get( 'editToken' )
+				token: mw.user.tokens.get( 'csrfToken' )
 			}
 		).fail( function ( jqXHR, status, error ) {
 			bannerEditor.handleBannerLoaderError( status + ': ' + error );

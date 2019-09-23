@@ -84,7 +84,7 @@
 			$summaryField = $( '<input>' ).attr( { type: 'hidden', name: 'changeSummary' } ),
 			$changesField = $( '<input>' ).attr( { type: 'hidden', name: 'changes' } );
 
-		$authtokenField.val( mw.user.tokens.get( 'editToken' ) );
+		$authtokenField.val( mw.user.tokens.get( 'csrfToken' ) );
 		$summaryField.val(
 			$( '#cn-campaign-pager input.cn-change-summary-input' ).val()
 		);
