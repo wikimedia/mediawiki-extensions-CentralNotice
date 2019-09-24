@@ -220,6 +220,12 @@ Configuration
     "default-src data: blob: 'unsafe-inline' 'unsafe-eval' 'self';"
   Default: false
 
+* $wgCentralNoticeMaxCampaignFallback: The maximum number of times campaign chooser
+  will iterate through available campaigns to choose one to display to the user.
+  The purpose of setting a low value is to avoid a long-running loop through
+  campaigns. To prevent campaign fallback, set to 1.
+  Default: 5
+
 * $wgCentralNoticeAdminGroup: This group will be granted centralnotice-admin
   rights. You can always specify additional groups in $wgGroupPermissions. A
   false-y value means only groups explicitly specified in $wgGroupPermissions

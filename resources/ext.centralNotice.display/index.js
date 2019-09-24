@@ -314,7 +314,7 @@
 			state = cn.internal.state,
 			hide = cn.internal.hide,
 			campaign = null,
-			banner, i, maxIterations, maxIterationsConfig;
+			banner, i, maxCampaignFallback, maxCampaignFallbackConfig;
 
 		// This will gather initial data needed for selection and display.
 		// We expose it above via a getter on the data property.
@@ -342,15 +342,15 @@
 			state.getData().device
 		) );
 
-		maxIterationsConfig = mw.config.get( 'wgCentralNoticeMaxIterations' ) || 100;
+		maxCampaignFallbackConfig = mw.config.get( 'wgCentralNoticeMaxCampaignFallback' );
 		// Set iterations limit for the loop below, pick the lowest of the two
-		maxIterations = Math.min(
+		maxCampaignFallback = Math.min(
 			state.getData().availableCampaigns.length,
-			maxIterationsConfig
+			maxCampaignFallbackConfig
 		);
 
 		// Try to display something unless we're out of choices
-		for ( i = 0; i < maxIterations; i++ ) {
+		for ( i = 0; i < maxCampaignFallback; i++ ) {
 
 			// Choose a campaign or no campaign for this user.
 			campaign = chooser.chooseCampaign(

@@ -499,7 +499,7 @@ class CentralNoticeHooks {
 			$wgCentralNoticeImpressionEventSampleRate,
 			$wgCentralSelectedBannerDispatcher, $wgCentralSelectedMobileBannerDispatcher,
 			$wgCentralNoticePerCampaignBucketExtension, $wgCentralNoticeCampaignMixins,
-			$wgCentralNoticeMaxIterations;
+			$wgCentralNoticeMaxCampaignFallback;
 
 		// TODO Check if the following comment still applies
 		// Making these calls too soon will causes issues with the namespace localisation cache.
@@ -535,7 +535,7 @@ class CentralNoticeHooks {
 		$vars[ 'wgNoticeNumberOfControllerBuckets' ] = $wgNoticeNumberOfControllerBuckets;
 		$vars[ 'wgNoticeCookieDurations' ] = $wgNoticeCookieDurations;
 		$vars[ 'wgNoticeHideUrls' ] = $wgNoticeHideUrls;
-		$vars[ 'wgCentralNoticeMaxIterations' ] = $wgCentralNoticeMaxIterations;
+		$vars[ 'wgCentralNoticeMaxCampaignFallback' ] = $wgCentralNoticeMaxCampaignFallback;
 
 		$vars[ 'wgCentralNoticePerCampaignBucketExtension' ] =
 			$wgCentralNoticePerCampaignBucketExtension;
