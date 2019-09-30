@@ -33,7 +33,7 @@ class AllocationCalculator {
 	 * Filter an array in the format output by
 	 * ChoiceDataProvider::getChoices(), based on country, logged-in
 	 * status and device. This method is the server-side equivalent of
-	 * mw.cnBannerControllerLib.filterChoiceData(). (However, this method does
+	 * mw.centralNotice.internal.chooser.makeAvailableCampaigns(). (However, this method does
 	 * not perform campaign freshness checks like the client-side one.)
 	 *
 	 * @param array &$choiceData Campaigns with banners as returned by
@@ -47,8 +47,8 @@ class AllocationCalculator {
 	 *
 	 * @param string $device target device code
 	 */
-	public static function filterChoiceData( &$choiceData, $country, $status, $device ) {
-		$filteredChoiceData = [];
+	public static function makeAvailableCampaigns( &$choiceData, $country, $status, $device ) {
+		$availableCampaigns = [];
 
 		foreach ( $choiceData as $campaign ) {
 			$keepCampaign = false;
@@ -87,10 +87,10 @@ class AllocationCalculator {
 			}
 
 			if ( $keepCampaign ) {
-				$filteredChoiceData[] = $campaign;
+				$availableCampaigns[] = $campaign;
 			}
 		}
-		$choiceData = $filteredChoiceData;
+		$choiceData = $availableCampaigns;
 	}
 
 	/**
@@ -278,7 +278,7 @@ class AllocationCalculator {
 		$country, $status, $device, $bucket, $campaigns
 	) {
 		// Filter and determine campaign allocation
-		self::filterChoiceData(
+		self::makeAvailableCampaigns(
 			$campaigns,
 			$country,
 			$status,

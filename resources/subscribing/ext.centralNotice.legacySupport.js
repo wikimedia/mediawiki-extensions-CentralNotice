@@ -11,7 +11,7 @@
 	mixin.setPreBannerHandler( function ( mixinParams ) {
 
 		if ( mixinParams.setSRISampleRate ) {
-			cn.setRecordImpressionSampleRate( mixinParams.sriSampleRate );
+			cn.setMinRecordImpressionSampleRate( mixinParams.sriSampleRate );
 		}
 
 		if ( mixinParams.bannersNotGuaranteedToDisplay ) {

@@ -7,7 +7,7 @@
 		mixin = new cn.Mixin( 'impressionEventsSampleRate' );
 
 	mixin.setPreBannerHandler( function ( mixinParams ) {
-		cn.setImpressionEventSampleRate( mixinParams.rate );
+		cn.setMinImpressionEventSampleRate( mixinParams.rate );
 	} );
 
 	// Register the mixin

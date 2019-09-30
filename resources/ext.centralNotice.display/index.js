@@ -314,7 +314,7 @@
 			state = cn.internal.state,
 			hide = cn.internal.hide,
 			campaign,
-			banner;
+			banner, i, maxIterations, maxIterationsConfig;
 
 		// This will gather initial data needed for selection and display.
 		// We expose it above via a getter on the data property.
@@ -322,14 +322,7 @@
 
 		// Because of browser limitations, and to maintain our contract among
 		// components of this module, we have to do this here.
-		// TODO do this some other way...
 		setUpDataProperty();
-
-		// Below, we explicitly pass information from state to other
-		// internal objects, which are not allowed to have dependencies.
-		// While this could be made more compact by allowing internal
-		// objects to access state for themselves, disallowing it ensures
-		// their scope is limited and keeps the information flow visible.
 
 		// Bow out and show no banners if choice data seems stale
 		if ( !chooser.choiceDataSeemsFresh( cn.choiceData ) ) {
@@ -337,56 +330,95 @@
 			return;
 		}
 
-		// Choose a campaign or no campaign for this user.
-		campaign = chooser.chooseCampaign(
+		// Below, we explicitly pass information from state to other
+		// internal objects, which are not allowed to have dependencies.
+		// While this could be made more compact by allowing internal
+		// objects to access state for themselves, disallowing it ensures
+		// their scope is limited and keeps the information flow visible.
+		state.setAvailableCampaigns( chooser.makeAvailableCampaigns(
 			cn.choiceData,
 			state.getData().country,
 			state.getData().anonymous,
-			state.getData().device,
-			state.getData().randomcampaign
+			state.getData().device
+		) );
+
+		maxIterationsConfig = mw.config.get( 'wgCentralNoticeMaxIterations' ) || 100;
+		// Set iterations limit for the loop below, pick the lowest of the two
+		maxIterations = Math.min(
+			state.getData().availableCampaigns.length,
+			maxIterationsConfig
 		);
 
-		// Was a campaign was chosen? We might have no campaign even though
-		// ChoiceData had choices, since all choices could have been
-		// eliminated based on data here on the client... also, we might
-		// have fallen on an unallocated block.
-		if ( campaign === null ) {
-			return;
-		}
+		// Try to display something unless we're out of choices
+		for ( i = 0; i < maxIterations; i++ ) {
 
-		// Now that we have a campaign, send some info to other objects
-		state.setCampaign( campaign );
-		bucketer.setCampaign( campaign );
-		hide.setCategory( state.getData().campaignCategory );
+			// Choose a campaign or no campaign for this user.
+			campaign = chooser.chooseCampaign(
+				state.getData().availableCampaigns,
+				state.getData().randomcampaign
+			);
 
-		if ( cn.kvStore ) {
-			cn.kvStore.setCampaignName( state.getData().campaign );
-			cn.kvStore.setCategory( state.getData().campaignCategory );
-		}
+			// Nothing is selected so we're out of choices - every campaign has failed
+			// or we hit an allocation boundaries
+			if ( campaign === null ) {
+				break;
+			}
 
-		// Get a bucket
-		bucketer.process();
-		state.setBucket( bucketer.getBucket() );
-		state.setReducedBucket( bucketer.getReducedBucket() );
+			// Now that we have a campaign, send some info to other objects
+			state.setCampaign( campaign );
+			bucketer.setCampaign( campaign );
+			hide.setCategory( state.getData().campaignCategory );
 
-		// Check the hide cookie and possibly cancel the banner.
-		// We do this before running pre-banner hooks so that these can count
-		// stuff differently if there was a hide cookie.
-		hide.processCookie();
-		if ( hide.shouldHide() ) {
-			state.cancelBanner( hide.getReason() );
+			if ( cn.kvStore ) {
+				cn.kvStore.setCampaignName( state.getData().campaign );
+				cn.kvStore.setCategory( state.getData().campaignCategory );
+			}
+
+			// Get a bucket
+			bucketer.process();
+			state.setBucket( bucketer.getBucket() );
+			state.setReducedBucket( bucketer.getReducedBucket() );
+
+			// Check the hide cookie and possibly cancel the banner.
+			// We do this before running pre-banner hooks so that these can count
+			// stuff differently if there was a hide cookie.
+			hide.processCookie();
+			if ( hide.shouldHide() ) {
+				// Cancelling a banner will remove the currently chosen campaign from the list
+				// of available campaigns, so it can't be chosen in the next iteration of the loop
+				state.cancelBanner( hide.getReason() );
+				runPreBannerMixinHooks();
+				runPostBannerMixinHooks();
+				// Nullify the campaign chosen in case it's the last iteration
+				campaign = null;
+				continue;
+			}
+
 			runPreBannerMixinHooks();
-			runPostBannerMixinHooks();
-			recordImpression();
-			return;
+
+			// Cancel banner, if that was requested by code in a pre-banner hook
+			// If the banner has been cancelled, that also removed the currently chosen campaign
+			// from the list of available campaigns, so it can't be chosen in the next iteration
+			// of the loop.
+			if ( state.isBannerCanceled() ) {
+				runPostBannerMixinHooks();
+				// Nullify the campaign chosen in case it's the last iteration
+				campaign = null;
+				continue;
+			}
+
+			// Reaching this point means that a campaign was chosen and the banner was not cancelled
+			break;
+
 		}
 
-		runPreBannerMixinHooks();
-
-		// Cancel banner, if that was requested by code in a pre-banner hook
-		if ( state.isBannerCanceled() ) {
-			runPostBannerMixinHooks();
-			recordImpression();
+		// Nothing is selected so we're out of choices - every campaign has failed
+		// or we hit an allocation boundaries
+		if ( campaign === null ) {
+			// Check if at least one campaign has been previously chosen
+			if ( state.countCampaignsAttempted() > 0 ) {
+				recordImpression();
+			}
 			return;
 		}
 
@@ -618,21 +650,23 @@
 		},
 
 		/**
-		 * Set the sample rate for calling Special:RecordImpression. Default is
+		 * Set the minimal sample rate for calling Special:RecordImpression. Default is
 		 * wgCentralNoticeSampleRate. Note that Special:RecordImpression will
-		 * not be called at all if a campaign was not chosen for this user.
+		 * not be called at all if a campaign was not chosen for this user. Also note
+		 * that the highest rate set will be used.
 		 */
-		setRecordImpressionSampleRate: function ( rate ) {
-			cn.internal.state.setRecordImpressionSampleRate( rate );
+		setMinRecordImpressionSampleRate: function ( rate ) {
+			cn.internal.state.setMinRecordImpressionSampleRate( rate );
 		},
 
 		/**
-		 * Set the sample rate for the logging of impression events (unless it was
+		 * Set the minimal sample rate for the logging of impression events (unless it was
 		 * overridden by a URL parameter, in which that takes precedence). Default is
-		 * wgCentralNoticeImpressionEventSampleRate.
+		 * wgCentralNoticeImpressionEventSampleRate. Also note that the highest rate set
+		 * will be used.
 		 */
-		setImpressionEventSampleRate: function ( rate ) {
-			cn.internal.state.setImpressionEventSampleRate( rate );
+		setMinImpressionEventSampleRate: function ( rate ) {
+			cn.internal.state.setMinImpressionEventSampleRate( rate );
 		},
 
 		/**
