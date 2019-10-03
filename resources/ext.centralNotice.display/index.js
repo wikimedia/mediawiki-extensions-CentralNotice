@@ -313,7 +313,7 @@
 			bucketer = cn.internal.bucketer,
 			state = cn.internal.state,
 			hide = cn.internal.hide,
-			campaign,
+			campaign = null,
 			banner, i, maxIterations, maxIterationsConfig;
 
 		// This will gather initial data needed for selection and display.
@@ -412,8 +412,9 @@
 
 		}
 
-		// Nothing is selected so we're out of choices - every campaign has failed
-		// or we hit an allocation boundaries
+		// Nothing is selected because we're out of choices
+		// Every campaign has failed, or there are no available campaigns,
+		// or we hit an allocation boundary
 		if ( campaign === null ) {
 			// Check if at least one campaign has been previously chosen
 			if ( state.countCampaignsAttempted() > 0 ) {
