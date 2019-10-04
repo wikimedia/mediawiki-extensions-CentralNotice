@@ -118,6 +118,7 @@
 	"centralnotice-message": "Повідомлення",
 	"centralnotice-message-not-set": "Повідомлення не встановлено",
 	"centralnotice-campaigns-using-banner": "Кампанії, що використовують цей банер",
+	"centralnotice-preview-loader-error-dialog-ok": "Гаразд",
 	"centralnotice-clone": "Клонувати",
 	"centralnotice-clone-notice": "Створити копію банера",
 	"centralnotice-clone-name": "Назва:",
