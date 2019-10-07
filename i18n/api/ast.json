@@ -39,5 +39,9 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Posición dientro del conxuntu de resultaos (opcional).",
 	"apihelp-query+centralnoticelogs-param-start": "Hora de principiu del rangu (opcional).",
 	"apihelp-query+centralnoticelogs-param-end": "Hora final del rangu (opcional).",
-	"apihelp-query+centralnoticelogs-example-1": "Amosar los rexistros"
+	"apihelp-query+centralnoticelogs-example-1": "Amosar los rexistros",
+	"apihelp-query+centralnoticeactivecampaigns-description": "Recibir la llista de campañes actives actualmente coles dates de principiu y final y los cartelos asociaos.",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "Recibir la llista de campañes actives actualmente coles dates de principiu y final y los cartelos asociaos.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "incluir campañes futures activaes (igual que les campañes actives actualmente).",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Recibir la llista de campañes actives actualmente coles dates de principiu y final y los cartelos asociaos."
 }
