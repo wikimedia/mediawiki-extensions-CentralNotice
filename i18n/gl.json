@@ -300,9 +300,14 @@
 	"centralnotice-banner-sequence-skip-with-id-error": "O identificador non pode conter \"|\".",
 	"centralnotice-banner-sequence-no-banner": "(Sen anuncio)",
 	"centralnotice-banner-sequence-detailed-help": "As secuencias defínense por separado para cada serie. En cada paso, só están dispoñibles os anuncios atribuídos a esa serie da secuencia. Para amosar sempre un paso, deixe o campo \"Saltar con identificador\" baleiro. Se se define un indicador, entón despois de completar o paso, será almacenado un indicador no navegador do usuario e, na próxima vez que o usuario chegue a un paso co mesmo identificador, este paso será saltado. Os identificadores do elemento compartido \"Limitar anuncios grandes e cambiar\" son compatibles e tamén será tidos en consideración. Cando remata unha secuencia, recomeza dende o inicio (para impedir que unha secuencia sexa reiniciada, use o elemento compartible \"limitación de impresión\" para limitar as impresións).",
+	"centralnotice-impression-events-sample-rate": "Taxa de exemplo de eventos de impresión",
+	"centralnotice-impression-events-sample-rate-help": "Definir unha taxa de exemplo non predeterminada para o rexistro das operacións de impresión.",
+	"centralnotice-impression-events-sample-rate-field": "Taxa de exemplo para operacións de impresión (debe estar entre 0 e 1, incluídos)",
+	"centralnotice-banner-protection-log-reason": "Protexido automaticamente pola Central de Avisos; editar só en [[Special:CentralNotice]] ou [[Special:Translate]].",
 	"centralnotice-multiple-countries": "Múltiples países",
 	"centralnotice-multiple-languages": "Múltiples linguas",
 	"tag-centralnotice": "Central de Avisos",
 	"tag-centralnotice-description": "Edición creada a través da interface de administración da Central de Avisos",
-	"tag-centralnotice_translation": "Tradución da Central de Avisos"
+	"tag-centralnotice_translation": "Tradución da Central de Avisos",
+	"tag-centralnotice_translation-description": "Edición de contido da Central de Avisos creada a través da extensión de Tradución"
 }
