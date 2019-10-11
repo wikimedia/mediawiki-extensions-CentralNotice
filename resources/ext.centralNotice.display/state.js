@@ -362,12 +362,9 @@
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
 
 			// Provide the names of mixins enabled in this campaign
-			// Note: Object.keys() not available in IE8
-			// Another note: We expose an object to make testing for a specific
-			// mixin easy in IE8, too
 			state.data.mixins = {};
 			for ( prop in state.campaign.mixins ) {
-				if ( Object.prototype.hasOwnProperty.call( state.campaign.mixins, prop ) ) {
+				if ( Object.hasOwnProperty.call( state.campaign.mixins, prop ) ) {
 					state.data.mixins[ prop ] = true;
 				}
 			}
