@@ -180,7 +180,7 @@
 	"centralnotice-banner-sequence-bucket-add-step": "Добавяне на стъпка",
 	"centralnotice-banner-sequence-banner": "Банер",
 	"centralnotice-banner-sequence-page-views": "Прегледи на страницата",
-	"centralnotice-banner-protection-log-reason": "Автоматично защитено от Централно известие; редактирайте се само чрез [[Special:CentralNotice]] или [[Special:Translate]].",
+	"centralnotice-banner-protection-log-reason": "Автоматично защитено от CentralNotice; моля, редактирайте се само чрез [[Special:CentralNotice]] или [[Special:Translate]]",
 	"tag-centralnotice": "Централизирани съобщения",
 	"tag-centralnotice-description": "Редакцията е направена чрез администраторския интерфейс на Централизираните съобщения",
 	"tag-centralnotice_translation": "Превод на централизирано съобщение",
