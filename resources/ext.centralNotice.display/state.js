@@ -348,6 +348,7 @@
 			// Resetting previously set flags (if any)
 			delete state.data.result;
 			delete state.data.reason;
+			delete state.data.bannerCanceledReason;
 
 			state.campaign = c;
 			state.data.campaign = state.campaign.name;
