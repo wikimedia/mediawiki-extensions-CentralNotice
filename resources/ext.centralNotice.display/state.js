@@ -194,7 +194,7 @@
 				return c.campaign;
 			} ).indexOf( state.data.campaign );
 			// We don't need to check the cIndex since we know the campaign is on the list
-			state.data.campaignStatuses[ cIndex ].statusCode = s.key;
+			state.data.campaignStatuses[ cIndex ].statusCode = state.data.statusCode;
 		}
 	}
 
