@@ -302,7 +302,7 @@
 	"centralnotice-impression-events-sample-rate": "Примерочна стапка на посети",
 	"centralnotice-impression-events-sample-rate-help": "Задајте нестандардна примерочна стапка за заведување на посетите.",
 	"centralnotice-impression-events-sample-rate-field": "Примерочна стапка на посетите (треба да биде помеѓу 0 и 1)",
-	"centralnotice-banner-protection-log-reason": "Автоматски заштитено од Централниот разглас; се уредува само преку [[Special:CentralNotice]] или [[Special:Translate]].",
+	"centralnotice-banner-protection-log-reason": "Автоматски заштитено од Централниот разглас; уредувајте само преку [[Special:CentralNotice]] или [[Special:Translate]].",
 	"centralnotice-multiple-countries": "Повеќе земји",
 	"centralnotice-multiple-languages": "Повеќе јазици",
 	"tag-centralnotice": "Централен разглас",

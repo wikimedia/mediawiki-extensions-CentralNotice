@@ -14,7 +14,8 @@
 			"StanProg",
 			"Vodnokon4e",
 			"ShockD",
-			"Vlad5250"
+			"Vlad5250",
+			"Ted Masters"
 		]
 	},
 	"centralnotice": "Администратор на централизираните съобщения",
@@ -113,6 +114,7 @@
 	"centralnotice-banner-type": "Тип банер:",
 	"centralnotice-banner-collapsible": "Сгъваема",
 	"centralnotice-banner-fundraising": "Това е банер за дарителска кампания",
+	"centralnotice-banner-cdn-dialog-ok": "Добре",
 	"centralnotice-countries": "Държави",
 	"centralnotice-allocation": "Разпределение",
 	"centralnotice-languages": "Езици",
@@ -180,7 +182,7 @@
 	"centralnotice-banner-sequence-bucket-add-step": "Добавяне на стъпка",
 	"centralnotice-banner-sequence-banner": "Банер",
 	"centralnotice-banner-sequence-page-views": "Прегледи на страницата",
-	"centralnotice-banner-protection-log-reason": "Автоматично защитено от CentralNotice; моля, редактирайте се само чрез [[Special:CentralNotice]] или [[Special:Translate]]",
+	"centralnotice-banner-protection-log-reason": "Автоматично защитено от CentralNotice; моля, редактирайте само чрез [[Special:CentralNotice]] или [[Special:Translate]]",
 	"tag-centralnotice": "Централизирани съобщения",
 	"tag-centralnotice-description": "Редакцията е направена чрез администраторския интерфейс на Централизираните съобщения",
 	"tag-centralnotice_translation": "Превод на централизирано съобщение",
