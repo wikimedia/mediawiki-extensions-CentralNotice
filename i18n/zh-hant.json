@@ -26,7 +26,8 @@
 			"Sanmosa",
 			"Kly",
 			"A2093064",
-			"Winston Sung"
+			"Winston Sung",
+			"Xiplus"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -323,7 +324,7 @@
 	"centralnotice-impression-events-sample-rate": "印象事件取樣率",
 	"centralnotice-impression-events-sample-rate-help": "為日誌印象事件設定非預設的取樣率。",
 	"centralnotice-impression-events-sample-rate-field": "印象事件取樣率（應介於包含在 0 與 1 之間）",
-	"centralnotice-banner-protection-log-reason": "由 CentralNotice 做出自動保護，僅可透過 [[Special:CentralNotice]] 或 [[Special:Translate]] 來編輯。",
+	"centralnotice-banner-protection-log-reason": "由 CentralNotice 做出自動保護，請僅用 [[Special:CentralNotice]] 或 [[Special:Translate]] 來編輯。",
 	"centralnotice-multiple-countries": "多國",
 	"centralnotice-multiple-languages": "多語言",
 	"tag-centralnotice": "中央公告",

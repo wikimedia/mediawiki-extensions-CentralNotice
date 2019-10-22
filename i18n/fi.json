@@ -188,6 +188,7 @@
 	"centralnotice-archive-banner-cancel": "Peru",
 	"centralnotice-change-summary-label": "Yhteenveto",
 	"centralnotice-change-summary-prompt": "Viesti näistä muutoksista (valinnainen)",
+	"centralnotice-archive-campaign-title": "Arkistoidaanko {{PLURAL:$1|kampanja|kampanjat}}?",
 	"centralnotice-archive-campaign-cancel": "Peruuta",
 	"centralnotice-delete-banner": "Poista",
 	"centralnotice-delete-banner-title": "Poista {{PLURAL:$1|banneri|bannerit}}",

@@ -38,7 +38,7 @@
 	"centralnotice-modify": "送信",
 	"centralnotice-view": "表示",
 	"centralnotice-save-banner": "保存",
-	"centralnotice-live-preview": "プレビュー",
+	"centralnotice-live-preview": "最後に保存した版をプレビュー",
 	"centralnotice-add-new": "新しい告知を追加",
 	"centralnotice-remove": "除去",
 	"centralnotice-translate-heading": "$1の翻訳",
@@ -246,6 +246,6 @@
 	"centralnotice-impression-diet-help": "個人によって見られるバナーの数を制限します。",
 	"centralnotice-impression-diet-restart-cycle-delay": "サイクルを再開する前にどのくらい待機を長くするか、秒単位で (省略可能)",
 	"centralnotice-banner-sequence-banner": "バナー",
-	"centralnotice-multiple-countries": "複数 ($1)",
-	"centralnotice-multiple-languages": "複数 ($1)"
+	"centralnotice-multiple-countries": "複数の国と地域",
+	"centralnotice-multiple-languages": "多言語"
 }

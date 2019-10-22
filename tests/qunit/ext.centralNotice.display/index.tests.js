@@ -7,6 +7,7 @@
 		realBucketCookie = $.cookie( 'CN' ),
 		realHideCookie = $.cookie( 'centralnotice_hide_fundraising' ),
 		realSendBeacon = navigator.sendBeacon,
+		realshouldHide = mw.centralNotice.internal.hide.shouldHide,
 		bannerData = {
 			bannerName: 'test_banner',
 			campaign: 'test_campaign',
@@ -121,6 +122,207 @@
 				],
 				mixins: { testMixin: [ 'arg1', 'arg2' ] }
 			}
+		],
+		choiceDataCampaignsStaleness = [
+			{
+				name: 'campaign1_stale',
+				preferred: 2,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - ( 60000 * ( 15 * 60000 ) ), // with leeway
+				end: nowSec - ( 600 * ( 15 * 60000 ) ), // with leeway
+				banners: [
+					{
+						name: 'banner1',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: {}
+			}
+		],
+		choiceDataCampaignsFallbackMixin = [
+			{
+				name: 'campaign1_mixin',
+				preferred: 2,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner1',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: {
+					testMixin: [ 'arg1', 'arg2' ]
+				}
+			},
+			{
+				name: 'campaign2',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner2',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: {}
+			}
+		],
+		choiceDataCampaignsFallbackHidden = [
+			{
+				name: 'campaign1',
+				preferred: 2,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner1',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: {}
+			},
+			{
+				name: 'campaign2',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner2',
+						weight: 25,
+						bucket: 0,
+						category: 'something',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: {}
+			}
+		],
+		choiceDataAllCampaignsFail = [
+			{
+				name: 'campaign1',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner1',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: { testMixin: [] }
+			},
+			{
+				name: 'campaign2',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner2',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: { testMixin: [] }
+			}
+		],
+		choiceDataAllCampaignsImpressionRates = [
+			{
+				name: 'campaign1',
+				preferred: 2,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner1',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: { testMixinRates: [ 0.75 ] }
+			},
+			{
+				name: 'campaign2',
+				preferred: 1,
+				throttle: 100,
+				bucket_count: 1,
+				geotargeted: false,
+				start: nowSec - 1,
+				end: nowSec + 600,
+				banners: [
+					{
+						name: 'banner2',
+						weight: 25,
+						bucket: 0,
+						category: 'fundraising',
+						devices: [ 'desktop' ],
+						display_anon: true,
+						display_account: true
+					}
+				],
+				mixins: { testMixinRates: [ 0.5 ] }
+			}
 		];
 
 	QUnit.module( 'ext.centralNotice.display', QUnit.newMwEnvironment( {
@@ -165,6 +367,9 @@
 			mw.centralNotice.internal.state.data = {};
 			mw.centralNotice.internal.state.campaign = null;
 			mw.centralNotice.internal.state.banner = null;
+			mw.centralNotice.internal.state.urlParams.recordImpressionSampleRate = null;
+			mw.centralNotice.internal.state.urlParams.impressionEventSampleRate = null;
+			mw.centralNotice.internal.hide.shouldHide = realshouldHide;
 		}
 	} ) );
 
@@ -183,13 +388,14 @@
 	 * Create the required state in CN for the record impression call to occur. The first
 	 * campaign in choiceData2Campaigns will be chosen.
 	 */
-	function setupForRecordImpressionCall() {
+	function mockChoiceDataForRecordImpressionCall( campaignsData ) {
 
 		// Request 100% sample rate for record impression
 		mw.centralNotice.internal.state.urlParams.recordImpressionSampleRate = 1;
 
-		// Use the mock choice data with two campaigns, and force the first campaign
-		mw.centralNotice.choiceData = choiceData2Campaigns;
+		mw.centralNotice.choiceData = campaignsData;
+		// Set `randomcampaign` to force the same choice each time, for tests where more
+		// than one campaign may be available
 		mw.centralNotice.internal.state.urlParams.randomcampaign = 0.25;
 		mw.centralNotice.chooseAndMaybeDisplay();
 	}
@@ -205,7 +411,7 @@
 			assert.strictEqual( url.query.banner, 'banner1', 'record impression banner' );
 		};
 
-		setupForRecordImpressionCall();
+		mockChoiceDataForRecordImpressionCall( choiceData2Campaigns );
 
 		// Call reallyInsertBanner() instead of insertBanner() to avoid the async
 		// DOM-waiting of the latter. This triggers the call to record impression.
@@ -223,7 +429,7 @@
 			assert.ok( false, 'record impression waits, as requested' );
 		};
 
-		setupForRecordImpressionCall();
+		mockChoiceDataForRecordImpressionCall( choiceData2Campaigns );
 
 		// Request a delay and capture the promise that should run right before the
 		// record impression call
@@ -264,7 +470,7 @@
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
 			signalTestDone = assert.async();
 
-		setupForRecordImpressionCall();
+		mockChoiceDataForRecordImpressionCall( choiceData2Campaigns );
 
 		// Request a delay and capture the promise that should run right before the
 		// record impression call
@@ -313,7 +519,7 @@
 			recordImpresionPromise,
 			signalTestDone = assert.async();
 
-		setupForRecordImpressionCall();
+		mockChoiceDataForRecordImpressionCall( choiceData2Campaigns );
 
 		// Request a delay and capture the promise that should run right before the
 		// record impression call
@@ -497,6 +703,207 @@
 			mw.centralNotice.data.status,
 			mw.centralNotice.internal.state.STATUSES.NO_BANNER_AVAILABLE.key
 		);
+	} );
+
+	QUnit.test( 'short-circuit when there is a stale campaign in choices', function ( assert ) {
+		mw.centralNotice.choiceData = choiceDataCampaignsStaleness;
+
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.data.status,
+			mw.centralNotice.internal.state.STATUSES.CHOICE_DATA_STALE.key,
+			'choice data is stale'
+		);
+	} );
+
+	QUnit.test( 'fallback when preferred campaign is filtered out by a mixin', function ( assert ) {
+		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+
+		mixin.setPreBannerHandler(
+			function () {
+				mw.centralNotice.cancelBanner( 'testReason' );
+			}
+		);
+
+		mw.centralNotice.registerCampaignMixin( mixin );
+		mw.centralNotice.choiceData = choiceDataCampaignsFallbackMixin;
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.data.status,
+			mw.centralNotice.internal.state.STATUSES.BANNER_CHOSEN.key,
+			'banner is chosen'
+		);
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.data.banner,
+			'banner2'
+		);
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.campaign.name,
+			'campaign2',
+			'campaign is chosen correctly'
+		);
+	} );
+
+	QUnit.test( 'fallback when preferred campaign banner is hidden', function ( assert ) {
+		var i = 0;
+
+		mw.centralNotice.internal.hide.shouldHide = function () {
+			i++;
+			// Ensure only the first campaign from the list will hit hide.shouldHide()
+			return i === 1;
+		};
+
+		mw.centralNotice.choiceData = choiceDataCampaignsFallbackHidden;
+
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.data.status,
+			mw.centralNotice.internal.state.STATUSES.BANNER_CHOSEN.key,
+			'banner is chosen'
+		);
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.data.banner,
+			'banner2'
+		);
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.campaign.name,
+			'campaign2',
+			'campaign is chosen correctly'
+		);
+	} );
+
+	// eslint-disable-next-line qunit/require-expect
+	QUnit.test( 'record impression is being called when all campaigns fail', function ( assert ) {
+		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+
+		// Expect assertion in sendBeacon to be called once
+		assert.expect( 1 );
+
+		// Make every campaign fail by cancelling banners
+		mixin.setPreBannerHandler(
+			function () {
+				mw.centralNotice.cancelBanner( 'testReason' );
+			}
+		);
+
+		// Mock navigator.sendBeacon
+		navigator.sendBeacon = function () {
+			assert.ok( true );
+		};
+
+		mw.centralNotice.registerCampaignMixin( mixin );
+
+		mockChoiceDataForRecordImpressionCall( choiceDataAllCampaignsFail );
+
+	} );
+
+	QUnit.test( 'impression sample rate is kept as highest value', function ( assert ) {
+
+		var mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
+
+		// Set new sample rates via mixin
+		mixin.setPreBannerHandler(
+			function ( mixinParams ) {
+				mw.centralNotice.setMinRecordImpressionSampleRate( mixinParams[ 0 ] );
+				// Fail campaign by cancelling a banner
+				mw.centralNotice.cancelBanner( 'testReason' );
+			}
+		);
+
+		mw.centralNotice.registerCampaignMixin( mixin );
+
+		mw.centralNotice.choiceData = choiceDataAllCampaignsImpressionRates;
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.getData().recordImpressionSampleRate,
+			0.75
+		);
+
+	} );
+
+	QUnit.test( 'event sample rate is kept as highest value', function ( assert ) {
+
+		var mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
+
+		// Set new sample rates via mixin
+		mixin.setPreBannerHandler(
+			function ( mixinParams ) {
+				mw.centralNotice.setMinImpressionEventSampleRate( mixinParams[ 0 ] );
+				// Fail campaign by cancelling a banner
+				mw.centralNotice.cancelBanner( 'testReason' );
+			}
+		);
+
+		mw.centralNotice.registerCampaignMixin( mixin );
+
+		mw.centralNotice.choiceData = choiceDataAllCampaignsImpressionRates;
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.getData().impressionEventSampleRate,
+			0.75
+		);
+
+	} );
+
+	QUnit.test( 'event sample rate is being correctly overridden from url', function ( assert ) {
+
+		var mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
+
+		// Override rate via URL param
+		mw.centralNotice.internal.state.urlParams.impressionEventSampleRate = 1;
+
+		// Set new sample rates via mixin
+		mixin.setPreBannerHandler(
+			function ( mixinParams ) {
+				mw.centralNotice.setMinImpressionEventSampleRate( mixinParams[ 0 ] );
+				// Fail campaign by cancelling a banner
+				mw.centralNotice.cancelBanner( 'testReason' );
+			}
+		);
+
+		mw.centralNotice.registerCampaignMixin( mixin );
+
+		mw.centralNotice.choiceData = choiceDataAllCampaignsImpressionRates;
+		mw.centralNotice.chooseAndMaybeDisplay();
+
+		assert.strictEqual(
+			mw.centralNotice.internal.state.getData().impressionEventSampleRate,
+			1
+		);
+
+	} );
+
+	QUnit.test( 'campaign statuses are tracked as serialized JSON string', function ( assert ) {
+
+		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+
+		// Make every campaign fail by cancelling banners
+		mixin.setPreBannerHandler(
+			function () {
+				mw.centralNotice.cancelBanner( 'testReason' );
+			}
+		);
+
+		// Mock navigator.sendBeacon
+		navigator.sendBeacon = function ( urlString ) {
+			var url = new mw.Uri( urlString ),
+				statuses = JSON.parse( url.query.campaignStatuses );
+			assert.strictEqual( statuses.length, 2, 'correct amount of records' );
+		};
+
+		mw.centralNotice.registerCampaignMixin( mixin );
+
+		mockChoiceDataForRecordImpressionCall( choiceDataAllCampaignsFail );
+
 	} );
 
 }() );

@@ -46,7 +46,7 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 				AllocationCalculator::getLoggedInStatusFromString(
 				$cAndO['context']['logged_in_status'] );
 
-			AllocationCalculator::filterChoiceData(
+			AllocationCalculator::makeAvailableCampaigns(
 				$choices,
 				$cAndO['context']['country'],
 				$logged_in_status,

@@ -37,5 +37,6 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Posición dentro do conxunto de resultados (opcional).",
 	"apihelp-query+centralnoticelogs-param-start": "Tempo de comezo do rango (opcional).",
 	"apihelp-query+centralnoticelogs-param-end": "Tempo de finalización do rango (opcional).",
-	"apihelp-query+centralnoticelogs-example-1": "Amosar os rexistros"
+	"apihelp-query+centralnoticelogs-example-1": "Amosar os rexistros",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Obter unha lista das campañas activas actualmente, con datas de comezo e fin, e cos avisos asociados."
 }

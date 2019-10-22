@@ -20,7 +20,8 @@
 			"Saper",
 			"Railfail536",
 			"CiaPan",
-			"Woytecr"
+			"Woytecr",
+			"Rail"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -233,6 +234,7 @@
 	"centralnotice-banner-sequence-page-views": "Wyświetlenia strony",
 	"centralnotice-banner-sequence-skip-with-id-error": "Identyfikator nie może zawierać „|”.",
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)",
+	"centralnotice-banner-protection-log-reason": "Zabezpieczono automatycznie przez rozszerzenie CentralNotice; edytuj tylko przez [[Special:CentralNotice]] lub [[Special:Translate]]",
 	"centralnotice-multiple-countries": "Wiele ($1)",
 	"centralnotice-multiple-languages": "wiele ($1)"
 }

@@ -51,7 +51,7 @@
 				expectedAllocations = contextAndOutput.allocations,
 				campaign, expectedCampaign, campaignName,
 				allocatedBannersCount,
-				k, banner, bannerName;
+				k, banner, bannerName, availableCampaigns;
 
 			// Calculate how many assertions to expect:
 			// 3 per campaign (existence, allocation and number of banners)
@@ -79,15 +79,20 @@
 			anonymous =
 				isAnonymousFromLoggedInStatus( context.logged_in_status );
 
+			availableCampaigns = chooser.makeAvailableCampaigns(
+				choices,
+				context.country,
+				anonymous,
+				context.device,
+				0
+			);
+
 			// Instead of testing the return value of this method, we'll test
 			// the allocation properties that are set on the campaigns in
 			// choices.
 			// TODO Test return value, too.
 			chooser.chooseCampaign(
-				choices,
-				context.country,
-				anonymous,
-				context.device,
+				availableCampaigns,
 				0
 			);
 
