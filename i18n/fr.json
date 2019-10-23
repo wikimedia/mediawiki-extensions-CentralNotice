@@ -325,7 +325,7 @@
 	"centralnotice-impression-events-sample-rate": "Taux des échantillons des événements d'impression",
 	"centralnotice-impression-events-sample-rate-help": "Définir un taux d'échantillonnage dédié pour enregistrer les événements d'impression dans le journal.",
 	"centralnotice-impression-events-sample-rate-field": "Taux d'échantillonnage des événements d'impression (doit être entre 0 et 1 bornes incluses)",
-	"centralnotice-banner-protection-log-reason": "Protégé automatiquement par CentralNotice ; veuillez modifier seulement par [[Special:CentralNotice]] ou [[Special:Translate]].",
+	"centralnotice-banner-protection-log-reason": "Protégé automatiquement par ''CentralNotice'' ; vous ne pouvez modifier que par [[Special:CentralNotice]] (si vous êtes spécialement habilité par les administrateurs du site) ou [[Special:Translate]] (après avoir rempli votre demande pour devenir vous aussi un des nombreux traducteurs et relecteurs correcteurs souhaités et passé un test simple de votre capacité de compréhension des exigences de base demandées).",
 	"centralnotice-multiple-countries": "Pays multiples",
 	"centralnotice-multiple-languages": "Multilingue",
 	"tag-centralnotice": "Central Notice",
