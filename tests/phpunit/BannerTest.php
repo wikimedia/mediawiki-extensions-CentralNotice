@@ -18,7 +18,7 @@ class BannerTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->fixture = new CentralNoticeTestFixtures();
 
@@ -26,7 +26,7 @@ class BannerTest extends PHPUnit\Framework\TestCase {
 			[ 'setup' => [ 'campaigns' => [] ] ] );
 	}
 
-	public function tearDown() {
+	public function tearDown() : void {
 		$banner = Banner::fromName( self::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
 			$banner->remove();

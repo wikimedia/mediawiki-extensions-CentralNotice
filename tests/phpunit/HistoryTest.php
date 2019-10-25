@@ -9,13 +9,13 @@ class HistoryTest extends CentralNoticeTest {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->cnFixtures = new CentralNoticeTestFixtures();
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		$this->cnFixtures->tearDownTestCases();
 		parent::tearDown();
 	}
