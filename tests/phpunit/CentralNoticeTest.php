@@ -24,7 +24,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 
 	protected $fixture;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$centralNotice = new CentralNotice;
 		$noticeName        = 'PHPUnitTestCampaign';
@@ -87,7 +87,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		Campaign::addTemplateTo( 'PHPUnitTestCampaign', 'PHPUnitTestBanner', '25' );
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		parent::tearDown();
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
