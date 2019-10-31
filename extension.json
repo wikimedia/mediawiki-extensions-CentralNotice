@@ -531,7 +531,7 @@
 	},
 	"EventLoggingSchemas": {
 		"CentralNoticeBannerHistory": 19079897,
-		"CentralNoticeImpression": 19510146
+		"CentralNoticeImpression": 19511351
 	},
 	"manifest_version": 1
 }
