@@ -12,12 +12,13 @@ class GeoTarget {
 	public static function getCountriesList( $code ) {
 		$countries = [];
 
-		if ( is_callable( [ 'CountryNames', 'getNames' ] ) ) {
+		if ( is_callable( [ CountryNames::class, 'getNames' ] ) ) {
 			// Retrieve the list of countries in user's language (via CLDR)
 			$countries = CountryNames::getNames( $code );
 		}
 
 		// If not via CLDR, we have our own list
+		// @phan-suppress-next-line PhanRedundantCondition
 		if ( !$countries ) {
 			// Use this as fallback if CLDR extension is not enabled
 			$countries = [

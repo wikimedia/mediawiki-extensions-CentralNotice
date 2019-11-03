@@ -302,6 +302,10 @@ class SpecialBannerAllocation extends CentralNotice {
 		return $htmlOut;
 	}
 
+	/**
+	 * @param array[] $banners
+	 * @return string HTML
+	 */
 	public function createRows( $banners ) {
 		$viewCampaign = $this->getTitleFor( 'CentralNotice' );
 		$htmlOut = '';
