@@ -12,10 +12,10 @@ class CNBannerPager extends ReverseChronologicalPager {
 	/** @var string Space separated strings to filter banner titles on */
 	protected $filter = '';
 
-	/** @var array HTMLFormFields to add to the results before every banner entry */
+	/** @var array[] HTMLFormFields to add to the results before every banner entry */
 	protected $prependPrototypes = [];
 
-	/** @var array HTMLFormFields to add to the results after every banner entry */
+	/** @var array[] HTMLFormFields to add to the results after every banner entry */
 	protected $appendPrototypes = [];
 
 	/** @var string 'Section' attribute to apply to the banner elements generated */

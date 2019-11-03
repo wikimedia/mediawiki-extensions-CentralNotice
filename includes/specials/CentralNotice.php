@@ -673,6 +673,7 @@ class CentralNotice extends SpecialPage {
 						$templateId = Banner::fromName( $templateName )->getId();
 						$bucket = $request->getInt( "bucket-{$templateName}" );
 						$result = Campaign::addTemplateTo(
+							// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 							$notice, $templateName, $weight[$templateId], $bucket
 						);
 						if ( $result !== true ) {

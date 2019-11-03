@@ -10,7 +10,7 @@ class CNDeviceTarget {
 	 * @param bool $flip If true will return
 	 *   {<header string value>: {'id': <id>, 'label': <wiki text label>}}
 	 *
-	 * @return array Array of devices in format
+	 * @return array[] Array of devices in format
 	 *   {id: {'header': <internal string value>, 'label': <wiki text label>}}
 	 */
 	public static function getAvailableDevices( $flip = false ) {
