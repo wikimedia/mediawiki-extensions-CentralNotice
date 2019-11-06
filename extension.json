@@ -101,7 +101,6 @@
 		"SpecialBannerRandom": "includes/specials/SpecialBannerRandom.php",
 		"SpecialCentralNoticeBanners": "includes/specials/SpecialCentralNoticeBanners.php",
 		"SpecialCentralNoticeLogs": "includes/specials/SpecialCentralNoticeLogs.php",
-		"SpecialCNReporter": "includes/specials/SpecialCNReporter.php",
 		"SpecialHideBanners": "includes/specials/SpecialHideBanners.php",
 		"SpecialNoticeTemplate": "includes/specials/SpecialNoticeTemplate.php",
 		"SpecialRecordImpression": "includes/specials/SpecialRecordImpression.php",
@@ -303,8 +302,7 @@
 		"BannerLoader": "SpecialBannerLoader",
 		"BannerRandom": "SpecialBannerRandom",
 		"RecordImpression": "SpecialRecordImpression",
-		"HideBanners": "SpecialHideBanners",
-		"CNReporter": "SpecialCNReporter"
+		"HideBanners": "SpecialHideBanners"
 	},
 	"Hooks": {
 		"CanonicalNamespaces": "CentralNoticeHooks::onCanonicalNamespaces",
