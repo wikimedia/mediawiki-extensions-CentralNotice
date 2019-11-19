@@ -11,7 +11,8 @@
 			"Raimond Spekking",
 			"Robby",
 			"The Evil IP address",
-			"Umherirrender"
+			"Umherirrender",
+			"Killarnee"
 		]
 	},
 	"centralnotice": "Verwaltung zentraler Meldungen",
@@ -30,7 +31,7 @@
 	"centralnotice-modify": "Speichern",
 	"centralnotice-view": "Anzeigen",
 	"centralnotice-save-banner": "Speichern",
-	"centralnotice-live-preview": "Vorschau",
+	"centralnotice-live-preview": "Vorschau der letzten gesicherten Version",
 	"centralnotice-add-new": "Füge eine neue zentrale Meldung hinzu",
 	"centralnotice-remove": "Entfernen",
 	"centralnotice-translate-heading": "Übersetzung von „$1“",
@@ -303,8 +304,8 @@
 	"centralnotice-impression-events-sample-rate-help": "Legt eine Nicht-Standard-Samplerate zur Protokollierung von Eindrucksereignissen fest.",
 	"centralnotice-impression-events-sample-rate-field": "Eindrucksereignis-Samplerate (sollte zwischen 0 und einschließlich 1 sein)",
 	"centralnotice-banner-protection-log-reason": "Automatisch durch CentralNotice geschützt; nur über [[Special:CentralNotice]] oder [[Special:Translate]] bearbeiten.",
-	"centralnotice-multiple-countries": "mehrere ($1)",
-	"centralnotice-multiple-languages": "mehrere ($1)",
+	"centralnotice-multiple-countries": "mehrere Staaten",
+	"centralnotice-multiple-languages": "Mehrere Sprachen",
 	"tag-centralnotice": "Zentrale Meldung",
 	"tag-centralnotice-description": "Bearbeitung erstellt über die CentralNotice-Administratoroberfläche",
 	"tag-centralnotice_translation": "Zentrale-Meldungs-Übersetzung",
