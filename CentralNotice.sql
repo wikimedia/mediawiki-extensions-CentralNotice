@@ -62,6 +62,12 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notice_countries (
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/nc_notice_id_country ON /*_*/cn_notice_countries (nc_notice_id, nc_country);
 
+CREATE TABLE IF NOT EXISTS /*_*/cn_notice_regions (
+	`nr_notice_id` int(10) unsigned NOT NULL,
+	`nr_region` varchar(6) NOT NULL
+) /*$wgDBTableOptions*/;
+CREATE UNIQUE INDEX /*i*/nr_notice_id_region ON /*_*/cn_notice_regions (nr_notice_id, nr_region);
+
 CREATE TABLE IF NOT EXISTS /*_*/cn_template_mixins (
 	`tmxn_id` int PRIMARY KEY AUTO_INCREMENT,
 	`tmp_id` int(11) NOT NULL,
@@ -139,6 +145,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notice_log (
 	`notlog_end_languages` text,
 	`notlog_begin_countries` text,
 	`notlog_end_countries` text,
+	`notlog_begin_regions` text,
+	`notlog_end_regions` text,
 	`notlog_begin_start` char(14) DEFAULT NULL,
 	`notlog_end_start` char(14) DEFAULT NULL,
 	`notlog_begin_end` char(14) DEFAULT NULL,

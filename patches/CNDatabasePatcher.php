@@ -134,6 +134,13 @@ class CNDatabasePatcher {
 				'notlog_begin_mixins',
 				$base . '/patch-notice-mixins-log.sql'
 			);
+			// Adds geotargeted regions for notices and the corresponding log columns
+			$updater->addExtensionUpdate(
+				[
+					'addTable', 'cn_notice_regions',
+					$base . '/patch-notice_regions.sql', true
+				]
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			// Add the entire schema...
 			$updater->addExtensionTable(
