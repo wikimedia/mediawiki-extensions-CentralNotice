@@ -203,6 +203,6 @@
 	"centralnotice-start-time": "Kezdési idő (UTC)",
 	"centralnotice-end-date": "Befejezés dátuma (UTC)",
 	"centralnotice-end-time": "Befejezési idő (UTC)",
-	"centralnotice-multiple-countries": "több ($1)",
-	"centralnotice-multiple-languages": "több ($1)"
+	"centralnotice-multiple-countries": "több ország",
+	"centralnotice-multiple-languages": "több nyelv"
 }
