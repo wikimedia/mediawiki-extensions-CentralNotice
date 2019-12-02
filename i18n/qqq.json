@@ -123,7 +123,7 @@
 	"centralnotice-update-preview": "Used as label for update banner preview button",
 	"centralnotice-preview-page": "Text for link to open a new tab with an in-page preview of the currently edited banner",
 	"centralnotice-preview-loader-error-dialog-title": "Title for dialog box for error messages from generating a banner preview.",
-	"centralnotice-preview-loader-error-dialog-ok": "Button to dismiss banner preview error dialog.\n{{Identical|OK}}",
+	"centralnotice-preview-loader-error-dialog-ok": "Button to dismiss banner preview error dialog.\n{{Identical|OK}}\n{{optional}}",
 	"centralnotice-preview-loader-permissions-error": "Permissions or edit token verification error message for requests to generate a banner preview.",
 	"centralnotice-clone": "Used as label for the Submit button in [[Special:NoticeTemplate]].\n\nPreceded by the \"Name\" input box with the label {{msg-mw|Centralnotice-clone-name}}.\n{{Identical|Clone}}",
 	"centralnotice-clone-notice": "Used as fieldset label in the form in [[Special:NoticeTemplate]].",
