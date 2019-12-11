@@ -75,10 +75,7 @@ class CentralNoticeHooks {
 			$wgResourceModules += [
 				'jquery.ui.multiselect' => $moduleTemplate + [
 					'dependencies' => [
-						'jquery.ui.core',
-						'jquery.ui.sortable',
-						'jquery.ui.draggable',
-						'jquery.ui.droppable',
+						'jquery.ui',
 						'mediawiki.jqueryMsg'
 					],
 					'scripts' => 'vendor/jquery.ui.multiselect/ui.multiselect.js',
@@ -86,7 +83,7 @@ class CentralNoticeHooks {
 				],
 				'ext.centralNotice.adminUi' => $moduleTemplate + [
 					'dependencies' => [
-						'jquery.ui.datepicker',
+						'jquery.ui',
 						'jquery.ui.multiselect',
 						'mediawiki.Uri'
 					],
@@ -109,7 +106,7 @@ class CentralNoticeHooks {
 				'ext.centralNotice.adminUi.bannerManager' => $moduleTemplate + [
 					'dependencies' => [
 						'ext.centralNotice.adminUi',
-						'jquery.ui.dialog',
+						'jquery.ui',
 						'mediawiki.Uri'
 					],
 					'scripts' => 'infrastructure/bannermanager.js',
@@ -131,7 +128,7 @@ class CentralNoticeHooks {
 				'ext.centralNotice.adminUi.bannerEditor' => $moduleTemplate + [
 					'dependencies' => [
 						'ext.centralNotice.adminUi',
-						'jquery.ui.dialog',
+						'jquery.ui',
 						'ext.centralNotice.kvStore',
 						'mediawiki.api',
 						'mediawiki.Uri',
@@ -170,8 +167,7 @@ class CentralNoticeHooks {
 					'dependencies' => [
 						'ext.centralNotice.adminUi',
 						'oojs-ui',
-						'jquery.ui.dialog',
-						'jquery.ui.slider',
+						'jquery.ui',
 						'jquery.throttle-debounce',
 						'mediawiki.template',
 						'mediawiki.template.mustache'
