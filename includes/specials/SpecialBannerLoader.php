@@ -93,11 +93,11 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	public function getParamsAndSetState() {
 		$request = $this->getRequest();
 
-		$this->campaignName = $request->getText( 'campaign', null );
-		$this->bannerName = $request->getText( 'banner', null );
+		$this->campaignName = $request->getText( 'campaign' );
+		$this->bannerName = $request->getText( 'banner' );
 		$this->debug = $request->getFuzzyBool( 'debug' );
-		$this->previewContent = $request->getText( 'previewcontent', null );
-		$this->previewMessages = $request->getArray( 'previewmessages', null );
+		$this->previewContent = $request->getText( 'previewcontent' );
+		$this->previewMessages = $request->getArray( 'previewmessages' );
 		$this->editToken = $request->getVal( 'token' );
 
 		// All request types should have at least a non-empty banner name
