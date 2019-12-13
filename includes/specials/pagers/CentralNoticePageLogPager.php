@@ -38,16 +38,20 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			'rc_bot' => 1, // include bot edits (all edits made by CentralNotice are bot edits)
 			'rc_namespace' => 8, // only MediaWiki pages
 		];
+		$db = CNDatabase::getDb();
 		if ( $this->logType == 'bannercontent' ) {
 			// Add query contitions for banner content log
 			$conds += [
-				"rc_title LIKE 'Centralnotice-template-%'", // get banner content
+				// get banner content
+				'rc_title' . $db->buildLike( 'Centralnotice-template-', $db->anyString() ),
 			];
 		} else {
 			// Add query contitions for banner messages log
 			$conds += [
-				"rc_title LIKE 'Centralnotice-%'", // get banner messages
-				"rc_title NOT LIKE 'Centralnotice-template-%'", // exclude normal banner content
+				// get banner messages
+				'rc_title' . $db->buildLike( 'Centralnotice-', $db->anyString() ),
+				// exclude normal banner content
+				'rc_title NOT' . $db->buildLike( 'Centralnotice-template-', $db->anyString() ),
 			];
 		}
 
