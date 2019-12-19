@@ -7,7 +7,8 @@
 			"Teslaton",
 			"Kusavica",
 			"Vegetator",
-			"Vlad5250"
+			"Vlad5250",
+			"Luky001"
 		]
 	},
 	"centralnotice": "Centrálny oznam",
@@ -178,6 +179,6 @@
 	"centralnotice-start-time": "Čas začatia (UTC)",
 	"centralnotice-end-date": "Dátum ukončenia (UTC)",
 	"centralnotice-end-time": "Čas ukončenia (UTC)",
-	"centralnotice-multiple-countries": "viaceré ($1)",
-	"centralnotice-multiple-languages": "viaceré ($1)"
+	"centralnotice-multiple-countries": "Viacero krajín",
+	"centralnotice-multiple-languages": "Viacero jazykov"
 }
