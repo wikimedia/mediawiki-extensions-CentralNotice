@@ -4,7 +4,8 @@
 			"Candalua",
 			"Frigotoni",
 			"GatoSelvadego",
-			"Vajotwo"
+			"Vajotwo",
+			"Conky77"
 		]
 	},
 	"centralnotice": "Gestion notifiche sentralizade",
@@ -177,7 +178,7 @@
 	"centralnotice-user-role-anonymous": "Anonimo",
 	"centralnotice-user-role-logged-in": "Registrà",
 	"centralnotice-banner-class": "Clase",
-	"centralnotice-banner-class-desc": "I banner de na serta clase i convidive el traciamento de le variabili e le inpostasion de grupo (p.e. scondar i cookies e la conta de le inpresion).",
+	"centralnotice-banner-class-desc": "I banner de na serta categorìa i spartise el traciamento de le variabili e le inpostasion de grupo (p.e. scondar i cookies e la conta de le inpresion). I nòmi de categorìa i pole èsere magic word come <nowiki>{{{campaign}}}</nowiki> or <nowiki>{{{banner}}}</nowiki> che i sarà mostrà automaticamente cuando mostrà. I valori i deve èsere alfanumerici.",
 	"centralnotice-templates-included": "Modèi inclusi",
 	"centralnotice-archive-banner": "Archivia",
 	"centralnotice-archive-banner-title": "Archivia {{PLURAL:$1|el banner|i banner}}?",
