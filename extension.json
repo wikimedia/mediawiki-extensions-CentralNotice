@@ -105,7 +105,9 @@
 		"SpecialNoticeTemplate": "includes/specials/SpecialNoticeTemplate.php",
 		"SpecialRecordImpression": "includes/specials/SpecialRecordImpression.php",
 		"StaleCampaignException": "includes/specials/StaleCampaignException.php",
-		"TemplatePager": "includes/specials/pagers/TemplatePager.php",
+		"TemplatePager": "includes/specials/pagers/TemplatePager.php"
+	},
+	"TestAutoloadClasses": {
 		"CentralNoticeTestFixtures": "tests/phpunit/CentralNoticeTestFixtures.php",
 		"CNTestFixturesResourceLoaderModule": "tests/phpunit/CNTestFixturesResourceLoaderModule.php",
 		"TestingCNChoiceDataResourceLoaderModule": "tests/phpunit/TestingCNChoiceDataResourceLoaderModule.php"
