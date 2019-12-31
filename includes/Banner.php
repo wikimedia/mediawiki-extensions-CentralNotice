@@ -972,7 +972,7 @@ class Banner {
 	/**
 	 * Saves any changes made to the banner object into the database
 	 *
-	 * @param User|null $user
+	 * @param User $user
 	 * @param string|null $summary Summary (comment) to associate with all changes,
 	 *   including banner content and messages (which are implemented as wiki
 	 *   pages).
@@ -980,15 +980,9 @@ class Banner {
 	 * @return $this
 	 * @throws Exception
 	 */
-	public function save( $user = null, $summary = null ) {
-		global $wgUser;
-
+	public function save( User $user, $summary = null ) {
 		$db = CNDatabase::getDb();
-
 		$action = 'modified';
-		if ( $user === null ) {
-			$user = $wgUser;
-		}
 
 		try {
 			// Don't move this to saveBannerInternal--can't be in a transaction
@@ -1117,11 +1111,7 @@ class Banner {
 		return $destBanner;
 	}
 
-	public function remove( $user = null ) {
-		global $wgUser;
-		if ( $user === null ) {
-			$user = $wgUser;
-		}
+	public function remove( User $user ) {
 		self::removeTemplate( $this->getName(), $user );
 	}
 

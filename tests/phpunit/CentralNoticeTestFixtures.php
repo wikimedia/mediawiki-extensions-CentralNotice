@@ -309,7 +309,7 @@ class CentralNoticeTestFixtures {
 					$devices = $bannerSpec['devices'];
 					$this->ensureDevices( $devices );
 					$bannerObj->setDevices( $devices );
-					$bannerObj->save();
+					$bannerObj->save( $this->user );
 				}
 			}
 

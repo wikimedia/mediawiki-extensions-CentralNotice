@@ -23,7 +23,8 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	public function tearDown() : void {
 		$banner = Banner::fromName( self::TEST_BANNER_NAME );
 		if ( $banner->exists() ) {
-			$banner->remove();
+			$user = $this->getTestUser()->getUser();
+			$banner->remove( $user );
 		}
 		$this->fixture->tearDownTestCases();
 	}
@@ -60,7 +61,8 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 			'Initial banner has non empty body content' );
 
 		// And finally; save this empty banner
-		$banner->save();
+		$user = $this->getTestUser()->getUser();
+		$banner->save( $user );
 		$this->assertTrue( $banner->exists(), 'Banner was not successfully saved' );
 
 		// Did we get the right ID back?
@@ -73,7 +75,8 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testEmptyFromName() {
 		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
-		$banner->save();
+		$user = $this->getTestUser()->getUser();
+		$banner->save( $user );
 		$this->assertTrue( $banner->exists(), 'Test banner that should exist does not!' );
 
 		// Run down the basic metadata and ensure it is in fact empty
@@ -106,7 +109,8 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testBasicSave() {
 		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
-		$banner->save();
+		$user = $this->getTestUser()->getUser();
+		$banner->save( $user );
 		$this->assertTrue( $banner->exists() );
 
 		// Attempt to populate basic metadata
@@ -116,7 +120,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 		$banner->setDevices( 'desktop' );
 		$banner->setPriorityLanguages( [ 'en', 'ru' ] );
 
-		$banner->save();
+		$banner->save( $user );
 
 		// Can we retrieve it from the same object?
 		$this->assertTrue( $banner->allocateToAnon(),
@@ -153,8 +157,10 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSetAllocation( $anon, $loggedIn ) {
 		$banner = Banner::newFromName( self::TEST_BANNER_NAME );
+		$user = $this->getTestUser()->getUser();
+
 		$banner->setAllocation( $anon, $loggedIn );
-		$banner->save();
+		$banner->save( $user );
 		$this->assertEquals( $anon, $banner->allocateToAnon(), "Testing initial anon" );
 		$this->assertEquals( $loggedIn, $banner->allocateToLoggedIn(),
 			"Testing initial logged in" );
