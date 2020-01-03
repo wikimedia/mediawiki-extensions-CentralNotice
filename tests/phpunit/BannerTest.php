@@ -6,20 +6,14 @@
  * @group CentralNotice
  * @covers Banner
  */
-class BannerTest extends PHPUnit\Framework\TestCase {
+class BannerTest extends MediaWikiIntegrationTestCase {
 	const TEST_BANNER_NAME = 'PhpUnitTestBanner';
 
 	protected $fixture;
 
-	public static function setUpBeforeClass() {
-		$banner = Banner::fromName( self::TEST_BANNER_NAME );
-		if ( $banner->exists() ) {
-			$banner->remove();
-		}
-	}
-
 	protected function setUp() : void {
 		parent::setUp();
+
 		$this->fixture = new CentralNoticeTestFixtures();
 
 		$this->fixture->setupTestCaseWithDefaults(
