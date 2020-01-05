@@ -46,7 +46,6 @@ class AllocationCalculator {
 	 *   AllocationCalculator::LOGGED_IN).
 	 *
 	 * @param string $device target device code
-	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
 	public static function makeAvailableCampaigns( &$choiceData, $country, $status, $device ) {
 		$availableCampaigns = [];
@@ -102,7 +101,6 @@ class AllocationCalculator {
 	 *
 	 * @param array[] &$filteredChoiceData Data in the format provided by
 	 *   filteredChoiceData().
-	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
 	public static function calculateCampaignAllocations( &$filteredChoiceData ) {
 		// Make an index of campaigns by priority level.
@@ -275,7 +273,6 @@ class AllocationCalculator {
 	 *   Campaign::getHistoricalCampaigns
 	 *
 	 * @return array
-	 * @suppress PhanTypeArraySuspiciousNullable
 	 */
 	public static function filterAndAllocate(
 		$country, $status, $device, $bucket, $campaigns
