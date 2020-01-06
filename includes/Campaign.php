@@ -598,6 +598,7 @@ class Campaign {
 				// Fix for legacy logs before bucketing
 				$campaign['bucket_count'] = 1;
 			}
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
 
