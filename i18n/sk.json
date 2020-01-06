@@ -8,7 +8,8 @@
 			"Kusavica",
 			"Vegetator",
 			"Vlad5250",
-			"Luky001"
+			"Luky001",
+			"TomášPolonec"
 		]
 	},
 	"centralnotice": "Centrálny oznam",
@@ -87,7 +88,7 @@
 	"centralnotice-number-uses": "Použitia",
 	"centralnotice-settings": "Nastavenie",
 	"centralnotice-edit-template": "Upraviť šablónu",
-	"centralnotice-edit-template-summary": "Ak chcete vytvoriť správu, ktorú bude možné lokalizovať, zatvorte reťazec so slovami oddelenými pomlčkami do troch zložených zátvoriek, napr. {{{citát-jimbo}}}.",
+	"centralnotice-edit-template-summary": "Upozornenie: Načítanie externých zdrojov do banneru môže ohroziť používateľskú bezpečnosť.\n\nAk chcete vytvoriť lokalizovateľnú správu použite okolo reťazca tri zložené zátvorky, napr. <nowiki>{{{message_name}}}</nowiki>. Na použitie lokalizovateľnej správy z iného banneru, zadajte názov banneru nasledovaný čiarkou, potom názov správy, napr. <nowiki>{{{banner_name,message_name}}}</nowiki>.",
 	"centralnotice-message": "Správa",
 	"centralnotice-message-not-set": "Správa nebola nastavená",
 	"centralnotice-update-preview": "Aktualizovať náhľad",
@@ -122,7 +123,7 @@
 	"centralnotice-projects": "Projekty",
 	"centralnotice-country": "Krajina",
 	"centralnotice-no-allocation": "Nie sú alokované žiadne oznamy.",
-	"centralnotice-allocation-description": "Alokácia oznamu $1.$2 v $3:",
+	"centralnotice-allocation-description": "Alokácia banneru pre jazyk: $1, projekt: $2, krajinu: $3, na zariadení $4",
 	"centralnotice-percentage": "Percent",
 	"centralnotice-documentwrite-error": "document.write() nie je možné použiť v rámci odkazu.\nĎalšie informácie nájdete na https://meta.wikimedia.org/wiki/Help:CentralNotice",
 	"centralnotice-preferred": "Priorita",
