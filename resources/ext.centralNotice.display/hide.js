@@ -7,7 +7,7 @@
 	var hide,
 		category,
 		cookieName,
-		shouldHide = false,
+		shouldHide,
 		reason,
 		durations = mw.config.get( 'wgNoticeCookieDurations' ),
 
@@ -27,6 +27,8 @@
 	hide = mw.centralNotice.internal.hide = {
 
 		setCategory: function ( c ) {
+			shouldHide = false;
+			reason = null;
 			category = c;
 			cookieName = HIDE_COOKIE_PREFIX + category;
 		},
