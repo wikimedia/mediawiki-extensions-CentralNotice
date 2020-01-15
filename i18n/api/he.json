@@ -7,7 +7,7 @@
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "למשתמש אין הרשאות לנקות תוכן כרזת צד לקוח.",
-	"apierror-centralnotice-cdn-lang-code-error": "קוד השפה אינו תקין.",
+	"apierror-centralnotice-cdn-lang-code-error": "קוד השפה פגום.",
 	"apierror-centralnotice-cdn-banner-name-error": "שם הכרזה אינו תקין.",
 	"apierror-centralnotice-cdn-banner-not-found": "‏ ‏כרזה לא נמצאה",
 	"apihelp-centralnoticeallocations-description": "קבלת הקצאות כרזות לכרזות שמשורתות באמצעות CentralNotice עבור כל סוגי המשתמשים תחת המסנן הפרמטרי.\n\nזוהי קריאה ב־JSON בלבד.",
