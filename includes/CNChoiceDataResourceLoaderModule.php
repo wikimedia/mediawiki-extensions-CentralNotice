@@ -1,6 +1,6 @@
 <?php
 
-/***
+/**
  * ResourceLoader module for sending banner choices to the client.
  *
  * Note: This class has been intentionally left stateless, due to how

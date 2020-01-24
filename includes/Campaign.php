@@ -5,7 +5,7 @@ class Campaign {
 	protected $id = null;
 	protected $name = null;
 
-	/** @var MWTimestamp Start datetime of campaign  */
+	/** @var MWTimestamp Start datetime of campaign */
 	protected $start = null;
 
 	/** @var MWTimestamp End datetime of campaign */
@@ -17,7 +17,7 @@ class Campaign {
 	/** @var bool True if the campaign is enabled for showing */
 	protected $enabled = null;
 
-	/** @var bool True if the campaign is currently non editable  */
+	/** @var bool True if the campaign is currently non editable */
 	protected $locked = null;
 
 	/** @var bool True if the campaign has been moved to the archive */
@@ -603,7 +603,7 @@ class Campaign {
 			}
 
 			// If there are mixin params in this row, add them in
-			if ( !is_null( $dbRow->nmxnp_param_name ) ) {
+			if ( $dbRow->nmxnp_param_name !== null ) {
 				$paramName = $dbRow->nmxnp_param_name;
 				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
 

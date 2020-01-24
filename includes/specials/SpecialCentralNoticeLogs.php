@@ -287,6 +287,11 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 
 	/**
 	 * Build a radio button that switches the log type when you click it
+	 * @param string $type
+	 * @param string $id
+	 * @param string $message
+	 * @param string $fullUrl
+	 * @return string HTML
 	 */
 	private function getLogSwitcher( $type, $id, $message, $fullUrl ) {
 		$fullUrlEnc = Xml::encodeJsVar( $fullUrl );

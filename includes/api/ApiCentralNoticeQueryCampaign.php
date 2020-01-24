@@ -60,9 +60,9 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	 * Obtains the parameter $param, sanitizes by returning the first match to $regex or
 	 * $default if there was no match.
 	 *
-	 * @param string    $value    Incoming value
-	 * @param string    $regex    Sanitization regular expression
-	 * @param string    $default  Default value to return on error
+	 * @param string $value Incoming value
+	 * @param string $regex Sanitization regular expression
+	 * @param string|null $default Default value to return on error
 	 *
 	 * @return string The sanitized value
 	 */

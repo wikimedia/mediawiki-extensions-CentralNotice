@@ -1598,7 +1598,7 @@ class CentralNotice extends SpecialPage {
 	 */
 	public function getCNSessionVar( $variable, $default = null ) {
 		$val = $this->getRequest()->getSessionData( "centralnotice-$variable" );
-		if ( is_null( $val ) ) {
+		if ( $val === null ) {
 			$val = $default;
 		}
 

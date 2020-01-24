@@ -1,6 +1,6 @@
 <?php
 
-/***
+/**
  * Module for the centralnoticechoicedata Web API.
  *
  * This is provided as a fallback mechanism for getting banner choice data

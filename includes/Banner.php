@@ -22,8 +22,8 @@
  * @file
  */
 
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * CentralNotice banner object. Banners are pieces of rendered wikimarkup
@@ -79,13 +79,14 @@ class Banner {
 	protected $archived = false;
 
 	/** @var string[] Devices this banner should be allocated to in the form
-	 * {Device ID => Device header name} */
+	 * {Device ID => Device header name}
+	 */
 	protected $devices = [];
 
-	/** @var string[] Names of enabled mixins  */
+	/** @var string[] Names of enabled mixins */
 	protected $mixins = [];
 
-	/** @var string[] Language codes considered a priority for translation.  */
+	/** @var string[] Language codes considered a priority for translation. */
 	protected $priorityLanguages = [];
 
 	/** @var string Wikitext content of the banner */

@@ -21,7 +21,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	/** @var string Name of the chosen banner */
 	private $bannerName;
 
-	/** @var string|null Name of the campaign that the banner belongs to.*/
+	/** @var string|null Name of the campaign that the banner belongs to. */
 	private $campaignName;
 
 	/** @var string|null Content of the banner to be previewed */

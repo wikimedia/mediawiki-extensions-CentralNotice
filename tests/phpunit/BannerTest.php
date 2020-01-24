@@ -35,7 +35,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $banner->exists(), 'Test precondition failed! Banner already exists!' );
 
 		// Run down the basic metadata and ensure it is in fact empty
-		$this->assertEquals( null, $banner->getId(),
+		$this->assertNull( $banner->getId(),
 			'New banner ID is not null; probably already exists!' );
 		$this->assertEquals( self::TEST_BANNER_NAME, $banner->getName(),
 			'Banner name did not get set' );
@@ -57,7 +57,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 			'Initial banner has priority languages' );
 
 		// And the body content should also be empty
-		$this->assertEquals( '', $banner->getBodyContent(),
+		$this->assertSame( '', $banner->getBodyContent(),
 			'Initial banner has non empty body content' );
 
 		// And finally; save this empty banner
@@ -100,7 +100,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 			'Initial banner has priority languages' );
 
 		// And the body content should also be empty
-		$this->assertEquals( '', $banner->getBodyContent(),
+		$this->assertSame( '', $banner->getBodyContent(),
 			'Initial banner has non empty body content' );
 	}
 
