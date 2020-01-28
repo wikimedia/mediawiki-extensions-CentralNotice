@@ -118,7 +118,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		if ( $this->logType == 'bannercontent' ) {
 			// If the banner was just created, show a link to the banner. If the banner was
 			// edited, show a link to the banner and a link to the diff.
-			if ( $row->rc_new ) {
+			if ( $row->rc_source === RecentChange::SRC_NEW ) {
 				$bannerCell = $bannerLink;
 			} else {
 				$querydiff = [
@@ -139,7 +139,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 			// If the message was just created, show a link to the message. If the message was
 			// edited, show a link to the message and a link to the diff.
-			if ( $row->rc_new ) {
+			if ( $row->rc_source === RecentChange::SRC_NEW ) {
 				$messageCell = $messageLink;
 			} else {
 				$querydiff = [
