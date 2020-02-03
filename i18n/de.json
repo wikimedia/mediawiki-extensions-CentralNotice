@@ -12,7 +12,8 @@
 			"Robby",
 			"The Evil IP address",
 			"Umherirrender",
-			"Killarnee"
+			"Killarnee",
+			"Mglaser"
 		]
 	},
 	"centralnotice": "Verwaltung zentraler Meldungen",
@@ -106,6 +107,11 @@
 	"centralnotice-message": "Nachricht",
 	"centralnotice-message-not-set": "Nachricht nicht gesetzt",
 	"centralnotice-campaigns-using-banner": "Kampagnen, die diese Vorlage verwenden",
+	"centralnotice-fieldset-preview": "Live-Vorschau",
+	"centralnotice-update-preview": "Vorschau aktualisieren",
+	"centralnotice-preview-page": "[ Vorschau im Wiki ]",
+	"centralnotice-preview-loader-error-dialog-title": "Fehler beim Laden der Bannervorschau",
+	"centralnotice-preview-loader-error-dialog-ok": "OK",
 	"centralnotice-clone": "Kopie",
 	"centralnotice-clone-notice": "Erstelle eine Kopie der Vorlage",
 	"centralnotice-clone-name": "Name:",
