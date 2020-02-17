@@ -93,7 +93,11 @@ class Banner {
 	/** @var string Wikitext content of the banner */
 	protected $bodyContent = '';
 
+	/** @var bool */
 	protected $runTranslateJob = false;
+
+	/** @var bool Is banner meant to be used as a template for other banners */
+	protected $template = false;
 
 	/**
 	 * Create a banner object from a known ID. Must already be
@@ -292,6 +296,33 @@ class Banner {
 	}
 
 	/**
+	 * Is this banner meant to be used as a template for other banners
+	 *
+	 * @return bool
+	 * @throws BannerDataException
+	 * @throws BannerExistenceException
+	 */
+	public function isTemplate() {
+		$this->populateBasicData();
+		return $this->template;
+	}
+
+	/**
+	 * Mark banner as a template
+	 *
+	 * @param bool $value
+	 * @throws BannerDataException
+	 * @throws BannerExistenceException
+	 */
+	public function setIsTemplate( $value ) {
+		$this->populateBasicData();
+		if ( $this->template !== $value ) {
+			$this->setBasicDataDirty();
+			$this->template = $value;
+		}
+	}
+
+	/**
 	 * Populates basic banner data by querying the cn_templates table
 	 *
 	 * @throws BannerDataException If neither a name or ID can be used to query for data
@@ -322,7 +353,8 @@ class Banner {
 				'tmp_display_anon',
 				'tmp_display_account',
 				'tmp_archived',
-				'tmp_category'
+				'tmp_category',
+				'tmp_is_template'
 			],
 			$selector,
 			__METHOD__
@@ -337,6 +369,7 @@ class Banner {
 			$this->allocateLoggedIn = (bool)$row->tmp_display_account;
 			$this->archived = (bool)$row->tmp_archived;
 			$this->category = $row->tmp_category;
+			$this->template = (bool)$row->tmp_is_template;
 		} else {
 			$keystr = [];
 			foreach ( $selector as $key => $value ) {
@@ -382,6 +415,7 @@ class Banner {
 					'tmp_display_account' => (int)$this->allocateLoggedIn,
 					'tmp_archived'        => (int)$this->archived,
 					'tmp_category'        => $this->category,
+					'tmp_is_template'     => (int)$this->template
 				],
 				[
 					'tmp_id'              => $this->id
@@ -1373,6 +1407,33 @@ class Banner {
 	}
 
 	/**
+	 * @param string $name
+	 * @param User $user
+	 * @param Banner $template
+	 * @param string|null $summary
+	 * @return string|null error message key or null on success
+	 * @throws BannerDataException
+	 * @throws BannerExistenceException
+	 */
+	public static function addFromBannerTemplate( $name, $user, Banner $template, $summary = null ) {
+		if ( !$template->isTemplate() ) {
+			return 'centralnotice-banner-template-error';
+		}
+		return static::addTemplate(
+			$name, $template->getBodyContent(), $user,
+			$template->allocateToAnon(),
+			$template->allocateToLoggedIn(),
+			false,
+			$template->getMixins(),
+			$template->getPriorityLanguages(),
+			$template->getDevices(),
+			$summary,
+			false,
+			$template->getCategory()
+		);
+	}
+
+	/**
 	 * Create a new banner
 	 *
 	 * @param string $name name of banner
@@ -1385,17 +1446,24 @@ class Banner {
 	 * @param array $priorityLangs Array of priority languages for the translate extension
 	 * @param array|null $devices Array of device names this banner is targeted at
 	 * @param string|null $summary Optional summary of changes for logging
+	 * @param bool $isTemplate Is banner marked as a template
+	 * @param string|null $category Category of the banner (ignored if $fundraising = true )
 	 *
 	 * @return string|null error message key or null on success
 	 */
 	public static function addTemplate( $name, $body, $user, $displayAnon,
 		$displayAccount, $fundraising = false,
 		$mixins = [], $priorityLangs = [], $devices = null,
-		$summary = null
+		$summary = null, $isTemplate = false, $category = null
 	) {
 		// Default initial value for devices
 		if ( $devices === null ) {
 			$devices = [ 'desktop' ];
+		}
+
+		// Set default value for category
+		if ( !$category ) {
+			$category = '{{{campaign}}}';
 		}
 
 		if ( $name == '' || !self::isValidBannerName( $name ) || $body == '' ) {
@@ -1408,10 +1476,11 @@ class Banner {
 		}
 
 		$banner->setAllocation( $displayAnon, $displayAccount );
-		$banner->setCategory( $fundraising ? 'fundraising' : '{{{campaign}}}' );
+		$banner->setCategory( $fundraising ? 'fundraising' : $category );
 		$banner->setDevices( $devices );
 		$banner->setPriorityLanguages( $priorityLangs );
 		$banner->setBodyContent( $body );
+		$banner->setIsTemplate( $isTemplate );
 
 		$banner->setMixins( $mixins );
 

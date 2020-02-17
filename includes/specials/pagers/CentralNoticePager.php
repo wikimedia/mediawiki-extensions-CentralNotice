@@ -52,7 +52,8 @@ class CentralNoticePager extends TemplatePager {
 
 				'conds' => [
 					'assignments.tmp_id IS NULL',
-					'tmp_name' . $dbr->buildLike( $likeArray )
+					'tmp_name' . $dbr->buildLike( $likeArray ),
+					'templates.tmp_is_template = 0'
 				],
 
 				'join_conds' => [
@@ -70,7 +71,10 @@ class CentralNoticePager extends TemplatePager {
 			return [
 				'tables' => [ 'templates' => 'cn_templates' ],
 				'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
-				'conds' => [ 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ],
+				'conds' => [
+					'templates.tmp_name' . $dbr->buildLike( $likeArray ),
+					'templates.tmp_is_template = 0'
+				],
 			];
 		}
 	}

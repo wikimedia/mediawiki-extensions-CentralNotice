@@ -8,6 +8,7 @@
  */
 class BannerTest extends MediaWikiIntegrationTestCase {
 	const TEST_BANNER_NAME = 'PhpUnitTestBanner';
+	const TEST_BANNER_TEMPLATE_NAME = 'PhpUnitTestBannerTemplate';
 
 	protected $fixture;
 
@@ -21,11 +22,9 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function tearDown() : void {
-		$banner = Banner::fromName( self::TEST_BANNER_NAME );
-		if ( $banner->exists() ) {
-			$user = $this->getTestUser()->getUser();
-			$banner->remove( $user );
-		}
+		$this->deleteTemplateIfExists( static::TEST_BANNER_NAME );
+		$this->deleteTemplateIfExists( static::TEST_BANNER_TEMPLATE_NAME );
+
 		$this->fixture->tearDownTestCases();
 	}
 
@@ -151,6 +150,68 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function testAddTemplate() {
+		$res = Banner::addTemplate(
+			static::TEST_BANNER_NAME,
+			'<!-- empty -->',
+			$this->getTestUser()->getUser(),
+			true, false, true,
+			[], [ 'en' ], null, '',
+			false, 'Dummy'
+		);
+
+		$this->assertFalse( is_string( $res ), 'Banner::addTemplate must not return a string' );
+		$banner = Banner::fromName( static::TEST_BANNER_NAME );
+
+		$this->assertTrue(
+			$banner->exists(), 'Banner::addTemplate must add the banner to the database'
+		);
+
+		$this->assertEquals(
+			'fundraising', $banner->getCategory(),
+			"When 'fundraising' param is set to true, category must be set to 'fundraising' - failed"
+		);
+	}
+
+	/**
+	 * @depends testAddTemplate
+	 */
+	public function testAddFromBannerTemplate() {
+		Banner::addTemplate(
+			static::TEST_BANNER_TEMPLATE_NAME,
+			'Dummy body',
+			$this->getTestUser()->getUser(),
+			true, false, false,
+			[], [ 'en' ], null, '',
+			true, 'Dummy'
+		);
+
+		$bannerTemplate = Banner::fromName( static::TEST_BANNER_TEMPLATE_NAME );
+		$this->assertTrue( $bannerTemplate->isTemplate(), 'Failed to mark banner as template' );
+
+		Banner::addFromBannerTemplate(
+			static::TEST_BANNER_NAME,
+			$this->getTestUser()->getUser(),
+			$bannerTemplate
+		);
+
+		$banner = Banner::fromName( static::TEST_BANNER_NAME );
+
+		$this->assertEquals(
+			static::TEST_BANNER_NAME, $banner->getName(),
+			'Failed to retrieve correct banner name'
+		);
+		$this->assertEquals(
+			'Dummy body', $banner->getBodyContent(),
+			'Failed to retrieve correct banner name'
+		);
+		$this->assertEquals(
+			'Dummy', $banner->getCategory(), 'Failed to retrieve correct category'
+		);
+		$this->assertTrue( $banner->allocateToAnon(), 'Failed to retrieve correct allocation to anon' );
+		$this->assertFalse( $banner->isTemplate(), 'Failed to retrieve correct template designation' );
+	}
+
 	/**
 	 * @depends testBasicSave
 	 * @dataProvider providerSetAllocation
@@ -178,5 +239,19 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 			[ false, true ],
 			[ true, true ]
 		];
+	}
+
+	/**
+	 * Delete template on teardown
+	 *
+	 * @param string $name
+	 * @throws BannerDataException
+	 */
+	protected function deleteTemplateIfExists( $name ) {
+		$banner = Banner::fromName( $name );
+		if ( $banner->exists() ) {
+			$user = $this->getTestUser()->getUser();
+			$banner->remove( $user );
+		}
 	}
 }

@@ -337,5 +337,12 @@
 	"tag-centralnotice": "Display name for 'centralnotice' revision tag",
 	"tag-centralnotice-description": "Description for 'centralnotice' revision tag",
 	"tag-centralnotice_translation": "Display name for 'centralnotice translation' revision tag",
-	"tag-centralnotice_translation-description": "Description for 'centralnotice translation' revision tag"
+	"tag-centralnotice_translation-description": "Description for 'centralnotice translation' revision tag",
+	"centralnotice-banner-template": "Label for the section used to mark banners as templates in the form in [[Special:CentralNoticeBanners]]",
+	"centralnotice-banner-is-template": "Label for checkbox used to mark banners as templates in the form in [[Special:CentralNoticeBanners]]",
+	"centralnotice-banner-template-info": "{{Identical|Template}}",
+	"centralnotice-banner-template-error": "Error message displayed in Special:CentralNotice when trying to add a banner based on a banner that is invalid",
+	"centralnotice-add-banner-from-template": "Label for 'Add a banner from template' button",
+	"centralnotice-messages-banner-in-campaign": "Info text describing why marking banner as a template is disabled",
+	"centralnotice-create-from-template-checkbox-label": "Label for 'From template' checkbox"
 }
