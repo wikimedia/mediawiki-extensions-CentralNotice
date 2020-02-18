@@ -498,6 +498,7 @@ class CentralNoticeHooks {
 		}
 
 		if ( $displayMobile ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
 			$bannerDispatcher = $wgCentralSelectedMobileBannerDispatcher;
 		} else {

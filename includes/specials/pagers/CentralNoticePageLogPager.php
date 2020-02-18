@@ -102,6 +102,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			preg_match( $pattern, $titleBase, $matches );
 			$banner = $matches[1];
 			$message = $matches[2];
+		} else {
+			throw new LogicException( "Unknown type {$this->logType}" );
 		}
 
 		// Create banner link
@@ -135,6 +137,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell = $bannerLink;
 
 			// Create the message link
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 			$messageLink = $this->special->getLinkRenderer()->makeKnownLink( $title, $message );
 
 			// If the message was just created, show a link to the message. If the message was
@@ -152,6 +155,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				// See ChangesList->preCacheMessages() for example.
 				$messageCell = $messageLink . "&nbsp;(<a href=\"$diffUrl\">diff</a>)";
 			}
+		} else {
+			throw new LogicException( "Unknown type {$this->logType}" );
 		}
 
 		// Begin log entry primary row
@@ -172,6 +177,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell
 		);
 		if ( $this->logType == 'bannermessages' ) {
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 				$messageCell
 			);

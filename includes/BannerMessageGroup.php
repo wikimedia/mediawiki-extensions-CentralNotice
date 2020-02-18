@@ -258,7 +258,6 @@ class BannerMessageGroup extends WikiMessageGroup {
 		}
 
 		// Update the subgroup meta with any new groups since the last time this was run
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		$list[$conf['BASIC']['id']] = MessageGroupBase::factory( $conf );
 
 		return true;

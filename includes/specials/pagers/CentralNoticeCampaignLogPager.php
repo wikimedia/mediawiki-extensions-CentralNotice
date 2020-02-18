@@ -24,7 +24,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Pull log entries from the database
-	 * @return array[]
+	 * @inheritDoc
 	 */
 	public function getQueryInfo() {
 		$request = $this->getRequest();
@@ -413,6 +413,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param string $param
 	 * @param object $row
 	 * @return string
+	 * @suppress PhanPossiblyUndeclaredVariable
+	 * @todo Add default to the switches
 	 */
 	private function testPriorityChange( $param, $row ) {
 		$result = '';

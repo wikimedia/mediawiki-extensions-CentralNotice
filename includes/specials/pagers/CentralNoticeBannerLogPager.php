@@ -112,6 +112,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			// Begin log entry secondary row
 			$htmlOut .= Xml::openElement( 'tr',
 				[ 'id' => 'cn-log-details-' . $tmplogId, 'style' => 'display:none;' ] );
+			// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable
 
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
