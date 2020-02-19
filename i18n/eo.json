@@ -6,7 +6,8 @@
 			"Mihxil",
 			"Yekrats",
 			"Fitoschido",
-			"Mirin"
+			"Mirin",
+			"Robin van der Vliet"
 		]
 	},
 	"centralnotice": "Administranto de centrala notico",
@@ -80,7 +81,7 @@
 	"centralnotice-weights": "Pezoj",
 	"centralnotice-notice-is-locked": "Notico estas ŝlosita.\nNe forigante",
 	"centralnotice-overlap": "Notico kolizias inter la tempo de alia notico.\nNe aldonante",
-	"centralnotice-invalid-date-range": "Malvalida data intervalo.\nNe ĝisdatigante",
+	"centralnotice-invalid-date-range": "Nevalida data intervalo.\nNe ĝisdatigante",
 	"centralnotice-null-string": "Ne povas aldoni nulan signoĉenon.\nNe aldonante.",
 	"centralnotice-no-notices-exist": "Neniuj noticoj ekzistas.\nAfiŝu noticon suben",
 	"centralnotice-no-templates-translate": "Ne estas iuj ŝablonoj por redakti tradukojn por",
