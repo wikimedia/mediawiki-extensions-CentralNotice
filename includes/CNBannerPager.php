@@ -46,7 +46,11 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		$this->hostSpecialPage = $hostSpecialPage;
 		// Override paging defaults
-		list( $this->mLimit, $this->mOffset ) = $this->mRequest->getLimitOffset( 20, '' );
+		list( $this->mLimit, $this->mOffset ) = $this->mRequest->getLimitOffsetForUser(
+			$this->getUser(),
+			20,
+			''
+		);
 		$this->mLimitsShown = [ 20, 50, 100 ];
 
 		// Get the database object

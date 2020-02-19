@@ -19,7 +19,11 @@ class TemplatePager extends ReverseChronologicalPager {
 		parent::__construct();
 
 		// Override paging defaults
-		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
+		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffsetForUser(
+			$this->getUser(),
+			20,
+			''
+		);
 		$this->mLimitsShown = [ 20, 50, 100 ];
 
 		$msg = Xml::encodeJsVar( $this->msg( 'centralnotice-confirm-delete' )->text() );
