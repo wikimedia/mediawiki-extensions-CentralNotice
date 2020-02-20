@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_templates (
 	`tmp_landing_pages` varchar(255) DEFAULT NULL, -- Note: no longer used
 	`tmp_archived` tinyint(1) NOT NULL DEFAULT '0',
 	`tmp_category` varchar(255) DEFAULT NULL,
-	`tmp_preview_sandbox` tinyint(1) NOT NULL DEFAULT '0'
+	`tmp_preview_sandbox` tinyint(1) NOT NULL DEFAULT '0',
+	`tmp_is_template` bool NOT NULL DEFAULT '0'
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/tmp_name ON /*_*/cn_templates (tmp_name);
 CREATE INDEX /*i*/tmp_category ON /*_*/cn_templates (tmp_category);
