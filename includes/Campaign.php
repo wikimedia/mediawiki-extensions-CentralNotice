@@ -711,7 +711,7 @@ class Campaign {
 					'nmxn_mixin_name' => $mixinName,
 					'nmxn_enabled' => 1
 				],
-				[ 'nmxn_not_id', 'nmxn_mixin_name' ],
+				[ [ 'nmxn_not_id', 'nmxn_mixin_name' ] ],
 				[
 					'nmxn_enabled' => 1
 				]
@@ -752,7 +752,7 @@ class Campaign {
 						'nmxnp_param_name' => $paramName,
 						'nmxnp_param_value' => $paramVal
 					],
-					[ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ],
+					[ [ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ] ],
 					[
 						'nmxnp_param_value' => $paramVal
 					]
