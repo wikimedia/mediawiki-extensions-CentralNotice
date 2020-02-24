@@ -4,6 +4,25 @@
 			"Pyscowicz"
 		]
 	},
+	"centralnotice-save-banner": "Säästä",
+	"centralnotice-remove": "Ota poies",
 	"centralnotice-add": "Lissää",
+	"centralnotice-add-notice-cancel-button": "Lopeta",
+	"centralnotice-edit-notice": "Mookkaa kampanjaa",
+	"centralnotice-add-template": "Lissää banneri",
+	"centralnotice-translations": "Käänökset",
+	"centralnotice-translate-to": "Käänös:",
+	"centralnotice-english": "Engelska",
+	"centralnotice-banner-name": "Bannerin nimi:",
+	"centralnotice-day": "Päivä",
+	"centralnotice-year": "Vuosi",
+	"centralnotice-month": "Kuukausi",
+	"centralnotice-min": "Minuutti",
+	"centralnotice-project-lang": "Prujektin kieli",
+	"centralnotice-select-all": "Valitte kaikki",
+	"centralnotice-remove-all": "Ota poies kaikki",
+	"centralnotice-project-name": "Prujektin nimi",
+	"centralnotice-settings": "Inställninkit",
+	"centralnotice-edit-template": "Mookkaa banneria",
 	"centralnotice-date": "Taatumi"
 }
