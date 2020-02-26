@@ -1139,17 +1139,15 @@ class Banner {
 			);
 
 			// Delete the MediaWiki page that contains the banner source
-			$article = new Article( $bannerObj->getTitle() );
-			$pageId = $article->getPage()->getId();
-
 			// TODO Inconsistency: deletion of banner content is not recorded
 			// as a bot edit, so it does not appear on the CN logs page. Also,
 			// related messages are not deleted.
-			$article->doDeleteArticle( $summary ?: '' );
+			$wikiPage = WikiPage::factory( $bannerObj->getTitle() );
+			$wikiPage->doDeleteArticle( $summary ?: '' );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
-				self::removeTag( 'banner:translate', $pageId );
+				self::removeTag( 'banner:translate', $wikiPage->getId() );
 
 				// And the preferred language metadata if it exists
 				TranslateMetadata::set(
