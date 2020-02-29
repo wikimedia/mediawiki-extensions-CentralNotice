@@ -417,11 +417,11 @@ class CentralNoticeHooks {
 	 * This function sets the pseudo-global JavaScript variables that are used by CentralNotice
 	 *
 	 * @param array &$vars
+	 * @param OutputPage $out
 	 * @return bool
 	 */
-	public static function onMakeGlobalVariablesScript( &$vars ) {
-		// Using global $wgUser for compatibility with 1.18
-		global $wgNoticeProject, $wgCentralNoticeGeoIPBackgroundLookupModule, $wgUser;
+	public static function onMakeGlobalVariablesScript( &$vars, $out ) {
+		global $wgNoticeProject, $wgCentralNoticeGeoIPBackgroundLookupModule;
 
 		// FIXME Is this no longer used anywhere in JS following the switch to
 		// client-side banner selection? If so, remove it.
@@ -437,14 +437,14 @@ class CentralNoticeHooks {
 		// Output the user's registration date, total edit count, and past year's edit count.
 		// This is useful for banners that need to be targeted to specific types of users.
 		// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
-		if ( $wgUser->isLoggedIn() ) {
-			// @FIXME: use User::isBot() instead
-			if ( $wgUser->isAllowed( 'bot' ) ) {
+		$user = $out->getUser();
+		if ( $user->isLoggedIn() ) {
+			if ( $user->isBot() ) {
 				$userData = false;
 			} else {
 				$userData = [
 					// Add the user's registration date (TS_MW)
-					'registration' => $wgUser->getRegistration() ?: 0
+					'registration' => $user->getRegistration() ?: 0
 				];
 			}
 			// Set the variable that will be output to the page
