@@ -151,25 +151,25 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testAddTemplate() {
-		$res = Banner::addTemplate(
+		$res = Banner::addBanner(
 			static::TEST_BANNER_NAME,
 			'<!-- empty -->',
 			$this->getTestUser()->getUser(),
-			true, false, true,
+			true, false,
 			[], [ 'en' ], null, '',
-			false, 'Dummy'
+			false, 'fundraising'
 		);
 
-		$this->assertFalse( is_string( $res ), 'Banner::addTemplate must not return a string' );
+		$this->assertFalse( is_string( $res ), 'Banner::addBanner must not return a string' );
 		$banner = Banner::fromName( static::TEST_BANNER_NAME );
 
 		$this->assertTrue(
-			$banner->exists(), 'Banner::addTemplate must add the banner to the database'
+			$banner->exists(), 'Banner::addBanner must add the banner to the database'
 		);
 
 		$this->assertEquals(
 			'fundraising', $banner->getCategory(),
-			"When 'fundraising' param is set to true, category must be set to 'fundraising' - failed"
+			"Category should be 'fundraising'"
 		);
 	}
 
@@ -177,11 +177,11 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	 * @depends testAddTemplate
 	 */
 	public function testAddFromBannerTemplate() {
-		Banner::addTemplate(
+		Banner::addBanner(
 			static::TEST_BANNER_TEMPLATE_NAME,
 			'Dummy body',
 			$this->getTestUser()->getUser(),
-			true, false, false,
+			true, false,
 			[], [ 'en' ], null, '',
 			true, 'Dummy'
 		);

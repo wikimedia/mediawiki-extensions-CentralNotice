@@ -323,14 +323,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 								$formData['newBannerEditSummary']
 							);
 						} else {
-							$retval = Banner::addTemplate(
+							$retval = Banner::addBanner(
 								$this->bannerName,
 								"<!-- Empty banner -->",
 								$this->getUser(),
 								false,
 								false,
 								// Default values of a zillion parameters...
-								false, [], [], null,
+								[], [], null,
 								$formData['newBannerEditSummary']
 							);
 						}
@@ -360,7 +360,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 						if ( ( $parts[0] === 'applyTo' ) && ( $value === true ) ) {
 							try {
 
-								Banner::removeTemplate(
+								Banner::removeBanner(
 									$parts[1], $this->getUser(), $summary );
 
 							} catch ( Exception $ex ) {
@@ -951,7 +951,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				try {
-					Banner::removeTemplate(
+					Banner::removeBanner(
 						$this->bannerName, $this->getUser(),
 						$formData[ 'deleteEditSummary' ] );
 

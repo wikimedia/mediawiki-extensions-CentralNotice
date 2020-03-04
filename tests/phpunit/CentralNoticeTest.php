@@ -77,15 +77,15 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		$body = 'testing';
 		$displayAnon = true;
 		$displayAccount = true;
-		$fundraising = true;
+		$category = 'fundraising';
 
 		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,' .
 			'"display_account":1,"fundraising":1,"device":"desktop",' .
 			'"campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,' .
 			'"campaign_throttle":100,"bucket":0}]';
 
-		Banner::addTemplate( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
-			$fundraising );
+		Banner::addBanner( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
+			[], [], null, null, false, $category );
 		Campaign::addTemplateTo( 'PHPUnitTestCampaign', 'PHPUnitTestBanner', '25' );
 	}
 
@@ -93,7 +93,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		parent::tearDown();
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
-		Banner::removeTemplate( 'PHPUnitTestBanner', $this->userUser );
+		Banner::removeBanner( 'PHPUnitTestBanner', $this->userUser );
 		$this->fixture->tearDownTestCases();
 	}
 
