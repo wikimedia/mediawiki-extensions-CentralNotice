@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -774,12 +775,13 @@ class Banner {
 			return;
 		}
 
-		$bodyPage = $this->getTitle();
-		$curRev = Revision::newFromTitle( $bodyPage );
+		$curRev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $this->getTitle() );
 		if ( !$curRev ) {
 			throw new BannerContentException( "No content for banner: {$this->name}" );
 		}
-		$this->bodyContent = ContentHandler::getContentText( $curRev->getContent() );
+		$this->bodyContent = ContentHandler::getContentText( $curRev->getContent( SlotRecord::MAIN ) );
 
 		$this->markBodyContentDirty( false );
 	}

@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
+
 class BannerMessage {
 
 	/** @var string */
@@ -66,18 +69,22 @@ class BannerMessage {
 	public function getContents( $lang ) {
 		if ( $this->existsInLang( $lang ) ) {
 			$dbKey = $this->getDbKey();
-			$rev = Revision::newFromTitle( $this->getTitle( $lang ) );
+			$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+			$rev = $revisionLookup->getRevisionByTitle( $this->getTitle( $lang ) );
 
 			if ( !$rev ) {
 				// Try harder, might have just been created, otherwise the title wouldn't exist
-				$rev = Revision::newFromTitle( $this->getTitle( $lang ), Revision::READ_LATEST );
+				$rev = $revisionLookup->getRevisionByTitle(
+					$this->getTitle( $lang ),
+					IDBAccessObject::READ_LATEST
+				);
 			}
 
 			if ( !$rev ) {
 				return null;
 			}
 
-			$msg = $rev->getContent()->getNativeData();
+			$msg = $rev->getContent( SlotRecord::MAIN )->getNativeData();
 			if ( $msg === "&lt;{$dbKey}&gt;" ) {
 				$msg = '';
 			}
