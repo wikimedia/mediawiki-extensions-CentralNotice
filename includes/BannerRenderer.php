@@ -138,7 +138,7 @@ class BannerRenderer {
 			// Preview mode, banner content is ephemeral
 			// TODO Double-check that this is the correct way to get process as a i18n
 			// message, and add documentation to the core method.
-			$bannerHtml = MessageCache::singleton()->transform(
+			$bannerHtml = MediaWikiServices::getInstance()->getMessageCache()->transform(
 				$this->previewContent,
 				false,
 				$parentLang
@@ -299,7 +299,7 @@ class BannerRenderer {
 			// TODO As above, double-check that this is the correct way to get process as
 			// a i18n message.
 
-			return MessageCache::singleton()->transform(
+			return MediaWikiServices::getInstance()->getMessageCache()->transform(
 				BannerMessage::sanitize( $this->previewMessages[ $field ] ) );
 
 		} else {
