@@ -382,13 +382,13 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
 		$htmlOut .= Xml::closeElement( 'tr' );
 		// Project
-		$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'projectMultiSelector' ] );
+		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 			$this->msg( 'centralnotice-projects' )->escaped() );
 		$htmlOut .= Xml::tags( 'td', [], $this->projectMultiSelector( $noticeProjects ) );
 		$htmlOut .= Xml::closeElement( 'tr' );
 		// Languages
-		$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'langMultiSelector' ] );
+		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
 			$this->msg( 'centralnotice-languages' )->escaped() );
 		$htmlOut .= Xml::tags( 'td', [],
