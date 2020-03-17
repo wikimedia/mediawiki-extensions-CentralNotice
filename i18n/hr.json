@@ -17,6 +17,8 @@
 	"bannerallocation": "Administracija središnjih obavijesti",
 	"centralnoticelogs": "Administrator središnjih obavjesnica",
 	"right-centralnotice-admin": "Uređivanje središnjih obavjesnica",
+	"protect-level-centralnotice-admin": "Dopusti samo administratorima središnjih obavjesnica",
+	"restriction-level-centralnotice-admin": "zaštiti samo za administratore središnjih obavjesnica",
 	"action-centralnotice-admin": "uređivanje središnjih obavijesti",
 	"centralnotice-desc": "Dodaje središnju obavijest za projekt",
 	"centralnotice-summary": "Ova stranica vam omogućava uređivanje trenutačno postavljenih središnjih obavijesti.\nMože biti korištena i za dodavanje ili uklanjanje zastarjelih obavijesti.",
@@ -26,7 +28,7 @@
 	"centralnotice-modify": "Postavi",
 	"centralnotice-view": "Vidi",
 	"centralnotice-save-banner": "Spremi",
-	"centralnotice-live-preview": "Prethodni pregled na wikiju",
+	"centralnotice-live-preview": "Prethodni pregled zadnje sačuvane inačice",
 	"centralnotice-add-new": "Dodaj novu središnju obavijest",
 	"centralnotice-remove": "Ukloni",
 	"centralnotice-translate-heading": "Prijevod za $1",
@@ -130,5 +132,9 @@
 	"centralnotice-start-time": "Početno vrijeme (UTC)",
 	"centralnotice-end-date": "Završni datum (UTC)",
 	"centralnotice-end-time": "Vrijeme završetka (UTC)",
-	"centralnotice-multiple-languages": "više ($1)"
+	"centralnotice-multiple-languages": "više ($1)",
+	"tag-centralnotice": "Središnje obavjesnice",
+	"tag-centralnotice-description": "Uređivanja načinjena upotrebom korisničkoga sučelja za administratore središnjih obavjesnica",
+	"tag-centralnotice_translation": "Prijevod središnjih obavjesnica",
+	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno upotrebom proširenja za prevođenje"
 }

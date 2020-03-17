@@ -417,12 +417,11 @@ class CentralNoticeHooks {
 	 * This function sets the pseudo-global JavaScript variables that are used by CentralNotice
 	 *
 	 * @param array &$vars
+	 * @param OutputPage $out
 	 * @return bool
 	 */
-	public static function onMakeGlobalVariablesScript( &$vars ) {
-		// Using global $wgUser for compatibility with 1.18
-		global $wgNoticeProject, $wgCentralNoticeGeoIPBackgroundLookupModule,
-			$wgUser, $wgMemc;
+	public static function onMakeGlobalVariablesScript( &$vars, $out ) {
+		global $wgNoticeProject, $wgCentralNoticeGeoIPBackgroundLookupModule;
 
 		// FIXME Is this no longer used anywhere in JS following the switch to
 		// client-side banner selection? If so, remove it.
@@ -438,30 +437,18 @@ class CentralNoticeHooks {
 		// Output the user's registration date, total edit count, and past year's edit count.
 		// This is useful for banners that need to be targeted to specific types of users.
 		// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
-		if ( $wgUser->isLoggedIn() ) {
-			$cacheKey = wfMemcKey( 'CentralNotice', 'UserData', $wgUser->getId() );
-			$userData = $wgMemc->get( $cacheKey );
-
-			// Cached?
-			if ( !$userData ) {
-				// Exclude bots
-				if ( $wgUser->isAllowed( 'bot' ) ) {
-					$userData = false;
-				} else {
-					$userData = [];
-
-					// Add the user's registration date (MediaWiki timestamp)
-					$registrationDate = $wgUser->getRegistration() ?: 0;
-					$userData[ 'registration' ] = $registrationDate;
-				}
-
-				// Cache the data for 7 days
-				$wgMemc->set( $cacheKey, $userData, 7 * 86400 );
+		$user = $out->getUser();
+		if ( $user->isLoggedIn() ) {
+			if ( $user->isBot() ) {
+				$userData = false;
+			} else {
+				$userData = [
+					// Add the user's registration date (TS_MW)
+					'registration' => $user->getRegistration() ?: 0
+				];
 			}
-
 			// Set the variable that will be output to the page
 			$vars[ 'wgNoticeUserData' ] = $userData;
-
 		}
 
 		return true;
@@ -511,6 +498,7 @@ class CentralNoticeHooks {
 		}
 
 		if ( $displayMobile ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 			$wgCentralBannerRecorder = $mc->getMobileUrl( $wgCentralBannerRecorder );
 			$bannerDispatcher = $wgCentralSelectedMobileBannerDispatcher;
 		} else {

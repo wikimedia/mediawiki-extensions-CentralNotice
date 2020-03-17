@@ -4,7 +4,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
-/***
+/**
  * Provides a set of campaign and banner choices based on allocations for a
  * given project and language combination.
  */

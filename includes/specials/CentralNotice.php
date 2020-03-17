@@ -1562,12 +1562,8 @@ class CentralNotice extends SpecialPage {
 		global $wgNoticeTabifyPages;
 
 		$title = $skin->getTitle();
-		if ( method_exists( MediaWikiServices::class, 'getSpecialPageFactory' ) ) {
-			list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-				resolveAlias( $title->getText() );
-		} else {
-			list( $alias, $sub ) = SpecialPageFactory::resolveAlias( $title->getText() );
-		}
+		list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+			resolveAlias( $title->getText() );
 
 		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
 			return true;
@@ -1598,7 +1594,7 @@ class CentralNotice extends SpecialPage {
 	 */
 	public function getCNSessionVar( $variable, $default = null ) {
 		$val = $this->getRequest()->getSessionData( "centralnotice-$variable" );
-		if ( is_null( $val ) ) {
+		if ( $val === null ) {
 			$val = $default;
 		}
 

@@ -5,7 +5,7 @@ class Campaign {
 	protected $id = null;
 	protected $name = null;
 
-	/** @var MWTimestamp Start datetime of campaign  */
+	/** @var MWTimestamp Start datetime of campaign */
 	protected $start = null;
 
 	/** @var MWTimestamp End datetime of campaign */
@@ -17,7 +17,7 @@ class Campaign {
 	/** @var bool True if the campaign is enabled for showing */
 	protected $enabled = null;
 
-	/** @var bool True if the campaign is currently non editable  */
+	/** @var bool True if the campaign is currently non editable */
 	protected $locked = null;
 
 	/** @var bool True if the campaign has been moved to the archive */
@@ -260,114 +260,6 @@ class Campaign {
 	}
 
 	/**
-	 * Returns a list of campaigns. May be filtered on optional constraints.
-	 * By default returns only enabled and active campaigns in all projects, languages and
-	 * countries.
-	 *
-	 * @param null|string $project The name of the project, ie: 'wikipedia'; if null select all
-	 *                              projects.
-	 * @param null|string $language ISO language code, if null select all languages
-	 * @param null|string $location ISO country code, if null select all campaigns
-	 * @param null|string|int $date Campaigns must start before and end after this date
-	 *                              If the parameter is null, it takes the current date/time
-	 * @param bool $enabled If true, select only active campaigns. If false select all.
-	 * @param bool $archived If true: only archived; false: only active; null; all.
-	 *
-	 * @return array Array of campaign IDs that matched the filter.
-	 */
-	public static function getCampaigns( $project = null, $language = null, $location = null,
-		$date = null, $enabled = true, $archived = false
-	) {
-		$notices = [];
-
-		// Database setup
-		$dbr = CNDatabase::getDb();
-
-		// We will perform two queries (one geo-targeted, the other not) to
-		// catch all notices. We do it bifurcated because otherwise the query
-		// would be really funky (if even possible) to pass to the underlying
-		// DB layer.
-
-		// Therefore... construct the common components : cn_notices
-		if ( $date ) {
-			$encTimestamp = $dbr->addQuotes( $dbr->timestamp( $date ) );
-		} else {
-			$encTimestamp = $dbr->addQuotes( $dbr->timestamp() );
-		}
-
-		$tables = [ 'notices' => 'cn_notices' ];
-		$conds = [
-			"not_start <= $encTimestamp",
-			"not_end >= $encTimestamp",
-		];
-
-		if ( $enabled ) {
-			$conds[ 'not_enabled' ] = 1;
-		}
-
-		if ( $archived === true ) {
-			$conds[ 'not_archived' ] = 1;
-		} elseif ( $archived === false ) {
-			$conds[ 'not_archived' ] = 0;
-		}
-
-		// common components: cn_notice_projects
-		if ( $project ) {
-			$tables[ 'notice_projects' ] = 'cn_notice_projects';
-
-			$conds[] = 'np_notice_id = notices.not_id';
-			$conds['np_project'] = $project;
-		}
-
-		// common components: language
-		if ( $language ) {
-			$tables['notice_languages'] = 'cn_notice_languages';
-
-			$conds[] = 'nl_notice_id = notices.not_id';
-			$conds['nl_language'] = $language;
-		}
-
-		if ( $location ) {
-			$conds['not_geo'] = 0;
-		}
-
-		// Pull the notice IDs of the non geotargeted campaigns
-		$res = $dbr->select(
-			$tables,
-			'not_id',
-			$conds,
-			__METHOD__
-		);
-		foreach ( $res as $row ) {
-			$notices[] = $row->not_id;
-		}
-
-		// If a location is passed, also pull geotargeted campaigns that match the location
-		if ( $location ) {
-			$tables[ 'notice_countries' ] = 'cn_notice_countries';
-
-			$conds[] = 'nc_notice_id = notices.not_id';
-			$conds['nc_country'] = $location;
-			$conds['not_geo'] = 1;
-
-			// Pull the notice IDs
-			$res = $dbr->select(
-				$tables,
-				'not_id',
-				$conds,
-				__METHOD__
-			);
-
-			// Loop through result set and return ids
-			foreach ( $res as $row ) {
-				$notices[] = $row->not_id;
-			}
-		}
-
-		return $notices;
-	}
-
-	/**
 	 * Get a list of active/active-and-future campaigns and associated banners.
 	 *
 	 * @param bool $includeFuture Include campaigns that haven't started yet, too.
@@ -598,7 +490,6 @@ class Campaign {
 				// Fix for legacy logs before bucketing
 				$campaign['bucket_count'] = 1;
 			}
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 			foreach ( $campaign['banners'] as $name => &$banner ) {
 				$historical_banner = Banner::getHistoricalBanner( $name, $ts );
 
@@ -711,7 +602,7 @@ class Campaign {
 			}
 
 			// If there are mixin params in this row, add them in
-			if ( !is_null( $dbRow->nmxnp_param_name ) ) {
+			if ( $dbRow->nmxnp_param_name !== null ) {
 				$paramName = $dbRow->nmxnp_param_name;
 				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
 
@@ -820,7 +711,7 @@ class Campaign {
 					'nmxn_mixin_name' => $mixinName,
 					'nmxn_enabled' => 1
 				],
-				[ 'nmxn_not_id', 'nmxn_mixin_name' ],
+				[ [ 'nmxn_not_id', 'nmxn_mixin_name' ] ],
 				[
 					'nmxn_enabled' => 1
 				]
@@ -861,7 +752,7 @@ class Campaign {
 						'nmxnp_param_name' => $paramName,
 						'nmxnp_param_value' => $paramVal
 					],
-					[ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ],
+					[ [ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ] ],
 					[
 						'nmxnp_param_value' => $paramVal
 					]

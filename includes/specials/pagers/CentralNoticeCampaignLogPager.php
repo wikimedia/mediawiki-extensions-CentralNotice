@@ -8,7 +8,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		parent::__construct();
 
 		// Override paging defaults
-		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset( 20, '' );
+		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffsetForUser(
+			$this->getUser(),
+			20,
+			''
+		);
 		$this->mLimitsShown = [ 20, 50, 100 ];
 
 		$this->viewPage = Campaign::getTitleForURL();
@@ -24,7 +28,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Pull log entries from the database
-	 * @return array[]
+	 * @inheritDoc
 	 */
 	public function getQueryInfo() {
 		$request = $this->getRequest();
@@ -413,6 +417,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param string $param
 	 * @param object $row
 	 * @return string
+	 * @suppress PhanPossiblyUndeclaredVariable
+	 * @todo Add default to the switches
 	 */
 	private function testPriorityChange( $param, $row ) {
 		$result = '';

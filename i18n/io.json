@@ -10,7 +10,7 @@
 	"centralnotice-modify": "Sendez",
 	"centralnotice-add": "Adjuntar",
 	"centralnotice-add-notice": "Adjuntar avizo",
-	"centralnotice-add-notice-cancel-button": "Nuligar",
+	"centralnotice-add-notice-cancel-button": "Anular",
 	"centralnotice-add-template": "Adjuntar shablono",
 	"centralnotice-translations": "Tradukuri",
 	"centralnotice-english": "Angliana",
@@ -24,8 +24,13 @@
 	"centralnotice-hours": "Horo",
 	"centralnotice-min": "Minuto",
 	"centralnotice-number-uses": "Uzadi",
+	"centralnotice-clone-cancel": "Anular",
 	"centralnotice-banner-logged-in": "Enrejistrita uzeri",
 	"centralnotice-languages": "Lingui",
+	"centralnotice-projects": "Projeti",
 	"centralnotice-account": "Montrez a l'uzeri enrejistrita",
-	"centralnotice-all": "Omna"
+	"centralnotice-all": "Omna",
+	"centralnotice-archive-banner-cancel": "Anular",
+	"centralnotice-archive-campaign-cancel": "Anular",
+	"centralnotice-delete-banner-cancel": "Anular"
 }

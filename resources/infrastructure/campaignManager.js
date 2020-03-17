@@ -417,6 +417,7 @@
 		$.each( paramDefs, function ( paramName, paramDef ) {
 
 			var paramTemplateVars = {
+				// eslint-disable-next-line mediawiki/msg-doc
 				labelMsg: mw.message( paramDef.labelMsg ).text(),
 				inputName: makeNoticeMixinControlName( mixinName, paramName ),
 				dataType: paramDef.type
@@ -496,6 +497,7 @@
 			}
 
 			if ( paramDef.helpMsg ) {
+				// eslint-disable-next-line mediawiki/msg-doc
 				paramTemplateVars.help = mw.message( paramDef.helpMsg ).text();
 			}
 
@@ -539,6 +541,7 @@
 		if ( error ) {
 			if ( $errorBox.length === 0 ) {
 				$errorBox = $( '<p>' ).addClass( 'errorbox' );
+				// eslint-disable-next-line mediawiki/msg-doc
 				$errorBox.text( mw.message( msgKey ).text() );
 				$input.closest( 'p' ).before( $errorBox );
 			}

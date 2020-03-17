@@ -20,7 +20,8 @@
 			"Araceletorres",
 			"Eduardo Addad de Oliveira",
 			"Felipe L. Ewald",
-			"McDutchie"
+			"McDutchie",
+			"Tks4Fish"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -92,7 +93,7 @@
 	"centralnotice-project-lang": "Língua do projeto",
 	"centralnotice-select-all": "Selecionar tudo",
 	"centralnotice-remove-all": "Remover todos",
-	"centralnotice-items-selected": "$1 {{PLURAL:$1|item|itens}} selecionados",
+	"centralnotice-items-selected": "$1 {{PLURAL:$1|item selecionado|itens selecionados}}",
 	"centralnotice-project-name": "Nome do projeto",
 	"centralnotice-assigned-templates": "Modelos atribuídos",
 	"centralnotice-no-templates": "Nenhum modelo encontrado.\nAdicione alguns!",

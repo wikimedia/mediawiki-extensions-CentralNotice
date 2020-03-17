@@ -39,5 +39,9 @@
 	"apihelp-query+centralnoticelogs-param-offset": "Offset i resultatsettet (valgfritt).",
 	"apihelp-query+centralnoticelogs-param-start": "Starttid for området (valgfritt).",
 	"apihelp-query+centralnoticelogs-param-end": "Sluttid for området (valgfritt).",
-	"apihelp-query+centralnoticelogs-example-1": "Vis logger"
+	"apihelp-query+centralnoticelogs-example-1": "Vis logger",
+	"apihelp-query+centralnoticeactivecampaigns-description": "Hent ei liste over aktive kampanjer med start- og sluttdato og tilknyttede bannere.",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "Hent ei liste over aktive kampanjer med start- og sluttdato og tilknyttede bannere.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Inkluder aktiverte framtidige kampanjer (samt pågående kampanjer).",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Hent ei liste over aktive kampanjer med start- og sluttdato og tilknyttede bannere."
 }

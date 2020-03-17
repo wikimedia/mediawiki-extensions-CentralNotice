@@ -26,7 +26,7 @@
 	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "Nom de la bannière dont le contenu doit être purgé",
 	"apihelp-centralnoticecdncacheupdatebanner-example-1": "Purger le contenu de 'Banner1' du cache CDN, pour l’anglais",
 	"apihelp-centralnoticequerycampaign-description": "Obtenir tous les paramètres de configuration pour une campagne.",
-	"apihelp-centralnoticequerycampaign-summary": "Obtenir tous les paramètres de configuration d'une campagne.",
+	"apihelp-centralnoticequerycampaign-summary": "Obtenir tous les paramètres de configuration d’une campagne.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nom de la campagne (optionnel). Séparez les valeurs multiples avec un \"|\" (barre verticale).",
 	"apihelp-centralnoticequerycampaign-example-1": "Afficher la campagne « Plea_US »",
 	"apihelp-centralnoticechoicedata-description": "Obtenir les données nécessaires pour choisir une bannière pour un projet et une langue donnés",

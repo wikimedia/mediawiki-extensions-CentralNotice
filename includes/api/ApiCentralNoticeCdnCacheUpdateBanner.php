@@ -1,6 +1,6 @@
 <?php
 
-/***
+/**
  * Module for the centralnoticecdncacheupdatebanner Web API. Used by a background call
  * via JS from Special:CentralNoticeBanners, to purge banner content from the front-end
  * cache, for a user-specified language.

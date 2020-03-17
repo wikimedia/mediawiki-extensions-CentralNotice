@@ -134,11 +134,11 @@ class BannerRenderer {
 			$parentLang = $lang->getParentLanguage();
 		}
 
-		if ( !is_null( $this->previewContent ) ) {
+		if ( $this->previewContent !== null ) {
 			// Preview mode, banner content is ephemeral
 			// TODO Double-check that this is the correct way to get process as a i18n
 			// message, and add documentation to the core method.
-			$bannerHtml = MessageCache::singleton()->transform(
+			$bannerHtml = MediaWikiServices::getInstance()->getMessageCache()->transform(
 				$this->previewContent,
 				false,
 				$parentLang
@@ -291,7 +291,7 @@ class BannerRenderer {
 				trim( $messageFields[ 1 ] )
 			);
 
-		} elseif ( !is_null( $this->previewMessages ) &&
+		} elseif ( $this->previewMessages !== null &&
 			array_key_exists( $field, $this->previewMessages ) ) {
 			// If we're rendering an unsaved preview and the field is provided as an
 			// unsaved preview message, transform as a messages, sanitize and return that.
@@ -299,7 +299,7 @@ class BannerRenderer {
 			// TODO As above, double-check that this is the correct way to get process as
 			// a i18n message.
 
-			return MessageCache::singleton()->transform(
+			return MediaWikiServices::getInstance()->getMessageCache()->transform(
 				BannerMessage::sanitize( $this->previewMessages[ $field ] ) );
 
 		} else {

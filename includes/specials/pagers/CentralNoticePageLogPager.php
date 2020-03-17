@@ -38,52 +38,30 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			'rc_bot' => 1, // include bot edits (all edits made by CentralNotice are bot edits)
 			'rc_namespace' => 8, // only MediaWiki pages
 		];
+		$db = CNDatabase::getDb();
 		if ( $this->logType == 'bannercontent' ) {
 			// Add query contitions for banner content log
 			$conds += [
-				"rc_title LIKE 'Centralnotice-template-%'", // get banner content
+				// get banner content
+				'rc_title' . $db->buildLike( 'Centralnotice-template-', $db->anyString() ),
 			];
 		} else {
 			// Add query contitions for banner messages log
 			$conds += [
-				"rc_title LIKE 'Centralnotice-%'", // get banner messages
-				"rc_title NOT LIKE 'Centralnotice-template-%'", // exclude normal banner content
+				// get banner messages
+				'rc_title' . $db->buildLike( 'Centralnotice-', $db->anyString() ),
+				// exclude normal banner content
+				'rc_title NOT' . $db->buildLike( 'Centralnotice-template-', $db->anyString() ),
 			];
 		}
 
-		if ( is_callable( RecentChange::class, 'getQueryInfo' ) ) {
-			$rcQuery = RecentChange::getQueryInfo();
-			$ret = [
-				'tables' => $rcQuery['tables'],
-				'fields' => $rcQuery['fields'],
-				'conds' => $conds, // WHERE conditions
-				'join_conds' => $rcQuery['joins'],
-			];
-		} else {
-			$ret = [
-				'tables' => [ 'recentchanges' ],
-				'fields' => [
-					'rc_timestamp',
-					'rc_user',
-					'rc_title',
-					'rc_new',
-					'rc_cur_id',
-					'rc_this_oldid',
-					'rc_last_oldid',
-				],
-				'conds' => $conds, // WHERE conditions
-				'join_conds' => [],
-			];
-
-			if ( class_exists( CommentStore::class ) ) {
-				$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
-				$ret['tables'] += $commentQuery['tables'];
-				$ret['fields'] += $commentQuery['fields'];
-				$ret['join_conds'] += $commentQuery['joins'];
-			} else {
-				$ret['fields'][] = 'rc_comment';
-			}
-		}
+		$rcQuery = RecentChange::getQueryInfo();
+		$ret = [
+			'tables' => $rcQuery['tables'],
+			'fields' => $rcQuery['fields'],
+			'conds' => $conds, // WHERE conditions
+			'join_conds' => $rcQuery['joins'],
+		];
 
 		return $ret;
 	}
@@ -124,6 +102,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			preg_match( $pattern, $titleBase, $matches );
 			$banner = $matches[1];
 			$message = $matches[2];
+		} else {
+			throw new LogicException( "Unknown type {$this->logType}" );
 		}
 
 		// Create banner link
@@ -140,7 +120,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		if ( $this->logType == 'bannercontent' ) {
 			// If the banner was just created, show a link to the banner. If the banner was
 			// edited, show a link to the banner and a link to the diff.
-			if ( $row->rc_new ) {
+			if ( $row->rc_source === RecentChange::SRC_NEW ) {
 				$bannerCell = $bannerLink;
 			} else {
 				$querydiff = [
@@ -157,11 +137,12 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell = $bannerLink;
 
 			// Create the message link
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 			$messageLink = $this->special->getLinkRenderer()->makeKnownLink( $title, $message );
 
 			// If the message was just created, show a link to the message. If the message was
 			// edited, show a link to the message and a link to the diff.
-			if ( $row->rc_new ) {
+			if ( $row->rc_source === RecentChange::SRC_NEW ) {
 				$messageCell = $messageLink;
 			} else {
 				$querydiff = [
@@ -174,6 +155,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 				// See ChangesList->preCacheMessages() for example.
 				$messageCell = $messageLink . "&nbsp;(<a href=\"$diffUrl\">diff</a>)";
 			}
+		} else {
+			throw new LogicException( "Unknown type {$this->logType}" );
 		}
 
 		// Begin log entry primary row
@@ -194,6 +177,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$bannerCell
 		);
 		if ( $this->logType == 'bannermessages' ) {
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 				$messageCell
 			);

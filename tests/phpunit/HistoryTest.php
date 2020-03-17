@@ -66,6 +66,6 @@ class HistoryTest extends CentralNoticeTest {
 		);
 
 		$modified_ts = wfTimestamp( TS_MW );
-		$this->assertEquals( 0, count( Campaign::getHistoricalCampaigns( $modified_ts ) ) );
+		$this->assertSame( 0, count( Campaign::getHistoricalCampaigns( $modified_ts ) ) );
 	}
 }

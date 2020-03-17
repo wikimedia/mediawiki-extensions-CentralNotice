@@ -6,7 +6,8 @@
 			"Muhammed taha",
 			"Sarchia",
 			"Lost Whispers",
-			"Épine"
+			"Épine",
+			"ئارام بکر"
 		]
 	},
 	"right-centralnotice-admin": "بەڕێوەبردنی ئاگادارییە ناوەندییەکان",
@@ -30,7 +31,9 @@
 	"centralnotice-view-logs": "لۆگەکان ببینە",
 	"centralnotice-user": "بەکارھێنەر",
 	"centralnotice-action": "کردەوە",
+	"centralnotice-change-summary-heading": "کورتە",
 	"centralnotice-action-created": "دروست کرا",
+	"centralnotice-change-summary-label": "کورتە",
 	"centralnotice-delete-banner": "سڕینەوە",
 	"centralnotice-start-date": "کاتی دەستپێکردن (UTC)",
 	"centralnotice-start-time": "کاتی دەستپێکردن (UTC)",

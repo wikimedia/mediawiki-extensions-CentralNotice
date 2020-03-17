@@ -22,9 +22,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
-use MediaWiki\MediaWikiServices;
 
 /**
  * CentralNotice banner object. Banners are pieces of rendered wikimarkup
@@ -80,13 +80,14 @@ class Banner {
 	protected $archived = false;
 
 	/** @var string[] Devices this banner should be allocated to in the form
-	 * {Device ID => Device header name} */
+	 * {Device ID => Device header name}
+	 */
 	protected $devices = [];
 
-	/** @var string[] Names of enabled mixins  */
+	/** @var string[] Names of enabled mixins */
 	protected $mixins = [];
 
-	/** @var string[] Language codes considered a priority for translation.  */
+	/** @var string[] Language codes considered a priority for translation. */
 	protected $priorityLanguages = [];
 
 	/** @var string Wikitext content of the banner */
@@ -974,7 +975,7 @@ class Banner {
 	/**
 	 * Saves any changes made to the banner object into the database
 	 *
-	 * @param User|null $user
+	 * @param User $user
 	 * @param string|null $summary Summary (comment) to associate with all changes,
 	 *   including banner content and messages (which are implemented as wiki
 	 *   pages).
@@ -982,15 +983,9 @@ class Banner {
 	 * @return $this
 	 * @throws Exception
 	 */
-	public function save( $user = null, $summary = null ) {
-		global $wgUser;
-
+	public function save( User $user, $summary = null ) {
 		$db = CNDatabase::getDb();
-
 		$action = 'modified';
-		if ( $user === null ) {
-			$user = $wgUser;
-		}
 
 		try {
 			// Don't move this to saveBannerInternal--can't be in a transaction
@@ -1119,11 +1114,7 @@ class Banner {
 		return $destBanner;
 	}
 
-	public function remove( $user = null ) {
-		global $wgUser;
-		if ( $user === null ) {
-			$user = $wgUser;
-		}
+	public function remove( User $user ) {
 		self::removeTemplate( $this->getName(), $user );
 	}
 
@@ -1150,17 +1141,15 @@ class Banner {
 			);
 
 			// Delete the MediaWiki page that contains the banner source
-			$article = new Article( $bannerObj->getTitle() );
-			$pageId = $article->getPage()->getId();
-
 			// TODO Inconsistency: deletion of banner content is not recorded
 			// as a bot edit, so it does not appear on the CN logs page. Also,
 			// related messages are not deleted.
-			$article->doDeleteArticle( $summary ?: '' );
+			$wikiPage = WikiPage::factory( $bannerObj->getTitle() );
+			$wikiPage->doDeleteArticle( $summary ?: '' );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
-				self::removeTag( 'banner:translate', $pageId );
+				self::removeTag( 'banner:translate', $wikiPage->getId() );
 
 				// And the preferred language metadata if it exists
 				TranslateMetadata::set(

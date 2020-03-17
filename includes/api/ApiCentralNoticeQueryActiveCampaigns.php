@@ -1,6 +1,6 @@
 <?php
 
-/***
+/**
  * Query of currently active CentralNotice campaigns.
  */
 
