@@ -1145,7 +1145,7 @@ class Banner {
 			// as a bot edit, so it does not appear on the CN logs page. Also,
 			// related messages are not deleted.
 			$wikiPage = WikiPage::factory( $bannerObj->getTitle() );
-			$wikiPage->doDeleteArticle( $summary ?: '' );
+			$wikiPage->doDeleteArticleReal( $summary ?: '', $user );
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
