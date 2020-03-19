@@ -29,7 +29,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 	/**
 	 * Whether this special page is listed in Special:SpecialPages
-	 * @return Bool
+	 * @return false
 	 */
 	public function isListed() {
 		return false;
