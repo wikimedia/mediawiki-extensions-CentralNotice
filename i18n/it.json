@@ -24,6 +24,7 @@
 	"bannerallocation": "Gestione avviso centralizzato",
 	"centralnoticelogs": "Gestione avviso centralizzato",
 	"right-centralnotice-admin": "Gestisce gli avvisi centralizzati",
+	"protect-level-centralnotice-admin": "Consentito solo agli amministratori avvisi centralizzati",
 	"action-centralnotice-admin": "gestire gli avvisi centralizzati",
 	"centralnotice-desc": "Aggiunge un avviso centralizzato a inizio pagina (sitenotice)",
 	"centralnotice-summary": "Questo modulo permette di modificare gli avvisi centralizzati. Può essere inoltre usato per aggiungere o rimuovere vecchi avvisi.",
