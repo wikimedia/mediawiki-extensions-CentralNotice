@@ -33,7 +33,8 @@
 			"Zazzzz",
 			"佛壁灯",
 			"科劳",
-			"WQL"
+			"WQL",
+			"Ps2049"
 		]
 	},
 	"centralnotice": "中心通告管理",
@@ -52,7 +53,7 @@
 	"centralnotice-modify": "提交",
 	"centralnotice-view": "查看",
 	"centralnotice-save-banner": "保存",
-	"centralnotice-live-preview": "预览",
+	"centralnotice-live-preview": "预览最后保存版本",
 	"centralnotice-add-new": "添加新活动",
 	"centralnotice-remove": "移除",
 	"centralnotice-translate-heading": "$1的翻译",
