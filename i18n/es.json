@@ -84,7 +84,7 @@
 	"centralnotice-notices": "Avisos",
 	"centralnotice-notice-exists": "El aviso ya existe.\nNo se ha añadido",
 	"centralnotice-no-language": "No se ha seleccionado ninguna lengua para la campaña. No añadido.",
-	"centralnotice-no-project": "Ningún proyecto fue seleccionado para la campaña. No añadido.",
+	"centralnotice-no-project": "No se seleccionó ningún proyecto para la campaña. No se añadirá.",
 	"centralnotice-template-exists": "La plantilla ya exixte.\nNo se ha añadido",
 	"centralnotice-notice-doesnt-exist": "La campaña no existe.",
 	"centralnotice-remove-notice-doesnt-exist": "La campaña no existe.\nNo hay nada que eliminar.",
