@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
+			"Thibaut120094",
 			"Windes",
-			"Wladek92",
-			"Thibaut120094"
+			"Wladek92"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "L’utilisateur n’a pas le droit de purger le contenu de la bannière côté utilisateur.",
