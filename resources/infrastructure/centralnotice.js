@@ -103,8 +103,8 @@
 				show_only_matches_children: true
 			}
 		} ).on( 'changed.jstree', function ( e, data ) {
-			var i, type, node, countries = [], country, regions = [], regionCountries = {}, regionCountriesList = '', countriesList = [],
-				selected = data.instance.get_top_selected( false );
+			var i, type, node, countries = [], country, regions = [], regionCountries = {}, regionCountriesList = [],
+				countriesListString, selected = data.instance.get_top_selected( false );
 			for ( i = 0; i < selected.length; i++ ) {
 				node = data.instance.get_node( selected[ i ], false );
 				type = node.data.jstree.type;
@@ -124,15 +124,26 @@
 			$geoRegionsInput.val( regions.join( ',' ) );
 
 			for ( country in regionCountries ) {
-				regionCountriesList += country + ': (' + regionCountries[ country ].join( ', ' ) + ')';
+				regionCountries[ country ].sort();
+				regionCountriesList.push(
+					country + ': (' + regionCountries[ country ].join( ', ' ) + ')'
+				);
 			}
-			if ( countries.length > 0 && Object.keys( regionCountries ).length > 0 ) {
-				countriesList = countries.join( ', ' ) + '; ';
+			regionCountriesList.sort();
+			countries.sort();
+			if ( countries.length > 0 && regionCountriesList.length > 0 ) {
+				countriesListString = countries.join( ', ' ) + '; ';
 			} else {
-				countriesList = countries.join( ', ' );
+				countriesListString = countries.join( ', ' );
 			}
 
-			$geoStatus.html( mw.msg( 'centralnotice-geo-status', countriesList, regionCountriesList ) );
+			$geoStatus.html(
+				mw.msg(
+					'centralnotice-geo-status',
+					countriesListString,
+					regionCountriesList.join( ', ' )
+				)
+			);
 
 		} );
 
