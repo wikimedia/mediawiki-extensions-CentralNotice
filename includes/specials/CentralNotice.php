@@ -1535,21 +1535,25 @@ class CentralNotice extends SpecialPage {
 		$userLanguageCode = $this->getLanguage()->getCode();
 		$countries = GeoTarget::getCountriesList( $userLanguageCode );
 		$locationElements = "\n";
-		foreach ( $countries as $code => $country ) {
+		foreach ( $countries as $countryCode => $country ) {
 
 			$regions = '';
 			if ( !empty( $country->getRegions() ) ) {
-				foreach ( $country->getRegions() as $key => $name ) {
-					$isSelected = in_array( $code . '_' . $key, $selectedRegions );
+				foreach ( $country->getRegions() as $regionCode => $name ) {
+					$uniqueRegionCode = GeoTarget::makeUniqueRegionCode(
+						$countryCode, $regionCode
+					);
+					$isSelected = in_array( $uniqueRegionCode, $selectedRegions );
 					$data = [
 						'type' => 'region',
-						'code' => $key,
+						'code' => $regionCode,
+						'opened' => $isSelected,
 						'selected' => $isSelected
 					];
 					$regions .= Xml::tags(
 						'li',
 						[
-							'id' => $code . '_' . $key,
+							'id' => $uniqueRegionCode,
 							'data-jstree' => json_encode( $data )
 						],
 						$name
@@ -1557,10 +1561,10 @@ class CentralNotice extends SpecialPage {
 				}
 			}
 
-			$isSelected = in_array( $code, $selectedCountries );
+			$isSelected = in_array( $countryCode, $selectedCountries );
 			$data = [
 				'type' => 'country',
-				'code' => $code,
+				'code' => $countryCode,
 				'opened' => $isSelected,
 				'selected' => $isSelected
 			];
@@ -1569,7 +1573,7 @@ class CentralNotice extends SpecialPage {
 				'li',
 				[
 					'data-jstree' => json_encode( $data ),
-					'id' => $code
+					'id' => $countryCode
 				],
 				$country->getName() . ( $regions ? Xml::tags( 'ul', [], $regions ) : '' )
 			);

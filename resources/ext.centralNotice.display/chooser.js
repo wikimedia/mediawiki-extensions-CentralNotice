@@ -260,8 +260,11 @@
 		 */
 		makeAvailableCampaigns: function ( choiceData, country, region, anon, device ) {
 
-			var i, campaign, j, banner, keepCampaign,
+			var i, campaign, j, banner, keepCampaign, uniqueRegionCode,
 				availableCampaigns = [];
+
+			// This needs to yield the same result as makeUniqueRegionCode in GeoTarget.php
+			uniqueRegionCode = country + '_' + region;
 
 			for ( i = 0; i < choiceData.length; i++ ) {
 
@@ -271,7 +274,7 @@
 				// Filter for country if geotargeted
 				if ( campaign.geotargeted && (
 					campaign.countries.indexOf( country ) === -1 && // No country wide match
-					campaign.regions.indexOf( country + '_' + region ) === -1 // And no region match
+					campaign.regions.indexOf( uniqueRegionCode ) === -1 // And no region match
 				) ) {
 					continue;
 				}

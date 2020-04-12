@@ -4614,4 +4614,16 @@ class GeoTarget {
 		return $countries[$countryCode]->getRegions();
 	}
 
+	/**
+	 * Returns a string that uniquely represents a region and country. Changes
+	 * should be synchronized with the code that sets uniqueRegionCode in
+	 * ext.centralNotice.display/chooser.js's makeAvailableCampaigns function.
+	 *
+	 * @param string $countryCode
+	 * @param string $regionCode
+	 * @return string
+	 */
+	public static function makeUniqueRegionCode( $countryCode, $regionCode ) {
+		return $countryCode . '_' . $regionCode;
+	}
 }

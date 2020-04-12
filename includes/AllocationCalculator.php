@@ -56,13 +56,14 @@ class AllocationCalculator {
 
 		foreach ( $choiceData as $campaign ) {
 			$keepCampaign = false;
+			$uniqueRegionCode = GeoTarget::makeUniqueRegionCode( $country, $region );
 
 			// Filter for country/region if geotargeted
 			// Note: the region from user context is prefixed with country code (eg.: RU_MOW)
 			// to avoid collision with similarly named regions across different countries
 			if ( $campaign['geotargeted'] &&
 				 ( !in_array( $country, $campaign['countries'] ) && // Country wide
-				   !in_array( $country . '_' . $region, $campaign['regions'] ) ) // Region
+				   !in_array( $uniqueRegionCode, $campaign['regions'] ) ) // Region
 			) {
 				continue;
 			}
