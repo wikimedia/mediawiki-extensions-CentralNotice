@@ -5,6 +5,7 @@
 		]
 	},
 	"centralnotice-enabled": "ነቂሑ",
+	"centralnotice-modify": "ኣረክብ",
 	"centralnotice-view": "ርኣይ",
 	"centralnotice-save-banner": "ኣቐምጥ",
 	"centralnotice-remove": "ኣልግስ",
@@ -34,8 +35,8 @@
 	"centralnotice-action-created": "ዝተፈጥረ",
 	"centralnotice-talk-link": "ምይይጥ",
 	"centralnotice-all": "ምሉእ",
-	"centralnotice-user-role-logged-in": "ብመንነት ኣቲኻ",
-	"centralnotice-banner-class": "ምድብ",
+	"centralnotice-user-role-logged-in": "ብመንነት ኣትዩ ኣሎ",
+	"centralnotice-banner-class": "መደብ",
 	"centralnotice-archive-banner-cancel": "ኣትርፍ",
 	"centralnotice-change-summary-label": "መጠቓለሊ",
 	"centralnotice-archive-campaign-cancel": "ኣትርፍ",

@@ -172,7 +172,7 @@
 	"centralnotice-documentwrite-error": "無法於橫幅中使用 document.write()。\n請參考 https://meta.wikimedia.org/wiki/Help:CentralNotice 以取得更多資訊。",
 	"centralnotice-preferred": "優先權",
 	"centralnotice-archived": "已存檔",
-	"centralnotice-logs": "紀錄",
+	"centralnotice-logs": "日誌",
 	"centralnotice-view-logs": "檢視日誌",
 	"centralnotice-timestamp": "時間戳記",
 	"centralnotice-user": "使用者",
