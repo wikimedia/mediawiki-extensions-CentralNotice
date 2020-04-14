@@ -172,10 +172,14 @@ class SpecialBannerAllocation extends CentralNotice {
 		$userLanguageCode = $this->getLanguage()->getCode();
 		$countries = GeoTarget::getCountriesList( $userLanguageCode );
 
-		$htmlOut .= Html::openElement( 'select', [ 'name' => 'country' ] );
+		$htmlOut .= Html::openElement(
+			'select', [ 'name' => 'country', 'id' => 'centralnotice-country' ]
+		);
 
 		foreach ( $countries as $code => $country ) {
-			$htmlOut .= Xml::option( $country->getName(), $code, $code === $this->locationCountry );
+			$htmlOut .= Xml::option(
+				$country->getName(), $code, $code === $this->locationCountry
+			);
 		}
 
 		$htmlOut .= Html::closeElement( 'select' );
@@ -184,24 +188,23 @@ class SpecialBannerAllocation extends CentralNotice {
 		// End Country dropdown
 
 		// Region dropdown
-		// TODO: rework flat list into something better
 		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-region' )->parse() );
 		$htmlOut .= Html::openElement( 'td' );
-		$htmlOut .= Html::openElement( 'select', [ 'name' => 'region' ] );
+		$htmlOut .= Html::openElement(
+			'select', [ 'name' => 'region', 'id' => 'centralnotice-region' ]
+		);
 
-		$htmlOut .= Xml::option( '', null, false );
-		foreach ( $countries as $code => $country ) {
-			$opts = '';
+		// set a client-side config variable with an associative array so we can
+		// dynamically populate this dropdown based on selected country.
+		$regionOptions = [];
+		foreach ( $countries as $countryCode => $country ) {
+			$regionOptions[$countryCode] = [];
 			foreach ( $country->getRegions() as $regionCode => $regionName ) {
-				$opts .= Xml::option(
-					$regionName,
-					$regionCode,
-					$regionCode === $this->locationRegion
-				);
+				$regionOptions[$countryCode][$regionCode] = $regionName;
 			}
-			$htmlOut .= Xml::tags( 'optgroup', [ 'label' => $country->getName() ], $opts );
 		}
+		$out->addJsConfigVars( [ 'CentralNoticeRegionOptions' => $regionOptions ] );
 
 		$htmlOut .= Html::closeElement( 'select' );
 		$htmlOut .= Html::closeElement( 'td' );

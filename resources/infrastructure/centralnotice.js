@@ -51,7 +51,10 @@
 	$( function () {
 		var $geoRegionsInput = $( '#geo_regions_value' ),
 			$geoCountriesInput = $( '#geo_countries_value' ),
-			$geoStatus = $( '.cn-tree-status' );
+			$geoStatus = $( '.cn-tree-status' ),
+			$allocationCountrySelector = $( '#centralnotice-country' ),
+			$allocationRegionSelector = $( '#centralnotice-region' ),
+			allocationRegionOptions = mw.config.get( 'CentralNoticeRegionOptions' );
 
 		// Render jquery.ui.datepicker on appropriate fields
 		$( '.centralnotice-datepicker' ).each( function () {
@@ -103,8 +106,9 @@
 				show_only_matches_children: true
 			}
 		} ).on( 'changed.jstree', function ( e, data ) {
-			var i, type, node, countries = [], country, regions = [], regionCountries = {}, regionCountriesList = [],
-				countriesListString, selected = data.instance.get_top_selected( false );
+			var i, type, node, countries = [], country, regions = [], regionCountries = {},
+				regionCountriesList = [], countriesListString,
+				selected = data.instance.get_top_selected( false );
 			for ( i = 0; i < selected.length; i++ ) {
 				node = data.instance.get_node( selected[ i ], false );
 				type = node.data.jstree.type;
@@ -176,5 +180,31 @@
 				$( '#centralnotice-geo-region-multiselector' ).fadeOut( 'fast' );
 			}
 		} );
+
+		// Set up dynamic region selector for banner allocation page
+		function allocationCountrySelected() {
+			var options = [ new Option( '', '' ) ],
+				country = $allocationCountrySelector.val(),
+				regions = allocationRegionOptions[ country ],
+				regionCode;
+			if ( regions ) {
+				for ( regionCode in regions ) {
+					options.push( new Option(
+						regions[ regionCode ], regionCode
+					) );
+				}
+			}
+			$allocationRegionSelector.empty().append( options );
+		}
+
+		$allocationCountrySelector.on( 'change', allocationCountrySelected );
+
+		if ( $allocationCountrySelector.length > 0 ) {
+			// Also fire on page load, and set pre-selected option from querystring
+			allocationCountrySelected();
+			$allocationRegionSelector.val(
+				mw.util.getParamValue( 'region' )
+			);
+		}
 	} );
 }() );
