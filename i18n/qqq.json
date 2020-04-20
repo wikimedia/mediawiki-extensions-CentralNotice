@@ -159,6 +159,7 @@
 	"centralnotice-countries": "Used as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Country}}",
 	"centralnotice-regions": "Used for campaign log details in [[Special:CentralNoticeLogs]].",
 	"centralnotice-location": "Used as label for location field on campaign forms",
+	"centralnotice-location-name-and-code": "Name and code of location (country or region) in geo tree selector in [[Special:CentralNotice]]. Parameters:\n* $1 - The country or region name\n* $2 The country or region code",
 	"centralnotice-allocation": "Tab for sub-page [[m:BannerAllocation|banner allocation]] to central notice special page.",
 	"centralnotice-view-allocation": "Heading of dialog box on [[m:Special:BannerAllocation|banner allocation]] special page.",
 	"centralnotice-allocation-instructions": "Dialog box instructions on [[m:Special:BannerAllocation|banner allocation]] special page.",

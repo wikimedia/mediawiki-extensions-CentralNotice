@@ -134,6 +134,7 @@
 	"centralnotice-countries": "Countries",
 	"centralnotice-regions": "Regions",
 	"centralnotice-location": "Countries and regions",
+	"centralnotice-location-name-and-code": "$1 ($2)",
 	"centralnotice-allocation": "Allocation",
 	"centralnotice-view-allocation": "View banner allocation",
 	"centralnotice-allocation-instructions": "Choose the environment you would like to view banner allocation for:",

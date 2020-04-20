@@ -1556,7 +1556,11 @@ class CentralNotice extends SpecialPage {
 							'id' => $uniqueRegionCode,
 							'data-jstree' => json_encode( $data )
 						],
-						$name
+						$this->msg(
+							'centralnotice-location-name-and-code',
+							$name,
+							$regionCode
+						)->escaped()
 					);
 				}
 			}
@@ -1569,13 +1573,19 @@ class CentralNotice extends SpecialPage {
 				'selected' => $isSelected
 			];
 
+			$countryNameAndCode = $this->msg(
+				'centralnotice-location-name-and-code',
+				$country->getName(),
+				$countryCode
+			)->escaped();
+
 			$locationElements .= Xml::tags(
 				'li',
 				[
 					'data-jstree' => json_encode( $data ),
 					'id' => $countryCode
 				],
-				$country->getName() . ( $regions ? Xml::tags( 'ul', [], $regions ) : '' )
+				$countryNameAndCode . ( $regions ? Xml::tags( 'ul', [], $regions ) : '' )
 			);
 		}
 
