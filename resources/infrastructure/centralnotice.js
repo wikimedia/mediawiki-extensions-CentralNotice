@@ -103,7 +103,7 @@
 				show_only_matches_children: true
 			}
 		} ).on( 'changed.jstree', function ( e, data ) {
-			var i, type, node, countries = [], regions = [],
+			var i, type, node, countries = [], country, regions = [], regionCountries = {}, regionCountriesList = '', countriesList = [],
 				selected = data.instance.get_top_selected( false );
 			for ( i = 0; i < selected.length; i++ ) {
 				node = data.instance.get_node( selected[ i ], false );
@@ -112,12 +112,27 @@
 					countries.push( node.id );
 				} else {
 					regions.push( node.id );
+					// push to object and remove country code from node id
+					if ( node.parent in regionCountries ) {
+						regionCountries[ node.parent ].push( node.id.substring( 3 ) );
+					} else {
+						regionCountries[ node.parent ] = new Array( node.id.substring( 3 ) );
+					}
 				}
 			}
 			$geoCountriesInput.val( countries.join( ',' ) );
 			$geoRegionsInput.val( regions.join( ',' ) );
 
-			$geoStatus.html( mw.msg( 'centralnotice-geo-status', countries.length, regions.length ) );
+			for ( country in regionCountries ) {
+				regionCountriesList += country + ': (' + regionCountries[ country ].join( ', ' ) + ')';
+			}
+			if ( countries.length > 0 && Object.keys( regionCountries ).length > 0 ) {
+				countriesList = countries.join( ', ' ) + '; ';
+			} else {
+				countriesList = countries.join( ', ' );
+			}
+
+			$geoStatus.html( mw.msg( 'centralnotice-geo-status', countriesList, regionCountriesList ) );
 
 		} );
 

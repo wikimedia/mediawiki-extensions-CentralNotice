@@ -155,7 +155,7 @@
 	"centralnotice-banner-cdn-dialog-error": "Error message shown in front-end cache purge dalog",
 	"centralnotice-banner-cdn-dialog-success": "Successful purge request shown in front-end cache purge dalog",
 	"centralnotice-geo": "Used to label a checkbox which activates geotargeting",
-	"centralnotice-geo-status": "Used to display small helper text indicating number of selected geo entities",
+	"centralnotice-geo-status": "Used to display small helper text indicating which geo entities were selected",
 	"centralnotice-countries": "Used as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Country}}",
 	"centralnotice-regions": "Used for campaign log details in [[Special:CentralNoticeLogs]].",
 	"centralnotice-location": "Used as label for location field on campaign forms",
