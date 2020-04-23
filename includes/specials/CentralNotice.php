@@ -1739,15 +1739,28 @@ class CentralNotice extends SpecialPage {
 		return $this->makeShortList( $wgNoticeProjects, $projects );
 	}
 
-	public function listCountries( $countries ) {
-		$all = array_keys( GeoTarget::getCountriesList() );
-		return $this->makeShortList( $all, $countries );
-	}
+	public function listCountriesRegions( $countries, $regions ) {
+		$allCountries = array_keys( GeoTarget::getCountriesList() );
+		$list = $this->makeShortList( $allCountries, $countries );
+		$regionsByCountry = [];
+		$regionCountries = [];
+		foreach ( $regions as $region ) {
+			$countryCode = substr( $region, 0, 2 );
+			$regionCode = substr( $region, 3 );
+			$regionsByCountry[$countryCode][] = $regionCode;
+		}
+		if ( !empty( $list ) && count( $regionsByCountry ) > 0 ) {
+			$list .= '; ';
+		}
+		$regionsByCountryList = [];
+		foreach ( $regionsByCountry as $countryCode => $regions ) {
+			$all = array_keys( GeoTarget::getRegionsList( $countryCode ) );
+			$regionList = $this->makeShortList( $all, $regions );
+			$regionsByCountryList[] = "$countryCode: ($regionList)";
+		}
+		$list .= $this->getContext()->getLanguage()->listToText( $regionsByCountryList );
 
-	public function listRegions( $countryCode, $regions ) {
-		$all = array_keys( GeoTarget::getRegionsList( $countryCode ) );
-		$regionList = $this->makeShortList( $all, $regions );
-		return "$countryCode: ($regionList)";
+		return $list;
 	}
 
 	public function listLanguages( $languages ) {

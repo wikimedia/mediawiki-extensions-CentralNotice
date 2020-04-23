@@ -4611,7 +4611,7 @@ class GeoTarget {
 			return [];
 		}
 
-		return array_keys( $countries[$countryCode]->getRegions() );
+		return $countries[$countryCode]->getRegions();
 	}
 
 }

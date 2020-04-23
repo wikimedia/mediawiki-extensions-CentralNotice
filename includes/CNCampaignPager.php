@@ -133,8 +133,7 @@ class CNCampaignPager extends TablePager {
 				'not_name' => $this->msg( 'centralnotice-notice-name' )->text(),
 				'projects' => $this->msg( 'centralnotice-projects' )->text(),
 				'languages' => $this->msg( 'centralnotice-languages' )->text(),
-				'countries' => $this->msg( 'centralnotice-countries' )->text(),
-				'regions' => $this->msg( 'centralnotice-regions' )->text(),
+				'location' => $this->msg( 'centralnotice-location' )->text(),
 				'not_start' => $this->msg( 'centralnotice-start-timestamp' )->text(),
 				'not_end' => $this->msg( 'centralnotice-end-timestamp' )->text(),
 				'not_enabled' => $this->msg( 'centralnotice-enabled' )->text(),
@@ -215,28 +214,18 @@ class CNCampaignPager extends TablePager {
 				$l = explode( ',', $this->mCurrentRow->languages );
 				return htmlspecialchars( $this->onSpecialCN->listLanguages( $l ) );
 
-			case 'countries':
-				if ( !$this->mCurrentRow->not_geo ) {
+			case 'location':
+				// if not geotargeted or no countries and regions chosen, show "all"
+				$emptyGeo = empty( $this->mCurrentRow->countries )
+					&& empty( $this->mCurrentRow->regions );
+				if ( !$this->mCurrentRow->not_geo || $emptyGeo ) {
 					return $this->msg( 'centralnotice-all' )->text();
 				}
 				$c = explode( ',', $this->mCurrentRow->countries );
-				return htmlspecialchars( $this->onSpecialCN->listCountries( $c ) );
 
-			case 'regions':
-				if ( !$this->mCurrentRow->not_geo || empty( $this->mCurrentRow->regions ) ) {
-					return $this->msg( 'centralnotice-all' )->text();
-				}
 				$r = explode( ',', $this->mCurrentRow->regions );
-				$regionsByCountry = [];
-				foreach ( $r as $region ) {
-					$countryCode = substr( $region, 0, 2 );
-					$regionCode = substr( $region, 3 );
-					$regionsByCountry[$countryCode][] = $regionCode;
-				}
-				$list = '';
-				foreach ( $regionsByCountry as $countryCode => $regions ) {
-					$list .= $this->onSpecialCN->listRegions( $countryCode, $regions );
-				}
+				$list = $this->onSpecialCN->listCountriesRegions( $c, $r );
+
 				return htmlspecialchars( $list );
 
 			case 'not_start':
