@@ -218,7 +218,7 @@
 	"centralnotice-all-except": "همه به جز $1",
 	"centralnotice-excluding-list": "$1 (به جز  $2 )",
 	"centralnotice-user-role": "نقش کاربر",
-	"centralnotice-user-role-anonymous": "گمنام",
+	"centralnotice-user-role-anonymous": "ناشناس",
 	"centralnotice-user-role-logged-in": "وارد شده در",
 	"centralnotice-banner-class": "رده",
 	"centralnotice-banner-class-desc": "تبلیغات یک ردهٔ متغبرها ردیابی و تنظیمات گروهی مشترک به اشتراک دارند (برای نمونه کوکی‌های مخفی‌سازی و نشان‌گذاری تعداد.) نام‌های رده می‌توانند کلمات جادویی به مانند <nowiki>{{{campaign}}}</nowiki> یا <nowiki>{{{banner}}}</nowiki> باشند که زمان نمایش به‌صورت خودکارنمایش داده شوند. مقادیر باید از حروف الفبا و اعداد باشند.",
