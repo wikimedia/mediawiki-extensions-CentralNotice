@@ -137,7 +137,7 @@
 	"centralnotice-banner-fundraising": "Bu bir bağış toplama afişidir",
 	"centralnotice-banner-display-on": "Şurada görüntüle",
 	"centralnotice-banner-mixins": "Katmalar",
-	"centralnotice-banner-mixins-help": "Afiş dağıtımı sırasında dahil edilmesini istediğiniz her bir karışımı kontrol edin. (Bkz. Daha fazla bilgi için [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins afiş karışımları].)",
+	"centralnotice-banner-mixins-help": "Afiş dağıtımı sırasında dahil edilmesini istediğiniz her bir karışımı kontrol edin. (Daha fazla bilgi için [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins afiş karışımları] sayfasına bakın.)",
 	"centralnotice-banner-cdn-controls": "Ön uç önbellek",
 	"centralnotice-banner-cdn-label": "Aşağıdaki dil için ön uç önbelleğini temizle:",
 	"centralnotice-banner-cdn-button": "Temizle",
