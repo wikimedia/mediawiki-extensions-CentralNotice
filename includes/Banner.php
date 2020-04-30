@@ -803,7 +803,7 @@ class Banner {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $this->dirtyFlags['content'] ) {
-			$wikiPage = new WikiPage( $this->getTitle() );
+			$wikiPage = WikiPage::factory( $this->getTitle() );
 
 			if ( $summary === null ) {
 				$summary = '';
