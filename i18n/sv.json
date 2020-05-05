@@ -139,7 +139,10 @@
 	"centralnotice-banner-cdn-button": "Rensa",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geografiskt fokuserat",
+	"centralnotice-geo-status": "Valde $1 $2",
 	"centralnotice-countries": "Länder",
+	"centralnotice-regions": "Regioner",
+	"centralnotice-location": "Länder och regioner",
 	"centralnotice-allocation": "Fördelning",
 	"centralnotice-view-allocation": "Visa bannerfördelning",
 	"centralnotice-allocation-instructions": "Välj den miljö du vill se bannerfördelning för:",
@@ -147,6 +150,7 @@
 	"centralnotice-language": "Språk",
 	"centralnotice-projects": "Projekt",
 	"centralnotice-country": "Land",
+	"centralnotice-region": "Region",
 	"centralnotice-no-allocation": "Inga banners tilldelade.",
 	"centralnotice-allocation-description": "Bannertilldelning för språk: $1, projekt: $2 i landet $3, på enheten $4:",
 	"centralnotice-historical-allocation-description": "Bannertilldelning för språk: $1, projekt: $2 i landet: $3, på enheten $4, vid tiden $5",
@@ -270,5 +274,6 @@
 	"centralnotice-banner-sequence-skip-with-id-error": "Identifieraren kan inte innehålla \"|\".",
 	"centralnotice-banner-sequence-no-banner": "(Ingen banner)",
 	"centralnotice-multiple-countries": "Flera länder",
+	"centralnotice-multiple-regions": "Flera regioner",
 	"centralnotice-multiple-languages": "Flera språk"
 }
