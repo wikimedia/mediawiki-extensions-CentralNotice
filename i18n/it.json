@@ -132,6 +132,8 @@
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Basata sulla posizione geografica",
 	"centralnotice-countries": "Paesi",
+	"centralnotice-regions": "Regioni",
+	"centralnotice-location": "Paesi e regioni",
 	"centralnotice-allocation": "Destinazione",
 	"centralnotice-view-allocation": "Visualizza destinazione dei banner",
 	"centralnotice-allocation-instructions": "Seleziona il contesto di esposizione dei banner desiderato:",
@@ -139,6 +141,7 @@
 	"centralnotice-language": "Lingua",
 	"centralnotice-projects": "Progetti",
 	"centralnotice-country": "Nazione",
+	"centralnotice-region": "Regione",
 	"centralnotice-no-allocation": "Nessun banner assegnato.",
 	"centralnotice-allocation-description": "Destinazione dei banner per lingua: $1, progetto: $2, paese: $3, dispositivo: $4",
 	"centralnotice-historical-allocation-description": "Destinazione dei banner per lingua: $1, progetto: $2, paese: $3, dispositivo: $4, alle $5",
@@ -256,5 +259,6 @@
 	"centralnotice-banner-sequence-banner": "Banner",
 	"centralnotice-banner-sequence-page-views": "Visualizzazioni di pagina",
 	"centralnotice-multiple-countries": "Più paesi",
+	"centralnotice-multiple-regions": "Regioni multiple",
 	"centralnotice-multiple-languages": "Più lingue"
 }
