@@ -139,6 +139,8 @@
 	"centralnotice-banner-cdn-dialog-ok": "تأیید",
 	"centralnotice-geo": "دارای تخصیص جغرفیایی",
 	"centralnotice-countries": "کشورها",
+	"centralnotice-regions": "منطقه‌ها",
+	"centralnotice-location": "کشورها و منطقه‌ها",
 	"centralnotice-allocation": "تخصیص",
 	"centralnotice-view-allocation": "نمایش تخصیص آگهی",
 	"centralnotice-allocation-instructions": "محیطی که می‌خواهید تخصیص نشان را برایش مشاهده کنید، برگزینید:",
@@ -146,6 +148,7 @@
 	"centralnotice-language": "زبان",
 	"centralnotice-projects": "پروژه‌ها",
 	"centralnotice-country": "کشور",
+	"centralnotice-region": "منطقه",
 	"centralnotice-no-allocation": "هیچ آگهی‌ای اختصاص نیافته است.",
 	"centralnotice-allocation-description": "اختصاص آگهی برای زبان $1، پروژه: $2 در کشور: $3، بر روی دستگاه $4",
 	"centralnotice-historical-allocation-description": "بنر تخصیص برای زبان:  $1 ، پروژه:  $2 ، در کشور:  $3 ، دستگاه  $4 ، در زمان$5",
@@ -258,5 +261,6 @@
 	"centralnotice-banner-sequence-page-views": "بازدیدهای صفحه",
 	"centralnotice-banner-sequence-no-banner": "(بدون بنر)",
 	"centralnotice-multiple-countries": "چندگانه ($1)",
+	"centralnotice-multiple-regions": "منطقه‌های چندگانه",
 	"centralnotice-multiple-languages": "چندگانه ($1)"
 }
