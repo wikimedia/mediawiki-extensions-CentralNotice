@@ -141,6 +141,12 @@ class CNDatabasePatcher {
 					$base . '/patch-notice_regions.sql', true
 				]
 			);
+			$updater->addExtensionUpdate(
+				[
+					'addField', 'cn_templates', 'tmp_is_template',
+					$base . '/patch_template_banners.sql', true
+				]
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			// Add the entire schema...
 			$updater->addExtensionTable(
