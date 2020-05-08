@@ -16,6 +16,7 @@
 			"Nemo bis",
 			"Pietrodn",
 			"Ronald",
+			"Scompo",
 			"Viscontino"
 		]
 	},
@@ -131,6 +132,7 @@
 	"centralnotice-banner-mixins-help": "Controlla ogni mixin che vuoi includere durante l'invio dei banner. (Vedi [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixin] per ulteriori informazioni.)",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Basata sulla posizione geografica",
+	"centralnotice-geo-status": "Selezionato $1 $2",
 	"centralnotice-countries": "Paesi",
 	"centralnotice-regions": "Regioni",
 	"centralnotice-location": "Paesi e regioni",
