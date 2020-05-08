@@ -19,6 +19,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var bool If true, form execution must stop and the page will be redirected */
 	protected $bannerFormRedirectRequired = false;
 
+	/** @var array|null Names of the banners that are marked as templates */
+	protected $templateBannerNames = null;
+
 	public function __construct() {
 		SpecialPage::__construct( 'CentralNoticeBanners' );
 	}
@@ -213,6 +216,19 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'disabled' => !$this->editable,
 				'label' => wfMessage( 'centralnotice-banner-name' )->text(),
 			],
+			'createFromTemplateCheckbox' => [
+				'section' => 'addBanner',
+				'class' => 'HTMLCheckField',
+				'label' => wfMessage( 'centralnotice-create-from-template-checkbox-label' )->text(),
+				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
+			],
+			'newBannerTemplate' => [
+				'section' => 'addBanner',
+				'class' => 'HTMLSelectLimitField',
+				'cssclass' => 'banner-template-dropdown-hidden',
+				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
+				'options' => $this->getTemplateBannerDropdownItems()
+			],
 			'newBannerEditSummary' => [
 				'section' => 'addBanner',
 				'class' => 'HTMLTextField',
@@ -281,16 +297,43 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					if ( Banner::fromName( $this->bannerName )->exists() ) {
 						return wfMessage( 'centralnotice-template-exists' )->parse();
 					} else {
-						$retval = Banner::addTemplate(
-							$this->bannerName,
-							"<!-- Empty banner -->",
-							$this->getUser(),
-							false,
-							false,
-							// Default values of a zillion parameters...
-							false, [], [], null,
-							$formData['newBannerEditSummary']
-						);
+						if ( !empty( $formData['newBannerTemplate'] ) ) {
+							try {
+								$bannerTemplate = Banner::fromName( $formData['newBannerTemplate'] );
+								// This will do data load for the banner, confirming it actually exists in the DB
+								// without calling Banner::exists()
+								if ( !$bannerTemplate || !$bannerTemplate->isTemplate() ) {
+									throw new BannerDataException(
+										"Attempted to create a banner based on invalid template"
+									);
+								}
+							} catch ( BannerDataException $exception ) {
+								wfDebugLog( 'CentralNotice', $exception->getMessage() );
+
+								// We do not want to show the actual exception to the user here,
+								// since the message does not actually refer to the template being created,
+								// but to the template it is being created from
+								return wfMessage( 'centralnotice-banner-template-error' )->plain();
+							}
+
+							$retval = Banner::addFromBannerTemplate(
+								$this->bannerName,
+								$this->getUser(),
+								$bannerTemplate,
+								$formData['newBannerEditSummary']
+							);
+						} else {
+							$retval = Banner::addTemplate(
+								$this->bannerName,
+								"<!-- Empty banner -->",
+								$this->getUser(),
+								false,
+								false,
+								// Default values of a zillion parameters...
+								false, [], [], null,
+								$formData['newBannerEditSummary']
+							);
+						}
 
 						if ( $retval ) {
 							// Something failed; display error to user
@@ -469,11 +512,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			prepareForm()->
 			displayForm( $formResult );
 
-		// Controls to purge banner loader URLs from CDN caches for a given language.
-		if ( $wgUseCdn ) {
-			$out->addHTML( $this->generateCdnPurgeSection() );
-		}
-
 		// Send banner name into page for access from JS
 		$out->addHTML( Xml::element( 'span',
 			[
@@ -482,14 +520,21 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			]
 		) );
 
-		$out->addHTML( Xml::element( 'h2',
-			[ 'class' => 'cn-special-section' ],
-			$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
+		if ( !$this->banner->isTemplate() ) {
+			// Controls to purge banner loader URLs from CDN caches for a given language.
+			if ( $wgUseCdn ) {
+				$out->addHTML( $this->generateCdnPurgeSection() );
+			}
 
-		$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
-		$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
-		$out->addHTML( $pager->getBody() );
-		$out->addHTML( $pager->getNavigationBar() );
+			$out->addHTML( Xml::element( 'h2',
+				[ 'class' => 'cn-special-section' ],
+				$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
+
+			$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
+			$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
+			$out->addHTML( $pager->getBody() );
+			$out->addHTML( $pager->getNavigationBar() );
+		}
 	}
 
 	protected function generateBannerEditForm() {
@@ -507,6 +552,25 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$bannerSettings = $this->banner->getBannerSettings( $this->bannerName, true );
 
 		$formDescriptor = [];
+
+		/* --- Use banner as template --- */
+		$campaignNames = $this->banner->getCampaignNames();
+		$formDescriptor['banner-is-template'] = [
+			'section' => 'banner-template',
+			'type' => 'check',
+			'disabled' => !$this->editable || !empty( $campaignNames ),
+			'label-message' => 'centralnotice-banner-is-template',
+			'default' => $this->banner->isTemplate()
+		];
+
+		if ( $campaignNames ) {
+			$formDescriptor[ 'banner-assigned-to-campaign' ] = [
+				'section' => 'banner-template',
+				'class' => 'HTMLInfoField',
+				'label-message' => 'centralnotice-messages-banner-in-campaign',
+				'default' => implode( ', ', $campaignNames )
+			];
+		}
 
 		/* --- Banner Settings --- */
 		$formDescriptor['banner-class'] = [
@@ -982,6 +1046,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$this->banner->setBodyContent( $formData[ 'banner-body' ] );
 
 		$this->banner->setMixins( $formData['mixins'] );
+		$this->banner->setIsTemplate( (bool)$formData['banner-is-template'] );
+
 		$this->banner->save( $this->getUser(), $summary );
 
 		// Deferred update to purge CDN caches for banner content (for user's lang)
@@ -991,5 +1057,37 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		return null;
+	}
+
+	/**
+	 * Returns all template banner names for dropdown
+	 *
+	 * @return array
+	 */
+	private function getTemplateBannerDropdownItems() {
+		if ( $this->templateBannerNames === null ) {
+			$dbr = CNDatabase::getDb();
+			$this->templateBannerNames = [];
+
+			$res = $dbr->select(
+				[
+					'templates' => 'cn_templates'
+				],
+				[
+					'tmp_name'
+				],
+				[
+					'templates.tmp_is_template' => true,
+				],
+				__METHOD__
+			);
+
+			foreach ( $res as $row ) {
+				// name of the banner as a key for HTMLSelectField
+				$this->templateBannerNames[$row->tmp_name] = $row->tmp_name;
+			}
+		}
+
+		return $this->templateBannerNames;
 	}
 }

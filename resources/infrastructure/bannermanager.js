@@ -39,13 +39,14 @@
 		/**
 		 * Display the 'Create Banner' dialog
 		 *
-		 * @return {boolean}
+		 * @returns {boolean}
 		 */
 		doAddBannerDialog: function () {
 			var buttons = {},
 				okButtonText = mw.message( 'centralnotice-add-notice-button' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-add-notice-cancel-button' ).text(),
-				dialogObj = $( '<form></form>' );
+				dialogObj = $( '<form></form>' ),
+				title = mw.message( 'centralnotice-add-new-banner-title' );
 
 			// Implement the functionality
 			buttons[ cancelButtonText ] = function () {
@@ -59,24 +60,44 @@
 				formobj.wpaction.value = 'create';
 				formobj.wpnewBannerName.value = $( this )[ 0 ].wpnewBannerName.value;
 
+				formobj.wpnewBannerTemplate.value = null;
+				if ( $( this )[ 0 ].wpcreateFromTemplateCheckbox.checked === true ) {
+					formobj.wpnewBannerTemplate.value = $( this )[ 0 ].wpnewBannerTemplate.value;
+				}
+
 				formobj.wpnewBannerEditSummary.value =
 					$( this )[ 0 ].wpnewBannerEditSummary.value;
-
 				formobj.submit();
 			};
 
 			// Create the dialog by copying the textfield element into a new form
 			dialogObj[ 0 ].name = 'addBannerDialog';
-			dialogObj.append( $( '#cn-formsection-addBanner' ).children( 'div' ).clone().show() )
-				.dialog( {
-					title: mw.message( 'centralnotice-add-new-banner-title' ).escaped(),
-					modal: true,
-					buttons: buttons,
-					width: 400
-				} );
+			dialogObj.append(
+				$( '#cn-formsection-addBanner' ).children( 'div' ).clone().show()
+			).ready( function () {
+				$( dialogObj[ 0 ].wpcreateFromTemplateCheckbox )
+					.on( 'click', bm.toggleBannerTemplatesDropdown );
+			} );
+
+			dialogObj.dialog( {
+				title: title.escaped(),
+				modal: true,
+				buttons: buttons,
+				width: 400
+			} );
 
 			// Do not submit the form... that's up to the ok button
 			return false;
+		},
+
+		toggleBannerTemplatesDropdown: function () {
+			if ( this.checked === true ) {
+				$( '.mw-htmlform-field-HTMLSelectLimitField' ).removeClass( 'banner-template-dropdown-hidden' );
+				$( 'select[name=wpnewBannerTemplate]' ).removeClass( 'banner-template-dropdown-hidden' );
+			} else {
+				$( '.mw-htmlform-field-HTMLSelectLimitField' ).addClass( 'banner-template-dropdown-hidden' );
+				$( 'select[name=wpnewBannerTemplate]' ).addClass( 'banner-template-dropdown-hidden' );
+			}
 		},
 
 		/**
