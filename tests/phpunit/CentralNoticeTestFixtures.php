@@ -34,7 +34,7 @@ class CentralNoticeTestFixtures {
 			'body' => 'testing',
 			'display_anon' => true,
 			'display_account' => true,
-			'fundraising' => 1,
+			'category' => 'fundraising',
 			'weight' => 25,
 		];
 	}
@@ -303,13 +303,14 @@ class CentralNoticeTestFixtures {
 			}
 
 			foreach ( $campaign['banners'] as $bannerSpec ) {
-				Banner::addTemplate(
+				Banner::addBanner(
 					$bannerSpec['name'],
 					$bannerSpec['body'],
 					$this->user,
 					$bannerSpec['display_anon'],
 					$bannerSpec['display_account'],
-					$bannerSpec['fundraising']
+					[], [], null, null, false,
+					$bannerSpec['category']
 				);
 
 				Campaign::addTemplateTo(
@@ -350,7 +351,7 @@ class CentralNoticeTestFixtures {
 			foreach ( $this->spec['campaigns'] as $campaign ) {
 				foreach ( $campaign['banners'] as $banner ) {
 					Campaign::removeTemplateFor( $campaign['name'], $banner['name'] );
-					Banner::removeTemplate( $banner['name'], $this->user );
+					Banner::removeBanner( $banner['name'], $this->user );
 				}
 
 				Campaign::removeCampaign( $campaign['name'], $this->user );
@@ -447,6 +448,7 @@ class CentralNoticeTestFixtures {
 	 * Return an array containing arrays containing test cases, as needed for
 	 * PHPUnit data provision. (Each inner array is a list of arguments for
 	 * a test method.)
+	 *
 	 * @return array[]
 	 */
 	public static function allocationsTestCasesProvision() {

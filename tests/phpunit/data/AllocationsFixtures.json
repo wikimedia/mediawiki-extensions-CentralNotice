@@ -26,7 +26,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -207,7 +207,7 @@
                                 "bucket": 0,
                                 "display_anon": false,
                                 "display_account": true,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -326,7 +326,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": true,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -459,7 +459,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -582,7 +582,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -630,7 +630,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -678,7 +678,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -726,7 +726,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -774,7 +774,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -785,7 +785,7 @@
                                 "bucket": 1,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -881,7 +881,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -909,7 +909,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -937,7 +937,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1385,7 +1385,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1413,7 +1413,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1441,7 +1441,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1797,7 +1797,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1825,7 +1825,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1853,7 +1853,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop", "iphone"
                                  ]
@@ -2248,7 +2248,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2274,7 +2274,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2382,7 +2382,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2465,7 +2465,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2491,7 +2491,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2607,7 +2607,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2633,7 +2633,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2749,7 +2749,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2775,7 +2775,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2891,7 +2891,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2917,7 +2917,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2943,7 +2943,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2969,7 +2969,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3151,7 +3151,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3162,7 +3162,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3258,7 +3258,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3269,7 +3269,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3365,7 +3365,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3376,7 +3376,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3402,7 +3402,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3413,7 +3413,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3557,7 +3557,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": true,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                 ]

@@ -1149,10 +1149,10 @@ class Banner {
 	}
 
 	public function remove( User $user ) {
-		self::removeTemplate( $this->getName(), $user );
+		self::removeBanner( $this->getName(), $user );
 	}
 
-	public static function removeTemplate( $name, $user, $summary = null ) {
+	public static function removeBanner( $name, $user, $summary = null ) {
 		global $wgNoticeUseTranslateExtension;
 
 		$bannerObj = self::fromName( $name );
@@ -1419,11 +1419,10 @@ class Banner {
 		if ( !$template->isTemplate() ) {
 			return 'centralnotice-banner-template-error';
 		}
-		return static::addTemplate(
+		return static::addBanner(
 			$name, $template->getBodyContent(), $user,
 			$template->allocateToAnon(),
 			$template->allocateToLoggedIn(),
-			false,
 			$template->getMixins(),
 			$template->getPriorityLanguages(),
 			$template->getDevices(),
@@ -1441,19 +1440,18 @@ class Banner {
 	 * @param User $user User causing the change
 	 * @param bool $displayAnon flag for display to anonymous users
 	 * @param bool $displayAccount flag for display to logged in users
-	 * @param bool $fundraising flag for fundraising banner (optional)
 	 * @param array $mixins list of mixins (optional)
 	 * @param array $priorityLangs Array of priority languages for the translate extension
 	 * @param array|null $devices Array of device names this banner is targeted at
 	 * @param string|null $summary Optional summary of changes for logging
 	 * @param bool $isTemplate Is banner marked as a template
-	 * @param string|null $category Category of the banner (ignored if $fundraising = true )
+	 * @param string|null $category Category of the banner
 	 *
 	 * @return string|null error message key or null on success
+	 * @throws BannerDataException
 	 */
-	public static function addTemplate( $name, $body, $user, $displayAnon,
-		$displayAccount, $fundraising = false,
-		$mixins = [], $priorityLangs = [], $devices = null,
+	public static function addBanner( $name, $body, $user, $displayAnon,
+		$displayAccount, $mixins = [], $priorityLangs = [], $devices = null,
 		$summary = null, $isTemplate = false, $category = null
 	) {
 		// Default initial value for devices
@@ -1476,7 +1474,7 @@ class Banner {
 		}
 
 		$banner->setAllocation( $displayAnon, $displayAccount );
-		$banner->setCategory( $fundraising ? 'fundraising' : $category );
+		$banner->setCategory( $category );
 		$banner->setDevices( $devices );
 		$banner->setPriorityLanguages( $priorityLangs );
 		$banner->setBodyContent( $body );
