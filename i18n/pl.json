@@ -236,5 +236,7 @@
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)",
 	"centralnotice-banner-protection-log-reason": "Zabezpieczono automatycznie przez rozszerzenie CentralNotice; edytuj tylko przez [[Special:CentralNotice]] lub [[Special:Translate]]",
 	"centralnotice-multiple-countries": "Wiele ($1)",
-	"centralnotice-multiple-languages": "wiele ($1)"
+	"centralnotice-multiple-languages": "wiele ($1)",
+	"centralnotice-banner-template-info": "(szablon)",
+	"centralnotice-create-from-template-checkbox-label": "Utwórz z szablonu"
 }

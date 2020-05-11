@@ -18,6 +18,7 @@
 			"Iluvatar",
 			"Kaganer",
 			"Kalan",
+			"Kareyac",
 			"Lockal",
 			"MaxSem",
 			"Meshkov.a",
@@ -306,5 +307,6 @@
 	"centralnotice-banner-sequence-skip-with-id-error": "Идентификатор не может содержать «|».",
 	"centralnotice-banner-sequence-no-banner": "(нет баннера)",
 	"centralnotice-multiple-countries": "Несколько стран",
-	"centralnotice-multiple-languages": "Несколько языков"
+	"centralnotice-multiple-languages": "Несколько языков",
+	"centralnotice-banner-template-info": "(шаблон)"
 }

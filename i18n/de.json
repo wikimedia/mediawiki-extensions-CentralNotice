@@ -320,5 +320,12 @@
 	"tag-centralnotice": "Zentrale Meldung",
 	"tag-centralnotice-description": "Bearbeitung erstellt über die CentralNotice-Administratoroberfläche",
 	"tag-centralnotice_translation": "Zentrale-Meldungs-Übersetzung",
-	"tag-centralnotice_translation-description": "Bearbeitung von CentralNotice-Inhalt, erstellt über die Erweiterung „Translate“"
+	"tag-centralnotice_translation-description": "Bearbeitung von CentralNotice-Inhalt, erstellt über die Erweiterung „Translate“",
+	"centralnotice-banner-template": "Banner-Vorlage",
+	"centralnotice-banner-is-template": "Dieses Banner ist eine Vorlage, die zur Erstellung von Bannern verwendet werden soll",
+	"centralnotice-banner-template-info": "(Vorlage)",
+	"centralnotice-banner-template-error": "Banner können nicht auf der Grundlage eines ungültigen Banners oder eines Banners, das nicht als Vorlage markiert ist, erstellt werden.\nNicht hinzugefügt",
+	"centralnotice-add-banner-from-template": "Banner aus Vorlage hinzufügen",
+	"centralnotice-messages-banner-in-campaign": "Dieses Banner kann nicht als Vorlage markiert werden, solange es einer oder mehreren Kampagnen zugeordnet ist. Dieses Banner ist folgenden Kampagnen zugeordnet:",
+	"centralnotice-create-from-template-checkbox-label": "Aus Vorlage erstellen"
 }

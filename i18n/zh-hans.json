@@ -19,6 +19,7 @@
 			"Li3939108",
 			"Liangent",
 			"Liuxinyu970226",
+			"Nadine Siak",
 			"PhiLiP",
 			"Ps2049",
 			"Qiyue2001",
@@ -339,5 +340,6 @@
 	"tag-centralnotice": "中央通知",
 	"tag-centralnotice-description": "通过 CentralNotice 管理界面创建的编辑",
 	"tag-centralnotice_translation": "中央通知翻译",
-	"tag-centralnotice_translation-description": "通过翻译扩展创建的 CentralNotice 内容编辑"
+	"tag-centralnotice_translation-description": "通过翻译扩展创建的 CentralNotice 内容编辑",
+	"centralnotice-banner-template-info": "模板"
 }

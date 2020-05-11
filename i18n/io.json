@@ -28,11 +28,14 @@
 	"centralnotice-clone-cancel": "Anular",
 	"centralnotice-banner-anonymous": "Anonima uzeri",
 	"centralnotice-banner-logged-in": "Enrejistrita uzeri",
+	"centralnotice-geo-status": "Selektita $1 $2",
 	"centralnotice-countries": "Landi",
+	"centralnotice-regions": "Regioni",
 	"centralnotice-languages": "Lingui",
 	"centralnotice-language": "Linguo",
 	"centralnotice-projects": "Projeti",
 	"centralnotice-country": "Lando",
+	"centralnotice-region": "Regiono",
 	"centralnotice-preferred": "Prioreso",
 	"centralnotice-account": "Montrez a l'uzeri enrejistrita",
 	"centralnotice-all": "Omna",
@@ -41,5 +44,10 @@
 	"centralnotice-delete-banner": "Efacar",
 	"centralnotice-delete-banner-cancel": "Anular",
 	"centralnotice-start-date": "Komenca dato (UTC)",
-	"centralnotice-end-date": "Fina dato (UTC)"
+	"centralnotice-end-date": "Fina dato (UTC)",
+	"centralnotice-multiple-regions": "Multopla regioni",
+	"centralnotice-banner-template": "Anunco-shablono",
+	"centralnotice-banner-is-template": "To esas shablono pri anunco, uzata por krear anunci",
+	"centralnotice-banner-template-info": "(shablono)",
+	"centralnotice-create-from-template-checkbox-label": "Krear de modelo"
 }

@@ -262,5 +262,6 @@
 	"centralnotice-banner-sequence-no-banner": "(بدون بنر)",
 	"centralnotice-multiple-countries": "چندگانه ($1)",
 	"centralnotice-multiple-regions": "منطقه‌های چندگانه",
-	"centralnotice-multiple-languages": "چندگانه ($1)"
+	"centralnotice-multiple-languages": "چندگانه ($1)",
+	"centralnotice-banner-template-info": "(الگو)"
 }

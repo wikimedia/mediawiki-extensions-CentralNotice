@@ -326,5 +326,12 @@
 	"tag-centralnotice": "Merkezi Bildirim",
 	"tag-centralnotice-description": "CentralNotice Yönetici Kullanıcı Arayüzü ile oluşturulan düzenle",
 	"tag-centralnotice_translation": "Merkezi Uyarı Çevirisi",
-	"tag-centralnotice_translation-description": "Çeviri uzantısı aracılığıyla oluşturulan CentralNotice içeriğinin düzenlenmesi"
+	"tag-centralnotice_translation-description": "Çeviri uzantısı aracılığıyla oluşturulan CentralNotice içeriğinin düzenlenmesi",
+	"centralnotice-banner-template": "Banner şablonu",
+	"centralnotice-banner-is-template": "Bu banner, oluşturmak için kullanılacak bir şablondur",
+	"centralnotice-banner-template-info": "(şablon)",
+	"centralnotice-banner-template-error": "Banner, geçersiz bir banner veya şablon olarak işaretlenmemiş bir banner temel alınarak oluşturulamaz.\nNotAdding",
+	"centralnotice-add-banner-from-template": "Şablondan bir banner ekle",
+	"centralnotice-messages-banner-in-campaign": "Bir veya daha fazla kampanyaya atanmışken bu banner şablon olarak işaretlenemez. Bu banner şu kampanyalara atandı:",
+	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur"
 }

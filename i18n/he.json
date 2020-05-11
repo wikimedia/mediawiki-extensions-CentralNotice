@@ -318,5 +318,12 @@
 	"tag-centralnotice": "הודעה מרכזית",
 	"tag-centralnotice-description": "עריכה שנוצרה באמצעות ממשק המשתמש של ניהול ההודעה המרכזית",
 	"tag-centralnotice_translation": "תרגום הודעה מרכזית",
-	"tag-centralnotice_translation-description": "עריכת תוכן הודעה מרכזית שנוצר באמצעות ההרחבה Translate"
+	"tag-centralnotice_translation-description": "עריכת תוכן הודעה מרכזית שנוצר באמצעות ההרחבה Translate",
+	"centralnotice-banner-template": "תבנית כרזה",
+	"centralnotice-banner-is-template": "הכרזה הזאת היא תבנית, שאמורה לשמש ליצירת כרזות",
+	"centralnotice-banner-template-info": "(תבנית)",
+	"centralnotice-banner-template-error": "כזרה לא יכולה להיווצרר על סמך כרזה בלתי־תקינה, או כרזה שלא מסומנת בתור תבנית.\nNotAdding",
+	"centralnotice-add-banner-from-template": "הוספת כרזה מתבנית",
+	"centralnotice-messages-banner-in-campaign": "לא ניתן לסמן את הכרזה הזאת בתור תבנית כשהיא משויכת למסע פרסום אחד או יותר. הכרזה הזאת משויכת למסעי הפרסום הבאים:",
+	"centralnotice-create-from-template-checkbox-label": "יצירה מתבנית"
 }

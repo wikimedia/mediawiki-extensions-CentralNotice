@@ -335,5 +335,12 @@
 	"tag-centralnotice": "中央公告",
 	"tag-centralnotice-description": "透過中央公告管理使用介面建立的編輯",
 	"tag-centralnotice_translation": "中央公告翻譯",
-	"tag-centralnotice_translation-description": "透過翻譯擴充功能建立的中央公告內容編輯"
+	"tag-centralnotice_translation-description": "透過翻譯擴充功能建立的中央公告內容編輯",
+	"centralnotice-banner-template": "橫幅模板",
+	"centralnotice-banner-is-template": "此橫幅為模板，用於建立橫幅",
+	"centralnotice-banner-template-info": "（模板）",
+	"centralnotice-banner-template-error": "橫幅不能建立在無效的橫幅上，或是未被標記為模板的橫幅。\n未增加",
+	"centralnotice-add-banner-from-template": "從模板增加橫幅",
+	"centralnotice-messages-banner-in-campaign": "在分配給一個或多個活動時，不能將此橫幅標記為模板。此橫幅被分配給以下活動：",
+	"centralnotice-create-from-template-checkbox-label": "從模板建立"
 }
