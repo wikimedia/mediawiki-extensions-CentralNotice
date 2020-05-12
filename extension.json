@@ -384,8 +384,7 @@
 		"NoticeCookieDurations": {
 			"value": {
 				"close": 1209600,
-				"donate": 31536000,
-				"_merge_strategy": "array_plus"
+				"donate": 31536000
 			},
 			"merge_strategy": "array_plus"
 		},
