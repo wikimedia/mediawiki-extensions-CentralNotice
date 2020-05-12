@@ -9,6 +9,7 @@
 			"JtFuruhata",
 			"Klutzy",
 			"Marine-Blue",
+			"Object＊tofu",
 			"Ohgi",
 			"Omotecho",
 			"Otokoume",
@@ -250,5 +251,7 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "サイクルを再開する前にどのくらい待機を長くするか、秒単位で (省略可能)",
 	"centralnotice-banner-sequence-banner": "バナー",
 	"centralnotice-multiple-countries": "複数の国と地域",
-	"centralnotice-multiple-languages": "多言語"
+	"centralnotice-multiple-languages": "多言語",
+	"centralnotice-banner-template": "バナーテンプレート",
+	"centralnotice-banner-template-info": "(テンプレート)"
 }
