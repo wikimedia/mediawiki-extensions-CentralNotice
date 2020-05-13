@@ -275,5 +275,7 @@
 	"centralnotice-banner-sequence-no-banner": "(Ingen banner)",
 	"centralnotice-multiple-countries": "Flera länder",
 	"centralnotice-multiple-regions": "Flera regioner",
-	"centralnotice-multiple-languages": "Flera språk"
+	"centralnotice-multiple-languages": "Flera språk",
+	"centralnotice-banner-template-info": "(mall)",
+	"centralnotice-create-from-template-checkbox-label": "Skapa från mall"
 }
