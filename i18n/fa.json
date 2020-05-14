@@ -263,5 +263,6 @@
 	"centralnotice-multiple-countries": "چندگانه ($1)",
 	"centralnotice-multiple-regions": "منطقه‌های چندگانه",
 	"centralnotice-multiple-languages": "چندگانه ($1)",
-	"centralnotice-banner-template-info": "(الگو)"
+	"centralnotice-banner-template-info": "(الگو)",
+	"centralnotice-create-from-template-checkbox-label": "ایجاد از روی الگو"
 }
