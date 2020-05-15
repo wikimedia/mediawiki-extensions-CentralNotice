@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"AlimOmar",
 			"Sahran",
 			"Uzdil"
 		]
@@ -144,5 +145,12 @@
 	"centralnotice-end-date": "ئاخىرلىشىش ۋاقتى",
 	"centralnotice-end-time": "ئاخىرلىشىش ۋاقتى (UTC)",
 	"centralnotice-multiple-countries": "كۆپ ($1)",
-	"centralnotice-multiple-languages": "كۆپ ($1)"
+	"centralnotice-multiple-languages": "كۆپ ($1)",
+	"centralnotice-banner-template": "ئاسما قېلىپ",
+	"centralnotice-banner-is-template": "بۇ پىلاكات قېلىپ بولۇپ، پىلاكات ياساشقا ئىشلىتىلىدۇ.",
+	"centralnotice-banner-template-info": "قېلىپ",
+	"centralnotice-banner-template-error": "ئىناۋەتسىز لوزۇنكا ياكى قېلىپقا بەلگە قىلىنمىغان پلاكاتلارنى ئاساس قىلىپ لوزۇنكا ئاسقىلى بولمايدۇ. \nقوشۇلمىدى",
+	"centralnotice-add-banner-from-template": "قېلىپتىن پلاكاتنى كۆپەيتىش",
+	"centralnotice-messages-banner-in-campaign": "بۇ لوزۇنكا ئېلانىنى بىر ياكى بىر قانچە ئېلان سىستېمىسىغا تەقسىم قىلغاندا، ئۇنى قېلىپ دەپ بەلگە قويغىلى بولمايدۇ. بۇ لوزۇنكا ئېلانى تۆۋەندىكى ئېلانلارغا تەقسىملەپ بېرىلدى:",
+	"centralnotice-create-from-template-checkbox-label": "قېلىپتىن قۇرۇش"
 }
