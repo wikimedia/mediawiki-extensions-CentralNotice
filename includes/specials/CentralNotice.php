@@ -335,7 +335,6 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Output a form for adding a campaign.
 	 *
-	 * @suppress SecurityCheck-XSS
 	 */
 	protected function addNoticeForm() {
 		$request = $this->getRequest();
@@ -504,7 +503,6 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @param string $notice The name of the campaign to view
 	 *
-	 * @suppress SecurityCheck-XSS
 	 */
 	private function outputNoticeDetail( $notice ) {
 		global $wgCentralNoticeCampaignMixins;
