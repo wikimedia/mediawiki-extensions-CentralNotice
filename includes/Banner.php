@@ -1621,7 +1621,7 @@ class Banner {
 		);
 		if ( !$status->isGood() || !$cascade ) {
 			throw new BannerContentException(
-				'Unable to protect banner' . $status->getMessage()
+				'Unable to protect banner' . $status->getMessage()->text()
 			);
 		}
 	}
