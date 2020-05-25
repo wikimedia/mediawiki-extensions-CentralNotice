@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Codenstory",
 			"Doyoon1995",
 			"Gapo",
 			"Hwangjy9",
@@ -134,6 +135,7 @@
 	"centralnotice-banner-cdn-dialog-ok": "확인",
 	"centralnotice-banner-cdn-dialog-error": "프론트엔드 캐시 새로 고침 요청에 오류가 발생했습니다.",
 	"centralnotice-geo": "특정 지역을 대상으로 공지",
+	"centralnotice-geo-status": "$1 $2 선택됨",
 	"centralnotice-countries": "국가",
 	"centralnotice-regions": "지역",
 	"centralnotice-location": "국가 및 지역",
@@ -144,6 +146,7 @@
 	"centralnotice-language": "언어",
 	"centralnotice-projects": "프로젝트",
 	"centralnotice-country": "국가",
+	"centralnotice-region": "지역",
 	"centralnotice-no-allocation": "배너가 할당되지 않았습니다.",
 	"centralnotice-allocation-description": "언어: $1, 프로젝트: $2, 나라: $3, $4 장치에 할당된 배너",
 	"centralnotice-historical-allocation-description": "언어: $1, 프로젝트: $2, 나라: $3, $4 장치, $5 시간에 할당된 배너",
@@ -263,5 +266,11 @@
 	"tag-centralnotice": "중앙 공지",
 	"tag-centralnotice-description": "CentralNotice Admin UI를 통해 만든 편집",
 	"tag-centralnotice_translation": "중앙 공지 번역",
-	"tag-centralnotice_translation-description": "번역 확장 기능을 통해 만든 CentralNotice 내용 편집"
+	"tag-centralnotice_translation-description": "번역 확장 기능을 통해 만든 CentralNotice 내용 편집",
+	"centralnotice-banner-template": "배너 틀",
+	"centralnotice-banner-is-template": "이 배너는 틀이며 배너를 만들기 위해 사용됨을 의미합니다",
+	"centralnotice-banner-template-info": "(틀)",
+	"centralnotice-banner-template-error": "유효하지 않는 배너나, 틀로 표시되지 않은 배너에 기반하여 배너를 만들 수 없습니다.\n추가하지 않습니다",
+	"centralnotice-add-banner-from-template": "틀로부터 배너 추가",
+	"centralnotice-create-from-template-checkbox-label": "틀에서 만들기"
 }
