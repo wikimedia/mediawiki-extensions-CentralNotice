@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Diki Ananta",
 			"NoiX180"
 		]
 	},
@@ -10,7 +11,7 @@
 	"apihelp-centralnoticeallocations-param-device": "Jeneng piranti sing arep disaring.",
 	"apihelp-centralnoticeallocations-example-1": "Tuduhaké alokasi liyané",
 	"apihelp-centralnoticequerycampaign-description": "Jupuk kabèh setèlan konfigurasi kanggo kampanye.",
-	"apihelp-query+centralnoticelogs-param-user": "Jeneng panganggo (manasuka).",
+	"apihelp-query+centralnoticelogs-param-user": "Jeneng naraguna (opsional).",
 	"apihelp-query+centralnoticelogs-param-limit": "Larik maksimum sing bisa dibalèkaké (manasuka).",
 	"apihelp-query+centralnoticelogs-example-1": "Tuduhaké log"
 }
