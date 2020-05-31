@@ -169,7 +169,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 			// Now copy each key into the MW namespace
 			foreach ( $keys as $key ) {
-				$wikiPage = new WikiPage(
+				$wikiPage = WikiPage::factory(
 					Title::makeTitleSafe( NS_CN_BANNER, $key . '/' . $code )
 				);
 
@@ -177,7 +177,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 				if ( $wikiPage->exists() ) {
 					$text = $wikiPage->getContent()->getNativeData();
 
-					$wikiPage = new WikiPage(
+					$wikiPage = WikiPage::factory(
 						Title::makeTitleSafe( NS_MEDIAWIKI, 'Centralnotice-' . $key . '/' . $code )
 					);
 					$wikiPage->doEditContent(
