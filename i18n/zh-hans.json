@@ -24,6 +24,7 @@
 			"Ps2049",
 			"Qiyue2001",
 			"Shirayuki",
+			"SomeyaMako",
 			"StephDC",
 			"TianyinLee",
 			"WQL",
@@ -341,5 +342,9 @@
 	"tag-centralnotice-description": "通过 CentralNotice 管理界面创建的编辑",
 	"tag-centralnotice_translation": "中央通知翻译",
 	"tag-centralnotice_translation-description": "通过翻译扩展创建的 CentralNotice 内容编辑",
-	"centralnotice-banner-template-info": "模板"
+	"centralnotice-banner-template": "横幅模板",
+	"centralnotice-banner-is-template": "此横幅是一个用来创建横幅的模板",
+	"centralnotice-banner-template-info": "模板",
+	"centralnotice-add-banner-from-template": "从模板加入横幅",
+	"centralnotice-create-from-template-checkbox-label": "从模板创建"
 }
