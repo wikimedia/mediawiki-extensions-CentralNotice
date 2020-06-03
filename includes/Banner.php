@@ -853,7 +853,9 @@ class Banner {
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Get the revision and page ID of the page that was created/modified
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				if ( $pageResult->value['revision'] ) {
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$revision = $pageResult->value['revision'];
 					$revisionId = $revision->getId();
 					$pageId = $revision->getPage();

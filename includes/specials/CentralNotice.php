@@ -493,7 +493,9 @@ class CentralNotice extends SpecialPage {
 		$datestamp = $wgRequest->getVal( "{$prefix}Date_timestamp" );
 		$timeArray = $wgRequest->getArray( $prefix );
 		$timestamp = substr( $datestamp, 0, 8 ) .
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$timeArray[ 'hour' ] .
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$timeArray[ 'min' ] . '00';
 		return $timestamp;
 	}

@@ -144,7 +144,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		$settings = Campaign::getCampaignSettings( 'PHPUnitTestCampaign' );
 		$banners = json_decode( $settings[ 'banners' ], true );
 
-		$this->assertEquals( 1, count( $banners ) );
+		$this->assertCount( 1, $banners );
 		$this->assertEquals( [ 'PHPUnitTestBanner' ], array_keys( $banners ) );
 		unset( $settings[ 'banners' ] );
 

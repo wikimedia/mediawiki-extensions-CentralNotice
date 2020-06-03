@@ -299,6 +299,7 @@ class BannerRenderer {
 			// TODO As above, double-check that this is the correct way to get process as
 			// a i18n message.
 
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			return MediaWikiServices::getInstance()->getMessageCache()->transform(
 				BannerMessage::sanitize( $this->previewMessages[ $field ] ) );
 

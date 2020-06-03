@@ -67,6 +67,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 				$msg = $e->getMessage();
 			}
 
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$msgParamStr = $msg ? Xml::encodeJsVar( $msg ) : '';
 
 			// For preview requests, a different error callback is needed.
