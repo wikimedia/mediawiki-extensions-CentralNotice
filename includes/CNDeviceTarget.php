@@ -20,7 +20,9 @@ class CNDeviceTarget {
 
 		$res = $dbr->select(
 			[ 'known_devices' => 'cn_known_devices' ],
-			[ 'dev_id', 'dev_name', 'dev_display_label' ]
+			[ 'dev_id', 'dev_name', 'dev_display_label' ],
+			[],
+			__METHOD__
 		);
 
 		foreach ( $res as $row ) {

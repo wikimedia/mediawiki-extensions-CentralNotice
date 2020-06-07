@@ -914,7 +914,8 @@ class Banner {
 					// May as well set the new volatile cache value in the local datacenter
 					$cache->set( $key, $newFields, $cache::TTL_MONTH );
 				}
-			}
+			},
+			__METHOD__
 		);
 	}
 
@@ -1530,7 +1531,7 @@ class Banner {
 			$log[ 'tmplog_end_' . $key ] = $value;
 		}
 
-		$dbw->insert( 'cn_template_log', $log );
+		$dbw->insert( 'cn_template_log', $log, __METHOD__ );
 	}
 
 	/**
@@ -1564,7 +1565,7 @@ class Banner {
 				'Cannot determine banner existence without name or ID.'
 			);
 		}
-		$row = $db->selectRow( 'cn_templates', 'tmp_name', $selector );
+		$row = $db->selectRow( 'cn_templates', 'tmp_name', $selector, __METHOD__ );
 		if ( $row ) {
 			return true;
 		} else {
