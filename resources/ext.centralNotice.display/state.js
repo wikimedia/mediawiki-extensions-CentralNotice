@@ -329,6 +329,7 @@
 
 		/**
 		 * Sets the campaign that will be used by the state as current
+		 *
 		 * @param {Object} c the campaign object, must be from the list of available campaigns
 		 */
 		setCampaign: function ( c ) {
@@ -512,6 +513,7 @@
 
 		/**
 		 * Set a banner loader error, with an optional message
+		 *
 		 * @param {string} [msg]
 		 */
 		setBannerLoaderError: function ( msg ) {
@@ -573,7 +575,8 @@
 
 		/**
 		 * Returns number of campaigns were chosen
-		 * @returns {number}
+		 *
+		 * @return {number}
 		 */
 		countCampaignsAttempted: function () {
 			return state.data.campaignStatuses.length;

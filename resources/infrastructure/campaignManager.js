@@ -92,6 +92,7 @@
 		// subclass decides to set it before calling the constructor.
 		/**
 		 * The element of the corresponding MixinCustomWidget.
+		 *
 		 * @abstract
 		 * @property {jQuery}
 		 */
@@ -248,7 +249,7 @@
 	/**
 	 * Is one or more error currently set?
 	 *
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	ErrorStateTracker.prototype.hasErrorState = function () {
 		return Object.keys( this.errors ).length > 0;
@@ -643,7 +644,7 @@
 	 * Get an array of banners assigned to a specific bucket.
 	 *
 	 * @param {number} bucket
-	 * @returns {Array}
+	 * @return {Array}
 	 */
 	function getAssignedBanners( bucket ) {
 		return assignedBanners[ bucket ];
@@ -653,7 +654,7 @@
 	 * Get the human-friendly alphabetic label for a bucket number
 	 *
 	 * @param {number} bucket
-	 * @returns {string}
+	 * @return {string}
 	 */
 	function getBucketLabel( bucket ) {
 		return BUCKET_LABELS[ bucket ];
@@ -665,57 +666,65 @@
 
 		/**
 		 * Base class for custom campaign mixin UI controllers.
+		 *
 		 * @see MixinCustomUiController
-		 * @type {function}
+		 * @type {Function}
 		 */
 		MixinCustomUiController: MixinCustomUiController,
 
 		/**
 		 * Base class for custom campaign mixin widgets.
+		 *
 		 * @see MixinCustomWidget
-		 * @type {function}
+		 * @type {Function}
 		 */
 		MixinCustomWidget: MixinCustomWidget,
 
 		/**
 		 * Simple object for keeping track of validation errors.
+		 *
 		 * @see ErrorStateTracker
-		 * @type {function}
+		 * @type {Function}
 		 */
 		ErrorStateTracker: ErrorStateTracker,
 
 		/**
 		 * Factory for custom mixin UI controllers.
+		 *
 		 * @type {OO.Factory}
 		 */
 		mixinCustomUiControllerFactory: mixinCustomUiControllerFactory,
 
 		/**
 		 * Centralized object for emitting and subscribing to events.
+		 *
 		 * @type {OO.EventEmitter}
 		 */
 		eventBus: eventBus,
 
 		/**
 		 * Get the number of buckets currently set in the bucket input.
-		 * @function
+		 *
+		 * @method
 		 * @return {number}
 		 */
 		getNumBuckets: getNumBuckets,
 
 		/**
 		 * Get the human-friendly alphabetic label for a bucket number.
-		 * @function
+		 *
+		 * @method
 		 * @param {number} bucket
-		 * @returns {string}
+		 * @return {string}
 		 */
 		getBucketLabel: getBucketLabel,
 
 		/**
 		 * Get an array of banners assigned to a specific bucket.
-		 * @function
+		 *
+		 * @method
 		 * @param {number} bucket
-		 * @returns {Array}
+		 * @return {Array}
 		 */
 		getAssignedBanners: getAssignedBanners
 	};

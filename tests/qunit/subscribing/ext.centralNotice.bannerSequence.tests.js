@@ -163,8 +163,8 @@
 	 * Return a function to test the sequence manager state on a specific page view
 	 *
 	 * @param {Object} expectedState
-	 * @param {Number} pageView
-	 * @returns {Function}
+	 * @param {number} pageView
+	 * @return {Function}
 	 */
 	function makeSeqManagerStateTestFunction( expectedState, pageView ) {
 
@@ -205,8 +205,8 @@
 	 * Return a function to test processPageView() on a specific page view
 	 *
 	 * @param {Object} expectedResult
-	 * @param {Number} pageView
-	 * @returns {Function}
+	 * @param {number} pageView
+	 * @return {Function}
 	 */
 	function makeProcessPageViewTestFunction( expectedResult, pageView ) {
 
@@ -242,9 +242,9 @@
 	/**
 	 * Return a function to test skipToNextStep() on a specific page view
 	 *
-	 * @param {Object} expectedStateAfterSkip
-	 * @param {Number} pageView
-	 * @returns {Function}
+	 * @param {Object} expectedCurrentPageView
+	 * @param {number} pageView
+	 * @return {Function}
 	 */
 	function makeSkipToNextStepTestFunction( expectedCurrentPageView, pageView ) {
 

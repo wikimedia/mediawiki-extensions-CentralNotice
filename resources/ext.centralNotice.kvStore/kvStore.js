@@ -36,7 +36,7 @@
 	/**
 	 * A context for key-value storage.
 	 *
-	 * @class
+	 * @class KVStorageContext
 	 * @param {string} key A unique string to identify this context, when using
 	 *   LocalStorage. Must not contain SEPARATOR.
 	 * @param {string} keyInCookies A unique string to identify this context,
@@ -315,6 +315,7 @@
 
 		/**
 		 * Available key-value storage contexts
+		 *
 		 * @enum
 		 * @readonly
 		 */
@@ -327,6 +328,7 @@
 		/**
 		 * Options for storing data with a cookie or with the kvStore
 		 * (LocalStorage).
+		 *
 		 * @enum
 		 * @readonly
 		 */

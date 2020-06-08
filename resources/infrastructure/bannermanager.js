@@ -26,12 +26,14 @@
 	bm = mw.centralNotice.adminUi.bannerManagement = {
 		/**
 		 * State tracking variable for the number of items currently selected
+		 *
 		 * @protected
 		 */
 		selectedItemCount: 0,
 
 		/**
 		 * State tracking variable for the number of items available to be selected
+		 *
 		 * @protected
 		 */
 		totalSelectableItems: 0,
@@ -39,7 +41,7 @@
 		/**
 		 * Display the 'Create Banner' dialog
 		 *
-		 * @returns {boolean}
+		 * @return {boolean}
 		 */
 		doAddBannerDialog: function () {
 			var buttons = {},

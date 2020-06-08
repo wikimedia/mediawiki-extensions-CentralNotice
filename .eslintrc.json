@@ -13,7 +13,6 @@
 	},
 	"rules": {
 		"no-use-before-define": "off",
-		"valid-jsdoc": "off",
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-parse-html-literal": "off",
 		"no-jquery/variable-pattern": "off"

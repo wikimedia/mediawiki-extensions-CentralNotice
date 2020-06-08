@@ -118,6 +118,7 @@
 
 		/**
 		 * The data model
+		 *
 		 * @property {BannerSequenceUiModel}
 		 */
 		this.model = new BannerSequenceUiModel(
@@ -128,12 +129,14 @@
 		// On instantiation, the widget will create subwidgets in accordance with the model
 		/**
 		 * The enclosing view widget
+		 *
 		 * @property {BannerSequenceWidget}
 		 */
 		this.widget = new BannerSequenceWidget( this, this.model );
 
 		/**
 		 * Access point for the view widget's element
+		 *
 		 * @property {jQuery}
 		 */
 		this.$widgetElement = this.widget.$element;
@@ -159,8 +162,9 @@
 
 	/**
 	 * Get the list of banners currently available for a bucket.
+	 *
 	 * @param {number} bucket
-	 * @returns {string[]}
+	 * @return {string[]}
 	 */
 	BannerSequenceUiController.prototype.getBannersForBucket = function ( bucket ) {
 		return campaignManager.getAssignedBanners( bucket );
@@ -168,8 +172,9 @@
 
 	/**
 	 * Get the human-readable alphabetic label for a bucket.
+	 *
 	 * @param {number} bucket
-	 * @returns {string}
+	 * @return {string}
 	 */
 	BannerSequenceUiController.prototype.getBucketLabel = function ( bucket ) {
 		return campaignManager.getBucketLabel( bucket );
@@ -224,7 +229,8 @@
 
 	/**
 	 * Get a unique (within this page view) key, for tracking error states
-	 * @returns {string}
+	 *
+	 * @return {string}
 	 */
 	BannerSequenceUiController.prototype.getErrorStateKey = function () {
 		return String( this.errorStateKeyAutoIncrement++ );
@@ -265,7 +271,7 @@
 	 * emitted (which will be used by a global error state tracker).
 	 *
 	 * @param {string} errorStateKey Unique key for this error state
-	 * @þaram {boolean} state true sets an error for this key, and false clear it
+	 * @param {boolean} state true sets an error for this key, and false clear it
 	 */
 	BannerSequenceUiController.prototype.setErrorState =
 		function ( errorStateKey, state ) {
@@ -342,6 +348,7 @@
 
 	/**
 	 * Set the value of the hidden form input for the sequences mixin parameter
+	 *
 	 * @private
 	 */
 	BannerSequenceUiController.prototype.setSequencesInputParam = function () {
@@ -350,6 +357,7 @@
 
 	/**
 	 * Set the value of the hidden form input for the days mixin parameter
+	 *
 	 * @private
 	 */
 	BannerSequenceUiController.prototype.setDaysInputParam = function () {
@@ -378,6 +386,7 @@
 
 				/**
 				 * Sequences by bucket (index corresponds to bucket number)
+				 *
 				 * @property {Array}
 				 */
 				this.bucketSequences = $.extend( true, [], data.sequences );
@@ -412,6 +421,7 @@
 	// TODO Check this is the right number
 	/**
 	 * Maximum number of steps allowed in a sequence
+	 *
 	 * @private
 	 * @static
 	 */
@@ -419,6 +429,7 @@
 
 	/**
 	 * Default duration of identifiers to skip steps (in days)
+	 *
 	 * @private
 	 * @static
 	 */
@@ -426,7 +437,8 @@
 
 	/**
 	 * Export the contents of the model as a JSON string.
-	 * @returns {string}
+	 *
+	 * @return {string}
 	 */
 	BannerSequenceUiModel.prototype.sequencesAsJSON = function () {
 		// Only export valid data
@@ -448,6 +460,7 @@
 
 		/**
 		 * Number of buckets in the model
+		 *
 		 * @property {number}
 		 */
 		this.numBuckets = numBuckets;
@@ -508,7 +521,8 @@
 
 	/**
 	 * Get an array of sequences for all currently active buckets.
-	 * @returns {Object[]}
+	 *
+	 * @return {Object[]}
 	 */
 	BannerSequenceUiModel.prototype.getBktSequences = function () {
 		// Sliced in case it has data on buckets that have been de-activated
@@ -569,6 +583,7 @@
 
 	/**
 	 * Validate this.bucketSequences and replace any data that's invalid.
+	 *
 	 * @private
 	 */
 	BannerSequenceUiModel.prototype.validateAndFix = function () {
@@ -598,7 +613,7 @@
 
 	/**
 	 * @private
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	BannerSequenceUiModel.prototype.validateBktSeq = function ( seq ) {
 		var i;
@@ -623,7 +638,7 @@
 
 	/**
 	 * @private
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	BannerSequenceUiModel.prototype.validateStep = function ( step ) {
 		var hasOwn = Object.prototype.hasOwnProperty;
@@ -694,7 +709,7 @@
 	 * @param {number} bucket The bucket whose sequence to check
 	 * @param {string[]} assignedBanners An array of the names of banners assigned to
 	 *   this bucket
-	 * @returns {number[]} An array with the indexes of steps whose selected banners were
+	 * @return {number[]} An array with the indexes of steps whose selected banners were
 	 *   not found in assignedBanners
 	 */
 	BannerSequenceUiModel.prototype.verifyAndFixBannersForBucket = function (
@@ -720,6 +735,7 @@
 
 	/**
 	 * Global container widget for the banner sequence administration UI.
+	 *
 	 * @class BannerSequenceWidget
 	 * @constructor
 	 */
@@ -843,6 +859,7 @@
 	/**
 	 * Possibly create a widget, and update its values, based on the model, for the
 	 * sequence for a specific bucket.
+	 *
 	 * @param {number} bucket
 	 */
 	BannerSequenceWidget.prototype.updateFromModelForBucket = function ( bucket ) {
@@ -885,6 +902,7 @@
 	/**
 	 * Tell the sequence container for a bucket to set missing banner errors for one or
 	 * more steps.
+	 *
 	 * @param {number} bucket
 	 * @param {number[]} stepsWithMissingBanners
 	 */
@@ -1081,6 +1099,7 @@
 
 	/**
 	 * Set missing banner errors for one or more steps in the sequence
+	 *
 	 * @param {number[]} stepsWithMissingBanners
 	 */
 	BucketSeqContainerWidget.prototype.setMissingBannerErrors = function (
@@ -1421,6 +1440,7 @@
 
 	/**
 	 * Set a banner missing error state for the banner drop-down
+	 *
 	 * @param {boolean} state true to set an error, false to clear one
 	 */
 	StepWidget.prototype.setMissingBannerError = function ( state ) {
@@ -1439,6 +1459,7 @@
 
 	/**
 	 * Refresh the list of banners shown in the banner drop-down menu
+	 *
 	 * @param {string[]} banners Names of banners available for this bucket
 	 */
 	StepWidget.prototype.updateBannersDropDown = function ( banners ) {
@@ -1462,7 +1483,8 @@
 
 	/**
 	 * Determine whether any inputs have validation errors
-	 * @returns {boolean} true if one or more input has a validation error, false
+	 *
+	 * @return {boolean} true if one or more input has a validation error, false
 	 *   otherwise
 	 */
 	StepWidget.prototype.hasErrorState = function () {

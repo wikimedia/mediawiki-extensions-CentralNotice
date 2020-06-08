@@ -96,7 +96,8 @@
 
 	/**
 	 * Get the identifier to check for the current step.
-	 * @returns {string}
+	 *
+	 * @return {string}
 	 */
 	SequenceManager.prototype.identifierToCheck = function () {
 		return this.sequence[ this.currentStep ].skipWithIdentifier;
@@ -105,7 +106,8 @@
 	/**
 	 * Get the name of the banner to show on the current step, or null if this step has no
 	 * banner.
-	 * @returns {string|null}
+	 *
+	 * @return {string|null}
 	 */
 	SequenceManager.prototype.banner = function () {
 		return this.sequence[ this.currentStep ].banner;
@@ -115,7 +117,7 @@
 	 * Skip to the next step and re-calculate current step and current page view. (Called
 	 * when a flag to skip the current step has been found).
 	 *
-	 * @returns {boolean} true if we successfully skipped to the next step, false if we've
+	 * @return {boolean} true if we successfully skipped to the next step, false if we've
 	 *   already skipped all the steps in the sequence and can no longer show a step.
 	 */
 	SequenceManager.prototype.skipToNextStep = function () {
@@ -156,7 +158,7 @@
 	 * rolls over when we re-start a sequence, so it's not an accurate count of page views
 	 * in the campaign.
 	 *
-	 * @returns {number}
+	 * @return {number}
 	 */
 	function getPageView() {
 		return cn.kvStore.getItem(
@@ -168,6 +170,7 @@
 
 	/**
 	 * Store in the browser a new value for current page view in the sequence.
+	 *
 	 * @param {number} pageView
 	 */
 	function setPageView( pageView ) {
@@ -183,8 +186,9 @@
 
 	/**
 	 * Check if there is a flag with this identifier stored in the browser.
+	 *
 	 * @param {string} identifier
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	function getFlag( identifier ) {
 
@@ -204,6 +208,7 @@
 
 	/**
 	 * Store a flag with this identifier in the browser.
+	 *
 	 * @param {string} identifier
 	 */
 	function setFlag( identifier ) {

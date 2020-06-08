@@ -380,7 +380,7 @@
 		 * @param {boolean} anon
 		 * @param {string} device
 		 * @param {string} requestedBannerName
-		 * @returns {Object}
+		 * @return {Object}
 		 */
 		requestBanner: function ( campaign, bucket, anon, device, requestedBannerName ) {
 
