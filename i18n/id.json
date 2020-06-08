@@ -13,7 +13,8 @@
 			"Mbrt",
 			"Rachmat.Wahidi",
 			"Rachmat04",
-			"Rex"
+			"Rex",
+			"Sumbukompor"
 		]
 	},
 	"centralnotice": "Pengurus pengumuman sentral",
@@ -154,7 +155,7 @@
 	"centralnotice-date": "Tanggal",
 	"centralnotice-apply-filters": "Terapkan penyaring",
 	"centralnotice-clear-filters": "Hapus penyaring",
-	"centralnotice-banner-messages": "Pesan spanduk",
+	"centralnotice-banner-messages": "Pesanan spanduk yang dapat diterjemahkan",
 	"centralnotice-filter-template-submit": "Terapkan penyaring",
 	"centralnotice-priority-low": "rendah",
 	"centralnotice-priority-normal": "normal",
