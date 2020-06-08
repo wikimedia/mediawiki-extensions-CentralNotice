@@ -47,7 +47,7 @@
 			var buttons = {},
 				okButtonText = mw.message( 'centralnotice-add-notice-button' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-add-notice-cancel-button' ).text(),
-				dialogObj = $( '<form></form>' ),
+				$dialogObj = $( '<form></form>' ),
 				title = mw.message( 'centralnotice-add-new-banner-title' );
 
 			// Implement the functionality
@@ -73,15 +73,17 @@
 			};
 
 			// Create the dialog by copying the textfield element into a new form
-			dialogObj[ 0 ].name = 'addBannerDialog';
-			dialogObj.append(
+			$dialogObj[ 0 ].name = 'addBannerDialog';
+			// FIXME: Don't use jQuery#ready
+			// eslint-disable-next-line no-jquery/no-ready-shorthand
+			$dialogObj.append(
 				$( '#cn-formsection-addBanner' ).children( 'div' ).clone().show()
 			).ready( function () {
-				$( dialogObj[ 0 ].wpcreateFromTemplateCheckbox )
+				$( $dialogObj[ 0 ].wpcreateFromTemplateCheckbox )
 					.on( 'click', bm.toggleBannerTemplatesDropdown );
 			} );
 
-			dialogObj.dialog( {
+			$dialogObj.dialog( {
 				title: title.escaped(),
 				modal: true,
 				buttons: buttons,
@@ -107,8 +109,8 @@
 		 * the form with the 'remove' action.
 		 */
 		doRemoveBanners: function () {
-			var dialogObj = $( '<form>' ),
-				dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
+			var $dialogObj = $( '<form>' ),
+				$dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-delete-banner-cancel' ).text();
@@ -128,10 +130,10 @@
 				$( this ).dialog( 'close' );
 			};
 
-			dialogObj.append( dialogMessage );
-			dialogMessage.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
+			$dialogObj.append( $dialogMessage );
+			$dialogMessage.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
 
-			dialogObj.append( $( '#cn-formsection-removeBanner' ).children( 'div' ).clone().show() )
+			$dialogObj.append( $( '#cn-formsection-removeBanner' ).children( 'div' ).clone().show() )
 				.dialog( {
 					title: mw.message(
 						'centralnotice-delete-banner-title',
@@ -147,7 +149,7 @@
 		 * Submits the form with the archive action.
 		 */
 		doArchiveBanners: function () {
-			var dialogObj = $( '<div></div>' ),
+			var $dialogObj = $( '<div></div>' ),
 				buttons = {},
 				archiveText = mw.message( 'centralnotice-archive-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-archive-banner-cancel' ).text();
@@ -161,8 +163,8 @@
 				$( this ).dialog( 'close' );
 			};
 
-			dialogObj.text( mw.message( 'centralnotice-archive-banner-confirm' ).text() );
-			dialogObj.dialog( {
+			$dialogObj.text( mw.message( 'centralnotice-archive-banner-confirm' ).text() );
+			$dialogObj.dialog( {
 				title: mw.message(
 					'centralnotice-archive-banner-title',
 					bm.selectedItemCount
@@ -177,15 +179,15 @@
 		 * Updates all the banner check boxes when the 'checkAll' check box is clicked
 		 */
 		checkAllStateAltered: function () {
-			var checkBoxes = $( 'input.cn-bannerlist-check-applyto' );
+			var $checkBoxes = $( 'input.cn-bannerlist-check-applyto' );
 			if ( $( '#mw-input-wpselectAllBanners' ).prop( 'checked' ) ) {
 				bm.selectedItemCount = bm.totalSelectableItems;
-				checkBoxes.each( function () {
+				$checkBoxes.each( function () {
 					$( this ).prop( 'checked', true );
 				} );
 			} else {
 				bm.selectedItemCount = 0;
-				checkBoxes.each( function () {
+				$checkBoxes.each( function () {
 					$( this ).prop( 'checked', false );
 				} );
 			}
@@ -208,24 +210,24 @@
 		 *
 		 */
 		checkedCountUpdated: function () {
-			var selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
-				deleteButton = $( ' #mw-input-wpdeleteSelectedBanners' );
+			var $selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
+				$deleteButton = $( ' #mw-input-wpdeleteSelectedBanners' );
 
 			if ( bm.selectedItemCount === bm.totalSelectableItems ) {
 				// Everything selected
-				selectAllCheck.prop( 'checked', true );
-				selectAllCheck.prop( 'indeterminate', false );
-				deleteButton.prop( 'disabled', false );
+				$selectAllCheck.prop( 'checked', true );
+				$selectAllCheck.prop( 'indeterminate', false );
+				$deleteButton.prop( 'disabled', false );
 			} else if ( bm.selectedItemCount === 0 ) {
 				// Nothing selected
-				selectAllCheck.prop( 'checked', false );
-				selectAllCheck.prop( 'indeterminate', false );
-				deleteButton.prop( 'disabled', true );
+				$selectAllCheck.prop( 'checked', false );
+				$selectAllCheck.prop( 'indeterminate', false );
+				$deleteButton.prop( 'disabled', true );
 			} else {
 				// Some things selected
-				selectAllCheck.prop( 'checked', true );
-				selectAllCheck.prop( 'indeterminate', true );
-				deleteButton.prop( 'disabled', false );
+				$selectAllCheck.prop( 'checked', true );
+				$selectAllCheck.prop( 'indeterminate', true );
+				$deleteButton.prop( 'disabled', false );
 			}
 		},
 

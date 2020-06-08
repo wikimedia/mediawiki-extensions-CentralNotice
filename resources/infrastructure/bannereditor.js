@@ -152,7 +152,7 @@
 			var buttons = {},
 				okButtonText = mw.message( 'centralnotice-clone' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-clone-cancel' ).text(),
-				dialogObj = $( '<form></form>' );
+				$dialogObj = $( '<form></form>' );
 
 			// Implement the functionality
 			buttons[ cancelButtonText ] = function () {
@@ -177,8 +177,8 @@
 				.val( $( '#mw-input-wpsummary' ).val() );
 
 			// Create the dialog by copying the text fields into a new form
-			dialogObj[ 0 ].name = 'addBannerDialog';
-			dialogObj.append( $( '#cn-formsection-clone-banner' ).children( 'div' ).clone().show() )
+			$dialogObj[ 0 ].name = 'addBannerDialog';
+			$dialogObj.append( $( '#cn-formsection-clone-banner' ).children( 'div' ).clone().show() )
 				.dialog( {
 					title: mw.message( 'centralnotice-clone-notice' ).escaped(),
 					modal: true,
@@ -210,8 +210,8 @@
 		 * the form with the 'remove' action.
 		 */
 		doDeleteBanner: function () {
-			var dialogObj = $( '<form>' ),
-				dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
+			var $dialogObj = $( '<form>' ),
+				$dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-delete-banner-cancel' ).text();
@@ -235,10 +235,10 @@
 			$( '#mw-input-wpdeleteEditSummary' )
 				.val( $( '#mw-input-wpsummary' ).val() );
 
-			dialogObj.append( dialogMessage );
-			dialogMessage.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
+			$dialogObj.append( $dialogMessage );
+			$dialogMessage.text( mw.message( 'centralnotice-delete-banner-confirm' ).text() );
 
-			dialogObj.append( $( '#cn-formsection-delete-banner' ).children( 'div' ).clone().show() )
+			$dialogObj.append( $( '#cn-formsection-delete-banner' ).children( 'div' ).clone().show() )
 				.dialog( {
 					title: mw.message( 'centralnotice-delete-banner-title', 1 ).escaped(),
 					modal: true,
@@ -251,7 +251,7 @@
 		 * Submits the form with the archive action.
 		 */
 		doArchiveBanner: function () {
-			var dialogObj = $( '<div></div>' ),
+			var $dialogObj = $( '<div></div>' ),
 				buttons = {},
 				archiveText = mw.message( 'centralnotice-archive-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-archive-banner-cancel' ).text();
@@ -265,8 +265,8 @@
 				$( this ).dialog( 'close' );
 			};
 
-			dialogObj.text( mw.message( 'centralnotice-archive-banner-confirm' ).text() );
-			dialogObj.dialog( {
+			$dialogObj.text( mw.message( 'centralnotice-archive-banner-confirm' ).text() );
+			$dialogObj.dialog( {
 				title: mw.message( 'centralnotice-archive-banner-title', 1 ).escaped(),
 				resizable: false,
 				modal: true,
