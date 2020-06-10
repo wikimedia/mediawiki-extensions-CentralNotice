@@ -364,6 +364,7 @@ class Campaign {
 				'not_geo',
 				'not_buckets',
 				'not_throttle',
+				'not_type',
 			],
 			[ 'not_name' => $campaignName ],
 			__METHOD__
@@ -379,6 +380,7 @@ class Campaign {
 				'geo'       => $row->not_geo,
 				'buckets'   => $row->not_buckets,
 				'throttle'  => $row->not_throttle,
+				'type'      => $row->not_type
 			];
 		} else {
 			return false;
@@ -821,12 +823,13 @@ class Campaign {
 	 * @param int $throttle limit allocations, 0 - 100
 	 * @param int $priority priority level, LOW_PRIORITY - EMERGENCY_PRIORITY
 	 * @param User $user User adding the campaign
+	 * @param string|null $type Type of campaign
 	 * @param string|null $summary Change summary provided by the user
 	 * @return int|string noticeId on success, or message key for error
 	 */
 	public static function addCampaign( $noticeName, $enabled, $startTs, $projects,
 		$project_languages, $geotargeted, $geo_countries, $geo_regions, $throttle,
-		$priority, $user, $summary = null
+		$priority, $user, $type, $summary = null
 	) {
 		$noticeName = trim( $noticeName );
 		if ( self::campaignExists( $noticeName ) ) {
@@ -844,13 +847,15 @@ class Campaign {
 		$endTs = wfTimestamp( TS_MW, $endTime );
 
 		$dbw->insert( 'cn_notices',
-			[ 'not_name'    => $noticeName,
-				'not_enabled' => (int)$enabled,
-				'not_start'   => $dbw->timestamp( $startTs ),
-				'not_end'     => $dbw->timestamp( $endTs ),
-				'not_geo'     => (int)$geotargeted,
-				'not_throttle' => $throttle,
+			[
+				'not_name'      => $noticeName,
+				'not_enabled'   => (int)$enabled,
+				'not_start'     => $dbw->timestamp( $startTs ),
+				'not_end'       => $dbw->timestamp( $endTs ),
+				'not_geo'       => (int)$geotargeted,
+				'not_throttle'  => $throttle,
 				'not_preferred' => $priority,
+				'not_type'      => $type
 			],
 			__METHOD__
 		);
@@ -914,6 +919,7 @@ class Campaign {
 				'archived'  => 0,
 				'geo'       => (int)$geotargeted,
 				'throttle'  => $throttle,
+				'type'      => $type
 			];
 			self::processAfterCampaignChange( 'created', $not_id, $noticeName, $user,
 				$beginSettings, $endSettings, $summary );
@@ -1561,6 +1567,22 @@ class Campaign {
 	 */
 	protected static function settingNameIsValid( $settingName ) {
 		return ( preg_match( '/^[a-z_]*$/', $settingName ) === 1 );
+	}
+
+	public static function setType( $campaignName, $type ) {
+		// Following pattern from setNumericaCampaignSettings() and exiting with no
+		// error if the campaign doesn't exist. TODO Is this right?
+		if ( !self::campaignExists( $campaignName ) ) {
+			return;
+		}
+
+		$dbw = CNDatabase::getDb( DB_MASTER );
+		$dbw->update(
+			'cn_notices',
+			[ 'not_type' => $type ],
+			[ 'not_name' => $campaignName ],
+			__METHOD__
+		);
 	}
 
 	public static function campaignLogs(

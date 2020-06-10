@@ -267,7 +267,8 @@ class CentralNoticeTestFixtures {
 				$campaign['regions'],
 				$campaign['throttle'],
 				$campaign['preferred'],
-				$this->user
+				$this->user,
+				null // no campaign type assigned
 			);
 
 			// Update notice end date only if that property was sent in.

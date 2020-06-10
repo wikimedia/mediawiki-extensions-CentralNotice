@@ -76,6 +76,20 @@
 	}
 
 	/**
+	 * Handler for changes to campaign type dropdowns
+	 */
+	function updateCampaignTypeChanges() {
+		var $this = $( this );
+
+		setChange(
+			$this.data( 'campaignName' ),
+			'campaign_type',
+			$this.val(),
+			$this.data( 'initialValue' )
+		);
+	}
+
+	/**
 	 * Click handler for faux submit button, to submit just what's changed
 	 */
 	function submitChanges() {
@@ -138,6 +152,11 @@
 			// See CentralNotice::prioritySelector()
 			$( '#cn-campaign-pager select[name="priority"]:not([disabled])' )
 				.on( 'change', updatePriorityChanges );
+
+			// Attach handler to campaign type dropdowns
+			// See CentralNotice::campaignTypeSelector()
+			$( '#cn-campaign-pager select[name="campaign_type"]:not([disabled])' )
+				.on( 'change', updateCampaignTypeChanges );
 
 			// Attach handler to "Submit" button
 			// See CNCampaignPager::getEndBody()

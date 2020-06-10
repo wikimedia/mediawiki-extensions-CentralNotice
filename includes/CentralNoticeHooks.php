@@ -1,4 +1,5 @@
 <?php
+
 /**
  * General hook definitions
  *
@@ -35,7 +36,8 @@ class CentralNoticeHooks {
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
 			$wgDBname, $wgCentralNoticeAdminGroup, $wgNoticeProtectGroup,
-			$wgCentralNoticeMessageProtectRight, $wgResourceModules;
+			$wgCentralNoticeMessageProtectRight, $wgResourceModules,
+			$wgDefaultUserOptions;
 
 		// Default for a standalone wiki is that the CN tables are in the main database.
 		if ( !$wgCentralDBname ) {
@@ -52,6 +54,12 @@ class CentralNoticeHooks {
 			$wgHooks['SiteNoticeAfter'][] = 'CentralNoticeHooks::onSiteNoticeAfter';
 			$wgHooks['ResourceLoaderGetConfigVars'][] =
 				'CentralNoticeHooks::onResourceLoaderGetConfigVars';
+		}
+
+		// Set default user preferences for campaign type filtering.
+		// All types are on by default.
+		foreach ( CampaignType::getTypes() as $type ) {
+			$wgDefaultUserOptions[ $type->getPreferenceKey() ] = 1;
 		}
 
 		// If this is the wiki that hosts the management interface, load further components
@@ -569,5 +577,30 @@ class CentralNoticeHooks {
 	public static function onListDefinedTags( &$tags ) {
 		$tags[] = 'centralnotice';
 		$tags[] = 'centralnotice translation';
+	}
+
+	/**
+	 * @param User $user
+	 * @param array &$preferences
+	 * @return bool
+	 */
+	public static function onGetPreferences( $user, &$preferences ) {
+		foreach ( CampaignType::getTypes() as $type ) {
+			// This allows fallback languages while also showing something not-too-
+			// horrible if the config variable has types that don't have i18n
+			// messages.
+			// Note also that the value of 'label' will escaped prior to output.
+			$message = Message::newFromKey( $type->getMessageKey() );
+			$label = $message->exists() ? $message->text() : $type->getId();
+
+			$preferences[ $type->getPreferenceKey() ] = [
+				'type' => 'toggle',
+				'section' => 'centralnotice-banners/centralnotice-display-banner-types',
+				'label' => $label,
+				'disabled' => $type->getOnForAll()
+			];
+		}
+
+		return true;
 	}
 }

@@ -106,7 +106,8 @@
 		"SpecialNoticeTemplate": "includes/specials/SpecialNoticeTemplate.php",
 		"SpecialRecordImpression": "includes/specials/SpecialRecordImpression.php",
 		"StaleCampaignException": "includes/specials/StaleCampaignException.php",
-		"TemplatePager": "includes/specials/pagers/TemplatePager.php"
+		"TemplatePager": "includes/specials/pagers/TemplatePager.php",
+		"CampaignType": "includes/CampaignType.php"
 	},
 	"TestAutoloadClasses": {
 		"CentralNoticeTestFixtures": "tests/phpunit/CentralNoticeTestFixtures.php",
@@ -318,7 +319,8 @@
 		"LoadExtensionSchemaUpdates": "CNDatabasePatcher::applyUpdates",
 		"SkinTemplateNavigation::SpecialPage": "CentralNotice::addNavigationTabs",
 		"ResourceLoaderRegisterModules": "CentralNoticeHooks::onResourceLoaderRegisterModules",
-		"UserMergeAccountFields": "CentralNoticeHooks::onUserMergeAccountFields"
+		"UserMergeAccountFields": "CentralNoticeHooks::onUserMergeAccountFields",
+		"GetPreferences": "CentralNoticeHooks::onGetPreferences"
 	},
 	"ExtensionFunctions": [
 		"CentralNoticeHooks::initCentralNotice"
@@ -590,6 +592,18 @@
 		},
 		"CentralNoticeMessageProtectRight": {
 			"value": "centralnotice-admin"
+		},
+		"CentralNoticeCampaignTypes": {
+			"value": {
+				"advocacy": { "onForAll": false },
+				"article-writing": { "onForAll": false },
+				"photography": { "onForAll": false },
+				"event": { "onForAll": false },
+				"fundraising": { "onForAll": false },
+				"governance": { "onForAll": false },
+				"maintenance": { "onForAll": true },
+				"special": { "onForAll": true }
+			}
 		}
 	},
 	"attributes": {

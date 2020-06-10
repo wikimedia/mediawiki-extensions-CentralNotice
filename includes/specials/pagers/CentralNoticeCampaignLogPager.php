@@ -308,6 +308,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testSetChange( 'countries', $row );
 		$details .= $this->testSetChange( 'regions', $row );
 		$details .= $this->testBooleanChange( 'archived', $row );
+		$details .= $this->testTypeChange( $row );
 
 		$details .= $this->testTextChange(
 			'campaign-mixins',
@@ -529,6 +530,51 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			)->parse() . "<br/>";
 		}
 		return $result;
+	}
+
+	protected function testTypeChange( $row ) {
+		$result = '';
+
+		$oldval = $row->notlog_begin_type;
+		$newval = $row->notlog_end_type;
+
+		if ( $oldval !== $newval ) {
+			$result .= $this->msg(
+				'centralnotice-log-label',
+				$this->msg( 'centralnotice-campaign-type' )->text(),
+				$this->msg(
+					'centralnotice-changed',
+					$this->getTypeText( $oldval ),
+					$this->getTypeText( $newval )
+				)->text()
+			)->parse() . "<br/>";
+		}
+
+		return $result;
+	}
+
+	private function getTypeText( $typeId ) {
+		// This is the case for no type set; $typeId should be null.
+		if ( !$typeId ) {
+			return $this->msg( 'centralnotice-empty-campaign-type-option' )->plain();
+		}
+
+		$type = CampaignType::getById( $typeId );
+
+		// This is the case for a type that exists in the logs but not in the config
+		if ( !$type ) {
+			return $typeId;
+		}
+
+		$message = $this->msg( $type->getMessageKey() );
+
+		// This is the case for a type that exists in the logs and the config but has no
+		// associated i18n message
+		if ( !$message->exists() ) {
+			return $typeId;
+		}
+
+		return $message->plain();
 	}
 
 	/**

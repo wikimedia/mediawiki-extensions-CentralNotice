@@ -56,6 +56,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 			'archived' => 0,
 			'throttle' => 100,
 			'mixins' => '[]',
+			'type' => null,
 		];
 
 		// get User
@@ -68,7 +69,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
 			$languages, $geotargeted, $countries, $regions,
-			100, $priority, $this->userUser );
+			100, $priority, $this->userUser, null );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
 
