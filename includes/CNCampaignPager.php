@@ -81,6 +81,12 @@ class CNCampaignPager extends TablePager {
 				) . ' AS countries',
 				$this->getDatabase()->buildGroupConcatField(
 					',',
+					'cn_notice_regions',
+					'nr_region',
+					'nr_notice_id = notices.not_id'
+				) . ' AS regions',
+				$this->getDatabase()->buildGroupConcatField(
+					',',
 					'cn_notice_languages',
 					'nl_language',
 					'nl_notice_id = notices.not_id'
@@ -127,7 +133,7 @@ class CNCampaignPager extends TablePager {
 				'not_name' => $this->msg( 'centralnotice-notice-name' )->text(),
 				'projects' => $this->msg( 'centralnotice-projects' )->text(),
 				'languages' => $this->msg( 'centralnotice-languages' )->text(),
-				'countries' => $this->msg( 'centralnotice-countries' )->text(),
+				'location' => $this->msg( 'centralnotice-location' )->text(),
 				'not_start' => $this->msg( 'centralnotice-start-timestamp' )->text(),
 				'not_end' => $this->msg( 'centralnotice-end-timestamp' )->text(),
 				'not_enabled' => $this->msg( 'centralnotice-enabled' )->text(),
@@ -208,15 +214,19 @@ class CNCampaignPager extends TablePager {
 				$l = explode( ',', $this->mCurrentRow->languages );
 				return htmlspecialchars( $this->onSpecialCN->listLanguages( $l ) );
 
-			case 'countries':
-				if ( $this->mCurrentRow->not_geo ) {
-					$c = explode( ',', $this->mCurrentRow->countries );
-				} else {
-					// FIXME: this is silly.
-					$c = array_keys( GeoTarget::getCountriesList( 'en' ) );
+			case 'location':
+				// if not geotargeted or no countries and regions chosen, show "all"
+				$emptyGeo = empty( $this->mCurrentRow->countries )
+					&& empty( $this->mCurrentRow->regions );
+				if ( !$this->mCurrentRow->not_geo || $emptyGeo ) {
+					return $this->msg( 'centralnotice-all' )->text();
 				}
+				$c = explode( ',', $this->mCurrentRow->countries );
 
-				return htmlspecialchars( $this->onSpecialCN->listCountries( $c ) );
+				$r = explode( ',', $this->mCurrentRow->regions );
+				$list = $this->onSpecialCN->listCountriesRegions( $c, $r );
+
+				return htmlspecialchars( $list );
 
 			case 'not_start':
 			case 'not_end':

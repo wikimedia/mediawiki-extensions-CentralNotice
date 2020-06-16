@@ -9,14 +9,15 @@
 			"F. Cosoleto",
 			"Gianfranco",
 			"Gloria sah",
+			"Greis",
+			"JackLantern",
+			"Matteocng",
 			"Melos",
 			"Nemo bis",
 			"Pietrodn",
-			"Viscontino",
 			"Ronald",
-			"Matteocng",
-			"JackLantern",
-			"Greis"
+			"Scompo",
+			"Viscontino"
 		]
 	},
 	"centralnotice": "Gestione avviso centralizzato",
@@ -24,6 +25,7 @@
 	"bannerallocation": "Gestione avviso centralizzato",
 	"centralnoticelogs": "Gestione avviso centralizzato",
 	"right-centralnotice-admin": "Gestisce gli avvisi centralizzati",
+	"protect-level-centralnotice-admin": "Consentito solo agli amministratori avvisi centralizzati",
 	"action-centralnotice-admin": "gestire gli avvisi centralizzati",
 	"centralnotice-desc": "Aggiunge un avviso centralizzato a inizio pagina (sitenotice)",
 	"centralnotice-summary": "Questo modulo permette di modificare gli avvisi centralizzati. Può essere inoltre usato per aggiungere o rimuovere vecchi avvisi.",
@@ -130,7 +132,10 @@
 	"centralnotice-banner-mixins-help": "Controlla ogni mixin che vuoi includere durante l'invio dei banner. (Vedi [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixin] per ulteriori informazioni.)",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Basata sulla posizione geografica",
+	"centralnotice-geo-status": "Selezionato $1 $2",
 	"centralnotice-countries": "Paesi",
+	"centralnotice-regions": "Regioni",
+	"centralnotice-location": "Paesi e regioni",
 	"centralnotice-allocation": "Destinazione",
 	"centralnotice-view-allocation": "Visualizza destinazione dei banner",
 	"centralnotice-allocation-instructions": "Seleziona il contesto di esposizione dei banner desiderato:",
@@ -138,6 +143,7 @@
 	"centralnotice-language": "Lingua",
 	"centralnotice-projects": "Progetti",
 	"centralnotice-country": "Nazione",
+	"centralnotice-region": "Regione",
 	"centralnotice-no-allocation": "Nessun banner assegnato.",
 	"centralnotice-allocation-description": "Destinazione dei banner per lingua: $1, progetto: $2, paese: $3, dispositivo: $4",
 	"centralnotice-historical-allocation-description": "Destinazione dei banner per lingua: $1, progetto: $2, paese: $3, dispositivo: $4, alle $5",
@@ -255,5 +261,6 @@
 	"centralnotice-banner-sequence-banner": "Banner",
 	"centralnotice-banner-sequence-page-views": "Visualizzazioni di pagina",
 	"centralnotice-multiple-countries": "Più paesi",
+	"centralnotice-multiple-regions": "Regioni multiple",
 	"centralnotice-multiple-languages": "Più lingue"
 }

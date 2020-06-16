@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * ResourceLoader module for sending banner choices to the client.
  *
@@ -63,8 +65,11 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 		$url = wfAppendQuery( $cnApiUrl, $q );
 
-		$apiResult = Http::get( $url,
-			[ 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ] );
+		$apiResult = MediaWikiServices::getInstance()->getHttpRequestFactory()->get(
+			$url,
+			[ 'timeout' => self::API_REQUEST_TIMEOUT * 0.8 ],
+			__METHOD__
+		);
 
 		if ( !$apiResult ) {
 			wfLogWarning( 'Couldn\'t get banner choice data via API.' );

@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Malafaya",
-			"Joao Xavier"
+			"Joao Xavier",
+			"Malafaya"
 		]
 	},
 	"centralnotice-notice-name": "Nomo dil avizo",
 	"centralnotice-enabled": "Permisata",
 	"centralnotice-modify": "Sendez",
+	"centralnotice-remove": "Removar",
 	"centralnotice-add": "Adjuntar",
 	"centralnotice-add-notice": "Adjuntar avizo",
 	"centralnotice-add-notice-cancel-button": "Anular",
@@ -25,12 +26,28 @@
 	"centralnotice-min": "Minuto",
 	"centralnotice-number-uses": "Uzadi",
 	"centralnotice-clone-cancel": "Anular",
+	"centralnotice-banner-anonymous": "Anonima uzeri",
 	"centralnotice-banner-logged-in": "Enrejistrita uzeri",
+	"centralnotice-geo-status": "Selektita $1 $2",
+	"centralnotice-countries": "Landi",
+	"centralnotice-regions": "Regioni",
 	"centralnotice-languages": "Lingui",
+	"centralnotice-language": "Linguo",
 	"centralnotice-projects": "Projeti",
+	"centralnotice-country": "Lando",
+	"centralnotice-region": "Regiono",
+	"centralnotice-preferred": "Prioreso",
 	"centralnotice-account": "Montrez a l'uzeri enrejistrita",
 	"centralnotice-all": "Omna",
 	"centralnotice-archive-banner-cancel": "Anular",
 	"centralnotice-archive-campaign-cancel": "Anular",
-	"centralnotice-delete-banner-cancel": "Anular"
+	"centralnotice-delete-banner": "Efacar",
+	"centralnotice-delete-banner-cancel": "Anular",
+	"centralnotice-start-date": "Komenca dato (UTC)",
+	"centralnotice-end-date": "Fina dato (UTC)",
+	"centralnotice-multiple-regions": "Multopla regioni",
+	"centralnotice-banner-template": "Anunco-shablono",
+	"centralnotice-banner-is-template": "To esas shablono pri anunco, uzata por krear anunci",
+	"centralnotice-banner-template-info": "(shablono)",
+	"centralnotice-create-from-template-checkbox-label": "Krear de modelo"
 }

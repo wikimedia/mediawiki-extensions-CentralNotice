@@ -41,21 +41,29 @@ class AllocationCalculator {
 	 *
 	 * @param string $country Country of interest
 	 *
+	 * @param string $region Region of interest
+	 *
 	 * @param int $status A status constant defined by this class (i.e.,
 	 *   AllocationCalculator::ANONYMOUS or
 	 *   AllocationCalculator::LOGGED_IN).
 	 *
 	 * @param string $device target device code
 	 */
-	public static function makeAvailableCampaigns( &$choiceData, $country, $status, $device ) {
+	public static function makeAvailableCampaigns(
+		&$choiceData, $country, $region, $status, $device
+	) {
 		$availableCampaigns = [];
 
 		foreach ( $choiceData as $campaign ) {
 			$keepCampaign = false;
+			$uniqueRegionCode = GeoTarget::makeUniqueRegionCode( $country, $region );
 
-			// Filter for country if geotargeted
+			// Filter for country/region if geotargeted
+			// Note: the region from user context is prefixed with country code (eg.: RU_MOW)
+			// to avoid collision with similarly named regions across different countries
 			if ( $campaign['geotargeted'] &&
-				!in_array( $country, $campaign['countries'] )
+				 ( !in_array( $country, $campaign['countries'] ) && // Country wide
+				   !in_array( $uniqueRegionCode, $campaign['regions'] ) ) // Region
 			) {
 				continue;
 			}
@@ -260,6 +268,8 @@ class AllocationCalculator {
 	 *
 	 * @param string $country Country of interest
 	 *
+	 * @param string $region Region of interest
+	 *
 	 * @param int $status A status constant defined by this class (i.e.,
 	 *   AllocationCalculator::ANONYMOUS or
 	 *   AllocationCalculator::LOGGED_IN).
@@ -275,12 +285,13 @@ class AllocationCalculator {
 	 * @return array
 	 */
 	public static function filterAndAllocate(
-		$country, $status, $device, $bucket, $campaigns
+		$country, $region, $status, $device, $bucket, $campaigns
 	) {
 		// Filter and determine campaign allocation
 		self::makeAvailableCampaigns(
 			$campaigns,
 			$country,
+			$region,
 			$status,
 			$device
 		);

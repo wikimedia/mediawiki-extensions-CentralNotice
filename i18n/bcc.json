@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mostafadaneshvar",
+			"BaRaN6161 TURK",
 			"Baloch Afghanistan",
+			"Mostafadaneshvar",
 			"Sultanselim baloch"
 		]
 	},
@@ -82,7 +83,7 @@
 	"centralnotice-change-summary-label": "کمݔں",
 	"centralnotice-change-summary-prompt": "بی ای تغییراتانی موردا پیام (اختیاری)",
 	"centralnotice-change-summary-action-prompt": "بی ای عملی موردا پیام ( اختیاری )",
-	"centralnotice-delete-banner-title": "پاک کورتین {{جمع:$1|آگهی یان|آگهی یان}}",
+	"centralnotice-delete-banner-title": "پاک کورتین {{PLURAL:$1|آگهی یان|آگهی یان}}",
 	"centralnotice-delete-banner-confirm": "هشدار:حذپ وپاک بوتین موچین تنظمات و پیامان. ای عمل پدا برگشت نداریت. بی نظر گیپتین ثپت کورتینا بی  جاها.",
 	"centralnotice-start-timestamp": "زمان آغاز (ساعت جهانی)",
 	"centralnotice-end-timestamp": "پایان (ساعت جهانی)",

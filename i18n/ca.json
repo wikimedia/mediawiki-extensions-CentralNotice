@@ -5,6 +5,7 @@
 			"Alvaro Vidal-Abarca",
 			"Arnaugir",
 			"El libre",
+			"Fitoschido",
 			"Gemmaa",
 			"Loupeter",
 			"Paucabot",
@@ -14,8 +15,7 @@
 			"Solde",
 			"Ssola",
 			"Toniher",
-			"Vriullop",
-			"Fitoschido"
+			"Vriullop"
 		]
 	},
 	"centralnotice": "Administrador d'avisos centrals",
@@ -113,6 +113,7 @@
 	"centralnotice-banner-fundraising": "Aquest és un banner de recaptació de fons",
 	"centralnotice-geo": "Geolocalitzat",
 	"centralnotice-countries": "Països",
+	"centralnotice-regions": "Regions",
 	"centralnotice-allocation": "Assignació",
 	"centralnotice-view-allocation": "Veure la disposició de la pancarta",
 	"centralnotice-allocation-instructions": "Tria l'entorn on t'agradaria veure la pancarta assignada per:",
@@ -120,6 +121,7 @@
 	"centralnotice-language": "Llengua",
 	"centralnotice-projects": "Projectes",
 	"centralnotice-country": "País",
+	"centralnotice-region": "Regió",
 	"centralnotice-no-allocation": "No hi ha pancartes assignades.",
 	"centralnotice-allocation-description": "Assignació de pancarta per $1.$2 a $3:",
 	"centralnotice-percentage": "Percentatge",
@@ -180,5 +182,8 @@
 	"centralnotice-end-date": "Data de finalització (UTC)",
 	"centralnotice-end-time": "Hora de finalització (UTC)",
 	"centralnotice-multiple-countries": "Diversos països",
-	"centralnotice-multiple-languages": "Diverses llengües"
+	"centralnotice-multiple-regions": "Regions múltiples",
+	"centralnotice-multiple-languages": "Diverses llengües",
+	"centralnotice-banner-template-info": "(plantilla)",
+	"centralnotice-create-from-template-checkbox-label": "Crea a partir d’una plantilla"
 }

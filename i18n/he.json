@@ -7,10 +7,10 @@
 			"Orsa",
 			"Rotem Liss",
 			"Rotemliss",
+			"Steeve815",
 			"YaronSh",
 			"אור שפירא",
-			"חיים",
-			"Steeve815"
+			"חיים"
 		]
 	},
 	"centralnotice": "ניהול ההודעה המרכזית",
@@ -140,7 +140,10 @@
 	"centralnotice-banner-cdn-dialog-error": "שגיאה בבקשת ניקוד מטמון צד־לקוח.",
 	"centralnotice-banner-cdn-dialog-success": "נשלחה בקשה לניקוי מטמון צד־לקוח.",
 	"centralnotice-geo": "ממוקד גאוגרפית",
+	"centralnotice-geo-status": "נבחרו $1 $2",
 	"centralnotice-countries": "מדינות",
+	"centralnotice-regions": "אזורים",
+	"centralnotice-location": "מדינות ואזורים",
 	"centralnotice-allocation": "הקצאה",
 	"centralnotice-view-allocation": "צפייה בהקצאת הכרזה",
 	"centralnotice-allocation-instructions": "נא לבחור בסביבה שברצונך לצפות בהקצאת הכרזה עבורה:",
@@ -148,6 +151,7 @@
 	"centralnotice-language": "שפה",
 	"centralnotice-projects": "מיזמים",
 	"centralnotice-country": "ארץ",
+	"centralnotice-region": "אזור",
 	"centralnotice-no-allocation": "לא הוקצו כרזות.",
 	"centralnotice-allocation-description": "הקצאת כזרות עבור שפה $1, מיזם: ,$2 במדינה: $3, במכשיר $4",
 	"centralnotice-historical-allocation-description": "הקצאת כרזה עבור שפה $1, מיזם: $2, במדינה $3, על מכשיר $4, בזמן $5",
@@ -309,9 +313,17 @@
 	"centralnotice-impression-events-sample-rate-field": "קצב הדגימה של פעולות ההצגה (צריך להיות בין 0 ל־1, כולל)",
 	"centralnotice-banner-protection-log-reason": "מוגן אוטומטית על־ידי Central Notice; נא לערוך רק דרך [[Special:CentralNotice]] או [[Special:Translate]].",
 	"centralnotice-multiple-countries": "מדינות מרובות",
+	"centralnotice-multiple-regions": "אזורים מרובים",
 	"centralnotice-multiple-languages": "שפות מרובות",
 	"tag-centralnotice": "הודעה מרכזית",
 	"tag-centralnotice-description": "עריכה שנוצרה באמצעות ממשק המשתמש של ניהול ההודעה המרכזית",
 	"tag-centralnotice_translation": "תרגום הודעה מרכזית",
-	"tag-centralnotice_translation-description": "עריכת תוכן הודעה מרכזית שנוצר באמצעות ההרחבה Translate"
+	"tag-centralnotice_translation-description": "עריכת תוכן הודעה מרכזית שנוצר באמצעות ההרחבה Translate",
+	"centralnotice-banner-template": "תבנית כרזה",
+	"centralnotice-banner-is-template": "הכרזה הזאת היא תבנית, שאמורה לשמש ליצירת כרזות",
+	"centralnotice-banner-template-info": "(תבנית)",
+	"centralnotice-banner-template-error": "כזרה לא יכולה להיווצרר על סמך כרזה בלתי־תקינה, או כרזה שלא מסומנת בתור תבנית.\nNotAdding",
+	"centralnotice-add-banner-from-template": "הוספת כרזה מתבנית",
+	"centralnotice-messages-banner-in-campaign": "לא ניתן לסמן את הכרזה הזאת בתור תבנית כשהיא משויכת למסע פרסום אחד או יותר. הכרזה הזאת משויכת למסעי הפרסום הבאים:",
+	"centralnotice-create-from-template-checkbox-label": "יצירה מתבנית"
 }

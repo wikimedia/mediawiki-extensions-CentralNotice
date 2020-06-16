@@ -334,6 +334,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Output a form for adding a campaign.
+	 *
 	 */
 	protected function addNoticeForm() {
 		$request = $this->getRequest();
@@ -401,11 +402,12 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Xml::tags( 'td', [],
 			Xml::check( 'geotargeted', false, [ 'value' => 1, 'id' => 'geotargeted' ] ) );
 		$htmlOut .= Xml::closeElement( 'tr' );
-		$htmlOut .= Xml::openElement( 'tr',
-			[ 'id' => 'geoMultiSelector', 'style' => 'display:none;' ] );
+
+		// Locations multi-selector
+		$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'centralnotice-geo-region-multiselector' ] );
 		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-			$this->msg( 'centralnotice-countries' )->escaped() );
-		$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelector() );
+			$this->msg( 'centralnotice-location' )->escaped() );
+		$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelectorTree() );
 		$htmlOut .= Xml::closeElement( 'tr' );
 
 		$htmlOut .= Xml::closeElement( 'table' );
@@ -435,14 +437,37 @@ class CentralNotice extends SpecialPage {
 		$projects = $request->getArray( 'projects' );
 		$project_languages = $request->getArray( 'project_languages' );
 		$geotargeted = $request->getCheck( 'geotargeted' );
-		$geo_countries = $request->getArray( 'geo_countries' );
+
+		$geo_countries = $request->getVal( 'geo_countries' );
+		if ( $geo_countries ) {
+			$geo_countries = explode( ',', $geo_countries );
+		} else {
+			$geo_countries = [];
+		}
+
+		$geo_regions = $request->getVal( 'geo_regions' );
+		if ( $geo_regions ) {
+			$geo_regions = explode( ',', $geo_regions );
+		} else {
+			$geo_regions = [];
+		}
 		if ( $noticeName == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 		} else {
-			$result = Campaign::addCampaign( $noticeName, false, $start, $projects,
-				$project_languages, $geotargeted, $geo_countries,
-				100, self::NORMAL_PRIORITY, $this->getUser(),
-				$this->getSummaryFromRequest( $request ) );
+			$result = Campaign::addCampaign(
+				$noticeName,
+				false,
+				$start,
+				$projects,
+				$project_languages,
+				$geotargeted,
+				$geo_countries,
+				$geo_regions,
+				100,
+				self::NORMAL_PRIORITY,
+				$this->getUser(),
+				$this->getSummaryFromRequest( $request )
+			);
 			if ( is_string( $result ) ) {
 				// TODO Better error handling
 				$this->showError( $result );
@@ -468,7 +493,9 @@ class CentralNotice extends SpecialPage {
 		$datestamp = $wgRequest->getVal( "{$prefix}Date_timestamp" );
 		$timeArray = $wgRequest->getArray( $prefix );
 		$timestamp = substr( $datestamp, 0, 8 ) .
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$timeArray[ 'hour' ] .
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$timeArray[ 'min' ] . '00';
 		return $timestamp;
 	}
@@ -477,6 +504,7 @@ class CentralNotice extends SpecialPage {
 	 * Show the interface for viewing/editing an individual campaign
 	 *
 	 * @param string $notice The name of the campaign to view
+	 *
 	 */
 	private function outputNoticeDetail( $notice ) {
 		global $wgCentralNoticeCampaignMixins;
@@ -650,10 +678,14 @@ class CentralNotice extends SpecialPage {
 				// Handle updating geotargeting
 				if ( $request->getCheck( 'geotargeted' ) ) {
 					Campaign::setBooleanCampaignSetting( $notice, 'geo', true );
-					$countries = $request->getArray( 'geo_countries' );
-					if ( $countries ) {
-						Campaign::updateCountries( $notice, $countries );
-					}
+
+					$countries = $this->listToArray( $request->getVal( 'geo_countries' ) );
+					Campaign::updateCountries( $notice, $countries );
+
+					// Regions in format CountryCode_RegionCode
+					$regions = $this->listToArray( $request->getVal( 'geo_regions' ) );
+					Campaign::updateRegions( $notice, $regions );
+
 				} else {
 					Campaign::setBooleanCampaignSetting( $notice, 'geo', false );
 				}
@@ -843,7 +875,8 @@ class CentralNotice extends SpecialPage {
 				$noticeLanguages = $request->getArray( 'project_languages', [] );
 				$isGeotargeted = $request->getCheck( 'geotargeted' );
 				$numBuckets = $request->getInt( 'buckets', 1 );
-				$countries = $request->getArray( 'geo_countries', [] );
+				$countries = $this->listToArray( $request->getVal( 'geo_countries' ) );
+				$regions = $this->listToArray( $request->getVal( 'geo_regions' ) );
 			} else { // Defaults
 				$start = $campaign[ 'start' ];
 				$end = $campaign[ 'end' ];
@@ -857,6 +890,7 @@ class CentralNotice extends SpecialPage {
 				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
 				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = Campaign::getNoticeCountries( $notice );
+				$regions = Campaign::getNoticeRegions( $notice );
 			}
 			$isThrottled = ( $throttle < 100 );
 
@@ -912,11 +946,14 @@ class CentralNotice extends SpecialPage {
 						$readonly,
 						[ 'value' => $notice, 'id' => 'geotargeted' ] ) ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'geoMultiSelector' ] );
+
+			// Locations multi-selector
+			$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'centralnotice-geo-region-multiselector' ] );
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				$this->msg( 'centralnotice-countries' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelector( $countries ) );
+				$this->msg( 'centralnotice-location' )->escaped() );
+			$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelectorTree( $countries, $regions ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
+
 			// User bucketing
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', [],
@@ -1488,34 +1525,133 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Generates a multiple select list of all countries.
 	 *
-	 * @param array $selected The country codes of the selected countries
+	 * @param array $selectedCountries The country codes of the selected countries
+	 * @param array $selectedRegions The unique region codes of the selected regions
+	 *                               in format CountryCode_RegionCode
 	 *
 	 * @return string multiple select list
 	 */
-	private function geoMultiSelector( $selected = [] ) {
+	private function geoMultiSelectorTree( $selectedCountries = [], $selectedRegions = [] ) {
 		$userLanguageCode = $this->getLanguage()->getCode();
 		$countries = GeoTarget::getCountriesList( $userLanguageCode );
-		$options = "\n";
-		foreach ( $countries as $code => $name ) {
-			$options .= Xml::option(
-				$name,
-				$code,
-				in_array( $code, $selected )
-			) . "\n";
+		$locationElements = "\n";
+		foreach ( $countries as $countryCode => $country ) {
+
+			$regions = '';
+			if ( !empty( $country->getRegions() ) ) {
+				foreach ( $country->getRegions() as $regionCode => $name ) {
+					$uniqueRegionCode = GeoTarget::makeUniqueRegionCode(
+						$countryCode, $regionCode
+					);
+					$isSelected = in_array( $uniqueRegionCode, $selectedRegions );
+					$data = [
+						'type' => 'region',
+						'code' => $regionCode,
+						'opened' => $isSelected,
+						'selected' => $isSelected
+					];
+					$regions .= Xml::tags(
+						'li',
+						[
+							'id' => $uniqueRegionCode,
+							'data-jstree' => json_encode( $data )
+						],
+						$this->msg(
+							'centralnotice-location-name-and-code',
+							$name,
+							$regionCode
+						)->escaped()
+					);
+				}
+			}
+
+			$isSelected = in_array( $countryCode, $selectedCountries );
+			$data = [
+				'type' => 'country',
+				'code' => $countryCode,
+				'opened' => $isSelected,
+				'selected' => $isSelected
+			];
+
+			$countryNameAndCode = $this->msg(
+				'centralnotice-location-name-and-code',
+				$country->getName(),
+				$countryCode
+			)->escaped();
+
+			$locationElements .= Xml::tags(
+				'li',
+				[
+					'data-jstree' => json_encode( $data ),
+					'id' => $countryCode
+				],
+				$countryNameAndCode . ( $regions ? Xml::tags( 'ul', [], $regions ) : '' )
+			);
 		}
 
 		$properties = [
-			'multiple' => 'multiple',
-			'id'       => 'geo_countries',
-			'name'     => 'geo_countries[]',
-			'class'    => 'cn-multiselect',
-			'autocomplete' => 'off'
+			'id'       => 'geo_locations',
+			'class'    => 'cn-tree'
 		];
+
 		if ( !$this->editable ) {
 			$properties['disabled'] = 'disabled';
 		}
 
-		return Xml::tags( 'select', $properties, $options );
+		$search = Xml::tags(
+			'input',
+			[
+				'type' => 'text',
+				'class' => 'cn-tree-search'
+			],
+			''
+		);
+		$searchClear = Xml::tags(
+			'button',
+			[
+				'class' => 'cn-tree-clear'
+			],
+			'clear'
+		);
+		$searchLabel = Xml::tags(
+			'label',
+			[
+				'class' => 'cn-tree-search-label'
+			],
+			'Filter' . $search . $searchClear
+		);
+
+		$statusText = Xml::tags( 'div', [ 'class' => 'cn-tree-status' ], '' );
+
+		$tree = Xml::tags(
+			'div',
+			$properties,
+			Xml::tags(
+				'ul',
+				[],
+				$locationElements
+			)
+		);
+
+		$hiddenInputs = Xml::input(
+			'geo_countries',
+			false,
+			implode( ',', $selectedCountries ),
+			[ 'type' => 'hidden', 'id' => 'geo_countries_value' ]
+		);
+
+		$hiddenInputs .= Xml::input(
+			'geo_regions',
+			false,
+			implode( ',', $selectedRegions ),
+			[ 'type' => 'hidden', 'id' => 'geo_regions_value' ]
+		);
+
+		return Xml::tags(
+			'div',
+			[ 'class' => 'cn-tree-wrapper' ],
+			$searchLabel . $tree . $statusText . $hiddenInputs
+		);
 	}
 
 	/**
@@ -1617,9 +1753,28 @@ class CentralNotice extends SpecialPage {
 		return $this->makeShortList( $wgNoticeProjects, $projects );
 	}
 
-	public function listCountries( $countries ) {
-		$all = array_keys( GeoTarget::getCountriesList( 'en' ) );
-		return $this->makeShortList( $all, $countries );
+	public function listCountriesRegions( $countries, $regions ) {
+		$allCountries = array_keys( GeoTarget::getCountriesList() );
+		$list = $this->makeShortList( $allCountries, $countries );
+		$regionsByCountry = [];
+		$regionCountries = [];
+		foreach ( $regions as $region ) {
+			$countryCode = substr( $region, 0, 2 );
+			$regionCode = substr( $region, 3 );
+			$regionsByCountry[$countryCode][] = $regionCode;
+		}
+		if ( !empty( $list ) && count( $regionsByCountry ) > 0 ) {
+			$list .= '; ';
+		}
+		$regionsByCountryList = [];
+		foreach ( $regionsByCountry as $countryCode => $regions ) {
+			$all = array_keys( GeoTarget::getRegionsList( $countryCode ) );
+			$regionList = $this->makeShortList( $all, $regions );
+			$regionsByCountryList[] = "$countryCode: ($regionList)";
+		}
+		$list .= $this->getContext()->getLanguage()->listToText( $regionsByCountryList );
+
+		return $list;
 	}
 
 	public function listLanguages( $languages ) {
@@ -1639,6 +1794,20 @@ class CentralNotice extends SpecialPage {
 			return $this->getContext()->msg( 'centralnotice-all-except', $txt )->text();
 		}
 		return $this->getContext()->getLanguage()->listToText( array_values( $list ) );
+	}
+
+	/**
+	 * Convert comma separated list to array
+	 * @param string $list
+	 * @return array
+	 */
+	private function listToArray( $list ) {
+		if ( $list ) {
+			$array = explode( ',', $list );
+		} else {
+			$array = [];
+		}
+		return $array;
 	}
 
 	protected function getGroupName() {

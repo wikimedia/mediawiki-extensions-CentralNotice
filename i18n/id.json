@@ -3,16 +3,18 @@
 		"authors": [
 			"Aldnonymous",
 			"Bennylin",
+			"C5st4wr6ch",
+			"Diki Ananta",
 			"Farras",
 			"Irwangatot",
 			"IvanLanin",
 			"Iwan Novirion",
 			"Kenrick95",
-			"Rex",
-			"C5st4wr6ch",
-			"Rachmat.Wahidi",
 			"Mbrt",
-			"Rachmat04"
+			"Rachmat.Wahidi",
+			"Rachmat04",
+			"Rex",
+			"Sumbukompor"
 		]
 	},
 	"centralnotice": "Pengurus pengumuman sentral",
@@ -29,7 +31,7 @@
 	"centralnotice-modify": "Kirim",
 	"centralnotice-view": "Lihat",
 	"centralnotice-save-banner": "Simpan",
-	"centralnotice-live-preview": "Pratayang dalam wiki",
+	"centralnotice-live-preview": "Pratayang versi terakhir yang disimpan",
 	"centralnotice-add-new": "Buat pengumuman sentral baru",
 	"centralnotice-remove": "Hapus",
 	"centralnotice-translate-heading": "Terjemahan untuk $1",
@@ -121,7 +123,7 @@
 	"centralnotice-projects": "Proyek",
 	"centralnotice-country": "Negara",
 	"centralnotice-no-allocation": "Tidak ada pengumuman yang dialokasikan.",
-	"centralnotice-allocation-description": "Alokasi pengumuman untuk $1.$2 di $3:",
+	"centralnotice-allocation-description": "Alokasi pengumuman untuk bahasa: $1, proyek: $2, di negara: $3, di perangkat: $4",
 	"centralnotice-percentage": "Persentase",
 	"centralnotice-documentwrite-error": "document.write() tidak dapat digunakan di dalam pengumuman.\nLihat https://meta.wikimedia.org/wiki/Help:CentralNotice untuk informasi lebih lanjut.",
 	"centralnotice-preferred": "Prioritas",
@@ -153,7 +155,7 @@
 	"centralnotice-date": "Tanggal",
 	"centralnotice-apply-filters": "Terapkan penyaring",
 	"centralnotice-clear-filters": "Hapus penyaring",
-	"centralnotice-banner-messages": "Pesan spanduk",
+	"centralnotice-banner-messages": "Pesanan spanduk yang dapat diterjemahkan",
 	"centralnotice-filter-template-submit": "Terapkan penyaring",
 	"centralnotice-priority-low": "rendah",
 	"centralnotice-priority-normal": "normal",
@@ -164,6 +166,6 @@
 	"centralnotice-end-date": "Tanggal selesai (UTC)",
 	"centralnotice-end-time": "Waktu berakhir (UTC)",
 	"centralnotice-banner-history-logger-rate": "Sample rate",
-	"centralnotice-multiple-countries": "Beberapa ($1)",
-	"centralnotice-multiple-languages": "ganda ($1)"
+	"centralnotice-multiple-countries": "Beberapa negara",
+	"centralnotice-multiple-languages": "Beberapa bahasa"
 }

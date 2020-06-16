@@ -241,6 +241,21 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				$this->msg( 'centralnotice-countries' )->text(),
 				wfEscapeWikiText( $countryList )
 			)->parse() . "<br />";
+
+			$regions_count = count( explode( ', ', $row->notlog_end_regions ) );
+			$regionsList = '';
+			if ( $regions_count > 20 ) {
+				$regionsList = $this->msg( 'centralnotice-multiple-regions' )
+					->numParams( $regions_count )->text();
+			} elseif ( $regions_count > 0 ) {
+				$regionsList = $row->notlog_end_regions;
+			}
+			$details .= $this->msg(
+				'centralnotice-log-label',
+				$this->msg( 'centralnotice-regions' )->text(),
+				wfEscapeWikiText( $regionsList )
+			)->parse() . "<br />";
+
 		}
 		return $details;
 	}
@@ -288,6 +303,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testSetChange( 'projects', $row );
 		$details .= $this->testSetChange( 'languages', $row );
 		$details .= $this->testSetChange( 'countries', $row );
+		$details .= $this->testSetChange( 'regions', $row );
 		$details .= $this->testBooleanChange( 'archived', $row );
 
 		$details .= $this->testTextChange(

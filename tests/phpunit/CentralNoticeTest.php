@@ -27,14 +27,15 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		self::$centralNotice = new CentralNotice;
-		$noticeName        = 'PHPUnitTestCampaign';
-		$enabled           = false;
-		$startTs           = '20110718' . '235500';
-		$projects          = [ 'wikipedia', 'wikibooks' ];
+		$noticeName = 'PHPUnitTestCampaign';
+		$enabled = false;
+		$startTs = '20110718' . '235500';
+		$projects = [ 'wikipedia', 'wikibooks' ];
 		$languages = [ 'en', 'de' ];
-		$geotargeted       = true;
-		$countries     = [ 'US', 'AF' ];
-		$priority         = 1;
+		$geotargeted = true;
+		$countries = [ 'US', 'AF' ];
+		$regions = [];
+		$priority = 1;
 
 		$this->fixture = new CentralNoticeTestFixtures();
 		$this->fixture->setupTestCaseWithDefaults(
@@ -51,6 +52,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 			'projects' => 'wikibooks, wikipedia',
 			'languages' => 'de, en',
 			'countries' => 'AF, US',
+			'regions' => '',
 			'archived' => 0,
 			'throttle' => 100,
 			'mixins' => '[]',
@@ -65,7 +67,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 			$this->userUser->load();
 		}
 		Campaign::addCampaign( $noticeName, $enabled, $startTs, $projects,
-			$languages, $geotargeted, $countries,
+			$languages, $geotargeted, $countries, $regions,
 			100, $priority, $this->userUser );
 
 		$this->campaignId = Campaign::getNoticeId( 'PHPUnitTestCampaign' );
@@ -75,15 +77,15 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		$body = 'testing';
 		$displayAnon = true;
 		$displayAccount = true;
-		$fundraising = true;
+		$category = 'fundraising';
 
 		$this->campaignBannersJson = '[{"name":"PHPUnitTestBanner","weight":25,"display_anon":1,' .
 			'"display_account":1,"fundraising":1,"device":"desktop",' .
 			'"campaign":"PHPUnitTestCampaign","campaign_z_index":"1","campaign_num_buckets":1,' .
 			'"campaign_throttle":100,"bucket":0}]';
 
-		Banner::addTemplate( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
-			$fundraising );
+		Banner::addBanner( $bannerName, $body, $this->userUser, $displayAnon, $displayAccount,
+			[], [], null, null, false, $category );
 		Campaign::addTemplateTo( 'PHPUnitTestCampaign', 'PHPUnitTestBanner', '25' );
 	}
 
@@ -91,7 +93,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		parent::tearDown();
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
-		Banner::removeTemplate( 'PHPUnitTestBanner', $this->userUser );
+		Banner::removeBanner( 'PHPUnitTestBanner', $this->userUser );
 		$this->fixture->tearDownTestCases();
 	}
 
@@ -142,7 +144,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 		$settings = Campaign::getCampaignSettings( 'PHPUnitTestCampaign' );
 		$banners = json_decode( $settings[ 'banners' ], true );
 
-		$this->assertEquals( 1, count( $banners ) );
+		$this->assertCount( 1, $banners );
 		$this->assertEquals( [ 'PHPUnitTestBanner' ], array_keys( $banners ) );
 		unset( $settings[ 'banners' ] );
 

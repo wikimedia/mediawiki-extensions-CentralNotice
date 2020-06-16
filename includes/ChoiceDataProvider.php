@@ -246,6 +246,37 @@ class ChoiceDataProvider {
 			$choices[$dbRow->not_id]['countries'][] = $dbRow->nc_country;
 		}
 
+		// Fetch regions.
+		// We have to eliminate notices that are not geotargeted, since they
+		// may have residual data in the cn_notice_regions table.
+		$dbRows = $dbr->select(
+			[
+				'notices' => 'cn_notices',
+				'notice_regions' => 'cn_notice_regions',
+			],
+			[
+				'notices.not_id',
+				'notice_regions.nr_region'
+			],
+			[
+				'notices.not_geo' => 1,
+				'notices.not_id' => array_keys( $choices )
+			],
+			__METHOD__,
+			[],
+			[
+				'notice_regions' => [
+					'INNER JOIN', 'notices.not_id = notice_regions.nr_notice_id'
+				]
+			]
+		);
+
+		// Add regions to our data structure.
+		// Note that PHP creates an empty array for regions as needed.
+		foreach ( $dbRows as $dbRow ) {
+			$choices[$dbRow->not_id]['regions'][] = $dbRow->nr_region;
+		}
+
 		// FIXME: looks like this is only sorting the last banner's list!
 		if ( isset( $choices[$dbRow->not_id]['countries'] ) ) {
 			sort( $choices[$dbRow->not_id]['countries'] );
@@ -328,8 +359,10 @@ class ChoiceDataProvider {
 			usort( $c['banners'], $compareNames );
 
 			if ( $c['geotargeted'] ) {
-				$c['countries'] = array_unique( $c['countries'] );
+				$c['countries'] = isset( $c['countries'] ) ? array_unique( $c['countries'] ) : [];
 				sort( $c['countries'] );
+				$c['regions'] = isset( $c['regions'] ) ? array_unique( $c['regions'] ) : [];
+				sort( $c['regions'] );
 			}
 
 			return $c;

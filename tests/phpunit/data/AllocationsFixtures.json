@@ -26,7 +26,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -42,6 +42,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -89,6 +90,7 @@
                         "project": "test_project2",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -101,6 +103,7 @@
                         "project": "test_project1",
                         "language": "pt",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -113,6 +116,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "iphone",
                         "logged_in_status": "anonymous"
                     },
@@ -148,6 +152,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "logged_in"
                     },
@@ -202,7 +207,7 @@
                                 "bucket": 0,
                                 "display_anon": false,
                                 "display_account": true,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -218,6 +223,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "logged_in"
                     },
@@ -265,6 +271,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -319,7 +326,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": true,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -335,6 +342,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -382,6 +390,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "logged_in"
                     },
@@ -438,6 +447,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["LU"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en"],
                         "archived": false,
@@ -449,7 +459,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -465,6 +475,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -478,6 +489,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b1",
@@ -513,6 +525,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "CA",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -526,6 +539,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b1",
@@ -568,7 +582,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -584,6 +598,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -615,7 +630,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -631,6 +646,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -662,7 +678,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -678,6 +694,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -709,7 +726,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -725,6 +742,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -756,7 +774,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -767,7 +785,7 @@
                                 "bucket": 1,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -783,6 +801,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -850,6 +869,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["CA", "BR", "LU"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en"],
                         "archived": false,
@@ -861,7 +881,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -877,6 +897,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["CA", "LU"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en"],
                         "archived": false,
@@ -888,7 +909,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -904,6 +925,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["LU"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en"],
                         "archived": false,
@@ -915,7 +937,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -931,6 +953,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -944,6 +967,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "BR", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b1",
@@ -967,6 +991,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -990,6 +1015,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1047,6 +1073,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "CA",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1060,6 +1087,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["BR", "CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b1",
@@ -1083,6 +1111,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1106,6 +1135,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1152,6 +1182,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "BR",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1165,6 +1196,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["BR", "CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b1",
@@ -1188,6 +1220,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1211,6 +1244,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1246,6 +1280,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "NE",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1259,6 +1294,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["BR", "CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b1",
@@ -1282,6 +1318,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1305,6 +1342,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1347,7 +1385,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1363,6 +1401,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["LU", "CA"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en"],
                         "archived": false,
@@ -1374,7 +1413,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1390,6 +1429,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["LU"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en"],
                         "archived": false,
@@ -1401,7 +1441,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1417,6 +1457,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1452,6 +1493,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1475,6 +1517,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1532,6 +1575,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "CA",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1567,6 +1611,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1590,6 +1635,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1636,6 +1682,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "BR",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1671,6 +1718,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["CA", "LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1694,6 +1742,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1748,7 +1797,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1764,6 +1813,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["LU"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en", "fr"],
                         "archived": false,
@@ -1775,7 +1825,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -1791,6 +1841,7 @@
                         "throttle": 100,
                         "geotargeted": true,
                         "countries": ["LU"],
+                        "regions": [],
                         "projects": ["test_project"],
                         "languages": ["en"],
                         "archived": false,
@@ -1802,7 +1853,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop", "iphone"
                                  ]
@@ -1818,6 +1869,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1853,6 +1905,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1876,6 +1929,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -1933,6 +1987,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "BR",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -1968,6 +2023,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -1991,6 +2047,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -2026,6 +2083,7 @@
                         "project": "test_project",
                         "language": "fr",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -2039,6 +2097,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -2074,6 +2133,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "iphone",
                         "logged_in_status": "anonymous"
                     },
@@ -2109,6 +2169,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b2",
@@ -2132,6 +2193,7 @@
                             "bucket_count": 1,
                             "geotargeted": true,
                             "countries": ["LU"],
+                            "regions": [],
                             "banners": [
                                 {
                                     "name": "b3",
@@ -2186,7 +2248,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2212,7 +2274,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2228,6 +2290,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -2319,7 +2382,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2335,6 +2398,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -2401,7 +2465,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2427,7 +2491,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2443,6 +2507,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -2542,7 +2607,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2568,7 +2633,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2584,6 +2649,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -2683,7 +2749,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2709,7 +2775,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2725,6 +2791,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -2824,7 +2891,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2850,7 +2917,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2876,7 +2943,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2902,7 +2969,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -2918,6 +2985,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -3083,7 +3151,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3094,7 +3162,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3110,6 +3178,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -3189,7 +3258,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3200,7 +3269,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3216,6 +3285,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -3295,7 +3365,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3306,7 +3376,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3332,7 +3402,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3343,7 +3413,7 @@
                                 "bucket": 0,
                                 "display_anon": true,
                                 "display_account": false,
-                                "fundraising": true,
+                                "category": "fundraising",
                                 "devices": [
                                     "desktop"
                                  ]
@@ -3359,6 +3429,7 @@
                         "project": "test_project",
                         "language": "en",
                         "country": "LU",
+                        "region": "",
                         "device": "desktop",
                         "logged_in_status": "anonymous"
                     },
@@ -3458,6 +3529,131 @@
                             ]
                         }
                     }
+                }
+            }
+        },
+        "single_anon_geo_region": {
+            "comment": "A single, unthrottled, geotargeted by region campaign, with a banner for anonymous users on one device",
+            "setup": {
+                "campaigns": [
+                    {
+                        "name": "c1",
+                        "enabled": 1,
+                        "start_days_from_now": 0,
+                        "end_days_from_now": 1,
+                        "preferred": 1,
+                        "throttle": 100,
+                        "geotargeted": true,
+                        "countries": [],
+                        "regions": ["RU_MOW"],
+                        "projects": ["test_project"],
+                        "languages": ["ru"],
+                        "archived": false,
+                        "bucket_count": 1,
+                        "banners": [
+                            {
+                                "name": "b1",
+                                "weight": 25,
+                                "bucket": 0,
+                                "display_anon": true,
+                                "display_account": true,
+                                "category": "fundraising",
+                                "devices": [
+                                    "desktop"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "contexts_and_outputs": {
+                "as_targeted": {
+                    "comment": "Context targeted by the campaign",
+                    "context": {
+                        "project": "test_project",
+                        "language": "ru",
+                        "country": "RU",
+                        "region": "MOW",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": [],
+                            "regions": ["RU_MOW"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": true,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": {
+                        "c1": {
+                            "allocation": 1,
+                            "banners": [
+                                {
+                                    "b1": 1
+                                },
+                                {
+                                    "b1": 1
+                                }
+                            ]
+                        }
+                    }
+                },
+                "untargeted_region": {
+                    "comment": "User isn't in the targeted region",
+                    "context": {
+                        "project": "test_project",
+                        "language": "ru",
+                        "country": "RU",
+                        "region": "SPE",
+                        "device": "desktop",
+                        "logged_in_status": "anonymous"
+                    },
+                    "choices": [
+                        {
+                            "name": "c1",
+                            "start_days_from_now": 0,
+                            "end_days_from_now": 1,
+                            "preferred": 1,
+                            "throttle": 100,
+                            "bucket_count": 1,
+                            "geotargeted": true,
+                            "countries": [],
+                            "regions": ["RU_MOW"],
+                            "banners": [
+                                {
+                                    "name": "b1",
+                                    "bucket": 0,
+                                    "weight": 25,
+                                    "category": "fundraising",
+                                    "display_anon": true,
+                                    "display_account": true,
+                                    "devices": [
+                                        "desktop"
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "allocations": {}
                 }
             }
         }

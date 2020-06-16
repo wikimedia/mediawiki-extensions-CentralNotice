@@ -82,6 +82,7 @@
 		"CNBannerPager": "includes/CNBannerPager.php",
 		"CNCampaignPager": "includes/CNCampaignPager.php",
 		"CNChoiceDataResourceLoaderModule": "includes/CNChoiceDataResourceLoaderModule.php",
+		"CNCountry": "includes/CNCountry.php",
 		"CNDatabase": "includes/CNDatabase.php",
 		"CNDatabasePatcher": "patches/CNDatabasePatcher.php",
 		"CNDeviceTarget": "includes/CNDeviceTarget.php",
@@ -290,7 +291,7 @@
 				"mobile"
 			]
 		},
-		"ext.centralNotice.cspViolationAlert" : {
+		"ext.centralNotice.cspViolationAlert": {
 			"scripts": "subscribing/ext.centralNotice.cspViolationAlert.js",
 			"messages": [
 				"centralnotice-csp-violation-alert"
@@ -341,199 +342,281 @@
 		"CentralNoticeHooks::initCentralNotice"
 	],
 	"config": {
-		"NoticeProject": "wikipedia",
-		"NoticeProjects": [],
-		"NoticeInfrastructure": true,
-		"CentralDBname": false,
-		"CentralBannerRecorder": false,
-		"CentralNoticeSampleRate": 0.01,
-		"CentralNoticeImpressionEventSampleRate": 0,
-		"CentralHost": false,
-		"CentralNoticeApiUrl": false,
-		"CentralSelectedBannerDispatcher": false,
-		"CentralMobileSelectedBannerDispatcher": false,
-		"CentralNoticeLoader": true,
-		"NoticeCookieDomain": "",
-		"NoticeCookieDurations": {
-			"close": 1209600,
-			"donate": 31536000,
-			"_merge_strategy": "array_plus"
+		"NoticeProject": {
+			"value": "wikipedia"
 		},
-		"CentralNoticeFallbackHideCookieDuration": 604800,
-		"NoticeHideUrls": [],
-		"CentralNoticeHideBannersP3P": false,
-		"NoticeBannerMaxAge": 600,
-		"NoticeBannerReducedMaxAge": 120,
-		"NoticeUseTranslateExtension": false,
-		"NoticeUseLanguageConversion": false,
-		"NoticeProtectGroup": false,
-		"NoticeTranslateDeployStates": [
-			"published"
-		],
-		"NoticeReporterDomains": "https://donate.wikimedia.org",
-		"NoticeNumberOfBuckets": 4,
-		"NoticeNumberOfControllerBuckets": 2,
-		"NoticeBucketExpiry": 7,
-		"CentralNoticePerCampaignBucketExtension": 30,
-		"NoticeListComplementThreshold": 0.75,
-		"CentralNoticeCategoriesUsingLegacy": [
-			"Fundraising",
-			"fundraising"
-		],
-		"CentralNoticeCookiesToDelete": [],
-		"CentralNoticeBannerMixins": [],
+		"NoticeProjects": {
+			"value": []
+		},
+		"NoticeInfrastructure": {
+			"value": true
+		},
+		"CentralDBname": {
+			"value": false
+		},
+		"CentralBannerRecorder": {
+			"value": false
+		},
+		"CentralNoticeSampleRate": {
+			"value": 0.01
+		},
+		"CentralNoticeImpressionEventSampleRate": {
+			"value": 0
+		},
+		"CentralHost": {
+			"value": false
+		},
+		"CentralNoticeApiUrl": {
+			"value": false
+		},
+		"CentralSelectedBannerDispatcher": {
+			"value": false
+		},
+		"CentralMobileSelectedBannerDispatcher": {
+			"value": false
+		},
+		"CentralNoticeLoader": {
+			"value": true
+		},
+		"NoticeCookieDomain": {
+			"value": ""
+		},
+		"NoticeCookieDurations": {
+			"value": {
+				"close": 1209600,
+				"donate": 31536000
+			},
+			"merge_strategy": "array_plus"
+		},
+		"CentralNoticeFallbackHideCookieDuration": {
+			"value": 604800
+		},
+		"NoticeHideUrls": {
+			"value": []
+		},
+		"CentralNoticeHideBannersP3P": {
+			"value": false
+		},
+		"NoticeBannerMaxAge": {
+			"value": 600
+		},
+		"NoticeBannerReducedMaxAge": {
+			"value": 120
+		},
+		"NoticeUseTranslateExtension": {
+			"value": false
+		},
+		"NoticeUseLanguageConversion": {
+			"value": false
+		},
+		"NoticeProtectGroup": {
+			"value": false
+		},
+		"NoticeTranslateDeployStates": {
+			"value": [
+				"published"
+			]
+		},
+		"NoticeReporterDomains": {
+			"value": "https://donate.wikimedia.org"
+		},
+		"NoticeNumberOfBuckets": {
+			"value": 4
+		},
+		"NoticeNumberOfControllerBuckets": {
+			"value": 2
+		},
+		"NoticeBucketExpiry": {
+			"value": 7
+		},
+		"CentralNoticePerCampaignBucketExtension": {
+			"value": 30
+		},
+		"NoticeListComplementThreshold": {
+			"value": 0.75
+		},
+		"CentralNoticeCategoriesUsingLegacy": {
+			"value": [
+				"Fundraising",
+				"fundraising"
+			]
+		},
+		"CentralNoticeCookiesToDelete": {
+			"value": []
+		},
+		"CentralNoticeBannerMixins": {
+			"value": []
+		},
 		"CentralNoticeCampaignMixins": {
-			"bannerHistoryLogger": {
-				"subscribingModule": "ext.centralNotice.bannerHistoryLogger",
-				"nameMsg": "centralnotice-banner-history-logger",
-				"helpMsg": "centralnotice-banner-history-logger-help",
-				"parameters": {
-					"rate": {
-						"type": "float",
-						"labelMsg": "centralnotice-banner-history-logger-rate",
-						"helpMsg": "centralnotice-banner-history-logger-rate-help"
-					},
-					"maxEntryAge": {
-						"type": "integer",
-						"labelMsg": "centralnotice-banner-history-logger-max-entry-age",
-						"helpMsg": "centralnotice-banner-history-logger-max-entry-age-help"
-					},
-					"maxEntries": {
-						"type": "integer",
-						"labelMsg": "centralnotice-banner-history-logger-max-entries",
-						"helpMsg": "centralnotice-banner-history-logger-max-entries-help"
-					},
-					"waitLogNoSendBeacon": {
-						"type": "integer",
-						"labelMsg": "centralnotice-banner-history-logger-wait-log-no-send-beacon",
-						"helpMsg": "centralnotice-banner-history-logger-wait-log-no-send-beacon-help"
+			"value": {
+				"bannerHistoryLogger": {
+					"subscribingModule": "ext.centralNotice.bannerHistoryLogger",
+					"nameMsg": "centralnotice-banner-history-logger",
+					"helpMsg": "centralnotice-banner-history-logger-help",
+					"parameters": {
+						"rate": {
+							"type": "float",
+							"labelMsg": "centralnotice-banner-history-logger-rate",
+							"helpMsg": "centralnotice-banner-history-logger-rate-help"
+						},
+						"maxEntryAge": {
+							"type": "integer",
+							"labelMsg": "centralnotice-banner-history-logger-max-entry-age",
+							"helpMsg": "centralnotice-banner-history-logger-max-entry-age-help"
+						},
+						"maxEntries": {
+							"type": "integer",
+							"labelMsg": "centralnotice-banner-history-logger-max-entries",
+							"helpMsg": "centralnotice-banner-history-logger-max-entries-help"
+						},
+						"waitLogNoSendBeacon": {
+							"type": "integer",
+							"labelMsg": "centralnotice-banner-history-logger-wait-log-no-send-beacon",
+							"helpMsg": "centralnotice-banner-history-logger-wait-log-no-send-beacon-help"
+						}
 					}
-				}
-			},
-			"legacySupport": {
-				"subscribingModule": "ext.centralNotice.legacySupport",
-				"nameMsg": "centralnotice-legacy-support",
-				"helpMsg": "centralnotice-legacy-support-help",
-				"parameters": {
-					"setSRISampleRate": {
-						"type": "boolean",
-						"labelMsg": "centralnotice-set-record-impression-sample-rate"
-					},
-					"sriSampleRate": {
-						"type": "float",
-						"labelMsg": "centralnotice-custom-record-impression-sample-rate"
-					},
-					"bannersNotGuaranteedToDisplay": {
-						"type": "boolean",
-						"labelMsg": "centralnotice-banners-not-guaranteed-to-display"
+				},
+				"legacySupport": {
+					"subscribingModule": "ext.centralNotice.legacySupport",
+					"nameMsg": "centralnotice-legacy-support",
+					"helpMsg": "centralnotice-legacy-support-help",
+					"parameters": {
+						"setSRISampleRate": {
+							"type": "boolean",
+							"labelMsg": "centralnotice-set-record-impression-sample-rate"
+						},
+						"sriSampleRate": {
+							"type": "float",
+							"labelMsg": "centralnotice-custom-record-impression-sample-rate"
+						},
+						"bannersNotGuaranteedToDisplay": {
+							"type": "boolean",
+							"labelMsg": "centralnotice-banners-not-guaranteed-to-display"
+						}
 					}
-				}
-			},
-			"impressionDiet": {
-				"subscribingModule": "ext.centralNotice.impressionDiet",
-				"nameMsg": "centralnotice-impression-diet",
-				"helpMsg": "centralnotice-impression-diet-help",
-				"parameters": {
-					"cookieName": {
-						"type": "string",
-						"labelMsg": "centralnotice-impression-diet-identifier",
-						"helpMsg": "centralnotice-impression-diet-identifier-help"
-					},
-					"skipInitial": {
-						"type": "integer",
-						"labelMsg": "centralnotice-impression-diet-skip-initial",
-						"helpMsg": "centralnotice-impression-diet-skip-initial-help"
-					},
-					"maximumSeen": {
-						"type": "integer",
-						"labelMsg": "centralnotice-impression-diet-maximum-seen",
-						"helpMsg": "centralnotice-impression-diet-maximum-seen-help"
-					},
-					"restartCycleDelay": {
-						"type": "integer",
-						"labelMsg": "centralnotice-impression-diet-restart-cycle-delay",
-						"helpMsg": "centralnotice-impression-diet-restart-cycle-delay-help"
+				},
+				"impressionDiet": {
+					"subscribingModule": "ext.centralNotice.impressionDiet",
+					"nameMsg": "centralnotice-impression-diet",
+					"helpMsg": "centralnotice-impression-diet-help",
+					"parameters": {
+						"cookieName": {
+							"type": "string",
+							"labelMsg": "centralnotice-impression-diet-identifier",
+							"helpMsg": "centralnotice-impression-diet-identifier-help"
+						},
+						"skipInitial": {
+							"type": "integer",
+							"labelMsg": "centralnotice-impression-diet-skip-initial",
+							"helpMsg": "centralnotice-impression-diet-skip-initial-help"
+						},
+						"maximumSeen": {
+							"type": "integer",
+							"labelMsg": "centralnotice-impression-diet-maximum-seen",
+							"helpMsg": "centralnotice-impression-diet-maximum-seen-help"
+						},
+						"restartCycleDelay": {
+							"type": "integer",
+							"labelMsg": "centralnotice-impression-diet-restart-cycle-delay",
+							"helpMsg": "centralnotice-impression-diet-restart-cycle-delay-help"
+						}
 					}
-				}
-			},
-			"largeBannerLimit": {
-				"subscribingModule": "ext.centralNotice.largeBannerLimit",
-				"nameMsg": "centralnotice-large-banner-limit",
-				"helpMsg": "centralnotice-large-banner-limit-help",
-				"parameters": {
-					"days": {
-						"type": "integer",
-						"labelMsg": "centralnotice-large-banner-limit-days",
-						"helpMsg": "centralnotice-large-banner-limit-days-help",
-						"defaultValue": 250
-					},
-					"randomize": {
-						"type": "boolean",
-						"labelMsg": "centralnotice-large-banner-limit-randomize",
-						"helpMsg": "centralnotice-large-banner-limit-randomize-help"
-					},
-					"identifier": {
-						"type": "string",
-						"labelMsg": "centralnotice-large-banner-limit-identifier",
-						"helpMsg": "centralnotice-large-banner-limit-identifier-help",
-						"defaultValue": "centralnotice-frbanner-seen-fullscreen"
+				},
+				"largeBannerLimit": {
+					"subscribingModule": "ext.centralNotice.largeBannerLimit",
+					"nameMsg": "centralnotice-large-banner-limit",
+					"helpMsg": "centralnotice-large-banner-limit-help",
+					"parameters": {
+						"days": {
+							"type": "integer",
+							"labelMsg": "centralnotice-large-banner-limit-days",
+							"helpMsg": "centralnotice-large-banner-limit-days-help",
+							"defaultValue": 250
+						},
+						"randomize": {
+							"type": "boolean",
+							"labelMsg": "centralnotice-large-banner-limit-randomize",
+							"helpMsg": "centralnotice-large-banner-limit-randomize-help"
+						},
+						"identifier": {
+							"type": "string",
+							"labelMsg": "centralnotice-large-banner-limit-identifier",
+							"helpMsg": "centralnotice-large-banner-limit-identifier-help",
+							"defaultValue": "centralnotice-frbanner-seen-fullscreen"
+						}
 					}
-				}
-			},
-			"bannerSequence": {
-				"subscribingModule": "ext.centralNotice.bannerSequence",
-				"customAdminUIControlsModule": "ext.centralNotice.adminUi.bannerSequence",
-				"nameMsg": "centralnotice-banner-sequence",
-				"helpMsg": "centralnotice-banner-sequence-help",
-				"parameters": {
-					"days": {
-						"type": "integer"
-					},
-					"sequences": {
-						"type": "json"
+				},
+				"bannerSequence": {
+					"subscribingModule": "ext.centralNotice.bannerSequence",
+					"customAdminUIControlsModule": "ext.centralNotice.adminUi.bannerSequence",
+					"nameMsg": "centralnotice-banner-sequence",
+					"helpMsg": "centralnotice-banner-sequence-help",
+					"parameters": {
+						"days": {
+							"type": "integer"
+						},
+						"sequences": {
+							"type": "json"
+						}
 					}
-				}
-			},
-			"impressionEventsSampleRate": {
-				"subscribingModule": "ext.centralNotice.impressionEventsSampleRate",
-				"nameMsg": "centralnotice-impression-events-sample-rate",
-				"helpMsg": "centralnotice-impression-events-sample-rate-help",
-				"parameters": {
-					"rate": {
-						"type": "float",
-						"labelMsg": "centralnotice-impression-events-sample-rate-field",
-						"defaultValue": 0
+				},
+				"impressionEventsSampleRate": {
+					"subscribingModule": "ext.centralNotice.impressionEventsSampleRate",
+					"nameMsg": "centralnotice-impression-events-sample-rate",
+					"helpMsg": "centralnotice-impression-events-sample-rate-help",
+					"parameters": {
+						"rate": {
+							"type": "float",
+							"labelMsg": "centralnotice-impression-events-sample-rate-field",
+							"defaultValue": 0
+						}
 					}
 				}
 			}
 		},
 		"NoticeTabifyPages": {
-			"CentralNotice": {
-				"type": "namespaces",
-				"message": "centralnotice-notices"
-			},
-			"CentralNoticeBanners": {
-				"type": "namespaces",
-				"message": "centralnotice-templates"
-			},
-			"BannerAllocation": {
-				"type": "views",
-				"message": "centralnotice-allocation"
-			},
-			"CentralNoticeLogs": {
-				"type": "views",
-				"message": "centralnotice-logs"
+			"value": {
+				"CentralNotice": {
+					"type": "namespaces",
+					"message": "centralnotice-notices"
+				},
+				"CentralNoticeBanners": {
+					"type": "namespaces",
+					"message": "centralnotice-templates"
+				},
+				"BannerAllocation": {
+					"type": "views",
+					"message": "centralnotice-allocation"
+				},
+				"CentralNoticeLogs": {
+					"type": "views",
+					"message": "centralnotice-logs"
+				}
 			}
 		},
-		"CentralNoticeGeoIPBackgroundLookupModule": null,
-		"CentralNoticeContentSecurityPolicy": false,
-		"CentralNoticeMaxCampaignFallback": 5,
-		"CentralNoticeAdminGroup": "sysop",
-		"CentralNoticeMessageProtectRight": "centralnotice-admin"
+		"CentralNoticeGeoIPBackgroundLookupModule": {
+			"value": null
+		},
+		"CentralNoticeContentSecurityPolicy": {
+			"value": false
+		},
+		"CentralNoticeMaxCampaignFallback": {
+			"value": 5
+		},
+		"CentralNoticeAdminGroup": {
+			"value": "sysop"
+		},
+		"CentralNoticeMessageProtectRight": {
+			"value": "centralnotice-admin"
+		}
 	},
-	"EventLoggingSchemas": {
-		"CentralNoticeBannerHistory": 19079897,
-		"CentralNoticeImpression": 19511351
+	"attributes": {
+		"EventLogging": {
+			"Schemas": {
+				"CentralNoticeBannerHistory": 19079897,
+				"CentralNoticeImpression": 19511351
+			}
+		}
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }

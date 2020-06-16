@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xerxesbcd"
+		]
+	},
+	"centralnotice-banner-template": "Hululmahan ka hayahay",
+	"centralnotice-banner-is-template": "Ini nga hayahay isa ka hululmahan para gamiton sa paghimo ka mga hayahay",
+	"centralnotice-banner-template-info": "(sulundan)",
+	"centralnotice-banner-template-error": "Ang hayahay indi puwede mahimo base sa indi husto nga hayahay, o isa ka hayahay nga wala namarkahan nga hululmahan",
+	"centralnotice-add-banner-from-template": "Magdugang sang hayahay halin sa hululmahan",
+	"centralnotice-messages-banner-in-campaign": "Indi puwede nga markahan ang ini nga hayahay samtang ini nabutang sa isa o madamo pa nga kampanya. Ang ini nga hayahay nabutang sa mga sumunod nga kampanya:",
+	"centralnotice-create-from-template-checkbox-label": "Maghimo halin sa hululmahan"
+}

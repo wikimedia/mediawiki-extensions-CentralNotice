@@ -1,8 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kareyac",
 			"Vadgt"
 		]
 	},
-	"centralnotice-talk-link": "քննարկում"
+	"centralnotice-save-banner": "Հիշել",
+	"centralnotice-remove": "Հեռացնել",
+	"centralnotice-add": "Ավելացնել",
+	"centralnotice-add-notice-button": "Ստեղծել",
+	"centralnotice-add-notice-cancel-button": "Չեղարկել",
+	"centralnotice-translations": "Թարգմանություններ",
+	"centralnotice-translate": "Թարգմանություն",
+	"centralnotice-english": "Անգլերեն",
+	"centralnotice-day": "Օր",
+	"centralnotice-year": "Տարի",
+	"centralnotice-month": "Ամիս",
+	"centralnotice-hours": "ժամ",
+	"centralnotice-min": "Րոպե",
+	"centralnotice-preview-loader-error-dialog-ok": "Լավ",
+	"centralnotice-clone-cancel": "Չեղարկել",
+	"centralnotice-close-title": "Փակել",
+	"centralnotice-languages": "Լեզուներ",
+	"centralnotice-language": "Լեզու",
+	"centralnotice-projects": "Նախագծեր",
+	"centralnotice-country": "Երկիր",
+	"centralnotice-talk-link": "քննարկում",
+	"centralnotice-delete-banner": "Ջնջել",
+	"centralnotice-banner-template-info": "(կաղապար)"
 }

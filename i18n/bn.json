@@ -2,13 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Aftab1995",
+			"Aftabuzzaman",
 			"Bellayet",
+			"Bodhisattwa",
+			"Masumrezarock100",
 			"Nasir8891",
 			"Wikitanvir",
-			"Aftabuzzaman",
-			"Bodhisattwa",
-			"আফতাবুজ্জামান",
-			"Masumrezarock100"
+			"আফতাবুজ্জামান"
 		]
 	},
 	"centralnotice": "কেন্দ্রীয় বিজ্ঞপ্তি প্রশাসক",
@@ -112,6 +112,7 @@
 	"centralnotice-banner-cdn-dialog-ok": "ঠিক আছে",
 	"centralnotice-geo": "স্থানাংকলক্ষ্য",
 	"centralnotice-countries": "দেশ",
+	"centralnotice-regions": "অঞ্চল",
 	"centralnotice-allocation": "বরাদ্দ",
 	"centralnotice-view-allocation": "ব্যানারের অবস্থান দেখুন",
 	"centralnotice-languages": "ভাষাসমূহ",
@@ -187,5 +188,6 @@
 	"centralnotice-banner-sequence-banner": "ব্যানার",
 	"centralnotice-banner-sequence-page-views": "পাতা দর্শন",
 	"centralnotice-multiple-countries": "একাধিক দেশ",
-	"centralnotice-multiple-languages": "একাধিক ভাষা"
+	"centralnotice-multiple-languages": "একাধিক ভাষা",
+	"centralnotice-banner-template-info": "(টেমপ্লেট)"
 }

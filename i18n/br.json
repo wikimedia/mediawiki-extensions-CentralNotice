@@ -108,7 +108,10 @@
 	"centralnotice-banner-display-on": "Diskwel war",
 	"centralnotice-banner-mixins": "Meskadoù",
 	"centralnotice-geo": "Geolec'hiet",
+	"centralnotice-geo-status": "Diuzet $1 $2",
 	"centralnotice-countries": "Broioù",
+	"centralnotice-regions": "Ranndirioù",
+	"centralnotice-location": "Broioù ha ranndirioù",
 	"centralnotice-allocation": "Skorenn",
 	"centralnotice-view-allocation": "Gwelout skorenn ar giton",
 	"centralnotice-allocation-instructions": "Dibabit an endro e-lec'h m'ho pefe c'hoant da welet skorenn ar giton evit :",
@@ -116,6 +119,7 @@
 	"centralnotice-language": "Yezh",
 	"centralnotice-projects": "Raktresoù",
 	"centralnotice-country": "Bro",
+	"centralnotice-region": "Ranndir",
 	"centralnotice-no-allocation": "Giton skorennet ebet.",
 	"centralnotice-allocation-description": "Skorenn giton evit $1.$2 e $3 :",
 	"centralnotice-percentage": "Dregantad",
@@ -204,5 +208,6 @@
 	"centralnotice-end-date": "Deiziad echuiñ (UTC)",
 	"centralnotice-end-time": "Deiziad fin (UTC)",
 	"centralnotice-multiple-countries": "Lies ($1)",
+	"centralnotice-multiple-regions": "Ranndirioù lies",
 	"centralnotice-multiple-languages": "lies ($1)"
 }

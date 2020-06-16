@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Fitoschido",
 			"KuboF",
 			"Michawiki",
 			"Mihxil",
-			"Yekrats",
-			"Fitoschido",
 			"Mirin",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Yekrats"
 		]
 	},
 	"centralnotice": "Administranto de centrala notico",
@@ -112,6 +112,7 @@
 	"centralnotice-banner-cdn-dialog-ok": "Bone",
 	"centralnotice-geo": "Ŝalti geografian lokigadon",
 	"centralnotice-countries": "Landoj",
+	"centralnotice-regions": "Regionoj",
 	"centralnotice-allocation": "Asigno",
 	"centralnotice-view-allocation": "Vidi asignon de reklamrubando",
 	"centralnotice-allocation-instructions": "Elekti la medion, ke vi volus vidi rubandan asignadon:",
@@ -119,6 +120,7 @@
 	"centralnotice-language": "Lingvo",
 	"centralnotice-projects": "Projektoj",
 	"centralnotice-country": "Lando",
+	"centralnotice-region": "Regiono",
 	"centralnotice-no-allocation": "Neniuj rekamrubandoj estas asignitaj.",
 	"centralnotice-allocation-description": "Asignado de reklamrubando por $1.$2 en $3",
 	"centralnotice-percentage": "Procento",
@@ -203,5 +205,7 @@
 	"centralnotice-end-time": "Fina tempo (UTC)",
 	"hidebanners": "Kaŝi paĝrubandojn",
 	"centralnotice-multiple-countries": "Multelande ($1)",
-	"centralnotice-multiple-languages": "multlingve ($1)"
+	"centralnotice-multiple-regions": "Pluraj regionoj",
+	"centralnotice-multiple-languages": "multlingve ($1)",
+	"centralnotice-banner-template-info": "(ŝablono)"
 }

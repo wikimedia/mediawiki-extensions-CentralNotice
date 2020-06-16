@@ -89,7 +89,8 @@
 
 	/**
 	 * Collects unsaved messages values from banner editing form (if any)
-	 * @return {object}
+	 *
+	 * @return {Object}
 	 */
 	function getUnsavedMessagesValues() {
 		var bannerMessagesCache = {};
@@ -108,7 +109,7 @@
 	/**
 	 * Renders banner content preview in live preview section.
 	 *
-	 * @param boolean openExternalPreview
+	 * @param {boolean} openExternalPreview
 	 */
 	function fetchAndUpdateBannerPreview( openExternalPreview ) {
 		var $bannerContentTextArea = $( '#mw-input-wpbanner-body' ),

@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Imre",
+			"Sol lemon",
 			"פוילישער",
-			"පසිඳු කාවින්ද",
-			"Sol lemon"
+			"පසිඳු කාවින්ද"
 		]
 	},
 	"centralnotice": "צענטראַלע מעלדונג פֿאַרוואַטונג",
@@ -21,7 +21,7 @@
 	"centralnotice-modify": "אײַנגעבן",
 	"centralnotice-view": "באַקוקן",
 	"centralnotice-save-banner": "אויפֿהיטן",
-	"centralnotice-live-preview": "פֿארויסקוק",
+	"centralnotice-live-preview": "פֿארויסקוק פֿון דער לעצטער איינגעשפייכלערטער ווערסיע",
 	"centralnotice-add-new": "צולייגן אַ נייַע צענטראַלע מעלדונג",
 	"centralnotice-remove": "אַראָפּנעמען",
 	"centralnotice-translate-heading": "פֿאַרטייטשונג פֿאַר $1",

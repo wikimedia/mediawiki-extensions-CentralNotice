@@ -338,6 +338,7 @@
 		state.setAvailableCampaigns( chooser.makeAvailableCampaigns(
 			cn.choiceData,
 			state.getData().country,
+			state.getData().region,
 			state.getData().anonymous,
 			state.getData().device
 		) );
@@ -605,6 +606,7 @@
 		/**
 		 * For providing a jQuery.Promise to signal when the record impression call is
 		 * about to be sent. (Value will be set to a new deferred object only as needed.)
+		 *
 		 * @private
 		 */
 		recordImpressionDeferredObj: null,
@@ -743,6 +745,7 @@
 
 		/**
 		 * Handle a banner loader error, with an optional message
+		 *
 		 * @param {string} [msg]
 		 */
 		handleBannerLoaderError: function ( msg ) {
@@ -825,8 +828,8 @@
 		 * Returns another promise that will resolve immediately before the record
 		 * impression call is made.
 		 *
-		 * @param {jquery.Promise} promise
-		 * @returns {jquery.Promise}
+		 * @param {jQuery.Promise} promise
+		 * @return {jQuery.Promise}
 		 */
 		requestRecordImpressionDelay: function ( promise ) {
 			cn.recordImpressionDelayPromises.push( promise );

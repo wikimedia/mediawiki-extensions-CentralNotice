@@ -106,7 +106,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		return [
 			'tables' => [ 'templates' => 'cn_templates' ],
-			'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
+			'fields' => [ 'templates.tmp_name', 'templates.tmp_id', 'templates.tmp_is_template' ],
 			'conds' => [ 'templates.tmp_name' . $this->mDb->buildLike( $likeArray ) ],
 		];
 	}
@@ -144,6 +144,11 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		// Now do the banner
 		$rowText = BannerRenderer::linkToBanner( $bannerName );
+		if ( (bool)$row->tmp_is_template ) {
+			$rowText = implode( ' ', [
+				$rowText, wfMessage( "centralnotice-banner-template-info" )->escaped()
+			] );
+		}
 		$retval["cn-banner-list-element-$bannerId"] = [
 			'class' => 'HTMLInfoField',
 			'default' => $rowText . " (" . BannerRenderer::getPreviewLink( $bannerName ) . ")",

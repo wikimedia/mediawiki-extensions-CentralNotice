@@ -82,6 +82,7 @@
 			availableCampaigns = chooser.makeAvailableCampaigns(
 				choices,
 				context.country,
+				context.region,
 				anonymous,
 				context.device,
 				0

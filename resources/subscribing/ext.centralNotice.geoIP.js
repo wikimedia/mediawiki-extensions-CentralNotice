@@ -65,6 +65,7 @@
 
 	/**
 	 * Serialize a geo object and store it in the cookie
+	 *
 	 * @param {Object} geo
 	 */
 	function storeGeoInCookie( geo ) {
@@ -92,6 +93,7 @@
 		 * Set a promise that resolves with geo. First try to get data from the
 		 * GeoIP cookie. If that fails, and if a background lookup callback
 		 * module is configured, try the background lookup.
+		 *
 		 * @private
 		 */
 		makeGeoWithPromise: function () {

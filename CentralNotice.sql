@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_templates (
 	`tmp_landing_pages` varchar(255) DEFAULT NULL, -- Note: no longer used
 	`tmp_archived` tinyint(1) NOT NULL DEFAULT '0',
 	`tmp_category` varchar(255) DEFAULT NULL,
-	`tmp_preview_sandbox` tinyint(1) NOT NULL DEFAULT '0'
+	`tmp_preview_sandbox` tinyint(1) NOT NULL DEFAULT '0',
+	`tmp_is_template` tinyint(1) NOT NULL DEFAULT '0'
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/tmp_name ON /*_*/cn_templates (tmp_name);
 CREATE INDEX /*i*/tmp_category ON /*_*/cn_templates (tmp_category);
@@ -61,6 +62,12 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notice_countries (
 	`nc_country` varchar(2) NOT NULL
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/nc_notice_id_country ON /*_*/cn_notice_countries (nc_notice_id, nc_country);
+
+CREATE TABLE IF NOT EXISTS /*_*/cn_notice_regions (
+	`nr_notice_id` int(10) unsigned NOT NULL,
+	`nr_region` varchar(6) NOT NULL
+) /*$wgDBTableOptions*/;
+CREATE UNIQUE INDEX /*i*/nr_notice_id_region ON /*_*/cn_notice_regions (nr_notice_id, nr_region);
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_template_mixins (
 	`tmxn_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -139,6 +146,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notice_log (
 	`notlog_end_languages` text,
 	`notlog_begin_countries` text,
 	`notlog_end_countries` text,
+	`notlog_begin_regions` text,
+	`notlog_end_regions` text,
 	`notlog_begin_start` char(14) DEFAULT NULL,
 	`notlog_end_start` char(14) DEFAULT NULL,
 	`notlog_begin_end` char(14) DEFAULT NULL,

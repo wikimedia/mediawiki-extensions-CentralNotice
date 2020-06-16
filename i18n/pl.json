@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alan ffm",
 			"Bartek50003",
 			"BeginaFelicysym",
 			"Chrumps",
+			"CiaPan",
 			"Derbeth",
 			"Leinad",
 			"Maikking",
@@ -13,15 +15,13 @@
 			"Olgak85",
 			"Przemub",
 			"Qblik",
-			"Sp5uhe",
-			"WTM",
-			"Alan ffm",
-			"Vengir",
-			"Saper",
+			"Rail",
 			"Railfail536",
-			"CiaPan",
-			"Woytecr",
-			"Rail"
+			"Saper",
+			"Sp5uhe",
+			"Vengir",
+			"WTM",
+			"Woytecr"
 		]
 	},
 	"centralnotice": "Administrowanie wspólnymi komunikatami",
@@ -236,5 +236,7 @@
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)",
 	"centralnotice-banner-protection-log-reason": "Zabezpieczono automatycznie przez rozszerzenie CentralNotice; edytuj tylko przez [[Special:CentralNotice]] lub [[Special:Translate]]",
 	"centralnotice-multiple-countries": "Wiele ($1)",
-	"centralnotice-multiple-languages": "wiele ($1)"
+	"centralnotice-multiple-languages": "wiele ($1)",
+	"centralnotice-banner-template-info": "(szablon)",
+	"centralnotice-create-from-template-checkbox-label": "Utwórz z szablonu"
 }

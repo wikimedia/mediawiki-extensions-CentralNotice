@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Les Meloures",
 			"Robby",
-			"Soued031",
-			"Les Meloures"
+			"Soued031"
 		]
 	},
 	"centralnotice": "Administratioun vun den zentrale Matdeelungen",
@@ -112,6 +112,8 @@
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geographesch geziilt",
 	"centralnotice-countries": "Länner",
+	"centralnotice-regions": "Regiounen",
+	"centralnotice-location": "Länner a Regiounen",
 	"centralnotice-allocation": "Dispositioun",
 	"centralnotice-view-allocation": "Dispositioun vum Banner weisen",
 	"centralnotice-allocation-instructions": "Sicht den Environnement eraus wou Dir wëllt datt de Banner sou soll gesi ginn:",
@@ -119,6 +121,7 @@
 	"centralnotice-language": "Sprooch",
 	"centralnotice-projects": "Projeten",
 	"centralnotice-country": "Land",
+	"centralnotice-region": "Regioun",
 	"centralnotice-no-allocation": "Keng Banneren zougedeelt.",
 	"centralnotice-allocation-description": "Dispositioun vum Banner fir d'Sprooch $1, de Projet $2 am Land $3, op $4",
 	"centralnotice-historical-allocation-description": "Banner Zoudeelung fir d'Sprooch: $1, de Projet: $2, am Lnad: $3 op $4, ëm $5 Auer",
@@ -218,5 +221,7 @@
 	"centralnotice-banner-sequence-banner": "Banner",
 	"centralnotice-banner-sequence-no-banner": "(Kee Banner)",
 	"centralnotice-multiple-countries": "Méi Länner",
-	"centralnotice-multiple-languages": "méi Sproochen"
+	"centralnotice-multiple-languages": "méi Sproochen",
+	"centralnotice-banner-template": "Banner-Schabloun",
+	"centralnotice-banner-template-info": "(Schabloun)"
 }

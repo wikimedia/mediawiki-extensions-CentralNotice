@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"1AnuraagPandey"
+			"1AnuraagPandey",
+			"Ajeetsinghawadhi"
 		]
 	},
 	"centralnotice": "केन्द्रीय सूचना प्रबन्धक",
@@ -62,6 +63,7 @@
 	"centralnotice-select-all": "कुल लिहा जाय",
 	"centralnotice-remove-all": "कुल हटावा जाय",
 	"centralnotice-project-name": "परियोजना नाँव",
+	"centralnotice-change-lang": "अनुवाद कय भाषा बदलैं",
 	"centralnotice-message": "सनेशा",
 	"centralnotice-message-not-set": "सनेशा नाइ सेट भवा",
 	"centralnotice-clone": "क्लोन",
@@ -109,6 +111,9 @@
 	"centralnotice-priority-normal": "सामान्य",
 	"centralnotice-priority-high": "ढेर",
 	"centralnotice-priority-emergency": "आकस्मिक",
+	"centralnotice-prioritylangs": "तवज्जो वाली भाषाएँ",
+	"centralnotice-banner-class": "श्रेणी",
 	"centralnotice-archive-campaign-cancel": "रद्द करा जाय",
-	"centralnotice-delete-banner-title": "डिलीट करा जाय"
+	"centralnotice-delete-banner": "मिटावा जाय",
+	"centralnotice-delete-banner-title": "हटावैं {{PLURAL:$1|बैनर|कयिउ बैनर}}"
 }

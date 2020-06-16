@@ -204,7 +204,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
 	public function getStartBody() {
 		$htmlOut = '';

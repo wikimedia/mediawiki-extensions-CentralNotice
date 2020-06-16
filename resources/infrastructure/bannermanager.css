@@ -87,3 +87,28 @@ fieldset #cn-formsection-header-one-off {
 .ui-dialog-content legend {
 	display: none;
 }
+
+#mw-htmlform-one-off .mw-htmlform-field-HTMLButtonField {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+#mw-input-wpnewBannerTemplate {
+	width: 100%;
+	margin: 0 0 10px;
+}
+
+#mw-input-wpcreateFromTemplateCheckbox {
+	margin: 10px 0;
+}
+
+form[ name='addBannerDialog' ] .mw-htmlform-field-HTMLTextField input {
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.banner-template-dropdown-hidden {
+	display: none;
+}

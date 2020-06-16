@@ -1,23 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
+			"Athena in Wonderland",
 			"Crazymadlover",
+			"Eduardo Addad de Oliveira",
 			"Fúlvio",
 			"Giro720",
 			"Hamilton Abreu",
 			"Imperadeiro98",
+			"Ldacosta",
 			"Lijealso",
 			"Luckas",
 			"Malafaya",
+			"Mansil alfalb",
 			"MetalBrasil",
 			"Rhaijin",
 			"SandroHc",
-			"Vitorvicentevalente",
-			"Athena in Wonderland",
-			"Eduardo Addad de Oliveira",
-			"Ldacosta",
 			"Tks4Fish",
-			"Mansil alfalb"
+			"Vitorvicentevalente"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -147,7 +147,10 @@
 	"centralnotice-banner-cdn-dialog-error": "Erro no pedido de purga da cache do cliente.",
 	"centralnotice-banner-cdn-dialog-success": "O pedido de purga da cache do cliente foi enviado.",
 	"centralnotice-geo": "Com segmentação geográfica",
+	"centralnotice-geo-status": "Selecionado $1 $2",
 	"centralnotice-countries": "Países",
+	"centralnotice-regions": "Regiões",
+	"centralnotice-location": "Países e regiões",
 	"centralnotice-allocation": "Atribuição",
 	"centralnotice-view-allocation": "Ver atribuição de modelos",
 	"centralnotice-allocation-instructions": "Escolha o ambiente para o qual deseja ver a atribuição de modelos:",
@@ -155,6 +158,7 @@
 	"centralnotice-language": "Língua",
 	"centralnotice-projects": "Projetos",
 	"centralnotice-country": "País",
+	"centralnotice-region": "Região",
 	"centralnotice-no-allocation": "Não há modelos atribuídos.",
 	"centralnotice-allocation-description": "Atribuição de modelos na língua: $1, projeto: $2, no país: $3, no dispositivo $4",
 	"centralnotice-historical-allocation-description": "Atribuição de modelos na língua: $1, projeto: $2, no país: $3, no dispositivo $4, à hora $5",
@@ -316,9 +320,13 @@
 	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 1 inclusive)",
 	"centralnotice-banner-protection-log-reason": "Protegido automaticamente pela Central de Avisos; editar só em [[Special:CentralNotice]] ou [[Special:Translate]], por favor.",
 	"centralnotice-multiple-countries": "Vários países",
+	"centralnotice-multiple-regions": "Várias regiões",
 	"centralnotice-multiple-languages": "Várias línguas",
 	"tag-centralnotice": "Central de Avisos",
 	"tag-centralnotice-description": "Edição criada através da interface de administração da Central de Avisos",
 	"tag-centralnotice_translation": "Tradução da Central de Avisos",
-	"tag-centralnotice_translation-description": "Edição de conteúdo da Central de Avisos criada através da extensão Tradução"
+	"tag-centralnotice_translation-description": "Edição de conteúdo da Central de Avisos criada através da extensão Tradução",
+	"centralnotice-banner-template": "Modelo de faixa",
+	"centralnotice-banner-is-template": "Esta faixa é um modelo, para ser utilizado para criar faixas",
+	"centralnotice-banner-template-info": "(modelo)"
 }

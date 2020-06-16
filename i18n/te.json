@@ -105,6 +105,8 @@
 	"centralnotice-banner-fundraising": "ఇది ధనసమీకరణకు సంబంధించిన పతాకము",
 	"centralnotice-banner-display-on": "ఎక్కడ చూపించాలి",
 	"centralnotice-countries": "దేశాలు",
+	"centralnotice-regions": "ప్రాంతాలు",
+	"centralnotice-location": "దేశాలు, ప్రాంతాలు",
 	"centralnotice-allocation": "కేటాయింపు",
 	"centralnotice-view-allocation": "బ్యానరు కేటాయింపును చూపించు",
 	"centralnotice-allocation-instructions": "ఏ ఎన్విరాన్ మెంటు కోసం బ్యానరు కేటాయింపులు చూడాలనుకుంటున్నారో ఎంచుకోండి:",
@@ -112,6 +114,7 @@
 	"centralnotice-language": "భాష",
 	"centralnotice-projects": "ప్రాజెక్టులు",
 	"centralnotice-country": "దేశం",
+	"centralnotice-region": "ప్రాంతం",
 	"centralnotice-no-allocation": "బ్యానర్లేమీ కేటాయించలేదు.",
 	"centralnotice-allocation-description": "బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, డివైసు $4 లో",
 	"centralnotice-historical-allocation-description": "బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, డివైసు $4 లో $5 సమయానికి",
@@ -185,5 +188,6 @@
 	"centralnotice-end-date": "ముగింపు తేదీ (UTC)",
 	"centralnotice-end-time": "ముగింపు సమయం (UTC)",
 	"centralnotice-multiple-countries": "బహుళం ($1)",
-	"centralnotice-multiple-languages": "బహుళం ($1)"
+	"centralnotice-multiple-languages": "బహుళం ($1)",
+	"centralnotice-banner-template-info": "(మూస)"
 }

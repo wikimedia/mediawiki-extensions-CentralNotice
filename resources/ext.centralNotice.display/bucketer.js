@@ -298,7 +298,7 @@
 		 * they're called by mw.centralNotice.chooseAndMaybeDisplay(). Calls
 		 * to this method from mixin hooks don't have to worry about this.)
 		 *
-		 * @returns {number}
+		 * @return {number}
 		 */
 		getBucket: function () {
 			return buckets[ campaign.name ].val;
@@ -308,7 +308,7 @@
 		 * Return the bucket pared down to fit within the number of buckets in the
 		 * campaign. Note: setCampaign() must have been called first.
 		 *
-		 * @returns {number}
+		 * @return {number}
 		 */
 		getReducedBucket: function () {
 			return bucketer.getBucket() % campaign.bucket_count;

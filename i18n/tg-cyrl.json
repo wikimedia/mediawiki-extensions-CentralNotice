@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dovud",
 			"Ibrahim",
 			"ToJack"
 		]
@@ -69,5 +70,6 @@
 	"centralnotice-start-date": "Санаи шурӯъ",
 	"centralnotice-start-time": "Замони шурӯъ (UTC)",
 	"centralnotice-end-date": "Санаи охир",
-	"centralnotice-multiple-languages": "Якчанд забон"
+	"centralnotice-multiple-languages": "Якчанд забон",
+	"centralnotice-banner-template-info": "(шаблон)"
 }

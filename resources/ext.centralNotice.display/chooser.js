@@ -246,7 +246,7 @@
 	cn.internal.chooser = {
 
 		/**
-		 * Filter choiceData on country, logged-in status and device.
+		 * Filter choiceData on country, region, logged-in status and device.
 		 * Only campaigns that target the user's country and have at least
 		 * one banner for the user's logged-in status and device pass this filter.
 		 *
@@ -258,10 +258,13 @@
 		 *
 		 * @return {Array}
 		 */
-		makeAvailableCampaigns: function ( choiceData, country, anon, device ) {
+		makeAvailableCampaigns: function ( choiceData, country, region, anon, device ) {
 
-			var i, campaign, j, banner, keepCampaign,
+			var i, campaign, j, banner, keepCampaign, uniqueRegionCode,
 				availableCampaigns = [];
+
+			// This needs to yield the same result as makeUniqueRegionCode in GeoTarget.php
+			uniqueRegionCode = country + '_' + region;
 
 			for ( i = 0; i < choiceData.length; i++ ) {
 
@@ -269,8 +272,10 @@
 				keepCampaign = false;
 
 				// Filter for country if geotargeted
-				if ( campaign.geotargeted &&
-					( campaign.countries.indexOf( country ) === -1 ) ) {
+				if ( campaign.geotargeted && (
+					campaign.countries.indexOf( country ) === -1 && // No country wide match
+					campaign.regions.indexOf( uniqueRegionCode ) === -1 // And no region match
+				) ) {
 					continue;
 				}
 
@@ -375,7 +380,7 @@
 		 * @param {boolean} anon
 		 * @param {string} device
 		 * @param {string} requestedBannerName
-		 * @returns {Object}
+		 * @return {Object}
 		 */
 		requestBanner: function ( campaign, bucket, anon, device, requestedBannerName ) {
 

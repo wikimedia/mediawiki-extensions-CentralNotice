@@ -146,8 +146,9 @@
 	/**
 	 * TODO: Delete fix code a year after deploy
 	 * Update names of stored counts for clarity.
+	 *
 	 * @param {Object} kvStoreCounts possibly using legacy names
-	 * @returns {Object} counts object using new names
+	 * @return {Object} counts object using new names
 	 */
 	function fixCountNames( kvStoreCounts ) {
 		// If we get an object with new names, don't change it
