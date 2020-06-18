@@ -263,24 +263,6 @@
 				"mobile"
 			]
 		},
-		"ext.centralNotice.bannerController": {
-			"dependencies": [
-				"ext.centralNotice.startUp",
-				"ext.centralNotice.geoIP"
-			],
-			"targets": [
-				"desktop"
-			]
-		},
-		"ext.centralNotice.bannerController.mobile": {
-			"dependencies": [
-				"ext.centralNotice.startUp",
-				"ext.centralNotice.geoIP"
-			],
-			"targets": [
-				"mobile"
-			]
-		},
 		"ext.centralNotice.impressionEventsSampleRate": {
 			"scripts": "subscribing/ext.centralNotice.impressionEventsSampleRate.js",
 			"dependencies": [
