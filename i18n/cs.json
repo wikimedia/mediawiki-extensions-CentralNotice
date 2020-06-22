@@ -200,7 +200,7 @@
 	"centralnotice-all-except": "Všechno kromě $1",
 	"centralnotice-excluding-list": "$1 (kromě $2)",
 	"centralnotice-user-role": "Uživatelská role",
-	"centralnotice-user-role-anonymous": "Anonym",
+	"centralnotice-user-role-anonymous": "Neregistrovaný",
 	"centralnotice-user-role-logged-in": "Přihlášený",
 	"centralnotice-banner-class": "Kategorie",
 	"centralnotice-banner-class-desc": "Bannery konkrétní kategorie sdílejí sledovací proměnné a nastavení skupiny (např. cookie pro skrývání a počítadla impresí). Názvy kategorií mohou být kouzelná slova jako <nowiki>{{{campaign}}}</nowiki> nebo <nowiki>{{{banner}}}</nowiki>, které se v okamžiku zobrazení automaticky rozbalí. Hodnoty musí být alfanumerické.",
