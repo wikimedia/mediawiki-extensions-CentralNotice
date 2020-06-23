@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Erdemaslancan",
+			"Patriot Kur",
 			"Гусейн"
 		]
 	},
 	"centralnotice-add": "Зијод кардеј",
+	"centralnotice-add-notice-cancel-button": "Ləğv karde",
 	"centralnotice-day": "Руж",
 	"centralnotice-year": "Сор",
 	"centralnotice-month": "Манг",
@@ -13,10 +15,15 @@
 	"centralnotice-min": "Дәғиғә",
 	"centralnotice-project-lang": "Нәхшә зывон",
 	"centralnotice-project-name": "Нәхшә ном",
+	"centralnotice-clone-cancel": "Ləğv karde",
 	"centralnotice-close-button": "Егәтәдыгмә «Жәј»",
 	"centralnotice-close-title": "Жәј",
 	"centralnotice-country": "Мәмләкәт",
-	"centralnotice-user": "Иштирокәкә",
+	"centralnotice-user": "İştirokəkə",
 	"centralnotice-action": "Һәрәкәт",
-	"centralnotice-date": "Тарых"
+	"centralnotice-talk-link": "mızokirə",
+	"centralnotice-date": "Тарых",
+	"centralnotice-archive-banner-cancel": "Ləğv karde",
+	"centralnotice-archive-campaign-cancel": "Ləğv karde",
+	"centralnotice-delete-banner-cancel": "Ləğv karde"
 }
