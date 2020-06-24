@@ -120,6 +120,7 @@ class ChoiceDataProvider {
 				'notices.not_throttle',
 				'notices.not_geo',
 				'notices.not_buckets',
+				'notices.not_type',
 				'assignments.tmp_weight',
 				'assignments.asn_bucket',
 				'templates.tmp_id',
@@ -184,6 +185,7 @@ class ChoiceDataProvider {
 					'throttle' => intval( $dbRow->not_throttle ),
 					'bucket_count' => intval( $dbRow->not_buckets ),
 					'geotargeted' => (bool)$dbRow->not_geo,
+					'type' => $dbRow->not_type,
 					'banners' => []
 				];
 			}
