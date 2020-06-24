@@ -175,7 +175,17 @@ class Banner {
 	 * @return null|string
 	 */
 	public function getName() {
-		$this->populateBasicData();
+		// Optimization: Speed up BannerMessageGroup's getKeys and getDefinitions.
+		//
+		// BannerMessageGroup calls self::fromName which populates $this->name.
+		// Translate calls BannerMessageGroup::getKeys(), which calls
+		// self::getMessageFieldsFromCache to load the message keys.
+		// self::getMessageFieldsFromCache calls self::getMessageFieldsCacheKey which calls
+		// this method. self::populateBasicData does a database query, which is not needed
+		// if we only need to know the banner name, which we already have.
+		if ( $this->name === null ) {
+			$this->populateBasicData();
+		}
 		return $this->name;
 	}
 
