@@ -1695,7 +1695,12 @@ class CentralNotice extends SpecialPage {
 	 * @return bool
 	 */
 	public static function addNavigationTabs( Skin $skin, array &$tabs ) {
-		global $wgNoticeTabifyPages;
+		global $wgNoticeTabifyPages, $wgNoticeInfrastructure;
+
+		// Only show tabs if this wiki is in infrastructure mode
+		if ( !$wgNoticeInfrastructure ) {
+			return true;
+		}
 
 		$title = $skin->getTitle();
 		list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
