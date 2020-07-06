@@ -26,7 +26,7 @@
 	"centralnoticelogs": "Administração de avisos centralizados",
 	"right-centralnotice-admin": "Gerir avisos centralizados",
 	"protect-level-centralnotice-admin": "Permitir só administradores de avisos centrais",
-	"restriction-level-centralnotice-admin": "protegido(a) por administrador de avisos centrais",
+	"restriction-level-centralnotice-admin": "protegida por administrador de avisos centrais",
 	"action-centralnotice-admin": "gerir avisos centralizados",
 	"centralnotice-desc": "Adiciona um aviso centralizado",
 	"centralnotice-summary": "Este módulo permite-lhe editar os avisos centralizados que estejam configurados.\nTambém pode ser usado para adicionar avisos novos ou remover antigos.",
