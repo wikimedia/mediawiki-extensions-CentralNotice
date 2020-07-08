@@ -310,5 +310,8 @@
 	"tag-centralnotice": "Notifeche cendralizzate",
 	"tag-centralnotice-description": "Cangiamende ccrejate cu CentralNotice Admin UI",
 	"tag-centralnotice_translation": "Traduzione d'a Notifeche Cendralizzate",
-	"tag-centralnotice_translation-description": "Cangiamende d'u condenute de CentralNotice ccrejate cu l'estenzione Traduce"
+	"tag-centralnotice_translation-description": "Cangiamende d'u condenute de CentralNotice ccrejate cu l'estenzione Traduce",
+	"centralnotice-banner-template": "template d'u striscione",
+	"centralnotice-banner-is-template": "Stu striscione jè ìnu modelle, signifeche ca pò essere ausate pe ccrejà otre strisciune",
+	"centralnotice-banner-template-info": "(template)"
 }
