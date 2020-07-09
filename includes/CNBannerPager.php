@@ -61,6 +61,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	 * @inheritDoc
 	 * @suppress PhanTypeMismatchProperty
 	 * @suppress PhanTypeMismatchDimAssignment
+	 * @suppress PhanTypeMismatchReturn
 	 */
 	public function getNavigationBar() {
 		if ( isset( $this->mNavigationBar ) ) {
