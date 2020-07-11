@@ -952,6 +952,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				if ( !$this->editable ) {
 					return null;
 				}
+				if ( !Banner::isValidBannerName( $this->bannerName ) ) {
+					throw new ErrorPageError( 'noticetemplate', 'centralnotice-banner-name-error' );
+				}
 				try {
 					Banner::removeBanner(
 						$this->bannerName, $this->getUser(),
@@ -976,8 +979,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					return null;
 				}
 				$newBannerName = $formData[ 'cloneName' ];
+				if ( !Banner::isValidBannerName( $newBannerName ) ) {
+					throw new ErrorPageError( 'noticetemplate', 'centralnotice-banner-name-error' );
+				}
 
-				Banner::fromName( $this->bannerName )->cloneBanner(
+				$this->ensureBanner( $this->bannerName );
+				$this->banner->cloneBanner(
 					$newBannerName, $this->getUser(),
 					$formData[ 'cloneEditSummary' ]
 				);
