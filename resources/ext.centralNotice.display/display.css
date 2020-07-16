@@ -6,7 +6,6 @@
 
 .cn-closeButton {
 	display: inline-block;
-	zoom: 1;
 	/* @embed */
 	background: url( images/close.png ) no-repeat;
 	width: 20px;
