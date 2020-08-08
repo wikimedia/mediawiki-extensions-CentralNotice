@@ -345,5 +345,6 @@
 	"centralnotice-banner-template-error": "Error message displayed in Special:CentralNotice when trying to add a banner based on a banner that is invalid",
 	"centralnotice-add-banner-from-template": "Label for 'Add a banner from template' button",
 	"centralnotice-messages-banner-in-campaign": "Info text describing why marking banner as a template is disabled",
-	"centralnotice-create-from-template-checkbox-label": "Label for 'From template' checkbox"
+	"centralnotice-create-from-template-checkbox-label": "Label for 'From template' checkbox",
+	"centralnotice-campaign-view-logs": "Label for navigation link to this campaign's settings logs. Shown in subtitle of Special:CentralNotice for a specific campaign."
 }
