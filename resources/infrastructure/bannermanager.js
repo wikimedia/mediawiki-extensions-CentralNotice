@@ -47,7 +47,7 @@
 			var buttons = {},
 				okButtonText = mw.message( 'centralnotice-add-notice-button' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-add-notice-cancel-button' ).text(),
-				$dialogObj = $( '<form></form>' ),
+				$dialogObj = $( '<form>' ),
 				title = mw.message( 'centralnotice-add-new-banner-title' );
 
 			// Implement the functionality
@@ -149,7 +149,7 @@
 		 * Submits the form with the archive action.
 		 */
 		doArchiveBanners: function () {
-			var $dialogObj = $( '<div></div>' ),
+			var $dialogObj = $( '<div>' ),
 				buttons = {},
 				archiveText = mw.message( 'centralnotice-archive-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-archive-banner-cancel' ).text();

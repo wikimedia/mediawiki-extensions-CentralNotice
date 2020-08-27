@@ -60,12 +60,12 @@
 			// 0 allocation, in which case just 2 assertion per campaign.
 			expectedAssertCount = 1;
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( expectedAllocations, function ( key, campaign ) {
+			$.each( expectedAllocations, function ( key, camp ) {
 
-				if ( campaign.allocation === 0 ) {
+				if ( camp.allocation === 0 ) {
 					expectedAssertCount += 2;
 				} else {
-					expectedBanners = campaign.banners[ bucket ];
+					expectedBanners = camp.banners[ bucket ];
 					expectedAssertCount +=
 						3 + ( 2 * Object.keys( expectedBanners ).length );
 				}

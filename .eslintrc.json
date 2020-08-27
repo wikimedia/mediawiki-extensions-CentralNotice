@@ -10,7 +10,6 @@
 	},
 	"rules": {
 		"no-use-before-define": "off",
-		"no-jquery/no-global-selector": "off",
-		"no-jquery/no-parse-html-literal": "off"
+		"no-jquery/no-global-selector": "off"
 	}
 }
