@@ -328,5 +328,9 @@
 	"tag-centralnotice_translation-description": "Edição de conteúdo da Central de Avisos criada através da extensão Tradução",
 	"centralnotice-banner-template": "Modelo de faixa",
 	"centralnotice-banner-is-template": "Esta faixa é um modelo, para ser utilizado para criar faixas",
-	"centralnotice-banner-template-info": "(modelo)"
+	"centralnotice-banner-template-info": "(modelo)",
+	"centralnotice-banner-template-error": "A faixa não pode ser criada com base numa faixa inválida nem numa faixa que não esteja marcada como modelo.\nNão adicionada",
+	"centralnotice-add-banner-from-template": "Adicionar uma faixa a partir de modelo",
+	"centralnotice-messages-banner-in-campaign": "Não pode marcar esta faixa como modelo enquanto ela estiver atribuída a avisos. A faixa está atribuída aos seguintes avisos:",
+	"centralnotice-create-from-template-checkbox-label": "Criar a partir de modelo"
 }
