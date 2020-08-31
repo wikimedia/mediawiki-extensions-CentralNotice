@@ -62,13 +62,13 @@
 		possiblyMigrateLegacyCookies();
 
 		// Banner was hidden already
-		if ( cn.isBannerCanceled() ) {
+		if ( cn.isCampaignFailed() ) {
 			return;
 		}
 
 		// No options for storing stuff, so hide banner and bow out
 		if ( multiStorageOption === cn.kvStore.multiStorageOptions.NO_STORAGE ) {
-			cn.cancelBanner( 'waitnostorage' );
+			cn.failCampaign( 'waitnostorage' );
 			return;
 		}
 
@@ -116,7 +116,7 @@
 
 		if ( hide ) {
 			// Hide based on the results.
-			cn.cancelBanner( hide );
+			cn.failCampaign( hide );
 		} else {
 			// Count shown impression.
 			counts.seenThisCycle += 1;

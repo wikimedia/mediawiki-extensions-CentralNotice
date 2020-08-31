@@ -76,10 +76,9 @@
 	 * @param {string} hookPropertyName The name of a Mixin property containing
 	 *  hook handlers
 	 */
-	function runMixinHooks( hookPropertyName ) {
-		var state = cn.internal.state;
+	function runMixinHooks( hookPropertyName, campaign ) {
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( state.getCampaign().mixins, function ( mixinName, mixinParams ) {
+		$.each( campaign.mixins, function ( mixinName, mixinParams ) {
 			var handler;
 			// Sanity check
 			if ( !( mixinName in campaignMixins ) ) {
@@ -100,16 +99,16 @@
 				return;
 			}
 
-			handler( mixinParams );
+			handler( mixinParams, campaign );
 		} );
 	}
 
 	function runPreBannerMixinHooks() {
-		runMixinHooks( 'preBannerHandler' );
+		runMixinHooks( 'preBannerHandler', cn.internal.state.getAttemptingCampaign() );
 	}
 
 	function runPostBannerMixinHooks() {
-		runMixinHooks( 'postBannerHandler' );
+		runMixinHooks( 'postBannerHandler', cn.internal.state.getAttemptingCampaign() );
 	}
 
 	/**
@@ -313,11 +312,9 @@
 			bucketer = cn.internal.bucketer,
 			state = cn.internal.state,
 			hide = cn.internal.hide,
-			campaign = null,
-			banner, i, maxCampaignFallback, maxCampaignFallbackConfig;
+			campaign, banner, i, maxCampaignFallback, maxCampaignFallbackConfig;
 
 		// This will gather initial data needed for selection and display.
-		// We expose it above via a getter on the data property.
 		state.setUp();
 
 		// Because of browser limitations, and to maintain our contract among
@@ -335,6 +332,13 @@
 		// While this could be made more compact by allowing internal
 		// objects to access state for themselves, disallowing it ensures
 		// their scope is limited and keeps the information flow visible.
+
+		// First, get a list of campiangs targeting this pageview, and pass it
+		// to state. (choiceData typically has more campaigns than actually
+		// could be shown on a given pageview, since many targeting criteria
+		// are not available to the server process that generates choiceData.)
+		// These are the campaigns that may be selected in the fallback loop,
+		// below.
 		state.setAvailableCampaigns( chooser.makeAvailableCampaigns(
 			cn.choiceData,
 			state.getData().country,
@@ -343,30 +347,33 @@
 			state.getData().device
 		) );
 
+		// Set maximum iterations for the loop below. Pick the lowest between the
+		// configured limit and the total available campaigns.
 		maxCampaignFallbackConfig = mw.config.get( 'wgCentralNoticeMaxCampaignFallback' );
-		// Set iterations limit for the loop below, pick the lowest of the two
 		maxCampaignFallback = Math.min(
 			state.getData().availableCampaigns.length,
 			maxCampaignFallbackConfig
 		);
 
-		// Try to display something unless we're out of choices
+		// Fallback loop. Try to display something until we're out of choices.
 		for ( i = 0; i < maxCampaignFallback; i++ ) {
 
-			// Choose a campaign or no campaign for this user.
+			// Try to choose a campaign. Just because we choose one doesn't necessarily
+			// mean it'll display a banner, though. (That's why we set it as
+			// 'attempting' below.)
 			campaign = chooser.chooseCampaign(
 				state.getData().availableCampaigns,
 				state.getData().randomcampaign
 			);
 
-			// Nothing is selected so we're out of choices - every campaign has failed
-			// or we hit an allocation boundaries
+			// Nothing is selected. That can happen following a roll of the dice if
+			// all the campaigns currently available are throttled.
 			if ( campaign === null ) {
 				break;
 			}
 
 			// Now that we have a campaign, send some info to other objects
-			state.setCampaign( campaign );
+			state.setAttemptingCampaign( campaign );
 			bucketer.setCampaign( campaign );
 			hide.setCategory( state.getData().campaignCategory );
 
@@ -380,47 +387,56 @@
 			state.setBucket( bucketer.getBucket() );
 			state.setReducedBucket( bucketer.getReducedBucket() );
 
-			// Check the hide cookie and possibly cancel the banner.
+			// Check the hide cookie and possibly fail the campaign.
 			// We do this before running pre-banner hooks so that these can count
 			// stuff differently if there was a hide cookie.
 			hide.processCookie();
 			if ( hide.shouldHide() ) {
-				// Cancelling a banner will remove the currently chosen campaign from the list
-				// of available campaigns, so it can't be chosen in the next iteration of the loop
-				state.cancelBanner( hide.getReason() );
+				state.failCampaign( hide.getReason() );
 				runPreBannerMixinHooks();
 				runPostBannerMixinHooks();
-				// Nullify the campaign chosen in case it's the last iteration
-				campaign = null;
+
+				// Update available campaigns
+				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
+					state.getData().availableCampaigns,
+					state.getAttemptingCampaign(),
+					i
+				) );
 				continue;
 			}
 
 			runPreBannerMixinHooks();
 
-			// Cancel banner, if that was requested by code in a pre-banner hook
-			// If the banner has been cancelled, that also removed the currently chosen campaign
-			// from the list of available campaigns, so it can't be chosen in the next iteration
-			// of the loop.
-			if ( state.isBannerCanceled() ) {
+			// If a pre-banner hook cancelled the campaign, then wrap up this iteration
+			// of the fallback loop.
+			if ( state.isCampaignFailed() ) {
 				runPostBannerMixinHooks();
-				// Nullify the campaign chosen in case it's the last iteration
-				campaign = null;
+
+				// Update available campaigns
+				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
+					state.getData().availableCampaigns,
+					state.getAttemptingCampaign(),
+					i
+				) );
 				continue;
 			}
 
-			// Reaching this point means that a campaign was chosen and the banner was not cancelled
+			// Reaching this point means that a campaign was chosen and was not failed.
 			break;
 
 		}
 
-		// Nothing is selected because we're out of choices
-		// Every campaign has failed, or there are no available campaigns,
-		// or we hit an allocation boundary
-		if ( campaign === null ) {
-			// Check if at least one campaign has been previously chosen
-			if ( state.countCampaignsAttempted() > 0 ) {
-				recordImpression();
-			}
+		// Bow out if no campaign was ever even attempted. This can happen if no campaigns
+		// were available, or if we rolled the dice once, but no campaign was chosen
+		// due to throttling of all available campaigns.
+		if ( state.getAttemptingCampaign() === null ) {
+			return;
+		}
+
+		// Record impression and bow out if the last campaign attempted in the loop (and
+		// any previous ones that may have been attempted) failed.
+		if ( state.isCampaignFailed() ) {
+			recordImpression();
 			return;
 		}
 
@@ -627,17 +643,31 @@
 		},
 
 		/**
-		 * Call this from the preBannerMixinHook to prevent a banner from
-		 * being chosen and loaded.
+		 * Call this from the preBannerMixinHook to prevent a banner for the
+		 * currently attempting campaign from being chosen and loaded.
 		 *
 		 * @param {string} reason An explanation of why the banner was canceled.
 		 */
-		cancelBanner: function ( reason ) {
-			cn.internal.state.cancelBanner( reason );
+		failCampaign: function ( reason ) {
+			cn.internal.state.failCampaign( reason );
 		},
 
+		/**
+		 * Legacy method, deprecated. Use failCampaign().
+		 */
+		cancelBanner: function ( reason ) {
+			cn.failCampaign( reason );
+		},
+
+		isCampaignFailed: function () {
+			return cn.internal.state.isCampaignFailed();
+		},
+
+		/**
+		 * Legacy metod, deprecated. Use isCampaignFailed().
+		 */
 		isBannerCanceled: function () {
-			return cn.internal.state.isBannerCanceled();
+			return cn.isCampaignFailed();
 		},
 
 		isBannerShown: function () {
@@ -866,6 +896,16 @@
 	mw.log.deprecate(
 		window, 'hideBanner', cn.hideBanner,
 		'Use mw.centralNotice method instead'
+	);
+
+	mw.log.deprecate(
+		window, 'cancelBanner', cn.cancelBanner,
+		'Use mw.centralNotice.failCampaign() instead'
+	);
+
+	mw.log.deprecate(
+		window, 'isBannerCanceled', cn.isBannerCanceled,
+		'Use mw.centralNotice.isCampaignFailed() instead'
 	);
 
 	mw.log.deprecate(

@@ -133,7 +133,7 @@
 
 		// No need to switch if the banner's already hidden or we're already
 		// on a small banner bucket
-		if ( cn.isBannerCanceled() ) {
+		if ( cn.isCampaignFailed() ) {
 			cn.setDebugInfo( 'lbl: hidden' );
 			return;
 		}

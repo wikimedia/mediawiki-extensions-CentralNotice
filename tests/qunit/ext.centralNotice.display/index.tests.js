@@ -369,6 +369,7 @@
 			mw.centralNotice.internal.state.banner = null;
 			mw.centralNotice.internal.state.urlParams.recordImpressionSampleRate = null;
 			mw.centralNotice.internal.state.urlParams.impressionEventSampleRate = null;
+			mw.centralNotice.internal.state.attemptedCampaignsByName = {};
 			mw.centralNotice.internal.hide.shouldHide = realshouldHide;
 		}
 	} ) );
@@ -650,7 +651,7 @@
 		mixin.setPreBannerHandler(
 			function ( params ) {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
-				mw.centralNotice.cancelBanner( 'testReason' );
+				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 		mixin.setPostBannerHandler(
@@ -668,7 +669,7 @@
 			mw.centralNotice.internal.state.STATUSES.BANNER_CANCELED.key
 		);
 		assert.strictEqual( mw.centralNotice.data.bannerCanceledReason, 'testReason' );
-		assert.ok( mw.centralNotice.internal.state.isBannerCanceled() );
+		assert.ok( mw.centralNotice.internal.state.isCampaignFailed() );
 	} );
 
 	QUnit.test( 'runs hooks on no banner available', function ( assert ) {
@@ -722,7 +723,7 @@
 
 		mixin.setPreBannerHandler(
 			function () {
-				mw.centralNotice.cancelBanner( 'testReason' );
+				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 
@@ -789,7 +790,7 @@
 		// Make every campaign fail by cancelling banners
 		mixin.setPreBannerHandler(
 			function () {
-				mw.centralNotice.cancelBanner( 'testReason' );
+				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 
@@ -813,7 +814,7 @@
 			function ( mixinParams ) {
 				mw.centralNotice.setMinRecordImpressionSampleRate( mixinParams[ 0 ] );
 				// Fail campaign by cancelling a banner
-				mw.centralNotice.cancelBanner( 'testReason' );
+				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 
@@ -838,7 +839,7 @@
 			function ( mixinParams ) {
 				mw.centralNotice.setMinImpressionEventSampleRate( mixinParams[ 0 ] );
 				// Fail campaign by cancelling a banner
-				mw.centralNotice.cancelBanner( 'testReason' );
+				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 
@@ -866,7 +867,7 @@
 			function ( mixinParams ) {
 				mw.centralNotice.setMinImpressionEventSampleRate( mixinParams[ 0 ] );
 				// Fail campaign by cancelling a banner
-				mw.centralNotice.cancelBanner( 'testReason' );
+				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 
@@ -889,7 +890,7 @@
 		// Make every campaign fail by cancelling banners
 		mixin.setPreBannerHandler(
 			function () {
-				mw.centralNotice.cancelBanner( 'testReason' );
+				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 
