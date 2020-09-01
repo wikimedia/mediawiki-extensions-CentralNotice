@@ -61,12 +61,32 @@
 		this.name = name;
 	};
 
+	// TODO Refactor hooks (rename, divide hooks that run at multiple points into
+	// separate hooks, and adapt handlers accordingly)
+
+	/**
+	 * Run after we've chosen a campaign to attempt, but before we try to choose a
+	 * banner from that campaign.
+	 */
 	Mixin.prototype.setPreBannerHandler = function ( handlerFunc ) {
 		this.preBannerHandler = handlerFunc;
 	};
 
-	Mixin.prototype.setPostBannerHandler = function ( handlerFunc ) {
-		this.postBannerHandler = handlerFunc;
+	/**
+	 * Run after we chose and loaded a banner, or after the campaign failed, or after
+	 * we unsuccessfully attempted to chose a banner.
+	 */
+	Mixin.prototype.setPostBannerOrFailHandler = function ( handlerFunc ) {
+		this.postBannerOrFailHandler = handlerFunc;
+	};
+
+	/**
+	 * Run at the end of the selection and display process. If a banner was chosen
+	 * to be displayed, the hook runs after it's loaded. If all attempted campaigns failed
+	 * and no banner will show, the hook runs then.
+	 */
+	Mixin.prototype.setFinalizeChooseAndMaybeDisplayHandler = function ( handlerFunc ) {
+		this.finalizeChooseAndMaybeDisplayHandler = handlerFunc;
 	};
 
 	/**
@@ -103,12 +123,18 @@
 		} );
 	}
 
-	function runPreBannerMixinHooks() {
+	function runPreBannerHooks() {
 		runMixinHooks( 'preBannerHandler', cn.internal.state.getAttemptingCampaign() );
 	}
 
-	function runPostBannerMixinHooks() {
-		runMixinHooks( 'postBannerHandler', cn.internal.state.getAttemptingCampaign() );
+	function runPostBannerOrFailHooks() {
+		runMixinHooks( 'postBannerOrFailHandler', cn.internal.state.getAttemptingCampaign() );
+	}
+
+	function runFinalizeChooseAndMaybeDisplayHooks() {
+		cn.internal.state.getAttemptedCampaigns().forEach( function ( campaign ) {
+			runMixinHooks( 'finalizeChooseAndMaybeDisplayHandler', campaign );
+		} );
 	}
 
 	/**
@@ -393,8 +419,8 @@
 			hide.processCookie();
 			if ( hide.shouldHide() ) {
 				state.failCampaign( hide.getReason() );
-				runPreBannerMixinHooks();
-				runPostBannerMixinHooks();
+				runPreBannerHooks();
+				runPostBannerOrFailHooks();
 
 				// Update available campaigns
 				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
@@ -405,12 +431,12 @@
 				continue;
 			}
 
-			runPreBannerMixinHooks();
+			runPreBannerHooks();
 
 			// If a pre-banner hook cancelled the campaign, then wrap up this iteration
 			// of the fallback loop.
 			if ( state.isCampaignFailed() ) {
-				runPostBannerMixinHooks();
+				runPostBannerOrFailHooks();
 
 				// Update available campaigns
 				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
@@ -433,9 +459,11 @@
 			return;
 		}
 
-		// Record impression and bow out if the last campaign attempted in the loop (and
-		// any previous ones that may have been attempted) failed.
+		// If the last campaign attempted in the loop (and any previous ones that may have
+		// been attempted) failed, run post-display-process hooks for all attempted
+		// campaigns, then record impression and bow out.
 		if ( state.isCampaignFailed() ) {
+			runFinalizeChooseAndMaybeDisplayHooks();
 			recordImpression();
 			return;
 		}
@@ -479,7 +507,8 @@
 
 		// In either of the above cases, if no banner was selected, bow out.
 		if ( !banner ) {
-			runPostBannerMixinHooks();
+			runPostBannerOrFailHooks();
+			runFinalizeChooseAndMaybeDisplayHooks();
 			recordImpression();
 			return;
 		}
@@ -510,7 +539,8 @@
 		// If we're testing a banner, don't call Special:RecordImpression or
 		// run mixin hooks.
 		if ( !cn.internal.state.getData().testingBanner ) {
-			runPostBannerMixinHooks();
+			runPostBannerOrFailHooks();
+			runFinalizeChooseAndMaybeDisplayHooks();
 			recordImpression();
 		}
 	}
@@ -536,7 +566,7 @@
 	 *
 	 *     bannerLoadedPromise: A promise that resolves when a banner is loaded.
 	 *         This property is only set after a banner has been chosen.
-	 *         Campaign mixins can use a postBannerMixinHook instead. Following
+	 *         Campaign mixins can use a postBannerOrFailMixinHook instead. Following
 	 *         legacy code, we call the promise with an object containing
 	 *         (almost all) the same data that is sent to
 	 *         Special:RecordImpression (though this data is also now available

@@ -629,7 +629,7 @@
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
 			}
 		);
-		mixin.setPostBannerHandler(
+		mixin.setPostBannerOrFailHandler(
 			function ( params ) {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
 			}
@@ -654,7 +654,7 @@
 				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
-		mixin.setPostBannerHandler(
+		mixin.setPostBannerOrFailHandler(
 			function ( params ) {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
 			}
@@ -683,7 +683,7 @@
 				);
 			}
 		);
-		mixin.setPostBannerHandler(
+		mixin.setPostBannerOrFailHandler(
 			function ( params ) {
 				assert.deepEqual(
 					params,

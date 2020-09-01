@@ -486,7 +486,7 @@
 			bannerSequence.preBannerHandler( { sequences: [ sequence ] } );
 
 			// Call the function under test
-			bannerSequence.postBannerHandler();
+			bannerSequence.postBannerOrFailHandler();
 		} );
 
 }() );
