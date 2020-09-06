@@ -201,36 +201,36 @@
 	 * @return {Object} An object containing count data.
 	 */
 	function getCounts() {
-		var counts;
+		var c;
 
 		if ( identifier ) {
-			counts = cn.kvStore.getItem(
+			c = cn.kvStore.getItem(
 				STORAGE_KEY + '_' + identifier,
 				cn.kvStore.contexts.GLOBAL,
 				multiStorageOption
 			);
 		} else {
-			counts = cn.kvStore.getItem(
+			c = cn.kvStore.getItem(
 				STORAGE_KEY,
 				cn.kvStore.contexts.CATEGORY,
 				multiStorageOption
 			);
 		}
-		counts = counts || getZeroedCounts();
+		c = c || getZeroedCounts();
 
-		return fixCountNames( counts );
+		return fixCountNames( c );
 	}
 
 	/*
 	 * Store updated counts
 	 */
-	function storeCounts( counts ) {
+	function storeCounts( c ) {
 
 		if ( identifier ) {
 
 			cn.kvStore.setItem(
 				STORAGE_KEY + '_' + identifier,
-				counts,
+				c,
 				cn.kvStore.contexts.GLOBAL,
 				COUNTS_STORAGE_TTL,
 				multiStorageOption
@@ -240,7 +240,7 @@
 
 			cn.kvStore.setItem(
 				STORAGE_KEY,
-				counts,
+				c,
 				cn.kvStore.contexts.CATEGORY,
 				COUNTS_STORAGE_TTL,
 				multiStorageOption

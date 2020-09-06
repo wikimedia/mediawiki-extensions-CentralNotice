@@ -425,7 +425,7 @@
 		 * As a side effect this will remove the currently chosen campaign from the list
 		 * of available campaigns, so it can't be chosen again
 		 *
-		 * @param reason
+		 * @param {string} reason
 		 */
 		cancelBanner: function ( reason ) {
 			state.data.bannerCanceledReason = reason;

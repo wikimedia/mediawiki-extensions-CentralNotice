@@ -92,21 +92,21 @@
 		 * Set a hide cookies for this domain and others in wgNoticeHideUrls
 		 * with the given reason and duration.
 		 *
-		 * @param {string} reason Reason to store in the hide cookie
+		 * @param {string} newReason Reason to store in the hide cookie
 		 * @param {number} duration Cookie duration, in seconds
 		 */
-		setHideCookies: function ( reason, duration ) {
+		setHideCookies: function ( newReason, duration ) {
 			var date = new Date(),
 				hideData = {
 					v: 1,
 					created: Math.floor( date.getTime() / 1000 ),
-					reason: reason
+					reason: newReason
 				};
 
 			// If this reason doesn't have an entry configured in
 			// wgNoticeCookieDurations, don't allow a longer duration than
 			// MAX_CUSTOM_HIDE_DURATION.
-			if ( !( reason in durations ) ) {
+			if ( !( newReason in durations ) ) {
 				duration = Math.min( MAX_CUSTOM_HIDE_DURATION, duration );
 			}
 
@@ -128,7 +128,7 @@
 					{
 						duration: duration,
 						category: category,
-						reason: reason
+						reason: newReason
 					}
 				);
 

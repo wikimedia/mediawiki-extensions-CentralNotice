@@ -163,7 +163,7 @@
 
 		if ( create && !( $input.length ) ) {
 
-			$input = $( '<input />' ).attr( {
+			$input = $( '<input>' ).attr( {
 				name: inputName,
 				type: 'hidden'
 			} );
@@ -182,7 +182,7 @@
 	 * @abstract
 	 * @class MixinCustomWidget
 	 * @extends OO.ui.Widget
-	 * @mixins OO.ui.mixin.GroupWidget
+	 * @mixes OO.ui.mixin.GroupWidget
 	 * @constructor
 	 *
 	 * @param {MixinCustomUiController} controller
@@ -190,8 +190,8 @@
 	 */
 	MixinCustomWidget = function ( controller, config ) {
 
-		var $element = $( '<fieldset></fieldset>' ),
-			$group = $( '<div></div>' );
+		var $element = $( '<fieldset>' ),
+			$group = $( '<div>' );
 
 		// Set up config with elements, CSS class and id. This should coordinate with
 		// makeMixinParamControlSet() (below) and

@@ -132,8 +132,8 @@
 					} );
 
 				// If the lookup was successful, store geo in a cookie
-				geoPromise.then( function ( geo ) {
-					storeGeoInCookie( geo );
+				geoPromise.then( function ( g ) {
+					storeGeoInCookie( g );
 				} );
 
 			// If no background lookup is available, we don't have geo data
