@@ -14,7 +14,7 @@
 	'use strict';
 
 	var multiStorageOption, days, SequenceManager, sequenceManager,
-		preBannerHandler, postBannerHandler,
+		preBannerHandler, postBannerOrFailHandler,
 		cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'bannerSequence' ),
 
@@ -297,7 +297,7 @@
 		cn.requestBanner( banner );
 	};
 
-	postBannerHandler = function () {
+	postBannerOrFailHandler = function () {
 
 		// If a banner was shown, or we showed no banner as part of an empty step, move to
 		// the next page view in the sequence. If necessary, set a flag.
@@ -314,7 +314,7 @@
 
 	// Register the handlers and mixin
 	mixin.setPreBannerHandler( preBannerHandler );
-	mixin.setPostBannerHandler( postBannerHandler );
+	mixin.setPostBannerOrFailHandler( postBannerOrFailHandler );
 	cn.registerCampaignMixin( mixin );
 
 	// Exports are for use in unit tests only
@@ -324,7 +324,7 @@
 		FLAG_STORAGE_KEY: FLAG_STORAGE_KEY,
 		LARGE_BANNER_LIMIT_STORAGE_KEY: LARGE_BANNER_LIMIT_STORAGE_KEY,
 		preBannerHandler: preBannerHandler,
-		postBannerHandler: postBannerHandler
+		postBannerOrFailHandler: postBannerOrFailHandler
 	} };
 
 }() );

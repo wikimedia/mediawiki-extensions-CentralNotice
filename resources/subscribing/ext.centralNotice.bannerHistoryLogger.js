@@ -22,6 +22,7 @@
 		log,
 		readyToLogDeferredObj = $.Deferred(),
 		logSent = false,
+		alreadyRun = false,
 		inSample,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
@@ -269,9 +270,17 @@
 		} );
 	}
 
-	// Set a function to run after a campaign is chosen and after a banner for
-	// that campaign is chosen or not.
-	mixin.setPostBannerHandler( function ( mixinParams ) {
+	// Set a function to run after the entire display process
+	mixin.setFinalizeChooseAndMaybeDisplayHandler( function ( mixinParams ) {
+
+		// Only run any processes once per pageview. This prevents multiple log
+		// entries per pageview if more than one attempted campaign has enabled
+		// this mixin. Note that there is currently no reconciliation for different
+		// banner history configuration settings in that scenario. See T261718.
+		if ( alreadyRun ) {
+			return;
+		}
+		alreadyRun = true;
 
 		waitLogNoSendBeacon = mixinParams.waitLogNoSendBeacon;
 
