@@ -250,7 +250,7 @@
 		 * Only campaigns that target the user's country and have at least
 		 * one banner for the user's logged-in status and device pass this filter.
 		 *
-		 * Campaigns that don't target the user's country or have
+		 * Campaigns that don't target the user's country or region, or have
 		 * no banners for their logged-in status and device will be removed.
 		 *
 		 * The server-side equivalent of this method is
@@ -309,6 +309,33 @@
 			}
 
 			return availableCampaigns;
+		},
+
+		updateAvailableCampaigns: function ( previousAvailableCampaigns,
+			failedCampaign, fallbackLoopIndex ) {
+			// FIXME As well as removing the failed campaign, also update throttling
+			// for any other campaigns that were throttled and that may have been up for
+			// grabs in the previous fallback loop. (Calculating the correct the
+			// probability in that case is what the fallbackLoopIndex parameter is for.)
+
+			var newAvailableCampaigns = previousAvailableCampaigns.slice(),
+
+				// Remove campaign from available campaigns list
+				// Find campaign object index by name
+				cIndex = newAvailableCampaigns.map( function ( c ) {
+					return c.name;
+				} ).indexOf( failedCampaign.name );
+
+			// Sanity check: Verify the failed campaign was in the list of available
+			// campaigns. (That should always be the case, so this conditional should
+			// never be true.)
+			if ( cIndex === -1 ) {
+				mw.log.warn( 'Failed campaign was not in list of available campaigns' );
+			} else {
+				newAvailableCampaigns.splice( cIndex, 1 );
+			}
+
+			return newAvailableCampaigns;
 		},
 
 		/**

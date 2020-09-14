@@ -227,8 +227,8 @@
 
 		var identifier, sequence, banner, pageView;
 
-		// Banner was already hidden
-		if ( cn.isBannerCanceled() ) {
+		// Campaign was already failed
+		if ( cn.isCampaignFailed() ) {
 			return;
 		}
 
@@ -237,7 +237,7 @@
 		// TODO Handle this on the server?
 		if ( !mixinParams.sequences ) {
 			mw.log.warn( 'Invalid sequences parameter received for banner sequence' );
-			cn.cancelBanner( 'jsonParamError' );
+			cn.failCampaign( 'jsonParamError' );
 			return;
 		}
 
@@ -249,7 +249,7 @@
 
 		// If there are no options for storing stuff, hide banner and bow out
 		if ( multiStorageOption === cn.kvStore.multiStorageOptions.NO_STORAGE ) {
-			cn.cancelBanner( 'noStorage' );
+			cn.failCampaign( 'noStorage' );
 			return;
 		}
 
@@ -278,7 +278,7 @@
 			// Tell the sequence manager to skip to the next step. If we've already gone
 			// through all the steps, don't show anything.
 			if ( !sequenceManager.skipToNextStep() ) {
-				cn.cancelBanner( 'bannerSequenceAllStepsSkipped' );
+				cn.failCampaign( 'bannerSequenceAllStepsSkipped' );
 				return;
 			}
 		}
@@ -289,7 +289,7 @@
 		// banner is null if this is an empty step
 		if ( banner === null ) {
 			showingEmptyStep = true;
-			cn.cancelBanner( 'bannerSequenceEmptyStep' );
+			cn.failCampaign( 'bannerSequenceEmptyStep' );
 			return;
 		}
 
