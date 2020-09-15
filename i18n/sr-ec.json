@@ -3,6 +3,7 @@
 		"authors": [
 			"Acamicamacaraca",
 			"BadDog",
+			"Kizule",
 			"Milicevic01",
 			"Millosh",
 			"Obsuser",
@@ -136,7 +137,7 @@
 	"centralnotice-documentwrite-error": "document.write() не може бити употребљен унутар банера.\nВидите https://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.",
 	"centralnotice-preferred": "Приоритет",
 	"centralnotice-archived": "Архивирано",
-	"centralnotice-logs": "Евиденције",
+	"centralnotice-logs": "Дневници",
 	"centralnotice-view-logs": "Погледај историје",
 	"centralnotice-timestamp": "Временска ознака",
 	"centralnotice-user": "Корисник",

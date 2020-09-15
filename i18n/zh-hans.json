@@ -36,6 +36,7 @@
 			"Zhuyifei1999",
 			"乌拉跨氪",
 			"佛壁灯",
+			"列维劳德",
 			"科劳",
 			"阿pp"
 		]
@@ -334,7 +335,7 @@
 	"centralnotice-impression-events-sample-rate": "印象事件抽样率",
 	"centralnotice-impression-events-sample-rate-help": "为日志记录印象事件设置非默认抽样率。",
 	"centralnotice-impression-events-sample-rate-field": "印象事件抽样率，应为0~1（包含）之间的数",
-	"centralnotice-banner-protection-log-reason": "被 CentralNotice 自动保护，编者仅可通过 [[Special:CentralNotice]] 或 [[Special:Translate]] 进行编辑。",
+	"centralnotice-banner-protection-log-reason": "被 CentralNotice 自动保护，请编者仅通过 [[Special:CentralNotice]] 或 [[Special:Translate]] 进行编辑。",
 	"centralnotice-multiple-countries": "多个国家",
 	"centralnotice-multiple-regions": "多个地区",
 	"centralnotice-multiple-languages": "多种语言",

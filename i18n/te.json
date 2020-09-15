@@ -116,8 +116,8 @@
 	"centralnotice-country": "దేశం",
 	"centralnotice-region": "ప్రాంతం",
 	"centralnotice-no-allocation": "బ్యానర్లేమీ కేటాయించలేదు.",
-	"centralnotice-allocation-description": "బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, డివైసు $4 లో",
-	"centralnotice-historical-allocation-description": "బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, డివైసు $4 లో $5 సమయానికి",
+	"centralnotice-allocation-description": "బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, పరికరం $4 లో",
+	"centralnotice-historical-allocation-description": "బ్యానరు కేటాయింపు, ఈ భాష కోసం: $1, ప్రాజెక్టు: $2, ఈ దేశంలో: $3, పరికరం $4 లో, $5 సమయానికి",
 	"centralnotice-percentage": "శాతం",
 	"centralnotice-documentwrite-error": "బ్యానరు లోపల document.write() వాడజాలరు.\nమరింత సమాచారం కోసం https://meta.wikimedia.org/wiki/Help:CentralNotice చూడండి.",
 	"centralnotice-preferred": "ప్రాధాన్యత",
@@ -187,7 +187,7 @@
 	"centralnotice-start-time": "ప్రారంభ సమయం (UTC)",
 	"centralnotice-end-date": "ముగింపు తేదీ (UTC)",
 	"centralnotice-end-time": "ముగింపు సమయం (UTC)",
-	"centralnotice-multiple-countries": "బహుళం ($1)",
-	"centralnotice-multiple-languages": "బహుళం ($1)",
+	"centralnotice-multiple-countries": "పలు దేశాలు",
+	"centralnotice-multiple-languages": "పలు భాషలు",
 	"centralnotice-banner-template-info": "(మూస)"
 }

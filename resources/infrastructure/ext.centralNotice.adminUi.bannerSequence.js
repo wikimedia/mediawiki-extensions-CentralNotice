@@ -959,7 +959,7 @@
 		} );
 
 		// Heading text
-		this.$heading = $( '<div />' )
+		this.$heading = $( '<div>' )
 			.addClass( 'centralNoticeBannerSeqBucketSeqTitle' );
 
 		// Add stuff to config before calling parent constructor
@@ -1204,7 +1204,7 @@
 		// in OOUI styles.
 		// TODO Check this out; possible mistaken change to DraggableElement.less in
 		// f6be5b2f1f0ef67ab0efeaa25568976587435d95 ?
-		this.$handle = $( '<div />' ).addClass(
+		this.$handle = $( '<div>' ).addClass(
 			'centralNoticeBannerSeqStepHandle oo-ui-widget' );
 
 		this.$group.append( this.$handle );

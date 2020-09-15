@@ -4,7 +4,8 @@
 			"Bikarhêner",
 			"George Animal",
 			"Ghybu",
-			"Gomada"
+			"Gomada",
+			"Guherto"
 		]
 	},
 	"centralnotice-modify": "Tomar bike",
@@ -40,6 +41,7 @@
 	"centralnotice-change-summary-heading": "Kurte",
 	"centralnotice-talk-link": "gotûbêj",
 	"centralnotice-all": "Hemû",
+	"centralnotice-user-role-logged-in": "Têketî",
 	"centralnotice-banner-class": "Kategorî",
 	"centralnotice-archive-banner-cancel": "Betal bike",
 	"centralnotice-change-summary-label": "Kurte",

@@ -22,7 +22,7 @@
 	"centralnotice-enabled": "সক্ৰিয়",
 	"centralnotice-modify": "দাখিল কৰক",
 	"centralnotice-view": "দৰ্শন",
-	"centralnotice-save-banner": "বেনাৰ সাঁচক",
+	"centralnotice-save-banner": "সাঁচি থওক",
 	"centralnotice-add-new": "এটা নতুন প্ৰচাৰ যোগ কৰক",
 	"centralnotice-remove": "অপসাৰণ",
 	"centralnotice-translate-heading": "$1ৰ বাবে অনুবাদ",
@@ -55,7 +55,7 @@
 	"centralnotice-notice-doesnt-exist": "প্ৰচাৰৰ অস্তিত্ব নাই।",
 	"centralnotice-remove-notice-doesnt-exist": "প্ৰচাৰৰ কোনো অস্তিত্ব নাই।\nআঁতৰাবলৈ একো নাই।",
 	"centralnotice-banner-doesnt-exist": "বেনাৰৰ কোনো অস্তিত্ব নাই।",
-	"centralnotice-template-still-bound": "বেনাৰখন এটা প্ৰচাৰৰ লগত সংযুক্ত হৈ আছে।\nআঁতৰ কৰা হোৱা নাই।",
+	"centralnotice-template-still-bound": "\"$1\" বেনাৰখন এটা প্ৰচাৰৰ লগত সংযুক্ত হৈ আছে।\nআঁতৰ কৰা হোৱা নাই।",
 	"centralnotice-template-body": "বেনাৰ বডী:",
 	"centralnotice-day": "দিন",
 	"centralnotice-year": "বছৰ",
@@ -163,5 +163,5 @@
 	"centralnotice-end-date": "শেষ হোৱা তাৰিখ",
 	"centralnotice-end-time": "শেষ হোৱা সময় (UTC)",
 	"centralnotice-multiple-countries": "একাধিক ($1)",
-	"centralnotice-multiple-languages": "একাধিক ($1)"
+	"centralnotice-multiple-languages": "একাধিক ভাষা"
 }

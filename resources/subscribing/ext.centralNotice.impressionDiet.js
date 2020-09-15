@@ -62,13 +62,13 @@
 		possiblyMigrateLegacyCookies();
 
 		// Banner was hidden already
-		if ( cn.isBannerCanceled() ) {
+		if ( cn.isCampaignFailed() ) {
 			return;
 		}
 
 		// No options for storing stuff, so hide banner and bow out
 		if ( multiStorageOption === cn.kvStore.multiStorageOptions.NO_STORAGE ) {
-			cn.cancelBanner( 'waitnostorage' );
+			cn.failCampaign( 'waitnostorage' );
 			return;
 		}
 
@@ -116,7 +116,7 @@
 
 		if ( hide ) {
 			// Hide based on the results.
-			cn.cancelBanner( hide );
+			cn.failCampaign( hide );
 		} else {
 			// Count shown impression.
 			counts.seenThisCycle += 1;
@@ -201,36 +201,36 @@
 	 * @return {Object} An object containing count data.
 	 */
 	function getCounts() {
-		var counts;
+		var c;
 
 		if ( identifier ) {
-			counts = cn.kvStore.getItem(
+			c = cn.kvStore.getItem(
 				STORAGE_KEY + '_' + identifier,
 				cn.kvStore.contexts.GLOBAL,
 				multiStorageOption
 			);
 		} else {
-			counts = cn.kvStore.getItem(
+			c = cn.kvStore.getItem(
 				STORAGE_KEY,
 				cn.kvStore.contexts.CATEGORY,
 				multiStorageOption
 			);
 		}
-		counts = counts || getZeroedCounts();
+		c = c || getZeroedCounts();
 
-		return fixCountNames( counts );
+		return fixCountNames( c );
 	}
 
 	/*
 	 * Store updated counts
 	 */
-	function storeCounts( counts ) {
+	function storeCounts( c ) {
 
 		if ( identifier ) {
 
 			cn.kvStore.setItem(
 				STORAGE_KEY + '_' + identifier,
-				counts,
+				c,
 				cn.kvStore.contexts.GLOBAL,
 				COUNTS_STORAGE_TTL,
 				multiStorageOption
@@ -240,7 +240,7 @@
 
 			cn.kvStore.setItem(
 				STORAGE_KEY,
-				counts,
+				c,
 				cn.kvStore.contexts.CATEGORY,
 				COUNTS_STORAGE_TTL,
 				multiStorageOption

@@ -42,7 +42,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		// The MediaWiki page name convention for messages is the same as the
 		// convention for banners themselves, except that it doesn't include
 		// the 'template' designation.
-		if ( $this->namespace == NS_CN_BANNER ) {
+		if ( $this->namespace === NS_CN_BANNER ) {
 			$msgKeyPrefix = $this->bannerName . '-';
 		} else {
 			$msgKeyPrefix = "Centralnotice-{$this->bannerName}-";
@@ -69,7 +69,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		// convention for banners themselves, except that it doesn't include
 		// the 'template' designation.
 		$msgDefKeyPrefix = "Centralnotice-{$this->bannerName}-";
-		if ( $this->namespace == NS_CN_BANNER ) {
+		if ( $this->namespace === NS_CN_BANNER ) {
 			$msgKeyPrefix = $this->bannerName . '-';
 		} else {
 			$msgKeyPrefix = $msgDefKeyPrefix;

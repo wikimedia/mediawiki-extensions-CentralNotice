@@ -7,8 +7,8 @@
 		// Parts of API to be replaced with mocks, below
 		realKvStore = cn.kvStore,
 		realGetDataProperty = cn.getDataProperty,
-		realCancelBanner = cn.cancelBanner,
-		realIsBannerCanceled = cn.isBannerCanceled,
+		realFailCampaign = cn.failCampaign,
+		realIsCampaignFailed = cn.isCampaignFailed,
 		realRequestBanner = cn.requestBanner,
 		realIsBannerShown = cn.isBannerShown,
 
@@ -143,8 +143,8 @@
 			// Restore original centralNotice API
 			cn.kvStore = realKvStore;
 			cn.getDataProperty = realGetDataProperty;
-			cn.cancelBanner = realCancelBanner;
-			cn.isBannerCanceled = realIsBannerCanceled;
+			cn.failCampaign = realFailCampaign;
+			cn.isCampaignFailed = realIsCampaignFailed;
 			cn.requestBanner = realRequestBanner;
 			cn.isBannerShown = realIsBannerShown;
 		}
@@ -349,7 +349,7 @@
 			};
 
 			// Stub
-			cn.isBannerCanceled = function () {};
+			cn.isCampaignFailed = function () {};
 
 			// Call the function under test
 			bannerSequence.preBannerHandler( { sequences: [ null, sequence ] } );
@@ -400,8 +400,8 @@
 				throw new Error( 'Incorrect property ' + property + ' in call to getDataProperty()' );
 			};
 
-			// Mock to cancel banner (empty step)
-			cn.cancelBanner = function ( reason ) {
+			// Mock to fail campaign (empty step)
+			cn.failCampaign = function ( reason ) {
 				assert.strictEqual(
 					reason,
 					'bannerSequenceEmptyStep',
@@ -410,7 +410,7 @@
 			};
 
 			// Stub
-			cn.isBannerCanceled = function () {};
+			cn.isCampaignFailed = function () {};
 
 			// Call the function under test
 			bannerSequence.preBannerHandler( { sequences: [ sequence ] } );
@@ -480,13 +480,13 @@
 
 			// Stubs
 			cn.requestBanner = function () {};
-			cn.isBannerCanceled = function () {};
+			cn.isCampaignFailed = function () {};
 
 			// Call to pre-banner handler required for call to post-banner handler to work
 			bannerSequence.preBannerHandler( { sequences: [ sequence ] } );
 
 			// Call the function under test
-			bannerSequence.postBannerHandler();
+			bannerSequence.postBannerOrFailHandler();
 		} );
 
 }() );

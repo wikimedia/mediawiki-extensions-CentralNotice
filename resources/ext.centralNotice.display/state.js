@@ -10,6 +10,7 @@
 
 	var state,
 		status,
+		campaignAttemptsManager,
 		config = require( './config.json' ),
 		impressionEventSampleRateOverridden = false,
 
@@ -32,7 +33,9 @@
 
 		STATUSES = {
 			CAMPAIGN_NOT_CHOSEN: new Status( 'campaign_not_chosen', 0 ),
+			// TODO Rename this status to ATTEMPTING_CAMPAIGN (T232236)
 			CAMPAIGN_CHOSEN: new Status( 'campaign_chosen', 1 ),
+			// TODO Rename this status to CAMPAIGN_FAILED (T232236)
 			BANNER_CANCELED: new Status( 'banner_canceled', 2 ),
 			NO_BANNER_AVAILABLE: new Status( 'no_banner_available', 3 ),
 			BANNER_CHOSEN: new Status( 'banner_chosen', 4 ),
@@ -68,6 +71,45 @@
 			bannerSequenceEmptyStep: 19,
 			bannerSequenceAllStepsSkipped: 20
 		};
+
+	campaignAttemptsManager = ( function () {
+		var attemptedCampaignStatusesByName = {},
+			hasOwn = Object.prototype.hasOwnProperty;
+
+		return {
+			setCampaignStatus: function ( c, statusCode ) {
+				var statusObj;
+
+				if ( !hasOwn.call( state.attemptedCampaignsByName, c.name ) ) {
+					// If this is the first time we've seen this campaign, add it to the
+					// indexes and to the list of campiagn statuses.
+					statusObj = {
+						statusCode: statusCode,
+						campaign: c.name,
+						bannersCount: c.banners.length
+					};
+
+					state.data.campaignStatuses.push( statusObj );
+					attemptedCampaignStatusesByName[ c.name ] = statusObj;
+					state.attemptedCampaignsByName[ c.name ] = c;
+
+				} else {
+					// Otherwise, just update the status code in campaign status object.
+					// The following will update the object in state.data.campaignStatuses,
+					// since the objects in that array are the same as the values of
+					// attemptedCampaignStatusesByName.
+
+					attemptedCampaignStatusesByName[ c.name ].statusCode = statusCode;
+				}
+			},
+
+			getAttemptedCampaigns: function () {
+				return state.data.campaignStatuses.map( function ( statusObj ) {
+					return state.attemptedCampaignsByName[ statusObj.campaign ];
+				} );
+			}
+		};
+	}() );
 
 	function Status( key, code ) {
 		this.key = key;
@@ -163,9 +205,6 @@
 		// TODO Is this still needed? Maybe deprecate?
 		state.data.getVars = urlParams;
 
-		// Contains list of available campaigns
-		state.data.availableCampaigns = [];
-
 		// Contains list of campaigns statuses
 		state.data.campaignStatuses = [];
 	}
@@ -183,35 +222,19 @@
 	}
 
 	function setStatus( s, reason ) {
-		var cIndex, reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
+		var reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
 		status = s;
 		state.data.status = s.key;
 		state.data.statusCode = s.code.toString() + reasonCodeStr;
-		// Update campaign status (only if there is a campaign set)
-		if ( state.data.campaign && state.data.campaignStatuses.length ) {
-			// Find campaign object index by name
-			cIndex = state.data.campaignStatuses.map( function ( c ) {
-				return c.campaign;
-			} ).indexOf( state.data.campaign );
-			// We don't need to check the cIndex since we know the campaign is on the list
-			state.data.campaignStatuses[ cIndex ].statusCode = state.data.statusCode;
-		}
-	}
 
-	/**
-	 * Fails currently selected campaign by removing it from availableCampaigns array
-	 * The function should not be called until after setAvailableCampaigns and setCampaign
-	 * have been called
-	 */
-	function failCampaign() {
-		var cIndex;
-		// Remove campaign from available campaigns list
-		// Find campaign object index by name
-		cIndex = state.data.availableCampaigns.map( function ( c ) {
-			return c.name;
-		} ).indexOf( state.data.campaign );
-		// We don't need to check the cIndex since we know the campaign is on the list
-		state.data.availableCampaigns.splice( cIndex, 1 );
+		// Update campaign status in the campaign attempts manager if a campaign is
+		// currently being attempted.
+		if ( state.data.campaign ) {
+			campaignAttemptsManager.setCampaignStatus(
+				state.campaign,
+				state.data.statusCode
+			);
+		}
 	}
 
 	/**
@@ -243,6 +266,11 @@
 		 * @private
 		 */
 		banner: null,
+
+		/**
+		 * @private
+		 */
+		attemptedCampaignsByName: {},
 
 		/**
 		 * Call this with geo data before calling setUp() or
@@ -308,7 +336,6 @@
 
 			if ( prepareForLogging ) {
 				delete dataCopy.getVars;
-				delete dataCopy.mixins;
 				delete dataCopy.tests;
 				delete dataCopy.reducedBucket;
 				delete dataCopy.availableCampaigns;
@@ -321,55 +348,36 @@
 		},
 
 		/**
-		 * Set campaigns available
+		 * Set a list of campaigns that may be selected for this pageview. This method
+		 * will be called to update the list on each iteration of the fallback loop.
 		 */
 		setAvailableCampaigns: function ( availableCampaigns ) {
 			state.data.availableCampaigns = availableCampaigns;
 		},
 
 		/**
-		 * Sets the campaign that will be used by the state as current
+		 * Sets the campaign that is currently being attempted. This campaign will be used
+		 * by state as current, and if no others are attempted, final.
 		 *
-		 * @param {Object} c the campaign object, must be from the list of available campaigns
+		 * @param {Object} c the campaign object, from the list of available campaigns
 		 */
-		setCampaign: function ( c ) {
-			var prop, i,
+		setAttemptingCampaign: function ( c ) {
+			var i,
 				category,
-				campaignCategory = null,
-				check;
-
-			check = state.data.availableCampaigns.map( function ( availableCampaign ) {
-				return availableCampaign.name;
-			} ).indexOf( c.name );
-
-			if ( check === -1 ) {
-				throw new Error( 'The campaign being set is not in available campaigns list' );
-			}
+				campaignCategory = null;
 
 			// Resetting previously set flags (if any)
 			delete state.data.result;
 			delete state.data.reason;
 			delete state.data.bannerCanceledReason;
+			delete state.data.bannersNotGuaranteedToDisplay;
 
 			state.campaign = c;
-			state.data.campaign = state.campaign.name;
+			state.data.campaign = c.name;
 
-			// Push to campaign statuses array
-			state.data.campaignStatuses.push( {
-				statusCode: null,
-				campaign: state.data.campaign, // name
-				bannersCount: state.campaign.banners.length
-			} );
-
+			// The following should ony be called _after_ state.campaign is set, otherwise
+			// the status won't be included in the record of attempted campaign statuses.
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
-
-			// Provide the names of mixins enabled in this campaign
-			state.data.mixins = {};
-			for ( prop in state.campaign.mixins ) {
-				if ( Object.hasOwnProperty.call( state.campaign.mixins, prop ) ) {
-					state.data.mixins[ prop ] = true;
-				}
-			}
 
 			// Set the campaignCategory property if all the banners in this
 			// campaign have the same category. This is necessary so we can
@@ -398,8 +406,12 @@
 				config.categoriesUsingLegacy.indexOf( campaignCategory ) !== -1;
 		},
 
-		getCampaign: function () {
-			return state.campaign;
+		/**
+		 * Return the campaign currently being attempted, or null if no campaign has
+		 * been attempted yet.
+		 */
+		getAttemptingCampaign: function () {
+			return state.campaign === undefined ? null : state.campaign;
 		},
 
 		setBanner: function ( b ) {
@@ -422,23 +434,34 @@
 		},
 
 		/**
-		 * As a side effect this will remove the currently chosen campaign from the list
-		 * of available campaigns, so it can't be chosen again
+		 * Legacy method, deprecated. Use failCampaign().
 		 *
-		 * @param reason
+		 * @param {string} reason
 		 */
 		cancelBanner: function ( reason ) {
+			state.failCampaign( reason );
+		},
+
+		/**
+		 * Marks a campaign as failed.
+		 */
+		failCampaign: function ( reason ) {
 			state.data.bannerCanceledReason = reason;
 			setStatus( STATUSES.BANNER_CANCELED, reason );
 
 			// Legacy fields for Special:RecordImpression
 			state.data.result = 'hide';
 			state.data.reason = reason;
-
-			failCampaign();
 		},
 
+		/**
+		 * Legacy metod, deprecated. Use isCampaignFailed().
+		 */
 		isBannerCanceled: function () {
+			return state.isCampaignFailed();
+		},
+
+		isCampaignFailed: function () {
 			return status === STATUSES.BANNER_CANCELED;
 		},
 
@@ -580,6 +603,10 @@
 		 */
 		countCampaignsAttempted: function () {
 			return state.data.campaignStatuses.length;
+		},
+
+		getAttemptedCampaigns: function () {
+			return campaignAttemptsManager.getAttemptedCampaigns();
 		}
 	};
 }() );

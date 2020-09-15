@@ -229,6 +229,7 @@
 	"centralnotice-end-time": "Sluttid (UTC)",
 	"centralnotice-banner-sequence-days-error": "Skal være et heltal større end nul.",
 	"centralnotice-banner-sequence-bucket-add-step": "Tilføj et trin",
+	"centralnotice-banner-sequence-page-views": "Sidevisninger",
 	"centralnotice-multiple-countries": "Flere lande",
 	"centralnotice-multiple-languages": "Flere sprog",
 	"centralnotice-create-from-template-checkbox-label": "Opret fra skabelon"

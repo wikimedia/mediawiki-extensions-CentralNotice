@@ -163,7 +163,7 @@
 
 		if ( create && !( $input.length ) ) {
 
-			$input = $( '<input />' ).attr( {
+			$input = $( '<input>' ).attr( {
 				name: inputName,
 				type: 'hidden'
 			} );
@@ -182,7 +182,7 @@
 	 * @abstract
 	 * @class MixinCustomWidget
 	 * @extends OO.ui.Widget
-	 * @mixins OO.ui.mixin.GroupWidget
+	 * @mixes OO.ui.mixin.GroupWidget
 	 * @constructor
 	 *
 	 * @param {MixinCustomUiController} controller
@@ -190,8 +190,8 @@
 	 */
 	MixinCustomWidget = function ( controller, config ) {
 
-		var $element = $( '<fieldset></fieldset>' ),
-			$group = $( '<div></div>' );
+		var $element = $( '<fieldset>' ),
+			$group = $( '<div>' );
 
 		// Set up config with elements, CSS class and id. This should coordinate with
 		// makeMixinParamControlSet() (below) and
@@ -292,13 +292,13 @@
 		var i, isBucketDisabled,
 			numBuckets = getNumBuckets(),
 			maxNumBuckets = mw.config.get( 'wgNoticeNumberOfBuckets' ),
-			bucketSelectors = $( 'select.bucketSelector' ),
+			$bucketSelectors = $( 'select.bucketSelector' ),
 
-			bucketSelectorUnassigned =
-				bucketSelectors.not( '.bucketSelectorForAssignedBanners' );
+			$bucketSelectorUnassigned =
+				$bucketSelectors.not( '.bucketSelectorForAssignedBanners' );
 
 		// Change selected value of bucket selectors to only available buckets
-		bucketSelectors.each( function () {
+		$bucketSelectors.each( function () {
 			var $selector = $( this ),
 				selectedVal = $selector.val();
 
@@ -315,16 +315,16 @@
 		// not be submitted to the server.)
 
 		if ( numBuckets === 1 ) {
-			bucketSelectorUnassigned.prop( 'disabled', true );
+			$bucketSelectorUnassigned.prop( 'disabled', true );
 		} else {
-			bucketSelectors.prop( 'disabled', false );
+			$bucketSelectors.prop( 'disabled', false );
 		}
 
 		// Enable or disable bucket options in drop-downs, as appropriate
 		for ( i = 0; i < maxNumBuckets; i++ ) {
 			isBucketDisabled = ( i >= numBuckets );
 
-			bucketSelectors.find( 'option[value=' + i + ']' )
+			$bucketSelectors.find( 'option[value=' + i + ']' )
 				.prop( 'disabled', isBucketDisabled );
 		}
 

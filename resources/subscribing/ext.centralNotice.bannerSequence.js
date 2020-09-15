@@ -14,7 +14,7 @@
 	'use strict';
 
 	var multiStorageOption, days, SequenceManager, sequenceManager,
-		preBannerHandler, postBannerHandler,
+		preBannerHandler, postBannerOrFailHandler,
 		cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'bannerSequence' ),
 
@@ -227,8 +227,8 @@
 
 		var identifier, sequence, banner, pageView;
 
-		// Banner was already hidden
-		if ( cn.isBannerCanceled() ) {
+		// Campaign was already failed
+		if ( cn.isCampaignFailed() ) {
 			return;
 		}
 
@@ -237,7 +237,7 @@
 		// TODO Handle this on the server?
 		if ( !mixinParams.sequences ) {
 			mw.log.warn( 'Invalid sequences parameter received for banner sequence' );
-			cn.cancelBanner( 'jsonParamError' );
+			cn.failCampaign( 'jsonParamError' );
 			return;
 		}
 
@@ -249,7 +249,7 @@
 
 		// If there are no options for storing stuff, hide banner and bow out
 		if ( multiStorageOption === cn.kvStore.multiStorageOptions.NO_STORAGE ) {
-			cn.cancelBanner( 'noStorage' );
+			cn.failCampaign( 'noStorage' );
 			return;
 		}
 
@@ -278,7 +278,7 @@
 			// Tell the sequence manager to skip to the next step. If we've already gone
 			// through all the steps, don't show anything.
 			if ( !sequenceManager.skipToNextStep() ) {
-				cn.cancelBanner( 'bannerSequenceAllStepsSkipped' );
+				cn.failCampaign( 'bannerSequenceAllStepsSkipped' );
 				return;
 			}
 		}
@@ -289,7 +289,7 @@
 		// banner is null if this is an empty step
 		if ( banner === null ) {
 			showingEmptyStep = true;
-			cn.cancelBanner( 'bannerSequenceEmptyStep' );
+			cn.failCampaign( 'bannerSequenceEmptyStep' );
 			return;
 		}
 
@@ -297,7 +297,7 @@
 		cn.requestBanner( banner );
 	};
 
-	postBannerHandler = function () {
+	postBannerOrFailHandler = function () {
 
 		// If a banner was shown, or we showed no banner as part of an empty step, move to
 		// the next page view in the sequence. If necessary, set a flag.
@@ -314,7 +314,7 @@
 
 	// Register the handlers and mixin
 	mixin.setPreBannerHandler( preBannerHandler );
-	mixin.setPostBannerHandler( postBannerHandler );
+	mixin.setPostBannerOrFailHandler( postBannerOrFailHandler );
 	cn.registerCampaignMixin( mixin );
 
 	// Exports are for use in unit tests only
@@ -324,7 +324,7 @@
 		FLAG_STORAGE_KEY: FLAG_STORAGE_KEY,
 		LARGE_BANNER_LIMIT_STORAGE_KEY: LARGE_BANNER_LIMIT_STORAGE_KEY,
 		preBannerHandler: preBannerHandler,
-		postBannerHandler: postBannerHandler
+		postBannerOrFailHandler: postBannerOrFailHandler
 	} };
 
 }() );

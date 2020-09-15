@@ -133,7 +133,7 @@
 
 		// No need to switch if the banner's already hidden or we're already
 		// on a small banner bucket
-		if ( cn.isBannerCanceled() ) {
+		if ( cn.isCampaignFailed() ) {
 			cn.setDebugInfo( 'lbl: hidden' );
 			return;
 		}
@@ -172,7 +172,7 @@
 		// gets shown, and set a flag, in the post banner handler.
 	} );
 
-	mixin.setPostBannerHandler( function () {
+	mixin.setPostBannerOrFailHandler( function () {
 
 		// If a large banner was shown, but not forced, set a flag to remember
 		// the reader has seen a large banner. The next time they might
