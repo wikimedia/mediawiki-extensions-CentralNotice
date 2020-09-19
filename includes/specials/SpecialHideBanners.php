@@ -7,8 +7,8 @@
  */
 class SpecialHideBanners extends UnlistedSpecialPage {
 	// Cache this blank response for a day or so (60 * 60 * 24 s.)
-	const CACHE_EXPIRY = 86400;
-	const P3P_SUBPAGE = 'P3P';
+	private const CACHE_EXPIRY = 86400;
+	private const P3P_SUBPAGE = 'P3P';
 
 	public function __construct() {
 		parent::__construct( 'HideBanners' );

@@ -9,18 +9,18 @@
  */
 class ApiCentralNoticeChoiceData extends ApiBase {
 
-	const LANG_FILTER = '/[a-zA-Z0-9\-]+/';
+	private const LANG_FILTER = '/[a-zA-Z0-9\-]+/';
 
-	const PROJECT_FILTER = '/[a-zA-Z0-9_\-]+/';
+	private const PROJECT_FILTER = '/[a-zA-Z0-9_\-]+/';
 
-	const LOCATION_FILTER = '/[a-zA-Z0-9_\-]+/';
+	private const LOCATION_FILTER = '/[a-zA-Z0-9_\-]+/';
 
-	const DEVICE_NAME_FILTER = '/[a-zA-Z0-9_\-]+/';
+	private const DEVICE_NAME_FILTER = '/[a-zA-Z0-9_\-]+/';
 
 	/**
 	 * Regex for filtering values of the status parameter
 	 */
-	const STATUS_FILTER = '/loggedin|anonymous/';
+	private const STATUS_FILTER = '/loggedin|anonymous/';
 
 	public function execute() {
 		// Extract, sanitize and munge the parameters

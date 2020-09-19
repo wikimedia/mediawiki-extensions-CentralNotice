@@ -1,7 +1,7 @@
 <?php
 
 class CentralNoticeTestFixtures {
-	const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
+	private const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
 
 	/** @var array */
 	public $spec = [];

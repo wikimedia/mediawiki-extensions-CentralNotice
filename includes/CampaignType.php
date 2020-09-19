@@ -11,10 +11,10 @@ class CampaignType {
 	// Prefix for creating i18n message key from id.
 	// Note: Coordinate with message keys (en.json and qqq.json) for types included
 	// as default values for $wgCentralNoticeCampaignTypes.
-	const MESSAGE_KEY_PREFIX = 'centralnotice-campaign-type-';
+	private const MESSAGE_KEY_PREFIX = 'centralnotice-campaign-type-';
 
 	// Prefix for creating preference key from id.
-	const PREFERENCE_KEY_PREFIX = 'centralnotice-display-campaign-type-';
+	private const PREFERENCE_KEY_PREFIX = 'centralnotice-display-campaign-type-';
 
 	/** @var CampaignType[] */
 	private static $types;

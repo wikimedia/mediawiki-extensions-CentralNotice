@@ -10,8 +10,8 @@ class BannerMessage {
 	/** @var string */
 	private $name;
 
-	const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
-	const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
+	private const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
+	private const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
 
 	public function __construct( $banner_name, $name ) {
 		$this->banner_name = $banner_name;

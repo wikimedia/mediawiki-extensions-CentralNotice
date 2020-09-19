@@ -15,8 +15,8 @@ class CNCampaignPager extends TablePager {
 	// For now, we want to make this display without paging on
 	// meta.wikimedia.org, in line with the functionality that users currently
 	// encounter.
-	// This should be enuf--Meta has less than 500 campaigns.
-	const DEFAULT_LIMIT = 5000;
+	// This should be enough--Meta has less than 500 campaigns.
+	private const DEFAULT_LIMIT = 5000;
 
 	/** @var CentralNotice */
 	protected $onSpecialCN;

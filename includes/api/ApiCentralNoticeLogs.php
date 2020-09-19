@@ -5,8 +5,8 @@
 /** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeLogs extends ApiQueryBase {
 
-	const USER_FILTER = '/[a-zA-Z0-9_.]+/';
-	const CAMPAIGNS_FILTER = '/[a-zA-Z0-9_|\-]+/';
+	private const USER_FILTER = '/[a-zA-Z0-9_.]+/';
+	private const CAMPAIGNS_FILTER = '/[a-zA-Z0-9_|\-]+/';
 
 	public function execute() {
 		// Obtain the ApiResults object from the base
@@ -19,9 +19,9 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 		$limit = $params['limit'];
 		$offset = $params['offset'];
 
-		$user = $this->sanitizeText( $params['user'], self::USER_FILTER );
+		$user = self::sanitizeText( $params['user'], self::USER_FILTER );
 		# TODO: multiple
-		$campaign = $this->sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER );
+		$campaign = self::sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER );
 
 		$logs = Campaign::campaignLogs( $campaign, $user, $start, $end, $limit, $offset );
 

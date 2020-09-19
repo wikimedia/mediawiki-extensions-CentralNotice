@@ -11,10 +11,10 @@ use Wikimedia\Rdbms\IDatabase;
 class ChoiceDataProvider {
 
 	/** @var string Common prefix for choice data cache keys */
-	const CACHE_KEY_NAMESPACE = 'CentralNoticeChoiceData';
+	private const CACHE_KEY_NAMESPACE = 'CentralNoticeChoiceData';
 
 	/** @var int Time-to-live for choice data cache entries, in seconds */
-	const CACHE_TTL = 3600;
+	private const CACHE_TTL = 3600;
 
 	/**
 	 * Invalidate the shared global cache.

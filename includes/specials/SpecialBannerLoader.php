@@ -7,16 +7,16 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * Seconds leeway for checking stale choice data. Should be the same
 	 * as CAMPAIGN_STALENESS_LEEWAY in ext.centralNotice.display.chooser.js.
 	 */
-	const CAMPAIGN_STALENESS_LEEWAY = 900;
+	private const CAMPAIGN_STALENESS_LEEWAY = 900;
 
 	/* Possible values for $this->cacheResponse */
-	const MAX_CACHE_NORMAL = 0;
-	const MAX_CACHE_REDUCED = 1;
+	private const MAX_CACHE_NORMAL = 0;
+	private const MAX_CACHE_REDUCED = 1;
 
 	/* Possible values for $this->requestType */
-	const USER_DISPLAY_REQUEST = 0;
-	const TESTING_SAVED_REQUEST = 1;
-	const PREVIEW_UNSAVED_REQUEST = 2;
+	private const USER_DISPLAY_REQUEST = 0;
+	private const TESTING_SAVED_REQUEST = 1;
+	private const PREVIEW_UNSAVED_REQUEST = 2;
 
 	/** @var string Name of the chosen banner */
 	private $bannerName;

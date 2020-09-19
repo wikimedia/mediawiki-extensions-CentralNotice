@@ -26,8 +26,8 @@
  */
 class AllocationCalculator {
 
-	const LOGGED_IN = 0;
-	const ANONYMOUS = 1;
+	public const LOGGED_IN = 0;
+	public const ANONYMOUS = 1;
 
 	/**
 	 * Filter an array in the format output by
