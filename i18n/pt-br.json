@@ -339,5 +339,6 @@
 	"centralnotice-banner-template-error": "O banner não pode ser criado com base em um banner inválido ou em um banner que não esteja marcado como predefinição.\nNotAdding",
 	"centralnotice-add-banner-from-template": "Adicionar um banner da predefinição",
 	"centralnotice-messages-banner-in-campaign": "Não é possível marcar esse banner como predefinição enquanto estiver atribuído a uma ou mais campanhas. Este banner é atribuído às seguintes campanhas:",
-	"centralnotice-create-from-template-checkbox-label": "Criar a partir da predefinição"
+	"centralnotice-create-from-template-checkbox-label": "Criar a partir da predefinição",
+	"centralnotice-campaign-view-logs": "Ver registros de configurações de campanha"
 }

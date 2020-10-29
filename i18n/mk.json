@@ -320,5 +320,6 @@
 	"centralnotice-banner-template-error": "Не можам да создадам разглас заснован на неважечки разглас, или разглас кој не е означен како предлошка.\nНе можам да го додадам.",
 	"centralnotice-add-banner-from-template": "Додај разглас од предлошка",
 	"centralnotice-messages-banner-in-campaign": "Не можам да го означам овој разглас како предлошка бидејќи е предозначен на еден или повеќе походи. Тие се следниве:",
-	"centralnotice-create-from-template-checkbox-label": "Создај од предлошка"
+	"centralnotice-create-from-template-checkbox-label": "Создај од предлошка",
+	"centralnotice-campaign-view-logs": "Преглед на дневници за нагодувања на походи"
 }

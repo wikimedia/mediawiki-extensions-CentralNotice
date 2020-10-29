@@ -328,5 +328,6 @@
 	"centralnotice-banner-template-error": "Banner können nicht auf der Grundlage eines ungültigen Banners oder eines Banners, das nicht als Vorlage markiert ist, erstellt werden.\nNicht hinzugefügt",
 	"centralnotice-add-banner-from-template": "Banner aus Vorlage hinzufügen",
 	"centralnotice-messages-banner-in-campaign": "Dieses Banner kann nicht als Vorlage markiert werden, solange es einer oder mehreren Kampagnen zugeordnet ist. Dieses Banner ist folgenden Kampagnen zugeordnet:",
-	"centralnotice-create-from-template-checkbox-label": "Aus Vorlage erstellen"
+	"centralnotice-create-from-template-checkbox-label": "Aus Vorlage erstellen",
+	"centralnotice-campaign-view-logs": "Logbücher der Kampagneneinstellungen anzeigen"
 }

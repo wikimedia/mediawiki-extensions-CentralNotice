@@ -343,5 +343,6 @@
 	"centralnotice-banner-template-error": "La bannière ne peut être crée parce qu'elle s'appuie sur une bannière non-valide, ou une bannière qui n'est pas marquée comme modèle.\nNon ajoutée.",
 	"centralnotice-add-banner-from-template": "Ajouter une bannière à partir du modèle",
 	"centralnotice-messages-banner-in-campaign": "Cette bannière ne peut être marquée comme modèle parce qu'elle est déjà utilisée dans une ou plusieurs campagnes. Les campagnes concernées sont :",
-	"centralnotice-create-from-template-checkbox-label": "Créer à partir du modèle"
+	"centralnotice-create-from-template-checkbox-label": "Créer à partir du modèle",
+	"centralnotice-campaign-view-logs": "Voir les journaux de paramètres de campagne"
 }

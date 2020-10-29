@@ -342,5 +342,6 @@
 	"centralnotice-banner-template-error": "橫幅不能建立在無效的橫幅上，或是未被標記為模板的橫幅。\n未增加",
 	"centralnotice-add-banner-from-template": "從模板增加橫幅",
 	"centralnotice-messages-banner-in-campaign": "在分配給一個或多個活動時，不能將此橫幅標記為模板。此橫幅被分配給以下活動：",
-	"centralnotice-create-from-template-checkbox-label": "從模板建立"
+	"centralnotice-create-from-template-checkbox-label": "從模板建立",
+	"centralnotice-campaign-view-logs": "查看活動設定日誌"
 }
