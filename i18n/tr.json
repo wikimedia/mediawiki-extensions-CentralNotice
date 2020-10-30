@@ -10,6 +10,7 @@
 			"Joseph",
 			"Karduelis",
 			"LuCKY",
+			"MuratTheTurkish",
 			"Rapsar",
 			"Sayginer",
 			"Sezgin İbiş",
@@ -334,5 +335,6 @@
 	"centralnotice-banner-template-error": "Banner, geçersiz bir banner veya şablon olarak işaretlenmemiş bir banner temel alınarak oluşturulamaz.\nNotAdding",
 	"centralnotice-add-banner-from-template": "Şablondan bir banner ekle",
 	"centralnotice-messages-banner-in-campaign": "Bir veya daha fazla kampanyaya atanmışken bu banner şablon olarak işaretlenemez. Bu banner şu kampanyalara atandı:",
-	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur"
+	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur",
+	"centralnotice-campaign-view-logs": "Kampanya ayarları günlüklerini gör"
 }
