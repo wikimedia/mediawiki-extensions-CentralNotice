@@ -76,7 +76,7 @@
 	"centralnotice-notice-doesnt-exist": "Kampania nie istnieje.",
 	"centralnotice-remove-notice-doesnt-exist": "Kampania nie istnieje.\nUsunięcie jest niemożliwe.",
 	"centralnotice-banner-doesnt-exist": "Baner nie istnieje.",
-	"centralnotice-banner-history": "Zobacz historię bannera",
+	"centralnotice-banner-history": "Zobacz historię zmian bannera",
 	"centralnotice-template-still-bound": "Szablon „$1” nie może zostać usunięty. Jest ciągle używany przez komunikat.",
 	"centralnotice-template-body": "Treść szablonu:",
 	"centralnotice-day": "Dzień",
@@ -238,5 +238,6 @@
 	"centralnotice-multiple-countries": "Wiele ($1)",
 	"centralnotice-multiple-languages": "wiele ($1)",
 	"centralnotice-banner-template-info": "(szablon)",
-	"centralnotice-create-from-template-checkbox-label": "Utwórz z szablonu"
+	"centralnotice-create-from-template-checkbox-label": "Utwórz z szablonu",
+	"centralnotice-campaign-view-logs": "Zobacz rejestr ustawień kampanii"
 }

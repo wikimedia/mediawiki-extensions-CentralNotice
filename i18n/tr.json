@@ -80,7 +80,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Kampanya mevcut değil.\nKaldırılacak bir şey yok.",
 	"centralnotice-banner-doesnt-exist": "Banner mevcut değil.",
 	"centralnotice-banner-edit-onwiki": "Vikide banner'ı düzenle",
-	"centralnotice-banner-history": "Banner geçmişini görüntüle",
+	"centralnotice-banner-history": "Banner düzenleme geçmişini görüntüle",
 	"centralnotice-template-still-bound": "\"$1\" banner'ı hâlâ bir kampanyaya bağlı olduğu için kaldırılamıyor.\nKaldırılmıyor.",
 	"centralnotice-template-body": "Banner gövdesi:",
 	"centralnotice-day": "Gün",

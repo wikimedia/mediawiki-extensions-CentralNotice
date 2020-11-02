@@ -325,5 +325,6 @@
 	"centralnotice-banner-template-error": "כזרה לא יכולה להיווצרר על סמך כרזה בלתי־תקינה, או כרזה שלא מסומנת בתור תבנית.\nNotAdding",
 	"centralnotice-add-banner-from-template": "הוספת כרזה מתבנית",
 	"centralnotice-messages-banner-in-campaign": "לא ניתן לסמן את הכרזה הזאת בתור תבנית כשהיא משויכת למסע פרסום אחד או יותר. הכרזה הזאת משויכת למסעי הפרסום הבאים:",
-	"centralnotice-create-from-template-checkbox-label": "יצירה מתבנית"
+	"centralnotice-create-from-template-checkbox-label": "יצירה מתבנית",
+	"centralnotice-campaign-view-logs": "הצגת יומנים של הגדרות מבצעי פרסום"
 }
