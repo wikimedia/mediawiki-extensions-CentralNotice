@@ -87,7 +87,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "La campagne n’existe pas.\nRien à supprimer.",
 	"centralnotice-banner-doesnt-exist": "La bannière n’existe pas.",
 	"centralnotice-banner-edit-onwiki": "Modifier la bannière dans le wiki",
-	"centralnotice-banner-history": "Afficher l’historique de la bannière",
+	"centralnotice-banner-history": "Afficher l’historique de modifications de la bannière",
 	"centralnotice-template-still-bound": "Impossible de supprimer la bannière \" $1 \" car celle-ci est toujours liée à une campagne. !N !Ne pas retirer.",
 	"centralnotice-template-body": "Corps du modèle :",
 	"centralnotice-day": "Jour",

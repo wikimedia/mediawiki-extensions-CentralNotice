@@ -70,7 +70,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "מסע הפרסום אינו קיים.\nאין מה להסיר.",
 	"centralnotice-banner-doesnt-exist": "הכרזה אינה קיימת.",
 	"centralnotice-banner-edit-onwiki": "עריכת הכרזה בוויקי",
-	"centralnotice-banner-history": "הצגת ההיסטוריה של הכרזה",
+	"centralnotice-banner-history": "הצגת היסטוריית העריכה של הכרזה",
 	"centralnotice-template-still-bound": "לא ניתן להסיר את הכרזה \"$1\" כי הכרזה עדיין מקושרת למסע פרסום.\nההסרה לא תיעשה.",
 	"centralnotice-template-body": "גוף הכרזה:",
 	"centralnotice-day": "יום",
