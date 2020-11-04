@@ -73,7 +73,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Kampanje eksisterer ikke.\nIngenting å fjerne.",
 	"centralnotice-banner-doesnt-exist": "Banner finnes ikke.",
 	"centralnotice-banner-edit-onwiki": "Rediger banneret på wiki",
-	"centralnotice-banner-history": "Vis bannerhistorikk",
+	"centralnotice-banner-history": "Vis bannerredigeringshistorikk",
 	"centralnotice-template-still-bound": "Kan ikke fjernet banneret «$1» fordi det fortsatt er koblet til en kampanje.\nFjerning ikke mulig.",
 	"centralnotice-template-body": "Malinnhold:",
 	"centralnotice-day": "Dag",
@@ -328,5 +328,6 @@
 	"centralnotice-banner-template-error": "Banner kan ikke opprettes basert på et ugyldig banner eller et banner som ikke er merket som mal.\nNotAdding",
 	"centralnotice-add-banner-from-template": "Legg til et banner fra mal",
 	"centralnotice-messages-banner-in-campaign": "Kan ikke merke dette banneret som en mal fordi det er tildelt én eller flere kampanjer. Dette banneret er tildelt følgende kampanjer:",
-	"centralnotice-create-from-template-checkbox-label": "Opprett fra mal"
+	"centralnotice-create-from-template-checkbox-label": "Opprett fra mal",
+	"centralnotice-campaign-view-logs": "Vis kampanjeinnstillingslogger"
 }

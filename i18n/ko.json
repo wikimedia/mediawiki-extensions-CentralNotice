@@ -69,6 +69,7 @@
 	"centralnotice-notice-doesnt-exist": "공지가 존재하지 않습니다.",
 	"centralnotice-remove-notice-doesnt-exist": "공지가 존재하지 않습니다.\n삭제할 수 없습니다.",
 	"centralnotice-banner-doesnt-exist": "배너가 없습니다.",
+	"centralnotice-banner-history": "배너 편집 역사 보기",
 	"centralnotice-template-still-bound": "여전히 공지에 바인드하여 \"$1\" 배너를 제거할 수 없습니다.\n삭제할 수 없습니다.",
 	"centralnotice-template-body": "배너 내용:",
 	"centralnotice-day": "일",
