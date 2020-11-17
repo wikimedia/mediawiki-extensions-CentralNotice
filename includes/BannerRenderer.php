@@ -7,18 +7,18 @@ use MediaWiki\MediaWikiServices;
  */
 class BannerRenderer {
 	/**
-	 * @var IContextSource $context
+	 * @var IContextSource
 	 */
 	protected $context;
 
 	/**
-	 * @var Banner $banner
+	 * @var Banner
 	 */
 	protected $banner;
 
 	/**
 	 * Campaign in which context the rendering is taking place.  Empty during preview.
-	 * @var string $campaignName
+	 * @var string
 	 */
 	protected $campaignName = "";
 
