@@ -336,6 +336,7 @@
 
 			if ( prepareForLogging ) {
 				delete dataCopy.getVars;
+				delete dataCopy.mixins;
 				delete dataCopy.tests;
 				delete dataCopy.reducedBucket;
 				delete dataCopy.availableCampaigns;
@@ -362,8 +363,7 @@
 		 * @param {Object} c the campaign object, from the list of available campaigns
 		 */
 		setAttemptingCampaign: function ( c ) {
-			var i,
-				category,
+			var prop, i, category,
 				campaignCategory = null;
 
 			// Resetting previously set flags (if any)
@@ -378,6 +378,17 @@
 			// The following should ony be called _after_ state.campaign is set, otherwise
 			// the status won't be included in the record of attempted campaign statuses.
 			setStatus( STATUSES.CAMPAIGN_CHOSEN );
+
+			// Provide the names of mixins enabled in this campaign. (By re-setting each time a
+			// campaign is attempted, we'll get here only mixins enabled for this specific campaign.)
+			// This is used in in-banner js to sanity-check that specific mixins are available and
+			// enabled.
+			state.data.mixins = {};
+			for ( prop in c.mixins ) {
+				if ( Object.hasOwnProperty.call( c.mixins, prop ) ) {
+					state.data.mixins[ prop ] = true;
+				}
+			}
 
 			// Set the campaignCategory property if all the banners in this
 			// campaign have the same category. This is necessary so we can

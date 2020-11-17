@@ -60,7 +60,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Campaign does not exist.\nNothing to remove.",
 	"centralnotice-banner-doesnt-exist": "Banner does not exist.",
 	"centralnotice-banner-edit-onwiki": "Edit banner on-wiki",
-	"centralnotice-banner-history": "View banner history",
+	"centralnotice-banner-history": "View banner edit history",
 	"centralnotice-template-still-bound": "Cannot remove banner \"$1\" as it is still bound to a campaign.\nNot removing.",
 	"centralnotice-template-body": "Banner body:",
 	"centralnotice-day": "Day",
@@ -319,5 +319,6 @@
 	"centralnotice-banner-template-error": "Banner cannot be created based on an invalid banner, or a banner that is not marked as a template.\nNotAdding",
 	"centralnotice-add-banner-from-template": "Add a banner from template",
 	"centralnotice-messages-banner-in-campaign": "Cannot mark this banner as a template while its assigned to one or more campaigns. This banner is assigned to following campaigns:",
-	"centralnotice-create-from-template-checkbox-label": "Create from template"
+	"centralnotice-create-from-template-checkbox-label": "Create from template",
+	"centralnotice-campaign-view-logs": "View campaign settings logs"
 }

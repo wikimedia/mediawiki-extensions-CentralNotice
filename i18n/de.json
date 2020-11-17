@@ -73,7 +73,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Die Meldung ist nicht vorhanden.\nEntfernen nicht möglich.",
 	"centralnotice-banner-doesnt-exist": "Die Vorlage ist nicht vorhanden.",
 	"centralnotice-banner-edit-onwiki": "Vorlage auf dem Wiki bearbeiten",
-	"centralnotice-banner-history": "Vorlagenverlauf ansehen",
+	"centralnotice-banner-history": "Versionsgeschichte des Banners anzeigen",
 	"centralnotice-template-still-bound": "Die Vorlage „$1“ kann nicht entfernt werden und ist noch an eine Meldung gebunden.\nEntfernung nicht möglich.",
 	"centralnotice-template-body": "Vorlagentext:",
 	"centralnotice-day": "Tag",
@@ -328,5 +328,6 @@
 	"centralnotice-banner-template-error": "Banner können nicht auf der Grundlage eines ungültigen Banners oder eines Banners, das nicht als Vorlage markiert ist, erstellt werden.\nNicht hinzugefügt",
 	"centralnotice-add-banner-from-template": "Banner aus Vorlage hinzufügen",
 	"centralnotice-messages-banner-in-campaign": "Dieses Banner kann nicht als Vorlage markiert werden, solange es einer oder mehreren Kampagnen zugeordnet ist. Dieses Banner ist folgenden Kampagnen zugeordnet:",
-	"centralnotice-create-from-template-checkbox-label": "Aus Vorlage erstellen"
+	"centralnotice-create-from-template-checkbox-label": "Aus Vorlage erstellen",
+	"centralnotice-campaign-view-logs": "Logbücher der Kampagneneinstellungen anzeigen"
 }

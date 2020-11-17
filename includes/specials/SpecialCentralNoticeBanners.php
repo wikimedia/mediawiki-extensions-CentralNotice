@@ -455,6 +455,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				[ 'class' => 'cn-banner-list-element-label-text' ],
 				[ 'action' => 'edit' ]
 			);
+		}
+		if ( $bannerTitle ) {
 			$links[] = $linkRenderer->makeLink(
 				$bannerTitle,
 				$this->msg( 'centralnotice-banner-history' )->text(),

@@ -77,7 +77,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "O aviso não existe.\nNão há nada para remover.",
 	"centralnotice-banner-doesnt-exist": "O modelo não existe.",
 	"centralnotice-banner-edit-onwiki": "Editar o modelo na wiki",
-	"centralnotice-banner-history": "Ver historial do modelo",
+	"centralnotice-banner-history": "Ver historial de edição do modelo",
 	"centralnotice-template-still-bound": "Não é possível remover o modelo \"$1\", pois ainda está ligado a um aviso.\nNão será removido.",
 	"centralnotice-template-body": "Conteúdo do modelo:",
 	"centralnotice-day": "Dia",
@@ -332,5 +332,6 @@
 	"centralnotice-banner-template-error": "A faixa não pode ser criada com base numa faixa inválida nem numa faixa que não esteja marcada como modelo.\nNão adicionada",
 	"centralnotice-add-banner-from-template": "Adicionar uma faixa a partir de modelo",
 	"centralnotice-messages-banner-in-campaign": "Não pode marcar esta faixa como modelo enquanto ela estiver atribuída a avisos. A faixa está atribuída aos seguintes avisos:",
-	"centralnotice-create-from-template-checkbox-label": "Criar a partir de modelo"
+	"centralnotice-create-from-template-checkbox-label": "Criar a partir de modelo",
+	"centralnotice-campaign-view-logs": "Ver registos das configurações de avisos"
 }

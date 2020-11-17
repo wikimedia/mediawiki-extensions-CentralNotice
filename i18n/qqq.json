@@ -13,6 +13,7 @@
 			"Lloffiwr",
 			"Metalhead64",
 			"Minh Nguyen",
+			"MuratTheTurkish",
 			"Nemo bis",
 			"Nike",
 			"Pikne",
@@ -57,7 +58,7 @@
 	"centralnotice-add-template": "Used as link text and as heading (<nowiki><h2></nowiki> tag)",
 	"centralnotice-show-notices": "Unused at this time.",
 	"centralnotice-list-templates": "Unused at this time.",
-	"centralnotice-language-listing": "{{optional}}\nA language listing for the language multi-select box.\n*$1 - the language code\n*$2 - the name of the language",
+	"centralnotice-language-listing": "{{optional}}\nA language listing for the language multi-select box.\n* $1 - the language code\n* $2 - the name of the language",
 	"centralnotice-translations": "{{Identical|Translation}}",
 	"centralnotice-translate-to": "{{Identical|Translate}}",
 	"centralnotice-translate": "{{Identical|Translate}}",
@@ -344,5 +345,6 @@
 	"centralnotice-banner-template-error": "Error message displayed in Special:CentralNotice when trying to add a banner based on a banner that is invalid",
 	"centralnotice-add-banner-from-template": "Label for 'Add a banner from template' button",
 	"centralnotice-messages-banner-in-campaign": "Info text describing why marking banner as a template is disabled",
-	"centralnotice-create-from-template-checkbox-label": "Label for 'From template' checkbox"
+	"centralnotice-create-from-template-checkbox-label": "Label for 'From template' checkbox",
+	"centralnotice-campaign-view-logs": "Label for navigation link to this campaign's settings logs. Shown in subtitle of Special:CentralNotice for a specific campaign."
 }

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Andriy.v",
 			"Base",
 			"Piramidion",
 			"Ата"
@@ -13,7 +14,7 @@
 	"apihelp-centralnoticeallocations-description": "Отримати призначення для банерів CentralNotice усім типам користувачів за фільтром параметрів.\n\nЦе виклик лише для JSON.",
 	"apihelp-centralnoticeallocations-summary": "Отримати призначення для банерів CentralNotice для всіх типів користувачів за фільтром параметрів.",
 	"apihelp-centralnoticeallocations-extended-description": "Це — виклик лише на основі JSON.",
-	"apihelp-centralnoticeallocations-param-project": "Проект, для якого отримати призначення.",
+	"apihelp-centralnoticeallocations-param-project": "Проєкт, для якого отримати призначення.",
 	"apihelp-centralnoticeallocations-param-country": "Країна для фільтрування.",
 	"apihelp-centralnoticeallocations-param-language": "Мова для фільтрування.",
 	"apihelp-centralnoticeallocations-param-anonymous": "Статус входу в систему для фільтрування (true|false).",
@@ -30,7 +31,7 @@
 	"apihelp-centralnoticequerycampaign-example-1": "Показати кампанію «Plea_US»",
 	"apihelp-centralnoticechoicedata-description": "Отримати дані, необхідні для вибору банера для даного проекту та мови",
 	"apihelp-centralnoticechoicedata-summary": "Отримати дані, необхідні для вибору банера для даного проекту та мови",
-	"apihelp-centralnoticechoicedata-param-project": "Проект, для якого отримати дані вибору банера.",
+	"apihelp-centralnoticechoicedata-param-project": "Проєкт, для якого отримати дані вибору банера.",
 	"apihelp-centralnoticechoicedata-param-language": "Мова, для якої отримати дані вибору банера.",
 	"apihelp-centralnoticechoicedata-example-1": "Отримати дані для вибору банера для користувачів англійської Вікіпедії.",
 	"apihelp-query+centralnoticelogs-description": "Отримати журнал змін конфугурації кампанії.",

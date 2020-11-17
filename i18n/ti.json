@@ -13,8 +13,8 @@
 	"centralnotice-add-notice-button": "ፍጠር",
 	"centralnotice-add-notice-cancel-button": "ኣትርፍ",
 	"centralnotice-translations": "ትርጉማት",
-	"centralnotice-translate-to": "ተርጎመ ናብ",
-	"centralnotice-translate": "ተርጎመ",
+	"centralnotice-translate-to": "ተርጉም ናብ",
+	"centralnotice-translate": "ተርጉም",
 	"centralnotice-english": "እንግሊዝኛ",
 	"centralnotice-day": "መዓልቲ",
 	"centralnotice-year": "ዓመት",
@@ -40,6 +40,6 @@
 	"centralnotice-archive-banner-cancel": "ኣትርፍ",
 	"centralnotice-change-summary-label": "መጠቓለሊ",
 	"centralnotice-archive-campaign-cancel": "ኣትርፍ",
-	"centralnotice-delete-banner": "ሰረዘ",
+	"centralnotice-delete-banner": "ሰርዝ",
 	"centralnotice-delete-banner-cancel": "ኣትርፍ"
 }

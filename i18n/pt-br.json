@@ -82,7 +82,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "O aviso não existe.\nNão há nada para remover.",
 	"centralnotice-banner-doesnt-exist": "O banner não existe.",
 	"centralnotice-banner-edit-onwiki": "Editar banner on-wiki",
-	"centralnotice-banner-history": "Ver histórico do modelo",
+	"centralnotice-banner-history": "Ver histórico de edição de modelo",
 	"centralnotice-template-still-bound": "Não é possível remover a faixa \"$1\" uma vez que está ainda sendo utilizada por uma campanha.\nNão foi removida.",
 	"centralnotice-template-body": "Conteúdo do modelo:",
 	"centralnotice-day": "Dia",
@@ -339,5 +339,6 @@
 	"centralnotice-banner-template-error": "O banner não pode ser criado com base em um banner inválido ou em um banner que não esteja marcado como predefinição.\nNotAdding",
 	"centralnotice-add-banner-from-template": "Adicionar um banner da predefinição",
 	"centralnotice-messages-banner-in-campaign": "Não é possível marcar esse banner como predefinição enquanto estiver atribuído a uma ou mais campanhas. Este banner é atribuído às seguintes campanhas:",
-	"centralnotice-create-from-template-checkbox-label": "Criar a partir da predefinição"
+	"centralnotice-create-from-template-checkbox-label": "Criar a partir da predefinição",
+	"centralnotice-campaign-view-logs": "Ver registros de configurações de campanha"
 }

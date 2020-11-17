@@ -10,8 +10,10 @@
 			"Joseph",
 			"Karduelis",
 			"LuCKY",
+			"MuratTheTurkish",
 			"Rapsar",
 			"Sayginer",
+			"Sezgin İbiş",
 			"Srhat",
 			"Sucsuzz",
 			"Suelnur",
@@ -78,7 +80,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Kampanya mevcut değil.\nKaldırılacak bir şey yok.",
 	"centralnotice-banner-doesnt-exist": "Banner mevcut değil.",
 	"centralnotice-banner-edit-onwiki": "Vikide banner'ı düzenle",
-	"centralnotice-banner-history": "Banner geçmişini görüntüle",
+	"centralnotice-banner-history": "Banner düzenleme geçmişini görüntüle",
 	"centralnotice-template-still-bound": "\"$1\" banner'ı hâlâ bir kampanyaya bağlı olduğu için kaldırılamıyor.\nKaldırılmıyor.",
 	"centralnotice-template-body": "Banner gövdesi:",
 	"centralnotice-day": "Gün",
@@ -245,7 +247,7 @@
 	"centralnotice-change-summary-prompt": "Bu değişikliklerle ilgili mesaj (isteğe bağlı)",
 	"centralnotice-change-summary-action-prompt": "Bu işlemle ilgili mesaj (isteğe bağlı)",
 	"centralnotice-archive-show": "Arşivlenmiş kampanyaları göster",
-	"centralnotice-archive-campaign": "Arşivle",
+	"centralnotice-archive-campaign": "Arşiv",
 	"centralnotice-archive-campaign-title": "{{PLURAL:$1|Kampanyayı|Kampanyaları}} arşivlensin mi?",
 	"centralnotice-archive-campaign-confirm": "Arşivleme, bir kampanyayı kalıcı olarak etkin değil olarak işaretler.",
 	"centralnotice-archive-campaign-cancel": "İptal",
@@ -333,5 +335,6 @@
 	"centralnotice-banner-template-error": "Banner, geçersiz bir banner veya şablon olarak işaretlenmemiş bir banner temel alınarak oluşturulamaz.\nNotAdding",
 	"centralnotice-add-banner-from-template": "Şablondan bir banner ekle",
 	"centralnotice-messages-banner-in-campaign": "Bir veya daha fazla kampanyaya atanmışken bu banner şablon olarak işaretlenemez. Bu banner şu kampanyalara atandı:",
-	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur"
+	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur",
+	"centralnotice-campaign-view-logs": "Kampanya ayarları günlüklerini gör"
 }

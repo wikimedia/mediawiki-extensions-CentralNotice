@@ -530,6 +530,17 @@ class CentralNotice extends SpecialPage {
 				$out->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
 				$this->editable = false; // Todo: Fix this gross hack to prevent editing
 			}
+			$out->addSubtitle(
+				$this->getLinkRenderer()->makeKnownLink(
+					SpecialPage::getTitleFor( 'CentralNoticeLogs' ),
+					$this->msg( 'centralnotice-campaign-view-logs' )->text(),
+					[],
+					[
+						'log_type' => 'campaignSettings',
+						'campaign' => $notice
+					]
+				)
+			);
 		} catch ( CampaignExistenceException $ex ) {
 			throw new ErrorPageError( 'centralnotice', 'centralnotice-notice-doesnt-exist' );
 		}
