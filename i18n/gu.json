@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Ashok modhvadia",
+			"CptViraj",
 			"Dsvyas",
 			"KartikMistry",
 			"Sushant savla"
@@ -115,7 +116,7 @@
 	"centralnotice-percentage": "ટકાવારી",
 	"centralnotice-documentwrite-error": "બેનરમાં document.write() વાપરી શકાશે નહીં.\nવધુ માહિતી માટે https://meta.wikimedia.org/wiki/Help:CentralNotice જુઓ.",
 	"centralnotice-preferred": "અગ્રતા",
-	"centralnotice-logs": "લૉગ",
+	"centralnotice-logs": "નોંધણીઓ",
 	"centralnotice-view-logs": "લૉગ્સ જુઓ",
 	"centralnotice-timestamp": "સમય ચિન્હ",
 	"centralnotice-user": "સભ્ય",
