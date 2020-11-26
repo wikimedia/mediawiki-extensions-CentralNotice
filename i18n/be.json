@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Artsiom91",
+			"Kareyac",
 			"Mikalai Udodau",
 			"Тест"
 		]
@@ -13,5 +14,6 @@
 	"centralnotice-close-title": "Закрыць",
 	"centralnotice-languages": "Мовы",
 	"centralnotice-language": "Мова",
-	"centralnotice-date": "Дата"
+	"centralnotice-date": "Дата",
+	"centralnotice-all": "Усе"
 }
