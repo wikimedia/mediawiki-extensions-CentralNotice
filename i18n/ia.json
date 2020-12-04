@@ -61,7 +61,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Campania non existe.\nNihil a remover.",
 	"centralnotice-banner-doesnt-exist": "Bandiera non existe.",
 	"centralnotice-banner-edit-onwiki": "Modificar bandiera in wiki",
-	"centralnotice-banner-history": "Vider historia del bandiera",
+	"centralnotice-banner-history": "Vider historia de modificationes del bandiera",
 	"centralnotice-template-still-bound": "Impossibile remover le bandiera \"$1\" perque illo es ancora ligate a un campania.\nNon es removite.",
 	"centralnotice-template-body": "Texto del bandiera:",
 	"centralnotice-day": "Die",
