@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abbas dhothar",
 			"Khalid Mahmood"
 		]
 	},
@@ -17,7 +18,7 @@
 	"centralnotice-enabled": "قابل",
 	"centralnotice-modify": "پیجو",
 	"centralnotice-view": "وکھالہ",
-	"centralnotice-save-banner": "نشان بچاؤ",
+	"centralnotice-save-banner": "بچاؤ",
 	"centralnotice-add-new": "نواں کم جوڑو",
 	"centralnotice-remove": "پرے کرو",
 	"centralnotice-translate-heading": "$1 دا التھن",
@@ -49,7 +50,7 @@
 	"centralnotice-notice-doesnt-exist": "کم ہے ای نئیں۔",
 	"centralnotice-remove-notice-doesnt-exist": "کم ہے ای نئیں۔  ہٹان دی لوڑ نئیں۔",
 	"centralnotice-banner-doesnt-exist": "نشان ہے ای نئیں۔",
-	"centralnotice-template-still-bound": "نشان کم نال اے۔ نئیں ہٹا ریا۔",
+	"centralnotice-template-still-bound": "نشان کم نال اے۔ نئیں ہٹا رہیا",
 	"centralnotice-template-body": "نشان :",
 	"centralnotice-day": "دن",
 	"centralnotice-year": "ورھ",
@@ -74,7 +75,7 @@
 	"centralnotice-number-uses": "ورتن",
 	"centralnotice-settings": "سیٹنکز",
 	"centralnotice-edit-template": "نشان بدلو",
-	"centralnotice-edit-template-summary": "اک دیسی سنیعہ بنان لئی، اک جڑی  سٹرنگ تن کرلی بریکٹاں چ بناؤ ۔ ادھارن {{{jimbo-quote}}}",
+	"centralnotice-edit-template-summary": "اک دیسی سنیہا بنان لئی، اک جڑی  سٹرنگ تن کرلی بریکٹاں وچ بناؤ ۔ ادھارن {{{jimbo-quote}}}",
 	"centralnotice-message": "سنیعہ",
 	"centralnotice-message-not-set": "سنیعہ تیار نئیں",
 	"centralnotice-clone": "کلون",
@@ -102,7 +103,7 @@
 	"centralnotice-projects": "ویونت",
 	"centralnotice-country": "دیس",
 	"centralnotice-no-allocation": "کوئی نشان نئیں دتا گیا",
-	"centralnotice-allocation-description": "نشان دی لاٹمنٹ $1۔$2 لئی $3 چ:",
+	"centralnotice-allocation-description": "نشان دی لاٹمنٹ $1۔$2 لئی $3 وچ:",
 	"centralnotice-percentage": "٪",
 	"centralnotice-documentwrite-error": "ڈوکومنٹ۔لکھو () اک نشان دے اندر نئیں ورتی جاسکدی۔\nہور جانکاری لئی ویکھو https://meta.wikimedia.org/wiki/Help:CentralNotice",
 	"centralnotice-preferred": "چونواں",
@@ -134,11 +135,11 @@
 	"centralnotice-date": "تریخ",
 	"centralnotice-apply-filters": "نتارے چلاؤ",
 	"centralnotice-clear-filters": "نتارے صاف کرو",
-	"centralnotice-banner-messages": "نشان سنیعے",
-	"centralnotice-start-date": "ٹرن دیہاڑہ",
+	"centralnotice-banner-messages": "نشان سنیہے",
+	"centralnotice-start-date": "ٹرن دا ویلا (UTC)",
 	"centralnotice-start-time": "ٹرن دا ویلا (UTC)",
-	"centralnotice-end-date": "انت تریخ",
+	"centralnotice-end-date": "مکن دا ویلا (UTC)",
 	"centralnotice-end-time": "مکن دا ویلا (UTC)",
-	"centralnotice-multiple-countries": "کافی سارے ($1)",
-	"centralnotice-multiple-languages": "کافی سارے ($1)"
+	"centralnotice-multiple-countries": "ملٹی پل کنٹریز",
+	"centralnotice-multiple-languages": "ملٹی پل بولیاں"
 }
