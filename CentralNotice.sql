@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notices (
 	`not_buckets` tinyint(1) NOT NULL DEFAULT '1',
 	`not_weight` int(11) NOT NULL DEFAULT '100',
 	`not_mobile_carrier` tinyint(1) NOT NULL DEFAULT '0',
-	`not_archived` tinyint(1) NOT NULL DEFAULT '0'
+	`not_archived` tinyint(1) NOT NULL DEFAULT '0',
+	`not_type` varchar(255) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE TABLE IF NOT EXISTS /*_*/cn_assignments (
@@ -174,7 +175,9 @@ CREATE TABLE IF NOT EXISTS /*_*/cn_notice_log (
 	`notlog_end_archived` tinyint DEFAULT NULL,
 	`notlog_begin_mixins` BLOB DEFAULT NULL,
 	`notlog_end_mixins` BLOB DEFAULT NULL,
-	`notlog_comment` varchar(255) DEFAULT NULL
+	`notlog_comment` varchar(255) DEFAULT NULL,
+	`notlog_begin_type` varchar(255) DEFAULT NULL,
+	`notlog_end_type` varchar(255) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/notlog_timestamp ON /*_*/cn_notice_log (notlog_timestamp);
 CREATE INDEX /*i*/notlog_user_id ON /*_*/cn_notice_log (notlog_user_id, notlog_timestamp);
