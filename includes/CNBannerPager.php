@@ -59,9 +59,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 	/**
 	 * @inheritDoc
-	 * @suppress PhanTypeMismatchProperty
 	 * @suppress PhanTypeMismatchDimAssignment
-	 * @suppress PhanTypeMismatchReturn
 	 */
 	public function getNavigationBar() {
 		if ( isset( $this->mNavigationBar ) ) {
@@ -71,15 +69,18 @@ class CNBannerPager extends ReverseChronologicalPager {
 		// Sets mNavigation bar with the default text which we will then wrap
 		parent::getNavigationBar();
 
+		// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal
 		$this->mNavigationBar = [
 			'class' => 'HTMLBannerPagerNavigation',
 			'value' => $this->mNavigationBar
 		];
 
 		if ( $this->formSection ) {
+			// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal
 			$this->mNavigationBar['section'] = $this->formSection;
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal
 		return $this->mNavigationBar;
 	}
 

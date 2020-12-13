@@ -1502,8 +1502,6 @@ class Banner {
 	/**
 	 * Log setting changes related to a banner
 	 *
-	 * phan-taint-check can't tell that $key is safe.
-	 * @suppress SecurityCheck-SQLInjection
 	 * @param string $action 'created', 'modified', or 'removed'
 	 * @param User $user The user causing the change
 	 * @param string|null $summary Summary (comment) for this action

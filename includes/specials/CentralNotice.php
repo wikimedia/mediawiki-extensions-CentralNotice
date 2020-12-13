@@ -286,8 +286,6 @@ class CentralNotice extends SpecialPage {
 		if ( $editable ) {
 			$options = ''; // The HTML for the select list options
 			foreach ( $priorities as $key => $labelMsg ) {
-				// @phan-suppress-next-next-line SecurityCheck-DoubleEscaped False positive,
-				// taint-check thinks that $key is double escaped
 				$options .= Xml::option( $labelMsg->text(), $key, $priorityValue == $key );
 			}
 
@@ -811,6 +809,7 @@ class CentralNotice extends SpecialPage {
 							$params[$paramName] = $paramVal;
 						}
 
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 						Campaign::updateCampaignMixins(
 							$notice, $mixinName, true, $params );
 
@@ -1308,7 +1307,7 @@ class CentralNotice extends SpecialPage {
 			if ( $selected === null ) {
 				$selected = 0; // default to bucket 'A'
 			}
-			$selected = $selected % $numberCampaignBuckets;
+			$selected %= $numberCampaignBuckets;
 
 			// bucketSelector class is for all bucket selectors (for assigned or
 			// unassigned banners). Coordinate with CentralNoticePager::bucketDropDown().

@@ -191,6 +191,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$htmlOut .= Xml::closeElement( 'tr' );
 			$htmlOut .= Xml::closeElement( 'table' );
 			$htmlOut .= Xml::closeElement( 'div' );
+			// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
 			$htmlOut .= Xml::closeElement( 'div' );
 		}
 

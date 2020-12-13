@@ -278,7 +278,9 @@ class ChoiceDataProvider {
 		}
 
 		// FIXME: looks like this is only sorting the last banner's list!
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 		if ( isset( $choices[$dbRow->not_id]['countries'] ) ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 			sort( $choices[$dbRow->not_id]['countries'] );
 		}
 
@@ -330,6 +332,7 @@ class ChoiceDataProvider {
 
 				// Ensure consistent ordering (see comment below)
 				// FIXME: only sorting list for last assignmentKey?
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 				sort( $choices[$campaignId]['banners'][$assignmentKey]['devices'] );
 			}
 		}
