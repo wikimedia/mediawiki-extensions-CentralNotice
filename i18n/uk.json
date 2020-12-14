@@ -341,5 +341,6 @@
 	"centralnotice-banner-template-error": "Банер не можна створити на основі недійсного банера або банера, який не позначений як шаблон.\nNotAdding",
 	"centralnotice-add-banner-from-template": "Додати банер з шаблона",
 	"centralnotice-messages-banner-in-campaign": "Не можна позначити цей банер шаблоном, поки він призначений в одній чи кількох кампаніях. Цей банер використовується у цих кампаніях:",
-	"centralnotice-create-from-template-checkbox-label": "Створити з шаблона"
+	"centralnotice-create-from-template-checkbox-label": "Створити з шаблона",
+	"centralnotice-campaign-view-logs": "Переглянути журнали налаштувань кампанії"
 }
