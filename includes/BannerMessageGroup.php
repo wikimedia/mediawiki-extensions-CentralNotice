@@ -136,7 +136,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * implies that the user calling this hook must have site-edit permissions
 	 * and the $wgCentralNoticeMessageProtectRight granted.
 	 *
-	 * @param object $group Effected group object
+	 * @param MessageGroup $group Effected group object
 	 * @param string $code Language code that was modified
 	 * @param string $currentState Review state the group is transitioning from
 	 * @param string $newState Review state the group is transitioning to

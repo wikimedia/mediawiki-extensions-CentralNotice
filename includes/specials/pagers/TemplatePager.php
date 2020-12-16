@@ -74,7 +74,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	/**
 	 * Generate the content of each table row (1 row = 1 banner)
 	 *
-	 * @param object $row database row
+	 * @param stdClass $row database row
 	 *
 	 * @return string HTML
 	 */

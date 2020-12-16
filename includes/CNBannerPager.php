@@ -125,7 +125,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	/**
 	 * Generate the contents of the table pager; intended to be consumed by the HTMLForm
 	 *
-	 * @param object $row database row
+	 * @param stdClass $row database row
 	 *
 	 * @return array HTMLFormElement classes
 	 * @suppress PhanParamSignatureMismatch

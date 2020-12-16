@@ -185,7 +185,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function showInitialSettings( $row ) {
@@ -261,7 +261,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function showChanges( $row ) {
@@ -361,7 +361,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param string $param
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	private function testBooleanChange( $param, $row ) {
@@ -431,7 +431,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/**
 	 * Test for changes to campaign priority
 	 * @param string $param
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 * @suppress PhanPossiblyUndeclaredVariable
 	 * @todo Add default to the switches
@@ -486,7 +486,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/**
 	 * Test for changes to a property interpreted as a percentage
 	 * @param string $param name
-	 * @param object $row settings
+	 * @param stdClass $row settings
 	 * @return string
 	 */
 	protected function testPercentageChange( $param, $row ) {
