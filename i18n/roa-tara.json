@@ -313,5 +313,8 @@
 	"tag-centralnotice_translation-description": "Cangiamende d'u condenute de CentralNotice ccrejate cu l'estenzione Traduce",
 	"centralnotice-banner-template": "template d'u striscione",
 	"centralnotice-banner-is-template": "Stu striscione jè ìnu modelle, signifeche ca pò essere ausate pe ccrejà otre strisciune",
-	"centralnotice-banner-template-info": "(template)"
+	"centralnotice-banner-template-info": "(template)",
+	"centralnotice-add-banner-from-template": "Aggiunge 'nu banner da 'nu template",
+	"centralnotice-create-from-template-checkbox-label": "Ccrèje da 'nu template",
+	"centralnotice-campaign-view-logs": "'Ndruche le archivije de le 'mbostaziune d'a cambagne"
 }
