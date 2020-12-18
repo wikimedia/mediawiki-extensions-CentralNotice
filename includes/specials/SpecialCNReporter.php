@@ -44,7 +44,7 @@ EOT;
 		// If we have a logged in user; do not cache (default for special pages)
 		// lest we capture a set-cookie header. Otherwise cache so we don't have
 		// too big of a DDoS hole.
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			header( "Cache-Control: public, s-maxage={$expiry}, max-age=0" );
 		}
 	}

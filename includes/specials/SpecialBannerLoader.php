@@ -152,7 +152,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 
 		header( "Content-type: text/javascript; charset=utf-8" );
 
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			// Header tells front-end caches to retain the content for $sMaxAge seconds.
 			$sMaxAge = ( $this->cacheResponse === self::MAX_CACHE_NORMAL ) ?
 				$wgNoticeBannerMaxAge : $wgNoticeBannerReducedMaxAge;

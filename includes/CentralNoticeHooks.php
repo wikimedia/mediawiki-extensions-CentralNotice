@@ -443,7 +443,7 @@ class CentralNoticeHooks {
 		// This is useful for banners that need to be targeted to specific types of users.
 		// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
 		$user = $out->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			if ( $user->isBot() ) {
 				$userData = false;
 			} else {
