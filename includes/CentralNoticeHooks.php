@@ -376,18 +376,19 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralHost, $wgServer, $wgRequest, $wgCentralNoticeContentSecurityPolicy;
+		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy;
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
 		$out->addModules( 'ext.centralNotice.geoIP' );
 
+		$request = $skin->getRequest();
 		// If we're on a special page, editing, viewing history or a diff, bow out now
 		// This is to reduce chance of bad misclicks from delayed banner loading
 		if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
-			( $wgRequest->getText( 'action' ) === 'edit' ) ||
-			( $wgRequest->getText( 'action' ) === 'history' ) ||
-			$wgRequest->getCheck( 'diff' )
+			( $request->getText( 'action' ) === 'edit' ) ||
+			( $request->getText( 'action' ) === 'history' ) ||
+			$request->getCheck( 'diff' )
 		) {
 			return true;
 		}
@@ -407,9 +408,9 @@ class CentralNoticeHooks {
 		// of $wgCentralNoticeContentSecurityPolicy and use their stuff.
 		if (
 			$wgCentralNoticeContentSecurityPolicy &&
-			$wgRequest->getVal( 'banner' )
+			$request->getVal( 'banner' )
 		) {
-			$wgRequest->response()->header(
+			$request->response()->header(
 				"content-security-policy: $wgCentralNoticeContentSecurityPolicy"
 			);
 			$out->addModules( 'ext.centralNotice.cspViolationAlert' );

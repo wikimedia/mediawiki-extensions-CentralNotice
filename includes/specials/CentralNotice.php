@@ -480,16 +480,16 @@ class CentralNotice extends SpecialPage {
 	 * @return null|string
 	 */
 	private function getDateTime( $prefix ) {
-		global $wgRequest;
+		$request = $this->getRequest();
 		// Check whether the user left the date field blank.
 		// Interpret any form of "empty" as a blank value.
-		$manual_entry = $wgRequest->getVal( "{$prefix}Date" );
+		$manual_entry = $request->getVal( "{$prefix}Date" );
 		if ( !$manual_entry ) {
 			return null;
 		}
 
-		$datestamp = $wgRequest->getVal( "{$prefix}Date_timestamp" );
-		$timeArray = $wgRequest->getArray( $prefix );
+		$datestamp = $request->getVal( "{$prefix}Date_timestamp" );
+		$timeArray = $request->getArray( $prefix );
 		$timestamp = substr( $datestamp, 0, 8 ) .
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$timeArray[ 'hour' ] .
