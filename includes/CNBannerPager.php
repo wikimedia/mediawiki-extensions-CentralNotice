@@ -148,7 +148,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$rowText = BannerRenderer::linkToBanner( $bannerName );
 		if ( (bool)$row->tmp_is_template ) {
 			$rowText = implode( ' ', [
-				$rowText, wfMessage( "centralnotice-banner-template-info" )->escaped()
+				$rowText, $this->msg( "centralnotice-banner-template-info" )->escaped()
 			] );
 		}
 		$retval["cn-banner-list-element-$bannerId"] = [

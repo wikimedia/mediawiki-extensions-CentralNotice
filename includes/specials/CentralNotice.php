@@ -275,12 +275,12 @@ class CentralNotice extends SpecialPage {
 	 */
 	public function prioritySelector( $index, $editable, $priorityValue ) {
 		$priorities = [
-			self::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' ),
+			self::LOW_PRIORITY => $this->msg( 'centralnotice-priority-low' ),
 			self::NORMAL_PRIORITY =>
-				wfMessage( 'centralnotice-priority-normal' ),
-			self::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' ),
+				$this->msg( 'centralnotice-priority-normal' ),
+			self::HIGH_PRIORITY => $this->msg( 'centralnotice-priority-high' ),
 			self::EMERGENCY_PRIORITY =>
-				wfMessage( 'centralnotice-priority-emergency' ),
+				$this->msg( 'centralnotice-priority-emergency' ),
 		];
 
 		if ( $editable ) {
