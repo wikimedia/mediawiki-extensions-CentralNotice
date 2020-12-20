@@ -35,8 +35,10 @@ class BannerRenderer {
 	 */
 	protected $previewMessages;
 
+	/** @var MixinController|null */
 	protected $mixinController = null;
 
+	/** @var bool */
 	protected $debug;
 
 	/**

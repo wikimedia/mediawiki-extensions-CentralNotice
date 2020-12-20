@@ -11,12 +11,16 @@ class CentralNotice extends SpecialPage {
 	const HIGH_PRIORITY = 2;
 	const EMERGENCY_PRIORITY = 3;
 
-	public $editable, $centralNoticeError;
+	/** @var bool|null */
+	public $editable;
+	/** @var bool|null */
+	public $centralNoticeError;
 
 	/**
 	 * @var Campaign
 	 */
 	protected $campaign;
+	/** @var array */
 	protected $campaignWarnings = [];
 
 	public function __construct() {

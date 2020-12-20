@@ -3,14 +3,18 @@
 class CentralNoticeTestFixtures {
 	const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
 
+	/** @var array */
 	public $spec = [];
+	/** @var User */
 	protected $user;
+	/** @var array */
 	protected $addedDeviceIds = [];
+	/** @var array|null */
 	protected $knownDevices = null;
 
-	// For legacy test that don't use fixture data: use exactly the api defaults
-	// where available
+	/** @var array For legacy test that don't use fixture data: use exactly the api defaults where available */
 	public static $defaultCampaign;
+	/** @var array */
 	public static $defaultBanner;
 
 	public function __construct() {

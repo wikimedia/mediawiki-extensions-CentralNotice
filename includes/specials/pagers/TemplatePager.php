@@ -8,8 +8,15 @@
  * that part of CN.
  */
 class TemplatePager extends ReverseChronologicalPager {
-	public $onRemoveChange, $viewPage, $special;
+	/** @var string */
+	public $onRemoveChange;
+	/** @var Title */
+	public $viewPage;
+	/** @var SpecialPage */
+	public $special;
+	/** @var bool */
 	public $editable;
+	/** @var string */
 	public $filter;
 
 	public function __construct( $special, $filter = '' ) {

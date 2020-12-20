@@ -1,9 +1,12 @@
 <?php
 
 class MixinController {
+	/** @var array */
 	protected $mixins;
 
+	/** @var array */
 	protected $magicWords = [];
+	/** @var IContextSource */
 	protected $uiContext;
 
 	public function __construct( IContextSource $uiContext, $mixins ) {

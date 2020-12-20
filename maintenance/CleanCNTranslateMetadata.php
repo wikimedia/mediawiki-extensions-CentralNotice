@@ -18,6 +18,7 @@ require_once "$IP/maintenance/Maintenance.php";
  * Class CleanCNTranslateMetadata
  */
 class CleanCNTranslateMetadata extends Maintenance {
+	/** @var string|null */
 	protected $ttag;
 
 	public function __construct() {

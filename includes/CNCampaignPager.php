@@ -18,14 +18,18 @@ class CNCampaignPager extends TablePager {
 	// This should be enuf--Meta has less than 500 campaigns.
 	const DEFAULT_LIMIT = 5000;
 
+	/** @var CentralNotice */
 	protected $onSpecialCN;
+	/** @var string|false */
 	protected $editable;
+	/** @var string|null */
 	protected $assignedBannerId;
+	/** @var string[]|null */
 	protected $fieldNames = null;
 
 	/**
 	 * @param CentralNotice $onSpecialCN The CentralNotice special page we're on
-	 * @param string $editable Whether or not to make the list editable
+	 * @param string|false $editable Whether or not to make the list editable
 	 * @param string|null $assignedBannerId Set this to show only the campaigns
 	 *   associated with this banner id.
 	 */

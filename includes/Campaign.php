@@ -2,7 +2,9 @@
 
 class Campaign {
 
+	/** @var int|null */
 	protected $id = null;
+	/** @var string|null */
 	protected $name = null;
 
 	/** @var MWTimestamp Start datetime of campaign */

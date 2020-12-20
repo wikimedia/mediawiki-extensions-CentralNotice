@@ -1,7 +1,10 @@
 <?php
 
 class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
-	public $viewPage, $special;
+	/** @var Title */
+	public $viewPage;
+	/** @var SpecialCentralNoticeLogs */
+	public $special;
 
 	public function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;

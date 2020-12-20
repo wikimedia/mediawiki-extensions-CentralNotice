@@ -1,6 +1,7 @@
 <?php
 
 class SpecialCentralNoticeLogs extends CentralNotice {
+	/** @var string */
 	public $logType = 'campaignsettings';
 
 	public function __construct() {

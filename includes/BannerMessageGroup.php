@@ -7,8 +7,13 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup';
 
+	/** @var string */
 	protected $bannerName = '';
 
+	/**
+	 * @var int
+	 * @suppress PhanUndeclaredConstant NS_CN_BANNER defined in extension.json
+	 */
 	protected $namespace = NS_CN_BANNER;
 
 	/**
