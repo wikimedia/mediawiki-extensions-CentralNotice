@@ -256,7 +256,12 @@ class Campaign {
 	public static function campaignExists( $campaignName ) {
 		$dbr = CNDatabase::getDb();
 
-		return (bool)$dbr->selectRow( 'cn_notices', 'not_name', [ 'not_name' => $campaignName ], __METHOD__ );
+		return (bool)$dbr->selectRow(
+			'cn_notices',
+			'not_name',
+			[ 'not_name' => $campaignName ],
+			__METHOD__
+		);
 	}
 
 	/**
@@ -898,7 +903,7 @@ class Campaign {
 				'projects'  => implode( ", ", $projects ),
 				'languages' => implode( ", ", $project_languages ),
 				'countries' => implode( ", ", $geo_countries ),
-				'regions' => implode( ", ", $geo_regions ),
+				'regions'   => implode( ", ", $geo_regions ),
 				'start'     => $dbw->timestamp( $startTs ),
 				'end'       => $dbw->timestamp( $endTs ),
 				'enabled'   => (int)$enabled,
