@@ -68,6 +68,7 @@ class BannerRenderer {
 		$this->previewMessages = $previewMessages;
 		$this->debug = $debug;
 
+		// @phan-suppress-next-line SecurityCheck-PathTraversal
 		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
 
 		// FIXME: it should make sense to do this:
