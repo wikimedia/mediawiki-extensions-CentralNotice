@@ -4,6 +4,7 @@
 			"EugeneZelenko",
 			"Jim-by",
 			"Red Winged Duck",
+			"Renessaince",
 			"Wizardist",
 			"Zedlik",
 			"Александр Сигачёв"
@@ -191,5 +192,6 @@
 	"centralnotice-end-date": "Дата заканчэньня (UTC)",
 	"centralnotice-end-time": "Час сканчэньня (UTC)",
 	"centralnotice-multiple-countries": "Некалькі краінаў",
-	"centralnotice-multiple-languages": "Некалькі моваў"
+	"centralnotice-multiple-languages": "Некалькі моваў",
+	"tag-centralnotice_translation": "Пераклад Цэнтралізаваных абвестак"
 }
