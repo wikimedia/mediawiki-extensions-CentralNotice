@@ -223,5 +223,8 @@
 	"centralnotice-multiple-countries": "Méi Länner",
 	"centralnotice-multiple-languages": "méi Sproochen",
 	"centralnotice-banner-template": "Banner-Schabloun",
-	"centralnotice-banner-template-info": "(Schabloun)"
+	"centralnotice-banner-template-info": "(Schabloun)",
+	"prefs-centralnotice-banners": "Banneren",
+	"centralnotice-campaign-type-photography": "Fotographie",
+	"centralnotice-campaign-type-special": "Spezial"
 }

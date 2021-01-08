@@ -344,5 +344,19 @@
 	"centralnotice-add-banner-from-template": "Ajouter une bannière à partir du modèle",
 	"centralnotice-messages-banner-in-campaign": "Cette bannière ne peut être marquée comme modèle parce qu'elle est déjà utilisée dans une ou plusieurs campagnes. Les campagnes concernées sont :",
 	"centralnotice-create-from-template-checkbox-label": "Créer à partir du modèle",
-	"centralnotice-campaign-view-logs": "Voir les journaux des paramètres de campagne"
+	"centralnotice-campaign-view-logs": "Voir les journaux des paramètres de campagne",
+	"prefs-centralnotice-banners": "Bannières",
+	"prefs-centralnotice-display-banner-types": "Types de bannières à afficher",
+	"centralnotice-campaign-type": "Type de campagne",
+	"centralnotice-empty-campaign-type-option": "Aucun type (toujours affiché)",
+	"centralnotice-non-existent-campaign-type-error": "Le type de campagne sélectionné n’existe pas",
+	"centralntoice-deleted-campaign-type": "$1 (type supprimé)",
+	"centralnotice-campaign-type-advocacy": "Plaidoyer",
+	"centralnotice-campaign-type-article-writing": "Écriture d’article",
+	"centralnotice-campaign-type-event": "Événement",
+	"centralnotice-campaign-type-fundraising": "Collecte de fonds",
+	"centralnotice-campaign-type-governance": "Gouvernance",
+	"centralnotice-campaign-type-maintenance": "Maintenance",
+	"centralnotice-campaign-type-photography": "Photographie",
+	"centralnotice-campaign-type-special": "Spécial"
 }

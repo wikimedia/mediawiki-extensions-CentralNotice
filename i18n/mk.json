@@ -321,5 +321,19 @@
 	"centralnotice-add-banner-from-template": "Додај разглас од предлошка",
 	"centralnotice-messages-banner-in-campaign": "Не можам да го означам овој разглас како предлошка бидејќи е предозначен на еден или повеќе походи. Тие се следниве:",
 	"centralnotice-create-from-template-checkbox-label": "Создај од предлошка",
-	"centralnotice-campaign-view-logs": "Преглед на дневници за нагодувања на походи"
+	"centralnotice-campaign-view-logs": "Преглед на дневници за нагодувања на походи",
+	"prefs-centralnotice-banners": "Разгласи",
+	"prefs-centralnotice-display-banner-types": "Видови разгласи за приказ",
+	"centralnotice-campaign-type": "Вид на поход",
+	"centralnotice-empty-campaign-type-option": "Без вид (секогаш се прикажува)",
+	"centralnotice-non-existent-campaign-type-error": "Избраниот вид на поход не постои",
+	"centralntoice-deleted-campaign-type": "$1 (избришан вид)",
+	"centralnotice-campaign-type-advocacy": "Застапување",
+	"centralnotice-campaign-type-article-writing": "Пишување статии",
+	"centralnotice-campaign-type-event": "Настан",
+	"centralnotice-campaign-type-fundraising": "Прибирање средства",
+	"centralnotice-campaign-type-governance": "Раководство",
+	"centralnotice-campaign-type-maintenance": "Одржување",
+	"centralnotice-campaign-type-photography": "Фотографија",
+	"centralnotice-campaign-type-special": "Посебен"
 }
