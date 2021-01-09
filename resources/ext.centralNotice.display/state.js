@@ -69,7 +69,8 @@
 			requestedBannerNotAvailable: 17,
 			jsonParamError: 18,
 			bannerSequenceEmptyStep: 19,
-			bannerSequenceAllStepsSkipped: 20
+			bannerSequenceAllStepsSkipped: 20,
+			userOptOut: 21
 		};
 
 	campaignAttemptsManager = ( function () {
@@ -158,6 +159,7 @@
 		state.data.anonymous = ( mw.config.get( 'wgUserName' ) === null );
 		state.data.project = mw.config.get( 'wgNoticeProject' );
 		state.data.db = mw.config.get( 'wgDBname' );
+		state.data.optedOutCampaigns = getOptedOutCampaignsForUser();
 
 		// All of the following may be overridden by URL parameters (including
 		// language, which can be overridden by uselang).
@@ -207,6 +209,33 @@
 
 		// Contains list of campaigns statuses
 		state.data.campaignStatuses = [];
+	}
+
+	function getOptedOutCampaignsForUser() {
+		var allOptions, matches, key,
+			blocked = [],
+			// Note: coordinate with CampaignType::PREFERENCE_KEY_PREFIX
+			regex = /^centralnotice-display-campaign-type-(.*)$/;
+
+		if ( mw.config.get( 'wgUserName' ) === null ) {
+			return [];
+		}
+
+		allOptions = $.extend( {}, mw.user.options.values );
+
+		for ( key in allOptions ) {
+			if ( !Object.prototype.hasOwnProperty.call( allOptions, key ) ) {
+				continue;
+			}
+
+			matches = regex.exec( key );
+
+			if ( Array.isArray( matches ) && matches.length === 2 && allOptions[ key ] === 0 ) {
+				blocked.push( matches[ 1 ] );
+			}
+		}
+
+		return blocked;
 	}
 
 	function numericalUrlParamOrVal( urlParam, val ) {

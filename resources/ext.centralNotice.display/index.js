@@ -413,6 +413,27 @@
 			state.setBucket( bucketer.getBucket() );
 			state.setReducedBucket( bucketer.getReducedBucket() );
 
+			// Check user preferences for campaign type displaying
+			if ( !state.getData().anonymous ) {
+				// Do not check user preferences on anon users
+				if (
+					campaign.type === 0 ||
+					state.getData().optedOutCampaigns.indexOf( campaign.type ) !== -1
+				) {
+					// User opted out of viewing this type of campaigns
+					// or campaign does not have a type set
+					// TODO Consolidate code below and code in shouldHide() conditional
+					// in a function.
+					state.failCampaign( 'userOptOut' );
+					runPreBannerHooks();
+					runPostBannerOrFailHooks();
+
+					// Update available campaigns
+					fallbackLoopUpdateAvailableCampaigns( i );
+					continue;
+				}
+			}
+
 			// Check the hide cookie and possibly fail the campaign.
 			// We do this before running pre-banner hooks so that these can count
 			// stuff differently if there was a hide cookie.
@@ -423,11 +444,7 @@
 				runPostBannerOrFailHooks();
 
 				// Update available campaigns
-				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
-					state.getData().availableCampaigns,
-					state.getAttemptingCampaign(),
-					i
-				) );
+				fallbackLoopUpdateAvailableCampaigns( i );
 				continue;
 			}
 
@@ -439,11 +456,7 @@
 				runPostBannerOrFailHooks();
 
 				// Update available campaigns
-				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
-					state.getData().availableCampaigns,
-					state.getAttemptingCampaign(),
-					i
-				) );
+				fallbackLoopUpdateAvailableCampaigns( i );
 				continue;
 			}
 
@@ -528,6 +541,20 @@
 		// Get the banner
 		// The ajax response will call mw.centralNotice.insertBanner()
 		fetchBanner();
+	}
+
+	/**
+	 * Convenience method used only by reallyChooseAndMaybeDisplay() to update available
+	 * campaigns within the fallback loop.
+	 */
+	function fallbackLoopUpdateAvailableCampaigns( iteration ) {
+		var state = cn.internal.state;
+
+		state.setAvailableCampaigns( cn.internal.chooser.updateAvailableCampaigns(
+			state.getData().availableCampaigns,
+			state.getAttemptingCampaign(),
+			iteration
+		) );
 	}
 
 	/**

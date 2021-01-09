@@ -160,6 +160,7 @@ class CentralNoticeTestFixtures {
 					$now, $choice['end_days_from_now']
 				);
 
+				$choice['type'] = null;
 				$choice['mixins'] = [];
 
 				// Unset these special properties from choices, for tests that
