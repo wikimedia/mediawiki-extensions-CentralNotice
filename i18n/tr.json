@@ -336,5 +336,19 @@
 	"centralnotice-add-banner-from-template": "Şablondan bir banner ekle",
 	"centralnotice-messages-banner-in-campaign": "Bir veya daha fazla kampanyaya atanmışken bu banner şablon olarak işaretlenemez. Bu banner şu kampanyalara atandı:",
 	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur",
-	"centralnotice-campaign-view-logs": "Kampanya ayarları günlüklerini gör"
+	"centralnotice-campaign-view-logs": "Kampanya ayarları günlüklerini gör",
+	"prefs-centralnotice-banners": "Banner'lar",
+	"prefs-centralnotice-display-banner-types": "Görüntülenecek banner türleri",
+	"centralnotice-campaign-type": "Kampanya türü",
+	"centralnotice-empty-campaign-type-option": "Tür yok (her zaman gösterilir)",
+	"centralnotice-non-existent-campaign-type-error": "Seçili kampanya türü mevcut değil",
+	"centralntoice-deleted-campaign-type": "$1 (silinmiş tür)",
+	"centralnotice-campaign-type-advocacy": "Savunuculuk",
+	"centralnotice-campaign-type-article-writing": "Madde yazma",
+	"centralnotice-campaign-type-event": "Etkinlik",
+	"centralnotice-campaign-type-fundraising": "Bağış",
+	"centralnotice-campaign-type-governance": "Yönetim",
+	"centralnotice-campaign-type-maintenance": "Bakım",
+	"centralnotice-campaign-type-photography": "Fotoğrafçılık",
+	"centralnotice-campaign-type-special": "Özel"
 }

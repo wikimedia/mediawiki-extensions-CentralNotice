@@ -340,5 +340,19 @@
 	"centralnotice-add-banner-from-template": "Adicionar um banner da predefinição",
 	"centralnotice-messages-banner-in-campaign": "Não é possível marcar esse banner como predefinição enquanto estiver atribuído a uma ou mais campanhas. Este banner é atribuído às seguintes campanhas:",
 	"centralnotice-create-from-template-checkbox-label": "Criar a partir da predefinição",
-	"centralnotice-campaign-view-logs": "Ver registros de configurações de campanha"
+	"centralnotice-campaign-view-logs": "Ver registros de configurações de campanha",
+	"prefs-centralnotice-banners": "Modelos",
+	"prefs-centralnotice-display-banner-types": "Tipos de modelos para exibir",
+	"centralnotice-campaign-type": "Tipo de campanha",
+	"centralnotice-empty-campaign-type-option": "Nenhum tipo (sempre mostrado)",
+	"centralnotice-non-existent-campaign-type-error": "O tipo de campanha selecionado não existe",
+	"centralntoice-deleted-campaign-type": "$1 (tipo excluído)",
+	"centralnotice-campaign-type-advocacy": "Advocacia",
+	"centralnotice-campaign-type-article-writing": "Redação de artigo",
+	"centralnotice-campaign-type-event": "Evento",
+	"centralnotice-campaign-type-fundraising": "Angariação de fundos",
+	"centralnotice-campaign-type-governance": "Governança",
+	"centralnotice-campaign-type-maintenance": "Manutenção",
+	"centralnotice-campaign-type-photography": "Fotografia",
+	"centralnotice-campaign-type-special": "Especiais"
 }

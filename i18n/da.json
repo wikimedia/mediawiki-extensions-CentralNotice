@@ -233,5 +233,8 @@
 	"centralnotice-multiple-countries": "Flere lande",
 	"centralnotice-multiple-languages": "Flere sprog",
 	"centralnotice-banner-template-info": "(skabelon)",
-	"centralnotice-create-from-template-checkbox-label": "Opret fra skabelon"
+	"centralnotice-create-from-template-checkbox-label": "Opret fra skabelon",
+	"centralnotice-campaign-type": "Kampagnetype",
+	"centralntoice-deleted-campaign-type": "$1 (slettet type)",
+	"centralnotice-campaign-type-article-writing": "Artikelskrivning"
 }

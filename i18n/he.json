@@ -326,5 +326,19 @@
 	"centralnotice-add-banner-from-template": "הוספת כרזה מתבנית",
 	"centralnotice-messages-banner-in-campaign": "לא ניתן לסמן את הכרזה הזאת בתור תבנית כשהיא משויכת למסע פרסום אחד או יותר. הכרזה הזאת משויכת למסעי הפרסום הבאים:",
 	"centralnotice-create-from-template-checkbox-label": "יצירה מתבנית",
-	"centralnotice-campaign-view-logs": "הצגת יומנים של הגדרות מבצעי פרסום"
+	"centralnotice-campaign-view-logs": "הצגת יומנים של הגדרות מבצעי פרסום",
+	"prefs-centralnotice-banners": "כרזות",
+	"prefs-centralnotice-display-banner-types": "אילו סוגי כרזות להציג",
+	"centralnotice-campaign-type": "סוג מסע הפרסום",
+	"centralnotice-empty-campaign-type-option": "אין סוג (תמיד מוצג)",
+	"centralnotice-non-existent-campaign-type-error": "סוג מסע הפרסום שנבחר אינו קיים",
+	"centralntoice-deleted-campaign-type": "$1 (סוג מחוק)",
+	"centralnotice-campaign-type-advocacy": "הסברה",
+	"centralnotice-campaign-type-article-writing": "כתיבת ערכים",
+	"centralnotice-campaign-type-event": "אירוע",
+	"centralnotice-campaign-type-fundraising": "התרמה",
+	"centralnotice-campaign-type-governance": "ניהול התנועה",
+	"centralnotice-campaign-type-maintenance": "תחזוקה",
+	"centralnotice-campaign-type-photography": "צילום",
+	"centralnotice-campaign-type-special": "מיוחד"
 }

@@ -7,6 +7,7 @@
 			"Chrumps",
 			"CiaPan",
 			"Derbeth",
+			"Kareyac",
 			"Leinad",
 			"Maikking",
 			"Matma Rex",
@@ -239,5 +240,7 @@
 	"centralnotice-multiple-languages": "wiele ($1)",
 	"centralnotice-banner-template-info": "(szablon)",
 	"centralnotice-create-from-template-checkbox-label": "Utwórz z szablonu",
-	"centralnotice-campaign-view-logs": "Zobacz rejestr ustawień kampanii"
+	"centralnotice-campaign-view-logs": "Zobacz rejestr ustawień kampanii",
+	"prefs-centralnotice-banners": "Banery",
+	"centralnotice-campaign-type-event": "Wydarzenie"
 }
