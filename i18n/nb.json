@@ -329,5 +329,17 @@
 	"centralnotice-add-banner-from-template": "Legg til et banner fra mal",
 	"centralnotice-messages-banner-in-campaign": "Kan ikke merke dette banneret som en mal fordi det er tildelt én eller flere kampanjer. Dette banneret er tildelt følgende kampanjer:",
 	"centralnotice-create-from-template-checkbox-label": "Opprett fra mal",
-	"centralnotice-campaign-view-logs": "Vis kampanjeinnstillingslogger"
+	"centralnotice-campaign-view-logs": "Vis kampanjeinnstillingslogger",
+	"prefs-centralnotice-banners": "Bannere",
+	"prefs-centralnotice-display-banner-types": "Bannertyper som skal vises",
+	"centralnotice-campaign-type": "Kampanjetype",
+	"centralnotice-empty-campaign-type-option": "Ingen type (vises alltid)",
+	"centralnotice-non-existent-campaign-type-error": "Valgte kampanjetype finnes ikke",
+	"centralntoice-deleted-campaign-type": "$1 (slettet type)",
+	"centralnotice-campaign-type-article-writing": "Artikkelskriving",
+	"centralnotice-campaign-type-event": "Arrangement",
+	"centralnotice-campaign-type-fundraising": "Pengeinnsamling",
+	"centralnotice-campaign-type-maintenance": "Vedlikehold",
+	"centralnotice-campaign-type-photography": "Fotografi",
+	"centralnotice-campaign-type-special": "Spesielle"
 }
