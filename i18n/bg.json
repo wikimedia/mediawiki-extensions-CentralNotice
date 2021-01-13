@@ -4,6 +4,7 @@
 			"Borislav",
 			"DCLXVI",
 			"Gazimagomedov",
+			"Kareyac",
 			"Mitzev",
 			"ShockD",
 			"Spiritia",
@@ -186,5 +187,6 @@
 	"tag-centralnotice": "Централизирани съобщения",
 	"tag-centralnotice-description": "Редакцията е направена чрез администраторския интерфейс на Централизираните съобщения",
 	"tag-centralnotice_translation": "Превод на централизирано съобщение",
-	"tag-centralnotice_translation-description": "Редакция на съдържанието в Централизираните съобщения, направена чрез разширението „Превод“"
+	"tag-centralnotice_translation-description": "Редакция на съдържанието в Централизираните съобщения, направена чрез разширението „Превод“",
+	"prefs-centralnotice-banners": "Банери"
 }
