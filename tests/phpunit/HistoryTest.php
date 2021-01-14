@@ -5,12 +5,16 @@
  * @group medium
  * @group Database
  */
-class HistoryTest extends CentralNoticeTest {
+class HistoryTest extends MediaWikiIntegrationTestCase {
+	protected $userUser;
+
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
 	protected function setUp() : void {
 		parent::setUp();
+
+		$this->userUser = $this->getTestUser()->getUser();
 
 		$this->cnFixtures = new CentralNoticeTestFixtures();
 	}
