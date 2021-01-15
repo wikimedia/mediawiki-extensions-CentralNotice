@@ -348,5 +348,14 @@
 	"centralnotice-banner-is-template": "此横幅是一个用来创建横幅的模板",
 	"centralnotice-banner-template-info": "（模板）",
 	"centralnotice-add-banner-from-template": "从模板加入横幅",
-	"centralnotice-create-from-template-checkbox-label": "从模板创建"
+	"centralnotice-create-from-template-checkbox-label": "从模板创建",
+	"prefs-centralnotice-banners": "横幅",
+	"prefs-centralnotice-display-banner-types": "显示横幅的类型",
+	"centralnotice-empty-campaign-type-option": "无类型（始终显示）",
+	"centralntoice-deleted-campaign-type": "$1 (已删除的类型)",
+	"centralnotice-campaign-type-article-writing": "编写条目",
+	"centralnotice-campaign-type-event": "活动",
+	"centralnotice-campaign-type-fundraising": "筹款",
+	"centralnotice-campaign-type-governance": "管理",
+	"centralnotice-campaign-type-photography": "摄影"
 }
