@@ -186,7 +186,7 @@
 	"centralnotice-damaged-log": "$1 - (손상된 기록)",
 	"centralnotice-date": "날짜",
 	"centralnotice-apply-filters": "필터 적용",
-	"centralnotice-clear-filters": "필터 지움",
+	"centralnotice-clear-filters": "필터 지우기",
 	"centralnotice-banner-messages": "번역 가능한 배너 메시지",
 	"centralnotice-filter-template-prompt": "배너 필터 (예를 들어 Jimmy 2008)",
 	"centralnotice-filter-template-submit": "필터 적용",
@@ -273,5 +273,17 @@
 	"centralnotice-banner-template-info": "(틀)",
 	"centralnotice-banner-template-error": "유효하지 않는 배너나, 틀로 표시되지 않은 배너에 기반하여 배너를 만들 수 없습니다.\n추가하지 않습니다",
 	"centralnotice-add-banner-from-template": "틀로부터 배너 추가",
-	"centralnotice-create-from-template-checkbox-label": "틀에서 만들기"
+	"centralnotice-create-from-template-checkbox-label": "틀에서 만들기",
+	"prefs-centralnotice-banners": "배너",
+	"prefs-centralnotice-display-banner-types": "표시할 배너 유형",
+	"centralnotice-campaign-type": "공지 유형",
+	"centralnotice-empty-campaign-type-option": "유형 없음 (무조건 표시)",
+	"centralnotice-non-existent-campaign-type-error": "선택한 공지 유형은 존재하지 않습니다",
+	"centralntoice-deleted-campaign-type": "$1 (삭제된 유형)",
+	"centralnotice-campaign-type-article-writing": "글 쓰기",
+	"centralnotice-campaign-type-event": "이벤트",
+	"centralnotice-campaign-type-fundraising": "기금 모금",
+	"centralnotice-campaign-type-maintenance": "유지보수",
+	"centralnotice-campaign-type-photography": "사진",
+	"centralnotice-campaign-type-special": "특수"
 }
