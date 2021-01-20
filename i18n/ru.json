@@ -316,6 +316,7 @@
 	"centralnotice-banner-template-info": "(шаблон)",
 	"prefs-centralnotice-banners": "Баннеры",
 	"centralnotice-campaign-type": "Тип кампании",
+	"centralntoice-deleted-campaign-type": "$1 (удаленный тип)",
 	"centralnotice-campaign-type-event": "Событие",
 	"centralnotice-campaign-type-fundraising": "Сбор средств",
 	"centralnotice-campaign-type-maintenance": "Обслуживание",
