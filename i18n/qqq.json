@@ -360,5 +360,6 @@
 	"centralnotice-campaign-type-governance": "Name of campaign type for campaigns relating to governance. Used in user preferences and CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
 	"centralnotice-campaign-type-maintenance": "Name of campaign type for campaigns relating to site maintenance. Used in CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
 	"centralnotice-campaign-type-photography": "Name of campaign type for campaigns relating to photography. Used in user preferences and CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
-	"centralnotice-campaign-type-special": "Name of campaign type for campaigns of a special category, which cannot be hidden by preferences. Used in CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes."
+	"centralnotice-campaign-type-special": "Name of campaign type for campaigns of a special category, which cannot be hidden by preferences. Used in CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
+	"centralnotice-user-prefs-intro": "Explanatory introduction for section in user preferences where users can select which banner types to display."
 }

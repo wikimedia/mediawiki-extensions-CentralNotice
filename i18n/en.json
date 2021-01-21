@@ -334,5 +334,6 @@
 	"centralnotice-campaign-type-governance": "Governance",
 	"centralnotice-campaign-type-maintenance": "Maintenance",
 	"centralnotice-campaign-type-photography": "Photography",
-	"centralnotice-campaign-type-special": "Special"
+	"centralnotice-campaign-type-special": "Special",
+	"centralnotice-user-prefs-intro": "Banners display announcements of interest to Wikimedia communities and users.\n\nBelow are options that allow you to manage which types of announcements you see. Certain platform notices, such as those relating to site maintenance and special notices considered necessary to all users, will always be displayed. For further information, please read the [[metawikimedia:CentralNotice|documentation on Meta-Wiki]]."
 }

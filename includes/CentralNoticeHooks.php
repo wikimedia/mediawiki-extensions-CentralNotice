@@ -585,6 +585,14 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
+		// Explanatory text
+		$preferences['centralnotice-intro'] = [
+			'type' => 'info',
+			'default' => wfMessage( 'centralnotice-user-prefs-intro' )->parseAsBlock(),
+			'section' => 'centralnotice-banners',
+			'raw' => true,
+		];
+
 		foreach ( CampaignType::getTypes() as $type ) {
 			// This allows fallback languages while also showing something not-too-
 			// horrible if the config variable has types that don't have i18n
