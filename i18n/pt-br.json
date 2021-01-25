@@ -354,5 +354,6 @@
 	"centralnotice-campaign-type-governance": "Governança",
 	"centralnotice-campaign-type-maintenance": "Manutenção",
 	"centralnotice-campaign-type-photography": "Fotografia",
-	"centralnotice-campaign-type-special": "Especiais"
+	"centralnotice-campaign-type-special": "Especiais",
+	"centralnotice-user-prefs-intro": "Banners exibem anúncios de interesse para as comunidades e usuários da Wikimedia.\n\nAbaixo estão as opções que permitem gerenciar quais tipos de anúncios você vê. Certos avisos de plataforma, como os relativos à manutenção do site e avisos especiais considerados necessários para todos os usuários, sempre serão exibidos. Para mais informações, leia o[[metawikimedia:CentralNotice|documentação no Meta-Wiki]]."
 }

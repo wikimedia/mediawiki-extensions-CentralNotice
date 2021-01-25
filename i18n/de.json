@@ -343,5 +343,6 @@
 	"centralnotice-campaign-type-governance": "Governance",
 	"centralnotice-campaign-type-maintenance": "Wartung",
 	"centralnotice-campaign-type-photography": "Fotografie",
-	"centralnotice-campaign-type-special": "Spezial"
+	"centralnotice-campaign-type-special": "Spezial",
+	"centralnotice-user-prefs-intro": "Banner zeigen Ankündigungen an, die für die Wikimedia-Gemeinschaften und -Benutzer von Interesse sind.\n\nIm Folgenden findest du Optionen, mit denen du verwalten kannst, welche Arten von Ankündigungen du siehst. Bestimmte Plattform-Hinweise, wie z. B. solche, die sich auf die Wartung der Seite beziehen, und spezielle Hinweise, die für alle Benutzer als notwendig erachtet werden, werden immer angezeigt. Für weitere Informationen lies bitte die [[metawikimedia:CentralNotice|Dokumentation im Meta-Wiki]]."
 }

@@ -340,5 +340,6 @@
 	"centralnotice-campaign-type-governance": "ניהול התנועה",
 	"centralnotice-campaign-type-maintenance": "תחזוקה",
 	"centralnotice-campaign-type-photography": "צילום",
-	"centralnotice-campaign-type-special": "מיוחד"
+	"centralnotice-campaign-type-special": "מיוחד",
+	"centralnotice-user-prefs-intro": "כרזות מציגות הודעות שמעניינות את הקהילות ואת המשתמשים של ויקימדיה.\n\nלהלן אפשרויות שנותנות לך לנהל אילו סוגי הודעות {{GENDER:אתה|את}} רואה. הודעות מסוימות על הפלטפורמה, כגון אלה שקשורות לתחזוקת האתר והודעות מיוחדות שנחשבות נחוצות לכל המשתמשים, תוצגנה תמיד. למידע נוסף, נא לקרוא את [[metawikimedia:CentralNotice|התיעוד באתר מטא]]."
 }

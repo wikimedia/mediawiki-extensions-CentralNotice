@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agaafd",
 			"BaRaN6161 TURK",
 			"Cekli829",
 			"Emperyan",
@@ -350,5 +351,6 @@
 	"centralnotice-campaign-type-governance": "Yönetim",
 	"centralnotice-campaign-type-maintenance": "Bakım",
 	"centralnotice-campaign-type-photography": "Fotoğrafçılık",
-	"centralnotice-campaign-type-special": "Özel"
+	"centralnotice-campaign-type-special": "Özel",
+	"centralnotice-user-prefs-intro": "Afişler, Wikimedia toplulukları ve kullanıcılarını ilgilendiren duyuruları gösterir.\nAşağıda, hangi duyuru türlerini göreceğinizi yönetmenize olanak tanıyan seçenekler bulunmaktadır.Site bakımı ile ilgili olanlar ve tüm kullanıcılar için gerekli olduğu düşünülen özel bildirimler gibi belirli platform bildirimleri her zaman görüntülenecektir. Daha fazla bilgi için, lütfen [[metawikimedia:CentralNotice|Meta-Wiki ile ilgili belgeler]]'i okuyun."
 }

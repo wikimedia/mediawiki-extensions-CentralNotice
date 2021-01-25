@@ -335,5 +335,6 @@
 	"centralnotice-campaign-type-governance": "Раководство",
 	"centralnotice-campaign-type-maintenance": "Одржување",
 	"centralnotice-campaign-type-photography": "Фотографија",
-	"centralnotice-campaign-type-special": "Посебен"
+	"centralnotice-campaign-type-special": "Посебен",
+	"centralnotice-user-prefs-intro": "Централните разгласи на врвот од страницата се известувања од интерес за Викимедиините заедници и корисници.\n\nПодолу се претставени можности кои овозможуваат да се определи кои видови известувања ќе се прикажуваат. Извесни известувања на подлогата, како оние околу одржувањето на викито и посебните известувања кои се сметаат за неопходни за сите корисници ќе се прикажуваат секогаш. Повеќе за ова ќе дознаете од [[metawikimedia:CentralNotice|документацијата на Мета]]."
 }
