@@ -52,7 +52,7 @@
 	"centralnotice-no-project": "Za akcijo ni bil izbran noben projekt. Ne dodajam.",
 	"centralnotice-template-exists": "Pasica že obstaja.\nNe dodajam.",
 	"centralnotice-notice-doesnt-exist": "Akcija ne obstaja.",
-	"centralnotice-remove-notice-doesnt-exist": "Akcija ne obstaja.\nNič ni za odstraniti.",
+	"centralnotice-remove-notice-doesnt-exist": "Obvestilo ne obstaja.\nNičesar ni mogoče odstraniti.",
 	"centralnotice-banner-doesnt-exist": "Pasica ne obstaja.",
 	"centralnotice-template-still-bound": "Ne morem odstraniti pasice »$1«, ker je še vedno priključena h kampanji.\nNe bom odstranil.",
 	"centralnotice-template-body": "Telo pasice:",

@@ -13,6 +13,7 @@
 			"LuCKY",
 			"MuratTheTurkish",
 			"Rapsar",
+			"SaldırganSincap",
 			"Sayginer",
 			"Sezgin İbiş",
 			"Srhat",
@@ -352,5 +353,5 @@
 	"centralnotice-campaign-type-maintenance": "Bakım",
 	"centralnotice-campaign-type-photography": "Fotoğrafçılık",
 	"centralnotice-campaign-type-special": "Özel",
-	"centralnotice-user-prefs-intro": "Afişler, Wikimedia toplulukları ve kullanıcılarını ilgilendiren duyuruları gösterir.\nAşağıda, hangi duyuru türlerini göreceğinizi yönetmenize olanak tanıyan seçenekler bulunmaktadır.Site bakımı ile ilgili olanlar ve tüm kullanıcılar için gerekli olduğu düşünülen özel bildirimler gibi belirli platform bildirimleri her zaman görüntülenecektir. Daha fazla bilgi için, lütfen [[metawikimedia:CentralNotice|Meta-Wiki ile ilgili belgeler]]'i okuyun."
+	"centralnotice-user-prefs-intro": "Banner'lar, Wikimedia toplulukları ve kullanıcılarını ilgilendiren duyuruları gösterir.\n\nAşağıda, hangi duyuru türlerini göreceğinizi yönetmenize olanak tanıyan seçenekler bulunmaktadır. Site bakımı ile ilgili olanlar ve tüm kullanıcılar için gerekli olduğu düşünülen özel bildirimler gibi belirli platform bildirimleri her zaman görüntülenecektir. Daha fazla bilgi için, lütfen [[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Viki ile ilgili belgeleri]] okuyun."
 }
