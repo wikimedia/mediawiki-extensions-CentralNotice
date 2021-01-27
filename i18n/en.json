@@ -123,7 +123,7 @@
 	"centralnotice-banner-cdn-controls": "Front-end cache",
 	"centralnotice-banner-cdn-label": "Purge front-end cache for the following language:",
 	"centralnotice-banner-cdn-button": "Purge",
-	"centralnotice-banner-cdn-help" : "Removes banner content stored in the front-end cache for anonymous users, for the selected language. (Banners are not cached for logged-in users.)",
+	"centralnotice-banner-cdn-help": "Removes banner content stored in the front-end cache for anonymous users, for the selected language. (Banners are not cached for logged-in users.)",
 	"centralnotice-banner-cdn-dialog-waiting-text": "Sending request for front-end cache purge...",
 	"centralnotice-banner-cdn-dialog-title": "Purge front-end cache",
 	"centralnotice-banner-cdn-dialog-ok": "OK",

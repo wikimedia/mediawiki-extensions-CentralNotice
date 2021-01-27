@@ -612,6 +612,7 @@
 	};
 
 	/**
+	 * @param seq
 	 * @private
 	 * @return {boolean}
 	 */
@@ -637,6 +638,7 @@
 	};
 
 	/**
+	 * @param step
 	 * @private
 	 * @return {boolean}
 	 */
@@ -692,6 +694,7 @@
 	};
 
 	/**
+	 * @param n
 	 * @private
 	 */
 	BannerSequenceUiModel.prototype.validateIntOneOrGreater = function ( n ) {
@@ -736,6 +739,8 @@
 	/**
 	 * Global container widget for the banner sequence administration UI.
 	 *
+	 * @param controller
+	 * @param model
 	 * @class BannerSequenceWidget
 	 * @constructor
 	 */
@@ -892,6 +897,9 @@
 
 	/**
 	 * Tell the sequence container for a bucket to remove a step
+	 *
+	 * @param bucket
+	 * @param stepNum
 	 */
 	BannerSequenceWidget.prototype.removeStepForBucket = function ( bucket, stepNum ) {
 		var seqContainerWidget = this.findItemFromData( bucket );
@@ -915,6 +923,9 @@
 
 	/**
 	 * Tell the sequence container for a bucket to update banners in drop-down inputs.
+	 *
+	 * @param bucket
+	 * @param banners
 	 */
 	BannerSequenceWidget.prototype.updateBannersForDropDownsForBucket = function (
 		bucket,
@@ -926,6 +937,8 @@
 	/**
 	 * Tell the sequence container for a bucket to re-calculate total page views in the
 	 * sequence.
+	 *
+	 * @param bucket
 	 */
 	BannerSequenceWidget.prototype.updateTotalPageViewsForBucket = function ( bucket ) {
 		this.findItemFromData( bucket ).updateTotalPageViews();
@@ -937,6 +950,9 @@
 	 * Container widget for a sequence for a bucket and related controls (heading and add
 	 * step button).
 	 *
+	 * @param controller
+	 * @param model
+	 * @param config
 	 * @class BucketSeqContainerWidget
 	 * @constructor
 	 */
@@ -1041,6 +1057,9 @@
 
 	/**
 	 * Add a new step widget with the specified step model and index
+	 *
+	 * @param stepModel
+	 * @param index
 	 */
 	BucketSeqContainerWidget.prototype.addStepWidget = function ( stepModel, index ) {
 
@@ -1117,6 +1136,8 @@
 
 	/**
 	 * Update banners shown in drop-down input menus.
+	 *
+	 * @param banners
 	 */
 	BucketSeqContainerWidget.prototype.updateBannersForDropDowns = function ( banners ) {
 		var i,
@@ -1173,6 +1194,10 @@
 	/**
 	 * Widget for a step in a sequence.
 	 *
+	 * @param controller
+	 * @param model
+	 * @param bucket
+	 * @param config
 	 * @class StepWidget
 	 * @constructor
 	 */
@@ -1500,6 +1525,7 @@
 	};
 
 	/**
+	 * @param banners
 	 * @private
 	 */
 	StepWidget.prototype.makeDropMenuItems = function ( banners ) {

@@ -9,6 +9,11 @@
 
 	/**
 	 * Update changes object as needed
+	 *
+	 * @param campaignName
+	 * @param property
+	 * @param value
+	 * @param initialValue
 	 */
 	function setChange( campaignName, property, value, initialValue ) {
 

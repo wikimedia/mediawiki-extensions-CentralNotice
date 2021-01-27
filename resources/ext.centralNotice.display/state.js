@@ -304,6 +304,8 @@
 		/**
 		 * Call this with geo data before calling setUp() or
 		 * setUpForTestingBanner().
+		 *
+		 * @param geo
 		 */
 		setGeoData: function ( geo ) {
 			if ( geo ) {
@@ -380,6 +382,8 @@
 		/**
 		 * Set a list of campaigns that may be selected for this pageview. This method
 		 * will be called to update the list on each iteration of the fallback loop.
+		 *
+		 * @param availableCampaigns
 		 */
 		setAvailableCampaigns: function ( availableCampaigns ) {
 			state.data.availableCampaigns = availableCampaigns;
@@ -484,6 +488,8 @@
 
 		/**
 		 * Marks a campaign as failed.
+		 *
+		 * @param reason
 		 */
 		failCampaign: function ( reason ) {
 			state.data.bannerCanceledReason = reason;
@@ -544,6 +550,8 @@
 
 		/**
 		 * Sets banner_count, a legacy field for Special:RecordImpression
+		 *
+		 * @param bannerCount
 		 */
 		setBannerCount: function ( bannerCount ) {
 			// eslint-disable-next-line camelcase
@@ -552,6 +560,8 @@
 
 		/**
 		 * Sets minimal impression sample rate, the highest rate set will be used
+		 *
+		 * @param rate
 		 */
 		setMinRecordImpressionSampleRate: function ( rate ) {
 			// Update rate only if supplied rate is higher than current one
@@ -563,6 +573,8 @@
 		/**
 		 * Sets minimal impression event sample rate, the highest rate set will be used
 		 * (unless it was overridden by a URL parameter, in which that takes precedence).
+		 *
+		 * @param rate
 		 */
 		setMinImpressionEventSampleRate: function ( rate ) {
 			if (
