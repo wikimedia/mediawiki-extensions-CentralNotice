@@ -77,7 +77,7 @@
 	"centralnotice-invalid-date-range": "Neveljavno časovno obdobje.\nNe posodabljam.",
 	"centralnotice-null-string": "Ne morem dodati ničelnega niza.\nNe dodajam.",
 	"centralnotice-no-notices-exist": "Ne obstaja nobena akcija.\nDodajte kakšno spodaj.",
-	"centralnotice-no-templates-translate": "Tukaj ni nobenih pasic za katere se lahko urejajo prevodi.",
+	"centralnotice-no-templates-translate": "Tu ni nobenih pasic, za katere bi se lahko urejali prevodi.",
 	"centralnotice-number-uses": "Uporabe",
 	"centralnotice-settings": "Nastavitve",
 	"centralnotice-edit-template": "Uredi pasico",
