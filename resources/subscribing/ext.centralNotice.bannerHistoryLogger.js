@@ -250,6 +250,7 @@
 	 *
 	 * FIXME This is a temporary measure!
 	 *
+	 * @param elData
 	 * @return {boolean} true if the EL payload size is OK
 	 */
 	function checkEventLoggingURLSize( elData ) {
@@ -259,6 +260,8 @@
 	/**
 	 * Make an EventLogging URL ourselves.
 	 * FIXME This is a temporary measure!
+	 *
+	 * @param elData
 	 */
 	function makeEventLoggingURL( elData ) {
 		return mw.eventLog.makeBeaconUrl( {
