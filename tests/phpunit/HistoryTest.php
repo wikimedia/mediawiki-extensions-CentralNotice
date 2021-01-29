@@ -70,6 +70,6 @@ class HistoryTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$modified_ts = wfTimestamp( TS_MW );
-		$this->assertSame( 0, count( Campaign::getHistoricalCampaigns( $modified_ts ) ) );
+		$this->assertCount( 0, Campaign::getHistoricalCampaigns( $modified_ts ) );
 	}
 }
