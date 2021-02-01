@@ -153,6 +153,17 @@ class CNDatabasePatcher {
 					$base . '/patch_template_banners_field_update.sql', true
 				]
 			);
+			$updater->addExtensionField(
+				'cn_notices',
+				'not_type',
+				$base . '/patch-notice_not_type.sql'
+			);
+			// This adds both notlog_begin_type and notlog_end_type fields
+			$updater->addExtensionField(
+				'cn_notice_log',
+				'notlog_begin_type',
+				$base . '/patch-notice-type-log.sql'
+			);
 		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
 			// Add the entire schema...
 			$updater->addExtensionTable(

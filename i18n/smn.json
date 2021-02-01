@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Seipinne",
 			"Yupik"
 		]
 	},
 	"centralnotice-settings": "Asâttâsah",
 	"centralnotice-languages": "Kielah",
 	"centralnotice-language": "Kielâ",
+	"centralnotice-date": "Peivimeeri",
 	"centralnotice-banner-class": "Luokka"
 }

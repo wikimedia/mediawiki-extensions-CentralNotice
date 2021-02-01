@@ -256,6 +256,8 @@
 		/**
 		 * Filter text box keypress handler; applies the filter when enter is
 		 * pressed.
+		 *
+		 * @param e
 		 */
 		filterTextBoxKeypress: function ( e ) {
 			if ( e.which === 13 ) {
@@ -268,6 +270,8 @@
 		 * Remove characters not allowed in banner names. See server-side
 		 * Banner::isValidBannerName() and
 		 * SpecialCentralNotice::sanitizeSearchTerms().
+		 *
+		 * @param $origFilterStr
 		 */
 		sanitizeFilterStr: function ( $origFilterStr ) {
 			return $origFilterStr.replace( /[^0-9a-zA-Z_-]/g, '' );

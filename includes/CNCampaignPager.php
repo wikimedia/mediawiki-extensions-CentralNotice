@@ -18,14 +18,18 @@ class CNCampaignPager extends TablePager {
 	// This should be enuf--Meta has less than 500 campaigns.
 	const DEFAULT_LIMIT = 5000;
 
+	/** @var CentralNotice */
 	protected $onSpecialCN;
+	/** @var string|false */
 	protected $editable;
+	/** @var string|null */
 	protected $assignedBannerId;
+	/** @var string[]|null */
 	protected $fieldNames = null;
 
 	/**
 	 * @param CentralNotice $onSpecialCN The CentralNotice special page we're on
-	 * @param string $editable Whether or not to make the list editable
+	 * @param string|false $editable Whether or not to make the list editable
 	 * @param string|null $assignedBannerId Set this to show only the campaigns
 	 *   associated with this banner id.
 	 */
@@ -65,6 +69,7 @@ class CNCampaignPager extends TablePager {
 			'fields' => [
 				'notices.not_id',
 				'not_name',
+				'not_type',
 				'not_start',
 				'not_end',
 				'not_enabled',
@@ -131,6 +136,7 @@ class CNCampaignPager extends TablePager {
 		if ( !$this->fieldNames ) {
 			$this->fieldNames = [
 				'not_name' => $this->msg( 'centralnotice-notice-name' )->text(),
+				'not_type' => $this->msg( 'centralnotice-campaign-type' )->text(),
 				'projects' => $this->msg( 'centralnotice-projects' )->text(),
 				'languages' => $this->msg( 'centralnotice-languages' )->text(),
 				'location' => $this->msg( 'centralnotice-location' )->text(),
@@ -204,6 +210,13 @@ class CNCampaignPager extends TablePager {
 					htmlspecialchars( $value ),
 					[],
 					Campaign::getQueryForURL( $value )
+				);
+
+			case 'not_type':
+				return $this->onSpecialCN->campaignTypeSelector(
+					$this->editable && !$rowIsLocked && !$rowIsArchived,
+					$value,
+					$name
 				);
 
 			case 'projects':

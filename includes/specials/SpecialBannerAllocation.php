@@ -27,7 +27,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 *
 	 * @see $wgNoticeProjects
 	 *
-	 * @var string $project
+	 * @var string
 	 */
 	public $project = 'wikipedia';
 
@@ -36,7 +36,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 *
 	 * This should always be a lowercase language code.
 	 *
-	 * @var string $language
+	 * @var string
 	 */
 	public $language = 'en';
 
@@ -45,7 +45,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 *
 	 * This should always be an uppercase country code or the empty string.
 	 *
-	 * @var string $locationCountry
+	 * @var string
 	 */
 	public $locationCountry = 'US';
 
@@ -54,7 +54,7 @@ class SpecialBannerAllocation extends CentralNotice {
 	 *
 	 * This should always be an uppercase region code or the empty string.
 	 *
-	 * @var string $locationRegion
+	 * @var string
 	 */
 	public $locationRegion = '';
 

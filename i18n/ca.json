@@ -86,7 +86,7 @@
 	"centralnotice-weights": "Pesos",
 	"centralnotice-notice-is-locked": "L'avís està blocat.\nNo s'ha eliminat",
 	"centralnotice-overlap": "L'avís se superposa en el temps amb un altre avís.\nNo s'ha afegit",
-	"centralnotice-invalid-date-range": "Interval de dates invàlid.\nNo actualitzat",
+	"centralnotice-invalid-date-range": "Interval de dates no vàlid.\nNo actualitzat",
 	"centralnotice-null-string": "No s'ha pogut afegir una cadena nul·la.",
 	"centralnotice-no-notices-exist": "No hi ha cap avís.\nAfegiu-ne un a continuació.",
 	"centralnotice-no-templates-translate": "No hi ha cap plantilla per modificar les traduccions per",

@@ -8,8 +8,15 @@
  * that part of CN.
  */
 class TemplatePager extends ReverseChronologicalPager {
-	public $onRemoveChange, $viewPage, $special;
+	/** @var string */
+	public $onRemoveChange;
+	/** @var Title */
+	public $viewPage;
+	/** @var SpecialPage */
+	public $special;
+	/** @var bool */
 	public $editable;
+	/** @var string */
 	public $filter;
 
 	public function __construct( $special, $filter = '' ) {
@@ -74,7 +81,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	/**
 	 * Generate the content of each table row (1 row = 1 banner)
 	 *
-	 * @param object $row database row
+	 * @param stdClass $row database row
 	 *
 	 * @return string HTML
 	 */

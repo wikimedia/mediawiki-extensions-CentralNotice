@@ -1,7 +1,9 @@
 <?php
 
 class CNCountry {
+	/** @var string */
 	private $name;
+	/** @var string[] */
 	private $regions;
 
 	public function __construct( $name, array $regions ) {

@@ -6,7 +6,12 @@
  * the log only goes back 30 days.
  */
 class CentralNoticePageLogPager extends ReverseChronologicalPager {
-	public $viewPage, $special, $logType;
+	/** @var Title */
+	public $viewPage;
+	/** @var SpecialPage */
+	public $special;
+	/** @var string */
+	public $logType;
 
 	/**
 	 * Construct instance of class.
@@ -186,11 +191,9 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			);
 		}
 
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 		$htmlOut .= Xml::tags( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			htmlspecialchars(
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				class_exists( CommentStore::class )
 					? CommentStore::getStore()->getComment( 'rc_comment', $row )->text
 					: $row->rc_comment

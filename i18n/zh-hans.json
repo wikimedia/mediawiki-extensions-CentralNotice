@@ -11,6 +11,7 @@
 			"Chenxiaoqino",
 			"Chenzw",
 			"Duolaimi",
+			"Func",
 			"Gzdavidwong",
 			"Hydra",
 			"Hzy980512",
@@ -98,7 +99,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "通告不存在。没有要移除的东西。",
 	"centralnotice-banner-doesnt-exist": "横幅不存在。",
 	"centralnotice-banner-edit-onwiki": "在wiki上编辑横幅",
-	"centralnotice-banner-history": "查看横幅历史",
+	"centralnotice-banner-history": "查看横幅编辑历史",
 	"centralnotice-template-still-bound": "不能移除横幅“$1”，因为它仍绑定在一个活动中。\n没有被移除。",
 	"centralnotice-template-body": "模板主体：",
 	"centralnotice-day": "日",
@@ -347,5 +348,14 @@
 	"centralnotice-banner-is-template": "此横幅是一个用来创建横幅的模板",
 	"centralnotice-banner-template-info": "（模板）",
 	"centralnotice-add-banner-from-template": "从模板加入横幅",
-	"centralnotice-create-from-template-checkbox-label": "从模板创建"
+	"centralnotice-create-from-template-checkbox-label": "从模板创建",
+	"prefs-centralnotice-banners": "横幅",
+	"prefs-centralnotice-display-banner-types": "显示横幅的类型",
+	"centralnotice-empty-campaign-type-option": "无类型（始终显示）",
+	"centralntoice-deleted-campaign-type": "$1 (已删除的类型)",
+	"centralnotice-campaign-type-article-writing": "编写条目",
+	"centralnotice-campaign-type-event": "活动",
+	"centralnotice-campaign-type-fundraising": "筹款",
+	"centralnotice-campaign-type-governance": "管理",
+	"centralnotice-campaign-type-photography": "摄影"
 }

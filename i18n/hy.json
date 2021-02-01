@@ -34,5 +34,7 @@
 	"centralnotice-archive-campaign-cancel": "Չեղարկել",
 	"centralnotice-delete-banner": "Ջնջել",
 	"centralnotice-delete-banner-cancel": "Չեղարկել",
-	"centralnotice-banner-template-info": "(կաղապար)"
+	"centralnotice-banner-template-info": "(կաղապար)",
+	"centralnotice-campaign-type-photography": "Լուսանկար",
+	"centralnotice-campaign-type-special": "Հատուկ"
 }

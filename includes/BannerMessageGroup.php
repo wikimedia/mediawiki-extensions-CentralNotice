@@ -7,8 +7,13 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 	const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup';
 
+	/** @var string */
 	protected $bannerName = '';
 
+	/**
+	 * @var int
+	 * @suppress PhanUndeclaredConstant NS_CN_BANNER defined in extension.json
+	 */
 	protected $namespace = NS_CN_BANNER;
 
 	/**
@@ -136,7 +141,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * implies that the user calling this hook must have site-edit permissions
 	 * and the $wgCentralNoticeMessageProtectRight granted.
 	 *
-	 * @param object $group Effected group object
+	 * @param MessageGroup $group Effected group object
 	 * @param string $code Language code that was modified
 	 * @param string $currentState Review state the group is transitioning from
 	 * @param string $newState Review state the group is transitioning to

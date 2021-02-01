@@ -1003,6 +1003,7 @@ class Banner {
 		);
 		foreach ( $result as $row ) {
 			if (
+				// @phan-suppress-next-line SecurityCheck-ReDoS \Q\E makes $prefix safe here T270943
 				preg_match(
 					"/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row->page_title,
 					$matches
@@ -1502,8 +1503,6 @@ class Banner {
 	/**
 	 * Log setting changes related to a banner
 	 *
-	 * phan-taint-check can't tell that $key is safe.
-	 * @suppress SecurityCheck-SQLInjection
 	 * @param string $action 'created', 'modified', or 'removed'
 	 * @param User $user The user causing the change
 	 * @param string|null $summary Summary (comment) for this action

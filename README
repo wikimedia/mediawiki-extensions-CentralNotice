@@ -238,3 +238,12 @@ Configuration
   any customized value has been set for $wgNoticeProtectGroup, this variable
   will take that value.
   Default: centralnotice-admin
+
+* $wgCentralNoticeCampaignTypes: Campaign types available to be set. Types are available
+  to opt-out of in user preferences. This variable is an associative array whose keys are
+  the type identifiers and whose values are associative arrays with one key, "onForAll",
+  with a boolean value. Set this value to true for types that logged-in users should not
+  be able to opt out of. For each of these, an interface message should exist, whose
+  key should be 'centralnotice-campaign-type-' followed by the identifier of the type.
+  Messages are included in the code for types provided as default values for this
+  conig variable.

@@ -56,6 +56,8 @@
 
 	/**
 	 * Class for campaign-associated mixins. Access via mw.centralNotice.Mixin.
+	 *
+	 * @param name
 	 */
 	Mixin = function ( name ) {
 		this.name = name;
@@ -67,6 +69,8 @@
 	/**
 	 * Run after we've chosen a campaign to attempt, but before we try to choose a
 	 * banner from that campaign.
+	 *
+	 * @param handlerFunc
 	 */
 	Mixin.prototype.setPreBannerHandler = function ( handlerFunc ) {
 		this.preBannerHandler = handlerFunc;
@@ -75,6 +79,8 @@
 	/**
 	 * Run after we chose and loaded a banner, or after the campaign failed, or after
 	 * we unsuccessfully attempted to chose a banner.
+	 *
+	 * @param handlerFunc
 	 */
 	Mixin.prototype.setPostBannerOrFailHandler = function ( handlerFunc ) {
 		this.postBannerOrFailHandler = handlerFunc;
@@ -84,6 +90,8 @@
 	 * Run at the end of the selection and display process. If a banner was chosen
 	 * to be displayed, the hook runs after it's loaded. If all attempted campaigns failed
 	 * and no banner will show, the hook runs then.
+	 *
+	 * @param handlerFunc
 	 */
 	Mixin.prototype.setFinalizeChooseAndMaybeDisplayHandler = function ( handlerFunc ) {
 		this.finalizeChooseAndMaybeDisplayHandler = handlerFunc;
@@ -94,7 +102,8 @@
 	 * for all campaign mixins.
 	 *
 	 * @param {string} hookPropertyName The name of a Mixin property containing
-	 *  hook handlers
+	 * hook handlers
+	 * @param campaign
 	 */
 	function runMixinHooks( hookPropertyName, campaign ) {
 		// eslint-disable-next-line no-jquery/no-each-util
@@ -413,6 +422,27 @@
 			state.setBucket( bucketer.getBucket() );
 			state.setReducedBucket( bucketer.getReducedBucket() );
 
+			// Check user preferences for campaign type displaying
+			if ( !state.getData().anonymous ) {
+				// Do not check user preferences on anon users
+				if (
+					campaign.type === 0 ||
+					state.getData().optedOutCampaigns.indexOf( campaign.type ) !== -1
+				) {
+					// User opted out of viewing this type of campaigns
+					// or campaign does not have a type set
+					// TODO Consolidate code below and code in shouldHide() conditional
+					// in a function.
+					state.failCampaign( 'userOptOut' );
+					runPreBannerHooks();
+					runPostBannerOrFailHooks();
+
+					// Update available campaigns
+					fallbackLoopUpdateAvailableCampaigns( i );
+					continue;
+				}
+			}
+
 			// Check the hide cookie and possibly fail the campaign.
 			// We do this before running pre-banner hooks so that these can count
 			// stuff differently if there was a hide cookie.
@@ -423,11 +453,7 @@
 				runPostBannerOrFailHooks();
 
 				// Update available campaigns
-				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
-					state.getData().availableCampaigns,
-					state.getAttemptingCampaign(),
-					i
-				) );
+				fallbackLoopUpdateAvailableCampaigns( i );
 				continue;
 			}
 
@@ -439,11 +465,7 @@
 				runPostBannerOrFailHooks();
 
 				// Update available campaigns
-				state.setAvailableCampaigns( chooser.updateAvailableCampaigns(
-					state.getData().availableCampaigns,
-					state.getAttemptingCampaign(),
-					i
-				) );
+				fallbackLoopUpdateAvailableCampaigns( i );
 				continue;
 			}
 
@@ -531,6 +553,22 @@
 	}
 
 	/**
+	 * Convenience method used only by reallyChooseAndMaybeDisplay() to update available
+	 * campaigns within the fallback loop.
+	 *
+	 * @param iteration
+	 */
+	function fallbackLoopUpdateAvailableCampaigns( iteration ) {
+		var state = cn.internal.state;
+
+		state.setAvailableCampaigns( cn.internal.chooser.updateAvailableCampaigns(
+			state.getData().availableCampaigns,
+			state.getAttemptingCampaign(),
+			iteration
+		) );
+	}
+
+	/**
 	 * Stuff we have to do following the call to fetch a banner (successful
 	 * or not)
 	 */
@@ -587,6 +625,7 @@
 		 * Really insert the banner (without waiting for the DOM to be ready).
 		 * Only exposed for use in tests.
 		 *
+		 * @param bannerJson
 		 * @private
 		 */
 		reallyInsertBanner: function ( bannerJson ) {
@@ -684,6 +723,8 @@
 
 		/**
 		 * Legacy method, deprecated. Use failCampaign().
+		 *
+		 * @param reason
 		 */
 		cancelBanner: function ( reason ) {
 			cn.failCampaign( reason );
@@ -707,6 +748,8 @@
 		/**
 		 * Indicate that a banner was hidden after being loaded, and provide
 		 * a reason.
+		 *
+		 * @param reason
 		 */
 		setBannerLoadedButHidden: function ( reason ) {
 			cn.internal.state.setBannerLoadedButHidden( reason );
@@ -717,6 +760,8 @@
 		 * wgCentralNoticeSampleRate. Note that Special:RecordImpression will
 		 * not be called at all if a campaign was not chosen for this user. Also note
 		 * that the highest rate set will be used.
+		 *
+		 * @param rate
 		 */
 		setMinRecordImpressionSampleRate: function ( rate ) {
 			cn.internal.state.setMinRecordImpressionSampleRate( rate );
@@ -727,6 +772,8 @@
 		 * overridden by a URL parameter, in which that takes precedence). Default is
 		 * wgCentralNoticeImpressionEventSampleRate. Also note that the highest rate set
 		 * will be used.
+		 *
+		 * @param rate
 		 */
 		setMinImpressionEventSampleRate: function ( rate ) {
 			cn.internal.state.setMinImpressionEventSampleRate( rate );
@@ -837,6 +884,8 @@
 		 *
 		 * The current bucket can be read using
 		 * mw.centralNotice.getDataProperty( 'bucket' )
+		 *
+		 * @param bucket
 		 */
 		setBucket: function ( bucket ) {
 			cn.internal.bucketer.setBucket( bucket );
@@ -900,6 +949,8 @@
 		/**
 		 * Get the value of a property used in campaign/banner selection and
 		 * display, and for recording the results of that process.
+		 *
+		 * @param prop
 		 */
 		getDataProperty: function ( prop ) {
 			return cn.internal.state.getData()[ prop ];

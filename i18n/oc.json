@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Boulaur",
+			"BrennodAloisi",
 			"Cedric31"
 		]
 	},
@@ -19,7 +20,7 @@
 	"centralnotice-modify": "Sometre",
 	"centralnotice-view": "Afichar",
 	"centralnotice-save-banner": "Enregistrar",
-	"centralnotice-live-preview": "Apercebut dins lo wiki",
+	"centralnotice-live-preview": "Previsualizacion de la darrièra version enregistrada",
 	"centralnotice-add-new": "Apondre un avís central novèl",
 	"centralnotice-remove": "Suprimir",
 	"centralnotice-translate-heading": "Traduccion de $1",
@@ -83,6 +84,7 @@
 	"centralnotice-edit-template": "Modificar lo modèl",
 	"centralnotice-message": "Messatge",
 	"centralnotice-message-not-set": "Messatge pas entresenhat",
+	"centralnotice-fieldset-preview": "Previsualizacion en dirècte",
 	"centralnotice-clone": "Clonar",
 	"centralnotice-clone-notice": "Crear una còpia d'aqueste modèl",
 	"centralnotice-clone-name": "Nom :",

@@ -13,6 +13,7 @@
 			"MagnusA",
 			"Mjälten",
 			"Najami",
+			"Sabelöga",
 			"Stefan2",
 			"Sturban",
 			"Technic2",
@@ -277,5 +278,17 @@
 	"centralnotice-multiple-regions": "Flera regioner",
 	"centralnotice-multiple-languages": "Flera språk",
 	"centralnotice-banner-template-info": "(mall)",
-	"centralnotice-create-from-template-checkbox-label": "Skapa från mall"
+	"centralnotice-create-from-template-checkbox-label": "Skapa från mall",
+	"prefs-centralnotice-banners": "Banner",
+	"prefs-centralnotice-display-banner-types": "Bannertyper som ska visas",
+	"centralnotice-campaign-type": "Kampanjtyp",
+	"centralnotice-empty-campaign-type-option": "Ingen typ (visas alltid)",
+	"centralnotice-non-existent-campaign-type-error": "Vald kampanjtyp finns inte",
+	"centralntoice-deleted-campaign-type": "$1 (raderad typ)",
+	"centralnotice-campaign-type-article-writing": "Artikelskrivning",
+	"centralnotice-campaign-type-event": "Arrangemang",
+	"centralnotice-campaign-type-fundraising": "Insamling",
+	"centralnotice-campaign-type-maintenance": "Underhåll",
+	"centralnotice-campaign-type-photography": "Fotografi",
+	"centralnotice-campaign-type-special": "Special"
 }

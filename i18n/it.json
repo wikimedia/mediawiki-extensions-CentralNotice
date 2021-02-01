@@ -6,6 +6,7 @@
 			"Blaisorblade",
 			"BrokenArrow",
 			"Darth Kule",
+			"EditGio",
 			"F. Cosoleto",
 			"Gianfranco",
 			"Gloria sah",
@@ -262,5 +263,11 @@
 	"centralnotice-banner-sequence-page-views": "Visualizzazioni di pagina",
 	"centralnotice-multiple-countries": "Più paesi",
 	"centralnotice-multiple-regions": "Regioni multiple",
-	"centralnotice-multiple-languages": "Più lingue"
+	"centralnotice-multiple-languages": "Più lingue",
+	"prefs-centralnotice-display-banner-types": "Tipi di banner da mostrare",
+	"centralnotice-empty-campaign-type-option": "Nessuna tipologia (sempre mostrato)",
+	"centralnotice-non-existent-campaign-type-error": "Il tipo di campagna selezionato non esiste",
+	"centralnotice-campaign-type-event": "Evento",
+	"centralnotice-campaign-type-photography": "Fotografia",
+	"centralnotice-campaign-type-special": "Speciale"
 }

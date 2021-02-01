@@ -59,9 +59,9 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 			$expectedAllocations = $cAndO['allocations'];
 
 			// Test that we have the expceted number of campaigns
-			$this->assertEquals(
+			$this->assertCount(
 				count( $expectedAllocations ),
-				count( $choices ),
+				$choices,
 				$fixtureIdMsg . " Number of campaigns allocated."
 			);
 
@@ -69,8 +69,8 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 				$campaignName = $campaign['name'];
 
 				// Test that the campaign was expected and was correctly allocated
-				$this->assertTrue(
-					array_key_exists( $campaignName, $expectedAllocations ),
+				$this->assertArrayHasKey(
+					$campaignName, $expectedAllocations,
 					$fixtureIdMsg . " Campaign {$campaignName} not expected."
 				);
 
@@ -102,9 +102,9 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 					AllocationCalculator::calculateBannerAllocations( $banners );
 
 					// Test that we have the expceted number of banners
-					$this->assertEquals(
+					$this->assertCount(
 						count( $expectedBanners ),
-						count( $banners ),
+						$banners,
 						$fixtureIdMsg . " Number of banners allocated."
 					);
 
@@ -112,8 +112,8 @@ class AllocationCalculatorTest extends MediaWikiTestCase {
 						$bannerName = $banner['name'];
 
 						// Test the banner was expected and was correctly allocated
-						$this->assertTrue(
-							array_key_exists( $bannerName, $expectedBanners ),
+						$this->assertArrayHasKey(
+							$bannerName, $expectedBanners,
 							$fixtureIdMsg .
 								" Banner ${bannerName} for " .
 								"campaign {$campaignName} not expected."

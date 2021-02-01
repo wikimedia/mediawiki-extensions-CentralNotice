@@ -7,7 +7,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	 * @var string sanitize campaign name
 	 * FIXME: the string is apparently unrestricted in Special:CentralNotice
 	 */
-	const CAMPAIGNS_FILTER = '/[a-zA-Z0-9 _|\-]+/';
+	const CAMPAIGNS_FILTER = '/^[a-zA-Z0-9 _|\-]+$/';
 
 	public function execute() {
 		// Obtain the ApiResults object from the base

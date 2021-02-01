@@ -388,6 +388,8 @@
 	/**
 	 * Create the required state in CN for the record impression call to occur. The first
 	 * campaign in choiceData2Campaigns will be chosen.
+	 *
+	 * @param campaignsData
 	 */
 	function mockChoiceDataForRecordImpressionCall( campaignsData ) {
 

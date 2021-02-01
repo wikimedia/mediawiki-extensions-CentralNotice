@@ -59,9 +59,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 	/**
 	 * @inheritDoc
-	 * @suppress PhanTypeMismatchProperty
 	 * @suppress PhanTypeMismatchDimAssignment
-	 * @suppress PhanTypeMismatchReturn
 	 */
 	public function getNavigationBar() {
 		if ( isset( $this->mNavigationBar ) ) {
@@ -71,15 +69,18 @@ class CNBannerPager extends ReverseChronologicalPager {
 		// Sets mNavigation bar with the default text which we will then wrap
 		parent::getNavigationBar();
 
+		// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal
 		$this->mNavigationBar = [
 			'class' => 'HTMLBannerPagerNavigation',
 			'value' => $this->mNavigationBar
 		];
 
 		if ( $this->formSection ) {
+			// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal
 			$this->mNavigationBar['section'] = $this->formSection;
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal
 		return $this->mNavigationBar;
 	}
 
@@ -124,7 +125,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	/**
 	 * Generate the contents of the table pager; intended to be consumed by the HTMLForm
 	 *
-	 * @param object $row database row
+	 * @param stdClass $row database row
 	 *
 	 * @return array HTMLFormElement classes
 	 * @suppress PhanParamSignatureMismatch
@@ -147,7 +148,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$rowText = BannerRenderer::linkToBanner( $bannerName );
 		if ( (bool)$row->tmp_is_template ) {
 			$rowText = implode( ' ', [
-				$rowText, wfMessage( "centralnotice-banner-template-info" )->escaped()
+				$rowText, $this->msg( "centralnotice-banner-template-info" )->escaped()
 			] );
 		}
 		$retval["cn-banner-list-element-$bannerId"] = [

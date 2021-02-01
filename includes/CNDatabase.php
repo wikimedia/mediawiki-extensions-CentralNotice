@@ -7,6 +7,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class CNDatabase {
 
+	/** @var bool */
 	protected static $masterUsedBefore = false;
 
 	/**

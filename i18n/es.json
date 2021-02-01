@@ -20,6 +20,7 @@
 			"Luis Felipe Schenone",
 			"Macofe",
 			"MarcoAurelio",
+			"MarleneR329",
 			"McDutchie",
 			"MetalBrasil",
 			"Mor",
@@ -304,5 +305,8 @@
 	"centralnotice-banner-template-error": "No se puede crear un banner basado en un banner no válido o en un banner que no esté marcado como plantilla.\nNo agregar",
 	"centralnotice-add-banner-from-template": "Agregar un banner desde la plantilla",
 	"centralnotice-messages-banner-in-campaign": "No se puede marcar este banner como plantilla mientras está asignado a una o más campañas. Este banner se asigna a las siguientes campañas:",
-	"centralnotice-create-from-template-checkbox-label": "Crear desde plantilla"
+	"centralnotice-create-from-template-checkbox-label": "Crear desde plantilla",
+	"centralnotice-empty-campaign-type-option": "Ningún tipo (siempre mostrado)",
+	"centralnotice-campaign-type-event": "Evento",
+	"centralnotice-campaign-type-photography": "Fotografía"
 }

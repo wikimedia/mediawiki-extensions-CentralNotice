@@ -19,6 +19,8 @@
 	 * on the allocation property of each campaign. This takes into account
 	 * campaign priority and throttling. The equivalent server-side method
 	 * is AllocationCalculator::calculateCampaignAllocations().
+	 *
+	 * @param availableCampaigns
 	 */
 	function setCampaignAllocations( availableCampaigns ) {
 
@@ -138,6 +140,11 @@
 	 *
 	 * The equivalent server-side method
 	 * AllocationCalculator::makePossibleBanners().
+	 *
+	 * @param campaign
+	 * @param bucket
+	 * @param anon
+	 * @param device
 	 */
 	function makePossibleBanners( campaign, bucket, anon, device ) {
 
@@ -178,6 +185,8 @@
 	 * relative weights of banners in possibleBanners. The equivalent
 	 * server-side method is
 	 * AllocationCalculator::calculateBannerAllocations().
+	 *
+	 * @param possibleBanners
 	 */
 	function setBannerAllocations( possibleBanners ) {
 		var i, banner,
@@ -256,6 +265,11 @@
 		 * The server-side equivalent of this method is
 		 * AllocationCalculator::makeAvailableCampaigns().
 		 *
+		 * @param choiceData
+		 * @param country
+		 * @param region
+		 * @param anon
+		 * @param device
 		 * @return {Array}
 		 */
 		makeAvailableCampaigns: function ( choiceData, country, region, anon, device ) {
@@ -342,6 +356,8 @@
 		 * Check for campaigns that are have already ended, which might happen due to
 		 * incorrect caching of choiceData between us and the user. This check can easily
 		 * result in false positives.
+		 *
+		 * @param choiceData
 		 */
 		choiceDataSeemsFresh: function ( choiceData ) {
 

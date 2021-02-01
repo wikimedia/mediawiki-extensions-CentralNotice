@@ -1,7 +1,10 @@
 <?php
 
 class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
-	public $viewPage, $special;
+	/** @var Title */
+	public $viewPage;
+	/** @var SpecialCentralNoticeLogs */
+	public $special;
 
 	public function __construct( SpecialCentralNoticeLogs $special ) {
 		$this->special = $special;
@@ -185,7 +188,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function showInitialSettings( $row ) {
@@ -261,7 +264,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function showChanges( $row ) {
@@ -305,6 +308,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$details .= $this->testSetChange( 'countries', $row );
 		$details .= $this->testSetChange( 'regions', $row );
 		$details .= $this->testBooleanChange( 'archived', $row );
+		$details .= $this->testTypeChange( $row );
 
 		$details .= $this->testTextChange(
 			'campaign-mixins',
@@ -361,7 +365,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param string $param
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	private function testBooleanChange( $param, $row ) {
@@ -431,7 +435,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/**
 	 * Test for changes to campaign priority
 	 * @param string $param
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 * @suppress PhanPossiblyUndeclaredVariable
 	 * @todo Add default to the switches
@@ -486,7 +490,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/**
 	 * Test for changes to a property interpreted as a percentage
 	 * @param string $param name
-	 * @param object $row settings
+	 * @param stdClass $row settings
 	 * @return string
 	 */
 	protected function testPercentageChange( $param, $row ) {
@@ -526,6 +530,51 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			)->parse() . "<br/>";
 		}
 		return $result;
+	}
+
+	protected function testTypeChange( $row ) {
+		$result = '';
+
+		$oldval = $row->notlog_begin_type;
+		$newval = $row->notlog_end_type;
+
+		if ( $oldval !== $newval ) {
+			$result .= $this->msg(
+				'centralnotice-log-label',
+				$this->msg( 'centralnotice-campaign-type' )->text(),
+				$this->msg(
+					'centralnotice-changed',
+					$this->getTypeText( $oldval ),
+					$this->getTypeText( $newval )
+				)->text()
+			)->parse() . "<br/>";
+		}
+
+		return $result;
+	}
+
+	private function getTypeText( $typeId ) {
+		// This is the case for no type set; $typeId should be null.
+		if ( !$typeId ) {
+			return $this->msg( 'centralnotice-empty-campaign-type-option' )->plain();
+		}
+
+		$type = CampaignType::getById( $typeId );
+
+		// This is the case for a type that exists in the logs but not in the config
+		if ( !$type ) {
+			return $typeId;
+		}
+
+		$message = $this->msg( $type->getMessageKey() );
+
+		// This is the case for a type that exists in the logs and the config but has no
+		// associated i18n message
+		if ( !$message->exists() ) {
+			return $typeId;
+		}
+
+		return $message->plain();
 	}
 
 	/**

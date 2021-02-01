@@ -179,7 +179,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'filterApply' => [
 				'section' => 'header/banner-search',
 				'class' => 'HTMLButtonField',
-				'default' => wfMessage( 'centralnotice-filter-template-submit' )->text(),
+				'default' => $this->msg( 'centralnotice-filter-template-submit' )->text(),
 			]
 		];
 
@@ -201,25 +201,25 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'deleteSelectedBanners' => [
 				'section' => 'header/banner-bulk-manage',
 				'class' => 'HTMLButtonField',
-				'default' => wfMessage( 'centralnotice-remove' )->text(),
+				'default' => $this->msg( 'centralnotice-remove' )->text(),
 				'disabled' => !$this->editable,
 			],
 			'addNewBanner' => [
 				'section' => 'header/one-off',
 				'class' => 'HTMLButtonField',
-				'default' => wfMessage( 'centralnotice-add-template' )->text(),
+				'default' => $this->msg( 'centralnotice-add-template' )->text(),
 				'disabled' => !$this->editable,
 			],
 			'newBannerName' => [
 				'section' => 'addBanner',
 				'class' => 'HTMLTextField',
 				'disabled' => !$this->editable,
-				'label' => wfMessage( 'centralnotice-banner-name' )->text(),
+				'label' => $this->msg( 'centralnotice-banner-name' )->text(),
 			],
 			'createFromTemplateCheckbox' => [
 				'section' => 'addBanner',
 				'class' => 'HTMLCheckField',
-				'label' => wfMessage( 'centralnotice-create-from-template-checkbox-label' )->text(),
+				'label' => $this->msg( 'centralnotice-create-from-template-checkbox-label' )->text(),
 				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
 			],
 			'newBannerTemplate' => [
@@ -289,13 +289,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 					// Attempt to create a new banner and redirect; we validate here because it's
 					// a hidden field and that doesn't work so well with the form
 					if ( !Banner::isValidBannerName( $formData[ 'newBannerName' ] ) ) {
-						return wfMessage( 'centralnotice-banner-name-error' )->parse();
+						return $this->msg( 'centralnotice-banner-name-error' )->parse();
 					} else {
 						$this->bannerName = $formData[ 'newBannerName' ];
 					}
 
 					if ( Banner::fromName( $this->bannerName )->exists() ) {
-						return wfMessage( 'centralnotice-template-exists' )->parse();
+						return $this->msg( 'centralnotice-template-exists' )->parse();
 					} else {
 						if ( !empty( $formData['newBannerTemplate'] ) ) {
 							try {
@@ -313,7 +313,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 								// We do not want to show the actual exception to the user here,
 								// since the message does not actually refer to the template being created,
 								// but to the template it is being created from
-								return wfMessage( 'centralnotice-banner-template-error' )->plain();
+								return $this->msg( 'centralnotice-banner-template-error' )->plain();
 							}
 
 							$retval = Banner::addFromBannerTemplate(
@@ -337,7 +337,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 						if ( $retval ) {
 							// Something failed; display error to user
-							return wfMessage( $retval )->parse();
+							return $this->msg( $retval )->parse();
 						} else {
 							$this->getOutput()->redirect(
 								SpecialPage::getTitleFor(
@@ -385,7 +385,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			}
 		} elseif ( $formData[ 'action' ] ) {
 			// Oh noes! The l33t hakorz are here...
-			return wfMessage( 'centralnotice-generic-error' )->parse();
+			return $this->msg( 'centralnotice-generic-error' )->parse();
 		}
 
 		return null;
@@ -803,7 +803,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'section' => 'form-actions',
 			'class' => 'HTMLTextField',
 			'label-message' => 'centralnotice-change-summary-label',
-			'placeholder' => wfMessage( 'centralnotice-change-summary-prompt' ),
+			'placeholder' => $this->msg( 'centralnotice-change-summary-prompt' ),
 			'disabled' => !$this->editable,
 			'filter-callback' => [ $this, 'truncateSummaryField' ]
 		];
@@ -858,7 +858,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			'section' => 'clone-banner',
 			'class' => 'HTMLTextField',
 			'label-message' => 'centralnotice-change-summary-label',
-			'placeholder' => wfMessage( 'centralnotice-change-summary-action-prompt' ),
+			'placeholder' => $this->msg( 'centralnotice-change-summary-action-prompt' ),
 			'disabled' => !$this->editable,
 			'filter-callback' => [ $this, 'truncateSummaryField' ]
 		];

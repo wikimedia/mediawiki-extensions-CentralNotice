@@ -13,6 +13,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 
 	/**
 	 * @see ResourceLoaderModule::targets
+	 * @var string[]
 	 */
 	protected $targets = [ 'desktop', 'mobile' ];
 

@@ -7,18 +7,18 @@ use MediaWiki\MediaWikiServices;
  */
 class BannerRenderer {
 	/**
-	 * @var IContextSource $context
+	 * @var IContextSource
 	 */
 	protected $context;
 
 	/**
-	 * @var Banner $banner
+	 * @var Banner
 	 */
 	protected $banner;
 
 	/**
 	 * Campaign in which context the rendering is taking place.  Empty during preview.
-	 * @var string $campaignName
+	 * @var string
 	 */
 	protected $campaignName = "";
 
@@ -35,8 +35,10 @@ class BannerRenderer {
 	 */
 	protected $previewMessages;
 
+	/** @var MixinController|null */
 	protected $mixinController = null;
 
+	/** @var bool */
 	protected $debug;
 
 	/**
@@ -68,6 +70,7 @@ class BannerRenderer {
 		$this->previewMessages = $previewMessages;
 		$this->debug = $debug;
 
+		// @phan-suppress-next-line SecurityCheck-PathTraversal
 		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
 
 		// FIXME: it should make sense to do this:

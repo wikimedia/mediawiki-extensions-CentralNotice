@@ -1,4 +1,5 @@
 <?php
+
 /**
  * General hook definitions
  *
@@ -35,7 +36,8 @@ class CentralNoticeHooks {
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
 			$wgDBname, $wgCentralNoticeAdminGroup, $wgNoticeProtectGroup,
-			$wgCentralNoticeMessageProtectRight, $wgResourceModules;
+			$wgCentralNoticeMessageProtectRight, $wgResourceModules,
+			$wgDefaultUserOptions;
 
 		// Default for a standalone wiki is that the CN tables are in the main database.
 		if ( !$wgCentralDBname ) {
@@ -52,6 +54,12 @@ class CentralNoticeHooks {
 			$wgHooks['SiteNoticeAfter'][] = 'CentralNoticeHooks::onSiteNoticeAfter';
 			$wgHooks['ResourceLoaderGetConfigVars'][] =
 				'CentralNoticeHooks::onResourceLoaderGetConfigVars';
+		}
+
+		// Set default user preferences for campaign type filtering.
+		// All types are on by default.
+		foreach ( CampaignType::getTypes() as $type ) {
+			$wgDefaultUserOptions[ $type->getPreferenceKey() ] = 1;
 		}
 
 		// If this is the wiki that hosts the management interface, load further components
@@ -376,18 +384,19 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralHost, $wgServer, $wgRequest, $wgCentralNoticeContentSecurityPolicy;
+		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy;
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
 		$out->addModules( 'ext.centralNotice.geoIP' );
 
+		$request = $skin->getRequest();
 		// If we're on a special page, editing, viewing history or a diff, bow out now
 		// This is to reduce chance of bad misclicks from delayed banner loading
 		if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
-			( $wgRequest->getText( 'action' ) === 'edit' ) ||
-			( $wgRequest->getText( 'action' ) === 'history' ) ||
-			$wgRequest->getCheck( 'diff' )
+			( $request->getText( 'action' ) === 'edit' ) ||
+			( $request->getText( 'action' ) === 'history' ) ||
+			$request->getCheck( 'diff' )
 		) {
 			return true;
 		}
@@ -407,9 +416,9 @@ class CentralNoticeHooks {
 		// of $wgCentralNoticeContentSecurityPolicy and use their stuff.
 		if (
 			$wgCentralNoticeContentSecurityPolicy &&
-			$wgRequest->getVal( 'banner' )
+			$request->getVal( 'banner' )
 		) {
-			$wgRequest->response()->header(
+			$request->response()->header(
 				"content-security-policy: $wgCentralNoticeContentSecurityPolicy"
 			);
 			$out->addModules( 'ext.centralNotice.cspViolationAlert' );
@@ -443,7 +452,7 @@ class CentralNoticeHooks {
 		// This is useful for banners that need to be targeted to specific types of users.
 		// Only do this for logged-in users, keeping anonymous user output equal (for Squid-cache).
 		$user = $out->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			if ( $user->isBot() ) {
 				$userData = false;
 			} else {
@@ -568,5 +577,38 @@ class CentralNoticeHooks {
 	public static function onListDefinedTags( &$tags ) {
 		$tags[] = 'centralnotice';
 		$tags[] = 'centralnotice translation';
+	}
+
+	/**
+	 * @param User $user
+	 * @param array &$preferences
+	 * @return bool
+	 */
+	public static function onGetPreferences( $user, &$preferences ) {
+		// Explanatory text
+		$preferences['centralnotice-intro'] = [
+			'type' => 'info',
+			'default' => wfMessage( 'centralnotice-user-prefs-intro' )->parseAsBlock(),
+			'section' => 'centralnotice-banners',
+			'raw' => true,
+		];
+
+		foreach ( CampaignType::getTypes() as $type ) {
+			// This allows fallback languages while also showing something not-too-
+			// horrible if the config variable has types that don't have i18n
+			// messages.
+			// Note also that the value of 'label' will escaped prior to output.
+			$message = Message::newFromKey( $type->getMessageKey() );
+			$label = $message->exists() ? $message->text() : $type->getId();
+
+			$preferences[ $type->getPreferenceKey() ] = [
+				'type' => 'toggle',
+				'section' => 'centralnotice-banners/centralnotice-display-banner-types',
+				'label' => $label,
+				'disabled' => $type->getOnForAll()
+			];
+		}
+
+		return true;
 	}
 }

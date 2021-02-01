@@ -1,10 +1,13 @@
 <?php
 
 class CampaignLog {
+	/** @var string[] */
 	private static $basic_fields = [
 		'start', 'end', 'enabled', 'preferred', 'locked', 'geo', 'buckets'
 	];
+	/** @var string[] */
 	private static $list_fields = [ 'projects', 'languages', 'countries', 'regions' ];
+	/** @var string[] */
 	private static $map_fields = [ 'banners' ];
 
 	/** @var mixed[] */

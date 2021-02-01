@@ -1,9 +1,6 @@
 <?php
 
 class CentralNoticePager extends TemplatePager {
-	public $viewPage, $special;
-	public $editable;
-	public $filter;
 
 	public function __construct( $special, $filter = '' ) {
 		parent::__construct( $special, $filter );

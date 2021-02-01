@@ -50,6 +50,7 @@
 	}
 
 	/**
+	 * @param queue
 	 * @return {jQuery.Promise}
 	 */
 	function processKeys( queue ) {

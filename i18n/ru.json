@@ -36,6 +36,7 @@
 			"Stjn",
 			"Translatobecomer",
 			"Vlad5250",
+			"Wileyfoxyx",
 			"Александр Сигачёв"
 		]
 	},
@@ -312,5 +313,12 @@
 	"centralnotice-banner-sequence-no-banner": "(нет баннера)",
 	"centralnotice-multiple-countries": "Несколько стран",
 	"centralnotice-multiple-languages": "Несколько языков",
-	"centralnotice-banner-template-info": "(шаблон)"
+	"centralnotice-banner-template-info": "(шаблон)",
+	"prefs-centralnotice-banners": "Баннеры",
+	"centralnotice-campaign-type": "Тип кампании",
+	"centralntoice-deleted-campaign-type": "$1 (удаленный тип)",
+	"centralnotice-campaign-type-event": "Событие",
+	"centralnotice-campaign-type-fundraising": "Сбор средств",
+	"centralnotice-campaign-type-maintenance": "Обслуживание",
+	"centralnotice-campaign-type-photography": "Фотография"
 }

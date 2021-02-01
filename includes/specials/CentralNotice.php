@@ -4,6 +4,9 @@ use MediaWiki\MediaWikiServices;
 
 class CentralNotice extends SpecialPage {
 
+	// TODO review usage of Xml class and unnecessary openElement() and closeElement()
+	// methods.
+
 	// Note: These values are not arbitrary. Higher priority is indicated by a
 	// higher value.
 	const LOW_PRIORITY = 0;
@@ -11,12 +14,19 @@ class CentralNotice extends SpecialPage {
 	const HIGH_PRIORITY = 2;
 	const EMERGENCY_PRIORITY = 3;
 
-	public $editable, $centralNoticeError;
+	// String to use in drop-down to indicate no campaign type (repesented as null in DB)
+	const EMPTY_CAMPAIGN_TYPE_OPTION = 'empty-campaign-type-option';
+
+	/** @var bool|null */
+	public $editable;
+	/** @var bool|null */
+	public $centralNoticeError;
 
 	/**
 	 * @var Campaign
 	 */
 	protected $campaign;
+	/** @var array */
 	protected $campaignWarnings = [];
 
 	public function __construct() {
@@ -176,6 +186,19 @@ class CentralNotice extends SpecialPage {
 				);
 			}
 
+			if ( isset( $campaignChanges['campaign_type'] ) ) {
+				$type = $campaignChanges['campaign_type'];
+				$type = $type === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $type;
+
+				// Sanity check: does the requested campaign type exist?
+				if ( $type && !CampaignType::getById( $type ) ) {
+					$this->showError( 'centralnotice-non-existent-campaign-type-error' );
+					return;
+				}
+
+				Campaign::setType( $campaignName, $type );
+			}
+
 			// Log any differences in settings
 			$newSettings = Campaign::getCampaignSettings( $campaignName );
 			$diffs = array_diff_assoc( $initialSettings, $newSettings );
@@ -265,6 +288,81 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
+	 * @param bool $editable
+	 * @param string $selectedTypeId
+	 * @param string|null $index The name of the campaign (used when selector is included
+	 *   in a list of campaigns by CNCampaignPager).
+	 * @return string
+	 */
+	public function campaignTypeSelector( $editable, $selectedTypeId, $index = null ) {
+		$types = CampaignType::getTypes();
+		if ( $editable ) {
+			$options = Xml::option(
+				$this->msg( 'centralnotice-empty-campaign-type-option' )->plain(),
+				self::EMPTY_CAMPAIGN_TYPE_OPTION
+			);
+
+			foreach ( $types as $type ) {
+				$message = $this->msg( $type->getMessageKey() );
+				$text = $message->exists() ? $message->text() : $type->getId();
+				$options .= Xml::option(
+					$text,
+					$type->getId(),
+					$selectedTypeId === $type->getId()
+				);
+			}
+
+			// Handle the case of a type removed from config but still assigned to
+			// a campaign in the DB.
+			if ( $selectedTypeId && !CampaignType::getById( $selectedTypeId ) ) {
+				$options .= Xml::option(
+					$this->msg(
+						'centralntoice-deleted-campaign-type',
+						$selectedTypeId
+					)->text(),
+					$selectedTypeId,
+					true
+				);
+			}
+
+			// Data attributes set below (data-campaign-name and
+			// data-initial-value) must coordinate with CNCampaignPager and
+			// ext.centralNotice.adminUi.campaignPager.js
+
+			$selectAttribs = [
+				'name' => 'campaign_type',
+				'data-initial-value' => $selectedTypeId
+			];
+
+			if ( $index ) {
+				$selectAttribs['data-campaign-name'] = $index;
+			}
+
+			return Xml::openElement( 'select', $selectAttribs )
+				. "\n"
+				. $options
+				. "\n"
+				. Xml::closeElement( 'select' );
+
+		} else {
+			if ( $selectedTypeId ) {
+				$type = CampaignType::getById( $selectedTypeId );
+				// We might get a null type if the DB has type identifiers that are
+				// not currently in the configuraiton.
+				if ( $type ) {
+					$message = $this->msg( $type->getMessageKey() );
+					return $message->exists()
+						? $message->escaped()
+						: htmlspecialchars( $type->getId() );
+				} else {
+					return htmlspecialchars( $selectedTypeId );
+				}
+			}
+			return $this->msg( 'centralnotice-empty-campaign-type-option' )->escaped();
+		}
+	}
+
+	/**
 	 * Construct the priority select list for a campaign
 	 *
 	 * @param string|bool $index The name of the campaign (or false if it isn't needed)
@@ -275,19 +373,17 @@ class CentralNotice extends SpecialPage {
 	 */
 	public function prioritySelector( $index, $editable, $priorityValue ) {
 		$priorities = [
-			self::LOW_PRIORITY => wfMessage( 'centralnotice-priority-low' ),
+			self::LOW_PRIORITY => $this->msg( 'centralnotice-priority-low' ),
 			self::NORMAL_PRIORITY =>
-				wfMessage( 'centralnotice-priority-normal' ),
-			self::HIGH_PRIORITY => wfMessage( 'centralnotice-priority-high' ),
+				$this->msg( 'centralnotice-priority-normal' ),
+			self::HIGH_PRIORITY => $this->msg( 'centralnotice-priority-high' ),
 			self::EMERGENCY_PRIORITY =>
-				wfMessage( 'centralnotice-priority-emergency' ),
+				$this->msg( 'centralnotice-priority-emergency' ),
 		];
 
 		if ( $editable ) {
 			$options = ''; // The HTML for the select list options
 			foreach ( $priorities as $key => $labelMsg ) {
-				// @phan-suppress-next-next-line SecurityCheck-DoubleEscaped False positive,
-				// taint-check thinks that $key is double escaped
 				$options .= Xml::option( $labelMsg->text(), $key, $priorityValue == $key );
 			}
 
@@ -338,15 +434,16 @@ class CentralNotice extends SpecialPage {
 	 */
 	protected function addNoticeForm() {
 		$request = $this->getRequest();
+		$start = null;
+		$campaignType = null;
+		$noticeProjects = [];
+		$noticeLanguages = [];
 		// If there was an error, we'll need to restore the state of the form
 		if ( $request->wasPosted() && ( $request->getVal( 'subaction' ) === 'addCampaign' ) ) {
 			$start = $this->getDateTime( 'start' );
-			$noticeProjects = $request->getArray( 'projects', [] );
 			$noticeLanguages = $request->getArray( 'project_languages', [] );
-		} else { // Defaults
-			$start = null;
-			$noticeProjects = [];
-			$noticeLanguages = [];
+			$noticeProjects = $request->getArray( 'projects', [] );
+			$campaignType = $request->getText( 'campaign_type', null );
 		}
 
 		$htmlOut = '';
@@ -372,6 +469,15 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Xml::tags( 'td', [],
 			Xml::input( 'noticeName', 25, $request->getVal( 'noticeName' ) ) );
 		$htmlOut .= Xml::closeElement( 'tr' );
+
+		// Campaign type selector
+		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Xml::tags( 'td', [],
+			Xml::label( $this->msg( 'centralnotice-campaign-type' )->text(), 'campaign_type' ) );
+		$htmlOut .= Xml::tags( 'td', [],
+			$this->campaignTypeSelector( $this->editable, $campaignType ) );
+		$htmlOut .= Xml::closeElement( 'tr' );
+
 		// Start Date
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-start-date' )->escaped() );
@@ -451,6 +557,17 @@ class CentralNotice extends SpecialPage {
 		} else {
 			$geo_regions = [];
 		}
+
+		$campaignType = $request->getText( 'campaign_type', null );
+		$campaignType =
+			$campaignType === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $campaignType;
+
+		// Sanity check: does the requested campaign type exist?
+		if ( $campaignType && !CampaignType::getById( $campaignType ) ) {
+			$this->showError( 'centralnotice-non-existent-campaign-type-error' );
+			return;
+		}
+
 		if ( $noticeName == '' ) {
 			$this->showError( 'centralnotice-null-string' );
 		} else {
@@ -466,6 +583,7 @@ class CentralNotice extends SpecialPage {
 				100,
 				self::NORMAL_PRIORITY,
 				$this->getUser(),
+				$campaignType,
 				$this->getSummaryFromRequest( $request )
 			);
 			if ( is_string( $result ) ) {
@@ -482,16 +600,16 @@ class CentralNotice extends SpecialPage {
 	 * @return null|string
 	 */
 	private function getDateTime( $prefix ) {
-		global $wgRequest;
+		$request = $this->getRequest();
 		// Check whether the user left the date field blank.
 		// Interpret any form of "empty" as a blank value.
-		$manual_entry = $wgRequest->getVal( "{$prefix}Date" );
+		$manual_entry = $request->getVal( "{$prefix}Date" );
 		if ( !$manual_entry ) {
 			return null;
 		}
 
-		$datestamp = $wgRequest->getVal( "{$prefix}Date_timestamp" );
-		$timeArray = $wgRequest->getArray( $prefix );
+		$datestamp = $request->getVal( "{$prefix}Date_timestamp" );
+		$timeArray = $request->getArray( $prefix );
 		$timestamp = substr( $datestamp, 0, 8 ) .
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$timeArray[ 'hour' ] .
@@ -686,6 +804,19 @@ class CentralNotice extends SpecialPage {
 					self::LOW_PRIORITY
 				);
 
+				// Handle setting campaign type
+
+				$type = $request->getText( 'campaign_type', null );
+				$type = $type === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $type;
+
+				// Sanity check: does the requested campaign type exist?
+				if ( $type && !CampaignType::getById( $type ) ) {
+					$this->showError( 'centralnotice-non-existent-campaign-type-error' );
+					return;
+				}
+
+				Campaign::setType( $notice, $type );
+
 				// Handle updating geotargeting
 				if ( $request->getCheck( 'geotargeted' ) ) {
 					Campaign::setBooleanCampaignSetting( $notice, 'geo', true );
@@ -811,6 +942,7 @@ class CentralNotice extends SpecialPage {
 							$params[$paramName] = $paramVal;
 						}
 
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 						Campaign::updateCampaignMixins(
 							$notice, $mixinName, true, $params );
 
@@ -888,6 +1020,7 @@ class CentralNotice extends SpecialPage {
 				$numBuckets = $request->getInt( 'buckets', 1 );
 				$countries = $this->listToArray( $request->getVal( 'geo_countries' ) );
 				$regions = $this->listToArray( $request->getVal( 'geo_regions' ) );
+				$type = $request->getText( 'type', null );
 			} else { // Defaults
 				$start = $campaign[ 'start' ];
 				$end = $campaign[ 'end' ];
@@ -902,8 +1035,10 @@ class CentralNotice extends SpecialPage {
 				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = Campaign::getNoticeCountries( $notice );
 				$regions = Campaign::getNoticeRegions( $notice );
+				$type = $campaign['type'];
 			}
 			$isThrottled = ( $throttle < 100 );
+			$type = $type === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $type;
 
 			// Build Html
 			$htmlOut = '';
@@ -912,6 +1047,14 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
 
 			// Rows
+			// Campaign type selector
+			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Xml::tags( 'td', [],
+				Xml::label( $this->msg( 'centralnotice-campaign-type' )->text(), 'campaign_type' ) );
+			$htmlOut .= Xml::tags( 'td', [],
+				$this->campaignTypeSelector( $this->editable, $type ) );
+			$htmlOut .= Xml::closeElement( 'tr' );
+
 			// Start Date
 			$htmlOut .= Xml::openElement( 'tr' );
 			$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-start-date' )->escaped() );
@@ -1308,7 +1451,7 @@ class CentralNotice extends SpecialPage {
 			if ( $selected === null ) {
 				$selected = 0; // default to bucket 'A'
 			}
-			$selected = $selected % $numberCampaignBuckets;
+			$selected %= $numberCampaignBuckets;
 
 			// bucketSelector class is for all bucket selectors (for assigned or
 			// unassigned banners). Coordinate with CentralNoticePager::bucketDropDown().

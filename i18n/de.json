@@ -329,5 +329,20 @@
 	"centralnotice-add-banner-from-template": "Banner aus Vorlage hinzufügen",
 	"centralnotice-messages-banner-in-campaign": "Dieses Banner kann nicht als Vorlage markiert werden, solange es einer oder mehreren Kampagnen zugeordnet ist. Dieses Banner ist folgenden Kampagnen zugeordnet:",
 	"centralnotice-create-from-template-checkbox-label": "Aus Vorlage erstellen",
-	"centralnotice-campaign-view-logs": "Logbücher der Kampagneneinstellungen anzeigen"
+	"centralnotice-campaign-view-logs": "Logbücher der Kampagneneinstellungen anzeigen",
+	"prefs-centralnotice-banners": "Banner",
+	"prefs-centralnotice-display-banner-types": "Anzuzeigende Bannertypen",
+	"centralnotice-campaign-type": "Kampagnentyp",
+	"centralnotice-empty-campaign-type-option": "Kein Typ (wird immer angezeigt)",
+	"centralnotice-non-existent-campaign-type-error": "Ausgewählter Kampagnentyp ist nicht vorhanden",
+	"centralntoice-deleted-campaign-type": "$1 (gelöschter Typ)",
+	"centralnotice-campaign-type-advocacy": "Advocacy",
+	"centralnotice-campaign-type-article-writing": "Artikel schreiben",
+	"centralnotice-campaign-type-event": "Veranstaltung",
+	"centralnotice-campaign-type-fundraising": "Spendenaufruf",
+	"centralnotice-campaign-type-governance": "Governance",
+	"centralnotice-campaign-type-maintenance": "Wartung",
+	"centralnotice-campaign-type-photography": "Fotografie",
+	"centralnotice-campaign-type-special": "Spezial",
+	"centralnotice-user-prefs-intro": "Banner zeigen Ankündigungen an, die für die Wikimedia-Gemeinschaften und -Benutzer von Interesse sind.\n\nIm Folgenden findest du Optionen, mit denen du verwalten kannst, welche Arten von Ankündigungen du siehst. Bestimmte Plattform-Hinweise, wie z. B. solche, die sich auf die Wartung der Seite beziehen, und spezielle Hinweise, die für alle Benutzer als notwendig erachtet werden, werden immer angezeigt. Für weitere Informationen lies bitte die [[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentation im Meta-Wiki]]."
 }
