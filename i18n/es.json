@@ -306,7 +306,17 @@
 	"centralnotice-add-banner-from-template": "Agregar un banner desde la plantilla",
 	"centralnotice-messages-banner-in-campaign": "No se puede marcar este banner como plantilla mientras está asignado a una o más campañas. Este banner se asigna a las siguientes campañas:",
 	"centralnotice-create-from-template-checkbox-label": "Crear desde plantilla",
+	"prefs-centralnotice-banners": "Carteles",
+	"prefs-centralnotice-display-banner-types": "Tipos de carteles a mostar",
+	"centralnotice-campaign-type": "Tipo de campaña",
 	"centralnotice-empty-campaign-type-option": "Ningún tipo (siempre mostrado)",
+	"centralnotice-non-existent-campaign-type-error": "El tipo de campaña seleccionada no existe",
+	"centralnotice-campaign-type-article-writing": "Escritura de artículos",
 	"centralnotice-campaign-type-event": "Evento",
-	"centralnotice-campaign-type-photography": "Fotografía"
+	"centralnotice-campaign-type-fundraising": "Recaudación de fondos",
+	"centralnotice-campaign-type-governance": "Gobernanza",
+	"centralnotice-campaign-type-maintenance": "Mantenimiento",
+	"centralnotice-campaign-type-photography": "Fotografía",
+	"centralnotice-campaign-type-special": "Especial",
+	"centralnotice-user-prefs-intro": "Los carteles muestran anuncios de interés para la comunidad de Wikimedia y sus usuarios.\n\nMás abajo encontrarás opciones que te permiten gestionar los tipos de anuncios que quieres ver. Algunos anuncios como los relativos al mantenimiento y los catalogados como especiales siempre serán mostrados. Para más detalles por favor lee la [[metawikimedia:Special:MyLanguage/CentralNotice|documentación en Meta-Wiki]]."
 }
