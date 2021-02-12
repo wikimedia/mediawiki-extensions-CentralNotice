@@ -170,16 +170,17 @@ class BannerRenderer {
 
 	/**
 	 * Render any preload javascript for this banner
-	 * @return string JS snippet.
 	 *
-	 * TODO Remove/refactor. See T225831.
+	 * TODO: Remove/refactor. See T225831.
+	 *
+	 * @return string JavaScript code
 	 */
 	public function getPreloadJs() {
 		$code = $this->substituteMagicWords( $this->getPreloadJsRaw() );
 
 		// Minify the code, if any.
 		if ( !$this->debug && $code ) {
-			$code = JavaScriptMinifier::minify( $code );
+			$code = ResourceLoader::filter( 'minify-js', $code, [ 'cache' => false ] );
 		}
 		return $code;
 	}
@@ -189,9 +190,10 @@ class BannerRenderer {
 	 *
 	 * This is only used internally, and will be parsed for magic words
 	 * before use.
-	 * @return string
 	 *
-	 * TODO Remove/refactor. See T225831.
+	 * TODO: Remove/refactor. See T225831.
+	 *
+	 * @return string JavaScript code
 	 */
 	public function getPreloadJsRaw() {
 		$snippets = $this->mixinController->getPreloadJsSnippets();
