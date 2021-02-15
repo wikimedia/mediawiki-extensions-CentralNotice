@@ -7,6 +7,7 @@
 			"KlaudiuMihaila",
 			"Mihai",
 			"Minisarm",
+			"NGC 54",
 			"Stelistcristi",
 			"Strainu",
 			"XXN"
@@ -26,7 +27,7 @@
 	"centralnotice-modify": "Trimite",
 	"centralnotice-view": "Vizualizare",
 	"centralnotice-save-banner": "Salvare",
-	"centralnotice-live-preview": "Previzualizare",
+	"centralnotice-live-preview": "Previzualizați versiunea salvată ultima",
 	"centralnotice-add-new": "Adaugă un anunț central nou",
 	"centralnotice-remove": "Șterge",
 	"centralnotice-translate-heading": "Traducere pentru $1",
@@ -218,6 +219,6 @@
 	"centralnotice-banner-not-found-title": "Bannerul nu a fost găsit",
 	"centralnotice-banner-not-found-contents": "Nu există niciun banner cu acest nume.",
 	"hidebanners": "Ascunde bannerele",
-	"centralnotice-multiple-countries": "Multiple ($1)",
-	"centralnotice-multiple-languages": "multiple ($1)"
+	"centralnotice-multiple-countries": "Țări multiple",
+	"centralnotice-multiple-languages": "Limbi multiple"
 }
