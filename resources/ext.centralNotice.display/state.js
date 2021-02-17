@@ -371,6 +371,7 @@
 				delete dataCopy.tests;
 				delete dataCopy.reducedBucket;
 				delete dataCopy.availableCampaigns;
+				delete dataCopy.optedOutCampaigns;
 				// Serialized as JSON string for b/c, later, when we switch fully to EventLogging
 				// instead of the custom beacon/impression, the serialization could be removed
 				dataCopy.campaignStatuses = JSON.stringify( dataCopy.campaignStatuses );
