@@ -3,6 +3,7 @@
 		"authors": [
 			"Centerlink",
 			"Crt",
+			"Moj",
 			"Nedergard",
 			"Nike",
 			"Olli",
@@ -207,5 +208,8 @@
 	"centralnotice-banner-sequence-banner": "Banneri",
 	"centralnotice-banner-sequence-page-views": "Näyttökerrat",
 	"centralnotice-multiple-countries": "Useita maita",
-	"centralnotice-multiple-languages": "Useita kieliä"
+	"centralnotice-multiple-languages": "Useita kieliä",
+	"prefs-centralnotice-banners": "Bannerit",
+	"prefs-centralnotice-display-banner-types": "Näytettävät bannerityypit",
+	"centralnotice-user-prefs-intro": "Bannereilla näytetään Wikimedian yhteisölle ja käyttäjille tärkeitä ilmoituksia.\n\nAllaolevien vaihtoehtojen avulla voit hallita minkätyyppisiä banneri-ilmoituksia sinulle näytetään. Tietyt alustaan liittyvät ilmoitukset, kuten sivuston ylläpitoon liittyvät ilmoitukset ja erityisilmoitukset, jotka on katsottu tarpeellisiksi kaikille käyttäjille, näytetään aina. Voit lukea aiheesta lisää [[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Wikissä]]."
 }
