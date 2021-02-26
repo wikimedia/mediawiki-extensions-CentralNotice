@@ -136,7 +136,7 @@
 	"centralnotice-action-created": "তৈরি",
 	"centralnotice-action-modified": "পরিবর্তিত",
 	"centralnotice-action-removed": "অপসারিত",
-	"centralnotice-changed": "<span class=\"cn-old-value\">$1</span> থেকে <span class=\"cn-new-value\">$2</span> পরিবর্তন করা হয়েছে",
+	"centralnotice-changed": "<span class=\"cn-old-value\">$1</span> থেকে পরিবর্তন করে <span class=\"cn-new-value\">$2</span> করা হয়েছে",
 	"centralnotice-on": "চালু",
 	"centralnotice-off": "বন্ধ",
 	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> যুক্ত হয়েছে",
