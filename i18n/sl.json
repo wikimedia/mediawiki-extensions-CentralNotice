@@ -4,7 +4,8 @@
 			"Dbc334",
 			"Edinwiki",
 			"Eleassar",
-			"HairyFotr"
+			"HairyFotr",
+			"Janezdrilc"
 		]
 	},
 	"centralnotice": "Upravljanje osrednjega obvestila",
@@ -88,6 +89,7 @@
 	"centralnotice-clone-notice": "Ustvarite kopijo pasice",
 	"centralnotice-clone-name": "Ime:",
 	"centralnotice-clone-cancel": "Prekliči",
+	"centralnotice-clone-banner": "Pasica",
 	"centralnotice-insert": "Vstavi: $1",
 	"centralnotice-close-button": "Gumb za zapiranje",
 	"centralnotice-close-title": "Zapri",
@@ -174,10 +176,24 @@
 	"centralnotice-start-time": "Čas začetka (UTC)",
 	"centralnotice-end-date": "Datum zaključka (UTC)",
 	"centralnotice-end-time": "Čas zaključka (UTC)",
+	"hidebanners": "Skrij pasice",
+	"centralnotice-banner-sequence-banner": "Pasica",
 	"centralnotice-multiple-countries": "Več držav",
 	"centralnotice-multiple-languages": "Več jezikov",
 	"tag-centralnotice": "Central Notice",
 	"tag-centralnotice-description": "Urejanje, opravljeno z uporabniškim vmesnikom CentralNotice za administratorje",
 	"tag-centralnotice_translation": "prevod Central Notice",
-	"tag-centralnotice_translation-description": "Urejanje vsebine CentralNotice z razširitvijo Translate"
+	"tag-centralnotice_translation-description": "Urejanje vsebine CentralNotice z razširitvijo Translate",
+	"prefs-centralnotice-banners": "Pasice",
+	"prefs-centralnotice-display-banner-types": "Pasice za prikaz",
+	"centralntoice-deleted-campaign-type": "$1 (izbrisana vrsta)",
+	"centralnotice-campaign-type-advocacy": "Odvetništvo",
+	"centralnotice-campaign-type-article-writing": "Pisanje člankov",
+	"centralnotice-campaign-type-event": "Dogodek",
+	"centralnotice-campaign-type-fundraising": "Zbiranje sredstev",
+	"centralnotice-campaign-type-governance": "Soodločanje",
+	"centralnotice-campaign-type-maintenance": "Vzdrževanje",
+	"centralnotice-campaign-type-photography": "Fotografiranje",
+	"centralnotice-campaign-type-special": "Posebno",
+	"centralnotice-user-prefs-intro": "Pasice prikazujejo obvestila, ki se nanašajo na Wikipedijske skupnosti in uporabnike.\n\nSpodaj so možnosti, ki ti omogočajo, katera obvestila se ti bodo prikazovala. Nekatera nujna sporočila o vzdrževanju ali posebna sporočila, ki so pomembna za vse uporabnika, bodo vedno prikazana. Za nadaljnje informacije glej [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentacijo na Meta-Wiki]]."
 }

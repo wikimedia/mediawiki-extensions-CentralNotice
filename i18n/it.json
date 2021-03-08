@@ -75,6 +75,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "La campagna non esiste.\nNiente da rimuovere.",
 	"centralnotice-banner-doesnt-exist": "Il banner non esiste.",
 	"centralnotice-banner-edit-onwiki": "Modifica banner su wiki",
+	"centralnotice-banner-history": "Visualizza la cronologia del banner",
 	"centralnotice-template-still-bound": "Impossibile rimuovere il banner \"$1\" poiché è ancora collegato ad una campagna. Il banner non è stato rimosso.",
 	"centralnotice-template-body": "Corpo del banner:",
 	"centralnotice-day": "Giorno",
