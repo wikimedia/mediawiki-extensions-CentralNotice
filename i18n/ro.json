@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Andrei Stroe",
+			"Andreyyshore",
 			"Cin",
 			"Firilacroco",
 			"KlaudiuMihaila",
@@ -111,7 +112,7 @@
 	"centralnotice-donate-button": "Buton de donare",
 	"centralnotice-banner-display": "Afișează pentru",
 	"centralnotice-banner-anonymous": "Utilizatori anonimi",
-	"centralnotice-banner-logged-in": "Utilizatori autentificaţi",
+	"centralnotice-banner-logged-in": "Utilizatori autentificați",
 	"centralnotice-banner-type": "Tip banner:",
 	"centralnotice-banner-hidable": "Static/Ascuns",
 	"centralnotice-banner-collapsible": "Reductibil",

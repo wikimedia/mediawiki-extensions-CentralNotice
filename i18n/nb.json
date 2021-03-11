@@ -336,6 +336,7 @@
 	"centralnotice-empty-campaign-type-option": "Ingen type (vises alltid)",
 	"centralnotice-non-existent-campaign-type-error": "Valgte kampanjetype finnes ikke",
 	"centralntoice-deleted-campaign-type": "$1 (slettet type)",
+	"centralnotice-campaign-type-advocacy": "Aktivisme",
 	"centralnotice-campaign-type-article-writing": "Artikkelskriving",
 	"centralnotice-campaign-type-event": "Arrangement",
 	"centralnotice-campaign-type-fundraising": "Pengeinnsamling",

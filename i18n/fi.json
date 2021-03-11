@@ -203,6 +203,7 @@
 	"centralnotice-start-time": "Alkamisaika (UTC)",
 	"centralnotice-end-date": "Lopetuspäivä (UTC)",
 	"centralnotice-end-time": "Lopetusaika (UTC)",
+	"hidebanners": "Piilota bannerit",
 	"centralnotice-banner-sequence-days-error": "Arvon tulee olla kokonaisluku suurempi kuin nolla.",
 	"centralnotice-banner-sequence-bucket-add-step": "Lisää vaihe",
 	"centralnotice-banner-sequence-banner": "Banneri",
