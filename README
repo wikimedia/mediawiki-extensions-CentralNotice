@@ -1,9 +1,6 @@
 CentralNotice allows central distribution of small bits of translatable content
 (a.k.a banners) to subscribing wikis from one central infrastructure wiki.
 
-This version of CentralNotice requires version 1.26wmf9 of Mediawiki core or
-later.
-
 Configuration
 ==========
 
