@@ -7,6 +7,7 @@
 			"Ex13",
 			"Herr Mlinka",
 			"MaGa",
+			"Ponor",
 			"Roberta F.",
 			"SpeedyGonsales",
 			"Wumbolo"
@@ -58,7 +59,7 @@
 	"centralnotice-locked": "Zaključano",
 	"centralnotice-notice-mixins-fieldset": "Dodatne mogućnosti za kampanju",
 	"centralnotice-notice-mixins-int-required": "Zahtijeva cjelobrojni unos",
-	"centralnotice-notice-mixins-float-required": "Zahtijeva pomičnu decimalnu znamenku",
+	"centralnotice-notice-mixins-float-required": "Zahtijeva broj s decimalama",
 	"centralnotice-notice": "Promidžba",
 	"centralnotice-notice-heading": "Promidžba: $1",
 	"centralnotice-notices": "Obavijesti",
