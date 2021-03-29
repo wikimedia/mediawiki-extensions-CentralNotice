@@ -56,6 +56,7 @@
 	"centralnotice-notice-doesnt-exist": "D'Campagne gëtt et net.",
 	"centralnotice-remove-notice-doesnt-exist": "D'Campagne gëtt et net.\nEt gëtt näischt fir ewechzehuelen.",
 	"centralnotice-banner-doesnt-exist": "De Banner gëtt et net.",
+	"centralnotice-banner-edit-onwiki": "Banner op der Wiki änneren",
 	"centralnotice-template-still-bound": "De Banner $1 kann net ewechgeholl ginn well en nach ëmmer mat enger Campagne verbonn ass.\nNet ewechhuelen.",
 	"centralnotice-template-body": "Text vun der Schabloun:",
 	"centralnotice-day": "Dag",
@@ -225,6 +226,7 @@
 	"centralnotice-banner-template": "Banner-Schabloun",
 	"centralnotice-banner-template-info": "(Schabloun)",
 	"prefs-centralnotice-banners": "Banneren",
+	"prefs-centralnotice-display-banner-types": "Type vu Banneren déi gewise ginn",
 	"centralnotice-campaign-type-article-writing": "Artikel schreiwen",
 	"centralnotice-campaign-type-photography": "Fotographie",
 	"centralnotice-campaign-type-special": "Spezial"
