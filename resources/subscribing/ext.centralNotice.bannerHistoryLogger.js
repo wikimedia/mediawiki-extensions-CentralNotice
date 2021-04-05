@@ -196,16 +196,9 @@
 	}
 
 	/**
-	 * Send the log. If sendBeacon is available, send normally via EventLogging.
-	 * If not, use $.ajax with a timeout as per waitLogNoSendBeacon. FIXME: In
-	 * that case, we also construct the EventLogging URL ourselves.
+	 * Send the log via EventLogging.
 	 *
-	 * Returns a promise that resolves as soon as the log is sent for users
-	 * with sendBeacon. For users without sendBeacon, if the log is sent before
-	 * the timeout, the promise resolves, otherwise it rejects.
-	 *
-	 * Note: Do Not Track is already handled at this module's entry points, as
-	 * well as by EventLogging.
+	 * Returns a promise that resolves as soon as the log is submitted for users.
 	 *
 	 * @param {Object} elData Event log data
 	 * @return {jQuery.Promise}
@@ -214,26 +207,7 @@
 		var deferred = $.Deferred(),
 			elPromise;
 
-		// If the browser has sendBeacon, use EventLogging and resolve however
-		// it does.
-		if ( navigator.sendBeacon ) {
-			elPromise = mw.eventLog.logEvent( EVENT_LOGGING_SCHEMA, elData );
-
-		} else {
-
-			// No sendBeacon? Do an ajax call and set a time limit to wait
-			// for it to return.
-			setTimeout( function () {
-				deferred.reject();
-			}, waitLogNoSendBeacon );
-
-			elPromise = $.ajax( {
-				url: makeEventLoggingURL( elData ),
-				timeout: waitLogNoSendBeacon,
-				dataType: 'script', // Helps prevent CORS issues? See T174719
-				cache: true // Prevent JQuery from adding a timestamp to the URL
-			} );
-		}
+		elPromise = mw.eventLog.logEvent( EVENT_LOGGING_SCHEMA, elData );
 
 		elPromise.then( function () {
 			deferred.resolve();
