@@ -1,11 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hello903hello",
 			"Horacewai2",
 			"Shinjiman",
 			"Waihorace"
 		]
 	},
 	"centralnotice": "統一通告管理",
-	"centralnotice-desc": "加入一個中央公告欄"
+	"centralnotice-desc": "加入一個中央公告欄",
+	"prefs-centralnotice-banners": "橫額",
+	"prefs-centralnotice-display-banner-types": "顯示嘅橫額類型",
+	"centralnotice-campaign-type-article-writing": "寫文",
+	"centralnotice-campaign-type-event": "事件",
+	"centralnotice-campaign-type-fundraising": "籌款",
+	"centralnotice-campaign-type-maintenance": "維修",
+	"centralnotice-campaign-type-photography": "攝影",
+	"centralnotice-campaign-type-special": "特殊"
 }
