@@ -120,13 +120,7 @@
 			"remoteExtPath": "CentralNotice/resources/ext.centralNotice.startUp",
 			"packageFiles": [
 				"index.js",
-				"kvStoreMaintenance.js",
-				{
-					"name": "config.json",
-					"config": {
-						"cookiesToDelete": "CentralNoticeCookiesToDelete"
-					}
-				}
+				"kvStoreMaintenance.js"
 			],
 			"dependencies": [
 				"ext.centralNotice.choiceData",
@@ -424,9 +418,6 @@
 				"Fundraising",
 				"fundraising"
 			]
-		},
-		"CentralNoticeCookiesToDelete": {
-			"value": []
 		},
 		"CentralNoticeBannerMixins": {
 			"value": []

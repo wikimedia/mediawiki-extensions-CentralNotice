@@ -171,11 +171,6 @@ Configuration
   TODO Fix and remove!
   Default: [ "Fundraising", "fundraising" ]
 
-* $wgCentralNoticeCookiesToDelete: A list of defunct cookies to delete. Whenever
-  the ext.centralNotice.startUp module is loaded, if a cookie in this list is
-  found, it will be removed.
-  Default: []
-
 * $wgCentralNoticeBannerMixins: Available banner mixins
   See https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins
   Default: []
