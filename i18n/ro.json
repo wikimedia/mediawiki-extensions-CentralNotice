@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Andrei Stroe",
+			"Andreyyshore",
 			"Cin",
 			"Firilacroco",
 			"KlaudiuMihaila",
 			"Mihai",
 			"Minisarm",
+			"NGC 54",
 			"Stelistcristi",
 			"Strainu",
 			"XXN"
@@ -26,7 +28,7 @@
 	"centralnotice-modify": "Trimite",
 	"centralnotice-view": "Vizualizare",
 	"centralnotice-save-banner": "Salvare",
-	"centralnotice-live-preview": "Previzualizare",
+	"centralnotice-live-preview": "Previzualizați versiunea salvată ultima",
 	"centralnotice-add-new": "Adaugă un anunț central nou",
 	"centralnotice-remove": "Șterge",
 	"centralnotice-translate-heading": "Traducere pentru $1",
@@ -110,7 +112,7 @@
 	"centralnotice-donate-button": "Buton de donare",
 	"centralnotice-banner-display": "Afișează pentru",
 	"centralnotice-banner-anonymous": "Utilizatori anonimi",
-	"centralnotice-banner-logged-in": "Utilizatori autentificaţi",
+	"centralnotice-banner-logged-in": "Utilizatori autentificați",
 	"centralnotice-banner-type": "Tip banner:",
 	"centralnotice-banner-hidable": "Static/Ascuns",
 	"centralnotice-banner-collapsible": "Reductibil",
@@ -218,6 +220,8 @@
 	"centralnotice-banner-not-found-title": "Bannerul nu a fost găsit",
 	"centralnotice-banner-not-found-contents": "Nu există niciun banner cu acest nume.",
 	"hidebanners": "Ascunde bannerele",
-	"centralnotice-multiple-countries": "Multiple ($1)",
-	"centralnotice-multiple-languages": "multiple ($1)"
+	"centralnotice-multiple-countries": "Țări multiple",
+	"centralnotice-multiple-languages": "Limbi multiple",
+	"prefs-centralnotice-banners": "Bannere",
+	"centralnotice-user-prefs-intro": "Bannerele afișează anunțuri de interes comunităților și utilizatorilor Wikimedia.\n\nMai jos sunt opțiuni care vă permit să administrați ce tipuri de anunțuri vedeți. Anumite înștiințări de platformă, precum cele legate de mentenanța site-ului și înștiințări speciale considerate necesare tuturor utilizatorilor, vor fi întotdeauna afișate. Pentru mai mule informații, vă rugăm să citiți [[metawikimedia:Special:MyLanguage/CentralNotice|documentația pe Meta-Wiki]]."
 }

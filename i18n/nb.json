@@ -336,10 +336,13 @@
 	"centralnotice-empty-campaign-type-option": "Ingen type (vises alltid)",
 	"centralnotice-non-existent-campaign-type-error": "Valgte kampanjetype finnes ikke",
 	"centralntoice-deleted-campaign-type": "$1 (slettet type)",
+	"centralnotice-campaign-type-advocacy": "Aktivisme",
 	"centralnotice-campaign-type-article-writing": "Artikkelskriving",
 	"centralnotice-campaign-type-event": "Arrangement",
 	"centralnotice-campaign-type-fundraising": "Pengeinnsamling",
+	"centralnotice-campaign-type-governance": "Styring",
 	"centralnotice-campaign-type-maintenance": "Vedlikehold",
 	"centralnotice-campaign-type-photography": "Fotografi",
-	"centralnotice-campaign-type-special": "Spesielle"
+	"centralnotice-campaign-type-special": "Spesielle",
+	"centralnotice-user-prefs-intro": "Bannere viser kunngjøringer som kan være interessante for Wikimedia-brukere.\n\nNedenfor er alternativer som lar deg velge hva slags kunngjøringer du vil se. Visse typer kunngjøringer vises alltid, som de som gjelder vedlikehold eller spesielle saker som anses som nødvendige for alle brukere. Se [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentasjonen på Meta-Wiki]] for mer informasjon."
 }

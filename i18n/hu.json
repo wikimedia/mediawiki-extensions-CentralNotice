@@ -6,7 +6,8 @@
 			"Dani",
 			"Dj",
 			"Misibacsi",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Teemeah"
 		]
 	},
 	"centralnotice": "Központiüzenet-adminisztráció",
@@ -205,5 +206,16 @@
 	"centralnotice-end-date": "Befejezés dátuma (UTC)",
 	"centralnotice-end-time": "Befejezési idő (UTC)",
 	"centralnotice-multiple-countries": "több ország",
-	"centralnotice-multiple-languages": "több nyelv"
+	"centralnotice-multiple-languages": "több nyelv",
+	"prefs-centralnotice-banners": "Hirdetések",
+	"prefs-centralnotice-display-banner-types": "Megjelenítendő üzenettípusok az üzenősávban",
+	"centralnotice-campaign-type-advocacy": "Érdekvédelem",
+	"centralnotice-campaign-type-article-writing": "Szócikkírás",
+	"centralnotice-campaign-type-event": "Esemény",
+	"centralnotice-campaign-type-fundraising": "Adománygyűjtés",
+	"centralnotice-campaign-type-governance": "Hivatalos ügyek",
+	"centralnotice-campaign-type-maintenance": "Karbantartás",
+	"centralnotice-campaign-type-photography": "Fényképezés",
+	"centralnotice-campaign-type-special": "Speciális",
+	"centralnotice-user-prefs-intro": "A lap tetején az üzenősávban olyan üzenetek jelennek meg, amelyek érdekelhetik a Wikimédia-közösségeket és a felhasználókat.\n\nAlább eldöntheted, hogy milyen típusú üzeneteket szeretnél látni az üzenősávban. Néhány üzenet, például a platform karbantartásával kapcsolatosak, vagy a minden felhasználót érintő speciális üzenetek mindig megjelennek. További információt a [[metawikimedia:Special:MyLanguage/CentralNotice|a Meta-Wiki dokumentációjában]] találhatsz."
 }

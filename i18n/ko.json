@@ -280,10 +280,13 @@
 	"centralnotice-empty-campaign-type-option": "유형 없음 (무조건 표시)",
 	"centralnotice-non-existent-campaign-type-error": "선택한 공지 유형은 존재하지 않습니다",
 	"centralntoice-deleted-campaign-type": "$1 (삭제된 유형)",
+	"centralnotice-campaign-type-advocacy": "홍보",
 	"centralnotice-campaign-type-article-writing": "글 쓰기",
 	"centralnotice-campaign-type-event": "이벤트",
 	"centralnotice-campaign-type-fundraising": "기금 모금",
+	"centralnotice-campaign-type-governance": "관리",
 	"centralnotice-campaign-type-maintenance": "유지보수",
 	"centralnotice-campaign-type-photography": "사진",
-	"centralnotice-campaign-type-special": "특수"
+	"centralnotice-campaign-type-special": "특수",
+	"centralnotice-user-prefs-intro": "배너는 위키미디어 공동체와 사용자의 관심사의 공지를 표시합니다.\n\n다음은 어느 유형의 공지를 볼 것인지 관리할 수 있는 옵션입니다. 사이트 유지보수에 관한 사항, 모든 사용자에게 필수적인 특별한 공지 등 특정 플랫폼 공지는 무조건 표시됩니다. 추가 정보에 대해서는 [[metawikimedia:Special:MyLanguage/CentralNotice|메타위키의 문서]]를 참고해 주십시오."
 }

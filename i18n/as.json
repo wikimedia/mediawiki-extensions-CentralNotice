@@ -30,6 +30,8 @@
 	"centralnotice-manage-templates": "বেনাৰ ব্যৱস্থাপনা কৰক",
 	"centralnotice-add": "যোগ",
 	"centralnotice-add-notice": "এটা প্ৰচাৰ যোগ কৰক",
+	"centralnotice-add-notice-button": "সৃষ্টি কৰক",
+	"centralnotice-add-notice-cancel-button": "বাতিল কৰক",
 	"centralnotice-edit-notice": "প্ৰচাৰ সম্পাদনা কৰক",
 	"centralnotice-add-template": "সাঁচ যোগ",
 	"centralnotice-show-notices": "প্ৰচাৰ দেখুৱাওক",
@@ -162,6 +164,9 @@
 	"centralnotice-start-time": "আৰম্ভ কৰা সময় (UTC)",
 	"centralnotice-end-date": "শেষ হোৱা তাৰিখ",
 	"centralnotice-end-time": "শেষ হোৱা সময় (UTC)",
+	"hidebanners": "বেনাৰ লুকাৱাওক",
 	"centralnotice-multiple-countries": "একাধিক ($1)",
-	"centralnotice-multiple-languages": "একাধিক ভাষা"
+	"centralnotice-multiple-languages": "একাধিক ভাষা",
+	"prefs-centralnotice-banners": "বেনাৰ",
+	"prefs-centralnotice-display-banner-types": "প্ৰদৰ্শন কৰিব লগা বেনাৰৰ প্ৰকাৰ"
 }

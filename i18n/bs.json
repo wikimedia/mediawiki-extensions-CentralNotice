@@ -144,5 +144,16 @@
 	"centralnotice-start-time": "Početno vrijeme (UTC)",
 	"centralnotice-end-date": "Krajnji datum (UTC)",
 	"centralnotice-end-time": "Vrijeme završetka (UTC)",
-	"centralnotice-multiple-languages": "više ($1)"
+	"centralnotice-multiple-languages": "više ($1)",
+	"prefs-centralnotice-banners": "Transparenti",
+	"prefs-centralnotice-display-banner-types": "Vrste transparenata za prikaz",
+	"centralnotice-campaign-type-advocacy": "Zastupanje",
+	"centralnotice-campaign-type-article-writing": "Pisanje članka",
+	"centralnotice-campaign-type-event": "Događaj",
+	"centralnotice-campaign-type-fundraising": "Prikupljanje sredstava",
+	"centralnotice-campaign-type-governance": "Rukovodstvo",
+	"centralnotice-campaign-type-maintenance": "Održavanje",
+	"centralnotice-campaign-type-photography": "Fotografija",
+	"centralnotice-campaign-type-special": "Posebno",
+	"centralnotice-user-prefs-intro": "Transparenti prikazuju obavještenja koja su od koristi Wikimedijinim zajednicama i njihovim korisnicima.\n\nOpcije ispod omogućuju Vam da izaberete koje vrste obavještenja želite primati. Pojedina obavještenja, poput onih o radovima na sajtu ili posebnih obavještenja za koja se smatra da ih svi korisnici trebaju vidjeti, uvijek će biti prikazana. Više informacija možete pronaći u [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentaciji na Meta-Wikiju]]."
 }

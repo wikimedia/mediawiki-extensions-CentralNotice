@@ -17,6 +17,7 @@
 			"Nemo bis",
 			"Pietrodn",
 			"Ronald",
+			"Sakretsu",
 			"Scompo",
 			"Viscontino"
 		]
@@ -74,6 +75,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "La campagna non esiste.\nNiente da rimuovere.",
 	"centralnotice-banner-doesnt-exist": "Il banner non esiste.",
 	"centralnotice-banner-edit-onwiki": "Modifica banner su wiki",
+	"centralnotice-banner-history": "Visualizza la cronologia del banner",
 	"centralnotice-template-still-bound": "Impossibile rimuovere il banner \"$1\" poiché è ancora collegato ad una campagna. Il banner non è stato rimosso.",
 	"centralnotice-template-body": "Corpo del banner:",
 	"centralnotice-day": "Giorno",
@@ -264,10 +266,17 @@
 	"centralnotice-multiple-countries": "Più paesi",
 	"centralnotice-multiple-regions": "Regioni multiple",
 	"centralnotice-multiple-languages": "Più lingue",
-	"prefs-centralnotice-display-banner-types": "Tipi di banner da mostrare",
+	"prefs-centralnotice-banners": "Banner",
+	"prefs-centralnotice-display-banner-types": "Tipi di banner da visualizzare",
 	"centralnotice-empty-campaign-type-option": "Nessuna tipologia (sempre mostrato)",
 	"centralnotice-non-existent-campaign-type-error": "Il tipo di campagna selezionato non esiste",
+	"centralnotice-campaign-type-advocacy": "Advocacy",
+	"centralnotice-campaign-type-article-writing": "Scrittura voci",
 	"centralnotice-campaign-type-event": "Evento",
+	"centralnotice-campaign-type-fundraising": "Raccolta fondi",
+	"centralnotice-campaign-type-governance": "Governance",
+	"centralnotice-campaign-type-maintenance": "Manutenzione",
 	"centralnotice-campaign-type-photography": "Fotografia",
-	"centralnotice-campaign-type-special": "Speciale"
+	"centralnotice-campaign-type-special": "Speciale",
+	"centralnotice-user-prefs-intro": "I banner mostrano avvisi di interesse per le comunità e gli utenti di Wikimedia.\n\nLe opzioni di seguito ti consentono di scegliere i tipi di avviso che desideri visualizzare. Alcuni avvisi relativi alla piattaforma, come quelli di manutenzione del sito e quelli speciali che sono considerati necessari a tutti gli utenti, saranno sempre visualizzati. Consulta la [[metawikimedia:Special:MyLanguage/CentralNotice|documentazione su Meta-Wiki]] per maggiori informazioni."
 }

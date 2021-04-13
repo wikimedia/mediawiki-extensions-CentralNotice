@@ -8,6 +8,7 @@
 			"Hosiryuhosi",
 			"JtFuruhata",
 			"Klutzy",
+			"LaMagiaaa",
 			"Marine-Blue",
 			"Object＊tofu",
 			"Ohgi",
@@ -253,5 +254,15 @@
 	"centralnotice-multiple-countries": "複数の国と地域",
 	"centralnotice-multiple-languages": "多言語",
 	"centralnotice-banner-template": "バナーテンプレート",
-	"centralnotice-banner-template-info": "(テンプレート)"
+	"centralnotice-banner-template-info": "(テンプレート)",
+	"prefs-centralnotice-banners": "バナー",
+	"prefs-centralnotice-display-banner-types": "バナータイプの表示設定",
+	"centralnotice-campaign-type-article-writing": "記事の編集",
+	"centralnotice-campaign-type-event": "イベント",
+	"centralnotice-campaign-type-fundraising": "資金調達",
+	"centralnotice-campaign-type-governance": "管理",
+	"centralnotice-campaign-type-maintenance": "メンテナンス",
+	"centralnotice-campaign-type-photography": "写真",
+	"centralnotice-campaign-type-special": "特殊",
+	"centralnotice-user-prefs-intro": "バナーでは、ウィキメディアのコミュニティとユーザーが関心を持っているアナウンスが表示されます。\n\n表示するアナウンスのタイプを管理できる設定です。サイトのメンテナンスに関連するバナーやすべてのユーザーに必要と思われる特別な通知など、特定の通知は常に表示されます。詳細は[[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Wikiのドキュメント]]をお読みください。"
 }

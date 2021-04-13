@@ -104,9 +104,8 @@ fieldset #cn-formsection-header-one-off {
 
 form[ name='addBannerDialog' ] .mw-htmlform-field-HTMLTextField input {
 	width: 100%;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .banner-template-dropdown-hidden {

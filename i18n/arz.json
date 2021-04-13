@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ghaly",
+			"HitomiAkane",
 			"Meno25",
 			"Ramsis II"
 		]
@@ -73,5 +74,6 @@
 	"centralnotice-preferred": " مفضله",
 	"centralnotice-start-date": "تاريخ البدايه",
 	"centralnotice-start-time": "وقت البداية (توقيت عالمى)",
-	"centralnotice-end-date": "تاريخ الانتهاء"
+	"centralnotice-end-date": "تاريخ الانتهاء",
+	"prefs-centralnotice-banners": "الاعلانات"
 }

@@ -33,6 +33,7 @@
 			"Rubin16",
 			"Sabbah",
 			"Seunei",
+			"Smigles",
 			"Stjn",
 			"Translatobecomer",
 			"Vlad5250",
@@ -315,10 +316,16 @@
 	"centralnotice-multiple-languages": "Несколько языков",
 	"centralnotice-banner-template-info": "(шаблон)",
 	"prefs-centralnotice-banners": "Баннеры",
+	"prefs-centralnotice-display-banner-types": "Типы отображаемых баннеров",
 	"centralnotice-campaign-type": "Тип кампании",
 	"centralntoice-deleted-campaign-type": "$1 (удаленный тип)",
+	"centralnotice-campaign-type-advocacy": "Адвокатура",
+	"centralnotice-campaign-type-article-writing": "Написание статей",
 	"centralnotice-campaign-type-event": "Событие",
 	"centralnotice-campaign-type-fundraising": "Сбор средств",
+	"centralnotice-campaign-type-governance": "Управление",
 	"centralnotice-campaign-type-maintenance": "Обслуживание",
-	"centralnotice-campaign-type-photography": "Фотография"
+	"centralnotice-campaign-type-photography": "Фотография",
+	"centralnotice-campaign-type-special": "Особое",
+	"centralnotice-user-prefs-intro": "Баннеры показывают объявления, представляющие интерес для сообществ и участников Викимедиа.\n\nНиже приведены параметры, позволяющие управлять типами объявлений, которые вы будете видеть. Некоторые уведомления платформы — те, которые связаны с обслуживанием сайта, а также особые уведомления, которые считаются необходимыми для всех участников, — будут отображаться всегда. Для получения дополнительной информации, пожалуйста, прочтите [[metawikimedia:Special:MyLanguage/CentralNotice|документацию на Мета-вики]]."
 }

@@ -56,6 +56,7 @@
 	"centralnotice-notice-doesnt-exist": "D'Campagne gëtt et net.",
 	"centralnotice-remove-notice-doesnt-exist": "D'Campagne gëtt et net.\nEt gëtt näischt fir ewechzehuelen.",
 	"centralnotice-banner-doesnt-exist": "De Banner gëtt et net.",
+	"centralnotice-banner-edit-onwiki": "Banner op der Wiki änneren",
 	"centralnotice-template-still-bound": "De Banner $1 kann net ewechgeholl ginn well en nach ëmmer mat enger Campagne verbonn ass.\nNet ewechhuelen.",
 	"centralnotice-template-body": "Text vun der Schabloun:",
 	"centralnotice-day": "Dag",
@@ -147,7 +148,7 @@
 	"centralnotice-talk-link": "Diskussioun",
 	"centralnotice-campaign-settings": "Astellunge vun der Campagne",
 	"centralnotice-banner-settings": "Astellunge vum Banner",
-	"centralnotice-anon": "Anonyme Benotzer weisen",
+	"centralnotice-anon": "Anonymme Benotzer weisen",
 	"centralnotice-account": "Ageloggte Benotzer weisen",
 	"centralnotice-fundraising": "Spendenopruff",
 	"centralnotice-autolink": "Automatesch Linke maachen",
@@ -172,7 +173,7 @@
 	"centralnotice-prioritylangs-explain": "Eng Sprooch als prioritär markéieren wäert d'Iwwersetzer encouragéieren dës Sprooche fir d'éischt z'iwwersetzen.",
 	"centralnotice-country-eu": "Onbekannt/Regioun Europäesch Unioun",
 	"centralnotice-country-ap": "Onbekannt/Regioun Asien-Pazifik",
-	"centralnotice-country-a1": "Onbekannt/Anonyme Proxy",
+	"centralnotice-country-a1": "Onbekannten/Anonymme Proxy",
 	"centralnotice-country-a2": "Onbekannt/Satelittebedreiwer",
 	"centralnotice-country-o1": "Onbekannt/Anert Land",
 	"centralnotice-country-unknown": "Onbekannt/Net ze lokaliséieren",
@@ -225,7 +226,9 @@
 	"centralnotice-banner-template": "Banner-Schabloun",
 	"centralnotice-banner-template-info": "(Schabloun)",
 	"prefs-centralnotice-banners": "Banneren",
+	"prefs-centralnotice-display-banner-types": "Type vu Banneren déi gewise ginn",
 	"centralnotice-campaign-type-article-writing": "Artikel schreiwen",
 	"centralnotice-campaign-type-photography": "Fotographie",
-	"centralnotice-campaign-type-special": "Spezial"
+	"centralnotice-campaign-type-special": "Spezial",
+	"centralnotice-user-prefs-intro": "Banner weisen Annoncen, déi fir d'Wikimedia-Commuantéiten a -Benotzer vun Interesse sinn.\n\nHei drënner fannt Dir Optiounen, déi Iech et erlaben anzestellen watfir eng Ukënnegungen Dir gewise kritt. Verschidden Hiweiser iwwer d'Plattform, z. Bsp. déi, déi sech op eng Maintenance bezéien vum Site bezéien oder speziell Hiweiser, déi fir all Benotzer als noutwendeg ugesi ginn, ginn ëmmer gewisen. Fir méi Informatiounen liest wgl. d'[[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentatioun op der Meta-Wiki]]."
 }
