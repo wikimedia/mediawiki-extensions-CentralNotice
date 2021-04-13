@@ -43,6 +43,7 @@
 	"centralnotice-banner": "Banner",
 	"centralnotice-banner-heading": "Banner: $1",
 	"centralnotice-templates": "Banneren",
+	"centralnotice-throttle": "Trafik limitéieren",
 	"centralnotice-weight": "Gewiicht",
 	"centralnotice-locked": "Gespaart",
 	"centralnotice-notice-mixins-int-required": "Ganz Zuel obligatoresch",
@@ -213,15 +214,18 @@
 	"centralnotice-end-date": "Schlussdatum (UTC)",
 	"centralnotice-end-time": "Schlusszäitpunkt (UTC)",
 	"centralnotice-banner-not-found-title": "Banner net fonnt",
+	"centralnotice-banner-not-found-contents": "Et gëtt kee Banner mat genee dësem Numm.",
 	"hidebanners": "Bannere verstoppen",
 	"centralnotice-large-banner-limit-days": "Dauer vun der Ënnerbriechung",
 	"centralnotice-large-banner-limit-identifier": "Identifikatioun fir d'Späicheren op der säit vum Client",
 	"centralnotice-banner-sequence": "Sequenz vun de Banneren",
+	"centralnotice-banner-sequence-days": "Dauer vun der Ënnerdréckung (Deeg)",
 	"centralnotice-banner-sequence-days-error": "Muss eng ganz Zuel sinn déi méi grouss wéi null ass.",
 	"centralnotice-banner-sequence-bucket-add-step": "E Schrëtt derbäisetzen",
 	"centralnotice-banner-sequence-banner": "Banner",
 	"centralnotice-banner-sequence-no-banner": "(Kee Banner)",
 	"centralnotice-multiple-countries": "Méi Länner",
+	"centralnotice-multiple-regions": "Méi Regiounen",
 	"centralnotice-multiple-languages": "méi Sproochen",
 	"centralnotice-banner-template": "Banner-Schabloun",
 	"centralnotice-banner-template-info": "(Schabloun)",
@@ -230,5 +234,5 @@
 	"centralnotice-campaign-type-article-writing": "Artikel schreiwen",
 	"centralnotice-campaign-type-photography": "Fotographie",
 	"centralnotice-campaign-type-special": "Spezial",
-	"centralnotice-user-prefs-intro": "Banner weisen Annoncen, déi fir d'Wikimedia-Commuantéiten a -Benotzer vun Interesse sinn.\n\nHei drënner fannt Dir Optiounen, déi Iech et erlaben anzestellen watfir eng Ukënnegungen Dir gewise kritt. Verschidden Hiweiser iwwer d'Plattform, z. Bsp. déi, déi sech op eng Maintenance bezéien vum Site bezéien oder speziell Hiweiser, déi fir all Benotzer als noutwendeg ugesi ginn, ginn ëmmer gewisen. Fir méi Informatiounen liest wgl. d'[[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentatioun op der Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Banner weisen Annoncen, déi fir d'Wikimedia-Commuantéiten a -Benotzer vun Interesse sinn.\n\nHei drënner fannt Dir Optiounen, déi Iech et erlaben anzestellen wat fir eng Ukënnegungen Dir gewise kritt. Verschidden Hiweiser iwwer d'Plattform, z. Bsp. déi, déi sech op eng Maintenance bezéien vum Site bezéien oder speziell Hiweiser, déi fir all Benotzer als noutwendeg ugesi ginn, ginn ëmmer gewisen. Fir méi Informatiounen liest wgl. d'[[metawikimedia:Special:MyLanguage/CentralNotice|Dokumentatioun op der Meta-Wiki]]."
 }
