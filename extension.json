@@ -390,9 +390,6 @@
 				"published"
 			]
 		},
-		"NoticeReporterDomains": {
-			"value": "https://donate.wikimedia.org"
-		},
 		"NoticeNumberOfBuckets": {
 			"value": 4
 		},

@@ -137,10 +137,6 @@ Configuration
   permissions.
   Default: [ "published" ]
 
-* $wgNoticeReporterDomains: String of space delimited domains that will be able
-  to accept data via JS message event when calling Special:CNReporter.
-  Default: "https://donate.wikimedia.org"
-
 * $wgNoticeNumberOfBuckets: Number of buckets that are provided to choose from--
   this must be a power of two! It must not also be greater than 9 unless a
   schema change is performed. Right now this column is tinyint(1)
