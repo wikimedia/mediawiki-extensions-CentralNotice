@@ -349,9 +349,7 @@ class CNCampaignPager extends TablePager {
 			case 'not_start':
 			case 'not_end':
 				// Set css class, or add to the class(es) set by parent
-				$attrs['class'] =
-					( isset( $attrs['class'] ) ? $attrs['class'] . ' ' : '' ) .
-					'cn-date-column';
+				$attrs['class'] = ltrim( ( $attrs['class'] ?? '' ) . ' cn-date-column' );
 				break;
 
 			case 'not_enabled':

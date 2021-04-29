@@ -418,8 +418,7 @@ class CentralNotice extends SpecialPage {
 	 */
 	protected function createSelector( $prefix, $fields ) {
 		$out = '';
-		foreach ( $fields as $data ) {
-			list( $field, $label, $set, $current ) = $data;
+		foreach ( $fields as [ $field, $label, $set, $current ] ) {
 			$out .= Xml::listDropDown( "{$prefix}[{$field}]",
 				self::dropDownList( $this->msg( $label )->text(), $set ),
 				'',
