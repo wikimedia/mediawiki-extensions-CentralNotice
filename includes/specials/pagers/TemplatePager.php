@@ -47,7 +47,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		$dbr = CNDatabase::getDb();
 
 		// When the filter comes in it is space delimited, so break that...
-		$likeArray = preg_split( '/\s/', $this->filter );
+		$likeArray = preg_split( '/\s+/', $this->filter );
 
 		// ...and then insert all the wildcards betwean search terms
 		if ( empty( $likeArray ) ) {
