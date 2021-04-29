@@ -14,8 +14,6 @@ require_once "$IP/maintenance/Maintenance.php";
  * * Removes duplicate revision entries (there should be only one per banner)
  * * Associates entries with a banner by name
  * * Removes entries that have no banner object
- *
- * Class CleanCNTranslateMetadata
  */
 class CleanCNTranslateMetadata extends Maintenance {
 	/** @var string|null */
