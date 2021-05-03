@@ -679,7 +679,7 @@ class Campaign {
 		// CNChoiceDataResourceLoaderModule (which gets this data via
 		// ChoiceDataProvider) for consistent RL module hashes.
 
-		array_walk( $campaignMixins, function ( &$campaignMixin ) {
+		array_walk( $campaignMixins, static function ( &$campaignMixin ) {
 			ksort( $campaignMixin );
 		} );
 

@@ -160,7 +160,7 @@ class AllocationCalculator {
 
 			// First, sort the campaigns by throttling value (ascending)
 
-			usort( $campaignsAtThisPriority, function ( $a, $b ) {
+			usort( $campaignsAtThisPriority, static function ( $a, $b ) {
 				if ( $a['throttle'] < $b['throttle'] ) {
 					return -1;
 				}

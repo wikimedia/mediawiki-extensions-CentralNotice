@@ -1319,7 +1319,7 @@ class CentralNotice extends SpecialPage {
 		// make it available within the fieldsset element.
 
 		$bannersForJS = array_map(
-			function ( $banner ) {
+			static function ( $banner ) {
 				return [
 					'bannerName' => $banner->tmp_name,
 					'bucket' => $banner->asn_bucket
@@ -1443,7 +1443,7 @@ class CentralNotice extends SpecialPage {
 	private function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
-		$bucketLabel = function ( $val ) {
+		$bucketLabel = static function ( $val ) {
 			return chr( $val + ord( 'A' ) );
 		};
 

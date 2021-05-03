@@ -30,11 +30,11 @@ class CampaignLog {
 		$this->begin = [];
 		$this->end = [];
 		if ( $row ) {
-			$comma_explode = function ( $str ) {
+			$comma_explode = static function ( $str ) {
 				return explode( ", ", $str );
 			};
 
-			$json_decode = function ( $json ) {
+			$json_decode = static function ( $json ) {
 				return json_decode( $json, true );
 			};
 
@@ -43,7 +43,7 @@ class CampaignLog {
 				$endField = 'notlog_end_' . $name;
 
 				if ( !$decode ) {
-					$decode = function ( $v ) {
+					$decode = static function ( $v ) {
 						return $v;
 					};
 				}
