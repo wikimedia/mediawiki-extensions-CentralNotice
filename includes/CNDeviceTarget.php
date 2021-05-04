@@ -83,7 +83,7 @@ class CNDeviceTarget {
 	 * @return int The ID of the device added
 	 */
 	public static function addDeviceTarget( $deviceName, $displayLabel ) {
-		$db = CNDatabase::getDb( DB_MASTER );
+		$db = CNDatabase::getDb( DB_PRIMARY );
 
 		$db->insert(
 			'cn_known_devices',

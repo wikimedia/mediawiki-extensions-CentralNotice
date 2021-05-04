@@ -73,7 +73,7 @@ class CentralNotice extends SpecialPage {
 
 		// Handle form submissions from "Manage campaigns" or "Add a campaign" interface
 		if ( $this->editable && $request->wasPosted() ) {
-			if ( wfReadOnly() || CNDatabase::getDb( DB_MASTER )->isReadOnly() ) {
+			if ( wfReadOnly() || CNDatabase::getDb( DB_PRIMARY )->isReadOnly() ) {
 				throw new ReadOnlyError();
 			}
 
