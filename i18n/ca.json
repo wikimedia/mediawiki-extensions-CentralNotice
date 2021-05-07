@@ -186,5 +186,6 @@
 	"centralnotice-multiple-regions": "Regions múltiples",
 	"centralnotice-multiple-languages": "Diverses llengües",
 	"centralnotice-banner-template-info": "(plantilla)",
-	"centralnotice-create-from-template-checkbox-label": "Crea a partir d’una plantilla"
+	"centralnotice-create-from-template-checkbox-label": "Crea a partir d’una plantilla",
+	"centralnotice-user-prefs-intro": "Els bàners mostren anuncis d'interès per a les comunitats i usuaris Wikimedia.\n\nA continuació hi ha opcions que us ajuden a gestionar quins tipus d'anuncis voleu veure. Alguns avisos de plataforma, com ara aquells relacionats amb el manteniment del lloc web o de tipus especial que es considerin necessaris per a tots els usuaris, es mostraran sempre. Per a més informació, consulteu la [[metawikimedia:Special:MyLanguage/CentralNotice|documentació al Meta-Wiki]]."
 }
