@@ -63,7 +63,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "Kampanja ne obstaja.\nNičesar ni mogoče odstraniti.",
 	"centralnotice-banner-doesnt-exist": "Pasica ne obstaja.",
 	"centralnotice-banner-edit-onwiki": "Uredi pasico v vikiju",
-	"centralnotice-banner-history": "Prikaži zgodovino urejanja pasice",
+	"centralnotice-banner-history": "Ogled zgodovine urejanja pasice",
 	"centralnotice-template-still-bound": "Pasice »$1« ni mogoče odstraniti, saj je še vedno vključena v kampanjo.\nOdstranitev ni opravljena.",
 	"centralnotice-template-body": "Telo pasice:",
 	"centralnotice-day": "Dan",
