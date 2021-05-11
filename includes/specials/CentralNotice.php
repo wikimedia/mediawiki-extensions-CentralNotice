@@ -1815,17 +1815,8 @@ class CentralNotice extends SpecialPage {
 	 * @return string Space delimited string
 	 */
 	public function sanitizeSearchTerms( $terms ) {
-		$retval = ' '; // The space is important... it gets trimmed later
-
-		foreach ( preg_split( '/\s+/', $terms ) as $term ) {
-			preg_match( '/[0-9a-zA-Z_\-]+/', $term, $matches );
-			if ( $matches ) {
-				$retval .= $matches[ 0 ];
-				$retval .= ' ';
-			}
-		}
-
-		return trim( $retval );
+		preg_match_all( '/([\w-]+)\S*/s', $terms, $matches );
+		return implode( ' ', $matches[1] );
 	}
 
 	/**
