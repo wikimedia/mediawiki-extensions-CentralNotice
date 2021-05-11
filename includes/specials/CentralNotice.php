@@ -1815,7 +1815,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @return string Space delimited string
 	 */
-	public static function sanitizeSearchTerms( $terms ) {
+	public function sanitizeSearchTerms( $terms ) {
 		$retval = ' '; // The space is important... it gets trimmed later
 
 		foreach ( preg_split( '/\s+/', $terms ) as $term ) {

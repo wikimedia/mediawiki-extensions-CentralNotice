@@ -406,8 +406,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// Clean, clean...
 		if ( $filterParam !== null ) {
-			$this->bannerFilterString
-				= static::sanitizeSearchTerms( $filterParam );
+			$this->bannerFilterString = $this->sanitizeSearchTerms( $filterParam );
 		}
 	}
 
