@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Aushulz",
 			"Beta16",
 			"Blaisorblade",
@@ -133,6 +134,7 @@
 	"centralnotice-banner-display-on": "Mostra su",
 	"centralnotice-banner-mixins": "Mixin",
 	"centralnotice-banner-mixins-help": "Controlla ogni mixin che vuoi includere durante l'invio dei banner. (Vedi [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixin] per ulteriori informazioni.)",
+	"centralnotice-banner-cdn-button": "Purga",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Basata sulla posizione geografica",
 	"centralnotice-geo-status": "Selezionato $1 $2",
@@ -266,6 +268,7 @@
 	"centralnotice-multiple-countries": "Più paesi",
 	"centralnotice-multiple-regions": "Regioni multiple",
 	"centralnotice-multiple-languages": "Più lingue",
+	"centralnotice-banner-template-info": "(template)",
 	"prefs-centralnotice-banners": "Banner",
 	"prefs-centralnotice-display-banner-types": "Tipi di banner da visualizzare",
 	"centralnotice-empty-campaign-type-option": "Nessuna tipologia (sempre mostrato)",
