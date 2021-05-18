@@ -49,7 +49,7 @@ class HistoryTest extends MediaWikiIntegrationTestCase {
 		$initialSettings = Campaign::getCampaignSettings(
 			$this->cnFixtures->spec['campaigns'][0]['name'] );
 
-		sleep( 2 );
+		sleep( 1 );
 
 		// FIXME: Campaign::updateSettings
 		$newSettings = [
