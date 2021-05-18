@@ -9,13 +9,13 @@ class CentralNotice extends SpecialPage {
 
 	// Note: These values are not arbitrary. Higher priority is indicated by a
 	// higher value.
-	const LOW_PRIORITY = 0;
-	const NORMAL_PRIORITY = 1;
-	const HIGH_PRIORITY = 2;
-	const EMERGENCY_PRIORITY = 3;
+	public const LOW_PRIORITY = 0;
+	public const NORMAL_PRIORITY = 1;
+	public const HIGH_PRIORITY = 2;
+	public const EMERGENCY_PRIORITY = 3;
 
 	// String to use in drop-down to indicate no campaign type (repesented as null in DB)
-	const EMPTY_CAMPAIGN_TYPE_OPTION = 'empty-campaign-type-option';
+	private const EMPTY_CAMPAIGN_TYPE_OPTION = 'empty-campaign-type-option';
 
 	/** @var bool|null */
 	public $editable;
@@ -73,7 +73,7 @@ class CentralNotice extends SpecialPage {
 
 		// Handle form submissions from "Manage campaigns" or "Add a campaign" interface
 		if ( $this->editable && $request->wasPosted() ) {
-			if ( wfReadOnly() || CNDatabase::getDb( DB_MASTER )->isReadOnly() ) {
+			if ( wfReadOnly() || CNDatabase::getDb( DB_PRIMARY )->isReadOnly() ) {
 				throw new ReadOnlyError();
 			}
 
@@ -1319,7 +1319,7 @@ class CentralNotice extends SpecialPage {
 		// make it available within the fieldsset element.
 
 		$bannersForJS = array_map(
-			function ( $banner ) {
+			static function ( $banner ) {
 				return [
 					'bannerName' => $banner->tmp_name,
 					'bucket' => $banner->asn_bucket
@@ -1443,7 +1443,7 @@ class CentralNotice extends SpecialPage {
 	private function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
-		$bucketLabel = function ( $val ) {
+		$bucketLabel = static function ( $val ) {
 			return chr( $val + ord( 'A' ) );
 		};
 

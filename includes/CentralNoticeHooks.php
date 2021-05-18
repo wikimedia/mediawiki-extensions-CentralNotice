@@ -35,7 +35,7 @@ class CentralNoticeHooks {
 		global $wgHooks, $wgNoticeInfrastructure, $wgSpecialPages,
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
-			$wgDBname, $wgCentralNoticeAdminGroup, $wgNoticeProtectGroup,
+			$wgDBname, $wgCentralNoticeAdminGroup,
 			$wgCentralNoticeMessageProtectRight, $wgResourceModules,
 			$wgDefaultUserOptions;
 
@@ -260,18 +260,6 @@ class CentralNoticeHooks {
 				$wgGroupPermissions[$wgCentralNoticeAdminGroup]['centralnotice-admin'] = true;
 			}
 
-			// Transitional measure, delete me in a year. Copy any custom value
-			// from old variable to new one, unless new var is also customized.
-			if (
-				$wgNoticeProtectGroup &&
-				$wgCentralNoticeMessageProtectRight !== 'centralnotice-admin'
-			) {
-				wfLogWarning(
-					'$wgNoticeProtectGroup is deprecated - please use ' .
-					'$wgCentralNoticeMessageProtectRight instead.'
-				);
-				$wgCentralNoticeMessageProtectRight = $wgNoticeProtectGroup;
-			}
 			if ( !in_array( $wgCentralNoticeMessageProtectRight, $wgAvailableRights ) ) {
 				$wgAvailableRights[] = $wgCentralNoticeMessageProtectRight;
 			}

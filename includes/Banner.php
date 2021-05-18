@@ -780,7 +780,7 @@ class Banner {
 	 * Returns an array of Title objects that have been included as templates
 	 * in this banner.
 	 *
-	 * @return array of Title
+	 * @return Title[]
 	 */
 	public function getIncludedTemplates() {
 		return $this->getTitle()->getTemplateLinksFrom();

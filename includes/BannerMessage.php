@@ -10,8 +10,8 @@ class BannerMessage {
 	/** @var string */
 	private $name;
 
-	const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
-	const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
+	private const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
+	private const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
 
 	public function __construct( $banner_name, $name ) {
 		$this->banner_name = $banner_name;
@@ -123,7 +123,7 @@ class BannerMessage {
 			$summary = '/* CN admin */';
 		}
 
-		$savePage = function ( $title, $text ) use( $summary ) {
+		$savePage = static function ( $title, $text ) use( $summary ) {
 			$wikiPage = WikiPage::factory( $title );
 
 			$content = ContentHandler::makeContent( $text, $title );
@@ -157,7 +157,7 @@ class BannerMessage {
 		$spanTags = [];
 		$text = preg_replace_callback(
 			'/(<\/?span\s*(?:class\s?=\s?([\'"])[a-zA-Z0-9_ -]+(\2))?\s*>)/',
-			function ( $matches ) use ( &$spanTags ) {
+			static function ( $matches ) use ( &$spanTags ) {
 				$spanTags[] = $matches[ 1 ];
 				return BannerMessage::SPAN_TAG_PLACEHOLDER_START .
 					( count( $spanTags ) - 1 ) .
@@ -174,7 +174,7 @@ class BannerMessage {
 			'/(?:' . self::SPAN_TAG_PLACEHOLDER_START . '(\d+)' .
 				self::SPAN_TAG_PLACEHOLDER_END . ')/',
 
-			function ( $matches ) use ( $spanTags ) {
+			static function ( $matches ) use ( $spanTags ) {
 				$index = (int)$matches[ 1 ];
 				// This should never happen, but let's be safe.
 				if ( !isset( $spanTags[ $index ] ) ) {

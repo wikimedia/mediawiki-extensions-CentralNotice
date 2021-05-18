@@ -17,7 +17,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 */
 	protected $targets = [ 'desktop', 'mobile' ];
 
-	const API_REQUEST_TIMEOUT = 20;
+	private const API_REQUEST_TIMEOUT = 20;
 
 	protected function getChoices( ResourceLoaderContext $context ) {
 		$config = $this->getConfig();

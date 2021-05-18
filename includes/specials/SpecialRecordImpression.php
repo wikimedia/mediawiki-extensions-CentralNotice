@@ -4,7 +4,7 @@
  */
 class SpecialRecordImpression extends UnlistedSpecialPage {
 	// Cache this blank response for a day or so (60 * 60 * 24 s.)
-	const CACHE_EXPIRY = 86400;
+	public const CACHE_EXPIRY = 86400;
 
 	public function __construct() {
 		// Register special page

@@ -7,7 +7,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	 * @var string sanitize campaign name
 	 * FIXME: the string is apparently unrestricted in Special:CentralNotice
 	 */
-	const CAMPAIGNS_FILTER = '/^[a-zA-Z0-9 _|\-]+$/';
+	private const CAMPAIGNS_FILTER = '/^[a-zA-Z0-9 _|\-]+$/';
 
 	public function execute() {
 		// Obtain the ApiResults object from the base
@@ -16,7 +16,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 		// Get our language/project/country
 		$params = $this->extractRequestParams();
 
-		$campaigns = explode( '|', $this->sanitizeText( $params['campaign'], static::CAMPAIGNS_FILTER ) );
+		$campaigns = explode( '|', self::sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER ) );
 
 		foreach ( $campaigns as $campaign ) {
 			$settings = Campaign::getCampaignSettings( $campaign );

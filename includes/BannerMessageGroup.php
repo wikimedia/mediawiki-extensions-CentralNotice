@@ -5,7 +5,7 @@
  */
 class BannerMessageGroup extends WikiMessageGroup {
 
-	const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup';
+	private const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup';
 
 	/** @var string */
 	protected $bannerName = '';
@@ -231,8 +231,8 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return bool
 	 */
 	public static function registerGroupHook( &$list ) {
-		// Must be explicitly master for runs under a jobqueue
-		$dbr = CNDatabase::getDb( DB_MASTER );
+		// Must be explicitly primary for runs under a jobqueue
+		$dbr = CNDatabase::getDb( DB_PRIMARY );
 
 		// Create the base aggregate group
 		$conf = [];

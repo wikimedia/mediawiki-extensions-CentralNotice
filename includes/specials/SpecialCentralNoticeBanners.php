@@ -545,7 +545,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
 		array_walk(
 			$languages,
-			function ( &$val, $index ) {
+			static function ( &$val, $index ) {
 				$val = "$index - $val";
 			}
 		);

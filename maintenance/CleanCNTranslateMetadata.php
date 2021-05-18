@@ -14,8 +14,6 @@ require_once "$IP/maintenance/Maintenance.php";
  * * Removes duplicate revision entries (there should be only one per banner)
  * * Associates entries with a banner by name
  * * Removes entries that have no banner object
- *
- * Class CleanCNTranslateMetadata
  */
 class CleanCNTranslateMetadata extends Maintenance {
 	/** @var string|null */
@@ -42,7 +40,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	protected function cleanDuplicates() {
 		$this->output( "Cleaning duplicates\n" );
 
-		$db = CNDatabase::getDb( DB_MASTER );
+		$db = CNDatabase::getDb( DB_PRIMARY );
 
 		$res = $db->select(
 			'revtag',
@@ -84,7 +82,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	protected function populateIDs() {
 		$this->output( "Associating metadata with banner ids\n" );
 
-		$db = CNDatabase::getDb( DB_MASTER );
+		$db = CNDatabase::getDb( DB_PRIMARY );
 
 		$res = $db->select(
 			[ 'revtag' => 'revtag', 'page' => 'page', 'cn_templates' => 'cn_templates' ],
@@ -119,7 +117,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	 * Delete rows that have no banner ID associated with them
 	 */
 	protected function deleteOrphans() {
-		$db = CNDatabase::getDb( DB_MASTER );
+		$db = CNDatabase::getDb( DB_PRIMARY );
 		$this->output( "Preparing to delete orphaned rows\n" );
 
 		$res = $db->select(

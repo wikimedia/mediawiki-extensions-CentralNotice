@@ -11,10 +11,10 @@ use Wikimedia\Rdbms\IDatabase;
 class ChoiceDataProvider {
 
 	/** @var string Common prefix for choice data cache keys */
-	const CACHE_KEY_NAMESPACE = 'CentralNoticeChoiceData';
+	private const CACHE_KEY_NAMESPACE = 'CentralNoticeChoiceData';
 
 	/** @var int Time-to-live for choice data cache entries, in seconds */
-	const CACHE_TTL = 3600;
+	private const CACHE_TTL = 3600;
 
 	/**
 	 * Invalidate the shared global cache.
@@ -76,7 +76,7 @@ class ChoiceDataProvider {
 		$now = time();
 		return array_values( array_filter(
 			$choices,
-			function ( $choice ) use ( $now ) {
+			static function ( $choice ) use ( $now ) {
 				return $choice['end'] >= $now && $choice['start'] <= $now;
 			}
 		) );
@@ -347,19 +347,19 @@ class ChoiceDataProvider {
 
 		$choices = array_values( $choices );
 
-		$uniqueDevFn = function ( $b ) {
+		$uniqueDevFn = static function ( $b ) {
 			$b['devices'] = array_unique( $b['devices'] );
 			return $b;
 		};
 
-		$compareNames = function ( $a, $b ) {
+		$compareNames = static function ( $a, $b ) {
 			if ( $a['name'] == $b['name'] ) {
 				return 0;
 			}
 			return ( $a['name'] < $b['name'] ) ? -1 : 1;
 		};
 
-		$fixCampaignPropsFn = function ( $c ) use ( $uniqueDevFn, $compareNames ) {
+		$fixCampaignPropsFn = static function ( $c ) use ( $uniqueDevFn, $compareNames ) {
 			$c['banners'] = array_map( $uniqueDevFn, array_values( $c['banners'] ) );
 			usort( $c['banners'], $compareNames );
 

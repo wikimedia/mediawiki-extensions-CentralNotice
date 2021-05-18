@@ -1,7 +1,7 @@
 <?php
 
 class CentralNoticeTestFixtures {
-	const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
+	private const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
 
 	/** @var array */
 	public $spec = [];
@@ -366,7 +366,7 @@ class CentralNoticeTestFixtures {
 
 		// Remove any devices we added
 		if ( !empty( $this->addedDeviceIds ) ) {
-			$dbw = CNDatabase::getDb( DB_MASTER );
+			$dbw = CNDatabase::getDb( DB_PRIMARY );
 			$dbw->delete(
 				'cn_known_devices',
 				[ 'dev_id' => $this->addedDeviceIds ],

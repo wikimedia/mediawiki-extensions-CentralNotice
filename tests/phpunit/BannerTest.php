@@ -7,8 +7,8 @@
  * @covers Banner
  */
 class BannerTest extends MediaWikiIntegrationTestCase {
-	const TEST_BANNER_NAME = 'PhpUnitTestBanner';
-	const TEST_BANNER_TEMPLATE_NAME = 'PhpUnitTestBannerTemplate';
+	private const TEST_BANNER_NAME = 'PhpUnitTestBanner';
+	private const TEST_BANNER_TEMPLATE_NAME = 'PhpUnitTestBannerTemplate';
 
 	protected $fixture;
 

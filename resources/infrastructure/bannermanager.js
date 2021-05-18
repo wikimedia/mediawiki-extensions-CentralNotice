@@ -206,9 +206,6 @@
 			bm.checkedCountUpdated();
 		},
 
-		/**
-		 *
-		 */
 		checkedCountUpdated: function () {
 			var $selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
 				$deleteButton = $( ' #mw-input-wpdeleteSelectedBanners' );

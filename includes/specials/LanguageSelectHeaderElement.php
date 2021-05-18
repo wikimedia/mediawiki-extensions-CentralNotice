@@ -4,8 +4,6 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Acts as a header to the translatable banner message list
- *
- * Class LanguageSelectHeaderElement
  */
 class LanguageSelectHeaderElement extends HTMLSelectField {
 	public function getInputHTML( $value ) {

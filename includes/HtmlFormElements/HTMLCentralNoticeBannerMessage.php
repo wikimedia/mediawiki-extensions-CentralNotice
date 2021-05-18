@@ -33,8 +33,8 @@ use MediaWiki\MediaWikiServices;
  * - 'message'  - Canonical name of the message
  */
 class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
-	const DEFAULT_COLS = 45;
-	const DEFAULT_ROWS = 1;
+	protected const DEFAULT_COLS = 45;
+	protected const DEFAULT_ROWS = 1;
 
 	public function __construct( $params ) {
 		if ( !array_key_exists( 'default', $params ) ) {
