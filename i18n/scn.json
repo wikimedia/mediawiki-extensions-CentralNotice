@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Aushulz",
 			"Gmelfi",
 			"Pippinu",
@@ -86,6 +87,7 @@
 	"centralnotice-banner-content-changed": "Canciatu",
 	"centralnotice-apply-filters": "Metti li firtri",
 	"centralnotice-clear-filters": "Pulizzìa firtri",
+	"centralnotice-banner-class": "Catigurìa",
 	"centralnotice-start-date": "Data d'accuminzatina (UTC)",
 	"centralnotice-start-time": "Ura d'accuminzatina (UTC)",
 	"centralnotice-end-date": "Data dâ fini (UTC)"
