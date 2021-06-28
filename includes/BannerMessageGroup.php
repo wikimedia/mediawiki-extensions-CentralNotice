@@ -185,13 +185,12 @@ class BannerMessageGroup extends WikiMessageGroup {
 					$wikiPage = WikiPage::factory(
 						Title::makeTitleSafe( NS_MEDIAWIKI, 'Centralnotice-' . $key . '/' . $code )
 					);
-					$wikiPage->doEditContent(
+					$wikiPage->doUserEditContent(
 						ContentHandler::makeContent( $text, $wikiPage->getTitle() ),
+						$user,
 						'Update from translation plugin',
 						EDIT_FORCE_BOT,
-						false,
-						null,
-						null,
+						false, // $originalRevId
 						[ 'centralnotice translation' ]
 					);
 					Banner::protectBannerContent( $wikiPage, $user, true );

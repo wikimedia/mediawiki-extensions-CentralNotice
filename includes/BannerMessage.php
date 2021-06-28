@@ -123,13 +123,19 @@ class BannerMessage {
 			$summary = '/* CN admin */';
 		}
 
-		$savePage = static function ( $title, $text ) use( $summary ) {
+		$savePage = static function ( $title, $text ) use ( $summary, $user ) {
 			$wikiPage = WikiPage::factory( $title );
 
 			$content = ContentHandler::makeContent( $text, $title );
 			$tags = [ 'centralnotice' ];
-			$wikiPage->doEditContent(
-				$content, $summary, EDIT_FORCE_BOT, false, null, null, $tags );
+			$wikiPage->doUserEditContent(
+				$content,
+				$user,
+				$summary,
+				EDIT_FORCE_BOT,
+				false, // $originalRevId
+				$tags
+			);
 
 			return $wikiPage;
 		};
