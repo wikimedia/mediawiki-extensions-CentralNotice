@@ -592,8 +592,8 @@
 	"attributes": {
 		"EventLogging": {
 			"Schemas": {
-				"CentralNoticeBannerHistory": 19079897,
-				"CentralNoticeImpression": 19511351
+				"CentralNoticeBannerHistory": "/analytics/legacy/centralnoticebannerhistory/1.0.0",
+				"CentralNoticeImpression": "/analytics/legacy/centralnoticeimpression/1.0.0"
 			}
 		}
 	},
