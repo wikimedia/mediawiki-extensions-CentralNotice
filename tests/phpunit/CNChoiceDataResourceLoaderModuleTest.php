@@ -6,7 +6,7 @@
  * @group Database
  * @covers CNChoiceDataResourceLoaderModule
  */
-class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
+class CNChoiceDataResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
@@ -22,10 +22,6 @@ class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
 		parent::tearDown();
 	}
 
-	protected function getProvider() {
-		return new TestingCNChoiceDataResourceLoaderModule();
-	}
-
 	/**
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
 	 */
@@ -37,18 +33,13 @@ class CNChoiceDataResourceLoaderModuleTest extends MediaWikiTestCase {
 					'wgNoticeProject' => $contextAndOutput['context']['project'],
 			] );
 
-			$fauxRequest = new FauxRequest( [
-					'modules' => 'ext.centralNotice.choiceData',
-					'skin' => 'fallback',
-					'lang' => $contextAndOutput['context']['language']
-			] );
+			// Following pattern in other RL module tests
+			$rlContext = $this->getResourceLoaderContext(
+				[ 'lang' => $contextAndOutput['context']['language'] ] );
 
-			$rlContext = new ResourceLoaderContext(
-				$this->createMock( ResourceLoader::class ),
-				$fauxRequest
-			);
-
-			$choices = $this->getProvider()->getChoicesForTesting( $rlContext );
+			$module = new TestingCNChoiceDataResourceLoaderModule();
+			$module->setConfig( $rlContext->getResourceLoader()->getConfig() );
+			$choices = $module->getChoicesForTesting( $rlContext );
 
 			$this->cnFixtures->assertChoicesEqual(
 				$this, $contextAndOutput['choices'], $choices, $cAndOName );
