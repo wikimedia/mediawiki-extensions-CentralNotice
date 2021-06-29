@@ -48,7 +48,7 @@
 	"centralnotice-banner-name": "ბანერის სახელი:",
 	"centralnotice-banner": "ბანერი",
 	"centralnotice-banner-heading": "ბანერი: $1",
-	"centralnotice-templates": "თარგები",
+	"centralnotice-templates": "ბანერები",
 	"centralnotice-throttle": "ტრაფიკის ლიმიტი",
 	"centralnotice-weight": "სიგანე",
 	"centralnotice-locked": "დაბლოკილი",
@@ -214,5 +214,7 @@
 	"centralnotice-banner-not-found-title": "ბანერი ვერ მოიძებნა",
 	"hidebanners": "ბანერების დამალვა",
 	"centralnotice-multiple-countries": "რამდენიმე ქვეყანა",
-	"centralnotice-multiple-languages": "რამდენიმე ენა"
+	"centralnotice-multiple-languages": "რამდენიმე ენა",
+	"prefs-centralnotice-banners": "ბანერები",
+	"prefs-centralnotice-display-banner-types": "საჩვენებელი ბანერის ტიპები"
 }

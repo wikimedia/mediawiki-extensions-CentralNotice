@@ -20,7 +20,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	private const API_REQUEST_TIMEOUT = 20;
 
 	protected function getChoices( ResourceLoaderContext $context ) {
-		$config = $this->getConfig();
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$project = $config->get( 'NoticeProject' );
 		$language = $context->getLanguage();
 
@@ -53,7 +53,8 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @return array|bool
 	 */
 	protected function getFromApi( $project, $language ) {
-		$cnApiUrl = $this->getConfig()->get( 'CentralNoticeApiUrl' );
+		$cnApiUrl =
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'CentralNoticeApiUrl' );
 
 		// Make the URL
 		$q = [
@@ -127,7 +128,8 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * Note: requires mediawiki-core change-id @Iee61e5b52
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
-		$cnCampaignMixins = $this->getConfig()->get( 'CentralNoticeCampaignMixins' );
+		$cnCampaignMixins =
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'CentralNoticeCampaignMixins' );
 
 		// If this method is called with no context argument (the old method
 		// signature) emit a warning, but don't stop the show.
