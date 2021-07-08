@@ -18,6 +18,7 @@
 			"Solde",
 			"Ssola",
 			"Toniher",
+			"Vfc",
 			"Vriullop"
 		]
 	},
@@ -135,6 +136,7 @@
 	"centralnotice-percentage": "Percentatge",
 	"centralnotice-documentwrite-error": "document.write () no pot ser utilitzat dins d'una pancarta\n Veure https://meta.wikimedia.org/wiki/Help:CentralNotice per a més informació.",
 	"centralnotice-preferred": "Prioritat",
+	"centralnotice-archived": "Arxivat",
 	"centralnotice-logs": "Registres",
 	"centralnotice-view-logs": "Vegeu registres",
 	"centralnotice-timestamp": "Marca horària",
@@ -189,6 +191,7 @@
 	"centralnotice-archive-banner-cancel": "Cancel·la",
 	"centralnotice-change-summary-label": "Resum",
 	"centralnotice-change-summary-action-prompt": "Missatge sobre aquesta acció (opcional)",
+	"centralnotice-archive-show": "Mostra les campanyes arxivades",
 	"centralnotice-archive-campaign": "Arxiu",
 	"centralnotice-delete-banner-title": "Suprimeix {{PLURAL:$1|el bàner|els bàners}}",
 	"centralnotice-start-date": "Data inicial (UTC)",
