@@ -105,7 +105,7 @@
 	"centralnotice-number-uses": "Keren gebruikt",
 	"centralnotice-settings": "Instellingen",
 	"centralnotice-edit-template": "Sjabloon bewerken",
-	"centralnotice-edit-template-summary": "Sluit een stuk tekst in met drie accolades, bijvoorbeeld {{{jimo-quote}}}, om de tekst vertaalbaar te maken.",
+	"centralnotice-edit-template-summary": "Waarschuwing: Het laden van externe bronnen in een banner kan de privacy van gebruikers in gevaar brengen.\n\nAls u een vertaalbaar bericht wilt maken, plaatst u een tekenreeks tussen drie accolades, bijvoorbeeld <nowiki>{{{berichtnaam}}}</nowiki>. Als u een vertaalbaar bericht van een andere banner wilt gebruiken, moet u de bannernaam aangeven, gevolgd door een komma, en dan de berichtnaam, bijvoorbeeld <nowiki> {{{bannernaam,berichtnaam}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Magische woorden die beschikbaar gesteld zijn via bannermixins: $1",
 	"centralnotice-message": "Bericht",
 	"centralnotice-message-not-set": "Het bericht is niet ingesteld",
