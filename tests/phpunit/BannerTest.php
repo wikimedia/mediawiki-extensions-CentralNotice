@@ -12,7 +12,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 
 	protected $fixture;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->fixture = new CentralNoticeTestFixtures();
@@ -21,7 +21,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 			[ 'setup' => [ 'campaigns' => [] ] ] );
 	}
 
-	public function tearDown() : void {
+	public function tearDown(): void {
 		$this->deleteTemplateIfExists( static::TEST_BANNER_NAME );
 		$this->deleteTemplateIfExists( static::TEST_BANNER_TEMPLATE_NAME );
 

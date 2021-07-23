@@ -10,12 +10,12 @@ class CNChoiceDataResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->cnFixtures = new CentralNoticeTestFixtures();
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->cnFixtures ) {
 			$this->cnFixtures->tearDownTestCases();
 		}

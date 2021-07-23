@@ -13,7 +13,7 @@ class CampaignTest extends MediaWikiIntegrationTestCase {
 
 	protected $fixture;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		$this->userUser = $this->getTestUser()->getUser();
 		$noticeName = 'PHPUnitTestCampaign';
 		$enabled = false;
@@ -67,7 +67,7 @@ class CampaignTest extends MediaWikiIntegrationTestCase {
 		Campaign::addTemplateTo( 'PHPUnitTestCampaign', 'PHPUnitTestBanner', '25' );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		parent::tearDown();
 		Campaign::removeCampaign( 'PHPUnitTestCampaign', $this->userUser );
 		Campaign::removeTemplateFor( 'PHPUnitTestCampaign', 'PHPUnitTestBanner' );
