@@ -4,6 +4,7 @@
 			"AZISS",
 			"Cekli829",
 			"Interfase",
+			"NMW03",
 			"PPerviz",
 			"Vago",
 			"Vugar 1981",
@@ -70,6 +71,6 @@
 	"centralnotice-start-time": "Başlanğıc tarixi (UTC)",
 	"centralnotice-end-date": "Son tarix (UTC)",
 	"centralnotice-end-time": "Son tarix (UTC)",
-	"centralnotice-multiple-countries": "Bir neçə ($1)",
-	"centralnotice-multiple-languages": "Bir neçə ($1)"
+	"centralnotice-multiple-countries": "Bir çox ölkə",
+	"centralnotice-multiple-languages": "Bir çox dil"
 }
