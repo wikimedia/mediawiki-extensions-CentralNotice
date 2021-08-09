@@ -159,6 +159,7 @@
 	"centralnotice-countries": "Країни",
 	"centralnotice-regions": "Регіони",
 	"centralnotice-location": "Країни та регіони",
+	"centralnotice-location-name-and-code": "$1 ($2)",
 	"centralnotice-allocation": "Розподіл",
 	"centralnotice-view-allocation": "Переглянути розподіл банера",
 	"centralnotice-allocation-instructions": "Виберіть середовище, для якого Ви хочете переглянути розподіл банерів:",
