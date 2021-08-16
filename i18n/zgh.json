@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brahim-essaidi",
 			"Hakim1bal"
 		]
 	},
@@ -17,7 +18,7 @@
 	"centralnotice-project-lang": "ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵓⵙⵏⴼⴰⵕ",
 	"centralnotice-select-all": "ⵙⵜⵢ ⵎⴰⵕⵕⴰ",
 	"centralnotice-remove-all": "ⴽⴽⵙ ⵎⴰⵕⵕⴰ",
-	"centralnotice-items-selected": "$1 {{PLURAL:$1|ⴰⴼⵔⴷⵉⵙ|ⵉⴼⵔⴷⴰⵙ}} ⵉⵜⵜⵓⵙⵜⵢⵏ",
+	"centralnotice-items-selected": "$1 {{PLURAL:$1|ⴰⴼⵔⴷⵉⵙ ⵉⵜⵜⵓⵙⵜⴰⵢⵏ|ⵉⴼⵔⴷⵉⵙⵏ ⵜⵜⵓⵙⵜⴰⵢⵏⵉⵏ}}",
 	"centralnotice-project-name": "ⵉⵙⵎ ⵏ ⵓⵙⵏⴼⴰⵕ",
 	"centralnotice-settings": "ⵜⵉⵙⵖⴰⵍ",
 	"centralnotice-message": "ⵜⵓⵣⵉⵏⵜ",
