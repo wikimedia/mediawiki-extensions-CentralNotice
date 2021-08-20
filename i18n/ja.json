@@ -257,6 +257,8 @@
 	"centralnotice-multiple-languages": "多言語",
 	"tag-centralnotice": "一斉通知",
 	"tag-centralnotice-description": "CentralNotice Admin UIで行われた編集",
+	"tag-centralnotice_translation": "中央管理通知の翻訳",
+	"tag-centralnotice_translation-description": "翻訳拡張機能によって生成された中央管理通知の編集",
 	"centralnotice-banner-template": "バナーテンプレート",
 	"centralnotice-banner-template-info": "(テンプレート)",
 	"prefs-centralnotice-banners": "バナー",
