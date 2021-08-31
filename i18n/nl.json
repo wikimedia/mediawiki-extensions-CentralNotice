@@ -278,10 +278,14 @@
 	"tag-centralnotice": "CentralNotice",
 	"tag-centralnotice_translation": "CentralNotice-vertaling",
 	"centralnotice-banner-template-info": "(sjabloon)",
+	"prefs-centralnotice-display-banner-types": "Type banners te tonen",
 	"centralnotice-campaign-type-advocacy": "Belangenbehartiging",
+	"centralnotice-campaign-type-article-writing": "Artikelen schrijven",
+	"centralnotice-campaign-type-event": "Evenement",
 	"centralnotice-campaign-type-fundraising": "Fondsenwerving",
 	"centralnotice-campaign-type-governance": "Bestuur",
 	"centralnotice-campaign-type-maintenance": "Onderhoud",
 	"centralnotice-campaign-type-photography": "Fotografie",
-	"centralnotice-campaign-type-special": "Speciaal"
+	"centralnotice-campaign-type-special": "Speciaal",
+	"centralnotice-user-prefs-intro": "Banners tonen aankondigingen die interessant zijn voor Wikimedia-gemeenschappen en gebruikers.\n\nHieronder vindt u opties waarmee u kunt beheren welke soorten aankondigingen u ziet. Bepaalde platformkennisgevingen, zoals die met betrekking tot site-onderhoud en speciale kennisgevingen die noodzakelijk worden geacht voor alle gebruikers, zullen altijd worden weergegeven. Lees voor meer informatie de [[metawikimedia:Special:MyLanguage/CentralNotice|documentatie op Meta-Wiki]]."
 }
