@@ -8,14 +8,14 @@ See https://www.mediawiki.org/wiki/MediaWiki-Docker/Extension/CentralNotice
 
 ## Run all specs
 
-    npm run selenium-test
+    npm run @selenium-test
 
 ## Run specific tests
 
 Filter by file name:
 
-    npm run selenium-test -- --spec tests/selenium/specs/[FILE-NAME]
+    npm run @selenium-test -- --spec tests/selenium/specs/[FILE-NAME]
 
 Filter by file name and test name:
 
-    npm run selenium-test -- --spec tests/selenium/specs/[FILE-NAME] --mochaOpts.grep [TEST-NAME]
+    npm run @selenium-test -- --spec tests/selenium/specs/[FILE-NAME] --mochaOpts.grep [TEST-NAME]
