@@ -87,9 +87,10 @@ class BannerRenderer {
 	 * TODO Move the following method somewhere more appropriate.
 	 */
 	public static function linkToBanner( $name ) {
-		return Linker::link(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeLink(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$name}" ),
-			htmlspecialchars( $name ),
+			$name,
 			[ 'class' => 'cn-banner-title' ]
 		);
 	}

@@ -205,9 +205,10 @@ class CNCampaignPager extends TablePager {
 
 		switch ( $fieldName ) {
 			case 'not_name':
-				return Linker::link(
+				$linkRenderer = $this->getLinkRenderer();
+				return $linkRenderer->makeLink(
 					Campaign::getTitleForURL(),
-					htmlspecialchars( $value ),
+					$value,
 					[],
 					Campaign::getQueryForURL( $value )
 				);
