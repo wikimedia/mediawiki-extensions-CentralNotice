@@ -398,10 +398,10 @@ class Campaign {
 		$bannersIn = Banner::getCampaignBanners( $row->not_id );
 		$bannersOut = [];
 		// All we want are the banner names, weights, and buckets
-		foreach ( $bannersIn as $key => $row ) {
-			$outKey = $bannersIn[ $key ][ 'name' ];
-			$bannersOut[ $outKey ]['weight'] = $bannersIn[ $key ][ 'weight' ];
-			$bannersOut[ $outKey ]['bucket'] = $bannersIn[ $key ][ 'bucket' ];
+		foreach ( $bannersIn as $row ) {
+			$outKey = $row['name'];
+			$bannersOut[$outKey]['weight'] = $row['weight'];
+			$bannersOut[$outKey]['bucket'] = $row['bucket'];
 		}
 		// Encode into a JSON string for storage
 		$campaign[ 'banners' ] = FormatJson::encode( $bannersOut );

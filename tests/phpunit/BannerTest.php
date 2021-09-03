@@ -21,7 +21,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 			[ 'setup' => [ 'campaigns' => [] ] ] );
 	}
 
-	public function tearDown(): void {
+	protected function tearDown(): void {
 		$this->deleteTemplateIfExists( static::TEST_BANNER_NAME );
 		$this->deleteTemplateIfExists( static::TEST_BANNER_TEMPLATE_NAME );
 
