@@ -825,7 +825,9 @@ class Banner {
 		if ( !$curRev ) {
 			throw new BannerContentException( "No content for banner: {$this->name}" );
 		}
-		$this->bodyContent = ContentHandler::getContentText( $curRev->getContent( SlotRecord::MAIN ) );
+
+		$content = $curRev->getContent( SlotRecord::MAIN );
+		$this->bodyContent = ( $content instanceof TextContent ) ? $content->getText() : null;
 
 		$this->markBodyContentDirty( false );
 	}
