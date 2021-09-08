@@ -302,7 +302,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut .= Xml::radio(
 			'log_type',
 			$id,
-			( $this->logType == $type ? true : false ),
+			$this->logType == $type,
 			[ 'onclick' => "switchLogs( " . $fullUrlEnc . ", " . $typeEnc . " )" ]
 		);
 		$htmlOut .= Xml::label( $this->msg( $message )->text(), $id );
