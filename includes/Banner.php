@@ -724,11 +724,17 @@ class Banner {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $wgNoticeUseTranslateExtension && $this->dirtyFlags['prioritylang'] ) {
-			TranslateMetadata::set(
-				BannerMessageGroup::getTranslateGroupName( $this->getName() ),
-				'prioritylangs',
-				implode( ',', $this->priorityLanguages )
-			);
+			$groupName = BannerMessageGroup::getTranslateGroupName( $this->getName() );
+			if ( $this->priorityLanguages === [] ) {
+				// Using false to delete the value instead of writing empty content
+				TranslateMetadata::set( $groupName, 'prioritylangs', false );
+			} else {
+				TranslateMetadata::set(
+					$groupName,
+					'prioritylangs',
+					implode( ',', $this->priorityLanguages )
+				);
+			}
 		}
 	}
 
