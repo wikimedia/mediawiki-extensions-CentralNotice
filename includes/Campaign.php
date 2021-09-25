@@ -1528,7 +1528,7 @@ class Campaign {
 	 * that is appropriate for the cn_notice_log table, but not for the hook.
 	 *
 	 * @param array $settings
-	 * @return array
+	 * @return array|null
 	 */
 	private static function processSettingsForHook( $settings ) {
 		if ( !$settings ) {
