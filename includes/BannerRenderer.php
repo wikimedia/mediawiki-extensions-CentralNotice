@@ -136,6 +136,7 @@ class BannerRenderer {
 		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
 			$parentLang = $lang->getParentLanguage();
 		}
+		'@phan-var Language $parentLang';
 
 		if ( $this->previewContent !== null ) {
 			// Preview mode, banner content is ephemeral

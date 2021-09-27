@@ -213,7 +213,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	 * Render a field suitable for jquery.ui datepicker
 	 * @param string $prefix
 	 * @param bool $editable
-	 * @param string $date
+	 * @param string|null $date
 	 * @return string HTML
 	 */
 	protected function dateSelector( $prefix, $editable = true, $date = '' ) {
@@ -230,7 +230,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 				'id' => "{$prefix}Date_timestamp",
 				'name' => "{$prefix}Date_timestamp",
 				'type' => 'hidden',
-				'value' => $date,
+				'value' => (string)$date,
 			]
 		);
 		return $out;
