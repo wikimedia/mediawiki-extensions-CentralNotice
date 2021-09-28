@@ -11,7 +11,7 @@
 class CampaignTypeTest extends MediaWikiUnitTestCase {
 	protected $campaignType;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->campaignType = new CampaignType(
 			'testtype',

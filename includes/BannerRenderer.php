@@ -70,7 +70,6 @@ class BannerRenderer {
 		$this->previewMessages = $previewMessages;
 		$this->debug = $debug;
 
-		// @phan-suppress-next-line SecurityCheck-PathTraversal
 		$this->mixinController = new MixinController( $this->context, $this->banner->getMixins() );
 
 		// FIXME: it should make sense to do this:
@@ -87,9 +86,10 @@ class BannerRenderer {
 	 * TODO Move the following method somewhere more appropriate.
 	 */
 	public static function linkToBanner( $name ) {
-		return Linker::link(
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeLink(
 			SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/{$name}" ),
-			htmlspecialchars( $name ),
+			$name,
 			[ 'class' => 'cn-banner-title' ]
 		);
 	}
@@ -136,6 +136,7 @@ class BannerRenderer {
 		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
 			$parentLang = $lang->getParentLanguage();
 		}
+		'@phan-var Language $parentLang';
 
 		if ( $this->previewContent !== null ) {
 			// Preview mode, banner content is ephemeral

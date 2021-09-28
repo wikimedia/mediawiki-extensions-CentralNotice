@@ -4,7 +4,19 @@
 			"Yupik"
 		]
 	},
+	"centralnotice-view": "Čuäʹjet",
+	"centralnotice-save-banner": "Ruõkk",
+	"centralnotice-select-all": "Vaʹlljed pukid",
+	"centralnotice-project-name": "Projeeʹkt nõmm",
+	"centralnotice-clone-name": "Nõmm:",
 	"centralnotice-languages": "Ǩiõl",
 	"centralnotice-language": "Ǩiõll",
-	"centralnotice-banner-class": "Kategoria"
+	"centralnotice-projects": "Projeeʹkt",
+	"centralnotice-user": "Õõʹnni",
+	"centralnotice-change-summary-heading": "Õʹhtteǩeässmõš",
+	"centralnotice-date": "Peiʹvvmieʹrr",
+	"centralnotice-all": "Puk",
+	"centralnotice-banner-class": "Kategoria",
+	"centralnotice-change-summary-label": "Õʹhtteǩeässmõš",
+	"centralnotice-delete-banner": "Jaukkâd"
 }

@@ -100,6 +100,7 @@ class BannerMessage {
 		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
 			$lang = $lang->getParentLanguage();
 		}
+		'@phan-var Language $lang';
 
 		$text = self::sanitize(
 			$context->msg( $this->getDbKey() )->inLanguage( $lang )->text() );

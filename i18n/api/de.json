@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Metalhead64"
+			"Metalhead64",
+			"Zabe"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "Der Benutzer hat keine Berechtigung zur Löschung des Frontend-Vorlageninhalts.",
@@ -41,5 +42,6 @@
 	"apihelp-query+centralnoticelogs-example-1": "Logbücher anzeigen",
 	"apihelp-query+centralnoticeactivecampaigns-description": "Ruft eine Liste aktuell aktiver Kampagnen mit Start- und Enddaten und zugehöriger Vorlagen ab.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "Ruft eine Liste derzeit aktiver Kampagnen mit Start- und Enddaten und zugehöriger Vorlagen ab.",
-	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Schließt aktivierte zukünftige Kampagnen mit ein (sowie derzeit aktive Kampagnen)."
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Schließt aktivierte zukünftige Kampagnen mit ein (sowie derzeit aktive Kampagnen).",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Ruft eine Liste derzeit aktiver Kampagnen mit Start- und Enddaten und zugehöriger Vorlagen ab."
 }

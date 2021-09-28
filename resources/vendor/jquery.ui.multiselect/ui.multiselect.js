@@ -54,7 +54,7 @@
 			this.selectedContainer = $('<div class="selected"></div>').appendTo(this.container);
 			this.availableContainer = $('<div class="available"></div>')[this.options.availableFirst?'prependTo': 'appendTo'](this.container);
 			this.selectedActions = $('<div class="actions ui-widget-header ui-helper-clearfix"><span class="count">'+countStr+'</span><a href="#" class="remove-all">'+mw.message('centralnotice-remove-all').escaped()+'</a></div>').appendTo(this.selectedContainer);
-			this.availableActions = $('<div class="actions ui-widget-header ui-helper-clearfix"><input type="text" class="search empty ui-widget-content ui-corner-all"/><a href="#" class="add-all">'+mw.message('centralnotice-select-all').escaped()+'</a></div>').appendTo(this.availableContainer);
+			this.availableActions = $('<div class="actions ui-widget-header ui-helper-clearfix"><input type="text" class="search empty ui-widget-content ui-corner-all"></input><a href="#" class="add-all">'+mw.message('centralnotice-select-all').escaped()+'</a></div>').appendTo(this.availableContainer);
 			this.selectedList = $('<ul class="selected connected-list"><li class="ui-helper-hidden-accessible"></li></ul>').bind('selectstart', function(){return false;}).appendTo(this.selectedContainer);
 			this.availableList = $('<ul class="available connected-list"><li class="ui-helper-hidden-accessible"></li></ul>').bind('selectstart', function(){return false;}).appendTo(this.availableContainer);
 
@@ -167,7 +167,7 @@
 		},
 		_getOptionNode: function(option) {
 			option = $(option);
-			var node = $('<li class="ui-state-default ui-element" title="'+option.text()+'"><span class="ui-icon"/>'+option.text()+'<a href="#" class="action"><span class="ui-corner-all ui-icon"/></a></li>').hide();
+			var node = $('<li class="ui-state-default ui-element" title="'+option.text()+'"><span class="ui-icon"></span>'+option.text()+'<a href="#" class="action"><span class="ui-corner-all ui-icon"></span></a></li>').hide();
 			node.data('optionLink', option);
 			return node;
 		},

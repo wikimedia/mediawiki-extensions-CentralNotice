@@ -205,9 +205,10 @@ class CNCampaignPager extends TablePager {
 
 		switch ( $fieldName ) {
 			case 'not_name':
-				return Linker::link(
+				$linkRenderer = $this->getLinkRenderer();
+				return $linkRenderer->makeLink(
 					Campaign::getTitleForURL(),
-					htmlspecialchars( $value ),
+					$value,
 					[],
 					Campaign::getQueryForURL( $value )
 				);
@@ -349,9 +350,7 @@ class CNCampaignPager extends TablePager {
 			case 'not_start':
 			case 'not_end':
 				// Set css class, or add to the class(es) set by parent
-				$attrs['class'] =
-					( isset( $attrs['class'] ) ? $attrs['class'] . ' ' : '' ) .
-					'cn-date-column';
+				$attrs['class'] = ltrim( ( $attrs['class'] ?? '' ) . ' cn-date-column' );
 				break;
 
 			case 'not_enabled':

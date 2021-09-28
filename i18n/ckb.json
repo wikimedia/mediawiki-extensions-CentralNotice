@@ -22,6 +22,7 @@
 	"centralnotice-min": "خولەک",
 	"centralnotice-project-lang": "زمانی پرۆژە",
 	"centralnotice-clone-name": "ناو:",
+	"centralnotice-clone-banner": "بانەر",
 	"centralnotice-insert": "تێخستن: $1",
 	"centralnotice-banner-anonymous": "بەکارھێنەرە نەناسراوەکان",
 	"centralnotice-languages": "زمانەکان",
@@ -33,9 +34,18 @@
 	"centralnotice-action": "کردەوە",
 	"centralnotice-change-summary-heading": "کورتە",
 	"centralnotice-action-created": "دروست کرا",
+	"centralnotice-fundraising": "بەخشین",
 	"centralnotice-change-summary-label": "کورتە",
 	"centralnotice-delete-banner": "سڕینەوە",
 	"centralnotice-start-date": "کاتی دەستپێکردن (UTC)",
 	"centralnotice-start-time": "کاتی دەستپێکردن (UTC)",
-	"centralnotice-end-time": "کاتی کۆتایی (UTC)"
+	"centralnotice-end-time": "کاتی کۆتایی (UTC)",
+	"prefs-centralnotice-display-banner-types": "چ جۆرە بانەرێک کارا بێت؟",
+	"centralnotice-campaign-type-advocacy": "هۆشداری",
+	"centralnotice-campaign-type-article-writing": "نووسینی وتار",
+	"centralnotice-campaign-type-event": "ڕووداو",
+	"centralnotice-campaign-type-maintenance": "ڕاگرتنی وێبگە",
+	"centralnotice-campaign-type-photography": "فۆتۆگرافی",
+	"centralnotice-campaign-type-special": "تایبەت",
+	"centralnotice-user-prefs-intro": "بانەرەکان کۆمەڵێک بانگەشە لەخۆدەگرن کە ڕەنگە جێی سەرنج بێت بۆ بەکارهێنەرانی ویکیپیدیا و کۆمەڵگەکە.\n\nلە خوارەوە کۆمەڵێک بژاردە هەیە کە ڕێگەت پێ دەدات هەڵیبژێریت کە چ جۆرە بانەرێک ببینیت. هەندێک لە بانەرەکان بە گرنگ دادەنرێن بۆ هەموو بەشداربووان، بۆیە ناکرێت بکوژێندرێنەوە.\n\nبۆ زانیاری زیاتر، تکایە بڕوانە [[metawikimedia:Special:MyLanguage/CentralNotice|بەڵگەنامەی تایبەتمەندی]] لە مێتاویکی."
 }

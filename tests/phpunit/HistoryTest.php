@@ -11,7 +11,7 @@ class HistoryTest extends MediaWikiIntegrationTestCase {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->userUser = $this->getTestUser()->getUser();
@@ -19,7 +19,7 @@ class HistoryTest extends MediaWikiIntegrationTestCase {
 		$this->cnFixtures = new CentralNoticeTestFixtures();
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$this->cnFixtures->tearDownTestCases();
 		parent::tearDown();
 	}

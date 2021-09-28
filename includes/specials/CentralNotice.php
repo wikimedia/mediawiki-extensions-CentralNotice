@@ -289,7 +289,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * @param bool $editable
-	 * @param string $selectedTypeId
+	 * @param string|null $selectedTypeId
 	 * @param string|null $index The name of the campaign (used when selector is included
 	 *   in a list of campaigns by CNCampaignPager).
 	 * @return string
@@ -418,8 +418,7 @@ class CentralNotice extends SpecialPage {
 	 */
 	protected function createSelector( $prefix, $fields ) {
 		$out = '';
-		foreach ( $fields as $data ) {
-			list( $field, $label, $set, $current ) = $data;
+		foreach ( $fields as [ $field, $label, $set, $current ] ) {
 			$out .= Xml::listDropDown( "{$prefix}[{$field}]",
 				self::dropDownList( $this->msg( $label )->text(), $set ),
 				'',
@@ -445,6 +444,8 @@ class CentralNotice extends SpecialPage {
 			$noticeProjects = $request->getArray( 'projects', [] );
 			$campaignType = $request->getText( 'campaign_type', null );
 		}
+		'@phan-var array $noticeLanguages';
+		'@phan-var array $noticeProjects';
 
 		$htmlOut = '';
 
@@ -1037,6 +1038,8 @@ class CentralNotice extends SpecialPage {
 				$regions = Campaign::getNoticeRegions( $notice );
 				$type = $campaign['type'];
 			}
+			'@phan-var array $noticeLanguages';
+			'@phan-var array $noticeProjects';
 			$isThrottled = ( $throttle < 100 );
 			$type = $type === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $type;
 
@@ -1514,7 +1517,7 @@ class CentralNotice extends SpecialPage {
 		// Banner search box
 		$htmlOut .= Html::openElement( 'fieldset', [ 'id' => 'cn-template-searchbox' ] );
 		$htmlOut .= Html::element(
-			'legend', null, $this->msg( 'centralnotice-filter-template-banner' )->text()
+			'legend', [], $this->msg( 'centralnotice-filter-template-banner' )->text()
 		);
 
 		$htmlOut .= Html::element( 'label', [ 'for' => 'tplsearchkey' ],
@@ -1815,7 +1818,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @return string Space delimited string
 	 */
-	public static function sanitizeSearchTerms( $terms ) {
+	public function sanitizeSearchTerms( $terms ) {
 		$retval = ' '; // The space is important... it gets trimmed later
 
 		foreach ( preg_split( '/\s+/', $terms ) as $term ) {

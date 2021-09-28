@@ -7,7 +7,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var string Name of the banner we're currently editing */
 	protected $bannerName = '';
 
-	/** @var Banner Banner object we're currently editing */
+	/** @var Banner|null Banner object we're currently editing */
 	protected $banner = null;
 
 	/** @var string Filter to apply to the banner search when generating the list */
@@ -79,7 +79,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// TODO Use only params instead of subpage to indicate action
 		$parts = explode( '/', $subPage );
 		$action = ( isset( $parts[0] ) && $parts[0] ) ? $parts[0] : 'list';
-		$this->bannerName = array_key_exists( 1, $parts ) ? $parts[1] : null;
+		$this->bannerName = $parts[1] ?? '';
 
 		switch ( strtolower( $action ) ) {
 			case 'list':
@@ -406,8 +406,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// Clean, clean...
 		if ( $filterParam !== null ) {
-			$this->bannerFilterString
-				= static::sanitizeSearchTerms( $filterParam );
+			$this->bannerFilterString = $this->sanitizeSearchTerms( $filterParam );
 		}
 	}
 

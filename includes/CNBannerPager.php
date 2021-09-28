@@ -170,8 +170,8 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		// Set the disabled attribute
 		if ( !$this->editable ) {
-			foreach ( $retval as $prototypeName => $prototypeValues ) {
-				$retval[ $prototypeName ][ 'disabled' ] = true;
+			foreach ( $retval as &$prototypeValues ) {
+				$prototypeValues['disabled'] = true;
 			}
 		}
 
