@@ -81,28 +81,21 @@ class CentralNoticeHooks {
 				'remoteExtPath' => 'CentralNotice/resources',
 			];
 			$wgResourceModules += [
-				'jquery.ui.multiselect' => $moduleTemplate + [
-					'dependencies' => [
-						'jquery.ui',
-						'mediawiki.jqueryMsg'
-					],
-					'scripts' => 'vendor/jquery.ui.multiselect/ui.multiselect.js',
-					'styles' => 'vendor/jquery.ui.multiselect/ui.multiselect.css'
-				],
-				'jquery.plugin.jstree' => $moduleTemplate + [
-					'scripts' => 'vendor/jquery.jstree/jstree.js',
-					'styles' => 'vendor/jquery.jstree/themes/default/style.css'
-				],
 				'ext.centralNotice.adminUi' => $moduleTemplate + [
 					'dependencies' => [
 						'jquery.ui',
-						'jquery.ui.multiselect',
-						'jquery.plugin.jstree',
+						'mediawiki.jqueryMsg',
 						'jquery.throttle-debounce',
 						'mediawiki.Uri'
 					],
-					'scripts' => 'infrastructure/centralnotice.js',
+					'scripts' => [
+						'vendor/jquery.ui.multiselect/ui.multiselect.js',
+						'vendor/jquery.jstree/jstree.js',
+						'infrastructure/centralnotice.js',
+					],
 					'styles' => [
+						'vendor/jquery.ui.multiselect/ui.multiselect.css',
+						'vendor/jquery.jstree/themes/default/style.css',
 						'infrastructure/ext.centralNotice.adminUi.css'
 					],
 					'messages' => [
