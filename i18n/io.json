@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"JSantos",
 			"Joao Xavier",
 			"Malafaya"
 		]
@@ -27,6 +28,7 @@
 	"centralnotice-month": "Monato",
 	"centralnotice-hours": "Horo",
 	"centralnotice-min": "Minuto",
+	"centralnotice-invalid-date-range": "Nevalida limito di dati.\nNe aktualigos.",
 	"centralnotice-number-uses": "Uzadi",
 	"centralnotice-clone-cancel": "Anular",
 	"centralnotice-insert": "Insertar: $1",
@@ -43,8 +45,11 @@
 	"centralnotice-country": "Lando",
 	"centralnotice-region": "Regiono",
 	"centralnotice-preferred": "Prioreso",
+	"centralnotice-talk-link": "diskutez",
 	"centralnotice-account": "Montrez a l'uzeri enrejistrita",
+	"centralnotice-date": "Dato",
 	"centralnotice-all": "Omna",
+	"centralnotice-user-role-anonymous": "Anonimo",
 	"centralnotice-archive-banner-cancel": "Anular",
 	"centralnotice-archive-campaign-cancel": "Anular",
 	"centralnotice-delete-banner": "Efacar",
