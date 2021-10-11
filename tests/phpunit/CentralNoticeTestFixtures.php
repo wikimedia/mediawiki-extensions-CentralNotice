@@ -378,12 +378,12 @@ class CentralNoticeTestFixtures {
 	/**
 	 * Assert that two choices data structures are equal
 	 *
-	 * @param MediaWikiTestCase $testClass
+	 * @param MediaWikiIntegrationTestCase $testClass
 	 * @param array $expected Expected choices data structure
 	 * @param array $actual Actual choices data structure
 	 * @param string $message
 	 */
-	public function assertChoicesEqual( MediaWikiTestCase $testClass, $expected, $actual,
+	public function assertChoicesEqual( MediaWikiIntegrationTestCase $testClass, $expected, $actual,
 		$message = ''
 	) {
 		// The order of the numerically indexed arrays in this data structure
