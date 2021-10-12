@@ -5,7 +5,7 @@
  * @group medium
  * @group Database
  */
-class ChoiceDataProviderTest extends MediaWikiTestCase {
+class ChoiceDataProviderTest extends MediaWikiIntegrationTestCase {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 

@@ -6,7 +6,7 @@
  * @group Database
  * @covers AllocationCalculator
  */
-class AllocationCalculatorTest extends MediaWikiTestCase {
+class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 	/** @var CentralNoticeTestFixtures */
 	protected $cnFixtures;
 

@@ -73,8 +73,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			}
 			if ( $filterUser ) {
 				$user = User::newFromName( $filterUser );
-				$userId = $user->getId();
-				$info['conds']["notlog_user_id"] = $userId;
+				if ( $user ) {
+					$userId = $user->getId();
+					$info['conds']["notlog_user_id"] = $userId;
+				}
 			}
 		}
 

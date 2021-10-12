@@ -314,6 +314,7 @@
 	"centralnotice-banner-sequence-no-banner": "(нет баннера)",
 	"centralnotice-multiple-countries": "Несколько стран",
 	"centralnotice-multiple-languages": "Несколько языков",
+	"centralnotice-banner-template": "Шаблон баннера",
 	"centralnotice-banner-template-info": "(шаблон)",
 	"prefs-centralnotice-banners": "Баннеры",
 	"prefs-centralnotice-display-banner-types": "Типы отображаемых баннеров",
