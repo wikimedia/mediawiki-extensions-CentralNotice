@@ -19,7 +19,7 @@
 	"centralnotice-modify": "Wotpósłać",
 	"centralnotice-view": "Zwobraznić",
 	"centralnotice-save-banner": "Składować",
-	"centralnotice-live-preview": "Přehlad we wikiju",
+	"centralnotice-live-preview": "Přehlad poslednjeje składowaneje wersije",
 	"centralnotice-add-new": "Nowu centralnu zdźělenku přidać",
 	"centralnotice-remove": "Wotstronić",
 	"centralnotice-translate-heading": "Přełožk za $1",
@@ -209,6 +209,6 @@
 	"centralnotice-start-time": "Startowy čas (UTC)",
 	"centralnotice-end-date": "Kónčny datum (UTC)",
 	"centralnotice-end-time": "Kónčny čas (UTC)",
-	"centralnotice-multiple-countries": "wjacore ($1)",
-	"centralnotice-multiple-languages": "wjacore ($1)"
+	"centralnotice-multiple-countries": "Wjacore kraje",
+	"centralnotice-multiple-languages": "Wjacore rěče"
 }
