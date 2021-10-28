@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Bjh21",
-			"Shirayuki"
-		]
-	},
-	"centralnotice-edit-template-summary": "Warning: Loading external resources into a banner can compromise user privacy.\n\nTo create a localisable message, enclose a string in three curly brackets, e.g. <nowiki>{{{message_name}}}</nowiki>. To use a localisable message from another banner, include the banner name followed by a comma, then the message name, e.g., <nowiki>{{{banner_name,message_name}}}</nowiki>."
-}
