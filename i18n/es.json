@@ -35,7 +35,8 @@
 			"Sophivorus",
 			"Sporeunai",
 			"Translationista",
-			"Vivaelcelta"
+			"Vivaelcelta",
+			"Jakeukalane"
 		]
 	},
 	"centralnotice": "Sistema de administración de avisos centralizados",
@@ -78,7 +79,7 @@
 	"centralnotice-templates": "Carteles",
 	"centralnotice-throttle": "Límite de tráfico",
 	"centralnotice-throttle-amount": "Limitar el tráfico a la proporción del total",
-	"centralnotice-balanced": "Dar todas los carteles el mismo peso",
+	"centralnotice-balanced": "Dar a todos los carteles el mismo peso",
 	"centralnotice-weight": "Peso",
 	"centralnotice-locked": "Bloqueado",
 	"centralnotice-notice-mixins-fieldset": "Características extra para la campaña",
@@ -94,7 +95,7 @@
 	"centralnotice-notice-doesnt-exist": "El cartel no existe.",
 	"centralnotice-remove-notice-doesnt-exist": "La campaña no existe.\nNo hay nada que eliminar.",
 	"centralnotice-banner-doesnt-exist": "El cartel no existe.",
-	"centralnotice-banner-edit-onwiki": "Editar el cartel en el wiki",
+	"centralnotice-banner-edit-onwiki": "Editar el cartel en la wiki",
 	"centralnotice-banner-history": "Ver historial de edición del cartel",
 	"centralnotice-template-still-bound": "El cartel «$1» todavía está enlazada con una campaña.\nNo se eliminará.",
 	"centralnotice-template-body": "Cuerpo de la plantilla:",

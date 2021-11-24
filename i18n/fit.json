@@ -24,5 +24,6 @@
 	"centralnotice-project-name": "Prujektin nimi",
 	"centralnotice-settings": "Inställninkit",
 	"centralnotice-edit-template": "Mookkaa banneria",
-	"centralnotice-date": "Taatumi"
+	"centralnotice-date": "Taatumi",
+	"centralnotice-all-except": "Kaikki paitti $1"
 }

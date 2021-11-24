@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Crazymadlover",
-			"Omnipaedista"
+			"Omnipaedista",
+			"PastelKos"
 		]
 	},
 	"centralnotice-query": "Μετατροπία τρεχόντων σημειωμάτων",
@@ -18,7 +19,7 @@
 	"centralnotice-template-body": "Σῶμα προτύπου:",
 	"centralnotice-weights": "Βάρη",
 	"centralnotice-number-uses": "Χρήσεις",
-	"centralnotice-message": "Μήνυμα",
+	"centralnotice-message": "Ἄγγελμα",
 	"centralnotice-clone": "Κλών",
 	"centralnotice-languages": "Γλῶτται",
 	"centralnotice-language": "Γλῶττα",

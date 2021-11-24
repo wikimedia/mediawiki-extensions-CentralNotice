@@ -27,7 +27,8 @@
 			"Winston Sung",
 			"Wrightbus",
 			"Xiplus",
-			"Zhxy 519"
+			"Zhxy 519",
+			"Weather Top Wizard"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -87,7 +88,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "活動不存在。\n無法移除。",
 	"centralnotice-banner-doesnt-exist": "橫幅不存在。",
 	"centralnotice-banner-edit-onwiki": "在 wiki 上編輯橫幅",
-	"centralnotice-banner-history": "檢視橫幅歷史",
+	"centralnotice-banner-history": "檢視橫幅編輯歷史",
 	"centralnotice-template-still-bound": "無法移除横幅 \"$1\" ，尚有活動使用該橫幅。\n無法移除。",
 	"centralnotice-template-body": "橫幅內容：",
 	"centralnotice-day": "日",

@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Strainu"
+			"Strainu",
+			"NGC 54"
 		]
 	},
 	"apierror-centralnotice-cdn-lang-code-error": "Cod de limbă greșit.",
 	"apierror-centralnotice-cdn-banner-name-error": "Nume de banner greșit.",
 	"apierror-centralnotice-cdn-banner-not-found": "Bannerul nu a fost găsit",
-	"apihelp-query+centralnoticelogs-example-1": "Arată logurile"
+	"apihelp-query+centralnoticelogs-example-1": "Arată jurnaluri"
 }
