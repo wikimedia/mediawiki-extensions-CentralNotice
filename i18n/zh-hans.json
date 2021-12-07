@@ -39,7 +39,8 @@
 			"佛壁灯",
 			"列维劳德",
 			"科劳",
-			"阿pp"
+			"阿pp",
+			"Xiplus"
 		]
 	},
 	"centralnotice": "中央通告管理",
@@ -374,5 +375,5 @@
 	"centralnotice-campaign-type-maintenance": "维护",
 	"centralnotice-campaign-type-photography": "摄影",
 	"centralnotice-campaign-type-special": "特殊",
-	"centralnotice-user-prefs-intro": "以横幅显示维基媒体社区和用户感兴趣的公告。\n\n以下选项允许您管理想要看到的公告类型。与网站维护相关的通知，以及所有用户有必要了解的特殊通知，不能停用。更多信息详见[[metawikimedia:Special:MyLanguage/CentralNotice|元Wiki文档]]。"
+	"centralnotice-user-prefs-intro": "以横幅显示维基媒体社区和用户感兴趣的公告。\n\n以下选项允许您管理想要看到的公告类型。与网站维护相关的通知，以及所有用户有必要了解的特殊通知，不能停用。更多信息详见[[metawikimedia:Special:MyLanguage/CentralNotice|元维基文档]]。"
 }

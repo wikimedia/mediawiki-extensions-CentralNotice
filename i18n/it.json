@@ -19,7 +19,9 @@
 			"Ronald",
 			"Sakretsu",
 			"Scompo",
-			"Viscontino"
+			"Viscontino",
+			"Ajeje Brazorf",
+			"Stefano"
 		]
 	},
 	"centralnotice": "Gestione avviso centralizzato",
@@ -64,6 +66,7 @@
 	"centralnotice-balanced": "Dai a tutti i banner uguale peso",
 	"centralnotice-weight": "Dimensione",
 	"centralnotice-locked": "Bloccato",
+	"centralnotice-notice-mixins-int-required": "Richiesto Intero",
 	"centralnotice-notice": "Campagna",
 	"centralnotice-notice-heading": "Campagna: $1",
 	"centralnotice-notices": "Avvisi",
@@ -133,6 +136,7 @@
 	"centralnotice-banner-display-on": "Mostra su",
 	"centralnotice-banner-mixins": "Mixin",
 	"centralnotice-banner-mixins-help": "Controlla ogni mixin che vuoi includere durante l'invio dei banner. (Vedi [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixin] per ulteriori informazioni.)",
+	"centralnotice-banner-cdn-button": "Purga",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Basata sulla posizione geografica",
 	"centralnotice-geo-status": "Selezionato $1 $2",
@@ -266,6 +270,7 @@
 	"centralnotice-multiple-countries": "Più paesi",
 	"centralnotice-multiple-regions": "Regioni multiple",
 	"centralnotice-multiple-languages": "Più lingue",
+	"centralnotice-banner-template-info": "(template)",
 	"prefs-centralnotice-banners": "Banner",
 	"prefs-centralnotice-display-banner-types": "Tipi di banner da visualizzare",
 	"centralnotice-empty-campaign-type-option": "Nessuna tipologia (sempre mostrato)",

@@ -7,12 +7,16 @@
 			"PPerviz",
 			"Vago",
 			"Vugar 1981",
-			"Wertuose"
+			"Wertuose",
+			"NMW03"
 		]
 	},
 	"centralnotice": "Mərkəzi xəbərdarlıq idarəçisi",
 	"noticetemplate": "Mərkəzi xəbərdarlıq idarəçisi",
 	"bannerallocation": "Mərkəzi xəbərdarlıq idarəçisi",
+	"centralnoticelogs": "Mərkəzi xəbərdarlıq idarəçisi",
+	"right-centralnotice-admin": "Mərkəzi xəbərdarlıqları idarə etmək",
+	"protect-level-centralnotice-admin": "Sadəcə mərkəzi xəbərdarlıq idarəçilərinə icazə ver",
 	"centralnotice-enabled": "Effektiv",
 	"centralnotice-modify": "Təsdiq et",
 	"centralnotice-view": "Görünüş",
@@ -70,6 +74,6 @@
 	"centralnotice-start-time": "Başlanğıc tarixi (UTC)",
 	"centralnotice-end-date": "Son tarix (UTC)",
 	"centralnotice-end-time": "Son tarix (UTC)",
-	"centralnotice-multiple-countries": "Bir neçə ($1)",
-	"centralnotice-multiple-languages": "Bir neçə ($1)"
+	"centralnotice-multiple-countries": "Bir çox ölkə",
+	"centralnotice-multiple-languages": "Bir çox dil"
 }

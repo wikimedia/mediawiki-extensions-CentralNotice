@@ -196,7 +196,7 @@
 	"centralnotice-archive-edit-prevented": "Ezen kampány szerkesztése nem megengedett, mivel vagy zárolt, vagy archivált. Változtasd meg a státuszát a [[Special:CentralNotice]] lapon.",
 	"centralnotice-add-new-banner-title": "Új hirdetés létrehozása",
 	"centralnotice-delete-banner": "Törlés",
-	"centralnotice-delete-banner-title": "Törlöd a {{PLURAL:$1|hirdetést|hirdetéseket}}?",
+	"centralnotice-delete-banner-title": "{{PLURAL:$1|Hirdetés|Hirdetések}} törlése",
 	"centralnotice-delete-banner-cancel": "Mégse",
 	"centralnotice-devices": "Megjelenítés hordozható eszközökön",
 	"centralnotice-start-timestamp": "Kezdés (UTC)",

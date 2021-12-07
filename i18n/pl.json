@@ -22,10 +22,11 @@
 			"Sp5uhe",
 			"Vengir",
 			"WTM",
-			"Woytecr"
+			"Woytecr",
+			"Openbk"
 		]
 	},
-	"centralnotice": "Administrowanie wspólnymi komunikatami",
+	"centralnotice": "Zarządzanie wspólnymi komunikatami",
 	"noticetemplate": "Zarządzanie wspólnymi komunikatami",
 	"bannerallocation": "Zarządzanie wspólnymi komunikatami",
 	"centralnoticelogs": "Zarządzanie wspólnymi komunikatami",
@@ -236,11 +237,20 @@
 	"centralnotice-banner-sequence-skip-with-id-error": "Identyfikator nie może zawierać „|”.",
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)",
 	"centralnotice-banner-protection-log-reason": "Zabezpieczono automatycznie przez rozszerzenie CentralNotice; edytuj tylko przez [[Special:CentralNotice]] lub [[Special:Translate]]",
-	"centralnotice-multiple-countries": "Wiele ($1)",
-	"centralnotice-multiple-languages": "wiele ($1)",
+	"centralnotice-multiple-countries": "Wiele krajów",
+	"centralnotice-multiple-languages": "Wiele języków",
 	"centralnotice-banner-template-info": "(szablon)",
 	"centralnotice-create-from-template-checkbox-label": "Utwórz z szablonu",
 	"centralnotice-campaign-view-logs": "Zobacz rejestr ustawień kampanii",
 	"prefs-centralnotice-banners": "Banery",
-	"centralnotice-campaign-type-event": "Wydarzenie"
+	"prefs-centralnotice-display-banner-types": "Rodzaje banerów do wyświetlenia",
+	"centralnotice-campaign-type-advocacy": "Rzecznictwo",
+	"centralnotice-campaign-type-article-writing": "Pisanie artykułów",
+	"centralnotice-campaign-type-event": "Wydarzenia",
+	"centralnotice-campaign-type-fundraising": "Zbieranie funduszy",
+	"centralnotice-campaign-type-governance": "Zarządzanie",
+	"centralnotice-campaign-type-maintenance": "Konserwacja",
+	"centralnotice-campaign-type-photography": "Fotografowanie",
+	"centralnotice-campaign-type-special": "Specjalne",
+	"centralnotice-user-prefs-intro": "Banery wyświetlają ogłoszenia, które mogą zainteresować społeczności i użytkowników projektów Wikimedia.\n\nPoniżej znajdują się opcje, które pozwolą Ci zarządzać typami wyświetlanych ogłoszeń. Niektóre powiadomienia, na przykład te dotyczące prac konserwacyjnych oraz specjalne powiadomienia niezbędne do przedstawienia wszystkim użytkownikom, będą zawsze wyświetlane. Aby uzyskać więcej informacji, przeczytaj [[metawikimedia:Special:MyLanguage/CentralNotice| dokumentację na Meta-Wiki]]."
 }

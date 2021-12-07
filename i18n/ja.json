@@ -24,7 +24,9 @@
 			"W.CC",
 			"Whym",
 			"Yusuke1109",
-			"青子守歌"
+			"青子守歌",
+			"Hzy980512",
+			"ネイ"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -253,10 +255,15 @@
 	"centralnotice-banner-sequence-banner": "バナー",
 	"centralnotice-multiple-countries": "複数の国と地域",
 	"centralnotice-multiple-languages": "多言語",
+	"tag-centralnotice": "一斉通知",
+	"tag-centralnotice-description": "CentralNotice Admin UIで行われた編集",
+	"tag-centralnotice_translation": "中央管理通知の翻訳",
+	"tag-centralnotice_translation-description": "翻訳拡張機能によって生成された中央管理通知の編集",
 	"centralnotice-banner-template": "バナーテンプレート",
 	"centralnotice-banner-template-info": "(テンプレート)",
 	"prefs-centralnotice-banners": "バナー",
 	"prefs-centralnotice-display-banner-types": "バナータイプの表示設定",
+	"centralnotice-campaign-type-advocacy": "アドボカシー",
 	"centralnotice-campaign-type-article-writing": "記事の編集",
 	"centralnotice-campaign-type-event": "イベント",
 	"centralnotice-campaign-type-fundraising": "資金調達",

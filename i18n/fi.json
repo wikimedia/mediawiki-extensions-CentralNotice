@@ -16,7 +16,9 @@
 			"Tofu II",
 			"Valtlait",
 			"VezonThunder",
-			"Wix"
+			"Wix",
+			"MITO",
+			"Rönttönen"
 		]
 	},
 	"centralnotice": "Keskitettyjen tiedotteiden ylläpito",
@@ -96,7 +98,7 @@
 	"centralnotice-number-uses": "Käyttää",
 	"centralnotice-settings": "Asetukset",
 	"centralnotice-edit-template": "Muokkaa banneria",
-	"centralnotice-edit-template-summary": "Käännettävän viestin luomiseksi sisällytä tavutettu merkkijono kolmen aaltosulkeen sisään, esim. {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Varoitus: Ulkoisten resurssien lataaminen banneriin voi vaarantaa käyttäjän yksityisyyden.\nKäännettävän viestin luomiseksi sisällytä merkkijono kolmen aaltosulkeen sisään, esim. <nowiki>{{{viestin_nimi}}}</nowiki>. Käyttääksesi käännettävää viestiä toisesta bannerista, sisällytä bannerin nimi, pilkku ja viestin nimi, esim. <nowiki>{{{bannerin_nimi,viestin_nimi}}}</nowiki>.",
 	"centralnotice-message": "Viesti",
 	"centralnotice-message-not-set": "Viestiä ei ole asetettu",
 	"centralnotice-clone": "Kahdenna",
@@ -212,5 +214,12 @@
 	"centralnotice-multiple-languages": "Useita kieliä",
 	"prefs-centralnotice-banners": "Bannerit",
 	"prefs-centralnotice-display-banner-types": "Näytettävät bannerityypit",
+	"centralnotice-campaign-type-advocacy": "Edunvalvonta",
+	"centralnotice-campaign-type-article-writing": "Artikkelin kirjoittaminen",
+	"centralnotice-campaign-type-event": "Tapahtuma",
+	"centralnotice-campaign-type-fundraising": "Varainhankinta",
+	"centralnotice-campaign-type-governance": "Hallinto",
+	"centralnotice-campaign-type-maintenance": "Ylläpito",
+	"centralnotice-campaign-type-photography": "Valokuvaus",
 	"centralnotice-user-prefs-intro": "Bannereilla näytetään Wikimedian yhteisölle ja käyttäjille tärkeitä ilmoituksia.\n\nAllaolevien vaihtoehtojen avulla voit hallita minkätyyppisiä banneri-ilmoituksia sinulle näytetään. Tietyt alustaan liittyvät ilmoitukset, kuten sivuston ylläpitoon liittyvät ilmoitukset ja erityisilmoitukset, jotka on katsottu tarpeellisiksi kaikille käyttäjille, näytetään aina. Voit lukea aiheesta lisää [[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Wikissä]]."
 }

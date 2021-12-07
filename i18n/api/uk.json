@@ -4,7 +4,8 @@
 			"Andriy.v",
 			"Base",
 			"Piramidion",
-			"Ата"
+			"Ата",
+			"DDPAT"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "У користувача немає прав очищати вміст банеру на фронт-енді.",
@@ -29,12 +30,12 @@
 	"apihelp-centralnoticequerycampaign-summary": "Отримати всі параметри конфігурації для кампанії.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Назва кампанії. Розділіть різні значення через \"|\" (вертикальна риска).",
 	"apihelp-centralnoticequerycampaign-example-1": "Показати кампанію «Plea_US»",
-	"apihelp-centralnoticechoicedata-description": "Отримати дані, необхідні для вибору банера для даного проекту та мови",
-	"apihelp-centralnoticechoicedata-summary": "Отримати дані, необхідні для вибору банера для даного проекту та мови",
+	"apihelp-centralnoticechoicedata-description": "Отримати дані, необхідні для вибору банера для даного проєкту та мови",
+	"apihelp-centralnoticechoicedata-summary": "Отримати дані, необхідні для вибору банера для даного проєкту та мови",
 	"apihelp-centralnoticechoicedata-param-project": "Проєкт, для якого отримати дані вибору банера.",
 	"apihelp-centralnoticechoicedata-param-language": "Мова, для якої отримати дані вибору банера.",
 	"apihelp-centralnoticechoicedata-example-1": "Отримати дані для вибору банера для користувачів англійської Вікіпедії.",
-	"apihelp-query+centralnoticelogs-description": "Отримати журнал змін конфугурації кампанії.",
+	"apihelp-query+centralnoticelogs-description": "Отримати журнал змін конфігурації кампанії.",
 	"apihelp-query+centralnoticelogs-summary": "Отримати журнал змін конфігурації кампанії.",
 	"apihelp-query+centralnoticelogs-param-campaign": "Назва кампанії (необов'язково). Розділіть різні значення через \"|\" (вертикальна риска).",
 	"apihelp-query+centralnoticelogs-param-user": "Ім'я користувача (необов'язково).",
@@ -45,6 +46,6 @@
 	"apihelp-query+centralnoticelogs-example-1": "Показати журнали",
 	"apihelp-query+centralnoticeactivecampaigns-description": "Отримати список поточних активних кампаній з датами початку і кінця та пов'язаними банерами.",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "Отримати список поточних активних кампаній з датами початку і кінця та пов'язаними банерами.",
-	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Включити увімкнені майбутні кампанії (а також поточні активні кампанії).",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Включити ввімкнені майбутні кампанії (а також поточні активні кампанії).",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "Отримати список поточних активних кампаній з датами початку і кінця та пов'язаними банерами."
 }

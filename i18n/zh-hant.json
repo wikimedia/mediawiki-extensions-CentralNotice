@@ -27,7 +27,8 @@
 			"Winston Sung",
 			"Wrightbus",
 			"Xiplus",
-			"Zhxy 519"
+			"Zhxy 519",
+			"Weather Top Wizard"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -87,7 +88,7 @@
 	"centralnotice-remove-notice-doesnt-exist": "活動不存在。\n無法移除。",
 	"centralnotice-banner-doesnt-exist": "橫幅不存在。",
 	"centralnotice-banner-edit-onwiki": "在 wiki 上編輯橫幅",
-	"centralnotice-banner-history": "檢視橫幅歷史",
+	"centralnotice-banner-history": "檢視橫幅編輯歷史",
 	"centralnotice-template-still-bound": "無法移除横幅 \"$1\" ，尚有活動使用該橫幅。\n無法移除。",
 	"centralnotice-template-body": "橫幅內容：",
 	"centralnotice-day": "日",
@@ -343,5 +344,20 @@
 	"centralnotice-add-banner-from-template": "從模板增加橫幅",
 	"centralnotice-messages-banner-in-campaign": "在分配給一個或多個活動時，不能將此橫幅標記為模板。此橫幅被分配給以下活動：",
 	"centralnotice-create-from-template-checkbox-label": "從模板建立",
-	"centralnotice-campaign-view-logs": "查看活動設定日誌"
+	"centralnotice-campaign-view-logs": "查看活動設定日誌",
+	"prefs-centralnotice-banners": "橫幅",
+	"prefs-centralnotice-display-banner-types": "顯示橫幅的類型",
+	"centralnotice-campaign-type": "活動類型",
+	"centralnotice-empty-campaign-type-option": "無類型（永遠顯示）",
+	"centralnotice-non-existent-campaign-type-error": "選擇的活動類型不存在",
+	"centralntoice-deleted-campaign-type": "$1（已刪除的類型）",
+	"centralnotice-campaign-type-advocacy": "推廣",
+	"centralnotice-campaign-type-article-writing": "編寫條目",
+	"centralnotice-campaign-type-event": "活動",
+	"centralnotice-campaign-type-fundraising": "募款",
+	"centralnotice-campaign-type-governance": "管理",
+	"centralnotice-campaign-type-maintenance": "維護",
+	"centralnotice-campaign-type-photography": "攝影",
+	"centralnotice-campaign-type-special": "特殊",
+	"centralnotice-user-prefs-intro": "以橫幅顯示維基媒體社群和使用者感興趣的公告。\n\n以下選項允許您管理想要看到的公告類型。與網站維護相關的通知，以及所有使用者有必要了解的特殊通知，不能停用。更多資訊詳見[[metawikimedia:Special:MyLanguage/CentralNotice|元維基文件]]。"
 }

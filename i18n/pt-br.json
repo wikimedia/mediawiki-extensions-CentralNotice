@@ -22,7 +22,8 @@
 			"Rodrigo codignoli",
 			"Tks4Fish",
 			"Tuliouel",
-			555
+			555,
+			"Albertoleoncio"
 		]
 	},
 	"centralnotice": "Administração de avisos centralizados",
@@ -68,7 +69,7 @@
 	"centralnotice-throttle-amount": "Limitar tráfego para proporção do total",
 	"centralnotice-balanced": "Dar peso igual a todos os banners",
 	"centralnotice-weight": "Peso",
-	"centralnotice-locked": "Bloqueado",
+	"centralnotice-locked": "Travado",
 	"centralnotice-notice-mixins-fieldset": "Recursos de campanha extra",
 	"centralnotice-notice-mixins-int-required": "Inteiro necessário",
 	"centralnotice-notice-mixins-float-required": "Necessário número de ponto flutuante",

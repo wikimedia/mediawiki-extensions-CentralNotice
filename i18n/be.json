@@ -4,7 +4,8 @@
 			"Artsiom91",
 			"Kareyac",
 			"Mikalai Udodau",
-			"Тест"
+			"Тест",
+			"ZlyiLev"
 		]
 	},
 	"centralnotice-add": "Дадаць",
@@ -15,5 +16,6 @@
 	"centralnotice-languages": "Мовы",
 	"centralnotice-language": "Мова",
 	"centralnotice-date": "Дата",
+	"centralnotice-banner-messages": "Паведамленні банераў, якія магчыма перакласці",
 	"centralnotice-all": "Усе"
 }
