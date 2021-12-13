@@ -1,15 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"BaRaN6161 TURK"
+			"BaRaN6161 TURK",
+			"Vito Genovese"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "Kullanıcının ön uç banner içeriğini temizleme izni yok.",
 	"apierror-centralnotice-cdn-lang-code-error": "Hatalı biçimlendirilmiş dil kodu.",
 	"apierror-centralnotice-cdn-banner-name-error": "Hatalı oluşturulmuş banner adı.",
 	"apierror-centralnotice-cdn-banner-not-found": "Banner bulunamadı",
-	"apihelp-centralnoticeallocations-description": "Parametrik filtre altındaki tüm kullanıcı türleri için CentralNotice tarafından sunulan banner'lar için banner ayırmalarını elde edin.\n\nBu yalnızca JSON çağrısıdır.",
-	"apihelp-centralnoticeallocations-summary": "Parametrik filtre altındaki tüm kullanıcı türleri için CentralNotice tarafından sunulan banner'lar için banner ayırmalarını elde edin.",
+	"apihelp-centralnoticeallocations-description": "Parametrik süzgeç altındaki tüm kullanıcı türleri için CentralNotice tarafından sunulan başlıklar için başlık ayırmalarını elde edin.\n\nBu yalnızca JSON çağrısıdır.",
+	"apihelp-centralnoticeallocations-summary": "Parametrik süzgeç altındaki tüm kullanıcı türleri için CentralNotice tarafından sunulan başlıklar için başlık ayırmalarını elde edin.",
 	"apihelp-centralnoticeallocations-extended-description": "Bu yalnızca JSON çağrısıdır.",
 	"apihelp-centralnoticeallocations-param-project": "Proje kapsamında tahsisat alma.",
 	"apihelp-centralnoticeallocations-param-country": "Filtre uygulanacak ülke.",

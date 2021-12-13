@@ -24,7 +24,8 @@
 			"Siebrand",
 			"The Evil IP address",
 			"Umherirrender",
-			"Yekrats"
+			"Yekrats",
+			"MuratTheTurkish"
 		]
 	},
 	"centralnotice": "{{doc-special|CentralNotice}}\n{{Identical|Central notice admin}}",
@@ -57,7 +58,7 @@
 	"centralnotice-add-template": "Used as link text and as heading (<nowiki><h2></nowiki> tag)",
 	"centralnotice-show-notices": "Unused at this time.",
 	"centralnotice-list-templates": "Unused at this time.",
-	"centralnotice-language-listing": "{{optional}}\nA language listing for the language multi-select box.\n*$1 - the language code\n*$2 - the name of the language",
+	"centralnotice-language-listing": "{{optional}}\nA language listing for the language multi-select box.\n* $1 - the language code\n* $2 - the name of the language",
 	"centralnotice-translations": "{{Identical|Translation}}",
 	"centralnotice-translate-to": "{{Identical|Translate}}",
 	"centralnotice-translate": "{{Identical|Translate}}",
@@ -123,7 +124,7 @@
 	"centralnotice-update-preview": "Used as label for update banner preview button",
 	"centralnotice-preview-page": "Text for link to open a new tab with an in-page preview of the currently edited banner",
 	"centralnotice-preview-loader-error-dialog-title": "Title for dialog box for error messages from generating a banner preview.",
-	"centralnotice-preview-loader-error-dialog-ok": "Button to dismiss banner preview error dialog.\n{{Identical|OK}}\n{{optional}}",
+	"centralnotice-preview-loader-error-dialog-ok": "Button to dismiss banner preview error dialog.\n{{Identical|OK}}",
 	"centralnotice-preview-loader-permissions-error": "Permissions or edit token verification error message for requests to generate a banner preview.",
 	"centralnotice-clone": "Used as label for the Submit button in [[Special:NoticeTemplate]].\n\nPreceded by the \"Name\" input box with the label {{msg-mw|Centralnotice-clone-name}}.\n{{Identical|Clone}}",
 	"centralnotice-clone-notice": "Used as fieldset label in the form in [[Special:NoticeTemplate]].",
@@ -159,7 +160,7 @@
 	"centralnotice-countries": "Used as column header of the table in [[Special:CentralNotice]].\n{{Related|Centralnotice-th}}\n{{Identical|Country}}",
 	"centralnotice-regions": "Used for campaign log details in [[Special:CentralNoticeLogs]].",
 	"centralnotice-location": "Used as label for location field on campaign forms",
-	"centralnotice-location-name-and-code": "Name and code of location (country or region) in geo tree selector in [[Special:CentralNotice]]. Parameters:\n* $1 - The country or region name\n* $2 The country or region code",
+	"centralnotice-location-name-and-code": "{{optional}}\nName and code of location (country or region) in geo tree selector in [[Special:CentralNotice]]. Parameters:\n* $1 - The country or region name\n* $2 The country or region code",
 	"centralnotice-allocation": "Tab for sub-page [[m:BannerAllocation|banner allocation]] to central notice special page.",
 	"centralnotice-view-allocation": "Heading of dialog box on [[m:Special:BannerAllocation|banner allocation]] special page.",
 	"centralnotice-allocation-instructions": "Dialog box instructions on [[m:Special:BannerAllocation|banner allocation]] special page.",

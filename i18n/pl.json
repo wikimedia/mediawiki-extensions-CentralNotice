@@ -21,10 +21,12 @@
 			"Sp5uhe",
 			"Vengir",
 			"WTM",
-			"Woytecr"
+			"Woytecr",
+			"Kareyac",
+			"Openbk"
 		]
 	},
-	"centralnotice": "Administrowanie wspólnymi komunikatami",
+	"centralnotice": "Zarządzanie wspólnymi komunikatami",
 	"noticetemplate": "Zarządzanie wspólnymi komunikatami",
 	"bannerallocation": "Zarządzanie wspólnymi komunikatami",
 	"centralnoticelogs": "Zarządzanie wspólnymi komunikatami",
@@ -235,8 +237,8 @@
 	"centralnotice-banner-sequence-skip-with-id-error": "Identyfikator nie może zawierać „|”.",
 	"centralnotice-banner-sequence-no-banner": "(Brak baneru)",
 	"centralnotice-banner-protection-log-reason": "Zabezpieczono automatycznie przez rozszerzenie CentralNotice; edytuj tylko przez [[Special:CentralNotice]] lub [[Special:Translate]]",
-	"centralnotice-multiple-countries": "Wiele ($1)",
-	"centralnotice-multiple-languages": "wiele ($1)",
+	"centralnotice-multiple-countries": "Wiele krajów",
+	"centralnotice-multiple-languages": "Wiele języków",
 	"centralnotice-banner-template-info": "(szablon)",
 	"centralnotice-create-from-template-checkbox-label": "Utwórz z szablonu"
 }

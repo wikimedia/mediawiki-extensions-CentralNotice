@@ -8,7 +8,8 @@
 			"Ignas693",
 			"Matasg",
 			"Vogone",
-			"Zygimantus"
+			"Zygimantus",
+			"Tomasdd"
 		]
 	},
 	"centralnotice": "Centrinis pranešimo admin",
@@ -25,7 +26,7 @@
 	"centralnotice-modify": "Pateikti",
 	"centralnotice-view": "Peržiūrėti",
 	"centralnotice-save-banner": "Išsaugoti",
-	"centralnotice-live-preview": "Peržiūra viki",
+	"centralnotice-live-preview": "Paskutinės išsaugotos versijos peržiūra",
 	"centralnotice-add-new": "Pridėti naują kampaniją",
 	"centralnotice-remove": "Pašalinti",
 	"centralnotice-translate-heading": "$1 vertimas",
@@ -217,6 +218,6 @@
 	"centralnotice-impression-diet-help": "Apriboti banerį, kurios mato vienas individas, skaičių.",
 	"centralnotice-impression-diet-restart-cycle-delay": "Kiek ilgai lauki prieš pradedant ciklą iš naujo, sekundėmis (nebūtina)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Numatytoji reikšmė yra 0, tai reiškia, kad skaitytojai patirs vieną ciklą ir tada baneriai nebebus rodomi.",
-	"centralnotice-multiple-countries": "Kelias ( $1 )",
-	"centralnotice-multiple-languages": "Kelias ( $1 )"
+	"centralnotice-multiple-countries": "Kelios šalys",
+	"centralnotice-multiple-languages": "Kelios kalbos"
 }

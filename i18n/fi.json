@@ -15,7 +15,10 @@
 			"Tofu II",
 			"Valtlait",
 			"VezonThunder",
-			"Wix"
+			"Wix",
+			"MITO",
+			"Moj",
+			"Rönttönen"
 		]
 	},
 	"centralnotice": "Keskitettyjen tiedotteiden ylläpito",
@@ -95,7 +98,7 @@
 	"centralnotice-number-uses": "Käyttää",
 	"centralnotice-settings": "Asetukset",
 	"centralnotice-edit-template": "Muokkaa banneria",
-	"centralnotice-edit-template-summary": "Käännettävän viestin luomiseksi sisällytä tavutettu merkkijono kolmen aaltosulkeen sisään, esim. {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Varoitus: Ulkoisten resurssien lataaminen banneriin voi vaarantaa käyttäjän yksityisyyden.\nKäännettävän viestin luomiseksi sisällytä merkkijono kolmen aaltosulkeen sisään, esim. <nowiki>{{{viestin_nimi}}}</nowiki>. Käyttääksesi käännettävää viestiä toisesta bannerista, sisällytä bannerin nimi, pilkku ja viestin nimi, esim. <nowiki>{{{bannerin_nimi,viestin_nimi}}}</nowiki>.",
 	"centralnotice-message": "Viesti",
 	"centralnotice-message-not-set": "Viestiä ei ole asetettu",
 	"centralnotice-clone": "Kahdenna",
@@ -202,6 +205,7 @@
 	"centralnotice-start-time": "Alkamisaika (UTC)",
 	"centralnotice-end-date": "Lopetuspäivä (UTC)",
 	"centralnotice-end-time": "Lopetusaika (UTC)",
+	"hidebanners": "Piilota bannerit",
 	"centralnotice-banner-sequence-days-error": "Arvon tulee olla kokonaisluku suurempi kuin nolla.",
 	"centralnotice-banner-sequence-bucket-add-step": "Lisää vaihe",
 	"centralnotice-banner-sequence-banner": "Banneri",

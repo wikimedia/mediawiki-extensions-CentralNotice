@@ -143,6 +143,7 @@
 	"centralnotice-banner-cdn-dialog-error": "Fehler bei der Anfrage der Frontend-Cache-Löschung.",
 	"centralnotice-banner-cdn-dialog-success": "Anfrage zur Löschung des Frontend-Caches gesendet.",
 	"centralnotice-geo": "Geo-anvisiert",
+	"centralnotice-geo-status": "Ausgewählt $1 $2",
 	"centralnotice-countries": "Staaten",
 	"centralnotice-regions": "Regionen",
 	"centralnotice-location": "Länder und Regionen",

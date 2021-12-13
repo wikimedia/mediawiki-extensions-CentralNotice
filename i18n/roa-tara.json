@@ -20,7 +20,7 @@
 	"centralnotice-enabled": "Abbilitate",
 	"centralnotice-modify": "Conferme",
 	"centralnotice-view": "Vide",
-	"centralnotice-save-banner": "Reggistre",
+	"centralnotice-save-banner": "Reggìstre",
 	"centralnotice-live-preview": "Andeprime de l'urtema versione reggistrate",
 	"centralnotice-add-new": "Aggiugne 'na cambagna nove",
 	"centralnotice-remove": "Live",
@@ -310,5 +310,12 @@
 	"tag-centralnotice": "Notifeche cendralizzate",
 	"tag-centralnotice-description": "Cangiamende ccrejate cu CentralNotice Admin UI",
 	"tag-centralnotice_translation": "Traduzione d'a Notifeche Cendralizzate",
-	"tag-centralnotice_translation-description": "Cangiamende d'u condenute de CentralNotice ccrejate cu l'estenzione Traduce"
+	"tag-centralnotice_translation-description": "Cangiamende d'u condenute de CentralNotice ccrejate cu l'estenzione Traduce",
+	"centralnotice-banner-template": "template d'u striscione",
+	"centralnotice-banner-is-template": "Stu striscione jè ìnu modelle, signifeche ca pò essere ausate pe ccrejà otre strisciune",
+	"centralnotice-banner-template-info": "(template)",
+	"centralnotice-banner-template-error": "'U banner non ge pò essere ccrejate sus a 'nu banner non valide, o 'nu banner ca non g'ha state signate cumme 'nu template.\nNone Aggiunde",
+	"centralnotice-add-banner-from-template": "Aggiunge 'nu banner da 'nu template",
+	"centralnotice-messages-banner-in-campaign": "Non ge pozze signà stu banner cumme 'nu template mendre ca jè assignate a une o cchiù cambagne. Stu banner jè assignate a ste cambagne:",
+	"centralnotice-create-from-template-checkbox-label": "Ccrèje da 'nu template"
 }

@@ -9,7 +9,9 @@
 			"Minisarm",
 			"Stelistcristi",
 			"Strainu",
-			"XXN"
+			"XXN",
+			"Andreyyshore",
+			"NGC 54"
 		]
 	},
 	"centralnotice": "Administrarea anunțului central",
@@ -26,7 +28,7 @@
 	"centralnotice-modify": "Trimite",
 	"centralnotice-view": "Vizualizare",
 	"centralnotice-save-banner": "Salvare",
-	"centralnotice-live-preview": "Previzualizare",
+	"centralnotice-live-preview": "Previzualizați versiunea salvată ultima",
 	"centralnotice-add-new": "Adaugă un anunț central nou",
 	"centralnotice-remove": "Șterge",
 	"centralnotice-translate-heading": "Traducere pentru $1",
@@ -110,7 +112,7 @@
 	"centralnotice-donate-button": "Buton de donare",
 	"centralnotice-banner-display": "Afișează pentru",
 	"centralnotice-banner-anonymous": "Utilizatori anonimi",
-	"centralnotice-banner-logged-in": "Utilizatori autentificaţi",
+	"centralnotice-banner-logged-in": "Utilizatori autentificați",
 	"centralnotice-banner-type": "Tip banner:",
 	"centralnotice-banner-hidable": "Static/Ascuns",
 	"centralnotice-banner-collapsible": "Reductibil",
@@ -120,6 +122,7 @@
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geolocalizat",
 	"centralnotice-countries": "Țări",
+	"centralnotice-regions": "Regiuni",
 	"centralnotice-allocation": "Alocare",
 	"centralnotice-view-allocation": "Vedeți alocarea bannerului",
 	"centralnotice-allocation-instructions": "Alegeți mediul în care doriți să vizualizați alocarea bannerului:",
@@ -127,6 +130,7 @@
 	"centralnotice-language": "Limbă",
 	"centralnotice-projects": "Proiecte",
 	"centralnotice-country": "Țară",
+	"centralnotice-region": "Regiune",
 	"centralnotice-no-allocation": "Niciun banner alocat.",
 	"centralnotice-allocation-description": "Alocare de banner pentru limba: $1, proiectul: $2, în țara $3, pe dispozitiv: $4",
 	"centralnotice-historical-allocation-description": "Alocare de banner pentru limba: $1, proiectul: $2, în țara $3, pe dispozitiv: $4, la: $5",
@@ -218,6 +222,6 @@
 	"centralnotice-banner-not-found-title": "Bannerul nu a fost găsit",
 	"centralnotice-banner-not-found-contents": "Nu există niciun banner cu acest nume.",
 	"hidebanners": "Ascunde bannerele",
-	"centralnotice-multiple-countries": "Multiple ($1)",
-	"centralnotice-multiple-languages": "multiple ($1)"
+	"centralnotice-multiple-countries": "Țări multiple",
+	"centralnotice-multiple-languages": "Limbi multiple"
 }

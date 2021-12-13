@@ -11,7 +11,8 @@
 			"Јованвб",
 			"Милан Јелисавчић",
 			"Михајло Анђелковић",
-			"Сербијана"
+			"Сербијана",
+			"Kizule"
 		]
 	},
 	"centralnotice": "Администратор централног обавештавања",
@@ -104,7 +105,7 @@
 	"centralnotice-clone-banner": "Плакат",
 	"centralnotice-insert": "Уметните: $1",
 	"centralnotice-close-button": "Затвори дугме",
-	"centralnotice-close-title": "Затварање",
+	"centralnotice-close-title": "Затвори",
 	"centralnotice-translate-button": "Веза за помоћ при превођењу",
 	"centralnotice-donate-button": "Дугме за давање прилога",
 	"centralnotice-banner-display": "Прикажи у",
@@ -136,7 +137,7 @@
 	"centralnotice-documentwrite-error": "document.write() не може бити употребљен унутар банера.\nВидите https://meta.wikimedia.org/wiki/Help:CentralNotice за више информација.",
 	"centralnotice-preferred": "Приоритет",
 	"centralnotice-archived": "Архивирано",
-	"centralnotice-logs": "Евиденције",
+	"centralnotice-logs": "Дневници",
 	"centralnotice-view-logs": "Погледај историје",
 	"centralnotice-timestamp": "Временска ознака",
 	"centralnotice-user": "Корисник",

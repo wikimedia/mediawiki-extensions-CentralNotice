@@ -3,7 +3,8 @@
 		"authors": [
 			"Byfserag",
 			"Liuxinyu970226",
-			"科劳"
+			"科劳",
+			"Shizhao"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "用户并无权限刷新前端横幅内容。",
@@ -44,5 +45,6 @@
 	"apihelp-query+centralnoticelogs-example-1": "显示日志",
 	"apihelp-query+centralnoticeactivecampaigns-description": "获取当前活动列表，包括活动的起止日期和活动相关的横幅通知",
 	"apihelp-query+centralnoticeactivecampaigns-summary": "获取当前活动列表，包括活动的起止日期和活动相关的横幅通知",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "包括启用的未来活动（以及当前的活动）。",
 	"apihelp-query+centralnoticeactivecampaigns-example-1": "获取当前活动列表，包括活动的起止日期和活动相关的横幅通知"
 }

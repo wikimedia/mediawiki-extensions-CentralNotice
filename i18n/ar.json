@@ -21,7 +21,9 @@
 			"ديفيد",
 			"زكريا",
 			"محمد أحمد عبد الفتاح",
-			"محمد عصام"
+			"محمد عصام",
+			"NEHAOUA",
+			"علاء"
 		]
 	},
 	"centralnotice": "مدير الإخطار المركزي",
@@ -54,6 +56,7 @@
 	"centralnotice-add-template": "إضافة قالب",
 	"centralnotice-show-notices": "إظهار الإخطارات",
 	"centralnotice-list-templates": "اعرض القوالب",
+	"centralnotice-language-listing": "$1 - $2",
 	"centralnotice-translations": "الترجمات",
 	"centralnotice-translate-to": "ترجم إلى",
 	"centralnotice-translate": "ترجم",
@@ -151,8 +154,11 @@
 	"centralnotice-banner-cdn-dialog-error": "خطأ في طلب تطهير نهاية عملية ذاكرة التخزين المؤقت.",
 	"centralnotice-banner-cdn-dialog-success": "تم إرسال طلب تطهير نهاية عملية ذاكرة التخزين المؤقت.",
 	"centralnotice-geo": "الاستهداف الجغرافي",
+	"centralnotice-geo-status": "تحديد $1 $2",
 	"centralnotice-countries": "الدول",
 	"centralnotice-regions": "المناطق",
+	"centralnotice-location": "البلدان والأقاليم",
+	"centralnotice-location-name-and-code": "$1 ($2)",
 	"centralnotice-allocation": "تخصيص",
 	"centralnotice-view-allocation": "موقع عرض الشعار",
 	"centralnotice-allocation-instructions": "اختر البيئة قد ترغب في عرض الشعار بها:",
@@ -184,6 +190,8 @@
 	"centralnotice-removed": "حذف <span class=\"cn-old-value\">$1</span>",
 	"centralnotice-no-assignments": "ما من لافتة معينة",
 	"centralnotice-talk-link": "نقاش",
+	"centralnotice-user-links": "$1 ($2)",
+	"centralnotice-log-label": "<span class=\"cn-log-label\">$1:</span> $2",
 	"centralnotice-campaign-settings": "إعدادات الحملة",
 	"centralnotice-banner-settings": "إعدادات اللافتة",
 	"centralnotice-anon": "اعرض للمستخدمين المجهولين",
@@ -322,9 +330,17 @@
 	"centralnotice-impression-events-sample-rate-field": "معدل عينة أحداث الظهور (يجب أن يتراوح بين 0 و1، شاملاً)",
 	"centralnotice-banner-protection-log-reason": "محمية تلقائيا من قبل الإشعار المركزي; يُرجَى تعديل فقط عبر [[Special:CentralNotice]] أو [[Special:Translate]].",
 	"centralnotice-multiple-countries": "بلدان متعددة",
+	"centralnotice-multiple-regions": "مناطق متعددة",
 	"centralnotice-multiple-languages": "لغات متعددة",
 	"tag-centralnotice": "إشعار مركزي",
 	"tag-centralnotice-description": "التعديل تم عمله من خلال واجهة المستخدم الإدارية للإشعار المركزي",
 	"tag-centralnotice_translation": "ترجمة الإشعار المركزي",
-	"tag-centralnotice_translation-description": "تعديل لمحتوى الإشعار المركزي تم عمله من خلال امتداد الترجمة"
+	"tag-centralnotice_translation-description": "تعديل لمحتوى الإشعار المركزي تم عمله من خلال امتداد الترجمة",
+	"centralnotice-banner-template": "قالب الإعلان",
+	"centralnotice-banner-is-template": "هذا الإعلان هو قالب مصمم لاستخدامه في إنشاء الإعلانات",
+	"centralnotice-banner-template-info": "(قالب)",
+	"centralnotice-banner-template-error": "لا يمكن إنشاء الإعلان اعتمادًا على إعلان غير صالح أو لم يُميز كقالب.\nلم يُضف",
+	"centralnotice-add-banner-from-template": "إضافة إعلان من قالب",
+	"centralnotice-messages-banner-in-campaign": "لا يمكن وضع علامة قالب على هذا الإعلان أثناء تعيينه لحملة واحدة أو أكثر. خُصص هذا الإعلان للحملات التالية:",
+	"centralnotice-create-from-template-checkbox-label": "إنشاء من قالب"
 }

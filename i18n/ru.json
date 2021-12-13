@@ -35,7 +35,10 @@
 			"Stjn",
 			"Translatobecomer",
 			"Vlad5250",
-			"Александр Сигачёв"
+			"Александр Сигачёв",
+			"MuratTheTurkish",
+			"Smigles",
+			"Wileyfoxyx"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -311,5 +314,6 @@
 	"centralnotice-banner-sequence-no-banner": "(нет баннера)",
 	"centralnotice-multiple-countries": "Несколько стран",
 	"centralnotice-multiple-languages": "Несколько языков",
+	"centralnotice-banner-template": "Шаблон баннера",
 	"centralnotice-banner-template-info": "(шаблон)"
 }

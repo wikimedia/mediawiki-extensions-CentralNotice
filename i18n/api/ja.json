@@ -3,9 +3,11 @@
 		"authors": [
 			"Shirayuki",
 			"SkyDaisy9",
-			"Yusuke1109"
+			"Yusuke1109",
+			"Rrock9312"
 		]
 	},
+	"apierror-centralnotice-cdn-banner-not-found": "この項目のページが見つかりません",
 	"apihelp-centralnoticeallocations-description": "CentralNoticeが提供しているバナーの割り当てを、すべての利用者型を対象にパラメーターにより抽出し取得します。\n\nこれはJSON only callです。",
 	"apihelp-centralnoticequerycampaign-example-1": " \"Plea_US\"キャンペーンを表示",
 	"apihelp-query+centralnoticelogs-param-user": "利用者名（省略可能）",

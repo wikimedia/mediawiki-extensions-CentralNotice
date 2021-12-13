@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Brahim-essaidi",
+			"Hakim1bal"
+		]
+	},
+	"centralnotice-remove": "ⵙⵉⵜⵜⵢ",
+	"centralnotice-add": "ⵔⵏⵓ",
+	"centralnotice-translate-to": "ⵙⵙⵓⵖⵍ ⵖⵔ",
+	"centralnotice-translate": "ⵙⵙⵓⵖⵍ",
+	"centralnotice-english": "ⵜⴰⵏⴳⵍⵉⵣⵜ",
+	"centralnotice-day": "ⴰⵙⵙ",
+	"centralnotice-year": "ⴰⵙⴳⴳⵯⴰⵙ",
+	"centralnotice-month": "ⴰⵢⵢⵓⵔ",
+	"centralnotice-hours": "ⵜⴰⵙⵔⴰⴳⵜ",
+	"centralnotice-min": "ⵜⵓⵙⴷⵉⴷⵜ",
+	"centralnotice-project-lang": "ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵓⵙⵏⴼⴰⵕ",
+	"centralnotice-select-all": "ⵙⵜⵢ ⵎⴰⵕⵕⴰ",
+	"centralnotice-remove-all": "ⴽⴽⵙ ⵎⴰⵕⵕⴰ",
+	"centralnotice-items-selected": "$1 {{PLURAL:$1|ⴰⴼⵔⴷⵉⵙ ⵉⵜⵜⵓⵙⵜⴰⵢⵏ|ⵉⴼⵔⴷⵉⵙⵏ ⵜⵜⵓⵙⵜⴰⵢⵏⵉⵏ}}",
+	"centralnotice-project-name": "ⵉⵙⵎ ⵏ ⵓⵙⵏⴼⴰⵕ",
+	"centralnotice-settings": "ⵜⵉⵙⵖⴰⵍ",
+	"centralnotice-message": "ⵜⵓⵣⵉⵏⵜ",
+	"centralnotice-preview-loader-error-dialog-ok": "ⵡⴰⵅⵅⴰ",
+	"centralnotice-clone-name": "ⵉⵙⵎ:",
+	"centralnotice-clone-cancel": "ⵙⵔ",
+	"centralnotice-close-title": "ⵔⴳⵍ",
+	"centralnotice-banner-cdn-dialog-ok": "ⵡⴰⵅⵅⴰ",
+	"centralnotice-regions": "ⵜⵉⵎⵏⴰⴹⵉⵏ",
+	"centralnotice-location-name-and-code": "$1 ($2)",
+	"centralnotice-languages": "ⵜⵓⵜⵍⴰⵢⵉⵏ",
+	"centralnotice-language": "ⵜⵓⵜⵍⴰⵢⵜ",
+	"centralnotice-projects": "ⵉⵙⵏⴼⴰⵕⵏ",
+	"centralnotice-country": "ⵜⴰⵎⵓⵔⵜ",
+	"centralnotice-region": "ⵜⴰⵎⵏⴰⴹⵜ",
+	"centralnotice-date": "ⴰⵙⴰⴽⵓⴷ",
+	"centralnotice-all": "ⵎⴰⵕⵕⴰ",
+	"centralnotice-archive-banner-cancel": "ⵙⵔ",
+	"centralnotice-archive-campaign-cancel": "ⵙⵔ",
+	"centralnotice-delete-banner": "ⴽⴽⵙ"
+}

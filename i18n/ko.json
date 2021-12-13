@@ -13,7 +13,9 @@
 			"SeoJeongHo",
 			"Ykhwong",
 			"Yknok29",
-			"아라"
+			"아라",
+			"Anont",
+			"Apzp79"
 		]
 	},
 	"centralnotice": "중앙 공지 관리",
@@ -21,6 +23,8 @@
 	"bannerallocation": "중앙 공지 관리",
 	"centralnoticelogs": "중앙 공지 관리",
 	"right-centralnotice-admin": "중앙 공지 관리",
+	"protect-level-centralnotice-admin": "중앙 공지 관리자만 허용",
+	"restriction-level-centralnotice-admin": "관리자가 보호한 중앙 공지",
 	"action-centralnotice-admin": "중앙 공지를 관리하기",
 	"centralnotice-desc": "중앙에서 공지하는 사이트공지를 추가합니다",
 	"centralnotice-summary": "이 모듈은 현재 중앙 공지를 편집할 수 있습니다.\n현재의 공지 편집과 공지의 추가와 삭제도 사용할 수 있습니다.",
@@ -185,7 +189,7 @@
 	"centralnotice-damaged-log": "$1 - (손상된 기록)",
 	"centralnotice-date": "날짜",
 	"centralnotice-apply-filters": "필터 적용",
-	"centralnotice-clear-filters": "필터 지움",
+	"centralnotice-clear-filters": "필터 지우기",
 	"centralnotice-banner-messages": "번역 가능한 배너 메시지",
 	"centralnotice-filter-template-prompt": "배너 필터 (예를 들어 Jimmy 2008)",
 	"centralnotice-filter-template-submit": "필터 적용",
@@ -261,6 +265,7 @@
 	"centralnotice-banner-sequence-page-views-error": "단계에는 적어도 한 건의 조회수가 있어야 합니다.",
 	"centralnotice-banner-sequence-skip-with-id-error": "식별자는 \"|\"를 포함할 수 없습니다.",
 	"centralnotice-banner-sequence-no-banner": "(배너 없음)",
+	"centralnotice-banner-protection-log-reason": "CentralNotice로 자동으로 보호됐습니다. [[Special:CentralNotice]] 또는 [[Special:Translate]]를 통해서 만 수정하세요.",
 	"centralnotice-multiple-countries": "다수 국가",
 	"centralnotice-multiple-languages": "다수 언어",
 	"tag-centralnotice": "중앙 공지",

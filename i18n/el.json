@@ -16,7 +16,8 @@
 			"Tifa93",
 			"Xaris333",
 			"ZaDiak",
-			"Απεργός"
+			"Απεργός",
+			"Giorgos456"
 		]
 	},
 	"centralnotice": "Διαχειριστής κεντρικών ειδοποιήσεων",
@@ -122,7 +123,7 @@
 	"centralnotice-projects": "Εγχειρήματα",
 	"centralnotice-country": "Χώρα",
 	"centralnotice-no-allocation": "Δεν διατίθενται πανό.",
-	"centralnotice-allocation-description": "Διατίθεται πανό για το $1.$2 στο $3:",
+	"centralnotice-allocation-description": "Διατίθεται πανό για τη γλώσσα: $1, έργο: $2, στη χώρα: $3, στη συσκευή $4",
 	"centralnotice-percentage": "Ποσοστό",
 	"centralnotice-documentwrite-error": "Δεν μπορεί να χρησιμοποιηθεί το document.write() μέσα σε ένα πανό.\nΔείτε το https://meta.wikimedia.org/wiki/Help:CentralNotice για περισσότερες πληροφορίες.",
 	"centralnotice-preferred": "Προτεραιότητα",
@@ -156,7 +157,7 @@
 	"centralnotice-apply-filters": "Εφαρμογή φίλτρων",
 	"centralnotice-clear-filters": "Εκκαθάριση φίλτρων",
 	"centralnotice-banner-messages": "Μεταφράσιμα μηνύματα banner",
-	"centralnotice-filter-template-prompt": "Το όνομα του banner περιέχει:",
+	"centralnotice-filter-template-prompt": "Φιλτράρισμα banner (π.χ. Jimmy 2008)",
 	"centralnotice-filter-template-submit": "Εφαρμογή φίλτρου",
 	"centralnotice-filter-template-banner": "Φιλτράρισμα banners",
 	"centralnotice-priority-low": "χαμηλό",

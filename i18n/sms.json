@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yupik"
+		]
+	},
+	"centralnotice-view": "Čuäʹjet",
+	"centralnotice-save-banner": "Ruõkk",
+	"centralnotice-remove": "Jaukkâd",
+	"centralnotice-add": "Lââʹzzet",
+	"centralnotice-add-notice-button": "Raaj",
+	"centralnotice-translations": "Jåårǥlõõzz",
+	"centralnotice-translate-to": "Täävtõsǩiõll:",
+	"centralnotice-translate": "Jåårǥlââʹtt",
+	"centralnotice-project-lang": "Projeeʹkt ǩiõll",
+	"centralnotice-select-all": "Vaʹlljed pukid",
+	"centralnotice-project-name": "Projeeʹkt nõmm",
+	"centralnotice-change-lang": "Muuʹtt jåårǥlâʹttemǩiõl",
+	"centralnotice-settings": "Asetõõzz",
+	"centralnotice-message": "Saakk",
+	"centralnotice-clone-name": "Nõmm:",
+	"centralnotice-languages": "Ǩiõl",
+	"centralnotice-language": "Ǩiõll",
+	"centralnotice-projects": "Projeeʹkt",
+	"centralnotice-user": "Õõʹnni",
+	"centralnotice-change-summary-heading": "Õʹhtteǩeässmõš",
+	"centralnotice-action-created": "rajjum",
+	"centralnotice-action-removed": "jaukkuum",
+	"centralnotice-landingpages": "Alggseeid",
+	"centralnotice-date": "Peiʹvvmieʹrr",
+	"centralnotice-all": "Puk",
+	"centralnotice-banner-class": "Kategoria",
+	"centralnotice-change-summary-label": "Õʹhtteǩeässmõš",
+	"centralnotice-delete-banner": "Jaukkâd"
+}

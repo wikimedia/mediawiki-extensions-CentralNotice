@@ -20,7 +20,8 @@
 			"Southparkfan",
 			"TBloemink",
 			"Tvdm",
-			"User555"
+			"User555",
+			"Danieldegroot2"
 		]
 	},
 	"centralnotice": "Centrale sitenotice beheren",
@@ -105,12 +106,13 @@
 	"centralnotice-number-uses": "Keren gebruikt",
 	"centralnotice-settings": "Instellingen",
 	"centralnotice-edit-template": "Sjabloon bewerken",
-	"centralnotice-edit-template-summary": "Sluit een stuk tekst in met drie accolades, bijvoorbeeld {{{jimo-quote}}}, om de tekst vertaalbaar te maken.",
+	"centralnotice-edit-template-summary": "Waarschuwing: Het laden van externe bronnen in een banner kan de privacy van gebruikers in gevaar brengen.\n\nAls u een vertaalbaar bericht wilt maken, plaatst u een tekenreeks tussen drie accolades, bijvoorbeeld <nowiki>{{{berichtnaam}}}</nowiki>. Als u een vertaalbaar bericht van een andere banner wilt gebruiken, moet u de bannernaam aangeven, gevolgd door een komma, en dan de berichtnaam, bijvoorbeeld <nowiki> {{{bannernaam,berichtnaam}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "Magische woorden die beschikbaar gesteld zijn via bannermixins: $1",
 	"centralnotice-message": "Bericht",
 	"centralnotice-message-not-set": "Het bericht is niet ingesteld",
 	"centralnotice-campaigns-using-banner": "Campagnes die deze banner gebruiken",
 	"centralnotice-fieldset-preview": "Live voorvertoning",
+	"centralnotice-update-preview": "Voorvertoning bijwerken",
 	"centralnotice-preview-loader-error-dialog-ok": "OK",
 	"centralnotice-clone": "Kopiëren",
 	"centralnotice-clone-notice": "Een kopie van de sjabloon maken",
@@ -137,7 +139,10 @@
 	"centralnotice-banner-cdn-help": "Verwijder bannerinhoud die opgeslagen is in de front-end cache voor anonieme gebruikers voor de geselecteerde taal. (Banners worden voor ingelogde gebruikers niet gecacht.)",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-geo": "Geografisch bepaald",
+	"centralnotice-geo-status": "Geselecteerd $1 $2",
 	"centralnotice-countries": "Landen",
+	"centralnotice-regions": "Regio's",
+	"centralnotice-location": "Landen en regio's",
 	"centralnotice-allocation": "Toewijzing",
 	"centralnotice-view-allocation": "Bannertoewijzing bekijken",
 	"centralnotice-allocation-instructions": "Kies de omgeving waarvoor u de bannertoewijzing wilt bekijken:",
@@ -145,6 +150,7 @@
 	"centralnotice-language": "Taal",
 	"centralnotice-projects": "Projecten",
 	"centralnotice-country": "Land",
+	"centralnotice-region": "Regio",
 	"centralnotice-no-allocation": "Geen banners toegewezen.",
 	"centralnotice-allocation-description": "Bannertoewijzing voor taal: $1, project: $2, in land: $3, op apparaat $4",
 	"centralnotice-historical-allocation-description": "Bannertoewijzing voor taal: $1, project: $2, in land: $3, op apparaat $4, per $5",
@@ -251,7 +257,7 @@
 	"centralnotice-banner-not-found-title": "Banner niet gevonden",
 	"centralnotice-banner-not-found-contents": "Er is geen banner met deze exacte naam.",
 	"hidebanners": "Banners verbergen",
-	"centralnotice-specialhidebanners-p3p": "Sommige browsers vereisen een compact P3P-beleid om in bepaalde situaties cookies te plaatsen. Momenteel is er echter geen compact beleid beschikbaar. Zie het privacy-beleid van de site.",
+	"centralnotice-specialhidebanners-p3p": "Sommige browsers vereisen een compact P3P-beleid om in bepaalde situaties cookies te plaatsen. Momenteel is er echter geen compact beleid beschikbaar. Zie het privacybeleid van de site.",
 	"centralnotice-banner-history-logger": "Bannergeschiedenis logger",
 	"centralnotice-banner-history-logger-rate": "Testfrequentie",
 	"centralnotice-banner-history-logger-max-entry-age": "Maximale leeftijd van logboekregels (in dagen)",
@@ -268,7 +274,9 @@
 	"centralnotice-banner-sequence-page-views": "Pagina weergaven",
 	"centralnotice-banner-sequence-no-banner": "(Geen banner)",
 	"centralnotice-multiple-countries": "Meerdere landen",
+	"centralnotice-multiple-regions": "Meerdere regio's",
 	"centralnotice-multiple-languages": "Meerdere talen",
 	"tag-centralnotice": "CentralNotice",
-	"tag-centralnotice_translation": "CentralNotice-vertaling"
+	"tag-centralnotice_translation": "CentralNotice-vertaling",
+	"centralnotice-banner-template-info": "(sjabloon)"
 }

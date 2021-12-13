@@ -3,7 +3,9 @@
 		"authors": [
 			"Artsiom91",
 			"Mikalai Udodau",
-			"Тест"
+			"Тест",
+			"Kareyac",
+			"ZlyiLev"
 		]
 	},
 	"centralnotice-add": "Дадаць",
@@ -13,5 +15,7 @@
 	"centralnotice-close-title": "Закрыць",
 	"centralnotice-languages": "Мовы",
 	"centralnotice-language": "Мова",
-	"centralnotice-date": "Дата"
+	"centralnotice-date": "Дата",
+	"centralnotice-banner-messages": "Паведамленні банераў, якія магчыма перакласці",
+	"centralnotice-all": "Усе"
 }

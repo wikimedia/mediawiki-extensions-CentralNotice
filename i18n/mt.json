@@ -3,7 +3,8 @@
 		"authors": [
 			"Chrisportelli",
 			"Leli Forte",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"ToniSant"
 		]
 	},
 	"centralnotice": "Ġestjoni tal-avviż ċentrali",
@@ -145,6 +146,7 @@
 	"centralnotice-priority-normal": "normali",
 	"centralnotice-priority-high": "għoli",
 	"centralnotice-priority-emergency": "emerġenza",
+	"centralnotice-templates-included": "Mudelli nklużi",
 	"centralnotice-change-summary-label": "Fil-qosor",
 	"centralnotice-change-summary-prompt": "Messaġġ dwar dawn il-bidliet (jekk trid)",
 	"centralnotice-change-summary-action-prompt": "Messaġġ dwar din l-azzjoni (jekk trid)",

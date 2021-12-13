@@ -1,8 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"NoiX180"
+			"NoiX180",
+			"Chinamoonroll"
 		]
 	},
-	"centralnotice-save-banner": "Save"
+	"centralnotice-save-banner": "Raksa",
+	"centralnotice-add-notice-cancel-button": "Wangdé",
+	"centralnotice-clone-cancel": "Wangdé",
+	"centralnotice-close-button": "Tombol sineb",
+	"centralnotice-archive-banner-cancel": "Wangdé",
+	"centralnotice-archive-campaign-cancel": "Wangdé",
+	"centralnotice-delete-banner-cancel": "Wangdé"
 }

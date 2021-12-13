@@ -6,7 +6,9 @@
 			"Red Winged Duck",
 			"Wizardist",
 			"Zedlik",
-			"Александр Сигачёв"
+			"Александр Сигачёв",
+			"Renessaince",
+			"W"
 		]
 	},
 	"centralnotice": "Кіраваньне цэнтралізаванымі паведамленьнямі",
@@ -89,6 +91,7 @@
 	"centralnotice-edit-template-magicwords": "Магічныя слова, прапанаваныя праз міксіны банэра: $1",
 	"centralnotice-message": "Паведамленьне",
 	"centralnotice-message-not-set": "Паведамленьне не ўсталяванае",
+	"centralnotice-preview-loader-error-dialog-ok": "Добра",
 	"centralnotice-clone": "Копія",
 	"centralnotice-clone-notice": "Стварыць копію паведамленьня",
 	"centralnotice-clone-name": "Назва:",
@@ -106,8 +109,11 @@
 	"centralnotice-banner-collapsible": "Згортваемы",
 	"centralnotice-banner-fundraising": "Гэта банэр для збору ахвяраваньняў",
 	"centralnotice-banner-mixins": "Дамешкі",
+	"centralnotice-banner-cdn-button": "Ачысьціць",
+	"centralnotice-banner-cdn-dialog-ok": "Добра",
 	"centralnotice-geo": "Геаграфічная прывязка",
 	"centralnotice-countries": "Краіны",
+	"centralnotice-location": "Краіны і краі",
 	"centralnotice-allocation": "Прызначэньне",
 	"centralnotice-view-allocation": "Паказаць разьмяшчэньне банэра",
 	"centralnotice-allocation-instructions": "Выберыце рэжым, для якога Вы жадаеце праглядзець разьмяшчэньне банэра:",
@@ -125,6 +131,7 @@
 	"centralnotice-timestamp": "Дата/час",
 	"centralnotice-user": "Удзельнік",
 	"centralnotice-action": "Дзеяньне",
+	"centralnotice-change-summary-heading": "Падсумаваньне",
 	"centralnotice-action-created": "створанае",
 	"centralnotice-action-modified": "зьмененае",
 	"centralnotice-action-removed": "выдаленае",
@@ -170,6 +177,7 @@
 	"centralnotice-bucket": "Група",
 	"centralnotice-bucket-letter": "Група «$1»",
 	"centralnotice-devicetype-desktop": "Настольны кампутар",
+	"centralnotice-devicetype-android": "АС «Андроід»",
 	"centralnotice-all": "Усе",
 	"centralnotice-all-except": "Усе, акрамя $1",
 	"centralnotice-excluding-list": "$1 (за выняткам $2)",
@@ -181,6 +189,8 @@
 	"centralnotice-archive-banner": "Заархіваваць",
 	"centralnotice-archive-banner-title": "Заархіваваць {{PLURAL:$1|1=банэр|банэры}}?",
 	"centralnotice-archive-banner-cancel": "Скасаваць",
+	"centralnotice-change-summary-label": "Падсумаваньне",
+	"centralnotice-archive-campaign-cancel": "Скасаваць",
 	"centralnotice-delete-banner": "Выдаліць",
 	"centralnotice-delete-banner-title": "Выдаліць {{PLURAL:$1|1=банэр|банэры}}?",
 	"centralnotice-delete-banner-cancel": "Скасаваць",
@@ -191,5 +201,6 @@
 	"centralnotice-end-date": "Дата заканчэньня (UTC)",
 	"centralnotice-end-time": "Час сканчэньня (UTC)",
 	"centralnotice-multiple-countries": "Некалькі краінаў",
-	"centralnotice-multiple-languages": "Некалькі моваў"
+	"centralnotice-multiple-languages": "Некалькі моваў",
+	"tag-centralnotice_translation": "Пераклад Цэнтралізаваных абвестак"
 }
