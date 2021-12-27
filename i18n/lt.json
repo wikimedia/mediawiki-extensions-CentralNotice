@@ -47,7 +47,7 @@
 	"centralnotice-banner-name": "Banerio pavadinimas:",
 	"centralnotice-banner": "Baneris",
 	"centralnotice-banner-heading": "Baneris: $1",
-	"centralnotice-templates": "Baneriai",
+	"centralnotice-templates": "Skelbimų antraštės",
 	"centralnotice-throttle": "Apriboti srautą",
 	"centralnotice-balanced": "Visiems baneriams suteikti vienodą svorį",
 	"centralnotice-weight": "Svoris",
@@ -219,5 +219,14 @@
 	"centralnotice-impression-diet-restart-cycle-delay": "Kiek ilgai lauki prieš pradedant ciklą iš naujo, sekundėmis (nebūtina)",
 	"centralnotice-impression-diet-restart-cycle-delay-help": "Numatytoji reikšmė yra 0, tai reiškia, kad skaitytojai patirs vieną ciklą ir tada baneriai nebebus rodomi.",
 	"centralnotice-multiple-countries": "Kelios šalys",
-	"centralnotice-multiple-languages": "Kelios kalbos"
+	"centralnotice-multiple-languages": "Kelios kalbos",
+	"prefs-centralnotice-display-banner-types": "Kokias skelbimų antraštes rodyti?",
+	"centralnotice-campaign-type-advocacy": "Kampanijos",
+	"centralnotice-campaign-type-article-writing": "Straipsnių kūrimo iniciatyvos",
+	"centralnotice-campaign-type-event": "Renginiai",
+	"centralnotice-campaign-type-fundraising": "Paramos prašymai",
+	"centralnotice-campaign-type-governance": "Administraciniai pranešimai",
+	"centralnotice-campaign-type-maintenance": "Techniniai pranešimai",
+	"centralnotice-campaign-type-photography": "Nuotraukos",
+	"centralnotice-campaign-type-special": "Ypatingieji pranešimai"
 }
