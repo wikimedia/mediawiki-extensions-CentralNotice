@@ -181,5 +181,15 @@
 	"centralnotice-end-date": "Dátum ukončenia (UTC)",
 	"centralnotice-end-time": "Čas ukončenia (UTC)",
 	"centralnotice-multiple-countries": "Viacero krajín",
-	"centralnotice-multiple-languages": "Viacero jazykov"
+	"centralnotice-multiple-languages": "Viacero jazykov",
+	"prefs-centralnotice-display-banner-types": "Zobrazované druhy bannerov",
+	"centralnotice-campaign-type-advocacy": "Advokácie",
+	"centralnotice-campaign-type-article-writing": "Písanie článkov",
+	"centralnotice-campaign-type-event": "Udalosti",
+	"centralnotice-campaign-type-fundraising": "Získavanie financií",
+	"centralnotice-campaign-type-governance": "Vedenie",
+	"centralnotice-campaign-type-maintenance": "Údržby",
+	"centralnotice-campaign-type-photography": "Fotografovanie",
+	"centralnotice-campaign-type-special": "Špeciálne",
+	"centralnotice-user-prefs-intro": "Bannery zobrazujú oznámenia zaujímavé pre komunity a užívateľov projektov Wikimedia.\n\nPomocou možností nižšie si môžete spravovať, ktoré druhy oznámení sa vám zobrazia. Niektoré oznámenia o platforme, napríklad oznámenia týkajúce sa údržby serverov a špeciálne upozornenia považované za nevyhnutné pre všetkých užívateľov, sa budú zobrazovať vždy. Ďalšie informácie nájdete v [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentácii na Mete]]."
 }
