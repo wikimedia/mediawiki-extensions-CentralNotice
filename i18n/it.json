@@ -283,5 +283,5 @@
 	"centralnotice-campaign-type-maintenance": "Manutenzione",
 	"centralnotice-campaign-type-photography": "Fotografia",
 	"centralnotice-campaign-type-special": "Speciale",
-	"centralnotice-user-prefs-intro": "I banner mostrano avvisi di interesse per le comunità e gli utenti di Wikimedia.\n\nLe opzioni di seguito ti consentono di scegliere i tipi di avviso che desideri visualizzare. Alcuni avvisi relativi alla piattaforma, come quelli di manutenzione del sito e quelli speciali che sono considerati necessari a tutti gli utenti, saranno sempre visualizzati. Consulta la [[metawikimedia:Special:MyLanguage/CentralNotice|documentazione su Meta-Wiki]] per maggiori informazioni."
+	"centralnotice-user-prefs-intro": "I banner sono avvisi che interessano le comunità e gli utenti di Wikimedia.\n\nLe seguenti opzioni ti consentono di scegliere i tipi di avviso che desideri visualizzare. Alcuni avvisi relativi alla piattaforma saranno sempre visualizzati, ad esempio quelli di manutenzione del sito e quelli speciali che sono considerati necessari a tutti gli utenti. Consulta la [[metawikimedia:Special:MyLanguage/CentralNotice|documentazione su Meta-Wiki]] per maggiori informazioni."
 }
