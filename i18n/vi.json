@@ -5,6 +5,7 @@
 			"Leduyquang753",
 			"Max20091",
 			"Minh Nguyen",
+			"NguoiDungKhongDinhDanh",
 			"Trần Nguyễn Minh Huy",
 			"Vinhtantran",
 			"පසිඳු කාවින්ද"
@@ -326,7 +327,7 @@
 	"centralnotice-create-from-template-checkbox-label": "Tạo từ biểu mẫu",
 	"centralnotice-campaign-view-logs": "Xem nhật trình thiết lập chiến dịch",
 	"prefs-centralnotice-banners": "Biểu ngữ",
-	"prefs-centralnotice-display-banner-types": "Kiểu biểu ngữ được hiển thị",
+	"prefs-centralnotice-display-banner-types": "Kiểu biểu ngữ hiển thị",
 	"centralnotice-campaign-type": "Kiểu chiến dịch",
 	"centralnotice-empty-campaign-type-option": "Không có kiểu nhất định (luôn hiển thị)",
 	"centralnotice-non-existent-campaign-type-error": "Kiểu chiến dịch được chọn không tồn tại",
