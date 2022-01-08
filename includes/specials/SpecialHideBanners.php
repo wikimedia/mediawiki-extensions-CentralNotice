@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
+
 /**
  * Unlisted Special Page which sets a cookie for hiding banners across all languages of a project.
  * This is typically used on donation thank-you pages so that users who have donated will no longer
@@ -74,7 +76,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 			'reason' => $reason
 		];
 
-		if ( is_callable( [ 'CentralAuthUser', 'getCookieDomain' ] ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
 			$cookieDomain = $wgNoticeCookieDomain;
