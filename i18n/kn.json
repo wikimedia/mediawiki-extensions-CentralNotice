@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Nayvik",
-			"VASANTH S.N."
+			"VASANTH S.N.",
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
 		]
 	},
 	"centralnotice-enabled": "ಶಕ್ತಗೊಳಿಸಿ",
@@ -56,5 +57,7 @@
 	"centralnotice-all": "ಎಲ್ಲಾ",
 	"centralnotice-user-role-anonymous": "ಅನಾಮಧೇಯ",
 	"centralnotice-banner-class": "ವರ್ಗ",
-	"centralnotice-delete-banner": "ಅಳಿಸು"
+	"centralnotice-delete-banner": "ಅಳಿಸು",
+	"centralnotice-start-date": "ಆರಂಭದ ದಿನಾಂಕ (UTC)",
+	"centralnotice-end-date": "ಮುಕ್ತಾಯದ ದಿನಾಂಕ (UTC)"
 }
