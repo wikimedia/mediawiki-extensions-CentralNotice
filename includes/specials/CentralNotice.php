@@ -1294,7 +1294,7 @@ class CentralNotice extends SpecialPage {
 		);
 
 		// No banners found
-		if ( $dbr->numRows( $res ) < 1 ) {
+		if ( $res->numRows() < 1 ) {
 			return '';
 		}
 
