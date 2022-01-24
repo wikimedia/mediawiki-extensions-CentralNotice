@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Artsiom91",
+			"Chadyka",
 			"Kareyac",
 			"Mikalai Udodau",
 			"ZlyiLev",
@@ -12,7 +13,9 @@
 	"centralnotice-translations": "Пераклады",
 	"centralnotice-translate": "Пераклад",
 	"centralnotice-message": "Паведамленне",
+	"centralnotice-preview-loader-error-dialog-ok": "Добра",
 	"centralnotice-close-title": "Закрыць",
+	"centralnotice-banner-cdn-dialog-ok": "Добра",
 	"centralnotice-languages": "Мовы",
 	"centralnotice-language": "Мова",
 	"centralnotice-date": "Дата",
