@@ -371,7 +371,7 @@ class Banner {
 		);
 
 		// Extract the dataz!
-		$row = $db->fetchObject( $rowRes );
+		$row = $rowRes->fetchObject();
 		if ( $row ) {
 			$this->id = (int)$row->tmp_id;
 			$this->name = $row->tmp_name;
@@ -1188,7 +1188,7 @@ class Banner {
 		$dbr = CNDatabase::getDb();
 		$res = $dbr->select( 'cn_assignments', 'asn_id', [ 'tmp_id' => $id ], __METHOD__ );
 
-		if ( $dbr->numRows( $res ) > 0 ) {
+		if ( $res->numRows() > 0 ) {
 			throw new LogicException( 'Cannot remove a template still bound to a campaign!' );
 		} else {
 			// Log the removal of the banner

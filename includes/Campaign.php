@@ -946,10 +946,10 @@ class Campaign {
 			[ 'not_name' => $campaignName ],
 			__METHOD__
 		);
-		if ( $dbr->numRows( $res ) < 1 ) {
+		if ( $res->numRows() < 1 ) {
 			return 'centralnotice-remove-notice-doesnt-exist';
 		}
-		$row = $dbr->fetchObject( $res );
+		$row = $res->fetchObject();
 		if ( $row->not_locked == '1' ) {
 			return 'centralnotice-notice-is-locked';
 		}
@@ -996,7 +996,7 @@ class Campaign {
 			__METHOD__
 		);
 
-		if ( $dbw->numRows( $res ) > 0 ) {
+		if ( $res->numRows() > 0 ) {
 			return 'centralnotice-template-already-exists';
 		}
 
