@@ -71,7 +71,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal
 		$this->mNavigationBar = [
-			'class' => 'HTMLBannerPagerNavigation',
+			'class' => HTMLBannerPagerNavigation::class,
 			'value' => $this->mNavigationBar
 		];
 
@@ -152,7 +152,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 			] );
 		}
 		$retval["cn-banner-list-element-$bannerId"] = [
-			'class' => 'HTMLInfoField',
+			'class' => HTMLInfoField::class,
 			'default' => $rowText . " (" . BannerRenderer::getPreviewLink( $bannerName ) . ")",
 			'raw' => true,
 		];

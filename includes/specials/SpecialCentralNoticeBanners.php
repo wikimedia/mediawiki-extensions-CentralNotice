@@ -171,14 +171,14 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor = [
 			'bannerNameFilter' => [
 				'section' => 'header/banner-search',
-				'class' => 'HTMLTextField',
+				'class' => HTMLTextField::class,
 				'placeholder-message' => 'centralnotice-filter-template-prompt',
 				'filter-callback' => [ $this, 'sanitizeSearchTerms' ],
 				'default' => $filter,
 			],
 			'filterApply' => [
 				'section' => 'header/banner-search',
-				'class' => 'HTMLButtonField',
+				'class' => HTMLButtonField::class,
 				'default' => $this->msg( 'centralnotice-filter-template-submit' )->text(),
 			]
 		];
@@ -187,51 +187,51 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor += [
 			'selectAllBanners' => [
 				'section' => 'header/banner-bulk-manage',
-				'class' => 'HTMLCheckField',
+				'class' => HTMLCheckField::class,
 				'disabled' => !$this->editable,
 			],
 			/* TODO: Actually enable this feature
 			'archiveSelectedBanners' => array(
 				'section' => 'header/banner-bulk-manage',
-				'class' => 'HTMLButtonField',
+				'class' => HTMLButtonField::class,
 				'default' => 'Archive',
 				'disabled' => !$this->editable,
 			),
 			*/
 			'deleteSelectedBanners' => [
 				'section' => 'header/banner-bulk-manage',
-				'class' => 'HTMLButtonField',
+				'class' => HTMLButtonField::class,
 				'default' => $this->msg( 'centralnotice-remove' )->text(),
 				'disabled' => !$this->editable,
 			],
 			'addNewBanner' => [
 				'section' => 'header/one-off',
-				'class' => 'HTMLButtonField',
+				'class' => HTMLButtonField::class,
 				'default' => $this->msg( 'centralnotice-add-template' )->text(),
 				'disabled' => !$this->editable,
 			],
 			'newBannerName' => [
 				'section' => 'addBanner',
-				'class' => 'HTMLTextField',
+				'class' => HTMLTextField::class,
 				'disabled' => !$this->editable,
 				'label' => $this->msg( 'centralnotice-banner-name' )->text(),
 			],
 			'createFromTemplateCheckbox' => [
 				'section' => 'addBanner',
-				'class' => 'HTMLCheckField',
+				'class' => HTMLCheckField::class,
 				'label' => $this->msg( 'centralnotice-create-from-template-checkbox-label' )->text(),
 				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
 			],
 			'newBannerTemplate' => [
 				'section' => 'addBanner',
-				'class' => 'HTMLSelectLimitField',
+				'class' => HTMLSelectLimitField::class,
 				'cssclass' => 'banner-template-dropdown-hidden',
 				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
 				'options' => $this->getTemplateBannerDropdownItems()
 			],
 			'newBannerEditSummary' => [
 				'section' => 'addBanner',
-				'class' => 'HTMLTextField',
+				'class' => HTMLTextField::class,
 				'label-message' => 'centralnotice-change-summary-label',
 				'placeholder-message' => 'centralnotice-change-summary-action-prompt',
 				'disabled' => !$this->editable,
@@ -239,7 +239,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			],
 			'removeBannerEditSummary' => [
 				'section' => 'removeBanner',
-				'class' => 'HTMLTextField',
+				'class' => HTMLTextField::class,
 				'label-message' => 'centralnotice-change-summary-label',
 				'placeholder-message' => 'centralnotice-change-summary-action-prompt',
 				'disabled' => !$this->editable,
@@ -257,7 +257,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			[
 				'applyTo' => [
 					'section' => 'banner-list',
-					'class' => 'HTMLCheckField',
+					'class' => HTMLCheckField::class,
 					'cssclass' => 'cn-bannerlist-check-applyto',
 				]
 			],
@@ -567,7 +567,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		if ( $campaignNames ) {
 			$formDescriptor[ 'banner-assigned-to-campaign' ] = [
 				'section' => 'banner-template',
-				'class' => 'HTMLInfoField',
+				'class' => HTMLInfoField::class,
 				'label-message' => 'centralnotice-messages-banner-in-campaign',
 				'default' => implode( ', ', $campaignNames )
 			];
@@ -649,7 +649,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 			$formDescriptor[ 'translate-language' ] = [
 				'section' => 'banner-messages',
-				'class' => 'LanguageSelectHeaderElement',
+				'class' => LanguageSelectHeaderElement::class,
 				'label-message' => 'centralnotice-language',
 				'options' => $languages,
 				'default' => $this->bannerLanguagePreview,
@@ -685,7 +685,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 				$formDescriptor[ "message-$messageName" ] = [
 					'section' => 'banner-messages',
-					'class' => 'HTMLCentralNoticeBannerMessage',
+					'class' => HTMLCentralNoticeBannerMessage::class,
 					'label-raw' => $label,
 					'banner' => $this->bannerName,
 					'message' => $messageName,
@@ -701,7 +701,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			if ( $wgNoticeUseTranslateExtension ) {
 				$formDescriptor[ 'priority-langs' ] = [
 					'section' => 'banner-messages',
-					'class' => 'HTMLLargeMultiSelectField',
+					'class' => HTMLLargeMultiSelectField::class,
 					'disabled' => !$this->editable,
 					'label-message' => 'centralnotice-prioritylangs',
 					'options' => $languages,
@@ -720,7 +720,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				if ( $readyStateLangs ) {
 					$formDescriptor[ 'pending-languages' ] = [
 						'section' => 'banner-messages',
-						'class' => 'HTMLInfoField',
+						'class' => HTMLInfoField::class,
 						'disabled' => !$this->editable,
 						'label-message' => 'centralnotice-messages-pending-approval',
 						'default' => implode( ', ', $readyStateLangs ),
@@ -733,7 +733,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		/* -- The banner editor -- */
 		$formDescriptor[ 'banner-magic-words' ] = [
 			'section' => 'edit-template',
-			'class' => 'HTMLInfoField',
+			'class' => HTMLInfoField::class,
 			'default' => Html::rawElement(
 				'div',
 				[ 'class' => 'separate-form-element' ],
@@ -763,7 +763,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'return false;">' . $this->msg( 'centralnotice-close-button' )->escaped() . '</a>';
 		$formDescriptor[ 'banner-insert-button' ] = [
 			'section' => 'edit-template',
-			'class' => 'HTMLInfoField',
+			'class' => HTMLInfoField::class,
 			'rawrow' => true,
 			'default' => Html::rawElement(
 				'div',
@@ -800,7 +800,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		/* --- Form bottom options --- */
 		$formDescriptor[ 'summary' ] = [
 			'section' => 'form-actions',
-			'class' => 'HTMLTextField',
+			'class' => HTMLTextField::class,
 			'label-message' => 'centralnotice-change-summary-label',
 			'placeholder' => $this->msg( 'centralnotice-change-summary-prompt' ),
 			'disabled' => !$this->editable,
@@ -809,7 +809,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$formDescriptor[ 'save-button' ] = [
 			'section' => 'form-actions',
-			'class' => 'HTMLSubmitField',
+			'class' => HTMLSubmitField::class,
 			'default' => $this->msg( 'centralnotice-save-banner' )->text(),
 			'disabled' => !$this->editable,
 			'cssclass' => 'cn-formbutton',
@@ -818,7 +818,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$formDescriptor[ 'clone-button' ] = [
 			'section' => 'form-actions',
-			'class' => 'HTMLButtonField',
+			'class' => HTMLButtonField::class,
 			'default' => $this->msg( 'centralnotice-clone' )->text(),
 			'disabled' => !$this->editable,
 			'cssclass' => 'cn-formbutton',
@@ -828,7 +828,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		/* TODO: Add this back in when we can actually support it
 		$formDescriptor[ 'archive-button' ] = array(
 			'section' => 'form-actions',
-			'class' => 'HTMLButtonField',
+			'class' => HTMLButtonField::class,
 			'default' => $this->msg( 'centralnotice-archive-banner' )->text(),
 			'disabled' => !$this->editable,
 			'cssclass' => 'cn-formbutton',
@@ -838,7 +838,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$formDescriptor[ 'delete-button' ] = [
 			'section' => 'form-actions',
-			'class' => 'HTMLButtonField',
+			'class' => HTMLButtonField::class,
 			'default' => $this->msg( 'centralnotice-delete-banner' )->text(),
 			'disabled' => !$this->editable,
 			'cssclass' => 'cn-formbutton',
@@ -855,7 +855,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$formDescriptor[ 'cloneEditSummary' ] = [
 			'section' => 'clone-banner',
-			'class' => 'HTMLTextField',
+			'class' => HTMLTextField::class,
 			'label-message' => 'centralnotice-change-summary-label',
 			'placeholder' => $this->msg( 'centralnotice-change-summary-action-prompt' ),
 			'disabled' => !$this->editable,
@@ -864,7 +864,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$formDescriptor[ 'deleteEditSummary' ] = [
 			'section' => 'delete-banner',
-			'class' => 'HTMLTextField',
+			'class' => HTMLTextField::class,
 			'label-message' => 'centralnotice-change-summary-label',
 			'placeholder-message' => 'centralnotice-change-summary-action-prompt',
 			'disabled' => !$this->editable,
