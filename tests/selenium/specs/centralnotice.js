@@ -4,11 +4,11 @@ const assert = require( 'assert' ),
 
 describe( 'CentralNotice', function () {
 
-	it( 'banner is displayed on Main Page', function () {
-		MainPage.open();
+	it( 'banner is displayed on Main Page', async function () {
+		await MainPage.open();
 
-		MainPage.banner.waitForExist();
-		assert( MainPage.banner.isExisting() );
+		await MainPage.banner.waitForExist();
+		assert( await MainPage.banner.isExisting() );
 	} );
 
 } );
