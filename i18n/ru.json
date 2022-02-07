@@ -46,7 +46,7 @@
 	"bannerallocation": "Управление централизованными уведомлениями",
 	"centralnoticelogs": "Управление централизованными уведомлениями",
 	"right-centralnotice-admin": "управление централизованными уведомлениями",
-	"protect-level-centralnotice-admin": "Разрешить только администраторам централизованных уведомлений",
+	"protect-level-centralnotice-admin": "Разрешено только администраторам централизованных уведомлений",
 	"restriction-level-centralnotice-admin": "защищено до администраторов централизованных уведомлений",
 	"action-centralnotice-admin": "управление централизованными уведомлениями",
 	"centralnotice-desc": "Добавляет общее сообщение сайта",
