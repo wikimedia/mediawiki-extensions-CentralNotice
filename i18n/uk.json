@@ -74,7 +74,7 @@
 	"centralnotice-notice-mixins-fieldset": "Додаткові характеристики кампанії",
 	"centralnotice-notice-mixins-int-required": "Має бути ціле число",
 	"centralnotice-notice-mixins-float-required": "Має бути число із плаваючою комою",
-	"centralnotice-notice": "Компанія",
+	"centralnotice-notice": "Кампанія",
 	"centralnotice-notice-heading": "Кампанія: $1",
 	"centralnotice-notices": "Кампанії",
 	"centralnotice-notice-exists": "Кампанія вже існує.\nНе додано.",
