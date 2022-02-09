@@ -18,7 +18,7 @@
 			// Support: IE 11, Safari 7.1.3+ (window.doNotTrack)
 			window.doNotTrack === '1',
 		waitLogNoSendBeacon,
-		now = Math.round( ( new Date() ).getTime() / 1000 ),
+		now = Math.round( Date.now() / 1000 ),
 		log,
 		readyToLogDeferredObj = $.Deferred(),
 		logSent = false,

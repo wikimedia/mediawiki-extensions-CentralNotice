@@ -46,9 +46,9 @@
 
 		mw.geoIP.makeGeoWithPromise();
 		mw.geoIP.getPromise().fail( function () {
-			assert.ok( true, 'geoIP promise fails, as expected' );
+			assert.true( true, 'geoIP promise fails, as expected' );
 		} ).done( function () {
-			assert.ok( false, 'geoIP promise succeeded, but should not have' );
+			assert.true( false, 'geoIP promise succeeded, but should not have' );
 		} );
 	} );
 
@@ -60,9 +60,9 @@
 
 		mw.geoIP.makeGeoWithPromise();
 		mw.geoIP.getPromise().fail( function () {
-			assert.ok( true, 'geoIP promise fails, as expected' );
+			assert.true( true, 'geoIP promise fails, as expected' );
 		} ).done( function () {
-			assert.ok( false, 'geoIP promise succeeded, but should not have' );
+			assert.true( false, 'geoIP promise succeeded, but should not have' );
 		} );
 	} );
 

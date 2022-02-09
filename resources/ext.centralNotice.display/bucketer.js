@@ -135,7 +135,7 @@
 	 * back to cookies, and it seems preferable to keep things consistent.
 	 */
 	function storeBuckets() {
-		var expires = Math.ceil( ( new Date() ) / 1000 ),
+		var expires = Math.ceil( Date.now() / 1000 ),
 			// eslint-disable-next-line no-jquery/no-map-util
 			serialized = $.map( buckets, function ( opts, key ) {
 				var parts = [
@@ -157,7 +157,7 @@
 			serialized,
 			kvStore.contexts.GLOBAL,
 			// Convert expires to ttl in days
-			Math.ceil( ( expires - ( new Date() ) / 1000 ) / 86400 ),
+			Math.ceil( ( expires - ( Date.now() / 1000 ) ) / 86400 ),
 			multiStorageOption
 		);
 	}

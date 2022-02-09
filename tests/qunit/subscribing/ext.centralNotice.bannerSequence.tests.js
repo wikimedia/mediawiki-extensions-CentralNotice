@@ -273,17 +273,17 @@
 	QUnit.test( 'skipToNextStep() return values', function ( assert ) {
 		var sequenceManager = new bannerSequence.SequenceManager( sequence, 0 );
 
-		assert.ok(
+		assert.true(
 			sequenceManager.skipToNextStep(),
 			'Return value for successful skip to next step'
 		);
 
-		assert.ok(
+		assert.true(
 			sequenceManager.skipToNextStep(),
 			'Return value for successful skip to next step'
 		);
 
-		assert.notOk(
+		assert.false(
 			sequenceManager.skipToNextStep(),
 			'Return value for unsuccessful skip to next step'
 		);
@@ -310,7 +310,7 @@
 				// Mock to get page view
 				getItem: function ( key ) {
 					if ( key === bannerSequence.PAGE_VIEW_STORAGE_KEY ) {
-						assert.ok( true, 'Retrieve page view' );
+						assert.true( true, 'Retrieve page view' );
 						return 1;
 					}
 
@@ -327,7 +327,7 @@
 			cn.getDataProperty = function ( property ) {
 
 				if ( property === 'reducedBucket' ) {
-					assert.ok( true, 'Request reduced bucket' );
+					assert.true( true, 'Request reduced bucket' );
 					return 1;
 				}
 
@@ -367,7 +367,7 @@
 				getItem: function ( key ) {
 
 					if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
-						assert.ok( true, 'Retrieve identifier' );
+						assert.true( true, 'Retrieve identifier' );
 						return true;
 					}
 
@@ -429,7 +429,7 @@
 						assert.strictEqual( value, 5, 'Set next page view' );
 					} else if ( key === bannerSequence.FLAG_STORAGE_KEY + '_identifier' ) {
 						// Value only needs to be truthy
-						assert.ok( value, 'Set identifier' );
+						assert.true( value > 0, 'Set identifier' );
 					} else {
 						throw new Error( 'Incorrect key ' + key + ' in call to cn.kvStore.setItem()' );
 					}
@@ -459,7 +459,7 @@
 
 			// Mock for isBannerShown()
 			cn.isBannerShown = function () {
-				assert.ok( true, 'Call to isBannerShown()' );
+				assert.true( true, 'Call to isBannerShown()' );
 				return true;
 			};
 

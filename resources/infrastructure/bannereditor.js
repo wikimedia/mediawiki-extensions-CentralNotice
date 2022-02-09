@@ -355,9 +355,9 @@
 				// Mozilla support
 				startPos = bannerField.selectionStart;
 				endPos = bannerField.selectionEnd;
-				bannerField.value = bannerField.value.substring( 0, startPos ) +
+				bannerField.value = bannerField.value.slice( 0, startPos ) +
 					buttonValue +
-					bannerField.value.substring( endPos, bannerField.value.length );
+					bannerField.value.slice( endPos, bannerField.value.length );
 			} else {
 				bannerField.value += buttonValue;
 			}

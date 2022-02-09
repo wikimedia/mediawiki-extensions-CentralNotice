@@ -14,7 +14,7 @@
 		category = null,
 		cookiesEnabled = null,
 		localStorageAvailable = null,
-		now = Math.round( ( new Date() ).getTime() / 1000 ),
+		now = Math.round( Date.now() / 1000 ),
 
 		SEPARATOR = '|',
 

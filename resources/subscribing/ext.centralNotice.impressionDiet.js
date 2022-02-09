@@ -33,7 +33,7 @@
 		 */
 		counts,
 
-		now = new Date().getTime(),
+		now = Date.now(),
 
 		STORAGE_KEY = 'impression_diet',
 

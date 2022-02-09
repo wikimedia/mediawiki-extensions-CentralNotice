@@ -69,7 +69,7 @@
 			} );
 
 			if ( altField.value ) {
-				altField.value = altField.value.substr( 0, 8 ) + '000000';
+				altField.value = altField.value.slice( 0, 8 ) + '000000';
 				defaultDate = $.datepicker.parseDate( altFormat, altField.value );
 				$( this ).datepicker(
 					'setDate', defaultDate
@@ -118,9 +118,9 @@
 					regions.push( node.id );
 					// push to object and remove country code from node id
 					if ( node.parent in regionCountries ) {
-						regionCountries[ node.parent ].push( node.id.substring( 3 ) );
+						regionCountries[ node.parent ].push( node.id.slice( 3 ) );
 					} else {
-						regionCountries[ node.parent ] = new Array( node.id.substring( 3 ) );
+						regionCountries[ node.parent ] = new Array( node.id.slice( 3 ) );
 					}
 				}
 			}
