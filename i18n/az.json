@@ -8,7 +8,8 @@
 			"Vago",
 			"Vugar 1981",
 			"Wertuose",
-			"NMW03"
+			"NMW03",
+			"Toghrul Rahimli"
 		]
 	},
 	"centralnotice": "Mərkəzi xəbərdarlıq idarəçisi",
@@ -75,5 +76,16 @@
 	"centralnotice-end-date": "Son tarix (UTC)",
 	"centralnotice-end-time": "Son tarix (UTC)",
 	"centralnotice-multiple-countries": "Bir çox ölkə",
-	"centralnotice-multiple-languages": "Bir çox dil"
+	"centralnotice-multiple-languages": "Bir çox dil",
+	"prefs-centralnotice-banners": "Bannerlər",
+	"prefs-centralnotice-display-banner-types": "Göstəriləcək banner növləri",
+	"centralnotice-campaign-type-advocacy": "Vəkillik",
+	"centralnotice-campaign-type-article-writing": "Məqalə yazılması",
+	"centralnotice-campaign-type-event": "Hadisələr",
+	"centralnotice-campaign-type-fundraising": "İanə toplanması",
+	"centralnotice-campaign-type-governance": "İdarəçilik",
+	"centralnotice-campaign-type-maintenance": "Texniki işlər",
+	"centralnotice-campaign-type-photography": "Fotoqrafiya",
+	"centralnotice-campaign-type-special": "Xüsusi",
+	"centralnotice-user-prefs-intro": "Bannerlərdə Vikimedia icmaları və istifadəçiləri üçün maraqlı elanlar göstərilir.\n\nAşağıda gördüyünüz elan növlərini idarə etməyə imkan verən seçimlər var. Saytda aparılan texniki işlərlə bağlı olan və bütün istifadəçilər üçün zəruri hesab edilən xüsusi bildirişlər həmişə göstəriləcəkdir. Əlavə məlumat üçün [[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Vikidəki sənədləşməni]] oxuyun."
 }
