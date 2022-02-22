@@ -1,9 +1,40 @@
 {
 	"@metadata": {
 		"authors": [
-			"CoderSI"
+			"CoderSI",
+			"Malikxan"
 		]
 	},
+	"centralnotice-enabled": "Yoqilgan",
+	"centralnotice-modify": "Joʻnatish",
+	"centralnotice-save-banner": "Saqlash",
+	"centralnotice-remove": "Olib tashlash",
+	"centralnotice-add": "Qoʻshish",
+	"centralnotice-add-notice-button": "Yaratish",
+	"centralnotice-add-notice-cancel-button": "Bekor qilish",
+	"centralnotice-add-template": "Banner qoʻshish",
+	"centralnotice-list-templates": "Bannerlar roʻyxati",
 	"centralnotice-translations": "Tarjimalar",
-	"centralnotice-languages": "Tillar"
+	"centralnotice-english": "Oʻzbekcha",
+	"centralnotice-banner-name": "Banner nomi:",
+	"centralnotice-banner": "Banner",
+	"centralnotice-templates": "Bannerlar",
+	"centralnotice-day": "Kun",
+	"centralnotice-year": "Yil",
+	"centralnotice-month": "Oy",
+	"centralnotice-hours": "Soat",
+	"centralnotice-min": "Daqiqa",
+	"centralnotice-project-lang": "Loyiha tili",
+	"centralnotice-select-all": "Barchasini tanlash",
+	"centralnotice-remove-all": "Barchasini olib tashlash",
+	"centralnotice-items-selected": "$1 {{PLURAL:$1|ta element}} tanlangan",
+	"centralnotice-project-name": "Loyiha nomi",
+	"centralnotice-settings": "Sozlamalar",
+	"centralnotice-edit-template": "Bannerni tahrirlash",
+	"centralnotice-message": "Xabar",
+	"centralnotice-clone-cancel": "Bekor qilish",
+	"centralnotice-clone-banner": "Banner",
+	"centralnotice-close-title": "Yopish",
+	"centralnotice-languages": "Tillar",
+	"prefs-centralnotice-banners": "Bannerlar"
 }
