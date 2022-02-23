@@ -7,12 +7,18 @@
 	},
 	"centralnotice-save-banner": "Vuorkkii",
 	"centralnotice-add": "Lasseet",
+	"centralnotice-add-notice-button": "Räähti",
+	"centralnotice-month": "Mánuppaje",
 	"centralnotice-select-all": "Valjii puoh",
 	"centralnotice-settings": "Asâttâsah",
 	"centralnotice-clone-name": "Nommâ:",
+	"centralnotice-close-title": "Toopâ",
 	"centralnotice-languages": "Kielah",
 	"centralnotice-language": "Kielâ",
+	"centralnotice-user": "Kevttee",
+	"centralnotice-talk-link": "savâstâllâm",
 	"centralnotice-date": "Peivimeeri",
+	"centralnotice-prioritylangs": "Vuosâsajasiih kielah",
 	"centralnotice-all": "Puoh",
 	"centralnotice-banner-class": "Luokka"
 }
