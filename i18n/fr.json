@@ -129,7 +129,7 @@
 	"centralnotice-preview-loader-permissions-error": "Vous n’êtes pas autorisé à prévisualiser les bannières ou votre jeton de modification a expiré. Veuillez essayer de vous reconnecter ou de recharger la page.",
 	"centralnotice-clone": "Dupliquer",
 	"centralnotice-clone-notice": "Créer une copie du modèle",
-	"centralnotice-clone-name": "Nom :",
+	"centralnotice-clone-name": "Nom :",
 	"centralnotice-clone-cancel": "Annuler",
 	"centralnotice-clone-banner": "Bandeau",
 	"centralnotice-insert": "Insérer : $1",
