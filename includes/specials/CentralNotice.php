@@ -920,7 +920,7 @@ class CentralNotice extends SpecialPage {
 							switch ( $paramDef['type'] ) {
 								case 'string':
 								case 'json':
-									$paramVal = Sanitizer::removeHTMLtags(
+									$paramVal = Sanitizer::removeSomeTags(
 										$request->getText( $requestParamName )
 									);
 									break;
