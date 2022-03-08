@@ -7,7 +7,7 @@
  */
 ( function () {
 	var kvStoreMaintenance,
-		now = new Date().getTime() / 1000,
+		now = Date.now() / 1000,
 
 		// Regex to find kvStore localStorage keys. Must correspond with PREFIX
 		// in ext.centralNotice.kvStore.

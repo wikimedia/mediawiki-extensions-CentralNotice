@@ -70,11 +70,11 @@ class CentralNoticeHooks {
 					'BannerMessageGroup::updateBannerGroupStateHook';
 			}
 
-			$wgSpecialPages['CentralNotice'] = 'CentralNotice';
-			$wgSpecialPages['NoticeTemplate'] = 'SpecialNoticeTemplate';
-			$wgSpecialPages['BannerAllocation'] = 'SpecialBannerAllocation';
-			$wgSpecialPages['CentralNoticeLogs'] = 'SpecialCentralNoticeLogs';
-			$wgSpecialPages['CentralNoticeBanners'] = 'SpecialCentralNoticeBanners';
+			$wgSpecialPages['CentralNotice'] = CentralNotice::class;
+			$wgSpecialPages['NoticeTemplate'] = SpecialNoticeTemplate::class;
+			$wgSpecialPages['BannerAllocation'] = SpecialBannerAllocation::class;
+			$wgSpecialPages['CentralNoticeLogs'] = SpecialCentralNoticeLogs::class;
+			$wgSpecialPages['CentralNoticeBanners'] = SpecialCentralNoticeBanners::class;
 
 			$moduleTemplate = [
 				'localBasePath' => dirname( __DIR__ ) . '/resources',

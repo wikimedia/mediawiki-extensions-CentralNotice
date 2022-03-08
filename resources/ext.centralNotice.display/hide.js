@@ -58,7 +58,7 @@
 				return;
 			}
 
-			now = new Date().getTime() / 1000;
+			now = Date.now() / 1000;
 
 			// Duration isn't stored in the cookie. Cookies should expire
 			// after the duration is up, some hide reasons have server-side

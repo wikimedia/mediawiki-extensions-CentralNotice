@@ -429,7 +429,7 @@
 		// Mock navigator.sendBeacon to check record impression doesn't fire early
 		navigator.sendBeacon = function () {
 			// If we get here, it's a failure
-			assert.ok( false, 'record impression waits, as requested' );
+			assert.true( false, 'record impression waits, as requested' );
 		};
 
 		mockChoiceDataForRecordImpressionCall( choiceData2Campaigns );
@@ -469,7 +469,7 @@
 
 	QUnit.test( 'record impression timeout and register tests', function ( assert ) {
 		var recordImpresionPromise,
-			start = new Date().getTime(),
+			start = Date.now(),
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
 			signalTestDone = assert.async();
 
@@ -487,13 +487,13 @@
 		// Mock navigator.sendBeacon to capture calls and check time and data points sent
 		navigator.sendBeacon = function ( urlString ) {
 			var url = new mw.Uri( urlString ),
-				delay = new Date().getTime() - start;
+				delay = Date.now() - start;
 
 			assert.strictEqual( url.query.campaign, 'campaign1', 'record impression campaign' );
 			assert.strictEqual( url.query.banner, 'banner1', 'record impression banner' );
 
 			// 50 ms leewway is bit arbitrary
-			assert.ok(
+			assert.true(
 				( delay > MAX_RECORD_IMPRESSION_DELAY - 50 ) &&
 				( delay < MAX_RECORD_IMPRESSION_DELAY + 50 ),
 				'record impression called by timeout'
@@ -531,11 +531,11 @@
 
 		// Mock navigator.sendBeacon to capture calls
 		navigator.sendBeacon = function () {
-			assert.ok( true, 'record impression called once' );
+			assert.true( true, 'record impression called once' );
 
 			// Re-mock to fail test if called again
 			navigator.sendBeacon = function () {
-				assert.ok( false, 'record impression not called twice' );
+				assert.true( false, 'record impression not called twice' );
 			};
 		};
 
@@ -566,12 +566,12 @@
 	QUnit.test( 'banner= override param', function ( assert ) {
 		mw.centralNotice.internal.state.urlParams.banner = 'test_banner';
 		$.ajax = function ( params ) {
-			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/ ) );
+			assert.true( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/.test( params.url ) );
 			return $.Deferred();
 		};
 		mw.centralNotice.displayTestingBanner();
 
-		assert.ok( mw.centralNotice.data.testingBanner );
+		assert.true( mw.centralNotice.data.testingBanner );
 	} );
 
 	QUnit.test( 'randomcampaign= override param', function ( assert ) {
@@ -581,7 +581,7 @@
 		mw.centralNotice.internal.state.urlParams.randomcampaign = 0.25;
 
 		$.ajax = function ( params ) {
-			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
+			assert.true( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/.test( params.url ) );
 			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
@@ -590,7 +590,7 @@
 		mw.centralNotice.internal.state.urlParams.randomcampaign = 0.75;
 
 		$.ajax = function ( params ) {
-			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
+			assert.true( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/.test( params.url ) );
 			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
@@ -603,7 +603,7 @@
 		mw.centralNotice.internal.state.urlParams.randombanner = 0.25;
 
 		$.ajax = function ( params ) {
-			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/ ) );
+			assert.true( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner1/.test( params.url ) );
 			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
@@ -612,7 +612,7 @@
 		mw.centralNotice.internal.state.urlParams.randombanner = 0.75;
 
 		$.ajax = function ( params ) {
-			assert.ok( params.url.match( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/ ) );
+			assert.true( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=banner2/.test( params.url ) );
 			return $.Deferred();
 		};
 		mw.centralNotice.chooseAndMaybeDisplay();
@@ -671,7 +671,7 @@
 			mw.centralNotice.internal.state.STATUSES.BANNER_CANCELED.key
 		);
 		assert.strictEqual( mw.centralNotice.data.bannerCanceledReason, 'testReason' );
-		assert.ok( mw.centralNotice.internal.state.isCampaignFailed() );
+		assert.true( mw.centralNotice.internal.state.isCampaignFailed() );
 	} );
 
 	QUnit.test( 'runs hooks on no banner available', function ( assert ) {
@@ -798,7 +798,7 @@
 
 		// Mock navigator.sendBeacon
 		navigator.sendBeacon = function () {
-			assert.ok( true );
+			assert.true( true );
 		};
 
 		mw.centralNotice.registerCampaignMixin( mixin );

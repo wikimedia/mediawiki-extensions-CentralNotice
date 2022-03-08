@@ -38,21 +38,24 @@
 		kvStore.setItem( 'unittest-Old', 'x', context, -2 );
 		kvStore.setItem( 'unittest-Older', 'x', context, -3 );
 
-		assert.ok(
+		assert.notStrictEqual(
 			localStorage.getItem( 'CentralNoticeKV|global|unittest-New' ),
+			null,
 			'item "New" found in storage'
 		);
-		assert.ok(
+		assert.notStrictEqual(
 			localStorage.getItem( 'CentralNoticeKV|global|unittest-Old' ),
+			null,
 			'item "Old" found in storage'
 		);
-		assert.ok(
+		assert.notStrictEqual(
 			localStorage.getItem( 'CentralNoticeKV|global|unittest-Older' ),
+			null,
 			'item "Older" found in storage'
 		);
 
 		mw.centralNotice.kvStoreMaintenance.doMaintenance().then( function () {
-			assert.notEqual(
+			assert.notStrictEqual(
 				localStorage.getItem( 'CentralNoticeKV|global|unittest-New' ),
 				null,
 				'item "New" kept in storage'
