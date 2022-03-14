@@ -159,5 +159,8 @@
 	"centralnotice-end-date": "سون تاریخ",
 	"centralnotice-end-time": "سون تاریخ(UTC)",
 	"centralnotice-multiple-countries": "بیر نئچه ($1)",
-	"centralnotice-multiple-languages": "بیر نئچه ($1)"
+	"centralnotice-multiple-languages": "بیر نئچه ($1)",
+	"prefs-centralnotice-banners": "بنرلر",
+	"centralnotice-campaign-type-article-writing": "مقاله‌یازما",
+	"centralnotice-campaign-type-photography": "عکاسلیق"
 }
