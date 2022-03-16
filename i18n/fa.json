@@ -26,7 +26,8 @@
 			"Sunfyre",
 			"Wayiran",
 			"ZxxZxxZ",
-			"پسر یاس"
+			"پسر یاس",
+			"Beginneruser"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -115,7 +116,7 @@
 	"centralnotice-edit-template": "الگو ویرایش",
 	"centralnotice-edit-template-summary": "هشدار: بارگیری منابع بیرونی در یک بنر می‌تواند حریم خصوصی کاربران را به خطر اندازد.\n\nبرای ساختن یک پیغام قابل محلی‌سازی، یک رشتهٔ قابل شکستن را در سه کروشه قرار دهید. مانند <nowiki>{{{نام_پیام}}}</nowiki>. برای ساختن یک پیغام قابل محلی‌سازی از یک بنر دیگر، نام بنر را درج کنید و پس از آن یک کاما و سپس نام پیام را قرار دهید، مانند <nowiki>{{{نام_بنر,نام_پیام}}}</nowiki>.",
 	"centralnotice-edit-template-magicwords": "حروف جادوئی برای بنرهای ترکیبی: $1",
-	"centralnotice-message": "پیغام",
+	"centralnotice-message": "پیام",
 	"centralnotice-message-not-set": "پیغام تنظیم نشده است",
 	"centralnotice-campaigns-using-banner": "کمپین‌هایی که از این بنر استفاده می‌کنند",
 	"centralnotice-fieldset-preview": "پیش‌نمایش زنده",
