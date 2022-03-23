@@ -75,6 +75,7 @@
 	"centralnotice-notice-mixins-fieldset": "Label of the field set with the controls for mixins associated with campaigns (a.k.a. notices).",
 	"centralnotice-notice-mixins-int-required": "Message that an integer is required for a campaign mixin parameter.",
 	"centralnotice-notice-mixins-float-required": "Message that a floating point number is required for a campaign mixin parameter",
+	"centralnotice-notice-mixins-out-of-bound": "Message that the value entered is not within the specified boundary values",
 	"centralnotice-notice": "* Used as column header in the table (in multiple special pages).\n* Used as label for the \"Campaign\" input box in [[Special:CentralNoticeLogs]].\n{{Identical|Campaign}}",
 	"centralnotice-notice-heading": "Used as <code><nowiki><h2></nowiki></code> heading. Parameters:\n* $1 - campaign\n{{Identical|Campaign}}",
 	"centralnotice-notices": "Used as link text in the tab in [[Special:CentralNotice]]. The link points to [[Special:CentralNotice]].\n{{Identical|Campaign}}",

@@ -5,12 +5,29 @@
 		<label for="{{inputName}}">
 			{{labelMsg}}
 			<input
+				{{#step}}
+				type="number"
+				{{/step}}
+				{{^step}}
 				type="{{inputType}}"
+				{{/step}}
 				{{#inputSizeFlagAndVar}}size="{{inputSize}}"{{/inputSizeFlagAndVar}}
 				value="{{inputValue}}"
 				name="{{inputName}}"
 				{{#checkedFlagAndVar}}checked="{{checked}}"{{/checkedFlagAndVar}}
-				data-data-type="{{dataType}}" />
+				data-data-type="{{dataType}}"
+				{{#step}}
+				step="{{step}}"
+				{{/step}}
+				{{#minVal}}
+				min="{{minVal}}"
+				data-min-val="{{minVal}}"
+				{{/minVal}}
+				{{#maxVal}}
+				max="{{maxVal}}"
+				data-max-val="{{maxVal}}"
+				{{/maxVal}}
+				/>
 
 			{{#help}}
 				<div class="htmlform-help">{{help}}</div>

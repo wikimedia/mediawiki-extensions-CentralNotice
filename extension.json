@@ -426,6 +426,9 @@
 					"parameters": {
 						"rate": {
 							"type": "float",
+							"maxVal": "0.01",
+							"minVal": "0",
+							"step": 0.0001,
 							"labelMsg": "centralnotice-banner-history-logger-rate",
 							"helpMsg": "centralnotice-banner-history-logger-rate-help"
 						},
@@ -537,6 +540,9 @@
 					"parameters": {
 						"rate": {
 							"type": "float",
+							"maxVal": "0.01",
+							"minVal": "0",
+							"step": 0.0001,
 							"labelMsg": "centralnotice-impression-events-sample-rate-field",
 							"defaultValue": 0
 						}

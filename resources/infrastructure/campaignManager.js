@@ -421,7 +421,10 @@
 				// eslint-disable-next-line mediawiki/msg-doc
 				labelMsg: mw.message( paramDef.labelMsg ).text(),
 				inputName: makeNoticeMixinControlName( mixinName, paramName ),
-				dataType: paramDef.type
+				dataType: paramDef.type,
+				minVal: paramDef.minVal,
+				maxVal: paramDef.maxVal,
+				step: paramDef.step
 			};
 
 			switch ( paramDef.type ) {
@@ -532,6 +535,18 @@
 					);
 				}
 				break;
+		}
+
+		if ( !isNaN( $input.data( 'min-val' ) ) && Number( val ) < Number( $input.data( 'min-val' ) ) ) {
+			setValidationError(
+				true, $input, 'centralnotice-notice-mixins-out-of-bound'
+			);
+		}
+
+		if ( !isNaN( $input.data( 'max-val' ) ) && Number( val ) > Number( $input.data( 'max-val' ) ) ) {
+			setValidationError(
+				true, $input, 'centralnotice-notice-mixins-out-of-bound'
+			);
 		}
 	}
 
