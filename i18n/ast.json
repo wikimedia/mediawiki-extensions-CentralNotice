@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Esbardu",
-			"Xuacu"
+			"Xuacu",
+			"Fitoschido"
 		]
 	},
 	"centralnotice": "Alministrador d'avisos centralizaos",
@@ -246,7 +247,7 @@
 	"centralnotice-banner-not-found-title": "Nun s'alcontró'l cartelu",
 	"centralnotice-banner-not-found-contents": "Nun esiste un cartelu con esti nome exautu.",
 	"centralnotice-csp-violation-alert": "Detectóse una violación de la Política de Seguridá del Conteníu. Tentóse xubir daqué dende $1.",
-	"hidebanners": "Tapecer cartelos",
+	"hidebanners": "Anubrir los cartelos",
 	"centralnotice-specialhidebanners-p3p": "Dellos restoladores riquieren una política P3P compacta p'afitar cookies en ciertes situaciones. Pero actualmente nun hai disponible nenguna política compacta. Por favor, consulta la política d'intimidá del sitiu lleíble por humanos.",
 	"centralnotice-banner-history-logger": "Rexistru del historial del cartel",
 	"centralnotice-banner-history-logger-help": "Siguir la secuencia de cartelos que ven los llectores y, dacuando, devolvela al sirvidor.",
