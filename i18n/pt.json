@@ -66,6 +66,7 @@
 	"centralnotice-notice-mixins-fieldset": "Características extra do aviso",
 	"centralnotice-notice-mixins-int-required": "É necessário um inteiro",
 	"centralnotice-notice-mixins-float-required": "É necessário um número de vírgula flutuante",
+	"centralnotice-notice-mixins-out-of-bound": "Valor fora dos limites",
 	"centralnotice-notice": "Aviso",
 	"centralnotice-notice-heading": "Aviso centralizado: $1",
 	"centralnotice-notices": "Avisos",
