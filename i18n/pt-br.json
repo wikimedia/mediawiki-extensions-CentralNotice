@@ -23,6 +23,7 @@
 			"Rodrigo codignoli",
 			"Tks4Fish",
 			"Tuliouel",
+			"YuriNikolai",
 			555
 		]
 	},
@@ -73,6 +74,7 @@
 	"centralnotice-notice-mixins-fieldset": "Recursos de campanha extra",
 	"centralnotice-notice-mixins-int-required": "Inteiro necessário",
 	"centralnotice-notice-mixins-float-required": "Necessário número de ponto flutuante",
+	"centralnotice-notice-mixins-out-of-bound": "Valor fora dos limites",
 	"centralnotice-notice": "Campanha",
 	"centralnotice-notice-heading": "Campanha: $1",
 	"centralnotice-notices": "Avisos",
@@ -279,7 +281,7 @@
 	"centralnotice-banner-history-logger": "Registro do histórico do banner",
 	"centralnotice-banner-history-logger-help": "Acompanhe a sequência de banners vistos pelos leitores e ocasionalmente envie de volta ao servidor.",
 	"centralnotice-banner-history-logger-rate": "Taxa de amostragem",
-	"centralnotice-banner-history-logger-rate-help": "Probabilidade de que os dados sejam amostrados e enviados de volta para o servidor. Decimal entre 0 (nunca) e 1 (sempre).",
+	"centralnotice-banner-history-logger-rate-help": "Probabilidade de que os dados sejam amostrados e enviados de volta para o servidor. Decimal entre 0 e 0.01.",
 	"centralnotice-banner-history-logger-max-entry-age": "Idade máxima das entradas do registro (em dias)",
 	"centralnotice-banner-history-logger-max-entry-age-help": "As entradas de registro mais antigas do que isso serão expiradas e não serão enviadas de volta para o servidor.",
 	"centralnotice-banner-history-logger-max-entries": "Número máximo de entradas para manter no log",
@@ -326,7 +328,7 @@
 	"centralnotice-banner-sequence-detailed-help": "As sequências são definidas separadamente para cada bucket. Para qualquer passo, apenas os banners atribuídos a sequência do bucket estão disponíveis. Para mostrar sempre um passo, deixe o campo \"Ignorar com identificador\" em branco. Se um identificador for definido, uma vez que o passo tenha sido concluído, uma bandeira será armazenada no navegador do usuário usando esse identificador e, na próxima vez que o usuário chegar a uma etapa com o mesmo identificador, será ignorado. Os identificadores do mixin \"Large banner limit and switch\" são compatíveis e também serão considerados. Uma vez que uma sequência termina, ela começa de novo desde o início. (Para evitar que uma sequência repita, use a combinação \"Impression diet\" para limitar impressões.)",
 	"centralnotice-impression-events-sample-rate": "Taxa de amostragem para operações de impressão",
 	"centralnotice-impression-events-sample-rate-help": "Definir uma taxa de amostragem não padronizada para o registo das operações de impressão.",
-	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 1 inclusive)",
+	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 0.1, inclusiva)",
 	"centralnotice-banner-protection-log-reason": "Automaticamente protegido pelo CentralNotice; por favor editar apenas via [[Special:CentralNotice]] ou [[Special:Translate]]",
 	"centralnotice-multiple-countries": "Vários países",
 	"centralnotice-multiple-regions": "Múltiplas regiões",
