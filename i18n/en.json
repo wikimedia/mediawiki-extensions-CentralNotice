@@ -304,7 +304,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Sequences are set separately for each bucket. For any step, only banners assigned to the sequence's bucket are available. To always show a step, leave the \"Skip with identifier\" field blank. If an identifier is set, then once the step has completed, a flag will be stored in the user's browser using that identifier, and the next time the user reaches a step with the same identifier, it will be skipped. Identifiers from the \"Large banner limit and switch\" mixin are compatible and will also be taken into account. Once a sequence finishes, it starts again from the beginning. (To prevent a sequence from repeating, use the \"Impression diet\" mixin to limit impressions.)",
 	"centralnotice-impression-events-sample-rate": "Impression events sample rate",
 	"centralnotice-impression-events-sample-rate-help": "Set a non-default sample rate for logging impression events.",
-	"centralnotice-impression-events-sample-rate-field": "Impression events sample rate (should be between 0 and 0.1, inclusive)",
+	"centralnotice-impression-events-sample-rate-field": "Impression events sample rate (should be between 0 and 0.01, inclusive)",
 	"centralnotice-navbar": "-",
 	"centralnotice-banner-protection-log-reason": "Automatically protected by CentralNotice; please edit only via [[Special:CentralNotice]] or [[Special:Translate]]",
 	"centralnotice-multiple-countries": "Multiple countries",
