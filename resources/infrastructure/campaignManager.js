@@ -552,11 +552,11 @@
 
 	function setValidationError( error, $input, msgKey ) {
 
-		var $errorBox = $input.closest( 'p' ).prevAll( '.errorbox' );
+		var $errorBox = $input.closest( 'p' ).prevAll( '.mw-message-box-error' );
 
 		if ( error ) {
 			if ( $errorBox.length === 0 ) {
-				$errorBox = $( '<p>' ).addClass( 'errorbox' );
+				$errorBox = $( '<p>' ).addClass( [ 'mw-message-box', 'mw-message-box-error' ] );
 				// eslint-disable-next-line mediawiki/msg-doc
 				$errorBox.text( mw.message( msgKey ).text() );
 				$input.closest( 'p' ).before( $errorBox );
