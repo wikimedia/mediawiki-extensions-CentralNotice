@@ -25,7 +25,7 @@
 	"apihelp-centralnoticecdncacheupdatebanner-summary": "Demander la purge du contenu du bandeau stocké dans le cache CDN (côté utilisateur) pour les utilisateurs anonymes, pour le bandeau et la langue spécifiés",
 	"apihelp-centralnoticecdncacheupdatebanner-param-language": "Langue du contenu du bandeau à purger",
 	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "Nom du bandeau dont le contenu doit être purgé",
-	"apihelp-centralnoticecdncacheupdatebanner-example-1": "Purger le contenu de 'Banner1' du cache CDN, pour l’anglais",
+	"apihelp-centralnoticecdncacheupdatebanner-example-1": "Purger le contenu de « Banner1 » du cache CDN, pour l’anglais",
 	"apihelp-centralnoticequerycampaign-description": "Obtenir tous les paramètres de configuration pour une campagne.",
 	"apihelp-centralnoticequerycampaign-summary": "Obtenir tous les paramètres de configuration d’une campagne.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nom de la campagne (optionnel). Séparez les valeurs multiples avec une « | » (barre verticale).",
@@ -44,8 +44,8 @@
 	"apihelp-query+centralnoticelogs-param-start": "Horodatage de début de la plage (facultatif).",
 	"apihelp-query+centralnoticelogs-param-end": "Horodatage de fin de la plage (facultatif).",
 	"apihelp-query+centralnoticelogs-example-1": "Afficher le journal",
-	"apihelp-query+centralnoticeactivecampaigns-description": "Obtenir une liste des campagnes actuellement actives avec leurs dates de début et de fin, et les bannières associées.",
-	"apihelp-query+centralnoticeactivecampaigns-summary": "Obtenir une liste des campagnes actuellement actives avec leurs dates de début et de fin, et les bannières associées.",
+	"apihelp-query+centralnoticeactivecampaigns-description": "Obtenir une liste des campagnes actuellement actives avec leurs dates de début et de fin, ainsi que les bannières associées.",
+	"apihelp-query+centralnoticeactivecampaigns-summary": "Obtenir une liste des campagnes actuellement actives avec leurs dates de début et de fin, ainsi que les bannières associées.",
 	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Inclure les campagnes activées futures (en même temps que les campagnes actives actuellement).",
-	"apihelp-query+centralnoticeactivecampaigns-example-1": "Obtenir une liste des campagnes actuellement actives avec leurs dates de début et de fin, et les bannières associées."
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Obtenir une liste des campagnes actuellement actives avec leurs dates de début et de fin, ainsi que les bannières associées."
 }
