@@ -186,6 +186,7 @@ class CentralNoticeHooks {
 					'messages' => [
 						'centralnotice-notice-mixins-int-required',
 						'centralnotice-notice-mixins-float-required',
+						'centralnotice-notice-mixins-out-of-bound',
 						'centralnotice-banner-history-logger-rate',
 						'centralnotice-banner-history-logger-rate-help',
 						'centralnotice-banner-history-logger-max-entry-age',

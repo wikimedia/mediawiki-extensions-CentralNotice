@@ -63,6 +63,7 @@
 	"centralnotice-locked": "잠김",
 	"centralnotice-notice-mixins-int-required": "정수가 필요합니다",
 	"centralnotice-notice-mixins-float-required": "부동 소수점 수가 필요합니다",
+	"centralnotice-notice-mixins-out-of-bound": "값이 범위를 초과합니다",
 	"centralnotice-notice": "공지",
 	"centralnotice-notice-heading": "공지: $1",
 	"centralnotice-notices": "공지",

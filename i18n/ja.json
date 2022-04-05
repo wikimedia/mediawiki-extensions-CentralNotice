@@ -24,6 +24,7 @@
 			"Suyama",
 			"W.CC",
 			"Whym",
+			"Yamagata Yusuke",
 			"Yusuke1109",
 			"ネイ",
 			"青子守歌"
@@ -245,7 +246,7 @@
 	"hidebanners": "バナーを隠す",
 	"centralnotice-banner-history-logger": "バナー履歴ロガー",
 	"centralnotice-banner-history-logger-help": "読者から見たバナーの順序を追跡し、ときおりサーバーに送信します。",
-	"centralnotice-banner-history-logger-rate-help": "データがサンプリングされ、サーバーに送信される確率。 0 (なし) と 1 (常に) との間。",
+	"centralnotice-banner-history-logger-rate-help": "データがサンプリングされ、サーバーに送信される確率。 0と 0.01との間。",
 	"centralnotice-banner-history-logger-max-entry-age-help": "これよりも古い記録項目は期限切れとなり、サーバーに送信されません。",
 	"centralnotice-banner-history-logger-max-entries-help": "ログがサーバに送信される前に、より多くの履歴が記録されている場合、最も古いアイテムが消えます。",
 	"centralnotice-banner-history-logger-wait-log-no-send-beacon": "sendBeacon せずにログを送信するためのタイムアウト (ミリ秒)",
