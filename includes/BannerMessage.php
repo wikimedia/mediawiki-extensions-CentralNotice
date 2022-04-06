@@ -84,7 +84,10 @@ class BannerMessage {
 				return null;
 			}
 
-			$msg = $rev->getContent( SlotRecord::MAIN )->getNativeData();
+			$content = $rev->getContent( SlotRecord::MAIN );
+			/** @var TextContent $content */
+			'@phan-var TextContent $content';
+			$msg = $content->getText();
 			if ( $msg === "&lt;{$dbKey}&gt;" ) {
 				$msg = '';
 			}

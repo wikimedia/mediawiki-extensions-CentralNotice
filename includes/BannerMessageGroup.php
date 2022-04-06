@@ -183,7 +183,10 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 				// Make sure the translation actually exists :p
 				if ( $wikiPage->exists() ) {
-					$text = $wikiPage->getContent()->getNativeData();
+					$content = $wikiPage->getContent();
+					/** @var TextContent $content */
+					'@phan-var TextContent $content';
+					$text = $content->getText();
 
 					$wikiPage = $wikiPageFactory->newFromTitle(
 						Title::makeTitleSafe( NS_MEDIAWIKI, 'Centralnotice-' . $key . '/' . $code )
