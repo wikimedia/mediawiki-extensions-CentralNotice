@@ -311,7 +311,7 @@
 	"centralnotice-banner-sequence-detailed-help": "סדרות מוגדרות בנפרד לכל הקבצה. לכל צעד, זמינות רק כרזות שמשויכות להקבצה של הסדרה. כדי להראות צעד תמיד, יש להשאיר את השדה \"לפסוח עם מזהה\" ריק. אם מוגדר מזהה, אז כאשר הצעד יושלם, יאוחסן דגל בדפדפן של המשתמש עם המזהה הזה, ובפעם הבאה שהמשתמש יגיע לצעד עם אותו המזהה, הוא ייפסח. מזהים מהתוספת \"הגבלה והחלפה של כרזות גדולות\" תואמים וגם יילקחו בחשבון. כאשר מסתיימת סדרה, היא מתחילה שוב מההתחלה. (כדי למנוע מסדרה לחזור, יש להשתמש בתוספת \"דיאטת הצגות\" כדי להגביל הצגות.)",
 	"centralnotice-impression-events-sample-rate": "קצב הדגימה של פעולות ההצגה",
 	"centralnotice-impression-events-sample-rate-help": "הגדרת קצב הדגימה של תיעוד פעולות ההצגה.",
-	"centralnotice-impression-events-sample-rate-field": "קצב הדגימה של פעולות ההצגה (צריך להיות בין 0 ל־0.1, כולל)",
+	"centralnotice-impression-events-sample-rate-field": "קצב הדגימה של פעולות ההצגה (צריך להיות בין 0 ל־0.01, כולל)",
 	"centralnotice-banner-protection-log-reason": "מוגן אוטומטית על־ידי Central Notice; נא לערוך רק דרך [[Special:CentralNotice]] או [[Special:Translate]].",
 	"centralnotice-multiple-countries": "מדינות מרובות",
 	"centralnotice-multiple-regions": "אזורים מרובים",
