@@ -27,7 +27,8 @@
 			"Wayiran",
 			"ZxxZxxZ",
 			"پسر یاس",
-			"Beginneruser"
+			"Beginneruser",
+			"Mojtabakd"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -120,7 +121,7 @@
 	"centralnotice-message-not-set": "پیام تنظیم نشده است",
 	"centralnotice-campaigns-using-banner": "کمپین‌هایی که از این بنر استفاده می‌کنند",
 	"centralnotice-fieldset-preview": "پیش‌نمایش زنده",
-	"centralnotice-update-preview": "پیش‌نمایش روزآمدسازی",
+	"centralnotice-update-preview": "پیش‌نمایش به‌روزرسانی",
 	"centralnotice-preview-page": "[ پیش‌نمایش در ویکی ]",
 	"centralnotice-preview-loader-error-dialog-title": "خطا در بارگیری پیش‌نمایش بنر",
 	"centralnotice-preview-loader-error-dialog-ok": "تأیید",
