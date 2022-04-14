@@ -1,4 +1,5 @@
 {
+	"name": "CentralNotice",
 	"private": true,
 	"scripts": {
 		"minify-svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/infrastructure/",
