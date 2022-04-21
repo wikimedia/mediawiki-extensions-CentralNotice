@@ -36,7 +36,9 @@
 			"Sophivorus",
 			"Sporeunai",
 			"Translationista",
-			"Vivaelcelta"
+			"Vivaelcelta",
+			"DiegoAmbrocio",
+			"Josuert"
 		]
 	},
 	"centralnotice": "Sistema de administración de avisos centralizados",
@@ -281,6 +283,7 @@
 	"centralnotice-banner-not-found-contents": "No hay ningún banner con este nombre exacto.",
 	"hidebanners": "Ocultar pancartas",
 	"centralnotice-specialhidebanners-p3p": "Algunos navegadores requieren una normativa compacta de P3P para establecer cookies en ciertas situaciones. Sin embargo, no hay ninguna normativa compacta disponible en la actualidad. Consulta la normativa de privacidad del sitio.",
+	"centralnotice-banner-history-logger": "Registro del historial de banners",
 	"centralnotice-banner-history-logger-rate": "Índice de muestra",
 	"centralnotice-banner-history-logger-max-entry-age": "Antigüedad máxima de las entradas del registro (en días)",
 	"centralnotice-banner-history-logger-max-entry-age-help": "Las entradas del registro que superen esta antigüedad caducarán y no se enviarán de vuelta al servidor.",
