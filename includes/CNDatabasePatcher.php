@@ -18,12 +18,12 @@ class CNDatabasePatcher {
 	 * @return bool
 	 */
 	public static function applyUpdates( $updater = null ) {
-		$base = __DIR__;
+		$base = __DIR__ . '/../sql';
 
-		if ( $updater->getDB()->getType() == 'mysql' ) {
+		if ( $updater->getDB()->getType() === 'mysql' ) {
 			$updater->addExtensionTable(
 				'cn_notices',
-					$base . '/../CentralNotice.sql'
+					$base . '/CentralNotice.sql'
 			);
 
 			// 1.35
@@ -31,19 +31,19 @@ class CNDatabasePatcher {
 			$updater->addExtensionUpdate(
 				[
 					'addTable', 'cn_notice_regions',
-					$base . '/patch-notice_regions.sql', true
+					$base . '/mysql/patch-notice_regions.sql', true
 				]
 			);
 			$updater->addExtensionUpdate(
 				[
 					'addField', 'cn_templates', 'tmp_is_template',
-					$base . '/patch_template_banners.sql', true
+					$base . '/mysql/patch_template_banners.sql', true
 				]
 			);
 			$updater->addExtensionUpdate(
 				[
 					'modifyField', 'cn_templates', 'tmp_is_template',
-					$base . '/patch_template_banners_field_update.sql', true
+					$base . '/mysql/patch_template_banners_field_update.sql', true
 				]
 			);
 
@@ -51,19 +51,19 @@ class CNDatabasePatcher {
 			$updater->addExtensionField(
 				'cn_notices',
 				'not_type',
-				$base . '/patch-notice_not_type.sql'
+				$base . '/mysql/patch-notice_not_type.sql'
 			);
 			// This adds both notlog_begin_type and notlog_end_type fields
 			$updater->addExtensionField(
 				'cn_notice_log',
 				'notlog_begin_type',
-				$base . '/patch-notice-type-log.sql'
+				$base . '/mysql/patch-notice-type-log.sql'
 			);
-		} elseif ( $updater->getDB()->getType() == 'sqlite' ) {
+		} elseif ( $updater->getDB()->getType() === 'sqlite' ) {
 			// Add the entire schema...
 			$updater->addExtensionTable(
 				'cn_notices',
-				$base . '/../CentralNotice.sql'
+				$base . '/CentralNotice.sql'
 			);
 		}
 		return true;
