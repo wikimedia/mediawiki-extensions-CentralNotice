@@ -16,6 +16,7 @@
 	"centralnotice-close-title": "بند ڪريو",
 	"centralnotice-languages": "ٻوليون",
 	"centralnotice-language": "ٻولي",
+	"centralnotice-preferred": "ترجيح",
 	"centralnotice-action-removed": "ھٽايو",
 	"centralnotice-talk-link": "بحث",
 	"centralnotice-banner-content-changed": "بدلايو ويو",
@@ -23,5 +24,7 @@
 	"centralnotice-archive-banner-cancel": "رد",
 	"centralnotice-archive-campaign-cancel": "رد",
 	"centralnotice-delete-banner-cancel": "رد",
+	"centralnotice-start-date": "شروع ٿيڻ جي تاريخ (يو.ٽي.سي)",
+	"centralnotice-end-date": "پڄاڻيءَ جي تاريخ (يو.ٽي.سي)",
 	"centralnotice-large-banner-limit-days": "تسلط جي ڊيگھہ"
 }
