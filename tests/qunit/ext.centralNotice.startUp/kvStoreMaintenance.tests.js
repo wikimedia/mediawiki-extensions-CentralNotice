@@ -2,7 +2,7 @@
 	var realIdleCallback = mw.requestIdleCallback;
 
 	QUnit.module( 'ext.centralNotice.startUp', QUnit.newMwEnvironment( {
-		teardown: function () {
+		afterEach: function () {
 			var key, i = localStorage.length;
 			// Loop backwards since removal affects the key index,
 			// causing items to consistently be skipped over

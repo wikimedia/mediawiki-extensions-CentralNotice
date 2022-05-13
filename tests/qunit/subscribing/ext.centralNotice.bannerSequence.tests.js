@@ -138,7 +138,7 @@
 		];
 
 	QUnit.module( 'ext.centralNotice.bannerSequence', QUnit.newMwEnvironment( {
-		teardown: function () {
+		afterEach: function () {
 
 			// Restore original centralNotice API
 			cn.kvStore = realKvStore;

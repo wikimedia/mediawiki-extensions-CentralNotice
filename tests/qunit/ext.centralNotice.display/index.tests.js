@@ -326,7 +326,7 @@
 		];
 
 	QUnit.module( 'ext.centralNotice.display', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 
 			$( '#siteNotice' ).remove();
 
@@ -358,7 +358,7 @@
 			mw.centralNotice.recordImpressionDeferredObj = null;
 			mw.centralNotice.recordImpressionDelayPromises = [];
 		},
-		teardown: function () {
+		afterEach: function () {
 			$.ajax = realAjax;
 			mw.geoIP = realGeoIP;
 			navigator.sendBeacon = realSendBeacon;
