@@ -17,7 +17,7 @@
 		realCookie = $.cookie( COOKIE_NAME );
 
 	QUnit.module( 'ext.centralNotice.geoIP', QUnit.newMwEnvironment( {
-		teardown: function () {
+		afterEach: function () {
 			// This cookie is always set to '/' in prod and should be here too.
 			// If a cookie of the same name is set without a path it may be
 			// found first by the jquery getter and will screw some behaviors
