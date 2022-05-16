@@ -6,7 +6,7 @@
 			"Steeve815"
 		]
 	},
-	"apierror-centralnotice-cdn-permissions-error": "למשתמש אין הרשאות לנקות תוכן כרזת צד לקוח.",
+	"apierror-centralnotice-cdn-permissions-error": "למשתמש אין הרשאות לנקות תוכן כרזת צד־לקוח.",
 	"apierror-centralnotice-cdn-lang-code-error": "קוד השפה פגום.",
 	"apierror-centralnotice-cdn-banner-name-error": "שם הכרזה אינו תקין.",
 	"apierror-centralnotice-cdn-banner-not-found": "‏ ‏כרזה לא נמצאה",
@@ -20,9 +20,9 @@
 	"apihelp-centralnoticeallocations-param-device": "לאיזה מכשיר לסנן.",
 	"apihelp-centralnoticeallocations-param-bucket": "לאיזו הקבצה לסמן, לפי מספר (0 .. $1, לא חובה).",
 	"apihelp-centralnoticeallocations-example-1": "להראות הקצאות מסוימות.",
-	"apihelp-centralnoticecdncacheupdatebanner-summary": "בקשת רענון תוכן של כרזה שמאוחסנת במטמון ה־CDN (קצה קדמי) למשתמשים אנונימיים, עבור הכרזה והשפה המבוקשות",
-	"apihelp-centralnoticecdncacheupdatebanner-param-language": "השפה של תוכן הכרזה שירוענן",
-	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "שם הכרזה שהתוכן שלה ירוענן",
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "בקשת ניקוי תוכן של כרזה שמאוחסנת במטמון ה־CDN (צד־לקוח) למשתמשים אלמוניים, עבור הכרזה והשפה המבוקשות",
+	"apihelp-centralnoticecdncacheupdatebanner-param-language": "השפה של תוכן הכרזה שינוקה",
+	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "שם הכרזה שהתוכן שלה ינוקה",
 	"apihelp-centralnoticecdncacheupdatebanner-example-1": "רענון התוכן של הכרזה 'Banner1' ממטמון ה־CDN, בשפה אנגלית",
 	"apihelp-centralnoticequerycampaign-description": "לקבל את כל ההגדרות של מבצע הפרסום.",
 	"apihelp-centralnoticequerycampaign-summary": "קבלת כל ההגדרות של מבצע הפרסום.",
