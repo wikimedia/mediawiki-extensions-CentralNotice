@@ -324,7 +324,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Diziler her grup için ayrı ayrı ayarlanır. Herhangi bir adım için, yalnızca dizinin grubuna atanan başlıklar kullanılabilir. Her zaman bir adım göstermek için \"Tanımlayıcı ile atla\" alanını boş bırakın. Bir tanımlayıcı ayarlanırsa, adım tamamlandıktan sonra, kullanıcının tanımlayıcısını kullanarak bir bayrak bir tarayıcıya kaydedilir ve kullanıcı aynı tanımlayıcıyla bir sonraki adıma ulaştığında atlanır. \"Büyük şerit sınırı ve anahtar\" karışımından tanımlayıcılar uyumludur ve bunlar da dikkate alınacaktır. Bir sekans bittikten sonra tekrar baştan başlar. (Bir sekansın tekrarlanmasını önlemek için, gösterimleri sınırlandırmak üzere \"Gösterim diyeti\" karışımını kullanın.)",
 	"centralnotice-impression-events-sample-rate": "Gösterim etkinlikleri örnekleme oranı",
 	"centralnotice-impression-events-sample-rate-help": "Gösterim etkinliklerini günlüğe kaydetmek için varsayılan olmayan bir örnekleme hızı ayarlayın.",
-	"centralnotice-impression-events-sample-rate-field": "Gösterim etkinlikleri örnek oranı (0 ile 1 arasında, dahil olmalıdır)",
+	"centralnotice-impression-events-sample-rate-field": "Gösterim etkinlikleri örnek oranı (0 ile 0,01 arasında olmalıdır, dahil olmalıdır)",
 	"centralnotice-banner-protection-log-reason": "CentralNotice tarafından otomatik olarak korunur; lütfen yalnızca [[Special:CentralNotice]] veya [[Special:Translate]] aracılığıyla düzenleyin",
 	"centralnotice-multiple-countries": "Birden fazla ülke",
 	"centralnotice-multiple-regions": "Birden fazla bölge",
