@@ -5,6 +5,7 @@
 			"Fulup",
 			"Gwendal",
 			"Gwenn-Ael",
+			"Huñvreüs",
 			"Y-M D"
 		]
 	},
@@ -207,7 +208,7 @@
 	"centralnotice-start-time": "Eur kregiñ (UTC)",
 	"centralnotice-end-date": "Deiziad echuiñ (UTC)",
 	"centralnotice-end-time": "Deiziad fin (UTC)",
-	"centralnotice-multiple-countries": "Lies ($1)",
+	"centralnotice-multiple-countries": "Meur a vro",
 	"centralnotice-multiple-regions": "Ranndirioù lies",
-	"centralnotice-multiple-languages": "lies ($1)"
+	"centralnotice-multiple-languages": "Meur a yezh"
 }
