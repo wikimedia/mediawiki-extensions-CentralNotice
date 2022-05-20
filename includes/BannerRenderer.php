@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\ResourceLoader;
 
 /**
  * Produce HTML and JSON output for a given banner and context
