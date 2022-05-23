@@ -38,7 +38,8 @@
 			"Александр Сигачёв",
 			"MuratTheTurkish",
 			"Smigles",
-			"Wileyfoxyx"
+			"Wileyfoxyx",
+			"Pacha Tchernof"
 		]
 	},
 	"centralnotice": "Управление централизованными уведомлениями",
@@ -55,9 +56,9 @@
 	"centralnotice-notice-name": "Название уведомления",
 	"centralnotice-enabled": "Включено",
 	"centralnotice-modify": "Отправить",
-	"centralnotice-view": "Просмотр",
+	"centralnotice-view": "Посмотреть",
 	"centralnotice-save-banner": "Сохранить",
-	"centralnotice-live-preview": "Предварительный просмотр последней сохранённой версии",
+	"centralnotice-live-preview": "Показать предпросмотр последней сохранённой версии",
 	"centralnotice-add-new": "Добавить новое централизованное уведомление",
 	"centralnotice-remove": "Удалить",
 	"centralnotice-translate-heading": "Перевод для $1",
@@ -136,6 +137,7 @@
 	"centralnotice-fieldset-preview": "Предпросмотр страницы",
 	"centralnotice-update-preview": "Обновить предпросмотр",
 	"centralnotice-preview-page": "[ Предпросмотр в вики ]",
+	"centralnotice-preview-loader-error-dialog-title": "Ошибка загрузки окна предпросмотра",
 	"centralnotice-preview-loader-error-dialog-ok": "OK",
 	"centralnotice-clone": "Клонировать",
 	"centralnotice-clone-notice": "Создать копию баннера",
