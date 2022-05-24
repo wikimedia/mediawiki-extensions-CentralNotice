@@ -5,7 +5,8 @@
 			"Fulup",
 			"Gwendal",
 			"Gwenn-Ael",
-			"Y-M D"
+			"Y-M D",
+			"Huñvreüs"
 		]
 	},
 	"centralnotice": "Melestradurezh an alioù kreiz",
@@ -207,7 +208,7 @@
 	"centralnotice-start-time": "Eur kregiñ (UTC)",
 	"centralnotice-end-date": "Deiziad echuiñ (UTC)",
 	"centralnotice-end-time": "Deiziad fin (UTC)",
-	"centralnotice-multiple-countries": "Lies ($1)",
+	"centralnotice-multiple-countries": "Meur a vro",
 	"centralnotice-multiple-regions": "Ranndirioù lies",
-	"centralnotice-multiple-languages": "lies ($1)"
+	"centralnotice-multiple-languages": "Meur a yezh"
 }
