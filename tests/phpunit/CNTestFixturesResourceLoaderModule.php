@@ -1,6 +1,8 @@
 <?php
 
-class CNTestFixturesResourceLoaderModule extends ResourceLoaderModule {
+use MediaWiki\ResourceLoader as RL;
+
+class CNTestFixturesResourceLoaderModule extends RL\Module {
 
 	/**
 	 * We use the same targets as core's test.mediawiki.qunit.testrunner (in
@@ -14,7 +16,7 @@ class CNTestFixturesResourceLoaderModule extends ResourceLoaderModule {
 	/**
 	 * @inheritDoc
 	 */
-	public function getScript( ResourceLoaderContext $context ) {
+	public function getScript( RL\Context $context ) {
 		return 'mediaWiki.centralNoticeTestFixtures = ' .
 			CentralNoticeTestFixtures::allocationsDataAsJson() .
 			';';

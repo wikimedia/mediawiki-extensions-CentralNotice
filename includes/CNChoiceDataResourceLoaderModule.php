@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader as RL;
 
 /**
  * ResourceLoader module for sending banner choices to the client.
@@ -9,17 +10,17 @@ use MediaWiki\MediaWikiServices;
  * ResourceLoader works. This class has no expectation of having getScript() or
  * getModifiedHash() called in the same request.
  */
-class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
+class CNChoiceDataResourceLoaderModule extends RL\Module {
 
 	/**
-	 * @see ResourceLoaderModule::targets
+	 * @see RL\Module::targets
 	 * @var string[]
 	 */
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	private const API_REQUEST_TIMEOUT = 20;
 
-	protected function getChoices( ResourceLoaderContext $context ) {
+	protected function getChoices( RL\Context $context ) {
 		$config = $this->getConfig();
 		$project = $config->get( 'NoticeProject' );
 		$language = $context->getLanguage();
@@ -99,7 +100,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	/**
 	 * @inheritDoc
 	 */
-	public function getScript( ResourceLoaderContext $context ) {
+	public function getScript( RL\Context $context ) {
 		$choices = $this->getChoices( $context );
 		if ( !$choices ) {
 			// If there are no choices, this module will have no dependencies,
@@ -126,7 +127,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	 * @inheritDoc
 	 * Note: requires mediawiki-core change-id @Iee61e5b52
 	 */
-	public function getDependencies( ResourceLoaderContext $context = null ) {
+	public function getDependencies( RL\Context $context = null ) {
 		$cnCampaignMixins = $this->getConfig()->get( 'CentralNoticeCampaignMixins' );
 
 		// If this method is called with no context argument (the old method
@@ -168,7 +169,7 @@ class CNChoiceDataResourceLoaderModule extends ResourceLoaderModule {
 	/**
 	 * @inheritDoc
 	 */
-	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+	public function getDefinitionSummary( RL\Context $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = [
 			'choices' => $this->getChoices( $context ),

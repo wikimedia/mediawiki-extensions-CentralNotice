@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\ResourceLoader\ResourceLoader;
+
 /**
  * General hook definitions
  *
