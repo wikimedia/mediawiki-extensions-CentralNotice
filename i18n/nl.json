@@ -280,5 +280,7 @@
 	"centralnotice-multiple-languages": "Meerdere talen",
 	"tag-centralnotice": "CentralNotice",
 	"tag-centralnotice_translation": "CentralNotice-vertaling",
-	"centralnotice-banner-template-info": "(sjabloon)"
+	"centralnotice-banner-is-template": "Deze banner is een sjabloon, bedoeld om te worden gebruikt om banners te maken",
+	"centralnotice-banner-template-info": "(sjabloon)",
+	"centralnotice-messages-banner-in-campaign": "Kan deze banner niet markeren als sjabloon als deze is toegewezen aan een of meer campagnes. Deze banner is toegewezen aan de volgende campagnes:"
 }
