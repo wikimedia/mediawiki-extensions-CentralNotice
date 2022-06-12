@@ -59,6 +59,18 @@ class CNDatabasePatcher {
 				'notlog_begin_type',
 				$base . '/mysql/patch-notice-type-log.sql'
 			);
+
+			// 1.39
+			$updater->modifyExtensionField(
+				'cn_notices',
+				'not_end',
+				$base . '/mysql/patch-cn_notices-timestamps.sql'
+			);
+			$updater->modifyExtensionField(
+				'cn_notice_log',
+				'notlog_end_end',
+				$base . '/mysql/patch-cn_notice_log-timestamps.sql'
+			);
 		} elseif ( $updater->getDB()->getType() === 'sqlite' ) {
 			// Add the entire schema...
 			$updater->addExtensionTable(
