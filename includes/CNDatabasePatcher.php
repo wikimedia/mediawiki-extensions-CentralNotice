@@ -19,13 +19,10 @@ class CNDatabasePatcher {
 	 */
 	public static function applyUpdates( $updater = null ) {
 		$base = __DIR__ . '/../sql';
+		$dbType = $updater->getDB()->getType();
+		$updater->addExtensionTable( 'cn_notices', "$base/$dbType/tables-generated.sql" );
 
-		if ( $updater->getDB()->getType() === 'mysql' ) {
-			$updater->addExtensionTable(
-				'cn_notices',
-					$base . '/CentralNotice.sql'
-			);
-
+		if ( $dbType === 'mysql' ) {
 			// 1.35
 			// Adds geotargeted regions for notices and the corresponding log columns
 			$updater->addExtensionUpdate(
@@ -70,12 +67,6 @@ class CNDatabasePatcher {
 				'cn_notice_log',
 				'notlog_end_end',
 				$base . '/mysql/patch-cn_notice_log-timestamps.sql'
-			);
-		} elseif ( $updater->getDB()->getType() === 'sqlite' ) {
-			// Add the entire schema...
-			$updater->addExtensionTable(
-				'cn_notices',
-				$base . '/CentralNotice.sql'
 			);
 		}
 
