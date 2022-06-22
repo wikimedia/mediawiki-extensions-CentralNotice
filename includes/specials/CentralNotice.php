@@ -1846,7 +1846,7 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Adds CentralNotice specific navigation tabs to the UI.
-	 * Implementation of SkinTemplateNavigation::SpecialPage hook.
+	 * Implementation of SkinTemplateNavigation::Universal hook.
 	 *
 	 * @param Skin $skin Reference to the Skin object
 	 * @param array &$tabs Any current skin tabs
