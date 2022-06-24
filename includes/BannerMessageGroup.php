@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Generate a group of message definitions for a banner so they can be translated
  */
@@ -171,10 +173,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 			$collection->loadTranslations();
 			$keys = $collection->getMessageKeys();
 			$user = RequestContext::getMain()->getUser();
+			$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 
 			// Now copy each key into the MW namespace
 			foreach ( $keys as $key ) {
-				$wikiPage = WikiPage::factory(
+				$wikiPage = $wikiPageFactory->newFromTitle(
 					Title::makeTitleSafe( NS_CN_BANNER, $key . '/' . $code )
 				);
 
@@ -182,7 +185,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 				if ( $wikiPage->exists() ) {
 					$text = $wikiPage->getContent()->getNativeData();
 
-					$wikiPage = WikiPage::factory(
+					$wikiPage = $wikiPageFactory->newFromTitle(
 						Title::makeTitleSafe( NS_MEDIAWIKI, 'Centralnotice-' . $key . '/' . $code )
 					);
 					$wikiPage->doUserEditContent(
