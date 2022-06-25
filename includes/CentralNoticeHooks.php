@@ -160,15 +160,12 @@ class CentralNoticeHooks {
 						'centralnotice-delete-banner-confirm',
 						'centralnotice-delete-banner-cancel',
 						'centralnotice-banner-cdn-dialog-waiting-text',
-						'centralnotice-banner-cdn-dialog-title',
-						'centralnotice-banner-cdn-dialog-ok',
 						'centralnotice-banner-cdn-dialog-error',
 						'centralnotice-banner-cdn-dialog-success',
 						'centralnotice-fieldset-preview',
 						'centralnotice-preview-page',
 						'centralnotice-update-preview',
 						'centralnotice-preview-loader-error-dialog-title',
-						'centralnotice-preview-loader-error-dialog-ok'
 					]
 				],
 				'ext.centralNotice.adminUi.campaignManager' => [
