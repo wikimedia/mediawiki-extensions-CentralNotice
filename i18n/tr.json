@@ -15,6 +15,7 @@
 			"Oyuncu",
 			"Rapsar",
 			"SaldırganSincap",
+			"Satirdan kahraman",
 			"Sayginer",
 			"Sezgin İbiş",
 			"Srhat",
@@ -342,7 +343,7 @@
 	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur",
 	"centralnotice-campaign-view-logs": "Kampanya ayarları günlüklerini gör",
 	"prefs-centralnotice-banners": "Başlıklar",
-	"prefs-centralnotice-display-banner-types": "Görüntülenecek banner türleri",
+	"prefs-centralnotice-display-banner-types": "Görünecek başlıklar:",
 	"centralnotice-campaign-type": "Kampanya türü",
 	"centralnotice-empty-campaign-type-option": "Tür yok (her zaman gösterilir)",
 	"centralnotice-non-existent-campaign-type-error": "Seçili kampanya türü mevcut değil",
@@ -355,5 +356,5 @@
 	"centralnotice-campaign-type-maintenance": "Bakım",
 	"centralnotice-campaign-type-photography": "Fotoğrafçılık",
 	"centralnotice-campaign-type-special": "Özel",
-	"centralnotice-user-prefs-intro": "Başlıklar, Wikimedia toplulukları ve kullanıcılarını ilgilendiren duyuruları gösterir.\n\nAşağıda, hangi duyuru türlerini göreceğinizi yönetmenize olanak tanıyan seçenekler bulunmaktadır. Site bakımı ile ilgili olanlar ve tüm kullanıcılar için gerekli olduğu düşünülen özel bildirimler gibi belirli platform bildirimleri her zaman görüntülenecektir. Daha fazla bilgi için, lütfen [[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Viki ile ilgili belgeleri]] okuyun."
+	"centralnotice-user-prefs-intro": "Başlıklar, Wikimedia toplulukları ve kullanıcılarını ilgilendiren duyuruları gösterir.\n\nAşağıda hangi duyuru türlerini göreceğinizi düzenleyen seçenekler vardır. Site bakımı ile ilgili olanlar ve tüm kullanıcılar için gerekli olduğu düşünülen özel bildirimler gibi belirli platform bildirimleri her zaman görüntülenecektir. Daha fazla bilgi için lütfen [[metawikimedia:Special:MyLanguage/CentralNotice|Metaviki ile ilgili belgeleri]] okuyun."
 }
