@@ -312,7 +312,7 @@
 		"ChangeTagsListActive": "CentralNoticeHooks::onListDefinedTags",
 		"ListDefinedTags": "CentralNoticeHooks::onListDefinedTags",
 		"LoadExtensionSchemaUpdates": "CNDatabasePatcher::applyUpdates",
-		"SkinTemplateNavigation::SpecialPage": "CentralNotice::addNavigationTabs",
+		"SkinTemplateNavigation::Universal": "CentralNotice::addNavigationTabs",
 		"ResourceLoaderRegisterModules": "CentralNoticeHooks::onResourceLoaderRegisterModules",
 		"UserMergeAccountFields": "CentralNoticeHooks::onUserMergeAccountFields",
 		"GetPreferences": "CentralNoticeHooks::onGetPreferences"

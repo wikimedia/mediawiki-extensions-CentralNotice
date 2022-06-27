@@ -15,6 +15,7 @@
 			"Oyuncu",
 			"Rapsar",
 			"SaldırganSincap",
+			"Satirdan kahraman",
 			"Sayginer",
 			"Sezgin İbiş",
 			"Srhat",
@@ -324,7 +325,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Diziler her grup için ayrı ayrı ayarlanır. Herhangi bir adım için, yalnızca dizinin grubuna atanan başlıklar kullanılabilir. Her zaman bir adım göstermek için \"Tanımlayıcı ile atla\" alanını boş bırakın. Bir tanımlayıcı ayarlanırsa, adım tamamlandıktan sonra, kullanıcının tanımlayıcısını kullanarak bir bayrak bir tarayıcıya kaydedilir ve kullanıcı aynı tanımlayıcıyla bir sonraki adıma ulaştığında atlanır. \"Büyük şerit sınırı ve anahtar\" karışımından tanımlayıcılar uyumludur ve bunlar da dikkate alınacaktır. Bir sekans bittikten sonra tekrar baştan başlar. (Bir sekansın tekrarlanmasını önlemek için, gösterimleri sınırlandırmak üzere \"Gösterim diyeti\" karışımını kullanın.)",
 	"centralnotice-impression-events-sample-rate": "Gösterim etkinlikleri örnekleme oranı",
 	"centralnotice-impression-events-sample-rate-help": "Gösterim etkinliklerini günlüğe kaydetmek için varsayılan olmayan bir örnekleme hızı ayarlayın.",
-	"centralnotice-impression-events-sample-rate-field": "Gösterim etkinlikleri örnek oranı (0 ile 1 arasında, dahil olmalıdır)",
+	"centralnotice-impression-events-sample-rate-field": "Gösterim etkinlikleri örnek oranı (0 ile 0,01 arasında olmalıdır, dahil olmalıdır)",
 	"centralnotice-banner-protection-log-reason": "CentralNotice tarafından otomatik olarak korunur; lütfen yalnızca [[Special:CentralNotice]] veya [[Special:Translate]] aracılığıyla düzenleyin",
 	"centralnotice-multiple-countries": "Birden fazla ülke",
 	"centralnotice-multiple-regions": "Birden fazla bölge",
@@ -342,7 +343,7 @@
 	"centralnotice-create-from-template-checkbox-label": "Şablondan oluştur",
 	"centralnotice-campaign-view-logs": "Kampanya ayarları günlüklerini gör",
 	"prefs-centralnotice-banners": "Başlıklar",
-	"prefs-centralnotice-display-banner-types": "Görüntülenecek banner türleri",
+	"prefs-centralnotice-display-banner-types": "Görünecek başlıklar:",
 	"centralnotice-campaign-type": "Kampanya türü",
 	"centralnotice-empty-campaign-type-option": "Tür yok (her zaman gösterilir)",
 	"centralnotice-non-existent-campaign-type-error": "Seçili kampanya türü mevcut değil",
@@ -355,5 +356,5 @@
 	"centralnotice-campaign-type-maintenance": "Bakım",
 	"centralnotice-campaign-type-photography": "Fotoğrafçılık",
 	"centralnotice-campaign-type-special": "Özel",
-	"centralnotice-user-prefs-intro": "Başlıklar, Wikimedia toplulukları ve kullanıcılarını ilgilendiren duyuruları gösterir.\n\nAşağıda, hangi duyuru türlerini göreceğinizi yönetmenize olanak tanıyan seçenekler bulunmaktadır. Site bakımı ile ilgili olanlar ve tüm kullanıcılar için gerekli olduğu düşünülen özel bildirimler gibi belirli platform bildirimleri her zaman görüntülenecektir. Daha fazla bilgi için, lütfen [[metawikimedia:Special:MyLanguage/CentralNotice|Meta-Viki ile ilgili belgeleri]] okuyun."
+	"centralnotice-user-prefs-intro": "Başlıklar, Wikimedia toplulukları ve kullanıcılarını ilgilendiren duyuruları gösterir.\n\nAşağıda hangi duyuru türlerini göreceğinizi düzenleyen seçenekler vardır. Site bakımı ile ilgili olanlar ve tüm kullanıcılar için gerekli olduğu düşünülen özel bildirimler gibi belirli platform bildirimleri her zaman görüntülenecektir. Daha fazla bilgi için lütfen [[metawikimedia:Special:MyLanguage/CentralNotice|Metaviki ile ilgili belgeleri]] okuyun."
 }

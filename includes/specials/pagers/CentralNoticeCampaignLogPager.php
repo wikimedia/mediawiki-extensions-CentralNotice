@@ -124,9 +124,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'collapsed-ltr.png';
 
 			$htmlOut .= '<a href="javascript:toggleLogDisplay(\'' . $notlogId . '\')">' .
-				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/' . $collapsedImg . '" ' .
+				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/resources/images/' . $collapsedImg . '" ' .
 				'id="cn-collapsed-' . $notlogId . '" style="display:block;"/>' .
-				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
+				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/resources/images/uncollapsed.png" ' .
 				'id="cn-uncollapsed-' . $notlogId . '" style="display:none;"/>' .
 				'</a>';
 		}

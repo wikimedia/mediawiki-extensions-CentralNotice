@@ -320,7 +320,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Sekvenser ställs in separat för varje hink. För alla steg är endast banners som tilldelas sekvensens hink tillgängliga. För att alltid visa ett steg, lämna fältet \"Hoppa med identifierare\" tomt. Om en identifierare är inställd, kommer en flagga att lagras i användarens webbläsare med hjälp av den identifieraren när steget har slutförts och nästa gång användaren når ett steg med samma identifierare hoppas den över. Identifierare från mixen \"Large banner limit and switch\" är kompatibla och kommer också att beaktas. När en sekvens är klar börjar den om från början. (För att förhindra att en sekvens upprepas, använd mixen \"Impression diet\" för att begränsa intryck.)",
 	"centralnotice-impression-events-sample-rate": "Visningsfrekvens för visningshändelser",
 	"centralnotice-impression-events-sample-rate-help": "Ange en samplingsfrekvens som inte är standard för loggning av visningshändelser.",
-	"centralnotice-impression-events-sample-rate-field": "Visningshändelsers samplingsfrekvens (bör vara mellan 0 och 1, inklusive)",
+	"centralnotice-impression-events-sample-rate-field": "Visningshändelsers samplingsfrekvens (bör vara mellan 0 och 0.01, inklusive)",
 	"centralnotice-banner-protection-log-reason": "Skyddas automatiskt av CentralNotice; redigera endast via [[Special:CentralNotice]] eller [[Special:Translate]]",
 	"centralnotice-multiple-countries": "Flera länder",
 	"centralnotice-multiple-regions": "Flera regioner",

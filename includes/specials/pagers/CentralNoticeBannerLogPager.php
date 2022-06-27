@@ -66,10 +66,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 			$tmplogId = (int)$row->tmplog_id;
 			$htmlOut .= '<a href="javascript:toggleLogDisplay(\'' . $tmplogId . '\')">' .
-				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/' . $collapsedImg . '" ' .
+				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/resources/images/' . $collapsedImg . '" ' .
 				'id="cn-collapsed-' . $tmplogId . '" ' .
 				'style="display:block;vertical-align:baseline;"/>' .
-				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/uncollapsed.png" ' .
+				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/resources/images/uncollapsed.png" ' .
 				'id="cn-uncollapsed-' . $tmplogId . '" ' .
 				'style="display:none;vertical-align:baseline;"/>' .
 				'</a>';

@@ -6,19 +6,19 @@
 			"Teòtlalili"
 		]
 	},
-	"centralnotice-add-notice-cancel-button": "Moxitiniz",
+	"centralnotice-add-notice-cancel-button": "Xikxolewa",
 	"centralnotice-translations": "Tlahtolkwapalistli",
-	"centralnotice-translate-to": "Tictlahtolcuepaz ihuic",
-	"centralnotice-translate": "Tictlahtolcuepaz",
+	"centralnotice-translate-to": "Xitlahtolkwapa ika",
+	"centralnotice-translate": "Xitlahtolkwapa",
 	"centralnotice-day": "Tonalli",
 	"centralnotice-year": "Xihuitl",
 	"centralnotice-month": "Metztli",
 	"centralnotice-hours": "Immantli",
 	"centralnotice-project-lang": "Itlahtol tlayecantequitl",
-	"centralnotice-clone-cancel": "Moxitiniz",
+	"centralnotice-clone-cancel": "Xikxolewa",
 	"centralnotice-language": "Tlahtolli",
-	"centralnotice-user": "Tequitiuhqui",
-	"centralnotice-archive-banner-cancel": "Moxitiniz",
-	"centralnotice-archive-campaign-cancel": "Moxitiniz",
-	"centralnotice-delete-banner-cancel": "Moxitiniz"
+	"centralnotice-user": "Tekitiketl",
+	"centralnotice-archive-banner-cancel": "Xikxolewa",
+	"centralnotice-archive-campaign-cancel": "Xikxolewa",
+	"centralnotice-delete-banner-cancel": "Xikxolewa"
 }

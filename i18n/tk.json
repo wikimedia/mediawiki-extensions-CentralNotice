@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hanberke"
+			"Hanberke",
+			"TayfunEt."
 		]
 	},
 	"centralnotice": "Merkezi uwedomleniýe admini",
@@ -91,6 +92,7 @@
 	"centralnotice-countries": "Ýurtlar",
 	"centralnotice-allocation": "Ýerleşiş",
 	"centralnotice-view-allocation": "Bannerleriň ýerleşişini görkez",
+	"centralnotice-languages": "Diller",
 	"centralnotice-country": "Ýurt",
 	"centralnotice-no-allocation": "Hiç hili banner ýerleşdirilmändir.",
 	"centralnotice-percentage": "Göterim",

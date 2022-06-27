@@ -855,7 +855,7 @@ class Banner {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $this->dirtyFlags['content'] ) {
-			$wikiPage = WikiPage::factory( $this->getTitle() );
+			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->getTitle() );
 
 			if ( $summary === null ) {
 				$summary = '';
@@ -1206,7 +1206,7 @@ class Banner {
 			// TODO Inconsistency: deletion of banner content is not recorded
 			// as a bot edit, so it does not appear on the CN logs page. Also,
 			// related messages are not deleted.
-			$wikiPage = WikiPage::factory( $bannerObj->getTitle() );
+			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $bannerObj->getTitle() );
 			$wikiPage->doDeleteArticleReal( $summary ?: '', $user );
 
 			if ( $wgNoticeUseTranslateExtension ) {

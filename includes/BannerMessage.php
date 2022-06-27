@@ -125,7 +125,7 @@ class BannerMessage {
 		}
 
 		$savePage = static function ( $title, $text ) use ( $summary, $user ) {
-			$wikiPage = WikiPage::factory( $title );
+			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 
 			$content = ContentHandler::makeContent( $text, $title );
 			$tags = [ 'centralnotice' ];

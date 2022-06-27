@@ -345,7 +345,7 @@
 	"centralnotice-banner-sequence-detailed-help": "每个桶都会单独设置序列。在任何步骤中，只有分配到序列桶的横幅可用。要总是显示步骤，请保留“跳过标识符”字段为空。如果设置了任何标识符，那么一旦步骤完成时，将在使用该标识符的用户浏览器中存储标记，并且下次用户到达同一标识符的步骤时，其将被跳过。来自“大横幅限制和转换”混合模式的标识符同样兼容，并且也将考虑应用到账户中。一旦序列结束，它会再次从头开始。（要阻止序列重复，请使用“影响节制”混合模式来限制影响。）",
 	"centralnotice-impression-events-sample-rate": "印象事件抽样率",
 	"centralnotice-impression-events-sample-rate-help": "为日志记录印象事件设置非默认抽样率。",
-	"centralnotice-impression-events-sample-rate-field": "印象事件抽样率，应为0~0.1（包含）之间的数",
+	"centralnotice-impression-events-sample-rate-field": "印象事件抽样率（应介于包含在0与0.01之间）",
 	"centralnotice-banner-protection-log-reason": "被 CentralNotice 自动保护，请编者仅通过 [[Special:CentralNotice]] 或 [[Special:Translate]] 进行编辑。",
 	"centralnotice-multiple-countries": "多个国家",
 	"centralnotice-multiple-regions": "多个地区",

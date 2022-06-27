@@ -300,7 +300,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Zaporedja se za vsak paket nastavijo ločeno. Za vsak korak so na voljo samo pasice, ki so dodeljene paketu zaporedja. Za stalen prikaz koraka pustite polje »Preskoči z identifikatorjem« prazno. Če je identifikator nastavljen, se bo po končanem koraku v uporabnikovem brskalniku shranila zastavica s tem identifikatorjem in bo korak z identifikatorjem naslednjič, ko ga bo uporabnik dosegel, preskočen. S tem so združljivi in bodo upoštevani tudi identifikatorji iz modula »Omejitev velike pasice in preklop«. Ko bo zaporedje končano, se bo znova začelo od začetka. (Za preprečitev ponavljanja zaporedja omejite vtise z modulom »Dieta vtisov«).",
 	"centralnotice-impression-events-sample-rate": "Frekvenca vzorčenja dogodkov vtisa",
 	"centralnotice-impression-events-sample-rate-help": "Nastavite neprivzeto frekvencoovzorčenja beleženih dogodkov vtisa.",
-	"centralnotice-impression-events-sample-rate-field": "Frekvenca vzorčenja dogodkov vtisa (biti mora med vključno 0 in vključno 0,1)",
+	"centralnotice-impression-events-sample-rate-field": "Frekvenca vzorčenja dogodkov vtisa (biti mora med vključno 0 in vključno 0,01)",
 	"centralnotice-banner-protection-log-reason": "Samodejna zaščita CentralNotice; urejajte samo prek [[Special:CentralNotice|Posebno:CentralNotice]] ali [[Special:Translate|Posebno:Translate]]",
 	"centralnotice-multiple-countries": "Več držav",
 	"centralnotice-multiple-regions": "Več območij",

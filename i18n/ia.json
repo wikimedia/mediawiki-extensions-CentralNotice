@@ -302,7 +302,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Le sequentias es definite separatemente pro cata situla. Pro cata passo, solmente le bandieras assignate al situla del sequentia es disponibile. Pro monstrar sempre un passo, lassa le campo \"Saltar con identificator\" vacue. Si un identificator es definite, alora un vice que le passo ha terminate, un marca essera immagazinate in le navigator del usator usante ille identificator, e le proxime vice que le usator attinge un passo con le mesme identificator, illo essera saltate. Le identificatores ab le modulo \"Limite de grande bandieras e commutator\" es compatibile e essera etiam prendite in conto. Quando un sequentia fini, illo recomenciara ab initio. (Pro impedir que un sequentia se repete, usa le modulo \"Dieta de impressiones\" pro limitar le impressiones.)",
 	"centralnotice-impression-events-sample-rate": "Taxa de monstra pro eventos de impression",
 	"centralnotice-impression-events-sample-rate-help": "Definir un taxa de monstra non standard pro registrar le eventos de impression.",
-	"centralnotice-impression-events-sample-rate-field": "Taxa de monstra pro eventos de impression (debe esser inter 0 e 0,1, inclusive)",
+	"centralnotice-impression-events-sample-rate-field": "Taxa de monstra pro eventos de impression (debe esser inter 0 e 0,01, inclusive)",
 	"centralnotice-banner-protection-log-reason": "Automaticamente protegite per CentralNotice; modificabile solmente via [[Special:CentralNotice]] o [[Special:Translate]].",
 	"centralnotice-multiple-countries": "Plure paises",
 	"centralnotice-multiple-regions": "Plure regiones",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amqui",
+			"Cantons-de-l'Est",
 			"Crochet.david",
 			"Envlh",
 			"Erkethan",
@@ -331,7 +332,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Les séquences sont initialisées séparément pour chaque série. Pour chaque étape, seules sont disponibles les bannières affectées à la série de la séquence. Afin de toujours afficher une étape, laisser à vide le champ « Sauter avec un identifiant ». Si un identifiant est fourni, alors une fois l’étape terminée, un indicateur lié à cet identifiant sera enregistré dans le navigateur de l’utilisateur et la prochaine fois que l’utilisateur atteindra une étape avec le même identifiant, elle sera sautée. Les identifiants du ''mixin'' « limite de bannière et commutateur élargis » sont compatibles et seront aussi pris en compte. Une fois qu’une séquence est terminée, elle reprend depuis le début. (Pour empêcher une séquence de boucler, utiliser le ''mixin'' « Impression régime » pour limiter les impressions.)",
 	"centralnotice-impression-events-sample-rate": "Taux d’échantillonnage des événements d’impression",
 	"centralnotice-impression-events-sample-rate-help": "Définir un taux d’échantillonnage dédié pour enregistrer les événements d’impression dans le journal.",
-	"centralnotice-impression-events-sample-rate-field": "Taux d’échantillonnage des événements d’impression (doit être entre 0 et 0.1, bornes incluses)",
+	"centralnotice-impression-events-sample-rate-field": "Taux d’échantillonnage des événements d’impression (devrait être entre 0 et 0,01, bornes incluses)",
 	"centralnotice-banner-protection-log-reason": "Protégé automatiquement par ''CentralNotice'' ; vous ne pouvez modifier que par [[Special:CentralNotice]] (si vous êtes spécialement habilité par les administrateurs du site) ou [[Special:Translate]] (après avoir rempli votre demande pour devenir vous aussi un des nombreux traducteurs et relecteurs correcteurs souhaités et avoir passé un test simple de votre capacité de compréhension des exigences de base demandées).",
 	"centralnotice-multiple-countries": "Pays multiples",
 	"centralnotice-multiple-regions": "Régions multiples",
