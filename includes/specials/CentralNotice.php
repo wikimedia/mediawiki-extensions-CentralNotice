@@ -1862,6 +1862,12 @@ class CentralNotice extends SpecialPage {
 		}
 
 		$title = $skin->getTitle();
+
+		// Only add tabs to special pages
+		if ( !$title->isSpecialPage() ) {
+			return true;
+		}
+
 		list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			resolveAlias( $title->getText() );
 
