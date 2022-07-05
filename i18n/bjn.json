@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ezagren",
 			"J Subhi"
 		]
 	},
@@ -8,7 +9,7 @@
 	"centralnotice-notice-name": "Ngaran kampanye",
 	"centralnotice-enabled": "Dinyalakan",
 	"centralnotice-modify": "Kirim",
-	"centralnotice-view": "Tiringi",
+	"centralnotice-view": "Janaki",
 	"centralnotice-save-banner": "Simpan spanduk",
 	"centralnotice-add-new": "Tambahi sabuah kampanye hanyar",
 	"centralnotice-remove": "Buang",
