@@ -41,6 +41,9 @@ use Wikimedia\Rdbms\IDatabase;
  * @see BannerMixin
  */
 class Banner {
+	/** Indicates a revision of a banner that can be translated. */
+	public const TRANSLATE_BANNER_TAG = 'banner:translate';
+
 	/**
 	 * Keys indicate a group of properties (which should be a 1-to-1 match to
 	 * a database table.) If the value is null it means the data is not yet
@@ -888,7 +891,7 @@ class Banner {
 					$fields = $this->extractMessageFields();
 					if ( count( $fields ) > 0 ) {
 						// Tag the banner for translation
-						self::addTag( 'banner:translate', $revisionId, $pageId, $this->getId() );
+						self::addTag( self::TRANSLATE_BANNER_TAG, $revisionId, $pageId, $this->getId() );
 						$this->runTranslateJob = true;
 					}
 					$this->invalidateCache( $fields );
@@ -1211,7 +1214,7 @@ class Banner {
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Remove any revision tags related to the banner
-				self::removeTag( 'banner:translate', $wikiPage->getId() );
+				self::removeTag( self::TRANSLATE_BANNER_TAG, $wikiPage->getId() );
 
 				// And the preferred language metadata if it exists
 				TranslateMetadata::set(
@@ -1243,7 +1246,7 @@ class Banner {
 
 		$conds = [
 			'rt_page' => $pageId,
-			'rt_type' => RevTag::getType( $tag ),
+			'rt_type' => $tag,
 			'rt_revision' => $revisionId
 		];
 
@@ -1265,7 +1268,7 @@ class Banner {
 
 		$conds = [
 			'rt_page' => $pageId,
-			'rt_type' => RevTag::getType( $tag )
+			'rt_type' => $tag
 		];
 		$dbw->delete( 'revtag', $conds, __METHOD__ );
 	}
