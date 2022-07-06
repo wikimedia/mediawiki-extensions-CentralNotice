@@ -146,6 +146,7 @@
 	"centralnotice-priority-normal": "normali",
 	"centralnotice-priority-high": "għoli",
 	"centralnotice-priority-emergency": "emerġenza",
+	"centralnotice-banner-class": "Kategorija",
 	"centralnotice-templates-included": "Mudelli nklużi",
 	"centralnotice-change-summary-label": "Fil-qosor",
 	"centralnotice-change-summary-prompt": "Messaġġ dwar dawn il-bidliet (jekk trid)",
