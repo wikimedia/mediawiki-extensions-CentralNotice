@@ -248,7 +248,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		// Find all the banners marked for translation
 		$tables = [ 'page', 'revtag' ];
 		$vars   = [ 'page_id', 'page_namespace', 'page_title', ];
-		$conds  = [ 'page_id=rt_page', 'rt_type' => RevTag::getType( 'banner:translate' ) ];
+		$conds  = [ 'page_id=rt_page', 'rt_type' => Banner::TRANSLATE_BANNER_TAG ];
 		$options = [ 'GROUP BY' => 'rt_page' ];
 		$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
 

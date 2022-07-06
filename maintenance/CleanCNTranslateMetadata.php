@@ -25,7 +25,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	}
 
 	public function execute() {
-		$this->ttag = RevTag::getType( 'banner:translate' );
+		$this->ttag = Banner::TRANSLATE_BANNER_TAG;
 
 		$this->cleanDuplicates();
 		$this->populateIDs();
