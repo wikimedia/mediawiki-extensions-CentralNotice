@@ -146,6 +146,7 @@
 	"centralnotice-priority-normal": "normali",
 	"centralnotice-priority-high": "għoli",
 	"centralnotice-priority-emergency": "emerġenza",
+	"centralnotice-banner-class": "Kategorija",
 	"centralnotice-templates-included": "Mudelli nklużi",
 	"centralnotice-change-summary-label": "Fil-qosor",
 	"centralnotice-change-summary-prompt": "Messaġġ dwar dawn il-bidliet (jekk trid)",
@@ -156,5 +157,5 @@
 	"centralnotice-end-date": "Data tat-tmiem",
 	"centralnotice-end-time": "Ħin tat-tmiem (UTC)",
 	"centralnotice-multiple-countries": "Diversi ($1)",
-	"centralnotice-multiple-languages": "Diversi ($1)"
+	"centralnotice-multiple-languages": "Diversi lingwi"
 }
