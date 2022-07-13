@@ -78,6 +78,42 @@ class CNDatabasePatcher {
 				$base . '/CentralNotice.sql'
 			);
 		}
+
+		$updater->addExtensionUpdate( [
+			[ __CLASS__, 'doOnSchemaUpdatesPopulateKnownDevices' ],
+		] );
+
 		return true;
+	}
+
+	public static function doOnSchemaUpdatesPopulateKnownDevices( DatabaseUpdater $updater ): void {
+		$updateKey = 'populateKnownDevices-1.24';
+		if ( $updater->updateRowExists( $updateKey ) ) {
+			$updater->output( "...default known devices already added\n" );
+			return;
+		}
+
+		$updater->output( "Adding known devices...\n" );
+		$dbw = $updater->getDB();
+		$dbw->insert(
+			'cn_known_devices', [
+				[ 'dev_id' => 1, 'dev_name' => 'desktop',
+					'dev_display_label' => '{{int:centralnotice-devicetype-desktop}}' ],
+				// 1.24
+				[ 'dev_id' => 2, 'dev_name' => 'android',
+					'dev_display_label' => '{{int:centralnotice-devicetype-android}}' ],
+				[ 'dev_id' => 3, 'dev_name' => 'iphone',
+					'dev_display_label' => '{{int:centralnotice-devicetype-iphone}}' ],
+				[ 'dev_id' => 4, 'dev_name' => 'ipad',
+					'dev_display_label' => '{{int:centralnotice-devicetype-ipad}}' ],
+				[ 'dev_id' => 5, 'dev_name' => 'unknown',
+					'dev_display_label' => '{{int:centralnotice-devicetype-unknown}}' ],
+			],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
+
+		$updater->output( "Done\n" );
+		$updater->insertUpdateRow( $updateKey );
 	}
 }
