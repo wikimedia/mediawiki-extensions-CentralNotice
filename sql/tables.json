@@ -1,0 +1,964 @@
+[
+	{
+		"name": "cn_notices",
+		"columns": [
+			{
+				"name": "not_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "not_name",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "not_start",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "not_end",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "not_enabled",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "not_preferred",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "not_throttle",
+				"type": "integer",
+				"options": { "notnull": true, "default": 100 }
+			},
+			{
+				"name": "not_locked",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "not_geo",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "not_buckets",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 1 }
+			},
+			{
+				"name": "not_weight",
+				"type": "integer",
+				"options": { "notnull": true, "default": 100 }
+			},
+			{
+				"name": "not_mobile_carrier",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "not_archived",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "not_type",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "not_id" ]
+	},
+	{
+		"name": "cn_assignments",
+		"columns": [
+			{
+				"name": "asn_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "not_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "tmp_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "tmp_weight",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "asn_bucket",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "asn_not",
+				"columns": [ "not_id" ],
+				"unique": false
+			},
+			{
+				"name": "asn_tmp",
+				"columns": [ "tmp_id" ],
+				"unique": false
+			},
+			{
+				"name": "asn_bucket",
+				"columns": [ "asn_bucket" ],
+				"unique": false
+			}
+		],
+		"pk": [ "asn_id" ]
+	},
+	{
+		"name": "cn_templates",
+		"columns": [
+			{
+				"name": "tmp_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "tmp_name",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmp_display_anon",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 1 }
+			},
+			{
+				"name": "tmp_display_account",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 1 }
+			},
+			{
+				"name": "tmp_fundraising",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "tmp_autolink",
+				"comment": "Note: no longer used",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "tmp_landing_pages",
+				"comment": "Note: no longer used",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmp_archived",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "tmp_category",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmp_preview_sandbox",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			},
+			{
+				"name": "tmp_is_template",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "tmp_name",
+				"columns": [ "tmp_name" ],
+				"unique": false
+			},
+			{
+				"name": "tmp_category",
+				"columns": [ "tmp_category" ],
+				"unique": false
+			}
+		],
+		"pk": [ "tmp_id" ]
+	},
+	{
+		"name": "cn_notice_languages",
+		"columns": [
+			{
+				"name": "nl_notice_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "nl_language",
+				"type": "string",
+				"options": { "notnull": true, "length": 32 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "nl_notice_id_language",
+				"columns": [ "nl_notice_id", "nl_language" ],
+				"unique": true
+			}
+		],
+		"pk": []
+	},
+	{
+		"name": "cn_notice_projects",
+		"columns": [
+			{
+				"name": "np_notice_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "np_project",
+				"type": "string",
+				"options": { "notnull": true, "length": 32 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "np_notice_id_project",
+				"columns": [ "np_notice_id", "np_project" ],
+				"unique": true
+			}
+		],
+		"pk": []
+	},
+	{
+		"name": "cn_notice_countries",
+		"columns": [
+			{
+				"name": "nc_notice_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "nc_country",
+				"type": "string",
+				"options": { "notnull": true, "length": 2 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "nc_notice_id_country",
+				"columns": [ "nc_notice_id", "nc_country" ],
+				"unique": true
+			}
+		],
+		"pk": []
+	},
+	{
+		"name": "cn_notice_regions",
+		"columns": [
+			{
+				"name": "nr_notice_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "nr_region",
+				"type": "string",
+				"options": { "notnull": true, "length": 6 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "nr_notice_id_region",
+				"columns": [ "nr_notice_id", "nr_region" ],
+				"unique": true
+			}
+		],
+		"pk": []
+	},
+	{
+		"name": "cn_template_mixins",
+		"columns": [
+			{
+				"name": "tmxn_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "tmp_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "page_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "mixin_name",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "tmxn_tmp_id",
+				"columns": [ "tmp_id" ],
+				"unique": false
+			},
+			{
+				"name": "tmxn_page_id",
+				"columns": [ "page_id" ],
+				"unique": false
+			},
+			{
+				"name": "tmxn_mixin_name",
+				"columns": [ "mixin_name" ],
+				"unique": false
+			}
+		],
+		"pk": [ "tmxn_id" ]
+	},
+	{
+		"name": "cn_notice_mixins",
+		"columns": [
+			{
+				"name": "nmxn_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "nmxn_not_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "nmxn_mixin_name",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "nmxn_enabled",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "nmxn_not_id_idx",
+				"columns": [ "nmxn_not_id" ],
+				"unique": false
+			},
+			{
+				"name": "nmxn_mixin_name_idx",
+				"columns": [ "nmxn_mixin_name" ],
+				"unique": false
+			},
+			{
+				"name": "nmxn_not_id_mixin_name",
+				"columns": [ "nmxn_not_id", "nmxn_mixin_name" ],
+				"unique": true
+			}
+		],
+		"pk": [ "nmxn_id" ]
+	},
+	{
+		"name": "cn_notice_mixin_params",
+		"columns": [
+			{
+				"name": "nmxnp_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "nmxnp_notice_mixin_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "nmxnp_param_name",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "nmxnp_param_value",
+				"type": "text",
+				"options": { "notnull": true, "length": 65530 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "nmxnp_notice_mixin_id_idx",
+				"columns": [ "nmxnp_notice_mixin_id" ],
+				"unique": false
+			},
+			{
+				"name": "nmxnp_param_name_value_idx",
+				"columns": [ "nmxnp_param_name", "nmxnp_param_value" ],
+				"options": { "lengths": [ null, 50 ] },
+				"unique": false
+			},
+			{
+				"name": "nmxn_notice_mixin_id_param_name",
+				"columns": [ "nmxnp_notice_mixin_id", "nmxnp_param_name" ],
+				"unique": true
+			}
+		],
+		"pk": [ "nmxnp_id" ]
+	},
+	{
+		"name": "cn_known_devices",
+		"columns": [
+			{
+				"name": "dev_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "dev_name",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "dev_display_label",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "dev_name",
+				"columns": [ "dev_name" ],
+				"unique": false
+			}
+		],
+		"pk": [ "dev_id" ]
+	},
+	{
+		"name": "cn_template_devices",
+		"columns": [
+			{
+				"name": "tdev_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "tmp_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "dev_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "tdev_template_id",
+				"columns": [ "tmp_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "tdev_id" ]
+	},
+	{
+		"name": "cn_known_mobile_carriers",
+		"columns": [
+			{
+				"name": "mc_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "mc_name",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "mc_display_label",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "mc_name",
+				"columns": [ "mc_name" ],
+				"unique": false
+			}
+		],
+		"pk": [ "mc_id" ]
+	},
+	{
+		"name": "cn_notice_mobile_carriers",
+		"columns": [
+			{
+				"name": "nmc_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true }
+			},
+			{
+				"name": "not_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "mc_id",
+				"type": "integer",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "nmc_not_id",
+				"columns": [ "not_id" ],
+				"unique": false
+			},
+			{
+				"name": "nmc_carrier_id",
+				"columns": [ "mc_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "nmc_id" ]
+	},
+	{
+		"name": "cn_notice_log",
+		"columns": [
+			{
+				"name": "notlog_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "notlog_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "notlog_user_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "notlog_action",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"CustomSchemaOptions": {
+						"enum_values": [ "created", "modified", "removed" ]
+					},
+					"default": "modified"
+				}
+			},
+			{
+				"name": "notlog_not_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "notlog_not_name",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "notlog_begin_projects",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "notlog_end_projects",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "notlog_begin_languages",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_end_languages",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_begin_countries",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_end_countries",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_begin_regions",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_end_regions",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_begin_start",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_end_start",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_begin_end",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_end_end",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_begin_enabled",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_end_enabled",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_begin_preferred",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_end_preferred",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_begin_throttle",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_end_throttle",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_begin_locked",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_end_locked",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_begin_geo",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_end_geo",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_begin_banners",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_end_banners",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_begin_buckets",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_end_buckets",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "notlog_begin_mobile_carrier",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_end_mobile_carrier",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_begin_weight",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_end_weight",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_begin_archived",
+				"type": "mwtinyint",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_end_archived",
+				"type": "mwtinyint",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "notlog_begin_mixins",
+				"type": "blob",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_end_mixins",
+				"type": "blob",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "notlog_comment",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "notlog_begin_type",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "notlog_end_type",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "notlog_timestamp",
+				"columns": [ "notlog_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "notlog_user_id",
+				"columns": [ "notlog_user_id", "notlog_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "notlog_not_id",
+				"columns": [ "notlog_not_id", "notlog_timestamp" ],
+				"unique": false
+			}
+		],
+		"pk": [ "notlog_id" ]
+	},
+	{
+		"name": "cn_template_log",
+		"columns": [
+			{
+				"name": "tmplog_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "tmplog_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "tmplog_user_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "tmplog_action",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"CustomSchemaOptions": {
+						"enum_values": [ "created", "modified", "removed" ]
+					},
+					"default": "modified"
+				}
+			},
+			{
+				"name": "tmplog_template_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "tmplog_template_name",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmplog_begin_anon",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_end_anon",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_begin_account",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_end_account",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_begin_fundraising",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_end_fundraising",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_begin_autolink",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_end_autolink",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_begin_landingpages",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmplog_end_landingpages",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmplog_content_change",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1, "default": 0 }
+			},
+			{
+				"name": "tmplog_begin_prioritylangs",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "tmplog_end_prioritylangs",
+				"type": "text",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "tmplog_begin_archived",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_end_archived",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_begin_category",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmplog_end_category",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "tmplog_begin_preview_sandbox",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_end_preview_sandbox",
+				"type": "mwtinyint",
+				"options": { "notnull": false, "length": 1 }
+			},
+			{
+				"name": "tmplog_begin_controller_mixin",
+				"type": "binary",
+				"options": { "notnull": false, "length": 4096 }
+			},
+			{
+				"name": "tmplog_end_controller_mixin",
+				"type": "binary",
+				"options": { "notnull": false, "length": 4096 }
+			},
+			{
+				"name": "tmplog_begin_devices",
+				"type": "binary",
+				"options": { "notnull": false, "length": 512 }
+			},
+			{
+				"name": "tmplog_end_devices",
+				"type": "binary",
+				"options": { "notnull": false, "length": 512 }
+			},
+			{
+				"name": "tmplog_comment",
+				"type": "string",
+				"options": { "notnull": false, "length": 255 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "tmplog_timestamp",
+				"columns": [ "tmplog_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "tmplog_user_id",
+				"columns": [ "tmplog_user_id", "tmplog_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "tmplog_template_id",
+				"columns": [ "tmplog_template_id", "tmplog_timestamp" ],
+				"unique": false
+			}
+		],
+		"pk": [ "tmplog_id" ]
+	}
+]
