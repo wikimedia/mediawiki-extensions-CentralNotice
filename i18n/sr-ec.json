@@ -249,6 +249,7 @@
 	"centralnotice-campaign-type": "Тип кампање",
 	"centralnotice-empty-campaign-type-option": "Без типа (увек приказан)",
 	"centralnotice-non-existent-campaign-type-error": "Изабрани тип кампање не постоји",
+	"centralnotice-campaign-type-advocacy": "Заступање",
 	"centralnotice-campaign-type-article-writing": "Писање чланака",
 	"centralnotice-campaign-type-event": "Догађаји",
 	"centralnotice-campaign-type-fundraising": "Донације",
