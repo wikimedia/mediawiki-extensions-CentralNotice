@@ -5,12 +5,15 @@
 		]
 	},
 	"centralnotice-notice-name": "Kampanjjnõmm",
+	"centralnotice-modify": "Vuõlttâd",
 	"centralnotice-view": "Čuäʹjet",
 	"centralnotice-save-banner": "Ruõkk",
+	"centralnotice-add-new": "Lââʹzzet ođđ kampaanj",
 	"centralnotice-remove": "Jaukkâd",
 	"centralnotice-add": "Lââʹzzet",
 	"centralnotice-add-notice-button": "Raaj",
 	"centralnotice-edit-notice": "Muuʹtt kampaanj",
+	"centralnotice-show-notices": "Čuäʹjet kampaanjid",
 	"centralnotice-translations": "Jåårǥlõõzz",
 	"centralnotice-translate-to": "Täävtõsǩiõll:",
 	"centralnotice-translate": "Jåårǥlââʹtt",
@@ -41,5 +44,6 @@
 	"centralnotice-user-role-logged-in": "Leäk ǩeeʹrjtõõttâm sizz",
 	"centralnotice-banner-class": "Kategoria",
 	"centralnotice-change-summary-label": "Õʹhtteǩeässmõš",
-	"centralnotice-delete-banner": "Jaukkâd"
+	"centralnotice-delete-banner": "Jaukkâd",
+	"centralnotice-banner-template-info": "(mall)"
 }
