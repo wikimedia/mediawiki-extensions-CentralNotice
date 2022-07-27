@@ -230,14 +230,8 @@
 				"options": { "notnull": true, "length": 32 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "np_notice_id_project",
-				"columns": [ "np_notice_id", "np_project" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "np_notice_id", "np_project" ]
 	},
 	{
 		"name": "cn_notice_countries",

@@ -62,7 +62,7 @@ CREATE TABLE /*_*/cn_notice_languages (
 CREATE TABLE /*_*/cn_notice_projects (
   np_notice_id INT UNSIGNED NOT NULL,
   np_project VARCHAR(32) NOT NULL,
-  UNIQUE INDEX np_notice_id_project (np_notice_id, np_project)
+  PRIMARY KEY(np_notice_id, np_project)
 ) /*$wgDBTableOptions*/;
 
 

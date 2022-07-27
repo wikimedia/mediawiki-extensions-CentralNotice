@@ -61,10 +61,9 @@ CREATE TABLE /*_*/cn_notice_languages (
 
 CREATE TABLE /*_*/cn_notice_projects (
   np_notice_id INTEGER UNSIGNED NOT NULL,
-  np_project VARCHAR(32) NOT NULL
+  np_project VARCHAR(32) NOT NULL,
+  PRIMARY KEY(np_notice_id, np_project)
 );
-
-CREATE UNIQUE INDEX np_notice_id_project ON /*_*/cn_notice_projects (np_notice_id, np_project);
 
 
 CREATE TABLE /*_*/cn_notice_countries (

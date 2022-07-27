@@ -66,10 +66,9 @@ CREATE TABLE cn_notice_languages (
 
 CREATE TABLE cn_notice_projects (
   np_notice_id INT NOT NULL,
-  np_project VARCHAR(32) NOT NULL
+  np_project VARCHAR(32) NOT NULL,
+  PRIMARY KEY(np_notice_id, np_project)
 );
-
-CREATE UNIQUE INDEX np_notice_id_project ON cn_notice_projects (np_notice_id, np_project);
 
 
 CREATE TABLE cn_notice_countries (
