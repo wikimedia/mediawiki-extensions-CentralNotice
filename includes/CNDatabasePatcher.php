@@ -70,6 +70,13 @@ class CNDatabasePatcher {
 			);
 		}
 
+		// 1.40
+		$updater->dropExtensionIndex(
+			'cn_notice_languages',
+			'nl_notice_id_language',
+			"$base/$dbType/patch-cn_notice_languages-unique-to-pk.sql"
+		);
+
 		$updater->addExtensionUpdate( [
 			[ __CLASS__, 'doOnSchemaUpdatesPopulateKnownDevices' ],
 		] );

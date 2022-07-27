@@ -213,14 +213,8 @@
 				"options": { "notnull": true, "length": 32 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "nl_notice_id_language",
-				"columns": [ "nl_notice_id", "nl_language" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "nl_notice_id", "nl_language" ]
 	},
 	{
 		"name": "cn_notice_projects",

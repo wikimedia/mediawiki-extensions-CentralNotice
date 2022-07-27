@@ -54,10 +54,9 @@ CREATE INDEX tmp_category ON /*_*/cn_templates (tmp_category);
 
 CREATE TABLE /*_*/cn_notice_languages (
   nl_notice_id INTEGER UNSIGNED NOT NULL,
-  nl_language VARCHAR(32) NOT NULL
+  nl_language VARCHAR(32) NOT NULL,
+  PRIMARY KEY(nl_notice_id, nl_language)
 );
-
-CREATE UNIQUE INDEX nl_notice_id_language ON /*_*/cn_notice_languages (nl_notice_id, nl_language);
 
 
 CREATE TABLE /*_*/cn_notice_projects (

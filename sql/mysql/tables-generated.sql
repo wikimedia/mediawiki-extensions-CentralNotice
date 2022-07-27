@@ -55,7 +55,7 @@ CREATE TABLE /*_*/cn_templates (
 CREATE TABLE /*_*/cn_notice_languages (
   nl_notice_id INT UNSIGNED NOT NULL,
   nl_language VARCHAR(32) NOT NULL,
-  UNIQUE INDEX nl_notice_id_language (nl_notice_id, nl_language)
+  PRIMARY KEY(nl_notice_id, nl_language)
 ) /*$wgDBTableOptions*/;
 
 

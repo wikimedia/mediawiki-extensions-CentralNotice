@@ -1,0 +1,42 @@
+{
+	"comment": "Convert unique index to primary key (T312270)",
+	"before": {
+		"name": "cn_notice_languages",
+		"columns": [
+			{
+				"name": "nl_notice_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "nl_language",
+				"type": "string",
+				"options": { "notnull": true, "length": 32 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "nl_notice_id_language",
+				"columns": [ "nl_notice_id", "nl_language" ],
+				"unique": true
+			}
+		]
+	},
+	"after": {
+		"name": "cn_notice_languages",
+		"columns": [
+			{
+				"name": "nl_notice_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "nl_language",
+				"type": "string",
+				"options": { "notnull": true, "length": 32 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "nl_notice_id", "nl_language" ]
+	}
+}
