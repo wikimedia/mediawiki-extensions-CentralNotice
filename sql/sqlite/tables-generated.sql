@@ -75,10 +75,9 @@ CREATE TABLE /*_*/cn_notice_countries (
 
 CREATE TABLE /*_*/cn_notice_regions (
   nr_notice_id INTEGER UNSIGNED NOT NULL,
-  nr_region VARCHAR(6) NOT NULL
+  nr_region VARCHAR(6) NOT NULL,
+  PRIMARY KEY(nr_notice_id, nr_region)
 );
-
-CREATE UNIQUE INDEX nr_notice_id_region ON /*_*/cn_notice_regions (nr_notice_id, nr_region);
 
 
 CREATE TABLE /*_*/cn_template_mixins (

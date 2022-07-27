@@ -80,10 +80,9 @@ CREATE TABLE cn_notice_countries (
 
 CREATE TABLE cn_notice_regions (
   nr_notice_id INT NOT NULL,
-  nr_region VARCHAR(6) NOT NULL
+  nr_region VARCHAR(6) NOT NULL,
+  PRIMARY KEY(nr_notice_id, nr_region)
 );
-
-CREATE UNIQUE INDEX nr_notice_id_region ON cn_notice_regions (nr_notice_id, nr_region);
 
 
 CREATE TABLE cn_template_mixins (

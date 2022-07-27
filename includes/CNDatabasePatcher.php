@@ -86,6 +86,11 @@ class CNDatabasePatcher {
 			'nc_notice_id_country',
 			"$base/$dbType/patch-cn_notice_countries-unique-to-pk.sql"
 		);
+		$updater->dropExtensionIndex(
+			'cn_notice_regions',
+			'nr_notice_id_region',
+			"$base/$dbType/patch-cn_notice_regions-unique-to-pk.sql"
+		);
 
 		$updater->addExtensionUpdate( [
 			[ __CLASS__, 'doOnSchemaUpdatesPopulateKnownDevices' ],

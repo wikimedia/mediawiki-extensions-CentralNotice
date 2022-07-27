@@ -264,14 +264,8 @@
 				"options": { "notnull": true, "length": 6 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "nr_notice_id_region",
-				"columns": [ "nr_notice_id", "nr_region" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "nr_notice_id", "nr_region" ]
 	},
 	{
 		"name": "cn_template_mixins",
