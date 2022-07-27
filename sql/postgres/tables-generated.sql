@@ -73,10 +73,9 @@ CREATE TABLE cn_notice_projects (
 
 CREATE TABLE cn_notice_countries (
   nc_notice_id INT NOT NULL,
-  nc_country VARCHAR(2) NOT NULL
+  nc_country VARCHAR(2) NOT NULL,
+  PRIMARY KEY(nc_notice_id, nc_country)
 );
-
-CREATE UNIQUE INDEX nc_notice_id_country ON cn_notice_countries (nc_notice_id, nc_country);
 
 
 CREATE TABLE cn_notice_regions (

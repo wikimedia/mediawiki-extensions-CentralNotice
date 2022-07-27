@@ -69,7 +69,7 @@ CREATE TABLE /*_*/cn_notice_projects (
 CREATE TABLE /*_*/cn_notice_countries (
   nc_notice_id INT UNSIGNED NOT NULL,
   nc_country VARCHAR(2) NOT NULL,
-  UNIQUE INDEX nc_notice_id_country (nc_notice_id, nc_country)
+  PRIMARY KEY(nc_notice_id, nc_country)
 ) /*$wgDBTableOptions*/;
 
 

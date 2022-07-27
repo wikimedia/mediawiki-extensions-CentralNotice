@@ -247,14 +247,8 @@
 				"options": { "notnull": true, "length": 2 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "nc_notice_id_country",
-				"columns": [ "nc_notice_id", "nc_country" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "nc_notice_id", "nc_country" ]
 	},
 	{
 		"name": "cn_notice_regions",
