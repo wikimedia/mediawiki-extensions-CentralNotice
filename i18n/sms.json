@@ -20,6 +20,9 @@
 	"centralnotice-english": "eŋgglõsǩiõʹlle",
 	"centralnotice-notice": "Kampanjj",
 	"centralnotice-notice-heading": "Kampanjj: $1",
+	"centralnotice-year": "Eeʹǩǩ",
+	"centralnotice-month": "Määnpââʹjj",
+	"centralnotice-min": "Minutt",
 	"centralnotice-project-lang": "Projeeʹkt ǩiõll",
 	"centralnotice-select-all": "Vaʹlljed pukid",
 	"centralnotice-project-name": "Projeeʹkt nõmm",
@@ -47,5 +50,6 @@
 	"centralnotice-banner-class": "Kategoria",
 	"centralnotice-change-summary-label": "Õʹhtteǩeässmõš",
 	"centralnotice-delete-banner": "Jaukkâd",
+	"centralnotice-start-date": "Äʹlǧǧempeiʹvv (UTC)",
 	"centralnotice-banner-template-info": "(mall)"
 }
