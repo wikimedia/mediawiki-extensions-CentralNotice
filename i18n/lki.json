@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Hosseinblue",
-			"Lakzon"
+			"Lakzon",
+			"Beginneruser"
 		]
 	},
 	"centralnotice": "مدیر اعلان متمرکز",
@@ -24,7 +25,7 @@
 	"centralnotice-remove": "پاکاکردن/حةذف کردن",
 	"centralnotice-translate-heading": "ترجمه از $1",
 	"centralnotice-manage": "مدیریت اعلان متمرکز",
-	"centralnotice-manage-templates": "پرچم‌های مدیریت",
+	"centralnotice-manage-templates": "مدیریت بنرها",
 	"centralnotice-add": "افزودن",
 	"centralnotice-add-notice": "افزودن یک کمپین",
 	"centralnotice-add-notice-button": "دؤِرس کردن/سازین",

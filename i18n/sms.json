@@ -8,6 +8,7 @@
 	"centralnotice-modify": "Vuõlttâd",
 	"centralnotice-view": "Čuäʹjet",
 	"centralnotice-save-banner": "Ruõkk",
+	"centralnotice-add-new": "Lââʹzzet ođđ kampaanj",
 	"centralnotice-remove": "Jaukkâd",
 	"centralnotice-add": "Lââʹzzet",
 	"centralnotice-add-notice-button": "Raaj",
@@ -19,6 +20,9 @@
 	"centralnotice-english": "eŋgglõsǩiõʹlle",
 	"centralnotice-notice": "Kampanjj",
 	"centralnotice-notice-heading": "Kampanjj: $1",
+	"centralnotice-year": "Eeʹǩǩ",
+	"centralnotice-month": "Määnpââʹjj",
+	"centralnotice-min": "Minutt",
 	"centralnotice-project-lang": "Projeeʹkt ǩiõll",
 	"centralnotice-select-all": "Vaʹlljed pukid",
 	"centralnotice-project-name": "Projeeʹkt nõmm",
@@ -26,6 +30,8 @@
 	"centralnotice-settings": "Asetõõzz",
 	"centralnotice-message": "Saakk",
 	"centralnotice-clone-name": "Nõmm:",
+	"centralnotice-insert": "Lââʹzzet: $1",
+	"centralnotice-banner-anonymous": "Nõõmteʹmes õõʹnnʼjid",
 	"centralnotice-languages": "Ǩiõl",
 	"centralnotice-language": "Ǩiõll",
 	"centralnotice-projects": "Projeeʹkt",
@@ -43,5 +49,7 @@
 	"centralnotice-user-role-logged-in": "Leäk ǩeeʹrjtõõttâm sizz",
 	"centralnotice-banner-class": "Kategoria",
 	"centralnotice-change-summary-label": "Õʹhtteǩeässmõš",
-	"centralnotice-delete-banner": "Jaukkâd"
+	"centralnotice-delete-banner": "Jaukkâd",
+	"centralnotice-start-date": "Äʹlǧǧempeiʹvv (UTC)",
+	"centralnotice-banner-template-info": "(mall)"
 }
