@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ukabia"
+			"Ukabia",
+			"Akwugo",
+			"Weather Top Wizard"
 		]
 	},
 	"centralnotice-modify": "Zibànye",
@@ -30,5 +32,5 @@
 	"centralnotice-archive-banner-cancel": "Hapụ̀",
 	"centralnotice-archive-campaign-cancel": "Hapụ̀",
 	"centralnotice-delete-banner-cancel": "Hapụ̀",
-	"centralnotice-start-date": "Bìdó ubochi"
+	"centralnotice-start-date": "Ụbọchị Mbido (UTC)"
 }
