@@ -128,7 +128,7 @@
 	"centralnotice-multiple-languages": "विभिन्न ($1)",
 	"tag-centralnotice": "केन्द्रीय सूचना",
 	"prefs-centralnotice-banners": "सूचनाहरू",
-	"prefs-centralnotice-display-banner-types": "प्रदर्शनका लागि ब्यानरका प्रकारहरू",
+	"prefs-centralnotice-display-banner-types": "प्रदर्शनका लागि सूचनाका प्रकारहरू",
 	"centralnotice-campaign-type": "अभियान प्रकार",
 	"centralnotice-campaign-type-advocacy": "वकालत",
 	"centralnotice-campaign-type-article-writing": "लेख लेखन",
@@ -136,7 +136,7 @@
 	"centralnotice-campaign-type-fundraising": "कोष सङ्कलन",
 	"centralnotice-campaign-type-governance": "सुशासन",
 	"centralnotice-campaign-type-maintenance": "मर्मतसम्भार",
-	"centralnotice-campaign-type-photography": "फोटोग्राफी",
+	"centralnotice-campaign-type-photography": "चित्र प्रकार",
 	"centralnotice-campaign-type-special": "विशेष",
 	"centralnotice-user-prefs-intro": "सूचनाहरूले विकिमिडिया समुदायहरू र प्रयोगकर्ताहरूलाई रुचिको घोषणाहरू प्रदर्शन गर्दछ। \n\nतपाईले कुन प्रकारका सूचनाहरू देख्न चाहान्छु तल छनोट गर्न सक्नुहुन्छ। केहि सूचनाहरू जस्तैकी मर्मतसम्भार र सबै प्रयोगकर्ताहरूलाई आवश्यक मानिने विशेष सूचनाहरू, सधैं प्रदर्शित हुनेछन्। थप जानकारीको लागि, कृपया मेटा-विकीमा [[metawikimedia:Special:MyLanguage/CentralNotice|लेख पढ्नुहोस्]]।"
 }

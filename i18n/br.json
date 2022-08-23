@@ -122,7 +122,7 @@
 	"centralnotice-country": "Bro",
 	"centralnotice-region": "Ranndir",
 	"centralnotice-no-allocation": "Giton skorennet ebet.",
-	"centralnotice-allocation-description": "Skorenn giton evit $1.$2 e $3 :",
+	"centralnotice-allocation-description": "Skorenn giton evit yezh $1, raktres: $2, e bro: $3, en arvivink $4",
 	"centralnotice-percentage": "Dregantad",
 	"centralnotice-documentwrite-error": "N'hall ket document.write() bezañ implijet hep giton.\nSellet ouzh https://meta.wikimedia.org/wiki/Help:CentralNotice evit gouzout hiroc'h.",
 	"centralnotice-preferred": "Da gentañ",
