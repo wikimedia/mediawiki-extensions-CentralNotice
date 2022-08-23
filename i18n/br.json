@@ -58,7 +58,7 @@
 	"centralnotice-notice-doesnt-exist": "N'eus ket eus ar c'houlzad-mañ",
 	"centralnotice-remove-notice-doesnt-exist": "N'eus ket eus ar c'hemenn-mañ.\nN'eus netra da zilemel.",
 	"centralnotice-banner-doesnt-exist": "N'eus ket eus ar giton-mañ",
-	"centralnotice-template-still-bound": "Liammet eo c'hoazh ar patrom gant un ali.\nN'eo ket bet dilammet.",
+	"centralnotice-template-still-bound": "Ne c’heller ket dilemel ar giton \"$1\" rak liammet eo c’hoaezh ouzh ur c’houlzad.\nN'eo ket bet dilammet.",
 	"centralnotice-template-body": "Korf ar patrom :",
 	"centralnotice-day": "Deiz",
 	"centralnotice-year": "Bloaz",
