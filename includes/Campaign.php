@@ -801,7 +801,7 @@ class Campaign {
 	 */
 	public static function getAllCampaignNames() {
 		$dbr = CNDatabase::getDb();
-		$res = $dbr->select( 'cn_notices', 'not_name', null, __METHOD__ );
+		$res = $dbr->select( 'cn_notices', 'not_name', '', __METHOD__ );
 		$notices = [];
 		foreach ( $res as $row ) {
 			$notices[] = $row->not_name;
@@ -843,7 +843,7 @@ class Campaign {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
-		$endTime = strtotime( '+1 hour', wfTimestamp( TS_UNIX, $startTs ) );
+		$endTime = strtotime( '+1 hour', (int)wfTimestamp( TS_UNIX, $startTs ) );
 		$endTs = wfTimestamp( TS_MW, $endTime );
 
 		$dbw->insert( 'cn_notices',
