@@ -86,7 +86,7 @@
 	"centralnotice-number-uses": "Implijoù",
 	"centralnotice-settings": "Arventennoù",
 	"centralnotice-edit-template": "Kemmañ ar patrom",
-	"centralnotice-edit-template-summary": "Da grouiñ ur gemennadenn da vezañ lec'helaet, enklozañ un neudennad gant ur varrennig-stagañ etre teir briataenn, da skouer {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Diwall: gallout a ra kargañ restroù diavaez e gitonioù lakaat buhez prevez an implijerien en arvar.\n\nEvit krouiñ ur gemennadenn da vezañ lec'helaet, enklozit ur chadenn etre teir briatell, da skouer <nowiki>{{{message_name}}}</nowiki>. Evit implijout ur gemennadenn eus ur giton all, enklozit anv ar giton heuliet gant ur virgulenn, ha war lerc’h anv ar gemennadenn, d.s.  <nowiki>{{{banner_name,message_name}}}</nowiki>.",
 	"centralnotice-message": "Kemennadenn",
 	"centralnotice-message-not-set": "N'eo ket bet savet ar gemennadenn",
 	"centralnotice-clone": "Eilañ",
