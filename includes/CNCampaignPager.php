@@ -22,7 +22,7 @@ class CNCampaignPager extends TablePager {
 	protected $onSpecialCN;
 	/** @var string|false */
 	protected $editable;
-	/** @var string|null */
+	/** @var int|null */
 	protected $assignedBannerId;
 	/** @var string[]|null */
 	protected $fieldNames = null;
@@ -30,7 +30,7 @@ class CNCampaignPager extends TablePager {
 	/**
 	 * @param CentralNotice $onSpecialCN The CentralNotice special page we're on
 	 * @param string|false $editable Whether or not to make the list editable
-	 * @param string|null $assignedBannerId Set this to show only the campaigns
+	 * @param int|null $assignedBannerId Set this to show only the campaigns
 	 *   associated with this banner id.
 	 */
 	public function __construct( CentralNotice $onSpecialCN,
@@ -244,7 +244,7 @@ class CNCampaignPager extends TablePager {
 
 			case 'not_start':
 			case 'not_end':
-				return date( '<\b>Y-m-d</\b> H:i', wfTimestamp( TS_UNIX, $value ) );
+				return date( '<\b>Y-m-d</\b> H:i', (int)wfTimestamp( TS_UNIX, $value ) );
 
 			// Note: Names of controls and data attributes must coordinate with
 			// ext.centralNotice.adminUi.campaignPager.js
@@ -268,7 +268,7 @@ class CNCampaignPager extends TablePager {
 				return $this->onSpecialCN->prioritySelector(
 					$name,
 					$this->editable && !$rowIsLocked && !$rowIsArchived,
-					$value
+					(int)$value
 				);
 
 			case 'not_throttle':

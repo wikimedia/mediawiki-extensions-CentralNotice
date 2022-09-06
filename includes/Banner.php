@@ -53,7 +53,7 @@ class Banner {
 	 * Most functions should only ever set the flag to true; flags will be
 	 * reset to false in save().
 	 *
-	 * @var null|bool[]
+	 * @var (null|bool)[]
 	 */
 	protected $dirtyFlags = [
 		'content' => null,
@@ -891,7 +891,7 @@ class Banner {
 					$fields = $this->extractMessageFields();
 					if ( count( $fields ) > 0 ) {
 						// Tag the banner for translation
-						self::addTag( self::TRANSLATE_BANNER_TAG, $revisionId, $pageId, $this->getId() );
+						self::addTag( self::TRANSLATE_BANNER_TAG, $revisionId, $pageId, (string)$this->getId() );
 						$this->runTranslateJob = true;
 					}
 					$this->invalidateCache( $fields );
@@ -1641,7 +1641,7 @@ class Banner {
 			'move' => 'infinity',
 		];
 
-		$cascade = 1;
+		$cascade = true;
 		$reason = wfMessage( 'centralnotice-banner-protection-log-reason' )
 			->inContentLanguage()->text();
 
