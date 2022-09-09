@@ -381,7 +381,7 @@
 					$paramControls = $paramControlSet.find( 'input' );
 					$paramControls.on(
 						'keyup keydown change mouseup cut paste focus blur',
-						$.debounce( 100, verifyParamControl )
+						mw.util.debounce( 100, verifyParamControl )
 					);
 				}
 
