@@ -52,11 +52,8 @@ class ChoiceDataProvider {
 
 				// Account for replica lag to prevent a race condition when
 				// campaigns are updated, the cache is invalidated, and
-				// a client queries a yet-unsynced replica DB. Also, gracefully
-				// fail if we're running an old version of core (<1.27).
-				if ( method_exists( Database::class, 'getCacheSetOptions' ) ) {
-					$setOpts += Database::getCacheSetOptions( $dbr );
-				}
+				// a client queries a yet-unsynced replica DB.
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				return self::fetchChoices( $project, $language, $dbr );
 			},
