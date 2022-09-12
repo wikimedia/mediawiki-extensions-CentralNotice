@@ -11,7 +11,8 @@
 			"सरोज कुमार ढकाल",
 			"हिमाल सुबेदी",
 			"Bada Kaji",
-			"Nirajan pant"
+			"Nirajan pant",
+			"बडा काजी"
 		]
 	},
 	"centralnotice": "केन्द्रिय प्रबन्धक सूचना",
@@ -37,7 +38,7 @@
 	"centralnotice-manage-templates": "ब्यानरहरुको व्यवस्था गर्ने",
 	"centralnotice-add": "थप्नुहोस्",
 	"centralnotice-add-notice": "अभियान थप्नुहाेस्",
-	"centralnotice-add-notice-button": "सृजना गर्ने",
+	"centralnotice-add-notice-button": "सिर्जना गर्नुहोस्",
 	"centralnotice-add-notice-cancel-button": "रद्द गर्नुहोस्",
 	"centralnotice-edit-notice": "अभियान सम्पादन गर्नुहाेस्",
 	"centralnotice-add-template": "ब्यानर थप्ने",
