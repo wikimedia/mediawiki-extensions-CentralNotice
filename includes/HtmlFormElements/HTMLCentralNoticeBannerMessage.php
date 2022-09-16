@@ -38,8 +38,8 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 
 	public function __construct( $params ) {
 		if ( !array_key_exists( 'default', $params ) ) {
-			$message = new BannerMessage( $this->mParams[ 'banner' ], $this->mParams[ 'message' ] );
-			$params[ 'default' ] = $message->getContents( $this->mParams[ 'language' ] );
+			$message = new BannerMessage( $params[ 'banner' ], $params[ 'message' ] );
+			$params[ 'default' ] = $message->getContents( $params[ 'language' ] );
 		}
 
 		parent::__construct( $params );
