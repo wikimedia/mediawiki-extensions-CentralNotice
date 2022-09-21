@@ -17,6 +17,10 @@ class CentralNotice extends SpecialPage {
 	// String to use in drop-down to indicate no campaign type (repesented as null in DB)
 	private const EMPTY_CAMPAIGN_TYPE_OPTION = 'empty-campaign-type-option';
 
+	// When displaying a long list, display the complement "all except ~LIST"
+	// past a threshold, given as a proportion of the "all" list length.
+	private const LIST_COMPLEMENT_THRESHOLD = 0.75;
+
 	/** @var bool|null */
 	public $editable;
 	/** @var bool|null */
@@ -1953,12 +1957,11 @@ class CentralNotice extends SpecialPage {
 	}
 
 	protected function makeShortList( $all, $list ) {
-		global $wgNoticeListComplementThreshold;
 		// TODO ellipsis and js/css expansion
 		if ( count( $list ) == count( $all ) ) {
 			return $this->getContext()->msg( 'centralnotice-all' )->text();
 		}
-		if ( count( $list ) > $wgNoticeListComplementThreshold * count( $all ) ) {
+		if ( count( $list ) > self::LIST_COMPLEMENT_THRESHOLD * count( $all ) ) {
 			$inverse = array_values( array_diff( $all, $list ) );
 			$txt = $this->getContext()->getLanguage()->listToText( $inverse );
 			return $this->getContext()->msg( 'centralnotice-all-except', $txt )->text();

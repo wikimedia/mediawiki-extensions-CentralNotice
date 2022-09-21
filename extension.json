@@ -405,9 +405,6 @@
 		"CentralNoticePerCampaignBucketExtension": {
 			"value": 30
 		},
-		"NoticeListComplementThreshold": {
-			"value": 0.75
-		},
 		"CentralNoticeCategoriesUsingLegacy": {
 			"value": [
 				"Fundraising",
