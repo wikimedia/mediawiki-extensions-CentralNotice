@@ -184,8 +184,12 @@
 	"centralnotice-prioritylangs": "Prioritetni jezici",
 	"centralnotice-prioritylangs-explain": "Označavanjem nekog jezika za prioritetan stajete na znanje prevoditeljima da bi trebali započeti prvi jezik.",
 	"centralnotice-aggregate-group-desc": "Sve poruke ove grupe uključene su u centralizirane obavijesti.",
+	"centralnotice-country-eu": "Nepoznato/područje Evropske unije",
+	"centralnotice-country-ap": "Nepoznato/Azijsko-tihooceansko područje",
 	"centralnotice-country-a1": "Nepoznata/Anoniman proksi",
 	"centralnotice-banner-empty-bucket": "Ne sve skupine imaju dodjeljeno obavijesti.",
+	"centralnotice-devicetype-desktop": "Računar",
+	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Svi uređaji utvrđeni kao iPad, ali ne i iPhone",
 	"centralnotice-devicetype-iphone": "Sve verzije iPhone-a",
 	"centralnotice-devicetype-unknown": "Uređaje na mobilnom wikiju što nisu iPhone, iPad i Android — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Logika izbiratelja])",
@@ -254,5 +258,14 @@
 	"tag-centralnotice": "Središnje obavjesnice",
 	"tag-centralnotice-description": "Izmjena načinjena upotrebom korisničkoga sučelja za administratore središnjih obavjesnica",
 	"tag-centralnotice_translation": "Prijevod središnjih obavjesnica",
-	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno upotrebom proširenja za prevođenje"
+	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno upotrebom proširenja za prevođenje",
+	"centralnotice-campaign-type-advocacy": "Zastupanje",
+	"centralnotice-campaign-type-article-writing": "Pisanje članaka",
+	"centralnotice-campaign-type-event": "Događaj",
+	"centralnotice-campaign-type-fundraising": "Prikupljanje sredstava",
+	"centralnotice-campaign-type-governance": "Rukovodstvo",
+	"centralnotice-campaign-type-maintenance": "Održavanje",
+	"centralnotice-campaign-type-photography": "Fotografija",
+	"centralnotice-campaign-type-special": "Posebno",
+	"centralnotice-user-prefs-intro": "Obavjesnice prikazuju objave od interesa za wikimedijine zajednice i korisnike.\n\nNiže su pretstavljene značajke koje Vam daju mogućnost da izaberete koje vrste obavještenja bit će prikazane. Određene platformske obavijesti, poput onih o održavanju poslužitelja i posebne obavijesti koje se smatraju nužnima za sve suradnike bit će uvijek prikazane. Za više o ovome, molimo Vas, pročitajte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentaciju na Meta]]."
 }

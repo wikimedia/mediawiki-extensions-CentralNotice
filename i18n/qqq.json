@@ -25,7 +25,8 @@
 			"Siebrand",
 			"The Evil IP address",
 			"Umherirrender",
-			"Yekrats"
+			"Yekrats",
+			"Verdy p"
 		]
 	},
 	"centralnotice": "{{doc-special|CentralNotice}}\n{{Identical|Central notice admin}}",
@@ -62,7 +63,7 @@
 	"centralnotice-translations": "{{Identical|Translation}}",
 	"centralnotice-translate-to": "{{Identical|Translate}}",
 	"centralnotice-translate": "{{Identical|Translate}}",
-	"centralnotice-english": "The header of a column with the original values of the translatable messages.\n\nThe other headers are:\n\n* {{msg-mw|centralnotice-message}}\n* {{msg-mw|centralnotice-number-uses}}\n* (the name of a language to which the banner is being translated)\n\n(See also [[:phab:T18321|Phabricator T18321 - All messages in CentralNotice are defaulted to English regardless of content language]].)\n{{Identical|English}}",
+	"centralnotice-english": "The header of a column with the original values of the translatable messages. The other headers are:\n* {{msg-mw|centralnotice-message}}\n* {{msg-mw|centralnotice-number-uses}}\n* (the name of a language to which the banner is being translated)\n\n(See also [[:phab:T18321|Phabricator T18321 - All messages in CentralNotice are defaulted to English regardless of content language]].)\n{{Identical|English}}",
 	"centralnotice-banner-name": "Used as label for the \"Banner name\" (\"Template name\") input box in [[Special:NoticeTemplate]].",
 	"centralnotice-banner": "Used as fieldset label in the form in [[Special:NoticeTemplate]].\n\nFollowed by {{msg-mw|Centralnotice-edit-template-summary}}.\n{{Identical|Banner}}",
 	"centralnotice-banner-heading": "Used as <code><nowiki><h2></nowiki></code> heading. Parameters:\n* $1 - current banner (current template)\n{{Identical|Banner}}",
