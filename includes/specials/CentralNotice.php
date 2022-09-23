@@ -1923,11 +1923,10 @@ class CentralNotice extends SpecialPage {
 		return $this->makeShortList( $wgNoticeProjects, $projects );
 	}
 
-	public function listCountriesRegions( $countries, $regions ) {
+	public function listCountriesRegions( array $countries, array $regions ) {
 		$allCountries = array_keys( GeoTarget::getCountriesList() );
 		$list = $this->makeShortList( $allCountries, $countries );
 		$regionsByCountry = [];
-		$regionCountries = [];
 		foreach ( $regions as $region ) {
 			$countryCode = substr( $region, 0, 2 );
 			$regionCode = substr( $region, 3 );

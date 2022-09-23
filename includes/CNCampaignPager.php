@@ -229,16 +229,19 @@ class CNCampaignPager extends TablePager {
 				return htmlspecialchars( $this->onSpecialCN->listLanguages( $l ) );
 
 			case 'location':
+				$countries = $this->mCurrentRow->countries
+					? explode( ',', $this->mCurrentRow->countries )
+					: [];
+				$regions = $this->mCurrentRow->regions
+					? explode( ',', $this->mCurrentRow->regions )
+					: [];
 				// if not geotargeted or no countries and regions chosen, show "all"
-				$emptyGeo = empty( $this->mCurrentRow->countries )
-					&& empty( $this->mCurrentRow->regions );
+				$emptyGeo = !$countries && !$regions;
 				if ( !$this->mCurrentRow->not_geo || $emptyGeo ) {
 					return $this->msg( 'centralnotice-all' )->text();
 				}
-				$c = explode( ',', $this->mCurrentRow->countries );
 
-				$r = explode( ',', $this->mCurrentRow->regions );
-				$list = $this->onSpecialCN->listCountriesRegions( $c, $r );
+				$list = $this->onSpecialCN->listCountriesRegions( $countries, $regions );
 
 				return htmlspecialchars( $list );
 
