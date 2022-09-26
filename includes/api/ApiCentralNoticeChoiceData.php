@@ -13,15 +13,6 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 
 	private const PROJECT_FILTER = '/[a-zA-Z0-9_\-]+/';
 
-	private const LOCATION_FILTER = '/[a-zA-Z0-9_\-]+/';
-
-	private const DEVICE_NAME_FILTER = '/[a-zA-Z0-9_\-]+/';
-
-	/**
-	 * Regex for filtering values of the status parameter
-	 */
-	private const STATUS_FILTER = '/loggedin|anonymous/';
-
 	public function execute() {
 		// Extract, sanitize and munge the parameters
 		$params = $this->extractRequestParams();
