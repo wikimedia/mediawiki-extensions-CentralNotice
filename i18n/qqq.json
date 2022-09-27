@@ -351,6 +351,7 @@
 	"centralnotice-campaign-view-logs": "Label for navigation link to this campaign's settings logs. Shown in subtitle of Special:CentralNotice for a specific campaign.",
 	"prefs-centralnotice-banners": "Used in [[Special:Preferences#mw-prefsection-banners|Special:Preferences]] for the name of the tab with banner/CentralNotice controls. '''This appears on client wikis'''.",
 	"prefs-centralnotice-display-banner-types": "Used in [[Special:Preferences#mw-prefsection-banners|Special:Preferences]] '''on client wikis''', tab \"Banners\", as section header above controls for banner types to display.",
+	"prefs-description-centralnotice-banners": "Used in [[Special:Preferences]] for mobile to describe the Banners features section.",
 	"centralnotice-campaign-type": "A label for a list for selecting the type of the campaign.\n\n* Used as column header of the table in [[Special:CentralNotice]].\n* Used as label for the campaign type drop-down.\n{{Related|Centralnotice-th}}",
 	"centralnotice-empty-campaign-type-option": "Text for the option to set no type assigned to a campaign.",
 	"centralnotice-non-existent-campaign-type-error": "Error message for non-existant campaign type.",
