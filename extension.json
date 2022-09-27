@@ -87,7 +87,7 @@
 		"CNChoiceDataResourceLoaderModule": "includes/CNChoiceDataResourceLoaderModule.php",
 		"CNCountry": "includes/CNCountry.php",
 		"CNDatabase": "includes/CNDatabase.php",
-		"CNDatabasePatcher": "patches/CNDatabasePatcher.php",
+		"CNDatabasePatcher": "includes/CNDatabasePatcher.php",
 		"CNDeviceTarget": "includes/CNDeviceTarget.php",
 		"EmptyBannerException": "includes/specials/EmptyBannerException.php",
 		"GeoTarget": "includes/GeoTarget.php",

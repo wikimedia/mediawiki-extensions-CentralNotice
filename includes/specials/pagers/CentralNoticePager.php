@@ -88,7 +88,7 @@ class CentralNoticePager extends TemplatePager {
 		if ( $this->editable ) {
 			// Add box
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				Xml::check( 'addTemplates[]', '', [ 'value' => $row->tmp_name ] )
+				Xml::check( 'addTemplates[]', false, [ 'value' => $row->tmp_name ] )
 			);
 
 			// Bucket
@@ -103,9 +103,8 @@ class CentralNoticePager extends TemplatePager {
 						$this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 )
 					),
 					'',
-					'25',
-					'',
-					'' )
+					'25'
+				)
 			);
 		}
 

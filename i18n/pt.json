@@ -318,7 +318,7 @@
 	"centralnotice-banner-sequence-detailed-help": "As sequências são definidas em separado para cada segmento. Em cada passo, só estão disponíveis as faixas atribuídas a esse segmento da sequência. Para mostrar sempre um passo, deixe o campo \"Saltar com identificador\" vazio. Se for definido um identificador, então, após o passo ter sido completado, será armazenada uma indicação no <i>browser</i> do utilizador e, na próxima vez em que o utilizador atingir um passo com o mesmo identificador, este passo será saltado. Os identificadores do elemento partilhável \"Limitar faixas grandes e mudar\" são compatíveis e também serão levados em consideração. Quando uma sequência termina, ela recomeça desde o início (para impedir que uma sequência seja reiniciada, use o elemento partilhável \"limitação de impressão\" para limitar as impressões).",
 	"centralnotice-impression-events-sample-rate": "Taxa de amostragem para operações de impressão",
 	"centralnotice-impression-events-sample-rate-help": "Definir uma taxa de amostragem não padronizada para o registo das operações de impressão.",
-	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 0,1, inclusive)",
+	"centralnotice-impression-events-sample-rate-field": "Taxa de amostragem para operações de impressão (deve ser entre 0 e 0,01, inclusive)",
 	"centralnotice-banner-protection-log-reason": "Protegido automaticamente pela Central de Avisos; editar só em [[Special:CentralNotice]] ou [[Special:Translate]], por favor.",
 	"centralnotice-multiple-countries": "Vários países",
 	"centralnotice-multiple-regions": "Várias regiões",

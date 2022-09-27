@@ -87,7 +87,7 @@ class CentralNoticeHooks {
 					'dependencies' => [
 						'jquery.ui',
 						'mediawiki.jqueryMsg',
-						'jquery.throttle-debounce',
+						'mediawiki.util',
 						'mediawiki.Uri'
 					],
 					'scripts' => [

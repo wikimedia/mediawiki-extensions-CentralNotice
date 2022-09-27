@@ -281,10 +281,10 @@ class SpecialBannerAllocation extends CentralNotice {
 			// FIXME matrix is chosen dynamically based on more UI inputs
 			$matrix = [];
 			for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
-				$matrix[] = [ 'anonymous' => 'true', 'bucket' => "$i" ];
+				$matrix[] = [ 'anonymous' => 'true', 'bucket' => $i ];
 			}
 			for ( $i = 0; $i < $wgNoticeNumberOfBuckets; $i++ ) {
-				$matrix[] = [ 'anonymous' => 'false', 'bucket' => "$i" ];
+				$matrix[] = [ 'anonymous' => 'false', 'bucket' => $i ];
 			}
 
 			foreach ( $matrix as $target ) {

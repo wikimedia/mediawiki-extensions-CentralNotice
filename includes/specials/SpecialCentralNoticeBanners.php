@@ -136,8 +136,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Process the form that we sent out
 		$formDescriptor = $this->generateBannerListForm( $this->bannerFilterString );
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
-		$htmlForm->setSubmitCallback( [ $this, 'processBannerList' ] );
-		$htmlForm->loadData();
+		$htmlForm->setSubmitCallback( [ $this, 'processBannerList' ] )
+			->prepareForm();
 		$formResult = $htmlForm->trySubmit();
 
 		if ( $this->bannerFormRedirectRequired ) {
@@ -149,11 +149,11 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor = $this->generateBannerListForm( $this->bannerFilterString );
 		$htmlForm = new CentralNoticeHtmlForm( $formDescriptor, $this->getContext() );
 
-		$htmlForm->setId( 'cn-banner-manager' )->
-			suppressDefaultSubmit()->
-			setDisplayFormat( 'div' )->
-			prepareForm()->
-			displayForm( $formResult );
+		$htmlForm->setId( 'cn-banner-manager' )
+			->suppressDefaultSubmit()
+			->setDisplayFormat( 'div' )
+			->prepareForm()
+			->displayForm( $formResult );
 	}
 
 	/**
@@ -490,8 +490,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Now begin form processing
 		$htmlForm = new CentralNoticeHtmlForm(
 			$formDescriptor, $this->getContext(), 'centralnotice' );
-		$htmlForm->setSubmitCallback( [ $this, 'processEditBanner' ] );
-		$htmlForm->loadData();
+		$htmlForm->setSubmitCallback( [ $this, 'processEditBanner' ] )
+			->prepareForm();
 
 		$formResult = $htmlForm->tryAuthorizedSubmit();
 
@@ -504,14 +504,15 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		$htmlForm = new CentralNoticeHtmlForm(
 			$formDescriptor, $this->getContext(), 'centralnotice' );
-		$htmlForm->setSubmitCallback( [ $this, 'processEditBanner' ] )->setId( 'cn-banner-editor' );
+		$htmlForm->setSubmitCallback( [ $this, 'processEditBanner' ] )
+			->setId( 'cn-banner-editor' );
 
 		// Push the form back to the user
-		$htmlForm->suppressDefaultSubmit()->
-			setId( 'cn-banner-editor' )->
-			setDisplayFormat( 'div' )->
-			prepareForm()->
-			displayForm( $formResult );
+		$htmlForm->suppressDefaultSubmit()
+			->setId( 'cn-banner-editor' )
+			->setDisplayFormat( 'div' )
+			->prepareForm()
+			->displayForm( $formResult );
 
 		// Send banner name into page for access from JS
 		$out->addHTML( Xml::element( 'span',

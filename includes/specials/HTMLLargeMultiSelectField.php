@@ -9,7 +9,7 @@ class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
 		$options = "\n";
 		foreach ( $this->mParams[ 'options' ] as $name => $optvalue ) {
 			$options .= Xml::option(
-				$name,
+				(string)$name,
 				$optvalue,
 				in_array( $optvalue, $value )
 			) . "\n";

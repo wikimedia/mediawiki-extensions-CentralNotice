@@ -386,7 +386,7 @@ class CentralNotice extends SpecialPage {
 		if ( $editable ) {
 			$options = ''; // The HTML for the select list options
 			foreach ( $priorities as $key => $labelMsg ) {
-				$options .= Xml::option( $labelMsg->text(), $key, $priorityValue == $key );
+				$options .= Xml::option( $labelMsg->text(), (string)$key, $priorityValue == $key );
 			}
 
 			// Data attributes set below (data-campaign-name and
@@ -444,7 +444,7 @@ class CentralNotice extends SpecialPage {
 			$start = $this->getDateTime( 'start' );
 			$noticeLanguages = $request->getArray( 'project_languages', [] );
 			$noticeProjects = $request->getArray( 'projects', [] );
-			$campaignType = $request->getText( 'campaign_type', null );
+			$campaignType = $request->getText( 'campaign_type' );
 		}
 		'@phan-var array $noticeLanguages';
 		'@phan-var array $noticeProjects';
@@ -561,7 +561,7 @@ class CentralNotice extends SpecialPage {
 			$geo_regions = [];
 		}
 
-		$campaignType = $request->getText( 'campaign_type', null );
+		$campaignType = $request->getText( 'campaign_type' );
 		$campaignType =
 			$campaignType === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $campaignType;
 
@@ -809,7 +809,7 @@ class CentralNotice extends SpecialPage {
 
 				// Handle setting campaign type
 
-				$type = $request->getText( 'campaign_type', null );
+				$type = $request->getText( 'campaign_type' );
 				$type = $type === self::EMPTY_CAMPAIGN_TYPE_OPTION ? null : $type;
 
 				// Sanity check: does the requested campaign type exist?
@@ -1023,7 +1023,7 @@ class CentralNotice extends SpecialPage {
 				$numBuckets = $request->getInt( 'buckets', 1 );
 				$countries = $this->listToArray( $request->getVal( 'geo_countries' ) );
 				$regions = $this->listToArray( $request->getVal( 'geo_regions' ) );
-				$type = $request->getText( 'type', null );
+				$type = $request->getText( 'type' );
 			} else { // Defaults
 				$start = $campaign[ 'start' ];
 				$end = $campaign[ 'end' ];
@@ -1436,12 +1436,12 @@ class CentralNotice extends SpecialPage {
 		if ( $this->editable ) {
 			$html = Html::openElement( 'select', [ 'name' => $name ] );
 			foreach ( range( 5, 100, 5 ) as $value ) {
-				$html .= Xml::option( $value, $value, $value === $selected );
+				$html .= Xml::option( $value, (string)$value, $value === $selected );
 			}
 			$html .= Html::closeElement( 'select' );
 			return $html;
 		} else {
-			return htmlspecialchars( $selected );
+			return htmlspecialchars( (string)$selected );
 		}
 	}
 
@@ -1494,12 +1494,12 @@ class CentralNotice extends SpecialPage {
 			$html = Html::openElement( 'select', [ 'name' => 'buckets', 'id' => 'buckets' ] );
 			foreach ( range( 0, intval( log( $numBuckets, 2 ) ) ) as $value ) {
 				$value = pow( 2, $value );
-				$html .= Xml::option( $value, $value, $value === $selected );
+				$html .= Xml::option( (string)$value, (string)$value, $value === $selected );
 			}
 			$html .= Html::closeElement( 'select' );
 			return $html;
 		} else {
-			return htmlspecialchars( $selected );
+			return htmlspecialchars( (string)$selected );
 		}
 	}
 
@@ -1821,17 +1821,8 @@ class CentralNotice extends SpecialPage {
 	 * @return string Space delimited string
 	 */
 	public function sanitizeSearchTerms( $terms ) {
-		$retval = ' '; // The space is important... it gets trimmed later
-
-		foreach ( preg_split( '/\s+/', $terms ) as $term ) {
-			preg_match( '/[0-9a-zA-Z_\-]+/', $term, $matches );
-			if ( $matches ) {
-				$retval .= $matches[ 0 ];
-				$retval .= ' ';
-			}
-		}
-
-		return trim( $retval );
+		preg_match_all( '/([\w-]+)\S*/s', $terms, $matches );
+		return implode( ' ', $matches[1] );
 	}
 
 	/**
@@ -1923,11 +1914,10 @@ class CentralNotice extends SpecialPage {
 		return $this->makeShortList( $wgNoticeProjects, $projects );
 	}
 
-	public function listCountriesRegions( $countries, $regions ) {
+	public function listCountriesRegions( array $countries, array $regions ) {
 		$allCountries = array_keys( GeoTarget::getCountriesList() );
 		$list = $this->makeShortList( $allCountries, $countries );
 		$regionsByCountry = [];
-		$regionCountries = [];
 		foreach ( $regions as $region ) {
 			$countryCode = substr( $region, 0, 2 );
 			$regionCode = substr( $region, 3 );
