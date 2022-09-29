@@ -8,7 +8,8 @@
 			"NguoiDungKhongDinhDanh",
 			"Trần Nguyễn Minh Huy",
 			"Vinhtantran",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"NguyenHung"
 		]
 	},
 	"centralnotice": "Quản lý các thông báo trung ương",
@@ -262,7 +263,7 @@
 	"centralnotice-banner-history-logger": "Trình ghi lịch sử biểu ngữ",
 	"centralnotice-banner-history-logger-help": "Theo dõi dãy biểu ngữ được xem bởi độc giả và đôi khi gửi nó lại máy chủ.",
 	"centralnotice-banner-history-logger-rate": "Tần số lấy mẫu",
-	"centralnotice-banner-history-logger-rate-help": "Xác suất dữ liệu sẽ được lấy mẫu và gửi lại máy chủ. Số nguyên từ 0 (không bao giờ) đến 1 (luôn luôn).",
+	"centralnotice-banner-history-logger-rate-help": "Xác suất dữ liệu sẽ được lấy mẫu và gửi lại máy chủ. Số nguyên từ 0 đến 0.01.",
 	"centralnotice-banner-history-logger-max-entry-age": "Ngày tối đa để giữ các mục nhật trình",
 	"centralnotice-banner-history-logger-max-entry-age-help": "Những mục nhật trình cũ hơn sẽ bị hết hạn và sẽ không được gửi về lại máy chủ.",
 	"centralnotice-banner-history-logger-max-entries": "Số tối đa để giữ các mục nhật trình",
@@ -309,7 +310,7 @@
 	"centralnotice-banner-sequence-detailed-help": "Chuỗi biểu ngữ được thiết lập riêng rẽ cho từng gói. Trong mỗi bước, chỉ có các biểu ngữ có trong gói của chuỗi là dùng được. Để luôn hiện một bước, để trống trường “Bỏ qua với mã định danh”. Nếu đặt một mã định danh, thì một khi bước đó hoàn tất, một lá cờ sẽ được lưu trong trình duyệt người dùng với chính mã định danh đó, đến lần tiếp theo khi người dùng đến bước đó với cùng mã định danh, nó sẽ được bỏ qua. Các mã định danh trong “Giới hạn và chuyển biểu ngữ lớn” cũng tương thích và có tính tới. Một khi chuỗi kết thúc, nó sẽ bắt đầu lại từ đầu. (Để tránh một chuỗi lặp lại, dùng “Ngưng lần xem” để hạn chế số lần xem.)",
 	"centralnotice-impression-events-sample-rate": "Tỷ lệ lấy mẫu sự kiện xem",
 	"centralnotice-impression-events-sample-rate-help": "Đặt một tỷ lệ lấy mẫu không phải giá trị mặc định để ghi lại sự kiện xem.",
-	"centralnotice-impression-events-sample-rate-field": "Tỷ lệ lấy mẫu sự kienj xem (nên từ 0 đến 1, bao gồm cả 0 hoặc 1)",
+	"centralnotice-impression-events-sample-rate-field": "Tỷ lệ lấy mẫu sự kienj xem (nên từ 0 đến 0.01, bao gồm cả 0 hoặc 1)",
 	"centralnotice-banner-protection-log-reason": "Tự động khóa bởi CentralNotice; vui lòng chỉ sửa đổi tại [[Special:CentralNotice]] hoặc [[Special:Translate]]",
 	"centralnotice-multiple-countries": "Nhiều quốc gia",
 	"centralnotice-multiple-regions": "Nhiều vùng",
