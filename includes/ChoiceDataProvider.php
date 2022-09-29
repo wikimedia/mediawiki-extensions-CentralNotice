@@ -361,9 +361,9 @@ class ChoiceDataProvider {
 			usort( $c['banners'], $compareNames );
 
 			if ( $c['geotargeted'] ) {
-				$c['countries'] = isset( $c['countries'] ) ? array_unique( $c['countries'] ) : [];
+				$c['countries'] = array_unique( $c['countries'] ?? [] );
 				sort( $c['countries'] );
-				$c['regions'] = isset( $c['regions'] ) ? array_unique( $c['regions'] ) : [];
+				$c['regions'] = array_unique( $c['regions'] ?? [] );
 				sort( $c['regions'] );
 			}
 
