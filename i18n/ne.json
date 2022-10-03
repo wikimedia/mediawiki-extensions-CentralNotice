@@ -12,7 +12,8 @@
 			"हिमाल सुबेदी",
 			"Bada Kaji",
 			"Nirajan pant",
-			"बडा काजी"
+			"बडा काजी",
+			"CAPTAIN MEDUSA"
 		]
 	},
 	"centralnotice": "केन्द्रिय प्रबन्धक सूचना",
@@ -50,12 +51,14 @@
 	"centralnotice-translate": "अनुवाद गर्नुहोस्",
 	"centralnotice-english": "अङ्ग्रेजी",
 	"centralnotice-banner-name": "ब्यानरको नाम:",
-	"centralnotice-banner": "ब्यानर",
+	"centralnotice-banner": "सूचना",
 	"centralnotice-banner-heading": "ब्यानर: $1",
 	"centralnotice-templates": "ब्यानरहरु",
 	"centralnotice-throttle": "यातायात सीमित गर्नुहोस्",
+	"centralnotice-balanced": "सबै ब्यानरहरूलाई समान वजन दिनुहोस्",
 	"centralnotice-weight": "ओजन",
 	"centralnotice-locked": "बन्द गरिएको",
+	"centralnotice-notice-mixins-fieldset": "अतिरिक्त अभियान सुविधाहरू",
 	"centralnotice-notice-mixins-int-required": "पूर्णांक आवश्यक छ",
 	"centralnotice-notice": "अभियान",
 	"centralnotice-notice-heading": "अभियान: $1",
