@@ -324,6 +324,7 @@
 	"centralnotice-campaign-view-logs": "View campaign settings logs",
 	"prefs-centralnotice-banners": "Banners",
 	"prefs-centralnotice-display-banner-types": "Banner types to display",
+	"prefs-description-centralnotice-banners": "Manage the types of announcements you see.",
 	"centralnotice-campaign-type": "Campaign type",
 	"centralnotice-empty-campaign-type-option": "No type (always shown)",
 	"centralnotice-non-existent-campaign-type-error": "Selected campaign type does not exist",
