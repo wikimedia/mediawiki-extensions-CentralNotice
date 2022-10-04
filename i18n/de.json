@@ -333,6 +333,7 @@
 	"centralnotice-campaign-view-logs": "Logbücher der Kampagneneinstellungen anzeigen",
 	"prefs-centralnotice-banners": "Banner",
 	"prefs-centralnotice-display-banner-types": "Anzuzeigende Bannertypen",
+	"prefs-description-centralnotice-banners": "Verwalte die Arten von Ankündigungen, die du siehst.",
 	"centralnotice-campaign-type": "Kampagnentyp",
 	"centralnotice-empty-campaign-type-option": "Kein Typ (wird immer angezeigt)",
 	"centralnotice-non-existent-campaign-type-error": "Ausgewählter Kampagnentyp ist nicht vorhanden",
