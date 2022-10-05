@@ -337,6 +337,7 @@
 	"centralnotice-campaign-view-logs": "Ver registos das configurações de avisos",
 	"prefs-centralnotice-banners": "Faixas",
 	"prefs-centralnotice-display-banner-types": "Tipos de faixa a apresentar",
+	"prefs-description-centralnotice-banners": "Escolher os tipos de comunicações que vê.",
 	"centralnotice-campaign-type": "Tipo de campanha",
 	"centralnotice-empty-campaign-type-option": "Nenhum tipo (mostrado sempre)",
 	"centralnotice-non-existent-campaign-type-error": "O tipo de campanha selecionado não existe",

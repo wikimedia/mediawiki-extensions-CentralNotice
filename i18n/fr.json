@@ -351,6 +351,7 @@
 	"centralnotice-campaign-view-logs": "Voir les journaux des paramètres de campagne",
 	"prefs-centralnotice-banners": "Bandeaux",
 	"prefs-centralnotice-display-banner-types": "Types de bandeaux à afficher",
+	"prefs-description-centralnotice-banners": "Gérez les types d’annonces que vous voyez.",
 	"centralnotice-campaign-type": "Type de campagne",
 	"centralnotice-empty-campaign-type-option": "Aucun type (toujours affiché)",
 	"centralnotice-non-existent-campaign-type-error": "Le type de campagne sélectionné n’existe pas.",

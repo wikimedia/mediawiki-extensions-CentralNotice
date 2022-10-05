@@ -321,6 +321,7 @@
 	"centralnotice-campaign-view-logs": "Vider le registros de parametros de campania",
 	"prefs-centralnotice-banners": "Bandieras",
 	"prefs-centralnotice-display-banner-types": "Typos de bandiera a monstrar",
+	"prefs-description-centralnotice-banners": "Gerer le typo de annuncios que tu vide.",
 	"centralnotice-campaign-type": "Typo de campania",
 	"centralnotice-empty-campaign-type-option": "Nulle typo (sempre monstrate)",
 	"centralnotice-non-existent-campaign-type-error": "Le typo de campania seligite non existe",
