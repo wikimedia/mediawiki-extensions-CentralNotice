@@ -686,7 +686,7 @@
 	};
 
 	BannerSequenceUiModel.prototype.validateSkipWithIdentifier = function ( id ) {
-		return ( typeof id === 'string' && !/\|/.test( id ) ) || id === null;
+		return ( typeof id === 'string' && id.indexOf( '|' ) === -1 ) || id === null;
 	};
 
 	BannerSequenceUiModel.prototype.validateDays = function ( days ) {

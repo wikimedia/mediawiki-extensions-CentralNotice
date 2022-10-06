@@ -133,13 +133,13 @@
 
 		ua = navigator.userAgent;
 
-		if ( ua.match( /iphone/i ) ) {
+		if ( /iphone/i.test( ua ) ) {
 			return DEVICES.IPHONE;
 		}
-		if ( ua.match( /ipad/i ) ) {
+		if ( /ipad/i.test( ua ) ) {
 			return DEVICES.IPAD;
 		}
-		if ( ua.match( /android/i ) ) {
+		if ( /android/i.test( ua ) ) {
 			return DEVICES.ANDROID;
 		}
 		return DEVICES.UNKNOWN;
