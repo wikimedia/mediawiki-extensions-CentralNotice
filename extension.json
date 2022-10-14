@@ -596,6 +596,9 @@
 				"maintenance": { "onForAll": true },
 				"special": { "onForAll": true }
 			}
+		},
+		"CentralNoticeESITestString": {
+			"value": false
 		}
 	},
 	"attributes": {
