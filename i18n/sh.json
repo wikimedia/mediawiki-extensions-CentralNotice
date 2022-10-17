@@ -26,6 +26,8 @@
 	"centralnotice-add-new": "Dodaj novu kampanju",
 	"centralnotice-remove": "Trgni",
 	"centralnotice-translate-heading": "Prijevod na $1",
+	"centralnotice-manage": "Upravljanje pohtvatima",
+	"centralnotice-manage-templates": "Upravljanje porukama",
 	"centralnotice-add": "Dodaj",
 	"centralnotice-add-notice": "Dodaj obavijest",
 	"centralnotice-add-notice-button": "Napravi",
@@ -258,5 +260,6 @@
 	"tag-centralnotice": "Središnje obavjesnice",
 	"tag-centralnotice-description": "Izmjena načinjena upotrebom korisničkoga sučelja za administratore središnjih obavjesnica",
 	"tag-centralnotice_translation": "Prijevod središnjih obavjesnica",
-	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno upotrebom proširenja za prevođenje"
+	"tag-centralnotice_translation-description": "Uređivanje sadržaja središnjih obavjesnica načinjeno upotrebom proširenja za prevođenje",
+	"centralnotice-banner-template-info": "(predložak)"
 }
