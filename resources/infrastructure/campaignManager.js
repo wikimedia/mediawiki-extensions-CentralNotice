@@ -513,11 +513,11 @@
 
 	function verifyParamControl() {
 		var $input = $( this ),
-			val = $input.val();
+			val = $input.val().trim();
 
 		switch ( $input.data( 'data-type' ) ) {
 			case 'integer':
-				if ( val.trim().match( /^-?\d+$/ ) ) {
+				if ( /^-?\d+$/.test( val ) ) {
 					setValidationError( false, $input );
 				} else {
 					setValidationError(
@@ -527,7 +527,7 @@
 				break;
 
 			case 'float':
-				if ( val.trim().match( /^-?\d+\.?\d*$|^-?\d*\.?\d+$/ ) ) {
+				if ( /^-?\d+\.?\d*$|^-?\d*\.?\d+$/.test( val ) ) {
 					setValidationError( false, $input );
 				} else {
 					setValidationError(

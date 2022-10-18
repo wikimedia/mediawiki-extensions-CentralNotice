@@ -347,6 +347,7 @@
 	"centralnotice-campaign-view-logs": "Ver registros de configurações de campanha",
 	"prefs-centralnotice-banners": "Modelos",
 	"prefs-centralnotice-display-banner-types": "Tipos de modelos para exibir",
+	"prefs-description-centralnotice-banners": "Escolher os tipos de comunicações que vê.",
 	"centralnotice-campaign-type": "Tipo de campanha",
 	"centralnotice-empty-campaign-type-option": "Nenhum tipo (sempre mostrado)",
 	"centralnotice-non-existent-campaign-type-error": "O tipo de campanha selecionado não existe",

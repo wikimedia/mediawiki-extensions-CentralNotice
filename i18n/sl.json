@@ -319,6 +319,7 @@
 	"centralnotice-campaign-view-logs": "Ogled dnevnika nastavitev kampanje",
 	"prefs-centralnotice-banners": "Pasice",
 	"prefs-centralnotice-display-banner-types": "Vrste pasic za prikaz",
+	"prefs-description-centralnotice-banners": "Upravljanje vrste obvestil, ki jo vidite.",
 	"centralnotice-campaign-type": "Vrsta kampanje",
 	"centralnotice-empty-campaign-type-option": "Brez vrste (vedno prikazana)",
 	"centralnotice-non-existent-campaign-type-error": "Izbrana vrsta kampanje ne obstaja",
@@ -331,5 +332,5 @@
 	"centralnotice-campaign-type-maintenance": "Vzdrževanje",
 	"centralnotice-campaign-type-photography": "Fotografiranje",
 	"centralnotice-campaign-type-special": "Posebno",
-	"centralnotice-user-prefs-intro": "Pasice prikazujejo obvestila, ki se nanašajo na skupnosti in uporabnike Wikipedije.\n\nSpodaj so prikazane možnosti, s katerimi lahko urejate, katera obvestila se vam bodo prikazovala. Nekatera nujna sporočila o vzdrževanju ali posebna sporočila, ki so pomembna za vse uporabnike, bodo vedno prikazana. Za nadaljnje informacije glejte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentacijo na Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Pasice prikazujejo obvestila, ki se nanašajo na skupnosti in uporabnike Wikipedije.\n\nTu so prikazane možnosti, s katerimi lahko urejate, katera obvestila boste prejemali. Nekatera nujna sporočila o vzdrževanju ali posebna sporočila, ki so pomembna za vse uporabnike, boste vedno prejeli. Za nadaljnje informacije glejte [[metawikimedia:Special:MyLanguage/CentralNotice|dokumentacijo v Meta-Wikiju]]."
 }

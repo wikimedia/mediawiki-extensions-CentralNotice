@@ -460,8 +460,16 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onSiteNoticeAfter( &$notice ) {
-		// Ensure that the div including #siteNotice is actually included!
-		$notice = "<!-- CentralNotice -->$notice";
+		// Ensure that the div including #siteNotice is actually included,
+		// and add ESI test string (see T308799)
+		global $wgCentralNoticeESITestString;
+
+		if ( $wgCentralNoticeESITestString ) {
+			$notice = "<!-- CentralNotice -->$wgCentralNoticeESITestString $notice";
+		} else {
+			$notice = "<!-- CentralNotice -->$notice";
+		}
+
 		return true;
 	}
 

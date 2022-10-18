@@ -325,6 +325,7 @@
 	"centralnotice-campaign-view-logs": "Преглед на дневници за нагодувања на походи",
 	"prefs-centralnotice-banners": "Разгласи",
 	"prefs-centralnotice-display-banner-types": "Видови разгласи за приказ",
+	"prefs-description-centralnotice-banners": "Управувајте со видовите објави што ги гледате.",
 	"centralnotice-campaign-type": "Вид на поход",
 	"centralnotice-empty-campaign-type-option": "Без вид (секогаш се прикажува)",
 	"centralnotice-non-existent-campaign-type-error": "Избраниот вид на поход не постои",

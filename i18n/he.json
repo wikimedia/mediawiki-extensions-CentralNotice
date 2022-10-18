@@ -331,6 +331,7 @@
 	"centralnotice-campaign-view-logs": "הצגת יומנים של הגדרות מבצעי פרסום",
 	"prefs-centralnotice-banners": "כרזות",
 	"prefs-centralnotice-display-banner-types": "אילו סוגי כרזות להציג",
+	"prefs-description-centralnotice-banners": "ניהול סוגי ההתראות {{GENDER:|שתראה|שתראי}}.",
 	"centralnotice-campaign-type": "סוג מסע הפרסום",
 	"centralnotice-empty-campaign-type-option": "אין סוג (תמיד מוצג)",
 	"centralnotice-non-existent-campaign-type-error": "סוג מסע הפרסום שנבחר אינו קיים",
