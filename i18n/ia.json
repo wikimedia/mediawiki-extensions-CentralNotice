@@ -119,7 +119,7 @@
 	"centralnotice-banner-hidable": "Static/Celabile",
 	"centralnotice-banner-collapsible": "Plicabile",
 	"centralnotice-banner-fundraising": "Isto es un bandiera de collecta de fundos",
-	"centralnotice-banner-display-on": "Monstrar in",
+	"centralnotice-banner-display-on": "Monstrar sur",
 	"centralnotice-banner-mixins": "Modulos",
 	"centralnotice-banner-mixins-help": "Marca cata modulo que tu vole includer durante le livration del bandiera. (Vide [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] pro plus information.)",
 	"centralnotice-banner-cdn-controls": "Cache del cliente",

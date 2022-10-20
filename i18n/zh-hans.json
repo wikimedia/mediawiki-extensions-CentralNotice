@@ -41,7 +41,9 @@
 			"佛壁灯",
 			"列维劳德",
 			"科劳",
-			"阿pp"
+			"阿pp",
+			"MangoFanFanw",
+			"Stang"
 		]
 	},
 	"centralnotice": "中央通告管理",
@@ -49,7 +51,7 @@
 	"bannerallocation": "中央通告管理",
 	"centralnoticelogs": "中央通告管理",
 	"right-centralnotice-admin": "管理中央通告",
-	"protect-level-centralnotice-admin": "只允许中央通告管理员",
+	"protect-level-centralnotice-admin": "仅允许中央通告管理员",
 	"restriction-level-centralnotice-admin": "中央通告管理员保护",
 	"action-centralnotice-admin": "管理中央通告",
 	"centralnotice-desc": "在页面顶部中心增加一个公告栏",
