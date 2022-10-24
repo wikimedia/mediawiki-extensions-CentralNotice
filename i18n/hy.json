@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kareyac",
-			"Vadgt"
+			"Vadgt",
+			"Սերգեյ Սաֆարյան"
 		]
 	},
 	"centralnotice-save-banner": "Հիշել",
@@ -11,6 +12,7 @@
 	"centralnotice-add-notice-button": "Ստեղծել",
 	"centralnotice-add-notice-cancel-button": "Չեղարկել",
 	"centralnotice-translations": "Թարգմանություններ",
+	"centralnotice-translate-to": "Թարգմանել",
 	"centralnotice-translate": "Թարգմանություն",
 	"centralnotice-english": "Անգլերեն",
 	"centralnotice-day": "Օր",
