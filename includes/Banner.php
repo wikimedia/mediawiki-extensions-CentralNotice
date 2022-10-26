@@ -1026,11 +1026,7 @@ class Banner {
 					$matches
 				)
 			) {
-				if ( isset( $matches[2] ) ) {
-					$lang = $matches[2];
-				} else {
-					$lang = $wgLanguageCode;
-				}
+				$lang = $matches[2] ?? $wgLanguageCode;
 				$availableLangs[$lang] = true;
 			}
 		}
