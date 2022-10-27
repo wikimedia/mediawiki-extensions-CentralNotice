@@ -63,6 +63,7 @@
 	"centralnotice-notice-mixins-fieldset": "Ekstra kampanjefunksjoner",
 	"centralnotice-notice-mixins-int-required": "Heltall kreves",
 	"centralnotice-notice-mixins-float-required": "Flytende tall kreves",
+	"centralnotice-notice-mixins-out-of-bound": "Verdien er utenfor rekkevidde",
 	"centralnotice-notice": "Kampanje",
 	"centralnotice-notice-heading": "Kampanje: $1",
 	"centralnotice-notices": "Kampanjer",
