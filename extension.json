@@ -315,7 +315,8 @@
 		"SkinTemplateNavigation::Universal": "CentralNotice::addNavigationTabs",
 		"ResourceLoaderRegisterModules": "CentralNoticeHooks::onResourceLoaderRegisterModules",
 		"UserMergeAccountFields": "CentralNoticeHooks::onUserMergeAccountFields",
-		"GetPreferences": "CentralNoticeHooks::onGetPreferences"
+		"GetPreferences": "CentralNoticeHooks::onGetPreferences",
+		"PreferencesGetIcon": "CentralNoticeHooks::onPreferencesGetIcon"
 	},
 	"ExtensionFunctions": [
 		"CentralNoticeHooks::initCentralNotice"
