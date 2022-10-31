@@ -84,6 +84,7 @@
 	"centralnotice-clone-notice": "نشان دی کاپی بناؤ",
 	"centralnotice-clone-name": "ناں:",
 	"centralnotice-clone-cancel": "رد کرو",
+	"centralnotice-clone-banner": "بینر",
 	"centralnotice-insert": "پاؤ: $1",
 	"centralnotice-close-button": "بٹن بند کرو",
 	"centralnotice-close-title": "بند",
@@ -92,7 +93,7 @@
 	"centralnotice-banner-display": "وکھاؤ",
 	"centralnotice-banner-anonymous": "گمنام ورتن والے",
 	"centralnotice-banner-logged-in": "لاکان ہوۓ ورتن والے",
-	"centralnotice-banner-type": "نشان دی ٹائپ",
+	"centralnotice-banner-type": "بینر قسم",
 	"centralnotice-banner-hidable": "رکیا/لکنقابل",
 	"centralnotice-banner-collapsible": "ڈگن والا",
 	"centralnotice-banner-fundraising": "اے فنڈ کٹھا کرن والا نشان اے",
@@ -132,7 +133,7 @@
 	"centralnotice-fundraising": "چندہ کٹھا کرنا",
 	"centralnotice-autolink": "اپنے آپ جوڑ بنائی",
 	"centralnotice-landingpages": "لینڈنگ صفحے",
-	"centralnotice-banner-content": "نشان دا مال",
+	"centralnotice-banner-content": "بینر مواد",
 	"centralnotice-banner-content-changed": "بدلیا",
 	"centralnotice-filters": "لاگ فلٹرز",
 	"centralnotice-date": "تریخ",
@@ -147,6 +148,7 @@
 	"centralnotice-end-date": "مکن دا ویلا (UTC)",
 	"centralnotice-end-time": "مکن دا ویلا (UTC)",
 	"hidebanners": "بینر لُکاؤ",
+	"centralnotice-banner-sequence-banner": "بینر",
 	"centralnotice-multiple-countries": "ملٹی پل کنٹریز",
 	"centralnotice-multiple-languages": "ملٹی پل بولیاں"
 }
