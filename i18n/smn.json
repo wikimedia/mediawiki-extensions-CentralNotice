@@ -7,6 +7,7 @@
 	},
 	"centralnotice-modify": "Vuolgât",
 	"centralnotice-save-banner": "Vuorkkii",
+	"centralnotice-remove": "Siho",
 	"centralnotice-add": "Lasseet",
 	"centralnotice-add-notice-button": "Räähti",
 	"centralnotice-add-notice-cancel-button": "Jooskâ",
@@ -31,6 +32,7 @@
 	"centralnotice-banner-class": "Luokka",
 	"centralnotice-archive-banner-cancel": "Jooskâ",
 	"centralnotice-archive-campaign-cancel": "Jooskâ",
+	"centralnotice-delete-banner": "Siho",
 	"centralnotice-delete-banner-cancel": "Jooskâ",
 	"centralnotice-banner-template-info": "(myenster)"
 }
