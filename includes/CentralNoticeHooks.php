@@ -368,7 +368,16 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( $out, $skin ) {
-		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy;
+		global $wgCentralHost, $wgServer, $wgCentralNoticeContentSecurityPolicy,
+			$wgCentralNoticeESITestString;
+
+		// Add ESI test string (see T308799)
+		// It is expected that only HTML comments in the form of '<!--esi ...' will be
+		// injected here.
+		// TODO Remove this once ESI tests are complete.
+		if ( $wgCentralNoticeESITestString ) {
+			$out->addHTML( $wgCentralNoticeESITestString );
+		}
 
 		// Always add geoIP
 		// TODO Separate geoIP from CentralNotice
@@ -460,15 +469,9 @@ class CentralNoticeHooks {
 	 * @return bool
 	 */
 	public static function onSiteNoticeAfter( &$notice ) {
-		// Ensure that the div including #siteNotice is actually included,
-		// and add ESI test string (see T308799)
-		global $wgCentralNoticeESITestString;
-
-		if ( $wgCentralNoticeESITestString ) {
-			$notice = "<!-- CentralNotice -->$wgCentralNoticeESITestString $notice";
-		} else {
-			$notice = "<!-- CentralNotice -->$notice";
-		}
+		// TODO Legacy comment below, likely inaccurate; check and fix
+		// Ensure that the div including #siteNotice is actually included
+		$notice = "<!-- CentralNotice -->$notice";
 
 		return true;
 	}
