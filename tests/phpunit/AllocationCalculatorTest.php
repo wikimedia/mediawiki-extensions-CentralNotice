@@ -115,7 +115,7 @@ class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 						$this->assertArrayHasKey(
 							$bannerName, $expectedBanners,
 							$fixtureIdMsg .
-								" Banner ${bannerName} for " .
+								" Banner {$bannerName} for " .
 								"campaign {$campaignName} not expected."
 						);
 

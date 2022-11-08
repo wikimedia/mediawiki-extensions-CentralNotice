@@ -240,6 +240,7 @@
 	"centralnotice-campaign-view-logs": "Vaata kampaania sätete logi",
 	"prefs-centralnotice-banners": "Teateribad",
 	"prefs-centralnotice-display-banner-types": "Kuvatavad ribade tüübid",
+	"prefs-description-centralnotice-banners": "Määra, mis tüüpi teadaandeid näed.",
 	"centralnotice-campaign-type": "Kampaania tüüp",
 	"centralnotice-empty-campaign-type-option": "Tüübita (näidatakse alati)",
 	"centralnotice-non-existent-campaign-type-error": "Valitud kampaaniatüüpi pole olemas",

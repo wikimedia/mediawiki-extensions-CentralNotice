@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abbas dhothar",
 			"Noor2020",
 			"Obaid Raza",
 			"පසිඳු කාවින්ද"
@@ -62,7 +63,9 @@
 	"centralnotice-message": "پیغام",
 	"centralnotice-clone": "کلون",
 	"centralnotice-clone-name": "نام:",
+	"centralnotice-clone-banner": "بینر",
 	"centralnotice-close-title": "بند",
+	"centralnotice-banner-type": "بینر قسم",
 	"centralnotice-countries": "ممالک",
 	"centralnotice-allocation": "تقرری",
 	"centralnotice-view-allocation": "قول بینر کی تقرری",
@@ -90,5 +93,7 @@
 	"centralnotice-priority-high": "اعلی",
 	"centralnotice-priority-emergency": "ہنگامی",
 	"centralnotice-start-date": "تاریخ شروع",
-	"centralnotice-end-date": "تاریخ اختتام"
+	"centralnotice-end-date": "تاریخ اختتام",
+	"centralnotice-banner-sequence-banner": "بینر",
+	"prefs-centralnotice-banners": "بینرز"
 }

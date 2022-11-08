@@ -255,7 +255,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$tables = [ 'page', 'revtag' ];
 		$vars   = [ 'page_id', 'page_namespace', 'page_title', ];
 		$conds  = [ 'page_id=rt_page', 'rt_type' => Banner::TRANSLATE_BANNER_TAG ];
-		$options = [ 'GROUP BY' => 'rt_page' ];
+		$options = [ 'GROUP BY' => 'rt_page, page_id, page_namespace, page_title' ];
 		$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
 
 		foreach ( $res as $r ) {

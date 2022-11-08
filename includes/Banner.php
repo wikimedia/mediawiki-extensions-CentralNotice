@@ -1026,11 +1026,7 @@ class Banner {
 					$matches
 				)
 			) {
-				if ( isset( $matches[2] ) ) {
-					$lang = $matches[2];
-				} else {
-					$lang = $wgLanguageCode;
-				}
+				$lang = $matches[2] ?? $wgLanguageCode;
 				$availableLangs[$lang] = true;
 			}
 		}
@@ -1079,7 +1075,9 @@ class Banner {
 				// exist in the render job.
 				// TODO: This will go away if we start tracking messages in database :)
 				MessageGroups::singleton()->recache();
-				MessageIndexRebuildJob::newJob()->insertIntoJobQueue();
+				MediaWikiServices::getInstance()->getJobQueueGroup()->push(
+					MessageIndexRebuildJob::newJob()
+				);
 				$this->runTranslateJob = false;
 			}
 

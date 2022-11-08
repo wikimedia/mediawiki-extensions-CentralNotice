@@ -117,9 +117,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		$htmlOut .= Html::openElement( 'form', [ 'method' => 'get' ] );
 		$htmlOut .= Html::element( 'h2', [], $this->msg( 'centralnotice-view-allocation' )->text() );
-		$htmlOut .= Xml::tags(
-			'p', null, $this->msg( 'centralnotice-allocation-instructions' )->parse()
-		);
+		$htmlOut .= $this->msg( 'centralnotice-allocation-instructions' )->parseAsBlock();
 
 		$htmlOut .= Html::openElement( 'table', [ 'id' => 'envpicker', 'cellpadding' => 7 ] );
 		$htmlOut .= Html::openElement( 'tr' );
@@ -401,7 +399,7 @@ class SpecialBannerAllocation extends CentralNotice {
 		} else {
 			$htmlOut .= Html::openElement( 'tr' );
 			$htmlOut .= Html::openElement( 'td' );
-			$htmlOut .= Xml::tags( 'p', null, $this->msg( 'centralnotice-no-allocation' )->parse() );
+			$htmlOut .= $this->msg( 'centralnotice-no-allocation' )->parseAsBlock();
 			$htmlOut .= Html::closeElement( 'td' );
 			$htmlOut .= Html::closeElement( 'tr' );
 		}

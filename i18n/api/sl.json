@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "Zahtevek za počiščenje vsebine oglasne pasice, shranjene v predpomnilniku CDN (front-end) za anonimne uporabnike, za zahtevano oglasno pasico in jezik."
+}
