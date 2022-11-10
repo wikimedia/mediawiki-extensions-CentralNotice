@@ -33,8 +33,8 @@
 	"centralnotice-show-notices": "کم دسو",
 	"centralnotice-list-templates": "نشان لسٹ",
 	"centralnotice-translations": "بولی وٹاندرے",
-	"centralnotice-translate-to": "التھاؤ",
-	"centralnotice-translate": "التھاؤ",
+	"centralnotice-translate-to": "ہور بولی لئی ترجمہ کرو",
+	"centralnotice-translate": "ترجمہ کرو",
 	"centralnotice-english": "انگریزی",
 	"centralnotice-banner-name": "نشان ناں:",
 	"centralnotice-banner": "نشان",
@@ -49,7 +49,7 @@
 	"centralnotice-no-language": "کم لئی کوئی بولی نئیں چنی گئی۔ کوئی تبدیلی نئیں۔",
 	"centralnotice-no-project": "کم لئی کوئی ویونت نئیں چنی گئی۔ کوئی تبدیلی نئیں۔",
 	"centralnotice-template-exists": "نشان پہلے توں ہیگا اے۔\nہور نئیں جوڑنا۔",
-	"centralnotice-notice-doesnt-exist": "کم ہے ای نئیں۔",
+	"centralnotice-notice-doesnt-exist": "ایہہ کم نہیں اے۔",
 	"centralnotice-remove-notice-doesnt-exist": "کم ہے ای نئیں۔  ہٹان دی لوڑ نئیں۔",
 	"centralnotice-banner-doesnt-exist": "نشان ہے ای نئیں۔",
 	"centralnotice-template-still-bound": "نشان کم نال اے۔ نئیں ہٹا رہیا",
@@ -148,8 +148,8 @@
 	"centralnotice-end-date": "مکن دا ویلا (UTC)",
 	"centralnotice-end-time": "مکن دا ویلا (UTC)",
 	"hidebanners": "بینر لُکاؤ",
-	"centralnotice-banner-sequence-banner": "بینر",
+	"centralnotice-banner-sequence-banner": "پھریرے",
 	"centralnotice-multiple-countries": "ملٹی پل کنٹریز",
 	"centralnotice-multiple-languages": "ملٹی پل بولیاں",
-	"prefs-centralnotice-banners": "بینرز"
+	"prefs-centralnotice-banners": "پھریرے"
 }
