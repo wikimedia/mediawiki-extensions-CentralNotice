@@ -1020,7 +1020,6 @@ class Banner {
 		);
 		foreach ( $result as $row ) {
 			if (
-				// @phan-suppress-next-line SecurityCheck-ReDoS \Q\E makes $prefix safe here T270943
 				preg_match(
 					"/\Q{$prefix}\E([^\/]+)(?:\/([a-z_]+))?/", $row->page_title,
 					$matches
