@@ -11,8 +11,12 @@
 	"apihelp-centralnoticeallocations-description": "Nabavite dodjele natpisa koje poslužuje CentralNotice za sve vrste korisnika pod parametarskim filtrom.\n\nOvo je samo JSON poziv.",
 	"apihelp-centralnoticeallocations-summary": "Nabavite dodjele natpisa koje poslužuje CentralNotice za sve vrste korisnika pod parametarskim filtrom.",
 	"apihelp-centralnoticeallocations-extended-description": "Ovo je samo JSON poziv.",
+	"apihelp-centralnoticeallocations-param-project": "Za koji projekt dobivati izdvajanja.",
 	"apihelp-centralnoticeallocations-param-country": "Sa kojom zemljom da se filtrira.",
 	"apihelp-centralnoticeallocations-param-language": "Sa kojim jezikom da se filtrira.",
 	"apihelp-centralnoticeallocations-param-anonymous": "Sa kojim prijavnim statusom da se filtrira (true|false).",
-	"apihelp-centralnoticeallocations-param-device": "Sa kojim nazivom uređaja da se filtrira."
+	"apihelp-centralnoticeallocations-param-device": "Sa kojim nazivom uređaja da se filtrira.",
+	"apihelp-centralnoticeallocations-example-1": "Prikaži neke dodjele",
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "Zahtjev za čištenje sadržaja pohranjenog u CDN (front-end) predmemoriji za anonimne korisnike, za traženu obavijest i jezik",
+	"apihelp-query+centralnoticelogs-example-1": "Prikaži evidencije"
 }
