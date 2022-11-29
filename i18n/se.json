@@ -4,9 +4,11 @@
 			"Yupik"
 		]
 	},
+	"centralnotice-save-banner": "Vurke",
 	"centralnotice-select-all": "Vállje buot",
 	"centralnotice-languages": "Gielat",
 	"centralnotice-language": "Giella",
 	"centralnotice-all": "Buot",
-	"centralnotice-banner-class": "Kategoriija"
+	"centralnotice-banner-class": "Kategoriija",
+	"centralnotice-delete-banner": "Sihko"
 }
