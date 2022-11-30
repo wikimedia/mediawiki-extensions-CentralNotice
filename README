@@ -156,11 +156,6 @@ Configuration
   buckets after a campaign has ended, in days.
   Default: 30
 
-* $wgNoticeListComplementThreshold: When displaying a long list, display the
-  complement "all except ~LIST" past a threshold, given as a proportion of the
-  "all" list length.
-  Default: 0.75
-
 * $wgCentralNoticeCategoriesUsingLegacy: Temporary measure: Campaigns whose
   banners are all set to this category will use some legacy mechanisms
   (especially cookies instead of the KVStore).
