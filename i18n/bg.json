@@ -144,7 +144,7 @@
 	"centralnotice-banner-settings": "Настройки на банера",
 	"centralnotice-anon": "Показване на анонимни потребители",
 	"centralnotice-account": "Показване на регистрирани потребители",
-	"centralnotice-fundraising": "Дарителска кампания",
+	"centralnotice-fundraising": "Набиране на средства",
 	"centralnotice-autolink": "Автоматично създаване на препратка",
 	"centralnotice-landingpages": "Целеви страници",
 	"centralnotice-banner-content": "Съдържание на банера",
@@ -188,5 +188,15 @@
 	"tag-centralnotice-description": "Редакцията е направена чрез администраторския интерфейс на Централизираните съобщения",
 	"tag-centralnotice_translation": "Превод на централизирано съобщение",
 	"tag-centralnotice_translation-description": "Редакция на съдържанието в Централизираните съобщения, направена чрез разширението „Превод“",
-	"prefs-centralnotice-banners": "Банери"
+	"prefs-centralnotice-banners": "Банери",
+	"prefs-centralnotice-display-banner-types": "Видове банери за показване",
+	"centralnotice-campaign-type-advocacy": "Застъпничество",
+	"centralnotice-campaign-type-article-writing": "Писане на статии",
+	"centralnotice-campaign-type-event": "Събитие",
+	"centralnotice-campaign-type-fundraising": "Набиране на средства",
+	"centralnotice-campaign-type-governance": "Управление",
+	"centralnotice-campaign-type-maintenance": "Поддръжка",
+	"centralnotice-campaign-type-photography": "Фотография",
+	"centralnotice-campaign-type-special": "Специален",
+	"centralnotice-user-prefs-intro": "Банерите показват съобщения, представляващи интерес за общностите и потребителите на Уикимедия.\n\nПо-долу има опции, които Ви позволяват да укажете кои видове съобщения да се показват. Определени известия за платформата, като тези, свързани с поддръжката на сайта и специалните известия, се считат за необходими за всички потребители и поради това винаги ще се показват. За допълнителна информация, моля, прегледайте [[metawikimedia:Special:MyLanguage/CentralNotice|документацията на Мета-Уики]]."
 }
