@@ -26,7 +26,8 @@
 			"Windes",
 			"Wladek92",
 			"Wyz",
-			"Zebulon84"
+			"Zebulon84",
+			"Cantons-de-l'Est"
 		]
 	},
 	"centralnotice": "Administration des avis centraux",
@@ -38,7 +39,7 @@
 	"restriction-level-centralnotice-admin": "protégé par un administrateur d’avis centraux",
 	"action-centralnotice-admin": "gérer les avis centraux",
 	"centralnotice-desc": "Ajoute un avis central du site",
-	"centralnotice-summary": "Ce module vous permet de modifier vos paramètres d’avis centraux.\nIl peut aussi être utilisé pour ajouter des avis ou en enlever les plus anciens.",
+	"centralnotice-summary": "Ce module vous permet de modifier vos paramètres d’avis centraux.\nIl peut aussi être utilisé pour ajouter des avis ou retirer les plus anciens.",
 	"centralnotice-query": "Modifier les campagnes actuels",
 	"centralnotice-notice-name": "Nom de l’avis",
 	"centralnotice-enabled": "Activé",
@@ -47,7 +48,7 @@
 	"centralnotice-save-banner": "Enregistrer",
 	"centralnotice-live-preview": "Aperçu de la dernière version enregistrée",
 	"centralnotice-add-new": "Ajouter une nouvelle campagne",
-	"centralnotice-remove": "Enlever",
+	"centralnotice-remove": "Retirer",
 	"centralnotice-translate-heading": "Traduction de l’avis « $1 »",
 	"centralnotice-manage": "Gérer les campagnes",
 	"centralnotice-manage-templates": "Gérer les bannières",
