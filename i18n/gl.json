@@ -279,7 +279,7 @@
 	"centralnotice-large-banner-limit": "Límite de anuncio grande e cambio",
 	"centralnotice-large-banner-limit-help": "Amosar un anuncio grande unha vez, logo pasar a anuncios pequenos. Poñer os anuncios grandes nas zonas A e B e os anuncios pequenos nas zonas C e D.",
 	"centralnotice-large-banner-limit-days": "Lonxitude da supresión",
-	"centralnotice-large-banner-limit-days-help": "Número de días para suprimir a visualización do banner grande após da primeira visualización.",
+	"centralnotice-large-banner-limit-days-help": "Número de días para suprimir a visualización do aviso central grande após a primeira visualización.",
 	"centralnotice-large-banner-limit-randomize": "Facer aleatoria a transición de zona",
 	"centralnotice-large-banner-limit-randomize-help": "A transición normal de zona é de A a C e de B a D. Cando está comprobado, os lectores pasarán de forma aleatoria ás zonas C ou D.",
 	"centralnotice-large-banner-limit-identifier": "Identificar para almacenar no cliente",
