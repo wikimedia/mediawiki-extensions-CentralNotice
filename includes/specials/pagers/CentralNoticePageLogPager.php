@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class generates a paginated log of recent changes to banner messages (the parts that get
  * translated). We use the rencentchanges table since it is lightweight, however, this means that
@@ -194,9 +196,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::tags( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			htmlspecialchars(
-				class_exists( CommentStore::class )
-					? CommentStore::getStore()->getComment( 'rc_comment', $row )->text
-					: $row->rc_comment
+				MediaWikiServices::getInstance()->getCommentStore()->getComment( 'rc_comment', $row )->text
 			)
 		);
 		$htmlOut .= Xml::tags( 'td', [],
