@@ -27,7 +27,9 @@
 			"Winston Sung",
 			"Wrightbus",
 			"Xiplus",
-			"Zhxy 519"
+			"Zhxy 519",
+			"Weather Top Wizard",
+			"捍粵者"
 		]
 	},
 	"centralnotice": "中央公告管理",
@@ -236,7 +238,7 @@
 	"centralnotice-devicetype-iphone": "所有 iPhone 版本",
 	"centralnotice-devicetype-unknown": "於行動網站上的裝置，不屬於 iPhones、iPads 或 Android - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Selector logic])",
 	"centralnotice-all": "全部",
-	"centralnotice-generic-error": "您沒有足夠的權限執行此請求的動作或執行的動作無效。",
+	"centralnotice-generic-error": "您無權執行此請求的動作或動作無效。",
 	"centralnotice-banner-name-error": "無效的橫幅名稱。名稱只能包含英數字與底線字元。",
 	"centralnotice-all-except": "全部，除了 $1",
 	"centralnotice-excluding-list": "$1 (不包含 $2)",
