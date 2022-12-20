@@ -337,9 +337,11 @@ class CentralNotice extends SpecialPage {
 
 			$selectAttribs = [
 				'name' => 'campaign_type',
-				'data-initial-value' => $selectedTypeId
 			];
 
+			if ( $selectedTypeId ) {
+				$selectAttribs['data-initial-value'] = $selectedTypeId;
+			}
 			if ( $index ) {
 				$selectAttribs['data-campaign-name'] = $index;
 			}
@@ -474,7 +476,7 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-notice-name' )->escaped() );
 		$htmlOut .= Xml::tags( 'td', [],
-			Xml::input( 'noticeName', 25, $request->getVal( 'noticeName' ) ) );
+			Xml::input( 'noticeName', 25, $request->getVal( 'noticeName', '' ) ) );
 		$htmlOut .= Xml::closeElement( 'tr' );
 
 		// Campaign type selector
@@ -1831,12 +1833,12 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Truncate the summary field in a linguistically appropriate way.
-	 * @param string $summary
+	 * @param string|null $summary
 	 * @return string
 	 */
 	public static function truncateSummaryField( $summary ) {
 		return MediaWikiServices::getInstance()->getContentLanguage()
-			->truncateForDatabase( $summary, 255 );
+			->truncateForDatabase( $summary ?? '', 255 );
 	}
 
 	/**
