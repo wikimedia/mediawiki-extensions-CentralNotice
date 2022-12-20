@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Afalau",
 			"Cymrodor",
 			"Lcawte",
 			"Lloffiwr",
@@ -96,6 +97,7 @@
 	"centralnotice-message": "Neges",
 	"centralnotice-message-not-set": "Ni osodwyd y neges",
 	"centralnotice-campaigns-using-banner": "Ymgyrchoedd sy'n defnyddio'r faner hon",
+	"centralnotice-preview-loader-error-dialog-ok": "Iawn",
 	"centralnotice-clone": "Clôn",
 	"centralnotice-clone-notice": "Creu copi o'r faner",
 	"centralnotice-clone-name": "Enw:",
