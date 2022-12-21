@@ -6,12 +6,14 @@
 		]
 	},
 	"centralnotice-save-banner": "Vurke",
+	"centralnotice-remove": "Sihko",
 	"centralnotice-translations": "Jorgalusat",
 	"centralnotice-translate-to": "Čuozáhatgiella:",
 	"centralnotice-translate": "Jorgal",
 	"centralnotice-select-all": "Vállje buot",
 	"centralnotice-languages": "Gielat",
 	"centralnotice-language": "Giella",
+	"centralnotice-action-removed": "sihkkojuvvon",
 	"centralnotice-all": "Buot",
 	"centralnotice-banner-class": "Kategoriija",
 	"centralnotice-delete-banner": "Sihko"
