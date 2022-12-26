@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Afalau"
+		]
+	},
+	"apierror-centralnotice-cdn-banner-not-found": "Ni chanfuwyd baner",
+	"apihelp-query+centralnoticelogs-param-user": "Enw defnyddiwr (dewisol).",
+	"apihelp-query+centralnoticelogs-example-1": "Dangos logiau"
+}
