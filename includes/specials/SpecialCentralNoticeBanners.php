@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page for management of CentralNotice banners
  */
@@ -542,7 +544,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	protected function generateBannerEditForm() {
 		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
-		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
+		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+			->getLanguageNames( $this->getLanguage()->getCode() );
 		array_walk(
 			$languages,
 			static function ( &$val, $index ) {
@@ -907,7 +910,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// Retrieve the list of languages in user's language
 		// FIXME Similar code in SpecialBannerAllocation::execute(), maybe switch
 		// to language selector?
-		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
+		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+			->getLanguageNames( $this->getLanguage()->getCode() );
 		ksort( $languages );
 
 		foreach ( $languages as $code => $name ) {

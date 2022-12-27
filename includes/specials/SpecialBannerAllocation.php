@@ -16,6 +16,8 @@
  *
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * SpecialBannerAllocation
  *
@@ -141,7 +143,8 @@ class SpecialBannerAllocation extends CentralNotice {
 		$htmlOut .= Html::openElement( 'td' );
 
 		// Retrieve the list of languages in user's language
-		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
+		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+			->getLanguageNames( $this->getLanguage()->getCode() );
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
 		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {

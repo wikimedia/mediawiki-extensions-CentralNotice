@@ -1572,7 +1572,8 @@ class CentralNotice extends SpecialPage {
 		global $wgLanguageCode;
 
 		// Retrieve the list of languages in user's language
-		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
+		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+			->getLanguageNames( $this->getLanguage()->getCode() );
 
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
@@ -1944,7 +1945,8 @@ class CentralNotice extends SpecialPage {
 	}
 
 	public function listLanguages( $languages ) {
-		$all = array_keys( Language::fetchLanguageNames( 'en' ) );
+		$all = array_keys( MediaWikiServices::getInstance()->getLanguageNameUtils()
+			->getLanguageNames( 'en' ) );
 		return $this->makeShortList( $all, $languages );
 	}
 
