@@ -165,7 +165,9 @@ class BannerRenderer {
 		$bannerHtml = $this->substituteMagicWords( $bannerHtml );
 
 		if ( $wgNoticeUseLanguageConversion ) {
-			$bannerHtml = $parentLang->getConverter()->convertTo( $bannerHtml, $lang->getCode() );
+			$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+				->getLanguageConverter( $parentLang );
+			$bannerHtml = $converter->convertTo( $bannerHtml, $lang->getCode() );
 		}
 		return $bannerHtml;
 	}
