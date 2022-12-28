@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"AnakngAraw",
-			"Leeheonjin"
+			"Leeheonjin",
+			"Jojit fb"
 		]
 	},
 	"centralnotice": "Tagapangasiwa ng pangunahing pabatid",
@@ -75,7 +76,7 @@
 	"centralnotice-no-templates-translate": "Walang mga suleras na mapagsasagawaan ng mga pagbabagong pangsalinwika",
 	"centralnotice-number-uses": "Mga mapaggagamitan",
 	"centralnotice-settings": "Mga pagtatakda",
-	"centralnotice-edit-template": "Baguhin ang suleras",
+	"centralnotice-edit-template": "Baguhin ang banner",
 	"centralnotice-edit-template-summary": "Upang makalikha ng isang maisakakatubong mensahe, maglakip ng isang ginitlingang bagting sa loob ng tatlong kulot na mga braket, halimbawa na ang {{{jimbo-sipi}}}.",
 	"centralnotice-message": "Mensahe",
 	"centralnotice-message-not-set": "Hindi nakatakda ang mensahe",
