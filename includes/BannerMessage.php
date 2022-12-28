@@ -100,10 +100,10 @@ class BannerMessage {
 	public function toHtml( IContextSource $context ) {
 		global $wgNoticeUseLanguageConversion;
 		$lang = $context->getLanguage();
-		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
-			$lang = $lang->getParentLanguage();
+		if ( $wgNoticeUseLanguageConversion ) {
+			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getParentLanguage( $lang->getCode() ) ?? $lang;
 		}
-		'@phan-var Language $lang';
 
 		$text = self::sanitize(
 			$context->msg( $this->getDbKey() )->inLanguage( $lang )->text() );

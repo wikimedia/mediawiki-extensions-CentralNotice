@@ -134,10 +134,10 @@ class BannerRenderer {
 		global $wgNoticeUseLanguageConversion;
 
 		$parentLang = $lang = $this->context->getLanguage();
-		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
-			$parentLang = $lang->getParentLanguage();
+		if ( $wgNoticeUseLanguageConversion ) {
+			$parentLang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getParentLanguage( $lang->getCode() ) ?? $lang;
 		}
-		'@phan-var Language $parentLang';
 
 		if ( $this->previewContent !== null ) {
 			// Preview mode, banner content is ephemeral
