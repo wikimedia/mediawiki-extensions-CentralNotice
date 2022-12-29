@@ -224,7 +224,7 @@
 	"centralnotice-all-except": "Vse razen $1",
 	"centralnotice-excluding-list": "$1 (razen $2)",
 	"centralnotice-user-role": "Vloga uporabnika",
-	"centralnotice-user-role-anonymous": "anonimen",
+	"centralnotice-user-role-anonymous": "Anonimnež",
 	"centralnotice-user-role-logged-in": "prijavljen",
 	"centralnotice-banner-class": "Kategorija",
 	"centralnotice-banner-class-desc": "Pasice posameznih kategorij si delijo sledilne spremenljivke in nastavitve za skupine (npr. skriti piškotki in štetje prikazov.) Imena kategorij so lahko magične besede, kot je <nowiki>{{{campaign}}}</nowiki> ali <nowiki>{{{banner}}}</nowiki>, ki se bodo v času prikaza samodejno razširile. Vrednosti morajo biti alfanumerične.",
