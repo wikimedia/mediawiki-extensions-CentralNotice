@@ -48,7 +48,12 @@
 	"APIModules": {
 		"centralnoticechoicedata": "ApiCentralNoticeChoiceData",
 		"centralnoticequerycampaign": "ApiCentralNoticeQueryCampaign",
-		"centralnoticecdncacheupdatebanner": "ApiCentralNoticeCdnCacheUpdateBanner"
+		"centralnoticecdncacheupdatebanner": {
+			"class": "ApiCentralNoticeCdnCacheUpdateBanner",
+			"services": [
+				"LanguageNameUtils"
+			]
+		}
 	},
 	"APIListModules": {
 		"centralnoticelogs": "ApiCentralNoticeLogs",
