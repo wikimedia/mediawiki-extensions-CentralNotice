@@ -4,5 +4,9 @@
 			"Eleassar"
 		]
 	},
-	"apihelp-centralnoticecdncacheupdatebanner-summary": "Zahtevek za počiščenje vsebine oglasne pasice, shranjene v predpomnilniku CDN (front-end) za anonimne uporabnike, za zahtevano oglasno pasico in jezik."
+	"apierror-centralnotice-cdn-permissions-error": "Uporabnik nima dovoljenja za počiščenje vsebine pasic obličja.",
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "Zahtevek za počiščenje vsebine oglasne pasice, shranjene v predpomnilniku CDN (front-end) za anonimne uporabnike, za zahtevano oglasno pasico in jezik.",
+	"apihelp-centralnoticecdncacheupdatebanner-param-language": "Jezik vsebine pasice za počiščenje",
+	"apihelp-centralnoticecdncacheupdatebanner-example-1": "Iz predpomnilnika CDN počisti vsebino »Banner1«, za angleščino",
+	"apihelp-query+centralnoticelogs-param-limit": "Največje število vrnjenih vrstic (izbirno)."
 }
