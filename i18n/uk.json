@@ -349,6 +349,7 @@
 	"centralnotice-campaign-view-logs": "Переглянути журнали налаштувань кампанії",
 	"prefs-centralnotice-banners": "Банери",
 	"prefs-centralnotice-display-banner-types": "Типи банерів до показу",
+	"prefs-description-centralnotice-banners": "Керуйте типами оголошень, які ви бачите.",
 	"centralnotice-campaign-type": "Тип кампанії",
 	"centralnotice-empty-campaign-type-option": "Без типу (показувати завжди)",
 	"centralnotice-non-existent-campaign-type-error": "Обраний тип кампанії не існує",
