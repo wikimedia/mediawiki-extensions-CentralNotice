@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bosogo",
 			"Growingup",
 			"Викиней"
 		]
@@ -24,5 +25,9 @@
 	"centralnotice-select-all": "Баарын тандоо",
 	"centralnotice-project-name": "Долбоордун аталышы",
 	"centralnotice-clone-cancel": "Жокко чыгаруу",
-	"centralnotice-close-title": "Жабуу"
+	"centralnotice-close-title": "Жабуу",
+	"centralnotice-countries": "Өлкөлөр",
+	"centralnotice-languages": "Тилдер",
+	"centralnotice-language": "Тил",
+	"centralnotice-projects": "Долбоорлор"
 }

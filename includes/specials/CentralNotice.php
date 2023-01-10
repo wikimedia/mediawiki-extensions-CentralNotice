@@ -17,6 +17,10 @@ class CentralNotice extends SpecialPage {
 	// String to use in drop-down to indicate no campaign type (repesented as null in DB)
 	private const EMPTY_CAMPAIGN_TYPE_OPTION = 'empty-campaign-type-option';
 
+	// When displaying a long list, display the complement "all except ~LIST"
+	// past a threshold, given as a proportion of the "all" list length.
+	private const LIST_COMPLEMENT_THRESHOLD = 0.75;
+
 	/** @var bool|null */
 	public $editable;
 	/** @var bool|null */
@@ -333,9 +337,11 @@ class CentralNotice extends SpecialPage {
 
 			$selectAttribs = [
 				'name' => 'campaign_type',
-				'data-initial-value' => $selectedTypeId
 			];
 
+			if ( $selectedTypeId ) {
+				$selectAttribs['data-initial-value'] = $selectedTypeId;
+			}
 			if ( $index ) {
 				$selectAttribs['data-campaign-name'] = $index;
 			}
@@ -470,7 +476,7 @@ class CentralNotice extends SpecialPage {
 		$htmlOut .= Xml::openElement( 'tr' );
 		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-notice-name' )->escaped() );
 		$htmlOut .= Xml::tags( 'td', [],
-			Xml::input( 'noticeName', 25, $request->getVal( 'noticeName' ) ) );
+			Xml::input( 'noticeName', 25, $request->getVal( 'noticeName', '' ) ) );
 		$htmlOut .= Xml::closeElement( 'tr' );
 
 		// Campaign type selector
@@ -1566,7 +1572,8 @@ class CentralNotice extends SpecialPage {
 		global $wgLanguageCode;
 
 		// Retrieve the list of languages in user's language
-		$languages = Language::fetchLanguageNames( $this->getLanguage()->getCode() );
+		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
+			->getLanguageNames( $this->getLanguage()->getCode() );
 
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
@@ -1827,12 +1834,12 @@ class CentralNotice extends SpecialPage {
 
 	/**
 	 * Truncate the summary field in a linguistically appropriate way.
-	 * @param string $summary
+	 * @param string|null $summary
 	 * @return string
 	 */
 	public static function truncateSummaryField( $summary ) {
 		return MediaWikiServices::getInstance()->getContentLanguage()
-			->truncateForDatabase( $summary, 255 );
+			->truncateForDatabase( $summary ?? '', 255 );
 	}
 
 	/**
@@ -1938,17 +1945,17 @@ class CentralNotice extends SpecialPage {
 	}
 
 	public function listLanguages( $languages ) {
-		$all = array_keys( Language::fetchLanguageNames( 'en' ) );
+		$all = array_keys( MediaWikiServices::getInstance()->getLanguageNameUtils()
+			->getLanguageNames( 'en' ) );
 		return $this->makeShortList( $all, $languages );
 	}
 
 	protected function makeShortList( $all, $list ) {
-		global $wgNoticeListComplementThreshold;
 		// TODO ellipsis and js/css expansion
 		if ( count( $list ) == count( $all ) ) {
 			return $this->getContext()->msg( 'centralnotice-all' )->text();
 		}
-		if ( count( $list ) > $wgNoticeListComplementThreshold * count( $all ) ) {
+		if ( count( $list ) > self::LIST_COMPLEMENT_THRESHOLD * count( $all ) ) {
 			$inverse = array_values( array_diff( $all, $list ) );
 			$txt = $this->getContext()->getLanguage()->listToText( $inverse );
 			return $this->getContext()->msg( 'centralnotice-all-except', $txt )->text();

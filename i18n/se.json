@@ -1,12 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kimberli Mäkäräinen (WMNO)",
 			"Yupik"
 		]
 	},
+	"centralnotice-view": "Čájet",
+	"centralnotice-save-banner": "Vurke",
+	"centralnotice-remove": "Sihko",
+	"centralnotice-translations": "Jorgalusat",
+	"centralnotice-translate-to": "Čuozáhatgiella:",
+	"centralnotice-translate": "Jorgal",
 	"centralnotice-select-all": "Vállje buot",
+	"centralnotice-banner-anonymous": "Anonyma geavaheddjiide",
 	"centralnotice-languages": "Gielat",
 	"centralnotice-language": "Giella",
+	"centralnotice-action-removed": "sihkkojuvvon",
 	"centralnotice-all": "Buot",
-	"centralnotice-banner-class": "Kategoriija"
+	"centralnotice-user-role-anonymous": "Anonyma",
+	"centralnotice-banner-class": "Kategoriija",
+	"centralnotice-delete-banner": "Sihko"
 }

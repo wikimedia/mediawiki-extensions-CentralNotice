@@ -37,7 +37,6 @@ class MixinController {
 				// Strip the file extension and assume the mixin class is eponymous.
 				// TODO: maybe they should be registered using hooks instead...
 				$php_module_name = preg_replace( "/[.].+$/", "", $info['php'] );
-				// @phan-suppress-next-line SecurityCheck-PathTraversal
 				require_once $php_module_path;
 				$mod = new $php_module_name();
 				if ( !( $mod instanceof IBannerMixin ) ) {

@@ -23,6 +23,7 @@
 			"Suelnur",
 			"Suvarioglu",
 			"Szoszv",
+			"ToprakM",
 			"Violetanka",
 			"Vito Genovese"
 		]
@@ -344,6 +345,7 @@
 	"centralnotice-campaign-view-logs": "Kampanya ayarları günlüklerini gör",
 	"prefs-centralnotice-banners": "Başlıklar",
 	"prefs-centralnotice-display-banner-types": "Görünecek başlıklar:",
+	"prefs-description-centralnotice-banners": "Göreceğiniz duyuru türlerini yönetin.",
 	"centralnotice-campaign-type": "Kampanya türü",
 	"centralnotice-empty-campaign-type-option": "Tür yok (her zaman gösterilir)",
 	"centralnotice-non-existent-campaign-type-error": "Seçili kampanya türü mevcut değil",

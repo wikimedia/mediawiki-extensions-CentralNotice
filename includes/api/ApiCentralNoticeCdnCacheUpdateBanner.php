@@ -1,11 +1,30 @@
 <?php
 
+use MediaWiki\Languages\LanguageNameUtils;
+
 /**
  * Module for the centralnoticecdncacheupdatebanner Web API. Used by a background call
  * via JS from Special:CentralNoticeBanners, to purge banner content from the front-end
  * cache, for a user-specified language.
  */
 class ApiCentralNoticeCdnCacheUpdateBanner extends ApiBase {
+
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param LanguageNameUtils $languageNameUtils
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		string $moduleName,
+		LanguageNameUtils $languageNameUtils
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->languageNameUtils = $languageNameUtils;
+	}
 
 	/**
 	 * @inheritDoc
@@ -19,7 +38,7 @@ class ApiCentralNoticeCdnCacheUpdateBanner extends ApiBase {
 			$this->dieWithError( 'apierror-centralnotice-cdn-permissions-error' );
 		}
 
-		if ( !Language::isValidCode( $langCode ) ) {
+		if ( !$this->languageNameUtils->isValidCode( $langCode ) ) {
 			$this->dieWithError( 'apierror-centralnotice-cdn-lang-code-error' );
 		}
 

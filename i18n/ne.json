@@ -185,6 +185,7 @@
 	"centralnotice-banner-template-info": "(ढाँचा)",
 	"prefs-centralnotice-banners": "सूचनाहरू",
 	"prefs-centralnotice-display-banner-types": "प्रदर्शनका लागि सूचनाका प्रकारहरू",
+	"prefs-description-centralnotice-banners": "तपाईंले देख्नुहुने घोषणाहरूको प्रकारहरू व्यवस्थापन गर्नुहोस्।",
 	"centralnotice-campaign-type": "अभियान प्रकार",
 	"centralnotice-empty-campaign-type-option": "कुनै प्रकार छैन (सधैं देखाइन्छ)",
 	"centralnotice-non-existent-campaign-type-error": "चयन गरिएको अभियान प्रकार अवस्थित छैन",

@@ -148,7 +148,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 				[ 'class' => 'cn-log-filter-label' ] );
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::input( 'campaign', 25, ( $reset ? '' : $campaign ) );
+			$htmlOut .= Xml::input( 'campaign', 25, ( $reset || $campaign === null ? '' : $campaign ) );
 			$htmlOut .= Xml::closeElement( 'span' );
 			$htmlOut .= Xml::closeElement( 'td' );
 
@@ -163,7 +163,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			);
 			$htmlOut .= Xml::closeElement( 'td' );
 			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::input( 'user', 25, ( $reset ? '' : $user ) );
+			$htmlOut .= Xml::input( 'user', 25, ( $reset || $user === null ? '' : $user ) );
 			$htmlOut .= Xml::closeElement( 'span' );
 			$htmlOut .= Xml::closeElement( 'td' );
 

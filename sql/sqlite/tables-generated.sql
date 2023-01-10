@@ -54,34 +54,30 @@ CREATE INDEX tmp_category ON /*_*/cn_templates (tmp_category);
 
 CREATE TABLE /*_*/cn_notice_languages (
   nl_notice_id INTEGER UNSIGNED NOT NULL,
-  nl_language VARCHAR(32) NOT NULL
+  nl_language VARCHAR(32) NOT NULL,
+  PRIMARY KEY(nl_notice_id, nl_language)
 );
-
-CREATE UNIQUE INDEX nl_notice_id_language ON /*_*/cn_notice_languages (nl_notice_id, nl_language);
 
 
 CREATE TABLE /*_*/cn_notice_projects (
   np_notice_id INTEGER UNSIGNED NOT NULL,
-  np_project VARCHAR(32) NOT NULL
+  np_project VARCHAR(32) NOT NULL,
+  PRIMARY KEY(np_notice_id, np_project)
 );
-
-CREATE UNIQUE INDEX np_notice_id_project ON /*_*/cn_notice_projects (np_notice_id, np_project);
 
 
 CREATE TABLE /*_*/cn_notice_countries (
   nc_notice_id INTEGER UNSIGNED NOT NULL,
-  nc_country VARCHAR(2) NOT NULL
+  nc_country VARCHAR(2) NOT NULL,
+  PRIMARY KEY(nc_notice_id, nc_country)
 );
-
-CREATE UNIQUE INDEX nc_notice_id_country ON /*_*/cn_notice_countries (nc_notice_id, nc_country);
 
 
 CREATE TABLE /*_*/cn_notice_regions (
   nr_notice_id INTEGER UNSIGNED NOT NULL,
-  nr_region VARCHAR(6) NOT NULL
+  nr_region VARCHAR(6) NOT NULL,
+  PRIMARY KEY(nr_notice_id, nr_region)
 );
-
-CREATE UNIQUE INDEX nr_notice_id_region ON /*_*/cn_notice_regions (nr_notice_id, nr_region);
 
 
 CREATE TABLE /*_*/cn_template_mixins (

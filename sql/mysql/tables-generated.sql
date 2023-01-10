@@ -55,28 +55,28 @@ CREATE TABLE /*_*/cn_templates (
 CREATE TABLE /*_*/cn_notice_languages (
   nl_notice_id INT UNSIGNED NOT NULL,
   nl_language VARCHAR(32) NOT NULL,
-  UNIQUE INDEX nl_notice_id_language (nl_notice_id, nl_language)
+  PRIMARY KEY(nl_notice_id, nl_language)
 ) /*$wgDBTableOptions*/;
 
 
 CREATE TABLE /*_*/cn_notice_projects (
   np_notice_id INT UNSIGNED NOT NULL,
   np_project VARCHAR(32) NOT NULL,
-  UNIQUE INDEX np_notice_id_project (np_notice_id, np_project)
+  PRIMARY KEY(np_notice_id, np_project)
 ) /*$wgDBTableOptions*/;
 
 
 CREATE TABLE /*_*/cn_notice_countries (
   nc_notice_id INT UNSIGNED NOT NULL,
   nc_country VARCHAR(2) NOT NULL,
-  UNIQUE INDEX nc_notice_id_country (nc_notice_id, nc_country)
+  PRIMARY KEY(nc_notice_id, nc_country)
 ) /*$wgDBTableOptions*/;
 
 
 CREATE TABLE /*_*/cn_notice_regions (
   nr_notice_id INT UNSIGNED NOT NULL,
   nr_region VARCHAR(6) NOT NULL,
-  UNIQUE INDEX nr_notice_id_region (nr_notice_id, nr_region)
+  PRIMARY KEY(nr_notice_id, nr_region)
 ) /*$wgDBTableOptions*/;
 
 

@@ -70,6 +70,28 @@ class CNDatabasePatcher {
 			);
 		}
 
+		// 1.40
+		$updater->dropExtensionIndex(
+			'cn_notice_languages',
+			'nl_notice_id_language',
+			"$base/$dbType/patch-cn_notice_languages-unique-to-pk.sql"
+		);
+		$updater->dropExtensionIndex(
+			'cn_notice_projects',
+			'np_notice_id_project',
+			"$base/$dbType/patch-cn_notice_projects-unique-to-pk.sql"
+		);
+		$updater->dropExtensionIndex(
+			'cn_notice_countries',
+			'nc_notice_id_country',
+			"$base/$dbType/patch-cn_notice_countries-unique-to-pk.sql"
+		);
+		$updater->dropExtensionIndex(
+			'cn_notice_regions',
+			'nr_notice_id_region',
+			"$base/$dbType/patch-cn_notice_regions-unique-to-pk.sql"
+		);
+
 		$updater->addExtensionUpdate( [
 			[ __CLASS__, 'doOnSchemaUpdatesPopulateKnownDevices' ],
 		] );

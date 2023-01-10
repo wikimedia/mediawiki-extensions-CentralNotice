@@ -213,14 +213,8 @@
 				"options": { "notnull": true, "length": 32 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "nl_notice_id_language",
-				"columns": [ "nl_notice_id", "nl_language" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "nl_notice_id", "nl_language" ]
 	},
 	{
 		"name": "cn_notice_projects",
@@ -236,14 +230,8 @@
 				"options": { "notnull": true, "length": 32 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "np_notice_id_project",
-				"columns": [ "np_notice_id", "np_project" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "np_notice_id", "np_project" ]
 	},
 	{
 		"name": "cn_notice_countries",
@@ -259,14 +247,8 @@
 				"options": { "notnull": true, "length": 2 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "nc_notice_id_country",
-				"columns": [ "nc_notice_id", "nc_country" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "nc_notice_id", "nc_country" ]
 	},
 	{
 		"name": "cn_notice_regions",
@@ -282,14 +264,8 @@
 				"options": { "notnull": true, "length": 6 }
 			}
 		],
-		"indexes": [
-			{
-				"name": "nr_notice_id_region",
-				"columns": [ "nr_notice_id", "nr_region" ],
-				"unique": true
-			}
-		],
-		"pk": []
+		"indexes": [],
+		"pk": [ "nr_notice_id", "nr_region" ]
 	},
 	{
 		"name": "cn_template_mixins",

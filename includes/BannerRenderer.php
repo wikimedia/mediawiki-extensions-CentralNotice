@@ -134,10 +134,10 @@ class BannerRenderer {
 		global $wgNoticeUseLanguageConversion;
 
 		$parentLang = $lang = $this->context->getLanguage();
-		if ( $wgNoticeUseLanguageConversion && $lang->getParentLanguage() ) {
-			$parentLang = $lang->getParentLanguage();
+		if ( $wgNoticeUseLanguageConversion ) {
+			$parentLang = MediaWikiServices::getInstance()->getLanguageFactory()
+				->getParentLanguage( $lang->getCode() ) ?? $lang;
 		}
-		'@phan-var Language $parentLang';
 
 		if ( $this->previewContent !== null ) {
 			// Preview mode, banner content is ephemeral
@@ -165,7 +165,9 @@ class BannerRenderer {
 		$bannerHtml = $this->substituteMagicWords( $bannerHtml );
 
 		if ( $wgNoticeUseLanguageConversion ) {
-			$bannerHtml = $parentLang->getConverter()->convertTo( $bannerHtml, $lang->getCode() );
+			$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+				->getLanguageConverter( $parentLang );
+			$bannerHtml = $converter->convertTo( $bannerHtml, $lang->getCode() );
 		}
 		return $bannerHtml;
 	}
