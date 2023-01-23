@@ -4,6 +4,8 @@
 			"Afalau"
 		]
 	},
+	"apierror-centralnotice-cdn-lang-code-error": "Cod iaith camffurfiedig.",
+	"apierror-centralnotice-cdn-banner-name-error": "Enw baner camffurfiedig.",
 	"apierror-centralnotice-cdn-banner-not-found": "Ni chanfuwyd baner",
 	"apihelp-query+centralnoticelogs-param-user": "Enw defnyddiwr (dewisol).",
 	"apihelp-query+centralnoticelogs-example-1": "Dangos logiau"
