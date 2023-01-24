@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Metalhead64",
-			"Zabe"
+			"Zabe",
+			"Justman10000"
 		]
 	},
 	"apierror-centralnotice-cdn-permissions-error": "Der Benutzer hat keine Berechtigung zur Löschung des Frontend-Vorlageninhalts.",
@@ -10,6 +11,7 @@
 	"apierror-centralnotice-cdn-banner-name-error": "Ungültiger Vorlagenname.",
 	"apierror-centralnotice-cdn-banner-not-found": "Vorlage nicht gefunden",
 	"apihelp-centralnoticeallocations-description": "Ruft die Vorlagenanordnungen für Vorlagen von CentralNotice für alle Benutzertypen unter dem parametrischen Filter ab.\n\nDies ist ein Nur-JSON-Aufruf.",
+	"apihelp-centralnoticeallocations-summary": "Erhalte die Bannerzuweisungen für Banner, die von CentralNotice für alle Nutzertypen unter dem parametrischen Filter bereitgestellt werden.",
 	"apihelp-centralnoticeallocations-extended-description": "Dies ist ein Nur-JSON-Aufruf.",
 	"apihelp-centralnoticeallocations-param-project": "Das Projekt, unter dem die Anordnungen abgerufen werden sollen.",
 	"apihelp-centralnoticeallocations-param-country": "Der Staat, der gefiltert werden soll.",
