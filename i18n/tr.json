@@ -24,7 +24,8 @@
 			"Suvarioglu",
 			"Szoszv",
 			"Violetanka",
-			"Vito Genovese"
+			"Vito Genovese",
+			"ToprakM"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -53,7 +54,7 @@
 	"centralnotice-add-notice": "Bir kampanya ekle",
 	"centralnotice-add-notice-button": "Oluştur",
 	"centralnotice-add-notice-cancel-button": "İptal",
-	"centralnotice-edit-notice": "Kampanyayı düzenle",
+	"centralnotice-edit-notice": "Kampanyayı değiştir",
 	"centralnotice-add-template": "Bir banner ekle",
 	"centralnotice-show-notices": "Uyarıları göster",
 	"centralnotice-list-templates": "Banner'ları listele",
