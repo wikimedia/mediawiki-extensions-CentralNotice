@@ -61,7 +61,7 @@
 	"centralnotice-min": "منٹ",
 	"centralnotice-project-lang": "منصوبہ بولی",
 	"centralnotice-project-name": "منصوبہ ناں",
-	"centralnotice-assigned-templates": "دتے گۓ نشان",
+	"centralnotice-assigned-templates": "دتے گئے نشان",
 	"centralnotice-no-templates": "کوئی نشان نئیں لبیا۔ کوئی جورو !",
 	"centralnotice-no-templates-assigned": "کم نال کوئی نشان نئیں جڑیا۔ کوئی جورو !",
 	"centralnotice-available-templates": "کول ہیگے نشان",
@@ -152,5 +152,5 @@
 	"centralnotice-banner-sequence-banner": "پھریرے",
 	"centralnotice-multiple-countries": "ملٹی پل کنٹریز",
 	"centralnotice-multiple-languages": "وکھریاں بولیاں",
-	"prefs-centralnotice-banners": "پھریرے"
+	"prefs-centralnotice-banners": "جھنڈے"
 }
