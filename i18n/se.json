@@ -8,10 +8,12 @@
 	"centralnotice-view": "Čájet",
 	"centralnotice-save-banner": "Vurke",
 	"centralnotice-remove": "Sihko",
+	"centralnotice-add-notice-cancel-button": "Šluhtte",
 	"centralnotice-translations": "Jorgalusat",
 	"centralnotice-translate-to": "Čuozáhatgiella:",
 	"centralnotice-translate": "Jorgal",
 	"centralnotice-select-all": "Vállje buot",
+	"centralnotice-clone-cancel": "Šluhtte",
 	"centralnotice-banner-anonymous": "Anonyma geavaheddjiide",
 	"centralnotice-languages": "Gielat",
 	"centralnotice-language": "Giella",
@@ -19,5 +21,8 @@
 	"centralnotice-all": "Buot",
 	"centralnotice-user-role-anonymous": "Anonyma",
 	"centralnotice-banner-class": "Kategoriija",
-	"centralnotice-delete-banner": "Sihko"
+	"centralnotice-archive-banner-cancel": "Šluhtte",
+	"centralnotice-archive-campaign-cancel": "Šluhtte",
+	"centralnotice-delete-banner": "Sihko",
+	"centralnotice-delete-banner-cancel": "Šluhtte"
 }
