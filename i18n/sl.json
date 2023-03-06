@@ -272,7 +272,7 @@
 	"centralnotice-legacy-support-help": "Nastavitve za združljivost s starejšimi pasicami, ki temeljijo na Special:RecordImpression ali ki vključujejo JavaScript za skritje pasice.",
 	"centralnotice-set-record-impression-sample-rate": "Nastavite frekvenco vzorčenja za Posebno:RecordImpression",
 	"centralnotice-custom-record-impression-sample-rate": "Hitrost vzorčenja Posebno:RecordImpression (biti mora od vključno 0 do vključno 1)",
-	"centralnotice-banners-not-guaranteed-to-display": "Pasice se morda ne bodo prikazale, kar je odvisno od JavaScripta, ki ga vsebujejo",
+	"centralnotice-banners-not-guaranteed-to-display": "Pasice se mogoče ne bodo prikazale, kar je odvisno od JavaScripta, ki ga vsebujejo",
 	"centralnotice-impression-diet": "Dieta vtisov",
 	"centralnotice-impression-diet-help": "Omejite število pasic, ki jih vidi posameznik.",
 	"centralnotice-impression-diet-identifier": "Identifikator za shranjevanje na strani odjemalca",
