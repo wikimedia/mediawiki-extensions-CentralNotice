@@ -4,7 +4,8 @@
 			"Imre",
 			"Sol lemon",
 			"פוילישער",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Pacha Tchernof"
 		]
 	},
 	"centralnotice": "צענטראַלע מעלדונג פֿאַרוואַטונג",
@@ -63,7 +64,7 @@
 	"centralnotice-template-body": "פאנע טעקסט:",
 	"centralnotice-day": "טאָג",
 	"centralnotice-year": "יאר",
-	"centralnotice-month": "מאנאט",
+	"centralnotice-month": "מאָנאַט",
 	"centralnotice-hours": "שעה",
 	"centralnotice-min": "מינוט",
 	"centralnotice-project-lang": "פראיעקט שפראך",
@@ -100,8 +101,8 @@
 	"centralnotice-banner-cdn-button": "רייניקן",
 	"centralnotice-countries": "לענדער",
 	"centralnotice-allocation": "אויסטיילונג",
-	"centralnotice-languages": "שפּראַכן",
-	"centralnotice-language": "שפראַך",
+	"centralnotice-languages": "שפּראַךן",
+	"centralnotice-language": "שפּראַך",
 	"centralnotice-projects": "פראיעקטן",
 	"centralnotice-country": "לאַנד",
 	"centralnotice-percentage": "פראצענט",
