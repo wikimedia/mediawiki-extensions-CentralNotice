@@ -94,7 +94,6 @@
 	"centralnotice-update-preview": "Uuenda eelvaadet",
 	"centralnotice-preview-page": "[ Eelvaade vikis ]",
 	"centralnotice-preview-loader-error-dialog-title": "Tõrge riba eelvaate laadimisel",
-	"centralnotice-preview-loader-error-dialog-ok": "Sobib",
 	"centralnotice-preview-loader-permissions-error": "Sind pole volitatud ribasid eelvaatama või sinu redigeerimisluba on aegunud. Palun proovi uuesti sisse logida või laadi lehekülg uuesti.",
 	"centralnotice-clone": "Kopeeri",
 	"centralnotice-clone-notice": "Ribast koopia tegemine",

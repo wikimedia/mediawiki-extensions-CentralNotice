@@ -102,7 +102,6 @@
 	"centralnotice-edit-template-summary": "Advertència: carregar recursos externs en un báner pot comprometre la confidencialitat de l'usuari.\n\nPer crear un missatge localitzable, envolteu una cadena a l'interior de triples claudàtors, és a dir <nowiki>{{{nom_de_missatge}}}</nowiki>. Per utilitzar un missatge localitzable a partir d'una altra bandera, inseriu el nom de bàner seguit d'una coma i del nom de missatge, és a dir, <nowiki>{{{nom_de_bàner,nom_de_missatge}}}</nowiki>.",
 	"centralnotice-message": "Missatge",
 	"centralnotice-message-not-set": "Missatge no fixat",
-	"centralnotice-preview-loader-error-dialog-ok": "D’acord",
 	"centralnotice-clone": "Duplica",
 	"centralnotice-clone-notice": "Crea una còpia de la plantilla",
 	"centralnotice-clone-name": "Nom:",
