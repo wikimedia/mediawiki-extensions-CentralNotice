@@ -230,7 +230,7 @@
 
 			matches = regex.exec( key );
 
-			if ( Array.isArray( matches ) && matches.length === 2 && allOptions[ key ] === 0 ) {
+			if ( Array.isArray( matches ) && matches.length === 2 && !!allOptions[ key ] ) {
 				blocked.push( matches[ 1 ] );
 			}
 		}
