@@ -106,7 +106,6 @@
 	"centralnotice-update-preview": "อัปเดตตัวอย่าง",
 	"centralnotice-preview-page": "[ ดูตัวอย่างบนวิกิ ]",
 	"centralnotice-preview-loader-error-dialog-title": "ข้อผิดพลาดขณะโหลดการแสดงตัวอย่างแบนเนอร์",
-	"centralnotice-preview-loader-error-dialog-ok": "ตกลง",
 	"centralnotice-preview-loader-permissions-error": "คุณไม่มีสิทธิ์ในการดูตัวอย่างแบนเนอร์หรือโทเคนแก้ไขของคุณหมดอายุ กรุณาโหลดหน้าใหม่หรือเข้าสู่ระบบใหม่อีกครั้ง",
 	"centralnotice-clone": "ทำสำเนา",
 	"centralnotice-clone-notice": "สร้างสำเนาของแบนเนอร์",

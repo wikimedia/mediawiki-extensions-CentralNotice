@@ -30,7 +30,8 @@
 		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
 
 	function doPurgeCache() {
-		var $dialogEl = $( '<div>' ),
+		var language = $( '#cn-cdn-cache-language' ).val(),
+			messageId = 'centralnotice-purge-cache-' + language,
 			waiting;
 
 		// Do nothing if the button was disabled (from lack of CN admin rights)
@@ -38,36 +39,22 @@
 			return;
 		}
 
-		$dialogEl.dialog( {
-			title: mw.message( 'centralnotice-banner-cdn-dialog-title' ).escaped(),
-			autoOpen: false
-		} );
-
-		// Show dialog with info if the background call takes a while to return
+		// Show notification with info if the background call takes a while to return
 		waiting = setTimeout( function () {
-			$dialogEl.text(
-				mw.message( 'centralnotice-banner-cdn-dialog-waiting-text' ).text() );
-
-			$dialogEl.dialog( 'open' );
+			mw.notify( mw.message( 'centralnotice-banner-cdn-dialog-waiting-text' ).text(), {
+				autoHide: false,
+				tag: messageId
+			} );
 		}, 300 );
 
 		new mw.Api().postWithToken( 'csrf', {
 			action: 'centralnoticecdncacheupdatebanner',
 			banner: bannerName,
-			language: $( '#cn-cdn-cache-language' ).val()
+			language: language
 		}, {
 			timeout: 2000
 		} ).always( function () {
 			clearTimeout( waiting );
-			$dialogEl.dialog( {
-				buttons: [ {
-					text: mw.message( 'centralnotice-banner-cdn-dialog-ok' ).text(),
-					click: function () {
-						$( this ).dialog( 'close' );
-					}
-				} ]
-			} );
-
 		} ).fail( function ( code, result ) {
 			var text = mw.message( 'centralnotice-banner-cdn-dialog-error' ).text();
 
@@ -77,13 +64,15 @@
 				text += ' (' + result.exception + ')';
 			}
 
-			$dialogEl.text( text );
-			$dialogEl.dialog( 'open' );
-
+			mw.notify( text, {
+				type: 'error',
+				tag: messageId
+			} );
 		} ).done( function () {
-			$dialogEl.text( mw.message( 'centralnotice-banner-cdn-dialog-success' ).text() );
-			$dialogEl.dialog( 'open' );
-
+			mw.notify( mw.message( 'centralnotice-banner-cdn-dialog-success' ).text(), {
+				type: 'success',
+				tag: messageId
+			} );
 		} );
 	}
 
@@ -301,19 +290,15 @@
 			}
 		},
 
+		/**
+		 * Display notification when the banner failed to load.
+		 *
+		 * @param {string} [msg] The body of the error message
+		 */
 		handleBannerLoaderError: function ( msg ) {
-			var $dialogEl = $( '<div>' );
-
-			$dialogEl.text( msg );
-
-			$dialogEl.dialog( {
+			mw.notify( msg, {
 				title: mw.msg( 'centralnotice-preview-loader-error-dialog-title' ),
-				buttons: [ {
-					text: mw.msg( 'centralnotice-preview-loader-error-dialog-ok' ),
-					click: function () {
-						$( this ).dialog( 'close' );
-					}
-				} ]
+				type: 'error'
 			} );
 		},
 

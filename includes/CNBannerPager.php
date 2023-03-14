@@ -221,15 +221,12 @@ class CNBannerPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * Make a self-link. Overriding to add filter as a query parameter.
 	 * @inheritDoc
 	 */
-	public function makeLink( $text, array $query = null, $type = null ) {
+	public function getDefaultQuery() {
+		parent::getDefaultQuery();
 		$filterQuery = $this->hostSpecialPage->getFilterUrlParamAsArray();
-
-		$query = ( $query === null ) ?
-			$filterQuery : array_merge( $query, $filterQuery );
-
-		return parent::makeLink( $text, $query, $type );
+		$this->mDefaultQuery = array_merge( $this->mDefaultQuery, $filterQuery );
+		return $this->mDefaultQuery;
 	}
 }
