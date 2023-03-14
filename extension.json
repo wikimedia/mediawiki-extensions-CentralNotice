@@ -15,7 +15,7 @@
 	"descriptionmsg": "centralnotice-desc",
 	"license-name": "GPL-2.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.38.0",
+		"MediaWiki": ">= 1.39.0",
 		"extensions": {
 			"EventLogging": "*"
 		}
@@ -587,14 +587,30 @@
 		},
 		"CentralNoticeCampaignTypes": {
 			"value": {
-				"advocacy": { "onForAll": false },
-				"article-writing": { "onForAll": false },
-				"photography": { "onForAll": false },
-				"event": { "onForAll": false },
-				"fundraising": { "onForAll": false },
-				"governance": { "onForAll": false },
-				"maintenance": { "onForAll": true },
-				"special": { "onForAll": true }
+				"advocacy": {
+					"onForAll": false
+				},
+				"article-writing": {
+					"onForAll": false
+				},
+				"photography": {
+					"onForAll": false
+				},
+				"event": {
+					"onForAll": false
+				},
+				"fundraising": {
+					"onForAll": false
+				},
+				"governance": {
+					"onForAll": false
+				},
+				"maintenance": {
+					"onForAll": true
+				},
+				"special": {
+					"onForAll": true
+				}
 			}
 		}
 	},
