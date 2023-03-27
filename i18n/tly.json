@@ -26,10 +26,12 @@
 	"centralnotice-country": "Məmləkət",
 	"centralnotice-user": "İştirokəkə",
 	"centralnotice-action": "Hərəkət",
+	"centralnotice-change-summary-heading": "Xılosə:",
 	"centralnotice-talk-link": "mızokirə",
 	"centralnotice-date": "Tarıx",
 	"centralnotice-all": "Həmə",
 	"centralnotice-archive-banner-cancel": "Ləğv karde",
+	"centralnotice-change-summary-label": "Xılosə",
 	"centralnotice-archive-campaign-cancel": "Ləğv karde",
 	"centralnotice-delete-banner-cancel": "Ləğv karde"
 }
