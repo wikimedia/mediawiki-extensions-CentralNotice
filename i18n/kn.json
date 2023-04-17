@@ -3,6 +3,7 @@
 		"authors": [
 			"Nayvik",
 			"VASANTH S.N.",
+			"~aanzx",
 			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
 		]
 	},
@@ -32,6 +33,8 @@
 	"centralnotice-settings": "ವ್ಯವಸ್ಥೆಗಳು",
 	"centralnotice-message": "ಸಂದೇಶ",
 	"centralnotice-clone-name": "ಹೆಸರು:",
+	"centralnotice-insert": "ಸೇರಿಸು: $1",
+	"centralnotice-close-button": "ಮರೆಮಾಡಿ",
 	"centralnotice-close-title": "ಮುಚ್ಚಿ",
 	"centralnotice-banner-anonymous": "ಅನಾಮಧೇಯ ಸದಸ್ಯರು",
 	"centralnotice-countries": "ದೇಶಗಳು",
