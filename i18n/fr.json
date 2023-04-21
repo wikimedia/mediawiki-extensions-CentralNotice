@@ -104,7 +104,7 @@
 	"centralnotice-project-name": "Nom du projet",
 	"centralnotice-assigned-templates": "Bandeaux affectés",
 	"centralnotice-no-templates": "Aucun modèle trouvé.\nAjoutez-en !",
-	"centralnotice-no-templates-assigned": "Aucun modèle assigné à l’avis.\nAjoutez-en !",
+	"centralnotice-no-templates-assigned": "Aucune bannière affectée à la campagne.\nAjoutez-en !",
 	"centralnotice-available-templates": "Bandeaux disponibles",
 	"centralnotice-template-already-exists": "Le modèle est déjà attaché à une campagne.\nIl n’a pas été ajouté.",
 	"centralnotice-change-lang": "Modifier la langue de traduction",
