@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class Campaign {
 
 	/** @var int|null */
@@ -1502,7 +1504,7 @@ class Campaign {
 				$log[ 'notlog_end_' . $key ] = $value;
 		}
 
-		Hooks::runWithoutAbort(
+		MediaWikiServices::getInstance()->getHookContainer()->run(
 			'CentralNoticeCampaignChange',
 			[
 				$action,
@@ -1512,7 +1514,8 @@ class Campaign {
 				self::processSettingsForHook( $beginSettings ),
 				self::processSettingsForHook( $endSettings ),
 				$summary
-			]
+			],
+			[ 'abortable' => false ]
 		);
 
 		// Only log the change if it is done by an actual user (rather than a testing script)
