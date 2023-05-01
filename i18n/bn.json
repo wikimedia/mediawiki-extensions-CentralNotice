@@ -202,6 +202,7 @@
 	"centralnotice-banner-template-info": "(টেমপ্লেট)",
 	"prefs-centralnotice-banners": "ব্যানার",
 	"prefs-centralnotice-display-banner-types": "প্রদর্শনের জন্য ব্যানারের ধরন",
+	"prefs-description-centralnotice-banners": "আপনি কি ধরনের ঘোষণা দেখতে চান তা পরিচালনা করুন।",
 	"centralnotice-campaign-type": "প্রচারাভিযানের ধরন",
 	"centralnotice-empty-campaign-type-option": "কোন ধরন নেই (সবসময় দেখানো হয়)",
 	"centralnotice-campaign-type-advocacy": "ওকালতি",

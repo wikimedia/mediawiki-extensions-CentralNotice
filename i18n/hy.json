@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Beko",
 			"Kareyac",
 			"Vadgt",
 			"Սերգեյ Սաֆարյան"
@@ -15,11 +16,13 @@
 	"centralnotice-translate-to": "Թարգմանել",
 	"centralnotice-translate": "Թարգմանություն",
 	"centralnotice-english": "Անգլերեն",
+	"centralnotice-templates": "վահանակներ",
 	"centralnotice-day": "Օր",
 	"centralnotice-year": "Տարի",
 	"centralnotice-month": "Ամիս",
 	"centralnotice-hours": "ժամ",
 	"centralnotice-min": "Րոպե",
+	"centralnotice-project-lang": "Նախագծի լեզուն",
 	"centralnotice-select-all": "Նշել ամբողջը",
 	"centralnotice-settings": "Կարգավորումներ",
 	"centralnotice-clone-cancel": "Չեղարկել",
