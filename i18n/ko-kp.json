@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Delim",
+			"Garam"
+		]
+	},
+	"centralnotice-notice-name": "공지 이름",
+	"centralnotice-enabled": "허가됨",
+	"centralnotice-remove": "지우기",
+	"centralnotice-locked": "잠김",
+	"centralnotice-message": "통보문",
+	"centralnotice-countries": "나라",
+	"centralnotice-languages": "언어",
+	"centralnotice-language": "언어",
+	"centralnotice-projects": "과제",
+	"centralnotice-preferred": "우선 순위",
+	"centralnotice-start-date": "시작날짜(UTC)",
+	"centralnotice-end-date": "종료날짜(UTC)"
+}
