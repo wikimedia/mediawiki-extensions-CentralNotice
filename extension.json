@@ -145,7 +145,7 @@
 				"mobile"
 			],
 			"dependencies": [
-				"jquery.cookie"
+				"mediawiki.cookie"
 			]
 		},
 		"ext.centralNotice.choiceData": {
@@ -172,7 +172,7 @@
 				"ext.centralNotice.geoIP",
 				"ext.centralNotice.kvStore",
 				"ext.eventLogging",
-				"jquery.cookie",
+				"mediawiki.cookie",
 				"mediawiki.Uri",
 				"mediawiki.util",
 				"mediawiki.storage"
