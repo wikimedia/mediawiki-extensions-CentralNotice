@@ -15,7 +15,7 @@ class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 			CentralNotice::dropDownList( $text, $values ) );
 	}
 
-	public function provideSearchTerms() {
+	public static function provideSearchTerms() {
 		return [
 			'empty' => [ '', '' ],
 			'whitespace normalization' => [ "\n\n   a\tb   \r", 'a b' ],
