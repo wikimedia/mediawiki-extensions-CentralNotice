@@ -279,6 +279,7 @@
 	"centralnotice-create-from-template-checkbox-label": "틀에서 만들기",
 	"prefs-centralnotice-banners": "배너",
 	"prefs-centralnotice-display-banner-types": "표시할 배너 유형",
+	"prefs-description-centralnotice-banners": "보고 계시는 공지의 유형을 관리합니다.",
 	"centralnotice-campaign-type": "공지 유형",
 	"centralnotice-empty-campaign-type-option": "유형 없음 (무조건 표시)",
 	"centralnotice-non-existent-campaign-type-error": "선택한 공지 유형은 존재하지 않습니다",
