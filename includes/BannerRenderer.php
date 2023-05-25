@@ -167,7 +167,10 @@ class BannerRenderer {
 		if ( $wgNoticeUseLanguageConversion ) {
 			$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
 				->getLanguageConverter( $parentLang );
-			$bannerHtml = $converter->convertTo( $bannerHtml, $lang->getCode() );
+			$variant = $lang->getCode();
+			if ( $converter->hasVariant( $variant ) ) {
+				$bannerHtml = $converter->convertTo( $bannerHtml, $variant );
+			}
 		}
 		return $bannerHtml;
 	}
