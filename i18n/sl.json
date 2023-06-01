@@ -252,7 +252,7 @@
 	"centralnotice-start-time": "Čas začetka (UTC)",
 	"centralnotice-end-date": "Končni datum (UTC)",
 	"centralnotice-end-time": "Čas zaključka (UTC)",
-	"centralnotice-banner-not-found-title": "Pasice ni mogoče najti",
+	"centralnotice-banner-not-found-title": "Pasice ni bilo mogoče najti",
 	"centralnotice-banner-not-found-contents": "Pasica s točno takim imenom ne obstaja.",
 	"centralnotice-csp-violation-alert": "Zaznana kršitev Pravilnika o varnosti vsebine! Poskus prenosa s strani $1.",
 	"hidebanners": "Skrij pasice",
