@@ -17,6 +17,7 @@
 	"centralnotice-translate": "Jurgâl",
 	"centralnotice-english": "Eŋgâlâskielân",
 	"centralnotice-month": "Mánuppaje",
+	"centralnotice-project-lang": "Proojeekt kielâ",
 	"centralnotice-select-all": "Valjii puoh",
 	"centralnotice-settings": "Asâttâsah",
 	"centralnotice-clone-name": "Nommâ:",
@@ -35,5 +36,6 @@
 	"centralnotice-archive-campaign-cancel": "Jooskâ",
 	"centralnotice-delete-banner": "Siho",
 	"centralnotice-delete-banner-cancel": "Jooskâ",
-	"centralnotice-banner-template-info": "(myenster)"
+	"centralnotice-banner-template-info": "(myenster)",
+	"centralnotice-campaign-type-special": "Eromâš"
 }
