@@ -1504,9 +1504,8 @@ class Campaign {
 				$log[ 'notlog_end_' . $key ] = $value;
 		}
 
-		MediaWikiServices::getInstance()->getHookContainer()->run(
-			'CentralNoticeCampaignChange',
-			[
+		( new CentralNoticeHookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )
+			->onCentralNoticeCampaignChange(
 				$action,
 				$time,
 				$campaignName,
@@ -1514,9 +1513,7 @@ class Campaign {
 				self::processSettingsForHook( $beginSettings ),
 				self::processSettingsForHook( $endSettings ),
 				$summary
-			],
-			[ 'abortable' => false ]
-		);
+			);
 
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		// FIXME There must be a cleaner way to do this?
