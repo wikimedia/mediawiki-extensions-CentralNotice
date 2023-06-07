@@ -125,7 +125,6 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 
 	/**
 	 * @inheritDoc
-	 * Note: requires mediawiki-core change-id @Iee61e5b52
 	 */
 	public function getDependencies( RL\Context $context = null ) {
 		$cnCampaignMixins = $this->getConfig()->get( 'CentralNoticeCampaignMixins' );
@@ -149,7 +148,7 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 		foreach ( $choices as $choice ) {
 			foreach ( $choice['mixins'] as $mixinName => $mixinParams ) {
 				if ( !$cnCampaignMixins[$mixinName]['subscribingModule'] ) {
-					throw new MWException(
+					throw new ConfigException(
 						"No subscribing module for found campaign mixin {$mixinName}" );
 				}
 
