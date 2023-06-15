@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Botuzhaleny-sodamo",
-			"Rueter"
+			"Rueter",
+			"Denö"
 		]
 	},
 	"centralnotice-add": "Поладомс",
@@ -35,6 +36,6 @@
 	"centralnotice-archive-banner": "Содамокундо",
 	"centralnotice-archive-show": "Невтемс содамокундос совавтозь кампаниятнень",
 	"centralnotice-start-date": "Ушодома чи (UTC)",
-	"centralnotice-start-time": "Ушодома шка",
-	"centralnotice-end-time": "Прядома шка"
+	"centralnotice-start-time": "Ушодома шка (UTC)",
+	"centralnotice-end-time": "Прядома шка (UTC)"
 }
