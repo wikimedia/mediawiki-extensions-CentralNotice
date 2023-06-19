@@ -81,6 +81,8 @@
 		"CdnCacheUpdateBannerLoader": "includes/CdnCacheUpdateBannerLoader.php",
 		"CentralNoticeBannerLogPager": "includes/specials/pagers/CentralNoticeBannerLogPager.php",
 		"CentralNoticeCampaignLogPager": "includes/specials/pagers/CentralNoticeCampaignLogPager.php",
+		"CentralNoticeCampaignChangeHook": "includes/CentralNoticeCampaignChangeHook.php",
+		"CentralNoticeHookRunner": "includes/CentralNoticeHookRunner.php",
 		"CentralNoticeHooks": "includes/CentralNoticeHooks.php",
 		"CentralNoticeHtmlForm": "includes/specials/CentralNoticeHtmlForm.php",
 		"CentralNoticePageLogPager": "includes/specials/pagers/CentralNoticePageLogPager.php",
