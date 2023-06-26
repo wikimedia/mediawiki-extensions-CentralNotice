@@ -8,7 +8,6 @@
 	"apierror-centralnotice-cdn-lang-code-error": "Neispravan jezični kod.",
 	"apierror-centralnotice-cdn-banner-name-error": "Pogrešno oblikovan naziv banera.",
 	"apierror-centralnotice-cdn-banner-not-found": "Nisam pronašao obavijest",
-	"apihelp-centralnoticeallocations-description": "Nabavite dodjele natpisa koje poslužuje CentralNotice za sve vrste korisnika pod parametarskim filtrom.\n\nOvo je samo JSON poziv.",
 	"apihelp-centralnoticeallocations-summary": "Nabavite dodjele natpisa koje poslužuje CentralNotice za sve vrste korisnika pod parametarskim filtrom.",
 	"apihelp-centralnoticeallocations-extended-description": "Ovo je samo JSON poziv.",
 	"apihelp-centralnoticeallocations-param-project": "Za koji projekt dobivati izdvajanja.",

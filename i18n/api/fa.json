@@ -14,8 +14,6 @@
 	"apihelp-centralnoticeallocations-param-language": "زبانی که بر روی آن فیلتر کند.",
 	"apihelp-centralnoticeallocations-param-device": "نام دستگاه برای فیلترکردن",
 	"apihelp-centralnoticecdncacheupdatebanner-summary": "درخواست پاک‌سازی محتوای بنر ذخیره‌شده در حافظۀ نهان CDN (پیشانه) برای کاربران ناشناس، برای بنر و زبان مورد درخواست",
-	"apihelp-centralnoticequerycampaign-description": "دریافت تمام تنظیمات پیکربندی برای یک پویش.",
-	"apihelp-centralnoticechoicedata-description": "دریافت دادهٔ مورد نیاز برای انتخاب بنر یک پروژه یا زبان مشخص",
 	"apihelp-query+centralnoticelogs-param-user": "نام کاربری (اختیاری)",
 	"apihelp-query+centralnoticelogs-param-start": "زمان شروع باز (اختیاری)",
 	"apihelp-query+centralnoticelogs-param-end": "زمان پایان بازه (اختیاری)",
