@@ -56,12 +56,10 @@
 		// On the first call, set a cookie and try to read it back
 		if ( cookiesEnabled === null ) {
 
-			// TODO Using jquery.cookie since it's already a dependency; switch
-			// to mw.cookie when we make a general switch.
-			$.cookie( 'cookieTest', 'testVal' );
-			cookiesEnabled = ( $.cookie( 'cookieTest' ) === 'testVal' );
+			mw.cookie.set( 'cookieTest', 'testVal' );
+			cookiesEnabled = ( mw.cookie.get( 'cookieTest' ) === 'testVal' );
 			// Clear it out
-			$.removeCookie( 'cookieTest' );
+			mw.cookie.set( 'cookieTest', null );
 		}
 
 		return cookiesEnabled;

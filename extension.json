@@ -81,6 +81,8 @@
 		"CdnCacheUpdateBannerLoader": "includes/CdnCacheUpdateBannerLoader.php",
 		"CentralNoticeBannerLogPager": "includes/specials/pagers/CentralNoticeBannerLogPager.php",
 		"CentralNoticeCampaignLogPager": "includes/specials/pagers/CentralNoticeCampaignLogPager.php",
+		"CentralNoticeCampaignChangeHook": "includes/CentralNoticeCampaignChangeHook.php",
+		"CentralNoticeHookRunner": "includes/CentralNoticeHookRunner.php",
 		"CentralNoticeHooks": "includes/CentralNoticeHooks.php",
 		"CentralNoticeHtmlForm": "includes/specials/CentralNoticeHtmlForm.php",
 		"CentralNoticePageLogPager": "includes/specials/pagers/CentralNoticePageLogPager.php",
@@ -145,7 +147,7 @@
 				"mobile"
 			],
 			"dependencies": [
-				"jquery.cookie"
+				"mediawiki.cookie"
 			]
 		},
 		"ext.centralNotice.choiceData": {
@@ -172,7 +174,7 @@
 				"ext.centralNotice.geoIP",
 				"ext.centralNotice.kvStore",
 				"ext.eventLogging",
-				"jquery.cookie",
+				"mediawiki.cookie",
 				"mediawiki.Uri",
 				"mediawiki.util",
 				"mediawiki.storage"

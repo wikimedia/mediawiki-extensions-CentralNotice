@@ -232,7 +232,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 			"Testing post save logged in" );
 	}
 
-	public function providerSetAllocation() {
+	public static function providerSetAllocation() {
 		return [
 			[ false, false ],
 			[ true, false ],

@@ -15,11 +15,11 @@
 		"@wdio/spec-reporter": "7.16.13",
 		"eslint-config-wikimedia": "0.25.0",
 		"grunt": "1.6.1",
-		"grunt-banana-checker": "0.10.0",
+		"grunt-banana-checker": "0.11.0",
 		"grunt-eslint": "24.0.1",
 		"grunt-stylelint": "0.18.0",
-		"stylelint-config-wikimedia": "0.14.0",
-		"svgo": "2.8.0",
+		"stylelint-config-wikimedia": "0.15.0",
+		"svgo": "3.0.2",
 		"wdio-mediawiki": "2.1.0"
 	}
 }
