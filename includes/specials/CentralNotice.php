@@ -1859,6 +1859,14 @@ class CentralNotice extends SpecialPage {
 			return true;
 		}
 
+		// Return if skin allows special pages to register natigation links (in which
+		// case this is handled by getShortDescription() and
+		// getAssociatedNavigationLinks()).
+		// See T315562, T313349.
+		if ( $skin->supportsMenu( 'associated-pages' ) ) {
+			return true;
+		}
+
 		$title = $skin->getTitle();
 
 		// Only add tabs to special pages
@@ -1886,6 +1894,33 @@ class CentralNotice extends SpecialPage {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Provides names of sub-pages of the CentralNotice admin interface.
+	 *
+	 * @inheritDoc
+	 */
+	public function getAssociatedNavigationLinks(): array {
+		global $wgNoticeTabifyPages;
+
+		// Keys of (default value of $wgNoticeTabifyPages) are the names of the special
+		// pages of the admin interface without the initial 'Special:'.
+		// TODO Make $wgNoticeTabifyPages a constant rather than a config variable.
+		return array_map( static function ( $name ) {
+			return 'Special:' . $name;
+		}, array_keys( $wgNoticeTabifyPages ) );
+	}
+
+	/**
+	 * Return the localized text used for subpages of the CN admin interface (on skins
+	 * that support navigation links).
+	 *
+	 * @inheritDoc
+	 */
+	public function getShortDescription( string $path = '' ): string {
+		global $wgNoticeTabifyPages;
+		return $this->msg( $wgNoticeTabifyPages[ $path ][ 'message' ] )->parse();
 	}
 
 	/**
