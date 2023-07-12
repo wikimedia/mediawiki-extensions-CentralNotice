@@ -101,7 +101,7 @@
 	"centralnotice-settings": "הגדרות",
 	"centralnotice-edit-template": "עריכת הכּרזה",
 	"centralnotice-edit-template-summary": "אזהרה: טעינת משאבים חיצוניים בכרזה עלולה לפגוע בפרטיות המשתמשים.\n\nכדי ליצור הודעה שאפשר לתרגם, יש לתחום מחרוזות עם מקפים בשלושה סוגריים מסולסלים, למשל <nowiki>{{{message_name}}}</nowiki>. כדי להשתמש בהודעה בת־תרגום מכרזה אחרת, נא לכלול את שם הכרזה ולאחריה פסיק, ואז את שם ההודעה, למשל <nowiki>{{{banner_name,message_name}}}</nowiki>.",
-	"centralnotice-edit-template-magicwords": "מילות קסם: $1",
+	"centralnotice-edit-template-magicwords": "מילות קסם שמסופקות על־ידי התוספות של הכרזה: $1",
 	"centralnotice-message": "הודעה",
 	"centralnotice-message-not-set": "לא הוגדרה הודעה",
 	"centralnotice-campaigns-using-banner": "מבצעי פרסום שמשתמשים בכרזה הזאת",
