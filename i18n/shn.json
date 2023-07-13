@@ -5,9 +5,14 @@
 		]
 	},
 	"centralnotice-enabled": "ပိုတ်ႇၸႂ်ႉဝႆႉ",
+	"centralnotice-add-notice-cancel-button": "ယုၵ်ႉလိူၵ်ႈ",
 	"centralnotice-project-lang": "ၽႃႇသႃႇၵႂၢမ်း ပရေႃးၵျႅၵ်ႉ",
 	"centralnotice-fieldset-preview": "တူၺ်းတူဝ်ႇယၢင်ႇသူတ်ႇ",
 	"centralnotice-preview-page": "[ တူၺ်းတူဝ်ယၢင်ႇ တီႈ ဝီႇၶီႇ ]",
+	"centralnotice-clone-cancel": "ယုၵ်ႉလိူၵ်ႈ",
 	"centralnotice-languages": "ၽႃႇသႃႇၵႂၢမ်း",
-	"centralnotice-banner-class": "ပိူင်ထၢၼ်ႈ"
+	"centralnotice-banner-class": "ပိူင်ထၢၼ်ႈ",
+	"centralnotice-archive-banner-cancel": "ယုၵ်ႉလိူၵ်ႈ",
+	"centralnotice-archive-campaign-cancel": "ယုၵ်ႉလိူၵ်ႈ",
+	"centralnotice-delete-banner-cancel": "ယုၵ်ႉလိူၵ်ႈ"
 }
