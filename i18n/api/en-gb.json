@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Piano1forte2"
-		]
-	},
-	"apihelp-centralnoticequerycampaign-param-campaign": "Campaign name. Separate multiple values with a '|' (vertical bar).",
-	"apihelp-query+centralnoticelogs-param-campaign": "Campaign name (optional). Separate multiple values with a '|' (vertical bar)."
-}
