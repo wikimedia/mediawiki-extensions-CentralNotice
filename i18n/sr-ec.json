@@ -12,7 +12,8 @@
 			"Милан Јелисавчић",
 			"Михајло Анђелковић",
 			"Сербијана",
-			"Kizule"
+			"Kizule",
+			"Zenfiric"
 		]
 	},
 	"centralnotice": "Администратор централног обавештавања",
@@ -193,6 +194,7 @@
 	"centralnotice-devicetype-iphone": "iPhone",
 	"centralnotice-all": "Све",
 	"centralnotice-all-except": "Све осим $1",
+	"centralnotice-excluding-list": "$1 (нерачунајући $2)",
 	"centralnotice-user-role": "Корисничка улога",
 	"centralnotice-user-role-anonymous": "Анониман",
 	"centralnotice-user-role-logged-in": "Пријављени",
