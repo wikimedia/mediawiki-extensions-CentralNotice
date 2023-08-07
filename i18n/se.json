@@ -8,12 +8,12 @@
 	"centralnotice-view": "Čájet",
 	"centralnotice-save-banner": "Vurke",
 	"centralnotice-remove": "Sihko",
-	"centralnotice-add-notice-cancel-button": "Šluhtte",
+	"centralnotice-add-notice-cancel-button": "Gaskkalduhte",
 	"centralnotice-translations": "Jorgalusat",
 	"centralnotice-translate-to": "Čuozáhatgiella:",
 	"centralnotice-translate": "Jorgal",
 	"centralnotice-select-all": "Vállje buot",
-	"centralnotice-clone-cancel": "Šluhtte",
+	"centralnotice-clone-cancel": "Gaskkalduhte",
 	"centralnotice-close-title": "Gidde",
 	"centralnotice-banner-anonymous": "Anonyma geavaheddjiide",
 	"centralnotice-languages": "Gielat",
@@ -23,8 +23,8 @@
 	"centralnotice-all": "Buot",
 	"centralnotice-user-role-anonymous": "Anonyma",
 	"centralnotice-banner-class": "Kategoriija",
-	"centralnotice-archive-banner-cancel": "Šluhtte",
-	"centralnotice-archive-campaign-cancel": "Šluhtte",
+	"centralnotice-archive-banner-cancel": "Gaskkalduhte",
+	"centralnotice-archive-campaign-cancel": "Gaskkalduhte",
 	"centralnotice-delete-banner": "Sihko",
-	"centralnotice-delete-banner-cancel": "Šluhtte"
+	"centralnotice-delete-banner-cancel": "Gaskkalduhte"
 }
