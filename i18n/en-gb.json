@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reedy"
+		]
+	},
+	"centralnotice-preview-loader-permissions-error": "You are not authorised to preview banners, or your edit token has expired. Please try logging in again or reloading the page.",
+	"centralnotice-large-banner-limit-randomize": "Randomise bucket transition"
+}
