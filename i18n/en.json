@@ -132,6 +132,8 @@
 	"centralnotice-countries": "Countries",
 	"centralnotice-regions": "Regions",
 	"centralnotice-location": "Countries and regions",
+	"centralnotice-location-filter": "Filter",
+	"centralnotice-location-filter-clear": "clear",
 	"centralnotice-location-name-and-code": "$1 ($2)",
 	"centralnotice-allocation": "Allocation",
 	"centralnotice-view-allocation": "View banner allocation",
