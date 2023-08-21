@@ -56,6 +56,20 @@ $specialPageAliases['as'] = [
 	'NoticeTemplate' => [ 'জাননী_সাঁচ' ],
 ];
 
+/** Bengali (বাংলা) */
+$specialPageAliases['bn'] = [
+	'CentralNotice' => [ 'কেন্দ্রীয়_বিজ্ঞপ্তি' ],
+	'CentralNoticeBanners' => [ 'কেন্দ্রীয়_বিজ্ঞপ্তির_ব্যানার' ],
+	'CentralNoticeLogs' => [ 'কেন্দ্রীয়_বিজ্ঞপ্তি_লগ' ],
+	'NoticeTemplate' => [ 'বিজ্ঞপ্তি_টেমপ্লেট', 'বিজ্ঞপ্তির_টেমপ্লেট' ],
+	'BannerAllocation' => [ 'ব্যানার_বরাদ্দ' ],
+	'BannerController' => [ 'ব্যানার_নিয়ন্ত্রক' ],
+	'BannerLoader' => [ 'ব্যানার_লোডার' ],
+	'BannerRandom' => [ 'অজানা_ব্যানার' ],
+	'RecordImpression' => [ 'প্রভাব_সংরক্ষণ', 'রেকর্ড_ইমপ্রেশন' ],
+	'HideBanners' => [ 'ব্যানার_লুকান' ],
+];
+
 /** Western Balochi (بلوچی رخشانی) */
 $specialPageAliases['bgn'] = [
 	'CentralNotice' => [ 'مرکزین_جار_یا_ئیلان' ],
