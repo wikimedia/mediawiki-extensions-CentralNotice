@@ -8,7 +8,8 @@
 			"З. ӘЙЛЕ",
 			"Ләйсән",
 			"Рустам Нурыев",
-			"ҒатаУлла"
+			"ҒатаУлла",
+			"Sagan"
 		]
 	},
 	"centralnotice": "Үҙәк белдереүҙәрҙе идаралау",
@@ -25,7 +26,7 @@
 	"centralnotice-modify": "Һаҡларға",
 	"centralnotice-view": "Ҡарау",
 	"centralnotice-save-banner": "Һаҡларға",
-	"centralnotice-live-preview": "Викила алдан ҡарау",
+	"centralnotice-live-preview": "Һуңғы һаҡланасаҡ өлгөнө ҡарап сығыуҙы күрһәтергә",
 	"centralnotice-add-new": "Яңы үҙәктән белдереүҙе өҫтәргә",
 	"centralnotice-remove": "Юйырға",
 	"centralnotice-translate-heading": "$1 өсөн тәржемә",
@@ -92,7 +93,7 @@
 	"centralnotice-number-uses": "Ҡулланыла",
 	"centralnotice-settings": "Көйләүҙәр",
 	"centralnotice-edit-template": "Баннерҙы үҙгәртергә",
-	"centralnotice-edit-template-summary": "Тәржемә ителә торған хәбәр булдырыр өсөн, дефис аша яҙылған юлды өс һырлы йәйәләр эсенә алығыҙ, мәҫәлән {{{jimbo-quote}}}.",
+	"centralnotice-edit-template-summary": "Иҫкәртеү: баннерға тышҡы ресурстарҙы йөкләү ҡулланыусыларҙың йәшеренлеген хәүеф аҫтына ҡуйыуы мөмкин.\n\nЛокалләштерелгән хәбәр булдырыу өсөн, уны, мәҫәлән, <nowiki>{{{message_name}}}</nowiki> өлгөһө буйынса эшләгеҙ. Локалләштерелгән хәбәрҙе икенсе баннерҙан алыу өсөн, баннер исеменән һуң хәбәр исемен өтөрҙән һуң өҫтәп, <nowiki>{{{title_name_name, message_name}}}</nowiki> өлгөһөнә ҡуйығыҙ.",
 	"centralnotice-edit-template-magicwords": "Иғлан \"ҡушымталары\" аша күрһәтелгән «тылсымлы һүҙҙәр»: $1",
 	"centralnotice-message": "Хәбәр",
 	"centralnotice-message-not-set": "Хәбәр ҡуйылманы",
@@ -231,6 +232,6 @@
 	"centralnotice-banner-not-found-contents": "Аныҡ шундай атамалы баннер юҡ",
 	"hidebanners": "Баннерҙы йәшерергә",
 	"centralnotice-banner-history-logger-max-entries": "Журналда һаҡлау мөмкин булған яҙмаларҙың максималь һаны",
-	"centralnotice-multiple-countries": "бер нисә ($1)",
-	"centralnotice-multiple-languages": "бер нисә ($1)"
+	"centralnotice-multiple-countries": "Бер нисә ил",
+	"centralnotice-multiple-languages": "бер нисә тел"
 }

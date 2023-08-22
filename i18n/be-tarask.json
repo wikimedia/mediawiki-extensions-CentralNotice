@@ -202,5 +202,6 @@
 	"centralnotice-end-time": "Час сканчэньня (UTC)",
 	"centralnotice-multiple-countries": "Некалькі краінаў",
 	"centralnotice-multiple-languages": "Некалькі моваў",
-	"tag-centralnotice_translation": "Пераклад Цэнтралізаваных абвестак"
+	"tag-centralnotice_translation": "Пераклад Цэнтралізаваных абвестак",
+	"prefs-centralnotice-display-banner-types": "Тыпы банэраў для паказу"
 }
