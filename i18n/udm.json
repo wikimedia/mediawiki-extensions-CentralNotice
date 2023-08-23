@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kaganer"
+			"Kaganer",
+			"Света Поторочина"
 		]
 	},
 	"centralnotice-view": "Учкон",
@@ -9,5 +10,5 @@
 	"centralnotice-message": "Ивортон",
 	"centralnotice-languages": "Кылъёс",
 	"centralnotice-logs": "Журналъёс",
-	"centralnotice-all": "Ваньзэ"
+	"centralnotice-all": "Ваньмыз"
 }
