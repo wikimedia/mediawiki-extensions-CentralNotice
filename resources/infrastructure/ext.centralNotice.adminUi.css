@@ -276,3 +276,8 @@ label[ for='mw-input-wpsummary' ],
 .cn-tree-status {
 	margin: 10px 0;
 }
+
+/* Prevent scroll bar overlapping: https://phabricator.wikimedia.org/T340480 */
+.ui-multiselect li a.action {
+	right: 12px;
+}
