@@ -117,20 +117,7 @@
 	$( function () {
 
 		var CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ],
-			i, selector,
-			$showArchived = $( '#centralnotice-showarchived' );
-
-		// Show or hide archived campaigns
-		if ( $showArchived.length > 0 ) {
-
-			$showArchived.on( 'click', function () {
-				if ( $( this ).prop( 'checked' ) ) {
-					$( '.cn-archived-item' ).show();
-				} else {
-					$( '.cn-archived-item' ).hide();
-				}
-			} );
-		}
+			i, selector;
 
 		// Keep data-sort-value attributes for jquery.tablesorter in sync
 		$( '.mw-cn-input-check-sort' ).on( 'change click blur', function () {

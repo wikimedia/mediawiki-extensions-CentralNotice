@@ -263,6 +263,7 @@
 	"centralnotice-archive-campaign-confirm": "Used as confirmation message in the dialog box which has the title {{msg-mw|Centralnotice-archive-campaign-title}}.",
 	"centralnotice-archive-campaign-cancel": "{{Identical|Cancel}}",
 	"centralnotice-archive-edit-prevented": "Descriptive banner used on the page to describe why it cannot be edited.",
+	"centralnotice-archived-campaigns": "Header for list of archived campaigns",
 	"centralnotice-add-new-banner-title": "A title for the dialog for adding a new banner.",
 	"centralnotice-delete-banner": "Button label\n\n{{Identical|Delete}}",
 	"centralnotice-delete-banner-title": "Used as title for the dialog box.\n\nFollowed by the confirmation message {{msg-mw|Centralnotice-delete-banner-confirm}}.\n\nParameters:\n* $1 - number of banners",

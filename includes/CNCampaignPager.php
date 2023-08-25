@@ -24,6 +24,8 @@ class CNCampaignPager extends TablePager {
 	protected $editable;
 	/** @var int|null */
 	protected $assignedBannerId;
+	/** @var bool|null */
+	protected $showArchived;
 	/** @var string[]|null */
 	protected $fieldNames = null;
 
@@ -32,13 +34,16 @@ class CNCampaignPager extends TablePager {
 	 * @param string|false $editable Whether or not to make the list editable
 	 * @param int|null $assignedBannerId Set this to show only the campaigns
 	 *   associated with this banner id.
+	 * @param bool|null $showArchived Set true to only show archived campaigns,
+	 * 	 false to only show unarchived campaigns
 	 */
 	public function __construct( CentralNotice $onSpecialCN,
-		$editable = false, $assignedBannerId = null
+		$editable = false, $assignedBannerId = null, $showArchived = null
 	) {
 		$this->onSpecialCN = $onSpecialCN;
 		$this->assignedBannerId = $assignedBannerId;
 		$this->editable = $editable;
+		$this->showArchived = $showArchived;
 
 		parent::__construct( $onSpecialCN->getContext() );
 
@@ -115,6 +120,10 @@ class CNCampaignPager extends TablePager {
 			];
 		}
 
+		if ( $this->showArchived !== null ) {
+			$pagerQuery['conds'][] = 'not_archived = ' . (int)$this->showArchived;
+		}
+
 		return $pagerQuery;
 	}
 
@@ -165,16 +174,6 @@ class CNCampaignPager extends TablePager {
 				'data-editable' => ( $this->editable ? 1 : 0 )
 			]
 		);
-
-		// Filters
-		$htmlOut .= Xml::openElement( 'div', [ 'class' => 'cn-formsection-emphasis' ] );
-		$htmlOut .= Xml::checkLabel(
-			$this->msg( 'centralnotice-archive-show' )->text(),
-			'centralnotice-showarchived',
-			'centralnotice-showarchived',
-			false
-		);
-		$htmlOut .= Xml::closeElement( 'div' );
 
 		return $htmlOut . parent::getStartBody();
 	}
@@ -332,10 +331,6 @@ class CNCampaignPager extends TablePager {
 
 		if ( $enabled && $started && $notEnded ) {
 			$cssClass .= ' cn-active-campaign';
-		}
-
-		if ( $archived ) {
-			$cssClass .= ' cn-archived-item';
 		}
 
 		return $cssClass;

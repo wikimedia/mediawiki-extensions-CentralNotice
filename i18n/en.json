@@ -235,6 +235,7 @@
 	"centralnotice-archive-campaign-confirm": "Archival marks a campaign as permanently inactive.",
 	"centralnotice-archive-campaign-cancel": "Cancel",
 	"centralnotice-archive-edit-prevented": "Editing this campaign is disabled because it is either locked or archived. Change either status from [[Special:CentralNotice]].",
+	"centralnotice-archived-campaigns": "Archived campaigns",
 	"centralnotice-add-new-banner-title": "Add a new banner",
 	"centralnotice-delete-banner": "Delete",
 	"centralnotice-delete-banner-title": "Delete {{PLURAL:$1|banner|banners}}",
