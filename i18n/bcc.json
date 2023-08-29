@@ -4,7 +4,8 @@
 			"BaRaN6161 TURK",
 			"Baloch Afghanistan",
 			"Mostafadaneshvar",
-			"Sultanselim baloch"
+			"Sultanselim baloch",
+			"Moshtank"
 		]
 	},
 	"noticetemplate": "تمپلت اعلان مرکزی",
@@ -43,7 +44,7 @@
 	"centralnotice-clone-name": "نام:",
 	"centralnotice-clone-cancel": "کنسیل",
 	"centralnotice-clone-banner": "علامت",
-	"centralnotice-close-title": "بستین",
+	"centralnotice-close-title": "بندگ",
 	"centralnotice-languages": "زبانان",
 	"centralnotice-language": "زبان",
 	"centralnotice-projects": "پروژه یان",
