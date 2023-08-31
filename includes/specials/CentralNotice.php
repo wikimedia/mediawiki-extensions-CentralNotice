@@ -138,7 +138,7 @@ class CentralNotice extends SpecialPage {
 		$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
 
 		$pager = new CNCampaignPager( $this, $this->editable );
-		$out->addHTML( $pager->getBody() );
+		$out->addHTML( $pager->getBodyOutput()->getText() );
 		$out->addHTML( $pager->getNavigationBar() );
 
 		// If the user has edit rights, show a form for adding a campaign
