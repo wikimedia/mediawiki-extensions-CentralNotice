@@ -33,7 +33,7 @@
 	"centralnotice-day": "روچ",
 	"centralnotice-year": "سال",
 	"centralnotice-month": "ماه",
-	"centralnotice-hours": "ساعت",
+	"centralnotice-hours": "ھدار",
 	"centralnotice-min": "دقیقه",
 	"centralnotice-project-lang": "زبانءِ پروجکت",
 	"centralnotice-select-all": "موچانی نشانی کورتین",
@@ -87,9 +87,9 @@
 	"centralnotice-delete-banner-title": "پاک کورتین {{PLURAL:$1|آگهی یان|آگهی یان}}",
 	"centralnotice-delete-banner-confirm": "هشدار:حذپ وپاک بوتین موچین تنظمات و پیامان. ای عمل پدا برگشت نداریت. بی نظر گیپتین ثپت کورتینا بی  جاها.",
 	"centralnotice-start-timestamp": "بنگݔجءِ ٹݔم (جھانی ھَدار)",
-	"centralnotice-end-timestamp": "پایان (ساعت جهانی)",
+	"centralnotice-end-timestamp": "ھلاسیءِ ٹݔم (جھانی ھدار)",
 	"centralnotice-start-date": "بنگݔجءِ رمس (جھانی ھَدار)",
 	"centralnotice-start-time": "وهد بنگیج",
-	"centralnotice-end-date": "تاریخ پایان (ساعت جهانی)",
+	"centralnotice-end-date": "ھلاسیءِ ٹݔم (جھانی ھدار)",
 	"centralnotice-end-time": "زمان پایان (UTC)"
 }
