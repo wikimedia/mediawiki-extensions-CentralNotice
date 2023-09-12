@@ -156,7 +156,7 @@
 		var urlParams = $.extend( state.urlParams, ( new mw.Uri() ).query ),
 			impressionEventSampleRateFromUrl;
 
-		state.data.anonymous = ( mw.config.get( 'wgUserName' ) === null );
+		state.data.anonymous = ( !mw.user.isNamed() );
 		state.data.project = mw.config.get( 'wgNoticeProject' );
 		state.data.db = mw.config.get( 'wgDBname' );
 		state.data.optedOutCampaigns = getOptedOutCampaignsForUser();
