@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kurdbuddha"
+			"Kurdbuddha",
+			"TerranBoy"
 		]
 	},
 	"centralnotice-english": "ئنگلیسی",
@@ -15,7 +16,7 @@
 	"centralnotice-languages": "زوانەیل",
 	"centralnotice-language": "زوان",
 	"centralnotice-country": "وڵات",
-	"centralnotice-user": "ئەوکاربەر",
-	"centralnotice-talk-link": "وەتوویش",
+	"centralnotice-user": "وەکاربەر",
+	"centralnotice-talk-link": "گەپدان",
 	"centralnotice-all": "گشت"
 }
