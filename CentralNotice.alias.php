@@ -65,7 +65,7 @@ $specialPageAliases['bn'] = [
 	'BannerAllocation' => [ 'ব্যানার_বরাদ্দ' ],
 	'BannerController' => [ 'ব্যানার_নিয়ন্ত্রক' ],
 	'BannerLoader' => [ 'ব্যানার_লোডার' ],
-	'BannerRandom' => [ 'অজানা_ব্যানার' ],
+	'BannerRandom' => [ 'অজানা_যেকোনো_ব্যানার', 'অজানা_ব্যানার' ],
 	'RecordImpression' => [ 'প্রভাব_সংরক্ষণ', 'রেকর্ড_ইমপ্রেশন' ],
 	'HideBanners' => [ 'ব্যানার_লুকান' ],
 ];

@@ -138,6 +138,8 @@
 	"centralnotice-countries": "Države",
 	"centralnotice-regions": "Območja",
 	"centralnotice-location": "Države in območja",
+	"centralnotice-location-filter": "Filter",
+	"centralnotice-location-filter-clear": "počisti",
 	"centralnotice-location-name-and-code": "$1 ($2)",
 	"centralnotice-allocation": "Dodelitev",
 	"centralnotice-view-allocation": "Ogled dodelitve pasic",

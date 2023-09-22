@@ -146,6 +146,8 @@
 	"centralnotice-countries": "Staaten",
 	"centralnotice-regions": "Regionen",
 	"centralnotice-location": "Länder und Regionen",
+	"centralnotice-location-filter": "Filter",
+	"centralnotice-location-filter-clear": "löschen",
 	"centralnotice-allocation": "Anordnung",
 	"centralnotice-view-allocation": "Anordnung der Vorlagen ansehen",
 	"centralnotice-allocation-instructions": "Die Ausgabeumgebung für die Ansicht der Vorlagenanordnung auswählen:",

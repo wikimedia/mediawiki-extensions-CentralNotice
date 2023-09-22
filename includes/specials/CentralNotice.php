@@ -104,7 +104,7 @@ class CentralNotice extends SpecialPage {
 			}
 		}
 
-		$this->outputListOfNotices();
+		$this->outputListOfNotices( $subaction === 'showArchived' );
 	}
 
 	/**
@@ -124,8 +124,10 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Send the list of notices (campaigns) to output and, if appropriate,
 	 * the "Add campaign" form.
+	 * @param bool|null $showArchived Set true to only show archived campaigns,
+	 * 	 false to only show unarchived campaigns
 	 */
-	protected function outputListOfNotices() {
+	protected function outputListOfNotices( $showArchived = null ) {
 		$this->outputEnclosingDivStartTag();
 
 		$out = $this->getOutput();
@@ -133,16 +135,30 @@ class CentralNotice extends SpecialPage {
 
 		$out->addHTML( Xml::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
-			$this->msg( 'centralnotice-manage' )->text() ) );
+			$this->msg(
+				$showArchived ? 'centralnotice-archived-campaigns' : 'centralnotice-manage'
+			)->text()
+		) );
 
 		$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
 
-		$pager = new CNCampaignPager( $this, $this->editable );
+		if ( $showArchived === false ) {
+			$out->addHTML(
+				$this->getLinkRenderer()->makeLink(
+					SpecialPage::getTitleFor( 'CentralNotice' ),
+					$this->msg( 'centralnotice-archive-show' )->text(),
+					[],
+					[ 'subaction' => 'showArchived' ]
+				)
+			);
+		}
+
+		$pager = new CNCampaignPager( $this, $this->editable, null, $showArchived );
 		$out->addHTML( $pager->getBodyOutput()->getText() );
 		$out->addHTML( $pager->getNavigationBar() );
 
 		// If the user has edit rights, show a form for adding a campaign
-		if ( $this->editable ) {
+		if ( $this->editable && $showArchived !== true ) {
 			$this->addNoticeForm();
 		}
 
@@ -1155,7 +1171,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::openElement( 'tr', [ 'class' => 'cn-throttle-amount' ] );
 			$htmlOut .= Xml::tags( 'td', [],
 				Xml::label( $this->msg( 'centralnotice-throttle-amount' )->text(), 'throttle' ) );
-			$throttleLabel = strval( $throttle ) . "%";
+			$throttleLabel = $this->msg( 'percent' )->numParams( $throttle )->text();
 			if ( $this->editable ) {
 				$htmlOut .= Xml::tags( 'td', [],
 					Xml::span( $throttleLabel, 'cn-throttle',
@@ -1164,7 +1180,7 @@ class CentralNotice extends SpecialPage {
 						[ 'id' => 'centralnotice-throttle-cur' ] ) .
 					Xml::tags( 'div', [ 'id' => 'centralnotice-throttle-amount' ], '' ) );
 			} else {
-				$htmlOut .= Xml::tags( 'td', [], $throttleLabel );
+				$htmlOut .= Html::element( 'td', [], $throttleLabel );
 			}
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Locked
@@ -1772,19 +1788,20 @@ class CentralNotice extends SpecialPage {
 			],
 			''
 		);
-		$searchClear = Xml::tags(
+		$searchClear = Html::element(
 			'button',
 			[
 				'class' => 'cn-tree-clear'
 			],
-			'clear'
+			$this->msg( 'centralnotice-location-filter-clear' )->text()
 		);
+		$searchLabelText = $this->msg( 'centralnotice-location-filter' )->escaped();
 		$searchLabel = Xml::tags(
 			'label',
 			[
 				'class' => 'cn-tree-search-label'
 			],
-			'Filter' . $search . $searchClear
+			$searchLabelText . $search . $searchClear
 		);
 
 		$statusText = Xml::tags( 'div', [ 'class' => 'cn-tree-status' ], '' );

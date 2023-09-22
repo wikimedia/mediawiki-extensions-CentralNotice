@@ -153,6 +153,8 @@
 	"centralnotice-countries": "Landen",
 	"centralnotice-regions": "Regio's",
 	"centralnotice-location": "Landen en regio's",
+	"centralnotice-location-filter": "Filter",
+	"centralnotice-location-filter-clear": "wissen",
 	"centralnotice-allocation": "Toewijzing",
 	"centralnotice-view-allocation": "Bannertoewijzing bekijken",
 	"centralnotice-allocation-instructions": "Kies de omgeving waarvoor u de bannertoewijzing wilt bekijken:",

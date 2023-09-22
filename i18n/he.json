@@ -143,6 +143,8 @@
 	"centralnotice-countries": "מדינות",
 	"centralnotice-regions": "אזורים",
 	"centralnotice-location": "מדינות ואזורים",
+	"centralnotice-location-filter": "סינון",
+	"centralnotice-location-filter-clear": "ניקוי",
 	"centralnotice-allocation": "הקצאה",
 	"centralnotice-view-allocation": "צפייה בהקצאת הכרזה",
 	"centralnotice-allocation-instructions": "נא לבחור בסביבה שברצונך לצפות בהקצאת הכרזה עבורה:",

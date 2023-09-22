@@ -133,6 +133,8 @@
 	"centralnotice-countries": "Paises",
 	"centralnotice-regions": "Regiones",
 	"centralnotice-location": "Paises e regiones",
+	"centralnotice-location-filter": "Filtro",
+	"centralnotice-location-filter-clear": "rader",
 	"centralnotice-allocation": "Allocation",
 	"centralnotice-view-allocation": "Vider allocation de bandieras",
 	"centralnotice-allocation-instructions": "Selige le ambiente pro le qual tu vole vider le allocation de bandieras:",

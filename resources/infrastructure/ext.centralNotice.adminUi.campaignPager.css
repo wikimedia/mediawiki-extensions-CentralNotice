@@ -3,10 +3,6 @@ tr.cn-active-campaign td {
 	background-color: #dfd;
 }
 
-.cn-archived-item {
-	display: none;
-}
-
 .cn-formsection-emphasis {
 	padding: 0.5em;
 	background-color: #fff;
