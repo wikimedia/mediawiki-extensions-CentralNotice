@@ -3,14 +3,16 @@
 		"authors": [
 			"Banjo",
 			"Elisardojm",
-			"Iváns"
+			"Iváns",
+			"Toliño"
 		]
 	},
-	"apierror-centralnotice-cdn-permissions-error": "O usuario non ten permiso para purgar o contido de anuncios no cliente.",
+	"apierror-centralnotice-cdn-permissions-error": "O usuario non ten permiso para purgar o contido do cartel no cliente.",
 	"apierror-centralnotice-cdn-lang-code-error": "Código de lingua malformado.",
-	"apierror-centralnotice-cdn-banner-name-error": "Nome de anuncio malformado.",
-	"apierror-centralnotice-cdn-banner-not-found": "Banner non atopado",
+	"apierror-centralnotice-cdn-banner-name-error": "Nome de cartel malformado.",
+	"apierror-centralnotice-cdn-banner-not-found": "Cartel non atopado",
 	"apihelp-centralnoticeallocations-description": "Obter as localizacións dos anuncios servidos polo CentralNotice para todos os tipos de usuarios baixo o filtro parametrizado.\n\nIsto é unha chamada JSON únicamente.",
+	"apihelp-centralnoticeallocations-summary": "Obter as asignacións dos carteis servidos polo CentralNotice para todos os tipos de usuarios baixo o filtro parametrizado.",
 	"apihelp-centralnoticeallocations-extended-description": "Esta chamada é só para JSON.",
 	"apihelp-centralnoticeallocations-param-project": "Proxecto para o que obter as asignacións.",
 	"apihelp-centralnoticeallocations-param-country": "O país a filtrar.",
@@ -19,15 +21,19 @@
 	"apihelp-centralnoticeallocations-param-device": "Nome de dispositivo a filtrar.",
 	"apihelp-centralnoticeallocations-param-bucket": "Contedor a filtrar, por número (0..$1, opcional).",
 	"apihelp-centralnoticeallocations-example-1": "Amosar algunhas asignacións",
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "Solicitar a purga do contido do cartel almacenado na caché CDN (cliente) para os usuarios anónimos, para o cartel e o idioma solicitados",
+	"apihelp-centralnoticecdncacheupdatebanner-param-language": "Lingua do contido do cartel a purgar",
+	"apihelp-centralnoticecdncacheupdatebanner-param-banner": "Nome do cartel cuxo contido debe ser purgado",
+	"apihelp-centralnoticecdncacheupdatebanner-example-1": "Purgar o contido de \"Banner1\" da caché CDN para o inglés",
 	"apihelp-centralnoticequerycampaign-description": "Obter todos os parámetros de configuración dunha campaña.",
 	"apihelp-centralnoticequerycampaign-summary": "Obter todos os parámetros de configuración dunha campaña.",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nome de campaña. Separar os valores múltiples con \"|\" (barra vertical).",
 	"apihelp-centralnoticequerycampaign-example-1": "Amosar campaña \"Plea_US\"",
 	"apihelp-centralnoticechoicedata-description": "Obter os datos necesarios para escoller un aviso para un proxecto e lingua dados",
-	"apihelp-centralnoticechoicedata-summary": "Obter os datos necesarios para escoller un aviso para un proxecto e lingua dados",
+	"apihelp-centralnoticechoicedata-summary": "Obter os datos necesarios para escoller un cartel para un proxecto e lingua dados",
 	"apihelp-centralnoticechoicedata-param-project": "Proxecto para o que escoller aviso.",
-	"apihelp-centralnoticechoicedata-param-language": "Lingua para a que escoller aviso.",
-	"apihelp-centralnoticechoicedata-example-1": "Obter os datos para escoller o aviso para os usuarios da Wikipedia en inglés.",
+	"apihelp-centralnoticechoicedata-param-language": "Lingua para a que obter os datos do cartel.",
+	"apihelp-centralnoticechoicedata-example-1": "Obter os datos para escoller un cartel para os usuarios da Wikipedia en inglés.",
 	"apihelp-query+centralnoticelogs-description": "Obter un rexistro dos cambios de configuración da campaña.",
 	"apihelp-query+centralnoticelogs-summary": "Obter un rexistro dos cambios de configuración da campaña.",
 	"apihelp-query+centralnoticelogs-param-campaign": "Nome de campaña (opcional). Separar valores múltiples con \"|\" (barra vertical).",
@@ -37,5 +43,7 @@
 	"apihelp-query+centralnoticelogs-param-start": "Tempo de comezo do rango (opcional).",
 	"apihelp-query+centralnoticelogs-param-end": "Tempo de finalización do rango (opcional).",
 	"apihelp-query+centralnoticelogs-example-1": "Amosar os rexistros",
-	"apihelp-query+centralnoticeactivecampaigns-example-1": "Obter unha lista das campañas activas actualmente, con datas de comezo e fin, e cos avisos asociados."
+	"apihelp-query+centralnoticeactivecampaigns-summary": "Obter unha lista das campañas activas actualmente, con datas de comezo e fin e cos carteis asociados.",
+	"apihelp-query+centralnoticeactivecampaigns-param-includefuture": "Incluír as campañas futuras activadas (así como as campañas activas actualmente).",
+	"apihelp-query+centralnoticeactivecampaigns-example-1": "Obter unha lista das campañas activas actualmente, con datas de comezo e fin e cos carteis asociados."
 }
