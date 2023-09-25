@@ -253,6 +253,7 @@
 	"centralnotice-archive-campaign-confirm": "Archiveren markeert een campagne als permanent inactief.",
 	"centralnotice-archive-campaign-cancel": "Annuleren",
 	"centralnotice-archive-edit-prevented": "De mogelijkheid om deze campagne te bewerken is uitgeschakeld omdat deze vergrendeld of gearchiveerd is. Wijzig de status op [[Special:CentralNotice]].",
+	"centralnotice-archived-campaigns": "Gearchiveerde campagnes",
 	"centralnotice-add-new-banner-title": "Nieuwe banner toevoegen",
 	"centralnotice-delete-banner": "Verwijderen",
 	"centralnotice-delete-banner-title": "Banner{{PLURAL:$1||s}} verwijderen",

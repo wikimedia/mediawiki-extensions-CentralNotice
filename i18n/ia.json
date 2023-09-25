@@ -233,6 +233,7 @@
 	"centralnotice-archive-campaign-confirm": "Archivar marca un campania como permanentemente inactive.",
 	"centralnotice-archive-campaign-cancel": "Cancellar",
 	"centralnotice-archive-edit-prevented": "Non es possibile modificar iste campania perque illo es serrate o archivate. Cambia iste stato in [[Special:CentralNotice]].",
+	"centralnotice-archived-campaigns": "Campanias archivate",
 	"centralnotice-add-new-banner-title": "Adder un nove bandiera",
 	"centralnotice-delete-banner": "Deler",
 	"centralnotice-delete-banner-title": "Deler le bandiera{{PLURAL:$1||s}}",

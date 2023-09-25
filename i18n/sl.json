@@ -241,6 +241,7 @@
 	"centralnotice-archive-campaign-confirm": "Arhiviranje označi kampanjo kot trajno nedejavno.",
 	"centralnotice-archive-campaign-cancel": "Prekliči",
 	"centralnotice-archive-edit-prevented": "Urejanje te kampanje je onemogočeno, ker je zaklenjena ali arhivirana. Stanje lahko spremenite na strani [[Special:CentralNotice|Posebno:CentralNotice]].",
+	"centralnotice-archived-campaigns": "Arhivirane kampanje",
 	"centralnotice-add-new-banner-title": "Dodaj novo pasico",
 	"centralnotice-delete-banner": "Izbriši",
 	"centralnotice-delete-banner-title": "Izbris {{PLURAL:$1|pasice|pasic}}",

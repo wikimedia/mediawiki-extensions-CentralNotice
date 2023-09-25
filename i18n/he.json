@@ -243,6 +243,7 @@
 	"centralnotice-archive-campaign-confirm": "ארכוב מסמן מסע פרסום בתור בלתי־פעיל לצמיתות.",
 	"centralnotice-archive-campaign-cancel": "ביטול",
 	"centralnotice-archive-edit-prevented": "עריכת מבצע הפרסום הזה כבויה כי הוא נעול או מאורכב. יש לשנות את המצב הזה דרך הדף [[Special:CentralNotice]].",
+	"centralnotice-archived-campaigns": "מסעות פרסום מאורכבים",
 	"centralnotice-add-new-banner-title": "הוספת כרזה חדשה",
 	"centralnotice-delete-banner": "מחיקה",
 	"centralnotice-delete-banner-title": "למחוק את {{PLURAL:$1|הכּרזה|הכּרזות}}",

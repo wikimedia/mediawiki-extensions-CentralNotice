@@ -160,6 +160,8 @@
 	"centralnotice-countries": "Pays",
 	"centralnotice-regions": "Régions",
 	"centralnotice-location": "Pays et régions",
+	"centralnotice-location-filter": "Filtre",
+	"centralnotice-location-filter-clear": "effacer",
 	"centralnotice-location-name-and-code": "$1&nbsp;&#91;$2&#93;",
 	"centralnotice-allocation": "Allocation",
 	"centralnotice-view-allocation": "Voir la disposition de bannière",
