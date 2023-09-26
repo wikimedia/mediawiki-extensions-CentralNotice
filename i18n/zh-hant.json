@@ -161,6 +161,8 @@
 	"centralnotice-countries": "國家",
 	"centralnotice-regions": "地區",
 	"centralnotice-location": "國家與地區",
+	"centralnotice-location-filter": "篩選條件",
+	"centralnotice-location-filter-clear": "清除",
 	"centralnotice-allocation": "分配狀況",
 	"centralnotice-view-allocation": "檢視橫幅分配狀況",
 	"centralnotice-allocation-instructions": "選擇你欲檢視分配狀況的環境：",

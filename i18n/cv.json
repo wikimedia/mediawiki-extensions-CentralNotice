@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Chuvash",
-			"Chuvash2014"
+			"Chuvash2014",
+			"Makarka"
 		]
 	},
 	"centralnotice-enabled": "Хускатнă",
@@ -15,5 +16,5 @@
 	"centralnotice-user": "Хутшăнакан",
 	"centralnotice-filters": "Логсен фильтрĕсем",
 	"centralnotice-banner-class": "Категори",
-	"centralnotice-banner-not-found-title": "Баннерĕ тумăнмарĕ"
+	"centralnotice-banner-not-found-title": "Баннер тупӑнмарӗ"
 }
