@@ -315,15 +315,23 @@
 		"HideBanners": "SpecialHideBanners"
 	},
 	"Hooks": {
-		"CanonicalNamespaces": "CentralNoticeHooks::onCanonicalNamespaces",
-		"ChangeTagsListActive": "CentralNoticeHooks::onListDefinedTags",
-		"ListDefinedTags": "CentralNoticeHooks::onListDefinedTags",
-		"LoadExtensionSchemaUpdates": "CNDatabasePatcher::applyUpdates",
-		"SkinTemplateNavigation::Universal": "CentralNotice::addNavigationTabs",
-		"ResourceLoaderRegisterModules": "CentralNoticeHooks::onResourceLoaderRegisterModules",
+		"CanonicalNamespaces": "main",
+		"ChangeTagsListActive": "main",
+		"ListDefinedTags": "main",
+		"LoadExtensionSchemaUpdates": "schema",
+		"SkinTemplateNavigation::Universal": "main",
+		"ResourceLoaderRegisterModules": "main",
 		"UserMergeAccountFields": "CentralNoticeHooks::onUserMergeAccountFields",
-		"GetPreferences": "CentralNoticeHooks::onGetPreferences",
-		"PreferencesGetIcon": "CentralNoticeHooks::onPreferencesGetIcon"
+		"GetPreferences": "main",
+		"PreferencesGetIcon": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "CentralNoticeHooks"
+		},
+		"schema": {
+			"class": "CNDatabasePatcher"
+		}
 	},
 	"ExtensionFunctions": [
 		"CentralNoticeHooks::initCentralNotice"

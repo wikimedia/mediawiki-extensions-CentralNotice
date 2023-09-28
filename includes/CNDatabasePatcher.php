@@ -4,20 +4,21 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
+
 /**
  * Maintenance helper class that updates the database schema when required.
  *
  * Apply patches with /maintenance/update.php
  */
-class CNDatabasePatcher {
+class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 	/**
 	 * LoadExtensionSchemaUpdates hook handler
 	 * This function makes sure that the database schema is up to date.
 	 *
-	 * @param DatabaseUpdater|null $updater
-	 * @return bool
+	 * @param DatabaseUpdater $updater
 	 */
-	public static function applyUpdates( $updater = null ) {
+	public function onLoadExtensionSchemaUpdates( $updater ) {
 		$base = __DIR__ . '/../sql';
 		$dbType = $updater->getDB()->getType();
 		$updater->addExtensionTable( 'cn_notices', "$base/$dbType/tables-generated.sql" );
@@ -95,8 +96,6 @@ class CNDatabasePatcher {
 		$updater->addExtensionUpdate( [
 			[ __CLASS__, 'doOnSchemaUpdatesPopulateKnownDevices' ],
 		] );
-
-		return true;
 	}
 
 	public static function doOnSchemaUpdatesPopulateKnownDevices( DatabaseUpdater $updater ): void {

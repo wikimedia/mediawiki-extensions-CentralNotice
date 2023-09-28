@@ -1860,60 +1860,6 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Adds CentralNotice specific navigation tabs to the UI.
-	 * Implementation of SkinTemplateNavigation::Universal hook.
-	 *
-	 * @param Skin $skin Reference to the Skin object
-	 * @param array &$tabs Any current skin tabs
-	 *
-	 * @return bool
-	 */
-	public static function addNavigationTabs( Skin $skin, array &$tabs ) {
-		global $wgNoticeTabifyPages, $wgNoticeInfrastructure;
-
-		// Only show tabs if this wiki is in infrastructure mode
-		if ( !$wgNoticeInfrastructure ) {
-			return true;
-		}
-
-		// Return if skin allows special pages to register natigation links (in which
-		// case this is handled by getShortDescription() and
-		// getAssociatedNavigationLinks()).
-		// See T315562, T313349.
-		if ( $skin->supportsMenu( 'associated-pages' ) ) {
-			return true;
-		}
-
-		$title = $skin->getTitle();
-
-		// Only add tabs to special pages
-		if ( !$title->isSpecialPage() ) {
-			return true;
-		}
-
-		list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-			resolveAlias( $title->getText() );
-
-		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
-			return true;
-		}
-
-		// Clear the special page tab that's there already
-		$tabs['namespaces'] = [];
-
-		// Now add our own
-		foreach ( $wgNoticeTabifyPages as $page => $keys ) {
-			$tabs[ $keys[ 'type' ] ][ $page ] = [
-				'text' => wfMessage( $keys[ 'message' ] )->parse(),
-				'href' => SpecialPage::getTitleFor( $page )->getFullURL(),
-				'class' => ( $alias === $page ) ? 'selected' : '',
-			];
-		}
-
-		return true;
-	}
-
-	/**
 	 * Provides names of sub-pages of the CentralNotice admin interface.
 	 *
 	 * @inheritDoc
