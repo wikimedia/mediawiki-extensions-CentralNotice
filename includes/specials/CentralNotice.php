@@ -779,7 +779,7 @@ class CentralNotice extends SpecialPage {
 		// If what we're doing is actually serious (ie: not updating the banner
 		// filter); process the request. Recall that if the serious request
 		// succeeds, the page will be reloaded again.
-		if ( $request->getCheck( 'template-search' ) == false ) {
+		if ( !$request->getCheck( 'template-search' ) ) {
 			// Check authentication token
 			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
 				// Handle removing campaign

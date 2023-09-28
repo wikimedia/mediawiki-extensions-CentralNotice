@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -130,8 +131,10 @@ class CNCampaignPager extends TablePager {
 	public function doQuery() {
 		// group_concat output is limited to 1024 characters by default, increase
 		// the limit temporarily so the list of all languages can be rendered.
-		$this->getDatabase()
-			->setSessionOptions( [ 'groupConcatMaxLen' => 10000 ] );
+		$db = $this->getDatabase();
+		if ( $db instanceof IDatabase ) {
+			$db->setSessionOptions( [ 'groupConcatMaxLen' => 10000 ] );
+		}
 
 		parent::doQuery();
 	}
