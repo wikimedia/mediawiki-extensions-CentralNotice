@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chuvash"
+			"Chuvash",
+			"Astahar"
 		]
 	},
-	"apierror-centralnotice-cdn-banner-not-found": "Баннерĕ тупăнмарĕ"
+	"apierror-centralnotice-cdn-banner-not-found": "Баннер тупӑнмарӗ"
 }

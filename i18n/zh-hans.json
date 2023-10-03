@@ -43,7 +43,8 @@
 			"科劳",
 			"阿pp",
 			"MangoFanFanw",
-			"Stang"
+			"Stang",
+			"LittlePaw365"
 		]
 	},
 	"centralnotice": "中央通告管理",
@@ -93,6 +94,7 @@
 	"centralnotice-notice-mixins-fieldset": "额外活动功能",
 	"centralnotice-notice-mixins-int-required": "需要整数",
 	"centralnotice-notice-mixins-float-required": "需要浮点数",
+	"centralnotice-notice-mixins-out-of-bound": "值超出范围",
 	"centralnotice-notice": "活动",
 	"centralnotice-notice-heading": "活动：$1",
 	"centralnotice-notices": "活动",
