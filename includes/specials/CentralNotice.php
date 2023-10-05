@@ -1049,14 +1049,14 @@ class CentralNotice extends SpecialPage {
 			} else { // Defaults
 				$start = $campaign[ 'start' ];
 				$end = $campaign[ 'end' ];
-				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
+				$isEnabled = (bool)$campaign['enabled'];
 				$priority = $campaign[ 'preferred' ];
 				$throttle = intval( $campaign[ 'throttle' ] );
-				$isLocked = ( $campaign[ 'locked' ] == '1' );
-				$isArchived = ( $campaign[ 'archived' ] == '1' );
+				$isLocked = (bool)$campaign['locked'];
+				$isArchived = (bool)$campaign['archived'];
 				$noticeProjects = Campaign::getNoticeProjects( $notice );
 				$noticeLanguages = Campaign::getNoticeLanguages( $notice );
-				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
+				$isGeotargeted = (bool)$campaign['geo'];
 				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = Campaign::getNoticeCountries( $notice );
 				$regions = Campaign::getNoticeRegions( $notice );

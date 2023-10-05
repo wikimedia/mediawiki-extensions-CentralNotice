@@ -197,9 +197,9 @@ class CNCampaignPager extends TablePager {
 	 */
 	public function formatValue( $fieldName, $value ) {
 		// These are used in a few cases below.
-		$rowIsEnabled = ( $this->mCurrentRow->not_enabled == '1' );
-		$rowIsLocked = ( $this->mCurrentRow->not_locked == '1' );
-		$rowIsArchived = ( $this->mCurrentRow->not_archived == '1' );
+		$rowIsEnabled = (bool)$this->mCurrentRow->not_enabled;
+		$rowIsLocked = (bool)$this->mCurrentRow->not_locked;
+		$rowIsArchived = (bool)$this->mCurrentRow->not_archived;
 		$name = $this->mCurrentRow->not_name;
 		$readonly = [ 'disabled' => 'disabled' ];
 
@@ -323,8 +323,7 @@ class CNCampaignPager extends TablePager {
 	 * @inheritDoc
 	 */
 	public function getRowClass( $row ) {
-		$enabled = ( $row->not_enabled == '1' );
-		$archived = ( $row->not_archived == '1' );
+		$enabled = (bool)$row->not_enabled;
 
 		$now = wfTimestamp();
 		$started = $now >= wfTimestamp( TS_UNIX, $row->not_start );

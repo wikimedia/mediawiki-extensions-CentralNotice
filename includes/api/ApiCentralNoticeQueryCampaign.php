@@ -29,10 +29,10 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 				$settings['regions'] = explode( ', ', $settings['regions'] );
 				$settings['languages'] = explode( ', ', $settings['languages'] );
 
-				$settings['enabled'] = $settings['enabled'] == '1';
-				$settings['preferred'] = $settings['preferred'] == '1';
-				$settings['locked'] = $settings['locked'] == '1';
-				$settings['geo'] = $settings['geo'] == '1';
+				$settings['enabled'] = (bool)$settings['enabled'];
+				$settings['preferred'] = (bool)$settings['preferred'];
+				$settings['locked'] = (bool)$settings['locked'];
+				$settings['geo'] = (bool)$settings['geo'];
 			}
 
 			$result->addValue( [ $this->getModuleName() ], $campaign, $settings );
