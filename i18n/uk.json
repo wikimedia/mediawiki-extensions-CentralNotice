@@ -235,7 +235,7 @@
 	"centralnotice-devicetype-ipad": "Усі пристрої, визначені як iPads, але не iPhones",
 	"centralnotice-devicetype-iphone": "Усі версії iPhone",
 	"centralnotice-devicetype-unknown": "Мобільні пристрої, що не розпізнаються як iPhone, iPad чи Android — ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js логіка визначення])",
-	"centralnotice-all": "Усе",
+	"centralnotice-all": "Усі",
 	"centralnotice-generic-error": "У Вас немає відповідних прав на виконання запитаної дії, або дія була неприпустимою.",
 	"centralnotice-banner-name-error": "Надано неприпустиму назву банера. Правильні назви мають містити тільки літеро-числові символи й підкреслення.",
 	"centralnotice-all-except": "Усе, окрім $1",
