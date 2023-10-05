@@ -944,15 +944,14 @@ class Campaign {
 		// TODO This method is never used?
 		$dbr = CNDatabase::getDb( DB_PRIMARY );
 
-		$res = $dbr->select( 'cn_notices', 'not_name, not_locked',
+		$res = $dbr->selectField( 'cn_notices', 'not_locked',
 			[ 'not_name' => $campaignName ],
 			__METHOD__
 		);
-		if ( $res->numRows() < 1 ) {
+		if ( $res === false ) {
 			return 'centralnotice-remove-notice-doesnt-exist';
 		}
-		$row = $res->fetchObject();
-		if ( $row->not_locked == '1' ) {
+		if ( $res ) {
 			return 'centralnotice-notice-is-locked';
 		}
 
