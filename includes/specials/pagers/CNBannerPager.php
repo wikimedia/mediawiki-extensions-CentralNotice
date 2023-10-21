@@ -94,7 +94,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$likeArray = preg_split( '/\s/', $this->filter );
 
 		// ...and then insert all the wildcards between search terms
-		if ( empty( $likeArray ) ) {
+		if ( !$likeArray ) {
 			$likeArray = $this->mDb->anyString();
 		} else {
 			$anyStringToken = $this->mDb->anyString();

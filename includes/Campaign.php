@@ -836,9 +836,9 @@ class Campaign {
 		$noticeName = trim( $noticeName );
 		if ( self::campaignExists( $noticeName ) ) {
 			return 'centralnotice-notice-exists';
-		} elseif ( empty( $projects ) ) {
+		} elseif ( !$projects ) {
 			return 'centralnotice-no-project';
-		} elseif ( empty( $project_languages ) ) {
+		} elseif ( !$project_languages ) {
 			return 'centralnotice-no-language';
 		}
 

@@ -563,7 +563,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor['banner-is-template'] = [
 			'section' => 'banner-template',
 			'type' => 'check',
-			'disabled' => !$this->editable || !empty( $campaignNames ),
+			'disabled' => !$this->editable || $campaignNames,
 			'label-message' => 'centralnotice-banner-is-template',
 			'default' => $this->banner->isTemplate()
 		];

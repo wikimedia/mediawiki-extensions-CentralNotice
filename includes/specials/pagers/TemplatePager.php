@@ -50,7 +50,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		$likeArray = preg_split( '/\s+/', $this->filter );
 
 		// ...and then insert all the wildcards betwean search terms
-		if ( empty( $likeArray ) ) {
+		if ( !$likeArray ) {
 			$likeArray = $dbr->anyString();
 		} else {
 			$anyStringToken = $dbr->anyString();

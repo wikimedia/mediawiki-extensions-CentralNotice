@@ -1205,7 +1205,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'table' );
 
 			// Create controls for campaign-associated mixins (if there are any)
-			if ( !empty( $wgCentralNoticeCampaignMixins ) ) {
+			if ( $wgCentralNoticeCampaignMixins ) {
 				$mixinsThisNotice = Campaign::getCampaignMixins( $notice );
 
 				$htmlOut .= Xml::fieldset(
