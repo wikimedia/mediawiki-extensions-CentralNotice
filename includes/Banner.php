@@ -1621,7 +1621,7 @@ class Banner {
 	) {
 		if ( $isTranslatedMessage ) {
 			global $wgCentralNoticeMessageProtectRight;
-			if ( empty( $wgCentralNoticeMessageProtectRight ) ) {
+			if ( $wgCentralNoticeMessageProtectRight === '' ) {
 				return;
 			}
 			$protectionRight = $wgCentralNoticeMessageProtectRight;

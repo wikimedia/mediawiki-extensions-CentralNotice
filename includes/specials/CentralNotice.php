@@ -1927,7 +1927,7 @@ class CentralNotice extends SpecialPage {
 			$regionCode = substr( $region, 3 );
 			$regionsByCountry[$countryCode][] = $regionCode;
 		}
-		if ( !empty( $list ) && count( $regionsByCountry ) > 0 ) {
+		if ( $list !== '' && count( $regionsByCountry ) > 0 ) {
 			$list .= '; ';
 		}
 		$regionsByCountryList = [];
