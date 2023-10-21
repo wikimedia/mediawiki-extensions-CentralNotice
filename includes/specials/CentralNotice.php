@@ -967,7 +967,6 @@ class CentralNotice extends SpecialPage {
 							$params[$paramName] = $paramVal;
 						}
 
-						// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 						Campaign::updateCampaignMixins(
 							$notice, $mixinName, true, $params );
 
