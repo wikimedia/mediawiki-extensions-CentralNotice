@@ -28,6 +28,7 @@
 			"Yamagata Yusuke",
 			"Yusuke1109",
 			"ネイ",
+			"春春眠眠",
 			"青子守歌"
 		]
 	},
@@ -70,6 +71,7 @@
 	"centralnotice-banner": "バナー",
 	"centralnotice-banner-heading": "バナー: $1",
 	"centralnotice-templates": "バナー",
+	"centralnotice-throttle": "トラフィック制限",
 	"centralnotice-balanced": "すべてのバナーに同じ重要度を設定",
 	"centralnotice-weight": "重み",
 	"centralnotice-locked": "ロック済",
