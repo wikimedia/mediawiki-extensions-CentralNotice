@@ -16,7 +16,8 @@
 			"Rachmat.Wahidi",
 			"Rachmat04",
 			"Rex",
-			"Sumbukompor"
+			"Sumbukompor",
+			"Stevannus rua"
 		]
 	},
 	"centralnotice": "Pengurus pengumuman sentral",
@@ -263,6 +264,7 @@
 	"centralnotice-campaign-view-logs": "Tampilkan log pengaturan kampanye",
 	"prefs-centralnotice-banners": "Spanduk",
 	"prefs-centralnotice-display-banner-types": "Jenis spanduk untuk ditampilkan",
+	"prefs-description-centralnotice-banners": "Kelola jenis pengumuman yang Anda lihat.",
 	"centralnotice-campaign-type": "Jenis kampanye",
 	"centralnotice-empty-campaign-type-option": "Tanpa jenis (selalu ditampilkan)",
 	"centralnotice-non-existent-campaign-type-error": "Jenis kampanye yang dipilih tidak ada",

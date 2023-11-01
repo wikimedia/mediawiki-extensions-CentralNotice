@@ -299,7 +299,7 @@
 	"centralnotice-impression-events-sample-rate-help": "Configurar una tasa de repetición non predeterminada pal rexistru d'actividaes d'impresión",
 	"centralnotice-impression-events-sample-rate-field": "Tasa de repetición d'actividaes d'impresión (tien de tar ente 0 y 1, inclusive)",
 	"centralnotice-banner-protection-log-reason": "Protexíu automáticamente pola Central d'Avisos; editar namái usando [[Special:CentralNotice]] o [[Special:Translate]].",
-	"centralnotice-multiple-countries": "Múltiples paises",
+	"centralnotice-multiple-countries": "Múltiples países",
 	"centralnotice-multiple-languages": "Múltiples llingües",
 	"tag-centralnotice": "Central d'Avisos",
 	"tag-centralnotice-description": "Edición creada usando la interfaz d'alministración de la Central d'Avisos",
