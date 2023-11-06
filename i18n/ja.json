@@ -27,7 +27,9 @@
 			"Hzy980512",
 			"LaMagiaaa",
 			"ネイ",
-			"Yamagata Yusuke"
+			"Yamagata Yusuke",
+			"Kokage si",
+			"春春眠眠"
 		]
 	},
 	"centralnotice": "中央管理通知の管理",
@@ -69,6 +71,7 @@
 	"centralnotice-banner": "バナー",
 	"centralnotice-banner-heading": "バナー: $1",
 	"centralnotice-templates": "バナー",
+	"centralnotice-throttle": "トラフィック制限",
 	"centralnotice-balanced": "すべてのバナーに同じ重要度を設定",
 	"centralnotice-weight": "重み",
 	"centralnotice-locked": "ロック済",
