@@ -316,21 +316,6 @@ class CentralNoticeHooks implements
 	}
 
 	/**
-	 * Tell the UserMerge extension where we store user ids
-	 * @param array[] &$updateFields
-	 * @return true
-	 */
-	public static function onUserMergeAccountFields( &$updateFields ) {
-		global $wgNoticeInfrastructure;
-		if ( $wgNoticeInfrastructure ) {
-			// array( tableName, idField, textField )
-			$updateFields[] = [ 'cn_notice_log', 'notlog_user_id' ];
-			$updateFields[] = [ 'cn_template_log', 'tmplog_user_id' ];
-		}
-		return true;
-	}
-
-	/**
 	 * CanonicalNamespaces hook; adds the CentralNotice namespaces if this is an infrastructure
 	 * wiki, and if CentralNotice is configured to use the Translate extension.
 	 *
