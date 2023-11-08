@@ -116,7 +116,6 @@
 		"SpecialRecordImpression": "includes/specials/SpecialRecordImpression.php",
 		"StaleCampaignException": "includes/specials/StaleCampaignException.php",
 		"TemplatePager": "includes/specials/pagers/TemplatePager.php",
-		"UserMergeHooks": "includes/UserMergeHooks.php",
 		"CampaignType": "includes/CampaignType.php"
 	},
 	"TestAutoloadClasses": {
@@ -322,16 +321,13 @@
 		"LoadExtensionSchemaUpdates": "schema",
 		"SkinTemplateNavigation::Universal": "main",
 		"ResourceLoaderRegisterModules": "main",
-		"UserMergeAccountFields": "usermerge",
+		"UserMergeAccountFields": "CentralNoticeHooks::onUserMergeAccountFields",
 		"GetPreferences": "main",
 		"PreferencesGetIcon": "main"
 	},
 	"HookHandlers": {
 		"main": {
 			"class": "CentralNoticeHooks"
-		},
-		"usermerge": {
-			"class": "UserMergeHooks"
 		},
 		"schema": {
 			"class": "CNDatabasePatcher"
