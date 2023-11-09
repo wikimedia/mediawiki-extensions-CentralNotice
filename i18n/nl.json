@@ -228,7 +228,7 @@
 	"centralnotice-devicetype-iphone": "Alle iPhone-versies",
 	"centralnotice-devicetype-unknown": "Apparaten op de mobiele site die geen iPhones, iPads, Android zijn - ([https://github.com/wikimedia/mediawiki-extensions-CentralNotice/blob/master/modules/ext.centralNotice.bannerController/mobile/device.js Selectielogica])",
 	"centralnotice-all": "Alle",
-	"centralnotice-generic-error": "U hebt niet de juiste rechten om de gevraagde handeling uit te voeren of de handeling is incorrect.",
+	"centralnotice-generic-error": "U hebt niet de juiste rechten om de gevraagde handeling te verrichten, of de handeling zelf is onjuist.",
 	"centralnotice-banner-name-error": "Er is geen geldige bannernaam opgegeven. Geldige namen bevatten alleen alfanumerieke tekens en liggende streepjes (\"_\").",
 	"centralnotice-all-except": "Alle, behalve $1",
 	"centralnotice-excluding-list": "$1 (zonder $2)",
