@@ -30,8 +30,10 @@
 	"centralnotice-talk-link": "mızokirə",
 	"centralnotice-date": "Tarıx",
 	"centralnotice-all": "Həmmə",
+	"centralnotice-banner-class": "Kategorijə",
 	"centralnotice-archive-banner-cancel": "Ləğv karde",
 	"centralnotice-change-summary-label": "Xylosə",
 	"centralnotice-archive-campaign-cancel": "Ləğv karde",
-	"centralnotice-delete-banner-cancel": "Ləğv karde"
+	"centralnotice-delete-banner-cancel": "Ləğv karde",
+	"centralnotice-banner-template-info": "(šablon)"
 }
