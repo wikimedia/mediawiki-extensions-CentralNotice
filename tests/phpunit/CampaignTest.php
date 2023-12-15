@@ -13,6 +13,8 @@ class CampaignTest extends MediaWikiIntegrationTestCase {
 
 	protected $fixture;
 
+	protected $campaignBannersJson;
+
 	protected function setUp(): void {
 		$this->userUser = $this->getTestUser()->getUser();
 		$noticeName = 'PHPUnitTestCampaign';
