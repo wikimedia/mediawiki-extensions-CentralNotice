@@ -15,7 +15,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->fixture = new CentralNoticeTestFixtures();
+		$this->fixture = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
 
 		$this->fixture->setupTestCaseWithDefaults(
 			[ 'setup' => [ 'campaigns' => [] ] ] );
