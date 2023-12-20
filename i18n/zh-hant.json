@@ -261,6 +261,7 @@
 	"centralnotice-archive-campaign-confirm": "封存會將一個活動標記為永久停止使用的狀態。",
 	"centralnotice-archive-campaign-cancel": "取消",
 	"centralnotice-archive-edit-prevented": "此活動已鎖定或已封存，編輯功能已停用。\n您可從 [[Special:CentralNotice]] 變更狀態。",
+	"centralnotice-archived-campaigns": "已存檔活動",
 	"centralnotice-add-new-banner-title": "新增橫幅",
 	"centralnotice-delete-banner": "刪除",
 	"centralnotice-delete-banner-title": "刪除{{PLURAL:$1|橫幅}}",
