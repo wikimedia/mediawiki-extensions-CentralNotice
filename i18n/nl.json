@@ -119,7 +119,7 @@
 	"centralnotice-preview-page": "[ Voorvertoning op wiki ]",
 	"centralnotice-preview-loader-error-dialog-title": "Fout bij laden bannervoorvertoning",
 	"centralnotice-preview-loader-error-dialog-ok": "OK",
-	"centralnotice-preview-loader-permissions-error": "U bent niet geautoriseerd om voorvertoningen van banners te bekijken of anders is uw bewerkingstoken verlopen. Probeer opnieuw in te loggen of de pagina opnieuw te laden.",
+	"centralnotice-preview-loader-permissions-error": "U bent niet geautoriseerd om voorvertoningen van banners te bekijken of anders is uw bewerkingstoken verlopen. Probeer u opnieuw aan te melden of de pagina opnieuw te laden.",
 	"centralnotice-clone": "Kopiëren",
 	"centralnotice-clone-notice": "Een kopie van de sjabloon maken",
 	"centralnotice-clone-name": "Naam:",
