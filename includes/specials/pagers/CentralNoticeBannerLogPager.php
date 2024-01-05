@@ -242,7 +242,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	protected function testBooleanBannerChange( $param, $newrow, $oldrow ) {
+	private function testBooleanBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_' . $param;
 
@@ -268,7 +268,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $result;
 	}
 
-	protected function testTextBannerChange( $param, $newrow, $oldrow ) {
+	private function testTextBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_' . $param;
 

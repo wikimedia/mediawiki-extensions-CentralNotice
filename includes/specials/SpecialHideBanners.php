@@ -95,7 +95,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	/**
 	 * Set an invalid P3P policy header to make IE accept third-party hide cookies.
 	 */
-	protected function setP3P() {
+	private function setP3P() {
 		global $wgCentralNoticeHideBannersP3P;
 
 		if ( !$wgCentralNoticeHideBannersP3P ) {

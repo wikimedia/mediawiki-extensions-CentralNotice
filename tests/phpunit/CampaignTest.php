@@ -7,13 +7,13 @@
  * @covers Campaign
  */
 class CampaignTest extends MediaWikiIntegrationTestCase {
-	protected $userUser;
+	private User $userUser;
 
-	protected $campaignArray;
+	private array $campaignArray;
 
-	protected $fixture;
+	private CentralNoticeTestFixtures $fixture;
 
-	protected $campaignBannersJson;
+	private string $campaignBannersJson;
 
 	protected function setUp(): void {
 		$this->userUser = $this->getTestUser()->getUser();

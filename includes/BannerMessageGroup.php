@@ -11,7 +11,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	private const TRANSLATE_GROUP_NAME_BASE = 'Centralnotice-tgroup';
 
 	/** @var string */
-	protected $bannerName = '';
+	private $bannerName = '';
 
 	/**
 	 * @var int

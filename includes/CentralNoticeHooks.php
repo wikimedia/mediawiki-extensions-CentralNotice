@@ -279,7 +279,7 @@ class CentralNoticeHooks implements
 		}
 	}
 
-	protected static function addCascadingRestrictionRight( $right ) {
+	private static function addCascadingRestrictionRight( $right ) {
 		global $wgCascadingRestrictionLevels, $wgRestrictionLevels;
 		if ( !in_array( $right, $wgRestrictionLevels ) ) {
 			$wgRestrictionLevels[] = $right;

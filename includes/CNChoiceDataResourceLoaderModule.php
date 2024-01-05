@@ -53,7 +53,7 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 	 *
 	 * @return array|bool
 	 */
-	protected function getFromApi( $project, $language ) {
+	private function getFromApi( $project, $language ) {
 		$cnApiUrl = $this->getConfig()->get( 'CentralNoticeApiUrl' );
 
 		// Make the URL

@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\IDatabase;
 class CNDatabase {
 
 	/** @var bool */
-	protected static $primaryUsedBefore = false;
+	private static $primaryUsedBefore = false;
 
 	/**
 	 * Get a DB handle.
