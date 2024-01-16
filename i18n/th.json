@@ -3,6 +3,7 @@
 		"authors": [
 			"Aefgh39622",
 			"Ans",
+			"Ekminarin",
 			"Geonuch",
 			"Horus",
 			"Manop",
@@ -202,6 +203,7 @@
 	"centralnotice-banner-history-logger-max-entries": "จำนวนหน่วยสูงสุดที่จะเก็บในรายการบันทึก",
 	"prefs-centralnotice-banners": "แบนเนอร์ส่วนกลาง",
 	"prefs-centralnotice-display-banner-types": "ชนิดของแบนเนอร์ที่ต้องการให้แสดง",
+	"prefs-description-centralnotice-banners": "จัดการประเภทของประกาศที่คุณเห็น",
 	"centralnotice-campaign-type": "ชนิดของแคมเปญ",
 	"centralnotice-empty-campaign-type-option": "ไม่มีชนิด (แสดงผลเสมอ)",
 	"centralntoice-deleted-campaign-type": "$1 (ถูกลบแล้ว)",
