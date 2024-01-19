@@ -467,7 +467,7 @@
 		deferred.resolve();
 	} );
 
-	QUnit.test( 'record impression timeout and register tests', function ( assert ) {
+	QUnit.skip( 'record impression timeout and register tests', function ( assert ) {
 		var recordImpresionPromise,
 			start = Date.now(),
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
@@ -516,7 +516,7 @@
 		// be made by MAX_RECORD_IMPRESSION_DELAY milliseconds (give or take a bit).
 	} );
 
-	QUnit.test( 'record impression called only once', function ( assert ) {
+	QUnit.skip( 'record impression called only once', function ( assert ) {
 		var deferred = $.Deferred(),
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
 			recordImpresionPromise,

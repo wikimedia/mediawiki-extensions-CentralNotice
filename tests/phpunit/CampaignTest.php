@@ -25,7 +25,7 @@ class CampaignTest extends MediaWikiIntegrationTestCase {
 		$regions = [];
 		$priority = 1;
 
-		$this->fixture = new CentralNoticeTestFixtures();
+		$this->fixture = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
 		$this->fixture->setupTestCaseWithDefaults(
 			[ 'setup' => [ 'campaigns' => [] ] ] );
 

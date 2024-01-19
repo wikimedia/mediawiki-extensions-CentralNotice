@@ -17,8 +17,8 @@ class CentralNoticeTestFixtures {
 	/** @var array */
 	public static $defaultBanner;
 
-	public function __construct() {
-		$this->user = User::newFromName( 'UTSysop' );
+	public function __construct( $user ) {
+		$this->user = $user;
 
 		static::$defaultCampaign = [
 			'enabled' => 1,

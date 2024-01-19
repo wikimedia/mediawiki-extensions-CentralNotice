@@ -16,7 +16,7 @@ class HistoryTest extends MediaWikiIntegrationTestCase {
 
 		$this->userUser = $this->getTestUser()->getUser();
 
-		$this->cnFixtures = new CentralNoticeTestFixtures();
+		$this->cnFixtures = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
 	}
 
 	protected function tearDown(): void {
