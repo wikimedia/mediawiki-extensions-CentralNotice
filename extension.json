@@ -135,18 +135,10 @@
 			"dependencies": [
 				"ext.centralNotice.choiceData",
 				"mediawiki.util"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.geoIP": {
 			"scripts": "subscribing/ext.centralNotice.geoIP.js",
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"dependencies": [
 				"mediawiki.cookie"
 			]
@@ -179,10 +171,6 @@
 				"mediawiki.Uri",
 				"mediawiki.util",
 				"mediawiki.storage"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.kvStore": {
@@ -191,10 +179,6 @@
 			"packageFiles": [
 				"index.js",
 				"kvStore.js"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.bannerHistoryLogger": {
@@ -205,10 +189,6 @@
 				"ext.eventLogging",
 				"mediawiki.user",
 				"mediawiki.util"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.impressionDiet": {
@@ -217,10 +197,6 @@
 				"ext.centralNotice.kvStore",
 				"ext.centralNotice.display",
 				"mediawiki.util"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.largeBannerLimit": {
@@ -230,20 +206,12 @@
 				"ext.centralNotice.kvStore",
 				"mediawiki.cookie",
 				"mediawiki.util"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.legacySupport": {
 			"scripts": "subscribing/ext.centralNotice.legacySupport.js",
 			"dependencies": [
 				"ext.centralNotice.display"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.bannerSequence": {
@@ -252,30 +220,18 @@
 				"ext.centralNotice.display",
 				"ext.centralNotice.kvStore",
 				"mediawiki.util"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.freegeoipLookup": {
 			"scripts": "subscribing/ext.centralNotice.freegeoipLookup.js",
 			"dependencies": [
 				"ext.centralNotice.geoIP"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.impressionEventsSampleRate": {
 			"scripts": "subscribing/ext.centralNotice.impressionEventsSampleRate.js",
 			"dependencies": [
 				"ext.centralNotice.display"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
 			]
 		},
 		"ext.centralNotice.cspViolationAlert": {
