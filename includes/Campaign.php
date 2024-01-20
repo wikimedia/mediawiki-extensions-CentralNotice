@@ -5,36 +5,36 @@ use MediaWiki\MediaWikiServices;
 class Campaign {
 
 	/** @var int|null */
-	protected $id = null;
+	private $id = null;
 	/** @var string|null */
-	protected $name = null;
+	private $name = null;
 
 	/** @var MWTimestamp Start datetime of campaign */
-	protected $start = null;
+	private $start = null;
 
 	/** @var MWTimestamp End datetime of campaign */
-	protected $end = null;
+	private $end = null;
 
 	/** @var int Priority level of the campaign, higher is more important */
-	protected $priority = null;
+	private $priority = null;
 
 	/** @var bool True if the campaign is enabled for showing */
-	protected $enabled = null;
+	private $enabled = null;
 
 	/** @var bool True if the campaign is currently non editable */
-	protected $locked = null;
+	private $locked = null;
 
 	/** @var bool True if the campaign has been moved to the archive */
-	protected $archived = null;
+	private $archived = null;
 
 	/** @var bool True if there is geo-targeting data for ths campaign */
-	protected $geotargeted = null;
+	private $geotargeted = null;
 
 	/** @var int The number of buckets in this campaign */
-	protected $buckets = null;
+	private $buckets = null;
 
 	/** @var int */
-	protected $throttle = null;
+	private $throttle = null;
 
 	/**
 	 * Construct a lazily loaded CentralNotice campaign object
@@ -199,7 +199,7 @@ class Campaign {
 	 *
 	 * @throws CampaignExistenceException If the campaign doesn't exist
 	 */
-	protected function loadBasicSettings() {
+	private function loadBasicSettings() {
 		$db = CNDatabase::getDb();
 
 		// What selector are we using?
@@ -1564,7 +1564,7 @@ class Campaign {
 	 * @param string $settingName
 	 * @return bool
 	 */
-	protected static function settingNameIsValid( $settingName ) {
+	private static function settingNameIsValid( $settingName ) {
 		return ( preg_match( '/^[a-z_]*$/', $settingName ) === 1 );
 	}
 

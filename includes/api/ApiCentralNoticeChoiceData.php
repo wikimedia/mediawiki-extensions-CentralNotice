@@ -69,7 +69,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	 *
 	 * @return string The sanitized value
 	 */
-	protected static function sanitizeText( $param, $regex, $default = null ) {
+	private static function sanitizeText( $param, $regex, $default = null ) {
 		$matches = [];
 
 		if ( preg_match( $regex, $param, $matches ) ) {

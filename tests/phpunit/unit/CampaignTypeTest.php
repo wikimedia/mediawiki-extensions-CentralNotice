@@ -9,7 +9,7 @@
  * @covers CampaignType::getPreferenceKey
  */
 class CampaignTypeTest extends MediaWikiUnitTestCase {
-	protected $campaignType;
+	private CampaignType $campaignType;
 
 	protected function setUp(): void {
 		parent::setUp();

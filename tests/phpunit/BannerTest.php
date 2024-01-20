@@ -10,7 +10,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	private const TEST_BANNER_NAME = 'PhpUnitTestBanner';
 	private const TEST_BANNER_TEMPLATE_NAME = 'PhpUnitTestBannerTemplate';
 
-	protected $fixture;
+	private CentralNoticeTestFixtures $fixture;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -247,7 +247,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 	 * @param string $name
 	 * @throws BannerDataException
 	 */
-	protected function deleteTemplateIfExists( $name ) {
+	private function deleteTemplateIfExists( $name ) {
 		$banner = Banner::fromName( $name );
 		if ( $banner->exists() ) {
 			$user = $this->getTestUser()->getUser();

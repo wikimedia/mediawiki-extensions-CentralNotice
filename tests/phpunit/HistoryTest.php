@@ -6,10 +6,9 @@
  * @group Database
  */
 class HistoryTest extends MediaWikiIntegrationTestCase {
-	protected $userUser;
+	private User $userUser;
 
-	/** @var CentralNoticeTestFixtures */
-	protected $cnFixtures;
+	private CentralNoticeTestFixtures $cnFixtures;
 
 	protected function setUp(): void {
 		parent::setUp();

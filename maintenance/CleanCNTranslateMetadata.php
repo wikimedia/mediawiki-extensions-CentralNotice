@@ -17,7 +17,7 @@ require_once "$IP/maintenance/Maintenance.php";
  */
 class CleanCNTranslateMetadata extends Maintenance {
 	/** @var string|null */
-	protected $ttag;
+	private $ttag;
 
 	public function __construct() {
 		parent::__construct();
@@ -37,7 +37,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	/**
 	 * Remove duplicated revtags
 	 */
-	protected function cleanDuplicates() {
+	private function cleanDuplicates() {
 		$this->output( "Cleaning duplicates\n" );
 
 		$db = CNDatabase::getDb( DB_PRIMARY );
@@ -79,7 +79,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	/**
 	 * Attach a banner ID with a orphan metadata line
 	 */
-	protected function populateIDs() {
+	private function populateIDs() {
 		$this->output( "Associating metadata with banner ids\n" );
 
 		$db = CNDatabase::getDb( DB_PRIMARY );
@@ -116,7 +116,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	/**
 	 * Delete rows that have no banner ID associated with them
 	 */
-	protected function deleteOrphans() {
+	private function deleteOrphans() {
 		$db = CNDatabase::getDb( DB_PRIMARY );
 		$this->output( "Preparing to delete orphaned rows\n" );
 

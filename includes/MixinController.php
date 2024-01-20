@@ -2,12 +2,12 @@
 
 class MixinController {
 	/** @var array */
-	protected $mixins;
+	private $mixins;
 
 	/** @var array */
-	protected $magicWords = [];
+	private $magicWords = [];
 	/** @var IContextSource */
-	protected $uiContext;
+	private $uiContext;
 
 	public function __construct( IContextSource $uiContext, $mixins ) {
 		$this->uiContext = $uiContext;

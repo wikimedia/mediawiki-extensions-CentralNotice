@@ -8,7 +8,7 @@
  */
 class CNChoiceDataResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	/** @var CentralNoticeTestFixtures */
-	protected $cnFixtures;
+	private $cnFixtures;
 
 	protected function setUp(): void {
 		parent::setUp();

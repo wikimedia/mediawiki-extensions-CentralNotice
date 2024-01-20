@@ -8,7 +8,7 @@
  */
 class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 	/** @var CentralNoticeTestFixtures */
-	protected $cnFixtures;
+	private $cnFixtures;
 
 	protected function setUp(): void {
 		parent::setUp();

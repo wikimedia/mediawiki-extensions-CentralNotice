@@ -56,7 +56,7 @@ class Banner {
 	 *
 	 * @var (null|bool)[]
 	 */
-	protected $dirtyFlags = [
+	private $dirtyFlags = [
 		'content' => null,
 		'messages' => null,
 		'basic' => null,
@@ -66,42 +66,42 @@ class Banner {
 	];
 
 	/** @var int Unique database identifier key. */
-	protected $id = null;
+	private $id = null;
 
 	/** @var string Unique human friendly name of banner. */
-	protected $name = null;
+	private $name = null;
 
 	/** @var bool True if the banner should be allocated to anonymous users. */
-	protected $allocateAnon = false;
+	private $allocateAnon = false;
 
 	/** @var bool True if the banner should be allocated to logged in users. */
-	protected $allocateLoggedIn = false;
+	private $allocateLoggedIn = false;
 
 	/** @var string Category that the banner belongs to. Will be special value expanded. */
-	protected $category = '{{{campaign}}}';
+	private $category = '{{{campaign}}}';
 
 	/** @var bool True if archived and hidden from default view. */
-	protected $archived = false;
+	private $archived = false;
 
 	/** @var string[] Devices this banner should be allocated to in the form
 	 * {Device ID => Device header name}
 	 */
-	protected $devices = [];
+	private $devices = [];
 
 	/** @var string[] Names of enabled mixins */
-	protected $mixins = [];
+	private $mixins = [];
 
 	/** @var string[] Language codes considered a priority for translation. */
-	protected $priorityLanguages = [];
+	private $priorityLanguages = [];
 
 	/** @var string Wikitext content of the banner */
-	protected $bodyContent = '';
+	private $bodyContent = '';
 
 	/** @var bool */
-	protected $runTranslateJob = false;
+	private $runTranslateJob = false;
 
 	/** @var bool Is banner meant to be used as a template for other banners */
-	protected $template = false;
+	private $template = false;
 
 	/**
 	 * Create a banner object from a known ID. Must already be
@@ -342,7 +342,7 @@ class Banner {
 	 * @throws BannerDataException If neither a name or ID can be used to query for data
 	 * @throws BannerExistenceException If no banner data was received
 	 */
-	protected function populateBasicData() {
+	private function populateBasicData() {
 		if ( $this->dirtyFlags['basic'] !== null ) {
 			return;
 		}
@@ -403,7 +403,7 @@ class Banner {
 	 * Sets the flag which will save basic metadata on next save()
 	 * @param bool $dirty
 	 */
-	protected function setBasicDataDirty( $dirty = true ) {
+	private function setBasicDataDirty( $dirty = true ) {
 		$this->dirtyFlags['basic'] = $dirty;
 	}
 
@@ -412,7 +412,7 @@ class Banner {
 	 *
 	 * @param IDatabase $db
 	 */
-	protected function initializeDbBasicData( IDatabase $db ) {
+	private function initializeDbBasicData( IDatabase $db ) {
 		$db->insert( 'cn_templates', [ 'tmp_name' => $this->name ], __METHOD__ );
 		$this->id = $db->insertId();
 	}
@@ -421,7 +421,7 @@ class Banner {
 	 * Helper function to saveBannerInternal() for saving basic banner metadata
 	 * @param IDatabase $db
 	 */
-	protected function saveBasicData( IDatabase $db ) {
+	private function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
 			$db->update( 'cn_templates',
 				[
@@ -492,7 +492,7 @@ class Banner {
 	 *
 	 * @see CNDeviceTarget for more information about mapping.
 	 */
-	protected function populateDeviceTargetData() {
+	private function populateDeviceTargetData() {
 		if ( $this->dirtyFlags['devices'] !== null ) {
 			return;
 		}
@@ -523,7 +523,7 @@ class Banner {
 	 * Sets the flag which will force saving of device targeting data on next save()
 	 * @param bool $dirty
 	 */
-	protected function markDeviceTargetDataDirty( $dirty = true ) {
+	private function markDeviceTargetDataDirty( $dirty = true ) {
 		$this->dirtyFlags['devices'] = $dirty;
 	}
 
@@ -532,7 +532,7 @@ class Banner {
 	 *
 	 * @param IDatabase $db
 	 */
-	protected function saveDeviceTargetData( IDatabase $db ) {
+	private function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
 			$db->delete( 'cn_template_devices', [ 'tmp_id' => $this->getId() ], __METHOD__ );
@@ -593,7 +593,7 @@ class Banner {
 	/**
 	 * Populates mixin data from the cn_template_mixins table.
 	 */
-	protected function populateMixinData() {
+	private function populateMixinData() {
 		global $wgCentralNoticeBannerMixins;
 
 		if ( $this->dirtyFlags['mixins'] !== null ) {
@@ -631,14 +631,14 @@ class Banner {
 	 * Sets the flag which will force saving of mixin data upon next save()
 	 * @param bool $dirty
 	 */
-	protected function markMixinDataDirty( $dirty = true ) {
+	private function markMixinDataDirty( $dirty = true ) {
 		$this->dirtyFlags['mixins'] = $dirty;
 	}
 
 	/**
 	 * @param IDatabase $db
 	 */
-	protected function saveMixinData( IDatabase $db ) {
+	private function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
 			$db->delete( 'cn_template_mixins',
 				[ 'tmp_id' => $this->getId() ],
@@ -699,7 +699,7 @@ class Banner {
 		return $this;
 	}
 
-	protected function populatePriorityLanguageData() {
+	private function populatePriorityLanguageData() {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $this->dirtyFlags['prioritylang'] !== null ) {
@@ -720,11 +720,11 @@ class Banner {
 		$this->markPriorityLanguageDataDirty( false );
 	}
 
-	protected function markPriorityLanguageDataDirty( $dirty = true ) {
+	private function markPriorityLanguageDataDirty( $dirty = true ) {
 		$this->dirtyFlags['prioritylang'] = $dirty;
 	}
 
-	protected function savePriorityLanguageData() {
+	private function savePriorityLanguageData() {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $wgNoticeUseTranslateExtension && $this->dirtyFlags['prioritylang'] ) {
@@ -824,7 +824,7 @@ class Banner {
 		return $this;
 	}
 
-	protected function populateBodyContent() {
+	private function populateBodyContent() {
 		if ( $this->dirtyFlags['content'] !== null ) {
 			return;
 		}
@@ -847,7 +847,7 @@ class Banner {
 	 * in-memory banner content is newer than what's stored in the database.
 	 * If false, we're clearing that bit.
 	 */
-	protected function markBodyContentDirty( $dirty = true ) {
+	private function markBodyContentDirty( $dirty = true ) {
 		$this->dirtyFlags['content'] = $dirty;
 	}
 
@@ -855,7 +855,7 @@ class Banner {
 	 * @param string|null $summary
 	 * @param User $user
 	 */
-	protected function saveBodyContent( $summary, User $user ) {
+	private function saveBodyContent( $summary, User $user ) {
 		global $wgNoticeUseTranslateExtension;
 
 		if ( $this->dirtyFlags['content'] ) {
@@ -951,7 +951,7 @@ class Banner {
 	 * @param WANObjectCache $cache
 	 * @return mixed
 	 */
-	protected function getMessageFieldsCacheKey( $cache ) {
+	private function getMessageFieldsCacheKey( $cache ) {
 		return $cache->makeKey( 'centralnotice', 'bannerfields', $this->getName() );
 	}
 
@@ -1096,7 +1096,7 @@ class Banner {
 	 *
 	 * @param IDatabase $db
 	 */
-	protected function initializeDbForNewBanner( IDatabase $db ) {
+	private function initializeDbForNewBanner( IDatabase $db ) {
 		$this->initializeDbBasicData( $db );
 	}
 
@@ -1114,7 +1114,7 @@ class Banner {
 	 *
 	 * @throws BannerExistenceException
 	 */
-	protected function saveBannerInternal( IDatabase $db ) {
+	private function saveBannerInternal( IDatabase $db ) {
 		$this->saveBasicData( $db );
 		$this->saveDeviceTargetData( $db );
 		$this->saveMixinData( $db );
@@ -1261,7 +1261,7 @@ class Banner {
 	 * @param int $pageId ID of the MediaWiki page for the banner
 	 * @throws Exception
 	 */
-	protected static function removeTag( $tag, $pageId ) {
+	private static function removeTag( $tag, $pageId ) {
 		$dbw = CNDatabase::getDb();
 
 		$conds = [

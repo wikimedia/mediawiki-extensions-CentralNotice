@@ -20,15 +20,15 @@ class CNCampaignPager extends TablePager {
 	private const DEFAULT_LIMIT = 5000;
 
 	/** @var CentralNotice */
-	protected $onSpecialCN;
+	private $onSpecialCN;
 	/** @var string|false */
-	protected $editable;
+	private $editable;
 	/** @var int|null */
-	protected $assignedBannerId;
+	private $assignedBannerId;
 	/** @var bool|null */
-	protected $showArchived;
+	private $showArchived;
 	/** @var string[]|null */
-	protected $fieldNames = null;
+	private $fieldNames = null;
 
 	/**
 	 * @param CentralNotice $onSpecialCN The CentralNotice special page we're on
@@ -432,7 +432,7 @@ class CNCampaignPager extends TablePager {
 	 * Returns true if this is the only page of results there is to show.
 	 * @return bool
 	 */
-	protected function isWithinLimit() {
+	private function isWithinLimit() {
 		return $this->mIsFirst && $this->mIsLast;
 	}
 

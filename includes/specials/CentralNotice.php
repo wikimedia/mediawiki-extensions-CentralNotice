@@ -29,9 +29,9 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * @var Campaign
 	 */
-	protected $campaign;
+	private $campaign;
 	/** @var array */
-	protected $campaignWarnings = [];
+	private $campaignWarnings = [];
 
 	public function __construct() {
 		// Register special page
@@ -110,14 +110,14 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Output the start tag for the enclosing div we use on all subactions
 	 */
-	protected function outputEnclosingDivStartTag() {
+	private function outputEnclosingDivStartTag() {
 		$this->getOutput()->addHTML( Xml::openElement( 'div', [ 'id' => 'preferences' ] ) );
 	}
 
 	/**
 	 * Output the end tag for the enclosing div we use on all subactions
 	 */
-	protected function outputEnclosingDivEndTag() {
+	private function outputEnclosingDivEndTag() {
 		$this->getOutput()->addHTML( Xml::closeElement( 'div' ) );
 	}
 
@@ -127,7 +127,7 @@ class CentralNotice extends SpecialPage {
 	 * @param bool|null $showArchived Set true to only show archived campaigns,
 	 * 	 false to only show unarchived campaigns
 	 */
-	protected function outputListOfNotices( $showArchived = null ) {
+	private function outputListOfNotices( $showArchived = null ) {
 		$this->outputEnclosingDivStartTag();
 
 		$out = $this->getOutput();
@@ -165,7 +165,7 @@ class CentralNotice extends SpecialPage {
 		$this->outputEnclosingDivEndTag();
 	}
 
-	protected function handleNoticePostFromList() {
+	private function handleNoticePostFromList() {
 		$request = $this->getRequest();
 		$changes = json_decode( $request->getText( 'changes' ), true );
 		$summary = $this->getSummaryFromRequest( $request );
@@ -279,7 +279,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	protected function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
+	private function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
 		return Xml::tags(
 			'td',
 			[
@@ -290,7 +290,7 @@ class CentralNotice extends SpecialPage {
 		);
 	}
 
-	protected function timeSelector( $prefix, $editable, $timestamp = null ) {
+	private function timeSelector( $prefix, $editable, $timestamp = null ) {
 		if ( $editable ) {
 			$minutes = $this->paddedRange( 0, 59 );
 			$hours = $this->paddedRange( 0, 23 );
@@ -440,7 +440,7 @@ class CentralNotice extends SpecialPage {
 	 * @param array $fields array of select lists to build
 	 * @return string
 	 */
-	protected function createSelector( $prefix, $fields ) {
+	private function createSelector( $prefix, $fields ) {
 		$out = '';
 		foreach ( $fields as [ $field, $label, $set, $current ] ) {
 			$out .= Xml::listDropDown( "{$prefix}[{$field}]",
@@ -455,7 +455,7 @@ class CentralNotice extends SpecialPage {
 	 * Output a form for adding a campaign.
 	 *
 	 */
-	protected function addNoticeForm() {
+	private function addNoticeForm() {
 		$request = $this->getRequest();
 		$start = null;
 		$campaignType = null;
@@ -561,7 +561,7 @@ class CentralNotice extends SpecialPage {
 		$this->getOutput()->addHTML( $htmlOut );
 	}
 
-	protected function handleAddCampaignPost() {
+	private function handleAddCampaignPost() {
 		$request = $this->getRequest();
 		$noticeName = $request->getVal( 'noticeName' );
 		$start = $this->getDateTime( 'start' );
@@ -772,7 +772,7 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @param string $notice
 	 */
-	protected function handleNoticeDetailPost( $notice ) {
+	private function handleNoticeDetailPost( $notice ) {
 		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
 		$request = $this->getRequest();
 
@@ -1274,7 +1274,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	protected static function makeNoticeMixinControlName(
+	private static function makeNoticeMixinControlName(
 		$mixinName, $mixinParam = null
 	) {
 		return 'notice-mixin-' . $mixinName .
@@ -1685,11 +1685,11 @@ class CentralNotice extends SpecialPage {
 			);
 	}
 
-	protected function getSummaryFromRequest( WebRequest $request ) {
+	private function getSummaryFromRequest( WebRequest $request ) {
 		return static::truncateSummaryField( $request->getVal( 'changeSummary' ) );
 	}
 
-	protected function paddedRange( $begin, $end ) {
+	private function paddedRange( $begin, $end ) {
 		$unpaddedRange = range( $begin, $end );
 		$paddedRange = [];
 		foreach ( $unpaddedRange as $number ) {
@@ -1947,7 +1947,7 @@ class CentralNotice extends SpecialPage {
 		return $this->makeShortList( $all, $languages );
 	}
 
-	protected function makeShortList( $all, $list ) {
+	private function makeShortList( $all, $list ) {
 		// TODO ellipsis and js/css expansion
 		if ( count( $list ) == count( $all ) ) {
 			return $this->getContext()->msg( 'centralnotice-all' )->text();

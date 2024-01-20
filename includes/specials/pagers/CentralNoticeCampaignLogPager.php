@@ -495,7 +495,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param stdClass $row settings
 	 * @return string
 	 */
-	protected function testPercentageChange( $param, $row ) {
+	private function testPercentageChange( $param, $row ) {
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;
 		$result = '';
@@ -534,7 +534,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $result;
 	}
 
-	protected function testTypeChange( $row ) {
+	private function testTypeChange( $row ) {
 		$result = '';
 
 		$oldval = $row->notlog_begin_type;

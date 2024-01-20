@@ -7,22 +7,22 @@
 class CNBannerPager extends ReverseChronologicalPager {
 
 	/** @var bool True if the form is to be created with editable elements */
-	protected $editable = false;
+	private $editable = false;
 
 	/** @var string Space separated strings to filter banner titles on */
-	protected $filter = '';
+	private $filter = '';
 
 	/** @var array[] HTMLFormFields to add to the results before every banner entry */
-	protected $prependPrototypes = [];
+	private $prependPrototypes = [];
 
 	/** @var array[] HTMLFormFields to add to the results after every banner entry */
-	protected $appendPrototypes = [];
+	private $appendPrototypes = [];
 
 	/** @var string 'Section' attribute to apply to the banner elements generated */
-	protected $formSection = null;
+	private $formSection = null;
 
 	/** @var SpecialCentralNoticeBanners the page on which we appear */
-	protected $hostSpecialPage;
+	private $hostSpecialPage;
 
 	/**
 	 * @param SpecialCentralNoticeBanners $hostSpecialPage

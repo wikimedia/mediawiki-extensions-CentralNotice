@@ -10,37 +10,37 @@ class BannerRenderer {
 	/**
 	 * @var IContextSource
 	 */
-	protected $context;
+	private $context;
 
 	/**
 	 * @var Banner
 	 */
-	protected $banner;
+	private $banner;
 
 	/**
 	 * Campaign in which context the rendering is taking place.  Empty during preview.
 	 * @var string
 	 */
-	protected $campaignName = "";
+	private $campaignName = "";
 
 	/**
 	 * Unsaved raw banner content to use for rendering an unsaved preview.
 	 * @var string|null
 	 */
-	protected $previewContent;
+	private $previewContent;
 
 	/**
 	 * Associative array of banner message names and values, for rendering an unsaved
 	 * preview.
 	 * @var array|null
 	 */
-	protected $previewMessages;
+	private $previewMessages;
 
 	/** @var MixinController|null */
-	protected $mixinController = null;
+	private $mixinController = null;
 
 	/** @var bool */
-	protected $debug;
+	private $debug;
 
 	/**
 	 * Creates a new renderer for a given banner and context
@@ -273,7 +273,7 @@ class BannerRenderer {
 	 *
 	 * @return string HTML fragment with the resulting value.
 	 */
-	protected function renderMagicWord( $re_matches ) {
+	private function renderMagicWord( $re_matches ) {
 		$field = $re_matches[1];
 		if ( $field === 'banner' ) {
 			return $this->banner->getName();
