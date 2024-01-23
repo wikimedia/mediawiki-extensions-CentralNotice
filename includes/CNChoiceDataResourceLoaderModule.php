@@ -12,12 +12,6 @@ use MediaWiki\ResourceLoader as RL;
  */
 class CNChoiceDataResourceLoaderModule extends RL\Module {
 
-	/**
-	 * @see RL\Module::targets
-	 * @var string[]
-	 */
-	protected $targets = [ 'desktop', 'mobile' ];
-
 	private const API_REQUEST_TIMEOUT = 20;
 
 	protected function getChoices( RL\Context $context ) {
