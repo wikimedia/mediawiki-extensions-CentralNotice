@@ -1719,7 +1719,7 @@ class CentralNotice extends SpecialPage {
 		foreach ( $countries as $countryCode => $country ) {
 
 			$regions = '';
-			if ( !empty( $country->getRegions() ) ) {
+			if ( $country->getRegions() ) {
 				foreach ( $country->getRegions() as $regionCode => $name ) {
 					$uniqueRegionCode = GeoTarget::makeUniqueRegionCode(
 						$countryCode, $regionCode

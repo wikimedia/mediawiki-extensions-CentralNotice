@@ -222,13 +222,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'section' => 'addBanner',
 				'class' => HTMLCheckField::class,
 				'label' => $this->msg( 'centralnotice-create-from-template-checkbox-label' )->text(),
-				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
+				'disabled' => !$this->editable || !$this->getTemplateBannerDropdownItems(),
 			],
 			'newBannerTemplate' => [
 				'section' => 'addBanner',
 				'class' => HTMLSelectLimitField::class,
 				'cssclass' => 'banner-template-dropdown-hidden',
-				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
+				'disabled' => !$this->editable || !$this->getTemplateBannerDropdownItems(),
 				'options' => $this->getTemplateBannerDropdownItems()
 			],
 			'newBannerEditSummary' => [

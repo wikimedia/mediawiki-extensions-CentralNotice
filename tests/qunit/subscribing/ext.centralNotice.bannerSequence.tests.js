@@ -319,7 +319,9 @@
 
 				// Stubs, not under test here
 				contexts: {},
-				getMultiStorageOption: function () { return 'stubStorageOption'; },
+				getMultiStorageOption: function () {
+					return 'stubStorageOption';
+				},
 				multiStorageOptions: {}
 			};
 
@@ -381,7 +383,9 @@
 
 				// Stubs
 				contexts: {},
-				getMultiStorageOption: function () { return 'stubStorageOption'; },
+				getMultiStorageOption: function () {
+					return 'stubStorageOption';
+				},
 				multiStorageOptions: {}
 			};
 
@@ -453,7 +457,9 @@
 				},
 
 				contexts: {},
-				getMultiStorageOption: function () { return 'stubStorageOption'; },
+				getMultiStorageOption: function () {
+					return 'stubStorageOption';
+				},
 				multiStorageOptions: {}
 			};
 
