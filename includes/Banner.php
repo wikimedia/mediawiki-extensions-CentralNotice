@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroups;
+use MediaWiki\Extension\Translate\Services;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
@@ -707,12 +708,21 @@ class Banner {
 		}
 
 		if ( $wgNoticeUseTranslateExtension ) {
-			$langs = TranslateMetadata::get(
-				BannerMessageGroup::getTranslateGroupName( $this->getName() ),
-				'prioritylangs'
-			);
+			$services = Services::getInstance();
+			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
+				// @phan-suppress-next-line PhanUndeclaredMethod
+				$langs = $services->getMessageGroupMetadata()->get(
+					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
+					'prioritylangs'
+				);
+			} else {
+				$langs = TranslateMetadata::get(
+					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
+					'prioritylangs'
+				);
+			}
 			if ( !$langs ) {
-				// If priority langs is not set; TranslateMetadata::get will return false
+				// If priority langs is not set; MessageGroupMetadata::get will return false
 				$langs = '';
 			}
 			$this->priorityLanguages = explode( ',', $langs );
@@ -729,15 +739,33 @@ class Banner {
 
 		if ( $wgNoticeUseTranslateExtension && $this->dirtyFlags['prioritylang'] ) {
 			$groupName = BannerMessageGroup::getTranslateGroupName( $this->getName() );
-			if ( $this->priorityLanguages === [] ) {
-				// Using false to delete the value instead of writing empty content
-				TranslateMetadata::set( $groupName, 'prioritylangs', false );
+
+			$services = Services::getInstance();
+			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
+				// @phan-suppress-next-line PhanUndeclaredMethod
+				$messageGroupMetadata = $services->getMessageGroupMetadata();
+
+				if ( $this->priorityLanguages === [] ) {
+					// Using false to delete the value instead of writing empty content
+					$messageGroupMetadata->set( $groupName, 'prioritylangs', false );
+				} else {
+					$messageGroupMetadata->set(
+						$groupName,
+						'prioritylangs',
+						implode( ',', $this->priorityLanguages )
+					);
+				}
 			} else {
-				TranslateMetadata::set(
-					$groupName,
-					'prioritylangs',
-					implode( ',', $this->priorityLanguages )
-				);
+				if ( $this->priorityLanguages === [] ) {
+					// Using false to delete the value instead of writing empty content
+					TranslateMetadata::set( $groupName, 'prioritylangs', false );
+				} else {
+					TranslateMetadata::set(
+						$groupName,
+						'prioritylangs',
+						implode( ',', $this->priorityLanguages )
+					);
+				}
 			}
 		}
 	}
@@ -1214,12 +1242,23 @@ class Banner {
 				// Remove any revision tags related to the banner
 				self::removeTag( self::TRANSLATE_BANNER_TAG, $wikiPage->getId() );
 
-				// And the preferred language metadata if it exists
-				TranslateMetadata::set(
-					BannerMessageGroup::getTranslateGroupName( $name ),
-					'prioritylangs',
-					false
-				);
+				$services = Services::getInstance();
+				// Add the preferred language metadata if it exists
+				if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
+					// @phan-suppress-next-line PhanUndeclaredMethod
+					$services->getMessageGroupMetadata()->set(
+						BannerMessageGroup::getTranslateGroupName( $name ),
+						'prioritylangs',
+						false
+					);
+				// Add the preferred language metadata if it exists
+				} else {
+					TranslateMetadata::set(
+						BannerMessageGroup::getTranslateGroupName( $name ),
+						'prioritylangs',
+						false
+					);
+				}
 			}
 		}
 	}
