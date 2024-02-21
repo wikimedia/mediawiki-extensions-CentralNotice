@@ -5,7 +5,8 @@
 			"Snævar",
 			"Spacebirdy",
 			"Sveinn í Felli",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"centralnotice-enabled": "Virkt",
@@ -94,5 +95,6 @@
 	"centralnotice-delete-banner-cancel": "Hætta við",
 	"centralnotice-banner-history-logger-rate": "Safntíðni",
 	"centralnotice-banner-sequence-banner": "Borði",
-	"centralnotice-banner-sequence-no-banner": "(Enginn borði)"
+	"centralnotice-banner-sequence-no-banner": "(Enginn borði)",
+	"centralnotice-create-from-template-checkbox-label": "Búa til út frá sniði"
 }
