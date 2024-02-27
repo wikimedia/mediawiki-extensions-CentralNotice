@@ -248,9 +248,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 
 		$oldval = ( $oldrow ) ? $oldrow->$endField : 0;
 		if ( $oldval !== $newrow->$endField ) {
-			// Give grep a chance to find the usages:
-			// centralnotice-anon, centralnotice-account, centralnotice-fundraising,
-			// centralnotice-autolink
+			// The following messages are generated here:
+			// * centralnotice-anon
+			// * centralnotice-account
+			// * centralnotice-autolink
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
