@@ -208,7 +208,7 @@
 		$element.append( $group );
 
 		// Call parent constructor
-		MixinCustomWidget.parent.call( this, config );
+		MixinCustomWidget.super.call( this, config );
 
 		// Call mixin constructor
 		OO.ui.mixin.GroupElement.call(

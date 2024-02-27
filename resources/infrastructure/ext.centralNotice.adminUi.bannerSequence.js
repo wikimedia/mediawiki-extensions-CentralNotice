@@ -90,7 +90,7 @@
 	 * @constructor
 	 */
 	BannerSequenceUiController = function () {
-		BannerSequenceUiController.parent.call( this );
+		BannerSequenceUiController.super.call( this );
 	};
 
 	OO.inheritClass(
@@ -757,7 +757,7 @@
 		this.model = model;
 
 		// Call parent constructor
-		BannerSequenceWidget.parent.call( this, controller );
+		BannerSequenceWidget.super.call( this, controller );
 
 		// Set up days widget and field layout
 
@@ -985,7 +985,7 @@
 		} );
 
 		// Call parent constructor
-		BucketSeqContainerWidget.parent.call( this, config );
+		BucketSeqContainerWidget.super.call( this, config );
 
 		// Call mixin constructor
 		OO.ui.mixin.GroupElement.call(
@@ -1177,7 +1177,7 @@
 		var config = { classes: [ 'centralNoticeBannerSeqSequenceContainer' ] };
 
 		// Call parent constructor
-		BucketSeqWidget.parent.call( this, config );
+		BucketSeqWidget.super.call( this, config );
 
 		// Call mixin constructor
 		OO.ui.mixin.DraggableGroupElement.call(
@@ -1222,7 +1222,7 @@
 		config = $.extend( {}, config, { classes: [ 'centralNoticeBannerSeqStep' ] } );
 
 		// Call parent constructor
-		StepWidget.parent.call( this, config );
+		StepWidget.super.call( this, config );
 
 		// Set drag handle
 		// Note: Adding the oo-uiwidget class is a hack, apparently needed due to an issue
