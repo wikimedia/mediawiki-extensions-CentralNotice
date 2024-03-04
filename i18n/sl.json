@@ -106,7 +106,7 @@
 	"centralnotice-preview-page": "[ Predogled v vikiju ]",
 	"centralnotice-preview-loader-error-dialog-title": "Napaka pri nalaganju predogleda pasice",
 	"centralnotice-preview-loader-error-dialog-ok": "V redu",
-	"centralnotice-preview-loader-permissions-error": "Za predogled pasic nimate dovoljenja ali pa je vaš žeton za urejanje potekel. Poskusite se znova prijaviti ali stran znova naložite.",
+	"centralnotice-preview-loader-permissions-error": "Za predogled pasic niste pooblaščeni ali pa je vaš žeton za urejanje potekel. Poskusite se znova prijaviti ali stran znova naložite.",
 	"centralnotice-clone": "Kloniraj",
 	"centralnotice-clone-notice": "Ustvari kopijo pasice",
 	"centralnotice-clone-name": "Ime:",
