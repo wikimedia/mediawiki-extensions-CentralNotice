@@ -443,8 +443,8 @@ class CentralNotice extends SpecialPage {
 	private function createSelector( $prefix, $fields ) {
 		$out = '';
 		foreach ( $fields as [ $field, $label, $set, $current ] ) {
-			$out .= Xml::listDropDown( "{$prefix}[{$field}]",
-				self::dropDownList( $this->msg( $label )->text(), $set ),
+			$out .= Xml::listDropdown( "{$prefix}[{$field}]",
+				self::dropdownList( $this->msg( $label )->text(), $set ),
 				'',
 				$current );
 		}
@@ -1139,7 +1139,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', [],
 				Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' ) );
 			$htmlOut .= Xml::tags( 'td', [],
-			$this->numBucketsDropDown( $wgNoticeNumberOfBuckets, $numBuckets ) );
+			$this->numBucketsDropdown( $wgNoticeNumberOfBuckets, $numBuckets ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1407,13 +1407,13 @@ class CentralNotice extends SpecialPage {
 
 			// Weight
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
-				$this->weightDropDown( "weight[$row->tmp_id]", $row->tmp_weight )
+				$this->weightDropdown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 
 			// Bucket
 			$numCampaignBuckets = min( intval( $row->not_buckets ), $wgNoticeNumberOfBuckets );
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				$this->bucketDropDown(
+				$this->bucketDropdown(
 					"bucket[$row->tmp_id]",
 					( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
 					$numCampaignBuckets,
@@ -1451,7 +1451,7 @@ class CentralNotice extends SpecialPage {
 		return $htmlOut;
 	}
 
-	private function weightDropDown( $name, $selected ) {
+	private function weightDropdown( $name, $selected ) {
 		$selected = intval( $selected );
 
 		if ( $this->editable ) {
@@ -1466,7 +1466,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	private function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
+	private function bucketDropdown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
 		$bucketLabel = static function ( $val ) {
@@ -1480,7 +1480,7 @@ class CentralNotice extends SpecialPage {
 			$selected %= $numberCampaignBuckets;
 
 			// bucketSelector class is for all bucket selectors (for assigned or
-			// unassigned banners). Coordinate with CentralNoticePager::bucketDropDown().
+			// unassigned banners). Coordinate with CentralNoticePager::bucketDropdown().
 			$html = Html::openElement( 'select', [
 				'name' => $name,
 				'class' => 'bucketSelector bucketSelectorForAssignedBanners',
@@ -1506,7 +1506,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	private function numBucketsDropDown( $numBuckets, $selected ) {
+	private function numBucketsDropdown( $numBuckets, $selected ) {
 		if ( $selected === null ) {
 			$selected = 1;
 		}
@@ -1653,12 +1653,12 @@ class CentralNotice extends SpecialPage {
 		return Xml::tags( 'select', $properties, $options );
 	}
 
-	public static function dropDownList( $text, $values ) {
-		$dropDown = "*{$text}\n";
+	public static function dropdownList( $text, $values ) {
+		$dropdown = "*{$text}\n";
 		foreach ( $values as $value ) {
-			$dropDown .= "**{$value}\n";
+			$dropdown .= "**{$value}\n";
 		}
-		return $dropDown;
+		return $dropdown;
 	}
 
 	/**

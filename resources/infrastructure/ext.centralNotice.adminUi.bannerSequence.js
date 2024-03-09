@@ -223,7 +223,7 @@
 			}
 
 			// Tell the widget to update the options in the banner drop-downs
-			this.widget.updateBannersForDropDownsForBucket( bucket, bannersForBucket );
+			this.widget.updateBannersForDropdownsForBucket( bucket, bannersForBucket );
 		}
 	};
 
@@ -927,11 +927,11 @@
 	 * @param bucket
 	 * @param banners
 	 */
-	BannerSequenceWidget.prototype.updateBannersForDropDownsForBucket = function (
+	BannerSequenceWidget.prototype.updateBannersForDropdownsForBucket = function (
 		bucket,
 		banners
 	) {
-		this.findItemFromData( bucket ).updateBannersForDropDowns( banners );
+		this.findItemFromData( bucket ).updateBannersForDropdowns( banners );
 	};
 
 	/**
@@ -1139,12 +1139,12 @@
 	 *
 	 * @param banners
 	 */
-	BucketSeqContainerWidget.prototype.updateBannersForDropDowns = function ( banners ) {
+	BucketSeqContainerWidget.prototype.updateBannersForDropdowns = function ( banners ) {
 		var i,
 			stepWidgets = this.bucketSeqWidget.getItems();
 
 		for ( i = 0; i < stepWidgets.length; i++ ) {
-			stepWidgets[ i ].updateBannersDropDown( banners );
+			stepWidgets[ i ].updatebannersDropdown( banners );
 		}
 	};
 
@@ -1243,7 +1243,7 @@
 		dropMenuItems = this.makeDropMenuItems(
 			controller.getBannersForBucket( this.bucket ) );
 
-		this.bannersDropDown = new OO.ui.DropdownWidget( {
+		this.bannersDropdown = new OO.ui.DropdownWidget( {
 			menu: { items: dropMenuItems },
 			classes: [ 'centralNoticeBannerSeqBanner' ]
 		} );
@@ -1268,7 +1268,7 @@
 
 		// Field layouts
 
-		this.bannerFieldLayout = new OO.ui.FieldLayout( this.bannersDropDown, {
+		this.bannerFieldLayout = new OO.ui.FieldLayout( this.bannersDropdown, {
 			label: mw.message( 'centralnotice-banner-sequence-banner' ).text(),
 			align: 'top',
 			classes: [ 'centralNoticeBannerSeqBannerLayout' ]
@@ -1304,8 +1304,8 @@
 		// Set input values with data from the model
 		this.updateFromModel();
 
-		// Change handler for banner dropDown
-		this.bannersDropDown.getMenu().connect(
+		// Change handler for banner dropdown
+		this.bannersDropdown.getMenu().connect(
 			this,
 			{ choose: function ( menuItem ) {
 				var val;
@@ -1438,7 +1438,7 @@
 
 		// Set input values (if the step doesn't have an error state)
 		if ( !this.hasErrorState() ) {
-			this.bannersDropDown.getMenu().selectItemByData(
+			this.bannersDropdown.getMenu().selectItemByData(
 				this.model.banner || this.constructor.static.NO_BANNER_FLAG
 			);
 
@@ -1487,20 +1487,20 @@
 	 *
 	 * @param {string[]} banners Names of banners available for this bucket
 	 */
-	StepWidget.prototype.updateBannersDropDown = function ( banners ) {
+	StepWidget.prototype.updatebannersDropdown = function ( banners ) {
 
-		var dropDownMenu = this.bannersDropDown.getMenu(),
-			selectedItem = dropDownMenu.findSelectedItem(),
+		var dropdownMenu = this.bannersDropdown.getMenu(),
+			selectedItem = dropdownMenu.findSelectedItem(),
 			selectedBanner = selectedItem ? selectedItem.getData() : null;
 
 		this.updating = true;
 
 		// Clear and re-create the list of banners, and restore the previous selection,
 		// if there was one
-		dropDownMenu.clearItems();
-		dropDownMenu.addItems( this.makeDropMenuItems( banners ) );
+		dropdownMenu.clearItems();
+		dropdownMenu.addItems( this.makeDropMenuItems( banners ) );
 		if ( selectedItem ) {
-			dropDownMenu.selectItemByData( selectedBanner );
+			dropdownMenu.selectItemByData( selectedBanner );
 		}
 
 		this.updating = false;
@@ -1530,22 +1530,22 @@
 	 */
 	StepWidget.prototype.makeDropMenuItems = function ( banners ) {
 		var i,
-			dropDownMenuItems = [];
+			dropdownMenuItems = [];
 
 		// First option is always no banner
-		dropDownMenuItems.push( new OO.ui.MenuOptionWidget( {
+		dropdownMenuItems.push( new OO.ui.MenuOptionWidget( {
 			data: this.constructor.static.NO_BANNER_FLAG,
 			label: mw.message( 'centralnotice-banner-sequence-no-banner' ).text()
 		} ) );
 
 		for ( i = 0; i < banners.length; i++ ) {
-			dropDownMenuItems.push( new OO.ui.MenuOptionWidget( {
+			dropdownMenuItems.push( new OO.ui.MenuOptionWidget( {
 				data: banners[ i ],
 				label: banners[ i ]
 			} ) );
 		}
 
-		return dropDownMenuItems;
+		return dropdownMenuItems;
 	};
 
 	/**
