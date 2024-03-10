@@ -52,6 +52,7 @@ class CentralNoticeHooks implements
 	 * Conditional configuration
 	 */
 	public static function onRegistration() {
+		// @phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 		global $wgHooks, $wgNoticeInfrastructure, $wgSpecialPages,
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
@@ -652,7 +653,7 @@ class CentralNoticeHooks implements
 			return;
 		}
 
-		list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+		[ $alias, $sub ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			resolveAlias( $title->getText() );
 
 		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {

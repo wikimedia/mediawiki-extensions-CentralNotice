@@ -299,8 +299,8 @@ class CentralNotice extends SpecialPage {
 			$ts = wfTimestamp( TS_MW, $timestamp );
 
 			$fields = [
-				[ "hour", "centralnotice-hours", $hours,   substr( $ts, 8, 2 ) ],
-				[ "min",  "centralnotice-min",   $minutes, substr( $ts, 10, 2 ) ],
+				[ "hour", "centralnotice-hours", $hours, substr( $ts, 8, 2 ) ],
+				[ "min", "centralnotice-min", $minutes, substr( $ts, 10, 2 ) ],
 			];
 
 			return $this->createSelector( $prefix, $fields );
