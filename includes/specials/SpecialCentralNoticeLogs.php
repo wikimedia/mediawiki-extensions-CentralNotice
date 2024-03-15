@@ -9,10 +9,6 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		SpecialPage::__construct( "CentralNoticeLogs" );
 	}
 
-	public function isListed() {
-		return false;
-	}
-
 	/**
 	 * Handle different types of page requests
 	 * @param string|null $sub

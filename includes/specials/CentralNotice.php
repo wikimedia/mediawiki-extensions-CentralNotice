@@ -1,8 +1,9 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
-class CentralNotice extends SpecialPage {
+class CentralNotice extends UnlistedSpecialPage {
 
 	// TODO review usage of Xml class and unnecessary openElement() and closeElement()
 	// methods.

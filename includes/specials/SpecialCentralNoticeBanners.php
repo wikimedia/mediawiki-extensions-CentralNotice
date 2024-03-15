@@ -33,14 +33,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	}
 
 	/**
-	 * Whether this special page is listed in Special:SpecialPages
-	 * @return false
-	 */
-	public function isListed() {
-		return false;
-	}
-
-	/**
 	 * Handle all the different types of page requests determined by the first subpage
 	 * level after the special page title. If needed, the second subpage level is the
 	 * banner name.
