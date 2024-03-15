@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Muhammad Shuaib"
+		]
+	},
+	"apihelp-centralnoticecdncacheupdatebanner-summary": "درخواست کردہ اعلان اور زبان کے لیے گمنام صارفین کے لیے سی ڈی این (فرنٹ اینڈ) کے کیش میں محفوظ اعلان کے مندرجات کو صاف کرنے کی درخواست بھیجتا ہے۔",
+	"apihelp-centralnoticequerycampaign-summary": "کسی مہم کی تمام ترتیبات حاصل کرتا ہے۔",
+	"apihelp-centralnoticechoicedata-summary": "دیے گئے منصوبے اور زبان کے لیے کسی اعلان کو منتخب کرنے کی خاطر جو ڈیٹا درکار ہوتا ہے، اسے حاصل کرتا ہے۔"
+}
