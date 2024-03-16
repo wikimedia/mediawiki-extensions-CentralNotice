@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -60,9 +61,14 @@ class CNDatabase {
 
 		// Always use the database with CentralNotice data
 		if ( $wgCentralDBname === false || $wgCentralDBname === $wgDBname ) {
-			return wfGetDB( $target );
+			return MediaWikiServices::getInstance()
+				->getDBLoadBalancer()
+				->getConnection( $target );
 		} else {
-			return wfGetDB( $target, [], $wgCentralDBname );
+			return MediaWikiServices::getInstance()
+				->getDBLoadBalancerFactory()
+				->getMainLB( $wgCentralDBname )
+				->getConnection( $target, [], $wgCentralDBname );
 		}
 	}
 }

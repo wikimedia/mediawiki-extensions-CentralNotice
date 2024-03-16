@@ -38,7 +38,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	) {
 		$this->editable = $editable;
 		$this->filter = $bannerFilter;
-		// Set database before parent constructor to avoid setting it there with wfGetDB
+		// Set database before parent constructor to avoid setting it there
 		$this->mDb = CNDatabase::getDb();
 
 		parent::__construct();
