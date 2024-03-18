@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Ерней",
 			"Ильнар"
 		]
 	},
 	"centralnotice": "Хәбәрләр белән  идарә итү үзәге",
 	"noticetemplate": "Хәбәрләр белән  идарә итү үзәге",
-	"bannerallocation": "Хәбәрләр белән  идарә итү үзәге",
+	"bannerallocation": "Хәбәрләр белән идарә итү үзәге",
 	"centralnoticelogs": "Хәбәрләр белән  идарә итү үзәге",
 	"right-centralnotice-admin": "Үзәкләштерелгән идарә иту системасы",
 	"action-centralnotice-admin": "үзәкләштерелгән идарә иту системасы",
