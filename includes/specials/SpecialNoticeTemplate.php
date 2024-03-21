@@ -14,18 +14,14 @@ class SpecialNoticeTemplate extends CentralNotice {
 		if ( $sub == 'view' ) {
 			// Trying to view a banner -- so redirect to edit form
 			$banner = $this->getRequest()->getText( 'template' );
-
-			$this->getOutput()->redirect(
-				Title::makeTitleSafe( NS_SPECIAL, "CentralNoticeBanners/edit/$banner" )->
-					getFullUrlForRedirect(),
-				301
-			);
+			$title = SpecialPage::getTitleFor( 'CentralNoticeBanners', "edit/$banner" );
 		} else {
 			// don't know where they were trying to go, redirect them to the new list form
-			$this->getOutput()->redirect(
-				Title::makeTitle( NS_SPECIAL, 'CentralNoticeBanners' )->getFullUrlForRedirect(),
-				301
-			);
+			$title = SpecialPage::getTitleFor( 'CentralNoticeBanners' );
 		}
+		$this->getOutput()->redirect(
+			$title->getFullUrlForRedirect(),
+			301
+		);
 	}
 }

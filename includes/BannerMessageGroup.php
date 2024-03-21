@@ -126,7 +126,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 * @return string Canonical translate group name
 	 */
 	public static function getTranslateGroupName( $bannerName ) {
-		if ( strpos( $bannerName, 'Centralnotice-template' ) === 0 ) {
+		if ( str_starts_with( $bannerName, 'Centralnotice-template' ) ) {
 			return str_replace(
 				'Centralnotice-template',
 				self::TRANSLATE_GROUP_NAME_BASE,
