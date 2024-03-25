@@ -8,12 +8,12 @@
  */
 class ApiCentralNoticeChoiceDataTest extends ApiTestCase {
 	/** @var CentralNoticeTestFixtures */
-	protected $cnFixtures;
+	private $cnFixtures;
 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->cnFixtures = new CentralNoticeTestFixtures();
+		$this->cnFixtures = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
 	}
 
 	protected function tearDown(): void {

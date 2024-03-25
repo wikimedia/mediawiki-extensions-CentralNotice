@@ -8,11 +8,11 @@
  */
 class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 	/** @var CentralNoticeTestFixtures */
-	protected $cnFixtures;
+	private $cnFixtures;
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->cnFixtures = new CentralNoticeTestFixtures();
+		$this->cnFixtures = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
 		$this->setMwGlobals( $this->cnFixtures->getGlobalsFromFixtureData() );
 	}
 
@@ -59,8 +59,8 @@ class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 			$expectedAllocations = $cAndO['allocations'];
 
 			// Test that we have the expceted number of campaigns
-			$this->assertCount(
-				count( $expectedAllocations ),
+			$this->assertSameSize(
+				$expectedAllocations,
 				$choices,
 				$fixtureIdMsg . " Number of campaigns allocated."
 			);
@@ -102,8 +102,8 @@ class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 					AllocationCalculator::calculateBannerAllocations( $banners );
 
 					// Test that we have the expceted number of banners
-					$this->assertCount(
-						count( $expectedBanners ),
+					$this->assertSameSize(
+						$expectedBanners,
 						$banners,
 						$fixtureIdMsg . " Number of banners allocated."
 					);

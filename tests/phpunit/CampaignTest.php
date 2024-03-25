@@ -7,11 +7,13 @@
  * @covers Campaign
  */
 class CampaignTest extends MediaWikiIntegrationTestCase {
-	protected $userUser;
+	private User $userUser;
 
-	protected $campaignArray;
+	private array $campaignArray;
 
-	protected $fixture;
+	private CentralNoticeTestFixtures $fixture;
+
+	private string $campaignBannersJson;
 
 	protected function setUp(): void {
 		$this->userUser = $this->getTestUser()->getUser();
@@ -25,7 +27,7 @@ class CampaignTest extends MediaWikiIntegrationTestCase {
 		$regions = [];
 		$priority = 1;
 
-		$this->fixture = new CentralNoticeTestFixtures();
+		$this->fixture = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
 		$this->fixture->setupTestCaseWithDefaults(
 			[ 'setup' => [ 'campaigns' => [] ] ] );
 

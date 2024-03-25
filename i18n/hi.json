@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abijeet Patro",
 			"Amire80",
 			"Ansumang",
 			"Hindustanilanguage",
@@ -115,6 +116,8 @@
 	"centralnotice-banner-mixins": "मिक्सिन्स",
 	"centralnotice-geo": "भूलक्षित",
 	"centralnotice-countries": "देशों",
+	"centralnotice-location-filter": "फ़िल्टर",
+	"centralnotice-location-filter-clear": "खाली करें",
 	"centralnotice-allocation": "आवंटन",
 	"centralnotice-view-allocation": "बैनर आवंटन देखें",
 	"centralnotice-languages": "भाषाएँ",

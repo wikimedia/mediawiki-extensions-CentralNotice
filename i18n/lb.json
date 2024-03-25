@@ -3,7 +3,8 @@
 		"authors": [
 			"Les Meloures",
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Volvox"
 		]
 	},
 	"centralnotice": "Administratioun vun den zentrale Matdeelungen",
@@ -114,6 +115,7 @@
 	"centralnotice-countries": "Länner",
 	"centralnotice-regions": "Regiounen",
 	"centralnotice-location": "Länner a Regiounen",
+	"centralnotice-location-filter": "Filter",
 	"centralnotice-allocation": "Dispositioun",
 	"centralnotice-view-allocation": "Dispositioun vum Banner weisen",
 	"centralnotice-allocation-instructions": "Sicht den Environnement eraus wou Dir wëllt datt de Banner sou soll gesi ginn:",
@@ -199,6 +201,7 @@
 	"centralnotice-archive-campaign": "Archivéieren",
 	"centralnotice-archive-campaign-title": "{{PLURAL:$1|Campagne|Campagnen}} archivéieren?",
 	"centralnotice-archive-campaign-cancel": "Ofbriechen",
+	"centralnotice-archived-campaigns": "Archivéiert Campagnen",
 	"centralnotice-add-new-banner-title": "En neie Banner derbäisetzen",
 	"centralnotice-delete-banner": "Läschen",
 	"centralnotice-delete-banner-title": "{{PLURAL:$1|Banner|Bannere}} läschen",

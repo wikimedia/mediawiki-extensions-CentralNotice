@@ -152,9 +152,9 @@
 		} );
 
 		// Search input for geotree
-		$( '.cn-tree-search' ).on( 'keyup', mw.util.debounce( 250, function () {
+		$( '.cn-tree-search' ).on( 'keyup', mw.util.debounce( function () {
 			$( '.cn-tree' ).jstree( true ).search( $( '.cn-tree-search' ).val() );
-		} ) );
+		}, 250 ) );
 
 		// Clear button for search input
 		$( '.cn-tree-clear' ).on( 'click', function ( e ) {

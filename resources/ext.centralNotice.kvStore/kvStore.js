@@ -31,7 +31,7 @@
 		PREFIX_IN_COOKIES = 'CN',
 
 		// Default TTL of KV store items is 1/2 year, in seconds
-		DEFAULT_ITEM_TTL = 15768000;
+		DEFAULT_ITEM_TTL = ( 365 / 2 ) * 60 * 60 * 24;
 
 	/**
 	 * A context for key-value storage.

@@ -242,15 +242,16 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
-	protected function testBooleanBannerChange( $param, $newrow, $oldrow ) {
+	private function testBooleanBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_' . $param;
 
 		$oldval = ( $oldrow ) ? $oldrow->$endField : 0;
 		if ( $oldval !== $newrow->$endField ) {
-			// Give grep a chance to find the usages:
-			// centralnotice-anon, centralnotice-account, centralnotice-fundraising,
-			// centralnotice-autolink
+			// The following messages are generated here:
+			// * centralnotice-anon
+			// * centralnotice-account
+			// * centralnotice-autolink
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
@@ -268,7 +269,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $result;
 	}
 
-	protected function testTextBannerChange( $param, $newrow, $oldrow ) {
+	private function testTextBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_' . $param;
 

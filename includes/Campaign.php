@@ -5,36 +5,36 @@ use MediaWiki\MediaWikiServices;
 class Campaign {
 
 	/** @var int|null */
-	protected $id = null;
+	private $id = null;
 	/** @var string|null */
-	protected $name = null;
+	private $name = null;
 
 	/** @var MWTimestamp Start datetime of campaign */
-	protected $start = null;
+	private $start = null;
 
 	/** @var MWTimestamp End datetime of campaign */
-	protected $end = null;
+	private $end = null;
 
 	/** @var int Priority level of the campaign, higher is more important */
-	protected $priority = null;
+	private $priority = null;
 
 	/** @var bool True if the campaign is enabled for showing */
-	protected $enabled = null;
+	private $enabled = null;
 
 	/** @var bool True if the campaign is currently non editable */
-	protected $locked = null;
+	private $locked = null;
 
 	/** @var bool True if the campaign has been moved to the archive */
-	protected $archived = null;
+	private $archived = null;
 
 	/** @var bool True if there is geo-targeting data for ths campaign */
-	protected $geotargeted = null;
+	private $geotargeted = null;
 
 	/** @var int The number of buckets in this campaign */
-	protected $buckets = null;
+	private $buckets = null;
 
 	/** @var int */
-	protected $throttle = null;
+	private $throttle = null;
 
 	/**
 	 * Construct a lazily loaded CentralNotice campaign object
@@ -199,7 +199,7 @@ class Campaign {
 	 *
 	 * @throws CampaignExistenceException If the campaign doesn't exist
 	 */
-	protected function loadBasicSettings() {
+	private function loadBasicSettings() {
 		$db = CNDatabase::getDb();
 
 		// What selector are we using?
@@ -836,9 +836,9 @@ class Campaign {
 		$noticeName = trim( $noticeName );
 		if ( self::campaignExists( $noticeName ) ) {
 			return 'centralnotice-notice-exists';
-		} elseif ( empty( $projects ) ) {
+		} elseif ( !$projects ) {
 			return 'centralnotice-no-project';
-		} elseif ( empty( $project_languages ) ) {
+		} elseif ( !$project_languages ) {
 			return 'centralnotice-no-language';
 		}
 
@@ -944,15 +944,14 @@ class Campaign {
 		// TODO This method is never used?
 		$dbr = CNDatabase::getDb( DB_PRIMARY );
 
-		$res = $dbr->select( 'cn_notices', 'not_name, not_locked',
+		$res = $dbr->selectField( 'cn_notices', 'not_locked',
 			[ 'not_name' => $campaignName ],
 			__METHOD__
 		);
-		if ( $res->numRows() < 1 ) {
+		if ( $res === false ) {
 			return 'centralnotice-remove-notice-doesnt-exist';
 		}
-		$row = $res->fetchObject();
-		if ( $row->not_locked == '1' ) {
+		if ( $res ) {
 			return 'centralnotice-notice-is-locked';
 		}
 
@@ -1565,7 +1564,7 @@ class Campaign {
 	 * @param string $settingName
 	 * @return bool
 	 */
-	protected static function settingNameIsValid( $settingName ) {
+	private static function settingNameIsValid( $settingName ) {
 		return ( preg_match( '/^[a-z_]*$/', $settingName ) === 1 );
 	}
 

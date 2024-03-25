@@ -156,6 +156,8 @@
 	"centralnotice-countries": "الدول",
 	"centralnotice-regions": "المناطق",
 	"centralnotice-location": "البلدان والأقاليم",
+	"centralnotice-location-filter": "مرشح",
+	"centralnotice-location-filter-clear": "مسح",
 	"centralnotice-location-name-and-code": "$1 ($2)",
 	"centralnotice-allocation": "تخصيص",
 	"centralnotice-view-allocation": "موقع عرض الشعار",

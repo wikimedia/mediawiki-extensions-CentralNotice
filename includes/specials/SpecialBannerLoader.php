@@ -61,8 +61,8 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			$this->cacheResponse = self::MAX_CACHE_REDUCED;
 
 		} catch ( Exception $e ) {
-			if ( $e instanceof ILocalizedException ) {
-				$msg = $e->getMessageObject()->escaped();
+			if ( $e instanceof BannerPreviewPermissionsException ) {
+				$msg = $this->msg( 'centralnotice-preview-loader-permissions-error' )->escaped();
 			} else {
 				$msg = $e->getMessage();
 			}

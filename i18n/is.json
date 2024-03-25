@@ -4,12 +4,13 @@
 			"Maxí",
 			"Snævar",
 			"Spacebirdy",
+			"Stefán Örvar Sigmundsson",
 			"Sveinn í Felli",
 			"පසිඳු කාවින්ද"
 		]
 	},
 	"centralnotice-enabled": "Virkt",
-	"centralnotice-modify": "Staðfesta",
+	"centralnotice-modify": "Senda",
 	"centralnotice-view": "Skoða",
 	"centralnotice-save-banner": "Vista",
 	"centralnotice-remove": "Fjarlægja",
@@ -94,5 +95,6 @@
 	"centralnotice-delete-banner-cancel": "Hætta við",
 	"centralnotice-banner-history-logger-rate": "Safntíðni",
 	"centralnotice-banner-sequence-banner": "Borði",
-	"centralnotice-banner-sequence-no-banner": "(Enginn borði)"
+	"centralnotice-banner-sequence-no-banner": "(Enginn borði)",
+	"centralnotice-create-from-template-checkbox-label": "Búa til út frá sniði"
 }

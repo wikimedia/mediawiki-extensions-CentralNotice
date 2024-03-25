@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Augustus A C",
 			"Gazimagomedov",
 			"Аль-Гимравий"
 		]
 	},
-	"centralnotice-talk-link": "БахӀс"
+	"centralnotice-insert": "Лъей: $1",
+	"centralnotice-talk-link": "БахӀс",
+	"centralnotice-campaign-type-special": "Специалаб"
 }

@@ -65,10 +65,6 @@ class SpecialBannerAllocation extends CentralNotice {
 		SpecialPage::__construct( 'BannerAllocation' );
 	}
 
-	public function isListed() {
-		return false;
-	}
-
 	/**
 	 * Handle different types of page requests
 	 * @param string|null $sub

@@ -11,7 +11,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		parent::__construct();
 
 		// Override paging defaults
-		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffsetForUser(
+		[ $this->mLimit, /* $offset */ ] = $this->mRequest->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
 			''
@@ -140,9 +140,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				->rawParams( $userLink, $userTalkLink )
 				->parse()
 		);
-		// Give grep a chance to find the usages:
-		// centralnotice-action-created, centralnotice-action-modified,
-		// centralnotice-action-removed
+		// The following messages are generated here:
+		// * centralnotice-action-created
+		// * centralnotice-action-modified
+		// * centralnotice-action-removed
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-action-' . $row->notlog_action )->text()
 		);
@@ -299,6 +300,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				)->text()
 			)->parse() . "<br />";
 		}
+		// When adding new params, update possible generated
+		// i18n keys in the respective functions.
 		$details .= $this->testBooleanChange( 'enabled', $row );
 		$details .= $this->testPriorityChange( 'preferred', $row );
 		$details .= $this->testBooleanChange( 'locked', $row );
@@ -375,8 +378,12 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;
 		if ( $row->$beginField !== $row->$endField ) {
-			// Give grep a chance to find the usages:
-			// centralnotice-enabled, centralnotice-locked, centralnotice-geo, centralnotice-buckets
+			// The following messages are generated here:
+			// * centralnotice-enabled
+			// * centralnotice-locked
+			// * centralnotice-geo
+			// * centralnotice-buckets
+			// * centralnotice-archived
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
@@ -423,8 +430,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				$differences .= $this->msg(
 					'centralnotice-removed', $lang->commaList( $removed ) )->text();
 			}
-			// Give grep a chance to find the usages:
-			// centralnotice-projects, centralnotice-languages, centralnotice-countries
+			// The following messages are generated here:
+			// * centralnotice-projects
+			// * centralnotice-languages
+			// * centralnotice-countries
+			// * centralnotice-regions
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
@@ -475,7 +485,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 					$endMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
 					break;
 			}
-			// Give grep a chance to find the usages: centralnotice-preferred
+			// The following messages are generated here:
+			// * centralnotice-preferred
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
@@ -495,14 +506,15 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param stdClass $row settings
 	 * @return string
 	 */
-	protected function testPercentageChange( $param, $row ) {
+	private function testPercentageChange( $param, $row ) {
 		$beginField = 'notlog_begin_' . $param;
 		$endField = 'notlog_end_' . $param;
 		$result = '';
 		if ( $row->$beginField !== $row->$endField ) {
 			$beginMessage = strval( $row->$beginField ) . '%';
 			$endMessage = strval( $row->$endField ) . '%';
-			// Give grep a chance to find the usages: centralnotice-throttle
+			// The following messages are generated here:
+			// * centralnotice-throttle
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
@@ -519,8 +531,13 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	protected function testTextChange( $param, $newval, $oldval ) {
 		$result = '';
 		if ( $oldval !== $newval ) {
-			// Give grep a chance to find the usages: centralnotice-landingpages,
-			// centralnotice-prioritylangs, centralnotice-controller_mixin, centralnotice-category
+			// The following messages are generated here:
+			// * centralnotice-campaign-mixins
+			// * centralnotice-category
+			// * centralnotice-landingpages
+			// * centralnotice-controller_mixin
+			// * centralnotice-prioritylangs
+			// * centralnotice-devices
 			$result .= $this->msg(
 				'centralnotice-log-label',
 				$this->msg( 'centralnotice-' . $param )->text(),
@@ -534,7 +551,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $result;
 	}
 
-	protected function testTypeChange( $row ) {
+	private function testTypeChange( $row ) {
 		$result = '';
 
 		$oldval = $row->notlog_begin_type;

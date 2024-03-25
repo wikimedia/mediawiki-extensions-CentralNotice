@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -19,15 +20,15 @@ class CNCampaignPager extends TablePager {
 	private const DEFAULT_LIMIT = 5000;
 
 	/** @var CentralNotice */
-	protected $onSpecialCN;
+	private $onSpecialCN;
 	/** @var string|false */
-	protected $editable;
+	private $editable;
 	/** @var int|null */
-	protected $assignedBannerId;
+	private $assignedBannerId;
 	/** @var bool|null */
-	protected $showArchived;
+	private $showArchived;
 	/** @var string[]|null */
-	protected $fieldNames = null;
+	private $fieldNames = null;
 
 	/**
 	 * @param CentralNotice $onSpecialCN The CentralNotice special page we're on
@@ -130,8 +131,10 @@ class CNCampaignPager extends TablePager {
 	public function doQuery() {
 		// group_concat output is limited to 1024 characters by default, increase
 		// the limit temporarily so the list of all languages can be rendered.
-		$this->getDatabase()
-			->setSessionOptions( [ 'groupConcatMaxLen' => 10000 ] );
+		$db = $this->getDatabase();
+		if ( $db instanceof IDatabase ) {
+			$db->setSessionOptions( [ 'groupConcatMaxLen' => 10000 ] );
+		}
 
 		parent::doQuery();
 	}
@@ -194,9 +197,9 @@ class CNCampaignPager extends TablePager {
 	 */
 	public function formatValue( $fieldName, $value ) {
 		// These are used in a few cases below.
-		$rowIsEnabled = ( $this->mCurrentRow->not_enabled == '1' );
-		$rowIsLocked = ( $this->mCurrentRow->not_locked == '1' );
-		$rowIsArchived = ( $this->mCurrentRow->not_archived == '1' );
+		$rowIsEnabled = (bool)$this->mCurrentRow->not_enabled;
+		$rowIsLocked = (bool)$this->mCurrentRow->not_locked;
+		$rowIsArchived = (bool)$this->mCurrentRow->not_archived;
 		$name = $this->mCurrentRow->not_name;
 		$readonly = [ 'disabled' => 'disabled' ];
 
@@ -320,8 +323,7 @@ class CNCampaignPager extends TablePager {
 	 * @inheritDoc
 	 */
 	public function getRowClass( $row ) {
-		$enabled = ( $row->not_enabled == '1' );
-		$archived = ( $row->not_archived == '1' );
+		$enabled = (bool)$row->not_enabled;
 
 		$now = wfTimestamp();
 		$started = $now >= wfTimestamp( TS_UNIX, $row->not_start );
@@ -430,7 +432,7 @@ class CNCampaignPager extends TablePager {
 	 * Returns true if this is the only page of results there is to show.
 	 * @return bool
 	 */
-	protected function isWithinLimit() {
+	private function isWithinLimit() {
 		return $this->mIsFirst && $this->mIsLast;
 	}
 

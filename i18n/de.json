@@ -246,6 +246,7 @@
 	"centralnotice-archive-campaign-confirm": "Das Archivieren markiert eine Kampagne als dauerhaft inaktiv.",
 	"centralnotice-archive-campaign-cancel": "Abbrechen",
 	"centralnotice-archive-edit-prevented": "Das Bearbeiten dieser Kampagne ist deaktiviert, da sie entweder gesperrt oder archiviert wurde. Ändere den Status auf [[Special:CentralNotice]].",
+	"centralnotice-archived-campaigns": "Archivierte Kampagnen",
 	"centralnotice-add-new-banner-title": "Eine neue Vorlage hinzufügen",
 	"centralnotice-delete-banner": "Löschen",
 	"centralnotice-delete-banner-title": "{{PLURAL:$1|Vorlage|Vorlagen}} löschen",

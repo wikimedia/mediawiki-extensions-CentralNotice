@@ -159,8 +159,8 @@ class BannerMessage {
 
 	public static function sanitize( $text ) {
 		// First, remove any occurrences of the placeholders used to preserve span tags.
-		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_START, '',  $text );
-		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_END, '',  $text );
+		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_START, '', $text );
+		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_END, '', $text );
 
 		// Remove and save <span> tags so they don't get removed by sanitization; allow
 		// only class attributes.

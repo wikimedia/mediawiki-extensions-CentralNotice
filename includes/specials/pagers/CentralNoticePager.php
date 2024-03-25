@@ -18,7 +18,7 @@ class CentralNoticePager extends TemplatePager {
 		$likeArray = preg_split( '/\s/', $this->filter );
 
 		// ...and then insert all the wildcards between search terms
-		if ( empty( $likeArray ) ) {
+		if ( !$likeArray ) {
 			$likeArray = $dbr->anyString();
 		} else {
 			$anyStringToken = $dbr->anyString();
@@ -93,13 +93,13 @@ class CentralNoticePager extends TemplatePager {
 
 			// Bucket
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				$this->bucketDropDown( $row->tmp_name )
+				$this->bucketDropdown( $row->tmp_name )
 			);
 
 			// Weight select
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
-				Xml::listDropDown( "weight[$row->tmp_id]",
-					CentralNotice::dropDownList(
+				Xml::listDropdown( "weight[$row->tmp_id]",
+					CentralNotice::dropdownList(
 						$this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 )
 					),
 					'',
@@ -156,10 +156,10 @@ class CentralNoticePager extends TemplatePager {
 		return Xml::closeElement( 'table' );
 	}
 
-	private function bucketDropDown( $bannerName ) {
+	private function bucketDropdown( $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
-		// class should coordinate with CentralNotice::bucketDropDown()
+		// class should coordinate with CentralNotice::bucketDropdown()
 		$html = Html::openElement( 'select', [
 			'name' => "bucket-{$bannerName}",
 			'class' => 'bucketSelector',

@@ -6,17 +6,16 @@
  * @group Database
  */
 class HistoryTest extends MediaWikiIntegrationTestCase {
-	protected $userUser;
+	private User $userUser;
 
-	/** @var CentralNoticeTestFixtures */
-	protected $cnFixtures;
+	private CentralNoticeTestFixtures $cnFixtures;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->userUser = $this->getTestUser()->getUser();
 
-		$this->cnFixtures = new CentralNoticeTestFixtures();
+		$this->cnFixtures = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
 	}
 
 	protected function tearDown(): void {

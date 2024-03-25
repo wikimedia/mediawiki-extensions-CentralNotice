@@ -210,5 +210,17 @@
 	"centralnotice-end-time": "Deiziad fin (UTC)",
 	"centralnotice-multiple-countries": "Meur a vro",
 	"centralnotice-multiple-regions": "Ranndirioù lies",
-	"centralnotice-multiple-languages": "Meur a yezh"
+	"centralnotice-multiple-languages": "Meur a yezh",
+	"prefs-centralnotice-banners": "Gitonioù",
+	"prefs-centralnotice-display-banner-types": "Seurtoù gitonioù da ziskwel",
+	"prefs-description-centralnotice-banners": "Merañ ar seurtoù kemennoù e welit.",
+	"centralnotice-campaign-type-advocacy": "Plede",
+	"centralnotice-campaign-type-article-writing": "Skrivañ pennadoù",
+	"centralnotice-campaign-type-event": "Darvoud",
+	"centralnotice-campaign-type-fundraising": "Klask moneiz",
+	"centralnotice-campaign-type-governance": "Gouarnerezh",
+	"centralnotice-campaign-type-maintenance": "Trezalc'h",
+	"centralnotice-campaign-type-photography": "Luc'hskeudennerezh",
+	"centralnotice-campaign-type-special": "Dibar",
+	"centralnotice-user-prefs-intro": "Gitonioù a ziskwel kemennoù a c’hall bezañ dedennus da gumuziezhoù hag implijerien Wikimedia.\n\nA-is emañ dibaboù a c’hallit merañ ar seurtoù kemennoù a welit ganto. Atav e vo diskwelet kemennoù savenn zo, evel ar re a denn da drezalc’h al lec’hienn ha kemennoù ispisial a gaver ret evit an holl implijerien. Evit muioc’h a ditouroù, lennit mar plij an [[metawikimedia:Special:MyLanguage/CentralNotice|teuliadur war Meta-Wiki]]."
 }

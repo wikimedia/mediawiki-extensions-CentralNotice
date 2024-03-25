@@ -12,12 +12,6 @@ use MediaWiki\ResourceLoader as RL;
  */
 class CNChoiceDataResourceLoaderModule extends RL\Module {
 
-	/**
-	 * @see RL\Module::targets
-	 * @var string[]
-	 */
-	protected $targets = [ 'desktop', 'mobile' ];
-
 	private const API_REQUEST_TIMEOUT = 20;
 
 	protected function getChoices( RL\Context $context ) {
@@ -53,7 +47,7 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 	 *
 	 * @return array|bool
 	 */
-	protected function getFromApi( $project, $language ) {
+	private function getFromApi( $project, $language ) {
 		$cnApiUrl = $this->getConfig()->get( 'CentralNoticeApiUrl' );
 
 		// Make the URL

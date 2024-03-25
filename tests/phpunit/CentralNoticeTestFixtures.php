@@ -6,19 +6,19 @@ class CentralNoticeTestFixtures {
 	/** @var array */
 	public $spec = [];
 	/** @var User */
-	protected $user;
+	private $user;
 	/** @var array */
-	protected $addedDeviceIds = [];
+	private $addedDeviceIds = [];
 	/** @var array|null */
-	protected $knownDevices = null;
+	private $knownDevices = null;
 
 	/** @var array For legacy test that don't use fixture data: use exactly the api defaults where available */
-	public static $defaultCampaign;
+	private static $defaultCampaign;
 	/** @var array */
-	public static $defaultBanner;
+	private static $defaultBanner;
 
-	public function __construct() {
-		$this->user = User::newFromName( 'UTSysop' );
+	public function __construct( $user ) {
+		$this->user = $user;
 
 		static::$defaultCampaign = [
 			'enabled' => 1,
@@ -110,7 +110,7 @@ class CentralNoticeTestFixtures {
 	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
-	protected function addTestCaseDefaults( &$testCaseSetup ) {
+	private function addTestCaseDefaults( &$testCaseSetup ) {
 		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
 			$campaign = $campaign + static::$defaultCampaign + [
 				'name' => 'TestCampaign_' . rand(),
@@ -133,7 +133,7 @@ class CentralNoticeTestFixtures {
 	 *
 	 * @param array &$testCase A data structure with the test case specification
 	 */
-	protected function setTestCaseStartEnd( &$testCase ) {
+	private function setTestCaseStartEnd( &$testCase ) {
 		$now = wfTimestamp();
 
 		foreach ( $testCase['setup']['campaigns'] as &$campaign ) {
@@ -180,7 +180,7 @@ class CentralNoticeTestFixtures {
 	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
-	protected function preprocessSetupCountriesProp( &$testCaseSetup ) {
+	private function preprocessSetupCountriesProp( &$testCaseSetup ) {
 		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
 			if ( !$campaign['geotargeted'] ) {
 				if ( !isset( $campaign['countries'] ) ) {
@@ -201,7 +201,7 @@ class CentralNoticeTestFixtures {
 	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
-	protected function preprocessSetupRegionsProp( &$testCaseSetup ) {
+	private function preprocessSetupRegionsProp( &$testCaseSetup ) {
 		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
 			if ( !$campaign['geotargeted'] ) {
 				if ( !isset( $campaign['regions'] ) ) {
@@ -220,7 +220,7 @@ class CentralNoticeTestFixtures {
 	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
-	protected function addDummyBannerBody( &$testCaseSetup ) {
+	private function addDummyBannerBody( &$testCaseSetup ) {
 		foreach ( $testCaseSetup['campaigns'] as &$campaign ) {
 			foreach ( $campaign['banners'] as &$banner ) {
 				$banner['body'] = $banner['name'] . ' body';
@@ -235,7 +235,7 @@ class CentralNoticeTestFixtures {
 	 * @param unknown $offsetInDays
 	 * @return MW_TS
 	 */
-	protected static function makeTimestamp( $now, $offsetInDays ) {
+	private static function makeTimestamp( $now, $offsetInDays ) {
 		return $now + ( 86400 * $offsetInDays );
 	}
 
@@ -246,7 +246,7 @@ class CentralNoticeTestFixtures {
 	 * @param array $testCaseSetup A data structure with the setup section of a
 	 *  test case specification
 	 */
-	protected function setupTestCase( $testCaseSetup ) {
+	private function setupTestCase( $testCaseSetup ) {
 		// It is expected that when a test case is set up via fixture data,
 		// this global will already have been set via
 		// setupTestCaseFromFixtureData(). Legacy (non-fixture data) tests don't
@@ -401,7 +401,7 @@ class CentralNoticeTestFixtures {
 	 * array recursively and do the same for each value.)
 	 * @param array &$a
 	 */
-	protected function deepMultisort( array &$a ) {
+	private function deepMultisort( array &$a ) {
 		array_multisort( $a );
 
 		foreach ( $a as &$v ) {
@@ -415,7 +415,7 @@ class CentralNoticeTestFixtures {
 	 * Ensure there is a known device called "desktop". This is a workaround
 	 * for a hack (or maybe a hack for a workaround?) in Banner.
 	 */
-	protected function ensureDesktopDevice() {
+	private function ensureDesktopDevice() {
 		$this->ensureDevices( [ 'desktop' ] );
 	}
 
@@ -425,7 +425,7 @@ class CentralNoticeTestFixtures {
 	 *
 	 * @param string[] $deviceNames
 	 */
-	protected function ensureDevices( $deviceNames ) {
+	private function ensureDevices( $deviceNames ) {
 		if ( !$this->knownDevices ) {
 			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
 		}

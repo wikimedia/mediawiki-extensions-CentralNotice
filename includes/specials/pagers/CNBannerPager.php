@@ -7,22 +7,22 @@
 class CNBannerPager extends ReverseChronologicalPager {
 
 	/** @var bool True if the form is to be created with editable elements */
-	protected $editable = false;
+	private $editable = false;
 
 	/** @var string Space separated strings to filter banner titles on */
-	protected $filter = '';
+	private $filter = '';
 
 	/** @var array[] HTMLFormFields to add to the results before every banner entry */
-	protected $prependPrototypes = [];
+	private $prependPrototypes = [];
 
 	/** @var array[] HTMLFormFields to add to the results after every banner entry */
-	protected $appendPrototypes = [];
+	private $appendPrototypes = [];
 
 	/** @var string 'Section' attribute to apply to the banner elements generated */
-	protected $formSection = null;
+	private $formSection = null;
 
 	/** @var SpecialCentralNoticeBanners the page on which we appear */
-	protected $hostSpecialPage;
+	private $hostSpecialPage;
 
 	/**
 	 * @param SpecialCentralNoticeBanners $hostSpecialPage
@@ -38,7 +38,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 	) {
 		$this->editable = $editable;
 		$this->filter = $bannerFilter;
-		// Set database before parent constructor to avoid setting it there with wfGetDB
+		// Set database before parent constructor to avoid setting it there
 		$this->mDb = CNDatabase::getDb();
 
 		parent::__construct();
@@ -49,7 +49,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		$this->hostSpecialPage = $hostSpecialPage;
 		// Override paging defaults
-		list( $this->mLimit, $this->mOffset ) = $this->mRequest->getLimitOffsetForUser(
+		[ $this->mLimit, $this->mOffset ] = $this->mRequest->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
 			''
@@ -94,7 +94,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		$likeArray = preg_split( '/\s/', $this->filter );
 
 		// ...and then insert all the wildcards between search terms
-		if ( empty( $likeArray ) ) {
+		if ( !$likeArray ) {
 			$likeArray = $this->mDb->anyString();
 		} else {
 			$anyStringToken = $this->mDb->anyString();

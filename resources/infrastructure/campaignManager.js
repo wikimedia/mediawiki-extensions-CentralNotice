@@ -208,7 +208,7 @@
 		$element.append( $group );
 
 		// Call parent constructor
-		MixinCustomWidget.parent.call( this, config );
+		MixinCustomWidget.super.call( this, config );
 
 		// Call mixin constructor
 		OO.ui.mixin.GroupElement.call(
@@ -381,7 +381,7 @@
 					$paramControls = $paramControlSet.find( 'input' );
 					$paramControls.on(
 						'keyup keydown change mouseup cut paste focus blur',
-						mw.util.debounce( 100, verifyParamControl )
+						mw.util.debounce( verifyParamControl, 100 )
 					);
 				}
 

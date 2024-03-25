@@ -141,6 +141,8 @@
 	"centralnotice-countries": "Paesi",
 	"centralnotice-regions": "Regioni",
 	"centralnotice-location": "Paesi e regioni",
+	"centralnotice-location-filter": "Filtra",
+	"centralnotice-location-filter-clear": "pulisci",
 	"centralnotice-allocation": "Destinazione",
 	"centralnotice-view-allocation": "Visualizza destinazione dei banner",
 	"centralnotice-allocation-instructions": "Seleziona il contesto di esposizione dei banner desiderato:",

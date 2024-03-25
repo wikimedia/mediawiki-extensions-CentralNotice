@@ -1,5 +1,15 @@
 <?php
 
+// phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
+
+use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
+use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
+use MediaWiki\Hook\CanonicalNamespacesHook;
+use MediaWiki\Hook\PreferencesGetIconHook;
+use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\Hook\GetPreferencesHook;
+use MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook;
 use MediaWiki\ResourceLoader\ResourceLoader;
 
 /**
@@ -28,12 +38,21 @@ use MediaWiki\ResourceLoader\ResourceLoader;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-class CentralNoticeHooks {
+class CentralNoticeHooks implements
+	CanonicalNamespacesHook,
+	ChangeTagsListActiveHook,
+	ListDefinedTagsHook,
+	SkinTemplateNavigation__UniversalHook,
+	ResourceLoaderRegisterModulesHook,
+	GetPreferencesHook,
+	PreferencesGetIconHook
+{
 
 	/**
 	 * Conditional configuration
 	 */
 	public static function onRegistration() {
+		// @phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 		global $wgHooks, $wgNoticeInfrastructure, $wgSpecialPages,
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
 			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
@@ -261,7 +280,7 @@ class CentralNoticeHooks {
 		}
 	}
 
-	protected static function addCascadingRestrictionRight( $right ) {
+	private static function addCascadingRestrictionRight( $right ) {
 		global $wgCascadingRestrictionLevels, $wgRestrictionLevels;
 		if ( !in_array( $right, $wgRestrictionLevels ) ) {
 			$wgRestrictionLevels[] = $right;
@@ -298,21 +317,6 @@ class CentralNoticeHooks {
 	}
 
 	/**
-	 * Tell the UserMerge extension where we store user ids
-	 * @param array[] &$updateFields
-	 * @return true
-	 */
-	public static function onUserMergeAccountFields( &$updateFields ) {
-		global $wgNoticeInfrastructure;
-		if ( $wgNoticeInfrastructure ) {
-			// array( tableName, idField, textField )
-			$updateFields[] = [ 'cn_notice_log', 'notlog_user_id' ];
-			$updateFields[] = [ 'cn_template_log', 'tmplog_user_id' ];
-		}
-		return true;
-	}
-
-	/**
 	 * CanonicalNamespaces hook; adds the CentralNotice namespaces if this is an infrastructure
 	 * wiki, and if CentralNotice is configured to use the Translate extension.
 	 *
@@ -321,10 +325,8 @@ class CentralNoticeHooks {
 	 * be the case if we just used the wgExtensionFunctions hook system.
 	 *
 	 * @param array &$namespaces Modifiable list of namespaces -- similar to $wgExtraNamespaces
-	 *
-	 * @return bool True if the hook completed successfully.
 	 */
-	public static function onCanonicalNamespaces( &$namespaces ) {
+	public function onCanonicalNamespaces( &$namespaces ) {
 		global $wgExtraNamespaces, $wgNamespacesWithSubpages, $wgTranslateMessageNamespaces;
 		global $wgNoticeUseTranslateExtension, $wgNoticeInfrastructure;
 
@@ -350,8 +352,6 @@ class CentralNoticeHooks {
 			$namespaces[NS_CN_BANNER] = 'CNBanner';
 			$namespaces[NS_CN_BANNER_TALK] = 'CNBanner_talk';
 		}
-
-		return true;
 	}
 
 	/**
@@ -543,7 +543,7 @@ class CentralNoticeHooks {
 	 *
 	 * @param ResourceLoader $resourceLoader
 	 */
-	public static function onResourceLoaderRegisterModules( ResourceLoader $resourceLoader ) {
+	public function onResourceLoaderRegisterModules( ResourceLoader $resourceLoader ): void {
 		global $wgEnableJavaScriptTest, $wgAutoloadClasses;
 
 		if ( $wgEnableJavaScriptTest ) {
@@ -562,11 +562,24 @@ class CentralNoticeHooks {
 	}
 
 	/**
-	 * Add tags defined by this extension to list of defined and active tags.
+	 * Add tags defined by this extension to list of active tags.
 	 *
 	 * @param array &$tags List of defined or active tags
 	 */
-	public static function onListDefinedTags( &$tags ) {
+	public function onChangeTagsListActive( &$tags ) {
+		$this->addDefinedTags( $tags );
+	}
+
+	/**
+	 * Add tags defined by this extension to list of defined tags.
+	 *
+	 * @param array &$tags List of defined or active tags
+	 */
+	public function onListDefinedTags( &$tags ) {
+		$this->addDefinedTags( $tags );
+	}
+
+	private function addDefinedTags( &$tags ): void {
 		$tags[] = 'centralnotice';
 		$tags[] = 'centralnotice translation';
 	}
@@ -574,9 +587,8 @@ class CentralNoticeHooks {
 	/**
 	 * @param User $user
 	 * @param array &$preferences
-	 * @return bool
 	 */
-	public static function onGetPreferences( $user, &$preferences ) {
+	public function onGetPreferences( $user, &$preferences ) {
 		// Explanatory text
 		$preferences['centralnotice-intro'] = [
 			'type' => 'info',
@@ -600,8 +612,6 @@ class CentralNoticeHooks {
 				'disabled' => $type->getOnForAll()
 			];
 		}
-
-		return true;
 	}
 
 	/**
@@ -609,7 +619,57 @@ class CentralNoticeHooks {
 	 *
 	 * @param array &$iconNames Array of icon names for their respective sections.
 	 */
-	public static function onPreferencesGetIcon( &$iconNames ) {
+	public function onPreferencesGetIcon( &$iconNames ) {
 		$iconNames[ 'centralnotice-banners' ] = 'feedback';
+	}
+
+	/**
+	 * Adds CentralNotice specific navigation tabs to the UI.
+	 * Implementation of SkinTemplateNavigation::Universal hook.
+	 *
+	 * @param Skin $skin Reference to the Skin object
+	 * @param array &$tabs Any current skin tabs
+	 */
+	public function onSkinTemplateNavigation__Universal( $skin, &$tabs ): void {
+		global $wgNoticeTabifyPages, $wgNoticeInfrastructure;
+
+		// Only show tabs if this wiki is in infrastructure mode
+		if ( !$wgNoticeInfrastructure ) {
+			return;
+		}
+
+		// Return if skin allows special pages to register natigation links (in which
+		// case this is handled by getShortDescription() and
+		// getAssociatedNavigationLinks()).
+		// See T315562, T313349.
+		if ( $skin->supportsMenu( 'associated-pages' ) ) {
+			return;
+		}
+
+		$title = $skin->getTitle();
+
+		// Only add tabs to special pages
+		if ( !$title->isSpecialPage() ) {
+			return;
+		}
+
+		[ $alias, $sub ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+			resolveAlias( $title->getText() );
+
+		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
+			return;
+		}
+
+		// Clear the special page tab that's there already
+		$tabs['namespaces'] = [];
+
+		// Now add our own
+		foreach ( $wgNoticeTabifyPages as $page => $keys ) {
+			$tabs[ $keys[ 'type' ] ][ $page ] = [
+				'text' => wfMessage( $keys[ 'message' ] )->parse(),
+				'href' => SpecialPage::getTitleFor( $page )->getFullURL(),
+				'class' => ( $alias === $page ) ? 'selected' : '',
+			];
+		}
 	}
 }

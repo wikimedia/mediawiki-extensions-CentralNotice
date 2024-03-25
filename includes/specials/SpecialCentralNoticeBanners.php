@@ -7,22 +7,22 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialCentralNoticeBanners extends CentralNotice {
 	/** @var string Name of the banner we're currently editing */
-	protected $bannerName = '';
+	private $bannerName = '';
 
 	/** @var Banner|null Banner object we're currently editing */
-	protected $banner = null;
+	private $banner = null;
 
 	/** @var string Filter to apply to the banner search when generating the list */
-	protected $bannerFilterString = '';
+	private $bannerFilterString = '';
 
 	/** @var string Language code to render preview materials in */
-	protected $bannerLanguagePreview;
+	private $bannerLanguagePreview;
 
 	/** @var bool If true, form execution must stop and the page will be redirected */
-	protected $bannerFormRedirectRequired = false;
+	private $bannerFormRedirectRequired = false;
 
 	/** @var array|null Names of the banners that are marked as templates */
-	protected $templateBannerNames = null;
+	private $templateBannerNames = null;
 
 	public function __construct() {
 		SpecialPage::__construct( 'CentralNoticeBanners' );
@@ -30,14 +30,6 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 	public function doesWrites() {
 		return true;
-	}
-
-	/**
-	 * Whether this special page is listed in Special:SpecialPages
-	 * @return false
-	 */
-	public function isListed() {
-		return false;
 	}
 
 	/**
@@ -130,7 +122,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/**
 	 * Process the 'banner list' form and display a new one.
 	 */
-	protected function showBannerList() {
+	private function showBannerList() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'centralnotice-manage-templates' ) );
 		$out->addModules( 'ext.centralNotice.adminUi.bannerManager' );
@@ -165,7 +157,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 *
 	 * @return array of HTMLForm entities
 	 */
-	protected function generateBannerListForm( $filter = '' ) {
+	private function generateBannerListForm( $filter = '' ) {
 		// --- Create the banner search form --- //
 
 		// Note: filter is normally set via JS, not form submission. But we
@@ -222,13 +214,13 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				'section' => 'addBanner',
 				'class' => HTMLCheckField::class,
 				'label' => $this->msg( 'centralnotice-create-from-template-checkbox-label' )->text(),
-				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
+				'disabled' => !$this->editable || !$this->getTemplateBannerDropdownItems(),
 			],
 			'newBannerTemplate' => [
 				'section' => 'addBanner',
 				'class' => HTMLSelectLimitField::class,
 				'cssclass' => 'banner-template-dropdown-hidden',
-				'disabled' => !$this->editable || empty( $this->getTemplateBannerDropdownItems() ),
+				'disabled' => !$this->editable || !$this->getTemplateBannerDropdownItems(),
 				'options' => $this->getTemplateBannerDropdownItems()
 			],
 			'newBannerEditSummary' => [
@@ -396,7 +388,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/**
 	 * Use a URL parameter to set the filter string for the banner list.
 	 */
-	protected function setFilterFromUrl() {
+	private function setFilterFromUrl() {
 		// This is the normal param on visible URLs.
 		$filterParam = $this->getRequest()->getVal( 'filter', null );
 
@@ -471,7 +463,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	/**
 	 * Display the banner editor and process edits
 	 */
-	protected function showBannerEditor() {
+	private function showBannerEditor() {
 		global $wgUseCdn;
 
 		$out = $this->getOutput();
@@ -541,7 +533,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 	}
 
-	protected function generateBannerEditForm() {
+	private function generateBannerEditForm() {
 		global $wgCentralNoticeBannerMixins, $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
@@ -563,7 +555,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$formDescriptor['banner-is-template'] = [
 			'section' => 'banner-template',
 			'type' => 'check',
-			'disabled' => !$this->editable || !empty( $campaignNames ),
+			'disabled' => !$this->editable || $campaignNames,
 			'label-message' => 'centralnotice-banner-is-template',
 			'default' => $this->banner->isTemplate()
 		];
@@ -891,7 +883,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 *
 	 * @return string
 	 */
-	protected function generateCdnPurgeSection() {
+	private function generateCdnPurgeSection() {
 		$purgeControls = Xml::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg( 'centralnotice-banner-cdn-controls' )->text() );
@@ -1018,7 +1010,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 	}
 
-	protected function processSaveBannerAction( $formData ) {
+	private function processSaveBannerAction( $formData ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 
 		$this->ensureBanner( $this->bannerName );
@@ -1028,7 +1020,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		// But only if we aren't using translate or if the preview language is the content language
 		if ( !$wgNoticeUseTranslateExtension || $this->bannerLanguagePreview === $wgLanguageCode ) {
 			foreach ( $formData as $key => $value ) {
-				if ( strpos( $key, 'message-' ) === 0 ) {
+				if ( str_starts_with( $key, 'message-' ) ) {
 					$messageName = substr( $key, strlen( 'message-' ) );
 					$bannerMessage = $this->banner->getMessageField( $messageName );
 

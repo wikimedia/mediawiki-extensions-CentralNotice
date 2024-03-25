@@ -1,8 +1,9 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
-class CentralNotice extends SpecialPage {
+class CentralNotice extends UnlistedSpecialPage {
 
 	// TODO review usage of Xml class and unnecessary openElement() and closeElement()
 	// methods.
@@ -29,9 +30,9 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * @var Campaign
 	 */
-	protected $campaign;
+	private $campaign;
 	/** @var array */
-	protected $campaignWarnings = [];
+	private $campaignWarnings = [];
 
 	public function __construct() {
 		// Register special page
@@ -110,14 +111,14 @@ class CentralNotice extends SpecialPage {
 	/**
 	 * Output the start tag for the enclosing div we use on all subactions
 	 */
-	protected function outputEnclosingDivStartTag() {
+	private function outputEnclosingDivStartTag() {
 		$this->getOutput()->addHTML( Xml::openElement( 'div', [ 'id' => 'preferences' ] ) );
 	}
 
 	/**
 	 * Output the end tag for the enclosing div we use on all subactions
 	 */
-	protected function outputEnclosingDivEndTag() {
+	private function outputEnclosingDivEndTag() {
 		$this->getOutput()->addHTML( Xml::closeElement( 'div' ) );
 	}
 
@@ -127,7 +128,7 @@ class CentralNotice extends SpecialPage {
 	 * @param bool|null $showArchived Set true to only show archived campaigns,
 	 * 	 false to only show unarchived campaigns
 	 */
-	protected function outputListOfNotices( $showArchived = null ) {
+	private function outputListOfNotices( $showArchived = null ) {
 		$this->outputEnclosingDivStartTag();
 
 		$out = $this->getOutput();
@@ -165,7 +166,7 @@ class CentralNotice extends SpecialPage {
 		$this->outputEnclosingDivEndTag();
 	}
 
-	protected function handleNoticePostFromList() {
+	private function handleNoticePostFromList() {
 		$request = $this->getRequest();
 		$changes = json_decode( $request->getText( 'changes' ), true );
 		$summary = $this->getSummaryFromRequest( $request );
@@ -279,7 +280,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	protected function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
+	private function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
 		return Xml::tags(
 			'td',
 			[
@@ -290,7 +291,7 @@ class CentralNotice extends SpecialPage {
 		);
 	}
 
-	protected function timeSelector( $prefix, $editable, $timestamp = null ) {
+	private function timeSelector( $prefix, $editable, $timestamp = null ) {
 		if ( $editable ) {
 			$minutes = $this->paddedRange( 0, 59 );
 			$hours = $this->paddedRange( 0, 23 );
@@ -299,8 +300,8 @@ class CentralNotice extends SpecialPage {
 			$ts = wfTimestamp( TS_MW, $timestamp );
 
 			$fields = [
-				[ "hour", "centralnotice-hours", $hours,   substr( $ts, 8, 2 ) ],
-				[ "min",  "centralnotice-min",   $minutes, substr( $ts, 10, 2 ) ],
+				[ "hour", "centralnotice-hours", $hours, substr( $ts, 8, 2 ) ],
+				[ "min", "centralnotice-min", $minutes, substr( $ts, 10, 2 ) ],
 			];
 
 			return $this->createSelector( $prefix, $fields );
@@ -440,11 +441,11 @@ class CentralNotice extends SpecialPage {
 	 * @param array $fields array of select lists to build
 	 * @return string
 	 */
-	protected function createSelector( $prefix, $fields ) {
+	private function createSelector( $prefix, $fields ) {
 		$out = '';
 		foreach ( $fields as [ $field, $label, $set, $current ] ) {
-			$out .= Xml::listDropDown( "{$prefix}[{$field}]",
-				self::dropDownList( $this->msg( $label )->text(), $set ),
+			$out .= Xml::listDropdown( "{$prefix}[{$field}]",
+				self::dropdownList( $this->msg( $label )->text(), $set ),
 				'',
 				$current );
 		}
@@ -455,7 +456,7 @@ class CentralNotice extends SpecialPage {
 	 * Output a form for adding a campaign.
 	 *
 	 */
-	protected function addNoticeForm() {
+	private function addNoticeForm() {
 		$request = $this->getRequest();
 		$start = null;
 		$campaignType = null;
@@ -561,7 +562,7 @@ class CentralNotice extends SpecialPage {
 		$this->getOutput()->addHTML( $htmlOut );
 	}
 
-	protected function handleAddCampaignPost() {
+	private function handleAddCampaignPost() {
 		$request = $this->getRequest();
 		$noticeName = $request->getVal( 'noticeName' );
 		$start = $this->getDateTime( 'start' );
@@ -772,14 +773,14 @@ class CentralNotice extends SpecialPage {
 	 *
 	 * @param string $notice
 	 */
-	protected function handleNoticeDetailPost( $notice ) {
+	private function handleNoticeDetailPost( $notice ) {
 		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
 		$request = $this->getRequest();
 
 		// If what we're doing is actually serious (ie: not updating the banner
 		// filter); process the request. Recall that if the serious request
 		// succeeds, the page will be reloaded again.
-		if ( $request->getCheck( 'template-search' ) == false ) {
+		if ( !$request->getCheck( 'template-search' ) ) {
 			// Check authentication token
 			if ( $this->getUser()->matchEditToken( $request->getVal( 'authtoken' ) ) ) {
 				// Handle removing campaign
@@ -967,7 +968,6 @@ class CentralNotice extends SpecialPage {
 							$params[$paramName] = $paramVal;
 						}
 
-						// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 						Campaign::updateCampaignMixins(
 							$notice, $mixinName, true, $params );
 
@@ -1049,14 +1049,14 @@ class CentralNotice extends SpecialPage {
 			} else { // Defaults
 				$start = $campaign[ 'start' ];
 				$end = $campaign[ 'end' ];
-				$isEnabled = ( $campaign[ 'enabled' ] == '1' );
+				$isEnabled = (bool)$campaign['enabled'];
 				$priority = $campaign[ 'preferred' ];
 				$throttle = intval( $campaign[ 'throttle' ] );
-				$isLocked = ( $campaign[ 'locked' ] == '1' );
-				$isArchived = ( $campaign[ 'archived' ] == '1' );
+				$isLocked = (bool)$campaign['locked'];
+				$isArchived = (bool)$campaign['archived'];
 				$noticeProjects = Campaign::getNoticeProjects( $notice );
 				$noticeLanguages = Campaign::getNoticeLanguages( $notice );
-				$isGeotargeted = ( $campaign[ 'geo' ] == '1' );
+				$isGeotargeted = (bool)$campaign['geo'];
 				$numBuckets = intval( $campaign[ 'buckets' ] );
 				$countries = Campaign::getNoticeCountries( $notice );
 				$regions = Campaign::getNoticeRegions( $notice );
@@ -1140,7 +1140,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::tags( 'td', [],
 				Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' ) );
 			$htmlOut .= Xml::tags( 'td', [],
-			$this->numBucketsDropDown( $wgNoticeNumberOfBuckets, $numBuckets ) );
+			$this->numBucketsDropdown( $wgNoticeNumberOfBuckets, $numBuckets ) );
 			$htmlOut .= Xml::closeElement( 'tr' );
 			// Enabled
 			$htmlOut .= Xml::openElement( 'tr' );
@@ -1206,7 +1206,7 @@ class CentralNotice extends SpecialPage {
 			$htmlOut .= Xml::closeElement( 'table' );
 
 			// Create controls for campaign-associated mixins (if there are any)
-			if ( !empty( $wgCentralNoticeCampaignMixins ) ) {
+			if ( $wgCentralNoticeCampaignMixins ) {
 				$mixinsThisNotice = Campaign::getCampaignMixins( $notice );
 
 				$htmlOut .= Xml::fieldset(
@@ -1275,7 +1275,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	protected static function makeNoticeMixinControlName(
+	private static function makeNoticeMixinControlName(
 		$mixinName, $mixinParam = null
 	) {
 		return 'notice-mixin-' . $mixinName .
@@ -1408,13 +1408,13 @@ class CentralNotice extends SpecialPage {
 
 			// Weight
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
-				$this->weightDropDown( "weight[$row->tmp_id]", $row->tmp_weight )
+				$this->weightDropdown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 
 			// Bucket
 			$numCampaignBuckets = min( intval( $row->not_buckets ), $wgNoticeNumberOfBuckets );
 			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				$this->bucketDropDown(
+				$this->bucketDropdown(
 					"bucket[$row->tmp_id]",
 					( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
 					$numCampaignBuckets,
@@ -1452,7 +1452,7 @@ class CentralNotice extends SpecialPage {
 		return $htmlOut;
 	}
 
-	private function weightDropDown( $name, $selected ) {
+	private function weightDropdown( $name, $selected ) {
 		$selected = intval( $selected );
 
 		if ( $this->editable ) {
@@ -1467,7 +1467,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	private function bucketDropDown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
+	private function bucketDropdown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
 		$bucketLabel = static function ( $val ) {
@@ -1481,7 +1481,7 @@ class CentralNotice extends SpecialPage {
 			$selected %= $numberCampaignBuckets;
 
 			// bucketSelector class is for all bucket selectors (for assigned or
-			// unassigned banners). Coordinate with CentralNoticePager::bucketDropDown().
+			// unassigned banners). Coordinate with CentralNoticePager::bucketDropdown().
 			$html = Html::openElement( 'select', [
 				'name' => $name,
 				'class' => 'bucketSelector bucketSelectorForAssignedBanners',
@@ -1507,7 +1507,7 @@ class CentralNotice extends SpecialPage {
 		}
 	}
 
-	private function numBucketsDropDown( $numBuckets, $selected ) {
+	private function numBucketsDropdown( $numBuckets, $selected ) {
 		if ( $selected === null ) {
 			$selected = 1;
 		}
@@ -1654,12 +1654,12 @@ class CentralNotice extends SpecialPage {
 		return Xml::tags( 'select', $properties, $options );
 	}
 
-	public static function dropDownList( $text, $values ) {
-		$dropDown = "*{$text}\n";
+	public static function dropdownList( $text, $values ) {
+		$dropdown = "*{$text}\n";
 		foreach ( $values as $value ) {
-			$dropDown .= "**{$value}\n";
+			$dropdown .= "**{$value}\n";
 		}
-		return $dropDown;
+		return $dropdown;
 	}
 
 	/**
@@ -1686,11 +1686,11 @@ class CentralNotice extends SpecialPage {
 			);
 	}
 
-	protected function getSummaryFromRequest( WebRequest $request ) {
+	private function getSummaryFromRequest( WebRequest $request ) {
 		return static::truncateSummaryField( $request->getVal( 'changeSummary' ) );
 	}
 
-	protected function paddedRange( $begin, $end ) {
+	private function paddedRange( $begin, $end ) {
 		$unpaddedRange = range( $begin, $end );
 		$paddedRange = [];
 		foreach ( $unpaddedRange as $number ) {
@@ -1720,7 +1720,7 @@ class CentralNotice extends SpecialPage {
 		foreach ( $countries as $countryCode => $country ) {
 
 			$regions = '';
-			if ( !empty( $country->getRegions() ) ) {
+			if ( $country->getRegions() ) {
 				foreach ( $country->getRegions() as $regionCode => $name ) {
 					$uniqueRegionCode = GeoTarget::makeUniqueRegionCode(
 						$countryCode, $regionCode
@@ -1860,60 +1860,6 @@ class CentralNotice extends SpecialPage {
 	}
 
 	/**
-	 * Adds CentralNotice specific navigation tabs to the UI.
-	 * Implementation of SkinTemplateNavigation::Universal hook.
-	 *
-	 * @param Skin $skin Reference to the Skin object
-	 * @param array &$tabs Any current skin tabs
-	 *
-	 * @return bool
-	 */
-	public static function addNavigationTabs( Skin $skin, array &$tabs ) {
-		global $wgNoticeTabifyPages, $wgNoticeInfrastructure;
-
-		// Only show tabs if this wiki is in infrastructure mode
-		if ( !$wgNoticeInfrastructure ) {
-			return true;
-		}
-
-		// Return if skin allows special pages to register natigation links (in which
-		// case this is handled by getShortDescription() and
-		// getAssociatedNavigationLinks()).
-		// See T315562, T313349.
-		if ( $skin->supportsMenu( 'associated-pages' ) ) {
-			return true;
-		}
-
-		$title = $skin->getTitle();
-
-		// Only add tabs to special pages
-		if ( !$title->isSpecialPage() ) {
-			return true;
-		}
-
-		list( $alias, $sub ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-			resolveAlias( $title->getText() );
-
-		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
-			return true;
-		}
-
-		// Clear the special page tab that's there already
-		$tabs['namespaces'] = [];
-
-		// Now add our own
-		foreach ( $wgNoticeTabifyPages as $page => $keys ) {
-			$tabs[ $keys[ 'type' ] ][ $page ] = [
-				'text' => wfMessage( $keys[ 'message' ] )->parse(),
-				'href' => SpecialPage::getTitleFor( $page )->getFullURL(),
-				'class' => ( $alias === $page ) ? 'selected' : '',
-			];
-		}
-
-		return true;
-	}
-
-	/**
 	 * Provides names of sub-pages of the CentralNotice admin interface.
 	 *
 	 * @inheritDoc
@@ -1982,7 +1928,7 @@ class CentralNotice extends SpecialPage {
 			$regionCode = substr( $region, 3 );
 			$regionsByCountry[$countryCode][] = $regionCode;
 		}
-		if ( !empty( $list ) && count( $regionsByCountry ) > 0 ) {
+		if ( $list !== '' && count( $regionsByCountry ) > 0 ) {
 			$list .= '; ';
 		}
 		$regionsByCountryList = [];
@@ -2002,7 +1948,7 @@ class CentralNotice extends SpecialPage {
 		return $this->makeShortList( $all, $languages );
 	}
 
-	protected function makeShortList( $all, $list ) {
+	private function makeShortList( $all, $list ) {
 		// TODO ellipsis and js/css expansion
 		if ( count( $list ) == count( $all ) ) {
 			return $this->getContext()->msg( 'centralnotice-all' )->text();

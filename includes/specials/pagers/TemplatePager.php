@@ -26,7 +26,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		parent::__construct();
 
 		// Override paging defaults
-		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffsetForUser(
+		[ $this->mLimit, /* $offset */ ] = $this->mRequest->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
 			''
@@ -50,7 +50,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		$likeArray = preg_split( '/\s+/', $this->filter );
 
 		// ...and then insert all the wildcards betwean search terms
-		if ( empty( $likeArray ) ) {
+		if ( !$likeArray ) {
 			$likeArray = $dbr->anyString();
 		} else {
 			$anyStringToken = $dbr->anyString();

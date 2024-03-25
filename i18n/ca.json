@@ -27,7 +27,7 @@
 	"bannerallocation": "Administració d'avisos centrals",
 	"centralnoticelogs": "Avís central admin",
 	"right-centralnotice-admin": "Gestionar els avisos centrals",
-	"action-centralnotice-admin": "Gestionau els avisos centrals",
+	"action-centralnotice-admin": "gestionar avisos centrals",
 	"centralnotice-desc": "Afegeix un lloc central d'avisos",
 	"centralnotice-summary": "Aquesta extensió us permet editar el vostre lloc central d'avisos.\nTambé pot ser usat per afegir o eliminar avisos.",
 	"centralnotice-query": "Modifica avisos actuals",
