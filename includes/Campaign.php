@@ -720,19 +720,20 @@ class Campaign {
 					$mixinName . ' for campaign ' . $campaignName );
 			}
 
-			$dbw->upsert(
-				'cn_notice_mixins',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_mixins' )
+				->row( [
 					'nmxn_not_id' => $noticeId,
 					'nmxn_mixin_name' => $mixinName,
 					'nmxn_enabled' => 1
-				],
-				[ [ 'nmxn_not_id', 'nmxn_mixin_name' ] ],
-				[
+				] )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'nmxn_not_id', 'nmxn_mixin_name' ] )
+				->set( [
 					'nmxn_enabled' => 1
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 
 			$noticeMixinId = $dbw->selectRow(
 				'cn_notice_mixins',
@@ -763,19 +764,20 @@ class Campaign {
 					$paramVal = ( $paramVal ? 'true' : 'false' );
 				}
 
-				$dbw->upsert(
-					'cn_notice_mixin_params',
-					[
+				$dbw->newInsertQueryBuilder()
+					->insertInto( 'cn_notice_mixin_params' )
+					->row( [
 						'nmxnp_notice_mixin_id' => $noticeMixinId,
 						'nmxnp_param_name' => $paramName,
 						'nmxnp_param_value' => $paramVal
-					],
-					[ [ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ] ],
-					[
+					] )
+					->onDuplicateKeyUpdate()
+					->uniqueIndexFields( [ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ] )
+					->set( [
 						'nmxnp_param_value' => $paramVal
-					],
-					__METHOD__
-				);
+					] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 
 		} else {
