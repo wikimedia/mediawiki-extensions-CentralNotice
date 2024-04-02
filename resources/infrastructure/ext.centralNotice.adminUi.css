@@ -27,7 +27,7 @@ h2.cn-special-section {
 }
 
 #preferences div.cn-error {
-	color: #d33;
+	color: #d73333;
 	margin: 1em;
 }
 
@@ -161,7 +161,7 @@ form .error {
 	margin: 0 0 0.5em 0;
 	padding: 0.5em;
 	background-color: #fcc;
-	border: 2px solid #d33;
+	border: 2px solid #d73333;
 }
 
 /* Styles previously in adminui.common.css */
@@ -169,7 +169,7 @@ form .error {
 #cn-js-error-warn {
 	padding: 0.5em;
 	background-color: #fcc;
-	border: 2px solid #d33;
+	border: 2px solid #d73333;
 	margin-bottom: 0.5em;
 	font-weight: bold;
 	text-align: center;
