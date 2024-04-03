@@ -729,18 +729,10 @@ class Banner {
 
 		if ( $wgNoticeUseTranslateExtension ) {
 			$services = Services::getInstance();
-			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				$langs = $services->getMessageGroupMetadata()->get(
-					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
-					'prioritylangs'
-				);
-			} else {
-				// @phan-suppress-next-line PhanUndeclaredClassMethod
-				$langs = TranslateMetadata::get(
-					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
-					'prioritylangs'
-				);
-			}
+			$langs = $services->getMessageGroupMetadata()->get(
+				BannerMessageGroup::getTranslateGroupName( $this->getName() ),
+				'prioritylangs'
+			);
 			if ( !$langs ) {
 				// If priority langs is not set; MessageGroupMetadata::get will return false
 				$langs = '';
@@ -761,32 +753,17 @@ class Banner {
 			$groupName = BannerMessageGroup::getTranslateGroupName( $this->getName() );
 
 			$services = Services::getInstance();
-			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				$messageGroupMetadata = $services->getMessageGroupMetadata();
+			$messageGroupMetadata = $services->getMessageGroupMetadata();
 
-				if ( $this->priorityLanguages === [] ) {
-					// Using false to delete the value instead of writing empty content
-					$messageGroupMetadata->set( $groupName, 'prioritylangs', false );
-				} else {
-					$messageGroupMetadata->set(
-						$groupName,
-						'prioritylangs',
-						implode( ',', $this->priorityLanguages )
-					);
-				}
+			if ( $this->priorityLanguages === [] ) {
+				// Using false to delete the value instead of writing empty content
+				$messageGroupMetadata->set( $groupName, 'prioritylangs', false );
 			} else {
-				if ( $this->priorityLanguages === [] ) {
-					// Using false to delete the value instead of writing empty content
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
-					TranslateMetadata::set( $groupName, 'prioritylangs', false );
-				} else {
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
-					TranslateMetadata::set(
-						$groupName,
-						'prioritylangs',
-						implode( ',', $this->priorityLanguages )
-					);
-				}
+				$messageGroupMetadata->set(
+					$groupName,
+					'prioritylangs',
+					implode( ',', $this->priorityLanguages )
+				);
 			}
 		}
 	}
@@ -1263,21 +1240,12 @@ class Banner {
 
 				$services = Services::getInstance();
 				// Add the preferred language metadata if it exists
-				if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-					$services->getMessageGroupMetadata()->set(
-						BannerMessageGroup::getTranslateGroupName( $name ),
-						'prioritylangs',
-						false
-					);
-				// Add the preferred language metadata if it exists
-				} else {
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
-					TranslateMetadata::set(
-						BannerMessageGroup::getTranslateGroupName( $name ),
-						'prioritylangs',
-						false
-					);
-				}
+
+				$services->getMessageGroupMetadata()->set(
+					BannerMessageGroup::getTranslateGroupName( $name ),
+					'prioritylangs',
+					false
+				);
 			}
 		}
 	}
