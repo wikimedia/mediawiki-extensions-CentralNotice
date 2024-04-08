@@ -6,7 +6,8 @@
 			"Aviator",
 			"Izzudin",
 			"Jeluang Terluang",
-			"Tofeiku"
+			"Tofeiku",
+			"Hakimi97"
 		]
 	},
 	"centralnotice": "Pentadbiran pemberitahuan pusat",
@@ -212,6 +213,16 @@
 	"centralnotice-specialhidebanners-p3p": "Sesetengah pelayar memerlukan polisi padat P3P untuk menetapkan cookies dalam situasi-situasi tertentu. Bagaimanapun, tidak terdapatnya polisi padat buat masa ini. Sila baca dasar privasi terbaca insani laman ini.",
 	"centralnotice-multiple-countries": "Berbilang ($1)",
 	"centralnotice-multiple-languages": "Berbilang bahasa",
+	"prefs-centralnotice-banners": "Sepanduk",
+	"prefs-centralnotice-display-banner-types": "Jenis sepanduk untuk dipaparkan",
 	"centralnotice-campaign-type": "Jenis kempen",
-	"centralnotice-campaign-type-photography": "Fotografi"
+	"centralnotice-campaign-type-advocacy": "Advokasi",
+	"centralnotice-campaign-type-article-writing": "Penulisan rencana",
+	"centralnotice-campaign-type-event": "Acara",
+	"centralnotice-campaign-type-fundraising": "Pendermaan",
+	"centralnotice-campaign-type-governance": "Tadbir urus",
+	"centralnotice-campaign-type-maintenance": "Penyelenggaraan",
+	"centralnotice-campaign-type-photography": "Fotografi",
+	"centralnotice-campaign-type-special": "Khas",
+	"centralnotice-user-prefs-intro": "Sepanduk memaparkan pengumuman yang menarik minat komuniti dan pengguna Wikimedia.\n\nBerikut merupakan pilihan yang membolehkan anda mengurus jenis pengumuman yang anda lihat. Notis platform tertentu, seperti yang berkaitan dengan penyelenggaraan tapak dan notis khas yang dianggap perlu kepada semua pengguna, akan sentiasa dipaparkan. Untuk maklumat lanjut, sila baca [[metawikimedia:Special:MyLanguage/CentralNotice|pendokumenan di Meta-Wiki]]."
 }
