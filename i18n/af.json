@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Naudefj",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Rooiratel"
 		]
 	},
 	"centralnotice": "Bestuur sentrale kennisgewings",
@@ -100,6 +101,8 @@
 	"centralnotice-banner-fundraising": "Dit is 'n fondsinsameling banner",
 	"centralnotice-geo": "Geotargeted",
 	"centralnotice-countries": "Lande",
+	"centralnotice-location": "Lande en streke",
+	"centralnotice-location-filter": "Filter",
 	"centralnotice-allocation": "Toekenning",
 	"centralnotice-view-allocation": "Wys baniertoekenning",
 	"centralnotice-allocation-instructions": "Kies die omgewing wat jy wil banner toekenning te sien vir:",
