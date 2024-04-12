@@ -367,11 +367,11 @@ class CentralNoticeTestFixtures {
 		// Remove any devices we added
 		if ( !empty( $this->addedDeviceIds ) ) {
 			$dbw = CNDatabase::getDb( DB_PRIMARY );
-			$dbw->delete(
-				'cn_known_devices',
-				[ 'dev_id' => $this->addedDeviceIds ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_known_devices' )
+				->where( [ 'dev_id' => $this->addedDeviceIds ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 

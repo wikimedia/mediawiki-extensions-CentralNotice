@@ -969,12 +969,36 @@ class Campaign {
 
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
-		$dbw->delete( 'cn_assignments', [ 'not_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notices', [ 'not_name' => $campaignName ], __METHOD__ );
-		$dbw->delete( 'cn_notice_languages', [ 'nl_notice_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notice_projects', [ 'np_notice_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notice_countries', [ 'nc_notice_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notice_regions', [ 'nr_notice_id' => $campaignId ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_assignments' )
+			->where( [ 'not_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notices' )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_languages' )
+			->where( [ 'nl_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_projects' )
+			->where( [ 'np_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_countries' )
+			->where( [ 'nc_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_regions' )
+			->where( [ 'nr_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
 		$dbw->endAtomic( __METHOD__ );
 	}
 
@@ -1025,7 +1049,11 @@ class Campaign {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$noticeId = self::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
-		$dbw->delete( 'cn_assignments', [ 'tmp_id' => $templateId, 'not_id' => $noticeId ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_assignments' )
+			->where( [ 'tmp_id' => $templateId, 'not_id' => $noticeId ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1346,10 +1374,11 @@ class Campaign {
 		// Remove disassociated projects
 		$removeProjects = array_diff( $oldProjects, $newProjects );
 		if ( $removeProjects ) {
-			$dbw->delete( 'cn_notice_projects',
-				[ 'np_notice_id' => $row->not_id, 'np_project' => $removeProjects ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_projects' )
+				->where( [ 'np_notice_id' => $row->not_id, 'np_project' => $removeProjects ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1376,10 +1405,11 @@ class Campaign {
 		// Remove disassociated languages
 		$removeLanguages = array_diff( $oldLanguages, $newLanguages );
 		if ( $removeLanguages ) {
-			$dbw->delete( 'cn_notice_languages',
-				[ 'nl_notice_id' => $row->not_id, 'nl_language' => $removeLanguages ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_languages' )
+				->where( [ 'nl_notice_id' => $row->not_id, 'nl_language' => $removeLanguages ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1411,10 +1441,11 @@ class Campaign {
 		// Remove disassociated countries
 		$removeCountries = array_diff( $oldCountries, $newCountries );
 		if ( $removeCountries ) {
-			$dbw->delete( 'cn_notice_countries',
-				[ 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_countries' )
+				->where( [ 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1446,10 +1477,11 @@ class Campaign {
 		// Remove disassociated regions
 		$removeRegions = array_diff( $oldRegions, $newRegions );
 		if ( $removeRegions ) {
-			$dbw->delete( 'cn_notice_regions',
-				[ 'nr_notice_id' => $row->not_id, 'nr_region' => $removeRegions ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_regions' )
+				->where( [ 'nr_notice_id' => $row->not_id, 'nr_region' => $removeRegions ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );

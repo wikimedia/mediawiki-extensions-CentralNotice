@@ -60,15 +60,15 @@ class CleanCNTranslateMetadata extends Maintenance {
 			}
 
 			$maxRev = (int)$row->maxrev;
-			$db->delete(
-				'revtag',
-				[
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'revtag' )
+				->where( [
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
-					"rt_revision != $maxRev"
-				],
-				__METHOD__
-			);
+					$db->expr( 'rt_revision', '!=', $maxRev ),
+				] )
+				->caller( __METHOD__ )
+				->execute();
 			$numRows = $db->affectedRows();
 			$this->output(
 				" -- Deleted {$numRows} rows for banner with page id {$row->rt_page}\n"
@@ -129,16 +129,16 @@ class CleanCNTranslateMetadata extends Maintenance {
 
 		foreach ( $res as $row ) {
 			$this->output( " -- Deleting orphan row {$row->rt_page}:{$row->rt_revision}\n" );
-			$db->delete(
-				'revtag',
-				[
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'revtag' )
+				->where( [
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
 					'rt_revision' => $row->rt_revision,
-					'rt_value is null' // Just in case something updated it
-				],
-				__METHOD__
-			);
+					'rt_value' => null, // Just in case something updated it
+				] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 }

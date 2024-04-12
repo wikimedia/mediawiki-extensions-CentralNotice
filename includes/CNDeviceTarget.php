@@ -114,11 +114,11 @@ class CNDeviceTarget {
 		$newDevices = (array)$newDevices;
 
 		// Remove all entries from the table for this banner
-		$db->delete(
-			'cn_template_devices',
-			[ 'tmp_id' => $bannerId ],
-			__METHOD__
-		);
+		$db->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_template_devices' )
+			->where( [ 'tmp_id' => $bannerId ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Add the new device mappings
 		if ( $newDevices ) {

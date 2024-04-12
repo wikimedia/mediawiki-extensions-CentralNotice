@@ -536,7 +536,11 @@ class Banner {
 	private function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
-			$db->delete( 'cn_template_devices', [ 'tmp_id' => $this->getId() ], __METHOD__ );
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_template_devices' )
+				->where( [ 'tmp_id' => $this->getId() ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			// Add the new device mappings
 			if ( $this->devices ) {
@@ -641,10 +645,11 @@ class Banner {
 	 */
 	private function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
-			$db->delete( 'cn_template_mixins',
-				[ 'tmp_id' => $this->getId() ],
-				__METHOD__
-			);
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_template_mixins' )
+				->where( [ 'tmp_id' => $this->getId() ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			foreach ( $this->mixins as $name => $params ) {
 				$name = trim( $name );
@@ -1227,10 +1232,11 @@ class Banner {
 
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
-			$dbw->delete( 'cn_templates',
-				[ 'tmp_id' => $id ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_templates' )
+				->where( [ 'tmp_id' => $id ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			// Delete the MediaWiki page that contains the banner source
 			// TODO Inconsistency: deletion of banner content is not recorded
@@ -1308,7 +1314,11 @@ class Banner {
 			'rt_page' => $pageId,
 			'rt_type' => $tag
 		];
-		$dbw->delete( 'revtag', $conds, __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'revtag' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
