@@ -414,7 +414,11 @@ class Banner {
 	 * @param IDatabase $db
 	 */
 	private function initializeDbBasicData( IDatabase $db ) {
-		$db->insert( 'cn_templates', [ 'tmp_name' => $this->name ], __METHOD__ );
+		$db->newInsertQueryBuilder()
+			->insertInto( 'cn_templates' )
+			->row( [ 'tmp_name' => $this->name ] )
+			->caller( __METHOD__ )
+			->execute();
 		$this->id = $db->insertId();
 	}
 
@@ -549,7 +553,11 @@ class Banner {
 				foreach ( $this->devices as $deviceId => $deviceName ) {
 					$modifyArray[] = [ 'tmp_id' => $this->getId(), 'dev_id' => $deviceId ];
 				}
-				$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
+				$db->newInsertQueryBuilder()
+					->insertInto( 'cn_template_devices' )
+					->rows( $modifyArray )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 	}
@@ -657,14 +665,15 @@ class Banner {
 				if ( !$name ) {
 					continue;
 				}
-				$db->insert( 'cn_template_mixins',
-					[
+				$db->newInsertQueryBuilder()
+					->insertInto( 'cn_template_mixins' )
+					->row( [
 						'tmp_id' => $this->getId(),
 						'page_id' => 0,	// TODO: What were we going to use this for again?
 						'mixin_name' => $name,
-					],
-					__METHOD__
-				);
+					] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 	}
@@ -1299,7 +1308,11 @@ class Banner {
 			$conds['rt_value'] = $bannerId;
 		}
 
-		$dbw->insert( 'revtag', $conds, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'revtag' )
+			->row( $conds )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1606,7 +1619,11 @@ class Banner {
 			$log[ 'tmplog_end_' . $key ] = $value;
 		}
 
-		$dbw->insert( 'cn_template_log', $log, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_template_log' )
+			->row( $log )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**

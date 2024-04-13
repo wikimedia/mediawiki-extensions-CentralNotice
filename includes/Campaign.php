@@ -850,8 +850,9 @@ class Campaign {
 		$endTime = strtotime( '+1 hour', (int)wfTimestamp( TS_UNIX, $startTs ) );
 		$endTs = wfTimestamp( TS_MW, $endTime );
 
-		$dbw->insert( 'cn_notices',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_notices' )
+			->row( [
 				'not_name'      => $noticeName,
 				'not_enabled'   => (int)$enabled,
 				'not_start'     => $dbw->timestamp( $startTs ),
@@ -860,9 +861,9 @@ class Campaign {
 				'not_throttle'  => $throttle,
 				'not_preferred' => $priority,
 				'not_type'      => $type
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 		$not_id = $dbw->insertId();
 
 		if ( $not_id ) {
@@ -871,16 +872,24 @@ class Campaign {
 			foreach ( $projects as $project ) {
 				$insertArray[] = [ 'np_notice_id' => $not_id, 'np_project' => $project ];
 			}
-			$dbw->insert( 'cn_notice_projects', $insertArray,
-				__METHOD__, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_projects' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
 
 			// Do multi-row insert for campaign languages
 			$insertArray = [];
 			foreach ( $project_languages as $code ) {
 				$insertArray[] = [ 'nl_notice_id' => $not_id, 'nl_language' => $code ];
 			}
-			$dbw->insert( 'cn_notice_languages', $insertArray,
-				__METHOD__, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_languages' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
 
 			if ( $geotargeted ) {
 
@@ -890,8 +899,12 @@ class Campaign {
 					foreach ( $geo_countries as $code ) {
 						$insertArray[] = [ 'nc_notice_id' => $not_id, 'nc_country' => $code ];
 					}
-					$dbw->insert(
-						'cn_notice_countries', $insertArray, __METHOD__, [ 'IGNORE' ] );
+					$dbw->newInsertQueryBuilder()
+						->insertInto( 'cn_notice_countries' )
+						->ignore()
+						->rows( $insertArray )
+						->caller( __METHOD__ )
+						->execute();
 				}
 
 				// Do multi-row insert for campaign regions
@@ -900,8 +913,12 @@ class Campaign {
 					foreach ( $geo_regions as $code ) {
 						$insertArray[] = [ 'nr_notice_id' => $not_id, 'nr_region' => $code ];
 					}
-					$dbw->insert( 'cn_notice_regions', $insertArray,
-						__METHOD__, [ 'IGNORE' ] );
+					$dbw->newInsertQueryBuilder()
+						->insertInto( 'cn_notice_regions' )
+						->ignore()
+						->rows( $insertArray )
+						->caller( __METHOD__ )
+						->execute();
 				}
 
 			}
@@ -1027,15 +1044,16 @@ class Campaign {
 			return 'centralnotice-template-already-exists';
 		}
 
-		$dbw->insert( 'cn_assignments',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_assignments' )
+			->row( [
 				'tmp_id'     => $templateId,
 				'tmp_weight' => $weight,
 				'not_id'     => $noticeId,
 				'asn_bucket' => $bucket,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return true;
 	}
@@ -1375,7 +1393,14 @@ class Campaign {
 		foreach ( $addProjects as $project ) {
 			$insertArray[] = [ 'np_notice_id' => $row->not_id, 'np_project' => $project ];
 		}
-		$dbw->insert( 'cn_notice_projects', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_projects' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated projects
 		$removeProjects = array_diff( $oldProjects, $newProjects );
@@ -1406,7 +1431,14 @@ class Campaign {
 		foreach ( $addLanguages as $code ) {
 			$insertArray[] = [ 'nl_notice_id' => $row->not_id, 'nl_language' => $code ];
 		}
-		$dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_languages' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated languages
 		$removeLanguages = array_diff( $oldLanguages, $newLanguages );
@@ -1442,7 +1474,14 @@ class Campaign {
 		foreach ( $addCountries as $code ) {
 			$insertArray[] = [ 'nc_notice_id' => $row->not_id, 'nc_country' => $code ];
 		}
-		$dbw->insert( 'cn_notice_countries', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_countries' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated countries
 		$removeCountries = array_diff( $oldCountries, $newCountries );
@@ -1478,7 +1517,14 @@ class Campaign {
 		foreach ( $addRegions as $code ) {
 			$insertArray[] = [ 'nr_notice_id' => $row->not_id, 'nr_region' => $code ];
 		}
-		$dbw->insert( 'cn_notice_regions', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_regions' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated regions
 		$removeRegions = array_diff( $oldRegions, $newRegions );
@@ -1557,7 +1603,11 @@ class Campaign {
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		// FIXME There must be a cleaner way to do this?
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
-			$dbw->insert( 'cn_notice_log', $log, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_log' )
+				->row( $log )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 

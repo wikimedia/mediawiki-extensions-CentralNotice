@@ -85,14 +85,14 @@ class CNDeviceTarget {
 	public static function addDeviceTarget( $deviceName, $displayLabel ) {
 		$db = CNDatabase::getDb( DB_PRIMARY );
 
-		$db->insert(
-			'cn_known_devices',
-			[
+		$db->newInsertQueryBuilder()
+			->insertInto( 'cn_known_devices' )
+			->row( [
 				'dev_name' => $deviceName,
 				'dev_display_label' => $displayLabel
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return $db->insertId();
 	}
@@ -132,7 +132,11 @@ class CNDeviceTarget {
 					'dev_id' => $knownDevices[$device]['id']
 				];
 			}
-			$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
+			$db->newInsertQueryBuilder()
+				->insertInto( 'cn_template_devices' )
+				->rows( $modifyArray )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 }
