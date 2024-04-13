@@ -786,15 +786,15 @@ class Campaign {
 			// the old parameter values in case the mixin is re-enabled, we also
 			// keep the row in this table, since the id is used in the param
 			// table.
-			$dbw->update(
-				'cn_notice_mixins',
-				[ 'nmxn_enabled' => 0 ],
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'cn_notice_mixins' )
+				->set( [ 'nmxn_enabled' => 0 ] )
+				->where( [
 					'nmxn_not_id' => $noticeId,
 					'nmxn_mixin_name' => $mixinName
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -1217,14 +1217,15 @@ class Campaign {
 		$startDate = $dbw->timestamp( $start );
 		$endDate = $dbw->timestamp( $end );
 
-		$dbw->update( 'cn_notices',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_notices' )
+			->set( [
 				'not_start' => $startDate,
 				'not_end'   => $endDate
-			],
-			[ 'not_name' => $noticeName ],
-			__METHOD__
-		);
+			] )
+			->where( [ 'not_name' => $noticeName ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return true;
 	}
@@ -1246,11 +1247,12 @@ class Campaign {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
 			$dbw = CNDatabase::getDb( DB_PRIMARY );
-			$dbw->update( 'cn_notices',
-				[ 'not_' . $settingName => (int)$settingValue ],
-				[ 'not_name' => $noticeName ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'cn_notices' )
+				->set( [ 'not_' . $settingName => (int)$settingValue ] )
+				->where( [ 'not_name' => $noticeName ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -1292,11 +1294,12 @@ class Campaign {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
 			$dbw = CNDatabase::getDb( DB_PRIMARY );
-			$dbw->update( 'cn_notices',
-				[ 'not_' . $settingName => $settingValue ],
-				[ 'not_name' => $noticeName ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'cn_notices' )
+				->set( [ 'not_' . $settingName => $settingValue ] )
+				->where( [ 'not_name' => $noticeName ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -1310,14 +1313,15 @@ class Campaign {
 	public static function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$noticeId = self::getNoticeId( $noticeName );
-		$dbw->update( 'cn_assignments',
-			[ 'tmp_weight' => $weight ],
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_assignments' )
+			->set( [ 'tmp_weight' => $weight ] )
+			->where( [
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1331,26 +1335,28 @@ class Campaign {
 	public static function updateBucket( $noticeName, $templateId, $bucket ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$noticeId = self::getNoticeId( $noticeName );
-		$dbw->update( 'cn_assignments',
-			[ 'asn_bucket' => $bucket ],
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_assignments' )
+			->set( [ 'asn_bucket' => $bucket ] )
+			->where( [
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	// @todo FIXME: Unused.
 	public static function updateProjectName( $notice, $projectName ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
-		$dbw->update( 'cn_notices',
-			[ 'not_project' => $projectName ],
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_notices' )
+			->set( [ 'not_project' => $projectName ] )
+			->where( [
 				'not_name' => $notice
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public static function updateProjects( $notice, $newProjects ) {
@@ -1610,12 +1616,12 @@ class Campaign {
 		}
 
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
-		$dbw->update(
-			'cn_notices',
-			[ 'not_type' => $type ],
-			[ 'not_name' => $campaignName ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_notices' )
+			->set( [ 'not_type' => $type ] )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public static function campaignLogs(

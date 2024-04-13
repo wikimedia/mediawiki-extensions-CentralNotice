@@ -100,16 +100,16 @@ class CleanCNTranslateMetadata extends Maintenance {
 		foreach ( $res as $row ) {
 			$this->output( " -- Associating banner id {$row->tmp_id} " .
 				"with revtag with page id {$row->rt_page}\n" );
-			$db->update(
-				'revtag',
-				[ 'rt_value' => $row->tmp_id ],
-				[
+			$db->newUpdateQueryBuilder()
+				->update( 'revtag' )
+				->set( [ 'rt_value' => $row->tmp_id ] )
+				->where( [
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
-					'rt_value is null'
-				],
-				__METHOD__
-			);
+					'rt_value' => null,
+				] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 

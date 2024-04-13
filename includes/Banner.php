@@ -424,19 +424,20 @@ class Banner {
 	 */
 	private function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
-			$db->update( 'cn_templates',
-				[
+			$db->newUpdateQueryBuilder()
+				->update( 'cn_templates' )
+				->set( [
 					'tmp_display_anon'    => (int)$this->allocateAnon,
 					'tmp_display_account' => (int)$this->allocateLoggedIn,
 					'tmp_archived'        => (int)$this->archived,
 					'tmp_category'        => $this->category,
 					'tmp_is_template'     => (int)$this->template
-				],
-				[
+				] )
+				->where( [
 					'tmp_id'              => $this->id
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
