@@ -710,12 +710,12 @@ class Banner {
 		if ( $wgNoticeUseTranslateExtension ) {
 			$services = Services::getInstance();
 			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				// @phan-suppress-next-line PhanUndeclaredMethod
 				$langs = $services->getMessageGroupMetadata()->get(
 					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
 					'prioritylangs'
 				);
 			} else {
+				// @phan-suppress-next-line PhanUndeclaredClassMethod
 				$langs = TranslateMetadata::get(
 					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
 					'prioritylangs'
@@ -742,7 +742,6 @@ class Banner {
 
 			$services = Services::getInstance();
 			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				// @phan-suppress-next-line PhanUndeclaredMethod
 				$messageGroupMetadata = $services->getMessageGroupMetadata();
 
 				if ( $this->priorityLanguages === [] ) {
@@ -758,8 +757,10 @@ class Banner {
 			} else {
 				if ( $this->priorityLanguages === [] ) {
 					// Using false to delete the value instead of writing empty content
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					TranslateMetadata::set( $groupName, 'prioritylangs', false );
 				} else {
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					TranslateMetadata::set(
 						$groupName,
 						'prioritylangs',
@@ -1245,7 +1246,6 @@ class Banner {
 				$services = Services::getInstance();
 				// Add the preferred language metadata if it exists
 				if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-					// @phan-suppress-next-line PhanUndeclaredMethod
 					$services->getMessageGroupMetadata()->set(
 						BannerMessageGroup::getTranslateGroupName( $name ),
 						'prioritylangs',
@@ -1253,6 +1253,7 @@ class Banner {
 					);
 				// Add the preferred language metadata if it exists
 				} else {
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					TranslateMetadata::set(
 						BannerMessageGroup::getTranslateGroupName( $name ),
 						'prioritylangs',

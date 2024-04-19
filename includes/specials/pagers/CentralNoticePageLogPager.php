@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -168,10 +169,9 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 
 		// Begin log entry primary row
 		$lang = $this->getLanguage();
-		$htmlOut = Xml::openElement( 'tr' );
+		$htmlOut = Html::openElement( 'tr' );
 
-		$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
-		$htmlOut .= Xml::closeElement( 'td' );
+		$htmlOut .= Html::element( 'td', [ 'valign' => 'top' ] );
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->rc_timestamp ) . ' ' . $lang->time( $row->rc_timestamp )
 		);
@@ -204,7 +204,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		);
 
 		// End log entry primary row
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 
 		return $htmlOut;
 	}
@@ -214,8 +214,8 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 */
 	public function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Html::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
+		$htmlOut .= Html::openElement( 'tr' );
 		$htmlOut .= Xml::element( 'th', [ 'style' => 'width: 20px;' ] );
 		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
 			$this->msg( 'centralnotice-timestamp' )->text()
@@ -248,7 +248,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::tags( 'td', [],
 			'&nbsp;'
 		);
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 		return $htmlOut;
 	}
 
@@ -257,6 +257,6 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	public function getEndBody() {
-		return Xml::closeElement( 'table' );
+		return Html::closeElement( 'table' );
 	}
 }

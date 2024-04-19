@@ -915,14 +915,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$purgeControls .= Html::closeElement( 'select' );
 		$purgeControls .= Html::closeElement( 'label' );
 
-		$purgeControls .= ' ' . Html::openElement( 'button', $disabledAttr + [
-			'id' => 'cn-cdn-cache-purge'
-		] );
-
-		$purgeControls .=
-			$this->msg( 'centralnotice-banner-cdn-button' )->escaped();
-
-		$purgeControls .= Html::closeElement( 'button' );
+		$purgeControls .= ' ' . Html::element( 'button',
+			$disabledAttr + [ 'id' => 'cn-cdn-cache-purge' ],
+			$this->msg( 'centralnotice-banner-cdn-button' )->text()
+		);
 
 		$purgeControls .= Html::element(
 			'div',

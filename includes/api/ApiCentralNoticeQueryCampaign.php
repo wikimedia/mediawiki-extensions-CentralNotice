@@ -40,11 +40,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$params = [];
-
-		$params['campaign'] = '';
-
-		return $params;
+		return [ 'campaign' => '' ];
 	}
 
 	/**

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+
 class HTMLBannerPagerNavigation extends HTMLFormField {
 	public function validate( $value, $alldata ) {
 		// Empty - no validation can be done on a navigation element
@@ -11,13 +13,10 @@ class HTMLBannerPagerNavigation extends HTMLFormField {
 	}
 
 	public function getDiv( $value ) {
-		$html = Xml::openElement(
+		return Html::rawElement(
 			'div',
-			[ 'class' => "cn-banner-list-pager-nav", ]
+			[ 'class' => 'cn-banner-list-pager-nav' ],
+			$this->getInputHTML( $value )
 		);
-		$html .= $this->getInputHTML( $value );
-		$html .= Xml::closeElement( 'div' );
-
-		return $html;
 	}
 }

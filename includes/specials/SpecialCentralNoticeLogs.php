@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+
 class SpecialCentralNoticeLogs extends CentralNotice {
 	/** @var string */
 	public $logType = 'campaignsettings';
@@ -39,18 +41,18 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$out->addWikiMsg( 'centralnotice-summary' );
 
 		// Begin Banners tab content
-		$out->addHTML( Xml::openElement( 'div', [ 'id' => 'preferences' ] ) );
+		$out->addHTML( Html::openElement( 'div', [ 'id' => 'preferences' ] ) );
 
 		$htmlOut = '';
 
 		// Begin log selection fieldset
-		$htmlOut .= Xml::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
+		$htmlOut .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
 
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
 		$actionUrl = $title->getLocalURL();
-		$htmlOut .= Xml::openElement( 'form', [ 'method' => 'get', 'action' => $actionUrl ] );
+		$htmlOut .= Html::openElement( 'form', [ 'method' => 'get', 'action' => $actionUrl ] );
 		$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-view-logs' )->text() );
-		$htmlOut .= Xml::openElement( 'div', [ 'id' => 'cn-log-switcher' ] );
+		$htmlOut .= Html::openElement( 'div', [ 'id' => 'cn-log-switcher' ] );
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
 		$fullUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 
@@ -64,7 +66,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut .= $this->getLogSwitcher( 'bannermessages', 'bannerMessages',
 			'centralnotice-banner-messages', $fullUrl );
 
-		$htmlOut .= Xml::closeElement( 'div' );
+		$htmlOut .= Html::closeElement( 'div' );
 
 		if ( $this->logType == 'campaignsettings' ) {
 			$reset = $request->getVal( 'centralnoticelogreset' );
@@ -73,7 +75,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$start = $this->getDateValue( 'start' );
 			$end = $this->getDateValue( 'end' );
 
-			$htmlOut .= Xml::openElement( 'div', [ 'id' => 'cn-log-filters-container' ] );
+			$htmlOut .= Html::openElement( 'div', [ 'id' => 'cn-log-filters-container' ] );
 
 			$collapsedImg = $this->getContext()->getLanguage()->isRTL() ?
 				'/CentralNotice/resources/images/collapsed-rtl.png' :
@@ -88,9 +90,9 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 					'id="cn-uncollapsed-filter-arrow" ' .
 					'style="display:inline-block;position:relative;top:-2px;"/>' .
 					'</a>';
-				$htmlOut .= Xml::tags( 'span', [ 'style' => 'margin-left: 0.3em;' ],
-					$this->msg( 'centralnotice-filters' )->escaped() );
-				$htmlOut .= Xml::openElement( 'div', [ 'id' => 'cn-log-filters' ] );
+				$htmlOut .= Html::element( 'span', [ 'style' => 'margin-left: 0.3em;' ],
+					$this->msg( 'centralnotice-filters' )->text() );
+				$htmlOut .= Html::openElement( 'div', [ 'id' => 'cn-log-filters' ] );
 			} else { // filters off
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">' .
 					'<img src="' . $wgExtensionAssetsPath . $collapsedImg . '" ' .
@@ -100,73 +102,57 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 					'id="cn-uncollapsed-filter-arrow" ' .
 					'style="display:none;position:relative;top:-2px;"/>' .
 					'</a>';
-				$htmlOut .= Xml::tags( 'span', [ 'style' => 'margin-left: 0.3em;' ],
-					$this->msg( 'centralnotice-filters' )->escaped() );
-				$htmlOut .= Xml::openElement( 'div',
+				$htmlOut .= Html::element( 'span', [ 'style' => 'margin-left: 0.3em;' ],
+					$this->msg( 'centralnotice-filters' )->text() );
+				$htmlOut .= Html::openElement( 'div',
 					[ 'id' => 'cn-log-filters', 'style' => 'display:none;' ] );
 			}
 
-			$htmlOut .= Xml::openElement( 'table' );
-			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Html::openElement( 'table' );
 
-			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( $this->msg( 'centralnotice-start-date' )->text(), 'month',
-				[ 'class' => 'cn-log-filter-label' ] );
-			$htmlOut .= Xml::closeElement( 'td' );
-			$htmlOut .= Xml::openElement( 'td' );
-			if ( $reset ) {
-				$htmlOut .= $this->dateSelector( 'start', true );
-			} else {
-				$htmlOut .= $this->dateSelector( 'start', true, $start );
-			}
-			$htmlOut .= Xml::closeElement( 'td' );
-
-			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr' );
-
-			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( $this->msg( 'centralnotice-end-date' )->text(), 'month',
-				[ 'class' => 'cn-log-filter-label' ] );
-			$htmlOut .= Xml::closeElement( 'td' );
-			$htmlOut .= Xml::openElement( 'td' );
-			if ( $reset ) {
-				$htmlOut .= $this->dateSelector( 'end', true );
-			} else {
-				$htmlOut .= $this->dateSelector( 'end', true, $end );
-			}
-			$htmlOut .= Xml::closeElement( 'td' );
-
-			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr' );
-
-			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label( $this->msg( 'centralnotice-notice' )->text(), 'campaign',
-				[ 'class' => 'cn-log-filter-label' ] );
-			$htmlOut .= Xml::closeElement( 'td' );
-			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::input( 'campaign', 25, ( $reset || $campaign === null ? '' : $campaign ) );
-			$htmlOut .= Xml::closeElement( 'span' );
-			$htmlOut .= Xml::closeElement( 'td' );
-
-			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr' );
-
-			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::label(
-				$this->msg( 'centralnotice-user' )->text(),
-				'user',
-				[ 'class' => 'cn-log-filter-label' ]
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-start-date' )->text(), 'month',
+						[ 'class' => 'cn-log-filter-label' ] )
+				) .
+				Html::rawElement( 'td', [],
+					$this->dateSelector( 'start', true, $reset ? '' : $start )
+				)
 			);
-			$htmlOut .= Xml::closeElement( 'td' );
-			$htmlOut .= Xml::openElement( 'td' );
-			$htmlOut .= Xml::input( 'user', 25, ( $reset || $user === null ? '' : $user ) );
-			$htmlOut .= Xml::closeElement( 'span' );
-			$htmlOut .= Xml::closeElement( 'td' );
 
-			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-end-date' )->text(), 'month',
+						[ 'class' => 'cn-log-filter-label' ] )
+				) .
+				Html::rawElement( 'td', [],
+					$this->dateSelector( 'end', true, $reset ? '' : $end )
+				)
+			);
 
-			$htmlOut .= Xml::openElement( 'td', [ 'colspan' => 2 ] );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-notice' )->text(), 'campaign',
+						[ 'class' => 'cn-log-filter-label' ] )
+				) .
+				Html::rawElement( 'td', [],
+					Xml::input( 'campaign', 25, ( $reset || $campaign === null ? '' : $campaign ) )
+				)
+			);
+
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-user' )->text(), 'user',
+						[ 'class' => 'cn-log-filter-label' ] )
+				) .
+				Html::rawElement( 'td', [],
+					Xml::input( 'user', 25, ( $reset || $user === null ? '' : $user ) )
+				)
+			);
+
+			$htmlOut .= Html::openElement( 'tr' );
+
+			$htmlOut .= Html::openElement( 'td', [ 'colspan' => 2 ] );
 			$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-apply-filters' )->text(),
 				[
 					'id' => 'centralnoticesubmit',
@@ -183,26 +169,26 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 					'onclick' => "location.href = " . Xml::encodeJsVar( $link ) . "; return false;",
 				]
 			);
-			$htmlOut .= Xml::closeElement( 'td' );
+			$htmlOut .= Html::closeElement( 'td' );
 
-			$htmlOut .= Xml::closeElement( 'tr' );
-			$htmlOut .= Xml::closeElement( 'table' );
-			$htmlOut .= Xml::closeElement( 'div' );
+			$htmlOut .= Html::closeElement( 'tr' );
+			$htmlOut .= Html::closeElement( 'table' );
+			$htmlOut .= Html::closeElement( 'div' );
 			// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
-			$htmlOut .= Xml::closeElement( 'div' );
+			$htmlOut .= Html::closeElement( 'div' );
 		}
 
-		$htmlOut .= Xml::closeElement( 'form' );
+		$htmlOut .= Html::closeElement( 'form' );
 
 		// End log selection fieldset
-		// $htmlOut .= Xml::closeElement( 'fieldset' );
+		// $htmlOut .= Html::closeElement( 'fieldset' );
 
 		$out->addHTML( $htmlOut );
 
 		$this->showLog( $this->logType );
 
 		// End Banners tab content
-		$out->addHTML( Xml::closeElement( 'div' ) );
+		$out->addHTML( Html::closeElement( 'div' ) );
 	}
 
 	/**
@@ -252,7 +238,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$htmlOut = '';
 
 		// Begin log fieldset
-		// $htmlOut .= Xml::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
+		// $htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
 		// Show paginated list of log entries
 		$htmlOut .= Xml::tags( 'div',
@@ -264,7 +250,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$pager->getNavigationBar() );
 
 		// End log fieldset
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		$this->getOutput()->addHTML( $htmlOut );
 	}

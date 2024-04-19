@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+
 /**
  * Provides pagination functionality for viewing banner lists in the CentralNotice admin interface.
  *
@@ -87,7 +89,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	public function formatRow( $row ) {
 		// Begin banner row
-		$htmlOut = Xml::openElement( 'tr' );
+		$htmlOut = Html::openElement( 'tr' );
 
 		if ( $this->editable ) {
 			// Remove box
@@ -107,7 +109,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		);
 
 		// End banner row
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 
 		return $htmlOut;
 	}
@@ -119,8 +121,8 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	public function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
+		$htmlOut .= Html::openElement( 'tr' );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( 'centralnotice-remove' )->text()
@@ -129,7 +131,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::element( 'th', [ 'align' => 'left' ],
 			$this->msg( 'centralnotice-templates' )->text()
 		);
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 		return $htmlOut;
 	}
 
@@ -140,7 +142,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	public function getEndBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Html::closeElement( 'table' );
 		if ( $this->editable ) {
 			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
 			$htmlOut .= Xml::tags( 'div',

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+
 class CentralNoticePager extends TemplatePager {
 
 	public function __construct( $special, $filter = '' ) {
@@ -83,7 +85,7 @@ class CentralNoticePager extends TemplatePager {
 	 */
 	public function formatRow( $row ) {
 		// Begin banner row
-		$htmlOut = Xml::openElement( 'tr' );
+		$htmlOut = Html::openElement( 'tr' );
 
 		if ( $this->editable ) {
 			// Add box
@@ -114,7 +116,7 @@ class CentralNoticePager extends TemplatePager {
 		);
 
 		// End banner row
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 
 		return $htmlOut;
 	}
@@ -126,8 +128,8 @@ class CentralNoticePager extends TemplatePager {
 	 */
 	public function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
+		$htmlOut .= Html::openElement( 'tr' );
 		if ( $this->editable ) {
 			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( "centralnotice-add" )->text()
@@ -143,7 +145,7 @@ class CentralNoticePager extends TemplatePager {
 		$htmlOut .= Xml::element( 'th', [ 'align' => 'left' ],
 			$this->msg( 'centralnotice-templates' )->text()
 		);
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 		return $htmlOut;
 	}
 
@@ -153,21 +155,21 @@ class CentralNoticePager extends TemplatePager {
 	 * @return string
 	 */
 	public function getEndBody() {
-		return Xml::closeElement( 'table' );
+		return Html::closeElement( 'table' );
 	}
 
 	private function bucketDropdown( $bannerName ) {
 		global $wgNoticeNumberOfBuckets;
 
-		// class should coordinate with CentralNotice::bucketDropdown()
-		$html = Html::openElement( 'select', [
-			'name' => "bucket-{$bannerName}",
-			'class' => 'bucketSelector',
-		] );
+		$html = '';
 		foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
 			$html .= Xml::option( chr( $value + ord( 'A' ) ), $value, false, [] );
 		}
-		$html .= Html::closeElement( 'select' );
-		return $html;
+
+		return Html::rawElement( 'select', [
+			'name' => "bucket-{$bannerName}",
+			// class should coordinate with CentralNotice::bucketDropdown()
+			'class' => 'bucketSelector',
+		], $html );
 	}
 }

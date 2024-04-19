@@ -359,24 +359,24 @@ class SpecialBannerAllocation extends CentralNotice {
 				$htmlOut .= Html::openElement( 'tr', [ 'class' => 'mw-sp-centralnotice-allocationrow' ] );
 
 				// Percentage
-				$htmlOut .= Html::openElement( 'td', [ 'align' => 'right' ] );
-				$htmlOut .= $this->msg( 'percent', $percentage )->escaped();
-				$htmlOut .= Html::closeElement( 'td' );
+				$htmlOut .= Html::element( 'td', [ 'align' => 'right' ],
+					$this->msg( 'percent', $percentage )->text()
+				);
 
 				// Banner name
 				$viewBanner = $this->getTitleFor( 'CentralNoticeBanners', "edit/{$banner['name']}" );
-				$htmlOut .= Xml::openElement( 'td', [ 'valign' => 'top' ] );
 
-				$htmlOut .= Html::openElement( 'span',
-					[ 'class' => 'cn-' . $banner['campaign'] . '-' . $banner['name'] ] );
-				$htmlOut .= $linkRenderer->makeLink(
-					$viewBanner,
-					$banner['name'],
-					[],
-					[ 'template' => $banner['name'] ]
+				$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
+					Html::rawElement( 'span',
+						[ 'class' => 'cn-' . $banner['campaign'] . '-' . $banner['name'] ],
+						$linkRenderer->makeLink(
+							$viewBanner,
+							$banner['name'],
+							[],
+							[ 'template' => $banner['name'] ]
+						)
+					)
 				);
-				$htmlOut .= Html::closeElement( 'span' );
-				$htmlOut .= Html::closeElement( 'td' );
 
 				// Campaign name
 				$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
@@ -396,11 +396,11 @@ class SpecialBannerAllocation extends CentralNotice {
 			}
 
 		} else {
-			$htmlOut .= Html::openElement( 'tr' );
-			$htmlOut .= Html::openElement( 'td' );
-			$htmlOut .= $this->msg( 'centralnotice-no-allocation' )->parseAsBlock();
-			$htmlOut .= Html::closeElement( 'td' );
-			$htmlOut .= Html::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					$this->msg( 'centralnotice-no-allocation' )->parseAsBlock()
+				)
+			);
 		}
 		return $htmlOut;
 	}

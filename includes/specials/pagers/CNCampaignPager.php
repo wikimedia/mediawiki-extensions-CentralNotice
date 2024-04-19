@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Html\Html;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -169,7 +170,7 @@ class CNCampaignPager extends TablePager {
 	public function getStartBody() {
 		$htmlOut = '';
 
-		$htmlOut .= Xml::openElement(
+		$htmlOut .= Html::openElement(
 			'fieldset',
 			[
 				'class' => 'prefsection',
@@ -372,7 +373,7 @@ class CNCampaignPager extends TablePager {
 
 		if ( $this->editable ) {
 			$htmlOut .=
-				Xml::openElement( 'div',
+				Html::openElement( 'div',
 				[ 'class' => 'cn-buttons cn-formsection-emphasis' ] );
 
 			$htmlOut .= $this->onSpecialCN->makeSummaryField();
@@ -387,10 +388,10 @@ class CNCampaignPager extends TablePager {
 				]
 			);
 
-			$htmlOut .= Xml::closeElement( 'div' );
+			$htmlOut .= Html::closeElement( 'div' );
 		}
 
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		return parent::getEndBody() . $htmlOut;
 	}
