@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Html\Html;
+
 /**
  * Renders banner contents as jsonp.
  */
@@ -68,7 +71,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 			}
 
 			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
-			$msgParamStr = $msg ? Xml::encodeJsVar( $msg ) : '';
+			$msgParamStr = $msg ? Html::encodeJsVar( $msg ) : '';
 
 			// For preview requests, a different error callback is needed.
 			if ( $this->requestType === self::PREVIEW_UNSAVED_REQUEST ) {

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+
 class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
 	public function getInputHTML( $value ) {
 		if ( !is_array( $value ) ) {
@@ -29,6 +31,6 @@ class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
 			$properties[ 'class' ] = $this->mParams[ 'cssclass' ];
 		}
 
-		return Xml::tags( 'select', $properties, $options );
+		return Html::rawElement( 'select', $properties, $options );
 	}
 }

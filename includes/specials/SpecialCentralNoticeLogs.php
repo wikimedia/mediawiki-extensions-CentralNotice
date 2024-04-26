@@ -166,7 +166,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 					'id' => 'centralnoticelogreset',
 					'name' => 'centralnoticelogreset',
 					'class' => 'cn-filter-buttons',
-					'onclick' => "location.href = " . Xml::encodeJsVar( $link ) . "; return false;",
+					'onclick' => "location.href = " . Html::encodeJsVar( $link ) . "; return false;",
 				]
 			);
 			$htmlOut .= Html::closeElement( 'td' );
@@ -241,11 +241,11 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		// $htmlOut .= Html::openElement( 'fieldset', array( 'class' => 'prefsection' ) );
 
 		// Show paginated list of log entries
-		$htmlOut .= Xml::tags( 'div',
+		$htmlOut .= Html::rawElement( 'div',
 			[ 'class' => 'cn-pager' ],
 			$pager->getNavigationBar() );
 		$htmlOut .= $pager->getBody();
-		$htmlOut .= Xml::tags( 'div',
+		$htmlOut .= Html::rawElement( 'div',
 			[ 'class' => 'cn-pager' ],
 			$pager->getNavigationBar() );
 
@@ -278,8 +278,8 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 	 * @return string HTML
 	 */
 	private function getLogSwitcher( $type, $id, $message, $fullUrl ) {
-		$fullUrlEnc = Xml::encodeJsVar( $fullUrl );
-		$typeEnc = Xml::encodeJsVar( $type );
+		$fullUrlEnc = Html::encodeJsVar( $fullUrl );
+		$typeEnc = Html::encodeJsVar( $type );
 		$htmlOut = '';
 		$htmlOut .= Xml::radio(
 			'log_type',

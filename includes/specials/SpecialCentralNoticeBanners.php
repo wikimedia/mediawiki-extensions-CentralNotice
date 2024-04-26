@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -662,7 +663,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				if ( $wgNoticeUseTranslateExtension ) {
 					// Create per message link to the translate extension
 					$title = SpecialPage::getTitleFor( 'Translate' );
-					$label = Xml::tags( 'td', null,
+					$label = Html::rawElement( 'td', [],
 						$linkRenderer->makeLink(
 							$title,
 							$messageName,

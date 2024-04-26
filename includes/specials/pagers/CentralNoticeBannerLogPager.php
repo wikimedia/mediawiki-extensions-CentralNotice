@@ -80,10 +80,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->tmplog_timestamp ) . ' ' . $lang->time( $row->tmplog_timestamp )
 		);
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-user-links' )
 				->rawParams( $userLink, $userTalkLink )
-				->parse()
+				->escaped()
 		);
 		// Give grep a chance to find the usages:
 		// centralnotice-action-created, centralnotice-action-modified,
@@ -91,7 +91,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-action-' . $row->tmplog_action )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$bannerLink
 		);
 
@@ -99,12 +99,12 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$summary = property_exists( $row, 'tmplog_comment' ) ?
 			htmlspecialchars( $row->tmplog_comment ) : '&nbsp;';
 
-		$htmlOut .= Xml::tags( 'td',
+		$htmlOut .= Html::rawElement( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			$summary
 		);
 
-		$htmlOut .= Xml::tags( 'td', [],
+		$htmlOut .= Html::rawElement( 'td', [],
 			'&nbsp;'
 		);
 
@@ -117,7 +117,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 				[ 'id' => 'cn-log-details-' . $tmplogId, 'style' => 'display:none;' ] );
 			// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable
 
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '5' ] );
@@ -155,7 +155,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 250px;' ],
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', [],
+		$htmlOut .= Html::rawElement( 'td', [],
 			'&nbsp;'
 		);
 		$htmlOut .= Html::closeElement( 'tr' );

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
 
@@ -113,7 +114,7 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 			// console.
 			return 'mw.centralNotice = ( mw.centralNotice || {} );' .
 				'mw.centralNotice.choiceData = ' .
-				Xml::encodeJsVar( $choices ) . ';';
+				Html::encodeJsVar( $choices ) . ';';
 		}
 	}
 

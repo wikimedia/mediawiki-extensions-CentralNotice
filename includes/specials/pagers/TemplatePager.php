@@ -35,7 +35,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		);
 		$this->mLimitsShown = [ 20, 50, 100 ];
 
-		$msg = Xml::encodeJsVar( $this->msg( 'centralnotice-confirm-delete' )->text() );
+		$msg = Html::encodeJsVar( $this->msg( 'centralnotice-confirm-delete' )->text() );
 		$this->onRemoveChange = "if( this.checked ) { this.checked = confirm( $msg ) }";
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 	}
@@ -93,7 +93,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 		if ( $this->editable ) {
 			// Remove box
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				Xml::check( 'removeTemplates[]', false,
 					[
 						'value'    => $row->tmp_name,
@@ -104,7 +104,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		}
 
 		// Render banner row.
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 			BannerRenderer::linkToBanner( $row->tmp_name )
 		);
 
@@ -145,7 +145,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		$htmlOut .= Html::closeElement( 'table' );
 		if ( $this->editable ) {
 			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
-			$htmlOut .= Xml::tags( 'div',
+			$htmlOut .= Html::rawElement( 'div',
 				[ 'class' => 'cn-buttons' ],
 				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
 			);

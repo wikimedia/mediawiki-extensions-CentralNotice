@@ -175,31 +175,31 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->rc_timestamp ) . ' ' . $lang->time( $row->rc_timestamp )
 		);
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-user-links' )
 				->rawParams( $userLink, $userTalkLink )
-				->parse()
+				->escaped()
 		);
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$bannerCell
 		);
 		if ( $this->logType == 'bannermessages' ) {
 			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable,PhanTypeMismatchArgumentNullable
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 				$messageCell
 			);
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 				$language
 			);
 		}
 
-		$htmlOut .= Xml::tags( 'td',
+		$htmlOut .= Html::rawElement( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			htmlspecialchars(
 				MediaWikiServices::getInstance()->getCommentStore()->getComment( 'rc_comment', $row )->text
 			)
 		);
-		$htmlOut .= Xml::tags( 'td', [],
+		$htmlOut .= Html::rawElement( 'td', [],
 			'&nbsp;'
 		);
 
@@ -245,7 +245,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
 
-		$htmlOut .= Xml::tags( 'td', [],
+		$htmlOut .= Html::rawElement( 'td', [],
 			'&nbsp;'
 		);
 		$htmlOut .= Html::closeElement( 'tr' );

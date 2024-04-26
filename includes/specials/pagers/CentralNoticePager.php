@@ -89,17 +89,17 @@ class CentralNoticePager extends TemplatePager {
 
 		if ( $this->editable ) {
 			// Add box
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				Xml::check( 'addTemplates[]', false, [ 'value' => $row->tmp_name ] )
 			);
 
 			// Bucket
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				$this->bucketDropdown( $row->tmp_name )
 			);
 
 			// Weight select
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
 				Xml::listDropdown( "weight[$row->tmp_id]",
 					CentralNotice::dropdownList(
 						$this->msg( 'centralnotice-weight' )->text(), range( 0, 100, 5 )
@@ -111,7 +111,7 @@ class CentralNoticePager extends TemplatePager {
 		}
 
 		// Render banner row.
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 			BannerRenderer::linkToBanner( $row->tmp_name )
 		);
 

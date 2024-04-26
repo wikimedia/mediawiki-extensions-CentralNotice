@@ -137,10 +137,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$lang->date( $row->notlog_timestamp ) . $this->msg( 'word-separator' )->plain() .
 				$lang->time( $row->notlog_timestamp )
 		);
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-user-links' )
 				->rawParams( $userLink, $userTalkLink )
-				->parse()
+				->escaped()
 		);
 		// The following messages are generated here:
 		// * centralnotice-action-created
@@ -149,7 +149,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-action-' . $row->notlog_action )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$campaignLink
 		);
 
@@ -157,12 +157,12 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$summary = property_exists( $row, 'notlog_comment' ) ?
 			htmlspecialchars( $row->notlog_comment ) : '&nbsp;';
 
-		$htmlOut .= Xml::tags( 'td',
+		$htmlOut .= Html::rawElement( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
 			$summary
 		);
 
-		$htmlOut .= Xml::tags( 'td', [],
+		$htmlOut .= Html::rawElement( 'td', [],
 			'&nbsp;'
 		);
 
@@ -174,7 +174,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$htmlOut .= Html::openElement( 'tr',
 				[ 'id' => 'cn-log-details-' . $notlogId, 'style' => 'display:none;' ] );
 
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				'&nbsp;' // force a table cell in older browsers
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '6' ] );
@@ -622,7 +622,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 250px;' ],
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
-		$htmlOut .= Xml::tags( 'td', [],
+		$htmlOut .= Html::rawElement( 'td', [],
 			'&nbsp;'
 		);
 		$htmlOut .= Html::closeElement( 'tr' );
