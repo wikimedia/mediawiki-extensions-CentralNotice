@@ -42,17 +42,17 @@ class CleanCNTranslateMetadata extends Maintenance {
 
 		$db = CNDatabase::getDb( DB_PRIMARY );
 
-		$res = $db->select(
-			'revtag',
-			[
+		$res = $db->newSelectQueryBuilder()
+			->select( [
 				'rt_page',
-				'maxrev' => 'max(rt_revision)',
-				'count' => 'count(*)'
-			],
-			[ 'rt_type' => $this->ttag ],
-			__METHOD__,
-			[ 'GROUP BY' => 'rt_page' ]
-		);
+				'maxrev' => 'MAX(rt_revision)',
+				'count' => 'COUNT(*)'
+			] )
+			->from( 'revtag' )
+			->where( [ 'rt_type' => $this->ttag ] )
+			->groupBy( 'rt_page' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			if ( (int)$row->count === 1 ) {
@@ -84,18 +84,20 @@ class CleanCNTranslateMetadata extends Maintenance {
 
 		$db = CNDatabase::getDb( DB_PRIMARY );
 
-		$res = $db->select(
-			[ 'revtag' => 'revtag', 'page' => 'page', 'cn_templates' => 'cn_templates' ],
-			[ 'rt_page', 'rt_revision', 'page_title', 'tmp_id' ],
-			[
-				'rt_type' => $this->ttag,
-				'rt_page=page_id',
-				'rt_value is null',
+		$res = $db->newSelectQueryBuilder()
+			->select( [ 'rt_page', 'rt_revision', 'page_title', 'tmp_id' ] )
+			->from( 'revtag' )
+			->join( 'page', null, 'rt_page=page_id' )
+			->join( 'cn_templates', null, [
 				# Length of "centralnotice-template-"
 				'tmp_name=substr(page_title, 24)'
-			],
-			__METHOD__
-		);
+			] )
+			->where( [
+				'rt_type' => $this->ttag,
+				'rt_value' => null,
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$this->output( " -- Associating banner id {$row->tmp_id} " .
@@ -120,12 +122,12 @@ class CleanCNTranslateMetadata extends Maintenance {
 		$db = CNDatabase::getDb( DB_PRIMARY );
 		$this->output( "Preparing to delete orphaned rows\n" );
 
-		$res = $db->select(
-			'revtag',
-			[ 'rt_page', 'rt_revision' ],
-			[ 'rt_type' => $this->ttag, 'rt_value is null' ],
-			__METHOD__
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( [ 'rt_page', 'rt_revision' ] )
+			->from( 'revtag' )
+			->where( [ 'rt_type' => $this->ttag, 'rt_value' => null ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$this->output( " -- Deleting orphan row {$row->rt_page}:{$row->rt_revision}\n" );
