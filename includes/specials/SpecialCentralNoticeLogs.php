@@ -51,7 +51,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
 		$actionUrl = $title->getLocalURL();
 		$htmlOut .= Html::openElement( 'form', [ 'method' => 'get', 'action' => $actionUrl ] );
-		$htmlOut .= Xml::element( 'h2', null, $this->msg( 'centralnotice-view-logs' )->text() );
+		$htmlOut .= Html::element( 'h2', [], $this->msg( 'centralnotice-view-logs' )->text() );
 		$htmlOut .= Html::openElement( 'div', [ 'id' => 'cn-log-switcher' ] );
 		$title = SpecialPage::getTitleFor( 'CentralNoticeLogs' );
 		$fullUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
@@ -153,7 +153,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 			$htmlOut .= Html::openElement( 'tr' );
 
 			$htmlOut .= Html::openElement( 'td', [ 'colspan' => 2 ] );
-			$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-apply-filters' )->text(),
+			$htmlOut .= Html::submitButton( $this->msg( 'centralnotice-apply-filters' )->text(),
 				[
 					'id' => 'centralnoticesubmit',
 					'name' => 'centralnoticesubmit',
@@ -161,7 +161,7 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 				]
 			);
 			$link = $title->getLinkURL();
-			$htmlOut .= Xml::submitButton( $this->msg( 'centralnotice-clear-filters' )->text(),
+			$htmlOut .= Html::submitButton( $this->msg( 'centralnotice-clear-filters' )->text(),
 				[
 					'id' => 'centralnoticelogreset',
 					'name' => 'centralnoticelogreset',

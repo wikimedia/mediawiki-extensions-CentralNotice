@@ -90,7 +90,7 @@ class CentralNoticePager extends TemplatePager {
 		if ( $this->editable ) {
 			// Add box
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
-				Xml::check( 'addTemplates[]', false, [ 'value' => $row->tmp_name ] )
+				Html::check( 'addTemplates[]', false, [ 'value' => $row->tmp_name ] )
 			);
 
 			// Bucket
@@ -131,18 +131,18 @@ class CentralNoticePager extends TemplatePager {
 		$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
 		$htmlOut .= Html::openElement( 'tr' );
 		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( "centralnotice-add" )->text()
 			);
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( 'centralnotice-bucket' )->text()
 			);
-			$htmlOut .= Xml::element( 'th',
+			$htmlOut .= Html::element( 'th',
 				[ 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ],
 				$this->msg( 'centralnotice-weight' )->text()
 			);
 		}
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left' ],
 			$this->msg( 'centralnotice-templates' )->text()
 		);
 		$htmlOut .= Html::closeElement( 'tr' );

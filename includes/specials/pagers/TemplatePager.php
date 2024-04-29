@@ -94,7 +94,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		if ( $this->editable ) {
 			// Remove box
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
-				Xml::check( 'removeTemplates[]', false,
+				Html::check( 'removeTemplates[]', false,
 					[
 						'value'    => $row->tmp_name,
 						'onchange' => $this->onRemoveChange
@@ -124,11 +124,11 @@ class TemplatePager extends ReverseChronologicalPager {
 		$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
 		$htmlOut .= Html::openElement( 'tr' );
 		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( 'centralnotice-remove' )->text()
 			);
 		}
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left' ],
 			$this->msg( 'centralnotice-templates' )->text()
 		);
 		$htmlOut .= Html::closeElement( 'tr' );
@@ -147,7 +147,7 @@ class TemplatePager extends ReverseChronologicalPager {
 			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
 			$htmlOut .= Html::rawElement( 'div',
 				[ 'class' => 'cn-buttons' ],
-				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
+				Html::submitButton( $this->msg( 'centralnotice-modify' )->text() )
 			);
 		}
 		return $htmlOut;

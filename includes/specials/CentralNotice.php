@@ -135,7 +135,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi' );
 
-		$out->addHTML( Xml::element( 'h2',
+		$out->addHTML( Html::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg(
 				$showArchived ? 'centralnotice-archived-campaigns' : 'centralnotice-manage'
@@ -468,7 +468,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		$htmlOut = '';
 
 		// Section heading
-		$htmlOut .= Xml::element( 'h2',
+		$htmlOut .= Html::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg( 'centralnotice-add-notice' )->text() );
 
@@ -535,7 +535,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		$htmlOut .= Html::rawElement( 'td', [],
 			Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
 		$htmlOut .= Html::rawElement( 'td', [],
-			Xml::check( 'geotargeted', false, [ 'value' => 1, 'id' => 'geotargeted' ] ) );
+			Html::check( 'geotargeted', false, [ 'value' => 1, 'id' => 'geotargeted' ] ) );
 		$htmlOut .= Html::closeElement( 'tr' );
 
 		// Locations multi-selector
@@ -553,7 +553,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		$htmlOut .= Html::rawElement( 'div',
 			[ 'class' => 'cn-buttons' ],
 			$this->makeSummaryField( true ) .
-			Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
+			Html::submitButton( $this->msg( 'centralnotice-modify' )->text() )
 		);
 
 		$htmlOut .= Html::closeElement( 'form' );
@@ -724,13 +724,13 @@ class CentralNotice extends UnlistedSpecialPage {
 		// Catch for no banners so that we don't double message
 		if ( $output_assigned == '' && $output_templates == '' ) {
 			$htmlOut .= $this->msg( 'centralnotice-no-templates' )->escaped();
-			$htmlOut .= Xml::element( 'p' );
+			$htmlOut .= Html::element( 'p' );
 			$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
 			$htmlOut .= $this->getLinkRenderer()->makeLink(
 				$newPage,
 				$this->msg( 'centralnotice-add-template' )->text()
 			);
-			$htmlOut .= Xml::element( 'p' );
+			$htmlOut .= Html::element( 'p' );
 		} elseif ( $output_assigned == '' ) {
 			$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
 			$htmlOut .= $this->msg( 'centralnotice-no-templates-assigned' )->escaped();
@@ -752,7 +752,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			// Submit button
 			$htmlOut .= Html::rawElement( 'div',
 				[ 'class' => 'cn-buttons' ],
-				Xml::submitButton(
+				Html::submitButton(
 					$this->msg( 'centralnotice-modify' )->text(),
 					[ 'id' => 'noticeDetailSubmit' ]
 				)
@@ -1137,7 +1137,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' )
 				) .
 				Html::rawElement( 'td', [],
-					Xml::check( 'geotargeted', $isGeotargeted,
+					Html::check( 'geotargeted', $isGeotargeted,
 						array_replace( $readonly, [ 'value' => $notice, 'id' => 'geotargeted' ] )
 					)
 				)
@@ -1167,7 +1167,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					Xml::label( $this->msg( 'centralnotice-enabled' )->text(), 'enabled' )
 				) .
 				Html::rawElement( 'td', [],
-					Xml::check( 'enabled', $isEnabled,
+					Html::check( 'enabled', $isEnabled,
 						array_replace( $readonly, [ 'value' => $notice, 'id' => 'enabled' ] )
 					)
 				)
@@ -1187,7 +1187,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					Xml::label( $this->msg( 'centralnotice-throttle' )->text(), 'throttle-enabled' )
 				) .
 				Html::rawElement( 'td', [],
-					Xml::check( 'throttle-enabled', $isThrottled,
+					Html::check( 'throttle-enabled', $isThrottled,
 						array_replace( $readonly, [ 'value' => $notice, 'id' => 'throttle-enabled' ] )
 					)
 				)
@@ -1199,8 +1199,9 @@ class CentralNotice extends UnlistedSpecialPage {
 			$throttleLabel = $this->msg( 'percent' )->numParams( $throttle )->text();
 			if ( $this->editable ) {
 				$htmlOut .= Html::rawElement( 'td', [],
-					Xml::span( $throttleLabel, 'cn-throttle',
-						[ 'id' => 'centralnotice-throttle-echo' ] ) .
+					Html::element( 'span',
+						[ 'class' => 'cn-throttle', 'id' => 'centralnotice-throttle-echo' ],
+						$throttleLabel ) .
 					Html::hidden( 'throttle-cur', $throttle,
 						[ 'id' => 'centralnotice-throttle-cur' ] ) .
 					Html::rawElement( 'div', [ 'id' => 'centralnotice-throttle-amount' ], '' ) );
@@ -1214,7 +1215,7 @@ class CentralNotice extends UnlistedSpecialPage {
 					Xml::label( $this->msg( 'centralnotice-locked' )->text(), 'locked' )
 				) .
 				Html::rawElement( 'td', [],
-					Xml::check( 'locked', $isLocked,
+					Html::check( 'locked', $isLocked,
 						array_replace( $readonly, [ 'value' => $notice, 'id' => 'locked' ] )
 					)
 				)
@@ -1226,7 +1227,7 @@ class CentralNotice extends UnlistedSpecialPage {
 						Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' )
 					) .
 					Html::rawElement( 'td', [],
-						Xml::check( 'archive', $isArchived, [ 'value' => $notice, 'id' => 'archive' ] )
+						Html::check( 'archive', $isArchived, [ 'value' => $notice, 'id' => 'archive' ] )
 					)
 				);
 			}
@@ -1270,7 +1271,7 @@ class CentralNotice extends UnlistedSpecialPage {
 
 					$htmlOut .= Html::openElement( 'div' );
 
-					$htmlOut .= Xml::check(
+					$htmlOut .= Html::check(
 						$mixinControlName,
 						$checked,
 						array_replace( $readonly, $attribs )
@@ -1393,7 +1394,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				Xml::label( $this->msg( 'centralnotice-balanced' )->text(), 'balanced' )
 			) .
 			Html::rawElement( 'td', [],
-				Xml::check( 'balanced', $isBalanced,
+				Html::check( 'balanced', $isBalanced,
 					array_replace( $readonly, [ 'value' => $notice, 'id' => 'balanced' ] )
 				)
 			)
@@ -1406,15 +1407,15 @@ class CentralNotice extends UnlistedSpecialPage {
 			]
 		);
 		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( "centralnotice-remove" )->text() );
 		}
-		$htmlOut .= Xml::element( 'th',
+		$htmlOut .= Html::element( 'th',
 			[ 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ],
 			$this->msg( 'centralnotice-weight' )->text() );
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 			$this->msg( 'centralnotice-bucket' )->text() );
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '70%' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '70%' ],
 			$this->msg( 'centralnotice-templates' )->text() );
 
 		// Table rows
@@ -1424,7 +1425,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			if ( $this->editable ) {
 				// Remove
 				$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
-					Xml::check( 'removeTemplates[]', false, [
+					Html::check( 'removeTemplates[]', false, [
 						'value' => $row->tmp_name,
 						'class' => 'bannerRemoveCheckbox'
 					] )
@@ -1698,10 +1699,10 @@ class CentralNotice extends UnlistedSpecialPage {
 		$placeholderMsg = $action ? 'centralnotice-change-summary-action-prompt'
 			: 'centralnotice-change-summary-prompt';
 
-		return Xml::element( 'label',
+		return Html::element( 'label',
 				[ 'class' => 'cn-change-summary-label' ],
 				$this->msg( 'centralnotice-change-summary-label' )->text()
-			) . Xml::element( 'input',
+			) . Html::element( 'input',
 				[
 					'class' => 'cn-change-summary-input',
 					'placeholder' => $this->msg( $placeholderMsg )->text(),

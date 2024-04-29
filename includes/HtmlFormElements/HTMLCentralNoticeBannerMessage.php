@@ -65,7 +65,7 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 		$originText = $message->getContents(
 			MediaWikiServices::getInstance()->getContentLanguage()->getCode()
 		);
-		$html .= Xml::element(
+		$html .= Html::element(
 			'td',
 			[ 'class' => 'cn-message-text-origin' ],
 			$originText

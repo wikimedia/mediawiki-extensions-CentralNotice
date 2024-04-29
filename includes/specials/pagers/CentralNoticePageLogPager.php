@@ -172,7 +172,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut = Html::openElement( 'tr' );
 
 		$htmlOut .= Html::element( 'td', [ 'valign' => 'top' ] );
-		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->rc_timestamp ) . ' ' . $lang->time( $row->rc_timestamp )
 		);
 		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
@@ -216,21 +216,21 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 		$htmlOut = '';
 		$htmlOut .= Html::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Html::openElement( 'tr' );
-		$htmlOut .= Xml::element( 'th', [ 'style' => 'width: 20px;' ] );
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
+		$htmlOut .= Html::element( 'th', [ 'style' => 'width: 20px;' ] );
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
 			$this->msg( 'centralnotice-timestamp' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-user' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-banner' )->text()
 		);
 		if ( $this->logType == 'bannermessages' ) {
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 				$this->msg( 'centralnotice-message' )->text()
 			);
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 100px;' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 100px;' ],
 				$this->msg( 'centralnotice-language' )->text()
 			);
 
@@ -240,7 +240,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			$commentWidth = '250px';
 		}
 
-		$htmlOut .= Xml::element( 'th',
+		$htmlOut .= Html::element( 'th',
 			[ 'align' => 'left', 'style' => "width: {$commentWidth};" ],
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);

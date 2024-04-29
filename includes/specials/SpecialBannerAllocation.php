@@ -213,7 +213,7 @@ class SpecialBannerAllocation extends CentralNotice {
 
 		$htmlOut .= Html::rawElement( 'div',
 			[ 'class' => 'cn-buttons' ],
-			Xml::submitButton( $this->msg( 'centralnotice-view' )->text() )
+			Html::submitButton( $this->msg( 'centralnotice-view' )->text() )
 		);
 		$htmlOut .= Html::closeElement( 'form' );
 

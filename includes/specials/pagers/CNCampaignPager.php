@@ -251,7 +251,7 @@ class CNCampaignPager extends TablePager {
 			// ext.centralNotice.adminUi.campaignPager.js
 
 			case 'not_enabled':
-				return Xml::check(
+				return Html::check(
 					'enabled',
 					$rowIsEnabled,
 					array_replace(
@@ -280,7 +280,7 @@ class CNCampaignPager extends TablePager {
 				}
 
 			case 'not_locked':
-				return Xml::check(
+				return Html::check(
 					'locked',
 					$rowIsLocked,
 					array_replace(
@@ -299,7 +299,7 @@ class CNCampaignPager extends TablePager {
 				);
 
 			case 'not_archived':
-				return Xml::check(
+				return Html::check(
 					'archived',
 					$rowIsArchived,
 					array_replace(

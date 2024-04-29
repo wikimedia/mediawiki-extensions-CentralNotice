@@ -133,7 +133,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'</a>';
 		}
 		$htmlOut .= Html::closeElement( 'td' );
-		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$lang->date( $row->notlog_timestamp ) . $this->msg( 'word-separator' )->plain() .
 				$lang->time( $row->notlog_timestamp )
 		);
@@ -146,7 +146,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		// * centralnotice-action-created
 		// * centralnotice-action-modified
 		// * centralnotice-action-removed
-		$htmlOut .= Xml::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
+		$htmlOut .= Html::element( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
 			$this->msg( 'centralnotice-action-' . $row->notlog_action )->text()
 		);
 		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'primary' ],
@@ -606,20 +606,20 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		$htmlOut = '';
 		$htmlOut .= Html::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );
 		$htmlOut .= Html::openElement( 'tr' );
-		$htmlOut .= Xml::element( 'th', [ 'style' => 'width: 20px;' ] );
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
+		$htmlOut .= Html::element( 'th', [ 'style' => 'width: 20px;' ] );
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 130px;' ],
 			$this->msg( 'centralnotice-timestamp' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-user' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 100px;' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 100px;' ],
 			$this->msg( 'centralnotice-action' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 160px;' ],
 			$this->msg( 'centralnotice-notice' )->text()
 		);
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'style' => 'width: 250px;' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'style' => 'width: 250px;' ],
 			$this->msg( 'centralnotice-change-summary-heading' )->text()
 		);
 		$htmlOut .= Html::rawElement( 'td', [],
