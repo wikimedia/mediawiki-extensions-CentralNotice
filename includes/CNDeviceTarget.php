@@ -18,12 +18,11 @@ class CNDeviceTarget {
 
 		$devices = [];
 
-		$res = $dbr->select(
-			[ 'known_devices' => 'cn_known_devices' ],
-			[ 'dev_id', 'dev_name', 'dev_display_label' ],
-			[],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'dev_id', 'dev_name', 'dev_display_label' ] )
+			->from( 'cn_known_devices' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			if ( $flip ) {
@@ -55,18 +54,15 @@ class CNDeviceTarget {
 
 		$devices = [];
 
-		$res = $dbr->select(
-			[
-				'tdev' => 'cn_template_devices',
-				'devices' => 'cn_known_devices'
-			],
-			[ 'devices.dev_id', 'dev_name' ],
-			[
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'devices.dev_id', 'dev_name' ] )
+			->from( 'cn_template_devices', 'tdev' )
+			->join( 'cn_known_devices', 'devices', 'tdev.dev_id = devices.dev_id' )
+			->where( [
 				'tdev.tmp_id' => $bannerId,
-				'tdev.dev_id = devices.dev_id'
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$devices[ intval( $row->dev_id ) ] = $row->dev_name;

@@ -1071,18 +1071,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$dbr = CNDatabase::getDb();
 			$this->templateBannerNames = [];
 
-			$res = $dbr->select(
-				[
-					'templates' => 'cn_templates'
-				],
-				[
-					'tmp_name'
-				],
-				[
-					'templates.tmp_is_template' => true,
-				],
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'tmp_name' ] )
+				->from( 'cn_templates' )
+				->where( [ 'tmp_is_template' => true ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				// name of the banner as a key for HTMLSelectField
