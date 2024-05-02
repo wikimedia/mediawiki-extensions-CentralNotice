@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	/** @var SpecialCentralNoticeLogs */
@@ -215,14 +216,16 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		if ( $newrow->tmplog_action === 'modified' ) {
 			$db = CNDatabase::getDb();
 			$tmplogId = (int)$newrow->tmplog_id;
-			$oldrow = $db->selectRow(
-				[ 'cn_template_log' => 'cn_template_log' ],
-				'*',
-				[ 'tmplog_template_id' => $newrow->tmplog_template_id,
-					"tmplog_id < {$tmplogId}" ],
-				__METHOD__,
-				[ 'ORDER BY' => 'tmplog_id DESC', 'LIMIT' => 1 ]
-			);
+			$oldrow = $db->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'cn_template_log' )
+				->where( [
+					'tmplog_template_id' => $newrow->tmplog_template_id,
+					$db->expr( 'tmplog_id', '<', $tmplogId ),
+				] )
+				->orderBy( 'tmplog_id', SelectQueryBuilder::SORT_DESC )
+				->caller( __METHOD__ )
+				->fetchRow();
 		}
 
 		$details = $this->testBooleanBannerChange( 'anon', $newrow, $oldrow );

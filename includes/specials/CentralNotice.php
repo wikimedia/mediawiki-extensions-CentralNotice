@@ -1321,28 +1321,24 @@ class CentralNotice extends UnlistedSpecialPage {
 		global $wgNoticeNumberOfBuckets;
 
 		$dbr = CNDatabase::getDb();
-		$res = $dbr->select(
+		$res = $dbr->newSelectQueryBuilder()
 			// Aliases are needed to avoid problems with table prefixes
-			[
-				'notices' => 'cn_notices',
-				'assignments' => 'cn_assignments',
-				'templates' => 'cn_templates'
-			],
-			[
+			->select( [
 				'templates.tmp_id',
 				'templates.tmp_name',
 				'assignments.tmp_weight',
 				'assignments.asn_bucket',
 				'notices.not_buckets',
-			],
-			[
+			] )
+			->from( 'cn_notices', 'notices' )
+			->join( 'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
+			->join( 'cn_templates', 'templates', 'assignments.tmp_id = templates.tmp_id' )
+			->where( [
 				'notices.not_name' => $notice,
-				'notices.not_id = assignments.not_id',
-				'assignments.tmp_id = templates.tmp_id'
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'assignments.asn_bucket, notices.not_id' ]
-		);
+			] )
+			->orderBy( [ 'assignments.asn_bucket', 'notices.not_id' ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// No banners found
 		if ( $res->numRows() < 1 ) {
