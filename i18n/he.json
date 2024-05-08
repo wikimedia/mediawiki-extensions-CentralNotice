@@ -130,7 +130,7 @@
 	"centralnotice-banner-fundraising": "זוהי כרזת התרמה",
 	"centralnotice-banner-display-on": "להציג ב־",
 	"centralnotice-banner-mixins": "תוספות",
-	"centralnotice-banner-mixins-help": "יש לבדוק כל תוספת שברצונך לכלול בכרזה בזמן השליחה. (ר' [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] למידע נוסף.)",
+	"centralnotice-banner-mixins-help": "יש לבדוק כל תוספת שברצונך לכלול בכרזה בזמן המסירה. (ר' [https://www.mediawiki.org/wiki/Extension:CentralNotice/Banner_mixins Banner mixins] למידע נוסף.)",
 	"centralnotice-banner-cdn-controls": "מטמון צד־לקוח",
 	"centralnotice-banner-cdn-label": "לנקות את מטמון צד־לקוח עבור השפה הבאה:",
 	"centralnotice-banner-cdn-button": "לנקות",
