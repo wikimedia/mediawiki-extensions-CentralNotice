@@ -69,6 +69,7 @@ class CNCampaignPager extends TablePager {
 	 * @inheritDoc
 	 */
 	public function getQueryInfo() {
+		$db = $this->getDatabase();
 		$pagerQuery = [
 			'tables' => [
 				'notices' => 'cn_notices',
@@ -85,30 +86,26 @@ class CNCampaignPager extends TablePager {
 				'not_geo',
 				'not_locked',
 				'not_archived',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_countries',
-					'nc_country',
-					'nc_notice_id = notices.not_id'
-				) . ' AS countries',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_regions',
-					'nr_region',
-					'nr_notice_id = notices.not_id'
-				) . ' AS regions',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_languages',
-					'nl_language',
-					'nl_notice_id = notices.not_id'
-				) . ' AS languages',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_projects',
-					'np_project',
-					'np_notice_id = notices.not_id'
-				) . ' AS projects',
+				'countries' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_countries' )
+					->field( 'nc_country' )
+					->where( 'nc_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
+				'regions' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_regions' )
+					->field( 'nr_region' )
+					->where( 'nr_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
+				'languages' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_languages' )
+					->field( 'nl_language' )
+					->where( 'nl_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
+				'projects' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_projects' )
+					->field( 'np_project' )
+					->where( 'np_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
 			],
 			'conds' => [],
 		];
