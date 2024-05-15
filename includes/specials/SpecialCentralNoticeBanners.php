@@ -61,7 +61,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		// User settable text for some custom message, like usage instructions
-		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );
+		$this->getOutput()->setPageTitleMsg( $this->msg( 'noticetemplate' ) );
 
 		// Allow users to add a custom nav bar (T138284)
 		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
@@ -125,7 +125,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 */
 	private function showBannerList() {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'centralnotice-manage-templates' ) );
+		$out->setPageTitleMsg( $this->msg( 'centralnotice-manage-templates' ) );
 		$out->addModules( 'ext.centralNotice.adminUi.bannerManager' );
 
 		// Process the form that we sent out
