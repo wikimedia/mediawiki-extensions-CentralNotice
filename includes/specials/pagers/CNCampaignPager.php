@@ -115,12 +115,12 @@ class CNCampaignPager extends TablePager {
 			$pagerQuery['tables']['assignments'] = 'cn_assignments';
 			$pagerQuery['conds'] = [
 				'notices.not_id = assignments.not_id',
-				'assignments.tmp_id = ' . (int)$this->assignedBannerId
+				'assignments.tmp_id' => (int)$this->assignedBannerId,
 			];
 		}
 
 		if ( $this->showArchived !== null ) {
-			$pagerQuery['conds'][] = 'not_archived = ' . (int)$this->showArchived;
+			$pagerQuery['conds']['not_archived'] = (int)$this->showArchived;
 		}
 
 		return $pagerQuery;

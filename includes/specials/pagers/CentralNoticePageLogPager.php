@@ -2,6 +2,8 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * This class generates a paginated log of recent changes to banner messages (the parts that get
@@ -51,15 +53,17 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			// Add query contitions for banner content log
 			$conds += [
 				// get banner content
-				'rc_title' . $db->buildLike( 'Centralnotice-template-', $db->anyString() ),
+				$db->expr( 'rc_title', IExpression::LIKE,
+					new LikeValue( 'Centralnotice-template-', $db->anyString() ) ),
 			];
 		} else {
 			// Add query contitions for banner messages log
 			$conds += [
 				// get banner messages
-				'rc_title' . $db->buildLike( 'Centralnotice-', $db->anyString() ),
+				$db->expr( 'rc_title', IExpression::LIKE, new LikeValue( 'Centralnotice-', $db->anyString() ) ),
 				// exclude normal banner content
-				'rc_title NOT' . $db->buildLike( 'Centralnotice-template-', $db->anyString() ),
+				$db->expr( 'rc_title', IExpression::NOT_LIKE,
+					new LikeValue( 'Centralnotice-template-', $db->anyString() ) ),
 			];
 		}
 

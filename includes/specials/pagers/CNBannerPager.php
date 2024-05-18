@@ -4,6 +4,9 @@
 // It's not unused, see Special:CentralNoticeBanners.  Probably needs to be
 // merged with TemplatePager.
 
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
+
 class CNBannerPager extends ReverseChronologicalPager {
 
 	/** @var bool True if the form is to be created with editable elements */
@@ -95,7 +98,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 
 		// ...and then insert all the wildcards between search terms
 		if ( !$likeArray ) {
-			$likeArray = $this->mDb->anyString();
+			$likeArray = [ $this->mDb->anyString() ];
 		} else {
 			$anyStringToken = $this->mDb->anyString();
 			$tempArray = [ $anyStringToken ];
@@ -109,7 +112,7 @@ class CNBannerPager extends ReverseChronologicalPager {
 		return [
 			'tables' => [ 'templates' => 'cn_templates' ],
 			'fields' => [ 'templates.tmp_name', 'templates.tmp_id', 'templates.tmp_is_template' ],
-			'conds' => [ 'templates.tmp_name' . $this->mDb->buildLike( $likeArray ) ],
+			'conds' => [ $this->mDb->expr( 'templates.tmp_name', IExpression::LIKE, new LikeValue( ...$likeArray ) ) ],
 		];
 	}
 

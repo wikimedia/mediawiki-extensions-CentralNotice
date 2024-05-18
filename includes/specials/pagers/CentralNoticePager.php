@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Html\Html;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 class CentralNoticePager extends TemplatePager {
 
@@ -21,7 +23,7 @@ class CentralNoticePager extends TemplatePager {
 
 		// ...and then insert all the wildcards between search terms
 		if ( !$likeArray ) {
-			$likeArray = $dbr->anyString();
+			$likeArray = [ $dbr->anyString() ];
 		} else {
 			$anyStringToken = $dbr->anyString();
 			$tempArray = [ $anyStringToken ];
@@ -50,9 +52,9 @@ class CentralNoticePager extends TemplatePager {
 				],
 
 				'conds' => [
-					'assignments.tmp_id IS NULL',
-					'tmp_name' . $dbr->buildLike( $likeArray ),
-					'templates.tmp_is_template = 0'
+					'assignments.tmp_id' => null,
+					$dbr->expr( 'tmp_name', IExpression::LIKE, new LikeValue( ...$likeArray ) ),
+					'templates.tmp_is_template' => 0,
 				],
 
 				'join_conds' => [
@@ -71,8 +73,8 @@ class CentralNoticePager extends TemplatePager {
 				'tables' => [ 'templates' => 'cn_templates' ],
 				'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
 				'conds' => [
-					'templates.tmp_name' . $dbr->buildLike( $likeArray ),
-					'templates.tmp_is_template = 0'
+					$dbr->expr( 'templates.tmp_name', IExpression::LIKE, new LikeValue( ...$likeArray ) ),
+					'templates.tmp_is_template' => 0,
 				],
 			];
 		}
