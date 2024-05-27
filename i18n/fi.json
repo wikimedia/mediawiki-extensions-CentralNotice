@@ -19,7 +19,8 @@
 			"Valtlait",
 			"VezonThunder",
 			"Wix",
-			"Valtlai"
+			"Valtlai",
+			"Samoasambia"
 		]
 	},
 	"centralnotice": "Keskitettyjen tiedotteiden ylläpito",
@@ -121,6 +122,7 @@
 	"centralnotice-banner-hidable": "Pysyvä/Piilotettava",
 	"centralnotice-banner-collapsible": "Piilotettava",
 	"centralnotice-banner-fundraising": "Tämä on varainkeruuilmoitus",
+	"centralnotice-banner-cdn-button": "Tyhjennä välimuisti",
 	"centralnotice-geo": "Maantieteellisesti suunnattu",
 	"centralnotice-geo-status": "Valittu $1 $2",
 	"centralnotice-countries": "Maat",
