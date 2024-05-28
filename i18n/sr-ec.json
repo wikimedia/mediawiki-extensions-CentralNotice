@@ -246,6 +246,7 @@
 	"centralnotice-banner-template-info": "(шаблон)",
 	"prefs-centralnotice-banners": "Банери",
 	"prefs-centralnotice-display-banner-types": "Банери за приказ",
+	"prefs-description-centralnotice-banners": "Подесите које банере желите видети",
 	"centralnotice-campaign-type": "Тип кампање",
 	"centralnotice-empty-campaign-type-option": "Без типа (увек приказан)",
 	"centralnotice-non-existent-campaign-type-error": "Изабрани тип кампање не постоји",
