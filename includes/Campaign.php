@@ -1381,19 +1381,6 @@ class Campaign {
 			->execute();
 	}
 
-	// @todo FIXME: Unused.
-	public static function updateProjectName( $notice, $projectName ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
-		$dbw->newUpdateQueryBuilder()
-			->update( 'cn_notices' )
-			->set( [ 'not_project' => $projectName ] )
-			->where( [
-				'not_name' => $notice
-			] )
-			->caller( __METHOD__ )
-			->execute();
-	}
-
 	public static function updateProjects( $notice, $newProjects ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );

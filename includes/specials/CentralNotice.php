@@ -2001,6 +2001,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		return $array;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

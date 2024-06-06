@@ -52,6 +52,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=centralnoticechoicedata&project=wikipedia&language=en'

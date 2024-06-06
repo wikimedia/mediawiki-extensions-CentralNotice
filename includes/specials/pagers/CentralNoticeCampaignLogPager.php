@@ -530,6 +530,12 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $result;
 	}
 
+	/**
+	 * @param string $param
+	 * @param string $newval
+	 * @param string $oldval
+	 * @return string
+	 */
 	protected function testTextChange( $param, $newval, $oldval ) {
 		$result = '';
 		if ( $oldval !== $newval ) {

@@ -15,6 +15,10 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 
 	private const API_REQUEST_TIMEOUT = 20;
 
+	/**
+	 * @param RL\Context $context
+	 * @return array
+	 */
 	protected function getChoices( RL\Context $context ) {
 		$config = $this->getConfig();
 		$project = $config->get( 'NoticeProject' );
