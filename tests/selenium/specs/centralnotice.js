@@ -2,9 +2,9 @@
 const assert = require( 'assert' ),
 	MainPage = require( '../pageobjects/main.page.js' );
 
-describe( 'CentralNotice', function () {
+describe( 'CentralNotice', () => {
 
-	it( 'banner is displayed on Main Page', async function () {
+	it( 'banner is displayed on Main Page', async () => {
 		await MainPage.open();
 
 		await MainPage.banner.waitForExist();
