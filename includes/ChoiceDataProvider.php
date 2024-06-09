@@ -91,8 +91,8 @@ class ChoiceDataProvider {
 		$start = $dbr->timestamp( time() + self::CACHE_TTL );
 		$end = $dbr->timestamp();
 		$conds = [
-			'notices.not_start <= ' . $dbr->addQuotes( $start ),
-			'notices.not_end >= ' . $dbr->addQuotes( $end ),
+			$dbr->expr( 'notices.not_start', '<=', $start ),
+			$dbr->expr( 'notices.not_end', '>=', $end ),
 			'notices.not_enabled' => 1,
 			'notices.not_archived' => 0,
 			'notice_projects.np_project' => $project,

@@ -1705,10 +1705,10 @@ class Campaign {
 		$dbr = CNDatabase::getDb();
 		$conds = [];
 		if ( $start ) {
-			$conds[] = "notlog_timestamp >= " . $dbr->addQuotes( $start );
+			$conds[] = $dbr->expr( 'notlog_timestamp', '>=', $start );
 		}
 		if ( $end ) {
-			$conds[] = "notlog_timestamp < " . $dbr->addQuotes( $end );
+			$conds[] = $dbr->expr( 'notlog_timestamp', '<', $end );
 		}
 		if ( $campaign ) {
 			// This used to be a LIKE, but that was undocumented,
