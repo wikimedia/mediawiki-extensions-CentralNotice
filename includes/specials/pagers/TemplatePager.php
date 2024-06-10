@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Html\Html;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Provides pagination functionality for viewing banner lists in the CentralNotice admin interface.
@@ -53,7 +55,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 		// ...and then insert all the wildcards betwean search terms
 		if ( !$likeArray ) {
-			$likeArray = $dbr->anyString();
+			$likeArray = [ $dbr->anyString() ];
 		} else {
 			$anyStringToken = $dbr->anyString();
 			$tempArray = [ $anyStringToken ];
@@ -67,7 +69,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		return [
 			'tables' => [ 'templates' => 'cn_templates' ],
 			'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
-			'conds' => [ 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ],
+			'conds' => [ $dbr->expr( 'templates.tmp_name', IExpression::LIKE, new LikeValue( ...$likeArray ) ) ],
 		];
 	}
 

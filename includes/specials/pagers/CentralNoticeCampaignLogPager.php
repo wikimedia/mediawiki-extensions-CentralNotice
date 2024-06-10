@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Html\Html;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	/** @var Title */
@@ -60,18 +62,18 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		];
 
 		if ( !$reset ) {
+			$dbr = $this->getDatabase();
 			if ( $filterStartDate > 0 ) {
 				$filterStartDate = intval( $filterStartDate . '000000' );
-				$info['conds'][] = "notlog_timestamp >= $filterStartDate";
+				$info['conds'][] = $dbr->expr( 'notlog_timestamp', '>=', $filterStartDate );
 			}
 			if ( $filterEndDate > 0 ) {
 				$filterEndDate = intval( $filterEndDate . '000000' );
-				$info['conds'][] = "notlog_timestamp < $filterEndDate";
+				$info['conds'][] = $dbr->expr( 'notlog_timestamp', '<', $filterEndDate );
 			}
 			if ( $filterCampaign ) {
-				$dbr = $this->getDatabase();
-				$info['conds'][] = "notlog_not_name " . $dbr->buildLike(
-					$dbr->anyString(), $filterCampaign, $dbr->anyString() );
+				$info['conds'][] = $dbr->expr( 'notlog_not_name', IExpression::LIKE, new LikeValue(
+					$dbr->anyString(), $filterCampaign, $dbr->anyString() ) );
 			}
 			if ( $filterUser ) {
 				$user = User::newFromName( $filterUser );
