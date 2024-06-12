@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLFormField;
 
 class HTMLBannerPagerNavigation extends HTMLFormField {
 	public function validate( $value, $alldata ) {

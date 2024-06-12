@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {

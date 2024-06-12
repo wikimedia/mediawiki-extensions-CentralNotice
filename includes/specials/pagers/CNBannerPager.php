@@ -4,6 +4,8 @@
 // It's not unused, see Special:CentralNoticeBanners.  Probably needs to be
 // merged with TemplatePager.
 
+use MediaWiki\HTMLForm\Field\HTMLInfoField;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 

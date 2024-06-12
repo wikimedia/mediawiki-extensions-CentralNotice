@@ -1,6 +1,9 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Pager\ReverseChronologicalPager;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 

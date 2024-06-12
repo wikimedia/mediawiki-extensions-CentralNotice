@@ -22,10 +22,14 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroups;
+use MediaWiki\Extension\Translate\MessageLoading\RebuildMessageIndexJob;
 use MediaWiki\Extension\Translate\Services;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -1113,7 +1117,7 @@ class Banner {
 				// TODO: This will go away if we start tracking messages in database :)
 				MessageGroups::singleton()->recache();
 				MediaWikiServices::getInstance()->getJobQueueGroup()->push(
-					MessageIndexRebuildJob::newJob()
+					RebuildMessageIndexJob::newJob()
 				);
 				$this->runTranslateJob = false;
 			}

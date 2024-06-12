@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLTextAreaField;
 use MediaWiki\MediaWikiServices;
 
 /**

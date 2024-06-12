@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\User;
+
 /**
  * This is a hook handler interface, see docs/Hooks.md in core.
  * Use the hook name "CentralNoticeCampaignChange" to register handlers implementing this interface.

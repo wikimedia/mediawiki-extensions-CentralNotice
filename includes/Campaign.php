@@ -1,6 +1,10 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class Campaign {

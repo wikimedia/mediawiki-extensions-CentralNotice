@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;

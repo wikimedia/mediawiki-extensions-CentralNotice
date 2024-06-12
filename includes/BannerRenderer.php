@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * Produce HTML and JSON output for a given banner and context

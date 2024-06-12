@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 
 class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
 	public function getInputHTML( $value ) {

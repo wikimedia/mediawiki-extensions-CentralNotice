@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
 /**
  * Renders banner contents as jsonp.

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\SpecialPage\SpecialPage;
+
 class SpecialNoticeTemplate extends CentralNotice {
 	public function __construct() {
 		// Register special page

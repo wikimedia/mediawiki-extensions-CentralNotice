@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Deferred\CdnCacheUpdate;
+use MediaWiki\Deferred\DeferrableUpdate;
+
 class CdnCacheUpdateBannerLoader implements DeferrableUpdate {
 
 	/**

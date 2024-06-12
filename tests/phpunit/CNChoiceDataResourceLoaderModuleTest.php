@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestCase;
+
 /**
  * @group CentralNotice
  * @group medium

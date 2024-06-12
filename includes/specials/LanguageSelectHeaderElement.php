@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLSelectField;
 use MediaWiki\MediaWikiServices;
 
 /**

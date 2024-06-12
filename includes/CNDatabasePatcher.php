@@ -4,6 +4,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 
 /**

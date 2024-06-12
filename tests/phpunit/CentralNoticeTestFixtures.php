@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\User;
+
 class CentralNoticeTestFixtures {
 	private const FIXTURE_RELATIVE_PATH = 'data/AllocationsFixtures.json';
 

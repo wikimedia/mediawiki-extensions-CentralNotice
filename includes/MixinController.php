@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Context\IContextSource;
+
 class MixinController {
 	/** @var array */
 	private $mixins;

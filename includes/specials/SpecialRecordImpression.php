@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
+
 /**
  * Null endpoint.  This is a workaround to simplify analytics.
  */
