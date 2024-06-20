@@ -197,7 +197,7 @@
 		// makeMixinParamControlSet() (below) and
 		// templates/campaignMixinParamControls.mustache (used for the automatic creation
 		// of mixin param controls).
-		config = $.extend( {
+		config = Object.assign( {
 			$element: $element,
 
 			// This works because controller classes are singletons.
@@ -213,7 +213,7 @@
 		// Call mixin constructor
 		OO.ui.mixin.GroupElement.call(
 			this,
-			$.extend( {}, config, { $group: $group } )
+			Object.assign( {}, config, { $group: $group } )
 		);
 	};
 

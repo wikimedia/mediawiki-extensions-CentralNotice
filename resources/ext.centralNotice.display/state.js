@@ -153,7 +153,7 @@
 	function setInitialData() {
 
 		// Keep existing properties of state.urlParams, which may be set by tests
-		var urlParams = $.extend( state.urlParams, ( new mw.Uri() ).query ),
+		var urlParams = Object.assign( state.urlParams, ( new mw.Uri() ).query ),
 			impressionEventSampleRateFromUrl;
 
 		state.data.anonymous = ( !mw.user.isNamed() );
@@ -221,7 +221,7 @@
 			return [];
 		}
 
-		allOptions = $.extend( {}, mw.user.options.values );
+		allOptions = Object.assign( {}, mw.user.options.values );
 
 		for ( key in allOptions ) {
 			if ( !Object.prototype.hasOwnProperty.call( allOptions, key ) ) {

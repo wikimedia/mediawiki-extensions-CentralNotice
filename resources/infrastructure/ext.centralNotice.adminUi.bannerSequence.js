@@ -979,7 +979,7 @@
 			.addClass( 'centralNoticeBannerSeqBucketSeqTitle' );
 
 		// Add stuff to config before calling parent constructor
-		config = $.extend( {}, config, {
+		config = Object.assign( {}, config, {
 			$content: this.$heading,
 			classes: [ 'centralNoticeBannerSeqBucketSeqContainer' ]
 		} );
@@ -989,7 +989,7 @@
 
 		// Call mixin constructor
 		OO.ui.mixin.GroupElement.call(
-			this, $.extend( {}, config, { $group: this.$element } ) );
+			this, Object.assign( {}, config, { $group: this.$element } ) );
 
 		// Add widgets
 		this.addItems( [ this.bucketSeqWidget, this.addStepButton ] );
@@ -1181,7 +1181,7 @@
 
 		// Call mixin constructor
 		OO.ui.mixin.DraggableGroupElement.call(
-			this, $.extend( {}, config, { $group: this.$element } ) );
+			this, Object.assign( {}, config, { $group: this.$element } ) );
 	};
 
 	OO.inheritClass( BucketSeqWidget, OO.ui.Widget );
@@ -1219,7 +1219,7 @@
 		// A unique key for tracking error states (outside this widget)
 		this.errorStateKey = 'step-widget-' + this.controller.getErrorStateKey();
 
-		config = $.extend( {}, config, { classes: [ 'centralNoticeBannerSeqStep' ] } );
+		config = Object.assign( {}, config, { classes: [ 'centralNoticeBannerSeqStep' ] } );
 
 		// Call parent constructor
 		StepWidget.super.call( this, config );
@@ -1236,7 +1236,7 @@
 
 		// Draggable mixin constructor
 		OO.ui.mixin.DraggableElement.call(
-			this, $.extend( {}, config, { $handle: this.$handle } ) );
+			this, Object.assign( {}, config, { $handle: this.$handle } ) );
 
 		// Create the widgets
 
