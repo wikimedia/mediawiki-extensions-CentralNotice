@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pyt"
+			"Pyt",
+			"Murma174"
 		]
 	},
 	"centralnotice": "Adminstrierenge fon do zentroale Mäldengen",
@@ -63,6 +64,7 @@
 	"centralnotice-message-not-set": "Ättergjucht nit sät.",
 	"centralnotice-clone": "Klon moakje",
 	"centralnotice-clone-notice": "Moak ne Kopie fon ju Foarloage",
+	"centralnotice-languages": "Sproaken",
 	"centralnotice-preferred": "Foarleeken",
 	"centralnotice-start-date": "Startdoatum",
 	"centralnotice-start-time": "Starttied (UTC)",

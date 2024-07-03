@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"C.R."
+			"C.R.",
+			"Ruthven"
 		]
 	},
 	"apihelp-centralnoticeallocations-param-project": "'O pruggetto p' 'o quale s'avesser'a uttenì 'e pizze",
@@ -10,7 +11,7 @@
 	"apihelp-centralnoticeallocations-param-anonymous": "'O stato d' 'e trasute a ffiltrà a ssicondo si fosse (true|false).",
 	"apihelp-centralnoticeallocations-param-device": "Nomme 'e ll'apparecchio 'a filtrà.",
 	"apihelp-centralnoticeallocations-param-bucket": "'O cuofeno addò s'avess'a filtrà pe' nummero (0 .. $1, optional).",
-	"apihelp-centralnoticeallocations-example-1": "Mmusta cocche pizzo p' 'o veré",
+	"apihelp-centralnoticeallocations-example-1": "Fa vedè nu pizzo",
 	"apihelp-centralnoticequerycampaign-param-campaign": "Nomme d' 'a campagna. Valure separate 'e diverze c' 'a \"|\" ('o tubbo luongo verticale).",
 	"apihelp-centralnoticequerycampaign-example-1": "Mmusta 'a campagna \"Plea_US\"",
 	"apihelp-centralnoticechoicedata-param-project": "'O pruggetto 'addò s'avess'a piglià 'e date 'e sceveta.",
