@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Extension\CLDR\CountryNames;
+
 class GeoTarget {
 
 	// Countries are ISO 3166-1

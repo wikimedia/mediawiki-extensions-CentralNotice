@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroups;
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroupStates;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 
 /**
  * Generate a group of message definitions for a banner so they can be translated
@@ -254,11 +256,14 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$conf['GROUPS'] = [];
 
 		// Find all the banners marked for translation
-		$tables = [ 'page', 'revtag' ];
-		$vars   = [ 'page_id', 'page_namespace', 'page_title', ];
-		$conds  = [ 'page_id=rt_page', 'rt_type' => Banner::TRANSLATE_BANNER_TAG ];
-		$options = [ 'GROUP BY' => 'rt_page, page_id, page_namespace, page_title' ];
-		$res = $dbr->select( $tables, $vars, $conds, __METHOD__, $options );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
+			->from( 'page' )
+			->join( 'revtag', null, 'page_id=rt_page' )
+			->where( [ 'rt_type' => Banner::TRANSLATE_BANNER_TAG ] )
+			->groupBy( [ 'rt_page', 'page_id', 'page_namespace', 'page_title' ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $r ) {
 			$grp = new BannerMessageGroup( $r->page_namespace, $r->page_title );
@@ -285,20 +290,14 @@ class BannerMessageGroup extends WikiMessageGroup {
 		$groupName = self::getTranslateGroupName( $banner );
 
 		$db = CNDatabase::getDb();
-		$result = $db->select(
-			'translate_groupreviews',
-			'tgr_lang',
-			[
+		return $db->newSelectQueryBuilder()
+			->select( 'tgr_lang' )
+			->from( 'translate_groupreviews' )
+			->where( [
 				'tgr_group' => $groupName,
 				'tgr_state' => $state,
-			],
-			__METHOD__
-		);
-
-		$langs = [];
-		foreach ( $result as $row ) {
-			$langs[] = $row->tgr_lang;
-		}
-		return $langs;
+			] )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
 	}
 }

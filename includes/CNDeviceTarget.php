@@ -18,12 +18,11 @@ class CNDeviceTarget {
 
 		$devices = [];
 
-		$res = $dbr->select(
-			[ 'known_devices' => 'cn_known_devices' ],
-			[ 'dev_id', 'dev_name', 'dev_display_label' ],
-			[],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'dev_id', 'dev_name', 'dev_display_label' ] )
+			->from( 'cn_known_devices' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			if ( $flip ) {
@@ -55,18 +54,15 @@ class CNDeviceTarget {
 
 		$devices = [];
 
-		$res = $dbr->select(
-			[
-				'tdev' => 'cn_template_devices',
-				'devices' => 'cn_known_devices'
-			],
-			[ 'devices.dev_id', 'dev_name' ],
-			[
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'devices.dev_id', 'dev_name' ] )
+			->from( 'cn_template_devices', 'tdev' )
+			->join( 'cn_known_devices', 'devices', 'tdev.dev_id = devices.dev_id' )
+			->where( [
 				'tdev.tmp_id' => $bannerId,
-				'tdev.dev_id = devices.dev_id'
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$devices[ intval( $row->dev_id ) ] = $row->dev_name;
@@ -85,14 +81,14 @@ class CNDeviceTarget {
 	public static function addDeviceTarget( $deviceName, $displayLabel ) {
 		$db = CNDatabase::getDb( DB_PRIMARY );
 
-		$db->insert(
-			'cn_known_devices',
-			[
+		$db->newInsertQueryBuilder()
+			->insertInto( 'cn_known_devices' )
+			->row( [
 				'dev_name' => $deviceName,
 				'dev_display_label' => $displayLabel
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return $db->insertId();
 	}
@@ -114,11 +110,11 @@ class CNDeviceTarget {
 		$newDevices = (array)$newDevices;
 
 		// Remove all entries from the table for this banner
-		$db->delete(
-			'cn_template_devices',
-			[ 'tmp_id' => $bannerId ],
-			__METHOD__
-		);
+		$db->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_template_devices' )
+			->where( [ 'tmp_id' => $bannerId ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		// Add the new device mappings
 		if ( $newDevices ) {
@@ -132,7 +128,11 @@ class CNDeviceTarget {
 					'dev_id' => $knownDevices[$device]['id']
 				];
 			}
-			$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
+			$db->newInsertQueryBuilder()
+				->insertInto( 'cn_template_devices' )
+				->rows( $modifyArray )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 }

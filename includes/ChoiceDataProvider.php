@@ -91,8 +91,8 @@ class ChoiceDataProvider {
 		$start = $dbr->timestamp( time() + self::CACHE_TTL );
 		$end = $dbr->timestamp();
 		$conds = [
-			'notices.not_start <= ' . $dbr->addQuotes( $start ),
-			'notices.not_end >= ' . $dbr->addQuotes( $end ),
+			$dbr->expr( 'notices.not_start', '<=', $start ),
+			$dbr->expr( 'notices.not_end', '>=', $end ),
 			'notices.not_enabled' => 1,
 			'notices.not_archived' => 0,
 			'notice_projects.np_project' => $project,
@@ -100,15 +100,8 @@ class ChoiceDataProvider {
 		];
 
 		// Query campaigns and banners at once
-		$dbRows = $dbr->select(
-			[
-				'notices' => 'cn_notices',
-				'assignments' => 'cn_assignments',
-				'templates' => 'cn_templates',
-				'notice_projects' => 'cn_notice_projects',
-				'notice_languages' => 'cn_notice_languages',
-			],
-			[
+		$dbRows = $dbr->newSelectQueryBuilder()
+			->select( [
 				'notices.not_id',
 				'notices.not_name',
 				'notices.not_start',
@@ -125,25 +118,15 @@ class ChoiceDataProvider {
 				'templates.tmp_display_anon',
 				'templates.tmp_display_account',
 				'templates.tmp_category'
-			],
-			$conds,
-			__METHOD__,
-			[],
-			[
-				'assignments' => [
-					'INNER JOIN', 'notices.not_id = assignments.not_id'
-				],
-				'templates' => [
-					'INNER JOIN', 'assignments.tmp_id = templates.tmp_id'
-				],
-				'notice_projects' => [
-					'INNER JOIN', 'notices.not_id = notice_projects.np_notice_id'
-				],
-				'notice_languages' => [
-					'INNER JOIN', 'notices.not_id = notice_languages.nl_notice_id'
-				]
-			]
-		);
+			] )
+			->from( 'cn_notices', 'notices' )
+			->join(	'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
+			->join(	'cn_templates', 'templates', 'assignments.tmp_id = templates.tmp_id' )
+			->join(	'cn_notice_projects', 'notice_projects', 'notices.not_id = notice_projects.np_notice_id' )
+			->join(	'cn_notice_languages', 'notice_languages', 'notices.not_id = notice_languages.nl_notice_id' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Pare it down into a nicer data structure and prepare the next queries.
 		// We'll create a structure with keys that are useful for piecing the
@@ -217,27 +200,19 @@ class ChoiceDataProvider {
 		// Fetch countries.
 		// We have to eliminate notices that are not geotargeted, since they
 		// may have residual data in the cn_notice_countries table.
-		$dbRows = $dbr->select(
-			[
-				'notices' => 'cn_notices',
-				'notice_countries' => 'cn_notice_countries',
-			],
-			[
+		$dbRows = $dbr->newSelectQueryBuilder()
+			->select( [
 				'notices.not_id',
 				'notice_countries.nc_country'
-			],
-			[
+			] )
+			->from( 'cn_notices', 'notices' )
+			->join( 'cn_notice_countries', 'notice_countries', 'notices.not_id = notice_countries.nc_notice_id' )
+			->where( [
 				'notices.not_geo' => 1,
 				'notices.not_id' => array_keys( $choices )
-			],
-			__METHOD__,
-			[],
-			[
-				'notice_countries' => [
-					'INNER JOIN', 'notices.not_id = notice_countries.nc_notice_id'
-				]
-			]
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Add countries to our data structure.
 		// Note that PHP creates an empty array for countries as needed.
@@ -248,27 +223,19 @@ class ChoiceDataProvider {
 		// Fetch regions.
 		// We have to eliminate notices that are not geotargeted, since they
 		// may have residual data in the cn_notice_regions table.
-		$dbRows = $dbr->select(
-			[
-				'notices' => 'cn_notices',
-				'notice_regions' => 'cn_notice_regions',
-			],
-			[
+		$dbRows = $dbr->newSelectQueryBuilder()
+			->select( [
 				'notices.not_id',
 				'notice_regions.nr_region'
-			],
-			[
+			] )
+			->from( 'cn_notices', 'notices' )
+			->join( 'cn_notice_regions', 'notice_regions', 'notices.not_id = notice_regions.nr_notice_id' )
+			->where( [
 				'notices.not_geo' => 1,
 				'notices.not_id' => array_keys( $choices )
-			],
-			__METHOD__,
-			[],
-			[
-				'notice_regions' => [
-					'INNER JOIN', 'notices.not_id = notice_regions.nr_notice_id'
-				]
-			]
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Add regions to our data structure.
 		// Note that PHP creates an empty array for regions as needed.
@@ -291,26 +258,18 @@ class ChoiceDataProvider {
 		}
 
 		// Fetch the devices
-		$dbRows = $dbr->select(
-			[
-				'template_devices' => 'cn_template_devices',
-				'known_devices' => 'cn_known_devices',
-			],
-			[
+		$dbRows = $dbr->newSelectQueryBuilder()
+			->select( [
 				'template_devices.tmp_id',
 				'known_devices.dev_name'
-			],
-			[
+			] )
+			->from( 'cn_template_devices', 'template_devices' )
+			->join( 'cn_known_devices', 'known_devices', 'template_devices.dev_id = known_devices.dev_id' )
+			->where( [
 				'template_devices.tmp_id' => $bannerIds
-			],
-			__METHOD__,
-			[],
-			[
-				'known_devices' => [
-					'INNER JOIN', 'template_devices.dev_id = known_devices.dev_id'
-				]
-			]
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Add devices to the data structure.
 		foreach ( $dbRows as $dbRow ) {

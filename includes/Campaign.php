@@ -1,6 +1,11 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class Campaign {
 
@@ -212,9 +217,8 @@ class Campaign {
 		}
 
 		// Get campaign info from database
-		$row = $db->selectRow(
-			[ 'notices' => 'cn_notices' ],
-			[
+		$row = $db->newSelectQueryBuilder()
+			->select( [
 				'not_id',
 				'not_name',
 				'not_start',
@@ -226,10 +230,11 @@ class Campaign {
 				'not_geo',
 				'not_buckets',
 				'not_throttle',
-			],
-			$selector,
-			__METHOD__
-		);
+			] )
+			->from( 'cn_notices' )
+			->where( $selector )
+			->caller( __METHOD__ )
+			->fetchRow();
 		if ( $row ) {
 			$this->id = $row->not_id;
 			$this->name = $row->not_name;
@@ -260,12 +265,12 @@ class Campaign {
 	public static function campaignExists( $campaignName ) {
 		$dbr = CNDatabase::getDb();
 
-		return (bool)$dbr->selectRow(
-			'cn_notices',
-			'not_name',
-			[ 'not_name' => $campaignName ],
-			__METHOD__
-		);
+		return (bool)$dbr->newSelectQueryBuilder()
+			->select( 'not_name' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 	}
 
 	/**
@@ -281,41 +286,30 @@ class Campaign {
 		$time = $dbr->timestamp();
 
 		$conds = [
-			'notices.not_end >= ' . $dbr->addQuotes( $time ),
+			$dbr->expr( 'notices.not_end', '>=', $dbr->timestamp( $time ) ),
 			'notices.not_enabled' => 1,
 			'notices.not_archived' => 0
 		];
 
 		if ( !$includeFuture ) {
-			$conds[] = 'notices.not_start <= ' . $dbr->addQuotes( $time );
+			$conds[] = $dbr->expr( 'notices.not_start', '<=', $dbr->timestamp( $time ) );
 		}
 
 		// Query campaigns and banners at once
-		$dbRows = $dbr->select(
-			[
-				'notices' => 'cn_notices',
-				'assignments' => 'cn_assignments',
-				'templates' => 'cn_templates'
-			],
-			[
+		$dbRows = $dbr->newSelectQueryBuilder()
+			->select( [
 				'notices.not_id',
 				'notices.not_name',
 				'notices.not_start',
 				'notices.not_end',
 				'templates.tmp_name'
-			],
-			$conds,
-			__METHOD__,
-			[],
-			[
-				'assignments' => [
-					'LEFT OUTER JOIN', 'notices.not_id = assignments.not_id'
-				],
-				'templates' => [
-					'LEFT OUTER JOIN', 'assignments.tmp_id = templates.tmp_id'
-				]
-			]
-		);
+			] )
+			->from( 'cn_notices', 'notices' )
+			->leftJoin( 'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
+			->leftJoin( 'cn_templates', 'templates', 'assignments.tmp_id = templates.tmp_id' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$campaigns = [];
 
@@ -353,9 +347,8 @@ class Campaign {
 		$dbr = CNDatabase::getDb();
 
 		// Get campaign info from database
-		$row = $dbr->selectRow(
-			[ 'notices' => 'cn_notices' ],
-			[
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [
 				'not_id',
 				'not_start',
 				'not_end',
@@ -367,10 +360,11 @@ class Campaign {
 				'not_buckets',
 				'not_throttle',
 				'not_type',
-			],
-			[ 'not_name' => $campaignName ],
-			__METHOD__
-		);
+			] )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		if ( $row ) {
 			$campaign = [
 				'start'     => $row->not_start,
@@ -437,27 +431,23 @@ class Campaign {
 	 */
 	public static function getHistoricalCampaigns( $ts ) {
 		$dbr = CNDatabase::getDb();
-		$tsEnc = $dbr->addQuotes( $dbr->timestamp( $ts ) );
 
-		$res = $dbr->select(
-			"cn_notice_log",
-			[
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [
 				"log_id" => "MAX(notlog_id)",
-			],
-			[
-				"notlog_timestamp <= $tsEnc",
-			],
-			__METHOD__,
-			[
-				"GROUP BY" => "notlog_not_id",
-			]
-		);
+			] )
+			->from( 'cn_notice_log' )
+			->where( [
+				$dbr->expr( 'notlog_timestamp', '<=', $dbr->timestamp( $ts ) )
+			] )
+			->groupBy( 'notlog_not_id' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$campaigns = [];
 		foreach ( $res as $row ) {
-			$campaignRow = $dbr->selectRow(
-				"cn_notice_log",
-				[
+			$campaignRow = $dbr->newSelectQueryBuilder()
+				->select( [
 					"id" => "notlog_not_id",
 					"name" => "notlog_not_name",
 					"enabled" => "notlog_end_enabled",
@@ -470,15 +460,16 @@ class Campaign {
 					"banners" => "notlog_end_banners",
 					"bucket_count" => "notlog_end_buckets",
 					"throttle" => "notlog_end_throttle",
-				],
-				[
+				] )
+				->from( 'cn_notice_log' )
+				->where( [
 					"notlog_id" => $row->log_id,
-					"notlog_end_start <= $tsEnc",
-					"notlog_end_end >= $tsEnc",
-					"notlog_end_enabled = 1",
-				],
-				__METHOD__
-			);
+					$dbr->expr( 'notlog_end_start', '<=', $dbr->timestamp( $ts ) ),
+					$dbr->expr( 'notlog_end_end', '>=', $dbr->timestamp( $ts ) ),
+					'notlog_end_enabled' => 1,
+				] )
+				->caller( __METHOD__ )
+				->fetchRow();
 
 			if ( !$campaignRow ) {
 				continue;
@@ -563,31 +554,20 @@ class Campaign {
 			$conds['notice_mixins.nmxn_enabled'] = 1;
 		}
 
-		$dbRows = $dbr->select(
-			[
-				'notices' => 'cn_notices',
-				'notice_mixins' => 'cn_notice_mixins',
-				'notice_mixin_params' => 'cn_notice_mixin_params'
-			],
-			[
+		$dbRows = $dbr->newSelectQueryBuilder()
+			->select( [
 				'notice_mixins.nmxn_mixin_name',
 				'notice_mixins.nmxn_enabled',
 				'notice_mixin_params.nmxnp_param_name',
 				'notice_mixin_params.nmxnp_param_value'
-			],
-			$conds,
-			__METHOD__,
-			[],
-			[
-				'notice_mixins' => [
-					'INNER JOIN', 'notices.not_id = notice_mixins.nmxn_not_id'
-				],
-				'notice_mixin_params' => [
-					'LEFT OUTER JOIN',
-					'notice_mixins.nmxn_id = notice_mixin_params.nmxnp_notice_mixin_id'
-				]
-			]
-		);
+			] )
+			->from( 'cn_notices', 'notices' )
+			->join( 'cn_notice_mixins', 'notice_mixins', 'notices.not_id = notice_mixins.nmxn_not_id' )
+			->leftJoin( 'cn_notice_mixin_params', 'notice_mixin_params',
+				'notice_mixins.nmxn_id = notice_mixin_params.nmxnp_notice_mixin_id' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Build up the results
 		// We expect a row for every parameter name-value pair for every mixin,
@@ -711,8 +691,12 @@ class Campaign {
 		// Get the campaign ID
 		// Note: the need to fetch the ID here highlights the need for some
 		// kind of ORM.
-		$noticeId = $dbw->selectRow( 'cn_notices', 'not_id',
-			[ 'not_name' => $campaignName ], __METHOD__ )->not_id;
+		$noticeId = $dbw->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		if ( $enable ) {
 			if ( $params === null ) {
@@ -720,29 +704,30 @@ class Campaign {
 					$mixinName . ' for campaign ' . $campaignName );
 			}
 
-			$dbw->upsert(
-				'cn_notice_mixins',
-				[
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_mixins' )
+				->row( [
 					'nmxn_not_id' => $noticeId,
 					'nmxn_mixin_name' => $mixinName,
 					'nmxn_enabled' => 1
-				],
-				[ [ 'nmxn_not_id', 'nmxn_mixin_name' ] ],
-				[
+				] )
+				->onDuplicateKeyUpdate()
+				->uniqueIndexFields( [ 'nmxn_not_id', 'nmxn_mixin_name' ] )
+				->set( [
 					'nmxn_enabled' => 1
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 
-			$noticeMixinId = $dbw->selectRow(
-				'cn_notice_mixins',
-				'nmxn_id',
-				[
+			$noticeMixinId = $dbw->newSelectQueryBuilder()
+				->select( 'nmxn_id' )
+				->from( 'cn_notice_mixins' )
+				->where( [
 					'nmxn_not_id' => $noticeId,
 					'nmxn_mixin_name' => $mixinName
-				],
-				__METHOD__
-			)->nmxn_id;
+				] )
+				->caller( __METHOD__ )
+				->fetchField();
 
 			foreach ( $params as $paramName => $paramVal ) {
 				$mixinDef = $wgCentralNoticeCampaignMixins[$mixinName];
@@ -763,19 +748,20 @@ class Campaign {
 					$paramVal = ( $paramVal ? 'true' : 'false' );
 				}
 
-				$dbw->upsert(
-					'cn_notice_mixin_params',
-					[
+				$dbw->newInsertQueryBuilder()
+					->insertInto( 'cn_notice_mixin_params' )
+					->row( [
 						'nmxnp_notice_mixin_id' => $noticeMixinId,
 						'nmxnp_param_name' => $paramName,
 						'nmxnp_param_value' => $paramVal
-					],
-					[ [ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ] ],
-					[
+					] )
+					->onDuplicateKeyUpdate()
+					->uniqueIndexFields( [ 'nmxnp_notice_mixin_id', 'nmxnp_param_name' ] )
+					->set( [
 						'nmxnp_param_value' => $paramVal
-					],
-					__METHOD__
-				);
+					] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 
 		} else {
@@ -784,15 +770,15 @@ class Campaign {
 			// the old parameter values in case the mixin is re-enabled, we also
 			// keep the row in this table, since the id is used in the param
 			// table.
-			$dbw->update(
-				'cn_notice_mixins',
-				[ 'nmxn_enabled' => 0 ],
-				[
+			$dbw->newUpdateQueryBuilder()
+				->update( 'cn_notice_mixins' )
+				->set( [ 'nmxn_enabled' => 0 ] )
+				->where( [
 					'nmxn_not_id' => $noticeId,
 					'nmxn_mixin_name' => $mixinName
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -803,12 +789,11 @@ class Campaign {
 	 */
 	public static function getAllCampaignNames() {
 		$dbr = CNDatabase::getDb();
-		$res = $dbr->select( 'cn_notices', 'not_name', '', __METHOD__ );
-		$notices = [];
-		foreach ( $res as $row ) {
-			$notices[] = $row->not_name;
-		}
-		return $notices;
+		return $dbr->newSelectQueryBuilder()
+			->select( 'not_name' )
+			->from( 'cn_notices' )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
 	}
 
 	/**
@@ -848,8 +833,9 @@ class Campaign {
 		$endTime = strtotime( '+1 hour', (int)wfTimestamp( TS_UNIX, $startTs ) );
 		$endTs = wfTimestamp( TS_MW, $endTime );
 
-		$dbw->insert( 'cn_notices',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_notices' )
+			->row( [
 				'not_name'      => $noticeName,
 				'not_enabled'   => (int)$enabled,
 				'not_start'     => $dbw->timestamp( $startTs ),
@@ -858,9 +844,9 @@ class Campaign {
 				'not_throttle'  => $throttle,
 				'not_preferred' => $priority,
 				'not_type'      => $type
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 		$not_id = $dbw->insertId();
 
 		if ( $not_id ) {
@@ -869,16 +855,24 @@ class Campaign {
 			foreach ( $projects as $project ) {
 				$insertArray[] = [ 'np_notice_id' => $not_id, 'np_project' => $project ];
 			}
-			$dbw->insert( 'cn_notice_projects', $insertArray,
-				__METHOD__, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_projects' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
 
 			// Do multi-row insert for campaign languages
 			$insertArray = [];
 			foreach ( $project_languages as $code ) {
 				$insertArray[] = [ 'nl_notice_id' => $not_id, 'nl_language' => $code ];
 			}
-			$dbw->insert( 'cn_notice_languages', $insertArray,
-				__METHOD__, [ 'IGNORE' ] );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_languages' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
 
 			if ( $geotargeted ) {
 
@@ -888,8 +882,12 @@ class Campaign {
 					foreach ( $geo_countries as $code ) {
 						$insertArray[] = [ 'nc_notice_id' => $not_id, 'nc_country' => $code ];
 					}
-					$dbw->insert(
-						'cn_notice_countries', $insertArray, __METHOD__, [ 'IGNORE' ] );
+					$dbw->newInsertQueryBuilder()
+						->insertInto( 'cn_notice_countries' )
+						->ignore()
+						->rows( $insertArray )
+						->caller( __METHOD__ )
+						->execute();
 				}
 
 				// Do multi-row insert for campaign regions
@@ -898,8 +896,12 @@ class Campaign {
 					foreach ( $geo_regions as $code ) {
 						$insertArray[] = [ 'nr_notice_id' => $not_id, 'nr_region' => $code ];
 					}
-					$dbw->insert( 'cn_notice_regions', $insertArray,
-						__METHOD__, [ 'IGNORE' ] );
+					$dbw->newInsertQueryBuilder()
+						->insertInto( 'cn_notice_regions' )
+						->ignore()
+						->rows( $insertArray )
+						->caller( __METHOD__ )
+						->execute();
 				}
 
 			}
@@ -944,10 +946,12 @@ class Campaign {
 		// TODO This method is never used?
 		$dbr = CNDatabase::getDb( DB_PRIMARY );
 
-		$res = $dbr->selectField( 'cn_notices', 'not_locked',
-			[ 'not_name' => $campaignName ],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'not_locked' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->fetchField();
 		if ( $res === false ) {
 			return 'centralnotice-remove-notice-doesnt-exist';
 		}
@@ -967,12 +971,36 @@ class Campaign {
 
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
-		$dbw->delete( 'cn_assignments', [ 'not_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notices', [ 'not_name' => $campaignName ], __METHOD__ );
-		$dbw->delete( 'cn_notice_languages', [ 'nl_notice_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notice_projects', [ 'np_notice_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notice_countries', [ 'nc_notice_id' => $campaignId ], __METHOD__ );
-		$dbw->delete( 'cn_notice_regions', [ 'nr_notice_id' => $campaignId ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_assignments' )
+			->where( [ 'not_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notices' )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_languages' )
+			->where( [ 'nl_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_projects' )
+			->where( [ 'np_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_countries' )
+			->where( [ 'nc_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_notice_regions' )
+			->where( [ 'nr_notice_id' => $campaignId ] )
+			->caller( __METHOD__ )
+			->execute();
 		$dbw->endAtomic( __METHOD__ );
 	}
 
@@ -989,27 +1017,30 @@ class Campaign {
 
 		$noticeId = self::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
-		$res = $dbw->select( 'cn_assignments', 'asn_id',
-			[
+		$res = $dbw->newSelectQueryBuilder()
+			->select( 'asn_id' )
+			->from( 'cn_assignments' )
+			->where( [
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		if ( $res->numRows() > 0 ) {
 			return 'centralnotice-template-already-exists';
 		}
 
-		$dbw->insert( 'cn_assignments',
-			[
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_assignments' )
+			->row( [
 				'tmp_id'     => $templateId,
 				'tmp_weight' => $weight,
 				'not_id'     => $noticeId,
 				'asn_bucket' => $bucket,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return true;
 	}
@@ -1023,7 +1054,11 @@ class Campaign {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$noticeId = self::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
-		$dbw->delete( 'cn_assignments', [ 'tmp_id' => $templateId, 'not_id' => $noticeId ], __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'cn_assignments' )
+			->where( [ 'tmp_id' => $templateId, 'not_id' => $noticeId ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1033,7 +1068,12 @@ class Campaign {
 	 */
 	public static function getNoticeId( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ], __METHOD__ );
+		$row = $dbr->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $noticeName ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		if ( $row ) {
 			return $row->not_id;
 		} else {
@@ -1049,7 +1089,12 @@ class Campaign {
 	public static function getNoticeName( $noticeId ) {
 		$dbr = CNDatabase::getDb();
 		if ( is_numeric( $noticeId ) ) {
-			$row = $dbr->selectRow( 'cn_notices', 'not_name', [ 'not_id' => $noticeId ], __METHOD__ );
+			$row = $dbr->newSelectQueryBuilder()
+				->select( 'not_name' )
+				->from( 'cn_notices' )
+				->where( [ 'not_id' => $noticeId ] )
+				->caller( __METHOD__ )
+				->fetchRow();
 			if ( $row ) {
 				return $row->not_name;
 			}
@@ -1059,14 +1104,20 @@ class Campaign {
 
 	public static function getNoticeProjects( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ], __METHOD__ );
+		$row = $dbr->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $noticeName ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$projects = [];
 		if ( $row ) {
-			$res = $dbr->select( 'cn_notice_projects', 'np_project',
-				[ 'np_notice_id' => $row->not_id ], __METHOD__ );
-			foreach ( $res as $projectRow ) {
-				$projects[] = $projectRow->np_project;
-			}
+			$projects = $dbr->newSelectQueryBuilder()
+				->select( 'np_project' )
+				->from( 'cn_notice_projects' )
+				->where( [ 'np_notice_id' => $row->not_id ] )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
 		}
 		sort( $projects );
 		return $projects;
@@ -1074,14 +1125,20 @@ class Campaign {
 
 	public static function getNoticeLanguages( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ], __METHOD__ );
+		$row = $dbr->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $noticeName ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$languages = [];
 		if ( $row ) {
-			$res = $dbr->select( 'cn_notice_languages', 'nl_language',
-				[ 'nl_notice_id' => $row->not_id ], __METHOD__ );
-			foreach ( $res as $langRow ) {
-				$languages[] = $langRow->nl_language;
-			}
+			$languages = $dbr->newSelectQueryBuilder()
+				->select( 'nl_language' )
+				->from( 'cn_notice_languages' )
+				->where( [ 'nl_notice_id' => $row->not_id ] )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
 		}
 		sort( $languages );
 		return $languages;
@@ -1094,14 +1151,20 @@ class Campaign {
 	 */
 	public static function getNoticeCountries( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ], __METHOD__ );
+		$row = $dbr->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $noticeName ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$countries = [];
 		if ( $row ) {
-			$res = $dbr->select( 'cn_notice_countries', 'nc_country',
-				[ 'nc_notice_id' => $row->not_id ], __METHOD__ );
-			foreach ( $res as $countryRow ) {
-				$countries[] = $countryRow->nc_country;
-			}
+			$countries = $dbr->newSelectQueryBuilder()
+				->select( 'nc_country' )
+				->from( 'cn_notice_countries' )
+				->where( [ 'nc_notice_id' => $row->not_id ] )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
 		}
 		sort( $countries );
 		return $countries;
@@ -1114,14 +1177,20 @@ class Campaign {
 	 */
 	public static function getNoticeRegions( $noticeName ) {
 		$dbr = CNDatabase::getDb();
-		$row = $dbr->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $noticeName ], __METHOD__ );
+		$row = $dbr->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $noticeName ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$regions = [];
 		if ( $row ) {
-			$res = $dbr->select( 'cn_notice_regions', 'nr_region',
-				[ 'nr_notice_id' => $row->not_id ], __METHOD__ );
-			foreach ( $res as $regionRow ) {
-				$regions[] = $regionRow->nr_region;
-			}
+			$regions = $dbr->newSelectQueryBuilder()
+				->select( 'nr_region' )
+				->from( 'cn_notice_regions' )
+				->where( [ 'nr_notice_id' => $row->not_id ] )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
 		}
 		sort( $regions );
 		return $regions;
@@ -1187,14 +1256,15 @@ class Campaign {
 		$startDate = $dbw->timestamp( $start );
 		$endDate = $dbw->timestamp( $end );
 
-		$dbw->update( 'cn_notices',
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_notices' )
+			->set( [
 				'not_start' => $startDate,
 				'not_end'   => $endDate
-			],
-			[ 'not_name' => $noticeName ],
-			__METHOD__
-		);
+			] )
+			->where( [ 'not_name' => $noticeName ] )
+			->caller( __METHOD__ )
+			->execute();
 
 		return true;
 	}
@@ -1216,11 +1286,12 @@ class Campaign {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
 			$dbw = CNDatabase::getDb( DB_PRIMARY );
-			$dbw->update( 'cn_notices',
-				[ 'not_' . $settingName => (int)$settingValue ],
-				[ 'not_name' => $noticeName ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'cn_notices' )
+				->set( [ 'not_' . $settingName => (int)$settingValue ] )
+				->where( [ 'not_name' => $noticeName ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -1262,11 +1333,12 @@ class Campaign {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
 			$dbw = CNDatabase::getDb( DB_PRIMARY );
-			$dbw->update( 'cn_notices',
-				[ 'not_' . $settingName => $settingValue ],
-				[ 'not_name' => $noticeName ],
-				__METHOD__
-			);
+			$dbw->newUpdateQueryBuilder()
+				->update( 'cn_notices' )
+				->set( [ 'not_' . $settingName => $settingValue ] )
+				->where( [ 'not_name' => $noticeName ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -1280,14 +1352,15 @@ class Campaign {
 	public static function updateWeight( $noticeName, $templateId, $weight ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$noticeId = self::getNoticeId( $noticeName );
-		$dbw->update( 'cn_assignments',
-			[ 'tmp_weight' => $weight ],
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_assignments' )
+			->set( [ 'tmp_weight' => $weight ] )
+			->where( [
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1301,26 +1374,15 @@ class Campaign {
 	public static function updateBucket( $noticeName, $templateId, $bucket ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$noticeId = self::getNoticeId( $noticeName );
-		$dbw->update( 'cn_assignments',
-			[ 'asn_bucket' => $bucket ],
-			[
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_assignments' )
+			->set( [ 'asn_bucket' => $bucket ] )
+			->where( [
 				'tmp_id' => $templateId,
 				'not_id' => $noticeId
-			],
-			__METHOD__
-		);
-	}
-
-	// @todo FIXME: Unused.
-	public static function updateProjectName( $notice, $projectName ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
-		$dbw->update( 'cn_notices',
-			[ 'not_project' => $projectName ],
-			[
-				'not_name' => $notice
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public static function updateProjects( $notice, $newProjects ) {
@@ -1331,7 +1393,12 @@ class Campaign {
 		$oldProjects = self::getNoticeProjects( $notice );
 
 		// Get the notice id
-		$row = $dbw->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $notice ], __METHOD__ );
+		$row = $dbw->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $notice ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		// Add newly assigned projects
 		$addProjects = array_diff( $newProjects, $oldProjects );
@@ -1339,15 +1406,23 @@ class Campaign {
 		foreach ( $addProjects as $project ) {
 			$insertArray[] = [ 'np_notice_id' => $row->not_id, 'np_project' => $project ];
 		}
-		$dbw->insert( 'cn_notice_projects', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_projects' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated projects
 		$removeProjects = array_diff( $oldProjects, $newProjects );
 		if ( $removeProjects ) {
-			$dbw->delete( 'cn_notice_projects',
-				[ 'np_notice_id' => $row->not_id, 'np_project' => $removeProjects ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_projects' )
+				->where( [ 'np_notice_id' => $row->not_id, 'np_project' => $removeProjects ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1361,7 +1436,12 @@ class Campaign {
 		$oldLanguages = self::getNoticeLanguages( $notice );
 
 		// Get the notice id
-		$row = $dbw->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $notice ], __METHOD__ );
+		$row = $dbw->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $notice ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		// Add newly assigned languages
 		$addLanguages = array_diff( $newLanguages, $oldLanguages );
@@ -1369,15 +1449,23 @@ class Campaign {
 		foreach ( $addLanguages as $code ) {
 			$insertArray[] = [ 'nl_notice_id' => $row->not_id, 'nl_language' => $code ];
 		}
-		$dbw->insert( 'cn_notice_languages', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_languages' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated languages
 		$removeLanguages = array_diff( $oldLanguages, $newLanguages );
 		if ( $removeLanguages ) {
-			$dbw->delete( 'cn_notice_languages',
-				[ 'nl_notice_id' => $row->not_id, 'nl_language' => $removeLanguages ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_languages' )
+				->where( [ 'nl_notice_id' => $row->not_id, 'nl_language' => $removeLanguages ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1396,7 +1484,12 @@ class Campaign {
 		$oldCountries = self::getNoticeCountries( $notice );
 
 		// Get the notice id
-		$row = $dbw->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $notice ], __METHOD__ );
+		$row = $dbw->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $notice ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		// Add newly assigned countries
 		$addCountries = array_diff( $newCountries, $oldCountries );
@@ -1404,15 +1497,23 @@ class Campaign {
 		foreach ( $addCountries as $code ) {
 			$insertArray[] = [ 'nc_notice_id' => $row->not_id, 'nc_country' => $code ];
 		}
-		$dbw->insert( 'cn_notice_countries', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_countries' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated countries
 		$removeCountries = array_diff( $oldCountries, $newCountries );
 		if ( $removeCountries ) {
-			$dbw->delete( 'cn_notice_countries',
-				[ 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_countries' )
+				->where( [ 'nc_notice_id' => $row->not_id, 'nc_country' => $removeCountries ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1431,7 +1532,12 @@ class Campaign {
 		$oldRegions = self::getNoticeRegions( $notice );
 
 		// Get the notice id
-		$row = $dbw->selectRow( 'cn_notices', 'not_id', [ 'not_name' => $notice ], __METHOD__ );
+		$row = $dbw->newSelectQueryBuilder()
+			->select( 'not_id' )
+			->from( 'cn_notices' )
+			->where( [ 'not_name' => $notice ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		// Add newly assigned regions
 		$addRegions = array_diff( $newRegions, $oldRegions );
@@ -1439,15 +1545,23 @@ class Campaign {
 		foreach ( $addRegions as $code ) {
 			$insertArray[] = [ 'nr_notice_id' => $row->not_id, 'nr_region' => $code ];
 		}
-		$dbw->insert( 'cn_notice_regions', $insertArray, __METHOD__, [ 'IGNORE' ] );
+		if ( $insertArray ) {
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_regions' )
+				->ignore()
+				->rows( $insertArray )
+				->caller( __METHOD__ )
+				->execute();
+		}
 
 		// Remove disassociated regions
 		$removeRegions = array_diff( $oldRegions, $newRegions );
 		if ( $removeRegions ) {
-			$dbw->delete( 'cn_notice_regions',
-				[ 'nr_notice_id' => $row->not_id, 'nr_region' => $removeRegions ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_notice_regions' )
+				->where( [ 'nr_notice_id' => $row->not_id, 'nr_region' => $removeRegions ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$dbw->endAtomic( __METHOD__ );
@@ -1517,7 +1631,11 @@ class Campaign {
 		// Only log the change if it is done by an actual user (rather than a testing script)
 		// FIXME There must be a cleaner way to do this?
 		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
-			$dbw->insert( 'cn_notice_log', $log, __METHOD__ );
+			$dbw->newInsertQueryBuilder()
+				->insertInto( 'cn_notice_log' )
+				->row( $log )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -1576,12 +1694,12 @@ class Campaign {
 		}
 
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
-		$dbw->update(
-			'cn_notices',
-			[ 'not_type' => $type ],
-			[ 'not_name' => $campaignName ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'cn_notices' )
+			->set( [ 'not_type' => $type ] )
+			->where( [ 'not_name' => $campaignName ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public static function campaignLogs(
@@ -1591,10 +1709,10 @@ class Campaign {
 		$dbr = CNDatabase::getDb();
 		$conds = [];
 		if ( $start ) {
-			$conds[] = "notlog_timestamp >= " . $dbr->addQuotes( $start );
+			$conds[] = $dbr->expr( 'notlog_timestamp', '>=', $start );
 		}
 		if ( $end ) {
-			$conds[] = "notlog_timestamp < " . $dbr->addQuotes( $end );
+			$conds[] = $dbr->expr( 'notlog_timestamp', '<', $end );
 		}
 		if ( $campaign ) {
 			// This used to be a LIKE, but that was undocumented,
@@ -1611,14 +1729,15 @@ class Campaign {
 			}
 		}
 
-		$res = $dbr->select( 'cn_notice_log', '*', $conds,
-			__METHOD__,
-			[
-				"ORDER BY" => "notlog_timestamp DESC",
-				"LIMIT" => $limit,
-				"OFFSET" => $offset,
-			]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'cn_notice_log' )
+			->where( $conds )
+			->orderBy( 'notlog_timestamp', SelectQueryBuilder::SORT_DESC )
+			->limit( $limit )
+			->offset( $offset )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$logs = [];
 		foreach ( $res as $row ) {
 			$entry = new CampaignLog( $row );

@@ -75,8 +75,8 @@
 	"centralnotice-items-selected": "$1 {{PLURAL:$1|elemento scigliuto|elemente scigliute}}",
 	"centralnotice-project-name": "Nomme d' 'o pruggetto",
 	"centralnotice-assigned-templates": "Banner assignate",
-	"centralnotice-no-templates": "Nisciuno banner truvato.\nAzzecca cocche banner!",
-	"centralnotice-no-templates-assigned": "Nisciuno banner azegnàto 'a campagna.\nAzzecca cocche banner!",
+	"centralnotice-no-templates": "Nisciuno banner truvato.\nAzzecca nu banner!",
+	"centralnotice-no-templates-assigned": "Sta campagna nun tene nisciuno banner.\nAzzecca nu banner!",
 	"centralnotice-available-templates": "Baner disponibbele",
 	"centralnotice-template-already-exists": "'O banner è già cullegato a na campagna.\nNun azzeccato.",
 	"centralnotice-change-lang": "Cagna lengua d' 'a traduzione",
@@ -184,7 +184,7 @@
 	"centralnotice-buckets": "Accucchiamiente 'utente",
 	"centralnotice-bucket": "Accucchiamiento",
 	"centralnotice-bucket-letter": "Accucchiamiento \"$1\"",
-	"centralnotice-banner-empty-bucket": "Nun tutte 'e banner se so' mis' ncuoll'a cocche sicchio.",
+	"centralnotice-banner-empty-bucket": "Nun tutte 'e sicchie d' 'a camapgna teneneno nu banner.",
 	"centralnotice-devicetype-desktop": "Computer 'e tavola",
 	"centralnotice-devicetype-android": "Android OS",
 	"centralnotice-devicetype-ipad": "Tutte l'aparicchie s'identificano comme iPad ma nun comme iPhone",
@@ -232,6 +232,6 @@
 	"hidebanners": "Annascunne 'e banner",
 	"centralnotice-specialhidebanners-p3p": "Ce sta cocche browser ca vulesse na policy P3P cumpatta pe' ne putè mpustà 'e cookies dint'a na situazione precisa. Può darse ca nun ce stanno policy cumpatte. Pe' piacere verite 'a puliteca 'e privacità p' 'e perzone utente d' 'o sito.",
 	"centralnotice-banner-history-logger": "Logger-trasitòre 'e cronologgia 'e banner",
-	"centralnotice-banner-history-logger-help": "Secutà buono 'e sequenze 'e banner vedute 'a 'e liggiture, e cocche vota mannate chiste arret' 'o server.",
+	"centralnotice-banner-history-logger-help": "Secuta buono 'e sequenze 'e banner viste, e mannale arret' 'o server.",
 	"centralnotice-banner-history-logger-rate": "Frequenza 'e mmostra"
 }

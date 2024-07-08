@@ -1,6 +1,15 @@
 <?php
 
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLButtonField;
+use MediaWiki\HTMLForm\Field\HTMLCheckField;
+use MediaWiki\HTMLForm\Field\HTMLInfoField;
+use MediaWiki\HTMLForm\Field\HTMLSelectLimitField;
+use MediaWiki\HTMLForm\Field\HTMLSubmitField;
+use MediaWiki\HTMLForm\Field\HTMLTextField;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * Special page for management of CentralNotice banners
@@ -60,7 +69,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		);
 
 		// User settable text for some custom message, like usage instructions
-		$this->getOutput()->setPageTitle( $this->msg( 'noticetemplate' ) );
+		$this->getOutput()->setPageTitleMsg( $this->msg( 'noticetemplate' ) );
 
 		// Allow users to add a custom nav bar (T138284)
 		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();
@@ -124,7 +133,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 */
 	private function showBannerList() {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'centralnotice-manage-templates' ) );
+		$out->setPageTitleMsg( $this->msg( 'centralnotice-manage-templates' ) );
 		$out->addModules( 'ext.centralNotice.adminUi.bannerManager' );
 
 		// Process the form that we sent out
@@ -509,7 +518,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			->displayForm( $formResult );
 
 		// Send banner name into page for access from JS
-		$out->addHTML( Xml::element( 'span',
+		$out->addHTML( Html::element( 'span',
 			[
 				'id' => 'centralnotice-data-container',
 				'data-banner-name' => $this->bannerName
@@ -522,7 +531,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				$out->addHTML( $this->generateCdnPurgeSection() );
 			}
 
-			$out->addHTML( Xml::element( 'h2',
+			$out->addHTML( Html::element( 'h2',
 				[ 'class' => 'cn-special-section' ],
 				$this->msg( 'centralnotice-campaigns-using-banner' )->text() ) );
 
@@ -662,7 +671,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				if ( $wgNoticeUseTranslateExtension ) {
 					// Create per message link to the translate extension
 					$title = SpecialPage::getTitleFor( 'Translate' );
-					$label = Xml::tags( 'td', null,
+					$label = Html::rawElement( 'td', [],
 						$linkRenderer->makeLink(
 							$title,
 							$messageName,
@@ -884,7 +893,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 * @return string
 	 */
 	private function generateCdnPurgeSection() {
-		$purgeControls = Xml::element( 'h2',
+		$purgeControls = Html::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg( 'centralnotice-banner-cdn-controls' )->text() );
 
@@ -915,14 +924,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		$purgeControls .= Html::closeElement( 'select' );
 		$purgeControls .= Html::closeElement( 'label' );
 
-		$purgeControls .= ' ' . Html::openElement( 'button', $disabledAttr + [
-			'id' => 'cn-cdn-cache-purge'
-		] );
-
-		$purgeControls .=
-			$this->msg( 'centralnotice-banner-cdn-button' )->escaped();
-
-		$purgeControls .= Html::closeElement( 'button' );
+		$purgeControls .= ' ' . Html::element( 'button',
+			$disabledAttr + [ 'id' => 'cn-cdn-cache-purge' ],
+			$this->msg( 'centralnotice-banner-cdn-button' )->text()
+		);
 
 		$purgeControls .= Html::element(
 			'div',
@@ -1074,18 +1079,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 			$dbr = CNDatabase::getDb();
 			$this->templateBannerNames = [];
 
-			$res = $dbr->select(
-				[
-					'templates' => 'cn_templates'
-				],
-				[
-					'tmp_name'
-				],
-				[
-					'templates.tmp_is_template' => true,
-				],
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'tmp_name' ] )
+				->from( 'cn_templates' )
+				->where( [ 'tmp_is_template' => true ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				// name of the banner as a key for HTMLSelectField

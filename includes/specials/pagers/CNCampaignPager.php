@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+use MediaWiki\Pager\TablePager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -68,6 +70,7 @@ class CNCampaignPager extends TablePager {
 	 * @inheritDoc
 	 */
 	public function getQueryInfo() {
+		$db = $this->getDatabase();
 		$pagerQuery = [
 			'tables' => [
 				'notices' => 'cn_notices',
@@ -84,30 +87,26 @@ class CNCampaignPager extends TablePager {
 				'not_geo',
 				'not_locked',
 				'not_archived',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_countries',
-					'nc_country',
-					'nc_notice_id = notices.not_id'
-				) . ' AS countries',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_regions',
-					'nr_region',
-					'nr_notice_id = notices.not_id'
-				) . ' AS regions',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_languages',
-					'nl_language',
-					'nl_notice_id = notices.not_id'
-				) . ' AS languages',
-				$this->getDatabase()->buildGroupConcatField(
-					',',
-					'cn_notice_projects',
-					'np_project',
-					'np_notice_id = notices.not_id'
-				) . ' AS projects',
+				'countries' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_countries' )
+					->field( 'nc_country' )
+					->where( 'nc_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
+				'regions' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_regions' )
+					->field( 'nr_region' )
+					->where( 'nr_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
+				'languages' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_languages' )
+					->field( 'nl_language' )
+					->where( 'nl_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
+				'projects' => $db->newSelectQueryBuilder()
+					->table( 'cn_notice_projects' )
+					->field( 'np_project' )
+					->where( 'np_notice_id = notices.not_id' )
+					->buildGroupConcatField( ',' ),
 			],
 			'conds' => [],
 		];
@@ -117,12 +116,12 @@ class CNCampaignPager extends TablePager {
 			$pagerQuery['tables']['assignments'] = 'cn_assignments';
 			$pagerQuery['conds'] = [
 				'notices.not_id = assignments.not_id',
-				'assignments.tmp_id = ' . (int)$this->assignedBannerId
+				'assignments.tmp_id' => (int)$this->assignedBannerId,
 			];
 		}
 
 		if ( $this->showArchived !== null ) {
-			$pagerQuery['conds'][] = 'not_archived = ' . (int)$this->showArchived;
+			$pagerQuery['conds']['not_archived'] = (int)$this->showArchived;
 		}
 
 		return $pagerQuery;
@@ -169,7 +168,7 @@ class CNCampaignPager extends TablePager {
 	public function getStartBody() {
 		$htmlOut = '';
 
-		$htmlOut .= Xml::openElement(
+		$htmlOut .= Html::openElement(
 			'fieldset',
 			[
 				'class' => 'prefsection',
@@ -253,7 +252,7 @@ class CNCampaignPager extends TablePager {
 			// ext.centralNotice.adminUi.campaignPager.js
 
 			case 'not_enabled':
-				return Xml::check(
+				return Html::check(
 					'enabled',
 					$rowIsEnabled,
 					array_replace(
@@ -282,7 +281,7 @@ class CNCampaignPager extends TablePager {
 				}
 
 			case 'not_locked':
-				return Xml::check(
+				return Html::check(
 					'locked',
 					$rowIsLocked,
 					array_replace(
@@ -301,7 +300,7 @@ class CNCampaignPager extends TablePager {
 				);
 
 			case 'not_archived':
-				return Xml::check(
+				return Html::check(
 					'archived',
 					$rowIsArchived,
 					array_replace(
@@ -372,7 +371,7 @@ class CNCampaignPager extends TablePager {
 
 		if ( $this->editable ) {
 			$htmlOut .=
-				Xml::openElement( 'div',
+				Html::openElement( 'div',
 				[ 'class' => 'cn-buttons cn-formsection-emphasis' ] );
 
 			$htmlOut .= $this->onSpecialCN->makeSummaryField();
@@ -387,10 +386,10 @@ class CNCampaignPager extends TablePager {
 				]
 			);
 
-			$htmlOut .= Xml::closeElement( 'div' );
+			$htmlOut .= Html::closeElement( 'div' );
 		}
 
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		return parent::getEndBody() . $htmlOut;
 	}

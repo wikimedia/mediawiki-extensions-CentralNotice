@@ -1,6 +1,10 @@
 <?php
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
 class CentralNotice extends UnlistedSpecialPage {
@@ -112,14 +116,14 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * Output the start tag for the enclosing div we use on all subactions
 	 */
 	private function outputEnclosingDivStartTag() {
-		$this->getOutput()->addHTML( Xml::openElement( 'div', [ 'id' => 'preferences' ] ) );
+		$this->getOutput()->addHTML( Html::openElement( 'div', [ 'id' => 'preferences' ] ) );
 	}
 
 	/**
 	 * Output the end tag for the enclosing div we use on all subactions
 	 */
 	private function outputEnclosingDivEndTag() {
-		$this->getOutput()->addHTML( Xml::closeElement( 'div' ) );
+		$this->getOutput()->addHTML( Html::closeElement( 'div' ) );
 	}
 
 	/**
@@ -134,7 +138,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		$out->addModules( 'ext.centralNotice.adminUi' );
 
-		$out->addHTML( Xml::element( 'h2',
+		$out->addHTML( Html::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg(
 				$showArchived ? 'centralnotice-archived-campaigns' : 'centralnotice-manage'
@@ -281,7 +285,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	}
 
 	private function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
-		return Xml::tags(
+		return Html::rawElement(
 			'td',
 			[
 				'dir' => 'ltr', // Time is left-to-right in all languages
@@ -363,11 +367,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				$selectAttribs['data-campaign-name'] = $index;
 			}
 
-			return Xml::openElement( 'select', $selectAttribs )
-				. "\n"
-				. $options
-				. "\n"
-				. Xml::closeElement( 'select' );
+			return Html::rawElement( 'select', $selectAttribs, $options );
 
 		} else {
 			if ( $selectedTypeId ) {
@@ -425,11 +425,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				$selectAttribs['data-campaign-name'] = $index;
 			}
 
-			return Xml::openElement( 'select', $selectAttribs )
-				. "\n"
-				. $options
-				. "\n"
-				. Xml::closeElement( 'select' );
+			return Html::rawElement( 'select', $selectAttribs, $options );
 		} else {
 			return $priorities[$priorityValue]->escaped();
 		}
@@ -475,88 +471,98 @@ class CentralNotice extends UnlistedSpecialPage {
 		$htmlOut = '';
 
 		// Section heading
-		$htmlOut .= Xml::element( 'h2',
+		$htmlOut .= Html::element( 'h2',
 			[ 'class' => 'cn-special-section' ],
 			$this->msg( 'centralnotice-add-notice' )->text() );
 
 		// Begin Add a campaign fieldset
-		$htmlOut .= Xml::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
+		$htmlOut .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
 
 		// Form for adding a campaign
-		$htmlOut .= Xml::openElement( 'form', [ 'method' => 'post' ] );
+		$htmlOut .= Html::openElement( 'form', [ 'method' => 'post' ] );
 		$htmlOut .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$htmlOut .= Html::hidden( 'subaction', 'addCampaign' );
 
-		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
+		$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
 
 		// Name
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-notice-name' )->escaped() );
-		$htmlOut .= Xml::tags( 'td', [],
-			Xml::input( 'noticeName', 25, $request->getVal( 'noticeName', '' ) ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'tr', [],
+			Html::element( 'td', [],
+				$this->msg( 'centralnotice-notice-name' )->text()
+			) .
+			Html::rawElement( 'td', [],
+				Xml::input( 'noticeName', 25, $request->getVal( 'noticeName', '' ) )
+			)
+		);
 
 		// Campaign type selector
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [],
-			Xml::label( $this->msg( 'centralnotice-campaign-type' )->text(), 'campaign_type' ) );
-		$htmlOut .= Xml::tags( 'td', [],
-			$this->campaignTypeSelector( $this->editable, $campaignType ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'tr', [],
+			Html::rawElement( 'td', [],
+				Xml::label( $this->msg( 'centralnotice-campaign-type' )->text(), 'campaign_type' )
+			) .
+			Html::rawElement( 'td', [],
+				$this->campaignTypeSelector( $this->editable, $campaignType )
+			)
+		);
 
 		// Start Date
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-start-date' )->escaped() );
-		$htmlOut .= Xml::tags( 'td', [], $this->dateSelector( 'start', $this->editable, $start ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'tr', [],
+			Html::element( 'td', [],
+				$this->msg( 'centralnotice-start-date' )->text()
+			) .
+			Html::rawElement( 'td', [], $this->dateSelector( 'start', $this->editable, $start ) )
+		);
 		// Start Time
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-start-time' )->escaped() );
-		$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'tr', [],
+			Html::element( 'td', [],
+				$this->msg( 'centralnotice-start-time' )->text()
+			) .
+			$this->timeSelectorTd( 'start', $this->editable, $start )
+		);
 		// Project
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-			$this->msg( 'centralnotice-projects' )->escaped() );
-		$htmlOut .= Xml::tags( 'td', [], $this->projectMultiSelector( $noticeProjects ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'tr', [],
+			Html::element( 'td', [ 'valign' => 'top' ],
+				$this->msg( 'centralnotice-projects' )->text()
+			) .
+			Html::rawElement( 'td', [], $this->projectMultiSelector( $noticeProjects ) )
+		);
 		// Languages
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-			$this->msg( 'centralnotice-languages' )->escaped() );
-		$htmlOut .= Xml::tags( 'td', [],
-			$this->languageMultiSelector( $noticeLanguages ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'tr', [],
+			Html::element( 'td', [ 'valign' => 'top' ],
+				$this->msg( 'centralnotice-languages' )->text()
+			) .
+			Html::rawElement( 'td', [], $this->languageMultiSelector( $noticeLanguages ) )
+		);
 		// Countries
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [],
+		$htmlOut .= Html::openElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'td', [],
 			Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
-		$htmlOut .= Xml::tags( 'td', [],
-			Xml::check( 'geotargeted', false, [ 'value' => 1, 'id' => 'geotargeted' ] ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'td', [],
+			Html::check( 'geotargeted', false, [ 'value' => 1, 'id' => 'geotargeted' ] ) );
+		$htmlOut .= Html::closeElement( 'tr' );
 
 		// Locations multi-selector
-		$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'centralnotice-geo-region-multiselector' ] );
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-			$this->msg( 'centralnotice-location' )->escaped() );
-		$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelectorTree() );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::openElement( 'tr', [ 'id' => 'centralnotice-geo-region-multiselector' ] );
+		$htmlOut .= Html::element( 'td', [ 'valign' => 'top' ],
+			$this->msg( 'centralnotice-location' )->text() );
+		$htmlOut .= Html::rawElement( 'td', [], $this->geoMultiSelectorTree() );
+		$htmlOut .= Html::closeElement( 'tr' );
 
-		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Html::closeElement( 'table' );
 		$htmlOut .= Html::hidden( 'change', 'weight' );
 		$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
 
 		// Submit button
-		$htmlOut .= Xml::tags( 'div',
+		$htmlOut .= Html::rawElement( 'div',
 			[ 'class' => 'cn-buttons' ],
 			$this->makeSummaryField( true ) .
-			Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
+			Html::submitButton( $this->msg( 'centralnotice-modify' )->text() )
 		);
 
-		$htmlOut .= Xml::closeElement( 'form' );
+		$htmlOut .= Html::closeElement( 'form' );
 
 		// End Add a campaign fieldset
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		// Output HTML
 		$this->getOutput()->addHTML( $htmlOut );
@@ -696,10 +702,10 @@ class CentralNotice extends UnlistedSpecialPage {
 		$htmlOut = '';
 
 		// Begin Campaign detail fieldset
-		$htmlOut .= Xml::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
+		$htmlOut .= Html::openElement( 'fieldset', [ 'class' => 'prefsection' ] );
 
 		if ( $this->editable ) {
-			$htmlOut .= Xml::openElement( 'form',
+			$htmlOut .= Html::openElement( 'form',
 				[
 					'method' => 'post',
 					'id' => 'centralnotice-notice-detail',
@@ -721,17 +727,17 @@ class CentralNotice extends UnlistedSpecialPage {
 		// Catch for no banners so that we don't double message
 		if ( $output_assigned == '' && $output_templates == '' ) {
 			$htmlOut .= $this->msg( 'centralnotice-no-templates' )->escaped();
-			$htmlOut .= Xml::element( 'p' );
+			$htmlOut .= Html::element( 'p' );
 			$newPage = $this->getTitleFor( 'NoticeTemplate', 'add' );
 			$htmlOut .= $this->getLinkRenderer()->makeLink(
 				$newPage,
 				$this->msg( 'centralnotice-add-template' )->text()
 			);
-			$htmlOut .= Xml::element( 'p' );
+			$htmlOut .= Html::element( 'p' );
 		} elseif ( $output_assigned == '' ) {
 			$htmlOut .= Xml::fieldset( $this->msg( 'centralnotice-assigned-templates' )->text() );
 			$htmlOut .= $this->msg( 'centralnotice-no-templates-assigned' )->escaped();
-			$htmlOut .= Xml::closeElement( 'fieldset' );
+			$htmlOut .= Html::closeElement( 'fieldset' );
 			if ( $this->editable ) {
 				$htmlOut .= $output_templates;
 			}
@@ -747,9 +753,9 @@ class CentralNotice extends UnlistedSpecialPage {
 			$htmlOut .= $this->makeSummaryField();
 
 			// Submit button
-			$htmlOut .= Xml::tags( 'div',
+			$htmlOut .= Html::rawElement( 'div',
 				[ 'class' => 'cn-buttons' ],
-				Xml::submitButton(
+				Html::submitButton(
 					$this->msg( 'centralnotice-modify' )->text(),
 					[ 'id' => 'noticeDetailSubmit' ]
 				)
@@ -757,9 +763,9 @@ class CentralNotice extends UnlistedSpecialPage {
 		}
 
 		if ( $this->editable ) {
-			$htmlOut .= Xml::closeElement( 'form' );
+			$htmlOut .= Html::closeElement( 'form' );
 		}
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		$this->displayCampaignWarnings();
 
@@ -1069,141 +1075,166 @@ class CentralNotice extends UnlistedSpecialPage {
 
 			// Build Html
 			$htmlOut = '';
-			$htmlOut .= Xml::tags( 'h2', null,
+			$htmlOut .= Html::rawElement( 'h2', [],
 				$this->msg( 'centralnotice-notice-heading', $notice )->parse() );
-			$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
+			$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
 
 			// Rows
 			// Campaign type selector
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [],
+			$htmlOut .= Html::openElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'td', [],
 				Xml::label( $this->msg( 'centralnotice-campaign-type' )->text(), 'campaign_type' ) );
-			$htmlOut .= Xml::tags( 'td', [],
+			$htmlOut .= Html::rawElement( 'td', [],
 				$this->campaignTypeSelector( $this->editable, $type ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::closeElement( 'tr' );
 
 			// Start Date
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-start-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', [],
-				$this->dateSelector( 'start', $this->editable, $start ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::element( 'td', [],
+					$this->msg( 'centralnotice-start-date' )->text()
+				) .
+				Html::rawElement( 'td', [],
+					$this->dateSelector( 'start', $this->editable, $start )
+				)
+			);
 			// Start Time
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-start-time' )->escaped() );
-			$htmlOut .= $this->timeSelectorTd( 'start', $this->editable, $start );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::element( 'td', [],
+					$this->msg( 'centralnotice-start-time' )->text()
+				) .
+				$this->timeSelectorTd( 'start', $this->editable, $start )
+			);
 			// End Date
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-end-date' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', [], $this->dateSelector( 'end', $this->editable, $end ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::element( 'td', [],
+					$this->msg( 'centralnotice-end-date' )->text()
+				) .
+				Html::rawElement( 'td', [],
+					$this->dateSelector( 'end', $this->editable, $end )
+				)
+			);
 			// End Time
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [], $this->msg( 'centralnotice-end-time' )->escaped() );
-			$htmlOut .= $this->timeSelectorTd( 'end', $this->editable, $end );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::element( 'td', [],
+					$this->msg( 'centralnotice-end-time' )->text()
+				) .
+				$this->timeSelectorTd( 'end', $this->editable, $end )
+			);
 			// Project
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				$this->msg( 'centralnotice-projects' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', [],
-				$this->projectMultiSelector( $noticeProjects ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::element( 'td', [ 'valign' => 'top' ],
+					$this->msg( 'centralnotice-projects' )->text()
+				) .
+				Html::rawElement( 'td', [], $this->projectMultiSelector( $noticeProjects ) )
+			);
 			// Languages
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				$this->msg( 'centralnotice-languages' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', [],
-				$this->languageMultiSelector( $noticeLanguages ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::element( 'td', [ 'valign' => 'top' ],
+					$this->msg( 'centralnotice-languages' )->text()
+				) .
+				Html::rawElement( 'td', [], $this->languageMultiSelector( $noticeLanguages ) )
+			);
 			// Countries
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' ) );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::check( 'geotargeted', $isGeotargeted,
-					array_replace(
-						$readonly,
-						[ 'value' => $notice, 'id' => 'geotargeted' ] ) ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-geo' )->text(), 'geotargeted' )
+				) .
+				Html::rawElement( 'td', [],
+					Html::check( 'geotargeted', $isGeotargeted,
+						array_replace( $readonly, [ 'value' => $notice, 'id' => 'geotargeted' ] )
+					)
+				)
+			);
 
 			// Locations multi-selector
-			$htmlOut .= Xml::openElement( 'tr', [ 'id' => 'centralnotice-geo-region-multiselector' ] );
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				$this->msg( 'centralnotice-location' )->escaped() );
-			$htmlOut .= Xml::tags( 'td', [], $this->geoMultiSelectorTree( $countries, $regions ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr',
+				[ 'id' => 'centralnotice-geo-region-multiselector' ],
+				Html::element( 'td', [ 'valign' => 'top' ],
+					$this->msg( 'centralnotice-location' )->text()
+				) .
+				Html::rawElement( 'td', [], $this->geoMultiSelectorTree( $countries, $regions ) )
+			);
 
 			// User bucketing
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' ) );
-			$htmlOut .= Xml::tags( 'td', [],
-			$this->numBucketsDropdown( $wgNoticeNumberOfBuckets, $numBuckets ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' )
+				) .
+				Html::rawElement( 'td', [],
+					$this->numBucketsDropdown( $wgNoticeNumberOfBuckets, $numBuckets )
+				)
+			);
 			// Enabled
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::label( $this->msg( 'centralnotice-enabled' )->text(), 'enabled' ) );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::check( 'enabled', $isEnabled,
-					array_replace( $readonly,
-						[ 'value' => $notice, 'id' => 'enabled' ] ) ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-enabled' )->text(), 'enabled' )
+				) .
+				Html::rawElement( 'td', [],
+					Html::check( 'enabled', $isEnabled,
+						array_replace( $readonly, [ 'value' => $notice, 'id' => 'enabled' ] )
+					)
+				)
+			);
 			// Preferred / Priority
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::label( $this->msg( 'centralnotice-preferred' )->text(), 'priority' ) );
-			$htmlOut .= Xml::tags( 'td', [],
-				$this::prioritySelector( false, $this->editable, $priority ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-preferred' )->text(), 'priority' )
+				) .
+				Html::rawElement( 'td', [],
+					$this::prioritySelector( false, $this->editable, $priority )
+				)
+			);
 			// Throttle impressions
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::label( $this->msg( 'centralnotice-throttle' )->text(), 'throttle-enabled' ) );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::check( 'throttle-enabled', $isThrottled,
-					array_replace( $readonly,
-						[ 'value' => $notice, 'id' => 'throttle-enabled' ] ) ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-throttle' )->text(), 'throttle-enabled' )
+				) .
+				Html::rawElement( 'td', [],
+					Html::check( 'throttle-enabled', $isThrottled,
+						array_replace( $readonly, [ 'value' => $notice, 'id' => 'throttle-enabled' ] )
+					)
+				)
+			);
 			// Throttle value
-			$htmlOut .= Xml::openElement( 'tr', [ 'class' => 'cn-throttle-amount' ] );
-			$htmlOut .= Xml::tags( 'td', [],
+			$htmlOut .= Html::openElement( 'tr', [ 'class' => 'cn-throttle-amount' ] );
+			$htmlOut .= Html::rawElement( 'td', [],
 				Xml::label( $this->msg( 'centralnotice-throttle-amount' )->text(), 'throttle' ) );
 			$throttleLabel = $this->msg( 'percent' )->numParams( $throttle )->text();
 			if ( $this->editable ) {
-				$htmlOut .= Xml::tags( 'td', [],
-					Xml::span( $throttleLabel, 'cn-throttle',
-						[ 'id' => 'centralnotice-throttle-echo' ] ) .
+				$htmlOut .= Html::rawElement( 'td', [],
+					Html::element( 'span',
+						[ 'class' => 'cn-throttle', 'id' => 'centralnotice-throttle-echo' ],
+						$throttleLabel ) .
 					Html::hidden( 'throttle-cur', $throttle,
 						[ 'id' => 'centralnotice-throttle-cur' ] ) .
-					Xml::tags( 'div', [ 'id' => 'centralnotice-throttle-amount' ], '' ) );
+					Html::rawElement( 'div', [ 'id' => 'centralnotice-throttle-amount' ], '' ) );
 			} else {
 				$htmlOut .= Html::element( 'td', [], $throttleLabel );
 			}
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::closeElement( 'tr' );
 			// Locked
-			$htmlOut .= Xml::openElement( 'tr' );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::label( $this->msg( 'centralnotice-locked' )->text(), 'locked' ) );
-			$htmlOut .= Xml::tags( 'td', [],
-				Xml::check( 'locked', $isLocked,
-					array_replace( $readonly,
-						[ 'value' => $notice, 'id' => 'locked' ] ) ) );
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [],
+					Xml::label( $this->msg( 'centralnotice-locked' )->text(), 'locked' )
+				) .
+				Html::rawElement( 'td', [],
+					Html::check( 'locked', $isLocked,
+						array_replace( $readonly, [ 'value' => $notice, 'id' => 'locked' ] )
+					)
+				)
+			);
 			if ( $this->editable ) {
 				// Locked
-				$htmlOut .= Xml::openElement( 'tr' );
-				$htmlOut .= Xml::tags( 'td', [],
-					Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' )
+				$htmlOut .= Html::rawElement( 'tr', [],
+					Html::rawElement( 'td', [],
+						Xml::label( $this->msg( 'centralnotice-archive-campaign' )->text(), 'archive' )
+					) .
+					Html::rawElement( 'td', [],
+						Html::check( 'archive', $isArchived, [ 'value' => $notice, 'id' => 'archive' ] )
+					)
 				);
-				$htmlOut .= Xml::tags( 'td', [],
-					Xml::check( 'archive', $isArchived,
-						[ 'value' => $notice, 'id' => 'archive' ] ) );
-				$htmlOut .= Xml::closeElement( 'tr' );
 			}
-			$htmlOut .= Xml::closeElement( 'table' );
+			$htmlOut .= Html::closeElement( 'table' );
 
 			// Create controls for campaign-associated mixins (if there are any)
 			if ( $wgCentralNoticeCampaignMixins ) {
@@ -1241,9 +1272,9 @@ class CentralNotice extends UnlistedSpecialPage {
 						$checked = false;
 					}
 
-					$htmlOut .= Xml::openElement( 'div' );
+					$htmlOut .= Html::openElement( 'div' );
 
-					$htmlOut .= Xml::check(
+					$htmlOut .= Html::check(
 						$mixinControlName,
 						$checked,
 						array_replace( $readonly, $attribs )
@@ -1262,11 +1293,11 @@ class CentralNotice extends UnlistedSpecialPage {
 						);
 					}
 
-					$htmlOut .= Xml::closeElement( 'div' );
+					$htmlOut .= Html::closeElement( 'div' );
 
 				}
 
-				$htmlOut .= Xml::closeElement( 'fieldset' );
+				$htmlOut .= Html::closeElement( 'fieldset' );
 			}
 
 			return $htmlOut;
@@ -1294,28 +1325,24 @@ class CentralNotice extends UnlistedSpecialPage {
 		global $wgNoticeNumberOfBuckets;
 
 		$dbr = CNDatabase::getDb();
-		$res = $dbr->select(
+		$res = $dbr->newSelectQueryBuilder()
 			// Aliases are needed to avoid problems with table prefixes
-			[
-				'notices' => 'cn_notices',
-				'assignments' => 'cn_assignments',
-				'templates' => 'cn_templates'
-			],
-			[
+			->select( [
 				'templates.tmp_id',
 				'templates.tmp_name',
 				'assignments.tmp_weight',
 				'assignments.asn_bucket',
 				'notices.not_buckets',
-			],
-			[
+			] )
+			->from( 'cn_notices', 'notices' )
+			->join( 'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
+			->join( 'cn_templates', 'templates', 'assignments.tmp_id = templates.tmp_id' )
+			->where( [
 				'notices.not_name' => $notice,
-				'notices.not_id = assignments.not_id',
-				'assignments.tmp_id = templates.tmp_id'
-			],
-			__METHOD__,
-			[ 'ORDER BY' => 'assignments.asn_bucket, notices.not_id' ]
-		);
+			] )
+			->orderBy( [ 'assignments.asn_bucket', 'notices.not_id' ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// No banners found
 		if ( $res->numRows() < 1 ) {
@@ -1365,41 +1392,43 @@ class CentralNotice extends UnlistedSpecialPage {
 		);
 
 		// Equal weight banners
-		$htmlOut .= Xml::openElement( 'tr' );
-		$htmlOut .= Xml::tags( 'td', [],
-			Xml::label( $this->msg( 'centralnotice-balanced' )->text(), 'balanced' ) );
-		$htmlOut .= Xml::tags( 'td', [],
-			Xml::check( 'balanced', $isBalanced,
-				array_replace( $readonly,
-					[ 'value' => $notice, 'id' => 'balanced' ] ) ) );
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::rawElement( 'tr', [],
+			Html::rawElement( 'td', [],
+				Xml::label( $this->msg( 'centralnotice-balanced' )->text(), 'balanced' )
+			) .
+			Html::rawElement( 'td', [],
+				Html::check( 'balanced', $isBalanced,
+					array_replace( $readonly, [ 'value' => $notice, 'id' => 'balanced' ] )
+				)
+			)
+		);
 
-		$htmlOut .= Xml::openElement( 'table',
+		$htmlOut .= Html::openElement( 'table',
 			[
 				'cellpadding' => 9,
 				'width'       => '100%'
 			]
 		);
 		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( "centralnotice-remove" )->text() );
 		}
-		$htmlOut .= Xml::element( 'th',
+		$htmlOut .= Html::element( 'th',
 			[ 'align' => 'left', 'width' => '5%', 'class' => 'cn-weight' ],
 			$this->msg( 'centralnotice-weight' )->text() );
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 			$this->msg( 'centralnotice-bucket' )->text() );
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '70%' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '70%' ],
 			$this->msg( 'centralnotice-templates' )->text() );
 
 		// Table rows
 		foreach ( $banners as $row ) {
-			$htmlOut .= Xml::openElement( 'tr' );
+			$htmlOut .= Html::openElement( 'tr' );
 
 			if ( $this->editable ) {
 				// Remove
-				$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-					Xml::check( 'removeTemplates[]', false, [
+				$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
+					Html::check( 'removeTemplates[]', false, [
 						'value' => $row->tmp_name,
 						'class' => 'bannerRemoveCheckbox'
 					] )
@@ -1407,13 +1436,13 @@ class CentralNotice extends UnlistedSpecialPage {
 			}
 
 			// Weight
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top', 'class' => 'cn-weight' ],
 				$this->weightDropdown( "weight[$row->tmp_id]", $row->tmp_weight )
 			);
 
 			// Bucket
 			$numCampaignBuckets = min( intval( $row->not_buckets ), $wgNoticeNumberOfBuckets );
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				$this->bucketDropdown(
 					"bucket[$row->tmp_id]",
 					( $numCampaignBuckets == 1 ? null : intval( $row->asn_bucket ) ),
@@ -1423,14 +1452,14 @@ class CentralNotice extends UnlistedSpecialPage {
 			);
 
 			// Banner
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				BannerRenderer::linkToBanner( $row->tmp_name )
 			);
 
-			$htmlOut .= Xml::closeElement( 'tr' );
+			$htmlOut .= Html::closeElement( 'tr' );
 		}
-		$htmlOut .= Xml::closeElement( 'table' );
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'table' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		// Sneak in some extra processing, to detect errors in bucket assignment.
 		// Test for campaign buckets without an assigned banner or with multiple banners.
@@ -1561,18 +1590,18 @@ class CentralNotice extends UnlistedSpecialPage {
 		// And now the banners, if any
 		if ( $pager->getNumRows() > 0 ) {
 			// Show paginated list of banners
-			$htmlOut .= Xml::tags( 'div',
+			$htmlOut .= Html::rawElement( 'div',
 				[ 'class' => 'cn-pager' ],
 				$pager->getNavigationBar() );
 			$htmlOut .= $pager->getBody();
-			$htmlOut .= Xml::tags( 'div',
+			$htmlOut .= Html::rawElement( 'div',
 				[ 'class' => 'cn-pager' ],
 				$pager->getNavigationBar() );
 
 		} else {
 			$htmlOut .= $this->msg( 'centralnotice-no-templates' )->escaped();
 		}
-		$htmlOut .= Xml::closeElement( 'fieldset' );
+		$htmlOut .= Html::closeElement( 'fieldset' );
 
 		return $htmlOut;
 	}
@@ -1618,7 +1647,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$properties['disabled'] = 'disabled';
 		}
 
-		return Xml::tags( 'select', $properties, $options );
+		return Html::rawElement( 'select', $properties, $options );
 	}
 
 	/**
@@ -1651,7 +1680,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$properties['disabled'] = 'disabled';
 		}
 
-		return Xml::tags( 'select', $properties, $options );
+		return Html::rawElement( 'select', $properties, $options );
 	}
 
 	public static function dropdownList( $text, $values ) {
@@ -1673,10 +1702,10 @@ class CentralNotice extends UnlistedSpecialPage {
 		$placeholderMsg = $action ? 'centralnotice-change-summary-action-prompt'
 			: 'centralnotice-change-summary-prompt';
 
-		return Xml::element( 'label',
+		return Html::element( 'label',
 				[ 'class' => 'cn-change-summary-label' ],
 				$this->msg( 'centralnotice-change-summary-label' )->text()
-			) . Xml::element( 'input',
+			) . Html::element( 'input',
 				[
 					'class' => 'cn-change-summary-input',
 					'placeholder' => $this->msg( $placeholderMsg )->text(),
@@ -1732,7 +1761,7 @@ class CentralNotice extends UnlistedSpecialPage {
 						'opened' => $isSelected,
 						'selected' => $isSelected
 					];
-					$regions .= Xml::tags(
+					$regions .= Html::element(
 						'li',
 						[
 							'id' => $uniqueRegionCode,
@@ -1742,7 +1771,7 @@ class CentralNotice extends UnlistedSpecialPage {
 							'centralnotice-location-name-and-code',
 							$name,
 							$regionCode
-						)->escaped()
+						)->text()
 					);
 				}
 			}
@@ -1761,13 +1790,13 @@ class CentralNotice extends UnlistedSpecialPage {
 				$countryCode
 			)->escaped();
 
-			$locationElements .= Xml::tags(
+			$locationElements .= Html::rawElement(
 				'li',
 				[
 					'data-jstree' => json_encode( $data ),
 					'id' => $countryCode
 				],
-				$countryNameAndCode . ( $regions ? Xml::tags( 'ul', [], $regions ) : '' )
+				$countryNameAndCode . ( $regions ? Html::rawElement( 'ul', [], $regions ) : '' )
 			);
 		}
 
@@ -1780,7 +1809,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$properties['disabled'] = 'disabled';
 		}
 
-		$search = Xml::tags(
+		$search = Html::rawElement(
 			'input',
 			[
 				'type' => 'text',
@@ -1796,7 +1825,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$this->msg( 'centralnotice-location-filter-clear' )->text()
 		);
 		$searchLabelText = $this->msg( 'centralnotice-location-filter' )->escaped();
-		$searchLabel = Xml::tags(
+		$searchLabel = Html::rawElement(
 			'label',
 			[
 				'class' => 'cn-tree-search-label'
@@ -1804,12 +1833,12 @@ class CentralNotice extends UnlistedSpecialPage {
 			$searchLabelText . $search . $searchClear
 		);
 
-		$statusText = Xml::tags( 'div', [ 'class' => 'cn-tree-status' ], '' );
+		$statusText = Html::rawElement( 'div', [ 'class' => 'cn-tree-status' ], '' );
 
-		$tree = Xml::tags(
+		$tree = Html::rawElement(
 			'div',
 			$properties,
-			Xml::tags(
+			Html::rawElement(
 				'ul',
 				[],
 				$locationElements
@@ -1830,7 +1859,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			[ 'type' => 'hidden', 'id' => 'geo_regions_value' ]
 		);
 
-		return Xml::tags(
+		return Html::rawElement(
 			'div',
 			[ 'class' => 'cn-tree-wrapper' ],
 			$searchLabel . $tree . $statusText . $hiddenInputs
@@ -1975,6 +2004,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		return $array;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'wiki';
 	}

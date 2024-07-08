@@ -22,11 +22,17 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroups;
+use MediaWiki\Extension\Translate\MessageLoading\RebuildMessageIndexJob;
 use MediaWiki\Extension\Translate\Services;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * CentralNotice banner object. Banners are pieces of rendered wikimarkup
@@ -273,13 +279,13 @@ class Banner {
 	 */
 	public static function getAllUsedCategories() {
 		$db = CNDatabase::getDb();
-		$res = $db->select(
-			'cn_templates',
-			'tmp_category',
-			'',
-			__METHOD__,
-			[ 'DISTINCT', 'ORDER BY tmp_category ASC' ]
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( 'tmp_category' )
+			->distinct()
+			->from( 'cn_templates' )
+			->caller( __METHOD__ )
+			->orderBy( 'tmp_category' )
+			->fetchResultSet();
 
 		$categories = [];
 		foreach ( $res as $row ) {
@@ -360,9 +366,8 @@ class Banner {
 		}
 
 		// Query!
-		$rowRes = $db->select(
-			[ 'templates' => 'cn_templates' ],
-			[
+		$rowRes = $db->newSelectQueryBuilder()
+			->select( [
 				'tmp_id',
 				'tmp_name',
 				'tmp_display_anon',
@@ -370,10 +375,11 @@ class Banner {
 				'tmp_archived',
 				'tmp_category',
 				'tmp_is_template'
-			],
-			$selector,
-			__METHOD__
-		);
+			] )
+			->from( 'cn_templates' )
+			->where( $selector )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Extract the dataz!
 		$row = $rowRes->fetchObject();
@@ -414,7 +420,11 @@ class Banner {
 	 * @param IDatabase $db
 	 */
 	private function initializeDbBasicData( IDatabase $db ) {
-		$db->insert( 'cn_templates', [ 'tmp_name' => $this->name ], __METHOD__ );
+		$db->newInsertQueryBuilder()
+			->insertInto( 'cn_templates' )
+			->row( [ 'tmp_name' => $this->name ] )
+			->caller( __METHOD__ )
+			->execute();
 		$this->id = $db->insertId();
 	}
 
@@ -424,19 +434,20 @@ class Banner {
 	 */
 	private function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
-			$db->update( 'cn_templates',
-				[
+			$db->newUpdateQueryBuilder()
+				->update( 'cn_templates' )
+				->set( [
 					'tmp_display_anon'    => (int)$this->allocateAnon,
 					'tmp_display_account' => (int)$this->allocateLoggedIn,
 					'tmp_archived'        => (int)$this->archived,
 					'tmp_category'        => $this->category,
 					'tmp_is_template'     => (int)$this->template
-				],
-				[
+				] )
+				->where( [
 					'tmp_id'              => $this->id
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -500,18 +511,15 @@ class Banner {
 
 		$db = CNDatabase::getDb();
 
-		$rowObj = $db->select(
-			[
-				'tdev' => 'cn_template_devices',
-				'devices' => 'cn_known_devices'
-			],
-			[ 'devices.dev_id', 'dev_name' ],
-			[
+		$rowObj = $db->newSelectQueryBuilder()
+			->select( [ 'devices.dev_id', 'dev_name' ] )
+			->from( 'cn_template_devices', 'tdev' )
+			->join( 'cn_known_devices', 'devices', 'tdev.dev_id = devices.dev_id' )
+			->where( [
 				'tdev.tmp_id' => $this->getId(),
-				'tdev.dev_id = devices.dev_id'
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $rowObj as $row ) {
 			$this->devices[ intval( $row->dev_id ) ] = $row->dev_name;
@@ -536,7 +544,11 @@ class Banner {
 	private function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
 			// Remove all entries from the table for this banner
-			$db->delete( 'cn_template_devices', [ 'tmp_id' => $this->getId() ], __METHOD__ );
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_template_devices' )
+				->where( [ 'tmp_id' => $this->getId() ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			// Add the new device mappings
 			if ( $this->devices ) {
@@ -544,7 +556,11 @@ class Banner {
 				foreach ( $this->devices as $deviceId => $deviceName ) {
 					$modifyArray[] = [ 'tmp_id' => $this->getId(), 'dev_id' => $deviceId ];
 				}
-				$db->insert( 'cn_template_devices', $modifyArray, __METHOD__ );
+				$db->newInsertQueryBuilder()
+					->insertInto( 'cn_template_devices' )
+					->rows( $modifyArray )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 	}
@@ -603,12 +619,14 @@ class Banner {
 
 		$dbr = CNDatabase::getDb();
 
-		$result = $dbr->select( 'cn_template_mixins', 'mixin_name',
-			[
+		$result = $dbr->newSelectQueryBuilder()
+			->select( 'mixin_name' )
+			->from( 'cn_template_mixins' )
+			->where( [
 				"tmp_id" => $this->getId(),
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$this->mixins = [];
 		foreach ( $result as $row ) {
@@ -641,24 +659,26 @@ class Banner {
 	 */
 	private function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
-			$db->delete( 'cn_template_mixins',
-				[ 'tmp_id' => $this->getId() ],
-				__METHOD__
-			);
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_template_mixins' )
+				->where( [ 'tmp_id' => $this->getId() ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			foreach ( $this->mixins as $name => $params ) {
 				$name = trim( $name );
 				if ( !$name ) {
 					continue;
 				}
-				$db->insert( 'cn_template_mixins',
-					[
+				$db->newInsertQueryBuilder()
+					->insertInto( 'cn_template_mixins' )
+					->row( [
 						'tmp_id' => $this->getId(),
 						'page_id' => 0,	// TODO: What were we going to use this for again?
 						'mixin_name' => $name,
-					],
-					__METHOD__
-				);
+					] )
+					->caller( __METHOD__ )
+					->execute();
 			}
 		}
 	}
@@ -710,12 +730,12 @@ class Banner {
 		if ( $wgNoticeUseTranslateExtension ) {
 			$services = Services::getInstance();
 			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				// @phan-suppress-next-line PhanUndeclaredMethod
 				$langs = $services->getMessageGroupMetadata()->get(
 					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
 					'prioritylangs'
 				);
 			} else {
+				// @phan-suppress-next-line PhanUndeclaredClassMethod
 				$langs = TranslateMetadata::get(
 					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
 					'prioritylangs'
@@ -742,7 +762,6 @@ class Banner {
 
 			$services = Services::getInstance();
 			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				// @phan-suppress-next-line PhanUndeclaredMethod
 				$messageGroupMetadata = $services->getMessageGroupMetadata();
 
 				if ( $this->priorityLanguages === [] ) {
@@ -758,8 +777,10 @@ class Banner {
 			} else {
 				if ( $this->priorityLanguages === [] ) {
 					// Using false to delete the value instead of writing empty content
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					TranslateMetadata::set( $groupName, 'prioritylangs', false );
 				} else {
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					TranslateMetadata::set(
 						$groupName,
 						'prioritylangs',
@@ -787,24 +808,15 @@ class Banner {
 	public function getCampaignNames() {
 		$dbr = CNDatabase::getDb();
 
-		$result = $dbr->select(
-			[
-				'notices' => 'cn_notices',
-				'assignments' => 'cn_assignments',
-			],
-			'notices.not_name',
-			[
+		$result = $dbr->newSelectQueryBuilder()
+			->select( 'notices.not_name' )
+			->from( 'cn_notices', 'notices' )
+			->join( 'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
+			->where( [
 				'assignments.tmp_id' => $this->getId(),
-			],
-			__METHOD__,
-			[],
-			[
-				'assignments' =>
-				[
-					'INNER JOIN', 'notices.not_id = assignments.not_id'
-				]
-			]
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$campaigns = [];
 		foreach ( $result as $row ) {
@@ -1039,14 +1051,15 @@ class Banner {
 			->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
 
 		$db = CNDatabase::getDb();
-		$result = $db->select( 'page',
-			'page_title',
-			[
+		$result = $db->newSelectQueryBuilder()
+			->select( 'page_title' )
+			->from( 'page' )
+			->where( [
 				'page_namespace' => $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI,
-				'page_title' . $db->buildLike( $prefix, $db->anyString() ),
-			],
-			__METHOD__
-		);
+				$db->expr( 'page_title', IExpression::LIKE, new LikeValue( $prefix, $db->anyString() ) ),
+			] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		foreach ( $result as $row ) {
 			if (
 				preg_match(
@@ -1104,7 +1117,7 @@ class Banner {
 				// TODO: This will go away if we start tracking messages in database :)
 				MessageGroups::singleton()->recache();
 				MediaWikiServices::getInstance()->getJobQueueGroup()->push(
-					MessageIndexRebuildJob::newJob()
+					RebuildMessageIndexJob::newJob()
 				);
 				$this->runTranslateJob = false;
 			}
@@ -1215,7 +1228,12 @@ class Banner {
 		$bannerObj = self::fromName( $name );
 		$id = $bannerObj->getId();
 		$dbr = CNDatabase::getDb();
-		$res = $dbr->select( 'cn_assignments', 'asn_id', [ 'tmp_id' => $id ], __METHOD__ );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'asn_id' )
+			->from( 'cn_assignments' )
+			->where( [ 'tmp_id' => $id ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		if ( $res->numRows() > 0 ) {
 			throw new LogicException( 'Cannot remove a template still bound to a campaign!' );
@@ -1226,10 +1244,11 @@ class Banner {
 
 			// Delete banner record from the CentralNotice cn_templates table
 			$dbw = CNDatabase::getDb();
-			$dbw->delete( 'cn_templates',
-				[ 'tmp_id' => $id ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'cn_templates' )
+				->where( [ 'tmp_id' => $id ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			// Delete the MediaWiki page that contains the banner source
 			// TODO Inconsistency: deletion of banner content is not recorded
@@ -1245,7 +1264,6 @@ class Banner {
 				$services = Services::getInstance();
 				// Add the preferred language metadata if it exists
 				if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-					// @phan-suppress-next-line PhanUndeclaredMethod
 					$services->getMessageGroupMetadata()->set(
 						BannerMessageGroup::getTranslateGroupName( $name ),
 						'prioritylangs',
@@ -1253,6 +1271,7 @@ class Banner {
 					);
 				// Add the preferred language metadata if it exists
 				} else {
+					// @phan-suppress-next-line PhanUndeclaredClassMethod
 					TranslateMetadata::set(
 						BannerMessageGroup::getTranslateGroupName( $name ),
 						'prioritylangs',
@@ -1291,7 +1310,11 @@ class Banner {
 			$conds['rt_value'] = $bannerId;
 		}
 
-		$dbw->insert( 'revtag', $conds, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'revtag' )
+			->row( $conds )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1307,7 +1330,11 @@ class Banner {
 			'rt_page' => $pageId,
 			'rt_type' => $tag
 		];
-		$dbw->delete( 'revtag', $conds, __METHOD__ );
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'revtag' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1323,16 +1350,9 @@ class Banner {
 		$banners = [];
 
 		if ( $campaigns ) {
-			$res = $dbr->select(
+			$res = $dbr->newSelectQueryBuilder()
 				// Aliases (keys) are needed to avoid problems with table prefixes
-				[
-					'notices' => 'cn_notices',
-					'templates' => 'cn_templates',
-					'known_devices' => 'cn_known_devices',
-					'template_devices' => 'cn_template_devices',
-					'assignments' => 'cn_assignments',
-				],
-				[
+				->select( [
 					'tmp_name',
 					'tmp_weight',
 					'tmp_display_anon',
@@ -1344,21 +1364,17 @@ class Banner {
 					'not_buckets',
 					'not_throttle',
 					'dev_name',
-				],
-				[
+				] )
+				->from( 'cn_notices', 'notices' )
+				->join( 'cn_assignments', 'assignments', 'notices.not_id = assignments.not_id' )
+				->join( 'cn_templates', 'templates', 'assignments.tmp_id = templates.tmp_id' )
+				->leftJoin( 'cn_template_devices', 'template_devices', 'template_devices.tmp_id = assignments.tmp_id' )
+				->join( 'cn_known_devices', 'known_devices', 'known_devices.dev_id = template_devices.dev_id' )
+				->where( [
 					'notices.not_id' => $campaigns,
-					'notices.not_id = assignments.not_id',
-					'known_devices.dev_id = template_devices.dev_id',
-					'assignments.tmp_id = templates.tmp_id'
-				],
-				__METHOD__,
-				[],
-				[
-					'template_devices' => [
-						'LEFT JOIN', 'template_devices.tmp_id = assignments.tmp_id'
-					]
-				]
-			);
+				] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				$banners[] = [
@@ -1435,36 +1451,35 @@ class Banner {
 		$id = self::fromName( $name )->getId();
 
 		$dbr = CNDatabase::getDb();
-		$tsEnc = $dbr->addQuotes( $ts );
 
-		$newestLog = $dbr->selectRow(
-			"cn_template_log",
-			[
+		$newestLog = $dbr->newSelectQueryBuilder()
+			->select( [
 				"log_id" => "MAX(tmplog_id)",
-			],
-			[
-				"tmplog_timestamp <= $tsEnc",
-				"tmplog_template_id = $id",
-			],
-			__METHOD__
-		);
+			] )
+			->from( 'cn_template_log' )
+			->where( [
+				$dbr->expr( 'tmplog_timestamp', '<=', $dbr->timestamp( $ts ) ),
+				'tmplog_template_id' => $id,
+			] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		if ( $newestLog->log_id === null ) {
 			return null;
 		}
 
-		$row = $dbr->selectRow(
-			"cn_template_log",
-			[
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [
 				"display_anon" => "tmplog_end_anon",
 				"display_account" => "tmplog_end_account",
 				"fundraising" => "tmplog_end_fundraising",
-			],
-			[
+			] )
+			->from( 'cn_template_log' )
+			->where( [
 				"tmplog_id" => $newestLog->log_id,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		return [
 			'display_anon' => (int)$row->display_anon,
@@ -1594,7 +1609,11 @@ class Banner {
 			$log[ 'tmplog_end_' . $key ] = $value;
 		}
 
-		$dbw->insert( 'cn_template_log', $log, __METHOD__ );
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_template_log' )
+			->row( $log )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -1628,12 +1647,12 @@ class Banner {
 				'Cannot determine banner existence without name or ID.'
 			);
 		}
-		$row = $db->selectRow( 'cn_templates', 'tmp_name', $selector, __METHOD__ );
-		if ( $row ) {
-			return true;
-		} else {
-			return false;
-		}
+		return (bool)$db->newSelectQueryBuilder()
+			->select( 'tmp_name' )
+			->from( 'cn_templates' )
+			->where( $selector )
+			->caller( __METHOD__ )
+			->fetchRow();
 	}
 
 	/**

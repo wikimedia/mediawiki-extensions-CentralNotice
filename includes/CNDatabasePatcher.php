@@ -4,6 +4,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 
 /**
@@ -107,8 +108,10 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 
 		$updater->output( "Adding known devices...\n" );
 		$dbw = $updater->getDB();
-		$dbw->insert(
-			'cn_known_devices', [
+		$dbw->newInsertQueryBuilder()
+			->insertInto( 'cn_known_devices' )
+			->ignore()
+			->rows( [
 				[ 'dev_id' => 1, 'dev_name' => 'desktop',
 					'dev_display_label' => '{{int:centralnotice-devicetype-desktop}}' ],
 				// 1.24
@@ -120,10 +123,9 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 					'dev_display_label' => '{{int:centralnotice-devicetype-ipad}}' ],
 				[ 'dev_id' => 5, 'dev_name' => 'unknown',
 					'dev_display_label' => '{{int:centralnotice-devicetype-unknown}}' ],
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 
 		$updater->output( "Done\n" );
 		$updater->insertUpdateRow( $updateKey );

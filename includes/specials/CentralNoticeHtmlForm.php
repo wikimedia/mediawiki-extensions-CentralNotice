@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\HTMLForm\HTMLForm;
+
 class CentralNoticeHtmlForm extends HTMLForm {
 	/**
 	 * Get the whole body of the form.

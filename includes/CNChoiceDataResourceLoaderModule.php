@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Config\ConfigException;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
 
@@ -14,6 +16,10 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 
 	private const API_REQUEST_TIMEOUT = 20;
 
+	/**
+	 * @param RL\Context $context
+	 * @return array
+	 */
 	protected function getChoices( RL\Context $context ) {
 		$config = $this->getConfig();
 		$project = $config->get( 'NoticeProject' );
@@ -113,7 +119,7 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 			// console.
 			return 'mw.centralNotice = ( mw.centralNotice || {} );' .
 				'mw.centralNotice.choiceData = ' .
-				Xml::encodeJsVar( $choices ) . ';';
+				Html::encodeJsVar( $choices ) . ';';
 		}
 	}
 

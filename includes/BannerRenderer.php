@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\SpecialPage\SpecialPage;
 
 /**
  * Produce HTML and JSON output for a given banner and context
@@ -222,7 +225,7 @@ class BannerRenderer {
 			// FIXME: Does the RL library already include a helper to do this?
 			$html = "<!-- " . implode( ", ", array_keys( $modules ) ) . " -->";
 			$html .= ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', array_values( $modules ) )
+				Html::encodeJsCall( 'mw.loader.load', array_values( $modules ) )
 			);
 			return $html;
 		}

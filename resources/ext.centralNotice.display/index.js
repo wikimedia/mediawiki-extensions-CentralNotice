@@ -964,7 +964,7 @@
 	if ( mw.centralNotice === undefined ) {
 		mw.centralNotice = cn;
 	} else {
-		$.extend( mw.centralNotice, cn );
+		Object.assign( mw.centralNotice, cn );
 		cn = mw.centralNotice; // Update the closured-in local variable
 	}
 

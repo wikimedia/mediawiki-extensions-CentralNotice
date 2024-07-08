@@ -22,6 +22,8 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLTextAreaField;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -58,25 +60,25 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 	public function getInputHTML( $value ) {
 		$message = new BannerMessage( $this->mParams[ 'banner' ], $this->mParams[ 'message' ] );
 
-		$html = Xml::openElement( 'table', [ 'class' => 'cn-message-table' ] );
-		$html .= Xml::openElement( 'tr' );
+		$html = Html::openElement( 'table', [ 'class' => 'cn-message-table' ] );
+		$html .= Html::openElement( 'tr' );
 
 		$originText = $message->getContents(
 			MediaWikiServices::getInstance()->getContentLanguage()->getCode()
 		);
-		$html .= Xml::element(
+		$html .= Html::element(
 			'td',
 			[ 'class' => 'cn-message-text-origin' ],
 			$originText
 		);
 
 		$this->mParams[ 'placeholder' ] = $originText;
-		$html .= Xml::openElement( 'td', [ 'class' => 'cn-message-text-native' ] );
-		$html .= parent::getInputHTML( $message->getContents( $this->mParams[ 'language' ] ) );
-		$html .= Xml::closeElement( 'td' );
+		$html .= Html::rawElement( 'td', [ 'class' => 'cn-message-text-native' ],
+			parent::getInputHTML( $message->getContents( $this->mParams[ 'language' ] ) )
+		);
 
-		$html .= Xml::closeElement( 'tr' );
-		$html .= Xml::closeElement( 'table' );
+		$html .= Html::closeElement( 'tr' );
+		$html .= Html::closeElement( 'table' );
 
 		return $html;
 	}

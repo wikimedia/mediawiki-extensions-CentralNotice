@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLSelectField;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -7,20 +9,20 @@ use MediaWiki\MediaWikiServices;
  */
 class LanguageSelectHeaderElement extends HTMLSelectField {
 	public function getInputHTML( $value ) {
-		$html = Xml::openElement( 'table', [ 'class' => 'cn-message-table' ] );
-		$html .= Xml::openElement( 'tr' );
+		$html = Html::openElement( 'table', [ 'class' => 'cn-message-table' ] );
+		$html .= Html::openElement( 'tr' );
 
 		$code = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
-		$html .= Xml::element( 'td', [ 'class' => 'cn-message-text-origin-header' ],
+		$html .= Html::element( 'td', [ 'class' => 'cn-message-text-origin-header' ],
 			MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageName( $code, $code )
 		);
 
-		$html .= Xml::openElement( 'td', [ 'class' => 'cn-message-text-native-header' ] );
-		$html .= parent::getInputHTML( $value );
-		$html .= Xml::closeElement( 'td' );
+		$html .= Html::rawElement( 'td', [ 'class' => 'cn-message-text-native-header' ],
+			parent::getInputHTML( $value )
+		);
 
-		$html .= Xml::closeElement( 'tr' );
-		$html .= Xml::closeElement( 'table' );
+		$html .= Html::closeElement( 'tr' );
+		$html .= Html::closeElement( 'table' );
 
 		return $html;
 	}

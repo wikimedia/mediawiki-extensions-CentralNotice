@@ -69,7 +69,10 @@ class CampaignLog {
 		$this->comment = $row->notlog_comment ?? '';
 	}
 
-	# TODO: use in logpager
+	/**
+	 * TODO: Use in {@see LogPager}
+	 * @return array<string,array>
+	 */
 	public function changes() {
 		$removed = [];
 		$added = [];

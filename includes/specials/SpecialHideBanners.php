@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
 /**
  * Unlisted Special Page which sets a cookie for hiding banners across all languages of a project.

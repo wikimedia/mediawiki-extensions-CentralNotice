@@ -1,5 +1,12 @@
 <?php
 
+use MediaWiki\Html\Html;
+use MediaWiki\Pager\ReverseChronologicalPager;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
+
 /**
  * Provides pagination functionality for viewing banner lists in the CentralNotice admin interface.
  *
@@ -33,7 +40,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		);
 		$this->mLimitsShown = [ 20, 50, 100 ];
 
-		$msg = Xml::encodeJsVar( $this->msg( 'centralnotice-confirm-delete' )->text() );
+		$msg = Html::encodeJsVar( $this->msg( 'centralnotice-confirm-delete' )->text() );
 		$this->onRemoveChange = "if( this.checked ) { this.checked = confirm( $msg ) }";
 		$this->viewPage = SpecialPage::getTitleFor( 'NoticeTemplate', 'view' );
 	}
@@ -51,7 +58,7 @@ class TemplatePager extends ReverseChronologicalPager {
 
 		// ...and then insert all the wildcards betwean search terms
 		if ( !$likeArray ) {
-			$likeArray = $dbr->anyString();
+			$likeArray = [ $dbr->anyString() ];
 		} else {
 			$anyStringToken = $dbr->anyString();
 			$tempArray = [ $anyStringToken ];
@@ -65,7 +72,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		return [
 			'tables' => [ 'templates' => 'cn_templates' ],
 			'fields' => [ 'templates.tmp_name', 'templates.tmp_id' ],
-			'conds' => [ 'templates.tmp_name' . $dbr->buildLike( $likeArray ) ],
+			'conds' => [ $dbr->expr( 'templates.tmp_name', IExpression::LIKE, new LikeValue( ...$likeArray ) ) ],
 		];
 	}
 
@@ -87,12 +94,12 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	public function formatRow( $row ) {
 		// Begin banner row
-		$htmlOut = Xml::openElement( 'tr' );
+		$htmlOut = Html::openElement( 'tr' );
 
 		if ( $this->editable ) {
 			// Remove box
-			$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
-				Xml::check( 'removeTemplates[]', false,
+			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
+				Html::check( 'removeTemplates[]', false,
 					[
 						'value'    => $row->tmp_name,
 						'onchange' => $this->onRemoveChange
@@ -102,12 +109,12 @@ class TemplatePager extends ReverseChronologicalPager {
 		}
 
 		// Render banner row.
-		$htmlOut .= Xml::tags( 'td', [ 'valign' => 'top' ],
+		$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 			BannerRenderer::linkToBanner( $row->tmp_name )
 		);
 
 		// End banner row
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 
 		return $htmlOut;
 	}
@@ -119,17 +126,17 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	public function getStartBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::openElement( 'table', [ 'cellpadding' => 9 ] );
-		$htmlOut .= Xml::openElement( 'tr' );
+		$htmlOut .= Html::openElement( 'table', [ 'cellpadding' => 9 ] );
+		$htmlOut .= Html::openElement( 'tr' );
 		if ( $this->editable ) {
-			$htmlOut .= Xml::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
+			$htmlOut .= Html::element( 'th', [ 'align' => 'left', 'width' => '5%' ],
 				$this->msg( 'centralnotice-remove' )->text()
 			);
 		}
-		$htmlOut .= Xml::element( 'th', [ 'align' => 'left' ],
+		$htmlOut .= Html::element( 'th', [ 'align' => 'left' ],
 			$this->msg( 'centralnotice-templates' )->text()
 		);
-		$htmlOut .= Xml::closeElement( 'tr' );
+		$htmlOut .= Html::closeElement( 'tr' );
 		return $htmlOut;
 	}
 
@@ -140,12 +147,12 @@ class TemplatePager extends ReverseChronologicalPager {
 	 */
 	public function getEndBody() {
 		$htmlOut = '';
-		$htmlOut .= Xml::closeElement( 'table' );
+		$htmlOut .= Html::closeElement( 'table' );
 		if ( $this->editable ) {
 			$htmlOut .= Html::hidden( 'authtoken', $this->getUser()->getEditToken() );
-			$htmlOut .= Xml::tags( 'div',
+			$htmlOut .= Html::rawElement( 'div',
 				[ 'class' => 'cn-buttons' ],
-				Xml::submitButton( $this->msg( 'centralnotice-modify' )->text() )
+				Html::submitButton( $this->msg( 'centralnotice-modify' )->text() )
 			);
 		}
 		return $htmlOut;
