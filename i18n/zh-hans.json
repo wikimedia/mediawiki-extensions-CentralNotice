@@ -44,7 +44,8 @@
 			"阿pp",
 			"MangoFanFanw",
 			"Stang",
-			"LittlePaw365"
+			"LittlePaw365",
+			"Lakejason0"
 		]
 	},
 	"centralnotice": "中央通告管理",
@@ -55,7 +56,7 @@
 	"protect-level-centralnotice-admin": "仅允许中央通告管理员",
 	"restriction-level-centralnotice-admin": "中央通告管理员保护",
 	"action-centralnotice-admin": "管理中央通告",
-	"centralnotice-desc": "在页面顶部中心增加一个公告栏",
+	"centralnotice-desc": "在页面顶部中心增加全域公告栏",
 	"centralnotice-summary": "该模块允许您编辑您当前设置的中央通告。它也可用于添加和移除旧的通告。",
 	"centralnotice-query": "修改当前活动",
 	"centralnotice-notice-name": "活动名称",
