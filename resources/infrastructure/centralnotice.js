@@ -83,7 +83,7 @@
 			}
 		);
 
-		$( 'select[multiple="multiple"]' ).multiselect(
+		$( 'select[multiple]' ).multiselect(
 			{ sortable: false, dividerLocation: 0.5 }
 		);
 
