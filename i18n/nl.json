@@ -298,7 +298,7 @@
 	"centralnotice-impression-diet-skip-initial": "Aantal bekeken pagina's die overgeslagen moeten worden (optioneel)",
 	"centralnotice-impression-diet-skip-initial-help": "Default is 0, wat betekent dat er geen bekeken pagina's overgeslagen worden. Wanneer een cyclus begint, zal dit aantal bekeken pagina's eerst worden overgeslagen voordat de banner getoond wordt.",
 	"centralnotice-large-banner-limit": "Beperking en omschakeling voor grote banners",
-	"centralnotice-large-banner-limit-help": "Een grote banner één keer tonen en dan overschakelen naar kleine banners. Grote banners in emmers A en B plaatsen en kleine banners in emmers C en D.",
+	"centralnotice-large-banner-limit-help": "Een grote banner één keer weergeven en dan overschakelen naar kleine banners. Grote banners in emmers A en B plaatsen en kleine banners in emmers C en D.",
 	"centralnotice-large-banner-limit-days": "Onderdrukkingsduur",
 	"centralnotice-large-banner-limit-days-help": "Aantal dagen om de weergave van grote banners te onderdrukken na de eerste weergave.",
 	"centralnotice-large-banner-limit-randomize": "Willekeurige emmer-overgang",
@@ -319,7 +319,7 @@
 	"centralnotice-banner-sequence-page-views-error": "De stap moet ten minste één paginaweergave bevatten.",
 	"centralnotice-banner-sequence-skip-with-id-error": "Identificatiecode kan geen \"|\" bevatten.",
 	"centralnotice-banner-sequence-no-banner": "(Geen banner)",
-	"centralnotice-banner-sequence-detailed-help": "Reeksen worden voor elke emmer afzonderlijk ingesteld. Voor elke stap zijn alleen banners beschikbaar die zijn toegewezen aan de emmer van de reeks. Om een stap altijd te tonen, laat u het veld \"Overslaan met identificatiecode\" leeg. Als een identificatiecode is ingesteld, dan wordt na voltooiing van de stap een vlag met die identificatiecode opgeslagen in de browser van de gebruiker, en de volgende keer dat de gebruiker een stap met dezelfde identificatiecode bereikt, wordt deze overgeslagen. De identificatiecodes van de mix-in \"Beperking en omschakeling voor grote banners\" zijn bruikbaar en zullen ook in aanmerking worden genomen. Zodra een reeks eindigt, begint hij weer van voren af aan. (Om te voorkomen dat een reeks wordt herhaald, gebruikt u de mix-in \"Weergavebeperking\" om het aantal weergaven te beperken).",
+	"centralnotice-banner-sequence-detailed-help": "Reeksen worden voor elke emmer afzonderlijk ingesteld. Voor elke stap zijn alleen banners beschikbaar die zijn toegewezen aan de emmer van de reeks. Om een stap altijd weer te geven, laat u het veld \"Overslaan met identificatiecode\" leeg. Als een identificatiecode is ingesteld, dan wordt na voltooiing van de stap een vlag met die identificatiecode opgeslagen in de browser van de gebruiker, en de volgende keer dat de gebruiker een stap met dezelfde identificatiecode bereikt, wordt deze overgeslagen. De identificatiecodes van de mix-in \"Beperking en omschakeling voor grote banners\" zijn bruikbaar en zullen ook in aanmerking worden genomen. Zodra een reeks eindigt, begint hij weer van voren af aan. (Om te voorkomen dat een reeks wordt herhaald, gebruikt u de mix-in \"Weergavebeperking\" om het aantal weergaven te beperken).",
 	"centralnotice-impression-events-sample-rate": "Bemonsteringsfrequentie voor weergavegebeurtenissen",
 	"centralnotice-impression-events-sample-rate-help": "Stel een aangepaste bemonsteringsfrequentie in voor het bijhouden van weergavegebeurtenissen.",
 	"centralnotice-impression-events-sample-rate-field": "Bemonsteringsfrequentie voor weergavegebeurtenissen (waarden van 0 tot en met 0,01 zijn toegestaan)",
@@ -340,7 +340,7 @@
 	"centralnotice-create-from-template-checkbox-label": "Aanmaken op basis van een sjabloon",
 	"centralnotice-campaign-view-logs": "Logboeken met campagne-instellingen bekijken",
 	"prefs-centralnotice-banners": "Banners",
-	"prefs-centralnotice-display-banner-types": "Type banners te tonen",
+	"prefs-centralnotice-display-banner-types": "Type banners weer te geven",
 	"centralnotice-campaign-type": "Campagnetype",
 	"centralnotice-empty-campaign-type-option": "Geen type (altijd getoond)",
 	"centralnotice-non-existent-campaign-type-error": "Geselecteerd campagnetype bestaat niet",
@@ -353,5 +353,5 @@
 	"centralnotice-campaign-type-maintenance": "Onderhoud",
 	"centralnotice-campaign-type-photography": "Fotografie",
 	"centralnotice-campaign-type-special": "Speciaal",
-	"centralnotice-user-prefs-intro": "Banners tonen aankondigingen die interessant zijn voor Wikimedia-gemeenschappen en gebruikers.\n\nHieronder vindt u opties waarmee u kunt beheren welke soorten aankondigingen u ziet. Bepaalde platformkennisgevingen, zoals die met betrekking tot site-onderhoud en speciale kennisgevingen die noodzakelijk worden geacht voor alle gebruikers, zullen altijd worden weergegeven. Lees voor meer informatie de [[metawikimedia:Special:MyLanguage/CentralNotice|documentatie op Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Banners geven aankondigingen weer die interessant zijn voor Wikimedia-gemeenschappen en gebruikers.\n\nHieronder vindt u opties waarmee u kunt beheren welke soorten aankondigingen u ziet. Bepaalde platformkennisgevingen, zoals die met betrekking tot site-onderhoud en speciale kennisgevingen die noodzakelijk worden geacht voor alle gebruikers, zullen altijd worden weergegeven. Lees voor meer informatie de [[metawikimedia:Special:MyLanguage/CentralNotice|documentatie op Meta-Wiki]]."
 }

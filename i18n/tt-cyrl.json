@@ -3,7 +3,8 @@
 		"authors": [
 			"Ерней",
 			"Ильнар",
-			"Amire80"
+			"Amire80",
+			"Don Alessandro"
 		]
 	},
 	"centralnotice": "Хәбәрләр белән  идарә итү үзәге",
@@ -32,7 +33,7 @@
 	"centralnotice-add-notice-cancel-button": "Кире алу",
 	"centralnotice-edit-notice": "Хәбәрне үзгәртү",
 	"centralnotice-add-template": "Игъланнамәне өстәү",
-	"centralnotice-show-notices": "Хәбәрне ачарга",
+	"centralnotice-show-notices": "Кампанияларны күрсәтү",
 	"centralnotice-list-templates": "Игъланнамәләр исемлеге",
 	"centralnotice-translations": "Тәрҗемәләр",
 	"centralnotice-translate-to": "Тәрҗемә:",
