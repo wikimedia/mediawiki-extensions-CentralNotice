@@ -552,13 +552,19 @@
 
 	function setValidationError( error, $input, msgKey ) {
 
-		var $errorBox = $input.closest( 'p' ).prevAll( '.mw-message-box-error' );
+		var $errorBox = $input.closest( 'p' ).prevAll( '.cdx-message--error' );
 
 		if ( error ) {
 			if ( $errorBox.length === 0 ) {
-				$errorBox = $( '<p>' ).addClass( [ 'mw-message-box', 'mw-message-box-error' ] );
-				// eslint-disable-next-line mediawiki/msg-doc
-				$errorBox.text( mw.message( msgKey ).text() );
+				$errorBox = $( '<div>' )
+					.addClass( 'cdx-message cdx-message--inline cdx-message--error' )
+					.attr( 'role', 'alert' )
+					.append( $( '<span>' ).addClass( 'cdx-message__icon' ) )
+					.append( $( '<div>' )
+						.addClass( 'cdx-message__content' )
+						// eslint-disable-next-line mediawiki/msg-doc
+						.text( mw.message( msgKey ).text() )
+					);
 				$input.closest( 'p' ).before( $errorBox );
 			}
 
