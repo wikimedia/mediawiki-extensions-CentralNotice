@@ -782,12 +782,12 @@
 		);
 	} );
 
-	// eslint-disable-next-line qunit/require-expect
 	QUnit.test( 'record impression is being called when all campaigns fail', function ( assert ) {
 		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
 
-		// Expect assertion in sendBeacon to be called once
-		assert.expect( 1 );
+		this.sandbox.stub( navigator, 'sendBeacon', function () {
+			assert.step( 'beacon' );
+		} );
 
 		// Make every campaign fail by cancelling banners
 		mixin.setPreBannerHandler(
@@ -796,14 +796,12 @@
 			}
 		);
 
-		// Mock navigator.sendBeacon
-		navigator.sendBeacon = function () {
-			assert.true( true );
-		};
-
 		mw.centralNotice.registerCampaignMixin( mixin );
 
 		mockChoiceDataForRecordImpressionCall( choiceDataAllCampaignsFail );
+
+		// Expect sendBeacon to be called once
+		assert.verifySteps( [ 'beacon' ] );
 
 	} );
 

@@ -170,7 +170,6 @@
 
 		return function ( assert ) {
 			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
-			assert.expect( 3 );
 
 			assert.strictEqual(
 				sequenceManager.currentStep,
@@ -212,7 +211,6 @@
 
 		return function ( assert ) {
 			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
-			assert.expect( 2 );
 
 			sequenceManager.processPageView();
 
@@ -250,7 +248,6 @@
 
 		return function ( assert ) {
 			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
-			assert.expect( 2 );
 
 			sequenceManager.skipToNextStep();
 
