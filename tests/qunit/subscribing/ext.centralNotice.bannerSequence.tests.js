@@ -1,8 +1,7 @@
 ( function () {
 	'use strict';
 
-	var i,
-		cn = mw.centralNotice,
+	var cn = mw.centralNotice,
 
 		// Parts of API to be replaced with mocks, below
 		realKvStore = cn.kvStore,
@@ -32,109 +31,6 @@
 				numPageViews: 2,
 				skipWithIdentifier: null
 			}
-		],
-
-		// Expected sequence manager states at each page view
-		expectedSequenceStates = [
-			{
-				currentStep: 0,
-				banner: 'Banner_step1',
-				identifierToCheck: null
-			},
-			{
-				currentStep: 0,
-				banner: 'Banner_step1',
-				identifierToCheck: null
-			},
-			{
-				currentStep: 0,
-				banner: 'Banner_step1',
-				identifierToCheck: null
-			},
-			{
-				currentStep: 1,
-				banner: 'Banner_step2',
-				identifierToCheck: 'identifier'
-			},
-			{
-				currentStep: 1,
-				banner: 'Banner_step2',
-				identifierToCheck: 'identifier'
-			},
-			{
-				currentStep: 2,
-				banner: null,
-				identifierToCheck: null
-			},
-			{
-				currentStep: 2,
-				banner: null,
-				identifierToCheck: null
-			}
-		],
-
-		// Expected results of processPageView() following each page view
-		expectedProcessPageViewResults = [
-			{
-				nextPageView: 1,
-				identifierToSet: null
-			},
-			{
-				nextPageView: 2,
-				identifierToSet: null
-			},
-			{
-				nextPageView: 3,
-				identifierToSet: null
-			},
-			{
-				nextPageView: 4,
-				identifierToSet: null
-			},
-			{
-				nextPageView: 5,
-				identifierToSet: 'identifier'
-			},
-			{
-				nextPageView: 6,
-				identifierToSet: null
-			},
-			{
-				nextPageView: 0,
-				identifierToSet: null
-			}
-		],
-
-		// Expected states after calling skipToNextStep()
-		expectedStatesAfterSkip = [
-			{
-				currentPageView: 3,
-				currentStep: 1
-			},
-			{
-				currentPageView: 3,
-				currentStep: 1
-			},
-			{
-				currentPageView: 3,
-				currentStep: 1
-			},
-			{
-				currentPageView: 5,
-				currentStep: 2
-			},
-			{
-				currentPageView: 5,
-				currentStep: 2
-			},
-			{
-				currentPageView: 0,
-				currentStep: 0
-			},
-			{
-				currentPageView: 0,
-				currentStep: 0
-			}
 		];
 
 	QUnit.module( 'ext.centralNotice.bannerSequence', QUnit.newMwEnvironment( {
@@ -150,120 +46,181 @@
 		}
 	} ) );
 
-	// Test sequence manager states for all page views in test sequence
-	for ( i = 0; i < expectedSequenceStates.length; i++ ) {
+	QUnit.test.each( 'sequence manager state', [
+		{
+			pageView: 0,
+			currentStep: 0,
+			banner: 'Banner_step1',
+			identifierToCheck: null
+		},
+		{
+			pageView: 1,
+			currentStep: 0,
+			banner: 'Banner_step1',
+			identifierToCheck: null
+		},
+		{
+			pageView: 2,
+			currentStep: 0,
+			banner: 'Banner_step1',
+			identifierToCheck: null
+		},
+		{
+			pageView: 3,
+			currentStep: 1,
+			banner: 'Banner_step2',
+			identifierToCheck: 'identifier'
+		},
+		{
+			pageView: 4,
+			currentStep: 1,
+			banner: 'Banner_step2',
+			identifierToCheck: 'identifier'
+		},
+		{
+			pageView: 5,
+			currentStep: 2,
+			banner: null,
+			identifierToCheck: null
+		},
+		{
+			pageView: 6,
+			currentStep: 2,
+			banner: null,
+			identifierToCheck: null
+		}
+	], function ( assert, expectedState ) {
+		var pageView = expectedState.pageView;
+		var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
 
-		QUnit.test(
-			'sequence manager state, page view ' + i,
-			makeSeqManagerStateTestFunction( expectedSequenceStates[ i ], i )
+		assert.strictEqual(
+			sequenceManager.currentStep,
+			expectedState.currentStep,
+			'current step'
 		);
-	}
 
-	/**
-	 * Return a function to test the sequence manager state on a specific page view
-	 *
-	 * @param {Object} expectedState
-	 * @param {number} pageView
-	 * @return {Function}
-	 */
-	function makeSeqManagerStateTestFunction( expectedState, pageView ) {
-
-		return function ( assert ) {
-			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
-
-			assert.strictEqual(
-				sequenceManager.currentStep,
-				expectedState.currentStep,
-				'Current step for page view ' + pageView
-			);
-
-			assert.strictEqual(
-				sequenceManager.banner(),
-				expectedState.banner,
-				'Banner for page view ' + pageView
-			);
-
-			assert.strictEqual(
-				sequenceManager.identifierToCheck(),
-				expectedState.identifierToCheck,
-				'Identifier to check for page view ' + pageView
-			);
-		};
-	}
-
-	// Test processPageView() for all page views in test sequence
-	for ( i = 0; i < expectedProcessPageViewResults.length; i++ ) {
-
-		QUnit.test(
-			'processPageView(), page view ' + i,
-			makeProcessPageViewTestFunction( expectedProcessPageViewResults[ i ], i )
+		assert.strictEqual(
+			sequenceManager.banner(),
+			expectedState.banner,
+			'banner'
 		);
-	}
 
-	/**
-	 * Return a function to test processPageView() on a specific page view
-	 *
-	 * @param {Object} expectedResult
-	 * @param {number} pageView
-	 * @return {Function}
-	 */
-	function makeProcessPageViewTestFunction( expectedResult, pageView ) {
-
-		return function ( assert ) {
-			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
-
-			sequenceManager.processPageView();
-
-			assert.strictEqual(
-				sequenceManager.nextPageView,
-				expectedResult.nextPageView,
-				'Next page view for page view ' + pageView
-			);
-
-			assert.strictEqual(
-				sequenceManager.identifierToSet,
-				expectedResult.identifierToSet,
-				'Identifier to set for page view ' + pageView
-			);
-		};
-	}
-
-	// Test states after skipToNextStep() for all page views in test sequence
-	for ( i = 0; i < expectedStatesAfterSkip.length; i++ ) {
-
-		QUnit.test(
-			'skipToNextStep(), page view ' + i,
-			makeSkipToNextStepTestFunction( expectedStatesAfterSkip[ i ], i )
+		assert.strictEqual(
+			sequenceManager.identifierToCheck(),
+			expectedState.identifierToCheck,
+			'Identifier'
 		);
-	}
+	} );
 
-	/**
-	 * Return a function to test skipToNextStep() on a specific page view
-	 *
-	 * @param {Object} expectedCurrentPageView
-	 * @param {number} pageView
-	 * @return {Function}
-	 */
-	function makeSkipToNextStepTestFunction( expectedCurrentPageView, pageView ) {
+	QUnit.test.each( 'processPageView()', [
+		{
+			pageView: 0,
+			nextPageView: 1,
+			identifierToSet: null
+		},
+		{
+			pageView: 1,
+			nextPageView: 2,
+			identifierToSet: null
+		},
+		{
+			pageView: 2,
+			nextPageView: 3,
+			identifierToSet: null
+		},
+		{
+			pageView: 3,
+			nextPageView: 4,
+			identifierToSet: null
+		},
+		{
+			pageView: 4,
+			nextPageView: 5,
+			identifierToSet: 'identifier'
+		},
+		{
+			pageView: 5,
+			nextPageView: 6,
+			identifierToSet: null
+		},
+		{
+			pageView: 6,
+			nextPageView: 0,
+			identifierToSet: null
+		}
+	], function ( assert, expectedResult ) {
+		var pageView = expectedResult.pageView;
+		var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
 
-		return function ( assert ) {
-			var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
+		sequenceManager.processPageView();
 
-			sequenceManager.skipToNextStep();
+		assert.strictEqual(
+			sequenceManager.nextPageView,
+			expectedResult.nextPageView,
+			'Next page view'
+		);
 
-			assert.strictEqual(
-				sequenceManager.currentPageView,
-				expectedCurrentPageView.currentPageView,
-				'Current page view after skip, for page view ' + pageView
-			);
+		assert.strictEqual(
+			sequenceManager.identifierToSet,
+			expectedResult.identifierToSet,
+			'Identifier to set'
+		);
+	} );
 
-			assert.strictEqual(
-				sequenceManager.currentStep,
-				expectedCurrentPageView.currentStep,
-				'Current step after skip, for page view ' + pageView
-			);
-		};
-	}
+	QUnit.test.each( 'skipToNextStep()', [
+		{
+			pageView: 0,
+			currentPageView: 3,
+			currentStep: 1
+		},
+		{
+			pageView: 1,
+			currentPageView: 3,
+			currentStep: 1
+		},
+		{
+			pageView: 2,
+			currentPageView: 3,
+			currentStep: 1
+		},
+		{
+			pageView: 3,
+			currentPageView: 5,
+			currentStep: 2
+		},
+		{
+			pageView: 4,
+			currentPageView: 5,
+			currentStep: 2
+		},
+		{
+			pageView: 5,
+			currentPageView: 0,
+			currentStep: 0
+		},
+		{
+			pageView: 6,
+			currentPageView: 0,
+			currentStep: 0
+		}
+	], function ( assert, expectedCurrentPageView ) {
+		var pageView = expectedCurrentPageView.pageView;
+		var sequenceManager = new bannerSequence.SequenceManager( sequence, pageView );
+
+		sequenceManager.skipToNextStep();
+
+		assert.strictEqual(
+			sequenceManager.currentPageView,
+			expectedCurrentPageView.currentPageView,
+			'Current page view after skip'
+		);
+
+		assert.strictEqual(
+			sequenceManager.currentStep,
+			expectedCurrentPageView.currentStep,
+			'Current step after skip'
+		);
+	} );
 
 	// Test that skipToNextStep() initially returns true, then false when we run out of
 	// steps
