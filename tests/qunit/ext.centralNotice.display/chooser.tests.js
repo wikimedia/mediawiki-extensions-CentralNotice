@@ -3,7 +3,7 @@
 
 	var testFixtures = mw.centralNoticeTestFixtures,
 		testCases = testFixtures.test_cases,
-		numBuckets = testFixtures.mock_config_values.wgNoticeNumberOfBuckets,
+		numBuckets = testFixtures.mock_config_values.NoticeNumberOfBuckets,
 		chooser = mw.centralNotice.internal.chooser;
 
 	// FIXME: fail hard if there is no fixture data
