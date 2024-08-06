@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Constraque",
 			"Dim Grits",
 			"Gazeb",
 			"KHMELNYTSKYIA"
@@ -122,7 +123,7 @@
 	"centralnotice-added": "Додав <span class=\"cn-new-value\">$1</span>",
 	"centralnotice-removed": "Вылучів <span class=\"cn-old-value\">$1</span>",
 	"centralnotice-no-assignments": "непридїлены жадны банеры",
-	"centralnotice-talk-link": "діскузія",
+	"centralnotice-talk-link": "діскусія",
 	"centralnotice-campaign-settings": "Наставлїня кампанї",
 	"centralnotice-banner-settings": "Наставлїня банерів",
 	"centralnotice-anon": "Указовати анонімным хоснователям",
