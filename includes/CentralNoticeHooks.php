@@ -385,9 +385,11 @@ class CentralNoticeHooks implements
 		$out->addModules( 'ext.centralNotice.geoIP' );
 
 		$request = $skin->getRequest();
-		// If we're on a special page, editing, viewing history or a diff, bow out now
+		// If we're on a special page (or not a normal page view at all),
+		// editing, viewing history or a diff, bow out now
 		// This is to reduce chance of bad misclicks from delayed banner loading
-		if ( $out->getTitle()->inNamespace( NS_SPECIAL ) ||
+		if ( !$out->getTitle() ||
+			$out->getTitle()->inNamespace( NS_SPECIAL ) ||
 			( $request->getText( 'action' ) === 'edit' ) ||
 			( $request->getText( 'action' ) === 'history' ) ||
 			$request->getCheck( 'diff' )
@@ -653,7 +655,7 @@ class CentralNoticeHooks implements
 		$title = $skin->getTitle();
 
 		// Only add tabs to special pages
-		if ( !$title->isSpecialPage() ) {
+		if ( !$title || !$title->isSpecialPage() ) {
 			return;
 		}
 
