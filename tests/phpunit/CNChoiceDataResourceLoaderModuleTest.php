@@ -31,8 +31,8 @@ class CNChoiceDataResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		foreach ( $testCase['contexts_and_outputs'] as $cAndOName => $contextAndOutput ) {
-			$this->setMwGlobals( [
-					'wgNoticeProject' => $contextAndOutput['context']['project'],
+			$this->overrideConfigValues( [
+				'NoticeProject' => $contextAndOutput['context']['project'],
 			] );
 
 			// Following pattern in other RL module tests

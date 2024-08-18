@@ -66,11 +66,11 @@ class CentralNoticeTestFixtures {
 	}
 
 	/**
-	 * Get an associative array with data for setting mock global variables
+	 * Get an associative array with data for setting mock config variables
 	 * as appropriate for fixture data.
 	 * @return array
 	 */
-	public function getGlobalsFromFixtureData() {
+	public function getConfigsFromFixtureData() {
 		$data = self::allocationsData();
 		return $data['mock_config_values'];
 	}
@@ -81,8 +81,8 @@ class CentralNoticeTestFixtures {
 	 * countries property for non-geotargetted campaigns, and add dummy
 	 * banner bodies.
 	 *
-	 * Test classes that call this method should also set MW globals as per
-	 * getGlobalsFromFixtureData().
+	 * Test classes that call this method should also set config variables as per
+	 * getConfigsFromFixtureData().
 	 *
 	 * @param array &$testCase A data structure with the test case specification
 	 */

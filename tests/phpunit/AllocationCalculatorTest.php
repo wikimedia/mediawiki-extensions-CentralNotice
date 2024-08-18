@@ -13,7 +13,7 @@ class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->cnFixtures = new CentralNoticeTestFixtures( $this->getTestSysop()->getUser() );
-		$this->setMwGlobals( $this->cnFixtures->getGlobalsFromFixtureData() );
+		$this->overrideConfigValues( $this->cnFixtures->getConfigsFromFixtureData() );
 	}
 
 	protected function tearDown(): void {

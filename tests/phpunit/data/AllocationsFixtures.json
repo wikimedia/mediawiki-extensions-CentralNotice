@@ -1,6 +1,6 @@
 {
 	"mock_config_values": {
-		"wgNoticeNumberOfBuckets": 2
+		"NoticeNumberOfBuckets": 2
 	},
 	"test_cases": {
 		"single_full_anon": {
