@@ -1,0 +1,10 @@
+[
+	{
+		"resourceModule": "ext.centralNotice.geoIP",
+		"maxSize": "0.7 kB"
+	},
+	{
+		"resourceModule": "ext.centralNotice.startUp",
+		"maxSize": "1.2 kB"
+	}
+]
