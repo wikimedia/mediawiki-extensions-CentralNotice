@@ -152,14 +152,13 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 	 * TODO Couldn't we cache for logged-in users? See T149873
 	 */
 	private function sendHeaders() {
-		global $wgNoticeBannerMaxAge, $wgNoticeBannerReducedMaxAge;
-
 		header( "Content-type: text/javascript; charset=utf-8" );
 
 		if ( !$this->getUser()->isRegistered() ) {
 			// Header tells front-end caches to retain the content for $sMaxAge seconds.
-			$sMaxAge = ( $this->cacheResponse === self::MAX_CACHE_NORMAL ) ?
-				$wgNoticeBannerMaxAge : $wgNoticeBannerReducedMaxAge;
+			$sMaxAge = ( $this->cacheResponse === self::MAX_CACHE_NORMAL )
+				? $this->getConfig()->get( 'NoticeBannerMaxAge' )
+				: $this->getConfig()->get( 'NoticeBannerReducedMaxAge' );
 
 		} else {
 			$sMaxAge = 0;

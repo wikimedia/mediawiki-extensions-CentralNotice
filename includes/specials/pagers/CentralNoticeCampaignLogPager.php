@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -96,8 +97,6 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @return string HTML
 	 */
 	public function formatRow( $row ) {
-		global $wgExtensionAssetsPath;
-
 		$lang = $this->getLanguage();
 
 		// Create a user object so we can pull the name, user page, etc.
@@ -130,10 +129,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				'collapsed-rtl.png' :
 				'collapsed-ltr.png';
 
+			$extensionAssetsPath = $this->getConfig()->get( MainConfigNames::ExtensionAssetsPath );
 			$htmlOut .= '<a href="javascript:toggleLogDisplay(\'' . $notlogId . '\')">' .
-				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/resources/images/' . $collapsedImg . '" ' .
+				'<img src="' . $extensionAssetsPath . '/CentralNotice/resources/images/' . $collapsedImg . '" ' .
 				'id="cn-collapsed-' . $notlogId . '" style="display:block;"/>' .
-				'<img src="' . $wgExtensionAssetsPath . '/CentralNotice/resources/images/uncollapsed.png" ' .
+				'<img src="' . $extensionAssetsPath . '/CentralNotice/resources/images/uncollapsed.png" ' .
 				'id="cn-uncollapsed-' . $notlogId . '" style="display:none;"/>' .
 				'</a>';
 		}

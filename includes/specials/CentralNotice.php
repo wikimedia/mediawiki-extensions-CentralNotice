@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
@@ -657,15 +658,13 @@ class CentralNotice extends UnlistedSpecialPage {
 	 *
 	 */
 	private function outputNoticeDetail( $notice ) {
-		global $wgCentralNoticeCampaignMixins;
-
 		$out = $this->getOutput();
 
 		// Output specific ResourceLoader module
 		$out->addModules( 'ext.centralNotice.adminUi.campaignManager' );
 
 		// Output ResourceLoader modules for campaign mixins with custom controls
-		foreach ( $wgCentralNoticeCampaignMixins as $mixinConfig ) {
+		foreach ( $this->getConfig()->get( 'CentralNoticeCampaignMixins' ) as $mixinConfig ) {
 			if ( !empty( $mixinConfig['customAdminUIControlsModule'] ) ) {
 				$out->addModules( $mixinConfig['customAdminUIControlsModule'] );
 			}
@@ -780,7 +779,6 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @param string $notice
 	 */
 	private function handleNoticeDetailPost( $notice ) {
-		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
 		$request = $this->getRequest();
 
 		// If what we're doing is actually serious (ie: not updating the banner
@@ -814,16 +812,18 @@ class CentralNotice extends UnlistedSpecialPage {
 				}
 				Campaign::setNumericCampaignSetting( $notice, 'throttle', $throttle, 100, 0 );
 
+				$config = $this->getConfig();
+				$noticeNumberOfBuckets = $config->get( 'NoticeNumberOfBuckets' );
 				// Handle user bucketing setting for campaign
 				$numCampaignBuckets = min( $request->getInt( 'buckets', 1 ),
-					$wgNoticeNumberOfBuckets );
+					$noticeNumberOfBuckets );
 				$numCampaignBuckets = pow( 2, floor( log( $numCampaignBuckets, 2 ) ) );
 
 				Campaign::setNumericCampaignSetting(
 					$notice,
 					'buckets',
 					$numCampaignBuckets,
-					$wgNoticeNumberOfBuckets,
+					$noticeNumberOfBuckets,
 					1
 				);
 
@@ -934,9 +934,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				}
 
 				// Handle campaign-associated mixins
-				foreach ( $wgCentralNoticeCampaignMixins
-					as $mixinName => $mixinDef
-				) {
+				foreach ( $config->get( 'CentralNoticeCampaignMixins' ) as $mixinName => $mixinDef ) {
 					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
 
 					if ( $request->getCheck( $mixinControlName ) ) {
@@ -1023,8 +1021,6 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string HTML
 	 */
 	private function noticeDetailForm( $notice ) {
-		global $wgNoticeNumberOfBuckets, $wgCentralNoticeCampaignMixins;
-
 		if ( $this->editable ) {
 			$readonly = [];
 		} else {
@@ -1155,13 +1151,14 @@ class CentralNotice extends UnlistedSpecialPage {
 				Html::rawElement( 'td', [], $this->geoMultiSelectorTree( $countries, $regions ) )
 			);
 
+			$config = $this->getConfig();
 			// User bucketing
 			$htmlOut .= Html::rawElement( 'tr', [],
 				Html::rawElement( 'td', [],
 					Xml::label( $this->msg( 'centralnotice-buckets' )->text(), 'buckets' )
 				) .
 				Html::rawElement( 'td', [],
-					$this->numBucketsDropdown( $wgNoticeNumberOfBuckets, $numBuckets )
+					$this->numBucketsDropdown( $config->get( 'NoticeNumberOfBuckets' ), $numBuckets )
 				)
 			);
 			// Enabled
@@ -1237,14 +1234,14 @@ class CentralNotice extends UnlistedSpecialPage {
 			$htmlOut .= Html::closeElement( 'table' );
 
 			// Create controls for campaign-associated mixins (if there are any)
-			if ( $wgCentralNoticeCampaignMixins ) {
+			$centralNoticeCampaignMixins = $config->get( 'CentralNoticeCampaignMixins' );
+			if ( $centralNoticeCampaignMixins ) {
 				$mixinsThisNotice = Campaign::getCampaignMixins( $notice );
 
 				$htmlOut .= Xml::fieldset(
 					$this->msg( 'centralnotice-notice-mixins-fieldset' )->text() );
 
-				foreach ( $wgCentralNoticeCampaignMixins
-					as $mixinName => $mixinDef ) {
+				foreach ( $centralNoticeCampaignMixins as $mixinName => $mixinDef ) {
 					$mixinControlName = self::makeNoticeMixinControlName( $mixinName );
 
 					$attribs = [
@@ -1322,8 +1319,6 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string HTML
 	 */
 	private function assignedTemplatesForm( $notice ) {
-		global $wgNoticeNumberOfBuckets;
-
 		$dbr = CNDatabase::getDb();
 		$res = $dbr->newSelectQueryBuilder()
 			// Aliases are needed to avoid problems with table prefixes
@@ -1422,6 +1417,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			$this->msg( 'centralnotice-templates' )->text() );
 
 		// Table rows
+		$noticeNumberOfBuckets = $this->getConfig()->get( 'NoticeNumberOfBuckets' );
 		foreach ( $banners as $row ) {
 			$htmlOut .= Html::openElement( 'tr' );
 
@@ -1441,7 +1437,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			);
 
 			// Bucket
-			$numCampaignBuckets = min( intval( $row->not_buckets ), $wgNoticeNumberOfBuckets );
+			$numCampaignBuckets = min( intval( $row->not_buckets ), $noticeNumberOfBuckets );
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
 				$this->bucketDropdown(
 					"bucket[$row->tmp_id]",
@@ -1497,8 +1493,6 @@ class CentralNotice extends UnlistedSpecialPage {
 	}
 
 	private function bucketDropdown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
-		global $wgNoticeNumberOfBuckets;
-
 		$bucketLabel = static function ( $val ) {
 			return chr( $val + ord( 'A' ) );
 		};
@@ -1517,7 +1511,7 @@ class CentralNotice extends UnlistedSpecialPage {
 				'data-banner-name' => $bannerName
 			] );
 
-			foreach ( range( 0, $wgNoticeNumberOfBuckets - 1 ) as $value ) {
+			foreach ( range( 0, $this->getConfig()->get( 'NoticeNumberOfBuckets' ) - 1 ) as $value ) {
 				$attribs = [];
 				if ( $value >= $numberCampaignBuckets ) {
 					$attribs['disabled'] = 'disabled';
@@ -1614,16 +1608,15 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string multiple select list
 	 */
 	private function languageMultiSelector( $selected = [] ) {
-		global $wgLanguageCode;
-
 		// Retrieve the list of languages in user's language
 		$languages = MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageNames( $this->getLanguage()->getCode() );
 
 		// Make sure the site language is in the list; a custom language code
 		// might not have a defined name...
-		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
-			$languages[$wgLanguageCode] = $wgLanguageCode;
+		$languageCode = $this->getConfig()->get( MainConfigNames::LanguageCode );
+		if ( !array_key_exists( $languageCode, $languages ) ) {
+			$languages[$languageCode] = $languageCode;
 		}
 		ksort( $languages );
 
@@ -1658,10 +1651,8 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string multiple select list
 	 */
 	private function projectMultiSelector( $selected = [] ) {
-		global $wgNoticeProjects;
-
 		$options = "\n";
-		foreach ( $wgNoticeProjects as $project ) {
+		foreach ( $this->getConfig()->get( 'NoticeProjects' ) as $project ) {
 			$options .= Xml::option(
 				$project,
 				$project,
@@ -1894,14 +1885,12 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
-		global $wgNoticeTabifyPages;
-
 		// Keys of (default value of $wgNoticeTabifyPages) are the names of the special
 		// pages of the admin interface without the initial 'Special:'.
 		// TODO Make $wgNoticeTabifyPages a constant rather than a config variable.
 		return array_map( static function ( $name ) {
 			return 'Special:' . $name;
-		}, array_keys( $wgNoticeTabifyPages ) );
+		}, array_keys( $this->getConfig()->get( 'NoticeTabifyPages' ) ) );
 	}
 
 	/**
@@ -1911,8 +1900,8 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getShortDescription( string $path = '' ): string {
-		global $wgNoticeTabifyPages;
-		return $this->msg( $wgNoticeTabifyPages[ $path ][ 'message' ] )->parse();
+		$noticeTabifyPages = $this->getConfig()->get( 'NoticeTabifyPages' );
+		return $this->msg( $noticeTabifyPages[ $path ][ 'message' ] )->parse();
 	}
 
 	/**
@@ -1944,8 +1933,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	}
 
 	public function listProjects( $projects ) {
-		global $wgNoticeProjects;
-		return $this->makeShortList( $wgNoticeProjects, $projects );
+		return $this->makeShortList( $this->getConfig()->get( 'NoticeProjects' ), $projects );
 	}
 
 	public function listCountriesRegions( array $countries, array $regions ) {
