@@ -250,7 +250,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 			'label' => 'CentralNotice Banners',
 			'description' => '{{int:centralnotice-aggregate-group-desc}}',
 			'meta' => 1,
-			'class' => 'AggregateMessageGroup',
+			'class' => AggregateMessageGroup::class,
 			'namespace' => NS_CN_BANNER,
 		];
 		$conf['GROUPS'] = [];
