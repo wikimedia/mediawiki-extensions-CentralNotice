@@ -19,12 +19,10 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgNoticeCookieDurations, $wgCentralNoticeHideBannersP3P,
-			$wgCentralNoticeFallbackHideCookieDuration;
-
+		$config = $this->getConfig();
 		// Handle /P3P subpage with explanation of invalid P3P header
 		if ( ( strval( $par ) === self::P3P_SUBPAGE ) &&
-			!$wgCentralNoticeHideBannersP3P
+			!$config->get( 'CentralNoticeHideBannersP3P' )
 		) {
 			$this->setHeaders();
 			$this->getOutput()->addWikiMsg( 'centralnotice-specialhidebanners-p3p' );
@@ -37,10 +35,11 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		// fallback value, but we log that this happened.
 		$duration = $this->getRequest()->getInt( 'duration', 0 );
 		if ( !$duration ) {
-			if ( isset( $wgNoticeCookieDurations[$reason] ) ) {
-				$duration = $wgNoticeCookieDurations[$reason];
+			$noticeCookieDurations = $config->get( 'NoticeCookieDurations' );
+			if ( isset( $noticeCookieDurations[$reason] ) ) {
+				$duration = $noticeCookieDurations[$reason];
 			} else {
-				$duration = $wgCentralNoticeFallbackHideCookieDuration;
+				$duration = $config->get( 'CentralNoticeFallbackHideCookieDuration' );
 				wfLogWarning( 'Missing or 0 duration for hide cookie reason '
 					. $reason . '.' );
 			}
@@ -68,8 +67,6 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	 * @param string $reason
 	 */
 	private function setHideCookie( $category, $duration, $reason ) {
-		global $wgNoticeCookieDomain;
-
 		$created = time();
 		$exp = $created + $duration;
 		$value = [
@@ -81,7 +78,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'CentralAuth' ) ) {
 			$cookieDomain = CentralAuthUser::getCookieDomain();
 		} else {
-			$cookieDomain = $wgNoticeCookieDomain;
+			$cookieDomain = $this->getConfig()->get( 'NoticeCookieDomain' );
 		}
 		setcookie(
 			"centralnotice_hide_{$category}",
@@ -98,9 +95,9 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 	 * Set an invalid P3P policy header to make IE accept third-party hide cookies.
 	 */
 	private function setP3P() {
-		global $wgCentralNoticeHideBannersP3P;
+		$centralNoticeHideBannersP3P = $this->getConfig()->get( 'CentralNoticeHideBannersP3P' );
 
-		if ( !$wgCentralNoticeHideBannersP3P ) {
+		if ( !$centralNoticeHideBannersP3P ) {
 			$url = SpecialPage::getTitleFor(
 				'HideBanners', self::P3P_SUBPAGE )
 				->getCanonicalURL();
@@ -108,7 +105,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 			$p3p = "CP=\"This is not a P3P policy! See $url for more info.\"";
 
 		} else {
-			$p3p = $wgCentralNoticeHideBannersP3P;
+			$p3p = $centralNoticeHideBannersP3P;
 		}
 
 		header( "P3P: $p3p", true );
