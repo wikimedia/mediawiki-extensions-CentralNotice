@@ -1,5 +1,6 @@
 /* Styles for banner sequence controls */
 @import 'mediawiki.mixins';
+@import 'mediawiki.skin.variables.less';
 
 @stepHandleWidth: 1.4em;
 
@@ -18,7 +19,7 @@
 }
 
 .centralNoticeBannerSeqBucketSeqContainer {
-	border-top: 1px solid #c8ccd1;
+	border-top: 1px solid @border-color-disabled;
 	margin: 1em 0 1em 0;
 	padding: 0.6em 0 0 0;
 }
@@ -28,7 +29,7 @@
 }
 
 .centralNoticeBannerSeqHelpContainer {
-	border-top: 1px solid #c8ccd1;
+	border-top: 1px solid @border-color-disabled;
 	margin-top: 1em;
 	padding-top: 1em;
 }
@@ -39,7 +40,7 @@
 }
 
 .centralNoticeBannerSeqStepError {
-	background-color: #f8f9fa;
+	background-color: @background-color-neutral-subtle;
 }
 
 .centralNoticeBannerSeqBucketSeqTitle {
@@ -57,14 +58,14 @@
 }
 
 .centralNoticeBannerSeqStepHandleEnabled {
-	background-color: #f8f9fa;
-	border-right: 1px solid #a2a9b1;
+	background-color: @background-color-neutral-subtle;
+	border-right: 1px solid @border-color-base;
 	background-image: url( drag-handle.svg );
 }
 
 .centralNoticeBannerSeqStepHandleDisabled {
-	background-color: #c8ccd1;
-	border-right: 1px solid #fff;
+	background-color: @background-color-disabled;
+	border-right: 1px solid @border-color-inverted;
 	background-image: url( drag-handle-disabled.svg );
 }
 
