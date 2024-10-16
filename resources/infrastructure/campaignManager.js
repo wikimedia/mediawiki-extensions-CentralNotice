@@ -230,6 +230,7 @@
 	 */
 	ErrorStateTracker = function () {
 		this.errors = {};
+		this.messageBoxes = {};
 	};
 
 	/**
@@ -237,13 +238,26 @@
 	 *
 	 * @param {string} errorKey A unique key identifying this error
 	 * @param {boolean} state true sets an error for this key, and false clear it
+	 * @param {Element} messageBox
 	 */
-	ErrorStateTracker.prototype.setErrorState = function ( errorKey, state ) {
+	ErrorStateTracker.prototype.setErrorState = function ( errorKey, state, messageBox ) {
 		if ( state ) {
 			this.errors[ errorKey ] = true;
+			this.messageBoxes[ errorKey ] = messageBox;
 		} else {
 			delete this.errors[ errorKey ];
+			delete this.messageBoxes[ errorKey ];
 		}
+	};
+
+	/**
+	 * Gets the message box relating to an error
+	 *
+	 * @param {string} errorKey A unique key identifying this error
+	 * @return {Element}
+	 */
+	ErrorStateTracker.prototype.getMessageBox = function ( errorKey ) {
+		return this.messageBoxes[ errorKey ];
 	};
 
 	/**
@@ -259,10 +273,10 @@
 	errorStateTracker = new ErrorStateTracker();
 
 	// Connect handler for error-state events
-	eventBus.on( 'error-state', function ( errorKey, state ) {
+	eventBus.on( 'error-state', function ( errorKey, state, messageBox ) {
 
 		// Pass state on to errorStateTracker
-		errorStateTracker.setErrorState( errorKey, state );
+		errorStateTracker.setErrorState( errorKey, state, messageBox );
 
 		// Update the submit button
 		if ( errorStateTracker.hasErrorState() ) {
@@ -551,28 +565,22 @@
 	}
 
 	function setValidationError( error, $input, msgKey ) {
-
-		var $errorBox = $input.closest( 'p' ).prevAll( '.cdx-message--error' );
+		var errorKey = $input.attr( 'name' ),
+			messageBox = errorStateTracker.getMessageBox( errorKey );
 
 		if ( error ) {
-			if ( $errorBox.length === 0 ) {
-				$errorBox = $( '<div>' )
-					.addClass( 'cdx-message cdx-message--inline cdx-message--error' )
-					.attr( 'role', 'alert' )
-					.append( $( '<span>' ).addClass( 'cdx-message__icon' ) )
-					.append( $( '<div>' )
-						.addClass( 'cdx-message__content' )
-						// eslint-disable-next-line mediawiki/msg-doc
-						.text( mw.message( msgKey ).text() )
-					);
-				$input.closest( 'p' ).before( $errorBox );
+			if ( !messageBox ) {
+				// eslint-disable-next-line mediawiki/msg-doc
+				messageBox = mw.util.messageBox( mw.message( msgKey ).text(), 'alert' );
+				$input.closest( 'p' ).before( messageBox );
 			}
 
-			eventBus.emit( 'error-state', $input.attr( 'name' ), true );
-
+			eventBus.emit( 'error-state', errorKey, true, messageBox );
 		} else {
-			$errorBox.remove();
-			eventBus.emit( 'error-state', $input.attr( 'name' ), false );
+			if ( messageBox ) {
+				messageBox.remove();
+			}
+			eventBus.emit( 'error-state', errorKey, false );
 		}
 	}
 
