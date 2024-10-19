@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+
 /** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeQueryCampaign extends ApiBase {
 

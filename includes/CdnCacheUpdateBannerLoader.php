@@ -2,6 +2,7 @@
 
 use MediaWiki\Deferred\CdnCacheUpdate;
 use MediaWiki\Deferred\DeferrableUpdate;
+use MediaWiki\Registration\ExtensionRegistry;
 
 class CdnCacheUpdateBannerLoader implements DeferrableUpdate {
 

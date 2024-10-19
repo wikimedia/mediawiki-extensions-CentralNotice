@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
+use MediaWiki\Xml\Xml;
 
 class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
 	public function getInputHTML( $value ) {

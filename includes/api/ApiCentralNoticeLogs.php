@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiQueryBase;
+
 # TODO: bannerlogs
 
 /** @todo: This needs some major cleanup to work more like the rest of the API. */

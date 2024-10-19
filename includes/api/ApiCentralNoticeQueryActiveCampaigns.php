@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiQuery;
+use MediaWiki\Api\ApiQueryBase;
+
 /**
  * Query of currently active CentralNotice campaigns.
  */

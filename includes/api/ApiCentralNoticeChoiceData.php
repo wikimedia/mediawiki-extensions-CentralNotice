@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+
 /**
  * Module for the centralnoticechoicedata Web API.
  *

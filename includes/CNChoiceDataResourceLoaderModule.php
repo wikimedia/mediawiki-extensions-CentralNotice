@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Html\Html;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
 
