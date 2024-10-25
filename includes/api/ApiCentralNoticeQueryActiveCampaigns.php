@@ -10,7 +10,7 @@ use MediaWiki\Api\ApiQueryBase;
 
 class ApiCentralNoticeQueryActiveCampaigns extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct( ApiQuery $query, string $moduleName ) {
 		// Though there are no parameters, we set a prefix for them, just in case we
 		// add parameters later.
 		parent::__construct( $query, $moduleName, 'cnac' );
