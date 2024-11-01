@@ -14,6 +14,7 @@
 			"Lloffiwr",
 			"Metalhead64",
 			"Minh Nguyen",
+			"Msz2001",
 			"MuratTheTurkish",
 			"Nemo bis",
 			"Nike",
@@ -366,5 +367,7 @@
 	"centralnotice-campaign-type-maintenance": "Name of campaign type for campaigns relating to site maintenance. Used in user preferences '''on client wikis''' and CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
 	"centralnotice-campaign-type-photography": "Name of campaign type for campaigns relating to photography. Used in user preferences '''on client wikis''' and CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
 	"centralnotice-campaign-type-special": "Name of campaign type for campaigns of a special category, which cannot be hidden by preferences. Used in user preferences '''on client wikis''' and CentralNotice campaign configuration. Included as a default type in $wgCentralNoticeCampaignTypes.",
-	"centralnotice-user-prefs-intro": "Explanatory introduction for section in user preferences '''on client wikis''' where users can select which banner types to display."
+	"centralnotice-user-prefs-intro": "Explanatory introduction for section in user preferences '''on client wikis''' where users can select which banner types to display.",
+	"namespaceinfo-description-ns866": "Description for the CNBanner namespace",
+	"namespaceinfo-description-ns867": "Description for the CNBanner talk namespace"
 }
