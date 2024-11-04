@@ -338,5 +338,7 @@
 	"centralnotice-campaign-type-maintenance": "Mantemento",
 	"centralnotice-campaign-type-photography": "Fotografía",
 	"centralnotice-campaign-type-special": "Especial",
-	"centralnotice-user-prefs-intro": "Os carteis amosan anuncios de interese para as comunidades e usuarios da Wikimedia.\n\nAbaixo amósanse as opcións que che permiten xestionar os tipos de anuncios que ves. Hai determinados avisos da plataforma que sempre se amosan, como os relativos ao mantemento do sitio e os avisos especiais que se consideren necesarios para todos os usuarios. Para obter máis información, consulta a [[metawikimedia:Special:MyLanguage/CentralNotice|documentación en Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Os carteis amosan anuncios de interese para as comunidades e usuarios da Wikimedia.\n\nAbaixo amósanse as opcións que che permiten xestionar os tipos de anuncios que ves. Hai determinados avisos da plataforma que sempre se amosan, como os relativos ao mantemento do sitio e os avisos especiais que se consideren necesarios para todos os usuarios. Para obter máis información, consulta a [[metawikimedia:Special:MyLanguage/CentralNotice|documentación en Meta-Wiki]].",
+	"namespaceinfo-description-ns866": "As mensaxes utilizadas nos carteis do [[mw:Special:MyLanguage/Extension:CentralNotice|aviso central]] e as súas traducións",
+	"namespaceinfo-description-ns867": "Páxinas de conversa para as mensaxes do aviso central"
 }

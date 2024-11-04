@@ -12,6 +12,7 @@
 			"Hello71",
 			"IAlex",
 			"Jean-Frédéric",
+			"Mahabarata",
 			"McDutchie",
 			"Meithal",
 			"Metroitendo",
@@ -49,7 +50,7 @@
 	"centralnotice-live-preview": "Aperçu de la dernière version enregistrée",
 	"centralnotice-add-new": "Ajouter une nouvelle campagne",
 	"centralnotice-remove": "Retirer",
-	"centralnotice-translate-heading": "Traduction de l’avis « $1 »",
+	"centralnotice-translate-heading": "Traduction du modèle « $1 »",
 	"centralnotice-manage": "Gérer les campagnes",
 	"centralnotice-manage-templates": "Gérer les bannières",
 	"centralnotice-add": "Ajouter",
@@ -364,5 +365,7 @@
 	"centralnotice-campaign-type-maintenance": "Maintenance",
 	"centralnotice-campaign-type-photography": "Photographie",
 	"centralnotice-campaign-type-special": "Spécial",
-	"centralnotice-user-prefs-intro": "Les bandeaux affichent des annonces intéressantes pour les communautés et les utilisateurs de Wikimédia.\n\nCi-dessous se trouvent des options qui vous permettent de gérer quels types d’annonce vous voulez voir. Certains avis de plateforme, comme celles relatives à la maintenance du site et les informations spéciales considérées comme nécessaires à tous les utilisateurs, seront toujours affichées. Pour plus d’information, veuillez lire la [[metawikimedia:Special:MyLanguage/CentralNotice|documentation sur Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Les bandeaux affichent des annonces intéressantes pour les communautés et les utilisateurs de Wikimédia.\n\nCi-dessous se trouvent des options qui vous permettent de gérer quels types d’annonce vous voulez voir. Certains avis de plateforme, comme celles relatives à la maintenance du site et les informations spéciales considérées comme nécessaires à tous les utilisateurs, seront toujours affichées. Pour plus d’information, veuillez lire la [[metawikimedia:Special:MyLanguage/CentralNotice|documentation sur Meta-Wiki]].",
+	"namespaceinfo-description-ns866": "Messages utilisés dans les bannières [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] et leurs traductions",
+	"namespaceinfo-description-ns867": "Pages de discussion pour les messages de bannière CentralNotice"
 }

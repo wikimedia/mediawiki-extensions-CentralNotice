@@ -354,5 +354,7 @@
 	"centralnotice-campaign-type-maintenance": "Onderhoud",
 	"centralnotice-campaign-type-photography": "Fotografie",
 	"centralnotice-campaign-type-special": "Speciaal",
-	"centralnotice-user-prefs-intro": "Banners geven aankondigingen weer die interessant zijn voor Wikimedia-gemeenschappen en gebruikers.\n\nHieronder vindt u opties waarmee u kunt beheren welke soorten aankondigingen u ziet. Bepaalde platformkennisgevingen, zoals die met betrekking tot site-onderhoud en speciale kennisgevingen die noodzakelijk worden geacht voor alle gebruikers, zullen altijd worden weergegeven. Lees voor meer informatie de [[metawikimedia:Special:MyLanguage/CentralNotice|documentatie op Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Banners geven aankondigingen weer die interessant zijn voor Wikimedia-gemeenschappen en gebruikers.\n\nHieronder vindt u opties waarmee u kunt beheren welke soorten aankondigingen u ziet. Bepaalde platformkennisgevingen, zoals die met betrekking tot site-onderhoud en speciale kennisgevingen die noodzakelijk worden geacht voor alle gebruikers, zullen altijd worden weergegeven. Lees voor meer informatie de [[metawikimedia:Special:MyLanguage/CentralNotice|documentatie op Meta-Wiki]].",
+	"namespaceinfo-description-ns866": "Berichten die worden gebruikt in [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]]-banners en hun vertalingen",
+	"namespaceinfo-description-ns867": "Overlegpagina’s voor CentralNotice-bannerberichten"
 }
