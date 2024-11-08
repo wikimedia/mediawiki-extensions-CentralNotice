@@ -3,6 +3,7 @@
 		"authors": [
 			"Arystanbek",
 			"Balnur.s",
+			"Casserium",
 			"СеніңШешең"
 		]
 	},
@@ -109,7 +110,7 @@
 	"centralnotice-change-summary-heading": "Қорытынды",
 	"centralnotice-action-created": "бастады",
 	"centralnotice-action-modified": "өзгертті",
-	"centralnotice-action-removed": "аластады",
+	"centralnotice-action-removed": "алып тастады",
 	"centralnotice-added": "<span class=\"cn-new-value\">$1</span> қосылды",
 	"centralnotice-removed": "<span class=\"cn-old-value\">$1</span> аласталды",
 	"centralnotice-no-assignments": "тағайындалған баннерлер жоқ",
