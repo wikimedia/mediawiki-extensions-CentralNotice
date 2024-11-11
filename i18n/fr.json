@@ -27,7 +27,8 @@
 			"Windes",
 			"Wladek92",
 			"Wyz",
-			"Zebulon84"
+			"Zebulon84",
+			"Mahabarata"
 		]
 	},
 	"centralnotice": "Administration des avis centraux",
@@ -49,7 +50,7 @@
 	"centralnotice-live-preview": "Aperçu de la dernière version enregistrée",
 	"centralnotice-add-new": "Ajouter une nouvelle campagne",
 	"centralnotice-remove": "Retirer",
-	"centralnotice-translate-heading": "Traduction de l’avis « $1 »",
+	"centralnotice-translate-heading": "Traduction du modèle « $1 »",
 	"centralnotice-manage": "Gérer les campagnes",
 	"centralnotice-manage-templates": "Gérer les bannières",
 	"centralnotice-add": "Ajouter",
