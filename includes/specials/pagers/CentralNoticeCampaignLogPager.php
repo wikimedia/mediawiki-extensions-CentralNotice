@@ -456,8 +456,6 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 	 * @param string $param
 	 * @param stdClass $row
 	 * @return string
-	 * @suppress PhanPossiblyUndeclaredVariable
-	 * @todo Add default to the switches
 	 */
 	private function testPriorityChange( $param, $row ) {
 		$result = '';
@@ -477,6 +475,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				case CentralNotice::EMERGENCY_PRIORITY:
 					$beginMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
 					break;
+				default:
+					$beginMessage = '';
+					break;
 			}
 			switch ( $row->$endField ) {
 				case CentralNotice::LOW_PRIORITY:
@@ -490,6 +491,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 					break;
 				case CentralNotice::EMERGENCY_PRIORITY:
 					$endMessage = $this->msg( 'centralnotice-priority-emergency' )->text();
+					break;
+				default:
+					$endMessage = '';
 					break;
 			}
 			// The following messages are generated here:
