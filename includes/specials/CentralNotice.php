@@ -162,7 +162,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		}
 
 		$pager = new CNCampaignPager( $this, $this->editable, null, $showArchived );
-		$out->addHTML( $pager->getBodyOutput()->getText() );
+		$popts = $out->parserOptions();
+		$out->addHTML( $pager->getBodyOutput()->runOutputPipeline( $popts, [] )->getContentHolderText() );
 		$out->addHTML( $pager->getNavigationBar() );
 
 		// If the user has edit rights, show a form for adding a campaign

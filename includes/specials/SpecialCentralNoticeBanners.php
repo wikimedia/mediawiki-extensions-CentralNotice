@@ -538,7 +538,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 			$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
 			$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
-			$out->addHTML( $pager->getBodyOutput()->getText() );
+			$popts = $out->parserOptions();
+			$out->addHTML( $pager->getBodyOutput()->runOutputPipeline( $popts, [] )->getContentHolderText() );
 			$out->addHTML( $pager->getNavigationBar() );
 		}
 	}
