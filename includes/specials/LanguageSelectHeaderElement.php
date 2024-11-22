@@ -12,7 +12,7 @@ class LanguageSelectHeaderElement extends HTMLSelectField {
 		$html = Html::openElement( 'table', [ 'class' => 'cn-message-table' ] );
 		$html .= Html::openElement( 'tr' );
 
-		$code = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
+		$code = MediaWikiServices::getInstance()->getContentLanguageCode()->toString();
 		$html .= Html::element( 'td', [ 'class' => 'cn-message-text-origin-header' ],
 			MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageName( $code, $code )
 		);
