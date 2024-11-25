@@ -6,7 +6,8 @@
 			"Gmelfi",
 			"Pippinu",
 			"Santu",
-			"Sarvaturi"
+			"Sarvaturi",
+			"GianAntonucci"
 		]
 	},
 	"centralnotice": "Gistioni di avvisu cintralizzatu",
@@ -33,7 +34,7 @@
 	"centralnotice-show-notices": "Ammuscia l'avvisa",
 	"centralnotice-list-templates": "Elenca li template",
 	"centralnotice-translations": "Traduzzioni",
-	"centralnotice-translate-to": "Traduci n",
+	"centralnotice-translate-to": "Traduci ’n",
 	"centralnotice-translate": "Traduci",
 	"centralnotice-english": "Ngrisi",
 	"centralnotice-banner-name": "Nomu dû banner:",
@@ -83,6 +84,7 @@
 	"centralnotice-insert": "Nzirisci: $1",
 	"centralnotice-close-button": "Buttuni di chiusura",
 	"centralnotice-close-title": "Chiudi",
+	"centralnotice-translate-button": "Ajuta a tradùciri a lijami",
 	"centralnotice-banner-anonymous": "Utenti anònimi",
 	"centralnotice-banner-cdn-dialog-ok": "OK",
 	"centralnotice-countries": "Paisi",
