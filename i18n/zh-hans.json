@@ -44,6 +44,7 @@
 			"乌拉跨氪",
 			"佛壁灯",
 			"列维劳德",
+			"沈澄心",
 			"科劳",
 			"阿pp"
 		]
@@ -382,5 +383,7 @@
 	"centralnotice-campaign-type-maintenance": "维护",
 	"centralnotice-campaign-type-photography": "摄影",
 	"centralnotice-campaign-type-special": "特殊",
-	"centralnotice-user-prefs-intro": "以横幅显示维基媒体社区和用户感兴趣的公告。\n\n以下选项允许您管理想要看到的公告类型。与网站维护相关的通知，以及所有用户有必要了解的特殊通知，不能停用。更多信息详见[[metawikimedia:Special:MyLanguage/CentralNotice|元维基文档]]。"
+	"centralnotice-user-prefs-intro": "以横幅显示维基媒体社区和用户感兴趣的公告。\n\n以下选项允许您管理想要看到的公告类型。与网站维护相关的通知，以及所有用户有必要了解的特殊通知，不能停用。更多信息详见[[metawikimedia:Special:MyLanguage/CentralNotice|元维基文档]]。",
+	"namespaceinfo-description-ns866": "[[mw:Special:MyLanguage/Extension:CentralNotice|中央通告]]横幅中使用的消息及其翻译",
+	"namespaceinfo-description-ns867": "中央通告横幅消息的讨论页"
 }
