@@ -360,5 +360,7 @@
 	"centralnotice-campaign-type-maintenance": "الصيانة",
 	"centralnotice-campaign-type-photography": "التصوير",
 	"centralnotice-campaign-type-special": "خاص",
-	"centralnotice-user-prefs-intro": "تعرض الإعلانات إشعاراتٍ تهم مجتمعات ومستخدمي ويكيميديا.\n\nيظهر بالأسفل الخيارات التي تسمح لك بإدارة أنواع الإعلانات التي تراها. ستُعرض دائمًا بعض إشعارات النظام الأساسي، مثل المتعلقة بصيانة الموقع والإشعارات الخاصة التي تُعد ضرورية لجميع المستخدمين. لمزيدٍ من المعلومات، رجاءً طالع [[metawikimedia:Special:MyLanguage/CentralNotice|التوثيق على الميتاويكي]]."
+	"centralnotice-user-prefs-intro": "تعرض الإعلانات إشعاراتٍ تهم مجتمعات ومستخدمي ويكيميديا.\n\nيظهر بالأسفل الخيارات التي تسمح لك بإدارة أنواع الإعلانات التي تراها. ستُعرض دائمًا بعض إشعارات النظام الأساسي، مثل المتعلقة بصيانة الموقع والإشعارات الخاصة التي تُعد ضرورية لجميع المستخدمين. لمزيدٍ من المعلومات، رجاءً طالع [[metawikimedia:Special:MyLanguage/CentralNotice|التوثيق على الميتاويكي]].",
+	"namespaceinfo-description-ns866": "الرسائل المستخدمة في لافتات [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] وترجماتها",
+	"namespaceinfo-description-ns867": "صفحات المناقشة لرسائل لافتة CentralNotice"
 }
