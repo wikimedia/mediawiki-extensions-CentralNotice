@@ -15,5 +15,7 @@
 	"centralnotice-talk-link": "ਗੱਲ-ਬਾਤ",
 	"centralnotice-archive-banner": "ਪੁਰਾਲੇਖ",
 	"centralnotice-archive-campaign": "ਪੁਰਾਲੇਖ",
-	"hidebanners": "ਬੈਨਰ ਲਕੋਵੋ"
+	"hidebanners": "ਬੈਨਰ ਲਕੋਵੋ",
+	"centralnotice-banner-template-info": "(ਫਰਮਾ)",
+	"centralnotice-create-from-template-checkbox-label": "ਫਰਮੇ ਤੋਂ ਬਣਾਓ"
 }
