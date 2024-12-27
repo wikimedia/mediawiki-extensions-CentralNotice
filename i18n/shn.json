@@ -5,14 +5,14 @@
 		]
 	},
 	"centralnotice-enabled": "ပိုတ်ႇၸႂ်ႉဝႆႉ",
-	"centralnotice-add-notice-cancel-button": "ယုၵ်ႉလိူၵ်ႈ",
+	"centralnotice-add-notice-cancel-button": "ယႃႉၶိုၼ်း",
 	"centralnotice-project-lang": "ၽႃႇသႃႇ ပရေႃးၵျႅၵ်ႉ",
 	"centralnotice-fieldset-preview": "တူၺ်းတူဝ်ႇယၢင်ႇသူတ်ႇ",
 	"centralnotice-preview-page": "[ တူၺ်းတူဝ်ယၢင်ႇ တီႈ ဝီႇၶီႇ ]",
-	"centralnotice-clone-cancel": "ယုၵ်ႉလိူၵ်ႈ",
+	"centralnotice-clone-cancel": "ယႃႉၶိုၼ်း",
 	"centralnotice-languages": "ၽႃႇသႃႇ",
 	"centralnotice-banner-class": "ပိူင်ထၢၼ်ႈ",
-	"centralnotice-archive-banner-cancel": "ယုၵ်ႉလိူၵ်ႈ",
-	"centralnotice-archive-campaign-cancel": "ယုၵ်ႉလိူၵ်ႈ",
-	"centralnotice-delete-banner-cancel": "ယုၵ်ႉလိူၵ်ႈ"
+	"centralnotice-archive-banner-cancel": "ယႃႉၶိုၼ်း",
+	"centralnotice-archive-campaign-cancel": "ယႃႉၶိုၼ်း",
+	"centralnotice-delete-banner-cancel": "ယႃႉၶိုၼ်း"
 }
