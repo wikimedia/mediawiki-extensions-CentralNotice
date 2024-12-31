@@ -357,5 +357,7 @@
 	"centralnotice-campaign-type-maintenance": "Konserwacja",
 	"centralnotice-campaign-type-photography": "Fotografowanie",
 	"centralnotice-campaign-type-special": "Specjalne",
-	"centralnotice-user-prefs-intro": "Banery wyświetlają ogłoszenia, które mogą zainteresować społeczności i użytkowników projektów Wikimedia.\n\nPoniżej znajdują się opcje, które pozwolą Ci zarządzać typami wyświetlanych ogłoszeń. Niektóre powiadomienia, na przykład te dotyczące prac konserwacyjnych oraz specjalne powiadomienia niezbędne do przedstawienia wszystkim użytkownikom, będą zawsze wyświetlane. Aby uzyskać więcej informacji, przeczytaj [[metawikimedia:Special:MyLanguage/CentralNotice| dokumentację na Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Banery wyświetlają ogłoszenia, które mogą zainteresować społeczności i użytkowników projektów Wikimedia.\n\nPoniżej znajdują się opcje, które pozwolą Ci zarządzać typami wyświetlanych ogłoszeń. Niektóre powiadomienia, na przykład te dotyczące prac konserwacyjnych oraz specjalne powiadomienia niezbędne do przedstawienia wszystkim użytkownikom, będą zawsze wyświetlane. Aby uzyskać więcej informacji, przeczytaj [[metawikimedia:Special:MyLanguage/CentralNotice| dokumentację na Meta-Wiki]].",
+	"namespaceinfo-description-ns866": "Wiadomości używane w banerach [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] i ich tłumaczenia",
+	"namespaceinfo-description-ns867": "Strony dyskusji dla wiadomości w banerach CentralNotice"
 }
