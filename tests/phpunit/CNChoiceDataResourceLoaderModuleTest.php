@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group CentralNotice
@@ -39,9 +40,9 @@ class CNChoiceDataResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			$rlContext = $this->getResourceLoaderContext(
 				[ 'lang' => $contextAndOutput['context']['language'] ] );
 
-			$module = new TestingCNChoiceDataResourceLoaderModule();
+			$module = TestingAccessWrapper::newFromObject( new CNChoiceDataResourceLoaderModule() );
 			$module->setConfig( $rlContext->getResourceLoader()->getConfig() );
-			$choices = $module->getChoicesForTesting( $rlContext );
+			$choices = $module->getChoices( $rlContext );
 
 			$this->cnFixtures->assertChoicesEqual(
 				$this, $contextAndOutput['choices'], $choices, $cAndOName );
