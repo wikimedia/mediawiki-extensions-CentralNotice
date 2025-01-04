@@ -282,6 +282,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 		return true;
 	}
 
+	/**
+	 * @param string $banner
+	 * @param string $state
+	 * @return string[]
+	 */
 	public static function getLanguagesInState( $banner, $state ) {
 		if ( !self::isUsingGroupReview() ) {
 			throw new LogicException(

@@ -287,6 +287,12 @@ class CentralNotice extends UnlistedSpecialPage {
 		}
 	}
 
+	/**
+	 * @param string $prefix
+	 * @param bool $editable
+	 * @param string|null $timestamp
+	 * @return string
+	 */
 	private function timeSelectorTd( $prefix, $editable, $timestamp = null ) {
 		return Html::rawElement(
 			'td',
@@ -298,6 +304,12 @@ class CentralNotice extends UnlistedSpecialPage {
 		);
 	}
 
+	/**
+	 * @param string $prefix
+	 * @param bool $editable
+	 * @param string|null $timestamp
+	 * @return string
+	 */
 	private function timeSelector( $prefix, $editable, $timestamp = null ) {
 		if ( $editable ) {
 			$minutes = $this->paddedRange( 0, 59 );
@@ -1479,6 +1491,11 @@ class CentralNotice extends UnlistedSpecialPage {
 		return $htmlOut;
 	}
 
+	/**
+	 * @param string $name
+	 * @param int|null $selected
+	 * @return string
+	 */
 	private function weightDropdown( $name, $selected ) {
 		$selected = intval( $selected );
 
@@ -1494,6 +1511,13 @@ class CentralNotice extends UnlistedSpecialPage {
 		}
 	}
 
+	/**
+	 * @param string $name
+	 * @param int|null $selected
+	 * @param int $numberCampaignBuckets
+	 * @param string $bannerName
+	 * @return string
+	 */
 	private function bucketDropdown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
 		$bucketLabel = static function ( $val ) {
 			return chr( $val + ord( 'A' ) );
@@ -1532,6 +1556,11 @@ class CentralNotice extends UnlistedSpecialPage {
 		}
 	}
 
+	/**
+	 * @param int $numBuckets
+	 * @param int|null $selected
+	 * @return string
+	 */
 	private function numBucketsDropdown( $numBuckets, $selected ) {
 		if ( $selected === null ) {
 			$selected = 1;
@@ -1676,6 +1705,11 @@ class CentralNotice extends UnlistedSpecialPage {
 		return Html::rawElement( 'select', $properties, $options );
 	}
 
+	/**
+	 * @param string $text
+	 * @param string[] $values
+	 * @return string
+	 */
 	public static function dropdownList( $text, $values ) {
 		$dropdown = "*{$text}\n";
 		foreach ( $values as $value ) {
@@ -1712,6 +1746,11 @@ class CentralNotice extends UnlistedSpecialPage {
 		return static::truncateSummaryField( $request->getVal( 'changeSummary' ) );
 	}
 
+	/**
+	 * @param int $begin
+	 * @param int $end
+	 * @return string[]
+	 */
 	private function paddedRange( $begin, $end ) {
 		$unpaddedRange = range( $begin, $end );
 		$paddedRange = [];
@@ -1934,10 +1973,19 @@ class CentralNotice extends UnlistedSpecialPage {
 		$this->getRequest()->setSessionData( "centralnotice-{$variable}", $value );
 	}
 
+	/**
+	 * @param string[] $projects
+	 * @return string
+	 */
 	public function listProjects( $projects ) {
 		return $this->makeShortList( $this->getConfig()->get( 'NoticeProjects' ), $projects );
 	}
 
+	/**
+	 * @param string[] $countries
+	 * @param string[] $regions
+	 * @return string
+	 */
 	public function listCountriesRegions( array $countries, array $regions ) {
 		$allCountries = array_keys( GeoTarget::getCountriesList() );
 		$list = $this->makeShortList( $allCountries, $countries );
@@ -1961,12 +2009,21 @@ class CentralNotice extends UnlistedSpecialPage {
 		return $list;
 	}
 
+	/**
+	 * @param string[] $languages
+	 * @return string
+	 */
 	public function listLanguages( $languages ) {
 		$all = array_keys( MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageNames( 'en' ) );
 		return $this->makeShortList( $all, $languages );
 	}
 
+	/**
+	 * @param string[] $all
+	 * @param string[] $list
+	 * @return string
+	 */
 	private function makeShortList( $all, $list ) {
 		// TODO ellipsis and js/css expansion
 		if ( count( $list ) == count( $all ) ) {

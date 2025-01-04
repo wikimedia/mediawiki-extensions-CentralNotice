@@ -173,6 +173,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return Html::closeElement( 'table' );
 	}
 
+	/**
+	 * @param stdClass $row
+	 * @return string
+	 */
 	public function showInitialSettings( $row ) {
 		$details = '';
 		$details .= $this->msg(
@@ -213,6 +217,10 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
+	/**
+	 * @param stdClass $newrow
+	 * @return string
+	 */
 	public function showChanges( $newrow ) {
 		$oldrow = false;
 		if ( $newrow->tmplog_action === 'modified' ) {
@@ -249,6 +257,12 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $details;
 	}
 
+	/**
+	 * @param string $param
+	 * @param stdClass $newrow
+	 * @param stdClass $oldrow
+	 * @return string
+	 */
 	private function testBooleanBannerChange( $param, $newrow, $oldrow ) {
 		$result = '';
 		$endField = 'tmplog_end_' . $param;
@@ -276,6 +290,12 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $result;
 	}
 
+	/**
+	 * @param string $param
+	 * @param stdClass $newrow
+	 * @param stdClass $oldrow
+	 * @return string
+	 */
 	private function testTextBannerChange( $param, $newrow, $oldrow ) {
 		$endField = 'tmplog_end_' . $param;
 

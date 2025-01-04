@@ -20,11 +20,20 @@ class BannerMessage {
 	private const SPAN_TAG_PLACEHOLDER_START = '%%%spantagplaceholderstart%%%';
 	private const SPAN_TAG_PLACEHOLDER_END = '%%%spantagplaceholderend%%%';
 
+	/**
+	 * @param string $banner_name
+	 * @param string $name
+	 */
 	public function __construct( $banner_name, $name ) {
 		$this->banner_name = $banner_name;
 		$this->name = $name;
 	}
 
+	/**
+	 * @param string $lang
+	 * @param int $namespace
+	 * @return Title|null
+	 */
 	public function getTitle( $lang, $namespace = NS_MEDIAWIKI ) {
 		return Title::newFromText( $this->getDbKey( $lang, $namespace ), $namespace );
 	}

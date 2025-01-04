@@ -408,6 +408,11 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $result;
 	}
 
+	/**
+	 * @param string $param
+	 * @param stdClass $row
+	 * @return string
+	 */
 	private function testSetChange( $param, $row ) {
 		$result = '';
 		$beginField = 'notlog_begin_' . $param;
@@ -568,6 +573,10 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $result;
 	}
 
+	/**
+	 * @param stdClass $row
+	 * @return string
+	 */
 	private function testTypeChange( $row ) {
 		$result = '';
 

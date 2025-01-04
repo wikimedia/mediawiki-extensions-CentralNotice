@@ -79,6 +79,12 @@ class ChoiceDataProvider {
 		) );
 	}
 
+	/**
+	 * @param string $project
+	 * @param string $language
+	 * @param IDatabase $dbr
+	 * @return array
+	 */
 	private static function fetchChoices( $project, $language,
 		IDatabase $dbr
 	) {
