@@ -5,6 +5,7 @@ use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\Xml\Xml;
 
 class HTMLLargeMultiSelectField extends HTMLMultiSelectField {
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		if ( !is_array( $value ) ) {
 			$value = [ $value ];

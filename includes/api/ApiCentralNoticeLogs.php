@@ -31,6 +31,7 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 		$result->addValue( [ 'query', $this->getModuleName() ], 'logs', $logs );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'campaign' => [

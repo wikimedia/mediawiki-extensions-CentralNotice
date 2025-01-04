@@ -41,6 +41,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [ 'campaign' => '' ];
 	}

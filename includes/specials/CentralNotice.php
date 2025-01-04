@@ -2056,6 +2056,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		return 'wiki';
 	}
 
+	/** @inheritDoc */
 	public function outputHeader( $summaryMsg = '' ) {
 		// Allow users to add a custom nav bar (T138284)
 		$navBar = $this->msg( 'centralnotice-navbar' )->inContentLanguage();

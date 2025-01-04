@@ -29,6 +29,7 @@ class ApiCentralNoticeQueryActiveCampaigns extends ApiQueryBase {
 		 );
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'includefuture' => [

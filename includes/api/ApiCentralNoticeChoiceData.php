@@ -41,6 +41,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'project' => [
