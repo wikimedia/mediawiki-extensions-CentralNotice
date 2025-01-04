@@ -7,10 +7,6 @@ use Wikimedia\Rdbms\LikeValue;
 
 class CentralNoticePager extends TemplatePager {
 
-	public function __construct( $special, $filter = '' ) {
-		parent::__construct( $special, $filter );
-	}
-
 	/**
 	 * Pull banners from the database
 	 * @return array[]
