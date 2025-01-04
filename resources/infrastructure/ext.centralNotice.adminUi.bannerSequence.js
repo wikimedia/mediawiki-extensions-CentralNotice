@@ -677,7 +677,7 @@
 
 	BannerSequenceUiModel.prototype.validateBanner = function ( banner ) {
 		// Note: regex should coordinate with Banner::isValidBannerName() in Banner.php
-		return ( typeof banner === 'string' && /^[A-Za-z0-9_]+$/.test( banner ) ) ||
+		return ( typeof banner === 'string' && /^[A-Za-z0-9_]{1,230}$/.test( banner ) ) ||
 			banner === null;
 	};
 
