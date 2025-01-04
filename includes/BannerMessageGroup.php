@@ -215,7 +215,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		return true;
 	}
 
-	public function getMessageGroupStates() {
+	public function getMessageGroupStates(): MessageGroupStates {
 		$conf = [
 			'progress' => [ 'color' => 'E00' ],
 			'proofreading' => [ 'color' => 'FFBF00' ],

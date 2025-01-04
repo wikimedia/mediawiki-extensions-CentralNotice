@@ -589,7 +589,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		return $result;
 	}
 
-	private function getTypeText( $typeId ) {
+	private function getTypeText( ?string $typeId ): string {
 		// This is the case for no type set; $typeId should be null.
 		if ( !$typeId ) {
 			return $this->msg( 'centralnotice-empty-campaign-type-option' )->plain();

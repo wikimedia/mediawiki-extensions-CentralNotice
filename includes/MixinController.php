@@ -18,7 +18,7 @@ class MixinController {
 		$this->loadPhp();
 	}
 
-	public function getContext() {
+	public function getContext(): IContextSource {
 		return $this->uiContext;
 	}
 
@@ -49,7 +49,7 @@ class MixinController {
 		}
 	}
 
-	public function getPreloadJsSnippets() {
+	public function getPreloadJsSnippets(): array {
 		$snippets = [];
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['preloadJs'] ) ) {
@@ -64,7 +64,7 @@ class MixinController {
 		return $snippets;
 	}
 
-	public function getResourceLoaderModules() {
+	public function getResourceLoaderModules(): array {
 		$modules = [];
 		foreach ( $this->mixins as $name => $info ) {
 			if ( !empty( $info['resourceLoader'] ) ) {

@@ -1306,8 +1306,8 @@ class CentralNotice extends UnlistedSpecialPage {
 	}
 
 	private static function makeNoticeMixinControlName(
-		$mixinName, $mixinParam = null
-	) {
+		string $mixinName, ?string $mixinParam = null
+	): string {
 		return 'notice-mixin-' . $mixinName .
 			( $mixinParam ? '-' . $mixinParam : '' );
 	}
@@ -1708,7 +1708,7 @@ class CentralNotice extends UnlistedSpecialPage {
 			);
 	}
 
-	private function getSummaryFromRequest( WebRequest $request ) {
+	private function getSummaryFromRequest( WebRequest $request ): string {
 		return static::truncateSummaryField( $request->getVal( 'changeSummary' ) );
 	}
 
@@ -1721,7 +1721,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		return $paddedRange;
 	}
 
-	private function showError( $message ) {
+	private function showError( string $message ) {
 		$this->getOutput()->wrapWikiMsg( "<div class='cn-error'>\n$1\n</div>", $message );
 		$this->centralNoticeError = true;
 	}
