@@ -7,7 +7,7 @@
  * @ingroup Exception
  */
 class BannerLoaderException extends Exception {
-	public function __construct( $bannerName = '(none provided)', $extraMsg = null ) {
+	public function __construct( string $bannerName = '(none provided)', ?string $extraMsg = null ) {
 		$this->message = static::class .
 			" while loading banner: '{$bannerName}'";
 		if ( $extraMsg ) {

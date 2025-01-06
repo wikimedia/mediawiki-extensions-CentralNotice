@@ -104,7 +104,7 @@ class BannerMessage {
 		}
 	}
 
-	public function toHtml( IContextSource $context ) {
+	public function toHtml( IContextSource $context ): string {
 		global $wgNoticeUseLanguageConversion;
 		$lang = $context->getLanguage();
 		if ( $wgNoticeUseLanguageConversion ) {
@@ -164,7 +164,7 @@ class BannerMessage {
 		}
 	}
 
-	public static function sanitize( $text ) {
+	public static function sanitize( string $text ): string {
 		// First, remove any occurrences of the placeholders used to preserve span tags.
 		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_START, '', $text );
 		$text = str_replace( self::SPAN_TAG_PLACEHOLDER_END, '', $text );

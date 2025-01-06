@@ -20,7 +20,7 @@ class CentralNoticeTestFixtures {
 	/** @var array */
 	private static $defaultBanner;
 
-	public function __construct( $user ) {
+	public function __construct( User $user ) {
 		$this->user = $user;
 
 		static::$defaultCampaign = [
@@ -46,23 +46,23 @@ class CentralNoticeTestFixtures {
 		];
 	}
 
-	public static function getDefaultLanguage() {
+	public static function getDefaultLanguage(): string {
 		return 'en';
 	}
 
-	public static function getDefaultProject() {
+	public static function getDefaultProject(): string {
 		return 'wikipedia';
 	}
 
-	public static function getDefaultCountry() {
+	public static function getDefaultCountry(): string {
 		return 'XX';
 	}
 
-	public static function getDefaultRegion() {
+	public static function getDefaultRegion(): string {
 		return 'XX';
 	}
 
-	public static function getDefaultDevice() {
+	public static function getDefaultDevice(): string {
 		return 'desktop';
 	}
 

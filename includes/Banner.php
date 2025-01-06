@@ -747,7 +747,7 @@ class Banner {
 		$this->markPriorityLanguageDataDirty( false );
 	}
 
-	private function markPriorityLanguageDataDirty( $dirty = true ) {
+	private function markPriorityLanguageDataDirty( bool $dirty = true ) {
 		$this->dirtyFlags['prioritylang'] = $dirty;
 	}
 
@@ -773,7 +773,7 @@ class Banner {
 		}
 	}
 
-	public function getDbKey() {
+	public function getDbKey(): string {
 		$name = $this->getName();
 		return "Centralnotice-template-{$name}";
 	}
@@ -923,7 +923,7 @@ class Banner {
 		}
 	}
 
-	public function getMessageField( $field_name ) {
+	public function getMessageField( string $field_name ): BannerMessage {
 		return new BannerMessage( $this->getName(), $field_name );
 	}
 
@@ -1162,7 +1162,7 @@ class Banner {
 		return $this;
 	}
 
-	public function cloneBanner( $destination, $user, $summary = null ) {
+	public function cloneBanner( string $destination, User $user, ?string $summary = null ): self {
 		if ( !self::isValidBannerName( $destination ) ) {
 			throw new BannerDataException( "Banner name must be in format /^[A-Za-z0-9_]+$/" );
 		}
@@ -1204,7 +1204,7 @@ class Banner {
 		self::removeBanner( $this->getName(), $user );
 	}
 
-	public static function removeBanner( $name, $user, $summary = null ) {
+	public static function removeBanner( string $name, User $user, ?string $summary = null ) {
 		global $wgNoticeUseTranslateExtension;
 
 		$bannerObj = self::fromName( $name );

@@ -157,7 +157,7 @@ class CentralNoticePager extends TemplatePager {
 		return Html::closeElement( 'table' );
 	}
 
-	private function bucketDropdown( $bannerName ) {
+	private function bucketDropdown( string $bannerName ): string {
 		global $wgNoticeNumberOfBuckets;
 
 		$html = '';
