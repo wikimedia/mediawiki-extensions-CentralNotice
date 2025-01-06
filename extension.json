@@ -121,8 +121,7 @@
 	},
 	"TestAutoloadClasses": {
 		"CentralNoticeTestFixtures": "tests/phpunit/CentralNoticeTestFixtures.php",
-		"CNTestFixturesResourceLoaderModule": "tests/phpunit/CNTestFixturesResourceLoaderModule.php",
-		"TestingCNChoiceDataResourceLoaderModule": "tests/phpunit/TestingCNChoiceDataResourceLoaderModule.php"
+		"CNTestFixturesResourceLoaderModule": "tests/phpunit/CNTestFixturesResourceLoaderModule.php"
 	},
 	"ResourceModules": {
 		"ext.centralNotice.startUp": {
