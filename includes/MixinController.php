@@ -11,6 +11,10 @@ class MixinController {
 	/** @var IContextSource */
 	private $uiContext;
 
+	/**
+	 * @param IContextSource $uiContext
+	 * @param array $mixins
+	 */
 	public function __construct( IContextSource $uiContext, $mixins ) {
 		$this->uiContext = $uiContext;
 		$this->mixins = $mixins;
@@ -22,6 +26,9 @@ class MixinController {
 		return $this->uiContext;
 	}
 
+	/**
+	 * @return string[]
+	 */
 	public function getMagicWords() {
 		$words = array_keys( $this->magicWords );
 		sort( $words );
@@ -74,10 +81,19 @@ class MixinController {
 		return $modules;
 	}
 
+	/**
+	 * @param string $word
+	 * @param callable $callback
+	 */
 	public function registerMagicWord( $word, $callback ) {
 		$this->magicWords[$word] = $callback;
 	}
 
+	/**
+	 * @param string $word
+	 * @param array $params
+	 * @return mixed
+	 */
 	public function renderMagicWord( $word, $params = [] ) {
 		if ( array_key_exists( $word, $this->magicWords ) ) {
 			$callback = $this->magicWords[$word];

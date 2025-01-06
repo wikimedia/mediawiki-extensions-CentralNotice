@@ -285,6 +285,9 @@ class CentralNoticeHooks implements
 		}
 	}
 
+	/**
+	 * @param string $right
+	 */
 	private static function addCascadingRestrictionRight( $right ) {
 		global $wgCascadingRestrictionLevels, $wgRestrictionLevels;
 		if ( !in_array( $right, $wgRestrictionLevels ) ) {
@@ -586,6 +589,9 @@ class CentralNoticeHooks implements
 		$this->addDefinedTags( $tags );
 	}
 
+	/**
+	 * @param string[] &$tags
+	 */
 	private function addDefinedTags( &$tags ): void {
 		$tags[] = 'centralnotice';
 		$tags[] = 'centralnotice translation';

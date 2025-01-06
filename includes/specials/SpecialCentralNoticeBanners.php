@@ -941,6 +941,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		return $purgeControls;
 	}
 
+	/**
+	 * @param array $formData
+	 * @return string|null
+	 */
 	public function processEditBanner( $formData ) {
 		// First things first! Figure out what the heck we're actually doing!
 		switch ( $formData[ 'action' ] ) {
@@ -1016,6 +1020,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 	}
 
+	/**
+	 * @param array $formData
+	 * @return null
+	 */
 	private function processSaveBannerAction( $formData ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 

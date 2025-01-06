@@ -6,6 +6,10 @@ class CNCountry {
 	/** @var string[] */
 	private $regions;
 
+	/**
+	 * @param string $name
+	 * @param array $regions
+	 */
 	public function __construct( $name, array $regions ) {
 		$this->name = $name;
 		$this->regions = $regions;

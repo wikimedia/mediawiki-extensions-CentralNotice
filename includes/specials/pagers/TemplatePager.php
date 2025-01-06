@@ -26,6 +26,10 @@ class TemplatePager extends ReverseChronologicalPager {
 	/** @var string */
 	public $filter;
 
+	/**
+	 * @param CentralNotice $special
+	 * @param string $filter
+	 */
 	public function __construct( $special, $filter = '' ) {
 		$this->special = $special;
 		$this->editable = $special->editable;
