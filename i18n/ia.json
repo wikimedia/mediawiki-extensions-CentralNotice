@@ -334,5 +334,7 @@
 	"centralnotice-campaign-type-maintenance": "Mantenentia",
 	"centralnotice-campaign-type-photography": "Photographia",
 	"centralnotice-campaign-type-special": "Special",
-	"centralnotice-user-prefs-intro": "Bandieras presenta annuncios de interesse pro le communitates e usatores de Wikimedia.\n\nEcce le optiones pro seliger le typos de annuncios que tu vole vider. Certe avisos de platteforma essera sempre monstrate, como illos relative al mantenentia del sito e avisos special que se considera necessari pro tote le usatores. Pro plus information, lege le [[metawikimedia:Special:MyLanguage/CentralNotice|documentation sur Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Bandieras presenta annuncios de interesse pro le communitates e usatores de Wikimedia.\n\nEcce le optiones pro seliger le typos de annuncios que tu vole vider. Certe avisos de platteforma essera sempre monstrate, como illos relative al mantenentia del sito e avisos special que se considera necessari pro tote le usatores. Pro plus information, lege le [[metawikimedia:Special:MyLanguage/CentralNotice|documentation sur Meta-Wiki]].",
+	"namespaceinfo-description-ns866": "Messages usate in bandieras de [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] e lor traductiones",
+	"namespaceinfo-description-ns867": "Paginas de discussion pro messages de bandiera CentralNotice"
 }
