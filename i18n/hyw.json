@@ -6,11 +6,15 @@
 	},
 	"centralnotice-save-banner": "Պահել",
 	"centralnotice-add": "Աւելցնել",
+	"centralnotice-add-notice-cancel-button": "Չեղարկել",
 	"centralnotice-settings": "Կարգաւորումներ",
 	"centralnotice-clone-cancel": "Չեղարկել",
 	"centralnotice-banner-cdn-dialog-ok": "Լաւ",
 	"centralnotice-language": "Լեզու",
 	"centralnotice-country": "Երկիր",
 	"centralnotice-action": "Գործողություն",
-	"centralnotice-banner-class": "Ստորոգութիւն"
+	"centralnotice-banner-class": "Ստորոգութիւն",
+	"centralnotice-archive-banner-cancel": "Չեղարկել",
+	"centralnotice-archive-campaign-cancel": "Չեղարկել",
+	"centralnotice-delete-banner-cancel": "Չեղարկել"
 }
