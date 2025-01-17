@@ -6,8 +6,8 @@ class MainPage extends Page {
 		return $( '#centralnotice_testbanner' );
 	}
 
-	open() {
-		super.openTitle( 'Main_Page' );
+	async open() {
+		return super.openTitle( 'Main_Page' );
 	}
 }
 
