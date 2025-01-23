@@ -52,6 +52,7 @@ class SpecialBannerLoader extends UnlistedSpecialPage {
 		parent::__construct( "BannerLoader" );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->getOutput()->disable();
 

@@ -138,6 +138,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 		return $htmlOut;
 	}
 
+	/** @inheritDoc */
 	public function getStartBody() {
 		$htmlOut = '';
 		$htmlOut .= Html::openElement( 'table', [ 'id' => 'cn-campaign-logs', 'cellpadding' => 3 ] );

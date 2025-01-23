@@ -8,6 +8,7 @@ use MediaWiki\MediaWikiServices;
  * Acts as a header to the translatable banner message list
  */
 class LanguageSelectHeaderElement extends HTMLSelectField {
+	/** @inheritDoc */
 	public function getInputHTML( $value ) {
 		$html = Html::openElement( 'table', [ 'class' => 'cn-message-table' ] );
 		$html .= Html::openElement( 'tr' );

@@ -19,6 +19,7 @@ class SpecialHideBanners extends UnlistedSpecialPage {
 		parent::__construct( 'HideBanners' );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$config = $this->getConfig();
 		// Handle /P3P subpage with explanation of invalid P3P header
