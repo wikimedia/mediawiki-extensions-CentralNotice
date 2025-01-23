@@ -778,8 +778,8 @@ class Banner {
 		return "Centralnotice-template-{$name}";
 	}
 
-	public function getTitle() {
-		return Title::newFromText( $this->getDbKey(), NS_MEDIAWIKI );
+	public function getTitle(): Title {
+		return Title::makeTitle( NS_MEDIAWIKI, $this->getDbKey() );
 	}
 
 	/**
@@ -1600,7 +1600,7 @@ class Banner {
 	public static function isValidBannerName( $name ) {
 		// Note: regex should coordinate with banner name validation
 		// in ext.centralNotice.adminUi.bannerSequence.js
-		return preg_match( '/^[A-Za-z0-9_]+$/', $name );
+		return preg_match( '/^[A-Za-z0-9_]{1,230}$/', $name );
 	}
 
 	/**

@@ -450,8 +450,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		];
 
 		$bannerTitle = $this->banner->getTitle();
-		// $bannerTitle can be null sometimes
-		if ( $bannerTitle && $this->getUser()->isAllowed( 'editinterface' ) ) {
+		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
 			$links[] = $linkRenderer->makeLink(
 				$bannerTitle,
 				$this->msg( 'centralnotice-banner-edit-onwiki' )->text(),
@@ -459,14 +458,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				[ 'action' => 'edit' ]
 			);
 		}
-		if ( $bannerTitle ) {
-			$links[] = $linkRenderer->makeLink(
-				$bannerTitle,
-				$this->msg( 'centralnotice-banner-history' )->text(),
-				[ 'class' => 'cn-banner-list-element-label-text' ],
-				[ 'action' => 'history' ]
-			);
-		}
+		$links[] = $linkRenderer->makeLink(
+			$bannerTitle,
+			$this->msg( 'centralnotice-banner-history' )->text(),
+			[ 'class' => 'cn-banner-list-element-label-text' ],
+			[ 'action' => 'history' ]
+		);
 		return $links;
 	}
 
