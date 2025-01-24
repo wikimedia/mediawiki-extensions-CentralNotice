@@ -98,7 +98,7 @@ class MixinController {
 		if ( array_key_exists( $word, $this->magicWords ) ) {
 			$callback = $this->magicWords[$word];
 			if ( is_callable( $callback ) ) {
-				return call_user_func_array( $callback, $params );
+				return $callback( ...$params );
 			}
 		}
 	}
