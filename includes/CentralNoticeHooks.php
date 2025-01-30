@@ -12,6 +12,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -388,11 +389,18 @@ class CentralNoticeHooks implements
 		// TODO Separate geoIP from CentralNotice
 		$out->addModules( 'ext.centralNotice.geoIP' );
 
+		// Banners can contain user-contributed JavaScript.
+		// Do not show them when executing such scripts is generally disallowed.
+		$isSiteJsAllowed = $out->getAllowedModules( RL\Module::TYPE_SCRIPTS )
+			>= RL\Module::ORIGIN_USER_SITEWIDE;
+
 		$request = $skin->getRequest();
 		// If we're on a special page (or not a normal page view at all),
 		// editing, viewing history or a diff, bow out now
 		// This is to reduce the chance of bad misclicks from delayed banner loading
-		if ( !$out->getTitle() ||
+		if (
+			!$isSiteJsAllowed ||
+			!$out->getTitle() ||
 			$out->getTitle()->inNamespace( NS_SPECIAL ) ||
 			( $request->getText( 'action' ) === 'edit' ) ||
 			( $request->getText( 'action' ) === 'history' ) ||
