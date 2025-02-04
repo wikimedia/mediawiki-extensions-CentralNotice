@@ -25,7 +25,8 @@
 			"Szoszv",
 			"ToprakM",
 			"Violetanka",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Leo"
 		]
 	},
 	"centralnotice": "Merkezi uyarı yöneticisi",
@@ -332,9 +333,9 @@
 	"centralnotice-multiple-regions": "Birden fazla bölge",
 	"centralnotice-multiple-languages": "Birden çok dil",
 	"tag-centralnotice": "Merkezi Bildirim",
-	"tag-centralnotice-description": "CentralNotice Yönetici Kullanıcı Arayüzü ile oluşturulan düzenle",
-	"tag-centralnotice_translation": "Merkezi Uyarı Çevirisi",
-	"tag-centralnotice_translation-description": "Çeviri uzantısı aracılığıyla oluşturulan CentralNotice içeriğinin düzenlenmesi",
+	"tag-centralnotice-description": "MerkeziBildirim Hizmetli Kullanıcı Arayüzü üzerinden oluşturulan düzenleme",
+	"tag-centralnotice_translation": "Merkezi Bildirim Çevirisi",
+	"tag-centralnotice_translation-description": "Çeviri uzantısı aracılığıyla oluşturulan MerkeziBildirim içeriğinin düzenlenmesi",
 	"centralnotice-banner-template": "Banner şablonu",
 	"centralnotice-banner-is-template": "Bu banner, oluşturmak için kullanılacak bir şablondur",
 	"centralnotice-banner-template-info": "(şablon)",
