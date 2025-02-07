@@ -16,7 +16,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 		// Get our language/project/country
 		$params = $this->extractRequestParams();
 
-		$campaigns = explode( '|', self::sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER ) );
+		$campaigns = explode( '|', self::sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER, '' ) );
 
 		foreach ( $campaigns as $campaign ) {
 			$settings = Campaign::getCampaignSettings( $campaign );
