@@ -73,9 +73,7 @@ class ChoiceDataProvider {
 		$now = time();
 		return array_values( array_filter(
 			$choices,
-			static function ( $choice ) use ( $now ) {
-				return $choice['end'] >= $now && $choice['start'] <= $now;
-			}
+			static fn ( array $choice ) => $choice['end'] >= $now && $choice['start'] <= $now
 		) );
 	}
 

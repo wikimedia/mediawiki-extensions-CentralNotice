@@ -1520,9 +1520,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string
 	 */
 	private function bucketDropdown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
-		$bucketLabel = static function ( $val ) {
-			return chr( $val + ord( 'A' ) );
-		};
+		$bucketLabel = static fn ( int $val ) => chr( ord( 'A' ) + $val );
 
 		if ( $this->editable ) {
 			// Default to bucket 'A'
@@ -1927,9 +1925,10 @@ class CentralNotice extends UnlistedSpecialPage {
 		// Keys of (default value of $wgNoticeTabifyPages) are the names of the special
 		// pages of the admin interface without the initial 'Special:'.
 		// TODO Make $wgNoticeTabifyPages a constant rather than a config variable.
-		return array_map( static function ( $name ) {
-			return 'Special:' . $name;
-		}, array_keys( $this->getConfig()->get( 'NoticeTabifyPages' ) ) );
+		return array_map(
+			static fn ( $name ) => "Special:$name",
+			array_keys( $this->getConfig()->get( 'NoticeTabifyPages' ) )
+		);
 	}
 
 	/**
