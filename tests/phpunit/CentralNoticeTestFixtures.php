@@ -402,7 +402,6 @@ class CentralNoticeTestFixtures {
 	 * structure, numerically indexed arrays are sorted by value.
 	 * (If $a is a numerically indexed array, sort it by value. Traverse the
 	 * array recursively and do the same for each value.)
-	 * @param array &$a
 	 */
 	private function deepMultisort( array &$a ) {
 		array_multisort( $a );

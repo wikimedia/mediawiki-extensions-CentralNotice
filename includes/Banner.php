@@ -421,8 +421,6 @@ class Banner {
 
 	/**
 	 * Helper function to initializeDbForNewBanner()
-	 *
-	 * @param IDatabase $db
 	 */
 	private function initializeDbBasicData( IDatabase $db ) {
 		$db->newInsertQueryBuilder()
@@ -435,7 +433,6 @@ class Banner {
 
 	/**
 	 * Helper function to saveBannerInternal() for saving basic banner metadata
-	 * @param IDatabase $db
 	 */
 	private function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
@@ -543,8 +540,6 @@ class Banner {
 
 	/**
 	 * Helper function to saveBannerInternal()
-	 *
-	 * @param IDatabase $db
 	 */
 	private function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
@@ -659,9 +654,6 @@ class Banner {
 		$this->dirtyFlags['mixins'] = $dirty;
 	}
 
-	/**
-	 * @param IDatabase $db
-	 */
 	private function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
 			$db->newDeleteQueryBuilder()
@@ -1113,8 +1105,6 @@ class Banner {
 	 * Called before saveBannerInternal() when a new to the database banner is
 	 * being saved. Intended to create all table rows required such that any
 	 * additional operation can be an UPDATE statement.
-	 *
-	 * @param IDatabase $db
 	 */
 	private function initializeDbForNewBanner( IDatabase $db ) {
 		$this->initializeDbBasicData( $db );
