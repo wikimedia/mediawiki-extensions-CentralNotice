@@ -1079,11 +1079,7 @@ class Campaign {
 			->where( [ 'not_name' => $noticeName ] )
 			->caller( __METHOD__ )
 			->fetchRow();
-		if ( $row ) {
-			return $row->not_id;
-		} else {
-			return null;
-		}
+		return $row ? $row->not_id : null;
 	}
 
 	/**
@@ -1608,9 +1604,7 @@ class Campaign {
 		ChoiceDataProvider::invalidateCache();
 
 		// Summary shouldn't actually come in null, but just in case...
-		if ( $summary === null ) {
-			$summary = '';
-		}
+		$summary ??= '';
 
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$time = $dbw->timestamp();

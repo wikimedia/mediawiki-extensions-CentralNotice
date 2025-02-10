@@ -1525,9 +1525,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		};
 
 		if ( $this->editable ) {
-			if ( $selected === null ) {
-				$selected = 0; // default to bucket 'A'
-			}
+			// Default to bucket 'A'
+			$selected ??= 0;
 			$selected %= $numberCampaignBuckets;
 
 			// bucketSelector class is for all bucket selectors (for assigned or
@@ -1563,9 +1562,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string
 	 */
 	private function numBucketsDropdown( $numBuckets, $selected ) {
-		if ( $selected === null ) {
-			$selected = 1;
-		}
+		$selected ??= 1;
 
 		if ( $this->editable ) {
 			$html = Html::openElement( 'select', [ 'name' => 'buckets', 'id' => 'buckets' ] );
@@ -1955,12 +1952,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return mixed Stored variable or default
 	 */
 	public function getCNSessionVar( $variable, $default = null ) {
-		$val = $this->getRequest()->getSessionData( "centralnotice-$variable" );
-		if ( $val === null ) {
-			$val = $default;
-		}
-
-		return $val;
+		return $this->getRequest()->getSessionData( "centralnotice-$variable" ) ?? $default;
 	}
 
 	/**

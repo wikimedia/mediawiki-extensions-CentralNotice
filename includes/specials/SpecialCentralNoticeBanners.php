@@ -400,13 +400,9 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 */
 	private function setFilterFromUrl() {
 		// This is the normal param on visible URLs.
-		$filterParam = $this->getRequest()->getVal( 'filter', null );
-
-		// If the form was posted the filter parameter'll have a different name.
-		if ( $filterParam === null ) {
-			$filterParam =
-				$this->getRequest()->getVal( 'wpbannerNameFilter', null );
-		}
+		$filterParam = $this->getRequest()->getVal( 'filter', null ) ??
+			// If the form was posted the filter parameter'll have a different name.
+			$this->getRequest()->getVal( 'wpbannerNameFilter', null );
 
 		// Clean, clean...
 		if ( $filterParam !== null ) {

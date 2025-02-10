@@ -50,9 +50,7 @@ class CNDatabase {
 		}
 
 		// If target is still null, use DB_REPLICA.
-		if ( $target === null ) {
-			$target = DB_REPLICA;
-		}
+		$target ??= DB_REPLICA;
 
 		// If we got DB_PRIMARY for whatever reason, make sure that's remembered
 		if ( $target === DB_PRIMARY ) {
