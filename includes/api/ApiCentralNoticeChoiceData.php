@@ -18,18 +18,15 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 	public function execute() {
 		// Extract, sanitize and munge the parameters
 		$params = $this->extractRequestParams();
+		$project = self::sanitizeText( $params['project'], self::PROJECT_FILTER );
+		$lang = self::sanitizeText( $params['language'], self::LANG_FILTER );
 
-		$project = self::sanitizeText(
-				$params['project'],
-				self::PROJECT_FILTER
-		);
-
-		$lang = self::sanitizeText(
-				$params['language'],
-				self::LANG_FILTER
-		);
-
-		$choices = ChoiceDataProvider::getChoices( $project, $lang );
+		if ( $project === null || $lang === null ) {
+			// Both database fields are not nullable, the query wouldn't find anything anyway
+			$choices = [];
+		} else {
+			$choices = ChoiceDataProvider::getChoices( $project, $lang );
+		}
 
 		// Get the result object for creating the output
 		$apiResult = $this->getResult();
@@ -65,21 +62,16 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 
 	/**
 	 * Obtains the parameter $param, sanitizes by returning the first match to $regex or
-	 * $default if there was no match.
+	 * null if there was no match.
 	 *
-	 * @param string $param Name of GET/POST parameter
+	 * @param string $value
 	 * @param string $regex Sanitization regular expression
-	 * @param string|null $default Default value to return on error
-	 *
-	 * @return string The sanitized value
+	 * @return string|null The sanitized value
 	 */
-	private static function sanitizeText( $param, $regex, $default = null ) {
-		$matches = [];
-
-		if ( preg_match( $regex, $param, $matches ) ) {
+	private static function sanitizeText( string $value, string $regex ): ?string {
+		if ( preg_match( $regex, $value, $matches ) ) {
 			return $matches[ 0 ];
-		} else {
-			return $default;
 		}
+		return null;
 	}
 }

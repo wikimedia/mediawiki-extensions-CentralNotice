@@ -1722,10 +1722,10 @@ class Campaign {
 	}
 
 	/**
-	 * @param string|false $campaign
-	 * @param string|false $username
-	 * @param string|false $start
-	 * @param string|false $end
+	 * @param string|null|false $campaign
+	 * @param string|null|false $username
+	 * @param string|null|false $start
+	 * @param string|null|false $end
 	 * @param int $limit
 	 * @param int $offset
 	 * @return array[]
