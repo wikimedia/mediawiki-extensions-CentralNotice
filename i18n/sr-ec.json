@@ -77,6 +77,7 @@
 	"centralnotice-project-lang": "Име пројекта",
 	"centralnotice-select-all": "Изабери све",
 	"centralnotice-remove-all": "Уклони све",
+	"centralnotice-items-selected": "$1 {{PLURAL:$1|ставка изабрана|ставке изабране}}",
 	"centralnotice-project-name": "Назив пројекта",
 	"centralnotice-assigned-templates": "Додељени шаблони",
 	"centralnotice-no-templates": "Нема шаблона. Додајте неке.",
