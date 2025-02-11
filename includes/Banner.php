@@ -987,10 +987,11 @@ class Banner {
 	public function extractMessageFields() {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
+		$popts = ParserOptions::newFromContext( RequestContext::getMain() );
 		$expanded = $parser->parse(
 			$this->getBodyContent(), $this->getTitle(),
-			ParserOptions::newFromContext( RequestContext::getMain() )
-		)->getText();
+			$popts
+		)->runOutputPipeline( $popts, [] )->getContentHolderText();
 
 		// Also search the preload js for fields.
 		$renderer = new BannerRenderer( RequestContext::getMain(), $this );
