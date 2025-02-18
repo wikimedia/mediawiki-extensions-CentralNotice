@@ -6,7 +6,7 @@
  * This module provides an API at mw.centralNotice.kvStoreMaintenance.
  */
 ( function () {
-	var kvStoreMaintenance,
+	let kvStoreMaintenance,
 		now = Date.now() / 1000,
 
 		// Regex to find kvStore localStorage keys. Must correspond with PREFIX
@@ -28,9 +28,9 @@
 	 * @return {jQuery.Promise} List of key strings
 	 */
 	function getKeys() {
-		return $.Deferred( function ( d ) {
-			mw.requestIdleCallback( function ( deadline ) {
-				var key,
+		return $.Deferred( ( d ) => {
+			mw.requestIdleCallback( ( deadline ) => {
+				let key,
 					keys = [],
 					index = localStorage.length;
 
@@ -54,9 +54,9 @@
 	 * @return {jQuery.Promise}
 	 */
 	function processKeys( queue ) {
-		return $.Deferred( function ( d ) {
+		return $.Deferred( ( d ) => {
 			mw.requestIdleCallback( function iterate( deadline ) {
-				var key, rawValue, value;
+				let key, rawValue, value;
 				while ( queue[ 0 ] !== undefined && deadline.timeRemaining() > MIN_WORK_TIME ) {
 					key = queue.shift();
 					try {
@@ -83,7 +83,7 @@
 	}
 
 	function purgeFallbackCookies() {
-		var cookies = document.cookie.split( ';' ),
+		let cookies = document.cookie.split( ';' ),
 			i, matches,
 			r = new RegExp( '^' + PREFIX_AND_SEPARATOR_IN_COOKIES + '[^=]*(?==)' );
 

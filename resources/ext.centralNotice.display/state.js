@@ -8,7 +8,7 @@
  */
 ( function () {
 
-	var state,
+	let state,
 		status,
 		campaignAttemptsManager,
 		config = require( './config.json' ),
@@ -74,12 +74,12 @@
 		};
 
 	campaignAttemptsManager = ( function () {
-		var attemptedCampaignStatusesByName = {},
+		const attemptedCampaignStatusesByName = {},
 			hasOwn = Object.prototype.hasOwnProperty;
 
 		return {
 			setCampaignStatus: function ( c, statusCode ) {
-				var statusObj;
+				let statusObj;
 
 				if ( !hasOwn.call( state.attemptedCampaignsByName, c.name ) ) {
 					// If this is the first time we've seen this campaign, add it to the
@@ -105,9 +105,7 @@
 			},
 
 			getAttemptedCampaigns: function () {
-				return state.data.campaignStatuses.map( function ( statusObj ) {
-					return state.attemptedCampaignsByName[ statusObj.campaign ];
-				} );
+				return state.data.campaignStatuses.map( ( statusObj ) => state.attemptedCampaignsByName[ statusObj.campaign ] );
 			}
 		};
 	}() );
@@ -121,7 +119,7 @@
 	 * Get a code for the general category the user's device is in.
 	 */
 	function getDeviceCode() {
-		var ua;
+		let ua;
 
 		// If we're on the desktop site, all your device are belong to DESKTOP
 		// TODO Fix this! Skin != device. Maybe screen width? P.S. Talk to users.
@@ -153,7 +151,7 @@
 	function setInitialData() {
 
 		// Keep existing properties of state.urlParams, which may be set by tests
-		var urlParams = Object.assign( state.urlParams, ( new mw.Uri() ).query ),
+		let urlParams = Object.assign( state.urlParams, ( new mw.Uri() ).query ),
 			impressionEventSampleRateFromUrl;
 
 		state.data.anonymous = ( !mw.user.isNamed() );
@@ -212,7 +210,7 @@
 	}
 
 	function getOptedOutCampaignsForUser() {
-		var allOptions, matches, key,
+		let allOptions, matches, key,
 			blocked = [],
 			// Note: coordinate with CampaignType::PREFERENCE_KEY_PREFIX
 			regex = /^centralnotice-display-campaign-type-(.*)$/;
@@ -239,7 +237,7 @@
 	}
 
 	function numericalUrlParamOrVal( urlParam, val ) {
-		var urlParamAsFloat = parseFloat( urlParam );
+		const urlParamAsFloat = parseFloat( urlParam );
 		return !isNaN( urlParamAsFloat ) ? urlParamAsFloat : val;
 	}
 
@@ -251,7 +249,7 @@
 	}
 
 	function setStatus( s, reason ) {
-		var reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
+		const reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
 		status = s;
 		state.data.status = s.key;
 		state.data.statusCode = s.code.toString() + reasonCodeStr;
@@ -363,7 +361,7 @@
 		 */
 		getDataCopy: function ( prepareForLogging ) {
 
-			var dataCopy = $.extend( true, {}, state.data );
+			const dataCopy = $.extend( true, {}, state.data );
 
 			if ( prepareForLogging ) {
 				delete dataCopy.getVars;
@@ -397,7 +395,7 @@
 		 * @param {Object} c the campaign object, from the list of available campaigns
 		 */
 		setAttemptingCampaign: function ( c ) {
-			var prop, i, category,
+			let prop, i, category,
 				campaignCategory = null;
 
 			// Resetting previously set flags (if any)
@@ -613,7 +611,7 @@
 		 *   commas.
 		 */
 		registerTest: function ( identifier ) {
-			var tests = state.data.tests = state.data.tests || [];
+			const tests = state.data.tests = state.data.tests || [];
 
 			// Add if it isn't already registered.
 			if ( tests.indexOf( identifier ) === -1 ) {

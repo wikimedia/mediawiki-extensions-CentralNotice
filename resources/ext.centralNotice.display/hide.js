@@ -4,7 +4,7 @@
  */
 ( function () {
 
-	var hide,
+	let hide,
 		category,
 		cookieName,
 		shouldHide,
@@ -34,7 +34,7 @@
 		},
 
 		processCookie: function () {
-			var rawCookieVal = $.cookie( cookieName ),
+			let rawCookieVal = $.cookie( cookieName ),
 				hideData,
 				now;
 
@@ -96,7 +96,7 @@
 		 * @param {number} duration Cookie duration, in seconds
 		 */
 		setHideCookies: function ( newReason, duration ) {
-			var date = new Date(),
+			const date = new Date(),
 				hideData = {
 					v: 1,
 					created: Math.floor( date.getTime() / 1000 ),
@@ -121,9 +121,9 @@
 
 			// Iterate over all configured URLs to hide this category of banner
 			// for all wikis in a cluster
-			mw.config.get( 'wgNoticeHideUrls' ).forEach( function ( val ) {
+			mw.config.get( 'wgNoticeHideUrls' ).forEach( ( val ) => {
 
-				var url = new mw.Uri( val );
+				const url = new mw.Uri( val );
 				url.extend(
 					{
 						duration: duration,

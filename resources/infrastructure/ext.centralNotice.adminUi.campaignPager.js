@@ -5,7 +5,7 @@
 // TODO Check whether we can use Object.keys() now, to remove the unused k var and above rule.
 ( function () {
 
-	var changes = {};
+	const changes = {};
 
 	/**
 	 * Update changes object as needed
@@ -17,7 +17,7 @@
 	 */
 	function setChange( campaignName, property, value, initialValue ) {
 
-		var keysCount, k;
+		let keysCount, k;
 
 		// If we're returning to the initial value, don't set a change, but
 		// maybe mop up
@@ -56,7 +56,7 @@
 	 * Handler for changes to checkboxes
 	 */
 	function updateCheckboxChanges() {
-		var $this = $( this );
+		const $this = $( this );
 
 		setChange(
 			$this.data( 'campaignName' ),
@@ -70,7 +70,7 @@
 	 * Handler for changes to priority dropdowns
 	 */
 	function updatePriorityChanges() {
-		var $this = $( this );
+		const $this = $( this );
 
 		setChange(
 			$this.data( 'campaignName' ),
@@ -84,7 +84,7 @@
 	 * Handler for changes to campaign type dropdowns
 	 */
 	function updateCampaignTypeChanges() {
-		var $this = $( this );
+		const $this = $( this );
 
 		setChange(
 			$this.data( 'campaignName' ),
@@ -98,7 +98,7 @@
 	 * Click handler for faux submit button, to submit just what's changed
 	 */
 	function submitChanges() {
-		var $form = $( '<form>' ).attr( 'method', 'post' ),
+		const $form = $( '<form>' ).attr( 'method', 'post' ),
 			$authtokenField = $( '<input>' ).attr( { type: 'hidden', name: 'authtoken' } ),
 			$summaryField = $( '<input>' ).attr( { type: 'hidden', name: 'changeSummary' } ),
 			$changesField = $( '<input>' ).attr( { type: 'hidden', name: 'changes' } );
@@ -114,9 +114,9 @@
 		$form.trigger( 'submit' );
 	}
 
-	$( function () {
+	$( () => {
 
-		var CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ],
+		let CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ],
 			i, selector;
 
 		// Keep data-sort-value attributes for jquery.tablesorter in sync

@@ -2,7 +2,7 @@
 ( function () {
 	'use strict';
 
-	var realAjax = $.ajax,
+	const realAjax = $.ajax,
 		realGeoIP = mw.geoIP,
 		realBucketCookie = $.cookie( 'CN' ),
 		realHideCookie = $.cookie( 'centralnotice_hide_fundraising' ),
@@ -346,7 +346,7 @@
 			// Mock mw.geoIP
 			mw.geoIP = {
 				getPromise: function () {
-					var deferred = $.Deferred();
+					const deferred = $.Deferred();
 					// Resolve with minimal valid geo object
 					deferred.resolve( { country: 'AQ' } );
 					return deferred.promise();
@@ -374,7 +374,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'canInsertBanner', function ( assert ) {
+	QUnit.test( 'canInsertBanner', ( assert ) => {
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 		mw.centralNotice.chooseAndMaybeDisplay();
 
@@ -403,13 +403,13 @@
 		mw.centralNotice.chooseAndMaybeDisplay();
 	}
 
-	QUnit.test( 'call record impression', function ( assert ) {
+	QUnit.test( 'call record impression', ( assert ) => {
 
 		// Mock navigator.sendBeacon to capture calls and check data points sent
 		navigator.sendBeacon = function ( urlString ) {
 
 			// mediawiki.Uri is already a dependency of ext.centralNotice.display
-			var url = new mw.Uri( urlString );
+			const url = new mw.Uri( urlString );
 			assert.strictEqual( url.query.campaign, 'campaign1', 'record impression campaign' );
 			assert.strictEqual( url.query.banner, 'banner1', 'record impression banner' );
 		};
@@ -421,8 +421,8 @@
 		mw.centralNotice.reallyInsertBanner( bannerData );
 	} );
 
-	QUnit.test( 'delay record impression call and register tests', function ( assert ) {
-		var deferred = $.Deferred(),
+	QUnit.test( 'delay record impression call and register tests', ( assert ) => {
+		let deferred = $.Deferred(),
 			recordImpresionPromise,
 			signalTestDone = assert.async();
 
@@ -439,7 +439,7 @@
 		recordImpresionPromise =
 			mw.centralNotice.requestRecordImpressionDelay( deferred.promise() );
 
-		recordImpresionPromise.done( function () {
+		recordImpresionPromise.done( () => {
 			mw.centralNotice.registerTest( 'test_test' );
 		} );
 
@@ -450,7 +450,7 @@
 
 		// Mock navigator.sendBeacon to capture calls and check data points sent
 		navigator.sendBeacon = function ( urlString ) {
-			var url = new mw.Uri( urlString );
+			const url = new mw.Uri( urlString );
 			assert.strictEqual( url.query.campaign, 'campaign1', 'record impression campaign' );
 			assert.strictEqual( url.query.banner, 'banner1', 'record impression banner' );
 
@@ -467,8 +467,8 @@
 		deferred.resolve();
 	} );
 
-	QUnit.skip( 'record impression timeout and register tests', function ( assert ) {
-		var recordImpresionPromise,
+	QUnit.skip( 'record impression timeout and register tests', ( assert ) => {
+		let recordImpresionPromise,
 			start = Date.now(),
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
 			signalTestDone = assert.async();
@@ -480,13 +480,13 @@
 		recordImpresionPromise =
 			mw.centralNotice.requestRecordImpressionDelay( $.Deferred().promise() );
 
-		recordImpresionPromise.done( function () {
+		recordImpresionPromise.done( () => {
 			mw.centralNotice.registerTest( 'test_timeouted_test' );
 		} );
 
 		// Mock navigator.sendBeacon to capture calls and check time and data points sent
 		navigator.sendBeacon = function ( urlString ) {
-			var url = new mw.Uri( urlString ),
+			const url = new mw.Uri( urlString ),
 				delay = Date.now() - start;
 
 			assert.strictEqual( url.query.campaign, 'campaign1', 'record impression campaign' );
@@ -516,8 +516,8 @@
 		// be made by MAX_RECORD_IMPRESSION_DELAY milliseconds (give or take a bit).
 	} );
 
-	QUnit.skip( 'record impression called only once', function ( assert ) {
-		var deferred = $.Deferred(),
+	QUnit.skip( 'record impression called only once', ( assert ) => {
+		let deferred = $.Deferred(),
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
 			recordImpresionPromise,
 			signalTestDone = assert.async();
@@ -546,7 +546,7 @@
 		// Set another timeout to resolve the promise requesting a delay after the timeout
 		// to call record impression has run. By starting this timeout after the record
 		// impression timeout (above) and making it a bit longer, we ensure it runs second.
-		setTimeout( function () {
+		setTimeout( () => {
 			assert.strictEqual(
 				recordImpresionPromise.state(),
 				'resolved',
@@ -558,12 +558,12 @@
 			deferred.resolve();
 		}, MAX_RECORD_IMPRESSION_DELAY + 1 );
 
-		setTimeout( function () {
+		setTimeout( () => {
 			signalTestDone();
 		}, MAX_RECORD_IMPRESSION_DELAY + 2 );
 	} );
 
-	QUnit.test( 'banner= override param', function ( assert ) {
+	QUnit.test( 'banner= override param', ( assert ) => {
 		mw.centralNotice.internal.state.urlParams.banner = 'test_banner';
 		$.ajax = function ( params ) {
 			assert.true( /Special(?:[:]|%3A)BannerLoader.*[?&]banner=test_banner/.test( params.url ) );
@@ -574,7 +574,7 @@
 		assert.true( mw.centralNotice.data.testingBanner );
 	} );
 
-	QUnit.test( 'randomcampaign= override param', function ( assert ) {
+	QUnit.test( 'randomcampaign= override param', ( assert ) => {
 		mw.centralNotice.choiceData = choiceData2Campaigns;
 
 		// Get the first campaign
@@ -596,7 +596,7 @@
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
-	QUnit.test( 'randombanner= override param', function ( assert ) {
+	QUnit.test( 'randombanner= override param', ( assert ) => {
 		mw.centralNotice.choiceData = choiceData1Campaign2Banners;
 
 		// Get the first banner
@@ -618,8 +618,8 @@
 		mw.centralNotice.chooseAndMaybeDisplay();
 	} );
 
-	QUnit.test( 'runs hooks on banner shown', function ( assert ) {
-		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+	QUnit.test( 'runs hooks on banner shown', ( assert ) => {
+		const mixin = new mw.centralNotice.Mixin( 'testMixin' );
 
 		$.ajax = function () {
 			mw.centralNotice.reallyInsertBanner( bannerData );
@@ -627,12 +627,12 @@
 		};
 
 		mixin.setPreBannerHandler(
-			function ( params ) {
+			( params ) => {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
 			}
 		);
 		mixin.setPostBannerOrFailHandler(
-			function ( params ) {
+			( params ) => {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
 			}
 		);
@@ -647,17 +647,17 @@
 		);
 	} );
 
-	QUnit.test( 'runs hooks on banner canceled', function ( assert ) {
-		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+	QUnit.test( 'runs hooks on banner canceled', ( assert ) => {
+		const mixin = new mw.centralNotice.Mixin( 'testMixin' );
 
 		mixin.setPreBannerHandler(
-			function ( params ) {
+			( params ) => {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
 				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 		mixin.setPostBannerOrFailHandler(
-			function ( params ) {
+			( params ) => {
 				assert.deepEqual( params, choiceData1Campaign2Banners[ 0 ].mixins.testMixin );
 			}
 		);
@@ -674,11 +674,11 @@
 		assert.true( mw.centralNotice.internal.state.isCampaignFailed() );
 	} );
 
-	QUnit.test( 'runs hooks on no banner available', function ( assert ) {
-		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+	QUnit.test( 'runs hooks on no banner available', ( assert ) => {
+		const mixin = new mw.centralNotice.Mixin( 'testMixin' );
 
 		mixin.setPreBannerHandler(
-			function ( params ) {
+			( params ) => {
 				assert.deepEqual(
 					params,
 					choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin
@@ -686,7 +686,7 @@
 			}
 		);
 		mixin.setPostBannerOrFailHandler(
-			function ( params ) {
+			( params ) => {
 				assert.deepEqual(
 					params,
 					choiceData1Campaign2Banners2Buckets[ 0 ].mixins.testMixin
@@ -708,7 +708,7 @@
 		);
 	} );
 
-	QUnit.test( 'short-circuit when there is a stale campaign in choices', function ( assert ) {
+	QUnit.test( 'short-circuit when there is a stale campaign in choices', ( assert ) => {
 		mw.centralNotice.choiceData = choiceDataCampaignsStaleness;
 
 		mw.centralNotice.chooseAndMaybeDisplay();
@@ -720,11 +720,11 @@
 		);
 	} );
 
-	QUnit.test( 'fallback when preferred campaign is filtered out by a mixin', function ( assert ) {
-		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+	QUnit.test( 'fallback when preferred campaign is filtered out by a mixin', ( assert ) => {
+		const mixin = new mw.centralNotice.Mixin( 'testMixin' );
 
 		mixin.setPreBannerHandler(
-			function () {
+			() => {
 				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
@@ -751,8 +751,8 @@
 		);
 	} );
 
-	QUnit.test( 'fallback when preferred campaign banner is hidden', function ( assert ) {
-		var i = 0;
+	QUnit.test( 'fallback when preferred campaign banner is hidden', ( assert ) => {
+		let i = 0;
 
 		mw.centralNotice.internal.hide.shouldHide = function () {
 			i++;
@@ -783,15 +783,15 @@
 	} );
 
 	QUnit.test( 'record impression is being called when all campaigns fail', function ( assert ) {
-		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+		const mixin = new mw.centralNotice.Mixin( 'testMixin' );
 
-		this.sandbox.stub( navigator, 'sendBeacon', function () {
+		this.sandbox.stub( navigator, 'sendBeacon', () => {
 			assert.step( 'beacon' );
 		} );
 
 		// Make every campaign fail by cancelling banners
 		mixin.setPreBannerHandler(
-			function () {
+			() => {
 				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
@@ -805,13 +805,13 @@
 
 	} );
 
-	QUnit.test( 'impression sample rate is kept as highest value', function ( assert ) {
+	QUnit.test( 'impression sample rate is kept as highest value', ( assert ) => {
 
-		var mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
+		const mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
 
 		// Set new sample rates via mixin
 		mixin.setPreBannerHandler(
-			function ( mixinParams ) {
+			( mixinParams ) => {
 				mw.centralNotice.setMinRecordImpressionSampleRate( mixinParams[ 0 ] );
 				// Fail campaign by cancelling a banner
 				mw.centralNotice.failCampaign( 'testReason' );
@@ -830,13 +830,13 @@
 
 	} );
 
-	QUnit.test( 'event sample rate is kept as highest value', function ( assert ) {
+	QUnit.test( 'event sample rate is kept as highest value', ( assert ) => {
 
-		var mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
+		const mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
 
 		// Set new sample rates via mixin
 		mixin.setPreBannerHandler(
-			function ( mixinParams ) {
+			( mixinParams ) => {
 				mw.centralNotice.setMinImpressionEventSampleRate( mixinParams[ 0 ] );
 				// Fail campaign by cancelling a banner
 				mw.centralNotice.failCampaign( 'testReason' );
@@ -855,16 +855,16 @@
 
 	} );
 
-	QUnit.test( 'event sample rate is being correctly overridden from url', function ( assert ) {
+	QUnit.test( 'event sample rate is being correctly overridden from url', ( assert ) => {
 
-		var mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
+		const mixin = new mw.centralNotice.Mixin( 'testMixinRates' );
 
 		// Override rate via URL param
 		mw.centralNotice.internal.state.urlParams.impressionEventSampleRate = 1;
 
 		// Set new sample rates via mixin
 		mixin.setPreBannerHandler(
-			function ( mixinParams ) {
+			( mixinParams ) => {
 				mw.centralNotice.setMinImpressionEventSampleRate( mixinParams[ 0 ] );
 				// Fail campaign by cancelling a banner
 				mw.centralNotice.failCampaign( 'testReason' );
@@ -883,20 +883,20 @@
 
 	} );
 
-	QUnit.test( 'campaign statuses are tracked as serialized JSON string', function ( assert ) {
+	QUnit.test( 'campaign statuses are tracked as serialized JSON string', ( assert ) => {
 
-		var mixin = new mw.centralNotice.Mixin( 'testMixin' );
+		const mixin = new mw.centralNotice.Mixin( 'testMixin' );
 
 		// Make every campaign fail by cancelling banners
 		mixin.setPreBannerHandler(
-			function () {
+			() => {
 				mw.centralNotice.failCampaign( 'testReason' );
 			}
 		);
 
 		// Mock navigator.sendBeacon
 		navigator.sendBeacon = function ( urlString ) {
-			var url = new mw.Uri( urlString ),
+			const url = new mw.Uri( urlString ),
 				statuses = JSON.parse( url.query.campaignStatuses );
 			assert.strictEqual( statuses.length, 2, 'correct amount of records' );
 		};

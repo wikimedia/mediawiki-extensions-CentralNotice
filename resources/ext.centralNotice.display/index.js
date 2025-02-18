@@ -31,7 +31,7 @@
  */
 ( function () {
 
-	var cn, Mixin,
+	let cn, Mixin,
 
 		// Registry of campaign-associated mixins
 		campaignMixins = {},
@@ -107,8 +107,8 @@
 	 */
 	function runMixinHooks( hookPropertyName, campaign ) {
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( campaign.mixins, function ( mixinName, mixinParams ) {
-			var handler;
+		$.each( campaign.mixins, ( mixinName, mixinParams ) => {
+			let handler;
 			// Sanity check
 			if ( !( mixinName in campaignMixins ) ) {
 				mw.log.warn( 'Mixin ' + mixinName + ' not registered.' );
@@ -141,7 +141,7 @@
 	}
 
 	function runFinalizeChooseAndMaybeDisplayHooks() {
-		cn.internal.state.getAttemptedCampaigns().forEach( function ( campaign ) {
+		cn.internal.state.getAttemptedCampaigns().forEach( ( campaign ) => {
 			runMixinHooks( 'finalizeChooseAndMaybeDisplayHandler', campaign );
 		} );
 	}
@@ -185,13 +185,13 @@
 	}
 
 	function fetchOrRetrieveBanner() {
-		var previewBannerContent,
+		let previewBannerContent,
 			data = cn.internal.state.getData();
 
 		// If this is a preview of an unsaved version, retrieve and inject the banner as
 		// soon as the DOM's ready.
 		if ( data.preview ) {
-			$( function () {
+			$( () => {
 				previewBannerContent = cn.kvStore.getItem(
 					PREVIEW_STORAGE_KEY_PREFIX + data.banner,
 					cn.kvStore.contexts.GLOBAL
@@ -210,7 +210,7 @@
 
 	function fetchBanner() {
 
-		var data = cn.internal.state.getData(),
+		const data = cn.internal.state.getData(),
 			urlBase = new mw.Uri(
 				mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' )
 			),
@@ -249,7 +249,7 @@
 			url: urlBase.toString() + '?' + urlQuery.join( '&' ),
 			dataType: 'script',
 			cache: true
-		} ).fail( function ( jqXHR, status, error ) {
+		} ).fail( ( jqXHR, status, error ) => {
 			cn.handleBannerLoaderError( status + ': ' + error );
 		} );
 	}
@@ -282,7 +282,7 @@
 	}
 
 	function recordImpression() {
-		var timeout,
+		let timeout,
 			timeoutHasRun = false;
 
 		if ( cn.recordImpressionDelayPromises.length === 0 ) {
@@ -294,14 +294,14 @@
 		// cn.recordImpressionDeferredObj (used in resolveRecordImpressionDeferred())
 		// should already have been set.
 
-		timeout = setTimeout( function () {
+		timeout = setTimeout( () => {
 			timeoutHasRun = true;
 			resolveRecordImpressionDeferred();
 		}, MAX_RECORD_IMPRESSION_DELAY );
 
 		// This function can only run once, so checking that the timeout hasn't run yet
 		// should be sufficient to prevent extra record impression calls.
-		$.when.apply( $, cn.recordImpressionDelayPromises ).always( function () {
+		$.when.apply( $, cn.recordImpressionDelayPromises ).always( () => {
 			if ( !timeoutHasRun ) {
 				clearTimeout( timeout );
 				resolveRecordImpressionDeferred();
@@ -310,7 +310,7 @@
 	}
 
 	function reallyRecordImpression() {
-		var state = cn.internal.state,
+		let state = cn.internal.state,
 			random = Math.random(),
 			url, dataCopy;
 
@@ -335,7 +335,7 @@
 				navigator.sendBeacon( urlStr );
 			} catch ( e ) {}
 		} else {
-			setTimeout( function () {
+			setTimeout( () => {
 				document.createElement( 'img' ).src = urlStr;
 			}, 0 );
 		}
@@ -343,7 +343,7 @@
 
 	function reallyChooseAndMaybeDisplay() {
 
-		var chooser = cn.internal.chooser,
+		let chooser = cn.internal.chooser,
 			bucketer = cn.internal.bucketer,
 			state = cn.internal.state,
 			hide = cn.internal.hide,
@@ -559,7 +559,7 @@
 	 * @param iteration
 	 */
 	function fallbackLoopUpdateAvailableCampaigns( iteration ) {
-		var state = cn.internal.state;
+		const state = cn.internal.state;
 
 		state.setAvailableCampaigns( cn.internal.chooser.updateAvailableCampaigns(
 			state.getData().availableCampaigns,
@@ -630,7 +630,7 @@
 		 */
 		reallyInsertBanner: function ( bannerJson ) {
 
-			var state = cn.internal.state,
+			let state = cn.internal.state,
 				shownAfterLoadingBanner = true,
 				bannerLoadedButHiddenReason,
 				tmpData;
@@ -834,7 +834,7 @@
 			mw.geoIP.getPromise()
 				.fail( cn.internal.state.setInvalidGeoData )
 				.done( cn.internal.state.setGeoData )
-				.always( function () {
+				.always( () => {
 					cn.internal.state.setUpForTestingBanner();
 					setUpDataProperty();
 					setUpBannerLoadedPromise();
@@ -845,7 +845,7 @@
 		insertBanner: function ( bannerJson ) {
 
 			// Insert the banner only after the DOM is ready
-			$( function () {
+			$( () => {
 				cn.reallyInsertBanner( bannerJson );
 			} );
 		},

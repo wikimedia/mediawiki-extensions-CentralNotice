@@ -5,7 +5,7 @@
  */
 ( function () {
 
-	var cn = mw.centralNotice,
+	const cn = mw.centralNotice,
 
 		// Minutes leeway for checking stale choice data. Should be the same
 		// as SpecialBannerLoader::CAMPAIGN_STALENESS_LEEWAY.
@@ -24,7 +24,7 @@
 	 */
 	function setCampaignAllocations( availableCampaigns ) {
 
-		var i, campaign, campaignPriority,
+		let i, campaign, campaignPriority,
 			campaignsByPriority = [],
 			priorities = [],
 			priority, campaignsAtThisPriority,
@@ -99,7 +99,7 @@
 
 			// First, sort the campaigns by throttling value (ascending)
 
-			campaignsAtThisPriority.sort( function ( a, b ) {
+			campaignsAtThisPriority.sort( ( a, b ) => {
 				if ( a.throttle < b.throttle ) {
 					return -1;
 				}
@@ -148,7 +148,7 @@
 	 */
 	function makePossibleBanners( campaign, bucket, anon, device ) {
 
-		var i, campaignName, banner,
+		let i, campaignName, banner,
 			possibleBanners = [];
 
 		campaignName = campaign.name;
@@ -189,7 +189,7 @@
 	 * @param possibleBanners
 	 */
 	function setBannerAllocations( possibleBanners ) {
-		var i, banner,
+		let i, banner,
 			totalWeights = 0;
 
 		// Optimize for just one banner available for the user in this
@@ -226,7 +226,7 @@
 	 * @return {?Object} The selected element in the array
 	 */
 	function chooseObjInAllocatedArray( random, allocatedArray ) {
-		var blockStart = 0,
+		let blockStart = 0,
 			i, obj, blockEnd;
 
 		// Cycle through objects, calculating which piece of
@@ -274,7 +274,7 @@
 		 */
 		makeAvailableCampaigns: function ( choiceData, country, region, anon, device ) {
 
-			var i, campaign, j, banner, keepCampaign, uniqueRegionCode,
+			let i, campaign, j, banner, keepCampaign, uniqueRegionCode,
 				availableCampaigns = [];
 
 			// This needs to yield the same result as makeUniqueRegionCode in GeoTarget.php
@@ -332,13 +332,11 @@
 			// grabs in the previous fallback loop. (Calculating the correct the
 			// probability in that case is what the fallbackLoopIndex parameter is for.)
 
-			var newAvailableCampaigns = previousAvailableCampaigns.slice(),
+			const newAvailableCampaigns = previousAvailableCampaigns.slice(),
 
 				// Remove campaign from available campaigns list
 				// Find campaign object index by name
-				cIndex = newAvailableCampaigns.map( function ( c ) {
-					return c.name;
-				} ).indexOf( failedCampaign.name );
+				cIndex = newAvailableCampaigns.map( ( c ) => c.name ).indexOf( failedCampaign.name );
 
 			// Sanity check: Verify the failed campaign was in the list of available
 			// campaigns. (That should always be the case, so this conditional should
@@ -361,7 +359,7 @@
 		 */
 		choiceDataSeemsFresh: function ( choiceData ) {
 
-			var i, campaign,
+			let i, campaign,
 				now = new Date(),
 				campaignEndDatePlusLeeway;
 
@@ -400,7 +398,7 @@
 
 			// Make a list of possible banners. Because of our wonky data model,
 			// this call must filter on logged-in status and device again.
-			var possibleBanners =
+			const possibleBanners =
 				makePossibleBanners( campaign, bucket, anon, device );
 
 			if ( possibleBanners.length === 0 ) {
@@ -427,7 +425,7 @@
 		 */
 		requestBanner: function ( campaign, bucket, anon, device, requestedBannerName ) {
 
-			var i, possibleBanner,
+			let i, possibleBanner,
 				// Make a list of possible banners.
 				possibleBanners =
 				makePossibleBanners( campaign, bucket, anon, device );

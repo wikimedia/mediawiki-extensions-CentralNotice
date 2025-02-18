@@ -12,7 +12,7 @@
 ( function () {
 	'use strict';
 
-	var identifier, days, multiStorageOption,
+	let identifier, days, multiStorageOption,
 		cn = mw.centralNotice,
 		forced = mw.util.getParamValue( 'force' ),
 		mixin = new cn.Mixin( 'largeBannerLimit' ),
@@ -86,7 +86,7 @@
 	function setFlag() {
 
 		// Compact timestamp by removing ms
-		var nowTS = Math.round( Date.now() / 1000 );
+		const nowTS = Math.round( Date.now() / 1000 );
 
 		if ( identifier ) {
 
@@ -110,9 +110,9 @@
 		}
 	}
 
-	mixin.setPreBannerHandler( function ( mixinParams ) {
+	mixin.setPreBannerHandler( ( mixinParams ) => {
 
-		var switchToHigherBucket = false;
+		let switchToHigherBucket = false;
 
 		// Forced URL param. If we're showing a banner, it'll be the one for
 		// whichever bucket we're already in. No changes to storage.
@@ -172,7 +172,7 @@
 		// gets shown, and set a flag, in the post banner handler.
 	} );
 
-	mixin.setPostBannerOrFailHandler( function () {
+	mixin.setPostBannerOrFailHandler( () => {
 
 		// If a large banner was shown, but not forced, set a flag to remember
 		// the reader has seen a large banner. The next time they might

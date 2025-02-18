@@ -19,7 +19,7 @@
 ( function () {
 	'use strict';
 
-	var identifier, multiStorageOption,
+	let identifier, multiStorageOption,
 		cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'impressionDiet' ),
 
@@ -43,8 +43,8 @@
 		// Time to store impression-counting data, in days
 		COUNTS_STORAGE_TTL = 365;
 
-	mixin.setPreBannerHandler( function ( mixinParams ) {
-		var hide;
+	mixin.setPreBannerHandler( ( mixinParams ) => {
+		let hide;
 
 		// URL forced a banner
 		if ( mw.util.getParamValue( 'force' ) ) {
@@ -165,7 +165,7 @@
 
 	function possiblyMigrateLegacyCookies() {
 
-		var rawCookie, rawWaitCookie, waitData, cookieCounts;
+		let rawCookie, rawWaitCookie, waitData, cookieCounts;
 
 		// Legacy cookies required an identifier
 		if ( !identifier ) {
@@ -201,7 +201,7 @@
 	 * @return {Object} An object containing count data.
 	 */
 	function getCounts() {
-		var c;
+		let c;
 
 		if ( identifier ) {
 			c = cn.kvStore.getItem(

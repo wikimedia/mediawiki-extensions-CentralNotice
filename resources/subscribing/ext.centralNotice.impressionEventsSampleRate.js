@@ -3,10 +3,10 @@
  */
 ( function () {
 
-	var cn = mw.centralNotice,
+	const cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'impressionEventsSampleRate' );
 
-	mixin.setPreBannerHandler( function ( mixinParams ) {
+	mixin.setPreBannerHandler( ( mixinParams ) => {
 		cn.setMinImpressionEventSampleRate( mixinParams.rate );
 	} );
 

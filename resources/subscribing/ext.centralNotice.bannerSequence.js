@@ -13,7 +13,7 @@
 ( function () {
 	'use strict';
 
-	var multiStorageOption, days, SequenceManager, sequenceManager,
+	let multiStorageOption, days, SequenceManager, sequenceManager,
 		preBannerHandler, postBannerOrFailHandler,
 		cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'bannerSequence' ),
@@ -44,7 +44,7 @@
 	 */
 	SequenceManager = function ( sequence, currentPageView ) {
 
-		var i;
+		let i;
 
 		this.sequence = sequence;
 
@@ -140,7 +140,7 @@
 	 * within the sequence. Set this.nextPageView and, if needed, this.identifierToSet.
 	 */
 	SequenceManager.prototype.processPageView = function () {
-		var nextStep = ( this.currentStep + 1 ) % this.sequence.length;
+		const nextStep = ( this.currentStep + 1 ) % this.sequence.length;
 
 		this.nextPageView = ( this.currentPageView + 1 ) % this.seqTotalPageViews;
 
@@ -225,7 +225,7 @@
 
 	preBannerHandler = function ( mixinParams ) {
 
-		var identifier, sequence, banner, pageView;
+		let identifier, sequence, banner, pageView;
 
 		// Campaign was already failed
 		if ( cn.isCampaignFailed() ) {

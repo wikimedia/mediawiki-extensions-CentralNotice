@@ -11,7 +11,7 @@
 
 	// Collapse and uncollapse detailed view for an individual log entry
 	window.toggleLogDisplay = function ( logId ) {
-		var thisCollapsed = document.getElementById( 'cn-collapsed-' + logId ),
+		const thisCollapsed = document.getElementById( 'cn-collapsed-' + logId ),
 			thisUncollapsed = document.getElementById( 'cn-uncollapsed-' + logId ),
 			thisDetails = document.getElementById( 'cn-log-details-' + logId );
 		if ( thisCollapsed.style.display === 'none' ) {
@@ -27,7 +27,7 @@
 
 	// Collapse and uncollapse log filter interface
 	window.toggleFilterDisplay = function () {
-		var thisCollapsed = document.getElementById( 'cn-collapsed-filter-arrow' ),
+		const thisCollapsed = document.getElementById( 'cn-collapsed-filter-arrow' ),
 			thisUncollapsed = document.getElementById( 'cn-uncollapsed-filter-arrow' ),
 			thisFilters = document.getElementById( 'cn-log-filters' );
 		if ( thisCollapsed.style.display === 'none' ) {
@@ -43,13 +43,13 @@
 
 	// Switch among various log displays
 	window.switchLogs = function ( baseUrl, logType ) {
-		var url = new mw.Uri( baseUrl );
+		const url = new mw.Uri( baseUrl );
 		encodeURIComponent( logType );
 		location.href = url.extend( { log: logType } ).toString();
 	};
 
-	$( function () {
-		var $geoRegionsInput = $( '#geo_regions_value' ),
+	$( () => {
+		const $geoRegionsInput = $( '#geo_regions_value' ),
 			$geoCountriesInput = $( '#geo_countries_value' ),
 			$geoStatus = $( '.cn-tree-status' ),
 			$allocationCountrySelector = $( '#centralnotice-country' ),
@@ -58,7 +58,7 @@
 
 		// Render jquery.ui.datepicker on appropriate fields
 		$( '.centralnotice-datepicker' ).each( function () {
-			var altFormat = 'yymmdd000000',
+			let altFormat = 'yymmdd000000',
 				altField = document.getElementById( this.id + '_timestamp' ),
 				defaultDate;
 			// Remove the time, leaving only the date info
@@ -105,8 +105,8 @@
 				// eslint-disable-next-line camelcase
 				show_only_matches_children: true
 			}
-		} ).on( 'changed.jstree', function ( e, data ) {
-			var i, type, node, countries = [], country, regions = [], regionCountries = {},
+		} ).on( 'changed.jstree', ( e, data ) => {
+			let i, type, node, countries = [], country, regions = [], regionCountries = {},
 				regionCountriesList = [], countriesListString,
 				selected = data.instance.get_top_selected( false );
 			for ( i = 0; i < selected.length; i++ ) {
@@ -152,12 +152,12 @@
 		} );
 
 		// Search input for geotree
-		$( '.cn-tree-search' ).on( 'keyup', mw.util.debounce( function () {
+		$( '.cn-tree-search' ).on( 'keyup', mw.util.debounce( () => {
 			$( '.cn-tree' ).jstree( true ).search( $( '.cn-tree-search' ).val() );
 		}, 250 ) );
 
 		// Clear button for search input
-		$( '.cn-tree-clear' ).on( 'click', function ( e ) {
+		$( '.cn-tree-clear' ).on( 'click', ( e ) => {
 			e.preventDefault();
 			$( '.cn-tree-search' ).val( '' );
 			$( '.cn-tree-search' ).trigger( 'keyup' );
@@ -183,7 +183,7 @@
 
 		// Set up dynamic region selector for banner allocation page
 		function allocationCountrySelected() {
-			var options = [ new Option( '', '' ) ],
+			let options = [ new Option( '', '' ) ],
 				country = $allocationCountrySelector.val(),
 				regions = allocationRegionOptions[ country ],
 				regionCode;

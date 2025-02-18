@@ -22,7 +22,7 @@
  */
 ( function () {
 
-	var bannerEditor, bannerName, $previewFieldSet, $previewContent, $bannerMessages,
+	let bannerEditor, bannerName, $previewFieldSet, $previewContent, $bannerMessages,
 		fileScopedOpenExternalPreview,
 
 		// Prefix for key used to store banner preview content for external preview.
@@ -30,7 +30,7 @@
 		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
 
 	function doPurgeCache() {
-		var language = $( '#cn-cdn-cache-language' ).val(),
+		let language = $( '#cn-cdn-cache-language' ).val(),
 			messageId = 'centralnotice-purge-cache-' + language,
 			waiting;
 
@@ -40,7 +40,7 @@
 		}
 
 		// Show notification with info if the background call takes a while to return
-		waiting = setTimeout( function () {
+		waiting = setTimeout( () => {
 			mw.notify( mw.message( 'centralnotice-banner-cdn-dialog-waiting-text' ).text(), {
 				autoHide: false,
 				tag: messageId
@@ -53,10 +53,10 @@
 			language: language
 		}, {
 			timeout: 2000
-		} ).always( function () {
+		} ).always( () => {
 			clearTimeout( waiting );
-		} ).fail( function ( code, result ) {
-			var text = mw.message( 'centralnotice-banner-cdn-dialog-error' ).text();
+		} ).fail( ( code, result ) => {
+			let text = mw.message( 'centralnotice-banner-cdn-dialog-error' ).text();
 
 			if ( result && result.error && result.error.info ) {
 				text += ' (' + result.error.info + ')';
@@ -68,7 +68,7 @@
 				type: 'error',
 				tag: messageId
 			} );
-		} ).done( function () {
+		} ).done( () => {
 			mw.notify( mw.message( 'centralnotice-banner-cdn-dialog-success' ).text(), {
 				type: 'success',
 				tag: messageId
@@ -82,11 +82,11 @@
 	 * @return {Object}
 	 */
 	function getUnsavedMessagesValues() {
-		var bannerMessagesCache = {};
+		const bannerMessagesCache = {};
 
 		if ( $bannerMessages.length ) {
-			$bannerMessages.each( function ( i, message ) {
-				var label = $( message ).find( 'label' ).text(),
+			$bannerMessages.each( ( i, message ) => {
+				const label = $( message ).find( 'label' ).text(),
 					value = $( message ).find( 'textarea' ).val();
 				bannerMessagesCache[ label ] = value;
 			} );
@@ -101,7 +101,7 @@
 	 * @param {boolean} openExternalPreview
 	 */
 	function fetchAndUpdateBannerPreview( openExternalPreview ) {
-		var $bannerContentTextArea = $( '#mw-input-wpbanner-body' ),
+		const $bannerContentTextArea = $( '#mw-input-wpbanner-body' ),
 			bannerMessagesCache = getUnsavedMessagesValues(),
 			url = new mw.Uri( mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' ) );
 
@@ -121,9 +121,9 @@
 				previewmessages: bannerMessagesCache,
 				token: mw.user.tokens.get( 'csrfToken' )
 			}
-		).fail( function ( jqXHR, status, error ) {
+		).fail( ( jqXHR, status, error ) => {
 			bannerEditor.handleBannerLoaderError( status + ': ' + error );
-		} ).always( function () {
+		} ).always( () => {
 			// De-activate the barbershop "loading" animation
 			$previewFieldSet.attr( 'disabled', false );
 		} );
@@ -138,7 +138,7 @@
 		 * @return {boolean}
 		 */
 		doCloneBannerDialog: function () {
-			var buttons = {},
+			const buttons = {},
 				okButtonText = mw.message( 'centralnotice-clone' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-clone-cancel' ).text(),
 				$dialogObj = $( '<form>' );
@@ -151,7 +151,7 @@
 
 				// We'll submit the real form (not the one in the dialog).
 				// Copy in values to that form before submitting.
-				var formobj = $( '#cn-banner-editor' )[ 0 ];
+				const formobj = $( '#cn-banner-editor' )[ 0 ];
 				formobj.wpaction.value = 'clone';
 				formobj.wpcloneName.value = $( this )[ 0 ].wpcloneName.value;
 
@@ -199,7 +199,7 @@
 		 * the form with the 'remove' action.
 		 */
 		doDeleteBanner: function () {
-			var $dialogObj = $( '<form>' ),
+			const $dialogObj = $( '<form>' ),
 				$dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
@@ -208,7 +208,7 @@
 			// We'll submit the real form (outside the dialog).
 			// Copy in values to that form before submitting.
 			buttons[ deleteText ] = function () {
-				var formobj = $( '#cn-banner-editor' )[ 0 ];
+				const formobj = $( '#cn-banner-editor' )[ 0 ];
 				formobj.wpaction.value = 'delete';
 
 				formobj.wpdeleteEditSummary.value =
@@ -240,13 +240,13 @@
 		 * Submits the form with the archive action.
 		 */
 		doArchiveBanner: function () {
-			var $dialogObj = $( '<div>' ),
+			const $dialogObj = $( '<div>' ),
 				buttons = {},
 				archiveText = mw.message( 'centralnotice-archive-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-archive-banner-cancel' ).text();
 
 			buttons[ archiveText ] = function () {
-				var formobj = $( '#cn-banner-editor' )[ 0 ];
+				const formobj = $( '#cn-banner-editor' )[ 0 ];
 				formobj.wpaction.value = 'archive';
 				formobj.submit();
 			};
@@ -269,7 +269,7 @@
 		 * @param {Object} data
 		 */
 		updateBannerPreview: function ( data ) {
-			var bannerHtml = data.bannerHtml;
+			const bannerHtml = data.bannerHtml;
 			$previewContent.html( bannerHtml );
 
 			if ( fileScopedOpenExternalPreview ) {
@@ -307,7 +307,7 @@
 		 * form in order to update the language of the preview and the displayed translations.
 		 */
 		updateLanguage: function () {
-			var formobj = $( '#cn-banner-editor' )[ 0 ];
+			const formobj = $( '#cn-banner-editor' )[ 0 ];
 			formobj.wpaction.value = 'update-lang';
 			formobj.submit();
 		},
@@ -319,7 +319,7 @@
 		 * @param {string} buttonType
 		 */
 		insertButton: function ( buttonType ) {
-			var buttonValue,
+			let buttonValue,
 				sel,
 				bannerField = document.getElementById( 'mw-input-wpbanner-body' ),
 				startPos,
@@ -354,8 +354,8 @@
 	};
 
 	// Attach handlers and initialize stuff after document ready
-	$( function () {
-		var $editSection = $( '#cn-formsection-edit-template' ),
+	$( () => {
+		const $editSection = $( '#cn-formsection-edit-template' ),
 			$previewLink = $( '<a>' ),
 			$previewLegend = $( '<legend>' ),
 			$previewUpdateButton = $( '<button>' );
@@ -387,11 +387,11 @@
 			'.mw-htmlform-field-HTMLCentralNoticeBannerMessage' );
 
 		// Attach handlers
-		$previewLink.on( 'click', function () {
+		$previewLink.on( 'click', () => {
 			fetchAndUpdateBannerPreview( true );
 		} );
 
-		$previewUpdateButton.on( 'click', function () {
+		$previewUpdateButton.on( 'click', () => {
 			fetchAndUpdateBannerPreview( false );
 		} );
 

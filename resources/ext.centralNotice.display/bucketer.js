@@ -24,7 +24,7 @@
  */
 ( function () {
 
-	var bucketer,
+	let bucketer,
 
 		// Bucket objects by campaign; properties are campaign names.
 		// Retrieved from kvStore (which uses LocalStorage or a fallback cookie)
@@ -50,9 +50,7 @@
 	 * @param name
 	 */
 	function escapeCampaignName( name ) {
-		return name.replace( /[*!]/g, function ( match ) {
-			return '&#' + match.charCodeAt( 0 );
-		} );
+		return name.replace( /[*!]/g, ( match ) => '&#' + match.charCodeAt( 0 ) );
 	}
 
 	/**
@@ -61,17 +59,15 @@
 	 * @param name
 	 */
 	function decodeCampaignName( name ) {
-		return name.replace( /&#(33|42)/, function ( match, $1 ) {
-			return String.fromCharCode( $1 );
-		} );
+		return name.replace( /&#(33|42)/, ( match, $1 ) => String.fromCharCode( $1 ) );
 	}
 
 	function parseSerializedBuckets( serialized ) {
 
-		var parsedBuckets = {};
+		const parsedBuckets = {};
 
-		serialized.split( '*' ).forEach( function ( strBucket ) {
-			var parts = strBucket.split( '!' ),
+		serialized.split( '*' ).forEach( ( strBucket ) => {
+			const parts = strBucket.split( '!' ),
 				key = decodeCampaignName( parts[ 0 ] ),
 				start = parseInt( parts[ 1 ], 10 ) + 14e8,
 				end = start + parseInt( parts[ 2 ], 10 ),
@@ -97,7 +93,7 @@
 	 */
 	function possiblyLoadAndMigrateLegacyBuckets() {
 
-		var cookieVal = $.cookie( LEGACY_COOKIE );
+		const cookieVal = $.cookie( LEGACY_COOKIE );
 
 		if ( cookieVal ) {
 
@@ -117,7 +113,7 @@
 	 */
 	function loadBuckets() {
 
-		var val = kvStore.getItem(
+		const val = kvStore.getItem(
 			STORAGE_KEY,
 			kvStore.contexts.GLOBAL,
 			multiStorageOption
@@ -135,10 +131,10 @@
 	 * back to cookies, and it seems preferable to keep things consistent.
 	 */
 	function storeBuckets() {
-		var expires = Math.ceil( Date.now() / 1000 ),
+		let expires = Math.ceil( Date.now() / 1000 ),
 			// eslint-disable-next-line no-jquery/no-map-util
-			serialized = $.map( buckets, function ( opts, key ) {
-				var parts = [
+			serialized = $.map( buckets, ( opts, key ) => {
+				const parts = [
 					escapeCampaignName( key ),
 					Math.floor( opts.start - 14e8 ),
 					Math.ceil( opts.end - opts.start ),
@@ -187,7 +183,7 @@
 	 */
 	function retrieveProcessAndGet() {
 
-		var campaignName = campaign.name,
+		let campaignName = campaign.name,
 			campaignStartDate,
 			bucket, bucketEndDate, retrievedBucketEndDate, val,
 			extension = mw.config.get( 'wgCentralNoticePerCampaignBucketExtension' ),

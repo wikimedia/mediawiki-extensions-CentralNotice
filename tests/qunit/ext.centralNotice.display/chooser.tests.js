@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	var testFixtures = mw.centralNoticeTestFixtures,
+	const testFixtures = mw.centralNoticeTestFixtures,
 		testCases = testFixtures.test_cases,
 		numBuckets = testFixtures.mock_config_values.NoticeNumberOfBuckets,
 		chooser = mw.centralNotice.internal.chooser;
@@ -13,12 +13,12 @@
 	// Cycle through test cases, contexts and outputs, and buckets and set up
 	// allocation tests. For JSLint-happiness, drizzle toasted closure sauce.
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( testCases, function ( testCaseName, testCase ) {
+	$.each( testCases, ( testCaseName, testCase ) => {
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( testCase.contexts_and_outputs,
-			function ( contextAndOutputName, contextAndOutput ) {
+			( contextAndOutputName, contextAndOutput ) => {
 
-				var i, testName, allocationTestFunction;
+				let i, testName, allocationTestFunction;
 
 				// Note: numBuckets isn't available via mw.config here, only in tests
 				for ( i = 0; i < numBuckets; i++ ) {
@@ -45,7 +45,7 @@
 	 */
 	function makeAllocationTestFunction( contextAndOutput, bucket ) {
 		return function ( assert ) {
-			var choices = contextAndOutput.choices,
+			let choices = contextAndOutput.choices,
 				expectedAssertCount,
 				anonymous,
 				context = contextAndOutput.context,
@@ -63,7 +63,7 @@
 			// 0 allocation, in which case just 2 assertion per campaign.
 			expectedAssertCount = 1;
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( expectedAllocations, function ( key, camp ) {
+			$.each( expectedAllocations, ( key, camp ) => {
 
 				if ( camp.allocation === 0 ) {
 					expectedAssertCount += 2;
@@ -206,7 +206,7 @@
 	 * @see CentralNoticeTestFixtures::setTestCaseStartEnd()
 	 */
 	function setChoicesStartEnd( choices ) {
-		var i, choice,
+		let i, choice,
 			now = new Date();
 
 		for ( i = 0; i < choices.length; i++ ) {
@@ -231,7 +231,7 @@
 	 * @return {number}
 	 */
 	function makeTimestamp( refDate, offsetInDays ) {
-		var date = new Date();
+		const date = new Date();
 		date.setDate( refDate.getDate() + offsetInDays );
 		return Math.round( date.getTime() / 1000 );
 	}

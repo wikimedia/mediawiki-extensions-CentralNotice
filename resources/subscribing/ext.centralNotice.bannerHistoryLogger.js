@@ -9,7 +9,7 @@
  */
 ( function () {
 
-	var cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
+	let cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		bhLogger,
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
 		doNotTrackEnabled =
@@ -58,7 +58,7 @@
 	 */
 	function makeLogEntry() {
 
-		var data = cn.data,
+		const data = cn.data,
 
 			// Randomly shift timestamp +/- 0 to 10 seconds, so logs can't be
 			// linked to specific Web requests. This is to strengthen user
@@ -106,7 +106,7 @@
 	 * @param {number} maxEntries
 	 */
 	function purgeOldLogEntries( maxEntryAge, maxEntries ) {
-		var i = 0,
+		let i = 0,
 			cutoff = now - maxEntryAge * 86400;
 
 		// If we're above the max number of entries, pare it down, starting
@@ -145,7 +145,7 @@
 	 */
 	function makeEventLoggingData( rate ) {
 
-		var elData = {},
+		let elData = {},
 			kvError = cn.kvStore.getError(),
 			i, logEntry, elLogEntry;
 
@@ -204,14 +204,14 @@
 	 * @return {jQuery.Promise}
 	 */
 	function sendLog( elData ) {
-		var deferred = $.Deferred(),
+		let deferred = $.Deferred(),
 			elPromise;
 
 		elPromise = mw.eventLog.logEvent( EVENT_LOGGING_SCHEMA, elData );
 
-		elPromise.then( function () {
+		elPromise.then( () => {
 			deferred.resolve();
-		}, function () {
+		}, () => {
 			deferred.reject();
 		} );
 
@@ -248,7 +248,7 @@
 	}
 
 	// Set a function to run after the entire display process
-	mixin.setFinalizeChooseAndMaybeDisplayHandler( function ( mixinParams ) {
+	mixin.setFinalizeChooseAndMaybeDisplayHandler( ( mixinParams ) => {
 
 		// Only run any processes once per pageview. This prevents multiple log
 		// entries per pageview if more than one attempted campaign has enabled
@@ -262,7 +262,7 @@
 		waitLogNoSendBeacon = mixinParams.waitLogNoSendBeacon;
 
 		// Do this idly to avoid browser lock-ups
-		mw.requestIdleCallback( function () {
+		mw.requestIdleCallback( () => {
 
 			if ( !cn.kvStore.isAvailable() ) {
 				cn.kvStore.setNotAvailableError();
@@ -302,9 +302,9 @@
 			mw.loader.using( [
 				'mediawiki.util',
 				'mediawiki.user'
-			] ).done( function () {
+			] ).done( () => {
 				// URL param bannerHistoryLogRate can override rate, for debugging
-				var rateParam = mw.util.getParamValue( 'bannerHistoryLogRate' ),
+				const rateParam = mw.util.getParamValue( 'bannerHistoryLogRate' ),
 					rate = rateParam !== null ?
 						parseFloat( rateParam ) : mixinParams.rate;
 
@@ -314,7 +314,7 @@
 				// Send a sample to the server
 				if ( Math.random() < rate ) {
 
-					sendLog( makeEventLoggingData( rate ) ).always( function () {
+					sendLog( makeEventLoggingData( rate ) ).always( () => {
 
 						inSample = true;
 						logSent = true;
@@ -361,7 +361,7 @@
 		 */
 		ensureLogSent: function () {
 
-			var deferred = $.Deferred();
+			const deferred = $.Deferred();
 
 			// Bow out if DNT
 			if ( doNotTrackEnabled ) {
@@ -370,16 +370,16 @@
 			}
 
 			// It's likely that this will be resolved by the time we get here
-			readyToLogDeferredObj.done( function () {
+			readyToLogDeferredObj.done( () => {
 
 				// This is included in the done() function to ensure a sampled
 				// log would be sent first (see above).
 				if ( logSent ) {
 					deferred.resolve();
 				} else {
-					sendLog( makeEventLoggingData() ).then( function () {
+					sendLog( makeEventLoggingData() ).then( () => {
 						deferred.resolve();
-					}, function () {
+					}, () => {
 						deferred.reject();
 					} );
 				}

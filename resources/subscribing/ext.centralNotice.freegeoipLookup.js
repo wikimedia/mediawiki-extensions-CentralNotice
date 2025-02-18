@@ -6,16 +6,16 @@
  * TODO Move this out of CentralNotice. See https://phabricator.wikimedia.org/T102848
  */
 ( function () {
-	var GEOIP_LOOKUP_URL = '//freegeoip.net/json/';
+	const GEOIP_LOOKUP_URL = '//freegeoip.net/json/';
 
 	module.exports = function () {
 
 		return $.ajax( {
 			url: GEOIP_LOOKUP_URL,
 			dataType: 'jsonp'
-		} ).then( function ( data ) {
+		} ).then( ( data ) => {
 
-			var geo = {
+			const geo = {
 				country: data.country_code,
 				region: data.region_code,
 				city: data.city,
