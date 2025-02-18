@@ -18,15 +18,13 @@
 		$.each( testCase.contexts_and_outputs,
 			( contextAndOutputName, contextAndOutput ) => {
 
-				let i, testName, allocationTestFunction;
-
 				// Note: numBuckets isn't available via mw.config here, only in tests
-				for ( i = 0; i < numBuckets; i++ ) {
-					testName = testCaseName + '/' + contextAndOutputName + '/bucket_' + i;
+				for ( let i = 0; i < numBuckets; i++ ) {
+					const testName = testCaseName + '/' + contextAndOutputName + '/bucket_' + i;
 
 					// Use a deep copy of contextAndOutput for each test, since
 					// properties get added in tests
-					allocationTestFunction = makeAllocationTestFunction(
+					const allocationTestFunction = makeAllocationTestFunction(
 						$.extend( true, {}, contextAndOutput ), i
 					);
 
@@ -45,23 +43,17 @@
 	 */
 	function makeAllocationTestFunction( contextAndOutput, bucket ) {
 		return function ( assert ) {
-			let choices = contextAndOutput.choices,
-				expectedAssertCount,
-				anonymous,
+			const choices = contextAndOutput.choices,
 				context = contextAndOutput.context,
-				allocatedCampaignsCount,
-				j, expectedBanners,
-				expectedAllocations = contextAndOutput.allocations,
-				campaign, expectedCampaign, campaignName,
-				allocatedBannersCount,
-				k, banner, bannerName, availableCampaigns;
+				expectedAllocations = contextAndOutput.allocations;
 
 			// Calculate how many assertions to expect:
 			// 3 per campaign (existence, allocation and number of banners)
 			// plus 2 per banner in each campaign (existence and allocation)
 			// plus 1 (number of campaigns)... except if a campaign expects
 			// 0 allocation, in which case just 2 assertion per campaign.
-			expectedAssertCount = 1;
+			let expectedAssertCount = 1;
+			let expectedBanners;
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( expectedAllocations, ( key, camp ) => {
 
@@ -79,10 +71,10 @@
 			// Munge magic start and end properties into timestamps
 			setChoicesStartEnd( choices );
 
-			anonymous =
+			const anonymous =
 				isAnonymousFromLoggedInStatus( context.logged_in_status );
 
-			availableCampaigns = chooser.makeAvailableCampaigns(
+			const availableCampaigns = chooser.makeAvailableCampaigns(
 				choices,
 				context.country,
 				context.region,
@@ -100,12 +92,12 @@
 				0
 			);
 
-			allocatedCampaignsCount = 0;
+			let allocatedCampaignsCount = 0;
 
 			// Cycle through the campaigns in choices and test expected allocation
-			for ( j = 0; j < choices.length; j++ ) {
-				campaign = choices[ j ];
-				campaignName = campaign.name;
+			for ( let j = 0; j < choices.length; j++ ) {
+				const campaign = choices[ j ];
+				const campaignName = campaign.name;
 
 				// Continue if this campaign wasn't allocated
 				if ( !( 'allocation' in campaign ) ) {
@@ -120,7 +112,7 @@
 					'Allocated campaign ' + campaignName + ' was expected.'
 				);
 
-				expectedCampaign = expectedAllocations[ campaignName ];
+				const expectedCampaign = expectedAllocations[ campaignName ];
 
 				assert.strictEqual(
 					campaign.allocation.toFixed( 3 ),
@@ -150,12 +142,12 @@
 
 				expectedBanners = expectedCampaign.banners[ bucket ];
 
-				allocatedBannersCount = 0;
+				let allocatedBannersCount = 0;
 
-				for ( k = 0; k < campaign.banners.length; k++ ) {
+				for ( let k = 0; k < campaign.banners.length; k++ ) {
 
-					banner = campaign.banners[ k ];
-					bannerName = banner.name;
+					const banner = campaign.banners[ k ];
+					const bannerName = banner.name;
 
 					// Continue if this banner wasn't allocated
 					if ( !( 'allocation' in banner ) ) {
@@ -206,11 +198,10 @@
 	 * @see CentralNoticeTestFixtures::setTestCaseStartEnd()
 	 */
 	function setChoicesStartEnd( choices ) {
-		let i, choice,
-			now = new Date();
+		const now = new Date();
 
-		for ( i = 0; i < choices.length; i++ ) {
-			choice = choices[ i ];
+		for ( let i = 0; i < choices.length; i++ ) {
+			const choice = choices[ i ];
 
 			choice.start = makeTimestamp( now, choice.start_days_from_now );
 			choice.end = makeTimestamp( now, choice.end_days_from_now );

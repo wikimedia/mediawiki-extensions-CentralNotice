@@ -31,16 +31,16 @@
  */
 ( function () {
 
-	let cn, Mixin,
-
-		// Registry of campaign-associated mixins
-		campaignMixins = {},
+	let cn,
 
 		// For providing a jQuery.Promise to signal when a banner has loaded
 		bannerLoadedDeferredObj,
 
 		// Name of a requested banner; see cn.requestBanner(), below.
-		requestedBannerName = null,
+		requestedBannerName = null;
+
+	// Registry of campaign-associated mixins
+	const campaignMixins = {},
 
 		// Maximum time to delay the record impression call, in milliseconds
 		MAX_RECORD_IMPRESSION_DELAY = 250,
@@ -59,7 +59,7 @@
 	 *
 	 * @param name
 	 */
-	Mixin = function ( name ) {
+	const Mixin = function ( name ) {
 		this.name = name;
 	};
 
@@ -108,7 +108,6 @@
 	function runMixinHooks( hookPropertyName, campaign ) {
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( campaign.mixins, ( mixinName, mixinParams ) => {
-			let handler;
 			// Sanity check
 			if ( !( mixinName in campaignMixins ) ) {
 				mw.log.warn( 'Mixin ' + mixinName + ' not registered.' );
@@ -120,7 +119,7 @@
 				return;
 			}
 
-			handler = campaignMixins[ mixinName ][ hookPropertyName ];
+			const handler = campaignMixins[ mixinName ][ hookPropertyName ];
 
 			// Another sanity check
 			if ( typeof handler !== 'function' ) {
@@ -185,14 +184,13 @@
 	}
 
 	function fetchOrRetrieveBanner() {
-		let previewBannerContent,
-			data = cn.internal.state.getData();
+		const data = cn.internal.state.getData();
 
 		// If this is a preview of an unsaved version, retrieve and inject the banner as
 		// soon as the DOM's ready.
 		if ( data.preview ) {
 			$( () => {
-				previewBannerContent = cn.kvStore.getItem(
+				const previewBannerContent = cn.kvStore.getItem(
 					PREVIEW_STORAGE_KEY_PREFIX + data.banner,
 					cn.kvStore.contexts.GLOBAL
 				);
@@ -282,8 +280,7 @@
 	}
 
 	function recordImpression() {
-		let timeout,
-			timeoutHasRun = false;
+		let timeoutHasRun = false;
 
 		if ( cn.recordImpressionDelayPromises.length === 0 ) {
 			reallyRecordImpression();
@@ -294,7 +291,7 @@
 		// cn.recordImpressionDeferredObj (used in resolveRecordImpressionDeferred())
 		// should already have been set.
 
-		timeout = setTimeout( () => {
+		const timeout = setTimeout( () => {
 			timeoutHasRun = true;
 			resolveRecordImpressionDeferred();
 		}, MAX_RECORD_IMPRESSION_DELAY );
@@ -310,13 +307,13 @@
 	}
 
 	function reallyRecordImpression() {
-		let state = cn.internal.state,
-			random = Math.random(),
-			url, dataCopy;
+		const state = cn.internal.state,
+			random = Math.random();
 
+		let dataCopy;
 		// Legacy record impression
 		if ( random <= state.getData().recordImpressionSampleRate ) {
-			url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
+			const url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
 			dataCopy = state.getDataCopy( true );
 			url.extend( dataCopy );
 			sendBeacon( url.toString() );
@@ -343,11 +340,10 @@
 
 	function reallyChooseAndMaybeDisplay() {
 
-		let chooser = cn.internal.chooser,
+		const chooser = cn.internal.chooser,
 			bucketer = cn.internal.bucketer,
 			state = cn.internal.state,
-			hide = cn.internal.hide,
-			campaign, banner, i, maxCampaignFallback, maxCampaignFallbackConfig;
+			hide = cn.internal.hide;
 
 		// This will gather initial data needed for selection and display.
 		state.setUp();
@@ -384,14 +380,15 @@
 
 		// Set maximum iterations for the loop below. Pick the lowest between the
 		// configured limit and the total available campaigns.
-		maxCampaignFallbackConfig = mw.config.get( 'wgCentralNoticeMaxCampaignFallback' );
-		maxCampaignFallback = Math.min(
+		const maxCampaignFallbackConfig = mw.config.get( 'wgCentralNoticeMaxCampaignFallback' );
+		const maxCampaignFallback = Math.min(
 			state.getData().availableCampaigns.length,
 			maxCampaignFallbackConfig
 		);
 
+		let campaign;
 		// Fallback loop. Try to display something until we're out of choices.
-		for ( i = 0; i < maxCampaignFallback; i++ ) {
+		for ( let i = 0; i < maxCampaignFallback; i++ ) {
 
 			// Try to choose a campaign. Just because we choose one doesn't necessarily
 			// mean it'll display a banner, though. (That's why we set it as
@@ -496,6 +493,7 @@
 
 		// If a specific banner has been requested from a pre-banner hook, try to choose
 		// it.
+		let banner;
 		if ( requestedBannerName ) {
 
 			banner = chooser.requestBanner(
@@ -630,10 +628,8 @@
 		 */
 		reallyInsertBanner: function ( bannerJson ) {
 
-			let state = cn.internal.state,
-				shownAfterLoadingBanner = true,
-				bannerLoadedButHiddenReason,
-				tmpData;
+			const state = cn.internal.state;
+			let shownAfterLoadingBanner = true;
 
 			// Inject the banner HTML into the DOM
 			injectBannerHTML( bannerJson.bannerHtml );
@@ -651,13 +647,13 @@
 					// may add a 'reason' property to the object it receives.
 					// So we send only a copy of the data and check the added
 					// 'reason' property.
-					tmpData = state.getDataCopy();
+					const tmpData = state.getDataCopy();
 
 					shownAfterLoadingBanner =
 						cn.bannerData.alterImpressionData( tmpData );
 
 					if ( !shownAfterLoadingBanner ) {
-						bannerLoadedButHiddenReason = tmpData.reason || '';
+						const bannerLoadedButHiddenReason = tmpData.reason || '';
 						state.setBannerLoadedButHidden(
 							bannerLoadedButHiddenReason
 						);

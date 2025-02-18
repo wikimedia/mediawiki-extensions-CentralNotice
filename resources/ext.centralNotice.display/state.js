@@ -8,11 +8,10 @@
  */
 ( function () {
 
-	let state,
+	let state = null,
 		status,
-		campaignAttemptsManager,
-		config = require( './config.json' ),
-		impressionEventSampleRateOverridden = false,
+		impressionEventSampleRateOverridden = false;
+	const config = require( './config.json' ),
 
 		UNKNOWN_GEO_CODE = 'XX',
 
@@ -73,7 +72,7 @@
 			userOptOut: 21
 		};
 
-	campaignAttemptsManager = ( function () {
+	const campaignAttemptsManager = ( function () {
 		const attemptedCampaignStatusesByName = {},
 			hasOwn = Object.prototype.hasOwnProperty;
 
@@ -119,8 +118,6 @@
 	 * Get a code for the general category the user's device is in.
 	 */
 	function getDeviceCode() {
-		let ua;
-
 		// If we're on the desktop site, all your device are belong to DESKTOP
 		// TODO Fix this! Skin != device. Maybe screen width? P.S. Talk to users.
 		// TODO Make a test for this; it could stop working without notice.
@@ -129,7 +126,7 @@
 			return DEVICES.DESKTOP;
 		}
 
-		ua = navigator.userAgent;
+		const ua = navigator.userAgent;
 
 		if ( /iphone/i.test( ua ) ) {
 			return DEVICES.IPHONE;
@@ -151,8 +148,7 @@
 	function setInitialData() {
 
 		// Keep existing properties of state.urlParams, which may be set by tests
-		let urlParams = Object.assign( state.urlParams, ( new mw.Uri() ).query ),
-			impressionEventSampleRateFromUrl;
+		const urlParams = Object.assign( state.urlParams, ( new mw.Uri() ).query );
 
 		state.data.anonymous = ( !mw.user.isNamed() );
 		state.data.project = mw.config.get( 'wgNoticeProject' );
@@ -189,7 +185,7 @@
 
 		// In the case of impressionEventSampleRate, also remember if it's overridden by
 		// a URL param
-		impressionEventSampleRateFromUrl =
+		const impressionEventSampleRateFromUrl =
 			numericalUrlParamOrVal( urlParams.impressionEventSampleRate, null );
 
 		if ( impressionEventSampleRateFromUrl !== null ) {
@@ -210,8 +206,7 @@
 	}
 
 	function getOptedOutCampaignsForUser() {
-		let allOptions, matches, key,
-			blocked = [],
+		const blocked = [],
 			// Note: coordinate with CampaignType::PREFERENCE_KEY_PREFIX
 			regex = /^centralnotice-display-campaign-type-(.*)$/;
 
@@ -219,14 +214,14 @@
 			return [];
 		}
 
-		allOptions = Object.assign( {}, mw.user.options.values );
+		const allOptions = Object.assign( {}, mw.user.options.values );
 
-		for ( key in allOptions ) {
+		for ( const key in allOptions ) {
 			if ( !Object.prototype.hasOwnProperty.call( allOptions, key ) ) {
 				continue;
 			}
 
-			matches = regex.exec( key );
+			const matches = regex.exec( key );
 
 			if ( Array.isArray( matches ) && matches.length === 2 && !allOptions[ key ] ) {
 				blocked.push( matches[ 1 ] );

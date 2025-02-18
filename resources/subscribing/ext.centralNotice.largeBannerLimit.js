@@ -12,8 +12,8 @@
 ( function () {
 	'use strict';
 
-	let identifier, days, multiStorageOption,
-		cn = mw.centralNotice,
+	let identifier, days, multiStorageOption;
+	const cn = mw.centralNotice,
 		forced = mw.util.getParamValue( 'force' ),
 		mixin = new cn.Mixin( 'largeBannerLimit' ),
 

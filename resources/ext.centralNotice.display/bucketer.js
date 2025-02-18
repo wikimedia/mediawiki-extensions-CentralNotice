@@ -24,18 +24,16 @@
  */
 ( function () {
 
-	let bucketer,
-
-		// Bucket objects by campaign; properties are campaign names.
-		// Retrieved from kvStore (which uses LocalStorage or a fallback cookie)
-		// or from a legacy cookie.
-		buckets = null,
+	// Bucket objects by campaign; properties are campaign names.
+	// Retrieved from kvStore (which uses LocalStorage or a fallback cookie)
+	// or from a legacy cookie.
+	let buckets = null,
 
 		// The campaign we're working with.
 		campaign = null,
 
-		kvStore = mw.centralNotice.kvStore,
-		multiStorageOption,
+		multiStorageOption;
+	const kvStore = mw.centralNotice.kvStore,
 
 		// Name of the legacy cookie for CentralNotice buckets. Its value is
 		// a compact serialization of buckets in the same format as is
@@ -131,22 +129,22 @@
 	 * back to cookies, and it seems preferable to keep things consistent.
 	 */
 	function storeBuckets() {
-		let expires = Math.ceil( Date.now() / 1000 ),
-			// eslint-disable-next-line no-jquery/no-map-util
-			serialized = $.map( buckets, ( opts, key ) => {
-				const parts = [
-					escapeCampaignName( key ),
-					Math.floor( opts.start - 14e8 ),
-					Math.ceil( opts.end - opts.start ),
-					opts.val
-				];
+		let expires = Math.ceil( Date.now() / 1000 );
+		// eslint-disable-next-line no-jquery/no-map-util
+		const serialized = $.map( buckets, ( opts, key ) => {
+			const parts = [
+				escapeCampaignName( key ),
+				Math.floor( opts.start - 14e8 ),
+				Math.ceil( opts.end - opts.start ),
+				opts.val
+			];
 
-				if ( opts.end > expires ) {
-					expires = Math.ceil( opts.end );
-				}
+			if ( opts.end > expires ) {
+				expires = Math.ceil( opts.end );
+			}
 
-				return parts.join( '!' );
-			} ).join( '*' );
+			return parts.join( '!' );
+		} ).join( '*' );
 
 		kvStore.setItem(
 			STORAGE_KEY,
@@ -184,18 +182,16 @@
 	function retrieveProcessAndGet() {
 
 		let campaignName = campaign.name,
-			campaignStartDate,
-			bucket, bucketEndDate, retrievedBucketEndDate, val,
-			extension = mw.config.get( 'wgCentralNoticePerCampaignBucketExtension' ),
-			now = new Date(),
 			bucketsModified = false;
+		const extension = mw.config.get( 'wgCentralNoticePerCampaignBucketExtension' ),
+			now = new Date();
 
-		campaignStartDate = new Date();
+		const campaignStartDate = new Date();
 		campaignStartDate.setTime( campaign.start * 1000 );
 
 		// Buckets should end the time indicated by extension after
 		// the campaign's end
-		bucketEndDate = new Date();
+		let bucketEndDate = new Date();
 		bucketEndDate.setTime( campaign.end * 1000 );
 		bucketEndDate.setUTCDate( bucketEndDate.getUTCDate() + extension );
 
@@ -213,7 +209,7 @@
 			loadBuckets();
 		}
 
-		bucket = buckets[ campaignName ];
+		let bucket = buckets[ campaignName ];
 
 		// If we have a valid bucket, just check and possibly update its
 		// expiry.
@@ -225,7 +221,7 @@
 
 		if ( bucket && bucketEndDate > now ) {
 
-			retrievedBucketEndDate = new Date();
+			const retrievedBucketEndDate = new Date();
 			retrievedBucketEndDate.setTime( bucket.end * 1000 );
 
 			if ( retrievedBucketEndDate.getTime() !== bucketEndDate.getTime() ) {
@@ -241,7 +237,7 @@
 			// the campaign actually has less buckets than that,
 			// the value is mapped down as necessary. This lets
 			// campaigns modify the number of buckets they use.
-			val = getRandomBucket();
+			const val = getRandomBucket();
 
 			bucket = {
 				val: val,
@@ -274,7 +270,7 @@
 	/**
 	 * Bucketer object (intended for access from within this RL module).
 	 */
-	bucketer = mw.centralNotice.internal.bucketer = {
+	const bucketer = mw.centralNotice.internal.bucketer = {
 
 		/**
 		 * @param {Object} c A campaign object. Note: we don't check that the

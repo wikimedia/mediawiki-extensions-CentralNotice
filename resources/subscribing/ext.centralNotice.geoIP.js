@@ -6,8 +6,8 @@
  */
 ( function () {
 
-	let COOKIE_NAME = 'GeoIP',
-		geoPromise;
+	const COOKIE_NAME = 'GeoIP';
+	let geoPromise;
 
 	/**
 	 * Parse geo data in cookieValue and return an object with properties from
@@ -98,12 +98,11 @@
 		 */
 		makeGeoWithPromise: function () {
 
-			let cookieValue = $.cookie( COOKIE_NAME ),
-				geo, lookupModule;
+			const cookieValue = $.cookie( COOKIE_NAME );
 
 			// Were we able to read the cookie?
 			if ( cookieValue ) {
-				geo = parseCookieValue( cookieValue );
+				const geo = parseCookieValue( cookieValue );
 
 				// All good? Resolve with geo and get outta here.
 				if ( geo ) {
@@ -115,7 +114,7 @@
 			// Handle no geo data from the cookie.
 
 			// If there's a background lookup to fall back to, do that
-			lookupModule =
+			const lookupModule =
 				mw.config.get( 'wgCentralNoticeGeoIPBackgroundLookupModule' );
 
 			if ( lookupModule ) {

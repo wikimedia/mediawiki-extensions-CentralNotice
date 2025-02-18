@@ -6,15 +6,14 @@
  */
 ( function () {
 
-	let KVStorageContext,
-		kvStore,
-		error = null,
+	let error = null,
 		campaignName = null,
 		bannerName = null,
 		category = null,
 		cookiesEnabled = null,
 		localStorageAvailable = null,
-		now = Math.round( Date.now() / 1000 ),
+		kvStore = null;
+	const now = Math.round( Date.now() / 1000 ),
 
 		SEPARATOR = '|',
 
@@ -43,7 +42,7 @@
 	 *   when using cookies. Must not contain SEPARATOR_IN_COOKIES. (Distinct
 	 *   keys for cookies help keep cookies small, improving performance.)
 	 */
-	KVStorageContext = function ( key, keyInCookies ) {
+	const KVStorageContext = function ( key, keyInCookies ) {
 		this.key = key;
 		this.keyInCookies = keyInCookies;
 	};
@@ -183,10 +182,8 @@
 	}
 
 	function setLocalStorageItem( key, value, context, ttl ) {
-		let lsKey, encodedWrappedValue;
-
-		lsKey = makeKeyForLocalStorage( key, context );
-		encodedWrappedValue = JSON.stringify( {
+		const lsKey = makeKeyForLocalStorage( key, context );
+		const encodedWrappedValue = JSON.stringify( {
 			expiry: ttl ? ( ttl * 86400 ) + now : DEFAULT_ITEM_TTL + now,
 			val: value
 		} );
@@ -222,8 +219,8 @@
 	}
 
 	function getLocalStorageItem( key, context ) {
-		let lsKey = makeKeyForLocalStorage( key, context ),
-			rawValue, wrappedValue;
+		const lsKey = makeKeyForLocalStorage( key, context );
+		let rawValue, wrappedValue;
 
 		try {
 			rawValue = localStorage.getItem( lsKey );

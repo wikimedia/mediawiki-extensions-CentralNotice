@@ -24,13 +24,9 @@
 	 */
 	function setCampaignAllocations( availableCampaigns ) {
 
-		let i, campaign, campaignPriority,
-			campaignsByPriority = [],
-			priorities = [],
-			priority, campaignsAtThisPriority,
-			remainingAllocation = 1,
-			j, campaignsAtThisPriorityCount, currentFullAllocation,
-			actualAllocation;
+		const campaignsByPriority = [],
+			priorities = [];
+		let remainingAllocation = 1;
 
 		// Optimize for the common scenario of a single campaign
 		if ( availableCampaigns.length === 1 ) {
@@ -43,10 +39,10 @@
 		// and higher integers represent higher priority. These values are
 		// defined by class constants in the CentralNotice PHP class.
 
-		for ( i = 0; i < availableCampaigns.length; i++ ) {
+		for ( let i = 0; i < availableCampaigns.length; i++ ) {
 
-			campaign = availableCampaigns[ i ];
-			campaignPriority = campaign.preferred;
+			const campaign = availableCampaigns[ i ];
+			const campaignPriority = campaign.preferred;
 
 			// Initialize index the first time we hit this priority
 			if ( !campaignsByPriority[ campaignPriority ] ) {
@@ -57,7 +53,7 @@
 		}
 
 		// Make an array of priority levels and sort in descending order.
-		for ( priority in campaignsByPriority ) {
+		for ( const priority in campaignsByPriority ) {
 			priorities.push( priority );
 		}
 		priorities.sort();
@@ -69,15 +65,15 @@
 		// Only if some campaigns are throttled will they allow some space
 		// for campaigns at the next level down.
 
-		for ( i = 0; i < priorities.length; i++ ) {
+		for ( let i = 0; i < priorities.length; i++ ) {
 
-			campaignsAtThisPriority = campaignsByPriority[ priorities[ i ] ];
+			const campaignsAtThisPriority = campaignsByPriority[ priorities[ i ] ];
 
 			// If we fully allocated at a previous level, set allocations
 			// at this level to zero. (We check with 0.01 instead of 0 in
 			// case of issues due to finite precision.)
 			if ( remainingAllocation < 0.01 ) {
-				for ( j = 0; j < campaignsAtThisPriority.length; j++ ) {
+				for ( let j = 0; j < campaignsAtThisPriority.length; j++ ) {
 					campaignsAtThisPriority[ j ].allocation = 0;
 				}
 				continue;
@@ -109,19 +105,19 @@
 				return 0;
 			} );
 
-			campaignsAtThisPriorityCount = campaignsAtThisPriority.length;
-			for ( j = 0; j < campaignsAtThisPriorityCount; j++ ) {
+			const campaignsAtThisPriorityCount = campaignsAtThisPriority.length;
+			for ( let j = 0; j < campaignsAtThisPriorityCount; j++ ) {
 
-				campaign = campaignsAtThisPriority[ j ];
+				const campaign = campaignsAtThisPriority[ j ];
 
 				// Calculate the proportional, unthrottled allocation now
 				// available to a campaign at this level.
-				currentFullAllocation =
+				const currentFullAllocation =
 					remainingAllocation / ( campaignsAtThisPriorityCount - j );
 
 				// A campaign may get the above amount, or less, if
 				// throttling indicates that'd be too much.
-				actualAllocation =
+				const actualAllocation =
 					Math.min( currentFullAllocation, campaign.throttle / 100 );
 
 				campaign.allocation = actualAllocation;
@@ -148,13 +144,12 @@
 	 */
 	function makePossibleBanners( campaign, bucket, anon, device ) {
 
-		let i, campaignName, banner,
-			possibleBanners = [];
+		const possibleBanners = [];
 
-		campaignName = campaign.name;
+		const campaignName = campaign.name;
 
-		for ( i = 0; i < campaign.banners.length; i++ ) {
-			banner = campaign.banners[ i ];
+		for ( let i = 0; i < campaign.banners.length; i++ ) {
+			const banner = campaign.banners[ i ];
 
 			// Filter for bucket
 			if ( bucket !== banner.bucket ) {
@@ -189,8 +184,7 @@
 	 * @param possibleBanners
 	 */
 	function setBannerAllocations( possibleBanners ) {
-		let i, banner,
-			totalWeights = 0;
+		let totalWeights = 0;
 
 		// Optimize for just one banner available for the user in this
 		// campaign, by far our most common scenario.
@@ -200,13 +194,13 @@
 		}
 
 		// Find the sum of all banner weights
-		for ( i = 0; i < possibleBanners.length; i++ ) {
+		for ( let i = 0; i < possibleBanners.length; i++ ) {
 			totalWeights += possibleBanners[ i ].weight;
 		}
 
 		// Set allocation property to the normalized weight
-		for ( i = 0; i < possibleBanners.length; i++ ) {
-			banner = possibleBanners[ i ];
+		for ( let i = 0; i < possibleBanners.length; i++ ) {
+			const banner = possibleBanners[ i ];
 			banner.allocation = banner.weight / totalWeights;
 		}
 	}
@@ -226,16 +220,15 @@
 	 * @return {?Object} The selected element in the array
 	 */
 	function chooseObjInAllocatedArray( random, allocatedArray ) {
-		let blockStart = 0,
-			i, obj, blockEnd;
+		let blockStart = 0;
 
 		// Cycle through objects, calculating which piece of
 		// the allocation pie they should get. When random is in the piece,
 		// choose the object.
 
-		for ( i = 0; i < allocatedArray.length; i++ ) {
-			obj = allocatedArray[ i ];
-			blockEnd = blockStart + obj.allocation;
+		for ( let i = 0; i < allocatedArray.length; i++ ) {
+			const obj = allocatedArray[ i ];
+			const blockEnd = blockStart + obj.allocation;
 
 			if ( ( random >= blockStart ) && ( random < blockEnd ) ) {
 				return obj;
@@ -274,16 +267,15 @@
 		 */
 		makeAvailableCampaigns: function ( choiceData, country, region, anon, device ) {
 
-			let i, campaign, j, banner, keepCampaign, uniqueRegionCode,
-				availableCampaigns = [];
+			const availableCampaigns = [];
 
 			// This needs to yield the same result as makeUniqueRegionCode in GeoTarget.php
-			uniqueRegionCode = country + '_' + region;
+			const uniqueRegionCode = country + '_' + region;
 
-			for ( i = 0; i < choiceData.length; i++ ) {
+			for ( let i = 0; i < choiceData.length; i++ ) {
 
-				campaign = choiceData[ i ];
-				keepCampaign = false;
+				const campaign = choiceData[ i ];
+				let keepCampaign = false;
 
 				// Filter for country if geotargeted
 				if ( campaign.geotargeted && (
@@ -294,8 +286,8 @@
 				}
 
 				// Now filter by banner logged-in status and device.
-				for ( j = 0; j < campaign.banners.length; j++ ) {
-					banner = campaign.banners[ j ];
+				for ( let j = 0; j < campaign.banners.length; j++ ) {
+					const banner = campaign.banners[ j ];
 
 					// Logged-in status
 					if ( anon && !banner.display_anon ) {
@@ -359,13 +351,11 @@
 		 */
 		choiceDataSeemsFresh: function ( choiceData ) {
 
-			let i, campaign,
-				now = new Date(),
-				campaignEndDatePlusLeeway;
+			const now = new Date();
 
-			for ( i = 0; i < choiceData.length; i++ ) {
-				campaign = choiceData[ i ];
-				campaignEndDatePlusLeeway = new Date();
+			for ( let i = 0; i < choiceData.length; i++ ) {
+				const campaign = choiceData[ i ];
+				const campaignEndDatePlusLeeway = new Date();
 
 				campaignEndDatePlusLeeway.setTime(
 					( campaign.end * 1000 ) +
@@ -425,14 +415,12 @@
 		 */
 		requestBanner: function ( campaign, bucket, anon, device, requestedBannerName ) {
 
-			let i, possibleBanner,
-				// Make a list of possible banners.
-				possibleBanners =
-				makePossibleBanners( campaign, bucket, anon, device );
+			// Make a list of possible banners.
+			const possibleBanners = makePossibleBanners( campaign, bucket, anon, device );
 
-			for ( i = 0; i < possibleBanners.length; i++ ) {
+			for ( let i = 0; i < possibleBanners.length; i++ ) {
 
-				possibleBanner = possibleBanners[ i ];
+				const possibleBanner = possibleBanners[ i ];
 
 				if ( possibleBanner.name === requestedBannerName ) {
 					return possibleBanner;

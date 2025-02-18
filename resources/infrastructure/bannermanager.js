@@ -21,9 +21,7 @@
  */
 ( function () {
 
-	let bm;
-
-	bm = mw.centralNotice.adminUi.bannerManagement = {
+	const bm = mw.centralNotice.adminUi.bannerManagement = {
 		/**
 		 * State tracking variable for the number of items currently selected
 		 *
@@ -233,10 +231,8 @@
 		 * filter (or lack thereof).
 		 */
 		applyFilter: function () {
-			let newUri, filterStr;
-
-			filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
-			newUri = new mw.Uri();
+			let filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
+			const newUri = new mw.Uri();
 
 			// If there's a filter, reload with a filter query param.
 			// If there's no filter, reload with no such param.

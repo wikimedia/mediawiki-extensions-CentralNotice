@@ -17,8 +17,6 @@
 	 */
 	function setChange( campaignName, property, value, initialValue ) {
 
-		let keysCount, k;
-
 		// If we're returning to the initial value, don't set a change, but
 		// maybe mop up
 		if ( value === initialValue ) {
@@ -31,8 +29,8 @@
 				delete changes[ campaignName ][ property ];
 
 				// Remove campaign object from changes, if empty
-				keysCount = 0;
-				for ( k in changes[ campaignName ] ) {
+				let keysCount = 0;
+				for ( const k in changes[ campaignName ] ) {
 					keysCount++;
 				}
 
@@ -116,8 +114,7 @@
 
 	$( () => {
 
-		let CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ],
-			i, selector;
+		const CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ];
 
 		// Keep data-sort-value attributes for jquery.tablesorter in sync
 		$( '.mw-cn-input-check-sort' ).on( 'change click blur', function () {
@@ -129,11 +126,11 @@
 		if ( $( '#cn-campaign-pager' ).data( 'editable' ) ) {
 
 			// Go through all the fields with checkbox controls
-			for ( i = 0; i < CHECKBOX_NAMES.length; i++ ) {
+			for ( let i = 0; i < CHECKBOX_NAMES.length; i++ ) {
 
 				// Select enabled checkboxes with this name
 				// See CNCampaignPager::formatValue()
-				selector = '#cn-campaign-pager input[name="' +
+				const selector = '#cn-campaign-pager input[name="' +
 					CHECKBOX_NAMES[ i ] + '"]:not([disabled])';
 
 				// When checked or unchecked, update changes to send

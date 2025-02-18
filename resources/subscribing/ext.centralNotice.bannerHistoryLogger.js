@@ -9,21 +9,21 @@
  */
 ( function () {
 
-	let cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
-		bhLogger,
+	let bhLogger,
+		waitLogNoSendBeacon,
+		log,
+		logSent = false,
+		alreadyRun = false,
+		inSample;
+	const cn = mw.centralNotice, // Guaranteed to exist; we depend on display RL module
 		mixin = new cn.Mixin( 'bannerHistoryLogger' ),
 		doNotTrackEnabled =
 			// Support: Firefox < 32 (yes/no)
 			/1|yes/.test( navigator.doNotTrack ) ||
 			// Support: IE 11, Safari 7.1.3+ (window.doNotTrack)
 			window.doNotTrack === '1',
-		waitLogNoSendBeacon,
 		now = Math.round( Date.now() / 1000 ),
-		log,
 		readyToLogDeferredObj = $.Deferred(),
-		logSent = false,
-		alreadyRun = false,
-		inSample,
 
 		BANNER_HISTORY_KV_STORE_KEY = 'banner_history',
 
@@ -106,8 +106,7 @@
 	 * @param {number} maxEntries
 	 */
 	function purgeOldLogEntries( maxEntryAge, maxEntries ) {
-		let i = 0,
-			cutoff = now - maxEntryAge * 86400;
+		const cutoff = now - maxEntryAge * 86400;
 
 		// If we're above the max number of entries, pare it down, starting
 		// with older entries
@@ -115,6 +114,7 @@
 			log = log.slice( 0 - maxEntries );
 		}
 
+		let i = 0;
 		// Remove any remaining entries that are older than maxEntryAge
 		while ( i < log.length && log[ i ].time < cutoff ) {
 			i++;
@@ -145,9 +145,8 @@
 	 */
 	function makeEventLoggingData( rate ) {
 
-		let elData = {},
-			kvError = cn.kvStore.getError(),
-			i, logEntry, elLogEntry;
+		const elData = {},
+			kvError = cn.kvStore.getError();
 
 		// Log ID: should be generated before this is called, and should not be
 		// persisted anywhere on the client (see below).
@@ -170,12 +169,12 @@
 
 		// Add log entries, starting with the most recent ones, until the EL
 		// URL is too big, or we reach the end of the log.
-		i = log.length - 1;
+		let i = log.length - 1;
 
 		while ( i >= 0 ) {
-			logEntry = log[ i ];
+			const logEntry = log[ i ];
 
-			elLogEntry = [
+			const elLogEntry = [
 				logEntry.banner || '',
 				logEntry.campaign,
 				logEntry.time,
@@ -204,10 +203,9 @@
 	 * @return {jQuery.Promise}
 	 */
 	function sendLog( elData ) {
-		let deferred = $.Deferred(),
-			elPromise;
+		const deferred = $.Deferred();
 
-		elPromise = mw.eventLog.logEvent( EVENT_LOGGING_SCHEMA, elData );
+		const elPromise = mw.eventLog.logEvent( EVENT_LOGGING_SCHEMA, elData );
 
 		elPromise.then( () => {
 			deferred.resolve();

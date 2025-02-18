@@ -58,9 +58,8 @@
 
 		// Render jquery.ui.datepicker on appropriate fields
 		$( '.centralnotice-datepicker' ).each( function () {
-			let altFormat = 'yymmdd000000',
-				altField = document.getElementById( this.id + '_timestamp' ),
-				defaultDate;
+			const altFormat = 'yymmdd000000',
+				altField = document.getElementById( this.id + '_timestamp' );
 			// Remove the time, leaving only the date info
 			$( this ).datepicker( {
 				altField: altField,
@@ -70,7 +69,7 @@
 
 			if ( altField.value ) {
 				altField.value = altField.value.slice( 0, 8 ) + '000000';
-				defaultDate = $.datepicker.parseDate( altFormat, altField.value );
+				const defaultDate = $.datepicker.parseDate( altFormat, altField.value );
 				$( this ).datepicker(
 					'setDate', defaultDate
 				);
@@ -106,12 +105,12 @@
 				show_only_matches_children: true
 			}
 		} ).on( 'changed.jstree', ( e, data ) => {
-			let i, type, node, countries = [], country, regions = [], regionCountries = {},
-				regionCountriesList = [], countriesListString,
+			const countries = [], regions = [], regionCountries = {},
+				regionCountriesList = [],
 				selected = data.instance.get_top_selected( false );
-			for ( i = 0; i < selected.length; i++ ) {
-				node = data.instance.get_node( selected[ i ], false );
-				type = node.data.jstree.type;
+			for ( let i = 0; i < selected.length; i++ ) {
+				const node = data.instance.get_node( selected[ i ], false );
+				const type = node.data.jstree.type;
 				if ( type === 'country' ) {
 					countries.push( node.id );
 				} else {
@@ -127,7 +126,7 @@
 			$geoCountriesInput.val( countries.join( ',' ) );
 			$geoRegionsInput.val( regions.join( ',' ) );
 
-			for ( country in regionCountries ) {
+			for ( const country in regionCountries ) {
 				regionCountries[ country ].sort();
 				regionCountriesList.push(
 					country + ': (' + regionCountries[ country ].join( ', ' ) + ')'
@@ -135,6 +134,7 @@
 			}
 			regionCountriesList.sort();
 			countries.sort();
+			let countriesListString;
 			if ( countries.length > 0 && regionCountriesList.length > 0 ) {
 				countriesListString = countries.join( ', ' ) + '; ';
 			} else {
@@ -183,12 +183,11 @@
 
 		// Set up dynamic region selector for banner allocation page
 		function allocationCountrySelected() {
-			let options = [ new Option( '', '' ) ],
+			const options = [ new Option( '', '' ) ],
 				country = $allocationCountrySelector.val(),
-				regions = allocationRegionOptions[ country ],
-				regionCode;
+				regions = allocationRegionOptions[ country ];
 			if ( regions ) {
-				for ( regionCode in regions ) {
+				for ( const regionCode in regions ) {
 					options.push( new Option(
 						regions[ regionCode ], regionCode
 					) );

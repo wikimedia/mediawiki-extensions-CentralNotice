@@ -21,18 +21,16 @@
  *
  */
 ( function () {
-	let stepSize = 1,
+	const stepSize = 1,
 		mixinDefs = mw.config.get( 'wgCentralNoticeCampaignMixins' ),
 		mixinParamsTemplate = mw.template.get(
 			'ext.centralNotice.adminUi.campaignManager',
 			'campaignMixinParamControls.mustache'
 		),
-		$form, $submitBtn,
-		MixinCustomUiController, MixinCustomWidget,
-		ErrorStateTracker,
 		mixinCustomUiControllerFactory = new OO.Factory(),
-		errorStateTracker, eventBus, assignedBanners,
 		BUCKET_LABELS = [ 'A', 'B', 'C', 'D' ]; // TODO Fix for configs with more buckets
+	let $form, $submitBtn,
+		assignedBanners;
 
 	/* Event bus */
 
@@ -61,7 +59,7 @@
 	 * @param {string} errorKey
 	 * @param {boolean} state true to set error, false to clear one.
 	 */
-	eventBus = new OO.EventEmitter();
+	const eventBus = new OO.EventEmitter();
 
 	/* MixinCustomUiController */
 
@@ -86,7 +84,7 @@
 	 * @class MixinCustomUiController
 	 * @constructor
 	 */
-	MixinCustomUiController = function () {
+	const MixinCustomUiController = function () {
 
 		// Declare the abstract property here, but don't force it to null, in case the
 		// subclass decides to set it before calling the constructor.
@@ -158,8 +156,8 @@
 	 * @return {jQuery|null}
 	 */
 	MixinCustomUiController.prototype.getParamInputEl = function ( name, create ) {
-		let inputName = makeNoticeMixinControlName( this.constructor.static.name, name ),
-			$input = $form.find( 'input[name="' + inputName + '"]' );
+		const inputName = makeNoticeMixinControlName( this.constructor.static.name, name );
+		let $input = $form.find( 'input[name="' + inputName + '"]' );
 
 		if ( create && !( $input.length ) ) {
 
@@ -188,7 +186,7 @@
 	 * @param {MixinCustomUiController} controller
 	 * @param {Object} [config] Configuration options
 	 */
-	MixinCustomWidget = function ( controller, config ) {
+	const MixinCustomWidget = function ( controller, config ) {
 
 		const $element = $( '<fieldset>' ),
 			$group = $( '<div>' );
@@ -228,7 +226,7 @@
 	 * @class ErrorStateTracker
 	 * @constructor
 	 */
-	ErrorStateTracker = function () {
+	const ErrorStateTracker = function () {
 		this.errors = {};
 		this.messageBoxes = {};
 	};
@@ -270,7 +268,7 @@
 	};
 
 	// General error state tracker for the page
-	errorStateTracker = new ErrorStateTracker();
+	const errorStateTracker = new ErrorStateTracker();
 
 	// Connect handler for error-state events
 	eventBus.on( 'error-state', ( errorKey, state, messageBox ) => {
@@ -303,8 +301,7 @@
 	}
 
 	function updateBuckets() {
-		let i, isBucketDisabled,
-			numBuckets = getNumBuckets(),
+		const numBuckets = getNumBuckets(),
 			maxNumBuckets = mw.config.get( 'wgNoticeNumberOfBuckets' ),
 			$bucketSelectors = $( 'select.bucketSelector' ),
 
@@ -335,8 +332,8 @@
 		}
 
 		// Enable or disable bucket options in drop-downs, as appropriate
-		for ( i = 0; i < maxNumBuckets; i++ ) {
-			isBucketDisabled = ( i >= numBuckets );
+		for ( let i = 0; i < maxNumBuckets; i++ ) {
+			const isBucketDisabled = ( i >= numBuckets );
 
 			$bucketSelectors.find( 'option[value=' + i + ']' )
 				.prop( 'disabled', isBucketDisabled );
@@ -361,23 +358,21 @@
 	 */
 	function showOrHideCampaignMixinControls() {
 
-		let $checkBox = $( this ),
-			mixinName = $checkBox.data( 'mixin-name' ),
-			paramValues,
-			$paramControlSet = $( '#' + mixinParamControlsId( mixinName ) ),
-			mixinCustomUiController, $paramControls;
+		const $checkBox = $( this ),
+			mixinName = $checkBox.data( 'mixin-name' );
+		let $paramControlSet = $( '#' + mixinParamControlsId( mixinName ) );
 
 		if ( $checkBox.prop( 'checked' ) ) {
 
 			// If the controls don't exist yet, create them
 			if ( $paramControlSet.length === 0 ) {
 
-				paramValues = $checkBox.data( 'mixin-param-values' );
+				const paramValues = $checkBox.data( 'mixin-param-values' );
 
 				// If the mixin uses a custom UI to set params, instantiate that
 				if ( mixinDefs[ mixinName ].customAdminUIControlsModule ) {
 
-					mixinCustomUiController = mixinCustomUiControllerFactory
+					const mixinCustomUiController = mixinCustomUiControllerFactory
 						.create( mixinName );
 
 					mixinCustomUiController.init( paramValues );
@@ -392,7 +387,7 @@
 					);
 
 					// Hook up handler for verification
-					$paramControls = $paramControlSet.find( 'input' );
+					const $paramControls = $paramControlSet.find( 'input' );
 					$paramControls.on(
 						'keyup keydown change mouseup cut paste focus blur',
 						mw.util.debounce( verifyParamControl, 100 )
@@ -565,8 +560,8 @@
 	}
 
 	function setValidationError( error, $input, msgKey ) {
-		let errorKey = $input.attr( 'name' ),
-			messageBox = errorStateTracker.getMessageBox( errorKey );
+		const errorKey = $input.attr( 'name' );
+		let messageBox = errorStateTracker.getMessageBox( errorKey );
 
 		if ( error ) {
 			if ( !messageBox ) {
@@ -588,23 +583,21 @@
 	 * Create a by-bucket index of assigned banners using data received from the server.
 	 */
 	function setUpAssignedBanners() {
-		let assignedBannersFlat, i;
-
 		// Create outer array and inner arrays for all possible buckets
 		assignedBanners = [];
 
-		for ( i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
+		for ( let i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
 			assignedBanners[ i ] = [];
 		}
 
 		// Get the data sent from the server
 		// If there are no assigned banners, the assigned banner fieldset isn't included
 		// in the page. In that case, jQuery will return undefined from data()
-		assignedBannersFlat =
+		const assignedBannersFlat =
 			$( '#centralnotice-assigned-banners' ).data( 'assigned-banners' ) || [];
 
 		// Fill up the index
-		for ( i = 0; i < assignedBannersFlat.length; i++ ) {
+		for ( let i = 0; i < assignedBannersFlat.length; i++ ) {
 			assignedBanners[ assignedBannersFlat[ i ].bucket ]
 				.push( assignedBannersFlat[ i ].bannerName );
 		}
@@ -630,8 +623,7 @@
 
 		// Iterate over the bucket selectors for assigned banners
 		$selectors.each( function () {
-			let i, bannerIdx,
-				$this = $( this ),
+			const $this = $( this ),
 				assignedBucket = +$this.val(),
 				bannerName = $this.data( 'banner-name' ),
 				removed = ( removedBanners.indexOf( bannerName ) !== -1 );
@@ -639,9 +631,9 @@
 			// Iterate over all buckets, adding banners to the index or removeing them,
 			// as needed. (assignedBanners has elements for all possible buckets.)
 			// TODO Make the order of banners the same as the order displayed in the UI
-			for ( i = 0; i < assignedBanners.length; i++ ) {
+			for ( let i = 0; i < assignedBanners.length; i++ ) {
 
-				bannerIdx = assignedBanners[ i ].indexOf( bannerName );
+				const bannerIdx = assignedBanners[ i ].indexOf( bannerName );
 
 				// If the box is checked to remove, just ensure the banner is not there
 				if ( removed ) {

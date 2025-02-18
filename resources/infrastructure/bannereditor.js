@@ -23,16 +23,15 @@
 ( function () {
 
 	let bannerEditor, bannerName, $previewFieldSet, $previewContent, $bannerMessages,
-		fileScopedOpenExternalPreview,
+		fileScopedOpenExternalPreview;
 
-		// Prefix for key used to store banner preview content for external preview.
-		// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in ext.centralNotice.display.js
-		PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
+	// Prefix for key used to store banner preview content for external preview.
+	// Coordinate with PREVIEW_STORAGE_KEY_PREFIX in ext.centralNotice.display.js
+	const PREVIEW_STORAGE_KEY_PREFIX = 'cn-banner-preview-';
 
 	function doPurgeCache() {
-		let language = $( '#cn-cdn-cache-language' ).val(),
-			messageId = 'centralnotice-purge-cache-' + language,
-			waiting;
+		const language = $( '#cn-cdn-cache-language' ).val(),
+			messageId = 'centralnotice-purge-cache-' + language;
 
 		// Do nothing if the button was disabled (from lack of CN admin rights)
 		if ( $( '#cn-cdn-cache-purge' ).prop( 'disabled' ) ) {
@@ -40,7 +39,7 @@
 		}
 
 		// Show notification with info if the background call takes a while to return
-		waiting = setTimeout( () => {
+		const waiting = setTimeout( () => {
 			mw.notify( mw.message( 'centralnotice-banner-cdn-dialog-waiting-text' ).text(), {
 				autoHide: false,
 				tag: messageId
@@ -319,11 +318,8 @@
 		 * @param {string} buttonType
 		 */
 		insertButton: function ( buttonType ) {
-			let buttonValue,
-				sel,
-				bannerField = document.getElementById( 'mw-input-wpbanner-body' ),
-				startPos,
-				endPos;
+			let buttonValue;
+			const bannerField = document.getElementById( 'mw-input-wpbanner-body' );
 			if ( buttonType === 'close' ) {
 				buttonValue = '<a href="#" title="' +
 					mw.message( 'centralnotice-close-title' ).escaped() +
@@ -334,12 +330,12 @@
 			if ( document.selection ) {
 				// IE support
 				bannerField.focus();
-				sel = document.selection.createRange();
+				const sel = document.selection.createRange();
 				sel.text = buttonValue;
 			} else if ( bannerField.selectionStart || bannerField.selectionStart === 0 ) {
 				// Mozilla support
-				startPos = bannerField.selectionStart;
-				endPos = bannerField.selectionEnd;
+				const startPos = bannerField.selectionStart;
+				const endPos = bannerField.selectionEnd;
 				bannerField.value = bannerField.value.slice( 0, startPos ) +
 					buttonValue +
 					bannerField.value.slice( endPos, bannerField.value.length );

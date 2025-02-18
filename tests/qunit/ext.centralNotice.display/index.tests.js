@@ -422,8 +422,7 @@
 	} );
 
 	QUnit.test( 'delay record impression call and register tests', ( assert ) => {
-		let deferred = $.Deferred(),
-			recordImpresionPromise,
+		const deferred = $.Deferred(),
 			signalTestDone = assert.async();
 
 		// Mock navigator.sendBeacon to check record impression doesn't fire early
@@ -436,7 +435,7 @@
 
 		// Request a delay and capture the promise that should run right before the
 		// record impression call
-		recordImpresionPromise =
+		const recordImpresionPromise =
 			mw.centralNotice.requestRecordImpressionDelay( deferred.promise() );
 
 		recordImpresionPromise.done( () => {
@@ -468,8 +467,7 @@
 	} );
 
 	QUnit.skip( 'record impression timeout and register tests', ( assert ) => {
-		let recordImpresionPromise,
-			start = Date.now(),
+		const start = Date.now(),
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
 			signalTestDone = assert.async();
 
@@ -477,7 +475,7 @@
 
 		// Request a delay and capture the promise that should run right before the
 		// record impression call
-		recordImpresionPromise =
+		const recordImpresionPromise =
 			mw.centralNotice.requestRecordImpressionDelay( $.Deferred().promise() );
 
 		recordImpresionPromise.done( () => {
@@ -517,16 +515,15 @@
 	} );
 
 	QUnit.skip( 'record impression called only once', ( assert ) => {
-		let deferred = $.Deferred(),
+		const deferred = $.Deferred(),
 			MAX_RECORD_IMPRESSION_DELAY = 250, // Coordinate with ext.centralnotice.display.js
-			recordImpresionPromise,
 			signalTestDone = assert.async();
 
 		mockChoiceDataForRecordImpressionCall( choiceData2Campaigns );
 
 		// Request a delay and capture the promise that should run right before the
 		// record impression call
-		recordImpresionPromise =
+		const recordImpresionPromise =
 			mw.centralNotice.requestRecordImpressionDelay( deferred.promise() );
 
 		// Mock navigator.sendBeacon to capture calls

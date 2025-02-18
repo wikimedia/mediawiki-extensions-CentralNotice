@@ -20,9 +20,6 @@
 	'use strict';
 
 	let identifier, multiStorageOption,
-		cn = mw.centralNotice,
-		mixin = new cn.Mixin( 'impressionDiet' ),
-
 		/**
 		 * Object with data used to determine whether to hide the banner
 		 * Properties:
@@ -31,7 +28,10 @@
 		 *   nextCycleStart:   Unix timestamp after which we can show more banners
 		 *   seenThisCycle:    Number of impressions seen this cycle
 		 */
-		counts,
+		counts;
+
+	const cn = mw.centralNotice,
+		mixin = new cn.Mixin( 'impressionDiet' ),
 
 		now = Date.now(),
 
@@ -165,23 +165,21 @@
 
 	function possiblyMigrateLegacyCookies() {
 
-		let rawCookie, rawWaitCookie, waitData, cookieCounts;
-
 		// Legacy cookies required an identifier
 		if ( !identifier ) {
 			return;
 		}
 
-		rawCookie = $.cookie( identifier );
+		const rawCookie = $.cookie( identifier );
 
 		if ( !rawCookie ) {
 			return;
 		}
 
-		rawWaitCookie = $.cookie( identifier + WAIT_COOKIE_SUFFIX );
-		waitData = ( rawWaitCookie || '' ).split( /[|]/ );
+		const rawWaitCookie = $.cookie( identifier + WAIT_COOKIE_SUFFIX );
+		const waitData = ( rawWaitCookie || '' ).split( /[|]/ );
 
-		cookieCounts = {
+		const cookieCounts = {
 			seenCount: parseInt( rawCookie, 10 ) || 0,
 			skippedThisCycle: parseInt( waitData[ 0 ], 10 ) || 0,
 			nextCycleStart: parseInt( waitData[ 1 ], 10 ) || 0,
