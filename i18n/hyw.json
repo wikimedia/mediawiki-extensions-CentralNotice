@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Azniv Stepanian"
 		]
 	},
 	"centralnotice-save-banner": "Պահել",
 	"centralnotice-add": "Աւելցնել",
 	"centralnotice-add-notice-cancel-button": "Չեղարկել",
+	"centralnotice-translations": "Թարգմանութիւններ",
 	"centralnotice-settings": "Կարգաւորումներ",
 	"centralnotice-clone-cancel": "Չեղարկել",
 	"centralnotice-language": "Լեզու",
