@@ -303,14 +303,14 @@
 	"centralnotice-impression-events-sample-rate": "Taxa de monstra pro eventos de impression",
 	"centralnotice-impression-events-sample-rate-help": "Definir un taxa de monstra non standard pro registrar le eventos de impression.",
 	"centralnotice-impression-events-sample-rate-field": "Taxa de monstra pro eventos de impression (debe esser inter 0 e 0,01, inclusive)",
-	"centralnotice-banner-protection-log-reason": "Automaticamente protegite per CentralNotice; modificabile solmente via [[Special:CentralNotice]] o [[Special:Translate]].",
+	"centralnotice-banner-protection-log-reason": "Automaticamente protegite per Avisos Central; modificabile solmente via [[Special:CentralNotice]] o [[Special:Translate]].",
 	"centralnotice-multiple-countries": "Plure paises",
 	"centralnotice-multiple-regions": "Plure regiones",
 	"centralnotice-multiple-languages": "Plure linguas",
 	"tag-centralnotice": "Aviso central",
 	"tag-centralnotice-description": "Modification create per le interfacie administrative de Avisos Central",
 	"tag-centralnotice_translation": "Traduction de aviso central",
-	"tag-centralnotice_translation-description": "Modification de contento de aviso central create via le extension Translate",
+	"tag-centralnotice_translation-description": "Modification de contento de Avisos Central create via le extension Translate",
 	"centralnotice-banner-template": "Patrono de bandiera",
 	"centralnotice-banner-is-template": "Iste bandiera es un patrono, destinate a esser usate pro crear bandieras",
 	"centralnotice-banner-template-info": "(patrono)",
@@ -335,6 +335,6 @@
 	"centralnotice-campaign-type-photography": "Photographia",
 	"centralnotice-campaign-type-special": "Special",
 	"centralnotice-user-prefs-intro": "Bandieras presenta annuncios de interesse pro le communitates e usatores de Wikimedia.\n\nEcce le optiones pro seliger le typos de annuncios que tu vole vider. Certe avisos de platteforma essera sempre monstrate, como illos relative al mantenentia del sito e avisos special que se considera necessari pro tote le usatores. Pro plus information, lege le [[metawikimedia:Special:MyLanguage/CentralNotice|documentation sur Meta-Wiki]].",
-	"namespaceinfo-description-ns866": "Messages usate in bandieras de [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] e lor traductiones",
-	"namespaceinfo-description-ns867": "Paginas de discussion pro messages de bandiera CentralNotice"
+	"namespaceinfo-description-ns866": "Messages usate in bandieras de [[mw:Special:MyLanguage/Extension:CentralNotice|Avisos Central]] e lor traductiones",
+	"namespaceinfo-description-ns867": "Paginas de discussion pro messages de bandiera de Avisos Central"
 }
