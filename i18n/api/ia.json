@@ -8,7 +8,7 @@
 	"apierror-centralnotice-cdn-lang-code-error": "Codice de lingua mal formate.",
 	"apierror-centralnotice-cdn-banner-name-error": "Nomine de bandiera mal formate.",
 	"apierror-centralnotice-cdn-banner-not-found": "Bandiera non trovate",
-	"apihelp-centralnoticeallocations-summary": "Obtener le allocationes pro le bandieras servite per CentralNotice pro tote le typos de usator sub le filtro parametric.",
+	"apihelp-centralnoticeallocations-summary": "Obtener le allocationes pro le bandieras servite per Avisos Central pro tote le typos de usator sub le filtro parametric.",
 	"apihelp-centralnoticeallocations-extended-description": "Isto es un appello JSON solmente.",
 	"apihelp-centralnoticeallocations-param-project": "Le projecto sub le qual obtener allocationes.",
 	"apihelp-centralnoticeallocations-param-country": "Le pais a filtrar.",
