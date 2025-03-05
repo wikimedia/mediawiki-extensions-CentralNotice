@@ -76,10 +76,10 @@
 
 ( function () {
 
-	var BannerSequenceUiController, BannerSequenceUiModel,
-		BannerSequenceWidget, BucketSeqContainerWidget, BucketSeqWidget,
-		StepWidget,
-		campaignManager = require( 'ext.centralNotice.adminUi.campaignManager' );
+	let BannerSequenceUiController = null, BannerSequenceUiModel = null,
+		BannerSequenceWidget = null, BucketSeqContainerWidget = null, BucketSeqWidget = null,
+		StepWidget = null;
+	const campaignManager = require( 'ext.centralNotice.adminUi.campaignManager' );
 
 	/* BannerSequenceUiController */
 
@@ -201,7 +201,7 @@
 	 */
 	BannerSequenceUiController.prototype.verifyAndFixBanners = function () {
 
-		var bucket, bannersForBucket, stepsWithMissingBanners;
+		let bucket, bannersForBucket, stepsWithMissingBanners;
 
 		// Iterate over active buckets
 		for ( bucket = 0; bucket < campaignManager.getNumBuckets(); bucket++ ) {
@@ -456,8 +456,6 @@
 
 	BannerSequenceUiModel.prototype.updateNumBuckets = function ( numBuckets ) {
 
-		var i;
-
 		/**
 		 * Number of buckets in the model
 		 *
@@ -469,7 +467,7 @@
 		// buckets, since getBktSequences() outputs only sequences for active buckets.
 
 		// Create default sequences as necessary
-		for ( i = 0; i < this.numBuckets; i++ ) {
+		for ( let i = 0; i < this.numBuckets; i++ ) {
 			if ( !this.bucketSequences[ i ] ) {
 				this.bucketSequences[ i ] = this.defaultBktSeq();
 			}
@@ -477,7 +475,7 @@
 	};
 
 	BannerSequenceUiModel.prototype.addStep = function ( bucket ) {
-		var bucketSequence = this.bucketSequences[ bucket ];
+		const bucketSequence = this.bucketSequences[ bucket ];
 
 		bucketSequence.push( this.defaultStep() );
 	};
@@ -511,7 +509,7 @@
 	 */
 	BannerSequenceUiModel.prototype.moveStep =
 		function ( bucket, newStepNum, oldStepNum ) {
-			var step = this.bucketSequences[ bucket ][ oldStepNum ];
+			const step = this.bucketSequences[ bucket ][ oldStepNum ];
 
 			newStepNum = ( newStepNum > oldStepNum ) ? newStepNum - 1 : newStepNum;
 
@@ -587,8 +585,6 @@
 	 * @private
 	 */
 	BannerSequenceUiModel.prototype.validateAndFix = function () {
-		var i;
-
 		// First, check for an array
 		if ( !Array.isArray( this.bucketSequences ) ) {
 			mw.log.warn( 'Bucket sequences should be an array.' );
@@ -597,7 +593,7 @@
 		}
 
 		// Check the sequences in the array
-		for ( i = 0; i < this.bucketSequences.length; i++ ) {
+		for ( let i = 0; i < this.bucketSequences.length; i++ ) {
 
 			if ( !this.validateBktSeq( this.bucketSequences[ i ] ) ) {
 				mw.log.warn( 'Invalid data in sequence for bucket ' + i );
@@ -617,8 +613,6 @@
 	 * @return {boolean}
 	 */
 	BannerSequenceUiModel.prototype.validateBktSeq = function ( seq ) {
-		var i;
-
 		// Check size limits
 		if ( !Array.isArray( seq ) ||
 			( seq.length > this.constructor.static.MAX_SEQ_STEPS ) ||
@@ -628,7 +622,7 @@
 		}
 
 		// Check the steps in the sequence
-		for ( i = 0; i < seq.length; i++ ) {
+		for ( let i = 0; i < seq.length; i++ ) {
 			if ( !this.validateStep( seq[ i ] ) ) {
 				return false;
 			}
@@ -643,7 +637,7 @@
 	 * @return {boolean}
 	 */
 	BannerSequenceUiModel.prototype.validateStep = function ( step ) {
-		var hasOwn = Object.prototype.hasOwnProperty;
+		const hasOwn = Object.prototype.hasOwnProperty;
 
 		// Check the step object
 		if ( ( step === null ) || ( typeof step !== 'object' ) ) {
@@ -677,7 +671,7 @@
 
 	BannerSequenceUiModel.prototype.validateBanner = function ( banner ) {
 		// Note: regex should coordinate with Banner::isValidBannerName() in Banner.php
-		return ( typeof banner === 'string' && /^[A-Za-z0-9_]+$/.test( banner ) ) ||
+		return ( typeof banner === 'string' && /^[A-Za-z0-9_]{1,230}$/.test( banner ) ) ||
 			banner === null;
 	};
 
@@ -719,13 +713,11 @@
 		bucket,
 		assignedBanners
 	) {
-		var i,
-			sequence = this.bucketSequences[ bucket ],
-			stepsWithMissingBanners = [],
-			banner;
+		const sequence = this.bucketSequences[ bucket ],
+			stepsWithMissingBanners = [];
 
-		for ( i = 0; i < sequence.length; i++ ) {
-			banner = sequence[ i ].banner;
+		for ( let i = 0; i < sequence.length; i++ ) {
+			const banner = sequence[ i ].banner;
 
 			if ( banner !== null && assignedBanners.indexOf( banner ) === -1 ) {
 				stepsWithMissingBanners.push( i );
@@ -807,7 +799,7 @@
 
 				// TODO Create a bug requesting public getValidity() on NumberInputWidget
 				// (same note below for numPageViewsInput in StepWidget)
-				this.daysInput.input.getValidity().done( function () {
+				this.daysInput.input.getValidity().done( () => {
 
 					// If the value passes validation, send it to the controller and
 					// clear any errors
@@ -819,7 +811,7 @@
 					this.daysLayout.setErrors( [] );
 					this.controller.setErrorState( 'days', false );
 
-				}.bind( this ) ).fail( function () {
+				} ).fail( () => {
 
 					// If the value fails validation, set errors
 
@@ -829,7 +821,7 @@
 
 					this.controller.setErrorState( 'days', true );
 
-				}.bind( this ) );
+				} );
 			} }
 		);
 	};
@@ -840,13 +832,12 @@
 	 * Add or remove contained widgets, and update their values, based on the model.
 	 */
 	BannerSequenceWidget.prototype.updateFromModel = function () {
-		var numSequences = this.model.getBktSequences().length,
-			b;
+		const numSequences = this.model.getBktSequences().length;
 
 		this.updating = true;
 
 		// Ensure BucketSeqContainerWidget widgets with correct values
-		for ( b = 0; b < numSequences; b++ ) {
+		for ( let b = 0; b < numSequences; b++ ) {
 			this.updateFromModelForBucket( b );
 		}
 
@@ -869,7 +860,7 @@
 	 */
 	BannerSequenceWidget.prototype.updateFromModelForBucket = function ( bucket ) {
 
-		var sequence = this.model.getBktSequences()[ bucket ],
+		const sequence = this.model.getBktSequences()[ bucket ],
 			seqContainer = this.findItemFromData( bucket );
 
 		// If we don't have a sequence container for this bucket it, create it
@@ -902,7 +893,7 @@
 	 * @param stepNum
 	 */
 	BannerSequenceWidget.prototype.removeStepForBucket = function ( bucket, stepNum ) {
-		var seqContainerWidget = this.findItemFromData( bucket );
+		const seqContainerWidget = this.findItemFromData( bucket );
 
 		seqContainerWidget.removeStep( stepNum );
 	};
@@ -1026,12 +1017,10 @@
 	 * Add or remove steps, and update their values, based on the model.
 	 */
 	BucketSeqContainerWidget.prototype.updateFromModel = function () {
-		var i, stepModel, stepWidget;
-
 		// Go through steps in model, adding or updating widgets as needed
-		for ( i = 0; i < this.model.length; i++ ) {
-			stepModel = this.model[ i ];
-			stepWidget = this.bucketSeqWidget.findItemFromData( i );
+		for ( let i = 0; i < this.model.length; i++ ) {
+			const stepModel = this.model[ i ];
+			const stepWidget = this.bucketSeqWidget.findItemFromData( i );
 
 			if ( !stepWidget ) {
 				this.addStepWidget( stepModel, i );
@@ -1063,7 +1052,7 @@
 	 */
 	BucketSeqContainerWidget.prototype.addStepWidget = function ( stepModel, index ) {
 
-		var stepWidget = new StepWidget(
+		const stepWidget = new StepWidget(
 			this.controller,
 			stepModel,
 			this.bucket,
@@ -1080,11 +1069,10 @@
 	 * called following drag-and-drop or the removal of a step.)
 	 */
 	BucketSeqContainerWidget.prototype.updateStepNumbers = function () {
-		var i,
-			// widgets are expected to be provided here in the correct order
-			stepWidgets = this.bucketSeqWidget.getItems();
+		// widgets are expected to be provided here in the correct order
+		const stepWidgets = this.bucketSeqWidget.getItems();
 
-		for ( i = 0; i < stepWidgets.length; i++ ) {
+		for ( let i = 0; i < stepWidgets.length; i++ ) {
 			stepWidgets[ i ].setData( i );
 		}
 	};
@@ -1107,7 +1095,7 @@
 
 	BucketSeqContainerWidget.prototype.removeStep = function ( stepNum ) {
 
-		var stepWidget = this.bucketSeqWidget.findItemFromData( stepNum );
+		const stepWidget = this.bucketSeqWidget.findItemFromData( stepNum );
 
 		stepWidget.clearFromGeneralErrorState();
 		this.bucketSeqWidget.removeItems( [ stepWidget ] );
@@ -1124,9 +1112,7 @@
 	BucketSeqContainerWidget.prototype.setMissingBannerErrors = function (
 		stepsWithMissingBanners
 	) {
-		var i;
-
-		for ( i = 0; i < stepsWithMissingBanners.length; i++ ) {
+		for ( let i = 0; i < stepsWithMissingBanners.length; i++ ) {
 
 			this.bucketSeqWidget
 				.findItemFromData( stepsWithMissingBanners[ i ] )
@@ -1140,10 +1126,9 @@
 	 * @param banners
 	 */
 	BucketSeqContainerWidget.prototype.updateBannersForDropdowns = function ( banners ) {
-		var i,
-			stepWidgets = this.bucketSeqWidget.getItems();
+		const stepWidgets = this.bucketSeqWidget.getItems();
 
-		for ( i = 0; i < stepWidgets.length; i++ ) {
+		for ( let i = 0; i < stepWidgets.length; i++ ) {
 			stepWidgets[ i ].updatebannersDropdown( banners );
 		}
 	};
@@ -1152,10 +1137,9 @@
 	 * Re-calculate total page views in the sequence.
 	 */
 	BucketSeqContainerWidget.prototype.updateTotalPageViews = function () {
-		var i;
 		this.totalPageViews = 0;
 
-		for ( i = 0; i < this.model.length; i++ ) {
+		for ( let i = 0; i < this.model.length; i++ ) {
 			this.totalPageViews += this.model[ i ].numPageViews;
 		}
 
@@ -1174,7 +1158,7 @@
 	 */
 	BucketSeqWidget = function () {
 
-		var config = { classes: [ 'centralNoticeBannerSeqSequenceContainer' ] };
+		const config = { classes: [ 'centralNoticeBannerSeqSequenceContainer' ] };
 
 		// Call parent constructor
 		BucketSeqWidget.super.call( this, config );
@@ -1202,8 +1186,6 @@
 	 * @constructor
 	 */
 	StepWidget = function ( controller, model, bucket, config ) {
-
-		var dropMenuItems;
 
 		this.controller = controller;
 		this.model = model;
@@ -1240,7 +1222,7 @@
 
 		// Create the widgets
 
-		dropMenuItems = this.makeDropMenuItems(
+		const dropMenuItems = this.makeDropMenuItems(
 			controller.getBannersForBucket( this.bucket ) );
 
 		this.bannersDropdown = new OO.ui.DropdownWidget( {
@@ -1308,7 +1290,7 @@
 		this.bannersDropdown.getMenu().connect(
 			this,
 			{ choose: function ( menuItem ) {
-				var val;
+				let val;
 
 				if ( !this.updating ) {
 					val = menuItem.getData();
@@ -1332,7 +1314,7 @@
 
 				// TODO Bug for public getValidity() on NumberInputWidget
 				// (same issue above for daysInput in BannerSequenceWidget)
-				this.numPageViewsInput.input.getValidity().done( function () {
+				this.numPageViewsInput.input.getValidity().done( () => {
 
 					// If the value passes validation, send it to the controller and
 					// clear any errors
@@ -1349,7 +1331,7 @@
 					this.numPageViewsFieldLayout.setErrors( [] );
 					this.setErrorState( 'numPageViews', false );
 
-				}.bind( this ) ).fail( function () {
+				} ).fail( () => {
 
 					// If the value fails validation, set errors
 
@@ -1359,7 +1341,7 @@
 
 					this.setErrorState( 'numPageViews', true );
 
-				}.bind( this ) );
+				} );
 			} }
 		);
 
@@ -1368,7 +1350,7 @@
 			this,
 			{ change: function () {
 
-				this.skipWithIdInput.getValidity().done( function () {
+				this.skipWithIdInput.getValidity().done( () => {
 
 					// If the value passes validation, send it to the controller and
 					// clear any errors
@@ -1385,7 +1367,7 @@
 					this.skipWithIdFieldLayout.setErrors( [] );
 					this.setErrorState( 'skipWithId', false );
 
-				}.bind( this ) ).fail( function () {
+				} ).fail( () => {
 
 					// If the value fails validation, set errors
 
@@ -1395,7 +1377,7 @@
 
 					this.setErrorState( 'skipWithId', true );
 
-				}.bind( this ) );
+				} );
 			} }
 		);
 
@@ -1404,9 +1386,9 @@
 		// TextInputWidget doesn't natively expose a blur event; this is a hack.
 		// TODO Make a task requesting that feature.
 
-		this.skipWithIdInput.$input.on( 'blur', function () {
+		this.skipWithIdInput.$input.on( 'blur', () => {
 			this.skipWithIdInput.setValue( this.skipWithIdInput.getValue().trim() );
-		}.bind( this ) );
+		} );
 
 		// Click handler for remove step button
 		this.removeBtn.connect(
@@ -1489,7 +1471,7 @@
 	 */
 	StepWidget.prototype.updatebannersDropdown = function ( banners ) {
 
-		var dropdownMenu = this.bannersDropdown.getMenu(),
+		const dropdownMenu = this.bannersDropdown.getMenu(),
 			selectedItem = dropdownMenu.findSelectedItem(),
 			selectedBanner = selectedItem ? selectedItem.getData() : null;
 
@@ -1529,8 +1511,7 @@
 	 * @private
 	 */
 	StepWidget.prototype.makeDropMenuItems = function ( banners ) {
-		var i,
-			dropdownMenuItems = [];
+		const dropdownMenuItems = [];
 
 		// First option is always no banner
 		dropdownMenuItems.push( new OO.ui.MenuOptionWidget( {
@@ -1538,7 +1519,7 @@
 			label: mw.message( 'centralnotice-banner-sequence-no-banner' ).text()
 		} ) );
 
-		for ( i = 0; i < banners.length; i++ ) {
+		for ( let i = 0; i < banners.length; i++ ) {
 			dropdownMenuItems.push( new OO.ui.MenuOptionWidget( {
 				data: banners[ i ],
 				label: banners[ i ]

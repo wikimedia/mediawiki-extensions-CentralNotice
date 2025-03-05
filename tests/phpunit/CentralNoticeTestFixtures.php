@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Json\FormatJson;
 use MediaWiki\User\User;
 
 class CentralNoticeTestFixtures {
@@ -19,7 +20,7 @@ class CentralNoticeTestFixtures {
 	/** @var array */
 	private static $defaultBanner;
 
-	public function __construct( $user ) {
+	public function __construct( User $user ) {
 		$this->user = $user;
 
 		static::$defaultCampaign = [
@@ -45,32 +46,32 @@ class CentralNoticeTestFixtures {
 		];
 	}
 
-	public static function getDefaultLanguage() {
+	public static function getDefaultLanguage(): string {
 		return 'en';
 	}
 
-	public static function getDefaultProject() {
+	public static function getDefaultProject(): string {
 		return 'wikipedia';
 	}
 
-	public static function getDefaultCountry() {
+	public static function getDefaultCountry(): string {
 		return 'XX';
 	}
 
-	public static function getDefaultRegion() {
+	public static function getDefaultRegion(): string {
 		return 'XX';
 	}
 
-	public static function getDefaultDevice() {
+	public static function getDefaultDevice(): string {
 		return 'desktop';
 	}
 
 	/**
-	 * Get an associative array with data for setting mock global variables
+	 * Get an associative array with data for setting mock config variables
 	 * as appropriate for fixture data.
 	 * @return array
 	 */
-	public function getGlobalsFromFixtureData() {
+	public function getConfigsFromFixtureData() {
 		$data = self::allocationsData();
 		return $data['mock_config_values'];
 	}
@@ -81,8 +82,8 @@ class CentralNoticeTestFixtures {
 	 * countries property for non-geotargetted campaigns, and add dummy
 	 * banner bodies.
 	 *
-	 * Test classes that call this method should also set MW globals as per
-	 * getGlobalsFromFixtureData().
+	 * Test classes that call this method should also set config variables as per
+	 * getConfigsFromFixtureData().
 	 *
 	 * @param array &$testCase A data structure with the test case specification
 	 */

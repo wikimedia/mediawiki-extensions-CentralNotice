@@ -19,10 +19,7 @@
 ( function () {
 	'use strict';
 
-	var identifier, multiStorageOption,
-		cn = mw.centralNotice,
-		mixin = new cn.Mixin( 'impressionDiet' ),
-
+	let identifier, multiStorageOption,
 		/**
 		 * Object with data used to determine whether to hide the banner
 		 * Properties:
@@ -31,7 +28,10 @@
 		 *   nextCycleStart:   Unix timestamp after which we can show more banners
 		 *   seenThisCycle:    Number of impressions seen this cycle
 		 */
-		counts,
+		counts;
+
+	const cn = mw.centralNotice,
+		mixin = new cn.Mixin( 'impressionDiet' ),
 
 		now = Date.now(),
 
@@ -43,8 +43,8 @@
 		// Time to store impression-counting data, in days
 		COUNTS_STORAGE_TTL = 365;
 
-	mixin.setPreBannerHandler( function ( mixinParams ) {
-		var hide;
+	mixin.setPreBannerHandler( ( mixinParams ) => {
+		let hide;
 
 		// URL forced a banner
 		if ( mw.util.getParamValue( 'force' ) ) {
@@ -165,23 +165,21 @@
 
 	function possiblyMigrateLegacyCookies() {
 
-		var rawCookie, rawWaitCookie, waitData, cookieCounts;
-
 		// Legacy cookies required an identifier
 		if ( !identifier ) {
 			return;
 		}
 
-		rawCookie = $.cookie( identifier );
+		const rawCookie = $.cookie( identifier );
 
 		if ( !rawCookie ) {
 			return;
 		}
 
-		rawWaitCookie = $.cookie( identifier + WAIT_COOKIE_SUFFIX );
-		waitData = ( rawWaitCookie || '' ).split( /[|]/ );
+		const rawWaitCookie = $.cookie( identifier + WAIT_COOKIE_SUFFIX );
+		const waitData = ( rawWaitCookie || '' ).split( /[|]/ );
 
-		cookieCounts = {
+		const cookieCounts = {
 			seenCount: parseInt( rawCookie, 10 ) || 0,
 			skippedThisCycle: parseInt( waitData[ 0 ], 10 ) || 0,
 			nextCycleStart: parseInt( waitData[ 1 ], 10 ) || 0,
@@ -201,7 +199,7 @@
 	 * @return {Object} An object containing count data.
 	 */
 	function getCounts() {
-		var c;
+		let c;
 
 		if ( identifier ) {
 			c = cn.kvStore.getItem(

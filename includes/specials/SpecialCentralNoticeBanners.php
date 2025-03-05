@@ -10,6 +10,7 @@ use MediaWiki\HTMLForm\Field\HTMLSubmitField;
 use MediaWiki\HTMLForm\Field\HTMLTextField;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Xml\Xml;
 
 /**
  * Special page for management of CentralNotice banners
@@ -80,7 +81,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 		// Now figure out what to display
 		// TODO Use only params instead of subpage to indicate action
-		$parts = explode( '/', $subPage );
+		$parts = explode( '/', $subPage ?? '' );
 		$action = $parts[0] ?: 'list';
 		$this->bannerName = $parts[1] ?? '';
 
@@ -449,8 +450,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		];
 
 		$bannerTitle = $this->banner->getTitle();
-		// $bannerTitle can be null sometimes
-		if ( $bannerTitle && $this->getUser()->isAllowed( 'editinterface' ) ) {
+		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
 			$links[] = $linkRenderer->makeLink(
 				$bannerTitle,
 				$this->msg( 'centralnotice-banner-edit-onwiki' )->text(),
@@ -458,14 +458,12 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 				[ 'action' => 'edit' ]
 			);
 		}
-		if ( $bannerTitle ) {
-			$links[] = $linkRenderer->makeLink(
-				$bannerTitle,
-				$this->msg( 'centralnotice-banner-history' )->text(),
-				[ 'class' => 'cn-banner-list-element-label-text' ],
-				[ 'action' => 'history' ]
-			);
-		}
+		$links[] = $linkRenderer->makeLink(
+			$bannerTitle,
+			$this->msg( 'centralnotice-banner-history' )->text(),
+			[ 'class' => 'cn-banner-list-element-label-text' ],
+			[ 'action' => 'history' ]
+		);
 		return $links;
 	}
 
@@ -537,7 +535,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 			$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
 			$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
-			$out->addHTML( $pager->getBodyOutput()->getText() );
+			$popts = $out->parserOptions();
+			$out->addHTML( $pager->getBodyOutput()->runOutputPipeline( $popts, [] )->getContentHolderText() );
 			$out->addHTML( $pager->getNavigationBar() );
 		}
 	}
@@ -940,6 +939,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		return $purgeControls;
 	}
 
+	/**
+	 * @param array $formData
+	 * @return string|null
+	 */
 	public function processEditBanner( $formData ) {
 		// First things first! Figure out what the heck we're actually doing!
 		switch ( $formData[ 'action' ] ) {
@@ -1015,6 +1018,10 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 		}
 	}
 
+	/**
+	 * @param array $formData
+	 * @return null
+	 */
 	private function processSaveBannerAction( $formData ) {
 		global $wgNoticeUseTranslateExtension, $wgLanguageCode;
 

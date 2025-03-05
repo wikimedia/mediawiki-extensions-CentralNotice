@@ -8,11 +8,10 @@
  */
 ( function () {
 
-	var state,
+	let state = null,
 		status,
-		campaignAttemptsManager,
-		config = require( './config.json' ),
-		impressionEventSampleRateOverridden = false,
+		impressionEventSampleRateOverridden = false;
+	const config = require( './config.json' ),
 
 		UNKNOWN_GEO_CODE = 'XX',
 
@@ -73,13 +72,13 @@
 			userOptOut: 21
 		};
 
-	campaignAttemptsManager = ( function () {
-		var attemptedCampaignStatusesByName = {},
+	const campaignAttemptsManager = ( function () {
+		const attemptedCampaignStatusesByName = {},
 			hasOwn = Object.prototype.hasOwnProperty;
 
 		return {
 			setCampaignStatus: function ( c, statusCode ) {
-				var statusObj;
+				let statusObj;
 
 				if ( !hasOwn.call( state.attemptedCampaignsByName, c.name ) ) {
 					// If this is the first time we've seen this campaign, add it to the
@@ -105,9 +104,7 @@
 			},
 
 			getAttemptedCampaigns: function () {
-				return state.data.campaignStatuses.map( function ( statusObj ) {
-					return state.attemptedCampaignsByName[ statusObj.campaign ];
-				} );
+				return state.data.campaignStatuses.map( ( statusObj ) => state.attemptedCampaignsByName[ statusObj.campaign ] );
 			}
 		};
 	}() );
@@ -121,8 +118,6 @@
 	 * Get a code for the general category the user's device is in.
 	 */
 	function getDeviceCode() {
-		var ua;
-
 		// If we're on the desktop site, all your device are belong to DESKTOP
 		// TODO Fix this! Skin != device. Maybe screen width? P.S. Talk to users.
 		// TODO Make a test for this; it could stop working without notice.
@@ -131,7 +126,7 @@
 			return DEVICES.DESKTOP;
 		}
 
-		ua = navigator.userAgent;
+		const ua = navigator.userAgent;
 
 		if ( /iphone/i.test( ua ) ) {
 			return DEVICES.IPHONE;
@@ -153,8 +148,7 @@
 	function setInitialData() {
 
 		// Keep existing properties of state.urlParams, which may be set by tests
-		var urlParams = Object.assign( state.urlParams, ( new mw.Uri() ).query ),
-			impressionEventSampleRateFromUrl;
+		const urlParams = Object.assign( state.urlParams, ( new mw.Uri() ).query );
 
 		state.data.anonymous = ( !mw.user.isNamed() );
 		state.data.project = mw.config.get( 'wgNoticeProject' );
@@ -191,7 +185,7 @@
 
 		// In the case of impressionEventSampleRate, also remember if it's overridden by
 		// a URL param
-		impressionEventSampleRateFromUrl =
+		const impressionEventSampleRateFromUrl =
 			numericalUrlParamOrVal( urlParams.impressionEventSampleRate, null );
 
 		if ( impressionEventSampleRateFromUrl !== null ) {
@@ -212,8 +206,7 @@
 	}
 
 	function getOptedOutCampaignsForUser() {
-		var allOptions, matches, key,
-			blocked = [],
+		const blocked = [],
 			// Note: coordinate with CampaignType::PREFERENCE_KEY_PREFIX
 			regex = /^centralnotice-display-campaign-type-(.*)$/;
 
@@ -221,14 +214,14 @@
 			return [];
 		}
 
-		allOptions = Object.assign( {}, mw.user.options.values );
+		const allOptions = Object.assign( {}, mw.user.options.values );
 
-		for ( key in allOptions ) {
+		for ( const key in allOptions ) {
 			if ( !Object.prototype.hasOwnProperty.call( allOptions, key ) ) {
 				continue;
 			}
 
-			matches = regex.exec( key );
+			const matches = regex.exec( key );
 
 			if ( Array.isArray( matches ) && matches.length === 2 && !allOptions[ key ] ) {
 				blocked.push( matches[ 1 ] );
@@ -239,7 +232,7 @@
 	}
 
 	function numericalUrlParamOrVal( urlParam, val ) {
-		var urlParamAsFloat = parseFloat( urlParam );
+		const urlParamAsFloat = parseFloat( urlParam );
 		return !isNaN( urlParamAsFloat ) ? urlParamAsFloat : val;
 	}
 
@@ -251,7 +244,7 @@
 	}
 
 	function setStatus( s, reason ) {
-		var reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
+		const reasonCodeStr = reason ? ( '.' + state.lookupReasonCode( reason ) ) : '';
 		status = s;
 		state.data.status = s.key;
 		state.data.statusCode = s.code.toString() + reasonCodeStr;
@@ -363,7 +356,7 @@
 		 */
 		getDataCopy: function ( prepareForLogging ) {
 
-			var dataCopy = $.extend( true, {}, state.data );
+			const dataCopy = $.extend( true, {}, state.data );
 
 			if ( prepareForLogging ) {
 				delete dataCopy.getVars;
@@ -397,7 +390,7 @@
 		 * @param {Object} c the campaign object, from the list of available campaigns
 		 */
 		setAttemptingCampaign: function ( c ) {
-			var prop, i, category,
+			let prop, i, category,
 				campaignCategory = null;
 
 			// Resetting previously set flags (if any)
@@ -613,7 +606,7 @@
 		 *   commas.
 		 */
 		registerTest: function ( identifier ) {
-			var tests = state.data.tests = state.data.tests || [];
+			const tests = state.data.tests = state.data.tests || [];
 
 			// Add if it isn't already registered.
 			if ( tests.indexOf( identifier ) === -1 ) {

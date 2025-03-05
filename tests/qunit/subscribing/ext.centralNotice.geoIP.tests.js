@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	var
+	const
 		COOKIE_NAME = 'GeoIP',
 		BAD_COOKIE = 'asdfasdf',
 		UNKNOWN_COOKIE = ':::::v4',
@@ -26,42 +26,43 @@
 		}
 	} ) );
 
-	QUnit.test( 'parse geo from valid cookie', function ( assert ) {
+	QUnit.test( 'parse geo from valid cookie', ( assert ) => {
 		$.cookie( COOKIE_NAME, GOOD_COOKIE, { path: '/' } );
 
 		mw.geoIP.makeGeoWithPromise();
-		return mw.geoIP.getPromise().then( function ( geo ) {
-			assert.deepEqual( geo, GOOD_GEO, 'parsed geo' );
-		}, function () {
+		return mw.geoIP.getPromise().then(
+			( geo ) => {
+				assert.deepEqual( geo, GOOD_GEO, 'parsed geo' );
+			},
 			// Message to show when promise fails
-			return 'geo not retrieved';
-		} );
+			() => 'geo not retrieved'
+		);
 	} );
 
-	QUnit.test( 'cookie invalid', function ( assert ) {
+	QUnit.test( 'cookie invalid', ( assert ) => {
 		$.cookie( COOKIE_NAME, BAD_COOKIE, { path: '/' } );
 
 		// Make sure that we don't fall back
 		mw.config.set( 'wgCentralNoticeGeoIPBackgroundLookupModule', false );
 
 		mw.geoIP.makeGeoWithPromise();
-		mw.geoIP.getPromise().fail( function () {
+		mw.geoIP.getPromise().fail( () => {
 			assert.true( true, 'geoIP promise fails, as expected' );
-		} ).done( function () {
+		} ).done( () => {
 			assert.true( false, 'geoIP promise succeeded, but should not have' );
 		} );
 	} );
 
-	QUnit.test( 'cookie valid but unknown location', function ( assert ) {
+	QUnit.test( 'cookie valid but unknown location', ( assert ) => {
 		$.cookie( COOKIE_NAME, UNKNOWN_COOKIE, { path: '/' } );
 
 		// Make sure that we don't fall back
 		mw.config.set( 'wgCentralNoticeGeoIPBackgroundLookupModule', false );
 
 		mw.geoIP.makeGeoWithPromise();
-		mw.geoIP.getPromise().fail( function () {
+		mw.geoIP.getPromise().fail( () => {
 			assert.true( true, 'geoIP promise fails, as expected' );
-		} ).done( function () {
+		} ).done( () => {
 			assert.true( false, 'geoIP promise succeeded, but should not have' );
 		} );
 	} );

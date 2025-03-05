@@ -6,6 +6,10 @@
 			"Malafaya"
 		]
 	},
+	"centralnotice": "Central administro di informi",
+	"noticetemplate": "Central administro di informi",
+	"bannerallocation": "Central administro di informi",
+	"centralnoticelogs": "Central administro di informi",
 	"centralnotice-notice-name": "Nomo dil avizo",
 	"centralnotice-enabled": "Permisata",
 	"centralnotice-modify": "Sendez",
@@ -66,6 +70,7 @@
 	"centralnotice-talk-link": "diskutez",
 	"centralnotice-account": "Montrez a l'uzeri enrejistrita",
 	"centralnotice-date": "Dato",
+	"centralnotice-priority-high": "alta",
 	"centralnotice-all": "Omna",
 	"centralnotice-user-role-anonymous": "Anonimo",
 	"centralnotice-banner-class": "Kategorio",

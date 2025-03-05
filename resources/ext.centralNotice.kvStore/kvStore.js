@@ -6,15 +6,14 @@
  */
 ( function () {
 
-	var KVStorageContext,
-		kvStore,
-		error = null,
+	let error = null,
 		campaignName = null,
 		bannerName = null,
 		category = null,
 		cookiesEnabled = null,
 		localStorageAvailable = null,
-		now = Math.round( Date.now() / 1000 ),
+		kvStore = null;
+	const now = Math.round( Date.now() / 1000 ),
 
 		SEPARATOR = '|',
 
@@ -43,7 +42,7 @@
 	 *   when using cookies. Must not contain SEPARATOR_IN_COOKIES. (Distinct
 	 *   keys for cookies help keep cookies small, improving performance.)
 	 */
-	KVStorageContext = function ( key, keyInCookies ) {
+	const KVStorageContext = function ( key, keyInCookies ) {
 		this.key = key;
 		this.keyInCookies = keyInCookies;
 	};
@@ -133,7 +132,7 @@
 	 * @return {string}
 	 */
 	function makeKeyForLocalStorage( key, context ) {
-		var base = PREFIX + SEPARATOR + context.key + SEPARATOR;
+		const base = PREFIX + SEPARATOR + context.key + SEPARATOR;
 
 		switch ( context.key ) {
 			case kvStore.contexts.CAMPAIGN.key:
@@ -163,7 +162,7 @@
 	 * @return {string}
 	 */
 	function makeKeyForCookie( key, context ) {
-		var base = PREFIX_IN_COOKIES + SEPARATOR_IN_COOKIES +
+		const base = PREFIX_IN_COOKIES + SEPARATOR_IN_COOKIES +
 			context.keyInCookies + SEPARATOR_IN_COOKIES;
 
 		switch ( context.key ) {
@@ -183,10 +182,8 @@
 	}
 
 	function setLocalStorageItem( key, value, context, ttl ) {
-		var lsKey, encodedWrappedValue;
-
-		lsKey = makeKeyForLocalStorage( key, context );
-		encodedWrappedValue = JSON.stringify( {
+		const lsKey = makeKeyForLocalStorage( key, context );
+		const encodedWrappedValue = JSON.stringify( {
 			expiry: ttl ? ( ttl * 86400 ) + now : DEFAULT_ITEM_TTL + now,
 			val: value
 		} );
@@ -222,8 +219,8 @@
 	}
 
 	function getLocalStorageItem( key, context ) {
-		var lsKey = makeKeyForLocalStorage( key, context ),
-			rawValue, wrappedValue;
+		const lsKey = makeKeyForLocalStorage( key, context );
+		let rawValue, wrappedValue;
 
 		try {
 			rawValue = localStorage.getItem( lsKey );
@@ -280,7 +277,7 @@
 	}
 
 	function getCookieItem( key, context ) {
-		var storageKey = makeKeyForCookie( key, context ),
+		const storageKey = makeKeyForCookie( key, context ),
 			rawCookie = $.cookie( storageKey );
 
 		try {
@@ -502,7 +499,7 @@
 		},
 
 		setMaintenanceError: function ( lsKey ) {
-			var m = lsKey.match( FIND_KEY_REGEX ),
+			const m = lsKey.match( FIND_KEY_REGEX ),
 				key = m ? m[ 1 ] : null;
 
 			setError( 'Error during KVStore maintenance.', key, null );

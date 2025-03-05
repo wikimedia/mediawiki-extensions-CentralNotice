@@ -1,14 +1,11 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
 class CentralNoticePager extends TemplatePager {
-
-	public function __construct( $special, $filter = '' ) {
-		parent::__construct( $special, $filter );
-	}
 
 	/**
 	 * Pull banners from the database
@@ -160,7 +157,7 @@ class CentralNoticePager extends TemplatePager {
 		return Html::closeElement( 'table' );
 	}
 
-	private function bucketDropdown( $bannerName ) {
+	private function bucketDropdown( string $bannerName ): string {
 		global $wgNoticeNumberOfBuckets;
 
 		$html = '';

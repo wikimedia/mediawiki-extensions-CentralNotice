@@ -21,18 +21,16 @@
  *
  */
 ( function () {
-	var stepSize = 1,
+	const stepSize = 1,
 		mixinDefs = mw.config.get( 'wgCentralNoticeCampaignMixins' ),
 		mixinParamsTemplate = mw.template.get(
 			'ext.centralNotice.adminUi.campaignManager',
 			'campaignMixinParamControls.mustache'
 		),
-		$form, $submitBtn,
-		MixinCustomUiController, MixinCustomWidget,
-		ErrorStateTracker,
 		mixinCustomUiControllerFactory = new OO.Factory(),
-		errorStateTracker, eventBus, assignedBanners,
 		BUCKET_LABELS = [ 'A', 'B', 'C', 'D' ]; // TODO Fix for configs with more buckets
+	let $form, $submitBtn,
+		assignedBanners;
 
 	/* Event bus */
 
@@ -61,7 +59,7 @@
 	 * @param {string} errorKey
 	 * @param {boolean} state true to set error, false to clear one.
 	 */
-	eventBus = new OO.EventEmitter();
+	const eventBus = new OO.EventEmitter();
 
 	/* MixinCustomUiController */
 
@@ -86,7 +84,7 @@
 	 * @class MixinCustomUiController
 	 * @constructor
 	 */
-	MixinCustomUiController = function () {
+	const MixinCustomUiController = function () {
 
 		// Declare the abstract property here, but don't force it to null, in case the
 		// subclass decides to set it before calling the constructor.
@@ -130,7 +128,7 @@
 	 * @param {string} value The value (formatted as appropriate for form submission).
 	 */
 	MixinCustomUiController.prototype.setParam = function ( name, value ) {
-		var $input = this.getParamInputEl( name, true );
+		const $input = this.getParamInputEl( name, true );
 
 		$input.val( value );
 	};
@@ -141,7 +139,7 @@
 	 * @param {string} name The name of the parameter
 	 */
 	MixinCustomUiController.prototype.removeParam = function ( name ) {
-		var $input = this.getParamInputEl( name, false );
+		const $input = this.getParamInputEl( name, false );
 
 		if ( $input.length ) {
 			$input.remove();
@@ -158,8 +156,8 @@
 	 * @return {jQuery|null}
 	 */
 	MixinCustomUiController.prototype.getParamInputEl = function ( name, create ) {
-		var inputName = makeNoticeMixinControlName( this.constructor.static.name, name ),
-			$input = $form.find( 'input[name="' + inputName + '"]' );
+		const inputName = makeNoticeMixinControlName( this.constructor.static.name, name );
+		let $input = $form.find( 'input[name="' + inputName + '"]' );
 
 		if ( create && !( $input.length ) ) {
 
@@ -188,9 +186,9 @@
 	 * @param {MixinCustomUiController} controller
 	 * @param {Object} [config] Configuration options
 	 */
-	MixinCustomWidget = function ( controller, config ) {
+	const MixinCustomWidget = function ( controller, config ) {
 
-		var $element = $( '<fieldset>' ),
+		const $element = $( '<fieldset>' ),
 			$group = $( '<div>' );
 
 		// Set up config with elements, CSS class and id. This should coordinate with
@@ -228,8 +226,9 @@
 	 * @class ErrorStateTracker
 	 * @constructor
 	 */
-	ErrorStateTracker = function () {
+	const ErrorStateTracker = function () {
 		this.errors = {};
+		this.messageBoxes = {};
 	};
 
 	/**
@@ -237,13 +236,26 @@
 	 *
 	 * @param {string} errorKey A unique key identifying this error
 	 * @param {boolean} state true sets an error for this key, and false clear it
+	 * @param {Element} messageBox
 	 */
-	ErrorStateTracker.prototype.setErrorState = function ( errorKey, state ) {
+	ErrorStateTracker.prototype.setErrorState = function ( errorKey, state, messageBox ) {
 		if ( state ) {
 			this.errors[ errorKey ] = true;
+			this.messageBoxes[ errorKey ] = messageBox;
 		} else {
 			delete this.errors[ errorKey ];
+			delete this.messageBoxes[ errorKey ];
 		}
+	};
+
+	/**
+	 * Gets the message box relating to an error
+	 *
+	 * @param {string} errorKey A unique key identifying this error
+	 * @return {Element}
+	 */
+	ErrorStateTracker.prototype.getMessageBox = function ( errorKey ) {
+		return this.messageBoxes[ errorKey ];
 	};
 
 	/**
@@ -256,13 +268,13 @@
 	};
 
 	// General error state tracker for the page
-	errorStateTracker = new ErrorStateTracker();
+	const errorStateTracker = new ErrorStateTracker();
 
 	// Connect handler for error-state events
-	eventBus.on( 'error-state', function ( errorKey, state ) {
+	eventBus.on( 'error-state', ( errorKey, state, messageBox ) => {
 
 		// Pass state on to errorStateTracker
-		errorStateTracker.setErrorState( errorKey, state );
+		errorStateTracker.setErrorState( errorKey, state, messageBox );
 
 		// Update the submit button
 		if ( errorStateTracker.hasErrorState() ) {
@@ -289,8 +301,7 @@
 	}
 
 	function updateBuckets() {
-		var i, isBucketDisabled,
-			numBuckets = getNumBuckets(),
+		const numBuckets = getNumBuckets(),
 			maxNumBuckets = mw.config.get( 'wgNoticeNumberOfBuckets' ),
 			$bucketSelectors = $( 'select.bucketSelector' ),
 
@@ -299,7 +310,7 @@
 
 		// Change selected value of bucket selectors to only available buckets
 		$bucketSelectors.each( function () {
-			var $selector = $( this ),
+			const $selector = $( this ),
 				selectedVal = $selector.val();
 
 			$selector.val( selectedVal % numBuckets );
@@ -321,8 +332,8 @@
 		}
 
 		// Enable or disable bucket options in drop-downs, as appropriate
-		for ( i = 0; i < maxNumBuckets; i++ ) {
-			isBucketDisabled = ( i >= numBuckets );
+		for ( let i = 0; i < maxNumBuckets; i++ ) {
+			const isBucketDisabled = ( i >= numBuckets );
 
 			$bucketSelectors.find( 'option[value=' + i + ']' )
 				.prop( 'disabled', isBucketDisabled );
@@ -347,23 +358,21 @@
 	 */
 	function showOrHideCampaignMixinControls() {
 
-		var $checkBox = $( this ),
-			mixinName = $checkBox.data( 'mixin-name' ),
-			paramValues,
-			$paramControlSet = $( '#' + mixinParamControlsId( mixinName ) ),
-			mixinCustomUiController, $paramControls;
+		const $checkBox = $( this ),
+			mixinName = $checkBox.data( 'mixin-name' );
+		let $paramControlSet = $( '#' + mixinParamControlsId( mixinName ) );
 
 		if ( $checkBox.prop( 'checked' ) ) {
 
 			// If the controls don't exist yet, create them
 			if ( $paramControlSet.length === 0 ) {
 
-				paramValues = $checkBox.data( 'mixin-param-values' );
+				const paramValues = $checkBox.data( 'mixin-param-values' );
 
 				// If the mixin uses a custom UI to set params, instantiate that
 				if ( mixinDefs[ mixinName ].customAdminUIControlsModule ) {
 
-					mixinCustomUiController = mixinCustomUiControllerFactory
+					const mixinCustomUiController = mixinCustomUiControllerFactory
 						.create( mixinName );
 
 					mixinCustomUiController.init( paramValues );
@@ -378,7 +387,7 @@
 					);
 
 					// Hook up handler for verification
-					$paramControls = $paramControlSet.find( 'input' );
+					const $paramControls = $paramControlSet.find( 'input' );
 					$paramControls.on(
 						'keyup keydown change mouseup cut paste focus blur',
 						mw.util.debounce( verifyParamControl, 100 )
@@ -406,7 +415,7 @@
 
 	function makeMixinParamControlSet( mixinName, paramValues ) {
 
-		var paramDefs = mixinDefs[ mixinName ].parameters,
+		const paramDefs = mixinDefs[ mixinName ].parameters,
 			templateVars = {
 				divId: mixinParamControlsId( mixinName ),
 				params: []
@@ -415,9 +424,9 @@
 		paramValues = paramValues || {};
 
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( paramDefs, function ( paramName, paramDef ) {
+		$.each( paramDefs, ( paramName, paramDef ) => {
 
-			var paramTemplateVars = {
+			const paramTemplateVars = {
 				// eslint-disable-next-line mediawiki/msg-doc
 				labelMsg: mw.message( paramDef.labelMsg ).text(),
 				inputName: makeNoticeMixinControlName( mixinName, paramName ),
@@ -512,7 +521,7 @@
 	}
 
 	function verifyParamControl() {
-		var $input = $( this ),
+		const $input = $( this ),
 			val = $input.val().trim();
 
 		switch ( $input.data( 'data-type' ) ) {
@@ -551,22 +560,22 @@
 	}
 
 	function setValidationError( error, $input, msgKey ) {
-
-		var $errorBox = $input.closest( 'p' ).prevAll( '.mw-message-box-error' );
+		const errorKey = $input.attr( 'name' );
+		let messageBox = errorStateTracker.getMessageBox( errorKey );
 
 		if ( error ) {
-			if ( $errorBox.length === 0 ) {
-				$errorBox = $( '<p>' ).addClass( [ 'mw-message-box', 'mw-message-box-error' ] );
+			if ( !messageBox ) {
 				// eslint-disable-next-line mediawiki/msg-doc
-				$errorBox.text( mw.message( msgKey ).text() );
-				$input.closest( 'p' ).before( $errorBox );
+				messageBox = mw.util.messageBox( mw.message( msgKey ).text(), 'alert' );
+				$input.closest( 'p' ).before( messageBox );
 			}
 
-			eventBus.emit( 'error-state', $input.attr( 'name' ), true );
-
+			eventBus.emit( 'error-state', errorKey, true, messageBox );
 		} else {
-			$errorBox.remove();
-			eventBus.emit( 'error-state', $input.attr( 'name' ), false );
+			if ( messageBox ) {
+				messageBox.remove();
+			}
+			eventBus.emit( 'error-state', errorKey, false );
 		}
 	}
 
@@ -574,23 +583,21 @@
 	 * Create a by-bucket index of assigned banners using data received from the server.
 	 */
 	function setUpAssignedBanners() {
-		var assignedBannersFlat, i;
-
 		// Create outer array and inner arrays for all possible buckets
 		assignedBanners = [];
 
-		for ( i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
+		for ( let i = 0; i < mw.config.get( 'wgNoticeNumberOfBuckets' ); i++ ) {
 			assignedBanners[ i ] = [];
 		}
 
 		// Get the data sent from the server
 		// If there are no assigned banners, the assigned banner fieldset isn't included
 		// in the page. In that case, jQuery will return undefined from data()
-		assignedBannersFlat =
+		const assignedBannersFlat =
 			$( '#centralnotice-assigned-banners' ).data( 'assigned-banners' ) || [];
 
 		// Fill up the index
-		for ( i = 0; i < assignedBannersFlat.length; i++ ) {
+		for ( let i = 0; i < assignedBannersFlat.length; i++ ) {
 			assignedBanners[ assignedBannersFlat[ i ].bucket ]
 				.push( assignedBannersFlat[ i ].bannerName );
 		}
@@ -602,13 +609,13 @@
 	 * assigned-banner-change event.
 	 */
 	function updateAssignedBanners() {
-		var $removeCheckboxes = $( '.bannerRemoveCheckbox' ),
+		const $removeCheckboxes = $( '.bannerRemoveCheckbox' ),
 			$selectors = $( '.bucketSelectorForAssignedBanners' ),
 			removedBanners = [];
 
 		// Create an array with the names of banners whose remove checkbox is checked
 		$removeCheckboxes.each( function () {
-			var $this = $( this );
+			const $this = $( this );
 			if ( $this.prop( 'checked' ) ) {
 				removedBanners.push( $this.val() );
 			}
@@ -616,8 +623,7 @@
 
 		// Iterate over the bucket selectors for assigned banners
 		$selectors.each( function () {
-			var i, bannerIdx,
-				$this = $( this ),
+			const $this = $( this ),
 				assignedBucket = +$this.val(),
 				bannerName = $this.data( 'banner-name' ),
 				removed = ( removedBanners.indexOf( bannerName ) !== -1 );
@@ -625,9 +631,9 @@
 			// Iterate over all buckets, adding banners to the index or removeing them,
 			// as needed. (assignedBanners has elements for all possible buckets.)
 			// TODO Make the order of banners the same as the order displayed in the UI
-			for ( i = 0; i < assignedBanners.length; i++ ) {
+			for ( let i = 0; i < assignedBanners.length; i++ ) {
 
-				bannerIdx = assignedBanners[ i ].indexOf( bannerName );
+				const bannerIdx = assignedBanners[ i ].indexOf( bannerName );
 
 				// If the box is checked to remove, just ensure the banner is not there
 				if ( removed ) {
@@ -750,7 +756,7 @@
 	 * Finalize setup: initialize slider, set handlers, set variables for jQuery elements
 	 */
 	function initialize() {
-		var $mixinCheckboxes = $( 'input.noticeMixinCheck' );
+		const $mixinCheckboxes = $( 'input.noticeMixinCheck' );
 
 		$( '#centralnotice-throttle-amount' ).slider( {
 			range: 'min',
@@ -759,7 +765,7 @@
 			value: $( '#centralnotice-throttle-cur' ).val(),
 			step: stepSize,
 			slide: function ( event, element ) {
-				var val = Number( element.value ),
+				const val = Number( element.value ),
 					rounded = Math.round( val * 10 ) / 10;
 				$( '#centralnotice-throttle-echo' ).text( String( rounded ) + '%' );
 				$( '#centralnotice-throttle-cur' ).val( val );
@@ -786,11 +792,9 @@
 
 	// We have to wait for document ready and for custom controls modules to be loaded
 	// before initializing everything
-	$( function () {
+	$( () => {
 		// eslint-disable-next-line no-jquery/no-map-util
-		var customControlsModules = $.map( mixinDefs, function ( mixinDef ) {
-			return mixinDef.customAdminUIControlsModule;
-		} );
+		const customControlsModules = $.map( mixinDefs, ( mixinDef ) => mixinDef.customAdminUIControlsModule );
 
 		// Custom mixin control modules depend on this module so they can access base
 		// classes here when they declare subclasses. So, this module can't depend on

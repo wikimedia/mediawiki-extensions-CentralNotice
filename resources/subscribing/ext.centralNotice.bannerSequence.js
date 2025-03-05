@@ -13,13 +13,12 @@
 ( function () {
 	'use strict';
 
-	var multiStorageOption, days, SequenceManager, sequenceManager,
-		preBannerHandler, postBannerOrFailHandler,
-		cn = mw.centralNotice,
-		mixin = new cn.Mixin( 'bannerSequence' ),
-
+	let multiStorageOption, days, sequenceManager,
 		// Flag to indicate that the current step shows no banner
-		showingEmptyStep = false,
+		showingEmptyStep = false;
+
+	const cn = mw.centralNotice,
+		mixin = new cn.Mixin( 'bannerSequence' ),
 
 		// We also check identifiers from the large banner limit mixin.
 		// Coordinate both storage keys with ext.centralNotice.largeBannerLimit.js.
@@ -42,9 +41,7 @@
 	 * @param {number} currentPageView The current page view in the sequence (before a
 	 *   banner has been shown)
 	 */
-	SequenceManager = function ( sequence, currentPageView ) {
-
-		var i;
+	const SequenceManager = function ( sequence, currentPageView ) {
 
 		this.sequence = sequence;
 
@@ -67,7 +64,7 @@
 		this.identifierToSet = null;
 
 		// Find total page views in the sequence and the starting page views
-		for ( i = 0; i < this.sequence.length; i++ ) {
+		for ( let i = 0; i < this.sequence.length; i++ ) {
 			this.stepStarts[ i ] = this.seqTotalPageViews;
 			this.seqTotalPageViews += this.sequence[ i ].numPageViews;
 		}
@@ -79,7 +76,7 @@
 			this.currentPageView : 0;
 
 		// Find the current step
-		for ( i = 0; i < this.sequence.length; i++ ) {
+		for ( let i = 0; i < this.sequence.length; i++ ) {
 
 			if ( i === this.sequence.length - 1 ) {
 				this.currentStep = i;
@@ -140,7 +137,7 @@
 	 * within the sequence. Set this.nextPageView and, if needed, this.identifierToSet.
 	 */
 	SequenceManager.prototype.processPageView = function () {
-		var nextStep = ( this.currentStep + 1 ) % this.sequence.length;
+		const nextStep = ( this.currentStep + 1 ) % this.sequence.length;
 
 		this.nextPageView = ( this.currentPageView + 1 ) % this.seqTotalPageViews;
 
@@ -223,9 +220,7 @@
 		);
 	}
 
-	preBannerHandler = function ( mixinParams ) {
-
-		var identifier, sequence, banner, pageView;
+	const preBannerHandler = function ( mixinParams ) {
 
 		// Campaign was already failed
 		if ( cn.isCampaignFailed() ) {
@@ -254,11 +249,11 @@
 		}
 
 		days = mixinParams.days;
-		sequence = mixinParams.sequences[ cn.getDataProperty( 'reducedBucket' ) ];
+		const sequence = mixinParams.sequences[ cn.getDataProperty( 'reducedBucket' ) ];
 
 		// Get current page view, resetting if requested (for testing)
 		// TODO Include a way to clear or ignore identifiers, too?
-		pageView = mw.util.getParamValue( 'reset' ) === '1' ? 0 : getPageView();
+		const pageView = mw.util.getParamValue( 'reset' ) === '1' ? 0 : getPageView();
 
 		// Set up the sequence manager with the sequence for this bucket and the current
 		// page view in the sequence
@@ -267,7 +262,7 @@
 		// Check for identifiers and skip steps, if necessary. Make no assumptions about
 		// how many steps to skip.
 		while ( true ) {
-			identifier = sequenceManager.identifierToCheck();
+			const identifier = sequenceManager.identifierToCheck();
 
 			// If this step has no identifier, or there's no flag set with this
 			// identifier, all good! Show the banner.
@@ -284,7 +279,7 @@
 		}
 
 		// See if there is a banner for this step
-		banner = sequenceManager.banner();
+		const banner = sequenceManager.banner();
 
 		// banner is null if this is an empty step
 		if ( banner === null ) {
@@ -297,7 +292,7 @@
 		cn.requestBanner( banner );
 	};
 
-	postBannerOrFailHandler = function () {
+	const postBannerOrFailHandler = function () {
 
 		// If a banner was shown, or we showed no banner as part of an empty step, move to
 		// the next page view in the sequence. If necessary, set a flag.

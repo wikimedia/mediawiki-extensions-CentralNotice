@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Pager\TablePager;
+use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -220,11 +221,15 @@ class CNCampaignPager extends TablePager {
 				);
 
 			case 'projects':
-				$p = explode( ',', $this->mCurrentRow->projects );
+				$p = $this->mCurrentRow->projects
+					? explode( ',', $this->mCurrentRow->projects )
+					: [];
 				return htmlspecialchars( $this->onSpecialCN->listProjects( $p ) );
 
 			case 'languages':
-				$l = explode( ',', $this->mCurrentRow->languages );
+				$l = $this->mCurrentRow->languages
+					? explode( ',', $this->mCurrentRow->languages )
+					: [];
 				return htmlspecialchars( $this->onSpecialCN->listLanguages( $l ) );
 
 			case 'location':

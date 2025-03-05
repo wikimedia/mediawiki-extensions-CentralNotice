@@ -5,7 +5,7 @@
 // TODO Check whether we can use Object.keys() now, to remove the unused k var and above rule.
 ( function () {
 
-	var changes = {};
+	const changes = {};
 
 	/**
 	 * Update changes object as needed
@@ -16,8 +16,6 @@
 	 * @param initialValue
 	 */
 	function setChange( campaignName, property, value, initialValue ) {
-
-		var keysCount, k;
 
 		// If we're returning to the initial value, don't set a change, but
 		// maybe mop up
@@ -31,8 +29,8 @@
 				delete changes[ campaignName ][ property ];
 
 				// Remove campaign object from changes, if empty
-				keysCount = 0;
-				for ( k in changes[ campaignName ] ) {
+				let keysCount = 0;
+				for ( const k in changes[ campaignName ] ) {
 					keysCount++;
 				}
 
@@ -56,7 +54,7 @@
 	 * Handler for changes to checkboxes
 	 */
 	function updateCheckboxChanges() {
-		var $this = $( this );
+		const $this = $( this );
 
 		setChange(
 			$this.data( 'campaignName' ),
@@ -70,7 +68,7 @@
 	 * Handler for changes to priority dropdowns
 	 */
 	function updatePriorityChanges() {
-		var $this = $( this );
+		const $this = $( this );
 
 		setChange(
 			$this.data( 'campaignName' ),
@@ -84,7 +82,7 @@
 	 * Handler for changes to campaign type dropdowns
 	 */
 	function updateCampaignTypeChanges() {
-		var $this = $( this );
+		const $this = $( this );
 
 		setChange(
 			$this.data( 'campaignName' ),
@@ -98,7 +96,7 @@
 	 * Click handler for faux submit button, to submit just what's changed
 	 */
 	function submitChanges() {
-		var $form = $( '<form>' ).attr( 'method', 'post' ),
+		const $form = $( '<form>' ).attr( 'method', 'post' ),
 			$authtokenField = $( '<input>' ).attr( { type: 'hidden', name: 'authtoken' } ),
 			$summaryField = $( '<input>' ).attr( { type: 'hidden', name: 'changeSummary' } ),
 			$changesField = $( '<input>' ).attr( { type: 'hidden', name: 'changes' } );
@@ -114,10 +112,9 @@
 		$form.trigger( 'submit' );
 	}
 
-	$( function () {
+	$( () => {
 
-		var CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ],
-			i, selector;
+		const CHECKBOX_NAMES = [ 'enabled', 'locked', 'archived' ];
 
 		// Keep data-sort-value attributes for jquery.tablesorter in sync
 		$( '.mw-cn-input-check-sort' ).on( 'change click blur', function () {
@@ -129,11 +126,11 @@
 		if ( $( '#cn-campaign-pager' ).data( 'editable' ) ) {
 
 			// Go through all the fields with checkbox controls
-			for ( i = 0; i < CHECKBOX_NAMES.length; i++ ) {
+			for ( let i = 0; i < CHECKBOX_NAMES.length; i++ ) {
 
 				// Select enabled checkboxes with this name
 				// See CNCampaignPager::formatValue()
-				selector = '#cn-campaign-pager input[name="' +
+				const selector = '#cn-campaign-pager input[name="' +
 					CHECKBOX_NAMES[ i ] + '"]:not([disabled])';
 
 				// When checked or unchecked, update changes to send

@@ -5,10 +5,10 @@
  */
 ( function () {
 
-	var cn = mw.centralNotice,
+	const cn = mw.centralNotice,
 		mixin = new cn.Mixin( 'legacySupport' );
 
-	mixin.setPreBannerHandler( function ( mixinParams ) {
+	mixin.setPreBannerHandler( ( mixinParams ) => {
 
 		if ( mixinParams.setSRISampleRate ) {
 			cn.setMinRecordImpressionSampleRate( mixinParams.sriSampleRate );

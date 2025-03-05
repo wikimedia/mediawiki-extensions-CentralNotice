@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Extension\CLDR\CountryNames;
+use MediaWiki\Registration\ExtensionRegistry;
 
 class GeoTarget {
 

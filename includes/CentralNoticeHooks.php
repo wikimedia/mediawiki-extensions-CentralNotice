@@ -11,6 +11,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -121,7 +122,7 @@ class CentralNoticeHooks implements
 					'styles' => [
 						'vendor/jquery.ui.multiselect/ui.multiselect.css',
 						'vendor/jquery.jstree/themes/default/style.css',
-						'infrastructure/ext.centralNotice.adminUi.css'
+						'infrastructure/ext.centralNotice.adminUi.less'
 					],
 					'messages' => [
 						'centralnotice-documentwrite-error',
@@ -134,7 +135,7 @@ class CentralNoticeHooks implements
 				],
 				'ext.centralNotice.adminUi.campaignPager' => $moduleTemplate + [
 					'scripts' => 'infrastructure/ext.centralNotice.adminUi.campaignPager.js',
-					'styles' => 'infrastructure/ext.centralNotice.adminUi.campaignPager.css'
+					'styles' => 'infrastructure/ext.centralNotice.adminUi.campaignPager.less'
 				],
 				'ext.centralNotice.adminUi.bannerManager' => $moduleTemplate + [
 					'dependencies' => [
@@ -143,7 +144,7 @@ class CentralNoticeHooks implements
 						'mediawiki.Uri'
 					],
 					'scripts' => 'infrastructure/bannermanager.js',
-					'styles' => 'infrastructure/bannermanager.css',
+					'styles' => 'infrastructure/bannermanager.less',
 					'messages' => [
 						'centralnotice-add-notice-button',
 						'centralnotice-add-notice-cancel-button',
@@ -201,7 +202,7 @@ class CentralNoticeHooks implements
 						'mediawiki.template.mustache'
 					],
 					'scripts' => 'resources/infrastructure/campaignManager.js',
-					'styles' => 'resources/infrastructure/campaignManager.css',
+					'styles' => 'resources/infrastructure/campaignManager.less',
 					'templates' => [
 						'campaignMixinParamControls.mustache' => 'templates/campaignMixinParamControls.mustache'
 					],
@@ -284,6 +285,9 @@ class CentralNoticeHooks implements
 		}
 	}
 
+	/**
+	 * @param string $right
+	 */
 	private static function addCascadingRestrictionRight( $right ) {
 		global $wgCascadingRestrictionLevels, $wgRestrictionLevels;
 		if ( !in_array( $right, $wgRestrictionLevels ) ) {
@@ -585,6 +589,9 @@ class CentralNoticeHooks implements
 		$this->addDefinedTags( $tags );
 	}
 
+	/**
+	 * @param string[] &$tags
+	 */
 	private function addDefinedTags( &$tags ): void {
 		$tags[] = 'centralnotice';
 		$tags[] = 'centralnotice translation';

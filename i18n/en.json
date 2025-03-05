@@ -337,5 +337,7 @@
 	"centralnotice-campaign-type-maintenance": "Maintenance",
 	"centralnotice-campaign-type-photography": "Photography",
 	"centralnotice-campaign-type-special": "Special",
-	"centralnotice-user-prefs-intro": "Banners display announcements of interest to Wikimedia communities and users.\n\nBelow are options that allow you to manage which types of announcements you see. Certain platform notices, such as those relating to site maintenance and special notices considered necessary to all users, will always be displayed. For further information, please read the [[metawikimedia:Special:MyLanguage/CentralNotice|documentation on Meta-Wiki]]."
+	"centralnotice-user-prefs-intro": "Banners display announcements of interest to Wikimedia communities and users.\n\nBelow are options that allow you to manage which types of announcements you see. Certain platform notices, such as those relating to site maintenance and special notices considered necessary to all users, will always be displayed. For further information, please read the [[metawikimedia:Special:MyLanguage/CentralNotice|documentation on Meta-Wiki]].",
+	"namespaceinfo-description-ns866": "Messages used in [[mw:Special:MyLanguage/Extension:CentralNotice|CentralNotice]] banners and their translations",
+	"namespaceinfo-description-ns867": "Talk pages for CentralNotice banner messages"
 }

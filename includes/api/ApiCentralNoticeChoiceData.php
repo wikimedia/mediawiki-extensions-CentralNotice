@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+
 /**
  * Module for the centralnoticechoicedata Web API.
  *
@@ -39,6 +41,7 @@ class ApiCentralNoticeChoiceData extends ApiBase {
 		);
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'project' => [

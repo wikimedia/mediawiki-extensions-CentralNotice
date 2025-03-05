@@ -22,14 +22,19 @@
  * @file
  */
 
+use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroups;
 use MediaWiki\Extension\Translate\MessageLoading\RebuildMessageIndexJob;
 use MediaWiki\Extension\Translate\Services;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -729,18 +734,10 @@ class Banner {
 
 		if ( $wgNoticeUseTranslateExtension ) {
 			$services = Services::getInstance();
-			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				$langs = $services->getMessageGroupMetadata()->get(
-					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
-					'prioritylangs'
-				);
-			} else {
-				// @phan-suppress-next-line PhanUndeclaredClassMethod
-				$langs = TranslateMetadata::get(
-					BannerMessageGroup::getTranslateGroupName( $this->getName() ),
-					'prioritylangs'
-				);
-			}
+			$langs = $services->getMessageGroupMetadata()->get(
+				BannerMessageGroup::getTranslateGroupName( $this->getName() ),
+				'prioritylangs'
+			);
 			if ( !$langs ) {
 				// If priority langs is not set; MessageGroupMetadata::get will return false
 				$langs = '';
@@ -750,7 +747,7 @@ class Banner {
 		$this->markPriorityLanguageDataDirty( false );
 	}
 
-	private function markPriorityLanguageDataDirty( $dirty = true ) {
+	private function markPriorityLanguageDataDirty( bool $dirty = true ) {
 		$this->dirtyFlags['prioritylang'] = $dirty;
 	}
 
@@ -761,43 +758,28 @@ class Banner {
 			$groupName = BannerMessageGroup::getTranslateGroupName( $this->getName() );
 
 			$services = Services::getInstance();
-			if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-				$messageGroupMetadata = $services->getMessageGroupMetadata();
+			$messageGroupMetadata = $services->getMessageGroupMetadata();
 
-				if ( $this->priorityLanguages === [] ) {
-					// Using false to delete the value instead of writing empty content
-					$messageGroupMetadata->set( $groupName, 'prioritylangs', false );
-				} else {
-					$messageGroupMetadata->set(
-						$groupName,
-						'prioritylangs',
-						implode( ',', $this->priorityLanguages )
-					);
-				}
+			if ( $this->priorityLanguages === [] ) {
+				// Using false to delete the value instead of writing empty content
+				$messageGroupMetadata->set( $groupName, 'prioritylangs', false );
 			} else {
-				if ( $this->priorityLanguages === [] ) {
-					// Using false to delete the value instead of writing empty content
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
-					TranslateMetadata::set( $groupName, 'prioritylangs', false );
-				} else {
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
-					TranslateMetadata::set(
-						$groupName,
-						'prioritylangs',
-						implode( ',', $this->priorityLanguages )
-					);
-				}
+				$messageGroupMetadata->set(
+					$groupName,
+					'prioritylangs',
+					implode( ',', $this->priorityLanguages )
+				);
 			}
 		}
 	}
 
-	public function getDbKey() {
+	public function getDbKey(): string {
 		$name = $this->getName();
 		return "Centralnotice-template-{$name}";
 	}
 
-	public function getTitle() {
-		return Title::newFromText( $this->getDbKey(), NS_MEDIAWIKI );
+	public function getTitle(): Title {
+		return Title::makeTitle( NS_MEDIAWIKI, $this->getDbKey() );
 	}
 
 	/**
@@ -921,9 +903,7 @@ class Banner {
 
 			if ( $wgNoticeUseTranslateExtension ) {
 				// Get the revision and page ID of the page that was created/modified
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				if ( $pageResult->value['revision-record'] ) {
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$revisionRecord = $pageResult->value['revision-record'];
 					$revisionId = $revisionRecord->getId();
 					$pageId = $revisionRecord->getPageId();
@@ -941,7 +921,7 @@ class Banner {
 		}
 	}
 
-	public function getMessageField( $field_name ) {
+	public function getMessageField( string $field_name ): BannerMessage {
 		return new BannerMessage( $this->getName(), $field_name );
 	}
 
@@ -1005,10 +985,11 @@ class Banner {
 	public function extractMessageFields() {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
+		$popts = ParserOptions::newFromContext( RequestContext::getMain() );
 		$expanded = $parser->parse(
 			$this->getBodyContent(), $this->getTitle(),
-			ParserOptions::newFromContext( RequestContext::getMain() )
-		)->getText();
+			$popts
+		)->runOutputPipeline( $popts, [] )->getContentHolderText();
 
 		// Also search the preload js for fields.
 		$renderer = new BannerRenderer( RequestContext::getMain(), $this );
@@ -1180,7 +1161,7 @@ class Banner {
 		return $this;
 	}
 
-	public function cloneBanner( $destination, $user, $summary = null ) {
+	public function cloneBanner( string $destination, User $user, ?string $summary = null ): self {
 		if ( !self::isValidBannerName( $destination ) ) {
 			throw new BannerDataException( "Banner name must be in format /^[A-Za-z0-9_]+$/" );
 		}
@@ -1222,7 +1203,7 @@ class Banner {
 		self::removeBanner( $this->getName(), $user );
 	}
 
-	public static function removeBanner( $name, $user, $summary = null ) {
+	public static function removeBanner( string $name, User $user, ?string $summary = null ) {
 		global $wgNoticeUseTranslateExtension;
 
 		$bannerObj = self::fromName( $name );
@@ -1263,21 +1244,12 @@ class Banner {
 
 				$services = Services::getInstance();
 				// Add the preferred language metadata if it exists
-				if ( method_exists( $services, 'getMessageGroupMetadata' ) ) {
-					$services->getMessageGroupMetadata()->set(
-						BannerMessageGroup::getTranslateGroupName( $name ),
-						'prioritylangs',
-						false
-					);
-				// Add the preferred language metadata if it exists
-				} else {
-					// @phan-suppress-next-line PhanUndeclaredClassMethod
-					TranslateMetadata::set(
-						BannerMessageGroup::getTranslateGroupName( $name ),
-						'prioritylangs',
-						false
-					);
-				}
+
+				$services->getMessageGroupMetadata()->set(
+					BannerMessageGroup::getTranslateGroupName( $name ),
+					'prioritylangs',
+					false
+				);
 			}
 		}
 	}
@@ -1627,7 +1599,7 @@ class Banner {
 	public static function isValidBannerName( $name ) {
 		// Note: regex should coordinate with banner name validation
 		// in ext.centralNotice.adminUi.bannerSequence.js
-		return preg_match( '/^[A-Za-z0-9_]+$/', $name );
+		return preg_match( '/^[A-Za-z0-9_]{1,230}$/', $name );
 	}
 
 	/**

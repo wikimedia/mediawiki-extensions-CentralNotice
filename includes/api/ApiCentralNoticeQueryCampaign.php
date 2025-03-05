@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+
 /** @todo: This needs some major cleanup to work more like the rest of the API. */
 class ApiCentralNoticeQueryCampaign extends ApiBase {
 
@@ -16,7 +18,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 		// Get our language/project/country
 		$params = $this->extractRequestParams();
 
-		$campaigns = explode( '|', self::sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER ) );
+		$campaigns = explode( '|', self::sanitizeText( $params['campaign'], self::CAMPAIGNS_FILTER, '' ) );
 
 		foreach ( $campaigns as $campaign ) {
 			$settings = Campaign::getCampaignSettings( $campaign );
@@ -39,6 +41,7 @@ class ApiCentralNoticeQueryCampaign extends ApiBase {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [ 'campaign' => '' ];
 	}

@@ -2,6 +2,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Xml\Xml;
 
 class SpecialCentralNoticeLogs extends CentralNotice {
 	/** @var string */

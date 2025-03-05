@@ -6,8 +6,8 @@
  */
 ( function () {
 
-	var COOKIE_NAME = 'GeoIP',
-		geoPromise;
+	const COOKIE_NAME = 'GeoIP';
+	let geoPromise;
 
 	/**
 	 * Parse geo data in cookieValue and return an object with properties from
@@ -26,7 +26,7 @@
 		// TODO Verify that these Regexes are optimal. (Why no anchors? Why the
 		// semicolon in the last group?)
 
-		var matches =
+		let matches =
 			// Parse cookie format currently set by WMF servers
 			cookieValue.match( /([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^;]*)/ ) ||
 
@@ -69,7 +69,7 @@
 	 * @param {Object} geo
 	 */
 	function storeGeoInCookie( geo ) {
-		var parts = [
+		const parts = [
 				geo.country,
 				geo.region || '',
 				( geo.city && geo.city.replace( /[^a-z]/i, '_' ) ) || '',
@@ -98,12 +98,11 @@
 		 */
 		makeGeoWithPromise: function () {
 
-			var cookieValue = $.cookie( COOKIE_NAME ),
-				geo, lookupModule;
+			const cookieValue = $.cookie( COOKIE_NAME );
 
 			// Were we able to read the cookie?
 			if ( cookieValue ) {
-				geo = parseCookieValue( cookieValue );
+				const geo = parseCookieValue( cookieValue );
 
 				// All good? Resolve with geo and get outta here.
 				if ( geo ) {
@@ -115,14 +114,14 @@
 			// Handle no geo data from the cookie.
 
 			// If there's a background lookup to fall back to, do that
-			lookupModule =
+			const lookupModule =
 				mw.config.get( 'wgCentralNoticeGeoIPBackgroundLookupModule' );
 
 			if ( lookupModule ) {
 
 				geoPromise = mw.loader.using( lookupModule )
-					.then( function () {
-						var lookupCallback = require( lookupModule );
+					.then( () => {
+						const lookupCallback = require( lookupModule );
 
 						// Chaining lookup: here we return the promise provided by
 						// lookupCallback(). The result of that promise (geo object)
@@ -132,7 +131,7 @@
 					} );
 
 				// If the lookup was successful, store geo in a cookie
-				geoPromise.then( function ( g ) {
+				geoPromise.then( ( g ) => {
 					storeGeoInCookie( g );
 				} );
 
@@ -157,7 +156,7 @@
 	mw.geoIP.makeGeoWithPromise();
 
 	// For legacy code, set global window.Geo TODO: deprecate
-	geoPromise.done( function ( geo ) {
+	geoPromise.done( ( geo ) => {
 		window.Geo = geo;
 	} );
 

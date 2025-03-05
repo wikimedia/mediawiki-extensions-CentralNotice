@@ -69,6 +69,7 @@
 	"centralnotice-template-already-exists": "De mal is al ekoppeld an n kampanje.\nt Wördt der niet bie ezet.",
 	"centralnotice-change-lang": "Taal die'j vertalen willen wiezigen",
 	"centralnotice-weights": "Gewichten",
+	"centralnotice-clone-banner": "Banyr",
 	"centralnotice-close-title": "Sluten",
 	"centralnotice-languages": "Talen",
 	"centralnotice-user": "Gebruker",
@@ -86,5 +87,6 @@
 	"centralnotice-start-date": "Begindaotum (UTC)",
 	"centralnotice-start-time": "Begintied (UTC)",
 	"centralnotice-end-date": "Einddaotum (UTC)",
-	"centralnotice-end-time": "Eindtied (UTC)"
+	"centralnotice-end-time": "Eindtied (UTC)",
+	"prefs-description-centralnotice-banners": "Beheyr de soorten ankundigingen dee jy seet."
 }

@@ -38,6 +38,7 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 	protected const DEFAULT_COLS = 45;
 	protected const DEFAULT_ROWS = 1;
 
+	/** @inheritDoc */
 	public function __construct( $params ) {
 		if ( !array_key_exists( 'default', $params ) ) {
 			$message = new BannerMessage( $params[ 'banner' ], $params[ 'message' ] );
@@ -47,6 +48,7 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 		parent::__construct( $params );
 	}
 
+	/** @inheritDoc */
 	public function validate( $value, $alldata ) {
 		// Empty - no validation can be done on a banner message
 		return true;
@@ -64,7 +66,7 @@ class HTMLCentralNoticeBannerMessage extends HTMLTextAreaField {
 		$html .= Html::openElement( 'tr' );
 
 		$originText = $message->getContents(
-			MediaWikiServices::getInstance()->getContentLanguage()->getCode()
+			MediaWikiServices::getInstance()->getContentLanguageCode()->toString()
 		);
 		$html .= Html::element(
 			'td',

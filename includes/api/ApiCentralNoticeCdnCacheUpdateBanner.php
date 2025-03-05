@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Languages\LanguageNameUtils;
 

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\ContentHandler;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroups;
 use MediaWiki\Extension\Translate\MessageGroupProcessing\MessageGroupStates;
@@ -213,7 +215,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 		return true;
 	}
 
-	public function getMessageGroupStates() {
+	public function getMessageGroupStates(): MessageGroupStates {
 		$conf = [
 			'progress' => [ 'color' => 'E00' ],
 			'proofreading' => [ 'color' => 'FFBF00' ],
@@ -250,7 +252,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 			'label' => 'CentralNotice Banners',
 			'description' => '{{int:centralnotice-aggregate-group-desc}}',
 			'meta' => 1,
-			'class' => 'AggregateMessageGroup',
+			'class' => AggregateMessageGroup::class,
 			'namespace' => NS_CN_BANNER,
 		];
 		$conf['GROUPS'] = [];
@@ -280,6 +282,11 @@ class BannerMessageGroup extends WikiMessageGroup {
 		return true;
 	}
 
+	/**
+	 * @param string $banner
+	 * @param string $state
+	 * @return string[]
+	 */
 	public static function getLanguagesInState( $banner, $state ) {
 		if ( !self::isUsingGroupReview() ) {
 			throw new LogicException(

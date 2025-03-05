@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 /* Common styles CentralNotice extension admin UI
  * @licence GNU General Public Licence 2.0 or later
  *
@@ -27,7 +29,7 @@ h2.cn-special-section {
 }
 
 #preferences div.cn-error {
-	color: #d73333;
+	color: @color-error;
 	margin: 1em;
 }
 
@@ -78,15 +80,15 @@ h2.cn-special-section {
 
 #preferences table#cn-campaign-logs td.primary,
 #preferences table#cn-campaign-logs td.primary-summary {
-	background-color: #f8f9fc;
+	background-color: @background-color-neutral-subtle;
 }
 
 #preferences .cn-new-value {
-	color: #006400;
+	color: @color-content-added;
 }
 
 #preferences .cn-old-value {
-	color: #8b0000;
+	color: @color-content-removed;
 }
 
 #preferences .cn-log-label {
@@ -111,7 +113,7 @@ h2.cn-special-section {
 
 #preferences #cn-template-searchbox legend {
 	font-size: 95%;
-	color: #000;
+	color: inherit;
 }
 
 #preferences #cn-template-searchbox label,
@@ -157,10 +159,10 @@ body.skin-monobook #preferences fieldset.prefsection {
 
 /* For HTMLForm generated forms */
 form .error {
-	color: #000;
+	color: inherit;
 	margin: 0 0 0.5em 0;
 	padding: 0.5em;
-	background-color: #fcc;
+	background-color: @background-color-destructive-subtle;
 	border: 2px solid #d73333;
 }
 
@@ -168,7 +170,7 @@ form .error {
 
 #cn-js-error-warn {
 	padding: 0.5em;
-	background-color: #fcc;
+	background-color: @background-color-destructive-subtle;
 	border: 2px solid #d73333;
 	margin-bottom: 0.5em;
 	font-weight: bold;
@@ -181,7 +183,7 @@ div.separate-form-element {
 
 fieldset#cn-formsection-form-actions {
 	padding: 0.5em;
-	background-color: #f8f9fa;
+	background-color: @background-color-neutral-subtle;
 	border: 1px solid #2a4b8d;
 }
 

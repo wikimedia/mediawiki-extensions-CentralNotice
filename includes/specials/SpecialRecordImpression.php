@@ -14,6 +14,7 @@ class SpecialRecordImpression extends UnlistedSpecialPage {
 		parent::__construct( "RecordImpression" );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->getOutput()->disable();
 

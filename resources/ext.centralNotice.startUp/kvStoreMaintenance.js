@@ -6,8 +6,7 @@
  * This module provides an API at mw.centralNotice.kvStoreMaintenance.
  */
 ( function () {
-	var kvStoreMaintenance,
-		now = Date.now() / 1000,
+	const now = Date.now() / 1000,
 
 		// Regex to find kvStore localStorage keys. Must correspond with PREFIX
 		// in ext.centralNotice.kvStore.
@@ -28,16 +27,15 @@
 	 * @return {jQuery.Promise} List of key strings
 	 */
 	function getKeys() {
-		return $.Deferred( function ( d ) {
-			mw.requestIdleCallback( function ( deadline ) {
-				var key,
-					keys = [],
-					index = localStorage.length;
+		return $.Deferred( ( d ) => {
+			mw.requestIdleCallback( ( deadline ) => {
+				const keys = [];
+				let index = localStorage.length;
 
 				// We don't expect to have more keys than we can handle in a single iteration.
 				// But just in case, ensure we don't stall for too long.
 				while ( index-- > 0 && deadline.timeRemaining() > MIN_WORK_TIME ) {
-					key = localStorage.key( index );
+					const key = localStorage.key( index );
 					// Operate only on our own localStorage items.
 					// Also recheck key existence as it may race with other tabs.
 					if ( key !== null && PREFIX_REGEX.test( key ) ) {
@@ -54,9 +52,9 @@
 	 * @return {jQuery.Promise}
 	 */
 	function processKeys( queue ) {
-		return $.Deferred( function ( d ) {
+		return $.Deferred( ( d ) => {
 			mw.requestIdleCallback( function iterate( deadline ) {
-				var key, rawValue, value;
+				let key, rawValue, value;
 				while ( queue[ 0 ] !== undefined && deadline.timeRemaining() > MIN_WORK_TIME ) {
 					key = queue.shift();
 					try {
@@ -83,12 +81,11 @@
 	}
 
 	function purgeFallbackCookies() {
-		var cookies = document.cookie.split( ';' ),
-			i, matches,
+		const cookies = document.cookie.split( ';' ),
 			r = new RegExp( '^' + PREFIX_AND_SEPARATOR_IN_COOKIES + '[^=]*(?==)' );
 
-		for ( i = 0; i < cookies.length; i++ ) {
-			matches = cookies[ i ].trim().match( r );
+		for ( let i = 0; i < cookies.length; i++ ) {
+			const matches = cookies[ i ].trim().match( r );
 			if ( matches ) {
 				document.cookie = matches[ 0 ] +
 					'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
@@ -99,7 +96,7 @@
 	/**
 	 * Public API
 	 */
-	kvStoreMaintenance = {
+	const kvStoreMaintenance = {
 
 		/**
 		 * Start the removal of expired KVStore items. Also check for fallback

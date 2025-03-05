@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Html\Html;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
 
@@ -126,7 +127,7 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 	/**
 	 * @inheritDoc
 	 */
-	public function getDependencies( RL\Context $context = null ) {
+	public function getDependencies( ?RL\Context $context = null ) {
 		$cnCampaignMixins = $this->getConfig()->get( 'CentralNoticeCampaignMixins' );
 
 		// If this method is called with no context argument (the old method

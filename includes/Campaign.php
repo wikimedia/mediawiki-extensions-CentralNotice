@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -964,6 +965,10 @@ class Campaign {
 		return true;
 	}
 
+	/**
+	 * @param string $campaignName
+	 * @param User $user
+	 */
 	private static function removeCampaignByName( $campaignName, $user ) {
 		// Log the removal of the campaign
 		$campaignId = self::getNoticeId( $campaignName );
@@ -1102,6 +1107,10 @@ class Campaign {
 		return null;
 	}
 
+	/**
+	 * @param string $noticeName
+	 * @return string[]
+	 */
 	public static function getNoticeProjects( $noticeName ) {
 		$dbr = CNDatabase::getDb();
 		$row = $dbr->newSelectQueryBuilder()
@@ -1123,6 +1132,10 @@ class Campaign {
 		return $projects;
 	}
 
+	/**
+	 * @param string $noticeName
+	 * @return string[]
+	 */
 	public static function getNoticeLanguages( $noticeName ) {
 		$dbr = CNDatabase::getDb();
 		$row = $dbr->newSelectQueryBuilder()
@@ -1385,6 +1398,10 @@ class Campaign {
 			->execute();
 	}
 
+	/**
+	 * @param string $notice
+	 * @param string[] $newProjects
+	 */
 	public static function updateProjects( $notice, $newProjects ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
@@ -1428,6 +1445,10 @@ class Campaign {
 		$dbw->endAtomic( __METHOD__ );
 	}
 
+	/**
+	 * @param string $notice
+	 * @param string[] $newLanguages
+	 */
 	public static function updateProjectLanguages( $notice, $newLanguages ) {
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
@@ -1686,6 +1707,10 @@ class Campaign {
 		return ( preg_match( '/^[a-z_]*$/', $settingName ) === 1 );
 	}
 
+	/**
+	 * @param string $campaignName
+	 * @param string|null $type
+	 */
 	public static function setType( $campaignName, $type ) {
 		// Following pattern from setNumericaCampaignSettings() and exiting with no
 		// error if the campaign doesn't exist. TODO Is this right?
@@ -1702,6 +1727,15 @@ class Campaign {
 			->execute();
 	}
 
+	/**
+	 * @param string|false $campaign
+	 * @param string|false $username
+	 * @param string|false $start
+	 * @param string|false $end
+	 * @param int $limit
+	 * @param int $offset
+	 * @return array[]
+	 */
 	public static function campaignLogs(
 		$campaign = false, $username = false, $start = false, $end = false, $limit = 50, $offset = 0
 	) {

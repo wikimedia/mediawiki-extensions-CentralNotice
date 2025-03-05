@@ -21,9 +21,7 @@
  */
 ( function () {
 
-	var bm;
-
-	bm = mw.centralNotice.adminUi.bannerManagement = {
+	const bm = mw.centralNotice.adminUi.bannerManagement = {
 		/**
 		 * State tracking variable for the number of items currently selected
 		 *
@@ -44,7 +42,7 @@
 		 * @return {boolean}
 		 */
 		doAddBannerDialog: function () {
-			var buttons = {},
+			const buttons = {},
 				okButtonText = mw.message( 'centralnotice-add-notice-button' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-add-notice-cancel-button' ).text(),
 				$dialogObj = $( '<form>' ),
@@ -58,7 +56,7 @@
 			// We'll submit the real form (outside the dialog).
 			// Copy in values to that form before submitting.
 			buttons[ okButtonText ] = function () {
-				var formobj = $( '#cn-banner-manager' )[ 0 ];
+				const formobj = $( '#cn-banner-manager' )[ 0 ];
 				formobj.wpaction.value = 'create';
 				formobj.wpnewBannerName.value = $( this )[ 0 ].wpnewBannerName.value;
 
@@ -78,7 +76,7 @@
 			// eslint-disable-next-line no-jquery/no-ready-shorthand
 			$dialogObj.append(
 				$( '#cn-formsection-addBanner' ).children( 'div' ).clone().show()
-			).ready( function () {
+			).ready( () => {
 				$( $dialogObj[ 0 ].wpcreateFromTemplateCheckbox )
 					.on( 'click', bm.toggleBannerTemplatesDropdown );
 			} );
@@ -109,7 +107,7 @@
 		 * the form with the 'remove' action.
 		 */
 		doRemoveBanners: function () {
-			var $dialogObj = $( '<form>' ),
+			const $dialogObj = $( '<form>' ),
 				$dialogMessage = $( '<div>' ).addClass( 'cn-dialog-message' ),
 				buttons = {},
 				deleteText = mw.message( 'centralnotice-delete-banner' ).text(),
@@ -118,7 +116,7 @@
 			// We'll submit the real form (outside the dialog).
 			// Copy in values to that form before submitting.
 			buttons[ deleteText ] = function () {
-				var formobj = $( '#cn-banner-manager' )[ 0 ];
+				const formobj = $( '#cn-banner-manager' )[ 0 ];
 				formobj.wpaction.value = 'remove';
 
 				formobj.wpremoveBannerEditSummary.value =
@@ -149,13 +147,13 @@
 		 * Submits the form with the archive action.
 		 */
 		doArchiveBanners: function () {
-			var $dialogObj = $( '<div>' ),
+			const $dialogObj = $( '<div>' ),
 				buttons = {},
 				archiveText = mw.message( 'centralnotice-archive-banner' ).text(),
 				cancelButtonText = mw.message( 'centralnotice-archive-banner-cancel' ).text();
 
 			buttons[ archiveText ] = function () {
-				var formobj = $( '#cn-banner-manager' )[ 0 ];
+				const formobj = $( '#cn-banner-manager' )[ 0 ];
 				formobj.wpaction.value = 'archive';
 				formobj.submit();
 			};
@@ -179,7 +177,7 @@
 		 * Updates all the banner check boxes when the 'checkAll' check box is clicked
 		 */
 		checkAllStateAltered: function () {
-			var $checkBoxes = $( 'input.cn-bannerlist-check-applyto' );
+			const $checkBoxes = $( 'input.cn-bannerlist-check-applyto' );
 			if ( $( '#mw-input-wpselectAllBanners' ).prop( 'checked' ) ) {
 				bm.selectedItemCount = bm.totalSelectableItems;
 				$checkBoxes.each( function () {
@@ -207,7 +205,7 @@
 		},
 
 		checkedCountUpdated: function () {
-			var $selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
+			const $selectAllCheck = $( '#mw-input-wpselectAllBanners' ),
 				$deleteButton = $( ' #mw-input-wpdeleteSelectedBanners' );
 
 			if ( bm.selectedItemCount === bm.totalSelectableItems ) {
@@ -233,10 +231,8 @@
 		 * filter (or lack thereof).
 		 */
 		applyFilter: function () {
-			var newUri, filterStr;
-
-			filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
-			newUri = new mw.Uri();
+			let filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
+			const newUri = new mw.Uri();
 
 			// If there's a filter, reload with a filter query param.
 			// If there's no filter, reload with no such param.

@@ -4,12 +4,11 @@
  */
 ( function () {
 
-	var hide,
-		category,
+	let category,
 		cookieName,
 		shouldHide,
-		reason,
-		durations = mw.config.get( 'wgNoticeCookieDurations' ),
+		reason;
+	const durations = mw.config.get( 'wgNoticeCookieDurations' ),
 
 		HIDE_COOKIE_PREFIX = 'centralnotice_hide_',
 
@@ -24,7 +23,7 @@
 	/**
 	 * Hide object (intended for access from within this RL module)
 	 */
-	hide = mw.centralNotice.internal.hide = {
+	const hide = mw.centralNotice.internal.hide = {
 
 		setCategory: function ( c ) {
 			shouldHide = false;
@@ -34,9 +33,7 @@
 		},
 
 		processCookie: function () {
-			var rawCookieVal = $.cookie( cookieName ),
-				hideData,
-				now;
+			const rawCookieVal = $.cookie( cookieName );
 
 			// No cookie
 			if ( !rawCookieVal ) {
@@ -49,6 +46,7 @@
 				return;
 			}
 
+			let hideData;
 			// Try to parse the cookie
 			try {
 				hideData = JSON.parse( rawCookieVal );
@@ -58,7 +56,7 @@
 				return;
 			}
 
-			now = Date.now() / 1000;
+			const now = Date.now() / 1000;
 
 			// Duration isn't stored in the cookie. Cookies should expire
 			// after the duration is up, some hide reasons have server-side
@@ -96,7 +94,7 @@
 		 * @param {number} duration Cookie duration, in seconds
 		 */
 		setHideCookies: function ( newReason, duration ) {
-			var date = new Date(),
+			const date = new Date(),
 				hideData = {
 					v: 1,
 					created: Math.floor( date.getTime() / 1000 ),
@@ -121,9 +119,9 @@
 
 			// Iterate over all configured URLs to hide this category of banner
 			// for all wikis in a cluster
-			mw.config.get( 'wgNoticeHideUrls' ).forEach( function ( val ) {
+			mw.config.get( 'wgNoticeHideUrls' ).forEach( ( val ) => {
 
-				var url = new mw.Uri( val );
+				const url = new mw.Uri( val );
 				url.extend(
 					{
 						duration: duration,
