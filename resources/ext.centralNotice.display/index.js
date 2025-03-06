@@ -30,7 +30,6 @@
  * mw.centralNotice.reallyChooseAndMaybeDisplay() (below).
  */
 ( function () {
-
 	let cn,
 
 		// For providing a jQuery.Promise to signal when a banner has loaded
@@ -183,6 +182,19 @@
 		cn.events.bannerLoaded = cn.bannerLoadedPromise;
 	}
 
+	/***
+	 * Based on implementation of now deprecated mw.Uri.encode
+	 *
+	 * @param {string} s
+	 * @return {string}
+	 */
+	function encode( s ) {
+		return encodeURIComponent( s )
+			.replace( /!/g, '%21' ).replace( /'/g, '%27' ).replace( /\(/g, '%28' )
+			.replace( /\)/g, '%29' ).replace( /\*/g, '%2A' )
+			.replace( /%20/g, '+' );
+	}
+
 	function fetchOrRetrieveBanner() {
 		const data = cn.internal.state.getData();
 
@@ -206,45 +218,52 @@
 		}
 	}
 
-	function fetchBanner() {
-
-		const data = cn.internal.state.getData(),
-			urlBase = new mw.Uri(
-				mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' )
-			),
-
-			// For Varnish purges of banner content, we ensure query param order (thus we
-			// can't use the object-based facilities for params in mw.Uri).
-			// Rather, we use mw.Uri only to parse the URL set in config and to
-			// reconstruct the bits before the query.
-			// Param order must coordinate with CdnCacheUpdateBannerLoader in php.
-			urlQuery = [
-				'banner=' + mw.Uri.encode( data.banner ),
-				'uselang=' + mw.Uri.encode( data.uselang ),
-				'debug=' + ( !!data.debug ).toString()
-			];
+	/**
+	 * @param {string} dispatcherUrl
+	 * @param {Object} data Banner data
+	 * @return {URL}
+	 */
+	function getBannerUrl( dispatcherUrl, data ) {
+		const urlBase = new URL( dispatcherUrl, location );
+		// Prior to using URL we were using mw.Uri
+		// For Varnish purges of banner content, we ensure query param order
+		// Param order must coordinate with CdnCacheUpdateBannerLoader in php.
+		// Now we are using URL it should be possible to rewrite this to use
+		// SearchURLParams in a follow up to retain this ordering.
+		const urlQuery = [
+			'banner=' + encode( data.banner ),
+			'uselang=' + encode( data.uselang ),
+			'debug=' + ( !!data.debug ).toString()
+		];
 
 		// If this is a test display, there might not be a campaign
 		if ( data.campaign ) {
-			urlQuery.unshift( 'campaign=' + mw.Uri.encode( data.campaign ) );
+			urlQuery.unshift( 'campaign=' + encode( data.campaign ) );
 		}
 
 		// Only a title param (for ugly URL format) is allowed as a param on the
 		// configured banner dispatchers
-		if ( urlBase.query.title ) {
-			// As per mediawiki.Uri.js
-			urlQuery.unshift( 'title=' + mw.util.wikiUrlencode( urlBase.query.title ) );
+		const searchTitle = urlBase.searchParams.get( 'title' );
+		if ( searchTitle ) {
+			urlQuery.unshift( 'title=' + mw.util.wikiUrlencode( searchTitle ) );
 		}
 
 		// Remove any other query or fragment info parsed from the configured URL
-		urlBase.query = {};
-		urlBase.fragment = '';
+		urlBase.search = urlQuery.join( '&' );
+		urlBase.hash = '';
+		return urlBase;
+	}
+	function fetchBanner() {
+		const url = getBannerUrl(
+			mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' ),
+			cn.internal.state.getData()
+		);
 
 		// The returned javascript will call mw.centralNotice.insertBanner()
 		// or mw.centralNotice.handleBannerLoaderError() (if an error was
 		// handled on the server).
 		$.ajax( {
-			url: urlBase.toString() + '?' + urlQuery.join( '&' ),
+			url: url.toString(),
 			dataType: 'script',
 			cache: true
 		} ).fail( ( jqXHR, status, error ) => {
@@ -313,9 +332,9 @@
 		let dataCopy;
 		// Legacy record impression
 		if ( random <= state.getData().recordImpressionSampleRate ) {
-			const url = new mw.Uri( mw.config.get( 'wgCentralBannerRecorder' ) );
+			const url = new URL( mw.config.get( 'wgCentralBannerRecorder' ), location );
 			dataCopy = state.getDataCopy( true );
-			url.extend( dataCopy );
+			Object.keys( dataCopy ).forEach( ( key ) => url.searchParams.append( key, dataCopy[ key ] ) );
 			sendBeacon( url.toString() );
 		}
 
@@ -618,7 +637,6 @@
 	 *         loaded.
 	 */
 	cn = {
-
 		/**
 		 * Really insert the banner (without waiting for the DOM to be ready).
 		 * Only exposed for use in tests.
@@ -952,6 +970,13 @@
 			return cn.internal.state.getData()[ prop ];
 		}
 	};
+
+	// For testing purposes only.
+	if ( window.QUnit ) {
+		cn.test = {
+			getBannerUrl
+		};
+	}
 
 	// Expose cn. Note that there are situations in which a base
 	// mw.centralNotice object may already have been created by another

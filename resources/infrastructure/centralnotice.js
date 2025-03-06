@@ -43,9 +43,10 @@
 
 	// Switch among various log displays
 	window.switchLogs = function ( baseUrl, logType ) {
-		const url = new mw.Uri( baseUrl );
+		const url = new URL( baseUrl );
 		encodeURIComponent( logType );
-		location.href = url.extend( { log: logType } ).toString();
+		url.searchParams.set( 'log', logType );
+		location.href = url.toString();
 	};
 
 	$( () => {

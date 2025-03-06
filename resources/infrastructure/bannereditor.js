@@ -21,7 +21,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 ( function () {
-
 	let bannerEditor, bannerName, $previewFieldSet, $previewContent, $bannerMessages,
 		fileScopedOpenExternalPreview;
 
@@ -100,9 +99,9 @@
 	 * @param {boolean} openExternalPreview
 	 */
 	function fetchAndUpdateBannerPreview( openExternalPreview ) {
-		const $bannerContentTextArea = $( '#mw-input-wpbanner-body' ),
-			bannerMessagesCache = getUnsavedMessagesValues(),
-			url = new mw.Uri( mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' ) );
+		const $bannerContentTextArea = $( '#mw-input-wpbanner-body' );
+		const bannerMessagesCache = getUnsavedMessagesValues();
+		const url = new URL( mw.config.get( 'wgCentralNoticeActiveBannerDispatcher' ), location );
 
 		// Set this file-scoped variable so the callback knows whether to open the
 		// external preview.

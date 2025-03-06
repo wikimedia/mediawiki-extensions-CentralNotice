@@ -232,15 +232,15 @@
 		 */
 		applyFilter: function () {
 			let filterStr = $( '#mw-input-wpbannerNameFilter' ).val();
-			const newUri = new mw.Uri();
+			const newUri = new URL( location.href );
 
 			// If there's a filter, reload with a filter query param.
 			// If there's no filter, reload with no such param.
 			if ( filterStr.length > 0 ) {
 				filterStr = bm.sanitizeFilterStr( filterStr );
-				newUri.extend( { filter: filterStr } );
+				newUri.searchParams.set( 'filter', filterStr );
 			} else {
-				delete newUri.query.filter;
+				newUri.searchParams.delete( 'filter' );
 			}
 
 			location.replace( newUri.toString() );

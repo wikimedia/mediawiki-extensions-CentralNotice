@@ -407,11 +407,9 @@
 
 		// Mock navigator.sendBeacon to capture calls and check data points sent
 		navigator.sendBeacon = function ( urlString ) {
-
-			// mediawiki.Uri is already a dependency of ext.centralNotice.display
-			const url = new mw.Uri( urlString );
-			assert.strictEqual( url.query.campaign, 'campaign1', 'record impression campaign' );
-			assert.strictEqual( url.query.banner, 'banner1', 'record impression banner' );
+			const url = new URL( urlString );
+			assert.strictEqual( url.searchParams.get( 'campaign' ), 'campaign1', 'record impression campaign' );
+			assert.strictEqual( url.searchParams.get( 'banner' ), 'banner1', 'record impression banner' );
 		};
 
 		mockChoiceDataForRecordImpressionCall( choiceData2Campaigns );
@@ -449,12 +447,12 @@
 
 		// Mock navigator.sendBeacon to capture calls and check data points sent
 		navigator.sendBeacon = function ( urlString ) {
-			const url = new mw.Uri( urlString );
-			assert.strictEqual( url.query.campaign, 'campaign1', 'record impression campaign' );
-			assert.strictEqual( url.query.banner, 'banner1', 'record impression banner' );
+			const url = new URL( urlString );
+			assert.strictEqual( url.searchParams.get( 'campaign' ), 'campaign1', 'record impression campaign' );
+			assert.strictEqual( url.searchParams.get( 'banner' ), 'banner1', 'record impression banner' );
 
 			assert.strictEqual(
-				url.query.testIdentifiers,
+				url.searchParams.get( 'testIdentifiers' ),
 				'test_test',
 				'record impression test identifier'
 			);
@@ -484,11 +482,11 @@
 
 		// Mock navigator.sendBeacon to capture calls and check time and data points sent
 		navigator.sendBeacon = function ( urlString ) {
-			const url = new mw.Uri( urlString ),
+			const url = new URL( urlString ),
 				delay = Date.now() - start;
 
-			assert.strictEqual( url.query.campaign, 'campaign1', 'record impression campaign' );
-			assert.strictEqual( url.query.banner, 'banner1', 'record impression banner' );
+			assert.strictEqual( url.searchParams.get( 'campaign' ), 'campaign1', 'record impression campaign' );
+			assert.strictEqual( url.searchParams.get( 'banner' ), 'banner1', 'record impression banner' );
 
 			// 50 ms leewway is bit arbitrary
 			assert.true(
@@ -893,8 +891,8 @@
 
 		// Mock navigator.sendBeacon
 		navigator.sendBeacon = function ( urlString ) {
-			const url = new mw.Uri( urlString ),
-				statuses = JSON.parse( url.query.campaignStatuses );
+			const url = new URL( urlString );
+			const statuses = JSON.parse( url.searchParams.get( 'campaignStatuses' ) );
 			assert.strictEqual( statuses.length, 2, 'correct amount of records' );
 		};
 
@@ -902,6 +900,61 @@
 
 		mockChoiceDataForRecordImpressionCall( choiceDataAllCampaignsFail );
 
+	} );
+
+	QUnit.test( 'getBannerUrl', ( assert ) => {
+		const host = location.host;
+		const protocol = location.protocol;
+		[
+			[
+				'https://meta.wikimedia.org/wiki/Special:BannerLoader',
+				{
+					banner: 'b1',
+					uselang: 'fr',
+					debug: false
+				},
+				'https://meta.wikimedia.org/wiki/Special:BannerLoader?banner=b1&uselang=fr&debug=false'
+			],
+			[
+				'//meta.wikimedia.org/wiki/Special:BannerLoader',
+				{
+					banner: 'b1',
+					uselang: 'fr',
+					debug: false
+				},
+				`${ protocol }//meta.wikimedia.org/wiki/Special:BannerLoader?banner=b1&uselang=fr&debug=false`
+			],
+			[
+				'https://mediawiki.org/w/index.php?title=Special:BannerLoader',
+				{
+					banner: 'b2',
+					uselang: 'es',
+					debug: false
+				},
+				'https://mediawiki.org/w/index.php?title=Special:BannerLoader&banner=b2&uselang=es&debug=false'
+			],
+			[
+				'/wiki/Special:BannerLoader',
+				{
+					banner: 'b1',
+					uselang: 'fr',
+					debug: false
+				},
+				`${ protocol }//${ host }/wiki/Special:BannerLoader?banner=b1&uselang=fr&debug=false`
+			],
+			[
+				'https://meta.wikimedia.org/wiki/Special:BannerLoader',
+				{
+					banner: 'z + a!\'(*)=b,קי',
+					uselang: 'qqq',
+					debug: false
+				},
+				'https://meta.wikimedia.org/wiki/Special:BannerLoader?banner=z+%2B+a%21%27%28%2A%29%3Db%2C%D7%A7%D7%99&uselang=qqq&debug=false'
+			]
+		].forEach( ( [ path, data, expected ] ) => {
+			const url = mw.centralNotice.test.getBannerUrl( path, data );
+			assert.strictEqual( url.toString(), expected );
+		} );
 	} );
 
 }() );
