@@ -883,9 +883,7 @@ class Banner {
 		if ( $this->dirtyFlags['content'] ) {
 			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->getTitle() );
 
-			if ( $summary === null ) {
-				$summary = '';
-			}
+			$summary ??= '';
 
 			$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
 
@@ -1510,9 +1508,7 @@ class Banner {
 		$summary = null, $isTemplate = false, $category = null
 	) {
 		// Default initial value for devices
-		if ( $devices === null ) {
-			$devices = [ 'desktop' ];
-		}
+		$devices ??= [ 'desktop' ];
 
 		// Set default value for category
 		if ( !$category ) {
@@ -1552,9 +1548,7 @@ class Banner {
 		ChoiceDataProvider::invalidateCache();
 
 		// Summary shouldn't actually come in null, but just in case...
-		if ( $summary === null ) {
-			$summary = '';
-		}
+		$summary ??= '';
 
 		$endSettings = [];
 		if ( $action !== 'removed' ) {
