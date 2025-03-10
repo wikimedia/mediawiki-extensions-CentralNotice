@@ -522,8 +522,6 @@ class CentralNoticeHooks implements
 		}
 
 		$vars[ 'wgCentralNoticeActiveBannerDispatcher' ] = $bannerDispatcher;
-		// TODO Temporary setting to support cached javascript following deploy; remove.
-		$vars[ 'wgCentralSelectedBannerDispatcher' ] = $bannerDispatcher;
 		$vars[ 'wgCentralBannerRecorder' ] = $wgCentralBannerRecorder;
 		$vars[ 'wgCentralNoticeSampleRate' ] = $wgCentralNoticeSampleRate;
 
