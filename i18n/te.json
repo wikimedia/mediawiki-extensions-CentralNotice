@@ -195,10 +195,12 @@
 	"centralnotice-multiple-languages": "పలు భాషలు",
 	"centralnotice-banner-template-info": "(మూస)",
 	"prefs-centralnotice-banners": "బ్యానర్లు",
+	"prefs-centralnotice-display-banner-types": "చూపించాల్సిన బ్యానరు రకాలు",
 	"centralnotice-campaign-type-advocacy": "సమర్ధన",
 	"centralnotice-campaign-type-article-writing": "వ్యాసలేఖనం",
 	"centralnotice-campaign-type-fundraising": "నిధుల సేకరణ",
 	"centralnotice-campaign-type-governance": "పరిపాలన",
 	"centralnotice-campaign-type-photography": "ఫొటోగ్రఫీ",
-	"centralnotice-campaign-type-special": "ప్రత్యేక"
+	"centralnotice-campaign-type-special": "ప్రత్యేక",
+	"centralnotice-user-prefs-intro": "వికీమీడీయా సముదాయాలకూ వాడుకరులకూ ఆసక్తి ఉండే ప్రకటనలను బ్యానర్లు చూపిస్తాయి.\n\nమీరు చూడాలనుకునే రకం ప్రకటనలను నిర్వహించుకునేందుకు కింది వికల్పాలు వీలు కలిగిస్తాయి. వాడుకరులందరికీ పనికొస్తాయనుకునే సైట్ నిర్వహణ, ప్రత్యేక గమనికలు వంటి ప్లాట్‌ఫార్ం గమనికలను ఎల్లప్పుడూ చూపిస్తాం. మరింత సమాచారం కోసం, [[metawikimedia:Special:MyLanguage/CentralNotice|మెటావికీ లోని డాక్యుమెంటేషను]] చూడండి."
 }
