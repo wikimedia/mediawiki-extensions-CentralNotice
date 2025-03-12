@@ -65,7 +65,6 @@ class CampaignLog {
 		$this->campaign = $row->notlog_not_name;
 		$this->action = $row->notlog_action;
 		$this->timestamp = $row->notlog_timestamp;
-		// TODO temporary code for soft dependency on schema change
 		$this->comment = $row->notlog_comment ?? '';
 	}
 

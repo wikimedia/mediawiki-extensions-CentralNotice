@@ -98,9 +98,9 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			$bannerLink
 		);
 
-		// TODO temporary code for soft dependency on schema change
-		$summary = property_exists( $row, 'tmplog_comment' ) ?
-			htmlspecialchars( $row->tmplog_comment ) : '&nbsp;';
+		$summary = $row->tmplog_comment === null
+			? '&nbsp;'
+			: htmlspecialchars( $row->tmplog_comment );
 
 		$htmlOut .= Html::rawElement( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
