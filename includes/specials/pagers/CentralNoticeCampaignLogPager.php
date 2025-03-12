@@ -241,7 +241,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			( $row->notlog_end_geo ? 'on' : 'off' )
 		)->parse() . "<br />";
 		if ( $row->notlog_end_geo ) {
-			$country_count = count( explode( ', ', $row->notlog_end_countries ) );
+			$country_count = count( explode( ', ', $row->notlog_end_countries ?? '' ) );
 			$countryList = '';
 			if ( $country_count > 20 ) {
 				$countryList = $this->msg( 'centralnotice-multiple-countries' )
@@ -255,7 +255,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				wfEscapeWikiText( $countryList )
 			)->parse() . "<br />";
 
-			$regions_count = count( explode( ', ', $row->notlog_end_regions ) );
+			$regions_count = count( explode( ', ', $row->notlog_end_regions ?? '' ) );
 			$regionsList = '';
 			if ( $regions_count > 20 ) {
 				$regionsList = $this->msg( 'centralnotice-multiple-regions' )
