@@ -74,12 +74,12 @@ class ApiCentralNoticeLogs extends ApiQueryBase {
 	 * Obtains the parameter $param, sanitizes by returning the first match to $regex or
 	 * null if there was no match.
 	 *
-	 * @param string $value Incoming value
+	 * @param ?string $value Incoming value
 	 * @param string $regex Sanitization regular expression
 	 * @return string|null The sanitized value
 	 */
-	private static function sanitizeText( string $value, string $regex ): ?string {
-		if ( preg_match( $regex, $value, $matches ) ) {
+	private static function sanitizeText( ?string $value, string $regex ): ?string {
+		if ( preg_match( $regex, $value ?? '', $matches ) ) {
 			return $matches[ 0 ];
 		}
 		return null;
