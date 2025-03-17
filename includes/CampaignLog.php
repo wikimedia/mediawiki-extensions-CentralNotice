@@ -31,7 +31,7 @@ class CampaignLog {
 		$this->end = [];
 		if ( $row ) {
 			$comma_explode = static function ( $str ) {
-				return explode( ", ", $str );
+				return explode( ", ", $str ?? '' );
 			};
 
 			$json_decode = static function ( $json ) {
