@@ -3,7 +3,8 @@
 		"authors": [
 			"Boulaur",
 			"BrennodAloisi",
-			"Cedric31"
+			"Cedric31",
+			"Lhanars"
 		]
 	},
 	"centralnotice": "Administracion de las notificacions centralas",
@@ -185,5 +186,8 @@
 	"centralnotice-end-date": "Data de fin (UTC)",
 	"centralnotice-end-time": "Ora finala (UTC)",
 	"centralnotice-multiple-countries": "Multiple ($1)",
-	"centralnotice-multiple-languages": "Multilingüe"
+	"centralnotice-multiple-languages": "Multilingüe",
+	"prefs-centralnotice-banners": "Bandièras",
+	"prefs-centralnotice-display-banner-types": "Tipes de banièras de mostrar",
+	"centralnotice-user-prefs-intro": "Las bandièras mòstran las anóncias d'interès per las comunitats e utilizators de Wikimedia. \n\nD'aval, i a opcions que vos permetan de gerir quals tipes d'anóncias volètz veire. Cèrtes avertiments de plataforma, coma aqueles ligats a la mantenença del site web o de tipes especials considerats coma necessaris per totes los utilizators, seràn sempre afichats. Per mai d'informacions, consultatz la [[metawikimedia:Special:MyLanguage/CentralNotice|documentacion]]."
 }
