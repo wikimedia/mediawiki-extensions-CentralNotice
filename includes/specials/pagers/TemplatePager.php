@@ -55,7 +55,7 @@ class TemplatePager extends ReverseChronologicalPager {
 	 * @return array of query settings
 	 */
 	public function getQueryInfo() {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		// When the filter comes in it is space delimited, so break that...
 		$likeArray = preg_split( '/\s+/', $this->filter );

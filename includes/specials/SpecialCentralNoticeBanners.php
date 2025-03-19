@@ -1079,7 +1079,7 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 	 */
 	private function getTemplateBannerDropdownItems() {
 		if ( $this->templateBannerNames === null ) {
-			$dbr = CNDatabase::getDb();
+			$dbr = CNDatabase::getReplicaDb();
 			$this->templateBannerNames = [];
 
 			$res = $dbr->newSelectQueryBuilder()

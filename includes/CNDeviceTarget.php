@@ -14,7 +14,7 @@ class CNDeviceTarget {
 	 *   {id: {'header': <internal string value>, 'label': <wiki text label>}}
 	 */
 	public static function getAvailableDevices( $flip = false ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		$devices = [];
 
@@ -50,7 +50,7 @@ class CNDeviceTarget {
 	 * @return array Device names that are associated with the banner
 	 */
 	public static function getDevicesAssociatedWithBanner( $bannerId ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		$devices = [];
 
@@ -79,7 +79,7 @@ class CNDeviceTarget {
 	 * @return int The ID of the device added
 	 */
 	public static function addDeviceTarget( $deviceName, $displayLabel ) {
-		$db = CNDatabase::getDb( DB_PRIMARY );
+		$db = CNDatabase::getPrimaryDb();
 
 		$db->newInsertQueryBuilder()
 			->insertInto( 'cn_known_devices' )
@@ -104,7 +104,7 @@ class CNDeviceTarget {
 	 * FIXME Unused, remove
 	 */
 	public static function setBannerDeviceTargets( $bannerId, $newDevices ) {
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getPrimaryDb();
 
 		$knownDevices = self::getAvailableDevices( true );
 		$newDevices = (array)$newDevices;

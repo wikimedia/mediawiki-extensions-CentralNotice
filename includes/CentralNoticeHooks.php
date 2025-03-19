@@ -61,15 +61,9 @@ class CentralNoticeHooks implements
 		// @phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgHooks
 		global $wgHooks, $wgNoticeInfrastructure, $wgSpecialPages,
 			$wgCentralNoticeLoader, $wgNoticeUseTranslateExtension,
-			$wgAvailableRights, $wgGroupPermissions, $wgCentralDBname,
-			$wgDBname, $wgCentralNoticeAdminGroup,
+			$wgAvailableRights, $wgGroupPermissions, $wgCentralNoticeAdminGroup,
 			$wgCentralNoticeMessageProtectRight, $wgResourceModules,
 			$wgDefaultUserOptions;
-
-		// Default for a standalone wiki is that the CN tables are in the main database.
-		if ( !$wgCentralDBname ) {
-			$wgCentralDBname = $wgDBname;
-		}
 
 		// If CentralNotice banners should be shown on this wiki, load the components we need for
 		// showing banners. For discussion of banner loading strategies, see

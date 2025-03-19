@@ -283,7 +283,7 @@ class Banner {
 	 * @return string[]
 	 */
 	public static function getAllUsedCategories() {
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 		$res = $db->newSelectQueryBuilder()
 			->select( 'tmp_category' )
 			->distinct()
@@ -359,7 +359,7 @@ class Banner {
 			return;
 		}
 
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 
 		// What are we using to select on?
 		if ( $this->name !== null ) {
@@ -511,7 +511,7 @@ class Banner {
 			return;
 		}
 
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 
 		$rowObj = $db->newSelectQueryBuilder()
 			->select( [ 'devices.dev_id', 'dev_name' ] )
@@ -617,7 +617,7 @@ class Banner {
 			return;
 		}
 
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		$result = $dbr->newSelectQueryBuilder()
 			->select( 'mixin_name' )
@@ -781,7 +781,7 @@ class Banner {
 	 * @return string[]
 	 */
 	public function getCampaignNames() {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		$result = $dbr->newSelectQueryBuilder()
 			->select( 'notices.not_name' )
@@ -941,7 +941,7 @@ class Banner {
 	 */
 	public function invalidateCache( $newFields = null ) {
 		// Update cache after the DB transaction finishes
-		CNDatabase::getDb()->onTransactionCommitOrIdle(
+		CNDatabase::getPrimaryDb()->onTransactionCommitOrIdle(
 			function () use ( $newFields ) {
 				$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 				$key = $this->getMessageFieldsCacheKey( $cache );
@@ -1020,7 +1020,7 @@ class Banner {
 		$prefix = $this->getMessageField( '' )
 			->getDbKey( null, $inTranslation ? NS_CN_BANNER : NS_MEDIAWIKI );
 
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 		$result = $db->newSelectQueryBuilder()
 			->select( 'page_title' )
 			->from( 'page' )
@@ -1056,12 +1056,12 @@ class Banner {
 	 * @throws Exception
 	 */
 	public function save( User $user, $summary = null ) {
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getPrimaryDb();
 		$action = 'modified';
 
 		try {
 			// Don't move this to saveBannerInternal--can't be in a transaction
-			// TODO: explain why not.  Is text in another database?
+			// TODO: explain why not. Is text in another database?
 			$this->saveBodyContent( $summary, $user );
 
 			// Open a transaction so that everything is consistent
@@ -1195,7 +1195,7 @@ class Banner {
 
 		$bannerObj = self::fromName( $name );
 		$id = $bannerObj->getId();
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( 'asn_id' )
 			->from( 'cn_assignments' )
@@ -1211,7 +1211,7 @@ class Banner {
 			$bannerObj->logBannerChange( 'removed', $user, $summary );
 
 			// Delete banner record from the CentralNotice cn_templates table
-			$dbw = CNDatabase::getDb();
+			$dbw = CNDatabase::getPrimaryDb();
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'cn_templates' )
 				->where( [ 'tmp_id' => $id ] )
@@ -1250,7 +1250,7 @@ class Banner {
 	 * @throws Exception
 	 */
 	public static function addTag( $tag, $revisionId, $pageId, $bannerId ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getPrimaryDb();
 
 		if ( is_object( $revisionId ) ) {
 			throw new LogicException( 'Got object, excepted id' );
@@ -1283,7 +1283,7 @@ class Banner {
 	 * @throws Exception
 	 */
 	private static function removeTag( $tag, $pageId ) {
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getPrimaryDb();
 
 		$conds = [
 			'rt_page' => $pageId,
@@ -1304,7 +1304,7 @@ class Banner {
 	 * @return array a 2D array of banners with associated weights and settings
 	 */
 	public static function getCampaignBanners( $campaigns ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		$banners = [];
 
@@ -1409,7 +1409,7 @@ class Banner {
 	public static function getHistoricalBanner( $name, $ts ) {
 		$id = self::fromName( $name )->getId();
 
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		$newestLog = $dbr->newSelectQueryBuilder()
 			->select( [
@@ -1544,7 +1544,7 @@ class Banner {
 			$endSettings = self::getBannerSettings( $this->getName(), true );
 		}
 
-		$dbw = CNDatabase::getDb();
+		$dbw = CNDatabase::getPrimaryDb();
 
 		$log = [
 			'tmplog_timestamp'     => $dbw->timestamp(),
@@ -1592,7 +1592,7 @@ class Banner {
 	 * @throws BannerDataException If it's a silly query
 	 */
 	public function exists() {
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 		if ( $this->name !== null ) {
 			$selector = [ 'tmp_name' => $this->name ];
 		} elseif ( $this->id !== null ) {

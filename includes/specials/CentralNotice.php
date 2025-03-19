@@ -86,7 +86,7 @@ class CentralNotice extends UnlistedSpecialPage {
 		// Handle form submissions from "Manage campaigns" or "Add a campaign" interface
 		if ( $this->editable && $request->wasPosted() ) {
 			if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly()
-				|| CNDatabase::getDb( DB_PRIMARY )->isReadOnly()
+				|| CNDatabase::getPrimaryDb()->isReadOnly()
 			) {
 				throw new ReadOnlyError();
 			}
@@ -1338,7 +1338,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string HTML
 	 */
 	private function assignedTemplatesForm( $notice ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$res = $dbr->newSelectQueryBuilder()
 			// Aliases are needed to avoid problems with table prefixes
 			->select( [

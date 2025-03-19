@@ -2,7 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Provides a set of campaign and banner choices based on allocations for a
@@ -48,7 +48,8 @@ class ChoiceDataProvider {
 			self::CACHE_TTL,
 			function ( $oldValue, &$ttl, array &$setOpts )
 				use ( $project, $language ) {
-				$dbr = CNDatabase::getDb( DB_REPLICA );
+				// TODO: Should this instead be a primary query, given the concern about replag?
+				$dbr = CNDatabase::getReplicaDb();
 
 				// Account for replica lag to prevent a race condition when
 				// campaigns are updated, the cache is invalidated, and
@@ -80,11 +81,12 @@ class ChoiceDataProvider {
 	/**
 	 * @param string $project
 	 * @param string $language
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
+	 *
 	 * @return array
 	 */
 	private static function fetchChoices( $project, $language,
-		IDatabase $dbr
+		IReadableDatabase $dbr
 	) {
 		// For speed, we'll do our own queries instead of using methods in
 		// Campaign and Banner.
