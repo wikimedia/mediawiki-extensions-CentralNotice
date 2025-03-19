@@ -391,7 +391,7 @@ class CentralNoticeHooks implements
 		$request = $skin->getRequest();
 		// If we're on a special page (or not a normal page view at all),
 		// editing, viewing history or a diff, bow out now
-		// This is to reduce chance of bad misclicks from delayed banner loading
+		// This is to reduce the chance of bad misclicks from delayed banner loading
 		if ( !$out->getTitle() ||
 			$out->getTitle()->inNamespace( NS_SPECIAL ) ||
 			( $request->getText( 'action' ) === 'edit' ) ||
@@ -412,8 +412,8 @@ class CentralNoticeHooks implements
 		// Insert the startup module
 		$out->addModules( 'ext.centralNotice.startUp' );
 
-		// FIXME: as soon as I80f6f469ba4c0b60 is available in core, get rid
-		// of $wgCentralNoticeContentSecurityPolicy and use their stuff.
+		// FIXME: I80f6f469ba4c0b60 has been in core since REL1_32.
+		// Get rid of $wgCentralNoticeContentSecurityPolicy and use their stuff.
 		if (
 			$wgCentralNoticeContentSecurityPolicy &&
 			$request->getVal( 'banner' )
@@ -437,7 +437,7 @@ class CentralNoticeHooks implements
 	public static function onMakeGlobalVariablesScript( &$vars, $out ) {
 		global $wgNoticeProject, $wgCentralNoticeGeoIPBackgroundLookupModule;
 
-		// FIXME Is this no longer used anywhere in JS following the switch to
+		// FIXME: Is this no longer used anywhere in JS following the switch to
 		// client-side banner selection? If so, remove it.
 		$vars[ 'wgNoticeProject' ] = $wgNoticeProject;
 
@@ -506,7 +506,7 @@ class CentralNoticeHooks implements
 		// made to non localised namespaces which results in wasteful extra calls.
 
 		// Set infrastructure URL variables, which change between mobile/desktop
-		if ( class_exists( MobileContext::class ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) ) {
 			$mc = MobileContext::singleton();
 			$displayMobile = $mc->shouldDisplayMobileView();
 		} else {
@@ -570,7 +570,7 @@ class CentralNoticeHooks implements
 	}
 
 	/**
-	 * Add tags defined by this extension to list of active tags.
+	 * Add tags defined by this extension to the list of active tags.
 	 *
 	 * @param array &$tags List of defined or active tags
 	 */
@@ -612,7 +612,7 @@ class CentralNoticeHooks implements
 			// This allows fallback languages while also showing something not-too-
 			// horrible if the config variable has types that don't have i18n
 			// messages.
-			// Note also that the value of 'label' will escaped prior to output.
+			// Note also that the value of 'label' will be escaped prior to output.
 			$message = Message::newFromKey( $type->getMessageKey() );
 			$label = $message->exists() ? $message->text() : $type->getId();
 
@@ -649,7 +649,7 @@ class CentralNoticeHooks implements
 			return;
 		}
 
-		// Return if skin allows special pages to register natigation links (in which
+		// Return if skin allows special pages to register navigation links (in which
 		// case this is handled by getShortDescription() and
 		// getAssociatedNavigationLinks()).
 		// See T315562, T313349.
@@ -664,7 +664,7 @@ class CentralNoticeHooks implements
 			return;
 		}
 
-		[ $alias, $sub ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+		[ $alias, ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			resolveAlias( $title->getText() );
 
 		if ( !array_key_exists( $alias, $wgNoticeTabifyPages ) ) {
