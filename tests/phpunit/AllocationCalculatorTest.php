@@ -4,7 +4,7 @@
  * @group CentralNotice
  * @group medium
  * @group Database
- * @covers AllocationCalculator
+ * @covers \AllocationCalculator
  */
 class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 	/** @var CentralNoticeTestFixtures */
@@ -27,7 +27,7 @@ class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 	public function testAllocations( $name, $testCase ) {
 		global $wgNoticeNumberOfBuckets;
 
-		// Set up database with campaigns and banners from fixtures
+		// Set up the database with campaigns and banners from fixtures
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );
 
 		// Run through the contexts and outputs to calculate and test
@@ -58,7 +58,7 @@ class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 			AllocationCalculator::calculateCampaignAllocations( $choices );
 			$expectedAllocations = $cAndO['allocations'];
 
-			// Test that we have the expceted number of campaigns
+			// Test that we have the expected number of campaigns
 			$this->assertSameSize(
 				$expectedAllocations,
 				$choices,
@@ -101,7 +101,7 @@ class AllocationCalculatorTest extends MediaWikiIntegrationTestCase {
 
 					AllocationCalculator::calculateBannerAllocations( $banners );
 
-					// Test that we have the expceted number of banners
+					// Test that we have the expected number of banners
 					$this->assertSameSize(
 						$expectedBanners,
 						$banners,

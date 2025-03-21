@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group CentralNotice
  * @group medium
  * @group Database
- * @covers CNChoiceDataResourceLoaderModule
+ * @covers \CNChoiceDataResourceLoaderModule
  */
 class CNChoiceDataResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	/** @var CentralNoticeTestFixtures */

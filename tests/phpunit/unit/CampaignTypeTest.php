@@ -3,10 +3,7 @@
 /**
  * @group Fundraising
  * @group CentralNotice
- * @covers CampaignType::getId
- * @covers CampaignType::getOnForAll
- * @covers CampaignType::getMessageKey
- * @covers CampaignType::getPreferenceKey
+ * @covers \CampaignType
  */
 class CampaignTypeTest extends MediaWikiUnitTestCase {
 	private CampaignType $campaignType;
