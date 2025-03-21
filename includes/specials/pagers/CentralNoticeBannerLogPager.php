@@ -121,7 +121,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable
 
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
-				'&nbsp;' // force a table cell in older browsers
+				// force a table cell in older browsers
+				'&nbsp;'
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '5' ] );
 			if ( $row->tmplog_action == 'created' ) {

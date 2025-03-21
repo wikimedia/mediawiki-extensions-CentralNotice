@@ -671,7 +671,8 @@ class Banner {
 					->insertInto( 'cn_template_mixins' )
 					->row( [
 						'tmp_id' => $this->getId(),
-						'page_id' => 0,	// TODO: What were we going to use this for again?
+						// TODO: What were we going to use this for again?
+						'page_id' => 0,
 						'mixin_name' => $name,
 					] )
 					->caller( __METHOD__ )
@@ -885,7 +886,7 @@ class Banner {
 				$user,
 				$summary,
 				EDIT_FORCE_BOT,
-				false, // $originalRevId
+				false,
 				$tags
 			);
 

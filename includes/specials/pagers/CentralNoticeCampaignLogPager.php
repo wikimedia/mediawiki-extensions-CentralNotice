@@ -19,7 +19,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		parent::__construct();
 
 		// Override paging defaults
-		[ $this->mLimit, /* $offset */ ] = $this->mRequest->getLimitOffsetForUser(
+		[ $this->mLimit, ] = $this->mRequest->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
 			''
@@ -180,7 +180,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				[ 'id' => 'cn-log-details-' . $notlogId, 'style' => 'display:none;' ] );
 
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
-				'&nbsp;' // force a table cell in older browsers
+				// force a table cell in older browsers
+				'&nbsp;'
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '6' ] );
 			if ( $row->notlog_action == 'created' ) {

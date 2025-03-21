@@ -1644,8 +1644,7 @@ class Campaign {
 			);
 
 		// Only log the change if it is done by an actual user (rather than a testing script)
-		// FIXME There must be a cleaner way to do this?
-		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
+		if ( $user->isNamed() ) {
 			$dbw->newInsertQueryBuilder()
 				->insertInto( 'cn_notice_log' )
 				->row( $log )
@@ -1706,7 +1705,7 @@ class Campaign {
 	 * @param string|null $type
 	 */
 	public static function setType( $campaignName, $type ) {
-		// Following pattern from setNumericaCampaignSettings() and exiting with no
+		// Following pattern from setNumericalCampaignSettings() and exiting with no
 		// error if the campaign doesn't exist. TODO Is this right?
 		if ( !self::campaignExists( $campaignName ) ) {
 			return;

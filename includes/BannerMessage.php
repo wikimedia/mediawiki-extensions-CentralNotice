@@ -153,7 +153,7 @@ class BannerMessage {
 				$user,
 				$summary,
 				EDIT_FORCE_BOT,
-				false, // $originalRevId
+				false,
 				$tags
 			);
 

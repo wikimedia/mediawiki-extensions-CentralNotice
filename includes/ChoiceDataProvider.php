@@ -187,7 +187,8 @@ class ChoiceDataProvider {
 				'category' => $category,
 				'display_anon' => (bool)$dbRow->tmp_display_anon,
 				'display_account' => (bool)$dbRow->tmp_display_account,
-				'devices' => [] // To be filled by the last query
+				// To be filled by the last query
+				'devices' => []
 			];
 
 			$bannerIds[] = $bannerId;

@@ -62,8 +62,12 @@ class AllocationCalculator {
 			// Note: the region from user context is prefixed with country code (eg.: RU_MOW)
 			// to avoid collision with similarly named regions across different countries
 			if ( $campaign['geotargeted'] &&
-				 ( !in_array( $country, $campaign['countries'] ) && // Country wide
-				   !in_array( $uniqueRegionCode, $campaign['regions'] ) ) // Region
+				(
+					// Country wide
+					!in_array( $country, $campaign['countries'] ) &&
+					// Region
+					!in_array( $uniqueRegionCode, $campaign['regions'] )
+				)
 			) {
 				continue;
 			}

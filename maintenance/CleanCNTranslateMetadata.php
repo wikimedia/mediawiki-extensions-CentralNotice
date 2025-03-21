@@ -139,7 +139,8 @@ class CleanCNTranslateMetadata extends Maintenance {
 					'rt_type' => $this->ttag,
 					'rt_page' => $row->rt_page,
 					'rt_revision' => $row->rt_revision,
-					'rt_value' => null, // Just in case something updated it
+					// Just in case something updated it
+					'rt_value' => null,
 				] )
 				->caller( __METHOD__ )
 				->execute();

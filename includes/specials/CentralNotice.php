@@ -298,7 +298,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		return Html::rawElement(
 			'td',
 			[
-				'dir' => 'ltr', // Time is left-to-right in all languages
+				// Time is left-to-right in all languages
+				'dir' => 'ltr',
 				'class' => 'cn-timepicker',
 			],
 			$this->timeSelector( $prefix, $editable, $timestamp )
@@ -423,7 +424,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		];
 
 		if ( $editable ) {
-			$options = ''; // The HTML for the select list options
+			// The HTML for the select list options
+			$options = '';
 			foreach ( $priorities as $key => $labelMsg ) {
 				$options .= Xml::option( $labelMsg->text(), (string)$key, $priorityValue == $key );
 			}
@@ -692,7 +694,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		try {
 			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
 				$out->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
-				$this->editable = false; // Todo: Fix this gross hack to prevent editing
+				// TODO: Fix this gross hack to prevent editing
+				$this->editable = false;
 			}
 			$out->addSubtitle(
 				$this->getLinkRenderer()->makeKnownLink(
@@ -1063,7 +1066,8 @@ class CentralNotice extends UnlistedSpecialPage {
 				$countries = $this->listToArray( $request->getVal( 'geo_countries' ) );
 				$regions = $this->listToArray( $request->getVal( 'geo_regions' ) );
 				$type = $request->getText( 'type' );
-			} else { // Defaults
+			} else {
+				// Defaults
 				$start = $campaign[ 'start' ];
 				$end = $campaign[ 'end' ];
 				$isEnabled = (bool)$campaign['enabled'];
@@ -1753,7 +1757,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		$unpaddedRange = range( $begin, $end );
 		$paddedRange = [];
 		foreach ( $unpaddedRange as $number ) {
-			$paddedRange[] = sprintf( "%02d", $number ); // pad number with 0 if needed
+			// pad number with 0 if needed
+			$paddedRange[] = sprintf( "%02d", $number );
 		}
 		return $paddedRange;
 	}
