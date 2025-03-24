@@ -298,7 +298,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		return Html::rawElement(
 			'td',
 			[
-				'dir' => 'ltr', // Time is left-to-right in all languages
+				// Time is left-to-right in all languages
+				'dir' => 'ltr',
 				'class' => 'cn-timepicker',
 			],
 			$this->timeSelector( $prefix, $editable, $timestamp )
@@ -423,7 +424,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		];
 
 		if ( $editable ) {
-			$options = ''; // The HTML for the select list options
+			// The HTML for the select list options
+			$options = '';
 			foreach ( $priorities as $key => $labelMsg ) {
 				$options .= Xml::option( $labelMsg->text(), (string)$key, $priorityValue == $key );
 			}
@@ -692,7 +694,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		try {
 			if ( $this->campaign->isArchived() || $this->campaign->isLocked() ) {
 				$out->setSubtitle( $this->msg( 'centralnotice-archive-edit-prevented' ) );
-				$this->editable = false; // Todo: Fix this gross hack to prevent editing
+				// TODO: Fix this gross hack to prevent editing
+				$this->editable = false;
 			}
 			$out->addSubtitle(
 				$this->getLinkRenderer()->makeKnownLink(
@@ -1063,7 +1066,8 @@ class CentralNotice extends UnlistedSpecialPage {
 				$countries = $this->listToArray( $request->getVal( 'geo_countries' ) );
 				$regions = $this->listToArray( $request->getVal( 'geo_regions' ) );
 				$type = $request->getText( 'type' );
-			} else { // Defaults
+			} else {
+				// Defaults
 				$start = $campaign[ 'start' ];
 				$end = $campaign[ 'end' ];
 				$isEnabled = (bool)$campaign['enabled'];
@@ -1520,14 +1524,11 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string
 	 */
 	private function bucketDropdown( $name, $selected, $numberCampaignBuckets, $bannerName ) {
-		$bucketLabel = static function ( $val ) {
-			return chr( $val + ord( 'A' ) );
-		};
+		$bucketLabel = static fn ( int $val ) => chr( ord( 'A' ) + $val );
 
 		if ( $this->editable ) {
-			if ( $selected === null ) {
-				$selected = 0; // default to bucket 'A'
-			}
+			// Default to bucket 'A'
+			$selected ??= 0;
 			$selected %= $numberCampaignBuckets;
 
 			// bucketSelector class is for all bucket selectors (for assigned or
@@ -1563,9 +1564,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return string
 	 */
 	private function numBucketsDropdown( $numBuckets, $selected ) {
-		if ( $selected === null ) {
-			$selected = 1;
-		}
+		$selected ??= 1;
 
 		if ( $this->editable ) {
 			$html = Html::openElement( 'select', [ 'name' => 'buckets', 'id' => 'buckets' ] );
@@ -1756,7 +1755,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		$unpaddedRange = range( $begin, $end );
 		$paddedRange = [];
 		foreach ( $unpaddedRange as $number ) {
-			$paddedRange[] = sprintf( "%02d", $number ); // pad number with 0 if needed
+			// pad number with 0 if needed
+			$paddedRange[] = sprintf( "%02d", $number );
 		}
 		return $paddedRange;
 	}
@@ -1930,9 +1930,10 @@ class CentralNotice extends UnlistedSpecialPage {
 		// Keys of (default value of $wgNoticeTabifyPages) are the names of the special
 		// pages of the admin interface without the initial 'Special:'.
 		// TODO Make $wgNoticeTabifyPages a constant rather than a config variable.
-		return array_map( static function ( $name ) {
-			return 'Special:' . $name;
-		}, array_keys( $this->getConfig()->get( 'NoticeTabifyPages' ) ) );
+		return array_map(
+			static fn ( $name ) => "Special:$name",
+			array_keys( $this->getConfig()->get( 'NoticeTabifyPages' ) )
+		);
 	}
 
 	/**
@@ -1955,12 +1956,7 @@ class CentralNotice extends UnlistedSpecialPage {
 	 * @return mixed Stored variable or default
 	 */
 	public function getCNSessionVar( $variable, $default = null ) {
-		$val = $this->getRequest()->getSessionData( "centralnotice-$variable" );
-		if ( $val === null ) {
-			$val = $default;
-		}
-
-		return $val;
+		return $this->getRequest()->getSessionData( "centralnotice-$variable" ) ?? $default;
 	}
 
 	/**

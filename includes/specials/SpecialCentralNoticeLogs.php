@@ -83,7 +83,8 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 				'/CentralNotice/resources/images/collapsed-rtl.png' :
 				'/CentralNotice/resources/images/collapsed-ltr.png';
 
-			if ( $campaign || $user || $start || $end ) { // filters on
+			if ( $campaign || $user || $start || $end ) {
+				// filters on
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">' .
 					'<img src="' . $wgExtensionAssetsPath . $collapsedImg . '" ' .
 					'id="cn-collapsed-filter-arrow" ' .
@@ -95,7 +96,8 @@ class SpecialCentralNoticeLogs extends CentralNotice {
 				$htmlOut .= Html::element( 'span', [ 'style' => 'margin-left: 0.3em;' ],
 					$this->msg( 'centralnotice-filters' )->text() );
 				$htmlOut .= Html::openElement( 'div', [ 'id' => 'cn-log-filters' ] );
-			} else { // filters off
+			} else {
+				// filters off
 				$htmlOut .= '<a href="javascript:toggleFilterDisplay()">' .
 					'<img src="' . $wgExtensionAssetsPath . $collapsedImg . '" ' .
 					'id="cn-collapsed-filter-arrow" ' .

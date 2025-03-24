@@ -19,7 +19,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 		parent::__construct();
 
 		// Override paging defaults
-		[ $this->mLimit, /* $offset */ ] = $this->mRequest->getLimitOffsetForUser(
+		[ $this->mLimit, ] = $this->mRequest->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
 			''
@@ -158,9 +158,9 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			$campaignLink
 		);
 
-		// TODO temporary code for soft dependency on schema change
-		$summary = property_exists( $row, 'notlog_comment' ) ?
-			htmlspecialchars( $row->notlog_comment ) : '&nbsp;';
+		$summary = $row->notlog_comment === null
+			? '&nbsp;'
+			: htmlspecialchars( $row->notlog_comment );
 
 		$htmlOut .= Html::rawElement( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
@@ -180,7 +180,8 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				[ 'id' => 'cn-log-details-' . $notlogId, 'style' => 'display:none;' ] );
 
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
-				'&nbsp;' // force a table cell in older browsers
+				// force a table cell in older browsers
+				'&nbsp;'
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '6' ] );
 			if ( $row->notlog_action == 'created' ) {
@@ -241,7 +242,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 			( $row->notlog_end_geo ? 'on' : 'off' )
 		)->parse() . "<br />";
 		if ( $row->notlog_end_geo ) {
-			$country_count = count( explode( ', ', $row->notlog_end_countries ) );
+			$country_count = count( explode( ', ', $row->notlog_end_countries ?? '' ) );
 			$countryList = '';
 			if ( $country_count > 20 ) {
 				$countryList = $this->msg( 'centralnotice-multiple-countries' )
@@ -255,7 +256,7 @@ class CentralNoticeCampaignLogPager extends ReverseChronologicalPager {
 				wfEscapeWikiText( $countryList )
 			)->parse() . "<br />";
 
-			$regions_count = count( explode( ', ', $row->notlog_end_regions ) );
+			$regions_count = count( explode( ', ', $row->notlog_end_regions ?? '' ) );
 			$regionsList = '';
 			if ( $regions_count > 20 ) {
 				$regionsList = $this->msg( 'centralnotice-multiple-regions' )

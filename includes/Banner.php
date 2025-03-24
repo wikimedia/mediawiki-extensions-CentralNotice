@@ -421,8 +421,6 @@ class Banner {
 
 	/**
 	 * Helper function to initializeDbForNewBanner()
-	 *
-	 * @param IDatabase $db
 	 */
 	private function initializeDbBasicData( IDatabase $db ) {
 		$db->newInsertQueryBuilder()
@@ -435,7 +433,6 @@ class Banner {
 
 	/**
 	 * Helper function to saveBannerInternal() for saving basic banner metadata
-	 * @param IDatabase $db
 	 */
 	private function saveBasicData( IDatabase $db ) {
 		if ( $this->dirtyFlags['basic'] ) {
@@ -543,8 +540,6 @@ class Banner {
 
 	/**
 	 * Helper function to saveBannerInternal()
-	 *
-	 * @param IDatabase $db
 	 */
 	private function saveDeviceTargetData( IDatabase $db ) {
 		if ( $this->dirtyFlags['devices'] ) {
@@ -659,9 +654,6 @@ class Banner {
 		$this->dirtyFlags['mixins'] = $dirty;
 	}
 
-	/**
-	 * @param IDatabase $db
-	 */
 	private function saveMixinData( IDatabase $db ) {
 		if ( $this->dirtyFlags['mixins'] ) {
 			$db->newDeleteQueryBuilder()
@@ -679,7 +671,8 @@ class Banner {
 					->insertInto( 'cn_template_mixins' )
 					->row( [
 						'tmp_id' => $this->getId(),
-						'page_id' => 0,	// TODO: What were we going to use this for again?
+						// TODO: What were we going to use this for again?
+						'page_id' => 0,
 						'mixin_name' => $name,
 					] )
 					->caller( __METHOD__ )
@@ -883,9 +876,7 @@ class Banner {
 		if ( $this->dirtyFlags['content'] ) {
 			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->getTitle() );
 
-			if ( $summary === null ) {
-				$summary = '';
-			}
+			$summary ??= '';
 
 			$contentObj = ContentHandler::makeContent( $this->bodyContent, $wikiPage->getTitle() );
 
@@ -895,7 +886,7 @@ class Banner {
 				$user,
 				$summary,
 				EDIT_FORCE_BOT,
-				false, // $originalRevId
+				false,
 				$tags
 			);
 
@@ -940,9 +931,7 @@ class Banner {
 		return $cache->getWithSetCallback(
 			$key,
 			$cache::TTL_MONTH,
-			function () {
-				return $this->extractMessageFields();
-			},
+			[ $this, 'extractMessageFields' ],
 			[ 'checkKeys' => [ $key ], 'lockTSE' => 60 ]
 		);
 	}
@@ -1115,8 +1104,6 @@ class Banner {
 	 * Called before saveBannerInternal() when a new to the database banner is
 	 * being saved. Intended to create all table rows required such that any
 	 * additional operation can be an UPDATE statement.
-	 *
-	 * @param IDatabase $db
 	 */
 	private function initializeDbForNewBanner( IDatabase $db ) {
 		$this->initializeDbBasicData( $db );
@@ -1510,9 +1497,7 @@ class Banner {
 		$summary = null, $isTemplate = false, $category = null
 	) {
 		// Default initial value for devices
-		if ( $devices === null ) {
-			$devices = [ 'desktop' ];
-		}
+		$devices ??= [ 'desktop' ];
 
 		// Set default value for category
 		if ( !$category ) {
@@ -1552,9 +1537,7 @@ class Banner {
 		ChoiceDataProvider::invalidateCache();
 
 		// Summary shouldn't actually come in null, but just in case...
-		if ( $summary === null ) {
-			$summary = '';
-		}
+		$summary ??= '';
 
 		$endSettings = [];
 		if ( $action !== 'removed' ) {

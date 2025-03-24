@@ -1079,11 +1079,7 @@ class Campaign {
 			->where( [ 'not_name' => $noticeName ] )
 			->caller( __METHOD__ )
 			->fetchRow();
-		if ( $row ) {
-			return $row->not_id;
-		} else {
-			return null;
-		}
+		return $row ? $row->not_id : null;
 	}
 
 	/**
@@ -1608,9 +1604,7 @@ class Campaign {
 		ChoiceDataProvider::invalidateCache();
 
 		// Summary shouldn't actually come in null, but just in case...
-		if ( $summary === null ) {
-			$summary = '';
-		}
+		$summary ??= '';
 
 		$dbw = CNDatabase::getDb( DB_PRIMARY );
 		$time = $dbw->timestamp();
@@ -1650,8 +1644,7 @@ class Campaign {
 			);
 
 		// Only log the change if it is done by an actual user (rather than a testing script)
-		// FIXME There must be a cleaner way to do this?
-		if ( $user->getId() > 0 ) { // User::getID returns 0 for anonymous or non-existant users
+		if ( $user->isNamed() ) {
 			$dbw->newInsertQueryBuilder()
 				->insertInto( 'cn_notice_log' )
 				->row( $log )
@@ -1712,7 +1705,7 @@ class Campaign {
 	 * @param string|null $type
 	 */
 	public static function setType( $campaignName, $type ) {
-		// Following pattern from setNumericaCampaignSettings() and exiting with no
+		// Following pattern from setNumericalCampaignSettings() and exiting with no
 		// error if the campaign doesn't exist. TODO Is this right?
 		if ( !self::campaignExists( $campaignName ) ) {
 			return;
@@ -1728,10 +1721,10 @@ class Campaign {
 	}
 
 	/**
-	 * @param string|false $campaign
-	 * @param string|false $username
-	 * @param string|false $start
-	 * @param string|false $end
+	 * @param string|null|false $campaign
+	 * @param string|null|false $username
+	 * @param string|null|false $start
+	 * @param string|null|false $end
 	 * @param int $limit
 	 * @param int $offset
 	 * @return array[]

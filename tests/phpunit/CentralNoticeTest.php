@@ -4,7 +4,7 @@
  * @group Fundraising
  * @group Database
  * @group CentralNotice
- * @covers CentralNotice
+ * @covers \CentralNotice
  */
 class CentralNoticeTest extends PHPUnit\Framework\TestCase {
 	public function testDropdownList() {

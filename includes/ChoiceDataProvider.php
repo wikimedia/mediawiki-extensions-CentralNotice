@@ -73,9 +73,7 @@ class ChoiceDataProvider {
 		$now = time();
 		return array_values( array_filter(
 			$choices,
-			static function ( $choice ) use ( $now ) {
-				return $choice['end'] >= $now && $choice['start'] <= $now;
-			}
+			static fn ( array $choice ) => $choice['end'] >= $now && $choice['start'] <= $now
 		) );
 	}
 
@@ -187,7 +185,8 @@ class ChoiceDataProvider {
 				'category' => $category,
 				'display_anon' => (bool)$dbRow->tmp_display_anon,
 				'display_account' => (bool)$dbRow->tmp_display_account,
-				'devices' => [] // To be filled by the last query
+				// To be filled by the last query
+				'devices' => []
 			];
 
 			$bannerIds[] = $bannerId;

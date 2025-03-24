@@ -4,7 +4,7 @@
  * @group Fundraising
  * @group Database
  * @group CentralNotice
- * @covers Banner
+ * @covers \Banner
  */
 class BannerTest extends MediaWikiIntegrationTestCase {
 	private const TEST_BANNER_NAME = 'PhpUnitTestBanner';
@@ -59,7 +59,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $banner->getBodyContent(),
 			'Initial banner has non empty body content' );
 
-		// And finally; save this empty banner
+		// And finally save this empty banner
 		$user = $this->getTestUser()->getUser();
 		$banner->save( $user );
 		$this->assertTrue( $banner->exists(), 'Banner was not successfully saved' );
@@ -134,7 +134,7 @@ class BannerTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( [ 'en', 'ru' ], $banner->getPriorityLanguages(),
 			"Failed prilang retrieve from initial" );
 
-		// Can we retrieve it from a different object
+		// Can we retrieve it from a different object?
 		$banner2 = Banner::fromName( self::TEST_BANNER_NAME );
 		$this->assertTrue( $banner2->allocateToAnon(), "Failed anon allocation from copy" );
 		$this->assertTrue( $banner2->allocateToLoggedIn(), "Failed loggedin allocation from copy" );

@@ -4,6 +4,7 @@
  * @group CentralNotice
  * @group medium
  * @group Database
+ * @covers \ChoiceDataProvider
  */
 class ChoiceDataProviderTest extends MediaWikiIntegrationTestCase {
 	/** @var CentralNoticeTestFixtures */
@@ -22,7 +23,6 @@ class ChoiceDataProviderTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider CentralNoticeTestFixtures::allocationsTestCasesProvision
-	 * @covers ChoiceDataProvider::getChoices
 	 */
 	public function testProviderResponse( $name, $testCase ) {
 		$this->cnFixtures->setupTestCaseFromFixtureData( $testCase );

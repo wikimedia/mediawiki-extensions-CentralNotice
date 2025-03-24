@@ -6,7 +6,7 @@ use MediaWiki\Tests\Api\ApiTestCase;
  * @group CentralNotice
  * @group medium
  * @group Database
- * @covers ApiCentralNoticeChoiceData
+ * @covers \ApiCentralNoticeChoiceData
  */
 class ApiCentralNoticeChoiceDataTest extends ApiTestCase {
 	/** @var CentralNoticeTestFixtures */

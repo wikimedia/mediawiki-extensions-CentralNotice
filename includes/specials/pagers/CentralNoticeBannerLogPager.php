@@ -98,9 +98,9 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			$bannerLink
 		);
 
-		// TODO temporary code for soft dependency on schema change
-		$summary = property_exists( $row, 'tmplog_comment' ) ?
-			htmlspecialchars( $row->tmplog_comment ) : '&nbsp;';
+		$summary = $row->tmplog_comment === null
+			? '&nbsp;'
+			: htmlspecialchars( $row->tmplog_comment );
 
 		$htmlOut .= Html::rawElement( 'td',
 			[ 'valign' => 'top', 'class' => 'primary-summary' ],
@@ -121,7 +121,8 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 			// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable
 
 			$htmlOut .= Html::rawElement( 'td', [ 'valign' => 'top' ],
-				'&nbsp;' // force a table cell in older browsers
+				// force a table cell in older browsers
+				'&nbsp;'
 			);
 			$htmlOut .= Html::openElement( 'td', [ 'valign' => 'top', 'colspan' => '5' ] );
 			if ( $row->tmplog_action == 'created' ) {

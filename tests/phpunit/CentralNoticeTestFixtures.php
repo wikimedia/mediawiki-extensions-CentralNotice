@@ -211,14 +211,14 @@ class CentralNoticeTestFixtures {
 					$campaign['regions'] = [];
 				} else {
 					throw new LogicException( "Campaign is not geotargetted but "
-											  . "'regions' property is set." );
+					. "'regions' property is set." );
 				}
 			}
 		}
 	}
 
 	/**
-	 * Add dummy banner properties throughout a test case setup specification.
+	 * Add a dummy banner properties throughout a test case setup specification.
 	 *
 	 * @param array &$testCaseSetup A data structure with the setup section of a
 	 *  test case specification
@@ -234,9 +234,9 @@ class CentralNoticeTestFixtures {
 	/**
 	 * Make a timestamp offset from the current time by a number of days.
 	 *
-	 * @param MW_TS $now Timestamp of the current time
-	 * @param unknown $offsetInDays
-	 * @return MW_TS
+	 * @param int $now Timestamp of the current time
+	 * @param int $offsetInDays
+	 * @return int
 	 */
 	private static function makeTimestamp( $now, $offsetInDays ) {
 		return $now + ( 86400 * $offsetInDays );
@@ -253,7 +253,7 @@ class CentralNoticeTestFixtures {
 		// It is expected that when a test case is set up via fixture data,
 		// this global will already have been set via
 		// setupTestCaseFromFixtureData(). Legacy (non-fixture data) tests don't
-		// use this (but may be dependant on non-test config).
+		// use this (but may be dependent on non-test config).
 		global $wgNoticeNumberOfBuckets;
 
 		// Needed due to hardcoded default desktop device hack in Banner
@@ -272,7 +272,8 @@ class CentralNoticeTestFixtures {
 				$campaign['throttle'],
 				$campaign['preferred'],
 				$this->user,
-				null // no campaign type assigned
+				// no campaign type assigned
+				null
 			);
 
 			// Update notice end date only if that property was sent in.
@@ -283,7 +284,7 @@ class CentralNoticeTestFixtures {
 					$campaign['startTs'], $campaign['endTs'] );
 			}
 
-			// bucket_count and archived  are also only in test
+			// bucket_count and archived are also only in test
 			// fixture data, not legacy tests.
 			if ( isset( $campaign['bucket_count'] ) ) {
 				$bucket_count = $campaign['bucket_count'];
@@ -402,7 +403,6 @@ class CentralNoticeTestFixtures {
 	 * structure, numerically indexed arrays are sorted by value.
 	 * (If $a is a numerically indexed array, sort it by value. Traverse the
 	 * array recursively and do the same for each value.)
-	 * @param array &$a
 	 */
 	private function deepMultisort( array &$a ) {
 		array_multisort( $a );
@@ -445,7 +445,7 @@ class CentralNoticeTestFixtures {
 			}
 		}
 
-		// If necessary, update in-memory list of available devices
+		// If necessary, update the in-memory list of available devices
 		if ( $devicesChanged ) {
 			$this->knownDevices = CNDeviceTarget::getAvailableDevices( true );
 		}
@@ -478,8 +478,7 @@ class CentralNoticeTestFixtures {
 	 */
 	public static function allocationsData() {
 		$json = self::allocationsDataAsJson();
-		$data = FormatJson::decode( $json, true );
-		return $data;
+		return FormatJson::decode( $json, true );
 	}
 
 	/**

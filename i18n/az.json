@@ -10,7 +10,8 @@
 			"Toghrul Rahimli",
 			"Vago",
 			"Vugar 1981",
-			"Wertuose"
+			"Wertuose",
+			"Əkrəm"
 		]
 	},
 	"centralnotice": "Mərkəzi xəbərdarlıq idarəçisi",
@@ -143,6 +144,7 @@
 	"centralnotice-multiple-languages": "Bir çox dil",
 	"prefs-centralnotice-banners": "Bannerlər",
 	"prefs-centralnotice-display-banner-types": "Göstəriləcək banner növləri",
+	"prefs-description-centralnotice-banners": "Hansı növ xəbərdarlıqları görmək istədiyinizi seçin.",
 	"centralnotice-campaign-type-advocacy": "Vəkillik",
 	"centralnotice-campaign-type-article-writing": "Məqalə yazılması",
 	"centralnotice-campaign-type-event": "Hadisələr",

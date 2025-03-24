@@ -30,42 +30,33 @@ class CampaignLog {
 		$this->begin = [];
 		$this->end = [];
 		if ( $row ) {
-			$comma_explode = static function ( $str ) {
-				return explode( ", ", $str );
-			};
+			// Both functions intentionally drop invalid values like "" and "0"
+			$commaExplode = static fn ( ?string $str ) => $str ? explode( ', ', $str ) : [];
+			$jsonDecode = static fn ( ?string $json ) => $json ? json_decode( $json, true ) : [];
 
-			$json_decode = static function ( $json ) {
-				return json_decode( $json, true );
-			};
-
-			$store = function ( $name, $decode = null ) use ( $row ) {
-				$beginField = 'notlog_begin_' . $name;
-				$endField = 'notlog_end_' . $name;
-
-				if ( !$decode ) {
-					$decode = static function ( $v ) {
-						return $v;
-					};
+			$store = function ( string $name, ?callable $decode = null ) use ( $row ) {
+				$this->begin[$name] = $row->{"notlog_begin_$name"};
+				$this->end[$name] = $row->{"notlog_end_$name"};
+				if ( $decode ) {
+					$this->begin[$name] = $decode( $this->begin[$name] );
+					$this->end[$name] = $decode( $this->end[$name] );
 				}
-				$this->begin[ $name ] = $decode( $row->$beginField );
-				$this->end[ $name ] = $decode( $row->$endField );
 			};
 
 			foreach ( static::$basic_fields as $name ) {
 				$store( $name );
 			}
 			foreach ( static::$list_fields as $name ) {
-				$store( $name, $comma_explode );
+				$store( $name, $commaExplode );
 			}
 			foreach ( static::$map_fields as $name ) {
-				$store( $name, $json_decode );
+				$store( $name, $jsonDecode );
 			}
 		}
 
 		$this->campaign = $row->notlog_not_name;
 		$this->action = $row->notlog_action;
 		$this->timestamp = $row->notlog_timestamp;
-		// TODO temporary code for soft dependency on schema change
 		$this->comment = $row->notlog_comment ?? '';
 	}
 

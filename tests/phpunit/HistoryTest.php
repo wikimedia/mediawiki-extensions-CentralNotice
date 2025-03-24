@@ -6,6 +6,7 @@ use MediaWiki\User\User;
  * @group CentralNotice
  * @group medium
  * @group Database
+ * @covers \Campaign
  */
 class HistoryTest extends MediaWikiIntegrationTestCase {
 	private User $userUser;
@@ -25,9 +26,6 @@ class HistoryTest extends MediaWikiIntegrationTestCase {
 		parent::tearDown();
 	}
 
-	/**
-	 * @covers Campaign::getHistoricalCampaigns
-	 */
 	public function testStaleHistoricalCampaigns() {
 		// Bug was that expired campaigns would still be included in the
 		// history, as long as they were enabled.

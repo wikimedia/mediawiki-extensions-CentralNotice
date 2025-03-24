@@ -63,7 +63,8 @@ class CNChoiceDataResourceLoaderModule extends RL\Module {
 			'project' => $project,
 			'language' => $language,
 			'format' => 'json',
-			'formatversion' => 2 // Prevents stripping of false values 8p
+			// Prevents stripping of false values 8p
+			'formatversion' => 2
 		];
 
 		$url = wfAppendQuery( $cnApiUrl, $q );

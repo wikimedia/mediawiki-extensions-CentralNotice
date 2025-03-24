@@ -6,7 +6,7 @@ use MediaWiki\User\User;
  * @group Fundraising
  * @group Database
  * @group CentralNotice
- * @covers Campaign
+ * @covers \Campaign
  */
 class CampaignTest extends MediaWikiIntegrationTestCase {
 	private User $userUser;

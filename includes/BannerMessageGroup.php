@@ -202,7 +202,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 						$user,
 						'Update from translation plugin',
 						EDIT_FORCE_BOT,
-						false, // $originalRevId
+						false,
 						[ 'centralnotice translation' ]
 					);
 					Banner::protectBannerContent( $wikiPage, $user, true );

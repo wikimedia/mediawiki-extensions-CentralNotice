@@ -37,7 +37,7 @@ class TemplatePager extends ReverseChronologicalPager {
 		parent::__construct();
 
 		// Override paging defaults
-		[ $this->mLimit, /* $offset */ ] = $this->mRequest->getLimitOffsetForUser(
+		[ $this->mLimit, ] = $this->mRequest->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
 			''
