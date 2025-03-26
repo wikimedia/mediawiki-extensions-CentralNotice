@@ -4,6 +4,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -162,8 +163,8 @@ class CentralNotice extends UnlistedSpecialPage {
 		}
 
 		$pager = new CNCampaignPager( $this, $this->editable, null, $showArchived );
-		$popts = $out->parserOptions();
-		$out->addHTML( $pager->getBodyOutput()->runOutputPipeline( $popts, [] )->getContentHolderText() );
+		$popts = ParserOptions::newFromContext( $this->getContext() );
+		$out->addParserOutputContent( $pager->getBodyOutput(), $popts );
 		$out->addHTML( $pager->getNavigationBar() );
 
 		// If the user has edit rights, show a form for adding a campaign

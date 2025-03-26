@@ -9,6 +9,7 @@ use MediaWiki\HTMLForm\Field\HTMLSelectLimitField;
 use MediaWiki\HTMLForm\Field\HTMLSubmitField;
 use MediaWiki\HTMLForm\Field\HTMLTextField;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Xml\Xml;
 
@@ -531,8 +532,8 @@ class SpecialCentralNoticeBanners extends CentralNotice {
 
 			$pager = new CNCampaignPager( $this, false, $this->banner->getId() );
 			$out->addModules( 'ext.centralNotice.adminUi.campaignPager' );
-			$popts = $out->parserOptions();
-			$out->addHTML( $pager->getBodyOutput()->runOutputPipeline( $popts, [] )->getContentHolderText() );
+			$popts = ParserOptions::newFromContext( $this->getContext() );
+			$out->addParserOutputContent( $pager->getBodyOutput(), $popts );
 			$out->addHTML( $pager->getNavigationBar() );
 		}
 	}
