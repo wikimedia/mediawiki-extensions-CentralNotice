@@ -54,7 +54,7 @@ class CentralNoticePageLogPager extends ReverseChronologicalPager {
 			// only MediaWiki pages
 			'rc_namespace' => NS_MEDIAWIKI,
 		];
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 		if ( $this->logType == 'bannercontent' ) {
 			// Add query conditions for banner content log
 			$conds += [

@@ -226,7 +226,7 @@ class CentralNoticeBannerLogPager extends CentralNoticeCampaignLogPager {
 	public function showChanges( $newrow ) {
 		$oldrow = false;
 		if ( $newrow->tmplog_action === 'modified' ) {
-			$db = CNDatabase::getDb();
+			$db = CNDatabase::getReplicaDb();
 			$tmplogId = (int)$newrow->tmplog_id;
 			$oldrow = $db->newSelectQueryBuilder()
 				->select( '*' )

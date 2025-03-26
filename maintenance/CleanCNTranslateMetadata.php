@@ -42,7 +42,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	private function cleanDuplicates() {
 		$this->output( "Cleaning duplicates\n" );
 
-		$db = CNDatabase::getDb( DB_PRIMARY );
+		$db = CNDatabase::getPrimaryDb();
 
 		$res = $db->newSelectQueryBuilder()
 			->select( [
@@ -84,7 +84,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	private function populateIDs() {
 		$this->output( "Associating metadata with banner ids\n" );
 
-		$db = CNDatabase::getDb( DB_PRIMARY );
+		$db = CNDatabase::getPrimaryDb();
 
 		$res = $db->newSelectQueryBuilder()
 			->select( [ 'rt_page', 'rt_revision', 'page_title', 'tmp_id' ] )
@@ -121,7 +121,7 @@ class CleanCNTranslateMetadata extends Maintenance {
 	 * Delete rows that have no banner ID associated with them
 	 */
 	private function deleteOrphans() {
-		$db = CNDatabase::getDb( DB_PRIMARY );
+		$db = CNDatabase::getPrimaryDb();
 		$this->output( "Preparing to delete orphaned rows\n" );
 
 		$res = $db->newSelectQueryBuilder()

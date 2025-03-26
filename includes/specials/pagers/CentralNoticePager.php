@@ -12,7 +12,7 @@ class CentralNoticePager extends TemplatePager {
 	 * @return array[]
 	 */
 	public function getQueryInfo() {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		// First we must construct the filter before we pull banners
 		// When the filter comes in it is space delimited, so break that...

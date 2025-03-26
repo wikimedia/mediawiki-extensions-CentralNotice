@@ -206,7 +206,7 @@ class Campaign {
 	 * @throws CampaignExistenceException If the campaign doesn't exist
 	 */
 	private function loadBasicSettings() {
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 
 		// What selector are we using?
 		if ( $this->id !== null ) {
@@ -264,7 +264,7 @@ class Campaign {
 	 * @return bool
 	 */
 	public static function campaignExists( $campaignName ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		return (bool)$dbr->newSelectQueryBuilder()
 			->select( 'not_name' )
@@ -283,7 +283,7 @@ class Campaign {
 	 * an array of associated banners, and campaign start and end times.
 	 */
 	public static function getActiveCampaignsAndBanners( $includeFuture = false ) {
-		$dbr = CNDatabase::getDb( DB_REPLICA );
+		$dbr = CNDatabase::getReplicaDb();
 		$time = $dbr->timestamp();
 
 		$conds = [
@@ -345,7 +345,7 @@ class Campaign {
 	 * @return array|bool an array of settings or false if the campaign does not exist
 	 */
 	public static function getCampaignSettings( $campaignName ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		// Get campaign info from database
 		$row = $dbr->newSelectQueryBuilder()
@@ -431,7 +431,7 @@ class Campaign {
 	 *         campaign_throttle
 	 */
 	public static function getHistoricalCampaigns( $ts ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [
@@ -547,7 +547,7 @@ class Campaign {
 	public static function getCampaignMixins( $campaignName, $compact = false ) {
 		global $wgCentralNoticeCampaignMixins;
 
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 
 		// Prepare query conditions
 		$conds = [ 'notices.not_name' => $campaignName ];
@@ -687,7 +687,7 @@ class Campaign {
 
 		// TODO Error handling!
 
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 
 		// Get the campaign ID
 		// Note: the need to fetch the ID here highlights the need for some
@@ -789,7 +789,7 @@ class Campaign {
 	 * @return array an array of campaign names
 	 */
 	public static function getAllCampaignNames() {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		return $dbr->newSelectQueryBuilder()
 			->select( 'not_name' )
 			->from( 'cn_notices' )
@@ -828,7 +828,7 @@ class Campaign {
 			return 'centralnotice-no-language';
 		}
 
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->startAtomic( __METHOD__ );
 
 		$endTime = strtotime( '+1 hour', (int)wfTimestamp( TS_UNIX, $startTs ) );
@@ -944,8 +944,8 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	public static function removeCampaign( $campaignName, $user ) {
-		// TODO This method is never used?
-		$dbr = CNDatabase::getDb( DB_PRIMARY );
+		// TODO This method is never used outside tests?
+		$dbr = CNDatabase::getReplicaDb();
 
 		$res = $dbr->newSelectQueryBuilder()
 			->select( 'not_locked' )
@@ -974,7 +974,7 @@ class Campaign {
 		$campaignId = self::getNoticeId( $campaignName );
 		self::processAfterCampaignChange( 'removed', $campaignId, $campaignName, $user );
 
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->newDeleteQueryBuilder()
 			->deleteFrom( 'cn_assignments' )
@@ -1018,7 +1018,7 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	public static function addTemplateTo( $noticeName, $templateName, $weight, $bucket = 0 ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 
 		$noticeId = self::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
@@ -1056,7 +1056,7 @@ class Campaign {
 	 * @param string $templateName
 	 */
 	public static function removeTemplateFor( $noticeName, $templateName ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$noticeId = self::getNoticeId( $noticeName );
 		$templateId = Banner::fromName( $templateName )->getId();
 		$dbw->newDeleteQueryBuilder()
@@ -1072,7 +1072,7 @@ class Campaign {
 	 * @return int|null
 	 */
 	public static function getNoticeId( $noticeName ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$row = $dbr->newSelectQueryBuilder()
 			->select( 'not_id' )
 			->from( 'cn_notices' )
@@ -1088,7 +1088,7 @@ class Campaign {
 	 * @return null|string
 	 */
 	public static function getNoticeName( $noticeId ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		if ( is_numeric( $noticeId ) ) {
 			$row = $dbr->newSelectQueryBuilder()
 				->select( 'not_name' )
@@ -1108,7 +1108,7 @@ class Campaign {
 	 * @return string[]
 	 */
 	public static function getNoticeProjects( $noticeName ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$row = $dbr->newSelectQueryBuilder()
 			->select( 'not_id' )
 			->from( 'cn_notices' )
@@ -1133,7 +1133,7 @@ class Campaign {
 	 * @return string[]
 	 */
 	public static function getNoticeLanguages( $noticeName ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$row = $dbr->newSelectQueryBuilder()
 			->select( 'not_id' )
 			->from( 'cn_notices' )
@@ -1159,7 +1159,7 @@ class Campaign {
 	 * @return string[]
 	 */
 	public static function getNoticeCountries( $noticeName ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$row = $dbr->newSelectQueryBuilder()
 			->select( 'not_id' )
 			->from( 'cn_notices' )
@@ -1185,7 +1185,7 @@ class Campaign {
 	 * @return string[]
 	 */
 	public static function getNoticeRegions( $noticeName ) {
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$row = $dbr->newSelectQueryBuilder()
 			->select( 'not_id' )
 			->from( 'cn_notices' )
@@ -1249,7 +1249,7 @@ class Campaign {
 	 * @return bool|string True on success, string with message key for error
 	 */
 	public static function updateNoticeDate( $noticeName, $start, $end ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 
 		// Start/end don't line up
 		if ( $start > $end || $end < $start ) {
@@ -1294,7 +1294,7 @@ class Campaign {
 			if ( !self::settingNameIsValid( $settingName ) ) {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
-			$dbw = CNDatabase::getDb( DB_PRIMARY );
+			$dbw = CNDatabase::getPrimaryDb();
 			$dbw->newUpdateQueryBuilder()
 				->update( 'cn_notices' )
 				->set( [ 'not_' . $settingName => (int)$settingValue ] )
@@ -1341,7 +1341,7 @@ class Campaign {
 			if ( !self::settingNameIsValid( $settingName ) ) {
 				throw new InvalidArgumentException( "Invalid setting name" );
 			}
-			$dbw = CNDatabase::getDb( DB_PRIMARY );
+			$dbw = CNDatabase::getPrimaryDb();
 			$dbw->newUpdateQueryBuilder()
 				->update( 'cn_notices' )
 				->set( [ 'not_' . $settingName => $settingValue ] )
@@ -1359,7 +1359,7 @@ class Campaign {
 	 * @param int $weight New banner weight
 	 */
 	public static function updateWeight( $noticeName, $templateId, $weight ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$noticeId = self::getNoticeId( $noticeName );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'cn_assignments' )
@@ -1381,7 +1381,7 @@ class Campaign {
 	 * @param int $bucket New bucket number
 	 */
 	public static function updateBucket( $noticeName, $templateId, $bucket ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$noticeId = self::getNoticeId( $noticeName );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'cn_assignments' )
@@ -1399,7 +1399,7 @@ class Campaign {
 	 * @param string[] $newProjects
 	 */
 	public static function updateProjects( $notice, $newProjects ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned projects
@@ -1446,7 +1446,7 @@ class Campaign {
 	 * @param string[] $newLanguages
 	 */
 	public static function updateProjectLanguages( $notice, $newLanguages ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned languages
@@ -1494,7 +1494,7 @@ class Campaign {
 	 * @param array $newCountries
 	 */
 	public static function updateCountries( $notice, $newCountries ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned countries
@@ -1542,7 +1542,7 @@ class Campaign {
 	 * @param array $newRegions in format CountryCode_RegionCode
 	 */
 	public static function updateRegions( $notice, $newRegions ) {
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->startAtomic( __METHOD__ );
 
 		// Get the previously assigned regions
@@ -1606,7 +1606,7 @@ class Campaign {
 		// Summary shouldn't actually come in null, but just in case...
 		$summary ??= '';
 
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$time = $dbw->timestamp();
 
 		$log = [
@@ -1711,7 +1711,7 @@ class Campaign {
 			return;
 		}
 
-		$dbw = CNDatabase::getDb( DB_PRIMARY );
+		$dbw = CNDatabase::getPrimaryDb();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'cn_notices' )
 			->set( [ 'not_type' => $type ] )
@@ -1733,7 +1733,7 @@ class Campaign {
 		$campaign = false, $username = false, $start = false, $end = false, $limit = 50, $offset = 0
 	) {
 		// Read from the primary database to avoid concurrency problems
-		$dbr = CNDatabase::getDb();
+		$dbr = CNDatabase::getReplicaDb();
 		$conds = [];
 		if ( $start ) {
 			$conds[] = $dbr->expr( 'notlog_timestamp', '>=', $start );

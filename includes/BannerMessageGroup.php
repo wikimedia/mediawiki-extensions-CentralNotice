@@ -243,7 +243,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 	 */
 	public static function registerGroupHook( &$list ) {
 		// Must be explicitly primary for runs under a jobqueue
-		$dbr = CNDatabase::getDb( DB_PRIMARY );
+		$dbr = CNDatabase::getPrimaryDb();
 
 		// Create the base aggregate group
 		$conf = [];
@@ -296,7 +296,7 @@ class BannerMessageGroup extends WikiMessageGroup {
 
 		$groupName = self::getTranslateGroupName( $banner );
 
-		$db = CNDatabase::getDb();
+		$db = CNDatabase::getReplicaDb();
 		return $db->newSelectQueryBuilder()
 			->select( 'tgr_lang' )
 			->from( 'translate_groupreviews' )
