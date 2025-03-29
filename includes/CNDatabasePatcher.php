@@ -22,7 +22,14 @@ class CNDatabasePatcher implements LoadExtensionSchemaUpdatesHook {
 	public function onLoadExtensionSchemaUpdates( $updater ) {
 		$base = __DIR__ . '/../sql';
 		$dbType = $updater->getDB()->getType();
-		$updater->addExtensionTable( 'cn_notices', "$base/$dbType/tables-generated.sql" );
+
+		$updater->addExtensionUpdateOnVirtualDomain( [
+			'virtual-centralnotice',
+			'addTable',
+			'cn_notices',
+			"$base/$dbType/tables-generated.sql",
+			true
+		] );
 
 		if ( $dbType === 'mysql' ) {
 			// 1.35
